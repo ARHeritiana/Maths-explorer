@@ -14,7 +14,9 @@ Each experiment follows the same short sequence:
 2. **Experiment:** vary one parameter and observe a graph and numerical results.
 3. **Conjecture:** identify what seems to remain true.
 4. **Explain:** connect the observation with a formula or mathematical argument.
-5. **Check:** answer one focused question, then read the explanation.
+5. **Check:** set the experiment to the question’s parameters, answer one focused question, then read the explanation.
+
+Students can record an observation and a conditional conjecture in each lab, then compare them with a general argument and a transfer/counterexample prompt. Notes survive navigation, language changes and control reset within the session; they are not persisted or automatically assessed. Every graph has a labeled numerical table.
 
 Experimentation provides evidence and intuition; it is not presented as proof. The derivative and probability activities explicitly explain this distinction. Challenges reward reasoning by placing progressive hints and a worked argument next to the numerical check.
 
@@ -36,7 +38,7 @@ The visual direction is a modern mathematical notebook: white working surfaces, 
 
 On desktop, a topic sidebar sits beside the experiment, with the learning activity adjacent to the graph. On narrower screens, the topic picker becomes a horizontal strip and the activity follows the experiment. Navigation remains limited to three principal destinations. All input controls have visible labels. Slider outputs and numeric results provide alternatives to reading the plotted geometry alone.
 
-French is the initial language, with a persistent FR/EN switch. All lesson text, hints, explanations, errors, curriculum notes and controls are translated. The requested feature names “Learning time” and “History box” remain recognizable in both language modes. Malagasy is represented as a curriculum pathway, not as an unreviewed language translation.
+French is the initial language, with a persistent FR/EN switch. All lesson text, hints, explanations, errors, curriculum notes and controls are translated. French uses “Temps d’apprentissage” and “Repère historique”; English uses “Learning time” and “History box”. Malagasy is represented as a curriculum pathway, not as an unreviewed language translation.
 
 ## Implemented experiment scope
 
@@ -46,8 +48,8 @@ French is the initial language, with a persistent FR/EN switch. All lesson text,
 | Unit circle          | Angle from 0° to 360°                           | Sine, cosine, radians, unit-circle identity               |
 | Sequences            | Initial value, increment/ratio, number of terms | Arithmetic vs geometric growth; zero and negative ratios  |
 | Binomial probability | n, p, batches of simulated experiments          | Theory vs frequency, expectation, spread, independence    |
-| Derivatives          | x and positive nonzero h                        | Secant slope approaching the tangent slope for x²         |
-| Integration          | Number of left-endpoint rectangles              | Lower sums approaching the integral of x² on [0,1]        |
+| Derivatives          | x, nonzero increment magnitude and approach side                        | Secant slope approaching the tangent slope for x²         |
+| Integration          | Number and left/right/midpoint method              | Bounds, midpoint error and convergence to the integral of x² on [0,1]        |
 | Vectors              | Both components of two vectors                  | Addition, parallelogram, dot product, angle, zero vectors |
 | Statistics           | A student-editable numerical data set           | Mean, median, population standard deviation, outliers     |
 | Complex numbers      | Real and imaginary components                   | Modulus and the rotation caused by multiplication by i    |
@@ -66,7 +68,7 @@ Each challenge includes a clear statement, an estimated duration, difficulty fro
 
 The implemented site uses semantic HTML, CSS, ES modules and SVG. Numerical functions are separated from educational content and UI rendering. It needs no installed production dependencies, API keys or backend. Static assets can be served under either a domain root or a subdirectory.
 
-Only the selected language and successful answer IDs are stored in localStorage. No account, analytics, server submission or cross-device synchronization is included. The app handles malformed storage and rejected writes. Resetting an experiment resets its controls but preserves previously recorded successful answers.
+Only the selected language and successful answer IDs are stored in localStorage. Observation/conjecture notes stay in session memory. No account, analytics, server submission or cross-device synchronization is included. The app handles malformed storage, denied reads and rejected writes, with an immediate status message. External history/curriculum links leave the app; the hosting service handles private access. Resetting an experiment resets its controls but preserves previously recorded successful answers.
 
 ## Delivery and quality gates
 
@@ -89,3 +91,7 @@ See `VALIDATION.md` for the checks performed and their limits. This release is a
 3. **Student trials:** observe students using a lab without instruction; assess whether they can formulate a conjecture and explain a result. Refine language and interactions from those observations.
 4. **Broaden challenge progression:** add proof-only activities and reviewed solutions. Avoid presenting automated numerical checking as proof assessment.
 5. **Optional future capabilities:** evaluate offline installation, reviewed Malagasy translations and explicit exportable experiment notes after the core experience has been tested. Accounts, teacher dashboards and AI tutoring are outside this version.
+
+## Audit continuation — 7 October 2026
+
+See `AUDIT.md` for reproducible findings and their priority. This pass preserves nine labs and eight challenges while improving their learning depth, chart alternatives, focus/routing and numerical display. It adds no runtime dependencies. `CURRICULUM.md` now distinguishes source-verified dates/topic relationships, indicative pathways and unmapped courses. The short plan has been implemented; future scope remains teacher review, student trials and focused topic extensions, not features claimed in this release.

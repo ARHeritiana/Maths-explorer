@@ -45,7 +45,7 @@ export const labs = [
       "Il y en a deux : −2 et 2. Ici Δ = 16 > 0. Lorsque a = 0, la fonction n’est plus du second degré.",
       "There are two: −2 and 2. Here Δ = 16 > 0. When a = 0, the function is no longer quadratic.",
     ],
-    history: ["Al-Khwarizmi · vers 820", "Al-Khwarizmi · around 820"],
+    history: ["Al-Khwarizmi · IXe siècle", "Al-Khwarizmi · 9th century"],
     story: [
       "Al-Khwarizmi présentait des méthodes de résolution d’équations du second degré par des arguments géométriques. Le mot « algèbre » vient d’al-jabr, dans le titre de son traité.",
       "Al-Khwarizmi presented methods for solving quadratic equations using geometric arguments. “Algebra” comes from al-jabr in the title of his treatise.",
@@ -222,8 +222,8 @@ export const labs = [
         "For x = 1 and h = 1, calculate the slope between (1, 1) and (2, 4).",
       ],
       [
-        "Diminue h. Vers quelle valeur la pente semble-t-elle tendre ?",
-        "Decrease h. What value does the slope seem to approach?",
+        "Diminue |h| et change le côté d’approche. Vers quelle valeur les pentes semblent-elles tendre ?",
+        "Decrease |h| and change approach sides. What value do the slopes seem to approach?",
       ],
       [
         "Développe ((x + h)² − x²) / h = 2x + h, pour h ≠ 0. La limite vaut 2x.",
@@ -260,8 +260,8 @@ export const labs = [
     ],
     short: ["Intégrales et approximation", "Integrals and approximation"],
     intro: [
-      "Approxime l’aire sous y = x² entre 0 et 1 avec des rectangles à gauche.",
-      "Approximate the area under y = x² from 0 to 1 using left-endpoint rectangles.",
+      "Approxime l’aire sous y = x² entre 0 et 1. Compare trois choix de rectangles.",
+      "Approximate the area under y = x² from 0 to 1. Compare three choices of rectangles.",
     ],
     duration: 7,
     level: ["Terminale", "Advanced"],
@@ -277,12 +277,12 @@ export const labs = [
         "With two rectangles, why is the approximation below the exact area?",
       ],
       [
-        "Augmente N. Observe la somme et l’écart à 1/3.",
-        "Increase N. Observe the sum and the gap from 1/3.",
+        "Compare les rectangles à gauche, à droite et au milieu. Augmente N et observe les erreurs.",
+        "Compare left, right and midpoint rectangles. Increase N and observe the errors.",
       ],
       [
-        "Chaque rectangle a une largeur 1/N et une hauteur (i/N)² pour i = 0, …, N − 1.",
-        "Each rectangle has width 1/N and height (i/N)² for i = 0, …, N − 1.",
+        "À gauche, chaque rectangle a une largeur 1/N et une hauteur (i/N)² pour i = 0, …, N − 1. Justifie l’encadrement.",
+        "With left endpoints, each rectangle has width 1/N and height (i/N)² for i = 0, …, N − 1. Justify the bounds.",
       ],
     ],
     quiz: [
@@ -451,6 +451,65 @@ export const labs = [
     source: "https://mathshistory.st-andrews.ac.uk/Biographies/Bombelli/",
   },
 ];
+
+// Activities give examples, conditions and a general argument separately.
+const reasoning = {
+  quadratic: {
+    conjecture: ["À a ≠ 0 et b fixés, changer c translate la parabole verticalement sans changer son axe.", "With a ≠ 0 and b fixed, changing c shifts the parabola vertically without changing its axis."],
+    proof: ["Pour tout x, f(x) + k = ax² + bx + (c + k). En complétant le carré, f(x) = a(x + b/(2a))² − Δ/(4a). Le sommet a pour abscisse −b/(2a). L’équation f(x) = 0 équivaut à (x + b/(2a))² = Δ/(4a²) : deux, une ou aucune racine selon le signe de Δ. Ce raisonnement suppose a ≠ 0.", "For every x, f(x) + k = ax² + bx + (c + k). Completing the square gives f(x) = a(x + b/(2a))² − Δ/(4a). The vertex has x-coordinate −b/(2a). The equation f(x) = 0 is equivalent to (x + b/(2a))² = Δ/(4a²): two, one or no roots depending on the sign of Δ. This argument assumes a ≠ 0."],
+    transfer: ["À tester : compare a = 0, b = 0, c = 0 puis c = 1. Pourquoi « aucune racine » et « tous les réels » sont-ils différents ?", "Try a = 0, b = 0, c = 0, then c = 1. Why are “no roots” and “all real numbers” different?"]
+  },
+  trig: {
+    conjecture: ["Pour tout angle, cos² θ + sin² θ = 1 ; les coordonnées ont des signes différents selon le quadrant.", "For every angle, cos² θ + sin² θ = 1; coordinate signs depend on the quadrant."],
+    proof: ["P = (cos θ, sin θ) appartient au cercle de centre O et de rayon 1. Pythagore donne OP² = cos² θ + sin² θ = 1. L’argument porte sur tous les points du cercle, pas seulement les angles testés.", "P = (cos θ, sin θ) lies on the circle with centre O and radius 1. Pythagoras gives OP² = cos² θ + sin² θ = 1. The argument covers every point on the circle, not just tested angles."],
+    transfer: ["À tester : θ et 360° − θ. Quel signe change ? Justifie par la symétrie par rapport à l’axe horizontal.", "Try θ and 360° − θ. Which sign changes? Explain using reflection in the horizontal axis."]
+  },
+  sequences: {
+    conjecture: ["Une suite arithmétique a une différence constante. Une suite géométrique vérifie uₙ₊₁ = q uₙ, même pour q = 0.", "An arithmetic sequence has a constant difference. A geometric sequence satisfies uₙ₊₁ = q uₙ, including q = 0."],
+    proof: ["uₙ = u₀ + nr donne uₙ₊₁ − uₙ = r. La récurrence uₙ₊₁ = q uₙ, avec le terme initial u₀, donne uₙ = u₀qⁿ pour n ≥ 1 par récurrence. Pour q = 0, les termes suivants sont nuls : on ne peut pas calculer leur quotient. Si q < 0 et u₀ ≠ 0, les signes alternent.", "uₙ = u₀ + nr gives uₙ₊₁ − uₙ = r. Starting with u₀, the recurrence uₙ₊₁ = q uₙ gives uₙ = u₀qⁿ for n ≥ 1 by induction. For q = 0, all later terms are zero: their ratio cannot be calculated. If q < 0 and u₀ ≠ 0, signs alternate."],
+    transfer: ["À tester : q = −0,5 puis q = −1,5. Les signes alternent dans les deux cas ; compare les valeurs absolues. Une fenêtre de 15 termes ne prouve pas une limite.", "Try q = −0.5, then q = −1.5. Signs alternate in both cases; compare absolute values. A window of 15 terms does not prove a limit."]
+  },
+  probability: {
+    conjecture: ["Sur beaucoup d’expériences, les fréquences tendent à se rapprocher du modèle binomial. L’erreur ne diminue pas forcément à chaque nouveau lot.", "Over many experiments, frequencies tend to approach the binomial model. The error need not decrease after every new batch."],
+    proof: ["Pour k succès parmi n essais indépendants de probabilité p, chaque arrangement a une probabilité pᵏ(1 − p)ⁿ⁻ᵏ. Il y en a C(n,k), d’où P(X = k) = C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ. En écrivant X comme somme de n indicatrices d’espérance p, on obtient E(X) = np. La simulation illustre ces résultats ; elle ne les démontre pas.", "For k successes in n independent trials with probability p, each arrangement has probability pᵏ(1 − p)ⁿ⁻ᵏ. There are C(n,k) arrangements, giving P(X = k) = C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ. Writing X as the sum of n indicators with expectation p gives E(X) = np. Simulation illustrates these results; it does not prove them."],
+    transfer: ["À tester : p = 0,5 puis p = 0,2, avec n fixé. Compare symétrie et dispersion dans le tableau. Sans indépendance ou avec p variable, ce modèle peut être inadapté.", "Try p = 0.5, then p = 0.2, keeping n fixed. Compare symmetry and spread in the table. Without independence or with varying p, this model may be unsuitable."]
+  },
+  derivative: {
+    conjecture: ["Pour x², les pentes des sécantes tendent vers 2x lorsque h tend vers zéro par la gauche comme par la droite.", "For x², secant slopes approach 2x as h approaches zero from either side."],
+    proof: ["Pour h ≠ 0, ((x + h)² − x²)/h = (2xh + h²)/h = 2x + h. Pour tout x fixé, la différence avec 2x est h, donc tend vers zéro des deux côtés. Le quotient n’est jamais calculé en h = 0.", "For h ≠ 0, ((x + h)² − x²)/h = (2xh + h²)/h = 2x + h. For fixed x, the difference from 2x is h, tending to zero from either side. The quotient is never evaluated at h = 0."],
+    transfer: ["À comparer sur papier : pour |x| en x = 0, le quotient vaut 1 si h > 0 et −1 si h < 0. Les limites diffèrent : il n’y a pas de dérivée en 0.", "Compare on paper: for |x| at x = 0, the quotient is 1 for h > 0 and −1 for h < 0. The limits differ, so there is no derivative at 0."]
+  },
+  integral: {
+    conjecture: ["Pour x² sur [0 ; 1], la somme à gauche est un minorant et la somme à droite un majorant de l’aire. Les deux tendent vers 1/3.", "For x² on [0, 1], the left sum bounds the area below and the right sum bounds it above. Both approach 1/3."],
+    proof: ["Sur chaque intervalle, x² est compris entre ses valeurs aux extrémités. En sommant les aires, Lₙ ≤ I ≤ Rₙ. La différence Rₙ − Lₙ = (1² − 0²)/N = 1/N tend vers 0. La formule de la somme des carrés donne Lₙ = 1/3 − 1/(2N) + 1/(6N²). Au milieu, Mₙ = 1/3 − 1/(12N²). Ces formules justifient ici la convergence et les erreurs.", "On each interval, x² lies between its endpoint values. Summing areas gives Lₙ ≤ I ≤ Rₙ. The difference Rₙ − Lₙ = (1² − 0²)/N = 1/N tends to zero. The sum-of-squares formula gives Lₙ = 1/3 − 1/(2N) + 1/(6N²). Midpoints give Mₙ = 1/3 − 1/(12N²). These formulas justify convergence and errors for this function."],
+    transfer: ["À discuter : une somme à gauche est-elle toujours un minorant ? Pour une fonction décroissante, le sens de l’encadrement s’inverse.", "Discuss: is a left sum always a lower bound? For a decreasing function, the bounds reverse."]
+  },
+  vectors: {
+    conjecture: ["Pour deux vecteurs non nuls, un produit scalaire nul correspond à un angle droit.", "For two nonzero vectors, a zero dot product corresponds to a right angle."],
+    proof: ["u · v = ‖u‖‖v‖ cos θ. Si les deux normes sont non nulles, u · v = 0 équivaut à cos θ = 0, donc θ = 90° pour l’angle entre vecteurs dans [0° ; 180°]. Avec un vecteur nul, le produit vaut 0 mais l’angle est indéfini.", "u · v = ‖u‖‖v‖ cos θ. If both norms are nonzero, u · v = 0 is equivalent to cos θ = 0, hence θ = 90° for the angle between vectors in [0°, 180°]. With a zero vector, the dot product is zero but the angle is undefined."],
+    transfer: ["À tester : rends u nul. Puis prends v = −u avec u non nul. Que valent la somme et l’angle ?", "Make u zero. Then try v = −u with u nonzero. What are the sum and angle?"]
+  },
+  statistics: {
+    conjecture: ["Remplacer une valeur x par x + d change la moyenne de d/n. La médiane dépend de l’ordre, pas de la grandeur de toutes les valeurs.", "Replacing one value x by x + d changes the mean by d/n. The median depends on order, not the magnitude of every value."],
+    proof: ["La somme augmente de d et l’effectif n reste fixe : la moyenne augmente donc de d/n. La médiane est la valeur centrale de la liste ordonnée (ici, la moyenne des deux valeurs centrales si n est pair). Si une valeur extrême reste du même côté des positions centrales, la médiane ne change pas. L’écart-type affiché décrit toute la série et utilise le diviseur n, pas n − 1.", "The sum increases by d while n stays fixed, so the mean increases by d/n. The median is the central ordered value (here the average of the two central values for even n). If an extreme value stays on the same side of the central positions, the median stays unchanged. The displayed standard deviation describes the whole data set and divides by n, not n − 1."],
+    transfer: ["À tester : 2 ; 3 ; 4 ; 5 ; 100 puis 2 ; 3 ; 4 ; 5 ; 1000. La médiane ne change pas ici ; elle peut changer si une valeur traverse la position centrale.", "Try 2; 3; 4; 5; 100, then 2; 3; 4; 5; 1000. The median stays fixed here; it can change when a value crosses the central position."]
+  },
+  complex: {
+    conjecture: ["Multiplier par i conserve le module et fait tourner de 90° dans le sens direct. L’origine reste fixe.", "Multiplication by i preserves modulus and rotates 90° counterclockwise. The origin stays fixed."],
+    proof: ["i(a + ib) = −b + ia, donc (a,b) devient (−b,a). Le module au carré reste a² + b². Pour z ≠ 0, les vecteurs (a,b) et (−b,a) ont un produit scalaire nul et leur déterminant vaut a² + b² > 0 : l’angle orienté vaut +90°. Pour z = 0, l’argument est indéfini.", "i(a + ib) = −b + ia, so (a,b) becomes (−b,a). Squared modulus remains a² + b². For z ≠ 0, vectors (a,b) and (−b,a) have zero dot product and determinant a² + b² > 0: the directed angle is +90°. For z = 0, the argument is undefined."],
+    transfer: ["À tester : applique mentalement quatre multiplications par i. Pourquoi retrouves-tu z ? Utilise i⁴ = 1.", "Mentally multiply by i four times. Why do you recover z? Use i⁴ = 1."]
+  }
+};
+const quizStates = {
+  quadratic: {values:[1,0,-4]}, trig:{values:[180]},
+  sequences:{values:[3,2,5],mode:"geometric"}, probability:{values:[10,0.3]},
+  derivative:{values:[3,0.01],direction:1}, integral:{values:[8],method:"left"},
+  vectors:{values:[2,1,-1,2]}, statistics:{data:"2 3 4 5 100"}, complex:{values:[3,4]}
+};
+for (const lab of labs) {
+  lab.reasoning = reasoning[lab.id];
+  lab.quizState = quizStates[lab.id];
+}
 
 export const challenges = [
   {
@@ -705,102 +764,41 @@ export const challenges = [
 
 export const pathways = [
   {
-    id: "mg",
-    name: ["Programme malagasy", "Malagasy curriculum"],
-    label: "MG",
-    intro: [
-      "Une entrée par les notions du lycée, de la seconde à la terminale. Les séries et les progressions peuvent différer : ces repères sont indicatifs.",
-      "An entry through lycée topics, from seconde to terminale. Streams and progressions can differ: these placements are indicative.",
+    id:"mg", label:"MG", name:["Programme malagasy","Malagasy curriculum"],
+    intro:["Repères tirés des répartitions ministérielles 2024–2025 pour T10 et les séries S, OSE, L. Leur validité pour 2026–2027 reste à confirmer avec ton enseignant. Les anciens documents A/C/D ne sont pas interchangeables.", "Guides based on ministry distributions for 2024–2025: T10 and streams S, OSE, L. Their applicability to 2026–2027 still needs confirmation with your teacher. Older A/C/D documents are not interchangeable."],
+    stages:[
+      {name:["T10 · Algèbre et vecteurs","T10 · Algebra and vectors"],ids:["quadratic","vectors"],note:["Le produit scalaire est un approfondissement ici.","The dot product is an extension here."]},
+      {name:["T11 S · Analyse et géométrie","T11 S · Calculus and geometry"],ids:["quadratic","trig","sequences","derivative","vectors"]},
+      {name:["T11 OSE & L · Algèbre et analyse","T11 OSE & L · Algebra and calculus"],ids:["quadratic","sequences","derivative"]},
+      {name:["T11 OSE · Statistiques","T11 OSE · Statistics"],ids:["statistics"]},
+      {name:["T12 S · Approfondir","T12 S · Extend"],ids:["probability","integral","complex"],note:["Explorations partielles, pas une couverture complète. T12 OSE/L : correspondances encore à vérifier.","Partial explorations, not full coverage. T12 OSE/L mappings still need review."]}
     ],
-    stages: [
-      {
-        name: ["Fondations · Seconde", "Foundations · Seconde"],
-        ids: ["quadratic", "vectors", "statistics"],
-      },
-      {
-        name: ["Développer · Première", "Develop · Première"],
-        ids: ["sequences", "trig", "derivative"],
-      },
-      {
-        name: [
-          "Approfondir · Terminale scientifique",
-          "Extend · Scientific terminale",
-        ],
-        ids: ["probability", "integral", "complex"],
-      },
-    ],
-    source: "https://www.education.gov.mg/systeme-educatif/lycee/",
-    sourceName: [
-      "Ministère de l’Éducation nationale de Madagascar",
-      "Madagascar Ministry of National Education",
-    ],
+    source:"https://www.education.gov.mg/repartition-annuelle-du-programme-detudes/",
+    sourceName:["MEN · Répartitions T10, T11/T12 S, OSE, L (2024–2025)","Ministry · T10, T11/T12 S, OSE, L distributions (2024–2025)"]
   },
   {
-    id: "fr",
-    name: ["Programme français", "French curriculum"],
-    label: "FR",
-    intro: [
-      "Des notions communes du lycée aux approfondissements. Les fonctions quadratiques peuvent servir d’exploration en seconde ; leur étude détaillée dépend du programme suivi.",
-      "From common lycée topics to extensions. Quadratics can be explored in seconde; detailed study depends on the course followed.",
+    id:"fr",label:"FR",name:["Programme français","French curriculum"],
+    intro:["Voie générale : seconde et première, programmes 2026–2027 ; terminale spécialité, programme 2019 encore applicable en 2026–2027. Le nouveau programme de terminale s’applique en 2027–2028. Les voies technologiques et les maths complémentaires ne sont pas cartographiées ici.","General pathway: seconde and première use the 2026–2027 programmes; terminale specialty still uses the 2019 programme in 2026–2027. Its new programme starts in 2027–2028. Technological pathways and maths complémentaires are not mapped here."],
+    stages:[
+      {name:["Seconde · Explorer","Seconde · Explore"],ids:["statistics","vectors","quadratic"],note:["Vecteurs : addition et coordonnées. Produit scalaire et discriminant général : prolongements, pas des attendus de seconde.","Vectors: addition and coordinates. Dot products and the general discriminant are extensions, not seconde requirements."]},
+      {name:["Première · Spécialité","Première · Specialty"],ids:["quadratic","trig","sequences","derivative","vectors"]},
+      {name:["Terminale · Spécialité (2026–2027)","Terminale · Specialty (2026–2027)"],ids:["probability","integral"]},
+      {name:["Terminale · Option maths expertes","Terminale · Maths expertes option"],ids:["complex"]}
     ],
-    stages: [
-      {
-        name: ["Explorer · Seconde", "Explore · Seconde"],
-        ids: ["statistics", "vectors", "quadratic"],
-      },
-      {
-        name: ["Spécialité · Première", "Specialty · Première"],
-        ids: ["quadratic", "trig", "sequences", "derivative"],
-      },
-      {
-        name: ["Spécialité · Terminale", "Specialty · Terminale"],
-        ids: ["probability", "integral"],
-      },
-      {
-        name: ["Option maths expertes", "Maths expertes option"],
-        ids: ["complex"],
-      },
-    ],
-    source:
-      "https://www.education.gouv.fr/reussir-au-lycee/les-programmes-du-lycee-general-et-technologique-9812",
-    sourceName: [
-      "Ministère de l’Éducation nationale français",
-      "French Ministry of National Education",
-    ],
+    source:"https://eduscol.education.gouv.fr/5817/programmes-et-ressources-en-mathematiques-voie-gt",
+    sourceName:["MEN · Programmes et options du lycée","Ministry · Lycée programmes and options"]
   },
   {
-    id: "ib",
-    name: ["International Baccalaureate", "International Baccalaureate"],
-    label: "IB",
-    intro: [
-      "Des explorations pour Mathematics: Analysis and Approaches (AA) et Applications and Interpretation (AI). Les niveaux SL et HL n’ont pas les mêmes exigences ; les vecteurs et les complexes ci-dessous sont proposés comme extensions HL selon le cours.",
-      "Explorations for Mathematics: Analysis and Approaches (AA) and Applications and Interpretation (AI). SL and HL have different requirements; vectors and complex numbers below are HL extensions depending on the course.",
+    id:"ib",label:"IB",name:["International Baccalaureate","International Baccalaureate"],
+    intro:["AA = Analysis and Approaches ; AI = Applications and Interpretation. SL = niveau moyen ; HL = niveau supérieur. Les repères ci-dessous distinguent le programme actuel (première évaluation 2021) des changements pour la première évaluation 2029.","AA = Analysis and Approaches; AI = Applications and Interpretation. SL = standard level; HL = higher level. These guides distinguish the current syllabus (first assessment 2021) from changes for first assessment 2029."],
+    stages:[
+      {name:["AA & AI · SL/HL · Idées communes","AA & AI · SL/HL · Shared ideas"],ids:["quadratic","sequences","statistics","probability","derivative","integral"]},
+      {name:["AA SL/HL & AI HL · Cercle unité","AA SL/HL & AI HL · Unit circle"],ids:["trig"],note:["AI SL : trigonométrie des triangles ; cette activité sur les radians et les angles orientés est un prolongement.","AI SL: triangle trigonometry; this activity on radians and directed angles is an extension."]},
+      {name:["AA & AI · HL · Vecteurs","AA & AI · HL · Vectors"],ids:["vectors"]},
+      {name:["AA HL · Complexes","AA HL · Complex numbers"],ids:["complex"]},
+      {name:["AI HL · Complexes : programme actuel seulement","AI HL · Complex numbers: current syllabus only"],ids:["complex"],note:["Retirés pour les élèves commençant en août 2027 (première évaluation en mai 2029). Ils restent une exploration facultative.","Removed for students starting in August 2027 (first assessment May 2029). They remain optional enrichment."]}
     ],
-    stages: [
-      {
-        name: [
-          "AA & AI · Fonctions et suites",
-          "AA & AI · Functions and sequences",
-        ],
-        ids: ["quadratic", "sequences", "trig"],
-      },
-      {
-        name: ["AA & AI · Données et analyse", "AA & AI · Data and calculus"],
-        ids: ["statistics", "probability", "derivative", "integral"],
-      },
-      {
-        name: [
-          "HL · Extensions selon le cours",
-          "HL · Course-dependent extensions",
-        ],
-        ids: ["vectors", "complex"],
-      },
-    ],
-    source:
-      "https://ibo.org/programmes/diploma-programme/curriculum/mathematics/",
-    sourceName: [
-      "IB · Mathematics in the Diploma Programme",
-      "IB · Mathematics in the Diploma Programme",
-    ],
-  },
+    source:"https://ibo.org/programmes/diploma-programme/curriculum/mathematics/",
+    sourceName:["IB · Cours actuels et première évaluation 2029","IB · Current courses and first assessment 2029"]
+  }
 ];

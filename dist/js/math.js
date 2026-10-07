@@ -13,12 +13,14 @@ export function quadratic(a, b, c) {
       ? []
       : d === 0
         ? [-b / (2 * a)]
-        : [(-b - Math.sqrt(d)) / (2 * a), (-b + Math.sqrt(d)) / (2 * a)].sort(
-            (x, y) => x - y,
-          );
+        : (() => {
+            // Avoid cancellation when one root is much smaller than the other.
+            const q = -0.5 * (b + (b < 0 ? -1 : 1) * Math.sqrt(d));
+            return [q / a, c / q].sort((x, y) => x - y);
+          })();
   return {
     kind: "quadratic",
-    roots,
+    roots: roots.map(x => Object.is(x, -0) ? 0 : x),
     allReal: false,
     vertex: [-b / (2 * a), c - (b * b) / (4 * a)],
     discriminant: d,
@@ -56,7 +58,7 @@ export function statistics(values) {
     mean,
     median:
       n % 2 ? sorted[(n - 1) / 2] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2,
-    sd: Math.sqrt(values.reduce((s, x) => s + (x - mean) ** 2, 0) / n),
+    sd: Math.hypot(...values.map(x => x - mean)) / Math.sqrt(n),
     min: sorted[0],
     max: sorted[n - 1],
   };
@@ -76,10 +78,44 @@ export function parseData(raw) {
     throw new Error("Invalid values");
   return numbers;
 }
-export function riemann(n) {
+export function riemann(n, method = "left") {
+  if (!Number.isInteger(n) || n < 1 || n > 100000 ||
+      !["left", "right", "midpoint"].includes(method))
+    throw new RangeError("Invalid rectangle configuration");
+  const offset = method === "right" ? 1 : method === "midpoint" ? 0.5 : 0;
   let sum = 0;
-  for (let i = 0; i < n; i++) sum += (i / n) ** 2 / n;
+  for (let i = 0; i < n; i++) sum += ((i + offset) / n) ** 2 / n;
   return sum;
+}
+export function squareSecant(x, h) {
+  if (!Number.isFinite(x) || !Number.isFinite(h) || h === 0)
+    throw new RangeError("A secant needs a finite, nonzero increment");
+  return 2 * x + h;
+}
+export function formatNumber(n, lang = "en", digits = 3) {
+  if (!Number.isFinite(n)) throw new RangeError("Expected a finite number");
+  // Scientific notation preserves small nonzero values and large graph labels.
+  const scientific = n !== 0 && (Math.abs(n) < Math.max(1e-4, 10 ** -digits) || Math.abs(n) >= 1e6);
+  return new Intl.NumberFormat(lang, scientific
+    ? { notation: "scientific", maximumSignificantDigits: 4 }
+    : { maximumFractionDigits: digits }).format(Object.is(n, -0) ? 0 : n);
+}
+export function axisTicks(min, max) {
+  if (!Number.isFinite(min) || !Number.isFinite(max) || !(max > min))
+    throw new RangeError("Invalid axis bounds");
+  const rough = (max - min) / 6;
+  const power = Math.max(Number.MIN_VALUE, 10 ** Math.floor(Math.log10(rough || Number.MIN_VALUE)));
+  const step = [1, 2, 5, 10].map(v => v * power).find(v => v >= rough);
+  const first = Math.ceil(min / step);
+  const values = [];
+  // Bounded by the chosen tick count, never by an absolute epsilon in data units.
+  for (let i = 0; i < 8; i++) {
+    const value = (first + i) * step;
+    if (value > max + step * 1e-9) break;
+    const normalized = Math.abs(value) < step * 1e-8 ? 0 : value;
+    if (values.at(-1) !== normalized) values.push(normalized);
+  }
+  return { values, digits: Math.max(2, Math.min(15, -Math.floor(Math.log10(step)))) };
 }
 export function gcd(a, b) {
   while (b) {

@@ -1,26 +1,54 @@
 # Curriculum references and scope
 
-Reference review date: **7 October 2026**. All pathway placements are pedagogical suggestions, not verified item-by-item syllabus mappings. The first release prioritizes shared ideas and clearly marked extensions.
+Review date: **7 October 2026**. These are selected learning opportunities, not complete courses, exam preparation or certified syllabus alignment. Reading a source verifies its date and selected topic references; it does not validate every lesson against all attainment statements. Teachers should select the relevant parts of each lab.
 
-| Context    | Reference                                                                                                                                                                                                                                                                                                                                                                                                   | Interpretation in this release                                                                                                                                                                         |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Madagascar | [Ministry lycée programmes](https://www.education.gov.mg/systeme-educatif/lycee/) and [annual programme distribution](https://www.education.gov.mg/repartition-annuelle-du-programme-scolaire/)                                                                                                                                                                                                             | Introductory topics, intermediate analysis and sequences, scientific terminale extensions. The ministry publishes different streams; no claim is made that every experiment applies to every stream.   |
-| France     | [Lycée programmes](https://www.education.gouv.fr/reussir-au-lycee/les-programmes-du-lycee-general-et-technologique-9812) and [2026 seconde mathematics programme](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602914A)                                                                                                                                                                               | Seconde exploration, première/terminale specialty topics, complex numbers under maths expertes. A topic may be suitable for exploration before the level at which a full formal treatment is required. |
-| IB         | [Diploma Programme mathematics](https://ibo.org/programmes/diploma-programme/curriculum/mathematics/), [AA guide](https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf), [AI guide](https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf) | Shared explorations across functions, sequences, trigonometry, data, probability and calculus. Vectors and complex numbers are course-dependent HL extensions, not common SL requirements.             |
+## Madagascar
 
-The IB page announces a new curriculum taught from 2027, first assessed in 2029. French programme changes also require year-specific review. A student should follow the syllabus and examination session set by their school.
+Use the [official annual-distribution index](https://www.education.gov.mg/repartition-annuelle-du-programme-detudes/), which separates T10 and T11/T12 S, OSE and L. Its linked editions reviewed here are **2024–2025**. No official 2026–2027 replacement or declaration of continuing applicability was verified. The older [lycée page](https://www.education.gov.mg/systeme-educatif/lycee/) foregrounds A/C/D resources and is not evidence that those streams match S/OSE/L.
+
+| Reference | Sections checked (printed PDF pages) | Selected lab relationship |
+|---|---|---|
+| [T10, 2024–2025](https://www.education.gov.mg/wp-content/uploads/2024/09/RAPE-T10_2024_2025.pdf) | Mathematics pp. 29–33 | Quadratics and vector coordinates/addition; dot product is enrichment here. |
+| [T11 S, 2024–2025](https://www.education.gov.mg/wp-content/uploads/2024/09/RAPE-T11-S_2024_2025.pdf) | Mathematics pp. 26–28 | Quadratics, unit circle, sequences, derivatives and dot products. |
+| [T11 OSE, 2024–2025](https://www.education.gov.mg/wp-content/uploads/2024/09/RAPE-T11-OSE_2024_2025.pdf) | Mathematics pp. 30–31 | Quadratics, sequences, derivatives and descriptive statistics. |
+| [T11 L, 2024–2025](https://www.education.gov.mg/wp-content/uploads/2024/09/RAPE-T11-L_2024_2025.pdf) | Mathematics pp. 30–31 | Quadratics, sequences and derivatives. The lab does not cover its bivariate statistics section. |
+| [T12 S, 2024–2025](https://www.education.gov.mg/wp-content/uploads/2024/09/RAPE-T12-S_2024_2025.pdf) | Mathematics pp. 22–29 | Complex numbers, integration and binomial probability. |
+
+T12 OSE/L mappings are **future review**, not implemented alignment. Annual distributions are scheduling documents and do not replace the full programme. Algorithms, logic, arithmetic and substantial other content are absent from the current labs.
+
+## France
+
+| Course/version | Official source | Interpretation |
+|---|---|---|
+| Seconde générale et technologique, from 2026–2027 | [MENE2602914A, article 2 and annex](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602914A) | Statistics; vector addition and coordinates. Quadratic exploration is useful, but the general discriminant and dot product are enrichment. |
+| Première générale, spécialité, from 2026–2027 | [MENE2602917A, article 2 and annex](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602917A) | Quadratics, sequences, unit-circle trigonometry, derivative intuition and dot products. |
+| Terminale générale, spécialité, 2026–2027 cohort | [MENE1921246A, 2019 programme](https://www.education.gouv.fr/bo/19/Special8/MENE1921246A.htm?cid_bo=144023); replacement date below | Current 2019 framework remains the reference for this cohort; probability and integration labs cover only introductory selected ideas. |
+| Terminale générale, spécialité, from 2027–2028 | [MENE2602919A, article 2](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602919A) | The new programme is published but is not the 2026–2027 cohort's programme. No exhaustive mapping to its annex is claimed. |
+| Terminale, maths expertes | [MENE1921264A, 2019 option](https://www.education.gouv.fr/bo/19/Special8/MENE1921264A.htm) | Complex-number lab is an introduction, not the full option. |
+
+The [updated éduscol directory](https://eduscol.education.gouv.fr/5817/programmes-et-ressources-en-mathematiques-voie-gt) also records these transition dates.
+
+Technological pathways, maths complémentaires and première's mathematics integrated with scientific teaching are **not mapped**. Level labels in labs summarize prerequisites and do not override these distinctions.
+
+## International Baccalaureate
+
+Current-course comparison uses the IB-published [Mathematics subject alignment report, May 2025, figures 2–3, printed pp. 36–37](https://www-prod.ibo.org/globalassets/new-structure/research/pdfs/mathematics-subject-report.pdf). It separates SL from additional HL topics. The course page is [Mathematics in the DP](https://ibo.org/programmes/diploma-programme/curriculum/mathematics/). Some `ibo.org` pages returned HTTP 403 to the retrieval service; the IB's `www-prod.ibo.org` versions were accessible. This access difference is not a broken-link claim.
+
+| Lab content | Current AA SL | Current AA HL | Current AI SL | Current AI HL |
+|---|---|---|---|---|
+| Function exploration, sequences, descriptive statistics, binomial distribution, derivative/area intuition | Selected relevant ideas | Selected relevant ideas | Selected relevant ideas | Selected relevant ideas |
+| Unit circle, radians, directed sine/cosine | Relevant | Relevant | Enrichment beyond triangle trigonometry | Relevant |
+| Vectors and dot products | Enrichment | Relevant | Enrichment | Relevant |
+| Complex plane/modulus/rotation | Enrichment | Relevant | Enrichment | Relevant in current course |
+
+“Relevant” means a selected topic relationship, not a complete treatment of the corresponding syllabus section. These labs do not replace IB technology requirements, written reasoning or the mathematical exploration.
+
+The [AA update](https://www-prod.ibo.org/university-admission/latest-curriculum-updates/dp-mathematics-analysis-and-approaches-updates/) and [AI update](https://www-prod.ibo.org/fr/university-admission/latest-curriculum-updates/dp-mathematics-applications-and-interpretation-updates/) specify **first teaching August 2027, first assessment May 2029**. AI removes complex numbers at HL; they remain optional enrichment there. The current AI HL placement must not be carried forward as a 2029 requirement. The full 2029 guides have not been mapped item by item.
 
 ## Historical references
 
-History boxes use short original summaries and link to the [MacTutor History of Mathematics Archive](https://mathshistory.st-andrews.ac.uk/) at the University of St Andrews. Links are stored with the relevant experiment in `dist/js/content.js`.
-
-The mathematical ideas are presented as developments involving multiple people and cultures. The site does not equate a familiar name with exclusive invention: the trigonometry activity explicitly connects Greek chord tables and Indian sine tables, for example.
+All nine notes were checked against the linked University of St Andrews MacTutor articles on 7 October 2026: Al-Khwarizmi, trigonometric functions, Fibonacci, Pascal, the rise of calculus, Archimedes, Grassmann, Nightingale and Bombelli. The notes are brief original summaries; the links in `dist/js/content.js` are the sources of record. Al-Khwarizmi is dated by century rather than an unsupported precise publication year. Attribution describes contributions rather than exclusive invention.
 
 ## Editorial policy
 
-- Add complete French and English content together.
-- Separate mathematical truth from historical interpretation and curriculum placement.
-- Name prerequisites explicitly rather than assuming that a grade label is sufficient.
-- Cite official curriculum sources, including version or school year when an exact placement is claimed.
-- Do not represent adapted classical puzzles as official Olympiad questions.
-- Do not carry private-tutoring branding or content into this project.
+Add both languages together; separate mathematical statements, history and syllabus claims. Exact placements need a course, stream, version and official reference. Keep unsupported/current-year claims explicitly indicative. Adapted classical challenges are not represented as official Olympiad questions. Keep this project independent of private tutoring.

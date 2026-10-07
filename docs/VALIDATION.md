@@ -1,33 +1,54 @@
 # Validation record
 
-Validated locally in Chromium on 7 October 2026.
+Review date: **7 October 2026**. Baseline `aeda41df506ff7e6f884ffdd1b150a4251476c61` was independently checked from an archive: original seven Node tests and original Chromium suite passed. The following records the revised implementation, not a certification of educational effectiveness or accessibility.
 
-## Automated checks
+## Checks actually run
 
-- JavaScript syntax checks for the application, content and mathematical modules.
-- Quadratic roots across a grid of coefficients, including linear and constant degeneracies.
-- Arithmetic and geometric sequences with zero and negative ratios.
-- Binomial normalization and expectation over every n and p slider setting; deterministic simulation boundary cases.
-- Median, mean, standard deviation, bilingual decimal input and invalid-data handling.
-- Left Riemann sums are increasing lower bounds for the integral of x² on [0,1].
-- Numerical-answer parsing accepts fractions and decimal commas without evaluating code.
-- Bilingual content completeness and curriculum link integrity.
+| Check | Result and scope |
+|---|---|
+| `npm run check` | Passed: application, mathematical and content module syntax. |
+| `npm test` | Passed: **15 Node tests**, including the seven original tests and eight audit regressions. |
+| `npm run test:browser` | Passed with Python Playwright **1.51.0**, Chromium **134.0.6998.35**, Linux headless. |
+| `MOZ_DISABLE_CONTENT_SANDBOX=1 MATHS_EXPLORER_BROWSER=firefox npm run test:browser` | Passed with Firefox **135.0**, Linux headless. Container startup required disabling the test browser's content sandbox; deployed application settings are unaffected. |
+| `git diff --check` | Passed. |
+| Visual inspection | Chromium desktop and mobile screenshots inspected for hierarchy, chart readability and layout. |
+| Source review | All nine bilingual activities, history notes and reasoning panels; all eight challenge statements, hints, solutions and extensions; selected official curriculum references. See `CURRICULUM.md` and `AUDIT.md`. |
 
-## Browser checks
+## Mathematical regression scope
 
-- All nine experiments rendered in French and English without JavaScript errors.
-- All slider minimum and maximum values produced finite results.
-- Each learning check rejected an incorrect answer and accepted its expected answer.
-- Each of eight challenges accepted the correct answer; both hints and the solution opened.
-- Probability batches accumulated and reset when parameters changed.
-- Invalid statistics input displayed an error and removed the invalid graph; valid data restored results.
-- Language and all 17 successful checks persisted through reload.
-- Challenge filters returned the expected four recreational and four Olympiad-style problems.
-- All main surfaces were checked for horizontal overflow at 1440, 768, 390 and 320 pixels.
-- Enlarged text at 200% was checked for overflow on the laboratory surface.
+- Quadratic coefficient grid, linear/constant degeneracies and unequal-root cancellation using residuals and the root product.
+- Arithmetic/geometric sequences, including zero and negative ratios.
+- Binomial normalization and expectation across all slider settings; deterministic simulation boundaries.
+- Mean, median and population standard deviation, bilingual decimal input, invalid data and very small nonzero data. Scaled norm avoids squaring underflow.
+- Left/right/midpoint sums checked against independent closed formulas for 1–100 rectangles; monotone lower/upper bounds and midpoint error for x² on [0,1].
+- Signed secant slopes checked on both sides; invalid/zero h rejected by the mathematical helper.
+- Numerical formatting preserves nonzero small values and negative-zero normalization. Axis ticks remain bounded for tiny/subnormal and near-constant scales.
+- Numerical-answer parsing accepts decimal commas and fractions without executing input.
+- Bilingual content/presets and curriculum link structure; independent small-case calculations for all eight challenge answers. These calculations do not replace proof review.
 
-## Limits
+## Browser regression scope
 
-The UI uses native keyboard controls, semantic labels, visible focus, numeric chart results and a skip link. These checks are not a formal WCAG audit or an assistive-technology certification. Safari and Firefox have not been tested in this environment. Teacher and student usability trials have not yet taken place. Curriculum placements require the review described in `CURRICULUM.md`.
+Both engines completed the same suite:
 
-The optional WebMCP API is feature-detected. An actual browser implementing `document.modelContext` was not available, so native WebMCP registration/execution validation is unavailable. Ordinary browser functionality does not depend on it.
+- Nine labs and eight challenges in French/English; no uncaught JavaScript errors.
+- Slider endpoints, all nine question presets, incorrect/correct answers, both hints and challenge solutions.
+- Probability accumulation/reset, invalid statistics recovery, very small data with scientific notation and finite/bounded axis ticks.
+- Two-sided secants, left/right/midpoint integration controls and numerical tables in every lab; vector arrowheads and cardinal trigonometric zeros.
+- Keyboard skip-link activation preserves the current route and focuses main; keyboard slider operation; unknown lab/challenge IDs show a missing-page view.
+- Observation/conjecture notes survive language changes/navigation within the session; control reset preserves them. HTML-like input remains text.
+- Language and all 17 successful checks persist through reload; malformed storage and denied storage reads/writes remain usable with appropriate feedback.
+- Challenge filters, curriculum distinctions and immediate progress indicators.
+- No fetch/XHR submission during the tested answer/notes workflow. This is a limited behavior check, not a comprehensive network/security audit.
+- All main surfaces checked for horizontal overflow at **1440, 768, 390 and 320 px**; all main surfaces at **200% root text size** at 768 px. This is text resizing, not a test of every browser zoom mode.
+
+`tests/run_browser.py` starts and stops the local server in the same process environment. CI now includes a Chromium browser job alongside syntax/Node checks; CI configuration is not itself evidence that a future run passes.
+
+## Limits and future validation
+
+No formal WCAG audit, screen-reader testing, comprehensive contrast measurement, real touch-device testing, teacher review or student usability study has been completed. Numeric tables and keyboard/reflow checks improve access but do not establish conformity.
+
+Firefox was tested as recorded above. **Safari was not tested.** Playwright WebKit could not launch because this container lacks required system libraries; no WebKit result is claimed. Browser engines and screenshots do not substitute for real-device testing.
+
+Current Malagasy-year applicability and full item-level mappings remain unresolved; French options and IB versions have the scope limits in `CURRICULUM.md`. Experiment notes and numeric checks do not assess proof quality or certify mastery.
+
+Optional WebMCP is feature-detected. No browser implementing the actual API was available; registration, execution, BFCache and lifecycle behavior remain unvalidated. Ordinary student functionality does not depend on it.

@@ -10,7 +10,7 @@
   --blue: #416ca2;
   --white: #fff;
   font-family: Inter, "Segoe UI", Arial, sans-serif;
-  font-size: 16px;
+  font-size: 100%;
   background: var(--paper);
   color: var(--ink);
 }
@@ -1553,3 +1553,27 @@ textarea {
 .plot svg {
   max-height: 330px;
 }
+
+/* Numerical alternatives and reasoning stay secondary to the experiment. */
+.chart-data { margin: 0 26px 20px; font-size: .875rem; }
+.chart-data summary { cursor: pointer; padding: 8px 0; }
+.chart-data > div { overflow-x: auto; max-height: 22rem; }
+.chart-data table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.chart-data caption { text-align: left; padding: 10px 0; }
+.chart-data th, .chart-data td { padding: 8px; text-align: right; border-bottom: 1px solid var(--line); }
+.chart-data th:first-child { text-align: left; }
+.reasoning { border-top: 1px solid var(--line); padding-top: 18px; margin: 18px 0; }
+.reasoning label { display: block; font-size: .875rem; font-weight: 600; margin-bottom: 6px; }
+.reasoning textarea { margin-bottom: 12px; }
+.reasoning summary { cursor: pointer; font-weight: 600; padding: 8px 0; }
+.reasoning details p { font-size: .875rem; margin: 12px 0; }
+#quiz-preset { margin: 12px 0; width: 100%; }
+.plot-caption, .muted { font-size: .875rem; }
+.plot svg .curve.orange { stroke-dasharray: 8 4; }
+.plot svg .curve.blue { stroke-dasharray: 2 4; }
+/* Leave vector arrowheads solid. */
+.plot svg marker .curve { stroke-dasharray: none; }
+.plot svg .point.orange { r: 6; }
+@media print { .reasoning textarea { min-height: 4rem; } }
+
+.range-limits, .results > div > span, .prereq, .feedback, .stage h3, .source-link { font-size: .875rem; }
