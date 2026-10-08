@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{09}
+\newcommand{\ExplorerKind}{Worked solutions}
+\begin{document}
+\ExplorerTitle{Advanced high school · geometry}{Rotations and complex numbers}
+\ExplorerSection{Exercise 1}
+Find \(i(2-3i)\), then its modulus.\par
+\(i(2-3i)=3+2i\); its modulus is \(\sqrt{13}\), the same as that of \(2-3i\).\par
+\ExplorerSection{Exercise 2}
+Find the successive images of \(1+i\) under four multiplications by i.\par
+−\(1+i, -1-i, 1-i\), then \(1+i\). Four quarter-turns return to the starting point.\par
+\ExplorerSection{Exercise 3}
+What is the centre of \(z'=i z+2\)?\par
+The centre satisfies \(a=i a+2\), so \(a=\frac{2}{1-i}=1+i\).\par
+\ExplorerSection{Exercise 4}
+For \(z'=a+i(z-a)\), prove |\(z'-a|=|z-a|\).\par
+\(z'-a=i(z-a)\), hence |\(z'-a|=|i||z-a|=|z-a|\).\par
+\ExplorerSection{Problem: complete reasoning}
+Define \(z_{0}=2\) and \(z_{n+1}=i z_{n}+2\). Find the fixed point a and an explicit formula for \(z_{n}\). Determine the minimal period and the sum \(z_{0}+z_{1}+z_{2}+z_{3}\). Interpret the four points geometrically.\par
+\(a=1+i\) and \(z_{n+1}-a=i(z_{n}-a)\), so \(z_{n}=1+i+i^{n}(1-i)\). The values are \(2, 2+2i, 2i, 0\), then 2. The first four are distinct, so the minimal period is 4. Their sum is \(4+4i=4a\). The points form a square centred at (1,1), with side 2 and radius \(\sqrt{2}\).\par
+\end{document}

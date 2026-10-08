@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{explorer}[2026/10/08 Maths Explorer documents]
+\RequirePackage{fontspec,unicode-math,geometry,xcolor,fancyhdr,titlesec,needspace,microtype,tikz}
+\setmainfont{DejaVu Sans}[Scale=.92]
+\setsansfont{DejaVu Sans}[Scale=.92]
+\setmathfont{Latin Modern Math}
+\geometry{a4paper,left=19mm,right=19mm,top=23mm,bottom=21mm,headheight=15pt,headsep=8mm}
+\definecolor{ink}{HTML}{14233E}\definecolor{mint}{HTML}{176754}\definecolor{violet}{HTML}{66529B}
+\color{ink}\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}
+\setlength{\emergencystretch}{2em}\linespread{1.12}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\sffamily\bfseries\small\textcolor{mint}{MATHS EXPLORER}}
+\fancyhead[R]{\sffamily\small\textcolor{violet}{\ExplorerLanguage\ /\ \ExplorerNumber}}
+\fancyfoot[L]{\scriptsize\ExplorerKind}\fancyfoot[R]{\scriptsize\thepage}
+\renewcommand{\headrulewidth}{.8pt}\renewcommand{\footrulewidth}{.3pt}
+\titleformat{\section}{\large\bfseries\color{mint}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{12pt}{5pt}
+\newcommand{\ExplorerSection}[1]{\Needspace{5\baselineskip}\section*{#1}}
+\newcommand{\ExplorerTitle}[2]{{\small\color{violet}#1\par}\vspace{5pt}{\fontsize{24}{29}\selectfont\bfseries #2\par}\vspace{6pt}{\color{violet}\ExplorerKind\par}\vspace{8pt}}

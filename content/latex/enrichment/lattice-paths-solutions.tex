@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{05}
+\newcommand{\ExplorerKind}{Solutions détaillées}
+\begin{document}
+\ExplorerTitle{Première--Terminale · dénombrement}{Chemins, combinaisons et Pascal}
+\ExplorerSection{Exercice 1}
+Calculer C(8,2) et expliquer pourquoi il vaut C(8,6).\par
+\(C(8,2) = 8 \times  \frac{7}{2} = 28\). Choisir deux exclus équivaut à choisir les six retenus.\par
+\ExplorerSection{Exercice 2}
+Compter les chemins monotones de (0,0) à (4,3).\par
+Il faut quatre pas à droite parmi sept : \(C(7,4) = 35\).\par
+\ExplorerSection{Exercice 3}
+Parmi ces chemins, combien passent par (2,1) ?\par
+\(C(3,2) \times  C(4,2) = 3 \times  6 = 18\).\par
+\ExplorerSection{Exercice 4}
+Une équipe de trois personnes est choisie parmi huit. Deux personnes fixées ne peuvent pas être ensemble. Combien d’équipes restent possibles ?\par
+Il \(y a C(8,3) = 56\) équipes. Celles contenant les deux personnes interdites sont au nombre de 6. Il reste 50 équipes.\par
+\ExplorerSection{Problème : raisonnement complet}
+Compter les chemins monotones de (0,0) à (5,4) qui évitent A(2,1) et B(3,3). Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.\par
+Total : \(C(9,5) = 126\). Par A : \(C(3,2)C(6,3) = 60\). Par B : \(C(6,3)C(3,2) = 60\). Par les deux : \(3 \times  C(3,1) \times  3 = 27\). Les chemins passant par les deux ont été soustraits deux fois ; les rajouter une fois donne \(126 - 60 - 60 + 27 = 33\).\par
+\end{document}

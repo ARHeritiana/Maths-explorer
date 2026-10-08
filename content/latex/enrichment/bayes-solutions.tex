@@ -1,0 +1,26 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{07}
+\newcommand{\ExplorerKind}{Solutions détaillées}
+\begin{document}
+\ExplorerTitle{Première--Terminale · probabilités}{Inverser une probabilité conditionnelle}
+\ExplorerSection{Données des exercices}
+Pour les exercices 1 et 2 : on choisit l’urne A avec probabilité \(\frac{1}{3},\) l’urne B avec probabilité \(\frac{2}{3}\). A contient 3 boules rouges et 1 bleue ; B contient 1 rouge et 3 bleues. On tire ensuite une boule au hasard dans l’urne choisie.\par
+\ExplorerSection{Exercice 1}
+Dans l’exemple, calculer P(A ∩ bleue).\par
+\((\frac{1}{3})(\frac{1}{4}) = \frac{1}{12}\).\par
+\ExplorerSection{Exercice 2}
+Calculer \(P(A|\mathrm{bleue})\).\par
+\(P(\mathrm{bleue}) = \frac{7}{12}\). Donc \(P(A|\mathrm{bleue}) = \frac{\frac{1}{12}}{\frac{7}{12}} = \frac{1}{7}\).\par
+\ExplorerSection{Exercice 3}
+Dans une classe, 12 élèves sur 30 jouent aux échecs ; parmi eux 9 aiment les énigmes. Calculer P(énigmes|échecs). Peut-on en déduire P(échecs|énigmes) ?\par
+La première probabilité vaut \(\frac{9}{12} = \frac{3}{4}\). Il manque le nombre total d’élèves aimant les énigmes pour calculer la seconde.\par
+\ExplorerSection{Exercice 4}
+Deux événements A et R vérifient \(P(A)=0,4, P(R|A)=0,5\) et \(P(R|\mathrm{non} A)=0,5\). Calculer \(P(A|R)\).\par
+\(P(R)=0,5\) et \(P(A \cap  R)=0,2\), donc \(P(A|R)=0,4\). Ici observer R ne change pas la probabilité de A.\par
+\ExplorerSection{Problème : raisonnement complet}
+On choisit A avec probabilité \(\frac{1}{3}\) et B avec probabilité \(\frac{2}{3}\). L’urne A contient 3 rouges et 1 bleue ; B contient 1 rouge et 3 bleues. Pour une seule boule rouge observée, la probabilité d’avoir choisi A est \(\frac{3}{5}\).\par
+On reprend les deux urnes de l’exemple. Après avoir choisi une urne une seule fois, on effectue deux tirages avec remise dans cette même urne. Calculer la probabilité de deux rouges, puis celle d’avoir choisi A sachant que les deux boules sont rouges. Comparer avec l’observation d’une seule rouge et justifier les produits utilisés.\par
+Conditionnellement à l’urne choisie, les tirages avec remise sont indépendants. \(P(RR) = (\frac{1}{3})(\frac{3}{4})^{2} + (\frac{2}{3})(\frac{1}{4})^{2} = \frac{9}{48} + \frac{2}{48} = \frac{11}{48}\). Ainsi \(P(A|RR) = \frac{\frac{9}{48}}{\frac{11}{48}} = \frac{9}{11}\), supérieur à \(\frac{3}{5}\). Les tirages ne sont pas indépendants sans conditionnement : ils partagent la même urne cachée.\par
+\end{document}

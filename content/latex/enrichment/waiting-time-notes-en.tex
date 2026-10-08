@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{08}
+\newcommand{\ExplorerKind}{Lesson and method}
+\begin{document}
+\ExplorerTitle{Upper high school · probability and sequences}{Waiting for the first success}
+\ExplorerSection{Before you begin}
+Independent trials, geometric sequences and sums.\par
+\ExplorerSection{Ideas and method}
+Repeat independent trials, each with success probability p, where \(0 < p \leq  1\). T is the trial number of the first success, starting at 1.\par
+The event \(T = k\) requires \(k-1\) failures followed by success: \(P(T=k) = (1-p\))ᵏ⁻¹p. Likewise, \(P(T>n) = (1-p)^{n}\) for \(n \geq  0\).\par
+The expectation is \(E(T)=\frac{1}{p}\). It follows from the tail-sum formula \(E(T)=\sum  P(T>n)\), for \(n \geq  0\), and the geometric series. This is an average, not a guaranteed success time.\par
+\ExplorerSection{Worked example}
+For a fair die with success defined as rolling \(6, p=\frac{1}{6}\). The mean waiting time is 6 rolls, but the probability of waiting more than 6 rolls is \((\frac{5}{6})^{6}\), about 0.335.\par
+\ExplorerSection{Explore}
+For \(p=\frac{1}{4}\), compare \(P(T>n)\) for \(n=0,1\),…,10. Relate the decrease to the geometric factor \(\frac{3}{4}\).\par
+\end{document}

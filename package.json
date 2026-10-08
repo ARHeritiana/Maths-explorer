@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node scripts/serve.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node --check dist/js/app.js && node --check dist/js/content.js && node --check dist/js/math.js",
+    "check": "node --check dist/js/app.js && node --check dist/js/content.js && node --check dist/js/math.js && node --check dist/js/motion.js && node --check dist/js/interaction.js && node --check dist/js/library.js && node --check dist/js/study-guides.js && node --check dist/js/resource-library.js && node --check dist/js/learning-content.js && node --check dist/js/visual-lessons.js && node --check dist/js/resources-data.js && node --check dist/js/trigonometry.js && node --check dist/js/enrichment-data.js && node --check dist/js/quadratic-workshop.js",
     "test:browser": "python tests/run_browser.py"
   },
   "engines": {

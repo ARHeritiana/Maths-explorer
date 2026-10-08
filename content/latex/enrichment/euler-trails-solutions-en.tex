@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{06}
+\newcommand{\ExplorerKind}{Worked solutions}
+\begin{document}
+\ExplorerTitle{High school · graphs and logic}{Routes without lifting the pencil}
+\ExplorerSection{Exercise 1}
+A graph has degrees 2,3,3,4. How many edges does it have?\par
+The degree sum is 12, so there are 6 edges.\par
+\ExplorerSection{Exercise 2}
+Prove that the number of odd-degree vertices is even.\par
+The degree sum is even. Even degrees do not affect parity, so the odd degrees must also sum to an even number. Thus there are an even number of them.\par
+\ExplorerSection{Exercise 3}
+Can a square and both diagonals be drawn without repeating an edge? Interior crossings are not vertices.\par
+No: all four vertices have degree 3. Four odd-degree vertices prevent an Euler trail.\par
+\ExplorerSection{Exercise 4}
+Why do two disjoint cycles not admit one trail even though all degrees are even?\par
+No edge connects the two components, so one cannot move between them. Connectivity is essential.\par
+\ExplorerSection{Problem: complete reasoning}
+A network has edges AB, BC, CD, DA, AC and CE, each 1 km long. Starting at A, visit every edge at least once and return to A. Which vertices have odd degree? What is the minimum route length? Give a route attaining it.\par
+Degrees at A,B,C,D,E are 3,2,4,2,1, so A and E are odd. A closed route must add traversals joining these two vertices; their shortest connection is A--C--E, of length 2 km. The minimum is \(6 + 2 = 8\) km. Route A--B--C--D--A--C--E--C--A attains it: AC and CE are used twice and the other edges once.\par
+\end{document}

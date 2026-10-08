@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{03}
+\newcommand{\ExplorerKind}{Worked solutions}
+\begin{document}
+\ExplorerTitle{High school · number theory}{Congruences and last digits}
+\ExplorerSection{Exercise 1}
+Find the remainder of −37 modulo 8.\par
+−\(37 = 8 \times  (-5) + 3\), so the remainder is 3.\par
+\ExplorerSection{Exercise 2}
+Find the last digit of \(7^{2026}\).\par
+The cycle is 7,9,3,1 and \(2026 \equiv  2\) (mod 4). The last digit is 9.\par
+\ExplorerSection{Exercise 3}
+Prove that an integer square is never congruent to 2 modulo 3.\par
+An integer is congruent to 0,1 or 2. The corresponding squares are 0,1 and \(4 \equiv  1\) modulo 3.\par
+\ExplorerSection{Exercise 4}
+Solve \(3x \equiv  1\) (mod 7).\par
+\(3 \times  5 = 15 \equiv  1\). Multiplying by 5 gives \(x \equiv  5\) (mod 7). Conversely, every such value works.\par
+\ExplorerSection{Problem: complete reasoning}
+An integer N is congruent to 2 modulo 3 and to 3 modulo 5. Write \(N = 3k + 2\), determine k modulo 5, then give all solutions modulo 15. Which solutions from 0 to 100 inclusive are even?\par
+\(3k + 2 \equiv  3\) (mod 5), so \(3k \equiv  1\) and \(k \equiv  2\) (mod 5), since \(3 \times  2 \equiv  1\). Thus \(N = 15t + 8\). In [0,100] the values are 8,23,38,53,68,83,98. The even values are 8,38,68,98. Substitution verifies both congruences for every integer t.\par
+\end{document}

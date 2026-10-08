@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{04}
+\newcommand{\ExplorerKind}{Leçon et méthode}
+\begin{document}
+\ExplorerTitle{Mathématiques expertes · approfondissement}{Bézout et équations entières}
+\ExplorerSection{Avant de commencer}
+Algorithme d’Euclide et divisibilité dans \(\mathbb{Z}\).\par
+\ExplorerSection{Idées et méthode}
+Pour deux entiers positifs a et b, l’algorithme d’Euclide calcule \(d = PGCD(a,b)\). En remontant les divisions, on exprime d comme au + bv avec u et v entiers : c’est une identité de Bézout.\par
+L’équation ax + by = c possède des solutions entières si et seulement si d divise c. La nécessité vient du fait que d divise ax + by ; la suffisance vient d’une identité de Bézout multipliée par \(\frac{c}{d}\).\par
+Si \((x_{0},y_{0})\) est une solution, toutes les solutions sont \(x = x_{0} + (\frac{b}{d})t\) et \(y = y_{0} - (\frac{a}{d})t\), avec t entier. Les contraintes \(x \geq  0\) et \(y \geq  0\) doivent être traitées ensuite.\par
+\ExplorerSection{Exemple expliqué}
+Pour \(15x + 21y = 6\), on \(a 21 = 15 + 6\) et \(15 = 2 \times  6 + 3\). Ainsi \(3 = 3 \times  15 - 2 \times  21\). Une solution est \((6,-4)\), et toutes les solutions sont \(x = 6 + 7t, y = -4 - 5t\).\par
+\ExplorerSection{À explorer}
+Tester plusieurs valeurs de t dans l’exemple, puis vérifier l’équation sans arrondir.\par
+\end{document}

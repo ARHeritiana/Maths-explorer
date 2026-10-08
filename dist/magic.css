@@ -1,0 +1,226 @@
+/* A luminous mathematical workbench. Atmosphere stays behind the activity. */
+@media screen {
+  :root {
+    color-scheme: dark;
+    --ink: #eff5ff;
+    --muted: #a9b8d0;
+    --green: #75efc9;
+    --mint: #153a39;
+    --paper: #0b1224;
+    --line: #29364f;
+    --orange: #ffc184;
+    --blue: #96b8ff;
+    --white: #111b30;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+  }
+  body {
+    background:
+      radial-gradient(ellipse at 68% 0, #18314e99, transparent 48rem),
+      radial-gradient(ellipse at 98% 40%, #28214a66, transparent 36rem),
+      var(--paper);
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible,
+  textarea:focus-visible, summary:focus-visible { outline-color: #b5a5ff; }
+  .skip { background: #eff5ff; color: #0b1224; border-radius: 8px; }
+  .topbar {
+    background: #0e182b;
+    border-bottom-color: #364361;
+    min-height: 88px;
+    box-shadow: 0 1px 0 #a38cff0d;
+  }
+  .brandmark {
+    background: linear-gradient(145deg, #8af4d1, #8dacf3);
+    color: #10243a;
+    border-radius: 14px;
+    box-shadow: 0 0 24px #73e8c829, inset 0 0 0 1px #ffffff55;
+  }
+  .brand small { color: #a9b8d0; font-size: .75rem; }
+  .topbar nav a { transition: color 180ms ease; }
+  .topbar nav a:hover { color: #d1c5ff; }
+  .topbar nav a[aria-current]:after {
+    height: 2px;
+    background: linear-gradient(90deg, #75efc9, #ae9cff);
+    box-shadow: 0 -2px 14px #75efc95c;
+  }
+  .language {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 0 12px;
+    gap: 9px;
+    background: #172239;
+  }
+  .language button[aria-pressed="true"] { color: #8bf1d0; }
+  .language > span { color: #66758e; }
+  .sidebar { background: #10192b; }
+  .side-title { color: #d2dff5; }
+  .group-label { color: #99acc9; font-size: .875rem; }
+  .lab-link {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+  }
+  .lab-link:hover { background: #1d2b44; border-color: #344b69; }
+  .lab-link.selected {
+    color: #a0f7dc;
+    border-color: #42837480;
+    background: linear-gradient(110deg, #193c3e, #182942);
+    box-shadow: inset 3px 0 0 #75efc9, 0 4px 18px #0000001a;
+  }
+  .lab-symbol { color: #b3a2fb; }
+  .lab-link.selected .lab-symbol { color: #9cf6d9; }
+  .side-note { border-top-color: var(--line); }
+  .side-note > span { color: #b7a4ff; }
+  .breadcrumb, .section-kicker { color: #a8a2ff; }
+  .breadcrumb span { color: #6b7a98; }
+  .lab-heading h1, .page h1 { font-weight: 600; letter-spacing: -.04em; }
+  .lab-heading p { color: #b6c4db; font-size: 1rem; }
+  .level { border-color: #3f5272; background: #16243a; color: #c9d6ed; }
+  .experiment {
+    border-color: #3a5070;
+    border-radius: 18px;
+    background: linear-gradient(155deg, #182640, #111d33 60%);
+    box-shadow: 0 18px 50px #02071340, 0 0 0 1px #8eacff08;
+  }
+  .experiment-top { padding-top: 22px; }
+  .experiment-top .eyebrow { color: #a4b6d5; }
+  .formula { color: #d6fff1; text-shadow: 0 0 20px #75efc925; }
+  .plot {
+    border-radius: 12px;
+    background: radial-gradient(ellipse at 50% 40%, #1b31474d, transparent 70%);
+  }
+  .plot svg text { fill: #b3c3dd; }
+  .plot .gridline { stroke: #637ba32e; }
+  .plot .axis { stroke: #7d94b9; }
+  .plot .curve { stroke-width: 3; }
+  .plot .curve.teal { filter: drop-shadow(0 0 3px #75efc94d); }
+  .plot .point { stroke: #111d33; stroke-width: 2; }
+  .plot .point.teal { filter: drop-shadow(0 0 4px #75efc970); }
+  .plot .circle-grid { fill: #75efc907; stroke: #829dc2; }
+  .plot .svg-heading { fill: #e2ecff; }
+  .plot .svg-value { fill: #9af8d9; }
+  .plot .bar.teal { fill: #57d9b8aa; stroke: #9af8d9; stroke-width: .6; }
+  .plot .bar.orange { fill: #ffc184aa; stroke: #ffe0bb; stroke-width: .6; }
+  .chart-data summary { color: #b3c5e1; }
+  .chart-data table { color: #dce7fa; }
+  .controls { background: #0f1b30; border-top-color: #354666; gap: 22px; }
+  .slider-control output {
+    background: #203450;
+    color: #bcffe9;
+    border: 1px solid #46667f;
+    border-radius: 7px;
+    font-variant-numeric: tabular-nums;
+    min-width: 48px;
+  }
+  .slider-control input[type="range"] { accent-color: #75efc9; }
+  .slider-control:focus-within output { border-color: #93ecd4; box-shadow: 0 0 15px #75efc91a; }
+  .results { background: #162e38; }
+  .results > div { border-right-color: #405a69; }
+  .results span { color: #bbd4dc; }
+  .results strong { color: #d1ffed; font-variant-numeric: tabular-nums; }
+  .learning, .hint-panel {
+    background: linear-gradient(155deg, #232c4a, #18233a 75%);
+    border: 1px solid #4b5175;
+    border-radius: 18px;
+    box-shadow: 0 14px 40px #02071326;
+  }
+  .learning-label { color: #c1b4ff; }
+  .learning h2, .hint-panel h2 { color: #f0e9ff; }
+  .prereq { color: #b8c7df; }
+  .steps li:before { color: #d1c5ff; border-color: #77749f; background: #2c3552; }
+  .checkpoint, .reasoning { border-color: #414d6d; }
+  .checkpoint > .eyebrow { color: #c5b4ff; }
+  .checkpoint summary { color: #bdd4e8; }
+  .answer-row input, textarea {
+    background: #0e1a2f;
+    color: #edf4ff;
+    border: 1px solid #50617e;
+    border-radius: 8px;
+    transition: border-color 180ms ease;
+  }
+  input::placeholder, textarea::placeholder { color: #9cacc7; opacity: 1; }
+  .primary, .secondary {
+    border-radius: 9px;
+    transition: background 200ms ease, box-shadow 200ms ease, transform 200ms var(--ease);
+  }
+  .primary { background: #a0f4d8; color: #112e30; box-shadow: 0 3px 13px #75efc917; }
+  .primary:hover { background: #bcffe7; box-shadow: 0 4px 20px #75efc930; }
+  .secondary { background: #243653; color: #cfdeff; border-color: #536787; }
+  .secondary:hover { background: #304563; box-shadow: 0 3px 16px #96b8ff1a; }
+  .primary:active, .secondary:active { transform: scale(.98); }
+  .feedback { padding: 12px; border-left: 2px solid #ab9cf7; background: #24304b; border-radius: 0 8px 8px 0; }
+  .feedback.success { color: #a9f9df; border-color: #75efc9; background: #193c3e; }
+  .feedback:empty { padding: 0; border: 0; }
+  .error { color: #ffb7aa; }
+  .history { border-top-color: #3b4365; }
+  .history-icon { border-color: #77709a; color: #d3c2ff; background: #242844; }
+  .history .eyebrow { color: #cfb8ff; }
+  .history h2 { color: #e4daff; }
+  footer { background: #0d1729; color: #a9b8d0; }
+  .progress-badge { border-left-color: #a393f6; }
+  .filter { background: #132039; border-color: #3d4e6c; color: #c0cde3; transition: background 220ms ease, border-color 220ms ease; }
+  .filter:hover { border-color: #b1a3fc; }
+  .filter[aria-pressed="true"] { background: #d6ccff; color: #24213e; border-color: #d6ccff; }
+  .challenge-card, .pathway-card {
+    border: 1px solid #405272;
+    border-radius: 16px;
+    background: linear-gradient(150deg, #1c2b47, #131f35);
+    box-shadow: 0 10px 25px #02071326;
+  }
+  .challenge-card {
+    transition: transform 300ms var(--ease), border-color 250ms ease, box-shadow 250ms ease;
+  }
+  .challenge-card:hover, .challenge-card:focus-visible {
+    transform: translateY(-4px);
+    border-color: #aa98f1;
+    box-shadow: 0 12px 30px #00000033, 0 0 22px #ab9aff12;
+  }
+  .tag { color: #a0f4d8; }
+  .tag.olympiad { color: #ffd49d; }
+  .card-number { color: #a2b3d0; }
+  .challenge-motif { color: #ac9afc; text-shadow: 0 0 25px #ab9aff38; }
+  .challenge-card:nth-child(even) .challenge-motif { color: #8cf1d0; text-shadow: 0 0 25px #75efc92b; }
+  .card-bottom { color: #b8c5dc; }
+  .proof-callout, .extension { color: #c0cde3; border-color: #7b71a5; }
+  .hint-panel details { border-color: #414d6d; }
+  .pathway-label { background: #2c3d5c; color: #c3b4ff; border: 1px solid #68769f; }
+  .stage h3 { color: #b1c2dd; }
+  .stage li a:hover { color: #bcaaff; }
+  .lab-link, .level, .brand small, .history a, footer, .side-title, .learning-label > span:last-child,
+  .eyebrow, .tag, .card-bottom, .breadcrumb, .section-kicker { font-size: .875rem; }
+  @media (max-width: 850px) {
+    .topbar { padding: 18px 22px 0; }
+    .sidebar { background: #0f1a2e; }
+    .lab-link { border-color: #354560; }
+    .lab-link.selected { border-color: #5b9586; }
+  }
+  @media (max-width: 500px) {
+    .topbar { padding-left: 14px; padding-right: 14px; }
+    .brand { min-width: 0; gap: 8px; font-size: 1.25rem; }
+    .brandmark { width: 34px; height: 36px; font-size: 2rem; flex-shrink: 0; }
+    .brand small { font-size: .75rem; letter-spacing: .045em; }
+    .language { padding: 0 7px; gap: 4px; }
+    .lab-main { padding: 23px 14px; }
+    .experiment-top { padding-left: 16px; padding-right: 16px; }
+    .formula { padding-left: 16px; }
+    .controls, .results { padding-left: 16px; padding-right: 16px; }
+    .learning { padding: 20px; }
+    .experiment, .learning { border-radius: 14px; }
+  }
+  @media (hover: none) {
+    .challenge-card:hover { transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .challenge-card:hover, .primary:active, .secondary:active { transform: none; }
+    .plot .curve, .plot .point { filter: none; }
+  }
+  @media (forced-colors: active) {
+    body, .experiment, .learning, .hint-panel, .challenge-card, .pathway-card { background: Canvas; }
+    .plot .curve, .plot .point { filter: none; }
+    .plot .curve { stroke: CanvasText; }
+    .plot .point { fill: CanvasText; stroke: Canvas; }
+    .plot text { fill: CanvasText; }
+    .plot .gridline, .plot .axis, .plot .circle-grid { stroke: GrayText; }
+    .plot .bar { fill: Highlight; stroke: CanvasText; }
+  }
+}

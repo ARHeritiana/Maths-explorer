@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{10}
+\newcommand{\ExplorerKind}{Worked solutions}
+\begin{document}
+\ExplorerTitle{High school · sequences}{Telescoping sums}
+\ExplorerSection{Exercise 1}
+Find \(\sum [\frac{1}{k}-\frac{1}{k+1}]\) from \(k=3\) to 10.\par
+Interior terms cancel: \(\frac{1}{3}-\frac{1}{11}=\frac{8}{33}\).\par
+\ExplorerSection{Exercise 2}
+Express \(\frac{1}{k(k+2)}\) as a difference of two fractions.\par
+\(\frac{1}{k(k+2)}=(\frac{1}{2})[\frac{1}{k}-\frac{1}{k+2}]\).\par
+\ExplorerSection{Exercise 3}
+Find \(\sum (2k+1)\) from \(k=0\) to n using \((k+1)^{2}-k^{2}\).\par
+\(2k+1=(k+1)^{2}-k^{2}\). The sum is \((n+1)^{2}-0^{2}=(n+1)^{2}\).\par
+\ExplorerSection{Exercise 4}
+If \(S_{n}=\frac{n}{n+1}\), find the least integer \(n\geq 1\) with \(1-S_{n}<0.01\).\par
+\(\frac{1}{n+1}<\frac{1}{100}\) means \(n+1>100\), hence \(n\geq 100\). The minimum is 100.\par
+\ExplorerSection{Problem: complete reasoning}
+Let \(T_{n}=\sum  \frac{1}{k(k+2)}\) for k from 1 to n. Derive an exact formula and find its limit. Find the least n such that the gap to the limit is strictly less than 0.01.\par
+After decomposition, all except the first two and last two terms cancel: \(T_{n}=\frac{3}{4}-\frac{1}{2(n+1)}-\frac{1}{2(n+2)}\). The limit is \(\frac{3}{4}\). The gap decreases with n. At \(n=98\) it is \(\frac{1}{198}+\frac{1}{200}>0.01\); at \(n=99\) it is \(\frac{1}{200}+\frac{1}{202}<0.01\). Therefore the minimum is 99.\par
+\end{document}

@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{10}
+\newcommand{\ExplorerKind}{Lesson and method}
+\begin{document}
+\ExplorerTitle{High school · sequences}{Telescoping sums}
+\ExplorerSection{Before you begin}
+Fractions, finite sums and indices.\par
+\ExplorerSection{Ideas and method}
+A telescoping sum is a sum of consecutive differences. Interior terms cancel: \(\sum (a_{k}-a_{k+1})=a_{1}-a_{n+1}\) for k from 1 to n.\par
+Write the first three terms and the last two to expose cancellation and check endpoints. Term-by-term simplification does not remove the need to specify indices.\par
+A useful decomposition is \(\frac{1}{k(k+1)}=\frac{1}{k}-\frac{1}{k+1}\), valid for \(k\geq 1\). Verify it by taking a common denominator.\par
+\ExplorerSection{Worked example}
+\(\sum  \frac{1}{k(k+1)}\), from \(k=1\) to n, equals \(1-\frac{1}{n+1}=\frac{n}{n+1}\). The sum is below 1 and tends to 1 as n grows.\par
+\ExplorerSection{Explore}
+Compute the first five partial sums, then study the gap to 1. Distinguish the finite sum from its limit.\par
+\end{document}

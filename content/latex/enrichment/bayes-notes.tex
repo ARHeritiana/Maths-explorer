@@ -1,0 +1,20 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{07}
+\newcommand{\ExplorerKind}{Leçon et méthode}
+\begin{document}
+\ExplorerTitle{Première--Terminale · probabilités}{Inverser une probabilité conditionnelle}
+\ExplorerSection{Avant de commencer}
+Arbres pondérés, intersections et probabilités conditionnelles.\par
+\ExplorerSection{Idées et méthode}
+\(P(A|B)\) désigne la probabilité de A lorsqu’on sait B réalisé. Si \(P(B) > 0, P(A|B) = \frac{P(A \cap  B)}{P(B)}\). L’information B restreint l’univers considéré.\par
+\(P(A \cap  B) = P(A)P(B|A)\). Si A et son contraire forment les deux premières branches d’un arbre, \(P(B) = P(A)P(B|A) + P(\mathrm{non} A)P(B|\mathrm{non} A)\).\par
+La formule de Bayes résulte de ces deux égalités. \(P(A|B)\) n’est généralement pas égal à \(P(B|A)\) : les dénominateurs correspondent à des populations différentes.\par
+\ExplorerSection{Exemple expliqué}
+On choisit A avec probabilité \(\frac{1}{3}\) et B avec probabilité \(\frac{2}{3}\). L’urne A contient 3 rouges et 1 bleue ; B contient 1 rouge et 3 bleues. \(P(\mathrm{rouge}) = (\frac{1}{3})(\frac{3}{4}) + (\frac{2}{3})(\frac{1}{4}) = \frac{5}{12}\). Sachant que la boule est rouge, \(P(A|\mathrm{rouge}) = \frac{\frac{1}{4}}{\frac{5}{12}} = \frac{3}{5}\).\par
+\begin{center}\begin{tikzpicture}[x=1.6cm,y=.8cm]\draw[mint,thick](0,0)--(1,1)node[midway,above]{$\frac13$};\draw[mint,thick](0,0)--(1,-1)node[midway,below]{$\frac23$};\node at(1.2,1){$A$};\node at(1.2,-1){$B$};\draw[violet,thick](1.5,1)--(3,1.5)node[midway,above]{$\frac34$};\draw[violet,thick](1.5,-1)--(3,-.5)node[midway,above]{$\frac14$};\node[right]at(3,1.5){$A\cap R:\ \frac14$};\node[right]at(3,-.5){$B\cap R:\ \frac16$};\end{tikzpicture}\end{center}
+Seules les branches conduisant à une boule rouge sont représentées.\par
+\ExplorerSection{À explorer}
+Représenter l’exemple sur 120 tirages fictifs respectant exactement les proportions. Compter les boules rouges venant de chaque urne.\par
+\end{document}

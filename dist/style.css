@@ -1577,3 +1577,66 @@ textarea {
 @media print { .reasoning textarea { min-height: 4rem; } }
 
 .range-limits, .results > div > span, .prereq, .feedback, .stage h3, .source-link { font-size: .875rem; }
+
+/* Direct manipulation: only the point targets take over touch scrolling. */
+.interaction-guide { margin: 12px 23px; font-size: .875rem; line-height: 1.6; color: var(--muted); }
+.mobile-lab-picker { display: none; }
+.drag-handle { cursor: grab; touch-action: none; }
+.plot.dragging, .plot.dragging .drag-handle { cursor: grabbing; }
+.handle-hit { fill: transparent; stroke: none; pointer-events: all; }
+.handle-ring { fill: var(--white); stroke: var(--green); stroke-width: 2; }
+.handle-core { fill: var(--green); }
+.drag-handle.orange .handle-ring { stroke: var(--orange); }
+.drag-handle.orange .handle-core { fill: var(--orange); }
+.drag-handle.blue .handle-ring { stroke: var(--blue); }
+.drag-handle.blue .handle-core { fill: var(--blue); }
+.plot .handle-label { font-size: 16px; font-weight: 700; fill: var(--ink); pointer-events: none; }
+.drag-handle:hover .handle-ring, .drag-handle:focus .handle-ring { stroke-width: 4; }
+.drag-handle:focus { outline: none; }
+.drag-handle:focus .handle-ring { stroke-dasharray: 3 2; }
+.plot [data-handle^="data-"] .handle-label { opacity: 0; }
+.plot [data-handle^="data-"]:hover .handle-label, .plot [data-handle^="data-"]:focus .handle-label { opacity: 1; }
+.slider-control > span:first-child { gap: 10px; align-items: start; }
+.slider-control output { flex-shrink: 0; }
+@media (max-width: 850px) {
+  .sidebar .lab-links { display: none; }
+  .mobile-lab-picker { display: grid; gap: 8px; font-size: .875rem; color: var(--muted); }
+  .mobile-lab-picker select { width: 100%; min-height: 44px; padding: 10px 12px; font: inherit; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+  .interaction-guide { margin-left: 16px; margin-right: 16px; }
+}
+@media print { .interaction-guide, .mobile-lab-picker, .handle-layer { display: none; } }
+@media (forced-colors: active) {
+  .handle-ring { fill: Canvas; stroke: Highlight !important; }
+  .handle-core { fill: Highlight !important; }
+  .plot .handle-label { fill: CanvasText; }
+}
+
+/* Trigonometry views share a circle but expose only the selected activity. */
+.trig-tools { margin: 1rem 0; }
+.trig-tabs { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1rem; }
+.trig-tabs button { font-size:.875rem; padding:.65rem .8rem; border:1px solid var(--line); border-radius:.4rem; background:transparent; color:var(--ink); }
+.trig-tabs button[aria-pressed="true"] { background:var(--green); color:white; border-color:var(--green); }
+.trig-tools label { display:grid; gap:.4rem; font-size:.875rem; }
+.trig-tools select { width:100%; padding:.7rem; background:var(--paper); color:var(--ink); border:1px solid var(--line); border-radius:.4rem; font:inherit; }
+.trig-playback { display:flex; gap:1rem; align-items:end; flex-wrap:wrap; }
+.trig-playback label { flex:1; min-width:12rem; }
+.trig-plot svg .trig-axis { font-weight:700; font-size:16px; }
+.trig-plot svg .trig-angle { font-size:14px; }
+.trig-plot svg .trig-coordinate { font-size:23px; font-weight:600; stroke:none; }
+.trig-plot svg .trig-identity { font-size:19px; }
+.trig-plot svg .trig-mark { fill:var(--muted); }
+.trig-plot svg .trig-future { opacity:.22; }
+.trig-plot svg text.orange { fill:var(--orange); stroke:none; }
+.trig-plot svg text.blue { fill:var(--blue); stroke:none; }
+footer { flex-wrap:wrap; }
+footer .content-origin { flex-basis:100%; margin-top:.7rem; font-size:.75rem; line-height:1.5; color:var(--muted); }
+.trig-tools { padding:0 1.5rem; }
+.trig-diagram { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.trig-diagram svg { width:100%; max-height:none; overflow:hidden; }
+@media (max-width:750px) {
+  .trig-diagram { grid-template-columns:1fr; }
+  .trig-diagram svg { max-width:365px; justify-self:center; }
+  .trig-tools { padding:0 1rem; }
+}
+
+.trig-playback { margin-top: .9rem; }
