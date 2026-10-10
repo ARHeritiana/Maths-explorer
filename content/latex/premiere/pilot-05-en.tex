@@ -1,0 +1,11 @@
+% Reduced English entry used while the English edition is converted chapter by chapter.
+% Student edition by default; professeur builds define \versionprof first.
+\documentclass[11pt,a4paper,oneside,openany]{book}
+\newif\ifprof
+\ifdefined\versionprof\proftrue\else\proffalse\fi
+\usepackage{styles/livret-en}
+\begin{document}
+\mainmatter
+\setcounter{chapter}{4}
+\input{chapitres/C05-en}
+\end{document}

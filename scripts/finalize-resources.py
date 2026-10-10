@@ -20,12 +20,14 @@ for path in (ROOT/'dist/resources').rglob('*.pdf'):
     else:doc.close()
 catalog=ROOT/'dist/resources/catalog.json';c=json.loads(catalog.read_text())
 for course in c['courses']:course['language']='bilingual'
+ledger=ROOT/'docs/TEX_CONVERSION.json'
+converted=set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
 for r in c['resources']:
     if r['format']!='PDF':continue
     fr=r['url'][0] if isinstance(r['url'],list) else r['url']
     en=fr[:-4]+'-en.pdf';path=ROOT/'dist'/en.removeprefix('./')
     if not path.exists():raise FileNotFoundError(en)
-    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation=r.get('translation','local-machine'))
+    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if r['chapter'] in converted else r.get('translation','local-machine'))
 for source in c['sources']:source.pop('url',None);source.pop('id',None)
 catalog.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n')
 companion=ROOT/'dist/js/resources-data.js';c=json.loads(companion.read_text().split('=',1)[1].rstrip().rstrip(';'))

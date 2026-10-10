@@ -4,7 +4,7 @@ Idempotent via PDF subject marker. Existing page count, text, page links and
 page size remain unchanged. Content is scaled only when existing margins are
 too narrow for the header; the verification ledger records that scale.
 """
-import fitz,json,re,hashlib
+import fitz,json,re,hashlib,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];DIST=ROOT/'dist';MARK='Maths Explorer document theme v1'
 font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf';bold='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
@@ -26,10 +26,17 @@ def color(m):
  else:z=(.22,.32,.52) # navy-blue diagrams/headings
  return (' '.join(f'{x:.4f}' for x in z)+' '+m[4].decode()).encode()
 ledger=[]
+previous=ROOT/'docs/DOCUMENT_STYLE_LEDGER.json'
+known={d['path']:d for d in json.loads(previous.read_text())['documents']} if previous.exists() else {}
+# Optional arguments restrict styling to the given PDFs (paths under dist/resources).
+only={Path(a).resolve() for a in sys.argv[1:]}
 for path in sorted((DIST/'resources').rglob('*.pdf')):
  if 'enrichment' in path.parts:continue
+ if only and path.resolve() not in only:continue
  source=fitz.open(path)
- if MARK in source.metadata.get('subject',''):source.close();continue
+ # Overlay-era files carry the marker in their subject; TeX-built files are recognised by the ledger hash.
+ rel=str(path.relative_to(DIST))
+ if MARK in source.metadata.get('subject','') or (rel in known and known[rel]['sha256']==hashlib.sha256(path.read_bytes()).hexdigest()):source.close();continue
  original_text=[''.join(p.get_text().split()) for p in source]
  # Stream substitution preserves all non-colour drawing commands and text.
  stream_ids=set()
@@ -87,7 +94,7 @@ for path in sorted((DIST/'resources').rglob('*.pdf')):
    target,clip,scale=transforms[link['page']];point=link['to']
    link['to']=fitz.Point(target.x0+(point.x-clip.x0)*scale,target.y0+(point.y-clip.y0)*scale)
    out[page_index].insert_link(link)
- metadata=dict(source.metadata);metadata['subject']=MARK+'; original mathematical content retained';metadata['author']='Maths Explorer';out.set_metadata(metadata)
+ out.set_metadata({'title':source.metadata.get('title',''),'author':'Maths Explorer'}) # metadata: title and author only
  toc=source.get_toc();
  if toc:out.set_toc(toc)
  # Check every original text character remains present in extraction order.
@@ -96,7 +103,7 @@ for path in sorted((DIST/'resources').rglob('*.pdf')):
  out.subset_fonts();tmp=path.with_suffix('.theme.pdf');out.save(tmp,garbage=4,deflate=True);out.close();source.close();tmp.replace(path)
  ledger.append({'path':str(path.relative_to(DIST)),'pages':len(scales),'minimumScale':min(scales),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
  if len(ledger)%60==0:print(f'Styled {len(ledger)} PDFs',flush=True)
-previous=ROOT/'docs/DOCUMENT_STYLE_LEDGER.json'
 if ledger:
- previous.write_text(json.dumps({'theme':MARK,'documents':ledger,'verification':'Every original whitespace-normalized text sequence retained; page counts unchanged.'},indent=2)+'\n')
+ known.update({d['path']:d for d in ledger})
+ previous.write_text(json.dumps({'theme':MARK,'documents':[known[k] for k in sorted(known)],'verification':'Every original whitespace-normalized text sequence retained; page counts unchanged.'},indent=2)+'\n')
 print(f'Styled {len(ledger)} existing PDFs.',flush=True)

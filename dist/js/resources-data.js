@@ -1209,13 +1209,13 @@ export const resourceCatalog = {
           "end": 49,
           "path": "resources/premiere-05/chapter.pdf",
           "pages": 9,
-          "bytes": 323451,
+          "bytes": 323385,
           "sections": {
             "practice": 5,
             "quiz": 8
           },
           "englishPath": "resources/premiere-05/chapter-en.pdf",
-          "englishBytes": 317831
+          "englishBytes": 286221
         },
         {
           "kind": "teacher",
@@ -1224,9 +1224,9 @@ export const resourceCatalog = {
           "end": 64,
           "path": "resources/premiere-05/teacher.pdf",
           "pages": 12,
-          "bytes": 359089,
+          "bytes": 359023,
           "englishPath": "resources/premiere-05/teacher-en.pdf",
-          "englishBytes": 353620
+          "englishBytes": 314989
         }
       ]
     },
