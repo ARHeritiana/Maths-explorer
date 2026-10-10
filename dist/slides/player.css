@@ -1,0 +1,56 @@
+/* Classroom slide player: fixed 1280x720 stage scaled to the window. One accent (mint), cool neutrals. */
+:root{
+  --bg:#0d1517;--panel:#142024;--panel-2:#1a2a2f;--line:#27393f;--ink:#eef3f1;--muted:#93a8a8;
+  --accent:#6fd3b0;--accent-ink:#06231a;--warn:#e8b4a0;
+  --radius:14px;
+  color-scheme:dark;
+  font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden}
+#viewport{position:fixed;inset:0;display:grid;place-items:center}
+#stage{position:relative;width:1280px;height:720px;transform-origin:center;background:var(--bg);overflow:hidden}
+mjx-assistive-mml{display:none!important}
+.bar{position:absolute;left:0;right:0;top:0;height:64px;display:flex;align-items:center;gap:14px;padding:0 28px;border-bottom:1px solid var(--line);background:var(--panel)}
+.bar .deck{font-size:17px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.chip{font-size:14px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);background:var(--accent);padding:6px 12px;border-radius:999px}
+.chip.error{background:var(--warn)}
+button,.btn{font:inherit;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;min-height:44px;min-width:44px;padding:0 16px;cursor:pointer;transition:transform .12s,background .12s,border-color .12s}
+button:hover{border-color:var(--accent);background:#20343a}
+button:active{transform:translateY(1px) scale(.98)}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}
+.body{position:absolute;left:0;right:0;top:64px;bottom:56px;padding:28px 48px;display:grid;gap:28px;grid-template-columns:1fr;align-content:start}
+.body.split{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+h1,h2{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+h2{font-size:40px;max-width:24ch}
+.sub{color:var(--muted);font-size:20px;margin-top:6px}
+.text{font-size:28px;line-height:1.5;max-width:68ch;overflow-wrap:anywhere}
+.text.s1{font-size:25px}.text.s2{font-size:22px}.text.s3{font-size:19px;line-height:1.4}
+.text ul,.text ol{padding-left:1.2em;margin:.4em 0}
+.text li{margin:.25em 0}
+.text code,pre{font-family:ui-monospace,Consolas,monospace}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;font-size:22px;line-height:1.45;overflow:auto;max-height:420px;margin:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 28px}
+.answer{border-color:var(--accent);background:#10231f}
+.answer .lab{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.answer[hidden]{display:none}
+.foot{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;gap:12px;padding:0 28px;border-top:1px solid var(--line);background:var(--panel)}
+.prog{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);min-width:70px;text-align:center}
+.title-slide{display:grid;align-content:center;justify-items:start;height:100%;gap:18px}
+.title-slide h1{font-size:68px;max-width:16ch}
+.title-slide .meta{color:var(--muted);font-size:24px}
+.title-slide .hint{color:var(--muted);font-size:18px;margin-top:30px}
+.canvas-wrap{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+.wctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:12px;font-size:19px;color:var(--muted)}
+.wctl label{display:flex;gap:8px;align-items:center}
+.wctl input[type=range]{width:150px;accent-color:var(--accent)}
+.hint-line{font-size:17px;color:var(--accent);margin-bottom:8px}
+.readout{font-size:24px;line-height:1.5}
+.drawer{position:absolute;inset:64px 0 56px auto;width:420px;background:var(--panel);border-left:1px solid var(--line);overflow:auto;padding:12px;z-index:5}
+.drawer button{display:block;width:100%;text-align:left;margin:4px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drawer button[aria-current=true]{border-color:var(--accent);color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

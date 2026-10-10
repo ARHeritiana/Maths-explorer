@@ -1,6 +1,7 @@
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
+import { slidesPage, bindSlides } from "./slides-page.js";
 import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountLibrary } from "./library.js";
@@ -103,6 +104,7 @@ function link(page, id = "") {
 function header(page) {
   return `<header class="topbar"><a class="brand" href="#resources"><span class="brandmark" aria-hidden="true">∿</span><span>maths<span class="brandlight">explorer</span><small>${pair("LE LABORATOIRE DES IDÉES", "THE LABORATORY OF IDEAS")}</small></span></a><nav aria-label="${pair("Navigation principale", "Main navigation")}">${[
     ["resources", "Cours & exercices", "Lessons & exercises"],
+    ["slides", "Diaporamas", "Slides"],
     ["pack", "Dossier sur mesure", "Custom pack"],
     ["lab", "Laboratoire", "Laboratory"],
     ["challenges", "Défis", "Challenges"],
@@ -136,13 +138,13 @@ function render() {
   );
   const valid = (r.page === "lab" && (!r.id || labs.some(l => l.id === r.id))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" ||
+    (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "resources" ? libraryPage(t)
+    (page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? labPage(r.id)
@@ -162,6 +164,7 @@ function render() {
   if (page === "resources") bindLibrary(t);
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
+  if (page === "slides") bindSlides(t);
   if (page === "chapter") stopChapter = bindChapter(r.id, t, fmt);
   if (page === "workshop") stopChapter = bindWorkshop($("#main"),t,lang);
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});

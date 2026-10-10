@@ -29,3 +29,8 @@
 .source-files span{opacity:.6;font-size:.8rem}
 @media (max-width:900px){.pack-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.pack-grid{grid-template-columns:1fr}.source-files{columns:1}}
+
+.deck-list{list-style:none;padding:0;margin:.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:.35rem 1.5rem}
+.deck-list li{display:flex;justify-content:space-between;gap:1rem;padding:.35rem 0;border-bottom:1px solid var(--line)}
+.deck-list a{text-decoration:underline;text-underline-offset:3px}
+.deck-list span{opacity:.6;font-size:.85rem;white-space:nowrap}
