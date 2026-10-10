@@ -32,7 +32,7 @@ for r in c['resources']:
     en=fr[:-4]+'-en.pdf';path=ROOT/'dist'/en.removeprefix('./')
     if not path.exists():raise FileNotFoundError(en)
     r['pages']=len(fitz.open(ROOT/'dist'/fr.removeprefix('./')))   # page counts follow the files
-    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if r['chapter'] in converted else r.get('translation','local-machine'))
+    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if r['chapter'] in converted and not str(r.get('source','')).startswith('autom') else ('local-machine' if r.get('translation') in (None,'tex-source') else r['translation']))
 for source in c['sources']:source.pop('url',None);source.pop('id',None)
 catalog.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n')
 companion=ROOT/'dist/js/resources-data.js';c=json.loads(companion.read_text().split('=',1)[1].rstrip().rstrip(';'))
