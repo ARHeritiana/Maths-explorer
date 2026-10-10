@@ -26,7 +26,8 @@ h1,h2{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.1}
 h2{font-size:40px;max-width:24ch}
 .sub{color:var(--muted);font-size:20px;margin-top:6px}
 .text{font-size:28px;line-height:1.5;max-width:68ch;overflow-wrap:anywhere}
-.text.s1{font-size:25px}.text.s2{font-size:22px}.text.s3{font-size:19px;line-height:1.4}
+.text.s1{font-size:25px}.text.s2{font-size:22px}.text.s3{font-size:19px;line-height:1.4}.text.s4{font-size:16px;line-height:1.35}
+.body{overflow-y:auto}
 .text ul,.text ol{padding-left:1.2em;margin:.4em 0}
 .text li{margin:.25em 0}
 .text code,pre{font-family:ui-monospace,Consolas,monospace}

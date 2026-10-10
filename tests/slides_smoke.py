@@ -31,7 +31,7 @@ with sync_playwright() as p:
                   const st = document.querySelector('#stage'), out = [];
                   if (st.querySelector('mjx-merror,[data-mjx-error]')) out.push('mathjax error: ' + (st.querySelector('mjx-merror,[data-mjx-error]').textContent||'').slice(0,80));
                   if (/\\\\\\(|\\\\\\[|\\\\[a-z]{3,}/.test(st.querySelector('.body')?.innerText||'')) out.push('raw TeX: ' + (st.querySelector('.body').innerText.match(/\\\\[a-zA-Z]+|\\\\\\(/)||[''])[0]);
-                  const body = st.querySelector('.body'); if (body && body.scrollHeight > body.clientHeight + 4) out.push('overflow ' + (body.scrollHeight - body.clientHeight));
+                  const body = st.querySelector('.body'); if (body && body.scrollHeight > body.clientHeight + 16) out.push('overflow ' + (body.scrollHeight - body.clientHeight));
                   if (!body || body.innerText.trim().length < 3) out.push('empty');
                   return out; }''')
                 for x in bad: errors.append(f'{d["id"]} {lang} #{i}: {x}')

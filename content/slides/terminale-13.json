@@ -1,0 +1,151 @@
+{
+"id": "terminale-13",
+"course": "terminale",
+"number": 13,
+"title": [
+"Représentations paramétriques et équations cartésiennes",
+"Parametric representations and Cartesian equations"
+],
+"slides": [
+{
+"k": "title",
+"t": [
+"Représentations paramétriques et équations cartésiennes",
+"Parametric representations and Cartesian equations"
+],
+"b": [
+"",
+""
+]
+},
+{
+"k": "goals",
+"t": [
+"Objectifs",
+"Objectives"
+],
+"b": [
+"Décrire une droite et un plan ; déterminer des intersections ; choisir une méthode pour une projection.",
+"Describe a line and a plane; determine intersections; choose a method for a projection."
+]
+},
+{
+"k": "concept",
+"t": [
+"Notes de cours",
+"Course notes"
+],
+"b": [
+"Dans tout ce chapitre, les coordonnées sont données dans un repère orthonormé de l'espace. Cette hypothèse est nécessaire pour identifier un vecteur normal à partir des coefficients d'une équation et pour calculer les distances.",
+"Throughout this chapter, coordinates are given in an orthonormal frame of space. This assumption is necessary to identify a normal vector from the coefficients of an equation and to compute distances."
+]
+},
+{
+"k": "concept",
+"t": [
+"Droites paramétrées",
+"Parametric lines"
+],
+"b": [
+"La droite passant par \\(A(x_A,y_A,z_A)\\) de vecteur directeur non nul \\((a,b,c)\\) admet la représentation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nUn point appartient à la droite s'il existe <i>un même</i> réel \\(t\\) satisfaisant les trois égalités. Une droite admet de nombreuses représentations : changement du point de départ ou multiplication du directeur par un réel non nul.",
+"The line through \\(A(x_A,y_A,z_A)\\) with non-zero direction vector \\((a,b,c)\\) has the representation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nA point belongs to the line if there exists <i>one and the same</i> real number \\(t\\) satisfying the three equalities. A line has many representations: change the starting point or multiply the direction vector by a non-zero real number."
+]
+},
+{
+"k": "example",
+"t": [
+"Droites paramétrées",
+"Parametric lines"
+],
+"b": [
+"\\((x,y,z)=(1,2,0)+t(2,-1,3)\\) décrit la même droite que \\((3,1,3)+s(4,-2,6)\\) ; le lien est \\(t=1+2s\\).",
+"\\((x,y,z)=(1,2,0)+t(2,-1,3)\\) describes the same line as \\((3,1,3)+s(4,-2,6)\\); the link is \\(t=1+2s\\)."
+]
+},
+{
+"k": "concept",
+"t": [
+"Plans cartésiens",
+"Cartesian planes"
+],
+"b": [
+"Si \\((a,b,c)\\ne(0,0,0)\\), l'ensemble \\(ax+by+cz+d=0\\) est un plan de vecteur normal \\((a,b,c)\\). Le plan de normal \\(\\vec n\\) passant par \\(A\\) se construit en écrivant \\(\\vect{AM}\\cdot\\vec n=0\\).",
+"If \\((a,b,c)\\ne(0,0,0)\\), the set \\(ax+by+cz+d=0\\) is a plane with normal vector \\((a,b,c)\\). The plane with normal \\(\\vec n\\) through \\(A\\) is constructed by writing \\(\\vect{AM}\\cdot\\vec n=0\\)."
+],
+"h": [
+"Équation d'un plan",
+"Equation of a plane"
+]
+},
+{
+"k": "proof",
+"t": [
+"Plans cartésiens",
+"Cartesian planes"
+],
+"b": [
+"La condition \\(\\vect{AM}\\cdot\\vec n=0\\) s'écrit \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). En développant, \\(d=-ax_A-by_A-cz_A\\). Réciproquement, tout point satisfaisant cette équation vérifie la condition d'orthogonalité, donc appartient au plan.",
+"The condition \\(\\vect{AM}\\cdot\\vec n=0\\) is written \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). Expanding, \\(d=-ax_A-by_A-cz_A\\). Conversely, any point satisfying this equation satisfies the orthogonality condition, and therefore belongs to the plane."
+]
+},
+{
+"k": "example",
+"t": [
+"Plans cartésiens",
+"Cartesian planes"
+],
+"b": [
+"Le plan de normal \\((2,-1,3)\\) passant par \\(A(1,2,0)\\) est \\(2(x-1)-(y-2)+3z=0\\), soit \\(2x-y+3z=0\\).",
+"The plane with normal \\((2,-1,3)\\) through \\(A(1,2,0)\\) is \\(2(x-1)-(y-2)+3z=0\\), that is \\(2x-y+3z=0\\)."
+]
+},
+{
+"k": "concept",
+"t": [
+"Intersections",
+"Intersections"
+],
+"b": [
+"Pour une droite et un plan, remplacer \\(x,y,z\\) dans l'équation du plan par leurs expressions paramétriques. Une solution en \\(t\\) donne une intersection ponctuelle ; une identité donne une droite incluse ; une contradiction donne une droite parallèle disjointe.\nPour deux plans, des normales non colinéaires donnent une intersection suivant une droite ; résoudre le système à deux équations en choisissant une variable comme paramètre. Si les normales sont colinéaires, les plans sont parallèles : distinguer confondus et disjoints.\nPour deux droites, utiliser des paramètres \\(s,t\\) indépendants et résoudre les trois équations. Sans solution et avec directeurs non colinéaires, les droites sont non coplanaires.",
+"For a line and a plane, substitute the parametric expressions for \\(x,y,z\\) into the equation of the plane. A single solution in \\(t\\) gives a single intersection point; an identity gives a line contained in the plane; a contradiction gives a parallel, disjoint line.\nFor two planes, non-collinear normals give an intersection along a line; solve the system of two equations by choosing one variable as a parameter. If the normals are collinear, the planes are parallel: distinguish coincident from disjoint.\nFor two lines, use independent parameters \\(s,t\\) and solve the three equations. With no solution and non-collinear direction vectors, the lines are non-coplanar."
+]
+},
+{
+"k": "concept",
+"t": [
+"Projection sur un plan",
+"Projection onto a plane"
+],
+"b": [
+"Si \\(\\mathcal P:ax+by+cz+d=0\\), chercher le projeté de \\(M\\) sur la droite normale passant par \\(M\\) : \\(H=M+t(a,b,c)\\). Remplacer dans l'équation du plan pour déterminer \\(t\\), puis calculer \\(MH\\).\nOn en déduit, sans en faire une formule à apprendre isolément,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]",
+"If \\(\\mathcal P:ax+by+cz+d=0\\), find the projection of \\(M\\) on the normal line through \\(M\\): \\(H=M+t(a,b,c)\\). Substitute into the equation of the plane to determine \\(t\\), then compute \\(MH\\).\nWe deduce, without making it a formula to be learned in isolation,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]"
+]
+},
+{
+"k": "concept",
+"t": [
+"Projection sur un plan",
+"Projection onto a plane"
+],
+"b": [
+"Après le calcul d'un projeté, contrôler simultanément \\(H\\in\\mathcal P\\) et la colinéarité de \\(\\vect{MH}\\) avec le normal.<br><br>",
+"After computing a projection, check simultaneously that \\(H\\in\\mathcal P\\) and that \\(\\vect{MH}\\) is collinear with the normal vector.<br><br>"
+],
+"h": [
+"Vérification indispensable.",
+"Essential check."
+]
+},
+{
+"k": "activity",
+"t": [
+"Activité de recherche",
+"Research activity"
+],
+"b": [
+"<b>Trois droites face à un plan — 30 min.</b><br><br> Dans un repère orthonormé de l'espace, on considère le plan \\(\\mathcal P\\) d'équation \\(x+y+z=3\\). Dans chaque question, le paramètre \\(t\\) parcourt \\(\\R\\).\n<ol><li>La droite \\(d_1\\) admet la représentation \\((x;y;z)=(t;t;t)\\). Déterminer \\(d_1\\cap\\mathcal P\\).\n<li>La droite \\(d_2\\) admet la représentation \\((x;y;z)=(3+t;-t;0)\\). Déterminer \\(d_2\\cap\\mathcal P\\).\n<li>La droite \\(d_3\\) admet la représentation \\((x;y;z)=(t;-t;0)\\). Déterminer \\(d_3\\cap\\mathcal P\\).\n<li>Pour chaque droite, préciser si l'équation obtenue après substitution dans celle du plan a une solution unique, aucune solution ou tout réel pour solution. Relier ces cas aux positions géométriques trouvées.</ol><br><br>",
+"<b>Three lines facing a plane — 30 min.</b><br><br> In an orthonormal frame of space, consider the plane \\(\\mathcal P\\) with equation \\(x+y+z=3\\). In each question, the parameter \\(t\\) ranges over \\(\\R\\).\n<ol><li>The line \\(d_1\\) has the representation \\((x;y;z)=(t;t;t)\\). Determine \\(d_1\\cap\\mathcal P\\).\n<li>The line \\(d_2\\) has the representation \\((x;y;z)=(3+t;-t;0)\\). Determine \\(d_2\\cap\\mathcal P\\).\n<li>The line \\(d_3\\) has the representation \\((x;y;z)=(t;-t;0)\\). Determine \\(d_3\\cap\\mathcal P\\).\n<li>For each line, state whether the equation obtained after substituting into that of the plane has a unique solution, no solution, or every real number as a solution. Relate these cases to the geometric positions found.</ol><br><br>"
+]
+}
+]
+}

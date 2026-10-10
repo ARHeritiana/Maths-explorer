@@ -1,0 +1,103 @@
+{
+"id": "terminale-12",
+"slides": [
+{
+"k": "title",
+"t": "Variables aléatoires, concentration et loi des grands nombres",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Calculer espérance et variance d'une somme et d'une moyenne ; appliquer Bienaymé-Tchebychev ; déterminer une taille d'échantillon.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Sommes et transformations",
+"b": "Pour une variable aléatoire finie \\(X\\), prenant les valeurs \\(x_i\\) avec probabilités \\(p_i\\),\n\\[E(X)=\\sum_i x_ip_i,\\qquad V(X)=\\sum_i(x_i-E(X))^2p_i=E(X^2)-E(X)^2.\\]\nL'écart type est \\(\\sigma(X)=\\sqrt{V(X)}\\). En développant le carré dans \\(V(aX+b)\\), le décalage \\(b\\) s'élimine et le facteur \\(a\\) est élevé au carré.\nPour des variables aléatoires finies \\(X,Y\\) et des réels \\(a,b\\),\n\\[E(X+Y)=E(X)+E(Y),\\quad E(aX+b)=aE(X)+b,\\quad V(aX+b)=a^2V(X).\\]\nLa linéarité de l'espérance ne demande pas l'indépendance. Si \\(X,Y\\) sont indépendantes, \\(V(X+Y)=V(X)+V(Y)\\) (admis). Sans cette hypothèse, on ne peut pas appliquer cette formule. L'écart type de \\(aX+b\\) vaut \\(|a|\\sigma(X)\\).",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Sommes et transformations",
+"b": "Si \\(Y=X\\), alors \\(V(X+Y)=V(2X)=4V(X)\\), et non \\(2V(X)\\) dès que \\(V(X)\\ne0\\).",
+"a": null,
+"h": null
+},
+{
+"k": "proof",
+"t": "Sommes et transformations",
+"b": "Écrire \\(X=B_1+\\cdots+B_n\\) avec les indicatrices indépendantes des succès. Chaque \\(B_i\\) vérifie \\(E(B_i)=p\\), \\(E(B_i^2)=p\\) et \\(V(B_i)=p-p^2\\). Par linéarité et additivité sous indépendance, \\(E(X)=np\\), \\(V(X)=np(1-p)\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Échantillon et moyenne",
+"b": "Un échantillon de taille \\(n\\) d'une loi est une famille de \\(n\\) variables indépendantes de même loi. Si elles ont espérance \\(\\mu\\) et variance \\(\\sigma^2\\), on note \\(S_n=\\sum_{i=1}^nX_i\\) et \\(M_n=\\frac{S_n}{n}\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Échantillon et moyenne",
+"b": "\\[E(S_n)=n\\mu,\\quad V(S_n)=n\\sigma^2,\\qquad E(M_n)=\\mu,\\quad V(M_n)=\\frac{\\sigma^2}{n},\\quad\\sigma(M_n)=\\frac\\sigma{\\sqrt n}.\\]",
+"a": null,
+"h": "Somme et moyenne"
+},
+{
+"k": "concept",
+"t": "Échantillon et moyenne",
+"b": "Pour diviser l'écart type de la moyenne par \\(2\\), multiplier la taille par \\(4\\). La variance de la somme augmente ; celle de la moyenne diminue.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Concentration",
+"b": "Pour une variable d'espérance \\(\\mu\\), de variance \\(\\sigma^2\\), et \\(\\delta&gt;0\\),\n\\[P(|X-\\mu|\\ge\\delta)\\le\\frac{\\sigma^2}{\\delta^2}.\\]\nUne borne supérieure à \\(1\\) reste vraie, mais n'apporte pas d'information supplémentaire ; on peut la remplacer par \\(1\\).",
+"a": null,
+"h": "Inégalité de Bienaymé-Tchebychev"
+},
+{
+"k": "concept",
+"t": "Concentration",
+"b": "Dans \\(V(X)=\\sum_x(x-\\mu)^2P(X=x)\\), ne conserver que les valeurs vérifiant \\(|x-\\mu|\\ge\\delta\\). Chaque carré est alors au moins \\(\\delta^2\\). Donc \\(V(X)\\ge\\delta^2P(|X-\\mu|\\ge\\delta)\\).",
+"a": null,
+"h": "Preuve dans le cadre fini."
+},
+{
+"k": "concept",
+"t": "Loi des grands nombres",
+"b": "Appliquée à la moyenne d'un échantillon,\n\\[P(|M_n-\\mu|\\ge\\delta)\\le\\frac{\\sigma^2}{n\\delta^2}\\xrightarrow[n\\to\\infty]{}0.\\]\nC'est la loi des grands nombres dans le cadre considéré : pour une précision fixée, la probabilité d'un écart au moins égal à cette précision tend vers zéro. Ce résultat ne dit pas que chaque réalisation se rapproche de \\(\\mu\\) de façon monotone.",
+"a": null,
+"h": null
+},
+{
+"k": "method",
+"t": "Loi des grands nombres",
+"b": "Pour garantir \\(P(|M_n-\\mu|&lt;\\delta)\\ge1-\\alpha\\), il suffit de choisir\n\\[n\\ge\\frac{\\sigma^2}{\\alpha\\delta^2}.\\]\nPrendre le plafond. Il s'agit du plus petit entier satisfaisant <i>cette borne</i>, pas nécessairement de la taille minimale pour la probabilité exacte.",
+"a": null,
+"h": "Choisir une taille suffisante"
+},
+{
+"k": "concept",
+"t": "Loi des grands nombres",
+"b": "Pour une fréquence de succès, \\(\\mu=p\\) et \\(\\sigma^2=p(1-p)\\le\\frac{1}{4}\\). Si \\(p\\) est inconnu, \\(n\\ge\\frac{1}{4\\alpha\\delta^2}\\) est une garantie uniforme.",
+"a": null,
+"h": null
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Fluctuations d'une fréquence — 40 min.</b><br><br> On lance indépendamment une pièce équilibrée. Pour tout entier \\(n\\ge1\\), on note \\(F_n\\) la fréquence de « pile » parmi les \\(n\\) premiers lancers.\n<ol><li>Écrire un programme qui simule 1000 lancers, puis représenter les points \\((n;F_n)\\) pour \\(1\\le n\\le1000\\). L'écart à \\(\\frac12\\) diminue-t-il nécessairement à chaque lancer ?\n<li>Exprimer \\(E(F_n)\\) et \\(V(F_n)\\) en fonction de \\(n\\).\n<li>À l'aide de Bienaymé-Tchebychev, majorer \\(P(|F_{1000}-\\frac12|\\ge0{,}05)\\).\n<li>Déterminer un entier \\(n\\) suffisant pour que \\(P(|F_n-\\frac12|&lt;0{,}05)\\ge0{,}99\\).\n<li>Préciser ce que montre la trajectoire simulée et ce que garantit l'inégalité obtenue. Une seule simulation constitue-t-elle une preuve de cette garantie ?</ol><br><br>",
+"a": null,
+"h": null
+}
+]
+}

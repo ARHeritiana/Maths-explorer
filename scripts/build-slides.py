@@ -122,6 +122,13 @@ def esc_keep(s):
     return s
 
 
+def clean_residue(h):
+    """Drop figure code (TikZ/pgfplots) that leaked into prose when a figure sat inside the notes."""
+    h = re.sub(r'(?:<br><br>\s*)?center\s*tikzpicture.*?tikzpicture(?:<br><br>)?', ' ', h, flags=re.S)
+    h = re.sub(r'center(?:<br><br>)?\s*$', '', h)
+    return re.sub(r'(<br>\s*){3,}', '<br><br>', h).strip()
+
+
 def code_html(body): return esc(body.strip('\n'))
 
 
@@ -246,6 +253,7 @@ WTEXT = {
     'interval': (['Intervalles', 'Intervals'], ['Déplacez les bornes de I et J : intersection et réunion.', 'Drag the ends of I and J: intersection and union.']),
     'plane3d': (['Plan et projeté orthogonal', 'A plane and an orthogonal projection'], ['Déplacez M (ombre au sol, hauteur) et réglez d. Faites tourner la vue.', 'Drag M (floor shadow, height) and set d. Rotate the view.']),
     'line3d': (['Droite de l’espace', 'A line in space'], ['Déplacez A et B ; réglez t : équations paramétriques.', 'Drag A and B; set t: parametric equations.']),
+    'integral': (['Aire sous la courbe', 'Area under the curve'], ['Déplacez les bornes a et b, augmentez n : la somme de Riemann tend vers l’intégrale.', 'Drag the bounds a and b, increase n: the Riemann sum tends to the integral.']),
     'surface3d': (['Surface z = f(x ; y)', 'Surface z = f(x, y)'], ['Déplacez le point au sol ; faites tourner la surface.', 'Drag the floor point; rotate the surface.']),
 }
 # (deck id) -> [(regex on the unit title, widget spec)]: the widget slide is inserted after that unit
@@ -264,6 +272,11 @@ WIDGETS = {
     'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']})],
     'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'})],
     'stmg-07': [(r'Binomial distribution: recognising', {'type': 'binom'})],
+    'terminale-01': [(r'^(?!Objectives|Goals)', {'type': 'seq'})], 'terminale-02': [(r'^(?!Objectives|Goals)', {'type': 'line3d'})],
+    'terminale-03': [(r'^(?!Objectives|Goals)', {'type': 'seq'})], 'terminale-06': [(r'^(?!Objectives|Goals)', {'type': 'tangent'})],
+    'terminale-07': [(r'^(?!Objectives|Goals)', {'type': 'tree'})], 'terminale-09': [(r'^(?!Objectives|Goals)', {'type': 'plane3d', 'normal': [1, 1, 2]})],
+    'terminale-12': [(r'^(?!Objectives|Goals)', {'type': 'rv'})], 'terminale-13': [(r'^(?!Objectives|Goals)', {'type': 'line3d'})],
+    'terminale-14': [(r'^(?!Objectives|Goals)', {'type': 'circle'})], 'terminale-11': [(r'^(?!Objectives|Goals)', {'type': 'integral'})], 'terminale-10': [(r'^(?!Objectives|Goals)', {'type': 'integral'})],
 }
 
 
@@ -304,7 +317,7 @@ def main():
         (OUT / (cid + '.json')).write_text(json.dumps(deck, ensure_ascii=False, separators=(',', ':')))
         index.append({'id': cid, 'course': course, 'number': n, 'title': title, 'slides': len(slides), 'kind': 'extracted'})
     for p in sorted((ROOT / 'content/slides').glob('*.json')) if (ROOT / 'content/slides').exists() else []:
-        d = json.loads(p.read_text(encoding='utf8')); (OUT / (d['id'] + '.json')).write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')))
+        d = json.loads(p.read_text(encoding='utf8')); d['slides'] = add_widgets(d['id'], d['slides']); (OUT / (d['id'] + '.json')).write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')))
         index.append({'id': d['id'], 'course': d['course'], 'number': d['number'], 'title': d['title'], 'slides': len(d['slides']), 'kind': 'authored'})
     (OUT / 'index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1))
     print(f'{len(index)} decks, {sum(i["slides"] for i in index)} slides')

@@ -1,0 +1,96 @@
+{
+"id": "terminale-10",
+"slides": [
+{
+"k": "title",
+"t": "Primitives et équations différentielles",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Calculer des primitives ; résoudre une équation différentielle avec condition initiale ; interpréter une approximation d'Euler.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Primitives sur un intervalle",
+"b": "On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.\nUne primitive de \\(f\\) sur un intervalle \\(I\\) est une fonction dérivable \\(F\\) telle que \\(F'=f\\) sur \\(I\\). Si \\(F\\) est une primitive, toutes les primitives sur \\(I\\) sont \\(F+C\\), \\(C\\in\\R\\).",
+"a": null,
+"h": null
+},
+{
+"k": "proof",
+"t": "Primitives sur un intervalle",
+"b": "Si \\(F'=G'=f\\), alors \\((F-G)'=0\\) sur l'intervalle ; \\(F-G\\) est donc constante. Réciproquement, \\((F+C)'=f\\). L'hypothèse d'intervalle est essentielle : sur un domaine disjoint, les constantes peuvent différer selon les intervalles.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Primitives sur un intervalle",
+"b": "\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nLa constante additive peut toujours être ajoutée. Les deux dernières lignes seront réinvesties après l'étude de la trigonométrie.",
+"a": null,
+"h": "Table de primitives — à lire en sens inverse des dérivées"
+},
+{
+"k": "concept",
+"t": "Reconnaître une composition",
+"b": "Pour une fonction \\(u\\) dérivable, les primitives de \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) sont respectivement \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), sur les intervalles où les expressions ont un sens. La linéarité permet de traiter les sommes.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Reconnaître une composition",
+"b": "Une primitive de \\(6x(x^2+1)^2\\) est \\((x^2+1)^3\\) ; une primitive de \\(e^{3x}\\) est \\(\\frac{e^{3x}}{3}\\). Pour imposer \\(F(0)=2\\) dans ce dernier cas, prendre \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Équations différentielles",
+"b": "Une équation différentielle relie une fonction inconnue à ses dérivées. Une solution doit être vérifiée sur un intervalle précisé.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Équations différentielles",
+"b": "\\(y'=ay\\) a pour solutions \\(y(x)=Ce^{ax}\\). Pour \\(a\\ne0\\), \\(y'=ay+b\\) a pour solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nSi \\(a=0\\), l'équation devient \\(y'=b\\) et \\(y(x)=bx+C\\).\nSi \\(g\\) est une solution particulière connue de \\(y'=ay+f(x)\\), les solutions sont \\(y=g+Ce^{ax}\\).",
+"a": null,
+"h": "Solutions usuelles"
+},
+{
+"k": "proof",
+"t": "Équations différentielles",
+"b": "Si \\(y\\) est solution, \\(z(x)=e^{-ax}y(x)\\) vérifie \\(z'=e^{-ax}(y'-ay)=0\\) ; \\(z=C\\). Réciproquement, la dérivée de \\(Ce^{ax}\\) est \\(aCe^{ax}\\). Pour \\(y'=ay+b\\), soustraire la solution constante \\(-\\frac{b}{a}\\) ramène à l'équation homogène. Pour un second membre variable, faire de même avec \\(g\\).",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Équations différentielles",
+"b": "\\(y'=-2y+6\\) et \\(y(0)=1\\) donnent \\(y=3+Ce^{-2x}\\), puis \\(C=-2\\). La solution \\(3-2e^{-2x}\\) croît vers l'équilibre \\(3\\) lorsque \\(x\\to+\\infty\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Méthode d'Euler",
+"b": "Pour \\(y'=ay+b\\), avec un pas \\(h&gt;0\\), on approche \\(y(t_k)\\) par \\(Y_k\\) selon \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.",
+"a": null,
+"h": null
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Refroidissement d'une boisson — 40 min.</b><br><br> Une boisson initialement à \\(80\\,^{\\circ}\\mathrm C\\) est placée dans une pièce maintenue à \\(20\\,^{\\circ}\\mathrm C\\). Pour \\(t\\ge0\\), on note \\(T(t)\\) sa température en degrés Celsius, \\(t\\) désignant le temps écoulé en minutes. On admet le modèle \\(T' (t)=-0{,}1(T(t)-20)\\) et \\(T(0)=80\\).\n<ol><li>Résoudre ce problème initial et donner l'expression de \\(T(t)\\).\n<li>Étudier le sens de variation de \\(T\\) et déterminer sa limite en \\(+\\infty\\). Interpréter les résultats.\n<li>Déterminer le premier instant où la température vaut \\(40\\,^{\\circ}\\mathrm C\\). Donner la valeur exacte, puis une valeur approchée en minutes.\n<li>Appliquer deux étapes de la méthode d'Euler avec un pas de \\(1\\) minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte \\(T(2)\\).\n<li>Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.</ol><br><br>",
+"a": null,
+"h": null
+}
+]
+}

@@ -42,8 +42,8 @@ async function load() {
 }
 
 function sizeClass(html) {
-  const n = html.replace(/<[^>]+>/g, "").length + (html.match(/\\[(\[]/g) || []).length * 25;
-  return n > 1100 ? "s3" : n > 750 ? "s2" : n > 420 ? "s1" : "";
+  const n = html.replace(/<[^>]+>/g, "").length + (html.match(/\\[(\[]/g) || []).length * 25 + (html.match(/<li>/g) || []).length * 70 + (html.match(/\\\\/g) || []).length * 45;
+  return n > 1500 ? "s4" : n > 1100 ? "s3" : n > 750 ? "s2" : n > 420 ? "s1" : "";
 }
 const tex = s => lang ? s.replace(/\\pgcd/g, "\\gcd").replace(/\\ppcm/g, "\\operatorname{lcm}") : s;
 

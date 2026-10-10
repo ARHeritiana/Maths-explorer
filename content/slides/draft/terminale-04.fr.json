@@ -1,0 +1,103 @@
+{
+"id": "terminale-04",
+"slides": [
+{
+"k": "title",
+"t": "Limites de fonctions",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Calculer des limites en un point et à l'infini ; lever une indétermination ; interpréter une asymptote.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Sens d'une limite",
+"b": "\\(f(x)\\to\\ell\\) lorsque \\(x\\to+\\infty\\) signifie que \\(f(x)\\) peut être rendu aussi proche que souhaité de \\(\\ell\\) pour tous les \\(x\\) suffisamment grands. Pour une limite en \\(a\\), on considère des \\(x\\) du domaine, proches de \\(a\\) et distincts de \\(a\\). Les limites à gauche et à droite se notent \\(\\lim_{x\\to a^-}f(x)\\) et \\(\\lim_{x\\to a^+}f(x)\\). Lorsque le domaine possède des points des deux côtés de \\(a\\), une limite bilatérale existe si et seulement si les deux limites latérales existent et sont égales. À une extrémité du domaine, on étudie la limite du seul côté accessible.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Sens d'une limite",
+"b": "Si \\(f(x)\\to\\ell\\in\\R\\) lorsque \\(x\\to+\\infty\\) ou \\(-\\infty\\), la droite \\(y=\\ell\\) est une asymptote horizontale dans cette direction. Si \\(f(x)\\to\\pm\\infty\\) lorsque \\(x\\to a\\) d'un côté, la droite \\(x=a\\) est une asymptote verticale.",
+"a": null,
+"h": "Interprétation graphique"
+},
+{
+"k": "concept",
+"t": "Sens d'une limite",
+"b": "Une courbe peut couper une asymptote horizontale. La limite ne donne pas nécessairement la position de la courbe par rapport à l'asymptote : étudier le signe de \\(f(x)-\\ell\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Références et opérations",
+"b": "En \\(+\\infty\\), \\(x^m\\to+\\infty\\) pour \\(m\\ge1\\), \\(\\frac{1}{x^m}\\to0\\), \\(\\sqrt x\\to+\\infty\\). En \\(-\\infty\\), le signe de \\(x^m\\) dépend de la parité de \\(m\\). Les règles de somme, produit, quotient et comparaison sont celles des suites, avec les mêmes formes indéterminées.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Références et opérations",
+"b": "Pour \\(f(x)=\\frac{2x+1}{x-3}\\), écrire \\(f(x)=2+\\frac{7}{x-3}\\). Les limites en \\(\\pm\\infty\\) valent \\(2\\). En \\(3^-\\), \\(f\\to-\\infty\\) ; en \\(3^+\\), \\(f\\to+\\infty\\). Les asymptotes sont \\(x=3\\) et \\(y=2\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Références et opérations",
+"b": "Pour \\(x&gt;0\\), \\(\\sqrt{x^2+4x}-x=\\frac{4}{\\sqrt{1+\\frac{4}{x}}+1}\\to2\\). Pour \\(x&lt;0\\), attention : \\(\\sqrt{x^2}=|x|=-x\\).",
+"a": null,
+"h": "Conjugaison."
+},
+{
+"k": "concept",
+"t": "Exponentielle et croissance comparée",
+"b": "\\[\\lim_{x\\to+\\infty}e^x=+\\infty,\\quad\\lim_{x\\to-\\infty}e^x=0,\\quad\n\\lim_{x\\to+\\infty}\\frac{e^x}{x^m}=+\\infty\\quad(m\\in\\N).\\]\nOn en déduit \\(x^me^{-x}\\to0\\) en \\(+\\infty\\).",
+"a": null,
+"h": null
+},
+{
+"k": "proof",
+"t": "Exponentielle et croissance comparée",
+"b": "L'étude de \\(e^x-x-1\\) donne \\(e^x\\ge1+x\\). Par comparaison, \\(e^x\\to+\\infty\\) en \\(+\\infty\\). En posant \\(t=-x\\to+\\infty\\), \\(e^x=\\frac{1}{e^t}\\to0\\).",
+"a": null,
+"h": null
+},
+{
+"k": "proof",
+"t": "Exponentielle et croissance comparée",
+"b": "Pour tout entier \\(k\\ge0\\) et \\(x\\ge0\\), \\(e^x\\ge \\frac{x^k}{k!}\\). Pour \\(k=0\\), \\(e^x\\ge1\\). Si l'inégalité est acquise à l'ordre \\(k\\), la dérivée de \\(e^x-\\frac{x^{k+1}}{(k+1)!}\\) est \\(e^x-\\frac{x^k}{k!}\\ge0\\) ; sa valeur en \\(0\\) est positive. L'hérédité suit. En choisissant \\(k=m+1\\), \\(\\frac{e^x}{x^m}\\ge \\frac{x}{(m+1)!}\\to+\\infty\\).",
+"a": null,
+"h": null
+},
+{
+"k": "method",
+"t": "Exponentielle et croissance comparée",
+"b": "Quotient de polynômes : factoriser les plus grandes puissances. Différence de racines : quantité conjuguée. Quotient près d'un zéro : factoriser et étudier les signes. Exponentielle contre puissance : croissance comparée, après changement de variable si nécessaire.",
+"a": null,
+"h": "Choisir une transformation"
+},
+{
+"k": "concept",
+"t": "Comparaison et composition : conditions d'emploi",
+"b": "Si \\(g(x)\\le f(x)\\le h(x)\\) près du point ou de l'infini étudié, et si \\(g,h\\) ont la même limite réelle \\(\\ell\\), alors \\(f(x)\\to\\ell\\) (théorème des gendarmes). Si \\(g\\le f\\) et \\(g\\to+\\infty\\), alors \\(f\\to+\\infty\\). Pour une limite \\(-\\infty\\), on utilise une majoration par une fonction tendant vers \\(-\\infty\\).\nSi \\(u(x)\\to a\\) et \\(v\\) est continue en \\(a\\), alors \\(v(u(x))\\to v(a)\\), lorsque la composée est définie. Par exemple \\(\\sqrt{1+\\frac{1}{x}}\\to1\\) en \\(+\\infty\\). Pour une limite infinie de la fonction extérieure, vérifier de quel côté \\(u(x)\\) approche la borne : \\(\\frac{1}{u(x)}\\) n'a pas le même comportement selon le signe de \\(u(x)\\).",
+"a": null,
+"h": null
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Une courbe proche d'une droite — 30 min.</b><br><br> On considère la fonction \\(f\\) définie sur \\(\\R\\setminus\\{1\\}\\) par \\(f(x)=\\frac{3x-2}{x-1}\\). On note \\(\\mathcal C_f\\) sa courbe dans un repère du plan.\n<ol><li>Montrer que, pour tout \\(x\\ne1\\), \\(f(x)=3+\\frac1{x-1}\\).\n<li>Déterminer les limites de \\(f\\) en \\(-\\infty\\), en \\(1^-\\), en \\(1^+\\) et en \\(+\\infty\\).\n<li>Étudier le signe de \\(f(x)-3\\), puis préciser la position de \\(\\mathcal C_f\\) par rapport à la droite d'équation \\(y=3\\).\n<li>Déterminer un réel \\(A&gt;1\\) tel que, pour tout \\(x&gt;A\\), \\(|f(x)-3|&lt;0{,}01\\).\n<li>La courbe \\(\\mathcal C_f\\) coupe-t-elle son asymptote horizontale ? Justifier et expliquer pourquoi une fenêtre graphique trop large peut donner une impression trompeuse.</ol><br><br>",
+"a": null,
+"h": null
+}
+]
+}

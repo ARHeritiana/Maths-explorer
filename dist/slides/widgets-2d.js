@@ -263,4 +263,18 @@ export const W2 = {
       },
     };
   },
+  // Riemann sums for f(x) = 0.25x^2 - x + 2 with draggable bounds and a slider for the number of rectangles.
+  integral(o) {
+    const f = x => x * x / 4 - x + 2, F = x => x ** 3 / 12 - x * x / 2 + 2 * x; let a = 0.5, b = 4.5, n = 6; const v = () => view(o, -1, 7, -1, 6);
+    slider(o, "n", 1, 40, 1, n, q => { n = q; o.redraw(); });
+    return {
+      handles() { const V = v(); return [{ x: V.X(a), y: V.Y(0), cur: "ew-resize", move(X) { a = clamp(snap(V.iX(X), .25), -.75, b - .5); } }, { x: V.X(b), y: V.Y(0), cur: "ew-resize", move(X) { b = clamp(snap(V.iX(X), .25), a + .5, 6.75); } }];},
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L }); const w = (b - a) / n; let S = 0;
+        for (let i = 0; i < n; i++) { const x = a + i * w, y = f(x + w / 2); S += y * w; g.fillStyle = "rgba(111,211,176,.28)"; g.strokeStyle = C.acc; g.lineWidth = 1; g.fillRect(V.X(x), V.Y(y), V.X(x + w) - V.X(x), V.Y(0) - V.Y(y)); g.strokeRect(V.X(x), V.Y(y), V.X(x + w) - V.X(x), V.Y(0) - V.Y(y)); }
+        curve(g, V, f, -1, 7); dot(o, V.X(a), V.Y(0), C.warn, "a"); dot(o, V.X(b), V.Y(0), C.warn, "b"); const N = o.num, I = F(b) - F(a);
+        set(o, lines("f(x) = x²/4 − x + 2", o.pair(`Somme de Riemann (milieux) = ${N(S, 4)}`, `Riemann sum (midpoints) = ${N(S, 4)}`), `∫ f = F(b) − F(a) = ${N(I, 4)}`, o.pair(`Écart = ${N(Math.abs(S - I), 4)}`, `Gap = ${N(Math.abs(S - I), 4)}`)));
+      },
+    };
+  },
 };

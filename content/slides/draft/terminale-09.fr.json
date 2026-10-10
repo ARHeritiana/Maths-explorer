@@ -1,0 +1,103 @@
+{
+"id": "terminale-09",
+"slides": [
+{
+"k": "title",
+"t": "Orthogonalité et distances",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Calculer un produit scalaire ; justifier une orthogonalité ; déterminer un projeté et une distance ; calculer un volume.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Notes de cours",
+"b": "Les calculs par coordonnées de ce chapitre se font dans un repère orthonormé de l'espace.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Produit scalaire dans l'espace",
+"b": "Pour des vecteurs non nuls \\(\\vec u,\\vec v\\), \\(\\vec u\\cdot\\vec v=\\|\\vec u\\|\\|\\vec v\\|\\cos\\theta\\), où \\(\\theta\\in[0,\\pi]\\) est leur angle. Si l'un est nul, le produit scalaire vaut \\(0\\).\n\\[\\vec u\\cdot\\vec v=\\tfrac12(\\|\\vec u+\\vec v\\|^2-\\|\\vec u\\|^2-\\|\\vec v\\|^2).\n\\]\nDans un repère orthonormé, pour \\(\\vec u=(x,y,z)\\) et \\(\\vec v=(x',y',z')\\),\n\\[\\vec u\\cdot\\vec v=xx'+yy'+zz'.\\]\nLe produit scalaire est symétrique et bilinéaire ; \\(\\vec u\\cdot\\vec u=\\|\\vec u\\|^2\\). Deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Produit scalaire dans l'espace",
+"b": "\\(\\vec u=(1,2,2)\\) et \\(\\vec v=(2,-1,0)\\) sont orthogonaux : \\(2-2+0=0\\). Leurs normes valent \\(3\\) et \\(\\sqrt5\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Droite, plan et vecteur normal",
+"b": "Deux droites sont orthogonales si leurs vecteurs directeurs le sont. Une droite est orthogonale à un plan si elle est orthogonale à deux directions non colinéaires de ce plan. Un vecteur normal à un plan est un vecteur non nul orthogonal à toutes ses directions.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Droite, plan et vecteur normal",
+"b": "Si \\(\\vec n\\cdot\\vec u=\\vec n\\cdot\\vec v=0\\), alors, pour tout \\(\\vec w=s\\vec u+t\\vec v\\), \\(\\vec n\\cdot\\vec w=s\\vec n\\cdot\\vec u+t\\vec n\\cdot\\vec v=0\\).",
+"a": null,
+"h": "Pourquoi deux directions suffisent."
+},
+{
+"k": "concept",
+"t": "Droite, plan et vecteur normal",
+"b": "Si \\(A\\) appartient au plan \\(\\mathcal P\\) de vecteur normal \\(\\vec n\\), alors \\(M\\in\\mathcal P\\) si et seulement si \\(\\vect{AM}\\cdot\\vec n=0\\).",
+"a": null,
+"h": "Condition vectorielle d'appartenance"
+},
+{
+"k": "concept",
+"t": "Projection orthogonale et distance",
+"b": "Le projeté orthogonal \\(H\\) de \\(M\\) sur un plan est l'unique point du plan tel que \\(\\vect{MH}\\) soit normal au plan ; si \\(M\\) appartient au plan, \\(H=M\\). La distance de \\(M\\) au plan est \\(MH\\). Sur une droite de directeur \\(\\vec u\\), le projeté vérifie \\(H\\in d\\) et \\(\\vect{MH}\\cdot\\vec u=0\\).",
+"a": null,
+"h": null
+},
+{
+"k": "proof",
+"t": "Projection orthogonale et distance",
+"b": "Pour tout point \\(P\\) du plan, \\(\\vect{MH}\\perp\\vect{HP}\\), donc \\(MP^2=MH^2+HP^2\\ge MH^2\\). L'égalité a lieu seulement pour \\(P=H\\). Le projeté est le point du plan le plus proche.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Projection orthogonale et distance",
+"b": "Si \\(d=A+\\R\\vec u\\), écrire \\(H=A+t\\vec u\\) et résoudre \\((A-M+t\\vec u)\\cdot\\vec u=0\\). Ainsi \\(t=\\frac{\\vect{AM}\\cdot\\vec{u}}{\\lVert\\vec u\\rVert^2}\\).",
+"a": null,
+"h": "Méthode sur une droite."
+},
+{
+"k": "concept",
+"t": "Angles, aires et volumes",
+"b": "Pour un angle \\(\\widehat{ABC}\\), utiliser \\(\\vect{BA}\\) et \\(\\vect{BC}\\) : \\(\\cos \\widehat{ABC}=\\frac{\\vect{BA}\\cdot\\vect{BC}}{BA\\times BC}\\). Pour l'angle aigu entre deux droites, prendre la valeur absolue du quotient.\nL'aire d'un triangle est \\(\\frac{bh}{2}\\) ; le volume d'un tétraèdre est \\(\\frac{\\mathcal{A}_{\\rm base}h}{3}\\), où \\(h\\) est une distance orthogonale. Les unités sont respectivement au carré et au cube.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Développements et lieux géométriques",
+"b": "Par bilinéarité,\n\\[\\|\\vec u+\\vec v\\|^2=\\|\\vec u\\|^2+2\\vec u\\cdot\\vec v+\\|\\vec v\\|^2,\\qquad\n\\|\\vec u-\\vec v\\|^2=\\|\\vec u\\|^2-2\\vec u\\cdot\\vec v+\\|\\vec v\\|^2.\\]\nOn peut donc aussi calculer \\(\\vec u\\cdot\\vec v=\\frac12(\\|\\vec u\\|^2+\\|\\vec v\\|^2-\\|\\vec u-\\vec v\\|^2)\\).\nPour deux points distincts \\(A,B\\) de milieu \\(I\\), le lieu des points \\(M\\) tels que \\(MA=MB\\) est le plan passant par \\(I\\) de normal \\(\\vect{AB}\\) : le <i>plan médiateur</i>. En effet, en écrivant les vecteurs depuis \\(I\\), les développements donnent \\(MA^2-MB^2=2\\vect{IM}\\cdot\\vect{AB}\\). L'égalité des distances équivaut donc à \\(\\vect{IM}\\cdot\\vect{AB}=0\\).\n<b>Complément, sans évaluation dédiée en 2026–2027.</b> Deux plans sont perpendiculaires lorsque leurs vecteurs normaux sont orthogonaux. Il ne faut pas confondre cette propriété avec le parallélisme des plans, qui correspond à des normaux colinéaires.",
+"a": null,
+"h": null
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Le point d'une droite le plus proche — 35 min.</b><br><br> Dans un repère orthonormé de l'espace, on considère \\(A(1;0;0)\\), \\(M(0;2;3)\\) et la droite \\(d\\) passant par \\(A\\), de vecteur directeur \\(\\vec u=(1;1;0)\\). On cherche le point de \\(d\\) le plus proche de \\(M\\).\n<ol><li>Exprimer, en fonction d'un paramètre réel \\(t\\), les coordonnées d'un point \\(H\\) de \\(d\\).\n<li>Déterminer la valeur de \\(t\\) pour laquelle \\(\\vect{MH}\\cdot\\vec u=0\\). En déduire les coordonnées du point \\(H\\) ainsi obtenu.\n<li>Calculer la distance \\(MH\\).\n<li>Soit \\(P\\) un point quelconque de \\(d\\). Démontrer que \\(MP^2=MH^2+HP^2\\), puis en déduire que \\(H\\) est l'unique point de \\(d\\) le plus proche de \\(M\\).</ol><br><br>",
+"a": null,
+"h": null
+}
+]
+}
