@@ -277,8 +277,8 @@ svg text {
   color: var(--green);
 }
 .side-note p {
-  font-family: Georgia, serif;
-  font-style: italic;
+  font-family: inherit;
+  font-style: normal;
   font-size: 1.05rem;
   line-height: 1.5;
   margin: 9px 0;
@@ -534,7 +534,7 @@ svg text {
   font-size: 0.75rem;
 }
 .learning h2 {
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 1.25;
@@ -675,7 +675,7 @@ label {
   font-size: 0.75rem;
 }
 .history h2 {
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-size: 1.1rem;
   font-weight: 400;
   margin: 9px 0 0;
@@ -935,7 +935,7 @@ textarea {
   margin-top: 18px;
 }
 .problem {
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-size: 1.5rem;
   line-height: 1.7;
   margin: 25px 0;
@@ -970,7 +970,7 @@ textarea {
   align-self: start;
 }
 .hint-panel h2 {
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 25px;

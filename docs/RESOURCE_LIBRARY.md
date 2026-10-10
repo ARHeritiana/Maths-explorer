@@ -133,3 +133,12 @@ Resources are being rebuilt from the owner-supplied LaTeX sources in `content/la
 - Sources: `content/latex/premiere/` holds the complete Première French sources (`eleve.tex`, `professeur.tex`, chapters, corrections, assessments, figures, style). English twins carry the suffix `-en` (`chapitres/C05-en.tex`, `styles/livret-en.sty`); prose is translated, mathematics and figures are unchanged except decimal commas.
 - Build: `python3 scripts/build-tex-resources.py premiere --chapters 5 --pilot-entry pilot-05` (pdfLaTeX, no shell escape, products in `build/`), then `scripts/style-resource-pdfs.py <pdf…>` and `scripts/finalize-resources.py`.
 - `docs/TEX_CONVERSION.json` lists the chapters already built from TeX (catalogue field `translation: "tex-source"`). Pilot: `premiere-05`. All other resources remain the earlier overlay PDFs until converted.
+
+## TeX-built resources (update)
+Seconde (15 sequences and their fluency sheets), Première (10 chapters and revision resources) and Terminale STMG (8 chapters,
+tests, formula sheet) are compiled from `content/latex` in French and English with matching page counts
+(`scripts/build-tex-resources.py`, `scripts/build-automatismes.py`, `scripts/build-stmg.py`, then
+`scripts/style-resource-pdfs.py` and `scripts/finalize-resources.py`). Terminale PDFs still come from the earlier import:
+the owner-supplied source in hand is the 6 September version, older than the published 7 September revision.
+`content/latex/stmg/manuel/extraits-calao*.tex` reproduces textbook exercise statements: [VERIFY] publication rights before
+keeping them in a public repository.
