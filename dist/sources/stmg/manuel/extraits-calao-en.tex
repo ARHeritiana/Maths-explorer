@@ -1,0 +1,817 @@
+% Extracts from the Calao Terminale STMG textbook, copied for use in class. Only one command is called per sheet: \CalaoSession{<number>}.
+\makeatletter
+\NewDocumentCommand{\DefCalao}{m m m +m +m m}{%
+  \expandafter\long\expandafter\def\csname calao@#1\endcsname{%
+    \begin{exercicecal}{p.~#2, exercise~#3}
+      #4
+      \zoneeleve{#6}
+    \end{exercicecal}
+    \enseignant{#5}%
+  }%
+}
+\newcommand{\CalaoSession}[1]{%
+  \@ifundefined{calao@#1}
+    {\begin{erreur}Textbook extract to be completed for session #1.\end{erreur}}
+    {\csname calao@#1\endcsname}%
+}
+\makeatother
+
+% -----------------------------------------------------------------------------
+% Chapter 1 -- Numerical sequences
+% -----------------------------------------------------------------------------
+\DefCalao{1}{24}{5}{%
+For each sequence, state whether it is arithmetic and, if so, give its common difference.
+\begin{enumerate}[label=\alph*.]
+\item For every integer $n$: $u_n=2(n-5)+3n$.
+\item For every integer $n$: $v_n=n^2+n-1$.
+\item For every integer $n$: $w_n=-4+3n$.
+\end{enumerate}
+}{%
+\begin{enumerate}[label=\alph*.]
+\item $u_n=5n-10$, so $u_{n+1}-u_n=5$: the sequence is arithmetic with common difference $5$.
+\item $v_{n+1}-v_n=2n+2$, which depends on $n$: the sequence is not arithmetic.
+\item $w_{n+1}-w_n=3$: the sequence is arithmetic with common difference $3$.
+\end{enumerate}
+}{3}
+
+\DefCalao{2}{24}{6}{%
+Let $(l_n)$ be the arithmetic sequence with common difference $2$ and first term $l_0=-1$.
+\begin{enumerate}[label=\alph*.]
+\item Express $l_n$ for every natural number $n$.
+\item Calculate $l_{35}$ and $l_{64}$.
+\end{enumerate}
+}{%
+$l_n=l_0+nr=-1+2n$. Hence $l_{35}=69$ and $l_{64}=127$.
+}{3}
+
+\DefCalao{3}{24}{9}{%
+\begin{enumerate}[label=\alph*.]
+\item Calculate the sum of the first $500$ nonzero integers $\displaystyle\sum_{i=1}^{500}i$.
+\item Calculate the sum of the integers from $35$ to $150$: $\displaystyle\sum_{k=35}^{150}k$.
+\end{enumerate}
+}{%
+\begin{enumerate}[label=\alph*.]
+\item $\displaystyle\sum_{i=1}^{500}i=\frac{500\times501}{2}=125\,250$.
+\item There are $150-35+1=116$ terms, so the sum equals
+$\displaystyle116\times\frac{35+150}{2}=10\,730$.
+\end{enumerate}
+}{4}
+
+\DefCalao{4}{25}{19}{%
+Let $(l_n)$ be the geometric sequence with common ratio $2$ and first term $l_0=-1$.
+\begin{enumerate}[label=\alph*.]
+\item Express $l_n$ for every natural number $n$.
+\item Calculate $l_{12}$ and $l_{20}$.
+\end{enumerate}
+}{%
+$l_n=l_0q^n=-2^n$. Hence $l_{12}=-4\,096$ and $l_{20}=-1\,048\,576$.
+}{3}
+
+\DefCalao{5}{25}{22}{%
+Consider the geometric sequence $(u_n)$ with common ratio $3$ and first term $u_0=5$.
+\begin{enumerate}[label=\alph*.]
+\item Express $u_n$ for every natural number $n$. Deduce $u_7$.
+\item Calculate: $\displaystyle S=\sum_{i=0}^{7}u_i=u_0+u_1+\cdots+u_7$.
+\end{enumerate}
+}{%
+$u_n=5\times3^n$, so $u_7=10\,935$. Then
+$\displaystyle S=5\,\frac{1-3^8}{1-3}=16\,400$.
+}{4}
+
+\DefCalao{6}{29}{49}{%
+For each statement, say whether it is true or false. Justify your answer.
+\begin{enumerate}
+\item A capital of $5\,000$~€ is placed in an account with simple interest at an annual interest rate of $4\,\%$. This situation can be modelled by a geometric sequence with common ratio $1.04$.
+\item The number of sparrows falls by $20\,\%$ per year in a region. An association decides to reintroduce $200$ sparrows each year. This situation can be modelled by an arithmetic sequence with common difference $200$.
+\item The mass of household waste falls by $10\,\%$ per year. This situation can be modelled by a geometric sequence with common ratio $1.1$.
+\item A company's output increases every week by $200$ items produced. This situation can be modelled by an arithmetic sequence with common difference $200$.
+\item The number of subscribers of a YouTuber increases by $15\,\%$ every month. This situation can be modelled by an arithmetic sequence with common difference $15$.
+\item The annual rent of an apartment rises by $320$~€ every year. This situation can be modelled by an arithmetic sequence with common difference $320$.
+\item On 1st January of a given year, Enzo places $1\,000$~€ with compound interest in an account whose annual rate is $2\,\%$, and on 1st January of each following year he adds $200$~€ to this account. This situation can be modelled by a geometric sequence with common ratio $1.02$.
+\end{enumerate}
+}{%
+The answers are: false, false, false, true, false, true, false. With simple interest, the increase is constant; in statements 2 and 7, an additive operation is added to the multiplicative change; a decrease of $10\,\%$ corresponds to $0.9$; an increase of $15\,\%$ leads to a geometric sequence with common ratio $1.15$.
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapter 2 -- Exponential functions
+% -----------------------------------------------------------------------------
+\DefCalao{7}{48}{2}{%
+On 1st January 2019, France has a population of $66.9$ million. Its annual growth rate is estimated at $0.4\,\%$. For every natural number $n$, let $u_n$ be the population of France in millions on 1st January of year $2019+n$, and assume that the sequence $(u_n)$ is geometric.
+\begin{enumerate}
+\item Give the common ratio of the sequence $(u_n)$. Express $u_n$ in terms of $n$.
+\item Suggest an expression for a function $f$ that estimates the population of France $x$ years after 1st January 2019, where $x$ is a real number. According to this model, determine the population on 1st January 2022, on 1st July 2023 and on 1st October 2025.
+\end{enumerate}
+}{%
+The common ratio is $1.004$ and $u_n=66.9\times1.004^n$. We extend this by
+$f(x)=66.9\times1.004^x$. We calculate $f(3)$, $f(4.5)$ and $f(6.75)$, which are approximately $67.71$, $68.11$ and $68.72$ million inhabitants.
+}{5}
+
+\DefCalao{8}{49}{10}{%
+Write as a single power of $2$:
+\[
+a=2^5\times2^3;\qquad b=\left(2^{4.5}\right)^3;\qquad
+c=2^3\times4^2;\qquad d=\frac{2^5}{4}.
+\]
+}{%
+$a=2^8$, $b=2^{13.5}$, $c=2^3\times(2^2)^2=2^7$ and $d=2^{5-2}=2^3$.
+}{2}
+
+\DefCalao{9}{48}{6}{%
+Determine the direction of variation of the functions defined on $\mathbb{R}$ by:
+\[
+a:t\mapsto-2\times1.4^t;\qquad
+b:t\mapsto9.85\times0.95^t;\qquad
+c:t\mapsto0.8\times2.25^t.
+\]
+}{%
+$1.4^t$ is increasing and the coefficient $-2$ reverses the variations: $a$ is decreasing. $0.95^t$ is decreasing and the coefficient is positive: $b$ is decreasing. $2.25^t$ is increasing and the coefficient is positive: $c$ is increasing.
+}{3}
+
+\DefCalao{10}{49}{18}{%
+A company's turnover increased by $38\,\%$ over three years. Calculate the average annual increase to within $0.1\,\%$.
+}{%
+The overall multiplier is $1.38$. If $t$ is the average annual rate of change, $(1+t)^3=1.38$, so $t=1.38^{1/3}-1\approx0.113$. The average annual increase is approximately $11.3\,\%$.
+}{3}
+
+\DefCalao{11}{52}{38}{%
+The functions $f$ and $g$ defined by $f(x)=2.9^x$ and $g(x)=0.35^x$ are plotted below.
+\begin{enumerate}
+\item Which curve represents $f$? Justify your choice.
+\item Solve the equation $f(x)=4$ graphically. Using a graphing calculator gives an approximate solution to within $0.01$.
+\item Determine graphically the set of real numbers $x$ such that $f(x)\leqslant4$ and $g(x)\leqslant4$.
+\end{enumerate}
+}{%
+The curve of $f$ is increasing because $2.9>1$; that of $g$ is decreasing because $0<0.35<1$. We obtain $f(x)=4$ for $x\approx1.30$. Hence $f(x)\leqslant4$ for $x\leqslant1.30$. For $g$, the threshold is $x\approx-1.32$ and $g(x)\leqslant4$ for $x\geqslant-1.32$.
+}{4}
+
+\DefCalao{12}{52}{33}{%
+Solve the inequality on $\mathbb{R}$: $0.8^x\geqslant0.8^3$.
+}{%
+The function $x\mapsto0.8^x$ is strictly decreasing, so the order of the exponents is reversed. The solution is $x\leqslant3$, that is $]-\infty;3]$.
+}{2}
+
+\DefCalao{13}{50}{25}{%
+Atmospheric pressure equals $1\,013$ hPa (hectopascal) at sea level and decreases by $12\,\%$ each time one climbs $1\,000$ m. This is an exponential decay.
+
+It can be modelled by a function $P$ of the altitude $h$ in thousands of metres satisfying: $P(h)=ka^h$.
+\begin{enumerate}
+\item Determine the constants $k$ and $a$.
+\item Calculate the pressure at an altitude of $5\,500$ m to within $1$ hPa.
+\end{enumerate}
+}{%
+$P(0)=k=1\,013$ and a decrease of $12\,\%$ gives $a=0.88$. Hence $P(5.5)=1\,013\times0.88^{5.5}\approx502$ hPa.
+}{3}
+
+\DefCalao{14}{55}{59}{%
+\begin{enumerate}
+\item A share falls by $20\,\%$ one year, then by $80\,\%$ the following year. What is the average annual percentage decrease?
+\item What is the average rate of change (percentage change) corresponding to an increase of $60\,\%$ followed by a decrease of $60\,\%$?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item The overall multiplier is $0.8\times0.2=0.16$. The average annual multiplier is $\sqrt{0.16}=0.4$, that is an average decrease of $60\,\%$.
+\item The overall multiplier is $1.6\times0.4=0.64$. The average multiplier is $\sqrt{0.64}=0.8$, that is an average decrease of $20\,\%$.
+\end{enumerate}
+}{4}
+
+% -----------------------------------------------------------------------------
+% Chapter 3 -- Common logarithm function
+% -----------------------------------------------------------------------------
+\DefCalao{15}{70}{2}{%
+Solve the following equations.
+\begin{enumerate}[label=\alph*.]
+\item $5\times10^x=3.375$
+\item $3.2+2\times10^x=4.5\times10^x$
+\item $-17.3+10^x=5-3\times10^x$
+\end{enumerate}
+}{%
+\begin{enumerate}[label=\alph*.]
+\item $10^x=0.675$, so $x=\log(0.675)\approx-0.171$.
+\item $2.5\times10^x=3.2$, so $x=\log(1.28)\approx0.107$.
+\item $4\times10^x=22.3$, so $x=\log(5.575)\approx0.746$.
+\end{enumerate}
+}{3}
+
+\DefCalao{16}{70}{7}{%
+Give the sign of the following numbers.
+\[
+\text{a. }\log(2.5)\qquad
+\text{b. }\log(0.25)\qquad
+\text{c. }\log\!\left(\frac{7}{10}\right)
+\]
+}{%
+The common logarithm (base 10) function is increasing and $\log(1)=0$. Hence $\log(2.5)>0$, whereas $\log(0.25)<0$ and $\log(7/10)<0$.
+}{2}
+
+\DefCalao{17}{73}{24}{%
+Write the following numbers in the form $\log(A)$, where $A$ is a real number to be specified:
+\begin{enumerate}[label=\alph*.]
+\item $\log(2)+\log(7)-\log(5)$
+\item $\log(3)-2\log(5)$
+\item $\log(3)+\log(7)$
+\item $3\log(7)-7\log(3)$
+\item $\log(12)-\log(4)+2\log(3)$
+\end{enumerate}
+}{%
+The results are respectively
+$\log(14/5)$, $\log(3/25)$, $\log(21)$,
+$\log(7^3/3^7)$ and $\log(27)$.
+}{4}
+
+\DefCalao{18}{73}{32}{%
+Harpagon placed a sum of $24\,000$~€ with compound interest at an annual rate of $3.5\,\%$. Some time later, he decides to close the account when the balance is $40\,208.37$~€. The aim of the exercise is to determine how many years the account existed.
+\begin{enumerate}
+\item Complete the unfinished algorithm so that it solves the problem.
+\item Determine the number of years the account existed.
+\item Translate the algorithm into Python and run it in a Python editor. Compare the result with that of question 2.
+\end{enumerate}
+}{%
+We initialise $S\leftarrow24\,000$ and $N\leftarrow0$, then, while $S<40\,208.37$, we execute $S\leftarrow1.035S$ and $N\leftarrow N+1$. We obtain $N=15$; indeed $24\,000\times1.035^{15}\approx40\,208.37$.
+}{5}
+
+\DefCalao{19}{73}{30}{%
+\begin{enumerate}
+\item A first capital of $6\,000$~€ is placed with compound interest at a rate of $9\,\%$. After how many years will this capital have doubled? Tripled?
+\item A capital of $9\,000$~€ is placed on the same day at a rate of $6\,\%$. After how many years will the value of the first capital have exceeded the second?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Doubling satisfies $1.09^n\geqslant2$, that is $n\geqslant\log(2)/\log(1.09)\approx8.04$: it takes $9$ years. To triple, the threshold is about $12.75$: it takes $13$ years.
+\item $6\,000\times1.09^n>9\,000\times1.06^n$ is equivalent to
+$\left(1.09/1.06\right)^n>1.5$. The threshold is about $14.52$: the first capital exceeds the second after $15$ years.
+\end{enumerate}
+}{5}
+
+\DefCalao{20}{74}{36}{%
+A capital of $15\,500$~€ is placed with compound interest for $4$ and a half years. A second capital of $16\,480$~€ is also placed with compound interest for $5$ years and $3$ months at an annual rate of $6\,\%$.
+
+What must the rate of the first investment be so that the capitals at the end of the investments are equal?
+}{%
+We solve
+$15\,500(1+t)^{4.5}=16\,480\times1.06^{5.25}$.
+Hence
+$t=\left(\dfrac{16\,480\times1.06^{5.25}}{15\,500}\right)^{1/4.5}-1\approx0.087$, that is approximately $8.7\,\%$.
+}{4}
+
+\DefCalao{21}{75}{41}{%
+The dynamic range of an image is the ability of a digital image to reproduce the scales of light intensity of the real world. Dynamic range is often expressed in stops.
+
+In digital imaging, the darkest pixel (black) corresponds to $0$ and the lightest pixel (white) corresponds to $255$. There are thus $256$ light intensities, which in computing units amounts to $8$ bits of precision ($256=2^8$). The number of stops is: $\dfrac{\log(256)}{\log(2)}=8$.
+\begin{enumerate}
+\item For an underexposed digital photo, only $128$ light intensities can be captured. How many stops does this correspond to?
+\item A RAW file has a precision of $10$ bits. What is the corresponding number of stops?
+\item A standard video camera has an image dynamic range of $5.5$ stops. How many different light intensities does it capture?
+\item The latest-generation television screens have an image dynamic range of $16$ stops. How many different light intensities can they display?
+\item The number of light intensities in the real world is of the order of $100\,000\,000$. How many stops does this correspond to?
+\end{enumerate}
+}{%
+The number of stops associated with $N$ intensities is $\log(N)/\log(2)$.
+\begin{enumerate}
+\item $128=2^7$: $7$ stops.
+\item $10$ bits correspond to $2^{10}$ intensities: $10$ stops.
+\item $2^{5.5}\approx45$ intensities.
+\item $2^{16}=65\,536$ intensities.
+\item $\log(10^8)/\log(2)\approx26.6$ stops.
+\end{enumerate}
+}{5}
+
+\DefCalao{22}{75}{42}{%
+$N$ is a nonzero natural number. The aim of the exercise is to find a method for determining the number of digits in its decimal representation.
+\begin{enumerate}
+\item $N=10\,203$.
+  \begin{enumerate}[label=\alph*.]
+  \item Bound $N$ between two consecutive powers of $10$. Deduce a bound for $\log(N)$ between two consecutive integers.
+  \item Deduce the value of $\log(N)$ rounded up to the nearest unit. Compare this result with the number of digits of $N$.
+  \end{enumerate}
+\item $N$ has $23$ digits.
+  \begin{enumerate}[label=\alph*.]
+  \item Bound $N$ between two consecutive powers of $10$. Deduce a bound for $\log(N)$ between two consecutive integers.
+  \item Give the value of $\log(N)$ rounded up to the nearest unit. Which value do we recover?
+  \end{enumerate}
+\item From the previous questions, deduce a method for determining the number of digits of any nonzero natural number given in decimal form.
+\item Use the previous method to determine the number of digits of the following integers: a. $7^{49}$; b. $5658$; c. $2\,019\times10^{20}$.
+\item The largest known prime number to date is a Mersenne number written as $2^{82\,589\,933}-1$. How many digits does it have?
+\end{enumerate}
+}{%
+$10^4<N<10^5$, so $4<\log N<5$ and $N$ has $5$ digits. More generally, an integer $N\geqslant1$ has $\lfloor\log N\rfloor+1$ digits. We find: $42$ digits for $7^{49}$, $4$ for $5658$, $21$ for $2\,019\times10^{20}$, and $24\,862\,048$ digits for $2^{82\,589\,933}-1$.
+}{6}
+
+% -----------------------------------------------------------------------------
+% Chapter 4 -- Reciprocal function
+% -----------------------------------------------------------------------------
+\DefCalao{23}{101}{42}{%
+The aim of this exercise is to draw the curves representing the functions $f$ and $g$ defined on $\mathbb{R}^{*}$ by:
+$f(x)=\dfrac{2}{x}$ and $g(x)=4-\dfrac{3}{x}$.
+\begin{enumerate}
+\item Complete the table of values for
+$x\in\{-5;-4;-2;-0.5;-0.2;-0.1;0.1;0.2;0.5;1;2;4;5\}$.
+\item Using a table of values, construct the curves representing the functions $f$ and $g$.
+\end{enumerate}
+}{%
+Calculate each image, respecting the excluded value $0$. Both curves have the vertical asymptote $x=0$. The horizontal asymptote of $f$ is $y=0$; that of $g$ is $y=4$. To check the drawing, verify for example $f(1)=2$, $f(-1)=-2$, $g(1)=1$ and $g(-1)=7$.
+}{5}
+
+\DefCalao{24}{95}{16}{%
+We want to draw the curve representing the function $g$ defined on $\mathbb{R}^{*}$ by: $g(x)=3-\dfrac{2}{x}$.
+\begin{enumerate}
+\item Complete a table of values for
+\[
+x\in\{-1\,000;-500;-200;-100;-50;50;100;200;500;1\,000\}.
+\]
+What can be deduced about the behaviour of $g$ at $-\infty$ and at $+\infty$?
+\item Complete a table of values for $x=-0.5;-0.1;-0.01;0.01;0.1;0.5$. What can be deduced about the behaviour of $g$ at $0$?
+\item Copy and complete the table of values from the textbook, then draw the curve representing the function $g$.
+\end{enumerate}
+}{%
+As $x\to\pm\infty$, $-2/x\to0$, so $g(x)\to3$. As $x\to0^{-}$, $-2/x\to+\infty$; as $x\to0^{+}$, $-2/x\to-\infty$. The asymptotes are $x=0$ and $y=3$.
+}{5}
+
+\DefCalao{25}{94}{3}{%
+Calculate the derivatives of the following functions defined on $\mathbb{R}^{*}$.
+\begin{enumerate}[label=\alph*.]
+\item $f(x)=2x-3+\dfrac{4}{x}$
+\item $g(x)=3x-5-\dfrac{1}{x}$
+\item $f(x)=7x^3-2x+\dfrac{1}{x}$
+\item $g(x)=3x^2-5x-2+\dfrac{4}{x}$
+\end{enumerate}
+}{%
+The derivatives are:
+$f'(x)=2-4/x^2$; $g'(x)=3+1/x^2$;
+$f'(x)=21x^2-2-1/x^2$; $g'(x)=6x-5-4/x^2$.
+}{4}
+
+\DefCalao{26}{96}{20}{%
+Let $f$ be the function defined on $\mathbb{R}^{*}$ by
+$f(x)=4x+1+\dfrac{9}{x}$.
+\begin{enumerate}
+\item Show that for every nonzero real number $x$:
+$f'(x)=\dfrac{(2x-3)(2x+3)}{x^2}$.
+\item For every nonzero real number $x$, study the sign of $f'(x)$.
+\item Deduce the variations of the function $f$.
+\end{enumerate}
+}{%
+$f'(x)=4-9/x^2=(4x^2-9)/x^2=((2x-3)(2x+3))/x^2$. The denominator is positive: $f'$ is positive on $]-\infty;-3/2[\cup]3/2;+\infty[$ and negative on $]-3/2;0[\cup]0;3/2[$. We deduce the variations on each of the intervals separated by $-3/2$, $0$ and $3/2$.
+}{3}
+
+\DefCalao{27}{96}{21}{%
+Let $g$ be the function defined on $\mathbb{R}^{*}$ by
+$g(x)=x+10-\dfrac{1}{x}$.
+\begin{enumerate}
+\item Show that for every nonzero real number $x$:
+$g'(x)=\dfrac{x^2+1}{x^2}$.
+\item For every nonzero real number $x$, study the sign of $g'(x)$.
+\item Deduce the variations of the function $g$.
+\end{enumerate}
+}{%
+$g'(x)=1+1/x^2=(x^2+1)/x^2>0$ for every $x\neq0$. The function is therefore strictly increasing on each of the intervals $]-\infty;0[$ and $]0;+\infty[$.
+}{4}
+
+\DefCalao{28}{94}{13}{%
+Let $f$ be the function defined on $\mathbb{R}^{*}$ by: $f(x)=\dfrac{1}{x}$.
+\begin{enumerate}
+\item Calculate $f'(x)$.
+\item Show that for every nonzero real number $x$:
+$f'(x)=\dfrac{-1}{x^2}$.
+\item After studying the sign of $f'(x)$, draw up the table of variations of $f$.
+\end{enumerate}
+}{%
+$f'(x)=-1/x^2<0$ for every $x\neq0$. The reciprocal function is therefore strictly decreasing on each of the intervals $]-\infty;0[$ and $]0;+\infty[$. These two intervals must not be merged into a single interval of decrease.
+}{3}
+
+\DefCalao{29}{98}{31}{%
+A company specialising in industrial ovens can manufacture between $20$ and $80$ of them depending on the year. Let $x$ be the number of ovens manufactured per year.
+
+The graph given in the textbook is that of a function $C$ defined on the interval $[20;80]$. For every integer value of $x$, $C(x)$ is the average unit production cost (in €).
+\begin{enumerate}
+\item What is the average unit production cost when $25$ ovens are produced, then when $70$ ovens are produced?
+\item Which production levels correspond to an average unit cost of $20\,000$~€?
+\item What is the minimum average unit production cost? Which production level does it correspond to?
+\end{enumerate}
+}{%
+The numerical answers are read from the curve on p.~98. Require reading lines and units. The graphical minimum must be identified by the ordinate of the lowest point, then linked to its abscissa; a graphical reading remains approximate.
+}{4}
+
+\DefCalao{30}{98}{32}{%
+Each week, a liquid detergent company estimates that the production cost (in euros) can be modelled by a function $C$ given by:
+$C(x)=x^2+60x+121$, where $x$ is the volume of detergent (in m$^3$), $x\in[1;30]$.
+
+Let $f$ be the function representing the average production cost per m$^3$ of liquid detergent.
+\begin{enumerate}
+\item Show that for every $x\in[1;30]$, $f(x)=x+60+\dfrac{121}{x}$.
+\item Calculate $f'(x)$. Show that for every $x\in[1;30]$,
+$f'(x)=\dfrac{(x-11)(x+11)}{x^2}$.
+\item Draw up the table of variations of $f$.
+\item What is the minimum average production cost? For what quantity of detergent is it reached?
+\end{enumerate}
+}{%
+$f(x)=C(x)/x=x+60+121/x$. Then
+$f'(x)=1-121/x^2=((x-11)(x+11))/x^2$. On $[1;30]$, $f'$ is negative up to $11$, then positive. The minimum is reached for $x=11$ and equals $f(11)=82$~€ per m$^3$.
+}{4}
+
+% -----------------------------------------------------------------------------
+% Chapter 5 -- Two-variable quantitative statistical series
+% -----------------------------------------------------------------------------
+\DefCalao{31}{114}{2}{%
+Plot the scatter plot of the following statistical series on a coordinate grid.
+\[
+\begin{array}{c|rrrrr}
+x_i&-3&0&3&5&8\\\hline
+y_i&1&-1&-2&5&7
+\end{array}
+\]
+}{%
+Place the points $(-3;1)$, $(0;-1)$, $(3;-2)$, $(5;5)$ and $(8;7)$ on a graduated, labelled grid. Check each pair before possibly linking a trend: a scatter plot is not a broken line.
+}{4}
+
+\DefCalao{32}{114}{6}{%
+The textbook graph shows the number of cigarettes sold in France as a function of the number of wolf packs recorded in France between 1995 and 2017.
+
+How can the change in cigarette sales be described from this graph? Can we nevertheless think there is a connection between these facts?
+}{%
+The scatter plot suggests a decreasing trend: as the number of recorded packs increases, the number of cigarettes sold decreases. However, this correlation does not allow a causal link between the two phenomena to be established; a time variable or other factors explain their concurrent evolution.
+}{3}
+
+\DefCalao{33}{115}{9}{%
+\begin{enumerate}
+\item Plot on a coordinate grid the scatter plot associated with the statistical series opposite.
+\[
+\begin{array}{c|rrrrrr}
+x_i&-2&-1&0&2&3&5\\\hline
+y_i&4&8&12&16&16&20
+\end{array}
+\]
+Draw the line with equation $y=2x+10$ on this grid. Does this line seem a satisfactory fit for the scatter plot? If not, suggest another one and state its reduced equation.
+\item Using this equation, determine:
+  \begin{itemize}
+  \item the ordinate of the point on the fitted line with abscissa $1$;
+  \item the ordinate of the point on the fitted line with abscissa $10$;
+  \item the abscissa of the point on the fitted line with ordinate $7$.
+  \end{itemize}
+\end{enumerate}
+}{%
+The line $y=2x+10$ follows the general trend of the scatter plot correctly. It gives $y=12$ for $x=1$, $y=30$ for $x=10$, and $x=-1.5$ when $y=7$. The value $x=10$ is an extrapolation and must be interpreted with caution.
+}{5}
+
+\DefCalao{34}{115}{8}{%
+The table below gives the number of new electric vehicles registered in France from 2014 to 2018.
+\[
+\begin{array}{c|ccccc}
+\text{Year}&2014&2015&2016&2017&2018\\\hline
+\text{Year index }x_i&0&1&2&3&4\\
+\text{Number of thousands of vehicles }y_i&10.5&17.3&21.7&24.9&31
+\end{array}
+\]
+\begin{enumerate}
+\item Plot the scatter plot associated with this time series on a coordinate grid.
+\item Suggest a linear regression for this scatter plot.
+\item If we assume that this fitted model remains valid for several years, how many new vehicles would have been registered in 2020? From which year would more than $50\,000$ new vehicles be registered?
+\end{enumerate}
+}{%
+The linear regression gives approximately $y=4.86x+11.36$. For 2020, $x=6$, hence $y\approx40.5$, that is about $40\,500$ vehicles. The threshold $y>50$ corresponds to $x>7.95$: according to this model, it would be crossed in 2022. These are extrapolations.
+}{5}
+
+\DefCalao{35}{118}{20}{%
+The annual turnover of a company (in thousands of euros) was recorded over its first five years of existence.
+\[
+\begin{array}{c|ccccc}
+\text{Year}&2016&2017&2018&2019&2020\\\hline
+\text{Year index }x_i&0&1&2&3&4\\
+\text{Turnover }y_i&315.6&489.9&579.3&763.5&874.5
+\end{array}
+\]
+\begin{enumerate}
+\item Plot, on an orthogonal grid, the scatter plot $M_i(x_i;y_i)$ of this statistical series.
+\item This scatter plot is fitted by the line $(M_1M_5)$. Determine an equation of this fitted line (round the coefficients to the nearest tenth).
+\item If the trend continues, what turnover can be forecast for 2024? At the end of which year will the turnover exceed two million euros?
+\end{enumerate}
+}{%
+The line through $(0;315.6)$ and $(4;874.5)$ has slope $139.725$, giving the approximate equation $y=139.7x+315.6$. In 2024, $x=8$ and $y\approx1\,433.2$, that is about $1.433$ million euros. The threshold $2\,000$ is exceeded for the first integer index $x=13$, that is in 2029.
+}{5}
+
+\DefCalao{36}{120}{29}{%
+In a concert hall, sound intensity levels from a sound generator were measured at several places. The measurements were recorded in the table below.
+\[
+\begin{array}{c|rrrrrrrrrr}
+\text{Distance }x_i\text{ (m)}&0.5&1&2&3&5&10&11&12&15&20\\\hline
+\text{Sound intensity }y_i\text{ (dB)}&97&85&73&66&59&53&55&52&55&49
+\end{array}
+\]
+A linear regression does not seem relevant, so a change of variables is considered.
+\begin{enumerate}
+\item Complete the textbook table with $u_i=\log(x_i)$.
+\item Plot the scatter plot $(u_i;y_i)$ on a coordinate grid, then suggest a linear regression for it.
+\item Deduce an expression for the sound intensity as a function of distance.
+\item Using the expression found, determine the expected sound intensity at a distance of $8$ metres, then of $30$ metres.
+\end{enumerate}
+}{%
+With the data provided, a regression of $y$ on $u=\log x$ gives approximately $y=-28.8u+83.9$. A model is therefore $y(x)=-28.8\log(x)+83.9$. It gives about $57.9$ dB at $8$ m and $41.4$ dB at $30$ m; the second estimate is an extrapolation.
+}{5}
+
+\DefCalao{37}{119}{25}{%
+We want to determine the caffeine concentration of a drink by measuring absorbance. To do so, a laser beam is used and the attenuation of the emitted light after passing through the liquid is measured. For the purposes of the experiment, several solutions of known caffeine content are tested and the following series of values is obtained.
+\[
+\begin{array}{c|ccccc}
+\text{Absorbance }A&0.155&0.320&0.465&0.630&0.935\\\hline
+\text{Concentration }C\text{ (mg/L)}&5&10&15&20&30
+\end{array}
+\]
+\begin{enumerate}
+\item Represent these data with a scatter plot on a coordinate grid.
+\item Does a linear regression seem relevant here? If so, express the caffeine concentration $C$ as a function of the absorbance $A$.
+\item An absorbance of $0.5$ is measured for a drink containing caffeine. What is its caffeine concentration?
+\end{enumerate}
+}{%
+The points are almost aligned. A linear regression gives approximately $C=32.1A-0.1$. For $A=0.5$, we obtain $C\approx16.0$ mg/L. This estimate is an interpolation.
+}{5}
+
+\DefCalao{38}{118--119}{24}{%
+Choose the correct statement. Justify your answer. Consider the scatter plot $M_1(1;16)$, $M_2(3;13)$ and $M_3(5;4)$.
+\begin{enumerate}
+\item The mean point of this scatter plot is:
+  \begin{enumerate}[label=\alph*.]
+  \item the point with coordinates $(3;10)$;
+  \item the point $M_2$;
+  \item the point with coordinates $(3;11)$.
+  \end{enumerate}
+\item The line $(M_1M_3)$ has equation:
+  \begin{enumerate}[label=\alph*.]
+  \item $y=4x+16$;
+  \item $y=-3x+19$;
+  \item $y=-2.93x+17.7$.
+  \end{enumerate}
+\item The regression line obtained by the calculator:
+  \begin{enumerate}[label=\alph*.]
+  \item passes through one of the three points;
+  \item is parallel to the line $(M_1M_3)$;
+  \item passes through the origin.
+  \end{enumerate}
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Answer c: $\bar x=3$ and $\bar y=11$.
+\item Answer b: the slope is $(4-16)/(5-1)=-3$ and the y-intercept is $19$.
+\item Answer b: the regression is $y=-3x+20$, it passes through the mean point and is parallel to $(M_1M_3)$.
+\end{enumerate}
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapter 6 -- Conditional probability
+% -----------------------------------------------------------------------------
+\DefCalao{39}{138}{5}{%
+A company buys electronic chips from three suppliers $F_1$, $F_2$ and $F_3$: $30\,\%$ from $F_1$, $20\,\%$ from $F_2$. Some chips are faulty: $5\,\%$ of the chips from $F_1$, $3\,\%$ of those from $F_2$ and $10\,\%$ of the chips from $F_3$.
+
+A chip is chosen at random. Let the events be $F_i$: ``The chip comes from supplier $i$'' and $D$: ``The chip is faulty''.
+\begin{enumerate}
+\item Complete the weighted tree from the textbook.
+\item Determine the probability that the chosen chip is faulty.
+\item Given that the chip is faulty, determine the probability that it comes from supplier $F_3$.
+\end{enumerate}
+}{%
+$P(F_3)=0.50$. By the law of total probability,
+$P(D)=0.30\times0.05+0.20\times0.03+0.50\times0.10=0.071$.
+Finally $P_D(F_3)=0.05/0.071\approx0.704$.
+}{5}
+
+\DefCalao{40}{140}{15}{%
+\begin{enumerate}
+\item Complete the tree from the textbook given that $P(A)=\dfrac35$, $P_A(B)=\dfrac7{10}$, $P_A(D)=\dfrac15$, $P_{\overline A}(B)=\dfrac13$ and $P_{\overline A}(C)=\dfrac29$.
+\item Determine $P(A\cap B)$, $P(A\cap D)$ and $P(C)$.
+\end{enumerate}
+}{%
+$P(\overline A)=2/5$, $P_A(C)=1/10$ and $P_{\overline A}(D)=4/9$.
+Hence $P(A\cap B)=21/50$, $P(A\cap D)=3/25$ and
+$P(C)=\dfrac35\times\dfrac1{10}+\dfrac25\times\dfrac29=\dfrac{67}{450}$.
+}{4}
+
+\DefCalao{41}{140}{18}{%
+$75\,\%$ of a restaurant's customers are families. Among them, $17\,\%$ pay their bill with holiday vouchers, $76\,\%$ pay by bank card and the rest pay in cash. Among the other customers, only $5\,\%$ use holiday vouchers, $80\,\%$ a bank card and the rest cash.
+
+A table and its customer(s) are chosen at random. Let $F$: ``The customers are a family'', $C$: ``The customers pay with holiday vouchers'', $B$: ``The customers pay by bank card'' and $L$: ``The customers pay in cash''.
+\begin{enumerate}
+\item Complete the weighted tree from the textbook.
+\item Describe the event $\overline F\cap B$ in a sentence, then calculate its probability.
+\item Calculate the probability that the chosen customers pay with holiday vouchers.
+\item The chosen customers paid with holiday vouchers. Calculate the probability that these customers are a family.
+\end{enumerate}
+}{%
+Given $F$, the probability of $L$ is $0.07$; given $\overline F$, it is $0.15$.
+$P(\overline F\cap B)=0.25\times0.80=0.20$.
+$P(C)=0.75\times0.17+0.25\times0.05=0.14$.
+$P_C(F)=0.1275/0.14=51/56\approx0.911$.
+}{5}
+
+\DefCalao{42}{139}{13}{%
+At the exit of a factory, watches may have a defect (denoted $D_1$) on the strap and a defect (denoted $D_2$) on the face. A watch is said to be faulty if it has at least one of the two defects. A watch is picked at random from a day's production.
+
+Let $A$ be the event: ``The watch has defect $D_1$'' and $B$ the event: ``The watch has defect $D_2$''. The probabilities of these events are known: $P(A)=0.02$ and $P(B)=0.01$. Assume that these two events are independent.
+\begin{enumerate}
+\item Determine the probability that the watch has both defects.
+\item Determine the probability that the watch has no defect.
+\end{enumerate}
+}{%
+By independence, $P(A\cap B)=0.02\times0.01=0.0002$. The complementary events are also independent, so
+$P(\overline A\cap\overline B)=0.98\times0.99=0.9702$.
+}{3}
+
+\DefCalao{43}{139}{7}{%
+In the early 2000s, the Internet was not as popular, and a study of interest in the Internet on a sample of $2\,000$ people gave the following results.
+\[
+\begin{array}{c|ccc}
+\text{Interested in the Internet?}&\text{Yes}&\text{No}&\text{Total}\\\hline
+\text{Under 30}&560&\cdots&700\\
+\text{30 to 60}&\cdots&\cdots&\cdots\\
+\text{Over 60}&\cdots&510&600\\\hline
+\text{Total}&800&\cdots&2\,000
+\end{array}
+\]
+\begin{enumerate}
+\item Complete this table.
+\item A person is chosen at random from those surveyed. Let $A_1$: ``The person is under $30$'', $A_2$: ``The person is between $30$ and $60$'', $A_3$: ``The person is over $60$'' and $I$: ``The person is interested in the Internet''. Using the table, complete the probability trees from the textbook.
+\end{enumerate}
+}{%
+The $30$--$60$ row totals $700$ people. The completed table gives: under $30$, $560$ yes and $140$ no; from $30$ to $60$, $150$ yes and $550$ no; over $60$, $90$ yes and $510$ no. The totals are $800$ yes and $1\,200$ no.
+}{5}
+
+\DefCalao{44}{142}{24}{%
+A town hall carries out a survey to learn about its residents' habits regarding waste treatment. $80\,\%$ of the people surveyed say they are sensitive to sustainable development, but among them, only $75\,\%$ sort their waste. $70\,\%$ of the people surveyed say they sort their waste.
+
+One of the people surveyed is chosen at random. Consider the events $D$: ``The person surveyed is sensitive to sustainable development'' and $T$: ``The person surveyed sorts their waste''.
+\begin{enumerate}
+\item Determine $P_D(T)$.
+\item Determine $P_T(D)$.
+\end{enumerate}
+}{%
+$P_D(T)=0.75$. Then $P(D\cap T)=0.80\times0.75=0.60$, so
+$P_T(D)=0.60/0.70=6/7\approx0.857$.
+}{3}
+
+\DefCalao{45}{143}{26}{%
+In this exercise, results will be given as irreducible fractions. A game consists of rolling a fair six-sided die and then drawing a ball from an urn. If a $6$ is rolled, a ball is drawn from urn A; if an odd number is rolled, the draw is from urn B; in the other cases, the draw is from urn C.
+
+Urn A contains $1$ red ball and $5$ green balls; urn B contains $2$ red balls and $8$ green balls; urn C contains $3$ red balls and $11$ green balls.
+
+Consider the following events: $I$: ``Rolling an odd number''; $S$: ``Rolling $6$''; $A$: ``Rolling $2$ or $4$''; $R$: ``The ball drawn is red''; $V$: ``The ball drawn is green''.
+\begin{enumerate}
+\item Draw a weighted tree corresponding to this situation.
+\item Determine the probability of drawing a red ball.
+\item Determine the probability that the ball comes from urn A given that it is red.
+\end{enumerate}
+}{%
+$P(S)=1/6$, $P(I)=1/2$ and $P(A)=1/3$. Hence
+$P(R)=\dfrac16\times\dfrac16+\dfrac12\times\dfrac2{10}+\dfrac13\times\dfrac3{14}=\dfrac{251}{1260}$.
+Finally $P_R(S)=\dfrac{1/36}{251/1260}=\dfrac{35}{251}$. Here, the path $S$ leads to urn A; be careful to distinguish the event $A$ named in the statement from urn A.
+}{5}
+
+\DefCalao{46}{143}{29}{%
+To hire its managers, a company uses a recruitment agency. The agency first makes a selection based on applications. $40\,\%$ of the applications received are accepted and passed on to the company. The selected candidates have a first interview, after which $70\,\%$ of them are retained. These are invited to a final interview with the human resources director, who hires $25\,\%$ of the candidates met.
+
+A candidate's application is chosen at random. Consider the following events: $D$: ``The candidate is retained on application''; $E_1$: ``The candidate is retained after the first interview''; $E_2$: ``The candidate is hired''.
+\begin{enumerate}
+\item Complete the weighted tree from the textbook. Let $F$ be the event: ``The candidate is not hired''. Prove that the probability of the event $F$ equals $0.93$.
+\item Five friends apply for a manager's job in this company. Their applications are considered independently of one another. Determine the probability that at least one of the five friends is hired.
+\item What is the minimum number of applications the recruitment agency must process for the probability of hiring at least one candidate to exceed $0.999$?
+\end{enumerate}
+}{%
+$P(E_2)=0.40\times0.70\times0.25=0.07$, so $P(F)=0.93$. For five independent applications, the probability of at least one hire is $1-0.93^5\approx0.304$. Finally $1-0.93^n>0.999$ is equivalent to $0.93^n<0.001$; the first suitable integer is $n=96$.
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapter 7 -- Discrete random variables and binomial distribution
+% -----------------------------------------------------------------------------
+\DefCalao{47}{160}{2}{%
+A game consists of rolling a fair die. If the result is:
+\begin{itemize}
+\item $1$, $2$ or $3$, then you lose $2$ points;
+\item $3$ or $4$, then you neither lose nor win anything;
+\item $6$, then you win $3$ points.
+\end{itemize}
+Let $G$ be the random variable that associates with each roll the player's gain (positive or negative).
+\begin{enumerate}
+\item Complete the table representing the probability distribution of the random variable $G$.
+\item Calculate $E(G)$. What do you notice?
+\end{enumerate}
+}{%
+The printed text has the result $3$ appearing in two lines; the consistent partition is $1,2,3$ for $-2$, $4,5$ for $0$, and $6$ for $3$. We therefore obtain probabilities $1/2$, $1/3$ and $1/6$, then $E(G)=-2\times1/2+3\times1/6=-0.5$. On average, the game is unfavourable to the player.
+}{4}
+
+\DefCalao{48}{163}{22}{%
+A city's mayor has decided to hold a referendum on the possible development of a park. The results are: $63\,\%$ for and $37\,\%$ against. Two ballot papers are picked at random. The number of participants is large enough for this sampling to be treated as drawing two ballot papers at random with replacement.
+
+Consider the random variable $X$ that associates with each sample of two ballot papers the number of ``For'' ballots.
+\begin{enumerate}
+\item What distribution does $X$ follow? Determine its parameters.
+\item Calculate the probability that, in such a sample, there is: no ``For''; exactly one ``For''.
+\item Deduce from question 2 the probability that, in such a sample, there is at most one ``For''.
+\end{enumerate}
+}{%
+$X\sim\mathcal B(2;0.63)$. We have $P(X=0)=0.37^2=0.1369$ and
+$P(X=1)=2\times0.63\times0.37=0.4662$. Hence $P(X\leqslant1)=0.6031$.
+}{4}
+
+\DefCalao{49}{161}{13}{%
+A fair coin is tossed $5$ times in a row. Let $F$ be the random variable that associates with each experiment so defined the number of ``Heads'' obtained.
+\begin{enumerate}
+\item $F$ follows a binomial distribution. State its parameters.
+\item Build Pascal's triangle up to $n=5$.
+\item Calculate $P(F=3)$. Interpret this result.
+\item Calculate the probability that ``Heads'' appears at least three times.
+\end{enumerate}
+}{%
+$F\sim\mathcal B(5;1/2)$. Row $n=5$ of the triangle is $1,5,10,10,5,1$. So
+$P(F=3)=\binom53(1/2)^5=10/32=0.3125$ and
+$P(F\geqslant3)=(10+5+1)/32=0.5$.
+}{4}
+
+\DefCalao{50}{167}{38}{%
+A parcel delivery company manages, for parcels collected before $10$ a.m., to deliver them the next day with probability $0.75$. A shopkeeper drops off seven parcels for his customers before $10$ a.m. Let $X$ be the random variable that associates with each batch of seven parcels the number of parcels delivered the next day. Assume that $X$ follows a binomial distribution.
+\begin{enumerate}
+\item Determine the parameters $n$ and $p$ of the distribution of $X$.
+\item Calculate the probability of the following events: A: ``All the parcels will arrive the next day.''; B: ``At least one parcel will not arrive the next day.''
+\item Complete Pascal's triangle up to row $n=7$. Deduce $\binom72$. Calculate the probability of the event C: ``Exactly two parcels will arrive the next day.''
+\item Interpret the event $\{X=4\}$. Calculate the probability $P(X=4)$.
+\end{enumerate}
+}{%
+$X\sim\mathcal B(7;0.75)$. $P(A)=0.75^7\approx0.1335$ and $P(B)=1-0.75^7\approx0.8665$. Since $\binom72=21$,
+$P(X=2)=21(0.75)^2(0.25)^5\approx0.0115$.
+$\{X=4\}$ means that exactly four parcels are delivered the next day and
+$P(X=4)=\binom74(0.75)^4(0.25)^3\approx0.1730$.
+}{5}
+
+\DefCalao{51}{166}{34}{%
+A company sells, in large quantities, low-energy, long-life LED bulbs. $98\,\%$ of these bulbs have an operating life of at least $20\,000$ h. The bulbs are sold in packs of $10$. Let $X$ be the random variable that associates with each pack of $10$ bulbs the number of bulbs whose operating life is at least $20\,000$ h. The quantity of bulbs is large enough for the choice of a pack to be treated as a random sample with replacement of $10$ bulbs.
+\begin{enumerate}
+\item What distribution does $X$ follow? State its parameters.
+\item Copy and complete: $\binom{10}{9}=\cdots$; $\binom{10}{10}=\cdots$.
+\item Deduce the probabilities (rounded to $0.001$): $P(X=9)$ and $P(X=10)$. Interpret the previous results.
+\item Deduce the probability (to within $0.001$) that a pack of $10$ bulbs contains at least $9$ bulbs whose operating life is at least $20\,000$ h.
+\end{enumerate}
+}{%
+$X\sim\mathcal B(10;0.98)$, $\binom{10}{9}=10$ and $\binom{10}{10}=1$.
+$P(X=9)=10(0.98)^9(0.02)\approx0.167$ and $P(X=10)=0.98^{10}\approx0.817$. Hence $P(X\geqslant9)\approx0.984$.
+}{5}
+
+% -----------------------------------------------------------------------------
+% Sessions 52 to 55 -- Consolidation
+% -----------------------------------------------------------------------------
+\DefCalao{52}{29}{52}{%
+In France, since 2016, sales of hybrid vehicles have risen sharply. The table below gives the number of hybrid vehicles sold in France per year.
+\[
+\begin{array}{c|ccc}
+\text{Year}&2016&2017&2018\\\hline
+\text{Number of hybrid vehicles sold}&7\,420&11\,010&15\,350
+\end{array}
+\]
+\textbf{Part A}
+\begin{enumerate}
+\item Determine the percentage change between 2016 and 2017, then between 2017 and 2018.
+\item Determine the geometric mean of $1.48$ and $1.39$.
+\item What is the average annual rate of change between 2016 and 2018?
+\end{enumerate}
+\textbf{Part B}
+
+Assume that from 2018 onwards, sales of hybrid cars increase by $43\,\%$ per year and that this trend will continue. The sequence $(u_n)$ models the change in sales, where the integer part of $u_n$ represents the number of hybrid cars sold during year $(2018+n)$.
+\begin{enumerate}
+\item What is the value of $u_0$? Calculate $u_1$ and $u_2$.
+\item What type of sequence is $(u_n)$? Express $u_n$ in terms of $n$.
+\item According to this model, how many hybrid vehicles will be sold in 2023?
+\end{enumerate}
+}{%
+The rates are approximately $48.4\,\%$ and $39.4\,\%$. The geometric mean of $1.48$ and $1.39$ is $\sqrt{1.48\times1.39}\approx1.434$, that is an average rate of about $43.4\,\%$. In part B, $u_0=15\,350$, $u_n=15\,350\times1.43^n$; for 2023, $n=5$ and the integer part of $u_5$ gives approximately $91\,788$ vehicles.
+}{6}
+
+\DefCalao{53}{54}{58}{%
+The number of members of a basketball club increased over the last three years by $2.5\,\%$, then by $4.1\,\%$, and finally by $3.8\,\%$. Calculate the average annual rate of change.
+}{%
+The overall multiplier is $1.025\times1.041\times1.038$. The average annual multiplier is its cube root, approximately $1.0346$. The average annual rate of change is therefore approximately $3.46\,\%$.
+}{3}
+
+\DefCalao{54}{76}{43}{%
+Let $x$ be a strictly positive real number. The aim of the exercise is to determine an order of magnitude of $x$.
+\begin{enumerate}
+\item $x=23.54$ and $y=569.47$.
+  \begin{enumerate}[label=\alph*.]
+  \item The order of magnitude of a number is the power of $10$ closest to that number. Give the order of magnitude of $x$ and $y$.
+  \item Using the calculator, determine $\log(x)$. Conjecture a link between $\log(x)$ and the order of magnitude of $x$. Check your conjecture with $y$.
+  \end{enumerate}
+\item $x=5.4517$. Using the calculator, determine the order of magnitude of $x$ and $\log(x)$. Is the conjecture made in question 1 true?
+\item Suppose that $x$ is written in scientific notation: $x=a\times10^n$ where $a\in[1;10[$ and $n$ is an integer. Give the order of magnitude of $x$ depending on the value of $a$.
+\item Deduce a method linking the order of magnitude of a strictly positive real number with its common logarithm (base 10).
+\item Deduce the order of magnitude of the following two numbers: $2.26^{102}$ and $365.256^{2019}$.
+\end{enumerate}
+}{%
+$23.54$ is closer to $10$ than to $100$, whereas $569.47$ is closer to $1\,000$ than to $100$; their orders of magnitude are $10$ and $10^3$. The change occurs at $a=\sqrt{10}$, not at $a=5$. In scientific notation $a\times10^n$, the order of magnitude is $10^n$ if $a<\sqrt{10}$ and $10^{n+1}$ if $a\geqslant\sqrt{10}$. We apply this rule to the fractional part of the logarithms: $102\log(2.26)\approx36.12$, so order $10^{36}$; $2019\log(365.256)\approx5173.88$, so order $10^{5174}$.
+}{6}
+
+\DefCalao{55}{102}{47}{%
+In Murano, a glassmaker has calculated that the production cost (in euros) of $x$ vases is given by: $C(x)=x^2+30x+400$. He wants to make as many vases as possible with the lowest possible average unit cost.
+
+\textbf{Part A}
+\begin{enumerate}
+\item Calculate $C(0)$ and deduce the craftsman's fixed costs. What is the production cost of $20$ vases? For $20$ vases, calculate the average production cost of one vase.
+\item Let $f(x)$ be the average unit cost for $x$ vases made. For a production of at least one vase ($x\geqslant1$), express $f(x)$ in terms of $x$.
+\item Assume that the average unit cost can be expressed as $f(x)=x+30+\dfrac{400}{x}$. Calculate $f'(x)$. Show that $f'(x)=\dfrac{(x-20)(x+20)}{x^2}$. Study the sign of $f'(x)$ and deduce the variations of $f$. How many vases must the craftsman produce for the average unit cost to be minimal? Give this cost.
+\end{enumerate}
+}{%
+$C(0)=400$~€: these are the fixed costs. $C(20)=1\,400$~€, that is $70$~€ per vase. For $x>0$, $f(x)=C(x)/x=x+30+400/x$. Its derivative is $1-400/x^2=((x-20)(x+20))/x^2$. On $[1;+\infty[$, it is negative up to $20$, then positive. The minimum is therefore reached for $20$ vases and equals $70$~€.
+}{6}

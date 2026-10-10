@@ -1999,14 +1999,14 @@ export const resourceCatalog = {
           "end": 20,
           "path": "resources/stmg-01/chapter.pdf",
           "pages": 14,
-          "bytes": 272125,
+          "bytes": 269037,
           "sections": {
             "lesson": 1,
             "problem": 3,
             "practice": 4
           },
           "englishPath": "resources/stmg-01/chapter-en.pdf",
-          "englishBytes": 261070
+          "englishBytes": 266574
         },
         {
           "kind": "teacher",
@@ -2015,9 +2015,9 @@ export const resourceCatalog = {
           "end": 25,
           "path": "resources/stmg-01/teacher.pdf",
           "pages": 19,
-          "bytes": 298121,
+          "bytes": 295036,
           "englishPath": "resources/stmg-01/teacher-en.pdf",
-          "englishBytes": 284610
+          "englishBytes": 291644
         }
       ]
     },
@@ -2038,14 +2038,14 @@ export const resourceCatalog = {
           "end": 38,
           "path": "resources/stmg-02/chapter.pdf",
           "pages": 18,
-          "bytes": 315229,
+          "bytes": 311896,
           "sections": {
             "lesson": 1,
             "problem": 3,
             "practice": 4
           },
           "englishPath": "resources/stmg-02/chapter-en.pdf",
-          "englishBytes": 299194
+          "englishBytes": 308634
         },
         {
           "kind": "teacher",
@@ -2054,9 +2054,9 @@ export const resourceCatalog = {
           "end": 48,
           "path": "resources/stmg-02/teacher.pdf",
           "pages": 23,
-          "bytes": 356612,
+          "bytes": 353307,
           "englishPath": "resources/stmg-02/teacher-en.pdf",
-          "englishBytes": 336604
+          "englishBytes": 348831
         }
       ]
     },
@@ -2077,14 +2077,14 @@ export const resourceCatalog = {
           "end": 55,
           "path": "resources/stmg-03/chapter.pdf",
           "pages": 17,
-          "bytes": 294308,
+          "bytes": 291586,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
           "englishPath": "resources/stmg-03/chapter-en.pdf",
-          "englishBytes": 280340
+          "englishBytes": 288533
         },
         {
           "kind": "teacher",
@@ -2093,9 +2093,9 @@ export const resourceCatalog = {
           "end": 73,
           "path": "resources/stmg-03/teacher.pdf",
           "pages": 25,
-          "bytes": 342345,
+          "bytes": 339610,
           "englishPath": "resources/stmg-03/teacher-en.pdf",
-          "englishBytes": 324957
+          "englishBytes": 335136
         }
       ]
     },
@@ -2116,14 +2116,14 @@ export const resourceCatalog = {
           "end": 72,
           "path": "resources/stmg-04/chapter.pdf",
           "pages": 17,
-          "bytes": 300411,
+          "bytes": 297444,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
           "englishPath": "resources/stmg-04/chapter-en.pdf",
-          "englishBytes": 284444
+          "englishBytes": 294615
         },
         {
           "kind": "teacher",
@@ -2132,9 +2132,9 @@ export const resourceCatalog = {
           "end": 98,
           "path": "resources/stmg-04/teacher.pdf",
           "pages": 25,
-          "bytes": 341417,
+          "bytes": 338464,
           "englishPath": "resources/stmg-04/teacher-en.pdf",
-          "englishBytes": 322274
+          "englishBytes": 334352
         }
       ]
     },
@@ -2155,14 +2155,14 @@ export const resourceCatalog = {
           "end": 89,
           "path": "resources/stmg-05/chapter.pdf",
           "pages": 17,
-          "bytes": 276191,
+          "bytes": 273601,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
           "englishPath": "resources/stmg-05/chapter-en.pdf",
-          "englishBytes": 262370
+          "englishBytes": 269990
         },
         {
           "kind": "teacher",
@@ -2171,9 +2171,9 @@ export const resourceCatalog = {
           "end": 123,
           "path": "resources/stmg-05/teacher.pdf",
           "pages": 25,
-          "bytes": 322761,
+          "bytes": 320183,
           "englishPath": "resources/stmg-05/teacher-en.pdf",
-          "englishBytes": 304687
+          "englishBytes": 314501
         }
       ]
     },
@@ -2194,14 +2194,14 @@ export const resourceCatalog = {
           "end": 106,
           "path": "resources/stmg-06/chapter.pdf",
           "pages": 17,
-          "bytes": 286360,
+          "bytes": 283705,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
           "englishPath": "resources/stmg-06/chapter-en.pdf",
-          "englishBytes": 272820
+          "englishBytes": 280142
         },
         {
           "kind": "teacher",
@@ -2210,9 +2210,9 @@ export const resourceCatalog = {
           "end": 148,
           "path": "resources/stmg-06/teacher.pdf",
           "pages": 25,
-          "bytes": 325219,
+          "bytes": 322562,
           "englishPath": "resources/stmg-06/teacher-en.pdf",
-          "englishBytes": 308366
+          "englishBytes": 316620
         }
       ]
     },
@@ -2233,14 +2233,14 @@ export const resourceCatalog = {
           "end": 118,
           "path": "resources/stmg-07/chapter.pdf",
           "pages": 12,
-          "bytes": 257693,
+          "bytes": 255611,
           "sections": {
             "lesson": 1,
             "problem": 3,
             "practice": 4
           },
           "englishPath": "resources/stmg-07/chapter-en.pdf",
-          "englishBytes": 248353
+          "englishBytes": 253375
         },
         {
           "kind": "teacher",
@@ -2249,9 +2249,9 @@ export const resourceCatalog = {
           "end": 165,
           "path": "resources/stmg-07/teacher.pdf",
           "pages": 17,
-          "bytes": 291652,
+          "bytes": 289568,
           "englishPath": "resources/stmg-07/teacher-en.pdf",
-          "englishBytes": 280512
+          "englishBytes": 286692
         }
       ]
     },
@@ -2272,13 +2272,13 @@ export const resourceCatalog = {
           "end": 127,
           "path": "resources/stmg-08/chapter.pdf",
           "pages": 9,
-          "bytes": 246836,
+          "bytes": 245154,
           "sections": {
             "problem": 2,
             "practice": 3
           },
           "englishPath": "resources/stmg-08/chapter-en.pdf",
-          "englishBytes": 237017
+          "englishBytes": 243237
         },
         {
           "kind": "teacher",
@@ -2287,9 +2287,9 @@ export const resourceCatalog = {
           "end": 178,
           "path": "resources/stmg-08/teacher.pdf",
           "pages": 13,
-          "bytes": 276537,
+          "bytes": 274862,
           "englishPath": "resources/stmg-08/teacher-en.pdf",
-          "englishBytes": 264722
+          "englishBytes": 272059
         }
       ]
     }
@@ -2608,9 +2608,9 @@ export const resourceCatalog = {
           "end": 142,
           "path": "resources/stmg-assessments-eleve.pdf",
           "pages": 15,
-          "bytes": 243321,
+          "bytes": 243387,
           "englishPath": "resources/stmg-assessments-eleve-en.pdf",
-          "englishBytes": 238897
+          "englishBytes": 239881
         },
         {
           "kind": "teacher",
@@ -2619,9 +2619,9 @@ export const resourceCatalog = {
           "end": 193,
           "path": "resources/stmg-assessments-prof.pdf",
           "pages": 15,
-          "bytes": 284172,
+          "bytes": 284239,
           "englishPath": "resources/stmg-assessments-prof-en.pdf",
-          "englishBytes": 279154
+          "englishBytes": 281033
         }
       ]
     },
@@ -2641,9 +2641,9 @@ export const resourceCatalog = {
           "end": 143,
           "path": "resources/stmg-formulas-eleve.pdf",
           "pages": 1,
-          "bytes": 173838,
+          "bytes": 173897,
           "englishPath": "resources/stmg-formulas-eleve-en.pdf",
-          "englishBytes": 174062
+          "englishBytes": 172816
         },
         {
           "kind": "teacher",
@@ -2652,9 +2652,9 @@ export const resourceCatalog = {
           "end": 194,
           "path": "resources/stmg-formulas-prof.pdf",
           "pages": 1,
-          "bytes": 174866,
+          "bytes": 174926,
           "englishPath": "resources/stmg-formulas-prof-en.pdf",
-          "englishBytes": 175073
+          "englishBytes": 173559
         }
       ]
     }
