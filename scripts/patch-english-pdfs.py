@@ -20,7 +20,7 @@ cache = json.loads((ROOT / 'docs/translation-cache.json').read_text())
 corrections = json.loads((ROOT / 'docs/translation-corrections.json').read_text())
 BLOCK = re.compile(rb'q\nBT\n([-\d.]+) 0 0 1 ([-\d.]+) 0 cm\n1 0 0 1 ([-\d.]+) ([-\d.]+) Tm\n/(ti\w\w) ([\d.]+) Tf ([^\[]*)\[<([0-9a-f]*)>\]TJ\nET\nQ')
 HEADER = re.compile(r'^Maths Explore')
-LATIN = str.maketrans({'’': "'", '‘': "'", '“': '"', '”': '"', '–': '-', '—': '-', '…': '...', ' ': ' ', ' ': ' ', '−': '-', '×': 'x'})
+LATIN = str.maketrans({'’': "'", '‘': "'", '“': '"', '”': '"', '–': '-', '—': '-', '…': '...', ' ': ' ', ' ': ' ', '−': '-', '×': 'x', '•': '\xb7'})
 
 def latin(text):
     text = unicodedata.normalize('NFC', text.translate(LATIN))
@@ -28,7 +28,7 @@ def latin(text):
 
 # Old English value -> new English value, kept only when every French source
 # sharing that machine output receives the same reviewed text.
-mapping, conflicts = {}, set()
+mapping, conflicts, french = {}, set(), {}
 for source, english in corrections.items():
     old = cache.get(source)
     if old is None or old.strip() == english.strip():
@@ -37,6 +37,7 @@ for source, english in corrections.items():
     if key in mapping and mapping[key] != english:
         conflicts.add(key)
     mapping[key] = english
+    french.setdefault(key, []).append(latin(source).strip())
 # An unreviewed source with the same machine output was judged correct as is.
 for source, old in cache.items():
     if source not in corrections and latin(old).strip() in mapping:
@@ -53,16 +54,24 @@ def patch_stream(raw, path, stats):
         a, e, x, y, font, size, colour, hexa = m.groups()
         old = bytes.fromhex(hexa.decode()).decode('latin-1')
         core = old.strip()
-        new = header_for(path) if HEADER.match(core) and float(size) <= 9.5 else mapping.get(core)
+        header = HEADER.match(core) and float(size) <= 9.5
+        new, key = (header_for(path), None) if header else (mapping.get(core), core)
+        if new is None and ' \xb7 ' in core:
+            # Headings were typeset with a middle dot where the cache has a dash.
+            key = core.replace(' \xb7 ', ' - ')
+            new = mapping.get(key)
+            new = new and new.replace(' – ', ' · ').replace(' - ', ' · ')
         if new is None or new == core:
             return m[0]
         lead = ' ' if old.startswith(' ') else ''
         trail = ' ' if old.endswith(' ') else ''
         new = lead + latin(new) + trail
         a, x, size = float(a), float(x), float(size)
-        available = pymupdf.get_text_length(old, fontname=font.decode(), fontsize=size) * a
-        width = pymupdf.get_text_length(new, fontname=font.decode(), fontsize=size)
-        scale = min(1.0, available / max(width, 0.01)) if available > 0 else 1.0
+        # The French line this overlay replaces is free space for the English.
+        length = lambda t: pymupdf.get_text_length(t, fontname=font.decode(), fontsize=size)
+        available = max([length(old) * a] + [min(length(f) for f in french[key])] if key in french else [length(old) * a])
+        width = length(new)
+        scale = 1.0 if header else min(1.0, available / max(width, 0.01)) if available > 0 else 1.0
         stats['spans'] += 1
         if scale < 0.6:
             stats['tight'].append({'file': str(path.relative_to(ROOT)), 'text': new.strip(), 'scale': round(scale, 2)})

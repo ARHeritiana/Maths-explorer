@@ -1,3 +1,48 @@
+# Repository audit — 10 October 2026
+
+Scope, in the owner's order: mathematical accuracy, curriculum conformity and pedagogical relevance; then responsiveness, design and interaction. Commits on `claude/repository-audit-bsfs8y`.
+
+## Mathematics and notation (site)
+
+| Finding | Correction |
+|---|---|
+| Lab formula printed `1x² + 0x − 2`. | Conventional writing: zero terms omitted, unit coefficients implicit, typographic minus. |
+| Quadratic workshop gave decimal roots when the discriminant is a perfect rational square, and wrote vertex form as `x − (−1)`. | Exact rational roots (`rationalSqrt`, regression test); vertex form `x + 1`, `x²` when α = 0. |
+| Integral prompt did not say which rectangles. | “Two left-endpoint rectangles”, then right endpoints. |
+| Visual lessons used decimal points in French and `10^x` written inline. | French decimal commas; true superscripts. |
+| Vectors sheet used Greek β as a subscript for point B. | `x_B − x_A`. |
+| Sequence readout `u9` instead of an index. | Unicode subscript index. |
+
+No incorrect answer or theorem statement was found in the labs, challenges, workshop or study guides.
+
+## Curriculum
+
+French pathway references were checked against BO n°14 of 2 April 2026 (new seconde/première programmes from 2026–2027, terminale from 2027–2028). Secondary sources indicate that the binomial distribution and conditional probability move into the new première programme; the official programme PDF could not be retrieved from this environment (education.gouv.fr and eduscol blocked), so the site mapping is unchanged and marked **[VERIFY — check Eduscol]**. Malagasy and IB mappings in `CURRICULUM.md` were not changed.
+
+## English editions of the PDF library
+
+Finding: the English PDFs were machine-translated (local model) span by span and never reviewed. Sampling showed systematic and sometimes meaning-changing errors: *Exercice* → “Fiscal year”, *Devoir* → “Duty”, *Blanc* → “White”, *abscisse* → “abscesses/apses”, *droite* → “right”, *dérivable* → “drifting”, *vecteur directeur* → “master vector”, *sans remise* → “without remission”, *point d’inflexion* → “deflection point”, “au plus deux succès” → “at least two”, dropped signs and digits (F(0)=−1 → F(0)=1; 0,28 → 0.18; (1;2;−1) → (1−2;−1)), translated Python identifiers, dropped second sentences, and a garbled running header (“Maths ExploreWhat’s going on in…”).
+
+Method: all 18,748 cached French→English spans were reviewed; 11,794 corrections (template rules for repeated headings plus individual review) are stored in `docs/translation-corrections.json`. `scripts/patch-english-pdfs.py` rewrites only the English overlay text blocks; equations, figures and the French layout are untouched. A replacement may use the width of the French line it covers and is condensed only beyond that. Result (`docs/TRANSLATION_CORRECTIONS_LEDGER.json`): 282 English PDFs, 42,582 spans replaced; all 331 FR/EN pairs keep identical page and image counts; French files are unchanged. Counts in the English text before → after: “Fiscal year” 86 → 0, “Duty” 81 → 0, “White” 62 → 0, “abscess/apses” 50 → 0, “derivable/drift” 108 → 0, garbled header 172 → 0. `translate-resources.py` now applies the reviewed corrections last, so a regeneration keeps them.
+
+Residual limits:
+- 180 short machine outputs shared by different French sources (e.g. “Right.” from *Vrai.*, *exact.*, *droite.*) are skipped as ambiguous.
+- Word order across two overlay segments cannot be fixed span by span (e.g. “do not join necessarily these points”).
+- 274 spans are still condensed below 60 % width.
+- A full re-typeset English edition from LaTeX sources would remove all three; this was not attempted.
+
+## Site design and interaction
+
+- Quadratic workshop in dark theme: active stage and headings were near-invisible (`--mint` is dark there). Fixed; buttons, presets and controls styled; mobile sign table and graph labels.
+- Trig tabs: white on mint (≈1.4:1) → dark text.
+- Phone navigation fits one row at ≤420 px; 44 px-class targets on disclosures and checkboxes; data tables have `scope="col"` headers.
+- Ten unlinked STMG notes PDFs that rendered blank were removed.
+- Checks: `npm test` 50/50, `npm run check`, Chromium browser suite (4 widths, 200 % text) pass; axe-core 4.10.2 reported 0 violations on 13 routes at 2 widths. Automated checks do not establish WCAG conformity.
+
+## Owner requirements (AGENTS.md)
+
+No Google Drive or personal-space URL, identifier or link was found in HTML, JavaScript, catalogues, PDF text, annotations or metadata (`finalize-resources.py` re-checks on every run). Every downloadable resource has French and English editions. The single AI-content notice remains in the footer.
+
 # Critical audit — 7 October 2026
 
 Baseline: `aeda41df506ff7e6f884ffdd1b150a4251476c61`, fetched from both GitHub main and the existing Sites source. No repository or ancestor `AGENTS.md` was present. GitHub's original Website checks run succeeded, but ran only syntax and seven Node tests. These seven tests and the original Chromium browser suite were independently reproduced from the baseline archive.
