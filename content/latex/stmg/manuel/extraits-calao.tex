@@ -1,0 +1,818 @@
+% Extraits du manuel Calao Terminale STMG, recopiés pour un usage en séance.
+% Une seule commande est appelée par fiche : \CalaoSession{<numero>}.
+\makeatletter
+\NewDocumentCommand{\DefCalao}{m m m +m +m m}{%
+  \expandafter\long\expandafter\def\csname calao@#1\endcsname{%
+    \begin{exercicecal}{p.~#2, exercice~#3}
+      #4
+      \zoneeleve{#6}
+    \end{exercicecal}
+    \enseignant{#5}%
+  }%
+}
+\newcommand{\CalaoSession}[1]{%
+  \@ifundefined{calao@#1}
+    {\begin{erreur}Extrait du manuel à compléter pour la séance #1.\end{erreur}}
+    {\csname calao@#1\endcsname}%
+}
+\makeatother
+
+% -----------------------------------------------------------------------------
+% Chapitre 1 -- Suites numériques
+% -----------------------------------------------------------------------------
+\DefCalao{1}{24}{5}{%
+Pour chacune des suites, préciser si elle est arithmétique et, si oui, indiquer sa raison.
+\begin{enumerate}[label=\alph*.]
+\item Pour tout entier $n$ : $u_n=2(n-5)+3n$.
+\item Pour tout entier $n$ : $v_n=n^2+n-1$.
+\item Pour tout entier $n$ : $w_n=-4+3n$.
+\end{enumerate}
+}{%
+\begin{enumerate}[label=\alph*.]
+\item $u_n=5n-10$, donc $u_{n+1}-u_n=5$ : la suite est arithmétique de raison $5$.
+\item $v_{n+1}-v_n=2n+2$, qui dépend de $n$ : la suite n'est pas arithmétique.
+\item $w_{n+1}-w_n=3$ : la suite est arithmétique de raison $3$.
+\end{enumerate}
+}{3}
+
+\DefCalao{2}{24}{6}{%
+Soit $(l_n)$ la suite arithmétique de raison $2$ et de premier terme : $l_0=-1$.
+\begin{enumerate}[label=\alph*.]
+\item Exprimer $l_n$ pour tout entier naturel $n$.
+\item Calculer $l_{35}$ et $l_{64}$.
+\end{enumerate}
+}{%
+$l_n=l_0+nr=-1+2n$. Ainsi $l_{35}=69$ et $l_{64}=127$.
+}{3}
+
+\DefCalao{3}{24}{9}{%
+\begin{enumerate}[label=\alph*.]
+\item Calculer la somme des $500$ premiers entiers non nuls $\displaystyle\sum_{i=1}^{500}i$.
+\item Calculer la somme des entiers de $35$ à $150$ : $\displaystyle\sum_{k=35}^{150}k$.
+\end{enumerate}
+}{%
+\begin{enumerate}[label=\alph*.]
+\item $\displaystyle\sum_{i=1}^{500}i=\frac{500\times501}{2}=125\,250$.
+\item Il y a $150-35+1=116$ termes, donc la somme vaut
+$\displaystyle116\times\frac{35+150}{2}=10\,730$.
+\end{enumerate}
+}{4}
+
+\DefCalao{4}{25}{19}{%
+Soit $(l_n)$ la suite géométrique de raison $2$ et de premier terme : $l_0=-1$.
+\begin{enumerate}[label=\alph*.]
+\item Exprimer $l_n$ pour tout entier naturel $n$.
+\item Calculer $l_{12}$ et $l_{20}$.
+\end{enumerate}
+}{%
+$l_n=l_0q^n=-2^n$. Ainsi $l_{12}=-4\,096$ et $l_{20}=-1\,048\,576$.
+}{3}
+
+\DefCalao{5}{25}{22}{%
+On considère la suite $(u_n)$ géométrique de raison $3$ et de premier terme : $u_0=5$.
+\begin{enumerate}[label=\alph*.]
+\item Exprimer $u_n$ pour tout entier naturel $n$. En déduire $u_7$.
+\item Calculer : $\displaystyle S=\sum_{i=0}^{7}u_i=u_0+u_1+\cdots+u_7$.
+\end{enumerate}
+}{%
+$u_n=5\times3^n$, donc $u_7=10\,935$. Puis
+$\displaystyle S=5\,\frac{1-3^8}{1-3}=16\,400$.
+}{4}
+
+\DefCalao{6}{29}{49}{%
+Pour chaque proposition, dire si elle est vraie ou fausse. Justifier la réponse.
+\begin{enumerate}
+\item Un capital de $5\,000$~€ est placé sur un compte à intérêts simples au taux d'intérêt annuel de $4\,\%$. Cette situation peut être modélisée par une suite géométrique de raison $1{,}04$.
+\item Le nombre de moineaux baisse de $20\,\%$ par an dans une région. Une association décide de réintroduire $200$ moineaux chaque année. Cette situation peut être modélisée par une suite arithmétique de raison $200$.
+\item La masse d'ordures ménagères baisse de $10\,\%$ par an. Cette situation peut être modélisée par une suite géométrique de raison $1{,}1$.
+\item La production d'une entreprise augmente de manière hebdomadaire de $200$ objets produits. Cette situation peut être modélisée par une suite arithmétique de raison $200$.
+\item Le nombre d'abonnés d'un youtubeur augmente tous les mois de $15\,\%$. Cette situation peut être modélisée par une suite arithmétique de raison $15$.
+\item Le loyer annuel d'un appartement subit une hausse de $320$~€ tous les ans. Cette situation peut être modélisée par une suite arithmétique de raison $320$.
+\item Au $1^{\rm er}$ janvier d'une année, Enzo place $1\,000$~€ à intérêts composés sur un compte dont le taux annuel est égal à $2\,\%$ et au $1^{\rm er}$ janvier de chaque année suivante, il place $200$~€ sur ce compte. Cette situation peut être modélisée par une suite géométrique de raison $1{,}02$.
+\end{enumerate}
+}{%
+Les réponses sont : faux, faux, faux, vrai, faux, vrai, faux. Aux intérêts simples, l'accroissement est constant ; dans les questions 2 et 7, une opération additive s'ajoute à l'évolution multiplicative ; une baisse de $10\,\%$ correspond à $0{,}9$ ; une hausse de $15\,\%$ conduit à une suite géométrique de raison $1{,}15$.
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapitre 2 -- Fonctions exponentielles
+% -----------------------------------------------------------------------------
+\DefCalao{7}{48}{2}{%
+Au $1^{\rm er}$ janvier 2019, la France compte $66{,}9$ millions d'habitants. On estime son taux de croissance annuel à $0{,}4\,\%$. Pour tout entier naturel $n$, on note $u_n$ le nombre de millions d'habitants en France au $1^{\rm er}$ janvier de l'année $2019+n$ et on admet que la suite $(u_n)$ est une suite géométrique.
+\begin{enumerate}
+\item Donner la raison de la suite $(u_n)$. Exprimer $u_n$ en fonction de $n$.
+\item Proposer l'expression d'une fonction $f$ permettant d'estimer le nombre d'habitants en France $x$ années après le $1^{\rm er}$ janvier 2019, $x$ étant un nombre réel. Déterminer, selon ce modèle, le nombre d'habitants au $1^{\rm er}$ janvier 2022, au $1^{\rm er}$ juillet 2023 et au $1^{\rm er}$ octobre 2025.
+\end{enumerate}
+}{%
+La raison est $1{,}004$ et $u_n=66{,}9\times1{,}004^n$. On prolonge par
+$f(x)=66{,}9\times1{,}004^x$. On calcule $f(3)$, $f(4{,}5)$ et $f(6{,}75)$, soit environ $67{,}71$, $68{,}11$ et $68{,}72$ millions d'habitants.
+}{5}
+
+\DefCalao{8}{49}{10}{%
+Écrire sous la forme d'une seule puissance de $2$ :
+\[
+a=2^5\times2^3;\qquad b=\left(2^{4{,}5}\right)^3;\qquad
+c=2^3\times4^2;\qquad d=\frac{2^5}{4}.
+\]
+}{%
+$a=2^8$, $b=2^{13{,}5}$, $c=2^3\times(2^2)^2=2^7$ et $d=2^{5-2}=2^3$.
+}{2}
+
+\DefCalao{9}{48}{6}{%
+Déterminer le sens de variation des fonctions définies sur $\mathbb{R}$ par :
+\[
+a:t\mapsto-2\times1{,}4^t;\qquad
+b:t\mapsto9{,}85\times0{,}95^t;\qquad
+c:t\mapsto0{,}8\times2{,}25^t.
+\]
+}{%
+$1{,}4^t$ est croissante et le coefficient $-2$ inverse les variations : $a$ est décroissante. $0{,}95^t$ est décroissante et le coefficient est positif : $b$ est décroissante. $2{,}25^t$ est croissante et le coefficient est positif : $c$ est croissante.
+}{3}
+
+\DefCalao{10}{49}{18}{%
+Le chiffre d'affaires d'une entreprise a augmenté de $38\,\%$ en trois ans. Calculer l'augmentation annuelle moyenne à $0{,}1\,\%$ près.
+}{%
+Le coefficient global est $1{,}38$. Si $t$ est le taux annuel moyen, $(1+t)^3=1{,}38$, donc $t=1{,}38^{1/3}-1\approx0{,}113$. L'augmentation annuelle moyenne est d'environ $11{,}3\,\%$.
+}{3}
+
+\DefCalao{11}{52}{38}{%
+On a représenté ci-dessous les fonctions $f$ et $g$ définies par : $f(x)=2{,}9^x$ et $g(x)=0{,}35^x$.
+\begin{enumerate}
+\item Quelle est la courbe représentative de $f$ ? Justifier ce choix.
+\item Résoudre graphiquement l'équation $f(x)=4$. L'utilisation de la calculatrice graphique permet d'obtenir une solution approchée à $0{,}01$ près.
+\item Déterminer graphiquement l'ensemble des réels $x$ tels que : $f(x)\leqslant4$ et $g(x)\leqslant4$.
+\end{enumerate}
+}{%
+La courbe de $f$ est croissante car $2{,}9>1$ ; celle de $g$ est décroissante car $0<0{,}35<1$. On obtient $f(x)=4$ pour $x\approx1{,}30$. Ainsi $f(x)\leqslant4$ pour $x\leqslant1{,}30$. Pour $g$, le seuil est $x\approx-1{,}32$ et $g(x)\leqslant4$ pour $x\geqslant-1{,}32$.
+}{4}
+
+\DefCalao{12}{52}{33}{%
+Résoudre sur $\mathbb{R}$ l'inéquation : $0{,}8^x\geqslant0{,}8^3$.
+}{%
+La fonction $x\mapsto0{,}8^x$ est strictement décroissante ; l'ordre des exposants est donc inversé. La solution est $x\leqslant3$, soit $]-\infty;3]$.
+}{2}
+
+\DefCalao{13}{50}{25}{%
+La pression atmosphérique est égale à $1\,013$ hPa (hectoPascal) au niveau de la mer, et diminue de $12\,\%$ à chaque fois que l'on monte de $1\,000$ m. Il s'agit d'une décroissance exponentielle.
+
+On peut la modéliser par une fonction $P$ de l'altitude $h$ en milliers de mètres vérifiant : $P(h)=ka^h$.
+\begin{enumerate}
+\item Déterminer les constantes $k$ et $a$.
+\item Calculer la pression à $5\,500$ m d'altitude à $1$ hPa près.
+\end{enumerate}
+}{%
+$P(0)=k=1\,013$ et une diminution de $12\,\%$ donne $a=0{,}88$. Ainsi $P(5{,}5)=1\,013\times0{,}88^{5{,}5}\approx502$ hPa.
+}{3}
+
+\DefCalao{14}{55}{59}{%
+\begin{enumerate}
+\item Une action baisse de $20\,\%$ une année, puis de $80\,\%$ l'année suivante. Quel est le pourcentage de baisse annuel moyen ?
+\item Quel est le taux d'évolution moyen correspondant à une hausse de $60\,\%$, suivie d'une baisse de $60\,\%$ ?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Le coefficient global est $0{,}8\times0{,}2=0{,}16$. Le coefficient annuel moyen est $\sqrt{0{,}16}=0{,}4$, soit une baisse moyenne de $60\,\%$.
+\item Le coefficient global est $1{,}6\times0{,}4=0{,}64$. Le coefficient moyen est $\sqrt{0{,}64}=0{,}8$, soit une baisse moyenne de $20\,\%$.
+\end{enumerate}
+}{4}
+
+% -----------------------------------------------------------------------------
+% Chapitre 3 -- Fonction logarithme décimal
+% -----------------------------------------------------------------------------
+\DefCalao{15}{70}{2}{%
+Résoudre les équations suivantes.
+\begin{enumerate}[label=\alph*.]
+\item $5\times10^x=3{,}375$
+\item $3{,}2+2\times10^x=4{,}5\times10^x$
+\item $-17{,}3+10^x=5-3\times10^x$
+\end{enumerate}
+}{%
+\begin{enumerate}[label=\alph*.]
+\item $10^x=0{,}675$, donc $x=\log(0{,}675)\approx-0{,}171$.
+\item $2{,}5\times10^x=3{,}2$, donc $x=\log(1{,}28)\approx0{,}107$.
+\item $4\times10^x=22{,}3$, donc $x=\log(5{,}575)\approx0{,}746$.
+\end{enumerate}
+}{3}
+
+\DefCalao{16}{70}{7}{%
+Donner le signe des nombres suivants.
+\[
+\text{a. }\log(2{,}5)\qquad
+\text{b. }\log(0{,}25)\qquad
+\text{c. }\log\!\left(\frac{7}{10}\right)
+\]
+}{%
+La fonction logarithme décimal est croissante et $\log(1)=0$. Ainsi $\log(2{,}5)>0$, tandis que $\log(0{,}25)<0$ et $\log(7/10)<0$.
+}{2}
+
+\DefCalao{17}{73}{24}{%
+Écrire sous la forme $\log(A)$, où $A$ est un nombre réel que l'on précisera, les nombres suivants :
+\begin{enumerate}[label=\alph*.]
+\item $\log(2)+\log(7)-\log(5)$
+\item $\log(3)-2\log(5)$
+\item $\log(3)+\log(7)$
+\item $3\log(7)-7\log(3)$
+\item $\log(12)-\log(4)+2\log(3)$
+\end{enumerate}
+}{%
+Les résultats sont respectivement
+$\log(14/5)$, $\log(3/25)$, $\log(21)$,
+$\log(7^3/3^7)$ et $\log(27)$.
+}{4}
+
+\DefCalao{18}{73}{32}{%
+Harpagon a placé une somme de $24\,000$~€, à intérêts composés au taux annuel de $3{,}5\,\%$. Quelque temps après, il décide de clôturer ce compte alors que le solde est de $40\,208{,}37$~€. Le but de l'exercice est de déterminer le nombre d'années d'existence du compte.
+\begin{enumerate}
+\item Compléter l'algorithme incomplet afin qu'il réponde au problème.
+\item Déterminer le nombre d'années d'existence du compte.
+\item Traduire l'algorithme en langage Python et l'implanter dans un éditeur Python. Comparer le résultat obtenu avec celui de la question 2.
+\end{enumerate}
+}{%
+On initialise $S\leftarrow24\,000$ et $N\leftarrow0$, puis, tant que $S<40\,208{,}37$, on exécute $S\leftarrow1{,}035S$ et $N\leftarrow N+1$. On obtient $N=15$ ; en effet $24\,000\times1{,}035^{15}\approx40\,208{,}37$.
+}{5}
+
+\DefCalao{19}{73}{30}{%
+\begin{enumerate}
+\item Un premier capital de $6\,000$~€ est placé à intérêts composés au taux de $9\,\%$. Au bout de combien d'années ce capital aura-t-il doublé ? Triplé ?
+\item Un capital de $9\,000$~€ est placé le même jour au taux de $6\,\%$. Au bout de combien d'années la valeur du premier capital aura-t-elle dépassé le second ?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Le doublement vérifie $1{,}09^n\geqslant2$, soit $n\geqslant\log(2)/\log(1{,}09)\approx8{,}04$ : il faut $9$ ans. Pour tripler, le seuil vaut environ $12{,}75$ : il faut $13$ ans.
+\item $6\,000\times1{,}09^n>9\,000\times1{,}06^n$ équivaut à
+$\left(1{,}09/1{,}06\right)^n>1{,}5$. Le seuil est environ $14{,}52$ : le premier capital dépasse le second au bout de $15$ ans.
+\end{enumerate}
+}{5}
+
+\DefCalao{20}{74}{36}{%
+Un capital de $15\,500$~€ est placé à intérêts composés pendant $4$ ans et demi. Un deuxième capital de $16\,480$~€ est lui aussi placé à intérêts composés durant $5$ ans et $3$ mois au taux annuel de $6\,\%$.
+
+Quel doit être le taux de placement du premier capital pour que les capitaux en fin de placement soient identiques ?
+}{%
+On résout
+$15\,500(1+t)^{4{,}5}=16\,480\times1{,}06^{5{,}25}$.
+Ainsi
+$t=\left(\dfrac{16\,480\times1{,}06^{5{,}25}}{15\,500}\right)^{1/4{,}5}-1\approx0{,}087$, soit environ $8{,}7\,\%$.
+}{4}
+
+\DefCalao{21}{75}{41}{%
+La dynamique d'une image est la capacité d'une image numérique à restituer les échelles d'intensités lumineuses du monde réel. On exprime souvent la dynamique en utilisant les stops.
+
+En imagerie numérique, le pixel le plus sombre (noir) correspond à $0$ et le pixel le plus clair (blanc) correspond à $255$. Il existe ainsi $256$ intensités lumineuses, ce qui se traduit en unités informatiques par $8$ bits de précisions ($256=2^8$). Le nombre de stops est : $\dfrac{\log(256)}{\log(2)}=8$.
+\begin{enumerate}
+\item Pour une photo numérique sous-exposée, seules $128$ intensités lumineuses peuvent être captées. À combien de stops cela correspond-il ?
+\item Un fichier RAW a une précision de $10$ bits. Quel est le nombre de stops correspondants ?
+\item Une caméra vidéo standard a une dynamique d'image de $5{,}5$ stops. Combien d'intensités lumineuses différentes capte-t-elle ?
+\item Les écrans de télévision de dernière génération ont une dynamique d'image de $16$ stops. Combien d'intensités lumineuses différentes peuvent-ils afficher ?
+\item Le nombre d'intensités lumineuses du monde réel est de l'ordre de $100\,000\,000$. À combien de stops cela correspond-il ?
+\end{enumerate}
+}{%
+Le nombre de stops associé à $N$ intensités vaut $\log(N)/\log(2)$.
+\begin{enumerate}
+\item $128=2^7$ : $7$ stops.
+\item $10$ bits correspondent à $2^{10}$ intensités : $10$ stops.
+\item $2^{5{,}5}\approx45$ intensités.
+\item $2^{16}=65\,536$ intensités.
+\item $\log(10^8)/\log(2)\approx26{,}6$ stops.
+\end{enumerate}
+}{5}
+
+\DefCalao{22}{75}{42}{%
+$N$ est un entier naturel non nul. Le but de l'exercice est de trouver une méthode permettant de déterminer le nombre de chiffres de son écriture décimale.
+\begin{enumerate}
+\item $N=10\,203$.
+  \begin{enumerate}[label=\alph*.]
+  \item Encadrer $N$ entre deux puissances de $10$ consécutives. En déduire un encadrement de $\log(N)$ entre deux entiers consécutifs.
+  \item En déduire la valeur arrondie par excès à l'unité près de $\log(N)$. Comparer ce résultat avec le nombre de chiffres de $N$.
+  \end{enumerate}
+\item $N$ possède $23$ chiffres.
+  \begin{enumerate}[label=\alph*.]
+  \item Encadrer $N$ entre deux puissances de $10$ consécutives. En déduire un encadrement de $\log(N)$ entre deux entiers consécutifs.
+  \item Donner la valeur arrondie par excès à l'unité près de $\log(N)$. Quelle valeur retrouve-t-on ?
+  \end{enumerate}
+\item Déduire des questions précédentes une méthode pour déterminer le nombre de chiffres de chaque entier naturel non nul lorsque celui-ci est donné sous une forme décimale.
+\item Utiliser la méthode précédente pour déterminer le nombre de chiffres des entiers suivants : a. $7^{49}$ ; b. $5658$ ; c. $2\,019\times10^{20}$.
+\item Le plus grand nombre premier connu à ce jour est un nombre de Mersenne qui s'écrit : $2^{82\,589\,933}-1$. Combien possède-t-il de chiffres ?
+\end{enumerate}
+}{%
+$10^4<N<10^5$, donc $4<\log N<5$ et $N$ possède $5$ chiffres. Plus généralement, un entier $N\geqslant1$ possède $\lfloor\log N\rfloor+1$ chiffres. On trouve : $42$ chiffres pour $7^{49}$, $4$ pour $5658$, $21$ pour $2\,019\times10^{20}$, et $24\,862\,048$ chiffres pour $2^{82\,589\,933}-1$.
+}{6}
+
+% -----------------------------------------------------------------------------
+% Chapitre 4 -- Fonction inverse
+% -----------------------------------------------------------------------------
+\DefCalao{23}{101}{42}{%
+Le but de cet exercice est de tracer les courbes représentatives des fonctions $f$ et $g$ définies sur $\mathbb{R}^{*}$ par :
+$f(x)=\dfrac{2}{x}$ et $g(x)=4-\dfrac{3}{x}$.
+\begin{enumerate}
+\item Compléter le tableau de valeurs pour
+$x\in\{-5;-4;-2;-0{,}5;-0{,}2;-0{,}1;0{,}1;0{,}2;0{,}5;1;2;4;5\}$.
+\item À l'aide d'un tableau de valeurs, construire les courbes représentatives des fonctions $f$ et $g$.
+\end{enumerate}
+}{%
+Calculer chaque image en respectant la valeur interdite $0$. Les deux courbes ont pour asymptote verticale $x=0$. L'asymptote horizontale de $f$ est $y=0$ ; celle de $g$ est $y=4$. Pour contrôler le tracé, vérifier par exemple $f(1)=2$, $f(-1)=-2$, $g(1)=1$ et $g(-1)=7$.
+}{5}
+
+\DefCalao{24}{95}{16}{%
+On veut tracer la courbe représentative de la fonction $g$ définie sur $\mathbb{R}^{*}$ par : $g(x)=3-\dfrac{2}{x}$.
+\begin{enumerate}
+\item Compléter un tableau de valeurs pour
+\[
+x\in\{-1\,000;-500;-200;-100;-50;50;100;200;500;1\,000\}.
+\]
+Que peut-on en déduire pour le comportement de $g$ en $-\infty$ et en $+\infty$ ?
+\item Compléter un tableau de valeurs pour $x=-0{,}5;-0{,}1;-0{,}01;0{,}01;0{,}1;0{,}5$. Que peut-on en déduire pour le comportement de $g$ en $0$ ?
+\item Recopier et compléter le tableau de valeurs du manuel, puis tracer la courbe représentative de la fonction $g$.
+\end{enumerate}
+}{%
+Lorsque $x\to\pm\infty$, $-2/x\to0$, donc $g(x)\to3$. Lorsque $x\to0^{-}$, $-2/x\to+\infty$ ; lorsque $x\to0^{+}$, $-2/x\to-\infty$. Les asymptotes sont $x=0$ et $y=3$.
+}{5}
+
+\DefCalao{25}{94}{3}{%
+Calculer les dérivées des fonctions suivantes définies sur $\mathbb{R}^{*}$.
+\begin{enumerate}[label=\alph*.]
+\item $f(x)=2x-3+\dfrac{4}{x}$
+\item $g(x)=3x-5-\dfrac{1}{x}$
+\item $f(x)=7x^3-2x+\dfrac{1}{x}$
+\item $g(x)=3x^2-5x-2+\dfrac{4}{x}$
+\end{enumerate}
+}{%
+Les dérivées sont :
+$f'(x)=2-4/x^2$ ; $g'(x)=3+1/x^2$ ;
+$f'(x)=21x^2-2-1/x^2$ ; $g'(x)=6x-5-4/x^2$.
+}{4}
+
+\DefCalao{26}{96}{20}{%
+Soit $f$ la fonction définie sur $\mathbb{R}^{*}$ par
+$f(x)=4x+1+\dfrac{9}{x}$.
+\begin{enumerate}
+\item Montrer que pour tout réel $x$ non nul :
+$f'(x)=\dfrac{(2x-3)(2x+3)}{x^2}$.
+\item Pour tout réel $x$ non nul, étudier le signe de $f'(x)$.
+\item En déduire les variations de la fonction $f$.
+\end{enumerate}
+}{%
+$f'(x)=4-9/x^2=(4x^2-9)/x^2=((2x-3)(2x+3))/x^2$. Le dénominateur est positif : $f'$ est positif sur $]-\infty;-3/2[\cup]3/2;+\infty[$ et négatif sur $]-3/2;0[\cup]0;3/2[$. On en déduit les variations sur chacun des intervalles séparés par $-3/2$, $0$ et $3/2$.
+}{3}
+
+\DefCalao{27}{96}{21}{%
+Soit $g$ la fonction définie sur $\mathbb{R}^{*}$ par
+$g(x)=x+10-\dfrac{1}{x}$.
+\begin{enumerate}
+\item Montrer que pour tout réel $x$ non nul :
+$g'(x)=\dfrac{x^2+1}{x^2}$.
+\item Pour tout réel $x$ non nul, étudier le signe de $g'(x)$.
+\item En déduire les variations de la fonction $g$.
+\end{enumerate}
+}{%
+$g'(x)=1+1/x^2=(x^2+1)/x^2>0$ pour tout $x\neq0$. La fonction est donc strictement croissante sur chacun des intervalles $]-\infty;0[$ et $]0;+\infty[$.
+}{4}
+
+\DefCalao{28}{94}{13}{%
+Soit $f$ la fonction définie sur $\mathbb{R}^{*}$ par : $f(x)=\dfrac{1}{x}$.
+\begin{enumerate}
+\item Calculer $f'(x)$.
+\item Montrer que pour tout réel $x$ non nul :
+$f'(x)=\dfrac{-1}{x^2}$.
+\item Après avoir étudié le signe de $f'(x)$, dresser le tableau de variations de $f$.
+\end{enumerate}
+}{%
+$f'(x)=-1/x^2<0$ pour tout $x\neq0$. La fonction inverse est donc strictement décroissante sur chacun des intervalles $]-\infty;0[$ et $]0;+\infty[$. Il ne faut pas réunir ces deux intervalles en un seul intervalle de décroissance.
+}{3}
+
+\DefCalao{29}{98}{31}{%
+Une entreprise, spécialisée dans les fours industriels, peut en fabriquer entre $20$ et $80$ selon les années. Soit $x$ le nombre de fours fabriqués annuellement.
+
+La représentation graphique donnée dans le manuel est celle d'une fonction $C$ définie sur l'intervalle $[20;80]$. Pour toutes les valeurs entières de $x$, $C(x)$ est le coût de production unitaire moyen (en €).
+\begin{enumerate}
+\item Quel est le coût de production unitaire moyen lorsque $25$ fours sont produits puis lorsque $70$ fours sont produits ?
+\item Quelles productions correspondent à un coût unitaire moyen de $20\,000$~€ ?
+\item Quel est le coût unitaire moyen de production minimum ? À quelle production correspond-il ?
+\end{enumerate}
+}{%
+Les réponses numériques se lisent sur la courbe de la p.~98. Exiger des traits de lecture et des unités. Le minimum graphique doit être identifié par l'ordonnée du point le plus bas, puis relié à son abscisse ; une lecture graphique reste approchée.
+}{4}
+
+\DefCalao{30}{98}{32}{%
+Chaque semaine, une entreprise de détergent liquide estime que le coût de production (en euros) peut être modélisé par une fonction $C$ donnée par :
+$C(x)=x^2+60x+121$, où $x$ est le volume de détergent (en m$^3$), $x\in[1;30]$.
+
+Soit $f$ la fonction représentant le coût moyen de production par m$^3$ de détergent liquide.
+\begin{enumerate}
+\item Montrer que pour tout $x\in[1;30]$, $f(x)=x+60+\dfrac{121}{x}$.
+\item Calculer $f'(x)$. Montrer que pour tout $x\in[1;30]$,
+$f'(x)=\dfrac{(x-11)(x+11)}{x^2}$.
+\item Dresser le tableau de variations de $f$.
+\item Quel est le coût moyen de production minimal ? Pour quelle quantité de détergent est-il atteint ?
+\end{enumerate}
+}{%
+$f(x)=C(x)/x=x+60+121/x$. Puis
+$f'(x)=1-121/x^2=((x-11)(x+11))/x^2$. Sur $[1;30]$, $f'$ est négatif jusqu'à $11$, puis positif. Le minimum est atteint pour $x=11$ et vaut $f(11)=82$~€ par m$^3$.
+}{4}
+
+% -----------------------------------------------------------------------------
+% Chapitre 5 -- Séries statistiques à deux variables quantitatives
+% -----------------------------------------------------------------------------
+\DefCalao{31}{114}{2}{%
+Représenter dans un repère du plan le nuage de points de la série statistique suivante.
+\[
+\begin{array}{c|rrrrr}
+x_i&-3&0&3&5&8\\\hline
+y_i&1&-1&-2&5&7
+\end{array}
+\]
+}{%
+Placer les points $(-3;1)$, $(0;-1)$, $(3;-2)$, $(5;5)$ et $(8;7)$ dans un repère gradué et légendé. Vérifier chaque couple avant de relier éventuellement une tendance : un nuage de points n'est pas une ligne brisée.
+}{4}
+
+\DefCalao{32}{114}{6}{%
+Sur le graphique du manuel est représenté le nombre de cigarettes vendues en France en fonction du nombre de meutes de loups recensées en France entre 1995 et 2017.
+
+Comment peut-on décrire l'évolution de la vente de cigarettes à partir de ce graphique ? Pour autant, peut-on penser qu'il y ait un rapport entre ces faits ?
+}{%
+Le nuage suggère une tendance décroissante : lorsque le nombre de meutes recensées augmente, le nombre de cigarettes vendues diminue. Cette corrélation ne permet cependant pas d'établir un lien causal entre les deux phénomènes ; une variable temporelle ou d'autres facteurs expliquent leur évolution concomitante.
+}{3}
+
+\DefCalao{33}{115}{9}{%
+\begin{enumerate}
+\item Représenter dans un repère du plan le nuage de points associé à la série statistique ci-contre.
+\[
+\begin{array}{c|rrrrrr}
+x_i&-2&-1&0&2&3&5\\\hline
+y_i&4&8&12&16&16&20
+\end{array}
+\]
+Tracer la droite d'équation $y=2x+10$ dans ce repère. L'ajustement du nuage par cette droite paraît-il satisfaisant ? Dans le cas contraire, en proposer une autre dont on précisera l'équation réduite.
+\item En utilisant cette équation, déterminer :
+  \begin{itemize}
+  \item l'ordonnée du point de la droite d'ajustement ayant pour abscisse $1$ ;
+  \item l'ordonnée du point de la droite d'ajustement ayant pour abscisse $10$ ;
+  \item l'abscisse du point de la droite d'ajustement ayant pour ordonnée $7$.
+  \end{itemize}
+\end{enumerate}
+}{%
+La droite $y=2x+10$ suit correctement la tendance générale du nuage. Elle donne $y=12$ pour $x=1$, $y=30$ pour $x=10$, et $x=-1{,}5$ lorsque $y=7$. La valeur $x=10$ relève d'une extrapolation et doit être interprétée avec prudence.
+}{5}
+
+\DefCalao{34}{115}{8}{%
+Le tableau ci-dessous donne le nombre de véhicules électriques neufs immatriculés en France de 2014 à 2018.
+\[
+\begin{array}{c|ccccc}
+\text{Année}&2014&2015&2016&2017&2018\\\hline
+\text{Rang de l'année }x_i&0&1&2&3&4\\
+\text{Nombre de milliers de véhicules }y_i&10{,}5&17{,}3&21{,}7&24{,}9&31
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter dans un repère le nuage de points associé à cette série chronologique.
+\item Proposer un ajustement affine de ce nuage.
+\item Si on suppose que ce modèle d'ajustement reste valable plusieurs années, combien de véhicules neufs auraient été immatriculés en 2020 ? À partir de quelle année dépasserait-on $50\,000$ véhicules neufs immatriculés ?
+\end{enumerate}
+}{%
+La régression linéaire donne environ $y=4{,}86x+11{,}36$. Pour 2020, $x=6$, d'où $y\approx40{,}5$, soit environ $40\,500$ véhicules. Le seuil $y>50$ correspond à $x>7{,}95$ : selon ce modèle, il serait franchi en 2022. Il s'agit d'extrapolations.
+}{5}
+
+\DefCalao{35}{118}{20}{%
+Le chiffre d'affaires annuel d'une entreprise (en milliers d'euros) a été relevé au cours de ses cinq premières années d'existence.
+\[
+\begin{array}{c|ccccc}
+\text{Année}&2016&2017&2018&2019&2020\\\hline
+\text{Rang de l'année }x_i&0&1&2&3&4\\
+\text{Chiffre d'affaires }y_i&315{,}6&489{,}9&579{,}3&763{,}5&874{,}5
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter, dans un repère orthogonal, le nuage de points $M_i(x_i;y_i)$ de cette série statistique.
+\item On ajuste ce nuage de points par la droite $(M_1M_5)$. Déterminer une équation de cette droite d'ajustement (arrondir les coefficients au dixième).
+\item Si la tendance se poursuit, à quel chiffre d'affaires peut-on prévoir pour 2024 ? À la fin de quelle année le chiffre d'affaires dépassera-t-il deux millions d'euros ?
+\end{enumerate}
+}{%
+La droite passant par $(0;315{,}6)$ et $(4;874{,}5)$ a pour pente $139{,}725$, soit l'équation approchée $y=139{,}7x+315{,}6$. En 2024, $x=8$ et $y\approx1\,433{,}2$, soit environ $1{,}433$ million d'euros. Le seuil $2\,000$ est dépassé pour le premier rang entier $x=13$, c'est-à-dire en 2029.
+}{5}
+
+\DefCalao{36}{120}{29}{%
+Dans une salle de concert, un relevé de niveaux d'intensités sonores issus d'un générateur de sons a été effectué en plusieurs endroits. Les mesures effectuées ont été consignées dans le tableau ci-dessous.
+\[
+\begin{array}{c|rrrrrrrrrr}
+\text{Distance }x_i\text{ (m)}&0{,}5&1&2&3&5&10&11&12&15&20\\\hline
+\text{Intensité sonore }y_i\text{ (dB)}&97&85&73&66&59&53&55&52&55&49
+\end{array}
+\]
+Un ajustement affine ne semblant pas pertinent, un changement de variables est envisagé.
+\begin{enumerate}
+\item Compléter le tableau du manuel avec $u_i=\log(x_i)$.
+\item Représenter le nuage de points $(u_i;y_i)$ dans un repère, puis en proposer un ajustement affine.
+\item En déduire une expression de l'intensité sonore en fonction de la distance.
+\item À partir de l'expression trouvée, déterminer l'intensité sonore attendue à une distance de $8$ mètres, puis de $30$ mètres.
+\end{enumerate}
+}{%
+Avec les données fournies, une régression de $y$ en $u=\log x$ donne approximativement $y=-28{,}8u+83{,}9$. Un modèle est donc $y(x)=-28{,}8\log(x)+83{,}9$. Il fournit environ $57{,}9$ dB à $8$ m et $41{,}4$ dB à $30$ m ; la seconde estimation est une extrapolation.
+}{5}
+
+\DefCalao{37}{119}{25}{%
+On cherche à déterminer la concentration en caféine d'une boisson par mesure d'absorbance. Pour cela, on utilise un faisceau laser et on mesure l'atténuation de la lumière émise après traversée du liquide. Pour les besoins de l'expérience, plusieurs solutions dont on connaît la teneur en caféine sont testées et on obtient la série de valeurs suivante.
+\[
+\begin{array}{c|ccccc}
+\text{Absorbance }A&0{,}155&0{,}320&0{,}465&0{,}630&0{,}935\\\hline
+\text{Concentration }C\text{ (mg/L)}&5&10&15&20&30
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter ces données à l'aide d'un nuage de points dans un repère du plan.
+\item Un ajustement affine semble-t-il ici pertinent ? Exprimer le cas échéant la valeur $C$ de la concentration en caféine en fonction de la valeur $A$ de l'absorbance.
+\item On mesure pour une boisson contenant de la caféine une absorbance de $0{,}5$. Quelle est alors sa concentration en caféine ?
+\end{enumerate}
+}{%
+Les points sont presque alignés. Une régression affine donne environ $C=32{,}1A-0{,}1$. Pour $A=0{,}5$, on obtient $C\approx16{,}0$ mg/L. Cette estimation est une interpolation.
+}{5}
+
+\DefCalao{38}{118--119}{24}{%
+Choisir la bonne proposition. Justifier la réponse. On considère le nuage de points $M_1(1;16)$, $M_2(3;13)$ et $M_3(5;4)$.
+\begin{enumerate}
+\item Le point moyen de ce nuage est :
+  \begin{enumerate}[label=\alph*.]
+  \item le point de coordonnées $(3;10)$ ;
+  \item le point $M_2$ ;
+  \item le point de coordonnées $(3;11)$.
+  \end{enumerate}
+\item La droite $(M_1M_3)$ a pour équation :
+  \begin{enumerate}[label=\alph*.]
+  \item $y=4x+16$ ;
+  \item $y=-3x+19$ ;
+  \item $y=-2{,}93x+17{,}7$.
+  \end{enumerate}
+\item La droite d'ajustement obtenue par la calculatrice :
+  \begin{enumerate}[label=\alph*.]
+  \item passe par l'un des trois points ;
+  \item est parallèle à la droite $(M_1M_3)$ ;
+  \item passe par l'origine du repère.
+  \end{enumerate}
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Réponse c : $\bar x=3$ et $\bar y=11$.
+\item Réponse b : la pente vaut $(4-16)/(5-1)=-3$ et l'ordonnée à l'origine vaut $19$.
+\item Réponse b : la régression est $y=-3x+20$, elle passe par le point moyen et est parallèle à $(M_1M_3)$.
+\end{enumerate}
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapitre 6 -- Probabilités conditionnelles
+% -----------------------------------------------------------------------------
+\DefCalao{39}{138}{5}{%
+Une entreprise achète des puces électroniques auprès de trois fournisseurs $F_1$, $F_2$ et $F_3$ : $30\,\%$ chez $F_1$, $20\,\%$ chez $F_2$. Certaines puces présentent des défauts : $5\,\%$ des puces venant de $F_1$, $3\,\%$ de celles venant de $F_2$ et $10\,\%$ des puces de $F_3$.
+
+On choisit une puce au hasard. Soit les événements $F_i$ : « La puce vient du fournisseur $i$ » et $D$ : « La puce a un défaut ».
+\begin{enumerate}
+\item Compléter l'arbre pondéré du manuel.
+\item Déterminer la probabilité que la puce choisie ait un défaut.
+\item Sachant que la puce a un défaut, déterminer la probabilité qu'elle vienne du fournisseur $F_3$.
+\end{enumerate}
+}{%
+$P(F_3)=0{,}50$. Par probabilités totales,
+$P(D)=0{,}30\times0{,}05+0{,}20\times0{,}03+0{,}50\times0{,}10=0{,}071$.
+Enfin $P_D(F_3)=0{,}05/0{,}071\approx0{,}704$.
+}{5}
+
+\DefCalao{40}{140}{15}{%
+\begin{enumerate}
+\item Compléter l'arbre du manuel sachant que $P(A)=\dfrac35$, $P_A(B)=\dfrac7{10}$, $P_A(D)=\dfrac15$, $P_{\overline A}(B)=\dfrac13$ et $P_{\overline A}(C)=\dfrac29$.
+\item Déterminer $P(A\cap B)$, $P(A\cap D)$ et $P(C)$.
+\end{enumerate}
+}{%
+$P(\overline A)=2/5$, $P_A(C)=1/10$ et $P_{\overline A}(D)=4/9$.
+Ainsi $P(A\cap B)=21/50$, $P(A\cap D)=3/25$ et
+$P(C)=\dfrac35\times\dfrac1{10}+\dfrac25\times\dfrac29=\dfrac{67}{450}$.
+}{4}
+
+\DefCalao{41}{140}{18}{%
+$75\,\%$ des clients d'un restaurant sont des familles. Parmi celles-ci, $17\,\%$ payent leur addition avec des chèques-vacances, $76\,\%$ payent leur addition par carte bancaire et les autres règlent en liquide. Parmi les autres clients, seulement $5\,\%$ utilisent les chèques-vacances, $80\,\%$ une carte bancaire et les autres du liquide.
+
+On choisit au hasard une table et ses (ou son) client(s). On note $F$ : « Les clients sont une famille », $C$ : « Les clients payent en chèques-vacances », $B$ : « Les clients payent en carte bancaire » et $L$ : « Les clients payent en liquide ».
+\begin{enumerate}
+\item Compléter l'arbre pondéré du manuel.
+\item Décrire par une phrase l'événement $\overline F\cap B$ puis en calculer la probabilité.
+\item Calculer la probabilité que les clients choisis payent avec des chèques-vacances.
+\item Les clients choisis ont payé en chèques-vacances. Calculer la probabilité que ces clients soient une famille.
+\end{enumerate}
+}{%
+Sous $F$, la probabilité de $L$ vaut $0{,}07$ ; sous $\overline F$, elle vaut $0{,}15$.
+$P(\overline F\cap B)=0{,}25\times0{,}80=0{,}20$.
+$P(C)=0{,}75\times0{,}17+0{,}25\times0{,}05=0{,}14$.
+$P_C(F)=0{,}1275/0{,}14=51/56\approx0{,}911$.
+}{5}
+
+\DefCalao{42}{139}{13}{%
+À la sortie d'une usine, les montres peuvent présenter un défaut (noté $D_1$) sur le bracelet et un défaut (noté $D_2$) sur le cadran. Une montre est dite défectueuse si elle présente au moins l'un des deux défauts. On prélève une montre au hasard dans la production d'une journée.
+
+On note $A$ l'événement : « La montre présente le défaut $D_1$ » et $B$ l'événement : « La montre présente le défaut $D_2$ ». On connaît les probabilités de ces événements : $P(A)=0{,}02$ et $P(B)=0{,}01$. On suppose que ces deux événements sont indépendants.
+\begin{enumerate}
+\item Déterminer la probabilité que la montre présente les deux défauts.
+\item Déterminer la probabilité que la montre n'ait aucun défaut.
+\end{enumerate}
+}{%
+Par indépendance, $P(A\cap B)=0{,}02\times0{,}01=0{,}0002$. Les événements contraires sont aussi indépendants, donc
+$P(\overline A\cap\overline B)=0{,}98\times0{,}99=0{,}9702$.
+}{3}
+
+\DefCalao{43}{139}{7}{%
+Au début des années 2000, Internet n'était pas aussi populaire et une étude sur l'intérêt accordé à Internet sur un échantillon de $2\,000$ personnes a donné les résultats suivants.
+\[
+\begin{array}{c|ccc}
+\text{Intéressé par Internet ?}&\text{Oui}&\text{Non}&\text{Total}\\\hline
+\text{Moins de 30 ans}&560&\cdots&700\\
+\text{De 30 à 60 ans}&\cdots&\cdots&\cdots\\
+\text{Plus de 60 ans}&\cdots&510&600\\\hline
+\text{Total}&800&\cdots&2\,000
+\end{array}
+\]
+\begin{enumerate}
+\item Compléter ce tableau.
+\item On choisit une personne interrogée au hasard. On note $A_1$ : « La personne a moins de $30$ ans », $A_2$ : « La personne a entre $30$ et $60$ ans », $A_3$ : « La personne a plus de $60$ ans » et $I$ : « La personne est intéressée par Internet ». À l'aide du tableau, compléter les arbres de probabilités du manuel.
+\end{enumerate}
+}{%
+La ligne $30$--$60$ totalise $700$ personnes. Le tableau complété donne : moins de $30$ ans, $560$ oui et $140$ non ; de $30$ à $60$ ans, $150$ oui et $550$ non ; plus de $60$ ans, $90$ oui et $510$ non. Les totaux sont $800$ oui et $1\,200$ non.
+}{5}
+
+\DefCalao{44}{142}{24}{%
+Un sondage est réalisé par une mairie pour connaître les habitudes de ses administrés sur le traitement des déchets. $80\,\%$ des personnes interrogées se déclarent sensibles au développement durable, mais parmi elles, seulement $75\,\%$ trient leurs déchets. $70\,\%$ des personnes interrogées déclarent trier leurs déchets.
+
+On choisit au hasard une des personnes interrogées. On considère les événements $D$ : « La personne interrogée est sensible au développement durable » et $T$ : « La personne interrogée trie les déchets ».
+\begin{enumerate}
+\item Déterminer $P_D(T)$.
+\item Déterminer $P_T(D)$.
+\end{enumerate}
+}{%
+$P_D(T)=0{,}75$. Puis $P(D\cap T)=0{,}80\times0{,}75=0{,}60$, donc
+$P_T(D)=0{,}60/0{,}70=6/7\approx0{,}857$.
+}{3}
+
+\DefCalao{45}{143}{26}{%
+Dans cet exercice, les résultats seront donnés sous forme de fractions irréductibles. Un jeu consiste à lancer un dé cubique équilibré puis à tirer une boule dans une urne. Si on obtient $6$ au lancer du dé, on tire une boule dans l'urne A ; si on obtient un nombre impair, on tire dans l'urne B ; dans les autres cas, on tire dans l'urne C.
+
+L'urne A contient $1$ boule rouge et $5$ boules vertes ; l'urne B contient $2$ boules rouges et $8$ boules vertes ; l'urne C contient $3$ boules rouges et $11$ boules vertes.
+
+On considère les événements suivants : $I$ : « Obtenir un nombre impair » ; $S$ : « Obtenir $6$ » ; $A$ : « Obtenir $2$ ou $4$ » ; $R$ : « La boule tirée est rouge » ; $V$ : « La boule tirée est verte ».
+\begin{enumerate}
+\item Représenter un arbre pondéré correspondant à cette situation.
+\item Déterminer la probabilité de tirer une boule rouge.
+\item Déterminer la probabilité que la boule provienne de l'urne A sachant qu'elle est rouge.
+\end{enumerate}
+}{%
+$P(S)=1/6$, $P(I)=1/2$ et $P(A)=1/3$. Ainsi
+$P(R)=\dfrac16\times\dfrac16+\dfrac12\times\dfrac2{10}+\dfrac13\times\dfrac3{14}=\dfrac{251}{1260}$.
+Enfin $P_R(S)=\dfrac{1/36}{251/1260}=\dfrac{35}{251}$. Ici, le chemin $S$ conduit à l'urne A ; bien distinguer l'événement $A$ nommé dans l'énoncé et l'urne A.
+}{5}
+
+\DefCalao{46}{143}{29}{%
+Pour embaucher ses cadres, une entreprise fait appel à un cabinet de recrutement. Celui-ci effectue une première sélection sur dossier. $40\,\%$ des dossiers reçus sont validés et transmis à l'entreprise. Les candidats sélectionnés passent un premier entretien à l'issue duquel $70\,\%$ d'entre eux sont retenus. Ces derniers sont convoqués à un ultime entretien avec le directeur des ressources humaines qui recrute $25\,\%$ des candidats rencontrés.
+
+On choisit au hasard le dossier d'un candidat. On considère les événements suivants : $D$ : « Le candidat est retenu sur dossier » ; $E_1$ : « Le candidat est retenu à l'issue du premier entretien » ; $E_2$ : « Le candidat est recruté ».
+\begin{enumerate}
+\item Compléter l'arbre pondéré du manuel. On note $F$ l'événement : « Le candidat n'est pas recruté ». Démontrer que la probabilité de l'événement $F$ est égale à $0{,}93$.
+\item Cinq amis postulent à un emploi de cadre dans cette entreprise. Leurs dossiers sont étudiés indépendamment les uns des autres. Déterminer la probabilité qu'au moins l'un des cinq amis soit recruté.
+\item Quel est le nombre minimum de dossiers que le cabinet de recrutement doit traiter pour que la probabilité d'embaucher au moins un candidat soit supérieure à $0{,}999$ ?
+\end{enumerate}
+}{%
+$P(E_2)=0{,}40\times0{,}70\times0{,}25=0{,}07$, donc $P(F)=0{,}93$. Pour cinq dossiers indépendants, la probabilité d'au moins un recrutement est $1-0{,}93^5\approx0{,}304$. Enfin $1-0{,}93^n>0{,}999$ équivaut à $0{,}93^n<0{,}001$ ; le premier entier convenable est $n=96$.
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapitre 7 -- Variables aléatoires discrètes et loi binomiale
+% -----------------------------------------------------------------------------
+\DefCalao{47}{160}{2}{%
+Un jeu consiste à lancer un dé bien équilibré. Si le résultat est :
+\begin{itemize}
+\item $1$, $2$ ou $3$, alors on perd $2$ points ;
+\item $3$ ou $4$, alors on ne perd ni ne gagne rien ;
+\item $6$, alors on gagne $3$ points.
+\end{itemize}
+On pose $G$ la variable aléatoire qui, à chaque lancer, associe le gain (positif ou négatif) du joueur.
+\begin{enumerate}
+\item Compléter le tableau qui représente la loi de probabilité de la variable aléatoire $G$.
+\item Calculer $E(G)$. Que peut-on remarquer ?
+\end{enumerate}
+}{%
+Le texte imprimé fait apparaître le résultat $3$ dans deux lignes ; la partition cohérente est $1,2,3$ pour $-2$, $4,5$ pour $0$, et $6$ pour $3$. On obtient donc les probabilités $1/2$, $1/3$ et $1/6$, puis $E(G)=-2\times1/2+3\times1/6=-0{,}5$. Le jeu est défavorable au joueur en moyenne.
+}{4}
+
+\DefCalao{48}{163}{22}{%
+Le maire d'une ville a décidé de réaliser un référendum sur l'éventuel aménagement d'un parc. Les résultats sont les suivants : $63\,\%$ pour et $37\,\%$ contre. On prélève au hasard deux bulletins de vote. Le nombre de participants est suffisamment important pour que l'on puisse assimiler ce prélèvement à un tirage au hasard et avec remise de deux bulletins de vote.
+
+On considère la variable aléatoire $X$ qui, à tout prélèvement de deux bulletins, associe le nombre de bulletins « Pour ».
+\begin{enumerate}
+\item Quelle est la loi suivie par $X$ ? Déterminer ses paramètres.
+\item Calculer la probabilité que, dans un tel prélèvement, on ait : aucun « Pour » ; exactement un « Pour ».
+\item Déduire de la question 2 la probabilité que, dans un tel prélèvement, on ait au plus un « Pour ».
+\end{enumerate}
+}{%
+$X\sim\mathcal B(2;0{,}63)$. On a $P(X=0)=0{,}37^2=0{,}1369$ et
+$P(X=1)=2\times0{,}63\times0{,}37=0{,}4662$. Ainsi $P(X\leqslant1)=0{,}6031$.
+}{4}
+
+\DefCalao{49}{161}{13}{%
+On lance $5$ fois de suite une pièce de monnaie bien équilibrée. On note $F$ la variable aléatoire qui, à chaque expérience ainsi définie, associe le nombre de « Face » obtenus.
+\begin{enumerate}
+\item $F$ suit une loi binomiale. Préciser ses paramètres.
+\item Réaliser le triangle de Pascal jusqu'à $n=5$.
+\item Calculer $P(F=3)$. Interpréter ce résultat.
+\item Calculer la probabilité que le côté « Face » apparaisse au moins trois fois.
+\end{enumerate}
+}{%
+$F\sim\mathcal B(5;1/2)$. La ligne $n=5$ du triangle est $1,5,10,10,5,1$. Donc
+$P(F=3)=\binom53(1/2)^5=10/32=0{,}3125$ et
+$P(F\geqslant3)=(10+5+1)/32=0{,}5$.
+}{4}
+
+\DefCalao{50}{167}{38}{%
+Une société de livraison de colis réussit, pour les colis pris en charge avant $10$ h, à les livrer dès le lendemain avec une probabilité de $0{,}75$. Un commerçant dépose avant $10$ h sept colis pour ses clients. On note $X$ la variable aléatoire qui, à chaque lot de sept colis, associe le nombre de colis livrés dès le lendemain. On admet que $X$ suit une loi binomiale.
+\begin{enumerate}
+\item Déterminer les paramètres $n$ et $p$ de la loi $X$.
+\item Calculer la probabilité des événements suivants : A : « Tous les colis arriveront le lendemain. » ; B : « Au moins un colis n'arrivera pas le lendemain. »
+\item Compléter le triangle de Pascal jusqu'à la ligne $n=7$. En déduire $\binom72$. Calculer la probabilité de l'événement C : « Exactement deux colis arriveront le lendemain. »
+\item Interpréter l'événement $\{X=4\}$. Calculer la probabilité $P(X=4)$.
+\end{enumerate}
+}{%
+$X\sim\mathcal B(7;0{,}75)$. $P(A)=0{,}75^7\approx0{,}1335$ et $P(B)=1-0{,}75^7\approx0{,}8665$. Comme $\binom72=21$,
+$P(X=2)=21(0{,}75)^2(0{,}25)^5\approx0{,}0115$.
+$\{X=4\}$ signifie que quatre colis exactement sont livrés le lendemain et
+$P(X=4)=\binom74(0{,}75)^4(0{,}25)^3\approx0{,}1730$.
+}{5}
+
+\DefCalao{51}{166}{34}{%
+Une société commercialise, en grande quantité, des ampoules LED basse consommation et longue durée. $98\,\%$ de ces ampoules ont une durée de fonctionnement au moins égale à $20\,000$ h. Les ampoules sont vendues par lot de $10$. On note $X$ la variable aléatoire qui, à chaque lot de $10$ ampoules, associe le nombre d'ampoules dont la durée de fonctionnement est au moins égale à $20\,000$ h. La quantité d'ampoules est suffisamment importante pour que l'on puisse assimiler le choix d'un lot à un prélèvement au hasard et avec remise de $10$ ampoules.
+\begin{enumerate}
+\item Quelle est la loi suivie par $X$ ? Préciser ses paramètres.
+\item Recopier et compléter : $\binom{10}{9}=\cdots$ ; $\binom{10}{10}=\cdots$.
+\item En déduire les probabilités (arrondir à $0{,}001$) : $P(X=9)$ et $P(X=10)$. Interpréter les résultats précédents.
+\item En déduire la probabilité (à $0{,}001$ près) qu'un lot de $10$ ampoules contienne au moins $9$ ampoules dont la durée de fonctionnement sera au moins égale à $20\,000$ h.
+\end{enumerate}
+}{%
+$X\sim\mathcal B(10;0{,}98)$, $\binom{10}{9}=10$ et $\binom{10}{10}=1$.
+$P(X=9)=10(0{,}98)^9(0{,}02)\approx0{,}167$ et $P(X=10)=0{,}98^{10}\approx0{,}817$. Ainsi $P(X\geqslant9)\approx0{,}984$.
+}{5}
+
+% -----------------------------------------------------------------------------
+% Séances 52 à 55 -- Consolidation
+% -----------------------------------------------------------------------------
+\DefCalao{52}{29}{52}{%
+En France, depuis 2016, les ventes de véhicules hybrides ont fortement augmenté. Le tableau ci-dessous donne le nombre de véhicules hybrides vendus en France par année.
+\[
+\begin{array}{c|ccc}
+\text{Année}&2016&2017&2018\\\hline
+\text{Nombre de véhicules hybrides vendus}&7\,420&11\,010&15\,350
+\end{array}
+\]
+\textbf{Partie A}
+\begin{enumerate}
+\item Déterminer le pourcentage d'évolution entre 2016 et 2017, puis entre 2017 et 2018.
+\item Déterminer la moyenne géométrique de $1{,}48$ et $1{,}39$.
+\item Quel est le taux annuel moyen d'évolution entre 2016 et 2018 ?
+\end{enumerate}
+\textbf{Partie B}
+
+On suppose qu'à partir de 2018, les ventes de voitures hybrides augmentent de $43\,\%$ par an et que cette évolution va se poursuivre. On modélise par la suite $(u_n)$ l'évolution des ventes où la partie entière de $u_n$ représente le nombre de voitures hybrides vendues au cours de l'année $(2018+n)$.
+\begin{enumerate}
+\item Que vaut $u_0$ ? Calculer $u_1$ et $u_2$.
+\item Quelle est la nature de la suite $(u_n)$ ? Exprimer $u_n$ en fonction de $n$.
+\item Selon ce modèle, combien de véhicules hybrides seront vendus en 2023 ?
+\end{enumerate}
+}{%
+Les taux sont environ $48{,}4\,\%$ et $39{,}4\,\%$. La moyenne géométrique de $1{,}48$ et $1{,}39$ vaut $\sqrt{1{,}48\times1{,}39}\approx1{,}434$, soit un taux moyen d'environ $43{,}4\,\%$. Dans la partie B, $u_0=15\,350$, $u_n=15\,350\times1{,}43^n$ ; pour 2023, $n=5$ et la partie entière de $u_5$ donne environ $91\,788$ véhicules.
+}{6}
+
+\DefCalao{53}{54}{58}{%
+Le nombre d'adhérents à un club de basket a augmenté lors des trois dernières années de $2{,}5\,\%$, puis de $4{,}1\,\%$, et enfin de $3{,}8\,\%$. Calculer le taux d'évolution annuel moyen.
+}{%
+Le coefficient global est $1{,}025\times1{,}041\times1{,}038$. Le coefficient annuel moyen est sa racine cubique, soit environ $1{,}0346$. Le taux d'évolution annuel moyen est donc d'environ $3{,}46\,\%$.
+}{3}
+
+\DefCalao{54}{76}{43}{%
+Soit $x$ un réel strictement positif. Le but de l'exercice est de déterminer un ordre de grandeur de $x$.
+\begin{enumerate}
+\item $x=23{,}54$ et $y=569{,}47$.
+  \begin{enumerate}[label=\alph*.]
+  \item L'ordre de grandeur d'un nombre est la puissance de $10$ la plus proche de ce nombre. Donner l'ordre de grandeur de $x$ et $y$.
+  \item À l'aide de la calculatrice, déterminer $\log(x)$. Conjecturer un lien entre $\log(x)$ et l'ordre de grandeur de $x$. Vérifier votre conjecture avec $y$.
+  \end{enumerate}
+\item $x=5{,}4517$. À l'aide de la calculatrice, déterminer l'ordre de grandeur de $x$ et $\log(x)$. La conjecture émise à la question 1 est-elle vraie ?
+\item Supposons que $x$ soit écrit en notation scientifique : $x=a\times10^n$ où $a\in[1;10[$ et $n$ est un entier relatif. Donner l'ordre de grandeur de $x$ en fonction de la valeur de $a$.
+\item En déduire une méthode mettant en lien l'ordre de grandeur d'un réel strictement positif et son logarithme décimal.
+\item En déduire l'ordre de grandeur des deux nombres suivants : $2{,}26^{102}$ et $365{,}256^{2019}$.
+\end{enumerate}
+}{%
+$23{,}54$ est plus proche de $10$ que de $100$, tandis que $569{,}47$ est plus proche de $1\,000$ que de $100$ ; leurs ordres de grandeur sont $10$ et $10^3$. Le changement se produit à $a=\sqrt{10}$, pas à $a=5$. En notation scientifique $a\times10^n$, l'ordre de grandeur est $10^n$ si $a<\sqrt{10}$ et $10^{n+1}$ si $a\geqslant\sqrt{10}$. On applique cette règle à la partie fractionnaire des logarithmes : $102\log(2{,}26)\approx36{,}12$, donc ordre $10^{36}$ ; $2019\log(365{,}256)\approx5173{,}88$, donc ordre $10^{5174}$.
+}{6}
+
+\DefCalao{55}{102}{47}{%
+À Murano, un artisan verrier a calculé que le coût de production (en euros) de $x$ vases est donné par : $C(x)=x^2+30x+400$. Il cherche à fabriquer un nombre de vases maximal avec un coût unitaire moyen le plus faible possible.
+
+\textbf{Partie A}
+\begin{enumerate}
+\item Calculer $C(0)$ et en déduire les frais fixes de l'artisan. Quel est le coût de production de $20$ vases ? Pour $20$ vases, calculer le coût moyen de production d'un vase.
+\item On note $f(x)$ le coût unitaire moyen pour $x$ vases fabriqués. Pour une production d'au moins un vase ($x\geqslant1$), exprimer $f(x)$ en fonction de $x$.
+\item On admet que le coût moyen unitaire peut s'exprimer par $f(x)=x+30+\dfrac{400}{x}$. Calculer $f'(x)$. Montrer que $f'(x)=\dfrac{(x-20)(x+20)}{x^2}$. Étudier le signe de $f'(x)$ et en déduire les variations de $f$. Combien de vases doit produire l'artisan pour que le coût moyen unitaire soit minimal ? Donner ce coût.
+\end{enumerate}
+}{%
+$C(0)=400$~€ : ce sont les frais fixes. $C(20)=1\,400$~€, soit $70$~€ par vase. Pour $x>0$, $f(x)=C(x)/x=x+30+400/x$. Sa dérivée est $1-400/x^2=((x-20)(x+20))/x^2$. Sur $[1;+\infty[$, elle est négative jusqu'à $20$, puis positive. Le minimum est donc atteint pour $20$ vases et vaut $70$~€.
+}{6}
