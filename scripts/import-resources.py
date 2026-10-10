@@ -1,7 +1,7 @@
-"""Import authenticated, locally materialized Drive PDFs. Never fetch public URLs.
+"""Legacy importer for owner-supplied booklet PDFs (superseded by build-tex-resources.py). Never fetch public URLs.
 
 Usage: python scripts/import-resources.py /absolute/path/to/materials.json
-Manifest rows: name, local, id, url, title, modified. Local paths stay outside output.
+Manifest rows: name, local, title, modified. Local paths stay outside output.
 PDF bookmarks select chapters; section headings select bounded excerpts. Full-page
 chapter copies are authoritative; excerpts carry original source page provenance.
 """
@@ -81,7 +81,7 @@ def emit(chapter, name, kind, label, docname, start, end, audience='student', bo
         toc=[[l,t,p-start] for l,t,p in doc.get_toc() if start<p<=end]
         # Rebase flat bookmarks, retaining only valid entries.
         if toc: out.set_toc([[1,t,p] for l,t,p in toc])
-    out.set_metadata({'title':chapter['title'][0]+' — '+label[0], 'author':'Maths Explorer', 'subject':f"Extract from Drive {inputs[docname]['title']}; original pages {start+1}-{end}; source edition"})
+    out.set_metadata({'title':chapter['title'][0]+' — '+label[0], 'author':'Maths Explorer'})
     out.subset_fonts()
     out.save(target,garbage=4,deflate=True);out.close()
     check=fitz.open(target)

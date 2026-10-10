@@ -157,7 +157,7 @@ Based on the newer published source `99ffeeaf4afe2883bbc8f35ef31b8dd7908575cd`, 
 
 ## Resource library update · 7 October 2026
 
-Added 47 course chapters and three cross-chapter banks from the AI Assistant/ANONYME Drive subtree, 258 PDF extracts, and 39 short bilingual study guides (312 standalone HTML files). All 31 syntax/numerical/content/catalog tests pass. Download files, source hashes, page ranges, chapter links, language filters and separated teacher resources were checked. Representative PDF pages were rendered and inspected; crop footer artefacts and empty boundary pages were corrected. Original PDFs remain explicitly unverified AI-generated French material. No installed browser engine was available for new UI/device checks. See [the resource library record](RESOURCE_LIBRARY.md).
+Added 47 course chapters and three cross-chapter banks from the owner-supplied course booklets, 258 PDF extracts, and 39 short bilingual study guides (312 standalone HTML files). All 31 syntax/numerical/content/catalog tests pass. Download files, source hashes, page ranges, chapter links, language filters and separated teacher resources were checked. Representative PDF pages were rendered and inspected; crop footer artefacts and empty boundary pages were corrected. Original PDFs remain explicitly unverified AI-generated French material. No installed browser engine was available for new UI/device checks. See [the resource library record](RESOURCE_LIBRARY.md).
 
 ## 7 October 2026 — bilingual documents and trigonometry
 
@@ -183,7 +183,7 @@ French and English PDFs are separately selectable by the site's FR/EN setting.
 These translations have automated structural checks and representative visual
 inspection, not an exhaustive human mathematics or editorial review.
 
-The owner forbids links to their Drive or other personal spaces. All such URLs
+The owner forbids links to any personal space. All such URLs
 and IDs were removed from client catalogues; rendered interfaces no longer offer
 source-folder/file links. PDF annotations, visible text and metadata are scanned.
 Only public educational/historical reference links remain. The restriction is

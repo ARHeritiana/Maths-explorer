@@ -66,7 +66,7 @@ Remaining limits:
 
 ## Owner requirements (AGENTS.md)
 
-No Google Drive or personal-space URL, identifier or link was found in HTML, JavaScript, catalogues, PDF text, annotations or metadata (`finalize-resources.py` re-checks on every run). Every downloadable resource has French and English editions. The single AI-content notice remains in the footer.
+No personal-space URL, identifier or link was found in HTML, JavaScript, catalogues, PDF text, annotations or metadata (`finalize-resources.py` re-checks on every run). Every downloadable resource has French and English editions. The single AI-content notice remains in the footer.
 
 # Critical audit — 7 October 2026
 

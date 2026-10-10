@@ -56,7 +56,7 @@ docs/                Design plan, curriculum scope, validation notes
 
 Hash routes work on static hosts and under a repository subpath, for example `/#lab/probability`, `/#challenges/doors`, and `/#pathways`. All asset paths are relative. `dist/` is the source for the deployed site; it is intentionally committed rather than generated.
 
-Resource deep links use `/#library`, `/#library/terminale-01` and `/#library/@sequences`. Resource downloads are served with the site, with no live connector or Drive access required.
+Resource deep links use `/#library`, `/#library/terminale-01` and `/#library/@sequences`. Resource downloads are served with the site, with no live connector or external-storage access required.
 
 ## Validation
 
