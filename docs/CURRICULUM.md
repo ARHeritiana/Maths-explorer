@@ -1,6 +1,6 @@
 # Curriculum references and scope
 
-Review date: **7 October 2026**. These are selected learning opportunities, not complete courses, exam preparation or certified syllabus alignment. Reading a source verifies its date and selected topic references; it does not validate every lesson against all attainment statements. Teachers should select the relevant parts of each lab.
+Review date: **7 October 2026**; French première probability rechecked **10 October 2026**. These are selected learning opportunities, not complete courses, exam preparation or certified syllabus alignment. Reading a source verifies its date and selected topic references; it does not validate every lesson against all attainment statements. Teachers should select the relevant parts of each lab.
 
 ## Madagascar
 
@@ -21,10 +21,16 @@ T12 OSE/L mappings are **future review**, not implemented alignment. Annual dist
 | Course/version | Official source | Interpretation |
 |---|---|---|
 | Seconde générale et technologique, from 2026–2027 | [MENE2602914A, article 2 and annex](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602914A) | Statistics; vector addition and coordinates. Quadratic exploration is useful, but the general discriminant and dot product are enrichment. |
-| Première générale, spécialité, from 2026–2027 | [MENE2602917A, article 2 and annex](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602917A) | Quadratics, sequences, unit-circle trigonometry, derivative intuition and dot products. |
+| Première générale, spécialité, from 2026–2027 | [MENE2602917A, article 2 and annex](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602917A) | Quadratics, sequences, unit-circle trigonometry, derivative intuition and dot products. Probability: independence, total probability, trees for n ⩽ 4 identical independent Bernoulli trials, random variables (expectation, variance, König–Huygens); the probability lab is used with n ⩽ 4. |
 | Terminale générale, spécialité, 2026–2027 cohort | [MENE1921246A, 2019 programme](https://www.education.gouv.fr/bo/19/Special8/MENE1921246A.htm?cid_bo=144023); replacement date below | Current 2019 framework remains the reference for this cohort; probability and integration labs cover only introductory selected ideas. |
 | Terminale générale, spécialité, from 2027–2028 | [MENE2602919A, article 2](https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602919A) | The new programme is published but is not the 2026–2027 cohort's programme. No exhaustive mapping to its annex is claimed. |
 | Terminale, maths expertes | [MENE1921264A, 2019 option](https://www.education.gouv.fr/bo/19/Special8/MENE1921264A.htm) | Complex-number lab is an introduction, not the full option. |
+
+**Première probability, checked against the annex text** (programme supplied by the site owner, file labelled BO 2 April 2026; the PDF itself carries no bulletin header):
+- Automatismes: conditional probabilities from cross-tables or weighted trees; distinguish P(A ∩ B), P_A(B) and P_B(A).
+- Contents: independence of two events; partitions and the total probability formula; two successive independent trials (tree or table); for n ⩽ 4, repetition of n identical independent Bernoulli trials.
+- Random variables: distribution, expectation, variance, standard deviation, linearity of expectation, König–Huygens formula.
+- The binomial distribution B(n, p) and binomial coefficients are **not** in this programme. The site keeps the binomial lab in terminale. The première chapters (premiere-05, premiere-08) state explicitly that they use no general binomial formula, and no première resource repeats more than four trials.
 
 The [updated éduscol directory](https://eduscol.education.gouv.fr/5817/programmes-et-ressources-en-mathematiques-voie-gt) also records these transition dates.
 

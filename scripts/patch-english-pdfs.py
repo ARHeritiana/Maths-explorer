@@ -78,9 +78,9 @@ def french_spans(doc, number):
     return [((s['origin'][0] - e) / a, (height - s['origin'][1] - f) / d, s['text'])
             for b in page.get_text('dict')['blocks'] for l in b.get('lines', []) for s in l['spans']]
 
-def candidates(spans, x, y):
+def candidates(spans, x, y, tolerance=1.2):
     """French sources whose text starts at (x, y) in the French edition."""
-    line = norm(''.join(t for _, t in sorted((sx, t) for sx, sy, t in spans if abs(sy - y) < 1.2 and sx >= x - 3)))
+    line = norm(''.join(t for _, t in sorted((sx, t) for sx, sy, t in spans if abs(sy - y) < tolerance and sx >= x - 3)))
     return [s for n in range(1, 7) for s in by_prefix.get(line[:n], []) if line.startswith(norm(s))]
 
 def locate(found, current):
@@ -126,7 +126,9 @@ def read_blocks(raw, path, spans):
         else:
             found = candidates(spans, b['x'], b['y'])
             b['position'] = max(found, key=len) if found else None
-            b['source'] = locate(found, current)
+            # An overlay set on a sub- or superscript baseline sits up to ~2 pt
+            # from its French word; the paragraph key keeps the strict rule.
+            b['source'] = locate(found, current) or locate(candidates(spans, b['x'], b['y'], 2.4), current)
             b['located'] = b['source'] is not None
             if b['located']:
                 b['new'] = reviewed(b['source'])
@@ -157,7 +159,9 @@ def patch_stream(raw, path, number, spans, stats):
         out.append(raw[last:m.start()]); last = m.end()
         if not b['header'] and not b.get('located'):
             stats['unlocated'] += 1
-        if new is None or latin(new).strip() == core:
+        # The first translation rendered en dashes as a middle dot (2026·2027).
+        new = re.sub(r'(?<=\S)\xb7(?=\S)', '-', latin(new if new is not None else core))
+        if latin(new).strip() == core:
             if b['a'] < 0.6 and not b['header']:
                 stats['tight'].append({'file': where, 'context': b['context'], 'source': source, 'text': core, 'scale': round(b['a'], 2)})
             out.append(m[0])

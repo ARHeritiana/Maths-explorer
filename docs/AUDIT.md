@@ -17,7 +17,11 @@ No incorrect answer or theorem statement was found in the labs, challenges, work
 
 ## Curriculum
 
-French pathway references were checked against BO n°14 of 2 April 2026 (new seconde/première programmes from 2026–2027, terminale from 2027–2028). Secondary sources indicate that the binomial distribution and conditional probability move into the new première programme; the official programme PDF could not be retrieved from this environment (education.gouv.fr and eduscol blocked), so the site mapping is unchanged and marked **[VERIFY — check Eduscol]**. Malagasy and IB mappings in `CURRICULUM.md` were not changed.
+French pathway references were checked against BO n°14 of 2 April 2026: the new seconde and première programmes apply from 2026–2027, terminale from 2027–2028. The première spécialité programme text (supplied by the owner) settles the probability question:
+- In première: independence, total probability, trees for n ⩽ 4 Bernoulli trials, random variables, expectation and variance; conditional probabilities appear among the automatismes.
+- Not in première: the binomial distribution.
+
+The site's French pathway already placed the binomial lab in terminale. The première stage now lists the probability lab with the note "n ⩽ 4 and a tree". The première PDF chapters were checked and conform. Malagasy and IB mappings in `CURRICULUM.md` were not changed.
 
 ## English editions of the PDF library
 
@@ -36,12 +40,21 @@ Second pass (teacher's proof-read in context):
 - Segments squeezed below 60 % of their width went from 685 to 28, by shorter wording; "&" stands for "and" where "and" would not fit.
 - The patcher is idempotent: a second run changes nothing.
 
-Residual limits:
-- 123 French guillemets « » remain in punctuation-only spans of the original fonts. They contain no letters, so they were never overlaid.
-- A few French words set inside mathematics spans (e.g. "à" in "−2 à +∞") are untouched, for the same reason.
-- 28 segments remain below 60 % width. About 5,900 overlay blocks (mostly isolated short words) are not located by position and use the unambiguous machine-output mapping only.
-- The corrections were made by me and parallel AI reviewers, not a professional translator; a teacher should read a sample of each document type before relying on the English editions in class.
-- A re-typeset English edition from LaTeX sources would remove these limits. The PDFs were imported without sources, so this was not possible.
+Third pass (residual limits):
+- `scripts/fix-french-glyphs.py` replaces the French left visible in the original fonts, which the translator never overlaid because these spans contain no two-letter word:
+  - 123 guillemets « » become straight quotation marks hugging the quoted text;
+  - 33 "à" between formulas become "to", or "at" for times;
+  - 10 "et" in maths lines become "and";
+  - the verb "a" in two formulas becomes ":" or disappears where "has" already follows.
+  Each glyph is covered with the sampled background colour and the English is drawn on top. Its code is mapped to a space in the font's ToUnicode table, so copied text is clean. *eᵗ* (italic e with superscript t) is recognised and left alone. Fixes are recorded in `docs/FRENCH_GLYPH_FIXES.json`, so reruns are no-ops.
+- Overlays set on a sub- or superscript baseline are now matched to their French word (tolerance 2.4 pt), e.g. *vaut* after *u₄*, which read "value" and now reads "is". Blocks not located fell from 5,881 to 5,050. Nearly all of the rest already carry reviewed text from the first pass.
+- The middle dot that the first translation used for en dashes ("2026·2027", "König·Huygens", 742 occurrences) is now a hyphen.
+- Segments below 60 % width: 18, down from 28. Words were moved across segment boundaries where no formula intervenes ("is below", "Long-run mean.", "under reflection in a line").
+
+Remaining limits:
+- About 15 segments stay between 30 % and 60 % width. A word such as "from" or "If Delta" must sit inside a gap between two formulas, and the gap is narrower than the English.
+- Decimal commas inside formulas (e.g. 0,9) are kept: in French notation commas also separate list items and coordinates, so changing them automatically could alter mathematics.
+- The corrections were made by me and parallel AI reviewers, not a professional translator. A teacher should read a sample of each document type before using the English editions in class.
 
 ## Site design and interaction
 
