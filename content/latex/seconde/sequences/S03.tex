@@ -1,0 +1,88 @@
+\sequence{Droites du plan}{Droites du plan}{1--16 octobre 2026}
+\section{Vecteur directeur et équation cartésienne}
+\begin{cours}[Définition]
+Un vecteur directeur d'une droite est un vecteur \textbf{non nul} ayant la direction de cette droite. Si $A\ne B$, $\vect{AB}$ dirige $(AB)$.
+Toute droite admet une équation $ax+by+c=0$ avec $(a,b)\ne(0,0)$. Un vecteur directeur est $\coord{-b}{a}$.
+\end{cours}
+\ex{Pour $A(-2;4)$ et $B(6;2)$, calculer $\vect{AB}$ puis vérifier que $\vec u(4;-1)$ dirige $(AB)$.}
+\reponse[2.4]{$\vect{AB}=(8;-2)=2\vec u$. Le vecteur $\vec u$ est non nul et colinéaire à $\vect{AB}$ ; il dirige donc $(AB)$.}
+\begin{cours}[Établir une équation à l'aide du déterminant]
+La droite passant par $A(x_A;y_A)$ et dirigée par $\vec u(\alpha;\beta)\ne\vec0$ a pour équation
+\[\beta(x-x_A)-\alpha(y-y_A)=0.\]
+\end{cours}
+\preuve[4]{Un point $M(x;y)$ appartient à la droite si et seulement si $\vect{AM}$ est colinéaire à $\vec u$, y compris pour $M=A$. Or
+\[\det(\vect{AM},\vec u)=(x-x_A)\beta-(y-y_A)\alpha.\]
+L'annulation du déterminant donne l'équation annoncée. En développant, $a=\beta$, $b=-\alpha$ et $c=-\beta x_A+\alpha y_A$ ; comme $\vec u\ne\vec0$, $(a,b)\ne(0,0)$.}
+\vigilance{Le vecteur nul ne dirige aucune droite. Le signe du déterminant dépend de l'ordre des vecteurs, mais son annulation n'en dépend pas.}
+
+\fiche{Déterminer une équation de droite}
+\begin{methode}
+À partir d'un point et d'un vecteur directeur : choisir $a,b$ puis remplacer $x,y$ par les coordonnées du point pour trouver $c$. À partir de deux points distincts : calculer d'abord un vecteur directeur.
+\end{methode}
+\ex{Déterminer une équation cartésienne de la droite passant par $A(2;-1)$ et dirigée par $\vec u(3;2)$.}
+\reponse[4]{$a=2$, $b=-3$ conviennent. La droite a donc une équation $2x-3y+c=0$. Comme $A$ lui appartient, $4+3+c=0$, d'où $c=-7$. Une équation est $2x-3y-7=0$. Vérification : $2\times2-3\times(-1)-7=0$ et $(3;2)$ est bien directeur.}
+\ex{Déterminer une équation cartésienne de $(AB)$ pour $A(3;3)$ et $B(2;-2)$.}
+\reponse[4]{$\vect{AB}=(-1;-5)$ dirige la droite. On peut choisir $(a,b)=(5,-1)$. Avec $A$, $15-3+c=0$, donc $c=-12$. Ainsi $5x-y-12=0$. Pour $B$, $10+2-12=0$, ce qui confirme le résultat.}
+\ex{Le point $P(1;2)$ appartient-il à $d:2x-3y+4=0$ ? Le point $Q(2;1)$ lui appartient-il ?}
+\reponse[2.4]{Pour $P$, $2-6+4=0$ : oui. Pour $Q$, $4-3+4=5\ne0$ : non.}
+
+\fiche{Équation réduite, pente et fonction affine}
+\begin{cours}[Définitions]
+Une droite non verticale a une unique équation réduite $y=mx+p$. $m$ est la pente (coefficient directeur), $p$ l'ordonnée à l'origine. Elle représente la fonction affine $x\mapsto mx+p$ ; $(1;m)$ est un vecteur directeur.
+Une droite verticale a une équation $x=k$ ; elle n'est pas la courbe d'une fonction de $x$. Une droite horizontale a une équation $y=k$.
+\end{cours}
+\begin{cours}[Calcul de pente]
+Si $x_A\ne x_B$, la pente de $(AB)$ vaut $m=\dfrac{y_B-y_A}{x_B-x_A}$. Pour trouver $p$, on utilise ensuite $y_A=mx_A+p$.
+\end{cours}
+\ex{Déterminer l'équation réduite de $2x+3y-1=0$, puis tracer $d:y=-2x+3$.}
+\reponse[2.4]{$3y=-2x+1$, donc $y=-\frac23x+\frac13$. Pour $d$, placer $(0;3)$ et $(1;1)$, puis tracer la droite ; un déplacement de $1$ en abscisse correspond à $-2$ en ordonnée.}
+\begin{center}\begin{tikzpicture}\begin{axis}[coursaxe,xmin=-1,xmax=4,ymin=-4,ymax=4,width=10cm,height=6cm,xtick={-1,...,4},ytick={-4,...,4}]
+\ifprof\addplot[thick,domain=-.5:3.5]{-2*x+3};\addplot[only marks]coordinates{(0,3)(1,1)};\fi
+\end{axis}\end{tikzpicture}\end{center}
+\ex{Trouver la fonction affine $f$ telle que $f(0)=3$ et $f(-1)=5$, puis la fonction affine $g$ dont la courbe passe par $C(-1;2)$ et $E(5;-2)$.}
+\reponse[2.4]{$f(x)=-2x+3$, car $m=(3-5)/(0+1)=-2$. Pour $g$, $m=(-2-2)/(5+1)=-2/3$ et $p=2-2/3=4/3$, donc $g(x)=-\frac23x+\frac43$.}
+
+\fiche{Positions relatives de deux droites}
+\begin{cours}[Propriétés]
+Deux droites sont sécantes, strictement parallèles ou confondues. Pour $y=mx+p$ et $y=m'x+p'$ :
+\begin{itemize}\item si $m\ne m'$, elles sont sécantes ;\item si $m=m'$ et $p\ne p'$, elles sont strictement parallèles ;\item si $m=m'$ et $p=p'$, elles sont confondues.\end{itemize}
+Pour des équations cartésiennes, on compare les directions avec le déterminant. Si les directions sont colinéaires, on teste ensuite l'appartenance d'un point pour distinguer droites confondues et strictement parallèles.
+\end{cours}
+\ex{Déterminer une équation de $d$ passant par $A(2;3)$ et parallèle à $d':x-3y-3=0$.}
+\reponse[3.2]{$d'$ a pour vecteur directeur $(3;1)$. On cherche $d:x-3y+c=0$. Comme $A\in d$, $2-9+c=0$, donc $c=7$. Ainsi $d:x-3y+7=0$. Les deux droites sont strictement parallèles, car les constantes diffèrent pour les mêmes coefficients de $x,y$.}
+\ex{Étudier les positions relatives :
+\begin{enumerate}\item $2x-y+1=0$ et $4x-2y+2=0$ ;\item $x=2$ et $x=-1$ ;\item $y=2x-3$ et $y=-x+3$.\end{enumerate}}
+\reponse[4]{1. La deuxième équation est le double de la première : droites confondues. 2. Deux verticales distinctes : strictement parallèles. 3. Les pentes $2$ et $-1$ diffèrent : sécantes. Leur intersection vérifie $2x-3=-x+3$, donc $x=2$ et $y=1$.}
+
+\fiche{Intersection : résolution par substitution}
+\begin{cours}[Définition]
+Résoudre un système de deux équations en $x,y$, c'est trouver tous les couples $(x;y)$ vérifiant simultanément les deux équations. Pour deux équations de droites : une intersection donne un couple solution ; des droites strictement parallèles donnent aucune solution ; des droites confondues donnent une infinité de solutions.
+\end{cours}
+\begin{methode}[Substitution]
+Isoler une inconnue dans une équation, remplacer son expression dans l'autre, résoudre puis retrouver la seconde inconnue. Vérifier le couple dans les deux équations initiales.
+\end{methode}
+\ex{Résoudre $\begin{cases}-2x+y+3=0,\\3x-5y-2=0.\end{cases}$}
+\reponse[4]{La première équation donne $y=2x-3$. En remplaçant dans la seconde : $3x-5(2x-3)-2=0$, soit $-7x+13=0$. Ainsi $x=13/7$ puis $y=5/7$. L'ensemble solution est $S=\{(13/7;5/7)\}$. Les substitutions donnent $(-26+5+21)/7=0$ et $(39-25-14)/7=0$.}
+\ex{Résoudre par substitution :
+\[\text{(a) }\begin{cases}-2x+y+3=0\\x-4y+5=0\end{cases}\qquad
+\text{(b) }\begin{cases}2x+3y-10=0\\4x+5y-16=0.\end{cases}\]}
+\reponse[4]{(a) $y=2x-3$ puis $x-4(2x-3)+5=0$, d'où $x=17/7$, $y=13/7$.\\(b) $x=(10-3y)/2$ ; $2(10-3y)+5y-16=0$, donc $y=4$, puis $x=-1$.}
+
+\fiche{Combinaison linéaire et Python}
+\begin{methode}[Combinaison linéaire]
+Multiplier les équations par des nombres non nuls pour obtenir des coefficients opposés d'une inconnue ; les additionner pour éliminer cette inconnue. Conserver une équation du système pour calculer l'autre inconnue.
+\end{methode}
+\ex{Résoudre $\begin{cases}2x+3y+1=0\\3x-4y-2=0.\end{cases}$ Reprendre ensuite les deux systèmes de l'exemple précédent par combinaison.}
+\reponse[4.8]{Multiplier la première équation par $3$ et la seconde par $-2$ donne $6x+9y+3=0$ et $-6x+8y+4=0$. La somme donne $17y+7=0$, d'où $y=-7/17$. Puis $2x-21/17+1=0$, donc $x=2/17$.
+Pour (a), ajouter quatre fois la première équation à la seconde : $-7x+17=0$, donc $(x;y)=(17/7;13/7)$. Pour (b), soustraire deux fois la première à la seconde : $-y+4=0$, donc $(x;y)=(-1;4)$.}
+\begin{lstlisting}
+def determinant(u, v):
+    return u[0]*v[1] - u[1]*v[0]
+
+def alignes(A, B, C):
+    AB = (B[0]-A[0], B[1]-A[1])
+    AC = (C[0]-A[0], C[1]-A[1])
+    return determinant(AB, AC) == 0
+\end{lstlisting}
+\ex{Prévoir \texttt{alignes((0,0), (2,1), (6,3))} puis \texttt{alignes((0,0), (2,1), (6,4))}.}
+\reponse[2]{\texttt{True}, puis \texttt{False} : les déterminants sont $0$ et $2$. Le test exact convient ici aux coordonnées entières ; les approximations flottantes demandent de tenir compte des erreurs numériques.}

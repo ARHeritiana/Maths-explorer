@@ -31,7 +31,9 @@ MARKERS = {
         'fr': [('activities', r'^Diagnostic :'), ('notes', r'^\d+\.1 '), ('exercises', r'^Parcours d.exercices$'), ('assessment', r'^QCM 1 :')],
         'en': [('activities', r'^Diagnostic:'), ('notes', r'^\d+\.1 '), ('exercises', r'^Exercise path$'), ('assessment', r'^MCQ 1:')],
     }}
-CORRECTIONS = {'premiere': {'fr': r'^Corrigés et conduite du chapitre', 'en': r'^Solutions and teaching notes for chapter'}}
+MARKERS['seconde'] = {'fr': [], 'en': []}
+CORRECTIONS = {'seconde': {'fr': None, 'en': None}, 'premiere': {'fr': r'^Corrigés et conduite du chapitre', 'en': r'^Solutions and teaching notes for chapter'}}
+SEQUENCE = {'fr': r'^S[ée]quence \d+ : ', 'en': r'^Sequence \d+ ?: '}   # seconde: one level-1 bookmark per sequence
 FIRST_CHAPTER_ENTRY = {'premiere': 2}   # level-1 bookmarks before chapter 1 (booklet notes, framework)
 # Appendices after the chapters: (supplement id, level-1 bookmark index, bank resource id suffix)
 APPENDICES = {'premiere': [('methods', 12, 'bank-0'), ('fluency', 13, 'bank-1'), ('assessments', 14, 'bank-2')]}
@@ -56,6 +58,25 @@ def compile_pdf(course, entry, jobname, prof, defs=''):
     print(f'  {jobname}: {len(fitz.open(out / (jobname + ".pdf")))} pages, {len(bad)} undefined references, {over} overfull boxes')
     if bad: sys.exit('Undefined references:\n' + '\n'.join(bad))
     return out / (jobname + '.pdf')
+
+
+def chapter_ranges(course, sd, td, lang, count):
+    """[(s0, s1, t0, t1)] for chapters 1..count, in zero-based page indices."""
+    def starts(d, pred):
+        toc = [(tidy(t), p - 1) for l, t, p in d.get_toc() if l == 1]
+        return toc
+    out = []
+    if course == 'seconde':
+        for d_i, d in enumerate((sd, td)):
+            toc = [(tidy(t), p - 1) for l, t, p in d.get_toc() if l == 1]
+            seq = [p for t, p in toc if re.match(SEQUENCE[lang], t)]
+            annex = [p for t, p in toc if re.match(r'^(Annexes professeur|Teacher annexes)', t)]
+            ends = seq[1:] + [annex[0] if annex else len(d)]
+            out.append(list(zip(seq, ends)))
+        return [(a[0], a[1], b[0], b[1]) for a, b in zip(*out)][:count]
+    st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
+    f = FIRST_CHAPTER_ENTRY[course]
+    return [(st[f + k], st[f + k + 1], tt[f + k], tt[f + k + 1]) for k in range(count)]
 
 
 def find(doc, start, end, pattern):
@@ -121,16 +142,17 @@ def main():
         sd = fitz.open(compile_pdf(course, stem_s + '.tex', f'{course}-student{suffix}', False, defs))
         td = fitz.open(compile_pdf(course, stem_t + '.tex', f'{course}-teacher{suffix}', True, defs))
         st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
+        rng = None if reduced else chapter_ranges(course, sd, td, lang, max(wanted))
         for number in wanted:
             ch = chapters[number]
-            j = wanted.index(number) if reduced else FIRST_CHAPTER_ENTRY[course] + number - 1
-            s0, s1, t0, t1 = st[j], st[j + 1], tt[j], tt[j + 1]
+            j = wanted.index(number) if reduced else number - 1
+            s0, s1, t0, t1 = (st[j], st[j + 1], tt[j], tt[j + 1]) if reduced else rng[j]
             offs = offt = 0
             if reduced:   # page labels follow the full booklet
                 offs = next(r['sourcePages'][0] for r in catalog['resources'] if r['id'] == ch['id'] + '-chapter') - 1 - s0
                 offt = next(r['sourcePages'][0] for r in catalog['resources'] if r['id'] == ch['id'] + '-teacher') - 1 - t0
             res = {r['id'].split('-', 2)[2]: r for r in catalog['resources'] if r['chapter'] == ch['id']}
-            def title(name): return (ch['title'][0] + ' — ' + res[name]['title'][0]) if lang == 'fr' else (ch['title'][1] + ' — ' + res[name]['title'][1])
+            def title(name): return ch['title'][0 if lang == 'fr' else 1] + ' — ' + res[name]['title'][0 if lang == 'fr' else 1]
             d = OUT / ch['id']
             def path(name): return d / (name + suffix + '.pdf')
             pages = {}
@@ -141,7 +163,7 @@ def main():
             for k, (kind, p) in enumerate(pts):
                 b = pts[k + 1][1] if k + 1 < len(pts) else (s1, 0)
                 pages[kind] = emit(path(kind), ch, kind, title(kind), lang, sd, p[0], min(s1, b[0] + 1), bounds=(p, b), offset=offs)
-            c = find(td, t0, t1, CORRECTIONS[course][lang])
+            c = find(td, t0, t1, CORRECTIONS[course][lang]) if CORRECTIONS[course][lang] else None
             if c: pages['corrections'] = emit(path('corrections'), ch, 'solutions', title('corrections'), lang, td, c[0], t1, bounds=(c, (t1, 0)), offset=offt)
             results[(lang, number)] = pages
         if a.appendices and not reduced:

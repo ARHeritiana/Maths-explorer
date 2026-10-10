@@ -31,6 +31,7 @@ for r in c['resources']:
     fr=r['url'][0] if isinstance(r['url'],list) else r['url']
     en=fr[:-4]+'-en.pdf';path=ROOT/'dist'/en.removeprefix('./')
     if not path.exists():raise FileNotFoundError(en)
+    r['pages']=len(fitz.open(ROOT/'dist'/fr.removeprefix('./')))   # page counts follow the files
     r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if r['chapter'] in converted else r.get('translation','local-machine'))
 for source in c['sources']:source.pop('url',None);source.pop('id',None)
 catalog.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n')
@@ -42,6 +43,7 @@ for chapter in c['chapters']+c['supplements']:
     for f in chapter['files']:
         path=ROOT/'dist'/f['path'];en=path.with_name(path.stem+'-en.pdf')
         if not en.exists():raise FileNotFoundError(en)
+        f['pages']=len(fitz.open(path));f['end']=f['start']+f['pages']-1   # whole-page extracts
         f.update(englishPath=str(en.relative_to(ROOT/'dist')),bytes=path.stat().st_size,englishBytes=en.stat().st_size)
         if len(fitz.open(en))!=f['pages']:raise ValueError(f'English page count mismatch: {en}')
         manifest.append({'path':f['path'],'source':f['source'],'pages':[f['start'],f['end']],'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'englishPath':f['englishPath'],'englishSha256':hashlib.sha256(en.read_bytes()).hexdigest()})

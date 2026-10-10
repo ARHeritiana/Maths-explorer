@@ -1,0 +1,117 @@
+\sequence{Vectors in the plane}{Vectors in the plane}{14--30 September 2026}
+\section{Translation and vectors}
+\begin{cours}[Definition]
+The translation that transforms $A$ into $B$ associates with every point $M$ the unique point $M'$ such that $ABM'M$ is a parallelogram, possibly flat. It is called the translation by the vector $\vect{AB}$.
+A nonzero vector has a direction, a sense and a norm. $\|\vect{AB}\|=AB$. The vector $\vect{AA}$ is the zero vector, written $\vec0$; it has neither direction nor sense.
+\end{cours}
+\begin{center}\begin{tikzpicture}[>=Stealth,scale=.9]
+\coordinate(A) at (0,0);\coordinate(B) at (4,1);\coordinate(M) at (1,2);\coordinate(N) at (5,3);
+\draw[dashed](A)--(M)--(N)--(B);\draw[->,thick](A)--(B);\draw[->,thick](M)--(N);
+\foreach \p/\n in {A/A,B/B,M/M,N/M'}\fill(\p)circle(1.5pt) node[above left]{$\n$};
+\end{tikzpicture}\end{center}
+\begin{cours}[Equal and opposite vectors]
+$\vect{AB}=\vect{CD}$ when the translation by the vector $\vect{AB}$ transforms $C$ into $D$. Two nonzero vectors are equal if and only if they have the same direction, the same sense and the same norm.
+The opposite vector of $\vect{AB}$ is $\vect{BA}$: $\vect{BA}=-\vect{AB}$.
+\end{cours}
+\ex{Draw a segment $[AB]$ and place a point $C$ outside $(AB)$. Construct $D$ such that $\vect{AB}=\vect{CD}$. Name the parallelogram obtained. Construct $E$ such that $\vect{CE}=-\vect{AB}$.}
+\reponse[4]{$D$ is constructed by carrying over from $C$ the direction, sense and length of $\vect{AB}$. The parallelogram is $ABDC$, in that order. $E$ is the reflection of $D$ in the point $C$, because $\vect{CE}=-\vect{CD}$.}
+
+\fiche{Sum, difference and Chasles's relation}
+\begin{cours}[Sum of vectors]
+The sum $\vec u+\vec v$ corresponds to carrying out the translations by the vectors $\vec u$ and $\vec v$ one after the other. For all points $A,B,C$:
+\[\boxed{\vect{AB}+\vect{BC}=\vect{AC}}\qquad\text{(Chasles's relation).}\]
+We have $\vec u-\vec v=\vec u+(-\vec v)$ and $\vect{AB}+\vect{BA}=\vec0$.
+\end{cours}
+\begin{center}\begin{tikzpicture}[>=Stealth,scale=1.0]
+\draw[->,thick](0,0)--(3,0)node[midway,below]{$\vec u$};
+\draw[->,thick](3,0)--(4,2)node[midway,right]{$\vec v$};
+\draw[->,very thick](0,0)--(4,2)node[midway,above left]{$\vec u+\vec v$};
+\draw[dashed](0,0)--(1,2)--(4,2);
+\node[below left]at(0,0){$A$};\node[below]at(3,0){$B$};\node[above right]at(4,2){$C$};
+\end{tikzpicture}\end{center}
+\begin{cours}[Parallelogram rule]
+$ABDC$ is a parallelogram if and only if $\vect{AD}=\vect{AB}+\vect{AC}$.
+\end{cours}
+\ex{Simplify: $\vect{AB}+\vect{BC}$; $\vect{AB}+\vect{CA}$; $\vect{AB}+\vect{BC}+\vect{CD}$; $\vect{AB}-\vect{AC}$.}
+\reponse[3.2]{$\vect{AC}$; $\vect{CA}+\vect{AB}=\vect{CB}$; $\vect{AD}$; $\vect{AB}+\vect{CA}=\vect{CB}$. The commutativity of addition allows us to reorder the vectors.}
+\ex{In a parallelogram $ABCD$, justify that $\vect{AB}+\vect{AD}=\vect{AC}$.}
+\reponse[2.4]{In $ABCD$, $\vect{AD}=\vect{BC}$. So $\vect{AB}+\vect{AD}=\vect{AB}+\vect{BC}=\vect{AC}$.}
+
+\fiche{Product of a vector by a real number}
+\begin{cours}[Definition and calculation rules]
+For $k\in\R$, $k\vec u=\vec0$ if $k=0$ or $\vec u=\vec0$. Otherwise, $k\vec u$ has the same direction as $\vec u$, the same sense if $k>0$, the opposite sense if $k<0$, and its norm is $|k|\|\vec u\|$.
+\[(k+\ell)\vec u=k\vec u+\ell\vec u,\quad k(\vec u+\vec v)=k\vec u+k\vec v,\quad k(\ell\vec u)=(k\ell)\vec u.\]
+\end{cours}
+\ex{For a vector $\vec u$ of norm $4$ cm, represent $2\vec u$, $-\vec u$ and $\frac12\vec u$ from the same origin. State their norms.}
+\reponse[3.2]{The norms are $8$ cm, $4$ cm, $2$ cm. The vectors $2\vec u$ and $\frac12\vec u$ have the sense of $\vec u$; $-\vec u$ has the opposite sense.}
+\begin{cours}[Characterisations of the midpoint]
+$I$ is the midpoint of $[AB]$ if and only if $\vect{AI}=\vect{IB}$, or equivalently $\vect{AI}=\frac12\vect{AB}$, or $\vect{IA}+\vect{IB}=\vec0$.
+\end{cours}
+\ex{In a triangle $ABC$, $I$ is the midpoint of $[AB]$ and $J$ that of $[AC]$. Show that $\vect{IJ}=\frac12\vect{BC}$.}
+\reponse[4.4]{By Chasles, $\vect{IJ}=\vect{IA}+\vect{AJ}=-\frac12\vect{AB}+\frac12\vect{AC}=\frac12(\vect{BA}+\vect{AC})=\frac12\vect{BC}$. We recover the parallelism of the lines $(IJ)$ and $(BC)$ when the triangle is not flat.}
+\rituel{Simplify $3\vec u-5\vec u$; calculate $(-3)^2$; solve $2x+1=7$.}{$-2\vec u$; $9$; $x=3$.}
+
+\fiche{Frames, bases and coordinates}
+\begin{cours}[Definitions]
+Two non-collinear vectors $\vec i,\vec j$ form a basis of the plane. Every vector $\vec u$ can be written uniquely as $\vec u=x\vec i+y\vec j$; its coordinates are $(x;y)$ or $\coord{x}{y}$.
+A frame $(O;\vec i,\vec j)$ associates with the point $M$ the coordinates of $\vect{OM}$. It is \textbf{orthonormal} if the basis vectors are perpendicular and of norm $1$.
+\end{cours}
+\begin{center}\begin{tikzpicture}[>=Stealth,scale=.8]
+\draw[step=1,black!20](-1,-1)grid(6,4);\draw[->](-1,0)--(6.3,0)node[right]{$x$};\draw[->](0,-1)--(0,4.3)node[above]{$y$};
+\draw[->,very thick](0,0)--(1,0)node[midway,below]{$\vec i$};\draw[->,very thick](0,0)--(0,1)node[midway,left]{$\vec j$};
+\draw[->,thick](1,1)--(4,3)node[midway,above left]{$\vect{AB}$};\draw[dashed](1,1)--(4,1)--(4,3);
+\node[below]at(1,1){$A$};\node[above]at(4,3){$B$};\node[below left]at(0,0){$O$};
+\end{tikzpicture}\end{center}
+Here $\vect{AB}=3\vec i+2\vec j$: we move three units to the right and two upwards.
+\begin{cours}[Calculations with coordinates]
+If $A(x_A;y_A)$, $B(x_B;y_B)$, $\vec u(x;y)$ and $\vec v(x';y')$:
+\[\vect{AB}=\coord{x_B-x_A}{y_B-y_A},\quad \vec u+\vec v=\coord{x+x'}{y+y'},\quad k\vec u=\coord{kx}{ky}.\]
+Two vectors are equal if and only if their respective coordinates are equal.
+\end{cours}
+\ex{For $\vec u(3;2)$ and $\vec v(-1;4)$, calculate $\vec u+\vec v$ and $2\vec u-\vec v$. Write $\vec w(5;-3)$ in the basis $(\vec i,\vec j)$.}
+\reponse[2.4]{$\vec u+\vec v=(2;6)$; $2\vec u-\vec v=(7;0)$; $\vec w=5\vec i-3\vec j$.}
+
+\fiche{Norm, distance and midpoint}
+\begin{cours}[Properties]
+In an \textbf{orthonormal} frame, for $\vec u(x;y)$ and two points $A,B$:
+\[\|\vec u\|=\sqrt{x^2+y^2},\qquad AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}.\]
+In any frame, the midpoint of $[AB]$ is $I\left(\frac{x_A+x_B}{2};\frac{y_A+y_B}{2}\right)$.
+\end{cours}
+\preuve[3]{The distance formula follows from Pythagoras's theorem applied to the horizontal and vertical displacements. For the midpoint, $\vect{AI}=\frac12\vect{AB}$ gives $x_I-x_A=\frac{x_B-x_A}{2}$ and $y_I-y_A=\frac{y_B-y_A}{2}$; we isolate $x_I,y_I$.}
+\ex{In an orthonormal frame, $A(3;0)$, $B(5;3)$, $C(4;0)$ and $D(6;4)$.
+\begin{enumerate}
+\item Calculate $\vect{AB}$, $\vect{CD}$, then $3\vect{AB}-5\vect{CD}$.
+\item Determine $U$ such that $\vect{BU}=2\vect{AB}-\vect{CD}$.
+\item Determine $E$ such that $ABCE$ is a parallelogram, then its centre $I$.
+\item Calculate $AB$ and $CD$.
+\end{enumerate}}
+\reponse[6]{1. $\vect{AB}=(2;3)$ and $\vect{CD}=(2;4)$, so $3\vect{AB}-5\vect{CD}=(-4;-11)$.\\
+2. $\vect{BU}=(2;2)$, so $U=B+(2;2)=(7;5)$.\\
+3. $E=A+C-B=(2;-3)$. The centre is the midpoint of $[AC]$: $I(7/2;0)$. The midpoint of $[BE]$ gives the same result.\\
+4. $AB=\sqrt{13}$ and $CD=\sqrt{20}=2\sqrt5$.}
+
+\fiche{Collinearity and determinant}
+\begin{cours}[Definition]
+Two nonzero vectors are collinear if they have the same direction. The zero vector is collinear with every vector. If $\vec v\ne\vec0$, $\vec u$ and $\vec v$ are collinear if and only if there exists a real number $k$ such that $\vec u=k\vec v$.
+\end{cours}
+\vigilance{In the last characterisation, the condition $\vec v\ne\vec0$ is necessary: a nonzero vector cannot be a multiple of the zero vector.}
+\begin{cours}[Determinant and collinearity criterion]
+For $\vec u(x;y)$, $\vec v(x';y')$, $\det(\vec u,\vec v)=xy'-yx'$.
+\[\vec u,\vec v\text{ collinear}\quad\Longleftrightarrow\quad\det(\vec u,\vec v)=0.\]
+\end{cours}
+\preuve[4.2]{If $\vec u=k\vec v$, then $xy'-yx'=kx'y'-ky'x'=0$. The case where a vector is zero is immediate.
+Conversely, suppose $\vec v\ne\vec0$ and $xy'-yx'=0$. If $x'\ne0$, let $k=x/x'$. The equality gives $y=ky'$, so $\vec u=k\vec v$. If $x'=0$, then $y'\ne0$, hence $x=0$; with $k=y/y'$, we again obtain $\vec u=k\vec v$.}
+\ex{Study the collinearity of: (a) $\vec u(3;2)$ and $\vec v(-6;-5)$; (b) $\vec w(4;1)$ and $\vec t(3;3/4)$. If $\vect{AB}=2\vect{CD}$ and $\vect{BD}=-5\vect{CD}$, relate $\vect{AB}$ and $\vect{BD}$.}
+\reponse[3.2]{(a) $\det(\vec u,\vec v)=-15+12=-3\ne0$: not collinear. (b) $\vec t=\frac34\vec w$: collinear; the determinant is $4\times\frac34-3=0$. Finally $\vect{AB}=-\frac25\vect{BD}$, including if the vectors are zero.}
+
+\fiche{Alignment and parallelism}
+\begin{cours}[Applications]
+For $A\ne B$ and $C\ne D$, the lines $(AB)$ and $(CD)$ are parallel (possibly coincident) if and only if $\det(\vect{AB},\vect{CD})=0$.
+The points $A,B,C$ are collinear if and only if $\det(\vect{AB},\vect{AC})=0$.
+\end{cours}
+\ex{Show that $(AB)$ and $(CD)$ are parallel with $A(2;-4)$, $B(10;-2)$, $C(-16;-4)$ and $D(12;3)$.}
+\reponse[3.2]{$\vect{AB}=(8;2)$ and $\vect{CD}=(28;7)$. Their determinant is $8\times7-2\times28=0$. The points of each pair are distinct: both lines exist and are parallel.}
+\ex{Show that $E(0;1/2)$, $F(2;1)$ and $G(6;2)$ are collinear.}
+\reponse[3.2]{$\vect{EF}=(2;1/2)$ and $\vect{EG}=(6;3/2)=3\vect{EF}$. The determinant is $2\times3/2-(1/2)\times6=0$; so the points are collinear.}
+\ex{With $A(-1;1)$, $B(3;2)$, $C(-2;-3)$, $D(6;-1)$, $E(5;0)$, show that $(AB)\parallel(CD)$ and that $E,B,D$ are collinear.}
+\reponse[3.2]{$\vect{AB}=(4;1)$ and $\vect{CD}=(8;2)=2\vect{AB}$. Then $\vect{EB}=(-2;2)$ and $\vect{ED}=(1;-1)=-\frac12\vect{EB}$. Both results follow.}

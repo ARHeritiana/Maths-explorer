@@ -1,0 +1,117 @@
+% !TeX program = pdflatex
+% SOURCE UNIQUE AUTONOME : aucune image ni autre fichier source requis.
+% BASCULE : remplacer \proffalse par \proftrue ci-dessous.
+% Compilation : pdflatex (deux fois) eleve.tex ou professeur.tex
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{french.ldf}{\usepackage[french]{babel}}{\usepackage[provide=*,french]{babel}}
+\usepackage{lmodern,microtype}
+\usepackage[a4paper,margin=1.8cm,top=1.8cm,bottom=1.9cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,array,tabularx,longtable,multicol}
+\usepackage{tikz,pgfplots}
+\usetikzlibrary{arrows.meta,calc,patterns,positioning}
+\pgfplotsset{compat=1.18}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem,fancyhdr,titlesec,needspace,listings,tocloft}
+\setlength{\cftsecnumwidth}{3em}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\usepackage[hidelinks,unicode]{hyperref}
+\newif\ifprof
+\proffalse % <<< REMPLACER PAR \proftrue POUR LA VERSION PROFESSEUR.
+\ifdefined\VERSIONPROF\proftrue\fi
+\newcommand{\enseignant}{Maths Explorer}
+\newcommand{\etablissement}{}
+\newcommand{\annee}{2026--2027}
+\newcommand{\version}{\ifprof Version professeur\else Version élève\fi}
+\hypersetup{pdftitle={Cours de mathématiques -- Seconde -- 2026-2027},pdfauthor={Maths Explorer}}
+\newcommand{\R}{\mathbb{R}}\newcommand{\N}{\mathbb{N}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\D}{\mathbb{D}}
+\newcommand{\vect}[1]{\overrightarrow{#1}}\newcommand{\coord}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\DeclareMathOperator{\Card}{Card}\DeclareMathOperator{\pgcd}{PGCD}
+\newcounter{sequence}\newcounter{exemple}[sequence]
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\thesection\,--\,\Alph{subsection}}
+\newcommand{\titreseq}{}
+\renewcommand{\theHsection}{\arabic{sequence}.\arabic{section}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{$2^{\mathrm{nde}}$}
+\fancyhead[R]{\small\itshape Séquence \arabic{sequence} : \titreseq}
+\fancyfoot[L]{\small\enseignant}\fancyfoot[C]{\thepage}\fancyfoot[R]{\small\annee}
+\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{12pt}{9pt}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlist{itemsep=3pt,topsep=5pt,leftmargin=*}
+\setlist[enumerate]{label=\arabic*.}
+\newcommand{\sequence}[3]{\clearpage\refstepcounter{sequence}\setcounter{section}{0}\renewcommand{\titreseq}{#2}\addcontentsline{toc}{section}{\protect\textbf{Séquence \arabic{sequence} : #1}}\thispagestyle{plain}\begin{tcolorbox}[enhanced,colback=white,colframe=black,boxrule=1pt,arc=2mm,title={Séquence n\textsuperscript{o} \arabic{sequence}},fonttitle=\bfseries,colbacktitle=black]\centering\Large\bfseries\MakeUppercase{#1}\par\medskip\normalsize\normalfont #3\end{tcolorbox}}
+\newcommand{\fiche}[1]{\clearpage\section{#1}}
+\newtcolorbox{cours}[1][Propriété]{enhanced,breakable,colback=white,colframe=black,boxrule=.5pt,arc=2mm,drop shadow=black!35,title={#1},fonttitle=\bfseries,colbacktitle=black,attach boxed title to top left={xshift=0mm,yshift=-1mm},boxed title style={arc=2mm,boxrule=.5pt},top=4mm,bottom=2mm,before skip=10pt,after skip=10pt}
+\newtcolorbox{methode}[1][Méthode]{enhanced,breakable,colback=black!3,colframe=black!60,boxrule=.4pt,arc=0mm,title={#1},colbacktitle=black!15,coltitle=black,fonttitle=\bfseries}
+\newcommand{\ex}[2][]{\refstepcounter{exemple}\needspace{4\baselineskip}\par\medskip\textbf{\underline{Exemple \arabic{sequence}.\arabic{exemple}\if\relax\detokenize{#1}\relax\else\ : #1\fi}}\par #2\par}
+\newcommand{\grille}[1]{\par\smallskip\begin{tikzpicture}\draw[step=.2cm,black!18,very thin] (0,0) grid (16.8,#1);\draw[xstep=.8cm,ystep=.8cm,black!40,thin] (0,0) grid (16.8,#1);\end{tikzpicture}\par}
+\newcommand{\reponse}[2][4]{\par\textbf{\underline{Correction :}}\par\ifprof\begin{tcolorbox}[enhanced,breakable,frame hidden,colback=black!3,arc=0mm,borderline west={1pt}{0pt}{black},left=3mm,right=2mm,top=2mm,bottom=2mm]#2\end{tcolorbox}\else\grille{#1}\fi}
+\newcommand{\preuve}[2][4]{\par\textbf{Démonstration à rédiger.}\reponse[#1]{#2}}
+\newcommand{\trou}[1]{\ifprof\textbf{#1}\else\makebox[1.1cm]{\dotfill}\fi}
+\newcommand{\prof}[1]{\ifprof\begin{methode}[Repères pour le professeur]#1\end{methode}\fi}
+\newcommand{\vigilance}[1]{\par\textbf{Point de vigilance.} #1\par}
+\newcommand{\rituel}[2]{\begin{methode}[Automatismes -- 5 à 10 minutes]#1\end{methode}\ifprof\textit{Réponses :} #2\par\fi}
+\lstset{language=Python,basicstyle=\small\ttfamily,keywordstyle=\bfseries,commentstyle=\itshape,showstringspaces=false,frame=single,columns=fullflexible,keepspaces=true,breaklines=true,tabsize=4}
+\pgfplotsset{coursaxe/.style={axis lines=middle,grid=both,minor tick num=1,width=11cm,height=7cm,xlabel={$x$},ylabel={$y$},tick label style={font=\small},samples=100}}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}\centering
+\rule{\linewidth}{2.5mm}\par\vspace{4mm}
+{\fontsize{35}{43}\selectfont\bfseries COURS DE\\MATHÉMATIQUES\par}
+\vspace{3mm}\rule{\linewidth}{2.5mm}\par\vspace{15mm}
+{\resizebox{!}{6cm}{$2^{\mathrm{nde}}$}\par}
+\vspace{10mm}{\Large\version\par}
+\vfill{\large \textbf{\enseignant}\par}
+\vfill{\Large\annee\par}
+\end{titlepage}
+\pagestyle{plain}\pagenumbering{roman}\hypersetup{pageanchor=true}
+\section*{Organisation du livret}
+Ce livret suit les quinze étapes de la programmation annuelle rectifiée. Les définitions, propriétés et méthodes constituent le cours ; les exemples et démonstrations sont travaillés en classe. Les zones quadrillées servent à rédiger les recherches et corrections. Un cahier d'exercices peut compléter ces espaces.
+\begin{center}\small\renewcommand{\arraystretch}{1.25}\begin{tabularx}{\linewidth}{c X l}
+\textbf{N\textsuperscript{o}}&\textbf{Séquence}&\textbf{Période indicative}\\\hline
+1&Arithmétique&2--11 septembre 2026\\
+2&Vecteurs du plan&14--30 septembre\\
+3&Droites du plan&1--16 octobre\\
+4&Nombres réels et intervalles&2--13 novembre\\
+5&Bilan de trimestre et remédiation&16--20 novembre\\
+6&Fonctions : représentations et références&23 novembre--4 décembre\\
+7&Statistiques descriptives à une variable&7--18 décembre\\
+8&Calcul algébrique, équations et inéquations&4--20 janvier 2027\\
+9&Proportions et évolutions&21--29 janvier\\
+10&Variations et extrémums d'une fonction&1--12 février\\
+11&Croisement de deux variables qualitatives&1--12 mars\\
+12&Géométrie repérée : synthèse vecteurs / droites&15--26 mars\\
+13&Problèmes de synthèse et raisonnement&30 mars--9 avril\\
+14&Probabilités : conditionnement et arbres&26 avril--24 mai\\
+15&Consolidation et transition vers la Première&25 mai--11 juin\\\hline
+\end{tabularx}\end{center}
+Les dates sont des repères de progression, et non une liste de jours de cours. Les jours fériés et les vacances restent exclus des séances, notamment le 12 mars, le 29 mars, les 6--7 mai et le 17 mai.
+\begin{cours}[Fil rouge annuel]
+Calcul numérique et littéral, pourcentages, fonctions affines, lectures graphiques, raisonnement et Python sont repris régulièrement. Il n'y a pas de chapitre initial de révisions : les automatismes sont réactivés dès la première séquence.
+\end{cours}
+\prof{La programmation DOCX rectifiée est la référence d'ordre et de dates. Les bilans 5, 12, 13 et 15 sont des temps de réinvestissement. Les corrections ne doivent être dévoilées qu'après une recherche. Les exercices explicitement qualifiés de fictifs ne constituent pas des données d'enquête réelles.}
+\clearpage\tableofcontents\clearpage\pagenumbering{arabic}\pagestyle{fancy}
+
+\input{sequences/S01}
+\input{sequences/S02}
+\input{sequences/S03}
+\input{sequences/S04}
+\input{sequences/S05}
+\input{sequences/S06}
+\input{sequences/S07}
+\input{sequences/S08}
+\input{sequences/S09}
+\input{sequences/S10}
+\input{sequences/S11}
+\input{sequences/S12}
+\input{sequences/S13}
+\input{sequences/S14}
+\input{sequences/S15}
+\input{annexes}
+\end{document}

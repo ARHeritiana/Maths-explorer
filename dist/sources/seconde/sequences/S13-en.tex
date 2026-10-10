@@ -1,0 +1,37 @@
+\sequence{Synthesis problems, reasoning and fluency}{Synthesis and reasoning}{30 March--9 April 2027}
+\section{Implication, converse and counterexample}
+\begin{cours}[Tools to use in context]
+``If $P$, then $Q$'' is an implication $P\Rightarrow Q$. Its converse is $Q\Rightarrow P$; it is not automatically true. An equivalence $P\iff Q$ requires both implications.
+A counterexample is enough to refute a universal statement; a few examples are not enough to prove it. The contrapositive $\text{not }Q\Rightarrow\text{not }P$ is equivalent to $P\Rightarrow Q$.
+\end{cours}
+\ex{For an integer $n$: ``If $n$ is a multiple of $4$, then $n$ is even.'' Prove the implication, write its converse and its contrapositive, then say which are true.}
+\reponse[5]{If $n=4k$, then $n=2(2k)$ is even. Converse: ``If $n$ is even, then $n$ is a multiple of $4$''; it is false with $n=2$. Contrapositive: ``If $n$ is odd, then $n$ is not a multiple of $4$''; it is true and equivalent to the original implication.}
+\ex{For $x\in\R$, study ``$x=3\Rightarrow x^2=9$'' and its converse. Give a correct equivalence.}
+\reponse[3.2]{The implication is true. The converse is false with $x=-3$. The correct equivalence is $x^2=9\iff x=3\text{ or }x=-3$. With the extra hypothesis $x\geq0$, one can write $x^2=9\iff x=3$.}
+\prof{These notions are made explicit from the problems; they are not a standalone chapter of formal logic to memorise without context.}
+
+\fiche{Negation, case analysis and proof}
+\ex{Negate correctly: ``$x>2$''; ``$x\in[1;4]$''; ``All students play sport''; ``$A$ and $B$ both occur''.}
+\reponse[4]{``$x\leq2$''; ``$x<1$ or $x>4$''; ``At least one student does not play sport''; ``$A$ does not occur or $B$ does not occur''. The ``or'' is inclusive.}
+\ex{Show by case analysis that $n(n+1)$ is even for every integer $n$. Then show that $n^2+n+1$ is odd.}
+\reponse[4]{If $n$ is even, $n(n+1)$ has an even factor. If $n$ is odd, $n+1$ is even; the product is again even. The two cases cover all integers. Since $n^2+n+1=n(n+1)+1$, it is an odd integer.}
+\ex{A student writes ``$n^2$ even implies $n$ even, because I checked it for $n=2,4,6$''. Replace this justification with a proof.}
+\reponse[3.2]{If $n$ were odd, the result proved in sequence 1 would give $n^2$ odd, a contradiction. This is a contrapositive argument, or presented here as a proof by contradiction. Three examples do not cover all integers.}
+
+\fiche{Combining algebra, functions and percentages}
+\ex[Original situation]{Two fictional rental rates are offered for $x$ hours, with $x\in[0;8]$: $A(x)=3000+2000x$ Ar and $B(x)=3500x$ Ar.
+\begin{enumerate}\item Calculate the costs for $1$ h and $4$ h.\item Find where the rates are equal, then the durations for which $A$ is cheaper.\item A $10\,\%$ discount is granted on the whole of rate $A$. Give the new rate $A_r$ and the new comparison threshold.\end{enumerate}}
+\reponse[6]{1. At $1$ h: $5000$ Ar versus $3500$ Ar. At $4$ h: $11000$ Ar versus $14000$ Ar. 2. $3000+2000x=3500x\iff x=2$. $A<B$ for $x>2$, so on $]2;8]$. 3. $A_r(x)=0.9(3000+2000x)=2700+1800x$. Equality with $B$ gives $1700x=2700$, that is $x=27/17\approx1.59$ h. $A_r<B$ on $]27/17;8]$. The discount also applies to the fixed charge.}
+\begin{lstlisting}
+def tarif_moins_cher(x):
+    a = 3000 + 2000*x
+    b = 3500*x
+    if a < b:
+        return "A"
+    elif b < a:
+        return "B"
+    else:
+        return "egalite"
+\end{lstlisting}
+\ex{Predict the results for $x=1,2,4$. Modify the line that computes $a$ to take the discount into account.}
+\reponse[2.4]{Results: \texttt{"B"}, \texttt{"egalite"}, \texttt{"A"}. Replace with \texttt{a = 0.9*(3000 + 2000*x)}. The domain $[0;8]$ is assumed to be respected in the calls.}
