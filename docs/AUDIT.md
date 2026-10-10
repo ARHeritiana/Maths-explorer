@@ -25,11 +25,23 @@ Finding: the English PDFs were machine-translated (local model) span by span and
 
 Method: all 18,748 cached French→English spans were reviewed; 11,794 corrections (template rules for repeated headings plus individual review) are stored in `docs/translation-corrections.json`. `scripts/patch-english-pdfs.py` rewrites only the English overlay text blocks; equations, figures and the French layout are untouched. A replacement may use the width of the French line it covers and is condensed only beyond that. Result (`docs/TRANSLATION_CORRECTIONS_LEDGER.json`): 282 English PDFs, 42,582 spans replaced; all 331 FR/EN pairs keep identical page and image counts; French files are unchanged. Counts in the English text before → after: “Fiscal year” 86 → 0, “Duty” 81 → 0, “White” 62 → 0, “abscess/apses” 50 → 0, “derivable/drift” 108 → 0, garbled header 172 → 0. `translate-resources.py` now applies the reviewed corrections last, so a regeneration keeps them.
 
+Second pass (teacher's proof-read in context):
+- Each English block is now matched to its French source by position: the French edition's text at the same baseline identifies it. This resolved the machine outputs that several French sources shared (e.g. "Right." from *Vrai.*, *droite.*, *raison.*; "where" for *lorsque*), which were previously skipped.
+- Every multi-segment paragraph (5,809 unique paragraphs) was read against the French. 3,875 contextual corrections are in `docs/translation-context-corrections.json`, keyed by the paragraph's French sources and the segment index, so they apply wherever that paragraph recurs. They cover:
+  - word order and grammar across segment joins ("do not join necessarily these points" → "we do not necessarily join these points");
+  - duplicated or missing words, and badly split words;
+  - wrong senses (*face* → tails, *premier* → prime, *pièce* → room, *à droite* → on the right, *parallélépipède*);
+  - translated Python identifiers (`from math import`, `bornes`, `favorables`);
+  - English punctuation instead of French spacing and guillemets.
+- Segments squeezed below 60 % of their width went from 685 to 28, by shorter wording; "&" stands for "and" where "and" would not fit.
+- The patcher is idempotent: a second run changes nothing.
+
 Residual limits:
-- 180 short machine outputs shared by different French sources (e.g. “Right.” from *Vrai.*, *exact.*, *droite.*) are skipped as ambiguous.
-- Word order across two overlay segments cannot be fixed span by span (e.g. “do not join necessarily these points”).
-- 274 spans are still condensed below 60 % width.
-- A full re-typeset English edition from LaTeX sources would remove all three; this was not attempted.
+- 123 French guillemets « » remain in punctuation-only spans of the original fonts. They contain no letters, so they were never overlaid.
+- A few French words set inside mathematics spans (e.g. "à" in "−2 à +∞") are untouched, for the same reason.
+- 28 segments remain below 60 % width. About 5,900 overlay blocks (mostly isolated short words) are not located by position and use the unambiguous machine-output mapping only.
+- The corrections were made by me and parallel AI reviewers, not a professional translator; a teacher should read a sample of each document type before relying on the English editions in class.
+- A re-typeset English edition from LaTeX sources would remove these limits. The PDFs were imported without sources, so this was not possible.
 
 ## Site design and interaction
 

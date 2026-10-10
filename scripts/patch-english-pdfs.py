@@ -78,10 +78,13 @@ def french_spans(doc, number):
     return [((s['origin'][0] - e) / a, (height - s['origin'][1] - f) / d, s['text'])
             for b in page.get_text('dict')['blocks'] for l in b.get('lines', []) for s in l['spans']]
 
-def locate(spans, x, y, current):
-    """French source whose text starts at (x, y) and whose English is on the block."""
+def candidates(spans, x, y):
+    """French sources whose text starts at (x, y) in the French edition."""
     line = norm(''.join(t for _, t in sorted((sx, t) for sx, sy, t in spans if abs(sy - y) < 1.2 and sx >= x - 3)))
-    found = [s for n in range(1, 7) for s in by_prefix.get(line[:n], []) if line.startswith(norm(s))]
+    return [s for n in range(1, 7) for s in by_prefix.get(line[:n], []) if line.startswith(norm(s))]
+
+def locate(found, current):
+    """The candidate whose machine, reviewed or contextual English is on the block."""
     found = [s for s in found if current in {latin(cache[s]).strip(), latin(reviewed(s)).strip()}
              or current in context_outputs.get(s, ())]
     return max(found, key=len) if found else None
@@ -104,8 +107,9 @@ def paragraphs(blocks):
     return groups
 
 def signature(group):
-    """Stable key of a paragraph: its French sources, in order."""
-    joined = '\u2016'.join(b['source'] or '' for b in group)
+    """Stable key of a paragraph from the French edition alone: the longest
+    French source starting at each block's position, in order."""
+    joined = '\u2016'.join(b['position'] or '' for b in group)
     return hashlib.sha1(joined.encode()).hexdigest()[:16]
 
 def read_blocks(raw, path, spans):
@@ -118,9 +122,11 @@ def read_blocks(raw, path, spans):
         b = {'m': m, 'old': old, 'core': core, 'x': float(x), 'y': float(y), 'size': float(size), 'font': font.decode(), 'a': float(a)}
         b['header'] = bool(HEADER.match(core)) and b['size'] <= 9.5
         if b['header']:
-            b['source'], b['new'] = None, header_for(path)
+            b['source'], b['position'], b['new'] = None, None, header_for(path)
         else:
-            b['source'] = locate(spans, b['x'], b['y'], current)
+            found = candidates(spans, b['x'], b['y'])
+            b['position'] = max(found, key=len) if found else None
+            b['source'] = locate(found, current)
             b['located'] = b['source'] is not None
             if b['located']:
                 b['new'] = reviewed(b['source'])
@@ -133,9 +139,12 @@ def read_blocks(raw, path, spans):
         blocks.append(b)
     for group in paragraphs(blocks):
         key = signature(group)
+        # Without any located French text the key would be shared by unrelated
+        # paragraphs (running headers, labels), so no context applies.
+        anchored = any(b['position'] for b in group)
         for i, b in enumerate(group):
             b['context'] = f'{key}:{i}'
-            if b['context'] in context:
+            if anchored and not b['header'] and b['context'] in context:
                 b['new'] = context[b['context']]['english']
     return blocks
 
