@@ -273,8 +273,8 @@ export const labs = [
     params: [["N", 2, 100, 1, 8]],
     steps: [
       [
-        "Avec deux rectangles, pourquoi l’approximation est-elle inférieure à l’aire exacte ?",
-        "With two rectangles, why is the approximation below the exact area?",
+        "Avec deux rectangles à gauche, pourquoi l’approximation est-elle inférieure à l’aire exacte ? Et à droite ?",
+        "With two left-endpoint rectangles, why is the approximation below the exact area? What about right endpoints?",
       ],
       [
         "Compare les rectangles à gauche, à droite et au milieu. Augmente N et observe les erreurs.",

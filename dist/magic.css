@@ -21,6 +21,7 @@
   }
   a:focus-visible, button:focus-visible, input:focus-visible,
   textarea:focus-visible, summary:focus-visible { outline-color: #b5a5ff; }
+  .trig-tabs button[aria-pressed="true"] { color: #0b1224; }
   .skip { background: #eff5ff; color: #0b1224; border-radius: 8px; }
   .topbar {
     background: #0e182b;

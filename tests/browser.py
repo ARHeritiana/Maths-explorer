@@ -26,7 +26,7 @@ with sync_playwright() as p:
         page.locator('[data-lang="'+language+'"]').click()
         for lab,answer in zip(LABS,ANSWERS):
             page.goto(BASE+'/#lab/'+lab)
-            page.locator('#plot svg').wait_for()
+            page.locator('#plot svg').first.wait_for()
             assert page.locator('html').get_attribute('lang') == language
             assert page.locator('#results strong').count() == 3
             sliders = page.locator('[data-param]')
@@ -152,7 +152,7 @@ with sync_playwright() as p:
         extra_errors = []
         extra.on('pageerror',lambda e: extra_errors.append(str(e)))
         extra.goto(BASE+'/#lab/quadratic')
-        extra.locator('#plot svg').wait_for()
+        extra.locator('#plot svg').first.wait_for()
         extra.locator('[data-lang="en"]').click()
         extra.locator('#quiz-answer').fill('2')
         extra.locator('#lab-quiz button').click()

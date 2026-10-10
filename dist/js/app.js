@@ -323,7 +323,10 @@ function updateLab(animatedValues, moving = false) {
   if (lab.id === "quadratic") {
     const [a, b, c] = v,
       q = quadratic(a, b, c);
-    formula = `f(x) = ${fmt(a)}x² ${b < 0 ? "−" : "+"} ${fmt(Math.abs(b))}x ${c < 0 ? "−" : "+"} ${fmt(Math.abs(c))}`;
+    // Conventional writing: omit zero terms and unit coefficients.
+    const terms = [[a, "x²"], [b, "x"], [c, ""]].filter(([k]) => k !== 0)
+      .map(([k, x], i) => `${k < 0 ? (i ? " − " : "−") : i ? " + " : ""}${Math.abs(k) === 1 && x ? "" : fmt(Math.abs(k))}${x}`);
+    formula = `f(x) = ${terms.join("") || "0"}`;
     plot = chart({
       ymin: Math.min(-5, c, 4*a + 2*b + c) - 1,
       ymax: Math.max(7, c, 4*a + 2*b + c) + 1,
@@ -373,7 +376,7 @@ function updateLab(animatedValues, moving = false) {
     plot = figure.svg;
     formula = figure.formula;
     caption = figure.caption;
-    data = `<table><caption>${pair("Valeurs exactes aux angles remarquables ; sinon valeurs approchées", "Exact values at remarkable angles; otherwise approximate values")}</caption><thead><tr><th>${pair("Grandeur", "Quantity")}</th><th>${pair("Valeur", "Value")}</th></tr></thead><tbody>${figure.rows.map(([k,val])=>`<tr><th scope="row">${esc(k)}</th><td>${esc(val)}</td></tr>`).join("")}</tbody></table>`;
+    data = `<table><caption>${pair("Valeurs exactes aux angles remarquables ; sinon valeurs approchées", "Exact values at remarkable angles; otherwise approximate values")}</caption><thead><tr><th scope="col">${pair("Grandeur", "Quantity")}</th><th scope="col">${pair("Valeur", "Value")}</th></tr></thead><tbody>${figure.rows.map(([k,val])=>`<tr><th scope="row">${esc(k)}</th><td>${esc(val)}</td></tr>`).join("")}</tbody></table>`;
     results = metric("cos x",figure.cos)+metric("sin x",figure.sin)+metric(pair("Angle en radians","Angle in radians"),figure.q.radians || "≈ "+fmt(v[0]*Math.PI/180));
     if ($("#remarkable-angle")) $("#remarkable-angle").value = [...$("#remarkable-angle").options].some(o=>o.value===String(v[0])) ? String(v[0]) : "";
   } else if (lab.id === "sequences") {
@@ -401,7 +404,7 @@ function updateLab(animatedValues, moving = false) {
     data = dataTable(["n", "uₙ"], values.map((y,i) => [i,fmt(y)]));
     results =
       metric("u₀", fmt(first)) +
-      metric(`u${n - 1}`, fmt(values.at(-1))) +
+      metric("u" + String(n - 1).replace(/\d/g, d => "₀₁₂₃₄₅₆₇₈₉"[d]), fmt(values.at(-1))) +
       metric(
         pair("Somme des N termes", "Sum of N terms"),
         fmt(values.reduce((a, b) => a + b, 0)),
