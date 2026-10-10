@@ -37,6 +37,10 @@ for source, english in corrections.items():
     if key in mapping and mapping[key] != english:
         conflicts.add(key)
     mapping[key] = english
+# An unreviewed source with the same machine output was judged correct as is.
+for source, old in cache.items():
+    if source not in corrections and latin(old).strip() in mapping:
+        conflicts.add(latin(old).strip())
 for key in conflicts:
     mapping.pop(key)
 

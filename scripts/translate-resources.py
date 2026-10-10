@@ -133,6 +133,9 @@ cache.update({
 })
 cache={k:terminology['correct_translation'](k,v) for k,v in cache.items()}
 CACHE.write_text(json.dumps(cache,ensure_ascii=False,indent=2)+'\n')
+# Human-reviewed corrections take precedence over the machine cache.
+REVIEWED=ROOT/'docs/translation-corrections.json'
+if REVIEWED.exists():cache.update({k:v for k,v in json.loads(REVIEWED.read_text()).items() if k in cache})
 
 ledger=[];small=[]
 for number,(path,pages) in enumerate(items):
