@@ -33,16 +33,18 @@ MARKERS = {
     }}
 CORRECTIONS = {'premiere': {'fr': r'^Corrigés et conduite du chapitre', 'en': r'^Solutions and teaching notes for chapter'}}
 FIRST_CHAPTER_ENTRY = {'premiere': 2}   # level-1 bookmarks before chapter 1 (booklet notes, framework)
+# Appendices after the chapters: (supplement id, level-1 bookmark index, bank resource id suffix)
+APPENDICES = {'premiere': [('methods', 12, 'bank-0'), ('fluency', 13, 'bank-1'), ('assessments', 14, 'bank-2')]}
 
 
 def tidy(s): return re.sub(r'\s+', ' ', s).strip()
 
 
-def compile_pdf(course, entry, jobname, prof):
+def compile_pdf(course, entry, jobname, prof, defs=''):
     """Two or three pdfLaTeX passes in the source directory; returns the PDF path."""
     out = BUILD / course; out.mkdir(parents=True, exist_ok=True)
     cmd = ['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-halt-on-error', '-jobname=' + jobname, '-output-directory=' + str(out),
-           (r'\def\versionprof{1}\input{%s}' % entry) if prof else entry]
+           ((r'\def\versionprof{1}' if prof else '') + defs + r'\input{%s}' % entry) if (prof or defs) else entry]
     for n in range(3):
         r = subprocess.run(cmd, cwd=SRC / course, capture_output=True, text=True, errors='replace')
         log = (out / (jobname + '.log')).read_text(errors='replace') if (out / (jobname + '.log')).exists() else r.stdout
@@ -101,33 +103,32 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('course'); ap.add_argument('--chapters', type=int, nargs='+', required=True)
     ap.add_argument('--lang', nargs='+', default=['fr', 'en'])
-    ap.add_argument('--pilot-entry', default=None, help='reduced entry stem for the English twin, e.g. pilot-05')
+    ap.add_argument('--appendices', action='store_true', help='also rebuild the appendix booklets (full books only)')
+    ap.add_argument('--pilot-entry', default=None, help='reduced entry stem for the English twin, e.g. pilot')
     a = ap.parse_args()
     course = a.course
     catalog = json.loads((OUT / 'catalog.json').read_text())
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == course}
     results = {}
+    wanted = sorted(a.chapters)
     for lang in a.lang:
         suffix = '-en' if lang == 'en' else ''
         reduced = a.pilot_entry if (lang == 'en' and a.pilot_entry) else None
-        stem_s = (reduced + suffix if reduced else 'eleve' + suffix)
-        stem_t = (reduced + suffix if reduced else 'professeur' + suffix)
-        if reduced: stem_s = stem_t = reduced + suffix
+        stem_s = stem_t = (reduced + suffix) if reduced else None
+        if not reduced: stem_s, stem_t = 'eleve' + suffix, 'professeur' + suffix
+        defs = (r'\def\pilotlist{%s}' % ','.join('%02d' % n for n in wanted)) if reduced else ''
         print(f'[{course} {lang}]')
-        sd = fitz.open(compile_pdf(course, stem_s + '.tex', f'{course}-student{suffix}', False))
-        td = fitz.open(compile_pdf(course, stem_t + '.tex', f'{course}-teacher{suffix}', True))
-        for number in a.chapters:
+        sd = fitz.open(compile_pdf(course, stem_s + '.tex', f'{course}-student{suffix}', False, defs))
+        td = fitz.open(compile_pdf(course, stem_t + '.tex', f'{course}-teacher{suffix}', True, defs))
+        st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
+        for number in wanted:
             ch = chapters[number]
-            if reduced:   # reduced twin holds the converted chapter only
-                s0, s1, t0, t1, offs, offt = 0, len(sd), 0, len(td), 0, 0
-
-                offs = next(r['sourcePages'][0] for r in catalog['resources'] if r['id'] == ch['id'] + '-chapter') - 1
-                offt = next(r['sourcePages'][0] for r in catalog['resources'] if r['id'] == ch['id'] + '-teacher') - 1
-            else:
-                first = FIRST_CHAPTER_ENTRY[course]
-                st = [p - 1 for l, t, p in sd.get_toc() if l == 1]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1]
-                j = first + number - 1
-                s0, s1 = st[j], st[j + 1]; t0, t1 = tt[j], tt[j + 1]; offs = offt = 0
+            j = wanted.index(number) if reduced else FIRST_CHAPTER_ENTRY[course] + number - 1
+            s0, s1, t0, t1 = st[j], st[j + 1], tt[j], tt[j + 1]
+            offs = offt = 0
+            if reduced:   # page labels follow the full booklet
+                offs = next(r['sourcePages'][0] for r in catalog['resources'] if r['id'] == ch['id'] + '-chapter') - 1 - s0
+                offt = next(r['sourcePages'][0] for r in catalog['resources'] if r['id'] == ch['id'] + '-teacher') - 1 - t0
             res = {r['id'].split('-', 2)[2]: r for r in catalog['resources'] if r['chapter'] == ch['id']}
             def title(name): return (ch['title'][0] + ' — ' + res[name]['title'][0]) if lang == 'fr' else (ch['title'][1] + ' — ' + res[name]['title'][1])
             d = OUT / ch['id']
@@ -143,6 +144,14 @@ def main():
             c = find(td, t0, t1, CORRECTIONS[course][lang])
             if c: pages['corrections'] = emit(path('corrections'), ch, 'solutions', title('corrections'), lang, td, c[0], t1, bounds=(c, (t1, 0)), offset=offt)
             results[(lang, number)] = pages
+        if a.appendices and not reduced:
+            for name, idx, bank in APPENDICES[course]:
+                bk = next(r for r in catalog['resources'] if r['id'] == f'{course}-revision-{bank}')
+                ttl = bk['title'][1 if lang == 'en' else 0]
+                pre = 'Cross-chapter resources' if lang == 'en' else 'Ressources transversales'
+                emit(OUT / f'{course}-{name}-eleve{suffix}.pdf', {'id': course + '-' + name}, 'booklet', f'{ttl} · ' + ('student' if lang == 'en' else 'élève'), lang, sd, st[idx], st[idx + 1])
+                emit(OUT / f'{course}-{name}-prof{suffix}.pdf', {'id': course + '-' + name}, 'solutions', f'{ttl} · ' + ('teacher' if lang == 'en' else 'professeur'), lang, td, tt[idx], tt[idx + 1])
+                emit(OUT / f'{course}-revision' / f'{bank}{suffix}.pdf', {'id': course + '-revision'}, 'booklet', f'{pre}: {ttl}', lang, sd, st[idx], st[idx + 1])
     if {'fr', 'en'} <= set(a.lang):   # record chapters built from TeX in both languages
         ledger = ROOT / 'docs/TEX_CONVERSION.json'
         done = set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
@@ -150,7 +159,7 @@ def main():
         ledger.write_text(json.dumps({'note': 'Chapters whose French and English PDFs are compiled from content/latex.', 'converted': sorted(done)}, indent=2) + '\n')
     for (lang, number), pages in results.items():
         print(lang, number, pages)
-    for number in a.chapters:
+    for number in wanted:
         if {'fr', 'en'} <= set(a.lang) and results[('fr', number)] != results[('en', number)]:
             sys.exit(f'Page-count mismatch between editions for chapter {number}')
 

@@ -18,7 +18,7 @@ COURSES = {
     'premiere': (['Première spécialité', 'Première · mathematics specialty'],
                  {'eleve.tex': ('fr', 'student'), 'professeur.tex': ('fr', 'teacher'),
                   'eleve-en.tex': ('en', 'student'), 'professeur-en.tex': ('en', 'teacher'),
-                  'pilot-05-en.tex': ('en', 'student + teacher (chapter 5 only)')}),
+                  }),
     'seconde': (['Seconde', 'Seconde'], {}),
     'terminale': (['Terminale spécialité', 'Terminale · mathematics specialty'], {}),
     'stmg': (['Terminale STMG', 'Terminale STMG'], {}),

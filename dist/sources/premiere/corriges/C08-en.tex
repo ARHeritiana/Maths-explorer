@@ -1,0 +1,56 @@
+\corrsection{8}\label{C08-CORR}
+\textbf{Teacher use.} The answers below concern the tasks not worked in the lesson. First have students state their method; give graded help before the solution. The durations are estimates to be calibrated in class.
+\subsection*{Diagnostic and remediation}
+\begin{enumerate}
+\item $4$. \textit{Action:} Add, then divide by the number of values.
+\item Yes: positive numbers with sum 1. \textit{Action:} Put over a common denominator.
+\item $9$. \textit{Action:} Keep the brackets before squaring.
+\item $0.4$. \textit{Action:} Use the complement.
+\item $5$. \textit{Action:} Write net gain = received minus paid.
+\item $0.5$. \textit{Action:} Check the square of the answer.
+\end{enumerate}
+\subsection*{Investigation activity}
+Gains $(-1;0;1)$ and $(-3;0;3)$: expectation 0 in both cases, variances $\dfrac{2}{3}$ and 6. In standard deviation, the second is three times more dispersed.
+\subsection*{Immediate applications}
+\begin{enumerate}
+\item Values 0, 1, 2; probabilities $\dfrac{1}{4}$, $\dfrac{1}{2}$, $\dfrac{1}{4}$. $P(X\leq1)=\dfrac{3}{4}$.
+\item $E(G)=\dfrac{10}{5}=2$. For a stake m, $E(G-m)=2-m$; fair stake 2.
+\item $E(X)=0$, $E(X^2)=1$, variance 1 and standard deviation 1.
+\item $E(Y)=-1$, $V(Y)=16$, $\sigma(Y)=4$.
+\item $\dfrac{2\sigma}{\sqrt n}=1$; interval $[4;6]$.
+\end{enumerate}
+\subsection*{Exercises: method and results}
+\paragraph{Exercise 8.1 -- A distribution to build.} Values 0, 1, 2; each obtained from two faces, probabilities $\dfrac{1}{3}$. $P(X<2)=\dfrac{2}{3}$. Beware the remainder 0 for 3 and 6.
+\paragraph{Exercise 8.2 -- Two variance calculations.} $E(X)=-\dfrac{1}{2}+1=\dfrac{1}{2}$. $E(X^2)=1+4=5$; $V=5-\dfrac{1}{4}=\dfrac{19}{4}$, $\sigma =\dfrac{\sqrt {19}}{2}$. Direct: $(\dfrac{25}{4})(\dfrac{1}{4})+(\dfrac{1}{4})(\dfrac{1}{2})+(\dfrac{49}{4})(\dfrac{1}{4})=\dfrac{76}{16}=\dfrac{19}{4}$.
+\paragraph{Exercise 8.3 -- A fair game.} $E(G)=\dfrac{15}{5}=3$, so m=3. $E(G^2)=\dfrac{125}{5}=25$; $V(G)=25-9=16$, standard deviation 4, unchanged by the stake.
+\paragraph{Exercise 8.4 -- Same mean, different risk.} $E(X)=E(Y)=1$; $V(X)=0$; $E(Y^2)=10$, $V(Y)=9$. X is certain, Y is dispersed. A player's preferences cannot be ranked from the expectation alone.
+\paragraph{Exercise 8.5 -- Linearity without independence.} $E(X)=\dfrac{1+2+3+4+5+6}{6}=\dfrac72$; $E(Y)=7-E(X)=\dfrac72$. Since $X+Y=7$, its expectation is 7, the sum of the two expectations. The events $\{X=1\}$ and $\{Y=6\}$ are identical: their intersection has probability $\dfrac16$, whereas the product of their probabilities is $\dfrac1{36}$. The variables are not independent. Linearity remains valid without this hypothesis.
+\paragraph{Exercise 8.6 -- A minimal loss.} Write $X-a=(X-\mu)+(\mu-a)$, expand, then use $E(X-\mu)=0$. The square $(a-\mu)^2$ is minimal, zero only for $a=\mu$. The mean minimises the mean squared error.
+\paragraph{Exercise 8.7 -- Letter frequencies.} Convert the text to lower case, keep the characters for which \code{isalpha()} is true, then count the ``a''s. Divide this number by the number of letters if it is nonzero. For a text with no letter, return \code{None}, because the frequency is not defined. For \code{Aba !}, two ``a''s out of three letters give $\dfrac23$; the other two tests give \code{None}. The supplied program \code{frequence_a} follows this convention.
+\paragraph{Exercise 8.8 -- Delayed review.} Distribution: $0,1,2$ with probabilities $\dfrac{1}{4},\dfrac{1}{2},\dfrac{1}{4}$. Expectation 1; second moment: $\dfrac{1}{2}+1=\dfrac{3}{2}$, variance $\dfrac{1}{2}$. The four paths are counted explicitly.
+\paragraph{CQFD, exercise 28 p.~306, all questions.} $E(X)=(-10)\times0.35+(-5)\times0.15+0\times0.4+20\times0.1=-2.25=-\dfrac94$. A negative expectation is compatible with a possible positive value.
+\paragraph{CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.} $E(X^2)=100\times0.35+25\times0.15+400\times0.1=78.75$. Thus $V(X)=78.75-(-2.25)^2=73.6875=\dfrac{1179}{16}$, then $\sigma(X)=\dfrac{\sqrt{1179}}4\approx8.6$. Do not round the expectation before calculating the variance.
+\subsection*{MCQ: answers and reasons}
+\textbf{MCQ 1.}
+\begin{enumerate}
+\item B. Partition of the sample space.
+\item A. $0+\dfrac{4}{4}$.
+\item D. König--Huygens.
+\item C. Positive root.
+\item B. Linearity.
+\end{enumerate}
+\textbf{MCQ 2.}
+\begin{enumerate}
+\item C. Translation with no new dispersion.
+\item A. Absolute value of the factor.
+\item D. A variable can be negative or have a mean that is never attained.
+\item B. A common finite sample space is enough.
+\item C. $\dfrac{4}{10}=0.4$.
+\end{enumerate}
+\subsection*{True or false}
+\begin{enumerate}
+\item False: it is a mean of squares with positive weights.
+\item False: the constant 1 and an equally likely variable taking $-2,4$ have the same mean.
+\item True: the deviations from the new mean stay the same.
+\end{enumerate}
+\paragraph{Differentiated teaching.} For a technical block, offer only the first step (domain, factor or reference sample space), then withdraw the help. For an independent student, ask for a second method and the treatment of a limiting case. Orally, allow an initial reformulation in the language the student has mastered, then require a precise mathematical sentence in French.

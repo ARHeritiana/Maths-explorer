@@ -1,0 +1,92 @@
+\chapter{Reasoning and preparing for the exam}\label{TRANS}
+\section{Logic: from words to proofs}\label{LOGIQUE}
+\begin{repere}{Sets and statements}
+$x\in A$ means that x is an element of A; $A\subseteq B$ means that every element of A belongs to B. The empty set is written $\varnothing$. The intersection corresponds to ``and'', the union to the inclusive ``or''. In a universe E, $E\setminus A$ is the complement of A. A pair $(a;b)$ is ordered; $A\times B$ groups the pairs whose first component is in A and whose second is in B. The cardinality of a finite set is its number of elements.
+\end{repere}
+\exemple{For $A=\{1;2\}$ and $B=\{2;3\}$, the intersection is $\{2\}$, the union $\{1;2;3\}$. The product $A\times B$ contains $(1;2),(1;3),(2;2),(2;3)$: cardinality 4.}
+
+\paragraph{Numbers and intervals.} $\N$ here contains 0 and the natural numbers; $\Z$ the integers; $\mathbb D$ the decimals with a finite expansion; $\mathbb Q$ the quotients of two integers, with nonzero denominator; $\R$ the real numbers. We have $\N\subset\Z\subset\mathbb D\subset\mathbb Q\subset\R$. Thus $\dfrac{1}{3}$ is rational but not decimal; $\sqrt2$ is real but not rational (earlier result). $[-2;3[$ means $-2\leq x<3$; an infinite endpoint is never included.
+
+An implication ``if P, then Q'' expresses that P is a sufficient condition for Q and Q a necessary condition for P. Its converse is ``if Q, then P''. Its contrapositive is ``if not Q, then not P''; it has the same truth value as the implication. An equivalence combines the two implications.
+\exemple{``If $x=2$, then $x^2=4$'' is true. The converse is false for $x=-2$. The equality $x=2$ is sufficient for $x^2=4$, but not necessary. The contrapositive ``if $x^2\ne4$, then $x\ne2$'' is true.}
+
+To refute a universal statement, a counterexample is enough. To prove that an object exists, we can construct one and check its properties. Negating ``for all x, P(x)'' gives ``there exists x such that not P(x)''; negating ``there exists x, P(x)'' gives ``for all x, not P(x)''. The quantifier symbols are not required; the meaning of the sentences is.
+\exemple{The negation of ``for every real number x, $x^2>0$'' is ``there exists a real number x such that $x^2\leq0$''. The choice x=0 satisfies this negation.}
+
+\textbf{Case analysis.} Solve $|x|=2$ by distinguishing x positive or zero and x negative: we obtain 2 and -2. The cases cover the whole domain.\par
+\textbf{Contradiction.} Suppose that $x^2+1=0$ has a real solution. Then $x^2=-1$, contradicting the positivity of a square. So there is no real solution.\par
+\textbf{Identity, equation, parameter.} $(x+1)^2=x^2+2x+1$ is an identity, true for every real number x. $x^2=1$ is an equation in which x is the unknown. In $x^2-2mx+1=0$, m is a parameter held fixed while we look for x; discussing according to m is another level of reasoning.
+
+\subsection*{Cross-curricular exercises}\label{LOG-EX}
+\begin{enumerate}
+\item Negate: ``There exists a real number x such that $x^2<0$''. Is the original statement true?
+\item Give the converse and the contrapositive of: ``If an integer is a multiple of 4, then it is even''. Which are true?
+\item For $A=\{0;1\}$ and $B=\{1;2;3\}$, calculate $A\cap B$, $A\cup B$, $A\times B$ and their cardinalities.
+\item Show by contradiction that there is no largest natural number.
+\item Classify $-2$, $0.125$, $\dfrac{1}{3}$, $\sqrt2$ in the smallest standard set; express $x>1$ and $x\leq4$ as an interval. State the status of x and m in $mx+1=0$. Solve according to m.
+\end{enumerate}
+\ifprof
+\subsection*{Cross-curricular solutions}
+1. Negation: for every real number x, $x^2\geq0$, true; the original statement is false.\par
+2. The converse is false, counterexample 2. Contrapositive: if an integer is not even, it is not a multiple of 4; true.\par
+3. Intersection $\{1\}$, cardinality 1; union $\{0;1;2;3\}$, cardinality 4; product of six pairs $(0;1),(0;2),(0;3),(1;1),(1;2),(1;3)$.\par
+4. If N were the largest, N+1 would be a strictly larger natural number: contradiction.\par
+5. Respectively $\Z$, $\mathbb D$, $\mathbb Q$, $\R$; interval $]1;4]$. x unknown, m parameter. If $m\ne0$, unique solution $-\dfrac{1}{m}$; if m=0, the equation becomes $1=0$, no solution.
+\fi
+
+\section{Python: understanding what we run}\label{PYTHON}
+The supplied files run with Python 3. A function receives arguments and returns a result; a loop repeats an action. A program variable can change value by assignment, unlike a fixed unknown in an equation.
+
+\begin{repere}{Lists and indices}
+\code{L=[1,4,9]} defines a list by listing its elements. \code{L.append(16)} adds an element; \code{del L[0]} deletes the first. \code{L[0]} reads the element of index 0 and \code{len(L)} gives the length. A list comprehension, such as \code{[k*k for k in range(5)]}, contains the squares from 0 to 4. Order and repetitions are part of the list: it is not a set.
+\end{repere}
+\exemple{After \code{L=[1,4,9]}, \code{L.append(16)}, then \code{del L[0]}, the list is [4,9,16]. The instruction \texttt{[x for x in L if x\%2==0]} produces [4,16]. The test is a logical statement evaluated for each element.}
+
+\begin{longtable}{p{.25\linewidth}p{.66\linewidth}}
+\toprule File & Uses and checks to carry out \\\midrule
+\code{suites.py} & Terms, sums, thresholds, factorial, Fibonacci, Syracuse, list manipulation. Test n=0, q=0, q=1, a threshold already reached and an unreachable threshold.\\
+\code{analyse.py} & Rates of secants, Newton, Euler, exponential threshold. Avoid a zero step and a zero derivative; distinguish stopping from convergence.\\
+\code{probabilites.py} & Distribution, moments, Monte Carlo, samples, letter frequency. Check the sum of probabilities, nonzero size and simulation seed.\\
+\code{archimede.py} & Inscribed and circumscribed polygons, without using pi in the construction. Check that the bounds tighten.\\
+\code{verifier.py} & Run the deterministic checks and the edge cases. A simulation close to a theoretical value is not a proof of it.\\\bottomrule
+\end{longtable}
+
+\subsection*{Practical work to be shared out}\label{TP}
+\begin{enumerate}
+\item Sequences: generate ten terms, compare a loop with a formula, then calculate a running total. Explain the length of the list.
+\item Secants: take three positive and three negative steps; compare with the algebraic calculation of the rate.
+\item Monte Carlo: compare 1,000 then 10,000 points, with two seeds; comment on the fluctuation.
+\item Samples: simulate N=1,000 samples of size n=10 then n=100; compare the observed mean and the expectation. Count the means within the threshold $\dfrac{2\sigma}{\sqrt n}$.
+\item Euler and Archimedes: produce a table of results at several resolutions; state what is observed and what has been proved.
+\end{enumerate}
+These practical tasks are alternatives spread over the algorithmics and consolidation sessions. They are not all added to the same week of lessons. The results of a simulation depend on the seed; the check report supplies an example of a reproducible run.
+
+\section{Reading and representing data}\label{STATS}
+A weighted mean is $\dfrac{\sum n_ix_i}{\sum}n_i$. The median splits an ordered data set; for an even count, we use here the mean of the two central values. The quartiles with ceiling ranks $\dfrac{n}{4}$ and $\dfrac{3n}{4}$ are explicitly used when values are requested. The descriptive variance uses the denominator n, with no estimation correction.
+
+In a bar chart, the height represents the count or the frequency. In a histogram with classes of unequal widths, it is the area of the rectangle that must be proportional to it. A pie chart shares the $360^\circ$ according to the proportions. A box plot represents measures of position and dispersion, not the frequency of each value. Always read the origin, units and scale before comparing.
+\exemple{Two classes of width 2 and 4 each contain 20 observations. Heights 10 and 5 give an area of 20 in both cases. Equal heights would make the second class artificially twice as important.}
+\application{The categories A, B, C have counts 10, 20, 30. Construct a bar chart and calculate the angles of a pie chart. For the data set 1,1,3,3,7, give the mean, median, range and variance. Read the box plot below: minimum, quartiles, median and maximum. Can all the data be recovered?}\label{STATS-EX}
+\begin{center}\begin{tikzpicture}[x=.65cm,y=.7cm]
+\draw[->] (0,0)--(11,0);\foreach \x in {0,...,10}\draw (\x,.1)--(\x,-.1)node[below]{\small\x};
+\draw[thick,vert](1,1)--(3,1) (7,1)--(10,1) (1,.6)--(1,1.4) (10,.6)--(10,1.4);
+\draw[thick,vert](3,.5)rectangle(7,1.5);\draw[thick,ocre](5,.5)--(5,1.5);
+\end{tikzpicture}\par\small Box plot independent of the previous data set; whiskers at the extreme values.\end{center}
+\ifprof
+\paragraph{Solution.} Box plot: minimum 1, first quartile 3, median 5, third quartile 7, maximum 10. These five measures do not determine all the observations. Total count 60: angles $60^\circ$, $120^\circ$, $180^\circ$. The bar heights are 10,20,30. Data set: mean 3; median 3; range 6; variance $\dfrac{4+4+0+0+16}{5}=\dfrac{24}{5}$.
+\fi
+
+\section{Past papers: reading the format without narrowing the programme}\label{ANNALES}
+The 2026 papers were consulted to identify the approaches required. They belong to the first edition of the EAM, before the 2026 programme came into force; they serve as practice once the topics studied have been checked. The original EV papers are not presented as official papers.
+
+\begin{longtable}{p{.22\linewidth}p{.38\linewidth}p{.29\linewidth}}
+\toprule Source & Approaches observed & Where to reuse \\\midrule
+Metropolitan 2026, 26-MATSPEGEME1 & Tree with an unknown probability; justified statements; geometry linking angle and equation. & C05, C03, C09; EV2-A, EV3-A and EV4-B.\\
+Official paper 2026, 26-MATSPEGEG11 & Discrete model, running total and reading a loop; coordinates and angle; tangent and quotient. & C01, C03, C06; EV1-T1, EV2-T1.\\
+Antilles-Guyane 2026, 26-MATSPEGEAG1 & Threshold of a sequence; tree and random pricing; exponential product and true/false. & C01, C05, C08, C09; EV4-T1 and EV4-B.\\
+Éduscol sample papers & Fluency, independent problems and write-up without a calculator. & T1/T2 practice papers of each set.\\\bottomrule
+\end{longtable}
+The exact links are given in the file \code{SOURCES.md}. The papers are not reproduced in full. To work on a past paper, note the paper code, the exercise and the questions actually studied; correct the reasoning, not just the results.
+
+\subsection*{Preparing for two hours without a calculator}
+Start by reading both parts; set aside about 20 to 25 minutes for the fluency questions. For an exercise, write the hypotheses and the domain before calculating. If a step blocks you, use the result given in the question to continue, and say so. Keep about ten minutes to check signs, the roundings requested, units and answers to the questions. These guidelines should be adapted to the pace observed during practice.

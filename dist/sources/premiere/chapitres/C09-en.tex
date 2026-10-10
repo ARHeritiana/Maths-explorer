@@ -1,0 +1,219 @@
+\chapter{The exponential function and continuous models}\label{C09}
+\begin{repere}{Chapter path}
+\textbf{Objectives.} Use the algebraic properties; differentiate; study growth or decay; link the exponential to geometric sequences.
+
+\textbf{Prerequisites.} Powers, geometric sequences, differentiation and sign.
+
+\textbf{Yearly reference point.} 2--11 February: 8 hours\end{repere}
+\section*{Diagnostic: six questions, 10 minutes}\label{C09-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item Simplify $2^3\times2^4$.
+\item Express $3^{-2}$.
+\item Solve $2x+1=5$.
+\item Differentiate $x^2+2x$.
+\item A 20 \% decrease gives which coefficient?
+\item For a geometric sequence $u_0=5,q=2$, calculate $u_n$.
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Explain the difference between a continuous rate and a discrete multiplying coefficient; present an inequality proved through the minimum of a difference.
+\clearpage
+\section*{Investigate before formalising}\label{C09-RECH}
+Compare the increments of $e^x$ and the values of the function around 0, with several positive steps. Build three Euler steps and explain the rule chosen.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\section{Defining a new function}\label{C09-U1}
+\begin{repere}{Definition and results}
+The exponential function is the unique function f differentiable on $\R$ satisfying $f\prime=f$ and $f(0)=1$. Its existence and uniqueness are accepted. It is written $\exp$, then $e^x$ with $e=\exp(1)\approx2.71828$. The number e is a constant; x is the variable. The exponential is strictly positive.
+\end{repere}
+\paragraph{Status and justification.} Existence and uniqueness accepted in accordance with the programme. Positivity is deduced, after the algebraic properties accepted below, from $\exp (x)=\exp (\dfrac{x}{2})^2$ and from $\exp(x)\exp(-x)=1$.
+\exemple{$\exp(0)=1$, $\exp(1)=e$, $\exp\prime(0)=1$. The tangent at 0 is therefore $y=1+x$. The notation $e^x$ extends the properties of powers to every real exponent.}\label{C09-EX1}
+\input{figures/C09-U1-en.tex}
+\begin{erreur}$e^0=1$, not 0. The function never takes the value 0, even for negative x.\end{erreur}
+\application{What is the equation of the tangent to $e^x$ at 1?}\label{C09-AP1}
+\section{Algebraic properties and comparisons}\label{C09-U2}
+\begin{repere}{Definition and results}
+For all real x,y, $e^{x+y}=e^xe^y$, $e^{-x}=\dfrac{1}{e^x}$, $e^{x-y}=\dfrac{e^x}{e^y}$. For integer n, $(e^x)^n=e^{nx}$. The function is strictly increasing on $\R$, so $e^u=e^v\iff u=v$ and $e^u<e^v\iff u<v$.
+\end{repere}
+\paragraph{Status and justification.} The addition relation is accepted in the common pathway; it can be explored further via uniqueness. Positivity and $\exp\prime=\exp>0$ give strict increase. This justifies the equivalences for equations and inequalities.
+\exemple{$e^{2x}e^{1-x}=e^{x+1}$. $e^{3x-2}=e^{x+4}$ is equivalent to $3x-2=x+4$, so x=3. $e^{2x}\leq1=e^0$ is equivalent to $x\leq0$.}\label{C09-EX2}
+\begin{erreur}$e^{x+y}$ is a product, in general never $e^x+e^y$. We do not solve $e^x=2$ with a logarithm, which is not studied in Première.\end{erreur}
+\application{Simplify $\dfrac{e^{3x}}{e^{x-1}}$; solve $e^{x+2}>e^{2x}$.}\label{C09-AP2}
+\section{Differentiating and studying}\label{C09-U3}
+\begin{repere}{Definition and results}
+For real a, $t\mapsto e^{at}$ is differentiable and its derivative is $ae^{at}$. For $e^{at+b}=e^be^{at}$, the derivative is $ae^{at+b}$. The product and quotient rules apply with the derivatives already known. The sign of the exponential often simplifies the study of the sign of the derivative.
+\end{repere}
+\paragraph{Status and justification.} The formula for differentiating $e^{at}$ is accepted; the case with b follows by taking out the constant factor $e^b$. The general chain rule is not needed here.
+\exemple{For $f(x)=(x+1)e^{-x}$, $f\prime(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. Since $e^{-x}>0$, the derivative has the sign of $-x$: global maximum 1 at 0.}\label{C09-EX3}
+\begin{erreur}Do not forget the factor a or the negative sign in $e^{-x}$. The exponential factor is positive, not necessarily increasing.\end{erreur}
+\application{Differentiate $g(t)=3e^{-2t}$ and study its direction of variation.}\label{C09-AP3}
+\section{From discrete to continuous}\label{C09-U4}
+\begin{repere}{Definition and results}
+A model $Q(t)=Q_0e^{kt}$, with $Q_0>0$, represents growth if $k>0$, decay if $k<0$, constancy if $k=0$. For a fixed step h, $\dfrac{Q(t+h)}{Q(t)}=e^{kh}$. The values at integer times form a geometric sequence with common ratio $e^k$. The unit of k is the inverse of the unit of time.
+\end{repere}
+\paragraph{Status and justification.} The ratio follows from $e^{k(t+h)}=e^{kt}e^{kh}$. The direction of variation is deduced from $Q\prime(t)=kQ_0e^{kt}$ and the positivity of the remaining factor.
+\exemple{$Q(t)=100e^{-0.2t}$, t in hours: $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-0.2}$. A simulation can look for the first whole number of hours at which Q falls below 50; the exact equation is not solved with a logarithm in this chapter.}\label{C09-EX4}
+\input{figures/C09-U4-en.tex}
+\begin{erreur}The relative rate per discrete unit of time is $e^k-1$, not exactly k; they are close only for small k.\end{erreur}
+\application{For $Q(t)=5e^{0.3t}$, express $Q(n)$ and $\dfrac{Q(t+2)}{Q(t)}$.}\label{C09-AP4}
+\section{Building numerically and proving an inequality}\label{C09-U5}
+\begin{repere}{Definition and results}
+To approximate the solution of $y\prime=y$, $y(0)=1$ with a step $h$, Euler replaces the increment by $hy$: $y_{k+1}=(1+h)y_k$. On $[0;1]$ with $h=\dfrac1n$, the approximation of $e$ is $\left(1+\dfrac1n\right)^n$. This construction is experimental. The inequality $e^x\geq1+x$ is obtained by studying a function.
+\end{repere}
+\paragraph{Status and justification.} For $g(x)=e^x-1-x$, $g\prime(x)=e^x-1$, negative if x<0 and positive if x>0. The minimum is $g(0)=0$, which proves the inequality; equality only at 0. The convergence of Euler's method is not proved here.
+\exemple{With n=2, Euler gives $y_0=1,y_1=1.5,y_2=2.25$. With n=10, $(1.1)^{10}\approx2.59374$. We compare with e; we do not confuse an approximate value with the definition of the function.}\label{C09-EX5}
+\begin{erreur}A graph showing a curve above a line does not prove the inequality for all real numbers.\end{erreur}
+\application{Show that $e^{2x}\geq1+2x$ for every real number x.}\label{C09-AP5}
+\section*{Exercise path}\label{C09-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\exercice{C09-E1}{Transforming}
+For every real number $x$, consider the expressions\[A=e^xe^{2-x},\qquad B=\dfrac{(e^{2x})^3}{e^x},\qquad C=e^{-x}(e^x+1).\]
+\begin{enumerate}[label=\arabic*.]
+\item Simplify $A$ and $B$, justifying each grouping of exponents.
+\item Expand then simplify $C$. Explain why a sum does not simplify in the same way as a product.
+\end{enumerate}
+\exercice{C09-E2}{Equations and inequalities}
+Consider an equation and an inequality in the real unknown $x$:\[e^{2x-1}=e^{x+3}\qquad\text{and}\qquad e^{-3x}\geq e^{x-2}.\]
+\begin{enumerate}[label=\arabic*.]
+\item Solve each in $\R$, citing the property of the exponential that allows the exponents to be compared.
+\item While solving the inequality, explain at which step the direction of the inequality changes. Give the solution set as an interval.
+\end{enumerate}
+\exercice{C09-E3}{Product and maximum}
+The function $f$ is defined on $[0;4]$ by $f(x)=xe^{-x}$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $f\prime(x)$, then study its sign on the interval.
+\item Draw the variation table of $f$. Deduce its maximum and the x-coordinate where it is reached.
+\item Check that the values at the endpoints do not give a larger maximum. Keep the exact values.
+\end{enumerate}
+\exercice{C09-E4}{A modelled population}
+The following two parts are independent.\par\textbf{Part A: A population.} A population is modelled by $P(t)=200e^{0.1t}$, where $t\geq0$ is the time elapsed in years. $P(t)$ is a theoretical count, which is not necessarily an integer.
+\begin{enumerate}[label=\arabic*.]
+\item Determine the initial count, then the multiplying coefficient between times $t$ and $t+1$. Deduce the exact annual rate and its percentage rounded to the nearest hundredth.
+\item Explain why this model cannot necessarily describe a real population indefinitely.
+\item \textbf{Part B: Two curves.} In the same frame, sketch the curves of $t\mapsto e^{\dfrac{t}{2}}$ and $t\mapsto e^{-\dfrac{t}{2}}$. State their variation, their common point and their symmetry. Identify each curve clearly.
+\end{enumerate}
+\exercice{C09-E5}{Searching for a threshold}
+The quantity of a substance, in milligrams, is modelled at time $t\geq0$ by $Q(t)=80e^{-\dfrac{t}{2}}$, where $t$ is expressed in hours. Checks take place at integer times $n=0,1,2,\ldots$. We look for the first check at which the quantity is strictly less than 10 mg.
+\begin{enumerate}[label=\arabic*.]
+\item Write an algorithm that searches for this first integer. Provide an iteration bound and state what the program returns if the bound is reached.
+\item Run the algorithm, then check numerically the quantity at the index found and at the previous index.
+\item Justify, using the decrease of $Q$, that this double check establishes that it is indeed the first index. Do not use a logarithm.
+\end{enumerate}
+\exercice{C09-E6}{A symmetry}
+Consider the function $f$ defined on $\R$ by $f(x)=e^x+e^{-x}$.
+\begin{enumerate}[label=\arabic*.]
+\item Study the parity of $f$ and interpret the result for its curve.
+\item Prove that $f(x)\geq2$ for every real number $x$, choosing a method. State the equality case.
+\item Suggest a check of the result by a second method, from a square or a study of variation.
+\end{enumerate}
+\exercice{C09-E7}{Uniqueness under a hypothesis}
+\textbf{Extension.} Assume that the exponential function has already been constructed. Let $f$ be a function differentiable on $\R$ that satisfies $f\prime(x)=f(x)$ for every real number $x$ and $f(0)=1$. Let $g(x)=f(x)e^{-x}$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $g\prime$ and explain why $g$ is constant on $\R$.
+\item Determine this constant, then deduce the expression of $f$.
+\item Does this proof establish the existence or the uniqueness of the function sought? Justify.
+\end{enumerate}
+\exercice{C09-E8}{Delayed review}
+Define the sequence $(u_n)$ by $u_n=e^{2n+1}$ for every natural number $n$.
+\begin{enumerate}[label=\arabic*.]
+\item Prove that this sequence is geometric, then state its first term and common ratio.
+\item Calculate $u_0+u_1+u_2$ in exact form. Compare the direct calculation with the use of a sum formula.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\Needspace{12\baselineskip}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 18 p.~187, questions a, b and c.}\label{C09-M1} Simplify the products and quotients, citing the property of exponentials used.
+\paragraph{CQFD, exercise 30 p.~187, questions a, b and c.}\label{C09-M2} Solve the three inequalities and write the solution sets as intervals.
+\begingroup\small
+\clearpage\section*{MCQ 1: understand and choose}\label{C09-Q1}
+Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $e^0=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $1$
+\item $e$
+\item $-1$
+\end{enumerate}
+\item $e^xe^y=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^{x+y}$
+\item $e^{xy}$
+\item $e^x+e^y$
+\item $e^{x-y}$
+\end{enumerate}
+\item Derivative of $e^{-2x}$:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^{-2x}$
+\item $2e^{-2x}$
+\item $-e^{-2x}$
+\item $-2e^{-2x}$
+\end{enumerate}
+\item $e^x=1$ is equivalent to
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x=1$
+\item $x=e$
+\item $x=0$
+\item no solution
+\end{enumerate}
+\item The sign of $e^{-x}$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item negative if x>0
+\item always strictly positive
+\item zero at 0
+\item variable
+\end{enumerate}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\Needspace{18\baselineskip}\section*{MCQ 2: understand and choose}\label{C09-Q2}
+Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $e^{2x}<e^3$ is equivalent to
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x<3$
+\item $x>\dfrac{3}{2}$
+\item $x<\dfrac{3}{2}$
+\item $x<\sqrt3$
+\end{enumerate}
+\item $u_n=e^{3n}$ has common ratio
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^3$
+\item $3$
+\item $e$
+\item $3e$
+\end{enumerate}
+\item Tangent to $e^x$ at 0:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $y=x$
+\item $y=e x$
+\item $y=1$
+\item $y=x+1$
+\end{enumerate}
+\item Derivative of $xe^x$:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^x$
+\item $(x+1)e^x$
+\item $xe^x$
+\item $xe^{x-1}$
+\end{enumerate}
+\item $e^x\geq1+x$ has equality
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item for all x
+\item at 1 only
+\item at 0 only
+\item never
+\end{enumerate}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C09-VF}
+\begin{enumerate}
+\item $e^{2x}=2e^x$ for all x.
+\item The function $t\mapsto e^{-3t}$ is decreasing.
+\item A continuous rate k=0.1 corresponds exactly to a 10 \% increase in one unit of time.
+\end{enumerate}
+\begin{repere}{Self-assessment}I keep the rules for powers; I know the positivity; I differentiate with the factor; I separate model, exact calculation and simulation.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{repere}
+\endgroup
+\ifprof\input{corriges/C09-en.tex}\fi

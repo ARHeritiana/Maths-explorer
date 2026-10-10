@@ -1,0 +1,221 @@
+\chapter{Sequences and discrete models}\label{C01}
+\begin{repere}{Chapter path}
+\textbf{Objectives.} Turn a story into a sequence; distinguish increment from rate; compute terms and sums; justify a variation; investigate a threshold.
+
+\textbf{Prerequisites.} Algebraic manipulation, integer powers, percentages, affine function, Python loop.
+
+\textbf{Yearly reference point.} 8--17 September: 8 hours, then revisits\end{repere}
+\section*{Diagnostic: six questions, 10 minutes}\label{C01-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item Calculate $3+2\times4$.
+\item Calculate $2^0$, $2^3$ and $2^{-2}$.
+\item A population of 80 increases by $5\,\%$. Give the new population.
+\item For $f(x)=3x-2$, calculate $f(0)$ and $f(4)$.
+\item How many integers are there from 3 to 10, endpoints included?
+\item Which values does the loop \code{for k in range(4)} give to $k$?
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} In 90 seconds, explain the difference between index, term and number of terms. Give a counterexample to a rule guessed from three values.
+\clearpage
+\section*{Investigate before formalising}\label{C01-RECH}
+In pairs, compare two collection offers: 20 kg in the first week then 5 kg more each week; 20 kg then a 20 \% increase each week. Conjecture which collects more in total over six weeks, then justify. Allow 10 min for investigation and 5 min for comparison.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\section{Defining and representing a sequence}\label{C01-U1}
+\begin{repere}{Definition and results}
+A real sequence is a function whose variable is an integer: to each allowed index $n$ corresponds a real number $u_n$. The notation $(u_n)$ denotes the sequence, $u_n$ a term. An explicit formula gives $u_n$ directly in terms of $n$. A definition by recurrence gives a first term and a rule for passing from one term to the next. The representation is a set of points $(n;u_n)$: these points are not necessarily joined up.
+\end{repere}
+\paragraph{Status and justification.} Definition. The uniqueness of the terms obtained from a first term and a deterministic rule is accepted; no formal proof by induction is required.
+\exemple{For $u_n=n^2+1$, $u_0=1$, $u_3=10$. For $v_0=1$ and $v_{n+1}=2v_n+1$, $v_1=3$, $v_2=7$, $v_3=15$. We cannot replace $v_3$ by $2\times3+1$: the rule applies to the previous term.}\label{C01-EX1}
+\input{figures/C01-U1-en.tex}
+\begin{erreur}The index is not the value. A finite list of terms does not determine a unique rule.\end{erreur}
+\application{Calculate the first four terms of $w_0=2$, $w_{n+1}=w_n+2n+1$; suggest an explicit formula.}\label{C01-AP1}
+\section{Arithmetic sequences}\label{C01-U2}
+\begin{repere}{Definition and results}
+A sequence is arithmetic with common difference $r$ if $u_{n+1}=u_n+r$ for every allowed index. Then $u_n=u_p+(n-p)r$ for $n\geq p$. If $r>0$ it is strictly increasing; if $r<0$, strictly decreasing; if $r=0$, constant. The points lie on a straight line.
+\end{repere}
+\paragraph{Status and justification.} For fixed $p$, the sequence $v_n=u_p+(n-p)r$ satisfies $v_p=u_p$ and $v_{n+1}=v_n+r$. By uniqueness of the successive terms, $u_n=v_n$. The variation follows from the sign of $u_{n+1}-u_n=r$.
+\exemple{A tank holds 140 L and receives 12 L per minute. After $n$ minutes, $u_n=140+12n$. At 5 min: 200 L. If we start the indexing at 1 with 140 L, we write $u_n=140+12(n-1)$.}\label{C01-EX2}
+\begin{erreur}Adding a constant percentage does not generally give an arithmetic sequence.\end{erreur}
+\application{We know $u_3=17$ and $u_8=37$ for an arithmetic sequence. Determine $r$ and $u_0$.}\label{C01-AP2}
+\section{Geometric sequences}\label{C01-U3}
+\begin{repere}{Definition and results}
+A sequence is geometric with common ratio $q$ if $u_{n+1}=qu_n$. For $n\geq p$, $u_n=u_pq^{n-p}$, with the convention that an empty product equals 1. A constant rate $t$ gives $q=1+t$. The variation is decided with $u_{n+1}-u_n=(q-1)u_n$. For $q<0$, the signs may alternate.
+\end{repere}
+\paragraph{Status and justification.} The formula gives the first term, and multiplying it by $q$ gives the next term. The uniqueness of the generation justifies the formula. For $q=0$, all terms after the first are zero; treat this case directly.
+\exemple{A quantity of 160 mg loses 25 \% at each step: $u_n=160(\dfrac{3}{4})^n$. The terms are positive and $u_{n+1}-u_n=-\dfrac{u_n}{4}<0$. We obtain $u_2=90$ mg, without confusing a 25 \% decrease with removing 25 mg.}\label{C01-EX3}
+\begin{erreur}$q>1$ is not enough to conclude that every geometric sequence is increasing: the sign of the first term matters.\end{erreur}
+\application{Study the variation of $u_n=-2\times3^n$, then of $v_n=2(-1)^n$.}\label{C01-AP3}
+\section{Sums, indices and proofs}\label{C01-U4}
+\begin{repere}{Definition and results}
+For $n\geq1$, $1+2+\cdots +n=\dfrac{n(n+1)}{2}$. For $q\ne1$ and $n\geq0$, $1+q+\cdots +q^n=\dfrac{1-q^{n+1}}{1-q}$. For $q=1$, the sum equals $n+1$. Hence, from $u_p$ to $u_n$, an arithmetic sum equals $\dfrac{(n-p+1)(u_p+u_n)}{2}$; a geometric sum equals $\dfrac{u_p(1-q^{n-p+1})}{1-q}$ if $q\ne1$.
+\end{repere}
+\paragraph{Status and justification.} Writing $S=1+\cdots+n$ in both directions, each pair in the sum $2S$ equals $n+1$, and there are $n$ pairs. For $T=1+q+\cdots+q^n$, subtract $qT=q+\cdots+q^{n+1}$: $(1-q)T=1-q^{n+1}$. The case $q=1$ must come before the division.
+\exemple{For $u_n=3+2n$, $u_2+\cdots +u_6=\dfrac{5(7+15)}{2}=55$. For $v_n=2\times3^n$, $v_0+\cdots +v_3=\dfrac{2(1-3^4)}{1-3}=80$.}\label{C01-EX4}
+\begin{erreur}Count the terms before using the formula: from 0 to n there are n+1.\end{erreur}
+\application{Calculate $\sum_{k=2}^{5}2^k$ without the summation symbol in the answer.}\label{C01-AP4}
+\section{Conjecturing a limit and programming a threshold}\label{C01-U5}
+\begin{repere}{Definition and results}
+A limit is approached here intuitively. The terms $\dfrac{1}{n+1}$ get closer to 0; $n^2$ grows without bound; $(-1)^n$ does not settle. A numerical experiment suggests a conclusion but does not prove a behaviour for all indices. A threshold algorithm must specify the direction of the inequality and provide a stopping condition.
+\end{repere}
+\paragraph{Status and justification.} Illustrative observations, without a formal theory of limits. The correctness of an integer threshold is checked by examining the index found and the previous index, once monotonicity is established.
+\exemple{For $u_n=80(\dfrac{1}{2})^n$, the first index with $u_n<6$ is 4: $u_3=10\geq6$ and $u_4=5<6$. The program starts with $n=0,u=80$ and repeats the division by 2 while $u\geq6$.}\label{C01-EX5}
+\begin{erreur}A loop with no bound may never stop if the threshold cannot be reached; $<$ and $\leq$ are not interchangeable.\end{erreur}
+\application{For $u_n=48(\dfrac{1}{2})^n$, determine the first indices where $u_n\leq6$ and where $u_n<6$.}\label{C01-AP5}
+\section*{Exercise path}\label{C01-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\exercice{C01-E1}{Getting to grips with indices}
+Consider the sequence $(u_n)$ defined for every natural number $n$ by $u_n=2n^2-3n$. The first term is therefore the one of index 0.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $u_0$, $u_1$ and $u_4$ separately, showing the substitution of $n$.
+\item Express $u_{n+1}$ in terms of $n$, then expand and simplify this expression.
+\item Calculate $u_{n+1}-u_n$. By studying its sign for integer indices, describe the variations of the sequence.
+\end{enumerate}
+\exercice{C01-E2}{Choosing the right model}
+A nursery currently has 100 young plants. It is considering two models to forecast its stock: in model A, the stock increases by 15 plants per month; in model B, it increases by 10 percent per month. Let $a_n$ and $b_n$ be the forecast stocks after $n$ months, with $a_0=b_0=100$. The two models are studied separately.
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Model A.} Write the relation between $a_{n+1}$ and $a_n$. Recognise the type of sequence, then express $a_n$ in terms of $n$. Calculate $a_2$.
+\item \textbf{Model B, after studying geometric sequences.} Answer the same questions for $(b_n)$ and calculate $b_2$.
+\item For each model, explain what is assumed to be constant. Give one reason why a very long-term forecast might become unrealistic.
+\end{enumerate}
+\exercice{C01-E3}{Recovering a sequence}
+The sequence $(u_n)$ is geometric, defined from index 0. Its common ratio $q$ is strictly positive. We only know $u_1=6$ and $u_3=54$.
+\begin{enumerate}[label=\arabic*.]
+\item Determine $q$ by relating the two known terms. Present all the steps that lead to choosing its value.
+\item Deduce $u_0$, then $u_5$.
+\item What would change if the hypothesis $q>0$ were removed? Give all the possible reasons and explain whether the value of $u_5$ would be affected.
+\end{enumerate}
+\exercice{C01-E4}{Rows of seats}
+A theatre has 12 rows. The first row has 18 seats; each following row has two more seats than the previous one. Let $u_n$ be the number of seats in row $n$, for $1\leq n\leq12$.
+\begin{enumerate}[label=\arabic*.]
+\item Define the sequence $(u_n)$ and calculate the number of seats in the last row.
+\item Calculate the total capacity of the theatre. Explain the number of terms used in the sum.
+\item Calculate the average number of seats per row and use this result to check the total found.
+\end{enumerate}
+\exercice{C01-E5}{Accumulating squares}
+Patterns are built with identical square tiles. The pattern of index 1 contains one tile. To go from the pattern of index $n$ to that of index $n+1$, we add $2n+1$ tiles. Let $u_n$ be the number of tiles in the pattern of index $n$, for $n\geq1$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $u_2$ and $u_3$. Draw an arrangement of these tiles that suggests a formula for $u_n$.
+\item Conjecture an expression for $u_n$ in terms of $n$.
+\item Check that this expression gives the first term and satisfies the construction rule. Explain why these two checks identify the sequence.
+\end{enumerate}
+\input{figures/C01-E5-en.tex}
+\exercice{C01-E6}{Two repayments}
+A person must repay 600 monetary units, with no interest. Two plans are considered. With plan A, they pay 50 units at the end of each month until the debt is repaid. With plan B, they pay each month half of what they still owe. The calculations for model B are carried out without rounding. Let $a_n$ and $b_n$ be the remaining debts after the payment of month $n$, with $a_0=b_0=600$.
+\begin{enumerate}[label=\arabic*.]
+\item Express $a_n$ until the debt is cleared. In which month is the repayment completed?
+\item Express $b_n$. Determine the first month in which the remaining debt is strictly less than 10 units; check the previous month.
+\item In model B without rounding, does the debt become exactly zero after a finite number of months? Justify and comment on the difference with a real situation.
+\end{enumerate}
+\exercice{C01-E7}{Reading a list}
+A program must keep the terms of the sequence defined by $u_0=2$ and $u_{n+1}=3u_n-1$. It starts with the instructions \code{u=2} and \code{L=[u]}. It then executes five times, in this order, \code{u=3*u-1} then \code{L.append(u)}.
+\begin{enumerate}[label=\arabic*.]
+\item Execute the first two passes of the loop by hand. Then give the contents of the list.
+\item How many elements does the list contain at the end of the five passes? What is the index of the last term stored?
+\item Write the complete program in Python, then check the value of the last element. Explain why the number of terms exceeds the number of passes by one.
+\end{enumerate}
+\exercice{C01-E8}{Delayed review}
+This question is done one week after the chapter, without consulting the formulas. A sequence is defined for $n\geq2$ by $u_2=12$ and $u_{n+1}=u_n-3$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $u_7$, stating how many passes separate the indices 2 and 7.
+\item Calculate the sum $u_2+u_3+\cdots+u_7$. Explain the difference between the number of terms in this sum and the number of passes calculated in the first question.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\Needspace{12\baselineskip}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 9 p.~64, questions a and b.}\label{C01-M1} Calculate the first four terms. Write the substitutions before simplifying.
+\paragraph{CQFD, exercise 11 p.~64, all questions.}\label{C01-M2} Calculate the terms one after another and keep a record of the four steps.
+\begingroup\small
+\clearpage\section*{MCQ 1: understand and choose}\label{C01-Q1}
+Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $u_n=3n+2$: $u_4$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $14$
+\item $18$
+\item $12$
+\item $6$
+\end{enumerate}
+\item $u_0=2$, $u_{n+1}=u_n+5$: $u_3$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $10$
+\item $12$
+\item $17$
+\item $15$
+\end{enumerate}
+\item An increase of 8 \% gives the ratio
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0.08$
+\item $1.8$
+\item $0.92$
+\item $1.08$
+\end{enumerate}
+\item From $u_3$ to $u_9$ inclusive, there are
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $6$
+\item $7$
+\item $9$
+\item $12$
+\end{enumerate}
+\item $1+2+\cdots+20$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $200$
+\item $420$
+\item $210$
+\item $190$
+\end{enumerate}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\Needspace{18\baselineskip}\section*{MCQ 2: understand and choose}\label{C01-Q2}
+Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $u_n=-3\times2^n$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item strictly increasing
+\item constant
+\item neither increasing nor decreasing
+\item strictly decreasing
+\end{enumerate}
+\item $1+2+4+8$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $15$
+\item $16$
+\item $14$
+\item $8$
+\end{enumerate}
+\item For $u_n=\dfrac{16}{2^n}$, the first index where $u_n<2$:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2$
+\item $3$
+\item $4$
+\item $5$
+\end{enumerate}
+\item The sequence $(-1)^n$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item tends to 0
+\item has no limit
+\item is increasing
+\item is constant
+\end{enumerate}
+\item A list contains $u_0$ to $u_{10}$; its length is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $10$
+\item $9$
+\item $12$
+\item $11$
+\end{enumerate}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C01-VF}
+\begin{enumerate}
+\item Every geometric sequence with common ratio $q>1$ is increasing.
+\item If two sequences have their first three terms equal, they are equal.
+\item For $q=1$, $1+q+\cdots+q^n=n+1$.
+\end{enumerate}
+\begin{repere}{Self-assessment}I distinguish explicit from recurrence definitions; I recognise a constant increment or rate; I count the terms; I check the previous index of a threshold.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{repere}
+\endgroup
+\ifprof\input{corriges/C01-en.tex}\fi
