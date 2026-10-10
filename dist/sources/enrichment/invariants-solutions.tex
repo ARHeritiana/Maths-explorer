@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{01}
+\newcommand{\ExplorerKind}{Solutions détaillées}
+\begin{document}
+\ExplorerTitle{Seconde · raisonnement}{Parité et invariants}
+\ExplorerSection{Exercice 1}
+On part de 7 et on ajoute ou retranche 4 à chaque coup. Peut-on atteindre 20 ? Et 23 ?\par
+Tout résultat est congru à 7 modulo 4, donc à 3. Comme 20 est congru à 0, il est inaccessible. Quatre additions de 4 donnent 23.\par
+\ExplorerSection{Exercice 2}
+Un produit de cinq nombres égaux à 1 ou −1 vaut −1. Montrer qu’il est impossible de rendre tous les nombres positifs en changeant deux signes à chaque coup.\par
+Chaque changement de deux signes multiplie le produit par (−\(1)^{2} = 1\). Le produit reste −1, alors que cinq signes positifs donnent 1.\par
+\ExplorerSection{Exercice 3}
+On remplace deux entiers a et b par \(a + b\). Quel invariant conserve cette opération ?\par
+La somme de tous les entiers reste constante : la contribution \(a + b\) des deux termes est remplacée par le même nombre.\par
+\ExplorerSection{Exercice 4}
+Pourquoi deux états ayant la même parité ne sont-ils pas nécessairement reliés par les coups autorisés ? Donner un exemple.\par
+La parité donne seulement une condition nécessaire. Avec des pas de 6 depuis 0, la cible 2 est paire, mais n’est pas multiple de 6.\par
+\ExplorerSection{Problème : raisonnement complet}
+Un échiquier \(8 \times  8\) est colorié alternativement en noir et blanc. On retire deux coins diagonalement opposés. Peut-on recouvrir les 62 cases restantes par 31 dominos \(1 \times  2\), chaque domino couvrant deux cases voisines par un côté ? Compter les couleurs retirées et les couleurs couvertes par un domino. Comparer avec le retrait de deux coins voisins.\par
+Les coins opposés ont la même couleur. Il reste 30 cases de cette couleur et 32 de l’autre. Chaque domino couvre une case de chaque couleur : 31 dominos exigeraient 31 de chaque, donc le pavage est impossible. Deux coins voisins ont des couleurs différentes. Dans ce cas, un pavage existe : pour les deux coins supérieurs retirés, placer trois dominos horizontaux dans la première ligne et quatre dans chacune des sept autres lignes. Une rotation traite les autres côtés.\par
+\end{document}

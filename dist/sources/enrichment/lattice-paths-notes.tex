@@ -1,0 +1,19 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{05}
+\newcommand{\ExplorerKind}{Leçon et méthode}
+\begin{document}
+\ExplorerTitle{Première--Terminale · dénombrement}{Chemins, combinaisons et Pascal}
+\ExplorerSection{Avant de commencer}
+Produit, factorielle et choix sans ordre.\par
+\ExplorerSection{Idées et méthode}
+Un chemin de (0,0) à (a,b) n’utilisant que des pas vers la droite ou vers le haut comporte \(a + b\) pas. Choisir les positions des a pas horizontaux donne \(C(a+b,a)\) chemins.\par
+Pour \(0 \leq  k \leq  n, C(n,k) = n\)!/[k!\((n-k)\)!]. L’ordre des objets choisis ne compte pas. La symétrie \(C(n,k) = C(n,n-k)\) revient à choisir les objets retenus ou ceux exclus.\par
+La relation de Pascal \(C(n,k) = C(n-1,k-1) + C(n-1,k)\) partage les choix selon la présence d’un objet fixé. On peut aussi classer les chemins selon leur dernier pas.\par
+\ExplorerSection{Exemple expliqué}
+De (0,0) à (3,2), il \(y a C(5,3) = 10\) chemins. Pour passer par (1,1), il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : \(2 \times  3 = 6\) chemins.\par
+\begin{center}\begin{tikzpicture}[scale=.85]\draw[gray!45](0,0)grid(3,2);\draw[mint,very thick,->](0,0)--(1,0)--(1,1)--(2,1)--(3,1)--(3,2);\fill[violet](1,1)circle(3pt)node[above left]{$(1,1)$};\node[below]at(0,0){$(0,0)$};\node[above]at(3,2){$(3,2)$};\end{tikzpicture}\end{center}
+\ExplorerSection{À explorer}
+Dessiner un petit quadrillage et écrire dans chaque sommet le nombre de chemins qui y arrivent. Additionner les valeurs du voisin de gauche et du voisin du bas.\par
+\end{document}

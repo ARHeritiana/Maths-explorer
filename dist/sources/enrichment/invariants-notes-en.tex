@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{01}
+\newcommand{\ExplorerKind}{Lesson and method}
+\begin{document}
+\ExplorerTitle{High school · reasoning}{Parity and invariants}
+\ExplorerSection{Before you begin}
+Even and odd integers; proof by contradiction.\par
+\ExplorerSection{Ideas and method}
+An invariant is a quantity or property preserved by every allowed move. If the target has a different invariant value from the initial state, it cannot be reached.\par
+To study parity, replace integers with their remainders 0 or 1 modulo 2. Two odd integers have an even sum. Adding an even integer preserves parity.\par
+Method: specify one move, find what it preserves, and compute the invariant at the start and at the target. An obstruction proves impossibility; the absence of an obstruction does not prove possibility.\par
+\ExplorerSection{Worked example}
+Start at 0 and add or subtract 6 at each move. Every reachable number is even, so 15 is unreachable. The number 14 is also unreachable, but parity alone cannot prove this: every reachable number is a multiple of 6.\par
+\ExplorerSection{Explore}
+Write several sequences of moves, then classify the reached numbers. Find a common property more precise than parity.\par
+\end{document}

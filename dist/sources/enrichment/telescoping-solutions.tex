@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{10}
+\newcommand{\ExplorerKind}{Solutions détaillées}
+\begin{document}
+\ExplorerTitle{Première--Terminale · suites}{Sommes télescopiques}
+\ExplorerSection{Exercice 1}
+Calculer \(\sum [\frac{1}{k}-\frac{1}{k+1}]\) de \(k=3\) à 10.\par
+Les termes intermédiaires s’annulent : \(\frac{1}{3}-\frac{1}{11}=\frac{8}{33}\).\par
+\ExplorerSection{Exercice 2}
+Décomposer \(\frac{1}{k(k+2)}\) en une différence de deux fractions.\par
+\(\frac{1}{k(k+2)}=(\frac{1}{2})[\frac{1}{k}-\frac{1}{k+2}]\).\par
+\ExplorerSection{Exercice 3}
+Calculer \(\sum (2k+1)\) de \(k=0\) à n en utilisant \((k+1)^{2}-k^{2}\).\par
+\(2k+1=(k+1)^{2}-k^{2}\). La somme vaut \((n+1)^{2}-0^{2}=(n+1)^{2}\).\par
+\ExplorerSection{Exercice 4}
+Si \(S_{n}=\frac{n}{n+1}\), trouver le plus petit entier \(n\geq 1\) tel que \(1-S_{n}<0,01\).\par
+\(\frac{1}{n+1}<\frac{1}{100}\) équivaut à \(n+1>100\), donc \(n\geq 100\). Le minimum est 100.\par
+\ExplorerSection{Problème : raisonnement complet}
+Soit \(T_{n}=\sum  \frac{1}{k(k+2)}\) pour k de 1 à n. Établir une expression exacte en fonction de n, puis calculer sa limite. Trouver le plus petit n tel que l’écart à la limite soit strictement inférieur à 0,01.\par
+Après décomposition, tous les termes sauf les deux premiers et les deux derniers s’annulent : \(T_{n}=\frac{3}{4}-\frac{1}{2(n+1)}-\frac{1}{2(n+2)}\). La limite est \(\frac{3}{4}\). L’écart décroît avec n. Pour \(n=98\), il vaut \(\frac{1}{198}+\frac{1}{200}>0,01\) ; pour \(n=99\), il vaut \(\frac{1}{200}+\frac{1}{202}<0,01\). Le minimum est donc 99.\par
+\end{document}

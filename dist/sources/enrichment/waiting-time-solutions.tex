@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{08}
+\newcommand{\ExplorerKind}{Solutions détaillées}
+\begin{document}
+\ExplorerTitle{Terminale · probabilités et suites}{Attendre le premier succès}
+\ExplorerSection{Exercice 1}
+Avec \(p=\frac{1}{4}\), calculer \(P(T=3)\).\par
+\((\frac{3}{4})^{2}(\frac{1}{4})=\frac{9}{64}\).\par
+\ExplorerSection{Exercice 2}
+Avec \(p=\frac{1}{4}\), calculer \(P(T\leq 3)\).\par
+\(1-P(T>3)=1-(\frac{3}{4})^{3}=\frac{37}{64}\).\par
+\ExplorerSection{Exercice 3}
+Pour \(0<p<1\), calculer \(P(T>m+n|T>m)\).\par
+Le quotient des probabilités de queue est \((1-p\))ᵐ⁺ⁿ/\((1-p\))ᵐ=\((1-p)^{n}\). Après les m échecs, la loi de l’attente restante est inchangée.\par
+\ExplorerSection{Exercice 4}
+Une réussite a probabilité 0,2 à chaque essai indépendant. Quelle est l’attente moyenne ? Le cinquième essai réussit-il nécessairement ?\par
+\(E(T)=5\) essais. Non : chaque essai a toujours probabilité 0,2 de réussir, indépendamment des échecs antérieurs.\par
+\ExplorerSection{Problème : raisonnement complet}
+On lance un dé équilibré jusqu’au premier 6, mais on s’arrête dans tous les cas après 10 lancers. Soit N le nombre de lancers réellement effectués. Calculer \(P(N=10)\), la probabilité d’avoir obtenu au moins un 6 et E(N). Pour la moyenne, utiliser \(E(N)=\sum  P(N>n)\), de \(n=0\) à 9.\par
+\(N=10\) si les neuf premiers lancers sont des échecs, quel que soit le dixième : \(P(N=10)=(\frac{5}{6})^{9}\). La probabilité d’au moins un 6 vaut \(1-(\frac{5}{6})^{10}\). Pour \(0\leq n\leq 9, P(N>n)=(\frac{5}{6})^{n}\), donc \(E(N)=6[1-(\frac{5}{6})^{10}]\), soit environ 5,031 lancers. La troncature diminue l’espérance par rapport à 6.\par
+\end{document}

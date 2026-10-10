@@ -1,0 +1,19 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{09}
+\newcommand{\ExplorerKind}{Leçon et méthode}
+\begin{document}
+\ExplorerTitle{Mathématiques expertes · géométrie}{Rotations et nombres complexes}
+\ExplorerSection{Avant de commencer}
+Forme algébrique, module et coordonnées.\par
+\ExplorerSection{Idées et méthode}
+À \(z=x\)+iy correspond le point (x,y). Multiplier par i donne \(iz=-y+ix\) : le point devient (−y,x), soit un quart de tour direct autour de l’origine.\par
+Multiplier par −1 donne un demi-tour et multiplier par −i donne un quart de tour horaire. Ces transformations conservent les distances à l’origine car |\(i|=1\).\par
+Pour tourner autour d’un centre d’affixe a, on translate vers l’origine, on tourne, puis on revient : \(z'=a+i(z-a)\). La rotation directe de centre a conserve les distances entre tous les points.\par
+\ExplorerSection{Exemple expliqué}
+Pour \(a=1+i\) et \(z=3+2i, z-a=2+i\), puis \(i(z-a)=-1+2i\). L’image vaut \(z'=3i\). Les vecteurs relatifs (2,1) et (−1,2) sont perpendiculaires et de même norme \(\sqrt{5}\).\par
+\begin{center}\begin{tikzpicture}[scale=.85]\draw[->,gray](-.5,0)--(3,0) node[right]{$x$};\draw[->,gray](0,-.5)--(0,3) node[above]{$y$};\draw[mint,thick](2,0)--(2,2)--(0,2)--(0,0)--cycle;\fill[violet](1,1)circle(2pt)node[right]{$a=1+i$};\foreach \x/\y/\z in {2/0/2,2/2/2+2i,0/2/2i,0/0/0}{\fill[mint](\x,\y)circle(2pt)node[below left]{$\z$};}\end{tikzpicture}\end{center}
+\ExplorerSection{À explorer}
+Dans le laboratoire des complexes, déplacer z puis comparer z et iz. Vérifier l’égalité des modules et la perpendicularité des vecteurs.\par
+\end{document}

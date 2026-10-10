@@ -1,0 +1,19 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{FR}
+\newcommand{\ExplorerNumber}{06}
+\newcommand{\ExplorerKind}{Leçon et méthode}
+\begin{document}
+\ExplorerTitle{Lycée · graphes et logique}{Parcours sans lever le crayon}
+\ExplorerSection{Avant de commencer}
+Sommets, arêtes et comptage.\par
+\ExplorerSection{Idées et méthode}
+Dans un graphe non orienté, le degré d’un sommet est le nombre d’extrémités d’arêtes qui y sont attachées. Une boucle compte deux fois. La somme des degrés vaut deux fois le nombre d’arêtes.\par
+Un parcours eulérien utilise chaque arête exactement une fois. À un sommet intermédiaire, toute entrée doit être associée à une sortie. Seuls le départ et l’arrivée peuvent donc avoir un degré impair.\par
+Pour un graphe dont les sommets de degré non nul sont reliés, un parcours eulérien existe s’il y a zéro ou deux sommets de degré impair. Avec zéro, on revient au départ ; avec deux, on va de l’un à l’autre. On peut construire le parcours en raccordant des cycles.\par
+\ExplorerSection{Exemple expliqué}
+Dans un carré ABCD avec la diagonale AC, les degrés sont 3,2,3,2. Un parcours existe de A à C : A--B--C--D--A--C. Il utilise bien les cinq arêtes une seule fois.\par
+\begin{center}\begin{tikzpicture}[scale=1.1]\draw[mint,thick](0,0)--(2,0)--(2,2)--(0,2)--cycle;\draw[violet,thick](0,0)--(2,2);\foreach \x/\y/\z in {0/0/A,2/0/B,2/2/C,0/2/D}{\fill[mint](\x,\y)circle(2pt)node[above right]{$\z$};}\end{tikzpicture}\end{center}
+\ExplorerSection{À explorer}
+Dessiner ce carré, puis ajouter la seconde diagonale. Recompter les degrés avant de tenter un tracé.\par
+\end{document}

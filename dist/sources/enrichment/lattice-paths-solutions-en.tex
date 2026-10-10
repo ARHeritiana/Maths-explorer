@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{05}
+\newcommand{\ExplorerKind}{Worked solutions}
+\begin{document}
+\ExplorerTitle{High school · counting}{Paths, combinations and Pascal}
+\ExplorerSection{Exercise 1}
+Find C(8,2) and explain why it equals C(8,6).\par
+\(C(8,2) = 8 \times  \frac{7}{2} = 28\). Choosing two excluded objects is equivalent to choosing six included objects.\par
+\ExplorerSection{Exercise 2}
+Count monotone paths from (0,0) to (4,3).\par
+Choose four rightward steps among seven: \(C(7,4) = 35\).\par
+\ExplorerSection{Exercise 3}
+How many of these paths pass through (2,1)?\par
+\(C(3,2) \times  C(4,2) = 3 \times  6 = 18\).\par
+\ExplorerSection{Exercise 4}
+Choose a team of three from eight people. Two specified people cannot be together. How many teams remain possible?\par
+There are \(C(8,3) = 56\) teams. Exactly 6 contain both specified people. Therefore 50 teams remain.\par
+\ExplorerSection{Problem: complete reasoning}
+Count monotone paths from (0,0) to (5,4) that avoid A(2,1) and B(3,3). Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back.\par
+Total: \(C(9,5) = 126\). Through A: \(C(3,2)C(6,3) = 60\). Through B: \(C(6,3)C(3,2) = 60\). Through both: \(3 \times  C(3,1) \times  3 = 27\). Paths through both were subtracted twice; adding them back once gives \(126 - 60 - 60 + 27 = 33\).\par
+\end{document}

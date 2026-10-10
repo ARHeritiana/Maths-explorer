@@ -1,0 +1,19 @@
+\documentclass[11pt]{article}
+\usepackage{explorer}
+\newcommand{\ExplorerLanguage}{EN}
+\newcommand{\ExplorerNumber}{06}
+\newcommand{\ExplorerKind}{Lesson and method}
+\begin{document}
+\ExplorerTitle{High school · graphs and logic}{Routes without lifting the pencil}
+\ExplorerSection{Before you begin}
+Vertices, edges and counting.\par
+\ExplorerSection{Ideas and method}
+In an undirected graph, a vertex’s degree counts incident edge ends. A loop counts twice. The sum of the degrees is twice the number of edges.\par
+An Euler trail uses each edge exactly once. At an intermediate vertex, each arrival must pair with a departure. Only the starting and ending vertices can therefore have odd degree.\par
+If all vertices of nonzero degree are connected, an Euler trail exists when there are zero or two odd-degree vertices. With zero it ends where it starts; with two it runs between them. A trail can be built by joining cycles.\par
+\ExplorerSection{Worked example}
+In a square ABCD with diagonal AC, degrees are 3,2,3,2. A trail exists from A to C: A--B--C--D--A--C. It uses all five edges exactly once.\par
+\begin{center}\begin{tikzpicture}[scale=1.1]\draw[mint,thick](0,0)--(2,0)--(2,2)--(0,2)--cycle;\draw[violet,thick](0,0)--(2,2);\foreach \x/\y/\z in {0/0/A,2/0/B,2/2/C,0/2/D}{\fill[mint](\x,\y)circle(2pt)node[above right]{$\z$};}\end{tikzpicture}\end{center}
+\ExplorerSection{Explore}
+Draw the square, then add the other diagonal. Recount degrees before trying a trail.\par
+\end{document}
