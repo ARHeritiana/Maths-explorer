@@ -25,7 +25,9 @@ COURSES = {
                  }),
     'terminale': (['Terminale spécialité', 'Terminale · mathematics specialty'], {}),
     'stmg': (['Terminale STMG', 'Terminale STMG'], {}),
-    'automatismes': (['Automatismes de seconde', 'Seconde fluency sheets'], {}),
+    'automatismes': (['Automatismes de seconde', 'Seconde fluency sheets'],
+                     {'eleve.tex': ('fr', 'student'), 'professeur.tex': ('fr', 'teacher'),
+                      'eleve-en.tex': ('en', 'student'), 'professeur-en.tex': ('en', 'teacher')}),
     'enrichment': (['Ateliers d’enrichissement', 'Enrichment workshops'], {}),
 }
 

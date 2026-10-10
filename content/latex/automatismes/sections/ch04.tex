@@ -1,0 +1,81 @@
+% Généré par tools/build.py — ne pas éditer à la main
+\section{Fonctions~: représentations et fonctions de référence}
+
+\fichehead{jeu.~3~déc.~2026}{Fonction à valeurs réelles\,; ensemble de définition}
+\begin{fiche}
+\qitem{Échauffement · Flash}{EQ}{Résoudre $x-4=0$ puis $2x+6=0$.}{$x=4$\,; $x=-3$.}{}
+\qitem{Cœur · Méthode}{MOD}{Ensemble de définition de $f(x)=\dfrac{1}{x-4}$\,?}{On exclut la valeur qui annule le dénominateur~: $\R\setminus\{4\}=]-\infty;4[\,\cup\,]4;+\infty[$.}{}
+\qitem{Cœur + · QCM}{MOD}{L'ensemble de définition de $h(x)=\dfrac{1}{x^2+1}$ est~:\choix{$\R\setminus\{1\}$}{$\R\setminus\{-1\,;\,1\}$}{$\R$}{$\R^*$}}{C.\ $\R$}{$x^2+1\geqslant1>0$~: le dénominateur ne s'annule jamais.}
+\qitem{Retour · Tableau}{PNP}{Ce tableau est-il de proportionnalité\,?\par\smallskip\renewcommand{\arraystretch}{1.15}\begin{tabular}{|c|c|c|c|}\hline
+$x$ & 2 & 5 & 8 \\ \hline
+$y$ & 6 & 15 & 24 \\ \hline
+\end{tabular}\par }{Oui~: $\dfrac{y}{x}=3$ pour chaque colonne.}{}
+\qitem{Fil rouge · Lecture de code}{ALG}{Que renvoie $f(4)$\,?\par\smallskip{\ttfamily\small \hspace*{0.0em}def f(x):\\ \hspace*{2.4em}return 3*x - 2\par}}{$10$.}{}
+\end{fiche}
+
+\fichehead{lun.~7~déc.~2026}{Courbe d'équation $y=f(x)$\,; images et antécédents}
+\begin{fiche}
+\qitem{Échauffement · Flash}{IMG}{$f(x)=-x^2+4$. Calculer $f(0)$, $f(-2)$ et $f(3)$.}{$4$\,; $0$\,; $-5$.}{}
+\qitem{Cœur · Graphique}{IMG}{Courbe de $f$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-3,-5) grid (3,4);
+\draw[->] (-3,0)--(3.3,0); \draw[->] (0,-5)--(0,4.3);
+\foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-5,-4,-3,-2,-1,1,2,3,4}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,marine,domain=-3:3,samples=60,smooth] plot (\x,{-\x*\x+4});
+
+\end{tikzpicture}\par Lire $f(1)$ et les antécédents de $0$.}{$f(1)=3$\,; antécédents de $0$~: $-2$ et $2$.}{Expression utilisée pour le tracé~: $f(x)=-x^2+4$.}
+\qitem{Cœur + · Réflexion}{IMG}{Pour cette fonction, l'équation $f(x)=5$ a-t-elle des solutions\,?}{Non~: $f(x)=4-x^2\leqslant4<5$ pour tout $x$\,; la courbe ne monte pas jusqu'à $y=5$.}{}
+\qitem{Retour · Flash}{PRB}{Urne~: $5$ boules rouges, $3$ bleues, $2$ vertes. Probabilité de tirer une bleue\,? Une non rouge\,?}{$\dfrac{3}{10}$\,; $\dfrac{5}{10}=\dfrac12$.}{}
+\qitem{Fil rouge · Méthode}{EQ}{Résoudre dans $\R$~: $4-3x=10$.}{$x=-2$}{Piège~: diviser par $-3$ sans changer le signe du résultat.}
+\end{fiche}
+
+\fichehead{mar.~8~déc.~2026}{Fonctions de référence~: valeur absolue, carré, inverse}
+\begin{fiche}
+\qitem{Échauffement · Flash}{CAL}{Calculer $|{-}2{,}5|$, $(-3)^2$ et $\dfrac{1}{-4}$.}{$2{,}5$\,; $9$\,; $-0{,}25$.}{}
+\qitem{Cœur · Tableau}{REG}{Compléter pour $x=-2\,;\,-1\,;\,0\,;\,1\,;\,2$ les valeurs de $x\mapsto|x|$, $x\mapsto x^2$ et $x\mapsto\dfrac1x$.}{$|x|$~: $2\,;\,1\,;\,0\,;\,1\,;\,2$\,; $x^2$~: $4\,;\,1\,;\,0\,;\,1\,;\,4$\,; $\dfrac1x$~: $-\dfrac12\ ;\ -1\ ;\ \text{non défini}\ ;\ 1\ ;\ \dfrac12$.}{}
+\qitem{Cœur + · QCM}{REG}{Quelle courbe de référence passe par $(-1;1)$, $(0;0)$, $(1;1)$ et $(2;4)$\,?\choix{la droite $y=x$}{celle de l'inverse}{celle de la valeur absolue}{celle du carré}}{D.\ celle du carré}{La valeur absolue passerait par $(2;2)$\,; l'inverse n'est pas définie en $0$\,; la droite $y=x$ passe par $(-1;-1)$.}
+\qitem{Retour · Flash}{PRO}{Un objet est agrandi avec le rapport $1{,}5$. Que devient une longueur de $8$ cm\,? Par quel nombre l'aire est-elle multipliée\,?}{$12$ cm\,; l'aire est multipliée par $1{,}5^2=2{,}25$.}{}
+\qitem{Fil rouge · Prouver}{LIT}{Conjecture~: «~la somme de deux entiers consécutifs est impaire~». La démontrer.}{$n+(n+1)=2n+1$, de la forme $2k+1$ avec $k=n$~: impair.}{}
+\end{fiche}
+
+\fichehead{jeu.~10~déc.~2026}{Racine carrée et cube\,; signe des fonctions de référence}
+\begin{fiche}
+\qitem{Échauffement · Flash}{CAL}{Calculer $\sqrt{49}$, $\sqrt{0{,}25}$ et $(-2)^3$.}{$7$\,; $0{,}5$\,; $-8$.}{}
+\qitem{Cœur · Méthode}{MOD}{Étudier le signe de $f(x)=-2x+6$.}{$-2x+6=0\Leftrightarrow x=3$\,; $f(x)>0$ pour $x<3$, $f(x)<0$ pour $x>3$ (pente négative).}{}
+\qitem{Cœur + · Vrai/faux}{MOD}{Vrai ou faux\,? Justifier. Pour tout réel $x$, $\sqrt{x^2}=x$.}{Faux. Contre-exemple~: $x=-3$~: $\sqrt{9}=3\neq-3$. En fait $\sqrt{x^2}=|x|$.}{}
+\qitem{Retour · Flash}{PER}{Combien de carrés compose un patron de cube\,? Une croix (rangée de $4$ carrés + $1$ carré de part et d'autre) convient-elle\,?}{$6$ carrés\,; oui, la croix se plie en cube.}{}
+\qitem{Fil rouge · Flash}{SOL}{Combien de faces, sommets et arêtes possède une pyramide à base carrée\,?}{$5$ faces, $5$ sommets, $8$ arêtes.}{}
+\end{fiche}
+
+\fichehead{lun.~14~déc.~2026}{Résolution graphique et numérique~: $f(x)=k$, $f(x)<k$}
+\begin{fiche}
+\qitem{Échauffement · Flash}{EQ}{Résoudre $x^2=16$ puis $x^2=-4$.}{$x=\pm4$\,; aucune solution réelle ($x^2\geqslant0$).}{}
+\qitem{Cœur · Graphique}{REG}{Courbe de $f(x)=x^2$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-3,-1) grid (3,6);
+\draw[->] (-3,0)--(3.3,0); \draw[->] (0,-1)--(0,6.3);
+\foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-1,1,2,3,4,5,6}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,marine,domain=-3:3,samples=60,smooth] plot (\x,{\x*\x});
+
+\end{tikzpicture}\par Résoudre graphiquement $f(x)=4$ puis $f(x)<4$.}{$f(x)=4$~: $x=-2$ ou $x=2$\,; $f(x)<4$~: $x\in]-2;2[$.}{Chercher les abscisses des points de la courbe situés sous la droite $y=4$.}
+\qitem{Cœur + · Méthode}{EQ}{Résoudre $|x|<3$ puis $|x|=5$.}{$]-3;3[$\,; $x=-5$ ou $x=5$.}{}
+\qitem{Retour · Piège}{SUB}{Calculer $-x^2$ puis $(-x)^2$ pour $x=-3$.}{$-(-3)^2=-9$ et $(-(-3))^2=9$.}{}
+\qitem{Fil rouge · Méthode}{DEM}{Dans un triangle $ABC$, $M$ et $N$ sont les milieux de $[AB]$ et $[AC]$. Que démontre-t-on\,? Quelle propriété cite-t-on\,?}{$(MN)\parallel(BC)$ et $MN=\dfrac12BC$~: théorème de la droite des milieux.}{}
+\end{fiche}
+
+\fichehead{mar.~15~déc.~2026}{Résolution de $f(x)=g(x)$ et $f(x)<g(x)$}
+\begin{fiche}
+\qitem{Échauffement · Flash}{EQ}{Résoudre $2x-1=x+3$.}{$x=4$.}{}
+\qitem{Cœur · Graphique}{REG}{Courbes de $f(x)=x$ et $g(x)=x^2$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-1,-1) grid (2,4);
+\draw[->] (-1,0)--(2.3,0); \draw[->] (0,-1)--(0,4.3);
+\foreach \i in {-1,1,2}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-1,1,2,3,4}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,marine,domain=-1:2,samples=60,smooth] plot (\x,{\x});
+\draw[thick,marine,domain=-1:2,samples=60,smooth] plot (\x,{\x*\x});
+
+\end{tikzpicture}\par Résoudre $f(x)=g(x)$ puis $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$~: $x=0$ ou $x=1$\,; $f(x)<g(x)$~: la parabole est au-dessus de la droite pour $x<0$ ou $x>1$.}{Intervalles~: $]-\infty;0[\cup]1;+\infty[$.}
+\qitem{Cœur + · Lecture de code}{ALG}{Que renvoie \code{f(-1) == g(-1)}\,? Et \code{f(0) == g(0)}\,?\par\smallskip{\ttfamily\small \hspace*{0.0em}def f(x):\\ \hspace*{2.4em}return x*x\\ \hspace*{0.0em}def g(x):\\ \hspace*{2.4em}return 2*x + 3\par}}{\code{True} ($1=-2+3$) puis \code{False} ($0\neq3$)~: $-1$ est solution de $f(x)=g(x)$, pas $0$.}{}
+\qitem{Retour · Problème}{MOD}{Forfait A~: $15\,000$ Ar fixes + $1\,000$ Ar par séance. Forfait B~: $2\,500$ Ar par séance. À partir de combien de séances A est-il moins cher\,?}{$15\,000+1\,000x<2\,500x\Leftrightarrow x>10$~: à partir de $11$ séances ($10$~: égalité à $25\,000$ Ar).}{}
+\qitem{Fil rouge · Flash}{REP}{Calculer les coordonnées du milieu de $[AB]$ avec $A(-2;5)$ et $B(6;1)$.}{$\left(\dfrac{-2+6}{2};\dfrac{5+1}{2}\right)=(2;3)$.}{}
+\end{fiche}

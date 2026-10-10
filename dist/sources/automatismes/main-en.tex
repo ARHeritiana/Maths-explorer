@@ -1,0 +1,28 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble-en}   % bascule \proffalse / \proftrue : voir preamble.tex
+\begin{document}
+\begin{center}
+  {\Large\sffamily\bfseries\color{marine} Starter routines at the start of class --- Mathematics 2G (Seconde)}\\[3pt]
+  {\sffamily\color{ardoise} School year 2026--2027 --- \ifprof Teacher version\else Student version\fi}
+\end{center}
+\vspace{2pt}
+\begin{mdframed}[style=fichestyle]
+\ifprof
+  One sheet per 2G lesson (88 sheets, from 8 October 2026 to 1 July 2027), aligned with the calendar;
+  questions 4 and 5 take into account the placement test of 29 September 2026 (see the guide and annex A).
+\else
+  Each sheet has five questions to do in seven minutes, without a calculator unless stated.
+  Questions 4 and 5 return to notions you have already met: they help you recall what you have already learned.
+  Always show your method, even for mental calculation.
+\fi
+\end{mdframed}
+\tableofcontents
+\bigskip
+\foreach\i in {01,02,03,04,05,06,07,08,09,10,11,12,13,14}{\input{sections/ch\i-en}}
+\ifprof
+  \clearpage
+  \input{sections/guide-en}
+  \clearpage
+  \input{sections/annexe_diag-en}
+\fi
+\end{document}

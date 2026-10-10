@@ -1,0 +1,108 @@
+% Généré par tools/build.py — ne pas éditer à la main
+\section{Probabilités~: conditionnement et arbres pondérés}
+
+\fichehead{mar.~4~mai~2027}{Modèle probabiliste et équiprobabilité}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{On lance une pièce équilibrée trois fois. Combien d'issues\,?}{$2^3=8$ issues équiprobables.}{}
+\qitem{Cœur · Méthode}{PRB}{Dé truqué~: $P(6)=0{,}25$ et les cinq autres faces sont équiprobables. Calculer $P(1)$.}{$\dfrac{1-0{,}25}{5}=0{,}15$.}{}
+\qitem{Cœur + · Esprit critique}{PRB}{«~Il pleuvra ou il ne pleuvra pas demain~: il y a donc une chance sur deux.~» Ce modèle équiprobable est-il justifié\,?}{Non~: avoir deux issues ne rend pas celles-ci équiprobables. L'équiprobabilité est une hypothèse du modèle qu'il faut justifier.}{}
+\qitem{Retour · Flash}{PER}{De quelles figures est composé un patron de pyramide à base carrée\,?}{$1$ carré et $4$ triangles (isocèles).}{}
+\qitem{Fil rouge · Traduire}{LIT}{Un carré de côté $x$ voit chacun de ses côtés augmenter de $3$. Exprimer l'augmentation d'aire en fonction de $x$.}{$(x+3)^2-x^2=6x+9$.}{}
+\end{fiche}
+
+\fichehead{lun.~10~mai~2027}{Loi des grands nombres (version vulgarisée)~: simulation}
+\begin{fiche}
+\qitem{Échauffement · Flash}{STA}{Sur $100$ lancers, $47$ «~pile~». Quelle est la fréquence de «~pile~»\,?}{$0{,}47$.}{}
+\qitem{Cœur · Interpréter}{PRB}{Pourquoi, sur $10$ lancers d'une pièce équilibrée, la fréquence de «~pile~» peut-elle s'éloigner de $0{,}5$\,? Que se passe-t-il avec $10\,000$ lancers\,?}{Fluctuation d'échantillonnage~: petite série, grande variabilité. Sur de grandes séries, la fréquence se stabilise près de la probabilité $0{,}5$ (loi des grands nombres).}{}
+\qitem{Cœur + · Vrai/faux}{PRB}{Vrai ou faux\,? Justifier. En lançant $1\,000$ fois une pièce équilibrée, on obtient exactement $500$ «~pile~».}{Faux. On obtient un nombre proche de $500$, rarement exactement $500$.}{}
+\qitem{Retour · Problème}{MOD}{Prix TTC $P(x)=1{,}2\,x$ ($20\,\%$ de TVA). Calculer $P(250)$ et l'antécédent de $480$.}{$P(250)=300$\,; $1{,}2x=480\Leftrightarrow x=400$.}{}
+\qitem{Fil rouge · Méthode}{EQ}{Résoudre dans $\R$~: $\dfrac{2x-1}{3}=\dfrac{x+4}{2}$.}{$x=14$}{Produit en croix~: $2(2x-1)=3(x+4)$.}
+\end{fiche}
+
+\fichehead{mar.~11~mai~2027}{Simulation Python d'une expérience aléatoire répétée}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{$P(A)=0{,}35$. Calculer $P(\overline A)$.}{$1-0{,}35=0{,}65$.}{}
+\qitem{Cœur · Lecture de code}{ALG}{Que calcule ce programme\,? Quelle valeur affichera-t-il environ\,?\par\smallskip{\ttfamily\small \hspace*{0.0em}from random import randint\\ \hspace*{0.0em}compte = 0\\ \hspace*{0.0em}for i in range(1000):\\ \hspace*{2.4em}if randint(1, 6) == 6:\\ \hspace*{4.8em}compte = compte + 1\\ \hspace*{0.0em}print(compte / 1000)\par}}{La fréquence d'apparition du $6$ sur $1\,000$ lancers d'un dé\,; environ $\dfrac16\approx0{,}167$.}{}
+\qitem{Cœur + · Méthode}{PRB}{Dé équilibré à $12$ faces numérotées de $1$ à $12$. Probabilité d'obtenir un nombre premier\,?}{Premiers~: $2\,;\,3\,;\,5\,;\,7\,;\,11$~: $\dfrac{5}{12}$ ($1$ n'est pas premier).}{}
+\qitem{Retour · Programme de construction}{CON}{$M$ appartient à la médiatrice de $[AB]$. Que peut-on dire de $MA$ et $MB$\,? Comment la construire au compas\,?}{$MA=MB$. Construction~: deux arcs de même rayon (supérieur à $\frac12AB$) centrés en $A$ et $B$\,; leurs intersections définissent la médiatrice.}{}
+\qitem{Fil rouge · Reconnaître}{SOL}{Quelle est la nature de la section d'un cube par un plan parallèle à l'une de ses faces\,?}{Un carré de même côté que la face.}{}
+\end{fiche}
+
+\fichehead{jeu.~13~mai~2027}{Probabilité conditionnelle $P_A(B)$}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{Parmi $25$ demi-pensionnaires, $15$ sont des filles. On tire un DP au hasard~: probabilité que ce soit une fille\,?}{$\dfrac{15}{25}=0{,}6$.}{}
+\qitem{Cœur · Méthode}{PRB}{Dans une classe de $30$ élèves, $12$ jouent au football dont $5$ jouent aussi au hand. On choisit un élève au hasard~: calculer $P_F(H)$, $F$~: «~joue au foot~», $H$~: «~joue au hand~».}{$P_F(H)=\dfrac{\Card(F\cap H)}{\Card(F)}=\dfrac5{12}$.}{}
+\qitem{Cœur + · Méthode}{PRB}{Dans un modèle équiprobable, $\Card(A)=50$ et $\Card(A\cap B)=20$. Calculer $P_A(B)$.}{$\dfrac{20}{50}=0{,}4$.}{}
+\qitem{Retour · Flash}{NUM}{Ranger dans l'ordre croissant~: $\dfrac74$, $-\dfrac32$, $0{,}5$.}{$-\dfrac32<0{,}5<\dfrac74$ ($-1{,}5<0{,}5<1{,}75$).}{}
+\qitem{Fil rouge · Vrai/faux}{DEM}{Vrai ou faux\,? Justifier. Un quadrilatère ayant deux côtés opposés parallèles est un parallélogramme.}{Faux. Contre-exemple~: un trapèze (non parallélogramme) a deux côtés parallèles seulement.}{}
+\end{fiche}
+
+\fichehead{mar.~18~mai~2027}{Probabilité conditionnelle et tableau croisé}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{Dans le tableau suivant, quel est le total de la ligne «~sport~»\,?\par\smallskip\renewcommand{\arraystretch}{1.15}\begin{tabular}{|c|c|c|c|}\hline
+ & Filles & Garçons & Total \\ \hline
+Sport & 18 & 22 & \ldots \\ \hline
+Pas de sport & 12 & 8 & 20 \\ \hline
+Total & 30 & 30 & 60 \\ \hline
+\end{tabular}\par }{$18+22=40$.}{}
+\qitem{Cœur · Méthode}{PRB}{On choisit un élève au hasard dans ce tableau. Calculer $P(S)$, $P_F(S)$ et $P_S(F)$ ($F$~: fille, $S$~: fait du sport).}{$P(S)=\dfrac{40}{60}=\dfrac23$\,; $P_F(S)=\dfrac{18}{30}=0{,}6$\,; $P_S(F)=\dfrac{18}{40}=0{,}45$.}{}
+\qitem{Cœur + · Vrai/faux}{PRB}{Vrai ou faux\,? Justifier. Dans ce tableau, $P_F(S)=P_S(F)$.}{Faux. $0{,}6\neq0{,}45$~: les ensembles de référence ($30$ filles et $40$ sportifs) diffèrent.}{}
+\qitem{Retour · Flash}{PUI}{Calculer $5^0+2^{-1}$.}{$1+\dfrac12=\dfrac32$.}{}
+\qitem{Fil rouge · Méthode}{REP}{$ABCD$ est un parallélogramme avec $A(1;1)$, $B(5;2)$, $C(6;5)$. Déterminer $D$.}{Les diagonales ont même milieu~: $D=A+C-B=(2;4)$. Contrôle~: $\overrightarrow{AB}=\overrightarrow{DC}=(4;1)$.}{}
+\end{fiche}
+
+\fichehead{jeu.~20~mai~2027}{Arbres pondérés~: construction}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{Que vaut la somme des probabilités des branches issues d'un même nœud\,?}{$1$.}{}
+\qitem{Cœur · Méthode}{PRB}{Dans une population, $30\,\%$ sont atteints d'une maladie $M$. Un test est positif ($T$) pour $90\,\%$ des malades et pour $5\,\%$ des non-malades. Compléter les probabilités des branches de l'arbre.}{$P(M)=0{,}3$, $P(\overline M)=0{,}7$\,; $P_M(T)=0{,}9$, $P_M(\overline T)=0{,}1$\,; $P_{\overline M}(T)=0{,}05$, $P_{\overline M}(\overline T)=0{,}95$.}{}
+\qitem{Cœur + · Traduire}{PRB}{Traduire en symboles~: «~parmi les malades, $90\,\%$ ont un test positif~».}{$P_M(T)=0{,}9$~: branche $M\to T$\,; ne pas écrire $P(T)=0{,}9$.}{}
+\qitem{Retour · Flash}{CAL}{Calculer $\dfrac23\div\dfrac49$.}{$\dfrac23\times\dfrac94=\dfrac{18}{12}=\dfrac32$.}{}
+\qitem{Fil rouge · Problème}{DIV}{Trois phares clignotent toutes les $6$, $8$ et $9$ secondes. Ils s'allument ensemble à $t=0$. Quand le prochain clignotement simultané\,?}{$\ppcm(6\,;\,8\,;\,9)=72$~: au bout de $72$ s.}{}
+\end{fiche}
+
+\fichehead{lun.~24~mai~2027}{Arbres pondérés~: multiplication le long d'un chemin}
+\begin{fiche}
+\qitem{Échauffement · Flash}{CAL}{Calculer $0{,}3\times0{,}9$.}{$0{,}27$.}{}
+\qitem{Cœur · Méthode}{PRB}{Avec l'arbre de la fiche 70, calculer $P(M\cap T)$ et $P(\overline M\cap T)$.}{$P(M\cap T)=0{,}3\times0{,}9=0{,}27$\,; $P(\overline M\cap T)=0{,}7\times0{,}05=0{,}035$.}{On multiplie le long d'un chemin~: $P(M\cap T)=P(M)\times P_M(T)$.}
+\qitem{Cœur + · Méthode}{PRB}{En déduire $P(T)$.}{Deux chemins mènent à $T$~: $0{,}27+0{,}035=0{,}305$.}{}
+\qitem{Retour · Factoriser}{DEV}{Factoriser $x^2-9$.}{$(x-3)(x+3)$.}{}
+\qitem{Fil rouge · Flash}{GEO}{Le côté $[BC]$ de longueur $13$ cm est l'hypoténuse d'un triangle rectangle $ABC$. Quel est le rayon de son cercle circonscrit\,?}{Le milieu de l'hypoténuse est le centre~: rayon $=13\div2=6{,}5$ cm.}{}
+\end{fiche}
+
+\fichehead{mar.~25~mai~2027}{Du tableau à l'arbre et à l'écriture symbolique}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{Exprimer $\dfrac{30}{60}$ sous forme de probabilité.}{$0{,}5$.}{}
+\qitem{Cœur · Méthode}{PRB}{À partir du tableau de la fiche 69, construire l'arbre ($F$ ou $G$, puis $S$ ou $\overline S$)~: donner $P(F)$, $P_F(S)$ et $P_G(S)$.}{$P(F)=0{,}5$\,; $P_F(S)=\dfrac{18}{30}=0{,}6$\,; $P_G(S)=\dfrac{22}{30}=\dfrac{11}{15}$.}{}
+\qitem{Cœur + · Traduire}{PRB}{Écrire symboliquement et calculer «~la probabilité d'être un garçon qui ne fait pas de sport~».}{$P(G\cap\overline S)=\dfrac{8}{60}=\dfrac{2}{15}$\,; ou $0{,}5\times\dfrac{8}{30}$.}{}
+\qitem{Retour · Flash}{QP}{Une voiture roule à vitesse constante~: $150$ km en $2$ h. Quelle distance en $5$ h\,?}{$75\times5=375$ km.}{}
+\qitem{Fil rouge · Énoncé → formule}{REG}{Un taxi facture $2\,000$ Ar de prise en charge puis $1\,500$ Ar par km. Exprimer le prix $p(x)$ pour $x$ km, puis calculer $p(8)$.}{$p(x)=1\,500x+2\,000$\,; $p(8)=14\,000$ Ar.}{}
+\end{fiche}
+
+\fichehead{jeu.~27~mai~2027}{Inversion des conditionnements~: $P_A(B)$ et $P_B(A)$}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{Quelle différence entre $P_M(T)$ et $P_T(M)$\,?}{$P_M(T)$~: probabilité d'être positif sachant qu'on est malade\,; $P_T(M)$~: d'être malade sachant qu'on est positif.}{}
+\qitem{Cœur · Méthode}{PRB}{Avec les données de la fiche 70 ($P(M\cap T)=0{,}27$ et $P(T)=0{,}305$), calculer $P_T(M)$.}{$P_T(M)=\dfrac{P(M\cap T)}{P(T)}=\dfrac{0{,}27}{0{,}305}\approx0{,}885$.}{}
+\qitem{Cœur + · Méthode}{PRB}{Maladie rare ($1\,\%$ de malades)\,; test positif pour $99\,\%$ des malades et $5\,\%$ des non-malades. Calculer $P_T(M)$.}{$P(M\cap T)=0{,}0099$\,; $P(\overline M\cap T)=0{,}99\times0{,}05=0{,}0495$\,; $P(T)=0{,}0594$\,; $P_T(M)=\dfrac{0{,}0099}{0{,}0594}=\dfrac16\approx0{,}17$.}{Résultat contre-intuitif~: un test «~fiable à $99\,\%$~» ne suffit pas.}
+\qitem{Retour · Graphique}{IMG}{Courbe de $f$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-3,-3) grid (3,3);
+\draw[->] (-3,0)--(3.3,0); \draw[->] (0,-3)--(0,3.3);
+\foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-3,-2,-1,1,2,3}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,marine,domain=-3:3,samples=60,smooth] plot (\x,{0.5*\x*\x-2});
+\fill[rep] (-3,2.5) circle (3pt);
+\fill[rep] (0,-2) circle (3pt);
+\fill[rep] (2,0) circle (3pt);
+\fill[rep] (3,2.5) circle (3pt);
+
+\end{tikzpicture}\par Lire $f(2)$ et les antécédents de $2{,}5$.}{$f(2)=0$\,; antécédents de $2{,}5$~: $-3$ et $3$.}{Expression utilisée pour le tracé~: $f(x)=0{,}5x^2-2$.}
+\qitem{Fil rouge · Méthode}{ALG}{Programme~: choisir un nombre\,; le multiplier par $-2$\,; ajouter $10$\,; diviser par $2$. Résultat pour $7$\,? Expression en $x$\,?}{$\dfrac{-14+10}{2}=-2$\,; en général $\dfrac{-2x+10}{2}=-x+5$.}{}
+\end{fiche}
+
+\fichehead{lun.~31~mai~2027}{Faux positifs et faux négatifs}
+\begin{fiche}
+\qitem{Échauffement · Flash}{PRB}{Définir «~faux positif~» et «~faux négatif~».}{Faux positif~: test positif chez une personne non malade. Faux négatif~: test négatif chez une personne malade.}{}
+\qitem{Cœur · Méthode}{PRB}{$10\,000$ personnes, $2\,\%$ de malades\,; le test est positif pour $90\,\%$ des malades et $10\,\%$ des non-malades. Combien de faux négatifs, de faux positifs, de positifs au total\,?}{Malades $200$~: $180$ positifs, donc $20$ faux négatifs\,; non-malades $9\,800$~: $980$ faux positifs\,; positifs~: $180+980=1\,160$.}{}
+\qitem{Cœur + · Interpréter}{PRB}{Avec les données précédentes, calculer la proportion de vrais malades parmi les positifs et commenter.}{$\dfrac{180}{1\,160}\approx15{,}5\,\%$~: la maladie étant rare, la plupart des positifs sont des faux positifs.}{}
+\qitem{Retour · Vrai/faux}{PNP}{Vrai ou faux\,? Justifier. L'aire d'un carré est proportionnelle à la longueur de son côté.}{Faux. $c=1\mapsto1$ et $c=2\mapsto4\neq2\times1$.}{}
+\qitem{Fil rouge · Réfuter}{LIT}{Conjecture~: «~pour tout entier $n$, $n^2+n+41$ est premier~». Tester $n=40$.}{$40^2+40+41=1681=41^2$~: non premier. La conjecture est fausse.}{Des tests réussis ne prouvent rien\,; un test raté réfute.}
+\end{fiche}

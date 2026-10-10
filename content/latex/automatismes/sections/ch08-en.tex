@@ -1,0 +1,69 @@
+% English twin of the French section
+\section{Variations and extrema of a function}
+
+\fichehead{Thu~11~Feb.~2027}{Increasing, decreasing, monotonicity}
+\begin{fiche}
+\qitem{Warm-up · Quick}{IMG}{$f(x)=-2x+5$. Calculate $f(1)$ and $f(3)$; what do you notice?}{$f(1)=3$, $f(3)=-1$: the order of the images is the reverse of that of the inputs ($f$ is decreasing).}{}
+\qitem{Core · MCQ}{MOD}{$f$ is increasing on $I$ means that, for all $a<b$ in $I$:\choix{$a\leqslant b$ only}{$f(a)\geqslant f(b)$}{$f(a)\leqslant f(b)$}{$f(a)=f(b)$}}{C.\ $f(a)\leqslant f(b)$}{Increasing: preserves the order; decreasing: reverses it.}
+\qitem{Core + · Graph}{REG}{Curve of $f(x)=x^2$ on $[-2;2]$:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-2,-1) grid (2,4);
+\draw[->] (-2,0)--(2.3,0); \draw[->] (0,-1)--(0,4.3);
+\foreach \i in {-2,-1,1,2}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-1,1,2,3,4}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,marine,domain=-2:2,samples=60,smooth] plot (\x,{\x*\x});
+
+\end{tikzpicture}\par Give the variations of $f$.}{Decreasing on $[-2;0]$, increasing on $[0;2]$.}{Expression used to draw the curve: $f(x)=x^2$.}
+\qitem{Review · Quick}{PRO}{Which multiplier corresponds to an increase of $15\,\%$? To a decrease of $15\,\%$?}{$1.15$; $0.85$.}{}
+\qitem{Thread · Quick}{DIV}{Is $457$ divisible by $3$? By $9$? Justify.}{Sum of digits $=16$, not a multiple of $3$: divisible by neither $3$ nor $9$.}{}
+\end{fiche}
+
+\fichehead{Mon~1\textsuperscript{st}~Mar.~2027}{Table of variations; maximum and minimum on an interval}
+\begin{fiche}
+\qitem{Warm-up · Quick}{IMG}{Calculate $x^2$ for $x=-2$, $0$, $3$.}{$4$; $0$; $9$.}{}
+\qitem{Core · Method}{REG}{$f$ is decreasing on $[-3;1]$ with $f(-3)=5$, $f(1)=-1$, then increasing on $[1;4]$ with $f(4)=4$. Give the maximum and the minimum of $f$ on $[-3;4]$.}{Maximum $5$ reached at $x=-3$ ($5>4$); minimum $-1$ reached at $x=1$.}{Compare the values at the endpoints of the interval AND at the changes of variation.}
+\qitem{Core + · True/false}{REG}{True or false? Justify. The maximum of a function on $[a;b]$ is always reached at $a$ or at $b$.}{False. Counterexample: $f(x)=-x^2+4$ on $[-2;2]$: maximum $4$ reached at $0$.}{}
+\qitem{Review · Table}{PNP}{Is this table a proportionality table?\par\smallskip\renewcommand{\arraystretch}{1.15}\begin{tabular}{|c|c|c|c|}\hline
+$x$ & 1 & 2 & 3 \\ \hline
+$y$ & 5 & 9 & 13 \\ \hline
+\end{tabular}\par }{No: $\dfrac51\neq\dfrac92$ (constant increase $+4$ but $y(0)\neq0$).}{}
+\qitem{Thread · Method}{GEO}{Is the triangle with sides $5$, $12$ and $13$ right-angled? Which property should be used?}{$5^2+12^2=169=13^2$: converse of Pythagoras' theorem, right-angled (right angle opposite the side $13$).}{}
+\end{fiche}
+
+\fichehead{Tue~2~Mar.~2027}{Affine functions: rate of change and variations}
+\begin{fiche}
+\qitem{Warm-up · Quick}{IMG}{$f(x)=3x-1$. Calculate $\dfrac{f(4)-f(1)}{4-1}$.}{$\dfrac{11-2}{3}=3$: this is the slope $m$.}{}
+\qitem{Core · Quick}{MOD}{Direction of variation of $f(x)=-4x+7$?}{$m=-4<0$: $f$ is strictly decreasing on $\R$.}{}
+\qitem{Core + · Proof}{LIT}{Show that $f(x)=5x-2$ is increasing on $\R$.}{For $a<b$: $f(b)-f(a)=5(b-a)>0$, so $f(a)<f(b)$.}{Model write-up for the proof required by the syllabus.}
+\qitem{Review · Table}{LEC}{Ages of the members of a club.\par\smallskip\renewcommand{\arraystretch}{1.15}\begin{tabular}{|c|c|c|c|c|}\hline
+Age & $10$ & $11$ & $12$ & $13$ \\ \hline
+Frequency & 3 & 6 & 10 & 6 \\ \hline
+\end{tabular}\par How many members are at most $11$ years old? What relative frequency is that?}{$3+6=9$ members; $\dfrac{9}{25}=36\,\%$.}{}
+\qitem{Thread · Programme → formula}{REG}{Programme: multiply by $3$ then subtract $2$. Give $f(x)$ then $f(4)$.}{$f(x)=3x-2$; $f(4)=10$.}{}
+\end{fiche}
+
+\fichehead{Thu~4~Mar.~2027}{Absolute value and square functions: sign and variations}
+\begin{fiche}
+\qitem{Warm-up · Quick}{CAL}{Calculate $|{-}5|$, $(-5)^2$ and $|2-7|$.}{$5$; $25$; $5$.}{}
+\qitem{Core · Method}{REG}{Give the table of variations of $x\mapsto|x|$ and its sign.}{Decreasing on $]-\infty;0]$, increasing on $[0;+\infty[$; minimum $0$ at $0$; always non-negative.}{}
+\qitem{Core + · Reasoning}{CMP}{Compare $(-3)^2$ and $(-2)^2$ then $3^2$ and $2^2$. Is the square function increasing on $\R$?}{$9>4$ in both cases, but $-3<-2$: squaring reverses the order on $]-\infty;0]$; no, it is not increasing on $\R$.}{}
+\qitem{Review · Method}{PRB}{Two fair dice are rolled. Probability that the sum is $7$?}{$6$ favourable cases out of $36$: $\dfrac16$.}{}
+\qitem{Thread · Method}{ALG}{Programme: choose a number; add $1$; square it; subtract the square of the starting number. What is the result for $6$? What is the general expression?}{For $6$: $49-36=13$. In general $(x+1)^2-x^2=2x+1$.}{}
+\end{fiche}
+
+\fichehead{Mon~8~Mar.~2027}{Reciprocal function: variations; relative position of $y=x$ and $y=x^2$}
+\begin{fiche}
+\qitem{Warm-up · Quick}{CAL}{Calculate $\dfrac12$, $\dfrac1{-4}$ and $\dfrac1{0.1}$.}{$0.5$; $-0.25$; $10$.}{}
+\qitem{Core · Method}{CMP}{Compare $\dfrac13$ and $\dfrac15$; what can be said about the variations of the reciprocal function on $]0;+\infty[$?}{$\dfrac13>\dfrac15$ although $3<5$: the reciprocal function is decreasing on $]0;+\infty[$ (and on $]-\infty;0[$, but not on $\R^*$).}{}
+\qitem{Core + · True/false}{CMP}{True or false? Justify. For every real number $x>0$, $x^2\geqslant x$.}{False. Counterexample: $x=\dfrac12$, $x^2=\dfrac14<\dfrac12$. In fact $x^2\geqslant x$ if and only if $x\geqslant1$ (for $x>0$).}{}
+\qitem{Review · Quick}{PER}{What are the front view and the top view of a cylinder standing on its base?}{Front: a rectangle; top: a disc.}{}
+\qitem{Thread · Prove}{LIT}{Show that the product of two even integers is a multiple of $4$.}{With $a=2p$, $b=2q$: $ab=4pq$, a multiple of $4$.}{}
+\end{fiche}
+
+\fichehead{Tue~9~Mar.~2027}{Comparing $f(a)$ and $f(b)$; optimisation problems}
+\begin{fiche}
+\qitem{Warm-up · Quick}{CMP}{$f(x)=x^2$. Compare $f(-3)$ and $f(2)$.}{$f(-3)=9>4=f(2)$.}{}
+\qitem{Core · Method}{REG}{$f(x)=x^2$, $a=-1.5$ and $b=-2$. Compare $f(a)$ and $f(b)$ without calculating, using the variations.}{$-2<-1.5\leqslant0$ and $f$ is decreasing on $]-\infty;0]$: $f(-2)>f(-1.5)$. Check: $4>2.25$.}{}
+\qitem{Core + · Optimisation}{MOD}{$A(x)=x(10-x)$ for $x\in[0;10]$ (area of a rectangle with perimeter $20$). Show that $A(x)=25-(x-5)^2$ and deduce the maximum.}{$25-(x-5)^2=25-x^2+10x-25=x(10-x)$; maximum $25$ reached for $x=5$ (square of side $5$).}{}
+\qitem{Review · Quick}{STA}{$18$ pupils out of $24$ have an average above $10$. Give the relative frequency as a percentage.}{$\dfrac{18}{24}=75\,\%$.}{}
+\qitem{Thread · MCQ}{EQ}{The solution of $\dfrac{x}{3}+1=\dfrac{7}{2}$ is:\choix{$\dfrac{15}{2}$}{$\dfrac{9}{2}$}{$\dfrac{21}{2}$}{$\dfrac{5}{6}$}}{A.\ $\dfrac{15}{2}$}{Pitfall: forgetting to subtract the $1$ before multiplying by $3$ ($\frac{21}{2}$).}
+\end{fiche}

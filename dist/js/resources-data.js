@@ -135,13 +135,13 @@ export const resourceCatalog = {
           "end": 1,
           "path": "resources/seconde-02/fluency-student.pdf",
           "pages": 1,
-          "bytes": 186439,
+          "bytes": 186553,
           "title": [
             "Vecteurs du plan",
             "Vectors in the plane"
           ],
           "englishPath": "resources/seconde-02/fluency-student-en.pdf",
-          "englishBytes": 160727
+          "englishBytes": 184867
         },
         {
           "kind": "fluency-solutions",
@@ -150,13 +150,13 @@ export const resourceCatalog = {
           "end": 2,
           "path": "resources/seconde-02/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 219392,
+          "bytes": 218161,
           "title": [
             "Vecteurs du plan",
             "Vectors in the plane"
           ],
           "englishPath": "resources/seconde-02/fluency-teacher-en.pdf",
-          "englishBytes": 218262
+          "englishBytes": 215374
         }
       ]
     },
@@ -203,13 +203,13 @@ export const resourceCatalog = {
           "end": 3,
           "path": "resources/seconde-03/fluency-student.pdf",
           "pages": 2,
-          "bytes": 211536,
+          "bytes": 211186,
           "title": [
             "Droites du plan",
             "Lines in the plane"
           ],
           "englishPath": "resources/seconde-03/fluency-student-en.pdf",
-          "englishBytes": 210745
+          "englishBytes": 208850
         },
         {
           "kind": "fluency-solutions",
@@ -218,13 +218,13 @@ export const resourceCatalog = {
           "end": 5,
           "path": "resources/seconde-03/fluency-teacher.pdf",
           "pages": 3,
-          "bytes": 227773,
+          "bytes": 227421,
           "title": [
             "Droites du plan",
             "Lines in the plane"
           ],
           "englishPath": "resources/seconde-03/fluency-teacher-en.pdf",
-          "englishBytes": 228043
+          "englishBytes": 224673
         }
       ]
     },
@@ -271,13 +271,13 @@ export const resourceCatalog = {
           "end": 4,
           "path": "resources/seconde-04/fluency-student.pdf",
           "pages": 1,
-          "bytes": 203525,
+          "bytes": 203159,
           "title": [
             "Nombres réels et intervalles",
             "Real numbers and intervals"
           ],
           "englishPath": "resources/seconde-04/fluency-student-en.pdf",
-          "englishBytes": 203250
+          "englishBytes": 200831
         },
         {
           "kind": "fluency-solutions",
@@ -286,13 +286,13 @@ export const resourceCatalog = {
           "end": 7,
           "path": "resources/seconde-04/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 246057,
+          "bytes": 245689,
           "title": [
             "Nombres réels et intervalles",
             "Real numbers and intervals"
           ],
           "englishPath": "resources/seconde-04/fluency-teacher-en.pdf",
-          "englishBytes": 246513
+          "englishBytes": 242271
         }
       ]
     },
@@ -377,13 +377,13 @@ export const resourceCatalog = {
           "end": 6,
           "path": "resources/seconde-05/fluency-student.pdf",
           "pages": 2,
-          "bytes": 239194,
+          "bytes": 238797,
           "title": [
             "Fonctions : représentations et fonctions de référence",
             "Functions and representations"
           ],
           "englishPath": "resources/seconde-05/fluency-student-en.pdf",
-          "englishBytes": 237708
+          "englishBytes": 236285
         },
         {
           "kind": "fluency-solutions",
@@ -392,13 +392,13 @@ export const resourceCatalog = {
           "end": 10,
           "path": "resources/seconde-05/fluency-teacher.pdf",
           "pages": 3,
-          "bytes": 255641,
+          "bytes": 255236,
           "title": [
             "Fonctions : représentations et fonctions de référence",
             "Functions and representations"
           ],
           "englishPath": "resources/seconde-05/fluency-teacher-en.pdf",
-          "englishBytes": 256323
+          "englishBytes": 251779
         }
       ]
     },
@@ -445,13 +445,13 @@ export const resourceCatalog = {
           "end": 8,
           "path": "resources/seconde-06/fluency-student.pdf",
           "pages": 2,
-          "bytes": 223807,
+          "bytes": 223429,
           "title": [
             "Statistiques descriptives à une variable",
             "Descriptive statistics"
           ],
           "englishPath": "resources/seconde-06/fluency-student-en.pdf",
-          "englishBytes": 221871
+          "englishBytes": 221334
         },
         {
           "kind": "fluency-solutions",
@@ -460,13 +460,13 @@ export const resourceCatalog = {
           "end": 12,
           "path": "resources/seconde-06/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 245007,
+          "bytes": 244627,
           "title": [
             "Statistiques descriptives à une variable",
             "Descriptive statistics"
           ],
           "englishPath": "resources/seconde-06/fluency-teacher-en.pdf",
-          "englishBytes": 243568
+          "englishBytes": 241728
         }
       ]
     },
@@ -512,13 +512,13 @@ export const resourceCatalog = {
           "end": 10,
           "path": "resources/seconde-07/fluency-student.pdf",
           "pages": 2,
-          "bytes": 239287,
+          "bytes": 238900,
           "title": [
             "Calcul algébrique, équations et inéquations",
             "Algebra, equations and inequalities"
           ],
           "englishPath": "resources/seconde-07/fluency-student-en.pdf",
-          "englishBytes": 238445
+          "englishBytes": 236712
         },
         {
           "kind": "fluency-solutions",
@@ -527,13 +527,13 @@ export const resourceCatalog = {
           "end": 15,
           "path": "resources/seconde-07/fluency-teacher.pdf",
           "pages": 3,
-          "bytes": 259658,
+          "bytes": 259263,
           "title": [
             "Calcul algébrique, équations et inéquations",
             "Algebra, equations and inequalities"
           ],
           "englishPath": "resources/seconde-07/fluency-teacher-en.pdf",
-          "englishBytes": 259489
+          "englishBytes": 256006
         }
       ]
     },
@@ -580,13 +580,13 @@ export const resourceCatalog = {
           "end": 11,
           "path": "resources/seconde-08/fluency-student.pdf",
           "pages": 1,
-          "bytes": 210123,
+          "bytes": 209760,
           "title": [
             "Proportions et évolutions",
             "Proportions and change"
           ],
           "englishPath": "resources/seconde-08/fluency-student-en.pdf",
-          "englishBytes": 209577
+          "englishBytes": 193085
         },
         {
           "kind": "fluency-solutions",
@@ -595,13 +595,13 @@ export const resourceCatalog = {
           "end": 17,
           "path": "resources/seconde-08/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 232684,
+          "bytes": 232322,
           "title": [
             "Proportions et évolutions",
             "Proportions and change"
           ],
           "englishPath": "resources/seconde-08/fluency-teacher-en.pdf",
-          "englishBytes": 232608
+          "englishBytes": 229424
         }
       ]
     },
@@ -648,13 +648,13 @@ export const resourceCatalog = {
           "end": 12,
           "path": "resources/seconde-09/fluency-student.pdf",
           "pages": 1,
-          "bytes": 202008,
+          "bytes": 201632,
           "title": [
             "Variations et extrémums d'une fonction",
             "Variation and extrema"
           ],
           "englishPath": "resources/seconde-09/fluency-student-en.pdf",
-          "englishBytes": 200386
+          "englishBytes": 206425
         },
         {
           "kind": "fluency-solutions",
@@ -663,13 +663,13 @@ export const resourceCatalog = {
           "end": 19,
           "path": "resources/seconde-09/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 227419,
+          "bytes": 227041,
           "title": [
             "Variations et extrémums d'une fonction",
             "Variation and extrema"
           ],
           "englishPath": "resources/seconde-09/fluency-teacher-en.pdf",
-          "englishBytes": 226170
+          "englishBytes": 223840
         }
       ]
     },
@@ -716,13 +716,13 @@ export const resourceCatalog = {
           "end": 14,
           "path": "resources/seconde-10/fluency-student.pdf",
           "pages": 2,
-          "bytes": 216573,
+          "bytes": 216197,
           "title": [
             "Croisement de deux variables qualitatives",
             "Two categorical variables"
           ],
           "englishPath": "resources/seconde-10/fluency-student-en.pdf",
-          "englishBytes": 215794
+          "englishBytes": 217364
         },
         {
           "kind": "fluency-solutions",
@@ -731,13 +731,13 @@ export const resourceCatalog = {
           "end": 22,
           "path": "resources/seconde-10/fluency-teacher.pdf",
           "pages": 3,
-          "bytes": 255042,
+          "bytes": 254658,
           "title": [
             "Croisement de deux variables qualitatives",
             "Two categorical variables"
           ],
           "englishPath": "resources/seconde-10/fluency-teacher-en.pdf",
-          "englishBytes": 257328
+          "englishBytes": 250699
         }
       ]
     },
@@ -783,13 +783,13 @@ export const resourceCatalog = {
           "end": 15,
           "path": "resources/seconde-11/fluency-student.pdf",
           "pages": 1,
-          "bytes": 218958,
+          "bytes": 218560,
           "title": [
             "Géométrie repérée : synthèse vecteurs / droites",
             "Coordinate geometry"
           ],
           "englishPath": "resources/seconde-11/fluency-student-en.pdf",
-          "englishBytes": 220008
+          "englishBytes": 218905
         },
         {
           "kind": "fluency-solutions",
@@ -798,13 +798,13 @@ export const resourceCatalog = {
           "end": 24,
           "path": "resources/seconde-11/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 245155,
+          "bytes": 244756,
           "title": [
             "Géométrie repérée : synthèse vecteurs / droites",
             "Coordinate geometry"
           ],
           "englishPath": "resources/seconde-11/fluency-teacher-en.pdf",
-          "englishBytes": 244638
+          "englishBytes": 242218
         }
       ]
     },
@@ -850,13 +850,13 @@ export const resourceCatalog = {
           "end": 16,
           "path": "resources/seconde-12/fluency-student.pdf",
           "pages": 1,
-          "bytes": 197269,
+          "bytes": 196877,
           "title": [
             "Problèmes de synthèse, raisonnement et automatismes",
             "Reasoning and synthesis"
           ],
           "englishPath": "resources/seconde-12/fluency-student-en.pdf",
-          "englishBytes": 195977
+          "englishBytes": 197262
         },
         {
           "kind": "fluency-solutions",
@@ -865,13 +865,13 @@ export const resourceCatalog = {
           "end": 25,
           "path": "resources/seconde-12/fluency-teacher.pdf",
           "pages": 1,
-          "bytes": 208798,
+          "bytes": 208404,
           "title": [
             "Problèmes de synthèse, raisonnement et automatismes",
             "Reasoning and synthesis"
           ],
           "englishPath": "resources/seconde-12/fluency-teacher-en.pdf",
-          "englishBytes": 207376
+          "englishBytes": 205808
         }
       ]
     },
@@ -917,13 +917,13 @@ export const resourceCatalog = {
           "end": 18,
           "path": "resources/seconde-13/fluency-student.pdf",
           "pages": 2,
-          "bytes": 219326,
+          "bytes": 218933,
           "title": [
             "Probabilités : conditionnement et arbres pondérés",
             "Conditional probability and trees"
           ],
           "englishPath": "resources/seconde-13/fluency-student-en.pdf",
-          "englishBytes": 218448
+          "englishBytes": 216225
         },
         {
           "kind": "fluency-solutions",
@@ -932,13 +932,13 @@ export const resourceCatalog = {
           "end": 29,
           "path": "resources/seconde-13/fluency-teacher.pdf",
           "pages": 4,
-          "bytes": 248755,
+          "bytes": 248355,
           "title": [
             "Probabilités : conditionnement et arbres pondérés",
             "Conditional probability and trees"
           ],
           "englishPath": "resources/seconde-13/fluency-teacher-en.pdf",
-          "englishBytes": 249053
+          "englishBytes": 244875
         }
       ]
     },
@@ -984,13 +984,13 @@ export const resourceCatalog = {
           "end": 20,
           "path": "resources/seconde-14/fluency-student.pdf",
           "pages": 2,
-          "bytes": 212238,
+          "bytes": 211842,
           "title": [
             "Consolidation, automatismes et transition vers la Première",
             "Consolidation and transition"
           ],
           "englishPath": "resources/seconde-14/fluency-student-en.pdf",
-          "englishBytes": 210857
+          "englishBytes": 209728
         },
         {
           "kind": "fluency",
@@ -999,13 +999,13 @@ export const resourceCatalog = {
           "end": 22,
           "path": "resources/seconde-15/fluency-student.pdf",
           "pages": 2,
-          "bytes": 225275,
+          "bytes": 224889,
           "title": [
             "Bilan annuel et consolidation des acquis de Seconde",
             "Annual review and consolidation"
           ],
           "englishPath": "resources/seconde-15/fluency-student-en.pdf",
-          "englishBytes": 225328
+          "englishBytes": 223262
         },
         {
           "kind": "fluency-solutions",
@@ -1014,13 +1014,13 @@ export const resourceCatalog = {
           "end": 31,
           "path": "resources/seconde-14/fluency-teacher.pdf",
           "pages": 2,
-          "bytes": 234475,
+          "bytes": 234077,
           "title": [
             "Consolidation, automatismes et transition vers la Première",
             "Consolidation and transition"
           ],
           "englishPath": "resources/seconde-14/fluency-teacher-en.pdf",
-          "englishBytes": 232802
+          "englishBytes": 240056
         },
         {
           "kind": "fluency-solutions",
@@ -1029,13 +1029,13 @@ export const resourceCatalog = {
           "end": 35,
           "path": "resources/seconde-15/fluency-teacher.pdf",
           "pages": 4,
-          "bytes": 266085,
+          "bytes": 265691,
           "title": [
             "Bilan annuel et consolidation des acquis de Seconde",
             "Annual review and consolidation"
           ],
           "englishPath": "resources/seconde-15/fluency-teacher-en.pdf",
-          "englishBytes": 267031
+          "englishBytes": 254260
         }
       ]
     },

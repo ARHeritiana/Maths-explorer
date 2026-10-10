@@ -1,0 +1,38 @@
+% English twin of the French section
+\section{Vectors in the plane}
+
+\fichehead{Thu~8~Oct.~2026}{Distance between two points and midpoint of a segment}
+\begin{fiche}
+\qitem{Warm-up · Quick}{CAL}{Calculate $(-3)^2$, $(5-(-2))^2$ and $-3^2$.}{$9$; $49$; $-9$.}{Prerequisite for calculating a distance: the square of a signed number.}
+\qitem{Core · Method}{GEO}{$A(1;2)$ and $B(4;6)$ in an orthonormal frame. Give the coordinates of $\vect{AB}$ and then the distance $AB$.}{$\vect{AB}\vc{3}{4}$; $AB=\sqrt{3^2+4^2}=5$.}{Pitfall: $x_A-x_B$ instead of $x_B-x_A$; forgetting the square root.}
+\qitem{Core + · MCQ}{REP}{The midpoint of $[AB]$ with $A(-2;1)$ and $B(4;-3)$ has coordinates:\choix{$(1;-1)$}{$(-1;1)$}{$(2;-2)$}{$(3;-2)$}}{A.\ $(1;-1)$}{Distractors: half-difference $(3;-2)$; undivided sum $(2;-2)$; sign error $(-1;1)$.}
+\qitem{Review · Quick}{SUB}{Calculate $3x^2-2x+1$ for $x=-2$.}{$17$.}{}
+\qitem{Thread · Quick}{EQ}{Solve in $\R$: $3x+5=17$.}{$x=4$}{}
+\end{fiche}
+
+\fichehead{Mon~12~Oct.~2026}{Determinant of two vectors; collinearity criterion}
+\begin{fiche}
+\qitem{Warm-up · Quick}{CAL}{Calculate $2\times(-3)-4\times5$ and $(-1)\times6-3\times(-2)$.}{$-26$; $0$.}{Determinant skills: cross product with signed numbers.}
+\qitem{Core · Method}{GEO}{Calculate $\deter{\vec u}{\vec v}$ for $\vec u\vc{2}{-3}$ and $\vec v\vc{-4}{6}$. What can be concluded?}{$2\times6-(-3)\times(-4)=12-12=0$: $\vec u$ and $\vec v$ are collinear ($\vec v=-2\vec u$).}{}
+\qitem{Core + · True/false}{GEO}{True or false? Justify. The vectors $\vec u\vc{1}{2}$ and $\vec v\vc{3}{5}$ are collinear.}{False. $\deter{\vec u}{\vec v}=1\times5-2\times3=-1\neq0$.}{}
+\qitem{Review · Construction}{CON}{Draw a circle with centre $O$ and two perpendicular diameters $[AC]$ and $[BD]$. What type of quadrilateral is $ABCD$? Justify.}{A square: diagonals with the same midpoint $O$ (parallelogram), of equal length (rectangle) and perpendicular (rhombus).}{}
+\qitem{Thread · Quick}{ALG}{Programme: choose a number; multiply it by $4$; add $5$. a. What is the result for $3$? b. What is the expression in terms of the starting number $x$?}{a. $17$. b. $4x+5$.}{}
+\end{fiche}
+
+\fichehead{Tue~13~Oct.~2026}{Collinearity and parallelism: the determinant method}
+\begin{fiche}
+\qitem{Warm-up · Quick}{GEO}{Calculate the coordinates of $\vect{AB}$ for $A(1;-2)$ and $B(4;3)$.}{$\vect{AB}\vc{3}{5}$.}{}
+\qitem{Core · Method}{GEO}{Are the points $A(1;2)$, $B(3;3)$ and $C(7;5)$ collinear?}{$\vect{AB}\vc{2}{1}$, $\vect{AC}\vc{6}{3}$: $\deter{\vect{AB}}{\vect{AC}}=2\times3-1\times6=0$: collinear.}{}
+\qitem{Core + · Method}{EQ}{For what value of $k$ are the vectors $\vec u\vc{k}{3}$ and $\vec v\vc{4}{6}$ collinear?}{$\deter{\vec u}{\vec v}=6k-12=0$, so $k=2$.}{The determinant reduces the problem to a linear equation.}
+\qitem{Review · Quick}{PRO}{Calculate $20\,\%$ of $350$.}{$0.20\times350=70$.}{}
+\qitem{Thread · Translate}{LIT}{A rectangle has length $x+3$ and width $x$ (in cm). Express its perimeter in terms of $x$ and simplify.}{$P=2\big((x+3)+x\big)=4x+6$ (in cm).}{}
+\end{fiche}
+
+\fichehead{Thu~15~Oct.~2026}{Problem solving: vector, coordinate or geometric method}
+\begin{fiche}
+\qitem{Warm-up · Quick}{GEO}{Complete: $ABCD$ is a parallelogram $\Leftrightarrow\ \vect{AB}=\ldots$}{$\vect{AB}=\vect{DC}$ (or $\vect{AD}=\vect{BC}$).}{The vertices are named in order: $[AC]$ and $[BD]$ are the diagonals.}
+\qitem{Core · Method}{REP}{$A(0;0)$, $B(4;1)$, $C(5;4)$. Find $D$ so that $ABCD$ is a parallelogram.}{$\vect{AB}=\vect{DC}$: $(4;1)=(5-x_D;4-y_D)$, so $D(1;3)$.}{}
+\qitem{Core + · Write-up}{DEM}{$A(0;0)$, $B(3;1)$, $C(-1;3)$. Prove that $ABC$ is an isosceles right-angled triangle at $A$.}{$AB^2=10$, $AC^2=10$: $AB=AC$; $BC^2=16+4=20=AB^2+AC^2$: converse of Pythagoras.}{Two distinct justifications: equal lengths and right angle.}
+\qitem{Review · Quick}{NUM}{Write $450\,000$ in scientific notation.}{$4.5\times10^5$.}{}
+\qitem{Thread · Quick}{SOL}{How many faces, vertices and edges does a cube have?}{$6$ faces, $8$ vertices, $12$ edges.}{}
+\end{fiche}

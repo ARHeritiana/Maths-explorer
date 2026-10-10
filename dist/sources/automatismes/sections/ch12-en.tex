@@ -1,0 +1,108 @@
+% English twin of the French section
+\section{Probability: conditioning and weighted trees}
+
+\fichehead{Tue~4~May~2027}{Probability model and equally likely outcomes}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{A fair coin is tossed three times. How many outcomes are there?}{$2^3=8$ equally likely outcomes.}{}
+\qitem{Core · Method}{PRB}{Biased die: $P(6)=0.25$ and the other five faces are equally likely. Calculate $P(1)$.}{$\dfrac{1-0.25}{5}=0.15$.}{}
+\qitem{Core + · Critical thinking}{PRB}{``It will rain or it will not rain tomorrow: so there is a one in two chance.'' Is this equally-likely model justified?}{No: having two outcomes does not make them equally likely. Equal likelihood is an assumption of the model that must be justified.}{}
+\qitem{Review · Quick}{PER}{Which shapes make up the net of a square-based pyramid?}{$1$ square and $4$ (isosceles) triangles.}{}
+\qitem{Thread · Translate}{LIT}{Each side of a square of side $x$ is increased by $3$. Express the increase in area in terms of $x$.}{$(x+3)^2-x^2=6x+9$.}{}
+\end{fiche}
+
+\fichehead{Mon~10~May~2027}{Law of large numbers (informal version): simulation}
+\begin{fiche}
+\qitem{Warm-up · Quick}{STA}{In $100$ tosses, $47$ are ``heads''. What is the relative frequency of ``heads''?}{$0.47$.}{}
+\qitem{Core · Interpret}{PRB}{Why, in $10$ tosses of a fair coin, can the frequency of ``heads'' stray from $0.5$? What happens with $10\,000$ tosses?}{Sampling fluctuation: a small sample has high variability. For large samples, the frequency stabilises near the probability $0.5$ (law of large numbers).}{}
+\qitem{Core + · True/false}{PRB}{True or false? Justify. Tossing a fair coin $1\,000$ times gives exactly $500$ ``heads''.}{False. The number obtained is close to $500$, rarely exactly $500$.}{}
+\qitem{Review · Problem}{MOD}{Price including tax $P(x)=1.2\,x$ ($20\,\%$ VAT). Calculate $P(250)$ and the preimage of $480$.}{$P(250)=300$; $1.2x=480\Leftrightarrow x=400$.}{}
+\qitem{Thread · Method}{EQ}{Solve in $\R$: $\dfrac{2x-1}{3}=\dfrac{x+4}{2}$.}{$x=14$}{Cross-multiplication: $2(2x-1)=3(x+4)$.}
+\end{fiche}
+
+\fichehead{Tue~11~May~2027}{Python simulation of a repeated random experiment}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{$P(A)=0.35$. Calculate $P(\overline A)$.}{$1-0.35=0.65$.}{}
+\qitem{Core · Reading code}{ALG}{What does this program compute? Roughly what value will it display?\par\smallskip{\ttfamily\small \hspace*{0.0em}from random import randint\\ \hspace*{0.0em}compte = 0\\ \hspace*{0.0em}for i in range(1000):\\ \hspace*{2.4em}if randint(1, 6) == 6:\\ \hspace*{4.8em}compte = compte + 1\\ \hspace*{0.0em}print(compte / 1000)\par}}{The frequency of a $6$ in $1\,000$ rolls of a die; about $\dfrac16\approx0.167$.}{}
+\qitem{Core + · Method}{PRB}{Fair $12$-sided die with faces numbered $1$ to $12$. Probability of getting a prime number?}{Primes: $2\,;\,3\,;\,5\,;\,7\,;\,11$: $\dfrac{5}{12}$ ($1$ is not prime).}{}
+\qitem{Review · Construction}{CON}{$M$ lies on the perpendicular bisector of $[AB]$. What can be said about $MA$ and $MB$? How is it constructed with compasses?}{$MA=MB$. Construction: two arcs of the same radius (greater than $\frac12AB$) centred at $A$ and $B$; their intersections define the perpendicular bisector.}{}
+\qitem{Thread · Recognise}{SOL}{What is the shape of the cross-section of a cube by a plane parallel to one of its faces?}{A square with the same side as the face.}{}
+\end{fiche}
+
+\fichehead{Thu~13~May~2027}{Conditional probability $P_A(B)$}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{Among $25$ canteen users, $15$ are girls. A canteen user is chosen at random: probability that this is a girl?}{$\dfrac{15}{25}=0.6$.}{}
+\qitem{Core · Method}{PRB}{In a class of $30$ pupils, $12$ play football, of whom $5$ also play handball. A pupil is chosen at random: calculate $P_F(H)$, where $F$: ``plays football'', $H$: ``plays handball''.}{$P_F(H)=\dfrac{\Card(F\cap H)}{\Card(F)}=\dfrac5{12}$.}{}
+\qitem{Core + · Method}{PRB}{In an equally likely model, $\Card(A)=50$ and $\Card(A\cap B)=20$. Calculate $P_A(B)$.}{$\dfrac{20}{50}=0.4$.}{}
+\qitem{Review · Quick}{NUM}{Put in increasing order: $\dfrac74$, $-\dfrac32$, $0.5$.}{$-\dfrac32<0.5<\dfrac74$ ($-1.5<0.5<1.75$).}{}
+\qitem{Thread · True/false}{DEM}{True or false? Justify. A quadrilateral with two opposite sides parallel is a parallelogram.}{False. Counter-example: a trapezium (not a parallelogram) has only one pair of parallel sides.}{}
+\end{fiche}
+
+\fichehead{Tue~18~May~2027}{Conditional probability and two-way tables}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{In the following table, what is the total of the ``sport'' row?\par\smallskip\renewcommand{\arraystretch}{1.15}\begin{tabular}{|c|c|c|c|}\hline
+ & Girls & Boys & Total \\ \hline
+Sport & 18 & 22 & \ldots \\ \hline
+No sport & 12 & 8 & 20 \\ \hline
+Total & 30 & 30 & 60 \\ \hline
+\end{tabular}\par }{$18+22=40$.}{}
+\qitem{Core · Method}{PRB}{A pupil is chosen at random from this table. Calculate $P(S)$, $P_F(S)$ and $P_S(F)$ ($F$: girl, $S$: does sport).}{$P(S)=\dfrac{40}{60}=\dfrac23$; $P_F(S)=\dfrac{18}{30}=0.6$; $P_S(F)=\dfrac{18}{40}=0.45$.}{}
+\qitem{Core + · True/false}{PRB}{True or false? Justify. In this table, $P_F(S)=P_S(F)$.}{False. $0.6\neq0.45$: the reference sets ($30$ girls and $40$ sports participants) differ.}{}
+\qitem{Review · Quick}{PUI}{Calculate $5^0+2^{-1}$.}{$1+\dfrac12=\dfrac32$.}{}
+\qitem{Thread · Method}{REP}{$ABCD$ is a parallelogram with $A(1;1)$, $B(5;2)$, $C(6;5)$. Find $D$.}{The diagonals have the same midpoint: $D=A+C-B=(2;4)$. Check: $\overrightarrow{AB}=\overrightarrow{DC}=(4;1)$.}{}
+\end{fiche}
+
+\fichehead{Thu~20~May~2027}{Weighted trees: construction}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{What is the sum of the probabilities of the branches leaving a single node?}{$1$.}{}
+\qitem{Core · Method}{PRB}{In a population, $30\,\%$ have a disease $M$. A test is positive ($T$) for $90\,\%$ of those with the disease and for $5\,\%$ of those without it. Complete the branch probabilities of the tree.}{$P(M)=0.3$, $P(\overline M)=0.7$; $P_M(T)=0.9$, $P_M(\overline T)=0.1$; $P_{\overline M}(T)=0.05$, $P_{\overline M}(\overline T)=0.95$.}{}
+\qitem{Core + · Translate}{PRB}{Translate into symbols: ``among those with the disease, $90\,\%$ test positive''.}{$P_M(T)=0.9$: branch $M\to T$; do not write $P(T)=0.9$.}{}
+\qitem{Review · Quick}{CAL}{Calculate $\dfrac23\div\dfrac49$.}{$\dfrac23\times\dfrac94=\dfrac{18}{12}=\dfrac32$.}{}
+\qitem{Thread · Problem}{DIV}{Three lighthouses flash every $6$, $8$ and $9$ seconds. They light up together at $t=0$. When is the next simultaneous flash?}{$\ppcm(6\,;\,8\,;\,9)=72$: after $72$ s.}{}
+\end{fiche}
+
+\fichehead{Mon~24~May~2027}{Weighted trees: multiplying along a path}
+\begin{fiche}
+\qitem{Warm-up · Quick}{CAL}{Calculate $0.3\times0.9$.}{$0.27$.}{}
+\qitem{Core · Method}{PRB}{Using the tree from sheet 70, calculate $P(M\cap T)$ and $P(\overline M\cap T)$.}{$P(M\cap T)=0.3\times0.9=0.27$; $P(\overline M\cap T)=0.7\times0.05=0.035$.}{We multiply along a path: $P(M\cap T)=P(M)\times P_M(T)$.}
+\qitem{Core + · Method}{PRB}{Deduce $P(T)$.}{Two paths lead to $T$: $0.27+0.035=0.305$.}{}
+\qitem{Review · Factorise}{DEV}{Factorise $x^2-9$.}{$(x-3)(x+3)$.}{}
+\qitem{Thread · Quick}{GEO}{The side $[BC]$ of length $13$ cm is the hypotenuse of a right-angled triangle $ABC$. What is the radius of its circumscribed circle?}{The midpoint of the hypotenuse is the centre: radius $=13\div2=6.5$ cm.}{}
+\end{fiche}
+
+\fichehead{Tue~25~May~2027}{From table to tree and symbolic notation}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{Express $\dfrac{30}{60}$ as a probability.}{$0.5$.}{}
+\qitem{Core · Method}{PRB}{From the table on sheet 69, build the tree ($F$ or $G$, then $S$ or $\overline S$): give $P(F)$, $P_F(S)$ and $P_G(S)$.}{$P(F)=0.5$; $P_F(S)=\dfrac{18}{30}=0.6$; $P_G(S)=\dfrac{22}{30}=\dfrac{11}{15}$.}{}
+\qitem{Core + · Translate}{PRB}{Write symbolically and calculate ``the probability of being a boy who does not do sport''.}{$P(G\cap\overline S)=\dfrac{8}{60}=\dfrac{2}{15}$; or $0.5\times\dfrac{8}{30}$.}{}
+\qitem{Review · Quick}{QP}{A car travels at constant speed: $150$ km in $2$ h. What distance in $5$ h?}{$75\times5=375$ km.}{}
+\qitem{Thread · Statement → formula}{REG}{A taxi charges a pick-up fee of $2\,000$ Ar then $1\,500$ Ar per km. Express the price $p(x)$ for $x$ km, then calculate $p(8)$.}{$p(x)=1\,500x+2\,000$; $p(8)=14\,000$ Ar.}{}
+\end{fiche}
+
+\fichehead{Thu~27~May~2027}{Reversing conditioning: $P_A(B)$ and $P_B(A)$}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{What is the difference between $P_M(T)$ and $P_T(M)$?}{$P_M(T)$: probability of testing positive given that one has the disease; $P_T(M)$: of having the disease given that one tests positive.}{}
+\qitem{Core · Method}{PRB}{Using the data from sheet 70 ($P(M\cap T)=0.27$ and $P(T)=0.305$), calculate $P_T(M)$.}{$P_T(M)=\dfrac{P(M\cap T)}{P(T)}=\dfrac{0.27}{0.305}\approx0.885$.}{}
+\qitem{Core + · Method}{PRB}{Rare disease ($1\,\%$ of the population); the test is positive for $99\,\%$ of those with the disease and $5\,\%$ of those without. Calculate $P_T(M)$.}{$P(M\cap T)=0.0099$; $P(\overline M\cap T)=0.99\times0.05=0.0495$; $P(T)=0.0594$; $P_T(M)=\dfrac{0.0099}{0.0594}=\dfrac16\approx0.17$.}{Counter-intuitive result: a test that is ``$99\,\%$ reliable'' is not enough.}
+\qitem{Review · Graph}{IMG}{Curve of $f$:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-3,-3) grid (3,3);
+\draw[->] (-3,0)--(3.3,0); \draw[->] (0,-3)--(0,3.3);
+\foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-3,-2,-1,1,2,3}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,marine,domain=-3:3,samples=60,smooth] plot (\x,{0.5*\x*\x-2});
+\fill[rep] (-3,2.5) circle (3pt);
+\fill[rep] (0,-2) circle (3pt);
+\fill[rep] (2,0) circle (3pt);
+\fill[rep] (3,2.5) circle (3pt);
+
+\end{tikzpicture}\par Read $f(2)$ and the preimages of $2.5$.}{$f(2)=0$; preimages of $2.5$: $-3$ and $3$.}{Expression used for the plot: $f(x)=0.5x^2-2$.}
+\qitem{Thread · Method}{ALG}{Program: choose a number; multiply it by $-2$; add $10$; divide by $2$. Result for $7$? Expression in $x$?}{$\dfrac{-14+10}{2}=-2$; in general $\dfrac{-2x+10}{2}=-x+5$.}{}
+\end{fiche}
+
+\fichehead{Mon~31~May~2027}{False positives and false negatives}
+\begin{fiche}
+\qitem{Warm-up · Quick}{PRB}{Define ``false positive'' and ``false negative''.}{False positive: positive test for a person who does not have the disease. False negative: negative test for a person who has the disease.}{}
+\qitem{Core · Method}{PRB}{$10\,000$ people, $2\,\%$ with the disease; the test is positive for $90\,\%$ of those with the disease and $10\,\%$ of those without. How many false negatives, false positives and positives in total?}{With the disease $200$: $180$ positive, so $20$ false negatives; without the disease $9\,800$: $980$ false positives; positives: $180+980=1\,160$.}{}
+\qitem{Core + · Interpret}{PRB}{Using the previous data, calculate the proportion of people who truly have the disease among the positives and comment.}{$\dfrac{180}{1\,160}\approx15.5\,\%$: since the disease is rare, most positives are false positives.}{}
+\qitem{Review · True/false}{PNP}{True or false? Justify. The area of a square is proportional to the length of its side.}{False. $c=1\mapsto1$ and $c=2\mapsto4\neq2\times1$.}{}
+\qitem{Thread · Disprove}{LIT}{Conjecture: ``for every integer $n$, $n^2+n+41$ is prime''. Test $n=40$.}{$40^2+40+41=1681=41^2$: not prime. The conjecture is false.}{Successful tests prove nothing; one failed test disproves.}
+\end{fiche}

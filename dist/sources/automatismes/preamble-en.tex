@@ -1,0 +1,101 @@
+% ======================================================================
+%  preamble.tex — Fiches d'automatismes 2G
+%  Version unique : \proffalse = élève, \proftrue = professeur
+% ======================================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+% English edition: decimals use points; no icomma.
+\usepackage[english]{babel}
+\addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
+\usepackage[scaled=.92]{helvet}
+\usepackage{courier}
+\usepackage[a4paper,top=1.7cm,bottom=1.7cm,left=1.9cm,right=1.9cm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage{array,booktabs}
+\usepackage{tikz}
+\usepackage{tkz-tab}
+\usepackage[framemethod=default]{mdframed}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{stmaryrd}
+
+% --- Palette : marine / acier / ardoise -------------------------------
+\definecolor{marine}{HTML}{1F3A5F}
+\definecolor{acier}{HTML}{5B7C99}
+\definecolor{ardoise}{HTML}{4A5560}
+\definecolor{fond}{HTML}{F6F8FA}
+\definecolor{rep}{HTML}{8C2F2F}   % réponses (version professeur)
+
+% --- Notations françaises --------------------------------------------
+\newcommand{\R}{\mathbb{R}}\newcommand{\N}{\mathbb{N}}\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}\newcommand{\D}{\mathbb{D}}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand{\norme}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\ent}[2]{\llbracket #1\,;#2\rrbracket}      % intervalle d'entiers
+\newcommand{\deter}[2]{\det\left(#1,#2\right)}
+\newcommand{\Card}{\operatorname{Card}}
+\newcommand{\pgcd}{\operatorname{PGCD}}\newcommand{\ppcm}{\operatorname{PPCM}}
+\newcommand{\degre}{^{\circ}}
+\newcommand{\un}[1]{\,\mathrm{#1}}                      % unité : 3\un{cm}
+\newcommand{\sci}[2]{#1\times10^{#2}}
+\newcommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}  % vecteur colonne
+\newcommand{\code}[1]{\texttt{#1}}
+\setlist{nosep}
+
+% --- Bascule élève / professeur --------------------------------------
+\newif\ifprof
+\proffalse   % version élève par défaut ; la version professeur s'obtient par
+                 % `pdflatex '\def\PROFVERSION{}\input{main}'` ou en remplaçant \proffalse par \proftrue
+\ifdefined\PROFVERSION\proftrue\fi
+
+% --- Compteurs (automatiques) ----------------------------------------
+\newcounter{fiche}
+\newcounter{qfiche}[fiche]
+
+% --- Étiquette de diagnostic (version professeur) --------------------
+\newcommand{\tagdiag}[1]{\textcolor{acier}{\footnotesize\textsf{[#1]}}}
+
+% --- Conteneur d'une fiche ------------------------------------------
+\mdfdefinestyle{fichestyle}{%
+  linewidth=2pt,topline=false,bottomline=false,rightline=false,
+  leftline=true,linecolor=marine,innerleftmargin=9pt,innerrightmargin=2pt,
+  innertopmargin=4pt,innerbottommargin=5pt,skipabove=7pt,skipbelow=5pt,
+  backgroundcolor=white}
+\mdfsetup{style=fichestyle}
+\makeatletter
+\newcommand{\fichehead}[2]{\gdef\fh@date{#1}\gdef\fh@titre{#2}}
+\newenvironment{fiche}{%
+  \stepcounter{fiche}\Needspace{9\baselineskip}\begin{mdframed}[style=fichestyle]%
+  \noindent{\color{marine}\textbf{\textsf{Sheet~\thefiche}}}\hspace{.6em}%
+  {\color{ardoise}\small\textsf{\fh@date}}\hspace{.6em}{\itshape\small\fh@titre}\par\vspace{3pt}%
+  \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.5em,itemsep=3pt,parsep=0pt]}{%
+  \end{enumerate}\end{mdframed}}
+\makeatother
+\newcommand{\role}[1]{{\color{acier}\scriptsize\textsf{#1}}}
+\newcommand{\qitem}[5]{%
+  \item \role{#1}\ \ifprof\tagdiag{#2}\fi\ #3%
+  \ifprof
+    \par\smallskip\noindent{\color{rep}\small\textbf{Ans.}\ #4}%
+    \if\relax\detokenize{#5}\relax\else
+      \par\noindent{\color{ardoise}\footnotesize\textit{#5}}\fi
+  \fi}
+\newcommand{\choix}[4]{\par\smallskip\noindent\begin{tabular}{@{}*{4}{p{.22\linewidth}}@{}}
+  \textbf{A.}~#1 & \textbf{B.}~#2 & \textbf{C.}~#3 & \textbf{D.}~#4\end{tabular}}
+
+% --- Titres, en-têtes ------------------------------------------------
+\titleformat{\section}{\Large\sffamily\bfseries\color{marine}}{}{0pt}{}[\vspace{-2pt}{\color{acier}\titlerule}]
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{.3pt}
+\fancyhead[L]{\small\sffamily Starter routines — 2G}
+\fancyhead[R]{\small\sffamily\ifprof Teacher version\else Student version\fi}
+\fancyfoot[C]{\small\thepage}
+\setlength{\parindent}{0pt}\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+\usepackage[hidelinks]{hyperref}  % toujours en dernier (ou presque)
