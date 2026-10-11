@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 _SPEC = json.loads((ROOT / 'tests/banned-sha256.json').read_text())
 HASHES, MAXW = set(_SPEC['sha256']), _SPEC['maxWords']
 PERSONAL = re.compile(r'(?:drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint', re.I)
-EMAIL = re.compile(r'[\w.+-]+@[\w-]+\.[A-Za-z][\w.]*')
+EMAIL = re.compile(r'(?<![\\\w.+-])[\w.+-]+@[\w-]+\.[A-Za-z][\w.]*')
 # Addresses that are part of vendored licences or tooling, not owner details.
 EMAIL_OK = re.compile(r'noreply@anthropic\.com|@(?:users\.noreply\.github\.com|example\.(?:com|org))$')
 
