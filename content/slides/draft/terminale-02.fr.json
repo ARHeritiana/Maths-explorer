@@ -72,18 +72,23 @@
 "h": "Tester une combinaison linéaire"
 },
 {
-"k": "concept",
-"t": "Base et coordonnées",
-"b": "\\([AG]\\) est une diagonale de l'espace, tracée en pointillés verts.<br>Les arêtes cachées sont en pointillés bleus ; \\(D\\) et \\(F\\) ne sont pas sur \\((AG)\\).",
-"a": null,
-"h": null
-},
-{
 "k": "activity",
 "t": "Activité de recherche",
-"b": "<b>Trois milieux dans un cube — 40 min.</b><br><br> On considère le cube \\(ABCDEFGH\\) représenté ci-dessus. On pose \\(\\vi=\\vect{AB}\\), \\(\\vj=\\vect{AD}\\) et \\(\\vec k=\\vect{AE}\\). Les points \\(I\\), \\(J\\) et \\(K\\) sont les milieux respectifs de \\([AB]\\), \\([AD]\\) et \\([AE]\\). On note \\(O\\) le centre du cube.\n<ol><li>Exprimer \\(\\vect{IJ}\\) et \\(\\vect{IK}\\) dans la base \\((\\vi,\\vj,\\vec k)\\).\n<li>Démontrer que les points \\(I\\), \\(J\\) et \\(K\\) ne sont pas alignés.\n<li>Déterminer si \\(O\\) appartient au plan \\((IJK)\\). On justifiera la réponse en cherchant si \\(\\vect{IO}\\) est une combinaison linéaire de \\(\\vect{IJ}\\) et \\(\\vect{IK}\\).\n<li>Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de \\(O\\) au plan \\((IJK)\\) ?</ol><br><br>",
+"b": "<b>Trois milieux dans un cube — 40 min.</b><br><br> On considère le cube \\(ABCDEFGH\\) représenté ci-dessous. On pose \\(\\vi=\\vect{AB}\\), \\(\\vj=\\vect{AD}\\) et \\(\\vec k=\\vect{AE}\\). Les points \\(I\\), \\(J\\) et \\(K\\) sont les milieux respectifs de \\([AB]\\), \\([AD]\\) et \\([AE]\\). On note \\(O\\) le centre du cube.\n   \\([AG]\\) est une diagonale de l'espace, tracée en pointillés verts.<br>Les arêtes cachées sont en pointillés bleus ; \\(D\\) et \\(F\\) ne sont pas sur \\((AG)\\).center\n<ol><li>Exprimer \\(\\vect{IJ}\\) et \\(\\vect{IK}\\) dans la base \\((\\vi,\\vj,\\vec k)\\).\n<li>Démontrer que les points \\(I\\), \\(J\\) et \\(K\\) ne sont pas alignés.\n<li>Déterminer si \\(O\\) appartient au plan \\((IJK)\\). On justifiera la réponse en cherchant si \\(\\vect{IO}\\) est une combinaison linéaire de \\(\\vect{IJ}\\) et \\(\\vect{IK}\\).\n<li>Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de \\(O\\) au plan \\((IJK)\\) ?</ol><br><br>",
 "a": null,
-"h": null
+"h": null,
+"f": [
+[
+1,
+1
+]
+]
 }
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}[scale=1.1,line join=round]\n\\coordinate(A)at(0,0);\\coordinate(B)at(4,0);\\coordinate(C)at(5.1,1.6);\\coordinate(D)at(1.1,1.6);\\coordinate(E)at(0,2.5);\\coordinate(F)at(4,2.5);\\coordinate(G)at(5.1,4.1);\\coordinate(H)at(1.1,4.1);\n\\draw[navy,thick](A)--(B)--(C)--(G)--(H)--(E)--(A) (E)--(F)--(G) (B)--(F);\n\\draw[navy,dashed](A)--(D)--(C) (D)--(H);\n\\draw[teal,thick,dash pattern=on 5pt off 2pt](A)--(G);\n\\foreach \\p/\\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\\node[\\pos]at(\\p){$\\p$};}\n\\end{tikzpicture}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}[scale=1.1,line join=round]\n\\coordinate(A)at(0,0);\\coordinate(B)at(4,0);\\coordinate(C)at(5.1,1.6);\\coordinate(D)at(1.1,1.6);\\coordinate(E)at(0,2.5);\\coordinate(F)at(4,2.5);\\coordinate(G)at(5.1,4.1);\\coordinate(H)at(1.1,4.1);\n\\draw[navy,thick](A)--(B)--(C)--(G)--(H)--(E)--(A) (E)--(F)--(G) (B)--(F);\n\\draw[navy,dashed](A)--(D)--(C) (D)--(H);\n\\draw[teal,thick,dash pattern=on 5pt off 2pt](A)--(G);\n\\foreach \\p/\\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\\node[\\pos]at(\\p){$\\p$};}\n\\end{tikzpicture}"
 ]
 }

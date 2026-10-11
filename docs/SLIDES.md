@@ -8,7 +8,7 @@ keyboard navigation (arrows, R answer, G outline, L language, F full screen), Ma
 | Course | Source | Build |
 |---|---|---|
 | Seconde, Première, STMG | bilingual LaTeX under `content/latex` (course boxes, examples, errors, activities) | `python3 scripts/build-slides.py` |
-| Terminale | French drafts `content/slides/draft/terminale-NN.fr.json` (from the supplied notes, via `scripts/extract-terminale-slides.py`) and English authored decks `content/slides/terminale-NN.json` | same script merges them |
+| Terminale | French drafts `content/slides/draft/terminale-NN.fr.json` (from `content/latex/terminale/chapitres/C??.tex`, via `scripts/extract-terminale-slides.py`; the drafts also carry the figure code `figs`/`figs_en`) and English authored decks `content/slides/terminale-NN.json` | same script merges them |
 
 Teacher-only material (solutions boxes, teacher notes, fluency drills) is never included. Seconde answers are revealed
 on demand (R). Interactive canvases (`dist/slides/widgets*.js`) are inserted after the matching unit by the `WIDGETS`
@@ -16,7 +16,7 @@ table in `scripts/build-slides.py`: every canvas has draggable handles; space sc
 surface) rotate when the background is dragged.
 
 ## Checks
-`python3 tests/slides_smoke.py` opens every deck in Chromium in both languages (console errors, MathJax errors, raw TeX,
+`python3 tests/slides_smoke.py` opens every deck in Chromium in both languages (console errors, MathJax errors, undefined macros shown as red text, raw TeX,
 overflow, widget drag). `python3 tests/slides_check.py` compares the English Terminale decks with their French drafts
 (same slides, same mathematics, same HTML structure, no identifiers).
 

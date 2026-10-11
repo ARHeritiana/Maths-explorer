@@ -1,8 +1,10 @@
 """One-off helper: French slide drafts for Terminale from the supplied LaTeX notes.
 
-Usage: python3 scripts/extract-terminale-slides.py path/to/terminale.tex
-Writes content/slides/draft/terminale-NN.fr.json (French only, teacher-only boxes excluded). The
-English versions are authored from these drafts into content/slides/terminale-NN.json.
+Usage: python3 scripts/extract-terminale-slides.py [outdir]
+Reads content/latex/terminale/chapitres/C01..C14.tex (French) and the -en twins (figure code only) and writes
+<outdir>/terminale-NN.fr.json (default content/slides/draft; French only, teacher-only boxes excluded). Each slide may carry
+"f": [[n, n]] (figure numbers in the French and English chapter sources) and the draft holds "figs" / "figs_en" (the figure
+code). The English decks content/slides/terminale-NN.json are authored from these drafts; build-slides.py renders the figures.
 """
 import importlib.util, json, re, sys
 from pathlib import Path
@@ -10,13 +12,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('bs', ROOT / 'scripts/build-slides.py'); bs = importlib.util.module_from_spec(spec); spec.loader.exec_module(bs)
 
-src = bs.strip_comments(Path(sys.argv[1]).read_text(encoding='utf8'))
-parts = list(re.finditer(r'\\chapter\{([^}]*)\}', src))
-OUT = ROOT / 'content/slides/draft'; OUT.mkdir(parents=True, exist_ok=True)
+OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / 'content/slides/draft'; OUT.mkdir(parents=True, exist_ok=True)
+CH = ROOT / 'content/latex/terminale/chapitres'
 TOK = re.compile(r'\\subsection\{([^}]*)\}|\\begin\{(retenir|methode)\}\{([^}]*)\}|\\paragraph\{([^}]*)\}')
-for n, m in enumerate(parts, 1):
-    end = parts[n].start() if n < len(parts) else len(src)
-    ch = src[m.end():end]
+for n in range(1, 15):
+    src, figs = bs.extract_figs((CH / f'C{n:02d}.tex').read_text(encoding='utf8'))
+    _, figs_en = bs.extract_figs((CH / f'C{n:02d}-en.tex').read_text(encoding='utf8'))
+    assert len(figs) == len(figs_en), f'C{n:02d}: figure count differs between editions'
+    m = re.search(r'\\chapter\{([^}]*)\}', src); ch = src[m.end():]
     nm = re.search(r'\\section\{Notes de cours\}', ch)
     nx = re.search(r'\\section\{', ch[nm.end():]) if nm else None
     notes = ch[nm.end(): nm.end() + nx.start()] if nm and nx else ''
@@ -46,7 +49,9 @@ for n, m in enumerate(parts, 1):
     flush()
     if act: slides.append(bs.slide('activity', 'Activité de recherche', bs.text2html(act.group(1))))
     for x in slides:
+        x['b'], nums = bs.fig_tokens(x['b'])
+        if nums: x['f'] = [[k, k] for k in nums]
         x['b'] = bs.clean_residue(x['b']); x['t'] = x['t'] or 'Notes de cours'
     slides = [x for x in slides if x['k'] == 'title' or x['b'].strip()]
-    (OUT / f'terminale-{n:02d}.fr.json').write_text(json.dumps({'id': f'terminale-{n:02d}', 'slides': slides}, ensure_ascii=False, indent=0))
+    (OUT / f'terminale-{n:02d}.fr.json').write_text(json.dumps({'id': f'terminale-{n:02d}', 'slides': slides, 'figs': figs, 'figs_en': figs_en}, ensure_ascii=False, indent=0))
     print(n, bs.clean_title(m.group(1)), len(slides))

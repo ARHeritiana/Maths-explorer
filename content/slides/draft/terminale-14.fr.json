@@ -76,7 +76,13 @@
 "t": "Équations et inéquations",
 "b": "La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \\((2\\pi,0)\\).   Les coordonnées du point du cercle sont \\((\\cos x,\\sin x)\\).",
 "a": null,
-"h": "Symétries des courbes."
+"h": "Symétries des courbes.",
+"f": [
+[
+1,
+1
+]
+]
 },
 {
 "k": "activity",
@@ -85,5 +91,11 @@
 "a": null,
 "h": null
 }
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}[scale=1.6]\n\\draw[->,gray](-1.3,0)--(1.4,0);\\draw[->,gray](0,-1.25)--(0,1.4);\\draw[navy](0,0)circle(1);\n\\draw[teal,thick](0,0)--(.5,.866);\\draw[teal,dashed](.5,0)--(.5,.866)--(0,.866);\n\\draw[->,teal](.35,0)arc(0:60:.35);\\node[right]at(.25,.27){$x$};\n\\node[below]at(.5,0){$\\cos x$};\\node[left]at(0,.866){$\\sin x$};\\node[above right]at(.5,.866){$M$};\n\\end{tikzpicture}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}[scale=1.6]\n\\draw[->,gray](-1.3,0)--(1.4,0);\\draw[->,gray](0,-1.25)--(0,1.4);\\draw[navy](0,0)circle(1);\n\\draw[teal,thick](0,0)--(.5,.866);\\draw[teal,dashed](.5,0)--(.5,.866)--(0,.866);\n\\draw[->,teal](.35,0)arc(0:60:.35);\\node[right]at(.25,.27){$x$};\n\\node[below]at(.5,0){$\\cos x$};\\node[left]at(0,.866){$\\sin x$};\\node[above right]at(.5,.866){$M$};\n\\end{tikzpicture}"
 ]
 }

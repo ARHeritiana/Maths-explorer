@@ -85,5 +85,11 @@
 "a": null,
 "h": null
 }
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}[grow=right,level distance=29mm,level 1/.style={sibling distance=40mm},level 2/.style={sibling distance=20mm},edge from parent/.style={draw,navy},every node/.style={font=\\small}]\n\\node {} child {node {$B$} child {node {$\\overline D$} edge from parent node[below] {$0{,}95$}} child {node {$D$} edge from parent node[above] {$0{,}05$}} edge from parent node[below] {$0{,}4$}} child {node {$A$} child {node {$\\overline D$} edge from parent node[below] {$0{,}98$}} child {node {$D$} edge from parent node[above] {$0{,}02$}} edge from parent node[above] {$0{,}6$}};\n\\end{tikzpicture}\\end{center}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}[grow=right,level distance=29mm,level 1/.style={sibling distance=40mm},level 2/.style={sibling distance=20mm},edge from parent/.style={draw,navy},every node/.style={font=\\small}]\n\\node {} child {node {$B$} child {node {$\\overline D$} edge from parent node[below] {$0.95$}} child {node {$D$} edge from parent node[above] {$0.05$}} edge from parent node[below] {$0.4$}} child {node {$A$} child {node {$\\overline D$} edge from parent node[below] {$0.98$}} child {node {$D$} edge from parent node[above] {$0.02$}} edge from parent node[above] {$0.6$}};\n\\end{tikzpicture}\\end{center}"
 ]
 }

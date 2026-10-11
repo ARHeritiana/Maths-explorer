@@ -81,12 +81,14 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
    (seconde)" (France seconde = age 15 to 16 = England Year 11; Terminale = Year 13 was already right) [VERIFY the gloss].
    `tests/learning.test.mjs` now expects 146 provenance entries. Remember to restyle after every rebuild (`style-resource-pdfs.py <changed pdfs>`).
 
-4. **Slide figures for Terminale.** The pipeline (`extract_figs`, `compile_figs` in `build-slides.py`) works for the other courses.
-   The authored Terminale decks (`content/slides/terminale-NN.json`) had their figures stripped (`clean_residue`). Regenerate the French
-   drafts with `scripts/extract-terminale-slides.py` (it needs the French Terminale source: point it at `content/latex/terminale/livret.tex`
-   after concatenating the chapters, or adapt it to read `chapitres/C??.tex`), have it write `figs`/`figs_en` (figure code lists, FR from
-   `C??.tex`, EN from `C??-en.tex`) and per-slide `f` indices into the draft JSON; `build-slides.py` main already reads them. Keep
-   `tests/slides_check.py` green (authored FR bodies must equal draft bodies). Verify with screenshots that every figure renders.
+4. **Slide figures for Terminale**: DONE. `extract-terminale-slides.py [outdir]` now reads `chapitres/C??.tex` (FR) and `-en` (figure code), writes
+   `figs`/`figs_en` and per-slide `f` into the drafts; `build-slides.py` renders them (6 Terminale figures: C02 cube in the activity,
+   C03, C06, C08, C11, C14; the other TikZ pictures of those chapters sit in exercise sections and are not in the decks). Viewed
+   by screenshot: C02 (FR and EN), C06, C11, plus the render check that the SVG is loaded in C03, C08, C14. The C02 deck lost its
+   caption-only slide (the figure moved into the activity), authored deck and `slides_check` updated. MathJax macros `\dd`, `\vi`, `\vj`
+   were missing in `dist/slides/player.html` (shown as red text): added; `tests/slides_smoke.py` now fails on red undefined macros
+   (MathJax shows them as red `mtext`, not as `merror`). Result: 47 decks, 1,044 slides, 59 slides with figures.
+
 5. **Quality control of every interactive app** against the `math-interactive-slides` skill and its 3D addendum (1280x720 stage,
    one parameter object driving text and canvas, draggable handles, selectors, French typography `{,}`, step reveal, MathJax SVG).
    Audit the 9 labs, the challenges, the quadratic workshop, the visual lessons and the slide canvases: screenshot each, list defects,

@@ -90,7 +90,13 @@
 "t": "Suites géométriques",
 "b": "Les points se rapprochent de \\(2\\) sans l'atteindre : \\(u_n=2+\\frac{3}{n+1}\\).",
 "a": null,
-"h": null
+"h": null,
+"f": [
+[
+1,
+1
+]
+]
 },
 {
 "k": "activity",
@@ -99,5 +105,11 @@
 "a": null,
 "h": null
 }
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]\n\\addplot[only marks,teal,domain=0:15,samples=16]{2+3/(x+1)};\n\\addplot[navy,dashed,domain=0:15]{2};\\end{axis}\\end{tikzpicture}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]\n\\addplot[only marks,teal,domain=0:15,samples=16]{2+3/(x+1)};\n\\addplot[navy,dashed,domain=0:15]{2};\\end{axis}\\end{tikzpicture}"
 ]
 }

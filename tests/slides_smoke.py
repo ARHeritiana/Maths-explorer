@@ -29,6 +29,7 @@ with sync_playwright() as p:
                 pg.wait_for_timeout(60)
                 bad = pg.evaluate('''() => {
                   const st = document.querySelector('#stage'), out = [];
+                  if (st.querySelector('[data-mml-node="mtext"][fill="red"]')) out.push('undefined macro (red text) in maths');
                   if (st.querySelector('mjx-merror,[data-mjx-error]')) out.push('mathjax error: ' + (st.querySelector('mjx-merror,[data-mjx-error]').textContent||'').slice(0,80));
                   if (/\\\\\\(|\\\\\\[|\\\\[a-z]{3,}/.test(st.querySelector('.body')?.innerText||'')) out.push('raw TeX: ' + (st.querySelector('.body').innerText.match(/\\\\[a-zA-Z]+|\\\\\\(/)||[''])[0]);
                   const body = st.querySelector('.body'); if (body && body.scrollHeight > body.clientHeight + 16) out.push('overflow ' + (body.scrollHeight - body.clientHeight));

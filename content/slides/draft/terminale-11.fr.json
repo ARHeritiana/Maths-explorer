@@ -90,7 +90,13 @@
 "t": "Rectangles et suites d'intégrales",
 "b": "Dans \\(I_n=\\int_0^1x^nf(x)\\,\\dd x\\), l'expression \\(x^0\\) désigne la fonction constante \\(1\\), y compris à la borne \\(0\\). Ainsi \\(I_0=\\int_0^1f(x)\\,\\dd x\\) ; aucun calcul indéterminé n'est nécessaire.   L'aire entre \\(y=x\\) et \\(y=x^2\\) sur \\([0,1]\\) vaut \\(\\frac{1}{6}\\).",
 "a": null,
-"h": "Convention au rang zéro."
+"h": "Convention au rang zéro.",
+"f": [
+[
+1,
+1
+]
+]
 },
 {
 "k": "activity",
@@ -99,5 +105,15 @@
 "a": null,
 "h": null
 }
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=11cm,height=4.6cm,axis lines=middle,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x$},ylabel={$y$},samples=80]\n\\addplot[draw=none,fill=teal!15,domain=0:1]{x}\\closedcycle;\n\\addplot[draw=none,fill=white,domain=0:1]{x^2}\\closedcycle;\n\\addplot[navy,domain=0:1]{x};\\addplot[teal,thick,domain=0:1]{x^2};\\end{axis}\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{(\\k/4)^2}\\filldraw[fill=teal!20,draw=teal] (\\l,0) rectangle (\\r,\\h);}\n\\draw[navy,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{((\\k+1)/4)^2}\\filldraw[fill=teal!20,draw=teal] (\\l,0) rectangle (\\r,\\h);}\n\\draw[navy,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=11cm,height=4.6cm,axis lines=middle,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x$},ylabel={$y$},samples=80]\n\\addplot[draw=none,fill=teal!15,domain=0:1]{x}\\closedcycle;\n\\addplot[draw=none,fill=white,domain=0:1]{x^2}\\closedcycle;\n\\addplot[navy,domain=0:1]{x};\\addplot[teal,thick,domain=0:1]{x^2};\\end{axis}\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{(\\k/4)^2}\\filldraw[fill=teal!20,draw=teal] (\\l,0) rectangle (\\r,\\h);}\n\\draw[navy,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{((\\k+1)/4)^2}\\filldraw[fill=teal!20,draw=teal] (\\l,0) rectangle (\\r,\\h);}\n\\draw[navy,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}"
 ]
 }
