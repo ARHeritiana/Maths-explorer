@@ -83,7 +83,7 @@ GitHub Actions runs syntax, numerical/content checks and a Chromium browser job.
 
 Keep every translatable field as `[French, English]` in `content.js`. Add a unique stable ID, prerequisites, investigation steps, a check with an explanation, and a sourced history note. For a new mathematical model, implement the pure operation in `math.js`, connect its controls and accessible results in `app.js`, and test its domain boundaries. Add curriculum placements only after reviewing the relevant official syllabus, stream, and year.
 
-See [the audit and prioritized fixes](docs/AUDIT.md) and [the current verification record](docs/VALIDATION.md).
+See [the audit and prioritized fixes](docs/history/AUDIT.md) and [the current verification record](docs/history/VALIDATION.md).
 
 The interactive animations use `requestAnimationFrame` and the Web Animations API with no additional runtime dependency. Manim is not installed in the current authoring environment; no Manim-rendered video is included. The live experiments retain browser-native parameter control.
 
@@ -100,6 +100,6 @@ The default chapter workspace (`#resources`) connects 47 original chapters to bi
 
 ### Owner contribution and LaTeX documents
 
-The five-stage quadratic presentation is available at `#workshop/quadratic` (FR/EN), linked from the parabola lab and resource collection. Its audit is in `docs/QUADRATIC_CONTRIBUTION_REVIEW.md`; the submitted original is kept in `content/contributions/`.
+The five-stage quadratic presentation is available at `#workshop/quadratic` (FR/EN), linked from the parabola lab and resource collection. Its audit is in `docs/history/QUADRATIC_CONTRIBUTION_REVIEW.md`; the submitted original is kept in `content/contributions/`.
 
 `python scripts/build-enrichment.py` now builds the authored PDFs with **XeLaTeX** and regenerates their web editions/catalogue. Unchanged PDFs are reused after source, shared-style and output hash checks. Install XeLaTeX, DejaVu Sans, Latin Modern Math and the packages listed in `content/latex/enrichment/explorer.sty`. The 98 generated `.tex` sources and style are versioned. Imported PDFs with no TeX source remain intact. Use `--skip-pdf` to update only the web editions and catalogue.

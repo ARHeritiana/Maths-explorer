@@ -1,5 +1,11 @@
 # Curriculum resource library
 
+> Status, 11 October 2026: the import and overlay-translation tools described in the older sections below
+> (`import-resources.py`, `translate-resources.py`, `patch-english-pdfs.py`, `fix-french-glyphs.py`,
+> `translation-terminology.py` and their JSON ledgers) were retired; git history keeps them. The 17 legacy Terminale
+> overlay PDFs were removed from the site at the owner's request. The current pipeline is described in
+> `docs/ARCHITECTURE.md`; those sections are kept as a record.
+
 ## 8 October 2026 expansion and document theme
 
 The collection now contains the 47 original course chapters, 39 starting sheets
@@ -34,7 +40,7 @@ Regeneration order:
    a restyle. Keep ENRICHMENT_MANIFEST and RESOURCE_PROVENANCE in sync.
 6. Run syntax/content checks and inspect representative rendered pages.
 
-See EXPANSION_VALIDATION.json and DOCUMENT_STYLE_LEDGER.json for evidence.
+See history/EXPANSION_VALIDATION.json and DOCUMENT_STYLE_LEDGER.json for evidence.
 No personal-space links are published.
 
 ## Earlier intake record
@@ -143,9 +149,8 @@ formula sheet) are compiled from `content/latex` in French and English with matc
 - Terminale comes from the 6 September owner-supplied source (student 95 pages, teacher 262), thinner than the earlier published
   "Refonte 7 sept" PDFs (166 and 346 pages). Per chapter: complete chapter, teacher chapter, research activity, notes, progressive exercises,
   homework, teaching notes and solutions. Guided practice, MCQ and review PDFs, and the fluency and methods banks, have no counterpart in
-  that source: they remain the earlier overlay PDFs (catalogue `translation: "local-machine"`, `legacy: true`).
+  that source; their earlier overlay PDFs were removed on 11 October 2026.
 - Terminale STMG: the textbook extracts were replaced by 55 original application exercises (`manuel/exo-A..D`), checked with
   `scripts/check-stmg-twins.py`; the booklet only cites textbook page and exercise numbers.
 - Excerpts cut at section starts can differ by one page between editions (catalogue `englishPages`).
-- The overlay tooling (`patch-english-pdfs.py`, `fix-french-glyphs.py`, translation ledgers and corrections) is still needed: the
-  156 `shared` resources and the 17 legacy Terminale files are overlay PDFs.
+- The overlay tooling and the 17 legacy Terminale overlay PDFs were retired on 11 October 2026 (see the status note at the top).
