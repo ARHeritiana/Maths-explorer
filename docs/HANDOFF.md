@@ -32,7 +32,13 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
 - Design pass: `dist/taste.css`, one mint accent, sans headings, nav fixed. The useless free-text "Ton raisonnement" field was
   removed from the chapter practice card (quiz and challenge answer inputs are checked fields and were kept).
 
-## Committed but unfinished (the next tasks, in order)
+## Status after the 11 October 2026 session
+Tasks 1 to 4 and 6 are done (6: decided to keep the tooling), task 5 is partly done (see below). Work is on branch `ccr-80defba8-6udo9f`
+(created from `claude/repository-audit-bsfs8y`; no PR opened). Suggested next steps: (a) the owner's decisions flagged [VERIFY] below,
+(b) deeper by-eye QC of labs in English and on narrow screens, (c) rebuild or drop the 17 legacy Terminale overlay files and the 156
+`shared` ones, then retire the overlay tooling, (d) limit-specific and Terminale-level canvases.
+
+## Task list with outcomes (originally "the next tasks, in order")
 1. **Terminale PDFs from the 6 September source**: DONE except the proof-read (see below).
    - `build-tex-resources.py terminale --chapters 1 2 ... 14 --appendices` now builds both books (student 95, teacher 262 pages, FR=EN),
      splits per chapter (`chapter`, `teacher`, `activities`, `notes`, `exercises`, `problems` = Devoir à la maison, `corrections` =
