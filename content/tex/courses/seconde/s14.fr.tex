@@ -66,7 +66,7 @@ La somme des quatre probabilités vaut $1$, ce qui contrôle la cohérence du mo
 Second arbre : branches initiales $P(G)=18/32=9/16$, $P(\overline G)=14/32=7/16$. Après $G$ : $P_G(N)=12/18=2/3$, puis $1/3$. Après $\overline G$ : $P_{\overline G}(N)=9/14$, puis $5/14$.
 Le chemin recherché vaut $(21/32)(9/21)=9/32$ dans le premier arbre et $(14/32)(9/14)=9/32$ dans le second. Le changement d'ordre conserve les probabilités des intersections mais change les probabilités des branches.}
 \begin{example}Une urne contient $3$ boules rouges et $2$ bleues. On tire successivement deux boules \textbf{sans remise}. Construire l'arbre des couleurs et calculer la probabilité de tirer deux rouges.\end{example}
-\mxanswerspace[5]{Premier niveau : $R$ avec $3/5$, $B$ avec $2/5$. Après $R$, il reste $2$ rouges et $2$ bleues : branches $1/2{,}1/2$. Après $B$, il reste $3$ rouges et $1$ bleue : branches $3/4{,}1/4$. Donc $P(R_1\cap R_2)=(3/5)(1/2)=3/10$. Utiliser $3/5$ sur la seconde branche rouge ignorerait l'absence de remise.}
+\mxanswerspace[5]{Premier niveau : $R$ avec $3/5$, $B$ avec $2/5$. Après $R$, il reste $2$ rouges et $2$ bleues : branches $1/2,1/2$. Après $B$, il reste $3$ rouges et $1$ bleue : branches $3/4,1/4$. Donc $P(R_1\cap R_2)=(3/5)(1/2)=3/10$. Utiliser $3/5$ sur la seconde branche rouge ignorerait l'absence de remise.}
 
 \mxsection{Inversion des conditionnements et faux positifs}
 \begin{example}[Contrôle fictif de composants]Un lot contient $10000$ composants, dont $100$ défectueux. Un test est positif pour $99$ des composants défectueux et pour $495$ des composants non défectueux. On choisit uniformément un composant. $D$ : « défectueux » ; $T$ : « test positif ».

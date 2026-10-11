@@ -71,6 +71,8 @@
   \ifx\mx@layout\mx@sheet\section{#2}\else\chapter{#2}\fi\label{#1}}
 % \mxsubtitle{text}: a line under a unit heading (dates, period).
 \newcommand{\mxsubtitle}[1]{{\color{mxmuted}\sffamily #1\par}\medskip}
+% \mxnewpage: a page break that is also a balanced block (FR/EN page parity is kept at every such break).
+\newcommand{\mxnewpage}{\mx@newblock}
 % \mxsection{title}: a section that starts a new page and is balanced like a unit (worksheets).
 \newcommand{\mxsection}[1]{\mx@newblock\section{#1}}
 % \mxfront{id}: opens a unit without heading (title block, introduction).

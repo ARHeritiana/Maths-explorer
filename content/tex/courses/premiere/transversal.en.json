@@ -1,0 +1,425 @@
+{
+ "unit": "transversal.fr.tex",
+ "segments": {
+  "b3f7bdb0418d": {
+   "fr": "Raisonner et préparer l’épreuve",
+   "en": "Reasoning and preparing for the exam",
+   "status": "aligned",
+   "order": 0
+  },
+  "555d8161180c": {
+   "fr": "Logique : des mots aux preuves",
+   "en": "Logic: from words to proofs",
+   "status": "aligned",
+   "order": 1
+  },
+  "b604204b1419": {
+   "fr": "Ensembles et propositions",
+   "en": "Sets and statements",
+   "status": "aligned",
+   "order": 2
+  },
+  "9c061de132c4": {
+   "fr": "[[m1]] signifie que x est un élément de A ; [[m2]] signifie que chaque élément de A appartient à B. L’ensemble vide est noté [[m3]]. L’intersection correspond à « et », la réunion à « ou » inclusif. Dans un univers E, [[m4]] est le complémentaire de A. Un couple [[m5]] est ordonné ; [[m6]] regroupe les couples dont la première composante est dans A et la seconde dans B. Le cardinal d’un ensemble fini est son nombre d’éléments.",
+   "en": "[[m1]] means that x is an element of A; [[m2]] means that every element of A belongs to B. The empty set is written [[m3]]. The intersection corresponds to ``and'', the union to the inclusive ``or''. In a universe E, [[m4]] is the complement of A. A pair [[m5]] is ordered; [[m6]] groups the pairs whose first component is in A and whose second is in B. The cardinality of a finite set is its number of elements.",
+   "status": "aligned",
+   "order": 3
+  },
+  "1676bb7ac528": {
+   "fr": "Pour [[m1]] et [[m2]], l’intersection est [[m3]], la réunion [[m4]]. Le produit [[m5]] contient [[m6]] : cardinal 4.",
+   "en": "For [[m1]] and [[m2]], the intersection is [[m3]], the union [[m4]]. The product [[m5]] contains [[m6]]: cardinality 4.",
+   "status": "aligned",
+   "order": 4
+  },
+  "17ee6b7db110": {
+   "fr": "Nombres et intervalles.",
+   "en": "Numbers and intervals.",
+   "status": "aligned",
+   "order": 5
+  },
+  "ab67ca1fe4a5": {
+   "fr": "[[m1]] contient ici 0 et les entiers naturels ; [[m2]] les entiers relatifs ; [[m3]] les décimaux à écriture finie ; [[m4]] les quotients de deux entiers, avec dénominateur non nul ; [[m5]] les réels. On a [[m6]]. Ainsi [[m7]] est rationnel mais non décimal ; [[m8]] est réel non rationnel (résultat antérieur). [[m9]] signifie [[m10]] ; une borne infinie n’est jamais incluse.",
+   "en": "[[m1]] here contains 0 and the natural numbers; [[m2]] the integers; [[m3]] the decimals with a finite expansion; [[m4]] the quotients of two integers, with nonzero denominator; [[m5]] the real numbers. We have [[m6]]. Thus [[m7]] is rational but not decimal; [[m8]] is real but not rational (earlier result). [[m9]] means [[m10]]; an infinite endpoint is never included.",
+   "status": "aligned",
+   "order": 6
+  },
+  "d603bfc3fdcc": {
+   "fr": "Une implication « si P, alors Q » exprime que P est une condition suffisante pour Q et Q une condition nécessaire pour P. Sa réciproque est « si Q, alors P ». Sa contraposée est « si non Q, alors non P » ; elle a la même valeur logique que l’implication. Une équivalence réunit les deux implications.",
+   "en": "An implication ``if P, then Q'' expresses that P is a sufficient condition for Q and Q a necessary condition for P. Its converse is ``if Q, then P''. Its contrapositive is ``if not Q, then not P''; it has the same truth value as the implication. An equivalence combines the two implications.",
+   "status": "aligned",
+   "order": 7
+  },
+  "0d1829c35cf1": {
+   "fr": "« Si [[m1]], alors [[m2]] » est vraie. La réciproque est fausse pour [[m3]]. L’égalité [[m4]] est suffisante pour [[m5]], mais pas nécessaire. La contraposée « si [[m6]], alors [[m7]] » est vraie.",
+   "en": "``If [[m1]], then [[m2]]'' is true. The converse is false for [[m3]]. The equality [[m4]] is sufficient for [[m5]], but not necessary. The contrapositive ``if [[m6]], then [[m7]]'' is true.",
+   "status": "aligned",
+   "order": 8
+  },
+  "b39d723ecaf3": {
+   "fr": "Pour réfuter une proposition universelle, un contre-exemple suffit. Pour prouver qu’un objet existe, on peut en construire un et vérifier ses propriétés. Nier « pour tout x, P(x) » donne « il existe x tel que non P(x) » ; nier « il existe x, P(x) » donne « pour tout x, non P(x) ». Les symboles des quantificateurs ne sont pas exigibles ; le sens des phrases l’est.",
+   "en": "To refute a universal statement, a counterexample is enough. To prove that an object exists, we can construct one and check its properties. Negating ``for all x, P(x)'' gives ``there exists x such that not P(x)''; negating ``there exists x, P(x)'' gives ``for all x, not P(x)''. The quantifier symbols are not required; the meaning of the sentences is.",
+   "status": "aligned",
+   "order": 9
+  },
+  "3cfffc725c4e": {
+   "fr": "La négation de « pour tout réel x, [[m1]] » est « il existe un réel x tel que [[m2]] ». Le choix x=0 vérifie cette négation.",
+   "en": "The negation of ``for every real number x, [[m1]]'' is ``there exists a real number x such that [[m2]]''. The choice x=0 satisfies this negation.",
+   "status": "aligned",
+   "order": 10
+  },
+  "3b8f8b4da1d8": {
+   "fr": "\\textbf{Disjonction de cas.} Résoudre [[m1]] en distinguant x positif ou nul et x négatif : on obtient 2 et -2. Les cas couvrent tout le domaine.",
+   "en": "\\textbf{Case analysis.} Solve [[m1]] by distinguishing x positive or zero and x negative: we obtain 2 and -2. The cases cover the whole domain.",
+   "status": "aligned",
+   "order": 11
+  },
+  "624a42aaa2a2": {
+   "fr": "\\textbf{Absurde.} Supposons que [[m1]] ait une solution réelle. On aurait [[m2]], en contradiction avec la positivité d’un carré. Il n’y a donc aucune solution réelle.",
+   "en": "\\textbf{Contradiction.} Suppose that [[m1]] has a real solution. Then [[m2]], contradicting the positivity of a square. So there is no real solution.",
+   "status": "aligned",
+   "order": 12
+  },
+  "5ec977d944fc": {
+   "fr": "\\textbf{Identité, équation, paramètre.} [[m1]] est une identité vraie pour tout réel x. [[m2]] est une équation dont x est l’inconnue. Dans [[m3]], m est un paramètre fixé lorsqu’on cherche x ; discuter selon m est un autre niveau de raisonnement.",
+   "en": "\\textbf{Identity, equation, parameter.} [[m1]] is an identity, true for every real number x. [[m2]] is an equation in which x is the unknown. In [[m3]], m is a parameter held fixed while we look for x; discussing according to m is another level of reasoning.",
+   "status": "aligned",
+   "order": 13
+  },
+  "0f0504554a2a": {
+   "fr": "Exercices transversaux",
+   "en": "Cross-curricular exercises",
+   "status": "aligned",
+   "order": 14
+  },
+  "b342faa17c23": {
+   "fr": "Nier : « Il existe un réel x tel que [[m1]] ». La proposition initiale est-elle vraie ?",
+   "en": "Negate: ``There exists a real number x such that [[m1]]''. Is the original statement true?",
+   "status": "aligned",
+   "order": 15
+  },
+  "32b4bfa3d0c5": {
+   "fr": "Donner la réciproque et la contraposée de : « Si un entier est multiple de 4, alors il est pair ». Lesquelles sont vraies ?",
+   "en": "Give the converse and the contrapositive of: ``If an integer is a multiple of 4, then it is even''. Which are true?",
+   "status": "aligned",
+   "order": 16
+  },
+  "0389061ca9dc": {
+   "fr": "Pour [[m1]] et [[m2]], calculer [[m3]], [[m4]], [[m5]] et leurs cardinaux.",
+   "en": "For [[m1]] and [[m2]], calculate [[m3]], [[m4]], [[m5]] and their cardinalities.",
+   "status": "aligned",
+   "order": 17
+  },
+  "3806b1ef822d": {
+   "fr": "Montrer par l’absurde qu’il n’existe pas de plus grand entier naturel.",
+   "en": "Show by contradiction that there is no largest natural number.",
+   "status": "aligned",
+   "order": 18
+  },
+  "92f44494e683": {
+   "fr": "Classer [[m1]], [[m2]], [[m3]], [[m4]] dans le plus petit ensemble usuel ; traduire [[m5]] et [[m6]] par un intervalle. Préciser le statut de x et m dans [[m7]]. Résoudre selon m.",
+   "en": "Classify [[m1]], [[m2]], [[m3]], [[m4]] in the smallest standard set; express [[m5]] and [[m6]] as an interval. State the status of x and m in [[m7]]. Solve according to m.",
+   "status": "aligned",
+   "order": 19
+  },
+  "3611d444cd22": {
+   "fr": "Corrigés transversaux",
+   "en": "Cross-curricular solutions",
+   "status": "aligned",
+   "order": 20
+  },
+  "51e0248ed382": {
+   "fr": "1. Négation : pour tout réel x, [[m1]], vraie ; la proposition initiale est fausse.",
+   "en": "1. Negation: for every real number x, [[m1]], true; the original statement is false.",
+   "status": "aligned",
+   "order": 21
+  },
+  "29625b6dead4": {
+   "fr": "2. Réciproque fausse, contre-exemple 2. Contraposée : si un entier n’est pas pair, il n’est pas multiple de 4 ; vraie.",
+   "en": "2. The converse is false, counterexample 2. Contrapositive: if an integer is not even, it is not a multiple of 4; true.",
+   "status": "aligned",
+   "order": 22
+  },
+  "cd0080e4aa0c": {
+   "fr": "3. Intersection [[m1]], cardinal 1 ; réunion [[m2]], cardinal 4 ; produit de six couples [[m3]].",
+   "en": "3. Intersection [[m1]], cardinality 1; union [[m2]], cardinality 4; product of six pairs [[m3]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "a7dcf2073d04": {
+   "fr": "4. Si N était le plus grand, N+1 serait un entier naturel strictement plus grand : contradiction.",
+   "en": "4. If N were the largest, N+1 would be a strictly larger natural number: contradiction.",
+   "status": "aligned",
+   "order": 24
+  },
+  "e95293b7b34f": {
+   "fr": "5. Respectivement [[m1]], [[m2]], [[m3]], [[m4]] ; intervalle [[m5]]. x inconnue, m paramètre. Si [[m6]], unique solution [[m7]] ; si m=0, l’équation devient [[m8]], aucune solution.",
+   "en": "5. Respectively [[m1]], [[m2]], [[m3]], [[m4]]; interval [[m5]]. x unknown, m parameter. If [[m6]], unique solution [[m7]]; if m=0, the equation becomes [[m8]], no solution.",
+   "status": "aligned",
+   "order": 25
+  },
+  "c1cca5fababb": {
+   "fr": "Python : comprendre ce que l’on exécute",
+   "en": "Python: understanding what we run",
+   "status": "aligned",
+   "order": 26
+  },
+  "55f4e38c6e5d": {
+   "fr": "Les fichiers fournis s’exécutent avec Python 3. Une fonction reçoit des arguments et renvoie un résultat ; une boucle répète une action. Une variable de programme peut changer de valeur par affectation, contrairement à une inconnue fixe dans une équation.",
+   "en": "The supplied files run with Python 3. A function receives arguments and returns a result; a loop repeats an action. A program variable can change value by assignment, unlike a fixed unknown in an equation.",
+   "status": "aligned",
+   "order": 27
+  },
+  "824f12d8024e": {
+   "fr": "Listes et indices",
+   "en": "Lists and indices",
+   "status": "aligned",
+   "order": 28
+  },
+  "7224534e2570": {
+   "fr": "[[m1]] définit une liste en extension. [[m2]] ajoute un élément ; [[m3]] supprime le premier. [[m4]] lit l’élément d’indice 0 et [[m5]] donne la longueur. Une liste en compréhension, telle que [[m6]], contient les carrés de 0 à 4. L’ordre et les répétitions font partie de la liste : ce n’est pas un ensemble.",
+   "en": "[[m1]] defines a list by listing its elements. [[m2]] adds an element; [[m3]] deletes the first. [[m4]] reads the element of index 0 and [[m5]] gives the length. A list comprehension, such as [[m6]], contains the squares from 0 to 4. Order and repetitions are part of the list: it is not a set.",
+   "status": "aligned",
+   "order": 29
+  },
+  "9e26a326b049": {
+   "fr": "Après [[m1]], [[m2]], puis [[m3]], la liste vaut [4,9,16]. L’instruction \\texttt{[x for x in L if x\\%2==0]} produit [4{,}16]. Le test est une proposition logique exécutée pour chaque élément.",
+   "en": "After [[m1]], [[m2]], then [[m3]], the list is [4{,}9,16]. The instruction \\texttt{[x for x in L if x\\%2==0]} produces [4{,}16]. The test is a logical statement evaluated for each element.",
+   "status": "aligned",
+   "order": 30
+  },
+  "f0fa5745ccc9": {
+   "fr": "Fichier",
+   "en": "File",
+   "status": "aligned",
+   "order": 31
+  },
+  "e82e866d895a": {
+   "fr": "Usages et contrôles à effectuer \\\\",
+   "en": "Uses and checks to carry out \\\\",
+   "status": "aligned",
+   "order": 32
+  },
+  "f5ca760ce166": {
+   "fr": "Termes, sommes, seuils, factorielle, Fibonacci, Syracuse, manipulations de listes. Tester n=0, q=0, q=1, seuil déjà atteint et seuil inaccessible.\\\\\n[[m1]]",
+   "en": "Terms, sums, thresholds, factorial, Fibonacci, Syracuse, list manipulation. Test n=0, q=0, q=1, a threshold already reached and an unreachable threshold.\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 33
+  },
+  "4b82b639b766": {
+   "fr": "Taux de sécantes, Newton, Euler, seuil exponentiel. Éviter pas nul et dérivée nulle ; distinguer arrêt et convergence.\\\\\n[[m1]]",
+   "en": "Rates of secants, Newton, Euler, exponential threshold. Avoid a zero step and a zero derivative; distinguish stopping from convergence.\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 34
+  },
+  "23ab288193d8": {
+   "fr": "Loi, moments, Monte-Carlo, échantillons, fréquence de lettres. Vérifier somme des probabilités, taille non nulle et graine de simulation.\\\\\n[[m1]]",
+   "en": "Distribution, moments, Monte Carlo, samples, letter frequency. Check the sum of probabilities, nonzero size and simulation seed.\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 35
+  },
+  "2d6de8f01889": {
+   "fr": "Polygones inscrits et circonscrits, sans utiliser pi dans la construction. Contrôler le resserrement des bornes.\\\\\n[[m1]]",
+   "en": "Inscribed and circumscribed polygons, without using pi in the construction. Check that the bounds tighten.\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 36
+  },
+  "dfc261f8247d": {
+   "fr": "Exécuter les contrôles déterministes et les cas limites. Une simulation proche d’une valeur théorique ne constitue pas sa démonstration.\\\\",
+   "en": "Run the deterministic checks and the edge cases. A simulation close to a theoretical value is not a proof of it.\\\\",
+   "status": "aligned",
+   "order": 37
+  },
+  "7c65f69a2f61": {
+   "fr": "Travaux pratiques à répartir",
+   "en": "Practical work to be shared out",
+   "status": "aligned",
+   "order": 38
+  },
+  "7bf9a49f4825": {
+   "fr": "Suites : générer dix termes, comparer boucle et formule, puis calculer un cumul. Expliquer la longueur de la liste.",
+   "en": "Sequences: generate ten terms, compare a loop with a formula, then calculate a running total. Explain the length of the list.",
+   "status": "aligned",
+   "order": 39
+  },
+  "a49f35cce7ba": {
+   "fr": "Sécantes : prendre trois pas positifs et trois négatifs ; comparer au calcul algébrique du taux.",
+   "en": "Secants: take three positive and three negative steps; compare with the algebraic calculation of the rate.",
+   "status": "aligned",
+   "order": 40
+  },
+  "ead6c5430e9d": {
+   "fr": "Monte-Carlo : comparer 1 000 puis 10 000 points, avec deux graines ; commenter la fluctuation.",
+   "en": "Monte Carlo: compare 1{,}000 then 10{,}000 points, with two seeds; comment on the fluctuation.",
+   "status": "aligned",
+   "order": 41
+  },
+  "3c4f20876d54": {
+   "fr": "Échantillons : simuler N=1 000 échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance. Compter les moyennes dans le seuil [[m1]].",
+   "en": "Samples: simulate N=1{,}000 samples of size n=10 then n=100; compare the observed mean and the expectation. Count the means within the threshold [[m1]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "9ca0daca87b9": {
+   "fr": "Euler et Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.",
+   "en": "Euler and Archimedes: produce a table of results at several resolutions; state what is observed and what has been proved.",
+   "status": "aligned",
+   "order": 43
+  },
+  "54ba6075688d": {
+   "fr": "Ces TP sont des alternatives réparties sur les séances d’algorithmique et de consolidation. Ils ne s’ajoutent pas tous à une même semaine de cours. Les résultats d’une simulation dépendent de la graine ; le rapport de contrôle fournit un exemple d’exécution reproductible.",
+   "en": "These practical tasks are alternatives spread over the algorithmics and consolidation sessions. They are not all added to the same week of lessons. The results of a simulation depend on the seed; the check report supplies an example of a reproducible run.",
+   "status": "aligned",
+   "order": 44
+  },
+  "7c7ccb3e429d": {
+   "fr": "Lire et représenter des données",
+   "en": "Reading and representing data",
+   "status": "aligned",
+   "order": 45
+  },
+  "d9d5b7683715": {
+   "fr": "Une moyenne pondérée est [[m1]]. La médiane partage une série ordonnée ; pour un effectif pair, on utilise ici la moyenne des deux valeurs centrales. Les quartiles de rangs plafonds [[m2]] et [[m3]] sont explicitement utilisés lorsque des valeurs sont demandées. La variance descriptive utilise le dénominateur n, sans correction d’estimation.",
+   "en": "A weighted mean is [[m1]]. The median splits an ordered data set; for an even count, we use here the mean of the two central values. The quartiles with ceiling ranks [[m2]] and [[m3]] are explicitly used when values are requested. The descriptive variance uses the denominator n, with no estimation correction.",
+   "status": "aligned",
+   "order": 46
+  },
+  "30adf31404bc": {
+   "fr": "Dans un diagramme en barres, la hauteur représente l’effectif ou la fréquence. Dans un histogramme à classes de largeurs inégales, c’est l’aire du rectangle qui doit lui être proportionnelle. Un diagramme circulaire répartit les [[m1]] selon les proportions. Une boîte à moustaches représente des indicateurs de position et de dispersion, pas la fréquence de chaque valeur. Toujours lire origine, unités et échelle avant de comparer.",
+   "en": "In a bar chart, the height represents the count or the frequency. In a histogram with classes of unequal widths, it is the area of the rectangle that must be proportional to it. A pie chart shares the [[m1]] according to the proportions. A box plot represents measures of position and dispersion, not the frequency of each value. Always read the origin, units and scale before comparing.",
+   "status": "aligned",
+   "order": 47
+  },
+  "8bbd0d2bd019": {
+   "fr": "Deux classes de largeur 2 et 4 contiennent chacune 20 observations. Des hauteurs 10 et 5 donnent dans les deux cas une aire de 20. Des hauteurs égales rendraient la deuxième classe artificiellement deux fois plus importante.",
+   "en": "Two classes of width 2 and 4 each contain 20 observations. Heights 10 and 5 give an area of 20 in both cases. Equal heights would make the second class artificially twice as important.",
+   "status": "aligned",
+   "order": 48
+  },
+  "cbb007733a5a": {
+   "fr": "Les catégories A, B, C ont effectifs 10, 20, 30. Construire un diagramme en barres et calculer les angles d’un diagramme circulaire. Pour la série 1,1,3,3,7, donner moyenne, médiane, étendue et variance. Lire la boîte ci-dessous : minimum, quartiles, médiane et maximum. Peut-on retrouver toutes les données ?",
+   "en": "The categories A, B, C have counts 10, 20, 30. Construct a bar chart and calculate the angles of a pie chart. For the data set 1{,}1,3,3,7, give the mean, median, range and variance. Read the box plot below: minimum, quartiles, median and maximum. Can all the data be recovered?",
+   "status": "aligned",
+   "order": 49
+  },
+  "36d716bcd31f": {
+   "fr": "Boîte indépendante de la série précédente ; moustaches aux valeurs extrêmes.",
+   "en": "Box plot independent of the previous data set; whiskers at the extreme values.",
+   "status": "aligned",
+   "order": 50
+  },
+  "bde33e557001": {
+   "fr": "Correction.",
+   "en": "Solution.",
+   "status": "aligned",
+   "order": 51
+  },
+  "1dfb8ac63543": {
+   "fr": "Boîte : minimum 1, premier quartile 3, médiane 5, troisième quartile 7, maximum 10. Ces cinq indicateurs ne déterminent pas toutes les observations. Effectif total 60 : angles [[m1]], [[m2]], [[m3]]. Les hauteurs des barres sont 10,20,30. Série : moyenne 3 ; médiane 3 ; étendue 6 ; variance [[m4]].",
+   "en": "Box plot: minimum 1, first quartile 3, median 5, third quartile 7, maximum 10. These five measures do not determine all the observations. Total count 60: angles [[m1]], [[m2]], [[m3]]. The bar heights are 10{,}20,30. Data set: mean 3; median 3; range 6; variance [[m4]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "093394e10623": {
+   "fr": "Annales : lire le format sans réduire le programme",
+   "en": "Past papers: reading the format without narrowing the programme",
+   "status": "aligned",
+   "order": 53
+  },
+  "06da371eba21": {
+   "fr": "Les sujets de 2026 ont été consultés pour identifier les démarches demandées. Ils relèvent de la première édition de l’EAM, avant l’application du programme 2026 ; ils servent d’entraînement après vérification des notions étudiées. Les sujets originaux EV ne se présentent pas comme des sujets officiels.",
+   "en": "The 2026 papers were consulted to identify the approaches required. They belong to the first edition of the EAM, before the 2026 programme came into force; they serve as practice once the topics studied have been checked. The original EV papers are not presented as official papers.",
+   "status": "aligned",
+   "order": 54
+  },
+  "6da13addb000": {
+   "fr": "Source",
+   "en": "Source",
+   "status": "aligned",
+   "order": 55
+  },
+  "5d644285761b": {
+   "fr": "Démarches observées",
+   "en": "Approaches observed",
+   "status": "aligned",
+   "order": 56
+  },
+  "7188b62f4d32": {
+   "fr": "Réinvestissement \\\\",
+   "en": "Where to reuse \\\\",
+   "status": "aligned",
+   "order": 57
+  },
+  "91b2b2928f0d": {
+   "fr": "Métropole 2026, 26-MATSPEGEME1",
+   "en": "Metropolitan 2026, 26-MATSPEGEME1",
+   "status": "aligned",
+   "order": 58
+  },
+  "0a9c4d56e777": {
+   "fr": "Arbre avec probabilité inconnue ; affirmations justifiées ; géométrie reliant angle et équation.",
+   "en": "Tree with an unknown probability; justified statements; geometry linking angle and equation.",
+   "status": "aligned",
+   "order": 59
+  },
+  "af20bc4cfd08": {
+   "fr": "C05, C03, C09 ; EV2-A, EV3-A et EV4-B.\\\\\nSujet officiel 2026, 26-MATSPEGEG11",
+   "en": "C05, C03, C09; EV2-A, EV3-A and EV4-B.\\\\\nOfficial paper 2026, 26-MATSPEGEG11",
+   "status": "aligned",
+   "order": 60
+  },
+  "7106906fa4ae": {
+   "fr": "Modèle discret, cumul et lecture de boucle ; coordonnées et angle ; tangente et quotient.",
+   "en": "Discrete model, running total and reading a loop; coordinates and angle; tangent and quotient.",
+   "status": "aligned",
+   "order": 61
+  },
+  "7581f544ef7b": {
+   "fr": "C01, C03, C06 ; EV1-T1, EV2-T1.\\\\\nAntilles-Guyane 2026, 26-MATSPEGEAG1",
+   "en": "C01, C03, C06; EV1-T1, EV2-T1.\\\\\nAntilles-Guyane 2026, 26-MATSPEGEAG1",
+   "status": "aligned",
+   "order": 62
+  },
+  "65be4c62c2bb": {
+   "fr": "Seuil d’une suite ; arbre et tarif aléatoire ; produit exponentiel et vrai/faux.",
+   "en": "Threshold of a sequence; tree and random pricing; exponential product and true/false.",
+   "status": "aligned",
+   "order": 63
+  },
+  "e414544d7720": {
+   "fr": "C01, C05, C08, C09 ; EV4-T1 et EV4-B.\\\\\nSujets zéro Éduscol",
+   "en": "C01, C05, C08, C09; EV4-T1 and EV4-B.\\\\\nÉduscol sample papers",
+   "status": "aligned",
+   "order": 64
+  },
+  "bc06b7160ed4": {
+   "fr": "Automatismes, problèmes indépendants et rédaction sans calculatrice.",
+   "en": "Fluency, independent problems and write-up without a calculator.",
+   "status": "aligned",
+   "order": 65
+  },
+  "d74f0f465047": {
+   "fr": "Entraînements T1/T2 de chaque lot.\\\\",
+   "en": "T1/T2 practice papers of each set.\\\\",
+   "status": "aligned",
+   "order": 66
+  },
+  "7844176267f6": {
+   "fr": "Les liens exacts sont fournis dans le fichier [[m1]]. Les sujets ne sont pas reproduits intégralement. Pour travailler une annale, noter le code du sujet, l’exercice et les questions effectivement étudiées ; corriger les raisonnements, pas seulement les résultats.",
+   "en": "The exact links are given in the file [[m1]]. The papers are not reproduced in full. To work on a past paper, note the paper code, the exercise and the questions actually studied; correct the reasoning, not just the results.",
+   "status": "aligned",
+   "order": 67
+  },
+  "80046110b4e7": {
+   "fr": "Préparer deux heures sans calculatrice",
+   "en": "Preparing for two hours without a calculator",
+   "status": "aligned",
+   "order": 68
+  },
+  "a54d843841d7": {
+   "fr": "Commencer par lire les deux parties ; réserver environ 20 à 25 minutes aux automatismes. Pour un exercice, écrire les hypothèses et le domaine avant le calcul. Si une étape bloque, utiliser le résultat demandé pour poursuivre en le signalant. Garder une dizaine de minutes pour vérifier les signes, les arrondis demandés, les unités et les réponses aux questions. Ces repères sont à adapter au rythme constaté pendant les entraînements.",
+   "en": "Start by reading both parts; set aside about 20 to 25 minutes for the fluency questions. For an exercise, write the hypotheses and the domain before calculating. If a step blocks you, use the result given in the question to continue, and say so. Keep about ten minutes to check signs, the roundings requested, units and answers to the questions. These guidelines should be adapted to the pace observed during practice.",
+   "status": "aligned",
+   "order": 69
+  }
+ }
+}

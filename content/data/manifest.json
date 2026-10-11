@@ -11433,8 +11433,8 @@
           "Curriculum coverage matrix · teacher"
         ],
         "sourcePages": [
-          190,
-          195
+          188,
+          193
         ]
       },
       {
@@ -11452,8 +11452,8 @@
           "Annual schedule and time slots · teacher"
         ],
         "sourcePages": [
-          196,
-          212
+          194,
+          210
         ]
       }
     ],
@@ -13503,7 +13503,7 @@
           {
             "kind": "teacher",
             "source": "premiere-prof.pdf",
-            "start": 190,
+            "start": 188,
             "path": "resources/premiere-revision/matrix.pdf"
           }
         ]
@@ -13520,7 +13520,7 @@
           {
             "kind": "teacher",
             "source": "premiere-prof.pdf",
-            "start": 196,
+            "start": 194,
             "path": "resources/premiere-revision/schedule.pdf"
           }
         ]
@@ -13603,6 +13603,33 @@
       ],
       "teacherUnits": [
         "annexes"
+      ]
+    },
+    "premiere": {
+      "layout": "booklet",
+      "front": [
+        "front"
+      ],
+      "units": [
+        "chapitres/C01",
+        "chapitres/C02",
+        "chapitres/C03",
+        "chapitres/C04",
+        "chapitres/C05",
+        "chapitres/C06",
+        "chapitres/C07",
+        "chapitres/C08",
+        "chapitres/C09",
+        "chapitres/C10"
+      ],
+      "appendix": [
+        "transversal",
+        "automatismes",
+        "evaluations/index"
+      ],
+      "teacherUnits": [
+        "matrice",
+        "progression"
       ]
     }
   }

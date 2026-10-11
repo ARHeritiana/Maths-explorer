@@ -26,13 +26,15 @@ def _section_to_unit(uid):
 
 
 FIGURE = re.compile(r'\\begin\{(tikzpicture|axis|pgfpicture)\}.*?\\end\{\1\}', re.S)
+CODE = re.compile(r'\\begin\{(lstlisting|verbatim)\}.*?\\end\{\1\}|\\(?:code|texttt)\{[^{}]*\}', re.S)
 PAIR = re.compile(r'\(\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?\s*\)')
-DECIMAL = re.compile(r'(?<![\d{(,.-])(\d+),(\d+)(?![\d}])')
+DECIMAL = re.compile(r'(?<![\d{(,.-])(\d+),(\d+)(?![\d}]|,\d)')   # 0,5 is a decimal; 0,1,2 is a list
 
 
 def _decimal_commas_outside_maths(s):
-    """Text such as 60,7 becomes 60{,}7. Maths, figure code and coordinate pairs (x,y) are left alone."""
-    keep = sorted([m.span() for m in FIGURE.finditer(s)] + [m.span() for m in PAIR.finditer(s)] + twin.locked_maths(s))
+    """Text such as 60,7 becomes 60{,}7. Maths, figure code, program code and coordinate pairs (x,y) are left alone."""
+    keep = sorted([m.span() for m in FIGURE.finditer(s)] + [m.span() for m in PAIR.finditer(s)] +
+                  [m.span() for m in CODE.finditer(s)] + twin.locked_maths(s))
     out, pos = [], 0
     for a, b in keep:
         if a < pos: continue
@@ -155,6 +157,20 @@ def _fix_cours_ends(s):
     return ''.join(out) + s[pos:]
 
 
+PREMIERE_RULES = [
+    _sub(r'\\input\{(figures|corriges|evaluations)/([\w-]+?)(?:-en)?(?:\.tex)?\}', r'\\mxinclude{\1/\2}'),
+    _sub(r'\\corrsection\{(\d+)\}', r'\\mxcorrections{\1}'),
+    _sub(r'\\clearpage\b', r'\\mxnewpage'),
+    _sub(r'\\exercice\{', r'\\mxexercisehead{'),
+    _cmd_to_env('exemple', 'example'), _cmd_to_env('application', 'application'), _cmd_to_env('preuve', 'proof'),
+    _sub(r'\\begin\{repere\}\{((?:[^{}]|\{[^{}]*\})*)\}', r'\\begin{keypoint}[\1]'), _sub(r'\\end\{repere\}', r'\\end{keypoint}'),
+    _sub(r'\\(begin|end)\{erreur\}', r'\\\1{pitfall}'),
+    _sub(r'\\ligne\b', r'\\mxlines{1}'), _sub(r'\\ifprof\b', r'\\ifmxteacher'),
+    _sub(r'\\Needspace\{(\d+)\\baselineskip\}', r'\\mxneed{\1}'),
+    _sub(r'\\renewcommand\{\\arraystretch\}\{([\d.]+)\}', r'\\mxarraystretch{\1}'),
+    *[_sub(r'(?<=[{,=\[\s!])%s\b' % a, b) for a, b in [('bleu', 'mxink'), ('vert', 'mxmint'), ('ocre', 'mxwarn')]],
+]
+
 # course -> (unit map {old relative path (French): new stem}, rules)
 PLANS = {
     'automatismes': ({**{f'sections/ch{n:02d}.tex': f'ch{n:02d}' for n in range(1, 15)},
@@ -167,33 +183,54 @@ PLANS = {
               'annexes/formulaire.tex': 'formulas', 'annexes/programmation.tex': 'schedule', 'annexes/sources.tex': 'sources'},
              STMG_RULES),
     'seconde': ({**{f'sequences/S{n:02d}.tex': f's{n:02d}' for n in range(1, 16)}, 'annexes.tex': 'annexes'}, SECONDE_RULES),
+    # Units keep their folders; ('part', stem) marks a file included by a unit (no heading of its own, not a block).
+    'premiere': None,   # filled below from the folder contents
 }
 
 
+def _premiere_plan():
+    base = COURSES / 'premiere'; units = {'front.tex': 'front'}
+    units.update({f'chapitres/C{n:02d}.tex': f'chapitres/C{n:02d}' for n in range(1, 11)})
+    for name in ('transversal', 'automatismes', 'matrice', 'progression'): units[f'{name}.tex'] = name
+    units['evaluations/index.tex'] = 'evaluations/index'
+    for folder in ('corriges', 'evaluations', 'figures'):
+        for p in sorted((base / folder).glob('*.tex')):
+            if p.stem.endswith('-en') or p.name == 'index.tex' or (folder == 'evaluations' and p.name == 'index.tex'): continue
+            units.setdefault(f'{folder}/{p.name}', ('part', f'{folder}/{p.stem}'))
+    return units, PREMIERE_RULES
+
+
 def migrate(course, dry=False):
-    units, rules = PLANS[course]
+    units, rules = PLANS[course] or globals()['_%s_plan' % course]()
     base = COURSES / course; ok, refused = [], []
+    # Pass 1, in memory: convert, align and generate every unit; nothing is written unless all succeed.
     for old, stem in units.items():
+        part = isinstance(stem, tuple); stem = stem[1] if part else stem
         fr_old = base / old; en_old = fr_old.with_name(fr_old.stem + '-en.tex')
-        conv = lambda s: _decimal_commas_outside_maths(_section_to_unit(f'{course}-{stem}')(
-            __import__('functools').reduce(lambda acc, r: r(acc), rules, s)))
+        uid = f'{course}-' + stem.split('/')[-1].lower()
+        heading = (lambda s: re.sub(r'\A(?:%[^\n]*\n)+', '', s)) if part else _section_to_unit(uid)
+        conv = lambda s: _decimal_commas_outside_maths(heading(__import__('functools').reduce(lambda acc, r: r(acc), rules, s)))
         fr, en = conv(fr_old.read_text()), conv(en_old.read_text())
         try:
             pairs = twin.align(fr, en)
+            table = {'segments': {twin.seg_id(f): {'fr': f, 'en': e, 'status': 'aligned'} for f, e in pairs}}
+            twin.generate(fr, table)
         except twin.TwinError as e:
             refused.append((old, str(e)[:300])); continue
-        ok.append((old, stem, len(pairs)))
-        if dry: continue
-        new = base / f'{stem}.fr.tex'
+        ok.append((old, stem, fr, en, len(pairs)))
+    for o, s_, _, _, n in ok: print(f'  {o} -> {s_}.fr.tex: {n} segments')
+    for o, e in refused: print(f'  REFUSED {o}: {e}')
+    if refused or dry: return 1 if refused else 0
+    # Pass 2: move, write, align into the table, generate the English unit.
+    for old, stem, fr, en, _ in ok:
+        fr_old = base / old; en_old = fr_old.with_name(fr_old.stem + '-en.tex'); new = base / f'{stem}.fr.tex'
         subprocess.run(['git', 'mv', str(fr_old), str(new)], cwd=ROOT, check=True)
         new.write_text(fr)
-        tmp = base / f'{stem}.old-en.tex'; tmp.write_text(en)
+        tmp = new.with_name(new.name.replace('.fr.tex', '.old-en.tex')); tmp.write_text(en)
         twin.align_files(new, tmp); tmp.unlink()
-        subprocess.run(['git', 'rm', '-q', str(en_old)], cwd=ROOT, check=True)
+        subprocess.run(['git', 'rm', '-q', '-f', str(en_old)], cwd=ROOT, check=True)   # replaced by the generated unit
         twin.en_path(new).write_text(twin.generate(fr, twin.load_table(new)))
-    for o, s, n in ok: print(f'  {o} -> {s}.fr.tex: {n} segments')
-    for o, e in refused: print(f'  REFUSED {o}: {e}')
-    return 1 if refused else 0
+    return 0
 
 
 def main(argv):

@@ -35,7 +35,8 @@ LAYOUT_ENVS = set('tabular tabular* tabularx array longtable minipage multicols 
 ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code mxtag'.split())
 # Commands whose listed argument positions (0-based, brace arguments only) are never prose.
 LOCKED_ARG_POS = {'mxunit': {0}, 'href': {0}, 'mxfq': {1}, 'mxarraystretch': {0}, 'mxsession': {0}, 'mxtest': {0, 1},
-                  'mxexdef': {0, 4}, 'mxexuse': {0}, 'mxpoints': {0}, 'mxlines': {0}, 'addcontentsline': {0, 1}}
+                  'mxexdef': {0, 4}, 'mxexuse': {0}, 'mxpoints': {0}, 'mxlines': {0}, 'addcontentsline': {0, 1},
+                  'mxexercisehead': {0}, 'mxcorrections': {0}}
 INLINE_CMDS = set('textbf emph textit textsc textsf texttt underline og fg ldots dots enspace quad qquad '
                   'nobreakspace textsuperscript textsubscript mbox guillemotleft guillemotright S oe OE ae up '
                   'mxblank code'.split())
@@ -195,13 +196,14 @@ def split(s):
     return parts, segs
 
 
-MATHS_IN_LOCKED = re.compile(r'(?<!\\)%[^\n]*|\$\$.*?\$\$|(?<!\\)\$(?:\\.|[^$\\])*\$|\\\(.*?\\\)|\\\[.*?\\\]|'
+MATHS_IN_LOCKED = re.compile(r'\\begin\{(?:lstlisting|verbatim)\}.*?\\end\{(?:lstlisting|verbatim)\}|(?<!\\)%[^\n]*|\$\$.*?\$\$|(?<!\\)\$(?:\\.|[^$\\])*\$|\\\(.*?\\\)|\\\[.*?\\\]|'
                              r'\\begin\{(equation|align|gather|multline|alignat|flalign|displaymath)\*?\}.*?\\end\{\1\*?\}', re.S)
 
 
 def locked_maths(part):
     """Maths chunks inside locked text (comments skipped), as (start, end) spans."""
-    return [(m.start(), m.end()) for m in MATHS_IN_LOCKED.finditer(part) if not m.group(0).startswith('%')]
+    return [(m.start(), m.end()) for m in MATHS_IN_LOCKED.finditer(part)
+            if not m.group(0).startswith(('%', '\\begin{lstlisting}', '\\begin{verbatim}'))]
 
 
 def math_texts(m):

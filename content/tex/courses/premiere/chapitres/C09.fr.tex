@@ -1,0 +1,219 @@
+\mxunit{premiere-c09}{Fonction exponentielle et modèles continus}\label{C09}
+\begin{keypoint}[Le parcours du chapitre]
+\textbf{Objectifs.} Utiliser les propriétés algébriques ; dériver ; étudier une croissance ou décroissance ; relier exponentielle et suites géométriques.
+
+\textbf{Prérequis.} Puissances, suites géométriques, dérivation et signe.
+
+\textbf{Repère annuel.} 2–11 février : 8 h\end{keypoint}
+\section*{Diagnostic : six questions, 10 minutes}\label{C09-D}
+Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.
+\begin{enumerate}
+\item Simplifier $2^3\times2^4$.
+\item Exprimer $3^{-2}$.
+\item Résoudre $2x+1=5$.
+\item Dériver $x^2+2x$.
+\item Une décroissance de 20 \% donne quel coefficient ?
+\item Pour une suite géométrique $u_0=5,q=2$, calculer $u_n$.
+\end{enumerate}
+\paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
+\paragraph{Oral et logique.} Expliquer la différence entre taux continu et coefficient multiplicateur discret ; présenter une inégalité prouvée par minimum d’une différence.
+\mxnewpage
+\section*{Chercher avant de formaliser}\label{C09-RECH}
+Comparer les accroissements de $e^x$ et les valeurs de la fonction autour de 0, avec plusieurs pas positifs. Construire trois étapes d’Euler et expliquer la règle choisie.
+\paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\section{Définir une fonction nouvelle}\label{C09-U1}
+\begin{keypoint}[Définition et résultats]
+La fonction exponentielle est l’unique fonction f dérivable sur $\R$ vérifiant $f\prime=f$ et $f(0)=1$. Son existence et son unicité sont admises. On la note $\exp$, puis $e^x$ avec $e=\exp(1)\approx2{,}71828$. Le nombre e est une constante ; x est la variable. L’exponentielle est strictement positive.
+\end{keypoint}
+\paragraph{Statut et justification.} Existence et unicité admises conformément au programme. La positivité se déduit, après les propriétés algébriques admises ci-dessous, de $\exp (x)=\exp (\dfrac{x}{2})^2$ et de $\exp(x)\exp(-x)=1$.
+\begin{example}$\exp(0)=1$, $\exp(1)=e$, $\exp\prime(0)=1$. La tangente en 0 est donc $y=1+x$. La notation $e^x$ étend les propriétés des puissances à tout exposant réel.\end{example}\label{C09-EX1}
+\mxinclude{figures/C09-U1}
+\begin{pitfall}$e^0=1$, pas 0. La fonction ne prend jamais la valeur 0, même pour des x négatifs.\end{pitfall}
+\begin{application}Quelle est l’équation de la tangente à $e^x$ en 1 ?\end{application}\label{C09-AP1}
+\section{Propriétés algébriques et comparaisons}\label{C09-U2}
+\begin{keypoint}[Définition et résultats]
+Pour tous réels x,y, $e^{x+y}=e^xe^y$, $e^{-x}=\dfrac{1}{e^x}$, $e^{x-y}=\dfrac{e^x}{e^y}$. Pour n entier, $(e^x)^n=e^{nx}$. La fonction est strictement croissante sur $\R$, donc $e^u=e^v\iff u=v$ et $e^u<e^v\iff u<v$.
+\end{keypoint}
+\paragraph{Statut et justification.} La relation d’addition est admise dans le parcours commun ; elle peut être approfondie via l’unicité. La positivité et $\exp\prime=\exp>0$ donnent la stricte croissance. Celle-ci justifie les équivalences sur équations et inéquations.
+\begin{example}$e^{2x}e^{1-x}=e^{x+1}$. $e^{3x-2}=e^{x+4}$ équivaut à $3x-2=x+4$, donc x=3. $e^{2x}\leq1=e^0$ équivaut à $x\leq0$.\end{example}\label{C09-EX2}
+\begin{pitfall}$e^{x+y}$ est un produit, jamais en général $e^x+e^y$. On ne résout pas $e^x=2$ avec un logarithme non étudié en première.\end{pitfall}
+\begin{application}Simplifier $\dfrac{e^{3x}}{e^{x-1}}$ ; résoudre $e^{x+2}>e^{2x}$.\end{application}\label{C09-AP2}
+\section{Dériver et étudier}\label{C09-U3}
+\begin{keypoint}[Définition et résultats]
+Pour a réel, $t\mapsto e^{at}$ est dérivable et sa dérivée vaut $ae^{at}$. Pour $e^{at+b}=e^be^{at}$, la dérivée est $ae^{at+b}$. Les règles de produit et quotient s’appliquent avec les dérivées déjà connues. Le signe de l’exponentielle simplifie souvent l’étude du signe de la dérivée.
+\end{keypoint}
+\paragraph{Statut et justification.} La formule de dérivation de $e^{at}$ est admise ; le cas avec b en découle en sortant le facteur constant $e^b$. La dérivation composée générale n’est pas nécessaire ici.
+\begin{example}Pour $f(x)=(x+1)e^{-x}$, $f\prime(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. Comme $e^{-x}>0$, la dérivée a le signe de $-x$ : maximum global 1 en 0.\end{example}\label{C09-EX3}
+\begin{pitfall}Ne pas oublier le facteur a ni le signe négatif dans $e^{-x}$. Le facteur exponentiel est positif, pas nécessairement croissant.\end{pitfall}
+\begin{application}Dériver $g(t)=3e^{-2t}$ et étudier son sens de variation.\end{application}\label{C09-AP3}
+\section{Du discret au continu}\label{C09-U4}
+\begin{keypoint}[Définition et résultats]
+Un modèle $Q(t)=Q_0e^{kt}$, avec $Q_0>0$, représente une croissance si $k>0$, une décroissance si $k<0$, une constance si $k=0$. Pour un pas h fixe, $\dfrac{Q(t+h)}{Q(t)}=e^{kh}$. Les valeurs aux instants entiers forment une suite géométrique de raison $e^k$. L’unité de k est l’inverse de l’unité de temps.
+\end{keypoint}
+\paragraph{Statut et justification.} Le rapport résulte de $e^{k(t+h)}=e^{kt}e^{kh}$. Le sens de variation se déduit de $Q\prime(t)=kQ_0e^{kt}$ et de la positivité du facteur restant.
+\begin{example}$Q(t)=100e^{-0{,}2t}$, t en heures : $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-0{,}2}$. Une simulation peut chercher le premier nombre entier d’heures où Q passe sous 50 ; l’équation exacte n’est pas résolue par logarithme dans ce chapitre.\end{example}\label{C09-EX4}
+\mxinclude{figures/C09-U4}
+\begin{pitfall}Le taux relatif par unité de temps discrète est $e^k-1$, pas exactement k ; ils sont proches seulement pour k petit.\end{pitfall}
+\begin{application}Pour $Q(t)=5e^{0{,}3t}$, exprimer $Q(n)$ et $\dfrac{Q(t+2)}{Q(t)}$.\end{application}\label{C09-AP4}
+\section{Construire numériquement et démontrer une inégalité}\label{C09-U5}
+\begin{keypoint}[Définition et résultats]
+Pour approcher la solution de $y\prime=y$, $y(0)=1$ avec un pas $h$, Euler remplace l’accroissement par $hy$ : $y_{k+1}=(1+h)y_k$. Sur $[0;1]$ avec $h=\dfrac1n$, l’approximation de $e$ est $\left(1+\dfrac1n\right)^n$. Cette construction est expérimentale. L’inégalité $e^x\geq1+x$ s’obtient par étude de fonction.
+\end{keypoint}
+\paragraph{Statut et justification.} Pour $g(x)=e^x-1-x$, $g\prime(x)=e^x-1$, négative si x<0 et positive si x>0. Le minimum vaut $g(0)=0$, ce qui prouve l’inégalité ; égalité seulement en 0. La convergence d’Euler n’est pas démontrée ici.
+\begin{example}Avec n=2, Euler donne $y_0=1,y_1=1{,}5,y_2=2{,}25$. Avec n=10, $(1{,}1)^{10}\approx2{,}59374$. On compare à e ; on ne confond pas valeur approchée et définition de la fonction.\end{example}\label{C09-EX5}
+\begin{pitfall}Un graphique qui montre une courbe au-dessus d’une droite ne prouve pas l’inégalité sur tous les réels.\end{pitfall}
+\begin{application}Montrer que $e^{2x}\geq1+2x$ pour tout réel x.\end{application}\label{C09-AP5}
+\section*{Parcours d’exercices}\label{C09-PARC}
+Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
+\begingroup
+\mxexercisehead{C09-E1}{Transformer}
+Pour tout réel $x$, on considère les expressions\[A=e^xe^{2-x},\qquad B=\dfrac{(e^{2x})^3}{e^x},\qquad C=e^{-x}(e^x+1).\]
+\begin{enumerate}[label=\arabic*.]
+\item Simplifier $A$ et $B$ en justifiant chaque regroupement d’exposants.
+\item Développer puis simplifier $C$. Expliquer pourquoi une somme ne se simplifie pas de la même façon qu’un produit.
+\end{enumerate}
+\mxexercisehead{C09-E2}{Équations et inéquations}
+On considère une équation et une inéquation d’inconnue réelle $x$ :\[e^{2x-1}=e^{x+3}\qquad\text{et}\qquad e^{-3x}\geq e^{x-2}.\]
+\begin{enumerate}[label=\arabic*.]
+\item Résoudre chacune dans $\R$, en citant la propriété de l’exponentielle qui autorise la comparaison des exposants.
+\item Lors de la résolution de l’inéquation, expliquer à quelle étape le sens de l’inégalité change. Donner l’ensemble des solutions sous forme d’intervalle.
+\end{enumerate}
+\mxexercisehead{C09-E3}{Produit et maximum}
+La fonction $f$ est définie sur $[0;4]$ par $f(x)=xe^{-x}$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer $f\prime(x)$, puis étudier son signe sur l’intervalle.
+\item Dresser le tableau de variations de $f$. En déduire son maximum et l’abscisse où il est atteint.
+\item Contrôler que les valeurs aux bornes ne donnent pas un maximum plus grand. Conserver les valeurs exactes.
+\end{enumerate}
+\mxexercisehead{C09-E4}{Une population modélisée}
+Les deux parties suivantes sont indépendantes.\par\textbf{Partie A — Une population.} Une population est modélisée par $P(t)=200e^{0{,}1t}$, où $t\geq0$ est le temps écoulé en années. $P(t)$ est un effectif théorique, qui n’est pas nécessairement entier.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer l’effectif initial, puis le coefficient multiplicateur entre les instants $t$ et $t+1$. En déduire le taux annuel exact et son pourcentage arrondi au centième.
+\item Expliquer pourquoi ce modèle ne peut pas nécessairement décrire une population réelle indéfiniment.
+\item \textbf{Partie B — Deux courbes.} Dans un même repère, esquisser les courbes de $t\mapsto e^{\dfrac{t}{2}}$ et $t\mapsto e^{-\dfrac{t}{2}}$. Préciser leurs variations, leur point commun et leur symétrie. Identifier clairement chaque courbe.
+\end{enumerate}
+\mxexercisehead{C09-E5}{Recherche d’un seuil}
+La quantité d’une substance, en milligrammes, est modélisée à l’instant $t\geq0$ par $Q(t)=80e^{-\dfrac{t}{2}}$, où $t$ est exprimé en heures. Les contrôles ont lieu aux instants entiers $n=0,1,2,\ldots$. On cherche le premier contrôle pour lequel la quantité est strictement inférieure à 10 mg.
+\begin{enumerate}[label=\arabic*.]
+\item Écrire un algorithme de recherche de ce premier entier. Prévoir une borne d’itérations et préciser ce que le programme renvoie si la borne est atteinte.
+\item Exécuter l’algorithme, puis vérifier numériquement la quantité au rang trouvé et au rang précédent.
+\item Justifier, à l’aide de la décroissance de $Q$, que ce double contrôle établit qu’il s’agit bien du premier rang. Ne pas utiliser de logarithme.
+\end{enumerate}
+\mxexercisehead{C09-E6}{Une symétrie}
+On considère la fonction $f$ définie sur $\R$ par $f(x)=e^x+e^{-x}$.
+\begin{enumerate}[label=\arabic*.]
+\item Étudier la parité de $f$ et interpréter le résultat pour sa courbe.
+\item Démontrer que $f(x)\geq2$ pour tout réel $x$, en choisissant une méthode. Préciser le cas d’égalité.
+\item Proposer un contrôle du résultat par une seconde méthode, à partir d’un carré ou d’une étude de variations.
+\end{enumerate}
+\mxexercisehead{C09-E7}{Unicité sous une hypothèse}
+\textbf{Approfondissement.} On suppose que la fonction exponentielle a déjà été construite. Soit $f$ une fonction dérivable sur $\R$ qui vérifie $f\prime(x)=f(x)$ pour tout réel $x$ et $f(0)=1$. On pose $g(x)=f(x)e^{-x}$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer $g\prime$ et expliquer pourquoi $g$ est constante sur $\R$.
+\item Déterminer cette constante, puis en déduire l’expression de $f$.
+\item Cette démonstration établit-elle l’existence ou l’unicité de la fonction cherchée ? Justifier.
+\end{enumerate}
+\mxexercisehead{C09-E8}{Reprise différée}
+On définit la suite $(u_n)$ par $u_n=e^{2n+1}$ pour tout entier naturel $n$.
+\begin{enumerate}[label=\arabic*.]
+\item Démontrer que cette suite est géométrique, puis préciser son premier terme et sa raison.
+\item Calculer $u_0+u_1+u_2$ sous forme exacte. Comparer le calcul direct et l’utilisation d’une formule de somme.
+\end{enumerate}
+\paragraph{Travail personnel.} Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.
+\endgroup
+\mxneed{12}\section*{À faire dans le manuel CQFD}
+Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).
+\paragraph{CQFD, exercice 18 p. 187, questions a, b et c.}\label{C09-M1} Simplifier les produits et quotients en citant la propriété des exponentielles employée.
+\paragraph{CQFD, exercice 30 p. 187, questions a, b et c.}\label{C09-M2} Résoudre les trois inéquations et écrire les ensembles de solutions sous forme d’intervalles.
+\begingroup\small
+\mxnewpage\section*{QCM 1 : comprendre et choisir}\label{C09-Q1}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item $e^0=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $1$
+\item $e$
+\item $-1$
+\end{enumerate}
+\item $e^xe^y=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^{x+y}$
+\item $e^{xy}$
+\item $e^x+e^y$
+\item $e^{x-y}$
+\end{enumerate}
+\item Dérivée de $e^{-2x}$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^{-2x}$
+\item $2e^{-2x}$
+\item $-e^{-2x}$
+\item $-2e^{-2x}$
+\end{enumerate}
+\item $e^x=1$ équivaut à
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x=1$
+\item $x=e$
+\item $x=0$
+\item aucune solution
+\end{enumerate}
+\item Le signe de $e^{-x}$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item négatif si x>0
+\item toujours strictement positif
+\item nul en 0
+\item variable
+\end{enumerate}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{QCM 2 : comprendre et choisir}\label{C09-Q2}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item $e^{2x}<e^3$ équivaut à
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x<3$
+\item $x>\dfrac{3}{2}$
+\item $x<\dfrac{3}{2}$
+\item $x<\sqrt3$
+\end{enumerate}
+\item $u_n=e^{3n}$ a pour raison
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^3$
+\item $3$
+\item $e$
+\item $3e$
+\end{enumerate}
+\item Tangente à $e^x$ en 0 :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $y=x$
+\item $y=e x$
+\item $y=1$
+\item $y=x+1$
+\end{enumerate}
+\item Dérivée de $xe^x$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $e^x$
+\item $(x+1)e^x$
+\item $xe^x$
+\item $xe^{x-1}$
+\end{enumerate}
+\item $e^x\geq1+x$ a égalité
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item pour tout x
+\item en 1 seulement
+\item en 0 seulement
+\item jamais
+\end{enumerate}
+\end{enumerate}
+\subsection*{Vrai ou faux ? Justifier.}\label{C09-VF}
+\begin{enumerate}
+\item $e^{2x}=2e^x$ pour tout x.
+\item La fonction $t\mapsto e^{-3t}$ est décroissante.
+\item Un taux continu k=0{,}1 correspond exactement à 10 \% de hausse en une unité de temps.
+\end{enumerate}
+\begin{keypoint}[Bilan personnel]Je conserve les règles des puissances ; je connais la positivité ; je dérive avec le facteur ; je sépare modèle, calcul exact et simulation.
+
+Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C09}\fi

@@ -183,6 +183,12 @@ def slide(kind, title, body, ans=None, h=None): return {'k': kind, 't': title, '
 FIGRE = re.compile(r'(?:\\begin\{center\}\s*)?\\begin\{tikzpicture\}.*?\\end\{tikzpicture\}(?:\s*\\end\{center\})?|\\input\{figures/[^}]+\}', re.S)
 
 
+def inline_includes(src, base, lang):
+    """Replace \\mxinclude{path} by the included file of the same language (figures and parts of migrated units)."""
+    return re.sub(r'\\mxinclude\{([^{}]+)\}', lambda m: (base / f'{m.group(1)}.{lang}.tex').read_text(encoding='utf8')
+                  if (base / f'{m.group(1)}.{lang}.tex').exists() else m.group(0), src)
+
+
 def extract_figs(src):
     """Replace every figure (TikZ/pgfplots picture or \\input of a figure file) by \\figtok{n}; return (source, [code])."""
     figs = []
@@ -197,7 +203,7 @@ def fig_tokens(h):
 
 
 CORE = ROOT / 'content/tex/core'
-MIGRATED = {'stmg', 'seconde'}   # courses on the shared class: canonical environments, units <id>.fr.tex / <id>.en.tex
+MIGRATED = {'stmg', 'seconde', 'premiere'}   # courses on the shared class: canonical environments, units <id>.fr.tex / <id>.en.tex
 PREAMBLE = {  # course -> (main file for language, flags prepended before \documentclass)
     'seconde': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, '\\def\\VERSIONPROF{1}'),
     'premiere': ({'fr': 'main.tex', 'en': 'main-en.tex'}, '\\def\\versionprof{1}'),
@@ -248,43 +254,32 @@ def compile_figs(course, lang, jobs):
 
 
 # ---------------------------------------------------------------- per-course extractors (return list of slides, flat)
-def premiere(src, number):
-    ev = walk(src, {'chapter': 1, 'section': 1, 'exemple': 1, 'application': 1, 'preuve': 1, 'repere': 0, 'erreur': 0, 'figtok': 1})
-    out = []; unit = None; skip = False
-    for kind, name, a, o in ev:
-        if name == 'figtok': attach(out, a[0]); continue
-        if name == 'chapter': out.append(slide('title', clean_title(a[0]), '', None))
-        elif name == 'section': unit = clean_title(a[0]); skip = bool(re.match(r'(MCQ|QCM|Diagnostic)', unit))
-        elif skip and kind != 'cmd' or skip and name in ('exemple', 'application', 'preuve'): continue
-        elif kind == 'env' and name == 'repere':
-            body = a.lstrip()
-            rt = ''
-            if body.startswith('{'): rt, k = group(body, 0); body = body[k:]
-            if unit is None: out.append(slide('goals', clean_title(rt), text2html(body)))
-            else: out.append(slide('concept', unit, text2html(body)))
-        elif name == 'exemple' and unit: out.append(slide('example', unit, text2html(a[0])))
-        elif kind == 'env' and name == 'erreur' and unit: out.append(slide('error', unit, text2html(a)))
-        elif name == 'application' and unit: out.append(slide('try', unit, text2html(a[0])))
-        elif name == 'preuve' and unit: out.append(slide('proof', unit, text2html(a[0])))
-    return out
-
-
-def canonical(src, number, attach_figures=False):
+def canonical(src, number, attach_figures=False, extra=None, skip_sections=None, goals_first=False):
     """Units of the shared TeX system (docs/TEX_STYLE_GUIDE.md): the same vocabulary in every migrated course.
     An example followed by \\mxanswerspace gets that answer (revealed on demand); a proof to write becomes a proof slide.
-    attach_figures: a figure outside a box joins the previous slide (worksheet courses); otherwise it is ignored."""
+    attach_figures: a figure outside a box joins the previous slide (worksheet courses); otherwise it is ignored.
+    extra: more environment -> slide kinds (Première: application -> try, proof -> proof); skip_sections: regex of section
+    titles whose content gives no slides; goals_first: a key point before the first section is the goals slide, and
+    examples, pitfalls and extra kinds only count inside a section."""
     ev = walk(src, {'mxunit': 2, 'section': 1, 'mxsection': 1, 'mxsession': 5, 'objectives': 0, 'activity': 0, 'summary': 0,
                     'keypoint': 0, 'definition': 0, 'theorem': 0, 'method': 0, 'example': 0, 'pitfall': 0,
                     'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1})
     kinds = {'objectives': 'goals', 'activity': 'activity', 'summary': 'concept', 'keypoint': 'concept', 'definition': 'concept',
-             'theorem': 'concept', 'method': 'method', 'example': 'example', 'pitfall': 'error'}
-    out = []; unit = ''; pending = None
+             'theorem': 'concept', 'method': 'method', 'example': 'example', 'pitfall': 'error', **(extra or {})}
+    if extra: ev = walk(src, {**{k: 0 for k in extra}, 'mxunit': 2, 'section': 1, 'mxsection': 1, 'mxsession': 5,
+                              **{k: 0 for k in kinds}, 'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1})
+    out = []; unit = ''; pending = None; skipping = False
     for kind, name, a, o in ev:
         if name == 'figtok':
             if attach_figures: attach(out, a[0])
             continue
-        if name == 'mxunit': out.append(slide('title', clean_title(a[1]), '')); pending = None
-        elif name in ('section', 'mxsection'): unit = clean_title(a[0])
+        if name == 'mxunit': out.append(slide('title', clean_title(a[1]), '')); pending = None; unit = ''; skipping = False
+        elif name in ('section', 'mxsection'):
+            unit = clean_title(a[0]); skipping = bool(skip_sections and re.match(skip_sections, unit))
+        elif skipping: continue
+        elif goals_first and kind == 'env' and name == 'keypoint' and not unit:
+            out.append(slide('goals', clean_title(o) if o else '', text2html(a)))
+        elif goals_first and not unit and kind == 'env' and name in ('example', 'pitfall', *(extra or {})): continue
         elif name == 'mxsession': unit = clean_title(a[3])
         elif kind == 'code' and attach_figures: out.append(slide('code', 'Python', esc(a.strip('\n'))))
         elif kind == 'env' and name in kinds:
@@ -356,7 +351,9 @@ def add_widgets(cid, slides):
 
 def files():
     for n in range(1, 11):
-        yield f'premiere-{n:02d}', 'premiere', n, SRC / f'premiere/chapitres/C{n:02d}.tex', SRC / f'premiere/chapitres/C{n:02d}-en.tex', premiere
+        yield (f'premiere-{n:02d}', 'premiere', n, SRC / f'premiere/chapitres/C{n:02d}.fr.tex', SRC / f'premiere/chapitres/C{n:02d}.en.tex',
+               lambda src, n: canonical(src, n, attach_figures=True, extra={'application': 'try', 'proof': 'proof'},
+                                        skip_sections=r'(MCQ|QCM|Diagnostic)', goals_first=True))
     for n in range(1, 16):
         yield (f'seconde-{n:02d}', 'seconde', n, SRC / f'seconde/s{n:02d}.fr.tex', SRC / f'seconde/s{n:02d}.en.tex',
                lambda src, n: canonical(src, n, attach_figures=True))
@@ -370,7 +367,8 @@ def main():
     index = []; problems = []; decks = {}; jobs = {}
     for cid, course, n, fr, en, fn in files():
         if not fr.exists() or not en.exists(): problems.append('missing ' + cid); continue
-        sf, figs_f = extract_figs(fr.read_text(encoding='utf8')); se, figs_e = extract_figs(en.read_text(encoding='utf8'))
+        sf, figs_f = extract_figs(inline_includes(fr.read_text(encoding='utf8'), SRC / course, 'fr'))
+        se, figs_e = extract_figs(inline_includes(en.read_text(encoding='utf8'), SRC / course, 'en'))
         a = fn(sf, n); b = fn(se, n)
         if [x['k'] for x in a] != [x['k'] for x in b]: problems.append(f'{cid}: slide structure differs ({len(a)} vs {len(b)})'); continue
         slides = []

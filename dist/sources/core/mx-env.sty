@@ -147,3 +147,9 @@
 \NewDocumentCommand{\mxanswerspace}{O{4} +m}{\ifmxteacher\begin{solution}#2\end{solution}\else\mxgrid{#1}\fi}
 % \mxwriteproof[h]{proof}: a proof for students to write, the proof for teachers.
 \NewDocumentCommand{\mxwriteproof}{O{4} +m}{\par\textbf{\mxlabelof{writeproof}}\mxanswerspace[#1]{#2}}
+
+% ---- Chapter books (Première) ----------------------------------------------------------------------------------------
+% \mxcorrections{n}: teacher section with the solutions of chapter n, on a new page (build splits on its heading).
+\newcommand{\mxcorrections}[1]{\mx@newblock\section*{\mxlabelof{corrections} #1}}
+% \mxexercisehead{label}{title}: numbered exercise heading (chapter.n) for exercises written as running text.
+\newcommand{\mxexercisehead}[2]{\mxneed{5}\refstepcounter{mxexercise}\subsection*{\mxlabelof{exercise} \themxexercise\ \textperiodcentered\ #2}\label{#1}}

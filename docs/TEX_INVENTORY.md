@@ -9,35 +9,34 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 |---|---:|---:|---:|---:|---:|---|
 | automatismes | 34 | 17 | 1829 | 0 | 0 | 0:  |
 | enrichment | 99 | 49 | 1830 | 0 | 3 | 98: `enrichment/bayes-exercises.tex`, `enrichment/bayes-notes.tex`, `enrichment/bayes-problems.tex`, `enrichment/bayes-solutions.tex`, `enrichment/bisection-exercises.tex`, `enrichment/bisection-notes.tex`, `enrichment/bisection-problems.tex`, `enrichment/bisection-solutions.tex`, `enrichment/complex-rotations-exercises.tex`, `enrichment/complex-rotations-notes.tex`, `enrichment/complex-rotations-problems.tex`, `enrichment/complex-rotations-solutions.tex`, `enrichment/diophantine-exercises.tex`, `enrichment/diophantine-notes.tex`, `enrichment/diophantine-problems.tex`, `enrichment/diophantine-solutions.tex`, `enrichment/euler-trails-exercises.tex`, `enrichment/euler-trails-notes.tex`, `enrichment/euler-trails-problems.tex`, `enrichment/euler-trails-solutions.tex`, `enrichment/inequalities-exercises.tex`, `enrichment/inequalities-notes.tex`, `enrichment/inequalities-problems.tex`, `enrichment/inequalities-solutions.tex`, `enrichment/invariants-exercises.tex`, `enrichment/invariants-notes.tex`, `enrichment/invariants-problems.tex`, `enrichment/invariants-solutions.tex`, `enrichment/lattice-paths-exercises.tex`, `enrichment/lattice-paths-notes.tex`, `enrichment/lattice-paths-problems.tex`, `enrichment/lattice-paths-solutions.tex`, `enrichment/modular-exercises.tex`, `enrichment/modular-notes.tex`, `enrichment/modular-problems.tex`, `enrichment/modular-solutions.tex`, `enrichment/pigeonhole-exercises.tex`, `enrichment/pigeonhole-notes.tex`, `enrichment/pigeonhole-problems.tex`, `enrichment/pigeonhole-solutions.tex`, `enrichment/quadratic-presentation.tex`, `enrichment/telescoping-exercises.tex`, `enrichment/telescoping-notes.tex`, `enrichment/telescoping-problems.tex`, `enrichment/telescoping-solutions.tex`, `enrichment/waiting-time-exercises.tex`, `enrichment/waiting-time-notes.tex`, `enrichment/waiting-time-problems.tex`, `enrichment/waiting-time-solutions.tex` |
-| premiere | 156 | 78 | 9344 | 70 | 3 | 2: `premiere/main.tex` |
+| premiere | 148 | 74 | 9262 | 0 | 0 | 0:  |
 | seconde | 34 | 17 | 2795 | 0 | 0 | 0:  |
 | stmg | 34 | 17 | 8719 | 0 | 0 | 0:  |
 | terminale | 66 | 33 | 17362 | 128 | 5 | 2: `terminale/livret.tex` |
-| **total** | 423 | 211 | 41879 | | | |
+| **total** | 415 | 207 | 41797 | | | |
 
 ## Course environments (defined or used, standard LaTeX ones excluded)
 
 | Environment | automatismes | enrichment | premiere | seconde | stmg | terminale | Defined in |
 |---|---:|---:|---:|---:|---:|---:|---|
+| `example` |  |  | 52 | 161 | 60 |  | (package) |
 | `solution` |  |  |  |  | 234 |  | (package) |
-| `example` |  |  |  | 161 | 60 |  | (package) |
-| `keypoint` |  |  |  | 89 | 11 |  | (package) |
+| `keypoint` |  |  | 70 | 89 | 11 |  | (package) |
 | `exercise` |  |  |  |  | 97 |  | (package) |
 | `fluencysheet` | 88 |  |  |  |  |  | (package) |
 | `method` |  |  |  | 18 | 58 |  | (package) |
-| `repere` |  |  | 70 |  |  |  | premiere |
 | `fluency` |  |  |  | 6 | 55 |  | (package) |
+| `pitfall` |  |  | 47 | 9 | 5 |  | (package) |
 | `activity` |  |  |  |  | 55 |  | (package) |
 | `exitticket` |  |  |  |  | 55 |  | (package) |
 | `homework` |  |  |  |  | 55 |  | (package) |
 | `objectives` |  |  |  |  | 55 |  | (package) |
 | `prerequisites` |  |  |  |  | 55 |  | (package) |
 | `summary` |  |  |  |  | 55 |  | (package) |
-| `erreur` |  |  | 47 |  |  |  | premiere |
+| `application` |  |  | 48 |  |  |  | (package) |
 | `retenir` |  |  |  |  |  | 32 | terminale |
 | `profbox` |  |  |  |  |  | 17 | terminale |
 | `teachernote` |  |  |  | 15 |  |  | (package) |
-| `pitfall` |  |  |  | 9 | 5 |  | (package) |
 | `methode` |  |  |  |  |  | 6 | terminale |
 | `titlepage` |  |  | 1 |  |  | 1 | (package) |
 | `note` | 1 |  |  |  |  |  | (package) |
@@ -46,103 +45,84 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `application` | premiere | 1 | 49 |
-| `code` | premiere | 1 | 45 |
-| `corrsection` | premiere | 1 | 11 |
 | `dd` | terminale | 1 | 81 |
-| `E` | premiere | 1 | 1 |
 | `edition` | terminale | 1 | 4 |
-| `exemple` | premiere | 1 | 53 |
-| `exercice` | premiere, terminale | 2 | 152 |
+| `exercice` | terminale | 1 | 71 |
 | `ExplorerKind` | enrichment | 49 | 51 |
 | `ExplorerLanguage` | enrichment | 49 | 50 |
 | `ExplorerNumber` | enrichment | 49 | 50 |
 | `ExplorerSection` | enrichment | 1 | 180 |
 | `ExplorerTitle` | enrichment | 1 | 50 |
 | `footrulewidth` | enrichment | 1 | 1 |
-| `headrulewidth` | enrichment, premiere, terminale | 5 | 5 |
-| `ligne` | premiere | 1 | 1 |
-| `N` | premiere, terminale | 2 | 159 |
-| `norm` | premiere | 1 | 41 |
-| `preuve` | premiere | 1 | 1 |
-| `R` | premiere, terminale | 2 | 238 |
-| `V` | premiere | 1 | 1 |
-| `vect` | premiere, terminale | 2 | 772 |
+| `headrulewidth` | enrichment, terminale | 3 | 3 |
+| `N` | terminale | 1 | 158 |
+| `R` | terminale | 1 | 237 |
+| `vect` | terminale | 1 | 771 |
 | `VERSIONELEVE` | terminale | 1 | 3 |
-| `versionprof` | premiere | 1 | 2 |
 | `vi` | terminale | 1 | 203 |
 | `vj` | terminale | 1 | 195 |
-| `Z` | premiere, terminale | 2 | 26 |
+| `Z` | terminale | 1 | 25 |
 
-27 names; 6 defined in more than one course.
+17 names; 1 defined in more than one course.
 
 ## Counters
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `exercice` | premiere | 1 |  |
 
-1 names; 0 defined in more than one course.
+0 names; 0 defined in more than one course.
 
 ## Colours
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
 | `amber` | terminale | 1 |  |
-| `bleu` | premiere | 1 |  |
 | `ink` | enrichment, terminale | 2 |  |
 | `mint` | enrichment | 1 |  |
 | `navy` | terminale | 1 |  |
-| `ocre` | premiere | 1 |  |
 | `pale` | terminale | 1 |  |
 | `teal` | terminale | 1 |  |
-| `vert` | premiere | 1 |  |
 | `violet` | enrichment | 1 |  |
 
-10 names; 1 defined in more than one course.
+7 names; 1 defined in more than one course.
 
 ## Conditionals (`\newif`)
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `prof` | premiere, terminale | 2 |  |
+| `prof` | terminale | 1 |  |
 
-1 names; 1 defined in more than one course.
+1 names; 0 defined in more than one course.
 
 ## Packages
 
 | Package | Courses |
 |---|---|
-| `amsmath` | premiere, terminale |
-| `amssymb` | premiere, terminale |
-| `array` | premiere, terminale |
-| `babel` | premiere, terminale |
-| `booktabs` | premiere, terminale |
+| `amsmath` | terminale |
+| `amssymb` | terminale |
+| `array` | terminale |
+| `babel` | terminale |
+| `booktabs` | terminale |
 | `courier` | terminale |
-| `enumitem` | premiere, terminale |
-| `etoolbox` | premiere |
+| `enumitem` | terminale |
 | `explorer` | enrichment |
-| `fancyhdr` | enrichment, premiere, terminale |
-| `fontenc` | premiere, terminale |
+| `fancyhdr` | enrichment, terminale |
+| `fontenc` | terminale |
 | `fontspec` | enrichment |
-| `geometry` | enrichment, premiere, terminale |
-| `graphicx` | premiere |
+| `geometry` | enrichment, terminale |
 | `helvet` | terminale |
-| `hyperref` | premiere, terminale |
-| `inputenc` | premiere, terminale |
+| `hyperref` | terminale |
+| `inputenc` | terminale |
 | `listings` | terminale |
-| `lmodern` | premiere |
-| `longtable` | premiere, terminale |
+| `longtable` | terminale |
 | `mathpazo` | terminale |
-| `mathtools` | premiere, terminale |
-| `microtype` | enrichment, premiere, terminale |
-| `multicol` | premiere, terminale |
-| `needspace` | enrichment, premiere, terminale |
-| `pgfplots` | premiere, terminale |
-| `styles/livret` | premiere |
-| `tabularx` | premiere |
-| `tcolorbox` | premiere, terminale |
-| `tikz` | enrichment, premiere, terminale |
-| `titlesec` | enrichment, premiere, terminale |
+| `mathtools` | terminale |
+| `microtype` | enrichment, terminale |
+| `multicol` | terminale |
+| `needspace` | enrichment, terminale |
+| `pgfplots` | terminale |
+| `tcolorbox` | terminale |
+| `tikz` | enrichment, terminale |
+| `titlesec` | enrichment, terminale |
 | `unicode-math` | enrichment |
-| `xcolor` | enrichment, premiere, terminale |
+| `xcolor` | enrichment, terminale |

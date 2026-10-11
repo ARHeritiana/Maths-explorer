@@ -1,0 +1,791 @@
+{
+ "unit": "C06.fr.tex",
+ "segments": {
+  "c27e9b53b7ef": {
+   "fr": "Dérivation, variations et optimisation",
+   "en": "Differentiation, variation and optimisation",
+   "status": "aligned",
+   "order": 0
+  },
+  "d7ffadecaa6d": {
+   "fr": "Le parcours du chapitre",
+   "en": "Chapter path",
+   "status": "aligned",
+   "order": 1
+  },
+  "a69fdebbd264": {
+   "fr": "\\textbf{Objectifs.} Calculer une dérivée sur son domaine ; étudier variations et extrema ; comparer des courbes ; optimiser ; exploiter les symétries.",
+   "en": "\\textbf{Objectives.} Calculate a derivative on its domain; study variation and extrema; compare curves; optimise; use symmetries.",
+   "status": "aligned",
+   "order": 2
+  },
+  "c338fe926ee6": {
+   "fr": "\\textbf{Prérequis.} Nombre dérivé, calcul algébrique, signe d’un trinôme, intervalles.",
+   "en": "\\textbf{Prerequisites.} Derivative at a point, algebraic calculation, sign of a quadratic, intervals.",
+   "status": "aligned",
+   "order": 3
+  },
+  "8efae72e2d3f": {
+   "fr": "\\textbf{Repère annuel.} 1–10 décembre : 8 h, consolidation les 15 et 17",
+   "en": "\\textbf{Yearly reference point.} 1--10 December: 8 hours, consolidation on the 15th and 17th",
+   "status": "aligned",
+   "order": 4
+  },
+  "5bfbb4ae69af": {
+   "fr": "Diagnostic : six questions, 10 minutes",
+   "en": "Diagnostic: six questions, 10 minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "716eac61815e": {
+   "fr": "Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.",
+   "en": "Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.",
+   "status": "aligned",
+   "order": 6
+  },
+  "2c8122c1dc30": {
+   "fr": "Dérivée de [[m1]] en 3 ?",
+   "en": "Derivative of [[m1]] at 3?",
+   "status": "aligned",
+   "order": 7
+  },
+  "8c4336647c22": {
+   "fr": "Domaine de [[m1]] ?",
+   "en": "Domain of [[m1]]?",
+   "status": "aligned",
+   "order": 8
+  },
+  "2502299dbf22": {
+   "fr": "Signe de [[m1]] ?",
+   "en": "Sign of [[m1]]?",
+   "status": "aligned",
+   "order": 9
+  },
+  "e4c26f7751e1": {
+   "fr": "Développer [[m1]].",
+   "en": "Expand [[m1]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "69083392987a": {
+   "fr": "Pour [[m1]], comparer [[m2]] et [[m3]].",
+   "en": "For [[m1]], compare [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "09505f320bc6": {
+   "fr": "Si [[m1]], [[m2]], équation de la tangente ?",
+   "en": "If [[m1]], [[m2]], what is the equation of the tangent?",
+   "status": "aligned",
+   "order": 12
+  },
+  "65855e601207": {
+   "fr": "Après le diagnostic.",
+   "en": "After the diagnostic.",
+   "status": "aligned",
+   "order": 13
+  },
+  "b2d2cf721c3d": {
+   "fr": "Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.",
+   "en": "Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.",
+   "status": "aligned",
+   "order": 14
+  },
+  "cc06b44f9251": {
+   "fr": "Oral et logique.",
+   "en": "Speaking and logic.",
+   "status": "aligned",
+   "order": 15
+  },
+  "34c20b2a6f25": {
+   "fr": "Présenter un tableau de variations en distinguant signe de f et signe de sa dérivée. Expliquer pourquoi les bornes d’un problème d’optimisation doivent être examinées.",
+   "en": "Present a variation table, distinguishing the sign of f from the sign of its derivative. Explain why the endpoints of an optimisation problem must be examined.",
+   "status": "aligned",
+   "order": 16
+  },
+  "c7fad140da61": {
+   "fr": "Chercher avant de formaliser",
+   "en": "Investigate before formalising",
+   "status": "aligned",
+   "order": 17
+  },
+  "f890db019715": {
+   "fr": "Une fonction croissante peut-elle avoir une tangente horizontale ? Chercher un exemple ; peut-elle avoir une dérivée strictement négative en un point intérieur ?",
+   "en": "Can an increasing function have a horizontal tangent? Look for an example; can it have a strictly negative derivative at an interior point?",
+   "status": "aligned",
+   "order": 18
+  },
+  "6a201310450e": {
+   "fr": "Organisation.",
+   "en": "Organisation.",
+   "status": "aligned",
+   "order": 19
+  },
+  "e743e88cbeed": {
+   "fr": "Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.",
+   "en": "Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.",
+   "status": "aligned",
+   "order": 20
+  },
+  "3d5539a6fc7a": {
+   "fr": "Fonction dérivée et fonctions usuelles",
+   "en": "Derivative function and standard functions",
+   "status": "aligned",
+   "order": 21
+  },
+  "6e60c624bf2b": {
+   "fr": "Une fonction est dérivable sur un intervalle lorsqu’elle l’est en chacun de ses points ; sa dérivée associe à x le nombre [[m1]]. Les dérivées usuelles sont : constante [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]] pour [[m7]] ; [[m8]] pour [[m9]]. Pour [[m10]], [[m11]] sur son domaine de dérivabilité ; pour [[m12]], la dérivée est 0 directement.",
+   "en": "A function is differentiable on an interval when it is differentiable at each of its points; its derivative associates with x the number [[m1]]. The standard derivatives are: constant [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]] for [[m7]]; [[m8]] for [[m9]]. For [[m10]], [[m11]] on its domain of differentiability; for [[m12]], the derivative is 0 directly.",
+   "status": "aligned",
+   "order": 23
+  },
+  "576cd45eed35": {
+   "fr": "Carré : le taux vaut [[m1]]. Inverse : pour [[m2]], [[m3]] et [[m4]], [[m5]], qui tend vers [[m6]]. Les autres formules sont admises ici.",
+   "en": "Square: the rate is [[m1]]. Reciprocal: for [[m2]], [[m3]] and [[m4]], [[m5]], which tends to [[m6]]. The other formulas are accepted here.",
+   "status": "aligned",
+   "order": 25
+  },
+  "baebfd9d269c": {
+   "fr": "Pour [[m1]], le domaine est [[m2]] et [[m3]]. Pour [[m4]], la fonction existe en 0, sa dérivée usuelle seulement pour [[m5]].",
+   "en": "For [[m1]], the domain is [[m2]] and [[m3]]. For [[m4]], the function exists at 0, its standard derivative only for [[m5]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "97991286fa0e": {
+   "fr": "Le domaine de dérivabilité peut être plus petit que le domaine de définition.",
+   "en": "The domain of differentiability may be smaller than the domain of definition.",
+   "status": "aligned",
+   "order": 27
+  },
+  "87b2294d6c66": {
+   "fr": "Dériver [[m1]], [[m2]] et [[m3]] en précisant les domaines.",
+   "en": "Differentiate [[m1]], [[m2]] and [[m3]], stating the domains.",
+   "status": "aligned",
+   "order": 28
+  },
+  "ab1701a057ca": {
+   "fr": "Somme, produit, inverse et quotient",
+   "en": "Sum, product, reciprocal and quotient",
+   "status": "aligned",
+   "order": 29
+  },
+  "5e0c9a2f9957": {
+   "fr": "Pour u et v dérivables, [[m1]], [[m2]], [[m3]]. Là où [[m4]], [[m5]] et [[m6]].",
+   "en": "For differentiable u and v, [[m1]], [[m2]], [[m3]]. Where [[m4]], [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "d0f214188547": {
+   "fr": "Pour le produit, ajouter et retrancher [[m1]] au numérateur. Le taux devient [[m2]]. Comme une fonction dérivable est continue (admis), on obtient [[m3]]. Les autres règles sont admises.",
+   "en": "For the product, add and subtract [[m1]] in the numerator. The rate becomes [[m2]]. Since a differentiable function is continuous (accepted), we obtain [[m3]]. The other rules are accepted.",
+   "status": "aligned",
+   "order": 33
+  },
+  "954b87a169ac": {
+   "fr": "Pour [[m1]], [[m2]], [[m3]]. Garder les parenthèses évite de changer un seul signe au lieu de tout le numérateur.",
+   "en": "For [[m1]], [[m2]], [[m3]]. Keeping the brackets avoids changing the sign of a single term instead of the whole numerator.",
+   "status": "aligned",
+   "order": 34
+  },
+  "3a216f5563c6": {
+   "fr": "La dérivée d’un produit n’est pas le produit des dérivées ; la dérivée d’un quotient n’est pas leur quotient.",
+   "en": "The derivative of a product is not the product of the derivatives; the derivative of a quotient is not their quotient.",
+   "status": "aligned",
+   "order": 35
+  },
+  "f2b1dcb6ac4a": {
+   "fr": "Dériver [[m1]] puis [[m2]].",
+   "en": "Differentiate [[m1]], then [[m2]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "2cfca42328bc": {
+   "fr": "Signe de la dérivée et extrema",
+   "en": "Sign of the derivative and extrema",
+   "status": "aligned",
+   "order": 37
+  },
+  "39564e11eb6b": {
+   "fr": "Sur un intervalle I, si [[m1]], f est croissante ; si [[m2]], elle est décroissante ; si [[m3]] partout, elle est constante. Une dérivée strictement positive entraîne une stricte croissance. Si f possède un extremum local en un point intérieur où elle est dérivable, sa dérivée y est nulle. La réciproque est fausse.",
+   "en": "On an interval I, if [[m1]], f is increasing; if [[m2]], it is decreasing; if [[m3]] everywhere, it is constant. A strictly positive derivative implies strict increase. If f has a local extremum at an interior point where it is differentiable, its derivative is zero there. The converse is false.",
+   "status": "aligned",
+   "order": 39
+  },
+  "d4f6255940a5": {
+   "fr": "Théorèmes de variation admis. Pour un minimum intérieur en a, les taux à droite sont positifs ou nuls, ceux à gauche négatifs ou nuls ; s’ils convergent vers le même réel, il est 0. Même argument pour un maximum.",
+   "en": "Variation theorems accepted. For an interior minimum at a, the rates on the right are positive or zero, those on the left negative or zero; if they converge to the same real number, it is 0. Same argument for a maximum.",
+   "status": "aligned",
+   "order": 41
+  },
+  "88f3bba51c9c": {
+   "fr": "[[m1]] : [[m2]]. f croît sur [[m3]], décroît sur [[m4]], croît sur [[m5]] ; maximum local [[m6]], minimum local [[m7]]. Aucun de ces extrema n’est global sur [[m8]].",
+   "en": "[[m1]]: [[m2]]. f increases on [[m3]], decreases on [[m4]], increases on [[m5]]; local maximum [[m6]], local minimum [[m7]]. Neither of these extrema is global on [[m8]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "5e29e2c17e48": {
+   "fr": "Le théorème s’applique sur un intervalle. Une fonction peut décroître sur deux intervalles séparés sans décroître sur leur réunion.",
+   "en": "The theorem applies on an interval. A function can decrease on two separate intervals without decreasing on their union.",
+   "status": "aligned",
+   "order": 43
+  },
+  "985f5b32e72b": {
+   "fr": "Étudier [[m1]] sur [[m2]] et donner ses extrema sur cet intervalle.",
+   "en": "Study [[m1]] on [[m2]] and give its extrema on this interval.",
+   "status": "aligned",
+   "order": 44
+  },
+  "ffe5111c282f": {
+   "fr": "Parité, inégalités et comparaison",
+   "en": "Parity, inequalities and comparison",
+   "status": "aligned",
+   "order": 45
+  },
+  "c1650f502142": {
+   "fr": "Sur un domaine symétrique par rapport à 0, f est paire si [[m1]] et impaire si [[m2]]. La courbe d’une fonction paire est symétrique par rapport à l’axe des ordonnées ; celle d’une impaire par rapport à l’origine. Pour comparer f et g, on étudie le signe de [[m3]], éventuellement avec sa dérivée.",
+   "en": "On a domain symmetric about 0, f is even if [[m1]] and odd if [[m2]]. The curve of an even function is symmetric about the y-axis; that of an odd function about the origin. To compare f and g, we study the sign of [[m3]], possibly with its derivative.",
+   "status": "aligned",
+   "order": 47
+  },
+  "a00f1f14a3b6": {
+   "fr": "Les symétries découlent des coordonnées des points images. Pour une inégalité, une étude de variations peut donner un minimum de la différence, puis son signe ; la dérivée ne se substitue pas directement à cette différence.",
+   "en": "The symmetries follow from the coordinates of the image points. For an inequality, a study of variation may give a minimum of the difference, then its sign; the derivative does not directly replace this difference.",
+   "status": "aligned",
+   "order": 49
+  },
+  "676c09d98d90": {
+   "fr": "Pour [[m1]], [[m2]] a pour dérivée [[m3]]. Elle décroît jusqu’à 1 puis croît ; [[m4]], donc [[m5]]. L’égalité est obtenue seulement en 1.",
+   "en": "For [[m1]], [[m2]] has derivative [[m3]]. It decreases up to 1 then increases; [[m4]], so [[m5]]. Equality is obtained only at 1.",
+   "status": "aligned",
+   "order": 50
+  },
+  "f26032c1096d": {
+   "fr": "Verifier le domaine avant la parité. Le signe de [[m1]] renseigne sur la variation de [[m2]], pas directement sur son signe.",
+   "en": "Check the domain before parity. The sign of [[m1]] tells us about the variation of [[m2]], not directly about its sign.",
+   "status": "aligned",
+   "order": 51
+  },
+  "a29b56cd7d7c": {
+   "fr": "Étudier la parité de [[m1]] et [[m2]] ; démontrer [[m3]].",
+   "en": "Study the parity of [[m1]] and [[m2]]; prove [[m3]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "faa9ddab6ee8": {
+   "fr": "Optimisation et méthode de Newton",
+   "en": "Optimisation and Newton's method",
+   "status": "aligned",
+   "order": 53
+  },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 54
+  },
+  "ddf6d0a9d284": {
+   "fr": "Optimiser consiste à définir la variable et son domaine, exprimer la grandeur à optimiser, puis comparer toutes les valeurs candidates, y compris les bornes. La méthode de Newton utilise la tangente pour approcher une solution de [[m1]] : [[m2]] lorsque [[m3]]. Elle n’est utilisée que dans des cas favorables.",
+   "en": "Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints. Newton's method uses the tangent to approximate a solution of [[m1]]: [[m2]] when [[m3]]. It is used only in favourable cases.",
+   "status": "aligned",
+   "order": 55
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 56
+  },
+  "776065215998": {
+   "fr": "La formule de Newton vient de l’intersection avec l’axe horizontal de [[m1]]. La convergence n’est pas garantie en général ; on la constate et contrôle dans le cas retenu.",
+   "en": "Newton's formula comes from the intersection of [[m1]] with the horizontal axis. Convergence is not guaranteed in general; it is observed and checked in the case chosen.",
+   "status": "aligned",
+   "order": 57
+  },
+  "fe4fa877df12": {
+   "fr": "Pour [[m1]] avec [[m2]], Newton donne [[m3]], [[m4]]. Les carrés sont 2{,}25 puis environ 2{,}00694 : on approche [[m5]]. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.",
+   "en": "For [[m1]] with [[m2]], Newton gives [[m3]], [[m4]]. The squares are 2.25 then about 2.00694: we approach [[m5]]. The program must check for a zero derivative and a maximum number of steps.",
+   "status": "aligned",
+   "order": 58
+  },
+  "658adcbb5df8": {
+   "fr": "Une valeur numérique fournie par un algorithme n’est pas une preuve de minimum ni de convergence.",
+   "en": "A numerical value produced by an algorithm is not a proof of a minimum or of convergence.",
+   "status": "aligned",
+   "order": 59
+  },
+  "1613ed2f76ae": {
+   "fr": "Un rectangle de périmètre 12 m a largeur x. Déterminer l’aire maximale par dérivation.",
+   "en": "A rectangle of perimeter 12 m has width x. Determine the maximum area by differentiation.",
+   "status": "aligned",
+   "order": 60
+  },
+  "c82d22e2d8b1": {
+   "fr": "Parcours d’exercices",
+   "en": "Exercise path",
+   "status": "aligned",
+   "order": 61
+  },
+  "31c1e4322269": {
+   "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
+   "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
+   "status": "aligned",
+   "order": 62
+  },
+  "60f448c63376": {
+   "fr": "Une collection de dérivées",
+   "en": "A collection of derivatives",
+   "status": "aligned",
+   "order": 63
+  },
+  "5d24c3fdb00b": {
+   "fr": "On considère les fonctions",
+   "en": "Consider the functions",
+   "status": "aligned",
+   "order": 64
+  },
+  "4c072b1f6f68": {
+   "fr": "Préciser le domaine de définition de chacune de ces fonctions.",
+   "en": "State the domain of definition of each of these functions.",
+   "status": "aligned",
+   "order": 65
+  },
+  "86113c758dd9": {
+   "fr": "Calculer leurs dérivées en nommant, à chaque fois, la règle utilisée. Pour [[m1]], conserver d’abord les deux termes de la règle du produit ; pour [[m2]], écrire le numérateur avant de le réduire.",
+   "en": "Calculate their derivatives, naming the rule used each time. For [[m1]], first keep the two terms of the product rule; for [[m2]], write the numerator before simplifying it.",
+   "status": "aligned",
+   "order": 66
+  },
+  "91ca9ac1240a": {
+   "fr": "Contrôler le résultat concernant [[m1]] en développant son expression avant de dériver.",
+   "en": "Check the result for [[m1]] by expanding its expression before differentiating.",
+   "status": "aligned",
+   "order": 67
+  },
+  "cdbaafd9370d": {
+   "fr": "Un tableau complet",
+   "en": "A complete table",
+   "status": "aligned",
+   "order": 68
+  },
+  "8e1886f5013f": {
+   "fr": "La fonction [[m1]] est définie sur [[m2]] par [[m3]]. On cherche ses valeurs minimale et maximale sur cet intervalle.",
+   "en": "The function [[m1]] is defined on [[m2]] by [[m3]]. We look for its minimum and maximum values on this interval.",
+   "status": "aligned",
+   "order": 69
+  },
+  "97dcbe2dde6d": {
+   "fr": "Calculer et factoriser [[m1]], puis étudier son signe sur [[m2]].",
+   "en": "Calculate and factorise [[m1]], then study its sign on [[m2]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "074d7989fa7c": {
+   "fr": "Dresser le tableau de variations de [[m1]] en indiquant les valeurs aux bornes et aux points où la dérivée s’annule.",
+   "en": "Draw the variation table of [[m1]], giving the values at the endpoints and at the points where the derivative vanishes.",
+   "status": "aligned",
+   "order": 71
+  },
+  "e797f9414d52": {
+   "fr": "Donner le minimum et le maximum de [[m1]] sur l’intervalle, ainsi que toutes les abscisses où ils sont atteints.",
+   "en": "Give the minimum and the maximum of [[m1]] on the interval, as well as all the x-coordinates where they are reached.",
+   "status": "aligned",
+   "order": 72
+  },
+  "463e68361e85": {
+   "fr": "Un quotient",
+   "en": "A quotient",
+   "status": "aligned",
+   "order": 73
+  },
+  "cee603f4e030": {
+   "fr": "Pour tout réel strictement positif [[m1]], on pose [[m2]].",
+   "en": "For every strictly positive real number [[m1]], let [[m2]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "a70f575fac3f": {
+   "fr": "Étudier les variations de [[m1]] sur [[m2]]. Présenter les facteurs qui déterminent le signe de la dérivée.",
+   "en": "Study the variation of [[m1]] on [[m2]]. Present the factors that determine the sign of the derivative.",
+   "status": "aligned",
+   "order": 75
+  },
+  "e0ccfffe83cc": {
+   "fr": "En déduire la plus petite valeur de [[m1]], puis écrire une inégalité valable pour tout [[m2]]. Préciser exactement son cas d’égalité.",
+   "en": "Deduce the smallest value of [[m1]], then write an inequality valid for all [[m2]]. State exactly its equality case.",
+   "status": "aligned",
+   "order": 76
+  },
+  "39bc59210644": {
+   "fr": "Comparer deux courbes",
+   "en": "Comparing two curves",
+   "status": "aligned",
+   "order": 77
+  },
+  "baca6f5720e3": {
+   "fr": "Les fonctions [[m1]] et [[m2]] sont définies sur [[m3]]. On note [[m4]] et [[m5]] leurs courbes dans un même repère.",
+   "en": "The functions [[m1]] and [[m2]] are defined on [[m3]]. Let [[m4]] and [[m5]] be their curves in the same frame.",
+   "status": "aligned",
+   "order": 78
+  },
+  "276cac212426": {
+   "fr": "Déterminer les points d’intersection de ces deux courbes.",
+   "en": "Determine the points of intersection of these two curves.",
+   "status": "aligned",
+   "order": 79
+  },
+  "8ba971a587ef": {
+   "fr": "Étudier leur position relative sur [[m1]] en choisissant une méthode adaptée. Traduire votre résultat par les intervalles où [[m2]] est au-dessus ou au-dessous de [[m3]].",
+   "en": "Study their relative position on [[m1]] using a suitable method. Express your result as the intervals where [[m2]] is above or below [[m3]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "7a99f7411532": {
+   "fr": "Un emballage",
+   "en": "A box",
+   "status": "aligned",
+   "order": 81
+  },
+  "74cce440baa8": {
+   "fr": "On fabrique une boîte sans couvercle à partir d’une feuille carrée de 12 cm de côté. On découpe dans chacun des quatre coins un carré de côté [[m1]] cm, puis on relève les bords restants. L’épaisseur de la feuille est négligée.",
+   "en": "A box without a lid is made from a square sheet of side 12 cm. A square of side [[m1]] cm is cut from each of the four corners, then the remaining edges are folded up. The thickness of the sheet is neglected.",
+   "status": "aligned",
+   "order": 82
+  },
+  "d196f8d1077f": {
+   "fr": "Dessiner le patron et exprimer la hauteur ainsi que les deux dimensions de la base de la boîte. Préciser les valeurs de [[m1]] qui donnent une boîte de volume non nul.",
+   "en": "Draw the net and express the height and the two dimensions of the base of the box. State the values of [[m1]] that give a box of nonzero volume.",
+   "status": "aligned",
+   "order": 83
+  },
+  "40b265b15a51": {
+   "fr": "Exprimer le volume [[m1]] en centimètres cubes. Déterminer les dimensions qui rendent ce volume maximal.",
+   "en": "Express the volume [[m1]] in cubic centimetres. Determine the dimensions that make this volume maximal.",
+   "status": "aligned",
+   "order": 84
+  },
+  "552d048a3fe3": {
+   "fr": "Contrôler les valeurs aux deux bornes du domaine et donner le volume maximal exact.",
+   "en": "Check the values at the two endpoints of the domain and give the exact maximum volume.",
+   "status": "aligned",
+   "order": 85
+  },
+  "4d13847db740": {
+   "fr": "Stationnaire sans extremum",
+   "en": "Stationary without an extremum",
+   "status": "aligned",
+   "order": 86
+  },
+  "bb1b2e40e84f": {
+   "fr": "Un élève affirme : « Si la dérivée s’annule en un point, la fonction possède forcément un extremum local en ce point. » On étudie la fonction [[m1]] pour tester cette affirmation.",
+   "en": "A student claims: ``If the derivative vanishes at a point, the function necessarily has a local extremum at that point.'' We study the function [[m1]] to test this claim.",
+   "status": "aligned",
+   "order": 87
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "7ed3b9a2d726": {
+   "fr": "Comparer à [[m1]] les valeurs de [[m2]] pour des réels [[m3]] négatifs puis positifs, aussi proches de 0 que l’on veut.",
+   "en": "Compare with [[m1]] the values of [[m2]] for negative then positive real numbers [[m3]], as close to 0 as we like.",
+   "status": "aligned",
+   "order": 89
+  },
+  "7df979d7e5b8": {
+   "fr": "Conclure sur l’existence d’un extremum local en 0 et sur l’affirmation proposée.",
+   "en": "Conclude about the existence of a local extremum at 0 and about the claim proposed.",
+   "status": "aligned",
+   "order": 90
+  },
+  "9fc76aaafb64": {
+   "fr": "Comparer des stratégies",
+   "en": "Comparing strategies",
+   "status": "aligned",
+   "order": 91
+  },
+  "7bd3fb9894bd": {
+   "fr": "On souhaite démontrer que, pour tout réel [[m1]], [[m2]].",
+   "en": "We wish to prove that, for every real number [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "7ff547858c5c": {
+   "fr": "Proposer une démonstration en faisant apparaître un carré.",
+   "en": "Give a proof by making a square appear.",
+   "status": "aligned",
+   "order": 93
+  },
+  "e23e27dc5bf1": {
+   "fr": "Proposer une seconde démonstration en étudiant les variations d’une fonction.",
+   "en": "Give a second proof by studying the variation of a function.",
+   "status": "aligned",
+   "order": 94
+  },
+  "31789b7cd33b": {
+   "fr": "Préciser le cas d’égalité. Comparer les deux méthodes : laquelle demande ici le moins de calculs ?",
+   "en": "State the equality case. Compare the two methods: which requires the least calculation here?",
+   "status": "aligned",
+   "order": 95
+  },
+  "2956a7106212": {
+   "fr": "Reprise différée",
+   "en": "Delayed review",
+   "status": "aligned",
+   "order": 96
+  },
+  "288c18d90b98": {
+   "fr": "La fonction inverse [[m1]] a pour domaine [[m2]]. Un élève calcule [[m3]] et conclut que [[m4]] est décroissante sur tout [[m5]].",
+   "en": "The reciprocal function [[m1]] has domain [[m2]]. A student calculates [[m3]] and concludes that [[m4]] is decreasing on all of [[m5]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "b410a1ca78ff": {
+   "fr": "Identifier l’hypothèse manquante dans l’application du théorème reliant signe de la dérivée et variations.",
+   "en": "Identify the missing hypothesis in the application of the theorem linking the sign of the derivative and variation.",
+   "status": "aligned",
+   "order": 98
+  },
+  "edc4ed67e7b0": {
+   "fr": "Indiquer les deux intervalles sur lesquels sa conclusion est correcte.",
+   "en": "State the two intervals on which the conclusion is correct.",
+   "status": "aligned",
+   "order": 99
+  },
+  "2c9d87b4dedb": {
+   "fr": "À l’aide des nombres [[m1]] et 1, construire un contre-exemple à sa conclusion sur tout [[m2]].",
+   "en": "Using the numbers [[m1]] and 1, construct a counterexample to the conclusion on all of [[m2]].",
+   "status": "aligned",
+   "order": 100
+  },
+  "261ef763c4c8": {
+   "fr": "Travail personnel.",
+   "en": "Homework.",
+   "status": "aligned",
+   "order": 101
+  },
+  "1e62d212eb03": {
+   "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
+   "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
+   "status": "aligned",
+   "order": 102
+  },
+  "8a14bcc09f57": {
+   "fr": "À faire dans le manuel CQFD",
+   "en": "To do in the CQFD textbook",
+   "status": "aligned",
+   "order": 103
+  },
+  "3b23cff4a4c2": {
+   "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
+   "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
+   "status": "aligned",
+   "order": 104
+  },
+  "47c275028dd3": {
+   "fr": "CQFD, exercice 12 p. 156, questions 1 et 2.",
+   "en": "CQFD, exercise 12 p.~156, questions 1 and 2.",
+   "status": "aligned",
+   "order": 105
+  },
+  "9d0b8e9a1efc": {
+   "fr": "Calculer la différence, étudier son signe et traduire celui-ci en position relative des courbes.",
+   "en": "Calculate the difference, study its sign and translate this into the relative position of the curves.",
+   "status": "aligned",
+   "order": 106
+  },
+  "648863d1afc6": {
+   "fr": "CQFD, exercice 16 p. 156, questions f et g.",
+   "en": "CQFD, exercise 16 p.~156, questions f and g.",
+   "status": "aligned",
+   "order": 107
+  },
+  "7d79906e0ce7": {
+   "fr": "Donner pour chaque fonction un intervalle où elle est à la fois négative et croissante ; justifier les deux propriétés séparément.",
+   "en": "For each function, give an interval on which it is both negative and increasing; justify the two properties separately.",
+   "status": "aligned",
+   "order": 108
+  },
+  "3b951efef83f": {
+   "fr": "QCM 1 : comprendre et choisir",
+   "en": "MCQ 1: understand and choose",
+   "status": "aligned",
+   "order": 109
+  },
+  "709bdf5649bc": {
+   "fr": "[[m1]] vaut",
+   "en": "[[m1]] equals",
+   "status": "aligned",
+   "order": 113
+  },
+  "c7cb9f108dad": {
+   "fr": "[[m1]] sur un intervalle implique",
+   "en": "[[m1]] on an interval implies",
+   "status": "aligned",
+   "order": 114
+  },
+  "1de696640103": {
+   "fr": "f positive",
+   "en": "f positive",
+   "status": "aligned",
+   "order": 115
+  },
+  "9c1768ef4eb3": {
+   "fr": "f négative",
+   "en": "f negative",
+   "status": "aligned",
+   "order": 116
+  },
+  "16b445ba2774": {
+   "fr": "f strictement croissante",
+   "en": "f strictly increasing",
+   "status": "aligned",
+   "order": 117
+  },
+  "e8019702a364": {
+   "fr": "[[m1]] est définie si",
+   "en": "[[m1]] is defined if",
+   "status": "aligned",
+   "order": 119
+  },
+  "cc229fe9b5f3": {
+   "fr": "QCM 2 : comprendre et choisir",
+   "en": "MCQ 2: understand and choose",
+   "status": "aligned",
+   "order": 120
+  },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 121
+  },
+  "7fc9388abb36": {
+   "fr": "[[m1]] est",
+   "en": "[[m1]] is",
+   "status": "aligned",
+   "order": 122
+  },
+  "bdd72dcde157": {
+   "fr": "paire",
+   "en": "even",
+   "status": "aligned",
+   "order": 123
+  },
+  "544d0388674e": {
+   "fr": "constante",
+   "en": "constant",
+   "status": "aligned",
+   "order": 124
+  },
+  "0b79f9651ec6": {
+   "fr": "impaire",
+   "en": "odd",
+   "status": "aligned",
+   "order": 125
+  },
+  "1f0736259508": {
+   "fr": "ni paire ni impaire",
+   "en": "neither even nor odd",
+   "status": "aligned",
+   "order": 126
+  },
+  "a51b1e0328b1": {
+   "fr": "[[m1]] implique nécessairement",
+   "en": "[[m1]] necessarily implies",
+   "status": "aligned",
+   "order": 127
+  },
+  "6253a6e7ab62": {
+   "fr": "tangente horizontale",
+   "en": "a horizontal tangent",
+   "status": "aligned",
+   "order": 128
+  },
+  "e77a31599e99": {
+   "fr": "maximum",
+   "en": "a maximum",
+   "status": "aligned",
+   "order": 129
+  },
+  "bd164fdac82c": {
+   "fr": "minimum",
+   "en": "a minimum",
+   "status": "aligned",
+   "order": 130
+  },
+  "0ff41603c462": {
+   "fr": "f constante",
+   "en": "f constant",
+   "status": "aligned",
+   "order": 131
+  },
+  "3089e3b021dc": {
+   "fr": "Dérivée de [[m1]] :",
+   "en": "Derivative of [[m1]]:",
+   "status": "aligned",
+   "order": 132
+  },
+  "f7fcb0ed96a3": {
+   "fr": "Minimum de [[m1]] sur [[m2]] :",
+   "en": "Minimum of [[m1]] on [[m2]]:",
+   "status": "aligned",
+   "order": 133
+  },
+  "6bcf7eebb91f": {
+   "fr": "aucun",
+   "en": "none",
+   "status": "aligned",
+   "order": 134
+  },
+  "9be729f26c0d": {
+   "fr": "Newton pour [[m1]] n’est pas défini avec [[m2]]",
+   "en": "Newton's method for [[m1]] is not defined with [[m2]]",
+   "status": "aligned",
+   "order": 135
+  },
+  "d5fc4ef9b48b": {
+   "fr": "Vrai ou faux ? Justifier.",
+   "en": "True or false? Justify.",
+   "status": "aligned",
+   "order": 136
+  },
+  "f63eb2cb663d": {
+   "fr": "La dérivée d’une fonction positive est positive.",
+   "en": "The derivative of a positive function is positive.",
+   "status": "aligned",
+   "order": 137
+  },
+  "b4490a0c8126": {
+   "fr": "Un extremum intérieur d’une fonction dérivable donne une dérivée nulle.",
+   "en": "An interior extremum of a differentiable function gives a zero derivative.",
+   "status": "aligned",
+   "order": 138
+  },
+  "9d94209ab7b2": {
+   "fr": "Le produit de deux fonctions croissantes est croissant.",
+   "en": "The product of two increasing functions is increasing.",
+   "status": "aligned",
+   "order": 139
+  },
+  "6630f206d598": {
+   "fr": "Bilan personnel",
+   "en": "Self-assessment",
+   "status": "aligned",
+   "order": 140
+  },
+  "ee92f73b95aa": {
+   "fr": "Je dérive sur le bon domaine ; je simplifie sans perdre les valeurs interdites ; je distingue extremum local et global ; je choisis parfois une factorisation plutôt qu’une dérivée.",
+   "en": "I differentiate on the right domain; I simplify without losing the forbidden values; I distinguish local from global extremum; I sometimes choose a factorisation rather than a derivative.",
+   "status": "aligned",
+   "order": 141
+  },
+  "4dab232b00d5": {
+   "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
+   "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
+   "status": "aligned",
+   "order": 142
+  }
+ }
+}

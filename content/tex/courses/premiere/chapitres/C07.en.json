@@ -1,0 +1,719 @@
+{
+ "unit": "C07.fr.tex",
+ "segments": {
+  "37db9616fe75": {
+   "fr": "Géométrie repérée : droites, projections et cercles",
+   "en": "Coordinate geometry: lines, projections and circles",
+   "status": "aligned",
+   "order": 0
+  },
+  "d7ffadecaa6d": {
+   "fr": "Le parcours du chapitre",
+   "en": "Chapter path",
+   "status": "aligned",
+   "order": 1
+  },
+  "c14f4c392be4": {
+   "fr": "\\textbf{Objectifs.} Utiliser un vecteur normal ; calculer un projeté ; déterminer ou reconnaître un cercle ; traduire une configuration en équations.",
+   "en": "\\textbf{Objectives.} Use a normal vector; calculate a projection; determine or recognise a circle; translate a configuration into equations.",
+   "status": "aligned",
+   "order": 2
+  },
+  "4d1d3e1b4dad": {
+   "fr": "\\textbf{Prérequis.} Coordonnées vectorielles, produit scalaire, systèmes linéaires, complétion du carré. Repère toujours orthonormé.",
+   "en": "\\textbf{Prerequisites.} Vector coordinates, scalar product, linear systems, completing the square. The frame is always orthonormal.",
+   "status": "aligned",
+   "order": 3
+  },
+  "d0d56e3eda92": {
+   "fr": "\\textbf{Repère annuel.} 5, 7 et 12 janvier : 6 h",
+   "en": "\\textbf{Yearly reference point.} 5, 7 and 12 January: 6 hours",
+   "status": "aligned",
+   "order": 4
+  },
+  "5bfbb4ae69af": {
+   "fr": "Diagnostic : six questions, 10 minutes",
+   "en": "Diagnostic: six questions, 10 minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "716eac61815e": {
+   "fr": "Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.",
+   "en": "Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.",
+   "status": "aligned",
+   "order": 6
+  },
+  "0f56918c9851": {
+   "fr": "Le point [[m1]] vérifie-t-il [[m2]] ?",
+   "en": "Does the point [[m1]] satisfy [[m2]]?",
+   "status": "aligned",
+   "order": 7
+  },
+  "183d2c40aae7": {
+   "fr": "Résoudre [[m1]], [[m2]].",
+   "en": "Solve [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "518d7586b01e": {
+   "fr": "Distance de [[m1]] à [[m2]] ?",
+   "en": "Distance from [[m1]] to [[m2]]?",
+   "status": "aligned",
+   "order": 9
+  },
+  "8f726128433f": {
+   "fr": "Compléter [[m1]].",
+   "en": "Complete [[m1]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "e229832a995e": {
+   "fr": "Résoudre [[m1]] dans [[m2]].",
+   "en": "Solve [[m1]] in [[m2]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "65855e601207": {
+   "fr": "Après le diagnostic.",
+   "en": "After the diagnostic.",
+   "status": "aligned",
+   "order": 12
+  },
+  "b2d2cf721c3d": {
+   "fr": "Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.",
+   "en": "Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.",
+   "status": "aligned",
+   "order": 13
+  },
+  "cc06b44f9251": {
+   "fr": "Oral et logique.",
+   "en": "Speaking and logic.",
+   "status": "aligned",
+   "order": 14
+  },
+  "8884820b6087": {
+   "fr": "Présenter les deux conditions caractérisant un projeté. Donner une preuve géométrique et une preuve algébrique d’une médiatrice.",
+   "en": "Present the two conditions that characterise a projection. Give a geometric proof and an algebraic proof of a perpendicular bisector.",
+   "status": "aligned",
+   "order": 15
+  },
+  "c7fad140da61": {
+   "fr": "Chercher avant de formaliser",
+   "en": "Investigate before formalising",
+   "status": "aligned",
+   "order": 16
+  },
+  "f8bff48f7d0a": {
+   "fr": "À partir de [[m1]] et [[m2]], comparer les distances vers trois points de d, puis chercher et démontrer laquelle est la plus courte.",
+   "en": "Starting from [[m1]] and [[m2]], compare the distances to three points of d, then find and prove which is the shortest.",
+   "status": "aligned",
+   "order": 17
+  },
+  "6a201310450e": {
+   "fr": "Organisation.",
+   "en": "Organisation.",
+   "status": "aligned",
+   "order": 18
+  },
+  "e743e88cbeed": {
+   "fr": "Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.",
+   "en": "Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.",
+   "status": "aligned",
+   "order": 19
+  },
+  "3194d566394e": {
+   "fr": "Vecteur normal et équation cartésienne",
+   "en": "Normal vector and Cartesian equation",
+   "status": "aligned",
+   "order": 20
+  },
+  "cb3a2b210a0a": {
+   "fr": "Un vecteur normal non nul à une droite est orthogonal à tout vecteur directeur de cette droite. Si [[m1]] est normal et [[m2]] appartient à d, alors [[m3]] a pour équation [[m4]], soit [[m5]]. Un vecteur directeur possible est [[m6]].",
+   "en": "A nonzero normal vector to a line is orthogonal to every direction vector of that line. If [[m1]] is normal and [[m2]] belongs to d, then [[m3]] has equation [[m4]], that is [[m5]]. A possible direction vector is [[m6]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "1fecc8806f01": {
+   "fr": "[[m1]] équivaut à [[m2]]. Dans un repère orthonormé, développer ce produit donne l’équation. Réciproquement l’ensemble ainsi défini est la droite passant par A orthogonale à n.",
+   "en": "[[m1]] is equivalent to [[m2]]. In an orthonormal frame, expanding this product gives the equation. Conversely, the set so defined is the line through A orthogonal to n.",
+   "status": "aligned",
+   "order": 24
+  },
+  "84f39a77d505": {
+   "fr": "Par [[m1]] et normale [[m2]] : [[m3]], donc [[m4]]. Le vecteur [[m5]] dirige la droite : produit [[m6]].",
+   "en": "Through [[m1]] with normal [[m2]]: [[m3]], so [[m4]]. The vector [[m5]] directs the line: product [[m6]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "adb4d3dad616": {
+   "fr": "[[m1]] est normal, et non directeur en général. [[m2]] ne doit pas être nul.",
+   "en": "[[m1]] is normal, not a direction vector in general. [[m2]] must not be zero.",
+   "status": "aligned",
+   "order": 26
+  },
+  "890d0f24bf74": {
+   "fr": "Équation de la droite par [[m1]] de normale [[m2]].",
+   "en": "Equation of the line through [[m1]] with normal [[m2]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "ed5c13215928": {
+   "fr": "Projeté orthogonal et distance",
+   "en": "Orthogonal projection and distance",
+   "status": "aligned",
+   "order": 28
+  },
+  "69fc0180c58a": {
+   "fr": "Le projeté H de P sur d est caractérisé par [[m1]] et [[m2]] colinéaire à un vecteur normal de d. Pour [[m3]], écrire [[m4]], avec [[m5]]. La distance est [[m6]]. La formule de distance est un complément déduit, pas un automatisme isolé.",
+   "en": "The projection H of P onto d is characterised by [[m1]] and [[m2]] collinear with a normal vector of d. For [[m3]], write [[m4]], with [[m5]]. The distance is [[m6]]. The distance formula is a deduced supplement, not an isolated routine.",
+   "status": "aligned",
+   "order": 30
+  },
+  "c441070e2615": {
+   "fr": "Substituer [[m1]], [[m2]] dans l’équation : [[m3]]. Le dénominateur est positif ; on obtient H puis [[m4]].",
+   "en": "Substitute [[m1]], [[m2]] in the equation: [[m3]]. The denominator is positive; we obtain H, then [[m4]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "7a7599c80eb7": {
+   "fr": "Pour [[m1]] et [[m2]], [[m3]], donc [[m4]] et [[m5]]. Vérifier [[m6]].",
+   "en": "For [[m1]] and [[m2]], [[m3]], so [[m4]] and [[m5]]. Check [[m6]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "ee295e17fa64": {
+   "fr": "La distance est positive ou nulle : conserver la valeur absolue. Deux vérifications, appartenance et perpendicularité, sécurisent le projeté.",
+   "en": "The distance is positive or zero: keep the absolute value. Two checks, membership and perpendicularity, secure the projection.",
+   "status": "aligned",
+   "order": 34
+  },
+  "8b85cf237a51": {
+   "fr": "Projeter [[m1]] sur [[m2]].",
+   "en": "Project [[m1]] onto [[m2]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "2b76ef23b4d5": {
+   "fr": "Équation d’un cercle",
+   "en": "Equation of a circle",
+   "status": "aligned",
+   "order": 36
+  },
+  "7c6e093e716a": {
+   "fr": "Le cercle de centre [[m1]] et de rayon [[m2]] a pour équation [[m3]]. Une équation [[m4]] se traite par complétion des deux carrés. Si le rayon au carré obtenu est négatif, l’ensemble est vide ; s’il est nul, c’est un point.",
+   "en": "The circle with centre [[m1]] and radius [[m2]] has equation [[m3]]. An equation [[m4]] is handled by completing both squares. If the squared radius obtained is negative, the set is empty; if it is zero, it is a point.",
+   "status": "aligned",
+   "order": 38
+  },
+  "763a334e48b7": {
+   "fr": "[[m1]] appartient au cercle si et seulement si [[m2]]. Les deux membres étant positifs ou nuls, on peut élever au carré et utiliser la formule de distance en repère orthonormé.",
+   "en": "[[m1]] belongs to the circle if and only if [[m2]]. Since both sides are positive or zero, we can square and use the distance formula in an orthonormal frame.",
+   "status": "aligned",
+   "order": 40
+  },
+  "faf5f8fb4478": {
+   "fr": "[[m1]] devient [[m2]]. Centre [[m3]], rayon 2. Les signes des coordonnées du centre sont opposés à ceux figurant dans les parenthèses.",
+   "en": "[[m1]] becomes [[m2]]. Centre [[m3]], radius 2. The signs of the coordinates of the centre are opposite to those appearing in the brackets.",
+   "status": "aligned",
+   "order": 41
+  },
+  "28f26efd4ecf": {
+   "fr": "Une équation quadratique en x et y n’est pas toujours un cercle : vérifier les coefficients et le rayon réel.",
+   "en": "A quadratic equation in x and y is not always a circle: check the coefficients and the real radius.",
+   "status": "aligned",
+   "order": 42
+  },
+  "558191d98da0": {
+   "fr": "Reconnaître [[m1]].",
+   "en": "Recognise [[m1]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "94b73d17d547": {
+   "fr": "Résoudre une configuration",
+   "en": "Solving a configuration",
+   "status": "aligned",
+   "order": 44
+  },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 45
+  },
+  "f885b303838e": {
+   "fr": "Une intersection est obtenue en résolvant simultanément les équations. Pour un cercle et une droite parallèle à un axe, substituer la coordonnée constante donne une équation du second degré. Pour une médiatrice, écrire l’égalité des distances au carré ; les termes quadratiques s’éliminent.",
+   "en": "An intersection is obtained by solving the equations simultaneously. For a circle and a line parallel to an axis, substituting the constant coordinate gives a quadratic equation. For a perpendicular bisector, write the equality of the squared distances; the quadratic terms cancel.",
+   "status": "aligned",
+   "order": 46
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 47
+  },
+  "2e4a6bd4047f": {
+   "fr": "Les équivalences reposent sur l’appartenance aux deux ensembles. L’égalité [[m1]] est équivalente à [[m2]], puisque les distances sont positives.",
+   "en": "The equivalences rest on membership of both sets. The equality [[m1]] is equivalent to [[m2]], since the distances are positive.",
+   "status": "aligned",
+   "order": 48
+  },
+  "6e012a045520": {
+   "fr": "Le cercle [[m1]] et la droite [[m2]] se coupent en [[m3]] et [[m4]]. La médiatrice de [[m5]] et [[m6]] vérifie [[m7]], donc [[m8]].",
+   "en": "The circle [[m1]] and the line [[m2]] meet at [[m3]] and [[m4]]. The perpendicular bisector of [[m5]] and [[m6]] satisfies [[m7]], so [[m8]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "3ba1806c0305": {
+   "fr": "Une intersection n’est pas l’union des ensembles de solutions. Vérifier les points dans les deux équations.",
+   "en": "An intersection is not the union of the solution sets. Check the points in both equations.",
+   "status": "aligned",
+   "order": 50
+  },
+  "804c99b1e724": {
+   "fr": "Intersecter [[m1]] avec [[m2]].",
+   "en": "Intersect [[m1]] with [[m2]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "c82d22e2d8b1": {
+   "fr": "Parcours d’exercices",
+   "en": "Exercise path",
+   "status": "aligned",
+   "order": 52
+  },
+  "31c1e4322269": {
+   "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
+   "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
+   "status": "aligned",
+   "order": 53
+  },
+  "c727230d3da2": {
+   "fr": "Construire une droite",
+   "en": "Constructing a line",
+   "status": "aligned",
+   "order": 54
+  },
+  "d9df574a52c0": {
+   "fr": "Le plan est muni d’un repère orthonormé. La droite [[m1]] passe par [[m2]] et admet le vecteur [[m3]] pour vecteur normal.",
+   "en": "The plane is equipped with an orthonormal frame. The line [[m1]] passes through [[m2]] and has the vector [[m3]] as a normal vector.",
+   "status": "aligned",
+   "order": 55
+  },
+  "82eba76104a1": {
+   "fr": "Écrire la condition d’appartenance d’un point [[m1]] à [[m2]] à l’aide d’un produit scalaire. En déduire une équation cartésienne de [[m3]].",
+   "en": "Write the condition for a point [[m1]] to belong to [[m2]] using a scalar product. Deduce a Cartesian equation of [[m3]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "82e79f8fa490": {
+   "fr": "Donner un vecteur directeur non nul de [[m1]], puis les coordonnées d’un point de [[m2]] distinct de [[m3]].",
+   "en": "Give a nonzero direction vector of [[m1]], then the coordinates of a point of [[m2]] other than [[m3]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "0086d0928e1d": {
+   "fr": "Vérifier votre point par substitution dans l’équation.",
+   "en": "Check your point by substitution in the equation.",
+   "status": "aligned",
+   "order": 58
+  },
+  "7cd43cf3c85c": {
+   "fr": "Calculer un projeté",
+   "en": "Calculating a projection",
+   "status": "aligned",
+   "order": 59
+  },
+  "3655eecf9221": {
+   "fr": "Dans un repère orthonormé, on donne le point [[m1]] et la droite [[m2]] d’équation [[m3]]. On note [[m4]] le projeté orthogonal de [[m5]] sur [[m6]].",
+   "en": "In an orthonormal frame, given the point [[m1]] and the line [[m2]] with equation [[m3]]. Let [[m4]] be the orthogonal projection of [[m5]] onto [[m6]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "dc92a8b30d0f": {
+   "fr": "Déterminer les coordonnées de [[m1]] en traduisant les deux conditions : [[m2]] appartient à [[m3]] et [[m4]] est normal à [[m5]].",
+   "en": "Determine the coordinates of [[m1]] by translating the two conditions: [[m2]] belongs to [[m3]] and [[m4]] is normal to [[m5]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "9cc5575bc812": {
+   "fr": "Vérifier séparément ces deux conditions avec les coordonnées obtenues.",
+   "en": "Check these two conditions separately with the coordinates obtained.",
+   "status": "aligned",
+   "order": 62
+  },
+  "c53f6fc235a6": {
+   "fr": "Calculer la distance de [[m1]] à la droite [[m2]] sous forme exacte.",
+   "en": "Calculate the distance from [[m1]] to the line [[m2]] in exact form.",
+   "status": "aligned",
+   "order": 63
+  },
+  "6db396c3f2b0": {
+   "fr": "Reconnaître un cercle",
+   "en": "Recognising a circle",
+   "status": "aligned",
+   "order": 64
+  },
+  "c714d2a51157": {
+   "fr": "On considère l’ensemble des points [[m1]] du plan orthonormé dont les coordonnées vérifient",
+   "en": "Consider the set of points [[m1]] of the orthonormal plane whose coordinates satisfy",
+   "status": "aligned",
+   "order": 65
+  },
+  "fd7331ebf4ec": {
+   "fr": "Montrer que cet ensemble est un cercle et préciser son centre et son rayon.",
+   "en": "Show that this set is a circle and state its centre and radius.",
+   "status": "aligned",
+   "order": 66
+  },
+  "9286863c3370": {
+   "fr": "Déterminer tous ses points d’intersection avec la droite d’équation [[m1]].",
+   "en": "Determine all its points of intersection with the line with equation [[m1]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "d1a2c6b7e8b9": {
+   "fr": "Interpréter géométriquement la position de ces deux points sur le cercle.",
+   "en": "Interpret geometrically the position of these two points on the circle.",
+   "status": "aligned",
+   "order": 68
+  },
+  "cdfcf9a58614": {
+   "fr": "Médiatrice",
+   "en": "Perpendicular bisector",
+   "status": "aligned",
+   "order": 69
+  },
+  "dfa2c96a3f3a": {
+   "fr": "Dans un repère orthonormé, on donne [[m1]] et [[m2]]. On cherche une équation de la médiatrice de [[m3]].",
+   "en": "In an orthonormal frame, given [[m1]] and [[m2]]. We look for an equation of the perpendicular bisector of [[m3]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "67b614fa0e71": {
+   "fr": "Déterminer cette équation en utilisant les propriétés géométriques de la médiatrice. Expliquer le choix d’un point et d’un vecteur normal.",
+   "en": "Determine this equation using the geometric properties of the perpendicular bisector. Explain the choice of a point and of a normal vector.",
+   "status": "aligned",
+   "order": 71
+  },
+  "8eebb1be4499": {
+   "fr": "Vérifier que le milieu de [[m1]] satisfait l’équation obtenue.",
+   "en": "Check that the midpoint of [[m1]] satisfies the equation obtained.",
+   "status": "aligned",
+   "order": 72
+  },
+  "d9d69ca5381e": {
+   "fr": "Le meilleur accès",
+   "en": "The best access",
+   "status": "aligned",
+   "order": 73
+  },
+  "73ec5789c3a9": {
+   "fr": "Une route rectiligne est représentée par la droite [[m1]] d’équation [[m2]] dans un repère orthonormé dont l’unité de longueur vaut 1 km. Un bâtiment se situe au point [[m3]]. On veut construire un accès rectiligne reliant le bâtiment à un point de la route.",
+   "en": "A straight road is represented by the line [[m1]] with equation [[m2]] in an orthonormal frame whose unit of length is 1 km. A building is located at the point [[m3]]. We want to build a straight access path joining the building to a point on the road.",
+   "status": "aligned",
+   "order": 74
+  },
+  "5873d65a45a2": {
+   "fr": "Déterminer le point de la route qui rend cet accès le plus court possible. Calculer la longueur exacte de l’accès.",
+   "en": "Determine the point of the road that makes this access as short as possible. Calculate the exact length of the access.",
+   "status": "aligned",
+   "order": 75
+  },
+  "a5cb9fad7f9a": {
+   "fr": "Justifier que votre choix est optimal parmi tous les points de la route, en comparant les distances à l’aide d’un triangle rectangle. Une seule observation sur un dessin ne suffit pas.",
+   "en": "Justify that your choice is optimal among all the points of the road, by comparing the distances using a right triangle. A single observation on a drawing is not enough.",
+   "status": "aligned",
+   "order": 76
+  },
+  "db2fcb80cf02": {
+   "fr": "Paramètre et ensemble",
+   "en": "Parameter and set",
+   "status": "aligned",
+   "order": 77
+  },
+  "65b1ea283532": {
+   "fr": "Pour un paramètre réel [[m1]], on définit [[m2]] comme l’ensemble des points [[m3]] dont les coordonnées vérifient",
+   "en": "For a real parameter [[m1]], define [[m2]] as the set of points [[m3]] whose coordinates satisfy",
+   "status": "aligned",
+   "order": 78
+  },
+  "095c4e8c3491": {
+   "fr": "Déterminer la nature de [[m1]] selon la valeur de [[m2]]. Organiser la réponse en cas disjoints.",
+   "en": "Determine the nature of [[m1]] according to the value of [[m2]]. Organise the answer in disjoint cases.",
+   "status": "aligned",
+   "order": 79
+  },
+  "aa174afc4b35": {
+   "fr": "Lorsque cet ensemble est un cercle, préciser son centre et son rayon ; dans les autres cas, décrire exactement l’ensemble obtenu.",
+   "en": "When this set is a circle, state its centre and radius; in the other cases, describe exactly the set obtained.",
+   "status": "aligned",
+   "order": 80
+  },
+  "b928b9926bd2": {
+   "fr": "Une parabole comme lieu",
+   "en": "A parabola as a locus",
+   "status": "aligned",
+   "order": 81
+  },
+  "e26e2b44f526": {
+   "fr": "\\textbf{Approfondissement facultatif.} Dans un repère orthonormé, on fixe le point [[m1]]. On cherche les points [[m2]] dont la distance à [[m3]] est égale à la distance à l’axe des abscisses.",
+   "en": "\\textbf{Optional extension.} In an orthonormal frame, fix the point [[m1]]. We look for the points [[m2]] whose distance to [[m3]] is equal to the distance to the x-axis.",
+   "status": "aligned",
+   "order": 82
+  },
+  "1da9abeb3035": {
+   "fr": "Exprimer le carré de chacune des deux distances en fonction de [[m1]] et de [[m2]].",
+   "en": "Express the square of each of the two distances in terms of [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "9cf2c983521f": {
+   "fr": "En déduire une équation de l’ensemble recherché. Vérifier la réciproque afin de justifier que cette équation décrit exactement tous les points cherchés.",
+   "en": "Deduce an equation of the set sought. Check the converse in order to justify that this equation describes exactly all the points sought.",
+   "status": "aligned",
+   "order": 84
+  },
+  "2956a7106212": {
+   "fr": "Reprise différée",
+   "en": "Delayed review",
+   "status": "aligned",
+   "order": 85
+  },
+  "af0b55c3c8b8": {
+   "fr": "Dans un repère orthonormé, [[m1]] est le cercle de diamètre [[m2]], avec [[m3]] et [[m4]]. On considère la droite [[m5]] d’équation [[m6]].",
+   "en": "In an orthonormal frame, [[m1]] is the circle with diameter [[m2]], with [[m3]] and [[m4]]. Consider the line [[m5]] with equation [[m6]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "d2ae0dec36b3": {
+   "fr": "Déterminer si [[m1]] et [[m2]] ont un point commun, en résolvant une équation.",
+   "en": "Determine whether [[m1]] and [[m2]] have a common point, by solving an equation.",
+   "status": "aligned",
+   "order": 87
+  },
+  "b8bb6b8286fd": {
+   "fr": "Confirmer la réponse en comparant la distance du centre du cercle à la droite et le rayon du cercle.",
+   "en": "Confirm the answer by comparing the distance from the centre of the circle to the line with the radius of the circle.",
+   "status": "aligned",
+   "order": 88
+  },
+  "261ef763c4c8": {
+   "fr": "Travail personnel.",
+   "en": "Homework.",
+   "status": "aligned",
+   "order": 89
+  },
+  "1e62d212eb03": {
+   "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
+   "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
+   "status": "aligned",
+   "order": 90
+  },
+  "8a14bcc09f57": {
+   "fr": "À faire dans le manuel CQFD",
+   "en": "To do in the CQFD textbook",
+   "status": "aligned",
+   "order": 91
+  },
+  "3b23cff4a4c2": {
+   "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
+   "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
+   "status": "aligned",
+   "order": 92
+  },
+  "d4fa695f0989": {
+   "fr": "CQFD, exercice 18 p. 279, questions a, b, c et d.",
+   "en": "CQFD, exercise 18 p.~279, questions a, b, c and d.",
+   "status": "aligned",
+   "order": 93
+  },
+  "6f10d42e6064": {
+   "fr": "Lire un vecteur normal non nul pour chaque équation, sans résoudre en y.",
+   "en": "Read a nonzero normal vector for each equation, without solving for y.",
+   "status": "aligned",
+   "order": 94
+  },
+  "30d6f945e617": {
+   "fr": "CQFD, exercice 21 p. 279, questions a et b.",
+   "en": "CQFD, exercise 21 p.~279, questions a and b.",
+   "status": "aligned",
+   "order": 95
+  },
+  "eaf4b5609384": {
+   "fr": "Écrire la condition d’orthogonalité à la normale, puis vérifier que le point donné appartient à la droite.",
+   "en": "Write the condition of orthogonality to the normal, then check that the given point belongs to the line.",
+   "status": "aligned",
+   "order": 96
+  },
+  "3b951efef83f": {
+   "fr": "QCM 1 : comprendre et choisir",
+   "en": "MCQ 1: understand and choose",
+   "status": "aligned",
+   "order": 97
+  },
+  "316956a65bd8": {
+   "fr": "Une normale à [[m1]] est",
+   "en": "A normal to [[m1]] is",
+   "status": "aligned",
+   "order": 99
+  },
+  "431cd90acf7b": {
+   "fr": "Un directeur de [[m1]] est",
+   "en": "A direction vector of [[m1]] is",
+   "status": "aligned",
+   "order": 100
+  },
+  "bacba4c4c088": {
+   "fr": "Centre de [[m1]] :",
+   "en": "Centre of [[m1]]:",
+   "status": "aligned",
+   "order": 101
+  },
+  "97c0f38d573f": {
+   "fr": "Rayon de [[m1]] :",
+   "en": "Radius of [[m1]]:",
+   "status": "aligned",
+   "order": 102
+  },
+  "863bbea64efb": {
+   "fr": "un cercle",
+   "en": "a circle",
+   "status": "aligned",
+   "order": 104
+  },
+  "344b1d928b01": {
+   "fr": "l’ensemble vide",
+   "en": "the empty set",
+   "status": "aligned",
+   "order": 105
+  },
+  "6036033aa6a6": {
+   "fr": "l’origine",
+   "en": "the origin",
+   "status": "aligned",
+   "order": 106
+  },
+  "cc229fe9b5f3": {
+   "fr": "QCM 2 : comprendre et choisir",
+   "en": "MCQ 2: understand and choose",
+   "status": "aligned",
+   "order": 108
+  },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 109
+  },
+  "75044a60f75b": {
+   "fr": "Projeté de [[m1]] sur l’axe des abscisses :",
+   "en": "Projection of [[m1]] onto the x-axis:",
+   "status": "aligned",
+   "order": 110
+  },
+  "ed6469d37253": {
+   "fr": "Distance de [[m1]] à [[m2]] :",
+   "en": "Distance from [[m1]] to [[m2]]:",
+   "status": "aligned",
+   "order": 111
+  },
+  "9ba325b2f725": {
+   "fr": "Pour définir [[m1]] comme droite, il faut",
+   "en": "For [[m1]] to define a line, we need",
+   "status": "aligned",
+   "order": 112
+  },
+  "577adc015f7a": {
+   "fr": "[[m1]] seul",
+   "en": "[[m1]] alone",
+   "status": "aligned",
+   "order": 114
+  },
+  "a6751056d80e": {
+   "fr": "[[m1]] décrit",
+   "en": "[[m1]] describes",
+   "status": "aligned",
+   "order": 115
+  },
+  "3a0685f5b04a": {
+   "fr": "un cercle de rayon 1",
+   "en": "a circle of radius 1",
+   "status": "aligned",
+   "order": 116
+  },
+  "c3d450edd79b": {
+   "fr": "le seul point O",
+   "en": "the single point O",
+   "status": "aligned",
+   "order": 117
+  },
+  "4137a00f4659": {
+   "fr": "une droite",
+   "en": "a line",
+   "status": "aligned",
+   "order": 118
+  },
+  "d611be795914": {
+   "fr": "le plan",
+   "en": "the plane",
+   "status": "aligned",
+   "order": 119
+  },
+  "9c43af9af6ba": {
+   "fr": "Cercle [[m1]] et droite [[m2]] : nombre de points communs",
+   "en": "Circle [[m1]] and line [[m2]]: number of common points",
+   "status": "aligned",
+   "order": 120
+  },
+  "e879afbe1c2b": {
+   "fr": "infini",
+   "en": "infinitely many",
+   "status": "aligned",
+   "order": 121
+  },
+  "d5fc4ef9b48b": {
+   "fr": "Vrai ou faux ? Justifier.",
+   "en": "True or false? Justify.",
+   "status": "aligned",
+   "order": 122
+  },
+  "7fdcf0df94d1": {
+   "fr": "Le projeté orthogonal de P sur une droite est unique.",
+   "en": "The orthogonal projection of P onto a line is unique.",
+   "status": "aligned",
+   "order": 123
+  },
+  "afff4fcc251b": {
+   "fr": "Toute équation [[m1]] décrit un cercle de rayon positif.",
+   "en": "Every equation [[m1]] describes a circle of positive radius.",
+   "status": "aligned",
+   "order": 124
+  },
+  "d535a6e09f9d": {
+   "fr": "Une droite peut rencontrer un cercle en trois points distincts.",
+   "en": "A line can meet a circle at three distinct points.",
+   "status": "aligned",
+   "order": 125
+  },
+  "6630f206d598": {
+   "fr": "Bilan personnel",
+   "en": "Self-assessment",
+   "status": "aligned",
+   "order": 126
+  },
+  "ae46e7cf5e7c": {
+   "fr": "Je donne une normale non nulle ; je vérifie le projeté ; je complète les deux carrés ; je distingue cercle, point et ensemble vide.",
+   "en": "I give a nonzero normal; I check the projection; I complete both squares; I distinguish circle, point and empty set.",
+   "status": "aligned",
+   "order": 127
+  },
+  "4dab232b00d5": {
+   "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
+   "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
+   "status": "aligned",
+   "order": 128
+  }
+ }
+}

@@ -1,0 +1,56 @@
+\mxcorrections{1}\label{C01-CORR}
+\textbf{Usage professeur.} Les réponses qui suivent concernent les tâches non résolues dans le cours. Faire d’abord expliciter la démarche ; fournir une aide graduée avant la solution. Les durées sont des estimations à étalonner en classe.
+\subsection*{Diagnostic et remédiation}
+\begin{enumerate}
+\item $11$ : la multiplication précède l’addition. \textit{Action :} Réécrire les étapes de deux calculs avec parenthèses.
+\item $1$, $8$, $\dfrac{1}{4}$. \textit{Action :} Construire la chaîne des puissances en divisant par 2.
+\item $80\times1{,}05=84$. \textit{Action :} Relier 5 \% à $\dfrac{5}{100}$ puis au coefficient 1{,}05.
+\item $-2$ et $10$. \textit{Action :} Remplacer x entre parenthèses avant de calculer.
+\item $10-3+1=8$. \textit{Action :} Écrire la liste puis retrouver le calcul.
+\item $0,1,2,3$. \textit{Action :} Tracer un tableau à deux colonnes, rang et valeur ; tester range(1,4).
+\end{enumerate}
+\subsection*{Activité de recherche}
+Offre A : derniers 45 kg, somme $\dfrac{6(20+45)}{2}=195$ kg. B : $\dfrac{20(1-1{,}2^6)}{1-1{,}2}=198{,}5984$ kg. B dépasse A au total, même si certains termes initiaux sont plus faibles. Calcul instrumenté autorisé ici ; argumenter sur le cumul et non sur le seul dernier terme.
+\subsection*{Applications immédiates}
+\begin{enumerate}
+\item $2,3,6,11$. La formule $w_n=n^2+2$ convient : elle donne le premier terme et $(n+1)^2+2-(n^2+2)=2n+1$.
+\item $37-17=5r$, donc $r=4$ puis $u_0=17-3\times4=5$.
+\item $u_{n+1}-u_n=-4\times3^n<0$ : décroissante. $v_n$ alterne 2 et $-2$ : ni croissante ni décroissante.
+\item $4+8+16+32=60$, ou $\dfrac{4(1-2^4)}{1-2}=60$.
+\item $u_3=6$ : rang 3 pour $\leq6$, rang 4 pour $<6$.
+\end{enumerate}
+\subsection*{Exercices : démarche et résultats}
+\paragraph{Exercice 1.1 -- Prendre en main les indices.} $u_0=0,u_1=-1,u_4=20$. Développer avec parenthèses : $u_{n+1}=2(n+1)^2-3(n+1)=2n^2+n-1$ ; différence $4n-1$. Le signe change entre les rangs 0 et 1 : la suite décroît d’abord, puis croît à partir de 1.
+\paragraph{Exercice 1.2 -- Choisir le bon modèle.} $a_n=100+15n$ et $b_n=100(1{,}1)^n$, donc $a_2=130$, $b_2=121$. A suppose un ajout net constant ; B un taux net constant. Dans la réalité, les arrondis et la capacité d’accueil limitent ces modèles.
+\paragraph{Exercice 1.3 -- Retrouver une suite.} $u_3=q^2u_1$ donc $q^2=9$. La positivité impose $q=3$, d’où $u_0=2$ et $u_5=486$. Sans cette précision, $q=-3$ serait aussi possible, avec $u_0=-2$ et le même $u_5=486$.
+\paragraph{Exercice 1.4 -- Des rangées de sièges.} La dernière rangée compte $18+11\times2=40$ sièges. Somme $\dfrac{12(18+40)}{2}=348$. Contrôle : moyenne 29 sièges par rangée, comprise entre 18 et 40.
+\paragraph{Exercice 1.5 -- Accumuler des carrés.} On obtient 4 puis 9 carrés. Un carré de côté entier n complété par une ligne et une colonne nécessite $2n+1$ cases. La formule $n^2$ a le bon premier terme et $ (n+1)^2-n^2=2n+1$. La génération est la même.
+\paragraph{Exercice 1.6 -- Deux remboursements.} Pour A : $a_n=600-50n$ pour $0\leq n\leq12$, puis 0. Pour B : $b_n=\dfrac{600}{2^n}$. $b_5=18{,}75$ et $b_6=9{,}375$ ; seuil strict au rang 6. B ne donne jamais exactement 0 dans ce modèle idéal : ne pas annoncer un remboursement fini.
+\paragraph{Exercice 1.7 -- Lire une liste.} Les trois premiers éléments sont 2, 5, 14. Une valeur initiale et cinq ajouts donnent six éléments ; indices 0 à 5. Le dernier vaut $u_5=365$.
+\paragraph{Exercice 1.8 -- Reprise différée.} $u_7=12+5(-3)=-3$. Six termes : $\dfrac{6(12-3)}{2}=27$. Le 5 compte les passages, le 6 les termes.
+\paragraph{CQFD, exercice 9 p. 64, questions a et b.} a : $-1,0,3,8$. b : $2,\dfrac72,4,\dfrac{17}4$. Le premier rang est 0 ; le dénominateur de b vaut $n+1$ et ne s’annule pas sur $\N$.
+\paragraph{CQFD, exercice 11 p. 64, questions toutes.} À partir de $u_0=2$, la règle $u_{n+1}=2u_n-1$ donne $u_1=3$, $u_2=5$, $u_3=9$, $u_4=17$. La règle utilise le terme précédent, pas son rang.
+\subsection*{QCM : réponses et raisons}
+\textbf{QCM 1.}
+\begin{enumerate}
+\item A. $3\times4+2=14$.
+\item C. Trois ajouts : $2+3\times5=17$.
+\item D. Le coefficient vaut $1+\dfrac{8}{100}$.
+\item B. $9-3+1=7$.
+\item C. $\dfrac{20\times 21}{2}=210$.
+\end{enumerate}
+\textbf{QCM 2.}
+\begin{enumerate}
+\item D. La différence vaut $-3\times2^n<0$.
+\item A. Quatre termes ; $\dfrac{1-2^4}{1-2}=15$.
+\item C. $u_3=2$, $u_4=1$.
+\item B. Les termes alternent entre deux valeurs distinctes.
+\item D. Onze rangs de 0 à 10.
+\end{enumerate}
+\subsection*{Vrai ou faux}
+\begin{enumerate}
+\item Faux : $u_n=-2^n$ est strictement décroissante.
+\item Faux : $u_n=0$ et $v_n=n(n-1)(n-2)$ coïncident aux rangs 0,1,2, mais pas au rang 3.
+\item Vrai : chaque terme vaut 1 et il y a n+1 termes.
+\end{enumerate}
+\paragraph{Différenciation.} Pour un blocage technique, proposer la première étape seulement (domaine, facteur ou univers de référence), puis retirer l’aide. Pour un élève autonome, demander une seconde méthode et le traitement d’un cas limite. À l’oral, autoriser une reformulation initiale dans la langue maîtrisée, puis exiger une phrase mathématique précise en français.

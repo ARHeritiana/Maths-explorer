@@ -79,6 +79,11 @@ class Twin(unittest.TestCase):
         fr = r'\item $\{x\,;\,x>0\}$\,; $1$' + '\n'
         self.assertEqual(body(twin.generate(fr, table([]))), r'\item $\{x\,;\,x>0\}$; $1$' + '\n')
 
+    def test_code_listing_does_not_shift_maths(self):
+        fr = '\\begin{lstlisting}\nx = a % 2  # un $ isolé\n\\end{lstlisting}\nValeurs $3,2,3$ et $0{,}5$.\n'
+        en = twin.generate(fr, table([('Valeurs [[m1]] et [[m2]].', 'Values [[m1]] and [[m2]].')]))
+        self.assertIn('Values $3,2,3$ and $0.5$.', en)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=1)

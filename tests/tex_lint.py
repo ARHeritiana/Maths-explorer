@@ -13,7 +13,7 @@ RULES = [
     (r'\\(?:usepackage|RequirePackage)\b', 'package loaded in a unit'),
     (r'\\(?:(?:re)?newcommand|providecommand|def|let|(?:re)?newenvironment|newcounter|DeclareMathOperator)\b', 'macro or counter defined in a unit'),
     (r'\\(?:definecolor|colorlet)\b|[{\[](?:HTML|RGB|rgb|cmyk)[}\]]', 'raw colour (use the mx palette)'),
-    (r'(?<![\d{])\d+,\d+(?!\})', 'decimal comma without braces (write 0{,}5)'),   # text only: not maths, figures or (x,y) pairs
+    (r'(?<![\d{,])\d+,\d+(?![\d}]|,\d)', 'decimal comma without braces (write 0{,}5)'),   # text only: not maths, figures or (x,y) pairs
 ]
 
 

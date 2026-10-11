@@ -1,0 +1,220 @@
+\mxunit{premiere-c06}{Dérivation, variations et optimisation}\label{C06}
+\begin{keypoint}[Le parcours du chapitre]
+\textbf{Objectifs.} Calculer une dérivée sur son domaine ; étudier variations et extrema ; comparer des courbes ; optimiser ; exploiter les symétries.
+
+\textbf{Prérequis.} Nombre dérivé, calcul algébrique, signe d’un trinôme, intervalles.
+
+\textbf{Repère annuel.} 1–10 décembre : 8 h, consolidation les 15 et 17\end{keypoint}
+\section*{Diagnostic : six questions, 10 minutes}\label{C06-D}
+Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.
+\begin{enumerate}
+\item Dérivée de $x^2$ en 3 ?
+\item Domaine de $\dfrac{1}{x-2}$ ?
+\item Signe de $(x-1)(x+2)$ ?
+\item Développer $(x^2+1)(x-2)$.
+\item Pour $f(x)=x^2$, comparer $f(-x)$ et $f(x)$.
+\item Si $f(1)=2$, $f\prime(1)=0$, équation de la tangente ?
+\end{enumerate}
+\paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
+\paragraph{Oral et logique.} Présenter un tableau de variations en distinguant signe de f et signe de sa dérivée. Expliquer pourquoi les bornes d’un problème d’optimisation doivent être examinées.
+\mxnewpage
+\section*{Chercher avant de formaliser}\label{C06-RECH}
+Une fonction croissante peut-elle avoir une tangente horizontale ? Chercher un exemple ; peut-elle avoir une dérivée strictement négative en un point intérieur ?
+\paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\section{Fonction dérivée et fonctions usuelles}\label{C06-U1}
+\begin{keypoint}[Définition et résultats]
+Une fonction est dérivable sur un intervalle lorsqu’elle l’est en chacun de ses points ; sa dérivée associe à x le nombre $f\prime(x)$. Les dérivées usuelles sont : constante $\mapsto0$ ; $x\mapsto1$ ; $x^2\mapsto2x$ ; $x^3\mapsto3x^2$ ; $\dfrac{1}{x}\mapsto -\dfrac{1}{x^2}$ pour $x\ne0$ ; $\sqrt x\mapsto \dfrac{1}{2\sqrt x}$ pour $x>0$. Pour $n\in\Z$, $(x^n)\prime=nx^{n-1}$ sur son domaine de dérivabilité ; pour $n=0$, la dérivée est 0 directement.
+\end{keypoint}
+\paragraph{Statut et justification.} Carré : le taux vaut $2a+h$. Inverse : pour $a\ne0$, $h\ne0$ et $a+h\ne0$, $\dfrac{[\dfrac{1}{a+h}-\dfrac{1}{a}]}{h}=-\dfrac{1}{[a(a+h)]}$, qui tend vers $-\dfrac{1}{a^2}$. Les autres formules sont admises ici.
+\begin{example}Pour $f(x)=x^{-3}$, le domaine est $\R\setminus\{0\}$ et $f\prime (x)=-3x^{-4}=-\dfrac{3}{x^4}$. Pour $g(x)=\sqrt x$, la fonction existe en 0, sa dérivée usuelle seulement pour $x>0$.\end{example}\label{C06-EX1}
+\begin{pitfall}Le domaine de dérivabilité peut être plus petit que le domaine de définition.\end{pitfall}
+\begin{application}Dériver $x^5$, $x^{-2}$ et $\sqrt x$ en précisant les domaines.\end{application}\label{C06-AP1}
+\section{Somme, produit, inverse et quotient}\label{C06-U2}
+\begin{keypoint}[Définition et résultats]
+Pour u et v dérivables, $(u+v)\prime=u\prime+v\prime$, $(\lambda u)\prime=\lambda u\prime$, $(uv)\prime=u\prime v+uv\prime$. Là où $v\ne0$, $(\dfrac{1}{v})\prime =-\dfrac{v\prime}{v^2}$ et $(\dfrac{u}{v})\prime =\dfrac{u\prime v-uv\prime}{v^2}$.
+\end{keypoint}
+\paragraph{Statut et justification.} Pour le produit, ajouter et retrancher $u(a+h)v(a)$ au numérateur. Le taux devient $\dfrac{u(a+h)[v(a+h)-v(a)]}{h}+\dfrac{v(a)[u(a+h)-u(a)]}{h}$. Comme une fonction dérivable est continue (admis), on obtient $u(a)v\prime(a)+v(a)u\prime(a)$. Les autres règles sont admises.
+\begin{example}Pour $f(x)=\dfrac{x^2+1}{x-1}$, $x\ne1$, $f\prime (x)=\dfrac{[2x(x-1)-(x^2+1)]}{(x-1)^2}=\dfrac{x^2-2x-1}{(x-1)^2}$. Garder les parenthèses évite de changer un seul signe au lieu de tout le numérateur.\end{example}\label{C06-EX2}
+\begin{pitfall}La dérivée d’un produit n’est pas le produit des dérivées ; la dérivée d’un quotient n’est pas leur quotient.\end{pitfall}
+\begin{application}Dériver $(x^2+1)(3x-2)$ puis $\dfrac{1}{x^2+1}$.\end{application}\label{C06-AP2}
+\section{Signe de la dérivée et extrema}\label{C06-U3}
+\begin{keypoint}[Définition et résultats]
+Sur un intervalle I, si $f\prime\geq0$, f est croissante ; si $f\prime\leq0$, elle est décroissante ; si $f\prime=0$ partout, elle est constante. Une dérivée strictement positive entraîne une stricte croissance. Si f possède un extremum local en un point intérieur où elle est dérivable, sa dérivée y est nulle. La réciproque est fausse.
+\end{keypoint}
+\paragraph{Statut et justification.} Théorèmes de variation admis. Pour un minimum intérieur en a, les taux à droite sont positifs ou nuls, ceux à gauche négatifs ou nuls ; s’ils convergent vers le même réel, il est 0. Même argument pour un maximum.
+\begin{example}$f(x)=x^3-3x$ : $f\prime(x)=3(x-1)(x+1)$. f croît sur $]-\infty;-1]$, décroît sur $[-1;1]$, croît sur $[1;+\infty[$ ; maximum local $f(-1)=2$, minimum local $f(1)=-2$. Aucun de ces extrema n’est global sur $\R$.\end{example}\label{C06-EX3}
+\mxinclude{figures/C06-U3}
+\begin{pitfall}Le théorème s’applique sur un intervalle. Une fonction peut décroître sur deux intervalles séparés sans décroître sur leur réunion.\end{pitfall}
+\begin{application}Étudier $f(x)=x^2-4x+1$ sur $[0;3]$ et donner ses extrema sur cet intervalle.\end{application}\label{C06-AP3}
+\section{Parité, inégalités et comparaison}\label{C06-U4}
+\begin{keypoint}[Définition et résultats]
+Sur un domaine symétrique par rapport à 0, f est paire si $f(-x)=f(x)$ et impaire si $f(-x)=-f(x)$. La courbe d’une fonction paire est symétrique par rapport à l’axe des ordonnées ; celle d’une impaire par rapport à l’origine. Pour comparer f et g, on étudie le signe de $f-g$, éventuellement avec sa dérivée.
+\end{keypoint}
+\paragraph{Statut et justification.} Les symétries découlent des coordonnées des points images. Pour une inégalité, une étude de variations peut donner un minimum de la différence, puis son signe ; la dérivée ne se substitue pas directement à cette différence.
+\begin{example}Pour $x>0$, $h(x)=x+\dfrac{1}{x}-2$ a pour dérivée $\dfrac{x^2-1}{x^2}$. Elle décroît jusqu’à 1 puis croît ; $h(1)=0$, donc $x+\dfrac{1}{x}\geq 2$. L’égalité est obtenue seulement en 1.\end{example}\label{C06-EX4}
+\begin{pitfall}Verifier le domaine avant la parité. Le signe de $f\prime-g\prime$ renseigne sur la variation de $f-g$, pas directement sur son signe.\end{pitfall}
+\begin{application}Étudier la parité de $x^4+x^2$ et $x^3-x$ ; démontrer $x^2+1\geq2x$.\end{application}\label{C06-AP4}
+\section{Optimisation et méthode de Newton}\label{C06-U5}
+\begin{keypoint}[Définition et résultats]
+Optimiser consiste à définir la variable et son domaine, exprimer la grandeur à optimiser, puis comparer toutes les valeurs candidates, y compris les bornes. La méthode de Newton utilise la tangente pour approcher une solution de $f(x)=0$ : $x_{n+1}=x_n-\dfrac{f(x_n)}{f}\prime (x_n)$ lorsque $f\prime(x_n)\ne0$. Elle n’est utilisée que dans des cas favorables.
+\end{keypoint}
+\paragraph{Statut et justification.} La formule de Newton vient de l’intersection avec l’axe horizontal de $y=f(x_n)+f\prime(x_n)(x-x_n)$. La convergence n’est pas garantie en général ; on la constate et contrôle dans le cas retenu.
+\begin{example}Pour $f(x)=x^2-2$ avec $x_0=1$, Newton donne $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. Les carrés sont 2{,}25 puis environ 2{,}00694 : on approche $\sqrt2$. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.\end{example}\label{C06-EX5}
+\begin{pitfall}Une valeur numérique fournie par un algorithme n’est pas une preuve de minimum ni de convergence.\end{pitfall}
+\begin{application}Un rectangle de périmètre 12 m a largeur x. Déterminer l’aire maximale par dérivation.\end{application}\label{C06-AP5}
+\section*{Parcours d’exercices}\label{C06-PARC}
+Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
+\begingroup
+\mxexercisehead{C06-E1}{Une collection de dérivées}
+On considère les fonctions\[f(x)=3x^4-2x+7,\quad g(x)=(x^2+2)(x-1),\quad h(x)=\dfrac{2x+1}{x+3}.\]
+\begin{enumerate}[label=\arabic*.]
+\item Préciser le domaine de définition de chacune de ces fonctions.
+\item Calculer leurs dérivées en nommant, à chaque fois, la règle utilisée. Pour $g$, conserver d’abord les deux termes de la règle du produit ; pour $h$, écrire le numérateur avant de le réduire.
+\item Contrôler le résultat concernant $g$ en développant son expression avant de dériver.
+\end{enumerate}
+\mxexercisehead{C06-E2}{Un tableau complet}
+La fonction $f$ est définie sur $[0;4]$ par $f(x)=x^3-6x^2+9x+1$. On cherche ses valeurs minimale et maximale sur cet intervalle.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer et factoriser $f\prime(x)$, puis étudier son signe sur $[0;4]$.
+\item Dresser le tableau de variations de $f$ en indiquant les valeurs aux bornes et aux points où la dérivée s’annule.
+\item Donner le minimum et le maximum de $f$ sur l’intervalle, ainsi que toutes les abscisses où ils sont atteints.
+\end{enumerate}
+\mxexercisehead{C06-E3}{Un quotient}
+Pour tout réel strictement positif $x$, on pose $f(x)=x+\dfrac4x$.
+\begin{enumerate}[label=\arabic*.]
+\item Étudier les variations de $f$ sur $]0;+\infty[$. Présenter les facteurs qui déterminent le signe de la dérivée.
+\item En déduire la plus petite valeur de $x+\dfrac4x$, puis écrire une inégalité valable pour tout $x>0$. Préciser exactement son cas d’égalité.
+\end{enumerate}
+\mxexercisehead{C06-E4}{Comparer deux courbes}
+Les fonctions $f(x)=x^3$ et $g(x)=x$ sont définies sur $\R$. On note $\mathcal C_f$ et $\mathcal C_g$ leurs courbes dans un même repère.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer les points d’intersection de ces deux courbes.
+\item Étudier leur position relative sur $\R$ en choisissant une méthode adaptée. Traduire votre résultat par les intervalles où $\mathcal C_f$ est au-dessus ou au-dessous de $\mathcal C_g$.
+\end{enumerate}
+\mxexercisehead{C06-E5}{Un emballage}
+On fabrique une boîte sans couvercle à partir d’une feuille carrée de 12 cm de côté. On découpe dans chacun des quatre coins un carré de côté $x$ cm, puis on relève les bords restants. L’épaisseur de la feuille est négligée.
+\begin{enumerate}[label=\arabic*.]
+\item Dessiner le patron et exprimer la hauteur ainsi que les deux dimensions de la base de la boîte. Préciser les valeurs de $x$ qui donnent une boîte de volume non nul.
+\item Exprimer le volume $V(x)$ en centimètres cubes. Déterminer les dimensions qui rendent ce volume maximal.
+\item Contrôler les valeurs aux deux bornes du domaine et donner le volume maximal exact.
+\end{enumerate}
+\mxinclude{figures/C06-E5}
+\mxexercisehead{C06-E6}{Stationnaire sans extremum}
+Un élève affirme : « Si la dérivée s’annule en un point, la fonction possède forcément un extremum local en ce point. » On étudie la fonction $f(x)=x^3$ pour tester cette affirmation.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer $f\prime(0)$.
+\item Comparer à $f(0)$ les valeurs de $f(x)$ pour des réels $x$ négatifs puis positifs, aussi proches de 0 que l’on veut.
+\item Conclure sur l’existence d’un extremum local en 0 et sur l’affirmation proposée.
+\end{enumerate}
+\mxexercisehead{C06-E7}{Comparer des stratégies}
+On souhaite démontrer que, pour tout réel $x$, $x^2-6x+12\geq3$.
+\begin{enumerate}[label=\arabic*.]
+\item Proposer une démonstration en faisant apparaître un carré.
+\item Proposer une seconde démonstration en étudiant les variations d’une fonction.
+\item Préciser le cas d’égalité. Comparer les deux méthodes : laquelle demande ici le moins de calculs ?
+\end{enumerate}
+\mxexercisehead{C06-E8}{Reprise différée}
+La fonction inverse $f(x)=\dfrac1x$ a pour domaine $D=\R\setminus\{0\}$. Un élève calcule $f\prime(x)=-\dfrac1{x^2}<0$ et conclut que $f$ est décroissante sur tout $D$.
+\begin{enumerate}[label=\arabic*.]
+\item Identifier l’hypothèse manquante dans l’application du théorème reliant signe de la dérivée et variations.
+\item Indiquer les deux intervalles sur lesquels sa conclusion est correcte.
+\item À l’aide des nombres $-1$ et 1, construire un contre-exemple à sa conclusion sur tout $D$.
+\end{enumerate}
+\paragraph{Travail personnel.} Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.
+\endgroup
+\mxneed{12}\section*{À faire dans le manuel CQFD}
+Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).
+\paragraph{CQFD, exercice 12 p. 156, questions 1 et 2.}\label{C06-M1} Calculer la différence, étudier son signe et traduire celui-ci en position relative des courbes.
+\paragraph{CQFD, exercice 16 p. 156, questions f et g.}\label{C06-M2} Donner pour chaque fonction un intervalle où elle est à la fois négative et croissante ; justifier les deux propriétés séparément.
+\begingroup\small
+\mxnewpage\section*{QCM 1 : comprendre et choisir}\label{C06-Q1}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item $(x^3)\prime$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x^2$
+\item $3x^2$
+\item $3x$
+\item $\dfrac{x^4}{4}$
+\end{enumerate}
+\item $(\dfrac{1}{x})\prime $ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-\dfrac{1}{x^2}$
+\item $\dfrac{1}{x^2}$
+\item $-\dfrac{1}{x}$
+\item $1$
+\end{enumerate}
+\item $(uv)\prime$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $u\prime v\prime$
+\item $u\prime+v\prime$
+\item $uv\prime$
+\item $u\prime v+uv\prime$
+\end{enumerate}
+\item $f\prime>0$ sur un intervalle implique
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item f positive
+\item f négative
+\item f strictement croissante
+\item f constante
+\end{enumerate}
+\item $\dfrac{x^2+1}{x-1}$ est définie si
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x>0$
+\item $x\ne1$
+\item $x\ne-1$
+\item $x\ne0$
+\end{enumerate}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{QCM 2 : comprendre et choisir}\label{C06-Q2}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item $x^3-x$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item paire
+\item constante
+\item impaire
+\item ni paire ni impaire
+\end{enumerate}
+\item $f\prime(a)=0$ implique nécessairement
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item tangente horizontale
+\item maximum
+\item minimum
+\item f constante
+\end{enumerate}
+\item Dérivée de $\sqrt x$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2\sqrt x$
+\item $\dfrac{1}{\sqrt x}$
+\item $\dfrac{\sqrt x}{2}$
+\item $\dfrac{1}{2\sqrt x}$, $x>0$
+\end{enumerate}
+\item Minimum de $x+\dfrac{1}{x}$ sur $]0;+\infty[$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $2$
+\item $1$
+\item aucun
+\end{enumerate}
+\item Newton pour $x^2-2$ n’est pas défini avec $x_0=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $1$
+\item $2$
+\item $0$
+\item $-1$
+\end{enumerate}
+\end{enumerate}
+\subsection*{Vrai ou faux ? Justifier.}\label{C06-VF}
+\begin{enumerate}
+\item La dérivée d’une fonction positive est positive.
+\item Un extremum intérieur d’une fonction dérivable donne une dérivée nulle.
+\item Le produit de deux fonctions croissantes est croissant.
+\end{enumerate}
+\begin{keypoint}[Bilan personnel]Je dérive sur le bon domaine ; je simplifie sans perdre les valeurs interdites ; je distingue extremum local et global ; je choisis parfois une factorisation plutôt qu’une dérivée.
+
+Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C06}\fi

@@ -1,0 +1,208 @@
+\mxunit{premiere-c07}{Géométrie repérée : droites, projections et cercles}\label{C07}
+\begin{keypoint}[Le parcours du chapitre]
+\textbf{Objectifs.} Utiliser un vecteur normal ; calculer un projeté ; déterminer ou reconnaître un cercle ; traduire une configuration en équations.
+
+\textbf{Prérequis.} Coordonnées vectorielles, produit scalaire, systèmes linéaires, complétion du carré. Repère toujours orthonormé.
+
+\textbf{Repère annuel.} 5, 7 et 12 janvier : 6 h\end{keypoint}
+\section*{Diagnostic : six questions, 10 minutes}\label{C07-D}
+Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.
+\begin{enumerate}
+\item $(2;-1)\cdot(1;2)$ ?
+\item Le point $(1;2)$ vérifie-t-il $2x-y=0$ ?
+\item Résoudre $x+y=5$, $x-y=1$.
+\item Distance de $(1;2)$ à $(4;6)$ ?
+\item Compléter $x^2-4x$.
+\item Résoudre $x^2+y^2=0$ dans $\R^2$.
+\end{enumerate}
+\paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
+\paragraph{Oral et logique.} Présenter les deux conditions caractérisant un projeté. Donner une preuve géométrique et une preuve algébrique d’une médiatrice.
+\mxnewpage
+\section*{Chercher avant de formaliser}\label{C07-RECH}
+À partir de $P(4;3)$ et $d:y=2x$, comparer les distances vers trois points de d, puis chercher et démontrer laquelle est la plus courte.
+\paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\section{Vecteur normal et équation cartésienne}\label{C07-U1}
+\begin{keypoint}[Définition et résultats]
+Un vecteur normal non nul à une droite est orthogonal à tout vecteur directeur de cette droite. Si $\vec n=(a;b)\ne(0;0)$ est normal et $A(x_A;y_A)$ appartient à d, alors $d$ a pour équation $a(x-x_A)+b(y-y_A)=0$, soit $ax+by+c=0$. Un vecteur directeur possible est $(-b;a)$.
+\end{keypoint}
+\paragraph{Statut et justification.} $M\in d$ équivaut à $\vect{AM}\cdot\vec n=0$. Dans un repère orthonormé, développer ce produit donne l’équation. Réciproquement l’ensemble ainsi défini est la droite passant par A orthogonale à n.
+\begin{example}Par $A(1;2)$ et normale $(2;-3)$ : $2(x-1)-3(y-2)=0$, donc $2x-3y+4=0$. Le vecteur $(3;2)$ dirige la droite : produit $6-6=0$.\end{example}\label{C07-EX1}
+\begin{pitfall}$(a;b)$ est normal, et non directeur en général. $(a;b)$ ne doit pas être nul.\end{pitfall}
+\begin{application}Équation de la droite par $(2;-1)$ de normale $(3;4)$.\end{application}\label{C07-AP1}
+\section{Projeté orthogonal et distance}\label{C07-U2}
+\begin{keypoint}[Définition et résultats]
+Le projeté H de P sur d est caractérisé par $H\in d$ et $\vect{PH}$ colinéaire à un vecteur normal de d. Pour $d:ax+by+c=0$, écrire $H=P-\lambda(a;b)$, avec $\lambda =\dfrac{ax_P+by_P+c}{a^2+b^2}$. La distance est $PH=\dfrac{|ax_P+by_P+c|}{\sqrt {a^2+b^2}}$. La formule de distance est un complément déduit, pas un automatisme isolé.
+\end{keypoint}
+\paragraph{Statut et justification.} Substituer $x_H=x_P-\lambda a$, $y_H=y_P-\lambda b$ dans l’équation : $ax_P+by_P+c-\lambda(a^2+b^2)=0$. Le dénominateur est positif ; on obtient H puis $PH=|\lambda|\sqrt{a^2+b^2}$.
+\begin{example}Pour $P(3;4)$ et $d:x+y-2=0$, $\lambda =\dfrac{3+4-2}{2}=\dfrac{5}{2}$, donc $H(\dfrac{1}{2};\dfrac{3}{2})$ et $PH=\dfrac{5}{\sqrt 2}=\dfrac{5\sqrt 2}{2}$. Vérifier $x_H+y_H=2$.\end{example}\label{C07-EX2}
+\mxinclude{figures/C07-U2}
+\begin{pitfall}La distance est positive ou nulle : conserver la valeur absolue. Deux vérifications, appartenance et perpendicularité, sécurisent le projeté.\end{pitfall}
+\begin{application}Projeter $P(4;1)$ sur $d:x=2$.\end{application}\label{C07-AP2}
+\section{Équation d’un cercle}\label{C07-U3}
+\begin{keypoint}[Définition et résultats]
+Le cercle de centre $I(\alpha;\beta)$ et de rayon $r>0$ a pour équation $(x-\alpha)^2+(y-\beta)^2=r^2$. Une équation $x^2+y^2+ux+vy+w=0$ se traite par complétion des deux carrés. Si le rayon au carré obtenu est négatif, l’ensemble est vide ; s’il est nul, c’est un point.
+\end{keypoint}
+\paragraph{Statut et justification.} $M$ appartient au cercle si et seulement si $IM=r$. Les deux membres étant positifs ou nuls, on peut élever au carré et utiliser la formule de distance en repère orthonormé.
+\begin{example}$x^2+y^2-4x+6y+9=0$ devient $(x-2)^2+(y+3)^2=4$. Centre $(2;-3)$, rayon 2. Les signes des coordonnées du centre sont opposés à ceux figurant dans les parenthèses.\end{example}\label{C07-EX3}
+\begin{pitfall}Une équation quadratique en x et y n’est pas toujours un cercle : vérifier les coefficients et le rayon réel.\end{pitfall}
+\begin{application}Reconnaître $x^2+y^2+2x-8y+17=0$.\end{application}\label{C07-AP3}
+\section{Résoudre une configuration}\label{C07-U4}
+\begin{keypoint}[Définition et résultats]
+Une intersection est obtenue en résolvant simultanément les équations. Pour un cercle et une droite parallèle à un axe, substituer la coordonnée constante donne une équation du second degré. Pour une médiatrice, écrire l’égalité des distances au carré ; les termes quadratiques s’éliminent.
+\end{keypoint}
+\paragraph{Statut et justification.} Les équivalences reposent sur l’appartenance aux deux ensembles. L’égalité $MA=MB$ est équivalente à $MA^2=MB^2$, puisque les distances sont positives.
+\begin{example}Le cercle $x^2+y^2=25$ et la droite $x=3$ se coupent en $(3;4)$ et $(3;-4)$. La médiatrice de $A(0;0)$ et $B(4;2)$ vérifie $x^2+y^2=(x-4)^2+(y-2)^2$, donc $2x+y=5$.\end{example}\label{C07-EX4}
+\begin{pitfall}Une intersection n’est pas l’union des ensembles de solutions. Vérifier les points dans les deux équations.\end{pitfall}
+\begin{application}Intersecter $(x-1)^2+(y+2)^2=9$ avec $y=1$.\end{application}\label{C07-AP4}
+\section*{Parcours d’exercices}\label{C07-PARC}
+Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
+\begingroup
+\mxexercisehead{C07-E1}{Construire une droite}
+Le plan est muni d’un repère orthonormé. La droite $d$ passe par $A(-1;3)$ et admet le vecteur $\vec n=(2;5)$ pour vecteur normal.
+\begin{enumerate}[label=\arabic*.]
+\item Écrire la condition d’appartenance d’un point $M(x;y)$ à $d$ à l’aide d’un produit scalaire. En déduire une équation cartésienne de $d$.
+\item Donner un vecteur directeur non nul de $d$, puis les coordonnées d’un point de $d$ distinct de $A$.
+\item Vérifier votre point par substitution dans l’équation.
+\end{enumerate}
+\mxexercisehead{C07-E2}{Calculer un projeté}
+Dans un repère orthonormé, on donne le point $P(4;3)$ et la droite $d$ d’équation $2x-y=0$. On note $H$ le projeté orthogonal de $P$ sur $d$.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer les coordonnées de $H$ en traduisant les deux conditions : $H$ appartient à $d$ et $\vect{PH}$ est normal à $d$.
+\item Vérifier séparément ces deux conditions avec les coordonnées obtenues.
+\item Calculer la distance de $P$ à la droite $d$ sous forme exacte.
+\end{enumerate}
+\mxexercisehead{C07-E3}{Reconnaître un cercle}
+On considère l’ensemble des points $M(x;y)$ du plan orthonormé dont les coordonnées vérifient\[x^2+y^2-6x+4y-12=0.\]
+\begin{enumerate}[label=\arabic*.]
+\item Montrer que cet ensemble est un cercle et préciser son centre et son rayon.
+\item Déterminer tous ses points d’intersection avec la droite d’équation $y=-2$.
+\item Interpréter géométriquement la position de ces deux points sur le cercle.
+\end{enumerate}
+\mxexercisehead{C07-E4}{Médiatrice}
+Dans un repère orthonormé, on donne $A(-1;1)$ et $B(3;3)$. On cherche une équation de la médiatrice de $[AB]$.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer cette équation en utilisant les propriétés géométriques de la médiatrice. Expliquer le choix d’un point et d’un vecteur normal.
+\item Vérifier que le milieu de $[AB]$ satisfait l’équation obtenue.
+\end{enumerate}
+\mxexercisehead{C07-E5}{Le meilleur accès}
+Une route rectiligne est représentée par la droite $d$ d’équation $y=2x$ dans un repère orthonormé dont l’unité de longueur vaut 1 km. Un bâtiment se situe au point $P(4;3)$. On veut construire un accès rectiligne reliant le bâtiment à un point de la route.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer le point de la route qui rend cet accès le plus court possible. Calculer la longueur exacte de l’accès.
+\item Justifier que votre choix est optimal parmi tous les points de la route, en comparant les distances à l’aide d’un triangle rectangle. Une seule observation sur un dessin ne suffit pas.
+\end{enumerate}
+\mxexercisehead{C07-E6}{Paramètre et ensemble}
+Pour un paramètre réel $k$, on définit $\mathcal E_k$ comme l’ensemble des points $M(x;y)$ dont les coordonnées vérifient\[x^2+y^2-2x+4y+k=0.\]
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer la nature de $\mathcal E_k$ selon la valeur de $k$. Organiser la réponse en cas disjoints.
+\item Lorsque cet ensemble est un cercle, préciser son centre et son rayon ; dans les autres cas, décrire exactement l’ensemble obtenu.
+\end{enumerate}
+\mxexercisehead{C07-E7}{Une parabole comme lieu}
+\textbf{Approfondissement facultatif.} Dans un repère orthonormé, on fixe le point $F(0;2)$. On cherche les points $M(x;y)$ dont la distance à $F$ est égale à la distance à l’axe des abscisses.
+\begin{enumerate}[label=\arabic*.]
+\item Exprimer le carré de chacune des deux distances en fonction de $x$ et de $y$.
+\item En déduire une équation de l’ensemble recherché. Vérifier la réciproque afin de justifier que cette équation décrit exactement tous les points cherchés.
+\end{enumerate}
+\mxexercisehead{C07-E8}{Reprise différée}
+Dans un repère orthonormé, $\mathcal C$ est le cercle de diamètre $[AB]$, avec $A(0;0)$ et $B(4;0)$. On considère la droite $d$ d’équation $x=5$.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer si $\mathcal C$ et $d$ ont un point commun, en résolvant une équation.
+\item Confirmer la réponse en comparant la distance du centre du cercle à la droite et le rayon du cercle.
+\end{enumerate}
+\paragraph{Travail personnel.} Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.
+\endgroup
+\mxneed{12}\section*{À faire dans le manuel CQFD}
+Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).
+\paragraph{CQFD, exercice 18 p. 279, questions a, b, c et d.}\label{C07-M1} Lire un vecteur normal non nul pour chaque équation, sans résoudre en y.
+\paragraph{CQFD, exercice 21 p. 279, questions a et b.}\label{C07-M2} Écrire la condition d’orthogonalité à la normale, puis vérifier que le point donné appartient à la droite.
+\begingroup\small
+\mxnewpage\section*{QCM 1 : comprendre et choisir}\label{C07-Q1}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item Une normale à $2x-3y+1=0$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $(3;2)$
+\item $(2;-3)$
+\item $(2;3)$
+\item $(1;0)$
+\end{enumerate}
+\item Un directeur de $x+2y=0$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $(-2;1)$
+\item $(1;2)$
+\item $(2;1)$
+\item $(0;2)$
+\end{enumerate}
+\item Centre de $(x+2)^2+(y-3)^2=4$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $(2;3)$
+\item $(-2;-3)$
+\item $(3;-2)$
+\item $(-2;3)$
+\end{enumerate}
+\item Rayon de $x^2+y^2=9$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $9$
+\item $81$
+\item $3$
+\item $\sqrt3$
+\end{enumerate}
+\item $x^2+y^2=-1$ décrit
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item un cercle
+\item l’ensemble vide
+\item l’origine
+\item une droite
+\end{enumerate}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{QCM 2 : comprendre et choisir}\label{C07-Q2}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item Projeté de $(3;4)$ sur l’axe des abscisses :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $(0;4)$
+\item $(0;0)$
+\item $(3;0)$
+\item $(4;3)$
+\end{enumerate}
+\item Distance de $(1;5)$ à $y=2$ :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $3$
+\item $5$
+\item $1$
+\item $\sqrt{10}$
+\end{enumerate}
+\item Pour définir $ax+by+c=0$ comme droite, il faut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $a\ne0$ seul
+\item $b\ne0$ seul
+\item $c\ne0$
+\item $(a;b)\ne(0;0)$
+\end{enumerate}
+\item $x^2+y^2=0$ décrit
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item un cercle de rayon 1
+\item le seul point O
+\item une droite
+\item le plan
+\end{enumerate}
+\item Cercle $x^2+y^2=4$ et droite $x=2$ : nombre de points communs
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $2$
+\item $1$
+\item infini
+\end{enumerate}
+\end{enumerate}
+\subsection*{Vrai ou faux ? Justifier.}\label{C07-VF}
+\begin{enumerate}
+\item Le projeté orthogonal de P sur une droite est unique.
+\item Toute équation $x^2+y^2+c=0$ décrit un cercle de rayon positif.
+\item Une droite peut rencontrer un cercle en trois points distincts.
+\end{enumerate}
+\begin{keypoint}[Bilan personnel]Je donne une normale non nulle ; je vérifie le projeté ; je complète les deux carrés ; je distingue cercle, point et ensemble vide.
+
+Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C07}\fi

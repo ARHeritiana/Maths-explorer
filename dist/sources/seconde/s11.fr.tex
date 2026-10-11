@@ -57,7 +57,7 @@ bus_satisfaits = [r for r in donnees
 autres = [r for r in donnees if not r[0] == "bus"]
 \end{lstlisting}
 \begin{example}Donner les effectifs des trois listes. Calculer la fréquence de satisfaction parmi les usagers du bus. Remplacer \texttt{and} par \texttt{or} dans le second filtre : combien de lignes sont alors sélectionnées ?\end{example}
-\mxanswerspace[3.2]{Effectifs : $3{,}2,3$. Parmi les usagers du bus, la fréquence de satisfaction vaut $2/3$. Avec \texttt{or}, on sélectionne les $3$ usagers du bus et les $2$ personnes satisfaites utilisant un autre moyen : $5$ lignes, sans compter deux fois les lignes qui vérifient les deux critères.}
+\mxanswerspace[3.2]{Effectifs : $3,2,3$. Parmi les usagers du bus, la fréquence de satisfaction vaut $2/3$. Avec \texttt{or}, on sélectionne les $3$ usagers du bus et les $2$ personnes satisfaites utilisant un autre moyen : $5$ lignes, sans compter deux fois les lignes qui vérifient les deux critères.}
 \begin{method}[Activité avec les données de la classe]
 Recueillir anonymement deux variables : moyen de transport principal et durée du trajet par catégories ordonnées ($<15$ min ; de $15$ à moins de $30$ min ; $\geq30$ min). Une ligne par réponse, sans nom. Construire le tableau croisé, puis deux fréquences conditionnelles de sens opposés. Présenter effectif, date de collecte et éventuelles non-réponses.
 \end{method}

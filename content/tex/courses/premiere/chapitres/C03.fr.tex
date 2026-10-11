@@ -1,0 +1,219 @@
+\mxunit{premiere-c03}{Calcul vectoriel et produit scalaire}\label{C03}
+\begin{keypoint}[Le parcours du chapitre]
+\textbf{Objectifs.} Choisir entre projection, coordonnées et angle ; calculer une longueur ; caractériser une orthogonalité et un lieu.
+
+\textbf{Prérequis.} Vecteurs, Chasles, Pythagore, cosinus dans un triangle rectangle, repère orthonormé.
+
+\textbf{Repère annuel.} 6–15 octobre : 8 h\end{keypoint}
+\section*{Diagnostic : six questions, 10 minutes}\label{C03-D}
+Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.
+\begin{enumerate}
+\item Pour $A(1;2)$ et $B(4;-2)$, calculer $\vect{AB}$.
+\item Calculer la norme de $(3;-4)$.
+\item Simplifier $\vect{AB}+\vect{BC}$.
+\item Développer $(a+b)^2$.
+\item Dans un triangle rectangle, un angle a pour côtés adjacent 3 et hypoténuse 5. Donner son cosinus.
+\item Le milieu de $A(-2;1)$ et $B(4;3)$ ?
+\end{enumerate}
+\paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
+\paragraph{Oral et logique.} Comparer, sur un même problème, coordonnées et calcul vectoriel sans repère. Justifier pourquoi votre méthode utilise les données les plus directement.
+\mxnewpage
+\section*{Chercher avant de formaliser}\label{C03-RECH}
+Construire trois points M tels que $\vect{MA}\cdot\vect{MB}=0$ pour un segment AB de 6 cm. Conjecturer le lieu puis produire une preuve qui inclut A et B.
+\paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\section{Projection et angle}\label{C03-U1}
+\begin{keypoint}[Définition et résultats]
+Pour deux vecteurs non nuls $\vec u,\vec v$, leur produit scalaire est le réel $\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta$, où $\theta\in[0;\pi]$ est leur angle non orienté. Avec un vecteur nul, le produit vaut 0. Si $H$ est le projeté de B sur $(OA)$, $\vect{OA}\cdot\vect{OB}$ vaut $OA\times OH$ lorsque H est sur la demi-droite $[OA)$, et son opposé sinon.
+\end{keypoint}
+\paragraph{Statut et justification.} Définition ; l’équivalence avec la projection découle du cosinus dans les triangles rectangles, avec une projection algébrique négative pour un angle obtus.
+\begin{example}Pour deux vecteurs de normes 3 et 4 formant $60^\circ$, le produit vaut $\dfrac{3\times 4\times 1}{2}=6$. Avec $120^\circ$, il vaut $-6$. Si $A(3;0)$ et $B(-2;4)$, le projeté est $H(-2;0)$ et le produit vaut $-6$.\end{example}\label{C03-EX1}
+\mxinclude{figures/C03-U1}
+\begin{pitfall}Le résultat est un nombre, pas un vecteur. L’angle droit correspond à 0, pas à 1.\end{pitfall}
+\begin{application}Deux vecteurs ont pour normes 2 et 5 et forment $90^\circ$, puis $180^\circ$. Calculer les produits.\end{application}\label{C03-AP1}
+\section{Coordonnées, norme et orthogonalité}\label{C03-U2}
+\begin{keypoint}[Définition et résultats]
+Dans une base orthonormée, pour $\vec u=(x;y)$ et $\vec v=(x\prime;y\prime)$, $\vec u\cdot\vec v=xx\prime+yy\prime$ et $\norm{\vec u}^2=x^2+y^2$. Les vecteurs sont orthogonaux si et seulement si leur produit est nul. Pour une base $(\vec i,\vec j)$ orthonormée, $x=\vec u\cdot\vec i$ et $y=\vec u\cdot\vec j$.
+\end{keypoint}
+\paragraph{Statut et justification.} Propriétés démontrées à l’aide de la bilinéarité : développer $(x\vec i+y\vec j)\cdot(x\prime\vec i+y\prime\vec j)$ et utiliser $\vec i\cdot\vec i=\vec j\cdot\vec j=1$, $\vec i\cdot\vec j=0$.
+\begin{example}$\vec u=(2;3)$, $\vec v=(3;-2)$ : produit $6-6=0$. Les deux vecteurs sont orthogonaux. Leur norme vaut $\sqrt{13}$. Le produit de $(2;3)$ avec $(1;0)$ vaut 2 : on retrouve l’abscisse.\end{example}\label{C03-EX2}
+\begin{pitfall}La formule usuelle suppose une base orthonormée. Colinéarité et orthogonalité sont des propriétés différentes.\end{pitfall}
+\begin{application}Pour quel réel t les vecteurs $(t;2)$ et $(3;-6)$ sont-ils orthogonaux ?\end{application}\label{C03-AP2}
+\section{Calcul vectoriel et identités}\label{C03-U3}
+\begin{keypoint}[Définition et résultats]
+Le produit scalaire est symétrique et bilinéaire : $\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w$ et $(\lambda\vec u)\cdot\vec v=\lambda(\vec u\cdot\vec v)$. Ainsi $\norm{\vec u\pm\vec v}^2=\norm{\vec u}^2\pm2\vec u\cdot\vec v+\norm{\vec v}^2$. On en tire $\vec u\cdot \vec v=\dfrac{\norm{\vec u+\vec v}^2-\norm{\vec u}^2-\norm{\vec v}^2}{2}$.
+\end{keypoint}
+\paragraph{Statut et justification.} Bilinéarité admise à partir de la définition géométrique ; symétrie issue du cosinus. Les identités sont démontrées en développant $(\vec u\pm\vec v)\cdot(\vec u\pm\vec v)$.
+\begin{example}Si $\norm{\vec u}=3$, $\norm{\vec v}=4$ et $\norm{\vec u+\vec v}=5$, le produit vaut $\dfrac{25-9-16}{2}=0$. On déduit l’orthogonalité sans coordonnées.\end{example}\label{C03-EX3}
+\begin{pitfall}En général, $\norm{\vec u+\vec v}\ne\norm{\vec u}+\norm{\vec v}$. Les identités concernent les carrés des normes.\end{pitfall}
+\begin{application}On donne $\norm{\vec u}=2$, $\norm{\vec v}=3$, $\vec u\cdot\vec v=1$. Calculer $\norm{\vec u-\vec v}$.\end{application}\label{C03-AP3}
+\section{Al-Kashi et choix d’une méthode}\label{C03-U4}
+\begin{keypoint}[Définition et résultats]
+Dans un triangle ABC, $BC^2=AB^2+AC^2-2AB\,AC\cos\widehat{BAC}$. Cette formule permet de calculer le troisième côté à partir de deux côtés et de l’angle compris, ou de déterminer le cosinus d’un angle à partir des trois côtés.
+\end{keypoint}
+\paragraph{Statut et justification.} Par Chasles, $\vect{BC}=\vect{AC}-\vect{AB}$. Développer son carré scalaire donne $BC^2=AC^2+AB^2-2\vect{AB}\cdot\vect{AC}$ ; introduire l’expression avec le cosinus.
+\begin{example}$AB=5$, $AC=3$ et $\widehat{BAC}=60^\circ$ : $BC^2=25+9-15=19$, donc $BC=\sqrt{19}$. Avec trois côtés, isoler le cosinus avant d’approcher l’angle à la calculatrice si elle est autorisée.\end{example}\label{C03-EX4}
+\begin{pitfall}L’angle est compris entre les deux côtés du terme produit. Le signe moins est essentiel.\end{pitfall}
+\begin{application}Un triangle a $AB=AC=4$ et $BC=4\sqrt2$. Déterminer l’angle A.\end{application}\label{C03-AP4}
+\section{Le cercle de diamètre AB}\label{C03-U5}
+\begin{keypoint}[Définition et résultats]
+Pour deux points distincts A et B de milieu I, $\vect {MA}\cdot \vect {MB}=MI^2-\dfrac{AB^2}{4}$. L’ensemble des points M tels que $\vect{MA}\cdot\vect{MB}=0$ est le cercle de centre I et de rayon $\dfrac{AB}{2}$, points A et B compris.
+\end{keypoint}
+\paragraph{Statut et justification.} Écrire $\vect{MA}=\vect{MI}+\vect{IA}$ et $\vect{MB}=\vect{MI}-\vect{IA}$. Les termes croisés s’annulent ; il reste $MI^2-IA^2$. Comme $IA=\dfrac{AB}{2}$, l’égalité à zéro équivaut à l’équation métrique du cercle.
+\begin{example}$A(-2;0)$ et $B(2;0)$ : I est l’origine. Le lieu est $x^2+y^2=4$. Pour $M(0;1)$, le produit vaut $1-4=-3$ ; pour $M(0;2)$, il vaut 0.\end{example}\label{C03-EX5}
+\mxinclude{figures/C03-U5}
+\begin{pitfall}Les extrémités appartiennent au lieu même si « triangle rectangle » ne convient pas à un triangle dégénéré.\end{pitfall}
+\begin{application}Pour $A(0;0)$, $B(6;0)$, déterminer les M tels que $\vect{MA}\cdot\vect{MB}=7$.\end{application}\label{C03-AP5}
+\section*{Parcours d’exercices}\label{C03-PARC}
+Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
+\begingroup
+\mxexercisehead{C03-E1}{Calculs directs}
+Dans une base orthonormée du plan, on considère les vecteurs $\vec u=(1;-2)$ et $\vec v=(4;3)$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer le produit scalaire $\vec u\cdot\vec v$, puis les normes $\norm{\vec u}$ et $\norm{\vec v}$.
+\item Calculer les coordonnées de $\vec u+\vec v$ et en déduire $\norm{\vec u+\vec v}^2$.
+\item Retrouver ce dernier résultat à l’aide de l’identité faisant intervenir $\vec u\cdot\vec v$.
+\end{enumerate}
+\mxexercisehead{C03-E2}{Un triangle rectangle ?}
+Le plan est muni d’un repère orthonormé. On donne les points $A(1;1)$, $B(4;2)$ et $C(0;4)$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer les coordonnées de $\vect{AB}$ et $\vect{AC}$, puis leur produit scalaire.
+\item En déduire que le triangle $ABC$ est rectangle ; préciser en quel sommet.
+\item Calculer les longueurs des deux côtés perpendiculaires, puis l’aire du triangle en unités d’aire.
+\end{enumerate}
+\mxexercisehead{C03-E3}{Longueur sans repère}
+Le quadrilatère $ABCD$ est un parallélogramme tel que $AB=4$, $AD=3$ et $\widehat{BAD}=60^\circ$. Les longueurs sont exprimées dans la même unité.
+\begin{enumerate}[label=\arabic*.]
+\item Faire une figure et calculer le produit scalaire $\vect{AB}\cdot\vect{AD}$.
+\item Déterminer les longueurs exactes des diagonales $[AC]$ et $[BD]$. Expliquer comment les vecteurs correspondant aux diagonales s’expriment à partir de $\vect{AB}$ et $\vect{AD}$.
+\item Indiquer quelle diagonale est la plus longue et vérifier que ce résultat est cohérent avec votre figure.
+\end{enumerate}
+\mxexercisehead{C03-E4}{Retrouver un angle}
+Deux vecteurs non nuls $\vec u$ et $\vec v$ vérifient $\norm{\vec u}=2$, $\norm{\vec v}=6$ et $\vec u\cdot\vec v=-6$. On note $\theta$ leur angle non orienté, compris entre $0^\circ$ et $180^\circ$.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer la valeur exacte de $\cos\theta$, puis la mesure de $\theta$.
+\item Expliquer en quoi le signe du produit scalaire permettait de prévoir que l’angle serait obtus.
+\end{enumerate}
+\mxexercisehead{C03-E5}{Un lieu variable}
+Les points $A$ et $B$ sont distincts et fixés. On note $I$ le milieu de $[AB]$. Pour un réel $k$ fixé, on cherche l’ensemble des points $M$ du plan qui vérifient $\vect{MA}\cdot\vect{MB}=k$.
+\begin{enumerate}[label=\arabic*.]
+\item Exprimer ce produit scalaire en fonction de $MI$ et de $AB$ en utilisant la relation de Chasles et une identité scalaire.
+\item Décrire précisément l’ensemble recherché selon la valeur de $k$. Pour chaque cas, indiquer s’il est vide, réduit à un point ou constitué d’un cercle ; donner alors ses caractéristiques.
+\item Expliquer le rôle du fait qu’une distance au carré est positive ou nulle.
+\end{enumerate}
+\mxexercisehead{C03-E6}{Travail d’une force}
+Un objet se déplace en ligne droite de $A$ vers $B$ sur une distance de 4 m. Il est soumis à une force constante $\vec F$ de norme 50 N. Le travail de cette force est défini par $W=\vec F\cdot\vect{AB}$ et s’exprime en joules.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer $W$ lorsque l’angle entre $\vec F$ et $\vect{AB}$ vaut $60^\circ$.
+\item Reprendre le calcul pour un angle de $120^\circ$.
+\item Comparer les signes des deux travaux et expliquer, dans chaque situation, si la force favorise le déplacement ou s’y oppose.
+\end{enumerate}
+\mxexercisehead{C03-E7}{Contraposée}
+On souhaite démontrer l’affirmation suivante, valable pour deux vecteurs du plan :\[\norm{\vec u+\vec v}^2\ne\norm{\vec u}^2+\norm{\vec v}^2\quad\Longrightarrow\quad \vec u\text{ et }\vec v\text{ ne sont pas orthogonaux}.\]
+\begin{enumerate}[label=\arabic*.]
+\item Énoncer la contraposée de cette implication.
+\item Démontrer cette contraposée à l’aide d’une identité scalaire, puis conclure sur l’affirmation initiale.
+\end{enumerate}
+\mxexercisehead{C03-E8}{Reprise différée}
+Un triangle $ABC$ vérifie $AB=3$, $AC=4$ et $BC=5$. On cherche $\vect{AB}\cdot\vect{AC}$ sans utiliser de coordonnées.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer ce produit scalaire par une formule faisant intervenir les trois longueurs.
+\item Retrouver le résultat en déterminant la nature du triangle. Citer le théorème utilisé et son hypothèse numérique.
+\end{enumerate}
+\paragraph{Travail personnel.} Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.
+\endgroup
+\mxneed{12}\section*{À faire dans le manuel CQFD}
+Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).
+\paragraph{CQFD, exercice 9 p. 250, questions a et b.}\label{C03-M1} Calculer le produit scalaire dans la base orthonormée et détailler les deux produits de coordonnées.
+\paragraph{CQFD, exercice 11 p. 250, questions 1, 2 et 3.}\label{C03-M2} Utiliser successivement les coordonnées, la relation de Chasles et le fait que I est le milieu.
+\begingroup\small
+\mxnewpage\section*{QCM 1 : comprendre et choisir}\label{C03-Q1}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item $(2;1)\cdot(3;-4)$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2$
+\item $10$
+\item $(6;-4)$
+\item $-2$
+\end{enumerate}
+\item La norme de $(-3;4)$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $7$
+\item $25$
+\item $5$
+\item $1$
+\end{enumerate}
+\item Deux vecteurs de produit nul sont
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item égaux
+\item colinéaires
+\item opposés
+\item orthogonaux
+\end{enumerate}
+\item Normes 2 et 3, angle $60^\circ$ : produit
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $6$
+\item $3$
+\item $\sqrt3$
+\item $0$
+\end{enumerate}
+\item $\norm{u-v}^2$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\norm u^2-\norm v^2$
+\item $\norm u^2+\norm v^2$
+\item $\norm u^2-2u\cdot v+\norm v^2$
+\item $\norm u^2+2u\cdot v+\norm v^2$
+\end{enumerate}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{QCM 2 : comprendre et choisir}\label{C03-Q2}
+Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item Un angle obtus entre vecteurs non nuls donne un produit
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item positif
+\item nul
+\item égal à 1
+\item négatif
+\end{enumerate}
+\item Dans une base orthonormée, $u\cdot i$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item l’abscisse de u
+\item la norme de u
+\item l’ordonnée de u
+\item toujours nul
+\end{enumerate}
+\item Le lieu $\vect{MA}\cdot\vect{MB}=0$ pour $A\ne B$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item la médiatrice
+\item la droite AB
+\item le cercle de diamètre AB
+\item le milieu seul
+\end{enumerate}
+\item Si $u\cdot v=3$, $(2u)\cdot(-v)$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-3$
+\item $-6$
+\item $6$
+\item $9$
+\end{enumerate}
+\item Pour $AB=AC=2$ et angle A droit, $BC$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $4$
+\item $2$
+\item $8$
+\item $2\sqrt2$
+\end{enumerate}
+\end{enumerate}
+\subsection*{Vrai ou faux ? Justifier.}\label{C03-VF}
+\begin{enumerate}
+\item Le produit scalaire de deux vecteurs est toujours positif.
+\item Le vecteur nul est orthogonal à tout vecteur.
+\item $u\cdot v=0$ implique que l’un des vecteurs est nul.
+\end{enumerate}
+\begin{keypoint}[Bilan personnel]Je distingue norme et carré de norme ; je choisis une formule adaptée ; je vérifie le repère ; je rédige une équivalence pour un lieu.
+
+Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C03}\fi
