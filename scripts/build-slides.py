@@ -1,6 +1,6 @@
 """Extract classroom slide decks (French + English) from the bilingual LaTeX sources.
 
-Premiere (C01-C10), Seconde (S01-S15) and STMG (chapitres/01-08) are parsed from content/tex/courses;
+Premiere (C01-C10), Seconde (S01-S15) and STMG (c01-c08, shared TeX system) are parsed from content/tex/courses;
 decks are written to dist/slides/data/<chapter id>.json and indexed in dist/slides/data/index.json.
 Teacher-only material (solutions boxes, \\enseignant, \\prof, fluency drills) is never included.
 Hand-authored decks (content/slides/*.json) are merged into the index unchanged.
@@ -100,6 +100,7 @@ def prose(s):
         s = re.sub(r'\\(?:texttt|code)\{([^{}]*)\}', r'<code>\1</code>', s)
         s = re.sub(r'\\underline\{([^{}]*)\}', r'<u>\1</u>', s)
         s = re.sub(r'\\textsuperscript\{([^{}]*)\}', r'<sup>\1</sup>', s)
+    s = re.sub(r'\\(?:mxlines|mxchip|mxtag|mxneed|mxarraystretch)\{[^{}]*\}', ' ', s)   # layout-only commands of the shared system
     s = re.sub(r'\\(?:label|index|vspace\*?|hspace\*?|Needspace\*?|needspace|phantomsection|medskip|smallskip|bigskip|noindent|clearpage|newpage|centering|small|footnotesize|large|Large|normalsize|raggedright|hfill|dotfill|quad|qquad)(\{[^{}]*\})?', ' ', s)
     s = re.sub(r'\\(?:paragraph|subsubsection|subsection)\*?\{([^{}]*)\}', r'<b>\1</b> ', s)
     s = re.sub(r'\\url\{([^{}]*)\}', r'\1', s)
@@ -138,7 +139,9 @@ def code_html(body): return esc(body.strip('\n'))
 
 
 # ---------------------------------------------------------------- walkers
-TEACHER_ENVS = {'correction', 'prerequis', 'automatismes', 'sortie', 'dm', 'manuel', 'exercice', 'exercicecal', 'probleme'}
+TEACHER_ENVS = {'correction', 'prerequis', 'automatismes', 'sortie', 'dm', 'manuel', 'exercice', 'exercicecal', 'probleme',
+                # canonical vocabulary (shared TeX system): teacher material and boxes that do not become slides
+                'solution', 'teachernote', 'prerequisites', 'fluency', 'exitticket', 'homework', 'note', 'exercise', 'problem', 'application'}
 
 
 def walk(s, handlers):
@@ -193,6 +196,8 @@ def fig_tokens(h):
     return re.sub(r'(?:<br>\s*)*@@FIG\d+@@(?:\s*<br>)*', ' ', h).strip(), nums
 
 
+CORE = ROOT / 'content/tex/core'
+MIGRATED = {'stmg'}   # courses on the shared class: canonical environments, units <id>.fr.tex / <id>.en.tex
 PREAMBLE = {  # course -> (main file for language, flags prepended before \documentclass)
     'seconde': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, '\\def\\VERSIONPROF{1}'),
     'premiere': ({'fr': 'main.tex', 'en': 'main-en.tex'}, '\\def\\versionprof{1}'),
@@ -205,7 +210,11 @@ def compile_figs(course, lang, jobs):
     """jobs: [(deck, n, code)] -> writes dist/slides/fig/<deck>-<n>[-en].svg; returns the set of (deck, n) that rendered."""
     import subprocess, pymupdf
     if not jobs: return set()
-    base = SRC / course; main, flags = PREAMBLE[course]; head = (base / main[lang]).read_text(encoding='utf8').split('\\begin{document}')[0]
+    base = SRC / course
+    if course in MIGRATED:   # shared class, bare page; teacher edition so that every figure exists
+        flags = ''; head = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\documentclass[lang=%s,edition=teacher,layout=slide-figs]{mxbook}\n' % (CORE, lang))
+    else:
+        main, flags = PREAMBLE[course]; head = (base / main[lang]).read_text(encoding='utf8').split('\\begin{document}')[0]
     build = ROOT / 'build/tex/figs'; build.mkdir(parents=True, exist_ok=True)
     figdir = OUT.parent / 'fig'; figdir.mkdir(parents=True, exist_ok=True)
     done = set()
@@ -287,20 +296,18 @@ def seconde_fix(src):
     return src
 
 
-def stmg(src, number):
-    ev = walk(src, {'chapter': 1, 'section': 1, 'sessionheader': 5, 'objectifs': 0, 'activite': 0, 'traceecrite': 0, 'methode': 0, 'exemple': 0, 'erreur': 0, 'retenir': 0, 'figtok': 1})
+def canonical(src, number):
+    """Units of the shared TeX system (docs/TEX_STYLE_GUIDE.md): the same vocabulary in every migrated course."""
+    ev = walk(src, {'mxunit': 2, 'section': 1, 'mxsession': 5, 'objectives': 0, 'activity': 0, 'summary': 0, 'keypoint': 0,
+                    'definition': 0, 'theorem': 0, 'method': 0, 'example': 0, 'pitfall': 0, 'figtok': 1})
+    kinds = {'objectives': 'goals', 'activity': 'activity', 'summary': 'concept', 'keypoint': 'concept', 'definition': 'concept',
+             'theorem': 'concept', 'method': 'method', 'example': 'example', 'pitfall': 'error'}
     out = []; unit = ''
     for kind, name, a, o in ev:
-        if name == 'chapter': out.append(slide('title', clean_title(a[0]), ''))
+        if name == 'mxunit': out.append(slide('title', clean_title(a[1]), ''))
         elif name == 'section': unit = clean_title(a[0])
-        elif name == 'sessionheader': unit = clean_title(a[3])
-        elif kind == 'env' and name == 'objectifs': out.append(slide('goals', unit, text2html(a)))
-        elif kind == 'env' and name == 'activite': out.append(slide('activity', unit, text2html(a)))
-        elif kind == 'env' and name == 'traceecrite': out.append(slide('concept', unit, text2html(a)))
-        elif kind == 'env' and name == 'retenir': out.append(slide('concept', unit, text2html(a)))
-        elif kind == 'env' and name == 'methode': out.append(slide('method', unit, text2html(a)))
-        elif kind == 'env' and name == 'exemple': out.append(slide('example', unit, text2html(a)))
-        elif kind == 'env' and name == 'erreur': out.append(slide('error', unit, text2html(a)))
+        elif name == 'mxsession': unit = clean_title(a[3])
+        elif kind == 'env' and name in kinds: out.append(slide(kinds[name], unit, text2html(a)))
     return out
 
 
@@ -366,9 +373,8 @@ def files():
         yield f'premiere-{n:02d}', 'premiere', n, SRC / f'premiere/chapitres/C{n:02d}.tex', SRC / f'premiere/chapitres/C{n:02d}-en.tex', premiere
     for n in range(1, 16):
         yield f'seconde-{n:02d}', 'seconde', n, SRC / f'seconde/sequences/S{n:02d}.tex', SRC / f'seconde/sequences/S{n:02d}-en.tex', seconde
-    names = ['01-suites', '02-exponentielles', '03-logarithme', '04-inverse', '05-statistiques', '06-conditionnelles', '07-binomiale', '08-revisions']
-    for n, nm in enumerate(names, 1):
-        yield f'stmg-{n:02d}', 'stmg', n, SRC / f'stmg/chapitres/{nm}.tex', SRC / f'stmg/chapitres/{nm}-en.tex', stmg
+    for n in range(1, 9):
+        yield f'stmg-{n:02d}', 'stmg', n, SRC / f'stmg/c{n:02d}.fr.tex', SRC / f'stmg/c{n:02d}.en.tex', canonical
 
 
 def main():
