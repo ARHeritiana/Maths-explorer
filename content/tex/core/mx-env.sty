@@ -1,0 +1,74 @@
+% mx-env.sty -- canonical environments, identical in every course. Names are English keys; the displayed label comes
+% from mx-i18n (\mxlabelof). Large boxes: mdframed, left rule, breakable. Small elements: tcolorbox.
+% Numbered: example, exercise, activity (per chapter, \newcounter). Teacher-only: solution, teachernote.
+%
+%   \begin{keypoint}[title] ... \end{keypoint}       also definition, theorem, method, example, pitfall, activity,
+%   \begin{exercise}[title] ... \end{exercise}            exercise, application, homework, exitticket, fluency,
+%   \begin{proof} ... \end{proof}                         objectives, prerequisites
+%   \begin{solution} ... \end{solution}               teacher edition only
+%   \begin{teachernote}[title] ... \end{teachernote}  teacher edition only
+%   \begin{figurebox}[caption] ... \end{figurebox}    centred figure with an optional caption
+%   \mxanswer{text}          answer shown in the teacher edition, nothing in the student edition
+%   \mxblank{text}           dotted blank for students, the text in bold for teachers
+%   \mxlines{n}              n ruled answer lines, student edition only
+%   \mxchip{text}            small rounded label (duration, difficulty)
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-env}[2026/10/11 Maths Explorer environments]
+\RequirePackage[framemethod=default]{mdframed}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{environ}
+
+\newcounter{mxexample}[chapter]
+\newcounter{mxexercise}[chapter]
+\newcounter{mxactivity}[chapter]
+\renewcommand{\themxexample}{\arabic{mxexample}}
+\renewcommand{\themxexercise}{\thechapter.\arabic{mxexercise}}
+\renewcommand{\themxactivity}{\arabic{mxactivity}}
+
+\mdfdefinestyle{mxbox}{linewidth=2pt,topline=false,bottomline=false,rightline=false,leftline=true,
+  innerleftmargin=9pt,innerrightmargin=4pt,innertopmargin=5pt,innerbottommargin=6pt,skipabove=8pt,skipbelow=6pt}
+
+% \mx@title{label key}{number or empty}{optional title}: the title line of a box.
+\newcommand{\mx@title}[3]{{\sffamily\bfseries\color{mx@accent}\mxlabelof{#1}\if\relax\detokenize{#2}\relax\else~#2\fi
+  \if\relax\detokenize{#3}\relax\else{\normalcolor\ \textperiodcentered\ #3}\fi}\par\nobreak\vspace{2pt}}
+
+% \mx@defbox{name}{colour}{background}{counter or empty}: defines environment <name>[title].
+\newcommand{\mx@defbox}[4]{%
+  \newenvironment{#1}[1][]{%
+    \if\relax\detokenize{#4}\relax\else\refstepcounter{#4}\fi
+    \colorlet{mx@accent}{#2}\mxneed{5}%
+    \begin{mdframed}[style=mxbox,linecolor=#2,backgroundcolor=#3]%
+    \mx@title{#1}{\if\relax\detokenize{#4}\relax\else\csname the#4\endcsname\fi}{##1}}%
+  {\end{mdframed}}}
+\mx@defbox{keypoint}{mxmint}{mxmintpale!45}{}
+\mx@defbox{definition}{mxmint}{mxmintpale!45}{}
+\mx@defbox{theorem}{mxmint}{mxmintpale!45}{}
+\mx@defbox{method}{mxink}{white}{}
+\mx@defbox{example}{mxink}{white}{mxexample}
+\mx@defbox{pitfall}{mxwarn}{mxwarn!5}{}
+\mx@defbox{activity}{mxmint}{white}{mxactivity}
+\mx@defbox{exercise}{mxmuted}{white}{mxexercise}
+\mx@defbox{application}{mxmuted}{white}{}
+\mx@defbox{homework}{mxwarn}{white}{}
+\mx@defbox{exitticket}{mxwarn}{white}{}
+\mx@defbox{fluency}{mxink}{mxpaper}{}
+\mx@defbox{objectives}{mxteacher}{white}{}
+\mx@defbox{prerequisites}{mxmuted}{mxpaper}{}
+
+% proof: not boxed; ends with a square.
+\newenvironment{proof}{\par\mxneed{3}{\sffamily\bfseries\mxlabelof{proof}.}\ }{\hfill$\square$\par}
+
+% Teacher-only boxes: the body is read by environ and dropped in the student edition.
+\NewEnviron{solution}[1][]{\ifmxteacher\colorlet{mx@accent}{mxteacher}\mxneed{4}%
+  \begin{mdframed}[style=mxbox,linecolor=mxteacher,backgroundcolor=mxteacher!4]\mx@title{solution}{}{#1}\BODY\end{mdframed}\fi}
+\NewEnviron{teachernote}[1][]{\ifmxteacher\colorlet{mx@accent}{mxteacher}\mxneed{4}%
+  \begin{mdframed}[style=mxbox,linecolor=mxteacher,backgroundcolor=white]\mx@title{teachernote}{}{#1}\BODY\end{mdframed}\fi}
+
+\newenvironment{figurebox}[1][]{\par\mxneed{8}\begin{center}\def\mx@caption{#1}}%
+  {\if\relax\detokenize\expandafter{\mx@caption}\relax\else\par\smallskip{\small\color{mxmuted}\mx@caption}\fi\end{center}}
+
+\newcommand{\mxanswer}[1]{\ifmxteacher\par{\color{mxteacher}\sffamily\bfseries\mxlabelof{answer}.}\ #1\par\fi}
+\newcommand{\mxblank}[1]{\ifmxteacher\textbf{\color{mxteacher}#1}\else\makebox[1.6cm]{\dotfill}\fi}
+\newcommand{\mxlines}[1]{\ifmxteacher\else\par\vspace{2pt}\foreach\mx@i in {1,...,#1}{\noindent\textcolor{mxline}{\rule{\linewidth}{.4pt}}\par\vspace{5mm}}\fi}
+\newtcbox{\mxchip}{on line,colback=mxmintpale,colframe=mxmintpale,coltext=mxink,boxrule=0pt,arc=2mm,
+  left=3pt,right=3pt,top=1pt,bottom=1pt,fontupper=\sffamily\scriptsize}

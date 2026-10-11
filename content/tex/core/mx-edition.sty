@@ -1,0 +1,13 @@
+% mx-edition.sty -- one edition switch for every course: \ifmxteacher.
+% Replaces \versionprof (Première), \VERSIONPROF (Seconde), \VERSIONELEVE (Terminale), \EditionProf (STMG) and
+% \PROFVERSION (Automatismes). Set by the class option edition=student|teacher|both.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-edition}[2026/10/11 Maths Explorer editions]
+\RequirePackage{environ}
+\newif\ifmxteacher
+\def\mx@student{student}
+\ifx\mx@edition\mx@student\mxteacherfalse\else\mxteachertrue\fi
+% \mxteacheronly{text}: text printed in the teacher edition only. Inline use.
+\newcommand{\mxteacheronly}[1]{\ifmxteacher#1\fi}
+% \mxstudentonly{text}: text printed in the student edition only (answer lines, blanks).
+\newcommand{\mxstudentonly}[1]{\ifmxteacher\else#1\fi}

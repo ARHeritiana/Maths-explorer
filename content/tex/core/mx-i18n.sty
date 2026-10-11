@@ -1,0 +1,50 @@
+% mx-i18n.sty -- language-dependent labels, dates and conventions, from one dictionary keyed by language.
+% Content units never test the language; they use the labels and macros below. English units are generated from
+% French ones (docs/ADR-0001-tex-i18n.md); the generator converts decimal commas, so units write 0{,}5 as usual.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-i18n}[2026/10/11 Maths Explorer i18n]
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\def\mx@fr{fr}
+\ifx\mx@lang\mx@fr
+  \RequirePackage[french]{babel}
+  \frenchsetup{SmallCapsFigTabCaptions=false}
+\else
+  \RequirePackage[english]{babel}
+\fi
+
+% \mxtr{french}{english}: pick the text for the current language. Allowed in core packages only, never in units.
+\newcommand{\mxtr}[2]{\ifx\mx@lang\mx@fr #1\else #2\fi}
+
+% Label dictionary: \mxlabelof{key} prints the displayed name of an environment or element.
+\newcommand{\mx@deflabel}[3]{\expandafter\def\csname mx@label@#1\endcsname{\mxtr{#2}{#3}}}
+\newcommand{\mxlabelof}[1]{\csname mx@label@#1\endcsname}
+\mx@deflabel{keypoint}{À retenir}{Key point}
+\mx@deflabel{definition}{Définition}{Definition}
+\mx@deflabel{theorem}{Propriété}{Property}
+\mx@deflabel{method}{Méthode}{Method}
+\mx@deflabel{example}{Exemple}{Example}
+\mx@deflabel{proof}{Démonstration}{Proof}
+\mx@deflabel{pitfall}{Point de vigilance}{Watch out}
+\mx@deflabel{activity}{Activité}{Activity}
+\mx@deflabel{exercise}{Exercice}{Exercise}
+\mx@deflabel{application}{Application}{Practice}
+\mx@deflabel{solution}{Corrigé}{Solution}
+\mx@deflabel{teachernote}{Pour le professeur}{Teacher note}
+\mx@deflabel{homework}{Travail personnel}{Homework}
+\mx@deflabel{exitticket}{Billet de sortie}{Exit ticket}
+\mx@deflabel{fluency}{Automatismes}{Fluency}
+\mx@deflabel{objectives}{Objectifs}{Objectives}
+\mx@deflabel{prerequisites}{Prérequis}{Prerequisites}
+\mx@deflabel{answer}{Réponse}{Answer}
+\mx@deflabel{student}{Édition élève}{Student edition}
+\mx@deflabel{teacher}{Édition professeur}{Teacher edition}
+
+% \mxdate{YYYY-MM-DD}: a date in the reader's language ("15 septembre 2026" / "15 September 2026");
+% \mxdate*{YYYY-MM-DD}: short form ("15/09/2026" / "15 Sep 2026").
+\def\mx@monthfr#1{\ifcase#1\or janvier\or février\or mars\or avril\or mai\or juin\or juillet\or août\or septembre\or octobre\or novembre\or décembre\fi}
+\def\mx@monthen#1{\ifcase#1\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi}
+\def\mx@monthenshort#1{\ifcase#1\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi}
+\def\mx@date#1-#2-#3\relax{\mxtr{\number#3\ifnum#3=1 \textsuperscript{er}\fi\ \mx@monthfr{#2} #1}{\number#3\ \mx@monthen{#2} #1}}
+\def\mx@shortdate#1-#2-#3\relax{\mxtr{#3/#2/#1}{\number#3\ \mx@monthenshort{#2} #1}}
+\NewDocumentCommand{\mxdate}{s m}{\IfBooleanTF{#1}{\mx@shortdate#2\relax}{\mx@date#2\relax}}
