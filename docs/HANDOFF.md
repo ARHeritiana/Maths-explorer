@@ -5,8 +5,8 @@ Detailed log of the 11 October 2026 session: `docs/history/HANDOFF-2026-10-11-se
 
 ## The project
 Static bilingual site (French source, English twin) for French-lycée mathematics, with downloadable PDFs compiled from
-LaTeX and HTML slide decks. Owner: a French-lycée maths teacher in Madagascar who wants precision, no filler, no
-hallucination, and uncertainty flagged ([VERIFY], [HORS PROGRAMME]). Curriculum references: Première BO n°14 of
+LaTeX and HTML slide decks. Require precision, no filler, no hallucination, and flag uncertainty
+([VERIFY], [HORS PROGRAMME]). Curriculum references: Première BO n°14 of
 2 April 2026 (no binomial distribution); Terminale STMG BO spécial n°8 of 25 July 2019.
 
 Read first: `AGENTS.md` (rules), `docs/ARCHITECTURE.md` (layout, data flow, commands), `docs/TEX_STYLE_GUIDE.md`
@@ -92,3 +92,6 @@ Chromium at `/opt/pw-browsers`.
 Change sources, then prove it: rebuild, compare French text with the previous PDFs (token comparison ignoring running
 heads), view sample pages, run `make check`, then commit with what was verified and how. Never claim a page was viewed
 unless it was rendered and looked at.
+
+## Session log
+- 2026-10-11: ChatGPT session started
