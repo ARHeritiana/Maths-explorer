@@ -4,6 +4,7 @@ compile() runs pdfLaTeX (or another engine) without shell escape and with -halt-
 it, and reports pages, undefined references and overfull boxes. Builders decide what to do with the result.
 """
 import hashlib, json, re, subprocess, time
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from . import ROOT, OUT
@@ -94,7 +95,8 @@ def compile_pair(src_dir, inputs, jobs, outdir, max_rounds=3, **kw):
     (\\mxsetpad in <job>.mxpad, read by mxbook.cls). Returns {'fr': Result, 'en': Result}."""
     outdir = Path(outdir)
     for _ in range(max_rounds):
-        res = {lang: compile(src_dir, inputs[lang], jobs[lang], outdir, **kw) for lang in ('fr', 'en')}
+        with ThreadPoolExecutor(2) as pool:   # the two languages are independent LaTeX processes
+            res = dict(zip(('fr', 'en'), pool.map(lambda lang: compile(src_dir, inputs[lang], jobs[lang], outdir, **kw), ('fr', 'en'))))
         raw = {lang: {k: v - _pads(outdir, jobs[lang]).get(k, 0) for k, v in _blocks(outdir, jobs[lang]).items()} for lang in res}
         if set(raw['fr']) != set(raw['en']):
             raise CompileError(f'{jobs["fr"]}/{jobs["en"]}: different block structure in French and English')

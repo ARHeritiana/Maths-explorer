@@ -1,5 +1,5 @@
 """Build authored FR/EN enrichment resources with the site's document design."""
-import json,html,hashlib,subprocess,sys
+import json,html,subprocess,sys
 from enrichment_sections import sections
 from pathlib import Path
 import fitz
@@ -28,7 +28,6 @@ slot={k:next((i for i,x in enumerate(catalog[k]) if (x['id'] if k=='courses' els
 for key in ['chapters','resources']:catalog[key]=[x for x in catalog[key] if x.get('course')!='explorations']
 catalog['courses']=[x for x in catalog['courses'] if x['id']!='explorations']
 fresh={'courses':[{'id':'explorations','title':['Ateliers & approfondissements','Workshops & enrichment'],'curriculum':'shared'}],'chapters':[],'resources':[]}
-records=[]
 for i,p in enumerate(packs,1):
  cid='explore-'+p['id'];fresh['chapters'].append({'id':cid,'course':'explorations','number':i,'title':p['title'],'topic':p['id'],'labs':p['labs'],'description':p['prerequisites'],'authored':True})
  for kind,title in labels.items():
@@ -42,10 +41,8 @@ for i,p in enumerate(packs,1):
    with fitz.open(target) as pdf:counts.append(len(pdf))
    sizes.append(target.stat().st_size);urls.append('./resources/enrichment/'+stem+'.pdf');html_urls.append('./resources/enrichment/'+stem+'.html')
    (OUT/(stem+'.html')).write_text('<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(p['title'][j])+' · '+esc(title[j])+'</title><style>'+document_theme+'</style></head><body><header><p>Maths Explorer · '+lang.upper()+f' · {i:02d}</p><h1>'+esc(p['title'][j])+'</h1><p>'+esc(title[j])+'</p><p class="level">'+esc(p['level'][j])+'</p></header><main>'+''.join(html_sections)+'</main><footer><p>'+notice[j]+'</p><div class="actions"><a href="'+stem+'.pdf">'+('Télécharger le PDF','Download PDF')[j]+'</a><button onclick="window.print()">'+('Imprimer','Print')[j]+'</button><a href="'+p['id']+'-'+kind+('' if j else '-en')+'.html">'+('English' if j==0 else 'Français')+'</a><a href="../../index.html#library/'+cid+'">'+('Bibliothèque','Resource library')[j]+'</a></div></footer></body></html>')
-   records.append({'path':str(target.relative_to(DIST)),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'pages':counts[-1],'lang':lang})
   fresh['resources'].append({'id':cid+'-'+kind,'chapter':cid,'course':'explorations','type':kind,'title':title,'language':'bilingual','audience':'teacher' if kind=='solutions' else 'student','format':'PDF','url':urls,'htmlUrl':html_urls,'pages':counts[0],'englishPages':counts[1],'bytes':sizes[0],'englishBytes':sizes[1],'translation':'authored-bilingual','review':'calculated','contentKey':p['id']})
 for k in ('courses','chapters','resources'):catalog[k][slot[k]:slot[k]]=fresh[k]
 manifest_io.save(manifest);manifest_io.write()
 (DIST/'js/enrichment-data.js').write_text('export const enrichment = '+json.dumps(plain(packs),ensure_ascii=False,indent=2)+';\n')
-(ROOT/'docs/ENRICHMENT_MANIFEST.json').write_text(json.dumps(records,indent=2)+'\n')
-print(f'Created {len(packs)} bilingual packs; {len(records)} PDFs and {len(records)} HTML reading editions.')
+print(f'Created {len(packs)} bilingual packs: {8*len(packs)} PDFs and {8*len(packs)} HTML reading editions.')
