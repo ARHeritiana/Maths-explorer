@@ -40,7 +40,7 @@ automatically, 12,777 segments.** Of the 54 refused pairs, 39 differ only in way
 (18 entry, main and preamble files, which are replaced by the class and generated mains; 21 units with per-language
 figure inputs, include lists, STMG dates or decimals in table text); the other 15 are real divergences to review: Automatismes `ch02`, `ch13` (an English-only `\clearpage`), Terminale `E5` (a `\clearpage` moved
 inside a list), STMG `exo-A` (maths differ), and 11 Enrichment units, which are regenerated from
-`content/enrichment.json` instead.
+`content/data/enrichment.json` instead.
 
 ## Consequences
 

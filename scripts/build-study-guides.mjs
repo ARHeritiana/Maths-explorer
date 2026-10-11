@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {guides} from '../dist/js/study-guides.js';
+import {guides} from '../site/js/study-guides.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const documentTheme=fs.readFileSync(path.join(root,'dist/resources/document-theme.css'),'utf8');
+const documentTheme=fs.readFileSync(path.join(root,'site/resources/document-theme.css'),'utf8');
 // content/data/manifest.json is the source of truth; run `make catalog` afterwards to regenerate the catalogue.
 const manifestPath=path.join(root,'content/data/manifest.json');
 const manifest=JSON.parse(fs.readFileSync(manifestPath));

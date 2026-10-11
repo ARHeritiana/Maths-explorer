@@ -127,7 +127,7 @@ def main():
  parser=argparse.ArgumentParser();parser.add_argument('--only');args=parser.parse_args()
  (SOURCE/'explorer.sty').write_text(STYLE)
  jobs=[]
- for i,p in enumerate(json.loads((ROOT/'content/enrichment.json').read_text()),1):
+ for i,p in enumerate(json.loads((ROOT/'content/data/enrichment.json').read_text()),1):
   for kind in labels:
    for j in (0,1):
     stem=p['id']+'-'+kind+('-en' if j else '');(SOURCE/(stem+'.tex')).write_text(source(p,kind,j,i))
