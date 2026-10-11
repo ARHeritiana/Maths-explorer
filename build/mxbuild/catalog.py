@@ -22,7 +22,7 @@ PROVENANCE = ROOT / 'docs/RESOURCE_PROVENANCE.json'
 COMPANION_HEADER = 'export const resourceCatalog = '
 # Fields computed from the files; they never appear in the manifest.
 MEASURED_RESOURCE = ('pages', 'bytes', 'englishBytes', 'englishPages', 'language', 'translation')
-MEASURED_FILE = ('pages', 'end', 'englishPath', 'bytes', 'englishBytes')
+MEASURED_FILE = ('pages', 'end', 'englishPath', 'bytes', 'englishBytes', 'englishPages')
 
 
 def _dump(obj):
@@ -87,7 +87,9 @@ def generate(manifest=None):
             if not en.exists(): raise FileNotFoundError(en)
             f['pages'] = _pdf_pages(path, pages); f['end'] = f['start'] + f['pages'] - 1   # whole-page extracts
             f.update(englishPath=str(en.relative_to(DIST)), bytes=path.stat().st_size, englishBytes=en.stat().st_size)
-            if _pdf_pages(en, pages) != f['pages']: raise ValueError(f'English page count mismatch: {en}')
+            ep = _pdf_pages(en, pages)   # an excerpt may drift by one page between languages (books may not)
+            if abs(ep - f['pages']) > 1: raise ValueError(f'English page count differs by more than one page: {en}')
+            if ep != f['pages']: f['englishPages'] = ep
             provenance.append({'path': f['path'], 'source': f['source'], 'pages': [f['start'], f['end']],
                                'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'englishPath': f['englishPath'],
                                'englishSha256': hashlib.sha256(en.read_bytes()).hexdigest()})

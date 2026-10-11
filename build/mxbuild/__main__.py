@@ -19,6 +19,9 @@ def main(argv=None):
     if argv and argv[0] == 'twin':
         from . import twin
         return twin.main(argv[1:])
+    if argv and argv[0] == 'migrate':
+        from . import migrate
+        return migrate.main(argv[1:])
     args = ap.parse_args(argv)
     if args.cmd == 'catalog':
         from . import catalog

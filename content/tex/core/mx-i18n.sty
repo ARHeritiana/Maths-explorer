@@ -8,10 +8,13 @@
 \def\mx@fr{fr}
 \ifx\mx@lang\mx@fr
   \RequirePackage[french]{babel}
-  \frenchsetup{SmallCapsFigTabCaptions=false}
+  % Sources write French spacing by hand (x\,; or x~:); babel adds a space only where the source typed one.
+  \frenchsetup{SmallCapsFigTabCaptions=false,AutoSpacePunctuation=false,StandardLists=true,ReduceListSpacing=false}
 \else
   \RequirePackage[english]{babel}
 \fi
+% Same inter-sentence spacing in both languages, so French and English line breaks stay comparable.
+\AtBeginDocument{\frenchspacing}
 
 % \mxtr{french}{english}: pick the text for the current language. Allowed in core packages only, never in units.
 \newcommand{\mxtr}[2]{\ifx\mx@lang\mx@fr #1\else #2\fi}
@@ -37,6 +40,8 @@
 \mx@deflabel{objectives}{Objectifs}{Objectives}
 \mx@deflabel{prerequisites}{Prérequis}{Prerequisites}
 \mx@deflabel{answer}{Réponse}{Answer}
+\mx@deflabel{answershort}{Rép.}{Ans.}
+\mx@deflabel{sheet}{Fiche}{Sheet}
 \mx@deflabel{student}{Édition élève}{Student edition}
 \mx@deflabel{teacher}{Édition professeur}{Teacher edition}
 

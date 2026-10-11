@@ -1,0 +1,35 @@
+\mxunit{example}{Exemple d'unité}
+\begin{objectives}
+Comprendre la structure d'une unité ; utiliser les environnements canoniques.
+\end{objectives}
+\section{Une définition}
+\begin{definition}[Suite arithmétique]
+Une suite $(u_n)$ est arithmétique de raison $r$ si, pour tout $n\in\N$, $u_{n+1}=u_n+r$.
+\end{definition}
+\begin{example}
+Avec $u_0=2$ et $r=0{,}5$, on obtient $u_3=3{,}5$. \mxchip{5 min}
+\end{example}
+\begin{pitfall}
+La raison se lit sur la différence $u_{n+1}-u_n$, pas sur le quotient.
+\end{pitfall}
+\begin{theorem}
+Pour tout $n\in\N$, $u_n=u_0+nr$.
+\end{theorem}
+\begin{proof}
+Par récurrence sur $n$ : l'égalité est vraie pour $n=0$, et si $u_n=u_0+nr$ alors $u_{n+1}=u_0+(n+1)r$.
+\end{proof}
+\begin{exercise}[Calcul de termes]
+Calculer $u_{10}$ pour $u_0=-3$ et $r=2$. Réponse : $u_{10}=\mxblank{17}$.
+\mxlines{2}
+\end{exercise}
+\begin{solution}
+$u_{10}=-3+10\times2=17$.
+\end{solution}
+\begin{figurebox}[Les termes sont alignés.]
+\begin{tikzpicture}\begin{axis}[mxaxis,width=7cm,height=4cm,xmin=0,xmax=5,ymin=0,ymax=5]
+\addplot[mxcurve,only marks] coordinates {(0,2)(1,2.5)(2,3)(3,3.5)(4,4)};
+\end{axis}\end{tikzpicture}
+\end{figurebox}
+\begin{teachernote}
+Le \mxdate{2026-09-01}, faire reformuler la définition à l'oral.
+\end{teachernote}

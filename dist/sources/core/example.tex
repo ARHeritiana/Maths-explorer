@@ -1,0 +1,9 @@
+% Minimal compilable example of the Maths Explorer TeX system (pdfLaTeX, no shell escape).
+%   pdflatex example.tex                         French, student edition
+%   pdflatex "\def\mxopts{lang=en,edition=teacher}\input{example}"   other variants
+% The unit example.fr.tex is the French source; example.en.tex is generated from it (docs/ADR-0001-tex-i18n.md).
+\providecommand{\mxopts}{lang=fr,edition=student}
+\expandafter\documentclass\expandafter[\mxopts,course=example,layout=sheet]{mxbook}
+\begin{document}
+\mxinclude{example}
+\end{document}

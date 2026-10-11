@@ -1,0 +1,365 @@
+{
+ "unit": "guide.fr.tex",
+ "segments": {
+  "55b9ab2b8626": {
+   "fr": "Guide d'utilisation (version professeur)",
+   "en": "User guide (teacher version)",
+   "status": "aligned",
+   "order": 0
+  },
+  "a947e22448d6": {
+   "fr": "Principe",
+   "en": "Principle",
+   "status": "aligned",
+   "order": 1
+  },
+  "2c36af14e963": {
+   "fr": "Chaque séance de 2G ouvre sur une fiche de cinq questions (5 à 8 minutes), alignée sur la séance du calendrier du jour :",
+   "en": "Each Seconde (2G) lesson opens with a sheet of five questions (5 to 8 minutes), aligned with the day's lesson in the calendar:",
+   "status": "aligned",
+   "order": 2
+  },
+  "5894306ae8e7": {
+   "fr": "\\textbf{Échauffement} : un prérequis de cycle~4 directement utile à la séance.",
+   "en": "\\textbf{Warm-up}: a Key Stage 3 (cycle~4) prerequisite directly useful for the lesson.",
+   "status": "aligned",
+   "order": 3
+  },
+  "450b0e2076c2": {
+   "fr": "\\textbf{Cœur} : une question sur la notion du jour (ou de la veille).",
+   "en": "\\textbf{Core}: a question on the topic of the day (or of the previous day).",
+   "status": "aligned",
+   "order": 4
+  },
+  "a43bbc827a99": {
+   "fr": "\\textbf{Cœur +} : une seconde question plus exigeante (QCM, vrai/faux justifié, lecture de code, méthode).",
+   "en": "\\textbf{Core +}: a second, more demanding question (MCQ, justified true/false, reading code, method).",
+   "status": "aligned",
+   "order": 5
+  },
+  "8eae0a54b8d6": {
+   "fr": "\\textbf{Retour} : une question hors chapitre, issue d'un attendu « à consolider » ou « à entretenir » (espacement des révisions).",
+   "en": "\\textbf{Review}: an out-of-chapter question, drawn from an expectation marked ``to consolidate'' or ``to maintain'' (spaced revision).",
+   "status": "aligned",
+   "order": 6
+  },
+  "fe109cfad648": {
+   "fr": "\\textbf{Fil rouge} : une question ciblée sur un attendu en « renforcement prioritaire » du test de positionnement du 29/09/2026.",
+   "en": "\\textbf{Thread}: a question targeting an expectation marked ``priority reinforcement'' in the placement test of 29/09/2026.",
+   "status": "aligned",
+   "order": 7
+  },
+  "d2be665c0948": {
+   "fr": "En version professeur, chaque question est précédée de son étiquette de diagnostic (par exemple [[m1]]) ; la réponse attendue figure en rouge, suivie d'une remarque ou d'un piège fréquent.",
+   "en": "In the teacher version, each question is preceded by its diagnostic tag (for example [[m1]]); the expected answer appears in red, followed by a comment or a common pitfall.",
+   "status": "aligned",
+   "order": 8
+  },
+  "2befdbccfa4c": {
+   "fr": "Déroulement suggéré (7 min)",
+   "en": "Suggested routine (7 min)",
+   "status": "aligned",
+   "order": 9
+  },
+  "804d9c361082": {
+   "fr": "3 min : réponses individuelles à l'ardoise ou sur le cahier de rituels, sans calculatrice sauf mention.",
+   "en": "3 min: individual answers on mini-whiteboards or in the routines notebook, without a calculator unless stated.",
+   "status": "aligned",
+   "order": 10
+  },
+  "da77532a411d": {
+   "fr": "2 min : mise en commun ; faire verbaliser une réponse \\emph{fausse} et une réponse \\emph{juste} (« comment as-tu fait\\,? »).",
+   "en": "2 min: sharing of answers; have students explain one \\emph{wrong} answer and one \\emph{correct} answer (``How did you do it?'').",
+   "status": "aligned",
+   "order": 11
+  },
+  "4059fe407e2c": {
+   "fr": "2 min : correction ciblée des questions 4--5 (celles du diagnostic) avec la phrase-méthode associée.",
+   "en": "2 min: targeted correction of questions 4--5 (the diagnostic ones) with the associated method sentence.",
+   "status": "aligned",
+   "order": 12
+  },
+  "1758bd6c875e": {
+   "fr": "Variante FLE/FLS",
+   "en": "Variant for students learning the language of instruction (FLE/FLS)",
+   "status": "aligned",
+   "order": 13
+  },
+  "6dfc2122d07b": {
+   "fr": "\\textbf{Consigne} : projeter la question avec le verbe d'action surligné (\\emph{calculer, résoudre, montrer, comparer}) et un exemple de réponse modèle la première semaine.",
+   "en": "\\textbf{Instructions}: project the question with the action verb highlighted (\\emph{calculate, solve, show, compare}) and a model answer as an example during the first week.",
+   "status": "aligned",
+   "order": 14
+  },
+  "cbbf1d1dbdd0": {
+   "fr": "\\textbf{Phrases-cadres} : « Je calcule\\ldots{} donc\\ldots{} », « Je compare\\ldots{} car\\ldots{} », « Le contre-exemple est\\ldots{} ». Les afficher en bandeau permanent.",
+   "en": "\\textbf{Sentence frames}: ``I calculate\\ldots{} so\\ldots{}'', ``I compare\\ldots{} because\\ldots{}'', ``The counter-example is\\ldots{}''. Display them on a permanent banner.",
+   "status": "aligned",
+   "order": 15
+  },
+  "c6839734a3b7": {
+   "fr": "\\textbf{Glossaire visuel} : fiche mots-clés (déterminant, colinéaire, médiane, taux d'évolution, fréquence conditionnelle) avec schéma et traduction dans la langue d'origine de l'élève si utile.",
+   "en": "\\textbf{Visual glossary}: keyword sheet (determinant, collinear, median, rate of change, conditional frequency) with a diagram and a translation into the student's home language if useful.",
+   "status": "aligned",
+   "order": 16
+  },
+  "ea6b76a0cc97": {
+   "fr": "\\textbf{Binômes} : 30 secondes de reformulation entre pairs avant de répondre ; l'élève allophone peut d'abord répondre par un geste ou un schéma, puis formaliser à l'oral.",
+   "en": "\\textbf{Pairs}: 30 seconds of peer rephrasing before answering; the non-native speaker may first answer with a gesture or a sketch, then formalise orally.",
+   "status": "aligned",
+   "order": 17
+  },
+  "d9b3b56fe2f1": {
+   "fr": "\\textbf{Écrits} : accepter les notations symboliques avant la phrase rédigée, puis exiger la phrase de conclusion une fois sur deux.",
+   "en": "\\textbf{Written work}: accept symbolic notation before the written sentence, then require the concluding sentence every other time.",
+   "status": "aligned",
+   "order": 18
+  },
+  "2d459ece8f3c": {
+   "fr": "Grille d'analyse des erreurs",
+   "en": "Error analysis grid",
+   "status": "aligned",
+   "order": 19
+  },
+  "e26c690ca57a": {
+   "fr": "Étiquettes",
+   "en": "Tags",
+   "status": "aligned",
+   "order": 20
+  },
+  "3065d1ac8512": {
+   "fr": "Erreur observée",
+   "en": "Observed error",
+   "status": "aligned",
+   "order": 21
+  },
+  "22c7e68b0a59": {
+   "fr": "Indice dans la réponse",
+   "en": "Clue in the answer",
+   "status": "aligned",
+   "order": 22
+  },
+  "9ab8cba54f09": {
+   "fr": "Geste de remédiation \\\\",
+   "en": "Remediation \\\\",
+   "status": "aligned",
+   "order": 23
+  },
+  "f631f03b8efc": {
+   "fr": "EQ, CAL",
+   "en": "EQ, CAL",
+   "status": "aligned",
+   "order": 24
+  },
+  "1135d86e7bf6": {
+   "fr": "Erreur de signe en transposant ou en distribuant",
+   "en": "Sign error when transposing or distributing",
+   "status": "aligned",
+   "order": 25
+  },
+  "45423770dd59": {
+   "fr": "Écrire chaque étape ; vérifier en remplaçant. \\\\\nDEV, LIT",
+   "en": "Write out each step; check by substituting. \\\\\nDEV, LIT",
+   "status": "aligned",
+   "order": 26
+  },
+  "3a23fdbb2130": {
+   "fr": "Distributivité oubliée ([[m1]])",
+   "en": "Forgotten distributivity ([[m1]])",
+   "status": "aligned",
+   "order": 27
+  },
+  "165154f2d370": {
+   "fr": "Résultat non réduit ou faux pour [[m1]]",
+   "en": "Unsimplified result, or wrong for [[m1]]",
+   "status": "aligned",
+   "order": 28
+  },
+  "ddbd034b2fdc": {
+   "fr": "Test numérique ; aire d'un rectangle. \\\\\nPUI, SUB",
+   "en": "Numerical test; area of a rectangle. \\\\\nPUI, SUB",
+   "status": "aligned",
+   "order": 29
+  },
+  "d48d30fd5aad": {
+   "fr": "Réponse négative pour un carré",
+   "en": "Negative answer for a square",
+   "status": "aligned",
+   "order": 31
+  },
+  "3e35a33cea97": {
+   "fr": "Parenthèses systématiques à la substitution. \\\\\nGEO, REP",
+   "en": "Always use brackets when substituting. \\\\\nGEO, REP",
+   "status": "aligned",
+   "order": 32
+  },
+  "fa070a96afcc": {
+   "fr": "Distance sans racine ; [[m1]] au lieu de [[m2]]",
+   "en": "Distance without a square root; [[m1]] instead of [[m2]]",
+   "status": "aligned",
+   "order": 33
+  },
+  "8c82fd51cf37": {
+   "fr": "[[m1]] ou signe incohérent",
+   "en": "[[m1]] or inconsistent sign",
+   "status": "aligned",
+   "order": 34
+  },
+  "726e573d47d9": {
+   "fr": "Vérifier l'ordre de grandeur sur un schéma. \\\\\nPRO",
+   "en": "Check the order of magnitude on a sketch. \\\\\nPRO",
+   "status": "aligned",
+   "order": 35
+  },
+  "852282565c56": {
+   "fr": "Addition de taux successifs ; confusion proportion/évolution",
+   "en": "Adding successive rates; confusing proportion and change",
+   "status": "aligned",
+   "order": 36
+  },
+  "660263b5d8ef": {
+   "fr": "[[m1]] puis [[m2]]",
+   "en": "[[m1]] then [[m2]]",
+   "status": "aligned",
+   "order": 37
+  },
+  "2099d4df0acc": {
+   "fr": "Passer par les coefficients multiplicateurs. \\\\\nPRB, LEC",
+   "en": "Use multipliers. \\\\\nPRB, LEC",
+   "status": "aligned",
+   "order": 38
+  },
+  "0e7e2b7058f9": {
+   "fr": "Confusion [[m1]] et [[m2]]",
+   "en": "Confusing [[m1]] and [[m2]]",
+   "status": "aligned",
+   "order": 39
+  },
+  "6f9f2c858acd": {
+   "fr": "Mauvais total de référence",
+   "en": "Wrong reference total",
+   "status": "aligned",
+   "order": 40
+  },
+  "441dbf45ced3": {
+   "fr": "Entourer le total du sous-ensemble « sachant que ». \\\\\nREG, IMG",
+   "en": "Circle the total of the subset after ``given that''. \\\\\nREG, IMG",
+   "status": "aligned",
+   "order": 41
+  },
+  "9107ceb88407": {
+   "fr": "Confusion image et antécédent ; lecture inversée",
+   "en": "Confusing image and preimage; reading reversed",
+   "status": "aligned",
+   "order": 42
+  },
+  "7d47d5d0f43f": {
+   "fr": "Réponse sur le mauvais axe",
+   "en": "Answer given on the wrong axis",
+   "status": "aligned",
+   "order": 43
+  },
+  "492c2fb9f87c": {
+   "fr": "Colorier : abscisse = départ, ordonnée = arrivée. \\\\\nDEM, LIT",
+   "en": "Colour-code: abscissa = input, ordinate = output. \\\\\nDEM, LIT",
+   "status": "aligned",
+   "order": 44
+  },
+  "dc96356457ca": {
+   "fr": "Un exemple pris pour une preuve",
+   "en": "An example taken as a proof",
+   "status": "aligned",
+   "order": 45
+  },
+  "f65c235c5b67": {
+   "fr": "« Ça marche pour [[m1]] »",
+   "en": "``It works for [[m1]]''",
+   "status": "aligned",
+   "order": 46
+  },
+  "75d80d0b9405": {
+   "fr": "Distinguer test, contre-exemple et démonstration. \\\\\nALG",
+   "en": "Distinguish testing, counter-example and proof. \\\\\nALG",
+   "status": "aligned",
+   "order": 47
+  },
+  "601ae3576f2a": {
+   "fr": "Exécution de code sans suivre les variables",
+   "en": "Running code without tracking the variables",
+   "status": "aligned",
+   "order": 48
+  },
+  "e149e709aafa": {
+   "fr": "Valeur finale incorrecte",
+   "en": "Incorrect final value",
+   "status": "aligned",
+   "order": 49
+  },
+  "9ad9e65b88a9": {
+   "fr": "Tableau de suivi (variable / valeur / étape). \\\\",
+   "en": "Trace table (variable / value / step). \\\\",
+   "status": "aligned",
+   "order": 50
+  },
+  "35a41e2d748b": {
+   "fr": "Barème",
+   "en": "Marking scheme",
+   "status": "aligned",
+   "order": 51
+  },
+  "7ab62da38de9": {
+   "fr": "Les rituels sont formatifs : aucun barème n'est joint. Un barème détaillé par compétence (Chercher, Modéliser, Représenter, Raisonner, Calculer, Communiquer) peut être ajouté si l'une de ces fiches sert de support d'évaluation.",
+   "en": "The routines are formative: no marking scheme is provided. A detailed scheme by competence (Investigate, Model, Represent, Reason, Calculate, Communicate) can be added if one of these sheets is used for assessment.",
+   "status": "aligned",
+   "order": 52
+  },
+  "e147952ede8b": {
+   "fr": "Sources et points de vigilance",
+   "en": "Sources and points to watch",
+   "status": "aligned",
+   "order": 53
+  },
+  "e8abd291206c": {
+   "fr": "Programme de mathématiques de seconde générale et technologique, arrêté du 26-2-2026 (NOR MENE2602914A), BO n°14 du 2 avril 2026 : rubrique « Automatismes » et parties « Nombres et calculs », « Géométrie », « Fonctions », « Statistiques et probabilités », « Vocabulaire ensembliste et logique ».",
+   "en": "Mathematics programme for general and technological Seconde, order of 26-2-2026 (NOR MENE2602914A), BO no.~14 of 2 April 2026: section ``Automatismes'' and the parts ``Numbers and calculation'', ``Geometry'', ``Functions'', ``Statistics and probability'', ``Set vocabulary and logic''.",
+   "status": "aligned",
+   "order": 54
+  },
+  "78ce88e485f1": {
+   "fr": "Calendrier : consulté le 06/10/2026 ; l'ordre des notions suit le calendrier et non les dates du document de progression, qui diffèrent (ex.\\ fonctions : 3--15 déc.\\ 2026 au calendrier).",
+   "en": "Calendar: consulted on 06/10/2026; the order of topics follows the calendar and not the dates in the progression document, which differ (e.g.\\ functions: 3--15 Dec.\\ 2026 in the calendar).",
+   "status": "aligned",
+   "order": 55
+  },
+  "1edd5cd918b9": {
+   "fr": "Exercices : \\textbf{créés pour ce document} avec votre autorisation ; toutes les valeurs numériques et algébriques ont été recalculées par script (voir \\texttt{tools/}), les raisonnements ont été relus. Les données du tableau « précipitations » (fiche~35) sont fictives.",
+   "en": "Exercises: \\textbf{created for this document} with your permission; all numerical and algebraic values were recomputed by script (see \\texttt{tools/}), and the reasoning was proofread. The data in the ``rainfall'' table (sheet~35) are fictitious.",
+   "status": "aligned",
+   "order": 56
+  },
+  "81757c91c957": {
+   "fr": "Convention des quartiles : plus petite valeur dont au moins [[m1]] (resp.\\ [[m2]]) des données lui sont inférieures ou égales (rang [[m3]], [[m4]]) --- \\textbf{[VERIFY]} coordonner avec les conventions du manuel utilisé.",
+   "en": "Quartile convention: smallest value such that at least [[m1]] (resp.\\ [[m2]]) of the data are less than or equal to it (rank [[m3]], [[m4]]) --- \\textbf{[VERIFY]} coordinate with the conventions of the textbook used.",
+   "status": "aligned",
+   "order": 57
+  },
+  "6d5d5bfb15ce": {
+   "fr": "Les questions sur les solides, patrons et perspective (étiquettes SOL, PER) relèvent du cycle~4 : le programme de Seconde ne comporte pas de chapitre dédié ; elles servent le diagnostic.",
+   "en": "Questions on solids, nets and perspective (tags SOL, PER) belong to Key Stage 3 (cycle~4): the Seconde programme has no dedicated chapter; they serve the diagnostic.",
+   "status": "aligned",
+   "order": 58
+  },
+  "cf1695871ec4": {
+   "fr": "Fiche~77 (question~3) : notion de taux d'accroissement en anticipation de la Première, hors chapitre de Seconde.",
+   "en": "Sheet~77 (question~3): notion of rate of change in anticipation of Première, outside the Seconde chapters.",
+   "status": "aligned",
+   "order": 59
+  },
+  "c9f71fe3ba27": {
+   "fr": "Liste des automatismes évaluables à l'épreuve anticipée (BO n°24 du 12 juin 2025, session 2027) : \\textbf{[VERIFY --- check Eduscol]} pour la session 2028.",
+   "en": "List of automatismes assessable in the early examination (BO no.~24 of 12 June 2025, 2027 session): \\textbf{[VERIFY --- check Eduscol]} for the 2028 session.",
+   "status": "aligned",
+   "order": 60
+  }
+ }
+}

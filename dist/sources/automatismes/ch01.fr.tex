@@ -1,0 +1,33 @@
+\mxunit{automatismes-ch01}{Vecteurs du plan}
+
+\begin{fluencysheet}{jeu.~8~oct.~2026}{Distance entre deux points et milieu d'un segment}
+\mxfq{Échauffement · Flash}{CAL}{Calculer $(-3)^2$, $(5-(-2))^2$ et $-3^2$.}{$9$\,; $49$\,; $-9$.}{Prérequis du calcul d'une distance~: carré d'un nombre relatif.}
+\mxfq{Cœur · Méthode}{GEO}{$A(1;2)$ et $B(4;6)$ dans un repère orthonormé. Donner les coordonnées de $\vect{AB}$ puis la distance $AB$.}{$\vect{AB}\vc{3}{4}$\,; $AB=\sqrt{3^2+4^2}=5$.}{Piège~: $x_A-x_B$ au lieu de $x_B-x_A$\,; oublier la racine carrée.}
+\mxfq{Cœur + · QCM}{REP}{Le milieu de $[AB]$ avec $A(-2;1)$ et $B(4;-3)$ a pour coordonnées~:\mxchoices{$(1;-1)$}{$(-1;1)$}{$(2;-2)$}{$(3;-2)$}}{A.\ $(1;-1)$}{Distracteurs~: demi-différence $(3;-2)$\,; somme non divisée $(2;-2)$\,; erreur de signe $(-1;1)$.}
+\mxfq{Retour · Flash}{SUB}{Calculer $3x^2-2x+1$ pour $x=-2$.}{$17$.}{}
+\mxfq{Fil rouge · Flash}{EQ}{Résoudre dans $\R$~: $3x+5=17$.}{$x=4$}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{lun.~12~oct.~2026}{Déterminant de deux vecteurs\,; critère de colinéarité}
+\mxfq{Échauffement · Flash}{CAL}{Calculer $2\times(-3)-4\times5$ et $(-1)\times6-3\times(-2)$.}{$-26$\,; $0$.}{Gestes du déterminant~: produit en croix avec relatifs.}
+\mxfq{Cœur · Méthode}{GEO}{Calculer $\deter{\vec u}{\vec v}$ pour $\vec u\vc{2}{-3}$ et $\vec v\vc{-4}{6}$. Que peut-on conclure\,?}{$2\times6-(-3)\times(-4)=12-12=0$~: $\vec u$ et $\vec v$ sont colinéaires ($\vec v=-2\vec u$).}{}
+\mxfq{Cœur + · Vrai/faux}{GEO}{Vrai ou faux\,? Justifier. Les vecteurs $\vec u\vc{1}{2}$ et $\vec v\vc{3}{5}$ sont colinéaires.}{Faux. $\deter{\vec u}{\vec v}=1\times5-2\times3=-1\neq0$.}{}
+\mxfq{Retour · Programme de construction}{CON}{Tracer un cercle de centre $O$ et deux diamètres perpendiculaires $[AC]$ et $[BD]$. Quelle est la nature de $ABCD$\,? Justifier.}{Un carré~: diagonales de même milieu $O$ (parallélogramme), de même longueur (rectangle) et perpendiculaires (losange).}{}
+\mxfq{Fil rouge · Flash}{ALG}{Programme~: choisir un nombre\,; le multiplier par $4$\,; ajouter $5$. a. Quel résultat pour $3$\,? b. Quelle expression en fonction du nombre de départ $x$\,?}{a. $17$. b. $4x+5$.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{mar.~13~oct.~2026}{Alignement et parallélisme~: méthode du déterminant}
+\mxfq{Échauffement · Flash}{GEO}{Calculer les coordonnées de $\vect{AB}$ pour $A(1;-2)$ et $B(4;3)$.}{$\vect{AB}\vc{3}{5}$.}{}
+\mxfq{Cœur · Méthode}{GEO}{Les points $A(1;2)$, $B(3;3)$ et $C(7;5)$ sont-ils alignés\,?}{$\vect{AB}\vc{2}{1}$, $\vect{AC}\vc{6}{3}$~: $\deter{\vect{AB}}{\vect{AC}}=2\times3-1\times6=0$~: alignés.}{}
+\mxfq{Cœur + · Méthode}{EQ}{Pour quelle valeur de $k$ les vecteurs $\vec u\vc{k}{3}$ et $\vec v\vc{4}{6}$ sont-ils colinéaires\,?}{$\deter{\vec u}{\vec v}=6k-12=0$, donc $k=2$.}{Le déterminant ramène à une équation du premier degré.}
+\mxfq{Retour · Flash}{PRO}{Calculer $20\,\%$ de $350$.}{$0{,}20\times350=70$.}{}
+\mxfq{Fil rouge · Traduire}{LIT}{Un rectangle a pour longueur $x+3$ et pour largeur $x$ (en cm). Exprimer son périmètre en fonction de $x$ et le réduire.}{$P=2\big((x+3)+x\big)=4x+6$ (en cm).}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{jeu.~15~oct.~2026}{Résolution de problèmes~: méthode vectorielle, repérée ou géométrique}
+\mxfq{Échauffement · Flash}{GEO}{Compléter~: $ABCD$ est un parallélogramme $\Leftrightarrow\ \vect{AB}=\ldots$}{$\vect{AB}=\vect{DC}$ (ou $\vect{AD}=\vect{BC}$).}{Les sommets sont nommés dans l'ordre~: $[AC]$ et $[BD]$ sont les diagonales.}
+\mxfq{Cœur · Méthode}{REP}{$A(0;0)$, $B(4;1)$, $C(5;4)$. Déterminer $D$ pour que $ABCD$ soit un parallélogramme.}{$\vect{AB}=\vect{DC}$~: $(4;1)=(5-x_D;4-y_D)$, donc $D(1;3)$.}{}
+\mxfq{Cœur + · Rédiger}{DEM}{$A(0;0)$, $B(3;1)$, $C(-1;3)$. Démontrer que $ABC$ est rectangle isocèle en $A$.}{$AB^2=10$, $AC^2=10$~: $AB=AC$\,; $BC^2=16+4=20=AB^2+AC^2$~: réciproque de Pythagore.}{Deux justifications distinctes~: égalité de longueurs et angle droit.}
+\mxfq{Retour · Flash}{NUM}{Écrire $450\,000$ en notation scientifique.}{$4{,}5\times10^5$.}{}
+\mxfq{Fil rouge · Flash}{SOL}{Combien de faces, de sommets et d'arêtes possède un cube\,?}{$6$ faces, $8$ sommets, $12$ arêtes.}{}
+\end{fluencysheet}

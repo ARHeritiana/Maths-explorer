@@ -41,6 +41,12 @@
 \newcommand{\mxinclude}[1]{\input{#1.\mx@lang.tex}}
 % \mxunit{id}{title}: opens a unit; the id namespaces labels written with \mxlabel{name} as id:name.
 \newcommand{\mxunitid}{}
-\newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}\chapter{#2}\label{#1}}
+% A unit starts a new page: a chapter in the booklet layout, a section in the sheet layout. Per-unit PDF excerpts
+% therefore never carry the end of the previous unit.
+\def\mx@sheet{sheet}
+\newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}%
+  \ifx\mx@layout\mx@sheet\clearpage\section{#2}\else\chapter{#2}\fi\label{#1}}
+% \mxfront{id}: opens a unit without heading (title block, introduction).
+\newcommand{\mxfront}[1]{\renewcommand{\mxunitid}{#1}}
 \newcommand{\mxlabel}[1]{\label{\mxunitid:#1}}
 \newcommand{\mxref}[1]{\ref{#1}}

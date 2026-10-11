@@ -41,7 +41,7 @@ def course_of(p):
 
 
 def is_en(p):
-    return p.stem.endswith('-en') or '-en.' in p.name
+    return p.stem.endswith('-en') or '-en.' in p.name or p.name.endswith('.en.tex')
 
 
 def strip_comments(text):

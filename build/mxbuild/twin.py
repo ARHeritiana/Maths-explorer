@@ -28,13 +28,13 @@ FIGURE_ENVS = {'tikzpicture', 'axis', 'pgfpicture'}
 LOCK_ARGS = set('label ref eqref pageref input include includegraphics setcounter addtocounter stepcounter '
                 'refstepcounter vspace hspace rule color textcolor colorbox definecolor needspace Needspace mxneed '
                 'newpage clearpage hyperref url mxinclude mxunit_id usetikzlibrary tikzset pgfplotsset phantom '
-                'hphantom vphantom cite linewidth setlength mxdate mxlabel mxref lstinputlisting'.split())
+                'hphantom vphantom cite linewidth setlength mxdate mxlabel mxref lstinputlisting mxlabelof mxfront'.split())
 # Environments whose brace arguments are layout (column specs, widths, counts), never prose.
 LAYOUT_ENVS = set('tabular tabular* tabularx array longtable minipage multicols multicols* wrapfigure tblr'.split())
 # Inline atoms: kept inside the sentence like inline maths (a placeholder the translation must keep).
-ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code'.split())
+ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code mxtag'.split())
 # Commands whose listed argument positions (0-based, brace arguments only) are never prose.
-LOCKED_ARG_POS = {'mxunit': {0}, 'href': {0}}
+LOCKED_ARG_POS = {'mxunit': {0}, 'href': {0}, 'mxfq': {1}, 'mxarraystretch': {0}}
 INLINE_CMDS = set('textbf emph textit textsc textsf texttt underline og fg ldots dots enspace quad qquad '
                   'nobreakspace textsuperscript textsubscript mbox guillemotleft guillemotright S oe OE ae up '
                   'mxblank code'.split())

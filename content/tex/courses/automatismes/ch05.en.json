@@ -1,0 +1,539 @@
+{
+ "unit": "ch05.fr.tex",
+ "segments": {
+  "cd7021ebb135": {
+   "fr": "Statistiques descriptives à une variable",
+   "en": "One-variable descriptive statistics",
+   "status": "aligned",
+   "order": 0
+  },
+  "4fcce4a2b805": {
+   "fr": "jeu.~17~déc.~2026",
+   "en": "Thu~17~Dec.~2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "1781ace1d6a3": {
+   "fr": "Moyenne et linéarité de la moyenne",
+   "en": "Mean and linearity of the mean",
+   "status": "aligned",
+   "order": 2
+  },
+  "8d68b8a24cf8": {
+   "fr": "Moyenne de [[m1]]\\,?",
+   "en": "Mean of [[m1]]?",
+   "status": "aligned",
+   "order": 4
+  },
+  "2d53e2be0426": {
+   "fr": "La série [[m1]] a pour moyenne [[m2]]. Quelle est la moyenne si l'on ajoute [[m3]] à chaque valeur\\,? si on multiplie chaque valeur par [[m4]]\\,?",
+   "en": "The series [[m1]] has mean [[m2]]. What is the mean if [[m3]] is added to each value? If each value is multiplied by [[m4]]?",
+   "status": "aligned",
+   "order": 6
+  },
+  "f49a6d8236b8": {
+   "fr": "Linéarité~: [[m1]]\\,; [[m2]].",
+   "en": "Linearity: [[m1]]; [[m2]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "95996c9c8fd5": {
+   "fr": "Pas besoin de refaire la somme.",
+   "en": "No need to recompute the sum.",
+   "status": "aligned",
+   "order": 8
+  },
+  "0d7974803020": {
+   "fr": "Vrai ou faux\\,? Justifier. La moyenne de deux nombres [[m1]] est toujours strictement comprise entre [[m2]] et [[m3]].",
+   "en": "True or false? Justify. The mean of two numbers [[m1]] is always strictly between [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "c99aa4e0ca86": {
+   "fr": "Vrai. [[m1]] car [[m2]].",
+   "en": "True. [[m1]] because [[m2]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "29df894b7439": {
+   "fr": "Retour · Lecture",
+   "en": "Review · Reading",
+   "status": "aligned",
+   "order": 12
+  },
+  "3d41d4f62e76": {
+   "fr": "Dans un diagramme circulaire de [[m1]] personnes, un secteur représente [[m2]]. Quel est son effectif\\,? Quel est son angle\\,?",
+   "en": "In a pie chart of [[m1]] people, one sector represents [[m2]]. How many people does it represent? What is its angle?",
+   "status": "aligned",
+   "order": 13
+  },
+  "723a7e9698b3": {
+   "fr": "[[m1]] personnes\\,; [[m2]].",
+   "en": "[[m1]] people; [[m2]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "141b59756743": {
+   "fr": "Calculer [[m1]] et en déduire la forme irréductible de [[m2]].",
+   "en": "Calculate [[m1]] and deduce the simplest form of [[m2]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "6001ab0262ae": {
+   "fr": "lun.~4~janv.~2027",
+   "en": "Mon~4~Jan.~2027",
+   "status": "aligned",
+   "order": 17
+  },
+  "a525eafe3084": {
+   "fr": "Médiane et quartiles",
+   "en": "Median and quartiles",
+   "status": "aligned",
+   "order": 18
+  },
+  "0818d728081b": {
+   "fr": "Ranger [[m1]] puis donner la médiane.",
+   "en": "Order [[m1]] then give the median.",
+   "status": "aligned",
+   "order": 20
+  },
+  "dad661802ac5": {
+   "fr": "[[m1]]\\,; médiane [[m2]] (rang [[m3]]).",
+   "en": "[[m1]]; median [[m2]] (rank [[m3]]).",
+   "status": "aligned",
+   "order": 21
+  },
+  "a7bd7c2914ba": {
+   "fr": "Série [[m1]]. Donner [[m2]], la médiane, [[m3]] et l'écart interquartile.",
+   "en": "Series [[m1]]. Give [[m2]], the median, [[m3]] and the interquartile range.",
+   "status": "aligned",
+   "order": 23
+  },
+  "a31b55ef40dc": {
+   "fr": "[[m1]]~: [[m2]] rang [[m3]]~: [[m4]]\\,; médiane [[m5]]\\,; [[m6]] rang [[m7]]~: [[m8]]\\,; [[m9]].",
+   "en": "[[m1]]: [[m2]] has rank [[m3]]: [[m4]]; median [[m5]]; [[m6]] has rank [[m7]]: [[m8]]; [[m9]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "81b09d123a8c": {
+   "fr": "Convention~: plus petite valeur telle qu'au moins [[m1]] (resp. [[m2]]) des données lui soient inférieures ou égales.",
+   "en": "Convention: the smallest value such that at least [[m1]] (resp. [[m2]]) of the data are less than or equal to it.",
+   "status": "aligned",
+   "order": 25
+  },
+  "b0cd779960ef": {
+   "fr": "Vrai ou faux\\,? Justifier. Au moins la moitié des valeurs d'une série sont supérieures ou égales à sa médiane.",
+   "en": "True or false? Justify. At least half of the values of a series are greater than or equal to its median.",
+   "status": "aligned",
+   "order": 27
+  },
+  "31e69212f200": {
+   "fr": "Vrai. Par définition de la médiane (au moins [[m1]] des valeurs de chaque côté, bornes comprises).",
+   "en": "True. By definition of the median (at least [[m1]] of the values on each side, endpoints included).",
+   "status": "aligned",
+   "order": 28
+  },
+  "e0c7b1433200": {
+   "fr": "Ranger [[m1]], [[m2]] et [[m3]] dans l'ordre croissant.",
+   "en": "Put [[m1]], [[m2]] and [[m3]] in increasing order.",
+   "status": "aligned",
+   "order": 30
+  },
+  "7bb213c1e107": {
+   "fr": "Fil rouge · Graphique → formule",
+   "en": "Thread · Graph → formula",
+   "status": "aligned",
+   "order": 31
+  },
+  "4645aefc8073": {
+   "fr": "La droite ci-dessous représente une fonction affine [[m1]]. Déterminer [[m2]].",
+   "en": "The line below represents an affine function [[m1]]. Determine [[m2]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "c997220310fe": {
+   "fr": "Elle passe par [[m1]] et [[m2]]~: pente [[m3]], [[m4]].",
+   "en": "It passes through [[m1]] and [[m2]]: slope [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "bf4bbe25250a": {
+   "fr": "mar.~5~janv.~2027",
+   "en": "Tue~5~Jan.~2027",
+   "status": "aligned",
+   "order": 34
+  },
+  "90a7f5a9a400": {
+   "fr": "Écart type\\,; effet de l'ajout ou de la suppression d'une valeur",
+   "en": "Standard deviation; effect of adding or removing a value",
+   "status": "aligned",
+   "order": 35
+  },
+  "26ff890071d8": {
+   "fr": "Série [[m1]]~: moyenne, variance et écart type (valeur approchée à [[m2]]).",
+   "en": "Series [[m1]]: mean, variance and standard deviation (approximate value to [[m2]]).",
+   "status": "aligned",
+   "order": 39
+  },
+  "6631d5249e22": {
+   "fr": "Moyenne [[m1]]\\,; variance [[m2]]\\,; écart type [[m3]].",
+   "en": "Mean [[m1]]; variance [[m2]]; standard deviation [[m3]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "07100f279aae": {
+   "fr": "Cœur + · Vrai/faux",
+   "en": "Core + · True/false",
+   "status": "aligned",
+   "order": 41
+  },
+  "244e51dfa119": {
+   "fr": "Vrai ou faux\\,? Justifier. Ajouter [[m1]] à chaque valeur d'une série ne change pas son écart type.",
+   "en": "True or false? Justify. Adding [[m1]] to each value of a series does not change its standard deviation.",
+   "status": "aligned",
+   "order": 42
+  },
+  "0c4562ca48f2": {
+   "fr": "Vrai. Toutes les valeurs et la moyenne sont décalées de [[m1]]~: les écarts à la moyenne sont inchangés.",
+   "en": "True. All the values and the mean are shifted by [[m1]]: the deviations from the mean are unchanged.",
+   "status": "aligned",
+   "order": 43
+  },
+  "44e0e2b6b256": {
+   "fr": "Retour · Programme de construction",
+   "en": "Review · Construction",
+   "status": "aligned",
+   "order": 44
+  },
+  "bb142a14be50": {
+   "fr": "Soit [[m1]] un triangle, [[m2]] le milieu de [[m3]] et [[m4]] le symétrique de [[m5]] par rapport à [[m6]]. Quelle est la nature de [[m7]]\\,?",
+   "en": "Let [[m1]] be a triangle, [[m2]] the midpoint of [[m3]] and [[m4]] the reflection of [[m5]] in [[m6]]. What type of quadrilateral is [[m7]]?",
+   "status": "aligned",
+   "order": 45
+  },
+  "89afeee5ac06": {
+   "fr": "Un parallélogramme~: ses diagonales [[m1]] et [[m2]] ont même milieu [[m3]].",
+   "en": "A parallelogram: its diagonals [[m1]] and [[m2]] have the same midpoint [[m3]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "877bc6aa793e": {
+   "fr": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]], [[m6]]. Calculer [[m7]].",
+   "en": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]], [[m6]]. Calculate [[m7]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "2de952a524c8": {
+   "fr": "Thalès~: [[m1]], donc [[m2]].",
+   "en": "Thales: [[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "22bc657baaf3": {
+   "fr": "jeu.~7~janv.~2027",
+   "en": "Thu~7~Jan.~2027",
+   "status": "aligned",
+   "order": 50
+  },
+  "4460c469f527": {
+   "fr": "Comparaison de séries",
+   "en": "Comparing series",
+   "status": "aligned",
+   "order": 51
+  },
+  "039618509661": {
+   "fr": "Étendue de [[m1]]\\,?",
+   "en": "Range of [[m1]]?",
+   "status": "aligned",
+   "order": 53
+  },
+  "7532b022a1ba": {
+   "fr": "Cœur · Interpréter",
+   "en": "Core · Interpret",
+   "status": "aligned",
+   "order": 54
+  },
+  "6b1d56e2bab1": {
+   "fr": "Deux séries [[m1]] et [[m2]] ont même moyenne [[m3]]\\,; [[m4]] et [[m5]]. Laquelle est la plus régulière\\,?",
+   "en": "Two series [[m1]] and [[m2]] have the same mean [[m3]]; [[m4]] and [[m5]]. Which one is more consistent?",
+   "status": "aligned",
+   "order": 55
+  },
+  "d2edb1ea9390": {
+   "fr": "[[m1]]~: les valeurs sont plus resserrées autour de la moyenne ([[m2]] plus petit).",
+   "en": "[[m1]]: the values are closer together around the mean (smaller [[m2]]).",
+   "status": "aligned",
+   "order": 56
+  },
+  "78743c18d2f9": {
+   "fr": "Cœur + · Interpréter",
+   "en": "Core + · Interpret",
+   "status": "aligned",
+   "order": 57
+  },
+  "8511d8d3e2c4": {
+   "fr": "[[m1]]~: médiane [[m2]], écart interquartile [[m3]]. [[m4]]~: médiane [[m5]], écart interquartile [[m6]]. Comparer les deux séries.",
+   "en": "[[m1]]: median [[m2]], interquartile range [[m3]]. [[m4]]: median [[m5]], interquartile range [[m6]]. Compare the two series.",
+   "status": "aligned",
+   "order": 58
+  },
+  "a3f04c21bf7d": {
+   "fr": "[[m1]] est centrée plus haut (médiane [[m2]]) mais plus dispersée (écart interquartile [[m3]]).",
+   "en": "[[m1]] is centred higher (median [[m2]]) but more spread out (interquartile range [[m3]]).",
+   "status": "aligned",
+   "order": 59
+  },
+  "061929e143e3": {
+   "fr": "On lance deux pièces équilibrées. Probabilité d'obtenir deux faces\\,?",
+   "en": "Two fair coins are tossed. What is the probability of getting two heads?",
+   "status": "aligned",
+   "order": 61
+  },
+  "b1e90a4922f7": {
+   "fr": "[[m1]] issues équiprobables~: [[m2]].",
+   "en": "[[m1]] equally likely outcomes: [[m2]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "e5b3f9f5b4b2": {
+   "fr": "Fil rouge · Méthode",
+   "en": "Thread · Method",
+   "status": "aligned",
+   "order": 63
+  },
+  "b250a50385a2": {
+   "fr": "Programme~: choisir un nombre\\,; l'élever au carré\\,; ajouter [[m1]]. Résultat pour [[m2]]\\,? Peut-on obtenir [[m3]]\\,? Justifier.",
+   "en": "Programme: choose a number; square it; add [[m1]]. Result for [[m2]]? Can [[m3]] be obtained? Justify.",
+   "status": "aligned",
+   "order": 64
+  },
+  "55ca90a91f6a": {
+   "fr": "Pour [[m1]]~: [[m2]]. Non~: [[m3]] donc [[m4]].",
+   "en": "For [[m1]]: [[m2]]. No: [[m3]] so [[m4]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "46d22d88fe77": {
+   "fr": "lun.~11~janv.~2027",
+   "en": "Mon~11~Jan.~2027",
+   "status": "aligned",
+   "order": 66
+  },
+  "dbd8f65dd84c": {
+   "fr": "Données regroupées en classes~: histogramme et fréquences cumulées",
+   "en": "Grouped data: histogram and cumulative frequencies",
+   "status": "aligned",
+   "order": 67
+  },
+  "eb7de737fc9f": {
+   "fr": "Donner l'amplitude et le centre de la classe [[m1]].",
+   "en": "Give the width and the midpoint of the class [[m1]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "4f5c142b45ae": {
+   "fr": "Amplitude [[m1]]\\,; centre [[m2]].",
+   "en": "Width [[m1]]; midpoint [[m2]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "31a97e12b273": {
+   "fr": "Cœur · Tableau",
+   "en": "Core · Table",
+   "status": "aligned",
+   "order": 71
+  },
+  "d2284d969243": {
+   "fr": "Classes [[m1]], [[m2]], [[m3]] d'effectifs [[m4]]. Donner les fréquences puis les fréquences cumulées croissantes.",
+   "en": "Classes [[m1]], [[m2]], [[m3]] with frequencies (counts) [[m4]]. Give the relative frequencies, then the cumulative increasing relative frequencies.",
+   "status": "aligned",
+   "order": 72
+  },
+  "c904457fefa1": {
+   "fr": "Total [[m1]]\\,; fréquences [[m2]], [[m3]], [[m4]]\\,; cumulées [[m5]], [[m6]], [[m7]].",
+   "en": "Total [[m1]]; relative frequencies [[m2]], [[m3]], [[m4]]; cumulative [[m5]], [[m6]], [[m7]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "8982c001404f": {
+   "fr": "Cœur + · Flash",
+   "en": "Core + · Quick",
+   "status": "aligned",
+   "order": 74
+  },
+  "68c3fc82a49d": {
+   "fr": "Dans un histogramme à classes de même amplitude, deux rectangles ont pour hauteurs [[m1]] cm et [[m2]] cm. Quel est le rapport de leurs effectifs\\,?",
+   "en": "In a histogram with classes of equal width, two rectangles have heights [[m1]] cm and [[m2]] cm. What is the ratio of their frequencies (counts)?",
+   "status": "aligned",
+   "order": 75
+  },
+  "b581ee9a82bb": {
+   "fr": "Les hauteurs sont proportionnelles aux effectifs~: [[m1]] pour [[m2]].",
+   "en": "The heights are proportional to the counts: [[m1]] to [[m2]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "a064a674dbf2": {
+   "fr": "Écrire [[m1]] en notation scientifique.",
+   "en": "Write [[m1]] in scientific notation.",
+   "status": "aligned",
+   "order": 78
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 79
+  },
+  "aed57c0cde67": {
+   "fr": "Résoudre dans [[m1]]~: [[m2]].",
+   "en": "Solve in [[m1]]: [[m2]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "c1b7455edcd5": {
+   "fr": "Piège~: oublier de distribuer le [[m1]] sur le [[m2]].",
+   "en": "Pitfall: forgetting to distribute the [[m1]] over the [[m2]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "ad01129300de": {
+   "fr": "mar.~12~janv.~2027",
+   "en": "Tue~12~Jan.~2027",
+   "status": "aligned",
+   "order": 82
+  },
+  "616cfe204129": {
+   "fr": "Moyenne pondérée, classe médiane\\,; tableur et Python",
+   "en": "Weighted mean, median class; spreadsheet and Python",
+   "status": "aligned",
+   "order": 83
+  },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 84
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 86
+  },
+  "15c8e52ad7ec": {
+   "fr": "Classes [[m1]], [[m2]], [[m3]] d'effectifs [[m4]]. Estimer la moyenne avec les centres de classes\\,; donner la classe médiane.",
+   "en": "Classes [[m1]], [[m2]], [[m3]] with frequencies (counts) [[m4]]. Estimate the mean using the class midpoints; give the median class.",
+   "status": "aligned",
+   "order": 87
+  },
+  "04a211f4ece6": {
+   "fr": "Moyenne estimée [[m1]]\\,; effectifs cumulés [[m2]]~: les [[m3]] et [[m4]] valeurs sont dans [[m5]]~: classe médiane.",
+   "en": "Estimated mean [[m1]]; cumulative frequencies [[m2]]: the [[m3]] and [[m4]] values are in [[m5]]: median class.",
+   "status": "aligned",
+   "order": 88
+  },
+  "be09bf3f9be3": {
+   "fr": "Cœur + · Lecture de code",
+   "en": "Core + · Code reading",
+   "status": "aligned",
+   "order": 89
+  },
+  "866d1b832b23": {
+   "fr": "Que calcule ce programme et quelle valeur obtient-on\\,?",
+   "en": "What does this programme calculate and what value does it give?",
+   "status": "aligned",
+   "order": 90
+  },
+  "eeb0d183d11a": {
+   "fr": "notes = [12, 15, 9, 14]\\\\",
+   "en": "notes = [12, 15, 9, 14]\\\\",
+   "status": "aligned",
+   "order": 92
+  },
+  "97a5bed755b7": {
+   "fr": "s = 0\\\\",
+   "en": "s = 0\\\\",
+   "status": "aligned",
+   "order": 94
+  },
+  "5385cb919c25": {
+   "fr": "for n in notes:\\\\",
+   "en": "for n in notes:\\\\",
+   "status": "aligned",
+   "order": 96
+  },
+  "1225774c50f5": {
+   "fr": "2.4em",
+   "en": "2.4em",
+   "status": "aligned",
+   "order": 97
+  },
+  "560e436b4b70": {
+   "fr": "s = s + n\\\\",
+   "en": "s = s + n\\\\",
+   "status": "aligned",
+   "order": 98
+  },
+  "848501079fa5": {
+   "fr": "0.0em",
+   "en": "0.0em",
+   "status": "aligned",
+   "order": 99
+  },
+  "fec74a2009bf": {
+   "fr": "print(s / len(notes))",
+   "en": "print(s / len(notes))",
+   "status": "aligned",
+   "order": 100
+  },
+  "c47d2e36126b": {
+   "fr": "La moyenne des notes~: [[m1]].",
+   "en": "The mean of the marks: [[m1]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 102
+  },
+  "41f0c0c0fc22": {
+   "fr": "Un article à [[m1]] Ar est soldé à [[m2]]. Quel est le prix soldé\\,?",
+   "en": "An item costing [[m1]] Ar is sold at [[m2]]. What is the sale price?",
+   "status": "aligned",
+   "order": 103
+  },
+  "93719eaa5542": {
+   "fr": "[[m1]] Ar.",
+   "en": "[[m1]] Ar.",
+   "status": "aligned",
+   "order": 104
+  },
+  "188c7146db41": {
+   "fr": "Fil rouge · Prouver",
+   "en": "Thread · Prove",
+   "status": "aligned",
+   "order": 105
+  },
+  "924fbb28ed44": {
+   "fr": "Programme~: choisir [[m1]]\\,; ajouter [[m2]]\\,; élever au carré\\,; soustraire [[m3]]. Montrer que le résultat est toujours un nombre impair.",
+   "en": "Programme: choose [[m1]]; add [[m2]]; square it; subtract [[m3]]. Show that the result is always an odd number.",
+   "status": "aligned",
+   "order": 106
+  },
+  "b2903029a179": {
+   "fr": "[[m1]]~: impair pour tout entier [[m2]].",
+   "en": "[[m1]]: odd for every integer [[m2]].",
+   "status": "aligned",
+   "order": 107
+  }
+ }
+}

@@ -14,6 +14,9 @@ OUT = ROOT / 'dist/sources'
 KEEP = {'.tex', '.sty', '.cls', '.bib', '.bst', '.png', '.jpg', '.jpeg', '.pdf', '.svg'}
 sys.path.insert(0, str(ROOT / 'tests'))
 import banned   # hashed owner/school/place names, personal-space links, e-mail addresses
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild import books   # mains of migrated courses are generated from the manifest
+CORE = ROOT / 'content/tex/core'
 # Held back from the public download: textbook extracts (rights to be confirmed) and exercise drafts not yet verified.
 SKIP = re.compile(r"(?!)")   # nothing withheld any more (Calao extracts removed, exercises verified)
 COURSES = {
@@ -43,11 +46,18 @@ def main():
     if OUT.exists():
         shutil.rmtree(OUT)
     courses = []
+    migrated = set(books.catalog.load().get('books', {}))
     for course, (title, entries) in COURSES.items():
         base = SRC / course
         if not base.is_dir():
             continue
+        if course in migrated:   # entry files are generated; the core is published once, beside the courses
+            books.write_mains(course, OUT / course, '../core')
         files = []
+        for name in (sorted(books.ENTRIES.values()) if course in migrated else []):
+            p = OUT / course / (name + '.tex'); entry = entries.get(name + '.tex')
+            files.append({'path': f'{course}/{name}.tex', 'bytes': p.stat().st_size, 'kind': 'tex', 'lang': 'en' if name.endswith('-en') else 'fr',
+                          **({'entry': {'lang': entry[0], 'edition': entry[1]}} if entry else {})})
         for p in sorted(base.rglob('*')):
             if not p.is_file() or p.suffix.lower() not in KEEP:
                 continue
@@ -63,11 +73,22 @@ def main():
             name = p.relative_to(base).as_posix()
             kind = 'figure' if p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.pdf', '.svg'} else \
                    'style' if p.suffix.lower() in {'.sty', '.cls', '.bst'} else 'tex'
-            lang = 'en' if re.search(r'-en\.(tex|sty)$', name) else 'fr'
+            lang = 'en' if re.search(r'(-en|\.en)\.(tex|sty)$', name) else 'fr'
             entry = entries.get(name)
             files.append({'path': rel.as_posix(), 'bytes': p.stat().st_size, 'kind': kind, 'lang': lang,
                           **({'entry': {'lang': entry[0], 'edition': entry[1]}} if entry else {})})
         courses.append({'id': course, 'title': title, 'files': files})
+    # Shared class and packages: published once in core/ and listed in every migrated course, so a course archive
+    # (site "Sources" page) unpacks as course/ + core/ and compiles as is.
+    core_files = []
+    for p in sorted(CORE.glob('*')):
+        if p.suffix not in {'.cls', '.sty', '.tex'}: continue
+        if banned.findings(p.read_text(encoding='utf8')): problems.append(f'core/{p.name}: banned content')
+        (OUT / 'core').mkdir(parents=True, exist_ok=True); shutil.copy2(p, OUT / 'core' / p.name)
+        core_files.append({'path': f'core/{p.name}', 'bytes': p.stat().st_size, 'kind': 'style' if p.suffix != '.tex' else 'tex',
+                           'lang': 'en' if '.en.' in p.name else 'fr'})
+    for c in courses:
+        if c['id'] in migrated: c['files'] += core_files
     if problems:
         sys.exit('Personal or identifying text found in sources:\n' + '\n'.join(problems[:40]))
     (OUT / 'README.md').write_text(
@@ -81,9 +102,14 @@ def main():
         '```\n\n'
         'Engine and preamble are those of each source (pdfLaTeX unless stated; enrichment workshops use XeLaTeX).\n'
         'Shell escape is never needed.\n\n'
+        'Courses already moved to the shared system (`core/` folder: class `mxbook` and packages) hold one file per unit,\n'
+        '`<unit>.fr.tex` and `<unit>.en.tex` (the English unit is generated from the French one), and the same entry files\n'
+        '(`eleve.tex`, `professeur.tex`, `eleve-en.tex`, `professeur-en.tex`); keep `core/` next to the course folder.\n\n'
         '# Sources LaTeX\n\n'
         'Chaque dossier contient les sources complètes d’un livret : chapitres, corrigés, évaluations, figures et\n'
-        'fichiers de style. Les versions anglaises portent le suffixe `-en` (prose traduite, mathématiques identiques).\n',
+        'fichiers de style. Les versions anglaises portent le suffixe `-en` (prose traduite, mathématiques identiques).\n'
+        'Les cours déjà passés au système commun (dossier `core/`) ont un fichier par unité, `<unité>.fr.tex` et\n'
+        '`<unité>.en.tex` (généré à partir du français) ; garder `core/` à côté du dossier du cours.\n',
         encoding='utf8')
     (OUT / 'manifest.json').write_text(json.dumps({'courses': courses}, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
     print(f"Published {sum(len(c['files']) for c in courses)} source files in {len(courses)} courses to dist/sources/")

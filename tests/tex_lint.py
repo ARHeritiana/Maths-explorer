@@ -18,12 +18,15 @@ RULES = [
 
 
 FIGURE = re.compile(r'\\begin\{(tikzpicture|axis|pgfpicture)\}.*?\\end\{\1\}', re.S)
+CODE = re.compile(r'\\begin\{(lstlisting|verbatim)\}.*?\\end\{\1\}|\\(?:code|texttt)\{[^{}]*\}', re.S)
 PAIR = re.compile(r'\(\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?\s*\)')   # coordinates such as (1,2)
 
 
 def lint(path):
     out = []
-    text = FIGURE.sub(lambda m: '\n' * m.group(0).count('\n'), path.read_text())   # figure code: coordinates, not decimals
+    blank = lambda m: '\n' * m.group(0).count('\n')
+    text = FIGURE.sub(blank, path.read_text())   # figure code: coordinates, not decimals
+    text = CODE.sub(blank, text)                 # program code: argument lists, not decimals
     for n, line in enumerate(text.splitlines(), 1):
         code = PAIR.sub('', re.sub(r'(?<!\\)%.*', '', line))
         for pat, why in RULES:

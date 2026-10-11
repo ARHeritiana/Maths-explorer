@@ -1,0 +1,479 @@
+{
+ "unit": "ch10.fr.tex",
+ "segments": {
+  "df21160c8922": {
+   "fr": "Géométrie repérée~: synthèse vecteurs / droites",
+   "en": "Coordinate geometry: vectors and lines, a synthesis",
+   "status": "aligned",
+   "order": 0
+  },
+  "2ba3d76ee851": {
+   "fr": "mar.~30~mars~2027",
+   "en": "Tue~30~Mar.~2027",
+   "status": "aligned",
+   "order": 1
+  },
+  "e209aa03e5cf": {
+   "fr": "Vecteurs et colinéarité~: réinvestissement",
+   "en": "Vectors and collinearity: consolidation",
+   "status": "aligned",
+   "order": 2
+  },
+  "8458e2358c65": {
+   "fr": "[[m1]] et [[m2]]. Calculer [[m3]] et [[m4]].",
+   "en": "[[m1]] and [[m2]]. Calculate [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "9ede729e3248": {
+   "fr": "Les points [[m1]], [[m2]] et [[m3]] sont-ils alignés\\,?",
+   "en": "Are the points [[m1]], [[m2]] and [[m3]] collinear?",
+   "status": "aligned",
+   "order": 6
+  },
+  "bf24f5fd3d14": {
+   "fr": "[[m1]], [[m2]]~: [[m3]]~: alignés.",
+   "en": "[[m1]], [[m2]]: [[m3]]: collinear.",
+   "status": "aligned",
+   "order": 7
+  },
+  "f2f463076407": {
+   "fr": "[[m1]], [[m2]], [[m3]]. Déterminer [[m4]] tel que [[m5]] soit un parallélogramme.",
+   "en": "[[m1]], [[m2]], [[m3]]. Find [[m4]] such that [[m5]] is a parallelogram.",
+   "status": "aligned",
+   "order": 9
+  },
+  "36fac96c1568": {
+   "fr": "Dans une classe de [[m1]] élèves, [[m2]] sont demi-pensionnaires. Quelle proportion en pourcentage\\,?",
+   "en": "In a class of [[m1]] pupils, [[m2]] have school lunch. What proportion is this, as a percentage?",
+   "status": "aligned",
+   "order": 11
+  },
+  "188c7146db41": {
+   "fr": "Fil rouge · Prouver",
+   "en": "Thread · Prove",
+   "status": "aligned",
+   "order": 12
+  },
+  "32e89ed0b3d5": {
+   "fr": "Montrer que [[m1]] pour tout entier [[m2]]. Que peut-on en conclure pour la différence des carrés de deux impairs consécutifs ([[m3]] pair)\\,?",
+   "en": "Show that [[m1]] for every integer [[m2]]. What can be concluded about the difference of the squares of two consecutive odd numbers ([[m3]] even)?",
+   "status": "aligned",
+   "order": 13
+  },
+  "8b6d1c053dae": {
+   "fr": "[[m1]]. Pour [[m2]] pair, la différence de deux carrés d'impairs consécutifs vaut [[m3]]~: multiple de [[m4]].",
+   "en": "[[m1]]. For [[m2]] even, the difference of the squares of two consecutive odd numbers is [[m3]]: a multiple of [[m4]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "9e819c344eee": {
+   "fr": "Les deux entiers [[m1]] et [[m2]] sont impairs lorsque [[m3]] est pair.",
+   "en": "The two integers [[m1]] and [[m2]] are odd when [[m3]] is even.",
+   "status": "aligned",
+   "order": 15
+  },
+  "be6eac05f112": {
+   "fr": "jeu.~1\\textsuperscript{er}~avr.~2027",
+   "en": "Thu~1\\textsuperscript{st}~Apr.~2027",
+   "status": "aligned",
+   "order": 16
+  },
+  "1290526ae258": {
+   "fr": "Déterminant et équations de droites~: réinvestissement",
+   "en": "Determinant and equations of lines: consolidation",
+   "status": "aligned",
+   "order": 17
+  },
+  "c04cc3ffe999": {
+   "fr": "Pente de la droite [[m1]]\\,?",
+   "en": "What is the gradient of the line [[m1]]?",
+   "status": "aligned",
+   "order": 19
+  },
+  "c67671189940": {
+   "fr": "[[m1]]~: pente [[m2]].",
+   "en": "[[m1]]: gradient [[m2]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "0ecf0d16754a": {
+   "fr": "Équation de la droite [[m1]] avec [[m2]] et [[m3]].",
+   "en": "Equation of the line [[m1]] with [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "5e11710e81a2": {
+   "fr": "Pente [[m1]]\\,; [[m2]], [[m3]]~: [[m4]]\\,; ou [[m5]].",
+   "en": "Gradient [[m1]]; [[m2]], [[m3]]: [[m4]]; or [[m5]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "695e79417c50": {
+   "fr": "Les droites [[m1]] et [[m2]] sont-elles parallèles, confondues ou sécantes\\,?",
+   "en": "Are the lines [[m1]] and [[m2]] parallel, coincident or intersecting?",
+   "status": "aligned",
+   "order": 25
+  },
+  "27f09702280b": {
+   "fr": "Vecteurs directeurs [[m1]] et [[m2]] colinéaires~: parallèles\\,; [[m3]] vérifie la première mais [[m4]]~: strictement parallèles.",
+   "en": "Direction vectors [[m1]] and [[m2]] are collinear: parallel; [[m3]] satisfies the first but [[m4]]: strictly parallel.",
+   "status": "aligned",
+   "order": 26
+  },
+  "aed57c0cde67": {
+   "fr": "Résoudre dans [[m1]]~: [[m2]].",
+   "en": "Solve in [[m1]]: [[m2]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "b0deb36f7f21": {
+   "fr": "Piège~: [[m1]] (erreur de signe).",
+   "en": "Pitfall: [[m1]] (sign error).",
+   "status": "aligned",
+   "order": 31
+  },
+  "358f800932e3": {
+   "fr": "lun.~5~avr.~2027",
+   "en": "Mon~5~Apr.~2027",
+   "status": "aligned",
+   "order": 32
+  },
+  "28284edb0760": {
+   "fr": "Problèmes de géométrie plane~: choisir une méthode",
+   "en": "Plane geometry problems: choosing a method",
+   "status": "aligned",
+   "order": 33
+  },
+  "f9cda2462b26": {
+   "fr": "Distance [[m1]] pour [[m2]] et [[m3]]\\,?",
+   "en": "Distance [[m1]] for [[m2]] and [[m3]]?",
+   "status": "aligned",
+   "order": 35
+  },
+  "dcfb28ed05ac": {
+   "fr": "[[m1]], [[m2]], [[m3]]. Nature du triangle [[m4]]\\,?",
+   "en": "[[m1]], [[m2]], [[m3]]. What type of triangle is [[m4]]?",
+   "status": "aligned",
+   "order": 37
+  },
+  "a451887b3917": {
+   "fr": "[[m1]], [[m2]], [[m3]]~: rectangle isocèle en [[m4]].",
+   "en": "[[m1]], [[m2]], [[m3]]: right-angled isosceles at [[m4]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "737e1b9ae557": {
+   "fr": "Cœur + · Méthode",
+   "en": "Core + · Method",
+   "status": "aligned",
+   "order": 39
+  },
+  "3c38e7c20f3f": {
+   "fr": "Citer deux méthodes pour démontrer que [[m1]] est un parallélogramme à l'aide de coordonnées.",
+   "en": "Give two methods to prove, using coordinates, that [[m1]] is a parallelogram.",
+   "status": "aligned",
+   "order": 40
+  },
+  "738bcff039e5": {
+   "fr": "(i) [[m1]]\\,; (ii) les diagonales [[m2]] et [[m3]] ont le même milieu.",
+   "en": "(i) [[m1]]; (ii) the diagonals [[m2]] and [[m3]] have the same midpoint.",
+   "status": "aligned",
+   "order": 41
+  },
+  "29df894b7439": {
+   "fr": "Retour · Lecture",
+   "en": "Review · Reading",
+   "status": "aligned",
+   "order": 42
+  },
+  "e61c5cf83fda": {
+   "fr": "Dans une classe de [[m1]] élèves, un diagramme en bâtons indique [[m2]] élèves pour la note [[m3]] et [[m4]] élèves pour la note [[m5]]\\,; les autres notes regroupent [[m6]] élèves. Trouver [[m7]].",
+   "en": "In a class of [[m1]] pupils, a bar chart shows [[m2]] pupils with the mark [[m3]] and [[m4]] pupils with the mark [[m5]]; the other marks account for [[m6]] pupils. Find [[m7]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "f6745ae66c1d": {
+   "fr": "[[m1]], donc [[m2]] et [[m3]].",
+   "en": "[[m1]], so [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "551beeb40bc1": {
+   "fr": "Une pyramide a pour base un carré de côté [[m1]] cm et pour hauteur [[m2]] cm. Calculer son volume.",
+   "en": "A pyramid has a square base of side [[m1]] cm and height [[m2]] cm. Calculate its volume.",
+   "status": "aligned",
+   "order": 46
+  },
+  "7e99bd08df32": {
+   "fr": "[[m1]] cm[[m2]].",
+   "en": "[[m1]] cm[[m2]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "bb9560e2e209": {
+   "fr": "mar.~6~avr.~2027",
+   "en": "Tue~6~Apr.~2027",
+   "status": "aligned",
+   "order": 48
+  },
+  "19e25c5640ef": {
+   "fr": "Situations issues d'autres disciplines",
+   "en": "Situations from other subjects",
+   "status": "aligned",
+   "order": 49
+  },
+  "11110b03157c": {
+   "fr": "Un mobile a pour position [[m1]] (en m, [[m2]] en s). Où est-il à [[m3]]\\,?",
+   "en": "A moving object has position [[m1]] (in m, [[m2]] in s). Where is it at [[m3]]?",
+   "status": "aligned",
+   "order": 51
+  },
+  "e15e6ab0e643": {
+   "fr": "[[m1]] m.",
+   "en": "[[m1]] m.",
+   "status": "aligned",
+   "order": 52
+  },
+  "380cdfaec0ca": {
+   "fr": "Un second mobile suit [[m1]]. À quel instant et où les mobiles se rencontrent-ils\\,?",
+   "en": "A second object follows [[m1]]. At what time and where do the objects meet?",
+   "status": "aligned",
+   "order": 54
+  },
+  "7ea1529285ec": {
+   "fr": "[[m1]] s\\,; position [[m2]] m.",
+   "en": "[[m1]] s; position [[m2]] m.",
+   "status": "aligned",
+   "order": 55
+  },
+  "8982c001404f": {
+   "fr": "Cœur + · Flash",
+   "en": "Core + · Quick",
+   "status": "aligned",
+   "order": 56
+  },
+  "7c3fa3f806d3": {
+   "fr": "Un vecteur vitesse a pour coordonnées [[m1]] (en m/s). Quelle est sa norme\\,?",
+   "en": "A velocity vector has coordinates [[m1]] (in m/s). What is its magnitude?",
+   "status": "aligned",
+   "order": 57
+  },
+  "0f76dd3c98b8": {
+   "fr": "[[m1]] m/s.",
+   "en": "[[m1]] m/s.",
+   "status": "aligned",
+   "order": 58
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "300ad56ed13d": {
+   "fr": "Fil rouge · Rédiger",
+   "en": "Thread · Write-up",
+   "status": "aligned",
+   "order": 61
+  },
+  "676eeca7eb54": {
+   "fr": "[[m1]] est isocèle en [[m2]] et [[m3]] est le pied de la hauteur issue de [[m4]]. Que peut-on affirmer de [[m5]]\\,?",
+   "en": "[[m1]] is isosceles at [[m2]] and [[m3]] is the foot of the altitude from [[m4]]. What can be stated about [[m5]]?",
+   "status": "aligned",
+   "order": 62
+  },
+  "f7e32333a4de": {
+   "fr": "[[m1]] est le milieu de [[m2]] (la hauteur issue du sommet est aussi médiatrice de la base).",
+   "en": "[[m1]] is the midpoint of [[m2]] (the altitude from the apex is also the perpendicular bisector of the base).",
+   "status": "aligned",
+   "order": 63
+  },
+  "20051d3dba26": {
+   "fr": "jeu.~8~avr.~2027",
+   "en": "Thu~8~Apr.~2027",
+   "status": "aligned",
+   "order": 64
+  },
+  "56194810819d": {
+   "fr": "Communiquer une démonstration~: implication, réciproque, équivalence",
+   "en": "Communicating a proof: implication, converse, equivalence",
+   "status": "aligned",
+   "order": 65
+  },
+  "084e39a1f6f0": {
+   "fr": "Énoncer la réciproque de~: «~si un quadrilatère est un losange, alors ses diagonales sont perpendiculaires~».",
+   "en": "State the converse of: ``if a quadrilateral is a rhombus, then its diagonals are perpendicular''.",
+   "status": "aligned",
+   "order": 67
+  },
+  "25fe42e675fd": {
+   "fr": "«~Si un quadrilatère a ses diagonales perpendiculaires, alors c'est un losange~».",
+   "en": "``If a quadrilateral has perpendicular diagonals, then it is a rhombus''.",
+   "status": "aligned",
+   "order": 68
+  },
+  "0d4ed58c33d5": {
+   "fr": "Cœur · Vrai/faux",
+   "en": "Core · True/false",
+   "status": "aligned",
+   "order": 69
+  },
+  "e2ec08391ca2": {
+   "fr": "Vrai ou faux\\,? Justifier. La réciproque précédente est vraie.",
+   "en": "True or false? Justify. The previous converse is true.",
+   "status": "aligned",
+   "order": 70
+  },
+  "9ed2b91b3e78": {
+   "fr": "Faux. Contre-exemple~: un cerf-volant (non losange) a des diagonales perpendiculaires.",
+   "en": "False. Counter-example: a kite (not a rhombus) has perpendicular diagonals.",
+   "status": "aligned",
+   "order": 71
+  },
+  "6f956625f496": {
+   "fr": "Cœur + · Rédiger",
+   "en": "Core + · Write-up",
+   "status": "aligned",
+   "order": 72
+  },
+  "b5104ceeef2e": {
+   "fr": "L'équivalence «~[[m1]]~» est-elle correcte\\,? Corriger.",
+   "en": "Is the equivalence ``[[m1]]'' correct? Correct it.",
+   "status": "aligned",
+   "order": 73
+  },
+  "fa7095b1f3c9": {
+   "fr": "Non~: [[m1]] convient aussi. On a l'implication [[m2]] et l'équivalence [[m3]].",
+   "en": "No: [[m1]] also works. We have the implication [[m2]] and the equivalence [[m3]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "d5f10c9bc837": {
+   "fr": " ou ",
+   "en": " or ",
+   "status": "aligned",
+   "order": 75
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 76
+  },
+  "6ddc23a33b62": {
+   "fr": "Comparer [[m1]] et [[m2]].",
+   "en": "Compare [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 78
+  },
+  "6fdb49bfcd7b": {
+   "fr": "Entre quels entiers consécutifs se situe [[m1]] sur une droite graduée\\,? Donner sa valeur décimale.",
+   "en": "Between which consecutive integers does [[m1]] lie on a number line? Give its decimal value.",
+   "status": "aligned",
+   "order": 79
+  },
+  "c95f8e318ab0": {
+   "fr": "Entre [[m1]] et [[m2]]\\,; [[m3]].",
+   "en": "Between [[m1]] and [[m2]]; [[m3]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "565cb1e0eb7c": {
+   "fr": "lun.~26~avr.~2027",
+   "en": "Mon~26~Apr.~2027",
+   "status": "aligned",
+   "order": 81
+  },
+  "17efba1ae494": {
+   "fr": "Oral de mise en commun~: comparaison de méthodes",
+   "en": "Class discussion: comparing methods",
+   "status": "aligned",
+   "order": 82
+  },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 83
+  },
+  "c1a95b9c8720": {
+   "fr": "Distance entre [[m1]] et [[m2]]\\,?",
+   "en": "Distance between [[m1]] and [[m2]]?",
+   "status": "aligned",
+   "order": 84
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 85
+  },
+  "b24ebdc5a30b": {
+   "fr": "Citer trois méthodes pour prouver que [[m1]], [[m2]], [[m3]] sont alignés.",
+   "en": "Give three methods to prove that [[m1]], [[m2]], [[m3]] are collinear.",
+   "status": "aligned",
+   "order": 86
+  },
+  "e891183ff7ce": {
+   "fr": "(i) [[m1]]\\,; (ii) équation de [[m2]] vérifiée par [[m3]]\\,; (iii) [[m4]]~: égalité de distances, équivalente à [[m5]].",
+   "en": "(i) [[m1]]; (ii) the equation of [[m2]] is satisfied by [[m3]]; (iii) [[m4]]: equality of distances, equivalent to [[m5]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "83555b56cb87": {
+   "fr": "Cœur + · Réflexion",
+   "en": "Core + · Reflection",
+   "status": "aligned",
+   "order": 88
+  },
+  "bdb91eafb128": {
+   "fr": "Pour prouver que deux droites données par [[m1]] et [[m2]] sont parallèles, quelle méthode est la plus rapide\\,?",
+   "en": "To prove that two lines given by [[m1]] and [[m2]] are parallel, which method is quickest?",
+   "status": "aligned",
+   "order": 89
+  },
+  "de9138c9a63c": {
+   "fr": "Comparer les pentes~: [[m1]]\\,; parallèles strictement si de plus [[m2]].",
+   "en": "Compare the gradients: [[m1]]; strictly parallel if in addition [[m2]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "2260a8b45adb": {
+   "fr": "Retour · Factoriser",
+   "en": "Review · Factorise",
+   "status": "aligned",
+   "order": 91
+  },
+  "838706f8879e": {
+   "fr": "Factoriser [[m1]].",
+   "en": "Factorise [[m1]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "e5b3f9f5b4b2": {
+   "fr": "Fil rouge · Méthode",
+   "en": "Thread · Method",
+   "status": "aligned",
+   "order": 93
+  },
+  "4528b7855b32": {
+   "fr": "Décomposer [[m1]] en facteurs premiers. Combien de diviseurs a-t-il\\,?",
+   "en": "Write [[m1]] as a product of prime factors. How many divisors does it have?",
+   "status": "aligned",
+   "order": 94
+  },
+  "c89d374a3444": {
+   "fr": "[[m1]]\\,; [[m2]] diviseurs.",
+   "en": "[[m1]]; [[m2]] divisors.",
+   "status": "aligned",
+   "order": 95
+  }
+ }
+}

@@ -1908,18 +1908,8 @@
    ],
    "files": [
     {
-     "path": "automatismes/eleve-en.tex",
-     "bytes": 99,
-     "kind": "tex",
-     "lang": "en",
-     "entry": {
-      "lang": "en",
-      "edition": "student"
-     }
-    },
-    {
      "path": "automatismes/eleve.tex",
-     "bytes": 92,
+     "bytes": 505,
      "kind": "tex",
      "lang": "fr",
      "entry": {
@@ -1928,42 +1918,18 @@
      }
     },
     {
-     "path": "automatismes/main-en.tex",
-     "bytes": 1155,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "automatismes/main.tex",
-     "bytes": 1215,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "automatismes/preamble-en.tex",
-     "bytes": 4626,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "automatismes/preamble.tex",
-     "bytes": 4935,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "automatismes/professeur-en.tex",
-     "bytes": 123,
+     "path": "automatismes/eleve-en.tex",
+     "bytes": 505,
      "kind": "tex",
      "lang": "en",
      "entry": {
       "lang": "en",
-      "edition": "teacher"
+      "edition": "student"
      }
     },
     {
      "path": "automatismes/professeur.tex",
-     "bytes": 116,
+     "bytes": 567,
      "kind": "tex",
      "lang": "fr",
      "entry": {
@@ -1972,195 +1938,283 @@
      }
     },
     {
-     "path": "automatismes/sections/annexe_diag-en.tex",
-     "bytes": 3579,
+     "path": "automatismes/professeur-en.tex",
+     "bytes": 567,
+     "kind": "tex",
+     "lang": "en",
+     "entry": {
+      "lang": "en",
+      "edition": "teacher"
+     }
+    },
+    {
+     "path": "automatismes/annexe-diag.en.tex",
+     "bytes": 3612,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/annexe_diag.tex",
-     "bytes": 3912,
+     "path": "automatismes/annexe-diag.fr.tex",
+     "bytes": 3943,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch01-en.tex",
-     "bytes": 4064,
+     "path": "automatismes/ch01.en.tex",
+     "bytes": 4100,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch01.tex",
-     "bytes": 4334,
+     "path": "automatismes/ch01.fr.tex",
+     "bytes": 4287,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch02-en.tex",
-     "bytes": 8362,
+     "path": "automatismes/ch02.en.tex",
+     "bytes": 8381,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch02.tex",
-     "bytes": 8800,
+     "path": "automatismes/ch02.fr.tex",
+     "bytes": 8736,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch03-en.tex",
-     "bytes": 6771,
+     "path": "automatismes/ch03.en.tex",
+     "bytes": 6777,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch03.tex",
-     "bytes": 7204,
+     "path": "automatismes/ch03.fr.tex",
+     "bytes": 7127,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch04-en.tex",
-     "bytes": 7404,
+     "path": "automatismes/ch04.en.tex",
+     "bytes": 7423,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch04.tex",
-     "bytes": 7823,
+     "path": "automatismes/ch04.fr.tex",
+     "bytes": 7759,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch05-en.tex",
-     "bytes": 6904,
+     "path": "automatismes/ch05.en.tex",
+     "bytes": 6943,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch05.tex",
-     "bytes": 7355,
+     "path": "automatismes/ch05.fr.tex",
+     "bytes": 7311,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch06-en.tex",
-     "bytes": 7269,
+     "path": "automatismes/ch06.en.tex",
+     "bytes": 7280,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch06.tex",
-     "bytes": 7754,
+     "path": "automatismes/ch06.fr.tex",
+     "bytes": 7682,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch07-en.tex",
-     "bytes": 4054,
+     "path": "automatismes/ch07.en.tex",
+     "bytes": 4081,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch07.tex",
-     "bytes": 4321,
+     "path": "automatismes/ch07.fr.tex",
+     "bytes": 4265,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch08-en.tex",
-     "bytes": 7002,
+     "path": "automatismes/ch08.en.tex",
+     "bytes": 7011,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch08.tex",
-     "bytes": 7331,
+     "path": "automatismes/ch08.fr.tex",
+     "bytes": 7257,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch09-en.tex",
-     "bytes": 7940,
+     "path": "automatismes/ch09.en.tex",
+     "bytes": 7953,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch09.tex",
-     "bytes": 8485,
+     "path": "automatismes/ch09.fr.tex",
+     "bytes": 8415,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch10-en.tex",
-     "bytes": 5763,
+     "path": "automatismes/ch10.en.tex",
+     "bytes": 5791,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch10.tex",
-     "bytes": 6163,
+     "path": "automatismes/ch10.fr.tex",
+     "bytes": 6108,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch11-en.tex",
-     "bytes": 3041,
+     "path": "automatismes/ch11.en.tex",
+     "bytes": 3075,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch11.tex",
-     "bytes": 3278,
+     "path": "automatismes/ch11.fr.tex",
+     "bytes": 3229,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch12-en.tex",
-     "bytes": 11652,
+     "path": "automatismes/ch12.en.tex",
+     "bytes": 11682,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch12.tex",
-     "bytes": 12362,
+     "path": "automatismes/ch12.fr.tex",
+     "bytes": 12309,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch13-en.tex",
-     "bytes": 4941,
+     "path": "automatismes/ch13.en.tex",
+     "bytes": 4945,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch13.tex",
-     "bytes": 5199,
+     "path": "automatismes/ch13.fr.tex",
+     "bytes": 5146,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/ch14-en.tex",
-     "bytes": 7629,
+     "path": "automatismes/ch14.en.tex",
+     "bytes": 7651,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/ch14.tex",
-     "bytes": 7998,
+     "path": "automatismes/ch14.fr.tex",
+     "bytes": 7937,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "automatismes/sections/guide-en.tex",
-     "bytes": 5750,
+     "path": "automatismes/guide.en.tex",
+     "bytes": 5776,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "automatismes/sections/guide.tex",
-     "bytes": 6063,
+     "path": "automatismes/guide.fr.tex",
+     "bytes": 6011,
      "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "automatismes/intro.en.tex",
+     "bytes": 798,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "automatismes/intro.fr.tex",
+     "bytes": 808,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/example.en.tex",
+     "bytes": 1312,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "core/example.fr.tex",
+     "bytes": 1272,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/example.tex",
+     "bytes": 547,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-code.sty",
+     "bytes": 743,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-edition.sty",
+     "bytes": 763,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-env.sty",
+     "bytes": 6833,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-figures.sty",
+     "bytes": 1175,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-i18n.sty",
+     "bytes": 3302,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-layout.sty",
+     "bytes": 3118,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-math.sty",
+     "bytes": 2272,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mxbook.cls",
+     "bytes": 3046,
+     "kind": "style",
      "lang": "fr"
     }
    ]

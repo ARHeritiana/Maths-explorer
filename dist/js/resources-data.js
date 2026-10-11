@@ -140,8 +140,8 @@ export const resourceCatalog = {
           "pages": 1,
           "end": 1,
           "englishPath": "resources/seconde-02/fluency-student-en.pdf",
-          "bytes": 186553,
-          "englishBytes": 184867
+          "bytes": 197932,
+          "englishBytes": 195656
         },
         {
           "kind": "fluency-solutions",
@@ -155,8 +155,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 2,
           "englishPath": "resources/seconde-02/fluency-teacher-en.pdf",
-          "bytes": 218161,
-          "englishBytes": 215373
+          "bytes": 216351,
+          "englishBytes": 213956
         }
       ]
     },
@@ -208,8 +208,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 3,
           "englishPath": "resources/seconde-03/fluency-student-en.pdf",
-          "bytes": 213520,
-          "englishBytes": 211184
+          "bytes": 221733,
+          "englishBytes": 218675
         },
         {
           "kind": "fluency-solutions",
@@ -220,11 +220,11 @@ export const resourceCatalog = {
             "Droites du plan",
             "Lines in the plane"
           ],
-          "pages": 3,
-          "end": 5,
+          "pages": 4,
+          "end": 6,
           "englishPath": "resources/seconde-03/fluency-teacher-en.pdf",
-          "bytes": 229755,
-          "englishBytes": 227007
+          "bytes": 245431,
+          "englishBytes": 242881
         }
       ]
     },
@@ -273,11 +273,11 @@ export const resourceCatalog = {
             "Nombres réels et intervalles",
             "Real numbers and intervals"
           ],
-          "pages": 1,
-          "end": 4,
+          "pages": 2,
+          "end": 5,
           "englishPath": "resources/seconde-04/fluency-student-en.pdf",
-          "bytes": 203159,
-          "englishBytes": 200831
+          "bytes": 231076,
+          "englishBytes": 228193
         },
         {
           "kind": "fluency-solutions",
@@ -288,11 +288,11 @@ export const resourceCatalog = {
             "Nombres réels et intervalles",
             "Real numbers and intervals"
           ],
-          "pages": 2,
-          "end": 7,
+          "pages": 3,
+          "end": 8,
           "englishPath": "resources/seconde-04/fluency-teacher-en.pdf",
-          "bytes": 245689,
-          "englishBytes": 242271
+          "bytes": 249980,
+          "englishBytes": 247022
         }
       ]
     },
@@ -382,8 +382,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 6,
           "englishPath": "resources/seconde-05/fluency-student-en.pdf",
-          "bytes": 241131,
-          "englishBytes": 238619
+          "bytes": 217107,
+          "englishBytes": 214372
         },
         {
           "kind": "fluency-solutions",
@@ -397,8 +397,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 10,
           "englishPath": "resources/seconde-05/fluency-teacher-en.pdf",
-          "bytes": 257570,
-          "englishBytes": 254113
+          "bytes": 258789,
+          "englishBytes": 255786
         }
       ]
     },
@@ -450,8 +450,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 8,
           "englishPath": "resources/seconde-06/fluency-student-en.pdf",
-          "bytes": 225763,
-          "englishBytes": 223668
+          "bytes": 219524,
+          "englishBytes": 216804
         },
         {
           "kind": "fluency-solutions",
@@ -462,11 +462,11 @@ export const resourceCatalog = {
             "Statistiques descriptives à une variable",
             "Descriptive statistics"
           ],
-          "pages": 2,
-          "end": 12,
+          "pages": 3,
+          "end": 13,
           "englishPath": "resources/seconde-06/fluency-teacher-en.pdf",
-          "bytes": 246961,
-          "englishBytes": 244062
+          "bytes": 256515,
+          "englishBytes": 253933
         }
       ]
     },
@@ -517,8 +517,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 10,
           "englishPath": "resources/seconde-07/fluency-student-en.pdf",
-          "bytes": 241234,
-          "englishBytes": 239046
+          "bytes": 227784,
+          "englishBytes": 224943
         },
         {
           "kind": "fluency-solutions",
@@ -529,11 +529,11 @@ export const resourceCatalog = {
             "Calcul algébrique, équations et inéquations",
             "Algebra, equations and inequalities"
           ],
-          "pages": 3,
-          "end": 15,
+          "pages": 4,
+          "end": 16,
           "englishPath": "resources/seconde-07/fluency-teacher-en.pdf",
-          "bytes": 261597,
-          "englishBytes": 258340
+          "bytes": 254616,
+          "englishBytes": 251859
         }
       ]
     },
@@ -585,8 +585,8 @@ export const resourceCatalog = {
           "pages": 1,
           "end": 11,
           "englishPath": "resources/seconde-08/fluency-student-en.pdf",
-          "bytes": 209760,
-          "englishBytes": 193085
+          "bytes": 179254,
+          "englishBytes": 176521
         },
         {
           "kind": "fluency-solutions",
@@ -600,8 +600,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 17,
           "englishPath": "resources/seconde-08/fluency-teacher-en.pdf",
-          "bytes": 232322,
-          "englishBytes": 229424
+          "bytes": 195351,
+          "englishBytes": 192846
         }
       ]
     },
@@ -650,11 +650,11 @@ export const resourceCatalog = {
             "Variations et extrémums d'une fonction",
             "Variation and extrema"
           ],
-          "pages": 1,
-          "end": 12,
+          "pages": 2,
+          "end": 13,
           "englishPath": "resources/seconde-09/fluency-student-en.pdf",
-          "bytes": 201632,
-          "englishBytes": 208759
+          "bytes": 213540,
+          "englishBytes": 210709
         },
         {
           "kind": "fluency-solutions",
@@ -665,11 +665,11 @@ export const resourceCatalog = {
             "Variations et extrémums d'une fonction",
             "Variation and extrema"
           ],
-          "pages": 2,
-          "end": 19,
+          "pages": 3,
+          "end": 20,
           "englishPath": "resources/seconde-09/fluency-teacher-en.pdf",
-          "bytes": 229375,
-          "englishBytes": 226174
+          "bytes": 231986,
+          "englishBytes": 229421
         }
       ]
     },
@@ -721,8 +721,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 14,
           "englishPath": "resources/seconde-10/fluency-student-en.pdf",
-          "bytes": 218531,
-          "englishBytes": 217364
+          "bytes": 201572,
+          "englishBytes": 199216
         },
         {
           "kind": "fluency-solutions",
@@ -736,8 +736,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 22,
           "englishPath": "resources/seconde-10/fluency-teacher-en.pdf",
-          "bytes": 256992,
-          "englishBytes": 250699
+          "bytes": 233002,
+          "englishBytes": 230798
         }
       ]
     },
@@ -785,11 +785,11 @@ export const resourceCatalog = {
             "Géométrie repérée : synthèse vecteurs / droites",
             "Coordinate geometry"
           ],
-          "pages": 1,
-          "end": 15,
+          "pages": 2,
+          "end": 16,
           "englishPath": "resources/seconde-11/fluency-student-en.pdf",
-          "bytes": 220895,
-          "englishBytes": 221239
+          "bytes": 201995,
+          "englishBytes": 199037
         },
         {
           "kind": "fluency-solutions",
@@ -800,11 +800,11 @@ export const resourceCatalog = {
             "Géométrie repérée : synthèse vecteurs / droites",
             "Coordinate geometry"
           ],
-          "pages": 2,
-          "end": 24,
+          "pages": 3,
+          "end": 25,
           "englishPath": "resources/seconde-11/fluency-teacher-en.pdf",
-          "bytes": 244756,
-          "englishBytes": 244552
+          "bytes": 222074,
+          "englishBytes": 219483
         }
       ]
     },
@@ -855,8 +855,8 @@ export const resourceCatalog = {
           "pages": 1,
           "end": 16,
           "englishPath": "resources/seconde-12/fluency-student-en.pdf",
-          "bytes": 196877,
-          "englishBytes": 197262
+          "bytes": 185963,
+          "englishBytes": 183237
         },
         {
           "kind": "fluency-solutions",
@@ -867,11 +867,11 @@ export const resourceCatalog = {
             "Problèmes de synthèse, raisonnement et automatismes",
             "Reasoning and synthesis"
           ],
-          "pages": 1,
-          "end": 25,
+          "pages": 2,
+          "end": 26,
           "englishPath": "resources/seconde-12/fluency-teacher-en.pdf",
-          "bytes": 208404,
-          "englishBytes": 205808
+          "bytes": 217250,
+          "englishBytes": 214655
         }
       ]
     },
@@ -919,11 +919,11 @@ export const resourceCatalog = {
             "Probabilités : conditionnement et arbres pondérés",
             "Conditional probability and trees"
           ],
-          "pages": 2,
-          "end": 18,
+          "pages": 3,
+          "end": 19,
           "englishPath": "resources/seconde-13/fluency-student-en.pdf",
-          "bytes": 221267,
-          "englishBytes": 218559
+          "bytes": 212034,
+          "englishBytes": 209297
         },
         {
           "kind": "fluency-solutions",
@@ -934,11 +934,11 @@ export const resourceCatalog = {
             "Probabilités : conditionnement et arbres pondérés",
             "Conditional probability and trees"
           ],
-          "pages": 4,
-          "end": 29,
+          "pages": 5,
+          "end": 30,
           "englishPath": "resources/seconde-13/fluency-teacher-en.pdf",
-          "bytes": 250689,
-          "englishBytes": 247209
+          "bytes": 243673,
+          "englishBytes": 240874
         }
       ]
     },
@@ -989,8 +989,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 20,
           "englishPath": "resources/seconde-14/fluency-student-en.pdf",
-          "bytes": 214176,
-          "englishBytes": 212063
+          "bytes": 199188,
+          "englishBytes": 197037
         },
         {
           "kind": "fluency",
@@ -1004,8 +1004,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 22,
           "englishPath": "resources/seconde-15/fluency-student-en.pdf",
-          "bytes": 227223,
-          "englishBytes": 225596
+          "bytes": 220017,
+          "englishBytes": 217814
         },
         {
           "kind": "fluency-solutions",
@@ -1019,8 +1019,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 31,
           "englishPath": "resources/seconde-14/fluency-teacher-en.pdf",
-          "bytes": 234077,
-          "englishBytes": 240056
+          "bytes": 237070,
+          "englishBytes": 235150
         },
         {
           "kind": "fluency-solutions",
@@ -1034,8 +1034,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 35,
           "englishPath": "resources/seconde-15/fluency-teacher-en.pdf",
-          "bytes": 268025,
-          "englishBytes": 256594
+          "bytes": 255899,
+          "englishBytes": 253206
         }
       ]
     },

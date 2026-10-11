@@ -12,6 +12,12 @@
 %   \mxblank{text}           dotted blank for students, the text in bold for teachers
 %   \mxlines{n}              n ruled answer lines, student edition only
 %   \mxchip{text}            small rounded label (duration, difficulty)
+%   \begin{note} ... \end{note}                       untitled box (introductions, instructions)
+%   \begin{fluencysheet}{date}{title} ... \end{fluencysheet}   numbered starter sheet (Automatismes); items:
+%   \mxfq{role}{tag}{question}{answer}{remark}         role label, diagnostic tag (teacher), question, answer and remark
+%                                                      (teacher edition); \mxchoices{A}{B}{C}{D} for a multiple choice
+%   \mxtag{CODE}             diagnostic tag, teacher edition style
+%   \mxarraystretch{x}       row spacing for the next tables in the current group
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mx-env}[2026/10/11 Maths Explorer environments]
 \RequirePackage[framemethod=default]{mdframed}
@@ -72,3 +78,25 @@
 \newcommand{\mxlines}[1]{\ifmxteacher\else\par\vspace{2pt}\foreach\mx@i in {1,...,#1}{\noindent\textcolor{mxline}{\rule{\linewidth}{.4pt}}\par\vspace{5mm}}\fi}
 \newtcbox{\mxchip}{on line,colback=mxmintpale,colframe=mxmintpale,coltext=mxink,boxrule=0pt,arc=2mm,
   left=3pt,right=3pt,top=1pt,bottom=1pt,fontupper=\sffamily\scriptsize}
+
+% Untitled box.
+\newenvironment{note}{\mxneed{4}\begin{mdframed}[style=mxbox,linecolor=mxink,backgroundcolor=white]}{\end{mdframed}}
+
+% Starter sheets: numbered across the whole book, five items each.
+\newcounter{mxsheet}
+\newcommand{\mxtag}[1]{\textcolor{mxmuted}{\footnotesize\sffamily[#1]}}
+\newenvironment{fluencysheet}[2]{\refstepcounter{mxsheet}\mxneed{9}%
+  \begin{mdframed}[style=mxbox,linecolor=mxink,backgroundcolor=white,innertopmargin=4pt,innerbottommargin=5pt]%
+  \noindent{\color{mxink}\sffamily\bfseries\mxlabelof{sheet}~\themxsheet}\hspace{.6em}%
+  {\color{mxmuted}\small\sffamily #1}\hspace{.6em}{\itshape\small #2}\par\vspace{3pt}%
+  \begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.5em,itemsep=3pt,parsep=0pt]}%
+  {\end{enumerate}\end{mdframed}}
+% \mxfq{role}{tag}{question}{answer}{remark}: one item of a starter sheet.
+\newcommand{\mxfq}[5]{\item{\color{mxmuted}\scriptsize\sffamily #1}\ \ifmxteacher\mxtag{#2}\fi\ #3%
+  \ifmxteacher\par\smallskip\noindent{\color{mxteacher}\small\textbf{\mxlabelof{answershort}}\ #4}%
+    \if\relax\detokenize{#5}\relax\else\par\noindent{\color{mxmuted}\footnotesize\itshape #5}\fi\fi}
+\newcommand{\mxchoices}[4]{\par\smallskip\noindent\begin{tabular}{@{}*{4}{p{.22\linewidth}}@{}}
+  \textbf{A.}~#1 & \textbf{B.}~#2 & \textbf{C.}~#3 & \textbf{D.}~#4\end{tabular}}
+\newcommand{\mxarraystretch}[1]{\renewcommand{\arraystretch}{#1}}
+% \mxtitleblock{title}{subtitle}: centred title at the top of a sheet-layout book.
+\newcommand{\mxtitleblock}[2]{\begin{center}{\Large\sffamily\bfseries\color{mxink}#1}\\[3pt]{\sffamily\color{mxmuted}#2}\end{center}\vspace{2pt}}

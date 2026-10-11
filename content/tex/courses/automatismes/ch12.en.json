@@ -1,0 +1,851 @@
+{
+ "unit": "ch12.fr.tex",
+ "segments": {
+  "0df2f314d5e6": {
+   "fr": "Probabilités~: conditionnement et arbres pondérés",
+   "en": "Probability: conditioning and weighted trees",
+   "status": "aligned",
+   "order": 0
+  },
+  "97366ca1c551": {
+   "fr": "mar.~4~mai~2027",
+   "en": "Tue~4~May~2027",
+   "status": "aligned",
+   "order": 1
+  },
+  "5d6ab268150f": {
+   "fr": "Modèle probabiliste et équiprobabilité",
+   "en": "Probability model and equally likely outcomes",
+   "status": "aligned",
+   "order": 2
+  },
+  "30ac992fdbb4": {
+   "fr": "On lance une pièce équilibrée trois fois. Combien d'issues\\,?",
+   "en": "A fair coin is tossed three times. How many outcomes are there?",
+   "status": "aligned",
+   "order": 4
+  },
+  "da2573ec6d2b": {
+   "fr": "[[m1]] issues équiprobables.",
+   "en": "[[m1]] equally likely outcomes.",
+   "status": "aligned",
+   "order": 5
+  },
+  "90bd2619cb58": {
+   "fr": "Dé truqué~: [[m1]] et les cinq autres faces sont équiprobables. Calculer [[m2]].",
+   "en": "Biased die: [[m1]] and the other five faces are equally likely. Calculate [[m2]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "ba49f9544120": {
+   "fr": "Cœur + · Esprit critique",
+   "en": "Core + · Critical thinking",
+   "status": "aligned",
+   "order": 8
+  },
+  "922ea59978f1": {
+   "fr": "«~Il pleuvra ou il ne pleuvra pas demain~: il y a donc une chance sur deux.~» Ce modèle équiprobable est-il justifié\\,?",
+   "en": "``It will rain or it will not rain tomorrow: so there is a one in two chance.'' Is this equally-likely model justified?",
+   "status": "aligned",
+   "order": 9
+  },
+  "ecae817f083a": {
+   "fr": "Non~: avoir deux issues ne rend pas celles-ci équiprobables. L'équiprobabilité est une hypothèse du modèle qu'il faut justifier.",
+   "en": "No: having two outcomes does not make them equally likely. Equal likelihood is an assumption of the model that must be justified.",
+   "status": "aligned",
+   "order": 10
+  },
+  "a38c4f28261a": {
+   "fr": "De quelles figures est composé un patron de pyramide à base carrée\\,?",
+   "en": "Which shapes make up the net of a square-based pyramid?",
+   "status": "aligned",
+   "order": 12
+  },
+  "8028b04fd591": {
+   "fr": "[[m1]] carré et [[m2]] triangles (isocèles).",
+   "en": "[[m1]] square and [[m2]] (isosceles) triangles.",
+   "status": "aligned",
+   "order": 13
+  },
+  "714a8e435636": {
+   "fr": "Fil rouge · Traduire",
+   "en": "Thread · Translate",
+   "status": "aligned",
+   "order": 14
+  },
+  "4b847f23f712": {
+   "fr": "Un carré de côté [[m1]] voit chacun de ses côtés augmenter de [[m2]]. Exprimer l'augmentation d'aire en fonction de [[m3]].",
+   "en": "Each side of a square of side [[m1]] is increased by [[m2]]. Express the increase in area in terms of [[m3]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "944ba8399921": {
+   "fr": "lun.~10~mai~2027",
+   "en": "Mon~10~May~2027",
+   "status": "aligned",
+   "order": 16
+  },
+  "4a8bb6676b12": {
+   "fr": "Loi des grands nombres (version vulgarisée)~: simulation",
+   "en": "Law of large numbers (informal version): simulation",
+   "status": "aligned",
+   "order": 17
+  },
+  "51bfec92ef0b": {
+   "fr": "Sur [[m1]] lancers, [[m2]] «~pile~». Quelle est la fréquence de «~pile~»\\,?",
+   "en": "In [[m1]] tosses, [[m2]] are ``heads''. What is the relative frequency of ``heads''?",
+   "status": "aligned",
+   "order": 19
+  },
+  "7532b022a1ba": {
+   "fr": "Cœur · Interpréter",
+   "en": "Core · Interpret",
+   "status": "aligned",
+   "order": 20
+  },
+  "bb6bea638adc": {
+   "fr": "Pourquoi, sur [[m1]] lancers d'une pièce équilibrée, la fréquence de «~pile~» peut-elle s'éloigner de [[m2]]\\,? Que se passe-t-il avec [[m3]] lancers\\,?",
+   "en": "Why, in [[m1]] tosses of a fair coin, can the frequency of ``heads'' stray from [[m2]]? What happens with [[m3]] tosses?",
+   "status": "aligned",
+   "order": 21
+  },
+  "38e96706f0bf": {
+   "fr": "Fluctuation d'échantillonnage~: petite série, grande variabilité. Sur de grandes séries, la fréquence se stabilise près de la probabilité [[m1]] (loi des grands nombres).",
+   "en": "Sampling fluctuation: a small sample has high variability. For large samples, the frequency stabilises near the probability [[m1]] (law of large numbers).",
+   "status": "aligned",
+   "order": 22
+  },
+  "8752cabf78b1": {
+   "fr": "Vrai ou faux\\,? Justifier. En lançant [[m1]] fois une pièce équilibrée, on obtient exactement [[m2]] «~pile~».",
+   "en": "True or false? Justify. Tossing a fair coin [[m1]] times gives exactly [[m2]] ``heads''.",
+   "status": "aligned",
+   "order": 24
+  },
+  "dcc44c7324a4": {
+   "fr": "Faux. On obtient un nombre proche de [[m1]], rarement exactement [[m2]].",
+   "en": "False. The number obtained is close to [[m1]], rarely exactly [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "d5efe8c7e51d": {
+   "fr": "Retour · Problème",
+   "en": "Review · Problem",
+   "status": "aligned",
+   "order": 26
+  },
+  "ea9a59c4832d": {
+   "fr": "Prix TTC [[m1]] ([[m2]] de TVA). Calculer [[m3]] et l'antécédent de [[m4]].",
+   "en": "Price including tax [[m1]] ([[m2]] VAT). Calculate [[m3]] and the preimage of [[m4]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "aed57c0cde67": {
+   "fr": "Résoudre dans [[m1]]~: [[m2]].",
+   "en": "Solve in [[m1]]: [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "1494942de2e1": {
+   "fr": "Produit en croix~: [[m1]].",
+   "en": "Cross-multiplication: [[m1]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "d8ad872bfd37": {
+   "fr": "mar.~11~mai~2027",
+   "en": "Tue~11~May~2027",
+   "status": "aligned",
+   "order": 31
+  },
+  "a6aac03a22a8": {
+   "fr": "Simulation Python d'une expérience aléatoire répétée",
+   "en": "Python simulation of a repeated random experiment",
+   "status": "aligned",
+   "order": 32
+  },
+  "23059061e284": {
+   "fr": "[[m1]]. Calculer [[m2]].",
+   "en": "[[m1]]. Calculate [[m2]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "797a23ed1355": {
+   "fr": "Cœur · Lecture de code",
+   "en": "Core · Reading code",
+   "status": "aligned",
+   "order": 35
+  },
+  "cb105f691210": {
+   "fr": "Que calcule ce programme\\,? Quelle valeur affichera-t-il environ\\,?",
+   "en": "What does this program compute? Roughly what value will it display?",
+   "status": "aligned",
+   "order": 36
+  },
+  "3a564d06075f": {
+   "fr": "from random import randint\\\\",
+   "en": "from random import randint\\\\",
+   "status": "aligned",
+   "order": 38
+  },
+  "aa9ad4b65890": {
+   "fr": "compte = 0\\\\",
+   "en": "compte = 0\\\\",
+   "status": "aligned",
+   "order": 40
+  },
+  "99c006cbe3a8": {
+   "fr": "for i in range(1000):\\\\",
+   "en": "for i in range(1000):\\\\",
+   "status": "aligned",
+   "order": 42
+  },
+  "1225774c50f5": {
+   "fr": "2.4em",
+   "en": "2.4em",
+   "status": "aligned",
+   "order": 43
+  },
+  "f4829035745b": {
+   "fr": "if randint(1, 6) == 6:\\\\",
+   "en": "if randint(1, 6) == 6:\\\\",
+   "status": "aligned",
+   "order": 44
+  },
+  "e9164fc5fd4c": {
+   "fr": "4.8em",
+   "en": "4.8em",
+   "status": "aligned",
+   "order": 45
+  },
+  "f45cc26c21c6": {
+   "fr": "compte = compte + 1\\\\",
+   "en": "compte = compte + 1\\\\",
+   "status": "aligned",
+   "order": 46
+  },
+  "848501079fa5": {
+   "fr": "0.0em",
+   "en": "0.0em",
+   "status": "aligned",
+   "order": 47
+  },
+  "8c6391e51e66": {
+   "fr": "print(compte / 1000)",
+   "en": "print(compte / 1000)",
+   "status": "aligned",
+   "order": 48
+  },
+  "da6c499f4339": {
+   "fr": "La fréquence d'apparition du [[m1]] sur [[m2]] lancers d'un dé\\,; environ [[m3]].",
+   "en": "The frequency of a [[m1]] in [[m2]] rolls of a die; about [[m3]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "92cc8473a3d1": {
+   "fr": "Dé équilibré à [[m1]] faces numérotées de [[m2]] à [[m3]]. Probabilité d'obtenir un nombre premier\\,?",
+   "en": "Fair [[m1]]-sided die with faces numbered [[m2]] to [[m3]]. Probability of getting a prime number?",
+   "status": "aligned",
+   "order": 51
+  },
+  "f4dcfa027689": {
+   "fr": "Premiers~: [[m1]]~: [[m2]] ([[m3]] n'est pas premier).",
+   "en": "Primes: [[m1]]: [[m2]] ([[m3]] is not prime).",
+   "status": "aligned",
+   "order": 52
+  },
+  "44e0e2b6b256": {
+   "fr": "Retour · Programme de construction",
+   "en": "Review · Construction",
+   "status": "aligned",
+   "order": 53
+  },
+  "afbbc05ee9ca": {
+   "fr": "[[m1]] appartient à la médiatrice de [[m2]]. Que peut-on dire de [[m3]] et [[m4]]\\,? Comment la construire au compas\\,?",
+   "en": "[[m1]] lies on the perpendicular bisector of [[m2]]. What can be said about [[m3]] and [[m4]]? How is it constructed with compasses?",
+   "status": "aligned",
+   "order": 54
+  },
+  "c05ccd32c0d5": {
+   "fr": "[[m1]]. Construction~: deux arcs de même rayon (supérieur à [[m2]]) centrés en [[m3]] et [[m4]]\\,; leurs intersections définissent la médiatrice.",
+   "en": "[[m1]]. Construction: two arcs of the same radius (greater than [[m2]]) centred at [[m3]] and [[m4]]; their intersections define the perpendicular bisector.",
+   "status": "aligned",
+   "order": 55
+  },
+  "40f0501913b9": {
+   "fr": "Fil rouge · Reconnaître",
+   "en": "Thread · Recognise",
+   "status": "aligned",
+   "order": 56
+  },
+  "14122c7a5ecb": {
+   "fr": "Quelle est la nature de la section d'un cube par un plan parallèle à l'une de ses faces\\,?",
+   "en": "What is the shape of the cross-section of a cube by a plane parallel to one of its faces?",
+   "status": "aligned",
+   "order": 57
+  },
+  "df59ba564db9": {
+   "fr": "Un carré de même côté que la face.",
+   "en": "A square with the same side as the face.",
+   "status": "aligned",
+   "order": 58
+  },
+  "bf92ead2bed3": {
+   "fr": "jeu.~13~mai~2027",
+   "en": "Thu~13~May~2027",
+   "status": "aligned",
+   "order": 59
+  },
+  "e133ad324df0": {
+   "fr": "Probabilité conditionnelle [[m1]]",
+   "en": "Conditional probability [[m1]]",
+   "status": "aligned",
+   "order": 60
+  },
+  "858ed7b4baf0": {
+   "fr": "Parmi [[m1]] demi-pensionnaires, [[m2]] sont des filles. On tire un DP au hasard~: probabilité que ce soit une fille\\,?",
+   "en": "Among [[m1]] canteen users, [[m2]] are girls. A canteen user is chosen at random: probability that this is a girl?",
+   "status": "aligned",
+   "order": 62
+  },
+  "5226638d3ce3": {
+   "fr": "Dans une classe de [[m1]] élèves, [[m2]] jouent au football dont [[m3]] jouent aussi au hand. On choisit un élève au hasard~: calculer [[m4]], [[m5]]~: «~joue au foot~», [[m6]]~: «~joue au hand~».",
+   "en": "In a class of [[m1]] pupils, [[m2]] play football, of whom [[m3]] also play handball. A pupil is chosen at random: calculate [[m4]], where [[m5]]: ``plays football'', [[m6]]: ``plays handball''.",
+   "status": "aligned",
+   "order": 64
+  },
+  "219821054dec": {
+   "fr": "Dans un modèle équiprobable, [[m1]] et [[m2]]. Calculer [[m3]].",
+   "en": "In an equally likely model, [[m1]] and [[m2]]. Calculate [[m3]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "4c6c711382b1": {
+   "fr": "Ranger dans l'ordre croissant~: [[m1]], [[m2]], [[m3]].",
+   "en": "Put in increasing order: [[m1]], [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "e362a24f201e": {
+   "fr": "Fil rouge · Vrai/faux",
+   "en": "Thread · True/false",
+   "status": "aligned",
+   "order": 69
+  },
+  "6c82f3e89e31": {
+   "fr": "Vrai ou faux\\,? Justifier. Un quadrilatère ayant deux côtés opposés parallèles est un parallélogramme.",
+   "en": "True or false? Justify. A quadrilateral with two opposite sides parallel is a parallelogram.",
+   "status": "aligned",
+   "order": 70
+  },
+  "244dbbd98bd7": {
+   "fr": "Faux. Contre-exemple~: un trapèze (non parallélogramme) a deux côtés parallèles seulement.",
+   "en": "False. Counter-example: a trapezium (not a parallelogram) has only one pair of parallel sides.",
+   "status": "aligned",
+   "order": 71
+  },
+  "b5a294781803": {
+   "fr": "mar.~18~mai~2027",
+   "en": "Tue~18~May~2027",
+   "status": "aligned",
+   "order": 72
+  },
+  "5ab513276d03": {
+   "fr": "Probabilité conditionnelle et tableau croisé",
+   "en": "Conditional probability and two-way tables",
+   "status": "aligned",
+   "order": 73
+  },
+  "257cbea5bc1e": {
+   "fr": "Dans le tableau suivant, quel est le total de la ligne «~sport~»\\,?",
+   "en": "In the following table, what is the total of the ``sport'' row?",
+   "status": "aligned",
+   "order": 75
+  },
+  "56c2f2685764": {
+   "fr": "Filles",
+   "en": "Girls",
+   "status": "aligned",
+   "order": 76
+  },
+  "e242e2f684da": {
+   "fr": "Garçons",
+   "en": "Boys",
+   "status": "aligned",
+   "order": 77
+  },
+  "746436a47b58": {
+   "fr": "Total \\\\",
+   "en": "Total \\\\",
+   "status": "aligned",
+   "order": 78
+  },
+  "1855c2e35702": {
+   "fr": "Sport",
+   "en": "Sport",
+   "status": "aligned",
+   "order": 79
+  },
+  "d43fd70ebae3": {
+   "fr": "\\ldots \\\\",
+   "en": "\\ldots \\\\",
+   "status": "aligned",
+   "order": 80
+  },
+  "3bf8d979283c": {
+   "fr": "Pas de sport",
+   "en": "No sport",
+   "status": "aligned",
+   "order": 81
+  },
+  "b25928c69902": {
+   "fr": "Total",
+   "en": "Total",
+   "status": "aligned",
+   "order": 82
+  },
+  "382b857b2671": {
+   "fr": "On choisit un élève au hasard dans ce tableau. Calculer [[m1]], [[m2]] et [[m3]] ([[m4]]~: fille, [[m5]]~: fait du sport).",
+   "en": "A pupil is chosen at random from this table. Calculate [[m1]], [[m2]] and [[m3]] ([[m4]]: girl, [[m5]]: does sport).",
+   "status": "aligned",
+   "order": 84
+  },
+  "07100f279aae": {
+   "fr": "Cœur + · Vrai/faux",
+   "en": "Core + · True/false",
+   "status": "aligned",
+   "order": 85
+  },
+  "559bf2198a63": {
+   "fr": "Vrai ou faux\\,? Justifier. Dans ce tableau, [[m1]].",
+   "en": "True or false? Justify. In this table, [[m1]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "8cc9ae6383b8": {
+   "fr": "Faux. [[m1]]~: les ensembles de référence ([[m2]] filles et [[m3]] sportifs) diffèrent.",
+   "en": "False. [[m1]]: the reference sets ([[m2]] girls and [[m3]] sports participants) differ.",
+   "status": "aligned",
+   "order": 87
+  },
+  "693937a56eae": {
+   "fr": "[[m1]] est un parallélogramme avec [[m2]], [[m3]], [[m4]]. Déterminer [[m5]].",
+   "en": "[[m1]] is a parallelogram with [[m2]], [[m3]], [[m4]]. Find [[m5]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "1c32f2d2adda": {
+   "fr": "Les diagonales ont même milieu~: [[m1]]. Contrôle~: [[m2]].",
+   "en": "The diagonals have the same midpoint: [[m1]]. Check: [[m2]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "94f0783febb9": {
+   "fr": "jeu.~20~mai~2027",
+   "en": "Thu~20~May~2027",
+   "status": "aligned",
+   "order": 93
+  },
+  "1f7a46674af2": {
+   "fr": "Arbres pondérés~: construction",
+   "en": "Weighted trees: construction",
+   "status": "aligned",
+   "order": 94
+  },
+  "084df9425547": {
+   "fr": "Que vaut la somme des probabilités des branches issues d'un même nœud\\,?",
+   "en": "What is the sum of the probabilities of the branches leaving a single node?",
+   "status": "aligned",
+   "order": 96
+  },
+  "8368482b75d8": {
+   "fr": "Dans une population, [[m1]] sont atteints d'une maladie [[m2]]. Un test est positif ([[m3]]) pour [[m4]] des malades et pour [[m5]] des non-malades. Compléter les probabilités des branches de l'arbre.",
+   "en": "In a population, [[m1]] have a disease [[m2]]. A test is positive ([[m3]]) for [[m4]] of those with the disease and for [[m5]] of those without it. Complete the branch probabilities of the tree.",
+   "status": "aligned",
+   "order": 98
+  },
+  "bcb16ef7bcfe": {
+   "fr": "Traduire en symboles~: «~parmi les malades, [[m1]] ont un test positif~».",
+   "en": "Translate into symbols: ``among those with the disease, [[m1]] test positive''.",
+   "status": "aligned",
+   "order": 100
+  },
+  "2e00b7ab3f5c": {
+   "fr": "[[m1]]~: branche [[m2]]\\,; ne pas écrire [[m3]].",
+   "en": "[[m1]]: branch [[m2]]; do not write [[m3]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "09ec08794610": {
+   "fr": "Fil rouge · Problème",
+   "en": "Thread · Problem",
+   "status": "aligned",
+   "order": 104
+  },
+  "f1487b5a153a": {
+   "fr": "Trois phares clignotent toutes les [[m1]], [[m2]] et [[m3]] secondes. Ils s'allument ensemble à [[m4]]. Quand le prochain clignotement simultané\\,?",
+   "en": "Three lighthouses flash every [[m1]], [[m2]] and [[m3]] seconds. They light up together at [[m4]]. When is the next simultaneous flash?",
+   "status": "aligned",
+   "order": 105
+  },
+  "58b15f4a987e": {
+   "fr": "[[m1]]~: au bout de [[m2]] s.",
+   "en": "[[m1]]: after [[m2]] s.",
+   "status": "aligned",
+   "order": 106
+  },
+  "bd0302eb84f6": {
+   "fr": "lun.~24~mai~2027",
+   "en": "Mon~24~May~2027",
+   "status": "aligned",
+   "order": 107
+  },
+  "f554709ff29e": {
+   "fr": "Arbres pondérés~: multiplication le long d'un chemin",
+   "en": "Weighted trees: multiplying along a path",
+   "status": "aligned",
+   "order": 108
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "149135826de2": {
+   "fr": "Avec l'arbre de la fiche 70, calculer [[m1]] et [[m2]].",
+   "en": "Using the tree from sheet 70, calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 112
+  },
+  "8950c8817e76": {
+   "fr": "On multiplie le long d'un chemin~: [[m1]].",
+   "en": "We multiply along a path: [[m1]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "20929b4a8c12": {
+   "fr": "En déduire [[m1]].",
+   "en": "Deduce [[m1]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "cf3db42caa8b": {
+   "fr": "Deux chemins mènent à [[m1]]~: [[m2]].",
+   "en": "Two paths lead to [[m1]]: [[m2]].",
+   "status": "aligned",
+   "order": 116
+  },
+  "2260a8b45adb": {
+   "fr": "Retour · Factoriser",
+   "en": "Review · Factorise",
+   "status": "aligned",
+   "order": 117
+  },
+  "838706f8879e": {
+   "fr": "Factoriser [[m1]].",
+   "en": "Factorise [[m1]].",
+   "status": "aligned",
+   "order": 118
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 119
+  },
+  "dacc9605be90": {
+   "fr": "Le côté [[m1]] de longueur [[m2]] cm est l'hypoténuse d'un triangle rectangle [[m3]]. Quel est le rayon de son cercle circonscrit\\,?",
+   "en": "The side [[m1]] of length [[m2]] cm is the hypotenuse of a right-angled triangle [[m3]]. What is the radius of its circumscribed circle?",
+   "status": "aligned",
+   "order": 120
+  },
+  "c99990e4e225": {
+   "fr": "Le milieu de l'hypoténuse est le centre~: rayon [[m1]] cm.",
+   "en": "The midpoint of the hypotenuse is the centre: radius [[m1]] cm.",
+   "status": "aligned",
+   "order": 121
+  },
+  "802211ef5b07": {
+   "fr": "mar.~25~mai~2027",
+   "en": "Tue~25~May~2027",
+   "status": "aligned",
+   "order": 122
+  },
+  "d35331cadeb5": {
+   "fr": "Du tableau à l'arbre et à l'écriture symbolique",
+   "en": "From table to tree and symbolic notation",
+   "status": "aligned",
+   "order": 123
+  },
+  "2fff31a0aa53": {
+   "fr": "Exprimer [[m1]] sous forme de probabilité.",
+   "en": "Express [[m1]] as a probability.",
+   "status": "aligned",
+   "order": 125
+  },
+  "2df2d3ae3e9d": {
+   "fr": "À partir du tableau de la fiche 69, construire l'arbre ([[m1]] ou [[m2]], puis [[m3]] ou [[m4]])~: donner [[m5]], [[m6]] et [[m7]].",
+   "en": "From the table on sheet 69, build the tree ([[m1]] or [[m2]], then [[m3]] or [[m4]]): give [[m5]], [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 127
+  },
+  "8cd69a9e20d2": {
+   "fr": "Cœur + · Traduire",
+   "en": "Core + · Translate",
+   "status": "aligned",
+   "order": 128
+  },
+  "f3ee45fd0666": {
+   "fr": "Écrire symboliquement et calculer «~la probabilité d'être un garçon qui ne fait pas de sport~».",
+   "en": "Write symbolically and calculate ``the probability of being a boy who does not do sport''.",
+   "status": "aligned",
+   "order": 129
+  },
+  "d75227ca6416": {
+   "fr": "[[m1]]\\,; ou [[m2]].",
+   "en": "[[m1]]; or [[m2]].",
+   "status": "aligned",
+   "order": 130
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 131
+  },
+  "e2e3bf7ec128": {
+   "fr": "Une voiture roule à vitesse constante~: [[m1]] km en [[m2]] h. Quelle distance en [[m3]] h\\,?",
+   "en": "A car travels at constant speed: [[m1]] km in [[m2]] h. What distance in [[m3]] h?",
+   "status": "aligned",
+   "order": 132
+  },
+  "8165c053ba1d": {
+   "fr": "[[m1]] km.",
+   "en": "[[m1]] km.",
+   "status": "aligned",
+   "order": 133
+  },
+  "f56c8c92e87f": {
+   "fr": "Fil rouge · Énoncé → formule",
+   "en": "Thread · Statement → formula",
+   "status": "aligned",
+   "order": 134
+  },
+  "543346204ea3": {
+   "fr": "Un taxi facture [[m1]] Ar de prise en charge puis [[m2]] Ar par km. Exprimer le prix [[m3]] pour [[m4]] km, puis calculer [[m5]].",
+   "en": "A taxi charges a pick-up fee of [[m1]] Ar then [[m2]] Ar per km. Express the price [[m3]] for [[m4]] km, then calculate [[m5]].",
+   "status": "aligned",
+   "order": 135
+  },
+  "f15b6a757c56": {
+   "fr": "[[m1]]\\,; [[m2]] Ar.",
+   "en": "[[m1]]; [[m2]] Ar.",
+   "status": "aligned",
+   "order": 136
+  },
+  "760d061ebd71": {
+   "fr": "jeu.~27~mai~2027",
+   "en": "Thu~27~May~2027",
+   "status": "aligned",
+   "order": 137
+  },
+  "b8e76ff35182": {
+   "fr": "Inversion des conditionnements~: [[m1]] et [[m2]]",
+   "en": "Reversing conditioning: [[m1]] and [[m2]]",
+   "status": "aligned",
+   "order": 138
+  },
+  "7f332185897e": {
+   "fr": "Quelle différence entre [[m1]] et [[m2]]\\,?",
+   "en": "What is the difference between [[m1]] and [[m2]]?",
+   "status": "aligned",
+   "order": 140
+  },
+  "518a92c0d3f6": {
+   "fr": "[[m1]]~: probabilité d'être positif sachant qu'on est malade\\,; [[m2]]~: d'être malade sachant qu'on est positif.",
+   "en": "[[m1]]: probability of testing positive given that one has the disease; [[m2]]: of having the disease given that one tests positive.",
+   "status": "aligned",
+   "order": 141
+  },
+  "1c230ed884ae": {
+   "fr": "Avec les données de la fiche 70 ([[m1]] et [[m2]]), calculer [[m3]].",
+   "en": "Using the data from sheet 70 ([[m1]] and [[m2]]), calculate [[m3]].",
+   "status": "aligned",
+   "order": 143
+  },
+  "737e1b9ae557": {
+   "fr": "Cœur + · Méthode",
+   "en": "Core + · Method",
+   "status": "aligned",
+   "order": 144
+  },
+  "0b3aee53ab90": {
+   "fr": "Maladie rare ([[m1]] de malades)\\,; test positif pour [[m2]] des malades et [[m3]] des non-malades. Calculer [[m4]].",
+   "en": "Rare disease ([[m1]] of the population); the test is positive for [[m2]] of those with the disease and [[m3]] of those without. Calculate [[m4]].",
+   "status": "aligned",
+   "order": 145
+  },
+  "01dba8e091df": {
+   "fr": "Résultat contre-intuitif~: un test «~fiable à [[m1]]~» ne suffit pas.",
+   "en": "Counter-intuitive result: a test that is ``[[m1]] reliable'' is not enough.",
+   "status": "aligned",
+   "order": 146
+  },
+  "e148d4ba7cdc": {
+   "fr": "Retour · Graphique",
+   "en": "Review · Graph",
+   "status": "aligned",
+   "order": 147
+  },
+  "e26b638f96dc": {
+   "fr": "Courbe de [[m1]]~:",
+   "en": "Curve of [[m1]]:",
+   "status": "aligned",
+   "order": 148
+  },
+  "4f72c8bf9c80": {
+   "fr": "Lire [[m1]] et les antécédents de [[m2]].",
+   "en": "Read [[m1]] and the preimages of [[m2]].",
+   "status": "aligned",
+   "order": 149
+  },
+  "34888f437f7f": {
+   "fr": "[[m1]]\\,; antécédents de [[m2]]~: [[m3]] et [[m4]].",
+   "en": "[[m1]]; preimages of [[m2]]: [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 150
+  },
+  "acd71551048d": {
+   "fr": "Expression utilisée pour le tracé~: [[m1]].",
+   "en": "Expression used for the plot: [[m1]].",
+   "status": "aligned",
+   "order": 151
+  },
+  "e5b3f9f5b4b2": {
+   "fr": "Fil rouge · Méthode",
+   "en": "Thread · Method",
+   "status": "aligned",
+   "order": 152
+  },
+  "66b81a44a5cd": {
+   "fr": "Programme~: choisir un nombre\\,; le multiplier par [[m1]]\\,; ajouter [[m2]]\\,; diviser par [[m3]]. Résultat pour [[m4]]\\,? Expression en [[m5]]\\,?",
+   "en": "Program: choose a number; multiply it by [[m1]]; add [[m2]]; divide by [[m3]]. Result for [[m4]]? Expression in [[m5]]?",
+   "status": "aligned",
+   "order": 153
+  },
+  "6af4d7394087": {
+   "fr": "[[m1]]\\,; en général [[m2]].",
+   "en": "[[m1]]; in general [[m2]].",
+   "status": "aligned",
+   "order": 154
+  },
+  "f907971f7023": {
+   "fr": "lun.~31~mai~2027",
+   "en": "Mon~31~May~2027",
+   "status": "aligned",
+   "order": 155
+  },
+  "cffd05087f87": {
+   "fr": "Faux positifs et faux négatifs",
+   "en": "False positives and false negatives",
+   "status": "aligned",
+   "order": 156
+  },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 157
+  },
+  "535829ef6a81": {
+   "fr": "Définir «~faux positif~» et «~faux négatif~».",
+   "en": "Define ``false positive'' and ``false negative''.",
+   "status": "aligned",
+   "order": 158
+  },
+  "682a983b689d": {
+   "fr": "Faux positif~: test positif chez une personne non malade. Faux négatif~: test négatif chez une personne malade.",
+   "en": "False positive: positive test for a person who does not have the disease. False negative: negative test for a person who has the disease.",
+   "status": "aligned",
+   "order": 159
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 160
+  },
+  "9ef57512d8eb": {
+   "fr": "[[m1]] personnes, [[m2]] de malades\\,; le test est positif pour [[m3]] des malades et [[m4]] des non-malades. Combien de faux négatifs, de faux positifs, de positifs au total\\,?",
+   "en": "[[m1]] people, [[m2]] with the disease; the test is positive for [[m3]] of those with the disease and [[m4]] of those without. How many false negatives, false positives and positives in total?",
+   "status": "aligned",
+   "order": 161
+  },
+  "5ec787b89f24": {
+   "fr": "Malades [[m1]]~: [[m2]] positifs, donc [[m3]] faux négatifs\\,; non-malades [[m4]]~: [[m5]] faux positifs\\,; positifs~: [[m6]].",
+   "en": "With the disease [[m1]]: [[m2]] positive, so [[m3]] false negatives; without the disease [[m4]]: [[m5]] false positives; positives: [[m6]].",
+   "status": "aligned",
+   "order": 162
+  },
+  "78743c18d2f9": {
+   "fr": "Cœur + · Interpréter",
+   "en": "Core + · Interpret",
+   "status": "aligned",
+   "order": 163
+  },
+  "c0bc280dd8c9": {
+   "fr": "Avec les données précédentes, calculer la proportion de vrais malades parmi les positifs et commenter.",
+   "en": "Using the previous data, calculate the proportion of people who truly have the disease among the positives and comment.",
+   "status": "aligned",
+   "order": 164
+  },
+  "623b3dcff66d": {
+   "fr": "[[m1]]~: la maladie étant rare, la plupart des positifs sont des faux positifs.",
+   "en": "[[m1]]: since the disease is rare, most positives are false positives.",
+   "status": "aligned",
+   "order": 165
+  },
+  "1603ec6cae24": {
+   "fr": "Retour · Vrai/faux",
+   "en": "Review · True/false",
+   "status": "aligned",
+   "order": 166
+  },
+  "004982786f8e": {
+   "fr": "Vrai ou faux\\,? Justifier. L'aire d'un carré est proportionnelle à la longueur de son côté.",
+   "en": "True or false? Justify. The area of a square is proportional to the length of its side.",
+   "status": "aligned",
+   "order": 167
+  },
+  "969c859da886": {
+   "fr": "Faux. [[m1]] et [[m2]].",
+   "en": "False. [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 168
+  },
+  "6f5a232da72b": {
+   "fr": "Fil rouge · Réfuter",
+   "en": "Thread · Disprove",
+   "status": "aligned",
+   "order": 169
+  },
+  "617eb45afb7e": {
+   "fr": "Conjecture~: «~pour tout entier [[m1]], [[m2]] est premier~». Tester [[m3]].",
+   "en": "Conjecture: ``for every integer [[m1]], [[m2]] is prime''. Test [[m3]].",
+   "status": "aligned",
+   "order": 170
+  },
+  "787e3ff0e323": {
+   "fr": "[[m1]]~: non premier. La conjecture est fausse.",
+   "en": "[[m1]]: not prime. The conjecture is false.",
+   "status": "aligned",
+   "order": 171
+  },
+  "3b1df93328bd": {
+   "fr": "Des tests réussis ne prouvent rien\\,; un test raté réfute.",
+   "en": "Successful tests prove nothing; one failed test disproves.",
+   "status": "aligned",
+   "order": 172
+  }
+ }
+}

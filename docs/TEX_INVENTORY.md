@@ -7,13 +7,13 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Course | Files | of which `-en` | Lines | `\clearpage`/`\newpage` (FR) | raw `\definecolor` (FR) | Entry files (FR+EN) |
 |---|---:|---:|---:|---:|---:|---|
-| automatismes | 40 | 20 | 2266 | 2 | 5 | 2: `automatismes/main.tex` |
+| automatismes | 34 | 17 | 1829 | 0 | 0 | 0:  |
 | enrichment | 99 | 49 | 1830 | 0 | 3 | 98: `enrichment/bayes-exercises.tex`, `enrichment/bayes-notes.tex`, `enrichment/bayes-problems.tex`, `enrichment/bayes-solutions.tex`, `enrichment/bisection-exercises.tex`, `enrichment/bisection-notes.tex`, `enrichment/bisection-problems.tex`, `enrichment/bisection-solutions.tex`, `enrichment/complex-rotations-exercises.tex`, `enrichment/complex-rotations-notes.tex`, `enrichment/complex-rotations-problems.tex`, `enrichment/complex-rotations-solutions.tex`, `enrichment/diophantine-exercises.tex`, `enrichment/diophantine-notes.tex`, `enrichment/diophantine-problems.tex`, `enrichment/diophantine-solutions.tex`, `enrichment/euler-trails-exercises.tex`, `enrichment/euler-trails-notes.tex`, `enrichment/euler-trails-problems.tex`, `enrichment/euler-trails-solutions.tex`, `enrichment/inequalities-exercises.tex`, `enrichment/inequalities-notes.tex`, `enrichment/inequalities-problems.tex`, `enrichment/inequalities-solutions.tex`, `enrichment/invariants-exercises.tex`, `enrichment/invariants-notes.tex`, `enrichment/invariants-problems.tex`, `enrichment/invariants-solutions.tex`, `enrichment/lattice-paths-exercises.tex`, `enrichment/lattice-paths-notes.tex`, `enrichment/lattice-paths-problems.tex`, `enrichment/lattice-paths-solutions.tex`, `enrichment/modular-exercises.tex`, `enrichment/modular-notes.tex`, `enrichment/modular-problems.tex`, `enrichment/modular-solutions.tex`, `enrichment/pigeonhole-exercises.tex`, `enrichment/pigeonhole-notes.tex`, `enrichment/pigeonhole-problems.tex`, `enrichment/pigeonhole-solutions.tex`, `enrichment/quadratic-presentation.tex`, `enrichment/telescoping-exercises.tex`, `enrichment/telescoping-notes.tex`, `enrichment/telescoping-problems.tex`, `enrichment/telescoping-solutions.tex`, `enrichment/waiting-time-exercises.tex`, `enrichment/waiting-time-notes.tex`, `enrichment/waiting-time-problems.tex`, `enrichment/waiting-time-solutions.tex` |
 | premiere | 156 | 78 | 9344 | 70 | 3 | 2: `premiere/main.tex` |
 | seconde | 38 | 19 | 2966 | 8 | 0 | 2: `seconde/livret.tex` |
 | stmg | 40 | 20 | 9077 | 2 | 13 | 2: `stmg/livret-tstmg.tex` |
 | terminale | 66 | 33 | 17362 | 128 | 5 | 2: `terminale/livret.tex` |
-| **total** | 439 | 219 | 42845 | | | |
+| **total** | 433 | 216 | 42408 | | | |
 
 ## Course environments (defined or used, standard LaTeX ones excluded)
 
@@ -21,7 +21,7 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 |---|---:|---:|---:|---:|---:|---:|---|
 | `exercice` |  |  |  |  | 97 |  | stmg |
 | `cours` |  |  |  | 89 |  |  | seconde |
-| `fiche` | 88 |  |  |  |  |  | automatismes |
+| `fluencysheet` | 88 |  |  |  |  |  | (package) |
 | `methode` |  |  |  | 20 | 58 | 6 | seconde, stmg, terminale |
 | `repere` |  |  | 70 |  |  |  | premiere |
 | `exemple` |  |  |  |  | 60 |  | stmg |
@@ -39,34 +39,31 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `correction` |  |  |  |  | 1 |  | stmg |
 | `exerciceapp` |  |  |  |  | 1 |  | stmg |
 | `manuel` |  |  |  |  | 1 |  | stmg |
+| `note` | 1 |  |  |  |  |  | (package) |
 | `probleme` |  |  |  |  |  |  | stmg |
 
 ## Macros
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `abs` | automatismes | 1 | 1 |
 | `annee` | seconde | 1 | 3 |
 | `appendixname` | stmg | 1 | 1 |
 | `application` | premiere | 1 | 49 |
-| `arraystretch` | automatismes, seconde, stmg | 29 | 29 |
-| `Card` | automatismes, seconde | 2 | 18 |
+| `arraystretch` | seconde, stmg | 17 | 17 |
+| `Card` | seconde | 1 | 17 |
 | `cftsecfont` | seconde | 1 | 1 |
 | `cftsecpagefont` | seconde | 1 | 1 |
 | `chaptermark` | stmg | 1 | 1 |
 | `chaptername` | stmg | 1 | 1 |
-| `choix` | automatismes | 1 | 11 |
-| `code` | automatismes, premiere | 2 | 46 |
+| `code` | premiere | 1 | 45 |
 | `competences` | stmg | 1 | 9 |
-| `contentsname` | automatismes, stmg | 2 | 2 |
+| `contentsname` | stmg | 1 | 1 |
 | `coord` | seconde | 1 | 6 |
 | `corrsection` | premiere | 1 | 11 |
 | `csname` | stmg | 1 | 2 |
-| `D` | automatismes, seconde | 2 | 13 |
+| `D` | seconde | 1 | 12 |
 | `dd` | terminale | 1 | 81 |
 | `DefExo` | stmg | 1 | 56 |
-| `degre` | automatismes | 1 | 8 |
-| `deter` | automatismes | 1 | 8 |
 | `deuxcolonnes` | stmg | 1 | 1 |
 | `difficulte` | stmg | 1 | 1 |
 | `dsheader` | stmg | 1 | 15 |
@@ -75,7 +72,6 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `edition` | terminale | 1 | 4 |
 | `EditionProf` | stmg | 3 | 4 |
 | `enseignant` | seconde, stmg | 2 | 239 |
-| `ent` | automatismes | 1 | 1 |
 | `etablissement` | seconde | 1 | 1 |
 | `ex` | seconde | 1 | 162 |
 | `exemple` | premiere | 1 | 53 |
@@ -87,42 +83,32 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `ExplorerSection` | enrichment | 1 | 180 |
 | `ExplorerTitle` | enrichment | 1 | 50 |
 | `fiche` | seconde | 1 | 74 |
-| `fichehead` | automatismes | 1 | 89 |
 | `footrulewidth` | enrichment, seconde | 2 | 2 |
 | `grille` | seconde | 1 | 2 |
-| `headrulewidth` | automatismes, enrichment, premiere, seconde, stmg, terminale | 8 | 8 |
+| `headrulewidth` | enrichment, premiere, seconde, stmg, terminale | 7 | 7 |
 | `ligne` | premiere | 1 | 2 |
 | `manuelref` | stmg | 1 | 56 |
-| `N` | automatismes, premiere, seconde, stmg, terminale | 5 | 162 |
+| `N` | premiere, seconde, stmg, terminale | 4 | 161 |
 | `norm` | premiere | 1 | 41 |
-| `norme` | automatismes | 1 | 1 |
-| `pgcd` | automatismes, seconde | 2 | 15 |
+| `pgcd` | seconde | 1 | 14 |
 | `points` | stmg | 1 | 43 |
-| `ppcm` | automatismes | 1 | 6 |
 | `preuve` | premiere, seconde | 2 | 15 |
 | `prof` | seconde | 1 | 16 |
-| `PROFVERSION` | automatismes | 1 | 2 |
-| `Q` | automatismes, seconde | 2 | 13 |
-| `qitem` | automatismes | 1 | 441 |
-| `R` | automatismes, premiere, seconde, stmg, terminale | 5 | 241 |
+| `Q` | seconde | 1 | 12 |
+| `R` | premiere, seconde, stmg, terminale | 4 | 240 |
 | `rep` | stmg | 1 | 276 |
 | `reponse` | seconde | 1 | 162 |
 | `rituel` | seconde | 1 | 7 |
-| `role` | automatismes | 1 | 2 |
-| `sci` | automatismes | 1 | 1 |
 | `sectionmark` | stmg | 1 | 1 |
 | `sequence` | seconde | 1 | 16 |
 | `sessionheader` | stmg | 1 | 56 |
-| `tagdiag` | automatismes | 1 | 3 |
 | `theHsection` | seconde | 1 | 1 |
 | `thesection` | seconde | 1 | 5 |
 | `thesubsection` | seconde | 1 | 4 |
 | `titreseq` | seconde | 3 | 4 |
 | `trou` | seconde | 1 | 53 |
-| `un` | automatismes | 1 | 1 |
 | `V` | premiere | 1 | 1 |
-| `vc` | automatismes | 1 | 44 |
-| `vect` | automatismes, premiere, seconde, terminale | 4 | 774 |
+| `vect` | premiere, seconde, terminale | 3 | 773 |
 | `version` | seconde | 1 | 2 |
 | `VERSIONELEVE` | terminale | 1 | 3 |
 | `versionprof` | premiere | 1 | 2 |
@@ -131,10 +117,10 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `vigilance` | seconde | 1 | 10 |
 | `vj` | terminale | 1 | 195 |
 | `vrai` | stmg | 1 | 2 |
-| `Z` | automatismes, premiere, seconde, terminale | 4 | 28 |
+| `Z` | premiere, seconde, terminale | 3 | 27 |
 | `zoneeleve` | stmg | 1 | 2 |
 
-88 names; 16 defined in more than one course.
+73 names; 10 defined in more than one course.
 
 ## Counters
 
@@ -142,29 +128,23 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 |---|---|---:|---:|
 | `exemple` | seconde | 1 |  |
 | `exercice` | premiere | 1 |  |
-| `fiche` | automatismes | 1 |  |
-| `qfiche` | automatismes | 1 |  |
 | `sequence` | seconde | 1 |  |
 
-5 names; 0 defined in more than one course.
+3 names; 0 defined in more than one course.
 
 ## Colours
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `acier` | automatismes | 1 |  |
 | `amber` | terminale | 1 |  |
-| `ardoise` | automatismes | 1 |  |
 | `bleu` | premiere | 1 |  |
 | `Blue` | stmg | 1 |  |
 | `Cream` | stmg | 1 |  |
-| `fond` | automatismes | 1 |  |
 | `Gold` | stmg | 1 |  |
 | `Gray` | stmg | 1 |  |
 | `Green` | stmg | 1 |  |
 | `ink` | enrichment, terminale | 2 |  |
 | `Ink` | stmg | 1 |  |
-| `marine` | automatismes | 1 |  |
 | `mint` | enrichment | 1 |  |
 | `Mint` | stmg | 1 |  |
 | `Navy` | stmg | 1 |  |
@@ -173,7 +153,6 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `Orange` | stmg | 1 |  |
 | `pale` | terminale | 1 |  |
 | `Red` | stmg | 1 |  |
-| `rep` | automatismes | 1 |  |
 | `Rose` | stmg | 1 |  |
 | `Sky` | stmg | 1 |  |
 | `TeacherBlue` | stmg | 1 |  |
@@ -181,13 +160,13 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `vert` | premiere | 1 |  |
 | `violet` | enrichment | 1 |  |
 
-28 names; 1 defined in more than one course.
+23 names; 1 defined in more than one course.
 
 ## Conditionals (`\newif`)
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `prof` | automatismes, premiere, seconde, stmg, terminale | 5 |  |
+| `prof` | premiere, seconde, stmg, terminale | 4 |  |
 
 1 names; 1 defined in more than one course.
 
@@ -195,42 +174,38 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Package | Courses |
 |---|---|
-| `amsmath` | automatismes, premiere, seconde, terminale |
-| `amssymb` | automatismes, premiere, seconde, stmg, terminale |
-| `array` | automatismes, premiere, seconde, stmg, terminale |
-| `babel` | automatismes, premiere, seconde, terminale |
-| `booktabs` | automatismes, premiere, stmg, terminale |
-| `courier` | automatismes, terminale |
-| `enumitem` | automatismes, premiere, seconde, stmg, terminale |
-| `etoolbox` | automatismes, premiere |
+| `amsmath` | premiere, seconde, terminale |
+| `amssymb` | premiere, seconde, stmg, terminale |
+| `array` | premiere, seconde, stmg, terminale |
+| `babel` | premiere, seconde, terminale |
+| `booktabs` | premiere, stmg, terminale |
+| `courier` | terminale |
+| `enumitem` | premiere, seconde, stmg, terminale |
+| `etoolbox` | premiere |
 | `explorer` | enrichment |
-| `fancyhdr` | automatismes, enrichment, premiere, seconde, stmg, terminale |
-| `fontenc` | automatismes, premiere, seconde, stmg, terminale |
+| `fancyhdr` | enrichment, premiere, seconde, stmg, terminale |
+| `fontenc` | premiere, seconde, stmg, terminale |
 | `fontspec` | enrichment |
-| `geometry` | automatismes, enrichment, premiere, seconde, stmg, terminale |
+| `geometry` | enrichment, premiere, seconde, stmg, terminale |
 | `graphicx` | premiere, stmg |
-| `helvet` | automatismes, stmg, terminale |
-| `hyperref` | automatismes, premiere, seconde, stmg, terminale |
-| `icomma` | automatismes |
-| `inputenc` | automatismes, premiere, seconde, stmg, terminale |
+| `helvet` | stmg, terminale |
+| `hyperref` | premiere, seconde, stmg, terminale |
+| `inputenc` | premiere, seconde, stmg, terminale |
 | `lastpage` | stmg |
 | `listings` | seconde, stmg, terminale |
 | `lmodern` | premiere, seconde |
 | `longtable` | premiere, seconde, stmg, terminale |
-| `mathpazo` | automatismes, stmg, terminale |
-| `mathtools` | automatismes, premiere, seconde, stmg, terminale |
-| `mdframed` | automatismes |
-| `microtype` | automatismes, enrichment, premiere, seconde, stmg, terminale |
+| `mathpazo` | stmg, terminale |
+| `mathtools` | premiere, seconde, stmg, terminale |
+| `microtype` | enrichment, premiere, seconde, stmg, terminale |
 | `multicol` | premiere, seconde, stmg, terminale |
-| `needspace` | automatismes, enrichment, premiere, seconde, stmg, terminale |
+| `needspace` | enrichment, premiere, seconde, stmg, terminale |
 | `pgfplots` | premiere, seconde, stmg, terminale |
-| `stmaryrd` | automatismes |
 | `styles/livret` | premiere |
 | `tabularx` | premiere, seconde, stmg |
 | `tcolorbox` | premiere, seconde, stmg, terminale |
-| `tikz` | automatismes, enrichment, premiere, seconde, stmg, terminale |
-| `titlesec` | automatismes, enrichment, premiere, seconde, stmg, terminale |
-| `tkz-tab` | automatismes |
+| `tikz` | enrichment, premiere, seconde, stmg, terminale |
+| `titlesec` | enrichment, premiere, seconde, stmg, terminale |
 | `tocloft` | seconde |
 | `unicode-math` | enrichment |
-| `xcolor` | automatismes, enrichment, premiere, stmg, terminale |
+| `xcolor` | enrichment, premiere, stmg, terminale |

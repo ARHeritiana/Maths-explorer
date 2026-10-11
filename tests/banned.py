@@ -49,7 +49,7 @@ def main(argv):
     else:
         tracked = subprocess.run(['git', 'ls-files'], cwd=ROOT, capture_output=True, text=True).stdout.split()
         skip = re.compile(r'^dist/vendor/|^tests/banned|\.(?:png|jpg|svg|ico|woff2?)$')
-        paths = [ROOT / p for p in tracked if not skip.search(p)]
+        paths = [ROOT / p for p in tracked if not skip.search(p) and (ROOT / p).exists()]   # deleted, not yet committed
     bad = 0
     for p in paths:
         try:
