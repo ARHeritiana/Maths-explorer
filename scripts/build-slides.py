@@ -342,11 +342,11 @@ WIDGETS = {
     'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']})],
     'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'})],
     'stmg-07': [(r'Binomial distribution: recognising', {'type': 'binom'})],
-    'terminale-01': [(r'^(?!Objectives|Goals)', {'type': 'seq'})], 'terminale-02': [(r'^(?!Objectives|Goals)', {'type': 'line3d'})],
-    'terminale-03': [(r'^(?!Objectives|Goals)', {'type': 'seq'})], 'terminale-06': [(r'^(?!Objectives|Goals)', {'type': 'tangent'})],
-    'terminale-07': [(r'^(?!Objectives|Goals)', {'type': 'tree'})], 'terminale-09': [(r'^(?!Objectives|Goals)', {'type': 'plane3d', 'normal': [1, 1, 2]})],
-    'terminale-12': [(r'^(?!Objectives|Goals)', {'type': 'rv'})], 'terminale-13': [(r'^(?!Objectives|Goals)', {'type': 'line3d'})],
-    'terminale-14': [(r'^(?!Objectives|Goals)', {'type': 'circle'})], 'terminale-11': [(r'^(?!Objectives|Goals)', {'type': 'integral'})], 'terminale-10': [(r'^(?!Objectives|Goals)', {'type': 'integral'})],
+    'terminale-01': [(r'^Defining a sequence', {'type': 'seq'})], 'terminale-02': [(r'^Vector calculus', {'type': 'line3d'})],
+    'terminale-03': [(r'^Course notes', {'type': 'seq'})], 'terminale-06': [(r'^Convexity', {'type': 'tangent'})],
+    'terminale-07': [(r'^Reminders', {'type': 'tree'})], 'terminale-09': [(r'^Line, plane and normal', {'type': 'plane3d', 'normal': [1, 1, 2]})],
+    'terminale-12': [(r'^Sums and transformations', {'type': 'rv'})], 'terminale-13': [(r'^Parametric lines', {'type': 'line3d'})],
+    'terminale-14': [(r'^Circle and functions', {'type': 'circle'})], 'terminale-11': [(r'^Area and antiderivative', {'type': 'integral'})],
 }
 
 

@@ -2,6 +2,9 @@ import { C, view, axes, curve, dot, text, slider, choice, snap, clamp, fmt } fro
 
 const set = (o, html) => { o.readout.innerHTML = html; };
 const lines = (...a) => a.filter(Boolean).join("<br>");
+// "x² − 2x − 1": coefficients 1 and -1 are implicit, zero terms are dropped, signs are written as operators.
+const poly = (parts, N) => { let s = ""; for (const [c, v] of parts) { if (Math.abs(c) < 1e-9) continue; const ab = Math.abs(c), body = ab === 1 && v ? v : N(ab) + v; s += s ? (c < 0 ? " − " : " + ") + body : (c < 0 ? "−" : "") + body; } return s || "0"; };
+const shifted = (x, al, N) => (Math.abs(al) < 1e-9 ? x : `(${x} ${al < 0 ? "+" : "−"} ${N(Math.abs(al))})`);
 
 export const W2 = {
   // Two draggable points define a line: slope, direction vector, equations (Seconde droites, Premiere geometrie).
@@ -33,8 +36,9 @@ export const W2 = {
         const V = v(); axes(g, V, { lang: o.L }); curve(g, V, x => a * (x - al) ** 2 + be, -6, 6);
         dot(o, V.X(al), V.Y(be), C.acc, "S"); dot(o, V.X(al + 1), V.Y(a + be), C.warn);
         const N = o.num, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
+        const canon = (a === 1 ? "" : a === -1 ? "−" : N(a)) + shifted("x", al, N) + "²" + (Math.abs(be) < 1e-9 ? "" : (be < 0 ? " − " : " + ") + N(Math.abs(be)));
         const roots = d < -1e-9 ? o.pair("aucune racine réelle", "no real root") : d < 1e-9 ? `x = ${N(al)}` : `x₁ = ${N((-b - Math.sqrt(d)) / (2 * a))}, x₂ = ${N((-b + Math.sqrt(d)) / (2 * a))}`;
-        set(o, lines(o.pair(`Forme canonique : f(x) = ${N(a)}(x − ${N(al)})² + ${N(be)}`, `Canonical form: f(x) = ${N(a)}(x − ${N(al)})² + ${N(be)}`), `f(x) = ${N(a)}x² + ${N(b)}x + ${N(c)}`, `Δ = ${N(d)}`, o.pair("Racines : ", "Roots: ") + roots, a > 0 ? o.pair("Minimum en α.", "Minimum at α.") : o.pair("Maximum en α.", "Maximum at α.")));
+        set(o, lines(o.pair(`Forme canonique : f(x) = ${canon}`, `Canonical form: f(x) = ${canon}`), `f(x) = ${poly([[a, "x²"], [b, "x"], [c, ""]], N)}`, `Δ = ${N(d)}`, o.pair("Racines : ", "Roots: ") + roots, a > 0 ? o.pair("Minimum en α.", "Minimum at α.") : o.pair("Maximum en α.", "Maximum at α.")));
       },
     };
   },
@@ -59,7 +63,7 @@ export const W2 = {
           curve(g, V, x => Math.log10(x), .001, 12); const x = 10 ** tx;
           g.save(); g.strokeStyle = C.warn; g.setLineDash([6, 5]); g.beginPath(); g.moveTo(V.X(x), V.Y(0)); g.lineTo(V.X(x), V.Y(tx)); g.lineTo(V.X(0), V.Y(tx)); g.stroke(); g.restore();
           dot(o, V.X(x), V.Y(tx), C.acc, "M");
-          set(o, lines(`x = ${N(x)}`, `log(x) = ${N(tx)}`, `10^${N(tx)} = ${N(x)}`, o.pair("log(10) = 1, log(1) = 0, log croît lentement.", "log(10) = 1, log(1) = 0, log grows slowly.")));
+          set(o, lines(`x = ${N(x)}`, `log(x) = ${N(tx)}`, `10<sup>${N(tx)}</sup> = ${N(x)}`, o.pair("log(10) = 1, log(1) = 0, log croît lentement.", "log(10) = 1, log(1) = 0, log grows slowly.")));
         } else {
           curve(g, V, x => (x < -.12 || x > .12 ? k / x : NaN), -6, -.12); curve(g, V, x => k / x, .12, 6);
           dot(o, V.X(1), V.Y(k), C.warn, "k"); const y = k / tx2; dot(o, V.X(tx2), V.Y(y), C.acc, "M");
@@ -79,7 +83,7 @@ export const W2 = {
         const V = v(), q = u1 / u0, r = u1 - u0, f = n => geo ? u0 * q ** n : u0 + r * n; axes(g, V, { lang: o.L });
         for (let n = 0; n <= N; n++) { const y = f(n); if (y > V.y1 + 2 || y < V.y0 - 2) continue; dot(o, V.X(n), V.Y(y), n < 2 ? C.acc : C.muted, n === 0 ? "u₀" : n === 1 ? "u₁" : "", "grab", n < 2); }
         const Nn = o.num;
-        set(o, geo ? lines(o.pair(`Raison q = u₁/u₀ = ${Nn(q)}`, `Common ratio q = u₁/u₀ = ${Nn(q)}`), `uₙ = ${Nn(u0)} × ${Nn(q)}ⁿ`, `u₁₀ = ${Nn(f(10))}`) : lines(o.pair(`Raison r = u₁ − u₀ = ${Nn(r)}`, `Common difference r = u₁ − u₀ = ${Nn(r)}`), `uₙ = ${Nn(u0)} ${r < 0 ? "−" : "+"} ${Nn(Math.abs(r))}n`, `u₁₀ = ${Nn(f(10))}`, o.pair("Les points sont alignés.", "The points are collinear.")));
+        set(o, geo ? lines(o.pair(`Raison q = u₁/u₀ = ${Nn(q)}`, `Common ratio q = u₁/u₀ = ${Nn(q)}`), `uₙ = ${u0 === 1 ? "" : Nn(u0) + " × "}${Nn(q)}ⁿ`, `u₁₀ = ${Nn(f(10))}`) : lines(o.pair(`Raison r = u₁ − u₀ = ${Nn(r)}`, `Common difference r = u₁ − u₀ = ${Nn(r)}`), `uₙ = ${poly([[u0, ""], [r, "n"]], Nn)}`, `u₁₀ = ${Nn(f(10))}`, o.pair("Les points sont alignés.", "The points are collinear.")));
       },
     };
   },
@@ -220,12 +224,12 @@ export const W2 = {
 
   // Percentage change: draggable rate handles on two successive changes.
   pct(o) {
-    let t1 = .2, t2 = -.2; const bx = 60;
+    let t1 = .2, t2 = -.2; const bx = 60; const Y1 = () => o.H * .17, Y2 = () => o.H * .38;
     return {
-      handles() { const s = (o.W - 120) / 1.0; return [{ x: bx + (t1 + .5) * s, y: 120, cur: "ew-resize", move(X) { t1 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }, { x: bx + (t2 + .5) * s, y: 250, cur: "ew-resize", move(X) { t2 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }]; },
+      handles() { const s = (o.W - 120) / 1.0; return [{ x: bx + (t1 + .5) * s, y: Y1(), cur: "ew-resize", move(X) { t1 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }, { x: bx + (t2 + .5) * s, y: Y2(), cur: "ew-resize", move(X) { t2 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }]; },
       draw(g) {
-        const s = o.W - 120, N = o.num; [[t1, 120, "t₁"], [t2, 250, "t₂"]].forEach(([t, y, l]) => { g.fillStyle = C.grid; g.fillRect(bx, y - 4, s, 8); g.fillStyle = C.axis; g.fillRect(bx + s / 2 - 1, y - 14, 2, 28); dot(o, bx + (t + .5) * s, y, C.acc); text(g, `${l} = ${N(t * 100, 0)} %`, bx, y - 26, C.ink, 20); });
-        const cm = (1 + t1) * (1 + t2); const y0 = 340; [["100", 100], [N(100 * (1 + t1), 1), 100 * (1 + t1)], [N(100 * cm, 1), 100 * cm]].forEach(([l, v], i) => { const w = v / 150 * s; g.fillStyle = i === 2 ? C.warn : C.acc; g.globalAlpha = .8; g.fillRect(bx, y0 + i * 44, w, 30); g.globalAlpha = 1; text(g, l, bx + w + 10, y0 + i * 44 + 22, C.ink, 18); });
+        const s = o.W - 120, N = o.num; [[t1, Y1(), "t₁"], [t2, Y2(), "t₂"]].forEach(([t, y, l]) => { g.fillStyle = C.grid; g.fillRect(bx, y - 4, s, 8); g.fillStyle = C.axis; g.fillRect(bx + s / 2 - 1, y - 14, 2, 28); dot(o, bx + (t + .5) * s, y, C.acc); text(g, `${l} = ${N(t * 100, 0)} %`.replace("-", "−"), bx, y - 26, C.ink, 20); });
+        const cm = (1 + t1) * (1 + t2); const y0 = o.H * .56, step = o.H * .1, bh = o.H * .07; [["100", 100], [N(100 * (1 + t1), 1), 100 * (1 + t1)], [N(100 * cm, 1), 100 * cm]].forEach(([l, v], i) => { const w = v / 150 * s; g.fillStyle = i === 2 ? C.warn : C.acc; g.globalAlpha = .8; g.fillRect(bx, y0 + i * step, w, bh); g.globalAlpha = 1; text(g, l, bx + w + 10, y0 + i * step + bh * .75, C.ink, 18); });
         set(o, lines(`CM₁ = 1 ${t1 < 0 ? "−" : "+"} ${N(Math.abs(t1), 2)} = ${N(1 + t1, 3)}`, `CM₂ = ${N(1 + t2, 3)}`, o.pair(`Coefficient global = ${N(cm, 4)}`, `Overall multiplier = ${N(cm, 4)}`), o.pair(`Évolution globale = ${N((cm - 1) * 100, 2)} %`, `Overall change = ${N((cm - 1) * 100, 2)} %`), Math.abs(cm - 1) > 1e-9 ? o.pair(`Taux réciproque = ${N((1 / cm - 1) * 100, 2)} %`, `Reverse rate = ${N((1 / cm - 1) * 100, 2)} %`) : ""));
       },
     };
@@ -259,7 +263,7 @@ export const W2 = {
         seg(a, b, .7, C.acc); seg(c, d, .4, C.warn); const lo = Math.max(a, c), hi = Math.min(b, d); if (lo <= hi) seg(lo, hi, .15, C.ink);
         [[I, .7, C.acc], [J, .4, C.warn]].forEach(([arr, y, col]) => arr.forEach(e => dot(o, V.X(e), V.Y(y), col)));
         const N = o.num, br = `[${N(a)} ; ${N(b)}]`, br2 = `[${N(c)} ; ${N(d)}]`;
-        set(o, lines(`I = ${br}`, `J = ${br2}`, o.pair(`I ∩ J = ${lo <= hi ? `[${N(lo)} ; ${N(hi)}]` : "∅"}`, `I ∩ J = ${lo <= hi ? `[${N(lo)} ; ${N(hi)}]` : "∅"}`), lo <= hi ? `I ∪ J = [${N(Math.min(a, c))} ; ${N(Math.max(b, d))}]` : `I ∪ J = ${br} ∪ ${br2}`, o.pair(`|x − ${N((a + b) / 2)}| ≤ ${N((b - a) / 2)} décrit I`, `|x − ${N((a + b) / 2)}| ≤ ${N((b - a) / 2)} describes I`)));
+        set(o, lines(`I = ${br}`, `J = ${br2}`, o.pair(`I ∩ J = ${lo <= hi ? `[${N(lo)} ; ${N(hi)}]` : "∅"}`, `I ∩ J = ${lo <= hi ? `[${N(lo)} ; ${N(hi)}]` : "∅"}`), lo <= hi ? `I ∪ J = [${N(Math.min(a, c))} ; ${N(Math.max(b, d))}]` : `I ∪ J = ${br} ∪ ${br2}`, o.pair(`|${shifted("x", (a + b) / 2, N).replace(/^\((.*)\)$/, "$1")}| ≤ ${N((b - a) / 2)} décrit I`, `|${shifted("x", (a + b) / 2, N).replace(/^\((.*)\)$/, "$1")}| ≤ ${N((b - a) / 2)} describes I`)));
       },
     };
   },

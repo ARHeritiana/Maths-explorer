@@ -89,10 +89,21 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
    were missing in `dist/slides/player.html` (shown as red text): added; `tests/slides_smoke.py` now fails on red undefined macros
    (MathJax shows them as red `mtext`, not as `merror`). Result: 47 decks, 1,044 slides, 59 slides with figures.
 
-5. **Quality control of every interactive app** against the `math-interactive-slides` skill and its 3D addendum (1280x720 stage,
-   one parameter object driving text and canvas, draggable handles, selectors, French typography `{,}`, step reveal, MathJax SVG).
-   Audit the 9 labs, the challenges, the quadratic workshop, the visual lessons and the slide canvases: screenshot each, list defects,
-   overwrite weak ones. Report per app; state that rendering was checked only where it was actually viewed.
+5. **Quality control of the interactive apps**: PARTLY DONE. Viewed by screenshot (not only scripted):
+   - All 34 slide canvases in EN (default state), six of them also in FR. Defects found and fixed: polynomial and sequence formulas
+     ("1x² + -2x + -1", "u_n = 2 + 1n", "|x − -0.5|", "10^1") now print "x² − 2x − 1", "2 + n", "|x + 0.5|", 10 with superscript; the Successive
+     changes (pct) canvas clipped its third bar (layout now proportional to the canvas height); minus sign in "t₂ = −20 %";
+     Terminale canvases were all stuck right after the title slide and are now placed after the matching unit (the integral canvas in C10
+     was removed: Riemann sums come in C11). Interaction (drag) is covered by `tests/slides_smoke.py`, not re-checked by eye.
+   - The 9 labs at their default state (FR, 1280x900) and the challenge list, two challenge pages, the quadratic workshop, the
+     Première chapter 4 experiment tab and the pathways page: no layout defect seen. Not done: dragging/step-through of every lab
+     by eye, English view of labs/challenges, narrow-screen view (the browser test covers 4 widths and 200 % text).
+   - Open observations (not fixed): the vectors and complex labs keep an equal-scale frame that makes the default vectors small on wide
+     panels; the fn explorer labels "(0 ; C)" and "(1 ; Cb)" are jargon and overlap when b is near 1; terminale-01/03 reuse the generic
+     "first terms" canvas (no limit-specific canvas yet).
+   - Slide decks follow the `math-interactive-slides` skill only in part (1280x720 stage, MathJax SVG, draggable handles, step reveal
+     for Seconde answers are in place; one parameter object drives text and canvas per widget). No new apps were authored.
+
 6. Retire the overlay tooling (`patch-english-pdfs.py`, `fix-french-glyphs.py`, ledgers; keep `docs/translation-corrections.json`)
    only after Terminale is built from TeX; update `docs/AUDIT.md` and `docs/RESOURCE_LIBRARY.md`; finish the English proof-read.
 
