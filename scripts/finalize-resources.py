@@ -3,25 +3,28 @@ import json,re,hashlib
 from pathlib import Path
 import fitz
 ROOT=Path(__file__).resolve().parents[1]
-# Text that identifies the author or their school is removed from any PDF that still carries it.
-IDENTIFYING=['ANONYME, ANONYME — ','ANONYME, ANONYME - ','ANONYME','Mr ANONYME','M. ANONYME','ANONYME · 2026-2027','ANONYME – 2026–2027']
-personal=re.compile(r'(drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint',re.I)
+import sys
+sys.path.insert(0,str(ROOT/'tests'))
+import banned   # hashed owner/school/place names, personal-space links, e-mail addresses
+personal=banned.PERSONAL
+problems=[]
 for path in (ROOT/'dist/resources').rglob('*.pdf'):
     doc=fitz.open(path);changed=False
     for page in doc:
         for link in page.get_links():
             if personal.search(link.get('uri','')):page.delete_link(link);changed=True
-        for block in page.get_text('blocks'):
-            if 'AI-generated original' in block[4] or personal.search(block[4]):
+        for block in page.get_text('blocks'):   # earlier per-file AI notices: the site keeps one notice, in its footer
+            if 'AI-generated original' in block[4]:
                 page.add_redact_annot(fitz.Rect(block[:4]),fill=(1,1,1));changed=True
-        for phrase in IDENTIFYING:
-            for rect in page.search_for(phrase):page.add_redact_annot(rect,fill=(1,1,1));changed=True
         if page.first_annot:page.apply_redactions(images=0,graphics=0)
     if personal.search(json.dumps(doc.metadata)):
         doc.set_metadata({'title':path.stem,'author':'Maths Explorer'});changed=True
     if changed:
         tmp=path.with_suffix('.tmp.pdf');doc.save(tmp,garbage=4,deflate=True);doc.close();tmp.replace(path)
     else:doc.close()
+    found=banned.findings(banned.pdf_text(path))   # identifying text must be fixed in the source, not redacted here
+    if found:problems.append(f'{path.relative_to(ROOT)}: {", ".join(found)}')
+if problems:raise SystemExit('Banned content in PDFs:\n'+'\n'.join(problems))
 catalog=ROOT/'dist/resources/catalog.json';c=json.loads(catalog.read_text())
 for course in c['courses']:course['language']='bilingual'
 ledger=ROOT/'docs/TEX_CONVERSION.json'

@@ -1,3 +1,4 @@
+import {findings} from './banned.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -32,8 +33,7 @@ test('each view exposes only its own controls and circle/curve coordinates share
   }
 });
 test('no client catalogue or rendered chapter exposes personal-space URLs',()=>{
-  const banned=/(?:drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint/i;
-  for(const file of ['dist/js/resource-library.js','dist/js/library.js','dist/js/resources-data.js','dist/resources/catalog.json'])assert.ok(!banned.test(fs.readFileSync(file,'utf8')),file);
+  for(const file of ['dist/js/resource-library.js','dist/js/library.js','dist/js/resources-data.js','dist/resources/catalog.json'])assert.deepEqual(findings(fs.readFileSync(file,'utf8')),[],file);
 });
 test('transformed circle and plotted values agree, including exact negative quarter-turn values',()=>{
   for(const relation of ['identity',...Object.keys(relations)])for(const x of [0,30,90,180,270,360]){

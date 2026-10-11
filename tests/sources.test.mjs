@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findings } from './banned.mjs';
 
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
-const banned = /(?:drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint|[\w.+-]+@[\w-]+\.[\w.]+|ANONYME|coll[eè]ges? de france|\bCDFM\b|ANONYME|ANONYME/i;
 
 async function walk(dir) {
   const out = [];
@@ -31,7 +31,7 @@ test('sources and vendored libraries carry no personal data', async () => {
   for (const file of await walk(path.join(dist, 'sources'))) {
     if (!/\.(tex|sty|cls|bib|md|json)$/.test(file)) continue;
     const text = await readFile(file, 'utf8');
-    assert.doesNotMatch(text, banned, path.relative(dist, file));
+    assert.deepEqual(findings(text), [], path.relative(dist, file));
   }
 });
 

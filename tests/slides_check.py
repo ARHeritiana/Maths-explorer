@@ -3,6 +3,8 @@ same HTML structure, no TeX leftovers, no school/teacher/Drive identifiers."""
 import json, re, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tests'))
+import banned
 def norm(m): return re.sub(r'(\d),(\d)', r'\1.\2', m.replace('{,}', '.')).replace('\\,', '').replace('\\;', '').replace('~', '').replace(' ', '').replace('\n', '')
 def strip_text(m): return re.sub(r'\\(?:text|mathrm|mbox|textrm)\{[^{}]*\}', '', m)
 def math(h): return sorted(norm(strip_text(x)) for x in re.findall(r'\\\(.*?\\\)|\\\[.*?\\\]', h, re.S))
@@ -23,5 +25,5 @@ for n in (int(a) for a in sys.argv[1:]) or range(1, 15):
             if math(x) != math(y): print(n, i, key, 'math differs\n  FR', math(x)[:3], '\n  EN', math(y)[:3]); bad += 1
             if tags(x) != tags(y): print(n, i, key, 'html structure differs'); bad += 1
             if re.search(r'\\[a-zA-Z]{3,}', re.sub(r'\\\(.*?\\\)|\\\[.*?\\\]', '', y, flags=re.S)): print(n, i, key, 'TeX leftover in prose'); bad += 1
-            if re.search(r'Collèges|ANONYME|ANONYME|drive\.google|@\w+\.\w{2,}', y): print(n, i, 'identifier'); bad += 1
+            if banned.findings(y): print(n, i, 'identifier'); bad += 1
 print('slides check:', 'OK' if not bad else f'{bad} problems'); sys.exit(1 if bad else 0)

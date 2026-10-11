@@ -16,7 +16,7 @@ Brief: `docs/REDESIGN_PROMPT.md`. Status: **planning done, waiting for the owner
 
 ## Earlier state (before the redesign)
 
-Repository `arheritiana/maths-explorer`, branch `claude/repository-audit-bsfs8y`. Do not open a PR unless asked.
+This repository, branch `claude/repository-audit-bsfs8y`. Do not open a PR unless asked.
 Owner: a French-lycée maths teacher in Madagascar. They want precision, no filler, no hallucination, uncertainty flagged
 ([VERIFY], [HORS PROGRAMME]). Reply in English, structured as TL;DR, answer, justification, sources, warnings; maths in LaTeX.
 

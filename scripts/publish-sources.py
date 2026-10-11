@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'content/tex/courses'
 OUT = ROOT / 'dist/sources'
 KEEP = {'.tex', '.sty', '.cls', '.bib', '.bst', '.png', '.jpg', '.jpeg', '.pdf', '.svg'}
-BANNED = re.compile(r'(drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint|[\w.+-]+@[\w-]+\.[\w.]+|'
-                    r'ANONYME|coll[eè]ges? de france|\bCDFM\b|ANONYME|ANONYME', re.I)
+sys.path.insert(0, str(ROOT / 'tests'))
+import banned   # hashed owner/school/place names, personal-space links, e-mail addresses
 # Held back from the public download: textbook extracts (rights to be confirmed) and exercise drafts not yet verified.
 SKIP = re.compile(r"(?!)")   # nothing withheld any more (Calao extracts removed, exercises verified)
 COURSES = {
@@ -54,10 +54,9 @@ def main():
             rel = p.relative_to(SRC)
             if SKIP.search(rel.as_posix()): continue
             if p.suffix.lower() in {'.tex', '.sty', '.cls', '.bib', '.bst', '.svg'}:
-                for n, line in enumerate(p.read_text(encoding='utf8', errors='replace').splitlines(), 1):
-                    m = BANNED.search(line)
-                    if m:
-                        problems.append(f'{rel}:{n}: {m.group(0)}')
+                found = banned.findings(p.read_text(encoding='utf8', errors='replace'))
+                if found:
+                    problems.append(f'{rel}: {", ".join(found)}')
             target = OUT / rel
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(p, target)

@@ -7,6 +7,8 @@ too narrow for the header; the verification ledger records that scale.
 import fitz,json,re,hashlib,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];DIST=ROOT/'dist';MARK='Maths Explorer document theme v1'
+sys.path.insert(0,str(ROOT/'tests'))
+import banned   # personal-space link pattern shared with the checks
 font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf';bold='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
 navy=(11/255,18/255,36/255);mint=(117/255,239/255,201/255);violet=(181/255,165/255,1)
 # Only RGB graphics operators in decoded content streams are recoloured; text
@@ -80,7 +82,7 @@ for path in sorted((DIST/'resources').rglob('*.pdf')):
   sx=target.width/clip.width;sy=target.height/clip.height
   for link in old.get_links():
    if link['kind'] not in [fitz.LINK_GOTO,fitz.LINK_URI]:continue
-   if re.search(r'(?:drive|docs)\.google\.com|dropbox|onedrive|sharepoint',link.get('uri',''),re.I):continue
+   if banned.PERSONAL.search(link.get('uri','')):continue
    box=link['from'];new={'kind':link['kind'],'from':fitz.Rect(target.x0+(box.x0-clip.x0)*sx,target.y0+(box.y0-clip.y0)*sy,target.x0+(box.x1-clip.x0)*sx,target.y0+(box.y1-clip.y0)*sy)}
    if link['kind']==fitz.LINK_URI:new['uri']=link['uri']
    else:
