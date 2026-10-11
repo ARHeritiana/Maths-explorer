@@ -8,49 +8,46 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | Course | Files | of which `-en` | Lines | `\clearpage`/`\newpage` (FR) | raw `\definecolor` (FR) | Entry files (FR+EN) |
 |---|---:|---:|---:|---:|---:|---|
 | automatismes | 34 | 17 | 1829 | 0 | 0 | 0:  |
-| enrichment | 99 | 49 | 1830 | 0 | 3 | 98: `enrichment/bayes-exercises.tex`, `enrichment/bayes-notes.tex`, `enrichment/bayes-problems.tex`, `enrichment/bayes-solutions.tex`, `enrichment/bisection-exercises.tex`, `enrichment/bisection-notes.tex`, `enrichment/bisection-problems.tex`, `enrichment/bisection-solutions.tex`, `enrichment/complex-rotations-exercises.tex`, `enrichment/complex-rotations-notes.tex`, `enrichment/complex-rotations-problems.tex`, `enrichment/complex-rotations-solutions.tex`, `enrichment/diophantine-exercises.tex`, `enrichment/diophantine-notes.tex`, `enrichment/diophantine-problems.tex`, `enrichment/diophantine-solutions.tex`, `enrichment/euler-trails-exercises.tex`, `enrichment/euler-trails-notes.tex`, `enrichment/euler-trails-problems.tex`, `enrichment/euler-trails-solutions.tex`, `enrichment/inequalities-exercises.tex`, `enrichment/inequalities-notes.tex`, `enrichment/inequalities-problems.tex`, `enrichment/inequalities-solutions.tex`, `enrichment/invariants-exercises.tex`, `enrichment/invariants-notes.tex`, `enrichment/invariants-problems.tex`, `enrichment/invariants-solutions.tex`, `enrichment/lattice-paths-exercises.tex`, `enrichment/lattice-paths-notes.tex`, `enrichment/lattice-paths-problems.tex`, `enrichment/lattice-paths-solutions.tex`, `enrichment/modular-exercises.tex`, `enrichment/modular-notes.tex`, `enrichment/modular-problems.tex`, `enrichment/modular-solutions.tex`, `enrichment/pigeonhole-exercises.tex`, `enrichment/pigeonhole-notes.tex`, `enrichment/pigeonhole-problems.tex`, `enrichment/pigeonhole-solutions.tex`, `enrichment/quadratic-presentation.tex`, `enrichment/telescoping-exercises.tex`, `enrichment/telescoping-notes.tex`, `enrichment/telescoping-problems.tex`, `enrichment/telescoping-solutions.tex`, `enrichment/waiting-time-exercises.tex`, `enrichment/waiting-time-notes.tex`, `enrichment/waiting-time-problems.tex`, `enrichment/waiting-time-solutions.tex` |
+| enrichment | 98 | 49 | 2373 | 0 | 0 | 0:  |
 | premiere | 148 | 74 | 9262 | 0 | 0 | 0:  |
 | seconde | 34 | 17 | 2795 | 0 | 0 | 0:  |
 | stmg | 34 | 17 | 8719 | 0 | 0 | 0:  |
 | terminale | 58 | 29 | 17211 | 0 | 0 | 0:  |
-| **total** | 407 | 203 | 41646 | | | |
+| **total** | 406 | 203 | 42189 | | | |
 
 ## Course environments (defined or used, standard LaTeX ones excluded)
 
 | Environment | automatismes | enrichment | premiere | seconde | stmg | terminale | Defined in |
 |---|---:|---:|---:|---:|---:|---:|---|
-| `example` |  |  | 52 | 161 | 60 |  | (package) |
-| `solution` |  |  |  |  | 234 |  | (package) |
-| `keypoint` |  |  | 70 | 89 | 11 | 32 | (package) |
-| `exercise` |  |  |  |  | 97 |  | (package) |
+| `solution` |  | 60 |  |  | 234 |  | (package) |
+| `example` |  | 13 | 52 | 161 | 60 |  | (package) |
+| `keypoint` |  | 13 | 70 | 89 | 11 | 32 | (package) |
+| `exercise` |  | 96 |  |  | 97 |  | (package) |
 | `fluencysheet` | 88 |  |  |  |  |  | (package) |
 | `method` |  |  |  | 18 | 58 | 6 | (package) |
+| `activity` |  | 13 |  |  | 55 |  | (package) |
+| `prerequisites` |  | 12 |  |  | 55 |  | (package) |
 | `fluency` |  |  |  | 6 | 55 |  | (package) |
 | `pitfall` |  |  | 47 | 9 | 5 |  | (package) |
-| `activity` |  |  |  |  | 55 |  | (package) |
 | `exitticket` |  |  |  |  | 55 |  | (package) |
 | `homework` |  |  |  |  | 55 |  | (package) |
 | `objectives` |  |  |  |  | 55 |  | (package) |
-| `prerequisites` |  |  |  |  | 55 |  | (package) |
 | `summary` |  |  |  |  | 55 |  | (package) |
 | `application` |  |  | 48 |  |  |  | (package) |
 | `teachernote` |  |  |  | 15 |  | 17 | (package) |
+| `problem` |  | 24 |  |  |  |  | (package) |
+| `note` | 1 | 6 |  |  |  |  | (package) |
+| `figurebox` |  | 5 |  |  |  |  | (package) |
+| `theorem` |  | 2 |  |  |  |  | (package) |
 | `titlepage` |  |  | 1 |  |  | 1 | (package) |
-| `note` | 1 |  |  |  |  |  | (package) |
+| `definition` |  | 1 |  |  |  |  | (package) |
 
 ## Macros
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `ExplorerKind` | enrichment | 49 | 51 |
-| `ExplorerLanguage` | enrichment | 49 | 50 |
-| `ExplorerNumber` | enrichment | 49 | 50 |
-| `ExplorerSection` | enrichment | 1 | 180 |
-| `ExplorerTitle` | enrichment | 1 | 50 |
-| `footrulewidth` | enrichment | 1 | 1 |
-| `headrulewidth` | enrichment | 1 | 1 |
 
-7 names; 0 defined in more than one course.
+0 names; 0 defined in more than one course.
 
 ## Counters
 
@@ -63,11 +60,8 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `ink` | enrichment | 1 |  |
-| `mint` | enrichment | 1 |  |
-| `violet` | enrichment | 1 |  |
 
-3 names; 0 defined in more than one course.
+0 names; 0 defined in more than one course.
 
 ## Conditionals (`\newif`)
 
@@ -80,13 +74,3 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Package | Courses |
 |---|---|
-| `explorer` | enrichment |
-| `fancyhdr` | enrichment |
-| `fontspec` | enrichment |
-| `geometry` | enrichment |
-| `microtype` | enrichment |
-| `needspace` | enrichment |
-| `tikz` | enrichment |
-| `titlesec` | enrichment |
-| `unicode-math` | enrichment |
-| `xcolor` | enrichment |

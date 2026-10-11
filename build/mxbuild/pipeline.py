@@ -3,13 +3,14 @@
 `tex`: run a course builder (cached on a hash of its inputs), then style the PDFs it changed, regenerate the catalogue
 and republish the sources. `check`: every pre-push check from the brief, in one command.
 """
-import subprocess, sys, time
+import hashlib, json, re, subprocess, sys, time
+from pathlib import Path
 from . import ROOT, tex
 
 PY = sys.executable
 # Extra inputs per course beyond its TeX tree and the core (paths relative to the repository root).
 INPUTS = {
-    'enrichment': ['content/data/enrichment.json', 'scripts/build-enrichment-latex.py', 'scripts/enrichment_sections.py'],
+    'enrichment': ['content/data/enrichment.json', 'scripts/enrichment_sections.py', 'build/mxbuild/enrichment.py'],
 }
 COMMON_INPUTS = ['content/data/manifest.json', 'scripts/style-resource-pdfs.py']
 # Course -> builder command (relative to the repository root). The builders still live in scripts/ until phase B.
@@ -35,6 +36,35 @@ def changed_pdfs():
     return [e[3:] for e in out.split('\0') if e.endswith('.pdf') and e[:2] != ' D']
 
 
+PDF_ID = re.compile(rb'/ID\s*\[.*?\]>>', re.S)   # /ID pair (hex or literal strings) at the end of the trailer
+
+
+def _without_id(pdf):
+    """PDF bytes without the trailer's /ID and the startxref offset (the only bytes a rebuild changes by itself)."""
+    body, _, trailer = pdf.rpartition(b'\ntrailer')
+    return body + PDF_ID.sub(b'>>', trailer.split(b'startxref')[0])
+STYLE_LEDGER = ROOT / 'docs/DOCUMENT_STYLE_LEDGER.json'
+
+
+def restore_unchanged(pdfs):
+    """Put back the committed copy of every rebuilt PDF that differs from it only in its random /ID (rebuilding a
+    course after a core change must not rewrite every binary in the repository); returns the PDFs still changed."""
+    ledger = json.loads(STYLE_LEDGER.read_text()) if STYLE_LEDGER.exists() else {'documents': []}
+    rows = {d['path']: d for d in ledger['documents']}; kept = []
+    for p in pdfs:
+        old = subprocess.run(['git', 'show', f'HEAD:{p}'], cwd=ROOT, capture_output=True).stdout
+        new = (ROOT / p).read_bytes()
+        if old and _without_id(old) == _without_id(new):
+            (ROOT / p).write_bytes(old)
+            row = rows.get(str(Path(p).relative_to('dist')))
+            if row: row['sha256'] = hashlib.sha256(old).hexdigest()   # the styler recognises its output by this hash
+        else: kept.append(p)
+    if len(kept) < len(pdfs):
+        STYLE_LEDGER.write_text(json.dumps(ledger, indent=2) + '\n')
+        print(f'{len(pdfs) - len(kept)} rebuilt PDF(s) identical to the committed ones apart from /ID: committed copies kept')
+    return kept
+
+
 def build_tex(courses, force=False):
     for course in courses:
         script = COURSES[course]
@@ -48,6 +78,7 @@ def build_tex(courses, force=False):
         print(f'{course}: built in {time.time() - t0:.0f} s')
     pdfs = changed_pdfs()
     if pdfs and run([PY, 'scripts/style-resource-pdfs.py', *pdfs]).returncode: return 1
+    restore_unchanged(changed_pdfs())
     if run([PY, 'scripts/finalize-resources.py']).returncode: return 1
     return run([PY, 'scripts/publish-sources.py']).returncode
 
@@ -62,6 +93,8 @@ CHECKS = [
     ('twin tool unit tests', [PY, 'tests/test_twin.py']),
     ('English units up to date', [PY, '-m', 'mxbuild', 'twin', 'check']),
     ('TeX unit lint', [PY, 'tests/tex_lint.py']),
+    ('enrichment units match the JSON', [PY, '-m', 'mxbuild', 'enrichment', '--check']),
+    ('enrichment converter tests', [PY, 'tests/test_enrichment.py']),
     ('slides check', [PY, 'tests/slides_check.py']),
     ('browser', [PY, 'tests/run_browser.py']),
     ('slides smoke', [PY, 'tests/slides_smoke.py']),

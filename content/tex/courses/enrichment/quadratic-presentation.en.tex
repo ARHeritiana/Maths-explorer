@@ -1,0 +1,31 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{quadratic-presentation}{Quadratic polynomials}
+\mxsubtitle{Upper high school \textperiodcentered{} Present and explore}
+
+\begin{definition}[Expanded form]
+For $f(x)=ax^2+bx+c$, with $a,b,c\in\R$ and $a\neq0$, the domain is $\R$. The sign of $a$ determines the opening of the parabola.
+\end{definition}
+
+\begin{theorem}[Vertex form]
+$f(x)=a(x-\alpha)^2+\beta$, where $\alpha=-\dfrac{b}{2a}$ and $\beta=f(\alpha)=c-\dfrac{b^2}{4a}$. The vertex is $S(\alpha,\beta)$ and the axis of symmetry is $x=\alpha$. If $a>0$, $f$ decreases on $]-\infty;\alpha]$ and increases on $[\alpha;+\infty[$; $\beta$ is its minimum. If $a<0$, the directions reverse and $\beta$ is its maximum.
+\end{theorem}
+
+\begin{theorem}[Discriminant and roots]
+$\Delta=b^2-4ac$ and $\beta=-\dfrac{\Delta}{4a}$. If $\Delta>0$, the two roots are $\dfrac{-b-\sqrt\Delta}{2a}$ and $\dfrac{-b+\sqrt\Delta}{2a}$: order them before naming them $x_1<x_2$ (the order of these two formulas depends on the sign of $a$). If $\Delta=0$, the double root is $x_0=\alpha$. If $\Delta<0$, there are no real roots.
+\end{theorem}
+
+\begin{keypoint}[Factorisation and sign]
+If $\Delta>0$, $f(x)=a(x-x_1)(x-x_2)$. Outside the roots the two factors have the same sign; between them they have opposite signs. Thus the polynomial has the sign of $a$ outside, the opposite sign between, and is zero at the roots. If $\Delta=0$, $f(x)=a(x-x_0)^2$ has the sign of $a$ except at $x_0$. If $\Delta<0$, $f$ has strictly the sign of $a$ throughout $\R$ and cannot be factorised into real linear factors.
+\end{keypoint}
+
+\begin{example}
+$2x^2-4x-6=2(x-1)^2-8=2(x+1)(x-3)$. The vertex is $(1,-8)$, $\Delta=64$ and the roots are $-1$ and $3$. Hence $f(x)\leq0$ is equivalent to $x\in[-1;3]$.
+\end{example}
+
+\begin{figurebox}
+\begin{tikzpicture}[x=.65cm,y=.13cm]\draw[mxaxisline](-3,0)--(5,0)node[right]{$x$};\draw[mxaxisline](0,-10)--(0,12)node[above]{$y$};\draw[mxcurve,domain=-2.15:4.15,samples=100]plot(\x,{2*(\x-1)^2-8});\draw[mxaux](1,-9)--(1,11);\fill[mxmint](-1,0)circle(2pt)node[below]{$-1$};\fill[mxmint](3,0)circle(2pt)node[below]{$3$};\fill[mxink](1,-8)circle(2pt)node[right]{$S(1,-8)$};\end{tikzpicture}
+\end{figurebox}
+
+\begin{activity}[Investigate and justify]
+Find the variation, roots and sign of $-x^2+2x+3$, $x^2-2$ and $x^2+x+1$. Give exact roots, then approximations explicitly marked with $\approx$. Check your results by expanding a factorisation or substituting the roots.
+\end{activity}

@@ -1427,8 +1427,8 @@
         "topic": "diophantine",
         "labs": [],
         "description": [
-          "Algorithme d’Euclide et divisibilité dans ℤ.",
-          "Euclidean algorithm and divisibility in ℤ."
+          "Algorithme d’Euclide et divisibilité dans $ℤ$.",
+          "Euclidean algorithm and divisibility in $ℤ$."
         ],
         "authored": true
       },
@@ -13665,6 +13665,63 @@
         "evaluations/E8",
         "evaluations/E9",
         "annexes/sources"
+      ]
+    },
+    "enrichment": {
+      "layout": "sheet",
+      "sections": "unnumbered",
+      "units": [
+        "invariants-notes",
+        "invariants-exercises",
+        "invariants-problems",
+        "pigeonhole-notes",
+        "pigeonhole-exercises",
+        "pigeonhole-problems",
+        "modular-notes",
+        "modular-exercises",
+        "modular-problems",
+        "diophantine-notes",
+        "diophantine-exercises",
+        "diophantine-problems",
+        "lattice-paths-notes",
+        "lattice-paths-exercises",
+        "lattice-paths-problems",
+        "euler-trails-notes",
+        "euler-trails-exercises",
+        "euler-trails-problems",
+        "bayes-notes",
+        "bayes-exercises",
+        "bayes-problems",
+        "waiting-time-notes",
+        "waiting-time-exercises",
+        "waiting-time-problems",
+        "complex-rotations-notes",
+        "complex-rotations-exercises",
+        "complex-rotations-problems",
+        "telescoping-notes",
+        "telescoping-exercises",
+        "telescoping-problems",
+        "inequalities-notes",
+        "inequalities-exercises",
+        "inequalities-problems",
+        "bisection-notes",
+        "bisection-exercises",
+        "bisection-problems",
+        "quadratic-presentation"
+      ],
+      "teacherUnits": [
+        "invariants-solutions",
+        "pigeonhole-solutions",
+        "modular-solutions",
+        "diophantine-solutions",
+        "lattice-paths-solutions",
+        "euler-trails-solutions",
+        "bayes-solutions",
+        "waiting-time-solutions",
+        "complex-rotations-solutions",
+        "telescoping-solutions",
+        "inequalities-solutions",
+        "bisection-solutions"
       ]
     }
   }

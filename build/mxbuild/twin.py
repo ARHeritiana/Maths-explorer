@@ -353,7 +353,12 @@ def generate(fr_text, table, statuses=('aligned', 'reviewed')):
 
 
 def align_files(fr, en_old):
-    pairs = align(fr.read_text(), en_old.read_text())
+    return align_into(fr, en_old.read_text())
+
+
+def align_into(fr, en_text):
+    """Align the French unit file fr with an English text and record the pairs in its table (reviewed entries are kept)."""
+    pairs = align(fr.read_text(), en_text)
     table = load_table(fr); table['unit'] = fr.name
     for order, (f, e) in enumerate(pairs):
         sid = seg_id(f)

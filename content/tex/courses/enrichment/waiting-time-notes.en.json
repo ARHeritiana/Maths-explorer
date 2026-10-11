@@ -1,0 +1,71 @@
+{
+ "unit": "waiting-time-notes.fr.tex",
+ "segments": {
+  "ce25fc8ac66b": {
+   "fr": "Attendre le premier succès",
+   "en": "Waiting for the first success",
+   "status": "aligned",
+   "order": 0
+  },
+  "0220a39a2057": {
+   "fr": "Terminale · probabilités et suites",
+   "en": "Upper high school · probability and sequences",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "4fe7be117895": {
+   "fr": "Épreuves indépendantes, suites géométriques et sommes.",
+   "en": "Independent trials, geometric sequences and sums.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "bcc1e1479e9d": {
+   "fr": "On répète des essais indépendants ayant chacun une probabilité p de succès, avec [[m1]]. T est le numéro du premier succès, en commençant à 1.",
+   "en": "Repeat independent trials, each with success probability p, where [[m1]]. T is the trial number of the first success, starting at 1.",
+   "status": "aligned",
+   "order": 5
+  },
+  "e6603110cfc9": {
+   "fr": "L’événement [[m1]] impose [[m2]] échecs puis un succès : [[m3]]. De même, [[m4]] pour [[m5]].",
+   "en": "The event [[m1]] requires [[m2]] failures followed by success: [[m3]]. Likewise, [[m4]] for [[m5]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "5b17728b5367": {
+   "fr": "L’espérance vaut [[m1]]. On peut la retrouver par la somme des probabilités de queue : [[m2]], pour [[m3]], donc par la somme géométrique. Il s’agit d’une moyenne, pas d’une date garantie de succès.",
+   "en": "The expectation is [[m1]]. It follows from the tail-sum formula [[m2]], for [[m3]], and the geometric series. This is an average, not a guaranteed success time.",
+   "status": "aligned",
+   "order": 7
+  },
+  "d5b1726562d9": {
+   "fr": "Pour un dé équilibré et le succès « obtenir 6 », [[m1]]. L’attente moyenne est 6 lancers, mais la probabilité d’attendre plus de 6 lancers est [[m2]], soit environ [[m3]].",
+   "en": "For a fair die with success defined as rolling 6, [[m1]]. The mean waiting time is 6 rolls, but the probability of waiting more than 6 rolls is [[m2]], about [[m3]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 9
+  },
+  "eca3b1804d9c": {
+   "fr": "Pour [[m1]], comparer [[m2]] pour [[m3]]. Relier la diminution au facteur géométrique [[m4]].",
+   "en": "For [[m1]], compare [[m2]] for [[m3]]. Relate the decrease to the geometric factor [[m4]].",
+   "status": "aligned",
+   "order": 10
+  }
+ }
+}

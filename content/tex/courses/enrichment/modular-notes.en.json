@@ -1,0 +1,71 @@
+{
+ "unit": "modular-notes.fr.tex",
+ "segments": {
+  "65d9ea0171f0": {
+   "fr": "Congruences et derniers chiffres",
+   "en": "Congruences and last digits",
+   "status": "aligned",
+   "order": 0
+  },
+  "a598d4755248": {
+   "fr": "Lycée · arithmétique",
+   "en": "High school · number theory",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "258309554f83": {
+   "fr": "Divisibilité, puissances et division euclidienne.",
+   "en": "Divisibility, powers and Euclidean division.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "737ba48a2004": {
+   "fr": "[[m1]] (mod m), avec [[m2]], signifie que m divise [[m3]]. Les deux nombres ont le même reste dans la division par m. Par exemple, [[m4]] (mod 7).",
+   "en": "[[m1]] (mod m), with [[m2]], means that m divides [[m3]]. They have the same remainder upon division by m. For example, [[m4]] (mod 7).",
+   "status": "aligned",
+   "order": 5
+  },
+  "739c710045a4": {
+   "fr": "Les congruences se conservent par addition et multiplication, donc par élévation à une puissance entière positive. Pour trouver un dernier chiffre, travailler modulo 10.",
+   "en": "Congruences are preserved by addition and multiplication, hence by positive integer powers. Work modulo 10 to find a last digit.",
+   "status": "aligned",
+   "order": 6
+  },
+  "6e1ffffc87bb": {
+   "fr": "On ne simplifie pas toujours un facteur : [[m1]] (mod 6), mais 1 n’est pas congru à 4 modulo 6. Un facteur premier avec le module peut être simplifié.",
+   "en": "A factor cannot always be cancelled: [[m1]] (mod 6), but 1 is not congruent to 4 modulo 6. A factor coprime to the modulus can be cancelled.",
+   "status": "aligned",
+   "order": 7
+  },
+  "ff7e4cbd61c9": {
+   "fr": "Les derniers chiffres de [[m1]] sont [[m2]]. Le cycle recommence ensuite car [[m3]] (mod 10). Comme [[m4]], le dernier chiffre de [[m5]] est 9.",
+   "en": "The last digits of [[m1]] are [[m2]]. The cycle repeats because [[m3]] (mod 10). Since [[m4]], the last digit of [[m5]] is 9.",
+   "status": "aligned",
+   "order": 8
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 9
+  },
+  "be612719fa90": {
+   "fr": "Construire les tables des carrés modulo 3, 4 et 5. Repérer les restes impossibles.",
+   "en": "Build tables of squares modulo 3, 4 and 5. Identify impossible remainders.",
+   "status": "aligned",
+   "order": 10
+  }
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "unit": "pigeonhole-solutions.fr.tex",
+ "segments": {
+  "1dc9f6678102": {
+   "fr": "Le principe des tiroirs",
+   "en": "The pigeonhole principle",
+   "status": "aligned",
+   "order": 0
+  },
+  "225106421595": {
+   "fr": "Seconde · olympiades",
+   "en": "High school · olympiad thinking",
+   "status": "aligned",
+   "order": 1
+  },
+  "db2fd0bfdf52": {
+   "fr": "Solutions détaillées",
+   "en": "Worked solutions",
+   "status": "aligned",
+   "order": 2
+  },
+  "87cfaf4aaeb9": {
+   "fr": "Montrer que parmi 25 personnes, trois au moins sont nées le même mois.",
+   "en": "Show that among 25 people, at least three were born in the same month.",
+   "status": "aligned",
+   "order": 3
+  },
+  "2c089e47f90c": {
+   "fr": "Avec au plus deux personnes par mois, il y aurait au plus 24 personnes. Donc un mois en contient au moins trois.",
+   "en": "At most two per month would give at most 24 people. Therefore one month contains at least three.",
+   "status": "aligned",
+   "order": 4
+  },
+  "65b8be39428f": {
+   "fr": "On choisit six nombres distincts dans [[m1]]. Prouver que deux ont pour somme 11.",
+   "en": "Choose six distinct numbers from [[m1]]. Prove that two sum to 11.",
+   "status": "aligned",
+   "order": 5
+  },
+  "de8fb315b83c": {
+   "fr": "Les cinq tiroirs sont [[m1]], [[m2]], [[m3]], [[m4]], [[m5]]. Six choix occupent entièrement au moins une paire.",
+   "en": "The five boxes are [[m1]], [[m2]], [[m3]], [[m4]], [[m5]]. Six choices fill at least one pair.",
+   "status": "aligned",
+   "order": 6
+  },
+  "14ed11982d81": {
+   "fr": "Prouver que parmi huit entiers, deux ont une différence divisible par 7.",
+   "en": "Prove that among eight integers, two have a difference divisible by 7.",
+   "status": "aligned",
+   "order": 7
+  },
+  "c2b7b2adbd75": {
+   "fr": "Il y a sept restes possibles modulo 7. Deux des huit entiers ont le même reste, donc leur différence est multiple de 7.",
+   "en": "There are seven possible remainders modulo 7. Two integers share a remainder, so their difference is a multiple of 7.",
+   "status": "aligned",
+   "order": 8
+  },
+  "3c6c058062cc": {
+   "fr": "Cinq points sont dans un carré de côté 2, bord compris. Montrer que deux sont à distance au plus [[m1]].",
+   "en": "Five points lie in a square of side 2, including its boundary. Show that two are at distance at most [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "fd9a5ab4b542": {
+   "fr": "Partager le carré en quatre carrés de côté 1, en affectant chaque point des frontières à un seul carré. Deux points appartiennent au même petit carré ; sa diagonale vaut [[m1]].",
+   "en": "Divide the square into four unit squares, assigning each boundary point to just one square. Two points share a unit square, whose diagonal is [[m1]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "7541c663b666": {
+   "fr": "Chercher, justifier, conclure",
+   "en": "Investigate, justify, conclude",
+   "status": "aligned",
+   "order": 11
+  },
+  "1809aa805a47": {
+   "fr": "On choisit 11 entiers distincts entre 1 et 20. Écrire chaque entier sous la forme [[m1]] avec m impair et [[m2]]. Combien de valeurs de m sont possibles ? Prouver que l’un des entiers choisis divise un autre. Montrer qu’avec seulement dix entiers, la conclusion peut être fausse.",
+   "en": "Choose 11 distinct integers from 1 to 20. Write each as [[m1]] with m odd and [[m2]]. How many values of m are possible? Prove that one selected integer divides another. Show that the conclusion can fail with only ten integers.",
+   "status": "aligned",
+   "order": 12
+  },
+  "86c74d32aebf": {
+   "fr": "La décomposition s’obtient en retirant les facteurs 2. Les dix parties impaires possibles sont [[m1]]. Deux nombres choisis partagent donc la même partie impaire : [[m2]] et [[m3]], avec [[m4]] puisqu’ils sont distincts. Le second vaut [[m5]] fois le premier. Pour dix nombres, choisir [[m6]] : le double de chacun dépasse 20, donc aucun n’en divise un autre distinct.",
+   "en": "Remove all factors of 2. The ten possible odd parts are [[m1]]. Two chosen numbers share an odd part: [[m2]] and [[m3]], with [[m4]] because they are distinct. The second is [[m5]] times the first. For ten numbers choose [[m6]]: twice any of them exceeds 20, so none divides another distinct one.",
+   "status": "aligned",
+   "order": 13
+  }
+ }
+}

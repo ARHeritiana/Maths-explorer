@@ -13,7 +13,7 @@ breaks by `\mxneed{n}` (`\Needspace`), never by hand. Minimal compilable example
 | `mx-i18n.sty` | babel, label dictionary (`\mxlabelof{key}`), `\mxtr{fr}{en}` (core only), `\mxdate{YYYY-MM-DD}`, `\mxdate*{...}` |
 | `mx-edition.sty` | `\ifmxteacher`, `\mxteacheronly{}`, `\mxstudentonly{}` |
 | `mx-math.sty` | every maths macro, once (`\R \N \Z \Q \D \C \vect \vi \vj \vk \norm \vc \deter \abs \dd \e \ent \Card \pgcd \ppcm \degre \un \sci`) |
-| `mx-figures.sty` | palette `mxink mxmint mxmintpale mxteacher mxwarn mxline mxmuted mxpaper`; TikZ libraries; styles `mxcurve mxaux mxpoint mxaxis` |
+| `mx-figures.sty` | palette `mxink mxmint mxmintpale mxteacher mxwarn mxline mxmuted mxpaper`; TikZ libraries; styles `mxcurve mxaux mxpoint mxaxisline` (TikZ), `mxaxis mxgridaxis` (pgfplots) |
 | `mx-layout.sty` | geometry per layout, headings, running heads, `\mxneed{n}` |
 | `mx-env.sty` | the environments below |
 | `mx-code.sty` | Python listings style, `\code{}` |

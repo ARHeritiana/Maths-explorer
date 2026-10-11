@@ -1,0 +1,71 @@
+{
+ "unit": "invariants-notes.fr.tex",
+ "segments": {
+  "b058012da0f1": {
+   "fr": "Parité et invariants",
+   "en": "Parity and invariants",
+   "status": "aligned",
+   "order": 0
+  },
+  "28768685dfa1": {
+   "fr": "Seconde · raisonnement",
+   "en": "High school · reasoning",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "154b94482aea": {
+   "fr": "Entiers pairs et impairs ; preuve par contradiction.",
+   "en": "Even and odd integers; proof by contradiction.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "bd9af64c9f7e": {
+   "fr": "Un invariant est une quantité ou une propriété conservée par chaque opération autorisée. Si l’état visé n’a pas la même valeur de cet invariant que l’état initial, il est inaccessible.",
+   "en": "An invariant is a quantity or property preserved by every allowed move. If the target has a different invariant value from the initial state, it cannot be reached.",
+   "status": "aligned",
+   "order": 5
+  },
+  "a40b9bddceb3": {
+   "fr": "Pour étudier la parité, on peut remplacer les entiers par leurs restes 0 ou 1 modulo 2. Deux nombres impairs ont une somme paire. Ajouter un nombre pair ne change pas la parité.",
+   "en": "To study parity, replace integers with their remainders 0 or 1 modulo 2. Two odd integers have an even sum. Adding an even integer preserves parity.",
+   "status": "aligned",
+   "order": 6
+  },
+  "629c3be35009": {
+   "fr": "Méthode : décrire précisément un coup, chercher ce qu’il conserve, calculer l’invariant initial et celui de la cible. Une obstruction prouve une impossibilité ; l’absence d’obstruction ne prouve pas la possibilité.",
+   "en": "Method: specify one move, find what it preserves, and compute the invariant at the start and at the target. An obstruction proves impossibility; the absence of an obstruction does not prove possibility.",
+   "status": "aligned",
+   "order": 7
+  },
+  "3814b785c3af": {
+   "fr": "On part de 0 et chaque coup ajoute ou retranche 6. Tous les nombres obtenus sont pairs. Atteindre 15 est donc impossible. Atteindre 14 est aussi impossible, mais la seule parité ne suffit pas à le prouver : il faut remarquer que tout résultat est multiple de 6.",
+   "en": "Start at 0 and add or subtract 6 at each move. Every reachable number is even, so 15 is unreachable. The number 14 is also unreachable, but parity alone cannot prove this: every reachable number is a multiple of 6.",
+   "status": "aligned",
+   "order": 8
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 9
+  },
+  "483540c4076b": {
+   "fr": "Écrire quelques suites de coups, puis classer les nombres atteints. Trouver une propriété commune plus précise que la parité.",
+   "en": "Write several sequences of moves, then classify the reached numbers. Find a common property more precise than parity.",
+   "status": "aligned",
+   "order": 10
+  }
+ }
+}

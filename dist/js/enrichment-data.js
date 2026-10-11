@@ -239,8 +239,8 @@ export const enrichment = [
           "Prove that an integer square is never congruent to 2 modulo 3."
         ],
         "a": [
-          "Un entier est congru à 0,1 ou 2. Les carrés correspondants sont 0,1 et 4 ≡ 1 modulo 3.",
-          "An integer is congruent to 0,1 or 2. The corresponding squares are 0,1 and 4 ≡ 1 modulo 3."
+          "Un entier est congru à 0, 1 ou 2. Les carrés correspondants sont 0, 1 et 4 ≡ 1 modulo 3.",
+          "An integer is congruent to 0, 1 or 2. The corresponding squares are 0, 1 and 4 ≡ 1 modulo 3."
         ]
       },
       {
@@ -259,8 +259,8 @@ export const enrichment = [
       "An integer N is congruent to 2 modulo 3 and to 3 modulo 5. Write N = 3k + 2, determine k modulo 5, then give all solutions modulo 15. Which solutions from 0 to 100 inclusive are even?"
     ],
     "solution": [
-      "3k + 2 ≡ 3 (mod 5), donc 3k ≡ 1 et k ≡ 2 (mod 5), car 3 × 2 ≡ 1. Ainsi N = 15t + 8. Dans [0,100], on obtient 8,23,38,53,68,83,98. Les valeurs paires sont 8,38,68,98. La substitution vérifie les deux congruences pour toute valeur entière de t.",
-      "3k + 2 ≡ 3 (mod 5), so 3k ≡ 1 and k ≡ 2 (mod 5), since 3 × 2 ≡ 1. Thus N = 15t + 8. In [0,100] the values are 8,23,38,53,68,83,98. The even values are 8,38,68,98. Substitution verifies both congruences for every integer t."
+      "3k + 2 ≡ 3 (mod 5), donc 3k ≡ 1 et k ≡ 2 (mod 5), car 3 × 2 ≡ 1. Ainsi N = 15t + 8. Dans [0 ; 100], on obtient 8,23,38,53,68,83,98. Les valeurs paires sont 8,38,68,98. La substitution vérifie les deux congruences pour toute valeur entière de t.",
+      "3k + 2 ≡ 3 (mod 5), so 3k ≡ 1 and k ≡ 2 (mod 5), since 3 × 2 ≡ 1. Thus N = 15t + 8. In [0 ; 100] the values are 8,23,38,53,68,83,98. The even values are 8,38,68,98. Substitution verifies both congruences for every integer t."
     ]
   },
   {
@@ -781,8 +781,8 @@ export const enrichment = [
       },
       {
         "q": [
-          "La transformation z′=i z+2 a quel centre ?",
-          "What is the centre of z′=i z+2?"
+          "La transformation z′=iz+2 a quel centre ?",
+          "What is the centre of z′=iz+2?"
         ],
         "a": [
           "Le centre vérifie a=i a+2, donc a=2/(1−i)=1+i.",
@@ -1022,8 +1022,8 @@ export const enrichment = [
       ]
     ],
     "worked": [
-      "Pour f(x)=x²−2 sur [1,2], f est continue et strictement croissante. Sa racine est unique. Les milieux 1,5, puis 1,25 donnent les intervalles [1 ; 1,5], puis [1,25 ; 1,5] : on conserve toujours un signe négatif à gauche et positif à droite.",
-      "For f(x)=x²−2 on [1,2], f is continuous and strictly increasing, so its root is unique. Midpoints 1.5 and then 1.25 give intervals [1,1.5] and [1.25,1.5]: the left value remains negative and the right value positive."
+      "Pour f(x)=x²−2 sur [1 ; 2], f est continue et strictement croissante. Sa racine est unique. Les milieux 1,5, puis 1,25 donnent les intervalles [1 ; 1,5], puis [1,25 ; 1,5] : on conserve toujours un signe négatif à gauche et positif à droite.",
+      "For f(x)=x²−2 on [1 ; 2], f is continuous and strictly increasing, so its root is unique. Midpoints 1.5 and then 1.25 give intervals [1 ; 1.5] and [1.25 ; 1.5]: the left value remains negative and the right value positive."
     ],
     "activity": [
       "Sur une droite graduée, représenter les intervalles successifs autour de √2. Inscrire leur largeur à chaque étape.",
@@ -1037,7 +1037,7 @@ export const enrichment = [
         ],
         "a": [
           "Le milieu vaut 1,375 ; son carré vaut 1,890625<2. Le nouvel intervalle est [1,375 ; 1,5].",
-          "The midpoint is 1.375, whose square is 1.890625<2. The new interval is [1.375,1.5]."
+          "The midpoint is 1.375, whose square is 1.890625<2. The new interval is [1.375 ; 1.5]."
         ]
       },
       {
@@ -1056,14 +1056,14 @@ export const enrichment = [
           "Why does the sign change of f(x)=1/x between −1 and 1 not prove the existence of a zero?"
         ],
         "a": [
-          "La fonction n’est pas définie en 0 et n’est pas continue sur [−1,1]. L’hypothèse du théorème n’est pas satisfaite ; 1/x n’est jamais nul.",
-          "The function is undefined at 0 and is not continuous on [−1,1]. The theorem’s hypothesis fails; 1/x is never zero."
+          "La fonction n’est pas définie en 0 et n’est pas continue sur [−1 ; 1]. L’hypothèse du théorème n’est pas satisfaite ; 1/x n’est jamais nul.",
+          "The function is undefined at 0 and is not continuous on [−1 ; 1]. The theorem’s hypothesis fails; 1/x is never zero."
         ]
       },
       {
         "q": [
           "Une racine est dans [1,4 ; 1,5]. Quelle erreur maximale garantit le milieu 1,45 ?",
-          "A root lies in [1.4,1.5]. What maximum error is guaranteed by midpoint 1.45?"
+          "A root lies in [1.4 ; 1.5]. What maximum error is guaranteed by midpoint 1.45?"
         ],
         "a": [
           "La demi-largeur vaut (1,5−1,4)/2=0,05.",
@@ -1072,16 +1072,16 @@ export const enrichment = [
       }
     ],
     "problem": [
-      "Pour f(x)=x³−x−1 sur [1,2], prouver l’existence et l’unicité d’une racine α. Effectuer trois partages par dichotomie. Combien de partages garantissent que le milieu final approche α à 0,001 près, avec une erreur au plus 0,001 ?",
-      "For f(x)=x³−x−1 on [1,2], prove existence and uniqueness of a root α. Carry out three bisection steps. How many halvings guarantee that the final midpoint approximates α with error at most 0.001?"
+      "Pour f(x)=x³−x−1 sur [1 ; 2], prouver l’existence et l’unicité d’une racine α. Effectuer trois partages par dichotomie. Combien de partages garantissent que le milieu final approche α avec une erreur au plus 0,001 ?",
+      "For f(x)=x³−x−1 on [1 ; 2], prove existence and uniqueness of a root α. Carry out three bisection steps. How many halvings guarantee that the final midpoint approximates α with error at most 0.001?"
     ],
     "solution": [
-      "f(1)=−1 et f(2)=5 ; f est continue. De plus f′(x)=3x²−1≥2 sur [1,2], donc f est strictement croissante. Les milieux 1,5, 1,25, 1,375 donnent successivement [1 ; 1,5], [1,25 ; 1,5], [1,25 ; 1,375] car les valeurs de f sont 0,875, −0,296875 et 0,224609375. Après n partages, l’erreur du milieu est au plus 1/2ⁿ⁺¹. Il faut 2ⁿ⁺¹≥1000, donc n≥9.",
-      "f(1)=−1 and f(2)=5, and f is continuous. Also f′(x)=3x²−1≥2 on [1,2], so f is strictly increasing. Midpoints 1.5, 1.25, 1.375 give [1,1.5], [1.25,1.5], [1.25,1.375] because f takes values 0.875, −0.296875 and 0.224609375. After n halvings, midpoint error is at most 1/2ⁿ⁺¹. Thus 2ⁿ⁺¹≥1000, requiring n≥9."
+      "f(1)=−1 et f(2)=5 ; f est continue. De plus f′(x)=3x²−1≥2 sur [1 ; 2], donc f est strictement croissante. Les milieux 1,5, 1,25, 1,375 donnent successivement [1 ; 1,5], [1,25 ; 1,5], [1,25 ; 1,375] car les valeurs de f sont 0,875, −0,296875 et 0,224609375. Après n partages, l’erreur du milieu est au plus 1/2ⁿ⁺¹. Il faut 2ⁿ⁺¹≥1000, donc n≥9.",
+      "f(1)=−1 and f(2)=5, and f is continuous. Also f′(x)=3x²−1≥2 on [1 ; 2], so f is strictly increasing. Midpoints 1.5, 1.25, 1.375 give [1 ; 1.5], [1.25 ; 1.5], [1.25 ; 1.375] because f takes values 0.875, −0.296875 and 0.224609375. After n halvings, midpoint error is at most 1/2ⁿ⁺¹. Thus 2ⁿ⁺¹≥1000, requiring n≥9."
     ],
     "exerciseContext": [
       "Pour l’exercice 1 : on cherche un zéro de f(x)=x²−2 sur [1 ; 2]. Après deux partages, l’intervalle conservé est [1,25 ; 1,5].",
-      "For exercise 1: seek a zero of f(x)=x²−2 on [1,2]. After two halvings, the retained interval is [1.25,1.5]."
+      "For exercise 1: seek a zero of f(x)=x²−2 on [1 ; 2]. After two halvings, the retained interval is [1.25 ; 1.5]."
     ]
   }
 ];

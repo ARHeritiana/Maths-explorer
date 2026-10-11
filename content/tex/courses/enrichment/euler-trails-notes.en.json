@@ -1,0 +1,71 @@
+{
+ "unit": "euler-trails-notes.fr.tex",
+ "segments": {
+  "d685e2bc3e18": {
+   "fr": "Parcours sans lever le crayon",
+   "en": "Routes without lifting the pencil",
+   "status": "aligned",
+   "order": 0
+  },
+  "8310741e334a": {
+   "fr": "Lycée · graphes et logique",
+   "en": "High school · graphs and logic",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "4dc929788cac": {
+   "fr": "Sommets, arêtes et comptage.",
+   "en": "Vertices, edges and counting.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "cf6d22bd50f3": {
+   "fr": "Dans un graphe non orienté, le degré d’un sommet est le nombre d’extrémités d’arêtes qui y sont attachées. Une boucle compte deux fois. La somme des degrés vaut deux fois le nombre d’arêtes.",
+   "en": "In an undirected graph, a vertex’s degree counts incident edge ends. A loop counts twice. The sum of the degrees is twice the number of edges.",
+   "status": "aligned",
+   "order": 5
+  },
+  "029a3c71fcc9": {
+   "fr": "Un parcours eulérien utilise chaque arête exactement une fois. À un sommet intermédiaire, toute entrée doit être associée à une sortie. Seuls le départ et l’arrivée peuvent donc avoir un degré impair.",
+   "en": "An Euler trail uses each edge exactly once. At an intermediate vertex, each arrival must pair with a departure. Only the starting and ending vertices can therefore have odd degree.",
+   "status": "aligned",
+   "order": 6
+  },
+  "db42aa81a3d5": {
+   "fr": "Pour un graphe dont les sommets de degré non nul sont reliés, un parcours eulérien existe s’il y a zéro ou deux sommets de degré impair. Avec zéro, on revient au départ ; avec deux, on va de l’un à l’autre. On peut construire le parcours en raccordant des cycles.",
+   "en": "If all vertices of nonzero degree are connected, an Euler trail exists when there are zero or two odd-degree vertices. With zero it ends where it starts; with two it runs between them. A trail can be built by joining cycles.",
+   "status": "aligned",
+   "order": 7
+  },
+  "3f6107302baf": {
+   "fr": "Dans un carré ABCD avec la diagonale AC, les degrés sont [[m1]]. Un parcours existe de A à C : A--B--C--D--A--C. Il utilise bien les cinq arêtes une seule fois.",
+   "en": "In a square ABCD with diagonal AC, degrees are [[m1]]. A trail exists from A to C: A--B--C--D--A--C. It uses all five edges exactly once.",
+   "status": "aligned",
+   "order": 8
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 9
+  },
+  "e38428fc8d26": {
+   "fr": "Dessiner ce carré, puis ajouter la seconde diagonale. Recompter les degrés avant de tenter un tracé.",
+   "en": "Draw the square, then add the other diagonal. Recount degrees before trying a trail.",
+   "status": "aligned",
+   "order": 10
+  }
+ }
+}

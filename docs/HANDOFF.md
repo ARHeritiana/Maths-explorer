@@ -33,8 +33,12 @@ overlay PDFs dropped (done).
   `tests/twin_parity.py` (numbers in maths and figures, all pairs), `scripts/build-slides.py` canonical parser.
 - Source defects fixed on the way (all recorded in commit messages): French decimal commas in maths, ordinals as text,
   26 French "et" left in STMG English, English-only \clearpage hacks, English printing PGCD.
-- NEXT: Enrichment (generate units from `content/data/enrichment.json`
-  instead of the XeLaTeX files), then B4 (format file, figure externalisation, retire style-resource-pdfs.py).
+- Enrichment: units generated from `content/data/enrichment.json` (`mxbuild.enrichment`; maths now marked `$...$` in
+  the JSON, which fixed wrong maths detection such as "il $y a C(5,3)$", "on $a 21$", "0,4, P(R|A)=0.5" in French);
+  12 workshops x 4 resources + the quadratic sheet, sheet layout, pdfLaTeX; 37 student + 49 teacher pages, FR = EN,
+  every resource 1 page except bayes solutions (now 1, was 2). XeLaTeX path, explorer.sty and 98 generated files removed.
+- Full `make tex`: 4 min 10 s (baseline 622 s). Rebuilt PDFs that differ only in /ID keep the committed copy.
+- NEXT: B4 (format file, figure externalisation, retire style-resource-pdfs.py).
 - Each course: write a PLANS entry in migrate.py, `python -m mxbuild migrate <course> --dry-run` until no refusals
   (fix source defects in the old files first), migrate, write the front unit, add the book to the manifest, point the
   builder at generated mains, compare words with the old PDFs (`/tmp` baseline must be rebuilt in a new container),

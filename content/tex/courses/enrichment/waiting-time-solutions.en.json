@@ -1,0 +1,71 @@
+{
+ "unit": "waiting-time-solutions.fr.tex",
+ "segments": {
+  "ce25fc8ac66b": {
+   "fr": "Attendre le premier succès",
+   "en": "Waiting for the first success",
+   "status": "aligned",
+   "order": 0
+  },
+  "0220a39a2057": {
+   "fr": "Terminale · probabilités et suites",
+   "en": "Upper high school · probability and sequences",
+   "status": "aligned",
+   "order": 1
+  },
+  "db2fd0bfdf52": {
+   "fr": "Solutions détaillées",
+   "en": "Worked solutions",
+   "status": "aligned",
+   "order": 2
+  },
+  "576371ad4ef4": {
+   "fr": "Avec [[m1]], calculer [[m2]].",
+   "en": "With [[m1]], find [[m2]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "838595e69751": {
+   "fr": "Pour [[m1]], calculer [[m2]].",
+   "en": "For [[m1]], find [[m2]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "910709b19fa6": {
+   "fr": "Le quotient des probabilités de queue est [[m1]]. Après les m échecs, la loi de l’attente restante est inchangée.",
+   "en": "The ratio of tail probabilities is [[m1]]. After m failures, the remaining waiting-time distribution is unchanged.",
+   "status": "aligned",
+   "order": 6
+  },
+  "ce4d52e1950c": {
+   "fr": "Une réussite a probabilité [[m1]] à chaque essai indépendant. Quelle est l’attente moyenne ? Le cinquième essai réussit-il nécessairement ?",
+   "en": "Success has probability [[m1]] at each independent trial. What is the mean waiting time? Must the fifth trial succeed?",
+   "status": "aligned",
+   "order": 7
+  },
+  "5aa08c976d24": {
+   "fr": "[[m1]] essais. Non : chaque essai a toujours probabilité [[m2]] de réussir, indépendamment des échecs antérieurs.",
+   "en": "[[m1]] trials. No: every trial still has success probability [[m2]], independently of previous failures.",
+   "status": "aligned",
+   "order": 8
+  },
+  "7541c663b666": {
+   "fr": "Chercher, justifier, conclure",
+   "en": "Investigate, justify, conclude",
+   "status": "aligned",
+   "order": 9
+  },
+  "ed05e3002865": {
+   "fr": "On lance un dé équilibré jusqu’au premier 6, mais on s’arrête dans tous les cas après 10 lancers. Soit N le nombre de lancers réellement effectués. Calculer [[m1]], la probabilité d’avoir obtenu au moins un 6 et E(N). Pour la moyenne, utiliser [[m2]], de [[m3]] à 9.",
+   "en": "Roll a fair die until the first 6, but stop after 10 rolls in any case. Let N be the number of rolls actually made. Find [[m1]], the probability of obtaining at least one 6, and E(N). For the mean, use [[m2]], from [[m3]] to 9.",
+   "status": "aligned",
+   "order": 10
+  },
+  "7e868223626c": {
+   "fr": "[[m1]] si les neuf premiers lancers sont des échecs, quel que soit le dixième : [[m2]]. La probabilité d’au moins un 6 vaut [[m3]]. Pour [[m4]], [[m5]], donc [[m6]], soit environ [[m7]] lancers. La troncature diminue l’espérance par rapport à 6.",
+   "en": "[[m1]] when the first nine rolls fail, regardless of the tenth: [[m2]]. The probability of at least one 6 is [[m3]]. For [[m4]], [[m5]], giving [[m6]], about [[m7]] rolls. Truncation reduces the expectation below 6.",
+   "status": "aligned",
+   "order": 11
+  }
+ }
+}

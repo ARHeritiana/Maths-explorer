@@ -1,0 +1,119 @@
+{
+ "unit": "bayes-solutions.fr.tex",
+ "segments": {
+  "fe9faeb89d51": {
+   "fr": "Inverser une probabilité conditionnelle",
+   "en": "Reversing a conditional probability",
+   "status": "aligned",
+   "order": 0
+  },
+  "87166ef6b646": {
+   "fr": "Première--Terminale · probabilités",
+   "en": "High school · probability",
+   "status": "aligned",
+   "order": 1
+  },
+  "db2fd0bfdf52": {
+   "fr": "Solutions détaillées",
+   "en": "Worked solutions",
+   "status": "aligned",
+   "order": 2
+  },
+  "5751fdd71143": {
+   "fr": "\\textbf{Données.} Pour les exercices 1 et 2 : on choisit l’urne A avec probabilité [[m1]], l’urne B avec probabilité [[m2]]. A contient 3 boules rouges et 1 bleue ; B contient 1 rouge et 3 bleues. On tire ensuite une boule au hasard dans l’urne choisie.",
+   "en": "\\textbf{Given information.} For exercises 1 and 2: choose urn A with probability [[m1]] and urn B with probability [[m2]]. A contains 3 red balls and 1 blue; B contains 1 red and 3 blue. Then draw a ball uniformly from the chosen urn.",
+   "status": "aligned",
+   "order": 3
+  },
+  "e9cb3bcb2bd5": {
+   "fr": "Dans l’exemple, calculer [[m1]].",
+   "en": "In the example, find [[m1]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "147883ee58c0": {
+   "fr": "bleue",
+   "en": "blue",
+   "status": "aligned",
+   "order": 5
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Find [[m1]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "3eabe47b7cf5": {
+   "fr": "[[m1]]. Donc [[m2]].",
+   "en": "[[m1]]. Hence [[m2]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "4bffc465fb4a": {
+   "fr": "Dans une classe, 12 élèves sur 30 jouent aux échecs ; parmi eux 9 aiment les énigmes. Calculer [[m1]]. Peut-on en déduire [[m2]] ?",
+   "en": "In a class, 12 of 30 students play chess; 9 of those enjoy puzzles. Find [[m1]]. Can [[m2]] be deduced?",
+   "status": "aligned",
+   "order": 11
+  },
+  "a919efa01496": {
+   "fr": "énigmes",
+   "en": "puzzles",
+   "status": "aligned",
+   "order": 12
+  },
+  "27d3d869105e": {
+   "fr": "échecs",
+   "en": "chess",
+   "status": "aligned",
+   "order": 13
+  },
+  "29376479e12b": {
+   "fr": "La première probabilité vaut [[m1]]. Il manque le nombre total d’élèves aimant les énigmes pour calculer la seconde.",
+   "en": "The first probability is [[m1]]. The total number who enjoy puzzles is needed for the second.",
+   "status": "aligned",
+   "order": 16
+  },
+  "65a0f2eab8d4": {
+   "fr": "Deux événements A et R vérifient [[m1]], [[m2]] et [[m3]]. Calculer [[m4]].",
+   "en": "Events A and R satisfy [[m1]], [[m2]] and [[m3]]. Find [[m4]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "37031f99ac78": {
+   "fr": "non ",
+   "en": "not ",
+   "status": "aligned",
+   "order": 18
+  },
+  "21f74d77ffe2": {
+   "fr": "[[m1]] et [[m2]], donc [[m3]]. Ici observer R ne change pas la probabilité de A.",
+   "en": "[[m1]] and [[m2]], so [[m3]]. Here observing R does not change the probability of A.",
+   "status": "aligned",
+   "order": 19
+  },
+  "e92bb47e0987": {
+   "fr": "\\textbf{Données.} On choisit A avec probabilité [[m1]] et B avec probabilité [[m2]]. L’urne A contient 3 rouges et 1 bleue ; B contient 1 rouge et 3 bleues. Pour une seule boule rouge observée, la probabilité d’avoir choisi A est [[m3]].",
+   "en": "\\textbf{Given information.} Choose A with probability [[m1]] and B with probability [[m2]]. Urn A contains 3 red balls and 1 blue; B contains 1 red and 3 blue. After observing one red ball, the probability that A was chosen is [[m3]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "7541c663b666": {
+   "fr": "Chercher, justifier, conclure",
+   "en": "Investigate, justify, conclude",
+   "status": "aligned",
+   "order": 21
+  },
+  "35bbf8b4d3f2": {
+   "fr": "On reprend les deux urnes de l’exemple. Après avoir choisi une urne une seule fois, on effectue deux tirages avec remise dans cette même urne. Calculer la probabilité de deux rouges, puis celle d’avoir choisi A sachant que les deux boules sont rouges. Comparer avec l’observation d’une seule rouge et justifier les produits utilisés.",
+   "en": "Use the two urns from the example. Choose an urn once, then draw twice with replacement from that same urn. Find the probability of two red balls, then the probability that A was chosen given two red balls. Compare with observing one red ball and justify the products used.",
+   "status": "aligned",
+   "order": 22
+  },
+  "fb1c50b45930": {
+   "fr": "Conditionnellement à l’urne choisie, les tirages avec remise sont indépendants. [[m1]]. Ainsi [[m2]], supérieur à [[m3]]. Les tirages ne sont pas indépendants sans conditionnement : ils partagent la même urne cachée.",
+   "en": "Conditional on the selected urn, draws with replacement are independent. [[m1]]. Thus [[m2]], greater than [[m3]]. The draws are not independent unconditionally: they share the same hidden urn.",
+   "status": "aligned",
+   "order": 23
+  }
+ }
+}

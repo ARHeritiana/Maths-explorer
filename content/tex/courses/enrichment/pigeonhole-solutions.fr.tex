@@ -1,0 +1,39 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-pigeonhole-solutions}{Le principe des tiroirs}
+\mxsubtitle{Seconde · olympiades \textperiodcentered{} Solutions détaillées \textperiodcentered{} 02}
+
+\begin{exercise}
+Montrer que parmi 25 personnes, trois au moins sont nées le même mois.
+\end{exercise}
+\begin{solution}
+Avec au plus deux personnes par mois, il y aurait au plus 24 personnes. Donc un mois en contient au moins trois.
+\end{solution}
+
+\begin{exercise}
+On choisit six nombres distincts dans $\{1,\ldots ,10\}$. Prouver que deux ont pour somme 11.
+\end{exercise}
+\begin{solution}
+Les cinq tiroirs sont $\{1,10\}$, $\{2,9\}$, $\{3,8\}$, $\{4,7\}$, $\{5,6\}$. Six choix occupent entièrement au moins une paire.
+\end{solution}
+
+\begin{exercise}
+Prouver que parmi huit entiers, deux ont une différence divisible par 7.
+\end{exercise}
+\begin{solution}
+Il y a sept restes possibles modulo 7. Deux des huit entiers ont le même reste, donc leur différence est multiple de 7.
+\end{solution}
+
+\begin{exercise}
+Cinq points sont dans un carré de côté 2, bord compris. Montrer que deux sont à distance au plus $\sqrt{2}$.
+\end{exercise}
+\begin{solution}
+Partager le carré en quatre carrés de côté 1, en affectant chaque point des frontières à un seul carré. Deux points appartiennent au même petit carré ; sa diagonale vaut $\sqrt{2}$.
+\end{solution}
+
+\begin{problem}[Chercher, justifier, conclure]
+On choisit 11 entiers distincts entre 1 et 20. Écrire chaque entier sous la forme $2^{k}m$ avec m impair et $k \geq  0$. Combien de valeurs de m sont possibles ? Prouver que l’un des entiers choisis divise un autre. Montrer qu’avec seulement dix entiers, la conclusion peut être fausse.
+\end{problem}
+\begin{solution}
+La décomposition s’obtient en retirant les facteurs 2. Les dix parties impaires possibles sont $1,3,\ldots ,19$. Deux nombres choisis partagent donc la même partie impaire : $2^{a}m$ et $2^{b}m$, avec $a < b$ puisqu’ils sont distincts. Le second vaut $2^{b-a}$ fois le premier. Pour dix nombres, choisir $11,12,\ldots ,20$ : le double de chacun dépasse 20, donc aucun n’en divise un autre distinct.
+\end{solution}
+

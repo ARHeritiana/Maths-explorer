@@ -12,7 +12,7 @@ content/
   tex/core/               shared class and packages (phase B)
   slides/                 authored slide decks and French drafts
   data/manifest.json      single source of truth for the resource catalogue
-  data/enrichment.json    enrichment workshops (both languages), source of their TeX, HTML and site data
+  data/enrichment.json    enrichment workshops (both languages, maths marked $...$), source of their TeX units, HTML and site data
   data/glossary.json      FR-EN terminology
 site/                     hand-written web source: index.html, styles/, js/, slides/ player, vendor/
 build/mxbuild/            pipeline package (python -m mxbuild ...); build/out/ holds products and logs (ignored)
@@ -31,7 +31,8 @@ content/tex/courses ──(make tex: scripts/build-*.py via mxbuild.tex.compile)
 content/data/manifest.json ──(make catalog: mxbuild.catalog)──► dist/resources/catalog.json        ◄┘ measures PDFs
                                                                dist/js/resources-data.js
                                                                docs/RESOURCE_PROVENANCE.json
-content/data/enrichment.json ──(build-enrichment*.py)──► enrichment TeX, PDFs, HTML, dist/js/enrichment-data.js
+content/data/enrichment.json ──(build-enrichment.py: mxbuild.enrichment)──► enrichment units (FR, table, EN), PDFs, HTML,
+                                                                        dist/js/enrichment-data.js
 site/js/study-guides.js ──(build-study-guides.mjs)──► dist/resources/shared/*.html + manifest entries
 content/slides + content/tex ──(make slides: build-slides.py)──► dist/slides/data, dist/slides/fig
 site/ ──(make site)──► dist/
@@ -42,6 +43,8 @@ Rules:
 - Edit `content/data/manifest.json` (or use `mxbuild.catalog.load()/save()` in builders), never `catalog.json`,
   `resources-data.js` or `RESOURCE_PROVENANCE.json`; `mxbuild catalog --check` fails on drift. Page counts, sizes and
   hashes are always measured, never typed.
+- A rebuilt PDF that differs from the committed one only in its random `/ID` is put back (`mxbuild.pipeline.restore_unchanged`),
+  so a core change does not rewrite every binary in the repository.
 - Resource URLs under `dist/resources/` are stable; the site and external links depend on them.
 - Owner, school and place names are banned everywhere; `tests/banned.py` checks tracked text and PDF text against
   hashed phrases (the names are not stored in plain text).

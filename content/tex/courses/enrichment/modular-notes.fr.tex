@@ -1,0 +1,24 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-modular-notes}{Congruences et derniers chiffres}
+\mxsubtitle{Lycée · arithmétique \textperiodcentered{} Leçon et méthode \textperiodcentered{} 03}
+
+\begin{prerequisites}
+Divisibilité, puissances et division euclidienne.
+\end{prerequisites}
+
+\begin{keypoint}[Idées et méthode]
+$a \equiv  b$ (mod m), avec $m \geq  2$, signifie que m divise $a - b$. Les deux nombres ont le même reste dans la division par m. Par exemple, $-1 \equiv  6$ (mod 7).
+
+Les congruences se conservent par addition et multiplication, donc par élévation à une puissance entière positive. Pour trouver un dernier chiffre, travailler modulo 10.
+
+On ne simplifie pas toujours un facteur : $2 \times  1 \equiv  2 \times  4$ (mod 6), mais 1 n’est pas congru à 4 modulo 6. Un facteur premier avec le module peut être simplifié.
+\end{keypoint}
+
+\begin{example}
+Les derniers chiffres de $3^{1}, 3^{2}, 3^{3}, 3^{4}$ sont $3,9,7,1$. Le cycle recommence ensuite car $3^{4} \equiv  1$ (mod 10). Comme $2026 = 4 \times  506 + 2$, le dernier chiffre de $3^{2026}$ est 9.
+\end{example}
+
+\begin{activity}[À explorer]
+Construire les tables des carrés modulo 3, 4 et 5. Repérer les restes impossibles.
+\end{activity}
+

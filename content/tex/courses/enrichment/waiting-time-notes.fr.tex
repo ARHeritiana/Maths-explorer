@@ -1,0 +1,24 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-waiting-time-notes}{Attendre le premier succès}
+\mxsubtitle{Terminale · probabilités et suites \textperiodcentered{} Leçon et méthode \textperiodcentered{} 08}
+
+\begin{prerequisites}
+Épreuves indépendantes, suites géométriques et sommes.
+\end{prerequisites}
+
+\begin{keypoint}[Idées et méthode]
+On répète des essais indépendants ayant chacun une probabilité p de succès, avec $0 < p \leq  1$. T est le numéro du premier succès, en commençant à 1.
+
+L’événement $T = k$ impose $k-1$ échecs puis un succès : $P(T=k) = (1-p)^{k-1}p$. De même, $P(T>n) = (1-p)^{n}$ pour $n \geq  0$.
+
+L’espérance vaut $E(T)=\frac{1}{p}$. On peut la retrouver par la somme des probabilités de queue : $E(T)=\sum  P(T>n)$, pour $n \geq  0$, donc par la somme géométrique. Il s’agit d’une moyenne, pas d’une date garantie de succès.
+\end{keypoint}
+
+\begin{example}
+Pour un dé équilibré et le succès « obtenir 6 », $p=\frac{1}{6}$. L’attente moyenne est 6 lancers, mais la probabilité d’attendre plus de 6 lancers est $(\frac{5}{6})^{6}$, soit environ $0{,}335$.
+\end{example}
+
+\begin{activity}[À explorer]
+Pour $p=\frac{1}{4}$, comparer $P(T>n)$ pour $n=0,1,\ldots ,10$. Relier la diminution au facteur géométrique $\frac{3}{4}$.
+\end{activity}
+

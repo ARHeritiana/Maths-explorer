@@ -1,0 +1,40 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-euler-trails-solutions}{Routes without lifting the pencil}
+\mxsubtitle{High school · graphs and logic \textperiodcentered{} Worked solutions \textperiodcentered{} 06}
+
+\begin{exercise}
+A graph has degrees $2,3,3,4$. How many edges does it have?
+\end{exercise}
+\begin{solution}
+The degree sum is 12, so there are 6 edges.
+\end{solution}
+
+\begin{exercise}
+Prove that the number of odd-degree vertices is even.
+\end{exercise}
+\begin{solution}
+The degree sum is even. Even degrees do not affect parity, so the odd degrees must also sum to an even number. Thus there are an even number of them.
+\end{solution}
+
+\begin{exercise}
+Can a square and both diagonals be drawn without repeating an edge? Interior crossings are not vertices.
+\end{exercise}
+\begin{solution}
+No: all four vertices have degree 3. Four odd-degree vertices prevent an Euler trail.
+\end{solution}
+
+\begin{exercise}
+Why do two disjoint cycles not admit one trail even though all degrees are even?
+\end{exercise}
+\begin{solution}
+No edge connects the two components, so one cannot move between them. Connectivity is essential.
+\end{solution}
+
+\begin{problem}[Investigate, justify, conclude]
+A network has edges AB, BC, CD, DA, AC and CE, each 1 km long. Starting at A, visit every edge at least once and return to A. Which vertices have odd degree? What is the minimum route length? Give a route attaining it.
+\end{problem}
+\begin{solution}
+Degrees at A,B,C,D,E are $3,2,4,2,1$, so A and E are odd. A closed route must add traversals joining these two vertices; their shortest connection is A--C--E, of length 2 km. The minimum is $6 + 2 = 8$ km. Route A--B--C--D--A--C--E--C--A attains it: AC and CE are used twice and the other edges once.
+\end{solution}
+

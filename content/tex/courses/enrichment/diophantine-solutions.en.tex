@@ -1,0 +1,40 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-diophantine-solutions}{Bézout and integer equations}
+\mxsubtitle{Advanced high school · extension \textperiodcentered{} Worked solutions \textperiodcentered{} 04}
+
+\begin{exercise}
+Find $\pgcd(84,30)$ and a Bézout identity.
+\end{exercise}
+\begin{solution}
+$84 = 2 \times  30 + 24$ and $30 = 24 + 6$. Hence $6 = 3 \times  30 - 84$ and the gcd is 6.
+\end{solution}
+
+\begin{exercise}
+Does $12x + 18y = 5$ have integer solutions?
+\end{exercise}
+\begin{solution}
+No: $\pgcd(12,18) = 6$ does not divide 5.
+\end{solution}
+
+\begin{exercise}
+Find all integer solutions of $5x + 3y = 1$.
+\end{exercise}
+\begin{solution}
+$(-1,2)$ is a solution. All are $x = -1 + 3t, y = 2 - 5t$ for integer t.
+\end{solution}
+
+\begin{exercise}
+Among solutions of $5x + 3y = 31$, find those with nonnegative x and y.
+\end{exercise}
+\begin{solution}
+Modulo 3, $x \equiv  2$. Since $0 \leq  x \leq  6$, $x$ is 2 or 5. The pairs are $(2,7)$ and $(5,2)$.
+\end{solution}
+
+\begin{problem}[Investigate, justify, conclude]
+An order of 100 items must be delivered in boxes of 7 and 11, without opening a box. Find every possible combination, then the one using the fewest boxes. Justify that no nonnegative solution has been missed.
+\end{problem}
+\begin{solution}
+Solve $7x + 11y = 100$. Modulo 7, $4y \equiv  2$, so $y \equiv  4$ (mod 7). Since $0 \leq  y \leq  9$, only $y = 4$ works, giving $x = 8$. This requires 12 boxes. The solution is unique, so it automatically minimises the number of boxes.
+\end{solution}
+

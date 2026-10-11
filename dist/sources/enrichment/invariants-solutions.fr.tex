@@ -1,0 +1,39 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-invariants-solutions}{Parité et invariants}
+\mxsubtitle{Seconde · raisonnement \textperiodcentered{} Solutions détaillées \textperiodcentered{} 01}
+
+\begin{exercise}
+On part de 7 et on ajoute ou retranche 4 à chaque coup. Peut-on atteindre 20 ? Et 23 ?
+\end{exercise}
+\begin{solution}
+Tout résultat est congru à 7 modulo 4, donc à 3. Comme 20 est congru à 0, il est inaccessible. Quatre additions de 4 donnent 23.
+\end{solution}
+
+\begin{exercise}
+Un produit de cinq nombres égaux à 1 ou $-1$ vaut $-1$. Montrer qu’il est impossible de rendre tous les nombres positifs en changeant deux signes à chaque coup.
+\end{exercise}
+\begin{solution}
+Chaque changement de deux signes multiplie le produit par $(-1)^{2} = 1$. Le produit reste $-1$, alors que cinq signes positifs donnent 1.
+\end{solution}
+
+\begin{exercise}
+On remplace deux entiers a et b par $a + b$. Quel invariant conserve cette opération ?
+\end{exercise}
+\begin{solution}
+La somme de tous les entiers reste constante : la contribution $a + b$ des deux termes est remplacée par le même nombre.
+\end{solution}
+
+\begin{exercise}
+Pourquoi deux états ayant la même parité ne sont-ils pas nécessairement reliés par les coups autorisés ? Donner un exemple.
+\end{exercise}
+\begin{solution}
+La parité donne seulement une condition nécessaire. Avec des pas de 6 depuis 0, la cible 2 est paire, mais n’est pas multiple de 6.
+\end{solution}
+
+\begin{problem}[Chercher, justifier, conclure]
+Un échiquier $8 \times  8$ est colorié alternativement en noir et blanc. On retire deux coins diagonalement opposés. Peut-on recouvrir les 62 cases restantes par 31 dominos $1 \times  2$, chaque domino couvrant deux cases voisines par un côté ? Compter les couleurs retirées et les couleurs couvertes par un domino. Comparer avec le retrait de deux coins voisins.
+\end{problem}
+\begin{solution}
+Les coins opposés ont la même couleur. Il reste 30 cases de cette couleur et 32 de l’autre. Chaque domino couvre une case de chaque couleur : 31 dominos exigeraient 31 de chaque, donc le pavage est impossible. Deux coins voisins ont des couleurs différentes. Dans ce cas, un pavage existe : pour les deux coins supérieurs retirés, placer trois dominos horizontaux dans la première ligne et quatre dans chacune des sept autres lignes. Une rotation traite les autres côtés.
+\end{solution}
+

@@ -62,7 +62,11 @@
 \AtEndDocument{\mx@newblock}   % pads the last block and records the end
 
 \def\mx@unnumbered{unnumbered}
-\ifx\mx@sections\mx@unnumbered\setcounter{secnumdepth}{0}\setcounter{tocdepth}{0}\fi
+\def\mx@sheet{sheet}
+% Unnumbered booklets list chapters only; in sheets the units are sections and stay in the contents and bookmarks.
+\ifx\mx@sections\mx@unnumbered\setcounter{secnumdepth}{0}\ifx\mx@layout\mx@sheet\else\setcounter{tocdepth}{0}\fi\fi
+% Sheets: examples, exercises and activities are numbered within the unit (1, 2, ... on every sheet; reset by \mxunit).
+\ifx\mx@layout\mx@sheet\renewcommand{\themxexercise}{\arabic{mxexercise}}\fi
 
 % \mxinclude{path}: input a unit by its path below content/tex (no extension); the language suffix is added here,
 % so a main lists units once for both languages. Example: \mxinclude{courses/premiere/c05} reads c05.fr.tex or c05.en.tex.
@@ -71,9 +75,9 @@
 \newcommand{\mxunitid}{}
 % A unit starts a new page: a chapter in the booklet layout, a section in the sheet layout. Per-unit PDF excerpts
 % therefore never carry the end of the previous unit.
-\def\mx@sheet{sheet}
 \newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}\mx@newblock
-  \ifx\mx@layout\mx@sheet\section{#2}\else\chapter{#2}\fi\label{#1}}
+  \ifx\mx@layout\mx@sheet\section{#2}\setcounter{mxexample}{0}\setcounter{mxexercise}{0}\setcounter{mxactivity}{0}%
+  \else\chapter{#2}\fi\label{#1}}
 % \mxsubtitle{text}: a line under a unit heading (dates, period).
 \newcommand{\mxsubtitle}[1]{{\color{mxmuted}\sffamily #1\par}\medskip}
 % \mxnewpage: a page break that is also a balanced block (FR/EN page parity is kept at every such break).

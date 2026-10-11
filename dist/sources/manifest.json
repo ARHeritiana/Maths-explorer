@@ -973,7 +973,7 @@
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1422,
+     "bytes": 1454,
      "kind": "style",
      "lang": "fr"
     },
@@ -997,7 +997,7 @@
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 5560,
+     "bytes": 5984,
      "kind": "style",
      "lang": "fr"
     }
@@ -1292,7 +1292,7 @@
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1422,
+     "bytes": 1454,
      "kind": "style",
      "lang": "fr"
     },
@@ -1316,7 +1316,7 @@
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 5560,
+     "bytes": 5984,
      "kind": "style",
      "lang": "fr"
     }
@@ -1755,7 +1755,7 @@
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1422,
+     "bytes": 1454,
      "kind": "style",
      "lang": "fr"
     },
@@ -1779,7 +1779,7 @@
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 5560,
+     "bytes": 5984,
      "kind": "style",
      "lang": "fr"
     }
@@ -2058,7 +2058,7 @@
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1422,
+     "bytes": 1454,
      "kind": "style",
      "lang": "fr"
     },
@@ -2082,7 +2082,7 @@
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 5560,
+     "bytes": 5984,
      "kind": "style",
      "lang": "fr"
     }
@@ -2377,7 +2377,7 @@
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1422,
+     "bytes": 1454,
      "kind": "style",
      "lang": "fr"
     },
@@ -2401,7 +2401,7 @@
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 5560,
+     "bytes": 5984,
      "kind": "style",
      "lang": "fr"
     }
@@ -2415,597 +2415,681 @@
    ],
    "files": [
     {
-     "path": "enrichment/bayes-exercises-en.tex",
-     "bytes": 1075,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/bayes-exercises.tex",
-     "bytes": 1141,
+     "path": "enrichment/eleve.tex",
+     "bytes": 1457,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/bayes-notes-en.tex",
-     "bytes": 1917,
+     "path": "enrichment/eleve-en.tex",
+     "bytes": 1457,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/bayes-notes.tex",
-     "bytes": 2081,
+     "path": "enrichment/professeur.tex",
+     "bytes": 1982,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/bayes-problems-en.tex",
-     "bytes": 905,
+     "path": "enrichment/professeur-en.tex",
+     "bytes": 1982,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/bayes-problems.tex",
-     "bytes": 1009,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/bayes-solutions-en.tex",
-     "bytes": 2353,
+     "path": "enrichment/bayes-exercises.en.tex",
+     "bytes": 1050,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/bayes-solutions.tex",
-     "bytes": 2601,
+     "path": "enrichment/bayes-exercises.fr.tex",
+     "bytes": 1107,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/bisection-exercises-en.tex",
-     "bytes": 951,
+     "path": "enrichment/bayes-notes.en.tex",
+     "bytes": 1953,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/bisection-exercises.tex",
-     "bytes": 1020,
+     "path": "enrichment/bayes-notes.fr.tex",
+     "bytes": 2053,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/bisection-notes-en.tex",
-     "bytes": 1327,
+     "path": "enrichment/bayes-problems.en.tex",
+     "bytes": 937,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/bisection-notes.tex",
-     "bytes": 1500,
+     "path": "enrichment/bayes-problems.fr.tex",
+     "bytes": 982,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/bisection-problems-en.tex",
-     "bytes": 580,
+     "path": "enrichment/bayes-solutions.en.tex",
+     "bytes": 2569,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/bisection-problems.tex",
-     "bytes": 622,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/bisection-solutions-en.tex",
-     "bytes": 1870,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/bisection-solutions.tex",
-     "bytes": 2106,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/complex-rotations-exercises-en.tex",
-     "bytes": 654,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/complex-rotations-exercises.tex",
-     "bytes": 684,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/complex-rotations-notes-en.tex",
-     "bytes": 1588,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/complex-rotations-notes.tex",
-     "bytes": 1720,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/complex-rotations-problems-en.tex",
-     "bytes": 563,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/complex-rotations-problems.tex",
-     "bytes": 607,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/complex-rotations-solutions-en.tex",
-     "bytes": 1437,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/complex-rotations-solutions.tex",
-     "bytes": 1542,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/diophantine-exercises-en.tex",
-     "bytes": 675,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/diophantine-exercises.tex",
-     "bytes": 750,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/diophantine-notes-en.tex",
-     "bytes": 1324,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/diophantine-notes.tex",
-     "bytes": 1464,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/diophantine-problems-en.tex",
-     "bytes": 554,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/diophantine-problems.tex",
-     "bytes": 631,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/diophantine-solutions-en.tex",
-     "bytes": 1462,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/diophantine-solutions.tex",
-     "bytes": 1646,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/euler-trails-exercises-en.tex",
-     "bytes": 767,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/euler-trails-exercises.tex",
-     "bytes": 839,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/euler-trails-notes-en.tex",
-     "bytes": 1497,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/euler-trails-notes.tex",
-     "bytes": 1696,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/euler-trails-problems-en.tex",
-     "bytes": 566,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/euler-trails-problems.tex",
-     "bytes": 633,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/euler-trails-solutions-en.tex",
-     "bytes": 1677,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/euler-trails-solutions.tex",
-     "bytes": 1948,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/explorer.sty",
-     "bytes": 1280,
-     "kind": "style",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/inequalities-exercises-en.tex",
-     "bytes": 729,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/inequalities-exercises.tex",
-     "bytes": 766,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/inequalities-notes-en.tex",
-     "bytes": 1200,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/inequalities-notes.tex",
-     "bytes": 1325,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/inequalities-problems-en.tex",
-     "bytes": 664,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/inequalities-problems.tex",
-     "bytes": 694,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/inequalities-solutions-en.tex",
-     "bytes": 1735,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/inequalities-solutions.tex",
-     "bytes": 1901,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/invariants-exercises-en.tex",
-     "bytes": 815,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/invariants-exercises.tex",
-     "bytes": 923,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/invariants-notes-en.tex",
-     "bytes": 1311,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/invariants-notes.tex",
-     "bytes": 1486,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/invariants-problems-en.tex",
-     "bytes": 663,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/invariants-problems.tex",
-     "bytes": 705,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/invariants-solutions-en.tex",
-     "bytes": 2068,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/invariants-solutions.tex",
-     "bytes": 2340,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/lattice-paths-exercises-en.tex",
-     "bytes": 705,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/lattice-paths-exercises.tex",
-     "bytes": 773,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/lattice-paths-notes-en.tex",
-     "bytes": 1555,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/lattice-paths-notes.tex",
-     "bytes": 1690,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/lattice-paths-problems-en.tex",
-     "bytes": 532,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/lattice-paths-problems.tex",
-     "bytes": 587,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/lattice-paths-solutions-en.tex",
-     "bytes": 1481,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/lattice-paths-solutions.tex",
-     "bytes": 1619,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/modular-exercises-en.tex",
-     "bytes": 630,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/modular-exercises.tex",
-     "bytes": 647,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/modular-notes-en.tex",
-     "bytes": 1203,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/modular-notes.tex",
-     "bytes": 1321,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/modular-problems-en.tex",
-     "bytes": 526,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/modular-problems.tex",
-     "bytes": 557,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/modular-solutions-en.tex",
-     "bytes": 1450,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/modular-solutions.tex",
-     "bytes": 1540,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/pigeonhole-exercises-en.tex",
-     "bytes": 791,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/pigeonhole-exercises.tex",
-     "bytes": 799,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/pigeonhole-notes-en.tex",
-     "bytes": 1176,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/pigeonhole-notes.tex",
-     "bytes": 1276,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/pigeonhole-problems-en.tex",
-     "bytes": 573,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/pigeonhole-problems.tex",
-     "bytes": 623,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/pigeonhole-solutions-en.tex",
-     "bytes": 1822,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/pigeonhole-solutions.tex",
-     "bytes": 2056,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "enrichment/quadratic-presentation-en.tex",
-     "bytes": 2615,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "enrichment/quadratic-presentation.tex",
+     "path": "enrichment/bayes-solutions.fr.tex",
      "bytes": 2781,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/telescoping-exercises-en.tex",
-     "bytes": 722,
+     "path": "enrichment/bisection-exercises.en.tex",
+     "bytes": 953,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/telescoping-exercises.tex",
-     "bytes": 761,
+     "path": "enrichment/bisection-exercises.fr.tex",
+     "bytes": 967,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/telescoping-notes-en.tex",
-     "bytes": 1123,
+     "path": "enrichment/bisection-notes.en.tex",
+     "bytes": 1391,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/telescoping-notes.tex",
-     "bytes": 1278,
+     "path": "enrichment/bisection-notes.fr.tex",
+     "bytes": 1506,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/telescoping-problems-en.tex",
-     "bytes": 499,
+     "path": "enrichment/bisection-problems.en.tex",
+     "bytes": 622,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/telescoping-problems.tex",
-     "bytes": 561,
+     "path": "enrichment/bisection-problems.fr.tex",
+     "bytes": 591,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/telescoping-solutions-en.tex",
-     "bytes": 1527,
+     "path": "enrichment/bisection-solutions.en.tex",
+     "bytes": 2106,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/telescoping-solutions.tex",
-     "bytes": 1687,
+     "path": "enrichment/bisection-solutions.fr.tex",
+     "bytes": 2277,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/waiting-time-exercises-en.tex",
-     "bytes": 720,
+     "path": "enrichment/complex-rotations-exercises.en.tex",
+     "bytes": 645,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/waiting-time-exercises.tex",
-     "bytes": 751,
+     "path": "enrichment/complex-rotations-exercises.fr.tex",
+     "bytes": 616,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/waiting-time-notes-en.tex",
+     "path": "enrichment/complex-rotations-notes.en.tex",
+     "bytes": 1657,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/complex-rotations-notes.fr.tex",
+     "bytes": 1725,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/complex-rotations-problems.en.tex",
+     "bytes": 605,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/complex-rotations-problems.fr.tex",
+     "bytes": 590,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/complex-rotations-solutions.en.tex",
+     "bytes": 1599,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/complex-rotations-solutions.fr.tex",
+     "bytes": 1639,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/diophantine-exercises.en.tex",
+     "bytes": 669,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/diophantine-exercises.fr.tex",
+     "bytes": 684,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/diophantine-notes.en.tex",
+     "bytes": 1351,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/diophantine-notes.fr.tex",
+     "bytes": 1426,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/diophantine-problems.en.tex",
+     "bytes": 598,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/diophantine-problems.fr.tex",
+     "bytes": 616,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/diophantine-solutions.en.tex",
+     "bytes": 1643,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/diophantine-solutions.fr.tex",
+     "bytes": 1760,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/euler-trails-exercises.en.tex",
+     "bytes": 766,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/euler-trails-exercises.fr.tex",
+     "bytes": 779,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/euler-trails-notes.en.tex",
+     "bytes": 1572,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/euler-trails-notes.fr.tex",
+     "bytes": 1707,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/euler-trails-problems.en.tex",
+     "bytes": 611,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/euler-trails-problems.fr.tex",
+     "bytes": 619,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/euler-trails-solutions.en.tex",
+     "bytes": 1881,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/euler-trails-solutions.fr.tex",
+     "bytes": 2087,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/inequalities-exercises.en.tex",
+     "bytes": 709,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/inequalities-exercises.fr.tex",
+     "bytes": 687,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/inequalities-notes.en.tex",
+     "bytes": 1239,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/inequalities-notes.fr.tex",
      "bytes": 1300,
      "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/inequalities-problems.en.tex",
+     "bytes": 709,
+     "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/waiting-time-notes.tex",
-     "bytes": 1402,
+     "path": "enrichment/inequalities-problems.fr.tex",
+     "bytes": 680,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/waiting-time-problems-en.tex",
-     "bytes": 607,
+     "path": "enrichment/inequalities-solutions.en.tex",
+     "bytes": 1886,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/waiting-time-problems.tex",
-     "bytes": 653,
+     "path": "enrichment/inequalities-solutions.fr.tex",
+     "bytes": 1987,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "enrichment/waiting-time-solutions-en.tex",
-     "bytes": 1652,
+     "path": "enrichment/invariants-exercises.en.tex",
+     "bytes": 808,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "enrichment/waiting-time-solutions.tex",
-     "bytes": 1806,
+     "path": "enrichment/invariants-exercises.fr.tex",
+     "bytes": 857,
      "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/invariants-notes.en.tex",
+     "bytes": 1370,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/invariants-notes.fr.tex",
+     "bytes": 1481,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/invariants-problems.en.tex",
+     "bytes": 702,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/invariants-problems.fr.tex",
+     "bytes": 685,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/invariants-solutions.en.tex",
+     "bytes": 2256,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/invariants-solutions.fr.tex",
+     "bytes": 2463,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/lattice-paths-exercises.en.tex",
+     "bytes": 713,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/lattice-paths-exercises.fr.tex",
+     "bytes": 722,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/lattice-paths-notes.en.tex",
+     "bytes": 1624,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/lattice-paths-notes.fr.tex",
+     "bytes": 1695,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/lattice-paths-problems.en.tex",
+     "bytes": 586,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/lattice-paths-problems.fr.tex",
+     "bytes": 582,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/lattice-paths-solutions.en.tex",
+     "bytes": 1684,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/lattice-paths-solutions.fr.tex",
+     "bytes": 1757,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/modular-exercises.en.tex",
+     "bytes": 618,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/modular-exercises.fr.tex",
+     "bytes": 576,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/modular-notes.en.tex",
+     "bytes": 1241,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/modular-notes.fr.tex",
+     "bytes": 1295,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/modular-problems.en.tex",
+     "bytes": 564,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/modular-problems.fr.tex",
+     "bytes": 536,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/modular-solutions.en.tex",
+     "bytes": 1631,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/modular-solutions.fr.tex",
+     "bytes": 1656,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/pigeonhole-exercises.en.tex",
+     "bytes": 790,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/pigeonhole-exercises.fr.tex",
+     "bytes": 739,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/pigeonhole-notes.en.tex",
+     "bytes": 1249,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/pigeonhole-notes.fr.tex",
+     "bytes": 1285,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/pigeonhole-problems.en.tex",
+     "bytes": 617,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/pigeonhole-problems.fr.tex",
+     "bytes": 608,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/pigeonhole-solutions.en.tex",
+     "bytes": 2050,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/pigeonhole-solutions.fr.tex",
+     "bytes": 2219,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/quadratic-presentation.en.tex",
+     "bytes": 2508,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/quadratic-presentation.fr.tex",
+     "bytes": 2602,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/telescoping-exercises.en.tex",
+     "bytes": 700,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/telescoping-exercises.fr.tex",
+     "bytes": 682,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/telescoping-notes.en.tex",
+     "bytes": 1171,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/telescoping-notes.fr.tex",
+     "bytes": 1262,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/telescoping-problems.en.tex",
+     "bytes": 543,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/telescoping-problems.fr.tex",
+     "bytes": 548,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/telescoping-solutions.en.tex",
+     "bytes": 1684,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/telescoping-solutions.fr.tex",
+     "bytes": 1787,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/waiting-time-exercises.en.tex",
+     "bytes": 707,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/waiting-time-exercises.fr.tex",
+     "bytes": 681,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/waiting-time-notes.en.tex",
+     "bytes": 1335,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/waiting-time-notes.fr.tex",
+     "bytes": 1375,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/waiting-time-problems.en.tex",
+     "bytes": 646,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/waiting-time-problems.fr.tex",
+     "bytes": 633,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "enrichment/waiting-time-solutions.en.tex",
+     "bytes": 1822,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "enrichment/waiting-time-solutions.fr.tex",
+     "bytes": 1917,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/example.en.tex",
+     "bytes": 1312,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "core/example.fr.tex",
+     "bytes": 1272,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/example.tex",
+     "bytes": 547,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-code.sty",
+     "bytes": 812,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-edition.sty",
+     "bytes": 763,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-env.sty",
+     "bytes": 11625,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-figures.sty",
+     "bytes": 1454,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-i18n.sty",
+     "bytes": 5078,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-layout.sty",
+     "bytes": 3332,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-math.sty",
+     "bytes": 2490,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mxbook.cls",
+     "bytes": 5984,
+     "kind": "style",
      "lang": "fr"
     }
    ]

@@ -34,11 +34,9 @@ Regeneration order:
 
 1. Regenerate any source excerpts and starting sheets as needed.
 2. Translate imported PDFs when needed.
-3. Run `python scripts/build-enrichment.py`.
-4. Run `python scripts/style-resource-pdfs.py` (idempotent).
-5. Run `python scripts/finalize-resources.py` and refresh translation hashes after
-   a restyle. Keep ENRICHMENT_MANIFEST and RESOURCE_PROVENANCE in sync.
-6. Run syntax/content checks and inspect representative rendered pages.
+3. Run `make tex COURSE=enrichment` (units from `content/data/enrichment.json`, PDFs, HTML editions, styling,
+   catalogue and sources; see `docs/ARCHITECTURE.md`).
+4. Run `make check` and inspect representative rendered pages.
 
 See history/EXPANSION_VALIDATION.json and DOCUMENT_STYLE_LEDGER.json for evidence.
 No personal-space links are published.
