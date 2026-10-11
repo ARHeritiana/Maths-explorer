@@ -1,0 +1,602 @@
+% GENERATED, edit the French unit or the translation table
+\mxfront{terminale-e2}
+\mxnewpage\phantomsection\label{sujet:2-1}\addcontentsline{toc}{chapter}{Test 2 · Practice 1}
+
+\section*{Test 2 · Practice 1}
+
+{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{3n^2+4n-1}{4n^2+3}$ and $v_n=\sqrt{n^2+4n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{4}{\sqrt{1+\frac{4}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=3n^2-4n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits \hfill 5 points}For each of the following statements, say whether it is true or false and justify your answer. An unjustified answer earns no marks. Limits of sequences are taken as $n$ tends to $+\infty$.
+
+\begin{enumerate}
+
+\item If $u_n\to 2$ and $v_n\to-5$, then $\frac{u_n}{v_n}\to-\frac{2}{5}$. \hfill\textit{(1 pt)}
+
+\item The sequence $u_n=2+(-1)^n$ converges to $2$. \hfill\textit{(1 pt)}
+
+\item If $u_n\to0$ and $v_n\to+\infty$, then $u_nv_n\to0$. \hfill\textit{(1 pt)}
+
+\item The sequence $w_n=\frac{\sqrt{n^2+3n}}{n}$ for $n\ge1$ converges to $1$. \hfill\textit{(1 pt)}
+
+\item For $u_n=\frac{2n+5}{n}$, we have $|u_n-2|<0.01$ as soon as $n> 500$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 2 · Practice 1 · continued}\par
+
+\subsection*{Exercise 3 · Vector calculations in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, we define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=2\vi+6\vj+8\vec k,&\vec z&=2\vi+6\vj+9\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(1 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(1.5 pt)}
+
+\item Express the vector $6\vec u-2\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped \hfill 5 points}Consider a parallelepiped $ABCDEFGH$ that is not flat. The vertices $E$, $F$, $G$ and $H$ are the respective images of $A$, $B$, $C$ and $D$ under the translation by vector $\vect{AE}$.
+Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$.
+The points $I$, $J$ and $K$ are defined by
+\[\vect{AI}=\frac1{18}\vi,\qquad\vect{AJ}=\frac1{18}\vj,\qquad\vect{AK}=\frac1{18}\vec k.\]
+
+\begin{enumerate}
+
+\item Express $\vect{AG}$ and $\vect{BH}$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Prove that the lines $(IJ)$ and $(BD)$ are parallel. \hfill\textit{(1 pt)}
+
+\item Study the relative position of the lines $(AB)$ and $(CG)$: are they parallel, intersecting or non-coplanar? Justify. \hfill\textit{(1 pt)}
+
+\item Let $O$ be the centre of the parallelepiped. Does the point $O$ lie in the plane $(ABG)$? Justify. \hfill\textit{(1 pt)}
+
+\item Prove that the points $I$, $J$ and $K$ are not collinear. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 2 · Practice 1}\label{cor:2-1}
+
+\subsection*{Exercise 1 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{3+\frac{4}{n}-\frac{1}{n^2}}{4+\frac{3}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $3$ and the denominator to $4\ne0$; by the quotient rule, $u_n\to\frac{3}{4}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+4n)-n^2}{\sqrt{n^2+4n}+n}\\&=\frac{4n}{n(\sqrt{1+\frac{4}{n}}+1)}=\frac{4}{\sqrt{1+\frac{4}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $2$.
+
+\item \textit{[1 pt]} $w_n=n^2(3-\frac{4}{n})\to+\infty$; the second factor tends to $3>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits}\begin{enumerate}
+
+\item \textit{[1 pt]} True: the denominator has a non-zero limit; the limit of the quotient is $-\frac{2}{5}$.
+
+\item \textit{[1 pt]} False: the even terms equal $3$, the odd terms $1$. Both values stay at distance $1$ from $2$.
+
+\item \textit{[1 pt]} False: $u_n=\frac{1}{n}$, $v_n=n$ for $n\ge1$ give a constant product equal to $1$.
+
+\item \textit{[1 pt]} True: $w_n=\sqrt{1+\frac{3}{n}}\to1$.
+
+\item \textit{[1 pt]} True: the gap equals $\frac{5}{n}$; $n>500$ gives $\frac{5}{n}<0.01$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculations in a basis}\begin{enumerate}
+
+\item \textit{[1 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $2\vec u+6\vec v=2(\vi +\vec k)+6(\vj +\vec k)=2\vi +6\vj +8\vec k=\vec w$.
+
+\item \textit{[1.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=2,\qquad\mu=6,\qquad\lambda+\mu=9.\]
+The first two equalities give $\lambda+\mu=8$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $6\vec u-2\vec v=6(\vi +\vec k)-2(\vj +\vec k)=6\vi -2\vj +4\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ and $\vect{AC}$ are non-collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped}\begin{enumerate}
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. Similarly, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{18}=\frac{\vect{BD}}{18}$. These vectors are non-zero and collinear: $(IJ)$ and $(BD)$ are parallel.
+
+\item \textit{[1 pt]} Direction vectors $\vi $ and $\vec k$, not collinear. An intersection would require $t\vi =\vi +\vj +s\vec k$, impossible by the coefficient of $\vj $. They are non-coplanar.
+
+\item \textit{[1 pt]} $\vect{AO}=\frac{\vect{AG}}{2}$, so $O\in(AG)\subset(ABG)$.
+
+\item \textit{[1 pt]} The points satisfy $\vect{IJ}=\frac{-\vi +\vj }{18}$ and $\vect{IK}=\frac{-\vi +\vec k}{18}$. If $\vect{IK}=t\vect{IJ}$, the coefficient of $\vec k$ would give $\frac{1}{18}=0$, which is impossible. The vectors are not collinear, so $I,J,K$ are not collinear.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:2-2}\addcontentsline{toc}{chapter}{Test 2 · Practice 2}
+
+\section*{Test 2 · Practice 2}
+
+{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{2n^2+6n-1}{3n^2+1}$ and $v_n=\sqrt{n^2+6n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{6}{\sqrt{1+\frac{6}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=2n^2-6n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits \hfill 5 points}For each of the following statements, say whether it is true or false and justify your answer. An unjustified answer earns no marks. Limits of sequences are taken as $n$ tends to $+\infty$.
+
+\begin{enumerate}
+
+\item If $u_n\to 5$ and $v_n\to-6$, then $\frac{u_n}{v_n}\to-\frac{5}{6}$. \hfill\textit{(1 pt)}
+
+\item The sequence $u_n=5+(-1)^n$ converges to $5$. \hfill\textit{(1 pt)}
+
+\item If $u_n\to0$ and $v_n\to+\infty$, then $u_nv_n\to0$. \hfill\textit{(1 pt)}
+
+\item The sequence $w_n=\frac{\sqrt{n^2+n}}{n}$ for $n\ge1$ converges to $1$. \hfill\textit{(1 pt)}
+
+\item For $u_n=\frac{5n+6}{n}$, we have $|u_n-5|<0.01$ as soon as $n> 600$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 2 · Practice 2 · continued}\par
+
+\subsection*{Exercise 3 · Vector calculations in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, we define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=4\vi+7\vj+11\vec k,&\vec z&=4\vi+7\vj+12\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(1 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(1.5 pt)}
+
+\item Express the vector $7\vec u-4\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped \hfill 5 points}Consider a parallelepiped $ABCDEFGH$ that is not flat. The vertices $E$, $F$, $G$ and $H$ are the respective images of $A$, $B$, $C$ and $D$ under the translation by vector $\vect{AE}$.
+Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$.
+The points $I$, $J$ and $K$ are defined by
+\[\vect{AI}=\frac1{8}\vi,\qquad\vect{AJ}=\frac1{8}\vj,\qquad\vect{AK}=\frac1{8}\vec k.\]
+
+\begin{enumerate}
+
+\item Express $\vect{AG}$ and $\vect{BH}$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Prove that the lines $(IJ)$ and $(BD)$ are parallel. \hfill\textit{(1 pt)}
+
+\item Study the relative position of the lines $(AB)$ and $(CG)$: are they parallel, intersecting or non-coplanar? Justify. \hfill\textit{(1 pt)}
+
+\item Let $O$ be the centre of the parallelepiped. Does the point $O$ lie in the plane $(ABG)$? Justify. \hfill\textit{(1 pt)}
+
+\item Prove that the points $I$, $J$ and $K$ are not collinear. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 2 · Practice 2}\label{cor:2-2}
+
+\subsection*{Exercise 1 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{2+\frac{6}{n}-\frac{1}{n^2}}{3+\frac{1}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $2$ and the denominator to $3\ne0$; by the quotient rule, $u_n\to\frac{2}{3}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+6n)-n^2}{\sqrt{n^2+6n}+n}\\&=\frac{6n}{n(\sqrt{1+\frac{6}{n}}+1)}=\frac{6}{\sqrt{1+\frac{6}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $3$.
+
+\item \textit{[1 pt]} $w_n=n^2(2-\frac{6}{n})\to+\infty$; the second factor tends to $2>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits}\begin{enumerate}
+
+\item \textit{[1 pt]} True: the denominator has a non-zero limit; the limit of the quotient is $-\frac{5}{6}$.
+
+\item \textit{[1 pt]} False: the even terms equal $6$, the odd terms $4$. Both values stay at distance $1$ from $5$.
+
+\item \textit{[1 pt]} False: $u_n=\frac{1}{n}$, $v_n=n$ for $n\ge1$ give a constant product equal to $1$.
+
+\item \textit{[1 pt]} True: $w_n=\sqrt{1+\frac{1}{n}}\to1$.
+
+\item \textit{[1 pt]} True: the gap equals $\frac{6}{n}$; $n>600$ gives $\frac{6}{n}<0.01$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculations in a basis}\begin{enumerate}
+
+\item \textit{[1 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $4\vec u+7\vec v=4(\vi +\vec k)+7(\vj +\vec k)=4\vi +7\vj +11\vec k=\vec w$.
+
+\item \textit{[1.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=4,\qquad\mu=7,\qquad\lambda+\mu=12.\]
+The first two equalities give $\lambda+\mu=11$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $7\vec u-4\vec v=7(\vi +\vec k)-4(\vj +\vec k)=7\vi -4\vj +3\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ and $\vect{AC}$ are non-collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped}\begin{enumerate}
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. Similarly, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{8}=\frac{\vect{BD}}{8}$. These vectors are non-zero and collinear: $(IJ)$ and $(BD)$ are parallel.
+
+\item \textit{[1 pt]} Direction vectors $\vi $ and $\vec k$, not collinear. An intersection would require $t\vi =\vi +\vj +s\vec k$, impossible by the coefficient of $\vj $. They are non-coplanar.
+
+\item \textit{[1 pt]} $\vect{AO}=\frac{\vect{AG}}{2}$, so $O\in(AG)\subset(ABG)$.
+
+\item \textit{[1 pt]} The points satisfy $\vect{IJ}=\frac{-\vi +\vj }{8}$ and $\vect{IK}=\frac{-\vi +\vec k}{8}$. If $\vect{IK}=t\vect{IJ}$, the coefficient of $\vec k$ would give $\frac{1}{8}=0$, which is impossible. The vectors are not collinear, so $I,J,K$ are not collinear.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:2-3}\addcontentsline{toc}{chapter}{Test 2 · A}
+
+\section*{Test 2 · A}
+
+{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{5n^2+7n-1}{6n^2+2}$ and $v_n=\sqrt{n^2+7n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{7}{\sqrt{1+\frac{7}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=5n^2-7n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits \hfill 5 points}For each of the following statements, say whether it is true or false and justify your answer. An unjustified answer earns no marks. Limits of sequences are taken as $n$ tends to $+\infty$.
+
+\begin{enumerate}
+
+\item If $u_n\to 4$ and $v_n\to-8$, then $\frac{u_n}{v_n}\to-\frac{1}{2}$. \hfill\textit{(1 pt)}
+
+\item The sequence $u_n=4+(-1)^n$ converges to $4$. \hfill\textit{(1 pt)}
+
+\item If $u_n\to0$ and $v_n\to+\infty$, then $u_nv_n\to0$. \hfill\textit{(1 pt)}
+
+\item The sequence $w_n=\frac{\sqrt{n^2+2n}}{n}$ for $n\ge1$ converges to $1$. \hfill\textit{(1 pt)}
+
+\item For $u_n=\frac{4n+8}{n}$, we have $|u_n-4|<0.01$ as soon as $n> 800$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 2 · A · continued}\par
+
+\subsection*{Exercise 3 · Vector calculations in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, we define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=3\vi+4\vj+7\vec k,&\vec z&=3\vi+4\vj+8\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(1 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(1.5 pt)}
+
+\item Express the vector $4\vec u-3\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped \hfill 5 points}Consider a parallelepiped $ABCDEFGH$ that is not flat. The vertices $E$, $F$, $G$ and $H$ are the respective images of $A$, $B$, $C$ and $D$ under the translation by vector $\vect{AE}$.
+Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$.
+The points $I$, $J$ and $K$ are defined by
+\[\vect{AI}=\frac1{15}\vi,\qquad\vect{AJ}=\frac1{15}\vj,\qquad\vect{AK}=\frac1{15}\vec k.\]
+
+\begin{enumerate}
+
+\item Express $\vect{AG}$ and $\vect{BH}$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Prove that the lines $(IJ)$ and $(BD)$ are parallel. \hfill\textit{(1 pt)}
+
+\item Study the relative position of the lines $(AB)$ and $(CG)$: are they parallel, intersecting or non-coplanar? Justify. \hfill\textit{(1 pt)}
+
+\item Let $O$ be the centre of the parallelepiped. Does the point $O$ lie in the plane $(ABG)$? Justify. \hfill\textit{(1 pt)}
+
+\item Prove that the points $I$, $J$ and $K$ are not collinear. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 2 · A}\label{cor:2-3}
+
+\subsection*{Exercise 1 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{5+\frac{7}{n}-\frac{1}{n^2}}{6+\frac{2}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $5$ and the denominator to $6\ne0$; by the quotient rule, $u_n\to\frac{5}{6}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+7n)-n^2}{\sqrt{n^2+7n}+n}\\&=\frac{7n}{n(\sqrt{1+\frac{7}{n}}+1)}=\frac{7}{\sqrt{1+\frac{7}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $\frac{7}{2}$.
+
+\item \textit{[1 pt]} $w_n=n^2(5-\frac{7}{n})\to+\infty$; the second factor tends to $5>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits}\begin{enumerate}
+
+\item \textit{[1 pt]} True: the denominator has a non-zero limit; the limit of the quotient is $-\frac{1}{2}$.
+
+\item \textit{[1 pt]} False: the even terms equal $5$, the odd terms $3$. Both values stay at distance $1$ from $4$.
+
+\item \textit{[1 pt]} False: $u_n=\frac{1}{n}$, $v_n=n$ for $n\ge1$ give a constant product equal to $1$.
+
+\item \textit{[1 pt]} True: $w_n=\sqrt{1+\frac{2}{n}}\to1$.
+
+\item \textit{[1 pt]} True: the gap equals $\frac{8}{n}$; $n>800$ gives $\frac{8}{n}<0.01$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculations in a basis}\begin{enumerate}
+
+\item \textit{[1 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $3\vec u+4\vec v=3(\vi +\vec k)+4(\vj +\vec k)=3\vi +4\vj +7\vec k=\vec w$.
+
+\item \textit{[1.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=3,\qquad\mu=4,\qquad\lambda+\mu=8.\]
+The first two equalities give $\lambda+\mu=7$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $4\vec u-3\vec v=4(\vi +\vec k)-3(\vj +\vec k)=4\vi -3\vj +\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ and $\vect{AC}$ are non-collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped}\begin{enumerate}
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. Similarly, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{15}=\frac{\vect{BD}}{15}$. These vectors are non-zero and collinear: $(IJ)$ and $(BD)$ are parallel.
+
+\item \textit{[1 pt]} Direction vectors $\vi $ and $\vec k$, not collinear. An intersection would require $t\vi =\vi +\vj +s\vec k$, impossible by the coefficient of $\vj $. They are non-coplanar.
+
+\item \textit{[1 pt]} $\vect{AO}=\frac{\vect{AG}}{2}$, so $O\in(AG)\subset(ABG)$.
+
+\item \textit{[1 pt]} The points satisfy $\vect{IJ}=\frac{-\vi +\vj }{15}$ and $\vect{IK}=\frac{-\vi +\vec k}{15}$. If $\vect{IK}=t\vect{IJ}$, the coefficient of $\vec k$ would give $\frac{1}{15}=0$, which is impossible. The vectors are not collinear, so $I,J,K$ are not collinear.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:2-4}\addcontentsline{toc}{chapter}{Test 2 · B}
+
+\section*{Test 2 · B}
+
+{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{4n^2+4n-1}{5n^2+3}$ and $v_n=\sqrt{n^2+4n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{4}{\sqrt{1+\frac{4}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=4n^2-4n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits \hfill 5 points}For each of the following statements, say whether it is true or false and justify your answer. An unjustified answer earns no marks. Limits of sequences are taken as $n$ tends to $+\infty$.
+
+\begin{enumerate}
+
+\item If $u_n\to 3$ and $v_n\to-5$, then $\frac{u_n}{v_n}\to-\frac{3}{5}$. \hfill\textit{(1 pt)}
+
+\item The sequence $u_n=3+(-1)^n$ converges to $3$. \hfill\textit{(1 pt)}
+
+\item If $u_n\to0$ and $v_n\to+\infty$, then $u_nv_n\to0$. \hfill\textit{(1 pt)}
+
+\item The sequence $w_n=\frac{\sqrt{n^2+3n}}{n}$ for $n\ge1$ converges to $1$. \hfill\textit{(1 pt)}
+
+\item For $u_n=\frac{3n+5}{n}$, we have $|u_n-3|<0.01$ as soon as $n> 500$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 2 · B · continued}\par
+
+\subsection*{Exercise 3 · Vector calculations in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, we define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=3\vi+6\vj+9\vec k,&\vec z&=3\vi+6\vj+10\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(1 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(1.5 pt)}
+
+\item Express the vector $6\vec u-3\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped \hfill 5 points}Consider a parallelepiped $ABCDEFGH$ that is not flat. The vertices $E$, $F$, $G$ and $H$ are the respective images of $A$, $B$, $C$ and $D$ under the translation by vector $\vect{AE}$.
+Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$.
+The points $I$, $J$ and $K$ are defined by
+\[\vect{AI}=\frac1{5}\vi,\qquad\vect{AJ}=\frac1{5}\vj,\qquad\vect{AK}=\frac1{5}\vec k.\]
+
+\begin{enumerate}
+
+\item Express $\vect{AG}$ and $\vect{BH}$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Prove that the lines $(IJ)$ and $(BD)$ are parallel. \hfill\textit{(1 pt)}
+
+\item Study the relative position of the lines $(AB)$ and $(CG)$: are they parallel, intersecting or non-coplanar? Justify. \hfill\textit{(1 pt)}
+
+\item Let $O$ be the centre of the parallelepiped. Does the point $O$ lie in the plane $(ABG)$? Justify. \hfill\textit{(1 pt)}
+
+\item Prove that the points $I$, $J$ and $K$ are not collinear. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 2 · B}\label{cor:2-4}
+
+\subsection*{Exercise 1 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{4+\frac{4}{n}-\frac{1}{n^2}}{5+\frac{3}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $4$ and the denominator to $5\ne0$; by the quotient rule, $u_n\to\frac{4}{5}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+4n)-n^2}{\sqrt{n^2+4n}+n}\\&=\frac{4n}{n(\sqrt{1+\frac{4}{n}}+1)}=\frac{4}{\sqrt{1+\frac{4}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $2$.
+
+\item \textit{[1 pt]} $w_n=n^2(4-\frac{4}{n})\to+\infty$; the second factor tends to $4>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · True or false: reasoning about limits}\begin{enumerate}
+
+\item \textit{[1 pt]} True: the denominator has a non-zero limit; the limit of the quotient is $-\frac{3}{5}$.
+
+\item \textit{[1 pt]} False: the even terms equal $4$, the odd terms $2$. Both values stay at distance $1$ from $3$.
+
+\item \textit{[1 pt]} False: $u_n=\frac{1}{n}$, $v_n=n$ for $n\ge1$ give a constant product equal to $1$.
+
+\item \textit{[1 pt]} True: $w_n=\sqrt{1+\frac{3}{n}}\to1$.
+
+\item \textit{[1 pt]} True: the gap equals $\frac{5}{n}$; $n>500$ gives $\frac{5}{n}<0.01$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculations in a basis}\begin{enumerate}
+
+\item \textit{[1 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $3\vec u+6\vec v=3(\vi +\vec k)+6(\vj +\vec k)=3\vi +6\vj +9\vec k=\vec w$.
+
+\item \textit{[1.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=3,\qquad\mu=6,\qquad\lambda+\mu=10.\]
+The first two equalities give $\lambda+\mu=9$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $6\vec u-3\vec v=6(\vi +\vec k)-3(\vj +\vec k)=6\vi -3\vj +3\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ and $\vect{AC}$ are non-collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Geometry of a parallelepiped}\begin{enumerate}
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. Similarly, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} By Chasles' relation, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{5}=\frac{\vect{BD}}{5}$. These vectors are non-zero and collinear: $(IJ)$ and $(BD)$ are parallel.
+
+\item \textit{[1 pt]} Direction vectors $\vi $ and $\vec k$, not collinear. An intersection would require $t\vi =\vi +\vj +s\vec k$, impossible by the coefficient of $\vj $. They are non-coplanar.
+
+\item \textit{[1 pt]} $\vect{AO}=\frac{\vect{AG}}{2}$, so $O\in(AG)\subset(ABG)$.
+
+\item \textit{[1 pt]} The points satisfy $\vect{IJ}=\frac{-\vi +\vj }{5}$ and $\vect{IK}=\frac{-\vi +\vec k}{5}$. If $\vect{IK}=t\vect{IJ}$, the coefficient of $\vec k$ would give $\frac{1}{5}=0$, which is impossible. The vectors are not collinear, so $I,J,K$ are not collinear.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

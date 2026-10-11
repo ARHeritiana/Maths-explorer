@@ -1,0 +1,527 @@
+{
+ "unit": "C12.fr.tex",
+ "segments": {
+  "41432bc5093f": {
+   "fr": "Variables aléatoires, concentration et loi des grands nombres",
+   "en": "Random variables, concentration and the law of large numbers",
+   "status": "aligned",
+   "order": 0
+  },
+  "f6ba8a685b88": {
+   "fr": "S62, S64, S73, S74, S77",
+   "en": "S62, S64, S73, S74, S77",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "38526d567c8f": {
+   "fr": "Calculer espérance et variance d'une somme et d'une moyenne ; appliquer Bienaymé-Tchebychev ; déterminer une taille d'échantillon.",
+   "en": "Calculate the expected value and variance of a sum and of a mean; apply the Bienaymé--Chebyshev inequality; determine a sample size.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "da96c3bad9a0": {
+   "fr": "Sommes et transformations",
+   "en": "Sums and transformations",
+   "status": "aligned",
+   "order": 5
+  },
+  "4df66a479f05": {
+   "fr": "Pour une variable aléatoire finie [[m1]], prenant les valeurs [[m2]] avec probabilités [[m3]],",
+   "en": "For a finite random variable [[m1]], taking the values [[m2]] with probabilities [[m3]],",
+   "status": "aligned",
+   "order": 6
+  },
+  "1c20d60cb268": {
+   "fr": "L'écart type est [[m1]]. En développant le carré dans [[m2]], le décalage [[m3]] s'élimine et le facteur [[m4]] est élevé au carré.\nPour des variables aléatoires finies [[m5]] et des réels [[m6]],",
+   "en": "The standard deviation is [[m1]]. Expanding the square in [[m2]], the shift [[m3]] cancels and the factor [[m4]] is squared.\nFor finite random variables [[m5]] and real numbers [[m6]],",
+   "status": "aligned",
+   "order": 7
+  },
+  "146066b9a879": {
+   "fr": "La linéarité de l'espérance ne demande pas l'indépendance. Si [[m1]] sont indépendantes, [[m2]] (admis). Sans cette hypothèse, on ne peut pas appliquer cette formule. L'écart type de [[m3]] vaut [[m4]].",
+   "en": "The linearity of the expected value does not require independence. If [[m1]] are independent, [[m2]] (accepted without proof). Without this assumption, this formula cannot be applied. The standard deviation of [[m3]] is [[m4]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "fbf946da1b9c": {
+   "fr": "Exemple de dépendance.",
+   "en": "Example of dependence.",
+   "status": "aligned",
+   "order": 9
+  },
+  "5575875fe94c": {
+   "fr": "Si [[m1]], alors [[m2]], et non [[m3]] dès que [[m4]].",
+   "en": "If [[m1]], then [[m2]], and not [[m3]] as soon as [[m4]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "792c23426c81": {
+   "fr": "Démonstration pour la binomiale.",
+   "en": "Proof for the binomial distribution.",
+   "status": "aligned",
+   "order": 11
+  },
+  "5ab81827ef41": {
+   "fr": "Écrire [[m1]] avec les indicatrices indépendantes des succès. Chaque [[m2]] vérifie [[m3]], [[m4]] et [[m5]]. Par linéarité et additivité sous indépendance, [[m6]], [[m7]].",
+   "en": "Write [[m1]] with the independent indicators of the successes. Each [[m2]] satisfies [[m3]], [[m4]] and [[m5]]. By linearity and additivity under independence, [[m6]], [[m7]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "e66e079f4deb": {
+   "fr": "Échantillon et moyenne",
+   "en": "Sample and mean",
+   "status": "aligned",
+   "order": 13
+  },
+  "82324edb68d3": {
+   "fr": "Un échantillon de taille [[m1]] d'une loi est une famille de [[m2]] variables indépendantes de même loi. Si elles ont espérance [[m3]] et variance [[m4]], on note [[m5]] et [[m6]].",
+   "en": "A sample of size [[m1]] of a distribution is a family of [[m2]] independent random variables with the same distribution. If they have expected value [[m3]] and variance [[m4]], we write [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "03264a1e9b3b": {
+   "fr": "Somme et moyenne",
+   "en": "Sum and mean",
+   "status": "aligned",
+   "order": 15
+  },
+  "8bfff71dee4a": {
+   "fr": "Pour diviser l'écart type de la moyenne par [[m1]], multiplier la taille par [[m2]]. La variance de la somme augmente ; celle de la moyenne diminue.",
+   "en": "To divide the standard deviation of the mean by [[m1]], multiply the size by [[m2]]. The variance of the sum increases; that of the mean decreases.",
+   "status": "aligned",
+   "order": 16
+  },
+  "c3bc4cee55ed": {
+   "fr": "Concentration",
+   "en": "Concentration",
+   "status": "aligned",
+   "order": 17
+  },
+  "53eed71b6992": {
+   "fr": "Inégalité de Bienaymé-Tchebychev",
+   "en": "Bienaymé--Chebyshev inequality",
+   "status": "aligned",
+   "order": 18
+  },
+  "2cf09bdc6285": {
+   "fr": "Pour une variable d'espérance [[m1]], de variance [[m2]], et [[m3]],",
+   "en": "For a random variable with expected value [[m1]], variance [[m2]], and [[m3]],",
+   "status": "aligned",
+   "order": 19
+  },
+  "7c8f5ddbd774": {
+   "fr": "Une borne supérieure à [[m1]] reste vraie, mais n'apporte pas d'information supplémentaire ; on peut la remplacer par [[m2]].",
+   "en": "An upper bound greater than [[m1]] remains true, but gives no further information; it can be replaced by [[m2]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "9844bf19adc3": {
+   "fr": "Preuve dans le cadre fini.",
+   "en": "Proof in the finite case.",
+   "status": "aligned",
+   "order": 21
+  },
+  "8b2b1720703a": {
+   "fr": "Dans [[m1]], ne conserver que les valeurs vérifiant [[m2]]. Chaque carré est alors au moins [[m3]]. Donc [[m4]].",
+   "en": "In [[m1]], keep only the values satisfying [[m2]]. Each square is then at least [[m3]]. Hence [[m4]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "6b0cf82b6f9d": {
+   "fr": "Loi des grands nombres",
+   "en": "Law of large numbers",
+   "status": "aligned",
+   "order": 23
+  },
+  "f1f6400b7e1b": {
+   "fr": "Appliquée à la moyenne d'un échantillon,",
+   "en": "Applied to the mean of a sample,",
+   "status": "aligned",
+   "order": 24
+  },
+  "7405bea60cd2": {
+   "fr": "C'est la loi des grands nombres dans le cadre considéré : pour une précision fixée, la probabilité d'un écart au moins égal à cette précision tend vers zéro. Ce résultat ne dit pas que chaque réalisation se rapproche de [[m1]] de façon monotone.",
+   "en": "This is the law of large numbers in the setting considered: for a fixed precision, the probability of a deviation at least equal to this precision tends to zero. This result does not say that each realisation approaches [[m1]] monotonically.",
+   "status": "aligned",
+   "order": 25
+  },
+  "41efe3f0436b": {
+   "fr": "Choisir une taille suffisante",
+   "en": "Choosing a sufficient size",
+   "status": "aligned",
+   "order": 26
+  },
+  "a37817cac0ac": {
+   "fr": "Pour garantir [[m1]], il suffit de choisir",
+   "en": "To guarantee [[m1]], it suffices to choose",
+   "status": "aligned",
+   "order": 27
+  },
+  "8558001bf9b0": {
+   "fr": "Prendre le plafond. Il s'agit du plus petit entier satisfaisant \\emph{cette borne}, pas nécessairement de la taille minimale pour la probabilité exacte.",
+   "en": "Take the ceiling. This gives the smallest integer satisfying \\emph{this bound}, not necessarily the minimum size for the exact probability.",
+   "status": "aligned",
+   "order": 28
+  },
+  "9d66fcdd2c8f": {
+   "fr": "Pour une fréquence de succès, [[m1]] et [[m2]]. Si [[m3]] est inconnu, [[m4]] est une garantie uniforme.",
+   "en": "For a frequency of successes, [[m1]] and [[m2]]. If [[m3]] is unknown, [[m4]] is a uniform guarantee.",
+   "status": "aligned",
+   "order": 29
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 30
+  },
+  "abb5f93842ef": {
+   "fr": "\\textbf{Fluctuations d'une fréquence --- 40 min.}",
+   "en": "\\textbf{Fluctuations of a frequency --- 40 min.}",
+   "status": "aligned",
+   "order": 31
+  },
+  "920679c82358": {
+   "fr": "On lance indépendamment une pièce équilibrée. Pour tout entier [[m1]], on note [[m2]] la fréquence de « pile » parmi les [[m3]] premiers lancers.",
+   "en": "A fair coin is tossed independently. For every integer [[m1]], let [[m2]] be the frequency of ``heads'' among the first [[m3]] tosses.",
+   "status": "aligned",
+   "order": 32
+  },
+  "66cc4f254e64": {
+   "fr": "Écrire un programme qui simule 1000 lancers, puis représenter les points [[m1]] pour [[m2]]. L'écart à [[m3]] diminue-t-il nécessairement à chaque lancer ?",
+   "en": "Write a program that simulates 1000 tosses, then plot the points [[m1]] for [[m2]]. Does the deviation from [[m3]] necessarily decrease at every toss?",
+   "status": "aligned",
+   "order": 33
+  },
+  "d3f84b2eb53f": {
+   "fr": "Exprimer [[m1]] et [[m2]] en fonction de [[m3]].",
+   "en": "Express [[m1]] and [[m2]] in terms of [[m3]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "643f3a99a0e5": {
+   "fr": "À l'aide de Bienaymé-Tchebychev, majorer [[m1]].",
+   "en": "Using Bienaymé--Chebyshev, find an upper bound for [[m1]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "6a62d539b9dc": {
+   "fr": "Déterminer un entier [[m1]] suffisant pour que [[m2]].",
+   "en": "Determine an integer [[m1]] sufficient for [[m2]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "7a542b16c0ad": {
+   "fr": "Préciser ce que montre la trajectoire simulée et ce que garantit l'inégalité obtenue. Une seule simulation constitue-t-elle une preuve de cette garantie ?",
+   "en": "State what the simulated trajectory shows and what the inequality obtained guarantees. Does a single simulation constitute a proof of this guarantee?",
+   "status": "aligned",
+   "order": 37
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 38
+  },
+  "caecd8682e9d": {
+   "fr": "Soit [[m1]] une variable aléatoire telle que [[m2]] et [[m3]]. On pose [[m4]]. Calculer l'espérance, la variance et l'écart type de [[m5]].",
+   "en": "Let [[m1]] be a random variable such that [[m2]] and [[m3]]. Let [[m4]]. Calculate the expected value, the variance and the standard deviation of [[m5]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "fc51aa937a39": {
+   "fr": "Les variables aléatoires [[m1]] et [[m2]] sont indépendantes et vérifient [[m3]], [[m4]], [[m5]] et [[m6]]. Calculer [[m7]] et [[m8]].",
+   "en": "The random variables [[m1]] and [[m2]] are independent and satisfy [[m3]], [[m4]], [[m5]] and [[m6]]. Calculate [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "914b486e7954": {
+   "fr": "On considère 64 variables aléatoires indépendantes de même loi, d'espérance [[m1]] et d'écart type [[m2]]. Calculer l'espérance et l'écart type de leur moyenne.",
+   "en": "Consider 64 independent random variables with the same distribution, with expected value [[m1]] and standard deviation [[m2]]. Calculate the expected value and the standard deviation of their mean.",
+   "status": "aligned",
+   "order": 44
+  },
+  "b2d3a626c07f": {
+   "fr": "Soit [[m1]] une variable aléatoire telle que [[m2]] et [[m3]]. À l'aide de l'inégalité de Bienaymé-Tchebychev, donner une majoration de [[m4]].",
+   "en": "Let [[m1]] be a random variable such that [[m2]] and [[m3]]. Using the Bienaymé--Chebyshev inequality, give an upper bound for [[m4]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 47
+  },
+  "e3fba12993fd": {
+   "fr": "On note [[m1]] la moyenne de [[m2]] variables aléatoires indépendantes de même loi, d'espérance [[m3]] et de variance [[m4]]. Déterminer une taille [[m5]] suffisante pour que [[m6]].",
+   "en": "Let [[m1]] be the mean of [[m2]] independent random variables with the same distribution, with expected value [[m3]] and variance [[m4]]. Determine a size [[m5]] sufficient for [[m6]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 49
+  },
+  "d1413a429aa0": {
+   "fr": "\\textbf{Baccalauréat, Métropole, 17 juin 2025 : exercice 1, question 6 (p. 3).} À la maison après S77. Lire le contexte de la question 5 et utiliser les valeurs d'espérance et de variance admises dans la question 6. Le sujet est accessible ici :",
+   "en": "\\textbf{Baccalauréat, Metropolitan France, 17 June 2025: exercise 1, question 6 (p.~3).} At home after S77. Read the context of question 5 and use the expected value and variance values accepted in question 6. The paper is available here:",
+   "status": "aligned",
+   "order": 50
+  },
+  "5bcf79de9775": {
+   "fr": "annale officielle",
+   "en": "official past paper",
+   "status": "aligned",
+   "order": 51
+  },
+  "1382b27bffc9": {
+   "fr": ". Utiliser les données et les consignes de cette annale.",
+   "en": ". Use the data and instructions of this past paper.",
+   "status": "aligned",
+   "order": 52
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 53
+  },
+  "7e07d04dada8": {
+   "fr": "\\textbf{DM14 --- Qualité d'une estimation --- 55 min.}",
+   "en": "\\textbf{Homework 14 --- Quality of an estimate --- 55 min.}",
+   "status": "aligned",
+   "order": 54
+  },
+  "d0e023cef4f7": {
+   "fr": "On répète [[m1]] épreuves de Bernoulli indépendantes de même paramètre [[m2]], inconnu. On note [[m3]] la fréquence des succès.",
+   "en": "We repeat [[m1]] independent Bernoulli trials with the same parameter [[m2]], which is unknown. Let [[m3]] be the frequency of successes.",
+   "status": "aligned",
+   "order": 55
+  },
+  "537b07bdefae": {
+   "fr": "Démontrer que [[m1]] et [[m2]].",
+   "en": "Prove that [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "ff4521b1b01f": {
+   "fr": "Montrer que [[m1]] pour tout [[m2]].",
+   "en": "Show that [[m1]] for all [[m2]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "7821d38e9f7a": {
+   "fr": "En déduire une taille [[m1]] suffisante pour que [[m2]], quelle que soit la valeur de [[m3]].",
+   "en": "Deduce a size [[m1]] sufficient for [[m2]], whatever the value of [[m3]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "b1364a966311": {
+   "fr": "On sait maintenant que [[m1]]. Déterminer une majoration plus précise de [[m2]], puis améliorer la taille suffisante obtenue à la question 3.",
+   "en": "We now know that [[m1]]. Determine a sharper upper bound for [[m2]], then improve the sufficient size obtained in question 3.",
+   "status": "aligned",
+   "order": 59
+  },
+  "e15103f06022": {
+   "fr": "Pour cette question seulement, les [[m1]] résultats sont tous égaux à une même variable de Bernoulli [[m2]] de paramètre [[m3]]. Calculer [[m4]] et sa variance. Expliquer pourquoi la garantie précédente ne s'applique plus.",
+   "en": "For this question only, the [[m1]] results are all equal to the same Bernoulli variable [[m2]] with parameter [[m3]]. Calculate [[m4]] and its variance. Explain why the previous guarantee no longer applies.",
+   "status": "aligned",
+   "order": 60
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 61
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 62
+  },
+  "8c7bb5679525": {
+   "fr": "Le DS5 et le deuxième blanc précèdent S73 : n'y demander ni Bienaymé-Tchebychev ni loi des grands nombres. Pour la variance, faire entourer l'hypothèse d'indépendance. Pour la concentration, distinguer probabilité exacte et majoration, puis rang suffisant et rang minimal réel. Une simulation n'est pas une preuve et une moyenne observée ne se rapproche pas forcément à chaque nouvel essai.",
+   "en": "Test 5 and the second mock exam come before S73: do not ask for Bienaymé--Chebyshev or the law of large numbers in them. For the variance, have students circle the independence assumption. For concentration, distinguish the exact probability from the bound, and a sufficient rank from the true minimal rank. A simulation is not a proof, and an observed mean does not necessarily get closer with each new trial.",
+   "status": "aligned",
+   "order": 63
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 64
+  },
+  "87ff823255ca": {
+   "fr": "Tracer les points [[m1]] avec la liste obtenue. Après deux essais donnant une pile et une face, [[m2]]. Quel que soit le troisième résultat, [[m3]] vaut [[m4]] ou [[m5]] : l'écart à [[m6]] augmente. La stabilisation n'est pas une diminution monotone de l'écart sur chaque trajectoire.",
+   "en": "Plot the points [[m1]] with the list obtained. After two tosses giving one head and one tail, [[m2]]. Whatever the third result, [[m3]] is [[m4]] or [[m5]]: the deviation from [[m6]] increases. Stabilisation is not a monotonic decrease of the deviation along each trajectory.",
+   "status": "aligned",
+   "order": 65
+  },
+  "448a7ca9a3d0": {
+   "fr": "Une trajectoire simulée, graine 2026 ; la droite est [[m1]].",
+   "en": "A simulated trajectory, seed 2026; the line is [[m1]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "fdc39d6054b4": {
+   "fr": "Notons [[m1]] l'indicatrice de pile. Alors [[m2]]. Chaque [[m3]] a espérance [[m4]] et variance [[m5]]. Par linéarité, [[m6]] ; par indépendance et changement d'échelle, [[m7]].",
+   "en": "Let [[m1]] be the indicator of heads. Then [[m2]]. Each [[m3]] has expected value [[m4]] and variance [[m5]]. By linearity, [[m6]]; by independence and rescaling, [[m7]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "4d2d9ab3a817": {
+   "fr": "Bienaymé-Tchebychev donne [[m1]]. Il s'agit d'une borne supérieure, pas de la probabilité exacte.",
+   "en": "Bienaymé--Chebyshev gives [[m1]]. This is an upper bound, not the exact probability.",
+   "status": "aligned",
+   "order": 68
+  },
+  "b433bce684cd": {
+   "fr": "Pour assurer une probabilité complémentaire au plus [[m1]], il suffit de [[m2]]. Cela équivaut à [[m3]]. Alors [[m4]].",
+   "en": "To ensure a complementary probability of at most [[m1]], it suffices that [[m2]]. This is equivalent to [[m3]]. Then [[m4]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "955733d03380": {
+   "fr": "La simulation illustre une réalisation finie ; d'autres graines donnent d'autres trajectoires. L'inégalité établit une garantie sur la probabilité, pour tout échantillon répondant aux hypothèses d'indépendance et de loi commune.",
+   "en": "The simulation illustrates one finite realisation; other seeds give other trajectories. The inequality establishes a guarantee on the probability, for any sample satisfying the assumptions of independence and common distribution.",
+   "status": "aligned",
+   "order": 70
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 71
+  },
+  "1425b1c2ad35": {
+   "fr": "La transformation affine donne [[m1]] et [[m2]]. L'écart type est [[m3]] ; le décalage [[m4]] ne change pas la dispersion.",
+   "en": "The affine transformation gives [[m1]] and [[m2]]. The standard deviation is [[m3]]; the shift [[m4]] does not change the dispersion.",
+   "status": "aligned",
+   "order": 72
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 73
+  },
+  "5df8989f1bbc": {
+   "fr": "Par linéarité, [[m1]]. L'indépendance de [[m2]] permet d'additionner les variances de [[m3]] et [[m4]] : [[m5]].",
+   "en": "By linearity, [[m1]]. The independence of [[m2]] allows us to add the variances of [[m3]] and [[m4]]: [[m5]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 75
+  },
+  "802d500435fe": {
+   "fr": "La moyenne de [[m1]] variables indépendantes de même loi conserve l'espérance [[m2]]. Sa variance vaut [[m3]], donc son écart type vaut [[m4]].",
+   "en": "The mean of [[m1]] independent variables with the same distribution keeps the expected value [[m2]]. Its variance is [[m3]], so its standard deviation is [[m4]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 77
+  },
+  "a5e568e0ea21": {
+   "fr": "Bienaymé-Tchebychev avec [[m1]] donne [[m2]]. Cette borne ne donne pas une égalité ni une valeur exacte.",
+   "en": "Bienaymé--Chebyshev with [[m1]] gives [[m2]]. This bound gives neither an equality nor an exact value.",
+   "status": "aligned",
+   "order": 78
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 79
+  },
+  "0f11d44ea0f1": {
+   "fr": "On a [[m1]]. Pour que cette borne soit au plus [[m2]], il suffit de [[m3]]. Le complément a alors une probabilité au moins [[m4]].",
+   "en": "We have [[m1]]. For this bound to be at most [[m2]], it suffices that [[m3]]. The complement then has probability at least [[m4]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "956714899591": {
+   "fr": "Corrigé du DM14",
+   "en": "Solutions to Homework 14",
+   "status": "aligned",
+   "order": 81
+  },
+  "bbf9e3c56671": {
+   "fr": "Notons [[m1]] les indicatrices indépendantes des succès. [[m2]], avec [[m3]], [[m4]]. Donc",
+   "en": "Let [[m1]] be the independent indicators of the successes. [[m2]], with [[m3]], [[m4]]. Hence",
+   "status": "aligned",
+   "order": 82
+  },
+  "5063a7e2c6fa": {
+   "fr": "[[m1]]. L'égalité est atteinte pour [[m2]].",
+   "en": "[[m1]]. Equality is attained for [[m2]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "bbd1db72c2bb": {
+   "fr": "Pour tout [[m1]], [[m2]]. Il suffit que cette borne soit au plus [[m3]], c'est-à-dire [[m4]]. Par complément, cette taille garantit la probabilité demandée, uniformément en [[m5]].",
+   "en": "For all [[m1]], [[m2]]. It suffices that this bound be at most [[m3]], that is [[m4]]. By complement, this size guarantees the required probability, uniformly in [[m5]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "4a66f7628bf3": {
+   "fr": "Sur [[m1]], la fonction [[m2]] est croissante car sa dérivée [[m3]] est positive. Donc [[m4]]. Il suffit désormais de [[m5]]. Ces tailles sont suffisantes au sens de la majoration, pas nécessairement minimales pour la probabilité exacte.",
+   "en": "On [[m1]], the function [[m2]] is increasing because its derivative [[m3]] is positive. Hence [[m4]]. It now suffices that [[m5]]. These sizes are sufficient in the sense of the bound, not necessarily minimal for the exact probability.",
+   "status": "aligned",
+   "order": 85
+  },
+  "8701fd6859a6": {
+   "fr": "Si tous les essais recopient une même variable [[m1]], alors [[m2]]. Donc [[m3]], sans division par [[m4]]. L'addition des variances n'était permise que grâce à l'indépendance ; cette hypothèse disparaît ici. Pour [[m5]], augmenter le nombre de copies n'apporte aucune nouvelle information.",
+   "en": "If all the trials copy the same variable [[m1]], then [[m2]]. Hence [[m3]], with no division by [[m4]]. Adding the variances was allowed only because of independence; this assumption disappears here. For [[m5]], increasing the number of copies brings no new information.",
+   "status": "aligned",
+   "order": 86
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 87
+  },
+  "c8bdd9596846": {
+   "fr": "[[m1]] est le nombre moyen de donneurs universels par échantillon de [[m2]] personnes. La linéarité donne [[m3]] ; l'indépendance donne [[m4]].",
+   "en": "[[m1]] is the mean number of universal donors per sample of [[m2]] people. Linearity gives [[m3]]; independence gives [[m4]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "af07242e2af4": {
+   "fr": "Pour rendre cette borne au plus égale à [[m1]], il suffit de prendre",
+   "en": "To make this bound at most [[m1]], it suffices to take",
+   "status": "aligned",
+   "order": 89
+  },
+  "b4ba93541ae1": {
+   "fr": "Par complément, [[m1]].",
+   "en": "By complement, [[m1]].",
+   "status": "aligned",
+   "order": 90
+  }
+ }
+}

@@ -20,14 +20,20 @@ overlay PDFs dropped (done).
 **Phase B (TeX): IN PROGRESS.** Migrated (FR source + generated EN, mains from `content/data/manifest.json` "books"):
 - Automatismes (17 units, 1,433 segments): student 27/27, teacher 47/47 pages (before 22/38: one sequence per page now).
 - STMG (17 units): student 151/151, teacher 198/198 (before 152/203); a few lined "Notes" pages balance FR/EN per session.
-- Seconde (17 units): student 94/94, teacher 98/98 (unchanged). All migrated books: 0 overfull boxes, 0 undefined refs.
+- Seconde (17 units): student 94/94, teacher 98/98 (unchanged).
+- Première (units C01..C10 with parts in corriges/, evaluations/, figures/): student 121/121, teacher 210/210 (before
+  122/212); excerpts equal except chapter 10 notes/exercises (one page apart, recorded as `englishPages`).
+- Terminale (front, C01..C14, annexes, evaluations intro and E1..E9): student 95/95, teacher 260/260 (before 95/262).
+  Slide figures now compile with mxbook for every course (`build-slides.py` lost its per-course preambles).
+- All migrated books: 0 overfull boxes, 0 undefined refs. Word comparison with the old PDFs: only running heads, box
+  labels, TOC and line-break hyphenation differ.
+- `twin stub` now removes unused segments and `twin check` fails on them (tables stay exact).
 - Mechanisms: `build/mxbuild/migrate.py` (scripted renames per course, aligns old EN twins), `mxbuild.books` (mains),
   `mxbuild.tex.compile_pair` (FR/EN compiled together; per unit/session block, the shorter language gets notes pages),
   `tests/twin_parity.py` (numbers in maths and figures, all pairs), `scripts/build-slides.py` canonical parser.
 - Source defects fixed on the way (all recorded in commit messages): French decimal commas in maths, ordinals as text,
   26 French "et" left in STMG English, English-only \clearpage hacks, English printing PGCD.
-- NEXT: Première (units chapitres/C01..C10, corriges, evaluations, figures with -en twins, front, matrice, progression,
-  transversal, automatismes), then Terminale, then Enrichment (generate units from `content/data/enrichment.json`
+- NEXT: Enrichment (generate units from `content/data/enrichment.json`
   instead of the XeLaTeX files), then B4 (format file, figure externalisation, retire style-resource-pdfs.py).
 - Each course: write a PLANS entry in migrate.py, `python -m mxbuild migrate <course> --dry-run` until no refusals
   (fix source defects in the old files first), migrate, write the front unit, add the book to the manifest, point the

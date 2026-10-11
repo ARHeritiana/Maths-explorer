@@ -5,12 +5,13 @@
 %   edition=student|teacher|both   teacher material is shown for teacher and both (default: student)
 %   layout=booklet|sheet|slide-figs page design: two-sided booklet, one-sided sheet, or a bare page for figure export
 %   unit=chapter|sequence          name printed before a unit number in booklets (default: chapter)
+%   sections=numbered|unnumbered   unnumbered: sections carry no number and the contents list chapters only
 % Every course main is a few lines: \documentclass[course=...,lang=...,edition=...]{mxbook}, \begin{document},
 % then \mxinclude{...} for each unit. Units never load packages or define macros.
 \NeedsTeXFormat{LaTeX2e}[2022/06/01]
 \ProvidesClass{mxbook}[2026/10/11 Maths Explorer class]
 
-\def\mx@course{}\def\mx@lang{fr}\def\mx@edition{student}\def\mx@layout{booklet}\def\mx@unitname{chapter}
+\def\mx@course{}\def\mx@lang{fr}\def\mx@edition{student}\def\mx@layout{booklet}\def\mx@unitname{chapter}\def\mx@sections{numbered}
 \ExplSyntaxOn
 \DeclareKeys{
   course.store = \mx@course,
@@ -18,6 +19,7 @@
   edition.choices:nn = {student,teacher,both}{\cs_set_nopar:Npx \mx@edition {\l_keys_choice_tl}},
   layout.choices:nn = {booklet,sheet,slide-figs}{\cs_set_nopar:Npx \mx@layout {\l_keys_choice_tl}},
   unit.choices:nn = {chapter,sequence}{\cs_set_nopar:Npx \mx@unitname {\l_keys_choice_tl}},
+  sections.choices:nn = {numbered,unnumbered}{\cs_set_nopar:Npx \mx@sections {\l_keys_choice_tl}},
 }
 \ExplSyntaxOff
 \ProcessKeyOptions\relax
@@ -58,6 +60,9 @@
   \clearpage\stepcounter{mxblock}%
   \immediate\write\mx@blockfile{\the\c@mxblock\space\the\numexpr\ReadonlyShipoutCounter+1\relax}}
 \AtEndDocument{\mx@newblock}   % pads the last block and records the end
+
+\def\mx@unnumbered{unnumbered}
+\ifx\mx@sections\mx@unnumbered\setcounter{secnumdepth}{0}\setcounter{tocdepth}{0}\fi
 
 % \mxinclude{path}: input a unit by its path below content/tex (no extension); the language suffix is added here,
 % so a main lists units once for both languages. Example: \mxinclude{courses/premiere/c05} reads c05.fr.tex or c05.en.tex.

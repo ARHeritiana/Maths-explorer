@@ -1,0 +1,449 @@
+{
+ "unit": "C02.fr.tex",
+ "segments": {
+  "7da9763834fd": {
+   "fr": "Vecteurs, droites et plans de l'espace",
+   "en": "Vectors, lines and planes in space",
+   "status": "aligned",
+   "order": 0
+  },
+  "6ff50e4b9432": {
+   "fr": "S3, S6, S12, S15 ; synthèse S17",
+   "en": "S3, S6, S12, S15; synthesis S17",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "b391e0b0f94a": {
+   "fr": "Calculer avec des vecteurs ; utiliser colinéarité et coplanarité ; caractériser droites et plans ; travailler dans un repère.",
+   "en": "Calculate with vectors; use collinearity and coplanarity; characterise lines and planes; work in a frame of reference.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "9cabd54dc6f8": {
+   "fr": "Calcul vectoriel",
+   "en": "Vector calculus",
+   "status": "aligned",
+   "order": 5
+  },
+  "e08a17d465a4": {
+   "fr": "La relation de Chasles [[m1]], la somme de vecteurs et le produit par un réel se prolongent à l'espace. Deux vecteurs non nuls sont colinéaires si l'un est un multiple de l'autre. Le vecteur nul est colinéaire à tout vecteur.\nTrois vecteurs sont coplanaires s'ils appartiennent à un même plan vectoriel. Si [[m2]] ne sont pas colinéaires, [[m3]] sont coplanaires si et seulement si [[m4]] pour certains réels [[m5]].",
+   "en": "Chasles's relation [[m1]], the sum of vectors and the product by a real number extend to space. Two non-zero vectors are collinear if one is a multiple of the other. The zero vector is collinear with every vector.\nThree vectors are coplanar if they belong to the same vector plane. If [[m2]] are not collinear, [[m3]] are coplanar if and only if [[m4]] for some real numbers [[m5]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "1a62c9d48f86": {
+   "fr": "Droite et plan",
+   "en": "Line and plane",
+   "status": "aligned",
+   "order": 7
+  },
+  "e6474619cd15": {
+   "fr": "La droite passant par [[m1]] de vecteur directeur non nul [[m2]] est l'ensemble des points [[m3]] tels que [[m4]] pour un réel [[m5]].\nLe plan passant par [[m6]] et dirigé par deux vecteurs non colinéaires [[m7]] est l'ensemble des points [[m8]] tels que [[m9]] pour des réels [[m10]].",
+   "en": "The line through [[m1]] with non-zero direction vector [[m2]] is the set of points [[m3]] such that [[m4]] for a real number [[m5]].\nThe plane through [[m6]] spanned by two non-collinear vectors [[m7]] is the set of points [[m8]] such that [[m9]] for real numbers [[m10]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "8e7244e3c2bb": {
+   "fr": "Trois points non alignés définissent un plan. Quatre points [[m1]], avec [[m2]] non alignés, sont coplanaires si et seulement si [[m3]] est combinaison linéaire de [[m4]] et [[m5]].",
+   "en": "Three non-collinear points define a plane. Four points [[m1]], with [[m2]] not collinear, are coplanar if and only if [[m3]] is a linear combination of [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "1da70bcbdb05": {
+   "fr": "Positions relatives",
+   "en": "Relative positions",
+   "status": "aligned",
+   "order": 10
+  },
+  "cc26b3a1a0a2": {
+   "fr": "Deux droites sont confondues, strictement parallèles, sécantes ou non coplanaires. Des vecteurs directeurs colinéaires caractérisent des droites parallèles au sens large. Des directeurs non colinéaires n'assurent pas l'intersection.\nUne droite et un plan : droite incluse dans le plan, parallèle et disjointe, ou sécante en un seul point. Deux plans : confondus, strictement parallèles, ou sécants suivant une droite.",
+   "en": "Two lines are coincident, strictly parallel, intersecting or non-coplanar (skew). Collinear direction vectors characterise parallel lines in the broad sense. Non-collinear direction vectors do not guarantee an intersection.\nA line and a plane: line contained in the plane, parallel and disjoint, or meeting it in a single point. Two planes: coincident, strictly parallel, or intersecting along a line.",
+   "status": "aligned",
+   "order": 11
+  },
+  "363ad9adddad": {
+   "fr": "Exemple dans un cube.",
+   "en": "Example in a cube.",
+   "status": "aligned",
+   "order": 12
+  },
+  "76615b43bf9d": {
+   "fr": "Dans [[m1]], les faces [[m2]] et [[m3]] sont parallèles et les arêtes [[m4]] se correspondent. Les droites [[m5]] et [[m6]] ne sont ni parallèles ni sécantes : elles sont non coplanaires.",
+   "en": "In [[m1]], the faces [[m2]] and [[m3]] are parallel and the edges [[m4]] correspond to one another. The lines [[m5]] and [[m6]] are neither parallel nor intersecting: they are non-coplanar.",
+   "status": "aligned",
+   "order": 13
+  },
+  "573768e84162": {
+   "fr": "Base et coordonnées",
+   "en": "Basis and coordinates",
+   "status": "aligned",
+   "order": 14
+  },
+  "c82f75853613": {
+   "fr": "Une base de l'espace est une famille de trois vecteurs non coplanaires. Tout vecteur s'y écrit de manière unique [[m1]]. Un repère est constitué d'une origine [[m2]] et d'une base.",
+   "en": "A basis of space is a family of three non-coplanar vectors. Every vector can be written uniquely in it as [[m1]]. A frame of reference consists of an origin [[m2]] and a basis.",
+   "status": "aligned",
+   "order": 15
+  },
+  "4d65dcb6b1b9": {
+   "fr": "Dans un repère orthonormé, [[m1]] et [[m2]].",
+   "en": "In an orthonormal frame, [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 17
+  },
+  "d98d87327009": {
+   "fr": "Dans un repère orthonormé, pour [[m1]], [[m2]], [[m3]], [[m4]] et le milieu est [[m5]].",
+   "en": "In an orthonormal frame, for [[m1]], [[m2]], [[m3]], [[m4]] and the midpoint is [[m5]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "15044570dc5f": {
+   "fr": "Tester une combinaison linéaire",
+   "en": "Testing a linear combination",
+   "status": "aligned",
+   "order": 19
+  },
+  "c457f9bccda9": {
+   "fr": "Écrire les trois égalités de coordonnées. Déterminer les coefficients à partir de deux équations quand c'est possible, puis vérifier la troisième. Une contradiction prouve la non-appartenance ; on ne supprime pas l'équation gênante.",
+   "en": "Write the three coordinate equalities. Determine the coefficients from two equations when possible, then check the third. A contradiction proves non-membership; do not discard the awkward equation.",
+   "status": "aligned",
+   "order": 20
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 21
+  },
+  "3a20fd747b95": {
+   "fr": "\\textbf{Trois milieux dans un cube --- 40 min.}",
+   "en": "\\textbf{Three midpoints in a cube --- 40 min.}",
+   "status": "aligned",
+   "order": 22
+  },
+  "33dc277ac4e2": {
+   "fr": "On considère le cube [[m1]] représenté ci-dessous. On pose [[m2]], [[m3]] et [[m4]]. Les points [[m5]], [[m6]] et [[m7]] sont les milieux respectifs de [[m8]], [[m9]] et [[m10]]. On note [[m11]] le centre du cube.",
+   "en": "Consider the cube [[m1]] shown below. Let [[m2]], [[m3]] and [[m4]]. The points [[m5]], [[m6]] and [[m7]] are the midpoints of [[m8]], [[m9]] and [[m10]] respectively. Let [[m11]] be the centre of the cube.",
+   "status": "aligned",
+   "order": 23
+  },
+  "b45919177214": {
+   "fr": "[[m1]] est une diagonale de l'espace, tracée en pointillés verts.\\\\Les arêtes cachées sont en pointillés bleus ; [[m2]] et [[m3]] ne sont pas sur [[m4]].",
+   "en": "[[m1]] is a space diagonal, drawn dotted in green.\\\\The hidden edges are dashed in blue; [[m2]] and [[m3]] are not on [[m4]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "21bf47df59d9": {
+   "fr": "Exprimer [[m1]] et [[m2]] dans la base [[m3]].",
+   "en": "Express [[m1]] and [[m2]] in the basis [[m3]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "cd0ef125a62c": {
+   "fr": "Démontrer que les points [[m1]], [[m2]] et [[m3]] ne sont pas alignés.",
+   "en": "Prove that the points [[m1]], [[m2]] and [[m3]] are not collinear.",
+   "status": "aligned",
+   "order": 26
+  },
+  "37600c271dea": {
+   "fr": "Déterminer si [[m1]] appartient au plan [[m2]]. On justifiera la réponse en cherchant si [[m3]] est une combinaison linéaire de [[m4]] et [[m5]].",
+   "en": "Determine whether [[m1]] belongs to the plane [[m2]]. Justify the answer by investigating whether [[m3]] is a linear combination of [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "5fea828fbf50": {
+   "fr": "Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de [[m1]] au plan [[m2]] ?",
+   "en": "Why does simply reading the figure not allow one to prove that [[m1]] does or does not belong to the plane [[m2]]?",
+   "status": "aligned",
+   "order": 28
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 29
+  },
+  "01cec96e88f1": {
+   "fr": "Dans une base de l'espace, les vecteurs [[m1]] et [[m2]] ont pour coordonnées respectives [[m3]] et [[m4]]. Sont-ils colinéaires ? Justifier.",
+   "en": "In a basis of space, the vectors [[m1]] and [[m2]] have coordinates [[m3]] and [[m4]] respectively. Are they collinear? Justify.",
+   "status": "aligned",
+   "order": 31
+  },
+  "94227efd9557": {
+   "fr": "Dans un repère orthonormé de l'espace, on considère [[m1]] et [[m2]]. Déterminer les coordonnées du milieu de [[m3]], puis calculer la distance [[m4]].",
+   "en": "In an orthonormal frame of space, consider [[m1]] and [[m2]]. Determine the coordinates of the midpoint of [[m3]], then calculate the distance [[m4]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "c66118f66d87": {
+   "fr": "Dans une base de l'espace, on considère [[m1]], [[m2]] et [[m3]]. Exprimer [[m4]] comme combinaison linéaire de [[m5]] et [[m6]], puis en déduire que ces trois vecteurs sont coplanaires.",
+   "en": "In a basis of space, consider [[m1]], [[m2]] and [[m3]]. Express [[m4]] as a linear combination of [[m5]] and [[m6]], then deduce that these three vectors are coplanar.",
+   "status": "aligned",
+   "order": 35
+  },
+  "4a71cede1539": {
+   "fr": "Dans une base de l'espace, les vecteurs [[m1]], [[m2]] et [[m3]] ont pour coordonnées [[m4]], [[m5]] et [[m6]]. Le triplet [[m7]] est-il une base de l'espace ? Justifier.",
+   "en": "In a basis of space, the vectors [[m1]], [[m2]] and [[m3]] have coordinates [[m4]], [[m5]] and [[m6]]. Is the triple [[m7]] a basis of space? Justify.",
+   "status": "aligned",
+   "order": 37
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 38
+  },
+  "10a9e6e15e1e": {
+   "fr": "Dans un repère de l'espace, on considère [[m1]], [[m2]] et [[m3]]. Déterminer si [[m4]] appartient à la droite [[m5]]. Justifier par un calcul vectoriel.",
+   "en": "In a frame of space, consider [[m1]], [[m2]] and [[m3]]. Determine whether [[m4]] belongs to the line [[m5]]. Justify with a vector calculation.",
+   "status": "aligned",
+   "order": 39
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 40
+  },
+  "c16df2f21331": {
+   "fr": "\\textbf{Barbazo, p. 328, exercice 21.} En classe après S15 : traiter les trois questions. Pour chaque intersection, commencer par identifier chacun des plans à partir des sommets du cube et des milieux indiqués. Distinguer deux plans sécants, confondus et strictement parallèles.",
+   "en": "\\textbf{Barbazo, p. 328, exercise 21.} In class after S15: do all three questions. For each intersection, begin by identifying each of the planes from the vertices of the cube and the midpoints given. Distinguish between intersecting, coincident and strictly parallel planes.",
+   "status": "aligned",
+   "order": 41
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 42
+  },
+  "7fda1f929b0f": {
+   "fr": "\\textbf{DM10 --- Points d'un tétraèdre --- 50 min.}",
+   "en": "\\textbf{Homework 10 --- Points of a tetrahedron --- 50 min.}",
+   "status": "aligned",
+   "order": 43
+  },
+  "635c2ee59080": {
+   "fr": "On considère un tétraèdre [[m1]] non aplati. Les points [[m2]], [[m3]] et [[m4]] sont les milieux respectifs de [[m5]], [[m6]] et [[m7]].",
+   "en": "Consider a non-degenerate tetrahedron [[m1]]. The points [[m2]], [[m3]] and [[m4]] are the midpoints of [[m5]], [[m6]] and [[m7]] respectively.",
+   "status": "aligned",
+   "order": 44
+  },
+  "69cacad1325d": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]] et [[m3]] en fonction de [[m4]].",
+   "en": "Express [[m1]] in terms of [[m2]] and [[m3]] in terms of [[m4]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "aad4ebd607c8": {
+   "fr": "En déduire que les plans [[m1]] et [[m2]] sont parallèles.",
+   "en": "Deduce that the planes [[m1]] and [[m2]] are parallel.",
+   "status": "aligned",
+   "order": 46
+  },
+  "12d759ff5468": {
+   "fr": "On définit le point [[m1]] par [[m2]]. Le point [[m3]] appartient-il au plan [[m4]] ? Justifier.",
+   "en": "The point [[m1]] is defined by [[m2]]. Does the point [[m3]] belong to the plane [[m4]]? Justify.",
+   "status": "aligned",
+   "order": 47
+  },
+  "a36b6a647c26": {
+   "fr": "Pour cette question seulement, on suppose que, dans un repère orthonormé, [[m1]], [[m2]], [[m3]] et [[m4]]. Calculer les longueurs [[m5]], [[m6]] et [[m7]].",
+   "en": "For this question only, assume that, in an orthonormal frame, [[m1]], [[m2]], [[m3]] and [[m4]]. Calculate the lengths [[m5]], [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 49
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 50
+  },
+  "e9d8a285b217": {
+   "fr": "Le DS1 précède S12 et S15 : proposer de la géométrie vectorielle dans une base donnée, sans exiger de techniques de coordonnées nouvelles. Utiliser un cube matériel, puis une perspective cavalière ; marquer les arêtes cachées. Deux droites non parallèles de l'espace ne sont pas nécessairement sécantes. La norme par coordonnées nécessite un repère orthonormé. Les représentations paramétriques formalisées et les équations de plans seront traitées plus tard.",
+   "en": "Test 1 comes before S12 and S15: set vector geometry in a given basis, without requiring new coordinate techniques. Use a physical cube, then an oblique perspective drawing; mark the hidden edges. Two non-parallel lines in space do not necessarily intersect. The norm via coordinates requires an orthonormal frame. Formal parametric representations and equations of planes will be covered later.",
+   "status": "aligned",
+   "order": 51
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 52
+  },
+  "a25a8eda281c": {
+   "fr": "Par Chasles, [[m1]] et [[m2]].",
+   "en": "By Chasles, [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "c24423526e8b": {
+   "fr": "Si [[m1]], le coefficient de [[m2]] serait [[m3]], impossible dans une base. Ces deux vecteurs sont donc non colinéaires ; [[m4]] définissent un plan.",
+   "en": "If [[m1]], the coefficient of [[m2]] would be [[m3]], impossible in a basis. These two vectors are therefore non-collinear; [[m4]] define a plane.",
+   "status": "aligned",
+   "order": 54
+  },
+  "cccabbced2c6": {
+   "fr": "Le centre du cube vérifie [[m1]], donc [[m2]]. Si [[m3]], il existe [[m4]] tels que [[m5]]. En comparant les coefficients de la base,",
+   "en": "The centre of the cube satisfies [[m1]], so [[m2]]. If [[m3]], there exist [[m4]] such that [[m5]]. Comparing the coefficients of the basis,",
+   "status": "aligned",
+   "order": 55
+  },
+  "8a845bfa1c0f": {
+   "fr": "Les deux dernières imposent [[m1]], alors que la première demanderait [[m2]]. Contradiction : [[m3]].",
+   "en": "The last two force [[m1]], whereas the first would require [[m2]]. Contradiction: [[m3]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "6412e77a225a": {
+   "fr": "La perspective cavalière est une projection sur une feuille : des points distincts peuvent avoir la même image. Elle aide à conjecturer, mais une superposition apparente ne prouve pas l'appartenance à un plan.",
+   "en": "Oblique perspective is a projection onto a sheet of paper: distinct points may have the same image. It helps to conjecture, but an apparent overlap does not prove membership of a plane.",
+   "status": "aligned",
+   "order": 57
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 58
+  },
+  "2c22b1221f98": {
+   "fr": "Les trois coordonnées de [[m1]] valent trois fois celles de [[m2]] : [[m3]]. Les deux vecteurs sont donc colinéaires.",
+   "en": "The three coordinates of [[m1]] are three times those of [[m2]]: [[m3]]. The two vectors are therefore collinear.",
+   "status": "aligned",
+   "order": 59
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 60
+  },
+  "3578a824c599": {
+   "fr": "Le milieu a pour coordonnées [[m1]]. La différence de coordonnées donne [[m2]] ; dans le repère orthonormé, [[m3]].",
+   "en": "The midpoint has coordinates [[m1]]. The coordinate differences give [[m2]]; in the orthonormal frame, [[m3]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 62
+  },
+  "2139b4118775": {
+   "fr": "On calcule [[m1]]. Ainsi [[m2]] appartient au plan vectoriel dirigé par les deux premiers vecteurs : les trois sont coplanaires.",
+   "en": "We calculate [[m1]]. Thus [[m2]] belongs to the vector plane spanned by the first two vectors: the three are coplanar.",
+   "status": "aligned",
+   "order": 63
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 64
+  },
+  "d4df76e19aa6": {
+   "fr": "Les deux premiers vecteurs sont non colinéaires. Si le troisième était leur combinaison [[m1]], les deux premières coordonnées imposeraient [[m2]], mais la troisième vaudrait [[m3]]. Les trois vecteurs sont non coplanaires ; ils forment donc une base de l'espace.",
+   "en": "The first two vectors are non-collinear. If the third were their combination [[m1]], the first two coordinates would force [[m2]], but the third would equal [[m3]]. The three vectors are non-coplanar; they therefore form a basis of space.",
+   "status": "aligned",
+   "order": 65
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 66
+  },
+  "31ef6d6c7889": {
+   "fr": "[[m1]] et [[m2]]. Comme [[m3]], la droite [[m4]] est définie et cette colinéarité prouve [[m5]].",
+   "en": "[[m1]] and [[m2]]. Since [[m3]], the line [[m4]] is defined and this collinearity proves [[m5]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "4f18228ea71a": {
+   "fr": "Corrigé du DM10",
+   "en": "Solutions to Homework 10",
+   "status": "aligned",
+   "order": 68
+  },
+  "a8e0030c8f24": {
+   "fr": "Par Chasles et les définitions des milieux,",
+   "en": "By Chasles and the definitions of midpoints,",
+   "status": "aligned",
+   "order": 69
+  },
+  "42345a07e2dd": {
+   "fr": "Les points [[m1]] ne sont pas alignés, car le tétraèdre est non aplati. Les vecteurs [[m2]] sont donc non colinéaires, de même que [[m3]]. Les plans ont la même direction. Ils sont distincts : si [[m4]], la droite [[m5]] serait incluse dans ce plan, ce qui y placerait [[m6]], contradiction. Ils sont donc strictement parallèles.",
+   "en": "The points [[m1]] are not collinear, since the tetrahedron is non-degenerate. The vectors [[m2]] are therefore non-collinear, and so are [[m3]]. The planes have the same direction. They are distinct: if [[m4]], the line [[m5]] would be contained in this plane, which would place [[m6]] in it, a contradiction. They are therefore strictly parallel.",
+   "status": "aligned",
+   "order": 70
+  },
+  "c2f3f8ba7f16": {
+   "fr": "Dans la base [[m1]], on a [[m2]], [[m3]] et [[m4]]. Une relation [[m5]] impose [[m6]] par les deux dernières coordonnées ; la première vaudrait alors [[m7]], et non [[m8]]. Donc [[m9]].",
+   "en": "In the basis [[m1]], we have [[m2]], [[m3]] and [[m4]]. A relation [[m5]] forces [[m6]] by the last two coordinates; the first would then equal [[m7]], and not [[m8]]. Hence [[m9]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "dbc655a6a741": {
+   "fr": "Dans ce cas particulier, [[m1]], [[m2]] et [[m3]]. On trouve [[m4]], et de même [[m5]]. Le triangle est équilatéral. Cette conclusion métrique ne vaut pas pour tout tétraèdre non aplati : elle utilise les coordonnées du cas particulier.",
+   "en": "In this particular case, [[m1]], [[m2]] and [[m3]]. We find [[m4]], and likewise [[m5]]. The triangle is equilateral. This metric conclusion does not hold for every non-degenerate tetrahedron: it uses the coordinates of the particular case.",
+   "status": "aligned",
+   "order": 72
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 73
+  },
+  "c7c197b2762f": {
+   "fr": "Dans cet exercice, [[m1]] est le milieu de [[m2]] et [[m3]] celui de [[m4]].",
+   "en": "In this exercise, [[m1]] is the midpoint of [[m2]] and [[m3]] that of [[m4]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "3e4208942f73": {
+   "fr": "Les plans [[m1]] et [[m2]] contiennent tous deux [[m3]]. Ils sont distincts : [[m4]] n'appartient pas au plan de la face [[m5]]. Leur intersection est donc exactement la droite [[m6]].",
+   "en": "The planes [[m1]] and [[m2]] both contain [[m3]]. They are distinct: [[m4]] does not belong to the plane of the face [[m5]]. Their intersection is therefore exactly the line [[m6]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "636de1268c3c": {
+   "fr": "Les points [[m1]] sont trois points non alignés de la face [[m2]] ; il en va de même de [[m3]]. Les deux plans sont donc confondus avec [[m4]]. L'intersection est le plan entier, et non une droite.",
+   "en": "The points [[m1]] are three non-collinear points of the face [[m2]]; the same holds for [[m3]]. The two planes are therefore both equal to [[m4]]. The intersection is the whole plane, not a line.",
+   "status": "aligned",
+   "order": 76
+  },
+  "b3153b649a33": {
+   "fr": "Le plan [[m1]] est celui de la face supérieure ; [[m2]] est celui de la face inférieure. Ces plans sont strictement parallèles : leur intersection est vide.",
+   "en": "The plane [[m1]] is that of the top face; [[m2]] is that of the bottom face. These planes are strictly parallel: their intersection is empty.",
+   "status": "aligned",
+   "order": 77
+  }
+ }
+}

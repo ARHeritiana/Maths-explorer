@@ -1,0 +1,95 @@
+{
+ "unit": "algorithmique.fr.tex",
+ "segments": {
+  "ce9d7a83ca94": {
+   "fr": "Algorithmique · P1 à P6",
+   "en": "Algorithmics · P1 to P6",
+   "status": "aligned",
+   "order": 0
+  },
+  "28497b5f995c": {
+   "fr": "Ces programmes sont des exemples de cours. Pour les comprendre, préciser les entrées, la sortie et les hypothèses, puis exécuter quelques étapes à la main. Les réponses des activités et des DM restent à rédiger séparément.",
+   "en": "These programs are examples from the lessons. To understand them, specify the inputs, the output and the hypotheses, then run a few steps by hand. The answers to the activities and homework remain to be written up separately.",
+   "status": "aligned",
+   "order": 1
+  },
+  "1a5862bffda5": {
+   "fr": "P1 · Termes, somme et seuil",
+   "en": "P1 · Terms, sum and threshold",
+   "status": "aligned",
+   "order": 2
+  },
+  "22b85cb7adde": {
+   "fr": "On suppose [[m1]] entier positif ou nul et le plafond de sécurité entier positif. La première fonction renvoie [[m2]] et [[m3]] pour [[m4]]. La seconde cherche un premier franchissement croissant ; son plafond de sécurité signale seulement qu'il n'a pas été trouvé dans le nombre d'étapes fixé.",
+   "en": "We assume [[m1]] is a non-negative integer and the safety cap is a positive integer. The first function returns [[m2]] and [[m3]] for [[m4]]. The second looks for a first upward crossing; its safety cap only signals that it was not found within the fixed number of steps.",
+   "status": "aligned",
+   "order": 3
+  },
+  "8326c7657eea": {
+   "fr": "P2 · Dichotomie",
+   "en": "P2 · Bisection",
+   "status": "aligned",
+   "order": 4
+  },
+  "1cc6f77b3fcb": {
+   "fr": "Les calculs ci-dessous utilisent des nombres flottants ; la garantie mathématique suppose les signes correctement déterminés. Hypothèses : [[m1]] continue sur [[m2]] et [[m3]]. Pour identifier un unique zéro, prouver séparément l'unicité. La fonction renvoie un intervalle de longueur au plus [[m4]], tant que la précision machine permet encore de partager l'intervalle.",
+   "en": "The calculations below use floating-point numbers; the mathematical guarantee assumes the signs are correctly determined. Hypotheses: [[m1]] continuous on [[m2]] and [[m3]]. To identify a unique zero, prove uniqueness separately. The function returns an interval of length at most [[m4]], as long as machine precision still allows the interval to be split.",
+   "status": "aligned",
+   "order": 5
+  },
+  "3713f82ae893": {
+   "fr": "P3 · Euler",
+   "en": "P3 · Euler",
+   "status": "aligned",
+   "order": 6
+  },
+  "a35e1cd839a7": {
+   "fr": "Avec [[m1]] entier strictement positif et [[m2]], pour [[m3]], [[m4]]. Le programme renvoie toutes les approximations ; il ne prouve pas leur précision.",
+   "en": "With [[m1]] a strictly positive integer and [[m2]], for [[m3]], [[m4]]. The program returns all the approximations; it does not prove their accuracy.",
+   "status": "aligned",
+   "order": 7
+  },
+  "b76049e61518": {
+   "fr": "fin",
+   "en": "end",
+   "status": "aligned",
+   "order": 8
+  },
+  "bc7b30d135b6": {
+   "fr": "P4 · Rectangles",
+   "en": "P4 · Rectangles",
+   "status": "aligned",
+   "order": 9
+  },
+  "26db183026ec": {
+   "fr": "Pour [[m1]] entier strictement positif et [[m2]] continue et croissante sur [[m3]], le résultat donne une borne inférieure et une borne supérieure de l'intégrale. Sans monotonie, ce sont seulement deux approximations à examiner.",
+   "en": "For [[m1]] a strictly positive integer and [[m2]] continuous and increasing on [[m3]], the result gives a lower bound and an upper bound for the integral. Without monotonicity, these are only two approximations to be examined.",
+   "status": "aligned",
+   "order": 10
+  },
+  "3f6671a5bfdf": {
+   "fr": "P5 · Loi binomiale et simulation",
+   "en": "P5 · Binomial distribution and simulation",
+   "status": "aligned",
+   "order": 11
+  },
+  "d13f63dab301": {
+   "fr": "On suppose [[m1]] entier positif ou nul, [[m2]] et [[m3]] entier. Le calcul direct ci-dessous convient aux tailles modestes utilisées dans les exercices ; pour de très grands paramètres, des bibliothèques numériques spécialisées sont préférables.",
+   "en": "We assume [[m1]] is a non-negative integer, [[m2]] and [[m3]] an integer. The direct calculation below suits the modest sizes used in the exercises; for very large parameters, specialised numerical libraries are preferable.",
+   "status": "aligned",
+   "order": 12
+  },
+  "604bf237c939": {
+   "fr": "P6 · Fluctuations d'une fréquence",
+   "en": "P6 · Fluctuations of a frequency",
+   "status": "aligned",
+   "order": 13
+  },
+  "99f322c27a51": {
+   "fr": "On suppose [[m1]] entier strictement positif et [[m2]]. La graine permet de reproduire le même exemple. Répéter avec d'autres graines ; la loi des grands nombres ne dit pas que l'écart observé diminue à chaque étape.",
+   "en": "We assume [[m1]] is a strictly positive integer and [[m2]]. The seed makes it possible to reproduce the same example. Repeat with other seeds; the law of large numbers does not say that the observed deviation decreases at every step.",
+   "status": "aligned",
+   "order": 14
+  }
+ }
+}

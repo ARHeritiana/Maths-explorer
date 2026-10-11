@@ -151,5 +151,7 @@
 % ---- Chapter books (Première) ----------------------------------------------------------------------------------------
 % \mxcorrections{n}: teacher section with the solutions of chapter n, on a new page (build splits on its heading).
 \newcommand{\mxcorrections}[1]{\mx@newblock\section*{\mxlabelof{corrections} #1}}
+% \mxexerciseitem{n}{title}: run-in exercise heading "En · title." (numbers cited by the solutions).
+\newcommand{\mxexerciseitem}[2]{\mxneed{3}\paragraph{E#1 \textperiodcentered\ #2.}}
 % \mxexercisehead{label}{title}: numbered exercise heading (chapter.n) for exercises written as running text.
 \newcommand{\mxexercisehead}[2]{\mxneed{5}\refstepcounter{mxexercise}\subsection*{\mxlabelof{exercise} \themxexercise\ \textperiodcentered\ #2}\label{#1}}

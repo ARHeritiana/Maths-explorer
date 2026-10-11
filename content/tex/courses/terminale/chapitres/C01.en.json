@@ -1,0 +1,563 @@
+{
+ "unit": "C01.fr.tex",
+ "segments": {
+  "6460927b6538": {
+   "fr": "Suites numériques et récurrence",
+   "en": "Sequences and induction",
+   "status": "aligned",
+   "order": 0
+  },
+  "14dad2f67f54": {
+   "fr": "S2, S4, S5, S7, S10, S11, S13",
+   "en": "S2, S4, S5, S7, S10, S11, S13",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "e38cd19a8405": {
+   "fr": "Calculer des termes et une somme ; rédiger une récurrence ; établir monotonie et bornes ; exploiter une suite auxiliaire.",
+   "en": "Calculate terms and a sum; write up a proof by induction; establish monotonicity and bounds; use an auxiliary sequence.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "fd4c91a1d44d": {
+   "fr": "Définir une suite et calculer",
+   "en": "Defining a sequence and calculating",
+   "status": "aligned",
+   "order": 5
+  },
+  "c106be1583e0": {
+   "fr": "Une suite réelle est une fonction définie sur [[m1]], ou sur les entiers à partir d'un rang [[m2]]. On note [[m3]] son terme de rang [[m4]]. Une formule explicite donne [[m5]] directement ; une relation de récurrence exige aussi un terme initial. Par exemple, [[m6]] et [[m7]] donnent [[m8]], [[m9]].",
+   "en": "A real sequence is a function defined on [[m1]], or on the integers from some index [[m2]] onwards. We write [[m3]] for its term of index [[m4]]. An explicit formula gives [[m5]] directly; a recurrence relation also requires an initial term. For example, [[m6]] and [[m7]] give [[m8]], [[m9]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "b40741c48f2d": {
+   "fr": "Suites de référence",
+   "en": "Reference sequences",
+   "status": "aligned",
+   "order": 7
+  },
+  "04b4833e8c68": {
+   "fr": "Si [[m1]], alors [[m2]]. Si [[m3]], alors [[m4]] pour [[m5]].",
+   "en": "If [[m1]], then [[m2]]. If [[m3]], then [[m4]] for [[m5]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "ab945c5c4a6b": {
+   "fr": "Lorsque [[m1]], la deuxième somme vaut [[m2]].",
+   "en": "When [[m1]], the second sum equals [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "4cab78415d99": {
+   "fr": "Raisonnement par récurrence",
+   "en": "Proof by induction",
+   "status": "aligned",
+   "order": 10
+  },
+  "e7660cdb36b8": {
+   "fr": "Pour prouver [[m1]] pour tout entier [[m2]] : vérifier [[m3]] ; fixer un entier arbitraire [[m4]] et supposer [[m5]] vraie ; en déduire [[m6]] ; conclure par le principe de récurrence. L'hypothèse n'est pas la conclusion : elle ne peut être utilisée qu'au rang fixé.",
+   "en": "To prove [[m1]] for every integer [[m2]]: check [[m3]]; fix an arbitrary integer [[m4]] and assume [[m5]] is true; deduce [[m6]]; conclude by the principle of induction. The assumption is not the conclusion: it can only be used at the fixed index.",
+   "status": "aligned",
+   "order": 11
+  },
+  "65182c5d4923": {
+   "fr": "Exemple entièrement rédigé.",
+   "en": "Fully worked example.",
+   "status": "aligned",
+   "order": 12
+  },
+  "860018770454": {
+   "fr": "Soit [[m1]], [[m2]]. Pour [[m3]], notons [[m4]] : « [[m5]] ».",
+   "en": "Let [[m1]], [[m2]]. For [[m3]], let [[m4]] be the statement ``[[m5]]''.",
+   "status": "aligned",
+   "order": 13
+  },
+  "a421c70aa3bc": {
+   "fr": "\\textbf{Initialisation.} [[m1]] ; [[m2]] est vraie.",
+   "en": "\\textbf{Base case.} [[m1]]; [[m2]] is true.",
+   "status": "aligned",
+   "order": 14
+  },
+  "6a032503e7eb": {
+   "fr": "\\textbf{Hérédité.} Fixons [[m1]] et supposons [[m2]] vraie. Par la définition de la suite, puis par cette hypothèse,",
+   "en": "\\textbf{Inductive step.} Fix [[m1]] and assume [[m2]] is true. By the definition of the sequence, then by this assumption,",
+   "status": "aligned",
+   "order": 15
+  },
+  "eadc8f79223e": {
+   "fr": "C'est [[m1]] : la propriété est héréditaire.",
+   "en": "This is [[m1]]: the property is inherited.",
+   "status": "aligned",
+   "order": 16
+  },
+  "4ba87c6d1bf4": {
+   "fr": "\\textbf{Conclusion.} Par le principe de récurrence, [[m1]] pour tout [[m2]].",
+   "en": "\\textbf{Conclusion.} By the principle of induction, [[m1]] for every [[m2]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "f88b9617f8cb": {
+   "fr": "Démonstration : somme des entiers.",
+   "en": "Proof: sum of the integers.",
+   "status": "aligned",
+   "order": 18
+  },
+  "347417338400": {
+   "fr": "Notons [[m1]] : « [[m2]] ».\nPour [[m3]], les deux membres valent [[m4]] : [[m5]] est vraie.\nFixons [[m6]] et supposons [[m7]] vraie. Alors",
+   "en": "Let [[m1]] be the statement ``[[m2]]''.\nFor [[m3]], both sides equal [[m4]]: [[m5]] is true.\nFix [[m6]] and assume [[m7]] is true. Then",
+   "status": "aligned",
+   "order": 19
+  },
+  "503383b5eb26": {
+   "fr": "On a établi [[m1]]. Par récurrence, la formule est vraie pour tout [[m2]].",
+   "en": "We have established [[m1]]. By induction, the formula is true for every [[m2]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "f2351fa6c2aa": {
+   "fr": "Comportement global",
+   "en": "Global behaviour",
+   "status": "aligned",
+   "order": 21
+  },
+  "64d34d6501fe": {
+   "fr": "La suite est croissante si [[m1]] pour tout rang, décroissante si l'inégalité est inversée. Elle est majorée s'il existe un réel [[m2]] tel que [[m3]] pour tout [[m4]] ; minorée s'il existe [[m5]] tel que [[m6]] ; bornée si elle est à la fois minorée et majorée.\nPour étudier la monotonie, on peut étudier le signe de [[m7]]. Si tous les termes sont strictement positifs, on peut comparer [[m8]] à [[m9]]. L'étude d'une fonction [[m10]] telle que [[m11]] est une autre possibilité.",
+   "en": "A sequence is increasing if [[m1]] for every index, decreasing if the inequality is reversed. It is bounded above if there is a real number [[m2]] such that [[m3]] for every [[m4]]; bounded below if there is [[m5]] such that [[m6]]; bounded if it is both bounded below and bounded above.\nTo study monotonicity, one can study the sign of [[m7]]. If all the terms are strictly positive, one can compare [[m8]] with [[m9]]. Studying a function [[m10]] such that [[m11]] is another possibility.",
+   "status": "aligned",
+   "order": 22
+  },
+  "5ccaf5c5e72c": {
+   "fr": "Suite arithmético-géométrique",
+   "en": "Arithmetico-geometric sequence",
+   "status": "aligned",
+   "order": 23
+  },
+  "f821b5e986d9": {
+   "fr": "Pour [[m1]], [[m2]], résoudre [[m3]], puis poser [[m4]]. On obtient [[m5]], donc",
+   "en": "For [[m1]], [[m2]], solve [[m3]], then set [[m4]]. This gives [[m5]], hence",
+   "status": "aligned",
+   "order": 24
+  },
+  "daebb5365e48": {
+   "fr": "Si [[m1]], la suite est arithmétique : ne pas diviser par [[m2]].",
+   "en": "If [[m1]], the sequence is arithmetic: do not divide by [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 26
+  },
+  "2d5d1a3e8740": {
+   "fr": "Si [[m1]] et [[m2]], alors [[m3]] et [[m4]]. On a [[m5]] et [[m6]].",
+   "en": "If [[m1]] and [[m2]], then [[m3]] and [[m4]]. We have [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "108a744e98bd": {
+   "fr": "Piège.",
+   "en": "Pitfall.",
+   "status": "aligned",
+   "order": 28
+  },
+  "54ac360eec26": {
+   "fr": "Vérifier une propriété sur cent termes ne la démontre pas. Une suite croissante n'est pas nécessairement positive ; une suite bornée n'est pas nécessairement monotone.",
+   "en": "Checking a property on a hundred terms does not prove it. An increasing sequence is not necessarily positive; a bounded sequence is not necessarily monotonic.",
+   "status": "aligned",
+   "order": 29
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 30
+  },
+  "bebe6abe6b43": {
+   "fr": "\\textbf{Un réservoir alimenté chaque jour --- 35 min.}",
+   "en": "\\textbf{A reservoir topped up every day --- 35 min.}",
+   "status": "aligned",
+   "order": 31
+  },
+  "4e6c8d5840ee": {
+   "fr": "Un réservoir contient initialement [[m1]] litres d'eau. Chaque jour, on prélève [[m2]] du volume présent, puis on ajoute [[m3]] litres. Pour tout entier naturel [[m4]], on note [[m5]] le volume d'eau, en litres, après ces deux opérations effectuées [[m6]] fois. Ainsi, [[m7]].",
+   "en": "A reservoir initially contains [[m1]] litres of water. Each day, [[m2]] of the volume present is drawn off, then [[m3]] litres are added. For every natural number [[m4]], let [[m5]] be the volume of water, in litres, after these two operations have been carried out [[m6]] times. Thus [[m7]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "7500803ee1d3": {
+   "fr": "Calculer [[m1]] et [[m2]], puis exprimer [[m3]] en fonction de [[m4]].",
+   "en": "Calculate [[m1]] and [[m2]], then express [[m3]] in terms of [[m4]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "5fa788ff1579": {
+   "fr": "Quelle valeur du volume resterait inchangée après une journée ? Démontrer par récurrence que, pour tout [[m1]], [[m2]].",
+   "en": "Which volume would remain unchanged after one day? Prove by induction that, for every [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "834c0212e1ac": {
+   "fr": "Pour tout [[m1]], on pose [[m2]]. Montrer que [[m3]] est géométrique. En déduire les expressions de [[m4]] et de [[m5]] en fonction de [[m6]].",
+   "en": "For every [[m1]], let [[m2]]. Show that [[m3]] is geometric. Deduce the expressions of [[m4]] and [[m5]] in terms of [[m6]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "cda1809af2c3": {
+   "fr": "Écrire une fonction Python sans argument qui renvoie le premier entier [[m1]] pour lequel [[m2]]. Exécuter le programme et interpréter le résultat.",
+   "en": "Write a Python function with no argument that returns the first integer [[m1]] for which [[m2]]. Run the program and interpret the result.",
+   "status": "aligned",
+   "order": 36
+  },
+  "f8f681e73708": {
+   "fr": "Un élève a calculé les cent premiers termes et constate qu'ils sont inférieurs à [[m1]]. Ce constat suffit-il à démontrer que tous les termes le sont ? Justifier.",
+   "en": "A student has calculated the first hundred terms and notes that they are all less than [[m1]]. Is this observation enough to prove that all the terms are? Justify.",
+   "status": "aligned",
+   "order": 37
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 38
+  },
+  "b5a086d19949": {
+   "fr": "On considère la suite [[m1]] définie, pour tout entier naturel [[m2]], par [[m3]]. Calculer [[m4]], puis la somme [[m5]].",
+   "en": "Consider the sequence [[m1]] defined, for every natural number [[m2]], by [[m3]]. Calculate [[m4]], then the sum [[m5]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "c520fbd19b48": {
+   "fr": "La suite [[m1]] est définie par [[m2]] et, pour tout entier naturel [[m3]], [[m4]]. Exprimer [[m5]] en fonction de [[m6]], puis calculer [[m7]].",
+   "en": "The sequence [[m1]] is defined by [[m2]] and, for every natural number [[m3]], [[m4]]. Express [[m5]] in terms of [[m6]], then calculate [[m7]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "d740b1cb06a4": {
+   "fr": "Démontrer par récurrence que, pour tout entier naturel [[m1]], [[m2]].",
+   "en": "Prove by induction that, for every natural number [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "bc5ef76dc26e": {
+   "fr": "On considère la suite [[m1]] définie sur [[m2]] par [[m3]]. Démontrer qu'elle est croissante et donner un encadrement valable pour tous ses termes.",
+   "en": "Consider the sequence [[m1]] defined on [[m2]] by [[m3]]. Prove that it is increasing and give bounds valid for all its terms.",
+   "status": "aligned",
+   "order": 46
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 47
+  },
+  "5eb4a5d631a1": {
+   "fr": "Démontrer par récurrence que, pour tout entier naturel [[m1]], [[m2]] est divisible par [[m3]]. On n'utilisera pas les congruences.",
+   "en": "Prove by induction that, for every natural number [[m1]], [[m2]] is divisible by [[m3]]. Do not use congruences.",
+   "status": "aligned",
+   "order": 48
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 49
+  },
+  "e4c610b7ea54": {
+   "fr": "\\textbf{Barbazo, p. 28, exercices 22 et 25.} En classe, en S5 : exercice 22, pour traduire des propriétés de suites avec un quantificateur. À la maison après S11 : exercice 25 en entier, pour articuler récurrence, majoration et monotonie. Rédiger séparément l'initialisation, l'hérédité et la conclusion.",
+   "en": "\\textbf{Barbazo, p. 28, exercises 22 and 25.} In class, in S5: exercise 22, to translate properties of sequences using a quantifier. At home after S11: the whole of exercise 25, to combine induction, upper bounds and monotonicity. Write the base case, the inductive step and the conclusion separately.",
+   "status": "aligned",
+   "order": 50
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 51
+  },
+  "db33c2c43cea": {
+   "fr": "\\textbf{DM1 --- Une somme et un seuil --- 45 min, après S11.}",
+   "en": "\\textbf{Homework 1 --- A sum and a threshold --- 45 min, after S11.}",
+   "status": "aligned",
+   "order": 52
+  },
+  "71026a485eb3": {
+   "fr": "On considère la suite [[m1]] définie par [[m2]] et, pour tout [[m3]], [[m4]].",
+   "en": "Consider the sequence [[m1]] defined by [[m2]] and, for every [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "59406736d63e": {
+   "fr": "Démontrer par récurrence que [[m1]] pour tout [[m2]]. En déduire le sens de variation de [[m3]].",
+   "en": "Prove by induction that [[m1]] for every [[m2]]. Deduce the direction of variation of [[m3]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "5043b5b6f34f": {
+   "fr": "On pose [[m1]] pour tout [[m2]]. Montrer que [[m3]] est géométrique, puis exprimer [[m4]] en fonction de [[m5]].",
+   "en": "Let [[m1]] for every [[m2]]. Show that [[m3]] is geometric, then express [[m4]] in terms of [[m5]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "4f7cd703c737": {
+   "fr": "Pour tout [[m1]], on note [[m2]]. Exprimer [[m3]] en fonction de [[m4]].",
+   "en": "For every [[m1]], let [[m2]]. Express [[m3]] in terms of [[m4]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "1bc394d47330": {
+   "fr": "À l'aide de la formule explicite et de puissances de [[m1]], déterminer le plus petit entier [[m2]] tel que [[m3]]. Vérifier que l'entier précédent ne convient pas.",
+   "en": "Using the explicit formula and powers of [[m1]], determine the smallest integer [[m2]] such that [[m3]]. Check that the previous integer does not work.",
+   "status": "aligned",
+   "order": 57
+  },
+  "44096921b533": {
+   "fr": "Exprimer [[m1]] et justifier que cette différence est strictement positive. Interpréter le résultat en considérant la moyenne des [[m2]] premiers termes ; on ne demande pas de calcul de limite.",
+   "en": "Express [[m1]] and justify that this difference is strictly positive. Interpret the result by considering the mean of the first [[m2]] terms; no limit calculation is required.",
+   "status": "aligned",
+   "order": 58
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 59
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 60
+  },
+  "015f1f655cb3": {
+   "fr": "En S2, distinguer immédiatement le rang et la valeur du terme. En S4, faire exécuter une boucle à la main avant Python. En S5 et S7, faire verbaliser « on suppose au rang [[m1]], on démontre au rang [[m2]] ». La somme et la divisibilité arrivent en S10, après DS1 : ne pas les évaluer au premier DS. En S11, la recherche du point fixe est une technique algébrique ; le théorème de convergence sera établi au chapitre suivant. Pour les élèves fragiles, fournir la propriété [[m3]] et laisser écrire les trois étapes ; pour les plus avancés, retirer la suggestion de suite auxiliaire.",
+   "en": "In S2, immediately distinguish the index from the value of the term. In S4, have a loop executed by hand before Python. In S5 and S7, get students to say aloud ``we assume at index [[m1]], we prove at index [[m2]]''. The sum and the divisibility come in S10, after Test 1: do not assess them in the first test. In S11, the search for the fixed point is an algebraic technique; the convergence theorem will be established in the next chapter. For weaker students, supply the property [[m3]] and let them write the three steps; for the strongest, remove the hint about an auxiliary sequence.",
+   "status": "aligned",
+   "order": 61
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 62
+  },
+  "9ce0527999b8": {
+   "fr": "[[m1]] L. Après une journée, il reste [[m2]] L, puis on ajoute [[m3]] L : [[m4]] L. De même, [[m5]] L. Pour tout [[m6]], [[m7]].",
+   "en": "[[m1]] L. After one day, [[m2]] L remain, then [[m3]] L are added: [[m4]] L. Similarly, [[m5]] L. For every [[m6]], [[m7]].",
+   "status": "aligned",
+   "order": 63
+  },
+  "c7758d0125d3": {
+   "fr": "Le volume d'équilibre [[m1]] devrait satisfaire [[m2]], soit [[m3]] L. Démontrons [[m4]] : « [[m5]] ». Au rang [[m6]], [[m7]]. Fixons [[m8]] et supposons [[m9]] vraie. Comme [[m10]],",
+   "en": "The equilibrium volume [[m1]] would have to satisfy [[m2]], that is [[m3]] L. Let us prove [[m4]]: ``[[m5]]''. At index [[m6]], [[m7]]. Fix [[m8]] and assume [[m9]] is true. Since [[m10]],",
+   "status": "aligned",
+   "order": 64
+  },
+  "8ad1c6e4422e": {
+   "fr": "Donc [[m1]] et [[m2]] est vraie. Par récurrence, l'encadrement est vrai pour tout [[m3]].",
+   "en": "Hence [[m1]] and [[m2]] is true. By induction, the bounds hold for every [[m3]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "e1e873b59cac": {
+   "fr": "[[m1]]. La suite [[m2]] est géométrique, de raison [[m3]] et de premier terme [[m4]]. Ainsi [[m5]], puis [[m6]].",
+   "en": "[[m1]]. The sequence [[m2]] is geometric, with common ratio [[m3]] and first term [[m4]]. Thus [[m5]], then [[m6]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "7f58acbef75a": {
+   "fr": "La boucle renvoie [[m1]]. En effet, [[m2]] et [[m3]]. De plus, [[m4]] : le seuil n'a pas été franchi avant. Le calcul de ces deux valeurs garantit ici l'arrêt, sans exiger encore un théorème de convergence.",
+   "en": "The loop returns [[m1]]. Indeed, [[m2]] and [[m3]]. Moreover, [[m4]]: the threshold was not crossed earlier. Calculating these two values guarantees the loop stops here, without yet requiring a convergence theorem.",
+   "status": "aligned",
+   "order": 67
+  },
+  "a844110a736c": {
+   "fr": "La simulation ne calcule qu'un nombre fini de termes. L'hérédité, jointe à l'initialisation, établit l'encadrement pour tous les entiers ; c'est elle qui exclut tout dépassement de [[m1]] L.",
+   "en": "The simulation only calculates a finite number of terms. The inductive step, together with the base case, establishes the bounds for all integers; it is this that rules out any excess over [[m1]] L.",
+   "status": "aligned",
+   "order": 68
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 69
+  },
+  "7f81222fd10d": {
+   "fr": "[[m1]]. La suite est arithmétique de raison [[m2]] et [[m3]]. La somme comporte [[m4]] termes : [[m5]].",
+   "en": "[[m1]]. The sequence is arithmetic with common difference [[m2]] and [[m3]]. The sum has [[m4]] terms: [[m5]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 71
+  },
+  "b78b88f17523": {
+   "fr": "La suite est géométrique de raison [[m1]] et de premier terme [[m2]]. Donc [[m3]]. La somme comporte [[m4]] termes et vaut [[m5]].",
+   "en": "The sequence is geometric with common ratio [[m1]] and first term [[m2]]. Hence [[m3]]. The sum has [[m4]] terms and equals [[m5]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 73
+  },
+  "55aacd7adbb3": {
+   "fr": "Posons [[m1]] : « [[m2]] ». Au rang [[m3]], [[m4]].\nFixons [[m5]] et supposons [[m6]] vraie. En multipliant par [[m7]], [[m8]]. Or [[m9]]. Ainsi [[m10]], ce qui est [[m11]]. Par récurrence, [[m12]] est vraie pour tout [[m13]].",
+   "en": "Let [[m1]] be the statement ``[[m2]]''. At index [[m3]], [[m4]].\nFix [[m5]] and assume [[m6]] is true. Multiplying by [[m7]], [[m8]]. Now [[m9]]. Thus [[m10]], which is [[m11]]. By induction, [[m12]] is true for every [[m13]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 75
+  },
+  "2a5869231168": {
+   "fr": "Pour [[m1]], [[m2]]. On a [[m3]], donc [[m4]]. De plus,",
+   "en": "For [[m1]], [[m2]]. We have [[m3]], hence [[m4]]. Moreover,",
+   "status": "aligned",
+   "order": 76
+  },
+  "0faedccfbd0c": {
+   "fr": "La suite est strictement croissante, minorée par [[m1]] et majorée par [[m2]].",
+   "en": "The sequence is strictly increasing, bounded below by [[m1]] and bounded above by [[m2]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 78
+  },
+  "cc53299702aa": {
+   "fr": "Notons [[m1]] : « il existe un entier [[m2]] tel que [[m3]] ». Pour [[m4]], [[m5]] : [[m6]] est vraie.\nFixons [[m7]] et supposons [[m8]] vraie. Il existe donc un entier [[m9]] tel que [[m10]]. Alors",
+   "en": "Let [[m1]] be the statement ``there exists an integer [[m2]] such that [[m3]]''. For [[m4]], [[m5]]: [[m6]] is true.\nFix [[m7]] and assume [[m8]] is true. There therefore exists an integer [[m9]] such that [[m10]]. Then",
+   "status": "aligned",
+   "order": 79
+  },
+  "be773f049196": {
+   "fr": "Comme [[m1]] est entier, [[m2]] est vraie. Par récurrence, [[m3]] divise [[m4]] pour tout [[m5]].",
+   "en": "Since [[m1]] is an integer, [[m2]] is true. By induction, [[m3]] divides [[m4]] for every [[m5]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "268e406cfa67": {
+   "fr": "Corrigé du DM1",
+   "en": "Solutions to Homework 1",
+   "status": "aligned",
+   "order": 81
+  },
+  "7696e276efc0": {
+   "fr": "Posons [[m1]] : « [[m2]] ». Au rang [[m3]], [[m4]] vérifie l'encadrement. Fixons [[m5]] et supposons [[m6]] vraie. Alors [[m7]] ; en particulier [[m8]]. Par récurrence, [[m9]] est vraie à tout rang. On en déduit [[m10]]. La suite est strictement croissante.",
+   "en": "Let [[m1]] be the statement ``[[m2]]''. At index [[m3]], [[m4]] satisfies the bounds. Fix [[m5]] and assume [[m6]] is true. Then [[m7]]; in particular [[m8]]. By induction, [[m9]] is true at every index. We deduce [[m10]]. The sequence is strictly increasing.",
+   "status": "aligned",
+   "order": 82
+  },
+  "2c911e966614": {
+   "fr": "L'équation [[m1]] donne [[m2]]. Posons [[m3]]. Alors [[m4]] et [[m5]]. Donc [[m6]] et [[m7]].",
+   "en": "The equation [[m1]] gives [[m2]]. Let [[m3]]. Then [[m4]] and [[m5]]. Hence [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "6c7184d743ff": {
+   "fr": "Par linéarité des sommes et formule géométrique,",
+   "en": "By linearity of sums and the geometric formula,",
+   "status": "aligned",
+   "order": 84
+  },
+  "eb9ae7d6c9eb": {
+   "fr": "[[m1]] équivaut à [[m2]], soit [[m3]]. Comme [[m4]] et [[m5]] est croissante, le plus petit rang est [[m6]].",
+   "en": "[[m1]] is equivalent to [[m2]], that is [[m3]]. Since [[m4]] and [[m5]] is increasing, the smallest index is [[m6]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "a4c8fdf504b7": {
+   "fr": "La moyenne est inférieure à [[m1]] et son écart à [[m2]] vaut",
+   "en": "The mean is less than [[m1]] and its distance from [[m2]] is",
+   "status": "aligned",
+   "order": 86
+  },
+  "76b3e99ca8d0": {
+   "fr": "Pour rendre cet écart inférieur à une précision [[m1]], il suffit de prendre [[m2]]. C'est un contrôle quantitatif de l'écart, qui ne demande pas encore de théorème sur les limites.",
+   "en": "To make this distance less than a precision [[m1]], it suffices to take [[m2]]. This is a quantitative control of the distance, which does not yet require a theorem on limits.",
+   "status": "aligned",
+   "order": 87
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 88
+  },
+  "c760664eed1b": {
+   "fr": "Exercice 22.",
+   "en": "Exercise 22.",
+   "status": "aligned",
+   "order": 89
+  },
+  "c2bcf22aa584": {
+   "fr": "Les quatre traductions sont, pour tout [[m1]] : [[m2]] ; [[m3]] ; [[m4]] ; [[m5]]. La monotonie compare deux termes consécutifs ; une borne compare chaque terme à un même nombre.",
+   "en": "The four translations are, for every [[m1]]: [[m2]]; [[m3]]; [[m4]]; [[m5]]. Monotonicity compares two consecutive terms; a bound compares each term with one and the same number.",
+   "status": "aligned",
+   "order": 90
+  },
+  "f19bc7851b2c": {
+   "fr": "Exercice 25.",
+   "en": "Exercise 25.",
+   "status": "aligned",
+   "order": 91
+  },
+  "2348655af5ef": {
+   "fr": "On a [[m1]] et [[m2]].",
+   "en": "We have [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "9a47479fdc64": {
+   "fr": "\\textbf{Initialisation.} [[m1]] : la propriété est vraie au rang [[m2]].",
+   "en": "\\textbf{Base case.} [[m1]]: the property is true at index [[m2]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "eece27187b89": {
+   "fr": "\\textbf{Hérédité.} Fixons [[m1]] et supposons [[m2]]. La multiplication par [[m3]] conserve l'ordre, donc [[m4]]. Ainsi [[m5]].",
+   "en": "\\textbf{Inductive step.} Fix [[m1]] and assume [[m2]]. Multiplication by [[m3]] preserves order, so [[m4]]. Thus [[m5]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "445b976b9f04": {
+   "fr": "\\textbf{Conclusion.} Par récurrence, [[m1]] pour tout [[m2]].\nEnsuite, [[m3]]. La borne précédente donne [[m4]], d'où [[m5]]. La suite est croissante. Le changement de sens de l'inégalité vient ici du facteur négatif [[m6]].",
+   "en": "\\textbf{Conclusion.} By induction, [[m1]] for every [[m2]].\nNext, [[m3]]. The previous bound gives [[m4]], hence [[m5]]. The sequence is increasing. The reversal of the inequality here comes from the negative factor [[m6]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "7322b749f1c0": {
+   "fr": "(arithmétique)",
+   "en": "(arithmetic)",
+   "status": "aligned",
+   "order": 96
+  }
+ }
+}

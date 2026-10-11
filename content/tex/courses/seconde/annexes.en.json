@@ -19,10 +19,10 @@
    "status": "aligned",
    "order": 2
   },
-  "d9394a851f8e": {
-   "fr": "La ligne \\texttt{\\string\\proffalse} du préambule produit la version élève ; la remplacer par \\texttt{\\string\\proftrue} produit la version professeur. Les énoncés et les contenus de cours sont communs. Les réponses, démonstrations rédigées, figures corrigées et repères pédagogiques apparaissent seulement en mode professeur.",
-   "en": "The line \\texttt{\\string\\proffalse} in the preamble produces the student version; replacing it with \\texttt{\\string\\proftrue} produces the teacher version. The statements and course content are common. Answers, written-out proofs, corrected figures and pedagogical cues appear only in teacher mode.",
-   "status": "aligned",
+  "19f92ca7f3b6": {
+   "fr": "L'option de classe \\texttt{edition=student} produit la version élève (\\texttt{eleve.tex}) ; \\texttt{edition=teacher} produit la version professeur (\\texttt{professeur.tex}). Les énoncés et les contenus de cours sont communs. Les réponses, démonstrations rédigées, figures corrigées et repères pédagogiques apparaissent seulement en mode professeur.",
+   "en": "The class option \\texttt{edition=student} produces the student version (\\texttt{eleve-en.tex}); \\texttt{edition=teacher} produces the teacher version (\\texttt{professeur-en.tex}). The statements and course content are common. Answers, written-out proofs, corrected figures and pedagogical cues appear only in teacher mode.",
+   "status": "reviewed",
    "order": 3
   },
   "55060d7c41ab": {

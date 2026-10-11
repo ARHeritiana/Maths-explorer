@@ -1,0 +1,99 @@
+\setcounter{chapter}{5}\mxunit{terminale-c08}{Fonction logarithme}\label{ch:6}
+
+{\small\sffamily\color{mxmint}S44, S47, S49, S50\par}
+
+\begin{keypoint}[Objectifs]Utiliser les propriétés de ln ; résoudre équations et seuils ; dériver et étudier des fonctions logarithmiques.\end{keypoint}
+
+\section{Notes de cours}
+\subsection{Définition et propriétés}
+L'exponentielle est continue, strictement croissante sur $\R$, et son image est $]0,+\infty[$. Pour tout $x>0$, il existe un unique réel $y$ tel que $e^y=x$ : on le note $\ln x$.
+\[\ln(e^y)=y\quad(y\in\R),\qquad e^{\ln x}=x\quad(x>0),\qquad\ln1=0,\quad\ln e=1.\]
+Pour $a,b>0$ et $n\in\Z$,
+\[\ln (ab)=\ln a+\ln b,\quad\ln (\frac{a}{b})=\ln a-\ln b,\quad\ln (a^n)=n\ln a,\quad\ln \sqrt{a}=\tfrac{1}{2}\ln a.\]
+\paragraph{Preuve du produit.} $e^{\ln a+\ln b}=e^{\ln a}e^{\ln b}=ab$ ; l'unicité de l'antécédent donne la formule. Il n'existe pas de formule analogue pour $\ln(a+b)$.
+\subsection{Dérivée, variations et limites}
+On admet ln dérivable sur $]0,+\infty[$. Dériver $e^{\ln x}=x$ donne $e^{\ln x}(\ln x)'=1$ ; donc $(\ln x)'=\frac{1}{x}>0$. Ln est strictement croissante et concave, car sa dérivée seconde vaut $-\frac{1}{x^2}$.
+\[\lim_{x\to0^+}\ln x=-\infty,\qquad\lim_{x\to+\infty}\ln x=+\infty.\]
+Sa courbe est symétrique de celle de l'exponentielle par rapport à $y=x$. La droite $x=0$ est une asymptote verticale. Sa tangente en $1$ donne $\ln x\le x-1$ pour $x>0$.
+\begin{keypoint}[Composition et croissance comparée]
+Si $u>0$ est dérivable, $(\ln u)'=\frac{u'}{u}$. Pour tout entier $m\ge1$,
+\[\lim_{x\to+\infty}\frac{\ln x}{x^m}=0,\qquad\lim_{x\to0^+}x^m\ln x=0.\]
+\end{keypoint}
+\paragraph{Démonstration en $0$.} Poser $t=-\ln x$ ; lorsque $x\to0^+$, $t\to+\infty$ et $x\ln x=-te^{-t}\to0$ par croissance comparée. Pour $m\ge1$, le même raisonnement donne $-te^{-mt}\to0$. En $+\infty$, poser $t=\ln x$ pour écrire $\frac{\ln x}{x^m}=\frac{t}{e^{mt}}\to0$.
+\subsection{Équations et seuils}
+Pour $A,B>0$, $\ln A=\ln B\Leftrightarrow A=B$ et $\ln A\le\ln B\Leftrightarrow A\le B$. Toujours commencer par le domaine.
+\paragraph{Exemple.} $\ln(x-1)+\ln(x+1)=\ln8$ exige $x>1$. L'équation devient $x^2-1=8$, donc $x=3$ seul.
+\paragraph{Seuil.} $0{,}8^n\le0{,}1$ équivaut à $n\ln0{,}8\le\ln0{,}1$, puis $n\ge\frac{\ln 0{,}1}{\ln 0{,}8}\simeq10{,}319$. Le premier entier est $11$.
+\paragraph{Exemple d'étude.} Pour $f(x)=\frac{\ln x}{x}$, $f'=\frac{1-\ln x}{x^2}$ ; $f$ croît sur $]0,e]$, décroît sur $[e,+\infty[$, et son maximum vaut $\frac{1}{e}$. Sa limite en $0^+$ est $-\infty$, sa limite en $+\infty$ est $0$.
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=8cm,height=8cm,axis equal image,axis lines=middle,xmin=-1.4,xmax=4,ymin=-1.4,ymax=4,xlabel={$x$},ylabel={$y$},samples=100,legend style={font=\small,at={(1.05,.5)},anchor=west}]
+\addplot[mxmint,thick,domain=.25:4]{ln(x)};\addlegendentry{$\ln x$}
+\addplot[mxink,thick,domain=-1.4:1.38]{exp(x)};\addlegendentry{$e^x$}
+\addplot[gray,dashed,domain=-1.4:4]{x};\addlegendentry{$y=x$}\end{axis}\end{tikzpicture}\end{center}
+
+\section{Activité de recherche}\textbf{Contrôler une erreur de calcul --- 30 min.}\par Une méthode de calcul produit une erreur initiale $e_0=5$. À chaque étape, l'erreur est multipliée par $0{,}7$. On note $e_n$ l'erreur après $n$ étapes, pour $n\in\N$.
+\begin{enumerate}\item Exprimer $e_n$ en fonction de $n$.
+\item À l'aide du logarithme, déterminer le plus petit entier $n$ tel que $e_n\le10^{-4}$.
+\item Calculer, à la calculatrice, l'erreur au rang trouvé et au rang précédent pour vérifier la minimalité du rang.
+\item On impose maintenant une erreur au plus égale à $10^{-6}$. Déterminer le nouveau nombre minimal d'étapes. La division de la tolérance par $100$ multiplie-t-elle le nombre d'étapes par $100$ ?\end{enumerate}
+
+\section{Exercices progressifs}
+
+\mxexerciseitem{1}{Entraînement}Après avoir déterminé l'ensemble sur lequel elle est définie, résoudre l'équation $\ln(2x-1)=\ln(x+3)$.
+
+\mxexerciseitem{2}{Entraînement}Déterminer les réels $x$ pour lesquels $\ln x+\ln(x-2)$ est défini, puis résoudre $\ln x+\ln(x-2)=\ln3$.
+
+\mxexerciseitem{3}{Entraînement}On considère $f(x)=\ln(x^2+1)$ et $g(x)=x\ln x$. Préciser leur ensemble de définition et calculer leur dérivée.
+
+\mxexerciseitem{4}{Entraînement}Déterminer $\displaystyle\lim_{x\to+\infty}\frac{\ln x}{\sqrt x}$ et $\displaystyle\lim_{x\to0^+}x^2\ln x$. Justifier les résultats de croissance comparée employés.
+
+\mxexerciseitem{5}{Entraînement}À l'aide de l'étude d'une fonction, démontrer que $\ln x\le x-1$ pour tout réel $x>0$. On n'utilisera pas directement la concavité du logarithme.
+
+\section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 196, exercice 36.} À la maison après S44 : traiter les trois fonctions. Écrire les conditions de définition avant de résoudre les inéquations ; justifier les bornes ouvertes des intervalles obtenus.
+
+\section{Devoir à la maison}\textbf{DM6 --- Étude d'une fonction logarithmique --- 55 min.}\par On considère la fonction $f$ définie sur $]0;+\infty[$ par $f(x)=\frac{1+\ln x}{x}$. Sa courbe représentative est notée $\mathcal C_f$.
+\begin{enumerate}\item Déterminer les limites de $f$ aux bornes du domaine, étudier son signe, puis dresser son tableau de variations.
+\item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion de $\mathcal C_f$.
+\item Démontrer que l'équation $f(x)=\frac12$ admet exactement deux solutions. Donner pour chacune un encadrement justifié à l'aide de valeurs calculées.
+\item En utilisant le maximum de $f$, démontrer que $1+\ln x\le x$ pour tout $x>0$. Préciser le cas d'égalité.\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]S44 est placé avant le premier blanc, mais le logarithme n'appartient pas à son périmètre annoncé. Insister sur les conditions $a>0,b>0$ avant de regrouper des logarithmes. La dérivabilité de ln est admise, la formule de dérivation est démontrée. Pour un seuil avec $0<q<1$, le signe négatif de $\ln q$ inverse l'inégalité. Faire contrôler le rang candidat et le précédent.\end{teachernote}
+
+\subsection{Corrigé de l'activité}\begin{enumerate}
+\item Chaque étape multiplie l'erreur par $0{,}7$ : $e_n=5(0{,}7)^n$ pour $n\ge0$.
+\item $e_n\le10^{-4}$ équivaut à $(0{,}7)^n\le2\times10^{-5}$. Par croissance de ln, $n\ln0{,}7\le\ln(2\times10^{-5})$. Comme $\ln0{,}7<0$, on obtient
+\[n\ge\frac{\ln(2\times10^{-5})}{\ln0{,}7}\simeq30{,}33512.\]
+Le premier entier convenable est $31$.
+\item $e_{30}\simeq1{,}1270\times10^{-4}>10^{-4}$ et $e_{31}\simeq7{,}8888\times10^{-5}<10^{-4}$. La suite des erreurs décroît, donc ce contrôle confirme la minimalité.
+\item Pour la cible $10^{-6}$, le même calcul donne $n\ge\frac{\ln (2\times10^{-7})}{\ln 0{,}7}\simeq43{,}2465$, donc $n=44$. Le seuil réel augmente de $\frac{\ln 100}{|\ln0{,}7|}\simeq12{,}91$, puis on arrondit à l'entier supérieur. Le nombre d'étapes n'est pas multiplié par $100$.
+\end{enumerate}
+
+\paragraph{E1.}Il faut $2x-1>0$ et $x+3>0$, donc $x>\frac{1}{2}$. Sur ce domaine, l'injectivité de ln donne $2x-1=x+3$, soit $x=4$. Cette valeur appartient au domaine ; l'ensemble des solutions est $\{4\}$.
+
+\paragraph{E2.}Il faut $x>2$. La formule du produit donne $\ln(x(x-2))=\ln3$, donc $x^2-2x-3=0$, soit $(x-3)(x+1)=0$. Seul $x=3$ satisfait $x>2$ : l'autre racine $-1$ est exclue.
+
+\paragraph{E3.}Puisque $x^2+1>0$, la première fonction est dérivable sur $\R$ et sa dérivée est $\frac{2x}{x^2+1}$. Sur $]0,+\infty[$, la règle du produit donne $(x\ln x)'=\ln x+x(\frac{1}{x})=1+\ln x$.
+
+\paragraph{E4.}Pour la première limite, posons $t=\sqrt x\to+\infty$ : $\frac{\ln x}{\sqrt{x}}=\frac{2\ln t}{t}\to0$. Pour la seconde, posons $t=-\ln x\to+\infty$ : $x^2\ln x=-te^{-2t}\to0$. Ces deux limites utilisent la croissance comparée.
+
+\paragraph{E5.}Pour $x>0$, posons $g(x)=x-1-\ln x$. On a $g'(x)=\frac{x-1}{x}$, négative avant $1$, positive après. Son minimum vaut $g(1)=0$, donc $g(x)\ge0$, ce qui équivaut à $\ln x\le x-1$.
+
+\subsection{Corrigé du DM6}\begin{enumerate}
+\item En $0^+$, le numérateur tend vers $-\infty$ et le dénominateur vers $0^+$ : $f\to-\infty$. En $+\infty$, $f=\frac{1}{x}+\frac{\ln x}{x}\to0$. Le signe est celui de $1+\ln x$ : négatif sur $]0,e^{-1}[$, nul en $e^{-1}$, positif ensuite. Par quotient,
+\[f'(x)=\frac{1-(1+\ln x)}{x^2}=-\frac{\ln x}{x^2}.\]
+Ainsi $f$ croît strictement jusqu'à $1$, puis décroît strictement ; son maximum vaut $f(1)=1$.
+\item En dérivant $-(\ln x)x^{-2}$, on obtient $f''(x)=\frac{2\ln x-1}{x^3}$. Le numérateur change de signe, du négatif au positif, en $x=\sqrt e$. Donc $f$ est concave sur $]0,\sqrt e]$, convexe sur $[\sqrt e,+\infty[$ et possède l'inflexion $(\sqrt{e},\frac{3}{2\sqrt e})$.
+\item Sur $]0,1]$, continuité, stricte croissance, limite $-\infty$ et valeur finale $1$ donnent exactement un antécédent de $\frac{1}{2}$. Sur $[1,+\infty[$, stricte décroissance de $1$ vers $0$ donne exactement un second antécédent. Le premier est dans $]e^{-1},\frac{1}{2}[$, car $f(e^{-1})=0$ et $f(\frac{1}{2})=2(1-\ln2)\simeq0{,}6137>\frac{1}{2}$. Le second est dans $]5,6[$, car $f(5)\simeq0{,}5219>\frac{1}{2}>f(6)\simeq0{,}4653$.
+\item Le maximum donne $\frac{1+\ln x}{x}\le1$. Comme $x>0$, on peut multiplier sans changer le sens : $1+\ln x\le x$. L'égalité correspond à l'unique maximum de $f$, donc à $x=1$.
+\end{enumerate}
+
+\subsection{Corrigé du travail dans le manuel ou une annale}Le logarithme impose un argument strictement positif.
+\begin{enumerate}
+\item $3x-7>0\Longleftrightarrow x>\frac73$, donc $D_f=]\frac73;+\infty[$.
+\item $-x^2+4x-3=-(x-1)(x-3)>0$ exactement lorsque $1<x<3$. Ainsi $D_g=]1;3[$.
+\item Il faut simultanément $x>0$ et $2-x>0$ ; leur intersection donne $D_h=]0;2[$. Le coefficient $-3$ placé devant le second logarithme ne modifie pas sa condition de définition.
+\end{enumerate}
+
+\fi
+

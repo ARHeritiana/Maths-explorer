@@ -375,13 +375,15 @@ def main(argv):
         n = align_files(args[0], args[1]); print(f'{args[0].name}: {n} segments aligned'); return 0
     if cmd == 'stub':
         for fr in args:
-            table = load_table(fr); table['unit'] = fr.name; seen = 0
-            for order, text in enumerate(translatable(fr.read_text())):
+            table = load_table(fr); table['unit'] = fr.name; seen = 0; texts = translatable(fr.read_text())
+            for order, text in enumerate(texts):
                 sid = seg_id(text)
                 if sid not in table['segments']:
                     table['segments'][sid] = {'fr': text, 'en': '', 'status': 'todo', 'order': order}; seen += 1
                 else: table['segments'][sid]['order'] = order
-            save_table(fr, table); print(f'{fr.name}: {seen} new segment(s) to translate')
+            unused = set(table['segments']) - {seg_id(t) for t in texts}   # French text changed or removed
+            for sid in unused: del table['segments'][sid]
+            save_table(fr, table); print(f'{fr.name}: {seen} new segment(s) to translate, {len(unused)} unused removed')
         return 0
     if cmd in ('gen', 'check'):
         units = args or all_units(); bad = 0
@@ -391,9 +393,12 @@ def main(argv):
             except TwinError as e:
                 bad += 1; print(f'{fr.relative_to(ROOT)}:\n  ' + str(e).replace('\n', '\n  ')); continue
             target = en_path(fr)
-            if cmd == 'gen': target.write_text(text)
-            elif not target.exists() or target.read_text() != text:
-                bad += 1; print(f'{target.relative_to(ROOT)}: stale (run `python -m mxbuild twin gen`)')
+            unused = set(load_table(fr)['segments']) - {seg_id(t) for t in translatable(fr.read_text())}
+            if cmd == 'gen': target.write_text(text); continue
+            problems = ([f'{table_path(fr).relative_to(ROOT)}: {len(unused)} unused segment(s) (run `python -m mxbuild twin stub`)']
+                        if unused else []) + ([f'{target.relative_to(ROOT)}: stale (run `python -m mxbuild twin gen`)']
+                                              if not target.exists() or target.read_text() != text else [])
+            if problems: bad += 1; print('\n'.join(problems))
         print(f'twin {cmd}: {len(units) - bad}/{len(units)} units OK'); return 1 if bad else 0
     print(__doc__); return 2
 

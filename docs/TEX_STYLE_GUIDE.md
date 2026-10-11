@@ -93,7 +93,7 @@ and become `<id>:name`. A course main is generated from the manifest; by hand it
 
 French is the source. Write decimals as `0{,}5` (never `0,5`), dates as `\mxdate{2026-09-15}`. The English unit
 `<id>.en.tex` is generated (`python -m mxbuild twin gen <id>.fr.tex`) from the table `<id>.en.json`
-(`python -m mxbuild twin stub <id>.fr.tex` adds untranslated segments); never edit it. Translate prose only: placeholders
+(`python -m mxbuild twin stub <id>.fr.tex` adds untranslated segments and removes unused ones; `twin check` fails on either); never edit it. Translate prose only: placeholders
 `[[mN]]` stand for maths and atoms (`\mxdate`, `\ref`, `\code`) and must each appear once. Figure node texts, axis labels
 and `\text{}` inside maths are separate segments. See `docs/ADR-0001-tex-i18n.md`.
 

@@ -1,0 +1,515 @@
+{
+ "unit": "C06.fr.tex",
+ "segments": {
+  "c7865294f519": {
+   "fr": "Dérivation, convexité et continuité",
+   "en": "Differentiation, convexity and continuity",
+   "status": "aligned",
+   "order": 0
+  },
+  "dddb6a75559b": {
+   "fr": "S29, S31, S32 ; reprises S33 et S40",
+   "en": "S29, S31, S32; revisited in S33 and S40",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "4861c9727e92": {
+   "fr": "Dériver une composée ; étudier variations et convexité ; démontrer existence et unicité ; approcher une solution.",
+   "en": "Differentiate a composite function; study variations and convexity; prove existence and uniqueness; approximate a solution.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "e990e9278d5d": {
+   "fr": "Dériver une composée",
+   "en": "Differentiating a composite function",
+   "status": "aligned",
+   "order": 5
+  },
+  "28ea41205564": {
+   "fr": "Si [[m1]] est dérivable sur [[m2]] et [[m3]] dérivable sur un intervalle contenant [[m4]], alors [[m5]]. Les domaines doivent être vérifiés avant le calcul.",
+   "en": "If [[m1]] is differentiable on [[m2]] and [[m3]] is differentiable on an interval containing [[m4]], then [[m5]]. The domains must be checked before the calculation.",
+   "status": "aligned",
+   "order": 6
+  },
+  "6a7d29308ffa": {
+   "fr": "Par exemple, [[m1]] est dérivable pour [[m2]] et [[m3]]. Le signe de [[m4]] détermine les variations de [[m5]] ; le signe de [[m6]] ne les détermine pas.",
+   "en": "For example, [[m1]] is differentiable for [[m2]] and [[m3]]. The sign of [[m4]] determines the variations of [[m5]]; the sign of [[m6]] does not.",
+   "status": "aligned",
+   "order": 7
+  },
+  "a61a099aa39d": {
+   "fr": "Convexité",
+   "en": "Convexity",
+   "status": "aligned",
+   "order": 8
+  },
+  "b85398e3392e": {
+   "fr": "Une fonction [[m1]] est convexe sur un intervalle [[m2]] si sa courbe est sous ses cordes : pour [[m3]] et [[m4]],",
+   "en": "A function [[m1]] is convex on an interval [[m2]] if its curve lies below its chords: for [[m3]] and [[m4]],",
+   "status": "aligned",
+   "order": 9
+  },
+  "c27747ee0649": {
+   "fr": "Pour une fonction deux fois dérivable, on admet les équivalences : [[m1]] convexe ; [[m2]] croissante ; [[m3]] ; la courbe est au-dessus de toutes ses tangentes. Les inégalités sont inversées pour une fonction concave. Un point d'inflexion est un point où la courbe change de convexité.",
+   "en": "For a twice-differentiable function, the following equivalences are accepted: [[m1]] is convex; [[m2]] is increasing; [[m3]]; the curve lies above all its tangents. The inequalities are reversed for a concave function. A point of inflection is a point where the curve changes convexity.",
+   "status": "aligned",
+   "order": 10
+  },
+  "286b1f71be52": {
+   "fr": "Démonstration : position par rapport aux tangentes.",
+   "en": "Proof: position relative to the tangents.",
+   "status": "aligned",
+   "order": 11
+  },
+  "d497c7e5123d": {
+   "fr": "Supposons [[m1]]. Fixons [[m2]] et posons [[m3]]. Comme [[m4]] est croissante, [[m5]] pour [[m6]] et [[m7]] pour [[m8]]. Ainsi [[m9]] atteint son minimum [[m10]] en [[m11]], donc [[m12]].",
+   "en": "Suppose [[m1]]. Fix [[m2]] and set [[m3]]. Since [[m4]] is increasing, [[m5]] for [[m6]] and [[m7]] for [[m8]]. Thus [[m9]] attains its minimum [[m10]] at [[m11]], so [[m12]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "f173abcde79c": {
+   "fr": "Exemples.",
+   "en": "Examples.",
+   "status": "aligned",
+   "order": 13
+  },
+  "2161714329bf": {
+   "fr": "[[m1]] est convexe et [[m2]], mais [[m3]] n'est pas une abscisse d'inflexion. [[m4]] change de convexité en [[m5]]. La convexité de l'exponentielle et sa tangente en [[m6]] donnent [[m7]].",
+   "en": "[[m1]] is convex and [[m2]], but [[m3]] is not the abscissa of a point of inflection. [[m4]] changes convexity at [[m5]]. The convexity of the exponential and its tangent at [[m6]] give [[m7]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "79afc8bf5a1c": {
+   "fr": "Continuité et équations",
+   "en": "Continuity and equations",
+   "status": "aligned",
+   "order": 15
+  },
+  "f9194477ddfc": {
+   "fr": "[[m1]] est continue en [[m2]] si [[m3]]. Toute fonction dérivable est continue. La réciproque est fausse : [[m4]] est continue en [[m5]] mais non dérivable en [[m6]].",
+   "en": "[[m1]] is continuous at [[m2]] if [[m3]]. Every differentiable function is continuous. The converse is false: [[m4]] is continuous at [[m5]] but not differentiable at [[m6]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "96054d006677": {
+   "fr": "Théorème des valeurs intermédiaires",
+   "en": "Intermediate value theorem",
+   "status": "aligned",
+   "order": 17
+  },
+  "116f00156952": {
+   "fr": "Si [[m1]] est continue sur [[m2]], tout réel compris entre [[m3]] et [[m4]] possède au moins un antécédent dans [[m5]]. Si [[m6]] est en outre strictement monotone, cet antécédent est unique. On peut aussi travailler sur un intervalle ouvert en utilisant les limites aux bornes.",
+   "en": "If [[m1]] is continuous on [[m2]], every real number between [[m3]] and [[m4]] has at least one preimage in [[m5]]. If [[m6]] is moreover strictly monotonic, this preimage is unique. One may also work on an open interval using the limits at the endpoints.",
+   "status": "aligned",
+   "order": 18
+  },
+  "79a79fbb85c6": {
+   "fr": "Exemple rédigé.",
+   "en": "Worked example.",
+   "status": "aligned",
+   "order": 19
+  },
+  "6073e2e5689a": {
+   "fr": "[[m1]] est continue sur [[m2]]. Comme [[m3]] et [[m4]], le TVI donne un zéro dans [[m5]]. Puisque [[m6]], il est unique. [[m7]] fournit un encadrement, sans remplacer les justifications d'existence et d'unicité.",
+   "en": "[[m1]] is continuous on [[m2]]. Since [[m3]] and [[m4]], the IVT gives a zero in [[m5]]. Since [[m6]], it is unique. [[m7]] provides a bracketing, without replacing the justifications of existence and uniqueness.",
+   "status": "aligned",
+   "order": 20
+  },
+  "2dfa315f96ac": {
+   "fr": "Une fonction définie par morceaux.",
+   "en": "A piecewise-defined function.",
+   "status": "aligned",
+   "order": 21
+  },
+  "62bba0ae7682": {
+   "fr": "Pour [[m1]], poser [[m2]], et poser [[m3]]. Comme [[m4]] lorsque [[m5]], [[m6]]. La fonction est continue en [[m7]] si et seulement si [[m8]]. La valeur au point doit donc être comparée à la limite, et non remplacée par celle-ci sans justification.",
+   "en": "For [[m1]], set [[m2]], and set [[m3]]. Since [[m4]] when [[m5]], [[m6]]. The function is continuous at [[m7]] if and only if [[m8]]. The value at the point must therefore be compared with the limit, and not replaced by it without justification.",
+   "status": "aligned",
+   "order": 22
+  },
+  "bfa6a49fea71": {
+   "fr": "Suites et continuité.",
+   "en": "Sequences and continuity.",
+   "status": "aligned",
+   "order": 23
+  },
+  "b0fba4d5a8c5": {
+   "fr": "Si [[m1]] et [[m2]] est continue en [[m3]], alors [[m4]]. Pour une suite récurrente convergente [[m5]], on obtient [[m6]].",
+   "en": "If [[m1]] and [[m2]] is continuous at [[m3]], then [[m4]]. For a convergent recursively defined sequence [[m5]], we obtain [[m6]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "ccceb44d15c5": {
+   "fr": "Dichotomie",
+   "en": "Bisection",
+   "status": "aligned",
+   "order": 25
+  },
+  "896f3620617b": {
+   "fr": "Pour [[m1]] continue et [[m2]], calculer [[m3]]. Si [[m4]], arrêter ; sinon garder la moitié dont les extrémités ont des images de signes contraires. Après [[m5]] étapes, la longueur vaut [[m6]]. Le milieu donne une erreur au plus la demi-longueur. La méthode ne garantit pas l'unicité ; celle-ci se prouve séparément.",
+   "en": "For [[m1]] continuous and [[m2]], compute [[m3]]. If [[m4]], stop; otherwise keep the half whose endpoints have images of opposite signs. After [[m5]] steps, the length is [[m6]]. The midpoint gives an error of at most half the length. The method does not guarantee uniqueness; this is proved separately.",
+   "status": "aligned",
+   "order": 26
+  },
+  "d10be7d93185": {
+   "fr": "[[m1]] et sa tangente à l'inflexion.",
+   "en": "[[m1]] and its tangent at the point of inflection.",
+   "status": "aligned",
+   "order": 27
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 28
+  },
+  "31e739701d5d": {
+   "fr": "\\textbf{Dérivées et lectures graphiques --- 35 min.}",
+   "en": "\\textbf{Derivatives and reading graphs --- 35 min.}",
+   "status": "aligned",
+   "order": 29
+  },
+  "83933850ad5d": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. On note [[m4]] sa courbe représentative.",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. Denote its graph by [[m4]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "e0dd7ef65885": {
+   "fr": "Calculer [[m1]] et [[m2]], puis dresser leurs tableaux de signes.",
+   "en": "Calculate [[m1]] and [[m2]], then draw up their sign tables.",
+   "status": "aligned",
+   "order": 31
+  },
+  "389af3a07f62": {
+   "fr": "En déduire les variations de [[m1]] et ses intervalles de convexité et de concavité.",
+   "en": "Deduce the variations of [[m1]] and its intervals of convexity and concavity.",
+   "status": "aligned",
+   "order": 32
+  },
+  "5d7109d05193": {
+   "fr": "Déterminer les coordonnées du point d'inflexion de [[m1]] et une équation de la tangente en ce point.",
+   "en": "Determine the coordinates of the point of inflection of [[m1]] and an equation of the tangent at this point.",
+   "status": "aligned",
+   "order": 33
+  },
+  "5c39afa94833": {
+   "fr": "En utilisant les limites, les extrema et le théorème des valeurs intermédiaires, déterminer le nombre de solutions réelles de [[m1]].",
+   "en": "Using the limits, the extrema and the intermediate value theorem, determine the number of real solutions of [[m1]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "4b5b1b8f669e": {
+   "fr": "Expliquer, à partir de cet exemple, pourquoi la continuité ne suffit pas à assurer l'unicité d'une solution.",
+   "en": "Explain, from this example, why continuity is not enough to ensure that a solution is unique.",
+   "status": "aligned",
+   "order": 35
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 36
+  },
+  "ff604b52e73b": {
+   "fr": "On définit sur [[m1]] les fonctions [[m2]] et [[m3]]. Calculer [[m4]] et [[m5]].",
+   "en": "Define on [[m1]] the functions [[m2]] and [[m3]]. Calculate [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "a95d854eaf25": {
+   "fr": "Soit [[m1]] la fonction définie sur [[m2]] par [[m3]]. Déterminer les intervalles sur lesquels [[m4]] est convexe ou concave.",
+   "en": "Let [[m1]] be the function defined on [[m2]] by [[m3]]. Determine the intervals on which [[m4]] is convex or concave.",
+   "status": "aligned",
+   "order": 40
+  },
+  "9f4dbd5e55f4": {
+   "fr": "On note [[m1]] la courbe de la fonction exponentielle. Déterminer une équation de sa tangente au point d'abscisse [[m2]]. À l'aide de la convexité, en déduire une inégalité valable pour tout réel [[m3]].",
+   "en": "Let [[m1]] be the graph of the exponential function. Determine an equation of its tangent at the point with abscissa [[m2]]. Using convexity, deduce an inequality valid for every real number [[m3]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "632f6831c327": {
+   "fr": "Démontrer que l'équation [[m1]] admet une unique solution réelle. Encadrer cette solution entre deux entiers consécutifs.",
+   "en": "Prove that the equation [[m1]] has a unique real solution. Bracket this solution between two consecutive integers.",
+   "status": "aligned",
+   "order": 44
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 45
+  },
+  "cc36a71f92d7": {
+   "fr": "Un algorithme de dichotomie part de l'intervalle [[m1]] et divise sa longueur par deux à chaque étape. Déterminer le nombre minimal d'étapes garantissant un intervalle de longueur au plus [[m2]].",
+   "en": "A bisection algorithm starts from the interval [[m1]] and halves its length at each step. Determine the minimum number of steps guaranteeing an interval of length at most [[m2]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 47
+  },
+  "bdfd78a480c3": {
+   "fr": "\\textbf{Barbazo, p. 132, exercice 29.} En classe après l'étude de la convexité : questions 1 et 2. À la maison : terminer les questions 3 à 5. L'objectif est de distinguer le signe de [[m1]], qui gouverne les variations, de celui de [[m2]], qui gouverne la convexité.",
+   "en": "\\textbf{Barbazo, p. 132, exercise 29.} In class after the study of convexity: questions 1 and 2. At home: finish questions 3 to 5. The aim is to distinguish the sign of [[m1]], which governs the variations, from that of [[m2]], which governs convexity.",
+   "status": "aligned",
+   "order": 48
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 49
+  },
+  "cf5b924561a6": {
+   "fr": "\\textbf{DM4 --- Un maximum et une équation --- 60 min.}",
+   "en": "\\textbf{Homework 4 --- A maximum and an equation --- 60 min.}",
+   "status": "aligned",
+   "order": 50
+  },
+  "95fc06679ed6": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. Sa courbe représentative est notée [[m4]].",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. Its graph is denoted [[m4]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "891c4f86edbf": {
+   "fr": "Calculer [[m1]] et la limite de [[m2]] en [[m3]]. Calculer [[m4]], puis dresser le tableau de variations de [[m5]].",
+   "en": "Calculate [[m1]] and the limit of [[m2]] at [[m3]]. Calculate [[m4]], then draw up the table of variations of [[m5]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "bfa0393b4159": {
+   "fr": "Calculer [[m1]]. Étudier la convexité de [[m2]] et déterminer les coordonnées de l'éventuel point d'inflexion de [[m3]].",
+   "en": "Calculate [[m1]]. Study the convexity of [[m2]] and determine the coordinates of the possible point of inflection of [[m3]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "80b7dc95a734": {
+   "fr": "Démontrer que l'équation [[m1]] admet une unique solution [[m2]] sur [[m3]].",
+   "en": "Prove that the equation [[m1]] has a unique solution [[m2]] on [[m3]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "64fb25888ff6": {
+   "fr": "Écrire une fonction Python qui utilise la dichotomie sur [[m1]] et renvoie deux réels [[m2]] et [[m3]] tels que [[m4]] et [[m5]]. Justifier le choix de l'intervalle initial.",
+   "en": "Write a Python function that uses bisection on [[m1]] and returns two real numbers [[m2]] and [[m3]] such that [[m4]] and [[m5]]. Justify the choice of the initial interval.",
+   "status": "aligned",
+   "order": 55
+  },
+  "aaed7b6b5636": {
+   "fr": "Déterminer une équation de la tangente à [[m1]] au point d'abscisse [[m2]]. La position de la courbe par rapport à cette seule tangente suffit-elle à affirmer que [[m3]] est concave sur tout son domaine ? Justifier.",
+   "en": "Determine an equation of the tangent to [[m1]] at the point with abscissa [[m2]]. Is the position of the curve relative to this single tangent enough to state that [[m3]] is concave on its whole domain? Justify.",
+   "status": "aligned",
+   "order": 56
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 57
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 58
+  },
+  "b755e37db518": {
+   "fr": "La progression concentre ce chapitre en trois séances : répartir réellement S29 entre dérivation et convexité, puis reprendre la preuve des tangentes en S33. Le vocabulaire continu/dérivable/convexe doit être distingué par des exemples. La continuité donne l'existence par le TVI ; la stricte monotonie donne l'unicité. Pour la dichotomie, exiger un intervalle initial où le signe change et une fonction continue. Un changement de convexité, et non la seule annulation de [[m1]], caractérise un point d'inflexion.",
+   "en": "The scheme of work condenses this chapter into three sessions: genuinely split S29 between differentiation and convexity, then revisit the proof about tangents in S33. The vocabulary continuous/differentiable/convex must be distinguished by examples. Continuity gives existence via the IVT; strict monotonicity gives uniqueness. For bisection, require an initial interval where the sign changes and a continuous function. A change of convexity, and not merely the vanishing of [[m1]], characterises a point of inflection.",
+   "status": "aligned",
+   "order": 59
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 60
+  },
+  "4180a4af56e9": {
+   "fr": "[[m1]] et [[m2]]. Le signe de [[m3]] est positif sur [[m4]] et [[m5]], nul en [[m6]], négatif entre ces valeurs. Le signe de [[m7]] est négatif à gauche de [[m8]], nul en [[m9]], positif à droite.",
+   "en": "[[m1]] and [[m2]]. The sign of [[m3]] is positive on [[m4]] and [[m5]], zero at [[m6]], negative between these values. The sign of [[m7]] is negative to the left of [[m8]], zero at [[m9]], positive to the right.",
+   "status": "aligned",
+   "order": 61
+  },
+  "7a325b5ad48d": {
+   "fr": "Les variations et les limites se résument par",
+   "en": "The variations and the limits are summarised by",
+   "status": "aligned",
+   "order": 62
+  },
+  "f10925475b42": {
+   "fr": "Le signe de [[m1]] donne la concavité sur [[m2]] et la convexité sur [[m3]].",
+   "en": "The sign of [[m1]] gives concavity on [[m2]] and convexity on [[m3]].",
+   "status": "aligned",
+   "order": 63
+  },
+  "5f5f2eed1cb3": {
+   "fr": "La convexité change en [[m1]], et [[m2]] : le point d'inflexion est [[m3]]. Sa tangente a pour équation [[m4]].",
+   "en": "The convexity changes at [[m1]], and [[m2]]: the point of inflection is [[m3]]. Its tangent has equation [[m4]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "1fcd8be84bea": {
+   "fr": "La fonction est continue. Sur [[m1]], elle est strictement croissante de [[m2]] à [[m3]] : le niveau [[m4]] est atteint exactement une fois. Sur [[m5]], elle décroît strictement de [[m6]] à [[m7]] : une deuxième solution. Sur [[m8]], elle croît strictement de [[m9]] à [[m10]] : une troisième. Les points [[m11]] ne sont pas solutions, donc on ne compte aucune solution deux fois.",
+   "en": "The function is continuous. On [[m1]], it is strictly increasing from [[m2]] to [[m3]]: the level [[m4]] is reached exactly once. On [[m5]], it strictly decreases from [[m6]] to [[m7]]: a second solution. On [[m8]], it strictly increases from [[m9]] to [[m10]]: a third. The points [[m11]] are not solutions, so no solution is counted twice.",
+   "status": "aligned",
+   "order": 65
+  },
+  "12b4fc895460": {
+   "fr": "La continuité fournit l'existence d'un antécédent pour les valeurs intermédiaires. Elle ne fournit pas l'unicité : la fonction étudiée est continue et le niveau [[m1]] possède trois antécédents.",
+   "en": "Continuity provides the existence of a preimage for intermediate values. It does not provide uniqueness: the function studied is continuous and the level [[m1]] has three preimages.",
+   "status": "aligned",
+   "order": 66
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 67
+  },
+  "c4fd983da553": {
+   "fr": "Pour [[m1]], [[m2]]. Pour [[m3]], [[m4]]. Les deux fonctions sont dérivables sur [[m5]].",
+   "en": "For [[m1]], [[m2]]. For [[m3]], [[m4]]. Both functions are differentiable on [[m5]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 69
+  },
+  "5a2547fa9a89": {
+   "fr": "[[m1]] puis [[m2]]. Le signe de [[m3]] est positif à l'extérieur de [[m4]], négatif à l'intérieur. Donc [[m5]] est convexe sur [[m6]] et [[m7]], concave sur [[m8]]. Les changements de convexité donnent les inflexions [[m9]] et [[m10]].",
+   "en": "[[m1]] then [[m2]]. The sign of [[m3]] is positive outside [[m4]], negative inside. So [[m5]] is convex on [[m6]] and [[m7]], concave on [[m8]]. The changes of convexity give the points of inflection [[m9]] and [[m10]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 71
+  },
+  "cd49d3ba450a": {
+   "fr": "La tangente est [[m1]]. Puisque [[m2]], l'exponentielle est convexe et sa courbe est au-dessus de cette tangente : [[m3]] sur [[m4]].",
+   "en": "The tangent is [[m1]]. Since [[m2]], the exponential is convex and its curve lies above this tangent: [[m3]] on [[m4]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 73
+  },
+  "84fb1f3fa676": {
+   "fr": "Posons [[m1]]. Ce polynôme est continu et [[m2]] sur [[m3]]. De plus [[m4]] et [[m5]] : le TVI donne un zéro dans [[m6]], et la stricte croissance sur [[m7]] assure qu'il est unique.",
+   "en": "Set [[m1]]. This polynomial is continuous and [[m2]] on [[m3]]. Moreover [[m4]] and [[m5]]: the IVT gives a zero in [[m6]], and strict increase on [[m7]] ensures that it is unique.",
+   "status": "aligned",
+   "order": 74
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 75
+  },
+  "e0de9c194a9e": {
+   "fr": "Après [[m1]] étapes, la longueur vaut [[m2]]. La condition demandée équivaut à [[m3]]. Comme [[m4]], onze étapes suffisent et dix ne suffisent pas.",
+   "en": "After [[m1]] steps, the length is [[m2]]. The required condition is equivalent to [[m3]]. Since [[m4]], eleven steps suffice and ten do not.",
+   "status": "aligned",
+   "order": 76
+  },
+  "116fdc2044e0": {
+   "fr": "Corrigé du DM4",
+   "en": "Solutions to Homework 4",
+   "status": "aligned",
+   "order": 77
+  },
+  "9cb5aaee517e": {
+   "fr": "[[m1]] et [[m2]]. En [[m3]], [[m4]] par croissance comparée. Par produit, [[m5]]. Cette dérivée est strictement négative pour [[m6]] : [[m7]] décroît strictement de [[m8]] vers [[m9]] sur [[m10]].",
+   "en": "[[m1]] and [[m2]]. At [[m3]], [[m4]] by comparison of growth rates. By the product rule, [[m5]]. This derivative is strictly negative for [[m6]]: [[m7]] strictly decreases from [[m8]] towards [[m9]] on [[m10]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "92d68500e789": {
+   "fr": "[[m1]]. Donc [[m2]] est concave sur [[m3]], convexe sur [[m4]]. Le changement de convexité en [[m5]] donne le point d'inflexion [[m6]].",
+   "en": "[[m1]]. So [[m2]] is concave on [[m3]], convex on [[m4]]. The change of convexity at [[m5]] gives the point of inflection [[m6]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "12ee7e4a5f5f": {
+   "fr": "[[m1]] est continue et strictement décroissante sur [[m2]] ; [[m3]] et sa limite [[m4]] est inférieure à [[m5]]. Le corollaire du TVI donne une unique solution [[m6]]. De plus, [[m7]] et [[m8]], donc [[m9]].",
+   "en": "[[m1]] is continuous and strictly decreasing on [[m2]]; [[m3]] and its limit [[m4]] is less than [[m5]]. The corollary of the IVT gives a unique solution [[m6]]. Moreover, [[m7]] and [[m8]], so [[m9]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "4602b44db608": {
+   "fr": "La décroissance conserve [[m1]] ; [[m2]] reste dans [[m3]]. Après onze étapes, on obtient [[m4]], de longueur [[m5]]. La valeur [[m6]] est compatible avec cet encadrement.",
+   "en": "The decrease preserves [[m1]]; [[m2]] stays in [[m3]]. After eleven steps, we obtain [[m4]], of length [[m5]]. The value [[m6]] is consistent with this bracketing.",
+   "status": "aligned",
+   "order": 81
+  },
+  "247b846d477f": {
+   "fr": "La tangente en [[m1]] est [[m2]]. Les variations donnent [[m3]], donc toute la courbe est en dessous de cette tangente. Cela ne caractérise pas la concavité : il faudrait être au-dessous de toutes les tangentes, alors que [[m4]] devient convexe après [[m5]].",
+   "en": "The tangent at [[m1]] is [[m2]]. The variations give [[m3]], so the whole curve lies below this tangent. This does not characterise concavity: the curve would have to lie below all the tangents, whereas [[m4]] becomes convex after [[m5]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 83
+  },
+  "399f8a7765c7": {
+   "fr": "Pour [[m1]], la dérivation d'un produit donne",
+   "en": "For [[m1]], the product rule gives",
+   "status": "aligned",
+   "order": 84
+  },
+  "9453f37bdb91": {
+   "fr": "Puisque [[m1]], [[m2]] est positive sur [[m3]] et [[m4]], négative sur [[m5]], nulle en [[m6]] et [[m7]]. La fonction croît donc jusqu'à [[m8]], décroît jusqu'à [[m9]], puis croît. Ses limites sont [[m10]] en [[m11]] (croissances comparées) et [[m12]] en [[m13]].\nUne nouvelle dérivation donne",
+   "en": "Since [[m1]], [[m2]] is positive on [[m3]] and [[m4]], negative on [[m5]], zero at [[m6]] and [[m7]]. The function therefore increases up to [[m8]], decreases down to [[m9]], then increases. Its limits are [[m10]] at [[m11]] (comparison of growth rates) and [[m12]] at [[m13]].\nDifferentiating again gives",
+   "status": "aligned",
+   "order": 85
+  },
+  "ef568e1d6d1b": {
+   "fr": "Posons [[m1]] et [[m2]]. Le facteur polynomial est positif en dehors de [[m3]], négatif dans [[m4]]. Ainsi [[m5]] est convexe sur [[m6]] et [[m7]], concave sur [[m8]]. Le signe change aux deux racines : les points d'inflexion sont [[m9]] et [[m10]].",
+   "en": "Set [[m1]] and [[m2]]. The polynomial factor is positive outside [[m3]], negative in [[m4]]. Thus [[m5]] is convex on [[m6]] and [[m7]], concave on [[m8]]. The sign changes at the two roots: the points of inflection are [[m9]] and [[m10]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "3936e80d9fa6": {
+   "fr": "Le tableau de variations se résume ainsi :",
+   "en": "The table of variations is summarised as follows:",
+   "status": "aligned",
+   "order": 87
+  },
+  "548b612cdaff": {
+   "fr": "Pour la question 5, la fenêtre ci-dessous rend visibles les deux changements de convexité et les deux extrema. Les points marqués correspondent aux points d'inflexion calculés ; le tracé sert à contrôler la cohérence de l'étude.",
+   "en": "For question 5, the window below makes the two changes of convexity and the two extrema visible. The marked points correspond to the points of inflection calculated; the plot serves to check the consistency of the study.",
+   "status": "aligned",
+   "order": 88
+  }
+ }
+}

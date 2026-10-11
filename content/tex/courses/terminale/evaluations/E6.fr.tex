@@ -1,0 +1,625 @@
+\mxfront{terminale-e6}
+\mxnewpage\phantomsection\label{sujet:6-1}\addcontentsline{toc}{chapter}{DS4 · Zéro 1}
+
+\section*{DS4 · Zéro 1}
+
+{\sffamily\bfseries\color{mxmint}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $]0;+\infty[$ par $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Déterminer les limites de $f$ en $0^+$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Préciser la valeur du maximum de $f$, puis résoudre $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac12 e^{2}$ admet exactement deux solutions dans $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les quatre premières questions sont indépendantes. Pour chacune, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
+
+\begin{enumerate}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto 2x^2-6x+2$. \hfill\textit{(1 pt)}
+
+\item Déterminer la primitive $F$ de $x\mapsto e^{2x}$ sur $\R$ telle que $F(0)=6$. \hfill\textit{(1 pt)}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto\frac{2x}{x^2+6}$. \hfill\textit{(1 pt)}
+
+\item Déterminer une primitive sur $\R$ de $x\mapsto2x(x^2+2)^{2}$. \hfill\textit{(1 pt)}
+
+\item Soit $F$ et $G$ deux primitives d'une même fonction sur un intervalle $I$. Démontrer qu'il existe une constante réelle $C$ telle que $F(x)-G(x)=C$ pour tout $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS4 · Zéro 1 · suite}\par
+
+\subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{5}y+\frac{8}{5}$ sur $[0;+\infty[$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=13$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le9$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A(11;0;0)$, $B(0;11;0)$ et $C(0;0;11)$. On donne $\vec n=(1;1;1)$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS4 · Zéro 1}\label{cor:6-1}
+
+\subsection*{Exercice 1 · Une fonction logarithmique}\begin{enumerate}
+
+\item \textit{[1 pt]} En $0^+$, le numérateur tend vers $-\infty$ et le dénominateur vers $0^+$ : limite $-\infty$ ; en $+\infty$, limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du quotient,
+\[f'(x)=\frac{(\frac{1}{x})x-(3+\ln x)}{x^2}=\frac{-2-\ln x}{x^2}.\]
+Le dénominateur est positif. Le numérateur s'annule en $s=e^{-2}$, est positif pour $0<x<s$ et négatif pour $x>s$. Ainsi $f$ croît strictement sur $]0,s]$, puis décroît strictement sur $[s,+\infty[$.
+
+\item \textit{[1 pt]} Le maximum est atteint uniquement en $s=e^{-2}$ et vaut
+\[f(s)=\frac{3- 2}{e^{-2}}=e^{2}.\]
+Comme $x>0$, $f(x)=0$ équivaut à $3+\ln x=0$, soit $x=e^{-3}$.
+
+\item \textit{[1 pt]} On dérive $(-2-\ln x)x^{-2}$ :
+\[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
+Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Posons $m=\frac{e^{2}}{2}$ et $s=e^{-2}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée}\begin{enumerate}
+
+\item \textit{[1 pt]} Par linéarité, les primitives sont $F(x)=\frac{2}{3}x^3-3x^2+2x+C$, $C\in\R$. En effet, $F'(x)=2x^2-6x+2$. La dérivée ne dépend pas de $C$, et toutes les primitives diffèrent d'une constante sur $\R$.
+
+\item \textit{[1 pt]} Les primitives sont $F(x)=\frac{e^{2x}}{2}+C$. La condition $F(0)=6$ impose $\frac{1}{2}+C=6$, d'où $C=\frac{11}{2}$. La dérivée de $\frac{e^{2x}}{2}$ est $e^{2x}$ : la fonction obtenue vérifie bien les deux conditions.
+
+\item \textit{[1 pt]} Posons $u(x)=x^2+6>0$ sur $\R$ ; $u'(x)=2x$. Les primitives sont donc $\ln(x^2+6)+C$, car leur dérivée vaut $\frac{u'}{u}=\frac{2x}{x^2+6}$.
+
+\item \textit{[1 pt]} Une primitive est $F(x)=\dfrac{(x^2+2)^{3}}{3}$. En effet, par dérivation d'une composée,
+\[F'(x)=\frac{3}{3}\,2x(x^2+2)^{2}=2x(x^2+2)^{2}.\]
+
+\item \textit{[1 pt]} La dérivée de leur différence est nulle sur l'intervalle ; la différence est donc constante. Le caractère d'intervalle intervient dans ce résultat.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{5}y+\frac{8}{5}$ donne $y=8$.
+
+\item \textit{[1 pt]} La solution constante est $8$. Posons $z=y-8$ ; l'équation devient $z'=-\frac{z}{5}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{5}}$, donc toutes les solutions de l'équation initiale sont $y(t)=8+Ce^{-\frac{t}{5}}$.
+La condition $y(0)=13$ donne $C=5$. Pour la fonction obtenue,
+\[y'(t)=-e^{-\frac{t}{5}}=-\frac{y(t)}{5}+\frac{8}{5},\qquad y(0)=13.\]
+La solution du problème initial est donc $y(t)=8+5e^{-\frac{t}{5}}$.
+
+\item \textit{[1 pt]} $y'=-e^{-\frac{t}{5}}<0$ ; limite $8$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{5}}>0$, la dérivée $y'(t)=-e^{-\frac{t}{5}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 9&\Longleftrightarrow 5e^{-\frac{t}{5}}\le1\\&\Longleftrightarrow -\frac{t}{5}\le-\ln 5\\&\Longleftrightarrow t\ge 5\ln 5.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-5<0$. Le premier instant est $5\ln 5\simeq8{,}0472$.
+
+\item \textit{[1 pt]} $Y_0=13$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{5}+\frac{8}{5})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-11,11,0)$ et $\vect{AC}=(-11,0,11)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-11)+t+t=3t-11=0.\]
+Ainsi $t=\frac{11}{3}$ et $H=(\frac{11}{3},\frac{11}{3},\frac{11}{3})$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{11}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=11\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(11\sqrt2)^2-(\frac{11\sqrt{2}}{2})^2}=\frac{11\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 11\sqrt2\times\frac{11\sqrt6}{2}=\frac{121}{2}\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(\frac{121}{2}\sqrt3)(\frac{11}{\sqrt{3}})}{3}=\frac{1331}{6}$. Base $OAB$ : aire $\frac{121}{2}$ et hauteur $11$, même valeur.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:6-2}\addcontentsline{toc}{chapter}{DS4 · Zéro 2}
+
+\section*{DS4 · Zéro 2}
+
+{\sffamily\bfseries\color{mxmint}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $]0;+\infty[$ par $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Déterminer les limites de $f$ en $0^+$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Préciser la valeur du maximum de $f$, puis résoudre $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac12 e^{1}$ admet exactement deux solutions dans $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les quatre premières questions sont indépendantes. Pour chacune, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
+
+\begin{enumerate}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto 5x^2-7x+3$. \hfill\textit{(1 pt)}
+
+\item Déterminer la primitive $F$ de $x\mapsto e^{5x}$ sur $\R$ telle que $F(0)=7$. \hfill\textit{(1 pt)}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto\frac{2x}{x^2+7}$. \hfill\textit{(1 pt)}
+
+\item Déterminer une primitive sur $\R$ de $x\mapsto2x(x^2+3)^{5}$. \hfill\textit{(1 pt)}
+
+\item Soit $F$ et $G$ deux primitives d'une même fonction sur un intervalle $I$. Démontrer qu'il existe une constante réelle $C$ telle que $F(x)-G(x)=C$ pour tout $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS4 · Zéro 2 · suite}\par
+
+\subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{4}y+\frac{5}{2}$ sur $[0;+\infty[$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=16$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le11$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A(7;0;0)$, $B(0;7;0)$ et $C(0;0;7)$. On donne $\vec n=(1;1;1)$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS4 · Zéro 2}\label{cor:6-2}
+
+\subsection*{Exercice 1 · Une fonction logarithmique}\begin{enumerate}
+
+\item \textit{[1 pt]} En $0^+$, le numérateur tend vers $-\infty$ et le dénominateur vers $0^+$ : limite $-\infty$ ; en $+\infty$, limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du quotient,
+\[f'(x)=\frac{(\frac{1}{x})x-(2+\ln x)}{x^2}=\frac{-1-\ln x}{x^2}.\]
+Le dénominateur est positif. Le numérateur s'annule en $s=e^{-1}$, est positif pour $0<x<s$ et négatif pour $x>s$. Ainsi $f$ croît strictement sur $]0,s]$, puis décroît strictement sur $[s,+\infty[$.
+
+\item \textit{[1 pt]} Le maximum est atteint uniquement en $s=e^{-1}$ et vaut
+\[f(s)=\frac{2- 1}{e^{-1}}=e^{1}.\]
+Comme $x>0$, $f(x)=0$ équivaut à $2+\ln x=0$, soit $x=e^{-2}$.
+
+\item \textit{[1 pt]} On dérive $(-1-\ln x)x^{-2}$ :
+\[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
+Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Posons $m=\frac{e^{1}}{2}$ et $s=e^{-1}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée}\begin{enumerate}
+
+\item \textit{[1 pt]} Par linéarité, les primitives sont $F(x)=\frac{5}{3}x^3-\frac{7}{2}x^2+3x+C$, $C\in\R$. En effet, $F'(x)=5x^2-7x+3$. La dérivée ne dépend pas de $C$, et toutes les primitives diffèrent d'une constante sur $\R$.
+
+\item \textit{[1 pt]} Les primitives sont $F(x)=\frac{e^{5x}}{5}+C$. La condition $F(0)=7$ impose $\frac{1}{5}+C=7$, d'où $C=\frac{34}{5}$. La dérivée de $\frac{e^{5x}}{5}$ est $e^{5x}$ : la fonction obtenue vérifie bien les deux conditions.
+
+\item \textit{[1 pt]} Posons $u(x)=x^2+7>0$ sur $\R$ ; $u'(x)=2x$. Les primitives sont donc $\ln(x^2+7)+C$, car leur dérivée vaut $\frac{u'}{u}=\frac{2x}{x^2+7}$.
+
+\item \textit{[1 pt]} Une primitive est $F(x)=\dfrac{(x^2+3)^{6}}{6}$. En effet, par dérivation d'une composée,
+\[F'(x)=\frac{6}{6}\,2x(x^2+3)^{5}=2x(x^2+3)^{5}.\]
+
+\item \textit{[1 pt]} La dérivée de leur différence est nulle sur l'intervalle ; la différence est donc constante. Le caractère d'intervalle intervient dans ce résultat.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{4}y+\frac{5}{2}$ donne $y=10$.
+
+\item \textit{[1 pt]} La solution constante est $10$. Posons $z=y-10$ ; l'équation devient $z'=-\frac{z}{4}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{4}}$, donc toutes les solutions de l'équation initiale sont $y(t)=10+Ce^{-\frac{t}{4}}$.
+La condition $y(0)=16$ donne $C=6$. Pour la fonction obtenue,
+\[y'(t)=-\frac{3}{2}e^{-\frac{t}{4}}=-\frac{y(t)}{4}+\frac{5}{2},\qquad y(0)=16.\]
+La solution du problème initial est donc $y(t)=10+6e^{-\frac{t}{4}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{3}{2}e^{-\frac{t}{4}}<0$ ; limite $10$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{4}}>0$, la dérivée $y'(t)=-\frac{3}{2}e^{-\frac{t}{4}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 11&\Longleftrightarrow 6e^{-\frac{t}{4}}\le1\\&\Longleftrightarrow -\frac{t}{4}\le-\ln 6\\&\Longleftrightarrow t\ge 4\ln 6.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-4<0$. Le premier instant est $4\ln 6\simeq7{,}1670$.
+
+\item \textit{[1 pt]} $Y_0=16$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{4}+\frac{5}{2})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-7,7,0)$ et $\vect{AC}=(-7,0,7)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-7)+t+t=3t-7=0.\]
+Ainsi $t=\frac{7}{3}$ et $H=(\frac{7}{3},\frac{7}{3},\frac{7}{3})$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{7}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=7\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(7\sqrt2)^2-(\frac{7\sqrt{2}}{2})^2}=\frac{7\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 7\sqrt2\times\frac{7\sqrt6}{2}=\frac{49}{2}\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(\frac{49}{2}\sqrt3)(\frac{7}{\sqrt{3}})}{3}=\frac{343}{6}$. Base $OAB$ : aire $\frac{49}{2}$ et hauteur $7$, même valeur.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:6-3}\addcontentsline{toc}{chapter}{DS4 · A}
+
+\section*{DS4 · A}
+
+{\sffamily\bfseries\color{mxwarn}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $]0;+\infty[$ par $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Déterminer les limites de $f$ en $0^+$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Préciser la valeur du maximum de $f$, puis résoudre $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac12 e^{4}$ admet exactement deux solutions dans $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les quatre premières questions sont indépendantes. Pour chacune, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
+
+\begin{enumerate}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto 4x^2-4x+1$. \hfill\textit{(1 pt)}
+
+\item Déterminer la primitive $F$ de $x\mapsto e^{4x}$ sur $\R$ telle que $F(0)=4$. \hfill\textit{(1 pt)}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto\frac{2x}{x^2+4}$. \hfill\textit{(1 pt)}
+
+\item Déterminer une primitive sur $\R$ de $x\mapsto2x(x^2+1)^{4}$. \hfill\textit{(1 pt)}
+
+\item Soit $F$ et $G$ deux primitives d'une même fonction sur un intervalle $I$. Démontrer qu'il existe une constante réelle $C$ telle que $F(x)-G(x)=C$ pour tout $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS4 · A · suite}\par
+
+\subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{3}y+\frac{7}{3}$ sur $[0;+\infty[$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=11$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le8$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A(8;0;0)$, $B(0;8;0)$ et $C(0;0;8)$. On donne $\vec n=(1;1;1)$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS4 · A}\label{cor:6-3}
+
+\subsection*{Exercice 1 · Une fonction logarithmique}\begin{enumerate}
+
+\item \textit{[1 pt]} En $0^+$, le numérateur tend vers $-\infty$ et le dénominateur vers $0^+$ : limite $-\infty$ ; en $+\infty$, limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du quotient,
+\[f'(x)=\frac{(\frac{1}{x})x-(5+\ln x)}{x^2}=\frac{-4-\ln x}{x^2}.\]
+Le dénominateur est positif. Le numérateur s'annule en $s=e^{-4}$, est positif pour $0<x<s$ et négatif pour $x>s$. Ainsi $f$ croît strictement sur $]0,s]$, puis décroît strictement sur $[s,+\infty[$.
+
+\item \textit{[1 pt]} Le maximum est atteint uniquement en $s=e^{-4}$ et vaut
+\[f(s)=\frac{5- 4}{e^{-4}}=e^{4}.\]
+Comme $x>0$, $f(x)=0$ équivaut à $5+\ln x=0$, soit $x=e^{-5}$.
+
+\item \textit{[1 pt]} On dérive $(-4-\ln x)x^{-2}$ :
+\[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
+Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Posons $m=\frac{e^{4}}{2}$ et $s=e^{-4}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée}\begin{enumerate}
+
+\item \textit{[1 pt]} Par linéarité, les primitives sont $F(x)=\frac{4}{3}x^3-2x^2+x+C$, $C\in\R$. En effet, $F'(x)=4x^2-4x+1$. La dérivée ne dépend pas de $C$, et toutes les primitives diffèrent d'une constante sur $\R$.
+
+\item \textit{[1 pt]} Les primitives sont $F(x)=\frac{e^{4x}}{4}+C$. La condition $F(0)=4$ impose $\frac{1}{4}+C=4$, d'où $C=\frac{15}{4}$. La dérivée de $\frac{e^{4x}}{4}$ est $e^{4x}$ : la fonction obtenue vérifie bien les deux conditions.
+
+\item \textit{[1 pt]} Posons $u(x)=x^2+4>0$ sur $\R$ ; $u'(x)=2x$. Les primitives sont donc $\ln(x^2+4)+C$, car leur dérivée vaut $\frac{u'}{u}=\frac{2x}{x^2+4}$.
+
+\item \textit{[1 pt]} Une primitive est $F(x)=\dfrac{(x^2+1)^{5}}{5}$. En effet, par dérivation d'une composée,
+\[F'(x)=\frac{5}{5}\,2x(x^2+1)^{4}=2x(x^2+1)^{4}.\]
+
+\item \textit{[1 pt]} La dérivée de leur différence est nulle sur l'intervalle ; la différence est donc constante. Le caractère d'intervalle intervient dans ce résultat.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{3}y+\frac{7}{3}$ donne $y=7$.
+
+\item \textit{[1 pt]} La solution constante est $7$. Posons $z=y-7$ ; l'équation devient $z'=-\frac{z}{3}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{3}}$, donc toutes les solutions de l'équation initiale sont $y(t)=7+Ce^{-\frac{t}{3}}$.
+La condition $y(0)=11$ donne $C=4$. Pour la fonction obtenue,
+\[y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}=-\frac{y(t)}{3}+\frac{7}{3},\qquad y(0)=11.\]
+La solution du problème initial est donc $y(t)=7+4e^{-\frac{t}{3}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{4}{3}e^{-\frac{t}{3}}<0$ ; limite $7$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{3}}>0$, la dérivée $y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 8&\Longleftrightarrow 4e^{-\frac{t}{3}}\le1\\&\Longleftrightarrow -\frac{t}{3}\le-\ln 4\\&\Longleftrightarrow t\ge 3\ln 4.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-3<0$. Le premier instant est $3\ln 4\simeq4{,}1589$.
+
+\item \textit{[1 pt]} $Y_0=11$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{3}+\frac{7}{3})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-8,8,0)$ et $\vect{AC}=(-8,0,8)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-8)+t+t=3t-8=0.\]
+Ainsi $t=\frac{8}{3}$ et $H=(\frac{8}{3},\frac{8}{3},\frac{8}{3})$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{8}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=8\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(8\sqrt2)^2-(\frac{8\sqrt{2}}{2})^2}=\frac{8\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 8\sqrt2\times\frac{8\sqrt6}{2}=32\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(32\sqrt3)(\frac{8}{\sqrt{3}})}{3}=\frac{256}{3}$. Base $OAB$ : aire $32$ et hauteur $8$, même valeur.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:6-4}\addcontentsline{toc}{chapter}{DS4 · B}
+
+\section*{DS4 · B}
+
+{\sffamily\bfseries\color{mxwarn}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $]0;+\infty[$ par $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Déterminer les limites de $f$ en $0^+$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Préciser la valeur du maximum de $f$, puis résoudre $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac12 e^{3}$ admet exactement deux solutions dans $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les quatre premières questions sont indépendantes. Pour chacune, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
+
+\begin{enumerate}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto 3x^2-6x+2$. \hfill\textit{(1 pt)}
+
+\item Déterminer la primitive $F$ de $x\mapsto e^{3x}$ sur $\R$ telle que $F(0)=6$. \hfill\textit{(1 pt)}
+
+\item Déterminer toutes les primitives sur $\R$ de $x\mapsto\frac{2x}{x^2+6}$. \hfill\textit{(1 pt)}
+
+\item Déterminer une primitive sur $\R$ de $x\mapsto2x(x^2+2)^{3}$. \hfill\textit{(1 pt)}
+
+\item Soit $F$ et $G$ deux primitives d'une même fonction sur un intervalle $I$. Démontrer qu'il existe une constante réelle $C$ telle que $F(x)-G(x)=C$ pour tout $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS4 · B · suite}\par
+
+\subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{2}y+\frac{9}{2}$ sur $[0;+\infty[$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=14$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le10$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A(12;0;0)$, $B(0;12;0)$ et $C(0;0;12)$. On donne $\vec n=(1;1;1)$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS4 · B}\label{cor:6-4}
+
+\subsection*{Exercice 1 · Une fonction logarithmique}\begin{enumerate}
+
+\item \textit{[1 pt]} En $0^+$, le numérateur tend vers $-\infty$ et le dénominateur vers $0^+$ : limite $-\infty$ ; en $+\infty$, limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du quotient,
+\[f'(x)=\frac{(\frac{1}{x})x-(4+\ln x)}{x^2}=\frac{-3-\ln x}{x^2}.\]
+Le dénominateur est positif. Le numérateur s'annule en $s=e^{-3}$, est positif pour $0<x<s$ et négatif pour $x>s$. Ainsi $f$ croît strictement sur $]0,s]$, puis décroît strictement sur $[s,+\infty[$.
+
+\item \textit{[1 pt]} Le maximum est atteint uniquement en $s=e^{-3}$ et vaut
+\[f(s)=\frac{4- 3}{e^{-3}}=e^{3}.\]
+Comme $x>0$, $f(x)=0$ équivaut à $4+\ln x=0$, soit $x=e^{-4}$.
+
+\item \textit{[1 pt]} On dérive $(-3-\ln x)x^{-2}$ :
+\[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
+Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Posons $m=\frac{e^{3}}{2}$ et $s=e^{-3}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Primitives et condition imposée}\begin{enumerate}
+
+\item \textit{[1 pt]} Par linéarité, les primitives sont $F(x)=x^3-3x^2+2x+C$, $C\in\R$. En effet, $F'(x)=3x^2-6x+2$. La dérivée ne dépend pas de $C$, et toutes les primitives diffèrent d'une constante sur $\R$.
+
+\item \textit{[1 pt]} Les primitives sont $F(x)=\frac{e^{3x}}{3}+C$. La condition $F(0)=6$ impose $\frac{1}{3}+C=6$, d'où $C=\frac{17}{3}$. La dérivée de $\frac{e^{3x}}{3}$ est $e^{3x}$ : la fonction obtenue vérifie bien les deux conditions.
+
+\item \textit{[1 pt]} Posons $u(x)=x^2+6>0$ sur $\R$ ; $u'(x)=2x$. Les primitives sont donc $\ln(x^2+6)+C$, car leur dérivée vaut $\frac{u'}{u}=\frac{2x}{x^2+6}$.
+
+\item \textit{[1 pt]} Une primitive est $F(x)=\dfrac{(x^2+2)^{4}}{4}$. En effet, par dérivation d'une composée,
+\[F'(x)=\frac{4}{4}\,2x(x^2+2)^{3}=2x(x^2+2)^{3}.\]
+
+\item \textit{[1 pt]} La dérivée de leur différence est nulle sur l'intervalle ; la différence est donc constante. Le caractère d'intervalle intervient dans ce résultat.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{2}y+\frac{9}{2}$ donne $y=9$.
+
+\item \textit{[1 pt]} La solution constante est $9$. Posons $z=y-9$ ; l'équation devient $z'=-\frac{z}{2}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{2}}$, donc toutes les solutions de l'équation initiale sont $y(t)=9+Ce^{-\frac{t}{2}}$.
+La condition $y(0)=14$ donne $C=5$. Pour la fonction obtenue,
+\[y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}=-\frac{y(t)}{2}+\frac{9}{2},\qquad y(0)=14.\]
+La solution du problème initial est donc $y(t)=9+5e^{-\frac{t}{2}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{5}{2}e^{-\frac{t}{2}}<0$ ; limite $9$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{2}}>0$, la dérivée $y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 10&\Longleftrightarrow 5e^{-\frac{t}{2}}\le1\\&\Longleftrightarrow -\frac{t}{2}\le-\ln 5\\&\Longleftrightarrow t\ge 2\ln 5.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-2<0$. Le premier instant est $2\ln 5\simeq3{,}2189$.
+
+\item \textit{[1 pt]} $Y_0=14$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{2}+\frac{9}{2})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-12,12,0)$ et $\vect{AC}=(-12,0,12)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-12)+t+t=3t-12=0.\]
+Ainsi $t=4$ et $H=(4,4,4)$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{12}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=12\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(12\sqrt2)^2-(\frac{12\sqrt{2}}{2})^2}=\frac{12\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 12\sqrt2\times\frac{12\sqrt6}{2}=72\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(72\sqrt3)(\frac{12}{\sqrt{3}})}{3}=288$. Base $OAB$ : aire $72$ et hauteur $12$, même valeur.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

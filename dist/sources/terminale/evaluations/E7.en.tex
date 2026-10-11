@@ -1,0 +1,626 @@
+% GENERATED, edit the French unit or the translation table
+\mxfront{terminale-e7}
+\mxnewpage\phantomsection\label{sujet:7-1}\addcontentsline{toc}{chapter}{Test 5 · Practice 1}
+
+\section*{Test 5 · Practice 1}
+
+{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, we set $I_n=\displaystyle\int_0^1x^ne^{4x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{4x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(1 pt)}
+
+\item Prove, by comparing the integrands, that the sequence $(I_n)$ is positive and decreasing. \hfill\textit{(1 pt)}
+
+\item Show that $I_n\le\frac{e^{4}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{3}y+\frac{8}{3}$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=12$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le9$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 5 · Practice 1 · continued}\par
+
+\subsection*{Exercise 3 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(9;0;0)$, $B(0;9;0)$ and $C(0;0;9)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables \hfill 5 points}We set $n=17$. Consider $n$ independent random variables $X_1,\ldots,X_{17}$, which all follow the Bernoulli distribution with parameter $p=\frac{1}{5}$. We set $S=\displaystyle\sum_{i=1}^{17}X_i$ and $G=9S-17$.
+
+\begin{enumerate}
+
+\item Justify the distribution followed by $S$ and calculate $E(S)$. \hfill\textit{(1 pt)}
+
+\item Using the variance of a Bernoulli random variable and independence, calculate $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculate $E(G)$ and $V(G)$. \hfill\textit{(1 pt)}
+
+\item We set $M=\frac S{17}$. Calculate $E(M)$ and $V(M)$. \hfill\textit{(1 pt)}
+
+\item For this question only, we replace the $17$ variables by $17$ variables all equal to $X_1$. Then calculate the variance of their mean and compare it with that of question 4. Explain why the results differ. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 5 · Practice 1}\label{cor:7-1}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[1 pt]} The function $x\mapsto \frac{e^{4x}}{4}$ is an antiderivative of $e^{4x}$. Hence $I_0=[\frac{e^{4x}}{4}]_0^1=\frac{e^{4}-1}{4}$.
+
+\item \textit{[1 pt]} Let us choose $u(x)=x$ and $v(x)=\frac{e^{4x}}{4}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{4x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{4x}}{4}\right]_0^1-\frac{1}{4}\int_0^1e^{4x}\,\dd x\\&=\frac{e^{4}}{4}-\frac{e^{4}-1}{16}=\frac{3e^{4}+1}{16}.\end{aligned}\]
+
+\item \textit{[1 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{4x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and weakly decreasing. The inequalities are even strict: the integrands of $I_n$ and $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{4x}\le e^{4}$; hence $0\le I_n\le e^{4}\int_0^1x^n\,\dd x=\frac{e^{4}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Apply integration by parts to $u(x)=x^{n+1}$ and $v(x)=\frac{e^{4x}}{4}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{4x}}{4}\right]_0^1-\frac{n+1}{4}\int_0^1x^ne^{4x}\,\dd x\\&=\frac{e^{4}}{4}-\frac{n+1}{4}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{3}y+\frac{8}{3}$ gives $y=8$.
+
+\item \textit{[1 pt]} The constant solution is $8$. Let $z=y-8$; the equation becomes $z'=-\frac{z}{3}$. Its solutions are $z(t)=Ce^{-\frac{t}{3}}$, so all the solutions of the original equation are $y(t)=8+Ce^{-\frac{t}{3}}$.
+The condition $y(0)=12$ gives $C=4$. For the function obtained,
+\[y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}=-\frac{y(t)}{3}+\frac{8}{3},\qquad y(0)=12.\]
+The solution of the initial value problem is therefore $y(t)=8+4e^{-\frac{t}{3}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{4}{3}e^{-\frac{t}{3}}<0$; limit $8$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{3}}>0$, the derivative $y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 9&\Longleftrightarrow 4e^{-\frac{t}{3}}\le1\\&\Longleftrightarrow -\frac{t}{3}\le-\ln 4\\&\Longleftrightarrow t\ge 3\ln 4.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-3<0$. The first time is $3\ln 4\simeq4.1589$.
+
+\item \textit{[1 pt]} $Y_0=12$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{3}+\frac{8}{3})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-9,9,0)$ and $\vect{AC}=(-9,0,9)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-9)+t+t=3t-9=0.\]
+Hence $t=3$ and $H=(3,3,3)$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{9}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=9\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(9\sqrt2)^2-(\frac{9\sqrt{2}}{2})^2}=\frac{9\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 9\sqrt2\times\frac{9\sqrt6}{2}=\frac{81}{2}\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(\frac{81}{2}\sqrt3)(\frac{9}{\sqrt{3}})}{3}=\frac{243}{2}$. Base $OAB$: area $\frac{81}{2}$ and height $9$, the same value.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B(17,\frac{1}{5})$; $E(S)=\frac{17}{5}$.
+
+\item \textit{[1 pt]} Each $X_i$ equals $0$ or $1$, so $X_i^2=X_i$. Hence $E(X_i)=p=\frac{1}{5}$ and
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{4}{25}.\]
+The variables are independent; additivity of the variance gives
+\[V(S)=\sum_{i=1}^{17}V(X_i)=17p(1-p)=\frac{68}{25}.\]
+
+\item \textit{[1 pt]} By linearity of the expected value and by $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=9E(S)-17=\frac{68}{5},\qquad V(G)=81V(S)=\frac{5508}{25}.\]
+The constant $-17$ does not change the variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{5}$ and $V(M)=\frac{4}{425}$; the variance factor is $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} No. The new mean equals $X_1$, its variance equals $\frac{4}{25}$. The additivity of variance used previously requires independence.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:7-2}\addcontentsline{toc}{chapter}{Test 5 · Practice 2}
+
+\section*{Test 5 · Practice 2}
+
+{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, we set $I_n=\displaystyle\int_0^1x^ne^{3x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{3x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(1 pt)}
+
+\item Prove, by comparing the integrands, that the sequence $(I_n)$ is positive and decreasing. \hfill\textit{(1 pt)}
+
+\item Show that $I_n\le\frac{e^{3}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{2}y+5$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=15$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le11$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 5 · Practice 2 · continued}\par
+
+\subsection*{Exercise 3 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(13;0;0)$, $B(0;13;0)$ and $C(0;0;13)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables \hfill 5 points}We set $n=14$. Consider $n$ independent random variables $X_1,\ldots,X_{14}$, which all follow the Bernoulli distribution with parameter $p=\frac{1}{4}$. We set $S=\displaystyle\sum_{i=1}^{14}X_i$ and $G=6S-14$.
+
+\begin{enumerate}
+
+\item Justify the distribution followed by $S$ and calculate $E(S)$. \hfill\textit{(1 pt)}
+
+\item Using the variance of a Bernoulli random variable and independence, calculate $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculate $E(G)$ and $V(G)$. \hfill\textit{(1 pt)}
+
+\item We set $M=\frac S{14}$. Calculate $E(M)$ and $V(M)$. \hfill\textit{(1 pt)}
+
+\item For this question only, we replace the $14$ variables by $14$ variables all equal to $X_1$. Then calculate the variance of their mean and compare it with that of question 4. Explain why the results differ. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 5 · Practice 2}\label{cor:7-2}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[1 pt]} The function $x\mapsto \frac{e^{3x}}{3}$ is an antiderivative of $e^{3x}$. Hence $I_0=[\frac{e^{3x}}{3}]_0^1=\frac{e^{3}-1}{3}$.
+
+\item \textit{[1 pt]} Let us choose $u(x)=x$ and $v(x)=\frac{e^{3x}}{3}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{3x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{3x}}{3}\right]_0^1-\frac{1}{3}\int_0^1e^{3x}\,\dd x\\&=\frac{e^{3}}{3}-\frac{e^{3}-1}{9}=\frac{2e^{3}+1}{9}.\end{aligned}\]
+
+\item \textit{[1 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{3x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and weakly decreasing. The inequalities are even strict: the integrands of $I_n$ and $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{3x}\le e^{3}$; hence $0\le I_n\le e^{3}\int_0^1x^n\,\dd x=\frac{e^{3}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Apply integration by parts to $u(x)=x^{n+1}$ and $v(x)=\frac{e^{3x}}{3}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{3x}}{3}\right]_0^1-\frac{n+1}{3}\int_0^1x^ne^{3x}\,\dd x\\&=\frac{e^{3}}{3}-\frac{n+1}{3}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{2}y+5$ gives $y=10$.
+
+\item \textit{[1 pt]} The constant solution is $10$. Let $z=y-10$; the equation becomes $z'=-\frac{z}{2}$. Its solutions are $z(t)=Ce^{-\frac{t}{2}}$, so all the solutions of the original equation are $y(t)=10+Ce^{-\frac{t}{2}}$.
+The condition $y(0)=15$ gives $C=5$. For the function obtained,
+\[y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}=-\frac{y(t)}{2}+5,\qquad y(0)=15.\]
+The solution of the initial value problem is therefore $y(t)=10+5e^{-\frac{t}{2}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{5}{2}e^{-\frac{t}{2}}<0$; limit $10$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{2}}>0$, the derivative $y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 11&\Longleftrightarrow 5e^{-\frac{t}{2}}\le1\\&\Longleftrightarrow -\frac{t}{2}\le-\ln 5\\&\Longleftrightarrow t\ge 2\ln 5.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-2<0$. The first time is $2\ln 5\simeq3.2189$.
+
+\item \textit{[1 pt]} $Y_0=15$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{2}+5)$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-13,13,0)$ and $\vect{AC}=(-13,0,13)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-13)+t+t=3t-13=0.\]
+Hence $t=\frac{13}{3}$ and $H=(\frac{13}{3},\frac{13}{3},\frac{13}{3})$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{13}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=13\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(13\sqrt2)^2-(\frac{13\sqrt{2}}{2})^2}=\frac{13\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 13\sqrt2\times\frac{13\sqrt6}{2}=\frac{169}{2}\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(\frac{169}{2}\sqrt3)(\frac{13}{\sqrt{3}})}{3}=\frac{2197}{6}$. Base $OAB$: area $\frac{169}{2}$ and height $13$, the same value.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B(14,\frac{1}{4})$; $E(S)=\frac{7}{2}$.
+
+\item \textit{[1 pt]} Each $X_i$ equals $0$ or $1$, so $X_i^2=X_i$. Hence $E(X_i)=p=\frac{1}{4}$ and
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{3}{16}.\]
+The variables are independent; additivity of the variance gives
+\[V(S)=\sum_{i=1}^{14}V(X_i)=14p(1-p)=\frac{21}{8}.\]
+
+\item \textit{[1 pt]} By linearity of the expected value and by $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=6E(S)-14=7,\qquad V(G)=36V(S)=\frac{189}{2}.\]
+The constant $-14$ does not change the variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{4}$ and $V(M)=\frac{3}{224}$; the variance factor is $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} No. The new mean equals $X_1$, its variance equals $\frac{3}{16}$. The additivity of variance used previously requires independence.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:7-3}\addcontentsline{toc}{chapter}{Test 5 · A}
+
+\section*{Test 5 · A}
+
+{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, we set $I_n=\displaystyle\int_0^1x^ne^{2x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{2x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(1 pt)}
+
+\item Prove, by comparing the integrands, that the sequence $(I_n)$ is positive and decreasing. \hfill\textit{(1 pt)}
+
+\item Show that $I_n\le\frac{e^{2}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{5}y+\frac{6}{5}$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=12$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le7$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 5 · A · continued}\par
+
+\subsection*{Exercise 3 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(10;0;0)$, $B(0;10;0)$ and $C(0;0;10)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables \hfill 5 points}We set $n=16$. Consider $n$ independent random variables $X_1,\ldots,X_{16}$, which all follow the Bernoulli distribution with parameter $p=\frac{1}{3}$. We set $S=\displaystyle\sum_{i=1}^{16}X_i$ and $G=8S-16$.
+
+\begin{enumerate}
+
+\item Justify the distribution followed by $S$ and calculate $E(S)$. \hfill\textit{(1 pt)}
+
+\item Using the variance of a Bernoulli random variable and independence, calculate $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculate $E(G)$ and $V(G)$. \hfill\textit{(1 pt)}
+
+\item We set $M=\frac S{16}$. Calculate $E(M)$ and $V(M)$. \hfill\textit{(1 pt)}
+
+\item For this question only, we replace the $16$ variables by $16$ variables all equal to $X_1$. Then calculate the variance of their mean and compare it with that of question 4. Explain why the results differ. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 5 · A}\label{cor:7-3}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[1 pt]} The function $x\mapsto \frac{e^{2x}}{2}$ is an antiderivative of $e^{2x}$. Hence $I_0=[\frac{e^{2x}}{2}]_0^1=\frac{e^{2}-1}{2}$.
+
+\item \textit{[1 pt]} Let us choose $u(x)=x$ and $v(x)=\frac{e^{2x}}{2}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{2x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{2x}}{2}\right]_0^1-\frac{1}{2}\int_0^1e^{2x}\,\dd x\\&=\frac{e^{2}}{2}-\frac{e^{2}-1}{4}=\frac{e^{2}+1}{4}.\end{aligned}\]
+
+\item \textit{[1 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{2x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and weakly decreasing. The inequalities are even strict: the integrands of $I_n$ and $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{2x}\le e^{2}$; hence $0\le I_n\le e^{2}\int_0^1x^n\,\dd x=\frac{e^{2}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Apply integration by parts to $u(x)=x^{n+1}$ and $v(x)=\frac{e^{2x}}{2}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{2x}}{2}\right]_0^1-\frac{n+1}{2}\int_0^1x^ne^{2x}\,\dd x\\&=\frac{e^{2}}{2}-\frac{n+1}{2}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{5}y+\frac{6}{5}$ gives $y=6$.
+
+\item \textit{[1 pt]} The constant solution is $6$. Let $z=y-6$; the equation becomes $z'=-\frac{z}{5}$. Its solutions are $z(t)=Ce^{-\frac{t}{5}}$, so all the solutions of the original equation are $y(t)=6+Ce^{-\frac{t}{5}}$.
+The condition $y(0)=12$ gives $C=6$. For the function obtained,
+\[y'(t)=-\frac{6}{5}e^{-\frac{t}{5}}=-\frac{y(t)}{5}+\frac{6}{5},\qquad y(0)=12.\]
+The solution of the initial value problem is therefore $y(t)=6+6e^{-\frac{t}{5}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{6}{5}e^{-\frac{t}{5}}<0$; limit $6$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{5}}>0$, the derivative $y'(t)=-\frac{6}{5}e^{-\frac{t}{5}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 7&\Longleftrightarrow 6e^{-\frac{t}{5}}\le1\\&\Longleftrightarrow -\frac{t}{5}\le-\ln 6\\&\Longleftrightarrow t\ge 5\ln 6.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-5<0$. The first time is $5\ln 6\simeq8.9588$.
+
+\item \textit{[1 pt]} $Y_0=12$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{5}+\frac{6}{5})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-10,10,0)$ and $\vect{AC}=(-10,0,10)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-10)+t+t=3t-10=0.\]
+Hence $t=\frac{10}{3}$ and $H=(\frac{10}{3},\frac{10}{3},\frac{10}{3})$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{10}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=10\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(10\sqrt2)^2-(\frac{10\sqrt{2}}{2})^2}=\frac{10\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 10\sqrt2\times\frac{10\sqrt6}{2}=50\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(50\sqrt3)(\frac{10}{\sqrt{3}})}{3}=\frac{500}{3}$. Base $OAB$: area $50$ and height $10$, the same value.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B(16,\frac{1}{3})$; $E(S)=\frac{16}{3}$.
+
+\item \textit{[1 pt]} Each $X_i$ equals $0$ or $1$, so $X_i^2=X_i$. Hence $E(X_i)=p=\frac{1}{3}$ and
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{2}{9}.\]
+The variables are independent; additivity of the variance gives
+\[V(S)=\sum_{i=1}^{16}V(X_i)=16p(1-p)=\frac{32}{9}.\]
+
+\item \textit{[1 pt]} By linearity of the expected value and by $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=8E(S)-16=\frac{80}{3},\qquad V(G)=64V(S)=\frac{2048}{9}.\]
+The constant $-16$ does not change the variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{3}$ and $V(M)=\frac{1}{72}$; the variance factor is $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} No. The new mean equals $X_1$, its variance equals $\frac{2}{9}$. The additivity of variance used previously requires independence.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:7-4}\addcontentsline{toc}{chapter}{Test 5 · B}
+
+\section*{Test 5 · B}
+
+{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, we set $I_n=\displaystyle\int_0^1x^ne^{5x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{5x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(1 pt)}
+
+\item Prove, by comparing the integrands, that the sequence $(I_n)$ is positive and decreasing. \hfill\textit{(1 pt)}
+
+\item Show that $I_n\le\frac{e^{5}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{4}y+2$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=12$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le9$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Test 5 · B · continued}\par
+
+\subsection*{Exercise 3 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(6;0;0)$, $B(0;6;0)$ and $C(0;0;6)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables \hfill 5 points}We set $n=18$. Consider $n$ independent random variables $X_1,\ldots,X_{18}$, which all follow the Bernoulli distribution with parameter $p=\frac{1}{2}$. We set $S=\displaystyle\sum_{i=1}^{18}X_i$ and $G=10S-18$.
+
+\begin{enumerate}
+
+\item Justify the distribution followed by $S$ and calculate $E(S)$. \hfill\textit{(1 pt)}
+
+\item Using the variance of a Bernoulli random variable and independence, calculate $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculate $E(G)$ and $V(G)$. \hfill\textit{(1 pt)}
+
+\item We set $M=\frac S{18}$. Calculate $E(M)$ and $V(M)$. \hfill\textit{(1 pt)}
+
+\item For this question only, we replace the $18$ variables by $18$ variables all equal to $X_1$. Then calculate the variance of their mean and compare it with that of question 4. Explain why the results differ. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Test 5 · B}\label{cor:7-4}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[1 pt]} The function $x\mapsto \frac{e^{5x}}{5}$ is an antiderivative of $e^{5x}$. Hence $I_0=[\frac{e^{5x}}{5}]_0^1=\frac{e^{5}-1}{5}$.
+
+\item \textit{[1 pt]} Let us choose $u(x)=x$ and $v(x)=\frac{e^{5x}}{5}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{5x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{5x}}{5}\right]_0^1-\frac{1}{5}\int_0^1e^{5x}\,\dd x\\&=\frac{e^{5}}{5}-\frac{e^{5}-1}{25}=\frac{4e^{5}+1}{25}.\end{aligned}\]
+
+\item \textit{[1 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{5x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and weakly decreasing. The inequalities are even strict: the integrands of $I_n$ and $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{5x}\le e^{5}$; hence $0\le I_n\le e^{5}\int_0^1x^n\,\dd x=\frac{e^{5}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Apply integration by parts to $u(x)=x^{n+1}$ and $v(x)=\frac{e^{5x}}{5}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{5x}}{5}\right]_0^1-\frac{n+1}{5}\int_0^1x^ne^{5x}\,\dd x\\&=\frac{e^{5}}{5}-\frac{n+1}{5}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{4}y+2$ gives $y=8$.
+
+\item \textit{[1 pt]} The constant solution is $8$. Let $z=y-8$; the equation becomes $z'=-\frac{z}{4}$. Its solutions are $z(t)=Ce^{-\frac{t}{4}}$, so all the solutions of the original equation are $y(t)=8+Ce^{-\frac{t}{4}}$.
+The condition $y(0)=12$ gives $C=4$. For the function obtained,
+\[y'(t)=-e^{-\frac{t}{4}}=-\frac{y(t)}{4}+2,\qquad y(0)=12.\]
+The solution of the initial value problem is therefore $y(t)=8+4e^{-\frac{t}{4}}$.
+
+\item \textit{[1 pt]} $y'=-e^{-\frac{t}{4}}<0$; limit $8$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{4}}>0$, the derivative $y'(t)=-e^{-\frac{t}{4}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 9&\Longleftrightarrow 4e^{-\frac{t}{4}}\le1\\&\Longleftrightarrow -\frac{t}{4}\le-\ln 4\\&\Longleftrightarrow t\ge 4\ln 4.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-4<0$. The first time is $4\ln 4\simeq5.5452$.
+
+\item \textit{[1 pt]} $Y_0=12$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{4}+2)$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-6,6,0)$ and $\vect{AC}=(-6,0,6)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-6)+t+t=3t-6=0.\]
+Hence $t=2$ and $H=(2,2,2)$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{6}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=6\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(6\sqrt2)^2-(\frac{6\sqrt{2}}{2})^2}=\frac{6\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 6\sqrt2\times\frac{6\sqrt6}{2}=18\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(18\sqrt3)(\frac{6}{\sqrt{3}})}{3}=36$. Base $OAB$: area $18$ and height $6$, the same value.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Sums of random variables}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B(18,\frac{1}{2})$; $E(S)=9$.
+
+\item \textit{[1 pt]} Each $X_i$ equals $0$ or $1$, so $X_i^2=X_i$. Hence $E(X_i)=p=\frac{1}{2}$ and
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{1}{4}.\]
+The variables are independent; additivity of the variance gives
+\[V(S)=\sum_{i=1}^{18}V(X_i)=18p(1-p)=\frac{9}{2}.\]
+
+\item \textit{[1 pt]} By linearity of the expected value and by $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=10E(S)-18=72,\qquad V(G)=100V(S)=450.\]
+The constant $-18$ does not change the variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{2}$ and $V(M)=\frac{1}{72}$; the variance factor is $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} No. The new mean equals $X_1$, its variance equals $\frac{1}{4}$. The additivity of variance used previously requires independence.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

@@ -203,30 +203,19 @@ def fig_tokens(h):
 
 
 CORE = ROOT / 'content/tex/core'
-MIGRATED = {'stmg', 'seconde', 'premiere'}   # courses on the shared class: canonical environments, units <id>.fr.tex / <id>.en.tex
-PREAMBLE = {  # course -> (main file for language, flags prepended before \documentclass)
-    'seconde': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, '\\def\\VERSIONPROF{1}'),
-    'premiere': ({'fr': 'main.tex', 'en': 'main-en.tex'}, '\\def\\versionprof{1}'),
-    'stmg': ({'fr': 'livret-tstmg.tex', 'en': 'livret-tstmg-en.tex'}, '\\def\\EditionProf{true}'),
-    'terminale': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, ''),
-}
-
-
 def compile_figs(course, lang, jobs):
     """jobs: [(deck, n, code)] -> writes dist/slides/fig/<deck>-<n>[-en].svg; returns the set of (deck, n) that rendered."""
     import subprocess, pymupdf
     if not jobs: return set()
     base = SRC / course
-    if course in MIGRATED:   # shared class, bare page; teacher edition so that every figure exists
-        flags = ''; head = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\documentclass[lang=%s,edition=teacher,layout=slide-figs]{mxbook}\n' % (CORE, lang))
-    else:
-        main, flags = PREAMBLE[course]; head = (base / main[lang]).read_text(encoding='utf8').split('\\begin{document}')[0]
+    # shared class, bare page; teacher edition so that every figure exists
+    head = ('\\makeatletter\\def\\input@path{{%s/}}\\makeatother\\documentclass[lang=%s,edition=teacher,layout=slide-figs]{mxbook}\n' % (CORE, lang))
     build = ROOT / 'build/tex/figs'; build.mkdir(parents=True, exist_ok=True)
     figdir = OUT.parent / 'fig'; figdir.mkdir(parents=True, exist_ok=True)
     done = set()
     def run(items, job):
         body = '\n'.join('\\begin{preview}%s\\end{preview}' % code for _, _, code in items)
-        tex = flags + head + '\\usepackage[active,tightpage]{preview}\\setlength\\PreviewBorder{5pt}\\pagestyle{empty}\\begin{document}\n' + body + '\n\\end{document}\n'
+        tex = head + '\\usepackage[active,tightpage]{preview}\\setlength\\PreviewBorder{5pt}\\pagestyle{empty}\\begin{document}\n' + body + '\n\\end{document}\n'
         (base / (job + '.tex')).write_text(tex, encoding='utf8')
         subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
         (base / (job + '.tex')).unlink()

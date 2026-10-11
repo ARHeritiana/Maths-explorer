@@ -93,9 +93,9 @@
 }
 ],
 "figs": [
-"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=8cm,height=8cm,axis equal image,axis lines=middle,xmin=-1.4,xmax=4,ymin=-1.4,ymax=4,xlabel={$x$},ylabel={$y$},samples=100,legend style={font=\\small,at={(1.05,.5)},anchor=west}]\n\\addplot[teal,thick,domain=.25:4]{ln(x)};\\addlegendentry{$\\ln x$}\n\\addplot[navy,thick,domain=-1.4:1.38]{exp(x)};\\addlegendentry{$e^x$}\n\\addplot[gray,dashed,domain=-1.4:4]{x};\\addlegendentry{$y=x$}\\end{axis}\\end{tikzpicture}\\end{center}"
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=8cm,height=8cm,axis equal image,axis lines=middle,xmin=-1.4,xmax=4,ymin=-1.4,ymax=4,xlabel={$x$},ylabel={$y$},samples=100,legend style={font=\\small,at={(1.05,.5)},anchor=west}]\n\\addplot[mxmint,thick,domain=.25:4]{ln(x)};\\addlegendentry{$\\ln x$}\n\\addplot[mxink,thick,domain=-1.4:1.38]{exp(x)};\\addlegendentry{$e^x$}\n\\addplot[gray,dashed,domain=-1.4:4]{x};\\addlegendentry{$y=x$}\\end{axis}\\end{tikzpicture}\\end{center}"
 ],
 "figs_en": [
-"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=8cm,height=8cm,axis equal image,axis lines=middle,xmin=-1.4,xmax=4,ymin=-1.4,ymax=4,xlabel={$x$},ylabel={$y$},samples=100,legend style={font=\\small,at={(1.05,.5)},anchor=west}]\n\\addplot[teal,thick,domain=.25:4]{ln(x)};\\addlegendentry{$\\ln x$}\n\\addplot[navy,thick,domain=-1.4:1.38]{exp(x)};\\addlegendentry{$e^x$}\n\\addplot[gray,dashed,domain=-1.4:4]{x};\\addlegendentry{$y=x$}\\end{axis}\\end{tikzpicture}\\end{center}"
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=8cm,height=8cm,axis equal image,axis lines=middle,xmin=-1.4,xmax=4,ymin=-1.4,ymax=4,xlabel={$x$},ylabel={$y$},samples=100,legend style={font=\\small,at={(1.05,.5)},anchor=west}]\n\\addplot[mxmint,thick,domain=.25:4]{ln(x)};\\addlegendentry{$\\ln x$}\n\\addplot[mxink,thick,domain=-1.4:1.38]{exp(x)};\\addlegendentry{$e^x$}\n\\addplot[gray,dashed,domain=-1.4:4]{x};\\addlegendentry{$y=x$}\\end{axis}\\end{tikzpicture}\\end{center}"
 ]
 }

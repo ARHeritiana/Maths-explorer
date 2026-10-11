@@ -12,8 +12,8 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | premiere | 148 | 74 | 9262 | 0 | 0 | 0:  |
 | seconde | 34 | 17 | 2795 | 0 | 0 | 0:  |
 | stmg | 34 | 17 | 8719 | 0 | 0 | 0:  |
-| terminale | 66 | 33 | 17362 | 128 | 5 | 2: `terminale/livret.tex` |
-| **total** | 415 | 207 | 41797 | | | |
+| terminale | 58 | 29 | 17211 | 0 | 0 | 0:  |
+| **total** | 407 | 203 | 41646 | | | |
 
 ## Course environments (defined or used, standard LaTeX ones excluded)
 
@@ -21,10 +21,10 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 |---|---:|---:|---:|---:|---:|---:|---|
 | `example` |  |  | 52 | 161 | 60 |  | (package) |
 | `solution` |  |  |  |  | 234 |  | (package) |
-| `keypoint` |  |  | 70 | 89 | 11 |  | (package) |
+| `keypoint` |  |  | 70 | 89 | 11 | 32 | (package) |
 | `exercise` |  |  |  |  | 97 |  | (package) |
 | `fluencysheet` | 88 |  |  |  |  |  | (package) |
-| `method` |  |  |  | 18 | 58 |  | (package) |
+| `method` |  |  |  | 18 | 58 | 6 | (package) |
 | `fluency` |  |  |  | 6 | 55 |  | (package) |
 | `pitfall` |  |  | 47 | 9 | 5 |  | (package) |
 | `activity` |  |  |  |  | 55 |  | (package) |
@@ -34,10 +34,7 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `prerequisites` |  |  |  |  | 55 |  | (package) |
 | `summary` |  |  |  |  | 55 |  | (package) |
 | `application` |  |  | 48 |  |  |  | (package) |
-| `retenir` |  |  |  |  |  | 32 | terminale |
-| `profbox` |  |  |  |  |  | 17 | terminale |
-| `teachernote` |  |  |  | 15 |  |  | (package) |
-| `methode` |  |  |  |  |  | 6 | terminale |
+| `teachernote` |  |  |  | 15 |  | 17 | (package) |
 | `titlepage` |  |  | 1 |  |  | 1 | (package) |
 | `note` | 1 |  |  |  |  |  | (package) |
 
@@ -45,25 +42,15 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `dd` | terminale | 1 | 81 |
-| `edition` | terminale | 1 | 4 |
-| `exercice` | terminale | 1 | 71 |
 | `ExplorerKind` | enrichment | 49 | 51 |
 | `ExplorerLanguage` | enrichment | 49 | 50 |
 | `ExplorerNumber` | enrichment | 49 | 50 |
 | `ExplorerSection` | enrichment | 1 | 180 |
 | `ExplorerTitle` | enrichment | 1 | 50 |
 | `footrulewidth` | enrichment | 1 | 1 |
-| `headrulewidth` | enrichment, terminale | 3 | 3 |
-| `N` | terminale | 1 | 158 |
-| `R` | terminale | 1 | 237 |
-| `vect` | terminale | 1 | 771 |
-| `VERSIONELEVE` | terminale | 1 | 3 |
-| `vi` | terminale | 1 | 203 |
-| `vj` | terminale | 1 | 195 |
-| `Z` | terminale | 1 | 25 |
+| `headrulewidth` | enrichment | 1 | 1 |
 
-17 names; 1 defined in more than one course.
+7 names; 0 defined in more than one course.
 
 ## Counters
 
@@ -76,53 +63,30 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `amber` | terminale | 1 |  |
-| `ink` | enrichment, terminale | 2 |  |
+| `ink` | enrichment | 1 |  |
 | `mint` | enrichment | 1 |  |
-| `navy` | terminale | 1 |  |
-| `pale` | terminale | 1 |  |
-| `teal` | terminale | 1 |  |
 | `violet` | enrichment | 1 |  |
 
-7 names; 1 defined in more than one course.
+3 names; 0 defined in more than one course.
 
 ## Conditionals (`\newif`)
 
 | Name | Courses | Definitions | Uses (FR, incl. definition) |
 |---|---|---:|---:|
-| `prof` | terminale | 1 |  |
 
-1 names; 0 defined in more than one course.
+0 names; 0 defined in more than one course.
 
 ## Packages
 
 | Package | Courses |
 |---|---|
-| `amsmath` | terminale |
-| `amssymb` | terminale |
-| `array` | terminale |
-| `babel` | terminale |
-| `booktabs` | terminale |
-| `courier` | terminale |
-| `enumitem` | terminale |
 | `explorer` | enrichment |
-| `fancyhdr` | enrichment, terminale |
-| `fontenc` | terminale |
+| `fancyhdr` | enrichment |
 | `fontspec` | enrichment |
-| `geometry` | enrichment, terminale |
-| `helvet` | terminale |
-| `hyperref` | terminale |
-| `inputenc` | terminale |
-| `listings` | terminale |
-| `longtable` | terminale |
-| `mathpazo` | terminale |
-| `mathtools` | terminale |
-| `microtype` | enrichment, terminale |
-| `multicol` | terminale |
-| `needspace` | enrichment, terminale |
-| `pgfplots` | terminale |
-| `tcolorbox` | terminale |
-| `tikz` | enrichment, terminale |
-| `titlesec` | enrichment, terminale |
+| `geometry` | enrichment |
+| `microtype` | enrichment |
+| `needspace` | enrichment |
+| `tikz` | enrichment |
+| `titlesec` | enrichment |
 | `unicode-math` | enrichment |
-| `xcolor` | enrichment, terminale |
+| `xcolor` | enrichment |

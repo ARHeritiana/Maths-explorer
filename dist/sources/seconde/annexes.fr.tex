@@ -1,7 +1,7 @@
 \mxunit{seconde-annexes}{Annexes professeur : utilisation et correspondance}
 \section*{Utiliser la source commune}
 \begin{keypoint}[Une seule source, deux versions]
-La ligne \texttt{\string\proffalse} du préambule produit la version élève ; la remplacer par \texttt{\string\proftrue} produit la version professeur. Les énoncés et les contenus de cours sont communs. Les réponses, démonstrations rédigées, figures corrigées et repères pédagogiques apparaissent seulement en mode professeur.
+L'option de classe \texttt{edition=student} produit la version élève (\texttt{eleve.tex}) ; \texttt{edition=teacher} produit la version professeur (\texttt{professeur.tex}). Les énoncés et les contenus de cours sont communs. Les réponses, démonstrations rédigées, figures corrigées et repères pédagogiques apparaissent seulement en mode professeur.
 \end{keypoint}
 Tous les graphiques et schémas sont écrits en TikZ/PGFPlots. Aucune image externe ni page du PDF original n'est nécessaire à la compilation. Compiler deux fois avec PDFLaTeX pour actualiser la table des matières et les liens. Les deux PDF peuvent avoir des paginations différentes ; les références stables sont les numéros de séquence et d'exemple.
 \begin{method}[Repères de mise en œuvre]

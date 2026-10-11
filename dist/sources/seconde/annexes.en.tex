@@ -2,7 +2,7 @@
 \mxunit{seconde-annexes}{Teacher annexes: use and correspondence}
 \section*{Using the common source}
 \begin{keypoint}[One source, two versions]
-The line \texttt{\string\proffalse} in the preamble produces the student version; replacing it with \texttt{\string\proftrue} produces the teacher version. The statements and course content are common. Answers, written-out proofs, corrected figures and pedagogical cues appear only in teacher mode.
+The class option \texttt{edition=student} produces the student version (\texttt{eleve-en.tex}); \texttt{edition=teacher} produces the teacher version (\texttt{professeur-en.tex}). The statements and course content are common. Answers, written-out proofs, corrected figures and pedagogical cues appear only in teacher mode.
 \end{keypoint}
 All graphs and diagrams are written in TikZ/PGFPlots. No external image or page of the original PDF is needed for compilation. Compile twice with PDFLaTeX to update the table of contents and the links. The two PDFs may have different pagination; the stable references are the sequence and example numbers.
 \begin{method}[Implementation cues]

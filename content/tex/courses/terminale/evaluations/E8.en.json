@@ -1,0 +1,593 @@
+{
+ "unit": "E8.fr.tex",
+ "segments": {
+  "6fa9cd62c661": {
+   "fr": "Blanc 2 · Zéro 1",
+   "en": "Mock 2 · Practice 1",
+   "status": "aligned",
+   "order": 1
+  },
+  "043f912f0ab2": {
+   "fr": "Blanc 2 · Zéro 1 · suite",
+   "en": "Mock 2 · Practice 1 · continued",
+   "status": "aligned",
+   "order": 45
+  },
+  "edc0539a9523": {
+   "fr": "Corrigé · Blanc 2 · Zéro 1",
+   "en": "Solutions · Mock 2 · Practice 1",
+   "status": "aligned",
+   "order": 84
+  },
+  "01e9ba0c51de": {
+   "fr": "Blanc 2 · Zéro 2",
+   "en": "Mock 2 · Practice 2",
+   "status": "aligned",
+   "order": 128
+  },
+  "b3a0f5fddcc6": {
+   "fr": "SUJET ZÉRO · ENTRAÎNEMENT",
+   "en": "PRACTICE PAPER · TRAINING",
+   "status": "aligned",
+   "order": 129
+  },
+  "a8c317c9d3d0": {
+   "fr": "Blanc 2 · Zéro 2 · suite",
+   "en": "Mock 2 · Practice 2 · continued",
+   "status": "aligned",
+   "order": 172
+  },
+  "6663c0e34a2c": {
+   "fr": "Corrigé · Blanc 2 · Zéro 2",
+   "en": "Solutions · Mock 2 · Practice 2",
+   "status": "aligned",
+   "order": 211
+  },
+  "57b828fe4839": {
+   "fr": "Blanc 2 · A",
+   "en": "Mock 2 · A",
+   "status": "aligned",
+   "order": 255
+  },
+  "9bc8039c21c7": {
+   "fr": "Blanc 2 · A · suite",
+   "en": "Mock 2 · A · continued",
+   "status": "aligned",
+   "order": 299
+  },
+  "f4f595fe4391": {
+   "fr": "Corrigé · Blanc 2 · A",
+   "en": "Solutions · Mock 2 · A",
+   "status": "aligned",
+   "order": 338
+  },
+  "262c94101a58": {
+   "fr": "Blanc 2 · B",
+   "en": "Mock 2 · B",
+   "status": "aligned",
+   "order": 382
+  },
+  "a50b15931b4e": {
+   "fr": "SUJET RÉSERVÉ À L'ÉVALUATION",
+   "en": "PAPER RESERVED FOR ASSESSMENT",
+   "status": "aligned",
+   "order": 383
+  },
+  "5d8c55324a8b": {
+   "fr": "\\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 4 hours · Marked out of 20 · Four independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 384
+  },
+  "fa3fed21455b": {
+   "fr": "\\textbf{Nom :}\\enspace",
+   "en": "\\textbf{Name:}\\enspace",
+   "status": "aligned",
+   "order": 385
+  },
+  "48834c5703ef": {
+   "fr": "\\quad\\textbf{Classe :}\\enspace",
+   "en": "\\quad\\textbf{Class:}\\enspace",
+   "status": "aligned",
+   "order": 386
+  },
+  "69782e4735b8": {
+   "fr": "\\quad\\textbf{Date :}\\enspace",
+   "en": "\\quad\\textbf{Date:}\\enspace",
+   "status": "aligned",
+   "order": 387
+  },
+  "9a74d60d96cb": {
+   "fr": "Pour tout entier naturel [[m1]], on pose [[m2]]. Pour [[m3]], l'intégrande est la fonction [[m4]].",
+   "en": "For every natural number [[m1]], let [[m2]]. For [[m3]], the integrand is the function [[m4]].",
+   "status": "aligned",
+   "order": 390
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 391
+  },
+  "1bb61d1b12e1": {
+   "fr": "À l'aide d'une intégration par parties, calculer [[m1]].",
+   "en": "Using integration by parts, calculate [[m1]].",
+   "status": "aligned",
+   "order": 393
+  },
+  "c1881471fda3": {
+   "fr": "Démontrer, en comparant les intégrandes, que [[m1]] est positive et décroissante.",
+   "en": "Prove, by comparing the integrands, that [[m1]] is positive and decreasing.",
+   "status": "aligned",
+   "order": 395
+  },
+  "5d374279c932": {
+   "fr": "Montrer que [[m1]] pour tout [[m2]]. En déduire la limite de [[m3]].",
+   "en": "Show that [[m1]] for all [[m2]]. Deduce the limit of [[m3]].",
+   "status": "aligned",
+   "order": 397
+  },
+  "a10b9e4a83a5": {
+   "fr": "À l'aide d'une intégration par parties, exprimer [[m1]] en fonction de [[m2]] et de [[m3]].",
+   "en": "Using integration by parts, express [[m1]] in terms of [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 399
+  },
+  "ff4521b1b01f": {
+   "fr": "Montrer que [[m1]] pour tout [[m2]].",
+   "en": "Show that [[m1]] for all [[m2]].",
+   "status": "aligned",
+   "order": 401
+  },
+  "0581997957b3": {
+   "fr": "On partage [[m1]] en [[m2]] intervalles de même longueur, avec [[m3]]. Écrire les sommes [[m4]] et [[m5]] des aires des rectangles construits avec les valeurs de [[m6]] aux extrémités gauches et droites. Justifier [[m7]], puis calculer [[m8]].",
+   "en": "Split [[m1]] into [[m2]] intervals of equal length, with [[m3]]. Write the sums [[m4]] and [[m5]] of the areas of the rectangles built using the values of [[m6]] at the left and right endpoints. Justify [[m7]], then calculate [[m8]].",
+   "status": "aligned",
+   "order": 403
+  },
+  "d8306d8cabba": {
+   "fr": "Déterminer le plus petit entier [[m1]] garantissant que cet encadrement a une largeur au plus égale à [[m2]]. Écrire une fonction Python qui renvoie [[m3]], [[m4]] et [[m5]].",
+   "en": "Find the smallest integer [[m1]] guaranteeing that this bracketing has a width at most equal to [[m2]]. Write a Python function that returns [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 405
+  },
+  "83933850ad5d": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. On note [[m4]] sa courbe représentative.",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. On note [[m4]] its representative curve.",
+   "status": "aligned",
+   "order": 409
+  },
+  "a570d9ed490f": {
+   "fr": "Déterminer les limites de [[m1]] en [[m2]] et en [[m3]].",
+   "en": "Determine the limits of [[m1]] at [[m2]] and at [[m3]].",
+   "status": "aligned",
+   "order": 410
+  },
+  "6af1f4d9bcf4": {
+   "fr": "Calculer [[m1]], puis dresser le tableau de variations de [[m2]].",
+   "en": "Calculate [[m1]], then draw up the table of variations of [[m2]].",
+   "status": "aligned",
+   "order": 412
+  },
+  "572d7ceb8ecc": {
+   "fr": "Préciser la valeur du maximum de [[m1]], puis résoudre [[m2]].",
+   "en": "State the value of the maximum of [[m1]], then solve [[m2]].",
+   "status": "aligned",
+   "order": 414
+  },
+  "5b81cb26ab4d": {
+   "fr": "Étudier la convexité de [[m1]] et déterminer les coordonnées du point d'inflexion de [[m2]].",
+   "en": "Study the convexity of [[m1]] and determine the coordinates of the point of inflection of [[m2]].",
+   "status": "aligned",
+   "order": 416
+  },
+  "5b14d31814bc": {
+   "fr": "Démontrer que l'équation [[m1]] admet exactement deux solutions dans [[m2]].",
+   "en": "Prove that the equation [[m1]] has exactly two solutions in [[m2]].",
+   "status": "aligned",
+   "order": 418
+  },
+  "ed9b61de80b8": {
+   "fr": "Déterminer une primitive de [[m1]] sur [[m2]].",
+   "en": "Determine an antiderivative of [[m1]] on [[m2]].",
+   "status": "aligned",
+   "order": 420
+  },
+  "782161b96b6a": {
+   "fr": "Calculer la valeur moyenne de [[m1]] sur [[m2]].",
+   "en": "Calculate the mean value of [[m1]] on [[m2]].",
+   "status": "aligned",
+   "order": 422
+  },
+  "730af9ee5c07": {
+   "fr": "Indépendamment des questions précédentes, résoudre [[m1]], après avoir précisé l'ensemble sur lequel cette équation est définie.",
+   "en": "Independently of the previous questions, solve [[m1]], after stating the set on which this equation is defined.",
+   "status": "aligned",
+   "order": 424
+  },
+  "04f1e7b9d610": {
+   "fr": "Blanc 2 · B · suite",
+   "en": "Mock 2 · B · continued",
+   "status": "aligned",
+   "order": 426
+  },
+  "8abe516a539f": {
+   "fr": "Dans un repère orthonormé de l'espace, on considère le plan [[m1]] d'équation [[m2]] et le point [[m3]]. La droite [[m4]] passe par [[m5]] et admet pour vecteur directeur [[m6]].",
+   "en": "In an orthonormal coordinate system of space, consider the plane [[m1]] with equation [[m2]] and the point [[m3]]. The line [[m4]] passes through [[m5]] and has direction vector [[m6]].",
+   "status": "aligned",
+   "order": 429
+  },
+  "42fe6c416443": {
+   "fr": "Donner une représentation paramétrique de [[m1]].",
+   "en": "Give a parametric representation of [[m1]].",
+   "status": "aligned",
+   "order": 430
+  },
+  "92ee92d5dad1": {
+   "fr": "Démontrer que [[m1]] coupe [[m2]] en un point [[m3]], puis calculer les coordonnées de [[m4]].",
+   "en": "Prove that [[m1]] meets [[m2]] at a point [[m3]], then calculate the coordinates of [[m4]].",
+   "status": "aligned",
+   "order": 432
+  },
+  "a1bee157b999": {
+   "fr": "Justifier que [[m1]] est le projeté orthogonal de [[m2]] sur [[m3]], puis calculer la distance de [[m4]] à [[m5]].",
+   "en": "Justify that [[m1]] is the orthogonal projection of [[m2]] onto [[m3]], then calculate the distance from [[m4]] to [[m5]].",
+   "status": "aligned",
+   "order": 434
+  },
+  "b34ce3cf5917": {
+   "fr": "On considère le plan [[m1]] d'équation [[m2]]. Démontrer que [[m3]] est une droite et en donner une représentation paramétrique.",
+   "en": "Consider the plane [[m1]] with equation [[m2]]. Prove that [[m3]] is a line and give a parametric representation of it.",
+   "status": "aligned",
+   "order": 436
+  },
+  "57c9158be589": {
+   "fr": "Vérifier que [[m1]]. En déduire la distance de [[m2]] à la droite [[m3]].",
+   "en": "Check that [[m1]]. Deduce the distance from [[m2]] to the line [[m3]].",
+   "status": "aligned",
+   "order": 438
+  },
+  "f29aa4cd76cb": {
+   "fr": "Déterminer une équation cartésienne du plan parallèle à [[m1]] passant par [[m2]].",
+   "en": "Determine a Cartesian equation of the plane parallel to [[m1]] passing through [[m2]].",
+   "status": "aligned",
+   "order": 440
+  },
+  "c40d0939d8d7": {
+   "fr": "Déterminer l'angle entre [[m1]] et la droite [[m2]].",
+   "en": "Determine the angle between [[m1]] and the line [[m2]].",
+   "status": "aligned",
+   "order": 442
+  },
+  "474893d051eb": {
+   "fr": "On définit le point [[m1]] par [[m2]]. Calculer les distances de [[m3]] au plan [[m4]] et à la droite [[m5]], puis les comparer.",
+   "en": "Define the point [[m1]] by [[m2]]. Calculate the distances from [[m3]] to the plane [[m4]] and to the line [[m5]], then compare them.",
+   "status": "aligned",
+   "order": 444
+  },
+  "6aee99d8eb5b": {
+   "fr": "5 points",
+   "en": "5 points",
+   "status": "aligned",
+   "order": 447
+  },
+  "127683b449d4": {
+   "fr": "On répète [[m1]] fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est [[m2]] à chaque épreuve. On note [[m3]] le nombre de succès obtenus.",
+   "en": "A trial with two outcomes, called success and failure, is repeated [[m1]] times. The trials are independent and the probability of success is [[m2]] on each trial. Let [[m3]] denote the number of successes obtained.",
+   "status": "aligned",
+   "order": 448
+  },
+  "7ff17ca37d1c": {
+   "fr": "Justifier que [[m1]] suit une loi binomiale et préciser ses paramètres.",
+   "en": "Justify that [[m1]] follows a binomial distribution and state its parameters.",
+   "status": "aligned",
+   "order": 449
+  },
+  "989b878a4063": {
+   "fr": "Calculer la probabilité d'obtenir exactement deux succès.",
+   "en": "Calculate the probability of obtaining exactly two successes.",
+   "status": "aligned",
+   "order": 451
+  },
+  "93f43a7482e6": {
+   "fr": "Exprimer à l'aide des événements contraires, puis calculer, la probabilité d'obtenir au moins deux succès.",
+   "en": "Using complementary events, express and then calculate the probability of obtaining at least two successes.",
+   "status": "aligned",
+   "order": 453
+  },
+  "dc379ac75279": {
+   "fr": "Calculer l'espérance et la variance de [[m1]].",
+   "en": "Calculate the expected value and the variance of [[m1]].",
+   "status": "aligned",
+   "order": 455
+  },
+  "c74d04cd55f8": {
+   "fr": "On répète maintenant la même épreuve un nombre [[m1]] de fois, toujours indépendamment. Déterminer le plus petit entier [[m2]] pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à [[m3]]. Une recherche par tableau ou par boucle est autorisée.",
+   "en": "We now repeat the same trial [[m1]] times, again independently. Find the smallest integer [[m2]] for which the probability of obtaining at least one success is greater than or equal to [[m3]]. A search using a table or a loop is allowed.",
+   "status": "aligned",
+   "order": 457
+  },
+  "7b88c7f00915": {
+   "fr": "Pour un entier [[m1]], démontrer la formule de [[m2]] en dénombrant les positions possibles des succès.",
+   "en": "For an integer [[m1]], prove the formula for [[m2]] by counting the possible positions of the successes.",
+   "status": "aligned",
+   "order": 459
+  },
+  "40088f56cdb1": {
+   "fr": "On accepte une série de [[m1]] épreuves si son nombre de succès est compris entre [[m2]] et [[m3]], bornes incluses. Calculer la probabilité qu'une série soit acceptée.",
+   "en": "A series of [[m1]] trials is accepted if its number of successes is between [[m2]] and [[m3]], inclusive. Calculate the probability that a series is accepted.",
+   "status": "aligned",
+   "order": 461
+  },
+  "805080293582": {
+   "fr": "\\textit{(0{,}5 pt)}",
+   "en": "\\textit{(0.5 pt)}",
+   "status": "aligned",
+   "order": 462
+  },
+  "031f432893bc": {
+   "fr": "Écrire une fonction Python sans argument qui renvoie le plus petit entier [[m1]] tel que [[m2]]. Exécuter la fonction et vérifier la minimalité du résultat.",
+   "en": "Write a Python function with no argument that returns the smallest integer [[m1]] such that [[m2]]. Run the function and check the minimality of the result.",
+   "status": "aligned",
+   "order": 463
+  },
+  "82203721d56c": {
+   "fr": "\\textit{(1 pt)}",
+   "en": "\\textit{(1 pt)}",
+   "status": "aligned",
+   "order": 464
+  },
+  "7f8c0d6f88f3": {
+   "fr": "Corrigé · Blanc 2 · B",
+   "en": "Solutions · Mock 2 · B",
+   "status": "aligned",
+   "order": 465
+  },
+  "1f76398e2428": {
+   "fr": "Exercice 1 · Intégrale et suite",
+   "en": "Exercise 1 · Integral and sequence",
+   "status": "aligned",
+   "order": 466
+  },
+  "d4ef4eeca711": {
+   "fr": "\\textit{[0{,}5 pt]} La fonction [[m1]] est une primitive de [[m2]]. Ainsi [[m3]].",
+   "en": "\\textit{[0.5 pt]} La fonction [[m1]] is an antiderivative of [[m2]]. Thus [[m3]].",
+   "status": "aligned",
+   "order": 467
+  },
+  "f9b9f7e63c55": {
+   "fr": "\\textit{[0{,}5 pt]} Choisissons [[m1]] et [[m2]], deux fonctions dérivables à dérivées continues sur [[m3]]. Alors [[m4]] et [[m5]]. L'intégration par parties donne",
+   "en": "\\textit{[0.5 pt]} Take [[m1]] and [[m2]], two differentiable functions with continuous derivatives on [[m3]]. Then [[m4]] and [[m5]]. Integration by parts gives",
+   "status": "aligned",
+   "order": 468
+  },
+  "a27dc2b1b0a5": {
+   "fr": "\\textit{[0{,}5 pt]} Pour [[m1]], [[m2]]. Comme [[m3]], l'intégration sur des bornes croissantes donne [[m4]]. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de [[m5]] et de [[m6]] sont continues et strictement positives sur [[m7]].",
+   "en": "\\textit{[0.5 pt]} For [[m1]], [[m2]]. Since [[m3]], integrating over increasing bounds gives [[m4]]. The sequence is therefore positive and decreasing (in the weak sense). The inequalities are even strict: the integrands of [[m5]] and of [[m6]] are continuous and strictly positive on [[m7]].",
+   "status": "aligned",
+   "order": 469
+  },
+  "abaa520092d4": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; donc [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]]; so [[m2]].",
+   "status": "aligned",
+   "order": 470
+  },
+  "4256d691a465": {
+   "fr": "\\textit{[0{,}5 pt]} Appliquons l'IPP à [[m1]] et [[m2]]. Comme [[m3]], le terme en [[m4]] est nul. D'où",
+   "en": "\\textit{[0.5 pt]} Apply integration by parts with [[m1]] and [[m2]]. Since [[m3]], the term at [[m4]] is zero. Hence",
+   "status": "aligned",
+   "order": 471
+  },
+  "7edd439aeec6": {
+   "fr": "\\textit{[0{,}5 pt]} Pour [[m1]], [[m2]] et [[m3]]. Donc [[m4]] ; par intégration,",
+   "en": "\\textit{[0.5 pt]} For [[m1]], [[m2]] and [[m3]]. So [[m4]]; integrating,",
+   "status": "aligned",
+   "order": 472
+  },
+  "456aaad514ee": {
+   "fr": "\\textit{[0{,}5 pt]} La fonction [[m1]] est croissante. Sur chaque intervalle [[m2]], les valeurs aux extrémités encadrent la fonction. En intégrant puis en sommant,",
+   "en": "\\textit{[0.5 pt]} The function [[m1]] is increasing. On each interval [[m2]], the values at the endpoints bound the function. Integrating and then summing,",
+   "status": "aligned",
+   "order": 473
+  },
+  "2f4db9ea1145": {
+   "fr": "Les termes intérieurs s'annulent dans la différence, donc [[m1]].",
+   "en": "The interior terms cancel in the difference, so [[m1]].",
+   "status": "aligned",
+   "order": 474
+  },
+  "5e03c01cd45f": {
+   "fr": "\\textit{[1 pt]} La largeur est au plus [[m1]] si [[m2]]. Le premier entier satisfaisant cette borne est [[m3]]. Voici le calcul des bornes :",
+   "en": "\\textit{[1 pt]} The width is at most [[m1]] if [[m2]]. The first integer satisfying this bound is [[m3]]. Here is the computation of the bounds:",
+   "status": "aligned",
+   "order": 475
+  },
+  "dc26b3f20f9a": {
+   "fr": "Exercice 2 · Une fonction logarithmique",
+   "en": "Exercise 2 · A logarithmic function",
+   "status": "aligned",
+   "order": 476
+  },
+  "60116e20c44c": {
+   "fr": "\\textit{[0{,}5 pt]} En [[m1]], le numérateur tend vers [[m2]] et le dénominateur vers [[m3]] : limite [[m4]] ; en [[m5]], limite [[m6]] par croissance comparée.",
+   "en": "\\textit{[0.5 pt]} At [[m1]], the numerator tends to [[m2]] and the denominator to [[m3]]: limit [[m4]]; at [[m5]], limit [[m6]] by comparison of growth rates.",
+   "status": "aligned",
+   "order": 477
+  },
+  "e29c5911931b": {
+   "fr": "\\textit{[0{,}5 pt]} Par la règle du quotient,",
+   "en": "\\textit{[0.5 pt]} By the quotient rule,",
+   "status": "aligned",
+   "order": 478
+  },
+  "90c84ba475a3": {
+   "fr": "Le dénominateur est positif. Le numérateur s'annule en [[m1]], est positif pour [[m2]] et négatif pour [[m3]]. Ainsi [[m4]] croît strictement sur [[m5]], puis décroît strictement sur [[m6]].",
+   "en": "The denominator is positive. The numerator vanishes at [[m1]], is positive for [[m2]] and negative for [[m3]]. Thus [[m4]] is strictly increasing on [[m5]], then strictly decreasing on [[m6]].",
+   "status": "aligned",
+   "order": 479
+  },
+  "c5b2d95f32b8": {
+   "fr": "\\textit{[0{,}5 pt]} Le maximum est atteint uniquement en [[m1]] et vaut",
+   "en": "\\textit{[0.5 pt]} The maximum is attained only at [[m1]] and equals",
+   "status": "aligned",
+   "order": 480
+  },
+  "01063075d367": {
+   "fr": "Comme [[m1]], [[m2]] équivaut à [[m3]], soit [[m4]].",
+   "en": "Since [[m1]], [[m2]] is equivalent to [[m3]], that is [[m4]].",
+   "status": "aligned",
+   "order": 481
+  },
+  "27a7c4ea5147": {
+   "fr": "\\textit{[1 pt]} On dérive [[m1]] :",
+   "en": "\\textit{[1 pt]} Differentiating [[m1]]:",
+   "status": "aligned",
+   "order": 482
+  },
+  "78480cc4a70c": {
+   "fr": "Le numérateur s'annule en [[m1]] et passe du signe négatif au signe positif. La fonction est concave sur [[m2]], convexe sur [[m3]]. Elle change de convexité en [[m4]] et [[m5]] : le point d'inflexion est [[m6]].",
+   "en": "The numerator vanishes at [[m1]] and changes from negative to positive. The function is concave on [[m2]], convex on [[m3]]. It changes convexity at [[m4]] and [[m5]]: the point of inflection is [[m6]].",
+   "status": "aligned",
+   "order": 483
+  },
+  "af54135f67a6": {
+   "fr": "\\textit{[0{,}5 pt]} Posons [[m1]] et [[m2]]. La fonction est continue sur [[m3]]. Sur [[m4]], elle est strictement croissante, de limite [[m5]] en [[m6]] et de valeur [[m7]] en [[m8]] : le corollaire du TVI donne exactement une solution dans [[m9]]. Sur [[m10]], elle est strictement décroissante de [[m11]] vers [[m12]] : exactement une solution dans [[m13]]. Ces intervalles couvrent le domaine et [[m14]] : il y a exactement deux solutions.",
+   "en": "\\textit{[0.5 pt]} Let [[m1]] and [[m2]]. The function is continuous on [[m3]]. On [[m4]], it is strictly increasing, with limit [[m5]] at [[m6]] and value [[m7]] at [[m8]]: the corollary of the intermediate value theorem (IVT) gives exactly one solution in [[m9]]. On [[m10]], it is strictly decreasing from [[m11]] to [[m12]]: exactly one solution in [[m13]]. These intervals cover the domain and [[m14]]: there are exactly two solutions.",
+   "status": "aligned",
+   "order": 484
+  },
+  "2422bd67e75a": {
+   "fr": "\\textit{[0{,}5 pt]} Posons [[m1]], dérivable pour [[m2]]. Alors [[m3]] ; [[m4]] est une primitive sur [[m5]].",
+   "en": "\\textit{[0.5 pt]} Let [[m1]], differentiable for [[m2]]. Then [[m3]]; [[m4]] is an antiderivative on [[m5]].",
+   "status": "aligned",
+   "order": 485
+  },
+  "db1daf6f2c90": {
+   "fr": "\\textit{[0{,}5 pt]} Avec cette primitive, [[m1]] et [[m2]]. L'intégrale vaut donc [[m3]], et la valeur moyenne est",
+   "en": "\\textit{[0.5 pt]} With this antiderivative, [[m1]] and [[m2]]. The integral is therefore [[m3]], and the mean value is",
+   "status": "aligned",
+   "order": 486
+  },
+  "e64af00726f8": {
+   "fr": "\\textit{[1 pt]} Domaine [[m1]] ; [[m2]], donc [[m3]], la racine négative étant exclue.",
+   "en": "\\textit{[1 pt]} Domain [[m1]]; [[m2]], so [[m3]], the negative root being excluded.",
+   "status": "aligned",
+   "order": 487
+  },
+  "e36235067ce9": {
+   "fr": "Exercice 3 · Droite, plan et projeté",
+   "en": "Exercise 3 · Line, plane and orthogonal projection",
+   "status": "aligned",
+   "order": 488
+  },
+  "d4f47ddcc3be": {
+   "fr": "\\textit{[0{,}5 pt]} [[m1]], [[m2]].",
+   "en": "\\textit{[0.5 pt]} [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 489
+  },
+  "245f3c0e78f6": {
+   "fr": "\\textit{[0{,}5 pt]} [[m1]] donne [[m2]] ; [[m3]].",
+   "en": "\\textit{[0.5 pt]} [[m1]] gives [[m2]]; [[m3]].",
+   "status": "aligned",
+   "order": 490
+  },
+  "f49dcb21aa87": {
+   "fr": "\\textit{[0{,}5 pt]} Le vecteur [[m1]] est normal à [[m2]]. Comme [[m3]] et [[m4]], [[m5]] est le projeté orthogonal de [[m6]] sur le plan. Le repère étant orthonormé, [[m7]]. Donc",
+   "en": "\\textit{[0.5 pt]} The vector [[m1]] is normal to [[m2]]. Since [[m3]] and [[m4]], [[m5]] is the orthogonal projection of [[m6]] onto the plane. The coordinate system being orthonormal, [[m7]]. Therefore",
+   "status": "aligned",
+   "order": 491
+  },
+  "154bbad352b3": {
+   "fr": "\\textit{[1 pt]} Poser [[m1]] ; [[m2]]. Donc [[m3]].",
+   "en": "\\textit{[1 pt]} Set [[m1]]; [[m2]]. So [[m3]].",
+   "status": "aligned",
+   "order": 492
+  },
+  "a533d76fc81e": {
+   "fr": "\\textit{[0{,}5 pt]} Oui, ses deux dernières coordonnées sont égales. [[m1]] est dans la droite et [[m2]] est orthogonal à toute direction du plan, donc à cette droite. Distance [[m3]].",
+   "en": "\\textit{[0.5 pt]} Yes, its last two coordinates are equal. [[m1]] lies on the line and [[m2]] is orthogonal to every direction of the plane, hence to this line. Distance [[m3]].",
+   "status": "aligned",
+   "order": 493
+  },
+  "26743d681d3a": {
+   "fr": "\\textit{[0{,}5 pt]} [[m1]] ; même vecteur normal et passage par [[m2]].",
+   "en": "\\textit{[0.5 pt]} [[m1]]; same normal vector, passing through [[m2]].",
+   "status": "aligned",
+   "order": 494
+  },
+  "e2d2cf5d81a9": {
+   "fr": "\\textit{[0{,}5 pt]} [[m1]] : angle [[m2]].",
+   "en": "\\textit{[0.5 pt]} [[m1]]: angle [[m2]].",
+   "status": "aligned",
+   "order": 495
+  },
+  "0d4937a0799b": {
+   "fr": "\\textit{[1 pt]} [[m1]] est sur la même droite normale que [[m2]] ; son projeté sur [[m3]] est donc aussi [[m4]]. Or [[m5]]. Pour tout [[m6]] de cette droite, [[m7]], donc sa distance minimale à [[m8]] est [[m9]]. Finalement,",
+   "en": "\\textit{[1 pt]} [[m1]] lies on the same normal line as [[m2]]; its orthogonal projection onto [[m3]] is therefore also [[m4]]. Now [[m5]]. For every point [[m6]] of this line, [[m7]], so its minimum distance to [[m8]] is [[m9]]. Finally,",
+   "status": "aligned",
+   "order": 496
+  },
+  "17f2cf644c84": {
+   "fr": "Exercice 4 · Répétitions et estimation",
+   "en": "Exercise 4 · Repeated trials and estimation",
+   "status": "aligned",
+   "order": 497
+  },
+  "394394fd5f8d": {
+   "fr": "\\textit{[0{,}5 pt]} Répétition d'un nombre fixe [[m1]] d'épreuves identiques indépendantes à deux issues ; [[m2]].",
+   "en": "\\textit{[0.5 pt]} Repetition of a fixed number [[m1]] of identical independent trials with two outcomes; [[m2]].",
+   "status": "aligned",
+   "order": 498
+  },
+  "40959d60e6be": {
+   "fr": "\\textit{[0{,}5 pt]} [[m1]].",
+   "en": "\\textit{[0.5 pt]} [[m1]].",
+   "status": "aligned",
+   "order": 500
+  },
+  "15ab9a8ff2db": {
+   "fr": "\\textit{[1 pt]} [[m1]], [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 501
+  },
+  "9dd3ea1fadf7": {
+   "fr": "\\textit{[0{,}5 pt]} Pour [[m1]] essais indépendants, la probabilité d'aucun succès est [[m2]]. La probabilité demandée est donc [[m3]]. Elle est strictement croissante avec [[m4]], car [[m5]]. Les calculs donnent",
+   "en": "\\textit{[0.5 pt]} For [[m1]] independent trials, the probability of no success is [[m2]]. The required probability is therefore [[m3]]. It is strictly increasing with [[m4]], since [[m5]]. The calculations give",
+   "status": "aligned",
+   "order": 502
+  },
+  "a16db86ebfbd": {
+   "fr": "Ainsi [[m1]] est le plus petit nombre d'essais convenable.",
+   "en": "Thus [[m1]] is the smallest suitable number of trials.",
+   "status": "aligned",
+   "order": 503
+  },
+  "9514d3bc7970": {
+   "fr": "\\textit{[0{,}5 pt]} Notons [[m1]]. Pour [[m2]], un résultat ordonné contenant [[m3]] succès et [[m4]] échecs a, par indépendance, la probabilité [[m5]]. Il existe [[m6]] choix des positions des succès. Ces résultats sont incompatibles, donc",
+   "en": "\\textit{[0.5 pt]} Let [[m1]]. For [[m2]], an ordered outcome containing [[m3]] successes and [[m4]] failures has, by independence, probability [[m5]]. There are [[m6]] choices for the positions of the successes. These outcomes are mutually exclusive, so",
+   "status": "aligned",
+   "order": 504
+  },
+  "f7d52066d0db": {
+   "fr": "\\textit{[0{,}5 pt]} Les événements [[m1]], [[m2]], [[m3]] sont incompatibles, donc",
+   "en": "\\textit{[0.5 pt]} The events [[m1]], [[m2]], [[m3]] are mutually exclusive, so",
+   "status": "aligned",
+   "order": 505
+  },
+  "7bd1b12f5cfa": {
+   "fr": "\\textit{[1 pt]}",
+   "en": "\\textit{[1 pt]}",
+   "status": "aligned",
+   "order": 506
+  },
+  "86c4afdb1ab5": {
+   "fr": "Les probabilités ajoutées sont positives et le cumul final vaut [[m1]], donc la boucle s'arrête. Elle renvoie [[m2]]. Les cumuls aux rangs [[m3]] et [[m4]] sont environ [[m5]] et [[m6]] : cela confirme la minimalité.",
+   "en": "The probabilities added are positive and the final cumulative value is [[m1]], so the loop terminates. It returns [[m2]]. The cumulative values at ranks [[m3]] and [[m4]] are approximately [[m5]] and [[m6]]: this confirms minimality.",
+   "status": "aligned",
+   "order": 507
+  }
+ }
+}

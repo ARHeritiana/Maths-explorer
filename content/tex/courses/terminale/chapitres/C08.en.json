@@ -1,0 +1,473 @@
+{
+ "unit": "C08.fr.tex",
+ "segments": {
+  "b8ab8b72d74e": {
+   "fr": "Fonction logarithme",
+   "en": "The logarithm function",
+   "status": "aligned",
+   "order": 0
+  },
+  "f1bbdc9bc91a": {
+   "fr": "S44, S47, S49, S50",
+   "en": "S44, S47, S49, S50",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "a1bc1b62ef40": {
+   "fr": "Utiliser les propriétés de ln ; résoudre équations et seuils ; dériver et étudier des fonctions logarithmiques.",
+   "en": "Use the properties of ln; solve equations and thresholds; differentiate and study logarithmic functions.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "1e2ffabadda7": {
+   "fr": "Définition et propriétés",
+   "en": "Definition and properties",
+   "status": "aligned",
+   "order": 5
+  },
+  "e794b43a4a1a": {
+   "fr": "L'exponentielle est continue, strictement croissante sur [[m1]], et son image est [[m2]]. Pour tout [[m3]], il existe un unique réel [[m4]] tel que [[m5]] : on le note [[m6]].",
+   "en": "The exponential is continuous and strictly increasing on [[m1]], and its range is [[m2]]. For every [[m3]], there is a unique real number [[m4]] such that [[m5]]: we denote it by [[m6]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "a4424c13a9b6": {
+   "fr": "Pour [[m1]] et [[m2]],",
+   "en": "For [[m1]] and [[m2]],",
+   "status": "aligned",
+   "order": 7
+  },
+  "c88a8e65bb3d": {
+   "fr": "Preuve du produit.",
+   "en": "Proof of the product rule.",
+   "status": "aligned",
+   "order": 8
+  },
+  "41234d3922b3": {
+   "fr": "[[m1]] ; l'unicité de l'antécédent donne la formule. Il n'existe pas de formule analogue pour [[m2]].",
+   "en": "[[m1]]; the uniqueness of the preimage gives the formula. There is no analogous formula for [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "95894a487141": {
+   "fr": "Dérivée, variations et limites",
+   "en": "Derivative, variations and limits",
+   "status": "aligned",
+   "order": 10
+  },
+  "bf33cc169b98": {
+   "fr": "On admet ln dérivable sur [[m1]]. Dériver [[m2]] donne [[m3]] ; donc [[m4]]. Ln est strictement croissante et concave, car sa dérivée seconde vaut [[m5]].",
+   "en": "We accept that ln is differentiable on [[m1]]. Differentiating [[m2]] gives [[m3]]; hence [[m4]]. ln is strictly increasing and concave, because its second derivative is [[m5]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "8882ace92a29": {
+   "fr": "Sa courbe est symétrique de celle de l'exponentielle par rapport à [[m1]]. La droite [[m2]] est une asymptote verticale. Sa tangente en [[m3]] donne [[m4]] pour [[m5]].",
+   "en": "Its curve is the reflection of that of the exponential in the line [[m1]]. The line [[m2]] is a vertical asymptote. Its tangent at [[m3]] gives [[m4]] for [[m5]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "26d7bb348752": {
+   "fr": "Composition et croissance comparée",
+   "en": "Composition and comparison of growth rates",
+   "status": "aligned",
+   "order": 13
+  },
+  "864109bc9db2": {
+   "fr": "Si [[m1]] est dérivable, [[m2]]. Pour tout entier [[m3]],",
+   "en": "If [[m1]] is differentiable, [[m2]]. For every integer [[m3]],",
+   "status": "aligned",
+   "order": 14
+  },
+  "3a3df5b35826": {
+   "fr": "Démonstration en [[m1]].",
+   "en": "Proof at [[m1]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "aae9186fc1c1": {
+   "fr": "Poser [[m1]] ; lorsque [[m2]], [[m3]] et [[m4]] par croissance comparée. Pour [[m5]], le même raisonnement donne [[m6]]. En [[m7]], poser [[m8]] pour écrire [[m9]].",
+   "en": "Set [[m1]]; as [[m2]], [[m3]] and [[m4]] by comparison of growth rates. For [[m5]], the same reasoning gives [[m6]]. At [[m7]], set [[m8]] to write [[m9]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "0388bf6581a2": {
+   "fr": "Équations et seuils",
+   "en": "Equations and thresholds",
+   "status": "aligned",
+   "order": 17
+  },
+  "e62e270d82ea": {
+   "fr": "Pour [[m1]], [[m2]] et [[m3]]. Toujours commencer par le domaine.",
+   "en": "For [[m1]], [[m2]] and [[m3]]. Always start with the domain.",
+   "status": "aligned",
+   "order": 18
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 19
+  },
+  "95f38c7cd261": {
+   "fr": "[[m1]] exige [[m2]]. L'équation devient [[m3]], donc [[m4]] seul.",
+   "en": "[[m1]] requires [[m2]]. The equation becomes [[m3]], so [[m4]] only.",
+   "status": "aligned",
+   "order": 20
+  },
+  "343d1005f4e5": {
+   "fr": "Seuil.",
+   "en": "Threshold.",
+   "status": "aligned",
+   "order": 21
+  },
+  "120ad03cfbb4": {
+   "fr": "[[m1]] équivaut à [[m2]], puis [[m3]]. Le premier entier est [[m4]].",
+   "en": "[[m1]] is equivalent to [[m2]], then [[m3]]. The first integer is [[m4]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "e075b2d70f4c": {
+   "fr": "Exemple d'étude.",
+   "en": "Example of a study.",
+   "status": "aligned",
+   "order": 23
+  },
+  "69a2a4b226b4": {
+   "fr": "Pour [[m1]], [[m2]] ; [[m3]] croît sur [[m4]], décroît sur [[m5]], et son maximum vaut [[m6]]. Sa limite en [[m7]] est [[m8]], sa limite en [[m9]] est [[m10]].",
+   "en": "For [[m1]], [[m2]]; [[m3]] increases on [[m4]], decreases on [[m5]], and its maximum is [[m6]]. Its limit at [[m7]] is [[m8]], its limit at [[m9]] is [[m10]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 25
+  },
+  "5e783af45a1f": {
+   "fr": "\\textbf{Contrôler une erreur de calcul --- 30 min.}",
+   "en": "\\textbf{Controlling a calculation error --- 30 min.}",
+   "status": "aligned",
+   "order": 26
+  },
+  "147a3ecb9e52": {
+   "fr": "Une méthode de calcul produit une erreur initiale [[m1]]. À chaque étape, l'erreur est multipliée par [[m2]]. On note [[m3]] l'erreur après [[m4]] étapes, pour [[m5]].",
+   "en": "A calculation method produces an initial error [[m1]]. At each step, the error is multiplied by [[m2]]. Denote by [[m3]] the error after [[m4]] steps, for [[m5]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "e54b85cbd55d": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]].",
+   "en": "Express [[m1]] in terms of [[m2]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "12e627236cd3": {
+   "fr": "À l'aide du logarithme, déterminer le plus petit entier [[m1]] tel que [[m2]].",
+   "en": "Using the logarithm, determine the smallest integer [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "c3ca9c6c039e": {
+   "fr": "Calculer, à la calculatrice, l'erreur au rang trouvé et au rang précédent pour vérifier la minimalité du rang.",
+   "en": "Using a calculator, calculate the error at the value found and at the previous value to check that it is minimal.",
+   "status": "aligned",
+   "order": 30
+  },
+  "f428fbb49189": {
+   "fr": "On impose maintenant une erreur au plus égale à [[m1]]. Déterminer le nouveau nombre minimal d'étapes. La division de la tolérance par [[m2]] multiplie-t-elle le nombre d'étapes par [[m3]] ?",
+   "en": "We now require an error of at most [[m1]]. Determine the new minimum number of steps. Does dividing the tolerance by [[m2]] multiply the number of steps by [[m3]]?",
+   "status": "aligned",
+   "order": 31
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 32
+  },
+  "0c65fa80c05e": {
+   "fr": "Après avoir déterminé l'ensemble sur lequel elle est définie, résoudre l'équation [[m1]].",
+   "en": "After determining the set on which it is defined, solve the equation [[m1]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "5af0c0ef6470": {
+   "fr": "Déterminer les réels [[m1]] pour lesquels [[m2]] est défini, puis résoudre [[m3]].",
+   "en": "Determine the real numbers [[m1]] for which [[m2]] is defined, then solve [[m3]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "a12c40effb60": {
+   "fr": "On considère [[m1]] et [[m2]]. Préciser leur ensemble de définition et calculer leur dérivée.",
+   "en": "Consider [[m1]] and [[m2]]. State their domains of definition and calculate their derivatives.",
+   "status": "aligned",
+   "order": 38
+  },
+  "c026956394f5": {
+   "fr": "Déterminer [[m1]] et [[m2]]. Justifier les résultats de croissance comparée employés.",
+   "en": "Determine [[m1]] and [[m2]]. Justify the comparison-of-growth-rates results used.",
+   "status": "aligned",
+   "order": 40
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 41
+  },
+  "83ed278a7872": {
+   "fr": "À l'aide de l'étude d'une fonction, démontrer que [[m1]] pour tout réel [[m2]]. On n'utilisera pas directement la concavité du logarithme.",
+   "en": "By studying a function, prove that [[m1]] for every real number [[m2]]. Do not use the concavity of the logarithm directly.",
+   "status": "aligned",
+   "order": 42
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 43
+  },
+  "0fd33e33cb71": {
+   "fr": "\\textbf{Barbazo, p. 196, exercice 36.} À la maison après S44 : traiter les trois fonctions. Écrire les conditions de définition avant de résoudre les inéquations ; justifier les bornes ouvertes des intervalles obtenus.",
+   "en": "\\textbf{Barbazo, p. 196, exercise 36.} At home after S44: do the three functions. Write down the conditions of definition before solving the inequalities; justify the open endpoints of the intervals obtained.",
+   "status": "aligned",
+   "order": 44
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 45
+  },
+  "76d35029120e": {
+   "fr": "\\textbf{DM6 --- Étude d'une fonction logarithmique --- 55 min.}",
+   "en": "\\textbf{Homework 6 --- Study of a logarithmic function --- 55 min.}",
+   "status": "aligned",
+   "order": 46
+  },
+  "95fc06679ed6": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. Sa courbe représentative est notée [[m4]].",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. Its graph is denoted [[m4]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "56a52fcfc792": {
+   "fr": "Déterminer les limites de [[m1]] aux bornes du domaine, étudier son signe, puis dresser son tableau de variations.",
+   "en": "Determine the limits of [[m1]] at the endpoints of its domain, study its sign, then draw up its table of variations.",
+   "status": "aligned",
+   "order": 48
+  },
+  "5b81cb26ab4d": {
+   "fr": "Étudier la convexité de [[m1]] et déterminer les coordonnées du point d'inflexion de [[m2]].",
+   "en": "Study the convexity of [[m1]] and determine the coordinates of the point of inflection of [[m2]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "09053609ae19": {
+   "fr": "Démontrer que l'équation [[m1]] admet exactement deux solutions. Donner pour chacune un encadrement justifié à l'aide de valeurs calculées.",
+   "en": "Prove that the equation [[m1]] has exactly two solutions. Give for each a justified bracketing using calculated values.",
+   "status": "aligned",
+   "order": 50
+  },
+  "8ba3150cadcc": {
+   "fr": "En utilisant le maximum de [[m1]], démontrer que [[m2]] pour tout [[m3]]. Préciser le cas d'égalité.",
+   "en": "Using the maximum of [[m1]], prove that [[m2]] for all [[m3]]. State the case of equality.",
+   "status": "aligned",
+   "order": 51
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 52
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 53
+  },
+  "9d0e9410882d": {
+   "fr": "S44 est placé avant le premier blanc, mais le logarithme n'appartient pas à son périmètre annoncé. Insister sur les conditions [[m1]] avant de regrouper des logarithmes. La dérivabilité de ln est admise, la formule de dérivation est démontrée. Pour un seuil avec [[m2]], le signe négatif de [[m3]] inverse l'inégalité. Faire contrôler le rang candidat et le précédent.",
+   "en": "S44 is placed before the first mock exam, but the logarithm is not part of its announced scope. Stress the conditions [[m1]] before combining logarithms. The differentiability of ln is accepted; the differentiation formula is proved. For a threshold with [[m2]], the negative sign of [[m3]] reverses the inequality. Have students check the candidate value and the previous one.",
+   "status": "aligned",
+   "order": 54
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 55
+  },
+  "b365b1e5e7a0": {
+   "fr": "Chaque étape multiplie l'erreur par [[m1]] : [[m2]] pour [[m3]].",
+   "en": "Each step multiplies the error by [[m1]]: [[m2]] for [[m3]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "6f2b79f17e7d": {
+   "fr": "[[m1]] équivaut à [[m2]]. Par croissance de ln, [[m3]]. Comme [[m4]], on obtient",
+   "en": "[[m1]] is equivalent to [[m2]]. Since ln is increasing, [[m3]]. As [[m4]], we obtain",
+   "status": "aligned",
+   "order": 57
+  },
+  "019cebcee11d": {
+   "fr": "Le premier entier convenable est [[m1]].",
+   "en": "The first suitable integer is [[m1]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "4969903303ae": {
+   "fr": "[[m1]] et [[m2]]. La suite des erreurs décroît, donc ce contrôle confirme la minimalité.",
+   "en": "[[m1]] and [[m2]]. The sequence of errors is decreasing, so this check confirms minimality.",
+   "status": "aligned",
+   "order": 59
+  },
+  "c4b843cee0a9": {
+   "fr": "Pour la cible [[m1]], le même calcul donne [[m2]], donc [[m3]]. Le seuil réel augmente de [[m4]], puis on arrondit à l'entier supérieur. Le nombre d'étapes n'est pas multiplié par [[m5]].",
+   "en": "For the target [[m1]], the same calculation gives [[m2]], so [[m3]]. The real threshold increases by [[m4]], then we round up to the next integer. The number of steps is not multiplied by [[m5]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 61
+  },
+  "3d0ff8df7fe6": {
+   "fr": "Il faut [[m1]] et [[m2]], donc [[m3]]. Sur ce domaine, l'injectivité de ln donne [[m4]], soit [[m5]]. Cette valeur appartient au domaine ; l'ensemble des solutions est [[m6]].",
+   "en": "We need [[m1]] and [[m2]], so [[m3]]. On this domain, the injectivity of ln gives [[m4]], that is [[m5]]. This value belongs to the domain; the solution set is [[m6]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 63
+  },
+  "563bb583db8f": {
+   "fr": "Il faut [[m1]]. La formule du produit donne [[m2]], donc [[m3]], soit [[m4]]. Seul [[m5]] satisfait [[m6]] : l'autre racine [[m7]] est exclue.",
+   "en": "We need [[m1]]. The product rule gives [[m2]], so [[m3]], that is [[m4]]. Only [[m5]] satisfies [[m6]]: the other root [[m7]] is excluded.",
+   "status": "aligned",
+   "order": 64
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 65
+  },
+  "3d86878dadee": {
+   "fr": "Puisque [[m1]], la première fonction est dérivable sur [[m2]] et sa dérivée est [[m3]]. Sur [[m4]], la règle du produit donne [[m5]].",
+   "en": "Since [[m1]], the first function is differentiable on [[m2]] and its derivative is [[m3]]. On [[m4]], the product rule gives [[m5]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 67
+  },
+  "2c5a4691f780": {
+   "fr": "Pour la première limite, posons [[m1]] : [[m2]]. Pour la seconde, posons [[m3]] : [[m4]]. Ces deux limites utilisent la croissance comparée.",
+   "en": "For the first limit, set [[m1]]: [[m2]]. For the second, set [[m3]]: [[m4]]. Both limits use comparison of growth rates.",
+   "status": "aligned",
+   "order": 68
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 69
+  },
+  "dc18c8b92ff3": {
+   "fr": "Pour [[m1]], posons [[m2]]. On a [[m3]], négative avant [[m4]], positive après. Son minimum vaut [[m5]], donc [[m6]], ce qui équivaut à [[m7]].",
+   "en": "For [[m1]], set [[m2]]. We have [[m3]], negative before [[m4]], positive after. Its minimum is [[m5]], so [[m6]], which is equivalent to [[m7]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "7acfd89ec77b": {
+   "fr": "Corrigé du DM6",
+   "en": "Solutions to Homework 6",
+   "status": "aligned",
+   "order": 71
+  },
+  "24589e401c85": {
+   "fr": "En [[m1]], le numérateur tend vers [[m2]] et le dénominateur vers [[m3]] : [[m4]]. En [[m5]], [[m6]]. Le signe est celui de [[m7]] : négatif sur [[m8]], nul en [[m9]], positif ensuite. Par quotient,",
+   "en": "At [[m1]], the numerator tends to [[m2]] and the denominator to [[m3]]: [[m4]]. At [[m5]], [[m6]]. The sign is that of [[m7]]: negative on [[m8]], zero at [[m9]], positive afterwards. By the quotient rule,",
+   "status": "aligned",
+   "order": 72
+  },
+  "92d803aed968": {
+   "fr": "Ainsi [[m1]] croît strictement jusqu'à [[m2]], puis décroît strictement ; son maximum vaut [[m3]].",
+   "en": "Thus [[m1]] strictly increases up to [[m2]], then strictly decreases; its maximum is [[m3]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "ab89fe11a98d": {
+   "fr": "En dérivant [[m1]], on obtient [[m2]]. Le numérateur change de signe, du négatif au positif, en [[m3]]. Donc [[m4]] est concave sur [[m5]], convexe sur [[m6]] et possède l'inflexion [[m7]].",
+   "en": "Differentiating [[m1]], we obtain [[m2]]. The numerator changes sign, from negative to positive, at [[m3]]. So [[m4]] is concave on [[m5]], convex on [[m6]] and has the point of inflection [[m7]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "25220075e68c": {
+   "fr": "Sur [[m1]], continuité, stricte croissance, limite [[m2]] et valeur finale [[m3]] donnent exactement un antécédent de [[m4]]. Sur [[m5]], stricte décroissance de [[m6]] vers [[m7]] donne exactement un second antécédent. Le premier est dans [[m8]], car [[m9]] et [[m10]]. Le second est dans [[m11]], car [[m12]].",
+   "en": "On [[m1]], continuity, strict increase, limit [[m2]] and final value [[m3]] give exactly one preimage of [[m4]]. On [[m5]], strict decrease from [[m6]] towards [[m7]] gives exactly one second preimage. The first is in [[m8]], because [[m9]] and [[m10]]. The second is in [[m11]], because [[m12]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "dc4ceb825fb4": {
+   "fr": "Le maximum donne [[m1]]. Comme [[m2]], on peut multiplier sans changer le sens : [[m3]]. L'égalité correspond à l'unique maximum de [[m4]], donc à [[m5]].",
+   "en": "The maximum gives [[m1]]. Since [[m2]], we can multiply without changing the direction: [[m3]]. Equality corresponds to the unique maximum of [[m4]], so to [[m5]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 77
+  },
+  "6428c9fe01f9": {
+   "fr": "Le logarithme impose un argument strictement positif.",
+   "en": "The logarithm requires a strictly positive argument.",
+   "status": "aligned",
+   "order": 78
+  },
+  "0eefd4339d37": {
+   "fr": "[[m1]], donc [[m2]].",
+   "en": "[[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "6651091af164": {
+   "fr": "[[m1]] exactement lorsque [[m2]]. Ainsi [[m3]].",
+   "en": "[[m1]] exactly when [[m2]]. Thus [[m3]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "ddcfc2e1de90": {
+   "fr": "Il faut simultanément [[m1]] et [[m2]] ; leur intersection donne [[m3]]. Le coefficient [[m4]] placé devant le second logarithme ne modifie pas sa condition de définition.",
+   "en": "We need simultaneously [[m1]] and [[m2]]; their intersection gives [[m3]]. The coefficient [[m4]] placed in front of the second logarithm does not change its condition of definition.",
+   "status": "aligned",
+   "order": 81
+  }
+ }
+}

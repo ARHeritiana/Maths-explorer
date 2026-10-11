@@ -1,10 +1,11 @@
 """One-off helper: French slide drafts for Terminale from the supplied LaTeX notes.
 
-Usage: python3 scripts/extract-terminale-slides.py [outdir]
-Reads content/tex/courses/terminale/chapitres/C01..C14.tex (French) and the -en twins (figure code only) and writes
+Usage: python3 scripts/extract-terminale-slides.py [outdir] [--figures-only]
+Reads content/tex/courses/terminale/chapitres/C01..C14.fr.tex (French) and the generated .en.tex (figure code only) and writes
 <outdir>/terminale-NN.fr.json (default content/slides/draft; French only, teacher-only boxes excluded). Each slide may carry
 "f": [[n, n]] (figure numbers in the French and English chapter sources) and the draft holds "figs" / "figs_en" (the figure
 code). The English decks content/slides/terminale-NN.json are authored from these drafts; build-slides.py renders the figures.
+--figures-only refreshes "figs"/"figs_en" in the existing drafts and keeps their slides (the English decks are aligned to them).
 """
 import importlib.util, json, re, sys
 from pathlib import Path
@@ -12,20 +13,27 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('bs', ROOT / 'scripts/build-slides.py'); bs = importlib.util.module_from_spec(spec); spec.loader.exec_module(bs)
 
-OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / 'content/slides/draft'; OUT.mkdir(parents=True, exist_ok=True)
+FIGS_ONLY = '--figures-only' in sys.argv
+args = [a for a in sys.argv[1:] if not a.startswith('--')]
+OUT = Path(args[0]).resolve() if args else ROOT / 'content/slides/draft'; OUT.mkdir(parents=True, exist_ok=True)
 CH = ROOT / 'content/tex/courses/terminale/chapitres'
-TOK = re.compile(r'\\subsection\{([^}]*)\}|\\begin\{(retenir|methode)\}\{([^}]*)\}|\\paragraph\{([^}]*)\}')
+TOK = re.compile(r'\\subsection\{([^}]*)\}|\\begin\{(keypoint|method)\}\[([^\]]*)\]|\\paragraph\{([^}]*)\}')
 for n in range(1, 15):
-    src, figs = bs.extract_figs((CH / f'C{n:02d}.tex').read_text(encoding='utf8'))
-    _, figs_en = bs.extract_figs((CH / f'C{n:02d}-en.tex').read_text(encoding='utf8'))
+    src, figs = bs.extract_figs((CH / f'C{n:02d}.fr.tex').read_text(encoding='utf8'))
+    _, figs_en = bs.extract_figs((CH / f'C{n:02d}.en.tex').read_text(encoding='utf8'))
     assert len(figs) == len(figs_en), f'C{n:02d}: figure count differs between editions'
-    m = re.search(r'\\chapter\{([^}]*)\}', src); ch = src[m.end():]
+    if FIGS_ONLY:
+        draft = OUT / f'terminale-{n:02d}.fr.json'; d = json.loads(draft.read_text(encoding='utf8'))
+        assert len(d['figs']) == len(figs), f'C{n:02d}: figure count changed ({len(d["figs"])} -> {len(figs)})'
+        d['figs'], d['figs_en'] = figs, figs_en
+        draft.write_text(json.dumps(d, ensure_ascii=False, indent=0)); print(n, 'figures refreshed:', len(figs)); continue
+    m = re.search(r'\\(?:chapter|mxunit\{[^}]*\})\{([^}]*)\}', src); ch = src[m.end():]
     nm = re.search(r'\\section\{Notes de cours\}', ch)
     nx = re.search(r'\\section\{', ch[nm.end():]) if nm else None
     notes = ch[nm.end(): nm.end() + nx.start()] if nm and nx else ''
     act = re.search(r'\\section\{Activité de recherche\}(.*?)(?=\\section\{)', ch, re.S)
     slides = [bs.slide('title', bs.clean_title(m.group(1)), '')]
-    obj = re.search(r'\\begin\{retenir\}\{Objectifs\}(.*?)\\end\{retenir\}', ch, re.S)
+    obj = re.search(r'\\begin\{keypoint\}\[Objectifs\](.*?)\\end\{keypoint\}', ch, re.S)
     if obj: slides.append(bs.slide('goals', 'Objectifs', bs.text2html(obj.group(1))))
     unit = ''; i = 0; pending_text = ''
     def flush(kind='concept', title=None):
@@ -40,7 +48,7 @@ for n in range(1, 15):
         if mm.group(1) is not None: flush(); unit = bs.clean_title(mm.group(1)); i = mm.end()
         elif mm.group(2):
             flush(); k = mm.end(); e0, e1 = bs.env_end(notes, k, mm.group(2))
-            slides.append(bs.slide('concept' if mm.group(2) == 'retenir' else 'method', unit, bs.text2html(notes[k:e0]), None, bs.clean_title(mm.group(3)))); i = e1
+            slides.append(bs.slide('concept' if mm.group(2) == 'keypoint' else 'method', unit, bs.text2html(notes[k:e0]), None, bs.clean_title(mm.group(3)))); i = e1
         else:
             flush(); title = bs.clean_title(mm.group(4)); k = mm.end()
             nxt = TOK.search(notes, k); body = notes[k: nxt.start() if nxt else len(notes)]

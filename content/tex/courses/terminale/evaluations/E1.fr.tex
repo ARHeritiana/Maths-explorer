@@ -1,0 +1,709 @@
+\mxfront{terminale-e1}
+\mxnewpage\phantomsection\label{sujet:1-1}\addcontentsline{toc}{chapter}{DS1 · Zéro 1}
+
+\section*{DS1 · Zéro 1}
+
+{\sffamily\bfseries\color{mxmint}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une évolution discrète \hfill 5 points}On considère la suite $(u_n)$ définie par $u_0=1$ et, pour tout entier naturel $n$, $u_{n+1}=\frac{1}{2}u_n+4$.
+
+\begin{enumerate}
+
+\item Calculer $u_1$ et $u_2$. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $u_n=8-7\left(\frac{1}{2}\right)^n$. \hfill\textit{(2 pt)}
+
+\item En déduire que, pour tout entier naturel $n$, $1\le u_n<8$. \hfill\textit{(1 pt)}
+
+\item Étudier le signe de $u_{n+1}-u_n$ et en déduire le sens de variation de $(u_n)$. \hfill\textit{(1 pt)}
+
+\item Un élève affirme : « Il existe un entier $n$ tel que $u_n=8$. » Cette affirmation est-elle vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{72+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le9$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<9$. \hfill\textit{(1 pt)}
+
+\item On considère une propriété $P(n)$, définie pour $n\in\N$. On a démontré $P(1)$ et, pour tout $n\ge1$, l'implication $P(n)\Rightarrow P(n+1)$. Ces deux résultats permettent-ils d'affirmer que $P(0)$ est vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS1 · Zéro 1 · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=4\vi+5\vj+9\vec k,&\vec z&=4\vi+5\vj+10\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(1 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0{,}5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(1{,}5 pt)}
+
+\item Exprimer le vecteur $5\vec u-4\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède \hfill 5 points}On considère un parallélépipède $ABCDEFGH$ non aplati. Les sommets $E$, $F$, $G$ et $H$ sont les images respectives de $A$, $B$, $C$ et $D$ par la translation de vecteur $\vect{AE}$.
+On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$.
+Les points $I$, $J$ et $K$ sont définis par
+\[\vect{AI}=\frac1{11}\vi,\qquad\vect{AJ}=\frac1{11}\vj,\qquad\vect{AK}=\frac1{11}\vec k.\]
+
+\begin{enumerate}
+
+\item Exprimer $\vect{AG}$ et $\vect{BH}$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les droites $(IJ)$ et $(BD)$ sont parallèles. \hfill\textit{(1 pt)}
+
+\item Exprimer $\vect{CG}$ dans la base, puis déterminer si $\vect{AB}$ et $\vect{CG}$ sont colinéaires. Justifier. \hfill\textit{(1 pt)}
+
+\item On note $O$ le centre du parallélépipède. Démontrer que $O$ appartient à la droite $(AG)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS1 · Zéro 1}\label{cor:1-1}
+
+\subsection*{Exercice 1 · Une évolution discrète}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} La relation est appliquée successivement aux rangs $0$ et $1$ :\[u_1=\frac{1}{2}\times 1+4=\frac{9}{2},\qquad u_2=\frac{1}{2}\times \frac{9}{2}+4=\frac{25}{4}.\]
+
+\item \textit{[2 pt]} Pour $n\in\N$, notons $P(n)$ la propriété $u_n=8-7\left(\frac{1}{2}\right)^n$.
+\par\smallskip\textbf{Initialisation.} Pour $n=0$, $8-7\times1=1=u_0$. Donc $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons un entier $n\ge0$ et supposons $P(n)$ vraie. Par la relation définissant la suite, puis par l'hypothèse de récurrence,
+\[\begin{aligned}u_{n+1}&=\frac{1}{2}u_n+4\\
+&=\frac{1}{2}\left[8-7\left(\frac{1}{2}\right)^n\right]+4\\
+&=4+4-7\left(\frac{1}{2}\right)^{n+1}\\
+&=8-7\left(\frac{1}{2}\right)^{n+1}.
+\end{aligned}\]
+C'est $P(n+1)$ : la propriété est héréditaire.
+\par\smallskip\textbf{Conclusion.} Le principe de récurrence donne $u_n=8-7\left(\frac{1}{2}\right)^n$ pour tout $n\in\N$.
+
+\item \textit{[1 pt]} Puisque $0<\frac{1}{2}<1$, pour tout $n\in\N$ on a $0<(\frac{1}{2})^n\le1$. La multiplication par $-7<0$ inverse les inégalités :
+\[-7\le-7(\frac{1}{2})^n<0.\]
+En ajoutant $8$ et en utilisant la formule précédente, on obtient $1\le u_n<8$.
+
+\item \textit{[1 pt]} Pour tout $n\in\N$, la formule explicite donne
+\[\begin{aligned}u_{n+1}-u_n&=-7(\frac{1}{2})^{n+1}+7(\frac{1}{2})^n\\&=7(1-\frac{1}{2})(\frac{1}{2})^n=\frac{7}{2}(\frac{1}{2})^n>0.\end{aligned}\]
+La suite est donc strictement croissante.
+
+\item \textit{[0{,}5 pt]} L'affirmation est fausse. Pour chaque entier $n$, $8-u_n=7(\frac{1}{2})^n>0$. Aucun terme n'est donc égal à $8$, quel que soit le nombre d'étapes.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} $v_1=\sqrt{72+0}=\sqrt{72}$ et $v_2=\sqrt{72+\sqrt{72}}$.
+
+\item \textit{[1{,}5 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 9$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,9]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 72\le 72+v_n\le 72+9=81.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{72+v_n}\le\sqrt{81}=9.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,9]$.
+
+\item \textit{[1{,}5 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{72}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $72$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{72+v_{n+1}}\ge\sqrt{72+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[1 pt]} Notons $S(n)$ : « $v_n<9$ ». Au rang $0$, $v_0=0<9$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{72+v_n}<\sqrt{72+9}=\sqrt{81}=9.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<9$ pour tout $n\in\N$.
+
+\item \textit{[0{,}5 pt]} Non. Par exemple $P(n):n\ge1$ est vraie pour tous les entiers $n\ge1$ mais fausse en $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[1 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0{,}5 pt]} En développant, $4\vec u+5\vec v=4(\vi +\vec k)+5(\vj +\vec k)=4\vi +5\vj +9\vec k=\vec w$.
+
+\item \textit{[1{,}5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=4,\qquad\mu=5,\qquad\lambda+\mu=10.\]
+Les deux premières égalités donnent $\lambda+\mu=9$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $5\vec u-4\vec v=5(\vi +\vec k)-4(\vj +\vec k)=5\vi -4\vj +\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\end{enumerate}
+
+\mxneed{24}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède}\begin{enumerate}
+
+\item \textit{[1 pt]} Par Chasles, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. De même, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} Par Chasles, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{11}=\frac{\vect{BD}}{11}$. Ces vecteurs sont non nuls et colinéaires : $(IJ)$ et $(BD)$ sont parallèles.
+
+\item \textit{[1 pt]} On a $\vect{CG}=\vect{AE}=\vec k$ et $\vect{AB}=\vi $. Ces deux vecteurs de la base ne sont pas colinéaires : une égalité $\vec k=t\vi $ contredirait l'unicité de la décomposition dans cette base.
+
+\item \textit{[1 pt]} Les diagonales d'un parallélépipède se coupent en leur milieu. Ainsi $\vect{AO}=\frac12\vect{AG}$, ce qui prouve $O\in(AG)$.
+
+\item \textit{[1 pt]} Les points vérifient $\vect{IJ}=\frac{-\vi +\vj }{11}$ et $\vect{IK}=\frac{-\vi +\vec k}{11}$. Si $\vect{IK}=t\vect{IJ}$, le coefficient de $\vec k$ donnerait $\frac{1}{11}=0$, impossible. Les vecteurs ne sont pas colinéaires, donc $I,J,K$ ne sont pas alignés.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:1-2}\addcontentsline{toc}{chapter}{DS1 · Zéro 2}
+
+\section*{DS1 · Zéro 2}
+
+{\sffamily\bfseries\color{mxmint}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une évolution discrète \hfill 5 points}On considère la suite $(u_n)$ définie par $u_0=2$ et, pour tout entier naturel $n$, $u_{n+1}=\frac{1}{5}u_n+\frac{36}{5}$.
+
+\begin{enumerate}
+
+\item Calculer $u_1$ et $u_2$. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $u_n=9-7\left(\frac{1}{5}\right)^n$. \hfill\textit{(2 pt)}
+
+\item En déduire que, pour tout entier naturel $n$, $2\le u_n<9$. \hfill\textit{(1 pt)}
+
+\item Étudier le signe de $u_{n+1}-u_n$ et en déduire le sens de variation de $(u_n)$. \hfill\textit{(1 pt)}
+
+\item Un élève affirme : « Il existe un entier $n$ tel que $u_n=9$. » Cette affirmation est-elle vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{90+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le10$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<10$. \hfill\textit{(1 pt)}
+
+\item On considère une propriété $P(n)$, définie pour $n\in\N$. On a démontré $P(1)$ et, pour tout $n\ge1$, l'implication $P(n)\Rightarrow P(n+1)$. Ces deux résultats permettent-ils d'affirmer que $P(0)$ est vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS1 · Zéro 2 · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=3\vi+7\vj+10\vec k,&\vec z&=3\vi+7\vj+11\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(1 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0{,}5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(1{,}5 pt)}
+
+\item Exprimer le vecteur $7\vec u-3\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède \hfill 5 points}On considère un parallélépipède $ABCDEFGH$ non aplati. Les sommets $E$, $F$, $G$ et $H$ sont les images respectives de $A$, $B$, $C$ et $D$ par la translation de vecteur $\vect{AE}$.
+On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$.
+Les points $I$, $J$ et $K$ sont définis par
+\[\vect{AI}=\frac1{18}\vi,\qquad\vect{AJ}=\frac1{18}\vj,\qquad\vect{AK}=\frac1{18}\vec k.\]
+
+\begin{enumerate}
+
+\item Exprimer $\vect{AG}$ et $\vect{BH}$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les droites $(IJ)$ et $(BD)$ sont parallèles. \hfill\textit{(1 pt)}
+
+\item Exprimer $\vect{CG}$ dans la base, puis déterminer si $\vect{AB}$ et $\vect{CG}$ sont colinéaires. Justifier. \hfill\textit{(1 pt)}
+
+\item On note $O$ le centre du parallélépipède. Démontrer que $O$ appartient à la droite $(AG)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS1 · Zéro 2}\label{cor:1-2}
+
+\subsection*{Exercice 1 · Une évolution discrète}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} La relation est appliquée successivement aux rangs $0$ et $1$ :\[u_1=\frac{1}{5}\times 2+\frac{36}{5}=\frac{38}{5},\qquad u_2=\frac{1}{5}\times \frac{38}{5}+\frac{36}{5}=\frac{218}{25}.\]
+
+\item \textit{[2 pt]} Pour $n\in\N$, notons $P(n)$ la propriété $u_n=9-7\left(\frac{1}{5}\right)^n$.
+\par\smallskip\textbf{Initialisation.} Pour $n=0$, $9-7\times1=2=u_0$. Donc $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons un entier $n\ge0$ et supposons $P(n)$ vraie. Par la relation définissant la suite, puis par l'hypothèse de récurrence,
+\[\begin{aligned}u_{n+1}&=\frac{1}{5}u_n+\frac{36}{5}\\
+&=\frac{1}{5}\left[9-7\left(\frac{1}{5}\right)^n\right]+\frac{36}{5}\\
+&=\frac{9}{5}+\frac{36}{5}-7\left(\frac{1}{5}\right)^{n+1}\\
+&=9-7\left(\frac{1}{5}\right)^{n+1}.
+\end{aligned}\]
+C'est $P(n+1)$ : la propriété est héréditaire.
+\par\smallskip\textbf{Conclusion.} Le principe de récurrence donne $u_n=9-7\left(\frac{1}{5}\right)^n$ pour tout $n\in\N$.
+
+\item \textit{[1 pt]} Puisque $0<\frac{1}{5}<1$, pour tout $n\in\N$ on a $0<(\frac{1}{5})^n\le1$. La multiplication par $-7<0$ inverse les inégalités :
+\[-7\le-7(\frac{1}{5})^n<0.\]
+En ajoutant $9$ et en utilisant la formule précédente, on obtient $2\le u_n<9$.
+
+\item \textit{[1 pt]} Pour tout $n\in\N$, la formule explicite donne
+\[\begin{aligned}u_{n+1}-u_n&=-7(\frac{1}{5})^{n+1}+7(\frac{1}{5})^n\\&=7(1-\frac{1}{5})(\frac{1}{5})^n=\frac{28}{5}(\frac{1}{5})^n>0.\end{aligned}\]
+La suite est donc strictement croissante.
+
+\item \textit{[0{,}5 pt]} L'affirmation est fausse. Pour chaque entier $n$, $9-u_n=7(\frac{1}{5})^n>0$. Aucun terme n'est donc égal à $9$, quel que soit le nombre d'étapes.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} $v_1=\sqrt{90+0}=\sqrt{90}$ et $v_2=\sqrt{90+\sqrt{90}}$.
+
+\item \textit{[1{,}5 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 10$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,10]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 90\le 90+v_n\le 90+10=100.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{90+v_n}\le\sqrt{100}=10.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,10]$.
+
+\item \textit{[1{,}5 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{90}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $90$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{90+v_{n+1}}\ge\sqrt{90+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[1 pt]} Notons $S(n)$ : « $v_n<10$ ». Au rang $0$, $v_0=0<10$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{90+v_n}<\sqrt{90+10}=\sqrt{100}=10.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<10$ pour tout $n\in\N$.
+
+\item \textit{[0{,}5 pt]} Non. Par exemple $P(n):n\ge1$ est vraie pour tous les entiers $n\ge1$ mais fausse en $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[1 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0{,}5 pt]} En développant, $3\vec u+7\vec v=3(\vi +\vec k)+7(\vj +\vec k)=3\vi +7\vj +10\vec k=\vec w$.
+
+\item \textit{[1{,}5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=3,\qquad\mu=7,\qquad\lambda+\mu=11.\]
+Les deux premières égalités donnent $\lambda+\mu=10$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $7\vec u-3\vec v=7(\vi +\vec k)-3(\vj +\vec k)=7\vi -3\vj +4\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\end{enumerate}
+
+\mxneed{24}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède}\begin{enumerate}
+
+\item \textit{[1 pt]} Par Chasles, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. De même, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} Par Chasles, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{18}=\frac{\vect{BD}}{18}$. Ces vecteurs sont non nuls et colinéaires : $(IJ)$ et $(BD)$ sont parallèles.
+
+\item \textit{[1 pt]} On a $\vect{CG}=\vect{AE}=\vec k$ et $\vect{AB}=\vi $. Ces deux vecteurs de la base ne sont pas colinéaires : une égalité $\vec k=t\vi $ contredirait l'unicité de la décomposition dans cette base.
+
+\item \textit{[1 pt]} Les diagonales d'un parallélépipède se coupent en leur milieu. Ainsi $\vect{AO}=\frac12\vect{AG}$, ce qui prouve $O\in(AG)$.
+
+\item \textit{[1 pt]} Les points vérifient $\vect{IJ}=\frac{-\vi +\vj }{18}$ et $\vect{IK}=\frac{-\vi +\vec k}{18}$. Si $\vect{IK}=t\vect{IJ}$, le coefficient de $\vec k$ donnerait $\frac{1}{18}=0$, impossible. Les vecteurs ne sont pas colinéaires, donc $I,J,K$ ne sont pas alignés.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:1-3}\addcontentsline{toc}{chapter}{DS1 · A}
+
+\section*{DS1 · A}
+
+{\sffamily\bfseries\color{mxwarn}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une évolution discrète \hfill 5 points}On considère la suite $(u_n)$ définie par $u_0=3$ et, pour tout entier naturel $n$, $u_{n+1}=\frac{1}{4}u_n+\frac{33}{4}$.
+
+\begin{enumerate}
+
+\item Calculer $u_1$ et $u_2$. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $u_n=11-8\left(\frac{1}{4}\right)^n$. \hfill\textit{(2 pt)}
+
+\item En déduire que, pour tout entier naturel $n$, $3\le u_n<11$. \hfill\textit{(1 pt)}
+
+\item Étudier le signe de $u_{n+1}-u_n$ et en déduire le sens de variation de $(u_n)$. \hfill\textit{(1 pt)}
+
+\item Un élève affirme : « Il existe un entier $n$ tel que $u_n=11$. » Cette affirmation est-elle vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{110+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le11$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<11$. \hfill\textit{(1 pt)}
+
+\item On considère une propriété $P(n)$, définie pour $n\in\N$. On a démontré $P(1)$ et, pour tout $n\ge1$, l'implication $P(n)\Rightarrow P(n+1)$. Ces deux résultats permettent-ils d'affirmer que $P(0)$ est vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS1 · A · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=2\vi+4\vj+6\vec k,&\vec z&=2\vi+4\vj+7\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(1 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0{,}5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(1{,}5 pt)}
+
+\item Exprimer le vecteur $4\vec u-2\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède \hfill 5 points}On considère un parallélépipède $ABCDEFGH$ non aplati. Les sommets $E$, $F$, $G$ et $H$ sont les images respectives de $A$, $B$, $C$ et $D$ par la translation de vecteur $\vect{AE}$.
+On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$.
+Les points $I$, $J$ et $K$ sont définis par
+\[\vect{AI}=\frac1{8}\vi,\qquad\vect{AJ}=\frac1{8}\vj,\qquad\vect{AK}=\frac1{8}\vec k.\]
+
+\begin{enumerate}
+
+\item Exprimer $\vect{AG}$ et $\vect{BH}$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les droites $(IJ)$ et $(BD)$ sont parallèles. \hfill\textit{(1 pt)}
+
+\item Exprimer $\vect{CG}$ dans la base, puis déterminer si $\vect{AB}$ et $\vect{CG}$ sont colinéaires. Justifier. \hfill\textit{(1 pt)}
+
+\item On note $O$ le centre du parallélépipède. Démontrer que $O$ appartient à la droite $(AG)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS1 · A}\label{cor:1-3}
+
+\subsection*{Exercice 1 · Une évolution discrète}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} La relation est appliquée successivement aux rangs $0$ et $1$ :\[u_1=\frac{1}{4}\times 3+\frac{33}{4}=9,\qquad u_2=\frac{1}{4}\times 9+\frac{33}{4}=\frac{21}{2}.\]
+
+\item \textit{[2 pt]} Pour $n\in\N$, notons $P(n)$ la propriété $u_n=11-8\left(\frac{1}{4}\right)^n$.
+\par\smallskip\textbf{Initialisation.} Pour $n=0$, $11-8\times1=3=u_0$. Donc $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons un entier $n\ge0$ et supposons $P(n)$ vraie. Par la relation définissant la suite, puis par l'hypothèse de récurrence,
+\[\begin{aligned}u_{n+1}&=\frac{1}{4}u_n+\frac{33}{4}\\
+&=\frac{1}{4}\left[11-8\left(\frac{1}{4}\right)^n\right]+\frac{33}{4}\\
+&=\frac{11}{4}+\frac{33}{4}-8\left(\frac{1}{4}\right)^{n+1}\\
+&=11-8\left(\frac{1}{4}\right)^{n+1}.
+\end{aligned}\]
+C'est $P(n+1)$ : la propriété est héréditaire.
+\par\smallskip\textbf{Conclusion.} Le principe de récurrence donne $u_n=11-8\left(\frac{1}{4}\right)^n$ pour tout $n\in\N$.
+
+\item \textit{[1 pt]} Puisque $0<\frac{1}{4}<1$, pour tout $n\in\N$ on a $0<(\frac{1}{4})^n\le1$. La multiplication par $-8<0$ inverse les inégalités :
+\[-8\le-8(\frac{1}{4})^n<0.\]
+En ajoutant $11$ et en utilisant la formule précédente, on obtient $3\le u_n<11$.
+
+\item \textit{[1 pt]} Pour tout $n\in\N$, la formule explicite donne
+\[\begin{aligned}u_{n+1}-u_n&=-8(\frac{1}{4})^{n+1}+8(\frac{1}{4})^n\\&=8(1-\frac{1}{4})(\frac{1}{4})^n=6(\frac{1}{4})^n>0.\end{aligned}\]
+La suite est donc strictement croissante.
+
+\item \textit{[0{,}5 pt]} L'affirmation est fausse. Pour chaque entier $n$, $11-u_n=8(\frac{1}{4})^n>0$. Aucun terme n'est donc égal à $11$, quel que soit le nombre d'étapes.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} $v_1=\sqrt{110+0}=\sqrt{110}$ et $v_2=\sqrt{110+\sqrt{110}}$.
+
+\item \textit{[1{,}5 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 11$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,11]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 110\le 110+v_n\le 110+11=121.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{110+v_n}\le\sqrt{121}=11.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,11]$.
+
+\item \textit{[1{,}5 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{110}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $110$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{110+v_{n+1}}\ge\sqrt{110+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[1 pt]} Notons $S(n)$ : « $v_n<11$ ». Au rang $0$, $v_0=0<11$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{110+v_n}<\sqrt{110+11}=\sqrt{121}=11.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<11$ pour tout $n\in\N$.
+
+\item \textit{[0{,}5 pt]} Non. Par exemple $P(n):n\ge1$ est vraie pour tous les entiers $n\ge1$ mais fausse en $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[1 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0{,}5 pt]} En développant, $2\vec u+4\vec v=2(\vi +\vec k)+4(\vj +\vec k)=2\vi +4\vj +6\vec k=\vec w$.
+
+\item \textit{[1{,}5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=2,\qquad\mu=4,\qquad\lambda+\mu=7.\]
+Les deux premières égalités donnent $\lambda+\mu=6$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $4\vec u-2\vec v=4(\vi +\vec k)-2(\vj +\vec k)=4\vi -2\vj +2\vec k$.
+
+\item \textit{[1 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\end{enumerate}
+
+\mxneed{24}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède}\begin{enumerate}
+
+\item \textit{[1 pt]} Par Chasles, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. De même, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} Par Chasles, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{8}=\frac{\vect{BD}}{8}$. Ces vecteurs sont non nuls et colinéaires : $(IJ)$ et $(BD)$ sont parallèles.
+
+\item \textit{[1 pt]} On a $\vect{CG}=\vect{AE}=\vec k$ et $\vect{AB}=\vi $. Ces deux vecteurs de la base ne sont pas colinéaires : une égalité $\vec k=t\vi $ contredirait l'unicité de la décomposition dans cette base.
+
+\item \textit{[1 pt]} Les diagonales d'un parallélépipède se coupent en leur milieu. Ainsi $\vect{AO}=\frac12\vect{AG}$, ce qui prouve $O\in(AG)$.
+
+\item \textit{[1 pt]} Les points vérifient $\vect{IJ}=\frac{-\vi +\vj }{8}$ et $\vect{IK}=\frac{-\vi +\vec k}{8}$. Si $\vect{IK}=t\vect{IJ}$, le coefficient de $\vec k$ donnerait $\frac{1}{8}=0$, impossible. Les vecteurs ne sont pas colinéaires, donc $I,J,K$ ne sont pas alignés.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:1-4}\addcontentsline{toc}{chapter}{DS1 · B}
+
+\section*{DS1 · B}
+
+{\sffamily\bfseries\color{mxwarn}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Une évolution discrète \hfill 5 points}On considère la suite $(u_n)$ définie par $u_0=1$ et, pour tout entier naturel $n$, $u_{n+1}=\frac{1}{3}u_n+\frac{16}{3}$.
+
+\begin{enumerate}
+
+\item Calculer $u_1$ et $u_2$. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $u_n=8-7\left(\frac{1}{3}\right)^n$. \hfill\textit{(2 pt)}
+
+\item En déduire que, pour tout entier naturel $n$, $1\le u_n<8$. \hfill\textit{(1 pt)}
+
+\item Étudier le signe de $u_{n+1}-u_n$ et en déduire le sens de variation de $(u_n)$. \hfill\textit{(1 pt)}
+
+\item Un élève affirme : « Il existe un entier $n$ tel que $u_n=8$. » Cette affirmation est-elle vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{42+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0{,}5 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le7$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(1{,}5 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<7$. \hfill\textit{(1 pt)}
+
+\item On considère une propriété $P(n)$, définie pour $n\in\N$. On a démontré $P(1)$ et, pour tout $n\ge1$, l'implication $P(n)\Rightarrow P(n+1)$. Ces deux résultats permettent-ils d'affirmer que $P(0)$ est vraie ? Justifier. \hfill\textit{(0{,}5 pt)}
+
+\end{enumerate}
+
+\mxnewpage\noindent{\sffamily\bfseries\color{mxink}DS1 · B · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=5\vi+5\vj+10\vec k,&\vec z&=5\vi+5\vj+11\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(1 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0{,}5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(1{,}5 pt)}
+
+\item Exprimer le vecteur $5\vec u-5\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède \hfill 5 points}On considère un parallélépipède $ABCDEFGH$ non aplati. Les sommets $E$, $F$, $G$ et $H$ sont les images respectives de $A$, $B$, $C$ et $D$ par la translation de vecteur $\vect{AE}$.
+On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$.
+Les points $I$, $J$ et $K$ sont définis par
+\[\vect{AI}=\frac1{15}\vi,\qquad\vect{AJ}=\frac1{15}\vj,\qquad\vect{AK}=\frac1{15}\vec k.\]
+
+\begin{enumerate}
+
+\item Exprimer $\vect{AG}$ et $\vect{BH}$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les droites $(IJ)$ et $(BD)$ sont parallèles. \hfill\textit{(1 pt)}
+
+\item Exprimer $\vect{CG}$ dans la base, puis déterminer si $\vect{AB}$ et $\vect{CG}$ sont colinéaires. Justifier. \hfill\textit{(1 pt)}
+
+\item On note $O$ le centre du parallélépipède. Démontrer que $O$ appartient à la droite $(AG)$. \hfill\textit{(1 pt)}
+
+\item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS1 · B}\label{cor:1-4}
+
+\subsection*{Exercice 1 · Une évolution discrète}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} La relation est appliquée successivement aux rangs $0$ et $1$ :\[u_1=\frac{1}{3}\times 1+\frac{16}{3}=\frac{17}{3},\qquad u_2=\frac{1}{3}\times \frac{17}{3}+\frac{16}{3}=\frac{65}{9}.\]
+
+\item \textit{[2 pt]} Pour $n\in\N$, notons $P(n)$ la propriété $u_n=8-7\left(\frac{1}{3}\right)^n$.
+\par\smallskip\textbf{Initialisation.} Pour $n=0$, $8-7\times1=1=u_0$. Donc $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons un entier $n\ge0$ et supposons $P(n)$ vraie. Par la relation définissant la suite, puis par l'hypothèse de récurrence,
+\[\begin{aligned}u_{n+1}&=\frac{1}{3}u_n+\frac{16}{3}\\
+&=\frac{1}{3}\left[8-7\left(\frac{1}{3}\right)^n\right]+\frac{16}{3}\\
+&=\frac{8}{3}+\frac{16}{3}-7\left(\frac{1}{3}\right)^{n+1}\\
+&=8-7\left(\frac{1}{3}\right)^{n+1}.
+\end{aligned}\]
+C'est $P(n+1)$ : la propriété est héréditaire.
+\par\smallskip\textbf{Conclusion.} Le principe de récurrence donne $u_n=8-7\left(\frac{1}{3}\right)^n$ pour tout $n\in\N$.
+
+\item \textit{[1 pt]} Puisque $0<\frac{1}{3}<1$, pour tout $n\in\N$ on a $0<(\frac{1}{3})^n\le1$. La multiplication par $-7<0$ inverse les inégalités :
+\[-7\le-7(\frac{1}{3})^n<0.\]
+En ajoutant $8$ et en utilisant la formule précédente, on obtient $1\le u_n<8$.
+
+\item \textit{[1 pt]} Pour tout $n\in\N$, la formule explicite donne
+\[\begin{aligned}u_{n+1}-u_n&=-7(\frac{1}{3})^{n+1}+7(\frac{1}{3})^n\\&=7(1-\frac{1}{3})(\frac{1}{3})^n=\frac{14}{3}(\frac{1}{3})^n>0.\end{aligned}\]
+La suite est donc strictement croissante.
+
+\item \textit{[0{,}5 pt]} L'affirmation est fausse. Pour chaque entier $n$, $8-u_n=7(\frac{1}{3})^n>0$. Aucun terme n'est donc égal à $8$, quel que soit le nombre d'étapes.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0{,}5 pt]} $v_1=\sqrt{42+0}=\sqrt{42}$ et $v_2=\sqrt{42+\sqrt{42}}$.
+
+\item \textit{[1{,}5 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 7$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,7]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 42\le 42+v_n\le 42+7=49.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{42+v_n}\le\sqrt{49}=7.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,7]$.
+
+\item \textit{[1{,}5 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{42}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $42$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{42+v_{n+1}}\ge\sqrt{42+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[1 pt]} Notons $S(n)$ : « $v_n<7$ ». Au rang $0$, $v_0=0<7$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{42+v_n}<\sqrt{42+7}=\sqrt{49}=7.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<7$ pour tout $n\in\N$.
+
+\item \textit{[0{,}5 pt]} Non. Par exemple $P(n):n\ge1$ est vraie pour tous les entiers $n\ge1$ mais fausse en $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[1 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0{,}5 pt]} En développant, $5\vec u+5\vec v=5(\vi +\vec k)+5(\vj +\vec k)=5\vi +5\vj +10\vec k=\vec w$.
+
+\item \textit{[1{,}5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=5,\qquad\mu=5,\qquad\lambda+\mu=11.\]
+Les deux premières égalités donnent $\lambda+\mu=10$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $5\vec u-5\vec v=5(\vi +\vec k)-5(\vj +\vec k)=5\vi -5\vj $.
+
+\item \textit{[1 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\end{enumerate}
+
+\mxneed{24}
+
+\subsection*{Exercice 4 · Géométrie d'un parallélépipède}\begin{enumerate}
+
+\item \textit{[1 pt]} Par Chasles, $\vect{AG}=\vect{AB}+\vect{BC}+\vect{CG}=\vi +\vj +\vec k$. De même, $\vect{BH}=\vect{BA}+\vect{AD}+\vect{DH}=-\vi +\vj +\vec k$.
+
+\item \textit{[1 pt]} Par Chasles, $\vect{IJ}=\vect{AJ}-\vect{AI}=\frac{\vj -\vi }{15}=\frac{\vect{BD}}{15}$. Ces vecteurs sont non nuls et colinéaires : $(IJ)$ et $(BD)$ sont parallèles.
+
+\item \textit{[1 pt]} On a $\vect{CG}=\vect{AE}=\vec k$ et $\vect{AB}=\vi $. Ces deux vecteurs de la base ne sont pas colinéaires : une égalité $\vec k=t\vi $ contredirait l'unicité de la décomposition dans cette base.
+
+\item \textit{[1 pt]} Les diagonales d'un parallélépipède se coupent en leur milieu. Ainsi $\vect{AO}=\frac12\vect{AG}$, ce qui prouve $O\in(AG)$.
+
+\item \textit{[1 pt]} Les points vérifient $\vect{IJ}=\frac{-\vi +\vj }{15}$ et $\vect{IK}=\frac{-\vi +\vec k}{15}$. Si $\vect{IK}=t\vect{IJ}$, le coefficient de $\vec k$ donnerait $\frac{1}{15}=0$, impossible. Les vecteurs ne sont pas colinéaires, donc $I,J,K$ ne sont pas alignés.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

@@ -1,0 +1,104 @@
+\setcounter{chapter}{1}\mxunit{terminale-c03}{Limites de suites}\label{ch:2}
+
+{\small\sffamily\color{mxmint}S14, S16, S19, S20\par}
+
+\begin{keypoint}[Objectifs]Distinguer convergence et divergence ; calculer une limite ; utiliser comparaison, gendarmes et convergence monotone.\end{keypoint}
+
+\section{Notes de cours}
+\begin{keypoint}[Définitions]
+$u_n\to\ell\in\R$ signifie que tout intervalle ouvert contenant $\ell$ contient tous les termes à partir d'un certain rang. On dit que $(u_n)$ converge vers $\ell$.
+$u_n\to+\infty$ signifie que pour tout réel $A$, il existe un rang $N$ tel que $n\ge N\Rightarrow u_n\ge A$. $u_n\to-\infty$ signifie que pour tout réel $A$, il existe $N$ tel que $n\ge N\Rightarrow u_n\le A$.
+\end{keypoint}
+Une suite peut n'avoir aucune limite, même infinie : $(-1)^n$ oscille entre $-1$ et $1$. Toute suite convergente est bornée, mais la réciproque est fausse.
+\subsection{Opérations et comparaisons}
+Pour deux suites convergentes de limites $a,b$, la somme tend vers $a+b$, le produit vers $ab$ et le quotient vers $\frac{a}{b}$ si $b\ne0$. Les règles avec l'infini s'utilisent en contrôlant les signes. Les formes $+\infty-\infty$, $0\times\infty$, $\frac{\infty}{\infty}$, $\frac{0}{0}$ ne permettent pas de conclure directement.
+\paragraph{Exemple.} $\frac{3n^2-n+1}{2n^2+4}=\frac{3-\frac{1}{n}+\frac{1}{n^2}}{2+\frac{4}{n^2}}\to\frac{3}{2}$. Pour $\sqrt{n^2+n}-n$, multiplier par la quantité conjuguée donne $\frac{1}{\sqrt{1+\frac{1}{n}}+1}\to\frac{1}{2}$.
+\begin{keypoint}[Théorèmes]
+Si $u_n\le v_n$ à partir d'un certain rang et $u_n\to+\infty$, alors $v_n\to+\infty$. Si $a_n\le u_n\le b_n$ à partir d'un certain rang et $a_n,b_n\to\ell$, alors $u_n\to\ell$ (gendarmes).
+Toute suite croissante et majorée converge. Toute suite décroissante et minorée converge. Ce théorème est admis.
+\end{keypoint}
+\paragraph{Démonstration par comparaison.} Pour tout $A$, les termes de $u$ dépassent $A$ au-delà d'un rang $N_1$. L'inégalité $v_n\ge u_n$ vaut au-delà d'un rang $N_2$. Pour $n\ge\max(N_1,N_2)$, $v_n\ge A$.
+\paragraph{Démonstration : croissante non majorée.} Pour tout $A$, la non-majoration fournit $N$ tel que $u_N>A$. Par croissance, $n\ge N\Rightarrow u_n\ge u_N>A$, d'où $u_n\to+\infty$. La non-majoration seule ne suffit pas.
+\subsection{Suites géométriques}
+\[q^n\longrightarrow\begin{cases}0&\text{si }-1<q<1,\\1&\text{si }q=1,\\+\infty&\text{si }q>1.\end{cases}\]
+Si $q\le-1$, $(q^n)$ n'a pas de limite : alternance pour $q=-1$ ; sous-suites paire et impaire de signes opposés et de modules non bornés pour $q<-1$.
+\paragraph{Bernoulli et limite géométrique.} Fixons $a\ge0$. Démontrons $P(n)$ : « $(1+a)^n\ge1+na$ ». Au rang $0$, les deux membres valent $1$.
+Fixons $n\ge0$ et supposons $P(n)$ vraie. Comme $1+a>0$,
+\[(1+a)^{n+1}\ge(1+na)(1+a)=1+(n+1)a+na^2\ge1+(n+1)a.\]
+C'est $P(n+1)$ car $na^2\ge0$. Par récurrence, l'inégalité est vraie pour tout $n\ge0$. Si $q>1$, prendre $a=q-1>0$ et comparer à $1+na$. Si $0<q<1$, appliquer ce résultat à $\frac{1}{q}$, puis prendre les inverses. Pour $-1<q<0$, $|q^n|=|q|^n\to0$ et les gendarmes concluent. Le cas $q=0$ se traite à partir du rang $1$.
+\begin{method}[Suite récurrente]
+Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la convergence. Si $f$ est continue en la limite $\ell$, le passage à la limite donne $\ell=f(\ell)$ (continuité étudiée au chapitre 4). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.
+\end{method}
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]
+\addplot[only marks,mxmint,domain=0:15,samples=16]{2+3/(x+1)};
+\addplot[mxink,dashed,domain=0:15]{2};\end{axis}\end{tikzpicture}\par\small Les points se rapprochent de $2$ sans l'atteindre : $u_n=2+\frac{3}{n+1}$.\end{center}
+
+\section{Activité de recherche}\textbf{Une limite n'est pas un dernier terme --- 30 min.}\par On considère la suite $(u_n)$ définie sur $\N$ par $u_n=2+\frac3{n+1}$.
+\begin{enumerate}\item Calculer $u_0$, $u_9$ et $u_{99}$. Existe-t-il un entier $n$ tel que $u_n=2$ ? Justifier.
+\item Déterminer le plus petit entier $N$ tel que, pour tout entier $n\ge N$, $|u_n-2|<0{,}01$.
+\item Soit $\varepsilon>0$. Donner, en fonction de $\varepsilon$, un entier $N$ tel que $|u_n-2|<\varepsilon$ pour tout $n\ge N$.
+\item On définit sur $\N$ la suite $(v_n)$ par $v_n=2+\frac{(-1)^n}{n+1}$. Démontrer qu'elle converge vers $2$ et qu'elle n'est pas monotone. Que montre cet exemple ?\end{enumerate}
+
+\section{Exercices progressifs}
+
+\mxexerciseitem{1}{Entraînement}On définit sur $\N$ les suites $(u_n)$ et $(v_n)$ par $u_n=\frac{4n-1}{n+2}$ et $v_n=n^2-7n$. Déterminer leur limite en justifiant les transformations utilisées.
+
+\mxexerciseitem{2}{Entraînement}On définit $u_n=\sqrt{n+1}-\sqrt n$ pour tout $n\in\N$. En utilisant la quantité conjuguée, déterminer la limite de $(u_n)$.
+
+\mxexerciseitem{3}{Entraînement}On définit $u_n=\frac{\cos n}{n}$ pour tout entier $n\ge1$. Encadrer $u_n$, puis en déduire la limite de $(u_n)$.
+
+\mxexerciseitem{4}{Entraînement}La suite $(u_n)$ est croissante et vérifie $u_n<5$ pour tout $n\in\N$. Justifier qu'elle converge et préciser ce que l'on peut affirmer de sa limite. Est-elle nécessairement égale à $5$ ? Justifier.
+
+\mxexerciseitem{5}{Entraînement}On définit $u_n=3-2(-0{,}6)^n$ pour tout $n\in\N$. Déterminer la limite de $(u_n)$. Cette suite est-elle monotone ? Justifier.
+
+\section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 62, exercices 17 et 24.} En S16 : exercice 17, pour lever une forme indéterminée en divisant par une puissance de $n$. À la maison après S20 : exercice 24, pour rédiger une application du théorème des gendarmes.
+
+\section{Devoir à la maison}\textbf{DM2 --- Approcher une racine --- 50 min.}\par On considère $u_0=0$ et, pour tout $n\in\N$, $u_{n+1}=\sqrt{2+u_n}$. Les questions 1, 2 et 4 sont à traiter après S20 ; la question 3 sera reprise après le cours sur la continuité en S31.
+\begin{enumerate}\item Démontrer par récurrence que tous les termes sont définis et que $0\le u_n\le2$ pour tout $n\in\N$.
+\item Démontrer par récurrence que $u_{n+1}\ge u_n$ pour tout $n\in\N$. En déduire que $(u_n)$ converge.
+\item En utilisant la continuité de la fonction $x\mapsto\sqrt{2+x}$, déterminer la limite de $(u_n)$.
+\item Démontrer que $0\le2-u_{n+1}\le\frac{2-u_n}{2}$ pour tout $n\in\N$. En déduire une majoration de $2-u_n$ en fonction de $n$, puis un entier $N$ tel que $0\le2-u_n\le10^{-3}$ pour tout $n\ge N$.\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]Le DS2 précède S19 et S20 : y évaluer les définitions et les opérations déjà rencontrées, sans exiger la convergence monotone, Bernoulli ou les gendarmes. Dessiner des bandes horizontales autour de la limite et faire chercher un rang à partir duquel tous les termes y restent. Exiger la convergence avant de résoudre l'équation du point fixe. Montrer $(-1)^n$ pour dissocier « bornée » et « convergente ».\end{teachernote}
+
+\subsection{Corrigé de l'activité}\begin{enumerate}
+\item $u_0=5$, $u_9=2{,}3$ et $u_{99}=2{,}03$. Puisque $\frac{3}{n+1}>0$ à tout rang, $u_n>2$ : aucun terme ne vaut $2$.
+\item $|u_n-2|<0{,}01\Longleftrightarrow \frac{3}{n+1}<0{,}01\Longleftrightarrow n+1>300\Longleftrightarrow n\ge300$. Le premier rang convenable est donc $N=300$. Au rang $299$, l'écart vaut exactement $0{,}01$ et l'inégalité stricte n'est pas satisfaite.
+\item Pour $\varepsilon>0$, prenons $N=\lceil\frac{3}{\varepsilon}\rceil$, le plus petit entier supérieur ou égal à $\frac{3}{\varepsilon}$. Si $n\ge N$, alors $n+1>\frac{3}{\varepsilon}$, donc $|u_n-2|<\varepsilon$. Ce choix convient, même lorsqu'il n'est pas minimal.
+\item $|v_n-2|=\frac{1}{n+1}\to0$, donc $v_n\to2$. Mais $v_0=3$, $v_1=\frac{3}{2}$ et $v_2=\frac{7}{3}$ : on observe une baisse puis une hausse. Cette suite convergente n'est pas monotone.
+\end{enumerate}
+
+\paragraph{E1.}Pour $n\ge1$, $\frac{4n-1}{n+2}=\frac{4-\frac{1}{n}}{1+\frac{2}{n}}\to4$, car le dénominateur tend vers $1\ne0$. De même $n^2-7n=n^2(1-\frac{7}{n})$ ; le premier facteur tend vers $+\infty$ et le second vers $1>0$, donc le produit tend vers $+\infty$.
+
+\paragraph{E2.}Le conjugué donne $\sqrt{n+1}-\sqrt{n}=\frac{(n+1)-n}{\sqrt{n+1}+\sqrt n}=\frac{1}{\sqrt{n+1}+\sqrt n}$. Le dénominateur tend vers $+\infty$, donc la différence tend vers $0$.
+
+\paragraph{E3.}Pour $n\ge1$, $-1\le\cos n\le1$ et $n>0$, donc $-\frac{1}{n}\le u_n\le\frac{1}{n}$. Les deux bornes tendent vers $0$ ; le théorème des gendarmes donne $u_n\to0$.
+
+\paragraph{E4.}La suite est croissante et majorée par $5$, donc converge. Par passage à la limite dans $u_n\le5$, sa limite vérifie $\ell\le5$. Elle n'est pas forcément égale à $5$ : $u_n=2-\frac{1}{n+1}$ est croissante, majorée par $5$ et converge vers $2$.
+
+\paragraph{E5.}Comme $|-0{,}6|<1$, $(-0{,}6)^n\to0$, donc $u_n\to3$. Cependant $u_0=1$, $u_1=4{,}2$ et $u_2=2{,}28$ : la suite monte puis descend et n'est pas monotone.
+
+\subsection{Corrigé du DM2}\begin{enumerate}
+\item Notons $P(n)$ : « $u_n$ est défini et $0\le u_n\le2$ ». C'est vrai au rang $0$ puisque $u_0=0$. Fixons $n\ge0$ et supposons $P(n)$ vraie. On a $2\le2+u_n\le4$, donc $u_{n+1}=\sqrt{2+u_n}$ est défini et $\sqrt2\le u_{n+1}\le2$. Ainsi $P(n+1)$ est vraie. Par récurrence, tous les termes appartiennent à $[0,2]$.
+\item Posons $R(n)$ : « $u_{n+1}\ge u_n$ ». Pour $n=0$, $u_1=\sqrt2\ge0=u_0$. Fixons $n\ge0$ et supposons $R(n)$ vraie. La croissance de $x\mapsto\sqrt{2+x}$ sur $[0,2]$ donne
+\[u_{n+2}=\sqrt{2+u_{n+1}}\ge\sqrt{2+u_n}=u_{n+1}.\]
+Donc $R(n+1)$ est vraie. Par récurrence, $(u_n)$ est croissante. Elle est majorée par $2$, donc converge vers un réel $\ell\in[0,2]$.
+\item La fonction $x\mapsto\sqrt{2+x}$ est continue en $\ell$. Par passage à la limite, $\ell=\sqrt{2+\ell}$. Comme $\ell\ge0$, cela équivaut à $\ell^2-\ell-2=0$, soit $(\ell-2)(\ell+1)=0$. La racine $-1$ est exclue ; donc $\ell=2$.
+\item En utilisant le conjugué et $u_n\le2$,
+\[0\le2-u_{n+1}=\frac{2-u_n}{2+\sqrt{2+u_n}}\le\frac{2-u_n}{2}.\]
+Notons $T(n)$ : « $0\le2-u_n\le\frac{2}{2^n}$ ». Au rang $0$, $2-u_0=2$. Si $T(n)$ est vraie pour un entier fixé $n\ge0$, alors
+\[0\le2-u_{n+1}\le\frac12\frac2{2^n}=\frac2{2^{n+1}}.\]
+L'initialisation et l'hérédité prouvent $T(n)$ à tout rang. Comme $\frac{2}{2^{11}}=\frac{1}{1024}<10^{-3}$, $n=11$ suffit. C'est un rang garanti par une majoration, sans affirmation de minimalité. Cette question peut être traitée avant la question 3 : le nombre $2$ intervient déjà dans l'encadrement.
+\end{enumerate}
+
+\subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 17.} Les quotients sont d'abord de forme indéterminée. Pour $n\ge1$,
+\[u_n=\frac{2n-4}{n^2+1}=\frac{2\left(1-\frac2n\right)}{n\left(1+\frac1{n^2}\right)}\longrightarrow0.\]
+De même,
+\[v_n=\frac{2-5n}{4n+7}=\frac{\frac2n-5}{4+\frac7n}\longrightarrow-\frac54,\qquad w_n=n\frac{-1-\frac{10}{n^2}+\frac4{n^3}}{2+\frac3n+\frac1{n^2}}\longrightarrow-\infty.\]
+Le dernier quotient tend vers $-\frac12$, et le facteur $n$ vers $+\infty$.
+\paragraph{Exercice 24.} Pour tout $n\ge1$, $-1\le(-1)^n\le1$. Puisque $n^2>0$, on obtient $-\frac1{n^2}\le u_n\le\frac1{n^2}$. Les deux bornes tendent vers $0$ ; le théorème des gendarmes donne $u_n\to0$.
+
+\fi
+

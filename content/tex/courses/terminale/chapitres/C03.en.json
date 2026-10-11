@@ -1,0 +1,503 @@
+{
+ "unit": "C03.fr.tex",
+ "segments": {
+  "d02191819f69": {
+   "fr": "Limites de suites",
+   "en": "Limits of sequences",
+   "status": "aligned",
+   "order": 0
+  },
+  "4f7b541dd18e": {
+   "fr": "S14, S16, S19, S20",
+   "en": "S14, S16, S19, S20",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "2a2b1daf8f69": {
+   "fr": "Distinguer convergence et divergence ; calculer une limite ; utiliser comparaison, gendarmes et convergence monotone.",
+   "en": "Distinguish convergence from divergence; calculate a limit; use comparison, the squeeze theorem and monotone convergence.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 5
+  },
+  "ec8ee97d9687": {
+   "fr": "[[m1]] signifie que tout intervalle ouvert contenant [[m2]] contient tous les termes à partir d'un certain rang. On dit que [[m3]] converge vers [[m4]].\n[[m5]] signifie que pour tout réel [[m6]], il existe un rang [[m7]] tel que [[m8]]. [[m9]] signifie que pour tout réel [[m10]], il existe [[m11]] tel que [[m12]].",
+   "en": "[[m1]] means that every open interval containing [[m2]] contains all the terms from some index onwards. We say that [[m3]] converges to [[m4]].\n[[m5]] means that for every real number [[m6]], there exists an index [[m7]] such that [[m8]]. [[m9]] means that for every real number [[m10]], there exists [[m11]] such that [[m12]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "ec75171b9c88": {
+   "fr": "Une suite peut n'avoir aucune limite, même infinie : [[m1]] oscille entre [[m2]] et [[m3]]. Toute suite convergente est bornée, mais la réciproque est fausse.",
+   "en": "A sequence may have no limit, even an infinite one: [[m1]] oscillates between [[m2]] and [[m3]]. Every convergent sequence is bounded, but the converse is false.",
+   "status": "aligned",
+   "order": 7
+  },
+  "dd607c688d19": {
+   "fr": "Opérations et comparaisons",
+   "en": "Operations and comparisons",
+   "status": "aligned",
+   "order": 8
+  },
+  "aa69757cdcb8": {
+   "fr": "Pour deux suites convergentes de limites [[m1]], la somme tend vers [[m2]], le produit vers [[m3]] et le quotient vers [[m4]] si [[m5]]. Les règles avec l'infini s'utilisent en contrôlant les signes. Les formes [[m6]], [[m7]], [[m8]], [[m9]] ne permettent pas de conclure directement.",
+   "en": "For two convergent sequences with limits [[m1]], the sum tends to [[m2]], the product to [[m3]] and the quotient to [[m4]] if [[m5]]. The rules involving infinity are used by keeping track of the signs. The forms [[m6]], [[m7]], [[m8]], [[m9]] do not allow a direct conclusion.",
+   "status": "aligned",
+   "order": 9
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 10
+  },
+  "b6f8b1971072": {
+   "fr": "[[m1]]. Pour [[m2]], multiplier par la quantité conjuguée donne [[m3]].",
+   "en": "[[m1]]. For [[m2]], multiplying by the conjugate gives [[m3]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "8877356db3ec": {
+   "fr": "Théorèmes",
+   "en": "Theorems",
+   "status": "aligned",
+   "order": 12
+  },
+  "1c5af38ff6e8": {
+   "fr": "Si [[m1]] à partir d'un certain rang et [[m2]], alors [[m3]]. Si [[m4]] à partir d'un certain rang et [[m5]], alors [[m6]] (gendarmes).\nToute suite croissante et majorée converge. Toute suite décroissante et minorée converge. Ce théorème est admis.",
+   "en": "If [[m1]] from some index onwards and [[m2]], then [[m3]]. If [[m4]] from some index onwards and [[m5]], then [[m6]] (squeeze theorem).\nEvery increasing sequence that is bounded above converges. Every decreasing sequence that is bounded below converges. This theorem is accepted without proof.",
+   "status": "aligned",
+   "order": 13
+  },
+  "7c912439b1ce": {
+   "fr": "Démonstration par comparaison.",
+   "en": "Proof by comparison.",
+   "status": "aligned",
+   "order": 14
+  },
+  "199112bb5b1a": {
+   "fr": "Pour tout [[m1]], les termes de [[m2]] dépassent [[m3]] au-delà d'un rang [[m4]]. L'inégalité [[m5]] vaut au-delà d'un rang [[m6]]. Pour [[m7]], [[m8]].",
+   "en": "For every [[m1]], the terms of [[m2]] exceed [[m3]] beyond an index [[m4]]. The inequality [[m5]] holds beyond an index [[m6]]. For [[m7]], [[m8]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "2491d476102f": {
+   "fr": "Démonstration : croissante non majorée.",
+   "en": "Proof: increasing and not bounded above.",
+   "status": "aligned",
+   "order": 16
+  },
+  "a8aed3b62a1e": {
+   "fr": "Pour tout [[m1]], la non-majoration fournit [[m2]] tel que [[m3]]. Par croissance, [[m4]], d'où [[m5]]. La non-majoration seule ne suffit pas.",
+   "en": "For every [[m1]], the lack of an upper bound provides [[m2]] such that [[m3]]. By monotonicity, [[m4]], hence [[m5]]. Being unbounded alone is not enough.",
+   "status": "aligned",
+   "order": 17
+  },
+  "3dcb2c5300b1": {
+   "fr": "Suites géométriques",
+   "en": "Geometric sequences",
+   "status": "aligned",
+   "order": 18
+  },
+  "4cb3ec82dafd": {
+   "fr": "Si [[m1]], [[m2]] n'a pas de limite : alternance pour [[m3]] ; sous-suites paire et impaire de signes opposés et de modules non bornés pour [[m4]].",
+   "en": "If [[m1]], [[m2]] has no limit: alternation for [[m3]]; for [[m4]], the even and odd subsequences have opposite signs and unbounded moduli.",
+   "status": "aligned",
+   "order": 19
+  },
+  "6c628cfd1a53": {
+   "fr": "Bernoulli et limite géométrique.",
+   "en": "Bernoulli and the geometric limit.",
+   "status": "aligned",
+   "order": 20
+  },
+  "4f7c65c208d0": {
+   "fr": "Fixons [[m1]]. Démontrons [[m2]] : « [[m3]] ». Au rang [[m4]], les deux membres valent [[m5]].\nFixons [[m6]] et supposons [[m7]] vraie. Comme [[m8]],",
+   "en": "Fix [[m1]]. Let us prove [[m2]]: ``[[m3]]''. At index [[m4]], both sides equal [[m5]].\nFix [[m6]] and assume [[m7]] is true. Since [[m8]],",
+   "status": "aligned",
+   "order": 21
+  },
+  "75cddaea1039": {
+   "fr": "C'est [[m1]] car [[m2]]. Par récurrence, l'inégalité est vraie pour tout [[m3]]. Si [[m4]], prendre [[m5]] et comparer à [[m6]]. Si [[m7]], appliquer ce résultat à [[m8]], puis prendre les inverses. Pour [[m9]], [[m10]] et les gendarmes concluent. Le cas [[m11]] se traite à partir du rang [[m12]].",
+   "en": "This is [[m1]] since [[m2]]. By induction, the inequality is true for every [[m3]]. If [[m4]], take [[m5]] and compare with [[m6]]. If [[m7]], apply this result to [[m8]], then take reciprocals. For [[m9]], [[m10]] and the squeeze theorem concludes. The case [[m11]] is handled from index [[m12]] onwards.",
+   "status": "aligned",
+   "order": 22
+  },
+  "a33f7c256c12": {
+   "fr": "Suite récurrente",
+   "en": "Recurrence sequence",
+   "status": "aligned",
+   "order": 23
+  },
+  "434e8fef3e60": {
+   "fr": "Pour [[m1]], établir une borne et la monotonie pour prouver la convergence. Si [[m2]] est continue en la limite [[m3]], le passage à la limite donne [[m4]] (continuité étudiée au chapitre 4). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.",
+   "en": "For [[m1]], establish a bound and monotonicity to prove convergence. If [[m2]] is continuous at the limit [[m3]], passing to the limit gives [[m4]] (continuity is studied in chapter 4). Solving this equation never proves, on its own, that the sequence converges.",
+   "status": "aligned",
+   "order": 24
+  },
+  "7b46ac24068d": {
+   "fr": "Les points se rapprochent de [[m1]] sans l'atteindre : [[m2]].",
+   "en": "The points get closer to [[m1]] without reaching it: [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 26
+  },
+  "5fdd906713cc": {
+   "fr": "\\textbf{Une limite n'est pas un dernier terme --- 30 min.}",
+   "en": "\\textbf{A limit is not a last term --- 30 min.}",
+   "status": "aligned",
+   "order": 27
+  },
+  "c380fbe6cb8e": {
+   "fr": "On considère la suite [[m1]] définie sur [[m2]] par [[m3]].",
+   "en": "Consider the sequence [[m1]] defined on [[m2]] by [[m3]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "857efd18d850": {
+   "fr": "Calculer [[m1]], [[m2]] et [[m3]]. Existe-t-il un entier [[m4]] tel que [[m5]] ? Justifier.",
+   "en": "Calculate [[m1]], [[m2]] and [[m3]]. Is there an integer [[m4]] such that [[m5]]? Justify.",
+   "status": "aligned",
+   "order": 29
+  },
+  "42a7dfdcae44": {
+   "fr": "Déterminer le plus petit entier [[m1]] tel que, pour tout entier [[m2]], [[m3]].",
+   "en": "Determine the smallest integer [[m1]] such that, for every integer [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "f2a94a952efa": {
+   "fr": "Soit [[m1]]. Donner, en fonction de [[m2]], un entier [[m3]] tel que [[m4]] pour tout [[m5]].",
+   "en": "Let [[m1]]. Give, in terms of [[m2]], an integer [[m3]] such that [[m4]] for every [[m5]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "263db706c41f": {
+   "fr": "On définit sur [[m1]] la suite [[m2]] par [[m3]]. Démontrer qu'elle converge vers [[m4]] et qu'elle n'est pas monotone. Que montre cet exemple ?",
+   "en": "Define on [[m1]] the sequence [[m2]] by [[m3]]. Prove that it converges to [[m4]] and that it is not monotonic. What does this example show?",
+   "status": "aligned",
+   "order": 32
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 33
+  },
+  "f673ea4f551f": {
+   "fr": "On définit sur [[m1]] les suites [[m2]] et [[m3]] par [[m4]] et [[m5]]. Déterminer leur limite en justifiant les transformations utilisées.",
+   "en": "Define on [[m1]] the sequences [[m2]] and [[m3]] by [[m4]] and [[m5]]. Determine their limits, justifying the transformations used.",
+   "status": "aligned",
+   "order": 35
+  },
+  "e63e334434eb": {
+   "fr": "On définit [[m1]] pour tout [[m2]]. En utilisant la quantité conjuguée, déterminer la limite de [[m3]].",
+   "en": "Define [[m1]] for every [[m2]]. Using the conjugate, determine the limit of [[m3]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "e9dead01f4cb": {
+   "fr": "On définit [[m1]] pour tout entier [[m2]]. Encadrer [[m3]], puis en déduire la limite de [[m4]].",
+   "en": "Define [[m1]] for every integer [[m2]]. Bound [[m3]] above and below, then deduce the limit of [[m4]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "aaba41cfbd42": {
+   "fr": "La suite [[m1]] est croissante et vérifie [[m2]] pour tout [[m3]]. Justifier qu'elle converge et préciser ce que l'on peut affirmer de sa limite. Est-elle nécessairement égale à [[m4]] ? Justifier.",
+   "en": "The sequence [[m1]] is increasing and satisfies [[m2]] for every [[m3]]. Justify that it converges and state what can be asserted about its limit. Is it necessarily equal to [[m4]]? Justify.",
+   "status": "aligned",
+   "order": 41
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 42
+  },
+  "35dacebefd77": {
+   "fr": "On définit [[m1]] pour tout [[m2]]. Déterminer la limite de [[m3]]. Cette suite est-elle monotone ? Justifier.",
+   "en": "Define [[m1]] for every [[m2]]. Determine the limit of [[m3]]. Is this sequence monotonic? Justify.",
+   "status": "aligned",
+   "order": 43
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 44
+  },
+  "44464122256f": {
+   "fr": "\\textbf{Barbazo, p. 62, exercices 17 et 24.} En S16 : exercice 17, pour lever une forme indéterminée en divisant par une puissance de [[m1]]. À la maison après S20 : exercice 24, pour rédiger une application du théorème des gendarmes.",
+   "en": "\\textbf{Barbazo, p. 62, exercises 17 and 24.} In S16: exercise 17, to resolve an indeterminate form by dividing by a power of [[m1]]. At home after S20: exercise 24, to write up an application of the squeeze theorem.",
+   "status": "aligned",
+   "order": 45
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 46
+  },
+  "790ac992bcab": {
+   "fr": "\\textbf{DM2 --- Approcher une racine --- 50 min.}",
+   "en": "\\textbf{Homework 2 --- Approximating a root --- 50 min.}",
+   "status": "aligned",
+   "order": 47
+  },
+  "04eb379a3c3c": {
+   "fr": "On considère [[m1]] et, pour tout [[m2]], [[m3]]. Les questions 1, 2 et 4 sont à traiter après S20 ; la question 3 sera reprise après le cours sur la continuité en S31.",
+   "en": "Consider [[m1]] and, for every [[m2]], [[m3]]. Questions 1, 2 and 4 are to be done after S20; question 3 will be revisited after the lesson on continuity in S31.",
+   "status": "aligned",
+   "order": 48
+  },
+  "4160a824effa": {
+   "fr": "Démontrer par récurrence que tous les termes sont définis et que [[m1]] pour tout [[m2]].",
+   "en": "Prove by induction that all the terms are defined and that [[m1]] for every [[m2]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "deaa51f1c212": {
+   "fr": "Démontrer par récurrence que [[m1]] pour tout [[m2]]. En déduire que [[m3]] converge.",
+   "en": "Prove by induction that [[m1]] for every [[m2]]. Deduce that [[m3]] converges.",
+   "status": "aligned",
+   "order": 50
+  },
+  "1ee0e3c8b67f": {
+   "fr": "En utilisant la continuité de la fonction [[m1]], déterminer la limite de [[m2]].",
+   "en": "Using the continuity of the function [[m1]], determine the limit of [[m2]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "43144164c071": {
+   "fr": "Démontrer que [[m1]] pour tout [[m2]]. En déduire une majoration de [[m3]] en fonction de [[m4]], puis un entier [[m5]] tel que [[m6]] pour tout [[m7]].",
+   "en": "Prove that [[m1]] for every [[m2]]. Deduce an upper bound for [[m3]] in terms of [[m4]], then an integer [[m5]] such that [[m6]] for every [[m7]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 53
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 54
+  },
+  "e27620cc87b5": {
+   "fr": "Le DS2 précède S19 et S20 : y évaluer les définitions et les opérations déjà rencontrées, sans exiger la convergence monotone, Bernoulli ou les gendarmes. Dessiner des bandes horizontales autour de la limite et faire chercher un rang à partir duquel tous les termes y restent. Exiger la convergence avant de résoudre l'équation du point fixe. Montrer [[m1]] pour dissocier « bornée » et « convergente ».",
+   "en": "Test 2 comes before S19 and S20: assess in it the definitions and the operations already met, without requiring monotone convergence, Bernoulli or the squeeze theorem. Draw horizontal bands around the limit and have students look for an index from which all the terms stay inside them. Require convergence before solving the fixed-point equation. Show [[m1]] to separate ``bounded'' from ``convergent''.",
+   "status": "aligned",
+   "order": 55
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 56
+  },
+  "2b78601620ee": {
+   "fr": "[[m1]], [[m2]] et [[m3]]. Puisque [[m4]] à tout rang, [[m5]] : aucun terme ne vaut [[m6]].",
+   "en": "[[m1]], [[m2]] and [[m3]]. Since [[m4]] at every index, [[m5]]: no term equals [[m6]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "e5a61be5079c": {
+   "fr": "[[m1]]. Le premier rang convenable est donc [[m2]]. Au rang [[m3]], l'écart vaut exactement [[m4]] et l'inégalité stricte n'est pas satisfaite.",
+   "en": "[[m1]]. The first suitable index is therefore [[m2]]. At index [[m3]], the gap is exactly [[m4]] and the strict inequality is not satisfied.",
+   "status": "aligned",
+   "order": 58
+  },
+  "5a9a935bcd0b": {
+   "fr": "Pour [[m1]], prenons [[m2]], le plus petit entier supérieur ou égal à [[m3]]. Si [[m4]], alors [[m5]], donc [[m6]]. Ce choix convient, même lorsqu'il n'est pas minimal.",
+   "en": "For [[m1]], take [[m2]], the smallest integer greater than or equal to [[m3]]. If [[m4]], then [[m5]], hence [[m6]]. This choice works, even when it is not minimal.",
+   "status": "aligned",
+   "order": 59
+  },
+  "ab7c6a2d7bee": {
+   "fr": "[[m1]], donc [[m2]]. Mais [[m3]], [[m4]] et [[m5]] : on observe une baisse puis une hausse. Cette suite convergente n'est pas monotone.",
+   "en": "[[m1]], hence [[m2]]. But [[m3]], [[m4]] and [[m5]]: we observe a decrease then an increase. This convergent sequence is not monotonic.",
+   "status": "aligned",
+   "order": 60
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 61
+  },
+  "795339fe3f50": {
+   "fr": "Pour [[m1]], [[m2]], car le dénominateur tend vers [[m3]]. De même [[m4]] ; le premier facteur tend vers [[m5]] et le second vers [[m6]], donc le produit tend vers [[m7]].",
+   "en": "For [[m1]], [[m2]], since the denominator tends to [[m3]]. Similarly [[m4]]; the first factor tends to [[m5]] and the second to [[m6]], so the product tends to [[m7]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 63
+  },
+  "6246cbb837e7": {
+   "fr": "Le conjugué donne [[m1]]. Le dénominateur tend vers [[m2]], donc la différence tend vers [[m3]].",
+   "en": "The conjugate gives [[m1]]. The denominator tends to [[m2]], so the difference tends to [[m3]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 65
+  },
+  "c19274bc1b21": {
+   "fr": "Pour [[m1]], [[m2]] et [[m3]], donc [[m4]]. Les deux bornes tendent vers [[m5]] ; le théorème des gendarmes donne [[m6]].",
+   "en": "For [[m1]], [[m2]] and [[m3]], so [[m4]]. Both bounds tend to [[m5]]; the squeeze theorem gives [[m6]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 67
+  },
+  "cb757b770580": {
+   "fr": "La suite est croissante et majorée par [[m1]], donc converge. Par passage à la limite dans [[m2]], sa limite vérifie [[m3]]. Elle n'est pas forcément égale à [[m4]] : [[m5]] est croissante, majorée par [[m6]] et converge vers [[m7]].",
+   "en": "The sequence is increasing and bounded above by [[m1]], so it converges. By passing to the limit in [[m2]], its limit satisfies [[m3]]. It is not necessarily equal to [[m4]]: [[m5]] is increasing, bounded above by [[m6]] and converges to [[m7]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 69
+  },
+  "5b4cf14a85a6": {
+   "fr": "Comme [[m1]], [[m2]], donc [[m3]]. Cependant [[m4]], [[m5]] et [[m6]] : la suite monte puis descend et n'est pas monotone.",
+   "en": "Since [[m1]], [[m2]], so [[m3]]. However [[m4]], [[m5]] and [[m6]]: the sequence rises then falls and is not monotonic.",
+   "status": "aligned",
+   "order": 70
+  },
+  "2cc14b17e877": {
+   "fr": "Corrigé du DM2",
+   "en": "Solutions to Homework 2",
+   "status": "aligned",
+   "order": 71
+  },
+  "b3f4b23f72e4": {
+   "fr": "Notons [[m1]] : « [[m2]] est défini et [[m3]] ». C'est vrai au rang [[m4]] puisque [[m5]]. Fixons [[m6]] et supposons [[m7]] vraie. On a [[m8]], donc [[m9]] est défini et [[m10]]. Ainsi [[m11]] est vraie. Par récurrence, tous les termes appartiennent à [[m12]].",
+   "en": "Let [[m1]] be the statement ``[[m2]] is defined and [[m3]]''. It is true at index [[m4]] since [[m5]]. Fix [[m6]] and assume [[m7]] is true. We have [[m8]], so [[m9]] is defined and [[m10]]. Thus [[m11]] is true. By induction, all the terms belong to [[m12]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "6702a1f23015": {
+   "fr": "Posons [[m1]] : « [[m2]] ». Pour [[m3]], [[m4]]. Fixons [[m5]] et supposons [[m6]] vraie. La croissance de [[m7]] sur [[m8]] donne",
+   "en": "Let [[m1]] be the statement ``[[m2]]''. For [[m3]], [[m4]]. Fix [[m5]] and assume [[m6]] is true. The fact that [[m7]] is increasing on [[m8]] gives",
+   "status": "aligned",
+   "order": 73
+  },
+  "f280e4c3ddae": {
+   "fr": "Donc [[m1]] est vraie. Par récurrence, [[m2]] est croissante. Elle est majorée par [[m3]], donc converge vers un réel [[m4]].",
+   "en": "So [[m1]] is true. By induction, [[m2]] is increasing. It is bounded above by [[m3]], so it converges to a real number [[m4]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "4e9eb785577d": {
+   "fr": "La fonction [[m1]] est continue en [[m2]]. Par passage à la limite, [[m3]]. Comme [[m4]], cela équivaut à [[m5]], soit [[m6]]. La racine [[m7]] est exclue ; donc [[m8]].",
+   "en": "The function [[m1]] is continuous at [[m2]]. By passing to the limit, [[m3]]. Since [[m4]], this is equivalent to [[m5]], that is [[m6]]. The root [[m7]] is excluded; hence [[m8]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "40c882a98ef0": {
+   "fr": "En utilisant le conjugué et [[m1]],",
+   "en": "Using the conjugate and [[m1]],",
+   "status": "aligned",
+   "order": 76
+  },
+  "ba03b5474d71": {
+   "fr": "Notons [[m1]] : « [[m2]] ». Au rang [[m3]], [[m4]]. Si [[m5]] est vraie pour un entier fixé [[m6]], alors",
+   "en": "Let [[m1]] be the statement ``[[m2]]''. At index [[m3]], [[m4]]. If [[m5]] is true for a fixed integer [[m6]], then",
+   "status": "aligned",
+   "order": 77
+  },
+  "5aaf489a550a": {
+   "fr": "L'initialisation et l'hérédité prouvent [[m1]] à tout rang. Comme [[m2]], [[m3]] suffit. C'est un rang garanti par une majoration, sans affirmation de minimalité. Cette question peut être traitée avant la question 3 : le nombre [[m4]] intervient déjà dans l'encadrement.",
+   "en": "The base case and the inductive step prove [[m1]] at every index. Since [[m2]], [[m3]] suffices. This is an index guaranteed by an upper bound, with no claim of minimality. This question can be done before question 3: the number [[m4]] already appears in the bounds.",
+   "status": "aligned",
+   "order": 78
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 79
+  },
+  "c4f79da7be39": {
+   "fr": "Exercice 17.",
+   "en": "Exercise 17.",
+   "status": "aligned",
+   "order": 80
+  },
+  "91610442aab8": {
+   "fr": "Les quotients sont d'abord de forme indéterminée. Pour [[m1]],",
+   "en": "The quotients are at first indeterminate forms. For [[m1]],",
+   "status": "aligned",
+   "order": 81
+  },
+  "18cf9fa21856": {
+   "fr": "De même,",
+   "en": "Similarly,",
+   "status": "aligned",
+   "order": 82
+  },
+  "ccd6752a0124": {
+   "fr": "Le dernier quotient tend vers [[m1]], et le facteur [[m2]] vers [[m3]].",
+   "en": "The last quotient tends to [[m1]], and the factor [[m2]] to [[m3]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "1e4e12edb437": {
+   "fr": "Exercice 24.",
+   "en": "Exercise 24.",
+   "status": "aligned",
+   "order": 84
+  },
+  "00e936c70f46": {
+   "fr": "Pour tout [[m1]], [[m2]]. Puisque [[m3]], on obtient [[m4]]. Les deux bornes tendent vers [[m5]] ; le théorème des gendarmes donne [[m6]].",
+   "en": "For every [[m1]], [[m2]]. Since [[m3]], we obtain [[m4]]. Both bounds tend to [[m5]]; the squeeze theorem gives [[m6]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "7dd9b3388122": {
+   "fr": "si ",
+   "en": "if ",
+   "status": "aligned",
+   "order": 88
+  }
+ }
+}

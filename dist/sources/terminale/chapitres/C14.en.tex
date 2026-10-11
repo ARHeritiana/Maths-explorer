@@ -1,0 +1,101 @@
+% GENERATED, edit the French unit or the translation table
+\setcounter{chapter}{4}\mxunit{terminale-c14}{Trigonometric functions}\label{ch:5}
+
+{\small\sffamily\color{mxmint}S75, S76, S78, S79\par}
+
+\begin{keypoint}[Objectives]Use parity and periodicity; differentiate sine and cosine; solve equations and inequalities; study a periodic function.\end{keypoint}
+
+\section{Course notes}
+\subsection{Circle and functions}
+On the unit circle, the point located by an angle $x$ in radians has coordinates $(\cos x,\sin x)$. For every real number $x$,
+\[\cos^2x+\sin^2x=1,\quad -1\le\cos x,\sin x\le1.\]
+Cosine is even: $\cos(-x)=\cos x$. Sine is odd: $\sin(-x)=-\sin x$. Both functions are $2\pi$-periodic.
+\[\begin{array}{c|ccccc}x&0&\frac{\pi}{6}&\frac{\pi}{4}&\frac{\pi}{3}&\frac{\pi}{2}\\\hline
+\cos x&1&\frac{\sqrt{3}}{2}&\frac{\sqrt{2}}{2}&\frac{1}{2}&0\\
+\sin x&0&\frac{1}{2}&\frac{\sqrt{2}}{2}&\frac{\sqrt{3}}{2}&1
+\end{array}\]
+\subsection{Derivatives and variations}
+\[(\sin x)'=\cos x,\qquad(\cos x)'=-\sin x.\]\[
+(\sin(ax+b))'=a\cos(ax+b),\quad(\cos(ax+b))'=-a\sin(ax+b).\]
+On $[-\pi,\pi]$, cosine increases on $[-\pi,0]$ from $-1$ to $1$, then decreases on $[0,\pi]$ from $1$ to $-1$. Sine decreases on $[-\pi,-\frac{\pi}{2}]$, increases on $[-\frac{\pi}{2},\frac{\pi}{2}]$, then decreases on $[\frac{\pi}{2},\pi]$.
+\paragraph{Justification.} Read the sign of sine and cosine on the circle, then apply the link between derivative and variations. Periodicity extends the curves; it does not remove the need to study an interval of sufficient length.
+\subsection{Equations and inequalities}
+If $|a|>1$, $\cos x=a$ and $\sin x=a$ have no real solution. For a known angle $\theta$,
+\[\cos x=\cos\theta\Longleftrightarrow x=\theta+2k\pi\ \text{or}\ x=-\theta+2k\pi,\]
+\[\sin x=\sin\theta\Longleftrightarrow x=\theta+2k\pi\ \text{or}\ x=\pi-\theta+2k\pi,\quad k\in\Z.\]
+We then restrict the solutions to the required interval and eliminate duplicates.
+\paragraph{Examples on $[-\pi,\pi]$.} $\cos x=\frac{1}{2}$ gives $x=\pm\frac{\pi}{3}$; $\sin x=\frac{1}{2}$ gives $x=\frac{\pi}{6}$ or $\frac{5\pi}{6}$. $\cos x\le\frac{1}{2}$ gives $[-\pi,-\frac{\pi}{3}]\cup[\frac{\pi}{3},\pi]$; $\sin x\ge\frac{1}{2}$ gives $[\frac{\pi}{6},\frac{5\pi}{6}]$.
+\begin{method}[A trigonometric composite]
+To solve $\cos (2x)=\frac{1}{2}$ on $[-\pi,\pi]$, let $t=2x\in[-2\pi,2\pi]$, solve for $t$, then divide by $2$. We obtain $x\in\{-\frac{5\pi}{6},-\frac{\pi}{6},\frac{\pi}{6},\frac{5\pi}{6}\}$.
+\end{method}
+\paragraph{Optimisation.} For $f(x)=\sin x+\frac12\sin(2x)$ on $[0,\pi]$, $f'=\cos x+\cos(2x)=2\cos^2x+\cos x-1=(2\cos x-1)(\cos x+1)$. The function increases up to $\frac{\pi}{3}$ then decreases; maximum $\frac{3\sqrt{3}}{4}$.
+\paragraph{Double-angle identities used in the exercises.} For every real number $x$, $\sin(2x)=2\sin x\cos x$ and $\cos(2x)=\cos^2x-\sin^2x=2\cos^2x-1$. These identities are recalled here so that their use in problems is not implicit.
+\paragraph{Symmetries of the curves.} The evenness of cosine corresponds to a symmetry about the vertical axis; the oddness of sine to a point symmetry about the origin. Periodicity extends each curve by translation by the vector $(2\pi,0)$.
+
+
+\begin{center}\begin{tikzpicture}[scale=1.6]
+\draw[->,gray](-1.3,0)--(1.4,0);\draw[->,gray](0,-1.25)--(0,1.4);\draw[mxink](0,0)circle(1);
+\draw[mxmint,thick](0,0)--(.5,.866);\draw[mxmint,dashed](.5,0)--(.5,.866)--(0,.866);
+\draw[->,mxmint](.35,0)arc(0:60:.35);\node[right]at(.25,.27){$x$};
+\node[below]at(.5,0){$\cos x$};\node[left]at(0,.866){$\sin x$};\node[above right]at(.5,.866){$M$};
+\end{tikzpicture}\par\small The coordinates of the point on the circle are $(\cos x,\sin x)$.\end{center}
+
+\section{Research activity}\textbf{Height of a point on a wheel --- 35 min.}\par A wheel turns at constant speed in a vertical plane. Its radius is $2$ m and its centre is $3$ m above the ground. A point on the wheel is at its lowest position at time $t=0$. The wheel makes one revolution in $8$ s. Its height is modelled by $h(t)=3-2\cos\left(\frac{\pi t}{4}\right)$, where $t$ is in seconds and $h(t)$ in metres.
+\begin{enumerate}\item Check that the model gives the stated initial height, a period of $8$ s and the expected minimum and maximum heights.
+\item Calculate $h' (t)$, then study the variations of $h$ on $[0;8]$.
+\item Determine all times $t\in[0;8]$ for which the height is $4$ m.
+\item Determine the total time, during this revolution, for which the point is at least $4$ m above the ground.\end{enumerate}
+
+\section{Progressive exercises}
+
+\mxexerciseitem{1}{Practice}Solve the equation $\sin x=-\frac12$ in $[-\pi;\pi]$.
+
+\mxexerciseitem{2}{Practice}Solve the inequality $\cos x\ge\frac{\sqrt2}{2}$ in $[-\pi;\pi]$.
+
+\mxexerciseitem{3}{Practice}Define on $\R$ the functions $f(x)=\cos(3x-1)$ and $g(x)=\sin^2x$. Calculate their derivatives.
+
+\mxexerciseitem{4}{Practice}Consider $f(x)=2+\sin x$ on $[0;2\pi]$. Calculate its derivative and draw up its table of variations.
+
+\mxexerciseitem{5}{Practice}Calculate $\displaystyle\int_0^\pi\sin x\,\dd x$, then the mean value of the sine function on $[0;\pi]$.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p.~166, exercise 19.} In S75: question 1, to read a symmetry and a period from a curve. At home: question 2, to prove the conjectures using identities valid for every real number.
+
+\section{Homework}\textbf{Homework 5 --- Splitting an area --- 55 min, after S79.}\par Consider the function $f$ defined on $[0;\frac\pi2]$ by $f(x)=\sin x\cos x$. Its curve is drawn in an orthonormal frame.
+\begin{enumerate}\item Calculate $f' (x)$ and determine the maximum of $f$ on this interval.
+\item Solve on $[0;\frac\pi2]$ the inequality $f(x)\ge\frac14$.
+\item Calculate $\displaystyle\int_0^{\frac{\pi}{2}}f(x)\,\dd x$, then the mean value of $f$ on $[0;\frac\pi2]$.
+\item For $a\in[0;\frac\pi2]$, let $A(a)=\displaystyle\int_0^a f(x)\,\dd x$. Determine $a$ so that the region under the curve between $0$ and $a$ has an area equal to half the total area under the curve between $0$ and $\frac\pi2$.\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]This chapter is really finished at the beginning of May, not at the end of April. It therefore does not feature in April's second mock exam. Revisit the circle before the curves. Use radians in derivatives. Have students check the endpoints $-\pi$ and $\pi$: they represent the same point of the circle but are two distinct numbers if the interval contains them. The variations of composites are deduced from the full sign of the derivative.\end{teachernote}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item $h(0)=3-2=1$ m. Adding $8$ to $t$ adds $2\pi$ to the argument of the cosine: $8$ s is a period, and it is the smallest positive period. Since $-1\le\cos\le1$, $1\le h\le5$; both bounds are attained.
+\item By differentiating a composite, $h'(t)=(\frac{\pi}{2})\sin (\frac{\pi t}{4})$. The argument ranges over $[0,2\pi]$. Sine is positive on $]0,\pi[$, then negative on $]\pi,2\pi[$. Thus $h$ increases from $1$ to $5$ m on $[0,4]$, then decreases from $5$ to $1$ m on $[4,8]$.
+\item $h(t)=4\Longleftrightarrow\cos (\frac{\pi t}{4})=-\frac{1}{2}$. On $[0,2\pi]$, the corresponding angles are $\frac{2\pi}{3}$ and $\frac{4\pi}{3}$; so $t=\frac{8}{3}$ s or $t=\frac{16}{3}$ s.
+\item The condition $h(t)\ge4$ is equivalent to $\cos (\frac{\pi t}{4})\le-\frac{1}{2}$, hence to $t\in[\frac{8}{3},\frac{16}{3}]$. The duration is $\frac{16}{3}-\frac{8}{3}=\frac{8}{3}$ s.
+\end{enumerate}
+
+\paragraph{E1.}On the circle, sine equals $-\frac{1}{2}$ at the angles $-\frac{\pi}{6}$ and $-\frac{5\pi}{6}$ in $[-\pi,\pi]$. The other angles are deduced by adding $2k\pi$ and lie outside the required interval.
+
+\paragraph{E2.}Cosine is at least $\frac{\sqrt{2}}{2}$ on the arc around the angle $0$, between $-\frac{\pi}{4}$ and $\frac{\pi}{4}$, endpoints included. The solution set is therefore $[-\frac{\pi}{4},\frac{\pi}{4}]$.
+
+\paragraph{E3.}By composition, $(\cos(3x-1))'=-3\sin(3x-1)$. For the square of sine, $(\sin^2x)'=2\sin x\cos x$. Both derivatives are defined on $\R$.
+
+\paragraph{E4.}$f'(x)=\cos x$, positive on $[0,\frac{\pi}{2}[$ and $]\frac{3\pi}{2},2\pi]$, negative on $]\frac{\pi}{2},\frac{3\pi}{2}[$. Thus $f$ increases from $2$ to $3$, decreases from $3$ to $1$, then increases from $1$ to $2$. The maximum is $3$ at $\frac{\pi}{2}$ and the minimum $1$ at $\frac{3\pi}{2}$.
+
+\paragraph{E5.}An antiderivative of sine is $-\cos x$. So the integral equals $[-\cos x]_0^\pi=1-(-1)=2$. The mean value over this interval of length $\pi$ is $\frac{2}{\pi}$.
+
+\subsection{Solutions to Homework 5}\begin{enumerate}
+\item By the product rule, $f'=\cos^2x-\sin^2x=\cos2x$. On the interval studied, $2x\in[0,\pi]$: the derivative is positive before $x=\frac{\pi}{4}$ and negative after. The maximum is $f(\frac{\pi}{4})=(\frac{\sqrt{2}}{2})^2=\frac{1}{2}$.
+\item Thanks to $\sin2x=2\sin x\cos x$, $f(x)\ge\frac{1}{4}$ is equivalent to $\sin 2x\ge\frac{1}{2}$. For $2x\in[0,\pi]$, this gives $2x\in[\frac{\pi}{6},\frac{5\pi}{6}]$, so $x\in[\frac{\pi}{12},\frac{5\pi}{12}]$.
+\item The derivative of $\frac12\sin^2x$ is $\sin x\cos x=f(x)$. So $\int_0^{\frac{\pi}{2}}f(x)\,\dd x=[\frac12\sin^2x]_0^{\frac{\pi}{2}}=\frac{1}{2}$. The mean value is $\frac{\frac{1}{2}}{\frac{\pi}{2}}=\frac{1}{\pi}$.
+\item $A(a)=\frac12\sin^2a$. Half of the total area is $\frac{1}{4}$, so $\sin^2a=\frac{1}{2}$. On $[0,\frac{\pi}{2}]$, sine is positive and strictly increasing: this equality is equivalent to $\sin a=\frac{\sqrt{2}}{2}$, then to $a=\frac{\pi}{4}$.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}The curve of $f(x)=\cos(3x)$ suggests a symmetry about the vertical axis and a repetition after a horizontal translation of $\frac{2\pi}3$. For every $x\in\R$, $f(-x)=\cos(-3x)=\cos(3x)=f(x)$: $f$ is even. Moreover,
+\[f\left(x+\frac{2\pi}3\right)=\cos(3x+2\pi)=\cos(3x)=f(x).\]
+The number $\frac{2\pi}3>0$ is therefore a period of $f$. The drawing suggests these properties; the identities establish them for every real number.
+
+\fi
+
+\backmatter

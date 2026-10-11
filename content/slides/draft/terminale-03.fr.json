@@ -107,9 +107,9 @@
 }
 ],
 "figs": [
-"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]\n\\addplot[only marks,teal,domain=0:15,samples=16]{2+3/(x+1)};\n\\addplot[navy,dashed,domain=0:15]{2};\\end{axis}\\end{tikzpicture}"
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]\n\\addplot[only marks,mxmint,domain=0:15,samples=16]{2+3/(x+1)};\n\\addplot[mxink,dashed,domain=0:15]{2};\\end{axis}\\end{tikzpicture}"
 ],
 "figs_en": [
-"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]\n\\addplot[only marks,teal,domain=0:15,samples=16]{2+3/(x+1)};\n\\addplot[navy,dashed,domain=0:15]{2};\\end{axis}\\end{tikzpicture}"
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=12cm,height=4.6cm,xlabel={$n$},ylabel={$u_n$},xmin=0,xmax=15,ymin=1.5,ymax=5.3,axis lines=left,grid=major,grid style={gray!15}]\n\\addplot[only marks,mxmint,domain=0:15,samples=16]{2+3/(x+1)};\n\\addplot[mxink,dashed,domain=0:15]{2};\\end{axis}\\end{tikzpicture}"
 ]
 }

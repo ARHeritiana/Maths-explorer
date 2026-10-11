@@ -1,0 +1,138 @@
+% GENERATED, edit the French unit or the translation table
+\setcounter{chapter}{7}\mxunit{terminale-c11}{Integration}\label{ch:8}
+
+{\small\sffamily\color{mxmint}S59, S61, S63, S66\par}
+
+\begin{keypoint}[Objectives]Calculate and bound an integral; distinguish area from integral; use integration by parts; study a sequence of integrals.\end{keypoint}
+
+\section{Course notes}
+\subsection{Area and antiderivative}
+For $f$ continuous and positive on $[a,b]$, $a\le b$, the integral $\int_a^b f(x)\,\dd x$ is the area under the curve, above the axis, between $x=a$ and $x=b$, expressed in area units.
+\begin{keypoint}[Fundamental theorem]
+If $f$ is continuous on an interval $I$ and $a\in I$, then $F_a(x)=\int_a^x f(t)\,\dd t$ is the antiderivative of $f$ that vanishes at $a$. For every antiderivative $F$,
+\[\int_a^b f(x)\,\dd x=F(b)-F(a).\]
+Every continuous function on an interval has antiderivatives. An integral is a number; an antiderivative is a function.
+\end{keypoint}
+\paragraph{Proof in the positive increasing case.} For $h>0$, the rectangles give $hf(x)\le F_a(x+h)-F_a(x)\le hf(x+h)$. After dividing by $h$ and taking the limit, the rate of change tends to $f(x)$. For $h<0$, the increasing property gives $f(x+h)\le f(t)\le f(x)$ on $[x+h,x]$. Integrating,
+\[(-h)f(x+h)\le F_a(x)-F_a(x+h)\le(-h)f(x).\]
+Dividing by $-h>0$, we obtain
+\[f(x+h)\le\frac{F_a(x+h)-F_a(x)}h\le f(x).\]
+Both bounds tend to $f(x)$. By continuity, $F_a'=f$. Every other antiderivative is $F_a+C$, hence the formula for evaluating between the bounds.
+\subsection{Properties}
+For continuous functions and bounds belonging to the same interval:
+\[\int_a^a f=0,\quad\int_b^a f=-\int_a^b f,\quad
+\int_a^c f=\int_a^b f+\int_b^c f,\quad
+\int_a^b(\lambda f+\mu g)=\lambda\int_a^b f+\mu\int_a^b g.\]
+If $a\le b$ and $f\le g$, then $\int_a^b f\le\int_a^b g$. In particular, if $m\le f\le M$, then $m(b-a)\le\int_a^b f\le M(b-a)$.
+For a function of arbitrary sign, the integral is defined through antiderivatives. The geometric area between the curve and the axis is $\int_a^b|f|$, obtained by splitting at the sign changes. Between two curves, it is $\int_a^b|f-g|$.
+\paragraph{Example.} $\int_{-1}^{1}x\,\dd x=0$, but the area between the line and the axis on this interval is $1$.
+\subsection{Mean value and integration by parts}
+For $a<b$, the mean value is $\mu=\frac1{b-a}\int_a^b f(x)\,\dd x$. The rectangle of height $\mu$ and width $b-a$ has the same algebraic area.
+\begin{keypoint}[Integration by parts]
+If $u,v$ are of class $\mathcal C^1$ on $[a,b]$,
+\[\int_a^b u(x)v'(x)\,\dd x=[u(x)v(x)]_a^b-\int_a^b u'(x)v(x)\,\dd x.\]
+\end{keypoint}
+\paragraph{Proof.} Integrate $(uv)'=u'v+uv'$, then isolate the required integral. The square bracket is indispensable.
+\paragraph{Example.} With $u=x$ and $v'=e^x$, $\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1$.
+\subsection{Rectangles and sequences of integrals}
+For $f$ continuous and increasing on $[a,b]$, with $a<b$ and $n\ge1$ and $h=\frac{b-a}{n}$, the sums $h\sum_{k=0}^{n-1}f(a+kh)$ and $h\sum_{k=1}^{n}f(a+kh)$ bound the integral. Their difference is $h(f(b)-f(a))$.
+For $I_n=\int_0^1x^nf(x)\,\dd x$, begin with the sign and comparisons of the integrand. If $0\le f\le M$, then $0\le I_n\le \frac{M}{n+1}$; the squeeze theorem gives $I_n\to0$. An integration by parts can also provide a relation between $I_n$ and $I_{n+1}$.
+\paragraph{Convention at rank zero.} In $I_n=\int_0^1x^nf(x)\,\dd x$, the expression $x^0$ denotes the constant function $1$, including at the lower bound $0$. Thus $I_0=\int_0^1f(x)\,\dd x$; no indeterminate calculation is needed.
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=11cm,height=4.6cm,axis lines=middle,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x$},ylabel={$y$},samples=80]
+\addplot[draw=none,fill=mxmint!15,domain=0:1]{x}\closedcycle;
+\addplot[draw=none,fill=white,domain=0:1]{x^2}\closedcycle;
+\addplot[mxink,domain=0:1]{x};\addplot[mxmint,thick,domain=0:1]{x^2};\end{axis}\end{tikzpicture}\par\small The area between $y=x$ and $y=x^2$ on $[0,1]$ is $\frac{1}{6}$.\end{center}
+
+\section{Research activity}\textbf{Bounding an integral with rectangles --- 35 min.}\par We want to bound $I=\displaystyle\int_0^1x^2\,\dd x$. For an integer $n\ge1$, we split $[0;1]$ into $n$ intervals of equal length. Let $L_n$ be the sum of the areas of the rectangles whose heights are the values of $x^2$ at the left endpoints, and $U_n$ the sum obtained at the right endpoints.
+\begin{enumerate}\item For $n=4$, draw the two families of rectangles, then calculate $L_4$ and $U_4$.
+\item Justify that $L_4\le I\le U_4$.
+\item Write a Python function with argument $n$ that returns $L_n$ and $U_n$. Find $U_n-L_n$ algebraically.
+\item Find the smallest integer $n$ for which this bound has a width of at most $0.01$.
+\item Calculate the exact value of $I$ using an antiderivative and check that it lies within the bound obtained for $n=4$.\end{enumerate}
+
+\section{Progressive exercises}
+
+\mxexerciseitem{1}{Practice}Calculate $\displaystyle\int_0^2(3x^2-2x+1)\,\dd x$ by finding an antiderivative.
+
+\mxexerciseitem{2}{Practice}In an orthonormal frame, calculate the area of the region bounded by the curves $y=x$ and $y=x^2$, between the abscissae $0$ and $1$. Give the result in area units.
+
+\mxexerciseitem{3}{Practice}Calculate the mean value of the exponential function on the interval $[0;2]$.
+
+\mxexerciseitem{4}{Practice}Using integration by parts, calculate $\displaystyle\int_1^e\ln x\,\dd x$.
+
+\mxexerciseitem{5}{Practice}For every $n\in\N$, let $I_n=\displaystyle\int_0^1\frac{x^n}{1+x}\,\dd x$, with $x^0=1$ in the integrand. Prove that $0\le I_n\le\frac1{n+1}$, then deduce the limit of $(I_n)$.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 260, exercises 28 and 29.} In S66: exercise 28, stating explicitly the two functions chosen for the integration by parts. At home: exercise 29, to adapt this choice to a product containing a logarithm.
+
+\section{Homework}\textbf{HW8 --- A sequence of integrals --- 60 min.}\par For every $n\in\N$, let $I_n=\displaystyle\int_0^1x^ne^x\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^x$.
+\begin{enumerate}\item Calculate $I_0$, then $I_1$ using integration by parts.
+\item Prove that, for every $n\in\N$, $I_{n+1}=e-(n+1)I_n$.
+\item By comparing the integrands, prove that $(I_n)$ is positive and decreasing.
+\item Show that $\frac1{n+1}\le I_n\le\frac e{n+1}$ for every $n\in\N$. Deduce the limit of $(I_n)$.
+\item In the calculation of $I_{n+1}$ using the relation of question 2, by what factor is an error on $I_n$ multiplied if the other rounding errors are neglected? Explain the risk of repeated calculation in this way.\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]Begin with a positive area, then show an example in which the positive and negative areas cancel. For a mean value, require a unit and an interpretation. Sequences of integrals arrive in S66; reserve a genuine research phase for the choice of comparison. The proof of the fundamental theorem is limited to the positive increasing case stated in the syllabus. Trigonometric calculations will be taken up again after May.\end{teachernote}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item The four intervals have width $\frac{1}{4}$. The left sum is
+\[L_4=\frac{1}{4}(0^2+(\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2)=\frac{7}{32}.\]
+On the right, $U_4=\frac{1}{4}((\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2+1)=\frac{15}{32}$. The rectangles have heights equal to the values at the corresponding endpoints.
+\begin{center}\begin{minipage}{.47\linewidth}\centering
+\begin{tikzpicture}[x=4cm,y=3cm]
+\foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{(\k/4)^2}\filldraw[fill=mxmint!20,draw=mxmint] (\l,0) rectangle (\r,\h);}
+\draw[mxink,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
+\draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
+\node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
+\end{tikzpicture}\par\small Left rectangles: $L_4=\frac{7}{32}$.\end{minipage}\hfill\begin{minipage}{.47\linewidth}\centering
+\begin{tikzpicture}[x=4cm,y=3cm]
+\foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{((\k+1)/4)^2}\filldraw[fill=mxmint!20,draw=mxmint] (\l,0) rectangle (\r,\h);}
+\draw[mxink,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
+\draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
+\node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
+\end{tikzpicture}\par\small Right rectangles: $U_4=\frac{15}{32}$.\end{minipage}\end{center}
+\item For $x\in[\frac{k}{4},\frac{k+1}{4}]$, $(\frac{k}{4})^2\le x^2\le(\frac{k+1}{4})^2$ because the square function is increasing on $[0,1]$. Integrating over the four intervals then adding gives $\frac{7}{32}\le I\le\frac{15}{32}$.
+\item 
+\begin{lstlisting}
+def rectangles_carre(n):
+    h = 1/n
+    bas = h*sum((k*h)**2 for k in range(n))
+    haut = h*sum((k*h)**2 for k in range(1, n+1))
+    return bas, haut
+\end{lstlisting}
+The inner terms cancel: $U_n-L_n=(\frac{1}{n})(1^2-0^2)=\frac{1}{n}$.
+\item $\frac{1}{n}\le0.01\Longleftrightarrow n\ge100$. One hundred subdivisions suffice; this is the first integer that gives this width with these two sums.
+\item An antiderivative of $x^2$ is $\frac{x^3}{3}$. So $I=[\frac{x^3}{3}]_0^1=\frac{1}{3}$, which indeed lies between $\frac{7}{32}$ and $\frac{15}{32}$.
+\end{enumerate}
+
+\paragraph{E1.}An antiderivative is $F(x)=x^3-x^2+x$. The integral is $F(2)-F(0)=8-4+2=6$.
+
+\paragraph{E2.}On $[0,1]$, $x-x^2=x(1-x)\ge0$, so the line is above the parabola. The area is $\int_0^1(x-x^2)\,\dd x=[\frac{x^2}{2}-\frac{x^3}{3}]_0^1=\frac{1}{6}$ area unit.
+
+\paragraph{E3.}The length of the interval is $2$. The mean value is $(\frac{1}{2})\int_0^2e^x\,\dd x=(\frac{1}{2})[e^x]_0^2=\frac{e^2-1}{2}$.
+
+\paragraph{E4.}Choose $u=\ln x$, $u'=\frac{1}{x}$, $v'=1$ and $v=x$ on $[1,e]$. Integration by parts gives $\int_1^e\ln x\,\dd x=[x\ln x]_1^e-\int_1^e1\,\dd x=e-(e-1)=1$.
+
+\paragraph{E5.}On $[0,1]$, $1+x\ge1$ and $x^n\ge0$, so $0\le \frac{x^n}{1+x}\le x^n$. Integrating gives $0\le I_n\le[\frac{x^{n+1}}{n+1}]_0^1=\frac{1}{n+1}$. The squeeze theorem gives $I_n\to0$.
+
+\subsection{Solutions to HW8}\begin{enumerate}
+\item $I_0=\int_0^1e^x\,\dd x=e-1$. For $I_1$, integration by parts with $u=x$, $v'=e^x$ gives $I_1=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1$.
+\item For $n\ge0$, choose $u=x^{n+1}$, $u'=(n+1)x^n$, $v'=e^x$ and $v=e^x$. The functions are differentiable with continuous derivatives on $[0,1]$. Then
+\[I_{n+1}=[x^{n+1}e^x]_0^1-(n+1)\int_0^1x^ne^x\,\dd x=e-(n+1)I_n.\]
+\item On $[0,1]$, $0\le x^{n+1}\le x^n$. Multiplying by $e^x>0$ then integrating, $0\le I_{n+1}\le I_n$: the sequence is positive and non-increasing. It is even strictly positive and strictly decreasing, because the integrands of $I_n$ and of $I_n-I_{n+1}$ are strictly positive on $]0,1[$.
+\item Since $1\le e^x\le e$ and $x^n\ge0$ on $[0,1]$, we can integrate $x^n\le x^ne^x\le ex^n$. Hence
+\[\frac1{n+1}\le I_n\le\frac e{n+1}.\]
+Both bounds tend to $0$; the squeeze theorem gives $I_n\to0$.
+\item If $\widetilde I_n=I_n+\varepsilon_n$ and the relation is then applied with no new error, then
+\[\widetilde I_{n+1}-I_{n+1}=-(n+1)(\widetilde I_n-I_n)=-(n+1)\varepsilon_n.\]
+The absolute value of the error is multiplied by $n+1$. In machine calculation, new errors are added at each step. The decrease of the exact integrals therefore does not guarantee the stability of this method of calculation.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}\paragraph{Exercise 28.} On $[0;1]$, choose $u(x)=x$ and $v(x)=e^x$. These functions are of class $\mathcal C^1$, $u'(x)=1$ and $v'(x)=e^x$. Integration by parts gives
+\[\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1.\]
+\paragraph{Exercise 29.} On $[1;e]$, choose $u(x)=\ln x$ and $v(x)=\frac{x^2}2$. Then $u'(x)=\frac1x$ and $v'(x)=x$; these functions are of class $\mathcal C^1$. Hence
+\[\begin{aligned}\int_1^e x\ln x\,\dd x&=\left[\frac{x^2}2\ln x\right]_1^e-\frac12\int_1^e x\,\dd x\\&=\frac{e^2}2-\frac{e^2-1}4=\frac{e^2+1}4.\end{aligned}\]
+
+\fi
+

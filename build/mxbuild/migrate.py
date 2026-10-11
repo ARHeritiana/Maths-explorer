@@ -171,6 +171,18 @@ PREMIERE_RULES = [
     *[_sub(r'(?<=[{,=\[\s!])%s\b' % a, b) for a, b in [('bleu', 'mxink'), ('vert', 'mxmint'), ('ocre', 'mxwarn')]],
 ]
 
+TERMINALE_RULES = [
+    _sub(r'\\exercice\{', r'\\mxexerciseitem{'),
+    _sub(r'\\begin\{retenir\}\{((?:[^{}]|\{[^{}]*\})*)\}', r'\\begin{keypoint}[\1]'), _sub(r'\\end\{retenir\}', r'\\end{keypoint}'),
+    _sub(r'\\begin\{methode\}\{((?:[^{}]|\{[^{}]*\})*)\}', r'\\begin{method}[\1]'), _sub(r'\\end\{methode\}', r'\\end{method}'),
+    _sub(r'\\begin\{profbox\}\{((?:[^{}]|\{[^{}]*\})*)\}', r'\\begin{teachernote}[\1]'), _sub(r'\\end\{profbox\}', r'\\end{teachernote}'),
+    _sub(r'\\clearpage\b', r'\\mxnewpage'), _sub(r'\\ifprof\b', r'\\ifmxteacher'),
+    _sub(r'\\edition\b', r'\\ifmxteacher\\mxlabelof{teacher}\\else\\mxlabelof{student}\\fi'),
+    _sub(r'\\Needspace\{(\d+)\\baselineskip\}', r'\\mxneed{\1}'),
+    _sub(r'\\renewcommand\{\\arraystretch\}\{([\d.]+)\}', r'\\mxarraystretch{\1}'),
+    *[_sub(r'(?<=[{,=\[\s!])%s\b' % a, b) for a, b in [('navy', 'mxink'), ('teal', 'mxmint'), ('amber', 'mxwarn'), ('pale', 'mxmintpale'), ('ink', 'mxink')]],
+]
+
 # course -> (unit map {old relative path (French): new stem}, rules)
 PLANS = {
     'automatismes': ({**{f'sections/ch{n:02d}.tex': f'ch{n:02d}' for n in range(1, 15)},
@@ -185,6 +197,10 @@ PLANS = {
     'seconde': ({**{f'sequences/S{n:02d}.tex': f's{n:02d}' for n in range(1, 16)}, 'annexes.tex': 'annexes'}, SECONDE_RULES),
     # Units keep their folders; ('part', stem) marks a file included by a unit (no heading of its own, not a block).
     'premiere': None,   # filled below from the folder contents
+    'terminale': ({'front.tex': 'front', **{f'chapitres/C{n:02d}.tex': f'chapitres/C{n:02d}' for n in range(1, 15)},
+                   **{f'annexes/{a}.tex': f'annexes/{a}' for a in ('algorithmique', 'demonstrations', 'ateliers', 'sources')},
+                   'evaluations/intro.tex': 'evaluations/intro', **{f'evaluations/E{n}.tex': f'evaluations/E{n}' for n in range(1, 10)}},
+                  TERMINALE_RULES),
 }
 
 
