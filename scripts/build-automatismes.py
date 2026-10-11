@@ -11,24 +11,16 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import catalog as manifest_io   # content/data/manifest.json is the source of truth
+from mxbuild import catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
 SRC = ROOT / 'content/tex/courses/automatismes'
-BUILD = ROOT / 'build/tex/automatismes'
+BUILD = ROOT / 'build/out/tex/automatismes'
 OUT = ROOT / 'dist/resources'
 
 
 def compile_pdf(entry):
-    BUILD.mkdir(parents=True, exist_ok=True)
-    job = entry[:-4]
-    cmd = ['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-halt-on-error', '-jobname=' + job, '-output-directory=' + str(BUILD), entry]
-    for _ in range(3):
-        r = subprocess.run(cmd, cwd=SRC, capture_output=True, text=True, errors='replace')
-        log = (BUILD / (job + '.log')).read_text(errors='replace')
-        if r.returncode: sys.exit(f'LaTeX failed for {entry}; see {BUILD / (job + ".log")}')
-        if 'Rerun to get' not in log and 'Label(s) may have changed' not in log: break
-    over = len(re.findall(r'Overfull \\[hv]box', log)); und = re.findall(r'LaTeX Warning: Reference .*undefined', log)
-    d = fitz.open(BUILD / (job + '.pdf'))
-    print(f'  {job}: {len(d)} pages, {len(und)} undefined references, {over} overfull boxes')
+    res = tex.compile(SRC, entry, entry[:-4], BUILD)
+    und = res.undefined; d = fitz.open(res.pdf)
+    print(f'  {entry[:-4]}: {len(d)} pages, {len(und)} undefined references, {res.overfull} overfull boxes')
     if und: sys.exit('Undefined references in ' + entry)
     return d
 

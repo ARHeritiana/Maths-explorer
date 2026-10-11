@@ -11,3 +11,10 @@ __pycache__/
 /build/*
 !/build/mxbuild/
 !/build/README.md
+
+# TeX build artefacts in source folders (builds write to build/out)
+content/**/*.aux
+content/**/*.log
+content/**/*.toc
+content/**/*.out
+content/**/*.pdf

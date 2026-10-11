@@ -36,25 +36,12 @@ Curriculum pathways are **indicative topic guides**, not comprehensive syllabus 
 
 ## Project structure
 
-```text
-dist/
-  index.html          Semantic document, metadata, embedded favicon
-    style.css           Responsive visual system and print styles
-    magic.css           Luminous screen theme and accessible motion styling
-  js/
-    app.js            Navigation, controls, SVG graphs, learning flows
-    math.js           Pure numerical operations and validated parsing
-    content.js        Bilingual lessons, challenges, curriculum pathways
-    motion.js         Interruptible model animation and interface transitions
-    interaction.js    Coordinate mapping, direct parameter manipulation and snapping
-scripts/serve.mjs     Dependency-free local static server
-tests/math.test.mjs   Numerical edge cases and content integrity
-tests/interaction.test.mjs  Direct manipulation and parameter domain checks
-tests/browser.py     Browser interaction and responsive checks
-docs/                Design plan, curriculum scope, validation notes
-```
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). In short: hand-written web code lives in `site/`, LaTeX sources in
+`content/tex/courses/`, the resource catalogue's source of truth in `content/data/manifest.json`, and the pipeline in
+`build/mxbuild` (`make tex`, `make site`, `make catalog`, `make check`). `dist/` is the served folder: copies of `site/`
+plus generated PDFs, catalogues and slide data, committed because the host has no build step. Edit `site/`, not `dist/`.
 
-Hash routes work on static hosts and under a repository subpath, for example `/#lab/probability`, `/#challenges/doors`, and `/#pathways`. All asset paths are relative. `dist/` is the source for the deployed site; it is intentionally committed rather than generated.
+Hash routes work on static hosts and under a repository subpath, for example `/#lab/probability`, `/#challenges/doors`, and `/#pathways`. All asset paths are relative. `dist/` is the deployed folder; it is committed and assembled from `site/` and the pipeline outputs.
 
 Resource deep links use `/#library`, `/#library/terminale-01` and `/#library/@sequences`. Resource downloads are served with the site, with no live connector or external-storage access required.
 

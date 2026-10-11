@@ -22,10 +22,10 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import catalog as manifest_io   # content/data/manifest.json is the source of truth
+from mxbuild import catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
 MANIFEST = manifest_io.load()
 SRC = ROOT / 'content/tex/courses'
-BUILD = ROOT / 'build/tex'
+BUILD = ROOT / 'build/out/tex'
 OUT = ROOT / 'dist/resources'
 
 # Excerpt markers: first line of each excerpt, per language. Order matters.
@@ -65,20 +65,12 @@ def tidy(s): return re.sub(r'\s+', ' ', s).strip()
 
 def compile_pdf(course, entry, jobname, prof, defs=''):
     """Two or three pdfLaTeX passes in the source directory; returns the PDF path."""
-    out = BUILD / course; out.mkdir(parents=True, exist_ok=True)
-    cmd = ['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-halt-on-error', '-jobname=' + jobname, '-output-directory=' + str(out),
-           ((r'\def\versionprof{1}' if prof else '') + defs + r'\input{%s}' % entry) if (prof or defs) else entry]
-    for n in range(3):
-        r = subprocess.run(cmd, cwd=SRC / course, capture_output=True, text=True, errors='replace')
-        log = (out / (jobname + '.log')).read_text(errors='replace') if (out / (jobname + '.log')).exists() else r.stdout
-        if r.returncode:
-            sys.exit(f'LaTeX failed for {entry} ({jobname}); see {out / (jobname + ".log")}')
-        if 'Rerun to get' not in log and 'Label(s) may have changed' not in log: break
-    bad = re.findall(r'(?m)^(?:LaTeX Warning: (?:Reference|Citation) .*undefined.*)$', log)
-    over = len(re.findall(r'Overfull \\[hv]box', log))
-    print(f'  {jobname}: {len(fitz.open(out / (jobname + ".pdf")))} pages, {len(bad)} undefined references, {over} overfull boxes')
+    res = tex.compile(SRC / course, ((r'\def\versionprof{1}' if prof else '') + defs + r'\input{%s}' % entry) if (prof or defs) else entry,
+                      jobname, BUILD / course)
+    bad = res.undefined
+    print(f'  {jobname}: {res.pages()} pages, {len(bad)} undefined references, {res.overfull} overfull boxes')
     if bad: sys.exit('Undefined references:\n' + '\n'.join(bad))
-    return out / (jobname + '.pdf')
+    return res.pdf
 
 
 def chapter_ranges(course, sd, td, lang, count):
