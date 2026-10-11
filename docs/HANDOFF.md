@@ -49,7 +49,9 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
      "ci-dessous"), otherwise the activity excerpt had no figure.
    - Printed chapter numbers keep the textbook numbering (e.g. vectors prints "CHAPITRE 10" while the site card is chapter 2). The
      booklet says so in "Utiliser ce livret". [VERIFY] whether the owner wants the printed numbers aligned with the site.
-   - TO DO: spot-proofread the E1 to E5 English twins (scripted phrase replacement).
+   - E1 to E5 EN twins proof-read by sampling (E1, E3, E5 read, French-residue scan over all EN files: clean). Fixed: "5 marks" to
+     "5 points" and a garbled sentence in E4/E5/E9 (repeated trials). Not every line was read.
+   - After any rebuild run `sh scripts/restyle-changed.sh` (styles modified PDFs, finalize, publish-sources).
    - Source oddities to report as [VERIFY]: E6 intro says "first four questions independent" but the exercise has five; E7 solution
      starts "No." for a compare-and-explain question; sources cite an external site "Lycée d'adultes, Paul Milan"; "Barbazo"
      textbook references (they remain in the exercises excerpts).

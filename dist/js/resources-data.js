@@ -2563,7 +2563,7 @@ export const resourceCatalog = {
           "pages": 39,
           "bytes": 376419,
           "englishPath": "resources/terminale-assessments-eleve-en.pdf",
-          "englishBytes": 371633
+          "englishBytes": 371586
         },
         {
           "kind": "teacher",
@@ -2574,7 +2574,7 @@ export const resourceCatalog = {
           "pages": 173,
           "bytes": 1018395,
           "englishPath": "resources/terminale-assessments-prof-en.pdf",
-          "englishBytes": 1006127
+          "englishBytes": 1006034
         }
       ]
     },
