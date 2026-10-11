@@ -1,5 +1,5 @@
-"""Resolve bilingual PDFs and enforce the owner's ban on personal-space links."""
-import json,re,hashlib
+"""PDF hygiene (personal-space links, stray per-file AI notices, banned content), then regenerate the catalogue from the manifest."""
+import json,re
 from pathlib import Path
 import fitz
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,36 +25,9 @@ for path in (ROOT/'dist/resources').rglob('*.pdf'):
     found=banned.findings(banned.pdf_text(path))   # identifying text must be fixed in the source, not redacted here
     if found:problems.append(f'{path.relative_to(ROOT)}: {", ".join(found)}')
 if problems:raise SystemExit('Banned content in PDFs:\n'+'\n'.join(problems))
-catalog=ROOT/'dist/resources/catalog.json';c=json.loads(catalog.read_text())
-for course in c['courses']:course['language']='bilingual'
-ledger=ROOT/'docs/TEX_CONVERSION.json'
-converted=set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
-for r in c['resources']:
-    if r['format']!='PDF':continue
-    fr=r['url'][0] if isinstance(r['url'],list) else r['url']
-    en=fr[:-4]+'-en.pdf';path=ROOT/'dist'/en.removeprefix('./')
-    if not path.exists():raise FileNotFoundError(en)
-    r['pages']=len(fitz.open(ROOT/'dist'/fr.removeprefix('./')))   # page counts follow the files
-    ep=len(fitz.open(path))
-    if ep!=r['pages']:r['englishPages']=ep   # excerpts cut at section starts can differ by a page between editions
-    else:r.pop('englishPages',None)
-    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if (r['chapter'] in converted or r.get('texBuilt')) else ('local-machine' if r.get('translation') in (None,'tex-source') else r['translation']))
-for source in c['sources']:source.pop('url',None);source.pop('id',None)
-catalog.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n')
-companion=ROOT/'dist/js/resources-data.js';c=json.loads(companion.read_text().split('=',1)[1].rstrip().rstrip(';'))
-c.pop('folder',None)
-for source in c['sources']:source.pop('url',None);source.pop('id',None)
-manifest=[]
-for chapter in c['chapters']+c['supplements']:
-    for f in chapter['files']:
-        path=ROOT/'dist'/f['path'];en=path.with_name(path.stem+'-en.pdf')
-        if not en.exists():raise FileNotFoundError(en)
-        f['pages']=len(fitz.open(path));f['end']=f['start']+f['pages']-1   # whole-page extracts
-        f.update(englishPath=str(en.relative_to(ROOT/'dist')),bytes=path.stat().st_size,englishBytes=en.stat().st_size)
-        if len(fitz.open(en))!=f['pages']:raise ValueError(f'English page count mismatch: {en}')
-        manifest.append({'path':f['path'],'source':f['source'],'pages':[f['start'],f['end']],'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'englishPath':f['englishPath'],'englishSha256':hashlib.sha256(en.read_bytes()).hexdigest()})
-companion.write_text('export const resourceCatalog = '+json.dumps(c,ensure_ascii=False,indent=2)+';\n')
-(ROOT/'docs/RESOURCE_PROVENANCE.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+sys.path.insert(0,str(ROOT/'build'))
+from mxbuild import catalog as manifest_io   # catalogue, companion and provenance are generated from content/data/manifest.json
+manifest_io.write()
 # No private URLs or IDs may be present in data delivered to the browser.
 for path in (ROOT/'dist').rglob('*'):
     if path.suffix in {'.js','.json','.html'} and personal.search(path.read_text()):raise ValueError(f'Personal-space URL in {path}')

@@ -67,27 +67,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 7,
-          "end": 11,
           "path": "resources/seconde-01/chapter.pdf",
-          "pages": 5,
-          "bytes": 355947,
           "sections": {
             "lesson": 1,
             "practice": 1,
             "problem": 5
           },
+          "pages": 5,
+          "end": 11,
           "englishPath": "resources/seconde-01/chapter-en.pdf",
+          "bytes": 355947,
           "englishBytes": 338304
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 7,
-          "end": 11,
           "path": "resources/seconde-01/teacher.pdf",
           "pages": 5,
-          "bytes": 359073,
+          "end": 11,
           "englishPath": "resources/seconde-01/teacher-en.pdf",
+          "bytes": 359073,
           "englishBytes": 340857
         }
       ]
@@ -106,56 +106,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 12,
-          "end": 18,
           "path": "resources/seconde-02/chapter.pdf",
-          "pages": 7,
-          "bytes": 335258,
           "sections": {
             "practice": 1,
             "lesson": 4
           },
+          "pages": 7,
+          "end": 18,
           "englishPath": "resources/seconde-02/chapter-en.pdf",
+          "bytes": 335258,
           "englishBytes": 316256
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 12,
-          "end": 18,
           "path": "resources/seconde-02/teacher.pdf",
           "pages": 7,
-          "bytes": 335566,
+          "end": 18,
           "englishPath": "resources/seconde-02/teacher-en.pdf",
+          "bytes": 335566,
           "englishBytes": 316467
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 1,
-          "end": 1,
           "path": "resources/seconde-02/fluency-student.pdf",
-          "pages": 1,
-          "bytes": 186553,
           "title": [
             "Vecteurs du plan",
             "Vectors in the plane"
           ],
+          "pages": 1,
+          "end": 1,
           "englishPath": "resources/seconde-02/fluency-student-en.pdf",
+          "bytes": 186553,
           "englishBytes": 184867
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 1,
-          "end": 2,
           "path": "resources/seconde-02/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 218161,
           "title": [
             "Vecteurs du plan",
             "Vectors in the plane"
           ],
+          "pages": 2,
+          "end": 2,
           "englishPath": "resources/seconde-02/fluency-teacher-en.pdf",
+          "bytes": 218161,
           "englishBytes": 215374
         }
       ]
@@ -174,56 +174,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 19,
-          "end": 24,
           "path": "resources/seconde-03/chapter.pdf",
-          "pages": 6,
-          "bytes": 371694,
           "sections": {
             "practice": 1,
             "lesson": 3
           },
+          "pages": 6,
+          "end": 24,
           "englishPath": "resources/seconde-03/chapter-en.pdf",
+          "bytes": 371694,
           "englishBytes": 328109
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 19,
-          "end": 24,
           "path": "resources/seconde-03/teacher.pdf",
           "pages": 6,
-          "bytes": 376757,
+          "end": 24,
           "englishPath": "resources/seconde-03/teacher-en.pdf",
+          "bytes": 376757,
           "englishBytes": 358818
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 2,
-          "end": 3,
           "path": "resources/seconde-03/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 211186,
           "title": [
             "Droites du plan",
             "Lines in the plane"
           ],
+          "pages": 2,
+          "end": 3,
           "englishPath": "resources/seconde-03/fluency-student-en.pdf",
+          "bytes": 211186,
           "englishBytes": 208850
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 3,
-          "end": 5,
           "path": "resources/seconde-03/fluency-teacher.pdf",
-          "pages": 3,
-          "bytes": 227421,
           "title": [
             "Droites du plan",
             "Lines in the plane"
           ],
+          "pages": 3,
+          "end": 5,
           "englishPath": "resources/seconde-03/fluency-teacher-en.pdf",
+          "bytes": 227421,
           "englishBytes": 224673
         }
       ]
@@ -242,56 +242,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 25,
-          "end": 30,
           "path": "resources/seconde-04/chapter.pdf",
-          "pages": 6,
-          "bytes": 395776,
           "sections": {
             "lesson": 1,
             "practice": 1
           },
+          "pages": 6,
+          "end": 30,
           "englishPath": "resources/seconde-04/chapter-en.pdf",
+          "bytes": 395776,
           "englishBytes": 377840
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 25,
-          "end": 30,
           "path": "resources/seconde-04/teacher.pdf",
           "pages": 6,
-          "bytes": 398196,
+          "end": 30,
           "englishPath": "resources/seconde-04/teacher-en.pdf",
+          "bytes": 398196,
           "englishBytes": 380179
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 4,
-          "end": 4,
           "path": "resources/seconde-04/fluency-student.pdf",
-          "pages": 1,
-          "bytes": 203159,
           "title": [
             "Nombres réels et intervalles",
             "Real numbers and intervals"
           ],
+          "pages": 1,
+          "end": 4,
           "englishPath": "resources/seconde-04/fluency-student-en.pdf",
+          "bytes": 203159,
           "englishBytes": 200831
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 6,
-          "end": 7,
           "path": "resources/seconde-04/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 245689,
           "title": [
             "Nombres réels et intervalles",
             "Real numbers and intervals"
           ],
+          "pages": 2,
+          "end": 7,
           "englishPath": "resources/seconde-04/fluency-teacher-en.pdf",
+          "bytes": 245689,
           "englishBytes": 242271
         }
       ]
@@ -310,26 +310,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 31,
-          "end": 33,
           "path": "resources/seconde-05/chapter.pdf",
-          "pages": 3,
-          "bytes": 291827,
           "sections": {
             "practice": 1,
             "problem": 3
           },
+          "pages": 3,
+          "end": 33,
           "englishPath": "resources/seconde-05/chapter-en.pdf",
+          "bytes": 291827,
           "englishBytes": 273124
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 31,
-          "end": 33,
           "path": "resources/seconde-05/teacher.pdf",
           "pages": 3,
-          "bytes": 296834,
+          "end": 33,
           "englishPath": "resources/seconde-05/teacher-en.pdf",
+          "bytes": 296834,
           "englishBytes": 277584
         }
       ]
@@ -348,56 +348,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 34,
-          "end": 42,
           "path": "resources/seconde-06/chapter.pdf",
-          "pages": 9,
-          "bytes": 421476,
           "sections": {
             "practice": 1,
             "lesson": 6
           },
+          "pages": 9,
+          "end": 42,
           "englishPath": "resources/seconde-06/chapter-en.pdf",
+          "bytes": 421476,
           "englishBytes": 402398
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 34,
-          "end": 42,
           "path": "resources/seconde-06/teacher.pdf",
           "pages": 9,
-          "bytes": 423662,
+          "end": 42,
           "englishPath": "resources/seconde-06/teacher-en.pdf",
+          "bytes": 423662,
           "englishBytes": 403884
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 5,
-          "end": 6,
           "path": "resources/seconde-05/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 238797,
           "title": [
             "Fonctions : représentations et fonctions de référence",
             "Functions and representations"
           ],
+          "pages": 2,
+          "end": 6,
           "englishPath": "resources/seconde-05/fluency-student-en.pdf",
+          "bytes": 238797,
           "englishBytes": 236285
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 8,
-          "end": 10,
           "path": "resources/seconde-05/fluency-teacher.pdf",
-          "pages": 3,
-          "bytes": 255236,
           "title": [
             "Fonctions : représentations et fonctions de référence",
             "Functions and representations"
           ],
+          "pages": 3,
+          "end": 10,
           "englishPath": "resources/seconde-05/fluency-teacher-en.pdf",
+          "bytes": 255236,
           "englishBytes": 251779
         }
       ]
@@ -416,56 +416,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 43,
-          "end": 50,
           "path": "resources/seconde-07/chapter.pdf",
-          "pages": 8,
-          "bytes": 383413,
           "sections": {
             "lesson": 1,
             "practice": 1
           },
+          "pages": 8,
+          "end": 50,
           "englishPath": "resources/seconde-07/chapter-en.pdf",
+          "bytes": 383413,
           "englishBytes": 364150
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 43,
-          "end": 50,
           "path": "resources/seconde-07/teacher.pdf",
           "pages": 8,
-          "bytes": 384576,
+          "end": 50,
           "englishPath": "resources/seconde-07/teacher-en.pdf",
+          "bytes": 384576,
           "englishBytes": 365250
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 7,
-          "end": 8,
           "path": "resources/seconde-06/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 223429,
           "title": [
             "Statistiques descriptives à une variable",
             "Descriptive statistics"
           ],
+          "pages": 2,
+          "end": 8,
           "englishPath": "resources/seconde-06/fluency-student-en.pdf",
+          "bytes": 223429,
           "englishBytes": 221334
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 11,
-          "end": 12,
           "path": "resources/seconde-06/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 244627,
           "title": [
             "Statistiques descriptives à une variable",
             "Descriptive statistics"
           ],
+          "pages": 2,
+          "end": 12,
           "englishPath": "resources/seconde-06/fluency-teacher-en.pdf",
+          "bytes": 244627,
           "englishBytes": 241728
         }
       ]
@@ -484,55 +484,55 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 51,
-          "end": 63,
           "path": "resources/seconde-08/chapter.pdf",
-          "pages": 13,
-          "bytes": 432074,
           "sections": {
             "practice": 1
           },
+          "pages": 13,
+          "end": 63,
           "englishPath": "resources/seconde-08/chapter-en.pdf",
+          "bytes": 432074,
           "englishBytes": 412677
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 51,
-          "end": 63,
           "path": "resources/seconde-08/teacher.pdf",
           "pages": 13,
-          "bytes": 430230,
+          "end": 63,
           "englishPath": "resources/seconde-08/teacher-en.pdf",
+          "bytes": 430230,
           "englishBytes": 409825
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 9,
-          "end": 10,
           "path": "resources/seconde-07/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 238900,
           "title": [
             "Calcul algébrique, équations et inéquations",
             "Algebra, equations and inequalities"
           ],
+          "pages": 2,
+          "end": 10,
           "englishPath": "resources/seconde-07/fluency-student-en.pdf",
+          "bytes": 238900,
           "englishBytes": 236712
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 13,
-          "end": 15,
           "path": "resources/seconde-07/fluency-teacher.pdf",
-          "pages": 3,
-          "bytes": 259263,
           "title": [
             "Calcul algébrique, équations et inéquations",
             "Algebra, equations and inequalities"
           ],
+          "pages": 3,
+          "end": 15,
           "englishPath": "resources/seconde-07/fluency-teacher-en.pdf",
+          "bytes": 259263,
           "englishBytes": 256006
         }
       ]
@@ -551,56 +551,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 64,
-          "end": 67,
           "path": "resources/seconde-09/chapter.pdf",
-          "pages": 4,
-          "bytes": 302045,
           "sections": {
             "lesson": 1,
             "practice": 1
           },
+          "pages": 4,
+          "end": 67,
           "englishPath": "resources/seconde-09/chapter-en.pdf",
+          "bytes": 302045,
           "englishBytes": 282668
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 64,
-          "end": 67,
           "path": "resources/seconde-09/teacher.pdf",
           "pages": 4,
-          "bytes": 304610,
+          "end": 67,
           "englishPath": "resources/seconde-09/teacher-en.pdf",
+          "bytes": 304610,
           "englishBytes": 284802
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 11,
-          "end": 11,
           "path": "resources/seconde-08/fluency-student.pdf",
-          "pages": 1,
-          "bytes": 209760,
           "title": [
             "Proportions et évolutions",
             "Proportions and change"
           ],
+          "pages": 1,
+          "end": 11,
           "englishPath": "resources/seconde-08/fluency-student-en.pdf",
+          "bytes": 209760,
           "englishBytes": 193085
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 16,
-          "end": 17,
           "path": "resources/seconde-08/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 232322,
           "title": [
             "Proportions et évolutions",
             "Proportions and change"
           ],
+          "pages": 2,
+          "end": 17,
           "englishPath": "resources/seconde-08/fluency-teacher-en.pdf",
+          "bytes": 232322,
           "englishBytes": 229424
         }
       ]
@@ -619,56 +619,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 68,
-          "end": 74,
           "path": "resources/seconde-10/chapter.pdf",
-          "pages": 7,
-          "bytes": 387831,
           "sections": {
             "lesson": 1,
             "practice": 1
           },
+          "pages": 7,
+          "end": 74,
           "englishPath": "resources/seconde-10/chapter-en.pdf",
+          "bytes": 387831,
           "englishBytes": 368708
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 68,
-          "end": 74,
           "path": "resources/seconde-10/teacher.pdf",
           "pages": 7,
-          "bytes": 389081,
+          "end": 74,
           "englishPath": "resources/seconde-10/teacher-en.pdf",
+          "bytes": 389081,
           "englishBytes": 369337
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 12,
-          "end": 12,
           "path": "resources/seconde-09/fluency-student.pdf",
-          "pages": 1,
-          "bytes": 201632,
           "title": [
             "Variations et extrémums d'une fonction",
             "Variation and extrema"
           ],
+          "pages": 1,
+          "end": 12,
           "englishPath": "resources/seconde-09/fluency-student-en.pdf",
+          "bytes": 201632,
           "englishBytes": 206425
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 18,
-          "end": 19,
           "path": "resources/seconde-09/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 227041,
           "title": [
             "Variations et extrémums d'une fonction",
             "Variation and extrema"
           ],
+          "pages": 2,
+          "end": 19,
           "englishPath": "resources/seconde-09/fluency-teacher-en.pdf",
+          "bytes": 227041,
           "englishBytes": 223840
         }
       ]
@@ -687,56 +687,56 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 75,
-          "end": 78,
           "path": "resources/seconde-11/chapter.pdf",
-          "pages": 4,
-          "bytes": 366644,
           "sections": {
             "lesson": 1,
             "practice": 1
           },
+          "pages": 4,
+          "end": 78,
           "englishPath": "resources/seconde-11/chapter-en.pdf",
+          "bytes": 366644,
           "englishBytes": 321678
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 75,
-          "end": 78,
           "path": "resources/seconde-11/teacher.pdf",
           "pages": 4,
-          "bytes": 370119,
+          "end": 78,
           "englishPath": "resources/seconde-11/teacher-en.pdf",
+          "bytes": 370119,
           "englishBytes": 323557
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 13,
-          "end": 14,
           "path": "resources/seconde-10/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 216197,
           "title": [
             "Croisement de deux variables qualitatives",
             "Two categorical variables"
           ],
+          "pages": 2,
+          "end": 14,
           "englishPath": "resources/seconde-10/fluency-student-en.pdf",
+          "bytes": 216197,
           "englishBytes": 217364
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 20,
-          "end": 22,
           "path": "resources/seconde-10/fluency-teacher.pdf",
-          "pages": 3,
-          "bytes": 254658,
           "title": [
             "Croisement de deux variables qualitatives",
             "Two categorical variables"
           ],
+          "pages": 3,
+          "end": 22,
           "englishPath": "resources/seconde-10/fluency-teacher-en.pdf",
+          "bytes": 254658,
           "englishBytes": 250699
         }
       ]
@@ -755,55 +755,55 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 79,
-          "end": 81,
           "path": "resources/seconde-12/chapter.pdf",
-          "pages": 3,
-          "bytes": 277779,
           "sections": {
             "practice": 1
           },
+          "pages": 3,
+          "end": 81,
           "englishPath": "resources/seconde-12/chapter-en.pdf",
+          "bytes": 277779,
           "englishBytes": 259001
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 79,
-          "end": 81,
           "path": "resources/seconde-12/teacher.pdf",
           "pages": 3,
-          "bytes": 285171,
+          "end": 81,
           "englishPath": "resources/seconde-12/teacher-en.pdf",
+          "bytes": 285171,
           "englishBytes": 265846
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 15,
-          "end": 15,
           "path": "resources/seconde-11/fluency-student.pdf",
-          "pages": 1,
-          "bytes": 218560,
           "title": [
             "Géométrie repérée : synthèse vecteurs / droites",
             "Coordinate geometry"
           ],
+          "pages": 1,
+          "end": 15,
           "englishPath": "resources/seconde-11/fluency-student-en.pdf",
+          "bytes": 218560,
           "englishBytes": 218905
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 23,
-          "end": 24,
           "path": "resources/seconde-11/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 244756,
           "title": [
             "Géométrie repérée : synthèse vecteurs / droites",
             "Coordinate geometry"
           ],
+          "pages": 2,
+          "end": 24,
           "englishPath": "resources/seconde-11/fluency-teacher-en.pdf",
+          "bytes": 244756,
           "englishBytes": 242218
         }
       ]
@@ -822,55 +822,55 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 82,
-          "end": 84,
           "path": "resources/seconde-13/chapter.pdf",
-          "pages": 3,
-          "bytes": 349381,
           "sections": {
             "practice": 1
           },
+          "pages": 3,
+          "end": 84,
           "englishPath": "resources/seconde-13/chapter-en.pdf",
+          "bytes": 349381,
           "englishBytes": 330382
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 82,
-          "end": 84,
           "path": "resources/seconde-13/teacher.pdf",
           "pages": 3,
-          "bytes": 354011,
+          "end": 84,
           "englishPath": "resources/seconde-13/teacher-en.pdf",
+          "bytes": 354011,
           "englishBytes": 334531
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 16,
-          "end": 16,
           "path": "resources/seconde-12/fluency-student.pdf",
-          "pages": 1,
-          "bytes": 196877,
           "title": [
             "Problèmes de synthèse, raisonnement et automatismes",
             "Reasoning and synthesis"
           ],
+          "pages": 1,
+          "end": 16,
           "englishPath": "resources/seconde-12/fluency-student-en.pdf",
+          "bytes": 196877,
           "englishBytes": 197262
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 25,
-          "end": 25,
           "path": "resources/seconde-12/fluency-teacher.pdf",
-          "pages": 1,
-          "bytes": 208404,
           "title": [
             "Problèmes de synthèse, raisonnement et automatismes",
             "Reasoning and synthesis"
           ],
+          "pages": 1,
+          "end": 25,
           "englishPath": "resources/seconde-12/fluency-teacher-en.pdf",
+          "bytes": 208404,
           "englishBytes": 205808
         }
       ]
@@ -889,55 +889,55 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 85,
-          "end": 91,
           "path": "resources/seconde-14/chapter.pdf",
-          "pages": 7,
-          "bytes": 389612,
           "sections": {
             "practice": 1
           },
+          "pages": 7,
+          "end": 91,
           "englishPath": "resources/seconde-14/chapter-en.pdf",
+          "bytes": 389612,
           "englishBytes": 344184
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 85,
-          "end": 91,
           "path": "resources/seconde-14/teacher.pdf",
           "pages": 7,
-          "bytes": 393178,
+          "end": 91,
           "englishPath": "resources/seconde-14/teacher-en.pdf",
+          "bytes": 393178,
           "englishBytes": 373436
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 17,
-          "end": 18,
           "path": "resources/seconde-13/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 218933,
           "title": [
             "Probabilités : conditionnement et arbres pondérés",
             "Conditional probability and trees"
           ],
+          "pages": 2,
+          "end": 18,
           "englishPath": "resources/seconde-13/fluency-student-en.pdf",
+          "bytes": 218933,
           "englishBytes": 216225
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 26,
-          "end": 29,
           "path": "resources/seconde-13/fluency-teacher.pdf",
-          "pages": 4,
-          "bytes": 248355,
           "title": [
             "Probabilités : conditionnement et arbres pondérés",
             "Conditional probability and trees"
           ],
+          "pages": 4,
+          "end": 29,
           "englishPath": "resources/seconde-13/fluency-teacher-en.pdf",
+          "bytes": 248355,
           "englishBytes": 244875
         }
       ]
@@ -956,85 +956,85 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "seconde-eleve.pdf",
           "start": 92,
-          "end": 94,
           "path": "resources/seconde-15/chapter.pdf",
-          "pages": 3,
-          "bytes": 346786,
           "sections": {
             "practice": 1
           },
+          "pages": 3,
+          "end": 94,
           "englishPath": "resources/seconde-15/chapter-en.pdf",
+          "bytes": 346786,
           "englishBytes": 327863
         },
         {
           "kind": "teacher",
           "source": "seconde-prof.pdf",
           "start": 92,
-          "end": 94,
           "path": "resources/seconde-15-prof.pdf",
           "pages": 3,
-          "bytes": 353735,
+          "end": 94,
           "englishPath": "resources/seconde-15-prof-en.pdf",
+          "bytes": 353735,
           "englishBytes": 326146
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 19,
-          "end": 20,
           "path": "resources/seconde-14/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 211842,
           "title": [
             "Consolidation, automatismes et transition vers la Première",
             "Consolidation and transition"
           ],
+          "pages": 2,
+          "end": 20,
           "englishPath": "resources/seconde-14/fluency-student-en.pdf",
+          "bytes": 211842,
           "englishBytes": 209728
         },
         {
           "kind": "fluency",
           "source": "automatismes-eleve.pdf",
           "start": 21,
-          "end": 22,
           "path": "resources/seconde-15/fluency-student.pdf",
-          "pages": 2,
-          "bytes": 224889,
           "title": [
             "Bilan annuel et consolidation des acquis de Seconde",
             "Annual review and consolidation"
           ],
+          "pages": 2,
+          "end": 22,
           "englishPath": "resources/seconde-15/fluency-student-en.pdf",
+          "bytes": 224889,
           "englishBytes": 223262
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 30,
-          "end": 31,
           "path": "resources/seconde-14/fluency-teacher.pdf",
-          "pages": 2,
-          "bytes": 234077,
           "title": [
             "Consolidation, automatismes et transition vers la Première",
             "Consolidation and transition"
           ],
+          "pages": 2,
+          "end": 31,
           "englishPath": "resources/seconde-14/fluency-teacher-en.pdf",
+          "bytes": 234077,
           "englishBytes": 240056
         },
         {
           "kind": "fluency-solutions",
           "source": "automatismes-prof.pdf",
           "start": 32,
-          "end": 35,
           "path": "resources/seconde-15/fluency-teacher.pdf",
-          "pages": 4,
-          "bytes": 265691,
           "title": [
             "Bilan annuel et consolidation des acquis de Seconde",
             "Annual review and consolidation"
           ],
+          "pages": 4,
+          "end": 35,
           "englishPath": "resources/seconde-15/fluency-teacher-en.pdf",
+          "bytes": 265691,
           "englishBytes": 254260
         }
       ]
@@ -1053,26 +1053,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 7,
-          "end": 15,
           "path": "resources/premiere-01/chapter.pdf",
-          "pages": 9,
-          "bytes": 365518,
           "sections": {
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 15,
           "englishPath": "resources/premiere-01/chapter-en.pdf",
+          "bytes": 365518,
           "englishBytes": 362459
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 7,
-          "end": 18,
           "path": "resources/premiere-01/teacher.pdf",
           "pages": 12,
-          "bytes": 408225,
+          "end": 18,
           "englishPath": "resources/premiere-01/teacher-en.pdf",
+          "bytes": 408225,
           "englishBytes": 405272
         }
       ]
@@ -1091,27 +1091,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 16,
-          "end": 23,
           "path": "resources/premiere-02/chapter.pdf",
-          "pages": 8,
-          "bytes": 324483,
           "sections": {
             "lesson": 2,
             "practice": 4,
             "quiz": 7
           },
+          "pages": 8,
+          "end": 23,
           "englishPath": "resources/premiere-02/chapter-en.pdf",
+          "bytes": 324483,
           "englishBytes": 321474
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 19,
-          "end": 29,
           "path": "resources/premiere-02/teacher.pdf",
           "pages": 11,
-          "bytes": 360348,
+          "end": 29,
           "englishPath": "resources/premiere-02/teacher-en.pdf",
+          "bytes": 360348,
           "englishBytes": 357584
         }
       ]
@@ -1130,26 +1130,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 24,
-          "end": 32,
           "path": "resources/premiere-03/chapter.pdf",
-          "pages": 9,
-          "bytes": 325378,
           "sections": {
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 32,
           "englishPath": "resources/premiere-03/chapter-en.pdf",
+          "bytes": 325378,
           "englishBytes": 322627
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 30,
-          "end": 41,
           "path": "resources/premiere-03/teacher.pdf",
           "pages": 12,
-          "bytes": 364107,
+          "end": 41,
           "englishPath": "resources/premiere-03/teacher-en.pdf",
+          "bytes": 364107,
           "englishBytes": 361572
         }
       ]
@@ -1168,26 +1168,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 33,
-          "end": 40,
           "path": "resources/premiere-04/chapter.pdf",
-          "pages": 8,
-          "bytes": 323384,
           "sections": {
             "practice": 4,
             "quiz": 7
           },
+          "pages": 8,
+          "end": 40,
           "englishPath": "resources/premiere-04/chapter-en.pdf",
+          "bytes": 323384,
           "englishBytes": 320462
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 42,
-          "end": 52,
           "path": "resources/premiere-04/teacher.pdf",
           "pages": 11,
-          "bytes": 357870,
+          "end": 52,
           "englishPath": "resources/premiere-04/teacher-en.pdf",
+          "bytes": 357870,
           "englishBytes": 354806
         }
       ]
@@ -1206,26 +1206,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 41,
-          "end": 49,
           "path": "resources/premiere-05/chapter.pdf",
-          "pages": 9,
-          "bytes": 323347,
           "sections": {
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 49,
           "englishPath": "resources/premiere-05/chapter-en.pdf",
+          "bytes": 323347,
           "englishBytes": 320268
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 53,
-          "end": 64,
           "path": "resources/premiere-05/teacher.pdf",
           "pages": 12,
-          "bytes": 358986,
+          "end": 64,
           "englishPath": "resources/premiere-05/teacher-en.pdf",
+          "bytes": 358986,
           "englishBytes": 356074
         }
       ]
@@ -1244,26 +1244,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 50,
-          "end": 58,
           "path": "resources/premiere-06/chapter.pdf",
-          "pages": 9,
-          "bytes": 333938,
           "sections": {
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 58,
           "englishPath": "resources/premiere-06/chapter-en.pdf",
+          "bytes": 333938,
           "englishBytes": 330990
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 65,
-          "end": 76,
           "path": "resources/premiere-06/teacher.pdf",
           "pages": 12,
-          "bytes": 369748,
+          "end": 76,
           "englishPath": "resources/premiere-06/teacher-en.pdf",
+          "bytes": 369748,
           "englishBytes": 366909
         }
       ]
@@ -1282,26 +1282,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 59,
-          "end": 66,
           "path": "resources/premiere-07/chapter.pdf",
-          "pages": 8,
-          "bytes": 321984,
           "sections": {
             "practice": 4,
             "quiz": 7
           },
+          "pages": 8,
+          "end": 66,
           "englishPath": "resources/premiere-07/chapter-en.pdf",
+          "bytes": 321984,
           "englishBytes": 318899
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 77,
-          "end": 87,
           "path": "resources/premiere-07/teacher.pdf",
           "pages": 11,
-          "bytes": 356492,
+          "end": 87,
           "englishPath": "resources/premiere-07/teacher-en.pdf",
+          "bytes": 356492,
           "englishBytes": 353537
         }
       ]
@@ -1320,27 +1320,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 67,
-          "end": 75,
           "path": "resources/premiere-08/chapter.pdf",
-          "pages": 9,
-          "bytes": 374398,
           "sections": {
             "lesson": 2,
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 75,
           "englishPath": "resources/premiere-08/chapter-en.pdf",
+          "bytes": 374398,
           "englishBytes": 372482
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 88,
-          "end": 99,
           "path": "resources/premiere-08/teacher.pdf",
           "pages": 12,
-          "bytes": 411395,
+          "end": 99,
           "englishPath": "resources/premiere-08/teacher-en.pdf",
+          "bytes": 411395,
           "englishBytes": 409487
         }
       ]
@@ -1359,26 +1359,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 76,
-          "end": 84,
           "path": "resources/premiere-09/chapter.pdf",
-          "pages": 9,
-          "bytes": 349594,
           "sections": {
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 84,
           "englishPath": "resources/premiere-09/chapter-en.pdf",
+          "bytes": 349594,
           "englishBytes": 347012
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 100,
-          "end": 111,
           "path": "resources/premiere-09/teacher.pdf",
           "pages": 12,
-          "bytes": 384328,
+          "end": 111,
           "englishPath": "resources/premiere-09/teacher-en.pdf",
+          "bytes": 384328,
           "englishBytes": 381863
         }
       ]
@@ -1397,27 +1397,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 85,
-          "end": 93,
           "path": "resources/premiere-10/chapter.pdf",
-          "pages": 9,
-          "bytes": 324109,
           "sections": {
             "lesson": 2,
             "practice": 5,
             "quiz": 8
           },
+          "pages": 9,
+          "end": 93,
           "englishPath": "resources/premiere-10/chapter-en.pdf",
+          "bytes": 324109,
           "englishBytes": 320745
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 112,
-          "end": 123,
           "path": "resources/premiere-10/teacher.pdf",
           "pages": 12,
-          "bytes": 358768,
+          "end": 123,
           "englishPath": "resources/premiere-10/teacher-en.pdf",
+          "bytes": 358768,
           "englishBytes": 355464
         }
       ]
@@ -1436,27 +1436,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 9,
-          "end": 11,
           "path": "resources/terminale-01/chapter.pdf",
-          "pages": 3,
-          "bytes": 220284,
           "sections": {
             "lesson": 1,
             "practice": 3,
             "problem": 3
           },
+          "pages": 3,
+          "end": 11,
           "englishPath": "resources/terminale-01/chapter-en.pdf",
+          "bytes": 220284,
           "englishBytes": 217498
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 13,
-          "end": 17,
           "path": "resources/terminale-01/teacher.pdf",
           "pages": 5,
-          "bytes": 271229,
+          "end": 17,
           "englishPath": "resources/terminale-01/teacher-en.pdf",
+          "bytes": 271229,
           "englishBytes": 266912
         }
       ]
@@ -1475,27 +1475,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 12,
-          "end": 14,
           "path": "resources/terminale-02/chapter.pdf",
-          "pages": 3,
-          "bytes": 227351,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 14,
           "englishPath": "resources/terminale-02/chapter-en.pdf",
+          "bytes": 227351,
           "englishBytes": 224546
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 18,
-          "end": 22,
           "path": "resources/terminale-02/teacher.pdf",
           "pages": 5,
-          "bytes": 241615,
+          "end": 22,
           "englishPath": "resources/terminale-02/teacher-en.pdf",
+          "bytes": 241615,
           "englishBytes": 237499
         }
       ]
@@ -1514,27 +1514,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 15,
-          "end": 17,
           "path": "resources/terminale-03/chapter.pdf",
-          "pages": 3,
-          "bytes": 240606,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 17,
           "englishPath": "resources/terminale-03/chapter-en.pdf",
+          "bytes": 240606,
           "englishBytes": 238003
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 23,
-          "end": 27,
           "path": "resources/terminale-03/teacher.pdf",
           "pages": 5,
-          "bytes": 256896,
+          "end": 27,
           "englishPath": "resources/terminale-03/teacher-en.pdf",
+          "bytes": 256896,
           "englishBytes": 252850
         }
       ]
@@ -1553,27 +1553,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 18,
-          "end": 20,
           "path": "resources/terminale-04/chapter.pdf",
-          "pages": 3,
-          "bytes": 231161,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 20,
           "englishPath": "resources/terminale-04/chapter-en.pdf",
+          "bytes": 231161,
           "englishBytes": 228103
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 28,
-          "end": 32,
           "path": "resources/terminale-04/teacher.pdf",
           "pages": 5,
-          "bytes": 245234,
+          "end": 32,
           "englishPath": "resources/terminale-04/teacher-en.pdf",
+          "bytes": 245234,
           "englishBytes": 240585
         }
       ]
@@ -1592,27 +1592,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 21,
-          "end": 23,
           "path": "resources/terminale-05/chapter.pdf",
-          "pages": 3,
-          "bytes": 223028,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 23,
           "englishPath": "resources/terminale-05/chapter-en.pdf",
+          "bytes": 223028,
           "englishBytes": 220141
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 33,
-          "end": 37,
           "path": "resources/terminale-05/teacher.pdf",
           "pages": 5,
-          "bytes": 235007,
+          "end": 37,
           "englishPath": "resources/terminale-05/teacher-en.pdf",
+          "bytes": 235007,
           "englishBytes": 230531
         }
       ]
@@ -1631,27 +1631,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 24,
-          "end": 26,
           "path": "resources/terminale-06/chapter.pdf",
-          "pages": 3,
-          "bytes": 230453,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 26,
           "englishPath": "resources/terminale-06/chapter-en.pdf",
+          "bytes": 230453,
           "englishBytes": 227591
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 38,
-          "end": 43,
           "path": "resources/terminale-06/teacher.pdf",
           "pages": 6,
-          "bytes": 290212,
+          "end": 43,
           "englishPath": "resources/terminale-06/teacher-en.pdf",
+          "bytes": 290212,
           "englishBytes": 286050
         }
       ]
@@ -1670,27 +1670,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 27,
-          "end": 29,
           "path": "resources/terminale-07/chapter.pdf",
-          "pages": 3,
-          "bytes": 233108,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 29,
           "englishPath": "resources/terminale-07/chapter-en.pdf",
+          "bytes": 233108,
           "englishBytes": 230374
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 44,
-          "end": 48,
           "path": "resources/terminale-07/teacher.pdf",
           "pages": 5,
-          "bytes": 247875,
+          "end": 48,
           "englishPath": "resources/terminale-07/teacher-en.pdf",
+          "bytes": 247875,
           "englishBytes": 243684
         }
       ]
@@ -1709,27 +1709,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 30,
-          "end": 32,
           "path": "resources/terminale-08/chapter.pdf",
-          "pages": 3,
-          "bytes": 222007,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 32,
           "englishPath": "resources/terminale-08/chapter-en.pdf",
+          "bytes": 222007,
           "englishBytes": 219451
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 49,
-          "end": 53,
           "path": "resources/terminale-08/teacher.pdf",
           "pages": 5,
-          "bytes": 235993,
+          "end": 53,
           "englishPath": "resources/terminale-08/teacher-en.pdf",
+          "bytes": 235993,
           "englishBytes": 232137
         }
       ]
@@ -1748,27 +1748,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 33,
-          "end": 35,
           "path": "resources/terminale-09/chapter.pdf",
-          "pages": 3,
-          "bytes": 225373,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 35,
           "englishPath": "resources/terminale-09/chapter-en.pdf",
+          "bytes": 225373,
           "englishBytes": 222325
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 54,
-          "end": 58,
           "path": "resources/terminale-09/teacher.pdf",
           "pages": 5,
-          "bytes": 250592,
+          "end": 58,
           "englishPath": "resources/terminale-09/teacher-en.pdf",
+          "bytes": 250592,
           "englishBytes": 246207
         }
       ]
@@ -1787,27 +1787,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 36,
-          "end": 38,
           "path": "resources/terminale-10/chapter.pdf",
-          "pages": 3,
-          "bytes": 219878,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 38,
           "englishPath": "resources/terminale-10/chapter-en.pdf",
+          "bytes": 219878,
           "englishBytes": 217087
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 59,
-          "end": 63,
           "path": "resources/terminale-10/teacher.pdf",
           "pages": 5,
-          "bytes": 262716,
+          "end": 63,
           "englishPath": "resources/terminale-10/teacher-en.pdf",
+          "bytes": 262716,
           "englishBytes": 258231
         }
       ]
@@ -1826,27 +1826,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 39,
-          "end": 41,
           "path": "resources/terminale-11/chapter.pdf",
-          "pages": 3,
-          "bytes": 239902,
           "sections": {
             "lesson": 1,
             "practice": 3,
             "problem": 3
           },
+          "pages": 3,
+          "end": 41,
           "englishPath": "resources/terminale-11/chapter-en.pdf",
+          "bytes": 239902,
           "englishBytes": 236974
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 64,
-          "end": 68,
           "path": "resources/terminale-11/teacher.pdf",
           "pages": 5,
-          "bytes": 283870,
+          "end": 68,
           "englishPath": "resources/terminale-11/teacher-en.pdf",
+          "bytes": 283870,
           "englishBytes": 279534
         }
       ]
@@ -1865,27 +1865,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 42,
-          "end": 44,
           "path": "resources/terminale-12/chapter.pdf",
-          "pages": 3,
-          "bytes": 233017,
           "sections": {
             "lesson": 1,
             "practice": 3,
             "problem": 3
           },
+          "pages": 3,
+          "end": 44,
           "englishPath": "resources/terminale-12/chapter-en.pdf",
+          "bytes": 233017,
           "englishBytes": 230596
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 69,
-          "end": 73,
           "path": "resources/terminale-12/teacher.pdf",
           "pages": 5,
-          "bytes": 286484,
+          "end": 73,
           "englishPath": "resources/terminale-12/teacher-en.pdf",
+          "bytes": 286484,
           "englishBytes": 282497
         }
       ]
@@ -1904,27 +1904,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 45,
-          "end": 47,
           "path": "resources/terminale-13/chapter.pdf",
-          "pages": 3,
-          "bytes": 224322,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 47,
           "englishPath": "resources/terminale-13/chapter-en.pdf",
+          "bytes": 224322,
           "englishBytes": 221535
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 74,
-          "end": 78,
           "path": "resources/terminale-13/teacher.pdf",
           "pages": 5,
-          "bytes": 238282,
+          "end": 78,
           "englishPath": "resources/terminale-13/teacher-en.pdf",
+          "bytes": 238282,
           "englishBytes": 234121
         }
       ]
@@ -1943,27 +1943,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 48,
-          "end": 50,
           "path": "resources/terminale-14/chapter.pdf",
-          "pages": 3,
-          "bytes": 232500,
           "sections": {
             "lesson": 1,
             "practice": 2,
             "problem": 3
           },
+          "pages": 3,
+          "end": 50,
           "englishPath": "resources/terminale-14/chapter-en.pdf",
+          "bytes": 232500,
           "englishBytes": 229710
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 79,
-          "end": 83,
           "path": "resources/terminale-14/teacher.pdf",
           "pages": 5,
-          "bytes": 246543,
+          "end": 83,
           "englishPath": "resources/terminale-14/teacher-en.pdf",
+          "bytes": 246543,
           "englishBytes": 242584
         }
       ]
@@ -1982,27 +1982,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 7,
-          "end": 20,
           "path": "resources/stmg-01/chapter.pdf",
-          "pages": 14,
-          "bytes": 308047,
           "sections": {
             "lesson": 1,
             "problem": 3,
             "practice": 4
           },
+          "pages": 14,
+          "end": 20,
           "englishPath": "resources/stmg-01/chapter-en.pdf",
+          "bytes": 308047,
           "englishBytes": 304045
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 7,
-          "end": 26,
           "path": "resources/stmg-01/teacher.pdf",
           "pages": 20,
-          "bytes": 352435,
+          "end": 26,
           "englishPath": "resources/stmg-01/teacher-en.pdf",
+          "bytes": 352435,
           "englishBytes": 347576
         }
       ]
@@ -2021,27 +2021,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 21,
-          "end": 39,
           "path": "resources/stmg-02/chapter.pdf",
-          "pages": 19,
-          "bytes": 321576,
           "sections": {
             "lesson": 1,
             "problem": 3,
             "practice": 4
           },
+          "pages": 19,
+          "end": 39,
           "englishPath": "resources/stmg-02/chapter-en.pdf",
+          "bytes": 321576,
           "englishBytes": 316992
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 26,
-          "end": 51,
           "path": "resources/stmg-02/teacher.pdf",
           "pages": 26,
-          "bytes": 373256,
+          "end": 51,
           "englishPath": "resources/stmg-02/teacher-en.pdf",
+          "bytes": 373256,
           "englishBytes": 366623
         }
       ]
@@ -2060,27 +2060,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 39,
-          "end": 55,
           "path": "resources/stmg-03/chapter.pdf",
-          "pages": 17,
-          "bytes": 310918,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
+          "pages": 17,
+          "end": 55,
           "englishPath": "resources/stmg-03/chapter-en.pdf",
+          "bytes": 310918,
           "englishBytes": 306486
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 49,
-          "end": 73,
           "path": "resources/stmg-03/teacher.pdf",
           "pages": 25,
-          "bytes": 392743,
+          "end": 73,
           "englishPath": "resources/stmg-03/teacher-en.pdf",
+          "bytes": 392743,
           "englishBytes": 384558
         }
       ]
@@ -2099,27 +2099,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 56,
-          "end": 75,
           "path": "resources/stmg-04/chapter.pdf",
-          "pages": 20,
-          "bytes": 333409,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
+          "pages": 20,
+          "end": 75,
           "englishPath": "resources/stmg-04/chapter-en.pdf",
+          "bytes": 333409,
           "englishBytes": 329385
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 74,
-          "end": 100,
           "path": "resources/stmg-04/teacher.pdf",
           "pages": 27,
-          "bytes": 399313,
+          "end": 100,
           "englishPath": "resources/stmg-04/teacher-en.pdf",
+          "bytes": 399313,
           "englishBytes": 393613
         }
       ]
@@ -2138,27 +2138,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 73,
-          "end": 90,
           "path": "resources/stmg-05/chapter.pdf",
-          "pages": 18,
-          "bytes": 287514,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
+          "pages": 18,
+          "end": 90,
           "englishPath": "resources/stmg-05/chapter-en.pdf",
+          "bytes": 287514,
           "englishBytes": 282422
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 99,
-          "end": 123,
           "path": "resources/stmg-05/teacher.pdf",
           "pages": 25,
-          "bytes": 344334,
+          "end": 123,
           "englishPath": "resources/stmg-05/teacher-en.pdf",
+          "bytes": 344334,
           "englishBytes": 336786
         }
       ]
@@ -2177,27 +2177,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 90,
-          "end": 106,
           "path": "resources/stmg-06/chapter.pdf",
-          "pages": 17,
-          "bytes": 288987,
           "sections": {
             "lesson": 1,
             "problem": 2,
             "practice": 3
           },
+          "pages": 17,
+          "end": 106,
           "englishPath": "resources/stmg-06/chapter-en.pdf",
+          "bytes": 288987,
           "englishBytes": 283959
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 124,
-          "end": 148,
           "path": "resources/stmg-06/teacher.pdf",
           "pages": 25,
-          "bytes": 337529,
+          "end": 148,
           "englishPath": "resources/stmg-06/teacher-en.pdf",
+          "bytes": 337529,
           "englishBytes": 329359
         }
       ]
@@ -2216,27 +2216,27 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 107,
-          "end": 118,
           "path": "resources/stmg-07/chapter.pdf",
-          "pages": 12,
-          "bytes": 259948,
           "sections": {
             "lesson": 1,
             "problem": 3,
             "practice": 4
           },
+          "pages": 12,
+          "end": 118,
           "englishPath": "resources/stmg-07/chapter-en.pdf",
+          "bytes": 259948,
           "englishBytes": 256656
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 149,
-          "end": 165,
           "path": "resources/stmg-07/teacher.pdf",
           "pages": 17,
-          "bytes": 303666,
+          "end": 165,
           "englishPath": "resources/stmg-07/teacher-en.pdf",
+          "bytes": 303666,
           "englishBytes": 298772
         }
       ]
@@ -2255,26 +2255,26 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 119,
-          "end": 128,
           "path": "resources/stmg-08/chapter.pdf",
-          "pages": 10,
-          "bytes": 258922,
           "sections": {
             "problem": 2,
             "practice": 3
           },
+          "pages": 10,
+          "end": 128,
           "englishPath": "resources/stmg-08/chapter-en.pdf",
+          "bytes": 258922,
           "englishBytes": 255750
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 166,
-          "end": 178,
           "path": "resources/stmg-08/teacher.pdf",
           "pages": 13,
-          "bytes": 285560,
+          "end": 178,
           "englishPath": "resources/stmg-08/teacher-en.pdf",
+          "bytes": 285560,
           "englishBytes": 280728
         }
       ]
@@ -2294,22 +2294,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 94,
-          "end": 97,
           "path": "resources/premiere-methods-eleve.pdf",
           "pages": 4,
-          "bytes": 324994,
+          "end": 97,
           "englishPath": "resources/premiere-methods-eleve-en.pdf",
+          "bytes": 324994,
           "englishBytes": 322175
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 124,
-          "end": 127,
           "path": "resources/premiere-methods-prof.pdf",
           "pages": 4,
-          "bytes": 329141,
+          "end": 127,
           "englishPath": "resources/premiere-methods-prof-en.pdf",
+          "bytes": 329141,
           "englishBytes": 326242
         }
       ]
@@ -2327,22 +2327,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 98,
-          "end": 105,
           "path": "resources/premiere-fluency-eleve.pdf",
           "pages": 8,
-          "bytes": 261711,
+          "end": 105,
           "englishPath": "resources/premiere-fluency-eleve-en.pdf",
+          "bytes": 261711,
           "englishBytes": 258635
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 128,
-          "end": 140,
           "path": "resources/premiere-fluency-prof.pdf",
           "pages": 13,
-          "bytes": 349039,
+          "end": 140,
           "englishPath": "resources/premiere-fluency-prof-en.pdf",
+          "bytes": 349039,
           "englishBytes": 345928
         }
       ]
@@ -2360,22 +2360,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "premiere-eleve.pdf",
           "start": 106,
-          "end": 122,
           "path": "resources/premiere-assessments-eleve.pdf",
           "pages": 17,
-          "bytes": 330431,
+          "end": 122,
           "englishPath": "resources/premiere-assessments-eleve-en.pdf",
+          "bytes": 330431,
           "englishBytes": 327566
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 141,
-          "end": 189,
           "path": "resources/premiere-assessments-prof.pdf",
           "pages": 49,
-          "bytes": 483809,
+          "end": 189,
           "englishPath": "resources/premiere-assessments-prof-en.pdf",
+          "bytes": 483809,
           "englishBytes": 481252
         }
       ]
@@ -2393,22 +2393,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 111,
-          "end": 118,
           "path": "resources/terminale-fluency-eleve.pdf",
           "pages": 8,
-          "bytes": 270245,
+          "end": 118,
           "englishPath": "resources/terminale-fluency-eleve-en.pdf",
+          "bytes": 270245,
           "englishBytes": 269859
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 166,
-          "end": 176,
           "path": "resources/terminale-fluency-prof.pdf",
           "pages": 11,
-          "bytes": 292948,
+          "end": 176,
           "englishPath": "resources/terminale-fluency-prof-en.pdf",
+          "bytes": 292948,
           "englishBytes": 292289
         }
       ]
@@ -2426,22 +2426,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 122,
-          "end": 123,
           "path": "resources/terminale-methods-eleve.pdf",
           "pages": 2,
-          "bytes": 158140,
+          "end": 123,
           "englishPath": "resources/terminale-methods-eleve-en.pdf",
+          "bytes": 158140,
           "englishBytes": 147286
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 180,
-          "end": 181,
           "path": "resources/terminale-methods-prof.pdf",
           "pages": 2,
-          "bytes": 161507,
+          "end": 181,
           "englishPath": "resources/terminale-methods-prof-en.pdf",
+          "bytes": 161507,
           "englishBytes": 150315
         }
       ]
@@ -2459,22 +2459,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 51,
-          "end": 53,
           "path": "resources/terminale-algorithms-eleve.pdf",
           "pages": 3,
-          "bytes": 219435,
+          "end": 53,
           "englishPath": "resources/terminale-algorithms-eleve-en.pdf",
+          "bytes": 219435,
           "englishBytes": 216957
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 84,
-          "end": 86,
           "path": "resources/terminale-algorithms-prof.pdf",
           "pages": 3,
-          "bytes": 223879,
+          "end": 86,
           "englishPath": "resources/terminale-algorithms-prof-en.pdf",
+          "bytes": 223879,
           "englishBytes": 220298
         }
       ]
@@ -2492,22 +2492,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 54,
-          "end": 54,
           "path": "resources/terminale-proofs-eleve.pdf",
           "pages": 1,
-          "bytes": 187513,
+          "end": 54,
           "englishPath": "resources/terminale-proofs-eleve-en.pdf",
+          "bytes": 187513,
           "englishBytes": 184722
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 87,
-          "end": 87,
           "path": "resources/terminale-proofs-prof.pdf",
           "pages": 1,
-          "bytes": 190116,
+          "end": 87,
           "englishPath": "resources/terminale-proofs-prof-en.pdf",
+          "bytes": 190116,
           "englishBytes": 186114
         }
       ]
@@ -2525,22 +2525,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 55,
-          "end": 55,
           "path": "resources/terminale-oral-eleve.pdf",
           "pages": 1,
-          "bytes": 145237,
+          "end": 55,
           "englishPath": "resources/terminale-oral-eleve-en.pdf",
+          "bytes": 145237,
           "englishBytes": 142513
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 88,
-          "end": 88,
           "path": "resources/terminale-oral-prof.pdf",
           "pages": 1,
-          "bytes": 147384,
+          "end": 88,
           "englishPath": "resources/terminale-oral-prof-en.pdf",
+          "bytes": 147384,
           "englishBytes": 143431
         }
       ]
@@ -2558,22 +2558,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
           "start": 56,
-          "end": 94,
           "path": "resources/terminale-assessments-eleve.pdf",
           "pages": 39,
-          "bytes": 376419,
+          "end": 94,
           "englishPath": "resources/terminale-assessments-eleve-en.pdf",
+          "bytes": 376419,
           "englishBytes": 371586
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 89,
-          "end": 261,
           "path": "resources/terminale-assessments-prof.pdf",
           "pages": 173,
-          "bytes": 1018395,
+          "end": 261,
           "englishPath": "resources/terminale-assessments-prof-en.pdf",
+          "bytes": 1018395,
           "englishBytes": 1006034
         }
       ]
@@ -2591,22 +2591,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 128,
-          "end": 142,
           "path": "resources/stmg-assessments-eleve.pdf",
           "pages": 15,
-          "bytes": 245982,
+          "end": 142,
           "englishPath": "resources/stmg-assessments-eleve-en.pdf",
+          "bytes": 245982,
           "englishBytes": 241632
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 179,
-          "end": 193,
           "path": "resources/stmg-assessments-prof.pdf",
           "pages": 15,
-          "bytes": 287476,
+          "end": 193,
           "englishPath": "resources/stmg-assessments-prof-en.pdf",
+          "bytes": 287476,
           "englishBytes": 283424
         }
       ]
@@ -2624,22 +2624,22 @@ export const resourceCatalog = {
           "kind": "chapter",
           "source": "stmg-eleve.pdf",
           "start": 143,
-          "end": 143,
           "path": "resources/stmg-formulas-eleve.pdf",
           "pages": 1,
-          "bytes": 176479,
+          "end": 143,
           "englishPath": "resources/stmg-formulas-eleve-en.pdf",
+          "bytes": 176479,
           "englishBytes": 174538
         },
         {
           "kind": "teacher",
           "source": "stmg-prof.pdf",
           "start": 194,
-          "end": 194,
           "path": "resources/stmg-formulas-prof.pdf",
           "pages": 1,
-          "bytes": 178296,
+          "end": 194,
           "englishPath": "resources/stmg-formulas-prof-en.pdf",
+          "bytes": 178296,
           "englishBytes": 176077
         }
       ]
@@ -2657,11 +2657,11 @@ export const resourceCatalog = {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 190,
-          "end": 195,
           "path": "resources/premiere-revision/matrix.pdf",
           "pages": 6,
-          "bytes": 206666,
+          "end": 195,
           "englishPath": "resources/premiere-revision/matrix-en.pdf",
+          "bytes": 206666,
           "englishBytes": 204101
         }
       ]
@@ -2679,11 +2679,11 @@ export const resourceCatalog = {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 196,
-          "end": 212,
           "path": "resources/premiere-revision/schedule.pdf",
           "pages": 17,
-          "bytes": 245479,
+          "end": 212,
           "englishPath": "resources/premiere-revision/schedule-en.pdf",
+          "bytes": 245479,
           "englishBytes": 241566
         }
       ]

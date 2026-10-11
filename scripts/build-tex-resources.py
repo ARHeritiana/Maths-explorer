@@ -21,6 +21,9 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild import catalog as manifest_io   # content/data/manifest.json is the source of truth
+MANIFEST = manifest_io.load()
 SRC = ROOT / 'content/tex/courses'
 BUILD = ROOT / 'build/tex'
 OUT = ROOT / 'dist/resources'
@@ -138,10 +141,7 @@ def emit(target, chapter, kind, title, lang, doc, start, end, bounds=None, offse
     return n
 
 
-COMPANION = ROOT / 'dist/js/resources-data.js'
-
-
-def read_companion(): return json.loads(COMPANION.read_text().split('=', 1)[1].rstrip().rstrip(';'))
+def read_companion(): return MANIFEST['companion']
 
 
 def supplement_title(course, name):
@@ -184,7 +184,7 @@ def register_terminale(catalog, chapters, placed, appendices):
         if r['id'] == 'terminale-revision-bank-2':
             r['texBuilt'] = True
             if 'assessments' in placed: r['sourcePages'] = list(placed['assessments']['student']); r['source'] = 'terminale-student'; r['review'] = 'source-unverified'
-    (OUT / 'catalog.json').write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+    manifest_io.save(MANIFEST)
     comp = read_companion()
     for number, rec in placed.items():
         if not isinstance(number, int):
@@ -204,7 +204,7 @@ def register_terminale(catalog, chapters, placed, appendices):
              'englishPath': f"resources/{ch['id']}/chapter-en.pdf", 'englishBytes': 0},
             {'kind': 'teacher', 'source': 'terminale-prof.pdf', 'start': rec['teacher'][1], 'end': rec['teacher'][2], 'path': f"resources/{ch['id']}/teacher.pdf", 'pages': 0, 'bytes': 0,
              'englishPath': f"resources/{ch['id']}/teacher-en.pdf", 'englishBytes': 0}]
-    COMPANION.write_text('export const resourceCatalog = ' + json.dumps(comp, ensure_ascii=False, indent=2) + ';\n')
+    manifest_io.save(MANIFEST)
 
 
 # Teacher-only documents that close the Première teacher book: (resource id suffix, titles, bookmark title start per language)
@@ -236,8 +236,8 @@ def standalone_teacher(catalog, lang):
             sup['title'] = titles
             sup['files'] = [{'kind': 'teacher', 'source': 'premiere-prof.pdf', 'start': top[i][1] + 1, 'end': top[i + 1][1], 'path': f'resources/premiere-revision/{name}.pdf',
                              'pages': n, 'bytes': 0, 'englishPath': f'resources/premiere-revision/{name}-en.pdf', 'englishBytes': 0}]
-            COMPANION.write_text('export const resourceCatalog = ' + json.dumps(comp, ensure_ascii=False, indent=2) + ';\n')
-    if lang == 'fr': (OUT / 'catalog.json').write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+            manifest_io.save(MANIFEST)
+    if lang == 'fr': manifest_io.save(MANIFEST)
 
 
 def main():
@@ -248,7 +248,7 @@ def main():
     ap.add_argument('--pilot-entry', default=None, help='reduced entry stem for the English twin, e.g. pilot')
     a = ap.parse_args()
     course = a.course
-    catalog = json.loads((OUT / 'catalog.json').read_text())
+    catalog = MANIFEST['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == course}
     if course == 'terminale': prepare_terminale(catalog, [chapters[n] for n in a.chapters])
     results = {}; placed = {}
@@ -309,10 +309,8 @@ def main():
     if a.appendices and course == 'premiere':
         for lang in a.lang: standalone_teacher(catalog, lang)
     if {'fr', 'en'} <= set(a.lang):   # record chapters built from TeX in both languages
-        ledger = ROOT / 'docs/TEX_CONVERSION.json'
-        done = set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
-        done |= {chapters[n]['id'] for n in a.chapters}
-        ledger.write_text(json.dumps({'note': 'Chapters whose French and English PDFs are compiled from content/tex/courses.', 'converted': sorted(done)}, indent=2) + '\n')
+        MANIFEST['texConverted'] = sorted(set(MANIFEST['texConverted']) | {chapters[n]['id'] for n in a.chapters})
+        manifest_io.save(MANIFEST)
     if course == 'terminale' and {'fr', 'en'} <= set(a.lang):
         register_terminale(catalog, chapters, placed, a.appendices)
     for (lang, number), pages in results.items():

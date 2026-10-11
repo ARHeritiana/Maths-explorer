@@ -13,7 +13,9 @@ esc=html.escape
 if '--skip-pdf' not in sys.argv:
  subprocess.run([sys.executable,str(ROOT/'scripts/build-enrichment-latex.py')],check=True)
 
-catalog_path=DIST/'resources/catalog.json';catalog=json.loads(catalog_path.read_text())
+sys.path.insert(0,str(ROOT/'build'))
+from mxbuild import catalog as manifest_io   # content/data/manifest.json is the source of truth
+manifest=manifest_io.load();catalog=manifest['catalog']
 for key in ['chapters','resources']:catalog[key]=[x for x in catalog[key] if x.get('course')!='explorations']
 catalog['courses']=[x for x in catalog['courses'] if x['id']!='explorations']
 catalog['courses'].append({'id':'explorations','title':['Ateliers & approfondissements','Workshops & enrichment'],'curriculum':'shared','language':'bilingual'})
@@ -33,7 +35,7 @@ for i,p in enumerate(packs,1):
    (OUT/(stem+'.html')).write_text('<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(p['title'][j])+' · '+esc(title[j])+'</title><style>'+document_theme+'</style></head><body><header><p>Maths Explorer · '+lang.upper()+f' · {i:02d}</p><h1>'+esc(p['title'][j])+'</h1><p>'+esc(title[j])+'</p><p class="level">'+esc(p['level'][j])+'</p></header><main>'+''.join(html_sections)+'</main><footer><p>'+notice[j]+'</p><div class="actions"><a href="'+stem+'.pdf">'+('Télécharger le PDF','Download PDF')[j]+'</a><button onclick="window.print()">'+('Imprimer','Print')[j]+'</button><a href="'+p['id']+'-'+kind+('' if j else '-en')+'.html">'+('English' if j==0 else 'Français')+'</a><a href="../../index.html#library/'+cid+'">'+('Bibliothèque','Resource library')[j]+'</a></div></footer></body></html>')
    records.append({'path':str(target.relative_to(DIST)),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'pages':counts[-1],'lang':lang})
   catalog['resources'].append({'id':cid+'-'+kind,'chapter':cid,'course':'explorations','type':kind,'title':title,'language':'bilingual','audience':'teacher' if kind=='solutions' else 'student','format':'PDF','url':urls,'htmlUrl':html_urls,'pages':counts[0],'englishPages':counts[1],'bytes':sizes[0],'englishBytes':sizes[1],'translation':'authored-bilingual','review':'calculated','contentKey':p['id']})
-catalog_path.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n')
+manifest_io.save(manifest);manifest_io.write()
 (DIST/'js/enrichment-data.js').write_text('export const enrichment = '+json.dumps(packs,ensure_ascii=False,indent=2)+';\n')
 (ROOT/'docs/ENRICHMENT_MANIFEST.json').write_text(json.dumps(records,indent=2)+'\n')
 print(f'Created {len(packs)} bilingual packs; {len(records)} PDFs and {len(records)} HTML reading editions.')

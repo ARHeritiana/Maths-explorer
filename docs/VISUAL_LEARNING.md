@@ -12,12 +12,6 @@ The complete resource catalogue from source `99ffeeaf4afe2883bbc8f35ef31b8dd7908
 
 `dist/js/resources-data.js` stores source modification dates, physical PDF ranges and file sizes. `docs/RESOURCE_PROVENANCE.json` hashes every companion extract. The source PDFs form a snapshot from 7 October 2026; there is no automatic synchronisation. Première student and teacher editions have different modification dates, surfaced in the interface before comparing solutions.
 
-To recreate additional whole-page extracts after rebuilding the existing catalogue, materialise the recorded original PDFs using the filenames in `resourceCatalog.sources.name`, then run:
-
-```sh
-python scripts/build-companion-resources.py /absolute/source-directory
-npm run check
-npm test
-```
+The companion catalogue (`dist/js/resources-data.js`) is generated from `content/data/manifest.json` by `make catalog` (11 October 2026; the former `build-companion-resources.py` needed the original intake PDFs and was retired).
 
 The helper retains existing nested library assets. It does not fetch external files, change source-booklet mathematics or alter access. The original import and study-sheet generation remain documented in `RESOURCE_LIBRARY.md`. Validation and remaining browser/device limits are recorded in `VALIDATION.md`.

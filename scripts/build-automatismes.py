@@ -10,6 +10,8 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild import catalog as manifest_io   # content/data/manifest.json is the source of truth
 SRC = ROOT / 'content/tex/courses/automatismes'
 BUILD = ROOT / 'build/tex/automatismes'
 OUT = ROOT / 'dist/resources'
@@ -32,7 +34,7 @@ def compile_pdf(entry):
 
 
 def main():
-    catalog = json.loads((OUT / 'catalog.json').read_text())
+    catalog = manifest_io.load()['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == 'seconde'}
     counts = {}
     for lang, suf in (('fr', ''), ('en', '-en')):

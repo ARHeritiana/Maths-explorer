@@ -10,6 +10,8 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild import catalog as manifest_io   # content/data/manifest.json is the source of truth
 SRC = ROOT / 'content/tex/courses/stmg'
 BUILD = ROOT / 'build/tex/stmg'
 OUT = ROOT / 'dist/resources'
@@ -39,7 +41,7 @@ def save(d, a, b, target, title):
 
 
 def main():
-    catalog = json.loads((OUT / 'catalog.json').read_text())
+    manifest = manifest_io.load(); catalog = manifest['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == 'stmg'}
     res = {r['id']: r for r in catalog['resources'] if r['course'] == 'stmg'}
     counts = {}
@@ -67,9 +69,8 @@ def main():
             counts[(lang, 'formulas', role)] = save(d, fa, fb, OUT / f'stmg-formulas-{role}{suf}.pdf', 'Maths Explorer — ' + ('Formulaire raisonné' if lang == 'fr' else 'Annotated formula sheet'))
     bad = sorted(str(k[1:]) for k in counts if k[0] == 'fr' and counts[k] != counts[('en',) + k[1:]])
     if bad: sys.exit('Page-count mismatch: ' + ', '.join(bad))
-    done = ROOT / 'docs/TEX_CONVERSION.json'
-    led = json.loads(done.read_text()); led['converted'] = sorted(set(led['converted']) | {c['id'] for c in chapters.values()} | {'stmg-revision'})
-    done.write_text(json.dumps(led, indent=2) + '\n')
+    manifest['texConverted'] = sorted(set(manifest['texConverted']) | {c['id'] for c in chapters.values()} | {'stmg-revision'})
+    manifest_io.save(manifest)
     print('FR/EN page counts match for all STMG resources')
 
 

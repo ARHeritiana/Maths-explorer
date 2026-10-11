@@ -7,4 +7,7 @@ test-results/
 .sites-runtime/
 
 __pycache__/
-build/
+# build/ holds the pipeline package (tracked) and its products (ignored)
+/build/*
+!/build/mxbuild/
+!/build/README.md
