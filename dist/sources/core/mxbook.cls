@@ -4,18 +4,20 @@
 %   lang=fr|en                     language of labels, hyphenation and number formatting (default: fr)
 %   edition=student|teacher|both   teacher material is shown for teacher and both (default: student)
 %   layout=booklet|sheet|slide-figs page design: two-sided booklet, one-sided sheet, or a bare page for figure export
+%   unit=chapter|sequence          name printed before a unit number in booklets (default: chapter)
 % Every course main is a few lines: \documentclass[course=...,lang=...,edition=...]{mxbook}, \begin{document},
 % then \mxinclude{...} for each unit. Units never load packages or define macros.
 \NeedsTeXFormat{LaTeX2e}[2022/06/01]
 \ProvidesClass{mxbook}[2026/10/11 Maths Explorer class]
 
-\def\mx@course{}\def\mx@lang{fr}\def\mx@edition{student}\def\mx@layout{booklet}
+\def\mx@course{}\def\mx@lang{fr}\def\mx@edition{student}\def\mx@layout{booklet}\def\mx@unitname{chapter}
 \ExplSyntaxOn
 \DeclareKeys{
   course.store = \mx@course,
   lang.choices:nn = {fr,en}{\cs_set_nopar:Npx \mx@lang {\l_keys_choice_tl}},
   edition.choices:nn = {student,teacher,both}{\cs_set_nopar:Npx \mx@edition {\l_keys_choice_tl}},
   layout.choices:nn = {booklet,sheet,slide-figs}{\cs_set_nopar:Npx \mx@layout {\l_keys_choice_tl}},
+  unit.choices:nn = {chapter,sequence}{\cs_set_nopar:Npx \mx@unitname {\l_keys_choice_tl}},
 }
 \ExplSyntaxOff
 \ProcessKeyOptions\relax
@@ -67,6 +69,10 @@
 \def\mx@sheet{sheet}
 \newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}\mx@newblock
   \ifx\mx@layout\mx@sheet\section{#2}\else\chapter{#2}\fi\label{#1}}
+% \mxsubtitle{text}: a line under a unit heading (dates, period).
+\newcommand{\mxsubtitle}[1]{{\color{mxmuted}\sffamily #1\par}\medskip}
+% \mxsection{title}: a section that starts a new page and is balanced like a unit (worksheets).
+\newcommand{\mxsection}[1]{\mx@newblock\section{#1}}
 % \mxfront{id}: opens a unit without heading (title block, introduction).
 \newcommand{\mxfront}[1]{\renewcommand{\mxunitid}{#1}}
 \newcommand{\mxlabel}[1]{\label{\mxunitid:#1}}

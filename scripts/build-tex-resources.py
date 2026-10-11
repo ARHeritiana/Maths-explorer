@@ -22,7 +22,7 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
+from mxbuild import books, catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
 MANIFEST = manifest_io.load()
 SRC = ROOT / 'content/tex/courses'
 BUILD = ROOT / 'build/out/tex'
@@ -63,8 +63,20 @@ KIND_ORDER = ['chapter', 'teacher', 'activities', 'notes', 'practice', 'exercise
 def tidy(s): return re.sub(r'\s+', ' ', s).strip()
 
 
+_PAIRS = {}
+
+
 def compile_pdf(course, entry, jobname, prof, defs=''):
-    """Compile in the source directory until stable (mxbuild.tex); returns the PDF path."""
+    """Compile in the source directory until stable (mxbuild.tex); returns the PDF path. Courses on the shared class
+    (books in the manifest) compile from generated mains, French and English together and balanced block by block."""
+    if course in MANIFEST.get('books', {}):
+        if jobname not in _PAIRS:
+            mains = books.write_mains(course, BUILD / course / 'mains', str(ROOT / 'content/tex/core'))
+            ed = 'professeur' if prof else 'eleve'; base = jobname.removesuffix('-en')
+            pair = tex.compile_pair(SRC / course, {'fr': str(mains[ed]), 'en': str(mains[ed + '-en'])},
+                                    {'fr': base, 'en': base + '-en'}, BUILD / course)
+            for r in (pair['fr'], pair['en']): _PAIRS[r.pdf.stem] = r.report(r.pdf.stem).pdf
+        return _PAIRS[jobname]
     res = tex.compile(SRC / course, ((r'\def\versionprof{1}' if prof else '') + defs + r'\input{%s}' % entry) if (prof or defs) else entry,
                       jobname, BUILD / course)
     res.report(jobname)
@@ -80,8 +92,9 @@ def chapter_ranges(course, sd, td, lang, count):
     if course == 'seconde':
         for d_i, d in enumerate((sd, td)):
             toc = [(tidy(t), p - 1) for l, t, p in d.get_toc() if l == 1]
-            seq = [p for t, p in toc if re.match(SEQUENCE[lang], t)]
             annex = [p for t, p in toc if re.match(r'^(Annexes professeur|Teacher annexes)', t)]
+            # hand-written books print 'Séquence N : ...'; on the shared class every level-1 bookmark is a sequence
+            seq = [p for t, p in toc if re.match(SEQUENCE[lang], t)] or [p for t, p in toc if p not in annex]
             ends = seq[1:] + [annex[0] if annex else len(d)]
             out.append(list(zip(seq, ends)))
         return [(a[0], a[1], b[0], b[1]) for a, b in zip(*out)][:count]

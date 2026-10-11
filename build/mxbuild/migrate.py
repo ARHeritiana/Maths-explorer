@@ -5,8 +5,7 @@ course -> canonical names), the rewritten pair is aligned into the translation t
 is moved (git mv) to <unit>.fr.tex and the English one is generated. A unit whose pair cannot be aligned is reported
 and left untouched. Run: python -m mxbuild migrate <course> [--dry-run]
 """
-import re, subprocess, sys
-from pathlib import Path
+import re, subprocess
 from . import ROOT, twin
 
 COURSES = ROOT / 'content/tex/courses'
@@ -69,14 +68,26 @@ def _group_end(s, i):
     raise ValueError('unbalanced braces')
 
 
-def _cmd_to_env(cmd, env):
-    """\\cmd{body} -> \\begin{env}body\\end{env} (balanced braces)."""
+def _cmd_to_env(cmd, env, after=''):
+    """\\cmd[opt]{body} -> \\begin{env}[opt]body<after>\\end{env} (balanced braces; the optional argument is kept)."""
+    def f(s):
+        out, pos = [], 0
+        for m in re.finditer(r'\\' + cmd + r'(\[[^\]]*\])?\{', s):
+            if m.start() < pos: continue
+            k = _group_end(s, m.end() - 1)
+            out += [s[pos:m.start()], '\\begin{%s}%s' % (env, m.group(1) or ''), s[m.end():k - 1], after, '\\end{%s}' % env]; pos = k
+        return ''.join(out) + s[pos:]
+    return f
+
+
+def _two_args(cmd, fmt):
+    """\\cmd{a}{b} -> fmt % (a, b) (balanced braces)."""
     def f(s):
         out, pos = [], 0
         for m in re.finditer(r'\\' + cmd + r'\{', s):
             if m.start() < pos: continue
-            k = _group_end(s, m.end() - 1)
-            out += [s[pos:m.start()], '\\begin{%s}' % env, s[m.end():k - 1], '\\end{%s}' % env]; pos = k
+            k1 = _group_end(s, m.end() - 1); k2 = _group_end(s, k1)
+            out += [s[pos:m.start()], fmt % (s[m.end():k1 - 1], s[k1 + 1:k2 - 1])]; pos = k2
         return ''.join(out) + s[pos:]
     return f
 
@@ -114,6 +125,36 @@ STMG_RULES = [
     *[_sub(r'(?<=[{,=\[\s!])%s\b' % a, b) for a, b in STMG_COLOURS],
 ]
 
+SECONDE_RULES = [
+    # sequence banner -> unit heading (made \\mxunit by _section_to_unit) and its period
+    lambda s: re.sub(r'\\sequence\{([^{}]*)\}\{[^{}]*\}\{([^{}]*)\}', r'\\chapter{\1}\\mxsubtitle{\2}', s),
+    # teacher annex: whole file was wrapped in \\ifprof ... \\fi; it is now a teacher-only unit
+    lambda s: re.sub(r'\A\\ifprof\n\\clearpage\\renewcommand\{\\titreseq\}\{[^{}]*\}\\addcontentsline\{toc\}\{section\}\{([^{}]*)\}\n',
+                     r'\\chapter{\1}\n', s),
+    lambda s: re.sub(r'\n\\fi\s*\Z', '\n', s) if s.startswith('\\chapter{Annexes') or s.startswith('\\chapter{Teacher') else s,
+    _sub(r'\\clearpage\\section\*', r'\\section*'),
+    _sub(r'\\fiche\{', r'\\mxsection{'),
+    _cmd_to_env('ex', 'example'),
+    _two_args('rituel', '\\begin{fluency}[5--10 min]%s\\mxanswer{%s}\\end{fluency}'),
+    _cmd_to_env('prof', 'teachernote'), _cmd_to_env('vigilance', 'pitfall'),
+    _sub(r'\\begin\{cours\}\[', r'\\begin{keypoint}['), _sub(r'\\begin\{cours\}', r'\\begin{theorem}'),
+    lambda s: _fix_cours_ends(s),
+    _sub(r'\\(begin|end)\{methode\}', r'\\\1{method}'),
+    _sub(r'\\reponse\b', r'\\mxanswerspace'), _sub(r'\\preuve\b', r'\\mxwriteproof'), _sub(r'\\trou\b', r'\\mxblank'),
+    _sub(r'\bcoursaxe\b', 'mxgridaxis'), _sub(r'\\coord\b', r'\\vc'), _sub(r'\\grille\b', r'\\mxgrid'), _sub(r'\\ifprof\b', r'\\ifmxteacher'),
+    _sub(r'\\renewcommand\{\\arraystretch\}\{([\d.]+)\}', r'\\mxarraystretch{\1}'),
+]
+
+
+def _fix_cours_ends(s):
+    """Close each former cours box with the environment it was opened as (keypoint or theorem)."""
+    out, stack, pos = [], [], 0
+    for m in re.finditer(r'\\begin\{(keypoint|theorem)\}|\\end\{cours\}', s):
+        if m.group(1): stack.append(m.group(1)); continue
+        out += [s[pos:m.start()], '\\end{%s}' % stack.pop()]; pos = m.end()
+    return ''.join(out) + s[pos:]
+
+
 # course -> (unit map {old relative path (French): new stem}, rules)
 PLANS = {
     'automatismes': ({**{f'sections/ch{n:02d}.tex': f'ch{n:02d}' for n in range(1, 15)},
@@ -125,6 +166,7 @@ PLANS = {
               'chapitres/07-binomiale.tex': 'c07', 'chapitres/08-revisions.tex': 'c08', 'evaluations/devoirs.tex': 'tests',
               'annexes/formulaire.tex': 'formulas', 'annexes/programmation.tex': 'schedule', 'annexes/sources.tex': 'sources'},
              STMG_RULES),
+    'seconde': ({**{f'sequences/S{n:02d}.tex': f's{n:02d}' for n in range(1, 16)}, 'annexes.tex': 'annexes'}, SECONDE_RULES),
 }
 
 

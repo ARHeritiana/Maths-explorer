@@ -1,0 +1,413 @@
+{
+ "unit": "s02.fr.tex",
+ "segments": {
+  "6f62d9e3603a": {
+   "fr": "Vecteurs du plan",
+   "en": "Vectors in the plane",
+   "status": "aligned",
+   "order": 0
+  },
+  "b068a7ab041f": {
+   "fr": "14--30 septembre 2026",
+   "en": "14--30 September 2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "f84d986fb663": {
+   "fr": "Translation et vecteurs",
+   "en": "Translation and vectors",
+   "status": "aligned",
+   "order": 2
+  },
+  "495d6eb85d6d": {
+   "fr": "La translation qui transforme [[m1]] en [[m2]] associe à tout point [[m3]] l'unique point [[m4]] tel que [[m5]] soit un parallélogramme, éventuellement aplati. Elle est appelée translation de vecteur [[m6]].\nUn vecteur non nul possède une direction, un sens et une norme. [[m7]]. Le vecteur [[m8]] est le vecteur nul, noté [[m9]] ; il n'a ni direction ni sens.",
+   "en": "The translation that transforms [[m1]] into [[m2]] associates with every point [[m3]] the unique point [[m4]] such that [[m5]] is a parallelogram, possibly flat. It is called the translation by the vector [[m6]].\nA nonzero vector has a direction, a sense and a norm. [[m7]]. The vector [[m8]] is the zero vector, written [[m9]]; it has neither direction nor sense.",
+   "status": "aligned",
+   "order": 4
+  },
+  "f78f720ca07d": {
+   "fr": "Vecteurs égaux et opposés",
+   "en": "Equal and opposite vectors",
+   "status": "aligned",
+   "order": 5
+  },
+  "873ab164c17a": {
+   "fr": "[[m1]] lorsque la translation de vecteur [[m2]] transforme [[m3]] en [[m4]]. Deux vecteurs non nuls sont égaux si et seulement s'ils ont même direction, même sens et même norme.\nLe vecteur opposé de [[m5]] est [[m6]] : [[m7]].",
+   "en": "[[m1]] when the translation by the vector [[m2]] transforms [[m3]] into [[m4]]. Two nonzero vectors are equal if and only if they have the same direction, the same sense and the same norm.\nThe opposite vector of [[m5]] is [[m6]]: [[m7]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "a8f8a8aa8334": {
+   "fr": "Tracer un segment [[m1]] et placer un point [[m2]] hors de [[m3]]. Construire [[m4]] tel que [[m5]]. Nommer le parallélogramme obtenu. Construire [[m6]] tel que [[m7]].",
+   "en": "Draw a segment [[m1]] and place a point [[m2]] outside [[m3]]. Construct [[m4]] such that [[m5]]. Name the parallelogram obtained. Construct [[m6]] such that [[m7]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "fc6971c6e103": {
+   "fr": "[[m1]] se construit en reportant depuis [[m2]] la direction, le sens et la longueur de [[m3]]. Le parallélogramme est [[m4]], dans cet ordre. [[m5]] est le symétrique de [[m6]] par rapport à [[m7]], car [[m8]].",
+   "en": "[[m1]] is constructed by carrying over from [[m2]] the direction, sense and length of [[m3]]. The parallelogram is [[m4]], in that order. [[m5]] is the reflection of [[m6]] in the point [[m7]], because [[m8]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "854a435336d9": {
+   "fr": "Somme, différence et relation de Chasles",
+   "en": "Sum, difference and Chasles's relation",
+   "status": "aligned",
+   "order": 9
+  },
+  "193790905125": {
+   "fr": "Somme de vecteurs",
+   "en": "Sum of vectors",
+   "status": "aligned",
+   "order": 10
+  },
+  "e43f87e163fe": {
+   "fr": "La somme [[m1]] correspond à l'enchaînement des translations de vecteurs [[m2]] et [[m3]]. Pour tous points [[m4]] :",
+   "en": "The sum [[m1]] corresponds to carrying out the translations by the vectors [[m2]] and [[m3]] one after the other. For all points [[m4]]:",
+   "status": "aligned",
+   "order": 11
+  },
+  "2348655af5ef": {
+   "fr": "On a [[m1]] et [[m2]].",
+   "en": "We have [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "c4a86af12ba0": {
+   "fr": "Règle du parallélogramme",
+   "en": "Parallelogram rule",
+   "status": "aligned",
+   "order": 13
+  },
+  "042e0826c1eb": {
+   "fr": "[[m1]] est un parallélogramme si et seulement si [[m2]].",
+   "en": "[[m1]] is a parallelogram if and only if [[m2]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "d9e908de5c5c": {
+   "fr": "Simplifier : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]].",
+   "en": "Simplify: [[m1]]; [[m2]]; [[m3]]; [[m4]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "d41693e2652b": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]]. La commutativité de l'addition permet de réordonner les vecteurs.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]. The commutativity of addition allows us to reorder the vectors.",
+   "status": "aligned",
+   "order": 16
+  },
+  "92e27c10e5a2": {
+   "fr": "Dans un parallélogramme [[m1]], justifier que [[m2]].",
+   "en": "In a parallelogram [[m1]], justify that [[m2]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "45964147bea8": {
+   "fr": "Dans [[m1]], [[m2]]. Donc [[m3]].",
+   "en": "In [[m1]], [[m2]]. So [[m3]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "56020f64c251": {
+   "fr": "Produit d'un vecteur par un réel",
+   "en": "Product of a vector by a real number",
+   "status": "aligned",
+   "order": 19
+  },
+  "f769f5febb99": {
+   "fr": "Définition et règles de calcul",
+   "en": "Definition and calculation rules",
+   "status": "aligned",
+   "order": 20
+  },
+  "d95d71f366c4": {
+   "fr": "Pour [[m1]], [[m2]] si [[m3]] ou [[m4]]. Sinon, [[m5]] a la même direction que [[m6]], le même sens si [[m7]], le sens opposé si [[m8]], et sa norme vaut [[m9]].",
+   "en": "For [[m1]], [[m2]] if [[m3]] or [[m4]]. Otherwise, [[m5]] has the same direction as [[m6]], the same sense if [[m7]], the opposite sense if [[m8]], and its norm is [[m9]].",
+   "status": "aligned",
+   "order": 21
+  },
+  "a61a2e7c9d12": {
+   "fr": "Pour un vecteur [[m1]] de norme [[m2]] cm, représenter [[m3]], [[m4]] et [[m5]] à partir d'une même origine. Préciser leurs normes.",
+   "en": "For a vector [[m1]] of norm [[m2]] cm, represent [[m3]], [[m4]] and [[m5]] from the same origin. State their norms.",
+   "status": "aligned",
+   "order": 22
+  },
+  "4f594ffa8b20": {
+   "fr": "Les normes sont [[m1]] cm, [[m2]] cm, [[m3]] cm. Les vecteurs [[m4]] et [[m5]] ont le sens de [[m6]] ; [[m7]] a le sens opposé.",
+   "en": "The norms are [[m1]] cm, [[m2]] cm, [[m3]] cm. The vectors [[m4]] and [[m5]] have the sense of [[m6]]; [[m7]] has the opposite sense.",
+   "status": "aligned",
+   "order": 23
+  },
+  "e461996c3c6f": {
+   "fr": "Caractérisations du milieu",
+   "en": "Characterisations of the midpoint",
+   "status": "aligned",
+   "order": 24
+  },
+  "4745b3fe7fbe": {
+   "fr": "[[m1]] est le milieu de [[m2]] si et seulement si [[m3]], ou encore [[m4]], ou [[m5]].",
+   "en": "[[m1]] is the midpoint of [[m2]] if and only if [[m3]], or equivalently [[m4]], or [[m5]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "f955235bb58d": {
+   "fr": "Dans un triangle [[m1]], [[m2]] est le milieu de [[m3]] et [[m4]] celui de [[m5]]. Montrer que [[m6]].",
+   "en": "In a triangle [[m1]], [[m2]] is the midpoint of [[m3]] and [[m4]] that of [[m5]]. Show that [[m6]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "f2dfbc932f50": {
+   "fr": "Par Chasles, [[m1]]. On retrouve le parallélisme des droites [[m2]] et [[m3]] lorsque le triangle n'est pas aplati.",
+   "en": "By Chasles, [[m1]]. We recover the parallelism of the lines [[m2]] and [[m3]] when the triangle is not flat.",
+   "status": "aligned",
+   "order": 27
+  },
+  "1dab7cf868b6": {
+   "fr": "5--10 min",
+   "en": "5--10 min",
+   "status": "aligned",
+   "order": 28
+  },
+  "f9ebe0543766": {
+   "fr": "Réduire [[m1]] ; calculer [[m2]] ; résoudre [[m3]].",
+   "en": "Simplify [[m1]]; calculate [[m2]]; solve [[m3]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "e1f9914de0f6": {
+   "fr": "Repères, bases et coordonnées",
+   "en": "Frames, bases and coordinates",
+   "status": "aligned",
+   "order": 30
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 31
+  },
+  "0db2336140d3": {
+   "fr": "Deux vecteurs non colinéaires [[m1]] forment une base du plan. Tout vecteur [[m2]] s'écrit de manière unique [[m3]] ; ses coordonnées sont [[m4]] ou [[m5]].\nUn repère [[m6]] associe au point [[m7]] les coordonnées de [[m8]]. Il est \\textbf{orthonormé} si les vecteurs de base sont perpendiculaires et de norme [[m9]].",
+   "en": "Two non-collinear vectors [[m1]] form a basis of the plane. Every vector [[m2]] can be written uniquely as [[m3]]; its coordinates are [[m4]] or [[m5]].\nA frame [[m6]] associates with the point [[m7]] the coordinates of [[m8]]. It is \\textbf{orthonormal} if the basis vectors are perpendicular and of norm [[m9]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "ee95855afecd": {
+   "fr": "Ici [[m1]] : on se déplace de trois unités vers la droite et deux vers le haut.",
+   "en": "Here [[m1]]: we move three units to the right and two upwards.",
+   "status": "aligned",
+   "order": 33
+  },
+  "53fcb4a23116": {
+   "fr": "Calculs avec les coordonnées",
+   "en": "Calculations with coordinates",
+   "status": "aligned",
+   "order": 34
+  },
+  "5ba1cbaf2bca": {
+   "fr": "Si [[m1]], [[m2]], [[m3]] et [[m4]] :",
+   "en": "If [[m1]], [[m2]], [[m3]] and [[m4]]:",
+   "status": "aligned",
+   "order": 35
+  },
+  "6097eaa9d58d": {
+   "fr": "Deux vecteurs sont égaux si et seulement si leurs coordonnées respectives sont égales.",
+   "en": "Two vectors are equal if and only if their respective coordinates are equal.",
+   "status": "aligned",
+   "order": 36
+  },
+  "15f606afe435": {
+   "fr": "Pour [[m1]] et [[m2]], calculer [[m3]] et [[m4]]. Écrire [[m5]] dans la base [[m6]].",
+   "en": "For [[m1]] and [[m2]], calculate [[m3]] and [[m4]]. Write [[m5]] in the basis [[m6]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "192267dd55ef": {
+   "fr": "Norme, distance et milieu",
+   "en": "Norm, distance and midpoint",
+   "status": "aligned",
+   "order": 38
+  },
+  "d43f3df4dd1d": {
+   "fr": "Propriétés",
+   "en": "Properties",
+   "status": "aligned",
+   "order": 39
+  },
+  "033e26c8d4eb": {
+   "fr": "Dans un repère \\textbf{orthonormé}, pour [[m1]] et deux points [[m2]] :",
+   "en": "In an \\textbf{orthonormal} frame, for [[m1]] and two points [[m2]]:",
+   "status": "aligned",
+   "order": 40
+  },
+  "fdffd6504bb8": {
+   "fr": "Dans tout repère, le milieu de [[m1]] est [[m2]].",
+   "en": "In any frame, the midpoint of [[m1]] is [[m2]].",
+   "status": "aligned",
+   "order": 41
+  },
+  "0d4f9154343f": {
+   "fr": "La formule de distance découle du théorème de Pythagore appliqué aux déplacements horizontal et vertical. Pour le milieu, [[m1]] donne [[m2]] et [[m3]] ; on isole [[m4]].",
+   "en": "The distance formula follows from Pythagoras's theorem applied to the horizontal and vertical displacements. For the midpoint, [[m1]] gives [[m2]] and [[m3]]; we isolate [[m4]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "0fab7088f2b4": {
+   "fr": "Dans un repère orthonormé, [[m1]], [[m2]], [[m3]] et [[m4]].",
+   "en": "In an orthonormal frame, [[m1]], [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "71b097695a2f": {
+   "fr": "Calculer [[m1]], [[m2]], puis [[m3]].",
+   "en": "Calculate [[m1]], [[m2]], then [[m3]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "946dd0283eab": {
+   "fr": "Déterminer [[m1]] tel que [[m2]].",
+   "en": "Determine [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "41fe3791476c": {
+   "fr": "Déterminer [[m1]] tel que [[m2]] soit un parallélogramme, puis son centre [[m3]].",
+   "en": "Determine [[m1]] such that [[m2]] is a parallelogram, then its centre [[m3]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "64849bb487fd": {
+   "fr": "1. [[m1]] et [[m2]], donc [[m3]].\\\\\n2. [[m4]], donc [[m5]].\\\\\n3. [[m6]]. Le centre est le milieu de [[m7]] : [[m8]]. Le milieu de [[m9]] donne le même résultat.\\\\\n4. [[m10]] et [[m11]].",
+   "en": "1. [[m1]] and [[m2]], so [[m3]].\\\\\n2. [[m4]], so [[m5]].\\\\\n3. [[m6]]. The centre is the midpoint of [[m7]]: [[m8]]. The midpoint of [[m9]] gives the same result.\\\\\n4. [[m10]] and [[m11]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "de4701930719": {
+   "fr": "Colinéarité et déterminant",
+   "en": "Collinearity and determinant",
+   "status": "aligned",
+   "order": 49
+  },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 50
+  },
+  "19f0f1c6cd5c": {
+   "fr": "Deux vecteurs non nuls sont colinéaires s'ils ont la même direction. Le vecteur nul est colinéaire à tout vecteur. Si [[m1]], [[m2]] et [[m3]] sont colinéaires si et seulement s'il existe un réel [[m4]] tel que [[m5]].",
+   "en": "Two nonzero vectors are collinear if they have the same direction. The zero vector is collinear with every vector. If [[m1]], [[m2]] and [[m3]] are collinear if and only if there exists a real number [[m4]] such that [[m5]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "f74ad6d1fe66": {
+   "fr": "Dans la dernière caractérisation, la condition [[m1]] est nécessaire : un vecteur non nul ne peut pas être un multiple du vecteur nul.",
+   "en": "In the last characterisation, the condition [[m1]] is necessary: a nonzero vector cannot be a multiple of the zero vector.",
+   "status": "aligned",
+   "order": 52
+  },
+  "b74abfeac94e": {
+   "fr": "Déterminant et critère de colinéarité",
+   "en": "Determinant and collinearity criterion",
+   "status": "aligned",
+   "order": 53
+  },
+  "e2adfb371514": {
+   "fr": "Pour [[m1]], [[m2]], [[m3]].",
+   "en": "For [[m1]], [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "a0ac7fc03dad": {
+   "fr": "Si [[m1]], alors [[m2]]. Le cas où un vecteur est nul est immédiat.\nRéciproquement, supposons [[m3]] et [[m4]]. Si [[m5]], posons [[m6]]. L'égalité donne [[m7]], donc [[m8]]. Si [[m9]], alors [[m10]], d'où [[m11]] ; avec [[m12]], on obtient encore [[m13]].",
+   "en": "If [[m1]], then [[m2]]. The case where a vector is zero is immediate.\nConversely, suppose [[m3]] and [[m4]]. If [[m5]], let [[m6]]. The equality gives [[m7]], so [[m8]]. If [[m9]], then [[m10]], hence [[m11]]; with [[m12]], we again obtain [[m13]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "6c3ede527183": {
+   "fr": "Étudier la colinéarité : (a) [[m1]] et [[m2]] ; (b) [[m3]] et [[m4]]. Si [[m5]] et [[m6]], relier [[m7]] et [[m8]].",
+   "en": "Study the collinearity of: (a) [[m1]] and [[m2]]; (b) [[m3]] and [[m4]]. If [[m5]] and [[m6]], relate [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "f6e4703aab08": {
+   "fr": "(a) [[m1]] : non colinéaires. (b) [[m2]] : colinéaires ; le déterminant vaut [[m3]]. Enfin [[m4]], y compris si les vecteurs sont nuls.",
+   "en": "(a) [[m1]]: not collinear. (b) [[m2]]: collinear; the determinant is [[m3]]. Finally [[m4]], including if the vectors are zero.",
+   "status": "aligned",
+   "order": 57
+  },
+  "3764d812eafb": {
+   "fr": "Alignement et parallélisme",
+   "en": "Alignment and parallelism",
+   "status": "aligned",
+   "order": 58
+  },
+  "76c74bd071dd": {
+   "fr": "Applications",
+   "en": "Applications",
+   "status": "aligned",
+   "order": 59
+  },
+  "ccb24230a6f7": {
+   "fr": "Pour [[m1]] et [[m2]], les droites [[m3]] et [[m4]] sont parallèles (éventuellement confondues) si et seulement si [[m5]].\nLes points [[m6]] sont alignés si et seulement si [[m7]].",
+   "en": "For [[m1]] and [[m2]], the lines [[m3]] and [[m4]] are parallel (possibly coincident) if and only if [[m5]].\nThe points [[m6]] are collinear if and only if [[m7]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "99c7275dec7b": {
+   "fr": "Montrer que [[m1]] et [[m2]] sont parallèles avec [[m3]], [[m4]], [[m5]] et [[m6]].",
+   "en": "Show that [[m1]] and [[m2]] are parallel with [[m3]], [[m4]], [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "67939ac74dfa": {
+   "fr": "[[m1]] et [[m2]]. Leur déterminant vaut [[m3]]. Les points de chaque paire sont distincts : les deux droites existent et sont parallèles.",
+   "en": "[[m1]] and [[m2]]. Their determinant is [[m3]]. The points of each pair are distinct: both lines exist and are parallel.",
+   "status": "aligned",
+   "order": 62
+  },
+  "d5eb83b4e517": {
+   "fr": "Montrer que [[m1]], [[m2]] et [[m3]] sont alignés.",
+   "en": "Show that [[m1]], [[m2]] and [[m3]] are collinear.",
+   "status": "aligned",
+   "order": 63
+  },
+  "c9657fffce70": {
+   "fr": "[[m1]] et [[m2]]. Le déterminant vaut [[m3]] ; donc les points sont alignés.",
+   "en": "[[m1]] and [[m2]]. The determinant is [[m3]]; so the points are collinear.",
+   "status": "aligned",
+   "order": 64
+  },
+  "05c6ecf0d30b": {
+   "fr": "Avec [[m1]], [[m2]], [[m3]], [[m4]], [[m5]], montrer que [[m6]] et que [[m7]] sont alignés.",
+   "en": "With [[m1]], [[m2]], [[m3]], [[m4]], [[m5]], show that [[m6]] and that [[m7]] are collinear.",
+   "status": "aligned",
+   "order": 65
+  },
+  "16f1a1d4bc86": {
+   "fr": "[[m1]] et [[m2]]. Puis [[m3]] et [[m4]]. Les deux résultats suivent.",
+   "en": "[[m1]] and [[m2]]. Then [[m3]] and [[m4]]. Both results follow.",
+   "status": "aligned",
+   "order": 66
+  },
+  "7da3d4f35a83": {
+   "fr": "(relation de Chasles).",
+   "en": "(Chasles's relation).",
+   "status": "aligned",
+   "order": 67
+  },
+  "d551674cbe34": {
+   "fr": " colinéaires",
+   "en": " collinear",
+   "status": "aligned",
+   "order": 68
+  }
+ }
+}

@@ -197,7 +197,7 @@ def fig_tokens(h):
 
 
 CORE = ROOT / 'content/tex/core'
-MIGRATED = {'stmg'}   # courses on the shared class: canonical environments, units <id>.fr.tex / <id>.en.tex
+MIGRATED = {'stmg', 'seconde'}   # courses on the shared class: canonical environments, units <id>.fr.tex / <id>.en.tex
 PREAMBLE = {  # course -> (main file for language, flags prepended before \documentclass)
     'seconde': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, '\\def\\VERSIONPROF{1}'),
     'premiere': ({'fr': 'main.tex', 'en': 'main-en.tex'}, '\\def\\versionprof{1}'),
@@ -222,7 +222,7 @@ def compile_figs(course, lang, jobs):
         body = '\n'.join('\\begin{preview}%s\\end{preview}' % code for _, _, code in items)
         tex = flags + head + '\\usepackage[active,tightpage]{preview}\\setlength\\PreviewBorder{5pt}\\pagestyle{empty}\\begin{document}\n' + body + '\n\\end{document}\n'
         (base / (job + '.tex')).write_text(tex, encoding='utf8')
-        r = subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
+        subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
         (base / (job + '.tex')).unlink()
         pdf = build / (job + '.pdf')
         return pdf if pdf.exists() else None
@@ -249,7 +249,6 @@ def compile_figs(course, lang, jobs):
 
 # ---------------------------------------------------------------- per-course extractors (return list of slides, flat)
 def premiere(src, number):
-    H = {'chapter': 1, 'section': 1, 'exemple': 1, 'application': 1, 'repere': 0, 'erreur': 0, 'preuve': 1}
     ev = walk(src, {'chapter': 1, 'section': 1, 'exemple': 1, 'application': 1, 'preuve': 1, 'repere': 0, 'erreur': 0, 'figtok': 1})
     out = []; unit = None; skip = False
     for kind, name, a, o in ev:
@@ -270,44 +269,31 @@ def premiere(src, number):
     return out
 
 
-def seconde(src, number):
-    ev = walk(src, {'sequence': 3, 'section': 1, 'fiche': 1, 'cours': 0, 'methode': 0, 'ex': 1, 'reponse': 1, 'preuve': 1, 'vigilance': 1, 'figtok': 1})
-    out = []; unit = ''
-    pending = None
-    for kind, name, a, o in ev:
-        if name == 'figtok': attach(out, a[0]); continue
-        if name == 'sequence': out.append(slide('title', clean_title(a[0]), ''))
-        elif name in ('section', 'fiche'): unit = clean_title(a[0])
-        elif kind == 'env' and name == 'cours': out.append(slide('concept', unit, text2html(a), None, clean_title(o) if o else None))
-        elif kind == 'env' and name == 'methode': out.append(slide('method', unit, text2html(a), None, clean_title(o) if o else None))
-        elif kind == 'code': out.append(slide('code', 'Python', esc(a.strip('\n'))))
-        elif name == 'ex':
-            pending = slide('example', unit, text2html(a[0])); out.append(pending)
-        elif name == 'preuve':
-            pending = slide('proof', unit, text2html(a[0])); out.append(pending)
-        elif name == 'reponse':
-            if pending is not None and pending['a'] is None: pending['a'] = text2html(a[0])
-        elif name == 'vigilance': out.append(slide('error', unit, text2html(a[0])))
-    return out
-
-
-def seconde_fix(src):
-    # \ex[opt]{body}: the optional argument is a title; \ex takes 1 mandatory arg after the optional one
-    return src
-
-
-def canonical(src, number):
-    """Units of the shared TeX system (docs/TEX_STYLE_GUIDE.md): the same vocabulary in every migrated course."""
-    ev = walk(src, {'mxunit': 2, 'section': 1, 'mxsession': 5, 'objectives': 0, 'activity': 0, 'summary': 0, 'keypoint': 0,
-                    'definition': 0, 'theorem': 0, 'method': 0, 'example': 0, 'pitfall': 0, 'figtok': 1})
+def canonical(src, number, attach_figures=False):
+    """Units of the shared TeX system (docs/TEX_STYLE_GUIDE.md): the same vocabulary in every migrated course.
+    An example followed by \\mxanswerspace gets that answer (revealed on demand); a proof to write becomes a proof slide.
+    attach_figures: a figure outside a box joins the previous slide (worksheet courses); otherwise it is ignored."""
+    ev = walk(src, {'mxunit': 2, 'section': 1, 'mxsection': 1, 'mxsession': 5, 'objectives': 0, 'activity': 0, 'summary': 0,
+                    'keypoint': 0, 'definition': 0, 'theorem': 0, 'method': 0, 'example': 0, 'pitfall': 0,
+                    'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1})
     kinds = {'objectives': 'goals', 'activity': 'activity', 'summary': 'concept', 'keypoint': 'concept', 'definition': 'concept',
              'theorem': 'concept', 'method': 'method', 'example': 'example', 'pitfall': 'error'}
-    out = []; unit = ''
+    out = []; unit = ''; pending = None
     for kind, name, a, o in ev:
-        if name == 'mxunit': out.append(slide('title', clean_title(a[1]), ''))
-        elif name == 'section': unit = clean_title(a[0])
+        if name == 'figtok':
+            if attach_figures: attach(out, a[0])
+            continue
+        if name == 'mxunit': out.append(slide('title', clean_title(a[1]), '')); pending = None
+        elif name in ('section', 'mxsection'): unit = clean_title(a[0])
         elif name == 'mxsession': unit = clean_title(a[3])
-        elif kind == 'env' and name in kinds: out.append(slide(kinds[name], unit, text2html(a)))
+        elif kind == 'code' and attach_figures: out.append(slide('code', 'Python', esc(a.strip('\n'))))
+        elif kind == 'env' and name in kinds:
+            sl = slide(kinds[name], unit, text2html(a), None, clean_title(o) if o else None); out.append(sl)
+            pending = sl if name == 'example' else None
+        elif name == 'mxanswerspace':
+            if pending is not None and pending['a'] is None: pending['a'] = text2html(a[0])
+            pending = None
+        elif name == 'mxwriteproof': out.append(slide('proof', unit, text2html(a[0]))); pending = None
     return out
 
 
@@ -372,7 +358,8 @@ def files():
     for n in range(1, 11):
         yield f'premiere-{n:02d}', 'premiere', n, SRC / f'premiere/chapitres/C{n:02d}.tex', SRC / f'premiere/chapitres/C{n:02d}-en.tex', premiere
     for n in range(1, 16):
-        yield f'seconde-{n:02d}', 'seconde', n, SRC / f'seconde/sequences/S{n:02d}.tex', SRC / f'seconde/sequences/S{n:02d}-en.tex', seconde
+        yield (f'seconde-{n:02d}', 'seconde', n, SRC / f'seconde/s{n:02d}.fr.tex', SRC / f'seconde/s{n:02d}.en.tex',
+               lambda src, n: canonical(src, n, attach_figures=True))
     for n in range(1, 9):
         yield f'stmg-{n:02d}', 'stmg', n, SRC / f'stmg/c{n:02d}.fr.tex', SRC / f'stmg/c{n:02d}.en.tex', canonical
 

@@ -1,0 +1,173 @@
+{
+ "unit": "s13.fr.tex",
+ "segments": {
+  "bd844171cd06": {
+   "fr": "Problèmes de synthèse, raisonnement et automatismes",
+   "en": "Synthesis problems, reasoning and fluency",
+   "status": "aligned",
+   "order": 0
+  },
+  "36ab2eb6b9d5": {
+   "fr": "30 mars--9 avril 2027",
+   "en": "30 March--9 April 2027",
+   "status": "aligned",
+   "order": 1
+  },
+  "a0d80a82fded": {
+   "fr": "Implication, réciproque et contre-exemple",
+   "en": "Implication, converse and counterexample",
+   "status": "aligned",
+   "order": 2
+  },
+  "bb4a931d5d59": {
+   "fr": "Outils à utiliser en situation",
+   "en": "Tools to use in context",
+   "status": "aligned",
+   "order": 3
+  },
+  "ab80e3375f78": {
+   "fr": "« Si [[m1]], alors [[m2]] » est une implication [[m3]]. Sa réciproque est [[m4]] ; elle n'est pas automatiquement vraie. Une équivalence [[m5]] exige les deux implications.\nUn contre-exemple suffit à réfuter une assertion universelle ; quelques exemples ne suffisent pas à la prouver. La contraposée [[m6]] est équivalente à [[m7]].",
+   "en": "``If [[m1]], then [[m2]]'' is an implication [[m3]]. Its converse is [[m4]]; it is not automatically true. An equivalence [[m5]] requires both implications.\nA counterexample is enough to refute a universal statement; a few examples are not enough to prove it. The contrapositive [[m6]] is equivalent to [[m7]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "37031f99ac78": {
+   "fr": "non ",
+   "en": "not ",
+   "status": "aligned",
+   "order": 6
+  },
+  "1a21939b36f9": {
+   "fr": "Pour un entier [[m1]] : « Si [[m2]] est multiple de [[m3]], alors [[m4]] est pair. » Démontrer l'implication, écrire sa réciproque et sa contraposée, puis dire lesquelles sont vraies.",
+   "en": "For an integer [[m1]]: ``If [[m2]] is a multiple of [[m3]], then [[m4]] is even.'' Prove the implication, write its converse and its contrapositive, then say which are true.",
+   "status": "aligned",
+   "order": 7
+  },
+  "722373e92bac": {
+   "fr": "Si [[m1]], alors [[m2]] est pair. Réciproque : « Si [[m3]] est pair, alors [[m4]] est multiple de [[m5]] » ; elle est fausse avec [[m6]]. Contraposée : « Si [[m7]] est impair, alors [[m8]] n'est pas multiple de [[m9]] » ; elle est vraie et équivalente à l'implication initiale.",
+   "en": "If [[m1]], then [[m2]] is even. Converse: ``If [[m3]] is even, then [[m4]] is a multiple of [[m5]]''; it is false with [[m6]]. Contrapositive: ``If [[m7]] is odd, then [[m8]] is not a multiple of [[m9]]''; it is true and equivalent to the original implication.",
+   "status": "aligned",
+   "order": 8
+  },
+  "3eac6fc4b51c": {
+   "fr": "Pour [[m1]], étudier « [[m2]] » et sa réciproque. Donner une équivalence correcte.",
+   "en": "For [[m1]], study ``[[m2]]'' and its converse. Give a correct equivalence.",
+   "status": "aligned",
+   "order": 9
+  },
+  "68e6edc88bf1": {
+   "fr": "L'implication est vraie. La réciproque est fausse avec [[m1]]. L'équivalence correcte est [[m2]]. Avec l'hypothèse supplémentaire [[m3]], on peut écrire [[m4]].",
+   "en": "The implication is true. The converse is false with [[m1]]. The correct equivalence is [[m2]]. With the extra hypothesis [[m3]], one can write [[m4]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "d5f10c9bc837": {
+   "fr": " ou ",
+   "en": " or ",
+   "status": "aligned",
+   "order": 11
+  },
+  "b5e288ff43bc": {
+   "fr": "Ces notions sont explicitées à partir des problèmes ; elles ne constituent pas un chapitre autonome de logique formelle à mémoriser sans contexte.",
+   "en": "These notions are made explicit from the problems; they are not a standalone chapter of formal logic to memorise without context.",
+   "status": "aligned",
+   "order": 12
+  },
+  "10bc52b925bc": {
+   "fr": "Négation, disjonction de cas et preuve",
+   "en": "Negation, case analysis and proof",
+   "status": "aligned",
+   "order": 13
+  },
+  "70e5d5e511bc": {
+   "fr": "Nier correctement : « [[m1]] » ; « [[m2]] » ; « Tous les élèves font du sport » ; « [[m3]] et [[m4]] sont réalisés ».",
+   "en": "Negate correctly: ``[[m1]]''; ``[[m2]]''; ``All students play sport''; ``[[m3]] and [[m4]] both occur''.",
+   "status": "aligned",
+   "order": 14
+  },
+  "49fb3f531517": {
+   "fr": "« [[m1]] » ; « [[m2]] ou [[m3]] » ; « Au moins un élève ne fait pas de sport » ; « [[m4]] n'est pas réalisé ou [[m5]] n'est pas réalisé ». Le « ou » est inclusif.",
+   "en": "``[[m1]]''; ``[[m2]] or [[m3]]''; ``At least one student does not play sport''; ``[[m4]] does not occur or [[m5]] does not occur''. The ``or'' is inclusive.",
+   "status": "aligned",
+   "order": 15
+  },
+  "10dbc8786cef": {
+   "fr": "Montrer par disjonction de cas que [[m1]] est pair pour tout entier [[m2]]. Montrer ensuite que [[m3]] est impair.",
+   "en": "Show by case analysis that [[m1]] is even for every integer [[m2]]. Then show that [[m3]] is odd.",
+   "status": "aligned",
+   "order": 16
+  },
+  "fed99243b852": {
+   "fr": "Si [[m1]] est pair, [[m2]] a un facteur pair. Si [[m3]] est impair, [[m4]] est pair ; le produit est encore pair. Les deux cas couvrent tous les entiers. Comme [[m5]], c'est un entier impair.",
+   "en": "If [[m1]] is even, [[m2]] has an even factor. If [[m3]] is odd, [[m4]] is even; the product is again even. The two cases cover all integers. Since [[m5]], it is an odd integer.",
+   "status": "aligned",
+   "order": 17
+  },
+  "24e571f760d3": {
+   "fr": "Un élève écrit « [[m1]] pair implique [[m2]] pair, parce que je l'ai vérifié pour [[m3]] ». Remplacer cette justification par une preuve.",
+   "en": "A student writes ``[[m1]] even implies [[m2]] even, because I checked it for [[m3]]''. Replace this justification with a proof.",
+   "status": "aligned",
+   "order": 18
+  },
+  "fb4687f0eb29": {
+   "fr": "Si [[m1]] était impair, le résultat démontré en séquence 1 donnerait [[m2]] impair, contradiction. C'est un raisonnement par contraposée, ou présenté ici par l'absurde. Trois exemples ne traitent pas tous les entiers.",
+   "en": "If [[m1]] were odd, the result proved in sequence 1 would give [[m2]] odd, a contradiction. This is a contrapositive argument, or presented here as a proof by contradiction. Three examples do not cover all integers.",
+   "status": "aligned",
+   "order": 19
+  },
+  "91722bac4c59": {
+   "fr": "Croiser algèbre, fonctions et pourcentages",
+   "en": "Combining algebra, functions and percentages",
+   "status": "aligned",
+   "order": 20
+  },
+  "fb6f46163480": {
+   "fr": "Situation créée",
+   "en": "Original situation",
+   "status": "aligned",
+   "order": 21
+  },
+  "9d8327acc966": {
+   "fr": "Deux tarifs fictifs de location sont proposés pour [[m1]] heures, avec [[m2]] : [[m3]] Ar et [[m4]] Ar.",
+   "en": "Two fictional rental rates are offered for [[m1]] hours, with [[m2]]: [[m3]] Ar and [[m4]] Ar.",
+   "status": "aligned",
+   "order": 22
+  },
+  "4a85b799fb82": {
+   "fr": "Calculer les coûts pour [[m1]] h et [[m2]] h.",
+   "en": "Calculate the costs for [[m1]] h and [[m2]] h.",
+   "status": "aligned",
+   "order": 23
+  },
+  "3e273621376a": {
+   "fr": "Trouver l'égalité des tarifs puis les durées où [[m1]] est moins cher.",
+   "en": "Find where the rates are equal, then the durations for which [[m1]] is cheaper.",
+   "status": "aligned",
+   "order": 24
+  },
+  "81165be87eed": {
+   "fr": "Une remise de [[m1]] est accordée sur tout le tarif [[m2]]. Donner le nouveau tarif [[m3]] et le nouveau seuil de comparaison.",
+   "en": "A [[m1]] discount is granted on the whole of rate [[m2]]. Give the new rate [[m3]] and the new comparison threshold.",
+   "status": "aligned",
+   "order": 25
+  },
+  "4dd6df6e8d23": {
+   "fr": "1. À [[m1]] h : [[m2]] Ar contre [[m3]] Ar. À [[m4]] h : [[m5]] Ar contre [[m6]] Ar. 2. [[m7]]. [[m8]] pour [[m9]], donc sur [[m10]]. 3. [[m11]]. L'égalité avec [[m12]] donne [[m13]], soit [[m14]] h. [[m15]] sur [[m16]]. La remise s'applique aussi au forfait fixe.",
+   "en": "1. At [[m1]] h: [[m2]] Ar versus [[m3]] Ar. At [[m4]] h: [[m5]] Ar versus [[m6]] Ar. 2. [[m7]]. [[m8]] for [[m9]], so on [[m10]]. 3. [[m11]]. Equality with [[m12]] gives [[m13]], that is [[m14]] h. [[m15]] on [[m16]]. The discount also applies to the fixed charge.",
+   "status": "aligned",
+   "order": 26
+  },
+  "cfe01fc99099": {
+   "fr": "Prévoir les résultats pour [[m1]]. Modifier la ligne qui calcule [[m2]] pour prendre en compte la remise.",
+   "en": "Predict the results for [[m1]]. Modify the line that computes [[m2]] to take the discount into account.",
+   "status": "aligned",
+   "order": 27
+  },
+  "fec5bb974e5e": {
+   "fr": "Résultats : \\texttt{\"B\"}, \\texttt{\"egalite\"}, \\texttt{\"A\"}. Remplacer par \\texttt{a = 0.9*(3000 + 2000*x)}. Le domaine [[m1]] est supposé respecté lors des appels.",
+   "en": "Results: \\texttt{\"B\"}, \\texttt{\"egalite\"}, \\texttt{\"A\"}. Replace with \\texttt{a = 0.9*(3000 + 2000*x)}. The domain [[m1]] is assumed to be respected in the calls.",
+   "status": "aligned",
+   "order": 28
+  }
+ }
+}

@@ -13,6 +13,8 @@
 \else
   \RequirePackage[english]{babel}
 \fi
+% Name before a unit number in booklets: Chapitre/Chapter, or Séquence/Sequence (class option unit=sequence).
+\AtBeginDocument{\def\mx@seq{sequence}\ifx\mx@unitname\mx@seq\renewcommand{\chaptername}{\mxlabelof{sequence}}\fi}
 % Same inter-sentence spacing in both languages, so French and English line breaks stay comparable.
 \AtBeginDocument{\frenchspacing}
 
@@ -43,6 +45,8 @@
 \mx@deflabel{answershort}{Rép.}{Ans.}
 \mx@deflabel{sheet}{Fiche}{Sheet}
 \mx@deflabel{notes}{Notes}{Notes}
+\mx@deflabel{sequence}{Séquence}{Sequence}
+\mx@deflabel{writeproof}{Démonstration à rédiger.}{Proof to write.}
 \mx@deflabel{summary}{Trace écrite}{Written record}
 \mx@deflabel{problem}{Problème}{Problem}
 \mx@deflabel{session}{Séance}{Session}

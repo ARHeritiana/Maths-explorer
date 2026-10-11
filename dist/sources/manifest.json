@@ -969,30 +969,8 @@
    ],
    "files": [
     {
-     "path": "seconde/annexes-en.tex",
-     "bytes": 9029,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "seconde/annexes.tex",
-     "bytes": 9965,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "seconde/eleve-en.tex",
-     "bytes": 22,
-     "kind": "tex",
-     "lang": "en",
-     "entry": {
-      "lang": "en",
-      "edition": "student"
-     }
-    },
-    {
      "path": "seconde/eleve.tex",
-     "bytes": 19,
+     "bytes": 543,
      "kind": "tex",
      "lang": "fr",
      "entry": {
@@ -1001,30 +979,18 @@
      }
     },
     {
-     "path": "seconde/livret-en.tex",
-     "bytes": 7870,
-     "kind": "tex",
-     "lang": "en"
-    },
-    {
-     "path": "seconde/livret.tex",
-     "bytes": 8165,
-     "kind": "tex",
-     "lang": "fr"
-    },
-    {
-     "path": "seconde/professeur-en.tex",
-     "bytes": 42,
+     "path": "seconde/eleve-en.tex",
+     "bytes": 543,
      "kind": "tex",
      "lang": "en",
      "entry": {
       "lang": "en",
-      "edition": "teacher"
+      "edition": "student"
      }
     },
     {
      "path": "seconde/professeur.tex",
-     "bytes": 39,
+     "bytes": 573,
      "kind": "tex",
      "lang": "fr",
      "entry": {
@@ -1033,183 +999,283 @@
      }
     },
     {
-     "path": "seconde/sequences/S01-en.tex",
-     "bytes": 6933,
+     "path": "seconde/professeur-en.tex",
+     "bytes": 573,
+     "kind": "tex",
+     "lang": "en",
+     "entry": {
+      "lang": "en",
+      "edition": "teacher"
+     }
+    },
+    {
+     "path": "seconde/annexes.en.tex",
+     "bytes": 8954,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S01.tex",
-     "bytes": 7322,
+     "path": "seconde/annexes.fr.tex",
+     "bytes": 9828,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S02-en.tex",
-     "bytes": 9671,
+     "path": "seconde/front.en.tex",
+     "bytes": 2269,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S02.tex",
-     "bytes": 9873,
+     "path": "seconde/front.fr.tex",
+     "bytes": 2406,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S03-en.tex",
-     "bytes": 7438,
+     "path": "seconde/s01.en.tex",
+     "bytes": 7374,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S03.tex",
-     "bytes": 7889,
+     "path": "seconde/s01.fr.tex",
+     "bytes": 7699,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S04-en.tex",
-     "bytes": 7399,
+     "path": "seconde/s02.en.tex",
+     "bytes": 10204,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S04.tex",
-     "bytes": 7809,
+     "path": "seconde/s02.fr.tex",
+     "bytes": 10347,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S05-en.tex",
-     "bytes": 3403,
+     "path": "seconde/s03.en.tex",
+     "bytes": 7914,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S05.tex",
-     "bytes": 3528,
+     "path": "seconde/s03.fr.tex",
+     "bytes": 8318,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S06-en.tex",
-     "bytes": 10401,
+     "path": "seconde/s04.en.tex",
+     "bytes": 7875,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S06.tex",
-     "bytes": 10890,
+     "path": "seconde/s04.fr.tex",
+     "bytes": 8229,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S07-en.tex",
-     "bytes": 10638,
+     "path": "seconde/s05.en.tex",
+     "bytes": 3657,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S07.tex",
-     "bytes": 11235,
+     "path": "seconde/s05.fr.tex",
+     "bytes": 3716,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S08-en.tex",
-     "bytes": 13341,
+     "path": "seconde/s06.en.tex",
+     "bytes": 11037,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S08.tex",
-     "bytes": 14053,
+     "path": "seconde/s06.fr.tex",
+     "bytes": 11462,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S09-en.tex",
-     "bytes": 4751,
+     "path": "seconde/s07.en.tex",
+     "bytes": 11318,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S09.tex",
-     "bytes": 5142,
+     "path": "seconde/s07.fr.tex",
+     "bytes": 11853,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S10-en.tex",
-     "bytes": 8630,
+     "path": "seconde/s08.en.tex",
+     "bytes": 14420,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S10.tex",
-     "bytes": 9125,
+     "path": "seconde/s08.fr.tex",
+     "bytes": 15051,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S11-en.tex",
-     "bytes": 5879,
+     "path": "seconde/s09.en.tex",
+     "bytes": 5186,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S11.tex",
-     "bytes": 6368,
+     "path": "seconde/s09.fr.tex",
+     "bytes": 5523,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S12-en.tex",
-     "bytes": 3810,
+     "path": "seconde/s10.en.tex",
+     "bytes": 9216,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S12.tex",
-     "bytes": 4018,
+     "path": "seconde/s10.fr.tex",
+     "bytes": 9650,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S13-en.tex",
-     "bytes": 3711,
+     "path": "seconde/s11.en.tex",
+     "bytes": 6214,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S13.tex",
-     "bytes": 3999,
+     "path": "seconde/s11.fr.tex",
+     "bytes": 6642,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S14-en.tex",
-     "bytes": 10230,
+     "path": "seconde/s12.en.tex",
+     "bytes": 4031,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S14.tex",
-     "bytes": 10824,
+     "path": "seconde/s12.fr.tex",
+     "bytes": 4175,
      "kind": "tex",
      "lang": "fr"
     },
     {
-     "path": "seconde/sequences/S15-en.tex",
-     "bytes": 4162,
+     "path": "seconde/s13.en.tex",
+     "bytes": 4013,
      "kind": "tex",
      "lang": "en"
     },
     {
-     "path": "seconde/sequences/S15.tex",
-     "bytes": 4458,
+     "path": "seconde/s13.fr.tex",
+     "bytes": 4240,
      "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "seconde/s14.en.tex",
+     "bytes": 10760,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "seconde/s14.fr.tex",
+     "bytes": 11297,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "seconde/s15.en.tex",
+     "bytes": 4445,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "seconde/s15.fr.tex",
+     "bytes": 4683,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/example.en.tex",
+     "bytes": 1312,
+     "kind": "tex",
+     "lang": "en"
+    },
+    {
+     "path": "core/example.fr.tex",
+     "bytes": 1272,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/example.tex",
+     "bytes": 547,
+     "kind": "tex",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-code.sty",
+     "bytes": 812,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-edition.sty",
+     "bytes": 763,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-env.sty",
+     "bytes": 10854,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-figures.sty",
+     "bytes": 1422,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-i18n.sty",
+     "bytes": 4975,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-layout.sty",
+     "bytes": 3240,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mx-math.sty",
+     "bytes": 2335,
+     "kind": "style",
+     "lang": "fr"
+    },
+    {
+     "path": "core/mxbook.cls",
+     "bytes": 5066,
+     "kind": "style",
      "lang": "fr"
     }
    ]
@@ -1902,19 +1968,19 @@
     },
     {
      "path": "core/mx-env.sty",
-     "bytes": 10057,
+     "bytes": 10854,
      "kind": "style",
      "lang": "fr"
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1175,
+     "bytes": 1422,
      "kind": "style",
      "lang": "fr"
     },
     {
      "path": "core/mx-i18n.sty",
-     "bytes": 4634,
+     "bytes": 4975,
      "kind": "style",
      "lang": "fr"
     },
@@ -1926,13 +1992,13 @@
     },
     {
      "path": "core/mx-math.sty",
-     "bytes": 2272,
+     "bytes": 2335,
      "kind": "style",
      "lang": "fr"
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 4563,
+     "bytes": 5066,
      "kind": "style",
      "lang": "fr"
     }
@@ -2221,19 +2287,19 @@
     },
     {
      "path": "core/mx-env.sty",
-     "bytes": 10057,
+     "bytes": 10854,
      "kind": "style",
      "lang": "fr"
     },
     {
      "path": "core/mx-figures.sty",
-     "bytes": 1175,
+     "bytes": 1422,
      "kind": "style",
      "lang": "fr"
     },
     {
      "path": "core/mx-i18n.sty",
-     "bytes": 4634,
+     "bytes": 4975,
      "kind": "style",
      "lang": "fr"
     },
@@ -2245,13 +2311,13 @@
     },
     {
      "path": "core/mx-math.sty",
-     "bytes": 2272,
+     "bytes": 2335,
      "kind": "style",
      "lang": "fr"
     },
     {
      "path": "core/mxbook.cls",
-     "bytes": 4563,
+     "bytes": 5066,
      "kind": "style",
      "lang": "fr"
     }

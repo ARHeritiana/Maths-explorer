@@ -1,0 +1,461 @@
+{
+ "unit": "annexes.fr.tex",
+ "segments": {
+  "669b74e76d99": {
+   "fr": "Annexes professeur : utilisation et correspondance",
+   "en": "Teacher annexes: use and correspondence",
+   "status": "aligned",
+   "order": 0
+  },
+  "daf0e5640f29": {
+   "fr": "Utiliser la source commune",
+   "en": "Using the common source",
+   "status": "aligned",
+   "order": 1
+  },
+  "d2b92950ef77": {
+   "fr": "Une seule source, deux versions",
+   "en": "One source, two versions",
+   "status": "aligned",
+   "order": 2
+  },
+  "d9394a851f8e": {
+   "fr": "La ligne \\texttt{\\string\\proffalse} du préambule produit la version élève ; la remplacer par \\texttt{\\string\\proftrue} produit la version professeur. Les énoncés et les contenus de cours sont communs. Les réponses, démonstrations rédigées, figures corrigées et repères pédagogiques apparaissent seulement en mode professeur.",
+   "en": "The line \\texttt{\\string\\proffalse} in the preamble produces the student version; replacing it with \\texttt{\\string\\proftrue} produces the teacher version. The statements and course content are common. Answers, written-out proofs, corrected figures and pedagogical cues appear only in teacher mode.",
+   "status": "aligned",
+   "order": 3
+  },
+  "55060d7c41ab": {
+   "fr": "Tous les graphiques et schémas sont écrits en TikZ/PGFPlots. Aucune image externe ni page du PDF original n'est nécessaire à la compilation. Compiler deux fois avec PDFLaTeX pour actualiser la table des matières et les liens. Les deux PDF peuvent avoir des paginations différentes ; les références stables sont les numéros de séquence et d'exemple.",
+   "en": "All graphs and diagrams are written in TikZ/PGFPlots. No external image or page of the original PDF is needed for compilation. Compile twice with PDFLaTeX to update the table of contents and the links. The two PDFs may have different pagination; the stable references are the sequence and example numbers.",
+   "status": "aligned",
+   "order": 4
+  },
+  "b3f068760920": {
+   "fr": "Repères de mise en œuvre",
+   "en": "Implementation cues",
+   "status": "aligned",
+   "order": 5
+  },
+  "d568c2f78313": {
+   "fr": "Avant un exemple : faire reformuler les données et la question ; autoriser une représentation préparatoire.",
+   "en": "Before an example: have students restate the data and the question; allow a preparatory representation.",
+   "status": "aligned",
+   "order": 6
+  },
+  "54f2908e5d18": {
+   "fr": "Pendant la recherche : fournir une aide ciblée (première étape, schéma, cas simple) et une extension aux élèves qui ont terminé.",
+   "en": "During the investigation: provide targeted help (first step, diagram, simple case) and an extension for students who have finished.",
+   "status": "aligned",
+   "order": 7
+  },
+  "d33056b60e9b": {
+   "fr": "À la correction : séparer résultat, méthode, justification et vérification. Faire expliquer une erreur fréquente.",
+   "en": "During the correction: separate result, method, justification and verification. Have a frequent error explained.",
+   "status": "aligned",
+   "order": 8
+  },
+  "bfed189db8ee": {
+   "fr": "Pour les automatismes : mélanger des questions récentes et plus anciennes, puis refaire après un délai les questions fragiles.",
+   "en": "For fluency work: mix recent and older questions, then redo the fragile ones after a delay.",
+   "status": "aligned",
+   "order": 9
+  },
+  "daf731b9c422": {
+   "fr": "Pour la langue : expliciter « parmi », « au moins », « si », « et », « ou » et le sens des symboles avant le calcul.",
+   "en": "For language: make explicit ``among'', ``at least'', ``if'', ``and'', ``or'' and the meaning of the symbols before calculating.",
+   "status": "aligned",
+   "order": 10
+  },
+  "b05932799e72": {
+   "fr": "Critères communs pour une production",
+   "en": "Common criteria for a piece of work",
+   "status": "aligned",
+   "order": 11
+  },
+  "dcaef5e63af7": {
+   "fr": "Chercher",
+   "en": "Search",
+   "status": "aligned",
+   "order": 12
+  },
+  "84ff6e7052dd": {
+   "fr": "Une démarche est engagée ; les essais apportent une information.\\\\\nModéliser",
+   "en": "An approach is under way; the attempts provide information.\\\\\nModel",
+   "status": "aligned",
+   "order": 13
+  },
+  "003d9125b452": {
+   "fr": "Les variables, le domaine et les hypothèses correspondent à la situation.\\\\\nReprésenter",
+   "en": "The variables, domain and assumptions match the situation.\\\\\nRepresent",
+   "status": "aligned",
+   "order": 14
+  },
+  "f8e031b8ef62": {
+   "fr": "Le tableau, graphique ou schéma est lisible, légendé et cohérent.\\\\\nRaisonner",
+   "en": "The table, graph or diagram is readable, labelled and consistent.\\\\\nReason",
+   "status": "aligned",
+   "order": 15
+  },
+  "ebde941ebeb4": {
+   "fr": "Les propriétés sont appliquées sous leurs conditions ; la conclusion suit.\\\\\nCalculer",
+   "en": "Properties are applied under their conditions; the conclusion follows.\\\\\nCalculate",
+   "status": "aligned",
+   "order": 16
+  },
+  "701cdb427620": {
+   "fr": "Les opérations sont correctes ; les valeurs exactes sont conservées lorsque nécessaire.\\\\\nCommuniquer",
+   "en": "The operations are correct; exact values are kept when necessary.\\\\\nCommunicate",
+   "status": "aligned",
+   "order": 17
+  },
+  "67b07c0c0856": {
+   "fr": "La rédaction répond à la question, avec unités et précision appropriées.",
+   "en": "The write-up answers the question, with appropriate units and precision.",
+   "status": "aligned",
+   "order": 18
+  },
+  "82404a41b1b7": {
+   "fr": "Pour chaque critère, on peut retenir quatre niveaux : non engagé, partiel, correct avec aide, autonome. Cette grille sert à donner un retour exploitable ; elle ne remplace pas un barème propre à une évaluation.",
+   "en": "For each criterion, four levels can be used: not started, partial, correct with help, independent. This grid is used to give usable feedback; it does not replace a marking scheme specific to an assessment.",
+   "status": "aligned",
+   "order": 19
+  },
+  "f9ce4a9a6e6d": {
+   "fr": "Correspondance avec le livret d'origine",
+   "en": "Correspondence with the original booklet",
+   "status": "aligned",
+   "order": 20
+  },
+  "36420748d056": {
+   "fr": "\\textbf{Séquences du livret fourni}",
+   "en": "\\textbf{Sequences of the supplied booklet}",
+   "status": "aligned",
+   "order": 21
+  },
+  "aabb78191a17": {
+   "fr": "\\textbf{Destination dans cette adaptation}\\\\",
+   "en": "\\textbf{Destination in this adaptation}\\\\",
+   "status": "aligned",
+   "order": 22
+  },
+  "909342d551df": {
+   "fr": "1. Calcul littéral",
+   "en": "1. Algebraic calculation",
+   "status": "aligned",
+   "order": 23
+  },
+  "e34aeb5415b9": {
+   "fr": "8 ; réactivation dans les rituels dès la rentrée.\\\\\n2. Nombres et calculs",
+   "en": "8; reactivation in the starter routines from the start of the year.\\\\\n2. Numbers and calculations",
+   "status": "aligned",
+   "order": 24
+  },
+  "4b394212470a": {
+   "fr": "1 pour l'arithmétique ; 4 pour les ensembles ; 8 pour puissances, fractions et racines.\\\\\n3. Intervalles et valeur absolue",
+   "en": "1 for arithmetic; 4 for sets; 8 for powers, fractions and roots.\\\\\n3. Intervals and absolute value",
+   "status": "aligned",
+   "order": 25
+  },
+  "2467d6fc0313": {
+   "fr": "4 ; réinvestissement de la fonction valeur absolue en 6 et 10.\\\\\n4. Équations et inéquations",
+   "en": "4; reuse of the absolute value function in 6 and 10.\\\\\n4. Equations and inequalities",
+   "status": "aligned",
+   "order": 26
+  },
+  "6793327f85bc": {
+   "fr": "8 ; équations simples réactivées en 3 et 6.\\\\\n5. Proportion et évolution",
+   "en": "8; simple equations reactivated in 3 and 6.\\\\\n5. Proportion and percentage change",
+   "status": "aligned",
+   "order": 27
+  },
+  "5b0cce6c8b89": {
+   "fr": "9.\\\\\n6. Les vecteurs",
+   "en": "9.\\\\\n6. Vectors",
+   "status": "aligned",
+   "order": 28
+  },
+  "3f11c541d181": {
+   "fr": "2.\\\\\n7. Fonctions et représentation graphique",
+   "en": "2.\\\\\n7. Functions and graphical representation",
+   "status": "aligned",
+   "order": 29
+  },
+  "cc343f43be4f": {
+   "fr": "6 pour représentations et lectures ; 10 pour variations et extrémums.\\\\\n8. Notions de probabilité",
+   "en": "6 for representations and readings; 10 for variations and extrema.\\\\\n8. Notions of probability",
+   "status": "aligned",
+   "order": 30
+  },
+  "f597a7b4b7d4": {
+   "fr": "14 ; vocabulaire ensembliste introduit en 1.\\\\\n9. Notions de colinéarité",
+   "en": "14; set vocabulary introduced in 1.\\\\\n9. Notions of collinearity",
+   "status": "aligned",
+   "order": 31
+  },
+  "c33546641249": {
+   "fr": "2 ; grande synthèse déplacée en 12.\\\\\n10. Tableau de signes et inéquations",
+   "en": "2; major synthesis moved to 12.\\\\\n10. Sign tables and inequalities",
+   "status": "aligned",
+   "order": 32
+  },
+  "f0bafcb57ee1": {
+   "fr": "8.\\\\\n11. Statistique",
+   "en": "8.\\\\\n11. Statistics",
+   "status": "aligned",
+   "order": 33
+  },
+  "cebf58bcb6e8": {
+   "fr": "7, avec compléments sur les graphiques et la médiane estimée.\\\\\n12. Droites et systèmes",
+   "en": "7, with additions on graphs and the estimated median.\\\\\n12. Lines and systems",
+   "status": "aligned",
+   "order": 34
+  },
+  "eabbbff9742a": {
+   "fr": "3.\\\\\n13. Fonctions de référence (4 parties)",
+   "en": "3.\\\\\n13. Reference functions (4 parts)",
+   "status": "aligned",
+   "order": 35
+  },
+  "e42e5b26dbe1": {
+   "fr": "3 pour la droite affine ; 6 pour les références et résolutions ; 10 pour les variations.\\\\\n14. Fréquences et probabilités conditionnelles",
+   "en": "3 for the affine line; 6 for the reference functions and solving; 10 for variations.\\\\\n14. Frequencies and conditional probabilities",
+   "status": "aligned",
+   "order": 36
+  },
+  "0b7f61d409b4": {
+   "fr": "11 pour les fréquences ; 14 pour le conditionnement et les arbres.\\\\",
+   "en": "11 for frequencies; 14 for conditioning and trees.\\\\",
+   "status": "aligned",
+   "order": 37
+  },
+  "ae7eefe9a6ab": {
+   "fr": "Temps de progression sans équivalent direct",
+   "en": "Progression slots with no direct equivalent",
+   "status": "aligned",
+   "order": 38
+  },
+  "550823190d0e": {
+   "fr": "5, 12, 13, 15 : bilans, synthèses et consolidation créés.",
+   "en": "5, 12, 13, 15: reviews, syntheses and consolidation created.",
+   "status": "aligned",
+   "order": 39
+  },
+  "13a83df2a897": {
+   "fr": "La maquette est reconstruite dans l'esprit du modèle : A4 portrait, typographie sérif, encadrés noirs, zones quadrillées, exemples et démonstrations. La recomposition et le changement d'ordre ne constituent pas un fac-similé page à page. La pagination est continue ; le sommaire n'utilise plus des numéros de page redémarrant à chaque ancienne séquence.\nLes exemples numériques exploitables du modèle ont été repris. Des figures ambiguës ont été remplacées par des courbes dont l'expression permet une vérification exacte. Les développements sur racine carrée, cube, simulation, données croisées et bilans complètent la progression. Les situations ajoutées à données inventées sont signalées comme fictives ; une collecte de classe est proposée pour travailler aussi sur des données réelles.",
+   "en": "The layout is rebuilt in the spirit of the model: A4 portrait, serif typography, black boxes, gridded areas, examples and proofs. The recomposition and the change of order are not a page-by-page facsimile. Pagination is continuous; the contents page no longer uses page numbers that restart at each former sequence.\nThe usable numerical examples of the model have been kept. Ambiguous figures have been replaced by curves whose expression allows an exact check. The developments on square root, cube, simulation, cross-tabulated data and reviews complete the progression. Added situations with invented data are flagged as fictional; a class data collection is proposed so as to also work on real data.",
+   "status": "aligned",
+   "order": 40
+  },
+  "7946be780fc2": {
+   "fr": "Corrections de fond apportées au modèle",
+   "en": "Substantive corrections made to the model",
+   "status": "aligned",
+   "order": 41
+  },
+  "a1f096c26ddb": {
+   "fr": "\\textbf{Puissances.} Le produit répété vaut pour un exposant entier strictement positif ; les exposants négatifs exigent une base non nulle.",
+   "en": "\\textbf{Powers.} The repeated product holds for a strictly positive integer exponent; negative exponents require a nonzero base.",
+   "status": "aligned",
+   "order": 42
+  },
+  "4725550ef3b1": {
+   "fr": "\\textbf{Fractions.} Un quotient nul doit être défini ; seule une fraction non nulle possède un inverse. Les simplifications ne suppriment pas les restrictions initiales.",
+   "en": "\\textbf{Fractions.} A zero quotient must be defined; only a nonzero fraction has an inverse. Simplifications do not remove the initial restrictions.",
+   "status": "aligned",
+   "order": 43
+  },
+  "4a446544ad6c": {
+   "fr": "\\textbf{PGCD.} Les deux entiers ne sont pas tous deux nuls dans la définition par le plus grand diviseur ; [[m1]] est une convention séparée.",
+   "en": "\\textbf{GCD.} The two integers are not both zero in the definition by the greatest divisor; [[m1]] is a separate convention.",
+   "status": "aligned",
+   "order": 44
+  },
+  "950df670db66": {
+   "fr": "\\textbf{Vecteurs.} Le vecteur nul ne dirige aucune droite. La caractérisation [[m1]] exige [[m2]], ou un traitement séparé du cas nul. La multiplication par tout réel est explicitée.",
+   "en": "\\textbf{Vectors.} The zero vector directs no line. The characterisation [[m1]] requires [[m2]], or a separate treatment of the zero case. Multiplication by any real number is made explicit.",
+   "status": "aligned",
+   "order": 45
+  },
+  "9fab8e118624": {
+   "fr": "\\textbf{Équations de droites.} La condition est [[m1]] ; l'ordre des vecteurs dans le déterminant a été rendu cohérent. [[m2]] peut être nul lorsque [[m3]] et n'est alors pas un directeur.",
+   "en": "\\textbf{Equations of lines.} The condition is [[m1]]; the order of the vectors in the determinant has been made consistent. [[m2]] can be zero when [[m3]] and is then not a direction vector.",
+   "status": "aligned",
+   "order": 46
+  },
+  "005ba64ea87c": {
+   "fr": "\\textbf{Intervalles.} [[m1]] est exclu de l'ensemble des réels strictement négatifs. Les infinis ne sont pas des nombres réels.",
+   "en": "\\textbf{Intervals.} [[m1]] is excluded from the set of strictly negative real numbers. Infinities are not real numbers.",
+   "status": "aligned",
+   "order": 47
+  },
+  "7cee13f20ba4": {
+   "fr": "\\textbf{Racines.} Les conditions de positivité et [[m1]] sont explicites. Une formule fausse en général n'est pas nécessairement une inégalité toujours vraie.",
+   "en": "\\textbf{Roots.} The positivity conditions and [[m1]] are explicit. A formula that is false in general is not necessarily an inequality that is always true.",
+   "status": "aligned",
+   "order": 48
+  },
+  "c65de4b899d8": {
+   "fr": "\\textbf{Fonctions.} Images et antécédents sont distingués ; les domaines des courbes couvrent les valeurs demandées. Les lectures graphiques ne sont pas affichées avec une précision injustifiée. La fonction inverse n'est pas déclarée décroissante sur tout [[m1]].",
+   "en": "\\textbf{Functions.} Images and preimages are distinguished; the domains of the curves cover the requested values. Graphical readings are not displayed with unjustified precision. The inverse function is not declared decreasing on the whole of [[m1]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "eb77fb1a4418": {
+   "fr": "\\textbf{Statistiques.} La médiane utilise « au moins la moitié ». L'ajout d'une valeur ne fait pas diminuer l'étendue. Les recalculs utilisent la somme exacte [[m1]]. Variance et écart type ne sont pas des fonctions linéaires des données : leurs transformations correctes sont précisées.",
+   "en": "\\textbf{Statistics.} The median uses ``at least half''. Adding a value does not make the range decrease. The recalculations use the exact sum [[m1]]. Variance and standard deviation are not linear functions of the data: their correct transformations are specified.",
+   "status": "aligned",
+   "order": 50
+  },
+  "00853c40b279": {
+   "fr": "\\textbf{Classes.} Une série continue n'est pas définie par son seul regroupement. Moyenne à partir des centres et médiane interpolée sont des estimations sous hypothèses, distinctes des valeurs exactes.",
+   "en": "\\textbf{Classes.} A continuous data set is not defined by its grouping alone. The mean from the centres and the interpolated median are estimates under assumptions, distinct from the exact values.",
+   "status": "aligned",
+   "order": 51
+  },
+  "6e5cdee23af4": {
+   "fr": "\\textbf{Interprétation.} Une multiplication des notes n'est pas assimilée à une augmentation de difficulté. Proportion, taux et points de pourcentage sont distingués.",
+   "en": "\\textbf{Interpretation.} Multiplying marks is not equated with raising difficulty. Proportion, rate and percentage points are distinguished.",
+   "status": "aligned",
+   "order": 52
+  },
+  "492bc68256c8": {
+   "fr": "\\textbf{Probabilités.} Les populations de référence et les hypothèses de modèle sont nommées. Inversion des conditionnements, faux positifs, faux négatifs et fluctuations sont travaillés. Aucune formule générale des probabilités totales n'est exigée.",
+   "en": "\\textbf{Probability.} Reference populations and model assumptions are named. Inversion of conditioning, false positives, false negatives and fluctuations are worked on. No general total-probability formula is required.",
+   "status": "aligned",
+   "order": 53
+  },
+  "120808701e8f": {
+   "fr": "\\textbf{Optimisation.} Le balayage donne un maximum sur une grille ; une preuve séparée établit le maximum sur l'intervalle. Une dichotomie de recherche de zéro n'est pas présentée comme une méthode générale d'optimisation.",
+   "en": "\\textbf{Optimisation.} The sweep gives a maximum on a grid; a separate proof establishes the maximum on the interval. A bisection for finding a zero is not presented as a general optimisation method.",
+   "status": "aligned",
+   "order": 54
+  },
+  "4c0138c63ca2": {
+   "fr": "Références et contrôle de couverture",
+   "en": "References and coverage check",
+   "status": "aligned",
+   "order": 55
+  },
+  "cb13c5d6e802": {
+   "fr": "\\textbf{Document de progression retenu :} \\emph{Programmation annuelle Seconde 2026--2027 rectifiée finale}, DOCX fourni. Dates et quinze étapes reprises ; les dates indiquent des plages, pas des séances sur les jours fériés.",
+   "en": "\\textbf{Progression document used:} \\emph{Programmation annuelle Seconde 2026--2027 rectifiée finale}, DOCX supplied. Dates and fifteen stages kept; the dates indicate ranges, not sessions on public holidays.",
+   "status": "aligned",
+   "order": 56
+  },
+  "8cc4df5bad56": {
+   "fr": "\\textbf{Document de départ :} \\emph{Livret\\_2nde\\_\\_\\_Eleve.pdf}, 91 pages, fourni pour cette adaptation. La source LaTeX d'origine n'étant pas jointe, la présente source est une reconstruction.",
+   "en": "\\textbf{Starting document:} \\emph{Livret\\_2nde\\_\\_\\_Eleve.pdf}, 91 pages, supplied for this adaptation. The original LaTeX source was not attached, so the present source is a reconstruction.",
+   "status": "aligned",
+   "order": 57
+  },
+  "1f7bb7ea4a58": {
+   "fr": "\\textbf{Programme officiel :} arrêté du 26 février 2026, BO n\\textsuperscript{o} 14 du 2 avril 2026, NOR MENE2602914A, applicable à la rentrée 2026--2027 :",
+   "en": "\\textbf{Official programme:} order of 26 February 2026, BO no.~14 of 2 April 2026, NOR MENE2602914A, applicable from the 2026--2027 school year:",
+   "status": "aligned",
+   "order": 58
+  },
+  "2114dff1e594": {
+   "fr": "\\textbf{Ressources fournies :} programme de seconde ; ressources « Automatismes 2de » et « Raisonnement et démonstration 2de ». Le livret ne prétend pas reproduire intégralement ces ressources.",
+   "en": "\\textbf{Resources supplied:} Seconde programme; resources ``Automatismes 2de'' and ``Raisonnement et démonstration 2de''. The booklet does not claim to reproduce these resources in full.",
+   "status": "aligned",
+   "order": 59
+  },
+  "023a9c561d10": {
+   "fr": "\\textbf{Domaine / capacité}",
+   "en": "\\textbf{Area / skill}",
+   "status": "aligned",
+   "order": 60
+  },
+  "ee784ade1fb3": {
+   "fr": "\\textbf{Séquences}\\\\",
+   "en": "\\textbf{Sequences}\\\\",
+   "status": "aligned",
+   "order": 61
+  },
+  "df47e5a44958": {
+   "fr": "Entiers, multiples, parité, fractions irréductibles",
+   "en": "Integers, multiples, parity, irreducible fractions",
+   "status": "aligned",
+   "order": 62
+  },
+  "140a9b342b83": {
+   "fr": "1, 5, 8, 13\\\\\nRéels, intervalles, distance, encadrements",
+   "en": "1, 5, 8, 13\\\\\nReal numbers, intervals, distance, bounds",
+   "status": "aligned",
+   "order": 63
+  },
+  "43a70c30273a": {
+   "fr": "4, 5, 8\\\\\nCalcul littéral, puissances, racines, équations et signes",
+   "en": "4, 5, 8\\\\\nAlgebra, powers, roots, equations and signs",
+   "status": "aligned",
+   "order": 64
+  },
+  "e5d0ba0c82f3": {
+   "fr": "8 ; rituels toute l'année\\\\\nVecteurs, bases, coordonnées, normes, déterminant",
+   "en": "8; starter routines all year\\\\\nVectors, bases, coordinates, norms, determinant",
+   "status": "aligned",
+   "order": 65
+  },
+  "33ab435bf302": {
+   "fr": "2, 12\\\\\nÉquations de droites et intersections",
+   "en": "2, 12\\\\\nEquations of lines and intersections",
+   "status": "aligned",
+   "order": 66
+  },
+  "fc593ee4b626": {
+   "fr": "3, 12\\\\\nReprésentations et six fonctions de référence",
+   "en": "3, 12\\\\\nRepresentations and six reference functions",
+   "status": "aligned",
+   "order": 67
+  },
+  "f12509e65e82": {
+   "fr": "6, 10\\\\\nVariations, extrémums, comparaison, optimisation",
+   "en": "6, 10\\\\\nVariations, extrema, comparison, optimisation",
+   "status": "aligned",
+   "order": 68
+  },
+  "be5796ec7ff3": {
+   "fr": "10, 13, 15\\\\\nProportions et évolutions",
+   "en": "10, 13, 15\\\\\nProportions and percentage change",
+   "status": "aligned",
+   "order": 69
+  },
+  "e0608e4d9ee9": {
+   "fr": "9, 13, 15\\\\\nStatistiques, dispersion, classes, histogramme, cumulées",
+   "en": "9, 13, 15\\\\\nStatistics, spread, classes, histogram, cumulative frequencies",
+   "status": "aligned",
+   "order": 70
+  },
+  "563a8f7a91d1": {
+   "fr": "7\\\\\nTableaux croisés, fréquences, données réelles",
+   "en": "7\\\\\nTwo-way tables, frequencies, real data",
+   "status": "aligned",
+   "order": 71
+  },
+  "b3b76cfd1b28": {
+   "fr": "11\\\\\nConditionnement, arbres, inversion, simulation",
+   "en": "11\\\\\nConditioning, trees, inversion, simulation",
+   "status": "aligned",
+   "order": 72
+  },
+  "e866d94d8efb": {
+   "fr": "14\\\\\nLogique, preuves, Python, six compétences",
+   "en": "14\\\\\nLogic, proofs, Python, six skills",
+   "status": "aligned",
+   "order": 73
+  },
+  "e5d03052b8a9": {
+   "fr": "Répartis dans les séquences et bilans",
+   "en": "Spread across the sequences and reviews",
+   "status": "aligned",
+   "order": 74
+  },
+  "288d88dc1001": {
+   "fr": "\\textbf{Contrôle mathématique :} les calculs numériques, expressions algébriques, ensembles solutions, données des tableaux, coordonnées et programmes ont fait l'objet d'une relecture et de vérifications calculatoires. Pour les collectes et productions ouvertes, la correction fournit des critères de validité plutôt qu'un résultat inventé. Les estimations et modèles restent explicitement signalés.",
+   "en": "\\textbf{Mathematical check:} the numerical calculations, algebraic expressions, solution sets, table data, coordinates and programs were proofread and checked by calculation. For open collections and productions, the correction gives validity criteria rather than an invented result. Estimates and models remain explicitly flagged.",
+   "status": "aligned",
+   "order": 75
+  }
+ }
+}

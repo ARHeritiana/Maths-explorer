@@ -1,0 +1,50 @@
+\mxunit{seconde-s09}{Proportions et évolutions}\mxsubtitle{21--29 janvier 2027}
+\section{Proportion et proportion de proportion}
+\begin{keypoint}[Définitions]
+Dans un ensemble fini non vide $E$, la proportion d'une partie $F$ est $p=\Card(F)/\Card(E)$ ; $0\leq p\leq1$. Son expression en pourcentage est $100p\,\%$.
+Si $G\subseteq F\subseteq E$, $F\ne\varnothing$, et si $p_1$ est la proportion de $F$ dans $E$, $p_2$ celle de $G$ dans $F$, la proportion de $G$ dans $E$ vaut $p_1p_2$.
+\end{keypoint}
+\begin{example}Un lycée compte $1500$ élèves dont $652$ demi-pensionnaires. Calculer leur proportion. Dans une classe, $60\,\%$ des élèves font du sport ; parmi eux, $40\,\%$ sont des garçons. Quelle proportion de la classe représentent les garçons faisant du sport ?\end{example}
+\mxanswerspace[4]{$652/1500\approx0{,}4347$, soit environ $43{,}47\,\%$. Pour la classe, $0{,}60\times0{,}40=0{,}24$, soit $24\,\%$. Le deuxième pourcentage a pour référence les sportifs, pas toute la classe.}
+\begin{example}Dans un établissement fictif de $800$ élèves, $35\,\%$ pratiquent un sport en club ; parmi eux, $45\,\%$ pratiquent un sport collectif. Calculer les deux effectifs et la proportion finale.\end{example}
+\mxanswerspace[4]{$800\times0{,}35=280$ élèves en club. $280\times0{,}45=126$ en sport collectif. La proportion finale vaut $126/800=0{,}1575=15{,}75\,\%$.}
+\begin{pitfall}La proportion et le taux d'évolution ne répondent pas à la même question : une proportion compare une partie à un ensemble, un taux compare une variation à une valeur initiale.\end{pitfall}
+
+\mxsection{Variation absolue et taux d'évolution}
+\begin{keypoint}[Définition]
+Pour une valeur initiale $V_I>0$ et une valeur finale $V_F>0$, la variation absolue vaut $V_F-V_I$ ; le taux d'évolution est
+\[t=\frac{V_F-V_I}{V_I}.\]
+Le taux est sans unité. Il est positif pour une hausse, négatif pour une baisse. La référence est toujours la valeur initiale.
+\end{keypoint}
+\begin{example}Un fromage est vendu $2{,}13$ euros au lieu de $3{,}55$ euros. Calculer la variation absolue et le taux.\end{example}
+\mxanswerspace[3.2]{Variation absolue : $2{,}13-3{,}55=-1{,}42$ euro. Taux : $-1{,}42/3{,}55=-0{,}40$, soit une baisse de $40\,\%$.}
+\begin{keypoint}[Coefficient multiplicateur]
+$CM=V_F/V_I=1+t$, donc $V_F=V_I(1+t)$. Pour retrouver $V_I$, diviser $V_F$ par $1+t$ (non nul).
+\end{keypoint}
+\begin{example}Un article fictif de $50000$ Ar augmente de $12\,\%$, puis on considère séparément une remise de $12\,\%$ sur le prix initial. Donner les prix finaux. Un prix après hausse de $20\,\%$ vaut $72000$ Ar ; retrouver son prix initial.\end{example}
+\mxanswerspace[4]{Hausse : $50000\times1{,}12=56000$ Ar. Remise : $50000\times0{,}88=44000$ Ar. Dernière question : $V_I=72000/1{,}20=60000$ Ar.}
+\begin{fluency}[5--10 min]Développer $(x-3)^2$ ; résoudre $1/x=5$ ; donner la moyenne de $8;10;12$.\mxanswer{$x^2-6x+9$ ; $x=1/5$ ; $10$.}\end{fluency}
+
+\mxsection{Évolutions successives}
+\begin{keypoint}[Propriété]
+Des évolutions successives de taux $t_1,t_2$ ont pour coefficient global
+\[CM_G=(1+t_1)(1+t_2),\qquad t_G=(1+t_1)(1+t_2)-1.\]
+On multiplie les coefficients ; on n'additionne pas simplement les taux.
+\end{keypoint}
+\begin{example}Un fabricant a vendu $5600$ vélos en 2022, soit $25\,\%$ de plus qu'en 2021. Ses ventes diminuent de $15\,\%$ en 2023. Déterminer les ventes de 2021 et 2023, puis le taux global entre ces deux années.\end{example}
+\mxanswerspace[4]{2021 : $5600/1{,}25=4480$ vélos. 2023 : $5600\times0{,}85=4760$ vélos. Coefficient global $1{,}25\times0{,}85=1{,}0625$, donc hausse globale de $6{,}25\,\%$. Vérification : $(4760-4480)/4480=0{,}0625$.}
+\begin{example}Un prix augmente de $10\,\%$ puis baisse de $10\,\%$. Revient-il au prix initial ?\end{example}
+\mxanswerspace[3.2]{$CM_G=1{,}10\times0{,}90=0{,}99$. Le prix final représente $99\,\%$ du prix initial : baisse globale de $1\,\%$. Les deux taux se rapportent à des valeurs de référence différentes.}
+\begin{example}Un taux passe de $20\,\%$ à $25\,\%$. Expliquer la différence entre l'augmentation en points de pourcentage et l'évolution relative.\end{example}
+\mxanswerspace[3.2]{L'écart vaut $5$ points de pourcentage. La variation relative est $(0{,}25-0{,}20)/0{,}20=0{,}25$, soit une hausse de $25\,\%$.}
+
+\mxsection{Évolution réciproque}
+\begin{keypoint}[Propriété]
+Pour revenir à la valeur initiale après une évolution de taux $t>-1$, utiliser le coefficient $1/(1+t)$. Le taux réciproque est
+\[t_{\text{réciproque}}=\frac1{1+t}-1=\frac{-t}{1+t}.\]
+\end{keypoint}
+\begin{example}Quel taux compense une hausse de $25\,\%$ ? Quel taux compense une baisse de $20\,\%$ ?\end{example}
+\mxanswerspace[4]{Après une hausse de $25\,\%$, le coefficient réciproque est $1/1{,}25=0{,}8$ : baisse de $20\,\%$. Après une baisse de $20\,\%$, il est $1/0{,}8=1{,}25$ : hausse de $25\,\%$.}
+\begin{example}Un prix subit une remise de $30\,\%$, puis une hausse de $10\,\%$. Quel pourcentage d'augmentation supplémentaire permet de retrouver le prix initial ?\end{example}
+\mxanswerspace[5]{Le coefficient actuel est $0{,}70\times1{,}10=0{,}77$. Le coefficient recherché vaut $1/0{,}77=100/77$. Le taux vaut $23/77\approx0{,}2987$, soit environ $29{,}87\,\%$. Vérifier $0{,}77\times(100/77)=1$.}
+\begin{teachernote}Faire verbaliser à chaque étape la base du pourcentage. La formule du taux réciproque se justifie par un produit égal à $1$ ; la mémorisation seule est fragile.\end{teachernote}

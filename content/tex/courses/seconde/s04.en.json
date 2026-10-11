@@ -1,0 +1,431 @@
+{
+ "unit": "s04.fr.tex",
+ "segments": {
+  "53bd598c5981": {
+   "fr": "Nombres réels et intervalles",
+   "en": "Real numbers and intervals",
+   "status": "aligned",
+   "order": 0
+  },
+  "c48eecf6b1c4": {
+   "fr": "2--13 novembre 2026",
+   "en": "2--13 November 2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "91e14512c81a": {
+   "fr": "Les ensembles de nombres",
+   "en": "Sets of numbers",
+   "status": "aligned",
+   "order": 2
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 3
+  },
+  "315824ce9420": {
+   "fr": "[[m1]] : entiers naturels ; [[m2]] : entiers relatifs.",
+   "en": "[[m1]]: natural numbers; [[m2]]: integers.",
+   "status": "aligned",
+   "order": 4
+  },
+  "6119ab93afb5": {
+   "fr": "[[m1]] : nombres décimaux, de la forme [[m2]] avec [[m3]], [[m4]].",
+   "en": "[[m1]]: decimal numbers, of the form [[m2]] with [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "63c4a0e33a7a": {
+   "fr": "[[m1]] : nombres rationnels, de la forme [[m2]] avec [[m3]], [[m4]].",
+   "en": "[[m1]]: rational numbers, of the form [[m2]] with [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "4be462036e19": {
+   "fr": "[[m1]] : nombres réels, représentés par les abscisses des points d'une droite graduée. Un réel non rationnel est \\textbf{irrationnel}.",
+   "en": "[[m1]]: real numbers, represented by the abscissae of the points of a graduated line. A real number that is not rational is \\textbf{irrational}.",
+   "status": "aligned",
+   "order": 7
+  },
+  "ec9fc56a10c2": {
+   "fr": "Donner le plus petit des cinq ensembles contenant chacun des nombres : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]] ; [[m7]].",
+   "en": "Give the smallest of the five sets containing each of the numbers: [[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]; [[m7]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "da78fbbd4b13": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. L'irrationalité de [[m7]] est admise ici.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. The irrationality of [[m7]] is accepted here.",
+   "status": "aligned",
+   "order": 9
+  },
+  "01d72eb0ca05": {
+   "fr": "Deux démonstrations par l'absurde",
+   "en": "Two proofs by contradiction",
+   "status": "aligned",
+   "order": 10
+  },
+  "c1f3bc377bfa": {
+   "fr": "Raisonnement par l'absurde",
+   "en": "Proof by contradiction",
+   "status": "aligned",
+   "order": 11
+  },
+  "54a98525c77c": {
+   "fr": "Pour prouver une proposition, supposer sa négation, en déduire une contradiction, puis conclure que la proposition est vraie.",
+   "en": "To prove a statement, assume its negation, deduce a contradiction, then conclude that the statement is true.",
+   "status": "aligned",
+   "order": 12
+  },
+  "333493d26d7d": {
+   "fr": "[[m1]] n'est pas un nombre décimal.",
+   "en": "[[m1]] is not a decimal number.",
+   "status": "aligned",
+   "order": 14
+  },
+  "6dfd76a6d27c": {
+   "fr": "Supposons [[m1]] avec [[m2]], [[m3]]. Alors [[m4]] serait multiple de [[m5]]. Pourtant [[m6]] modulo [[m7]], donc [[m8]] a un reste de [[m9]] dans la division par [[m10]] (on peut aussi utiliser le critère de divisibilité par [[m11]]). Contradiction. Donc [[m12]].",
+   "en": "Suppose [[m1]] with [[m2]], [[m3]]. Then [[m4]] would be a multiple of [[m5]]. Yet [[m6]] modulo [[m7]], so [[m8]] leaves remainder [[m9]] on division by [[m10]] (the divisibility rule for [[m11]] can also be used). Contradiction. Hence [[m12]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "5e345e0c779b": {
+   "fr": "Propriété",
+   "en": "Property",
+   "status": "aligned",
+   "order": 16
+  },
+  "e1855e1a314a": {
+   "fr": "[[m1]] est irrationnel.",
+   "en": "[[m1]] is irrational.",
+   "status": "aligned",
+   "order": 17
+  },
+  "90f4c1dfc357": {
+   "fr": "Supposons [[m1]] avec [[m2]], [[m3]], et [[m4]] irréductible. Alors [[m5]], donc [[m6]] est pair. Si [[m7]] était impair, son carré le serait aussi : ainsi [[m8]] est pair. Écrivons [[m9]]. On obtient [[m10]], puis [[m11]] ; [[m12]] est donc pair à son tour. Ainsi [[m13]] divise [[m14]] et [[m15]], contrairement à l'irréductibilité. Donc [[m16]].",
+   "en": "Suppose [[m1]] with [[m2]], [[m3]], and [[m4]] in lowest terms. Then [[m5]], so [[m6]] is even. If [[m7]] were odd, its square would be odd: so [[m8]] is even. Write [[m9]]. We get [[m10]], then [[m11]]; so [[m12]] is even in turn. Thus [[m13]] divides [[m14]] and [[m15]], contradicting irreducibility. Hence [[m16]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "c4937773eafa": {
+   "fr": "Faire identifier séparément l'hypothèse de départ, l'implication utilisée par contraposée sur la parité et la contradiction finale. Ne pas présenter une écriture décimale de calculatrice comme une preuve d'irrationalité.",
+   "en": "Have students identify separately the starting hypothesis, the implication used by contraposition on parity, and the final contradiction. Do not present a calculator's decimal expansion as a proof of irrationality.",
+   "status": "aligned",
+   "order": 19
+  },
+  "54c82cebffa9": {
+   "fr": "Intervalles de la droite réelle",
+   "en": "Intervals of the real line",
+   "status": "aligned",
+   "order": 20
+  },
+  "4861a0142b65": {
+   "fr": "Notations",
+   "en": "Notation",
+   "status": "aligned",
+   "order": 21
+  },
+  "ca16c2b88480": {
+   "fr": "Pour deux réels [[m1]], les intervalles décrivent les réels compris entre deux bornes, avec ou sans les bornes. Un crochet fermé inclut la borne, un crochet ouvert l'exclut. Les symboles [[m2]] ne sont pas des réels et sont toujours accompagnés d'un crochet ouvert.",
+   "en": "For two real numbers [[m1]], intervals describe the real numbers lying between two endpoints, with or without the endpoints. A closed bracket includes the endpoint, an open bracket excludes it. The symbols [[m2]] are not real numbers and are always paired with an open bracket.",
+   "status": "aligned",
+   "order": 22
+  },
+  "6da9e86ee206": {
+   "fr": "\\textbf{Condition}",
+   "en": "\\textbf{Condition}",
+   "status": "aligned",
+   "order": 23
+  },
+  "522f7dcdf710": {
+   "fr": "\\textbf{Intervalle}",
+   "en": "\\textbf{Interval}",
+   "status": "aligned",
+   "order": 24
+  },
+  "87cd9e2460a5": {
+   "fr": "\\textbf{Description}\\\\",
+   "en": "\\textbf{Description}\\\\",
+   "status": "aligned",
+   "order": 25
+  },
+  "63bf1f109e46": {
+   "fr": "deux bornes incluses\\\\\n[[m1]]",
+   "en": "both endpoints included\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 26
+  },
+  "50fcad8f5123": {
+   "fr": "[[m1]] exclu, [[m2]] inclus\\\\\n[[m3]]",
+   "en": "[[m1]] excluded, [[m2]] included\\\\\n[[m3]]",
+   "status": "aligned",
+   "order": 27
+  },
+  "1ccde1797b49": {
+   "fr": "[[m1]] inclus, [[m2]] exclu\\\\\n[[m3]]",
+   "en": "[[m1]] included, [[m2]] excluded\\\\\n[[m3]]",
+   "status": "aligned",
+   "order": 28
+  },
+  "5116c07364ee": {
+   "fr": "deux bornes exclues\\\\\n[[m1]]",
+   "en": "both endpoints excluded\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 29
+  },
+  "bcda2b0b3bb2": {
+   "fr": "supérieur ou égal à [[m1]]\\\\\n[[m2]]",
+   "en": "greater than or equal to [[m1]]\\\\\n[[m2]]",
+   "status": "aligned",
+   "order": 30
+  },
+  "b35e79a72ab6": {
+   "fr": "strictement supérieur à [[m1]]\\\\\n[[m2]]",
+   "en": "strictly greater than [[m1]]\\\\\n[[m2]]",
+   "status": "aligned",
+   "order": 31
+  },
+  "0337a0f36618": {
+   "fr": "inférieur ou égal à [[m1]]\\\\\n[[m2]]",
+   "en": "less than or equal to [[m1]]\\\\\n[[m2]]",
+   "status": "aligned",
+   "order": 32
+  },
+  "f5114f632a76": {
+   "fr": "strictement inférieur à [[m1]]",
+   "en": "strictly less than [[m1]]",
+   "status": "aligned",
+   "order": 33
+  },
+  "fdadee2a4af1": {
+   "fr": "Les réels strictement négatifs forment [[m1]] : [[m2]] est exclu. [[m3]] ; [[m4]].",
+   "en": "The strictly negative real numbers form [[m1]]: [[m2]] is excluded. [[m3]]; [[m4]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "621009eb4c81": {
+   "fr": "Écrire sous forme d'intervalle puis représenter : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]].",
+   "en": "Write as an interval then represent: [[m1]]; [[m2]]; [[m3]]; [[m4]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "e29214a84cb9": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]]. Sur la droite graduée, indiquer les bornes, puis matérialiser chacune comme incluse ou exclue.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]. On the number line, mark the endpoints, then show each one as included or excluded.",
+   "status": "aligned",
+   "order": 36
+  },
+  "debfab54be54": {
+   "fr": "Intersection et réunion d'intervalles",
+   "en": "Intersection and union of intervals",
+   "status": "aligned",
+   "order": 37
+  },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 38
+  },
+  "f60dc760452a": {
+   "fr": "[[m1]] correspond à la condition « appartenir à [[m2]] \\textbf{et} à [[m3]] » ; [[m4]] correspond à « appartenir à [[m5]] \\textbf{ou} à [[m6]] ». Une réunion d'intervalles n'est pas toujours un intervalle.",
+   "en": "[[m1]] corresponds to the condition ``belonging to [[m2]] \\textbf{and} to [[m3]]''; [[m4]] corresponds to ``belonging to [[m5]] \\textbf{or} to [[m6]]''. A union of intervals is not always an interval.",
+   "status": "aligned",
+   "order": 39
+  },
+  "2d228befa1d6": {
+   "fr": "Avec [[m1]] et [[m2]], déterminer [[m3]] et [[m4]].",
+   "en": "With [[m1]] and [[m2]], determine [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 41
+  },
+  "7b4628766be7": {
+   "fr": "Compléter, en justifiant par des représentations sur une droite graduée.",
+   "en": "Complete, justifying with representations on a number line.",
+   "status": "aligned",
+   "order": 42
+  },
+  "d6cf77984c5b": {
+   "fr": "\\mxblank{$[1;3]$}",
+   "en": "\\mxblank{$[1;3]$}",
+   "status": "aligned",
+   "order": 43
+  },
+  "2e68c0139a65": {
+   "fr": "\\mxblank{$]-4;5]$}\\\\\n[[m1]]",
+   "en": "\\mxblank{$]-4;5]$}\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 44
+  },
+  "7fe9c3472abc": {
+   "fr": "\\mxblank{$[-4;2]$}",
+   "en": "\\mxblank{$[-4;2]$}",
+   "status": "aligned",
+   "order": 45
+  },
+  "e074e0754fac": {
+   "fr": "\\mxblank{$\\{7\\}$}",
+   "en": "\\mxblank{$\\{7\\}$}",
+   "status": "aligned",
+   "order": 47
+  },
+  "0895df2efe58": {
+   "fr": "\\mxblank{$[-3;5]$}",
+   "en": "\\mxblank{$[-3;5]$}",
+   "status": "aligned",
+   "order": 49
+  },
+  "b7f01d9652a2": {
+   "fr": "\\mxblank{$\\R$}\\\\\n[[m1]]",
+   "en": "\\mxblank{$\\R$}\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 50
+  },
+  "8e0548d7f664": {
+   "fr": "\\mxblank{$\\varnothing$}",
+   "en": "\\mxblank{$\\varnothing$}",
+   "status": "aligned",
+   "order": 51
+  },
+  "5630fd769b36": {
+   "fr": "\\mxblank{$]-2;0[\\cup]0;3]$}",
+   "en": "\\mxblank{$]-2;0[\\cup]0;3]$}",
+   "status": "aligned",
+   "order": 52
+  },
+  "72fd1f9fc9b5": {
+   "fr": "Pour chaque intersection, conserver les points communs aux deux représentations ; pour chaque réunion, conserver tous les points de l'une au moins. Dans la dernière ligne, [[m1]] n'appartient à aucun intervalle : on ne peut pas remplacer la réunion par [[m2]].",
+   "en": "For each intersection, keep the points common to both representations; for each union, keep all the points of at least one. In the last row, [[m1]] belongs to neither interval: the union cannot be replaced by [[m2]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "1dab7cf868b6": {
+   "fr": "5--10 min",
+   "en": "5--10 min",
+   "status": "aligned",
+   "order": 54
+  },
+  "25c6d88bef84": {
+   "fr": "Simplifier [[m1]] ; résoudre [[m2]] ; calculer [[m3]].",
+   "en": "Simplify [[m1]]; solve [[m2]]; calculate [[m3]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "bbe0711e9e83": {
+   "fr": "Valeur absolue et distance",
+   "en": "Absolute value and distance",
+   "status": "aligned",
+   "order": 56
+  },
+  "1e2ffabadda7": {
+   "fr": "Définition et propriétés",
+   "en": "Definition and properties",
+   "status": "aligned",
+   "order": 57
+  },
+  "bae09e97cd8c": {
+   "fr": "[[m1]] est la distance du réel [[m2]] à [[m3]] ; [[m4]] et",
+   "en": "[[m1]] is the distance from the real number [[m2]] to [[m3]]; [[m4]] and",
+   "status": "aligned",
+   "order": 58
+  },
+  "2280d3cb542e": {
+   "fr": "La distance entre [[m1]] et [[m2]] est [[m3]]. Pour [[m4]] et [[m5]] :",
+   "en": "The distance between [[m1]] and [[m2]] is [[m3]]. For [[m4]] and [[m5]]:",
+   "status": "aligned",
+   "order": 59
+  },
+  "24d93749fb45": {
+   "fr": "Calculer [[m1]], [[m2]], [[m3]], puis les distances entre [[m4]] et [[m5]], [[m6]] et [[m7]], [[m8]] et [[m9]].",
+   "en": "Calculate [[m1]], [[m2]], [[m3]], then the distances between [[m4]] and [[m5]], [[m6]] and [[m7]], [[m8]] and [[m9]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "1a10d9f975cc": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] puisque [[m4]]. Les distances sont [[m5]], [[m6]] et [[m7]].",
+   "en": "[[m1]]; [[m2]]; [[m3]] since [[m4]]. The distances are [[m5]], [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "feb207b4113d": {
+   "fr": "Résoudre : [[m1]] ; [[m2]] ; [[m3]].",
+   "en": "Solve: [[m1]]; [[m2]]; [[m3]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "d2bad65d15d9": {
+   "fr": "Pour la première équation, [[m1]] ou [[m2]], donc [[m3]]. Puis [[m4]]. Enfin [[m5]].",
+   "en": "For the first equation, [[m1]] or [[m2]], so [[m3]]. Then [[m4]]. Finally [[m5]].",
+   "status": "aligned",
+   "order": 63
+  },
+  "c85efe910926": {
+   "fr": "Écrire [[m1]] sous forme d'une inégalité avec valeur absolue.",
+   "en": "Write [[m1]] as an inequality with an absolute value.",
+   "status": "aligned",
+   "order": 64
+  },
+  "80b5e7edc750": {
+   "fr": "Le centre est [[m1]] et le rayon [[m2]] : [[m3]].",
+   "en": "The centre is [[m1]] and the radius [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "874be1b84742": {
+   "fr": "Encadrements et approximations",
+   "en": "Bounds and approximations",
+   "status": "aligned",
+   "order": 66
+  },
+  "f48b7e41eb9a": {
+   "fr": "Vocabulaire",
+   "en": "Vocabulary",
+   "status": "aligned",
+   "order": 67
+  },
+  "0e130087e098": {
+   "fr": "Encadrer [[m1]], c'est donner [[m2]] ; l'amplitude est [[m3]]. Une valeur approchée par défaut est inférieure ou égale à [[m4]] ; une valeur approchée par excès lui est supérieure ou égale. L'arrondi choisit la valeur la plus proche à la précision demandée.\nLes chiffres significatifs se comptent à partir du premier chiffre non nul ; la précision affichée doit convenir au contexte.",
+   "en": "To bound [[m1]] is to give [[m2]]; the width is [[m3]]. An approximation from below is less than or equal to [[m4]]; an approximation from above is greater than or equal to it. Rounding chooses the nearest value at the required precision.\nSignificant figures are counted from the first nonzero digit; the displayed precision must suit the context.",
+   "status": "aligned",
+   "order": 68
+  },
+  "e38cbd998b13": {
+   "fr": "Encadrer [[m1]] par deux centièmes consécutifs. Donner son arrondi au centième. Arrondir [[m2]] à trois chiffres significatifs, puis [[m3]] à trois chiffres significatifs en écriture scientifique.",
+   "en": "Bound [[m1]] between two consecutive hundredths. Give its rounding to the nearest hundredth. Round [[m2]] to three significant figures, then [[m3]] to three significant figures in scientific notation.",
+   "status": "aligned",
+   "order": 69
+  },
+  "0299d06dcbf8": {
+   "fr": "[[m1]], donc [[m2]] (amplitude [[m3]]). L'arrondi au centième est [[m4]]. Les autres arrondis sont [[m5]] et [[m6]].",
+   "en": "[[m1]], so [[m2]] (width [[m3]]). The rounding to the nearest hundredth is [[m4]]. The other roundings are [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "08c1fb6ca21e": {
+   "fr": "Expliquer pourquoi cette fonction encadre [[m1]]. Que renvoie-t-elle pour [[m2]] ? Pourquoi termine-t-elle ?",
+   "en": "Explain why this function bounds [[m1]]. What does it return for [[m2]]? Why does it terminate?",
+   "status": "aligned",
+   "order": 71
+  },
+  "13fc408aeabc": {
+   "fr": "La boucle cherche le plus grand entier [[m1]] tel que [[m2]]. À la sortie, [[m3]], donc [[m4]]. Pour [[m5]], elle renvoie [[m6]]. Comme [[m7]], le compteur finit par atteindre une valeur qui rend le test faux. Les divisions finales sont des approximations flottantes ; les tests de carrés sont exacts.",
+   "en": "The loop looks for the largest integer [[m1]] such that [[m2]]. On exit, [[m3]], so [[m4]]. For [[m5]], it returns [[m6]]. Since [[m7]], the counter eventually reaches a value that makes the test false. The final divisions are floating-point approximations; the square tests are exact.",
+   "status": "aligned",
+   "order": 72
+  },
+  "7dd9b3388122": {
+   "fr": "si ",
+   "en": "if ",
+   "status": "aligned",
+   "order": 74
+  }
+ }
+}

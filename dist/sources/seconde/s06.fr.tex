@@ -1,0 +1,115 @@
+\mxunit{seconde-s06}{Fonctions : représentations et fonctions de référence}\mxsubtitle{23 novembre--4 décembre 2026}
+\section{Fonction, image et antécédent}
+\begin{keypoint}[Définition]
+Une fonction à valeurs réelles associe à chaque réel $x$ de son ensemble de définition $D_f$ un unique réel $f(x)$, appelé image de $x$. Un antécédent de $y$ est un réel $x\in D_f$ tel que $f(x)=y$. On note $f:x\mapsto f(x)$. Un nombre peut avoir aucun, un ou plusieurs antécédents.
+\end{keypoint}
+\begin{example}Soit $g(x)=x^2-4x+32$ sur $\R$. Calculer $g(-5)$. Soit $h(x)=3x+5$ ; déterminer l'antécédent de $6$ par $h$.\end{example}
+\mxanswerspace[3.2]{$g(-5)=25+20+32=77$ : $77$ est l'image de $-5$, et $-5$ est un antécédent de $77$. Pour $h$, $3x+5=6\iff x=1/3$. L'unique antécédent est $1/3$.}
+\begin{example}Pour la fonction carré, calculer les images de $-3$ et $3$, puis les antécédents de $9$, $0$ et $-1$.\end{example}
+\mxanswerspace[3.2]{$f(-3)=f(3)=9$. Les antécédents de $9$ sont $-3,3$ ; $0$ a un seul antécédent, $0$ ; $-1$ n'en a aucun dans $\R$.}
+\begin{lstlisting}
+def g(x):
+    return x*x - 4*x + 32
+\end{lstlisting}
+\begin{example}Distinguer \texttt{g(-5)} de \texttt{x = -5}.\end{example}
+\mxanswerspace[2]{Le premier appelle la fonction et renvoie $77$. Le second affecte $-5$ à la variable \texttt{x}, sans calculer l'image par $g$.}
+\mxsection{Ensemble de définition}
+\begin{keypoint}[Conditions d'existence]
+$D_f$ contient les valeurs pour lesquelles le procédé définissant $f$ a un sens. Un dénominateur doit être non nul ; un nombre placé sous une racine carrée doit être positif ou nul. Respecter aussi tout domaine imposé par l'énoncé ou le contexte.
+\end{keypoint}
+\begin{example}Déterminer les ensembles de définition :
+\[f(x)=3x^2-5x+2,\quad g(x)=\frac{2x+1}{x-4},\quad h(x)=\frac{x}{x^2-9},\quad k(x)=\sqrt{2x-6}.\]\end{example}
+\mxanswerspace[5]{$D_f=\R$. $D_g=]-\infty;4[\cup]4;+\infty[$ car $x-4\ne0$. $D_h=]-\infty;-3[\cup]-3;3[\cup]3;+\infty[$ car $x^2-9\ne0$. $D_k=[3;+\infty[$ car $2x-6\geq0$.}
+\begin{pitfall}La racine carrée d'un nombre négatif n'existe pas dans $\R$ ; ce n'est pas « une racine carrée négative » que l'on exclut.\end{pitfall}
+\begin{example}[Modéliser]Un rectangle de périmètre $20$ m a pour largeur $x$ m. Exprimer son aire et préciser le domaine si les deux dimensions doivent être strictement positives.\end{example}
+\mxanswerspace[5]{La longueur vaut $10-x$, donc $A(x)=x(10-x)$ en m$^2$. $x>0$ et $10-x>0$ donnent $D_A=]0;10[$. Si les rectangles dégénérés étaient autorisés, on pourrait prendre $[0;10]$.}
+\mxsection{Tableau de valeurs et courbe représentative}
+\begin{keypoint}[Définition]
+$\mathcal C_f$ est l'ensemble des points $(x;f(x))$, avec $x\in D_f$. Ainsi $M(a;b)\in\mathcal C_f\iff a\in D_f$ et $b=f(a)$.
+\end{keypoint}
+\begin{example}Sur $[-1;4]$, $f(x)=x^2-2x-1$. Compléter le tableau, puis tracer la courbe sur tout l'intervalle.\end{example}
+\begin{center}\mxarraystretch{1.6}\begin{tabular}{c|rrrrrrrr}
+$x$&$-1$&$-0{,}5$&$0$&$1$&$1{,}5$&$2$&$3$&$4$\\\hline
+$f(x)$&\mxblank{$2$}&\mxblank{$0{,}25$}&$-1$&$-2$&\mxblank{$-1{,}75$}&$-1$&\mxblank{$2$}&\mxblank{$7$}
+\end{tabular}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-2,xmax=5,ymin=-3,ymax=8,width=12cm,height=9cm,xtick={-2,...,5},ytick={-3,...,8}]
+\ifmxteacher\addplot[thick,domain=-1:4]{x*x-2*x-1};\addplot[only marks]coordinates{(-1,2)(-.5,.25)(0,-1)(1,-2)(1.5,-1.75)(2,-1)(3,2)(4,7)};\fi
+\end{axis}\end{tikzpicture}\end{center}
+\mxanswerspace[2]{Images : $2$ ; $0{,}25$ ; $-1$ ; $-2$ ; $-1{,}75$ ; $-1$ ; $2$ ; $7$. Placer les points puis tracer la parabole. Des segments reliant ces seuls points ne donneraient qu'une approximation.}
+\mxsection{Résolution graphique d'équations et d'inéquations}
+\begin{keypoint}[Méthode]
+Les solutions de $f(x)=k$ sont les abscisses des intersections de $\mathcal C_f$ avec $y=k$. Pour $f(x)\leq k$, lire les abscisses où la courbe est en dessous de cette droite, intersections comprises ; avec $<$, les intersections sont exclues.
+\end{keypoint}
+\begin{example}La courbe représente $f(x)=1+\frac14(x+3)(x+1)(x-2)$ sur $[-4;3]$. Résoudre graphiquement $f(x)=1$, $f(x)\leq1$ et $f(x)>1$.\end{example}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-4.2,xmax=3.2,ymin=-4,ymax=7,xtick={-4,...,3},ytick={-4,-2,0,1,3,5,7},width=12cm,height=8cm]
+\addplot[very thick,domain=-4:3]{1+(x+3)*(x+1)*(x-2)/4};\addplot[dashed,domain=-4:3]{1};\node[anchor=south east]at(axis cs:3,1){$y=1$};
+\end{axis}\end{tikzpicture}\end{center}
+\mxanswerspace[4]{$f(x)=1$ : $-3,-1,2$. $f(x)\leq1$ : $[-4;-3]\cup[-1;2]$. $f(x)>1$ : $]-3;-1[\cup]2;3]$. Les bornes $-4,3$ viennent du domaine. La factorisation vérifie exactement les intersections ; l'étude algébrique du signe sera consolidée en séquence 8.}
+\begin{teachernote}Graphique reconstruit pour remplacer une lecture ambiguë dans le livret d'origine. Distinguer conjecture graphique et validation exacte.\end{teachernote}
+\mxsection{Comparer deux fonctions ; lire un signe}
+\begin{keypoint}[Méthode]
+$f(x)=g(x)$ se lit aux intersections des courbes. Pour $f(x)<g(x)$, $\mathcal C_f$ est strictement en dessous de $\mathcal C_g$ à la même abscisse. Le signe de $f(x)$ se lit par rapport à l'axe des abscisses.
+\end{keypoint}
+\begin{example}Sur $[-3;3]$, $f(x)=x^2$ et $g(x)=x+2$. Résoudre $f=g$, $f<g$, $f\geq g$ et déterminer le signe de $g$.\end{example}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-3.2,xmax=3.2,ymin=-2,ymax=10,width=12cm,height=8cm,xtick={-3,...,3},ytick={-2,0,2,4,6,8,10}]
+\addplot[very thick,domain=-3:3]{x*x};\addplot[thick,dashed,domain=-3:3]{x+2};\node at(axis cs:2.6,8.5){$\mathcal C_f$};\node at(axis cs:2.6,4.2){$\mathcal C_g$};
+\end{axis}\end{tikzpicture}\end{center}
+\mxanswerspace[4]{$f=g$ pour $x=-1,2$ ; $f<g$ sur $]-1;2[$ ; $f\geq g$ sur $[-3;-1]\cup[2;3]$. $g$ est strictement négative sur $[-3;-2[$, nulle en $-2$, strictement positive sur $]-2;3]$. Signe et variations sont des informations différentes.}
+\mxsection{Fonctions affines et valeur absolue}
+\begin{keypoint}[Définitions]
+Une fonction affine est $f(x)=mx+p$ sur $\R$. Elle est linéaire si $p=0$, constante si $m=0$. Pour $m\ne0$, elle s'annule en $-p/m$ ; son signe est celui de $m$ à droite de ce nombre.
+La fonction $x\mapsto|x|$ est définie sur $\R$, positive ou nulle, et s'annule uniquement en $0$.
+\end{keypoint}
+\begin{example}Classer (plusieurs réponses possibles) en affine, linéaire, constante : $5x+2$ ; $5x$ ; $7+2x-7$ ; $6$ ; $6(4x-2)$ ; $6x+5-6x$.\end{example}
+\mxanswerspace[2.4]{Toutes sont affines. $5x$ et $2x$ sont linéaires ; $6$ et $5$ sont constantes ; $24x-12$ n'est ni linéaire ni constante.}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-4,xmax=4,ymin=-1,ymax=4,width=9cm,height=5cm,xtick={-4,...,4},ytick={0,...,4}]
+\addplot[thick,domain=-4:4]{abs(x)};\node at(axis cs:2.7,3.7){$y=|x|$};\end{axis}\end{tikzpicture}\end{center}
+\begin{keypoint}[Équations et inéquations]
+Si $k<0$, $|x|=k$ et $|x|\leq k$ n'ont aucune solution, et $|x|\geq k$ est vraie sur $\R$. Si $k=0$, les deux premières donnent $x=0$, la troisième est vraie sur $\R$. Pour $k>0$ :
+\[|x|=k\iff x\in\{-k;k\},\quad |x|\leq k\iff x\in[-k;k],\]
+\[|x|\geq k\iff x\in]-\infty;-k]\cup[k;+\infty[.\]
+\end{keypoint}
+\begin{example}Résoudre $|x|=5$, $|x|=-3$, $|x|\leq3$, $|x|\geq4$.\end{example}
+\mxanswerspace[1.6]{$\{-5;5\}$ ; $\varnothing$ ; $[-3;3]$ ; $]-\infty;-4]\cup[4;+\infty[$.}
+\mxsection{Fonctions carré et inverse}
+\begin{keypoint}[Définitions et signe]
+$x\mapsto x^2$ est définie sur $\R$ ; sa courbe est une parabole. $x^2\geq0$, avec égalité seulement en $0$.
+$x\mapsto1/x$ est définie sur $\R^*$ ; sa courbe est une hyperbole. $1/x$ a le signe de $x$ et ne s'annule jamais.
+\end{keypoint}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-3,xmax=3,ymin=-1,ymax=9,width=8cm,height=5cm,xtick={-2,0,2}]
+\addplot[thick,domain=-3:3]{x*x};\node at(axis cs:1,6){$y=x^2$};\end{axis}\end{tikzpicture}
+\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-4,xmax=4,ymin=-4,ymax=4,width=8cm,height=5cm,xtick={-4,-2,0,2,4}]
+\addplot[thick,domain=-4:-.25]{1/x};\addplot[thick,domain=.25:4]{1/x};\node at(axis cs:2.5,2){$y=1/x$};\end{axis}\end{tikzpicture}\end{center}
+\begin{keypoint}[Équations et inéquations avec $x^2$]
+Si $k<0$, $x^2=k$ et $x^2\leq k$ n'ont pas de solution ; $x^2\geq k$ est vraie sur $\R$. Si $k=0$, les deux premières donnent $x=0$, la troisième est vraie sur $\R$. Pour $k>0$ :
+\[x^2=k\iff x\in\{-\sqrt k;\sqrt k\},\quad x^2\leq k\iff x\in[-\sqrt k;\sqrt k],\]
+\[x^2\geq k\iff x\in]-\infty;-\sqrt k]\cup[\sqrt k;+\infty[.\]
+\end{keypoint}
+\begin{example}Résoudre $x^2=4$, $x^2=-1$, $x^2\geq4$, $x^2\geq-1$, $1/x=4$, $1/x=0$.\end{example}
+\mxanswerspace[3.2]{$\{-2;2\}$ ; $\varnothing$ ; $]-\infty;-2]\cup[2;+\infty[$ ; $\R$ ; $\{1/4\}$ ; $\varnothing$. Plus généralement, $1/x=k$ a l'unique solution $1/k$ si $k\ne0$, aucune si $k=0$.}
+\mxsection{Inéquations avec la fonction inverse}
+\begin{method}
+Respecter $x\ne0$ et lire les deux branches de l'hyperbole. Ne pas multiplier une inéquation par $x$ sans connaître son signe.
+\end{method}
+\begin{center}\small\mxarraystretch{2.5}\begin{tabular}{c|c|c|c}
+&$k<0$&$k=0$&$k>0$\\\hline
+$1/x\leq k$&$[1/k;0[$&$]-\infty;0[$&$]-\infty;0[\cup[1/k;+\infty[$\\
+$1/x\geq k$&$]-\infty;1/k]\cup]0;+\infty[$&$]0;+\infty[$&$]0;1/k]$
+\end{tabular}\end{center}
+\begin{example}Résoudre $1/x\geq2$, $1/x\leq-1$, $1/x<1/2$ et $1/x>-2$.\end{example}
+\mxanswerspace[5]{$]0;1/2]$ ; $[-1;0[$ ; $]-\infty;0[\cup]2;+\infty[$ ; $]-\infty;-1/2[\cup]0;+\infty[$. Une inégalité stricte exclut l'intersection avec $y=k$ ; $0$ est toujours interdit.}
+\begin{example}Un élève écrit : « $1/x\leq2\iff1\leq2x$, donc $x\geq1/2$ ». Que manque-t-il ?\end{example}
+\mxanswerspace[4]{Il a supposé implicitement $x>0$. Pour $x<0$, $1/x<0<2$ : ces valeurs conviennent aussi. L'ensemble correct est $]-\infty;0[\cup[1/2;+\infty[$. Le nombre $-1$ réfute son équivalence.}
+\mxsection{Mobiliser racine carrée et cube}
+\begin{keypoint}[Définitions]
+$x\mapsto\sqrt x$ est définie sur $[0;+\infty[$ et à valeurs positives ou nulles. Pour $k\geq0$, $\sqrt x=k\iff x=k^2$ ; pour $k<0$, aucune solution.
+$x\mapsto x^3$ est définie sur $\R$. Chaque réel $k$ possède un unique antécédent, noté $\sqrt[3]{k}$.
+\end{keypoint}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-1,xmax=9,ymin=-1,ymax=4,width=8cm,height=5cm,xtick={0,1,4,9}]
+\addplot[thick,domain=0:9]{sqrt(x)};\node at(axis cs:5,3){$y=\sqrt x$};\end{axis}\end{tikzpicture}
+\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-2,xmax=2,ymin=-8,ymax=8,width=8cm,height=5cm,xtick={-2,-1,0,1,2}]
+\addplot[thick,domain=-2:2]{x*x*x};\node at(axis cs:-1,5){$y=x^3$};\end{axis}\end{tikzpicture}\end{center}
+\begin{example}Résoudre $\sqrt x=3$ ; $\sqrt x=-2$ ; $\sqrt x\leq2$ ; $\sqrt x>3$ ; $x^3=-8$ ; $x^3\leq27$.\end{example}
+\mxanswerspace[4]{$\{9\}$ ; $\varnothing$ ; $[0;4]$ ; $]9;+\infty[$ ; $\{-2\}$ ; $]-\infty;3]$. Respecter le domaine pour les racines carrées. La fonction cube conserve l'ordre.}
+\begin{example}Comparer $x^2$ et $x$ pour $x=1/2$, puis $x=2$. Le carré d'un positif est-il toujours plus grand que lui ?\end{example}
+\mxanswerspace[2.4]{$1/4<1/2$ mais $4>2$. L'affirmation est fausse ; $1/2$ est un contre-exemple. Étude générale en séquence 10.}

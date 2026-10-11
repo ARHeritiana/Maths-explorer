@@ -1,0 +1,395 @@
+{
+ "unit": "s06.fr.tex",
+ "segments": {
+  "a8eb995dbd39": {
+   "fr": "Fonctions : représentations et fonctions de référence",
+   "en": "Functions: representations and reference functions",
+   "status": "aligned",
+   "order": 0
+  },
+  "3e3c718e823e": {
+   "fr": "23 novembre--4 décembre 2026",
+   "en": "23 November--4 December 2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "1d49a4e092b4": {
+   "fr": "Fonction, image et antécédent",
+   "en": "Function, image and preimage",
+   "status": "aligned",
+   "order": 2
+  },
+  "9806226901b0": {
+   "fr": "Une fonction à valeurs réelles associe à chaque réel [[m1]] de son ensemble de définition [[m2]] un unique réel [[m3]], appelé image de [[m4]]. Un antécédent de [[m5]] est un réel [[m6]] tel que [[m7]]. On note [[m8]]. Un nombre peut avoir aucun, un ou plusieurs antécédents.",
+   "en": "A real-valued function associates to each real number [[m1]] of its domain [[m2]] a unique real number [[m3]], called the image of [[m4]]. A preimage of [[m5]] is a real number [[m6]] such that [[m7]]. We write [[m8]]. A number may have no preimage, one, or several.",
+   "status": "aligned",
+   "order": 4
+  },
+  "9e08c3a9c68a": {
+   "fr": "Soit [[m1]] sur [[m2]]. Calculer [[m3]]. Soit [[m4]] ; déterminer l'antécédent de [[m5]] par [[m6]].",
+   "en": "Let [[m1]] on [[m2]]. Calculate [[m3]]. Let [[m4]]; determine the preimage of [[m5]] under [[m6]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "c4e3759a9dfd": {
+   "fr": "[[m1]] : [[m2]] est l'image de [[m3]], et [[m4]] est un antécédent de [[m5]]. Pour [[m6]], [[m7]]. L'unique antécédent est [[m8]].",
+   "en": "[[m1]]: [[m2]] is the image of [[m3]], and [[m4]] is a preimage of [[m5]]. For [[m6]], [[m7]]. The only preimage is [[m8]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "4f0ab776f09d": {
+   "fr": "Pour la fonction carré, calculer les images de [[m1]] et [[m2]], puis les antécédents de [[m3]], [[m4]] et [[m5]].",
+   "en": "For the square function, calculate the images of [[m1]] and [[m2]], then the preimages of [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "600e6af4954b": {
+   "fr": "[[m1]]. Les antécédents de [[m2]] sont [[m3]] ; [[m4]] a un seul antécédent, [[m5]] ; [[m6]] n'en a aucun dans [[m7]].",
+   "en": "[[m1]]. The preimages of [[m2]] are [[m3]]; [[m4]] has a single preimage, [[m5]]; [[m6]] has none in [[m7]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "e1c4b2fa4e83": {
+   "fr": "Distinguer \\texttt{g(-5)} de \\texttt{x = -5}.",
+   "en": "Distinguish \\texttt{g(-5)} from \\texttt{x = -5}.",
+   "status": "aligned",
+   "order": 9
+  },
+  "8954351b7129": {
+   "fr": "Le premier appelle la fonction et renvoie [[m1]]. Le second affecte [[m2]] à la variable \\texttt{x}, sans calculer l'image par [[m3]].",
+   "en": "The first calls the function and returns [[m1]]. The second assigns [[m2]] to the variable \\texttt{x}, without calculating the image under [[m3]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "54a2292b864a": {
+   "fr": "Ensemble de définition",
+   "en": "Domain of definition",
+   "status": "aligned",
+   "order": 11
+  },
+  "34318cc1bbaf": {
+   "fr": "Conditions d'existence",
+   "en": "Conditions for existence",
+   "status": "aligned",
+   "order": 12
+  },
+  "1a91975f7ebe": {
+   "fr": "[[m1]] contient les valeurs pour lesquelles le procédé définissant [[m2]] a un sens. Un dénominateur doit être non nul ; un nombre placé sous une racine carrée doit être positif ou nul. Respecter aussi tout domaine imposé par l'énoncé ou le contexte.",
+   "en": "[[m1]] contains the values for which the process defining [[m2]] makes sense. A denominator must be nonzero; a number under a square root must be positive or zero. Also respect any domain imposed by the statement or the context.",
+   "status": "aligned",
+   "order": 13
+  },
+  "29b2c782b713": {
+   "fr": "Déterminer les ensembles de définition :",
+   "en": "Determine the domains of definition:",
+   "status": "aligned",
+   "order": 14
+  },
+  "cc8c4a34acbc": {
+   "fr": "[[m1]]. [[m2]] car [[m3]]. [[m4]] car [[m5]]. [[m6]] car [[m7]].",
+   "en": "[[m1]]. [[m2]] since [[m3]]. [[m4]] since [[m5]]. [[m6]] since [[m7]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "721db815fb16": {
+   "fr": "La racine carrée d'un nombre négatif n'existe pas dans [[m1]] ; ce n'est pas « une racine carrée négative » que l'on exclut.",
+   "en": "The square root of a negative number does not exist in [[m1]]; it is not ``a negative square root'' that is excluded.",
+   "status": "aligned",
+   "order": 16
+  },
+  "82a6d99a904a": {
+   "fr": "Modéliser",
+   "en": "Modelling",
+   "status": "aligned",
+   "order": 17
+  },
+  "4c85dade3229": {
+   "fr": "Un rectangle de périmètre [[m1]] m a pour largeur [[m2]] m. Exprimer son aire et préciser le domaine si les deux dimensions doivent être strictement positives.",
+   "en": "A rectangle of perimeter [[m1]] m has width [[m2]] m. Express its area and state the domain if both dimensions must be strictly positive.",
+   "status": "aligned",
+   "order": 18
+  },
+  "07a94ea4fec3": {
+   "fr": "La longueur vaut [[m1]], donc [[m2]] en m[[m3]]. [[m4]] et [[m5]] donnent [[m6]]. Si les rectangles dégénérés étaient autorisés, on pourrait prendre [[m7]].",
+   "en": "The length is [[m1]], so [[m2]] in m[[m3]]. [[m4]] and [[m5]] give [[m6]]. If degenerate rectangles were allowed, we could take [[m7]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "116ea6c881d2": {
+   "fr": "Tableau de valeurs et courbe représentative",
+   "en": "Table of values and representative curve",
+   "status": "aligned",
+   "order": 20
+  },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 21
+  },
+  "7bc61b9294f3": {
+   "fr": "[[m1]] est l'ensemble des points [[m2]], avec [[m3]]. Ainsi [[m4]] et [[m5]].",
+   "en": "[[m1]] is the set of points [[m2]], with [[m3]]. Thus [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "174f65faccad": {
+   "fr": "Sur [[m1]], [[m2]]. Compléter le tableau, puis tracer la courbe sur tout l'intervalle.",
+   "en": "On [[m1]], [[m2]]. Complete the table, then draw the curve over the whole interval.",
+   "status": "aligned",
+   "order": 23
+  },
+  "3cae4aaec700": {
+   "fr": "\\mxblank{$0{,}25$}",
+   "en": "\\mxblank{$0.25$}",
+   "status": "aligned",
+   "order": 25
+  },
+  "d89e447254c2": {
+   "fr": "\\mxblank{$-1{,}75$}",
+   "en": "\\mxblank{$-1.75$}",
+   "status": "aligned",
+   "order": 26
+  },
+  "15f3095cf2c6": {
+   "fr": "\\mxblank{$2$}",
+   "en": "\\mxblank{$2$}",
+   "status": "aligned",
+   "order": 27
+  },
+  "85a1a0bb1a1a": {
+   "fr": "\\mxblank{$7$}",
+   "en": "\\mxblank{$7$}",
+   "status": "aligned",
+   "order": 28
+  },
+  "9331c534f727": {
+   "fr": "Images : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]] ; [[m7]] ; [[m8]]. Placer les points puis tracer la parabole. Des segments reliant ces seuls points ne donneraient qu'une approximation.",
+   "en": "Images: [[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]; [[m7]]; [[m8]]. Plot the points then draw the parabola. Segments joining only these points would give just an approximation.",
+   "status": "aligned",
+   "order": 29
+  },
+  "0357835d00c8": {
+   "fr": "Résolution graphique d'équations et d'inéquations",
+   "en": "Graphical solving of equations and inequalities",
+   "status": "aligned",
+   "order": 30
+  },
+  "3057ba45fb32": {
+   "fr": "Les solutions de [[m1]] sont les abscisses des intersections de [[m2]] avec [[m3]]. Pour [[m4]], lire les abscisses où la courbe est en dessous de cette droite, intersections comprises ; avec [[m5]], les intersections sont exclues.",
+   "en": "The solutions of [[m1]] are the abscissae of the intersections of [[m2]] with [[m3]]. For [[m4]], read the abscissae where the curve is below this line, intersections included; with [[m5]], the intersections are excluded.",
+   "status": "aligned",
+   "order": 32
+  },
+  "9adc0ffead54": {
+   "fr": "La courbe représente [[m1]] sur [[m2]]. Résoudre graphiquement [[m3]], [[m4]] et [[m5]].",
+   "en": "The curve represents [[m1]] on [[m2]]. Solve graphically [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "f6d1b7760a3b": {
+   "fr": "[[m1]] : [[m2]]. [[m3]] : [[m4]]. [[m5]] : [[m6]]. Les bornes [[m7]] viennent du domaine. La factorisation vérifie exactement les intersections ; l'étude algébrique du signe sera consolidée en séquence 8.",
+   "en": "[[m1]]: [[m2]]. [[m3]]: [[m4]]. [[m5]]: [[m6]]. The endpoints [[m7]] come from the domain. The factorisation checks the intersections exactly; the algebraic study of the sign will be consolidated in sequence 8.",
+   "status": "aligned",
+   "order": 34
+  },
+  "f4e31dad79ce": {
+   "fr": "Graphique reconstruit pour remplacer une lecture ambiguë dans le livret d'origine. Distinguer conjecture graphique et validation exacte.",
+   "en": "Graph rebuilt to replace an ambiguous reading in the original booklet. Distinguish graphical conjecture from exact validation.",
+   "status": "aligned",
+   "order": 35
+  },
+  "fd1cc4660992": {
+   "fr": "Comparer deux fonctions ; lire un signe",
+   "en": "Comparing two functions; reading a sign",
+   "status": "aligned",
+   "order": 36
+  },
+  "2e94172aba35": {
+   "fr": "Méthode",
+   "en": "Method",
+   "status": "aligned",
+   "order": 37
+  },
+  "422be330971f": {
+   "fr": "[[m1]] se lit aux intersections des courbes. Pour [[m2]], [[m3]] est strictement en dessous de [[m4]] à la même abscisse. Le signe de [[m5]] se lit par rapport à l'axe des abscisses.",
+   "en": "[[m1]] is read at the intersections of the curves. For [[m2]], [[m3]] is strictly below [[m4]] at the same abscissa. The sign of [[m5]] is read relative to the x-axis.",
+   "status": "aligned",
+   "order": 38
+  },
+  "48be8feb7214": {
+   "fr": "Sur [[m1]], [[m2]] et [[m3]]. Résoudre [[m4]], [[m5]], [[m6]] et déterminer le signe de [[m7]].",
+   "en": "On [[m1]], [[m2]] and [[m3]]. Solve [[m4]], [[m5]], [[m6]] and determine the sign of [[m7]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "3651df17b9f4": {
+   "fr": "[[m1]] pour [[m2]] ; [[m3]] sur [[m4]] ; [[m5]] sur [[m6]]. [[m7]] est strictement négative sur [[m8]], nulle en [[m9]], strictement positive sur [[m10]]. Signe et variations sont des informations différentes.",
+   "en": "[[m1]] for [[m2]]; [[m3]] on [[m4]]; [[m5]] on [[m6]]. [[m7]] is strictly negative on [[m8]], zero at [[m9]], strictly positive on [[m10]]. Sign and variations are different pieces of information.",
+   "status": "aligned",
+   "order": 40
+  },
+  "fdeaefab0053": {
+   "fr": "Fonctions affines et valeur absolue",
+   "en": "Affine functions and absolute value",
+   "status": "aligned",
+   "order": 41
+  },
+  "8a293b692ddd": {
+   "fr": "Une fonction affine est [[m1]] sur [[m2]]. Elle est linéaire si [[m3]], constante si [[m4]]. Pour [[m5]], elle s'annule en [[m6]] ; son signe est celui de [[m7]] à droite de ce nombre.\nLa fonction [[m8]] est définie sur [[m9]], positive ou nulle, et s'annule uniquement en [[m10]].",
+   "en": "An affine function is [[m1]] on [[m2]]. It is linear if [[m3]], constant if [[m4]]. For [[m5]], it vanishes at [[m6]]; its sign is that of [[m7]] to the right of this number.\nThe function [[m8]] is defined on [[m9]], positive or zero, and vanishes only at [[m10]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "946fc691af9c": {
+   "fr": "Classer (plusieurs réponses possibles) en affine, linéaire, constante : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]].",
+   "en": "Classify (several answers possible) as affine, linear, constant: [[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "3240c0d5b65e": {
+   "fr": "Toutes sont affines. [[m1]] et [[m2]] sont linéaires ; [[m3]] et [[m4]] sont constantes ; [[m5]] n'est ni linéaire ni constante.",
+   "en": "All are affine. [[m1]] and [[m2]] are linear; [[m3]] and [[m4]] are constant; [[m5]] is neither linear nor constant.",
+   "status": "aligned",
+   "order": 45
+  },
+  "d92eea8959fb": {
+   "fr": "Équations et inéquations",
+   "en": "Equations and inequalities",
+   "status": "aligned",
+   "order": 46
+  },
+  "80db1e297b90": {
+   "fr": "Si [[m1]], [[m2]] et [[m3]] n'ont aucune solution, et [[m4]] est vraie sur [[m5]]. Si [[m6]], les deux premières donnent [[m7]], la troisième est vraie sur [[m8]]. Pour [[m9]] :",
+   "en": "If [[m1]], [[m2]] and [[m3]] have no solution, and [[m4]] is true on [[m5]]. If [[m6]], the first two give [[m7]], the third is true on [[m8]]. For [[m9]]:",
+   "status": "aligned",
+   "order": 47
+  },
+  "b67895fa9783": {
+   "fr": "Résoudre [[m1]], [[m2]], [[m3]], [[m4]].",
+   "en": "Solve [[m1]], [[m2]], [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "6af66608dcfa": {
+   "fr": "Fonctions carré et inverse",
+   "en": "Square and inverse functions",
+   "status": "aligned",
+   "order": 49
+  },
+  "32ddb05800da": {
+   "fr": "Définitions et signe",
+   "en": "Definitions and sign",
+   "status": "aligned",
+   "order": 50
+  },
+  "fe7a4a0e10f4": {
+   "fr": "[[m1]] est définie sur [[m2]] ; sa courbe est une parabole. [[m3]], avec égalité seulement en [[m4]].\n[[m5]] est définie sur [[m6]] ; sa courbe est une hyperbole. [[m7]] a le signe de [[m8]] et ne s'annule jamais.",
+   "en": "[[m1]] is defined on [[m2]]; its curve is a parabola. [[m3]], with equality only at [[m4]].\n[[m5]] is defined on [[m6]]; its curve is a hyperbola. [[m7]] has the sign of [[m8]] and never vanishes.",
+   "status": "aligned",
+   "order": 51
+  },
+  "6510f6a3e1c8": {
+   "fr": "Équations et inéquations avec [[m1]]",
+   "en": "Equations and inequalities with [[m1]]",
+   "status": "aligned",
+   "order": 52
+  },
+  "b2d2b41ad410": {
+   "fr": "Si [[m1]], [[m2]] et [[m3]] n'ont pas de solution ; [[m4]] est vraie sur [[m5]]. Si [[m6]], les deux premières donnent [[m7]], la troisième est vraie sur [[m8]]. Pour [[m9]] :",
+   "en": "If [[m1]], [[m2]] and [[m3]] have no solution; [[m4]] is true on [[m5]]. If [[m6]], the first two give [[m7]], the third is true on [[m8]]. For [[m9]]:",
+   "status": "aligned",
+   "order": 53
+  },
+  "5f2e4a09dcf3": {
+   "fr": "Résoudre [[m1]], [[m2]], [[m3]], [[m4]], [[m5]], [[m6]].",
+   "en": "Solve [[m1]], [[m2]], [[m3]], [[m4]], [[m5]], [[m6]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "676780403809": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. Plus généralement, [[m7]] a l'unique solution [[m8]] si [[m9]], aucune si [[m10]].",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. More generally, [[m7]] has the unique solution [[m8]] if [[m9]], none if [[m10]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "29029c12b463": {
+   "fr": "Inéquations avec la fonction inverse",
+   "en": "Inequalities with the inverse function",
+   "status": "aligned",
+   "order": 56
+  },
+  "3277d92682e9": {
+   "fr": "Respecter [[m1]] et lire les deux branches de l'hyperbole. Ne pas multiplier une inéquation par [[m2]] sans connaître son signe.",
+   "en": "Respect [[m1]] and read both branches of the hyperbola. Do not multiply an inequality by [[m2]] without knowing its sign.",
+   "status": "aligned",
+   "order": 57
+  },
+  "5bfe7f2d2c99": {
+   "fr": "Résoudre [[m1]], [[m2]], [[m3]] et [[m4]].",
+   "en": "Solve [[m1]], [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "2efd7dceca48": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]]. Une inégalité stricte exclut l'intersection avec [[m5]] ; [[m6]] est toujours interdit.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]. A strict inequality excludes the intersection with [[m5]]; [[m6]] is always forbidden.",
+   "status": "aligned",
+   "order": 59
+  },
+  "53f0199a5b97": {
+   "fr": "Un élève écrit : « [[m1]], donc [[m2]] ». Que manque-t-il ?",
+   "en": "A student writes: ``[[m1]], so [[m2]]''. What is missing?",
+   "status": "aligned",
+   "order": 60
+  },
+  "ec001ba1bf5a": {
+   "fr": "Il a supposé implicitement [[m1]]. Pour [[m2]], [[m3]] : ces valeurs conviennent aussi. L'ensemble correct est [[m4]]. Le nombre [[m5]] réfute son équivalence.",
+   "en": "They implicitly assumed [[m1]]. For [[m2]], [[m3]]: these values also work. The correct set is [[m4]]. The number [[m5]] refutes their equivalence.",
+   "status": "aligned",
+   "order": 61
+  },
+  "e4b2529f09d3": {
+   "fr": "Mobiliser racine carrée et cube",
+   "en": "Using square root and cube",
+   "status": "aligned",
+   "order": 62
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 63
+  },
+  "d84d3bb1734f": {
+   "fr": "[[m1]] est définie sur [[m2]] et à valeurs positives ou nulles. Pour [[m3]], [[m4]] ; pour [[m5]], aucune solution.\n[[m6]] est définie sur [[m7]]. Chaque réel [[m8]] possède un unique antécédent, noté [[m9]].",
+   "en": "[[m1]] is defined on [[m2]] and takes values that are positive or zero. For [[m3]], [[m4]]; for [[m5]], no solution.\n[[m6]] is defined on [[m7]]. Every real number [[m8]] has a unique preimage, written [[m9]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "aa73788c0a0a": {
+   "fr": "Résoudre [[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]].",
+   "en": "Solve [[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "f043e41a9779": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. Respecter le domaine pour les racines carrées. La fonction cube conserve l'ordre.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. Respect the domain for square roots. The cube function preserves order.",
+   "status": "aligned",
+   "order": 66
+  },
+  "c8cb9a70509b": {
+   "fr": "Comparer [[m1]] et [[m2]] pour [[m3]], puis [[m4]]. Le carré d'un positif est-il toujours plus grand que lui ?",
+   "en": "Compare [[m1]] and [[m2]] for [[m3]], then [[m4]]. Is the square of a positive number always greater than the number itself?",
+   "status": "aligned",
+   "order": 67
+  },
+  "52fc55e9d11d": {
+   "fr": "[[m1]] mais [[m2]]. L'affirmation est fausse ; [[m3]] est un contre-exemple. Étude générale en séquence 10.",
+   "en": "[[m1]] but [[m2]]. The claim is false; [[m3]] is a counterexample. General study in sequence 10.",
+   "status": "aligned",
+   "order": 68
+  }
+ }
+}

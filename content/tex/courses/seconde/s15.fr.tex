@@ -1,0 +1,38 @@
+\mxunit{seconde-s15}{Consolidation et transition vers la Première}\mxsubtitle{25 mai--11 juin 2027}
+\section{Bilan de calcul, fonctions et géométrie}
+\begin{example}[Bilan annuel -- partie A]\begin{enumerate}
+\item Rendre $168/252$ irréductible ; calculer $2^{-3}+1/4$.
+\item Factoriser $x^2-6x+9$, puis résoudre $(x-3)^2=4$.
+\item Résoudre $\dfrac{x-2}{x+1}\geq0$.
+\item Pour $f(x)=4-(x-1)^2$ sur $[-2;3]$, donner le maximum et les abscisses où $f(x)=0$.
+\item Avec $A(0;1)$, $B(4;3)$, $C(6;4)$, démontrer l'alignement et donner une équation de la droite.
+\end{enumerate}\end{example}
+\mxanswerspace[9]{1. $168/252=2/3$, et $2^{-3}+1/4=1/8+2/8=3/8$. 2. $(x-3)^2$ ; $x-3=\pm2$, donc $S=\{1;5\}$. 3. Interdit $-1$, zéro $2$ ; signes $+,-,+$, donc $S=]-\infty;-1[\cup[2;+\infty[$. 4. Le carré est positif ou nul, donc $f(x)\leq4$, égalité en $x=1$. Les zéros sont $x=-1,3$, tous deux dans le domaine. 5. $\vect{AB}=(4;2)$, $\vect{AC}=(6;3)=\frac32\vect{AB}$. Une équation est $x-2y+2=0$.}
+\begin{teachernote}Barème indicatif : 10 points, 2 par question. Pour la question 3, réserver un point au domaine et aux bornes. Pour la question 5, demander la conclusion après le calcul.\end{teachernote}
+
+\mxsection{Bilan de données, probabilités et modélisation}
+\begin{example}[Bilan annuel -- partie B]\begin{enumerate}
+\item Calculer moyenne et médiane de $2;4;4;6;9$. Déterminer $Q_1,Q_3$.
+\item Un prix baisse de $15\,\%$, puis augmente de $20\,\%$. Donner le taux global et le taux permettant ensuite de revenir au prix initial.
+\item Dans une population fictive de $100$ personnes, $40$ font du sport ($S$), $30$ viennent à vélo ($V$), $18$ font les deux. Construire le tableau croisé et calculer $P_S(V)$, $P_V(S)$ pour un tirage équiprobable.
+\item Pour un rectangle de périmètre $24$ m, exprimer l'aire en fonction d'une dimension $x$ et démontrer son maximum.
+\end{enumerate}\end{example}
+\mxanswerspace[9]{1. Moyenne $25/5=5$, médiane $4$. Rangs des quartiles $2$ et $4$, donc $Q_1=4$, $Q_3=6$.\\2. Coefficient global $0{,}85\times1{,}20=1{,}02$ : hausse de $2\,\%$. Taux réciproque $1/1{,}02-1=-1/51\approx-1{,}96\,\%$.\\3. Tableau : $S\cap V=18$, $S\cap\overline V=22$, $\overline S\cap V=12$, $\overline S\cap\overline V=48$. $P_S(V)=18/40=45\,\%$, $P_V(S)=18/30=60\,\%$.\\4. $A(x)=x(12-x)=36-(x-6)^2$ sur $]0;12[$. Le maximum vaut $36$ m$^2$, atteint pour le carré de côté $6$ m.}
+\begin{teachernote}Barème indicatif : 10 points, respectivement 2, 2, 3, 3. Le bilan des parties A et B peut être proposé en une heure, puis repris avec les supports de cours.\end{teachernote}
+
+\mxsection{Choisir une stratégie et préparer la suite}
+\begin{example}[Un programme à expliquer]Pour une fonction donnée $f$, expliquer le programme suivant. Que renvoie-t-il avec $f(x)=x^2$ ?\end{example}
+\begin{lstlisting}
+def tableau(f):
+    valeurs = []
+    for x in range(-3, 4):
+        valeurs.append((x, f(x)))
+    return valeurs
+\end{lstlisting}
+\mxanswerspace[3.2]{Il renvoie une liste de couples abscisse--image pour les entiers de $-3$ à $3$ inclus : $(-3,9),(-2,4),(-1,1),(0,0),(1,1),(2,4),(3,9)$. La borne $4$ de \texttt{range} est exclue. Le tableau ne décrit pas les images de tous les réels entre $-3$ et $3$.}
+\begin{keypoint}[Six compétences à mobiliser]
+\textbf{Chercher} : essayer, organiser des pistes. \textbf{Modéliser} : choisir variables, domaine et hypothèses. \textbf{Représenter} : passer du texte au tableau, à la figure ou au graphique. \textbf{Raisonner} : justifier et distinguer conjecture et preuve. \textbf{Calculer} : choisir une forme et contrôler les opérations. \textbf{Communiquer} : expliquer clairement avec des notations et unités adaptées.
+\end{keypoint}
+\begin{example}[Portfolio de fin d'année]Choisir un travail réussi et un travail corrigé. Pour chacun, identifier les compétences mobilisées, expliquer une méthode et formuler un objectif personnel pour l'année suivante. Refaire ensuite un exercice correspondant à cet objectif sans regarder la correction.\end{example}
+\mxanswerspace[4]{Il n'y a pas de réponse numérique unique. Une production satisfaisante identifie précisément le problème, la méthode choisie, une justification et un contrôle. L'objectif doit être observable, par exemple : « préciser les valeurs interdites avant de résoudre une équation quotient », plutôt que « devenir meilleur en calcul ».}
+\begin{teachernote}Pour présenter les parcours de Première, s'appuyer sur les enseignements réellement proposés dans l'établissement et sur leurs programmes en vigueur. Le livret ne fixe pas de seuil de note automatique d'orientation.\end{teachernote}
