@@ -71,9 +71,14 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
    - Caveat for the owner: the exercises are original but were written to the same targets as the textbook exercises they replace;
      [VERIFY] whether the "Further practice" page and number citations of the textbook are acceptable to the owner.
 
-3. **Première `matrice-en.tex` and `progression-en.tex`** (teacher-only, translated, never compiled). `main-en.tex` already inputs
-   them in the teacher edition: rebuild Première and check FR/EN page counts; build standalone teacher PDFs (coverage matrix, annual
-   schedule) in FR and EN, add catalog entries and check `#pack` and the library show them. Check wording ("Year 11 (Seconde)", Year 10/13 glosses).
+3. **Première matrix and schedule**: DONE. The EN twins compile inside the teacher book (122/212 pages, FR=EN). `build-tex-resources.py
+   premiere ... --appendices` now cuts `premiere-revision/matrix(.pdf|-en.pdf)` (6 pages) and `schedule` (17 pages) out of the teacher
+   book (`standalone_teacher`), registers them in catalog.json (`premiere-revision-matrix/-schedule`, teacher, type solutions) and as
+   teacher-only supplements in the companion data (`resource-library.js` handles a teacher-only supplement; `pack-builder.js` has
+   the two new parts). Verified in the browser that the library lists both. Wording fix: "Year 10 (seconde)" became "Year 11
+   (seconde)" (France seconde = age 15 to 16 = England Year 11; Terminale = Year 13 was already right) [VERIFY the gloss].
+   `tests/learning.test.mjs` now expects 146 provenance entries. Remember to restyle after every rebuild (`style-resource-pdfs.py <changed pdfs>`).
+
 4. **Slide figures for Terminale.** The pipeline (`extract_figs`, `compile_figs` in `build-slides.py`) works for the other courses.
    The authored Terminale decks (`content/slides/terminale-NN.json`) had their figures stripped (`clean_residue`). Regenerate the French
    drafts with `scripts/extract-terminale-slides.py` (it needs the French Terminale source: point it at `content/latex/terminale/livret.tex`

@@ -1073,7 +1073,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 408225,
           "englishPath": "resources/premiere-01/teacher-en.pdf",
-          "englishBytes": 405167
+          "englishBytes": 405272
         }
       ]
     },
@@ -1112,7 +1112,7 @@ export const resourceCatalog = {
           "pages": 11,
           "bytes": 360348,
           "englishPath": "resources/premiere-02/teacher-en.pdf",
-          "englishBytes": 357479
+          "englishBytes": 357584
         }
       ]
     },
@@ -1150,7 +1150,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 364107,
           "englishPath": "resources/premiere-03/teacher-en.pdf",
-          "englishBytes": 361467
+          "englishBytes": 361572
         }
       ]
     },
@@ -1188,7 +1188,7 @@ export const resourceCatalog = {
           "pages": 11,
           "bytes": 357870,
           "englishPath": "resources/premiere-04/teacher-en.pdf",
-          "englishBytes": 354701
+          "englishBytes": 354806
         }
       ]
     },
@@ -1215,7 +1215,7 @@ export const resourceCatalog = {
             "quiz": 8
           },
           "englishPath": "resources/premiere-05/chapter-en.pdf",
-          "englishBytes": 320269
+          "englishBytes": 320268
         },
         {
           "kind": "teacher",
@@ -1226,7 +1226,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 358986,
           "englishPath": "resources/premiere-05/teacher-en.pdf",
-          "englishBytes": 355969
+          "englishBytes": 356074
         }
       ]
     },
@@ -1264,7 +1264,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 369748,
           "englishPath": "resources/premiere-06/teacher-en.pdf",
-          "englishBytes": 366804
+          "englishBytes": 366909
         }
       ]
     },
@@ -1302,7 +1302,7 @@ export const resourceCatalog = {
           "pages": 11,
           "bytes": 356492,
           "englishPath": "resources/premiere-07/teacher-en.pdf",
-          "englishBytes": 353432
+          "englishBytes": 353537
         }
       ]
     },
@@ -1341,7 +1341,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 411395,
           "englishPath": "resources/premiere-08/teacher-en.pdf",
-          "englishBytes": 409382
+          "englishBytes": 409487
         }
       ]
     },
@@ -1379,7 +1379,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 384328,
           "englishPath": "resources/premiere-09/teacher-en.pdf",
-          "englishBytes": 381758
+          "englishBytes": 381863
         }
       ]
     },
@@ -1418,7 +1418,7 @@ export const resourceCatalog = {
           "pages": 12,
           "bytes": 358768,
           "englishPath": "resources/premiere-10/teacher-en.pdf",
-          "englishBytes": 355359
+          "englishBytes": 355464
         }
       ]
     },
@@ -2310,7 +2310,7 @@ export const resourceCatalog = {
           "pages": 4,
           "bytes": 329141,
           "englishPath": "resources/premiere-methods-prof-en.pdf",
-          "englishBytes": 326137
+          "englishBytes": 326242
         }
       ]
     },
@@ -2343,7 +2343,7 @@ export const resourceCatalog = {
           "pages": 13,
           "bytes": 349039,
           "englishPath": "resources/premiere-fluency-prof-en.pdf",
-          "englishBytes": 345823
+          "englishBytes": 345928
         }
       ]
     },
@@ -2376,7 +2376,7 @@ export const resourceCatalog = {
           "pages": 49,
           "bytes": 483809,
           "englishPath": "resources/premiere-assessments-prof-en.pdf",
-          "englishBytes": 481147
+          "englishBytes": 481252
         }
       ]
     },
@@ -2475,7 +2475,7 @@ export const resourceCatalog = {
           "pages": 3,
           "bytes": 223879,
           "englishPath": "resources/terminale-algorithms-prof-en.pdf",
-          "englishBytes": 220297
+          "englishBytes": 220298
         }
       ]
     },
@@ -2530,7 +2530,7 @@ export const resourceCatalog = {
           "pages": 1,
           "bytes": 145237,
           "englishPath": "resources/terminale-oral-eleve-en.pdf",
-          "englishBytes": 142512
+          "englishBytes": 142513
         },
         {
           "kind": "teacher",
@@ -2641,6 +2641,50 @@ export const resourceCatalog = {
           "bytes": 178296,
           "englishPath": "resources/stmg-formulas-prof-en.pdf",
           "englishBytes": 176077
+        }
+      ]
+    },
+    {
+      "id": "premiere-matrix",
+      "course": "premiere",
+      "kind": "planning",
+      "title": [
+        "Matrice de couverture du programme · professeur",
+        "Curriculum coverage matrix · teacher"
+      ],
+      "files": [
+        {
+          "kind": "teacher",
+          "source": "premiere-prof.pdf",
+          "start": 190,
+          "end": 195,
+          "path": "resources/premiere-revision/matrix.pdf",
+          "pages": 6,
+          "bytes": 206666,
+          "englishPath": "resources/premiere-revision/matrix-en.pdf",
+          "englishBytes": 204101
+        }
+      ]
+    },
+    {
+      "id": "premiere-schedule",
+      "course": "premiere",
+      "kind": "planning",
+      "title": [
+        "Conduite annuelle et créneaux · professeur",
+        "Annual schedule and time slots · teacher"
+      ],
+      "files": [
+        {
+          "kind": "teacher",
+          "source": "premiere-prof.pdf",
+          "start": 196,
+          "end": 212,
+          "path": "resources/premiere-revision/schedule.pdf",
+          "pages": 17,
+          "bytes": 245479,
+          "englishPath": "resources/premiere-revision/schedule-en.pdf",
+          "englishBytes": 241566
         }
       ]
     }

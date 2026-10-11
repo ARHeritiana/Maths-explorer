@@ -27,6 +27,8 @@ const PARTS = [
   ['corrections', P('Corrigés et accompagnement', 'Solutions and guidance'), 'teacher'],
   ['solutions', P('Corrigés', 'Solutions'), 'teacher'],
   ['fluency-teacher', P('Automatismes, professeur', 'Fluency sheets, teacher'), 'teacher'],
+  ['matrix', P('Matrice de couverture (professeur)', 'Coverage matrix (teacher)'), 'teacher'],
+  ['schedule', P('Conduite annuelle (professeur)', 'Annual schedule (teacher)'), 'teacher'],
 ];
 // A complete chapter already contains its excerpts: the page warns when both are ticked.
 const OVERLAPS = { chapter: ['activities', 'notes', 'practice', 'exercises', 'problems', 'assessment'], teacher: ['corrections'] };

@@ -182,7 +182,8 @@ def register_terminale(catalog, chapters, placed, appendices):
     catalog['resources'][first:first] = mine
     for r in catalog['resources']:   # the year's assessments come from the TeX books; the other banks stay legacy overlay files
         if r['id'] == 'terminale-revision-bank-2':
-            r['texBuilt'] = True; r['sourcePages'] = list(placed['assessments']['student']); r['source'] = 'terminale-student'; r['review'] = 'source-unverified'
+            r['texBuilt'] = True
+            if 'assessments' in placed: r['sourcePages'] = list(placed['assessments']['student']); r['source'] = 'terminale-student'; r['review'] = 'source-unverified'
     (OUT / 'catalog.json').write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
     comp = read_companion()
     for number, rec in placed.items():
@@ -204,6 +205,39 @@ def register_terminale(catalog, chapters, placed, appendices):
             {'kind': 'teacher', 'source': 'terminale-prof.pdf', 'start': rec['teacher'][1], 'end': rec['teacher'][2], 'path': f"resources/{ch['id']}/teacher.pdf", 'pages': 0, 'bytes': 0,
              'englishPath': f"resources/{ch['id']}/teacher-en.pdf", 'englishBytes': 0}]
     COMPANION.write_text('export const resourceCatalog = ' + json.dumps(comp, ensure_ascii=False, indent=2) + ';\n')
+
+
+# Teacher-only documents that close the Première teacher book: (resource id suffix, titles, bookmark title start per language)
+STANDALONE = [('matrix', ['Matrice de couverture du programme · professeur', 'Curriculum coverage matrix · teacher'], (r'^Matrice de couverture', r'^Curriculum coverage matrix')),
+              ('schedule', ['Conduite annuelle et créneaux · professeur', 'Annual schedule and time slots · teacher'], (r'^Conduite annuelle', r'^Annual schedule'))]
+
+
+def standalone_teacher(catalog, lang):
+    """Cut the coverage matrix and the annual schedule out of the compiled teacher book and register them in the revision chapter."""
+    suffix = '-en' if lang == 'en' else ''; L = 1 if lang == 'en' else 0
+    td = fitz.open(BUILD / 'premiere' / f'premiere-teacher{suffix}.pdf')
+    top = [(tidy(t), p - 1) for l, t, p in td.get_toc() if l == 1] + [('', len(td))]
+    for k, (name, titles, pats) in enumerate(STANDALONE):
+        i = next(i for i, (t, p) in enumerate(top) if re.match(pats[L], t))
+        n = emit(OUT / 'premiere-revision' / f'{name}{suffix}.pdf', {'id': 'premiere-revision'}, 'solutions', titles[L], lang, td, top[i][1], top[i + 1][1])
+        rid = f'premiere-revision-{name}'
+        if lang == 'fr':
+            r = next((x for x in catalog['resources'] if x['id'] == rid), None)
+            if r is None:
+                r = {'id': rid, 'chapter': 'premiere-revision', 'course': 'premiere', 'type': 'solutions', 'language': 'bilingual', 'audience': 'teacher', 'format': 'PDF',
+                     'url': [f'./resources/premiere-revision/{name}.pdf', f'./resources/premiere-revision/{name}-en.pdf'], 'pages': n, 'bytes': 0,
+                     'source': 'premiere-teacher', 'review': 'source-unverified'}
+                catalog['resources'].append(r)
+            r['title'] = titles; r['sourcePages'] = [top[i][1] + 1, top[i + 1][1]]
+            comp = read_companion()   # teacher-only supplement for the resource library page
+            sup = next((x for x in comp['supplements'] if x['id'] == f'premiere-{name}'), None)
+            if sup is None:
+                sup = {'id': f'premiere-{name}', 'course': 'premiere', 'kind': 'planning', 'title': titles, 'files': []}; comp['supplements'].append(sup)
+            sup['title'] = titles
+            sup['files'] = [{'kind': 'teacher', 'source': 'premiere-prof.pdf', 'start': top[i][1] + 1, 'end': top[i + 1][1], 'path': f'resources/premiere-revision/{name}.pdf',
+                             'pages': n, 'bytes': 0, 'englishPath': f'resources/premiere-revision/{name}-en.pdf', 'englishBytes': 0}]
+            COMPANION.write_text('export const resourceCatalog = ' + json.dumps(comp, ensure_ascii=False, indent=2) + ';\n')
+    if lang == 'fr': (OUT / 'catalog.json').write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
 
 
 def main():
@@ -272,6 +306,8 @@ def main():
                 emit(OUT / f'{course}-{name}-prof{suffix}.pdf', {'id': course + '-' + name}, 'solutions', f'{ttl} · ' + ('teacher' if lang == 'en' else 'professeur'), lang, td, tt[t_a], tt[t_b])
                 if bank: emit(OUT / f'{course}-revision' / f'{bank}{suffix}.pdf', {'id': course + '-revision'}, 'booklet', f'{pre}: {ttl}', lang, sd, st[s_a], st[s_b])
                 if lang == a.lang[0]: placed[name] = {'student': (st[s_a] + 1, st[s_b]), 'teacher': (tt[t_a] + 1, tt[t_b])}
+    if a.appendices and course == 'premiere':
+        for lang in a.lang: standalone_teacher(catalog, lang)
     if {'fr', 'en'} <= set(a.lang):   # record chapters built from TeX in both languages
         ledger = ROOT / 'docs/TEX_CONVERSION.json'
         done = set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
