@@ -1289,7 +1289,7 @@
     },
     {
      "path": "terminale/chapitres/C02.tex",
-     "bytes": 11481,
+     "bytes": 11482,
      "kind": "tex",
      "lang": "fr"
     },
@@ -1441,13 +1441,21 @@
      "path": "terminale/eleve-en.tex",
      "bytes": 121,
      "kind": "tex",
-     "lang": "en"
+     "lang": "en",
+     "entry": {
+      "lang": "en",
+      "edition": "student"
+     }
     },
     {
      "path": "terminale/eleve.tex",
      "bytes": 105,
      "kind": "tex",
-     "lang": "fr"
+     "lang": "fr",
+     "entry": {
+      "lang": "fr",
+      "edition": "student"
+     }
     },
     {
      "path": "terminale/evaluations/E1-en.tex",
@@ -1609,13 +1617,21 @@
      "path": "terminale/professeur-en.tex",
      "bytes": 106,
      "kind": "tex",
-     "lang": "en"
+     "lang": "en",
+     "entry": {
+      "lang": "en",
+      "edition": "teacher"
+     }
     },
     {
      "path": "terminale/professeur.tex",
      "bytes": 90,
      "kind": "tex",
-     "lang": "fr"
+     "lang": "fr",
+     "entry": {
+      "lang": "fr",
+      "edition": "teacher"
+     }
     }
    ]
   },

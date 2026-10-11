@@ -31,12 +31,30 @@ MARKERS = {
         'fr': [('activities', r'^Diagnostic :'), ('notes', r'^\d+\.1 '), ('exercises', r'^Parcours d.exercices$'), ('assessment', r'^QCM 1 :')],
         'en': [('activities', r'^Diagnostic:'), ('notes', r'^\d+\.1 '), ('exercises', r'^Exercise path$'), ('assessment', r'^MCQ 1:')],
     }}
+MARKERS['terminale'] = {
+    'fr': [('notes', r'^Notes de cours$'), ('activities', r'^Activité de recherche$'), ('exercises', r'^Exercices progressifs$'), ('problems', r'^Devoir à la maison$')],
+    'en': [('notes', r'^Course notes$'), ('activities', r'^Research activity$'), ('exercises', r'^Progressive exercises$'), ('problems', r'^Homework$')],
+}
 MARKERS['seconde'] = {'fr': [], 'en': []}
-CORRECTIONS = {'seconde': {'fr': None, 'en': None}, 'premiere': {'fr': r'^Corrigés et conduite du chapitre', 'en': r'^Solutions and teaching notes for chapter'}}
+CORRECTIONS = {'seconde': {'fr': None, 'en': None}, 'premiere': {'fr': r'^Corrigés et conduite du chapitre', 'en': r'^Solutions and teaching notes for chapter'},
+               'terminale': {'fr': r'^Conduite et corrigés', 'en': r'^Teaching notes and solutions'}}
 SEQUENCE = {'fr': r'^S[ée]quence \d+ : ', 'en': r'^Sequence \d+ ?: '}   # seconde: one level-1 bookmark per sequence
-FIRST_CHAPTER_ENTRY = {'premiere': 2}   # level-1 bookmarks before chapter 1 (booklet notes, framework)
-# Appendices after the chapters: (supplement id, level-1 bookmark index, bank resource id suffix)
-APPENDICES = {'premiere': [('methods', 12, 'bank-0'), ('fluency', 13, 'bank-1'), ('assessments', 14, 'bank-2')]}
+# Level-1 bookmarks before chapter 1 in the (student, teacher) books: booklet notes, framework (terminale teacher: + preparation guide)
+FIRST_CHAPTER_ENTRY = {'premiere': (2, 2), 'terminale': (3, 4)}
+# Appendices after the chapters: (supplement id, student bookmark range, teacher bookmark range, bank resource id suffix or None).
+# Ranges are [first, end) indices into the level-1 bookmarks; the end may be several bookmarks on (assessments).
+APPENDICES = {'premiere': [('methods', (12, 13), (12, 13), 'bank-0'), ('fluency', (13, 14), (13, 14), 'bank-1'), ('assessments', (14, 15), (14, 15), 'bank-2')],
+              'terminale': [('algorithms', (17, 18), (18, 19), None), ('proofs', (18, 19), (19, 20), None), ('oral', (19, 20), (20, 21), None),
+                            ('assessments', (20, 39), (21, 58), 'bank-2')]}
+# Terminale only: resources that do not exist yet in the catalogue (id suffix -> titles) and the title of those that do.
+TERMINALE_TITLES = {
+    'activities': (['Activité de recherche', 'Research activity'], 'student'),
+    'notes': (['Notes de cours', 'Course notes'], 'student'),
+    'exercises': (['Exercices progressifs', 'Progressive exercises'], 'student'),
+    'problems': (['Devoir à la maison', 'Homework'], 'student'),
+    'corrections': (['Conduite et corrigés', 'Teaching notes and solutions'], 'teacher'),
+}
+KIND_ORDER = ['chapter', 'teacher', 'activities', 'notes', 'practice', 'exercises', 'problems', 'assessment', 'corrections']
 
 
 def tidy(s): return re.sub(r'\s+', ' ', s).strip()
@@ -75,8 +93,8 @@ def chapter_ranges(course, sd, td, lang, count):
             out.append(list(zip(seq, ends)))
         return [(a[0], a[1], b[0], b[1]) for a, b in zip(*out)][:count]
     st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
-    f = FIRST_CHAPTER_ENTRY[course]
-    return [(st[f + k], st[f + k + 1], tt[f + k], tt[f + k + 1]) for k in range(count)]
+    fs, ft = FIRST_CHAPTER_ENTRY[course]
+    return [(st[fs + k], st[fs + k + 1], tt[ft + k], tt[ft + k + 1]) for k in range(count)]
 
 
 def find(doc, start, end, pattern):
@@ -120,6 +138,74 @@ def emit(target, chapter, kind, title, lang, doc, start, end, bounds=None, offse
     return n
 
 
+COMPANION = ROOT / 'dist/js/resources-data.js'
+
+
+def read_companion(): return json.loads(COMPANION.read_text().split('=', 1)[1].rstrip().rstrip(';'))
+
+
+def supplement_title(course, name):
+    return next(x for x in read_companion()['supplements'] if x['id'] == f'{course}-{name}')['title']
+
+
+def prepare_terminale(catalog, chapters):
+    """Make sure every excerpt kind built from the TeX books has a catalogue entry (titles are read when naming the PDFs)."""
+    for ch in chapters:
+        have = {r['id'] for r in catalog['resources']}
+        for kind, (titles, aud) in TERMINALE_TITLES.items():
+            rid = f"{ch['id']}-{kind}"
+            if rid not in have:
+                catalog['resources'].append({'id': rid, 'chapter': ch['id'], 'course': 'terminale', 'type': 'solutions' if kind == 'corrections' else kind,
+                                             'title': titles, 'language': 'bilingual', 'audience': aud, 'format': 'PDF',
+                                             'url': [f"./resources/{ch['id']}/{kind}.pdf", f"./resources/{ch['id']}/{kind}-en.pdf"],
+                                             'pages': 1, 'bytes': 0, 'source': 'terminale-' + aud, 'sourcePages': [1, 1], 'review': 'source-unverified'})
+            else:
+                next(r for r in catalog['resources'] if r['id'] == rid)['title'] = titles
+
+
+def register_terminale(catalog, chapters, placed, appendices):
+    """Point the library catalogue and the companion data at the files just built. finalize-resources.py then fixes sizes and counts."""
+    for number, rec in placed.items():
+        if not isinstance(number, int): continue
+        ch = chapters[number]
+        for kind, (book, a0, a1) in rec.items():
+            r = next(x for x in catalog['resources'] if x['id'] == f"{ch['id']}-{kind}")
+            r['source'] = 'terminale-' + book; r['sourcePages'] = [a0, max(a0, a1)]; r.pop('sourceBounds', None)
+            r['review'] = 'source-unverified'
+    # Legacy overlay files (practice, assessment) stay; entries are only reordered within Terminale, in place.
+    res = catalog['resources']; idx = [i for i, r in enumerate(res) if r['course'] == 'terminale']
+    def order(r):
+        k = r['id'].split('-', 2)[2] if r['id'].count('-') >= 2 else ''
+        return (r['chapter'], KIND_ORDER.index(k) if k in KIND_ORDER else 99)
+    first = idx[0]; mine = sorted((res[i] for i in idx), key=order)
+    catalog['resources'] = [r for r in res if r['course'] != 'terminale']
+    catalog['resources'][first:first] = mine
+    for r in catalog['resources']:   # the year's assessments come from the TeX books; the other banks stay legacy overlay files
+        if r['id'] == 'terminale-revision-bank-2':
+            r['texBuilt'] = True; r['sourcePages'] = list(placed['assessments']['student']); r['source'] = 'terminale-student'; r['review'] = 'source-unverified'
+    (OUT / 'catalog.json').write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+    comp = read_companion()
+    for number, rec in placed.items():
+        if not isinstance(number, int):
+            sup = next(x for x in comp['supplements'] if x['id'] == f'terminale-{number}')
+            for f in sup['files']:
+                book, key = ('terminale-eleve.pdf', 'student') if f['kind'] == 'chapter' else ('terminale-prof.pdf', 'teacher')
+                f['source'] = book; f['start'], f['end'] = rec[key]
+            continue
+        ch = chapters[number]
+        c = next(x for x in comp['chapters'] if x['id'] == ch['id'])
+        sc = rec['chapter'][1]
+        sections = {'lesson': 1}
+        if 'exercises' in rec: sections['practice'] = rec['exercises'][1] - sc + 1
+        if 'problems' in rec: sections['problem'] = rec['problems'][1] - sc + 1
+        c['files'] = [
+            {'kind': 'chapter', 'source': 'terminale-eleve.pdf', 'start': sc, 'end': rec['chapter'][2], 'path': f"resources/{ch['id']}/chapter.pdf", 'pages': 0, 'bytes': 0, 'sections': sections,
+             'englishPath': f"resources/{ch['id']}/chapter-en.pdf", 'englishBytes': 0},
+            {'kind': 'teacher', 'source': 'terminale-prof.pdf', 'start': rec['teacher'][1], 'end': rec['teacher'][2], 'path': f"resources/{ch['id']}/teacher.pdf", 'pages': 0, 'bytes': 0,
+             'englishPath': f"resources/{ch['id']}/teacher-en.pdf", 'englishBytes': 0}]
+    COMPANION.write_text('export const resourceCatalog = ' + json.dumps(comp, ensure_ascii=False, indent=2) + ';\n')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('course'); ap.add_argument('--chapters', type=int, nargs='+', required=True)
@@ -130,7 +216,8 @@ def main():
     course = a.course
     catalog = json.loads((OUT / 'catalog.json').read_text())
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == course}
-    results = {}
+    if course == 'terminale': prepare_terminale(catalog, [chapters[n] for n in a.chapters])
+    results = {}; placed = {}
     wanted = sorted(a.chapters)
     for lang in a.lang:
         suffix = '-en' if lang == 'en' else ''
@@ -166,24 +253,40 @@ def main():
             c = find(td, t0, t1, CORRECTIONS[course][lang]) if CORRECTIONS[course][lang] else None
             if c: pages['corrections'] = emit(path('corrections'), ch, 'solutions', title('corrections'), lang, td, c[0], t1, bounds=(c, (t1, 0)), offset=offt)
             results[(lang, number)] = pages
+            if lang == a.lang[0]:   # page ranges in the compiled books (1-based, inclusive), used to register the catalogue
+                rec = {'chapter': ('student', s0 + 1, s1), 'teacher': ('teacher', t0 + 1, t1)}
+                for k, (kind, p) in enumerate(pts):
+                    b = pts[k + 1][1] if k + 1 < len(pts) else (s1, 0)
+                    rec[kind] = ('student', p[0] + 1, min(s1, b[0] + 1 if b[1] > 60 else b[0]))
+                if c: rec['corrections'] = ('teacher', c[0] + 1, t1)
+                placed[number] = rec
         if a.appendices and not reduced:
-            for name, idx, bank in APPENDICES[course]:
-                bk = next(r for r in catalog['resources'] if r['id'] == f'{course}-revision-{bank}')
-                ttl = bk['title'][1 if lang == 'en' else 0]
+            for name, (s_a, s_b), (t_a, t_b), bank in APPENDICES[course]:
+                if bank:
+                    bk = next(r for r in catalog['resources'] if r['id'] == f'{course}-revision-{bank}')
+                    ttl = bk['title'][1 if lang == 'en' else 0]
+                else:
+                    ttl = supplement_title(course, name)[1 if lang == 'en' else 0]
                 pre = 'Cross-chapter resources' if lang == 'en' else 'Ressources transversales'
-                emit(OUT / f'{course}-{name}-eleve{suffix}.pdf', {'id': course + '-' + name}, 'booklet', f'{ttl} · ' + ('student' if lang == 'en' else 'élève'), lang, sd, st[idx], st[idx + 1])
-                emit(OUT / f'{course}-{name}-prof{suffix}.pdf', {'id': course + '-' + name}, 'solutions', f'{ttl} · ' + ('teacher' if lang == 'en' else 'professeur'), lang, td, tt[idx], tt[idx + 1])
-                emit(OUT / f'{course}-revision' / f'{bank}{suffix}.pdf', {'id': course + '-revision'}, 'booklet', f'{pre}: {ttl}', lang, sd, st[idx], st[idx + 1])
+                emit(OUT / f'{course}-{name}-eleve{suffix}.pdf', {'id': course + '-' + name}, 'booklet', f'{ttl} · ' + ('student' if lang == 'en' else 'élève'), lang, sd, st[s_a], st[s_b])
+                emit(OUT / f'{course}-{name}-prof{suffix}.pdf', {'id': course + '-' + name}, 'solutions', f'{ttl} · ' + ('teacher' if lang == 'en' else 'professeur'), lang, td, tt[t_a], tt[t_b])
+                if bank: emit(OUT / f'{course}-revision' / f'{bank}{suffix}.pdf', {'id': course + '-revision'}, 'booklet', f'{pre}: {ttl}', lang, sd, st[s_a], st[s_b])
+                if lang == a.lang[0]: placed[name] = {'student': (st[s_a] + 1, st[s_b]), 'teacher': (tt[t_a] + 1, tt[t_b])}
     if {'fr', 'en'} <= set(a.lang):   # record chapters built from TeX in both languages
         ledger = ROOT / 'docs/TEX_CONVERSION.json'
         done = set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
         done |= {chapters[n]['id'] for n in a.chapters}
         ledger.write_text(json.dumps({'note': 'Chapters whose French and English PDFs are compiled from content/latex.', 'converted': sorted(done)}, indent=2) + '\n')
+    if course == 'terminale' and {'fr', 'en'} <= set(a.lang):
+        register_terminale(catalog, chapters, placed, a.appendices)
     for (lang, number), pages in results.items():
         print(lang, number, pages)
     for number in wanted:
         if {'fr', 'en'} <= set(a.lang) and results[('fr', number)] != results[('en', number)]:
-            sys.exit(f'Page-count mismatch between editions for chapter {number}')
+            f, e = results[('fr', number)], results[('en', number)]
+            if (f['chapter'], f['teacher']) != (e['chapter'], e['teacher']): sys.exit(f'Page-count mismatch between editions for chapter {number}')
+            # Excerpts are cut at section starts; a line that wraps differently can move a section break. finalize-resources.py records englishPages.
+            print(f"note: chapter {number} excerpts differ in length: " + ', '.join(f'{k} {f[k]}/{e[k]}' for k in f if f[k] != e.get(k)))
 
 
 main()

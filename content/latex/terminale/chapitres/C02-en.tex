@@ -28,6 +28,8 @@ Write the three coordinate equalities. Determine the coefficients from two equat
 \end{methode}
 
 
+
+\section{Research activity}\textbf{Three midpoints in a cube --- 40 min.}\par Consider the cube $ABCDEFGH$ shown below. Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$. The points $I$, $J$ and $K$ are the midpoints of $[AB]$, $[AD]$ and $[AE]$ respectively. Let $O$ be the centre of the cube.
 \begin{center}\begin{tikzpicture}[scale=1.1,line join=round]
 \coordinate(A)at(0,0);\coordinate(B)at(4,0);\coordinate(C)at(5.1,1.6);\coordinate(D)at(1.1,1.6);\coordinate(E)at(0,2.5);\coordinate(F)at(4,2.5);\coordinate(G)at(5.1,4.1);\coordinate(H)at(1.1,4.1);
 \draw[navy,thick](A)--(B)--(C)--(G)--(H)--(E)--(A) (E)--(F)--(G) (B)--(F);
@@ -35,8 +37,6 @@ Write the three coordinate equalities. Determine the coefficients from two equat
 \draw[teal,thick,dash pattern=on 5pt off 2pt](A)--(G);
 \foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
 \end{tikzpicture}\par\small $[AG]$ is a space diagonal, drawn dotted in green.\\The hidden edges are dashed in blue; $D$ and $F$ are not on $(AG)$.\end{center}
-
-\section{Research activity}\textbf{Three midpoints in a cube --- 40 min.}\par Consider the cube $ABCDEFGH$ shown above. Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$. The points $I$, $J$ and $K$ are the midpoints of $[AB]$, $[AD]$ and $[AE]$ respectively. Let $O$ be the centre of the cube.
 \begin{enumerate}\item Express $\vect{IJ}$ and $\vect{IK}$ in the basis $(\vi,\vj,\vec k)$.
 \item Prove that the points $I$, $J$ and $K$ are not collinear.
 \item Determine whether $O$ belongs to the plane $(IJK)$. Justify the answer by investigating whether $\vect{IO}$ is a linear combination of $\vect{IJ}$ and $\vect{IK}$.

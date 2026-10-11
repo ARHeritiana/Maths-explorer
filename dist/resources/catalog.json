@@ -4748,16 +4748,16 @@
         "./resources/terminale-01/chapter.pdf",
         "./resources/terminale-01/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 267339,
+      "pages": 3,
+      "bytes": 220284,
       "source": "terminale-student",
       "sourcePages": [
-        10,
-        16
+        9,
+        11
       ],
       "review": "source-unverified",
-      "englishBytes": 263421,
-      "translation": "local-machine"
+      "englishBytes": 217498,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-01-teacher",
@@ -4775,16 +4775,43 @@
         "./resources/terminale-01/teacher.pdf",
         "./resources/terminale-01/teacher-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 208161,
+      "pages": 5,
+      "bytes": 271229,
       "source": "terminale-teacher",
       "sourcePages": [
-        15,
-        15
+        13,
+        17
       ],
       "review": "source-unverified",
-      "englishBytes": 207014,
-      "translation": "local-machine"
+      "englishBytes": 266912,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-01-activities",
+      "chapter": "terminale-01",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-01/activities.pdf",
+        "./resources/terminale-01/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 211355,
+      "source": "terminale-student",
+      "sourcePages": [
+        10,
+        10
+      ],
+      "review": "source-unverified",
+      "englishBytes": 208640,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-01-notes",
@@ -4793,7 +4820,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -4803,25 +4830,15 @@
         "./resources/terminale-01/notes-en.pdf"
       ],
       "pages": 2,
-      "bytes": 239049,
+      "bytes": 217051,
       "source": "terminale-student",
       "sourcePages": [
-        10,
-        11
+        9,
+        10
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          9,
-          578.149658203125
-        ],
-        [
-          11,
-          58.37165069580078
-        ]
-      ],
-      "englishBytes": 239931,
-      "translation": "local-machine"
+      "englishBytes": 214339,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-01-practice",
@@ -4858,7 +4875,7 @@
         ]
       ],
       "englishBytes": 245650,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-01-exercises",
@@ -4877,25 +4894,15 @@
         "./resources/terminale-01/exercises-en.pdf"
       ],
       "pages": 1,
-      "bytes": 215707,
+      "bytes": 209592,
       "source": "terminale-student",
       "sourcePages": [
-        14,
-        14
+        11,
+        11
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          13,
-          178.88868713378906
-        ],
-        [
-          13,
-          427.9276428222656
-        ]
-      ],
-      "englishBytes": 215533,
-      "translation": "local-machine"
+      "englishBytes": 206821,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-01-problems",
@@ -4903,8 +4910,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -4914,25 +4921,15 @@
         "./resources/terminale-01/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 215716,
+      "bytes": 209570,
       "source": "terminale-student",
       "sourcePages": [
-        14,
-        14
+        11,
+        11
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          13,
-          516.4536743164062
-        ],
-        [
-          14,
-          58.37165069580078
-        ]
-      ],
-      "englishBytes": 215511,
-      "translation": "local-machine"
+      "englishBytes": 206764,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-01-assessment",
@@ -4969,7 +4966,34 @@
         ]
       ],
       "englishBytes": 228611,
-      "translation": "local-machine"
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-01-corrections",
+      "chapter": "terminale-01",
+      "course": "terminale",
+      "type": "solutions",
+      "title": [
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
+      ],
+      "language": "bilingual",
+      "audience": "teacher",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-01/corrections.pdf",
+        "./resources/terminale-01/corrections-en.pdf"
+      ],
+      "pages": 2,
+      "bytes": 256602,
+      "source": "terminale-teacher",
+      "sourcePages": [
+        16,
+        17
+      ],
+      "review": "source-unverified",
+      "englishBytes": 252382,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-chapter",
@@ -4987,16 +5011,16 @@
         "./resources/terminale-02/chapter.pdf",
         "./resources/terminale-02/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 255359,
+      "pages": 3,
+      "bytes": 227351,
       "source": "terminale-student",
       "sourcePages": [
-        17,
-        23
+        12,
+        14
       ],
       "review": "source-unverified",
-      "englishBytes": 251320,
-      "translation": "local-machine"
+      "englishBytes": 224546,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-teacher",
@@ -5014,16 +5038,43 @@
         "./resources/terminale-02/teacher.pdf",
         "./resources/terminale-02/teacher-en.pdf"
       ],
-      "pages": 11,
-      "bytes": 316632,
+      "pages": 5,
+      "bytes": 241615,
       "source": "terminale-teacher",
       "sourcePages": [
-        16,
-        26
+        18,
+        22
       ],
       "review": "source-unverified",
-      "englishBytes": 301328,
-      "translation": "local-machine"
+      "englishBytes": 237499,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-02-activities",
+      "chapter": "terminale-02",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-02/activities.pdf",
+        "./resources/terminale-02/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 207271,
+      "source": "terminale-student",
+      "sourcePages": [
+        13,
+        13
+      ],
+      "review": "source-unverified",
+      "englishBytes": 204552,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-notes",
@@ -5032,7 +5083,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5041,26 +5092,16 @@
         "./resources/terminale-02/notes.pdf",
         "./resources/terminale-02/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 248806,
+      "pages": 2,
+      "bytes": 224566,
       "source": "terminale-student",
       "sourcePages": [
-        17,
-        21
+        12,
+        13
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          16,
-          593.0446166992188
-        ],
-        [
-          20,
-          105.82862091064453
-        ]
-      ],
-      "englishBytes": 248176,
-      "translation": "local-machine"
+      "englishBytes": 221766,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-exercises",
@@ -5078,26 +5119,16 @@
         "./resources/terminale-02/exercises.pdf",
         "./resources/terminale-02/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 205522,
+      "pages": 2,
+      "bytes": 211948,
       "source": "terminale-student",
       "sourcePages": [
-        21,
-        21
+        13,
+        14
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          20,
-          105.82862091064453
-        ],
-        [
-          20,
-          350.19464111328125
-        ]
-      ],
-      "englishBytes": 205304,
-      "translation": "local-machine"
+      "englishBytes": 209234,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-problems",
@@ -5105,8 +5136,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5116,25 +5147,15 @@
         "./resources/terminale-02/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 205539,
+      "bytes": 198698,
       "source": "terminale-student",
       "sourcePages": [
-        21,
-        21
+        14,
+        14
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          20,
-          438.66064453125
-        ],
-        [
-          20,
-          654.0086059570312
-        ]
-      ],
-      "englishBytes": 205663,
-      "translation": "local-machine"
+      "englishBytes": 196008,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-assessment",
@@ -5171,7 +5192,7 @@
         ]
       ],
       "englishBytes": 219839,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-02-corrections",
@@ -5179,8 +5200,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -5189,26 +5210,16 @@
         "./resources/terminale-02/corrections.pdf",
         "./resources/terminale-02/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 276160,
+      "pages": 2,
+      "bytes": 227223,
       "source": "terminale-teacher",
       "sourcePages": [
-        23,
-        26
+        21,
+        22
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          22,
-          307.53765869140625
-        ],
-        [
-          26,
-          0
-        ]
-      ],
-      "englishBytes": 276511,
-      "translation": "local-machine"
+      "englishBytes": 223402,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-chapter",
@@ -5226,16 +5237,16 @@
         "./resources/terminale-03/chapter.pdf",
         "./resources/terminale-03/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 282018,
+      "pages": 3,
+      "bytes": 240606,
       "source": "terminale-student",
       "sourcePages": [
-        24,
-        30
+        15,
+        17
       ],
       "review": "source-unverified",
-      "englishBytes": 278317,
-      "translation": "local-machine"
+      "englishBytes": 238003,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-teacher",
@@ -5253,16 +5264,43 @@
         "./resources/terminale-03/teacher.pdf",
         "./resources/terminale-03/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 279547,
+      "pages": 5,
+      "bytes": 256896,
       "source": "terminale-teacher",
       "sourcePages": [
-        27,
-        36
+        23,
+        27
       ],
       "review": "source-unverified",
-      "englishBytes": 274153,
-      "translation": "local-machine"
+      "englishBytes": 252850,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-03-activities",
+      "chapter": "terminale-03",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-03/activities.pdf",
+        "./resources/terminale-03/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 230485,
+      "source": "terminale-student",
+      "sourcePages": [
+        16,
+        16
+      ],
+      "review": "source-unverified",
+      "englishBytes": 227781,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-notes",
@@ -5271,7 +5309,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5280,26 +5318,16 @@
         "./resources/terminale-03/notes.pdf",
         "./resources/terminale-03/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 273928,
+      "pages": 2,
+      "bytes": 237128,
       "source": "terminale-student",
       "sourcePages": [
-        24,
-        28
+        15,
+        16
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          23,
-          589.82763671875
-        ],
-        [
-          27,
-          459.93865966796875
-        ]
-      ],
-      "englishBytes": 274188,
-      "translation": "local-machine"
+      "englishBytes": 234534,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-exercises",
@@ -5317,26 +5345,16 @@
         "./resources/terminale-03/exercises.pdf",
         "./resources/terminale-03/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 223650,
+      "pages": 2,
+      "bytes": 235898,
       "source": "terminale-student",
       "sourcePages": [
-        28,
-        28
+        16,
+        17
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          27,
-          459.93865966796875
-        ],
-        [
-          27,
-          692.8676147460938
-        ]
-      ],
-      "englishBytes": 223432,
-      "translation": "local-machine"
+      "englishBytes": 233200,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-problems",
@@ -5344,8 +5362,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5355,25 +5373,15 @@
         "./resources/terminale-03/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 214832,
+      "bytes": 204850,
       "source": "terminale-student",
       "sourcePages": [
-        29,
-        29
+        17,
+        17
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          28,
-          58.37165069580078
-        ],
-        [
-          28,
-          256.36767578125
-        ]
-      ],
-      "englishBytes": 214582,
-      "translation": "local-machine"
+      "englishBytes": 202140,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-assessment",
@@ -5410,7 +5418,7 @@
         ]
       ],
       "englishBytes": 218246,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-03-corrections",
@@ -5418,8 +5426,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -5428,26 +5436,16 @@
         "./resources/terminale-03/corrections.pdf",
         "./resources/terminale-03/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 243857,
+      "pages": 2,
+      "bytes": 233498,
       "source": "terminale-teacher",
       "sourcePages": [
-        33,
-        36
+        26,
+        27
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          32,
-          134.6726837158203
-        ],
-        [
-          36,
-          0
-        ]
-      ],
-      "englishBytes": 242995,
-      "translation": "local-machine"
+      "englishBytes": 229634,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-chapter",
@@ -5465,16 +5463,16 @@
         "./resources/terminale-04/chapter.pdf",
         "./resources/terminale-04/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 261389,
+      "pages": 3,
+      "bytes": 231161,
       "source": "terminale-student",
       "sourcePages": [
-        31,
-        37
+        18,
+        20
       ],
       "review": "source-unverified",
-      "englishBytes": 257127,
-      "translation": "local-machine"
+      "englishBytes": 228103,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-teacher",
@@ -5492,16 +5490,43 @@
         "./resources/terminale-04/teacher.pdf",
         "./resources/terminale-04/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 308195,
+      "pages": 5,
+      "bytes": 245234,
       "source": "terminale-teacher",
       "sourcePages": [
-        37,
-        46
+        28,
+        32
       ],
       "review": "source-unverified",
-      "englishBytes": 303241,
-      "translation": "local-machine"
+      "englishBytes": 240585,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-04-activities",
+      "chapter": "terminale-04",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-04/activities.pdf",
+        "./resources/terminale-04/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 221989,
+      "source": "terminale-student",
+      "sourcePages": [
+        19,
+        19
+      ],
+      "review": "source-unverified",
+      "englishBytes": 219668,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-notes",
@@ -5510,7 +5535,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5519,26 +5544,16 @@
         "./resources/terminale-04/notes.pdf",
         "./resources/terminale-04/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 254774,
+      "pages": 2,
+      "bytes": 228589,
       "source": "terminale-student",
       "sourcePages": [
-        31,
-        35
+        18,
+        19
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          30,
-          564.4286499023438
-        ],
-        [
-          34,
-          209.39662170410156
-        ]
-      ],
-      "englishBytes": 254222,
-      "translation": "local-machine"
+      "englishBytes": 226126,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-exercises",
@@ -5556,26 +5571,16 @@
         "./resources/terminale-04/exercises.pdf",
         "./resources/terminale-04/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 226358,
+      "pages": 2,
+      "bytes": 226474,
       "source": "terminale-student",
       "sourcePages": [
-        35,
-        35
+        19,
+        20
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          34,
-          209.39662170410156
-        ],
-        [
-          34,
-          451.5576477050781
-        ]
-      ],
-      "englishBytes": 226034,
-      "translation": "local-machine"
+      "englishBytes": 223545,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-problems",
@@ -5583,8 +5588,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5594,25 +5599,15 @@
         "./resources/terminale-04/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 226371,
+      "bytes": 213706,
       "source": "terminale-student",
       "sourcePages": [
-        35,
-        35
+        20,
+        20
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          34,
-          542.4476318359375
-        ],
-        [
-          34,
-          753.8336181640625
-        ]
-      ],
-      "englishBytes": 226462,
-      "translation": "local-machine"
+      "englishBytes": 199900,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-assessment",
@@ -5649,7 +5644,7 @@
         ]
       ],
       "englishBytes": 233356,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-04-corrections",
@@ -5657,8 +5652,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -5667,26 +5662,16 @@
         "./resources/terminale-04/corrections.pdf",
         "./resources/terminale-04/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 250819,
+      "pages": 2,
+      "bytes": 219159,
       "source": "terminale-teacher",
       "sourcePages": [
-        43,
-        46
+        31,
+        32
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          42,
-          409.0866394042969
-        ],
-        [
-          46,
-          0
-        ]
-      ],
-      "englishBytes": 251275,
-      "translation": "local-machine"
+      "englishBytes": 215078,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-05-chapter",
@@ -5704,16 +5689,16 @@
         "./resources/terminale-05/chapter.pdf",
         "./resources/terminale-05/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 259030,
+      "pages": 3,
+      "bytes": 223028,
       "source": "terminale-student",
       "sourcePages": [
-        38,
-        44
+        21,
+        23
       ],
       "review": "source-unverified",
-      "englishBytes": 253387,
-      "translation": "local-machine"
+      "englishBytes": 220141,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-05-teacher",
@@ -5731,16 +5716,43 @@
         "./resources/terminale-05/teacher.pdf",
         "./resources/terminale-05/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 291908,
+      "pages": 5,
+      "bytes": 235007,
       "source": "terminale-teacher",
       "sourcePages": [
-        47,
-        56
+        33,
+        37
       ],
       "review": "source-unverified",
-      "englishBytes": 286524,
-      "translation": "local-machine"
+      "englishBytes": 230531,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-05-activities",
+      "chapter": "terminale-05",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-05/activities.pdf",
+        "./resources/terminale-05/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 204615,
+      "source": "terminale-student",
+      "sourcePages": [
+        22,
+        22
+      ],
+      "review": "source-unverified",
+      "englishBytes": 201819,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-05-notes",
@@ -5749,7 +5761,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5758,26 +5770,16 @@
         "./resources/terminale-05/notes.pdf",
         "./resources/terminale-05/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 252566,
+      "pages": 2,
+      "bytes": 221346,
       "source": "terminale-student",
       "sourcePages": [
-        38,
-        42
+        21,
+        22
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          37,
-          583.5756225585938
-        ],
-        [
-          41,
-          331.4786376953125
-        ]
-      ],
-      "englishBytes": 251486,
-      "translation": "local-machine"
+      "englishBytes": 218856,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-05-exercises",
@@ -5795,26 +5797,17 @@
         "./resources/terminale-05/exercises.pdf",
         "./resources/terminale-05/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 181956,
+      "pages": 2,
+      "bytes": 218612,
       "source": "terminale-student",
       "sourcePages": [
-        42,
-        42
+        22,
+        23
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          41,
-          331.4786376953125
-        ],
-        [
-          41,
-          587.4456176757812
-        ]
-      ],
-      "englishBytes": 181556,
-      "translation": "local-machine"
+      "englishBytes": 201830,
+      "translation": "tex-source",
+      "englishPages": 1
     },
     {
       "id": "terminale-05-problems",
@@ -5822,8 +5815,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5832,26 +5825,16 @@
         "./resources/terminale-05/problems.pdf",
         "./resources/terminale-05/problems-en.pdf"
       ],
-      "pages": 2,
-      "bytes": 215085,
+      "pages": 1,
+      "bytes": 203785,
       "source": "terminale-student",
       "sourcePages": [
-        42,
-        43
+        23,
+        23
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          41,
-          663.6246337890625
-        ],
-        [
-          42,
-          192.73670959472656
-        ]
-      ],
-      "englishBytes": 215047,
-      "translation": "local-machine"
+      "englishBytes": 200598,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-05-assessment",
@@ -5888,7 +5871,7 @@
         ]
       ],
       "englishBytes": 212251,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-05-corrections",
@@ -5896,8 +5879,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -5906,26 +5889,16 @@
         "./resources/terminale-05/corrections.pdf",
         "./resources/terminale-05/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 241613,
+      "pages": 2,
+      "bytes": 213434,
       "source": "terminale-teacher",
       "sourcePages": [
-        53,
-        56
+        36,
+        37
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          52,
-          173.83168029785156
-        ],
-        [
-          56,
-          0
-        ]
-      ],
-      "englishBytes": 240928,
-      "translation": "local-machine"
+      "englishBytes": 209366,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-chapter",
@@ -5943,16 +5916,16 @@
         "./resources/terminale-06/chapter.pdf",
         "./resources/terminale-06/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 262540,
+      "pages": 3,
+      "bytes": 230453,
       "source": "terminale-student",
       "sourcePages": [
-        45,
-        51
+        24,
+        26
       ],
       "review": "source-unverified",
-      "englishBytes": 258020,
-      "translation": "local-machine"
+      "englishBytes": 227591,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-teacher",
@@ -5970,16 +5943,43 @@
         "./resources/terminale-06/teacher.pdf",
         "./resources/terminale-06/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 282294,
+      "pages": 6,
+      "bytes": 290212,
       "source": "terminale-teacher",
       "sourcePages": [
-        57,
-        66
+        38,
+        43
       ],
       "review": "source-unverified",
-      "englishBytes": 274971,
-      "translation": "local-machine"
+      "englishBytes": 286050,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-06-activities",
+      "chapter": "terminale-06",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-06/activities.pdf",
+        "./resources/terminale-06/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 209040,
+      "source": "terminale-student",
+      "sourcePages": [
+        25,
+        25
+      ],
+      "review": "source-unverified",
+      "englishBytes": 206310,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-notes",
@@ -5988,7 +5988,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -5997,26 +5997,16 @@
         "./resources/terminale-06/notes.pdf",
         "./resources/terminale-06/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 241688,
+      "pages": 2,
+      "bytes": 215806,
       "source": "terminale-student",
       "sourcePages": [
-        45,
-        49
+        24,
+        25
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          44,
-          583.8486328125
-        ],
-        [
-          48,
-          449.10162353515625
-        ]
-      ],
-      "englishBytes": 240735,
-      "translation": "local-machine"
+      "englishBytes": 213035,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-exercises",
@@ -6034,26 +6024,16 @@
         "./resources/terminale-06/exercises.pdf",
         "./resources/terminale-06/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 202124,
+      "pages": 2,
+      "bytes": 225579,
       "source": "terminale-student",
       "sourcePages": [
-        49,
-        49
+        25,
+        26
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          48,
-          449.10162353515625
-        ],
-        [
-          48,
-          709.9976196289062
-        ]
-      ],
-      "englishBytes": 201960,
-      "translation": "local-machine"
+      "englishBytes": 222752,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-problems",
@@ -6061,8 +6041,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6072,25 +6052,15 @@
         "./resources/terminale-06/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 221940,
+      "bytes": 201867,
       "source": "terminale-student",
       "sourcePages": [
-        50,
-        50
+        26,
+        26
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          49,
-          58.37165069580078
-        ],
-        [
-          49,
-          320.10565185546875
-        ]
-      ],
-      "englishBytes": 221472,
-      "translation": "local-machine"
+      "englishBytes": 199119,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-assessment",
@@ -6127,7 +6097,7 @@
         ]
       ],
       "englishBytes": 226447,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-06-corrections",
@@ -6135,8 +6105,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -6145,26 +6115,16 @@
         "./resources/terminale-06/corrections.pdf",
         "./resources/terminale-06/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 228437,
+      "pages": 3,
+      "bytes": 272678,
       "source": "terminale-teacher",
       "sourcePages": [
-        63,
-        66
+        41,
+        43
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          62,
-          367.77862548828125
-        ],
-        [
-          66,
-          0
-        ]
-      ],
-      "englishBytes": 227315,
-      "translation": "local-machine"
+      "englishBytes": 268892,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-chapter",
@@ -6182,16 +6142,16 @@
         "./resources/terminale-07/chapter.pdf",
         "./resources/terminale-07/chapter-en.pdf"
       ],
-      "pages": 8,
-      "bytes": 265002,
+      "pages": 3,
+      "bytes": 233108,
       "source": "terminale-student",
       "sourcePages": [
-        52,
-        59
+        27,
+        29
       ],
       "review": "source-unverified",
-      "englishBytes": 260547,
-      "translation": "local-machine"
+      "englishBytes": 230374,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-teacher",
@@ -6209,16 +6169,43 @@
         "./resources/terminale-07/teacher.pdf",
         "./resources/terminale-07/teacher-en.pdf"
       ],
-      "pages": 12,
-      "bytes": 335382,
+      "pages": 5,
+      "bytes": 247875,
       "source": "terminale-teacher",
       "sourcePages": [
-        67,
-        78
+        44,
+        48
       ],
       "review": "source-unverified",
-      "englishBytes": 319580,
-      "translation": "local-machine"
+      "englishBytes": 243684,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-07-activities",
+      "chapter": "terminale-07",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-07/activities.pdf",
+        "./resources/terminale-07/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 207973,
+      "source": "terminale-student",
+      "sourcePages": [
+        28,
+        28
+      ],
+      "review": "source-unverified",
+      "englishBytes": 205240,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-notes",
@@ -6227,7 +6214,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6236,26 +6223,16 @@
         "./resources/terminale-07/notes.pdf",
         "./resources/terminale-07/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 253238,
+      "pages": 2,
+      "bytes": 229691,
       "source": "terminale-student",
       "sourcePages": [
-        52,
-        56
+        27,
+        28
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          51,
-          586.6576538085938
-        ],
-        [
-          55,
-          624.4506225585938
-        ]
-      ],
-      "englishBytes": 252843,
-      "translation": "local-machine"
+      "englishBytes": 226873,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-exercises",
@@ -6274,25 +6251,15 @@
         "./resources/terminale-07/exercises-en.pdf"
       ],
       "pages": 2,
-      "bytes": 202888,
+      "bytes": 213016,
       "source": "terminale-student",
       "sourcePages": [
-        56,
-        57
+        28,
+        29
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          55,
-          624.4506225585938
-        ],
-        [
-          56,
-          172.91163635253906
-        ]
-      ],
-      "englishBytes": 202833,
-      "translation": "local-machine"
+      "englishBytes": 210350,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-problems",
@@ -6300,8 +6267,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6311,25 +6278,15 @@
         "./resources/terminale-07/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 196208,
+      "bytes": 190299,
       "source": "terminale-student",
       "sourcePages": [
-        57,
-        57
+        29,
+        29
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          56,
-          261.4376220703125
-        ],
-        [
-          56,
-          566.066650390625
-        ]
-      ],
-      "englishBytes": 195893,
-      "translation": "local-machine"
+      "englishBytes": 187727,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-assessment",
@@ -6366,7 +6323,7 @@
         ]
       ],
       "englishBytes": 211780,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-07-corrections",
@@ -6374,8 +6331,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -6384,26 +6341,16 @@
         "./resources/terminale-07/corrections.pdf",
         "./resources/terminale-07/corrections-en.pdf"
       ],
-      "pages": 6,
-      "bytes": 294287,
+      "pages": 2,
+      "bytes": 225166,
       "source": "terminale-teacher",
       "sourcePages": [
-        73,
-        78
+        47,
+        48
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          72,
-          544.3966674804688
-        ],
-        [
-          78,
-          0
-        ]
-      ],
-      "englishBytes": 294043,
-      "translation": "local-machine"
+      "englishBytes": 221302,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-chapter",
@@ -6421,16 +6368,16 @@
         "./resources/terminale-08/chapter.pdf",
         "./resources/terminale-08/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 259036,
+      "pages": 3,
+      "bytes": 222007,
       "source": "terminale-student",
       "sourcePages": [
-        60,
-        66
+        30,
+        32
       ],
       "review": "source-unverified",
-      "englishBytes": 255001,
-      "translation": "local-machine"
+      "englishBytes": 219451,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-teacher",
@@ -6448,16 +6395,43 @@
         "./resources/terminale-08/teacher.pdf",
         "./resources/terminale-08/teacher-en.pdf"
       ],
-      "pages": 11,
-      "bytes": 288908,
+      "pages": 5,
+      "bytes": 235993,
       "source": "terminale-teacher",
       "sourcePages": [
-        79,
-        89
+        49,
+        53
       ],
       "review": "source-unverified",
-      "englishBytes": 283127,
-      "translation": "local-machine"
+      "englishBytes": 232137,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-08-activities",
+      "chapter": "terminale-08",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-08/activities.pdf",
+        "./resources/terminale-08/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 213748,
+      "source": "terminale-student",
+      "sourcePages": [
+        31,
+        31
+      ],
+      "review": "source-unverified",
+      "englishBytes": 211300,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-notes",
@@ -6466,7 +6440,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6475,26 +6449,16 @@
         "./resources/terminale-08/notes.pdf",
         "./resources/terminale-08/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 252517,
+      "pages": 2,
+      "bytes": 219917,
       "source": "terminale-student",
       "sourcePages": [
-        60,
-        64
+        30,
+        31
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          59,
-          582.774658203125
-        ],
-        [
-          63,
-          164.68263244628906
-        ]
-      ],
-      "englishBytes": 252372,
-      "translation": "local-machine"
+      "englishBytes": 217493,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-exercises",
@@ -6512,26 +6476,16 @@
         "./resources/terminale-08/exercises.pdf",
         "./resources/terminale-08/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 210052,
+      "pages": 2,
+      "bytes": 217758,
       "source": "terminale-student",
       "sourcePages": [
-        64,
-        64
+        31,
+        32
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          63,
-          164.68263244628906
-        ],
-        [
-          63,
-          402.8526306152344
-        ]
-      ],
-      "englishBytes": 209839,
-      "translation": "local-machine"
+      "englishBytes": 215171,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-problems",
@@ -6539,8 +6493,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6550,25 +6504,15 @@
         "./resources/terminale-08/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 210068,
+      "bytes": 202742,
       "source": "terminale-student",
       "sourcePages": [
-        64,
-        64
+        32,
+        32
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          63,
-          479.77764892578125
-        ],
-        [
-          63,
-          709.140625
-        ]
-      ],
-      "englishBytes": 209997,
-      "translation": "local-machine"
+      "englishBytes": 199937,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-assessment",
@@ -6605,7 +6549,7 @@
         ]
       ],
       "englishBytes": 222504,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-08-corrections",
@@ -6613,8 +6557,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -6623,26 +6567,16 @@
         "./resources/terminale-08/corrections.pdf",
         "./resources/terminale-08/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 240979,
+      "pages": 2,
+      "bytes": 219708,
       "source": "terminale-teacher",
       "sourcePages": [
-        86,
-        89
+        52,
+        53
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          85,
-          134.6726837158203
-        ],
-        [
-          89,
-          0
-        ]
-      ],
-      "englishBytes": 240080,
-      "translation": "local-machine"
+      "englishBytes": 215922,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-chapter",
@@ -6660,16 +6594,16 @@
         "./resources/terminale-09/chapter.pdf",
         "./resources/terminale-09/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 263872,
+      "pages": 3,
+      "bytes": 225373,
       "source": "terminale-student",
       "sourcePages": [
-        67,
-        73
+        33,
+        35
       ],
       "review": "source-unverified",
-      "englishBytes": 259131,
-      "translation": "local-machine"
+      "englishBytes": 222325,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-teacher",
@@ -6687,16 +6621,43 @@
         "./resources/terminale-09/teacher.pdf",
         "./resources/terminale-09/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 282742,
+      "pages": 5,
+      "bytes": 250592,
       "source": "terminale-teacher",
       "sourcePages": [
-        90,
-        99
+        54,
+        58
       ],
       "review": "source-unverified",
-      "englishBytes": 277911,
-      "translation": "local-machine"
+      "englishBytes": 246207,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-09-activities",
+      "chapter": "terminale-09",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-09/activities.pdf",
+        "./resources/terminale-09/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 210248,
+      "source": "terminale-student",
+      "sourcePages": [
+        34,
+        34
+      ],
+      "review": "source-unverified",
+      "englishBytes": 214154,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-notes",
@@ -6705,7 +6666,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6714,26 +6675,16 @@
         "./resources/terminale-09/notes.pdf",
         "./resources/terminale-09/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 256744,
+      "pages": 2,
+      "bytes": 223235,
       "source": "terminale-student",
       "sourcePages": [
-        67,
-        71
+        33,
+        34
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          66,
-          581.8406372070312
-        ],
-        [
-          70,
-          319.61663818359375
-        ]
-      ],
-      "englishBytes": 255854,
-      "translation": "local-machine"
+      "englishBytes": 220280,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-exercises",
@@ -6751,26 +6702,16 @@
         "./resources/terminale-09/exercises.pdf",
         "./resources/terminale-09/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 212489,
+      "pages": 2,
+      "bytes": 221319,
       "source": "terminale-student",
       "sourcePages": [
-        71,
-        71
+        34,
+        35
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          70,
-          319.61663818359375
-        ],
-        [
-          70,
-          579.2616577148438
-        ]
-      ],
-      "englishBytes": 212268,
-      "translation": "local-machine"
+      "englishBytes": 218106,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-problems",
@@ -6778,8 +6719,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6788,26 +6729,16 @@
         "./resources/terminale-09/problems.pdf",
         "./resources/terminale-09/problems-en.pdf"
       ],
-      "pages": 2,
-      "bytes": 216990,
+      "pages": 1,
+      "bytes": 204933,
       "source": "terminale-student",
       "sourcePages": [
-        71,
-        72
+        35,
+        35
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          70,
-          667.7876586914062
-        ],
-        [
-          71,
-          144.27565002441406
-        ]
-      ],
-      "englishBytes": 217161,
-      "translation": "local-machine"
+      "englishBytes": 195107,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-assessment",
@@ -6844,7 +6775,7 @@
         ]
       ],
       "englishBytes": 213499,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-09-corrections",
@@ -6852,8 +6783,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -6862,26 +6793,16 @@
         "./resources/terminale-09/corrections.pdf",
         "./resources/terminale-09/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 235007,
+      "pages": 2,
+      "bytes": 232782,
       "source": "terminale-teacher",
       "sourcePages": [
-        96,
-        99
+        57,
+        58
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          95,
-          114.32666778564453
-        ],
-        [
-          99,
-          0
-        ]
-      ],
-      "englishBytes": 234337,
-      "translation": "local-machine"
+      "englishBytes": 228975,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-chapter",
@@ -6899,16 +6820,16 @@
         "./resources/terminale-10/chapter.pdf",
         "./resources/terminale-10/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 260236,
+      "pages": 3,
+      "bytes": 219878,
       "source": "terminale-student",
       "sourcePages": [
-        74,
-        80
+        36,
+        38
       ],
       "review": "source-unverified",
-      "englishBytes": 255436,
-      "translation": "local-machine"
+      "englishBytes": 217087,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-teacher",
@@ -6926,16 +6847,43 @@
         "./resources/terminale-10/teacher.pdf",
         "./resources/terminale-10/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 298608,
+      "pages": 5,
+      "bytes": 262716,
       "source": "terminale-teacher",
       "sourcePages": [
-        100,
-        109
+        59,
+        63
       ],
       "review": "source-unverified",
-      "englishBytes": 292764,
-      "translation": "local-machine"
+      "englishBytes": 258231,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-10-activities",
+      "chapter": "terminale-10",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-10/activities.pdf",
+        "./resources/terminale-10/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 211123,
+      "source": "terminale-student",
+      "sourcePages": [
+        37,
+        37
+      ],
+      "review": "source-unverified",
+      "englishBytes": 208430,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-notes",
@@ -6944,7 +6892,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -6953,26 +6901,16 @@
         "./resources/terminale-10/notes.pdf",
         "./resources/terminale-10/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 250724,
+      "pages": 2,
+      "bytes": 217160,
       "source": "terminale-student",
       "sourcePages": [
-        74,
-        78
+        36,
+        37
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          73,
-          571.3626098632812
-        ],
-        [
-          77,
-          646.2776489257812
-        ]
-      ],
-      "englishBytes": 249623,
-      "translation": "local-machine"
+      "englishBytes": 214625,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-exercises",
@@ -6991,25 +6929,15 @@
         "./resources/terminale-10/exercises-en.pdf"
       ],
       "pages": 2,
-      "bytes": 213638,
+      "bytes": 215722,
       "source": "terminale-student",
       "sourcePages": [
-        78,
-        79
+        37,
+        38
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          77,
-          646.2776489257812
-        ],
-        [
-          78,
-          143.97462463378906
-        ]
-      ],
-      "englishBytes": 213574,
-      "translation": "local-machine"
+      "englishBytes": 212769,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-problems",
@@ -7017,8 +6945,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7028,25 +6956,15 @@
         "./resources/terminale-10/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 206751,
+      "bytes": 200228,
       "source": "terminale-student",
       "sourcePages": [
-        79,
-        79
+        38,
+        38
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          78,
-          217.58863830566406
-        ],
-        [
-          78,
-          448.5416259765625
-        ]
-      ],
-      "englishBytes": 206424,
-      "translation": "local-machine"
+      "englishBytes": 197264,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-assessment",
@@ -7083,7 +7001,7 @@
         ]
       ],
       "englishBytes": 210848,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-10-corrections",
@@ -7091,8 +7009,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -7101,26 +7019,16 @@
         "./resources/terminale-10/corrections.pdf",
         "./resources/terminale-10/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 249600,
+      "pages": 2,
+      "bytes": 248659,
       "source": "terminale-teacher",
       "sourcePages": [
-        106,
-        109
+        62,
+        63
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          105,
-          293.04266357421875
-        ],
-        [
-          109,
-          0
-        ]
-      ],
-      "englishBytes": 249040,
-      "translation": "local-machine"
+      "englishBytes": 244464,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-chapter",
@@ -7138,16 +7046,16 @@
         "./resources/terminale-11/chapter.pdf",
         "./resources/terminale-11/chapter-en.pdf"
       ],
-      "pages": 8,
-      "bytes": 284261,
+      "pages": 3,
+      "bytes": 239902,
       "source": "terminale-student",
       "sourcePages": [
-        81,
-        88
+        39,
+        41
       ],
       "review": "source-unverified",
-      "englishBytes": 279583,
-      "translation": "local-machine"
+      "englishBytes": 236974,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-teacher",
@@ -7165,16 +7073,43 @@
         "./resources/terminale-11/teacher.pdf",
         "./resources/terminale-11/teacher-en.pdf"
       ],
-      "pages": 11,
-      "bytes": 315630,
+      "pages": 5,
+      "bytes": 283870,
       "source": "terminale-teacher",
       "sourcePages": [
-        110,
-        120
+        64,
+        68
       ],
       "review": "source-unverified",
-      "englishBytes": 299957,
-      "translation": "local-machine"
+      "englishBytes": 279534,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-11-activities",
+      "chapter": "terminale-11",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-11/activities.pdf",
+        "./resources/terminale-11/activities-en.pdf"
+      ],
+      "pages": 2,
+      "bytes": 235671,
+      "source": "terminale-student",
+      "sourcePages": [
+        40,
+        41
+      ],
+      "review": "source-unverified",
+      "englishBytes": 232791,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-notes",
@@ -7183,7 +7118,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7192,26 +7127,16 @@
         "./resources/terminale-11/notes.pdf",
         "./resources/terminale-11/notes-en.pdf"
       ],
-      "pages": 6,
-      "bytes": 276110,
+      "pages": 2,
+      "bytes": 231218,
       "source": "terminale-student",
       "sourcePages": [
-        81,
-        86
+        39,
+        40
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          80,
-          588.5576171875
-        ],
-        [
-          85,
-          163.17066955566406
-        ]
-      ],
-      "englishBytes": 275516,
-      "translation": "local-machine"
+      "englishBytes": 228360,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-exercises",
@@ -7230,25 +7155,15 @@
         "./resources/terminale-11/exercises-en.pdf"
       ],
       "pages": 1,
-      "bytes": 221016,
+      "bytes": 206281,
       "source": "terminale-student",
       "sourcePages": [
-        86,
-        86
+        41,
+        41
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          85,
-          163.17066955566406
-        ],
-        [
-          85,
-          395.87762451171875
-        ]
-      ],
-      "englishBytes": 220903,
-      "translation": "local-machine"
+      "englishBytes": 203510,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-problems",
@@ -7256,8 +7171,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7267,25 +7182,15 @@
         "./resources/terminale-11/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 221032,
+      "bytes": 206260,
       "source": "terminale-student",
       "sourcePages": [
-        86,
-        86
+        41,
+        41
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          85,
-          483.274658203125
-        ],
-        [
-          85,
-          708.7046508789062
-        ]
-      ],
-      "englishBytes": 221148,
-      "translation": "local-machine"
+      "englishBytes": 203450,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-assessment",
@@ -7322,7 +7227,7 @@
         ]
       ],
       "englishBytes": 228901,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-11-corrections",
@@ -7330,8 +7235,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -7340,26 +7245,16 @@
         "./resources/terminale-11/corrections.pdf",
         "./resources/terminale-11/corrections-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 268972,
+      "pages": 2,
+      "bytes": 256413,
       "source": "terminale-teacher",
       "sourcePages": [
-        116,
-        120
+        67,
+        68
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          115,
-          604.2006225585938
-        ],
-        [
-          120,
-          0
-        ]
-      ],
-      "englishBytes": 269048,
-      "translation": "local-machine"
+      "englishBytes": 252459,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-chapter",
@@ -7377,16 +7272,16 @@
         "./resources/terminale-12/chapter.pdf",
         "./resources/terminale-12/chapter-en.pdf"
       ],
-      "pages": 8,
-      "bytes": 275621,
+      "pages": 3,
+      "bytes": 233017,
       "source": "terminale-student",
       "sourcePages": [
-        89,
-        96
+        42,
+        44
       ],
       "review": "source-unverified",
-      "englishBytes": 270021,
-      "translation": "local-machine"
+      "englishBytes": 230596,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-teacher",
@@ -7404,16 +7299,43 @@
         "./resources/terminale-12/teacher.pdf",
         "./resources/terminale-12/teacher-en.pdf"
       ],
-      "pages": 12,
-      "bytes": 342626,
+      "pages": 5,
+      "bytes": 286484,
       "source": "terminale-teacher",
       "sourcePages": [
-        121,
-        132
+        69,
+        73
       ],
       "review": "source-unverified",
-      "englishBytes": 326593,
-      "translation": "local-machine"
+      "englishBytes": 282497,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-12-activities",
+      "chapter": "terminale-12",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-12/activities.pdf",
+        "./resources/terminale-12/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 212375,
+      "source": "terminale-student",
+      "sourcePages": [
+        43,
+        43
+      ],
+      "review": "source-unverified",
+      "englishBytes": 210111,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-notes",
@@ -7422,7 +7344,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7431,26 +7353,16 @@
         "./resources/terminale-12/notes.pdf",
         "./resources/terminale-12/notes-en.pdf"
       ],
-      "pages": 6,
-      "bytes": 266655,
+      "pages": 2,
+      "bytes": 228883,
       "source": "terminale-student",
       "sourcePages": [
-        89,
-        94
+        42,
+        43
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          88,
-          615.0326538085938
-        ],
-        [
-          93,
-          432.4046325683594
-        ]
-      ],
-      "englishBytes": 265611,
-      "translation": "local-machine"
+      "englishBytes": 226552,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-exercises",
@@ -7469,25 +7381,15 @@
         "./resources/terminale-12/exercises-en.pdf"
       ],
       "pages": 1,
-      "bytes": 212705,
+      "bytes": 206677,
       "source": "terminale-student",
       "sourcePages": [
-        94,
-        94
+        44,
+        44
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          93,
-          432.4046325683594
-        ],
-        [
-          93,
-          678.0266723632812
-        ]
-      ],
-      "englishBytes": 212462,
-      "translation": "local-machine"
+      "englishBytes": 204129,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-problems",
@@ -7495,8 +7397,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7506,25 +7408,15 @@
         "./resources/terminale-12/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 211759,
+      "bytes": 206661,
       "source": "terminale-student",
       "sourcePages": [
-        95,
-        95
+        44,
+        44
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          94,
-          58.37165069580078
-        ],
-        [
-          94,
-          322.4676208496094
-        ]
-      ],
-      "englishBytes": 211155,
-      "translation": "local-machine"
+      "englishBytes": 204074,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-assessment",
@@ -7561,7 +7453,7 @@
         ]
       ],
       "englishBytes": 215612,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-12-corrections",
@@ -7569,8 +7461,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -7579,26 +7471,16 @@
         "./resources/terminale-12/corrections.pdf",
         "./resources/terminale-12/corrections-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 278768,
+      "pages": 2,
+      "bytes": 270609,
       "source": "terminale-teacher",
       "sourcePages": [
-        128,
-        132
+        72,
+        73
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          127,
-          705.0616455078125
-        ],
-        [
-          132,
-          0
-        ]
-      ],
-      "englishBytes": 278345,
-      "translation": "local-machine"
+      "englishBytes": 266768,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-chapter",
@@ -7616,16 +7498,16 @@
         "./resources/terminale-13/chapter.pdf",
         "./resources/terminale-13/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 252074,
+      "pages": 3,
+      "bytes": 224322,
       "source": "terminale-student",
       "sourcePages": [
-        97,
-        103
+        45,
+        47
       ],
       "review": "source-unverified",
-      "englishBytes": 247284,
-      "translation": "local-machine"
+      "englishBytes": 221535,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-teacher",
@@ -7643,16 +7525,43 @@
         "./resources/terminale-13/teacher.pdf",
         "./resources/terminale-13/teacher-en.pdf"
       ],
-      "pages": 12,
-      "bytes": 340107,
+      "pages": 5,
+      "bytes": 238282,
       "source": "terminale-teacher",
       "sourcePages": [
-        133,
-        144
+        74,
+        78
       ],
       "review": "source-unverified",
-      "englishBytes": 322467,
-      "translation": "local-machine"
+      "englishBytes": 234121,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-13-activities",
+      "chapter": "terminale-13",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-13/activities.pdf",
+        "./resources/terminale-13/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 205599,
+      "source": "terminale-student",
+      "sourcePages": [
+        46,
+        46
+      ],
+      "review": "source-unverified",
+      "englishBytes": 202877,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-notes",
@@ -7661,7 +7570,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7670,26 +7579,16 @@
         "./resources/terminale-13/notes.pdf",
         "./resources/terminale-13/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 245663,
+      "pages": 2,
+      "bytes": 221978,
       "source": "terminale-student",
       "sourcePages": [
-        97,
-        101
+        45,
+        46
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          96,
-          608.3076171875
-        ],
-        [
-          100,
-          163.00465393066406
-        ]
-      ],
-      "englishBytes": 244792,
-      "translation": "local-machine"
+      "englishBytes": 219243,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-exercises",
@@ -7707,26 +7606,16 @@
         "./resources/terminale-13/exercises.pdf",
         "./resources/terminale-13/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 210873,
+      "pages": 2,
+      "bytes": 209620,
       "source": "terminale-student",
       "sourcePages": [
-        101,
-        101
+        46,
+        47
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          100,
-          163.00465393066406
-        ],
-        [
-          100,
-          390.880615234375
-        ]
-      ],
-      "englishBytes": 210795,
-      "translation": "local-machine"
+      "englishBytes": 206875,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-problems",
@@ -7734,8 +7623,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7745,25 +7634,15 @@
         "./resources/terminale-13/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 210890,
+      "bytes": 189468,
       "source": "terminale-student",
       "sourcePages": [
-        101,
-        101
+        47,
+        47
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          100,
-          480.71063232421875
-        ],
-        [
-          100,
-          710.2596435546875
-        ]
-      ],
-      "englishBytes": 210917,
-      "translation": "local-machine"
+      "englishBytes": 186636,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-assessment",
@@ -7800,7 +7679,7 @@
         ]
       ],
       "englishBytes": 217784,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-13-corrections",
@@ -7808,8 +7687,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -7818,26 +7697,16 @@
         "./resources/terminale-13/corrections.pdf",
         "./resources/terminale-13/corrections-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 290405,
+      "pages": 2,
+      "bytes": 214260,
       "source": "terminale-teacher",
       "sourcePages": [
-        140,
-        144
+        77,
+        78
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          139,
-          476.2716369628906
-        ],
-        [
-          144,
-          0
-        ]
-      ],
-      "englishBytes": 289025,
-      "translation": "local-machine"
+      "englishBytes": 210378,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-chapter",
@@ -7855,16 +7724,16 @@
         "./resources/terminale-14/chapter.pdf",
         "./resources/terminale-14/chapter-en.pdf"
       ],
-      "pages": 7,
-      "bytes": 263680,
+      "pages": 3,
+      "bytes": 232500,
       "source": "terminale-student",
       "sourcePages": [
-        104,
-        110
+        48,
+        50
       ],
       "review": "source-unverified",
-      "englishBytes": 259897,
-      "translation": "local-machine"
+      "englishBytes": 229710,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-teacher",
@@ -7882,16 +7751,43 @@
         "./resources/terminale-14/teacher.pdf",
         "./resources/terminale-14/teacher-en.pdf"
       ],
-      "pages": 10,
-      "bytes": 274631,
+      "pages": 5,
+      "bytes": 246543,
       "source": "terminale-teacher",
       "sourcePages": [
-        145,
-        154
+        79,
+        83
       ],
       "review": "source-unverified",
-      "englishBytes": 268885,
-      "translation": "local-machine"
+      "englishBytes": 242584,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-14-activities",
+      "chapter": "terminale-14",
+      "course": "terminale",
+      "type": "activities",
+      "title": [
+        "Activité de recherche",
+        "Research activity"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-14/activities.pdf",
+        "./resources/terminale-14/activities-en.pdf"
+      ],
+      "pages": 1,
+      "bytes": 209409,
+      "source": "terminale-student",
+      "sourcePages": [
+        49,
+        49
+      ],
+      "review": "source-unverified",
+      "englishBytes": 206510,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-notes",
@@ -7900,7 +7796,7 @@
       "type": "notes",
       "title": [
         "Notes de cours",
-        "Lesson notes"
+        "Course notes"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7909,26 +7805,16 @@
         "./resources/terminale-14/notes.pdf",
         "./resources/terminale-14/notes-en.pdf"
       ],
-      "pages": 5,
-      "bytes": 256251,
+      "pages": 2,
+      "bytes": 229576,
       "source": "terminale-student",
       "sourcePages": [
-        104,
-        108
+        48,
+        49
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          103,
-          588.7646484375
-        ],
-        [
-          107,
-          187.1046905517578
-        ]
-      ],
-      "englishBytes": 255985,
-      "translation": "local-machine"
+      "englishBytes": 226827,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-exercises",
@@ -7946,26 +7832,16 @@
         "./resources/terminale-14/exercises.pdf",
         "./resources/terminale-14/exercises-en.pdf"
       ],
-      "pages": 1,
-      "bytes": 219603,
+      "pages": 2,
+      "bytes": 219708,
       "source": "terminale-student",
       "sourcePages": [
-        108,
-        108
+        49,
+        50
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          107,
-          187.1046905517578
-        ],
-        [
-          107,
-          400.3076171875
-        ]
-      ],
-      "englishBytes": 219482,
-      "translation": "local-machine"
+      "englishBytes": 216850,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-problems",
@@ -7973,8 +7849,8 @@
       "course": "terminale",
       "type": "problems",
       "title": [
-        "Problème de synthèse · DM",
-        "Synthesis problem · homework"
+        "Devoir à la maison",
+        "Homework"
       ],
       "language": "bilingual",
       "audience": "student",
@@ -7984,25 +7860,15 @@
         "./resources/terminale-14/problems-en.pdf"
       ],
       "pages": 1,
-      "bytes": 219619,
+      "bytes": 212534,
       "source": "terminale-student",
       "sourcePages": [
-        108,
-        108
+        50,
+        50
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          107,
-          488.7076416015625
-        ],
-        [
-          107,
-          707.70166015625
-        ]
-      ],
-      "englishBytes": 219495,
-      "translation": "local-machine"
+      "englishBytes": 209804,
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-assessment",
@@ -8039,7 +7905,7 @@
         ]
       ],
       "englishBytes": 227500,
-      "translation": "local-machine"
+      "translation": "tex-source"
     },
     {
       "id": "terminale-14-corrections",
@@ -8047,8 +7913,8 @@
       "course": "terminale",
       "type": "solutions",
       "title": [
-        "Corrigés et accompagnement",
-        "Solutions and guidance"
+        "Conduite et corrigés",
+        "Teaching notes and solutions"
       ],
       "language": "bilingual",
       "audience": "teacher",
@@ -8057,26 +7923,98 @@
         "./resources/terminale-14/corrections.pdf",
         "./resources/terminale-14/corrections-en.pdf"
       ],
-      "pages": 4,
-      "bytes": 228878,
+      "pages": 2,
+      "bytes": 232234,
       "source": "terminale-teacher",
       "sourcePages": [
-        151,
-        154
+        82,
+        83
       ],
       "review": "source-unverified",
-      "sourceBounds": [
-        [
-          150,
-          114.32666778564453
-        ],
-        [
-          154,
-          0
-        ]
+      "englishBytes": 228583,
+      "translation": "tex-source"
+    },
+    {
+      "id": "terminale-revision-bank-0",
+      "chapter": "terminale-revision",
+      "course": "terminale",
+      "type": "fluency",
+      "title": [
+        "Banque d’automatismes",
+        "Fluency bank"
       ],
-      "englishBytes": 228185,
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-revision/bank-0.pdf",
+        "./resources/terminale-revision/bank-0-en.pdf"
+      ],
+      "pages": 8,
+      "bytes": 270663,
+      "source": "terminale-student",
+      "sourcePages": [
+        111,
+        118
+      ],
+      "review": "source-unverified",
+      "englishBytes": 268310,
       "translation": "local-machine"
+    },
+    {
+      "id": "terminale-revision-bank-1",
+      "chapter": "terminale-revision",
+      "course": "terminale",
+      "type": "notes",
+      "title": [
+        "Raisonnement, algorithmique et démonstrations",
+        "Reasoning, algorithms and proofs"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-revision/bank-1.pdf",
+        "./resources/terminale-revision/bank-1-en.pdf"
+      ],
+      "pages": 7,
+      "bytes": 266885,
+      "source": "terminale-student",
+      "sourcePages": [
+        122,
+        128
+      ],
+      "review": "source-unverified",
+      "englishBytes": 264255,
+      "translation": "local-machine"
+    },
+    {
+      "id": "terminale-revision-bank-2",
+      "chapter": "terminale-revision",
+      "course": "terminale",
+      "type": "assessment",
+      "title": [
+        "Évaluations annuelles",
+        "Annual assessments"
+      ],
+      "language": "bilingual",
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/terminale-revision/bank-2.pdf",
+        "./resources/terminale-revision/bank-2-en.pdf"
+      ],
+      "pages": 39,
+      "bytes": 376428,
+      "source": "terminale-student",
+      "sourcePages": [
+        56,
+        94
+      ],
+      "review": "source-unverified",
+      "englishBytes": 371645,
+      "translation": "tex-source",
+      "texBuilt": true
     },
     {
       "id": "stmg-01-chapter",
@@ -9642,87 +9580,6 @@
       "review": "source-unverified",
       "englishBytes": 327578,
       "translation": "tex-source"
-    },
-    {
-      "id": "terminale-revision-bank-0",
-      "chapter": "terminale-revision",
-      "course": "terminale",
-      "type": "fluency",
-      "title": [
-        "Banque d’automatismes",
-        "Fluency bank"
-      ],
-      "language": "bilingual",
-      "audience": "student",
-      "format": "PDF",
-      "url": [
-        "./resources/terminale-revision/bank-0.pdf",
-        "./resources/terminale-revision/bank-0-en.pdf"
-      ],
-      "pages": 8,
-      "bytes": 270663,
-      "source": "terminale-student",
-      "sourcePages": [
-        111,
-        118
-      ],
-      "review": "source-unverified",
-      "englishBytes": 268310,
-      "translation": "local-machine"
-    },
-    {
-      "id": "terminale-revision-bank-1",
-      "chapter": "terminale-revision",
-      "course": "terminale",
-      "type": "notes",
-      "title": [
-        "Raisonnement, algorithmique et démonstrations",
-        "Reasoning, algorithms and proofs"
-      ],
-      "language": "bilingual",
-      "audience": "student",
-      "format": "PDF",
-      "url": [
-        "./resources/terminale-revision/bank-1.pdf",
-        "./resources/terminale-revision/bank-1-en.pdf"
-      ],
-      "pages": 7,
-      "bytes": 266885,
-      "source": "terminale-student",
-      "sourcePages": [
-        122,
-        128
-      ],
-      "review": "source-unverified",
-      "englishBytes": 264255,
-      "translation": "local-machine"
-    },
-    {
-      "id": "terminale-revision-bank-2",
-      "chapter": "terminale-revision",
-      "course": "terminale",
-      "type": "assessment",
-      "title": [
-        "Évaluations annuelles",
-        "Annual assessments"
-      ],
-      "language": "bilingual",
-      "audience": "student",
-      "format": "PDF",
-      "url": [
-        "./resources/terminale-revision/bank-2.pdf",
-        "./resources/terminale-revision/bank-2-en.pdf"
-      ],
-      "pages": 37,
-      "bytes": 403639,
-      "source": "terminale-student",
-      "sourcePages": [
-        129,
-        165
-      ],
-      "review": "source-unverified",
-      "englishBytes": 394524,
-      "translation": "local-machine"
     },
     {
       "id": "stmg-revision-bank-0",
@@ -13263,7 +13120,6 @@
         "./resources/quadratic-presentation-en.pdf"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 37437,
       "englishBytes": 37046,
       "translation": "tex-source",
@@ -13290,7 +13146,6 @@
         "./resources/enrichment/invariants-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27410,
       "englishBytes": 28125,
       "translation": "authored-bilingual",
@@ -13318,7 +13173,6 @@
         "./resources/enrichment/invariants-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27797,
       "englishBytes": 28495,
       "translation": "authored-bilingual",
@@ -13346,7 +13200,6 @@
         "./resources/enrichment/invariants-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 26941,
       "englishBytes": 27625,
       "translation": "authored-bilingual",
@@ -13374,7 +13227,6 @@
         "./resources/enrichment/invariants-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 31821,
       "englishBytes": 32546,
       "translation": "authored-bilingual",
@@ -13402,7 +13254,6 @@
         "./resources/enrichment/pigeonhole-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28965,
       "englishBytes": 29962,
       "translation": "authored-bilingual",
@@ -13430,7 +13281,6 @@
         "./resources/enrichment/pigeonhole-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27167,
       "englishBytes": 27219,
       "translation": "authored-bilingual",
@@ -13458,7 +13308,6 @@
         "./resources/enrichment/pigeonhole-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 26583,
       "englishBytes": 27077,
       "translation": "authored-bilingual",
@@ -13486,7 +13335,6 @@
         "./resources/enrichment/pigeonhole-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32042,
       "englishBytes": 32412,
       "translation": "authored-bilingual",
@@ -13514,7 +13362,6 @@
         "./resources/enrichment/modular-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 31890,
       "englishBytes": 32800,
       "translation": "authored-bilingual",
@@ -13542,7 +13389,6 @@
         "./resources/enrichment/modular-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28100,
       "englishBytes": 27386,
       "translation": "authored-bilingual",
@@ -13570,7 +13416,6 @@
         "./resources/enrichment/modular-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 26672,
       "englishBytes": 27167,
       "translation": "authored-bilingual",
@@ -13598,7 +13443,6 @@
         "./resources/enrichment/modular-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 33791,
       "englishBytes": 32918,
       "translation": "authored-bilingual",
@@ -13626,7 +13470,6 @@
         "./resources/enrichment/diophantine-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32910,
       "englishBytes": 32996,
       "translation": "authored-bilingual",
@@ -13654,7 +13497,6 @@
         "./resources/enrichment/diophantine-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28837,
       "englishBytes": 28881,
       "translation": "authored-bilingual",
@@ -13682,7 +13524,6 @@
         "./resources/enrichment/diophantine-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 25480,
       "englishBytes": 25343,
       "translation": "authored-bilingual",
@@ -13710,7 +13551,6 @@
         "./resources/enrichment/diophantine-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 34050,
       "englishBytes": 33889,
       "translation": "authored-bilingual",
@@ -13738,7 +13578,6 @@
         "./resources/enrichment/lattice-paths-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32303,
       "englishBytes": 32716,
       "translation": "authored-bilingual",
@@ -13766,7 +13605,6 @@
         "./resources/enrichment/lattice-paths-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 26402,
       "englishBytes": 26482,
       "translation": "authored-bilingual",
@@ -13794,7 +13632,6 @@
         "./resources/enrichment/lattice-paths-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 25603,
       "englishBytes": 25966,
       "translation": "authored-bilingual",
@@ -13822,7 +13659,6 @@
         "./resources/enrichment/lattice-paths-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32114,
       "englishBytes": 32054,
       "translation": "authored-bilingual",
@@ -13850,7 +13686,6 @@
         "./resources/enrichment/euler-trails-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 30128,
       "englishBytes": 31333,
       "translation": "authored-bilingual",
@@ -13878,7 +13713,6 @@
         "./resources/enrichment/euler-trails-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 25900,
       "englishBytes": 26443,
       "translation": "authored-bilingual",
@@ -13906,7 +13740,6 @@
         "./resources/enrichment/euler-trails-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 25618,
       "englishBytes": 25894,
       "translation": "authored-bilingual",
@@ -13934,7 +13767,6 @@
         "./resources/enrichment/euler-trails-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 30764,
       "englishBytes": 30948,
       "translation": "authored-bilingual",
@@ -13962,7 +13794,6 @@
         "./resources/enrichment/bayes-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32690,
       "englishBytes": 33774,
       "translation": "authored-bilingual",
@@ -13990,7 +13821,6 @@
         "./resources/enrichment/bayes-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 30174,
       "englishBytes": 31371,
       "translation": "authored-bilingual",
@@ -14018,7 +13848,6 @@
         "./resources/enrichment/bayes-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28357,
       "englishBytes": 27942,
       "translation": "authored-bilingual",
@@ -14046,7 +13875,6 @@
         "./resources/enrichment/bayes-solutions-en.html"
       ],
       "pages": 2,
-      "englishPages": 2,
       "bytes": 35213,
       "englishBytes": 35609,
       "translation": "authored-bilingual",
@@ -14074,7 +13902,6 @@
         "./resources/enrichment/waiting-time-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 31743,
       "englishBytes": 33111,
       "translation": "authored-bilingual",
@@ -14102,7 +13929,6 @@
         "./resources/enrichment/waiting-time-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28725,
       "englishBytes": 29841,
       "translation": "authored-bilingual",
@@ -14130,7 +13956,6 @@
         "./resources/enrichment/waiting-time-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27995,
       "englishBytes": 28120,
       "translation": "authored-bilingual",
@@ -14158,7 +13983,6 @@
         "./resources/enrichment/waiting-time-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 35129,
       "englishBytes": 36015,
       "translation": "authored-bilingual",
@@ -14186,7 +14010,6 @@
         "./resources/enrichment/complex-rotations-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32111,
       "englishBytes": 32703,
       "translation": "authored-bilingual",
@@ -14214,7 +14037,6 @@
         "./resources/enrichment/complex-rotations-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27073,
       "englishBytes": 27628,
       "translation": "authored-bilingual",
@@ -14242,7 +14064,6 @@
         "./resources/enrichment/complex-rotations-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27978,
       "englishBytes": 27868,
       "translation": "authored-bilingual",
@@ -14270,7 +14091,6 @@
         "./resources/enrichment/complex-rotations-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 31834,
       "englishBytes": 32087,
       "translation": "authored-bilingual",
@@ -14298,7 +14118,6 @@
         "./resources/enrichment/telescoping-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 29300,
       "englishBytes": 30621,
       "translation": "authored-bilingual",
@@ -14326,7 +14145,6 @@
         "./resources/enrichment/telescoping-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28444,
       "englishBytes": 28215,
       "translation": "authored-bilingual",
@@ -14354,7 +14172,6 @@
         "./resources/enrichment/telescoping-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27110,
       "englishBytes": 27195,
       "translation": "authored-bilingual",
@@ -14382,7 +14199,6 @@
         "./resources/enrichment/telescoping-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32585,
       "englishBytes": 32810,
       "translation": "authored-bilingual",
@@ -14410,7 +14226,6 @@
         "./resources/enrichment/inequalities-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 30560,
       "englishBytes": 30730,
       "translation": "authored-bilingual",
@@ -14438,7 +14253,6 @@
         "./resources/enrichment/inequalities-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 28515,
       "englishBytes": 28617,
       "translation": "authored-bilingual",
@@ -14466,7 +14280,6 @@
         "./resources/enrichment/inequalities-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 24983,
       "englishBytes": 24843,
       "translation": "authored-bilingual",
@@ -14494,7 +14307,6 @@
         "./resources/enrichment/inequalities-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 32324,
       "englishBytes": 32273,
       "translation": "authored-bilingual",
@@ -14522,7 +14334,6 @@
         "./resources/enrichment/bisection-notes-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 30519,
       "englishBytes": 31612,
       "translation": "authored-bilingual",
@@ -14550,7 +14361,6 @@
         "./resources/enrichment/bisection-exercises-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 29306,
       "englishBytes": 30499,
       "translation": "authored-bilingual",
@@ -14578,7 +14388,6 @@
         "./resources/enrichment/bisection-problems-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 27659,
       "englishBytes": 28231,
       "translation": "authored-bilingual",
@@ -14606,7 +14415,6 @@
         "./resources/enrichment/bisection-solutions-en.html"
       ],
       "pages": 1,
-      "englishPages": 1,
       "bytes": 35579,
       "englishBytes": 36078,
       "translation": "authored-bilingual",

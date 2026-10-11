@@ -28,6 +28,8 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \end{methode}
 
 
+
+\section{Activité de recherche}\textbf{Trois milieux dans un cube --- 40 min.}\par On considère le cube $ABCDEFGH$ représenté ci-dessous. On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$. Les points $I$, $J$ et $K$ sont les milieux respectifs de $[AB]$, $[AD]$ et $[AE]$. On note $O$ le centre du cube.
 \begin{center}\begin{tikzpicture}[scale=1.1,line join=round]
 \coordinate(A)at(0,0);\coordinate(B)at(4,0);\coordinate(C)at(5.1,1.6);\coordinate(D)at(1.1,1.6);\coordinate(E)at(0,2.5);\coordinate(F)at(4,2.5);\coordinate(G)at(5.1,4.1);\coordinate(H)at(1.1,4.1);
 \draw[navy,thick](A)--(B)--(C)--(G)--(H)--(E)--(A) (E)--(F)--(G) (B)--(F);
@@ -35,8 +37,6 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \draw[teal,thick,dash pattern=on 5pt off 2pt](A)--(G);
 \foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
 \end{tikzpicture}\par\small $[AG]$ est une diagonale de l'espace, tracée en pointillés verts.\\Les arêtes cachées sont en pointillés bleus ; $D$ et $F$ ne sont pas sur $(AG)$.\end{center}
-
-\section{Activité de recherche}\textbf{Trois milieux dans un cube --- 40 min.}\par On considère le cube $ABCDEFGH$ représenté ci-dessus. On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$. Les points $I$, $J$ et $K$ sont les milieux respectifs de $[AB]$, $[AD]$ et $[AE]$. On note $O$ le centre du cube.
 \begin{enumerate}\item Exprimer $\vect{IJ}$ et $\vect{IK}$ dans la base $(\vi,\vj,\vec k)$.
 \item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés.
 \item Déterminer si $O$ appartient au plan $(IJK)$. On justifiera la réponse en cherchant si $\vect{IO}$ est une combinaison linéaire de $\vect{IJ}$ et $\vect{IK}$.

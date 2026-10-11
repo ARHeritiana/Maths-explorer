@@ -33,21 +33,27 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
   removed from the chapter practice card (quiz and challenge answer inputs are checked fields and were kept).
 
 ## Committed but unfinished (the next tasks, in order)
-1. **Terminale PDFs from the 6 September source** (the only Terminale source available; the user said to use it).
-   - Sources split and translated: `content/latex/terminale/` (`livret(-en).tex`, `eleve/professeur(-en).tex`, `front`, `chapitres/C01..C14`,
-     `annexes/*`, `evaluations/intro, E1..E9`, all with `-en` twins). FR/EN builds already have equal page counts (student 95,
-     teacher 262; `evaluations/E5-en.tex` has a `\clearpage` before its last item to align pages; `10^-6` typos fixed to `10^{-6}`).
-   - To do: extend `build-tex-resources.py` for `terminale` (student bookmarks start at chapter index 3, teacher at 4 because of
-     the extra "Guide de préparation"; markers Notes de cours/Course notes, Activité de recherche/Research activity, Exercices
-     progressifs/Progressive exercises, Devoir à la maison/Homework, Conduite et corrigés/Teaching notes and solutions); add catalog
-     entries for a new `activities` type per chapter; map appendices (algorithms, proofs, oral, assessments) onto existing
-     `terminale-*` files; run style, finalize, publish-sources; update `docs/TEX_CONVERSION.json`.
-   - Old per-chapter types without a counterpart (practice, problems, assessment, fluency and methods banks) stay as legacy overlay
-     PDFs. Tell the user: the 6 September source is thinner than the published "Refonte 7 sept" PDFs (95/262 pages versus 166/346).
-   - Spot-proofread the E1 to E5 English twins: they were produced by scripted phrase replacement.
+1. **Terminale PDFs from the 6 September source**: DONE except the proof-read (see below).
+   - `build-tex-resources.py terminale --chapters 1 2 ... 14 --appendices` now builds both books (student 95, teacher 262 pages, FR=EN),
+     splits per chapter (`chapter`, `teacher`, `activities`, `notes`, `exercises`, `problems` = Devoir à la maison, `corrections` =
+     Conduite et corrigés) and registers the entries itself (`prepare_terminale`, `register_terminale`: catalog.json and companion
+     `resources-data.js`, including the old wrong teacher path of terminale-01). Appendices: algorithms, proofs, oral, assessments
+     (assessments also feed `terminale-revision-bank-2`, flagged `texBuilt`). Then run `style-resource-pdfs.py <pdfs>`,
+     `finalize-resources.py`, `publish-sources.py` (done, checks green). `publish-sources.py` now lists the Terminale entry points.
+   - Excerpts can differ by a page between editions (chapter 5 exercises: FR 2, EN 1, a wrapped line). `finalize-resources.py` records
+     `englishPages` for such files; chapter and teacher PDFs always match.
+   - Legacy overlay PDFs kept (no counterpart in the 6 September source): `practice`, `assessment` per chapter, `terminale-revision`
+     banks 0 and 1 (fluency, methods). They come from the older "Refonte 7 sept" overlay and are labelled `local-machine`.
+     Tell the user: the 6 September source is thinner than the published "Refonte 7 sept" PDFs (95/262 pages versus 166/346).
+   - Source edit: in `chapitres/C02(-en).tex` the cube figure moved from the notes into the research activity ("ci-dessus" became
+     "ci-dessous"), otherwise the activity excerpt had no figure.
+   - Printed chapter numbers keep the textbook numbering (e.g. vectors prints "CHAPITRE 10" while the site card is chapter 2). The
+     booklet says so in "Utiliser ce livret". [VERIFY] whether the owner wants the printed numbers aligned with the site.
+   - TO DO: spot-proofread the E1 to E5 English twins (scripted phrase replacement).
    - Source oddities to report as [VERIFY]: E6 intro says "first four questions independent" but the exercise has five; E7 solution
      starts "No." for a compare-and-explain question; sources cite an external site "Lycée d'adultes, Paul Milan"; "Barbazo"
-     textbook references.
+     textbook references (they remain in the exercises excerpts).
+
 2. **STMG: replace the Calao textbook extracts.** `manuel/extraits-calao*.tex` reproduces a published textbook (copyright risk; old
    text remains in git history). Original replacements exist as `manuel/exo-A.tex` (sessions 1-14), `exo-B` (15-30), `exo-C` (31-46),
    `exo-D` (47-55), each with an `-en` twin, 55 `\DefExo{N}{target}{statement}{teacher solution}{answer lines}` calls in total.
