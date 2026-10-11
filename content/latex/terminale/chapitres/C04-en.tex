@@ -1,0 +1,93 @@
+\setcounter{chapter}{2}\chapter{Limits of functions}\label{ch:3}
+
+{\small\sffamily\color{teal}S21, S23, S24, S26\par}
+
+\begin{retenir}{Objectives}Calculate limits at a point and at infinity; resolve an indeterminate form; interpret an asymptote.\end{retenir}
+
+\section{Course notes}
+\subsection{Meaning of a limit}
+$f(x)\to\ell$ as $x\to+\infty$ means that $f(x)$ can be made as close as desired to $\ell$ for all sufficiently large $x$. For a limit at $a$, we consider values of $x$ in the domain, close to $a$ and different from $a$. The left-hand and right-hand limits are written $\lim_{x\to a^-}f(x)$ and $\lim_{x\to a^+}f(x)$. When the domain has points on both sides of $a$, a two-sided limit exists if and only if both one-sided limits exist and are equal. At an endpoint of the domain, we study the limit from the only accessible side.
+\begin{retenir}{Graphical interpretation}
+If $f(x)\to\ell\in\R$ as $x\to+\infty$ or $-\infty$, the line $y=\ell$ is a horizontal asymptote in that direction. If $f(x)\to\pm\infty$ as $x\to a$ from one side, the line $x=a$ is a vertical asymptote.
+\end{retenir}
+A curve can cross a horizontal asymptote. The limit does not necessarily give the position of the curve relative to the asymptote: study the sign of $f(x)-\ell$.
+\subsection{Reference limits and operations}
+At $+\infty$, $x^m\to+\infty$ for $m\ge1$, $\frac{1}{x^m}\to0$, $\sqrt x\to+\infty$. At $-\infty$, the sign of $x^m$ depends on the parity of $m$. The rules for sum, product, quotient and comparison are those for sequences, with the same indeterminate forms.
+\paragraph{Example.} For $f(x)=\frac{2x+1}{x-3}$, write $f(x)=2+\frac{7}{x-3}$. The limits at $\pm\infty$ equal $2$. At $3^-$, $f\to-\infty$; at $3^+$, $f\to+\infty$. The asymptotes are $x=3$ and $y=2$.
+\paragraph{Conjugation.} For $x>0$, $\sqrt{x^2+4x}-x=\frac{4}{\sqrt{1+\frac{4}{x}}+1}\to2$. For $x<0$, take care: $\sqrt{x^2}=|x|=-x$.
+\subsection{Exponential and comparison of growth rates}
+\[\lim_{x\to+\infty}e^x=+\infty,\quad\lim_{x\to-\infty}e^x=0,\quad
+\lim_{x\to+\infty}\frac{e^x}{x^m}=+\infty\quad(m\in\N).\]
+We deduce $x^me^{-x}\to0$ at $+\infty$.
+\paragraph{Proof of the limits of the exponential.} Studying $e^x-x-1$ gives $e^x\ge1+x$. By comparison, $e^x\to+\infty$ at $+\infty$. Setting $t=-x\to+\infty$, $e^x=\frac{1}{e^t}\to0$.
+\paragraph{Proof of a comparison of growth rates.} For every integer $k\ge0$ and $x\ge0$, $e^x\ge \frac{x^k}{k!}$. For $k=0$, $e^x\ge1$. If the inequality holds at order $k$, the derivative of $e^x-\frac{x^{k+1}}{(k+1)!}$ is $e^x-\frac{x^k}{k!}\ge0$; its value at $0$ is positive. The inductive step follows. Choosing $k=m+1$, $\frac{e^x}{x^m}\ge \frac{x}{(m+1)!}\to+\infty$.
+\begin{methode}{Choosing a transformation}
+Quotient of polynomials: factorise the highest powers. Difference of roots: conjugate. Quotient near a zero: factorise and study the signs. Exponential against power: comparison of growth rates, after a change of variable if necessary.
+\end{methode}
+\subsection{Comparison and composition: conditions of use}
+If $g(x)\le f(x)\le h(x)$ near the point or the infinity under study, and if $g,h$ have the same real limit $\ell$, then $f(x)\to\ell$ (squeeze theorem). If $g\le f$ and $g\to+\infty$, then $f\to+\infty$. For a limit of $-\infty$, use an upper bound by a function tending to $-\infty$.
+If $u(x)\to a$ and $v$ is continuous at $a$, then $v(u(x))\to v(a)$, whenever the composite is defined. For example $\sqrt{1+\frac{1}{x}}\to1$ at $+\infty$. For an infinite limit of the outer function, check from which side $u(x)$ approaches the bound: $\frac{1}{u(x)}$ does not behave in the same way depending on the sign of $u(x)$.
+
+
+\section{Research activity}\textbf{A curve close to a line --- 30 min.}\par Consider the function $f$ defined on $\R\setminus\{1\}$ by $f(x)=\frac{3x-2}{x-1}$. Let $\mathcal C_f$ be its curve in a plane frame of reference.
+\begin{enumerate}\item Show that, for every $x\ne1$, $f(x)=3+\frac1{x-1}$.
+\item Determine the limits of $f$ at $-\infty$, at $1^-$, at $1^+$ and at $+\infty$.
+\item Study the sign of $f(x)-3$, then state the position of $\mathcal C_f$ relative to the line with equation $y=3$.
+\item Determine a real number $A>1$ such that, for every $x>A$, $|f(x)-3|<0.01$.
+\item Does the curve $\mathcal C_f$ cross its horizontal asymptote? Justify, and explain why a graphing window that is too wide can give a misleading impression.\end{enumerate}
+
+\section{Progressive exercises}
+
+\exercice{1}{Practice}Determine $\displaystyle\lim_{x\to+\infty}\frac{5x^3-x}{2x^3+7}$, with justification.
+
+\exercice{2}{Practice}Let $f$ be the function defined on $\R\setminus\{2\}$ by $f(x)=\frac1{(x-2)^2}$. Determine its limits at $2^-$, at $2^+$, at $-\infty$ and at $+\infty$.
+
+\exercice{3}{Practice}Determine $\displaystyle\lim_{x\to1}\frac{x^2-1}{x-1}$, stating why the simplification used is valid in a neighbourhood of $1$.
+
+\exercice{4}{Practice}Determine $\displaystyle\lim_{x\to+\infty}x^3e^{-2x}$. State the result on comparison of growth rates that is used.
+
+\exercice{5}{Practice}Determine $\displaystyle\lim_{x\to-\infty}\left(\sqrt{x^2+1}+x\right)$. Justify in particular the treatment of $\sqrt{x^2}$.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 96, exercises 26 and 29.} In S23: exercise 29, to link limits and asymptotes. At home after S24: exercise 26, to construct three counterexamples to an invalid rule for calculating with limits.
+
+\section{Homework}\textbf{Homework 3 --- A family of curves --- 45 min.}\par For each real number $a$, consider the function $f_a$ defined by $f_a(x)=\frac{ax^2+1}{x^2+1}$. Let $\mathcal C_a$ be its graph.
+\begin{enumerate}\item Determine the domain of $f_a$, then its limits at $-\infty$ and at $+\infty$.
+\item Show that $f_a(x)-a=\frac{1-a}{x^2+1}$. Depending on the value of $a$, state the position of $\mathcal C_a$ relative to the line with equation $y=a$.
+\item Study the variations of $f_a$ by distinguishing the cases $a<1$, $a=1$ and $a>1$. State any extrema and where they are attained.
+\item Take $a=3$. Solve, for $x\ge0$, the inequality $|f_3(x)-3|\le0.02$.\end{enumerate}
+
+\ifprof\clearpage\section{Teaching notes and solutions}\begin{profbox}{Teacher notes}In S21, link each limit to a reading of the graph. In S23, require the signs of the denominator on the left and on the right. In S24, have students choose the transformation before calculating: factorisation, conjugation, local expansion not used. In S26, separate the proof of the comparison of growth rates from its use. Oblique asymptotes are not required here.\end{profbox}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item Since $3x-2=3(x-1)+1$, for $x\ne1$, $f(x)=3+\frac{1}{x-1}$.
+\item At $\pm\infty$, $\frac{1}{x-1}\to0$: the limits equal $3$. At $1^-$, $x-1\to0^-$, so $f(x)\to-\infty$; at $1^+$, $x-1\to0^+$, so $f(x)\to+\infty$.
+\item The sign of $f(x)-3=\frac{1}{x-1}$ is negative for $x<1$, positive for $x>1$. The curve is therefore below and above the asymptote $y=3$ respectively.
+\item For $x>1$, $|f(x)-3|<0.01$ is equivalent to $\frac{1}{x-1}<0.01$, then $x>101$. We can choose $A=101$.
+\item No: $f(x)-3=\frac{1}{x-1}$ is never zero. The curve may appear to coincide with the asymptote at the precision of the screen, but it never meets it.
+\end{enumerate}
+
+\paragraph{E1.}For $x\ne0$, the quotient equals $\frac{5-\frac{1}{x^2}}{2+\frac{7}{x^3}}$. At $+\infty$, the inverse powers tend to $0$ and the denominator to $2\ne0$. The limit is $\frac{5}{2}$.
+
+\paragraph{E2.}At $2$, $(x-2)^2\to0$ through strictly positive values on both sides; its reciprocal therefore tends to $+\infty$. At $\pm\infty$, the square tends to $+\infty$ and its reciprocal to $0$.
+
+\paragraph{E3.}For $x\ne1$, $x^2-1=(x-1)(x+1)$, so the quotient is equal to $x+1$. Its limit at $1$ is therefore $2$. This simplification calculates the limit; it does not make the original function defined at $1$.
+
+\paragraph{E4.}Set $t=2x\to+\infty$. Then $x^3e^{-2x}=\frac{t^3}{8e^t}\to0$, by comparison of growth rates of the exponential and the power.
+
+\paragraph{E5.}The conjugate gives $\sqrt{x^2+1}+x=\frac{1}{\sqrt{x^2+1}-x}$. As $x\to-\infty$, both terms $\sqrt{x^2+1}$ and $-x$ tend to $+\infty$; the denominator therefore tends to $+\infty$. The limit is $0$, through positive values.
+
+\subsection{Solutions to Homework 3}\begin{enumerate}
+\item Since $x^2+1>0$ on $\R$, the domain is $\R$. Dividing by $x^2$ for $x\ne0$, $f_a(x)=\frac{a+\frac{1}{x^2}}{1+\frac{1}{x^2}}\to a$ at $\pm\infty$.
+\item $f_a(x)-a=\frac{ax^2+1-a(x^2+1)}{x^2+1}=\frac{1-a}{x^2+1}$. For $a<1$, the curve is above $y=a$; for $a>1$, it is below; for $a=1$, it coincides with this line.
+\item By the quotient rule, $f'_a(x)=\frac{[2ax(x^2+1)-2x(ax^2+1)]}{(x^2+1)^2}=\frac{2x(a-1)}{(x^2+1)^2}$.
+If $a>1$, the sign is that of $x$: decreasing on $]-\infty,0]$, increasing on $[0,+\infty[$; minimum $f_a(0)=1$ and no maximum (the bound $a$ is not attained). If $a<1$, the variations are reversed: maximum $1$ and no minimum. For $a=1$, the function is constant, with value $1$.
+\item For $a=3$ and $x\ge0$, the inequality becomes $\frac{2}{x^2+1}\le0.02$. The denominator is positive, so it is equivalent to $x^2+1\ge100$, that is $x\ge\sqrt{99}$.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}\paragraph{Exercise 26.} As $x\to+\infty$, the functions $f(x)=x$ and $g(x)=x$ both tend to $+\infty$, but their difference is zero. With $f(x)=2x$, $g(x)=x$, the difference tends to $+\infty$; swapping $f$ and $g$, it tends to $-\infty$. These examples establish that the difference is an indeterminate form.
+\paragraph{Exercise 29.} The denominator vanishes at $\frac32$, so $D_f=\R\setminus\{\frac32\}$. We write
+\[f(x)=\frac{5-2x}{2x-3}=-1+\frac2{2x-3}.\]
+Thus $f(x)\to-1$ at both infinities. At $\frac32$, the numerator of the second term is positive and its denominator tends to $0$: the left-hand limit is $-\infty$, the right-hand limit is $+\infty$. The asymptotes have equations $y=-1$ and $x=\frac32$.
+
+\fi
+

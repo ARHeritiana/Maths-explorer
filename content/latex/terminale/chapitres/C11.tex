@@ -1,0 +1,137 @@
+\setcounter{chapter}{7}\chapter{Calcul intégral}\label{ch:8}
+
+{\small\sffamily\color{teal}S59, S61, S63, S66\par}
+
+\begin{retenir}{Objectifs}Calculer et encadrer une intégrale ; distinguer aire et intégrale ; utiliser une intégration par parties ; étudier une suite d'intégrales.\end{retenir}
+
+\section{Notes de cours}
+\subsection{Aire et primitive}
+Pour $f$ continue et positive sur $[a,b]$, $a\le b$, l'intégrale $\int_a^b f(x)\,\dd x$ est l'aire sous la courbe, au-dessus de l'axe, entre $x=a$ et $x=b$, exprimée en unités d'aire.
+\begin{retenir}{Théorème fondamental}
+Si $f$ est continue sur un intervalle $I$ et $a\in I$, alors $F_a(x)=\int_a^x f(t)\,\dd t$ est la primitive de $f$ qui s'annule en $a$. Pour toute primitive $F$,
+\[\int_a^b f(x)\,\dd x=F(b)-F(a).\]
+Toute fonction continue sur un intervalle admet des primitives. Une intégrale est un nombre ; une primitive est une fonction.
+\end{retenir}
+\paragraph{Démonstration dans le cas positif croissant.} Pour $h>0$, les rectangles donnent $hf(x)\le F_a(x+h)-F_a(x)\le hf(x+h)$. Après division par $h$ et passage à la limite, le taux d'accroissement tend vers $f(x)$. Pour $h<0$, la croissance donne $f(x+h)\le f(t)\le f(x)$ sur $[x+h,x]$. En intégrant,
+\[(-h)f(x+h)\le F_a(x)-F_a(x+h)\le(-h)f(x).\]
+En divisant par $-h>0$, on obtient
+\[f(x+h)\le\frac{F_a(x+h)-F_a(x)}h\le f(x).\]
+Les deux bornes tendent vers $f(x)$. Par continuité, $F_a'=f$. Toute autre primitive est $F_a+C$, d'où la formule de calcul aux bornes.
+\subsection{Propriétés}
+Pour des fonctions continues et des bornes appartenant à un même intervalle :
+\[\int_a^a f=0,\quad\int_b^a f=-\int_a^b f,\quad
+\int_a^c f=\int_a^b f+\int_b^c f,\quad
+\int_a^b(\lambda f+\mu g)=\lambda\int_a^b f+\mu\int_a^b g.\]
+Si $a\le b$ et $f\le g$, alors $\int_a^b f\le\int_a^b g$. En particulier, si $m\le f\le M$, alors $m(b-a)\le\int_a^b f\le M(b-a)$.
+Pour une fonction de signe quelconque, l'intégrale est définie par les primitives. L'aire géométrique entre la courbe et l'axe est $\int_a^b|f|$, obtenue en découpant aux changements de signe. Entre deux courbes, elle vaut $\int_a^b|f-g|$.
+\paragraph{Exemple.} $\int_{-1}^{1}x\,\dd x=0$, mais l'aire entre la droite et l'axe sur cet intervalle vaut $1$.
+\subsection{Valeur moyenne et intégration par parties}
+Pour $a<b$, la valeur moyenne est $\mu=\frac1{b-a}\int_a^b f(x)\,\dd x$. Le rectangle de hauteur $\mu$ et de largeur $b-a$ possède la même aire algébrique.
+\begin{retenir}{Intégration par parties}
+Si $u,v$ sont de classe $\mathcal C^1$ sur $[a,b]$,
+\[\int_a^b u(x)v'(x)\,\dd x=[u(x)v(x)]_a^b-\int_a^b u'(x)v(x)\,\dd x.\]
+\end{retenir}
+\paragraph{Démonstration.} Intégrer $(uv)'=u'v+uv'$ puis isoler l'intégrale cherchée. Le crochet est indispensable.
+\paragraph{Exemple.} Avec $u=x$ et $v'=e^x$, $\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1$.
+\subsection{Rectangles et suites d'intégrales}
+Pour $f$ continue et croissante sur $[a,b]$, avec $a<b$ et $n\ge1$ et $h=\frac{b-a}{n}$, les sommes $h\sum_{k=0}^{n-1}f(a+kh)$ et $h\sum_{k=1}^{n}f(a+kh)$ encadrent l'intégrale. Leur différence est $h(f(b)-f(a))$.
+Pour $I_n=\int_0^1x^nf(x)\,\dd x$, commencer par le signe et les comparaisons de l'intégrande. Si $0\le f\le M$, alors $0\le I_n\le \frac{M}{n+1}$ ; les gendarmes donnent $I_n\to0$. Une intégration par parties peut aussi fournir une relation entre $I_n$ et $I_{n+1}$.
+\paragraph{Convention au rang zéro.} Dans $I_n=\int_0^1x^nf(x)\,\dd x$, l'expression $x^0$ désigne la fonction constante $1$, y compris à la borne $0$. Ainsi $I_0=\int_0^1f(x)\,\dd x$ ; aucun calcul indéterminé n'est nécessaire.
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=11cm,height=4.6cm,axis lines=middle,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x$},ylabel={$y$},samples=80]
+\addplot[draw=none,fill=teal!15,domain=0:1]{x}\closedcycle;
+\addplot[draw=none,fill=white,domain=0:1]{x^2}\closedcycle;
+\addplot[navy,domain=0:1]{x};\addplot[teal,thick,domain=0:1]{x^2};\end{axis}\end{tikzpicture}\par\small L'aire entre $y=x$ et $y=x^2$ sur $[0,1]$ vaut $\frac{1}{6}$.\end{center}
+
+\section{Activité de recherche}\textbf{Encadrer une intégrale par des rectangles --- 35 min.}\par On cherche à encadrer $I=\displaystyle\int_0^1x^2\,\dd x$. Pour un entier $n\ge1$, on partage $[0;1]$ en $n$ intervalles de même longueur. On note $L_n$ la somme des aires des rectangles dont les hauteurs sont les valeurs de $x^2$ aux extrémités gauches, et $U_n$ celle obtenue aux extrémités droites.
+\begin{enumerate}\item Pour $n=4$, représenter les deux familles de rectangles, puis calculer $L_4$ et $U_4$.
+\item Justifier que $L_4\le I\le U_4$.
+\item Écrire une fonction Python d'argument $n$ qui renvoie $L_n$ et $U_n$. Déterminer algébriquement $U_n-L_n$.
+\item Déterminer le plus petit entier $n$ pour lequel cet encadrement a une largeur au plus égale à $0{,}01$.
+\item Calculer la valeur exacte de $I$ à l'aide d'une primitive et vérifier qu'elle appartient à l'encadrement obtenu pour $n=4$.\end{enumerate}
+
+\section{Exercices progressifs}
+
+\exercice{1}{Entraînement}Calculer $\displaystyle\int_0^2(3x^2-2x+1)\,\dd x$ en déterminant une primitive.
+
+\exercice{2}{Entraînement}Dans un repère orthonormé, calculer l'aire du domaine délimité par les courbes $y=x$ et $y=x^2$, entre les abscisses $0$ et $1$. Donner le résultat en unité d'aire.
+
+\exercice{3}{Entraînement}Calculer la valeur moyenne de la fonction exponentielle sur l'intervalle $[0;2]$.
+
+\exercice{4}{Entraînement}À l'aide d'une intégration par parties, calculer $\displaystyle\int_1^e\ln x\,\dd x$.
+
+\exercice{5}{Entraînement}Pour tout $n\in\N$, on pose $I_n=\displaystyle\int_0^1\frac{x^n}{1+x}\,\dd x$, avec $x^0=1$ dans l'intégrande. Démontrer que $0\le I_n\le\frac1{n+1}$, puis en déduire la limite de $(I_n)$.
+
+\section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 260, exercices 28 et 29.} En S66 : exercice 28, en explicitant les deux fonctions choisies pour l'intégration par parties. À la maison : exercice 29, pour adapter ce choix à un produit contenant un logarithme.
+
+\section{Devoir à la maison}\textbf{DM8 --- Une suite d'intégrales --- 60 min.}\par Pour tout $n\in\N$, on pose $I_n=\displaystyle\int_0^1x^ne^x\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^x$.
+\begin{enumerate}\item Calculer $I_0$, puis $I_1$ à l'aide d'une intégration par parties.
+\item Démontrer que, pour tout $n\in\N$, $I_{n+1}=e-(n+1)I_n$.
+\item En comparant les intégrandes, démontrer que $(I_n)$ est positive et décroissante.
+\item Montrer que $\frac1{n+1}\le I_n\le\frac e{n+1}$ pour tout $n\in\N$. En déduire la limite de $(I_n)$.
+\item Dans le calcul de $I_{n+1}$ par la relation de la question 2, par quel facteur une erreur sur $I_n$ est-elle multipliée si l'on néglige les autres erreurs d'arrondi ? Expliquer le risque d'un calcul répété de cette manière.\end{enumerate}
+
+\ifprof\clearpage\section{Conduite et corrigés}\begin{profbox}{Repères pour le professeur}Commencer par une aire positive, puis montrer un exemple dont les aires positive et négative se compensent. Pour une valeur moyenne, exiger une unité et une interprétation. Les suites d'intégrales arrivent en S66 ; réserver une vraie phase de recherche au choix de la comparaison. La preuve du théorème fondamental se limite au cas positif croissant indiqué au programme. Les calculs trigonométriques seront repris après mai.\end{profbox}
+
+\subsection{Corrigé de l'activité}\begin{enumerate}
+\item Les quatre intervalles ont largeur $\frac{1}{4}$. La somme à gauche vaut
+\[L_4=\frac{1}{4}(0^2+(\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2)=\frac{7}{32}.\]
+À droite, $U_4=\frac{1}{4}((\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2+1)=\frac{15}{32}$. Les rectangles ont pour hauteurs les valeurs aux extrémités correspondantes.
+\begin{center}\begin{minipage}{.47\linewidth}\centering
+\begin{tikzpicture}[x=4cm,y=3cm]
+\foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{(\k/4)^2}\filldraw[fill=teal!20,draw=teal] (\l,0) rectangle (\r,\h);}
+\draw[navy,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
+\draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
+\node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
+\end{tikzpicture}\par\small Rectangles à gauche : $L_4=\frac{7}{32}$.\end{minipage}\hfill\begin{minipage}{.47\linewidth}\centering
+\begin{tikzpicture}[x=4cm,y=3cm]
+\foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{((\k+1)/4)^2}\filldraw[fill=teal!20,draw=teal] (\l,0) rectangle (\r,\h);}
+\draw[navy,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
+\draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
+\node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
+\end{tikzpicture}\par\small Rectangles à droite : $U_4=\frac{15}{32}$.\end{minipage}\end{center}
+\item Pour $x\in[\frac{k}{4},\frac{k+1}{4}]$, $(\frac{k}{4})^2\le x^2\le(\frac{k+1}{4})^2$ car la fonction carré est croissante sur $[0,1]$. L'intégration sur les quatre intervalles puis l'addition donnent $\frac{7}{32}\le I\le\frac{15}{32}$.
+\item 
+\begin{lstlisting}
+def rectangles_carre(n):
+    h = 1/n
+    bas = h*sum((k*h)**2 for k in range(n))
+    haut = h*sum((k*h)**2 for k in range(1, n+1))
+    return bas, haut
+\end{lstlisting}
+Les termes intérieurs se compensent : $U_n-L_n=(\frac{1}{n})(1^2-0^2)=\frac{1}{n}$.
+\item $\frac{1}{n}\le0{,}01\Longleftrightarrow n\ge100$. Cent subdivisions suffisent ; c'est le premier entier qui donne cette largeur avec ces deux sommes.
+\item Une primitive de $x^2$ est $\frac{x^3}{3}$. Donc $I=[\frac{x^3}{3}]_0^1=\frac{1}{3}$, bien compris entre $\frac{7}{32}$ et $\frac{15}{32}$.
+\end{enumerate}
+
+\paragraph{E1.}Une primitive est $F(x)=x^3-x^2+x$. L'intégrale vaut $F(2)-F(0)=8-4+2=6$.
+
+\paragraph{E2.}Sur $[0,1]$, $x-x^2=x(1-x)\ge0$, donc la droite est au-dessus de la parabole. L'aire est $\int_0^1(x-x^2)\,\dd x=[\frac{x^2}{2}-\frac{x^3}{3}]_0^1=\frac{1}{6}$ unité d'aire.
+
+\paragraph{E3.}La longueur de l'intervalle est $2$. La valeur moyenne vaut $(\frac{1}{2})\int_0^2e^x\,\dd x=(\frac{1}{2})[e^x]_0^2=\frac{e^2-1}{2}$.
+
+\paragraph{E4.}Choisissons $u=\ln x$, $u'=\frac{1}{x}$, $v'=1$ et $v=x$ sur $[1,e]$. L'IPP donne $\int_1^e\ln x\,\dd x=[x\ln x]_1^e-\int_1^e1\,\dd x=e-(e-1)=1$.
+
+\paragraph{E5.}Sur $[0,1]$, $1+x\ge1$ et $x^n\ge0$, donc $0\le \frac{x^n}{1+x}\le x^n$. L'intégration donne $0\le I_n\le[\frac{x^{n+1}}{n+1}]_0^1=\frac{1}{n+1}$. Les gendarmes donnent $I_n\to0$.
+
+\subsection{Corrigé du DM8}\begin{enumerate}
+\item $I_0=\int_0^1e^x\,\dd x=e-1$. Pour $I_1$, une IPP avec $u=x$, $v'=e^x$ donne $I_1=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1$.
+\item Pour $n\ge0$, choisissons $u=x^{n+1}$, $u'=(n+1)x^n$, $v'=e^x$ et $v=e^x$. Les fonctions sont dérivables à dérivées continues sur $[0,1]$. Alors
+\[I_{n+1}=[x^{n+1}e^x]_0^1-(n+1)\int_0^1x^ne^x\,\dd x=e-(n+1)I_n.\]
+\item Sur $[0,1]$, $0\le x^{n+1}\le x^n$. En multipliant par $e^x>0$ puis en intégrant, $0\le I_{n+1}\le I_n$ : la suite est positive et décroissante au sens large. Elle est même strictement positive et strictement décroissante, car les intégrandes de $I_n$ et de $I_n-I_{n+1}$ sont strictement positives sur $]0,1[$.
+\item Comme $1\le e^x\le e$ et $x^n\ge0$ sur $[0,1]$, on peut intégrer $x^n\le x^ne^x\le ex^n$. D'où
+\[\frac1{n+1}\le I_n\le\frac e{n+1}.\]
+Les deux bornes tendent vers $0$ ; le théorème des gendarmes donne $I_n\to0$.
+\item Si $\widetilde I_n=I_n+\varepsilon_n$ et que la relation est ensuite appliquée sans nouvelle erreur, alors
+\[\widetilde I_{n+1}-I_{n+1}=-(n+1)(\widetilde I_n-I_n)=-(n+1)\varepsilon_n.\]
+La valeur absolue de l'erreur est multipliée par $n+1$. En calcul machine, de nouvelles erreurs s'ajoutent à chaque étape. La décroissance des intégrales exactes ne garantit donc pas la stabilité de cette méthode de calcul.
+\end{enumerate}
+
+\subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 28.} Sur $[0;1]$, choisissons $u(x)=x$ et $v(x)=e^x$. Ces fonctions sont de classe $\mathcal C^1$, $u'(x)=1$ et $v'(x)=e^x$. L'intégration par parties donne
+\[\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1.\]
+\paragraph{Exercice 29.} Sur $[1;e]$, choisissons $u(x)=\ln x$ et $v(x)=\frac{x^2}2$. Alors $u'(x)=\frac1x$ et $v'(x)=x$ ; ces fonctions sont de classe $\mathcal C^1$. D'où
+\[\begin{aligned}\int_1^e x\ln x\,\dd x&=\left[\frac{x^2}2\ln x\right]_1^e-\frac12\int_1^e x\,\dd x\\&=\frac{e^2}2-\frac{e^2-1}4=\frac{e^2+1}4.\end{aligned}\]
+
+\fi
+

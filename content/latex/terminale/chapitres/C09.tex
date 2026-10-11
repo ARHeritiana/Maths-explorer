@@ -1,0 +1,102 @@
+\setcounter{chapter}{10}\chapter{Orthogonalité et distances}\label{ch:11}
+
+{\small\sffamily\color{teal}S48, S51, S54, S56, S60\par}
+
+\begin{retenir}{Objectifs}Calculer un produit scalaire ; justifier une orthogonalité ; déterminer un projeté et une distance ; calculer un volume.\end{retenir}
+
+\section{Notes de cours}
+Les calculs par coordonnées de ce chapitre se font dans un repère orthonormé de l'espace.
+\subsection{Produit scalaire dans l'espace}
+Pour des vecteurs non nuls $\vec u,\vec v$, $\vec u\cdot\vec v=\|\vec u\|\|\vec v\|\cos\theta$, où $\theta\in[0,\pi]$ est leur angle. Si l'un est nul, le produit scalaire vaut $0$.
+\[\vec u\cdot\vec v=\tfrac12(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2).
+\]
+Dans un repère orthonormé, pour $\vec u=(x,y,z)$ et $\vec v=(x',y',z')$,
+\[\vec u\cdot\vec v=xx'+yy'+zz'.\]
+Le produit scalaire est symétrique et bilinéaire ; $\vec u\cdot\vec u=\|\vec u\|^2$. Deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul.
+\paragraph{Exemple.} $\vec u=(1,2,2)$ et $\vec v=(2,-1,0)$ sont orthogonaux : $2-2+0=0$. Leurs normes valent $3$ et $\sqrt5$.
+\subsection{Droite, plan et vecteur normal}
+Deux droites sont orthogonales si leurs vecteurs directeurs le sont. Une droite est orthogonale à un plan si elle est orthogonale à deux directions non colinéaires de ce plan. Un vecteur normal à un plan est un vecteur non nul orthogonal à toutes ses directions.
+\paragraph{Pourquoi deux directions suffisent.} Si $\vec n\cdot\vec u=\vec n\cdot\vec v=0$, alors, pour tout $\vec w=s\vec u+t\vec v$, $\vec n\cdot\vec w=s\vec n\cdot\vec u+t\vec n\cdot\vec v=0$.
+\begin{retenir}{Condition vectorielle d'appartenance}
+Si $A$ appartient au plan $\mathcal P$ de vecteur normal $\vec n$, alors $M\in\mathcal P$ si et seulement si $\vect{AM}\cdot\vec n=0$.
+\end{retenir}
+\subsection{Projection orthogonale et distance}
+Le projeté orthogonal $H$ de $M$ sur un plan est l'unique point du plan tel que $\vect{MH}$ soit normal au plan ; si $M$ appartient au plan, $H=M$. La distance de $M$ au plan est $MH$. Sur une droite de directeur $\vec u$, le projeté vérifie $H\in d$ et $\vect{MH}\cdot\vec u=0$.
+\paragraph{Démonstration du minimum.} Pour tout point $P$ du plan, $\vect{MH}\perp\vect{HP}$, donc $MP^2=MH^2+HP^2\ge MH^2$. L'égalité a lieu seulement pour $P=H$. Le projeté est le point du plan le plus proche.
+\paragraph{Méthode sur une droite.} Si $d=A+\R\vec u$, écrire $H=A+t\vec u$ et résoudre $(A-M+t\vec u)\cdot\vec u=0$. Ainsi $t=\frac{\vect{AM}\cdot\vec{u}}{\lVert\vec u\rVert^2}$.
+\subsection{Angles, aires et volumes}
+Pour un angle $\widehat{ABC}$, utiliser $\vect{BA}$ et $\vect{BC}$ : $\cos \widehat{ABC}=\frac{\vect{BA}\cdot\vect{BC}}{BA\times BC}$. Pour l'angle aigu entre deux droites, prendre la valeur absolue du quotient.
+L'aire d'un triangle est $\frac{bh}{2}$ ; le volume d'un tétraèdre est $\frac{\mathcal{A}_{\rm base}h}{3}$, où $h$ est une distance orthogonale. Les unités sont respectivement au carré et au cube.
+\subsection{Développements et lieux géométriques}
+Par bilinéarité,
+\[\|\vec u+\vec v\|^2=\|\vec u\|^2+2\vec u\cdot\vec v+\|\vec v\|^2,\qquad
+\|\vec u-\vec v\|^2=\|\vec u\|^2-2\vec u\cdot\vec v+\|\vec v\|^2.\]
+On peut donc aussi calculer $\vec u\cdot\vec v=\frac12(\|\vec u\|^2+\|\vec v\|^2-\|\vec u-\vec v\|^2)$.
+Pour deux points distincts $A,B$ de milieu $I$, le lieu des points $M$ tels que $MA=MB$ est le plan passant par $I$ de normal $\vect{AB}$ : le \emph{plan médiateur}. En effet, en écrivant les vecteurs depuis $I$, les développements donnent $MA^2-MB^2=2\vect{IM}\cdot\vect{AB}$. L'égalité des distances équivaut donc à $\vect{IM}\cdot\vect{AB}=0$.
+\textbf{Complément, sans évaluation dédiée en 2026--2027.} Deux plans sont perpendiculaires lorsque leurs vecteurs normaux sont orthogonaux. Il ne faut pas confondre cette propriété avec le parallélisme des plans, qui correspond à des normaux colinéaires.
+
+
+\section{Activité de recherche}\textbf{Le point d'une droite le plus proche --- 35 min.}\par Dans un repère orthonormé de l'espace, on considère $A(1;0;0)$, $M(0;2;3)$ et la droite $d$ passant par $A$, de vecteur directeur $\vec u=(1;1;0)$. On cherche le point de $d$ le plus proche de $M$.
+\begin{enumerate}\item Exprimer, en fonction d'un paramètre réel $t$, les coordonnées d'un point $H$ de $d$.
+\item Déterminer la valeur de $t$ pour laquelle $\vect{MH}\cdot\vec u=0$. En déduire les coordonnées du point $H$ ainsi obtenu.
+\item Calculer la distance $MH$.
+\item Soit $P$ un point quelconque de $d$. Démontrer que $MP^2=MH^2+HP^2$, puis en déduire que $H$ est l'unique point de $d$ le plus proche de $M$.\end{enumerate}
+
+\section{Exercices progressifs}
+
+\exercice{1}{Entraînement}Dans une base orthonormée de l'espace, on considère $\vec u=(2;-1;3)$ et $\vec v=(1;4;0)$. Calculer $\vec u\cdot\vec v$.
+
+\exercice{2}{Entraînement}Dans une base orthonormée, on considère $\vec u=(a;2;1)$ et $\vec v=(3;-1;4)$, où $a$ est réel. Déterminer $a$ pour que $\vec u$ et $\vec v$ soient orthogonaux.
+
+\exercice{3}{Entraînement}Dans un repère orthonormé, un plan est dirigé par $\vec u=(1;-1;0)$ et $\vec v=(1;0;-1)$. Montrer que $\vec n=(1;1;1)$ lui est normal. On considère ensuite $A(0;0;0)$ et $B(2;2;2)$. Décrire géométriquement l'ensemble des points équidistants de $A$ et de $B$.
+
+\exercice{4}{Entraînement}Dans une base orthonormée, on considère $\vec u=(1;0;1)$ et $\vec v=(0;1;1)$. Déterminer la mesure, comprise entre $0$ et $\pi$, de l'angle entre ces deux vecteurs.
+
+\exercice{5}{Entraînement}Un tétraèdre a pour base un triangle rectangle dont les deux côtés perpendiculaires mesurent $3$ cm et $4$ cm. La hauteur du tétraèdre relative à cette base est de $5$ cm. Calculer son volume en $\mathrm{cm}^3$.
+
+\section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 362, exercices 23 et 27.} En S48 : exercice 23, pour calculer un produit scalaire en coordonnées. À la maison après S54 : exercice 27 ; vérifier l'orthogonalité aux deux vecteurs directeurs d'un plan, sans se contenter d'un seul produit nul.
+
+\section{Devoir à la maison}\textbf{DM11 --- Une face et sa hauteur --- 50 min.}\par Dans un repère orthonormé d'origine $O$, on considère les points $A(2;0;0)$, $B(0;2;0)$ et $C(0;0;2)$.
+\begin{enumerate}\item Démontrer que le triangle $ABC$ est équilatéral et calculer son aire.
+\item Montrer que le vecteur $\vec n=(1;1;1)$ est normal au plan $(ABC)$.
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Justifier que ses coordonnées sont de la forme $(t;t;t)$. Déterminer $t$ en utilisant $\vect{AH}\cdot\vec n=0$.
+\item Calculer $OH$, puis le volume du tétraèdre $OABC$ en prenant $ABC$ pour base. Vérifier ce volume en prenant $OAB$ pour base.\end{enumerate}
+
+\ifprof\clearpage\section{Conduite et corrigés}\begin{profbox}{Repères pour le professeur}Commencer par les trois écritures du produit scalaire. Les droites orthogonales ne sont pas nécessairement sécantes : « perpendiculaires » exige l'intersection. Pour démontrer qu'une droite est orthogonale à un plan, choisir deux directions non colinéaires. La formule générale de distance point-plan n'est pas exigée par cœur : privilégier le projeté. Les équations cartésiennes utilisées dans la progression en S54 peuvent être annoncées par la condition vectorielle, puis formalisées en S67.\end{profbox}
+
+\subsection{Corrigé de l'activité}\begin{enumerate}
+\item Un point $H$ de $d$ s'écrit $H=A+t\vec u$, donc $H(1+t,t,0)$ pour $t\in\R$.
+\item $\vect{MH}=(1+t,t-2,-3)$. Le produit scalaire avec $\vec u=(1,1,0)$ vaut $1+t+t-2=2t-1$. Son annulation donne $t=\frac{1}{2}$ et $H(\frac{3}{2},\frac{1}{2},0)$.
+\item Le repère est orthonormé : $MH^2=(\frac{3}{2})^2+(-\frac{3}{2})^2+(-3)^2=\frac{27}{2}$. Donc $MH=\frac{3\sqrt{6}}{2}$.
+\item Pour $P\in d$, $\vect{HP}$ est colinéaire à $\vec u$ et donc orthogonal à $\vect{MH}$. Le théorème de Pythagore donne $MP^2=MH^2+HP^2\ge MH^2$, avec égalité seulement si $P=H$. Le point calculé est bien l'unique point de la droite le plus proche de $M$.
+\end{enumerate}
+
+\paragraph{E1.}Dans le repère orthonormé, le produit scalaire est $2\times1+(-1)\times4+3\times0=-2$.
+
+\paragraph{E2.}Le produit scalaire est $3a+2(-1)+1\times4=3a+2$. L'orthogonalité équivaut à son annulation : $3a+2=0$, donc $a=-\frac{2}{3}$.
+
+\paragraph{E3.}Les deux directeurs sont non colinéaires et les deux produits scalaires sont nuls. Le milieu est $I(1,1,1)$. Le lieu recherché est le plan passant par $I$ et normal à $\vect{AB}=(2,2,2)$, donc de normal $(1,1,1)$.
+
+\paragraph{E4.}Les deux vecteurs sont non nuls, de normes $\sqrt2$, et leur produit scalaire vaut $1$. Donc leur angle $\theta\in[0,\pi]$ vérifie $\cos \theta=\frac{1}{\sqrt2\sqrt2}=\frac{1}{2}$, soit $\theta=\frac{\pi}{3}$.
+
+\paragraph{E5.}L'aire de la base rectangle vaut $\frac{3\times4}{2}=6\,\mathrm{cm}^2$. La hauteur perpendiculaire à cette base vaut $5$ cm, donc $V=\frac{6\times5}{3}=10\,\mathrm{cm}^3$.
+
+\subsection{Corrigé du DM11}\begin{enumerate}
+\item $\vect{AB}=(-2,2,0)$, $\vect{AC}=(-2,0,2)$ et $\vect{BC}=(0,-2,2)$ ; les trois normes valent $2\sqrt2$. Le triangle est équilatéral. Sa hauteur vaut $\sqrt{(2\sqrt2)^2-(\sqrt2)^2}=\sqrt6$ ; son aire est donc $\frac{(2\sqrt2)(\sqrt6)}{2}=2\sqrt{3}$.
+\item Les vecteurs $\vect{AB},\vect{AC}$ sont non colinéaires. Leurs produits scalaires avec $(1,1,1)$ valent respectivement $-2+2=0$ et $-2+2=0$. Le vecteur non nul $\vec n$ est donc normal à $(ABC)$.
+\item Le projeté de $O$ appartient à la droite de directeur $\vec n$ passant par $O$, donc $H=(t,t,t)$. Sa condition d'appartenance au plan est $(t-2)+t+t=0$, soit $t=\frac{2}{3}$. On obtient $H(\frac{2}{3},\frac{2}{3},\frac{2}{3})$, qui vérifie les deux conditions d'un projeté.
+\item $OH=\sqrt{3(\frac{2}{3})^2}=\frac{2}{\sqrt{3}}$. En prenant la base $ABC$, le volume est $V=\frac{(2\sqrt3)(\frac{2}{\sqrt{3}})}{3}=\frac{4}{3}$ unités de volume. Autre base : le triangle $OAB$ est rectangle en $O$, d'aire $\frac{2\times2}{2}=2$ ; la droite $(OC)$ est perpendiculaire au plan $(OAB)$, et $OC=2$. Ainsi $V=\frac{2\times2}{3}=\frac{4}{3}$.
+\end{enumerate}
+
+\subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 23.} Dans le repère orthonormé donné, le produit scalaire est la somme des produits des coordonnées correspondantes :
+\[(-3{,}5)(-4)+2\times5{,}5+(-4)(-3)=14+11+12=37,\]
+\[\frac23\left(-\frac34\right)+\frac{15}7\frac{14}3+\left(-\frac{12}{11}\right)\left(-\frac{22}4\right)=-\frac12+10+6=\frac{31}2.\]
+\paragraph{Exercice 27.} Dans chaque cas, les deux vecteurs $\vec u$ et $\vec v$ donnés dirigent le plan et ne sont pas colinéaires. Un vecteur non nul $\vec w$ est normal si, et seulement si, il est orthogonal à chacun d'eux.
+\begin{enumerate}
+\item $\vec w\cdot\vec u=-132+312-180=0$ et $\vec w\cdot\vec v=-66+546-480=0$. Le vecteur $\vec w$ est normal au plan.
+\item $\vec w\cdot\vec u=20+6-26=0$, mais $\vec w\cdot\vec v=18-6-10=2\ne0$. Il n'est pas normal au plan.
+\item $\vec w\cdot\vec u=\frac12+6-7=-\frac12\ne0$. Ce seul produit non nul suffit à exclure la normalité.
+\end{enumerate}
+
+\fi
+

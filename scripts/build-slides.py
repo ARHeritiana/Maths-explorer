@@ -70,7 +70,7 @@ def esc(t): return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&g
 
 def text2html(t):
     """LaTeX fragment -> small HTML subset; maths is passed to MathJax as \\( \\) / \\[ \\]."""
-    t = strip_comments(t)
+    t = re.sub(r'\\figtok\{(\d+)\}', r'@@FIG\1@@', strip_comments(t))
     parts = []; last = 0
     for m in MATH.finditer(t):
         parts.append(('t', t[last:m.start()])); m_ = m.group(0)
@@ -129,6 +129,11 @@ def clean_residue(h):
     return re.sub(r'(<br>\s*){3,}', '<br><br>', h).strip()
 
 
+def attach(out, n):
+    """A figure outside any box belongs to the slide just produced."""
+    if out: out[-1]['b'] = out[-1]['b'] + ' @@FIG%s@@' % n
+
+
 def code_html(body): return esc(body.strip('\n'))
 
 
@@ -170,12 +175,76 @@ def clean_title(t):
 def slide(kind, title, body, ans=None, h=None): return {'k': kind, 't': title, 'b': body, 'a': ans, 'h': h}
 
 
+
+# ---------------------------------------------------------------- figures
+FIGRE = re.compile(r'(?:\\begin\{center\}\s*)?\\begin\{tikzpicture\}.*?\\end\{tikzpicture\}(?:\s*\\end\{center\})?|\\input\{figures/[^}]+\}', re.S)
+
+
+def extract_figs(src):
+    """Replace every figure (TikZ/pgfplots picture or \\input of a figure file) by \\figtok{n}; return (source, [code])."""
+    figs = []
+    def rep(m): figs.append(m.group(0)); return '\\figtok{%d}' % len(figs)
+    return FIGRE.sub(rep, strip_comments(src)), figs
+
+
+def fig_tokens(h):
+    """Pull @@FIGn@@ markers out of an HTML body: returns (html without markers, [n...])."""
+    nums = [int(x) for x in re.findall(r'@@FIG(\d+)@@', h)]
+    return re.sub(r'(?:<br>\s*)*@@FIG\d+@@(?:\s*<br>)*', ' ', h).strip(), nums
+
+
+PREAMBLE = {  # course -> (main file for language, flags prepended before \documentclass)
+    'seconde': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, '\\def\\VERSIONPROF{1}'),
+    'premiere': ({'fr': 'main.tex', 'en': 'main-en.tex'}, '\\def\\versionprof{1}'),
+    'stmg': ({'fr': 'livret-tstmg.tex', 'en': 'livret-tstmg-en.tex'}, '\\def\\EditionProf{true}'),
+    'terminale': ({'fr': 'livret.tex', 'en': 'livret-en.tex'}, ''),
+}
+
+
+def compile_figs(course, lang, jobs):
+    """jobs: [(deck, n, code)] -> writes dist/slides/fig/<deck>-<n>[-en].svg; returns the set of (deck, n) that rendered."""
+    import subprocess, pymupdf
+    if not jobs: return set()
+    base = SRC / course; main, flags = PREAMBLE[course]; head = (base / main[lang]).read_text(encoding='utf8').split('\\begin{document}')[0]
+    build = ROOT / 'build/tex/figs'; build.mkdir(parents=True, exist_ok=True)
+    figdir = OUT.parent / 'fig'; figdir.mkdir(parents=True, exist_ok=True)
+    done = set()
+    def run(items, job):
+        body = '\n'.join('\\begin{preview}%s\\end{preview}' % code for _, _, code in items)
+        tex = flags + head + '\\usepackage[active,tightpage]{preview}\\setlength\\PreviewBorder{5pt}\\pagestyle{empty}\\begin{document}\n' + body + '\n\\end{document}\n'
+        (base / (job + '.tex')).write_text(tex, encoding='utf8')
+        r = subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
+        (base / (job + '.tex')).unlink()
+        pdf = build / (job + '.pdf')
+        return pdf if pdf.exists() else None
+    pdf = run(jobs, f'_figs_{lang}')
+    d = pymupdf.open(pdf) if pdf else None
+    ok = d is not None and len(d) == len(jobs)
+    if not ok:    # isolate failing figures: compile one by one
+        print(f'  {course} {lang}: batch failed, compiling figures one by one')
+        pages = []
+        for it in jobs:
+            p1 = run([it], f'_fig1_{lang}')
+            pages.append((it, pymupdf.open(p1) if p1 else None))
+    else: pages = [(it, None) for it in jobs]
+    for k, (it, one) in enumerate(pages):
+        deck, n, _ = it
+        try:
+            page = (one[0] if one is not None and len(one) else None) if not ok else d[k]
+            if page is None: print('  figure failed:', deck, n); continue
+            svg = page.get_svg_image(text_as_path=True)
+            (figdir / f'{deck}-{n}{"-en" if lang == "en" else ""}.svg').write_text(svg, encoding='utf8'); done.add((deck, n))
+        except Exception as e: print('  figure failed:', deck, n, e)
+    return done
+
+
 # ---------------------------------------------------------------- per-course extractors (return list of slides, flat)
 def premiere(src, number):
     H = {'chapter': 1, 'section': 1, 'exemple': 1, 'application': 1, 'repere': 0, 'erreur': 0, 'preuve': 1}
-    ev = walk(src, {'chapter': 1, 'section': 1, 'exemple': 1, 'application': 1, 'preuve': 1, 'repere': 0, 'erreur': 0})
+    ev = walk(src, {'chapter': 1, 'section': 1, 'exemple': 1, 'application': 1, 'preuve': 1, 'repere': 0, 'erreur': 0, 'figtok': 1})
     out = []; unit = None; skip = False
     for kind, name, a, o in ev:
+        if name == 'figtok': attach(out, a[0]); continue
         if name == 'chapter': out.append(slide('title', clean_title(a[0]), '', None))
         elif name == 'section': unit = clean_title(a[0]); skip = bool(re.match(r'(MCQ|QCM|Diagnostic)', unit))
         elif skip and kind != 'cmd' or skip and name in ('exemple', 'application', 'preuve'): continue
@@ -193,10 +262,11 @@ def premiere(src, number):
 
 
 def seconde(src, number):
-    ev = walk(src, {'sequence': 3, 'section': 1, 'fiche': 1, 'cours': 0, 'methode': 0, 'ex': 1, 'reponse': 1, 'preuve': 1, 'vigilance': 1})
+    ev = walk(src, {'sequence': 3, 'section': 1, 'fiche': 1, 'cours': 0, 'methode': 0, 'ex': 1, 'reponse': 1, 'preuve': 1, 'vigilance': 1, 'figtok': 1})
     out = []; unit = ''
     pending = None
     for kind, name, a, o in ev:
+        if name == 'figtok': attach(out, a[0]); continue
         if name == 'sequence': out.append(slide('title', clean_title(a[0]), ''))
         elif name in ('section', 'fiche'): unit = clean_title(a[0])
         elif kind == 'env' and name == 'cours': out.append(slide('concept', unit, text2html(a), None, clean_title(o) if o else None))
@@ -218,7 +288,7 @@ def seconde_fix(src):
 
 
 def stmg(src, number):
-    ev = walk(src, {'chapter': 1, 'section': 1, 'sessionheader': 5, 'objectifs': 0, 'activite': 0, 'traceecrite': 0, 'methode': 0, 'exemple': 0, 'erreur': 0, 'retenir': 0})
+    ev = walk(src, {'chapter': 1, 'section': 1, 'sessionheader': 5, 'objectifs': 0, 'activite': 0, 'traceecrite': 0, 'methode': 0, 'exemple': 0, 'erreur': 0, 'retenir': 0, 'figtok': 1})
     out = []; unit = ''
     for kind, name, a, o in ev:
         if name == 'chapter': out.append(slide('title', clean_title(a[0]), ''))
@@ -303,24 +373,54 @@ def files():
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    index = []; problems = []
+    for old in OUT.glob('*.json'): old.unlink()
+    index = []; problems = []; decks = {}; jobs = {}
     for cid, course, n, fr, en, fn in files():
         if not fr.exists() or not en.exists(): problems.append('missing ' + cid); continue
-        a = fn(fr.read_text(encoding='utf8'), n); b = fn(en.read_text(encoding='utf8'), n)
+        sf, figs_f = extract_figs(fr.read_text(encoding='utf8')); se, figs_e = extract_figs(en.read_text(encoding='utf8'))
+        a = fn(sf, n); b = fn(se, n)
         if [x['k'] for x in a] != [x['k'] for x in b]: problems.append(f'{cid}: slide structure differs ({len(a)} vs {len(b)})'); continue
         slides = []
         for x, y in zip(a, b):
-            slides.append({'k': x['k'], 't': [x['t'], y['t']], 'b': [x['b'], y['b']], **({'a': [x['a'], y['a']]} if x['a'] else {}), **({'h': [x['h'], y['h']]} if x['h'] else {})})
+            bf, nf = fig_tokens(x['b']); be, ne = fig_tokens(y['b'])
+            if len(nf) != len(ne): problems.append(f'{cid}: figure count differs on a slide'); nf = ne = []
+            x['b'], y['b'] = bf, be
+            sl = {'k': x['k'], 't': [x['t'], y['t']], 'b': [x['b'], y['b']], **({'a': [x['a'], y['a']]} if x['a'] else {}), **({'h': [x['h'], y['h']]} if x['h'] else {})}
+            if nf: sl['f'] = [[p_, q_] for p_, q_ in zip(nf, ne)]
+            slides.append(sl)
         slides = add_widgets(cid, slides)
-        title = CH[cid]['title'] if cid in CH else [slides[0]['t'][0], slides[0]['t'][1]]
-        deck = {'id': cid, 'course': course, 'number': n, 'title': title, 'slides': slides}
-        (OUT / (cid + '.json')).write_text(json.dumps(deck, ensure_ascii=False, separators=(',', ':')))
-        index.append({'id': cid, 'course': course, 'number': n, 'title': title, 'slides': len(slides), 'kind': 'extracted'})
+        decks[cid] = {'course': course, 'number': n, 'slides': slides, 'kind': 'extracted'}
+        for lang, figs in (('fr', figs_f), ('en', figs_e)):
+            for sl in slides:
+                for pf, pe in sl.get('f', []):
+                    k = pf if lang == 'fr' else pe; jobs.setdefault((course, lang), []).append((cid, k, figs[k - 1]))
     for p in sorted((ROOT / 'content/slides').glob('*.json')) if (ROOT / 'content/slides').exists() else []:
-        d = json.loads(p.read_text(encoding='utf8')); d['slides'] = add_widgets(d['id'], d['slides']); (OUT / (d['id'] + '.json')).write_text(json.dumps(d, ensure_ascii=False, separators=(',', ':')))
-        index.append({'id': d['id'], 'course': d['course'], 'number': d['number'], 'title': d['title'], 'slides': len(d['slides']), 'kind': 'authored'})
+        d = json.loads(p.read_text(encoding='utf8')); d['slides'] = add_widgets(d['id'], d['slides']); d['kind'] = 'authored'; decks[d['id']] = d
+        # figures of authored decks come from the French draft, aligned by slide index
+        dr = ROOT / 'content/slides/draft' / (d['id'] + '.fr.json')
+        if dr.exists():
+            draft = json.loads(dr.read_text(encoding='utf8'))
+            for sl, ds in zip([s for s in d['slides'] if s['k'] != 'widget'], draft['slides']):
+                if ds.get('f'): sl['f'] = ds['f']
+            for lang in ('fr', 'en'):
+                for sl in d['slides']:
+                    for pf, pe in sl.get('f', []):
+                        k = pf if lang == 'fr' else pe; jobs.setdefault(('terminale', lang), []).append((d['id'], k, draft['figs' if lang == 'fr' else 'figs_en'][k - 1]))
+    rendered = {}
+    for (course, lang), js in jobs.items():
+        print(f'figures {course} {lang}: {len(js)}'); rendered[(course, lang)] = compile_figs(course, lang, js)
+    for cid, d in decks.items():
+        course = d['course']
+        for sl in d['slides']:
+            if 'f' in sl:
+                sl['f'] = [[pf, pe] for pf, pe in sl['f'] if (cid, pf) in rendered.get((course, 'fr'), set()) and (cid, pe) in rendered.get((course, 'en'), set())]
+                if not sl['f']: del sl['f']
+        title = CH[cid]['title'] if cid in CH else d['title']
+        deck = {'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': d['slides']}
+        (OUT / (cid + '.json')).write_text(json.dumps(deck, ensure_ascii=False, separators=(',', ':')))
+        index.append({'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': len(d['slides']), 'kind': d['kind']})
     (OUT / 'index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1))
-    print(f'{len(index)} decks, {sum(i["slides"] for i in index)} slides')
+    print(f'{len(index)} decks, {sum(i["slides"] for i in index)} slides, {sum(1 for d in decks.values() for s in d["slides"] if "f" in s)} slides with figures')
     if problems: print('PROBLEMS:\n' + '\n'.join(problems)); sys.exit(1)
 
 

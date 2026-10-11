@@ -1,0 +1,1084 @@
+\clearpage\phantomsection\label{sujet:5-1}\addcontentsline{toc}{chapter}{Blanc 1 · Zéro 1}
+
+\section*{Blanc 1 · Zéro 1}
+
+{\sffamily\bfseries\color{teal}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{42+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0,25 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le7$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<7$. \hfill\textit{(0,5 pt)}
+
+\item Justifier que $(v_n)$ converge, puis déterminer sa limite. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $0\le 7-v_{n+1}\le\frac{7-v_n}{7}$. \hfill\textit{(0,5 pt)}
+
+\item En déduire par récurrence une majoration de $7-v_n$ en fonction de $n$. Déterminer ensuite, par comparaison de puissances entières, un rang à partir duquel cette majoration garantit $7-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le premier entier $n$ tel que $7-v_n\le10^{-3}$. Exécuter la fonction et comparer le rang obtenu au rang suffisant de la question précédente. Expliquer la différence éventuelle. \hfill\textit{(0,5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+5)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac{5}{2}$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(0,5 pt)}
+
+\item Montrer que $0<\alpha<2$. Écrire une fonction Python qui applique la dichotomie sur $[0;2]$ et renvoie un encadrement de $\alpha$ de largeur au plus $10^{-3}$. \hfill\textit{(0,5 pt)}
+
+\item Déterminer le nombre minimal d'étapes de dichotomie garantissant cette largeur. \hfill\textit{(0,5 pt)}
+
+\item Un élève affirme : « Puisque $f(x)$ tend vers $0$, la courbe coupe l'axe des abscisses. » Réfuter cette affirmation en étudiant le signe de $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Blanc 1 · Zéro 1 · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=4\vi+6\vj+10\vec k,&\vec z&=4\vi+6\vj+11\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(0,5 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0,5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(0,5 pt)}
+
+\item Exprimer le vecteur $6\vec u-4\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(0,5 pt)}
+
+\item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(0,5 pt)}
+
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(0,5 pt)}
+
+\item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $19$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{3}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
+
+\begin{enumerate}
+
+\item Justifier que $X$ suit une loi binomiale et préciser ses paramètres. \hfill\textit{(0,5 pt)}
+
+\item Calculer la probabilité d'obtenir exactement deux succès. \hfill\textit{(0,5 pt)}
+
+\item Exprimer à l'aide des événements contraires, puis calculer, la probabilité d'obtenir au moins deux succès. \hfill\textit{(0,5 pt)}
+
+\item Calculer l'espérance et la variance de $X$. \hfill\textit{(1 pt)}
+
+\item On répète maintenant la même épreuve un nombre $N\ge1$ de fois, toujours indépendamment. Déterminer le plus petit entier $N$ pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à $0{,}95$. Une recherche par tableau ou par boucle est autorisée. \hfill\textit{(0,5 pt)}
+
+\item Pour un entier $j\in\{0,\ldots,19\}$, démontrer la formule de $P(X=j)$ en dénombrant les positions possibles des succès. \hfill\textit{(0,5 pt)}
+
+\item On accepte une série de $19$ épreuves si son nombre de succès est compris entre $1$ et $3$, bornes incluses. Calculer la probabilité qu'une série soit acceptée. \hfill\textit{(0,5 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le plus petit entier $j$ tel que $P(X\le j)\ge0{,}95$. Exécuter la fonction et vérifier la minimalité du résultat. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · Blanc 1 · Zéro 1}\label{cor:5-1}
+
+\subsection*{Exercice 1 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0,25 pt]} $v_1=\sqrt{42+0}=\sqrt{42}$ et $v_2=\sqrt{42+\sqrt{42}}$.
+
+\item \textit{[0,75 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 7$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,7]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 42\le 42+v_n\le 42+7=49.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{42+v_n}\le\sqrt{49}=7.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,7]$.
+
+\item \textit{[0,75 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{42}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $42$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{42+v_{n+1}}\ge\sqrt{42+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[0,5 pt]} Notons $S(n)$ : « $v_n<7$ ». Au rang $0$, $v_0=0<7$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{42+v_n}<\sqrt{42+7}=\sqrt{49}=7.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<7$ pour tout $n\in\N$.
+
+\item \textit{[0,75 pt]} La suite est croissante et majorée par $7$ : le théorème de convergence monotone donne une limite réelle $\ell\in[0,7]$.
+La fonction $x\mapsto\sqrt{42+x}$ est continue sur cet intervalle. En passant à la limite dans la relation, $\ell=\sqrt{42+\ell}$. Puisque $\ell\ge0$, cela équivaut à
+\[\ell^2-\ell-42=0\quad\Longleftrightarrow\quad(\ell-7)(\ell+6)=0.\]
+La racine $-6$ est exclue par $\ell\ge0$ ; donc $\lim v_n=7$.
+
+\item \textit{[0,5 pt]} Le résultat précédent assure $7-v_{n+1}\ge0$. En multipliant par la quantité conjuguée,
+\[\begin{aligned}7-v_{n+1}&=\frac{49-(42+v_n)}{7+\sqrt{42+v_n}}\\&=\frac{7-v_n}{7+\sqrt{42+v_n}}\le\frac{7-v_n}{7}.\end{aligned}\]
+La dernière inégalité utilise un numérateur positif et un dénominateur au moins égal à $7>0$.
+
+\item \textit{[1 pt]} Montrons par récurrence $T(n)$ : « $0\le 7-v_n\le 7^{1-n}$ ».
+Au rang $0$, $7-v_0=7=7^1$. Fixons $n\ge0$ et supposons $T(n)$ vraie. La question précédente donne
+\[0\le 7-v_{n+1}\le\frac{7-v_n}{7}\le\frac{7^{1-n}}{7}=7^{1-(n+1)}.\]
+C'est $T(n+1)$. Par récurrence, l'encadrement est vrai à tout rang.
+Pour avoir $7^{1-n}\le10^{-3}$, il suffit de $7^{n-1}\ge1000$.
+Or $7^{3}=343<1000$ et $7^{4}=2401\ge1000$. Le rang $5$ est donc le premier garanti par cette majoration, sans recours au logarithme.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 7-v > 1e-3:
+        v = sqrt(42+v)
+        n += 1
+    return n
+\end{lstlisting}
+La convergence vers $7$ assure l'arrêt. La boucle examine les rangs dans l'ordre : elle renvoie $4$, premier rang satisfaisant le critère pour les valeurs calculées. Ici, les écarts aux rangs $3$ et $4$ valent environ $0{,}00265684$ et $0{,}00018978$. Ils sont nettement de part et d'autre de $10^{-3}$. Le rang garanti $5$ peut être plus grand ; il provient d'une majoration, pas de l'erreur exacte.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=5$ ; limite $0$ par croissance comparée.
+
+\item \textit{[0,5 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+5)e^{-x}=(-x-4)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&5&\searrow&0\end{array}\]
+
+\item \textit{[0,5 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-4)e^{-x}=(x+3)e^{-x}.\]
+Sur le domaine, $x+3\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1 pt]} Continuité, stricte décroissance, $f(0)=5>\frac{5}{2}$ et limite $0<\frac{5}{2}$ : exactement une solution.
+
+\item \textit{[0,5 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=5-4x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+5)e^{-x}\ge 5-4x$ pour tout $x\ge0$.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} On sait $f(0)=5>\frac{5}{2}$. De plus, $f(2)=7e^{-2}\simeq0{,}9473<\frac{5}{2}$. Le zéro de $f-\frac{5}{2}$ est donc dans $]0,2[$. Un programme est :
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+5)*exp(-m) > 5/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+La décroissance de $f$ conserve l'encadrement à chaque étape. Le résultat a une longueur au plus $10^{-3}$ ; son milieu a une erreur au plus $5\times10^{-4}$.
+
+\item \textit{[0,5 pt]} $\frac{2}{2^n}\le10^{-3}$ : $n=11$ étapes suffisent.
+
+\item \textit{[1 pt]} Pour $x\ge0$, $x+5>0$ et $e^{-x}>0$, donc $f(x)>0$. Une limite n'est pas nécessairement une valeur atteinte.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0,5 pt]} En développant, $4\vec u+6\vec v=4(\vi +\vec k)+6(\vj +\vec k)=4\vi +6\vj +10\vec k=\vec w$.
+
+\item \textit{[0,5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=4,\qquad\mu=6,\qquad\lambda+\mu=11.\]
+Les deux premières égalités donnent $\lambda+\mu=10$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $6\vec u-4\vec v=6(\vi +\vec k)-4(\vj +\vec k)=6\vi -4\vj +2\vec k$.
+
+\item \textit{[0,5 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\item \textit{[0,5 pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+
+\item \textit{[0,5 pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 4=\frac{\lambda}{2}\ \text{et}\ 6=\frac{\lambda}{2}.\]
+Ici $4\ne 6$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas alignés.
+
+\item \textit{[1 pt]} Non : $D$ appartient au plan mais $E$ n'y appartient pas, d'après la non-coplanarité démontrée. L'intersection est exactement $D$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Répétition d'un nombre fixe $19$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(19,\frac{3}{10})$.
+
+\item \textit{[0,5 pt]} $P(X=2)=\binom{19}2(\frac{3}{10})^2(\frac{7}{10})^{17}\simeq0{,}035802$.
+
+\item \textit{[0,5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{19}-19(\frac{3}{10})(\frac{7}{10})^{18}\simeq0{,}989578$.
+
+\item \textit{[1 pt]} $E(X)=\frac{57}{10}$, $V(X)=\frac{399}{100}$.
+
+\item \textit{[0,5 pt]} Pour $N$ essais indépendants, la probabilité d'aucun succès est $(1-p)^N$. La probabilité demandée est donc $1-(\frac{7}{10})^N$. Elle est strictement croissante avec $N$, car $0<\frac{7}{10}<1$. Les calculs donnent
+\[P_{8}\simeq0{,}942352<0{,}95,\qquad P_{9}\simeq0{,}959646\ge0{,}95.\]
+Ainsi $9$ est le plus petit nombre d'essais convenable.
+
+\item \textit{[0,5 pt]} Notons $n=19$. Pour $j\in\{0,\ldots,n\}$, un résultat ordonné contenant $j$ succès et $n-j$ échecs a, par indépendance, la probabilité $p^j(1-p)^{n-j}$. Il existe $\binom nj$ choix des positions des succès. Ces résultats sont incompatibles, donc
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
+
+\item \textit{[0,5 pt]} Les événements $X=1$, $X=2$, $X=3$ sont incompatibles, donc
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{3}{10})^j(\frac{7}{10})^{19-j}\simeq0{,}132031.\]
+
+\Needspace{24\baselineskip}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 19, 3/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la boucle s'arrête. Elle renvoie $9$. Les cumuls aux rangs $8$ et $9$ sont environ $0{,}916085$ et $0{,}967447$ : cela confirme la minimalité.
+
+\end{enumerate}
+
+\fi
+
+\clearpage\phantomsection\label{sujet:5-2}\addcontentsline{toc}{chapter}{Blanc 1 · Zéro 2}
+
+\section*{Blanc 1 · Zéro 2}
+
+{\sffamily\bfseries\color{teal}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{110+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0,25 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le11$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<11$. \hfill\textit{(0,5 pt)}
+
+\item Justifier que $(v_n)$ converge, puis déterminer sa limite. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $0\le 11-v_{n+1}\le\frac{11-v_n}{11}$. \hfill\textit{(0,5 pt)}
+
+\item En déduire par récurrence une majoration de $11-v_n$ en fonction de $n$. Déterminer ensuite, par comparaison de puissances entières, un rang à partir duquel cette majoration garantit $11-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le premier entier $n$ tel que $11-v_n\le10^{-3}$. Exécuter la fonction et comparer le rang obtenu au rang suffisant de la question précédente. Expliquer la différence éventuelle. \hfill\textit{(0,5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+4)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=2$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(0,5 pt)}
+
+\item Montrer que $0<\alpha<2$. Écrire une fonction Python qui applique la dichotomie sur $[0;2]$ et renvoie un encadrement de $\alpha$ de largeur au plus $10^{-3}$. \hfill\textit{(0,5 pt)}
+
+\item Déterminer le nombre minimal d'étapes de dichotomie garantissant cette largeur. \hfill\textit{(0,5 pt)}
+
+\item Un élève affirme : « Puisque $f(x)$ tend vers $0$, la courbe coupe l'axe des abscisses. » Réfuter cette affirmation en étudiant le signe de $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Blanc 1 · Zéro 2 · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=3\vi+8\vj+11\vec k,&\vec z&=3\vi+8\vj+12\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(0,5 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0,5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(0,5 pt)}
+
+\item Exprimer le vecteur $8\vec u-3\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(0,5 pt)}
+
+\item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(0,5 pt)}
+
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(0,5 pt)}
+
+\item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $16$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
+
+\begin{enumerate}
+
+\item Justifier que $X$ suit une loi binomiale et préciser ses paramètres. \hfill\textit{(0,5 pt)}
+
+\item Calculer la probabilité d'obtenir exactement deux succès. \hfill\textit{(0,5 pt)}
+
+\item Exprimer à l'aide des événements contraires, puis calculer, la probabilité d'obtenir au moins deux succès. \hfill\textit{(0,5 pt)}
+
+\item Calculer l'espérance et la variance de $X$. \hfill\textit{(1 pt)}
+
+\item On répète maintenant la même épreuve un nombre $N\ge1$ de fois, toujours indépendamment. Déterminer le plus petit entier $N$ pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à $0{,}95$. Une recherche par tableau ou par boucle est autorisée. \hfill\textit{(0,5 pt)}
+
+\item Pour un entier $j\in\{0,\ldots,16\}$, démontrer la formule de $P(X=j)$ en dénombrant les positions possibles des succès. \hfill\textit{(0,5 pt)}
+
+\item On accepte une série de $16$ épreuves si son nombre de succès est compris entre $1$ et $3$, bornes incluses. Calculer la probabilité qu'une série soit acceptée. \hfill\textit{(0,5 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le plus petit entier $j$ tel que $P(X\le j)\ge0{,}95$. Exécuter la fonction et vérifier la minimalité du résultat. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · Blanc 1 · Zéro 2}\label{cor:5-2}
+
+\subsection*{Exercice 1 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0,25 pt]} $v_1=\sqrt{110+0}=\sqrt{110}$ et $v_2=\sqrt{110+\sqrt{110}}$.
+
+\item \textit{[0,75 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 11$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,11]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 110\le 110+v_n\le 110+11=121.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{110+v_n}\le\sqrt{121}=11.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,11]$.
+
+\item \textit{[0,75 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{110}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $110$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{110+v_{n+1}}\ge\sqrt{110+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[0,5 pt]} Notons $S(n)$ : « $v_n<11$ ». Au rang $0$, $v_0=0<11$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{110+v_n}<\sqrt{110+11}=\sqrt{121}=11.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<11$ pour tout $n\in\N$.
+
+\item \textit{[0,75 pt]} La suite est croissante et majorée par $11$ : le théorème de convergence monotone donne une limite réelle $\ell\in[0,11]$.
+La fonction $x\mapsto\sqrt{110+x}$ est continue sur cet intervalle. En passant à la limite dans la relation, $\ell=\sqrt{110+\ell}$. Puisque $\ell\ge0$, cela équivaut à
+\[\ell^2-\ell-110=0\quad\Longleftrightarrow\quad(\ell-11)(\ell+10)=0.\]
+La racine $-10$ est exclue par $\ell\ge0$ ; donc $\lim v_n=11$.
+
+\item \textit{[0,5 pt]} Le résultat précédent assure $11-v_{n+1}\ge0$. En multipliant par la quantité conjuguée,
+\[\begin{aligned}11-v_{n+1}&=\frac{121-(110+v_n)}{11+\sqrt{110+v_n}}\\&=\frac{11-v_n}{11+\sqrt{110+v_n}}\le\frac{11-v_n}{11}.\end{aligned}\]
+La dernière inégalité utilise un numérateur positif et un dénominateur au moins égal à $11>0$.
+
+\item \textit{[1 pt]} Montrons par récurrence $T(n)$ : « $0\le 11-v_n\le 11^{1-n}$ ».
+Au rang $0$, $11-v_0=11=11^1$. Fixons $n\ge0$ et supposons $T(n)$ vraie. La question précédente donne
+\[0\le 11-v_{n+1}\le\frac{11-v_n}{11}\le\frac{11^{1-n}}{11}=11^{1-(n+1)}.\]
+C'est $T(n+1)$. Par récurrence, l'encadrement est vrai à tout rang.
+Pour avoir $11^{1-n}\le10^{-3}$, il suffit de $11^{n-1}\ge1000$.
+Or $11^{2}=121<1000$ et $11^{3}=1331\ge1000$. Le rang $4$ est donc le premier garanti par cette majoration, sans recours au logarithme.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 11-v > 1e-3:
+        v = sqrt(110+v)
+        n += 1
+    return n
+\end{lstlisting}
+La convergence vers $11$ assure l'arrêt. La boucle examine les rangs dans l'ordre : elle renvoie $4$, premier rang satisfaisant le critère pour les valeurs calculées. Ici, les écarts aux rangs $3$ et $4$ valent environ $0{,}00105884$ et $0{,}00004813$. Ils sont nettement de part et d'autre de $10^{-3}$. Le rang garanti $4$ peut être plus grand ; il provient d'une majoration, pas de l'erreur exacte.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=4$ ; limite $0$ par croissance comparée.
+
+\item \textit{[0,5 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+4)e^{-x}=(-x-3)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&4&\searrow&0\end{array}\]
+
+\item \textit{[0,5 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-3)e^{-x}=(x+2)e^{-x}.\]
+Sur le domaine, $x+2\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1 pt]} Continuité, stricte décroissance, $f(0)=4>2$ et limite $0<2$ : exactement une solution.
+
+\item \textit{[0,5 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=4-3x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+4)e^{-x}\ge 4-3x$ pour tout $x\ge0$.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} On sait $f(0)=4>2$. De plus, $f(2)=6e^{-2}\simeq0{,}8120<2$. Le zéro de $f-2$ est donc dans $]0,2[$. Un programme est :
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+4)*exp(-m) > 4/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+La décroissance de $f$ conserve l'encadrement à chaque étape. Le résultat a une longueur au plus $10^{-3}$ ; son milieu a une erreur au plus $5\times10^{-4}$.
+
+\item \textit{[0,5 pt]} $\frac{2}{2^n}\le10^{-3}$ : $n=11$ étapes suffisent.
+
+\item \textit{[1 pt]} Pour $x\ge0$, $x+4>0$ et $e^{-x}>0$, donc $f(x)>0$. Une limite n'est pas nécessairement une valeur atteinte.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0,5 pt]} En développant, $3\vec u+8\vec v=3(\vi +\vec k)+8(\vj +\vec k)=3\vi +8\vj +11\vec k=\vec w$.
+
+\item \textit{[0,5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=3,\qquad\mu=8,\qquad\lambda+\mu=12.\]
+Les deux premières égalités donnent $\lambda+\mu=11$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $8\vec u-3\vec v=8(\vi +\vec k)-3(\vj +\vec k)=8\vi -3\vj +5\vec k$.
+
+\item \textit{[0,5 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\item \textit{[0,5 pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+
+\item \textit{[0,5 pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 3=\frac{\lambda}{2}\ \text{et}\ 8=\frac{\lambda}{2}.\]
+Ici $3\ne 8$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas alignés.
+
+\item \textit{[1 pt]} Non : $D$ appartient au plan mais $E$ n'y appartient pas, d'après la non-coplanarité démontrée. L'intersection est exactement $D$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Répétition d'un nombre fixe $16$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(16,\frac{1}{10})$.
+
+\item \textit{[0,5 pt]} $P(X=2)=\binom{16}2(\frac{1}{10})^2(\frac{9}{10})^{14}\simeq0{,}274522$.
+
+\item \textit{[0,5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{16}-16(\frac{1}{10})(\frac{9}{10})^{15}\simeq0{,}485272$.
+
+\item \textit{[1 pt]} $E(X)=\frac{8}{5}$, $V(X)=\frac{36}{25}$.
+
+\item \textit{[0,5 pt]} Pour $N$ essais indépendants, la probabilité d'aucun succès est $(1-p)^N$. La probabilité demandée est donc $1-(\frac{9}{10})^N$. Elle est strictement croissante avec $N$, car $0<\frac{9}{10}<1$. Les calculs donnent
+\[P_{28}\simeq0{,}947665<0{,}95,\qquad P_{29}\simeq0{,}952899\ge0{,}95.\]
+Ainsi $29$ est le plus petit nombre d'essais convenable.
+
+\item \textit{[0,5 pt]} Notons $n=16$. Pour $j\in\{0,\ldots,n\}$, un résultat ordonné contenant $j$ succès et $n-j$ échecs a, par indépendance, la probabilité $p^j(1-p)^{n-j}$. Il existe $\binom nj$ choix des positions des succès. Ces résultats sont incompatibles, donc
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
+
+\item \textit{[0,5 pt]} Les événements $X=1$, $X=2$, $X=3$ sont incompatibles, donc
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{16}j(\frac{1}{10})^j(\frac{9}{10})^{16-j}\simeq0{,}746292.\]
+
+\Needspace{24\baselineskip}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 16, 1/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la boucle s'arrête. Elle renvoie $4$. Les cumuls aux rangs $3$ et $4$ sont environ $0{,}931594$ et $0{,}982996$ : cela confirme la minimalité.
+
+\end{enumerate}
+
+\fi
+
+\ifprof
+
+\clearpage\phantomsection\label{sujet:5-3}\addcontentsline{toc}{chapter}{Blanc 1 · A}
+
+\section*{Blanc 1 · A}
+
+{\sffamily\bfseries\color{amber}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{132+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0,25 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le12$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<12$. \hfill\textit{(0,5 pt)}
+
+\item Justifier que $(v_n)$ converge, puis déterminer sa limite. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $0\le 12-v_{n+1}\le\frac{12-v_n}{12}$. \hfill\textit{(0,5 pt)}
+
+\item En déduire par récurrence une majoration de $12-v_n$ en fonction de $n$. Déterminer ensuite, par comparaison de puissances entières, un rang à partir duquel cette majoration garantit $12-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le premier entier $n$ tel que $12-v_n\le10^{-3}$. Exécuter la fonction et comparer le rang obtenu au rang suffisant de la question précédente. Expliquer la différence éventuelle. \hfill\textit{(0,5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+3)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac{3}{2}$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(0,5 pt)}
+
+\item Montrer que $0<\alpha<2$. Écrire une fonction Python qui applique la dichotomie sur $[0;2]$ et renvoie un encadrement de $\alpha$ de largeur au plus $10^{-3}$. \hfill\textit{(0,5 pt)}
+
+\item Déterminer le nombre minimal d'étapes de dichotomie garantissant cette largeur. \hfill\textit{(0,5 pt)}
+
+\item Un élève affirme : « Puisque $f(x)$ tend vers $0$, la courbe coupe l'axe des abscisses. » Réfuter cette affirmation en étudiant le signe de $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Blanc 1 · A · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=2\vi+5\vj+7\vec k,&\vec z&=2\vi+5\vj+8\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(0,5 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0,5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(0,5 pt)}
+
+\item Exprimer le vecteur $5\vec u-2\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(0,5 pt)}
+
+\item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(0,5 pt)}
+
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(0,5 pt)}
+
+\item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $17$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{5}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
+
+\begin{enumerate}
+
+\item Justifier que $X$ suit une loi binomiale et préciser ses paramètres. \hfill\textit{(0,5 pt)}
+
+\item Calculer la probabilité d'obtenir exactement deux succès. \hfill\textit{(0,5 pt)}
+
+\item Exprimer à l'aide des événements contraires, puis calculer, la probabilité d'obtenir au moins deux succès. \hfill\textit{(0,5 pt)}
+
+\item Calculer l'espérance et la variance de $X$. \hfill\textit{(1 pt)}
+
+\item On répète maintenant la même épreuve un nombre $N\ge1$ de fois, toujours indépendamment. Déterminer le plus petit entier $N$ pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à $0{,}95$. Une recherche par tableau ou par boucle est autorisée. \hfill\textit{(0,5 pt)}
+
+\item Pour un entier $j\in\{0,\ldots,17\}$, démontrer la formule de $P(X=j)$ en dénombrant les positions possibles des succès. \hfill\textit{(0,5 pt)}
+
+\item On accepte une série de $17$ épreuves si son nombre de succès est compris entre $1$ et $3$, bornes incluses. Calculer la probabilité qu'une série soit acceptée. \hfill\textit{(0,5 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le plus petit entier $j$ tel que $P(X\le j)\ge0{,}95$. Exécuter la fonction et vérifier la minimalité du résultat. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · Blanc 1 · A}\label{cor:5-3}
+
+\subsection*{Exercice 1 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0,25 pt]} $v_1=\sqrt{132+0}=\sqrt{132}$ et $v_2=\sqrt{132+\sqrt{132}}$.
+
+\item \textit{[0,75 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 12$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,12]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 132\le 132+v_n\le 132+12=144.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{132+v_n}\le\sqrt{144}=12.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,12]$.
+
+\item \textit{[0,75 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{132}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $132$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{132+v_{n+1}}\ge\sqrt{132+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[0,5 pt]} Notons $S(n)$ : « $v_n<12$ ». Au rang $0$, $v_0=0<12$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{132+v_n}<\sqrt{132+12}=\sqrt{144}=12.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<12$ pour tout $n\in\N$.
+
+\item \textit{[0,75 pt]} La suite est croissante et majorée par $12$ : le théorème de convergence monotone donne une limite réelle $\ell\in[0,12]$.
+La fonction $x\mapsto\sqrt{132+x}$ est continue sur cet intervalle. En passant à la limite dans la relation, $\ell=\sqrt{132+\ell}$. Puisque $\ell\ge0$, cela équivaut à
+\[\ell^2-\ell-132=0\quad\Longleftrightarrow\quad(\ell-12)(\ell+11)=0.\]
+La racine $-11$ est exclue par $\ell\ge0$ ; donc $\lim v_n=12$.
+
+\item \textit{[0,5 pt]} Le résultat précédent assure $12-v_{n+1}\ge0$. En multipliant par la quantité conjuguée,
+\[\begin{aligned}12-v_{n+1}&=\frac{144-(132+v_n)}{12+\sqrt{132+v_n}}\\&=\frac{12-v_n}{12+\sqrt{132+v_n}}\le\frac{12-v_n}{12}.\end{aligned}\]
+La dernière inégalité utilise un numérateur positif et un dénominateur au moins égal à $12>0$.
+
+\item \textit{[1 pt]} Montrons par récurrence $T(n)$ : « $0\le 12-v_n\le 12^{1-n}$ ».
+Au rang $0$, $12-v_0=12=12^1$. Fixons $n\ge0$ et supposons $T(n)$ vraie. La question précédente donne
+\[0\le 12-v_{n+1}\le\frac{12-v_n}{12}\le\frac{12^{1-n}}{12}=12^{1-(n+1)}.\]
+C'est $T(n+1)$. Par récurrence, l'encadrement est vrai à tout rang.
+Pour avoir $12^{1-n}\le10^{-3}$, il suffit de $12^{n-1}\ge1000$.
+Or $12^{2}=144<1000$ et $12^{3}=1728\ge1000$. Le rang $4$ est donc le premier garanti par cette majoration, sans recours au logarithme.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 12-v > 1e-3:
+        v = sqrt(132+v)
+        n += 1
+    return n
+\end{lstlisting}
+La convergence vers $12$ assure l'arrêt. La boucle examine les rangs dans l'ordre : elle renvoie $3$, premier rang satisfaisant le critère pour les valeurs calculées. Ici, les écarts aux rangs $2$ et $3$ valent environ $0{,}02130536$ et $0{,}00088776$. Ils sont nettement de part et d'autre de $10^{-3}$. Le rang garanti $4$ peut être plus grand ; il provient d'une majoration, pas de l'erreur exacte.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=3$ ; limite $0$ par croissance comparée.
+
+\item \textit{[0,5 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+3)e^{-x}=(-x-2)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&3&\searrow&0\end{array}\]
+
+\item \textit{[0,5 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-2)e^{-x}=(x+1)e^{-x}.\]
+Sur le domaine, $x+1\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1 pt]} Continuité, stricte décroissance, $f(0)=3>\frac{3}{2}$ et limite $0<\frac{3}{2}$ : exactement une solution.
+
+\item \textit{[0,5 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=3-2x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+3)e^{-x}\ge 3-2x$ pour tout $x\ge0$.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} On sait $f(0)=3>\frac{3}{2}$. De plus, $f(2)=5e^{-2}\simeq0{,}6767<\frac{3}{2}$. Le zéro de $f-\frac{3}{2}$ est donc dans $]0,2[$. Un programme est :
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+3)*exp(-m) > 3/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+La décroissance de $f$ conserve l'encadrement à chaque étape. Le résultat a une longueur au plus $10^{-3}$ ; son milieu a une erreur au plus $5\times10^{-4}$.
+
+\item \textit{[0,5 pt]} $\frac{2}{2^n}\le10^{-3}$ : $n=11$ étapes suffisent.
+
+\item \textit{[1 pt]} Pour $x\ge0$, $x+3>0$ et $e^{-x}>0$, donc $f(x)>0$. Une limite n'est pas nécessairement une valeur atteinte.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0,5 pt]} En développant, $2\vec u+5\vec v=2(\vi +\vec k)+5(\vj +\vec k)=2\vi +5\vj +7\vec k=\vec w$.
+
+\item \textit{[0,5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=2,\qquad\mu=5,\qquad\lambda+\mu=8.\]
+Les deux premières égalités donnent $\lambda+\mu=7$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $5\vec u-2\vec v=5(\vi +\vec k)-2(\vj +\vec k)=5\vi -2\vj +3\vec k$.
+
+\item \textit{[0,5 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\item \textit{[0,5 pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+
+\item \textit{[0,5 pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 2=\frac{\lambda}{2}\ \text{et}\ 5=\frac{\lambda}{2}.\]
+Ici $2\ne 5$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas alignés.
+
+\item \textit{[1 pt]} Non : $D$ appartient au plan mais $E$ n'y appartient pas, d'après la non-coplanarité démontrée. L'intersection est exactement $D$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(17,\frac{1}{5})$.
+
+\item \textit{[0,5 pt]} $P(X=2)=\binom{17}2(\frac{1}{5})^2(\frac{4}{5})^{15}\simeq0{,}191403$.
+
+\item \textit{[0,5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{17}-17(\frac{1}{5})(\frac{4}{5})^{16}\simeq0{,}881781$.
+
+\item \textit{[1 pt]} $E(X)=\frac{17}{5}$, $V(X)=\frac{68}{25}$.
+
+\item \textit{[0,5 pt]} Pour $N$ essais indépendants, la probabilité d'aucun succès est $(1-p)^N$. La probabilité demandée est donc $1-(\frac{4}{5})^N$. Elle est strictement croissante avec $N$, car $0<\frac{4}{5}<1$. Les calculs donnent
+\[P_{13}\simeq0{,}945024<0{,}95,\qquad P_{14}\simeq0{,}956020\ge0{,}95.\]
+Ainsi $14$ est le plus petit nombre d'essais convenable.
+
+\item \textit{[0,5 pt]} Notons $n=17$. Pour $j\in\{0,\ldots,n\}$, un résultat ordonné contenant $j$ succès et $n-j$ échecs a, par indépendance, la probabilité $p^j(1-p)^{n-j}$. Il existe $\binom nj$ choix des positions des succès. Ces résultats sont incompatibles, donc
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{5}.\]
+
+\item \textit{[0,5 pt]} Les événements $X=1$, $X=2$, $X=3$ sont incompatibles, donc
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{1}{5})^j(\frac{4}{5})^{17-j}\simeq0{,}526358.\]
+
+\Needspace{24\baselineskip}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 17, 2/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la boucle s'arrête. Elle renvoie $6$. Les cumuls aux rangs $5$ et $6$ sont environ $0{,}894299$ et $0{,}962337$ : cela confirme la minimalité.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifprof
+
+\clearpage\phantomsection\label{sujet:5-4}\addcontentsline{toc}{chapter}{Blanc 1 · B}
+
+\section*{Blanc 1 · B}
+
+{\sffamily\bfseries\color{amber}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{56+v_n}$.
+
+\begin{enumerate}
+
+\item Calculer $v_1$ et $v_2$. On donnera les valeurs exactes. \hfill\textit{(0,25 pt)}
+
+\item Démontrer par récurrence que tous les termes sont définis et que, pour tout $n\in\N$, $0\le v_n\le8$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer par récurrence que, pour tout $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $v_n<8$. \hfill\textit{(0,5 pt)}
+
+\item Justifier que $(v_n)$ converge, puis déterminer sa limite. \hfill\textit{(0,75 pt)}
+
+\item Démontrer que, pour tout $n\in\N$, $0\le 8-v_{n+1}\le\frac{8-v_n}{8}$. \hfill\textit{(0,5 pt)}
+
+\item En déduire par récurrence une majoration de $8-v_n$ en fonction de $n$. Déterminer ensuite, par comparaison de puissances entières, un rang à partir duquel cette majoration garantit $8-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le premier entier $n$ tel que $8-v_n\le10^{-3}$. Exécuter la fonction et comparer le rang obtenu au rang suffisant de la question précédente. Expliquer la différence éventuelle. \hfill\textit{(0,5 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+2)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=1$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(0,5 pt)}
+
+\item Montrer que $0<\alpha<2$. Écrire une fonction Python qui applique la dichotomie sur $[0;2]$ et renvoie un encadrement de $\alpha$ de largeur au plus $10^{-3}$. \hfill\textit{(0,5 pt)}
+
+\item Déterminer le nombre minimal d'étapes de dichotomie garantissant cette largeur. \hfill\textit{(0,5 pt)}
+
+\item Un élève affirme : « Puisque $f(x)$ tend vers $0$, la courbe coupe l'axe des abscisses. » Réfuter cette affirmation en étudiant le signe de $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Blanc 1 · B · suite}\par
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=5\vi+6\vj+11\vec k,&\vec z&=5\vi+6\vj+12\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justifier que $\vec u$ et $\vec v$ ne sont pas colinéaires. \hfill\textit{(0,5 pt)}
+
+\item Écrire $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$. \hfill\textit{(0,5 pt)}
+
+\item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(0,5 pt)}
+
+\item Exprimer le vecteur $6\vec u-5\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+
+\item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(0,5 pt)}
+
+\item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(0,5 pt)}
+
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(0,5 pt)}
+
+\item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $19$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
+
+\begin{enumerate}
+
+\item Justifier que $X$ suit une loi binomiale et préciser ses paramètres. \hfill\textit{(0,5 pt)}
+
+\item Calculer la probabilité d'obtenir exactement deux succès. \hfill\textit{(0,5 pt)}
+
+\item Exprimer à l'aide des événements contraires, puis calculer, la probabilité d'obtenir au moins deux succès. \hfill\textit{(0,5 pt)}
+
+\item Calculer l'espérance et la variance de $X$. \hfill\textit{(1 pt)}
+
+\item On répète maintenant la même épreuve un nombre $N\ge1$ de fois, toujours indépendamment. Déterminer le plus petit entier $N$ pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à $0{,}95$. Une recherche par tableau ou par boucle est autorisée. \hfill\textit{(0,5 pt)}
+
+\item Pour un entier $j\in\{0,\ldots,19\}$, démontrer la formule de $P(X=j)$ en dénombrant les positions possibles des succès. \hfill\textit{(0,5 pt)}
+
+\item On accepte une série de $19$ épreuves si son nombre de succès est compris entre $1$ et $3$, bornes incluses. Calculer la probabilité qu'une série soit acceptée. \hfill\textit{(0,5 pt)}
+
+\item Écrire une fonction Python sans argument qui renvoie le plus petit entier $j$ tel que $P(X\le j)\ge0{,}95$. Exécuter la fonction et vérifier la minimalité du résultat. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · Blanc 1 · B}\label{cor:5-4}
+
+\subsection*{Exercice 1 · Récurrence et encadrement}\begin{enumerate}
+
+\item \textit{[0,25 pt]} $v_1=\sqrt{56+0}=\sqrt{56}$ et $v_2=\sqrt{56+\sqrt{56}}$.
+
+\item \textit{[0,75 pt]} Notons $P(n)$ : « $v_n$ est défini et $0\le v_n\le 8$ ».
+\par\smallskip\textbf{Initialisation.} $v_0=0$ est défini et appartient à $[0,8]$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Alors
+\[0\le 56\le 56+v_n\le 56+8=64.\]
+La racine carrée est donc définie et, par croissance de cette fonction sur $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{56+v_n}\le\sqrt{64}=8.\]
+Ainsi $P(n+1)$ est vraie.
+\par\smallskip\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à $[0,8]$.
+
+\item \textit{[0,75 pt]} Pour $n\in\N$, posons $R(n)$ : « $v_{n+1}\ge v_n$ ».
+\par\smallskip\textbf{Initialisation.} $v_1=\sqrt{56}>0=v_0$ ; $R(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\ge0$ et supposons $v_{n+1}\ge v_n$. En ajoutant $56$ puis en appliquant la croissance de la racine carrée,
+\[v_{n+2}=\sqrt{56+v_{n+1}}\ge\sqrt{56+v_n}=v_{n+1}.\]
+C'est $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $v_{n+1}\ge v_n$ pour tout $n\ge0$ : $(v_n)$ est croissante.
+
+\item \textit{[0,5 pt]} Notons $S(n)$ : « $v_n<8$ ». Au rang $0$, $v_0=0<8$.
+Fixons $n\ge0$ et supposons $S(n)$ vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne
+\[v_{n+1}=\sqrt{56+v_n}<\sqrt{56+8}=\sqrt{64}=8.\]
+Donc $S(n+1)$ est vraie. L'initialisation et l'hérédité établissent par récurrence que $v_n<8$ pour tout $n\in\N$.
+
+\item \textit{[0,75 pt]} La suite est croissante et majorée par $8$ : le théorème de convergence monotone donne une limite réelle $\ell\in[0,8]$.
+La fonction $x\mapsto\sqrt{56+x}$ est continue sur cet intervalle. En passant à la limite dans la relation, $\ell=\sqrt{56+\ell}$. Puisque $\ell\ge0$, cela équivaut à
+\[\ell^2-\ell-56=0\quad\Longleftrightarrow\quad(\ell-8)(\ell+7)=0.\]
+La racine $-7$ est exclue par $\ell\ge0$ ; donc $\lim v_n=8$.
+
+\item \textit{[0,5 pt]} Le résultat précédent assure $8-v_{n+1}\ge0$. En multipliant par la quantité conjuguée,
+\[\begin{aligned}8-v_{n+1}&=\frac{64-(56+v_n)}{8+\sqrt{56+v_n}}\\&=\frac{8-v_n}{8+\sqrt{56+v_n}}\le\frac{8-v_n}{8}.\end{aligned}\]
+La dernière inégalité utilise un numérateur positif et un dénominateur au moins égal à $8>0$.
+
+\item \textit{[1 pt]} Montrons par récurrence $T(n)$ : « $0\le 8-v_n\le 8^{1-n}$ ».
+Au rang $0$, $8-v_0=8=8^1$. Fixons $n\ge0$ et supposons $T(n)$ vraie. La question précédente donne
+\[0\le 8-v_{n+1}\le\frac{8-v_n}{8}\le\frac{8^{1-n}}{8}=8^{1-(n+1)}.\]
+C'est $T(n+1)$. Par récurrence, l'encadrement est vrai à tout rang.
+Pour avoir $8^{1-n}\le10^{-3}$, il suffit de $8^{n-1}\ge1000$.
+Or $8^{3}=512<1000$ et $8^{4}=4096\ge1000$. Le rang $5$ est donc le premier garanti par cette majoration, sans recours au logarithme.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 8-v > 1e-3:
+        v = sqrt(56+v)
+        n += 1
+    return n
+\end{lstlisting}
+La convergence vers $8$ assure l'arrêt. La boucle examine les rangs dans l'ordre : elle renvoie $4$, premier rang satisfaisant le critère pour les valeurs calculées. Ici, les écarts aux rangs $3$ et $4$ valent environ $0{,}00202265$ et $0{,}00012642$. Ils sont nettement de part et d'autre de $10^{-3}$. Le rang garanti $5$ peut être plus grand ; il provient d'une majoration, pas de l'erreur exacte.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=2$ ; limite $0$ par croissance comparée.
+
+\item \textit{[0,5 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+2)e^{-x}=(-x-1)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&2&\searrow&0\end{array}\]
+
+\item \textit{[0,5 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-1)e^{-x}=xe^{-x}.\]
+Sur le domaine, $x+0\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1 pt]} Continuité, stricte décroissance, $f(0)=2>1$ et limite $0<1$ : exactement une solution.
+
+\item \textit{[0,5 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=2-x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+2)e^{-x}\ge 2-x$ pour tout $x\ge0$.
+
+\Needspace{24\baselineskip}
+
+\item \textit{[0,5 pt]} On sait $f(0)=2>1$. De plus, $f(2)=4e^{-2}\simeq0{,}5413<1$. Le zéro de $f-1$ est donc dans $]0,2[$. Un programme est :
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+2)*exp(-m) > 2/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+La décroissance de $f$ conserve l'encadrement à chaque étape. Le résultat a une longueur au plus $10^{-3}$ ; son milieu a une erreur au plus $5\times10^{-4}$.
+
+\item \textit{[0,5 pt]} $\frac{2}{2^n}\le10^{-3}$ : $n=11$ étapes suffisent.
+
+\item \textit{[1 pt]} Pour $x\ge0$, $x+2>0$ et $e^{-x}>0$, donc $f(x)>0$. Une limite n'est pas nécessairement une valeur atteinte.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Calcul vectoriel dans une base}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Dans une égalité $\vec v=t\vec u$, le coefficient de $\vj $ serait $1=0$, contradiction par unicité des coordonnées dans une base.
+
+\item \textit{[0,5 pt]} En développant, $5\vec u+6\vec v=5(\vi +\vec k)+6(\vj +\vec k)=5\vi +6\vj +11\vec k=\vec w$.
+
+\item \textit{[0,5 pt]} Comme $\vec u,\vec v$ ne sont pas colinéaires, la coplanarité équivaudrait à $\vec z=\lambda\vec u+\mu\vec v$. L'unicité de la décomposition dans la base impose
+\[\lambda=5,\qquad\mu=6,\qquad\lambda+\mu=12.\]
+Les deux premières égalités donnent $\lambda+\mu=11$, en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.
+
+\item \textit{[1 pt]} $6\vec u-5\vec v=6(\vi +\vec k)-5(\vj +\vec k)=6\vi -5\vj +\vec k$.
+
+\item \textit{[0,5 pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
+
+\item \textit{[0,5 pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+
+\item \textit{[0,5 pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 5=\frac{\lambda}{2}\ \text{et}\ 6=\frac{\lambda}{2}.\]
+Ici $5\ne 6$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas alignés.
+
+\item \textit{[1 pt]} Non : $D$ appartient au plan mais $E$ n'y appartient pas, d'après la non-coplanarité démontrée. L'intersection est exactement $D$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
+
+\item \textit{[0,5 pt]} Répétition d'un nombre fixe $19$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(19,\frac{1}{10})$.
+
+\item \textit{[0,5 pt]} $P(X=2)=\binom{19}2(\frac{1}{10})^2(\frac{9}{10})^{17}\simeq0{,}285180$.
+
+\item \textit{[0,5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{19}-19(\frac{1}{10})(\frac{9}{10})^{18}\simeq0{,}579735$.
+
+\item \textit{[1 pt]} $E(X)=\frac{19}{10}$, $V(X)=\frac{171}{100}$.
+
+\item \textit{[0,5 pt]} Pour $N$ essais indépendants, la probabilité d'aucun succès est $(1-p)^N$. La probabilité demandée est donc $1-(\frac{9}{10})^N$. Elle est strictement croissante avec $N$, car $0<\frac{9}{10}<1$. Les calculs donnent
+\[P_{28}\simeq0{,}947665<0{,}95,\qquad P_{29}\simeq0{,}952899\ge0{,}95.\]
+Ainsi $29$ est le plus petit nombre d'essais convenable.
+
+\item \textit{[0,5 pt]} Notons $n=19$. Pour $j\in\{0,\ldots,n\}$, un résultat ordonné contenant $j$ succès et $n-j$ échecs a, par indépendance, la probabilité $p^j(1-p)^{n-j}$. Il existe $\binom nj$ choix des positions des succès. Ces résultats sont incompatibles, donc
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
+
+\item \textit{[0,5 pt]} Les événements $X=1$, $X=2$, $X=3$ sont incompatibles, donc
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{1}{10})^j(\frac{9}{10})^{19-j}\simeq0{,}749917.\]
+
+\Needspace{24\baselineskip}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 19, 1/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la boucle s'arrête. Elle renvoie $4$. Les cumuls aux rangs $3$ et $4$ sont environ $0{,}885002$ et $0{,}964806$ : cela confirme la minimalité.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

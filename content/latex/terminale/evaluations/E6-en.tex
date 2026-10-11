@@ -1,0 +1,624 @@
+\clearpage\phantomsection\label{sujet:6-1}\addcontentsline{toc}{chapter}{Test 4 · Practice 1}
+
+\section*{Test 4 · Practice 1}
+
+{\sffamily\bfseries\color{teal}PRACTICE PAPER · TRAINING\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{3+\ln x}x$. We denote by $\mathcal C_f$ its graph.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculate $f' (x)$, then draw the table of variations of $f$. \hfill\textit{(1 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{2}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition \hfill 5 points}The first four questions are independent. For each, state the expression of the antiderivatives requested and check the result by differentiation.
+
+\begin{enumerate}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto 2x^2-6x+2$. \hfill\textit{(1 pt)}
+
+\item Determine the antiderivative $F$ of $x\mapsto e^{2x}$ on $\R$ such that $F(0)=6$. \hfill\textit{(1 pt)}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto\frac{2x}{x^2+6}$. \hfill\textit{(1 pt)}
+
+\item Determine an antiderivative on $\R$ of $x\mapsto2x(x^2+2)^{2}$. \hfill\textit{(1 pt)}
+
+\item Let $F$ and $G$ be two antiderivatives of the same function on an interval $I$. Prove that there exists a real constant $C$ such that $F(x)-G(x)=C$ for all $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Test 4 · Practice 1 · continued}\par
+
+\subsection*{Exercise 3 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{5}y+\frac{8}{5}$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=13$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le9$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(11;0;0)$, $B(0;11;0)$ and $C(0;0;11)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Solutions · Test 4 · Practice 1}\label{cor:6-1}
+
+\subsection*{Exercise 1 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[1 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[1 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(3+\ln x)}{x^2}=\frac{-2-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-2}$, is positive for $0<x<s$ and negative for $x>s$. Hence $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[1 pt]} The maximum is attained only at $s=e^{-2}$ and equals
+\[f(s)=\frac{3- 2}{e^{-2}}=e^{2}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $3+\ln x=0$, that is $x=e^{-3}$.
+
+\item \textit{[1 pt]} We differentiate $(-2-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Let $m=\frac{e^{2}}{2}$ and $s=e^{-2}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition}\begin{enumerate}
+
+\item \textit{[1 pt]} By linearity, the antiderivatives are $F(x)=\frac{2}{3}x^3-3x^2+2x+C$, $C\in\R$. Indeed, $F'(x)=2x^2-6x+2$. The derivative does not depend on $C$, and all antiderivatives differ by a constant on $\R$.
+
+\item \textit{[1 pt]} The antiderivatives are $F(x)=\frac{e^{2x}}{2}+C$. The condition $F(0)=6$ requires $\frac{1}{2}+C=6$, hence $C=\frac{11}{2}$. The derivative of $\frac{e^{2x}}{2}$ is $e^{2x}$: the function obtained does satisfy both conditions.
+
+\item \textit{[1 pt]} Let $u(x)=x^2+6>0$ on $\R$; $u'(x)=2x$. The antiderivatives are therefore $\ln(x^2+6)+C$, since their derivative equals $\frac{u'}{u}=\frac{2x}{x^2+6}$.
+
+\item \textit{[1 pt]} An antiderivative is $F(x)=\dfrac{(x^2+2)^{3}}{3}$. Indeed, by differentiating a composite function,
+\[F'(x)=\frac{3}{3}\,2x(x^2+2)^{2}=2x(x^2+2)^{2}.\]
+
+\item \textit{[1 pt]} The derivative of their difference is zero on the interval; the difference is therefore constant. The fact that the domain is an interval is used in this result.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{5}y+\frac{8}{5}$ gives $y=8$.
+
+\item \textit{[1 pt]} The constant solution is $8$. Let $z=y-8$; the equation becomes $z'=-\frac{z}{5}$. Its solutions are $z(t)=Ce^{-\frac{t}{5}}$, so all the solutions of the original equation are $y(t)=8+Ce^{-\frac{t}{5}}$.
+The condition $y(0)=13$ gives $C=5$. For the function obtained,
+\[y'(t)=-e^{-\frac{t}{5}}=-\frac{y(t)}{5}+\frac{8}{5},\qquad y(0)=13.\]
+The solution of the initial value problem is therefore $y(t)=8+5e^{-\frac{t}{5}}$.
+
+\item \textit{[1 pt]} $y'=-e^{-\frac{t}{5}}<0$; limit $8$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{5}}>0$, the derivative $y'(t)=-e^{-\frac{t}{5}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 9&\Longleftrightarrow 5e^{-\frac{t}{5}}\le1\\&\Longleftrightarrow -\frac{t}{5}\le-\ln 5\\&\Longleftrightarrow t\ge 5\ln 5.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-5<0$. The first time is $5\ln 5\simeq8.0472$.
+
+\item \textit{[1 pt]} $Y_0=13$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{5}+\frac{8}{5})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-11,11,0)$ and $\vect{AC}=(-11,0,11)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-11)+t+t=3t-11=0.\]
+Hence $t=\frac{11}{3}$ and $H=(\frac{11}{3},\frac{11}{3},\frac{11}{3})$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{11}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=11\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(11\sqrt2)^2-(\frac{11\sqrt{2}}{2})^2}=\frac{11\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 11\sqrt2\times\frac{11\sqrt6}{2}=\frac{121}{2}\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(\frac{121}{2}\sqrt3)(\frac{11}{\sqrt{3}})}{3}=\frac{1331}{6}$. Base $OAB$: area $\frac{121}{2}$ and height $11$, the same value.
+
+\end{enumerate}
+
+\fi
+
+\clearpage\phantomsection\label{sujet:6-2}\addcontentsline{toc}{chapter}{Test 4 · Practice 2}
+
+\section*{Test 4 · Practice 2}
+
+{\sffamily\bfseries\color{teal}PRACTICE PAPER · TRAINING\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{2+\ln x}x$. We denote by $\mathcal C_f$ its graph.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculate $f' (x)$, then draw the table of variations of $f$. \hfill\textit{(1 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{1}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition \hfill 5 points}The first four questions are independent. For each, state the expression of the antiderivatives requested and check the result by differentiation.
+
+\begin{enumerate}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto 5x^2-7x+3$. \hfill\textit{(1 pt)}
+
+\item Determine the antiderivative $F$ of $x\mapsto e^{5x}$ on $\R$ such that $F(0)=7$. \hfill\textit{(1 pt)}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto\frac{2x}{x^2+7}$. \hfill\textit{(1 pt)}
+
+\item Determine an antiderivative on $\R$ of $x\mapsto2x(x^2+3)^{5}$. \hfill\textit{(1 pt)}
+
+\item Let $F$ and $G$ be two antiderivatives of the same function on an interval $I$. Prove that there exists a real constant $C$ such that $F(x)-G(x)=C$ for all $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Test 4 · Practice 2 · continued}\par
+
+\subsection*{Exercise 3 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{4}y+\frac{5}{2}$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=16$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le11$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(7;0;0)$, $B(0;7;0)$ and $C(0;0;7)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Solutions · Test 4 · Practice 2}\label{cor:6-2}
+
+\subsection*{Exercise 1 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[1 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[1 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(2+\ln x)}{x^2}=\frac{-1-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-1}$, is positive for $0<x<s$ and negative for $x>s$. Hence $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[1 pt]} The maximum is attained only at $s=e^{-1}$ and equals
+\[f(s)=\frac{2- 1}{e^{-1}}=e^{1}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $2+\ln x=0$, that is $x=e^{-2}$.
+
+\item \textit{[1 pt]} We differentiate $(-1-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Let $m=\frac{e^{1}}{2}$ and $s=e^{-1}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition}\begin{enumerate}
+
+\item \textit{[1 pt]} By linearity, the antiderivatives are $F(x)=\frac{5}{3}x^3-\frac{7}{2}x^2+3x+C$, $C\in\R$. Indeed, $F'(x)=5x^2-7x+3$. The derivative does not depend on $C$, and all antiderivatives differ by a constant on $\R$.
+
+\item \textit{[1 pt]} The antiderivatives are $F(x)=\frac{e^{5x}}{5}+C$. The condition $F(0)=7$ requires $\frac{1}{5}+C=7$, hence $C=\frac{34}{5}$. The derivative of $\frac{e^{5x}}{5}$ is $e^{5x}$: the function obtained does satisfy both conditions.
+
+\item \textit{[1 pt]} Let $u(x)=x^2+7>0$ on $\R$; $u'(x)=2x$. The antiderivatives are therefore $\ln(x^2+7)+C$, since their derivative equals $\frac{u'}{u}=\frac{2x}{x^2+7}$.
+
+\item \textit{[1 pt]} An antiderivative is $F(x)=\dfrac{(x^2+3)^{6}}{6}$. Indeed, by differentiating a composite function,
+\[F'(x)=\frac{6}{6}\,2x(x^2+3)^{5}=2x(x^2+3)^{5}.\]
+
+\item \textit{[1 pt]} The derivative of their difference is zero on the interval; the difference is therefore constant. The fact that the domain is an interval is used in this result.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{4}y+\frac{5}{2}$ gives $y=10$.
+
+\item \textit{[1 pt]} The constant solution is $10$. Let $z=y-10$; the equation becomes $z'=-\frac{z}{4}$. Its solutions are $z(t)=Ce^{-\frac{t}{4}}$, so all the solutions of the original equation are $y(t)=10+Ce^{-\frac{t}{4}}$.
+The condition $y(0)=16$ gives $C=6$. For the function obtained,
+\[y'(t)=-\frac{3}{2}e^{-\frac{t}{4}}=-\frac{y(t)}{4}+\frac{5}{2},\qquad y(0)=16.\]
+The solution of the initial value problem is therefore $y(t)=10+6e^{-\frac{t}{4}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{3}{2}e^{-\frac{t}{4}}<0$; limit $10$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{4}}>0$, the derivative $y'(t)=-\frac{3}{2}e^{-\frac{t}{4}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 11&\Longleftrightarrow 6e^{-\frac{t}{4}}\le1\\&\Longleftrightarrow -\frac{t}{4}\le-\ln 6\\&\Longleftrightarrow t\ge 4\ln 6.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-4<0$. The first time is $4\ln 6\simeq7.1670$.
+
+\item \textit{[1 pt]} $Y_0=16$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{4}+\frac{5}{2})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-7,7,0)$ and $\vect{AC}=(-7,0,7)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-7)+t+t=3t-7=0.\]
+Hence $t=\frac{7}{3}$ and $H=(\frac{7}{3},\frac{7}{3},\frac{7}{3})$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{7}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=7\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(7\sqrt2)^2-(\frac{7\sqrt{2}}{2})^2}=\frac{7\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 7\sqrt2\times\frac{7\sqrt6}{2}=\frac{49}{2}\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(\frac{49}{2}\sqrt3)(\frac{7}{\sqrt{3}})}{3}=\frac{343}{6}$. Base $OAB$: area $\frac{49}{2}$ and height $7$, the same value.
+
+\end{enumerate}
+
+\fi
+
+\ifprof
+
+\clearpage\phantomsection\label{sujet:6-3}\addcontentsline{toc}{chapter}{Test 4 · A}
+
+\section*{Test 4 · A}
+
+{\sffamily\bfseries\color{amber}PAPER RESERVED FOR ASSESSMENT\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{5+\ln x}x$. We denote by $\mathcal C_f$ its graph.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculate $f' (x)$, then draw the table of variations of $f$. \hfill\textit{(1 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{4}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition \hfill 5 points}The first four questions are independent. For each, state the expression of the antiderivatives requested and check the result by differentiation.
+
+\begin{enumerate}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto 4x^2-4x+1$. \hfill\textit{(1 pt)}
+
+\item Determine the antiderivative $F$ of $x\mapsto e^{4x}$ on $\R$ such that $F(0)=4$. \hfill\textit{(1 pt)}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto\frac{2x}{x^2+4}$. \hfill\textit{(1 pt)}
+
+\item Determine an antiderivative on $\R$ of $x\mapsto2x(x^2+1)^{4}$. \hfill\textit{(1 pt)}
+
+\item Let $F$ and $G$ be two antiderivatives of the same function on an interval $I$. Prove that there exists a real constant $C$ such that $F(x)-G(x)=C$ for all $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Test 4 · A · continued}\par
+
+\subsection*{Exercise 3 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{3}y+\frac{7}{3}$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=11$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le8$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(8;0;0)$, $B(0;8;0)$ and $C(0;0;8)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Solutions · Test 4 · A}\label{cor:6-3}
+
+\subsection*{Exercise 1 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[1 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[1 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(5+\ln x)}{x^2}=\frac{-4-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-4}$, is positive for $0<x<s$ and negative for $x>s$. Hence $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[1 pt]} The maximum is attained only at $s=e^{-4}$ and equals
+\[f(s)=\frac{5- 4}{e^{-4}}=e^{4}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $5+\ln x=0$, that is $x=e^{-5}$.
+
+\item \textit{[1 pt]} We differentiate $(-4-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Let $m=\frac{e^{4}}{2}$ and $s=e^{-4}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition}\begin{enumerate}
+
+\item \textit{[1 pt]} By linearity, the antiderivatives are $F(x)=\frac{4}{3}x^3-2x^2+x+C$, $C\in\R$. Indeed, $F'(x)=4x^2-4x+1$. The derivative does not depend on $C$, and all antiderivatives differ by a constant on $\R$.
+
+\item \textit{[1 pt]} The antiderivatives are $F(x)=\frac{e^{4x}}{4}+C$. The condition $F(0)=4$ requires $\frac{1}{4}+C=4$, hence $C=\frac{15}{4}$. The derivative of $\frac{e^{4x}}{4}$ is $e^{4x}$: the function obtained does satisfy both conditions.
+
+\item \textit{[1 pt]} Let $u(x)=x^2+4>0$ on $\R$; $u'(x)=2x$. The antiderivatives are therefore $\ln(x^2+4)+C$, since their derivative equals $\frac{u'}{u}=\frac{2x}{x^2+4}$.
+
+\item \textit{[1 pt]} An antiderivative is $F(x)=\dfrac{(x^2+1)^{5}}{5}$. Indeed, by differentiating a composite function,
+\[F'(x)=\frac{5}{5}\,2x(x^2+1)^{4}=2x(x^2+1)^{4}.\]
+
+\item \textit{[1 pt]} The derivative of their difference is zero on the interval; the difference is therefore constant. The fact that the domain is an interval is used in this result.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{3}y+\frac{7}{3}$ gives $y=7$.
+
+\item \textit{[1 pt]} The constant solution is $7$. Let $z=y-7$; the equation becomes $z'=-\frac{z}{3}$. Its solutions are $z(t)=Ce^{-\frac{t}{3}}$, so all the solutions of the original equation are $y(t)=7+Ce^{-\frac{t}{3}}$.
+The condition $y(0)=11$ gives $C=4$. For the function obtained,
+\[y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}=-\frac{y(t)}{3}+\frac{7}{3},\qquad y(0)=11.\]
+The solution of the initial value problem is therefore $y(t)=7+4e^{-\frac{t}{3}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{4}{3}e^{-\frac{t}{3}}<0$; limit $7$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{3}}>0$, the derivative $y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 8&\Longleftrightarrow 4e^{-\frac{t}{3}}\le1\\&\Longleftrightarrow -\frac{t}{3}\le-\ln 4\\&\Longleftrightarrow t\ge 3\ln 4.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-3<0$. The first time is $3\ln 4\simeq4.1589$.
+
+\item \textit{[1 pt]} $Y_0=11$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{3}+\frac{7}{3})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-8,8,0)$ and $\vect{AC}=(-8,0,8)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-8)+t+t=3t-8=0.\]
+Hence $t=\frac{8}{3}$ and $H=(\frac{8}{3},\frac{8}{3},\frac{8}{3})$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{8}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=8\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(8\sqrt2)^2-(\frac{8\sqrt{2}}{2})^2}=\frac{8\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 8\sqrt2\times\frac{8\sqrt6}{2}=32\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(32\sqrt3)(\frac{8}{\sqrt{3}})}{3}=\frac{256}{3}$. Base $OAB$: area $32$ and height $8$, the same value.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifprof
+
+\clearpage\phantomsection\label{sujet:6-4}\addcontentsline{toc}{chapter}{Test 4 · B}
+
+\section*{Test 4 · B}
+
+{\sffamily\bfseries\color{amber}PAPER RESERVED FOR ASSESSMENT\par}
+
+\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{4+\ln x}x$. We denote by $\mathcal C_f$ its graph.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Calculate $f' (x)$, then draw the table of variations of $f$. \hfill\textit{(1 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(1 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{3}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition \hfill 5 points}The first four questions are independent. For each, state the expression of the antiderivatives requested and check the result by differentiation.
+
+\begin{enumerate}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto 3x^2-6x+2$. \hfill\textit{(1 pt)}
+
+\item Determine the antiderivative $F$ of $x\mapsto e^{3x}$ on $\R$ such that $F(0)=6$. \hfill\textit{(1 pt)}
+
+\item Determine all antiderivatives on $\R$ of $x\mapsto\frac{2x}{x^2+6}$. \hfill\textit{(1 pt)}
+
+\item Determine an antiderivative on $\R$ of $x\mapsto2x(x^2+2)^{3}$. \hfill\textit{(1 pt)}
+
+\item Let $F$ and $G$ be two antiderivatives of the same function on an interval $I$. Prove that there exists a real constant $C$ such that $F(x)-G(x)=C$ for all $x\in I$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}Test 4 · B · continued}\par
+
+\subsection*{Exercise 3 · Differential equation and evolution \hfill 5 points}Consider the differential equation $(E):y'=-\frac1{2}y+\frac{9}{2}$ on $[0;+\infty[$. In questions 2 to 5, denote by $y$ the solution satisfying $y(0)=14$.
+
+\begin{enumerate}
+
+\item Determine the constant solution of $(E)$. \hfill\textit{(1 pt)}
+
+\item Determine the expression of the solution satisfying the given initial condition. \hfill\textit{(1 pt)}
+
+\item Determine the limit of $y(t)$ as $t$ tends to $+\infty$. \hfill\textit{(1 pt)}
+
+\item Study the variations of $y$, then determine the smallest real number $t\ge0$ such that $y(t)\le10$. \hfill\textit{(1 pt)}
+
+\item Apply Euler's method with step size $h>0$ and denote by $Y_k$ the approximation of $y(kh)$. Give the value of $Y_0$ and express $Y_{k+1}$ in terms of $Y_k$ and $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume \hfill 5 points}In an orthonormal coordinate system with origin $O$, consider $A(12;0;0)$, $B(0;12;0)$ and $C(0;0;12)$. We are given $\vec n=(1;1;1)$. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.
+
+\begin{enumerate}
+
+\item Prove that $\vec n$ is normal to the plane $(ABC)$. \hfill\textit{(1 pt)}
+
+\item Let $H$ be the orthogonal projection of $O$ onto $(ABC)$. Determine the coordinates of $H$ using $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Prove that $OH$ is the distance from $O$ to the plane $(ABC)$: for every $P\in(ABC)$, prove that $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculate the area of triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculate the volume of the tetrahedron $OABC$ in two ways, by choosing two different bases. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Solutions · Test 4 · B}\label{cor:6-4}
+
+\subsection*{Exercise 1 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[1 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[1 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(4+\ln x)}{x^2}=\frac{-3-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-3}$, is positive for $0<x<s$ and negative for $x>s$. Hence $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[1 pt]} The maximum is attained only at $s=e^{-3}$ and equals
+\[f(s)=\frac{4- 3}{e^{-3}}=e^{3}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $4+\ln x=0$, that is $x=e^{-4}$.
+
+\item \textit{[1 pt]} We differentiate $(-3-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+
+\item \textit{[1 pt]} Let $m=\frac{e^{3}}{2}$ and $s=e^{-3}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Antiderivatives with a given condition}\begin{enumerate}
+
+\item \textit{[1 pt]} By linearity, the antiderivatives are $F(x)=x^3-3x^2+2x+C$, $C\in\R$. Indeed, $F'(x)=3x^2-6x+2$. The derivative does not depend on $C$, and all antiderivatives differ by a constant on $\R$.
+
+\item \textit{[1 pt]} The antiderivatives are $F(x)=\frac{e^{3x}}{3}+C$. The condition $F(0)=6$ requires $\frac{1}{3}+C=6$, hence $C=\frac{17}{3}$. The derivative of $\frac{e^{3x}}{3}$ is $e^{3x}$: the function obtained does satisfy both conditions.
+
+\item \textit{[1 pt]} Let $u(x)=x^2+6>0$ on $\R$; $u'(x)=2x$. The antiderivatives are therefore $\ln(x^2+6)+C$, since their derivative equals $\frac{u'}{u}=\frac{2x}{x^2+6}$.
+
+\item \textit{[1 pt]} An antiderivative is $F(x)=\dfrac{(x^2+2)^{4}}{4}$. Indeed, by differentiating a composite function,
+\[F'(x)=\frac{4}{4}\,2x(x^2+2)^{3}=2x(x^2+2)^{3}.\]
+
+\item \textit{[1 pt]} The derivative of their difference is zero on the interval; the difference is therefore constant. The fact that the domain is an interval is used in this result.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Differential equation and evolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{2}y+\frac{9}{2}$ gives $y=9$.
+
+\item \textit{[1 pt]} The constant solution is $9$. Let $z=y-9$; the equation becomes $z'=-\frac{z}{2}$. Its solutions are $z(t)=Ce^{-\frac{t}{2}}$, so all the solutions of the original equation are $y(t)=9+Ce^{-\frac{t}{2}}$.
+The condition $y(0)=14$ gives $C=5$. For the function obtained,
+\[y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}=-\frac{y(t)}{2}+\frac{9}{2},\qquad y(0)=14.\]
+The solution of the initial value problem is therefore $y(t)=9+5e^{-\frac{t}{2}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{5}{2}e^{-\frac{t}{2}}<0$; limit $9$.
+
+\item \textit{[1 pt]} Since $e^{-\frac{t}{2}}>0$, the derivative $y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}$ is negative: $y$ is strictly decreasing. We solve
+\[\begin{aligned}y(t)\le 10&\Longleftrightarrow 5e^{-\frac{t}{2}}\le1\\&\Longleftrightarrow -\frac{t}{2}\le-\ln 5\\&\Longleftrightarrow t\ge 2\ln 5.\end{aligned}\]
+The last step reverses the inequality because we multiply by $-2<0$. The first time is $2\ln 5\simeq3.2189$.
+
+\item \textit{[1 pt]} $Y_0=14$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{2}+\frac{9}{2})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Projection and volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=(-12,12,0)$ and $\vect{AC}=(-12,0,12)$ are non-collinear and their dot products with $\vec n$ are zero.
+
+\item \textit{[1 pt]} The line normal to the plane passing through $O$ has direction vector $\vec n=(1,1,1)$. Its point $H$ is therefore written $(t,t,t)$. For $H$ to lie in $(ABC)$, it is necessary and sufficient that
+\[\vect{AH}\cdot\vec n=(t-12)+t+t=3t-12=0.\]
+Hence $t=4$ and $H=(4,4,4)$. This point lies in the plane and $\vect{OH}$ is collinear with the normal vector; it is indeed the required orthogonal projection.
+
+\item \textit{[1 pt]} $OH=\frac{12}{\sqrt{3}}$; for every $P$ in the plane, $OP^2=OH^2+HP^2\ge OH^2$, with equality only for $P=H$.
+
+\item \textit{[1 pt]} The coordinate differences give $AB=AC=BC=12\sqrt2$. The triangle is equilateral. Its height splits a side into two equal parts and equals
+\[\sqrt{(12\sqrt2)^2-(\frac{12\sqrt{2}}{2})^2}=\frac{12\sqrt6}{2}.\]
+Its area is therefore $\frac12\times 12\sqrt2\times\frac{12\sqrt6}{2}=72\sqrt3$ square units.
+
+\item \textit{[1 pt]} Base $ABC$: volume $\frac{(72\sqrt3)(\frac{12}{\sqrt{3}})}{3}=288$. Base $OAB$: area $72$ and height $12$, the same value.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

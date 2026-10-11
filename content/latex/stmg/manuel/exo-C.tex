@@ -1,0 +1,424 @@
+% Exercices originaux des séances 31 à 46 (chapitres 5 et 6).
+% Une commande par séance : \DefExo{séance}{cible}{énoncé}{correction}{lignes}.
+
+% -----------------------------------------------------------------------------
+% Chapitre 5 -- Statistiques à deux variables quantitatives
+% -----------------------------------------------------------------------------
+\DefExo{31}{Construire un nuage de points}{%
+Une supérette compare, sur six mois, l'écart $x_i$ entre la température moyenne du mois et la normale saisonnière (en °C) et la variation $y_i$ de ses ventes de boissons fraîches par rapport au même mois de l'année précédente (en centaines de bouteilles).
+\[
+\begin{array}{c|rrrrrr}
+\text{Écart de température }x_i\text{ (°C)}&-4&-1&0&2&5&7\\\hline
+\text{Variation des ventes }y_i\text{ (centaines)}&-3&-2&0&2&4&5
+\end{array}
+\]
+\begin{enumerate}
+\item Indiquer la variable placée en abscisse, celle placée en ordonnée, ainsi que leurs unités.
+\item Choisir des échelles adaptées puis représenter le nuage de points $M_i(x_i;y_i)$ dans un repère.
+\item Calculer les coordonnées du point moyen $G$ du nuage et le placer.
+\item Décrire en une phrase l'allure du nuage.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item En abscisse : l'écart de température $x$, en °C ; en ordonnée : la variation des ventes $y$, en centaines de bouteilles. Les deux variables prennent des valeurs négatives : les axes doivent se couper à l'intérieur du graphique.
+\item On peut prendre $1$~cm pour $1$~°C (de $-5$ à $8$) et $1$~cm pour une centaine de bouteilles (de $-4$ à $6$). On place les six points $(-4;-3)$, $(-1;-2)$, $(0;0)$, $(2;2)$, $(5;4)$ et $(7;5)$, sans les relier.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.62\textwidth,height=5.2cm,axis lines=middle,xmin=-5,xmax=8,ymin=-4,ymax=6,grid=major,xtick={-4,...,7},ytick={-3,...,5},xlabel={$x$},ylabel={$y$}]
+\addplot[only marks,mark=*,Blue,mark size=2.2pt] coordinates {(-4,-3)(-1,-2)(0,0)(2,2)(5,4)(7,5)};
+\addplot[only marks,mark=square*,Orange,mark size=2.6pt] coordinates {(1.5,1)};
+\node[Orange,anchor=south east] at (axis cs:1.5,1) {$G$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\item $\bar x=\dfrac{-4-1+0+2+5+7}{6}=\dfrac{9}{6}=1{,}5$ et $\bar y=\dfrac{-3-2+0+2+4+5}{6}=\dfrac{6}{6}=1$. Donc $G(1{,}5;1)$.
+\item Le nuage est orienté vers le haut : plus le mois est chaud par rapport à la normale, plus les ventes de boissons fraîches augmentent ; les points sont proches d'une droite.
+\end{enumerate}
+}{5}
+
+\DefExo{32}{Interpréter un nuage sans conclure à une causalité}{%
+Pendant huit semaines d'été, un glacier de bord de mer relève ses ventes hebdomadaires $x$ (en centaines de cornets) ; la pharmacie voisine relève le nombre $y$ de crèmes apaisantes pour coups de soleil vendues la même semaine. Le nuage de points obtenu est représenté ci-dessous.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.7\textwidth,height=5.4cm,axis lines=left,xmin=10,xmax=31,ymin=0,ymax=24,grid=major,xtick={10,12,...,30},xlabel={ventes de glaces (centaines)},ylabel={crèmes vendues}]
+\addplot[only marks,mark=*,Blue,mark size=2.4pt] coordinates {(12,8)(15,10)(18,13)(20,13)(23,16)(26,18)(28,21)(29,9)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Décrire le nuage : sens de variation, forme et dispersion.
+\item Un point s'écarte nettement des autres. Donner ses coordonnées et proposer une explication plausible.
+\item Le pharmacien affirme : « Ce sont les glaces qui provoquent les coups de soleil. » Que penser de cette affirmation ?
+\item Proposer un facteur qui pourrait expliquer l'évolution simultanée des deux séries.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Hormis un point, le nuage est croissant : les semaines où le glacier vend davantage sont aussi celles où la pharmacie vend plus de crèmes. Les points sont assez proches d'une droite, avec une dispersion faible.
+\item Le point $(29;9)$ est atypique : très fortes ventes de glaces mais peu de crèmes vendues. Explication possible : une semaine nuageuse marquée par un festival qui a attiré beaucoup de promeneurs sans exposition forte au soleil.
+\item Le nuage montre seulement que les deux variables varient dans le même sens (corrélation). Il ne prouve pas qu'une variable soit la cause de l'autre : l'affirmation n'est pas justifiée par ces données.
+\item L'ensoleillement (ou la chaleur, la fréquentation touristique) fait augmenter à la fois les ventes de glaces et les coups de soleil : c'est un facteur commun aux deux séries.
+\end{enumerate}
+}{4}
+
+\DefExo{33}{Juger une droite d'ajustement et l'exploiter}{%
+Le gérant d'une boutique chauffée au gaz relève, certains jours d'hiver, la température extérieure moyenne $x_i$ (en °C) et la consommation de gaz $y_i$ de la boutique (en kWh).
+\[
+\begin{array}{c|rrrrrr}
+x_i\text{ (°C)}&-4&-2&0&3&6&9\\\hline
+y_i\text{ (kWh)}&62&55&50&41&32&24
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter le nuage de points dans un repère, puis calculer les coordonnées du point moyen $G$.
+\item Un stagiaire propose la droite $d_1$ d'équation $y=-2x+50$. La tracer. Cet ajustement paraît-il satisfaisant ? Justifier en utilisant le point $G$.
+\item On retient désormais la droite $d_2$ d'équation $y=-3x+50$. Vérifier que $G$ appartient à $d_2$ et interpréter les nombres $-3$ et $50$ dans le contexte.
+\item À l'aide de $d_2$, estimer :
+  \begin{itemize}
+  \item la consommation un jour où il fait $1$~°C ;
+  \item la consommation un jour où il fait $12$~°C ;
+  \item la température d'un jour où la consommation est de $35$~kWh.
+  \end{itemize}
+  Préciser, pour les deux premières estimations, s'il s'agit d'une interpolation ou d'une extrapolation.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item On place les six points. $\bar x=\dfrac{-4-2+0+3+6+9}{6}=\dfrac{12}{6}=2$ et $\bar y=\dfrac{62+55+50+41+32+24}{6}=\dfrac{264}{6}=44$, donc $G(2;44)$. Le nuage est décroissant et presque aligné.
+\item Pour $x=2$, $d_1$ donne $y=-2\times2+50=46\neq44$ : $d_1$ ne passe pas par $G$. De plus, elle est trop peu inclinée : elle passe au-dessous des premiers points ($58$ pour $62$ à $-4$~°C) et nettement au-dessus des derniers ($32$ pour $24$ à $9$~°C). L'ajustement n'est pas satisfaisant.
+\item $-3\times2+50=44$ : $G\in d_2$. Le coefficient $-3$ signifie qu'un degré de plus correspond, en moyenne, à environ $3$~kWh consommés en moins ; $50$ est la consommation estimée un jour à $0$~°C.
+\item Pour $x=1$ : $y=-3+50=47$, soit environ $47$~kWh (interpolation, car $1\in[-4;9]$).\\
+Pour $x=12$ : $y=-36+50=14$, soit environ $14$~kWh (extrapolation, car $12>9$ : à interpréter avec prudence).\\
+$-3x+50=35$ équivaut à $x=5$ : une consommation de $35$~kWh correspond à environ $5$~°C.
+\end{enumerate}
+}{6}
+
+\DefExo{34}{Régression affine et prévision chronologique}{%
+Un opérateur régional relève le nombre d'abonnés à son offre fibre optique au 31 décembre de chaque année.
+\[
+\begin{array}{c|cccccc}
+\text{Année}&2018&2019&2020&2021&2022&2023\\\hline
+\text{Rang de l'année }x_i&0&1&2&3&4&5\\
+\text{Abonnés }y_i\text{ (en milliers)}&8{,}2&11{,}5&13{,}9&17{,}4&20{,}1&23{,}8
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter le nuage de points $M_i(x_i;y_i)$. Un ajustement affine est-il envisageable ?
+\item À l'aide de la calculatrice, déterminer une équation de la droite d'ajustement de $y$ en $x$ obtenue par la méthode des moindres carrés. Arrondir les coefficients à $10^{-2}$.
+\item En supposant que la tendance se maintient, estimer le nombre d'abonnés fin 2026.
+\item Selon ce modèle, en quelle année le nombre d'abonnés dépasserait-il $40\,000$ ?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Les six points sont presque alignés selon une droite croissante : un ajustement affine est pertinent.
+\item La calculatrice donne $a\approx3{,}0657$ et $b\approx8{,}1524$, d'où la droite $y=3{,}07x+8{,}15$.
+\item Fin 2026 correspond au rang $x=8$ : $y=3{,}07\times8+8{,}15=32{,}71$. On peut prévoir environ $32\,710$ abonnés. C'est une extrapolation : le résultat suppose que la tendance observée de 2018 à 2023 se poursuit.
+\item On résout $3{,}07x+8{,}15>40$, soit $x>\dfrac{40-8{,}15}{3{,}07}\approx10{,}37$. Le premier rang entier convenable est $x=11$ (contrôle : $3{,}07\times10+8{,}15=38{,}85<40$ et $3{,}07\times11+8{,}15=41{,}92>40$). Le seuil serait dépassé en $2018+11=2029$.
+\end{enumerate}
+}{6}
+
+\DefExo{35}{Droite par deux points et extrapolation prudente}{%
+Une plateforme logistique a relevé le nombre de colis expédiés chaque année (en milliers).
+\[
+\begin{array}{c|ccccc}
+\text{Année}&2019&2020&2021&2022&2023\\\hline
+\text{Rang de l'année }x_i&0&1&2&3&4\\
+\text{Colis expédiés }y_i\text{ (milliers)}&212{,}4&268{,}0&341{,}7&398{,}2&463{,}6
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter le nuage de points $M_1,\ldots,M_5$ dans un repère orthogonal.
+\item On ajuste ce nuage par la droite $(M_1M_5)$ passant par le premier et le dernier point. Déterminer une équation de cette droite (coefficients arrondis au dixième si nécessaire).
+\item Avec ce modèle, estimer le nombre de colis expédiés en 2027.
+\item Selon ce modèle, au cours de quelle année le nombre de colis expédiés dépasserait-il un million ?
+\item Donner deux raisons pour lesquelles ces prévisions peuvent se révéler peu fiables.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Les cinq points sont presque alignés selon une droite croissante.
+\item $M_1(0;212{,}4)$ et $M_5(4;463{,}6)$. Le coefficient directeur vaut $\dfrac{463{,}6-212{,}4}{4-0}=\dfrac{251{,}2}{4}=62{,}8$ et l'ordonnée à l'origine est $212{,}4$ (abscisse $0$). Équation : $y=62{,}8x+212{,}4$.
+\item 2027 correspond au rang $x=8$ : $y=62{,}8\times8+212{,}4=714{,}8$, soit environ $714\,800$ colis.
+\item Un million de colis correspond à $y=1\,000$. On résout $62{,}8x+212{,}4>1\,000$, soit $x>\dfrac{787{,}6}{62{,}8}\approx12{,}54$. Le premier rang entier est $x=13$ (contrôle : $62{,}8\times12+212{,}4=966<1\,000$ et $62{,}8\times13+212{,}4=1\,028{,}8$). Le seuil serait franchi en $2019+13=2032$.
+\item Ce sont des extrapolations loin de la période observée (2019--2023) : la tendance peut changer (concurrence, crise économique, saturation de la capacité de la plateforme) ; de plus la droite est construite à partir de deux points seulement.
+\end{enumerate}
+}{6}
+
+\DefExo{36}{Linéariser par changement de variable logarithmique}{%
+Une agence de communication étudie, pour plusieurs clients, le budget mensuel de publicité en ligne $x_i$ (en centaines d'euros) et le nombre mensuel de visites $y_i$ du site du client (en milliers).
+\[
+\begin{array}{c|rrrrrrrrrr}
+x_i&1&2&4&5&8&10&15&20&30&40\\\hline
+y_i&13&19&28&29&35&36&42&44&49&52
+\end{array}
+\]
+Les visites augmentent de moins en moins vite quand le budget augmente : un ajustement affine de $y$ en $x$ n'est pas pertinent. On pose $u_i=\log(x_i)$.
+\begin{enumerate}
+\item Calculer les valeurs $u_i$, arrondies au centième.
+\item Représenter le nuage de points $(u_i;y_i)$. À l'aide de la calculatrice, déterminer une équation de la droite d'ajustement de $y$ en $u$ par la méthode des moindres carrés (coefficients arrondis au dixième).
+\item En déduire une expression de $y$ en fonction de $x$.
+\item Estimer le nombre de visites pour un budget de $1\,200$~€, puis de $6\,000$~€. Commenter la fiabilité de chaque estimation.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item $u_i$ : $0$ ; $0{,}30$ ; $0{,}60$ ; $0{,}70$ ; $0{,}90$ ; $1$ ; $1{,}18$ ; $1{,}30$ ; $1{,}48$ ; $1{,}60$.
+\item Le nuage $(u_i;y_i)$ est presque aligné. La calculatrice donne (avec les $u_i$ arrondis) $a\approx24{,}59$ et $b\approx12{,}42$, d'où $y=24{,}6u+12{,}4$.
+\item Comme $u=\log(x)$, on obtient $y=24{,}6\log(x)+12{,}4$.
+\item $1\,200$~€ correspond à $x=12$ : $y=24{,}6\log(12)+12{,}4\approx38{,}9$, soit environ $38\,900$ visites (interpolation, $12\in[1;40]$).\\
+$6\,000$~€ correspond à $x=60$ : $y=24{,}6\log(60)+12{,}4\approx56{,}1$, soit environ $56\,100$ visites. C'est une extrapolation ($60>40$) : estimation à interpréter avec prudence.
+\end{enumerate}
+}{6}
+
+\DefExo{37}{Étalonnage : ajustement, résidu et domaine de validité}{%
+Une jeune entreprise étalonne un capteur de dioxyde de carbone (CO$_2$) à bas coût destiné aux bureaux. Placé dans des enceintes de concentration connue $C$ (en ppm, parties par million), le capteur délivre une tension $U$ (en volts).
+\[
+\begin{array}{c|cccccc}
+\text{Tension }U\text{ (V)}&0{,}42&0{,}81&1{,}23&1{,}60&2{,}05&2{,}41\\\hline
+\text{Concentration }C\text{ (ppm)}&400&800&1\,200&1\,600&2\,000&2\,400
+\end{array}
+\]
+\begin{enumerate}
+\item Représenter le nuage de points $(U;C)$, avec $U$ en abscisse.
+\item Un ajustement affine semble-t-il pertinent ? Déterminer à la calculatrice une équation de la droite d'ajustement de $C$ en $U$, sous la forme $C=aU+b$ (coefficients arrondis à l'unité).
+\item Calculer le résidu pour $U=1{,}23$, c'est-à-dire l'écart entre la concentration réelle et celle donnée par le modèle. Commenter.
+\item Dans un bureau, le capteur affiche $1{,}4$~V. Estimer la concentration en CO$_2$. Un seuil de $1\,000$~ppm est souvent retenu comme repère pour aérer : faut-il aérer ?
+\item Peut-on utiliser ce modèle avec la même confiance pour une tension de $3{,}5$~V ? Justifier.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Les six points sont presque alignés selon une droite croissante.
+\item Oui. La calculatrice donne $a\approx996{,}59$ et $b\approx-15{,}16$, d'où $C=997U-15$.
+\item Le modèle donne $997\times1{,}23-15=1\,211{,}31$. Le résidu vaut $1\,200-1\,211{,}31\approx-11$~ppm, soit moins de $1\,\%$ de la valeur : l'ajustement est de bonne qualité.
+\item $C=997\times1{,}4-15=1\,380{,}8$, soit environ $1\,381$~ppm (interpolation, car $1{,}4\in[0{,}42;2{,}41]$). Cette valeur dépasse $1\,000$~ppm : il faut aérer.
+\item Le modèle donne $997\times3{,}5-15=3\,474{,}5$~ppm, mais $3{,}5$~V est hors de l'intervalle d'étalonnage $[0{,}42;2{,}41]$ : c'est une extrapolation. Rien ne garantit que le capteur reste linéaire à forte concentration ; il faudrait compléter l'étalonnage.
+\end{enumerate}
+}{6}
+
+\DefExo{38}{Point moyen et droite de régression : choix justifiés}{%
+Pour chaque question, une seule proposition est exacte. La choisir et justifier.
+
+Trois magasins d'une même enseigne ont une surface de vente $x$ (en centaines de m$^2$) et un chiffre d'affaires mensuel $y$ (en dizaines de milliers d'euros) représentés par les points $M_1(2;5)$, $M_2(4;11)$ et $M_3(6;11)$.
+\begin{enumerate}
+\item Le point moyen $G$ de ce nuage est :
+  \begin{enumerate}[label=\alph*.]
+  \item le point $M_2$ ;
+  \item le point de coordonnées $(4;9)$ ;
+  \item le point de coordonnées $(12;27)$.
+  \end{enumerate}
+\item Une équation de la droite $(M_1M_3)$ est :
+  \begin{enumerate}[label=\alph*.]
+  \item $y=1{,}5x+2$ ;
+  \item $y=2x+1$ ;
+  \item $y=1{,}5x+3$.
+  \end{enumerate}
+\item La droite d'ajustement obtenue à la calculatrice par la méthode des moindres carrés :
+  \begin{enumerate}[label=\alph*.]
+  \item passe par le point $M_2$ ;
+  \item passe par $G$ et a le même coefficient directeur que $(M_1M_3)$ ;
+  \item passe par l'origine du repère.
+  \end{enumerate}
+\item Avec cette droite d'ajustement, le chiffre d'affaires estimé d'un magasin de $500$~m$^2$ est :
+  \begin{enumerate}[label=\alph*.]
+  \item $95\,000$~€ ;
+  \item $105\,000$~€ ;
+  \item $110\,000$~€.
+  \end{enumerate}
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Réponse b : $\bar x=\dfrac{2+4+6}{3}=4$ et $\bar y=\dfrac{5+11+11}{3}=9$. La proposition c oublie de diviser les sommes par $3$.
+\item Réponse a : le coefficient directeur vaut $\dfrac{11-5}{6-2}=1{,}5$ et $5=1{,}5\times2+b$ donne $b=2$. La droite $y=2x+1$ passe par $M_1$ mais pas par $M_3$ ($2\times6+1=13\neq11$).
+\item Réponse b : la calculatrice donne $y=1{,}5x+3$. Elle passe par $G$ ($1{,}5\times4+3=9$), a pour coefficient directeur $1{,}5$ comme $(M_1M_3)$, et ne passe ni par $M_2$ ($1{,}5\times4+3=9\neq11$) ni par l'origine ($b=3\neq0$).
+\item Réponse b : $500$~m$^2$ correspond à $x=5$, et $y=1{,}5\times5+3=10{,}5$ dizaines de milliers d'euros, soit $105\,000$~€ (interpolation).
+\end{enumerate}
+}{5}
+
+% -----------------------------------------------------------------------------
+% Chapitre 6 -- Probabilités conditionnelles
+% -----------------------------------------------------------------------------
+\DefExo{39}{Arbre à trois branches, probabilité totale et inverse}{%
+Un site de vente en ligne confie ses colis à trois transporteurs : $45\,\%$ au transporteur $T_1$, $35\,\%$ au transporteur $T_2$ et les autres au transporteur $T_3$. Le service client constate que $2\,\%$ des colis acheminés par $T_1$ arrivent endommagés, contre $5\,\%$ pour $T_2$ et $8\,\%$ pour $T_3$.
+
+On choisit un colis au hasard. On note $T_i$ l'événement « Le colis est acheminé par le transporteur $T_i$ » et $E$ l'événement « Le colis arrive endommagé ».
+\begin{center}
+\begin{tikzpicture}[grow=right,level distance=30mm,level 1/.style={sibling distance=20mm},level 2/.style={sibling distance=9mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {}
+ child {node {$T_1$}
+   child {node {$E$} edge from parent node[above] {$0{,}02$}}
+   child {node {$\overline E$} edge from parent node[below] {$\dots$}}
+   edge from parent node[above] {$0{,}45$}}
+ child {node {$T_2$}
+   child {node {$E$} edge from parent node[above] {$\dots$}}
+   child {node {$\overline E$} edge from parent node[below] {$\dots$}}
+   edge from parent node[above] {$\dots$}}
+ child {node {$T_3$}
+   child {node {$E$} edge from parent node[above] {$\dots$}}
+   child {node {$\overline E$} edge from parent node[below] {$\dots$}}
+   edge from parent node[below] {$\dots$}};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Recopier et compléter l'arbre pondéré ci-dessus.
+\item Calculer la probabilité que le colis soit acheminé par $T_3$ et arrive endommagé.
+\item Montrer que la probabilité qu'un colis arrive endommagé est égale à $0{,}0425$.
+\item Un client signale un colis endommagé. Quelle est la probabilité qu'il ait été acheminé par $T_3$ ? Arrondir à $10^{-3}$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item $P(T_3)=1-0{,}45-0{,}35=0{,}20$. Branches de second niveau : $P_{T_1}(\overline E)=0{,}98$ ; $P_{T_2}(E)=0{,}05$ et $P_{T_2}(\overline E)=0{,}95$ ; $P_{T_3}(E)=0{,}08$ et $P_{T_3}(\overline E)=0{,}92$.
+\item $P(T_3\cap E)=P(T_3)\times P_{T_3}(E)=0{,}20\times0{,}08=0{,}016$.
+\item $T_1$, $T_2$, $T_3$ forment une partition de l'univers. Par la formule des probabilités totales :
+$P(E)=0{,}45\times0{,}02+0{,}35\times0{,}05+0{,}20\times0{,}08=0{,}009+0{,}0175+0{,}016=0{,}0425$.
+\item $P_E(T_3)=\dfrac{P(T_3\cap E)}{P(E)}=\dfrac{0{,}016}{0{,}0425}\approx0{,}376$. Bien que $T_3$ ne transporte que $20\,\%$ des colis, il est concerné par environ $37{,}6\,\%$ des colis endommagés.
+\end{enumerate}
+}{5}
+
+\DefExo{40}{Compléter un arbre et calculer des intersections}{%
+Dans cet exercice, les résultats sont donnés sous forme de fractions irréductibles. On considère l'arbre pondéré ci-dessous, où $E$ est un événement et où $R$, $S$ et $T$ forment une partition de l'univers.
+\begin{center}
+\begin{tikzpicture}[grow=right,level distance=30mm,level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=10mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {}
+ child {node {$E$}
+   child {node {$R$} edge from parent node[above] {$\tfrac14$}}
+   child {node {$S$} edge from parent node[above] {$\dots$}}
+   child {node {$T$} edge from parent node[below] {$\tfrac13$}}
+   edge from parent node[above] {$\tfrac49$}}
+ child {node {$\overline E$}
+   child {node {$R$} edge from parent node[above] {$\tfrac3{10}$}}
+   child {node {$S$} edge from parent node[above] {$\tfrac12$}}
+   child {node {$T$} edge from parent node[below] {$\dots$}}
+   edge from parent node[below] {$\dots$}};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Compléter l'arbre en justifiant chaque calcul.
+\item Calculer $P(E\cap R)$ et $P(\overline E\cap S)$.
+\item Calculer $P(T)$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Les branches issues d'un même nœud ont pour somme $1$ : $P(\overline E)=1-\dfrac49=\dfrac59$ ; $P_E(S)=1-\dfrac14-\dfrac13=\dfrac5{12}$ ; $P_{\overline E}(T)=1-\dfrac3{10}-\dfrac12=\dfrac15$.
+\item $P(E\cap R)=\dfrac49\times\dfrac14=\dfrac19$ et $P(\overline E\cap S)=\dfrac59\times\dfrac12=\dfrac5{18}$.
+\item $E$ et $\overline E$ forment une partition, donc
+$P(T)=P(E\cap T)+P(\overline E\cap T)=\dfrac49\times\dfrac13+\dfrac59\times\dfrac15=\dfrac4{27}+\dfrac19=\dfrac4{27}+\dfrac3{27}=\dfrac7{27}$.
+\end{enumerate}
+}{5}
+
+\DefExo{41}{Traduire un événement, produit sur un chemin}{%
+Dans une salle de sport, $65\,\%$ des inscrits ont un abonnement annuel, les autres un abonnement mensuel. Chaque inscrit choisit une activité principale. Parmi les abonnés annuels, $50\,\%$ choisissent la musculation, $30\,\%$ les cours collectifs et les autres la natation. Parmi les abonnés mensuels, $40\,\%$ choisissent la musculation, $45\,\%$ les cours collectifs et les autres la natation.
+
+On choisit un inscrit au hasard. On note $A$ : « L'inscrit a un abonnement annuel », $M$ : « Son activité principale est la musculation », $C$ : « Son activité principale est un cours collectif » et $N$ : « Son activité principale est la natation ».
+\begin{enumerate}
+\item Construire un arbre pondéré décrivant la situation.
+\item Décrire par une phrase l'événement $\overline A\cap C$, puis calculer sa probabilité.
+\item Calculer la probabilité que l'inscrit choisi ait la natation pour activité principale.
+\item L'inscrit choisi pratique principalement la natation. Calculer la probabilité qu'il ait un abonnement annuel. Arrondir à $10^{-3}$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Premier niveau : $P(A)=0{,}65$ et $P(\overline A)=0{,}35$. Sous $A$ : $P_A(M)=0{,}50$, $P_A(C)=0{,}30$, $P_A(N)=1-0{,}50-0{,}30=0{,}20$. Sous $\overline A$ : $P_{\overline A}(M)=0{,}40$, $P_{\overline A}(C)=0{,}45$, $P_{\overline A}(N)=1-0{,}40-0{,}45=0{,}15$.
+\item $\overline A\cap C$ : « L'inscrit a un abonnement mensuel et son activité principale est un cours collectif ». $P(\overline A\cap C)=0{,}35\times0{,}45=0{,}1575$.
+\item Par les probabilités totales ($A$, $\overline A$ forment une partition) : $P(N)=0{,}65\times0{,}20+0{,}35\times0{,}15=0{,}13+0{,}0525=0{,}1825$.
+\item $P_N(A)=\dfrac{P(A\cap N)}{P(N)}=\dfrac{0{,}13}{0{,}1825}\approx0{,}712$.
+\end{enumerate}
+}{6}
+
+\DefExo{42}{Utiliser et tester l'indépendance}{%
+Dans un centre d'appels, on choisit un appel au hasard. On note $A$ l'événement « Le client attend plus de $5$ minutes avant d'être pris en charge » et $B$ l'événement « La communication est coupée à cause d'un incident réseau ». On sait que $P(A)=0{,}12$ et $P(B)=0{,}05$. On suppose dans les questions 1 à 3 que $A$ et $B$ sont indépendants.
+\begin{enumerate}
+\item Calculer la probabilité que le client attende plus de $5$ minutes et que la communication soit coupée.
+\item Calculer la probabilité qu'aucun de ces deux incidents ne se produise.
+\item En déduire la probabilité qu'au moins un des deux incidents se produise.
+\item Un audit montre en réalité que, parmi les appels avec une attente de plus de $5$ minutes, $9\,\%$ sont coupés. L'hypothèse d'indépendance est-elle confirmée ? Justifier.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Par indépendance, $P(A\cap B)=P(A)\times P(B)=0{,}12\times0{,}05=0{,}006$.
+\item Si $A$ et $B$ sont indépendants, $\overline A$ et $\overline B$ le sont aussi : $P(\overline A\cap\overline B)=0{,}88\times0{,}95=0{,}836$.
+\item L'événement « au moins un incident » est le contraire de « aucun incident » : sa probabilité est $1-0{,}836=0{,}164$.
+\item L'audit donne $P_A(B)=0{,}09$, alors que $P(B)=0{,}05$. Comme $P_A(B)\neq P(B)$, $A$ et $B$ ne sont pas indépendants : une longue attente s'accompagne plus souvent d'une coupure.
+\end{enumerate}
+}{5}
+
+\DefExo{43}{Du tableau d'effectifs aux arbres pondérés}{%
+Un groupe emploie $1\,600$ salariés répartis sur trois sites : le siège, l'usine et l'entrepôt. On a recensé les salariés pratiquant le télétravail au moins un jour par semaine.
+\[
+\begin{array}{l|ccc}
+&\text{Télétravail}&\text{Pas de télétravail}&\text{Total}\\\hline
+\text{Siège}&300&\cdots&400\\
+\text{Usine}&\cdots&\cdots&\cdots\\
+\text{Entrepôt}&\cdots&340&400\\\hline
+\text{Total}&420&\cdots&1\,600
+\end{array}
+\]
+\begin{enumerate}
+\item Compléter le tableau.
+\item On choisit un salarié au hasard. On note $S_1$ : « Il travaille au siège », $S_2$ : « Il travaille à l'usine », $S_3$ : « Il travaille à l'entrepôt » et $T$ : « Il pratique le télétravail ». Construire l'arbre pondéré dont le premier niveau est $S_1$, $S_2$, $S_3$ et le second $T$, $\overline T$.
+\item Construire l'arbre pondéré dont le premier niveau est $T$, $\overline T$ et le second $S_1$, $S_2$, $S_3$. Donner les probabilités sous forme de fractions irréductibles, puis arrondies à $10^{-3}$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Siège : $400-300=100$ sans télétravail. Entrepôt : $400-340=60$ en télétravail. Usine : $1\,600-400-400=800$ salariés, dont $420-300-60=60$ en télétravail et $800-60=740$ sans. Total sans télétravail : $100+740+340=1\,180$ ($=1\,600-420$).
+\item $P(S_1)=\dfrac{400}{1\,600}=0{,}25$, $P(S_2)=\dfrac{800}{1\,600}=0{,}5$, $P(S_3)=0{,}25$.\\
+$P_{S_1}(T)=\dfrac{300}{400}=0{,}75$ et $P_{S_1}(\overline T)=0{,}25$ ; $P_{S_2}(T)=\dfrac{60}{800}=0{,}075$ et $P_{S_2}(\overline T)=0{,}925$ ; $P_{S_3}(T)=\dfrac{60}{400}=0{,}15$ et $P_{S_3}(\overline T)=0{,}85$.
+\item $P(T)=\dfrac{420}{1\,600}=\dfrac{21}{80}=0{,}2625$ et $P(\overline T)=\dfrac{59}{80}=0{,}7375$.\\
+$P_T(S_1)=\dfrac{300}{420}=\dfrac57\approx0{,}714$, $P_T(S_2)=\dfrac{60}{420}=\dfrac17\approx0{,}143$, $P_T(S_3)=\dfrac17\approx0{,}143$.\\
+$P_{\overline T}(S_1)=\dfrac{100}{1\,180}=\dfrac5{59}\approx0{,}085$, $P_{\overline T}(S_2)=\dfrac{740}{1\,180}=\dfrac{37}{59}\approx0{,}627$, $P_{\overline T}(S_3)=\dfrac{340}{1\,180}=\dfrac{17}{59}\approx0{,}288$.\\
+Contrôle : les fractions issues de chaque nœud ont pour somme $1$.
+\end{enumerate}
+}{7}
+
+\DefExo{44}{Inverser un conditionnement}{%
+Une enseigne de bricolage interroge ses clients. $45\,\%$ d'entre eux ont téléchargé l'application de fidélité de l'enseigne ; parmi ceux-ci, $60\,\%$ ont effectué au moins un achat en promotion au cours du dernier mois. Au total, $36\,\%$ des clients interrogés ont effectué au moins un achat en promotion au cours du dernier mois.
+
+On choisit au hasard un client interrogé. On note $A$ : « Le client a téléchargé l'application » et $R$ : « Le client a effectué au moins un achat en promotion le mois dernier ».
+\begin{enumerate}
+\item Donner $P(A)$, $P(R)$ et $P_A(R)$.
+\item Calculer $P(A\cap R)$, puis $P_R(A)$. Interpréter ce dernier résultat.
+\item Calculer la probabilité qu'un client n'ayant pas téléchargé l'application ait effectué un achat en promotion. Arrondir à $10^{-3}$ et comparer avec $P_A(R)$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item $P(A)=0{,}45$, $P(R)=0{,}36$ et $P_A(R)=0{,}60$.
+\item $P(A\cap R)=P(A)\times P_A(R)=0{,}45\times0{,}60=0{,}27$. Puis $P_R(A)=\dfrac{P(A\cap R)}{P(R)}=\dfrac{0{,}27}{0{,}36}=0{,}75$ : les trois quarts des clients ayant acheté en promotion ont téléchargé l'application.
+\item $P(\overline A\cap R)=P(R)-P(A\cap R)=0{,}36-0{,}27=0{,}09$ et $P(\overline A)=0{,}55$, donc $P_{\overline A}(R)=\dfrac{0{,}09}{0{,}55}\approx0{,}164$. C'est nettement moins que $P_A(R)=0{,}60$ : les clients ayant l'application achètent bien plus souvent en promotion.
+\end{enumerate}
+}{4}
+
+\DefExo{45}{Expérience en deux étapes, résultats fractionnaires}{%
+Dans cet exercice, les résultats sont donnés sous forme de fractions irréductibles. Lors d'une animation commerciale, un client tire au hasard un ticket parmi dix tickets numérotés de $1$ à $10$.
+\begin{itemize}
+\item Si le numéro est $1$ ou $2$, il gratte une carte prise au hasard dans le coffret X, qui contient $3$ cartes gagnantes sur $8$.
+\item Si le numéro est un multiple de $3$, il gratte une carte du coffret Y, qui contient $2$ cartes gagnantes sur $9$.
+\item Sinon, il gratte une carte du coffret Z, qui contient $1$ carte gagnante sur $6$.
+\end{itemize}
+On note $X$, $Y$, $Z$ les événements « La carte provient du coffret X » (respectivement Y, Z) et $G$ l'événement « La carte est gagnante ».
+\begin{enumerate}
+\item Justifier que $P(X)=\dfrac15$, $P(Y)=\dfrac3{10}$ et $P(Z)=\dfrac12$, puis représenter la situation par un arbre pondéré.
+\item Démontrer que la probabilité que la carte soit gagnante est égale à $\dfrac9{40}$.
+\item Le client a gagné. Quelle est la probabilité que sa carte provienne du coffret X ?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Les dix numéros sont équiprobables. $X$ correspond à $\{1;2\}$ : $P(X)=\dfrac2{10}=\dfrac15$. $Y$ correspond à $\{3;6;9\}$ : $P(Y)=\dfrac3{10}$. $Z$ correspond aux cinq autres numéros $\{4;5;7;8;10\}$ : $P(Z)=\dfrac5{10}=\dfrac12$.\\
+Arbre : sous $X$, $P_X(G)=\dfrac38$ et $P_X(\overline G)=\dfrac58$ ; sous $Y$, $P_Y(G)=\dfrac29$ et $P_Y(\overline G)=\dfrac79$ ; sous $Z$, $P_Z(G)=\dfrac16$ et $P_Z(\overline G)=\dfrac56$.
+\item $X$, $Y$, $Z$ forment une partition :
+$P(G)=\dfrac15\times\dfrac38+\dfrac3{10}\times\dfrac29+\dfrac12\times\dfrac16=\dfrac3{40}+\dfrac1{15}+\dfrac1{12}=\dfrac{9}{120}+\dfrac{8}{120}+\dfrac{10}{120}=\dfrac{27}{120}=\dfrac9{40}$.
+\item $P_G(X)=\dfrac{P(X\cap G)}{P(G)}=\dfrac{3/40}{9/40}=\dfrac13$.
+\end{enumerate}
+}{6}
+
+\DefExo{46}{Bilan : chemin, contraire et répétition indépendante}{%
+Un incubateur d'entreprises sélectionne les projets qu'il accompagne en trois étapes. $30\,\%$ des dossiers déposés passent la présélection. Les projets présélectionnés sont présentés devant un jury, qui en retient $50\,\%$. Enfin, un comité d'investisseurs finance $20\,\%$ des projets retenus par le jury. Un projet éliminé à une étape ne passe pas les étapes suivantes.
+
+On choisit un dossier au hasard. On note $P$ : « Le dossier passe la présélection », $J$ : « Le projet est retenu par le jury » et $F$ : « Le projet est financé ».
+\begin{enumerate}
+\item Construire un arbre pondéré décrivant la situation. Démontrer que la probabilité qu'un projet ne soit pas financé est égale à $0{,}97$.
+\item Huit porteurs de projet déposent un dossier ; on admet que les dossiers sont étudiés indépendamment les uns des autres. Calculer la probabilité qu'au moins un des huit projets soit financé. Arrondir à $10^{-3}$.
+\item Combien de dossiers l'incubateur doit-il recevoir, au minimum, pour que la probabilité de financer au moins un projet dépasse $0{,}99$ ?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Arbre : $P$ ($0{,}30$) ou $\overline P$ ($0{,}70$, fin) ; après $P$ : $J$ ($0{,}50$) ou $\overline J$ ($0{,}50$, fin) ; après $J$ : $F$ ($0{,}20$) ou $\overline F$ ($0{,}80$). Un projet n'est financé que s'il franchit les trois étapes, donc, en multipliant le long de ce chemin :
+$P(F)=0{,}30\times0{,}50\times0{,}20=0{,}03$ et $P(\overline F)=1-0{,}03=0{,}97$.
+\item Par indépendance, la probabilité qu'aucun des huit projets ne soit financé est $0{,}97^8$. La probabilité cherchée est $1-0{,}97^8\approx0{,}216$.
+\item On cherche le plus petit entier $n$ tel que $1-0{,}97^n>0{,}99$, c'est-à-dire $0{,}97^n<0{,}01$. La fonction $\log$ étant croissante, cela équivaut à $n\log(0{,}97)<\log(0{,}01)$, soit $n>\dfrac{\log(0{,}01)}{\log(0{,}97)}\approx151{,}2$ (on divise par $\log(0{,}97)<0$, ce qui change le sens de l'inégalité). Il faut au minimum $152$ dossiers (contrôle : $1-0{,}97^{151}\approx0{,}98994$ et $1-0{,}97^{152}\approx0{,}99024$).
+\end{enumerate}
+}{6}

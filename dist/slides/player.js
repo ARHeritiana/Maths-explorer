@@ -63,7 +63,10 @@ async function render() {
   } else if (k === "code") {
     main = `<div class="body"><div><h2>${title}</h2></div><pre>${s.b[lang]}</pre></div>`;
   } else {
-    main = `<div class="body"><div><h2>${title}</h2>${s.h?.[lang] ? `<div class="sub">${esc(s.h[lang])}</div>` : ""}</div><div class="text ${sizeClass(body + ans)}">${body}</div>${ans ? `<div class="card answer text ${sizeClass(body + ans)}" id="ans" ${revealed ? "" : "hidden"}><div class="lab">${t("answerLab")}</div>${ans}</div>` : ""}</div>`;
+    const figs = (s.f || []).map(p => `<figure class="fig"><img src="./fig/${encodeURIComponent(deckId)}-${p[lang]}${lang ? "-en" : ""}.svg" alt="${esc(s.t[lang])}"></figure>`).join("");
+    const cls = sizeClass(body + ans) + (figs ? " narrow" : "");
+    const left = `<div><h2>${title}</h2>${s.h?.[lang] ? `<div class="sub">${esc(s.h[lang])}</div>` : ""}</div><div class="text ${cls}">${body}</div>${ans ? `<div class="card answer text ${cls}" id="ans" ${revealed ? "" : "hidden"}><div class="lab">${t("answerLab")}</div>${ans}</div>` : ""}`;
+    main = figs ? `<div class="body split"><div class="col">${left}</div><div class="figcol">${figs}</div></div>` : `<div class="body">${left}</div>`;
   }
   const bar = `<div class="bar"><span class="chip ${k === "error" ? "error" : ""}">${esc(label)}</span><span class="deck">${esc(deck.title[lang])}</span>
     ${s.a ? `<button id="rev" aria-pressed="${revealed}">${revealed ? t("hide") : t("answer")}</button>` : ""}

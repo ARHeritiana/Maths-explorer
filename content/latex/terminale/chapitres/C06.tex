@@ -1,0 +1,122 @@
+\setcounter{chapter}{3}\chapter{Dérivation, convexité et continuité}\label{ch:4}
+
+{\small\sffamily\color{teal}S29, S31, S32 ; reprises S33 et S40\par}
+
+\begin{retenir}{Objectifs}Dériver une composée ; étudier variations et convexité ; démontrer existence et unicité ; approcher une solution.\end{retenir}
+
+\section{Notes de cours}
+\subsection{Dériver une composée}
+Si $u$ est dérivable sur $I$ et $v$ dérivable sur un intervalle contenant $u(I)$, alors $(v\circ u)'=(v'\circ u)u'$. Les domaines doivent être vérifiés avant le calcul.
+\[ (u^n)'=nu'u^{n-1},\quad(e^u)'=u'e^u,\quad
+(\frac{1}{u})'=-\frac{u'}{u^2},\quad(\sqrt u)'=\frac{u'}{2\sqrt u}\quad(u>0).\]
+Par exemple, $f(x)=\sqrt{3x+1}$ est dérivable pour $x>-\frac{1}{3}$ et $f'(x)=\frac{3}{2\sqrt{3x+1}}$. Le signe de $f'$ détermine les variations de $f$ ; le signe de $f$ ne les détermine pas.
+\subsection{Convexité}
+Une fonction $f$ est convexe sur un intervalle $I$ si sa courbe est sous ses cordes : pour $x,y\in I$ et $t\in[0,1]$,
+\[f((1-t)x+ty)\le(1-t)f(x)+tf(y).\]
+Pour une fonction deux fois dérivable, on admet les équivalences : $f$ convexe ; $f'$ croissante ; $f''\ge0$ ; la courbe est au-dessus de toutes ses tangentes. Les inégalités sont inversées pour une fonction concave. Un point d'inflexion est un point où la courbe change de convexité.
+\paragraph{Démonstration : position par rapport aux tangentes.} Supposons $f''\ge0$. Fixons $a$ et posons $g(x)=f(x)-f(a)-f'(a)(x-a)$. Comme $f'$ est croissante, $g'(x)=f'(x)-f'(a)\le0$ pour $x\le a$ et $\ge0$ pour $x\ge a$. Ainsi $g$ atteint son minimum $g(a)=0$ en $a$, donc $f(x)\ge f(a)+f'(a)(x-a)$.
+\paragraph{Exemples.} $x^4$ est convexe et $f''(0)=0$, mais $0$ n'est pas une abscisse d'inflexion. $x^3$ change de convexité en $0$. La convexité de l'exponentielle et sa tangente en $0$ donnent $e^x\ge1+x$.
+\subsection{Continuité et équations}
+$f$ est continue en $a$ si $\lim_{x\to a}f(x)=f(a)$. Toute fonction dérivable est continue. La réciproque est fausse : $|x|$ est continue en $0$ mais non dérivable en $0$.
+\begin{retenir}{Théorème des valeurs intermédiaires}
+Si $f$ est continue sur $[a,b]$, tout réel compris entre $f(a)$ et $f(b)$ possède au moins un antécédent dans $[a,b]$. Si $f$ est en outre strictement monotone, cet antécédent est unique. On peut aussi travailler sur un intervalle ouvert en utilisant les limites aux bornes.
+\end{retenir}
+\paragraph{Exemple rédigé.} $f(x)=x^3+x-1$ est continue sur $[0,1]$. Comme $f(0)=-1$ et $f(1)=1$, le TVI donne un zéro dans $]0,1[$. Puisque $f'(x)=3x^2+1>0$, il est unique. $f(0{,}68)<0<f(0{,}69)$ fournit un encadrement, sans remplacer les justifications d'existence et d'unicité.
+\paragraph{Une fonction définie par morceaux.} Pour $x\ne1$, poser $g(x)=\frac{x^2-1}{x-1}$, et poser $g(1)=a$. Comme $g(x)=x+1$ lorsque $x\ne1$, $\lim_{x\to1}g(x)=2$. La fonction est continue en $1$ si et seulement si $a=2$. La valeur au point doit donc être comparée à la limite, et non remplacée par celle-ci sans justification.
+\paragraph{Suites et continuité.} Si $u_n\to\ell$ et $f$ est continue en $\ell$, alors $f(u_n)\to f(\ell)$. Pour une suite récurrente convergente $u_{n+1}=f(u_n)$, on obtient $\ell=f(\ell)$.
+\subsection{Dichotomie}
+Pour $f$ continue et $f(a)f(b)<0$, calculer $m=\frac{a+b}{2}$. Si $f(m)=0$, arrêter ; sinon garder la moitié dont les extrémités ont des images de signes contraires. Après $n$ étapes, la longueur vaut $\frac{b-a}{2^n}$. Le milieu donne une erreur au plus la demi-longueur. La méthode ne garantit pas l'unicité ; celle-ci se prouve séparément.
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=12cm,height=4.8cm,axis lines=middle,xmin=-2,xmax=2,ymin=-3,ymax=3,xlabel={$x$},ylabel={$y$},samples=100]
+\addplot[teal,thick,domain=-2:2]{x^3-3*x};\addplot[navy,dashed,domain=-1:1]{-3*x};\end{axis}\end{tikzpicture}\par\small $y=x^3-3x$ et sa tangente à l'inflexion.\end{center}
+
+\section{Activité de recherche}\textbf{Dérivées et lectures graphiques --- 35 min.}\par On considère la fonction $f$ définie sur $\R$ par $f(x)=x^3-3x$. On note $\mathcal C_f$ sa courbe représentative.
+\begin{enumerate}\item Calculer $f' (x)$ et $f'' (x)$, puis dresser leurs tableaux de signes.
+\item En déduire les variations de $f$ et ses intervalles de convexité et de concavité.
+\item Déterminer les coordonnées du point d'inflexion de $\mathcal C_f$ et une équation de la tangente en ce point.
+\item En utilisant les limites, les extrema et le théorème des valeurs intermédiaires, déterminer le nombre de solutions réelles de $f(x)=1$.
+\item Expliquer, à partir de cet exemple, pourquoi la continuité ne suffit pas à assurer l'unicité d'une solution.\end{enumerate}
+
+\section{Exercices progressifs}
+
+\exercice{1}{Entraînement}On définit sur $\R$ les fonctions $f(x)=(2x-1)^5$ et $g(x)=e^{-x^2}$. Calculer $f' (x)$ et $g' (x)$.
+
+\exercice{2}{Entraînement}Soit $f$ la fonction définie sur $\R$ par $f(x)=x^4-6x^2$. Déterminer les intervalles sur lesquels $f$ est convexe ou concave.
+
+\exercice{3}{Entraînement}On note $\mathcal C$ la courbe de la fonction exponentielle. Déterminer une équation de sa tangente au point d'abscisse $1$. À l'aide de la convexité, en déduire une inégalité valable pour tout réel $x$.
+
+\exercice{4}{Entraînement}Démontrer que l'équation $x^3+2x=5$ admet une unique solution réelle. Encadrer cette solution entre deux entiers consécutifs.
+
+\exercice{5}{Entraînement}Un algorithme de dichotomie part de l'intervalle $[0;2]$ et divise sa longueur par deux à chaque étape. Déterminer le nombre minimal d'étapes garantissant un intervalle de longueur au plus $10^{-3}$.
+
+\section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 132, exercice 29.} En classe après l'étude de la convexité : questions 1 et 2. À la maison : terminer les questions 3 à 5. L'objectif est de distinguer le signe de $f'$, qui gouverne les variations, de celui de $f''$, qui gouverne la convexité.
+
+\section{Devoir à la maison}\textbf{DM4 --- Un maximum et une équation --- 60 min.}\par On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+1)e^{-x}$. Sa courbe représentative est notée $\mathcal C_f$.
+\begin{enumerate}\item Calculer $f(0)$ et la limite de $f$ en $+\infty$. Calculer $f' (x)$, puis dresser le tableau de variations de $f$.
+\item Calculer $f'' (x)$. Étudier la convexité de $f$ et déterminer les coordonnées de l'éventuel point d'inflexion de $\mathcal C_f$.
+\item Démontrer que l'équation $f(x)=\frac12$ admet une unique solution $\alpha$ sur $[0;+\infty[$.
+\item Écrire une fonction Python qui utilise la dichotomie sur $[0;2]$ et renvoie deux réels $a$ et $b$ tels que $a\le\alpha\le b$ et $b-a\le10^{-3}$. Justifier le choix de l'intervalle initial.
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. La position de la courbe par rapport à cette seule tangente suffit-elle à affirmer que $f$ est concave sur tout son domaine ? Justifier.\end{enumerate}
+
+\ifprof\clearpage\section{Conduite et corrigés}\begin{profbox}{Repères pour le professeur}La progression concentre ce chapitre en trois séances : répartir réellement S29 entre dérivation et convexité, puis reprendre la preuve des tangentes en S33. Le vocabulaire continu/dérivable/convexe doit être distingué par des exemples. La continuité donne l'existence par le TVI ; la stricte monotonie donne l'unicité. Pour la dichotomie, exiger un intervalle initial où le signe change et une fonction continue. Un changement de convexité, et non la seule annulation de $f''$, caractérise un point d'inflexion.\end{profbox}
+
+\subsection{Corrigé de l'activité}\begin{enumerate}
+\item $f'(x)=3x^2-3=3(x-1)(x+1)$ et $f''(x)=6x$. Le signe de $f'$ est positif sur $]-\infty,-1[$ et $]1,+\infty[$, nul en $-1,1$, négatif entre ces valeurs. Le signe de $f''$ est négatif à gauche de $0$, nul en $0$, positif à droite.
+\item Les variations et les limites se résument par
+\[\begin{array}{c|ccccccc}x&-\infty&&-1&&1&&+\infty\\\hline f'(x)&&+&0&-&0&+&\\\hline f(x)&-\infty&\nearrow&2&\searrow&-2&\nearrow&+\infty\end{array}\]
+Le signe de $f''$ donne la concavité sur $]-\infty,0]$ et la convexité sur $[0,+\infty[$.
+\item La convexité change en $0$, et $f(0)=0$ : le point d'inflexion est $(0,0)$. Sa tangente a pour équation $y=f(0)+f'(0)x=-3x$.
+\item La fonction est continue. Sur $]-\infty,-1]$, elle est strictement croissante de $-\infty$ à $2$ : le niveau $1$ est atteint exactement une fois. Sur $[-1,1]$, elle décroît strictement de $2$ à $-2$ : une deuxième solution. Sur $[1,+\infty[$, elle croît strictement de $-2$ à $+\infty$ : une troisième. Les points $-1,1$ ne sont pas solutions, donc on ne compte aucune solution deux fois.
+\item La continuité fournit l'existence d'un antécédent pour les valeurs intermédiaires. Elle ne fournit pas l'unicité : la fonction étudiée est continue et le niveau $1$ possède trois antécédents.
+\end{enumerate}
+
+\paragraph{E1.}Pour $u=2x-1$, $(u^5)'=5u' u^4=10(2x-1)^4$. Pour $v=-x^2$, $(e^v)'=v' e^v=-2xe^{-x^2}$. Les deux fonctions sont dérivables sur $\R$.
+
+\paragraph{E2.}$f'=4x^3-12x$ puis $f''=12(x^2-1)$. Le signe de $f''$ est positif à l'extérieur de $[-1,1]$, négatif à l'intérieur. Donc $f$ est convexe sur $]-\infty,-1]$ et $[1,+\infty[$, concave sur $[-1,1]$. Les changements de convexité donnent les inflexions $(-1,-5)$ et $(1,-5)$.
+
+\paragraph{E3.}La tangente est $y=f(1)+f'(1)(x-1)=e+e(x-1)=ex$. Puisque $f''(x)=e^x>0$, l'exponentielle est convexe et sa courbe est au-dessus de cette tangente : $e^x\ge ex$ sur $\R$.
+
+\paragraph{E4.}Posons $g(x)=x^3+2x-5$. Ce polynôme est continu et $g'(x)=3x^2+2>0$ sur $\R$. De plus $g(1)=-2<0$ et $g(2)=7>0$ : le TVI donne un zéro dans $]1,2[$, et la stricte croissance sur $\R$ assure qu'il est unique.
+
+\paragraph{E5.}Après $n$ étapes, la longueur vaut $\frac{2}{2^n}$. La condition demandée équivaut à $2^n\ge2000$. Comme $2^{10}=1024<2000\le2048=2^{11}$, onze étapes suffisent et dix ne suffisent pas.
+
+\subsection{Corrigé du DM4}\begin{enumerate}
+\item $f(0)=1$ et $\lim_{x\to0^+}f(x)=1$. En $+\infty$, $f(x)=xe^{-x}+e^{-x}\to0$ par croissance comparée. Par produit, $f'(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. Cette dérivée est strictement négative pour $x>0$ : $f$ décroît strictement de $1$ vers $0$ sur $[0,+\infty[$.
+\item $f''(x)=-e^{-x}+xe^{-x}=(x-1)e^{-x}$. Donc $f$ est concave sur $[0,1]$, convexe sur $[1,+\infty[$. Le changement de convexité en $1$ donne le point d'inflexion $(1,\frac{2}{e})$.
+\item $f$ est continue et strictement décroissante sur $[0,+\infty[$ ; $f(0)=1>\frac{1}{2}$ et sa limite $0$ est inférieure à $\frac{1}{2}$. Le corollaire du TVI donne une unique solution $\alpha$. De plus, $f(1)=\frac{2}{e}\simeq0{,}7358>\frac{1}{2}$ et $f(2)=\frac{3}{e^2}\simeq0{,}4060<\frac{1}{2}$, donc $1<\alpha<2$.
+\item 
+\begin{lstlisting}
+from math import exp
+
+def racine_dm4():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+1)*exp(-m) > 0.5:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+La décroissance conserve $f(a)\ge\frac{1}{2}\ge f(b)$ ; $\alpha$ reste dans $[a,b]$. Après onze étapes, on obtient $[1{,}677734375,1{,}6787109375]$, de longueur $\frac{1}{1024}<10^{-3}$. La valeur $\alpha\simeq1{,}67835$ est compatible avec cet encadrement.
+\item La tangente en $0$ est $y=f(0)+f'(0)x=1$. Les variations donnent $f(x)\le1$, donc toute la courbe est en dessous de cette tangente. Cela ne caractérise pas la concavité : il faudrait être au-dessous de toutes les tangentes, alors que $f$ devient convexe après $1$.
+\end{enumerate}
+
+\clearpage
+
+\subsection{Corrigé du travail dans le manuel ou une annale}Pour $f(x)=5x^2e^x$, la dérivation d'un produit donne
+\[f'(x)=10xe^x+5x^2e^x=5x(x+2)e^x.\]
+Puisque $e^x>0$, $f'$ est positive sur $]-\infty;-2[$ et $]0;+\infty[$, négative sur $]-2;0[$, nulle en $-2$ et $0$. La fonction croît donc jusqu'à $f(-2)=20e^{-2}$, décroît jusqu'à $f(0)=0$, puis croît. Ses limites sont $0$ en $-\infty$ (croissances comparées) et $+\infty$ en $+\infty$.
+Une nouvelle dérivation donne
+\[f''(x)=5(x^2+4x+2)e^x=5\bigl((x+2)^2-2\bigr)e^x.\]
+Posons $a=-2-\sqrt2$ et $b=-2+\sqrt2$. Le facteur polynomial est positif en dehors de $[a;b]$, négatif dans $]a;b[$. Ainsi $f$ est convexe sur $]-\infty;a]$ et $[b;+\infty[$, concave sur $[a;b]$. Le signe change aux deux racines : les points d'inflexion sont $(a;5a^2e^a)$ et $(b;5b^2e^b)$.\par Le tableau de variations se résume ainsi :
+\[\begin{array}{c|ccccccc}x&-\infty&&-2&&0&&+\infty\\\hline f'(x)&&+&0&-&0&+&\\\hline f(x)&0&\nearrow&20e^{-2}&\searrow&0&\nearrow&+\infty\end{array}\]
+Pour la question 5, la fenêtre ci-dessous rend visibles les deux changements de convexité et les deux extrema. Les points marqués correspondent aux points d'inflexion calculés ; le tracé sert à contrôler la cohérence de l'étude.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=11cm,height=5cm,axis lines=middle,xmin=-6,xmax=.8,ymin=-.3,ymax=5.5,xlabel={$x$},ylabel={$y$},samples=140,grid=major,grid style={gray!15}]
+\addplot[teal,thick,domain=-6:.8]{5*x^2*exp(x)};
+\addplot[only marks,navy,mark=*] coordinates {(-3.41421356,1.91768495) (-.58578644,.95509113)};
+\end{axis}\end{tikzpicture}\end{center}
+
+\fi
+
