@@ -1,0 +1,580 @@
+\clearpage\phantomsection\label{sujet:4-1}\addcontentsline{toc}{chapter}{DS3 · Zéro 1}
+
+\section*{DS3 · Zéro 1}
+
+{\sffamily\bfseries\color{teal}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Limites et asymptotes \hfill 5 points}On considère la fonction $f$ définie par $f(x)=\frac{5x+4}{x-1}$. On note $\mathcal C_f$ sa courbe représentative dans un repère du plan.
+
+\begin{enumerate}
+
+\item Déterminer l'ensemble de définition de $f$. Trouver deux réels $A$ et $B$ tels que, pour tout $x\ne1$, $f(x)=A+\frac B{x-1}$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $1^-$ et en $1^+$. \hfill\textit{(1 pt)}
+
+\item Donner les équations des asymptotes de $\mathcal C_f$. Préciser la position de la courbe par rapport à son asymptote horizontale. \hfill\textit{(1 pt)}
+
+\item Indépendamment des questions précédentes, déterminer $\displaystyle\lim_{x\to+\infty}x^{5}e^{-1x}$ en justifiant. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation \hfill 5 points}On considère la fonction $f$ définie sur $\R$ par $f(x)=x^3+4x-5$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f' (x)$, puis étudier le sens de variation de $f$ sur $\R$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=0$ admet une unique solution réelle $\alpha$. Donner sa valeur exacte si elle est entière ; sinon, l'encadrer entre deux entiers consécutifs. \hfill\textit{(1,5 pt)}
+
+\item Étudier la convexité de $f$, puis déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$, puis étudier la position de la courbe par rapport à cette tangente. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}DS3 · Zéro 1 · suite}\par
+
+\subsection*{Exercice 3 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+3)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac{3}{2}$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1,5 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe \hfill 5 points}Un collectif comprend $6$ enseignants et $10$ élèves, tous distincts. On choisit un groupe de quatre personnes ; l'ordre du choix n'intervient pas.
+
+\begin{enumerate}
+
+\item Combien de groupes de quatre personnes peut-on former ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent exactement deux enseignants ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent au moins un enseignant et au moins un élève ? \hfill\textit{(1 pt)}
+
+\item On choisit un groupe contenant exactement deux enseignants, puis on désigne parmi ses membres un porte-parole enseignant et un rapporteur élève. Dénombrer les choix du groupe accompagnés de ces deux attributions. \hfill\textit{(1 pt)}
+
+\item Expliquer pourquoi le nombre de listes ordonnées de quatre personnes distinctes, divisé par $4!$, donne le nombre de groupes obtenu à la question 1. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · DS3 · Zéro 1}\label{cor:4-1}
+
+\subsection*{Exercice 1 · Limites et asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} Le dénominateur s'annule seulement en $1$ : $D_f=\R\setminus\{1\}$. Comme $5x+4=5(x-1)+9$, on obtient $f(x)=5+\dfrac{9}{x-1}$.
+
+\item \textit{[1 pt]} Les deux limites valent $5$.
+
+\item \textit{[1 pt]} Quand $x\to 1^-$, $x-1\to0$ par valeurs négatives ; comme $9>0$, $\frac{9}{x-1}\to-\infty$, donc $f(x)\to-\infty$. À droite, le dénominateur tend vers $0$ par valeurs positives : le quotient, puis $f(x)$, tendent vers $+\infty$.
+
+\item \textit{[1 pt]} $x=1$ et $y=5$ ; courbe en dessous pour $x<1$ et au-dessus pour $x>1$.
+
+\item \textit{[1 pt]} La croissance comparée de la puissance et de l'exponentielle donne directement $x^5e^{-x}=\frac{x^5}{e^x}\to0$ lorsque $x\to+\infty$.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation}\begin{enumerate}
+
+\item \textit{[1 pt]} $f$ est dérivable sur $\R$ et $f'(x)=3x^2+4$. Comme $3x^2\ge0$ et $4>0$, $f'(x)>0$ pour tout $x$ ; $f$ est strictement croissante sur $\R$.
+
+\item \textit{[0,5 pt]} Le terme dominant est $x^3$ : limites $-\infty$ et $+\infty$.
+
+\item \textit{[1,5 pt]} $f$ est un polynôme, donc continue sur $\R$. Sa stricte croissance et ses limites $-\infty,+\infty$ permettent d'appliquer le corollaire du TVI : il existe un unique zéro $\alpha$. $f(1)=0$, donc la solution est exactement $1$.
+
+\item \textit{[1 pt]} $f''(x)=6x$ : concave pour $x\le0$, convexe pour $x\ge0$, inflexion $(0,-5)$.
+
+\item \textit{[1 pt]} Tangente $y=4x-5$ ; différence $x^3$, négative à gauche et positive à droite de $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=3$ ; limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+3)e^{-x}=(-x-2)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&3&\searrow&0\end{array}\]
+
+\item \textit{[1 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-2)e^{-x}=(x+1)e^{-x}.\]
+Sur le domaine, $x+1\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1,5 pt]} Continuité, stricte décroissance, $f(0)=3>\frac{3}{2}$ et limite $0<\frac{3}{2}$ : exactement une solution.
+
+\item \textit{[1 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=3-2x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+3)e^{-x}\ge 3-2x$ pour tout $x\ge0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe}\begin{enumerate}
+
+\item \textit{[1 pt]} L'ordre ne distingue pas les groupes : il faut choisir une partie de taille $4$ parmi $16$ personnes, soit $\binom{16}4=1820$ groupes.
+
+\item \textit{[1 pt]} On choisit deux enseignants parmi $6$ et deux élèves parmi $10$. Chaque couple de choix donne un unique groupe : $\binom{6}2\binom{10}2=675$.
+
+\item \textit{[1 pt]} Les groupes exclus sont ceux formés uniquement d'enseignants ou uniquement d'élèves ; ces deux catégories sont disjointes. Le nombre cherché est $\binom{16}4-\binom{6}4-\binom{10}4=1595$.
+
+\item \textit{[1 pt]} Chaque groupe produit $2\times2$ répartitions : $2700$.
+
+\item \textit{[1 pt]} Chaque groupe de quatre personnes distinctes correspond exactement à $4!$ listes ordonnées. Cette multiplicité est constante, donc la division supprime le comptage multiple.
+
+\end{enumerate}
+
+\fi
+
+\clearpage\phantomsection\label{sujet:4-2}\addcontentsline{toc}{chapter}{DS3 · Zéro 2}
+
+\section*{DS3 · Zéro 2}
+
+{\sffamily\bfseries\color{teal}SUJET ZÉRO · ENTRAÎNEMENT\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Limites et asymptotes \hfill 5 points}On considère la fonction $f$ définie par $f(x)=\frac{4x+6}{x-2}$. On note $\mathcal C_f$ sa courbe représentative dans un repère du plan.
+
+\begin{enumerate}
+
+\item Déterminer l'ensemble de définition de $f$. Trouver deux réels $A$ et $B$ tels que, pour tout $x\ne2$, $f(x)=A+\frac B{x-2}$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $2^-$ et en $2^+$. \hfill\textit{(1 pt)}
+
+\item Donner les équations des asymptotes de $\mathcal C_f$. Préciser la position de la courbe par rapport à son asymptote horizontale. \hfill\textit{(1 pt)}
+
+\item Indépendamment des questions précédentes, déterminer $\displaystyle\lim_{x\to+\infty}x^{4}e^{-2x}$ en justifiant. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation \hfill 5 points}On considère la fonction $f$ définie sur $\R$ par $f(x)=x^3+3x-7$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f' (x)$, puis étudier le sens de variation de $f$ sur $\R$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=0$ admet une unique solution réelle $\alpha$. Donner sa valeur exacte si elle est entière ; sinon, l'encadrer entre deux entiers consécutifs. \hfill\textit{(1,5 pt)}
+
+\item Étudier la convexité de $f$, puis déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$, puis étudier la position de la courbe par rapport à cette tangente. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}DS3 · Zéro 2 · suite}\par
+
+\subsection*{Exercice 3 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+2)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=1$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1,5 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe \hfill 5 points}Un collectif comprend $9$ enseignants et $11$ élèves, tous distincts. On choisit un groupe de quatre personnes ; l'ordre du choix n'intervient pas.
+
+\begin{enumerate}
+
+\item Combien de groupes de quatre personnes peut-on former ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent exactement deux enseignants ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent au moins un enseignant et au moins un élève ? \hfill\textit{(1 pt)}
+
+\item On choisit un groupe contenant exactement deux enseignants, puis on désigne parmi ses membres un porte-parole enseignant et un rapporteur élève. Dénombrer les choix du groupe accompagnés de ces deux attributions. \hfill\textit{(1 pt)}
+
+\item Expliquer pourquoi le nombre de listes ordonnées de quatre personnes distinctes, divisé par $4!$, donne le nombre de groupes obtenu à la question 1. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · DS3 · Zéro 2}\label{cor:4-2}
+
+\subsection*{Exercice 1 · Limites et asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} Le dénominateur s'annule seulement en $2$ : $D_f=\R\setminus\{2\}$. Comme $4x+6=4(x-2)+14$, on obtient $f(x)=4+\dfrac{14}{x-2}$.
+
+\item \textit{[1 pt]} Les deux limites valent $4$.
+
+\item \textit{[1 pt]} Quand $x\to 2^-$, $x-2\to0$ par valeurs négatives ; comme $14>0$, $\frac{14}{x-2}\to-\infty$, donc $f(x)\to-\infty$. À droite, le dénominateur tend vers $0$ par valeurs positives : le quotient, puis $f(x)$, tendent vers $+\infty$.
+
+\item \textit{[1 pt]} $x=2$ et $y=4$ ; courbe en dessous pour $x<2$ et au-dessus pour $x>2$.
+
+\item \textit{[1 pt]} Posons $t=2x$. Alors $t\to+\infty$ et $x^4e^{-2x}=\frac{1}{16}\frac{t^4}{e^t}$. La croissance comparée donne $\frac{t^4}{e^t}\to0$ ; la limite cherchée vaut donc $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation}\begin{enumerate}
+
+\item \textit{[1 pt]} $f$ est dérivable sur $\R$ et $f'(x)=3x^2+3$. Comme $3x^2\ge0$ et $3>0$, $f'(x)>0$ pour tout $x$ ; $f$ est strictement croissante sur $\R$.
+
+\item \textit{[0,5 pt]} Le terme dominant est $x^3$ : limites $-\infty$ et $+\infty$.
+
+\item \textit{[1,5 pt]} $f$ est un polynôme, donc continue sur $\R$. Sa stricte croissance et ses limites $-\infty,+\infty$ permettent d'appliquer le corollaire du TVI : il existe un unique zéro $\alpha$. $f(1)=-3<0$ et $f(2)=7>0$ ; donc $1<\alpha<2$.
+
+\item \textit{[1 pt]} $f''(x)=6x$ : concave pour $x\le0$, convexe pour $x\ge0$, inflexion $(0,-7)$.
+
+\item \textit{[1 pt]} Tangente $y=3x-7$ ; différence $x^3$, négative à gauche et positive à droite de $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=2$ ; limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+2)e^{-x}=(-x-1)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&2&\searrow&0\end{array}\]
+
+\item \textit{[1 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-1)e^{-x}=xe^{-x}.\]
+Sur le domaine, $x+0\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1,5 pt]} Continuité, stricte décroissance, $f(0)=2>1$ et limite $0<1$ : exactement une solution.
+
+\item \textit{[1 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=2-x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+2)e^{-x}\ge 2-x$ pour tout $x\ge0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe}\begin{enumerate}
+
+\item \textit{[1 pt]} L'ordre ne distingue pas les groupes : il faut choisir une partie de taille $4$ parmi $20$ personnes, soit $\binom{20}4=4845$ groupes.
+
+\item \textit{[1 pt]} On choisit deux enseignants parmi $9$ et deux élèves parmi $11$. Chaque couple de choix donne un unique groupe : $\binom{9}2\binom{11}2=1980$.
+
+\item \textit{[1 pt]} Les groupes exclus sont ceux formés uniquement d'enseignants ou uniquement d'élèves ; ces deux catégories sont disjointes. Le nombre cherché est $\binom{20}4-\binom{9}4-\binom{11}4=4389$.
+
+\item \textit{[1 pt]} Chaque groupe produit $2\times2$ répartitions : $7920$.
+
+\item \textit{[1 pt]} Chaque groupe de quatre personnes distinctes correspond exactement à $4!$ listes ordonnées. Cette multiplicité est constante, donc la division supprime le comptage multiple.
+
+\end{enumerate}
+
+\fi
+
+\ifprof
+
+\clearpage\phantomsection\label{sujet:4-3}\addcontentsline{toc}{chapter}{DS3 · A}
+
+\section*{DS3 · A}
+
+{\sffamily\bfseries\color{amber}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Limites et asymptotes \hfill 5 points}On considère la fonction $f$ définie par $f(x)=\frac{3x+8}{x-3}$. On note $\mathcal C_f$ sa courbe représentative dans un repère du plan.
+
+\begin{enumerate}
+
+\item Déterminer l'ensemble de définition de $f$. Trouver deux réels $A$ et $B$ tels que, pour tout $x\ne3$, $f(x)=A+\frac B{x-3}$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $3^-$ et en $3^+$. \hfill\textit{(1 pt)}
+
+\item Donner les équations des asymptotes de $\mathcal C_f$. Préciser la position de la courbe par rapport à son asymptote horizontale. \hfill\textit{(1 pt)}
+
+\item Indépendamment des questions précédentes, déterminer $\displaystyle\lim_{x\to+\infty}x^{3}e^{-3x}$ en justifiant. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation \hfill 5 points}On considère la fonction $f$ définie sur $\R$ par $f(x)=x^3+2x-4$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f' (x)$, puis étudier le sens de variation de $f$ sur $\R$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=0$ admet une unique solution réelle $\alpha$. Donner sa valeur exacte si elle est entière ; sinon, l'encadrer entre deux entiers consécutifs. \hfill\textit{(1,5 pt)}
+
+\item Étudier la convexité de $f$, puis déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$, puis étudier la position de la courbe par rapport à cette tangente. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}DS3 · A · suite}\par
+
+\subsection*{Exercice 3 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+5)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=\frac{5}{2}$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1,5 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe \hfill 5 points}Un collectif comprend $8$ enseignants et $8$ élèves, tous distincts. On choisit un groupe de quatre personnes ; l'ordre du choix n'intervient pas.
+
+\begin{enumerate}
+
+\item Combien de groupes de quatre personnes peut-on former ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent exactement deux enseignants ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent au moins un enseignant et au moins un élève ? \hfill\textit{(1 pt)}
+
+\item On choisit un groupe contenant exactement deux enseignants, puis on désigne parmi ses membres un porte-parole enseignant et un rapporteur élève. Dénombrer les choix du groupe accompagnés de ces deux attributions. \hfill\textit{(1 pt)}
+
+\item Expliquer pourquoi le nombre de listes ordonnées de quatre personnes distinctes, divisé par $4!$, donne le nombre de groupes obtenu à la question 1. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · DS3 · A}\label{cor:4-3}
+
+\subsection*{Exercice 1 · Limites et asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} Le dénominateur s'annule seulement en $3$ : $D_f=\R\setminus\{3\}$. Comme $3x+8=3(x-3)+17$, on obtient $f(x)=3+\dfrac{17}{x-3}$.
+
+\item \textit{[1 pt]} Les deux limites valent $3$.
+
+\item \textit{[1 pt]} Quand $x\to 3^-$, $x-3\to0$ par valeurs négatives ; comme $17>0$, $\frac{17}{x-3}\to-\infty$, donc $f(x)\to-\infty$. À droite, le dénominateur tend vers $0$ par valeurs positives : le quotient, puis $f(x)$, tendent vers $+\infty$.
+
+\item \textit{[1 pt]} $x=3$ et $y=3$ ; courbe en dessous pour $x<3$ et au-dessus pour $x>3$.
+
+\item \textit{[1 pt]} Posons $t=3x$. Alors $t\to+\infty$ et $x^3e^{-3x}=\frac{1}{27}\frac{t^3}{e^t}$. La croissance comparée donne $\frac{t^3}{e^t}\to0$ ; la limite cherchée vaut donc $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation}\begin{enumerate}
+
+\item \textit{[1 pt]} $f$ est dérivable sur $\R$ et $f'(x)=3x^2+2$. Comme $3x^2\ge0$ et $2>0$, $f'(x)>0$ pour tout $x$ ; $f$ est strictement croissante sur $\R$.
+
+\item \textit{[0,5 pt]} Le terme dominant est $x^3$ : limites $-\infty$ et $+\infty$.
+
+\item \textit{[1,5 pt]} $f$ est un polynôme, donc continue sur $\R$. Sa stricte croissance et ses limites $-\infty,+\infty$ permettent d'appliquer le corollaire du TVI : il existe un unique zéro $\alpha$. $f(1)=-1<0$ et $f(2)=8>0$ ; donc $1<\alpha<2$.
+
+\item \textit{[1 pt]} $f''(x)=6x$ : concave pour $x\le0$, convexe pour $x\ge0$, inflexion $(0,-4)$.
+
+\item \textit{[1 pt]} Tangente $y=2x-4$ ; différence $x^3$, négative à gauche et positive à droite de $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=5$ ; limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+5)e^{-x}=(-x-4)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&5&\searrow&0\end{array}\]
+
+\item \textit{[1 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-4)e^{-x}=(x+3)e^{-x}.\]
+Sur le domaine, $x+3\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1,5 pt]} Continuité, stricte décroissance, $f(0)=5>\frac{5}{2}$ et limite $0<\frac{5}{2}$ : exactement une solution.
+
+\item \textit{[1 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=5-4x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+5)e^{-x}\ge 5-4x$ pour tout $x\ge0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe}\begin{enumerate}
+
+\item \textit{[1 pt]} L'ordre ne distingue pas les groupes : il faut choisir une partie de taille $4$ parmi $16$ personnes, soit $\binom{16}4=1820$ groupes.
+
+\item \textit{[1 pt]} On choisit deux enseignants parmi $8$ et deux élèves parmi $8$. Chaque couple de choix donne un unique groupe : $\binom{8}2\binom{8}2=784$.
+
+\item \textit{[1 pt]} Les groupes exclus sont ceux formés uniquement d'enseignants ou uniquement d'élèves ; ces deux catégories sont disjointes. Le nombre cherché est $\binom{16}4-\binom{8}4-\binom{8}4=1680$.
+
+\item \textit{[1 pt]} Chaque groupe produit $2\times2$ répartitions : $3136$.
+
+\item \textit{[1 pt]} Chaque groupe de quatre personnes distinctes correspond exactement à $4!$ listes ordonnées. Cette multiplicité est constante, donc la division supprime le comptage multiple.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifprof
+
+\clearpage\phantomsection\label{sujet:4-4}\addcontentsline{toc}{chapter}{DS3 · B}
+
+\section*{DS3 · B}
+
+{\sffamily\bfseries\color{amber}SUJET RÉSERVÉ À L'ÉVALUATION\par}
+
+\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\subsection*{Exercice 1 · Limites et asymptotes \hfill 5 points}On considère la fonction $f$ définie par $f(x)=\frac{2x+5}{x-1}$. On note $\mathcal C_f$ sa courbe représentative dans un repère du plan.
+
+\begin{enumerate}
+
+\item Déterminer l'ensemble de définition de $f$. Trouver deux réels $A$ et $B$ tels que, pour tout $x\ne1$, $f(x)=A+\frac B{x-1}$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $1^-$ et en $1^+$. \hfill\textit{(1 pt)}
+
+\item Donner les équations des asymptotes de $\mathcal C_f$. Préciser la position de la courbe par rapport à son asymptote horizontale. \hfill\textit{(1 pt)}
+
+\item Indépendamment des questions précédentes, déterminer $\displaystyle\lim_{x\to+\infty}x^{2}e^{-1x}$ en justifiant. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation \hfill 5 points}On considère la fonction $f$ définie sur $\R$ par $f(x)=x^3+5x-5$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f' (x)$, puis étudier le sens de variation de $f$ sur $\R$. \hfill\textit{(1 pt)}
+
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Démontrer que l'équation $f(x)=0$ admet une unique solution réelle $\alpha$. Donner sa valeur exacte si elle est entière ; sinon, l'encadrer entre deux entiers consécutifs. \hfill\textit{(1,5 pt)}
+
+\item Étudier la convexité de $f$, puis déterminer les coordonnées du point d'inflexion de $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$, puis étudier la position de la courbe par rapport à cette tangente. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\clearpage\noindent{\sffamily\bfseries\color{navy}DS3 · B · suite}\par
+
+\subsection*{Exercice 3 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $[0;+\infty[$ par $f(x)=(x+4)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
+
+\begin{enumerate}
+
+\item Calculer $f(0)$ et déterminer la limite de $f$ en $+\infty$. \hfill\textit{(0,5 pt)}
+
+\item Calculer $f' (x)$, puis dresser le tableau de variations de $f$. \hfill\textit{(1 pt)}
+
+\item Calculer $f'' (x)$, puis étudier la convexité de $f$. \hfill\textit{(1 pt)}
+
+\item Démontrer que l'équation $f(x)=2$ admet une unique solution $\alpha$ dans $[0;+\infty[$. \hfill\textit{(1,5 pt)}
+
+\item Déterminer une équation de la tangente à $\mathcal C_f$ au point d'abscisse $0$. En utilisant la convexité, donner une inégalité entre $f(x)$ et l'expression affine de cette tangente, pour tout $x\ge0$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe \hfill 5 points}Un collectif comprend $7$ enseignants et $10$ élèves, tous distincts. On choisit un groupe de quatre personnes ; l'ordre du choix n'intervient pas.
+
+\begin{enumerate}
+
+\item Combien de groupes de quatre personnes peut-on former ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent exactement deux enseignants ? \hfill\textit{(1 pt)}
+
+\item Combien de ces groupes comprennent au moins un enseignant et au moins un élève ? \hfill\textit{(1 pt)}
+
+\item On choisit un groupe contenant exactement deux enseignants, puis on désigne parmi ses membres un porte-parole enseignant et un rapporteur élève. Dénombrer les choix du groupe accompagnés de ces deux attributions. \hfill\textit{(1 pt)}
+
+\item Expliquer pourquoi le nombre de listes ordonnées de quatre personnes distinctes, divisé par $4!$, donne le nombre de groupes obtenu à la question 1. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifprof\clearpage
+
+\section*{Corrigé · DS3 · B}\label{cor:4-4}
+
+\subsection*{Exercice 1 · Limites et asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} Le dénominateur s'annule seulement en $1$ : $D_f=\R\setminus\{1\}$. Comme $2x+5=2(x-1)+7$, on obtient $f(x)=2+\dfrac{7}{x-1}$.
+
+\item \textit{[1 pt]} Les deux limites valent $2$.
+
+\item \textit{[1 pt]} Quand $x\to 1^-$, $x-1\to0$ par valeurs négatives ; comme $7>0$, $\frac{7}{x-1}\to-\infty$, donc $f(x)\to-\infty$. À droite, le dénominateur tend vers $0$ par valeurs positives : le quotient, puis $f(x)$, tendent vers $+\infty$.
+
+\item \textit{[1 pt]} $x=1$ et $y=2$ ; courbe en dessous pour $x<1$ et au-dessus pour $x>1$.
+
+\item \textit{[1 pt]} La croissance comparée de la puissance et de l'exponentielle donne directement $x^2e^{-x}=\frac{x^2}{e^x}\to0$ lorsque $x\to+\infty$.
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Variations, convexité et équation}\begin{enumerate}
+
+\item \textit{[1 pt]} $f$ est dérivable sur $\R$ et $f'(x)=3x^2+5$. Comme $3x^2\ge0$ et $5>0$, $f'(x)>0$ pour tout $x$ ; $f$ est strictement croissante sur $\R$.
+
+\item \textit{[0,5 pt]} Le terme dominant est $x^3$ : limites $-\infty$ et $+\infty$.
+
+\item \textit{[1,5 pt]} $f$ est un polynôme, donc continue sur $\R$. Sa stricte croissance et ses limites $-\infty,+\infty$ permettent d'appliquer le corollaire du TVI : il existe un unique zéro $\alpha$. $f(0)=-5<0$ et $f(1)=1>0$ ; donc $0<\alpha<1$.
+
+\item \textit{[1 pt]} $f''(x)=6x$ : concave pour $x\le0$, convexe pour $x\ge0$, inflexion $(0,-5)$.
+
+\item \textit{[1 pt]} Tangente $y=5x-5$ ; différence $x^3$, négative à gauche et positive à droite de $0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Une courbe exponentielle}\begin{enumerate}
+
+\item \textit{[0,5 pt]} $f(0)=4$ ; limite $0$ par croissance comparée.
+
+\item \textit{[1 pt]} Par la règle du produit,
+\[f'(x)=e^{-x}-(x+4)e^{-x}=(-x-3)e^{-x}.\]
+Les deux facteurs ont respectivement un signe strictement négatif et positif sur $[0,+\infty[$ ; donc $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&4&\searrow&0\end{array}\]
+
+\item \textit{[1 pt]} En dérivant le produit précédent,
+\[f''(x)=-e^{-x}-(-x-3)e^{-x}=(x+2)e^{-x}.\]
+Sur le domaine, $x+2\ge0$ et $e^{-x}>0$ : $f$ est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.
+
+\item \textit{[1,5 pt]} Continuité, stricte décroissance, $f(0)=4>2$ et limite $0<2$ : exactement une solution.
+
+\item \textit{[1 pt]} La tangente en $0$ a pour équation $y=f(0)+f'(0)x=4-3x$. Une fonction convexe est au-dessus de chacune de ses tangentes, donc $(x+4)e^{-x}\ge 4-3x$ pour tout $x\ge0$.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Constituer un groupe}\begin{enumerate}
+
+\item \textit{[1 pt]} L'ordre ne distingue pas les groupes : il faut choisir une partie de taille $4$ parmi $17$ personnes, soit $\binom{17}4=2380$ groupes.
+
+\item \textit{[1 pt]} On choisit deux enseignants parmi $7$ et deux élèves parmi $10$. Chaque couple de choix donne un unique groupe : $\binom{7}2\binom{10}2=945$.
+
+\item \textit{[1 pt]} Les groupes exclus sont ceux formés uniquement d'enseignants ou uniquement d'élèves ; ces deux catégories sont disjointes. Le nombre cherché est $\binom{17}4-\binom{7}4-\binom{10}4=2135$.
+
+\item \textit{[1 pt]} Chaque groupe produit $2\times2$ répartitions : $3780$.
+
+\item \textit{[1 pt]} Chaque groupe de quatre personnes distinctes correspond exactement à $4!$ listes ordonnées. Cette multiplicité est constante, donc la division supprime le comptage multiple.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

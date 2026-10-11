@@ -1,0 +1,125 @@
+\setcounter{chapter}{0}\chapter{Suites numériques et récurrence}\label{ch:1}
+
+{\small\sffamily\color{teal}S2, S4, S5, S7, S10, S11, S13\par}
+
+\begin{retenir}{Objectifs}Calculer des termes et une somme ; rédiger une récurrence ; établir monotonie et bornes ; exploiter une suite auxiliaire.\end{retenir}
+
+\section{Notes de cours}
+\subsection{Définir une suite et calculer}
+Une suite réelle est une fonction définie sur $\N$, ou sur les entiers à partir d'un rang $n_0$. On note $u_n$ son terme de rang $n$. Une formule explicite donne $u_n$ directement ; une relation de récurrence exige aussi un terme initial. Par exemple, $u_0=2$ et $u_{n+1}=3u_n-1$ donnent $u_1=5$, $u_2=14$.
+\begin{retenir}{Suites de référence}
+Si $u_{n+1}=u_n+r$, alors $u_n=u_p+(n-p)r$. Si $u_{n+1}=qu_n$, alors $u_n=u_pq^{n-p}$ pour $n\ge p$.
+\[\sum_{k=p}^n u_k=(n-p+1)\frac{u_p+u_n}{2}\quad\text{(arithmétique)},\qquad
+\sum_{k=p}^n u_k=u_p\frac{1-q^{n-p+1}}{1-q}\quad(q\ne1).\]
+Lorsque $q=1$, la deuxième somme vaut $(n-p+1)u_p$.
+\end{retenir}
+\subsection{Raisonnement par récurrence}
+Pour prouver $P(n)$ pour tout entier $n\ge n_0$ : vérifier $P(n_0)$ ; fixer un entier arbitraire $n\ge n_0$ et supposer $P(n)$ vraie ; en déduire $P(n+1)$ ; conclure par le principe de récurrence. L'hypothèse n'est pas la conclusion : elle ne peut être utilisée qu'au rang fixé.
+\paragraph{Exemple entièrement rédigé.} Soit $u_0=1$, $u_{n+1}=2u_n+3$. Pour $n\in\N$, notons $P(n)$ : « $u_n=4\times2^n-3$ ».
+\par\smallskip\textbf{Initialisation.} $4\times2^0-3=1=u_0$ ; $P(0)$ est vraie.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $P(n)$ vraie. Par la définition de la suite, puis par cette hypothèse,
+\[\begin{aligned}u_{n+1}&=2u_n+3\\&=2(4\times2^n-3)+3\\&=8\times2^n-3=4\times2^{n+1}-3.\end{aligned}\]
+C'est $P(n+1)$ : la propriété est héréditaire.
+\par\smallskip\textbf{Conclusion.} Par le principe de récurrence, $u_n=4\times2^n-3$ pour tout $n\in\N$.
+\paragraph{Démonstration : somme des entiers.} Notons $P(n)$ : « $\sum_{k=0}^n k=\frac{n(n+1)}{2}$ ».
+Pour $n=0$, les deux membres valent $0$ : $P(0)$ est vraie.
+Fixons $n\ge0$ et supposons $P(n)$ vraie. Alors
+\[\begin{aligned}\sum_{k=0}^{n+1}k&=\sum_{k=0}^nk+(n+1)\\&=\frac{n(n+1)}2+(n+1)\\&=\frac{(n+1)(n+2)}2.\end{aligned}\]
+On a établi $P(n+1)$. Par récurrence, la formule est vraie pour tout $n\in\N$.
+\subsection{Comportement global}
+La suite est croissante si $u_{n+1}\ge u_n$ pour tout rang, décroissante si l'inégalité est inversée. Elle est majorée s'il existe un réel $M$ tel que $u_n\le M$ pour tout $n$ ; minorée s'il existe $m$ tel que $u_n\ge m$ ; bornée si elle est à la fois minorée et majorée.
+Pour étudier la monotonie, on peut étudier le signe de $u_{n+1}-u_n$. Si tous les termes sont strictement positifs, on peut comparer $\frac{u_{n+1}}{u_n}$ à $1$. L'étude d'une fonction $f$ telle que $u_n=f(n)$ est une autre possibilité.
+\begin{methode}{Suite arithmético-géométrique}
+Pour $u_{n+1}=au_n+b$, $a\ne1$, résoudre $\ell=a\ell+b$, puis poser $v_n=u_n-\ell$. On obtient $v_{n+1}=av_n$, donc
+\[u_n=\ell+(u_0-\ell)a^n,\qquad\ell=\frac{b}{1-a}.\]
+Si $a=1$, la suite est arithmétique : ne pas diviser par $1-a$.
+\end{methode}
+\paragraph{Exemple.} Si $u_0=10$ et $u_{n+1}=0{,}8u_n+6$, alors $\ell=30$ et $u_n=30-20(0{,}8)^n$. On a $10\le u_n<30$ et $u_{n+1}-u_n=4(0{,}8)^n>0$.
+\paragraph{Piège.} Vérifier une propriété sur cent termes ne la démontre pas. Une suite croissante n'est pas nécessairement positive ; une suite bornée n'est pas nécessairement monotone.
+
+
+\section{Activité de recherche}\textbf{Un réservoir alimenté chaque jour --- 35 min.}\par Un réservoir contient initialement $100$ litres d'eau. Chaque jour, on prélève $20\,\%$ du volume présent, puis on ajoute $30$ litres. Pour tout entier naturel $n$, on note $u_n$ le volume d'eau, en litres, après ces deux opérations effectuées $n$ fois. Ainsi, $u_0=100$.
+\begin{enumerate}\item Calculer $u_1$ et $u_2$, puis exprimer $u_{n+1}$ en fonction de $u_n$.
+\item Quelle valeur du volume resterait inchangée après une journée ? Démontrer par récurrence que, pour tout $n\in\N$, $100\le u_n<150$.
+\item Pour tout $n\in\N$, on pose $v_n=u_n-150$. Montrer que $(v_n)$ est géométrique. En déduire les expressions de $v_n$ et de $u_n$ en fonction de $n$.
+\item Écrire une fonction Python sans argument qui renvoie le premier entier $n$ pour lequel $u_n>145$. Exécuter le programme et interpréter le résultat.
+\item Un élève a calculé les cent premiers termes et constate qu'ils sont inférieurs à $150$. Ce constat suffit-il à démontrer que tous les termes le sont ? Justifier.\end{enumerate}
+
+\section{Exercices progressifs}
+
+\exercice{1}{Entraînement}On considère la suite $(u_n)$ définie, pour tout entier naturel $n$, par $u_n=5-3n$. Calculer $u_4$, puis la somme $\displaystyle\sum_{k=0}^{20}u_k$.
+
+\exercice{2}{Entraînement}La suite $(v_n)$ est définie par $v_0=3$ et, pour tout entier naturel $n$, $v_{n+1}=2v_n$. Exprimer $v_n$ en fonction de $n$, puis calculer $\displaystyle\sum_{k=0}^n v_k$.
+
+\exercice{3}{Entraînement}Démontrer par récurrence que, pour tout entier naturel $n$, $3^n\ge2n+1$.
+
+\exercice{4}{Entraînement}On considère la suite $(u_n)$ définie sur $\N$ par $u_n=\frac{n+1}{n+2}$. Démontrer qu'elle est croissante et donner un encadrement valable pour tous ses termes.
+
+\exercice{5}{Entraînement}Démontrer par récurrence que, pour tout entier naturel $n$, $8^n-1$ est divisible par $7$. On n'utilisera pas les congruences.
+
+\section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 28, exercices 22 et 25.} En classe, en S5 : exercice 22, pour traduire des propriétés de suites avec un quantificateur. À la maison après S11 : exercice 25 en entier, pour articuler récurrence, majoration et monotonie. Rédiger séparément l'initialisation, l'hérédité et la conclusion.
+
+\section{Devoir à la maison}\textbf{DM1 --- Une somme et un seuil --- 45 min, après S11.}\par On considère la suite $(u_n)$ définie par $u_0=2$ et, pour tout $n\in\N$, $u_{n+1}=\frac12u_n+3$.
+\begin{enumerate}\item Démontrer par récurrence que $2\le u_n<6$ pour tout $n\in\N$. En déduire le sens de variation de $(u_n)$.
+\item On pose $v_n=u_n-6$ pour tout $n\in\N$. Montrer que $(v_n)$ est géométrique, puis exprimer $u_n$ en fonction de $n$.
+\item Pour tout $n\in\N$, on note $S_n=\displaystyle\sum_{k=0}^n u_k$. Exprimer $S_n$ en fonction de $n$.
+\item À l'aide de la formule explicite et de puissances de $2$, déterminer le plus petit entier $n$ tel que $u_n>5{,}99$. Vérifier que l'entier précédent ne convient pas.
+\item Exprimer $6-\frac{S_n}{n+1}$ et justifier que cette différence est strictement positive. Interpréter le résultat en considérant la moyenne des $n+1$ premiers termes ; on ne demande pas de calcul de limite.\end{enumerate}
+
+\ifprof\clearpage\section{Conduite et corrigés}\begin{profbox}{Repères pour le professeur}En S2, distinguer immédiatement le rang et la valeur du terme. En S4, faire exécuter une boucle à la main avant Python. En S5 et S7, faire verbaliser « on suppose au rang $n$, on démontre au rang $n+1$ ». La somme et la divisibilité arrivent en S10, après DS1 : ne pas les évaluer au premier DS. En S11, la recherche du point fixe est une technique algébrique ; le théorème de convergence sera établi au chapitre suivant. Pour les élèves fragiles, fournir la propriété $P(n)$ et laisser écrire les trois étapes ; pour les plus avancés, retirer la suggestion de suite auxiliaire.\end{profbox}
+
+\subsection{Corrigé de l'activité}\begin{enumerate}
+\item $u_0=100$ L. Après une journée, il reste $0{,}8u_0$ L, puis on ajoute $30$ L : $u_1=110$ L. De même, $u_2=0{,}8\times110+30=118$ L. Pour tout $n\ge0$, $u_{n+1}=0{,}8u_n+30$.
+\item Le volume d'équilibre $L$ devrait satisfaire $L=0{,}8L+30$, soit $L=150$ L. Démontrons $P(n)$ : « $100\le u_n<150$ ». Au rang $0$, $u_0=100\in[100,150[$. Fixons $n\ge0$ et supposons $P(n)$ vraie. Comme $0{,}8>0$,
+\[110=0{,}8\times100+30\le0{,}8u_n+30<0{,}8\times150+30=150.\]
+Donc $100\le u_{n+1}<150$ et $P(n+1)$ est vraie. Par récurrence, l'encadrement est vrai pour tout $n\in\N$.
+\item $v_{n+1}=u_{n+1}-150=0{,}8u_n-120=0{,}8(u_n-150)=0{,}8v_n$. La suite $(v_n)$ est géométrique, de raison $0{,}8$ et de premier terme $v_0=-50$. Ainsi $v_n=-50(0{,}8)^n$, puis $u_n=150-50(0{,}8)^n$.
+\item 
+\begin{lstlisting}
+def premier_jour():
+    n, u = 0, 100
+    while u <= 145:
+        u = 0.8*u+30
+        n += 1
+    return n
+\end{lstlisting}
+La boucle renvoie $11$. En effet, $u_{10}\simeq144{,}63<145$ et $u_{11}\simeq145{,}71>145$. De plus, $u_{n+1}-u_n=10(0{,}8)^n>0$ : le seuil n'a pas été franchi avant. Le calcul de ces deux valeurs garantit ici l'arrêt, sans exiger encore un théorème de convergence.
+\item La simulation ne calcule qu'un nombre fini de termes. L'hérédité, jointe à l'initialisation, établit l'encadrement pour tous les entiers ; c'est elle qui exclut tout dépassement de $150$ L.
+\end{enumerate}
+
+\paragraph{E1.}$u_4=5-3\times4=-7$. La suite est arithmétique de raison $-3$ et $u_{20}=-55$. La somme comporte $21$ termes : $\sum_{k=0}^{20}u_k=\frac{21(u_0+u_{20})}{2}=\frac{21(5-55)}{2}=-525$.
+
+\paragraph{E2.}La suite est géométrique de raison $2$ et de premier terme $v_0=3$. Donc $v_n=3\times2^n$. La somme comporte $n+1$ termes et vaut $\frac{3(1-2^{n+1})}{1-2}=3(2^{n+1}-1)$.
+
+\paragraph{E3.}Posons $P(n)$ : « $3^n\ge2n+1$ ». Au rang $0$, $3^0=1=2\times0+1$.
+Fixons $n\ge0$ et supposons $P(n)$ vraie. En multipliant par $3>0$, $3^{n+1}\ge6n+3$. Or $6n+3-(2n+3)=4n\ge0$. Ainsi $3^{n+1}\ge2(n+1)+1$, ce qui est $P(n+1)$. Par récurrence, $P(n)$ est vraie pour tout $n\in\N$.
+
+\paragraph{E4.}Pour $n\ge0$, $u_n=1-\frac{1}{n+2}$. On a $0<\frac{1}{n+2}\le\frac{1}{2}$, donc $\frac{1}{2}\le u_n<1$. De plus,
+\[u_{n+1}-u_n=\frac1{n+2}-\frac1{n+3}=\frac1{(n+2)(n+3)}>0.\]
+La suite est strictement croissante, minorée par $\frac{1}{2}$ et majorée par $1$.
+
+\paragraph{E5.}Notons $P(n)$ : « il existe un entier $k$ tel que $8^n-1=7k$ ». Pour $n=0$, $8^0-1=0=7\times0$ : $P(0)$ est vraie.
+Fixons $n\ge0$ et supposons $P(n)$ vraie. Il existe donc un entier $k$ tel que $8^n-1=7k$. Alors
+\[8^{n+1}-1=8(8^n-1)+7=8\times7k+7=7(8k+1).\]
+Comme $8k+1$ est entier, $P(n+1)$ est vraie. Par récurrence, $7$ divise $8^n-1$ pour tout $n\ge0$.
+
+\subsection{Corrigé du DM1}\begin{enumerate}
+\item Posons $P(n)$ : « $2\le u_n<6$ ». Au rang $0$, $u_0=2$ vérifie l'encadrement. Fixons $n\ge0$ et supposons $P(n)$ vraie. Alors $4\le \frac{u_n}{2}+3<6$ ; en particulier $2\le u_{n+1}<6$. Par récurrence, $P(n)$ est vraie à tout rang. On en déduit $u_{n+1}-u_n=3-\frac{u_n}{2}=\frac{6-u_n}{2}>0$. La suite est strictement croissante.
+\item L'équation $L=\frac{L}{2}+3$ donne $L=6$. Posons $v_n=u_n-6$. Alors $v_{n+1}=\frac{u_n}{2}-3=\frac{v_n}{2}$ et $v_0=-4$. Donc $v_n=-\frac{4}{2^n}$ et $u_n=6-\frac{4}{2^n}$.
+\item Par linéarité des sommes et formule géométrique,
+\[\begin{aligned}S_n&=6(n+1)-4\sum_{k=0}^n(\frac{1}{2})^k\\&=6(n+1)-8(1-2^{-(n+1)}).\end{aligned}\]
+\item $u_n>5{,}99$ équivaut à $\frac{4}{2^n}<0{,}01$, soit $2^n>400$. Comme $2^8=256\le400<512=2^9$ et $(2^n)$ est croissante, le plus petit rang est $9$.
+\item La moyenne est inférieure à $6$ et son écart à $6$ vaut
+\[6-\frac{S_n}{n+1}=\frac{8(1-2^{-(n+1)})}{n+1},\qquad 0<6-\frac{S_n}{n+1}<\frac8{n+1}.\]
+Pour rendre cet écart inférieur à une précision $\varepsilon>0$, il suffit de prendre $n+1>\frac{8}{\varepsilon}$. C'est un contrôle quantitatif de l'écart, qui ne demande pas encore de théorème sur les limites.
+\end{enumerate}
+
+\subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 22.} Les quatre traductions sont, pour tout $n\in\N$ : $u_{n+1}\ge u_n$ ; $v_n\ge5$ ; $w_n\le-1$ ; $t_n>0$. La monotonie compare deux termes consécutifs ; une borne compare chaque terme à un même nombre.
+\paragraph{Exercice 25.} On a $u_0=-5$ et $u_{n+1}=\frac23u_n-1$.
+\par\smallskip\textbf{Initialisation.} $u_0=-5\le-3$ : la propriété est vraie au rang $0$.
+\par\smallskip\textbf{Hérédité.} Fixons $n\in\N$ et supposons $u_n\le-3$. La multiplication par $\frac23>0$ conserve l'ordre, donc $\frac23u_n\le-2$. Ainsi $u_{n+1}=\frac23u_n-1\le-3$.
+\par\smallskip\textbf{Conclusion.} Par récurrence, $u_n\le-3$ pour tout $n\in\N$.
+Ensuite, $u_{n+1}-u_n=\frac23u_n-1-u_n=-\frac13u_n-1$. La borne précédente donne $-\frac13u_n\ge1$, d'où $u_{n+1}-u_n\ge0$. La suite est croissante. Le changement de sens de l'inégalité vient ici du facteur négatif $-\frac13$.
+
+\fi
+

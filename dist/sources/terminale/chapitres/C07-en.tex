@@ -1,0 +1,103 @@
+\setcounter{chapter}{12}\chapter{Conditional probability and the binomial distribution}\label{ch:13}
+
+{\small\sffamily\color{teal}S36 (revision), S37, S38, S39, S41\par}
+
+\begin{retenir}{Objectives}Build a tree; choose a binomial distribution; calculate a cumulative probability and a threshold; interpret expected value and variance.\end{retenir}
+
+\section{Course notes}
+\subsection{Revision: conditioning and independence}
+If $P(A)>0$, $P_A(B)=\frac{P(A\cap B)}{P(A)}$. A branch of a tree carries a conditional probability; the probability of a path is the product of its branches. For a partition $A_1,\ldots,A_r$, $P(B)=\sum_iP(A_i\cap B)$; if all the $P(A_i)>0$, it is written $\sum_iP(A_i)P_{A_i}(B)$.
+Two events are independent when $P(A\cap B)=P(A)P(B)$. For $P(A)>0$, this is equivalent to $P_A(B)=P(B)$. Do not confuse $P_A(B)$ and $P_B(A)$.
+\paragraph{Example.} $P(A)=0.4$, $P_A(B)=0.7$, $P_{\overline A}(B)=0.2$. Then $P(B)=0.4\times0.7+0.6\times0.2=0.4$ and $P_B(A)=\frac{0.28}{0.4}=0.7$.
+\subsection{Bernoulli and the binomial distribution}
+A Bernoulli trial has two outcomes, success with probability $p$ and failure with probability $1-p$. The indicator variable $B$ equals $1$ in case of success and $0$ otherwise: $E(B)=p$, $V(B)=p(1-p)$.
+A Bernoulli scheme is a repetition of $n$ identical and independent trials. The number $X$ of successes follows the binomial distribution $\mathcal B(n,p)$.
+\begin{retenir}{Distribution and parameters}
+For $k\in\{0,\ldots,n\}$,
+\[P(X=k)=\binom nk p^k(1-p)^{n-k}.\]\[E(X)=np,\qquad V(X)=np(1-p),\qquad\sigma(X)=\sqrt{np(1-p)}.\]
+\end{retenir}
+\paragraph{Proof of the distribution.} Each path containing $k$ successes has probability $p^k(1-p)^{n-k}$ by independence. There are $\binom nk$ choices for the positions of the successes. These paths are mutually exclusive; add their probabilities.
+\subsection{Cumulative events}
+\[P(X\le k)=\sum_{j=0}^kP(X=j),\qquad P(X\ge k)=1-P(X\le k-1).\]\[P(a\le X\le b)=P(X\le b)-P(X\le a-1).\]
+For at least one success, $P(X\ge1)=1-(1-p)^n$. The complement of ``at least $k$'' is ``strictly fewer than $k$''.
+\paragraph{Example.} For $X\sim\mathcal B(10,0.2)$, $E(X)=2$ and $V(X)=1.6$. $P(X=2)=45(0.2)^2(0.8)^8\simeq0.3020$ and $P(X\ge1)=1-0.8^{10}\simeq0.8926$. The expected value is neither a certain result nor necessarily the most likely one.
+\subsection{Threshold and interval}
+To find the smallest $n$ such that $1-(1-p)^n\ge q$, a loop on $n$ is enough. After taking logarithms, one can solve $(1-p)^n\le1-q$ then round in the right direction.
+To find the smallest integer $k$ such that $P(X>k)\le\alpha$, increase $k$ until $P(X\le k)\ge1-\alpha$ is obtained, then check the previous value. One can also look for an interval $[a,b]$ containing at least a prescribed probability, without assuming that it is unique.
+\subsection{Independent trials, beyond two outcomes}
+For independent experiments, the probability of a list of results is the product of the probabilities of its components. The sample space is the Cartesian product of the sample spaces of each experiment. For example, for two independent throws of a fair die, the sample space contains the $36$ pairs $(i,j)$, $1\le i,j\le6$, each with probability $\frac{1}{36}$. The probability that the sum is $5$ is $\frac{4}{36}=\frac{1}{9}$, because the favourable pairs are $(1,4),(2,3),(3,2),(4,1)$.
+In a Bernoulli scheme, success is coded by $1$ and failure by $0$: the sample space is $\{0,1\}^n$. Independence concerns the whole succession; a mere equality between two observed probabilities is not enough to prove it.
+
+
+\section{Research activity}\textbf{Checking components --- 40 min.}\par A component is chosen at random from a production coming from two workshops. Denote by $A$ the event ``the component comes from the first workshop'', $B=\overline A$ and $D$ the event ``the component is defective''. We are given $P(A)=0.6$, $P_A(D)=0.02$ and $P_B(D)=0.05$. Approximate results will be rounded to $10^{-4}$.
+\begin{enumerate}\item Represent the situation by a weighted tree, then calculate $P(D)$.
+\item The component chosen is defective. Calculate the probability that it comes from the first workshop.
+\item We now choose twenty components independently, each following the previous model. Denote by $X$ the number of defective components among the twenty. Justify the distribution followed by $X$ and state its parameters.
+\item Calculate $P(X=0)$, $P(X\ge2)$ and $E(X)$.
+\item If the twenty components were taken from a single batch, which assumption of the model would need to be re-examined? Explain why.\end{enumerate}
+
+\section{Progressive exercises}
+
+\exercice{1}{Practice}Consider two events $A$ and $B$ such that $P(A)=0.3$, $P_A(B)=0.8$ and $P_{\overline A}(B)=0.1$. Calculate $P(B)$, then $P_B(A)$.
+
+\exercice{2}{Practice}The random variable $X$ follows the binomial distribution with parameters $8$ and $\frac14$. Give the exact values of $P(X=3)$, $E(X)$ and $V(X)$.
+
+\exercice{3}{Practice}Let $X$ be a random variable taking integer values. For every integer $k$, set $F(k)=P(X\le k)$. Express $P(X\ge4)$ and $P(2\le X\le5)$ in terms of $F$.
+
+\exercice{4}{Practice}Five cards are drawn in succession, without replacement, from a pack of 52 cards containing four aces. Let $X$ be the number of aces obtained. Does the variable $X$ follow a binomial distribution? Justify.
+
+\exercice{5}{Practice}A trial whose probability of success is $\frac12$ is repeated independently. Determine the smallest number of trials for which the probability of obtaining at least one success is greater than or equal to $0.99$.
+
+\section{Textbook or past-paper work}\textbf{Baccalauréat, Metropolitan France, 17 June 2025: exercise 1, question 5 (p. 3).} In class after S41. Read the context of questions 1 to 4; for this work, accept the result $p=0.0714$ from question 4. The paper is available here: \href{https://www.education.gouv.fr/sites/default/files/2025-06/baccalaur-at-g-n-ral-2025-math-matiques-440856.pdf}{official past paper}. Use the data and instructions of this past paper.
+
+\section{Homework}\textbf{Homework 13 --- Reservations and overbooking --- 60 min.}\par A hall has eighteen seats. The organiser accepts twenty reservations, paid in advance. Each person who has reserved turns up with probability $0.8$, independently of the others. Denote by $X$ the number of people who turn up. If more than eighteen people come, the surplus people are turned away.
+\begin{enumerate}\item Justify the distribution of $X$, then calculate its expected value and variance.
+\item Calculate the probability that the organiser has to turn away at least one person. Round to $10^{-6}$.
+\item Each reservation brings in $10$ monetary units, even if the person does not come. Each person turned away receives a total payment of $30$ monetary units, refund and compensation included. Denote by $R=\max(X-18;0)$ the number of people turned away. Express the profit $G$ in terms of $R$, then calculate $E(G)$.
+\item Calculate the profit if the organiser accepts only eighteen reservations, with the same payment rules. Compare the two strategies in terms of mean profit.
+\item State one assumption of the model that may be questionable in practice, then a criterion other than monetary profit to take into account in this decision.\end{enumerate}
+
+\ifprof\clearpage\section{Teaching notes and solutions}\begin{profbox}{Teacher notes}Reactivate conditional probabilities in S36 before any Bernoulli scheme. Independence is an assumption of the model; it does not follow from repetition alone. For a draw without replacement, do not automatically invoke a binomial distribution. The formulas for expected value and variance are used in S39; their proof by a sum of indicators is revisited in Chapter 14. A threshold requested in December must be obtainable by a loop, as the logarithm has not yet been taught.\end{profbox}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item The tree has branches $A$ and $B$, with probabilities $0.6$ and $0.4$. From $A$, the branches $D,\overline D$ carry $0.02,0.98$; from $B$, they carry $0.05,0.95$.
+\begin{center}\begin{tikzpicture}[grow=right,level distance=29mm,level 1/.style={sibling distance=40mm},level 2/.style={sibling distance=20mm},edge from parent/.style={draw,navy},every node/.style={font=\small}]
+\node {} child {node {$B$} child {node {$\overline D$} edge from parent node[below] {$0.95$}} child {node {$D$} edge from parent node[above] {$0.05$}} edge from parent node[below] {$0.4$}} child {node {$A$} child {node {$\overline D$} edge from parent node[below] {$0.98$}} child {node {$D$} edge from parent node[above] {$0.02$}} edge from parent node[above] {$0.6$}};
+\end{tikzpicture}\end{center}
+By total probability, $P(D)=P(A)P_A(D)+P(B)P_B(D)=0.012+0.020=0.032$.
+\item $P(D)>0$ and $P(A\cap D)=0.6\times0.02=0.012$. So $P_D(A)=\frac{P(A\cap D)}{P(D)}=\frac{0.012}{0.032}=\frac{3}{8}=0.375$.
+\item Each selection is a trial with two outcomes, ``defective'' or ``not defective'', with the same probability $0.032$ of a defect. Since the twenty selections are independent, $X\sim\mathcal B(20,0.032)$.
+\item $P(X=0)=0.968^{20}\simeq0.5218$. By complement,
+\[P(X\ge2)=1-P(X=0)-P(X=1)=1-0.968^{20}-20(0.032)0.968^{19}\simeq0.1332.\]
+Finally $E(X)=20\times0.032=0.64$. This expected value does not imply that a selection has a fractional number of defects.
+\item A common cause linked to the batch could make the defects dependent. The binomial distribution and its calculations rely on the independence given in the model; this assumption would need to be re-examined for a different protocol.
+\end{enumerate}
+
+\paragraph{E1.}By total probability, $P(B)=0.3\times0.8+0.7\times0.1=0.31$. Since $P(B)>0$, $P_B(A)=\frac{P(A\cap B)}{P(B)}=\frac{0.24}{0.31}=\frac{24}{31}$.
+
+\paragraph{E2.}By the binomial formula, $P(X=3)=\binom{8}{3}(\frac{1}{4})^3(\frac{3}{4})^5=56(\frac{1}{4})^3(\frac{3}{4})^5$. The parameters give $E(X)=\frac{8}{4}=2$ and $V(X)=8(\frac{1}{4})(\frac{3}{4})=\frac{3}{2}$.
+
+\paragraph{E3.}The complement of $X\ge4$ is $X\le3$, so $P(X\ge4)=1-F(3)$. For the interval, we remove from $X\le5$ the values $X\le1$, so $P(2\le X\le5)=F(5)-F(1)$.
+
+\paragraph{E4.}No, in a standard pack containing four aces. Without replacement, obtaining an ace on the first draw changes the probability of obtaining one on the second: the trials are not independent. Moreover, the number of aces can never equal $5$, whereas a binomial distribution with parameters $5$ and $0<p<1$ gives this value a positive probability.
+
+\paragraph{E5.}The probability of at least one success is $1-(\frac{1}{2})^n$. The condition is equivalent to $2^n\ge100$. Since $2^6=64<100\le128=2^7$, the first integer is $7$. The probability is then $\frac{127}{128}\simeq0.99219$.
+
+\subsection{Solutions to Homework 13}\begin{enumerate}
+\item $X$ counts the successes of twenty independent Bernoulli trials with parameter $0.8$. So $X\sim\mathcal B(20,0.8)$, $E(X)=20\times0.8=16$ and $V(X)=20\times0.8\times0.2=3.2$.
+\item The hall runs short of seats if $X>18$, that is $X=19$ or $X=20$. Since these events are mutually exclusive,
+\[P(X>18)=20(0.8)^{19}(0.2)+(0.8)^{20}\simeq0.069175.\]
+The risk is about $6.92\,\%$.
+\item The number of refusals $R$ equals $0$ for $X\le18$, $1$ for $X=19$ and $2$ for $X=20$. By the definition of expected value,
+\[E(R)=P(X=19)+2P(X=20)\simeq0.0807045.\]
+The takings are $20\times10=200$ and the payments $30R$, so $G=200-30R$. Thus $E(G)=200-30E(R)\simeq197.5789$ monetary units. The $30$ already includes all payments linked to a refusal; one must not subtract a further $10$.
+\item With eighteen reservations, no refusal is possible and the takings are $18\times10=180$, whatever the number of people present. The expected profit with twenty reservations exceeds this amount by about $17.58$ monetary units.
+\item The arrivals of people from the same group may be dependent. Moreover, the satisfaction of the public and the consequences of a refusal are not summed up by the expected profit. The result quantifies a model; it is not enough on its own to dictate a decision.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}The $100$ choices are independent, with the same probability $p=0.0714$. So $X\sim\mathcal B(100;0.0714)$.
+\[P(X\le7)=\sum_{k=0}^7\binom{100}k(0.0714)^k(0.9286)^{100-k}\simeq0.577.\]
+Finally, $E(X)=7.14$ and $V(X)=100\times0.0714\times0.9286=6.630204\simeq6.63$.
+
+\fi
+

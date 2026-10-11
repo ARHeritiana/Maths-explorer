@@ -1,0 +1,99 @@
+\setcounter{chapter}{5}\chapter{The logarithm function}\label{ch:6}
+
+{\small\sffamily\color{teal}S44, S47, S49, S50\par}
+
+\begin{retenir}{Objectives}Use the properties of ln; solve equations and thresholds; differentiate and study logarithmic functions.\end{retenir}
+
+\section{Course notes}
+\subsection{Definition and properties}
+The exponential is continuous and strictly increasing on $\R$, and its range is $]0,+\infty[$. For every $x>0$, there is a unique real number $y$ such that $e^y=x$: we denote it by $\ln x$.
+\[\ln(e^y)=y\quad(y\in\R),\qquad e^{\ln x}=x\quad(x>0),\qquad\ln1=0,\quad\ln e=1.\]
+For $a,b>0$ and $n\in\Z$,
+\[\ln (ab)=\ln a+\ln b,\quad\ln (\frac{a}{b})=\ln a-\ln b,\quad\ln (a^n)=n\ln a,\quad\ln \sqrt{a}=\tfrac{1}{2}\ln a.\]
+\paragraph{Proof of the product rule.} $e^{\ln a+\ln b}=e^{\ln a}e^{\ln b}=ab$; the uniqueness of the preimage gives the formula. There is no analogous formula for $\ln(a+b)$.
+\subsection{Derivative, variations and limits}
+We accept that ln is differentiable on $]0,+\infty[$. Differentiating $e^{\ln x}=x$ gives $e^{\ln x}(\ln x)'=1$; hence $(\ln x)'=\frac{1}{x}>0$. ln is strictly increasing and concave, because its second derivative is $-\frac{1}{x^2}$.
+\[\lim_{x\to0^+}\ln x=-\infty,\qquad\lim_{x\to+\infty}\ln x=+\infty.\]
+Its curve is the reflection of that of the exponential in the line $y=x$. The line $x=0$ is a vertical asymptote. Its tangent at $1$ gives $\ln x\le x-1$ for $x>0$.
+\begin{retenir}{Composition and comparison of growth rates}
+If $u>0$ is differentiable, $(\ln u)'=\frac{u'}{u}$. For every integer $m\ge1$,
+\[\lim_{x\to+\infty}\frac{\ln x}{x^m}=0,\qquad\lim_{x\to0^+}x^m\ln x=0.\]
+\end{retenir}
+\paragraph{Proof at $0$.} Set $t=-\ln x$; as $x\to0^+$, $t\to+\infty$ and $x\ln x=-te^{-t}\to0$ by comparison of growth rates. For $m\ge1$, the same reasoning gives $-te^{-mt}\to0$. At $+\infty$, set $t=\ln x$ to write $\frac{\ln x}{x^m}=\frac{t}{e^{mt}}\to0$.
+\subsection{Equations and thresholds}
+For $A,B>0$, $\ln A=\ln B\Leftrightarrow A=B$ and $\ln A\le\ln B\Leftrightarrow A\le B$. Always start with the domain.
+\paragraph{Example.} $\ln(x-1)+\ln(x+1)=\ln8$ requires $x>1$. The equation becomes $x^2-1=8$, so $x=3$ only.
+\paragraph{Threshold.} $0.8^n\le0.1$ is equivalent to $n\ln0.8\le\ln0.1$, then $n\ge\frac{\ln 0.1}{\ln 0.8}\simeq10.319$. The first integer is $11$.
+\paragraph{Example of a study.} For $f(x)=\frac{\ln x}{x}$, $f'=\frac{1-\ln x}{x^2}$; $f$ increases on $]0,e]$, decreases on $[e,+\infty[$, and its maximum is $\frac{1}{e}$. Its limit at $0^+$ is $-\infty$, its limit at $+\infty$ is $0$.
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=8cm,height=8cm,axis equal image,axis lines=middle,xmin=-1.4,xmax=4,ymin=-1.4,ymax=4,xlabel={$x$},ylabel={$y$},samples=100,legend style={font=\small,at={(1.05,.5)},anchor=west}]
+\addplot[teal,thick,domain=.25:4]{ln(x)};\addlegendentry{$\ln x$}
+\addplot[navy,thick,domain=-1.4:1.38]{exp(x)};\addlegendentry{$e^x$}
+\addplot[gray,dashed,domain=-1.4:4]{x};\addlegendentry{$y=x$}\end{axis}\end{tikzpicture}\end{center}
+
+\section{Research activity}\textbf{Controlling a calculation error --- 30 min.}\par A calculation method produces an initial error $e_0=5$. At each step, the error is multiplied by $0.7$. Denote by $e_n$ the error after $n$ steps, for $n\in\N$.
+\begin{enumerate}\item Express $e_n$ in terms of $n$.
+\item Using the logarithm, determine the smallest integer $n$ such that $e_n\le10^{-4}$.
+\item Using a calculator, calculate the error at the value found and at the previous value to check that it is minimal.
+\item We now require an error of at most $10^{-6}$. Determine the new minimum number of steps. Does dividing the tolerance by $100$ multiply the number of steps by $100$?\end{enumerate}
+
+\section{Progressive exercises}
+
+\exercice{1}{Practice}After determining the set on which it is defined, solve the equation $\ln(2x-1)=\ln(x+3)$.
+
+\exercice{2}{Practice}Determine the real numbers $x$ for which $\ln x+\ln(x-2)$ is defined, then solve $\ln x+\ln(x-2)=\ln3$.
+
+\exercice{3}{Practice}Consider $f(x)=\ln(x^2+1)$ and $g(x)=x\ln x$. State their domains of definition and calculate their derivatives.
+
+\exercice{4}{Practice}Determine $\displaystyle\lim_{x\to+\infty}\frac{\ln x}{\sqrt x}$ and $\displaystyle\lim_{x\to0^+}x^2\ln x$. Justify the comparison-of-growth-rates results used.
+
+\exercice{5}{Practice}By studying a function, prove that $\ln x\le x-1$ for every real number $x>0$. Do not use the concavity of the logarithm directly.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 196, exercise 36.} At home after S44: do the three functions. Write down the conditions of definition before solving the inequalities; justify the open endpoints of the intervals obtained.
+
+\section{Homework}\textbf{Homework 6 --- Study of a logarithmic function --- 55 min.}\par Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{1+\ln x}{x}$. Its graph is denoted $\mathcal C_f$.
+\begin{enumerate}\item Determine the limits of $f$ at the endpoints of its domain, study its sign, then draw up its table of variations.
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$.
+\item Prove that the equation $f(x)=\frac12$ has exactly two solutions. Give for each a justified bracketing using calculated values.
+\item Using the maximum of $f$, prove that $1+\ln x\le x$ for all $x>0$. State the case of equality.\end{enumerate}
+
+\ifprof\clearpage\section{Teaching notes and solutions}\begin{profbox}{Teacher notes}S44 is placed before the first mock exam, but the logarithm is not part of its announced scope. Stress the conditions $a>0,b>0$ before combining logarithms. The differentiability of ln is accepted; the differentiation formula is proved. For a threshold with $0<q<1$, the negative sign of $\ln q$ reverses the inequality. Have students check the candidate value and the previous one.\end{profbox}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item Each step multiplies the error by $0.7$: $e_n=5(0.7)^n$ for $n\ge0$.
+\item $e_n\le10^{-4}$ is equivalent to $(0.7)^n\le2\times10^{-5}$. Since ln is increasing, $n\ln0.7\le\ln(2\times10^{-5})$. As $\ln0.7<0$, we obtain
+\[n\ge\frac{\ln(2\times10^{-5})}{\ln0.7}\simeq30.33512.\]
+The first suitable integer is $31$.
+\item $e_{30}\simeq1.1270\times10^{-4}>10^{-4}$ and $e_{31}\simeq7.8888\times10^{-5}<10^{-4}$. The sequence of errors is decreasing, so this check confirms minimality.
+\item For the target $10^{-6}$, the same calculation gives $n\ge\frac{\ln (2\times10^{-7})}{\ln 0.7}\simeq43.2465$, so $n=44$. The real threshold increases by $\frac{\ln 100}{|\ln0.7|}\simeq12.91$, then we round up to the next integer. The number of steps is not multiplied by $100$.
+\end{enumerate}
+
+\paragraph{E1.}We need $2x-1>0$ and $x+3>0$, so $x>\frac{1}{2}$. On this domain, the injectivity of ln gives $2x-1=x+3$, that is $x=4$. This value belongs to the domain; the solution set is $\{4\}$.
+
+\paragraph{E2.}We need $x>2$. The product rule gives $\ln(x(x-2))=\ln3$, so $x^2-2x-3=0$, that is $(x-3)(x+1)=0$. Only $x=3$ satisfies $x>2$: the other root $-1$ is excluded.
+
+\paragraph{E3.}Since $x^2+1>0$, the first function is differentiable on $\R$ and its derivative is $\frac{2x}{x^2+1}$. On $]0,+\infty[$, the product rule gives $(x\ln x)'=\ln x+x(\frac{1}{x})=1+\ln x$.
+
+\paragraph{E4.}For the first limit, set $t=\sqrt x\to+\infty$: $\frac{\ln x}{\sqrt{x}}=\frac{2\ln t}{t}\to0$. For the second, set $t=-\ln x\to+\infty$: $x^2\ln x=-te^{-2t}\to0$. Both limits use comparison of growth rates.
+
+\paragraph{E5.}For $x>0$, set $g(x)=x-1-\ln x$. We have $g'(x)=\frac{x-1}{x}$, negative before $1$, positive after. Its minimum is $g(1)=0$, so $g(x)\ge0$, which is equivalent to $\ln x\le x-1$.
+
+\subsection{Solutions to Homework 6}\begin{enumerate}
+\item At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: $f\to-\infty$. At $+\infty$, $f=\frac{1}{x}+\frac{\ln x}{x}\to0$. The sign is that of $1+\ln x$: negative on $]0,e^{-1}[$, zero at $e^{-1}$, positive afterwards. By the quotient rule,
+\[f'(x)=\frac{1-(1+\ln x)}{x^2}=-\frac{\ln x}{x^2}.\]
+Thus $f$ strictly increases up to $1$, then strictly decreases; its maximum is $f(1)=1$.
+\item Differentiating $-(\ln x)x^{-2}$, we obtain $f''(x)=\frac{2\ln x-1}{x^3}$. The numerator changes sign, from negative to positive, at $x=\sqrt e$. So $f$ is concave on $]0,\sqrt e]$, convex on $[\sqrt e,+\infty[$ and has the point of inflection $(\sqrt{e},\frac{3}{2\sqrt e})$.
+\item On $]0,1]$, continuity, strict increase, limit $-\infty$ and final value $1$ give exactly one preimage of $\frac{1}{2}$. On $[1,+\infty[$, strict decrease from $1$ towards $0$ gives exactly one second preimage. The first is in $]e^{-1},\frac{1}{2}[$, because $f(e^{-1})=0$ and $f(\frac{1}{2})=2(1-\ln2)\simeq0.6137>\frac{1}{2}$. The second is in $]5,6[$, because $f(5)\simeq0.5219>\frac{1}{2}>f(6)\simeq0.4653$.
+\item The maximum gives $\frac{1+\ln x}{x}\le1$. Since $x>0$, we can multiply without changing the direction: $1+\ln x\le x$. Equality corresponds to the unique maximum of $f$, so to $x=1$.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}The logarithm requires a strictly positive argument.
+\begin{enumerate}
+\item $3x-7>0\Longleftrightarrow x>\frac73$, so $D_f=]\frac73;+\infty[$.
+\item $-x^2+4x-3=-(x-1)(x-3)>0$ exactly when $1<x<3$. Thus $D_g=]1;3[$.
+\item We need simultaneously $x>0$ and $2-x>0$; their intersection gives $D_h=]0;2[$. The coefficient $-3$ placed in front of the second logarithm does not change its condition of definition.
+\end{enumerate}
+
+\fi
+

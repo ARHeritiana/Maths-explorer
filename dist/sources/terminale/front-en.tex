@@ -1,0 +1,282 @@
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+\fill[navy] (current page.north west) rectangle ([yshift=-6.8cm]current page.north east);
+\fill[teal] ([yshift=-6.8cm]current page.north west) rectangle ([yshift=-7.05cm]current page.north east);
+\draw[teal!25,line width=1pt] ([xshift=-3cm,yshift=2cm]current page.south east) circle (5cm);
+\draw[teal!25,line width=1pt] ([xshift=-3cm,yshift=2cm]current page.south east) circle (6cm);
+\end{tikzpicture}
+\vspace*{6mm}
+{\color{white}\sffamily\large MATHEMATICS\par\vspace{8mm}\Huge\bfseries Terminale\par Specialty\par}
+\vspace{33mm}
+{\sffamily\fontsize{30}{36}\selectfont\bfseries\color{navy}The booklet of the year\par}
+\vspace{8mm}
+{\sffamily\Large\color{teal}\edition\par}
+\vspace{12mm}
+{\large Lessons, activities, practice and homework\par}
+{\large Spiral progression · Barbazo textbook\par}
+\vfill
+{\sffamily\bfseries School year 2026--2027\par}
+\vspace{5mm}
+{\small Revised on 6 September 2026. Sources provided and calendar consulted on 5 September 2026.\par}
+\end{titlepage}
+\frontmatter
+\chapter*{Using this booklet}
+\addcontentsline{toc}{chapter}{Using this booklet}
+This booklet accompanies the textbook \emph{Barbazo, Terminale spécialité mathématiques}, Hachette, 2020 edition. The chapters keep their textbook numbers; they are arranged here according to their first appearance in the progression. Analysis, geometry and probability are studied in parallel: the annual route lets you follow the successive returns to each topic.
+The \textbf{lesson notes} are the written record to study. The worked examples and proofs in the lessons are part of them. The \textbf{activities} are for investigating before the whole-class discussion. Exercises E1 to E5 are found within each chapter; the homework tasks (HW) carry the chapter number. The practice papers let you know what is expected before the assessment.
+\begin{retenir}{A session and personal work}
+Read the instructions, identify the objects and the hypotheses, look for a first lead, write up the steps, then check that the result is consistent. To prepare for a test, redo a practice paper without looking at any help, then go back over the methods that caused difficulty.
+The times given for activities and homework are estimates of actual working time. Answers are to be written on a sheet of paper or in your exercise book; the booklet does not reserve large answer spaces.
+\end{retenir}
+\textbf{Reference exercises.} The sections ``Work from the textbook or a past paper'' give precise exercise and page numbers, with the work expected in class or at home. The textbook pages are the printed pages. Exercises E1 to E5 and the papers in the booklet are distinct from these reference exercises; their statements are written out in this document.
+\textbf{Syllabus followed.} The 2019 Terminale syllabus remains the reference for 2026--2027; the new Terminale syllabus is due to come into force in 2027--2028, according to the Éduscol page consulted on 5 September 2026. The sources are listed at the end of the booklet.
+\ifprof
+\clearpage
+\chapter*{Preparation guide}
+\addcontentsline{toc}{chapter}{Preparation guide}
+\begin{profbox}{Contents and distribution}
+This source file contains both editions. With \texttt{\string\proftrue}, it produces the teacher edition; with \texttt{\string\proffalse}, the student edition. The command-line option \texttt{\string\VERSIONELEVE} also forces the student edition. The student PDF excludes the solutions, the teaching notes and the real papers A and B. \textbf{The .tex file remains a teacher document}, even if student mode has been switched on: its text contains the content that is hidden at compilation.
+\end{profbox}
+The 14 chapters each include one activity, five exercises and one homework task, all with solutions. The assessment directory contains 9 deadlines, each with Practice 1, Practice 2, A and B, making 36 papers of four exercises marked out of 5 points. The versions are parallel: they assess the same methods with different data. The three mock exams use more developed exercises. The durations are set at 2 h or 4 h, without claiming any empirical calibration on your class.
+\paragraph{Prerequisite adjustments after proofreading.} In S3 and S6, introduce the unique decomposition on the basis of the three edges of the cube before working on combinations; metric calculations in a frame remain in S15. Before test 1, monotonicity is worked on through the sign of $u_{n+1}-u_n$ from the formula already proved. The first mock exam requires neither the logarithm nor the variance of a mean. In HW2, only question 3 requires the continuity of S31. IBP must actually have been worked on in S66 before test 5; if that session overruns, postpone this test. The plane-intersection questions in the mock exams build on the work announced in S70.
+\paragraph{Status of the four versions.} The two practice papers and the papers A/B are close variants, with the same structure and different data. This closeness prepares the announced methods, but limits the assessment of transfer to an unfamiliar situation. Papers A/B remain confidential. The mock exams are practice covering the planned topics; their duration has not been measured with students and their level does not claim to reproduce on its own the full diversity of a national session.
+\paragraph{Running an activity.} Allow 5 min of individual reading, 10--15 min of investigation, 10 min of discussion in pairs and 10 min of whole-class pooling. Hand out the solution only after a first attempt. Depending on the difficulty, give help on the choice of tool rather than immediately on the calculation.
+\paragraph{Textbook exercises and past papers.} The selected exercises were consulted in the textbook and their solutions are included in the teacher edition. The work indicated extends a specific method; place it in the practice time of the session concerned, reducing if necessary the number of E exercises done that day. The copy of the textbook provided is truncated: its last pages are not legible. For chapters 12 to 14, the reference exercises are therefore chosen from an official past paper accessible by link.
+\paragraph{Differentiation.} Have the first two exercises redone to consolidate fluency; use the following exercises and the homework for written presentation. In a multilingual context, have students rephrase ``at least'', ``from a certain term onwards'', ``if and only if'', then keep the exact mathematical wording. Give the groups the same objective and vary the level of help.
+\section{Discrepancies between sources to be resolved}
+\begin{enumerate}
+\item The calendar contains 103 class events from 4 September to 2 July, on Monday, Wednesday and Friday from 7:30 to 9:30. All 103 events were read; their descriptions are groupings of topics, not detailed activities. They anticipate in particular continuity in November and integral calculus from January. The S1--S93 sequencing of the PDF is retained for the prerequisites.
+\item The progression announces a programme completed in April, but S78--S79 finish trigonometry in the week of 3 May. This actual end is the one retained.
+\item S28 would correspond to Friday 20 November in a Monday/Wednesday/Friday distribution, whereas the common test is requested before 20 November. The paper is ready; its date must be harmonised with the team.
+\item 12 March is neutralised by the progression but present in the calendar. The almanac carries ``Malagasy new year'' without explicitly indicating ``public holiday''. The booklet reserves this date as the PDF does, pending confirmation from the institution.
+\item The 4 h mock exams do not fit into an ordinary 2 h event. In particular, the week of 29 March keeps only Wednesday and Friday in the calendar, whereas the PDF places S69, S70 and the mock exam S71 there. The announced total of 186 h does not correctly take all these constraints into account. No additional slot is invented here.
+\item The calendar continues after S93 until 2 July. This period remains a reserve for individual preparation and oral practice, subject to official summons. National dates are not treated as summons from the examination centre in Madagascar.
+\end{enumerate}
+\textbf{Editorial choice.} The content follows the prerequisites indicated below; the calendar conflicts listed remain open. The test durations are suggested administration times, to be adjusted according to the observed writing speed. No event in your calendar has been modified.
+\fi
+\tableofcontents
+\clearpage
+\chapter*{Annual route}
+\addcontentsline{toc}{chapter}{Annual route: S1 to S93}
+The S numbers refer to the progression provided. A week is not a firm assessment date. For each session, the chapter indicated points to the course file; the ``E'' references are local to that chapter. Solutions appear only in the teacher edition.
+
+
+\small\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.09\textwidth}>{\raggedright\arraybackslash}p{.16\textwidth}>{\raggedright\arraybackslash}p{.27\textwidth}>{\raggedright\arraybackslash}p{.40\textwidth}@{}}\toprule\textbf{Session}&\textbf{Week}&\textbf{Content}&\textbf{Resource and work}\\\midrule\endhead
+
+\textbf{S1}&1 · 2--5 September&Introduction and diagnostic&\ifprof Diagnostic D0; whole-class correction and identification of prerequisites.\else Classwork: Introduction and diagnostic.\fi\\[3pt]
+
+\textbf{S2}&2 · 7--12 September&Standard sequences&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Lesson: defining a sequence; E1--E2. Give the practice papers for test 1.\else E1--E2\fi\\[3pt]
+
+\textbf{S3}&2&Vector operations and collinearity&\hyperref[ch:10]{Ch.~10, p.~\pageref{ch:10}}. \ifprof Lesson: vector calculation and reading the coefficients in a given basis; E1. Handling a cube.\else E1\fi\\[3pt]
+
+\textbf{S4}&2&Terms and sums in Python&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof E1--E2; algorithm P1. Check the loop bounds.\else E1--E2, P1\fi\\[3pt]
+
+\textbf{S5}&3 · 14--19 September&Principle of induction&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Worked example; E3. Have the property P(n) stated explicitly.\else E3\fi\\[3pt]
+
+\textbf{S6}&3&Combinations and coplanarity&\hyperref[ch:10]{Ch.~10, p.~\pageref{ch:10}}. \ifprof Given basis: uniqueness of the coefficients; E3. Cube activity, questions 1--2.\else Activity. E3\fi\\[3pt]
+
+\textbf{S7}&3&Induction with inequalities&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Reservoir activity, questions 1--2; on the practice paper, also work out the sign of u(n+1)-u(n).\else Activity. \fi\\[3pt]
+
+\textbf{S8}&4 · 21--26 September&Revision for test 1&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Practice paper for test 1: comparing write-ups; return to vectors.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S9}&4&Test 1 · 2 h&\ifprof Assessment: induction and vector calculation. Version A or B.\else Classwork: Test 1 · 2 h.\fi\\[3pt]
+
+\textbf{S10}&4&Induction for sums and divisibility&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Proof of the sum of integers; E5.\else E5\fi\\[3pt]
+
+\textbf{S11}&5 · 28 September--3 October&Monotonicity, bounds, auxiliary sequence&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Lesson and reservoir activity, questions 3--5; give HW1.\else Activity. HW1\fi\\[3pt]
+
+\textbf{S12}&5&Lines, planes and relative positions&\hyperref[ch:10]{Ch.~10, p.~\pageref{ch:10}}. \ifprof Lesson: line and plane; end of cube activity; E5 and HW10, questions 1--3.\else Activity. E5, HW10\fi\\[3pt]
+
+\textbf{S13}&5&Synthesis and programming&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof Correction of HW1; P1, threshold; return to convergence after chapter 2.\else HW1, P1\fi\\[3pt]
+
+\textbf{S14}&6 · 5--10 October&Definition of limits&\hyperref[ch:2]{Ch.~2, p.~\pageref{ch:2}}. \ifprof Limit activity; E1. Give the practice papers for test 2 and the common test.\else Activity. E1\fi\\[3pt]
+
+\textbf{S15}&6&Frames and coordinates&\hyperref[ch:10]{Ch.~10, p.~\pageref{ch:10}}. \ifprof Lesson on coordinates and basis; E2--E4; finish HW10.\else E2--E4, HW10\fi\\[3pt]
+
+\textbf{S16}&6&Operations on limits&\hyperref[ch:2]{Ch.~2, p.~\pageref{ch:2}}. \ifprof E1--E2; practice paper for test 2, limit calculations.\else E1--E2\fi\\[3pt]
+
+\textbf{S17}&7 · 12--16 October&Synthesis before test 2&\hyperref[ch:10]{Ch.~10, p.~\pageref{ch:10}}. \ifprof Correction of HW10; cube exercise from the practice paper; summary of relative positions.\else HW10\fi\\[3pt]
+
+\textbf{S18}&7&Test 2 · 2 h&\ifprof Assessment: limits by operations and vector geometry.\else Classwork: Test 2 · 2 h.\fi\\[3pt]
+
+\textbf{S19}&7&Bernoulli and geometric sequences&\hyperref[ch:2]{Ch.~2, p.~\pageref{ch:2}}. \ifprof Proof; E5. All Saints' holiday from 17 October to 1 November.\else E5\fi\\[3pt]
+
+\textbf{S20}&8 · 2--7 November&Comparison and monotone convergence&\hyperref[ch:2]{Ch.~2, p.~\pageref{ch:2}}. \ifprof E3--E4; give HW2, questions 1--2 and 4; Q3 after S31.\else E3--E4, HW2\fi\\[3pt]
+
+\textbf{S21}&8&Limits at infinity&\hyperref[ch:3]{Ch.~3, p.~\pageref{ch:3}}. \ifprof Lesson and E1; give the practice papers for test 3.\else E1\fi\\[3pt]
+
+\textbf{S22}&8&Addition and multiplication principles&\hyperref[ch:9]{Ch.~9, p.~\pageref{ch:9}}. \ifprof Activity, ordered counts; E1--E2.\else Activity. E1--E2\fi\\[3pt]
+
+\textbf{S23}&9 · 9--14 November&Limits at a real number, asymptotes&\hyperref[ch:3]{Ch.~3, p.~\pageref{ch:3}}. \ifprof Activity; E2--E3.\else Activity. E2--E3\fi\\[3pt]
+
+\textbf{S24}&9&Indeterminate forms&\hyperref[ch:3]{Ch.~3, p.~\pageref{ch:3}}. \ifprof E5; give HW3. Postpone E4 until after the comparison of growth rates in S26.\else E5, HW3, E4\fi\\[3pt]
+
+\textbf{S25}&9&Lists, permutations&\hyperref[ch:9]{Ch.~9, p.~\pageref{ch:9}}. \ifprof Lesson: ordered lists; practice paper for the common test, codes exercise.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S26}&10 · 16--21 November&Exponential and comparison of growth rates&\hyperref[ch:3]{Ch.~3, p.~\pageref{ch:3}}. \ifprof Proofs; E4; correction of HW3.\else E4, HW3\fi\\[3pt]
+
+\textbf{S27}&10&Revision for the common test&\hyperref[ch:3]{Ch.~3, p.~\pageref{ch:3}}. \ifprof Practice paper for the common test; do not require combinations.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S28}&10&Common test · 2 h&\ifprof Before the marks are closed: date contradiction noted in the teacher guide.\else Classwork: Common test · 2 h.\fi\\[3pt]
+
+\textbf{S29}&11 · 23--28 November&Differentiation and convexity&\hyperref[ch:4]{Ch.~4, p.~\pageref{ch:4}}. \ifprof Lesson; E1--E3; activity, questions 1--3.\else Activity. E1--E3\fi\\[3pt]
+
+\textbf{S30}&11&Subsets and combinations&\hyperref[ch:9]{Ch.~9, p.~\pageref{ch:9}}. \ifprof End of the activity; E3--E5.\else Activity. E3--E5\fi\\[3pt]
+
+\textbf{S31}&11&Continuity and recursive sequences&\hyperref[ch:4]{Ch.~4, p.~\pageref{ch:4}}. \ifprof Lesson; finish HW2, question 3. Give HW4.\else HW2, HW4\fi\\[3pt]
+
+\textbf{S32}&12 · 30 November--5 December&IVT and bisection&\hyperref[ch:4]{Ch.~4, p.~\pageref{ch:4}}. \ifprof Worked example; E4--E5; algorithm P2.\else E4--E5, P2\fi\\[3pt]
+
+\textbf{S33}&12&Synthesis and preparation for test 3&\hyperref[ch:4]{Ch.~4, p.~\pageref{ch:4}}. \ifprof Correction of HW4; activity, questions 4--5; proof about tangents.\else Activity. HW4\fi\\[3pt]
+
+\textbf{S34}&12&Test 3 · 2 h&\ifprof Limits, function study, IVT and combinations.\else Classwork: Test 3 · 2 h.\fi\\[3pt]
+
+\textbf{S35}&13 · 7--12 December&Pascal and synthesis&\hyperref[ch:9]{Ch.~9, p.~\pageref{ch:9}}. \ifprof Proofs; give HW9. Newton's binomial theorem optional.\else HW9\fi\\[3pt]
+
+\textbf{S36}&13&Conditional probability review&\hyperref[ch:13]{Ch.~13, p.~\pageref{ch:13}}. \ifprof Lesson: tree; E1; activity, questions 1--2. Give the practice papers for mock exam 1.\else Activity. E1\fi\\[3pt]
+
+\textbf{S37}&13&Independent trials&\hyperref[ch:13]{Ch.~13, p.~\pageref{ch:13}}. \ifprof Independent trials; E4. Postpone activity questions 3--5 until after the binomial distribution in S38.\else Activity. E4\fi\\[3pt]
+
+\textbf{S38}&14 · 14--18 December&Binomial distribution&\hyperref[ch:13]{Ch.~13, p.~\pageref{ch:13}}. \ifprof Proof of the distribution; E2--E3; activity questions 3--5.\else Activity. E2--E3\fi\\[3pt]
+
+\textbf{S39}&14&Expected value, variance, simulation&\hyperref[ch:13]{Ch.~13, p.~\pageref{ch:13}}. \ifprof Lesson and P5; give HW13.\else P5, HW13\fi\\[3pt]
+
+\textbf{S40}&14&Analysis review before Christmas&\hyperref[ch:4]{Ch.~4, p.~\pageref{ch:4}}. \ifprof Revisit HW1--HW4 according to errors; holiday from 19 December to 3 January.\else HW1, HW4\fi\\[3pt]
+
+\textbf{S41}&15 · 4--9 January&Probability synthesis&\hyperref[ch:13]{Ch.~13, p.~\pageref{ch:13}}. \ifprof Correction of HW13; E5; revisit HW9.\else HW13, E5, HW9\fi\\[3pt]
+
+\textbf{S42}&15&Preparation for the mock exam: geometry and probability&\hyperref[ch:10]{Ch.~10, p.~\pageref{ch:10}}. \ifprof Practice paper for mock exam 1, exercises 3--4.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S43}&15&Preparation for the mock exam: analysis&\hyperref[ch:4]{Ch.~4, p.~\pageref{ch:4}}. \ifprof Practice paper for mock exam 1, exercises 1--2; correction of write-up.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S44}&16 · 11--16 January&Definition and properties of the logarithm&\hyperref[ch:6]{Ch.~6, p.~\pageref{ch:6}}. \ifprof Lesson; E1--E2. Give the practice papers for test 4. Ln excluded from mock exam 1.\else E1--E2\fi\\[3pt]
+
+\textbf{S45}&16&Mock exam 1 · 4 h&\ifprof Institution period 14--16 January; reserve a genuine 4 h slot.\else Classwork: Mock exam 1 · 4 h.\fi\\[3pt]
+
+\textbf{S46}&17 · 18--23 January&Correction of mock exam 1&\ifprof Solutions to the composite version; revisit two errors of method.\else Classwork: Correction of mock exam 1.\fi\\[3pt]
+
+\textbf{S47}&17&Derivative and limits of the logarithm&\hyperref[ch:6]{Ch.~6, p.~\pageref{ch:6}}. \ifprof Proofs; E3--E4.\else E3--E4\fi\\[3pt]
+
+\textbf{S48}&17&Dot product&\hyperref[ch:11]{Ch.~11, p.~\pageref{ch:11}}. \ifprof Lesson; E1--E2; angle E4.\else E1--E2, E4\fi\\[3pt]
+
+\textbf{S49}&18 · 25--30 January&Derivative of a composite and comparison of growth rates&\hyperref[ch:6]{Ch.~6, p.~\pageref{ch:6}}. \ifprof Threshold activity; E5; give HW6.\else Activity. E5, HW6\fi\\[3pt]
+
+\textbf{S50}&18&Logarithm synthesis&\hyperref[ch:6]{Ch.~6, p.~\pageref{ch:6}}. \ifprof Correction of HW6; practice paper for test 4, logarithm exercise.\else HW6\fi\\[3pt]
+
+\textbf{S51}&18&Line--plane orthogonality&\hyperref[ch:11]{Ch.~11, p.~\pageref{ch:11}}. \ifprof Lesson; E3; orthogonal projection activity.\else Activity. E3\fi\\[3pt]
+
+\textbf{S52}&19 · 1--6 February&Notion of antiderivative&\hyperref[ch:7]{Ch.~7, p.~\pageref{ch:7}}. \ifprof Lesson and E1--E2. Give the practice papers for test 5.\else E1--E2\fi\\[3pt]
+
+\textbf{S53}&19&Calculating antiderivatives&\hyperref[ch:7]{Ch.~7, p.~\pageref{ch:7}}. \ifprof Proof of uniqueness up to a constant; practice with the test 4 practice paper.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S54}&19&Normal and projection&\hyperref[ch:11]{Ch.~11, p.~\pageref{ch:11}}. \ifprof Proof of the minimum; give HW11.\else HW11\fi\\[3pt]
+
+\textbf{S55}&20 · 8--12 February&Differential equations and Euler&\hyperref[ch:7]{Ch.~7, p.~\pageref{ch:7}}. \ifprof Lesson; E3--E5; activity; give HW7.\else Activity. E3--E5, HW7\fi\\[3pt]
+
+\textbf{S56}&20&Distances, areas and volumes&\hyperref[ch:11]{Ch.~11, p.~\pageref{ch:11}}. \ifprof Correction of HW11; E5.\else HW11, E5\fi\\[3pt]
+
+\textbf{S57}&20&Test 4 · 2 h&\ifprof Ln, antiderivatives, differential equations, orthogonality. Holiday 13--28 February.\else Classwork: Test 4 · 2 h.\fi\\[3pt]
+
+\textbf{S58}&21 · 1--6 March&Correction of test 4 and synthesis&\hyperref[ch:7]{Ch.~7, p.~\pageref{ch:7}}. \ifprof Correction of HW7; modelling exercises.\else HW7\fi\\[3pt]
+
+\textbf{S59}&21&Integral and area&\hyperref[ch:8]{Ch.~8, p.~\pageref{ch:8}}. \ifprof Lesson; rectangles activity. Give the practice papers for mock exam 2.\else Activity. \fi\\[3pt]
+
+\textbf{S60}&21&Geometry synthesis&\hyperref[ch:11]{Ch.~11, p.~\pageref{ch:11}}. \ifprof Revisit HW11 and the errors from test 4.\else HW11\fi\\[3pt]
+
+\textbf{S61}&22 · 8--13 March&Properties of the integral&\hyperref[ch:8]{Ch.~8, p.~\pageref{ch:8}}. \ifprof Lesson; E1--E2. 12 March is neutralised in the progression, to be confirmed.\else E1--E2\fi\\[3pt]
+
+\textbf{S62}&22&Transformations of random variables&\hyperref[ch:14]{Ch.~14, p.~\pageref{ch:14}}. \ifprof Lesson on sums; E1--E2.\else E1--E2\fi\\[3pt]
+
+\textbf{S63}&23 · 15--20 March&Mean value and area between curves&\hyperref[ch:8]{Ch.~8, p.~\pageref{ch:8}}. \ifprof Lesson; E2--E3.\else E2--E3\fi\\[3pt]
+
+\textbf{S64}&23&Sample and mean&\hyperref[ch:14]{Ch.~14, p.~\pageref{ch:14}}. \ifprof Lesson; E3. Do not anticipate the concentration inequalities in test 5.\else E3\fi\\[3pt]
+
+\textbf{S65}&23&Parametric representations&\hyperref[ch:12]{Ch.~12, p.~\pageref{ch:12}}. \ifprof Lesson; E1. Activity, first trajectories.\else Activity. E1\fi\\[3pt]
+
+\textbf{S66}&24 · 22--27 March&IBP, rectangles and sequences of integrals&\hyperref[ch:8]{Ch.~8, p.~\pageref{ch:8}}. \ifprof Proof; E4--E5; give HW8; P4.\else E4--E5, HW8, P4\fi\\[3pt]
+
+\textbf{S67}&24&Cartesian equations of planes&\hyperref[ch:12]{Ch.~12, p.~\pageref{ch:12}}. \ifprof Proof; E2; finish the activity. Prepare HW12 for S70.\else Activity. E2, HW12\fi\\[3pt]
+
+\textbf{S68}&24&Test 5 · 2 h&\ifprof Integrals, differential equations, distances, sums of variables.\else Classwork: Test 5 · 2 h.\fi\\[3pt]
+
+\textbf{S69}&25 · 29 March--3 April&Correction of test 5 and preparation for the mock exam&\hyperref[ch:8]{Ch.~8, p.~\pageref{ch:8}}. \ifprof Correction of HW8; practice paper for mock exam 2. Monday 29 March public holiday.\else HW8\fi\\[3pt]
+
+\textbf{S70}&25&Intersections and synthesis&\hyperref[ch:12]{Ch.~12, p.~\pageref{ch:12}}. \ifprof E3--E5; give HW12 after the lesson on intersections; correction in S72.\else E3--E5, HW12\fi\\[3pt]
+
+\textbf{S71}&25&Mock exam 2 · 4 h&\ifprof Institution period 1--3 April; volume and slot to be harmonised.\else Classwork: Mock exam 2 · 4 h.\fi\\[3pt]
+
+\textbf{S72}&26 · 5--9 April&Correction of mock exam 2&\ifprof Solutions to the composite version; correction of HW12; individual review.\else Classwork: Correction of mock exam 2.\fi\\[3pt]
+
+\textbf{S73}&26&Bienaymé--Chebyshev&\hyperref[ch:14]{Ch.~14, p.~\pageref{ch:14}}. \ifprof Lesson; E4--E5; activity, questions 2--4.\else Activity. E4--E5\fi\\[3pt]
+
+\textbf{S74}&26&Law of large numbers&\hyperref[ch:14]{Ch.~14, p.~\pageref{ch:14}}. \ifprof Proof; give HW14. Holiday 10--25 April.\else HW14\fi\\[3pt]
+
+\textbf{S75}&27 · 26 April--1 May&Circle, parity, periodicity&\hyperref[ch:5]{Ch.~5, p.~\pageref{ch:5}}. \ifprof Lesson; graduated circle; give the practice papers for the final mock exam.\else Lessons and practice for the unit.\fi\\[3pt]
+
+\textbf{S76}&27&Derivatives and variations&\hyperref[ch:5]{Ch.~5, p.~\pageref{ch:5}}. \ifprof E3--E4; wheel activity, questions 1--2.\else Activity. E3--E4\fi\\[3pt]
+
+\textbf{S77}&27&Simulation and synthesis&\hyperref[ch:14]{Ch.~14, p.~\pageref{ch:14}}. \ifprof End of activity; P5--P6; correction of HW14.\else Activity. P5, P6, HW14\fi\\[3pt]
+
+\textbf{S78}&28 · 3--8 May&Equations and inequalities: cosine&\hyperref[ch:5]{Ch.~5, p.~\pageref{ch:5}}. \ifprof E2; activity, questions 3--4. Thursday 6 and Friday 7 May public holidays.\else Activity. E2\fi\\[3pt]
+
+\textbf{S79}&28&Equations and inequalities: sine&\hyperref[ch:5]{Ch.~5, p.~\pageref{ch:5}}. \ifprof E1 and E5; give HW5. Actual end of the programme.\else E1, E5, HW5\fi\\[3pt]
+
+\textbf{S80}&29 · 10--15 May&Sequences revision&\hyperref[ch:1]{Ch.~1, p.~\pageref{ch:1}}. \ifprof HW1--HW2; practice paper for mock exam 1, sequences exercise; P1.\else HW1, HW2, P1\fi\\[3pt]
+
+\textbf{S81}&29&Limits revision&\hyperref[ch:3]{Ch.~3, p.~\pageref{ch:3}}. \ifprof HW3--HW4; tables of limits and hypotheses of the IVT.\else HW3, HW4\fi\\[3pt]
+
+\textbf{S82}&29&Grand oral: research question and proof&\ifprof Oral workshop O1; choice of a proof already mastered.\else Classwork: Grand oral: research question and proof.\fi\\[3pt]
+
+\textbf{S83}&30 · 17--22 May&Differentiation and logarithm revision&\hyperref[ch:6]{Ch.~6, p.~\pageref{ch:6}}. \ifprof HW6; practice paper for the final mock exam, analysis exercise. Monday 17 May public holiday.\else HW6\fi\\[3pt]
+
+\textbf{S84}&30&Grand oral: presentation and discussion&\ifprof Oral workshop O2; presentations and mathematical questions.\else Classwork: Grand oral: presentation and discussion.\fi\\[3pt]
+
+\textbf{S85}&31 · 24--29 May&Antiderivatives, integrals and trigonometry revision&\hyperref[ch:8]{Ch.~8, p.~\pageref{ch:8}}. \ifprof Correction of HW5; HW7--HW8; P3--P4.\else HW5, HW7, HW8, P3, P4\fi\\[3pt]
+
+\textbf{S86}&31&Counting and binomial distribution revision&\hyperref[ch:13]{Ch.~13, p.~\pageref{ch:13}}. \ifprof HW9--HW13; practice paper for mock exam 2, probability.\else HW9, HW13\fi\\[3pt]
+
+\textbf{S87}&31&Internal Grand oral mock&\ifprof Workshop O3; sittings to be organised according to class size.\else Classwork: Internal Grand oral mock.\fi\\[3pt]
+
+\textbf{S88}&32 · 31 May--5 June&Concentration revision&\hyperref[ch:14]{Ch.~14, p.~\pageref{ch:14}}. \ifprof HW14; practice paper for the final mock exam, probability.\else HW14\fi\\[3pt]
+
+\textbf{S89}&32&Geometry and Python revision&\hyperref[ch:12]{Ch.~12, p.~\pageref{ch:12}}. \ifprof HW10--HW12; algorithms P1--P6.\else HW10, HW12, P1, P6\fi\\[3pt]
+
+\textbf{S90}&32&Final mock exam · 4 h&\ifprof Four exercises; 4 h slot to be reserved.\else Classwork: Final mock exam · 4 h.\fi\\[3pt]
+
+\textbf{S91}&33 · 7--12 June&Correction of the final mock exam&\ifprof Solutions and revisiting of the two most fragile areas.\else Classwork: Correction of the final mock exam.\fi\\[3pt]
+
+\textbf{S92}&33&Final practice&\ifprof Another practice paper for the final mock exam; proofs from the directory.\else Classwork: Final practice.\fi\\[3pt]
+
+\textbf{S93}&33&General oral mock&\ifprof Workshop O3; interdisciplinary organisation to be confirmed.\else Classwork: General oral mock.\fi\\[3pt]
+
+\bottomrule\end{longtable}\normalsize
+
+\clearpage\chapter*{D0 · Start-of-year diagnostic}
+\addcontentsline{toc}{chapter}{D0 · Start-of-year diagnostic}
+\textbf{S1 · 30 min · no calculator · ungraded.} Give a brief justification. For a question you cannot solve, write down what is blocking you.
+\begin{enumerate}
+\item Factorise $x^2-5x+6$, then solve $x^2-5x+6\le0$.
+\item Differentiate $(x+1)e^x$ and determine the sign of the derivative.
+\item $u_0=3$, $u_{n+1}=2u_n$. Give $u_3$ and a formula for $u_n$.
+\item Calculate $1+2+\cdots+20$ and $1+2+4+8+16$.
+\item $A(1,2)$, $B(3,5)$, $C(5,8)$. Are the points collinear?
+\item $P(A)=0.4$, $P_A(B)=0.5$, $P_{\overline A}(B)=0.2$. Calculate $P(B)$.
+\item A fair coin is tossed twice independently. Calculate the probability of getting exactly one head.
+\item Is the statement ``if $x^2=4$, then $x=2$'' true? Give the exact correct version.
+\end{enumerate}
+\ifprof\begin{profbox}{D0 solutions and follow-up}
+\begin{enumerate}
+\item $x^2-5x+6=(x-2)(x-3)$. The product is positive before $2$ and after $3$, negative between the two roots and zero at the roots. The required set is $[2,3]$.
+\item By the product rule, the derivative is $e^x+(x+1)e^x=(x+2)e^x$. Since $e^x>0$, it is negative for $x<-2$, zero at $-2$, positive for $x>-2$.
+\item The sequence is geometric with common ratio $2$: $u_n=3\times2^n$ and $u_3=3\times8=24$.
+\item The arithmetic sum is $\frac{20(1+20)}{2}=210$. The geometric sum is $\frac{2^5-1}{2-1}=31$.
+\item $\vect{AB}=(2,3)$ and $\vect{AC}=(4,6)=2\vect{AB}$. Since $A\ne B$, the points are collinear.
+\item By total probability, $P(B)=0.4\times0.5+0.6\times0.2=0.32$.
+\item The favourable outcomes are head--tail and tail--head. Independence gives each the probability $\frac{1}{4}$; their union has probability $\frac{1}{2}$.
+\item The statement is false: $x=-2$ is a counterexample. The exact equivalence is $x^2=4\Longleftrightarrow x=2\text{ or }x=-2$.
+\end{enumerate}
+Revisit algebra and signs if questions 1--2 fail; sequences and indices for 3--4; coordinates for 5; reading events for 6--7; logic for 8. This diagnostic is used to choose what to revisit, not to classify students definitively.
+\end{profbox}\fi
+\mainmatter
+
+

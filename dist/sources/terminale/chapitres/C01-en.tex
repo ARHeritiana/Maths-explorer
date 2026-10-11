@@ -1,0 +1,125 @@
+\setcounter{chapter}{0}\chapter{Sequences and induction}\label{ch:1}
+
+{\small\sffamily\color{teal}S2, S4, S5, S7, S10, S11, S13\par}
+
+\begin{retenir}{Objectives}Calculate terms and a sum; write up a proof by induction; establish monotonicity and bounds; use an auxiliary sequence.\end{retenir}
+
+\section{Course notes}
+\subsection{Defining a sequence and calculating}
+A real sequence is a function defined on $\N$, or on the integers from some index $n_0$ onwards. We write $u_n$ for its term of index $n$. An explicit formula gives $u_n$ directly; a recurrence relation also requires an initial term. For example, $u_0=2$ and $u_{n+1}=3u_n-1$ give $u_1=5$, $u_2=14$.
+\begin{retenir}{Reference sequences}
+If $u_{n+1}=u_n+r$, then $u_n=u_p+(n-p)r$. If $u_{n+1}=qu_n$, then $u_n=u_pq^{n-p}$ for $n\ge p$.
+\[\sum_{k=p}^n u_k=(n-p+1)\frac{u_p+u_n}{2}\quad\text{(arithmetic)},\qquad
+\sum_{k=p}^n u_k=u_p\frac{1-q^{n-p+1}}{1-q}\quad(q\ne1).\]
+When $q=1$, the second sum equals $(n-p+1)u_p$.
+\end{retenir}
+\subsection{Proof by induction}
+To prove $P(n)$ for every integer $n\ge n_0$: check $P(n_0)$; fix an arbitrary integer $n\ge n_0$ and assume $P(n)$ is true; deduce $P(n+1)$; conclude by the principle of induction. The assumption is not the conclusion: it can only be used at the fixed index.
+\paragraph{Fully worked example.} Let $u_0=1$, $u_{n+1}=2u_n+3$. For $n\in\N$, let $P(n)$ be the statement ``$u_n=4\times2^n-3$''.
+\par\smallskip\textbf{Base case.} $4\times2^0-3=1=u_0$; $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\in\N$ and assume $P(n)$ is true. By the definition of the sequence, then by this assumption,
+\[\begin{aligned}u_{n+1}&=2u_n+3\\&=2(4\times2^n-3)+3\\&=8\times2^n-3=4\times2^{n+1}-3.\end{aligned}\]
+This is $P(n+1)$: the property is inherited.
+\par\smallskip\textbf{Conclusion.} By the principle of induction, $u_n=4\times2^n-3$ for every $n\in\N$.
+\paragraph{Proof: sum of the integers.} Let $P(n)$ be the statement ``$\sum_{k=0}^n k=\frac{n(n+1)}{2}$''.
+For $n=0$, both sides equal $0$: $P(0)$ is true.
+Fix $n\ge0$ and assume $P(n)$ is true. Then
+\[\begin{aligned}\sum_{k=0}^{n+1}k&=\sum_{k=0}^nk+(n+1)\\&=\frac{n(n+1)}2+(n+1)\\&=\frac{(n+1)(n+2)}2.\end{aligned}\]
+We have established $P(n+1)$. By induction, the formula is true for every $n\in\N$.
+\subsection{Global behaviour}
+A sequence is increasing if $u_{n+1}\ge u_n$ for every index, decreasing if the inequality is reversed. It is bounded above if there is a real number $M$ such that $u_n\le M$ for every $n$; bounded below if there is $m$ such that $u_n\ge m$; bounded if it is both bounded below and bounded above.
+To study monotonicity, one can study the sign of $u_{n+1}-u_n$. If all the terms are strictly positive, one can compare $\frac{u_{n+1}}{u_n}$ with $1$. Studying a function $f$ such that $u_n=f(n)$ is another possibility.
+\begin{methode}{Arithmetico-geometric sequence}
+For $u_{n+1}=au_n+b$, $a\ne1$, solve $\ell=a\ell+b$, then set $v_n=u_n-\ell$. This gives $v_{n+1}=av_n$, hence
+\[u_n=\ell+(u_0-\ell)a^n,\qquad\ell=\frac{b}{1-a}.\]
+If $a=1$, the sequence is arithmetic: do not divide by $1-a$.
+\end{methode}
+\paragraph{Example.} If $u_0=10$ and $u_{n+1}=0.8u_n+6$, then $\ell=30$ and $u_n=30-20(0.8)^n$. We have $10\le u_n<30$ and $u_{n+1}-u_n=4(0.8)^n>0$.
+\paragraph{Pitfall.} Checking a property on a hundred terms does not prove it. An increasing sequence is not necessarily positive; a bounded sequence is not necessarily monotonic.
+
+
+\section{Research activity}\textbf{A reservoir topped up every day --- 35 min.}\par A reservoir initially contains $100$ litres of water. Each day, $20\,\%$ of the volume present is drawn off, then $30$ litres are added. For every natural number $n$, let $u_n$ be the volume of water, in litres, after these two operations have been carried out $n$ times. Thus $u_0=100$.
+\begin{enumerate}\item Calculate $u_1$ and $u_2$, then express $u_{n+1}$ in terms of $u_n$.
+\item Which volume would remain unchanged after one day? Prove by induction that, for every $n\in\N$, $100\le u_n<150$.
+\item For every $n\in\N$, let $v_n=u_n-150$. Show that $(v_n)$ is geometric. Deduce the expressions of $v_n$ and $u_n$ in terms of $n$.
+\item Write a Python function with no argument that returns the first integer $n$ for which $u_n>145$. Run the program and interpret the result.
+\item A student has calculated the first hundred terms and notes that they are all less than $150$. Is this observation enough to prove that all the terms are? Justify.\end{enumerate}
+
+\section{Progressive exercises}
+
+\exercice{1}{Practice}Consider the sequence $(u_n)$ defined, for every natural number $n$, by $u_n=5-3n$. Calculate $u_4$, then the sum $\displaystyle\sum_{k=0}^{20}u_k$.
+
+\exercice{2}{Practice}The sequence $(v_n)$ is defined by $v_0=3$ and, for every natural number $n$, $v_{n+1}=2v_n$. Express $v_n$ in terms of $n$, then calculate $\displaystyle\sum_{k=0}^n v_k$.
+
+\exercice{3}{Practice}Prove by induction that, for every natural number $n$, $3^n\ge2n+1$.
+
+\exercice{4}{Practice}Consider the sequence $(u_n)$ defined on $\N$ by $u_n=\frac{n+1}{n+2}$. Prove that it is increasing and give bounds valid for all its terms.
+
+\exercice{5}{Practice}Prove by induction that, for every natural number $n$, $8^n-1$ is divisible by $7$. Do not use congruences.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 28, exercises 22 and 25.} In class, in S5: exercise 22, to translate properties of sequences using a quantifier. At home after S11: the whole of exercise 25, to combine induction, upper bounds and monotonicity. Write the base case, the inductive step and the conclusion separately.
+
+\section{Homework}\textbf{Homework 1 --- A sum and a threshold --- 45 min, after S11.}\par Consider the sequence $(u_n)$ defined by $u_0=2$ and, for every $n\in\N$, $u_{n+1}=\frac12u_n+3$.
+\begin{enumerate}\item Prove by induction that $2\le u_n<6$ for every $n\in\N$. Deduce the direction of variation of $(u_n)$.
+\item Let $v_n=u_n-6$ for every $n\in\N$. Show that $(v_n)$ is geometric, then express $u_n$ in terms of $n$.
+\item For every $n\in\N$, let $S_n=\displaystyle\sum_{k=0}^n u_k$. Express $S_n$ in terms of $n$.
+\item Using the explicit formula and powers of $2$, determine the smallest integer $n$ such that $u_n>5.99$. Check that the previous integer does not work.
+\item Express $6-\frac{S_n}{n+1}$ and justify that this difference is strictly positive. Interpret the result by considering the mean of the first $n+1$ terms; no limit calculation is required.\end{enumerate}
+
+\ifprof\clearpage\section{Teaching notes and solutions}\begin{profbox}{Teacher notes}In S2, immediately distinguish the index from the value of the term. In S4, have a loop executed by hand before Python. In S5 and S7, get students to say aloud ``we assume at index $n$, we prove at index $n+1$''. The sum and the divisibility come in S10, after Test 1: do not assess them in the first test. In S11, the search for the fixed point is an algebraic technique; the convergence theorem will be established in the next chapter. For weaker students, supply the property $P(n)$ and let them write the three steps; for the strongest, remove the hint about an auxiliary sequence.\end{profbox}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item $u_0=100$ L. After one day, $0.8u_0$ L remain, then $30$ L are added: $u_1=110$ L. Similarly, $u_2=0.8\times110+30=118$ L. For every $n\ge0$, $u_{n+1}=0.8u_n+30$.
+\item The equilibrium volume $L$ would have to satisfy $L=0.8L+30$, that is $L=150$ L. Let us prove $P(n)$: ``$100\le u_n<150$''. At index $0$, $u_0=100\in[100,150[$. Fix $n\ge0$ and assume $P(n)$ is true. Since $0.8>0$,
+\[110=0.8\times100+30\le0.8u_n+30<0.8\times150+30=150.\]
+Hence $100\le u_{n+1}<150$ and $P(n+1)$ is true. By induction, the bounds hold for every $n\in\N$.
+\item $v_{n+1}=u_{n+1}-150=0.8u_n-120=0.8(u_n-150)=0.8v_n$. The sequence $(v_n)$ is geometric, with common ratio $0.8$ and first term $v_0=-50$. Thus $v_n=-50(0.8)^n$, then $u_n=150-50(0.8)^n$.
+\item 
+\begin{lstlisting}
+def premier_jour():
+    n, u = 0, 100
+    while u <= 145:
+        u = 0.8*u+30
+        n += 1
+    return n
+\end{lstlisting}
+The loop returns $11$. Indeed, $u_{10}\simeq144.63<145$ and $u_{11}\simeq145.71>145$. Moreover, $u_{n+1}-u_n=10(0.8)^n>0$: the threshold was not crossed earlier. Calculating these two values guarantees the loop stops here, without yet requiring a convergence theorem.
+\item The simulation only calculates a finite number of terms. The inductive step, together with the base case, establishes the bounds for all integers; it is this that rules out any excess over $150$ L.
+\end{enumerate}
+
+\paragraph{E1.}$u_4=5-3\times4=-7$. The sequence is arithmetic with common difference $-3$ and $u_{20}=-55$. The sum has $21$ terms: $\sum_{k=0}^{20}u_k=\frac{21(u_0+u_{20})}{2}=\frac{21(5-55)}{2}=-525$.
+
+\paragraph{E2.}The sequence is geometric with common ratio $2$ and first term $v_0=3$. Hence $v_n=3\times2^n$. The sum has $n+1$ terms and equals $\frac{3(1-2^{n+1})}{1-2}=3(2^{n+1}-1)$.
+
+\paragraph{E3.}Let $P(n)$ be the statement ``$3^n\ge2n+1$''. At index $0$, $3^0=1=2\times0+1$.
+Fix $n\ge0$ and assume $P(n)$ is true. Multiplying by $3>0$, $3^{n+1}\ge6n+3$. Now $6n+3-(2n+3)=4n\ge0$. Thus $3^{n+1}\ge2(n+1)+1$, which is $P(n+1)$. By induction, $P(n)$ is true for every $n\in\N$.
+
+\paragraph{E4.}For $n\ge0$, $u_n=1-\frac{1}{n+2}$. We have $0<\frac{1}{n+2}\le\frac{1}{2}$, hence $\frac{1}{2}\le u_n<1$. Moreover,
+\[u_{n+1}-u_n=\frac1{n+2}-\frac1{n+3}=\frac1{(n+2)(n+3)}>0.\]
+The sequence is strictly increasing, bounded below by $\frac{1}{2}$ and bounded above by $1$.
+
+\paragraph{E5.}Let $P(n)$ be the statement ``there exists an integer $k$ such that $8^n-1=7k$''. For $n=0$, $8^0-1=0=7\times0$: $P(0)$ is true.
+Fix $n\ge0$ and assume $P(n)$ is true. There therefore exists an integer $k$ such that $8^n-1=7k$. Then
+\[8^{n+1}-1=8(8^n-1)+7=8\times7k+7=7(8k+1).\]
+Since $8k+1$ is an integer, $P(n+1)$ is true. By induction, $7$ divides $8^n-1$ for every $n\ge0$.
+
+\subsection{Solutions to Homework 1}\begin{enumerate}
+\item Let $P(n)$ be the statement ``$2\le u_n<6$''. At index $0$, $u_0=2$ satisfies the bounds. Fix $n\ge0$ and assume $P(n)$ is true. Then $4\le \frac{u_n}{2}+3<6$; in particular $2\le u_{n+1}<6$. By induction, $P(n)$ is true at every index. We deduce $u_{n+1}-u_n=3-\frac{u_n}{2}=\frac{6-u_n}{2}>0$. The sequence is strictly increasing.
+\item The equation $L=\frac{L}{2}+3$ gives $L=6$. Let $v_n=u_n-6$. Then $v_{n+1}=\frac{u_n}{2}-3=\frac{v_n}{2}$ and $v_0=-4$. Hence $v_n=-\frac{4}{2^n}$ and $u_n=6-\frac{4}{2^n}$.
+\item By linearity of sums and the geometric formula,
+\[\begin{aligned}S_n&=6(n+1)-4\sum_{k=0}^n(\frac{1}{2})^k\\&=6(n+1)-8(1-2^{-(n+1)}).\end{aligned}\]
+\item $u_n>5.99$ is equivalent to $\frac{4}{2^n}<0.01$, that is $2^n>400$. Since $2^8=256\le400<512=2^9$ and $(2^n)$ is increasing, the smallest index is $9$.
+\item The mean is less than $6$ and its distance from $6$ is
+\[6-\frac{S_n}{n+1}=\frac{8(1-2^{-(n+1)})}{n+1},\qquad 0<6-\frac{S_n}{n+1}<\frac8{n+1}.\]
+To make this distance less than a precision $\varepsilon>0$, it suffices to take $n+1>\frac{8}{\varepsilon}$. This is a quantitative control of the distance, which does not yet require a theorem on limits.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}\paragraph{Exercise 22.} The four translations are, for every $n\in\N$: $u_{n+1}\ge u_n$; $v_n\ge5$; $w_n\le-1$; $t_n>0$. Monotonicity compares two consecutive terms; a bound compares each term with one and the same number.
+\paragraph{Exercise 25.} We have $u_0=-5$ and $u_{n+1}=\frac23u_n-1$.
+\par\smallskip\textbf{Base case.} $u_0=-5\le-3$: the property is true at index $0$.
+\par\smallskip\textbf{Inductive step.} Fix $n\in\N$ and assume $u_n\le-3$. Multiplication by $\frac23>0$ preserves order, so $\frac23u_n\le-2$. Thus $u_{n+1}=\frac23u_n-1\le-3$.
+\par\smallskip\textbf{Conclusion.} By induction, $u_n\le-3$ for every $n\in\N$.
+Next, $u_{n+1}-u_n=\frac23u_n-1-u_n=-\frac13u_n-1$. The previous bound gives $-\frac13u_n\ge1$, hence $u_{n+1}-u_n\ge0$. The sequence is increasing. The reversal of the inequality here comes from the negative factor $-\frac13$.
+
+\fi
+

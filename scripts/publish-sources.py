@@ -14,6 +14,8 @@ OUT = ROOT / 'dist/sources'
 KEEP = {'.tex', '.sty', '.cls', '.bib', '.bst', '.png', '.jpg', '.jpeg', '.pdf', '.svg'}
 BANNED = re.compile(r'(drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint|[\w.+-]+@[\w-]+\.[\w.]+|'
                     r'ANONYME|coll[eè]ges? de france|\bCDFM\b|ANONYME|ANONYME', re.I)
+# Held back from the public download: textbook extracts (rights to be confirmed) and exercise drafts not yet verified.
+SKIP = re.compile(r'stmg/manuel/(extraits-calao|exo-)')
 COURSES = {
     'premiere': (['Première spécialité', 'Première · mathematics specialty'],
                  {'eleve.tex': ('fr', 'student'), 'professeur.tex': ('fr', 'teacher'),
@@ -48,6 +50,7 @@ def main():
             if not p.is_file() or p.suffix.lower() not in KEEP:
                 continue
             rel = p.relative_to(SRC)
+            if SKIP.search(rel.as_posix()): continue
             if p.suffix.lower() in {'.tex', '.sty', '.cls', '.bib', '.bst', '.svg'}:
                 for n, line in enumerate(p.read_text(encoding='utf8', errors='replace').splitlines(), 1):
                     m = BANNED.search(line)
