@@ -228,7 +228,7 @@ Three stores of the same chain have a sales area $x$ (in hundreds of m$^2$) and 
 \item Answer b: the calculator gives $y=1.5x+3$. It passes through $G$ ($1.5\times4+3=9$), has gradient $1.5$ like $(M_1M_3)$, and passes neither through $M_2$ ($1.5\times4+3=9\neq11$) nor through the origin ($b=3\neq0$).
 \item Answer b: $500$~m$^2$ corresponds to $x=5$, and $y=1.5\times5+3=10.5$ tens of thousands of euros, i.e.\ $105\,000$~€ (interpolation).
 \end{enumerate}
-}{5}
+}{3}
 
 % -----------------------------------------------------------------------------
 % Chapter 6 -- Conditional probability
@@ -238,7 +238,7 @@ An online retailer hands its parcels to three carriers: $45\,\%$ to carrier $T_1
 
 A parcel is chosen at random. Let $T_i$ be the event ``The parcel is delivered by carrier $T_i$'' and $E$ the event ``The parcel arrives damaged''.
 \begin{center}
-\begin{tikzpicture}[grow=right,level distance=30mm,level 1/.style={sibling distance=20mm},level 2/.style={sibling distance=9mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\begin{tikzpicture}[grow'=right,level distance=30mm,level 1/.style={sibling distance=20mm},level 2/.style={sibling distance=9mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
 \node {}
  child {node {$T_1$}
    child {node {$E$} edge from parent node[above] {$0.02$}}
@@ -273,7 +273,7 @@ $P(E)=0.45\times0.02+0.35\times0.05+0.20\times0.08=0.009+0.0175+0.016=0.0425$.
 \DefExo{40}{Completing a tree and computing intersections}{%
 In this exercise, results are given as fractions in lowest terms. Consider the weighted tree below, where $E$ is an event and $R$, $S$ and $T$ form a partition of the sample space.
 \begin{center}
-\begin{tikzpicture}[grow=right,level distance=30mm,level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=10mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\begin{tikzpicture}[grow'=right,level distance=30mm,level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=10mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
 \node {}
  child {node {$E$}
    child {node {$R$} edge from parent node[above] {$\tfrac14$}}

@@ -228,7 +228,7 @@ Trois magasins d'une même enseigne ont une surface de vente $x$ (en centaines d
 \item Réponse b : la calculatrice donne $y=1{,}5x+3$. Elle passe par $G$ ($1{,}5\times4+3=9$), a pour coefficient directeur $1{,}5$ comme $(M_1M_3)$, et ne passe ni par $M_2$ ($1{,}5\times4+3=9\neq11$) ni par l'origine ($b=3\neq0$).
 \item Réponse b : $500$~m$^2$ correspond à $x=5$, et $y=1{,}5\times5+3=10{,}5$ dizaines de milliers d'euros, soit $105\,000$~€ (interpolation).
 \end{enumerate}
-}{5}
+}{3}
 
 % -----------------------------------------------------------------------------
 % Chapitre 6 -- Probabilités conditionnelles
@@ -238,7 +238,7 @@ Un site de vente en ligne confie ses colis à trois transporteurs : $45\,\%$ au 
 
 On choisit un colis au hasard. On note $T_i$ l'événement « Le colis est acheminé par le transporteur $T_i$ » et $E$ l'événement « Le colis arrive endommagé ».
 \begin{center}
-\begin{tikzpicture}[grow=right,level distance=30mm,level 1/.style={sibling distance=20mm},level 2/.style={sibling distance=9mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\begin{tikzpicture}[grow'=right,level distance=30mm,level 1/.style={sibling distance=20mm},level 2/.style={sibling distance=9mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
 \node {}
  child {node {$T_1$}
    child {node {$E$} edge from parent node[above] {$0{,}02$}}
@@ -273,7 +273,7 @@ $P(E)=0{,}45\times0{,}02+0{,}35\times0{,}05+0{,}20\times0{,}08=0{,}009+0{,}0175+
 \DefExo{40}{Compléter un arbre et calculer des intersections}{%
 Dans cet exercice, les résultats sont donnés sous forme de fractions irréductibles. On considère l'arbre pondéré ci-dessous, où $E$ est un événement et où $R$, $S$ et $T$ forment une partition de l'univers.
 \begin{center}
-\begin{tikzpicture}[grow=right,level distance=30mm,level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=10mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\begin{tikzpicture}[grow'=right,level distance=30mm,level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=10mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
 \node {}
  child {node {$E$}
    child {node {$R$} edge from parent node[above] {$\tfrac14$}}

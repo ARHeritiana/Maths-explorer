@@ -73,7 +73,7 @@
 \newtcolorbox{methode}{livretbox,colback=Sky,colframe=Navy,title={Method},boxed title style={colback=Navy}}
 \newtcolorbox{exemple}{livretbox,colback=white,colframe=Blue,title={Worked example},boxed title style={colback=Blue}}
 \newtcolorbox{exercice}[1][]{livretbox,colback=white,colframe=black!45,title={Practice #1},boxed title style={colback=black!65}}
-\newtcolorbox{exercicecal}[1]{livretbox,colback=white,colframe=Gold,title={Calao textbook -- #1},boxed title style={colback=Gold!85!black}}
+\newtcolorbox{exerciceapp}{livretbox,colback=white,colframe=Gold,title={Application exercise},boxed title style={colback=Gold!85!black}}
 \newtcolorbox{probleme}[1][]{livretbox,colback=white,colframe=Navy,title={Problem #1},boxed title style={colback=Navy}}
 \newtcolorbox{manuel}{livretbox,colback=Gray,colframe=black!40,title={Textbook references},boxed title style={colback=black!60}}
 \newtcolorbox{dm}{livretbox,colback=Cream,colframe=Orange,title={Homework},boxed title style={colback=Orange}}
@@ -87,7 +87,26 @@
 \newcommand{\zoneeleve}[1]{\ifprof\else\par\vspace{2pt}\foreach \ligne in {1,...,#1}{\noindent\textcolor{black!22}{\rule{\linewidth}{.35pt}}\par\vspace{4.5mm}}\fi}
 \newcommand{\difficulte}[1]{\hfill{\small\sffamily\color{Orange}#1}}
 \newcommand{\competences}[1]{{\small\sffamily\textbf{Skills:} #1}}
-\newcommand{\manuelref}[1]{\begin{manuel}\textbf{Further reading:} #1. The exercise reproduced in this session is identified below by its page and number; the reference also lets you find the figures and digital resources of the textbook.\end{manuel}}
+% Original application exercises (manuel/exo-A..D): \DefExo{session}{target}{statement}{teacher solution}{answer lines},
+% then one \ExoSession{session} per session sheet. The target is shown to teachers only.
+\makeatletter
+\NewDocumentCommand{\DefExo}{m m +m +m m}{%
+  \expandafter\long\expandafter\def\csname exo@#1\endcsname{%
+    \begin{exerciceapp}
+      #3
+      \zoneeleve{#5}
+    \end{exerciceapp}
+    \enseignant{\textbf{Target:} #2.\par #4}%
+  }%
+}
+\newcommand{\ExoSession}[1]{%
+  \@ifundefined{exo@#1}
+    {\begin{erreur}Exercise missing for session #1.\end{erreur}}
+    {\csname exo@#1\endcsname}%
+}
+\makeatother
+
+\newcommand{\manuelref}[1]{\begin{manuel}\textbf{Further practice:} #1. The application exercise below is original; these references point to textbook exercises for extra practice and for its figures.\end{manuel}}
 \newcommand{\sessionheader}[5]{%
   \clearpage
   \phantomsection\addcontentsline{toc}{section}{Session #1 -- #4}

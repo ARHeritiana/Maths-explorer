@@ -15,7 +15,7 @@ KEEP = {'.tex', '.sty', '.cls', '.bib', '.bst', '.png', '.jpg', '.jpeg', '.pdf',
 BANNED = re.compile(r'(drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint|[\w.+-]+@[\w-]+\.[\w.]+|'
                     r'ANONYME|coll[eè]ges? de france|\bCDFM\b|ANONYME|ANONYME', re.I)
 # Held back from the public download: textbook extracts (rights to be confirmed) and exercise drafts not yet verified.
-SKIP = re.compile(r'stmg/manuel/(extraits-calao|exo-)')
+SKIP = re.compile(r"(?!)")   # nothing withheld any more (Calao extracts removed, exercises verified)
 COURSES = {
     'premiere': (['Première spécialité', 'Première · mathematics specialty'],
                  {'eleve.tex': ('fr', 'student'), 'professeur.tex': ('fr', 'teacher'),

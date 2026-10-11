@@ -197,7 +197,7 @@ We look for a method to find the number of digits of a natural number $N\geqslan
 \item The smallest $15$-digit integer is $10^{14}$ and the smallest $16$-digit integer is $10^{15}$: $10^{14}\leqslant N<10^{15}$, so $14\leqslant\log(N)<15$.
 \item $E(\log N)=14$, and $14+1=15$ digits.
 \end{enumerate}
-\item If $N$ has $k$ digits, $10^{k-1}\leqslant N<10^k$, so $k-1\leqslant\log(N)<k$: $E(\log N)=k-1$. Rule: \emph{the number of digits of $N$ is $E(\log N)+1$}. For $N=1\,000$: $\log(1\,000)=3$, $E(3)+1=4$ digits, which is correct. (Rounding $\log N$ up to the next unit would give $3$: the rule “integer part $+1$” is the right one.)
+\item If $N$ has $k$ digits, $10^{k-1}\leqslant N<10^k$, so $k-1\leqslant\log(N)<k$: $E(\log N)=k-1$. Rule: \emph{the number of digits of $N$ is $E(\log N)+1$}. For $N=1\,000$: $\log(1\,000)=3$, $E(3)+1=4$ digits, which is correct.
 \item a. $\log(3^{100})=100\log(3)\approx47.71$: $47+1=48$ digits.\\
 b. $\log(2^{64})=64\log(2)\approx19.27$: $20$ digits (indeed $2^{64}=18\,446\,744\,073\,709\,551\,616$).\\
 c. $\log(365\times10^{15})=\log(365)+15\approx17.56$: $18$ digits.

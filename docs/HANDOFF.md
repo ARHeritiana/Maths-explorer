@@ -14,7 +14,7 @@ Owner: a French-lycée maths teacher in Madagascar. They want precision, no fill
 - Every exercise you create must be double-checked: maths, pedagogy, curriculum alignment, same targets as the item it replaces.
 - New visible text has no em-dashes; the site keeps one mint accent (Taste skill).
 - Before each push: `npm test`, `npm run check`, `python3 tests/run_browser.py`, `python3 tests/slides_smoke.py`,
-  `python3 tests/slides_check.py`, and `git grep -nE "drive\.google|docs\.google"` (must be empty; the owner also gave three folder-ID prefixes in the original task, which are deliberately not repeated here).
+  `python3 tests/slides_check.py`, and `python3 scripts/check-stmg-twins.py`, `git grep -nE "drive\.google|docs\.google"` (must be empty; the owner also gave three folder-ID prefixes in the original task, which are deliberately not repeated here).
 
 ## Pipeline (all in `scripts/`, TeX under `content/latex/<course>/`)
 pdfLaTeX without shell escape, then PyMuPDF split, then `style-resource-pdfs.py --only <pdfs>`, then `finalize-resources.py`,
@@ -54,17 +54,23 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
      starts "No." for a compare-and-explain question; sources cite an external site "Lycée d'adultes, Paul Milan"; "Barbazo"
      textbook references (they remain in the exercises excerpts).
 
-2. **STMG: replace the Calao textbook extracts.** `manuel/extraits-calao*.tex` reproduces a published textbook (copyright risk; old
-   text remains in git history). Original replacements exist as `manuel/exo-A.tex` (sessions 1-14), `exo-B` (15-30), `exo-C` (31-46),
-   `exo-D` (47-55), each with an `-en` twin, 55 `\DefExo{N}{target}{statement}{teacher solution}{answer lines}` calls in total.
-   A and D were self-checked by their authors; **B and C are unverified** (authors cut off by a rate limit). All four need an
-   independent verification: recompute every number, check unambiguity, curriculum fit, target match with the replaced exercise,
-   FR/EN sync, LaTeX validity (render TikZ), originality. Then wire them in: define `\DefExo`/`\ExoSession` in `preambule(-en).tex`
-   (replacing `\DefCalao`/`\CalaoSession`), rename the `exercicecal` box, include `exo-A..D`, replace every `\CalaoSession{n}` in
-   `chapitres/*.tex` and `-en`, rewrite or drop `\manuelref{Calao, ...}`, fix Calao mentions in `annexes/sources*.tex`,
-   `livret-tstmg*.tex`, `preambule*.tex`; delete `extraits-calao*.tex`; rebuild with `build-stmg.py`; keep page counts equal.
-   `publish-sources.py` already withholds `stmg/manuel/extraits-calao*` and `exo-*` from the public download (`SKIP`); remove `SKIP`
-   once the wiring is done and verified. Note: the already-published STMG PDFs still contain the Calao extracts until rebuilt.
+2. **STMG: Calao extracts replaced by original exercises**: DONE and verified (this session).
+   - Verification (done by hand and by script, not by the authors): every number of the 55 exercises was recomputed (Python:
+     regressions, powers, logarithms, probabilities, tables; all correct), unambiguity and curriculum fit read through, the
+     replaced exercise targets kept (target line shown to teachers only), TikZ figures rendered and viewed for sessions 29, 39, 48
+     (trees were inverted with `grow=right`: now `grow'=right`). Wording fixes: B22 (confusing remark removed), A11 (abscissa
+     wording). Answer lines reduced for sessions 38, 52, 54 so that FR and EN keep equal page counts.
+   - Wiring: `\DefExo`/`\ExoSession` and the `exerciceapp` box now live in `preambule(-en).tex`; `exo-A..D(-en)` are included from
+     `livret-tstmg(-en).tex`; every `\CalaoSession` became `\ExoSession` (110 replacements); `extraits-calao*.tex` deleted from the
+     working tree (the text remains in git history). `\manuelref` boxes now say "Pour prolonger / Further practice" and keep only
+     the page and exercise numbers of the textbook; intro, sources annex and README rewritten. No statement of the textbook is
+     reproduced any more. `SKIP` in `publish-sources.py` is neutralised, the exo files are public.
+   - Removed three `\ifprof\clearpage` page-alignment hacks from the EN chapters 3 and 5 (they broke alignment once exercises changed).
+   - New check: `python3 scripts/check-stmg-twins.py` compares the numbers inside maths and figures of FR and EN exercise files.
+     Add it to the pre-push list. Page counts: student 152/152, teacher 203/203. PDFs rebuilt, styled, finalised.
+   - Caveat for the owner: the exercises are original but were written to the same targets as the textbook exercises they replace;
+     [VERIFY] whether the "Further practice" page and number citations of the textbook are acceptable to the owner.
+
 3. **Première `matrice-en.tex` and `progression-en.tex`** (teacher-only, translated, never compiled). `main-en.tex` already inputs
    them in the teacher edition: rebuild Première and check FR/EN page counts; build standalone teacher PDFs (coverage matrix, annual
    schedule) in FR and EN, add catalog entries and check `#pack` and the library show them. Check wording ("Year 11 (Seconde)", Year 10/13 glosses).

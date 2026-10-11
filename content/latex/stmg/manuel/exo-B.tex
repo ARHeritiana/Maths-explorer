@@ -197,7 +197,7 @@ On cherche une méthode pour connaître le nombre de chiffres d'un entier nature
 \item Le plus petit entier à $15$ chiffres est $10^{14}$ et le plus petit à $16$ chiffres est $10^{15}$ : $10^{14}\leqslant N<10^{15}$, donc $14\leqslant\log(N)<15$.
 \item $E(\log N)=14$, et $14+1=15$ chiffres.
 \end{enumerate}
-\item Si $N$ a $k$ chiffres, $10^{k-1}\leqslant N<10^k$, donc $k-1\leqslant\log(N)<k$ : $E(\log N)=k-1$. Règle : \emph{le nombre de chiffres de $N$ est $E(\log N)+1$}. Pour $N=1\,000$ : $\log(1\,000)=3$, $E(3)+1=4$ chiffres, ce qui est correct. (Arrondir $\log N$ à l'unité supérieure donnerait $3$ : la règle « partie entière $+1$ » est la bonne.)
+\item Si $N$ a $k$ chiffres, $10^{k-1}\leqslant N<10^k$, donc $k-1\leqslant\log(N)<k$ : $E(\log N)=k-1$. Règle : \emph{le nombre de chiffres de $N$ est $E(\log N)+1$}. Pour $N=1\,000$ : $\log(1\,000)=3$, $E(3)+1=4$ chiffres, ce qui est correct.
 \item a. $\log(3^{100})=100\log(3)\approx47{,}71$ : $47+1=48$ chiffres.\\
 b. $\log(2^{64})=64\log(2)\approx19{,}27$ : $20$ chiffres (en effet $2^{64}=18\,446\,744\,073\,709\,551\,616$).\\
 c. $\log(365\times10^{15})=\log(365)+15\approx17{,}56$ : $18$ chiffres.

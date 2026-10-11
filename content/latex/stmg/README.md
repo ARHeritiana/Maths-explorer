@@ -14,20 +14,20 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -jobname=livret-tstmg-eleve
 latexmk -pdf -interaction=nonstopmode -halt-on-error -jobname=livret-tstmg-prof livret-prof.tex
 ```
 
-Les chapitres sont séparés dans `chapitres/`, les 55 extraits référencés du
-manuel dans `manuel/extraits-calao.tex`, les quatorze sujets de DS dans
+Les chapitres sont séparés dans `chapitres/`, les 55 exercices d'application originaux
+dans `manuel/exo-A.tex` à `exo-D.tex` (et leurs jumeaux `-en`), les quatorze sujets de DS dans
 `evaluations/devoirs.tex`, et les annexes dans `annexes/`.
 
-Les énoncés retenus dans le manuel *Calao Terminale technologique* sont
-reproduits dans le livret avec leur page et leur numéro. Le macro-fichier
-`manuel/extraits-calao.tex` centralise à la fois les énoncés, les espaces de
-réponse et les corrections réservées à l'édition professeur.
+Les exercices d'application sont originaux ; les encadrés « Pour prolonger »
+citent seulement les pages et numéros du manuel *Calao Terminale technologique*.
+Les macros `\DefExo` (dans `preambule.tex`) rangent chaque énoncé, ses lignes de
+réponse et sa correction réservée à l'édition professeur.
 
 ## Architecture éditoriale
 
 - `preambule.tex` : charte typographique, couleurs et environnements ;
 - `livret-tstmg.tex` : couverture, mode d'emploi et ordre d'assemblage ;
 - `chapitres/` : cours et séances ;
-- `manuel/` : exercices Calao reproduits et corrigés ;
+- `manuel/` : exercices d'application originaux et corrigés ;
 - `evaluations/` : DS en deux versions, structurés en 6 + 6 + 8 points ;
 - `annexes/` : formulaire, programmation et sources.
