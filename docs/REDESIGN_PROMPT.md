@@ -97,11 +97,15 @@ Goal: one coherent, optimised LaTeX system so any unit can be included in any ma
    (one switch: `\ifmxteacher`, replacing `\versionprof`, `\VERSIONPROF`, `\EditionProf`, `\VERSIONELEVE`), `mx-figures.sty` (pgfplots styles, colours, tikz libraries),
    `mx-layout.sty` (headers, footers, page geometry, `\needspace` policy), `mx-code.sty` (Python listings).
    Colours: named palette that matches the site tokens (one mint accent, navy, teacher blue); no raw RGB in content files.
-3. One source per unit, two languages in the same file with a language switch, so FR/EN cannot drift:
-   `\mxtr{fr text}{en text}` for short strings and `\begin{mxlang}{fr}...\end{mxlang}` blocks only for prose; mathematics and figures are written ONCE, outside the
-   language blocks. Migrate the 218 existing twin pairs with a script (`tools/migrate_twins.py`) that aligns paragraph by paragraph, refuses to merge when the
-   maths differs, and writes a report of the units it could not align. Keep `check-stmg-twins.py` ideas as the invariant test: numbers in maths and figure code identical.
-   If the two-languages-in-one-file approach proves unreadable, fall back to `unit.fr.tex` / `unit.en.tex` pairs generated from one `unit.tex` by a preprocessor; decide with a prototype on two chapters and record the decision in `docs/ADR-0001-tex-i18n.md`.
+3. DECIDED by the owner: FR and EN are generated as a pair (`unit.fr.tex` and `unit.en.tex`), never one file with both languages. Authoritative source:
+   the French unit written in the canonical environments, with maths and figures in separate shared files (`<unit>.math.tex` is not required; use `figures/` and
+   `\input` of formula blocks where useful). The English twin is generated or checked from it: a tool (`tools/twin.py`) extracts the prose segments of the French
+   unit into a translation table keyed by stable segment ids (`docs/translations/<unit>.json`, reviewed English text, glossary from `translation-terminology.py`),
+   rebuilds `unit.en.tex` by substituting prose only, and FAILS if maths, TikZ, listings or `\includegraphics` differ or if a segment lacks a translation.
+   The generated `.en.tex` is committed (so people can compile locally) and marked `% GENERATED, edit the French unit or the translation table`.
+   Migrate the 218 existing twin pairs by aligning them paragraph by paragraph into the translation tables; refuse to align when the maths differs and list those units.
+   Keep the `check-stmg-twins.py` invariant (numbers in maths and figure code identical) as a test on every pair. Record the decision in `docs/ADR-0001-tex-i18n.md`.
+   A short `\mxtr{fr}{en}` helper may exist for labels inside `mx-i18n.sty` only, not in content units.
 4. Unit contract: every unit is a self-contained `\mxunit{id}{...}` with metadata (course, chapter, kind, level, programme reference, duration, prerequisites,
    tags) in a header comment or YAML front matter that the pipeline reads. Units are included from course mains with `\mxinclude{courses/terminale/c06}` and
    from shared banks. No unit may redefine macros or load packages. Labels are namespaced (`<course>:<unit>:<name>`).
@@ -139,7 +143,7 @@ re-derive them unless changed, but keep `check-stmg-twins`-style parity); proof-
 (chapter numbering printed vs site, Year-11 gloss for seconde, Calao page citations, E6/E7 oddities, sampling fluctuation, Newton, Euler, "sur un domaine disjoint", French `\text{}` inside maths in terminale-03 slides).
 
 ## 4. Process
-1. Plan first: write `docs/REDESIGN_PLAN.md` with phases, risks and the TeX prototype result; get the owner's go-ahead on the repository layout and the i18n decision (ask with the question tool, recommended option first) before moving files.
+1. Plan first: write `docs/REDESIGN_PLAN.md` with phases, risks and the TeX prototype result; get the owner's go-ahead on the repository layout (the i18n decision is already made: generated pairs) before moving files.
 2. Move files with `git mv`, keep history; never leave the site broken between commits; run all pre-push checks before each push.
 3. Keep a compatibility layer until the end (old URLs `dist/resources/...` keep working or are redirected; `docs/RESOURCE_PROVENANCE.json` regenerated).
 4. Update `docs/HANDOFF.md` continuously. When the session limit nears, reach a clean state, commit, push, and leave the handoff accurate.
