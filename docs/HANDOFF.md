@@ -17,14 +17,22 @@ overlay PDFs dropped (done).
   fixed, arrow glyph), kept; the rest restored to avoid byte churn.
 - `/simplify` and `/code-review` run (inline, no agent batch); all 10 review findings fixed.
 
-**Phase B (TeX): IN PROGRESS.**
-- B1 core drafted: `content/tex/core/` (mxbook.cls + mx-*.sty, example unit; viewed FR student/teacher, EN teacher).
-- B2 twin tool: `build/mxbuild/twin.py` (`python -m mxbuild twin align|gen|check|stub`), 15 unit tests,
-  `tests/tex_lint.py`. On a scratch copy, 162/218 old pairs align and regenerate; generated EN Automatismes books
-  compile with identical page text.
-- NEXT: B3 migrate Automatismes (first course): rewrite `sections/*.tex` into canonical units (`fluency` boxes; the
-  `\qitem` 5-argument item needs a core equivalent), generate EN from aligned tables, compile 4 variants, compare
-  page counts and page text with the current PDFs, view a sample. Then STMG, Seconde, Première, Terminale, Enrichment.
+**Phase B (TeX): IN PROGRESS.** Migrated (FR source + generated EN, mains from `content/data/manifest.json` "books"):
+- Automatismes (17 units, 1,433 segments): student 27/27, teacher 47/47 pages (before 22/38: one sequence per page now).
+- STMG (17 units): student 151/151, teacher 198/198 (before 152/203); a few lined "Notes" pages balance FR/EN per session.
+- Seconde (17 units): student 94/94, teacher 98/98 (unchanged). All migrated books: 0 overfull boxes, 0 undefined refs.
+- Mechanisms: `build/mxbuild/migrate.py` (scripted renames per course, aligns old EN twins), `mxbuild.books` (mains),
+  `mxbuild.tex.compile_pair` (FR/EN compiled together; per unit/session block, the shorter language gets notes pages),
+  `tests/twin_parity.py` (numbers in maths and figures, all pairs), `scripts/build-slides.py` canonical parser.
+- Source defects fixed on the way (all recorded in commit messages): French decimal commas in maths, ordinals as text,
+  26 French "et" left in STMG English, English-only \clearpage hacks, English printing PGCD.
+- NEXT: Première (units chapitres/C01..C10, corriges, evaluations, figures with -en twins, front, matrice, progression,
+  transversal, automatismes), then Terminale, then Enrichment (generate units from `content/data/enrichment.json`
+  instead of the XeLaTeX files), then B4 (format file, figure externalisation, retire style-resource-pdfs.py).
+- Each course: write a PLANS entry in migrate.py, `python -m mxbuild migrate <course> --dry-run` until no refusals
+  (fix source defects in the old files first), migrate, write the front unit, add the book to the manifest, point the
+  builder at generated mains, compare words with the old PDFs (`/tmp` baseline must be rebuilt in a new container),
+  view a sample, `make check`, commit.
 - Open question for the owner: `terminale-fluency-*` and `terminale-methods-*` supplement PDFs (8 files, companion
   data) are overlay-era copies of banks 0/1; drop them too for consistency? Not done.
 
