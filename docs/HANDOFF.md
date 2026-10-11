@@ -14,7 +14,7 @@ Owner: a French-lycée maths teacher in Madagascar. They want precision, no fill
 - Every exercise you create must be double-checked: maths, pedagogy, curriculum alignment, same targets as the item it replaces.
 - New visible text has no em-dashes; the site keeps one mint accent (Taste skill).
 - Before each push: `npm test`, `npm run check`, `python3 tests/run_browser.py`, `python3 tests/slides_smoke.py`,
-  `python3 tests/slides_check.py`, and `git grep -nE "drive\.google|docs\.google|1_ozGBWjc|1OJe-_v-b|1AfyQ60kJ"` (must be empty).
+  `python3 tests/slides_check.py`, and `git grep -nE "drive\.google|docs\.google"` (must be empty; the owner also gave three folder-ID prefixes in the original task, which are deliberately not repeated here).
 
 ## Pipeline (all in `scripts/`, TeX under `content/latex/<course>/`)
 pdfLaTeX without shell escape, then PyMuPDF split, then `style-resource-pdfs.py --only <pdfs>`, then `finalize-resources.py`,
