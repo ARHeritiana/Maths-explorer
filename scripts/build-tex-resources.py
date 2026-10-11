@@ -322,8 +322,8 @@ def main():
         if {'fr', 'en'} <= set(a.lang) and results[('fr', number)] != results[('en', number)]:
             f, e = results[('fr', number)], results[('en', number)]
             if (f['chapter'], f['teacher']) != (e['chapter'], e['teacher']): sys.exit(f'Page-count mismatch between editions for chapter {number}')
-            # Excerpts are cut at section starts; a line that wraps differently can move a section break. finalize-resources.py records englishPages.
-            print(f"note: chapter {number} excerpts differ in length: " + ', '.join(f'{k} {f[k]}/{e[k]}' for k in f if f[k] != e.get(k)))
+            # Every excerpt starts a balanced block (\\mxnewpage), so the two languages always match.
+            sys.exit(f"chapter {number}: French and English excerpts differ: " + ', '.join(f'{k} {f[k]}/{e[k]}' for k in f if f[k] != e.get(k)))
 
 
 main()

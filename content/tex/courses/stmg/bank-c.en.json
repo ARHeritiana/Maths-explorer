@@ -173,7 +173,7 @@
    "fr": "la consommation un jour où il fait [[m1]]~°C ;",
    "en": "the consumption on a day when it is [[m1]]~°C;",
    "status": "aligned",
-   "order": 29
+   "order": 28
   },
   "04f699655ae1": {
    "fr": "la température d'un jour où la consommation est de [[m1]]~kWh.",
@@ -1051,6 +1051,18 @@
    "status": "aligned",
    "order": 175
   },
+  "1f910d98d7d2": {
+   "fr": "Année",
+   "en": "Year",
+   "status": "aligned",
+   "order": 176
+  },
+  "0dedceca967d": {
+   "fr": "Rang de l'année ",
+   "en": "Year rank ",
+   "status": "aligned",
+   "order": 177
+  },
   "fa75b9d9f232": {
    "fr": "Abonnés ",
    "en": "Subscribers ",
@@ -1062,18 +1074,6 @@
    "en": " (thousands)",
    "status": "aligned",
    "order": 179
-  },
-  "1f910d98d7d2": {
-   "fr": "Année",
-   "en": "Year",
-   "status": "aligned",
-   "order": 180
-  },
-  "0dedceca967d": {
-   "fr": "Rang de l'année ",
-   "en": "Year rank ",
-   "status": "aligned",
-   "order": 181
   },
   "6e38788ea488": {
    "fr": "Colis expédiés ",
@@ -1117,6 +1117,12 @@
    "status": "aligned",
    "order": 188
   },
+  "b25928c69902": {
+   "fr": "Total",
+   "en": "Total",
+   "status": "aligned",
+   "order": 189
+  },
   "f4f95278a6bd": {
    "fr": "Siège",
    "en": "Head office",
@@ -1134,12 +1140,6 @@
    "en": "Warehouse",
    "status": "aligned",
    "order": 192
-  },
-  "b25928c69902": {
-   "fr": "Total",
-   "en": "Total",
-   "status": "aligned",
-   "order": 193
   }
  }
 }

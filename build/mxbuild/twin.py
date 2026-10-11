@@ -32,7 +32,7 @@ LOCK_ARGS = set('label ref eqref pageref input include includegraphics setcounte
 # Environments whose brace arguments are layout (column specs, widths, counts), never prose.
 LAYOUT_ENVS = set('tabular tabular* tabularx array longtable minipage multicols multicols* wrapfigure tblr'.split())
 # Inline atoms: kept inside the sentence like inline maths (a placeholder the translation must keep).
-ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code mxtag'.split())
+ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code mxtag num pc'.split())   # num, pc: numbers in prose (mx-notation)
 # Commands whose listed argument positions (0-based, brace arguments only) are never prose.
 LOCKED_ARG_POS = {'mxunit': {0}, 'href': {0}, 'mxfq': {1}, 'mxarraystretch': {0}, 'mxsession': {0}, 'mxtest': {0, 1},
                   'mxexdef': {0, 4}, 'mxexuse': {0}, 'mxpoints': {0}, 'mxlines': {0}, 'addcontentsline': {0, 1},
@@ -131,7 +131,8 @@ def tokenize(s):
                         k = _group_end(s, i); out.add('L', s[i:k]); i = k
                 if name == 'begin' and i < n and s[i] == '[':   # optional title of a box: its own segment
                     k = _group_end(s, i, '[', ']'); inner = s[i + 1:k - 1]
-                    if '=' in inner or not LETTER.search(inner): out.add('L', s[i:k])
+                    words = re.sub(r'\$[^$]*\$', '', inner)   # key=value options are locked; '=' inside maths is not one
+                    if '=' in words or not LETTER.search(words): out.add('L', s[i:k])
                     else: out.add('L', '['); out.extend(tokenize(inner)); out.add('L', ']')
                     i = k
                 continue
@@ -196,7 +197,7 @@ def split(s):
     return parts, segs
 
 
-MATHS_IN_LOCKED = re.compile(r'\\begin\{(?:lstlisting|verbatim)\}.*?\\end\{(?:lstlisting|verbatim)\}|(?<!\\)%[^\n]*|\$\$.*?\$\$|(?<!\\)\$(?:\\.|[^$\\])*\$|\\\(.*?\\\)|\\\[.*?\\\]|'
+MATHS_IN_LOCKED = re.compile(r'\\begin\{(?:lstlisting|verbatim)\}.*?\\end\{(?:lstlisting|verbatim)\}|(?<!\\)%[^\n]*|\$\$.*?\$\$|(?:(?<=\\\\)|(?<!\\))\$(?:\\.|[^$\\])*\$|(?:(?<=\\\\)|(?<!\\))\\\(.*?\\\)|(?:(?<=\\\\)|(?<!\\))\\\[.*?\\\]|'
                              r'\\begin\{(equation|align|gather|multline|alignat|flalign|displaymath)\*?\}.*?\\end\{\1\*?\}', re.S)
 
 
@@ -213,13 +214,14 @@ def math_texts(m):
 
 # ---- language rules -------------------------------------------------------------------------------------------------
 def english_math(t):
-    """Language rule for maths: the decimal comma {,} becomes a point. Spacing inside maths is never touched."""
-    return re.sub(r'(?<=\d)\{,\}(?=\d)', '.', t)
+    """Maths is identical in both languages: notation that differs (decimals, intervals, points) is written with the
+    commands of mx-notation.sty, which the class prints per language."""
+    return t
 
 
 def english_locked(t):
-    """Language rules for text outside maths: decimal comma, and no French thin space before ; : ! ?"""
-    return re.sub(r'\\,(?=[;:!?])|~(?=[;:!?])', '', english_math(t))
+    """Language rule for text outside maths: no French thin space before ; : ! ?"""
+    return re.sub(r'\\,(?=[;:!?])|~(?=[;:!?])', '', t)
 
 
 def _mask_words(t):

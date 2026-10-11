@@ -11,7 +11,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \begin{enumerate}
 \item Calculate $3+2\times4$.
 \item Calculate $2^0$, $2^3$ and $2^{-2}$.
-\item A population of 80 increases by $5\,\%$. Give the new population.
+\item A population of 80 increases by $\pc{5}$. Give the new population.
 \item For $f(x)=3x-2$, calculate $f(0)$ and $f(4)$.
 \item How many integers are there from 3 to 10, endpoints included?
 \item Which values does the loop \code{for k in range(4)} give to $k$?
@@ -20,11 +20,12 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \paragraph{Speaking and logic.} In 90 seconds, explain the difference between index, term and number of terms. Give a counterexample to a rule guessed from three values.
 \mxnewpage
 \section*{Investigate before formalising}\label{C01-RECH}
-In pairs, compare two collection offers: 20 kg in the first week then 5 kg more each week; 20 kg then a 20 \% increase each week. Conjecture which collects more in total over six weeks, then justify. Allow 10 min for investigation and 5 min for comparison.
+In pairs, compare two collection offers: 20 kg in the first week then 5 kg more each week; 20 kg then a \pc{20} increase each week. Conjecture which collects more in total over six weeks, then justify. Allow 10 min for investigation and 5 min for comparison.
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
 \section{Defining and representing a sequence}\label{C01-U1}
 \begin{keypoint}[Definition and results]
-A real sequence is a function whose variable is an integer: to each allowed index $n$ corresponds a real number $u_n$. The notation $(u_n)$ denotes the sequence, $u_n$ a term. An explicit formula gives $u_n$ directly in terms of $n$. A definition by recurrence gives a first term and a rule for passing from one term to the next. The representation is a set of points $(n;u_n)$: these points are not necessarily joined up.
+A real sequence is a function whose variable is an integer: to each allowed index $n$ corresponds a real number $u_n$. The notation $(u_n)$ denotes the sequence, $u_n$ a term. An explicit formula gives $u_n$ directly in terms of $n$. A definition by recurrence gives a first term and a rule for passing from one term to the next. The representation is a set of points $\pt{n;u_n}$: these points are not necessarily joined up.
 \end{keypoint}
 \paragraph{Status and justification.} Definition. The uniqueness of the terms obtained from a first term and a deterministic rule is accepted; no formal proof by induction is required.
 \begin{example}For $u_n=n^2+1$, $u_0=1$, $u_3=10$. For $v_0=1$ and $v_{n+1}=2v_n+1$, $v_1=3$, $v_2=7$, $v_3=15$. We cannot replace $v_3$ by $2\times3+1$: the rule applies to the previous term.\end{example}\label{C01-EX1}
@@ -44,7 +45,7 @@ A sequence is arithmetic with common difference $r$ if $u_{n+1}=u_n+r$ for every
 A sequence is geometric with common ratio $q$ if $u_{n+1}=qu_n$. For $n\geq p$, $u_n=u_pq^{n-p}$, with the convention that an empty product equals 1. A constant rate $t$ gives $q=1+t$. The variation is decided with $u_{n+1}-u_n=(q-1)u_n$. For $q<0$, the signs may alternate.
 \end{keypoint}
 \paragraph{Status and justification.} The formula gives the first term, and multiplying it by $q$ gives the next term. The uniqueness of the generation justifies the formula. For $q=0$, all terms after the first are zero; treat this case directly.
-\begin{example}A quantity of 160 mg loses 25 \% at each step: $u_n=160(\dfrac{3}{4})^n$. The terms are positive and $u_{n+1}-u_n=-\dfrac{u_n}{4}<0$. We obtain $u_2=90$ mg, without confusing a 25 \% decrease with removing 25 mg.\end{example}\label{C01-EX3}
+\begin{example}A quantity of 160 mg loses \pc{25} at each step: $u_n=160(\dfrac{3}{4})^n$. The terms are positive and $u_{n+1}-u_n=-\dfrac{u_n}{4}<0$. We obtain $u_2=90$ mg, without confusing a \pc{25} decrease with removing 25 mg.\end{example}\label{C01-EX3}
 \begin{pitfall}$q>1$ is not enough to conclude that every geometric sequence is increasing: the sign of the first term matters.\end{pitfall}
 \begin{application}Study the variation of $u_n=-2\times3^n$, then of $v_n=2(-1)^n$.\end{application}\label{C01-AP3}
 \section{Sums, indices and proofs}\label{C01-U4}
@@ -63,6 +64,7 @@ A limit is approached here intuitively. The terms $\dfrac{1}{n+1}$ get closer to
 \begin{example}For $u_n=80(\dfrac{1}{2})^n$, the first index with $u_n<6$ is 4: $u_3=10\geq6$ and $u_4=5<6$. The program starts with $n=0,u=80$ and repeats the division by 2 while $u\geq6$.\end{example}\label{C01-EX5}
 \begin{pitfall}A loop with no bound may never stop if the threshold cannot be reached; $<$ and $\leq$ are not interchangeable.\end{pitfall}
 \begin{application}For $u_n=48(\dfrac{1}{2})^n$, determine the first indices where $u_n\leq6$ and where $u_n<6$.\end{application}\label{C01-AP5}
+\mxnewpage
 \section*{Exercise path}\label{C01-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
 \begingroup
@@ -146,12 +148,12 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \item $17$
 \item $15$
 \end{enumerate}
-\item An increase of 8 \% gives the ratio
+\item An increase of \pc{8} gives the ratio
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $0.08$
-\item $1.8$
-\item $0.92$
-\item $1.08$
+\item $\num{0,08}$
+\item $\num{1,8}$
+\item $\num{0,92}$
+\item $\num{1,08}$
 \end{enumerate}
 \item From $u_3$ to $u_9$ inclusive, there are
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]

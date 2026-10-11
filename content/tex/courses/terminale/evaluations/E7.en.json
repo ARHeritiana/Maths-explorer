@@ -5,7 +5,133 @@
    "fr": "DS5 · Zéro 1",
    "en": "Test 5 · Practice 1",
    "status": "aligned",
-   "order": 1
+   "order": 0
+  },
+  "b3a0f5fddcc6": {
+   "fr": "SUJET ZÉRO · ENTRAÎNEMENT",
+   "en": "PRACTICE PAPER · TRAINING",
+   "status": "aligned",
+   "order": 2
+  },
+  "075d95c96cb5": {
+   "fr": "\\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 3
+  },
+  "fa3fed21455b": {
+   "fr": "\\textbf{Nom :}\\enspace",
+   "en": "\\textbf{Name:}\\enspace",
+   "status": "aligned",
+   "order": 4
+  },
+  "48834c5703ef": {
+   "fr": "\\quad\\textbf{Classe :}\\enspace",
+   "en": "\\quad\\textbf{Class:}\\enspace",
+   "status": "aligned",
+   "order": 5
+  },
+  "69782e4735b8": {
+   "fr": "\\quad\\textbf{Date :}\\enspace",
+   "en": "\\quad\\textbf{Date:}\\enspace",
+   "status": "aligned",
+   "order": 6
+  },
+  "1f76398e2428": {
+   "fr": "Exercice 1 · Intégrale et suite",
+   "en": "Exercise 1 · Integral and sequence",
+   "status": "aligned",
+   "order": 7
+  },
+  "6aee99d8eb5b": {
+   "fr": "5 points",
+   "en": "5 points",
+   "status": "aligned",
+   "order": 8
+  },
+  "9a74d60d96cb": {
+   "fr": "Pour tout entier naturel [[m1]], on pose [[m2]]. Pour [[m3]], l'intégrande est la fonction [[m4]].",
+   "en": "For every natural number [[m1]], we set [[m2]]. For [[m3]], the integrand is the function [[m4]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "82203721d56c": {
+   "fr": "\\textit{(1 pt)}",
+   "en": "\\textit{(1 pt)}",
+   "status": "aligned",
+   "order": 11
+  },
+  "1bb61d1b12e1": {
+   "fr": "À l'aide d'une intégration par parties, calculer [[m1]].",
+   "en": "Using integration by parts, calculate [[m1]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "c1881471fda3": {
+   "fr": "Démontrer, en comparant les intégrandes, que [[m1]] est positive et décroissante.",
+   "en": "Prove, by comparing the integrands, that the sequence [[m1]] is positive and decreasing.",
+   "status": "aligned",
+   "order": 14
+  },
+  "5d374279c932": {
+   "fr": "Montrer que [[m1]] pour tout [[m2]]. En déduire la limite de [[m3]].",
+   "en": "Show that [[m1]] for all [[m2]]. Deduce the limit of [[m3]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "a10b9e4a83a5": {
+   "fr": "À l'aide d'une intégration par parties, exprimer [[m1]] en fonction de [[m2]] et de [[m3]].",
+   "en": "Using integration by parts, express [[m1]] in terms of [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "d6afac3a0e5c": {
+   "fr": "Exercice 2 · Équation différentielle et évolution",
+   "en": "Exercise 2 · Differential equation and evolution",
+   "status": "aligned",
+   "order": 20
+  },
+  "a562931434d6": {
+   "fr": "On considère l'équation différentielle [[m1]] sur [[m2]]. Dans les questions 2 à 5, on note [[m3]] la solution qui vérifie [[m4]].",
+   "en": "Consider the differential equation [[m1]] on [[m2]]. In questions 2 to 5, denote by [[m3]] the solution satisfying [[m4]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "140f08eec45e": {
+   "fr": "Déterminer la solution constante de [[m1]].",
+   "en": "Determine the constant solution of [[m1]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "afe1afbb92e5": {
+   "fr": "Déterminer l'expression de la solution vérifiant la condition initiale donnée.",
+   "en": "Determine the expression of the solution satisfying the given initial condition.",
+   "status": "aligned",
+   "order": 25
+  },
+  "abc534ac7762": {
+   "fr": "Déterminer la limite de [[m1]] lorsque [[m2]] tend vers [[m3]].",
+   "en": "Determine the limit of [[m1]] as [[m2]] tends to [[m3]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "dbfe960ba488": {
+   "fr": "Étudier le sens de variation de [[m1]], puis déterminer le plus petit réel [[m2]] tel que [[m3]].",
+   "en": "Study the variations of [[m1]], then determine the smallest real number [[m2]] such that [[m3]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "46219334ed20": {
+   "fr": "On applique la méthode d'Euler avec un pas [[m1]] et on note [[m2]] l'approximation de [[m3]]. Donner la valeur de [[m4]] et exprimer [[m5]] en fonction de [[m6]] et de [[m7]].",
+   "en": "Apply Euler's method with step size [[m1]] and denote by [[m2]] the approximation of [[m3]]. Give the value of [[m4]] and express [[m5]] in terms of [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 31
   },
   "fc0ed2feada5": {
    "fr": "DS5 · Zéro 1 · suite",
@@ -13,23 +139,257 @@
    "status": "aligned",
    "order": 33
   },
+  "4a72f8c3adca": {
+   "fr": "Exercice 3 · Projection et volume",
+   "en": "Exercise 3 · Projection and volume",
+   "status": "aligned",
+   "order": 34
+  },
+  "1d5c8a7fc3c9": {
+   "fr": "Dans un repère orthonormé d'origine [[m1]], on considère [[m2]], [[m3]] et [[m4]]. On donne [[m5]]. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.",
+   "en": "In an orthonormal coordinate system with origin [[m1]], consider [[m2]], [[m3]] and [[m4]]. We are given [[m5]]. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.",
+   "status": "aligned",
+   "order": 36
+  },
+  "dbcc90785024": {
+   "fr": "Démontrer que [[m1]] est normal au plan [[m2]].",
+   "en": "Prove that [[m1]] is normal to the plane [[m2]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "b1d1df303510": {
+   "fr": "On note [[m1]] le projeté orthogonal de [[m2]] sur [[m3]]. Déterminer les coordonnées de [[m4]] en utilisant [[m5]].",
+   "en": "Let [[m1]] be the orthogonal projection of [[m2]] onto [[m3]]. Determine the coordinates of [[m4]] using [[m5]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "fad94b857560": {
+   "fr": "Démontrer que [[m1]] est la distance de [[m2]] au plan [[m3]] : pour tout [[m4]], établir [[m5]].",
+   "en": "Prove that [[m1]] is the distance from [[m2]] to the plane [[m3]]: for every [[m4]], prove that [[m5]].",
+   "status": "aligned",
+   "order": 41
+  },
+  "616faef2fd51": {
+   "fr": "Calculer l'aire du triangle [[m1]].",
+   "en": "Calculate the area of triangle [[m1]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "b3bd3638670c": {
+   "fr": "Calculer le volume du tétraèdre [[m1]] de deux façons, en choisissant deux bases différentes.",
+   "en": "Calculate the volume of the tetrahedron [[m1]] in two ways, by choosing two different bases.",
+   "status": "aligned",
+   "order": 45
+  },
+  "50d88210b6f1": {
+   "fr": "Exercice 4 · Sommes de variables aléatoires",
+   "en": "Exercise 4 · Sums of random variables",
+   "status": "aligned",
+   "order": 47
+  },
+  "9952c9f1e21d": {
+   "fr": "On pose [[m1]]. On considère [[m2]] variables aléatoires indépendantes [[m3]], qui suivent toutes la loi de Bernoulli de paramètre [[m4]]. On pose [[m5]] et [[m6]].",
+   "en": "We set [[m1]]. Consider [[m2]] independent random variables [[m3]], which all follow the Bernoulli distribution with parameter [[m4]]. We set [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "a9f8000611e9": {
+   "fr": "Justifier la loi suivie par [[m1]] et calculer [[m2]].",
+   "en": "Justify the distribution followed by [[m1]] and calculate [[m2]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "132805a22788": {
+   "fr": "À partir de la variance d'une variable de Bernoulli et de l'indépendance, calculer [[m1]].",
+   "en": "Using the variance of a Bernoulli random variable and independence, calculate [[m1]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "e1e0a679c9e0": {
+   "fr": "On pose [[m1]]. Calculer [[m2]] et [[m3]].",
+   "en": "We set [[m1]]. Calculate [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "6e505c611686": {
+   "fr": "Pour cette question seulement, on remplace les [[m1]] variables par [[m2]] variables toutes égales à [[m3]]. Calculer alors la variance de leur moyenne et la comparer à celle de la question 4. Expliquer pourquoi les résultats diffèrent.",
+   "en": "For this question only, we replace the [[m1]] variables by [[m2]] variables all equal to [[m3]]. Then calculate the variance of their mean and compare it with that of question 4. Explain why the results differ.",
+   "status": "aligned",
+   "order": 58
+  },
   "f43d10d76e5d": {
    "fr": "Corrigé · DS5 · Zéro 1",
    "en": "Solutions · Test 5 · Practice 1",
    "status": "aligned",
    "order": 60
   },
+  "e28d92dc766e": {
+   "fr": "\\textit{[1 pt]} La fonction [[m1]] est une primitive de [[m2]]. Ainsi [[m3]].",
+   "en": "\\textit{[1 pt]} The function [[m1]] is an antiderivative of [[m2]]. Hence [[m3]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "93cdb1716558": {
+   "fr": "\\textit{[1 pt]} Choisissons [[m1]] et [[m2]], deux fonctions dérivables à dérivées continues sur [[m3]]. Alors [[m4]] et [[m5]]. L'intégration par parties donne",
+   "en": "\\textit{[1 pt]} Let us choose [[m1]] and [[m2]], two differentiable functions with continuous derivatives on [[m3]]. Then [[m4]] and [[m5]]. Integration by parts gives",
+   "status": "aligned",
+   "order": 63
+  },
+  "ff8749f92e51": {
+   "fr": "\\textit{[1 pt]} Pour [[m1]], [[m2]]. Comme [[m3]], l'intégration sur des bornes croissantes donne [[m4]]. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de [[m5]] et de [[m6]] sont continues et strictement positives sur [[m7]].",
+   "en": "\\textit{[1 pt]} For [[m1]], [[m2]]. Since [[m3]], integrating over increasing bounds gives [[m4]]. The sequence is therefore positive and weakly decreasing. The inequalities are even strict: the integrands of [[m5]] and [[m6]] are continuous and strictly positive on [[m7]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "abaa520092d4": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; donc [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]]; hence [[m2]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "f0a5c231080b": {
+   "fr": "\\textit{[1 pt]} Appliquons l'IPP à [[m1]] et [[m2]]. Comme [[m3]], le terme en [[m4]] est nul. D'où",
+   "en": "\\textit{[1 pt]} Apply integration by parts to [[m1]] and [[m2]]. Since [[m3]], the term at [[m4]] is zero. Hence",
+   "status": "aligned",
+   "order": 66
+  },
+  "5264c3b34b42": {
+   "fr": "\\textit{[1 pt]} [[m1]] donne [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]] gives [[m2]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "a5de10df18cd": {
+   "fr": "\\textit{[1 pt]} La solution constante est [[m1]]. Posons [[m2]] ; l'équation devient [[m3]]. Ses solutions sont [[m4]], donc toutes les solutions de l'équation initiale sont [[m5]].\nLa condition [[m6]] donne [[m7]]. Pour la fonction obtenue,",
+   "en": "\\textit{[1 pt]} The constant solution is [[m1]]. Let [[m2]]; the equation becomes [[m3]]. Its solutions are [[m4]], so all the solutions of the original equation are [[m5]].\nThe condition [[m6]] gives [[m7]]. For the function obtained,",
+   "status": "aligned",
+   "order": 69
+  },
+  "ec3d39e41919": {
+   "fr": "La solution du problème initial est donc [[m1]].",
+   "en": "The solution of the initial value problem is therefore [[m1]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "829101feabd9": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; limite [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]]; limit [[m2]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "271a48fd6bcc": {
+   "fr": "\\textit{[1 pt]} Comme [[m1]], la dérivée [[m2]] est négative : [[m3]] est strictement décroissante. Résolvons",
+   "en": "\\textit{[1 pt]} Since [[m1]], the derivative [[m2]] is negative: [[m3]] is strictly decreasing. We solve",
+   "status": "aligned",
+   "order": 72
+  },
+  "422f72c4fc0c": {
+   "fr": "La dernière étape inverse l'inégalité car on multiplie par [[m1]]. Le premier instant est [[m2]].",
+   "en": "The last step reverses the inequality because we multiply by [[m1]]. The first time is [[m2]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "9f5c09565ad6": {
+   "fr": "\\textit{[1 pt]} [[m1]], [[m2]], [[m3]].",
+   "en": "\\textit{[1 pt]} [[m1]], [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "7b5388dec5d5": {
+   "fr": "\\textit{[1 pt]} [[m1]] et [[m2]] sont non colinéaires et leurs produits scalaires avec [[m3]] sont nuls.",
+   "en": "\\textit{[1 pt]} [[m1]] and [[m2]] are non-collinear and their dot products with [[m3]] are zero.",
+   "status": "aligned",
+   "order": 76
+  },
+  "94e5c489ee00": {
+   "fr": "\\textit{[1 pt]} La droite normale au plan passant par [[m1]] a pour directeur [[m2]]. Son point [[m3]] s'écrit donc [[m4]]. Pour que [[m5]] soit dans [[m6]], il faut et il suffit que",
+   "en": "\\textit{[1 pt]} The line normal to the plane passing through [[m1]] has direction vector [[m2]]. Its point [[m3]] is therefore written [[m4]]. For [[m5]] to lie in [[m6]], it is necessary and sufficient that",
+   "status": "aligned",
+   "order": 77
+  },
+  "143cb0fb8ccc": {
+   "fr": "Ainsi [[m1]] et [[m2]]. Ce point est dans le plan et [[m3]] est colinéaire au normal ; c'est bien le projeté recherché.",
+   "en": "Hence [[m1]] and [[m2]]. This point lies in the plane and [[m3]] is collinear with the normal vector; it is indeed the required orthogonal projection.",
+   "status": "aligned",
+   "order": 78
+  },
+  "16580e3dcf2c": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; pour tout [[m2]] du plan, [[m3]], égalité seulement pour [[m4]].",
+   "en": "\\textit{[1 pt]} [[m1]]; for every [[m2]] in the plane, [[m3]], with equality only for [[m4]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "3895451d2970": {
+   "fr": "\\textit{[1 pt]} Les différences de coordonnées donnent [[m1]]. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut",
+   "en": "\\textit{[1 pt]} The coordinate differences give [[m1]]. The triangle is equilateral. Its height splits a side into two equal parts and equals",
+   "status": "aligned",
+   "order": 80
+  },
+  "6f924e895bcf": {
+   "fr": "Son aire vaut donc [[m1]] unités d'aire.",
+   "en": "Its area is therefore [[m1]] square units.",
+   "status": "aligned",
+   "order": 81
+  },
+  "1945fa477a20": {
+   "fr": "\\textit{[1 pt]} Base [[m1]] : volume [[m2]]. Base [[m3]] : aire [[m4]] et hauteur [[m5]], même valeur.",
+   "en": "\\textit{[1 pt]} Base [[m1]]: volume [[m2]]. Base [[m3]]: area [[m4]] and height [[m5]], the same value.",
+   "status": "aligned",
+   "order": 82
+  },
+  "a13409f2192f": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]]; [[m2]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "5a26b0191102": {
+   "fr": "\\textit{[1 pt]} Chaque [[m1]] vaut [[m2]] ou [[m3]], donc [[m4]]. Ainsi [[m5]] et",
+   "en": "\\textit{[1 pt]} Each [[m1]] equals [[m2]] or [[m3]], so [[m4]]. Hence [[m5]] and",
+   "status": "aligned",
+   "order": 85
+  },
+  "c41bb90c9daa": {
+   "fr": "Les variables sont indépendantes ; l'additivité de la variance donne",
+   "en": "The variables are independent; additivity of the variance gives",
+   "status": "aligned",
+   "order": 86
+  },
+  "332bf4bf6a1c": {
+   "fr": "\\textit{[1 pt]} Par linéarité de l'espérance et par [[m1]],",
+   "en": "\\textit{[1 pt]} By linearity of the expected value and by [[m1]],",
+   "status": "aligned",
+   "order": 87
+  },
+  "dcd4f38c6264": {
+   "fr": "La constante [[m1]] ne change pas la variance.",
+   "en": "The constant [[m1]] does not change the variance.",
+   "status": "aligned",
+   "order": 88
+  },
+  "f1ca27272f30": {
+   "fr": "\\textit{[1 pt]} [[m1]] et [[m2]] ; le facteur de variance est [[m3]].",
+   "en": "\\textit{[1 pt]} [[m1]] and [[m2]]; the variance factor is [[m3]].",
+   "status": "aligned",
+   "order": 89
+  },
+  "ef826cdfa9ee": {
+   "fr": "\\textit{[1 pt]} Non. La nouvelle moyenne vaut [[m1]], sa variance vaut [[m2]]. L'additivité de variance utilisée précédemment requiert l'indépendance.",
+   "en": "\\textit{[1 pt]} No. The new mean equals [[m1]], its variance equals [[m2]]. The additivity of variance used previously requires independence.",
+   "status": "aligned",
+   "order": 90
+  },
   "3aaada2848aa": {
    "fr": "DS5 · Zéro 2",
    "en": "Test 5 · Practice 2",
    "status": "aligned",
-   "order": 92
-  },
-  "b3a0f5fddcc6": {
-   "fr": "SUJET ZÉRO · ENTRAÎNEMENT",
-   "en": "PRACTICE PAPER · TRAINING",
-   "status": "aligned",
-   "order": 93
+   "order": 91
   },
   "00937216d943": {
    "fr": "DS5 · Zéro 2 · suite",
@@ -47,7 +407,13 @@
    "fr": "DS5 · A",
    "en": "Test 5 · A",
    "status": "aligned",
-   "order": 183
+   "order": 182
+  },
+  "a50b15931b4e": {
+   "fr": "SUJET RÉSERVÉ À L'ÉVALUATION",
+   "en": "PAPER RESERVED FOR ASSESSMENT",
+   "status": "aligned",
+   "order": 184
   },
   "4529cc039a6e": {
    "fr": "DS5 · A · suite",
@@ -65,109 +431,7 @@
    "fr": "DS5 · B",
    "en": "Test 5 · B",
    "status": "aligned",
-   "order": 274
-  },
-  "a50b15931b4e": {
-   "fr": "SUJET RÉSERVÉ À L'ÉVALUATION",
-   "en": "PAPER RESERVED FOR ASSESSMENT",
-   "status": "aligned",
-   "order": 275
-  },
-  "075d95c96cb5": {
-   "fr": "\\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
-   "en": "\\textbf{Duration: 2 h · Marked out of 20 · Four independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
-   "status": "aligned",
-   "order": 276
-  },
-  "fa3fed21455b": {
-   "fr": "\\textbf{Nom :}\\enspace",
-   "en": "\\textbf{Name:}\\enspace",
-   "status": "aligned",
-   "order": 277
-  },
-  "48834c5703ef": {
-   "fr": "\\quad\\textbf{Classe :}\\enspace",
-   "en": "\\quad\\textbf{Class:}\\enspace",
-   "status": "aligned",
-   "order": 278
-  },
-  "69782e4735b8": {
-   "fr": "\\quad\\textbf{Date :}\\enspace",
-   "en": "\\quad\\textbf{Date:}\\enspace",
-   "status": "aligned",
-   "order": 279
-  },
-  "9a74d60d96cb": {
-   "fr": "Pour tout entier naturel [[m1]], on pose [[m2]]. Pour [[m3]], l'intégrande est la fonction [[m4]].",
-   "en": "For every natural number [[m1]], we set [[m2]]. For [[m3]], the integrand is the function [[m4]].",
-   "status": "aligned",
-   "order": 282
-  },
-  "edb66e001ece": {
-   "fr": "Calculer [[m1]].",
-   "en": "Calculate [[m1]].",
-   "status": "aligned",
-   "order": 283
-  },
-  "1bb61d1b12e1": {
-   "fr": "À l'aide d'une intégration par parties, calculer [[m1]].",
-   "en": "Using integration by parts, calculate [[m1]].",
-   "status": "aligned",
-   "order": 285
-  },
-  "c1881471fda3": {
-   "fr": "Démontrer, en comparant les intégrandes, que [[m1]] est positive et décroissante.",
-   "en": "Prove, by comparing the integrands, that the sequence [[m1]] is positive and decreasing.",
-   "status": "aligned",
-   "order": 287
-  },
-  "5d374279c932": {
-   "fr": "Montrer que [[m1]] pour tout [[m2]]. En déduire la limite de [[m3]].",
-   "en": "Show that [[m1]] for all [[m2]]. Deduce the limit of [[m3]].",
-   "status": "aligned",
-   "order": 289
-  },
-  "a10b9e4a83a5": {
-   "fr": "À l'aide d'une intégration par parties, exprimer [[m1]] en fonction de [[m2]] et de [[m3]].",
-   "en": "Using integration by parts, express [[m1]] in terms of [[m2]] and [[m3]].",
-   "status": "aligned",
-   "order": 291
-  },
-  "a562931434d6": {
-   "fr": "On considère l'équation différentielle [[m1]] sur [[m2]]. Dans les questions 2 à 5, on note [[m3]] la solution qui vérifie [[m4]].",
-   "en": "Consider the differential equation [[m1]] on [[m2]]. In questions 2 to 5, denote by [[m3]] the solution satisfying [[m4]].",
-   "status": "aligned",
-   "order": 295
-  },
-  "140f08eec45e": {
-   "fr": "Déterminer la solution constante de [[m1]].",
-   "en": "Determine the constant solution of [[m1]].",
-   "status": "aligned",
-   "order": 296
-  },
-  "afe1afbb92e5": {
-   "fr": "Déterminer l'expression de la solution vérifiant la condition initiale donnée.",
-   "en": "Determine the expression of the solution satisfying the given initial condition.",
-   "status": "aligned",
-   "order": 298
-  },
-  "abc534ac7762": {
-   "fr": "Déterminer la limite de [[m1]] lorsque [[m2]] tend vers [[m3]].",
-   "en": "Determine the limit of [[m1]] as [[m2]] tends to [[m3]].",
-   "status": "aligned",
-   "order": 300
-  },
-  "dbfe960ba488": {
-   "fr": "Étudier le sens de variation de [[m1]], puis déterminer le plus petit réel [[m2]] tel que [[m3]].",
-   "en": "Study the variations of [[m1]], then determine the smallest real number [[m2]] such that [[m3]].",
-   "status": "aligned",
-   "order": 302
-  },
-  "46219334ed20": {
-   "fr": "On applique la méthode d'Euler avec un pas [[m1]] et on note [[m2]] l'approximation de [[m3]]. Donner la valeur de [[m4]] et exprimer [[m5]] en fonction de [[m6]] et de [[m7]].",
-   "en": "Apply Euler's method with step size [[m1]] and denote by [[m2]] the approximation of [[m3]]. Give the value of [[m4]] and express [[m5]] in terms of [[m6]] and [[m7]].",
-   "status": "aligned",
-   "order": 304
+   "order": 273
   },
   "17a6ad8287c9": {
    "fr": "DS5 · B · suite",
@@ -175,275 +439,11 @@
    "status": "aligned",
    "order": 306
   },
-  "1d5c8a7fc3c9": {
-   "fr": "Dans un repère orthonormé d'origine [[m1]], on considère [[m2]], [[m3]] et [[m4]]. On donne [[m5]]. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.",
-   "en": "In an orthonormal coordinate system with origin [[m1]], consider [[m2]], [[m3]] and [[m4]]. We are given [[m5]]. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.",
-   "status": "aligned",
-   "order": 309
-  },
-  "dbcc90785024": {
-   "fr": "Démontrer que [[m1]] est normal au plan [[m2]].",
-   "en": "Prove that [[m1]] is normal to the plane [[m2]].",
-   "status": "aligned",
-   "order": 310
-  },
-  "b1d1df303510": {
-   "fr": "On note [[m1]] le projeté orthogonal de [[m2]] sur [[m3]]. Déterminer les coordonnées de [[m4]] en utilisant [[m5]].",
-   "en": "Let [[m1]] be the orthogonal projection of [[m2]] onto [[m3]]. Determine the coordinates of [[m4]] using [[m5]].",
-   "status": "aligned",
-   "order": 312
-  },
-  "fad94b857560": {
-   "fr": "Démontrer que [[m1]] est la distance de [[m2]] au plan [[m3]] : pour tout [[m4]], établir [[m5]].",
-   "en": "Prove that [[m1]] is the distance from [[m2]] to the plane [[m3]]: for every [[m4]], prove that [[m5]].",
-   "status": "aligned",
-   "order": 314
-  },
-  "616faef2fd51": {
-   "fr": "Calculer l'aire du triangle [[m1]].",
-   "en": "Calculate the area of triangle [[m1]].",
-   "status": "aligned",
-   "order": 316
-  },
-  "b3bd3638670c": {
-   "fr": "Calculer le volume du tétraèdre [[m1]] de deux façons, en choisissant deux bases différentes.",
-   "en": "Calculate the volume of the tetrahedron [[m1]] in two ways, by choosing two different bases.",
-   "status": "aligned",
-   "order": 318
-  },
-  "6aee99d8eb5b": {
-   "fr": "5 points",
-   "en": "5 points",
-   "status": "aligned",
-   "order": 321
-  },
-  "9952c9f1e21d": {
-   "fr": "On pose [[m1]]. On considère [[m2]] variables aléatoires indépendantes [[m3]], qui suivent toutes la loi de Bernoulli de paramètre [[m4]]. On pose [[m5]] et [[m6]].",
-   "en": "We set [[m1]]. Consider [[m2]] independent random variables [[m3]], which all follow the Bernoulli distribution with parameter [[m4]]. We set [[m5]] and [[m6]].",
-   "status": "aligned",
-   "order": 322
-  },
-  "a9f8000611e9": {
-   "fr": "Justifier la loi suivie par [[m1]] et calculer [[m2]].",
-   "en": "Justify the distribution followed by [[m1]] and calculate [[m2]].",
-   "status": "aligned",
-   "order": 323
-  },
-  "132805a22788": {
-   "fr": "À partir de la variance d'une variable de Bernoulli et de l'indépendance, calculer [[m1]].",
-   "en": "Using the variance of a Bernoulli random variable and independence, calculate [[m1]].",
-   "status": "aligned",
-   "order": 325
-  },
-  "cc0de7072879": {
-   "fr": "Calculer [[m1]] et [[m2]].",
-   "en": "Calculate [[m1]] and [[m2]].",
-   "status": "aligned",
-   "order": 327
-  },
-  "e1e0a679c9e0": {
-   "fr": "On pose [[m1]]. Calculer [[m2]] et [[m3]].",
-   "en": "We set [[m1]]. Calculate [[m2]] and [[m3]].",
-   "status": "aligned",
-   "order": 329
-  },
-  "6e505c611686": {
-   "fr": "Pour cette question seulement, on remplace les [[m1]] variables par [[m2]] variables toutes égales à [[m3]]. Calculer alors la variance de leur moyenne et la comparer à celle de la question 4. Expliquer pourquoi les résultats diffèrent.",
-   "en": "For this question only, we replace the [[m1]] variables by [[m2]] variables all equal to [[m3]]. Then calculate the variance of their mean and compare it with that of question 4. Explain why the results differ.",
-   "status": "aligned",
-   "order": 331
-  },
-  "82203721d56c": {
-   "fr": "\\textit{(1 pt)}",
-   "en": "\\textit{(1 pt)}",
-   "status": "aligned",
-   "order": 332
-  },
   "3127d6e50536": {
    "fr": "Corrigé · DS5 · B",
    "en": "Solutions · Test 5 · B",
    "status": "aligned",
    "order": 333
-  },
-  "1f76398e2428": {
-   "fr": "Exercice 1 · Intégrale et suite",
-   "en": "Exercise 1 · Integral and sequence",
-   "status": "aligned",
-   "order": 334
-  },
-  "e28d92dc766e": {
-   "fr": "\\textit{[1 pt]} La fonction [[m1]] est une primitive de [[m2]]. Ainsi [[m3]].",
-   "en": "\\textit{[1 pt]} The function [[m1]] is an antiderivative of [[m2]]. Hence [[m3]].",
-   "status": "aligned",
-   "order": 335
-  },
-  "93cdb1716558": {
-   "fr": "\\textit{[1 pt]} Choisissons [[m1]] et [[m2]], deux fonctions dérivables à dérivées continues sur [[m3]]. Alors [[m4]] et [[m5]]. L'intégration par parties donne",
-   "en": "\\textit{[1 pt]} Let us choose [[m1]] and [[m2]], two differentiable functions with continuous derivatives on [[m3]]. Then [[m4]] and [[m5]]. Integration by parts gives",
-   "status": "aligned",
-   "order": 336
-  },
-  "ff8749f92e51": {
-   "fr": "\\textit{[1 pt]} Pour [[m1]], [[m2]]. Comme [[m3]], l'intégration sur des bornes croissantes donne [[m4]]. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de [[m5]] et de [[m6]] sont continues et strictement positives sur [[m7]].",
-   "en": "\\textit{[1 pt]} For [[m1]], [[m2]]. Since [[m3]], integrating over increasing bounds gives [[m4]]. The sequence is therefore positive and weakly decreasing. The inequalities are even strict: the integrands of [[m5]] and [[m6]] are continuous and strictly positive on [[m7]].",
-   "status": "aligned",
-   "order": 337
-  },
-  "abaa520092d4": {
-   "fr": "\\textit{[1 pt]} [[m1]] ; donc [[m2]].",
-   "en": "\\textit{[1 pt]} [[m1]]; hence [[m2]].",
-   "status": "aligned",
-   "order": 338
-  },
-  "f0a5c231080b": {
-   "fr": "\\textit{[1 pt]} Appliquons l'IPP à [[m1]] et [[m2]]. Comme [[m3]], le terme en [[m4]] est nul. D'où",
-   "en": "\\textit{[1 pt]} Apply integration by parts to [[m1]] and [[m2]]. Since [[m3]], the term at [[m4]] is zero. Hence",
-   "status": "aligned",
-   "order": 339
-  },
-  "d6afac3a0e5c": {
-   "fr": "Exercice 2 · Équation différentielle et évolution",
-   "en": "Exercise 2 · Differential equation and evolution",
-   "status": "aligned",
-   "order": 340
-  },
-  "5264c3b34b42": {
-   "fr": "\\textit{[1 pt]} [[m1]] donne [[m2]].",
-   "en": "\\textit{[1 pt]} [[m1]] gives [[m2]].",
-   "status": "aligned",
-   "order": 341
-  },
-  "a5de10df18cd": {
-   "fr": "\\textit{[1 pt]} La solution constante est [[m1]]. Posons [[m2]] ; l'équation devient [[m3]]. Ses solutions sont [[m4]], donc toutes les solutions de l'équation initiale sont [[m5]].\nLa condition [[m6]] donne [[m7]]. Pour la fonction obtenue,",
-   "en": "\\textit{[1 pt]} The constant solution is [[m1]]. Let [[m2]]; the equation becomes [[m3]]. Its solutions are [[m4]], so all the solutions of the original equation are [[m5]].\nThe condition [[m6]] gives [[m7]]. For the function obtained,",
-   "status": "aligned",
-   "order": 342
-  },
-  "ec3d39e41919": {
-   "fr": "La solution du problème initial est donc [[m1]].",
-   "en": "The solution of the initial value problem is therefore [[m1]].",
-   "status": "aligned",
-   "order": 343
-  },
-  "829101feabd9": {
-   "fr": "\\textit{[1 pt]} [[m1]] ; limite [[m2]].",
-   "en": "\\textit{[1 pt]} [[m1]]; limit [[m2]].",
-   "status": "aligned",
-   "order": 344
-  },
-  "271a48fd6bcc": {
-   "fr": "\\textit{[1 pt]} Comme [[m1]], la dérivée [[m2]] est négative : [[m3]] est strictement décroissante. Résolvons",
-   "en": "\\textit{[1 pt]} Since [[m1]], the derivative [[m2]] is negative: [[m3]] is strictly decreasing. We solve",
-   "status": "aligned",
-   "order": 345
-  },
-  "422f72c4fc0c": {
-   "fr": "La dernière étape inverse l'inégalité car on multiplie par [[m1]]. Le premier instant est [[m2]].",
-   "en": "The last step reverses the inequality because we multiply by [[m1]]. The first time is [[m2]].",
-   "status": "aligned",
-   "order": 346
-  },
-  "9f5c09565ad6": {
-   "fr": "\\textit{[1 pt]} [[m1]], [[m2]], [[m3]].",
-   "en": "\\textit{[1 pt]} [[m1]], [[m2]], [[m3]].",
-   "status": "aligned",
-   "order": 347
-  },
-  "4a72f8c3adca": {
-   "fr": "Exercice 3 · Projection et volume",
-   "en": "Exercise 3 · Projection and volume",
-   "status": "aligned",
-   "order": 348
-  },
-  "7b5388dec5d5": {
-   "fr": "\\textit{[1 pt]} [[m1]] et [[m2]] sont non colinéaires et leurs produits scalaires avec [[m3]] sont nuls.",
-   "en": "\\textit{[1 pt]} [[m1]] and [[m2]] are non-collinear and their dot products with [[m3]] are zero.",
-   "status": "aligned",
-   "order": 349
-  },
-  "94e5c489ee00": {
-   "fr": "\\textit{[1 pt]} La droite normale au plan passant par [[m1]] a pour directeur [[m2]]. Son point [[m3]] s'écrit donc [[m4]]. Pour que [[m5]] soit dans [[m6]], il faut et il suffit que",
-   "en": "\\textit{[1 pt]} The line normal to the plane passing through [[m1]] has direction vector [[m2]]. Its point [[m3]] is therefore written [[m4]]. For [[m5]] to lie in [[m6]], it is necessary and sufficient that",
-   "status": "aligned",
-   "order": 350
-  },
-  "143cb0fb8ccc": {
-   "fr": "Ainsi [[m1]] et [[m2]]. Ce point est dans le plan et [[m3]] est colinéaire au normal ; c'est bien le projeté recherché.",
-   "en": "Hence [[m1]] and [[m2]]. This point lies in the plane and [[m3]] is collinear with the normal vector; it is indeed the required orthogonal projection.",
-   "status": "aligned",
-   "order": 351
-  },
-  "16580e3dcf2c": {
-   "fr": "\\textit{[1 pt]} [[m1]] ; pour tout [[m2]] du plan, [[m3]], égalité seulement pour [[m4]].",
-   "en": "\\textit{[1 pt]} [[m1]]; for every [[m2]] in the plane, [[m3]], with equality only for [[m4]].",
-   "status": "aligned",
-   "order": 352
-  },
-  "3895451d2970": {
-   "fr": "\\textit{[1 pt]} Les différences de coordonnées donnent [[m1]]. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut",
-   "en": "\\textit{[1 pt]} The coordinate differences give [[m1]]. The triangle is equilateral. Its height splits a side into two equal parts and equals",
-   "status": "aligned",
-   "order": 353
-  },
-  "6f924e895bcf": {
-   "fr": "Son aire vaut donc [[m1]] unités d'aire.",
-   "en": "Its area is therefore [[m1]] square units.",
-   "status": "aligned",
-   "order": 354
-  },
-  "1945fa477a20": {
-   "fr": "\\textit{[1 pt]} Base [[m1]] : volume [[m2]]. Base [[m3]] : aire [[m4]] et hauteur [[m5]], même valeur.",
-   "en": "\\textit{[1 pt]} Base [[m1]]: volume [[m2]]. Base [[m3]]: area [[m4]] and height [[m5]], the same value.",
-   "status": "aligned",
-   "order": 355
-  },
-  "50d88210b6f1": {
-   "fr": "Exercice 4 · Sommes de variables aléatoires",
-   "en": "Exercise 4 · Sums of random variables",
-   "status": "aligned",
-   "order": 356
-  },
-  "a13409f2192f": {
-   "fr": "\\textit{[1 pt]} [[m1]] ; [[m2]].",
-   "en": "\\textit{[1 pt]} [[m1]]; [[m2]].",
-   "status": "aligned",
-   "order": 357
-  },
-  "5a26b0191102": {
-   "fr": "\\textit{[1 pt]} Chaque [[m1]] vaut [[m2]] ou [[m3]], donc [[m4]]. Ainsi [[m5]] et",
-   "en": "\\textit{[1 pt]} Each [[m1]] equals [[m2]] or [[m3]], so [[m4]]. Hence [[m5]] and",
-   "status": "aligned",
-   "order": 358
-  },
-  "c41bb90c9daa": {
-   "fr": "Les variables sont indépendantes ; l'additivité de la variance donne",
-   "en": "The variables are independent; additivity of the variance gives",
-   "status": "aligned",
-   "order": 359
-  },
-  "332bf4bf6a1c": {
-   "fr": "\\textit{[1 pt]} Par linéarité de l'espérance et par [[m1]],",
-   "en": "\\textit{[1 pt]} By linearity of the expected value and by [[m1]],",
-   "status": "aligned",
-   "order": 360
-  },
-  "dcd4f38c6264": {
-   "fr": "La constante [[m1]] ne change pas la variance.",
-   "en": "The constant [[m1]] does not change the variance.",
-   "status": "aligned",
-   "order": 361
-  },
-  "f1ca27272f30": {
-   "fr": "\\textit{[1 pt]} [[m1]] et [[m2]] ; le facteur de variance est [[m3]].",
-   "en": "\\textit{[1 pt]} [[m1]] and [[m2]]; the variance factor is [[m3]].",
-   "status": "aligned",
-   "order": 362
-  },
-  "ef826cdfa9ee": {
-   "fr": "\\textit{[1 pt]} Non. La nouvelle moyenne vaut [[m1]], sa variance vaut [[m2]]. L'additivité de variance utilisée précédemment requiert l'indépendance.",
-   "en": "\\textit{[1 pt]} No. The new mean equals [[m1]], its variance equals [[m2]]. The additivity of variance used previously requires independence.",
-   "status": "aligned",
-   "order": 363
   }
  }
 }

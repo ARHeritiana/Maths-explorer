@@ -1,6 +1,12 @@
 {
  "unit": "c01.fr.tex",
  "segments": {
+  "662250158dcd": {
+   "fr": "Suites numériques",
+   "en": "Number Sequences",
+   "status": "aligned",
+   "order": 0
+  },
   "c793d073cb20": {
    "fr": "chercher, modéliser, représenter, calculer, communiquer",
    "en": "investigate, model, represent, calculate, communicate",
@@ -109,6 +115,12 @@
    "status": "aligned",
    "order": 18
   },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 19
+  },
   "428311c79530": {
    "fr": "Suite arithmétique : reconnaître et modéliser",
    "en": "Arithmetic sequences: recognising and modelling",
@@ -133,9 +145,15 @@
    "status": "aligned",
    "order": 24
   },
-  "7031120460ce": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1{,}10$}",
-   "en": "Write the multiplier for a [[m1]] increase. \\mxblank{$1+\\dfrac{10}{100}=1.10$}",
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 25
+  },
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for a [[m1]] increase. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
    "status": "aligned",
    "order": 26
   },
@@ -144,6 +162,18 @@
    "en": "Calculate [[m1]] if [[m2]] and [[m3]]. \\mxblank{$u_4=26$}",
    "status": "aligned",
    "order": 27
+  },
+  "f876f4f292e2": {
+   "fr": "Combien de termes de [[m1]] à [[m2]] ? \\mxblank{$15-3+1=13$}",
+   "en": "How many terms from [[m1]] to [[m2]]? \\mxblank{$15-3+1=13$}",
+   "status": "aligned",
+   "order": 28
+  },
+  "b5bf4a887b7b": {
+   "fr": "Donner le coefficient d'une baisse de [[m1]]. \\mxblank{$\\num{0,92}$}",
+   "en": "Give the multiplier for a [[m1]] decrease. \\mxblank{$\\num{0,92}$}",
+   "status": "aligned",
+   "order": 29
   },
   "58707e890199": {
    "fr": "Donner la raison de [[m1]]. \\mxblank{$r=4$}",
@@ -175,17 +205,89 @@
    "status": "aligned",
    "order": 34
   },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.",
+   "status": "aligned",
+   "order": 35
+  },
   "fa0de09a0620": {
    "fr": "[[m1]], [[m2]], [[m3]] ; on ajoute [[m4]]. Donc [[m5]] et [[m6]].",
    "en": "[[m1]], [[m2]], [[m3]]; we add [[m4]]. So [[m5]] and [[m6]].",
    "status": "aligned",
    "order": 36
   },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 37
+  },
+  "26c56d804ae3": {
+   "fr": "La suite [[m1]] vérifie [[m2]] et [[m3]]. Écrire [[m4]] puis calculer [[m5]].",
+   "en": "The sequence [[m1]] satisfies [[m2]] and [[m3]]. Write [[m4]] then calculate [[m5]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "6b0d7eaee50d": {
+   "fr": "Une quantité vaut [[m1]] et baisse de [[m2]] par période. Écrire [[m3]] et calculer [[m4]].",
+   "en": "A quantity is worth [[m1]] and decreases by [[m2]] per period. Write [[m3]] and calculate [[m4]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "808aa5263564": {
+   "fr": "Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.",
+   "en": "For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.",
+   "status": "aligned",
+   "order": 40
+  },
+  "de46c755f5dc": {
+   "fr": "[[m1]] et [[m2]], Pour la seconde, [[m3]] et [[m4]] ; le troisième item se justifie par la constance de la différence ou du quotient,",
+   "en": "[[m1]] and [[m2]], for the second one, [[m3]] and [[m4]]; the third item is justified by the constant difference or quotient,",
+   "status": "aligned",
+   "order": 41
+  },
   "1b1d2a12771f": {
    "fr": "Calao, cours p. 18--21 ; exercices p. 24, n° 1 à 3",
    "en": "Calao, course notes pp. 18--21; exercises p. 24, no.~1--3",
    "status": "aligned",
    "order": 42
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common difference/ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 43
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 44
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 45
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 46
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n    \\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n    \\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 47
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 48
   },
   "8653c086b344": {
    "fr": "Suite arithmétique : terme général",
@@ -264,6 +366,18 @@
    "en": "Calao, course notes pp. 18--21; exercises p. 24, no.~5--8",
    "status": "aligned",
    "order": 71
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common difference/ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 72
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 75
   },
   "bb442062f2bf": {
    "fr": "Somme des termes d'une suite arithmétique",
@@ -385,9 +499,9 @@
    "status": "aligned",
    "order": 114
   },
-  "7689c780629e": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=1{,}25$}",
-   "en": "Write the multiplier for a [[m1]] increase. \\mxblank{$1+\\dfrac{25}{100}=1.25$}",
+  "d52d70ed4f38": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "en": "Write the multiplier for a [[m1]] increase. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
    "status": "aligned",
    "order": 116
   },
@@ -438,12 +552,6 @@
    "en": "Calao, course notes pp. 23--25; exercises p. 25, no.~14--18",
    "status": "aligned",
    "order": 132
-  },
-  "a114cba6d4b1": {
-   "fr": "B : 2 h -- C : 1 h",
-   "en": "B: 2 h -- C: 1 h",
-   "status": "aligned",
-   "order": 138
   },
   "36c2bde94d42": {
    "fr": "Suite géométrique : terme général et somme",
@@ -523,35 +631,11 @@
    "status": "aligned",
    "order": 161
   },
-  "c522c0aac4ab": {
-   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common difference/ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 162
-  },
-  "4f9257a965a4": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.",
-   "status": "aligned",
-   "order": 165
-  },
-  "702e35c25e86": {
-   "fr": "B : 1 h -- C : 2 h",
-   "en": "B: 1 h -- C: 2 h",
-   "status": "aligned",
-   "order": 167
-  },
   "bf66a9ca7f33": {
    "fr": "Bilan et évaluation formative",
    "en": "Review and formative assessment",
    "status": "aligned",
    "order": 168
-  },
-  "662250158dcd": {
-   "fr": "Suites numériques",
-   "en": "Number Sequences",
-   "status": "aligned",
-   "order": 169
   },
   "f4b8f0c82c9a": {
    "fr": "Choisir le bon modèle.",
@@ -571,29 +655,11 @@
    "status": "aligned",
    "order": 172
   },
-  "28126275a16c": {
-   "fr": "6 à 8 minutes, sans calculatrice",
-   "en": "6 to 8 minutes, no calculator",
-   "status": "aligned",
-   "order": 173
-  },
   "e575a78015e2": {
    "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$9$}",
    "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$9$}",
    "status": "aligned",
    "order": 174
-  },
-  "f876f4f292e2": {
-   "fr": "Combien de termes de [[m1]] à [[m2]] ? \\mxblank{$15-3+1=13$}",
-   "en": "How many terms from [[m1]] to [[m2]]? \\mxblank{$15-3+1=13$}",
-   "status": "aligned",
-   "order": 175
-  },
-  "e972e1148e12": {
-   "fr": "Donner le coefficient d'une baisse de [[m1]]. \\mxblank{$0{,}92$}",
-   "en": "Give the multiplier for a [[m1]] decrease. \\mxblank{$0.92$}",
-   "status": "aligned",
-   "order": 176
   },
   "2b5ec7ea1e3e": {
    "fr": "Donner la raison de [[m1]]. \\mxblank{$r=9$}",
@@ -631,83 +697,17 @@
    "status": "aligned",
    "order": 182
   },
-  "aa05b05d7735": {
-   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
-   "en": "Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.",
-   "status": "aligned",
-   "order": 183
-  },
   "ae118cd45d86": {
    "fr": "Une variation absolue constante indique le modèle arithmétique ; un pourcentage ou coefficient constant indique le modèle géométrique ; sinon aucun des deux n'est garanti.",
    "en": "A constant absolute change indicates the arithmetic model; a constant percentage or multiplier indicates the geometric model; otherwise neither is guaranteed.",
    "status": "aligned",
    "order": 184
   },
-  "4a8f3fc74ed9": {
-   "fr": "essentiel",
-   "en": "essential",
-   "status": "aligned",
-   "order": 185
-  },
-  "26c56d804ae3": {
-   "fr": "La suite [[m1]] vérifie [[m2]] et [[m3]]. Écrire [[m4]] puis calculer [[m5]].",
-   "en": "The sequence [[m1]] satisfies [[m2]] and [[m3]]. Write [[m4]] then calculate [[m5]].",
-   "status": "aligned",
-   "order": 186
-  },
-  "6b0d7eaee50d": {
-   "fr": "Une quantité vaut [[m1]] et baisse de [[m2]] par période. Écrire [[m3]] et calculer [[m4]].",
-   "en": "A quantity is worth [[m1]] and decreases by [[m2]] per period. Write [[m3]] and calculate [[m4]].",
-   "status": "aligned",
-   "order": 187
-  },
-  "808aa5263564": {
-   "fr": "Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.",
-   "en": "For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.",
-   "status": "aligned",
-   "order": 188
-  },
-  "de46c755f5dc": {
-   "fr": "[[m1]] et [[m2]], Pour la seconde, [[m3]] et [[m4]] ; le troisième item se justifie par la constance de la différence ou du quotient,",
-   "en": "[[m1]] and [[m2]], for the second one, [[m3]] and [[m4]]; the third item is justified by the constant difference or quotient,",
-   "status": "aligned",
-   "order": 189
-  },
   "4cb4655661a8": {
    "fr": "Calao, p. 29, n° 49 à 52",
    "en": "Calao, p. 29, no.~49--52",
    "status": "aligned",
    "order": 190
-  },
-  "fdec5ba74355": {
-   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common difference/ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 191
-  },
-  "acac70116eb6": {
-   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
-   "en": "The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
-   "status": "aligned",
-   "order": 192
-  },
-  "24e46784cbce": {
-   "fr": "3 minutes",
-   "en": "3 minutes",
-   "status": "aligned",
-   "order": 193
-  },
-  "5655fa4b1e45": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.",
-   "status": "aligned",
-   "order": 194
-  },
-  "4ac648e44ed0": {
-   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
-   "en": "\\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.",
-   "status": "aligned",
-   "order": 195
   }
  }
 }

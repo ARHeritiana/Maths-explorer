@@ -34,6 +34,7 @@
 \RequirePackage{mx-i18n}     % language, labels, dates, number formatting (reads \mx@lang)
 \RequirePackage{mx-edition}  % \ifmxteacher and teacher-only material (reads \mx@edition)
 \RequirePackage{mx-math}     % mathematics macros (\R, \vect, ...), defined once for books, slides and site
+\RequirePackage{mx-notation} % notations that differ by language (\num, \pc, intervals, \pt, \ens), defined once
 \RequirePackage{mx-figures}  % colours, TikZ and pgfplots styles
 \RequirePackage{mx-layout}   % geometry, headings, running heads, page-break policy (reads \mx@layout, \mx@course)
 \RequirePackage{mx-env}      % canonical environments (keypoint, method, example, exercise, ...)
@@ -75,9 +76,11 @@
 \newcommand{\mxunitid}{}
 % A unit starts a new page: a chapter in the booklet layout, a section in the sheet layout. Per-unit PDF excerpts
 % therefore never carry the end of the previous unit.
-\newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}\mx@newblock
-  \ifx\mx@layout\mx@sheet\section{#2}\setcounter{mxexample}{0}\setcounter{mxexercise}{0}\setcounter{mxactivity}{0}%
-  \else\chapter{#2}\fi\label{#1}}
+% \mxunit[n]{id}{title}: the optional n numbers the unit n (a course that follows a textbook's chapter numbers).
+\newcommand{\mxunit}[3][]{\renewcommand{\mxunitid}{#2}\mx@newblock
+  \if\relax\detokenize{#1}\relax\else\setcounter{chapter}{\numexpr#1-1\relax}\fi
+  \ifx\mx@layout\mx@sheet\section{#3}\setcounter{mxexample}{0}\setcounter{mxexercise}{0}\setcounter{mxactivity}{0}%
+  \else\chapter{#3}\fi\label{#2}}
 % \mxsubtitle{text}: a line under a unit heading (dates, period).
 \newcommand{\mxsubtitle}[1]{{\color{mxmuted}\sffamily #1\par}\medskip}
 % \mxnewpage: a page break that is also a balanced block (FR/EN page parity is kept at every such break).

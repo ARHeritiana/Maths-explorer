@@ -19,6 +19,24 @@
    "status": "aligned",
    "order": 2
   },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 3
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 5
+  },
   "57ff2c958188": {
    "fr": "Pour quelle valeur de [[m1]] les points [[m2]], [[m3]] et [[m4]] sont-ils alignés\\,?",
    "en": "For which value of [[m1]] are the points [[m2]], [[m3]] and [[m4]] collinear?",
@@ -49,23 +67,35 @@
    "status": "aligned",
    "order": 10
   },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 11
+  },
   "9de04e2fc48b": {
    "fr": "Aire totale d'un pavé droit de dimensions [[m1]], [[m2]], [[m3]] (cm)\\,?",
    "en": "Total surface area of a cuboid with dimensions [[m1]], [[m2]], [[m3]] (cm)?",
    "status": "aligned",
    "order": 12
   },
+  "7e99bd08df32": {
+   "fr": "[[m1]] cm[[m2]].",
+   "en": "[[m1]] cm[[m2]].",
+   "status": "aligned",
+   "order": 13
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 14
+  },
   "cb9ea13c591a": {
    "fr": "Calculer le volume exact d'une boule de rayon [[m1]] cm.",
    "en": "Calculate the exact volume of a sphere of radius [[m1]] cm.",
    "status": "aligned",
    "order": 15
-  },
-  "7e99bd08df32": {
-   "fr": "[[m1]] cm[[m2]].",
-   "en": "[[m1]] cm[[m2]].",
-   "status": "aligned",
-   "order": 16
   },
   "31a5915b2a0c": {
    "fr": "jeu.~3~juin~2027",
@@ -96,6 +126,12 @@
    "en": "Investigate, model, represent, reason, calculate, communicate.",
    "status": "aligned",
    "order": 21
+  },
+  "2663153f9fbb": {
+   "fr": "Cœur · Métacognition",
+   "en": "Core · Metacognition",
+   "status": "aligned",
+   "order": 22
   },
   "e0d1f3303ecc": {
    "fr": "Associer~: «~traduire un énoncé par une équation~»\\,; «~tracer une courbe~»\\,; «~justifier une égalité par un calcul rédigé~» à une compétence.",
@@ -174,12 +210,6 @@
    "en": "Expand [[m1]].",
    "status": "aligned",
    "order": 37
-  },
-  "86f6c483637b": {
-   "fr": "Cœur · Méthode",
-   "en": "Core · Method",
-   "status": "aligned",
-   "order": 38
   },
   "121f9df15725": {
    "fr": "Vérifier que [[m1]] et en déduire les solutions de [[m2]].",
@@ -281,235 +311,187 @@
    "fr": "def f(x):\\\\",
    "en": "def f(x):\\\\",
    "status": "aligned",
-   "order": 56
+   "order": 55
   },
   "db950c279789": {
    "fr": "return x**2 - 3*x + 1",
    "en": "return x**2 - 3*x + 1",
    "status": "aligned",
-   "order": 58
+   "order": 56
   },
   "0edd0073e355": {
    "fr": "Cœur · Complétion",
    "en": "Core · Completion",
    "status": "aligned",
-   "order": 59
+   "order": 57
   },
   "51b41d3ac8a7": {
    "fr": "Compléter pour que la fonction renvoie [[m1]] lorsque [[m2]], [[m3]], [[m4]] sont alignés~:",
    "en": "Complete the code so that the function returns [[m1]] when [[m2]], [[m3]], [[m4]] are collinear:",
    "status": "aligned",
-   "order": 60
+   "order": 58
   },
   "d8bf47cb0322": {
    "fr": "def alignes(xa, ya, xb, yb, xc, yc):\\\\",
    "en": "def alignes(xa, ya, xb, yb, xc, yc):\\\\",
    "status": "aligned",
-   "order": 62
+   "order": 59
   },
   "5c1e452be762": {
    "fr": "return (xb-xa)*(yc-ya) - (yb-ya)*(xc-xa) == ....",
    "en": "return (xb-xa)*(yc-ya) - (yb-ya)*(xc-xa) == ....",
    "status": "aligned",
-   "order": 64
+   "order": 60
   },
   "3752d57a0fcd": {
    "fr": "On compare le déterminant à [[m1]]~: [[m2]].",
    "en": "We compare the determinant with [[m1]]: [[m2]].",
    "status": "aligned",
-   "order": 65
+   "order": 61
   },
   "a446c6a66102": {
    "fr": "Cœur + · Complétion",
    "en": "Core + · Completion",
    "status": "aligned",
-   "order": 66
+   "order": 62
   },
   "3fb6bdac8960": {
    "fr": "Compléter la fonction valeur absolue~:",
    "en": "Complete the absolute value function:",
    "status": "aligned",
-   "order": 67
-  },
-  "848501079fa5": {
-   "fr": "0.0em",
-   "en": "0.0em",
-   "status": "aligned",
-   "order": 68
+   "order": 63
   },
   "fb5f924512f8": {
    "fr": "def vabs(x):\\\\",
    "en": "def vabs(x):\\\\",
    "status": "aligned",
-   "order": 69
+   "order": 64
   },
   "bff223c8d209": {
    "fr": "if x",
    "en": "if x",
    "status": "aligned",
-   "order": 71
+   "order": 65
   },
   "18f95028c5df": {
    "fr": "return x\\\\",
    "en": "return x\\\\",
    "status": "aligned",
-   "order": 73
-  },
-  "1225774c50f5": {
-   "fr": "2.4em",
-   "en": "2.4em",
-   "status": "aligned",
-   "order": 74
+   "order": 66
   },
   "c06efe0ea605": {
    "fr": "else:\\\\",
    "en": "else:\\\\",
    "status": "aligned",
-   "order": 75
-  },
-  "e9164fc5fd4c": {
-   "fr": "4.8em",
-   "en": "4.8em",
-   "status": "aligned",
-   "order": 76
+   "order": 67
   },
   "f7ccf133f4a4": {
    "fr": "return ....",
    "en": "return ....",
    "status": "aligned",
-   "order": 77
+   "order": 68
   },
   "fe6091df1906": {
    "fr": "Contrôle~: [[m1]] renvoie [[m2]].",
    "en": "Check: [[m1]] returns [[m2]].",
    "status": "aligned",
-   "order": 78
-  },
-  "1c37077501a9": {
-   "fr": "Retour · Flash",
-   "en": "Review · Quick",
-   "status": "aligned",
-   "order": 79
+   "order": 69
   },
   "9f23c76181f2": {
    "fr": "Écrire en notation décimale [[m1]] puis [[m2]].",
    "en": "Write [[m1]] and then [[m2]] in decimal notation.",
    "status": "aligned",
-   "order": 80
-  },
-  "968069c57071": {
-   "fr": "Fil rouge · Flash",
-   "en": "Thread · Quick",
-   "status": "aligned",
-   "order": 81
+   "order": 71
   },
   "beb9c22a74d6": {
    "fr": "Donner le symétrique de [[m1]] par rapport à l'origine.",
    "en": "Give the reflection of [[m1]] in the origin.",
    "status": "aligned",
-   "order": 82
+   "order": 73
   },
   "ed8ac18d53f9": {
    "fr": "jeu.~10~juin~2027",
    "en": "Thu~10~June~2027",
    "status": "aligned",
-   "order": 83
+   "order": 74
   },
   "17c49f6c63b9": {
    "fr": "Présentation des enseignements de spécialité\\,; bilan",
    "en": "Presentation of the specialist subjects; review",
    "status": "aligned",
-   "order": 84
-  },
-  "bbfeac0129d0": {
-   "fr": "Échauffement · Flash",
-   "en": "Warm-up · Quick",
-   "status": "aligned",
-   "order": 85
+   "order": 75
   },
   "315c2faeed6c": {
    "fr": "Exprimer [[m1]] en pourcentage.",
    "en": "Express [[m1]] as a percentage.",
    "status": "aligned",
-   "order": 86
-  },
-  "2663153f9fbb": {
-   "fr": "Cœur · Métacognition",
-   "en": "Core · Metacognition",
-   "status": "aligned",
-   "order": 87
+   "order": 77
   },
   "1a6ebfab0b4a": {
    "fr": "Quelles sont tes trois priorités de révision avant la Première\\,?",
    "en": "What are your three revision priorities before Première?",
    "status": "aligned",
-   "order": 88
+   "order": 79
   },
   "586200dd7cbe": {
    "fr": "Réponse personnelle~: repérer dans les fiches de l'année les questions où l'on a le plus hésité.",
    "en": "Personal answer: identify, in this year's sheets, the questions where you hesitated the most.",
    "status": "aligned",
-   "order": 89
+   "order": 80
   },
   "8982c001404f": {
    "fr": "Cœur + · Flash",
    "en": "Core + · Quick",
    "status": "aligned",
-   "order": 90
-  },
-  "e3bc0dc0e302": {
-   "fr": "Résoudre [[m1]].",
-   "en": "Solve [[m1]].",
-   "status": "aligned",
-   "order": 91
+   "order": 81
   },
   "863d5d240b25": {
    "fr": "[[m1]]~: [[m2]] ou [[m3]].",
    "en": "[[m1]]: [[m2]] or [[m3]].",
    "status": "aligned",
-   "order": 92
+   "order": 83
   },
   "2ee4eb5d7a33": {
    "fr": "Retour · Piège",
    "en": "Review · Trap",
    "status": "aligned",
-   "order": 93
+   "order": 84
   },
   "cc0de7072879": {
    "fr": "Calculer [[m1]] et [[m2]].",
    "en": "Calculate [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 94
+   "order": 85
   },
   "7b8c0189e799": {
    "fr": "[[m1]] et [[m2]].",
    "en": "[[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 95
+   "order": 86
   },
   "577490792727": {
    "fr": "Les parenthèses décident à qui s'applique l'exposant.",
    "en": "The brackets decide what the exponent applies to.",
    "status": "aligned",
-   "order": 96
+   "order": 87
   },
   "e362a24f201e": {
    "fr": "Fil rouge · Vrai/faux",
    "en": "Thread · True/false",
    "status": "aligned",
-   "order": 97
+   "order": 88
   },
   "1087f6707341": {
    "fr": "Vrai ou faux\\,? Justifier. Si un entier est divisible par [[m1]] et par [[m2]], alors il est divisible par [[m3]].",
    "en": "True or false? Justify. If an integer is divisible by [[m1]] and by [[m2]], then it is divisible by [[m3]].",
    "status": "aligned",
-   "order": 98
+   "order": 89
   },
   "faf205fea932": {
    "fr": "Faux. Contre-exemple~: [[m1]] est divisible par [[m2]] et par [[m3]], pas par [[m4]]\\,; il est divisible par [[m5]].",
    "en": "False. Counter-example: [[m1]] is divisible by [[m2]] and by [[m3]], but not by [[m4]]; it is divisible by [[m5]].",
    "status": "aligned",
-   "order": 99
+   "order": 90
   }
  }
 }

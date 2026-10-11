@@ -1,17 +1,29 @@
 {
  "unit": "ch09.fr.tex",
  "segments": {
+  "de1afb0f3ad0": {
+   "fr": "Croisement de deux variables qualitatives",
+   "en": "Cross-tabulating two qualitative variables",
+   "status": "aligned",
+   "order": 0
+  },
   "e10970cd34dc": {
    "fr": "jeu.~11~mars~2027",
    "en": "Thu~11~Mar.~2027",
    "status": "aligned",
    "order": 1
   },
-  "de1afb0f3ad0": {
-   "fr": "Croisement de deux variables qualitatives",
-   "en": "Cross-tabulating two qualitative variables",
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
    "status": "aligned",
-   "order": 2
+   "order": 3
+  },
+  "315c2faeed6c": {
+   "fr": "Exprimer [[m1]] en pourcentage.",
+   "en": "Express [[m1]] as a percentage.",
+   "status": "aligned",
+   "order": 4
   },
   "df0bcc1195a5": {
    "fr": "Cœur · Flash",
@@ -43,6 +55,12 @@
    "status": "aligned",
    "order": 9
   },
+  "d5efe8c7e51d": {
+   "fr": "Retour · Problème",
+   "en": "Review · Problem",
+   "status": "aligned",
+   "order": 10
+  },
   "01fe6c89cda3": {
    "fr": "Un rectangle de périmètre [[m1]] cm a pour longueur [[m2]]. Exprimer son aire [[m3]]\\,; calculer [[m4]] et [[m5]].",
    "en": "A rectangle of perimeter [[m1]] cm has length [[m2]]. Express its area [[m3]]; calculate [[m4]] and [[m5]].",
@@ -54,6 +72,12 @@
    "en": "Width [[m1]]; [[m2]]; [[m3]], [[m4]] cm[[m5]].",
    "status": "aligned",
    "order": 12
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 13
   },
   "3f817784058f": {
    "fr": "Calculer le volume exact d'un cylindre de rayon [[m1]] cm et de hauteur [[m2]] cm.",
@@ -121,6 +145,12 @@
    "status": "aligned",
    "order": 25
   },
+  "908c2f8e0e2a": {
+   "fr": "\\ldots",
+   "en": "\\ldots",
+   "status": "aligned",
+   "order": 26
+  },
   "e242e2f684da": {
    "fr": "Garçons",
    "en": "Boys",
@@ -139,17 +169,17 @@
    "status": "aligned",
    "order": 31
   },
-  "908c2f8e0e2a": {
-   "fr": "\\ldots",
-   "en": "\\ldots",
-   "status": "aligned",
-   "order": 32
-  },
   "ab381a17e2c7": {
    "fr": "Filles externes [[m1]]\\,; garçons DP [[m2]]\\,; garçons externes [[m3]]\\,; total garçons [[m4]]\\,; total externes [[m5]] (contrôle~: [[m6]]).",
    "en": "Girls not using the canteen [[m1]]; boys using the canteen [[m2]]; boys not using the canteen [[m3]]; total boys [[m4]]; total not using the canteen [[m5]] (check: [[m6]]).",
    "status": "aligned",
    "order": 33
+  },
+  "07100f279aae": {
+   "fr": "Cœur + · Vrai/faux",
+   "en": "Core + · True/false",
+   "status": "aligned",
+   "order": 34
   },
   "01b6679f76ec": {
    "fr": "Vrai ou faux\\,? Justifier. «~Niveau de satisfaction (faible, moyen, élevé)~» est une variable qualitative nominale.",
@@ -162,12 +192,6 @@
    "en": "False. There is a natural order: it is an ordinal qualitative variable.",
    "status": "aligned",
    "order": 36
-  },
-  "d5efe8c7e51d": {
-   "fr": "Retour · Problème",
-   "en": "Review · Problem",
-   "status": "aligned",
-   "order": 37
   },
   "b1ad444d23c8": {
    "fr": "Réduction A~: [[m1]] sur [[m2]] Ar. Réduction B~: [[m3]] puis [[m4]]. Laquelle est la plus avantageuse\\,?",
@@ -211,11 +235,11 @@
    "status": "aligned",
    "order": 44
   },
-  "315c2faeed6c": {
-   "fr": "Exprimer [[m1]] en pourcentage.",
-   "en": "Express [[m1]] as a percentage.",
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
    "status": "aligned",
-   "order": 46
+   "order": 47
   },
   "6d07bc99d824": {
    "fr": "Avec le tableau de la fiche 50~: calculer la fréquence marginale des filles et celle des demi-pensionnaires.",
@@ -252,6 +276,12 @@
    "en": "[[m1]]: the marginal frequencies of a variable add up to [[m2]].",
    "status": "aligned",
    "order": 53
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 54
   },
   "48d5e2897263": {
    "fr": "Calculer [[m1]] pour [[m2]] et [[m3]].",
@@ -409,6 +439,12 @@
    "status": "aligned",
    "order": 86
   },
+  "1603ec6cae24": {
+   "fr": "Retour · Vrai/faux",
+   "en": "Review · True/false",
+   "status": "aligned",
+   "order": 87
+  },
   "053e8596b3bf": {
    "fr": "Vrai ou faux\\,? Justifier. Après trois «~pile~» consécutifs, la probabilité d'obtenir «~face~» au lancer suivant est supérieure à [[m1]].",
    "en": "True or false? Justify. After three consecutive ``heads'', the probability of getting ``tails'' on the next toss is greater than [[m1]].",
@@ -420,12 +456,6 @@
    "en": "False. The tosses are independent: the probability remains [[m1]].",
    "status": "aligned",
    "order": 89
-  },
-  "968069c57071": {
-   "fr": "Fil rouge · Flash",
-   "en": "Thread · Quick",
-   "status": "aligned",
-   "order": 90
   },
   "2eb40c8beb70": {
    "fr": "[[m1]] rectangle en [[m2]], [[m3]] cm, [[m4]]. Calculer [[m5]].",
@@ -469,12 +499,6 @@
    "status": "aligned",
    "order": 98
   },
-  "86f6c483637b": {
-   "fr": "Cœur · Méthode",
-   "en": "Core · Method",
-   "status": "aligned",
-   "order": 99
-  },
   "366c61b1c2e7": {
    "fr": "Avec les mêmes données~: combien vérifient «~NON [[m1]]~»\\,? «~[[m2]] ET NON [[m3]]~»\\,?",
    "en": "With the same data: how many satisfy ``NOT [[m1]]''? ``[[m2]] AND NOT [[m3]]''?",
@@ -493,209 +517,155 @@
    "status": "aligned",
    "order": 102
   },
-  "aa9ad4b65890": {
-   "fr": "compte = 0\\\\",
-   "en": "compte = 0\\\\",
+  "c17d6c6a83a4": {
+   "fr": "compte = 0\\\\ for age in [15, 16, 17, 16, 18]:\\\\",
+   "en": "compte = 0\\\\ for age in [15, 16, 17, 16, 18]:\\\\",
    "status": "aligned",
-   "order": 104
-  },
-  "c54068948696": {
-   "fr": "for age in [15, 16, 17, 16, 18]:\\\\",
-   "en": "for age in [15, 16, 17, 16, 18]:\\\\",
-   "status": "aligned",
-   "order": 106
+   "order": 103
   },
   "74d6f945c005": {
    "fr": "if age",
    "en": "if age",
    "status": "aligned",
-   "order": 108
+   "order": 104
   },
   "db223b5ae294": {
    "fr": "= 16 and age",
    "en": "= 16 and age",
    "status": "aligned",
-   "order": 109
-  },
-  "e9164fc5fd4c": {
-   "fr": "4.8em",
-   "en": "4.8em",
-   "status": "aligned",
-   "order": 110
+   "order": 105
   },
   "6c4125be724e": {
    "fr": "compte = compte + 1",
    "en": "compte = compte + 1",
    "status": "aligned",
-   "order": 111
+   "order": 106
   },
   "187c76a94e32": {
    "fr": "[[m1]] (les âges [[m2]], [[m3]], [[m4]]).",
    "en": "[[m1]] (the ages [[m2]], [[m3]], [[m4]]).",
    "status": "aligned",
-   "order": 112
-  },
-  "1c37077501a9": {
-   "fr": "Retour · Flash",
-   "en": "Review · Quick",
-   "status": "aligned",
-   "order": 113
+   "order": 107
   },
   "1938804b53b2": {
    "fr": "Donner l'écriture décimale de [[m1]] puis la fraction irréductible égale à [[m2]].",
    "en": "Give the decimal form of [[m1]], then the fraction in lowest terms equal to [[m2]].",
    "status": "aligned",
-   "order": 114
+   "order": 109
   },
   "3da78d719cf1": {
    "fr": "Fil rouge · Formule → tableau",
    "en": "Thread · Formula → table",
    "status": "aligned",
-   "order": 115
+   "order": 110
   },
   "3860db913225": {
    "fr": "[[m1]]. Compléter un tableau pour [[m2]].",
    "en": "[[m1]]. Complete a table of values for [[m2]].",
    "status": "aligned",
-   "order": 116
+   "order": 111
   },
   "d09726adbe95": {
    "fr": "jeu.~25~mars~2027",
    "en": "Thu~25~Mar.~2027",
    "status": "aligned",
-   "order": 117
+   "order": 112
   },
   "ddb3700b8678": {
    "fr": "Lecture critique de formulations issues des médias",
    "en": "Critical reading of statements from the media",
    "status": "aligned",
-   "order": 118
-  },
-  "bbfeac0129d0": {
-   "fr": "Échauffement · Flash",
-   "en": "Warm-up · Quick",
-   "status": "aligned",
-   "order": 119
+   "order": 113
   },
   "14f9f09c78e0": {
    "fr": "Une hausse de [[m1]] sur [[m2]]~: quelle valeur finale\\,?",
    "en": "A [[m1]] increase on [[m2]]: what is the final value?",
    "status": "aligned",
-   "order": 120
+   "order": 115
   },
   "3f7306e36f02": {
    "fr": "Cœur · Esprit critique",
    "en": "Core · Critical thinking",
    "status": "aligned",
-   "order": 121
+   "order": 116
   },
   "49c757846b09": {
    "fr": "Un article affirme~: «~[[m1]] des accidents impliquent des conducteurs sobres~». Peut-on en conclure que conduire sobre est dangereux\\,?",
    "en": "An article claims: ``[[m1]] of accidents involve sober drivers''. Can we conclude that driving sober is dangerous?",
    "status": "aligned",
-   "order": 122
+   "order": 117
   },
   "a26a309fddca": {
    "fr": "Non~: il manque la population de référence. Si la grande majorité des conducteurs est sobre, il est normal qu'ils soient majoritaires parmi les accidentés. Il faudrait comparer des fréquences conditionnelles.",
    "en": "No: the reference population is missing. If the vast majority of drivers are sober, it is normal for them to be the majority among those involved in accidents. Conditional frequencies would have to be compared.",
    "status": "aligned",
-   "order": 123
-  },
-  "07100f279aae": {
-   "fr": "Cœur + · Vrai/faux",
-   "en": "Core + · True/false",
-   "status": "aligned",
-   "order": 124
+   "order": 118
   },
   "ef6bc962e383": {
    "fr": "Vrai ou faux\\,? Justifier. «~Deux fumeurs sur trois sont des hommes~» signifie que deux hommes sur trois fument.",
    "en": "True or false? Justify. ``Two smokers out of three are men'' means that two men out of three smoke.",
    "status": "aligned",
-   "order": 125
+   "order": 120
   },
   "61addfb0f59d": {
    "fr": "Faux. On confond [[m1]] et [[m2]]~: les populations de référence diffèrent.",
    "en": "False. This confuses [[m1]] and [[m2]]: the reference populations differ.",
    "status": "aligned",
-   "order": 126
-  },
-  "f008f7573826": {
-   "fr": "homme",
-   "en": "man",
-   "status": "aligned",
-   "order": 129
+   "order": 121
   },
   "dd036bebee23": {
    "fr": "fumeur",
    "en": "smoker",
    "status": "aligned",
-   "order": 130
+   "order": 122
   },
-  "1603ec6cae24": {
-   "fr": "Retour · Vrai/faux",
-   "en": "Review · True/false",
+  "f008f7573826": {
+   "fr": "homme",
+   "en": "man",
    "status": "aligned",
-   "order": 131
+   "order": 123
   },
   "5c17be4e33cc": {
    "fr": "Vrai ou faux\\,? Justifier. La médiane d'une série est toujours égale à sa moyenne.",
    "en": "True or false? Justify. The median of a data set is always equal to its mean.",
    "status": "aligned",
-   "order": 132
+   "order": 127
   },
   "4cac4708ec73": {
    "fr": "Faux. Contre-exemple~: [[m1]]~: moyenne [[m2]], médiane [[m3]].",
    "en": "False. Counter-example: [[m1]]: mean [[m2]], median [[m3]].",
    "status": "aligned",
-   "order": 133
+   "order": 128
   },
   "506cb9d217af": {
    "fr": "Fil rouge · Lecture de code",
    "en": "Thread · Reading code",
    "status": "aligned",
-   "order": 134
+   "order": 129
   },
   "0b299103c3ce": {
    "fr": "Quelle est la valeur de [[m1]] à la fin\\,?",
    "en": "What is the value of [[m1]] at the end?",
    "status": "aligned",
-   "order": 135
+   "order": 130
   },
-  "97a5bed755b7": {
-   "fr": "s = 0\\\\",
-   "en": "s = 0\\\\",
+  "dc38ebb0d3e7": {
+   "fr": "s = 0\\\\ for i in range(1, 5):\\\\",
+   "en": "s = 0\\\\ for i in range(1, 5):\\\\",
    "status": "aligned",
-   "order": 137
-  },
-  "848501079fa5": {
-   "fr": "0.0em",
-   "en": "0.0em",
-   "status": "aligned",
-   "order": 138
-  },
-  "9334c0cf9de8": {
-   "fr": "for i in range(1, 5):\\\\",
-   "en": "for i in range(1, 5):\\\\",
-   "status": "aligned",
-   "order": 139
-  },
-  "1225774c50f5": {
-   "fr": "2.4em",
-   "en": "2.4em",
-   "status": "aligned",
-   "order": 140
+   "order": 131
   },
   "644a02ce203f": {
    "fr": "s = s + i",
    "en": "s = s + i",
    "status": "aligned",
-   "order": 141
+   "order": 132
   },
   "62944495099d": {
    "fr": "Piège~: [[m1]] s'arrête à [[m2]]\\,; [[m3]] est exclu.",
    "en": "Pitfall: [[m1]] stops at [[m2]]; [[m3]] is excluded.",
    "status": "aligned",
-   "order": 142
+   "order": 133
   }
  }
 }

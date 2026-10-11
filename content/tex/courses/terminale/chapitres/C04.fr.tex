@@ -1,6 +1,6 @@
-\setcounter{chapter}{2}\mxunit{terminale-c04}{Limites de fonctions}\label{ch:3}
+\mxunit[3]{terminale-c04}{Limites de fonctions}\label{ch:3}
 
-{\small\sffamily\color{mxmint}S21, S23, S24, S26\par}
+\mxsubtitle{S21, S23, S24, S26}
 
 \begin{keypoint}[Objectifs]Calculer des limites en un point et à l'infini ; lever une indétermination ; interpréter une asymptote.\end{keypoint}
 
@@ -29,13 +29,15 @@ Si $g(x)\le f(x)\le h(x)$ près du point ou de l'infini étudié, et si $g,h$ on
 Si $u(x)\to a$ et $v$ est continue en $a$, alors $v(u(x))\to v(a)$, lorsque la composée est définie. Par exemple $\sqrt{1+\frac{1}{x}}\to1$ en $+\infty$. Pour une limite infinie de la fonction extérieure, vérifier de quel côté $u(x)$ approche la borne : $\frac{1}{u(x)}$ n'a pas le même comportement selon le signe de $u(x)$.
 
 
+\mxnewpage
 \section{Activité de recherche}\textbf{Une courbe proche d'une droite --- 30 min.}\par On considère la fonction $f$ définie sur $\R\setminus\{1\}$ par $f(x)=\frac{3x-2}{x-1}$. On note $\mathcal C_f$ sa courbe dans un repère du plan.
 \begin{enumerate}\item Montrer que, pour tout $x\ne1$, $f(x)=3+\frac1{x-1}$.
 \item Déterminer les limites de $f$ en $-\infty$, en $1^-$, en $1^+$ et en $+\infty$.
 \item Étudier le signe de $f(x)-3$, puis préciser la position de $\mathcal C_f$ par rapport à la droite d'équation $y=3$.
-\item Déterminer un réel $A>1$ tel que, pour tout $x>A$, $|f(x)-3|<0{,}01$.
+\item Déterminer un réel $A>1$ tel que, pour tout $x>A$, $|f(x)-3|<\num{0,01}$.
 \item La courbe $\mathcal C_f$ coupe-t-elle son asymptote horizontale ? Justifier et expliquer pourquoi une fenêtre graphique trop large peut donner une impression trompeuse.\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
 \mxexerciseitem{1}{Entraînement}Déterminer $\displaystyle\lim_{x\to+\infty}\frac{5x^3-x}{2x^3+7}$ en justifiant.
@@ -50,11 +52,12 @@ Si $u(x)\to a$ et $v$ est continue en $a$, alors $v(u(x))\to v(a)$, lorsque la c
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 96, exercices 26 et 29.} En S23 : exercice 29, pour relier limites et asymptotes. À la maison après S24 : exercice 26, pour construire trois contre-exemples à une règle de calcul abusive sur les limites.
 
+\mxnewpage
 \section{Devoir à la maison}\textbf{DM3 --- Une famille de courbes --- 45 min.}\par Pour chaque réel $a$, on considère la fonction $f_a$ définie par $f_a(x)=\frac{ax^2+1}{x^2+1}$. On note $\mathcal C_a$ sa courbe représentative.
 \begin{enumerate}\item Déterminer l'ensemble de définition de $f_a$, puis ses limites en $-\infty$ et en $+\infty$.
 \item Montrer que $f_a(x)-a=\frac{1-a}{x^2+1}$. Selon la valeur de $a$, préciser la position de $\mathcal C_a$ par rapport à la droite d'équation $y=a$.
 \item Étudier les variations de $f_a$ en distinguant les cas $a<1$, $a=1$ et $a>1$. Préciser les éventuels extrema et où ils sont atteints.
-\item On prend $a=3$. Résoudre, pour $x\ge0$, l'inéquation $|f_3(x)-3|\le0{,}02$.\end{enumerate}
+\item On prend $a=3$. Résoudre, pour $x\ge0$, l'inéquation $|f_3(x)-3|\le\num{0,02}$.\end{enumerate}
 
 \ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]En S21, relier chaque limite à une lecture graphique. En S23, exiger les signes du dénominateur à gauche et à droite. En S24, faire choisir la transformation avant de calculer : factorisation, conjugaison, développement local non utilisé. En S26, séparer la démonstration des croissances comparées de leur utilisation. Les asymptotes obliques ne sont pas requises ici.\end{teachernote}
 
@@ -62,7 +65,7 @@ Si $u(x)\to a$ et $v$ est continue en $a$, alors $v(u(x))\to v(a)$, lorsque la c
 \item Comme $3x-2=3(x-1)+1$, pour $x\ne1$, $f(x)=3+\frac{1}{x-1}$.
 \item En $\pm\infty$, $\frac{1}{x-1}\to0$ : les limites valent $3$. En $1^-$, $x-1\to0^-$, donc $f(x)\to-\infty$ ; en $1^+$, $x-1\to0^+$, donc $f(x)\to+\infty$.
 \item Le signe de $f(x)-3=\frac{1}{x-1}$ est négatif pour $x<1$, positif pour $x>1$. La courbe est donc respectivement au-dessous et au-dessus de l'asymptote $y=3$.
-\item Pour $x>1$, $|f(x)-3|<0{,}01$ équivaut à $\frac{1}{x-1}<0{,}01$, puis $x>101$. On peut choisir $A=101$.
+\item Pour $x>1$, $|f(x)-3|<\num{0,01}$ équivaut à $\frac{1}{x-1}<\num{0,01}$, puis $x>101$. On peut choisir $A=101$.
 \item Non : $f(x)-3=\frac{1}{x-1}$ n'est jamais nul. La courbe peut paraître confondue avec l'asymptote à la précision de l'écran, mais elle ne la rencontre pas.
 \end{enumerate}
 
@@ -81,7 +84,7 @@ Si $u(x)\to a$ et $v$ est continue en $a$, alors $v(u(x))\to v(a)$, lorsque la c
 \item $f_a(x)-a=\frac{ax^2+1-a(x^2+1)}{x^2+1}=\frac{1-a}{x^2+1}$. Pour $a<1$, la courbe est au-dessus de $y=a$ ; pour $a>1$, elle est en dessous ; pour $a=1$, elle est confondue avec cette droite.
 \item Par quotient, $f'_a(x)=\frac{[2ax(x^2+1)-2x(ax^2+1)]}{(x^2+1)^2}=\frac{2x(a-1)}{(x^2+1)^2}$.
 Si $a>1$, le signe est celui de $x$ : décroissance sur $]-\infty,0]$, croissance sur $[0,+\infty[$ ; minimum $f_a(0)=1$ et pas de maximum (la borne $a$ n'est pas atteinte). Si $a<1$, les variations sont inversées : maximum $1$ et pas de minimum. Pour $a=1$, la fonction est constante, de valeur $1$.
-\item Pour $a=3$ et $x\ge0$, l'inégalité devient $\frac{2}{x^2+1}\le0{,}02$. Le dénominateur est positif, donc elle équivaut à $x^2+1\ge100$, soit $x\ge\sqrt{99}$.
+\item Pour $a=3$ et $x\ge0$, l'inégalité devient $\frac{2}{x^2+1}\le\num{0,02}$. Le dénominateur est positif, donc elle équivaut à $x^2+1\ge100$, soit $x\ge\sqrt{99}$.
 \end{enumerate}
 
 \subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 26.} Lorsque $x\to+\infty$, les fonctions $f(x)=x$ et $g(x)=x$ tendent toutes deux vers $+\infty$, mais leur différence est nulle. Avec $f(x)=2x$, $g(x)=x$, la différence tend vers $+\infty$ ; en échangeant $f$ et $g$, elle tend vers $-\infty$. Ces exemples établissent le caractère indéterminé de la différence.

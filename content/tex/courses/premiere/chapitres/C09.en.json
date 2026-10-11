@@ -67,9 +67,9 @@
    "status": "aligned",
    "order": 10
   },
-  "4dd94ddef40e": {
-   "fr": "Une décroissance de 20 \\% donne quel coefficient ?",
-   "en": "A 20 \\% decrease gives which coefficient?",
+  "ba3523d23720": {
+   "fr": "Une décroissance de [[m1]] donne quel coefficient ?",
+   "en": "A [[m1]] decrease gives which coefficient?",
    "status": "aligned",
    "order": 11
   },
@@ -133,11 +133,23 @@
    "status": "aligned",
    "order": 21
   },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
   "fbd7a56ea32a": {
    "fr": "La fonction exponentielle est l’unique fonction f dérivable sur [[m1]] vérifiant [[m2]] et [[m3]]. Son existence et son unicité sont admises. On la note [[m4]], puis [[m5]] avec [[m6]]. Le nombre e est une constante ; x est la variable. L’exponentielle est strictement positive.",
    "en": "The exponential function is the unique function f differentiable on [[m1]] satisfying [[m2]] and [[m3]]. Its existence and uniqueness are accepted. It is written [[m4]], then [[m5]] with [[m6]]. The number e is a constant; x is the variable. The exponential is strictly positive.",
    "status": "aligned",
    "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
   },
   "f1eedf2a87db": {
    "fr": "Existence et unicité admises conformément au programme. La positivité se déduit, après les propriétés algébriques admises ci-dessous, de [[m1]] et de [[m2]].",
@@ -277,23 +289,11 @@
    "status": "aligned",
    "order": 53
   },
-  "ebc073a34cf3": {
-   "fr": "Définition et résultats",
-   "en": "Definition and results",
-   "status": "aligned",
-   "order": 54
-  },
   "7241bff1ec2c": {
    "fr": "Pour approcher la solution de [[m1]], [[m2]] avec un pas [[m3]], Euler remplace l’accroissement par [[m4]] : [[m5]]. Sur [[m6]] avec [[m7]], l’approximation de [[m8]] est [[m9]]. Cette construction est expérimentale. L’inégalité [[m10]] s’obtient par étude de fonction.",
    "en": "To approximate the solution of [[m1]], [[m2]] with a step [[m3]], Euler replaces the increment by [[m4]]: [[m5]]. On [[m6]] with [[m7]], the approximation of [[m8]] is [[m9]]. This construction is experimental. The inequality [[m10]] is obtained by studying a function.",
    "status": "aligned",
    "order": 55
-  },
-  "7815a69c0f26": {
-   "fr": "Statut et justification.",
-   "en": "Status and justification.",
-   "status": "aligned",
-   "order": 56
   },
   "e26abdee2e1d": {
    "fr": "Pour [[m1]], [[m2]], négative si x<0 et positive si x>0. Le minimum vaut [[m3]], ce qui prouve l’inégalité ; égalité seulement en 0. La convergence d’Euler n’est pas démontrée ici.",
@@ -613,6 +613,24 @@
    "status": "aligned",
    "order": 109
   },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 110
+  },
+  "3089e3b021dc": {
+   "fr": "Dérivée de [[m1]] :",
+   "en": "Derivative of [[m1]]:",
+   "status": "aligned",
+   "order": 111
+  },
+  "efe1d7d2f69b": {
+   "fr": "[[m1]] équivaut à",
+   "en": "[[m1]] is equivalent to",
+   "status": "aligned",
+   "order": 112
+  },
   "4b614216f27f": {
    "fr": "aucune solution",
    "en": "no solution",
@@ -655,18 +673,6 @@
    "status": "aligned",
    "order": 119
   },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
-   "status": "aligned",
-   "order": 120
-  },
-  "efe1d7d2f69b": {
-   "fr": "[[m1]] équivaut à",
-   "en": "[[m1]] is equivalent to",
-   "status": "aligned",
-   "order": 121
-  },
   "2c454934102d": {
    "fr": "[[m1]] a pour raison",
    "en": "[[m1]] has common ratio",
@@ -678,12 +684,6 @@
    "en": "Tangent to [[m1]] at 0:",
    "status": "aligned",
    "order": 123
-  },
-  "3089e3b021dc": {
-   "fr": "Dérivée de [[m1]] :",
-   "en": "Derivative of [[m1]]:",
-   "status": "aligned",
-   "order": 124
   },
   "f27444236a7e": {
    "fr": "[[m1]] a égalité",
@@ -733,9 +733,9 @@
    "status": "aligned",
    "order": 132
   },
-  "d8972564e0ee": {
-   "fr": "Un taux continu k=0{,}1 correspond exactement à 10 \\% de hausse en une unité de temps.",
-   "en": "A continuous rate k=0.1 corresponds exactly to a 10 \\% increase in one unit of time.",
+  "9ae6b39fdebf": {
+   "fr": "Un taux continu k=[[m1]] correspond exactement à [[m2]] de hausse en une unité de temps.",
+   "en": "A continuous rate k=[[m1]] corresponds exactly to a [[m2]] increase in one unit of time.",
    "status": "aligned",
    "order": 133
   },

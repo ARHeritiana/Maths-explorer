@@ -1,6 +1,6 @@
-\setcounter{chapter}{9}\mxunit{terminale-c02}{Vecteurs, droites et plans de l'espace}\label{ch:10}
+\mxunit[10]{terminale-c02}{Vecteurs, droites et plans de l'espace}\label{ch:10}
 
-{\small\sffamily\color{mxmint}S3, S6, S12, S15 ; synthèse S17\par}
+\mxsubtitle{S3, S6, S12, S15 ; synthèse S17}
 
 \begin{keypoint}[Objectifs]Calculer avec des vecteurs ; utiliser colinéarité et coplanarité ; caractériser droites et plans ; travailler dans un repère.\end{keypoint}
 
@@ -29,6 +29,7 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 
 
 
+\mxnewpage
 \section{Activité de recherche}\textbf{Trois milieux dans un cube --- 40 min.}\par On considère le cube $ABCDEFGH$ représenté ci-dessous. On pose $\vi=\vect{AB}$, $\vj=\vect{AD}$ et $\vec k=\vect{AE}$. Les points $I$, $J$ et $K$ sont les milieux respectifs de $[AB]$, $[AD]$ et $[AE]$. On note $O$ le centre du cube.
 \begin{center}\begin{tikzpicture}[scale=1.1,line join=round]
 \coordinate(A)at(0,0);\coordinate(B)at(4,0);\coordinate(C)at(5.1,1.6);\coordinate(D)at(1.1,1.6);\coordinate(E)at(0,2.5);\coordinate(F)at(4,2.5);\coordinate(G)at(5.1,4.1);\coordinate(H)at(1.1,4.1);
@@ -42,25 +43,27 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \item Déterminer si $O$ appartient au plan $(IJK)$. On justifiera la réponse en cherchant si $\vect{IO}$ est une combinaison linéaire de $\vect{IJ}$ et $\vect{IK}$.
 \item Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de $O$ au plan $(IJK)$ ?\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
-\mxexerciseitem{1}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$ et $\vec v$ ont pour coordonnées respectives $(1;2;-1)$ et $(3;6;-3)$. Sont-ils colinéaires ? Justifier.
+\mxexerciseitem{1}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$ et $\vec v$ ont pour coordonnées respectives $\pt{1;2;-1}$ et $\pt{3;6;-3}$. Sont-ils colinéaires ? Justifier.
 
-\mxexerciseitem{2}{Entraînement}Dans un repère orthonormé de l'espace, on considère $A(0;1;2)$ et $B(4;-1;0)$. Déterminer les coordonnées du milieu de $[AB]$, puis calculer la distance $AB$.
+\mxexerciseitem{2}{Entraînement}Dans un repère orthonormé de l'espace, on considère $A\pt{0;1;2}$ et $B\pt{4;-1;0}$. Déterminer les coordonnées du milieu de $[AB]$, puis calculer la distance $AB$.
 
-\mxexerciseitem{3}{Entraînement}Dans une base de l'espace, on considère $\vec u=(1;0;1)$, $\vec v=(0;1;1)$ et $\vec w=(2;3;5)$. Exprimer $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$, puis en déduire que ces trois vecteurs sont coplanaires.
+\mxexerciseitem{3}{Entraînement}Dans une base de l'espace, on considère $\vec u=\pt{1;0;1}$, $\vec v=\pt{0;1;1}$ et $\vec w=\pt{2;3;5}$. Exprimer $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$, puis en déduire que ces trois vecteurs sont coplanaires.
 
-\mxexerciseitem{4}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$, $\vec v$ et $\vec w$ ont pour coordonnées $(1;0;1)$, $(0;1;1)$ et $(1;1;0)$. Le triplet $(\vec u,\vec v,\vec w)$ est-il une base de l'espace ? Justifier.
+\mxexerciseitem{4}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$, $\vec v$ et $\vec w$ ont pour coordonnées $\pt{1;0;1}$, $\pt{0;1;1}$ et $\pt{1;1;0}$. Le triplet $(\vec u,\vec v,\vec w)$ est-il une base de l'espace ? Justifier.
 
-\mxexerciseitem{5}{Entraînement}Dans un repère de l'espace, on considère $A(1;0;2)$, $B(3;-1;4)$ et $C(5;-2;6)$. Déterminer si $C$ appartient à la droite $(AB)$. Justifier par un calcul vectoriel.
+\mxexerciseitem{5}{Entraînement}Dans un repère de l'espace, on considère $A\pt{1;0;2}$, $B\pt{3;-1;4}$ et $C\pt{5;-2;6}$. Déterminer si $C$ appartient à la droite $(AB)$. Justifier par un calcul vectoriel.
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 328, exercice 21.} En classe après S15 : traiter les trois questions. Pour chaque intersection, commencer par identifier chacun des plans à partir des sommets du cube et des milieux indiqués. Distinguer deux plans sécants, confondus et strictement parallèles.
 
+\mxnewpage
 \section{Devoir à la maison}\textbf{DM10 --- Points d'un tétraèdre --- 50 min.}\par On considère un tétraèdre $ABCD$ non aplati. Les points $I$, $J$ et $K$ sont les milieux respectifs de $[AB]$, $[AC]$ et $[AD]$.
 \begin{enumerate}\item Exprimer $\vect{IJ}$ en fonction de $\vect{BC}$ et $\vect{IK}$ en fonction de $\vect{BD}$.
 \item En déduire que les plans $(IJK)$ et $(BCD)$ sont parallèles.
 \item On définit le point $G$ par $\vect{AG}=\frac14(\vect{AB}+\vect{AC}+\vect{AD})$. Le point $G$ appartient-il au plan $(IJK)$ ? Justifier.
-\item Pour cette question seulement, on suppose que, dans un repère orthonormé, $A(0;0;0)$, $B(4;0;0)$, $C(0;4;0)$ et $D(0;0;4)$. Calculer les longueurs $IJ$, $IK$ et $JK$.\end{enumerate}
+\item Pour cette question seulement, on suppose que, dans un repère orthonormé, $A\pt{0;0;0}$, $B\pt{4;0;0}$, $C\pt{0;4;0}$ et $D\pt{0;0;4}$. Calculer les longueurs $IJ$, $IK$ et $JK$.\end{enumerate}
 
 \ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]Le DS1 précède S12 et S15 : proposer de la géométrie vectorielle dans une base donnée, sans exiger de techniques de coordonnées nouvelles. Utiliser un cube matériel, puis une perspective cavalière ; marquer les arêtes cachées. Deux droites non parallèles de l'espace ne sont pas nécessairement sécantes. La norme par coordonnées nécessite un repère orthonormé. Les représentations paramétriques formalisées et les équations de plans seront traitées plus tard.\end{teachernote}
 

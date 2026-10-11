@@ -28,21 +28,21 @@ A change of variable, for example $z=\log(y)$ or $z=\dfrac1y$, can make a scatte
 
 \mxsession{31}{\mxdate*{2027-01-26}}{B: 2 h -- C: 1 h}{Scatter plot}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Construct a scatter plot.\item Choose the scales.\item Identify the variables.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $10\,\%$ increase. \mxblank{$1+\dfrac{10}{100}=1.10$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: construct a scatter plot and choose the scales.\end{prerequisites}
 
 \begin{activity}
 The table $(x_i,y_i)$ gives the advertising spending and the sales over six months: $(1,12),(2,15),(3,17),(4,22),(5,24),(6,28)$. Choose scales, draw the scatter plot and plot the mean point.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}$\bar x=3.5$ and $\bar y=19.67$ approximately. The scatter plot shows an increasing, roughly linear trend. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+\begin{solution}$\bar x=\num{3,5}$ and $\bar y=\num{19,67}$ approximately. The scatter plot shows an increasing, roughly linear trend. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
 
 \begin{summary}A scatter plot represents the pairs $(x_i,y_i)$. The axes, units and scales must be indicated; each pair gives a single point.\end{summary}
 
 \begin{example}
 Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}$\bar x=3.5$ and $\bar y=19.67$ approximately. The scatter plot shows an increasing, roughly linear trend.\end{solution}
+\begin{solution}$\bar x=\num{3,5}$ and $\bar y=\num{19,67}$ approximately. The scatter plot shows an increasing, roughly linear trend.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item For $y=3x+13$, estimate $y$ when $x=8$.\item Solve $3x+13=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
@@ -104,21 +104,21 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{33}{\mxdate*{2027-02-02}}{B: 2 h -- C: 1 h}{Linear regression}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Obtain a linear regression.\item Interpret $a$ and $b$.\item Check with the mean point.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $20\,\%$ of $160$. \mxblank{$32$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $8$, $10$ and $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $160$. \mxblank{$32$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $8$, $10$ and $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: obtain a linear regression and interpret $a$ and $b$.\end{prerequisites}
 
 \begin{activity}
 With the data of session 31, obtain the linear regression with a calculator. Interpret the slope and check that the mean point lies approximately on the line.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}A regression gives approximately $y=3.17x+8.57$. An extra hundred euros is associated with about $317$ extra sales if $y$ is in hundreds. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+\begin{solution}A regression gives approximately $y=\num{3,17}x+\num{8,57}$. An extra hundred euros is associated with about $317$ extra sales if $y$ is in hundreds. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
 
 \begin{summary}A line $y=ax+b$ fits a scatter plot. $a$ represents the estimated average change in $y$ for one extra unit of $x$.\end{summary}
 
 \begin{example}
 Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}A regression gives approximately $y=3.17x+8.57$. An extra hundred euros is associated with about $317$ extra sales if $y$ is in hundreds.\end{solution}
+\begin{solution}A regression gives approximately $y=\num{3,17}x+\num{8,57}$. An extra hundred euros is associated with about $317$ extra sales if $y$ is in hundreds.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item For $y=5x+15$, estimate $y$ when $x=8$.\item Solve $5x+15=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
@@ -142,21 +142,21 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{34}{\mxdate*{2027-02-04}}{B: 1 h -- C: 2 h}{Interpolation}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Interpolate.\item Solve using the model.\item Express an estimate.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $25\,\%$ increase. \mxblank{$1+\dfrac{25}{100}=1.25$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $9$, $11$ and $13$. \mxblank{$11$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $9$, $11$ and $13$. \mxblank{$11$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: interpolate and solve using the model.\end{prerequisites}
 
 \begin{activity}
-Over the observed period $x\in[1,12]$, the model is $y=2.8x+14$. Estimate $y$ for $x=7.5$, then estimate $x$ when $y=35$. Classify each estimate.
+Over the observed period $x\in[1,12]$, the model is $y=\num{2,8}x+14$. Estimate $y$ for $x=\num{7,5}$, then estimate $x$ when $y=35$. Classify each estimate.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}$y=35$ and $x=7.5$. Both values lie inside the observed range: interpolations. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+\begin{solution}$y=35$ and $x=\num{7,5}$. Both values lie inside the observed range: interpolations. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
 
 \begin{summary}An interpolation estimates a value inside the observed range. The result is an estimate that depends on the model.\end{summary}
 
 \begin{example}
 Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}$y=35$ and $x=7.5$. Both values lie inside the observed range: interpolations.\end{solution}
+\begin{solution}$y=35$ and $x=\num{7,5}$. Both values lie inside the observed range: interpolations.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item For $y=6x+16$, estimate $y$ when $x=8$.\item Solve $6x+16=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
@@ -184,7 +184,7 @@ Take the data of the investigation and write the solution in order: definition o
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: extrapolate with caution and assess plausibility.\end{prerequisites}
 
 \begin{activity}
-The same model $y=2.8x+14$, fitted on $[1,12]$, is used for $x=40$. Calculate the estimate, then give three reasons why it may be unreliable.
+The same model $y=\num{2,8}x+14$, fitted on $[1,12]$, is used for $x=40$. Calculate the estimate, then give three reasons why it may be unreliable.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}The estimate is $126$. It is far from the data, the trend may change and real-world constraints may cap the variable. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
@@ -218,21 +218,21 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{36}{\mxdate*{2027-02-11}}{B: 1 h -- C: 2 h}{Change of variable}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Carry out a change of variable.\item Fit the new data.\item Return to the original variable.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $5\,\%$ of $80$. \mxblank{$4$}\item Calculate the mean of $4$, $6$ and $8$. \mxblank{$6$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $80$. \mxblank{$4$}\item Calculate the mean of $4$, $6$ and $8$. \mxblank{$6$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: carry out a change of variable and fit the new data.\end{prerequisites}
 
 \begin{activity}
-The data appear to be exponential. We set $z=\log(y)$ and the fit gives $z=0.08x+1.2$. Express $y$ as a function of $x$, then calculate $y$ for $x=5$.
+The data appear to be exponential. We set $z=\log(y)$ and the fit gives $z=\num{0,08}x+\num{1,2}$. Express $y$ as a function of $x$, then calculate $y$ for $x=5$.
 
 \end{activity}
-\begin{solution}$y=10^{0.08x+1.2}$. For $x=5$, $y=10^{1.6}\approx39.8$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+\begin{solution}$y=10^{\num{0,08}x+\num{1,2}}$. For $x=5$, $y=10^{\num{1,6}}\approx\num{39,8}$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
 
 \begin{summary}A change of variable can make a scatter plot linear. After fitting in the new variable, we must return to the original variable.\end{summary}
 
 \begin{example}
 Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}$y=10^{0.08x+1.2}$. For $x=5$, $y=10^{1.6}\approx39.8$.\end{solution}
+\begin{solution}$y=10^{\num{0,08}x+\num{1,2}}$. For $x=5$, $y=10^{\num{1,6}}\approx\num{39,8}$.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item For $y=3x+13$, estimate $y$ when $x=8$.\item Solve $3x+13=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
@@ -256,11 +256,11 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{37}{\mxdate*{2027-03-02}}{B: 2 h -- C: 1 h}{Choosing the model and fitting}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Compare models.\item Use residuals.\item Define a range of use.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $10\,\%$ increase. \mxblank{$1+\dfrac{10}{100}=1.10$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $5$, $7$ and $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $5$, $7$ and $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: compare models and use residuals.\end{prerequisites}
 
 \begin{activity}
-Two models give total absolute residuals of $18.4$ and $11.7$ over the observed range. The second, however, shows unrealistic growth beyond $x=20$. Choose a model to interpolate at $x=12$, then discuss extrapolation at $x=50$.
+Two models give total absolute residuals of $\num{18,4}$ and $\num{11,7}$ over the observed range. The second, however, shows unrealistic growth beyond $x=20$. Choose a model to interpolate at $x=12$, then discuss extrapolation at $x=50$.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}The second is preferable for interpolating over the observed range if the other criteria are comparable; no automatic choice is justified for $x=50$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}

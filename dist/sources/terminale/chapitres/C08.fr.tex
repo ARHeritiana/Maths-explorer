@@ -1,6 +1,6 @@
-\setcounter{chapter}{5}\mxunit{terminale-c08}{Fonction logarithme}\label{ch:6}
+\mxunit[6]{terminale-c08}{Fonction logarithme}\label{ch:6}
 
-{\small\sffamily\color{mxmint}S44, S47, S49, S50\par}
+\mxsubtitle{S44, S47, S49, S50}
 
 \begin{keypoint}[Objectifs]Utiliser les propriétés de ln ; résoudre équations et seuils ; dériver et étudier des fonctions logarithmiques.\end{keypoint}
 
@@ -23,7 +23,7 @@ Si $u>0$ est dérivable, $(\ln u)'=\frac{u'}{u}$. Pour tout entier $m\ge1$,
 \subsection{Équations et seuils}
 Pour $A,B>0$, $\ln A=\ln B\Leftrightarrow A=B$ et $\ln A\le\ln B\Leftrightarrow A\le B$. Toujours commencer par le domaine.
 \paragraph{Exemple.} $\ln(x-1)+\ln(x+1)=\ln8$ exige $x>1$. L'équation devient $x^2-1=8$, donc $x=3$ seul.
-\paragraph{Seuil.} $0{,}8^n\le0{,}1$ équivaut à $n\ln0{,}8\le\ln0{,}1$, puis $n\ge\frac{\ln 0{,}1}{\ln 0{,}8}\simeq10{,}319$. Le premier entier est $11$.
+\paragraph{Seuil.} $\num{0,8}^n\le\num{0,1}$ équivaut à $n\ln\num{0,8}\le\ln\num{0,1}$, puis $n\ge\frac{\ln \num{0,1}}{\ln \num{0,8}}\simeq\num{10,319}$. Le premier entier est $11$.
 \paragraph{Exemple d'étude.} Pour $f(x)=\frac{\ln x}{x}$, $f'=\frac{1-\ln x}{x^2}$ ; $f$ croît sur $]0,e]$, décroît sur $[e,+\infty[$, et son maximum vaut $\frac{1}{e}$. Sa limite en $0^+$ est $-\infty$, sa limite en $+\infty$ est $0$.
 
 
@@ -32,12 +32,14 @@ Pour $A,B>0$, $\ln A=\ln B\Leftrightarrow A=B$ et $\ln A\le\ln B\Leftrightarrow 
 \addplot[mxink,thick,domain=-1.4:1.38]{exp(x)};\addlegendentry{$e^x$}
 \addplot[gray,dashed,domain=-1.4:4]{x};\addlegendentry{$y=x$}\end{axis}\end{tikzpicture}\end{center}
 
-\section{Activité de recherche}\textbf{Contrôler une erreur de calcul --- 30 min.}\par Une méthode de calcul produit une erreur initiale $e_0=5$. À chaque étape, l'erreur est multipliée par $0{,}7$. On note $e_n$ l'erreur après $n$ étapes, pour $n\in\N$.
+\mxnewpage
+\section{Activité de recherche}\textbf{Contrôler une erreur de calcul --- 30 min.}\par Une méthode de calcul produit une erreur initiale $e_0=5$. À chaque étape, l'erreur est multipliée par $\num{0,7}$. On note $e_n$ l'erreur après $n$ étapes, pour $n\in\N$.
 \begin{enumerate}\item Exprimer $e_n$ en fonction de $n$.
 \item À l'aide du logarithme, déterminer le plus petit entier $n$ tel que $e_n\le10^{-4}$.
 \item Calculer, à la calculatrice, l'erreur au rang trouvé et au rang précédent pour vérifier la minimalité du rang.
 \item On impose maintenant une erreur au plus égale à $10^{-6}$. Déterminer le nouveau nombre minimal d'étapes. La division de la tolérance par $100$ multiplie-t-elle le nombre d'étapes par $100$ ?\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
 \mxexerciseitem{1}{Entraînement}Après avoir déterminé l'ensemble sur lequel elle est définie, résoudre l'équation $\ln(2x-1)=\ln(x+3)$.
@@ -52,7 +54,8 @@ Pour $A,B>0$, $\ln A=\ln B\Leftrightarrow A=B$ et $\ln A\le\ln B\Leftrightarrow 
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 196, exercice 36.} À la maison après S44 : traiter les trois fonctions. Écrire les conditions de définition avant de résoudre les inéquations ; justifier les bornes ouvertes des intervalles obtenus.
 
-\section{Devoir à la maison}\textbf{DM6 --- Étude d'une fonction logarithmique --- 55 min.}\par On considère la fonction $f$ définie sur $]0;+\infty[$ par $f(x)=\frac{1+\ln x}{x}$. Sa courbe représentative est notée $\mathcal C_f$.
+\mxnewpage
+\section{Devoir à la maison}\textbf{DM6 --- Étude d'une fonction logarithmique --- 55 min.}\par On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{1+\ln x}{x}$. Sa courbe représentative est notée $\mathcal C_f$.
 \begin{enumerate}\item Déterminer les limites de $f$ aux bornes du domaine, étudier son signe, puis dresser son tableau de variations.
 \item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion de $\mathcal C_f$.
 \item Démontrer que l'équation $f(x)=\frac12$ admet exactement deux solutions. Donner pour chacune un encadrement justifié à l'aide de valeurs calculées.
@@ -61,12 +64,12 @@ Pour $A,B>0$, $\ln A=\ln B\Leftrightarrow A=B$ et $\ln A\le\ln B\Leftrightarrow 
 \ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]S44 est placé avant le premier blanc, mais le logarithme n'appartient pas à son périmètre annoncé. Insister sur les conditions $a>0,b>0$ avant de regrouper des logarithmes. La dérivabilité de ln est admise, la formule de dérivation est démontrée. Pour un seuil avec $0<q<1$, le signe négatif de $\ln q$ inverse l'inégalité. Faire contrôler le rang candidat et le précédent.\end{teachernote}
 
 \subsection{Corrigé de l'activité}\begin{enumerate}
-\item Chaque étape multiplie l'erreur par $0{,}7$ : $e_n=5(0{,}7)^n$ pour $n\ge0$.
-\item $e_n\le10^{-4}$ équivaut à $(0{,}7)^n\le2\times10^{-5}$. Par croissance de ln, $n\ln0{,}7\le\ln(2\times10^{-5})$. Comme $\ln0{,}7<0$, on obtient
-\[n\ge\frac{\ln(2\times10^{-5})}{\ln0{,}7}\simeq30{,}33512.\]
+\item Chaque étape multiplie l'erreur par $\num{0,7}$ : $e_n=5(\num{0,7})^n$ pour $n\ge0$.
+\item $e_n\le10^{-4}$ équivaut à $(\num{0,7})^n\le2\times10^{-5}$. Par croissance de ln, $n\ln\num{0,7}\le\ln(2\times10^{-5})$. Comme $\ln\num{0,7}<0$, on obtient
+\[n\ge\frac{\ln(2\times10^{-5})}{\ln\num{0,7}}\simeq\num{30,33512}.\]
 Le premier entier convenable est $31$.
-\item $e_{30}\simeq1{,}1270\times10^{-4}>10^{-4}$ et $e_{31}\simeq7{,}8888\times10^{-5}<10^{-4}$. La suite des erreurs décroît, donc ce contrôle confirme la minimalité.
-\item Pour la cible $10^{-6}$, le même calcul donne $n\ge\frac{\ln (2\times10^{-7})}{\ln 0{,}7}\simeq43{,}2465$, donc $n=44$. Le seuil réel augmente de $\frac{\ln 100}{|\ln0{,}7|}\simeq12{,}91$, puis on arrondit à l'entier supérieur. Le nombre d'étapes n'est pas multiplié par $100$.
+\item $e_{30}\simeq\num{1,1270}\times10^{-4}>10^{-4}$ et $e_{31}\simeq\num{7,8888}\times10^{-5}<10^{-4}$. La suite des erreurs décroît, donc ce contrôle confirme la minimalité.
+\item Pour la cible $10^{-6}$, le même calcul donne $n\ge\frac{\ln (2\times10^{-7})}{\ln \num{0,7}}\simeq\num{43,2465}$, donc $n=44$. Le seuil réel augmente de $\frac{\ln 100}{|\ln\num{0,7}|}\simeq\num{12,91}$, puis on arrondit à l'entier supérieur. Le nombre d'étapes n'est pas multiplié par $100$.
 \end{enumerate}
 
 \paragraph{E1.}Il faut $2x-1>0$ et $x+3>0$, donc $x>\frac{1}{2}$. Sur ce domaine, l'injectivité de ln donne $2x-1=x+3$, soit $x=4$. Cette valeur appartient au domaine ; l'ensemble des solutions est $\{4\}$.
@@ -84,15 +87,15 @@ Le premier entier convenable est $31$.
 \[f'(x)=\frac{1-(1+\ln x)}{x^2}=-\frac{\ln x}{x^2}.\]
 Ainsi $f$ croît strictement jusqu'à $1$, puis décroît strictement ; son maximum vaut $f(1)=1$.
 \item En dérivant $-(\ln x)x^{-2}$, on obtient $f''(x)=\frac{2\ln x-1}{x^3}$. Le numérateur change de signe, du négatif au positif, en $x=\sqrt e$. Donc $f$ est concave sur $]0,\sqrt e]$, convexe sur $[\sqrt e,+\infty[$ et possède l'inflexion $(\sqrt{e},\frac{3}{2\sqrt e})$.
-\item Sur $]0,1]$, continuité, stricte croissance, limite $-\infty$ et valeur finale $1$ donnent exactement un antécédent de $\frac{1}{2}$. Sur $[1,+\infty[$, stricte décroissance de $1$ vers $0$ donne exactement un second antécédent. Le premier est dans $]e^{-1},\frac{1}{2}[$, car $f(e^{-1})=0$ et $f(\frac{1}{2})=2(1-\ln2)\simeq0{,}6137>\frac{1}{2}$. Le second est dans $]5,6[$, car $f(5)\simeq0{,}5219>\frac{1}{2}>f(6)\simeq0{,}4653$.
+\item Sur $]0,1]$, continuité, stricte croissance, limite $-\infty$ et valeur finale $1$ donnent exactement un antécédent de $\frac{1}{2}$. Sur $[1,+\infty[$, stricte décroissance de $1$ vers $0$ donne exactement un second antécédent. Le premier est dans $]e^{-1},\frac{1}{2}[$, car $f(e^{-1})=0$ et $f(\frac{1}{2})=2(1-\ln2)\simeq\num{0,6137}>\frac{1}{2}$. Le second est dans $]5,6[$, car $f(5)\simeq\num{0,5219}>\frac{1}{2}>f(6)\simeq\num{0,4653}$.
 \item Le maximum donne $\frac{1+\ln x}{x}\le1$. Comme $x>0$, on peut multiplier sans changer le sens : $1+\ln x\le x$. L'égalité correspond à l'unique maximum de $f$, donc à $x=1$.
 \end{enumerate}
 
 \subsection{Corrigé du travail dans le manuel ou une annale}Le logarithme impose un argument strictement positif.
 \begin{enumerate}
-\item $3x-7>0\Longleftrightarrow x>\frac73$, donc $D_f=]\frac73;+\infty[$.
-\item $-x^2+4x-3=-(x-1)(x-3)>0$ exactement lorsque $1<x<3$. Ainsi $D_g=]1;3[$.
-\item Il faut simultanément $x>0$ et $2-x>0$ ; leur intersection donne $D_h=]0;2[$. Le coefficient $-3$ placé devant le second logarithme ne modifie pas sa condition de définition.
+\item $3x-7>0\Longleftrightarrow x>\frac73$, donc $D_f=\intoo{\frac73}{+\infty}$.
+\item $-x^2+4x-3=-(x-1)(x-3)>0$ exactement lorsque $1<x<3$. Ainsi $D_g=\intoo{1}{3}$.
+\item Il faut simultanément $x>0$ et $2-x>0$ ; leur intersection donne $D_h=\intoo{0}{2}$. Le coefficient $-3$ placé devant le second logarithme ne modifie pas sa condition de définition.
 \end{enumerate}
 
 \fi

@@ -12,7 +12,7 @@ A counterexample is enough to refute a universal statement; a few examples are n
 \begin{teachernote}These notions are made explicit from the problems; they are not a standalone chapter of formal logic to memorise without context.\end{teachernote}
 
 \mxsection{Negation, case analysis and proof}
-\begin{example}Negate correctly: ``$x>2$''; ``$x\in[1;4]$''; ``All students play sport''; ``$A$ and $B$ both occur''.\end{example}
+\begin{example}Negate correctly: ``$x>2$''; ``$x\in\intff{1}{4}$''; ``All students play sport''; ``$A$ and $B$ both occur''.\end{example}
 \mxanswerspace[4]{``$x\leq2$''; ``$x<1$ or $x>4$''; ``At least one student does not play sport''; ``$A$ does not occur or $B$ does not occur''. The ``or'' is inclusive.}
 \begin{example}Show by case analysis that $n(n+1)$ is even for every integer $n$. Then show that $n^2+n+1$ is odd.\end{example}
 \mxanswerspace[4]{If $n$ is even, $n(n+1)$ has an even factor. If $n$ is odd, $n+1$ is even; the product is again even. The two cases cover all integers. Since $n^2+n+1=n(n+1)+1$, it is an odd integer.}
@@ -20,9 +20,9 @@ A counterexample is enough to refute a universal statement; a few examples are n
 \mxanswerspace[3.2]{If $n$ were odd, the result proved in sequence 1 would give $n^2$ odd, a contradiction. This is a contrapositive argument, or presented here as a proof by contradiction. Three examples do not cover all integers.}
 
 \mxsection{Combining algebra, functions and percentages}
-\begin{example}[Original situation]Two fictional rental rates are offered for $x$ hours, with $x\in[0;8]$: $A(x)=3000+2000x$ Ar and $B(x)=3500x$ Ar.
-\begin{enumerate}\item Calculate the costs for $1$ h and $4$ h.\item Find where the rates are equal, then the durations for which $A$ is cheaper.\item A $10\,\%$ discount is granted on the whole of rate $A$. Give the new rate $A_r$ and the new comparison threshold.\end{enumerate}\end{example}
-\mxanswerspace[6]{1. At $1$ h: $5000$ Ar versus $3500$ Ar. At $4$ h: $11000$ Ar versus $14000$ Ar. 2. $3000+2000x=3500x\iff x=2$. $A<B$ for $x>2$, so on $]2;8]$. 3. $A_r(x)=0.9(3000+2000x)=2700+1800x$. Equality with $B$ gives $1700x=2700$, that is $x=27/17\approx1.59$ h. $A_r<B$ on $]27/17;8]$. The discount also applies to the fixed charge.}
+\begin{example}[Original situation]Two fictional rental rates are offered for $x$ hours, with $x\in\intff{0}{8}$: $A(x)=3000+2000x$ Ar and $B(x)=3500x$ Ar.
+\begin{enumerate}\item Calculate the costs for $1$ h and $4$ h.\item Find where the rates are equal, then the durations for which $A$ is cheaper.\item A $\pc{10}$ discount is granted on the whole of rate $A$. Give the new rate $A_r$ and the new comparison threshold.\end{enumerate}\end{example}
+\mxanswerspace[6]{1. At $1$ h: $5000$ Ar versus $3500$ Ar. At $4$ h: $11000$ Ar versus $14000$ Ar. 2. $3000+2000x=3500x\iff x=2$. $A<B$ for $x>2$, so on $\intof{2}{8}$. 3. $A_r(x)=\num{0,9}(3000+2000x)=2700+1800x$. Equality with $B$ gives $1700x=2700$, that is $x=27/17\approx\num{1,59}$ h. $A_r<B$ on $\intof{27/17}{8}$. The discount also applies to the fixed charge.}
 \begin{lstlisting}
 def tarif_moins_cher(x):
     a = 3000 + 2000*x
@@ -35,4 +35,4 @@ def tarif_moins_cher(x):
         return "egalite"
 \end{lstlisting}
 \begin{example}Predict the results for $x=1,2,4$. Modify the line that computes $a$ to take the discount into account.\end{example}
-\mxanswerspace[2.4]{Results: \texttt{"B"}, \texttt{"egalite"}, \texttt{"A"}. Replace with \texttt{a = 0.9*(3000 + 2000*x)}. The domain $[0;8]$ is assumed to be respected in the calls.}
+\mxanswerspace[2.4]{Results: \texttt{"B"}, \texttt{"egalite"}, \texttt{"A"}. Replace with \texttt{a = 0.9*(3000 + 2000*x)}. The domain $\intff{0}{8}$ is assumed to be respected in the calls.}

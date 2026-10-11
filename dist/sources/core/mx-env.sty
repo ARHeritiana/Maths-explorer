@@ -18,6 +18,9 @@
 %                                                      (teacher edition); \mxchoices{A}{B}{C}{D} for a multiple choice
 %   \mxtag{CODE}             diagnostic tag, teacher edition style
 %   \mxarraystretch{x}       row spacing for the next tables in the current group
+%   \mxbanner{text}, \mxbanner*{text}   label line of an assessment paper (training; reserved for assessment)
+%   \mxcontinued{text}       running line at the top of a continued paper
+%   \mxpseudo{lines}         algorithm or code read in a question (lines separated by \\, indent with \mxtab)
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mx-env}[2026/10/11 Maths Explorer environments]
 \RequirePackage[framemethod=default]{mdframed}
@@ -155,3 +158,10 @@
 \newcommand{\mxexerciseitem}[2]{\mxneed{3}\paragraph{E#1 \textperiodcentered\ #2.}}
 % \mxexercisehead{label}{title}: numbered exercise heading (chapter.n) for exercises written as running text.
 \newcommand{\mxexercisehead}[2]{\mxneed{5}\refstepcounter{mxexercise}\subsection*{\mxlabelof{exercise} \themxexercise\ \textperiodcentered\ #2}\label{#1}}
+
+% ---- Lines of assessments and algorithms (units never style text by hand) -------------------------------------------
+\newcommand{\mxbanner}{\@ifstar{\mx@banner{mxwarn}}{\mx@banner{mxmint}}}
+\newcommand{\mx@banner}[2]{\par{\sffamily\bfseries\color{#1}#2\par}}
+\newcommand{\mxcontinued}[1]{\par\noindent{\sffamily\bfseries\color{mxink}#1}\par}
+\newcommand{\mxpseudo}[1]{\par\smallskip{\ttfamily\small #1\par}}
+\newcommand{\mxtab}{\hspace*{2.4em}}

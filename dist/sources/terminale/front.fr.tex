@@ -1,27 +1,10 @@
-\begin{titlepage}
-\begin{tikzpicture}[remember picture,overlay]
-\fill[mxink] (current page.north west) rectangle ([yshift=-6.8cm]current page.north east);
-\fill[mxmint] ([yshift=-6.8cm]current page.north west) rectangle ([yshift=-7.05cm]current page.north east);
-\draw[mxmint!25,line width=1pt] ([xshift=-3cm,yshift=2cm]current page.south east) circle (5cm);
-\draw[mxmint!25,line width=1pt] ([xshift=-3cm,yshift=2cm]current page.south east) circle (6cm);
-\end{tikzpicture}
-\vspace*{6mm}
-{\color{white}\sffamily\large MATHÉMATIQUES\par\vspace{8mm}\Huge\bfseries Terminale\par Spécialité\par}
-\vspace{33mm}
-{\sffamily\fontsize{30}{36}\selectfont\bfseries\color{mxink}Le livret de l'année\par}
-\vspace{8mm}
-{\sffamily\Large\color{mxmint}\ifmxteacher\mxlabelof{teacher}\else\mxlabelof{student}\fi\par}
-\vspace{12mm}
-{\large Cours, activités, entraînement et devoirs\par}
-{\large Progression en spirale · Manuel Barbazo\par}
-\vfill
-{\sffamily\bfseries Année scolaire 2026--2027\par}
-\vspace{5mm}
-{\small Révision du 6 septembre 2026. Sources fournies et agenda consulté le 5 septembre 2026.\par}
-\end{titlepage}
+\mxfront{terminale-front}
+\mxcover{MATHÉMATIQUES}{Terminale spécialité}{Livret annuel de cours et d’entraînement}{Cours, activités, entraînement et devoirs · Progression en spirale}{2026--2027}
 \frontmatter
 \chapter*{Utiliser ce livret}
 \addcontentsline{toc}{chapter}{Utiliser ce livret}
+Révision du \mxdate{2026-09-06}. Sources fournies et agenda consultés le \mxdate{2026-09-05}.
+
 Ce livret accompagne le manuel \emph{Barbazo, Terminale spécialité mathématiques}, Hachette, édition 2020. Les chapitres gardent leurs numéros du manuel ; ils sont rangés ici selon leur première apparition dans la progression. L'analyse, la géométrie et les probabilités se travaillent en parallèle : le parcours annuel permet de suivre les retours successifs.
 Les \textbf{notes de cours} constituent la trace écrite à étudier. Les exemples et démonstrations de cours en font partie. Les \textbf{activités} servent à chercher avant la mise en commun. Les exercices E1 à E5 se repèrent à l'intérieur de chaque chapitre ; les DM portent le numéro du chapitre. Les sujets zéro permettent de connaître les exigences avant l'évaluation.
 \begin{keypoint}[Une séance et le travail personnel]
@@ -260,7 +243,7 @@ Les numéros S renvoient à la progression fournie. Une semaine n'est pas une da
 \item $u_0=3$, $u_{n+1}=2u_n$. Donner $u_3$ et une formule pour $u_n$.
 \item Calculer $1+2+\cdots+20$ et $1+2+4+8+16$.
 \item $A(1,2)$, $B(3,5)$, $C(5,8)$. Les points sont-ils alignés ?
-\item $P(A)=0{,}4$, $P_A(B)=0{,}5$, $P_{\overline A}(B)=0{,}2$. Calculer $P(B)$.
+\item $P(A)=\num{0,4}$, $P_A(B)=\num{0,5}$, $P_{\overline A}(B)=\num{0,2}$. Calculer $P(B)$.
 \item Une pièce équilibrée est lancée deux fois indépendamment. Calculer la probabilité d'obtenir exactement une fois pile.
 \item L'affirmation « si $x^2=4$, alors $x=2$ » est-elle vraie ? Donner la correction exacte.
 \end{enumerate}
@@ -271,7 +254,7 @@ Les numéros S renvoient à la progression fournie. Une semaine n'est pas une da
 \item La suite est géométrique de raison $2$ : $u_n=3\times2^n$ et $u_3=3\times8=24$.
 \item La somme arithmétique vaut $\frac{20(1+20)}{2}=210$. La somme géométrique vaut $\frac{2^5-1}{2-1}=31$.
 \item $\vect{AB}=(2,3)$ et $\vect{AC}=(4,6)=2\vect{AB}$. Comme $A\ne B$, les points sont alignés.
-\item Par probabilités totales, $P(B)=0{,}4\times0{,}5+0{,}6\times0{,}2=0{,}32$.
+\item Par probabilités totales, $P(B)=\num{0,4}\times\num{0,5}+\num{0,6}\times\num{0,2}=\num{0,32}$.
 \item Les issues favorables sont pile--face et face--pile. L'indépendance donne à chacune la probabilité $\frac{1}{4}$ ; leur réunion a probabilité $\frac{1}{2}$.
 \item L'affirmation est fausse : $x=-2$ est un contre-exemple. L'équivalence exacte est $x^2=4\Longleftrightarrow x=2\text{ ou }x=-2$.
 \end{enumerate}

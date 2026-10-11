@@ -11,7 +11,7 @@ Un contre-exemple suffit à réfuter une assertion universelle ; quelques exempl
 \begin{teachernote}Ces notions sont explicitées à partir des problèmes ; elles ne constituent pas un chapitre autonome de logique formelle à mémoriser sans contexte.\end{teachernote}
 
 \mxsection{Négation, disjonction de cas et preuve}
-\begin{example}Nier correctement : « $x>2$ » ; « $x\in[1;4]$ » ; « Tous les élèves font du sport » ; « $A$ et $B$ sont réalisés ».\end{example}
+\begin{example}Nier correctement : « $x>2$ » ; « $x\in\intff{1}{4}$ » ; « Tous les élèves font du sport » ; « $A$ et $B$ sont réalisés ».\end{example}
 \mxanswerspace[4]{« $x\leq2$ » ; « $x<1$ ou $x>4$ » ; « Au moins un élève ne fait pas de sport » ; « $A$ n'est pas réalisé ou $B$ n'est pas réalisé ». Le « ou » est inclusif.}
 \begin{example}Montrer par disjonction de cas que $n(n+1)$ est pair pour tout entier $n$. Montrer ensuite que $n^2+n+1$ est impair.\end{example}
 \mxanswerspace[4]{Si $n$ est pair, $n(n+1)$ a un facteur pair. Si $n$ est impair, $n+1$ est pair ; le produit est encore pair. Les deux cas couvrent tous les entiers. Comme $n^2+n+1=n(n+1)+1$, c'est un entier impair.}
@@ -19,9 +19,9 @@ Un contre-exemple suffit à réfuter une assertion universelle ; quelques exempl
 \mxanswerspace[3.2]{Si $n$ était impair, le résultat démontré en séquence 1 donnerait $n^2$ impair, contradiction. C'est un raisonnement par contraposée, ou présenté ici par l'absurde. Trois exemples ne traitent pas tous les entiers.}
 
 \mxsection{Croiser algèbre, fonctions et pourcentages}
-\begin{example}[Situation créée]Deux tarifs fictifs de location sont proposés pour $x$ heures, avec $x\in[0;8]$ : $A(x)=3000+2000x$ Ar et $B(x)=3500x$ Ar.
-\begin{enumerate}\item Calculer les coûts pour $1$ h et $4$ h.\item Trouver l'égalité des tarifs puis les durées où $A$ est moins cher.\item Une remise de $10\,\%$ est accordée sur tout le tarif $A$. Donner le nouveau tarif $A_r$ et le nouveau seuil de comparaison.\end{enumerate}\end{example}
-\mxanswerspace[6]{1. À $1$ h : $5000$ Ar contre $3500$ Ar. À $4$ h : $11000$ Ar contre $14000$ Ar. 2. $3000+2000x=3500x\iff x=2$. $A<B$ pour $x>2$, donc sur $]2;8]$. 3. $A_r(x)=0{,}9(3000+2000x)=2700+1800x$. L'égalité avec $B$ donne $1700x=2700$, soit $x=27/17\approx1{,}59$ h. $A_r<B$ sur $]27/17;8]$. La remise s'applique aussi au forfait fixe.}
+\begin{example}[Situation créée]Deux tarifs fictifs de location sont proposés pour $x$ heures, avec $x\in\intff{0}{8}$ : $A(x)=3000+2000x$ Ar et $B(x)=3500x$ Ar.
+\begin{enumerate}\item Calculer les coûts pour $1$ h et $4$ h.\item Trouver l'égalité des tarifs puis les durées où $A$ est moins cher.\item Une remise de $\pc{10}$ est accordée sur tout le tarif $A$. Donner le nouveau tarif $A_r$ et le nouveau seuil de comparaison.\end{enumerate}\end{example}
+\mxanswerspace[6]{1. À $1$ h : $5000$ Ar contre $3500$ Ar. À $4$ h : $11000$ Ar contre $14000$ Ar. 2. $3000+2000x=3500x\iff x=2$. $A<B$ pour $x>2$, donc sur $\intof{2}{8}$. 3. $A_r(x)=\num{0,9}(3000+2000x)=2700+1800x$. L'égalité avec $B$ donne $1700x=2700$, soit $x=27/17\approx\num{1,59}$ h. $A_r<B$ sur $\intof{27/17}{8}$. La remise s'applique aussi au forfait fixe.}
 \begin{lstlisting}
 def tarif_moins_cher(x):
     a = 3000 + 2000*x
@@ -34,4 +34,4 @@ def tarif_moins_cher(x):
         return "egalite"
 \end{lstlisting}
 \begin{example}Prévoir les résultats pour $x=1,2,4$. Modifier la ligne qui calcule $a$ pour prendre en compte la remise.\end{example}
-\mxanswerspace[2.4]{Résultats : \texttt{"B"}, \texttt{"egalite"}, \texttt{"A"}. Remplacer par \texttt{a = 0.9*(3000 + 2000*x)}. Le domaine $[0;8]$ est supposé respecté lors des appels.}
+\mxanswerspace[2.4]{Résultats : \texttt{"B"}, \texttt{"egalite"}, \texttt{"A"}. Remplacer par \texttt{a = 0.9*(3000 + 2000*x)}. Le domaine $\intff{0}{8}$ est supposé respecté lors des appels.}

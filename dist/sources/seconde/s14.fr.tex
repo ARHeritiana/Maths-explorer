@@ -8,9 +8,9 @@ L'événement impossible est $\varnothing$ ; l'événement certain est $\Omega$.
 $\overline A$ est l'événement contraire de $A$. $A\cap B$ signifie « $A$ et $B$ » ; $A\cup B$, « $A$ ou $B$ », éventuellement les deux. Deux événements sont incompatibles si $A\cap B=\varnothing$ ; sinon, ils sont compatibles.
 \end{keypoint}
 \begin{example}On lance un dé à six faces. Écrire $\Omega$, $A$ : « obtenir un nombre pair », $B$ : « obtenir $4$ », puis $\overline A$, $A\cap B$ et $A\cup B$. $A,B$ sont-ils compatibles ?\end{example}
-\mxanswerspace[4]{$\Omega=\{1;2;3;4;5;6\}$, $A=\{2;4;6\}$, $B=\{4\}$, $\overline A=\{1;3;5\}$, $A\cap B=\{4\}$, $A\cup B=A$. Les événements sont compatibles car ils partagent l'issue $4$.}
-\begin{example}Avec $A=\{a;b;c;d;e\}$ et $B=\{b;e;f;g;h\}$, donner l'intersection et la réunion. Peut-on déterminer $\overline A$ sans préciser l'univers ?\end{example}
-\mxanswerspace[3.2]{$A\cap B=\{b;e\}$ et $A\cup B=\{a;b;c;d;e;f;g;h\}$. Le complémentaire dépend de l'univers ; on ne peut pas le déterminer sans cette information.}
+\mxanswerspace[4]{$\Omega=\ens{1;2;3;4;5;6}$, $A=\ens{2;4;6}$, $B=\{4\}$, $\overline A=\ens{1;3;5}$, $A\cap B=\{4\}$, $A\cup B=A$. Les événements sont compatibles car ils partagent l'issue $4$.}
+\begin{example}Avec $A=\ens{a;b;c;d;e}$ et $B=\ens{b;e;f;g;h}$, donner l'intersection et la réunion. Peut-on déterminer $\overline A$ sans préciser l'univers ?\end{example}
+\mxanswerspace[3.2]{$A\cap B=\ens{b;e}$ et $A\cup B=\ens{a;b;c;d;e;f;g;h}$. Le complémentaire dépend de l'univers ; on ne peut pas le déterminer sans cette information.}
 
 \mxsection{Modèle probabiliste et équiprobabilité}
 \begin{keypoint}[Probabilité dans un univers fini]
@@ -21,7 +21,7 @@ En équiprobabilité, toutes les issues ont même probabilité et
 L'équiprobabilité est une hypothèse du modèle, pas une conséquence de la seule liste des issues.
 \end{keypoint}
 \begin{example}On suppose le dé équilibré. Pour $A=$ « pair » et $C=$ « supérieur ou égal à $5$ », calculer $P(A)$, $P(C)$, $P(A\cap C)$ et $P(A\cup C)$.\end{example}
-\mxanswerspace[4]{$P(A)=3/6=1/2$, $P(C)=2/6=1/3$, $A\cap C=\{6\}$ donc $P(A\cap C)=1/6$. $A\cup C=\{2;4;5;6\}$, donc $P(A\cup C)=4/6=2/3$. L'issue $6$ ne doit pas être comptée deux fois.}
+\mxanswerspace[4]{$P(A)=3/6=1/2$, $P(C)=2/6=1/3$, $A\cap C=\{6\}$ donc $P(A\cap C)=1/6$. $A\cup C=\ens{2;4;5;6}$, donc $P(A\cup C)=4/6=2/3$. L'issue $6$ ne doit pas être comptée deux fois.}
 \begin{example}Une punaise peut tomber pointe vers le haut ou vers le bas. Peut-on en déduire que chaque issue a probabilité $1/2$ ? Comment proposer un modèle ?\end{example}
 \mxanswerspace[4]{Non : deux issues ne suffisent pas à imposer l'équiprobabilité. On peut répéter les lancers dans des conditions comparables et utiliser les fréquences observées pour proposer un modèle, en gardant à l'esprit les fluctuations et les caractéristiques de l'objet.}
 \begin{teachernote}Réactiver le lien entre fréquence observée et probabilité postulée. Un résultat expérimental ne démontre pas une équiprobabilité exacte.\end{teachernote}
@@ -52,10 +52,10 @@ Par la formule : $P_N(G)=(12/32)/(21/32)=12/21$. Sachant que l'élève suit NSI,
 \begin{center}\begin{tikzpicture}[grow=right,level 1/.style={level distance=4cm,sibling distance=3cm},level 2/.style={level distance=4cm,sibling distance=1.4cm},edge from parent/.style={draw},every node/.style={font=\normalsize}]
 \node{} child{node{$\overline A$} child{node{$\overline B$} edge from parent node[below]{$P_{\overline A}(\overline B)$}} child{node{$B$} edge from parent node[above]{$P_{\overline A}(B)$}} edge from parent node[below]{$P(\overline A)$}} child{node{$A$} child{node{$\overline B$} edge from parent node[below]{$P_A(\overline B)$}} child{node{$B$} edge from parent node[above]{$P_A(B)$}} edge from parent node[above]{$P(A)$}};
 \end{tikzpicture}\end{center}
-\begin{example}On sait $P(A)=0{,}6$, $P_A(B)=0{,}7$ et $P_{\overline A}(\overline B)=0{,}9$. Compléter les autres branches et calculer les probabilités des quatre chemins.\end{example}
-\mxanswerspace[5]{$P(\overline A)=0{,}4$, $P_A(\overline B)=0{,}3$, $P_{\overline A}(B)=0{,}1$.
-\[P(A\cap B)=0{,}6\times0{,}7=0{,}42,\quad P(A\cap\overline B)=0{,}18,\]
-\[P(\overline A\cap B)=0{,}04,\qquad P(\overline A\cap\overline B)=0{,}36.\]
+\begin{example}On sait $P(A)=\num{0,6}$, $P_A(B)=\num{0,7}$ et $P_{\overline A}(\overline B)=\num{0,9}$. Compléter les autres branches et calculer les probabilités des quatre chemins.\end{example}
+\mxanswerspace[5]{$P(\overline A)=\num{0,4}$, $P_A(\overline B)=\num{0,3}$, $P_{\overline A}(B)=\num{0,1}$.
+\[P(A\cap B)=\num{0,6}\times\num{0,7}=\num{0,42},\quad P(A\cap\overline B)=\num{0,18},\]
+\[P(\overline A\cap B)=\num{0,04},\qquad P(\overline A\cap\overline B)=\num{0,36}.\]
 La somme des quatre probabilités vaut $1$, ce qui contrôle la cohérence du modèle.}
 \begin{example}Justifier la multiplication sur le chemin $A$ puis $B$ à partir de la définition de $P_A(B)$.\end{example}
 \mxanswerspace[2.4]{Comme $P_A(B)=P(A\cap B)/P(A)$ et $P(A)>0$, multiplier par $P(A)$ donne $P(A)P_A(B)=P(A\cap B)$.}
@@ -73,8 +73,8 @@ Le chemin recherché vaut $(21/32)(9/21)=9/32$ dans le premier arbre et $(14/32)
 \begin{enumerate}\item Compléter le tableau croisé test / état réel.\item Calculer $P_D(T)$ et $P_T(D)$.\item Donner le nombre de faux positifs et de faux négatifs.\item Calculer la sensibilité $P_D(T)$ et la spécificité $P_{\overline D}(\overline T)$.\end{enumerate}\end{example}
 \mxanswerspace[7]{
 \begin{center}\mxarraystretch{1.5}\begin{tabular}{c|rr|r}&$D$&$\overline D$&Total\\\hline $T$&99&495&594\\$\overline T$&1&9405&9406\\\hline Total&100&9900&10000\end{tabular}\end{center}
-$P_D(T)=99/100=99\,\%$. En revanche $P_T(D)=99/594=1/6\approx16{,}67\,\%$. Un test positif n'implique donc pas ici une probabilité de défaut de $99\,\%$.
-Les $495$ faux positifs sont les composants sains testés positifs ; le faux négatif est le composant défectueux testé négatif. La sensibilité vaut $99\,\%$ ; la spécificité $9405/9900=95\,\%$.
+$P_D(T)=99/100=\pc{99}$. En revanche $P_T(D)=99/594=1/6\approx\pc{16,67}$. Un test positif n'implique donc pas ici une probabilité de défaut de $\pc{99}$.
+Les $495$ faux positifs sont les composants sains testés positifs ; le faux négatif est le composant défectueux testé négatif. La sensibilité vaut $\pc{99}$ ; la spécificité $9405/9900=\pc{95}$.
 La faible proportion initiale de composants défectueux explique pourquoi les faux positifs sont plus nombreux que les vrais positifs malgré la bonne sensibilité.}
 \begin{keypoint}[Lire le résultat d'un test]
 « Positif parmi les défectueux » et « défectueux parmi les positifs » correspondent à deux conditionnements différents. Toujours nommer le groupe de référence avant le calcul.

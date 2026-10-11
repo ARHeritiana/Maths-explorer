@@ -76,8 +76,8 @@ export const resourceCatalog = {
           "pages": 5,
           "end": 11,
           "englishPath": "resources/seconde-01/chapter-en.pdf",
-          "bytes": 248779,
-          "englishBytes": 247422
+          "bytes": 248761,
+          "englishBytes": 247421
         },
         {
           "kind": "teacher",
@@ -87,8 +87,8 @@ export const resourceCatalog = {
           "pages": 5,
           "end": 11,
           "englishPath": "resources/seconde-01/teacher-en.pdf",
-          "bytes": 251134,
-          "englishBytes": 248919
+          "bytes": 251135,
+          "englishBytes": 248916
         }
       ]
     },
@@ -114,8 +114,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 18,
           "englishPath": "resources/seconde-02/chapter-en.pdf",
-          "bytes": 239954,
-          "englishBytes": 238944
+          "bytes": 239945,
+          "englishBytes": 238937
         },
         {
           "kind": "teacher",
@@ -125,8 +125,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 18,
           "englishPath": "resources/seconde-02/teacher-en.pdf",
-          "bytes": 239746,
-          "englishBytes": 237991
+          "bytes": 239748,
+          "englishBytes": 237980
         },
         {
           "kind": "fluency",
@@ -141,7 +141,7 @@ export const resourceCatalog = {
           "end": 1,
           "englishPath": "resources/seconde-02/fluency-student-en.pdf",
           "bytes": 197904,
-          "englishBytes": 195682
+          "englishBytes": 195678
         },
         {
           "kind": "fluency-solutions",
@@ -156,7 +156,7 @@ export const resourceCatalog = {
           "end": 2,
           "englishPath": "resources/seconde-02/fluency-teacher-en.pdf",
           "bytes": 216390,
-          "englishBytes": 214032
+          "englishBytes": 214028
         }
       ]
     },
@@ -182,8 +182,8 @@ export const resourceCatalog = {
           "pages": 6,
           "end": 24,
           "englishPath": "resources/seconde-03/chapter-en.pdf",
-          "bytes": 257931,
-          "englishBytes": 256890
+          "bytes": 257921,
+          "englishBytes": 256881
         },
         {
           "kind": "teacher",
@@ -193,8 +193,8 @@ export const resourceCatalog = {
           "pages": 6,
           "end": 24,
           "englishPath": "resources/seconde-03/teacher-en.pdf",
-          "bytes": 261852,
-          "englishBytes": 260198
+          "bytes": 261863,
+          "englishBytes": 260184
         },
         {
           "kind": "fluency",
@@ -209,7 +209,7 @@ export const resourceCatalog = {
           "end": 3,
           "englishPath": "resources/seconde-03/fluency-student-en.pdf",
           "bytes": 221757,
-          "englishBytes": 218698
+          "englishBytes": 218694
         },
         {
           "kind": "fluency-solutions",
@@ -223,8 +223,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 6,
           "englishPath": "resources/seconde-03/fluency-teacher-en.pdf",
-          "bytes": 245448,
-          "englishBytes": 242720
+          "bytes": 245447,
+          "englishBytes": 242712
         }
       ]
     },
@@ -250,8 +250,8 @@ export const resourceCatalog = {
           "pages": 6,
           "end": 30,
           "englishPath": "resources/seconde-04/chapter-en.pdf",
-          "bytes": 283855,
-          "englishBytes": 282771
+          "bytes": 283824,
+          "englishBytes": 282795
         },
         {
           "kind": "teacher",
@@ -262,7 +262,7 @@ export const resourceCatalog = {
           "end": 30,
           "englishPath": "resources/seconde-04/teacher-en.pdf",
           "bytes": 285507,
-          "englishBytes": 283534
+          "englishBytes": 283548
         },
         {
           "kind": "fluency",
@@ -276,8 +276,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 5,
           "englishPath": "resources/seconde-04/fluency-student-en.pdf",
-          "bytes": 231143,
-          "englishBytes": 228172
+          "bytes": 231141,
+          "englishBytes": 228168
         },
         {
           "kind": "fluency-solutions",
@@ -291,8 +291,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 8,
           "englishPath": "resources/seconde-04/fluency-teacher-en.pdf",
-          "bytes": 250001,
-          "englishBytes": 247127
+          "bytes": 249979,
+          "englishBytes": 247087
         }
       ]
     },
@@ -318,8 +318,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 33,
           "englishPath": "resources/seconde-05/chapter-en.pdf",
-          "bytes": 191088,
-          "englishBytes": 189906
+          "bytes": 191080,
+          "englishBytes": 189911
         },
         {
           "kind": "teacher",
@@ -329,8 +329,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 33,
           "englishPath": "resources/seconde-05/teacher-en.pdf",
-          "bytes": 194471,
-          "englishBytes": 192279
+          "bytes": 194467,
+          "englishBytes": 192290
         }
       ]
     },
@@ -356,8 +356,8 @@ export const resourceCatalog = {
           "pages": 9,
           "end": 42,
           "englishPath": "resources/seconde-06/chapter-en.pdf",
-          "bytes": 263515,
-          "englishBytes": 261844
+          "bytes": 263431,
+          "englishBytes": 261827
         },
         {
           "kind": "teacher",
@@ -367,8 +367,8 @@ export const resourceCatalog = {
           "pages": 9,
           "end": 42,
           "englishPath": "resources/seconde-06/teacher-en.pdf",
-          "bytes": 267048,
-          "englishBytes": 264501
+          "bytes": 267024,
+          "englishBytes": 264555
         },
         {
           "kind": "fluency",
@@ -382,8 +382,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 6,
           "englishPath": "resources/seconde-05/fluency-student-en.pdf",
-          "bytes": 217099,
-          "englishBytes": 214437
+          "bytes": 217101,
+          "englishBytes": 214467
         },
         {
           "kind": "fluency-solutions",
@@ -397,8 +397,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 10,
           "englishPath": "resources/seconde-05/fluency-teacher-en.pdf",
-          "bytes": 258768,
-          "englishBytes": 255774
+          "bytes": 258760,
+          "englishBytes": 255827
         }
       ]
     },
@@ -424,8 +424,8 @@ export const resourceCatalog = {
           "pages": 8,
           "end": 50,
           "englishPath": "resources/seconde-07/chapter-en.pdf",
-          "bytes": 243536,
-          "englishBytes": 241725
+          "bytes": 243520,
+          "englishBytes": 241675
         },
         {
           "kind": "teacher",
@@ -435,8 +435,8 @@ export const resourceCatalog = {
           "pages": 8,
           "end": 50,
           "englishPath": "resources/seconde-07/teacher-en.pdf",
-          "bytes": 272681,
-          "englishBytes": 270295
+          "bytes": 272685,
+          "englishBytes": 270220
         },
         {
           "kind": "fluency",
@@ -450,8 +450,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 8,
           "englishPath": "resources/seconde-06/fluency-student-en.pdf",
-          "bytes": 219534,
-          "englishBytes": 216865
+          "bytes": 219538,
+          "englishBytes": 216866
         },
         {
           "kind": "fluency-solutions",
@@ -465,8 +465,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 13,
           "englishPath": "resources/seconde-06/fluency-teacher-en.pdf",
-          "bytes": 256540,
-          "englishBytes": 253956
+          "bytes": 256543,
+          "englishBytes": 253961
         }
       ]
     },
@@ -491,7 +491,7 @@ export const resourceCatalog = {
           "pages": 13,
           "end": 63,
           "englishPath": "resources/seconde-08/chapter-en.pdf",
-          "bytes": 308216,
+          "bytes": 308190,
           "englishBytes": 306430
         },
         {
@@ -502,8 +502,8 @@ export const resourceCatalog = {
           "pages": 13,
           "end": 63,
           "englishPath": "resources/seconde-08/teacher-en.pdf",
-          "bytes": 313766,
-          "englishBytes": 311252
+          "bytes": 313779,
+          "englishBytes": 311200
         },
         {
           "kind": "fluency",
@@ -518,7 +518,7 @@ export const resourceCatalog = {
           "end": 10,
           "englishPath": "resources/seconde-07/fluency-student-en.pdf",
           "bytes": 227755,
-          "englishBytes": 224919
+          "englishBytes": 224916
         },
         {
           "kind": "fluency-solutions",
@@ -532,8 +532,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 16,
           "englishPath": "resources/seconde-07/fluency-teacher-en.pdf",
-          "bytes": 254678,
-          "englishBytes": 251879
+          "bytes": 254668,
+          "englishBytes": 251880
         }
       ]
     },
@@ -559,8 +559,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 67,
           "englishPath": "resources/seconde-09/chapter-en.pdf",
-          "bytes": 189509,
-          "englishBytes": 187978
+          "bytes": 189505,
+          "englishBytes": 187884
         },
         {
           "kind": "teacher",
@@ -570,8 +570,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 67,
           "englishPath": "resources/seconde-09/teacher-en.pdf",
-          "bytes": 190459,
-          "englishBytes": 187615
+          "bytes": 190463,
+          "englishBytes": 187465
         },
         {
           "kind": "fluency",
@@ -586,7 +586,7 @@ export const resourceCatalog = {
           "end": 11,
           "englishPath": "resources/seconde-08/fluency-student-en.pdf",
           "bytes": 179199,
-          "englishBytes": 176530
+          "englishBytes": 176508
         },
         {
           "kind": "fluency-solutions",
@@ -601,7 +601,7 @@ export const resourceCatalog = {
           "end": 17,
           "englishPath": "resources/seconde-08/fluency-teacher-en.pdf",
           "bytes": 195368,
-          "englishBytes": 192820
+          "englishBytes": 192792
         }
       ]
     },
@@ -627,8 +627,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 74,
           "englishPath": "resources/seconde-10/chapter-en.pdf",
-          "bytes": 271075,
-          "englishBytes": 269446
+          "bytes": 271053,
+          "englishBytes": 269445
         },
         {
           "kind": "teacher",
@@ -638,8 +638,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 74,
           "englishPath": "resources/seconde-10/teacher-en.pdf",
-          "bytes": 270764,
-          "englishBytes": 268291
+          "bytes": 270761,
+          "englishBytes": 268281
         },
         {
           "kind": "fluency",
@@ -654,7 +654,7 @@ export const resourceCatalog = {
           "end": 13,
           "englishPath": "resources/seconde-09/fluency-student-en.pdf",
           "bytes": 213577,
-          "englishBytes": 210744
+          "englishBytes": 210727
         },
         {
           "kind": "fluency-solutions",
@@ -669,7 +669,7 @@ export const resourceCatalog = {
           "end": 20,
           "englishPath": "resources/seconde-09/fluency-teacher-en.pdf",
           "bytes": 232017,
-          "englishBytes": 229372
+          "englishBytes": 229323
         }
       ]
     },
@@ -695,8 +695,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 78,
           "englishPath": "resources/seconde-11/chapter-en.pdf",
-          "bytes": 243782,
-          "englishBytes": 242648
+          "bytes": 243781,
+          "englishBytes": 242625
         },
         {
           "kind": "teacher",
@@ -706,8 +706,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 78,
           "englishPath": "resources/seconde-11/teacher-en.pdf",
-          "bytes": 246286,
-          "englishBytes": 244227
+          "bytes": 246291,
+          "englishBytes": 244202
         },
         {
           "kind": "fluency",
@@ -721,8 +721,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 14,
           "englishPath": "resources/seconde-10/fluency-student-en.pdf",
-          "bytes": 201586,
-          "englishBytes": 199227
+          "bytes": 201582,
+          "englishBytes": 199133
         },
         {
           "kind": "fluency-solutions",
@@ -736,8 +736,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 22,
           "englishPath": "resources/seconde-10/fluency-teacher-en.pdf",
-          "bytes": 233045,
-          "englishBytes": 230829
+          "bytes": 233043,
+          "englishBytes": 230823
         }
       ]
     },
@@ -762,8 +762,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 81,
           "englishPath": "resources/seconde-12/chapter-en.pdf",
-          "bytes": 172018,
-          "englishBytes": 170683
+          "bytes": 172024,
+          "englishBytes": 170681
         },
         {
           "kind": "teacher",
@@ -773,7 +773,7 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 81,
           "englishPath": "resources/seconde-12/teacher-en.pdf",
-          "bytes": 178437,
+          "bytes": 178443,
           "englishBytes": 176259
         },
         {
@@ -789,7 +789,7 @@ export const resourceCatalog = {
           "end": 16,
           "englishPath": "resources/seconde-11/fluency-student-en.pdf",
           "bytes": 201990,
-          "englishBytes": 198988
+          "englishBytes": 198985
         },
         {
           "kind": "fluency-solutions",
@@ -829,8 +829,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 84,
           "englishPath": "resources/seconde-13/chapter-en.pdf",
-          "bytes": 213499,
-          "englishBytes": 212117
+          "bytes": 213498,
+          "englishBytes": 212109
         },
         {
           "kind": "teacher",
@@ -840,8 +840,8 @@ export const resourceCatalog = {
           "pages": 3,
           "end": 84,
           "englishPath": "resources/seconde-13/teacher-en.pdf",
-          "bytes": 216297,
-          "englishBytes": 214011
+          "bytes": 216302,
+          "englishBytes": 214007
         },
         {
           "kind": "fluency",
@@ -856,7 +856,7 @@ export const resourceCatalog = {
           "end": 16,
           "englishPath": "resources/seconde-12/fluency-student-en.pdf",
           "bytes": 186064,
-          "englishBytes": 183307
+          "englishBytes": 183332
         },
         {
           "kind": "fluency-solutions",
@@ -871,7 +871,7 @@ export const resourceCatalog = {
           "end": 26,
           "englishPath": "resources/seconde-12/fluency-teacher-en.pdf",
           "bytes": 217263,
-          "englishBytes": 214649
+          "englishBytes": 214667
         }
       ]
     },
@@ -896,8 +896,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 91,
           "englishPath": "resources/seconde-14/chapter-en.pdf",
-          "bytes": 266098,
-          "englishBytes": 265111
+          "bytes": 266087,
+          "englishBytes": 265109
         },
         {
           "kind": "teacher",
@@ -907,8 +907,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 91,
           "englishPath": "resources/seconde-14/teacher-en.pdf",
-          "bytes": 268067,
-          "englishBytes": 266243
+          "bytes": 268070,
+          "englishBytes": 266222
         },
         {
           "kind": "fluency",
@@ -923,7 +923,7 @@ export const resourceCatalog = {
           "end": 19,
           "englishPath": "resources/seconde-13/fluency-student-en.pdf",
           "bytes": 212056,
-          "englishBytes": 209303
+          "englishBytes": 209286
         },
         {
           "kind": "fluency-solutions",
@@ -937,8 +937,8 @@ export const resourceCatalog = {
           "pages": 5,
           "end": 30,
           "englishPath": "resources/seconde-13/fluency-teacher-en.pdf",
-          "bytes": 243498,
-          "englishBytes": 240714
+          "bytes": 243493,
+          "englishBytes": 240696
         }
       ]
     },
@@ -964,7 +964,7 @@ export const resourceCatalog = {
           "end": 94,
           "englishPath": "resources/seconde-15/chapter-en.pdf",
           "bytes": 218592,
-          "englishBytes": 217186
+          "englishBytes": 217184
         },
         {
           "kind": "teacher",
@@ -990,7 +990,7 @@ export const resourceCatalog = {
           "end": 20,
           "englishPath": "resources/seconde-14/fluency-student-en.pdf",
           "bytes": 199061,
-          "englishBytes": 197028
+          "englishBytes": 197022
         },
         {
           "kind": "fluency",
@@ -1004,8 +1004,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 22,
           "englishPath": "resources/seconde-15/fluency-student-en.pdf",
-          "bytes": 219954,
-          "englishBytes": 217788
+          "bytes": 219951,
+          "englishBytes": 217774
         },
         {
           "kind": "fluency-solutions",
@@ -1019,8 +1019,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 31,
           "englishPath": "resources/seconde-14/fluency-teacher-en.pdf",
-          "bytes": 237035,
-          "englishBytes": 235068
+          "bytes": 237044,
+          "englishBytes": 235042
         },
         {
           "kind": "fluency-solutions",
@@ -1034,8 +1034,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 35,
           "englishPath": "resources/seconde-15/fluency-teacher-en.pdf",
-          "bytes": 255968,
-          "englishBytes": 253251
+          "bytes": 255975,
+          "englishBytes": 253213
         }
       ]
     },
@@ -1058,22 +1058,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 9,
-          "end": 15,
+          "pages": 10,
+          "end": 16,
           "englishPath": "resources/premiere-01/chapter-en.pdf",
-          "bytes": 250247,
-          "englishBytes": 247023
+          "bytes": 251247,
+          "englishBytes": 247657
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 7,
           "path": "resources/premiere-01/teacher.pdf",
-          "pages": 12,
-          "end": 18,
+          "pages": 13,
+          "end": 19,
           "englishPath": "resources/premiere-01/teacher-en.pdf",
-          "bytes": 273613,
-          "englishBytes": 270224
+          "bytes": 274030,
+          "englishBytes": 270279
         }
       ]
     },
@@ -1097,22 +1097,22 @@ export const resourceCatalog = {
             "practice": 4,
             "quiz": 7
           },
-          "pages": 8,
-          "end": 23,
+          "pages": 10,
+          "end": 25,
           "englishPath": "resources/premiere-02/chapter-en.pdf",
-          "bytes": 244412,
-          "englishBytes": 241405
+          "bytes": 247051,
+          "englishBytes": 243926
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 19,
           "path": "resources/premiere-02/teacher.pdf",
-          "pages": 11,
-          "end": 29,
+          "pages": 13,
+          "end": 31,
           "englishPath": "resources/premiere-02/teacher-en.pdf",
-          "bytes": 261285,
-          "englishBytes": 258124
+          "bytes": 262795,
+          "englishBytes": 259590
         }
       ]
     },
@@ -1135,22 +1135,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 8,
-          "end": 31,
+          "pages": 10,
+          "end": 33,
           "englishPath": "resources/premiere-03/chapter-en.pdf",
-          "bytes": 236099,
-          "englishBytes": 233009
+          "bytes": 238802,
+          "englishBytes": 235245
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 30,
           "path": "resources/premiere-03/teacher.pdf",
-          "pages": 11,
-          "end": 40,
+          "pages": 13,
+          "end": 42,
           "englishPath": "resources/premiere-03/teacher-en.pdf",
-          "bytes": 261115,
-          "englishBytes": 257872
+          "bytes": 262893,
+          "englishBytes": 259209
         }
       ]
     },
@@ -1173,22 +1173,22 @@ export const resourceCatalog = {
             "practice": 4,
             "quiz": 7
           },
-          "pages": 8,
-          "end": 40,
+          "pages": 9,
+          "end": 41,
           "englishPath": "resources/premiere-04/chapter-en.pdf",
-          "bytes": 236080,
-          "englishBytes": 233291
+          "bytes": 237301,
+          "englishBytes": 234053
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 42,
           "path": "resources/premiere-04/teacher.pdf",
-          "pages": 11,
-          "end": 52,
+          "pages": 12,
+          "end": 53,
           "englishPath": "resources/premiere-04/teacher-en.pdf",
-          "bytes": 252590,
-          "englishBytes": 249486
+          "bytes": 253051,
+          "englishBytes": 249528
         }
       ]
     },
@@ -1211,22 +1211,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 9,
-          "end": 49,
+          "pages": 10,
+          "end": 50,
           "englishPath": "resources/premiere-05/chapter-en.pdf",
-          "bytes": 241922,
-          "englishBytes": 238658
+          "bytes": 242867,
+          "englishBytes": 239196
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 53,
           "path": "resources/premiere-05/teacher.pdf",
-          "pages": 12,
-          "end": 64,
+          "pages": 13,
+          "end": 65,
           "englishPath": "resources/premiere-05/teacher-en.pdf",
-          "bytes": 258142,
-          "englishBytes": 254525
+          "bytes": 258478,
+          "englishBytes": 254474
         }
       ]
     },
@@ -1249,22 +1249,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 9,
-          "end": 58,
+          "pages": 10,
+          "end": 59,
           "englishPath": "resources/premiere-06/chapter-en.pdf",
-          "bytes": 248955,
-          "englishBytes": 245815
+          "bytes": 250146,
+          "englishBytes": 246733
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 65,
           "path": "resources/premiere-06/teacher.pdf",
-          "pages": 12,
-          "end": 76,
+          "pages": 13,
+          "end": 77,
           "englishPath": "resources/premiere-06/teacher-en.pdf",
-          "bytes": 265930,
-          "englishBytes": 262855
+          "bytes": 266277,
+          "englishBytes": 262784
         }
       ]
     },
@@ -1287,22 +1287,22 @@ export const resourceCatalog = {
             "practice": 4,
             "quiz": 7
           },
-          "pages": 8,
-          "end": 66,
+          "pages": 9,
+          "end": 67,
           "englishPath": "resources/premiere-07/chapter-en.pdf",
-          "bytes": 236746,
-          "englishBytes": 233834
+          "bytes": 237913,
+          "englishBytes": 234562
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 77,
           "path": "resources/premiere-07/teacher.pdf",
-          "pages": 10,
-          "end": 86,
+          "pages": 11,
+          "end": 87,
           "englishPath": "resources/premiere-07/teacher-en.pdf",
-          "bytes": 251326,
-          "englishBytes": 248322
+          "bytes": 251606,
+          "englishBytes": 248231
         }
       ]
     },
@@ -1326,22 +1326,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 9,
-          "end": 75,
+          "pages": 10,
+          "end": 76,
           "englishPath": "resources/premiere-08/chapter-en.pdf",
-          "bytes": 264529,
-          "englishBytes": 261910
+          "bytes": 266004,
+          "englishBytes": 262979
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 88,
           "path": "resources/premiere-08/teacher.pdf",
-          "pages": 12,
-          "end": 99,
+          "pages": 13,
+          "end": 100,
           "englishPath": "resources/premiere-08/teacher-en.pdf",
-          "bytes": 281888,
-          "englishBytes": 278913
+          "bytes": 282998,
+          "englishBytes": 279655
         }
       ]
     },
@@ -1364,22 +1364,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 9,
-          "end": 84,
+          "pages": 10,
+          "end": 85,
           "englishPath": "resources/premiere-09/chapter-en.pdf",
-          "bytes": 247311,
-          "englishBytes": 244421
+          "bytes": 248532,
+          "englishBytes": 245243
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 100,
           "path": "resources/premiere-09/teacher.pdf",
-          "pages": 12,
-          "end": 111,
+          "pages": 13,
+          "end": 112,
           "englishPath": "resources/premiere-09/teacher-en.pdf",
-          "bytes": 267956,
-          "englishBytes": 264881
+          "bytes": 268566,
+          "englishBytes": 265152
         }
       ]
     },
@@ -1403,22 +1403,22 @@ export const resourceCatalog = {
             "practice": 5,
             "quiz": 8
           },
-          "pages": 9,
-          "end": 93,
+          "pages": 10,
+          "end": 94,
           "englishPath": "resources/premiere-10/chapter-en.pdf",
-          "bytes": 233331,
-          "englishBytes": 230380
+          "bytes": 234448,
+          "englishBytes": 231183
         },
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
           "start": 112,
           "path": "resources/premiere-10/teacher.pdf",
-          "pages": 12,
-          "end": 123,
+          "pages": 13,
+          "end": 124,
           "englishPath": "resources/premiere-10/teacher-en.pdf",
-          "bytes": 249261,
-          "englishBytes": 246058
+          "bytes": 249577,
+          "englishBytes": 246063
         }
       ]
     },
@@ -1439,14 +1439,14 @@ export const resourceCatalog = {
           "path": "resources/terminale-01/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 3,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 13,
+          "pages": 5,
+          "end": 15,
           "englishPath": "resources/terminale-01/chapter-en.pdf",
-          "bytes": 221570,
-          "englishBytes": 217972
+          "bytes": 224897,
+          "englishBytes": 221285
         },
         {
           "kind": "teacher",
@@ -1456,8 +1456,8 @@ export const resourceCatalog = {
           "pages": 2,
           "end": 14,
           "englishPath": "resources/terminale-01/teacher-en.pdf",
-          "bytes": 204988,
-          "englishBytes": 200763
+          "bytes": 204905,
+          "englishBytes": 200705
         }
       ]
     },
@@ -1474,29 +1474,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 14,
+          "start": 16,
           "path": "resources/terminale-02/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 16,
+          "pages": 5,
+          "end": 20,
           "englishPath": "resources/terminale-02/chapter-en.pdf",
-          "bytes": 228524,
-          "englishBytes": 224841
+          "bytes": 231624,
+          "englishBytes": 227935
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
           "start": 15,
           "path": "resources/terminale-02/teacher.pdf",
-          "pages": 5,
-          "end": 19,
+          "pages": 7,
+          "end": 21,
           "englishPath": "resources/terminale-02/teacher-en.pdf",
-          "bytes": 270630,
-          "englishBytes": 266046
+          "bytes": 273963,
+          "englishBytes": 269356
         }
       ]
     },
@@ -1513,29 +1513,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 17,
+          "start": 21,
           "path": "resources/terminale-03/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 19,
+          "pages": 5,
+          "end": 25,
           "englishPath": "resources/terminale-03/chapter-en.pdf",
-          "bytes": 241841,
-          "englishBytes": 238398
+          "bytes": 245136,
+          "englishBytes": 241680
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 20,
+          "start": 22,
           "path": "resources/terminale-03/teacher.pdf",
-          "pages": 5,
-          "end": 24,
+          "pages": 7,
+          "end": 28,
           "englishPath": "resources/terminale-03/teacher-en.pdf",
-          "bytes": 242121,
-          "englishBytes": 237409
+          "bytes": 245215,
+          "englishBytes": 240523
         }
       ]
     },
@@ -1552,29 +1552,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 20,
+          "start": 26,
           "path": "resources/terminale-04/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 22,
+          "pages": 5,
+          "end": 30,
           "englishPath": "resources/terminale-04/chapter-en.pdf",
-          "bytes": 232359,
-          "englishBytes": 228802
+          "bytes": 235484,
+          "englishBytes": 231916
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 25,
+          "start": 29,
           "path": "resources/terminale-04/teacher.pdf",
-          "pages": 5,
-          "end": 29,
+          "pages": 7,
+          "end": 35,
           "englishPath": "resources/terminale-04/teacher-en.pdf",
-          "bytes": 257589,
-          "englishBytes": 253110
+          "bytes": 260642,
+          "englishBytes": 256378
         }
       ]
     },
@@ -1591,29 +1591,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 23,
+          "start": 31,
           "path": "resources/terminale-05/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 25,
+          "pages": 5,
+          "end": 35,
           "englishPath": "resources/terminale-05/chapter-en.pdf",
-          "bytes": 224490,
-          "englishBytes": 220945
+          "bytes": 227561,
+          "englishBytes": 224007
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 30,
+          "start": 36,
           "path": "resources/terminale-05/teacher.pdf",
-          "pages": 5,
-          "end": 34,
+          "pages": 7,
+          "end": 42,
           "englishPath": "resources/terminale-05/teacher-en.pdf",
-          "bytes": 245598,
-          "englishBytes": 241122
+          "bytes": 248729,
+          "englishBytes": 244216
         }
       ]
     },
@@ -1630,29 +1630,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 26,
+          "start": 36,
           "path": "resources/terminale-06/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 28,
+          "pages": 5,
+          "end": 40,
           "englishPath": "resources/terminale-06/chapter-en.pdf",
-          "bytes": 232090,
-          "englishBytes": 228272
+          "bytes": 235048,
+          "englishBytes": 231247
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 35,
+          "start": 43,
           "path": "resources/terminale-06/teacher.pdf",
-          "pages": 5,
-          "end": 39,
+          "pages": 7,
+          "end": 49,
           "englishPath": "resources/terminale-06/teacher-en.pdf",
-          "bytes": 235831,
-          "englishBytes": 231237
+          "bytes": 238920,
+          "englishBytes": 234340
         }
       ]
     },
@@ -1669,29 +1669,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 29,
+          "start": 41,
           "path": "resources/terminale-07/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 31,
+          "pages": 5,
+          "end": 45,
           "englishPath": "resources/terminale-07/chapter-en.pdf",
-          "bytes": 234695,
-          "englishBytes": 231179
+          "bytes": 237572,
+          "englishBytes": 234110
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 40,
+          "start": 50,
           "path": "resources/terminale-07/teacher.pdf",
-          "pages": 6,
-          "end": 45,
+          "pages": 8,
+          "end": 57,
           "englishPath": "resources/terminale-07/teacher-en.pdf",
-          "bytes": 289772,
-          "englishBytes": 284926
+          "bytes": 292757,
+          "englishBytes": 287881
         }
       ]
     },
@@ -1708,29 +1708,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 32,
+          "start": 46,
           "path": "resources/terminale-08/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 34,
+          "pages": 5,
+          "end": 50,
           "englishPath": "resources/terminale-08/chapter-en.pdf",
-          "bytes": 223973,
-          "englishBytes": 220421
+          "bytes": 226854,
+          "englishBytes": 223293
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 46,
+          "start": 58,
           "path": "resources/terminale-08/teacher.pdf",
-          "pages": 5,
-          "end": 50,
+          "pages": 7,
+          "end": 64,
           "englishPath": "resources/terminale-08/teacher-en.pdf",
-          "bytes": 248750,
-          "englishBytes": 244054
+          "bytes": 251701,
+          "englishBytes": 247013
         }
       ]
     },
@@ -1747,29 +1747,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 35,
+          "start": 51,
           "path": "resources/terminale-09/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 37,
+          "pages": 5,
+          "end": 55,
           "englishPath": "resources/terminale-09/chapter-en.pdf",
-          "bytes": 226758,
-          "englishBytes": 223020
+          "bytes": 229830,
+          "englishBytes": 226072
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 51,
+          "start": 65,
           "path": "resources/terminale-09/teacher.pdf",
-          "pages": 5,
-          "end": 55,
+          "pages": 7,
+          "end": 71,
           "englishPath": "resources/terminale-09/teacher-en.pdf",
-          "bytes": 237418,
-          "englishBytes": 232916
+          "bytes": 240269,
+          "englishBytes": 235779
         }
       ]
     },
@@ -1786,29 +1786,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 38,
+          "start": 56,
           "path": "resources/terminale-10/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 40,
+          "pages": 5,
+          "end": 60,
           "englishPath": "resources/terminale-10/chapter-en.pdf",
-          "bytes": 221348,
-          "englishBytes": 217724
+          "bytes": 224403,
+          "englishBytes": 220760
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 56,
+          "start": 72,
           "path": "resources/terminale-10/teacher.pdf",
-          "pages": 5,
-          "end": 60,
+          "pages": 7,
+          "end": 78,
           "englishPath": "resources/terminale-10/teacher-en.pdf",
-          "bytes": 251553,
-          "englishBytes": 246662
+          "bytes": 254640,
+          "englishBytes": 249718
         }
       ]
     },
@@ -1825,29 +1825,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 41,
+          "start": 61,
           "path": "resources/terminale-11/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 3,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 43,
+          "pages": 5,
+          "end": 65,
           "englishPath": "resources/terminale-11/chapter-en.pdf",
-          "bytes": 241089,
-          "englishBytes": 237406
+          "bytes": 244234,
+          "englishBytes": 240598
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 61,
+          "start": 79,
           "path": "resources/terminale-11/teacher.pdf",
-          "pages": 5,
-          "end": 65,
+          "pages": 7,
+          "end": 85,
           "englishPath": "resources/terminale-11/teacher-en.pdf",
-          "bytes": 262197,
-          "englishBytes": 257330
+          "bytes": 265501,
+          "englishBytes": 260594
         }
       ]
     },
@@ -1864,29 +1864,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 44,
+          "start": 66,
           "path": "resources/terminale-12/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 46,
+          "pages": 5,
+          "end": 70,
           "englishPath": "resources/terminale-12/chapter-en.pdf",
-          "bytes": 234080,
-          "englishBytes": 230833
+          "bytes": 237345,
+          "englishBytes": 234177
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 66,
+          "start": 86,
           "path": "resources/terminale-12/teacher.pdf",
-          "pages": 5,
-          "end": 70,
+          "pages": 8,
+          "end": 93,
           "englishPath": "resources/terminale-12/teacher-en.pdf",
-          "bytes": 283392,
-          "englishBytes": 278676
+          "bytes": 288098,
+          "englishBytes": 283418
         }
       ]
     },
@@ -1903,29 +1903,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 47,
+          "start": 71,
           "path": "resources/terminale-13/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 49,
+          "pages": 5,
+          "end": 75,
           "englishPath": "resources/terminale-13/chapter-en.pdf",
-          "bytes": 225953,
-          "englishBytes": 222259
+          "bytes": 229037,
+          "englishBytes": 225368
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 71,
+          "start": 94,
           "path": "resources/terminale-13/teacher.pdf",
-          "pages": 5,
-          "end": 75,
+          "pages": 7,
+          "end": 100,
           "englishPath": "resources/terminale-13/teacher-en.pdf",
-          "bytes": 285640,
-          "englishBytes": 281225
+          "bytes": 288918,
+          "englishBytes": 284499
         }
       ]
     },
@@ -1942,29 +1942,29 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 50,
+          "start": 76,
           "path": "resources/terminale-14/chapter.pdf",
           "sections": {
             "lesson": 1,
-            "practice": 2,
-            "problem": 3
+            "practice": 4,
+            "problem": 5
           },
-          "pages": 3,
-          "end": 52,
+          "pages": 5,
+          "end": 80,
           "englishPath": "resources/terminale-14/chapter-en.pdf",
-          "bytes": 233666,
-          "englishBytes": 230296
+          "bytes": 236787,
+          "englishBytes": 233382
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 76,
+          "start": 101,
           "path": "resources/terminale-14/teacher.pdf",
-          "pages": 5,
-          "end": 80,
+          "pages": 7,
+          "end": 107,
           "englishPath": "resources/terminale-14/teacher-en.pdf",
-          "bytes": 239165,
-          "englishBytes": 234493
+          "bytes": 242270,
+          "englishBytes": 237585
         }
       ]
     },
@@ -1992,7 +1992,7 @@ export const resourceCatalog = {
           "end": 20,
           "englishPath": "resources/stmg-01/chapter-en.pdf",
           "bytes": 262862,
-          "englishBytes": 259621
+          "englishBytes": 259690
         },
         {
           "kind": "teacher",
@@ -2003,7 +2003,7 @@ export const resourceCatalog = {
           "end": 25,
           "englishPath": "resources/stmg-01/teacher-en.pdf",
           "bytes": 289896,
-          "englishBytes": 285495
+          "englishBytes": 285799
         }
       ]
     },
@@ -2031,7 +2031,7 @@ export const resourceCatalog = {
           "end": 38,
           "englishPath": "resources/stmg-02/chapter-en.pdf",
           "bytes": 293905,
-          "englishBytes": 291273
+          "englishBytes": 291256
         },
         {
           "kind": "teacher",
@@ -2041,8 +2041,8 @@ export const resourceCatalog = {
           "pages": 23,
           "end": 48,
           "englishPath": "resources/stmg-02/teacher-en.pdf",
-          "bytes": 333186,
-          "englishBytes": 327648
+          "bytes": 333171,
+          "englishBytes": 327637
         }
       ]
     },
@@ -2069,8 +2069,8 @@ export const resourceCatalog = {
           "pages": 17,
           "end": 55,
           "englishPath": "resources/stmg-03/chapter-en.pdf",
-          "bytes": 285043,
-          "englishBytes": 281701
+          "bytes": 285037,
+          "englishBytes": 281779
         },
         {
           "kind": "teacher",
@@ -2080,8 +2080,8 @@ export const resourceCatalog = {
           "pages": 25,
           "end": 73,
           "englishPath": "resources/stmg-03/teacher-en.pdf",
-          "bytes": 337372,
-          "englishBytes": 331187
+          "bytes": 337377,
+          "englishBytes": 331569
         }
       ]
     },
@@ -2109,7 +2109,7 @@ export const resourceCatalog = {
           "end": 75,
           "englishPath": "resources/stmg-04/chapter-en.pdf",
           "bytes": 307043,
-          "englishBytes": 304266
+          "englishBytes": 304272
         },
         {
           "kind": "teacher",
@@ -2119,8 +2119,8 @@ export const resourceCatalog = {
           "pages": 26,
           "end": 99,
           "englishPath": "resources/stmg-04/teacher-en.pdf",
-          "bytes": 360436,
-          "englishBytes": 355562
+          "bytes": 360398,
+          "englishBytes": 355578
         }
       ]
     },
@@ -2148,7 +2148,7 @@ export const resourceCatalog = {
           "end": 91,
           "englishPath": "resources/stmg-05/chapter-en.pdf",
           "bytes": 263835,
-          "englishBytes": 260142
+          "englishBytes": 260149
         },
         {
           "kind": "teacher",
@@ -2159,7 +2159,7 @@ export const resourceCatalog = {
           "end": 123,
           "englishPath": "resources/stmg-05/teacher-en.pdf",
           "bytes": 309191,
-          "englishBytes": 302484
+          "englishBytes": 302663
         }
       ]
     },
@@ -2187,7 +2187,7 @@ export const resourceCatalog = {
           "end": 106,
           "englishPath": "resources/stmg-06/chapter-en.pdf",
           "bytes": 263134,
-          "englishBytes": 259705
+          "englishBytes": 259657
         },
         {
           "kind": "teacher",
@@ -2198,7 +2198,7 @@ export const resourceCatalog = {
           "end": 148,
           "englishPath": "resources/stmg-06/teacher-en.pdf",
           "bytes": 300301,
-          "englishBytes": 294505
+          "englishBytes": 294489
         }
       ]
     },
@@ -2226,7 +2226,7 @@ export const resourceCatalog = {
           "end": 117,
           "englishPath": "resources/stmg-07/chapter-en.pdf",
           "bytes": 242721,
-          "englishBytes": 240255
+          "englishBytes": 240235
         },
         {
           "kind": "teacher",
@@ -2237,7 +2237,7 @@ export const resourceCatalog = {
           "end": 164,
           "englishPath": "resources/stmg-07/teacher-en.pdf",
           "bytes": 280482,
-          "englishBytes": 275271
+          "englishBytes": 275227
         }
       ]
     },
@@ -2264,7 +2264,7 @@ export const resourceCatalog = {
           "end": 128,
           "englishPath": "resources/stmg-08/chapter-en.pdf",
           "bytes": 245681,
-          "englishBytes": 243191
+          "englishBytes": 243227
         },
         {
           "kind": "teacher",
@@ -2275,7 +2275,7 @@ export const resourceCatalog = {
           "end": 178,
           "englishPath": "resources/stmg-08/teacher-en.pdf",
           "bytes": 268048,
-          "englishBytes": 263492
+          "englishBytes": 263994
         }
       ]
     }
@@ -2298,8 +2298,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 97,
           "englishPath": "resources/premiere-methods-eleve-en.pdf",
-          "bytes": 248602,
-          "englishBytes": 245428
+          "bytes": 248307,
+          "englishBytes": 244764
         },
         {
           "kind": "teacher",
@@ -2309,8 +2309,8 @@ export const resourceCatalog = {
           "pages": 4,
           "end": 127,
           "englishPath": "resources/premiere-methods-prof-en.pdf",
-          "bytes": 255781,
-          "englishBytes": 252411
+          "bytes": 254777,
+          "englishBytes": 251076
         }
       ]
     },
@@ -2331,8 +2331,8 @@ export const resourceCatalog = {
           "pages": 8,
           "end": 105,
           "englishPath": "resources/premiere-fluency-eleve-en.pdf",
-          "bytes": 215027,
-          "englishBytes": 211887
+          "bytes": 214642,
+          "englishBytes": 211122
         },
         {
           "kind": "teacher",
@@ -2342,8 +2342,8 @@ export const resourceCatalog = {
           "pages": 13,
           "end": 140,
           "englishPath": "resources/premiere-fluency-prof-en.pdf",
-          "bytes": 272449,
-          "englishBytes": 269505
+          "bytes": 271375,
+          "englishBytes": 268105
         }
       ]
     },
@@ -2364,8 +2364,8 @@ export const resourceCatalog = {
           "pages": 17,
           "end": 122,
           "englishPath": "resources/premiere-assessments-eleve-en.pdf",
-          "bytes": 270489,
-          "englishBytes": 267617
+          "bytes": 270284,
+          "englishBytes": 266844
         },
         {
           "kind": "teacher",
@@ -2375,8 +2375,8 @@ export const resourceCatalog = {
           "pages": 49,
           "end": 189,
           "englishPath": "resources/premiere-assessments-prof-en.pdf",
-          "bytes": 406229,
-          "englishBytes": 401606
+          "bytes": 406815,
+          "englishBytes": 401482
         }
       ]
     },
@@ -2458,24 +2458,24 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 53,
+          "start": 81,
           "path": "resources/terminale-algorithms-eleve.pdf",
           "pages": 3,
-          "end": 55,
+          "end": 83,
           "englishPath": "resources/terminale-algorithms-eleve-en.pdf",
-          "bytes": 218515,
-          "englishBytes": 215275
+          "bytes": 218426,
+          "englishBytes": 215222
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 81,
+          "start": 108,
           "path": "resources/terminale-algorithms-prof.pdf",
-          "pages": 5,
-          "end": 85,
+          "pages": 7,
+          "end": 114,
           "englishPath": "resources/terminale-algorithms-prof-en.pdf",
-          "bytes": 246769,
-          "englishBytes": 242555
+          "bytes": 249903,
+          "englishBytes": 245653
         }
       ]
     },
@@ -2491,24 +2491,24 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 56,
+          "start": 84,
           "path": "resources/terminale-proofs-eleve.pdf",
           "pages": 1,
-          "end": 56,
+          "end": 84,
           "englishPath": "resources/terminale-proofs-eleve-en.pdf",
-          "bytes": 178201,
-          "englishBytes": 176017
+          "bytes": 178305,
+          "englishBytes": 176014
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 86,
+          "start": 115,
           "path": "resources/terminale-proofs-prof.pdf",
           "pages": 3,
-          "end": 88,
+          "end": 117,
           "englishPath": "resources/terminale-proofs-prof-en.pdf",
-          "bytes": 221858,
-          "englishBytes": 217910
+          "bytes": 221764,
+          "englishBytes": 217841
         }
       ]
     },
@@ -2524,24 +2524,24 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 57,
+          "start": 85,
           "path": "resources/terminale-oral-eleve.pdf",
           "pages": 1,
-          "end": 57,
+          "end": 85,
           "englishPath": "resources/terminale-oral-eleve-en.pdf",
-          "bytes": 135991,
-          "englishBytes": 133820
+          "bytes": 136098,
+          "englishBytes": 133821
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 89,
+          "start": 118,
           "path": "resources/terminale-oral-prof.pdf",
           "pages": 1,
-          "end": 89,
+          "end": 118,
           "englishPath": "resources/terminale-oral-prof-en.pdf",
-          "bytes": 180762,
-          "englishBytes": 177576
+          "bytes": 180878,
+          "englishBytes": 177578
         }
       ]
     },
@@ -2557,24 +2557,24 @@ export const resourceCatalog = {
         {
           "kind": "chapter",
           "source": "terminale-eleve.pdf",
-          "start": 58,
+          "start": 86,
           "path": "resources/terminale-assessments-eleve.pdf",
           "pages": 37,
-          "end": 94,
+          "end": 122,
           "englishPath": "resources/terminale-assessments-eleve-en.pdf",
-          "bytes": 374565,
-          "englishBytes": 368535
+          "bytes": 374733,
+          "englishBytes": 368499
         },
         {
           "kind": "teacher",
           "source": "terminale-prof.pdf",
-          "start": 90,
+          "start": 119,
           "path": "resources/terminale-assessments-prof.pdf",
           "pages": 165,
-          "end": 254,
+          "end": 283,
           "englishPath": "resources/terminale-assessments-prof-en.pdf",
-          "bytes": 976824,
-          "englishBytes": 962740
+          "bytes": 979322,
+          "englishBytes": 963273
         }
       ]
     },
@@ -2595,8 +2595,8 @@ export const resourceCatalog = {
           "pages": 15,
           "end": 142,
           "englishPath": "resources/stmg-assessments-eleve-en.pdf",
-          "bytes": 234655,
-          "englishBytes": 231322
+          "bytes": 234689,
+          "englishBytes": 231359
         },
         {
           "kind": "teacher",
@@ -2606,8 +2606,8 @@ export const resourceCatalog = {
           "pages": 16,
           "end": 194,
           "englishPath": "resources/stmg-assessments-prof-en.pdf",
-          "bytes": 274028,
-          "englishBytes": 270471
+          "bytes": 274062,
+          "englishBytes": 270525
         }
       ]
     },
@@ -2656,13 +2656,13 @@ export const resourceCatalog = {
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
-          "start": 188,
+          "start": 200,
           "path": "resources/premiere-revision/matrix.pdf",
           "pages": 6,
-          "end": 193,
+          "end": 205,
           "englishPath": "resources/premiere-revision/matrix-en.pdf",
-          "bytes": 149121,
-          "englishBytes": 146239
+          "bytes": 148004,
+          "englishBytes": 144746
         }
       ]
     },
@@ -2678,13 +2678,13 @@ export const resourceCatalog = {
         {
           "kind": "teacher",
           "source": "premiere-prof.pdf",
-          "start": 194,
+          "start": 206,
           "path": "resources/premiere-revision/schedule.pdf",
           "pages": 17,
-          "end": 210,
+          "end": 222,
           "englishPath": "resources/premiere-revision/schedule-en.pdf",
-          "bytes": 189398,
-          "englishBytes": 186048
+          "bytes": 188268,
+          "englishBytes": 184540
         }
       ]
     }

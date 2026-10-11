@@ -1,6 +1,6 @@
-\setcounter{chapter}{8}\mxunit{terminale-c05}{Combinatoire et dénombrement}\label{ch:9}
+\mxunit[9]{terminale-c05}{Combinatoire et dénombrement}\label{ch:9}
 
-{\small\sffamily\color{mxmint}S22, S25, S30, S35\par}
+\mxsubtitle{S22, S25, S30, S35}
 
 \begin{keypoint}[Objectifs]Choisir un modèle de comptage ; distinguer ordre et répétition ; utiliser coefficients binomiaux et relation de Pascal.\end{keypoint}
 
@@ -30,6 +30,7 @@ Les cas au bord se traitent directement.
 \paragraph{Approfondissement mentionné dans la progression.} Le développement $(a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k$ se comprend en choisissant, dans chacun des $n$ facteurs, le terme $a$ ou $b$. Cette formule n'est pas utilisée comme prérequis des DS de ce livret.
 
 
+\mxnewpage
 \section{Activité de recherche}\textbf{Ordre et répétition dans un dénombrement --- 30 min.}\par Six élèves distincts se portent volontaires pour organiser un débat.
 \begin{enumerate}\item On choisit deux élèves pour former un binôme sans attribuer de rôle. Combien de binômes peut-on former ?
 \item On désigne un président et un secrétaire, qui doivent être deux élèves différents. Combien d'attributions des deux rôles sont possibles ?
@@ -37,6 +38,7 @@ Les cas au bord se traitent directement.
 \item On recommence avec quatre élèves seulement, désignés par $A$, $B$, $C$ et $D$. Écrire tous les binômes et toutes les attributions des deux rôles. Expliquer ensuite pourquoi il existe $64$ programmes de trois interventions, sans les énumérer.
 \item Pour chacun des trois modes de choix, préciser si l'ordre intervient et si une même personne peut être choisie plusieurs fois.\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
 \mxexerciseitem{1}{Entraînement}Un code est une suite de quatre chiffres choisis parmi $0,1,\ldots,9$. Les répétitions et le chiffre $0$ en première position sont autorisés. Combien de codes contiennent au moins un $0$ ?
@@ -45,12 +47,13 @@ Les cas au bord se traitent directement.
 
 \mxexerciseitem{3}{Entraînement}Parmi sept personnes distinctes, on forme un groupe de trois personnes contenant une personne désignée à l'avance. Combien de groupes peut-on former ?
 
-\mxexerciseitem{4}{Entraînement}Sur un quadrillage, on part de $(0;0)$ pour atteindre $(4;3)$ en effectuant exactement quatre déplacements d'une unité vers la droite et trois vers le haut. Combien de chemins différents peut-on suivre ?
+\mxexerciseitem{4}{Entraînement}Sur un quadrillage, on part de $\pt{0;0}$ pour atteindre $\pt{4;3}$ en effectuant exactement quatre déplacements d'une unité vers la droite et trois vers le haut. Combien de chemins différents peut-on suivre ?
 
 \mxexerciseitem{5}{Entraînement}Une classe compte huit filles et sept garçons. Combien de groupes de quatre élèves contenant exactement deux filles peut-on former ?
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 294, exercice 37.} À la maison après S35 : traiter les deux questions. Préciser si l'ordre intervient et si une carte peut être choisie plusieurs fois avant d'utiliser un coefficient binomial.
 
+\mxnewpage
 \section{Devoir à la maison}\textbf{DM9 --- Former une commission --- 45 min, après S35.}\par Une équipe comprend cinq enseignants et sept élèves, tous distincts. On forme une commission de quatre personnes.
 \begin{enumerate}\item Combien de commissions différentes peut-on former ?
 \item Combien de commissions contiennent exactement deux élèves ?
@@ -89,7 +92,7 @@ Les cas au bord se traitent directement.
 \[\sum_{k=0}^4\binom5k\binom7{4-k}=\binom{12}4=495.\]
 \end{enumerate}
 
-\subsection{Corrigé du travail dans le manuel ou une annale}Une main contient cinq cartes distinctes ; l'ordre n'intervient pas. Il y a donc $\binom{52}5=2\,598\,960$ mains. Pour une main contenant l'as de pique, cette carte est déjà choisie ; on choisit les quatre autres parmi les $51$ cartes restantes. Il y a $\binom{51}4=249\,900$ mains. On ne multiplie pas ce résultat par $5$ : la main n'a pas de première ou de dernière position.
+\subsection{Corrigé du travail dans le manuel ou une annale}Une main contient cinq cartes distinctes ; l'ordre n'intervient pas. Il y a donc $\binom{52}5=\num{2598960}$ mains. Pour une main contenant l'as de pique, cette carte est déjà choisie ; on choisit les quatre autres parmi les $51$ cartes restantes. Il y a $\binom{51}4=\num{249900}$ mains. On ne multiplie pas ce résultat par $5$ : la main n'a pas de première ou de dernière position.
 
 \fi
 

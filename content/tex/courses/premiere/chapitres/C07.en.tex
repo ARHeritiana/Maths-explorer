@@ -9,10 +9,10 @@
 \section*{Diagnostic: six questions, 10 minutes}\label{C07-D}
 Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
 \begin{enumerate}
-\item $(2;-1)\cdot(1;2)$ ?
-\item Does the point $(1;2)$ satisfy $2x-y=0$?
+\item $\pt{2;-1}\cdot\pt{1;2}$ ?
+\item Does the point $\pt{1;2}$ satisfy $2x-y=0$?
 \item Solve $x+y=5$, $x-y=1$.
-\item Distance from $(1;2)$ to $(4;6)$?
+\item Distance from $\pt{1;2}$ to $\pt{4;6}$?
 \item Complete $x^2-4x$.
 \item Solve $x^2+y^2=0$ in $\R^2$.
 \end{enumerate}
@@ -20,31 +20,32 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \paragraph{Speaking and logic.} Present the two conditions that characterise a projection. Give a geometric proof and an algebraic proof of a perpendicular bisector.
 \mxnewpage
 \section*{Investigate before formalising}\label{C07-RECH}
-Starting from $P(4;3)$ and $d:y=2x$, compare the distances to three points of d, then find and prove which is the shortest.
+Starting from $P\pt{4;3}$ and $d:y=2x$, compare the distances to three points of d, then find and prove which is the shortest.
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
 \section{Normal vector and Cartesian equation}\label{C07-U1}
 \begin{keypoint}[Definition and results]
-A nonzero normal vector to a line is orthogonal to every direction vector of that line. If $\vec n=(a;b)\ne(0;0)$ is normal and $A(x_A;y_A)$ belongs to d, then $d$ has equation $a(x-x_A)+b(y-y_A)=0$, that is $ax+by+c=0$. A possible direction vector is $(-b;a)$.
+A nonzero normal vector to a line is orthogonal to every direction vector of that line. If $\vec n=\pt{a;b}\ne\pt{0;0}$ is normal and $A\pt{x_A;y_A}$ belongs to d, then $d$ has equation $a(x-x_A)+b(y-y_A)=0$, that is $ax+by+c=0$. A possible direction vector is $\pt{-b;a}$.
 \end{keypoint}
 \paragraph{Status and justification.} $M\in d$ is equivalent to $\vect{AM}\cdot\vec n=0$. In an orthonormal frame, expanding this product gives the equation. Conversely, the set so defined is the line through A orthogonal to n.
-\begin{example}Through $A(1;2)$ with normal $(2;-3)$: $2(x-1)-3(y-2)=0$, so $2x-3y+4=0$. The vector $(3;2)$ directs the line: product $6-6=0$.\end{example}\label{C07-EX1}
-\begin{pitfall}$(a;b)$ is normal, not a direction vector in general. $(a;b)$ must not be zero.\end{pitfall}
-\begin{application}Equation of the line through $(2;-1)$ with normal $(3;4)$.\end{application}\label{C07-AP1}
+\begin{example}Through $A\pt{1;2}$ with normal $\pt{2;-3}$: $2(x-1)-3(y-2)=0$, so $2x-3y+4=0$. The vector $\pt{3;2}$ directs the line: product $6-6=0$.\end{example}\label{C07-EX1}
+\begin{pitfall}$\pt{a;b}$ is normal, not a direction vector in general. $\pt{a;b}$ must not be zero.\end{pitfall}
+\begin{application}Equation of the line through $\pt{2;-1}$ with normal $\pt{3;4}$.\end{application}\label{C07-AP1}
 \section{Orthogonal projection and distance}\label{C07-U2}
 \begin{keypoint}[Definition and results]
-The projection H of P onto d is characterised by $H\in d$ and $\vect{PH}$ collinear with a normal vector of d. For $d:ax+by+c=0$, write $H=P-\lambda(a;b)$, with $\lambda =\dfrac{ax_P+by_P+c}{a^2+b^2}$. The distance is $PH=\dfrac{|ax_P+by_P+c|}{\sqrt {a^2+b^2}}$. The distance formula is a deduced supplement, not an isolated routine.
+The projection H of P onto d is characterised by $H\in d$ and $\vect{PH}$ collinear with a normal vector of d. For $d:ax+by+c=0$, write $H=P-\lambda\pt{a;b}$, with $\lambda =\dfrac{ax_P+by_P+c}{a^2+b^2}$. The distance is $PH=\dfrac{|ax_P+by_P+c|}{\sqrt {a^2+b^2}}$. The distance formula is a deduced supplement, not an isolated routine.
 \end{keypoint}
 \paragraph{Status and justification.} Substitute $x_H=x_P-\lambda a$, $y_H=y_P-\lambda b$ in the equation: $ax_P+by_P+c-\lambda(a^2+b^2)=0$. The denominator is positive; we obtain H, then $PH=|\lambda|\sqrt{a^2+b^2}$.
-\begin{example}For $P(3;4)$ and $d:x+y-2=0$, $\lambda =\dfrac{3+4-2}{2}=\dfrac{5}{2}$, so $H(\dfrac{1}{2};\dfrac{3}{2})$ and $PH=\dfrac{5}{\sqrt 2}=\dfrac{5\sqrt 2}{2}$. Check $x_H+y_H=2$.\end{example}\label{C07-EX2}
+\begin{example}For $P\pt{3;4}$ and $d:x+y-2=0$, $\lambda =\dfrac{3+4-2}{2}=\dfrac{5}{2}$, so $H\pt{\dfrac{1}{2};\dfrac{3}{2}}$ and $PH=\dfrac{5}{\sqrt 2}=\dfrac{5\sqrt 2}{2}$. Check $x_H+y_H=2$.\end{example}\label{C07-EX2}
 \mxinclude{figures/C07-U2}
 \begin{pitfall}The distance is positive or zero: keep the absolute value. Two checks, membership and perpendicularity, secure the projection.\end{pitfall}
-\begin{application}Project $P(4;1)$ onto $d:x=2$.\end{application}\label{C07-AP2}
+\begin{application}Project $P\pt{4;1}$ onto $d:x=2$.\end{application}\label{C07-AP2}
 \section{Equation of a circle}\label{C07-U3}
 \begin{keypoint}[Definition and results]
-The circle with centre $I(\alpha;\beta)$ and radius $r>0$ has equation $(x-\alpha)^2+(y-\beta)^2=r^2$. An equation $x^2+y^2+ux+vy+w=0$ is handled by completing both squares. If the squared radius obtained is negative, the set is empty; if it is zero, it is a point.
+The circle with centre $I\pt{\alpha;\beta}$ and radius $r>0$ has equation $(x-\alpha)^2+(y-\beta)^2=r^2$. An equation $x^2+y^2+ux+vy+w=0$ is handled by completing both squares. If the squared radius obtained is negative, the set is empty; if it is zero, it is a point.
 \end{keypoint}
 \paragraph{Status and justification.} $M$ belongs to the circle if and only if $IM=r$. Since both sides are positive or zero, we can square and use the distance formula in an orthonormal frame.
-\begin{example}$x^2+y^2-4x+6y+9=0$ becomes $(x-2)^2+(y+3)^2=4$. Centre $(2;-3)$, radius 2. The signs of the coordinates of the centre are opposite to those appearing in the brackets.\end{example}\label{C07-EX3}
+\begin{example}$x^2+y^2-4x+6y+9=0$ becomes $(x-2)^2+(y+3)^2=4$. Centre $\pt{2;-3}$, radius 2. The signs of the coordinates of the centre are opposite to those appearing in the brackets.\end{example}\label{C07-EX3}
 \begin{pitfall}A quadratic equation in x and y is not always a circle: check the coefficients and the real radius.\end{pitfall}
 \begin{application}Recognise $x^2+y^2+2x-8y+17=0$.\end{application}\label{C07-AP3}
 \section{Solving a configuration}\label{C07-U4}
@@ -52,59 +53,60 @@ The circle with centre $I(\alpha;\beta)$ and radius $r>0$ has equation $(x-\alph
 An intersection is obtained by solving the equations simultaneously. For a circle and a line parallel to an axis, substituting the constant coordinate gives a quadratic equation. For a perpendicular bisector, write the equality of the squared distances; the quadratic terms cancel.
 \end{keypoint}
 \paragraph{Status and justification.} The equivalences rest on membership of both sets. The equality $MA=MB$ is equivalent to $MA^2=MB^2$, since the distances are positive.
-\begin{example}The circle $x^2+y^2=25$ and the line $x=3$ meet at $(3;4)$ and $(3;-4)$. The perpendicular bisector of $A(0;0)$ and $B(4;2)$ satisfies $x^2+y^2=(x-4)^2+(y-2)^2$, so $2x+y=5$.\end{example}\label{C07-EX4}
+\begin{example}The circle $x^2+y^2=25$ and the line $x=3$ meet at $\pt{3;4}$ and $\pt{3;-4}$. The perpendicular bisector of $A\pt{0;0}$ and $B\pt{4;2}$ satisfies $x^2+y^2=(x-4)^2+(y-2)^2$, so $2x+y=5$.\end{example}\label{C07-EX4}
 \begin{pitfall}An intersection is not the union of the solution sets. Check the points in both equations.\end{pitfall}
 \begin{application}Intersect $(x-1)^2+(y+2)^2=9$ with $y=1$.\end{application}\label{C07-AP4}
+\mxnewpage
 \section*{Exercise path}\label{C07-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
 \begingroup
 \mxexercisehead{C07-E1}{Constructing a line}
-The plane is equipped with an orthonormal frame. The line $d$ passes through $A(-1;3)$ and has the vector $\vec n=(2;5)$ as a normal vector.
+The plane is equipped with an orthonormal frame. The line $d$ passes through $A\pt{-1;3}$ and has the vector $\vec n=\pt{2;5}$ as a normal vector.
 \begin{enumerate}[label=\arabic*.]
-\item Write the condition for a point $M(x;y)$ to belong to $d$ using a scalar product. Deduce a Cartesian equation of $d$.
+\item Write the condition for a point $M\pt{x;y}$ to belong to $d$ using a scalar product. Deduce a Cartesian equation of $d$.
 \item Give a nonzero direction vector of $d$, then the coordinates of a point of $d$ other than $A$.
 \item Check your point by substitution in the equation.
 \end{enumerate}
 \mxexercisehead{C07-E2}{Calculating a projection}
-In an orthonormal frame, given the point $P(4;3)$ and the line $d$ with equation $2x-y=0$. Let $H$ be the orthogonal projection of $P$ onto $d$.
+In an orthonormal frame, given the point $P\pt{4;3}$ and the line $d$ with equation $2x-y=0$. Let $H$ be the orthogonal projection of $P$ onto $d$.
 \begin{enumerate}[label=\arabic*.]
 \item Determine the coordinates of $H$ by translating the two conditions: $H$ belongs to $d$ and $\vect{PH}$ is normal to $d$.
 \item Check these two conditions separately with the coordinates obtained.
 \item Calculate the distance from $P$ to the line $d$ in exact form.
 \end{enumerate}
 \mxexercisehead{C07-E3}{Recognising a circle}
-Consider the set of points $M(x;y)$ of the orthonormal plane whose coordinates satisfy\[x^2+y^2-6x+4y-12=0.\]
+Consider the set of points $M\pt{x;y}$ of the orthonormal plane whose coordinates satisfy\[x^2+y^2-6x+4y-12=0.\]
 \begin{enumerate}[label=\arabic*.]
 \item Show that this set is a circle and state its centre and radius.
 \item Determine all its points of intersection with the line with equation $y=-2$.
 \item Interpret geometrically the position of these two points on the circle.
 \end{enumerate}
 \mxexercisehead{C07-E4}{Perpendicular bisector}
-In an orthonormal frame, given $A(-1;1)$ and $B(3;3)$. We look for an equation of the perpendicular bisector of $[AB]$.
+In an orthonormal frame, given $A\pt{-1;1}$ and $B\pt{3;3}$. We look for an equation of the perpendicular bisector of $[AB]$.
 \begin{enumerate}[label=\arabic*.]
 \item Determine this equation using the geometric properties of the perpendicular bisector. Explain the choice of a point and of a normal vector.
 \item Check that the midpoint of $[AB]$ satisfies the equation obtained.
 \end{enumerate}
 \mxexercisehead{C07-E5}{The best access}
-A straight road is represented by the line $d$ with equation $y=2x$ in an orthonormal frame whose unit of length is 1 km. A building is located at the point $P(4;3)$. We want to build a straight access path joining the building to a point on the road.
+A straight road is represented by the line $d$ with equation $y=2x$ in an orthonormal frame whose unit of length is 1 km. A building is located at the point $P\pt{4;3}$. We want to build a straight access path joining the building to a point on the road.
 \begin{enumerate}[label=\arabic*.]
 \item Determine the point of the road that makes this access as short as possible. Calculate the exact length of the access.
 \item Justify that your choice is optimal among all the points of the road, by comparing the distances using a right triangle. A single observation on a drawing is not enough.
 \end{enumerate}
 \mxexercisehead{C07-E6}{Parameter and set}
-For a real parameter $k$, define $\mathcal E_k$ as the set of points $M(x;y)$ whose coordinates satisfy\[x^2+y^2-2x+4y+k=0.\]
+For a real parameter $k$, define $\mathcal E_k$ as the set of points $M\pt{x;y}$ whose coordinates satisfy\[x^2+y^2-2x+4y+k=0.\]
 \begin{enumerate}[label=\arabic*.]
 \item Determine the nature of $\mathcal E_k$ according to the value of $k$. Organise the answer in disjoint cases.
 \item When this set is a circle, state its centre and radius; in the other cases, describe exactly the set obtained.
 \end{enumerate}
 \mxexercisehead{C07-E7}{A parabola as a locus}
-\textbf{Optional extension.} In an orthonormal frame, fix the point $F(0;2)$. We look for the points $M(x;y)$ whose distance to $F$ is equal to the distance to the x-axis.
+\textbf{Optional extension.} In an orthonormal frame, fix the point $F\pt{0;2}$. We look for the points $M\pt{x;y}$ whose distance to $F$ is equal to the distance to the x-axis.
 \begin{enumerate}[label=\arabic*.]
 \item Express the square of each of the two distances in terms of $x$ and $y$.
 \item Deduce an equation of the set sought. Check the converse in order to justify that this equation describes exactly all the points sought.
 \end{enumerate}
 \mxexercisehead{C07-E8}{Delayed review}
-In an orthonormal frame, $\mathcal C$ is the circle with diameter $[AB]$, with $A(0;0)$ and $B(4;0)$. Consider the line $d$ with equation $x=5$.
+In an orthonormal frame, $\mathcal C$ is the circle with diameter $[AB]$, with $A\pt{0;0}$ and $B\pt{4;0}$. Consider the line $d$ with equation $x=5$.
 \begin{enumerate}[label=\arabic*.]
 \item Determine whether $\mathcal C$ and $d$ have a common point, by solving an equation.
 \item Confirm the answer by comparing the distance from the centre of the circle to the line with the radius of the circle.
@@ -121,24 +123,24 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \begin{enumerate}
 \item A normal to $2x-3y+1=0$ is
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(3;2)$
-\item $(2;-3)$
-\item $(2;3)$
-\item $(1;0)$
+\item $\pt{3;2}$
+\item $\pt{2;-3}$
+\item $\pt{2;3}$
+\item $\pt{1;0}$
 \end{enumerate}
 \item A direction vector of $x+2y=0$ is
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(-2;1)$
-\item $(1;2)$
-\item $(2;1)$
-\item $(0;2)$
+\item $\pt{-2;1}$
+\item $\pt{1;2}$
+\item $\pt{2;1}$
+\item $\pt{0;2}$
 \end{enumerate}
 \item Centre of $(x+2)^2+(y-3)^2=4$:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(2;3)$
-\item $(-2;-3)$
-\item $(3;-2)$
-\item $(-2;3)$
+\item $\pt{2;3}$
+\item $\pt{-2;-3}$
+\item $\pt{3;-2}$
+\item $\pt{-2;3}$
 \end{enumerate}
 \item Radius of $x^2+y^2=9$:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
@@ -160,14 +162,14 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \mxneed{18}\section*{MCQ 2: understand and choose}\label{C07-Q2}
 Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
 \begin{enumerate}
-\item Projection of $(3;4)$ onto the x-axis:
+\item Projection of $\pt{3;4}$ onto the x-axis:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(0;4)$
-\item $(0;0)$
-\item $(3;0)$
-\item $(4;3)$
+\item $\pt{0;4}$
+\item $\pt{0;0}$
+\item $\pt{3;0}$
+\item $\pt{4;3}$
 \end{enumerate}
-\item Distance from $(1;5)$ to $y=2$:
+\item Distance from $\pt{1;5}$ to $y=2$:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $3$
 \item $5$
@@ -179,7 +181,7 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \item $a\ne0$ alone
 \item $b\ne0$ alone
 \item $c\ne0$
-\item $(a;b)\ne(0;0)$
+\item $\pt{a;b}\ne\pt{0;0}$
 \end{enumerate}
 \item $x^2+y^2=0$ describes
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]

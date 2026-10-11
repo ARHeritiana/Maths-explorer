@@ -1,6 +1,6 @@
-\setcounter{chapter}{11}\mxunit{terminale-c13}{Représentations paramétriques et équations cartésiennes}\label{ch:12}
+\mxunit[12]{terminale-c13}{Représentations paramétriques et équations cartésiennes}\label{ch:12}
 
-{\small\sffamily\color{mxmint}S65, S67, S70\par}
+\mxsubtitle{S65, S67, S70}
 
 \begin{keypoint}[Objectifs]Décrire une droite et un plan ; déterminer des intersections ; choisir une méthode pour une projection.\end{keypoint}
 
@@ -28,19 +28,21 @@ On en déduit, sans en faire une formule à apprendre isolément,
 \paragraph{Vérification indispensable.} Après le calcul d'un projeté, contrôler simultanément $H\in\mathcal P$ et la colinéarité de $\vect{MH}$ avec le normal.
 
 
+\mxnewpage
 \section{Activité de recherche}\textbf{Trois droites face à un plan --- 30 min.}\par Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+y+z=3$. Dans chaque question, le paramètre $t$ parcourt $\R$.
-\begin{enumerate}\item La droite $d_1$ admet la représentation $(x;y;z)=(t;t;t)$. Déterminer $d_1\cap\mathcal P$.
-\item La droite $d_2$ admet la représentation $(x;y;z)=(3+t;-t;0)$. Déterminer $d_2\cap\mathcal P$.
-\item La droite $d_3$ admet la représentation $(x;y;z)=(t;-t;0)$. Déterminer $d_3\cap\mathcal P$.
+\begin{enumerate}\item La droite $d_1$ admet la représentation $\pt{x;y;z}=\pt{t;t;t}$. Déterminer $d_1\cap\mathcal P$.
+\item La droite $d_2$ admet la représentation $\pt{x;y;z}=\pt{3+t;-t;0}$. Déterminer $d_2\cap\mathcal P$.
+\item La droite $d_3$ admet la représentation $\pt{x;y;z}=\pt{t;-t;0}$. Déterminer $d_3\cap\mathcal P$.
 \item Pour chaque droite, préciser si l'équation obtenue après substitution dans celle du plan a une solution unique, aucune solution ou tout réel pour solution. Relier ces cas aux positions géométriques trouvées.\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
-\mxexerciseitem{1}{Entraînement}Dans un repère de l'espace, on considère $A(1;-1;2)$ et $B(3;0;1)$. Donner une représentation paramétrique de la droite $(AB)$.
+\mxexerciseitem{1}{Entraînement}Dans un repère de l'espace, on considère $A\pt{1;-1;2}$ et $B\pt{3;0;1}$. Donner une représentation paramétrique de la droite $(AB)$.
 
-\mxexerciseitem{2}{Entraînement}Dans un repère orthonormé, déterminer une équation cartésienne du plan passant par $A(1;2;3)$ et de vecteur normal $\vec n=(1;0;-2)$.
+\mxexerciseitem{2}{Entraînement}Dans un repère orthonormé, déterminer une équation cartésienne du plan passant par $A\pt{1;2;3}$ et de vecteur normal $\vec n=\pt{1;0;-2}$.
 
-\mxexerciseitem{3}{Entraînement}Dans un repère de l'espace, la droite $d$ est donnée par $(x;y;z)=(t;1+t;2-t)$, $t\in\R$, et le plan $\mathcal P$ par $x+2y+z=8$. Déterminer leur intersection.
+\mxexerciseitem{3}{Entraînement}Dans un repère de l'espace, la droite $d$ est donnée par $\pt{x;y;z}=\pt{t;1+t;2-t}$, $t\in\R$, et le plan $\mathcal P$ par $x+2y+z=8$. Déterminer leur intersection.
 
 \mxexerciseitem{4}{Entraînement}Dans un repère de l'espace, déterminer l'intersection des plans d'équations $x+y+z=1$ et $x-y=0$. Donner une représentation paramétrique si l'intersection est une droite.
 
@@ -48,7 +50,8 @@ On en déduit, sans en faire une formule à apprendre isolément,
 
 \section{Travail dans le manuel ou une annale}\textbf{Baccalauréat, Métropole, 17 juin 2025 : exercice 3, affirmations 1 à 4 (p. 5--6).} À la maison après S70. Justifier chaque réponse ; pour une affirmation fausse, expliquer précisément ce qui la réfute. Le sujet est accessible ici : \href{https://www.education.gouv.fr/sites/default/files/2025-06/baccalaur-at-g-n-ral-2025-math-matiques-440856.pdf}{annale officielle}. Utiliser les données et les consignes de cette annale.
 
-\section{Devoir à la maison}\textbf{DM12 --- Projection et intersection --- 55 min.}\par Dans un repère orthonormé de l'espace, on considère le point $M(3;0;0)$ et les plans $\mathcal P:x+2y+2z=9$ et $\mathcal Q:x-y=0$.
+\mxnewpage
+\section{Devoir à la maison}\textbf{DM12 --- Projection et intersection --- 55 min.}\par Dans un repère orthonormé de l'espace, on considère le point $M\pt{3;0;0}$ et les plans $\mathcal P:x+2y+2z=9$ et $\mathcal Q:x-y=0$.
 \begin{enumerate}\item Donner les coordonnées d'un vecteur normal non nul à $\mathcal P$.
 \item Déterminer les coordonnées du projeté orthogonal $H$ de $M$ sur $\mathcal P$, puis calculer la distance de $M$ à $\mathcal P$.
 \item Montrer que $\mathcal P\cap\mathcal Q$ est une droite et en donner une représentation paramétrique.
@@ -85,9 +88,9 @@ On en déduit, sans en faire une formule à apprendre isolément,
 \end{enumerate}
 
 \subsection{Corrigé du travail dans le manuel ou une annale}\begin{enumerate}
-\item Vraie : la droite passe par $B$ et son vecteur directeur $(-2;-1;3)$ vaut $-\frac12\vect{AB}$.
+\item Vraie : la droite passe par $B$ et son vecteur directeur $\pt{-2;-1;3}$ vaut $-\frac12\vect{AB}$.
 \item Fausse : $\vec n\cdot\vect{OB}=15-4-1=10\ne0$.
-\item Fausse : pour $k=-4$ et $s=\frac52$, les deux représentations donnent $(11;12;-14)$. Les droites se coupent, donc sont coplanaires.
+\item Fausse : pour $k=-4$ et $s=\frac52$, les deux représentations donnent $\pt{11;12;-14}$. Les droites se coupent, donc sont coplanaires.
 \item Vraie : $d(C,\mathcal P)=\frac{|2-(-1)+2+1|}{\sqrt{1+1+1}}=2\sqrt3$.
 \end{enumerate}
 

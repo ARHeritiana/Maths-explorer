@@ -103,9 +103,9 @@
    "status": "aligned",
    "order": 16
   },
-  "0d4097d66fe6": {
-   "fr": "Pentes 3 et 2{,}1 ; nombre dérivé 2. La seconde est plus proche de la pente tangente ; il s’agit ici d’un calcul exact de taux.",
-   "en": "Slopes 3 and 2.1; derivative at 1 is 2. The second is closer to the slope of the tangent; this is an exact calculation of a rate.",
+  "dee09d62edf8": {
+   "fr": "Pentes 3 et [[m1]] ; nombre dérivé 2. La seconde est plus proche de la pente tangente ; il s’agit ici d’un calcul exact de taux.",
+   "en": "Slopes 3 and [[m1]]; derivative at 1 is 2. The second is closer to the slope of the tangent; this is an exact calculation of a rate.",
    "status": "aligned",
    "order": 17
   },
@@ -175,9 +175,9 @@
    "status": "aligned",
    "order": 28
   },
-  "942befffd9c7": {
-   "fr": "Liste des taux [[m1]] : 2{,}1 ; 2{,}01 ; 2{,}001 et 1{,}9 ; 1{,}99 ; 1{,}999. Le calcul algébrique donne le réel 2. À très petit h, le calcul flottant peut perdre de la précision.",
-   "en": "List of rates [[m1]]: 2.1; 2.01; 2.001 and 1.9; 1.99; 1.999. The algebraic calculation gives the real number 2. For very small h, floating-point calculation can lose precision.",
+  "60094483fd53": {
+   "fr": "Liste des taux [[m1]] : [[m2]] ; [[m3]] ; [[m4]] et [[m5]] ; [[m6]] ; [[m7]]. Le calcul algébrique donne le réel 2. À très petit h, le calcul flottant peut perdre de la précision.",
+   "en": "List of rates [[m1]]: [[m2]]; [[m3]]; [[m4]] and [[m5]]; [[m6]]; [[m7]]. The algebraic calculation gives the real number 2. For very small h, floating-point calculation can lose precision.",
    "status": "aligned",
    "order": 29
   },
@@ -235,6 +235,12 @@
    "status": "aligned",
    "order": 38
   },
+  "1bc464f82ee0": {
+   "fr": "A. [[m1]].",
+   "en": "A. [[m1]].",
+   "status": "aligned",
+   "order": 39
+  },
   "0888038e3c39": {
    "fr": "D. Il s’agit d’une valeur en un point.",
    "en": "D. It is a value at a point.",
@@ -264,12 +270,6 @@
    "en": "C. Rate [[m1]] not finite.",
    "status": "aligned",
    "order": 44
-  },
-  "1bc464f82ee0": {
-   "fr": "A. [[m1]].",
-   "en": "A. [[m1]].",
-   "status": "aligned",
-   "order": 45
   },
   "d167de934d56": {
    "fr": "D. Ordonnée constante.",

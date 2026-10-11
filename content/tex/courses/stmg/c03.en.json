@@ -1,6 +1,12 @@
 {
  "unit": "c03.fr.tex",
  "segments": {
+  "162aca3c2358": {
+   "fr": "Fonction logarithme décimal",
+   "en": "Common logarithm function",
+   "status": "aligned",
+   "order": 0
+  },
   "9ed117223b88": {
    "fr": "passer d'une écriture exponentielle à une écriture logarithmique, résoudre, modéliser",
    "en": "converting between exponential and logarithmic form, solving, modelling",
@@ -49,6 +55,12 @@
    "status": "aligned",
    "order": 8
   },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 9
+  },
   "8571b30202a7": {
    "fr": "Définition du logarithme décimal",
    "en": "Definition of the common logarithm",
@@ -73,11 +85,41 @@
    "status": "aligned",
    "order": 14
   },
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 15
+  },
   "bc05e57741f1": {
    "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$16$}",
    "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$16$}",
    "status": "aligned",
    "order": 16
+  },
+  "0ec99739b821": {
+   "fr": "Donner le domaine de [[m1]]. \\mxblank{$]0,+\\infty[$}",
+   "en": "Give the domain of [[m1]]. \\mxblank{$]0,+\\infty[$}",
+   "status": "aligned",
+   "order": 17
+  },
+  "6428d77e9c81": {
+   "fr": "Calculer [[m1]]. \\mxblank{$4$}",
+   "en": "Calculate [[m1]]. \\mxblank{$4$}",
+   "status": "aligned",
+   "order": 18
+  },
+  "15d64afa8429": {
+   "fr": "Résoudre [[m1]]. \\mxblank{$x=-2$}",
+   "en": "Solve [[m1]]. \\mxblank{$x=-2$}",
+   "status": "aligned",
+   "order": 19
+  },
+  "eb88368848a9": {
+   "fr": "Développer [[m1]], [[m2]]. \\mxblank{$\\log3+\\log b$}",
+   "en": "Expand [[m1]], [[m2]]. \\mxblank{$\\log3+\\log b$}",
+   "status": "aligned",
+   "order": 20
   },
   "bee9dc1616a1": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : relier puissance de 10 et logarithme et calculer des valeurs usuelles.",
@@ -103,17 +145,89 @@
    "status": "aligned",
    "order": 24
   },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.",
+   "status": "aligned",
+   "order": 25
+  },
   "ba52aa6077a6": {
    "fr": "Les logarithmes sont [[m1]] ; [[m2]].",
    "en": "The logarithms are [[m1]]; [[m2]].",
    "status": "aligned",
    "order": 26
   },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 27
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "b122fa8e6737": {
+   "fr": "Développer [[m1]] pour [[m2]].",
+   "en": "Expand [[m1]] for [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "e0cc9800ec3d": {
+   "fr": "Résoudre [[m1]] et donner une valeur approchée au centième.",
+   "en": "Solve [[m1]] and give an approximate value to the nearest hundredth.",
+   "status": "aligned",
+   "order": 30
+  },
+  "b3821bee5997": {
+   "fr": "[[m1]] et [[m2]]. L'expression vaut [[m3]]. Enfin [[m4]].",
+   "en": "[[m1]] and [[m2]]. The expression equals [[m3]]. Finally [[m4]].",
+   "status": "aligned",
+   "order": 31
+  },
   "a0c5fdb3c34f": {
    "fr": "Calao, cours p. 64--69 ; exercices p. 70, n° 1 à 5",
    "en": "Calao, course pp. 64--69; exercises p. 70, no.~1--5",
    "status": "aligned",
    "order": 32
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 33
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The answer depends on the exercise revisited. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 34
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 35
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and state your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 36
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 37
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 38
   },
   "88f3534d6f0b": {
    "fr": "Sens de variation et représentation",
@@ -138,6 +252,12 @@
    "en": "Read the curve.",
    "status": "aligned",
    "order": 43
+  },
+  "d52d70ed4f38": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "status": "aligned",
+   "order": 45
   },
   "95b1cf5ce296": {
    "fr": "Calculer [[m1]]. \\mxblank{$0$}",
@@ -180,6 +300,18 @@
    "en": "Calao, course pp. 64--69; exercises p. 70, no.~6--10",
    "status": "aligned",
    "order": 61
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 62
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and state your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 65
   },
   "730cef410ecb": {
    "fr": "Propriétés algébriques",
@@ -253,6 +385,18 @@
    "status": "aligned",
    "order": 90
   },
+  "01ccb9e67d24": {
+   "fr": "Résoudre [[m1]]",
+   "en": "Solving [[m1]]",
+   "status": "aligned",
+   "order": 97
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 99
+  },
   "0a29ba7795bb": {
    "fr": "Encadrer une solution.",
    "en": "Bracket a solution.",
@@ -313,18 +457,6 @@
    "status": "aligned",
    "order": 119
   },
-  "01ccb9e67d24": {
-   "fr": "Résoudre [[m1]]",
-   "en": "Solving [[m1]]",
-   "status": "aligned",
-   "order": 126
-  },
-  "e3bc0dc0e302": {
-   "fr": "Résoudre [[m1]].",
-   "en": "Solve [[m1]].",
-   "status": "aligned",
-   "order": 128
-  },
   "673d1add6efa": {
    "fr": "Utiliser un quotient de logarithmes.",
    "en": "Use a quotient of logarithms.",
@@ -337,11 +469,17 @@
    "status": "aligned",
    "order": 130
   },
-  "7031120460ce": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1{,}10$}",
-   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1.10$}",
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
    "status": "aligned",
    "order": 132
+  },
+  "b3ba55be445a": {
+   "fr": "Calculer [[m1]]. \\mxblank{$3$}",
+   "en": "Calculate [[m1]]. \\mxblank{$3$}",
+   "status": "aligned",
+   "order": 134
   },
   "86ac2ddcf2b5": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : résoudre [[m1]] et utiliser un quotient de logarithmes.",
@@ -445,12 +583,6 @@
    "status": "aligned",
    "order": 177
   },
-  "a114cba6d4b1": {
-   "fr": "B : 2 h -- C : 1 h",
-   "en": "B: 2 h -- C: 1 h",
-   "status": "aligned",
-   "order": 183
-  },
   "204ad222ad53": {
    "fr": "Problèmes contextualisés",
    "en": "Problems in context",
@@ -480,12 +612,6 @@
    "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$12$}",
    "status": "aligned",
    "order": 190
-  },
-  "b3ba55be445a": {
-   "fr": "Calculer [[m1]]. \\mxblank{$3$}",
-   "en": "Calculate [[m1]]. \\mxblank{$3$}",
-   "status": "aligned",
-   "order": 194
   },
   "ed9e093213ff": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : modéliser une situation et choisir une équation.",
@@ -523,35 +649,11 @@
    "status": "aligned",
    "order": 206
   },
-  "c522c0aac4ab": {
-   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 207
-  },
-  "4f9257a965a4": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and state your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.",
-   "status": "aligned",
-   "order": 210
-  },
-  "702e35c25e86": {
-   "fr": "B : 1 h -- C : 2 h",
-   "en": "B: 1 h -- C: 2 h",
-   "status": "aligned",
-   "order": 212
-  },
   "208842ecc15d": {
    "fr": "Bilan et évaluation",
    "en": "Review and assessment",
    "status": "aligned",
    "order": 213
-  },
-  "162aca3c2358": {
-   "fr": "Fonction logarithme décimal",
-   "en": "Common logarithm function",
-   "status": "aligned",
-   "order": 214
   },
   "0d18e3939146": {
    "fr": "Synthétiser les méthodes.",
@@ -570,42 +672,6 @@
    "en": "Correct mistakes.",
    "status": "aligned",
    "order": 217
-  },
-  "28126275a16c": {
-   "fr": "6 à 8 minutes, sans calculatrice",
-   "en": "6 to 8 minutes, no calculator",
-   "status": "aligned",
-   "order": 218
-  },
-  "7689c780629e": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=1{,}25$}",
-   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=1.25$}",
-   "status": "aligned",
-   "order": 219
-  },
-  "eb88368848a9": {
-   "fr": "Développer [[m1]], [[m2]]. \\mxblank{$\\log3+\\log b$}",
-   "en": "Expand [[m1]], [[m2]]. \\mxblank{$\\log3+\\log b$}",
-   "status": "aligned",
-   "order": 220
-  },
-  "0ec99739b821": {
-   "fr": "Donner le domaine de [[m1]]. \\mxblank{$]0,+\\infty[$}",
-   "en": "Give the domain of [[m1]]. \\mxblank{$]0,+\\infty[$}",
-   "status": "aligned",
-   "order": 221
-  },
-  "6428d77e9c81": {
-   "fr": "Calculer [[m1]]. \\mxblank{$4$}",
-   "en": "Calculate [[m1]]. \\mxblank{$4$}",
-   "status": "aligned",
-   "order": 222
-  },
-  "15d64afa8429": {
-   "fr": "Résoudre [[m1]]. \\mxblank{$x=-2$}",
-   "en": "Solve [[m1]]. \\mxblank{$x=-2$}",
-   "status": "aligned",
-   "order": 223
   },
   "1aa5c660505d": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : synthétiser les méthodes et identifier les conditions.",
@@ -631,83 +697,17 @@
    "status": "aligned",
    "order": 227
   },
-  "aa05b05d7735": {
-   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
-   "en": "Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.",
-   "status": "aligned",
-   "order": 228
-  },
   "4316fe5c0fac": {
    "fr": "La carte doit notamment faire apparaître la positivité des arguments et la distinction entre base supérieure à [[m1]] ou comprise entre [[m2]] et [[m3]].",
    "en": "The map should in particular show that arguments must be positive and the distinction between a base greater than [[m1]] and one between [[m2]] and [[m3]].",
    "status": "aligned",
    "order": 229
   },
-  "4a8f3fc74ed9": {
-   "fr": "essentiel",
-   "en": "essential",
-   "status": "aligned",
-   "order": 230
-  },
-  "cc0de7072879": {
-   "fr": "Calculer [[m1]] et [[m2]].",
-   "en": "Calculate [[m1]] and [[m2]].",
-   "status": "aligned",
-   "order": 231
-  },
-  "b122fa8e6737": {
-   "fr": "Développer [[m1]] pour [[m2]].",
-   "en": "Expand [[m1]] for [[m2]].",
-   "status": "aligned",
-   "order": 232
-  },
-  "e0cc9800ec3d": {
-   "fr": "Résoudre [[m1]] et donner une valeur approchée au centième.",
-   "en": "Solve [[m1]] and give an approximate value to the nearest hundredth.",
-   "status": "aligned",
-   "order": 233
-  },
-  "b3821bee5997": {
-   "fr": "[[m1]] et [[m2]]. L'expression vaut [[m3]]. Enfin [[m4]].",
-   "en": "[[m1]] and [[m2]]. The expression equals [[m3]]. Finally [[m4]].",
-   "status": "aligned",
-   "order": 234
-  },
   "6c3e5cfe2d40": {
    "fr": "Calao, p. 76 à 79",
    "en": "Calao, pp. 76--79",
    "status": "aligned",
    "order": 235
-  },
-  "fdec5ba74355": {
-   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 236
-  },
-  "acac70116eb6": {
-   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
-   "en": "The answer depends on the exercise revisited. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
-   "status": "aligned",
-   "order": 237
-  },
-  "24e46784cbce": {
-   "fr": "3 minutes",
-   "en": "3 minutes",
-   "status": "aligned",
-   "order": 238
-  },
-  "5655fa4b1e45": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and state your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.",
-   "status": "aligned",
-   "order": 239
-  },
-  "4ac648e44ed0": {
-   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
-   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
-   "status": "aligned",
-   "order": 240
   }
  }
 }

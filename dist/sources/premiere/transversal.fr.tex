@@ -1,11 +1,11 @@
 \mxunit{premiere-transversal}{Raisonner et préparer l’épreuve}\label{TRANS}
 \section{Logique : des mots aux preuves}\label{LOGIQUE}
 \begin{keypoint}[Ensembles et propositions]
-$x\in A$ signifie que x est un élément de A ; $A\subseteq B$ signifie que chaque élément de A appartient à B. L’ensemble vide est noté $\varnothing$. L’intersection correspond à « et », la réunion à « ou » inclusif. Dans un univers E, $E\setminus A$ est le complémentaire de A. Un couple $(a;b)$ est ordonné ; $A\times B$ regroupe les couples dont la première composante est dans A et la seconde dans B. Le cardinal d’un ensemble fini est son nombre d’éléments.
+$x\in A$ signifie que x est un élément de A ; $A\subseteq B$ signifie que chaque élément de A appartient à B. L’ensemble vide est noté $\varnothing$. L’intersection correspond à « et », la réunion à « ou » inclusif. Dans un univers E, $E\setminus A$ est le complémentaire de A. Un couple $\pt{a;b}$ est ordonné ; $A\times B$ regroupe les couples dont la première composante est dans A et la seconde dans B. Le cardinal d’un ensemble fini est son nombre d’éléments.
 \end{keypoint}
-\begin{example}Pour $A=\{1;2\}$ et $B=\{2;3\}$, l’intersection est $\{2\}$, la réunion $\{1;2;3\}$. Le produit $A\times B$ contient $(1;2),(1;3),(2;2),(2;3)$ : cardinal 4.\end{example}
+\begin{example}Pour $A=\ens{1;2}$ et $B=\ens{2;3}$, l’intersection est $\{2\}$, la réunion $\ens{1;2;3}$. Le produit $A\times B$ contient $\pt{1;2},\pt{1;3},\pt{2;2},\pt{2;3}$ : cardinal 4.\end{example}
 
-\paragraph{Nombres et intervalles.} $\N$ contient ici 0 et les entiers naturels ; $\Z$ les entiers relatifs ; $\mathbb D$ les décimaux à écriture finie ; $\mathbb Q$ les quotients de deux entiers, avec dénominateur non nul ; $\R$ les réels. On a $\N\subset\Z\subset\mathbb D\subset\mathbb Q\subset\R$. Ainsi $\dfrac{1}{3}$ est rationnel mais non décimal ; $\sqrt2$ est réel non rationnel (résultat antérieur). $[-2;3[$ signifie $-2\leq x<3$ ; une borne infinie n’est jamais incluse.
+\paragraph{Nombres et intervalles.} $\N$ contient ici 0 et les entiers naturels ; $\Z$ les entiers relatifs ; $\mathbb D$ les décimaux à écriture finie ; $\mathbb Q$ les quotients de deux entiers, avec dénominateur non nul ; $\R$ les réels. On a $\N\subset\Z\subset\mathbb D\subset\mathbb Q\subset\R$. Ainsi $\dfrac{1}{3}$ est rationnel mais non décimal ; $\sqrt2$ est réel non rationnel (résultat antérieur). $\intfo{-2}{3}$ signifie $-2\leq x<3$ ; une borne infinie n’est jamais incluse.
 
 Une implication « si P, alors Q » exprime que P est une condition suffisante pour Q et Q une condition nécessaire pour P. Sa réciproque est « si Q, alors P ». Sa contraposée est « si non Q, alors non P » ; elle a la même valeur logique que l’implication. Une équivalence réunit les deux implications.
 \begin{example}« Si $x=2$, alors $x^2=4$ » est vraie. La réciproque est fausse pour $x=-2$. L’égalité $x=2$ est suffisante pour $x^2=4$, mais pas nécessaire. La contraposée « si $x^2\ne4$, alors $x\ne2$ » est vraie.\end{example}
@@ -21,17 +21,17 @@ Pour réfuter une proposition universelle, un contre-exemple suffit. Pour prouve
 \begin{enumerate}
 \item Nier : « Il existe un réel x tel que $x^2<0$ ». La proposition initiale est-elle vraie ?
 \item Donner la réciproque et la contraposée de : « Si un entier est multiple de 4, alors il est pair ». Lesquelles sont vraies ?
-\item Pour $A=\{0;1\}$ et $B=\{1;2;3\}$, calculer $A\cap B$, $A\cup B$, $A\times B$ et leurs cardinaux.
+\item Pour $A=\ens{0;1}$ et $B=\ens{1;2;3}$, calculer $A\cap B$, $A\cup B$, $A\times B$ et leurs cardinaux.
 \item Montrer par l’absurde qu’il n’existe pas de plus grand entier naturel.
-\item Classer $-2$, $0{,}125$, $\dfrac{1}{3}$, $\sqrt2$ dans le plus petit ensemble usuel ; traduire $x>1$ et $x\leq4$ par un intervalle. Préciser le statut de x et m dans $mx+1=0$. Résoudre selon m.
+\item Classer $-2$, $\num{0,125}$, $\dfrac{1}{3}$, $\sqrt2$ dans le plus petit ensemble usuel ; traduire $x>1$ et $x\leq4$ par un intervalle. Préciser le statut de x et m dans $mx+1=0$. Résoudre selon m.
 \end{enumerate}
 \ifmxteacher
 \subsection*{Corrigés transversaux}
 1. Négation : pour tout réel x, $x^2\geq0$, vraie ; la proposition initiale est fausse.\par
 2. Réciproque fausse, contre-exemple 2. Contraposée : si un entier n’est pas pair, il n’est pas multiple de 4 ; vraie.\par
-3. Intersection $\{1\}$, cardinal 1 ; réunion $\{0;1;2;3\}$, cardinal 4 ; produit de six couples $(0;1),(0;2),(0;3),(1;1),(1;2),(1;3)$.\par
+3. Intersection $\{1\}$, cardinal 1 ; réunion $\ens{0;1;2;3}$, cardinal 4 ; produit de six couples $\pt{0;1},\pt{0;2},\pt{0;3},\pt{1;1},\pt{1;2},\pt{1;3}$.\par
 4. Si N était le plus grand, N+1 serait un entier naturel strictement plus grand : contradiction.\par
-5. Respectivement $\Z$, $\mathbb D$, $\mathbb Q$, $\R$ ; intervalle $]1;4]$. x inconnue, m paramètre. Si $m\ne0$, unique solution $-\dfrac{1}{m}$ ; si m=0, l’équation devient $1=0$, aucune solution.
+5. Respectivement $\Z$, $\mathbb D$, $\mathbb Q$, $\R$ ; intervalle $\intof{1}{4}$. x inconnue, m paramètre. Si $m\ne0$, unique solution $-\dfrac{1}{m}$ ; si m=0, l’équation devient $1=0$, aucune solution.
 \fi
 
 \section{Python : comprendre ce que l’on exécute}\label{PYTHON}
@@ -40,7 +40,7 @@ Les fichiers fournis s’exécutent avec Python 3. Une fonction reçoit des argu
 \begin{keypoint}[Listes et indices]
 \code{L=[1,4,9]} définit une liste en extension. \code{L.append(16)} ajoute un élément ; \code{del L[0]} supprime le premier. \code{L[0]} lit l’élément d’indice 0 et \code{len(L)} donne la longueur. Une liste en compréhension, telle que \code{[k*k for k in range(5)]}, contient les carrés de 0 à 4. L’ordre et les répétitions font partie de la liste : ce n’est pas un ensemble.
 \end{keypoint}
-\begin{example}Après \code{L=[1,4,9]}, \code{L.append(16)}, puis \code{del L[0]}, la liste vaut [4,9,16]. L’instruction \texttt{[x for x in L if x\%2==0]} produit [4{,}16]. Le test est une proposition logique exécutée pour chaque élément.\end{example}
+\begin{example}Après \code{L=[1,4,9]}, \code{L.append(16)}, puis \code{del L[0]}, la liste vaut \code{[4,9,16]}. L’instruction \texttt{[x for x in L if x\%2==0]} produit \code{[4,16]}. Le test est une proposition logique exécutée pour chaque élément.\end{example}
 
 \begin{longtable}{p{.25\linewidth}p{.66\linewidth}}
 \toprule Fichier & Usages et contrôles à effectuer \\\midrule
@@ -55,8 +55,8 @@ Les fichiers fournis s’exécutent avec Python 3. Une fonction reçoit des argu
 \begin{enumerate}
 \item Suites : générer dix termes, comparer boucle et formule, puis calculer un cumul. Expliquer la longueur de la liste.
 \item Sécantes : prendre trois pas positifs et trois négatifs ; comparer au calcul algébrique du taux.
-\item Monte-Carlo : comparer 1 000 puis 10 000 points, avec deux graines ; commenter la fluctuation.
-\item Échantillons : simuler N=1 000 échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance. Compter les moyennes dans le seuil $\dfrac{2\sigma}{\sqrt n}$.
+\item Monte-Carlo : comparer \num{1000} puis \num{10000} points, avec deux graines ; commenter la fluctuation.
+\item Échantillons : simuler $N=\num{1000}$ échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance. Compter les moyennes dans le seuil $\dfrac{2\sigma}{\sqrt n}$.
 \item Euler et Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.
 \end{enumerate}
 Ces TP sont des alternatives réparties sur les séances d’algorithmique et de consolidation. Ils ne s’ajoutent pas tous à une même semaine de cours. Les résultats d’une simulation dépendent de la graine ; le rapport de contrôle fournit un exemple d’exécution reproductible.

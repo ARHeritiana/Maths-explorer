@@ -11,7 +11,7 @@ page block). French and English are compiled together (page balance per unit) an
 into dist/resources/enrichment/<id>-<kind>[-en].pdf and dist/resources/quadratic-presentation[-en].pdf.
 """
 import json, re, sys
-from . import ROOT, DIST, books, catalog, tex, twin
+from . import ROOT, DIST, books, catalog, notation, tex, twin
 
 SRC = ROOT / 'content/tex/courses/enrichment'
 DATA = ROOT / 'content/data/enrichment.json'
@@ -86,17 +86,18 @@ def math(s, decimal):
     s = re.sub(r'[₀-₉ₙₖ₊₋]+', lambda m: '_{' + m[0].translate(SUB) + '}', s).replace('′', "'")
     s = re.sub(r'√\(([^()]*)\)', lambda m: r'\sqrt{' + m[1] + '}', s)
     s = re.sub(r'√([a-zA-Z]|\d+)', lambda m: r'\sqrt{' + m[1] + '}', s)
-    s = re.sub(r'(?<!\d)(?<!\d[.,])(\d+)([.,])(\d+)(?![.,]?\d)', lambda m: m[1] + '{,}' + m[3] if m[0] in decimal else m[0], s)
-    return _fractions(s)
+    s = re.sub(r'(?<!\d)(?<!\d[.,])(\d+)([.,])(\d+)(?![.,]?\d)', lambda m: r'\num{' + m[1] + ',' + m[3] + '}' if m[0] in decimal else m[0], s)
+    return notation.rewrite_maths(_fractions(s), 'fr')   # intervals [a ; b], points (a;b), sets {a;b}: notation commands
 
 
 def prose(s, decimal=()):
     """JSON text to TeX: spans marked $...$ (Unicode maths) become TeX maths, the rest is escaped text. decimal: number
-    tokens to print as decimals ('0,5' in French and '0.5' in English both become 0{,}5, printed 0.5 in English by the
-    twin tool); French decimals in text are braced too."""
+    tokens to print as decimals ('0,5' in French and '0.5' in English both become \\num{0,5}, printed per language by the
+    class, mx-notation.sty); decimals and percentages in text become \\num and \\pc too."""
     parts = s.split('$')
     if len(parts) % 2 == 0: raise ValueError(f'unbalanced $ in {s!r}')
-    dec = lambda t: re.sub(r'(?<!\d)(?<!\d[.,])(\d+),(\d+)(?![.,]?\d)', lambda m: m[1] + '{,}' + m[2] if m[0] in decimal else m[0], t)
+    dec = lambda t: notation.PCT.sub(lambda m: r'\pc{' + (m.group(1) or m.group(2)) + '}', re.sub(
+        r'(?<!\d)(?<!\d[.,])(\d+)[.,](\d+)(?![.,]?\d)', lambda m: r'\num{' + m[1] + ',' + m[2] + '}' if m[0] in decimal else m[0], t))
     return ''.join('$' + math(x, decimal) + '$' if i % 2 else dec(text(x)) for i, x in enumerate(parts))
 
 

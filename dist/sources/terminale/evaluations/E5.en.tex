@@ -4,7 +4,7 @@
 
 \section*{Mock 1 · Practice 1}
 
-{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+\mxbanner{PRACTICE PAPER · TRAINING}
 
 \textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -32,7 +32,7 @@
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $[0;+\infty[$ by $f(x)=(x+5)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+5)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
 
@@ -42,11 +42,11 @@
 
 \item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
 
-\item Prove that the equation $f(x)=\frac{5}{2}$ has a unique solution $\alpha$ in $[0;+\infty[$. \hfill\textit{(1 pt)}
+\item Prove that the equation $f(x)=\frac{5}{2}$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
 
 \item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
 
-\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $[0;2]$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
 
 \item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
 
@@ -54,7 +54,7 @@
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 1 · Practice 1 · continued}\par
+\mxnewpage\mxcontinued{Mock 1 · Practice 1 · continued}
 
 \subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
@@ -92,13 +92,13 @@
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,19\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $19$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -160,7 +160,7 @@ def premier_rang():
         n += 1
     return n
 \end{lstlisting}
-Convergence to $7$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $0.00265684$ and $0.00018978$. They lie clearly on either side of $10^{-3}$. The guaranteed index $5$ may be larger; it comes from an upper bound, not from the exact error.
+Convergence to $7$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $\num{0,00265684}$ and $\num{0,00018978}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $5$ may be larger; it comes from an upper bound, not from the exact error.
 
 \end{enumerate}
 
@@ -183,7 +183,7 @@ On the domain, $x+3\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of co
 
 \mxneed{24}
 
-\item \textit{[0.5 pt]} We know $f(0)=5>\frac{5}{2}$. Moreover, $f(2)=7e^{-2}\simeq0.9473<\frac{5}{2}$. The zero of $f-\frac{5}{2}$ is therefore in $]0,2[$. A program is:
+\item \textit{[0.5 pt]} We know $f(0)=5>\frac{5}{2}$. Moreover, $f(2)=7e^{-2}\simeq\num{0,9473}<\frac{5}{2}$. The zero of $f-\frac{5}{2}$ is therefore in $]0,2[$. A program is:
 \begin{lstlisting}
 from math import exp
 
@@ -233,21 +233,21 @@ Here $4\ne 6$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B(19,\frac{3}{10})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{3}{10})^2(\frac{7}{10})^{17}\simeq0.035802$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{3}{10})^2(\frac{7}{10})^{17}\simeq\num{0,035802}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{19}-19(\frac{3}{10})(\frac{7}{10})^{18}\simeq0.989578$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{19}-19(\frac{3}{10})(\frac{7}{10})^{18}\simeq\num{0,989578}$.
 
 \item \textit{[1 pt]} $E(X)=\frac{57}{10}$, $V(X)=\frac{399}{100}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{7}{10})^N$. It is strictly increasing in $N$, since $0<\frac{7}{10}<1$. Calculation gives
-\[P_{8}\simeq0.942352<0.95,\qquad P_{9}\simeq0.959646\ge0.95.\]
+\[P_{8}\simeq\num{0,942352}<\num{0,95},\qquad P_{9}\simeq\num{0,959646}\ge\num{0,95}.\]
 Thus $9$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=19$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{3}{10})^j(\frac{7}{10})^{19-j}\simeq0.132031.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{3}{10})^j(\frac{7}{10})^{19-j}\simeq\num{0,132031}.\]
 
 \mxneed{24}
 
@@ -263,7 +263,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $9$. The cumulative sums at indices $8$ and $9$ are approximately $0.916085$ and $0.967447$: this confirms minimality.
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $9$. The cumulative sums at indices $8$ and $9$ are approximately $\num{0,916085}$ and $\num{0,967447}$: this confirms minimality.
 
 \end{enumerate}
 
@@ -273,7 +273,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \section*{Mock 1 · Practice 2}
 
-{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+\mxbanner{PRACTICE PAPER · TRAINING}
 
 \textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -301,7 +301,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $[0;+\infty[$ by $f(x)=(x+4)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+4)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
 
@@ -311,11 +311,11 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
 
-\item Prove that the equation $f(x)=2$ has a unique solution $\alpha$ in $[0;+\infty[$. \hfill\textit{(1 pt)}
+\item Prove that the equation $f(x)=2$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
 
 \item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
 
-\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $[0;2]$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
 
 \item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
 
@@ -323,7 +323,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 1 · Practice 2 · continued}\par
+\mxnewpage\mxcontinued{Mock 1 · Practice 2 · continued}
 
 \subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
@@ -361,13 +361,13 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,16\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $16$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -429,7 +429,7 @@ def premier_rang():
         n += 1
     return n
 \end{lstlisting}
-Convergence to $11$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $0.00105884$ and $0.00004813$. They lie clearly on either side of $10^{-3}$. The guaranteed index $4$ may be larger; it comes from an upper bound, not from the exact error.
+Convergence to $11$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $\num{0,00105884}$ and $\num{0,00004813}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $4$ may be larger; it comes from an upper bound, not from the exact error.
 
 \end{enumerate}
 
@@ -452,7 +452,7 @@ On the domain, $x+2\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of co
 
 \mxneed{24}
 
-\item \textit{[0.5 pt]} We know $f(0)=4>2$. Moreover, $f(2)=6e^{-2}\simeq0.8120<2$. The zero of $f-2$ is therefore in $]0,2[$. A program is:
+\item \textit{[0.5 pt]} We know $f(0)=4>2$. Moreover, $f(2)=6e^{-2}\simeq\num{0,8120}<2$. The zero of $f-2$ is therefore in $]0,2[$. A program is:
 \begin{lstlisting}
 from math import exp
 
@@ -502,21 +502,21 @@ Here $3\ne 8$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $16$ of identical independent trials with two outcomes; $X\sim\mathcal B(16,\frac{1}{10})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{16}2(\frac{1}{10})^2(\frac{9}{10})^{14}\simeq0.274522$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{16}2(\frac{1}{10})^2(\frac{9}{10})^{14}\simeq\num{0,274522}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{16}-16(\frac{1}{10})(\frac{9}{10})^{15}\simeq0.485272$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{16}-16(\frac{1}{10})(\frac{9}{10})^{15}\simeq\num{0,485272}$.
 
 \item \textit{[1 pt]} $E(X)=\frac{8}{5}$, $V(X)=\frac{36}{25}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{9}{10})^N$. It is strictly increasing in $N$, since $0<\frac{9}{10}<1$. Calculation gives
-\[P_{28}\simeq0.947665<0.95,\qquad P_{29}\simeq0.952899\ge0.95.\]
+\[P_{28}\simeq\num{0,947665}<\num{0,95},\qquad P_{29}\simeq\num{0,952899}\ge\num{0,95}.\]
 Thus $29$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=16$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{16}j(\frac{1}{10})^j(\frac{9}{10})^{16-j}\simeq0.746292.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{16}j(\frac{1}{10})^j(\frac{9}{10})^{16-j}\simeq\num{0,746292}.\]
 
 \mxneed{24}
 
@@ -532,7 +532,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $4$. The cumulative sums at indices $3$ and $4$ are approximately $0.931594$ and $0.982996$: this confirms minimality.
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $4$. The cumulative sums at indices $3$ and $4$ are approximately $\num{0,931594}$ and $\num{0,982996}$: this confirms minimality.
 
 \end{enumerate}
 
@@ -544,7 +544,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \section*{Mock 1 · A}
 
-{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
 \textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -572,7 +572,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $[0;+\infty[$ by $f(x)=(x+3)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+3)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
 
@@ -582,11 +582,11 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
 
-\item Prove that the equation $f(x)=\frac{3}{2}$ has a unique solution $\alpha$ in $[0;+\infty[$. \hfill\textit{(1 pt)}
+\item Prove that the equation $f(x)=\frac{3}{2}$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
 
 \item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
 
-\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $[0;2]$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
 
 \item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
 
@@ -594,7 +594,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 1 · A · continued}\par
+\mxnewpage\mxcontinued{Mock 1 · A · continued}
 
 \subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
@@ -632,13 +632,13 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,17\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $17$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -700,7 +700,7 @@ def premier_rang():
         n += 1
     return n
 \end{lstlisting}
-Convergence to $12$ ensures termination. The loop examines the indices in order: it returns $3$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $2$ and $3$ are approximately $0.02130536$ and $0.00088776$. They lie clearly on either side of $10^{-3}$. The guaranteed index $4$ may be larger; it comes from an upper bound, not from the exact error.
+Convergence to $12$ ensures termination. The loop examines the indices in order: it returns $3$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $2$ and $3$ are approximately $\num{0,02130536}$ and $\num{0,00088776}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $4$ may be larger; it comes from an upper bound, not from the exact error.
 
 \end{enumerate}
 
@@ -723,7 +723,7 @@ On the domain, $x+1\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of co
 
 \mxneed{24}
 
-\item \textit{[0.5 pt]} We know $f(0)=3>\frac{3}{2}$. Moreover, $f(2)=5e^{-2}\simeq0.6767<\frac{3}{2}$. The zero of $f-\frac{3}{2}$ is therefore in $]0,2[$. A program is:
+\item \textit{[0.5 pt]} We know $f(0)=3>\frac{3}{2}$. Moreover, $f(2)=5e^{-2}\simeq\num{0,6767}<\frac{3}{2}$. The zero of $f-\frac{3}{2}$ is therefore in $]0,2[$. A program is:
 \begin{lstlisting}
 from math import exp
 
@@ -773,21 +773,21 @@ Here $2\ne 5$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B(17,\frac{1}{5})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{1}{5})^2(\frac{4}{5})^{15}\simeq0.191403$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{1}{5})^2(\frac{4}{5})^{15}\simeq\num{0,191403}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{17}-17(\frac{1}{5})(\frac{4}{5})^{16}\simeq0.881781$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{17}-17(\frac{1}{5})(\frac{4}{5})^{16}\simeq\num{0,881781}$.
 
 \item \textit{[1 pt]} $E(X)=\frac{17}{5}$, $V(X)=\frac{68}{25}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{4}{5})^N$. It is strictly increasing in $N$, since $0<\frac{4}{5}<1$. Calculation gives
-\[P_{13}\simeq0.945024<0.95,\qquad P_{14}\simeq0.956020\ge0.95.\]
+\[P_{13}\simeq\num{0,945024}<\num{0,95},\qquad P_{14}\simeq\num{0,956020}\ge\num{0,95}.\]
 Thus $14$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=17$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{5}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{1}{5})^j(\frac{4}{5})^{17-j}\simeq0.526358.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{1}{5})^j(\frac{4}{5})^{17-j}\simeq\num{0,526358}.\]
 
 \mxneed{24}
 
@@ -803,7 +803,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $6$. The cumulative sums at indices $5$ and $6$ are approximately $0.894299$ and $0.962337$: this confirms minimality.
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $6$. The cumulative sums at indices $5$ and $6$ are approximately $\num{0,894299}$ and $\num{0,962337}$: this confirms minimality.
 
 \end{enumerate}
 
@@ -817,7 +817,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \section*{Mock 1 · B}
 
-{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
 \textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -845,7 +845,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $[0;+\infty[$ by $f(x)=(x+2)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+2)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
 
@@ -855,11 +855,11 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
 
-\item Prove that the equation $f(x)=1$ has a unique solution $\alpha$ in $[0;+\infty[$. \hfill\textit{(1 pt)}
+\item Prove that the equation $f(x)=1$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
 
 \item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
 
-\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $[0;2]$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
 
 \item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
 
@@ -867,7 +867,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 1 · B · continued}\par
+\mxnewpage\mxcontinued{Mock 1 · B · continued}
 
 \subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
@@ -905,13 +905,13 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,19\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $19$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -973,7 +973,7 @@ def premier_rang():
         n += 1
     return n
 \end{lstlisting}
-Convergence to $8$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $0.00202265$ and $0.00012642$. They lie clearly on either side of $10^{-3}$. The guaranteed index $5$ may be larger; it comes from an upper bound, not from the exact error.
+Convergence to $8$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $\num{0,00202265}$ and $\num{0,00012642}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $5$ may be larger; it comes from an upper bound, not from the exact error.
 
 \end{enumerate}
 
@@ -996,7 +996,7 @@ On the domain, $x+0\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of co
 
 \mxneed{24}
 
-\item \textit{[0.5 pt]} We know $f(0)=2>1$. Moreover, $f(2)=4e^{-2}\simeq0.5413<1$. The zero of $f-1$ is therefore in $]0,2[$. A program is:
+\item \textit{[0.5 pt]} We know $f(0)=2>1$. Moreover, $f(2)=4e^{-2}\simeq\num{0,5413}<1$. The zero of $f-1$ is therefore in $]0,2[$. A program is:
 \begin{lstlisting}
 from math import exp
 
@@ -1046,21 +1046,21 @@ Here $5\ne 6$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B(19,\frac{1}{10})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{1}{10})^2(\frac{9}{10})^{17}\simeq0.285180$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{1}{10})^2(\frac{9}{10})^{17}\simeq\num{0,285180}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{19}-19(\frac{1}{10})(\frac{9}{10})^{18}\simeq0.579735$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{19}-19(\frac{1}{10})(\frac{9}{10})^{18}\simeq\num{0,579735}$.
 
 \item \textit{[1 pt]} $E(X)=\frac{19}{10}$, $V(X)=\frac{171}{100}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{9}{10})^N$. It is strictly increasing in $N$, since $0<\frac{9}{10}<1$. Calculation gives
-\[P_{28}\simeq0.947665<0.95,\qquad P_{29}\simeq0.952899\ge0.95.\]
+\[P_{28}\simeq\num{0,947665}<\num{0,95},\qquad P_{29}\simeq\num{0,952899}\ge\num{0,95}.\]
 Thus $29$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=19$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{1}{10})^j(\frac{9}{10})^{19-j}\simeq0.749917.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{1}{10})^j(\frac{9}{10})^{19-j}\simeq\num{0,749917}.\]
 
 \mxneed{24}
 
@@ -1076,7 +1076,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $4$. The cumulative sums at indices $3$ and $4$ are approximately $0.885002$ and $0.964806$: this confirms minimality.
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $4$. The cumulative sums at indices $3$ and $4$ are approximately $\num{0,885002}$ and $\num{0,964806}$: this confirms minimality.
 
 \end{enumerate}
 

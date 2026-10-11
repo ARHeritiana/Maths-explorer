@@ -19,11 +19,23 @@
    "status": "aligned",
    "order": 2
   },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 3
+  },
   "6a2a13af8eb7": {
    "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
    "en": "Calculate [[m1]], [[m2]] and [[m3]].",
    "status": "aligned",
    "order": 4
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 5
   },
   "76ab1bb4f5da": {
    "fr": "Simplifier [[m1]].",
@@ -31,11 +43,23 @@
    "status": "aligned",
    "order": 6
   },
+  "737e1b9ae557": {
+   "fr": "Cœur + · Méthode",
+   "en": "Core + · Method",
+   "status": "aligned",
+   "order": 7
+  },
   "d0bb3d5ab355": {
    "fr": "Pour [[m1]], écrire [[m2]] sous la forme [[m3]].",
    "en": "For [[m1]], write [[m2]] in the form [[m3]].",
    "status": "aligned",
    "order": 8
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 9
   },
   "9e6a1cbbaf7b": {
    "fr": "Médiane de la série [[m1]]\\,?",
@@ -109,6 +133,12 @@
    "status": "aligned",
    "order": 23
   },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 25
+  },
   "e362a24f201e": {
    "fr": "Fil rouge · Vrai/faux",
    "en": "Thread · True/false",
@@ -168,6 +198,12 @@
    "en": "Calculate [[m1]] for [[m2]] and [[m3]].",
    "status": "aligned",
    "order": 40
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 41
   },
   "8b5d155bfd05": {
    "fr": "[[m1]] est un pavé droit avec [[m2]], [[m3]], [[m4]]. Dans le repère [[m5]], quelles sont les coordonnées de [[m6]]\\,?",
@@ -234,12 +270,6 @@
    "en": "Pitfall: subtracting the inequalities term by term.",
    "status": "aligned",
    "order": 55
-  },
-  "edb66e001ece": {
-   "fr": "Calculer [[m1]].",
-   "en": "Calculate [[m1]].",
-   "status": "aligned",
-   "order": 57
   },
   "09ec08794610": {
    "fr": "Fil rouge · Problème",
@@ -397,6 +427,12 @@
    "status": "aligned",
    "order": 86
   },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 88
+  },
   "974683f275db": {
    "fr": "Résoudre [[m1]] puis [[m2]].",
    "en": "Solve [[m1]] then [[m2]].",
@@ -420,12 +456,6 @@
    "en": "[[m1]] so [[m2]] (the square function is increasing on [[m3]]).",
    "status": "aligned",
    "order": 96
-  },
-  "968069c57071": {
-   "fr": "Fil rouge · Flash",
-   "en": "Thread · Quick",
-   "status": "aligned",
-   "order": 97
   },
   "99f674536002": {
    "fr": "[[m1]] est isocèle en [[m2]] avec [[m3]]. Quelle est la mesure de [[m4]]\\,?",
@@ -487,173 +517,125 @@
    "status": "aligned",
    "order": 112
   },
-  "848501079fa5": {
-   "fr": "0.0em",
-   "en": "0.0em",
-   "status": "aligned",
-   "order": 113
-  },
   "46354964af63": {
    "fr": "def g(x):\\\\",
    "en": "def g(x):\\\\",
    "status": "aligned",
-   "order": 114
+   "order": 113
   },
   "bff223c8d209": {
    "fr": "if x",
    "en": "if x",
    "status": "aligned",
-   "order": 116
+   "order": 114
   },
   "03e5e1e60c29": {
    "fr": "return 2*x\\\\",
    "en": "return 2*x\\\\",
    "status": "aligned",
-   "order": 118
-  },
-  "1225774c50f5": {
-   "fr": "2.4em",
-   "en": "2.4em",
-   "status": "aligned",
-   "order": 119
+   "order": 115
   },
   "c06efe0ea605": {
    "fr": "else:\\\\",
    "en": "else:\\\\",
    "status": "aligned",
-   "order": 120
-  },
-  "e9164fc5fd4c": {
-   "fr": "4.8em",
-   "en": "4.8em",
-   "status": "aligned",
-   "order": 121
+   "order": 116
   },
   "7f14c80c272a": {
    "fr": "return -x",
    "en": "return -x",
    "status": "aligned",
-   "order": 122
+   "order": 117
   },
   "7b8c0189e799": {
    "fr": "[[m1]] et [[m2]].",
    "en": "[[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 123
+   "order": 118
   },
   "6a901babefb2": {
    "fr": "Condition évaluée avant le calcul~: la branche dépend du signe de [[m1]].",
    "en": "The condition is evaluated before the calculation: the branch depends on the sign of [[m1]].",
    "status": "aligned",
-   "order": 124
+   "order": 119
   },
   "7683585dcd4a": {
    "fr": "lun.~1\\textsuperscript{er}~févr.~2027",
    "en": "Mon~1\\textsuperscript{st}~Feb.~2027",
    "status": "aligned",
-   "order": 125
+   "order": 120
   },
   "7cfc8ab734ce": {
    "fr": "Signe d'un produit ou d'un quotient\\,; tableaux de signes",
    "en": "Sign of a product or quotient; sign tables",
    "status": "aligned",
-   "order": 126
-  },
-  "bbfeac0129d0": {
-   "fr": "Échauffement · Flash",
-   "en": "Warm-up · Quick",
-   "status": "aligned",
-   "order": 127
+   "order": 121
   },
   "eb2686565ccd": {
    "fr": "Signe de [[m1]]\\,?",
    "en": "Sign of [[m1]]?",
    "status": "aligned",
-   "order": 128
+   "order": 123
   },
   "c6de0d22bb80": {
    "fr": "Négatif pour [[m1]], nul en [[m2]], positif pour [[m3]].",
    "en": "Negative for [[m1]], zero at [[m2]], positive for [[m3]].",
    "status": "aligned",
-   "order": 129
-  },
-  "86f6c483637b": {
-   "fr": "Cœur · Méthode",
-   "en": "Core · Method",
-   "status": "aligned",
-   "order": 130
+   "order": 124
   },
   "8500c32237bb": {
    "fr": "Dresser le tableau de signes de [[m1]].",
    "en": "Draw the sign table of [[m1]].",
    "status": "aligned",
-   "order": 131
+   "order": 126
   },
   "50757bf4cc4a": {
    "fr": "Racines [[m1]] et [[m2]]~: positif sur [[m3]], négatif sur [[m4]], positif sur [[m5]].",
    "en": "Roots [[m1]] and [[m2]]: positive on [[m3]], negative on [[m4]], positive on [[m5]].",
    "status": "aligned",
-   "order": 132
+   "order": 127
   },
   "c534cb5cc256": {
    "fr": "Signe du produit~: règle des signes colonne par colonne.",
    "en": "Sign of the product: rule of signs, column by column.",
    "status": "aligned",
-   "order": 133
-  },
-  "737e1b9ae557": {
-   "fr": "Cœur + · Méthode",
-   "en": "Core + · Method",
-   "status": "aligned",
-   "order": 134
-  },
-  "e3bc0dc0e302": {
-   "fr": "Résoudre [[m1]].",
-   "en": "Solve [[m1]].",
-   "status": "aligned",
-   "order": 135
+   "order": 128
   },
   "21b5fddbf64a": {
    "fr": "Numérateur positif pour [[m1]], dénominateur positif pour [[m2]]\\,; [[m3]] ([[m4]] est exclu).",
    "en": "Numerator positive for [[m1]], denominator positive for [[m2]]; [[m3]] ([[m4]] is excluded).",
    "status": "aligned",
-   "order": 136
-  },
-  "1c37077501a9": {
-   "fr": "Retour · Flash",
-   "en": "Review · Quick",
-   "status": "aligned",
-   "order": 137
+   "order": 131
   },
   "b78df77fd835": {
    "fr": "Jeu de [[m1]] cartes~: probabilité de tirer un cœur\\,? un roi\\,?",
    "en": "Pack of [[m1]] cards: probability of drawing a heart? a king?",
    "status": "aligned",
-   "order": 138
+   "order": 133
   },
   "6f5a232da72b": {
    "fr": "Fil rouge · Réfuter",
    "en": "Thread · Disprove",
    "status": "aligned",
-   "order": 139
+   "order": 134
   },
   "a664ca810bfc": {
    "fr": "Réfuter~: «~pour tout réel [[m1]], [[m2]]~».",
    "en": "Disprove: ``for every real number [[m1]], [[m2]]''.",
    "status": "aligned",
-   "order": 140
+   "order": 135
   },
   "168f6e82cde8": {
    "fr": "Contre-exemple~: [[m1]]~: [[m2]].",
    "en": "Counterexample: [[m1]]: [[m2]].",
    "status": "aligned",
-   "order": 141
+   "order": 136
   },
   "d972491de9c1": {
    "fr": "Un seul contre-exemple suffit à réfuter une proposition universelle.",
    "en": "A single counterexample is enough to disprove a universal statement.",
    "status": "aligned",
-   "order": 142
+   "order": 137
   }
  }
 }

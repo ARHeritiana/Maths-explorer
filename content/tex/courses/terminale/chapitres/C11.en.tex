@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
-\setcounter{chapter}{7}\mxunit{terminale-c11}{Integration}\label{ch:8}
+\mxunit[8]{terminale-c11}{Integration}\label{ch:8}
 
-{\small\sffamily\color{mxmint}S59, S61, S63, S66\par}
+\mxsubtitle{S59, S61, S63, S66}
 
 \begin{keypoint}[Objectives]Calculate and bound an integral; distinguish area from integral; use integration by parts; study a sequence of integrals.\end{keypoint}
 
@@ -45,20 +45,22 @@ For $I_n=\int_0^1x^nf(x)\,\dd x$, begin with the sign and comparisons of the int
 \addplot[draw=none,fill=white,domain=0:1]{x^2}\closedcycle;
 \addplot[mxink,domain=0:1]{x};\addplot[mxmint,thick,domain=0:1]{x^2};\end{axis}\end{tikzpicture}\par\small The area between $y=x$ and $y=x^2$ on $[0,1]$ is $\frac{1}{6}$.\end{center}
 
-\section{Research activity}\textbf{Bounding an integral with rectangles --- 35 min.}\par We want to bound $I=\displaystyle\int_0^1x^2\,\dd x$. For an integer $n\ge1$, we split $[0;1]$ into $n$ intervals of equal length. Let $L_n$ be the sum of the areas of the rectangles whose heights are the values of $x^2$ at the left endpoints, and $U_n$ the sum obtained at the right endpoints.
+\mxnewpage
+\section{Research activity}\textbf{Bounding an integral with rectangles --- 35 min.}\par We want to bound $I=\displaystyle\int_0^1x^2\,\dd x$. For an integer $n\ge1$, we split $\intff{0}{1}$ into $n$ intervals of equal length. Let $L_n$ be the sum of the areas of the rectangles whose heights are the values of $x^2$ at the left endpoints, and $U_n$ the sum obtained at the right endpoints.
 \begin{enumerate}\item For $n=4$, draw the two families of rectangles, then calculate $L_4$ and $U_4$.
 \item Justify that $L_4\le I\le U_4$.
 \item Write a Python function with argument $n$ that returns $L_n$ and $U_n$. Find $U_n-L_n$ algebraically.
-\item Find the smallest integer $n$ for which this bound has a width of at most $0.01$.
+\item Find the smallest integer $n$ for which this bound has a width of at most $\num{0,01}$.
 \item Calculate the exact value of $I$ using an antiderivative and check that it lies within the bound obtained for $n=4$.\end{enumerate}
 
+\mxnewpage
 \section{Progressive exercises}
 
 \mxexerciseitem{1}{Practice}Calculate $\displaystyle\int_0^2(3x^2-2x+1)\,\dd x$ by finding an antiderivative.
 
 \mxexerciseitem{2}{Practice}In an orthonormal frame, calculate the area of the region bounded by the curves $y=x$ and $y=x^2$, between the abscissae $0$ and $1$. Give the result in area units.
 
-\mxexerciseitem{3}{Practice}Calculate the mean value of the exponential function on the interval $[0;2]$.
+\mxexerciseitem{3}{Practice}Calculate the mean value of the exponential function on the interval $\intff{0}{2}$.
 
 \mxexerciseitem{4}{Practice}Using integration by parts, calculate $\displaystyle\int_1^e\ln x\,\dd x$.
 
@@ -66,6 +68,7 @@ For $I_n=\int_0^1x^nf(x)\,\dd x$, begin with the sign and comparisons of the int
 
 \section{Textbook or past-paper work}\textbf{Barbazo, p. 260, exercises 28 and 29.} In S66: exercise 28, stating explicitly the two functions chosen for the integration by parts. At home: exercise 29, to adapt this choice to a product containing a logarithm.
 
+\mxnewpage
 \section{Homework}\textbf{HW8 --- A sequence of integrals --- 60 min.}\par For every $n\in\N$, let $I_n=\displaystyle\int_0^1x^ne^x\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^x$.
 \begin{enumerate}\item Calculate $I_0$, then $I_1$ using integration by parts.
 \item Prove that, for every $n\in\N$, $I_{n+1}=e-(n+1)I_n$.
@@ -79,19 +82,21 @@ For $I_n=\int_0^1x^nf(x)\,\dd x$, begin with the sign and comparisons of the int
 \item The four intervals have width $\frac{1}{4}$. The left sum is
 \[L_4=\frac{1}{4}(0^2+(\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2)=\frac{7}{32}.\]
 On the right, $U_4=\frac{1}{4}((\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2+1)=\frac{15}{32}$. The rectangles have heights equal to the values at the corresponding endpoints.
-\begin{center}\begin{minipage}{.47\linewidth}\centering
+\mxtwocols{\begin{figurebox}[Left rectangles: $L_4=\frac{7}{32}$.]
 \begin{tikzpicture}[x=4cm,y=3cm]
 \foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{(\k/4)^2}\filldraw[fill=mxmint!20,draw=mxmint] (\l,0) rectangle (\r,\h);}
 \draw[mxink,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
 \draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
 \node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
-\end{tikzpicture}\par\small Left rectangles: $L_4=\frac{7}{32}$.\end{minipage}\hfill\begin{minipage}{.47\linewidth}\centering
+\end{tikzpicture}
+\end{figurebox}}{\begin{figurebox}[Right rectangles: $U_4=\frac{15}{32}$.]
 \begin{tikzpicture}[x=4cm,y=3cm]
 \foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{((\k+1)/4)^2}\filldraw[fill=mxmint!20,draw=mxmint] (\l,0) rectangle (\r,\h);}
 \draw[mxink,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
 \draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
 \node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
-\end{tikzpicture}\par\small Right rectangles: $U_4=\frac{15}{32}$.\end{minipage}\end{center}
+\end{tikzpicture}
+\end{figurebox}}
 \item For $x\in[\frac{k}{4},\frac{k+1}{4}]$, $(\frac{k}{4})^2\le x^2\le(\frac{k+1}{4})^2$ because the square function is increasing on $[0,1]$. Integrating over the four intervals then adding gives $\frac{7}{32}\le I\le\frac{15}{32}$.
 \item 
 \begin{lstlisting}
@@ -102,7 +107,7 @@ def rectangles_carre(n):
     return bas, haut
 \end{lstlisting}
 The inner terms cancel: $U_n-L_n=(\frac{1}{n})(1^2-0^2)=\frac{1}{n}$.
-\item $\frac{1}{n}\le0.01\Longleftrightarrow n\ge100$. One hundred subdivisions suffice; this is the first integer that gives this width with these two sums.
+\item $\frac{1}{n}\le\num{0,01}\Longleftrightarrow n\ge100$. One hundred subdivisions suffice; this is the first integer that gives this width with these two sums.
 \item An antiderivative of $x^2$ is $\frac{x^3}{3}$. So $I=[\frac{x^3}{3}]_0^1=\frac{1}{3}$, which indeed lies between $\frac{7}{32}$ and $\frac{15}{32}$.
 \end{enumerate}
 
@@ -129,9 +134,9 @@ Both bounds tend to $0$; the squeeze theorem gives $I_n\to0$.
 The absolute value of the error is multiplied by $n+1$. In machine calculation, new errors are added at each step. The decrease of the exact integrals therefore does not guarantee the stability of this method of calculation.
 \end{enumerate}
 
-\subsection{Solutions to the textbook or past-paper work}\paragraph{Exercise 28.} On $[0;1]$, choose $u(x)=x$ and $v(x)=e^x$. These functions are of class $\mathcal C^1$, $u'(x)=1$ and $v'(x)=e^x$. Integration by parts gives
+\subsection{Solutions to the textbook or past-paper work}\paragraph{Exercise 28.} On $\intff{0}{1}$, choose $u(x)=x$ and $v(x)=e^x$. These functions are of class $\mathcal C^1$, $u'(x)=1$ and $v'(x)=e^x$. Integration by parts gives
 \[\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1.\]
-\paragraph{Exercise 29.} On $[1;e]$, choose $u(x)=\ln x$ and $v(x)=\frac{x^2}2$. Then $u'(x)=\frac1x$ and $v'(x)=x$; these functions are of class $\mathcal C^1$. Hence
+\paragraph{Exercise 29.} On $\intff{1}{e}$, choose $u(x)=\ln x$ and $v(x)=\frac{x^2}2$. Then $u'(x)=\frac1x$ and $v'(x)=x$; these functions are of class $\mathcal C^1$. Hence
 \[\begin{aligned}\int_1^e x\ln x\,\dd x&=\left[\frac{x^2}2\ln x\right]_1^e-\frac12\int_1^e x\,\dd x\\&=\frac{e^2}2-\frac{e^2-1}4=\frac{e^2+1}4.\end{aligned}\]
 
 \fi

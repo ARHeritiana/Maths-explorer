@@ -133,11 +133,23 @@
    "status": "aligned",
    "order": 21
   },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
   "6e60c624bf2b": {
    "fr": "Une fonction est dérivable sur un intervalle lorsqu’elle l’est en chacun de ses points ; sa dérivée associe à x le nombre [[m1]]. Les dérivées usuelles sont : constante [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]] pour [[m7]] ; [[m8]] pour [[m9]]. Pour [[m10]], [[m11]] sur son domaine de dérivabilité ; pour [[m12]], la dérivée est 0 directement.",
    "en": "A function is differentiable on an interval when it is differentiable at each of its points; its derivative associates with x the number [[m1]]. The standard derivatives are: constant [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]] for [[m7]]; [[m8]] for [[m9]]. For [[m10]], [[m11]] on its domain of differentiability; for [[m12]], the derivative is 0 directly.",
    "status": "aligned",
    "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
   },
   "576cd45eed35": {
    "fr": "Carré : le taux vaut [[m1]]. Inverse : pour [[m2]], [[m3]] et [[m4]], [[m5]], qui tend vers [[m6]]. Les autres formules sont admises ici.",
@@ -277,23 +289,11 @@
    "status": "aligned",
    "order": 53
   },
-  "ebc073a34cf3": {
-   "fr": "Définition et résultats",
-   "en": "Definition and results",
-   "status": "aligned",
-   "order": 54
-  },
   "ddf6d0a9d284": {
    "fr": "Optimiser consiste à définir la variable et son domaine, exprimer la grandeur à optimiser, puis comparer toutes les valeurs candidates, y compris les bornes. La méthode de Newton utilise la tangente pour approcher une solution de [[m1]] : [[m2]] lorsque [[m3]]. Elle n’est utilisée que dans des cas favorables.",
    "en": "Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints. Newton's method uses the tangent to approximate a solution of [[m1]]: [[m2]] when [[m3]]. It is used only in favourable cases.",
    "status": "aligned",
    "order": 55
-  },
-  "7815a69c0f26": {
-   "fr": "Statut et justification.",
-   "en": "Status and justification.",
-   "status": "aligned",
-   "order": 56
   },
   "776065215998": {
    "fr": "La formule de Newton vient de l’intersection avec l’axe horizontal de [[m1]]. La convergence n’est pas garantie en général ; on la constate et contrôle dans le cas retenu.",
@@ -301,9 +301,9 @@
    "status": "aligned",
    "order": 57
   },
-  "fe4fa877df12": {
-   "fr": "Pour [[m1]] avec [[m2]], Newton donne [[m3]], [[m4]]. Les carrés sont 2{,}25 puis environ 2{,}00694 : on approche [[m5]]. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.",
-   "en": "For [[m1]] with [[m2]], Newton gives [[m3]], [[m4]]. The squares are 2.25 then about 2.00694: we approach [[m5]]. The program must check for a zero derivative and a maximum number of steps.",
+  "788367f8aef1": {
+   "fr": "Pour [[m1]] avec [[m2]], Newton donne [[m3]], [[m4]]. Les carrés sont [[m5]] puis environ [[m6]] : on approche [[m7]]. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.",
+   "en": "For [[m1]] with [[m2]], Newton gives [[m3]], [[m4]]. The squares are [[m5]] then about [[m6]]: we approach [[m7]]. The program must check for a zero derivative and a maximum number of steps.",
    "status": "aligned",
    "order": 58
   },
@@ -613,11 +613,17 @@
    "status": "aligned",
    "order": 109
   },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 110
+  },
   "709bdf5649bc": {
    "fr": "[[m1]] vaut",
    "en": "[[m1]] equals",
    "status": "aligned",
-   "order": 113
+   "order": 111
   },
   "c7cb9f108dad": {
    "fr": "[[m1]] sur un intervalle implique",
@@ -643,6 +649,12 @@
    "status": "aligned",
    "order": 117
   },
+  "0ff41603c462": {
+   "fr": "f constante",
+   "en": "f constant",
+   "status": "aligned",
+   "order": 118
+  },
   "e8019702a364": {
    "fr": "[[m1]] est définie si",
    "en": "[[m1]] is defined if",
@@ -654,12 +666,6 @@
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
    "order": 120
-  },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
-   "status": "aligned",
-   "order": 121
   },
   "7fc9388abb36": {
    "fr": "[[m1]] est",
@@ -714,12 +720,6 @@
    "en": "a minimum",
    "status": "aligned",
    "order": 130
-  },
-  "0ff41603c462": {
-   "fr": "f constante",
-   "en": "f constant",
-   "status": "aligned",
-   "order": 131
   },
   "3089e3b021dc": {
    "fr": "Dérivée de [[m1]] :",

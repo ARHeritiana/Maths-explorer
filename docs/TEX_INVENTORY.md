@@ -9,11 +9,11 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 |---|---:|---:|---:|---:|---:|---|
 | automatismes | 34 | 17 | 1829 | 0 | 0 | 0:  |
 | enrichment | 98 | 49 | 2373 | 0 | 0 | 0:  |
-| premiere | 148 | 74 | 9262 | 0 | 0 | 0:  |
+| premiere | 148 | 74 | 9270 | 0 | 0 | 0:  |
 | seconde | 34 | 17 | 2795 | 0 | 0 | 0:  |
 | stmg | 34 | 17 | 8719 | 0 | 0 | 0:  |
-| terminale | 58 | 29 | 17211 | 0 | 0 | 0:  |
-| **total** | 406 | 203 | 42189 | | | |
+| terminale | 58 | 29 | 17265 | 0 | 0 | 0:  |
+| **total** | 406 | 203 | 42251 | | | |
 
 ## Course environments (defined or used, standard LaTeX ones excluded)
 
@@ -36,10 +36,9 @@ French files (`-en` twins mirror them). "Defined in" lists the courses whose sou
 | `application` |  |  | 48 |  |  |  | (package) |
 | `teachernote` |  |  |  | 15 |  | 17 | (package) |
 | `problem` |  | 24 |  |  |  |  | (package) |
+| `figurebox` |  | 5 | 16 |  |  | 2 | (package) |
 | `note` | 1 | 6 |  |  |  |  | (package) |
-| `figurebox` |  | 5 |  |  |  |  | (package) |
 | `theorem` |  | 2 |  |  |  |  | (package) |
-| `titlepage` |  |  | 1 |  |  | 1 | (package) |
 | `definition` |  | 1 |  |  |  |  | (package) |
 
 ## Macros

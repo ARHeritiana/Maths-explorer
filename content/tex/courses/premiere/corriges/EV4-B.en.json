@@ -7,9 +7,9 @@
    "status": "aligned",
    "order": 0
   },
-  "baa90a8b1bff": {
-   "fr": "\\textbf{QCM :} 1 A, 2 B, 3 C, 4 C, 5 D, 6 B, 7 C, 8 C, 9 D, 10 C, 11 A, 12 D. Chaque réponse correcte : 0{,}5 point ; total 6.",
-   "en": "\\textbf{MCQ:} 1 A, 2 B, 3 C, 4 C, 5 D, 6 B, 7 C, 8 C, 9 D, 10 C, 11 A, 12 D. Each correct answer: 0.5 point; total 6.",
+  "3a8b41c6e697": {
+   "fr": "\\textbf{QCM :} 1 A, 2 B, 3 C, 4 C, 5 D, 6 B, 7 C, 8 C, 9 D, 10 C, 11 A, 12 D. Chaque réponse correcte : [[m1]] point ; total 6.",
+   "en": "\\textbf{MCQ:} 1 A, 2 B, 3 C, 4 C, 5 D, 6 B, 7 C, 8 C, 9 D, 10 C, 11 A, 12 D. Each correct answer: [[m1]] point; total 6.",
    "status": "aligned",
    "order": 1
   },
@@ -19,9 +19,9 @@
    "status": "aligned",
    "order": 2
   },
-  "0c8589583107": {
-   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur 1{,}2 ; division par 0{,}8 ; produit 1{,}25 fois 0{,}8 ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
-   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient 1.2; division by 0.8; product 1.25 times 0.8; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
+  "f26919e403fd": {
+   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur [[m1]] ; division par [[m2]] ; produit [[m3]] fois [[m4]] ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
+   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient [[m1]]; division by [[m2]]; product [[m3]] times [[m4]]; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
    "status": "aligned",
    "order": 3
   },
@@ -31,9 +31,9 @@
    "status": "aligned",
    "order": 4
   },
-  "913ab3e6a683": {
-   "fr": "Valeurs 0,4,6 ; probabilités 0{,}3 ; 0{,}3 ; 0{,}4. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
-   "en": "Values 0{,}4,6; probabilities 0.3; 0.3; 0.4. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
+  "334cbb16c000": {
+   "fr": "Valeurs 0,4,6 ; probabilités [[m1]] ; [[m2]] ; [[m3]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
+   "en": "Values 0,4,6; probabilities [[m1]]; [[m2]]; [[m3]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
    "status": "aligned",
    "order": 5
   },
@@ -55,6 +55,12 @@
    "status": "aligned",
    "order": 8
   },
+  "e8c31d3278ed": {
+   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
+   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
+   "status": "aligned",
+   "order": 9
+  },
   "877381b08b14": {
    "fr": "Croît de 0 à 2 puis décroît ; maximum [[m1]]. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
    "en": "Increasing from 0 to 2 then decreasing; maximum [[m1]]. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
@@ -72,12 +78,6 @@
    "en": "Exercise 3 -- Determining a position",
    "status": "aligned",
    "order": 12
-  },
-  "e8c31d3278ed": {
-   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
-   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
-   "status": "aligned",
-   "order": 13
   },
   "f4add7a45c6d": {
    "fr": "Produit nul seulement en x=2. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",

@@ -11,9 +11,9 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \item Calculer la moyenne de 2, 4, 6.
 \item Vérifier si $(\dfrac{1}{2},\dfrac{1}{3},\dfrac{1}{6})$ peut être une loi.
 \item Calculer $(2-5)^2$.
-\item Si $P(A)=0{,}6$, calculer $P(\overline A)$.
+\item Si $P(A)=\num{0,6}$, calculer $P(\overline A)$.
 \item Un gain brut de 8 unités et une mise de 3 donnent quel gain net ?
-\item Calculer $\sqrt{0{,}25}$.
+\item Calculer $\sqrt{\num{0,25}}$.
 \end{enumerate}
 \paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
 \paragraph{Oral et logique.} Expliquer pourquoi une moyenne théorique peut être un gain impossible. Présenter la différence entre une loi, une simulation et une série statistique.
@@ -21,12 +21,13 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \section*{Chercher avant de formaliser}\label{C08-RECH}
 Créer deux jeux à trois issues équiprobables ayant espérance 0 mais des écarts types distincts. Vérifier leurs lois et expliquer la différence.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Variable, événement et loi}\label{C08-U1}
 \begin{keypoint}[Définition et résultats]
 Sur un univers fini $\Omega$, une variable aléatoire réelle X est une fonction qui associe un nombre réel à chaque issue. L’événement $\{X=a\}$ regroupe les issues donnant la valeur a. Sa loi associe à chaque valeur distincte $x_i$ la probabilité $p_i=P(X=x_i)$, avec $p_i\geq0$ et $\sum p_i=1$.
 \end{keypoint}
 \paragraph{Statut et justification.} Définitions. Les événements associés aux valeurs distinctes forment une partition de l’univers ; cela justifie la somme des probabilités.
-\begin{example}Un dé équilibré donne un gain X égal à 2 pour 1 ou 2, et à $-1$ sinon. La loi est $P(X=2)=\dfrac{1}{3}$, $P(X=-1)=\dfrac{2}{3}$. $\{X\leq0\}=\{3;4;5;6\}$ : probabilité $\dfrac{2}{3}$.\end{example}\label{C08-EX1}
+\begin{example}Un dé équilibré donne un gain X égal à 2 pour 1 ou 2, et à $-1$ sinon. La loi est $P(X=2)=\dfrac{1}{3}$, $P(X=-1)=\dfrac{2}{3}$. $\{X\leq0\}=\ens{3;4;5;6}$ : probabilité $\dfrac{2}{3}$.\end{example}\label{C08-EX1}
 \mxinclude{figures/C08-U1}
 \begin{pitfall}Les valeurs ne sont pas toujours équiprobables même si les issues le sont. Regrouper les issues qui donnent le même gain.\end{pitfall}
 \begin{application}Deux pièces équilibrées sont lancées. X compte les piles. Écrire sa loi et $P(X\leq1)$.\end{application}\label{C08-AP1}
@@ -59,9 +60,10 @@ Pour a,b réels, $V(aX+b)=a^2V(X)$ et $\sigma(aX+b)=|a|\sigma(X)$. Une translati
 Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre. On compare m à $\mu=E(X)$ ; des répétitions permettent d’observer la proportion des échantillons satisfaisant $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$. Ce seuil est une tâche expérimentale du programme, pas une affirmation de taux de couverture exact.
 \end{keypoint}
 \paragraph{Statut et justification.} Expérimentation : on ne démontre ici ni théorème de convergence ni loi normale. On vérifie la taille des listes, le calcul de la moyenne et la distinction entre n et le nombre N d’échantillons.
-\begin{example}Pour X de valeurs 0 et 2 équiprobables, $\mu=1$, $\sigma=1$. Pour n=100, seuil $\dfrac{2}{10}=0{,}2$ : on compte les moyennes dans $[0{,}8;1{,}2]$. Un résultat de 956 sur 1000 signifie fréquence observée 0{,}956 pour cette simulation seulement.\end{example}\label{C08-EX5}
-\begin{pitfall}Ne pas recopier un seul tirage n fois ; ne pas annoncer que la proportion vaut nécessairement 95 \%.\end{pitfall}
+\begin{example}Pour X de valeurs 0 et 2 équiprobables, $\mu=1$, $\sigma=1$. Pour n=100, seuil $\dfrac{2}{10}=\num{0,2}$ : on compte les moyennes dans $\intff{\num{0,8}}{\num{1,2}}$. Un résultat de 956 sur 1000 signifie fréquence observée \num{0,956} pour cette simulation seulement.\end{example}\label{C08-EX5}
+\begin{pitfall}Ne pas recopier un seul tirage n fois ; ne pas annoncer que la proportion vaut nécessairement \pc{95}.\end{pitfall}
 \begin{application}Pour $\mu=5$, $\sigma=3$ et n=36, donner l’intervalle expérimental demandé.\end{application}\label{C08-AP5}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C08-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
@@ -200,8 +202,8 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \item Pour $\sigma=2$, n=100, $\dfrac{2\sigma}{\sqrt n}=$
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $4$
-\item $0{,}04$
-\item $0{,}4$
+\item $\num{0,04}$
+\item $\num{0,4}$
 \item $2$
 \end{enumerate}
 \end{enumerate}

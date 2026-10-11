@@ -6,25 +6,25 @@
 \item $\dfrac{1}{9}$. \textit{Action :} Revenir à la puissance inverse.
 \item $x=2$. \textit{Action :} Isoler l’inconnue en conservant l’équivalence.
 \item $2x+2$. \textit{Action :} Appliquer la somme des dérivées.
-\item $0{,}8$. \textit{Action :} Soustraire le taux à 1.
+\item $\num{0,8}$. \textit{Action :} Soustraire le taux à 1.
 \item $5\times2^n$. \textit{Action :} Compter les n multiplications.
 \end{enumerate}
 \subsection*{Activité de recherche}
-La condition $f\prime=f$ motive $\Delta y\approx h y$. Avec h=$\dfrac{1}{4}$, les valeurs sont 1 ; 1{,}25 ; 1{,}5625 ; 1{,}953125. Cette construction approxime la fonction et ne remplace pas sa caractérisation.
+La condition $f\prime=f$ motive $\Delta y\approx h y$. Avec h=$\dfrac{1}{4}$, les valeurs sont 1 ; \num{1,25} ; \num{1,5625} ; \num{1,953125}. Cette construction approxime la fonction et ne remplace pas sa caractérisation.
 \subsection*{Applications immédiates}
 \begin{enumerate}
 \item $y=e+e(x-1)=ex$.
 \item $e^{2x+1}$ ; $x+2>2x$, donc $x<2$.
 \item $g\prime(t)=-6e^{-2t}<0$ sur $\R$ : strictement décroissante.
-\item $u_n=5(e^{0{,}3})^n$ ; le rapport sur deux unités vaut $e^{0{,}6}$.
+\item $u_n=5(e^{\num{0,3}})^n$ ; le rapport sur deux unités vaut $e^{\num{0,6}}$.
 \item Appliquer l’inégalité démontrée avec l’argument $2x$ ; égalité seulement en x=0.
 \end{enumerate}
 \subsection*{Exercices : démarche et résultats}
 \paragraph{Exercice 9.1 -- Transformer.} $e^2$ ; $e^{5x}$ ; $1+e^{-x}$. Pour la dernière expression, distribuer puis simplifier les produits.
 \paragraph{Exercice 9.2 -- Équations et inéquations.} Par stricte croissance : $2x-1=x+3$, donc x=4. Puis $-3x\geq x-2$, soit $x\leq \dfrac{1}{2}$.
 \paragraph{Exercice 9.3 -- Produit et maximum.} $f\prime=(1-x)e^{-x}$ ; croissance jusqu’à 1 puis décroissance. Maximum $f(1)=\dfrac{1}{e}$. Valeurs aux bornes 0 et $4e^{-4}$ inférieures.
-\paragraph{Exercice 9.4 -- Une population modélisée.} 200 ; facteur $e^{0{,}1}$ ; taux $e^{0{,}1}-1\approx10{,}52\,\%$. Les ressources et la capacité du milieu ne sont pas prises en compte ; il s’agit d’un modèle sur une durée limitée. Les deux courbes demandées passent par (0;1) ; la première croît, la seconde décroît. Elles sont symétriques par rapport à l’axe vertical ; voir la figure de la section Du discret au continu.
-\paragraph{Exercice 9.5 -- Recherche d’un seuil.} Tester successivement n=0{,}1,... avec une limite d’itérations. $Q(4)\approx10{,}8268\geq10$, $Q(5)\approx6{,}5668<10$ ; décroissance démontrée, donc premier entier 5.
+\paragraph{Exercice 9.4 -- Une population modélisée.} 200 ; facteur $e^{\num{0,1}}$ ; taux $e^{\num{0,1}}-1\approx\pc{10,52}$. Les ressources et la capacité du milieu ne sont pas prises en compte ; il s’agit d’un modèle sur une durée limitée. Les deux courbes demandées passent par (0;1) ; la première croît, la seconde décroît. Elles sont symétriques par rapport à l’axe vertical ; voir la figure de la section Du discret au continu.
+\paragraph{Exercice 9.5 -- Recherche d’un seuil.} Tester successivement $n=0,1,\ldots$ avec une limite d’itérations. $Q(4)\approx\num{10,8268}\geq10$, $Q(5)\approx\num{6,5668}<10$ ; décroissance démontrée, donc premier entier 5.
 \paragraph{Exercice 9.6 -- Une symétrie.} $f(-x)=f(x)$ : paire. $f\prime=e^x-e^{-x}$ a le signe de x, donc minimum 2 en 0. Autre preuve : $f(x)-2=(e^{\dfrac{x}{2}}-e^{-\dfrac{x}{2}})^2$.
 \paragraph{Exercice 9.7 -- Unicité sous une hypothèse.} $g\prime=f\prime e^{-x}-fe^{-x}=0$. Sur $\R$, g est constante, et g(0)=1. Ainsi $f(x)=e^x$. Cette preuve d’unicité utilise une exponentielle déjà construite, elle ne démontre pas l’existence.
 \paragraph{Exercice 9.8 -- Reprise différée.} $\dfrac{u_{n+1}}{u_n}=e^2$ ; premier terme e. Somme $e(1+e^2+e^4)=\dfrac{e(1-e^6)}{1-e^2}$. La somme directe est ici aussi efficace.
@@ -51,6 +51,6 @@ La condition $f\prime=f$ motive $\Delta y\approx h y$. Avec h=$\dfrac{1}{4}$, le
 \begin{enumerate}
 \item Faux : en 0, 1 est différent de 2.
 \item Vrai : sa dérivée $-3e^{-3t}$ est négative.
-\item Faux : le taux discret vaut $e^{0{,}1}-1$, environ 10{,}52 \%.
+\item Faux : le taux discret vaut $e^{\num{0,1}}-1$, environ \pc{10,52}.
 \end{enumerate}
 \paragraph{Différenciation.} Pour un blocage technique, proposer la première étape seulement (domaine, facteur ou univers de référence), puis retirer l’aide. Pour un élève autonome, demander une seconde méthode et le traitement d’un cas limite. À l’oral, autoriser une reformulation initiale dans la langue maîtrisée, puis exiger une phrase mathématique précise en français.

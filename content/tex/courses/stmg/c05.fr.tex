@@ -27,21 +27,21 @@ Un changement de variable, par exemple $z=\log(y)$ ou $z=\dfrac1y$, peut rendre 
 
 \mxsession{31}{\mxdate*{2027-01-26}}{B : 2 h -- C : 1 h}{Nuage de points}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Construire un nuage.\item Choisir les échelles.\item Identifier les variables.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $10\,\%$. \mxblank{$1+\dfrac{10}{100}=1{,}10$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $6$, $8$ et $10$. \mxblank{$8$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $6$, $8$ et $10$. \mxblank{$8$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : construire un nuage et choisir les échelles.\end{prerequisites}
 
 \begin{activity}
 Le tableau $(x_i,y_i)$ donne les dépenses publicitaires et les ventes de six mois : $(1,12),(2,15),(3,17),(4,22),(5,24),(6,28)$. Choisir des échelles, tracer le nuage et placer le point moyen.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}$\bar x=3{,}5$ et $\bar y=19{,}67$ environ. Le nuage présente une tendance croissante approximativement affine. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}$\bar x=\num{3,5}$ et $\bar y=\num{19,67}$ environ. Le nuage présente une tendance croissante approximativement affine. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Un nuage de points représente les couples $(x_i,y_i)$. Les axes, unités et échelles doivent être indiqués ; chaque couple donne un seul point.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}$\bar x=3{,}5$ et $\bar y=19{,}67$ environ. Le nuage présente une tendance croissante approximativement affine.\end{solution}
+\begin{solution}$\bar x=\num{3,5}$ et $\bar y=\num{19,67}$ environ. Le nuage présente une tendance croissante approximativement affine.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Pour $y=3x+13$, estimer $y$ lorsque $x=8$.\item Résoudre $3x+13=50$.\item Le modèle a été établi sur $[2,12]$ : qualifier les estimations pour $x=8$ et $x=30$.\end{enumerate}
@@ -103,21 +103,21 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{33}{\mxdate*{2027-02-02}}{B : 2 h -- C : 1 h}{Ajustement affine}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Obtenir un ajustement affine.\item Interpréter $a$ et $b$.\item Vérifier avec le point moyen.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $20\,\%$ de $160$. \mxblank{$32$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $8$, $10$ et $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $160$. \mxblank{$32$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $8$, $10$ et $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : obtenir un ajustement affine et interpréter $a$ et $b$.\end{prerequisites}
 
 \begin{activity}
 Avec les données de la séance 31, obtenir la régression affine à la calculatrice. Interpréter la pente et vérifier que le point moyen appartient approximativement à la droite.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}Une régression donne environ $y=3{,}17x+8{,}57$. Une centaine d'euros supplémentaire est associée à environ $317$ ventes supplémentaires si $y$ est en centaines. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}Une régression donne environ $y=\num{3,17}x+\num{8,57}$. Une centaine d'euros supplémentaire est associée à environ $317$ ventes supplémentaires si $y$ est en centaines. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Une droite $y=ax+b$ ajuste un nuage. $a$ représente la variation moyenne estimée de $y$ pour une unité supplémentaire de $x$.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}Une régression donne environ $y=3{,}17x+8{,}57$. Une centaine d'euros supplémentaire est associée à environ $317$ ventes supplémentaires si $y$ est en centaines.\end{solution}
+\begin{solution}Une régression donne environ $y=\num{3,17}x+\num{8,57}$. Une centaine d'euros supplémentaire est associée à environ $317$ ventes supplémentaires si $y$ est en centaines.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Pour $y=5x+15$, estimer $y$ lorsque $x=8$.\item Résoudre $5x+15=50$.\item Le modèle a été établi sur $[2,12]$ : qualifier les estimations pour $x=8$ et $x=30$.\end{enumerate}
@@ -141,21 +141,21 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{34}{\mxdate*{2027-02-04}}{B : 1 h -- C : 2 h}{Interpolation}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Interpoler.\item Résoudre avec le modèle.\item Exprimer une estimation.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $25\,\%$. \mxblank{$1+\dfrac{25}{100}=1{,}25$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $9$, $11$ et $13$. \mxblank{$11$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $9$, $11$ et $13$. \mxblank{$11$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : interpoler et résoudre avec le modèle.\end{prerequisites}
 
 \begin{activity}
-Sur la période observée $x\in[1,12]$, le modèle est $y=2{,}8x+14$. Estimer $y$ pour $x=7{,}5$, puis estimer $x$ lorsque $y=35$. Qualifier chaque estimation.
+Sur la période observée $x\in[1,12]$, le modèle est $y=\num{2,8}x+14$. Estimer $y$ pour $x=\num{7,5}$, puis estimer $x$ lorsque $y=35$. Qualifier chaque estimation.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}$y=35$ et $x=7{,}5$. Les deux valeurs sont à l'intérieur de l'intervalle observé : interpolations. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}$y=35$ et $x=\num{7,5}$. Les deux valeurs sont à l'intérieur de l'intervalle observé : interpolations. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Une interpolation estime une valeur à l'intérieur de l'intervalle observé. Le résultat est une estimation dépendante du modèle.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}$y=35$ et $x=7{,}5$. Les deux valeurs sont à l'intérieur de l'intervalle observé : interpolations.\end{solution}
+\begin{solution}$y=35$ et $x=\num{7,5}$. Les deux valeurs sont à l'intérieur de l'intervalle observé : interpolations.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Pour $y=6x+16$, estimer $y$ lorsque $x=8$.\item Résoudre $6x+16=50$.\item Le modèle a été établi sur $[2,12]$ : qualifier les estimations pour $x=8$ et $x=30$.\end{enumerate}
@@ -183,7 +183,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : extrapoler prudemment et évaluer la plausibilité.\end{prerequisites}
 
 \begin{activity}
-Le même modèle $y=2{,}8x+14$, ajusté sur $[1,12]$, est utilisé pour $x=40$. Calculer l'estimation, puis donner trois raisons pour lesquelles elle peut être peu fiable.
+Le même modèle $y=\num{2,8}x+14$, ajusté sur $[1,12]$, est utilisé pour $x=40$. Calculer l'estimation, puis donner trois raisons pour lesquelles elle peut être peu fiable.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}L'estimation vaut $126$. Elle est éloignée des données, la tendance peut changer et des contraintes réelles peuvent plafonner la variable. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
@@ -217,21 +217,21 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{36}{\mxdate*{2027-02-11}}{B : 1 h -- C : 2 h}{Changement de variable}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Effectuer un changement de variable.\item Ajuster les nouvelles données.\item Revenir à la variable initiale.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $5\,\%$ de $80$. \mxblank{$4$}\item Calculer la moyenne de $4$, $6$ et $8$. \mxblank{$6$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $80$. \mxblank{$4$}\item Calculer la moyenne de $4$, $6$ et $8$. \mxblank{$6$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : effectuer un changement de variable et ajuster les nouvelles données.\end{prerequisites}
 
 \begin{activity}
-Les données semblent exponentielles. On pose $z=\log(y)$ et l'ajustement donne $z=0{,}08x+1{,}2$. Exprimer $y$ en fonction de $x$, puis calculer $y$ pour $x=5$.
+Les données semblent exponentielles. On pose $z=\log(y)$ et l'ajustement donne $z=\num{0,08}x+\num{1,2}$. Exprimer $y$ en fonction de $x$, puis calculer $y$ pour $x=5$.
 
 \end{activity}
-\begin{solution}$y=10^{0{,}08x+1{,}2}$. Pour $x=5$, $y=10^{1{,}6}\approx39{,}8$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}$y=10^{\num{0,08}x+\num{1,2}}$. Pour $x=5$, $y=10^{\num{1,6}}\approx\num{39,8}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Un changement de variable peut aligner un nuage. Après l'ajustement dans la nouvelle variable, il faut revenir à la variable initiale.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}$y=10^{0{,}08x+1{,}2}$. Pour $x=5$, $y=10^{1{,}6}\approx39{,}8$.\end{solution}
+\begin{solution}$y=10^{\num{0,08}x+\num{1,2}}$. Pour $x=5$, $y=10^{\num{1,6}}\approx\num{39,8}$.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Pour $y=3x+13$, estimer $y$ lorsque $x=8$.\item Résoudre $3x+13=50$.\item Le modèle a été établi sur $[2,12]$ : qualifier les estimations pour $x=8$ et $x=30$.\end{enumerate}
@@ -255,11 +255,11 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{37}{\mxdate*{2027-03-02}}{B : 2 h -- C : 1 h}{Choix du modèle et ajustement}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Comparer des modèles.\item Utiliser les résidus.\item Définir un domaine d'usage.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $10\,\%$. \mxblank{$1+\dfrac{10}{100}=1{,}10$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $5$, $7$ et $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $5$, $7$ et $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : comparer des modèles et utiliser les résidus.\end{prerequisites}
 
 \begin{activity}
-Deux modèles donnent des résidus absolus totaux $18{,}4$ et $11{,}7$ sur la zone observée. Le second comporte cependant une croissance irréaliste après $x=20$. Choisir un modèle pour interpoler à $x=12$, puis discuter l'extrapolation à $x=50$.
+Deux modèles donnent des résidus absolus totaux $\num{18,4}$ et $\num{11,7}$ sur la zone observée. Le second comporte cependant une croissance irréaliste après $x=20$. Choisir un modèle pour interpoler à $x=12$, puis discuter l'extrapolation à $x=50$.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}Le second est préférable pour interpoler sur la zone observée si les autres critères sont comparables ; aucun choix automatique n'est justifié pour $x=50$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}

@@ -12,7 +12,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \item Perimeter of a circle of radius 1?
 \item How many degrees is a quarter turn?
 \item Calculate $\sqrt {\dfrac{1}{2}}$.
-\item What are the x- and y-coordinates of the reflection of $(a;b)$ in the x-axis?
+\item What are the x- and y-coordinates of the reflection of $\pt{a;b}$ in the x-axis?
 \item Simplify $\dfrac{5\pi}{3}-2\pi $.
 \item In a right triangle, opposite side 3 and hypotenuse 5: sine?
 \end{enumerate}
@@ -22,6 +22,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \section*{Investigate before formalising}\label{C10-RECH}
 Construct, without a protractor, a point at angle $\dfrac{\pi}{3}$ then a point at angle $\dfrac{\pi}{4}$. Justify the exact values of their coordinates from the figures.
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
 \section{Measuring an angle in radians}\label{C10-U1}
 \begin{keypoint}[Definition and results]
 The unit circle is the circle with centre O and radius 1, oriented anticlockwise. One radian corresponds to an arc of length 1 on this circle. A full turn is $2\pi$ radians, a half turn $\pi$. On a circle of radius r, an arc length is $r\theta$ for a positive angle $\theta$ expressed in radians.
@@ -35,15 +36,15 @@ The unit circle is the circle with centre O and radius 1, oriented anticlockwise
 To each real number x corresponds a point M of the circle, obtained by an oriented path of length x starting from I(1;0). Two real numbers have the same image if their difference is an integer multiple of $2\pi$. A negative number indicates a path in the clockwise direction.
 \end{keypoint}
 \paragraph{Status and justification.} Adding or removing a whole number of turns keeps the end point. Conversely, returning to the same point requires a whole number of turns.
-\begin{example}$\dfrac{13\pi}{3}=4\pi +\dfrac{\pi}{3}$ has the same image as $\dfrac{\pi}{3}$. $-\dfrac{\pi}{2}$ has the same image as $\dfrac{3\pi}{2}$: the point $(0;-1)$.\end{example}\label{C10-EX2}
+\begin{example}$\dfrac{13\pi}{3}=4\pi +\dfrac{\pi}{3}$ has the same image as $\dfrac{\pi}{3}$. $-\dfrac{\pi}{2}$ has the same image as $\dfrac{3\pi}{2}$: the point $\pt{0;-1}$.\end{example}\label{C10-EX2}
 \begin{pitfall}Adding $\pi$ gives the opposite point, not the same point.\end{pitfall}
 \begin{application}Place the images of $\dfrac{7\pi}{2}$ and $-\dfrac{5\pi}{3}$ by reducing them to within one turn.\end{application}\label{C10-AP2}
 \section{Sine, cosine and standard values}\label{C10-U3}
 \begin{keypoint}[Definition and results]
-If M is the image of x, $M=(\cos x;\sin x)$. So $-1\leq\cos x,\sin x\leq1$ and $\cos^2x+\sin^2x=1$. For $x=0,\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3},\dfrac{\pi}{2}$, the cosines are $1,\dfrac{\sqrt 3}{2},\dfrac{\sqrt 2}{2},\dfrac{1}{2},0$ and the sines $0,\dfrac{1}{2},\dfrac{\sqrt 2}{2},\dfrac{\sqrt 3}{2},1$.
+If M is the image of x, $M=\pt{\cos x;\sin x}$. So $-1\leq\cos x,\sin x\leq1$ and $\cos^2x+\sin^2x=1$. For $x=0,\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3},\dfrac{\pi}{2}$, the cosines are $1,\dfrac{\sqrt 3}{2},\dfrac{\sqrt 2}{2},\dfrac{1}{2},0$ and the sines $0,\dfrac{1}{2},\dfrac{\sqrt 2}{2},\dfrac{\sqrt 3}{2},1$.
 \end{keypoint}
 \paragraph{Status and justification.} At $\dfrac{\pi}{4}$, the two coordinates are equal and positive; Pythagoras gives $2a^2=1$, so $a=\dfrac{\sqrt 2}{2}$. An equilateral triangle of side 1, cut by its altitude, has half-base $\dfrac{1}{2}$ and height $\dfrac{\sqrt 3}{2}$: $\cos (\dfrac{\pi}{3})=\dfrac{1}{2}$, $\sin (\dfrac{\pi}{3})=\dfrac{\sqrt 3}{2}$. The complementary angle gives $\dfrac{\pi}{6}$.
-\begin{example}The point at angle $\dfrac{\pi}{3}$ is $(\dfrac{1}{2};\dfrac{\sqrt 3}{2})$. The scalar product of two unit vectors forming this angle equals its cosine, so $\dfrac{1}{2}$. The geometry chapters thus connect to the circle.\end{example}\label{C10-EX3}
+\begin{example}The point at angle $\dfrac{\pi}{3}$ is $\pt{\dfrac{1}{2};\dfrac{\sqrt 3}{2}}$. The scalar product of two unit vectors forming this angle equals its cosine, so $\dfrac{1}{2}$. The geometry chapters thus connect to the circle.\end{example}\label{C10-EX3}
 \mxinclude{figures/C10-U3}
 \begin{pitfall}The cosine is the x-coordinate, the sine the y-coordinate. The identity gives an absolute value: the quadrant determines the sign.\end{pitfall}
 \begin{application}If $\cos x=\dfrac{3}{5}$ and the image of x is in the fourth quadrant, give $\sin x$.\end{application}\label{C10-AP3}
@@ -60,9 +61,10 @@ The symmetries of the circle give $\cos(-x)=\cos x$, $\sin(-x)=-\sin x$; $\cos(\
 A regular inscribed polygon with n sides in the unit circle has half-perimeter $n\sin (\dfrac{\pi}{n})$; a circumscribed polygon has half-perimeter $n\tan (\dfrac{\pi}{n})$, with $\tan \theta =\dfrac{\sin \theta}{\cos}\theta $ here. Archimedes' method doubles the number of sides and calculates the new lengths by Pythagoras, without knowing pi in advance.
 \end{keypoint}
 \paragraph{Status and justification.} The inscribed perimeter is less than that of the circle and the circumscribed one greater: geometric bounds accepted. If c is the chord of one side, let $h=\sqrt {1-\dfrac{c^2}{4}}$; the chord of the half-angle is $\dfrac{c}{\sqrt {2(1+h)}}$. This formula comes from Pythagoras and avoids a subtraction of nearby real numbers.
-\begin{example}For the inscribed hexagon, c=1 and half-perimeter 3. The circumscribed one gives $2\sqrt3\approx3.4641$. By doubling the sides, we tighten the bounds. The supplied program starts from n=6 and c=1.\end{example}\label{C10-EX5}
+\begin{example}For the inscribed hexagon, c=1 and half-perimeter 3. The circumscribed one gives $2\sqrt3\approx\num{3,4641}$. By doubling the sides, we tighten the bounds. The supplied program starts from n=6 and c=1.\end{example}\label{C10-EX5}
 \begin{pitfall}Using a sine function directly with pi already known would check a calculation, but would not construct an approximation independent of pi.\end{pitfall}
 \begin{application}For n=6 and c=1, calculate the new chord after doubling.\end{application}\label{C10-AP5}
+\mxnewpage
 \section*{Exercise path}\label{C10-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
 \begingroup
@@ -76,7 +78,7 @@ We use the unit circle to measure angles in radians.
 \mxexercisehead{C10-E2}{Reducing angles}
 Consider the real numbers $\dfrac{17\pi}{6}$, $-\dfrac{7\pi}{4}$ and $5\pi$.
 \begin{enumerate}[label=\arabic*.]
-\item For each, determine a representative in $[0;2\pi[$ having the same image on the unit circle. Show the number of turns added or removed.
+\item For each, determine a representative in $\intfo{0}{2\pi}$ having the same image on the unit circle. Show the number of turns added or removed.
 \item Place the three images on a circle and identify them by the starting real numbers.
 \end{enumerate}
 \mxexercisehead{C10-E3}{Exact values}
@@ -92,7 +94,7 @@ A real number $x$ satisfies $\sin x=\dfrac5{13}$. Its image on the unit circle l
 \item Explain why the value of $\sin x$ alone would not have been enough to choose the sign of $\cos x$.
 \end{enumerate}
 \mxexercisehead{C10-E5}{A wheel}
-A wheel of radius $0.30$ m rolls on horizontal ground without slipping. It turns through an angle of $\dfrac{5\pi}{3}$ radians. We look for the distance travelled by its axle in the direction of motion.
+A wheel of radius $\num{0,30}$ m rolls on horizontal ground without slipping. It turns through an angle of $\dfrac{5\pi}{3}$ radians. We look for the distance travelled by its axle in the direction of motion.
 \begin{enumerate}[label=\arabic*.]
 \item Calculate this distance in exact form, explaining the link with the arc length unrolled.
 \item Explain why the length of a chord of the circle must not be used. Is the path of a point fixed on the rim of the wheel, seen from the ground, the same as that of the axle?
@@ -104,7 +106,7 @@ On the unit circle with centre $O$, the point $A$ is the image of 0 and the poin
 \item Recover this length by applying the Al-Kashi relation to the triangle $OAB$. State the lengths and the angle used.
 \end{enumerate}
 \mxexercisehead{C10-E7}{Reading an equation on the circle}
-We look for the real numbers $x$ in the interval $[0;2\pi[$ whose image on the unit circle has x-coordinate $\dfrac12$.
+We look for the real numbers $x$ in the interval $\intfo{0}{2\pi}$ whose image on the unit circle has x-coordinate $\dfrac12$.
 \begin{enumerate}[label=\arabic*.]
 \item Translate the condition on the x-coordinate into an equation involving $\cos x$.
 \item Draw the corresponding vertical line on a circle, mark its intersections and give the two solutions. Check that they belong to the interval required.
@@ -182,10 +184,10 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \end{enumerate}
 \item Image of $\dfrac{3\pi}{2}$:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(1;0)$
-\item $(-1;0)$
-\item $(0;1)$
-\item $(0;-1)$
+\item $\pt{1;0}$
+\item $\pt{-1;0}$
+\item $\pt{0;1}$
+\item $\pt{0;-1}$
 \end{enumerate}
 \item Arc of radius 3 and angle 2 radians: length
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]

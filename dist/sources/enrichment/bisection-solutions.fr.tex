@@ -3,14 +3,14 @@
 \mxsubtitle{Terminale · analyse et algorithmique \textperiodcentered{} Solutions détaillées \textperiodcentered{} 12}
 
 \begin{note}
-\textbf{Données.} Pour l’exercice 1 : on cherche un zéro de $f(x)=x^{2}-2$ sur $[1 ; 2]$. Après deux partages, l’intervalle conservé est $[1{,}25 ; 1{,}5]$.
+\textbf{Données.} Pour l’exercice 1 : on cherche un zéro de $f(x)=x^{2}-2$ sur $\intff{1}{2}$. Après deux partages, l’intervalle conservé est $\intff{\num{1,25}}{\num{1,5}}$.
 \end{note}
 
 \begin{exercise}
 Poursuivre l’exemple une troisième fois.
 \end{exercise}
 \begin{solution}
-Le milieu vaut $1{,}375$ ; son carré vaut $1{,}890625<2$. Le nouvel intervalle est $[1{,}375 ; 1{,}5]$.
+Le milieu vaut $\num{1,375}$ ; son carré vaut $\num{1,890625}<2$. Le nouvel intervalle est $\intff{\num{1,375}}{\num{1,5}}$.
 \end{solution}
 
 \begin{exercise}
@@ -24,20 +24,20 @@ $2^{9}=512<1000\leq 1024=2^{10}$, donc 10 partages suffisent et 9 ne suffisent p
 Pourquoi le changement de signe de $f(x)=\frac{1}{x}$ entre $-1$ et 1 ne prouve-t-il pas l’existence d’un zéro ?
 \end{exercise}
 \begin{solution}
-La fonction n’est pas définie en 0 et n’est pas continue sur $[-1 ; 1]$. L’hypothèse du théorème n’est pas satisfaite ; $\frac{1}{x}$ n’est jamais nul.
+La fonction n’est pas définie en 0 et n’est pas continue sur $\intff{-1}{1}$. L’hypothèse du théorème n’est pas satisfaite ; $\frac{1}{x}$ n’est jamais nul.
 \end{solution}
 
 \begin{exercise}
-Une racine est dans $[1{,}4 ; 1{,}5]$. Quelle erreur maximale garantit le milieu $1{,}45$ ?
+Une racine est dans $\intff{\num{1,4}}{\num{1,5}}$. Quelle erreur maximale garantit le milieu $\num{1,45}$ ?
 \end{exercise}
 \begin{solution}
-La demi-largeur vaut $\frac{1{,}5-1{,}4}{2}=0{,}05$.
+La demi-largeur vaut $\frac{\num{1,5}-\num{1,4}}{2}=\num{0,05}$.
 \end{solution}
 
 \begin{problem}[Chercher, justifier, conclure]
-Pour $f(x)=x^{3}-x-1$ sur $[1 ; 2]$, prouver l’existence et l’unicité d’une racine $\alpha $. Effectuer trois partages par dichotomie. Combien de partages garantissent que le milieu final approche $\alpha $ avec une erreur au plus $0{,}001$ ?
+Pour $f(x)=x^{3}-x-1$ sur $\intff{1}{2}$, prouver l’existence et l’unicité d’une racine $\alpha $. Effectuer trois partages par dichotomie. Combien de partages garantissent que le milieu final approche $\alpha $ avec une erreur au plus $\num{0,001}$ ?
 \end{problem}
 \begin{solution}
-$f(1)=-1$ et $f(2)=5$ ; f est continue. De plus $f'(x)=3x^{2}-1\geq 2$ sur $[1 ; 2]$, donc f est strictement croissante. Les milieux $1{,}5$, $1{,}25$, $1{,}375$ donnent successivement $[1 ; 1{,}5]$, $[1{,}25 ; 1{,}5]$, $[1{,}25 ; 1{,}375]$ car les valeurs de f sont $0{,}875$, $-0{,}296875$ et $0{,}224609375$. Après n partages, l’erreur du milieu est au plus $\frac{1}{2^{n+1}}$. Il faut $2^{n+1}\geq 1000$, donc $n\geq 9$.
+$f(1)=-1$ et $f(2)=5$ ; f est continue. De plus $f'(x)=3x^{2}-1\geq 2$ sur $\intff{1}{2}$, donc f est strictement croissante. Les milieux $\num{1,5}$, $\num{1,25}$, $\num{1,375}$ donnent successivement $\intff{1}{\num{1,5}}$, $\intff{\num{1,25}}{\num{1,5}}$, $\intff{\num{1,25}}{\num{1,375}}$ car les valeurs de f sont $\num{0,875}$, $-\num{0,296875}$ et $\num{0,224609375}$. Après n partages, l’erreur du milieu est au plus $\frac{1}{2^{n+1}}$. Il faut $2^{n+1}\geq 1000$, donc $n\geq 9$.
 \end{solution}
 

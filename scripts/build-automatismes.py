@@ -57,13 +57,10 @@ def main():
                 target = OUT / ch['id'] / f'fluency-{kind}{suf}.pdf'
                 out.save(target, garbage=4, deflate=True)
                 counts[(lang, kind, k)] = len(out)
-    # Books must have equal page counts (checked in compile order below); an excerpt may drift by one page,
-    # which the catalogue records as englishPages.
+    # Books and excerpts have equal page counts in both languages (every sequence is a balanced block).
     drift = [(k + 2, kind) for k in range(14) for kind in ('student', 'teacher') if counts[('fr', kind, k)] != counts[('en', kind, k)]]
-    bad = [d for d in drift if abs(counts[('fr', d[1], d[0] - 2)] - counts[('en', d[1], d[0] - 2)]) > 1]
-    if bad: sys.exit('Page counts differ by more than one page for ' + ', '.join(f'chapter {n} ({k})' for n, k in bad))
-    for n, k in drift: print(f'  note: chapter {n} {k} excerpt differs by one page between languages')
-    print('FR/EN books have equal page counts; excerpts within one page')
+    if drift: sys.exit('French and English excerpts differ for ' + ', '.join(f'chapter {n} ({k})' for n, k in drift))
+    print('FR/EN books and excerpts have equal page counts')
 
 
 main()

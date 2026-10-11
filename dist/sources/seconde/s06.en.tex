@@ -20,42 +20,42 @@ $D_f$ contains the values for which the process defining $f$ makes sense. A deno
 \end{keypoint}
 \begin{example}Determine the domains of definition:
 \[f(x)=3x^2-5x+2,\quad g(x)=\frac{2x+1}{x-4},\quad h(x)=\frac{x}{x^2-9},\quad k(x)=\sqrt{2x-6}.\]\end{example}
-\mxanswerspace[5]{$D_f=\R$. $D_g=]-\infty;4[\cup]4;+\infty[$ since $x-4\ne0$. $D_h=]-\infty;-3[\cup]-3;3[\cup]3;+\infty[$ since $x^2-9\ne0$. $D_k=[3;+\infty[$ since $2x-6\geq0$.}
+\mxanswerspace[5]{$D_f=\R$. $D_g=\intoo{-\infty}{4}\cup\intoo{4}{+\infty}$ since $x-4\ne0$. $D_h=\intoo{-\infty}{-3}\cup\intoo{-3}{3}\cup\intoo{3}{+\infty}$ since $x^2-9\ne0$. $D_k=\intfo{3}{+\infty}$ since $2x-6\geq0$.}
 \begin{pitfall}The square root of a negative number does not exist in $\R$; it is not ``a negative square root'' that is excluded.\end{pitfall}
 \begin{example}[Modelling]A rectangle of perimeter $20$ m has width $x$ m. Express its area and state the domain if both dimensions must be strictly positive.\end{example}
-\mxanswerspace[5]{The length is $10-x$, so $A(x)=x(10-x)$ in m$^2$. $x>0$ and $10-x>0$ give $D_A=]0;10[$. If degenerate rectangles were allowed, we could take $[0;10]$.}
+\mxanswerspace[5]{The length is $10-x$, so $A(x)=x(10-x)$ in m$^2$. $x>0$ and $10-x>0$ give $D_A=\intoo{0}{10}$. If degenerate rectangles were allowed, we could take $\intff{0}{10}$.}
 \mxsection{Table of values and representative curve}
 \begin{keypoint}[Definition]
-$\mathcal C_f$ is the set of points $(x;f(x))$, with $x\in D_f$. Thus $M(a;b)\in\mathcal C_f\iff a\in D_f$ and $b=f(a)$.
+$\mathcal C_f$ is the set of points $\pt{x;f(x)}$, with $x\in D_f$. Thus $M\pt{a;b}\in\mathcal C_f\iff a\in D_f$ and $b=f(a)$.
 \end{keypoint}
-\begin{example}On $[-1;4]$, $f(x)=x^2-2x-1$. Complete the table, then draw the curve over the whole interval.\end{example}
+\begin{example}On $\intff{-1}{4}$, $f(x)=x^2-2x-1$. Complete the table, then draw the curve over the whole interval.\end{example}
 \begin{center}\mxarraystretch{1.6}\begin{tabular}{c|rrrrrrrr}
-$x$&$-1$&$-0.5$&$0$&$1$&$1.5$&$2$&$3$&$4$\\\hline
-$f(x)$&\mxblank{$2$}&\mxblank{$0.25$}&$-1$&$-2$&\mxblank{$-1.75$}&$-1$&\mxblank{$2$}&\mxblank{$7$}
+$x$&$-1$&$-\num{0,5}$&$0$&$1$&$\num{1,5}$&$2$&$3$&$4$\\\hline
+$f(x)$&\mxblank{$2$}&\mxblank{$\num{0,25}$}&$-1$&$-2$&\mxblank{$-\num{1,75}$}&$-1$&\mxblank{$2$}&\mxblank{$7$}
 \end{tabular}\end{center}
 \begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-2,xmax=5,ymin=-3,ymax=8,width=12cm,height=9cm,xtick={-2,...,5},ytick={-3,...,8}]
 \ifmxteacher\addplot[thick,domain=-1:4]{x*x-2*x-1};\addplot[only marks]coordinates{(-1,2)(-.5,.25)(0,-1)(1,-2)(1.5,-1.75)(2,-1)(3,2)(4,7)};\fi
 \end{axis}\end{tikzpicture}\end{center}
-\mxanswerspace[2]{Images: $2$; $0.25$; $-1$; $-2$; $-1.75$; $-1$; $2$; $7$. Plot the points then draw the parabola. Segments joining only these points would give just an approximation.}
+\mxanswerspace[2]{Images: $2$; $\num{0,25}$; $-1$; $-2$; $-\num{1,75}$; $-1$; $2$; $7$. Plot the points then draw the parabola. Segments joining only these points would give just an approximation.}
 \mxsection{Graphical solving of equations and inequalities}
 \begin{keypoint}[Method]
 The solutions of $f(x)=k$ are the abscissae of the intersections of $\mathcal C_f$ with $y=k$. For $f(x)\leq k$, read the abscissae where the curve is below this line, intersections included; with $<$, the intersections are excluded.
 \end{keypoint}
-\begin{example}The curve represents $f(x)=1+\frac14(x+3)(x+1)(x-2)$ on $[-4;3]$. Solve graphically $f(x)=1$, $f(x)\leq1$ and $f(x)>1$.\end{example}
+\begin{example}The curve represents $f(x)=1+\frac14(x+3)(x+1)(x-2)$ on $\intff{-4}{3}$. Solve graphically $f(x)=1$, $f(x)\leq1$ and $f(x)>1$.\end{example}
 \begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-4.2,xmax=3.2,ymin=-4,ymax=7,xtick={-4,...,3},ytick={-4,-2,0,1,3,5,7},width=12cm,height=8cm]
 \addplot[very thick,domain=-4:3]{1+(x+3)*(x+1)*(x-2)/4};\addplot[dashed,domain=-4:3]{1};\node[anchor=south east]at(axis cs:3,1){$y=1$};
 \end{axis}\end{tikzpicture}\end{center}
-\mxanswerspace[4]{$f(x)=1$: $-3,-1,2$. $f(x)\leq1$: $[-4;-3]\cup[-1;2]$. $f(x)>1$: $]-3;-1[\cup]2;3]$. The endpoints $-4,3$ come from the domain. The factorisation checks the intersections exactly; the algebraic study of the sign will be consolidated in sequence 8.}
+\mxanswerspace[4]{$f(x)=1$: $-3,-1,2$. $f(x)\leq1$: $\intff{-4}{-3}\cup\intff{-1}{2}$. $f(x)>1$: $\intoo{-3}{-1}\cup\intof{2}{3}$. The endpoints $-4,3$ come from the domain. The factorisation checks the intersections exactly; the algebraic study of the sign will be consolidated in sequence 8.}
 \begin{teachernote}Graph rebuilt to replace an ambiguous reading in the original booklet. Distinguish graphical conjecture from exact validation.\end{teachernote}
 \mxsection{Comparing two functions; reading a sign}
 \begin{keypoint}[Method]
 $f(x)=g(x)$ is read at the intersections of the curves. For $f(x)<g(x)$, $\mathcal C_f$ is strictly below $\mathcal C_g$ at the same abscissa. The sign of $f(x)$ is read relative to the x-axis.
 \end{keypoint}
-\begin{example}On $[-3;3]$, $f(x)=x^2$ and $g(x)=x+2$. Solve $f=g$, $f<g$, $f\geq g$ and determine the sign of $g$.\end{example}
+\begin{example}On $\intff{-3}{3}$, $f(x)=x^2$ and $g(x)=x+2$. Solve $f=g$, $f<g$, $f\geq g$ and determine the sign of $g$.\end{example}
 \begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-3.2,xmax=3.2,ymin=-2,ymax=10,width=12cm,height=8cm,xtick={-3,...,3},ytick={-2,0,2,4,6,8,10}]
 \addplot[very thick,domain=-3:3]{x*x};\addplot[thick,dashed,domain=-3:3]{x+2};\node at(axis cs:2.6,8.5){$\mathcal C_f$};\node at(axis cs:2.6,4.2){$\mathcal C_g$};
 \end{axis}\end{tikzpicture}\end{center}
-\mxanswerspace[4]{$f=g$ for $x=-1,2$; $f<g$ on $]-1;2[$; $f\geq g$ on $[-3;-1]\cup[2;3]$. $g$ is strictly negative on $[-3;-2[$, zero at $-2$, strictly positive on $]-2;3]$. Sign and variations are different pieces of information.}
+\mxanswerspace[4]{$f=g$ for $x=-1,2$; $f<g$ on $\intoo{-1}{2}$; $f\geq g$ on $\intff{-3}{-1}\cup\intff{2}{3}$. $g$ is strictly negative on $\intfo{-3}{-2}$, zero at $-2$, strictly positive on $\intof{-2}{3}$. Sign and variations are different pieces of information.}
 \mxsection{Affine functions and absolute value}
 \begin{keypoint}[Definitions]
 An affine function is $f(x)=mx+p$ on $\R$. It is linear if $p=0$, constant if $m=0$. For $m\ne0$, it vanishes at $-p/m$; its sign is that of $m$ to the right of this number.
@@ -67,11 +67,11 @@ The function $x\mapsto|x|$ is defined on $\R$, positive or zero, and vanishes on
 \addplot[thick,domain=-4:4]{abs(x)};\node at(axis cs:2.7,3.7){$y=|x|$};\end{axis}\end{tikzpicture}\end{center}
 \begin{keypoint}[Equations and inequalities]
 If $k<0$, $|x|=k$ and $|x|\leq k$ have no solution, and $|x|\geq k$ is true on $\R$. If $k=0$, the first two give $x=0$, the third is true on $\R$. For $k>0$:
-\[|x|=k\iff x\in\{-k;k\},\quad |x|\leq k\iff x\in[-k;k],\]
-\[|x|\geq k\iff x\in]-\infty;-k]\cup[k;+\infty[.\]
+\[|x|=k\iff x\in\ens{-k;k},\quad |x|\leq k\iff x\in\intff{-k}{k},\]
+\[|x|\geq k\iff x\in\intof{-\infty}{-k}\cup\intfo{k}{+\infty}.\]
 \end{keypoint}
 \begin{example}Solve $|x|=5$, $|x|=-3$, $|x|\leq3$, $|x|\geq4$.\end{example}
-\mxanswerspace[1.6]{$\{-5;5\}$ ; $\varnothing$ ; $[-3;3]$ ; $]-\infty;-4]\cup[4;+\infty[$.}
+\mxanswerspace[1.6]{$\ens{-5;5}$ ; $\varnothing$ ; $\intff{-3}{3}$ ; $\intof{-\infty}{-4}\cup\intfo{4}{+\infty}$.}
 \mxsection{Square and inverse functions}
 \begin{keypoint}[Definitions and sign]
 $x\mapsto x^2$ is defined on $\R$; its curve is a parabola. $x^2\geq0$, with equality only at $0$.
@@ -83,27 +83,27 @@ $x\mapsto1/x$ is defined on $\R^*$; its curve is a hyperbola. $1/x$ has the sign
 \addplot[thick,domain=-4:-.25]{1/x};\addplot[thick,domain=.25:4]{1/x};\node at(axis cs:2.5,2){$y=1/x$};\end{axis}\end{tikzpicture}\end{center}
 \begin{keypoint}[Equations and inequalities with $x^2$]
 If $k<0$, $x^2=k$ and $x^2\leq k$ have no solution; $x^2\geq k$ is true on $\R$. If $k=0$, the first two give $x=0$, the third is true on $\R$. For $k>0$:
-\[x^2=k\iff x\in\{-\sqrt k;\sqrt k\},\quad x^2\leq k\iff x\in[-\sqrt k;\sqrt k],\]
-\[x^2\geq k\iff x\in]-\infty;-\sqrt k]\cup[\sqrt k;+\infty[.\]
+\[x^2=k\iff x\in\ens{-\sqrt k;\sqrt k},\quad x^2\leq k\iff x\in\intff{-\sqrt k}{\sqrt k},\]
+\[x^2\geq k\iff x\in\intof{-\infty}{-\sqrt k}\cup\intfo{\sqrt k}{+\infty}.\]
 \end{keypoint}
 \begin{example}Solve $x^2=4$, $x^2=-1$, $x^2\geq4$, $x^2\geq-1$, $1/x=4$, $1/x=0$.\end{example}
-\mxanswerspace[3.2]{$\{-2;2\}$; $\varnothing$; $]-\infty;-2]\cup[2;+\infty[$; $\R$; $\{1/4\}$; $\varnothing$. More generally, $1/x=k$ has the unique solution $1/k$ if $k\ne0$, none if $k=0$.}
+\mxanswerspace[3.2]{$\ens{-2;2}$; $\varnothing$; $\intof{-\infty}{-2}\cup\intfo{2}{+\infty}$; $\R$; $\{1/4\}$; $\varnothing$. More generally, $1/x=k$ has the unique solution $1/k$ if $k\ne0$, none if $k=0$.}
 \mxsection{Inequalities with the inverse function}
 \begin{method}
 Respect $x\ne0$ and read both branches of the hyperbola. Do not multiply an inequality by $x$ without knowing its sign.
 \end{method}
 \begin{center}\small\mxarraystretch{2.5}\begin{tabular}{c|c|c|c}
 &$k<0$&$k=0$&$k>0$\\\hline
-$1/x\leq k$&$[1/k;0[$&$]-\infty;0[$&$]-\infty;0[\cup[1/k;+\infty[$\\
-$1/x\geq k$&$]-\infty;1/k]\cup]0;+\infty[$&$]0;+\infty[$&$]0;1/k]$
+$1/x\leq k$&$\intfo{1/k}{0}$&$\intoo{-\infty}{0}$&$\intoo{-\infty}{0}\cup\intfo{1/k}{+\infty}$\\
+$1/x\geq k$&$\intof{-\infty}{1/k}\cup\intoo{0}{+\infty}$&$\intoo{0}{+\infty}$&$\intof{0}{1/k}$
 \end{tabular}\end{center}
 \begin{example}Solve $1/x\geq2$, $1/x\leq-1$, $1/x<1/2$ and $1/x>-2$.\end{example}
-\mxanswerspace[5]{$]0;1/2]$; $[-1;0[$; $]-\infty;0[\cup]2;+\infty[$; $]-\infty;-1/2[\cup]0;+\infty[$. A strict inequality excludes the intersection with $y=k$; $0$ is always forbidden.}
+\mxanswerspace[5]{$\intof{0}{1/2}$; $\intfo{-1}{0}$; $\intoo{-\infty}{0}\cup\intoo{2}{+\infty}$; $\intoo{-\infty}{-1/2}\cup\intoo{0}{+\infty}$. A strict inequality excludes the intersection with $y=k$; $0$ is always forbidden.}
 \begin{example}A student writes: ``$1/x\leq2\iff1\leq2x$, so $x\geq1/2$''. What is missing?\end{example}
-\mxanswerspace[4]{They implicitly assumed $x>0$. For $x<0$, $1/x<0<2$: these values also work. The correct set is $]-\infty;0[\cup[1/2;+\infty[$. The number $-1$ refutes their equivalence.}
+\mxanswerspace[4]{They implicitly assumed $x>0$. For $x<0$, $1/x<0<2$: these values also work. The correct set is $\intoo{-\infty}{0}\cup\intfo{1/2}{+\infty}$. The number $-1$ refutes their equivalence.}
 \mxsection{Using square root and cube}
 \begin{keypoint}[Definitions]
-$x\mapsto\sqrt x$ is defined on $[0;+\infty[$ and takes values that are positive or zero. For $k\geq0$, $\sqrt x=k\iff x=k^2$; for $k<0$, no solution.
+$x\mapsto\sqrt x$ is defined on $\intfo{0}{+\infty}$ and takes values that are positive or zero. For $k\geq0$, $\sqrt x=k\iff x=k^2$; for $k<0$, no solution.
 $x\mapsto x^3$ is defined on $\R$. Every real number $k$ has a unique preimage, written $\sqrt[3]{k}$.
 \end{keypoint}
 \begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-1,xmax=9,ymin=-1,ymax=4,width=8cm,height=5cm,xtick={0,1,4,9}]
@@ -111,6 +111,6 @@ $x\mapsto x^3$ is defined on $\R$. Every real number $k$ has a unique preimage, 
 \begin{tikzpicture}\begin{axis}[mxgridaxis,xmin=-2,xmax=2,ymin=-8,ymax=8,width=8cm,height=5cm,xtick={-2,-1,0,1,2}]
 \addplot[thick,domain=-2:2]{x*x*x};\node at(axis cs:-1,5){$y=x^3$};\end{axis}\end{tikzpicture}\end{center}
 \begin{example}Solve $\sqrt x=3$; $\sqrt x=-2$; $\sqrt x\leq2$; $\sqrt x>3$; $x^3=-8$; $x^3\leq27$.\end{example}
-\mxanswerspace[4]{$\{9\}$; $\varnothing$; $[0;4]$; $]9;+\infty[$; $\{-2\}$; $]-\infty;3]$. Respect the domain for square roots. The cube function preserves order.}
+\mxanswerspace[4]{$\{9\}$; $\varnothing$; $\intff{0}{4}$; $\intoo{9}{+\infty}$; $\{-2\}$; $\intof{-\infty}{3}$. Respect the domain for square roots. The cube function preserves order.}
 \begin{example}Compare $x^2$ and $x$ for $x=1/2$, then $x=2$. Is the square of a positive number always greater than the number itself?\end{example}
 \mxanswerspace[2.4]{$1/4<1/2$ but $4>2$. The claim is false; $1/2$ is a counterexample. General study in sequence 10.}

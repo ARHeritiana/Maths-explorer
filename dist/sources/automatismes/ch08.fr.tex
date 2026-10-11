@@ -3,22 +3,22 @@
 \begin{fluencysheet}{jeu.~11~févr.~2027}{Croissance, décroissance, monotonie}
 \mxfq{Échauffement · Flash}{IMG}{$f(x)=-2x+5$. Calculer $f(1)$ et $f(3)$\,; que constate-t-on\,?}{$f(1)=3$, $f(3)=-1$~: l'ordre des images est inverse de celui des abscisses ($f$ décroît).}{}
 \mxfq{Cœur · QCM}{MOD}{$f$ est croissante sur $I$ signifie que, pour tous $a<b$ dans $I$~:\mxchoices{$a\leqslant b$ seulement}{$f(a)\geqslant f(b)$}{$f(a)\leqslant f(b)$}{$f(a)=f(b)$}}{C.\ $f(a)\leqslant f(b)$}{Croissante~: conserve l'ordre\,; décroissante~: le renverse.}
-\mxfq{Cœur + · Graphique}{REG}{Courbe de $f(x)=x^2$ sur $[-2;2]$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\mxfq{Cœur + · Graphique}{REG}{Courbe de $f(x)=x^2$ sur $\intff{-2}{2}$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-2,-1) grid (2,4);
 \draw[->] (-2,0)--(2.3,0); \draw[->] (0,-1)--(0,4.3);
 \foreach \i in {-2,-1,1,2}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
 \foreach \j in {-1,1,2,3,4}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
 \draw[thick,mxink,domain=-2:2,samples=60,smooth] plot (\x,{\x*\x});
 
-\end{tikzpicture}\par Donner les variations de $f$.}{Décroissante sur $[-2;0]$, croissante sur $[0;2]$.}{Expression utilisée pour le tracé~: $f(x)=x^2$.}
-\mxfq{Retour · Flash}{PRO}{Quel coefficient multiplicateur correspond à une hausse de $15\,\%$\,? À une baisse de $15\,\%$\,?}{$1{,}15$\,; $0{,}85$.}{}
+\end{tikzpicture}\par Donner les variations de $f$.}{Décroissante sur $\intff{-2}{0}$, croissante sur $\intff{0}{2}$.}{Expression utilisée pour le tracé~: $f(x)=x^2$.}
+\mxfq{Retour · Flash}{PRO}{Quel coefficient multiplicateur correspond à une hausse de $\pc{15}$\,? À une baisse de $\pc{15}$\,?}{$\num{1,15}$\,; $\num{0,85}$.}{}
 \mxfq{Fil rouge · Flash}{DIV}{$457$ est-il divisible par $3$\,? Par $9$\,? Justifier.}{Somme des chiffres $=16$, non multiple de $3$~: ni par $3$, ni par $9$.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{lun.~1\textsuperscript{er}~mars~2027}{Tableau de variations\,; maximum et minimum sur un intervalle}
 \mxfq{Échauffement · Flash}{IMG}{Calculer $x^2$ pour $x=-2$, $0$, $3$.}{$4$\,; $0$\,; $9$.}{}
-\mxfq{Cœur · Méthode}{REG}{$f$ est décroissante sur $[-3;1]$ avec $f(-3)=5$, $f(1)=-1$, puis croissante sur $[1;4]$ avec $f(4)=4$. Donner le maximum et le minimum de $f$ sur $[-3;4]$.}{Maximum $5$ atteint en $x=-3$ ($5>4$)\,; minimum $-1$ atteint en $x=1$.}{Comparer les valeurs aux extrémités de l'intervalle ET aux changements de variation.}
-\mxfq{Cœur + · Vrai/faux}{REG}{Vrai ou faux\,? Justifier. Le maximum d'une fonction sur $[a;b]$ est toujours atteint en $a$ ou en $b$.}{Faux. Contre-exemple~: $f(x)=-x^2+4$ sur $[-2;2]$~: maximum $4$ atteint en $0$.}{}
+\mxfq{Cœur · Méthode}{REG}{$f$ est décroissante sur $\intff{-3}{1}$ avec $f(-3)=5$, $f(1)=-1$, puis croissante sur $\intff{1}{4}$ avec $f(4)=4$. Donner le maximum et le minimum de $f$ sur $\intff{-3}{4}$.}{Maximum $5$ atteint en $x=-3$ ($5>4$)\,; minimum $-1$ atteint en $x=1$.}{Comparer les valeurs aux extrémités de l'intervalle ET aux changements de variation.}
+\mxfq{Cœur + · Vrai/faux}{REG}{Vrai ou faux\,? Justifier. Le maximum d'une fonction sur $\intff{a}{b}$ est toujours atteint en $a$ ou en $b$.}{Faux. Contre-exemple~: $f(x)=-x^2+4$ sur $\intff{-2}{2}$~: maximum $4$ atteint en $0$.}{}
 \mxfq{Retour · Tableau}{PNP}{Ce tableau est-il de proportionnalité\,?\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|}\hline
 $x$ & 1 & 2 & 3 \\ \hline
 $y$ & 5 & 9 & 13 \\ \hline
@@ -33,21 +33,21 @@ $y$ & 5 & 9 & 13 \\ \hline
 \mxfq{Retour · Tableau}{LEC}{Âges des élèves d'un club.\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|c|}\hline
 Âge & $10$ & $11$ & $12$ & $13$ \\ \hline
 Effectif & 3 & 6 & 10 & 6 \\ \hline
-\end{tabular}\par Combien d'élèves ont au plus $11$ ans\,? Quelle fréquence\,?}{$3+6=9$ élèves\,; $\dfrac{9}{25}=36\,\%$.}{}
+\end{tabular}\par Combien d'élèves ont au plus $11$ ans\,? Quelle fréquence\,?}{$3+6=9$ élèves\,; $\dfrac{9}{25}=\pc{36}$.}{}
 \mxfq{Fil rouge · Programme → formule}{REG}{Programme~: multiplier par $3$ puis soustraire $2$. Donner $f(x)$ puis $f(4)$.}{$f(x)=3x-2$\,; $f(4)=10$.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{jeu.~4~mars~2027}{Fonctions valeur absolue et carré~: signe et variations}
 \mxfq{Échauffement · Flash}{CAL}{Calculer $|{-}5|$, $(-5)^2$ et $|2-7|$.}{$5$\,; $25$\,; $5$.}{}
-\mxfq{Cœur · Méthode}{REG}{Donner le tableau de variations de $x\mapsto|x|$ et son signe.}{Décroissante sur $]-\infty;0]$, croissante sur $[0;+\infty[$\,; minimum $0$ en $0$\,; toujours positive.}{}
-\mxfq{Cœur + · Réflexion}{CMP}{Comparer $(-3)^2$ et $(-2)^2$ puis $3^2$ et $2^2$. La fonction carré est-elle croissante sur $\R$\,?}{$9>4$ dans les deux cas, mais $-3<-2$~: le carré renverse l'ordre sur $]-\infty;0]$\,; non, pas croissante sur $\R$.}{}
+\mxfq{Cœur · Méthode}{REG}{Donner le tableau de variations de $x\mapsto|x|$ et son signe.}{Décroissante sur $\intof{-\infty}{0}$, croissante sur $\intfo{0}{+\infty}$\,; minimum $0$ en $0$\,; toujours positive.}{}
+\mxfq{Cœur + · Réflexion}{CMP}{Comparer $(-3)^2$ et $(-2)^2$ puis $3^2$ et $2^2$. La fonction carré est-elle croissante sur $\R$\,?}{$9>4$ dans les deux cas, mais $-3<-2$~: le carré renverse l'ordre sur $\intof{-\infty}{0}$\,; non, pas croissante sur $\R$.}{}
 \mxfq{Retour · Méthode}{PRB}{On lance deux dés équilibrés. Probabilité que la somme vaille $7$\,?}{$6$ cas favorables sur $36$~: $\dfrac16$.}{}
 \mxfq{Fil rouge · Méthode}{ALG}{Programme~: choisir un nombre\,; ajouter $1$\,; élever au carré\,; soustraire le carré du nombre de départ. Quel résultat pour $6$\,? Quelle expression générale\,?}{Pour $6$~: $49-36=13$. En général $(x+1)^2-x^2=2x+1$.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{lun.~8~mars~2027}{Fonction inverse~: variations\,; position relative de $y=x$ et $y=x^2$}
-\mxfq{Échauffement · Flash}{CAL}{Calculer $\dfrac12$, $\dfrac1{-4}$ et $\dfrac1{0{,}1}$.}{$0{,}5$\,; $-0{,}25$\,; $10$.}{}
-\mxfq{Cœur · Méthode}{CMP}{Comparer $\dfrac13$ et $\dfrac15$\,; que dit-on des variations de la fonction inverse sur $]0;+\infty[$\,?}{$\dfrac13>\dfrac15$ alors que $3<5$~: l'inverse est décroissante sur $]0;+\infty[$ (et sur $]-\infty;0[$, mais pas sur $\R^*$).}{}
+\mxfq{Échauffement · Flash}{CAL}{Calculer $\dfrac12$, $\dfrac1{-4}$ et $\dfrac1{\num{0,1}}$.}{$\num{0,5}$\,; $-\num{0,25}$\,; $10$.}{}
+\mxfq{Cœur · Méthode}{CMP}{Comparer $\dfrac13$ et $\dfrac15$\,; que dit-on des variations de la fonction inverse sur $\intoo{0}{+\infty}$\,?}{$\dfrac13>\dfrac15$ alors que $3<5$~: l'inverse est décroissante sur $\intoo{0}{+\infty}$ (et sur $\intoo{-\infty}{0}$, mais pas sur $\R^*$).}{}
 \mxfq{Cœur + · Vrai/faux}{CMP}{Vrai ou faux\,? Justifier. Pour tout réel $x>0$, $x^2\geqslant x$.}{Faux. Contre-exemple~: $x=\dfrac12$, $x^2=\dfrac14<\dfrac12$. En fait $x^2\geqslant x$ si et seulement si $x\geqslant1$ (pour $x>0$).}{}
 \mxfq{Retour · Flash}{PER}{Quelle est la vue de face et la vue de dessus d'un cylindre posé sur sa base\,?}{Face~: un rectangle\,; dessus~: un disque.}{}
 \mxfq{Fil rouge · Prouver}{LIT}{Montrer que le produit de deux entiers pairs est un multiple de $4$.}{Avec $a=2p$, $b=2q$~: $ab=4pq$, multiple de $4$.}{}
@@ -55,8 +55,8 @@ Effectif & 3 & 6 & 10 & 6 \\ \hline
 
 \begin{fluencysheet}{mar.~9~mars~2027}{Comparer $f(a)$ et $f(b)$\,; problèmes d'optimisation}
 \mxfq{Échauffement · Flash}{CMP}{$f(x)=x^2$. Comparer $f(-3)$ et $f(2)$.}{$f(-3)=9>4=f(2)$.}{}
-\mxfq{Cœur · Méthode}{REG}{$f(x)=x^2$, $a=-1{,}5$ et $b=-2$. Comparer $f(a)$ et $f(b)$ sans calcul, en utilisant les variations.}{$-2<-1{,}5\leqslant0$ et $f$ décroissante sur $]-\infty;0]$~: $f(-2)>f(-1{,}5)$. Contrôle~: $4>2{,}25$.}{}
-\mxfq{Cœur + · Optimisation}{MOD}{$A(x)=x(10-x)$ pour $x\in[0;10]$ (aire d'un rectangle de périmètre $20$). Montrer que $A(x)=25-(x-5)^2$ et en déduire le maximum.}{$25-(x-5)^2=25-x^2+10x-25=x(10-x)$\,; maximum $25$ atteint pour $x=5$ (carré de côté $5$).}{}
-\mxfq{Retour · Flash}{STA}{$18$ élèves sur $24$ ont plus de $10$ de moyenne. Donner la fréquence en pourcentage.}{$\dfrac{18}{24}=75\,\%$.}{}
+\mxfq{Cœur · Méthode}{REG}{$f(x)=x^2$, $a=-\num{1,5}$ et $b=-2$. Comparer $f(a)$ et $f(b)$ sans calcul, en utilisant les variations.}{$-2<-\num{1,5}\leqslant0$ et $f$ décroissante sur $\intof{-\infty}{0}$~: $f(-2)>f(-\num{1,5})$. Contrôle~: $4>\num{2,25}$.}{}
+\mxfq{Cœur + · Optimisation}{MOD}{$A(x)=x(10-x)$ pour $x\in\intff{0}{10}$ (aire d'un rectangle de périmètre $20$). Montrer que $A(x)=25-(x-5)^2$ et en déduire le maximum.}{$25-(x-5)^2=25-x^2+10x-25=x(10-x)$\,; maximum $25$ atteint pour $x=5$ (carré de côté $5$).}{}
+\mxfq{Retour · Flash}{STA}{$18$ élèves sur $24$ ont plus de $10$ de moyenne. Donner la fréquence en pourcentage.}{$\dfrac{18}{24}=\pc{75}$.}{}
 \mxfq{Fil rouge · QCM}{EQ}{La solution de $\dfrac{x}{3}+1=\dfrac{7}{2}$ est~:\mxchoices{$\dfrac{15}{2}$}{$\dfrac{9}{2}$}{$\dfrac{21}{2}$}{$\dfrac{5}{6}$}}{A.\ $\dfrac{15}{2}$}{Piège~: oublier de soustraire le $1$ avant de multiplier par $3$ ($\frac{21}{2}$).}
 \end{fluencysheet}

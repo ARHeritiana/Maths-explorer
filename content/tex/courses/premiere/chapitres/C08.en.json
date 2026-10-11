@@ -55,6 +55,12 @@
    "status": "aligned",
    "order": 8
   },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
   "af8307a7ab55": {
    "fr": "Si [[m1]], calculer [[m2]].",
    "en": "If [[m1]], calculate [[m2]].",
@@ -66,12 +72,6 @@
    "en": "A gross gain of 8 units and a stake of 3 give what net gain?",
    "status": "aligned",
    "order": 11
-  },
-  "edb66e001ece": {
-   "fr": "Calculer [[m1]].",
-   "en": "Calculate [[m1]].",
-   "status": "aligned",
-   "order": 12
   },
   "65855e601207": {
    "fr": "Après le diagnostic.",
@@ -127,11 +127,23 @@
    "status": "aligned",
    "order": 21
   },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
   "35dc48a1e43d": {
    "fr": "Sur un univers fini [[m1]], une variable aléatoire réelle X est une fonction qui associe un nombre réel à chaque issue. L’événement [[m2]] regroupe les issues donnant la valeur a. Sa loi associe à chaque valeur distincte [[m3]] la probabilité [[m4]], avec [[m5]] et [[m6]].",
    "en": "On a finite sample space [[m1]], a real random variable X is a function that associates a real number with each outcome. The event [[m2]] groups the outcomes giving the value a. Its distribution associates with each distinct value [[m3]] the probability [[m4]], with [[m5]] and [[m6]].",
    "status": "aligned",
    "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
   },
   "8578c767bf6b": {
    "fr": "Définitions. Les événements associés aux valeurs distinctes forment une partition de l’univers ; cela justifie la somme des probabilités.",
@@ -271,23 +283,11 @@
    "status": "aligned",
    "order": 53
   },
-  "ebc073a34cf3": {
-   "fr": "Définition et résultats",
-   "en": "Definition and results",
-   "status": "aligned",
-   "order": 54
-  },
   "2a3b333a0248": {
    "fr": "Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre. On compare m à [[m1]] ; des répétitions permettent d’observer la proportion des échantillons satisfaisant [[m2]]. Ce seuil est une tâche expérimentale du programme, pas une affirmation de taux de couverture exact.",
    "en": "A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another. We compare m with [[m1]]; repetitions allow us to observe the proportion of samples satisfying [[m2]]. This threshold is an experimental task of the programme, not a claim of an exact coverage rate.",
    "status": "aligned",
    "order": 55
-  },
-  "7815a69c0f26": {
-   "fr": "Statut et justification.",
-   "en": "Status and justification.",
-   "status": "aligned",
-   "order": 56
   },
   "86451a9ea7fa": {
    "fr": "Expérimentation : on ne démontre ici ni théorème de convergence ni loi normale. On vérifie la taille des listes, le calcul de la moyenne et la distinction entre n et le nombre N d’échantillons.",
@@ -295,15 +295,15 @@
    "status": "aligned",
    "order": 57
   },
-  "f8959946549a": {
-   "fr": "Pour X de valeurs 0 et 2 équiprobables, [[m1]], [[m2]]. Pour n=100, seuil [[m3]] : on compte les moyennes dans [[m4]]. Un résultat de 956 sur 1000 signifie fréquence observée 0{,}956 pour cette simulation seulement.",
-   "en": "For X with values 0 and 2 equally likely, [[m1]], [[m2]]. For n=100, threshold [[m3]]: we count the means in [[m4]]. A result of 956 out of 1000 means an observed frequency of 0.956 for this simulation only.",
+  "7c1056933de1": {
+   "fr": "Pour X de valeurs 0 et 2 équiprobables, [[m1]], [[m2]]. Pour n=100, seuil [[m3]] : on compte les moyennes dans [[m4]]. Un résultat de 956 sur 1000 signifie fréquence observée [[m5]] pour cette simulation seulement.",
+   "en": "For X with values 0 and 2 equally likely, [[m1]], [[m2]]. For n=100, threshold [[m3]]: we count the means in [[m4]]. A result of 956 out of 1000 means an observed frequency of [[m5]] for this simulation only.",
    "status": "aligned",
    "order": 58
   },
-  "64a800e1b9b3": {
-   "fr": "Ne pas recopier un seul tirage n fois ; ne pas annoncer que la proportion vaut nécessairement 95 \\%.",
-   "en": "Do not copy a single draw n times; do not announce that the proportion is necessarily 95 \\%.",
+  "69f88cf62d33": {
+   "fr": "Ne pas recopier un seul tirage n fois ; ne pas annoncer que la proportion vaut nécessairement [[m1]].",
+   "en": "Do not copy a single draw n times; do not announce that the proportion is necessarily [[m1]].",
    "status": "aligned",
    "order": 59
   },
@@ -595,6 +595,12 @@
    "status": "aligned",
    "order": 107
   },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 108
+  },
   "8da48384e786": {
    "fr": "Une loi de probabilité a une somme des probabilités égale à",
    "en": "A probability distribution has a sum of probabilities equal to",
@@ -613,6 +619,12 @@
    "status": "aligned",
    "order": 111
   },
+  "709bdf5649bc": {
+   "fr": "[[m1]] vaut",
+   "en": "[[m1]] equals",
+   "status": "aligned",
+   "order": 112
+  },
   "7bd45f03990d": {
    "fr": "Si [[m1]], [[m2]]",
    "en": "If [[m1]], [[m2]]",
@@ -624,18 +636,6 @@
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
    "order": 115
-  },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
-   "status": "aligned",
-   "order": 116
-  },
-  "709bdf5649bc": {
-   "fr": "[[m1]] vaut",
-   "en": "[[m1]] equals",
-   "status": "aligned",
-   "order": 118
   },
   "9ace7912c717": {
    "fr": "L’espérance est nécessairement",

@@ -115,6 +115,12 @@
    "status": "aligned",
    "order": 18
   },
+  "7ff17ca37d1c": {
+   "fr": "Justifier que [[m1]] suit une loi binomiale et préciser ses paramètres.",
+   "en": "Justify that [[m1]] follows a binomial distribution and give its parameters.",
+   "status": "aligned",
+   "order": 19
+  },
   "8714c6e58560": {
    "fr": "Calculer [[m1]], [[m2]] et [[m3]]. Pour [[m4]], préciser combien de chemins de l'arbre réalisent l'événement [[m5]].",
    "en": "Calculate [[m1]], [[m2]] and [[m3]]. For [[m4]], state how many paths of the tree give the event [[m5]].",
@@ -162,12 +168,6 @@
    "en": "An online shop is testing two layouts of its home page (A/B test): for each new visitor, the site displays version A or version B at random, with the same probability [[m1]], independently of the other visitors. The next [[m2]] visitors are observed and [[m3]] denotes the random variable equal to the number of visitors who are shown version B.",
    "status": "aligned",
    "order": 27
-  },
-  "7ff17ca37d1c": {
-   "fr": "Justifier que [[m1]] suit une loi binomiale et préciser ses paramètres.",
-   "en": "Justify that [[m1]] follows a binomial distribution and give its parameters.",
-   "status": "aligned",
-   "order": 28
   },
   "47c814a8ba08": {
    "fr": "Construire le triangle de Pascal jusqu'à la ligne [[m1]].",
@@ -367,6 +367,12 @@
    "status": "aligned",
    "order": 61
   },
+  "167cee0de532": {
+   "fr": "\\textbf{Partie A}",
+   "en": "\\textbf{Part A}",
+   "status": "aligned",
+   "order": 62
+  },
   "bb4260460f7b": {
    "fr": "Calculer le taux d'évolution du nombre de kits installés entre 2021 et 2022, puis entre 2022 et 2023 (en pourcentage, arrondi à [[m1]]).",
    "en": "Calculate the rate of change in the number of kits installed between 2021 and 2022, then between 2022 and 2023 (as a percentage, rounded to [[m1]]).",
@@ -384,6 +390,12 @@
    "en": "Deduce the average annual rate of change between 2021 and 2023.",
    "status": "aligned",
    "order": 65
+  },
+  "c80d6524b312": {
+   "fr": "\\textbf{Partie B}",
+   "en": "\\textbf{Part B}",
+   "status": "aligned",
+   "order": 66
   },
   "82eed0680e3c": {
    "fr": "On suppose qu'à partir de 2023, le nombre de kits installés augmente de [[m1]] par an. On note [[m2]] le nombre de kits installés au cours de l'année [[m3]], les valeurs étant arrondies à l'unité.",
@@ -415,12 +427,6 @@
    "status": "aligned",
    "order": 71
   },
-  "167cee0de532": {
-   "fr": "\\textbf{Partie A}",
-   "en": "\\textbf{Part A}",
-   "status": "aligned",
-   "order": 72
-  },
   "9da3b6328bf6": {
    "fr": "[[m1]], soit une hausse d'environ [[m2]] ; [[m3]], soit une hausse d'environ [[m4]]. Les coefficients multiplicateurs sont donc environ [[m5]] et [[m6]].",
    "en": "[[m1]], an increase of about [[m2]]; [[m3]], an increase of about [[m4]]. The multipliers are therefore about [[m5]] and [[m6]].",
@@ -432,12 +438,6 @@
    "en": "The average annual multiplier is about [[m1]]: the average annual rate is about [[m2]] (direct check: [[m3]]).",
    "status": "aligned",
    "order": 74
-  },
-  "c80d6524b312": {
-   "fr": "\\textbf{Partie B}",
-   "en": "\\textbf{Part B}",
-   "status": "aligned",
-   "order": 75
   },
   "d24c14edb645": {
    "fr": "Une hausse de [[m1]] revient à multiplier par [[m2]] : [[m3]] est géométrique de premier terme [[m4]] et de raison [[m5]], donc [[m6]].",

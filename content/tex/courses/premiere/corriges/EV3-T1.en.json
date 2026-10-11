@@ -7,9 +7,9 @@
    "status": "aligned",
    "order": 0
   },
-  "110b11e33fe0": {
-   "fr": "\\textbf{QCM :} 1 A, 2 C, 3 D, 4 D, 5 C, 6 C, 7 C, 8 B, 9 B, 10 C, 11 C, 12 A. Chaque réponse correcte : 0{,}5 point ; total 6.",
-   "en": "\\textbf{MCQ:} 1 A, 2 C, 3 D, 4 D, 5 C, 6 C, 7 C, 8 B, 9 B, 10 C, 11 C, 12 A. Each correct answer: 0.5 point; total 6.",
+  "2d424c286b58": {
+   "fr": "\\textbf{QCM :} 1 A, 2 C, 3 D, 4 D, 5 C, 6 C, 7 C, 8 B, 9 B, 10 C, 11 C, 12 A. Chaque réponse correcte : [[m1]] point ; total 6.",
+   "en": "\\textbf{MCQ:} 1 A, 2 C, 3 D, 4 D, 5 C, 6 C, 7 C, 8 B, 9 B, 10 C, 11 C, 12 A. Each correct answer: [[m1]] point; total 6.",
    "status": "aligned",
    "order": 1
   },
@@ -19,9 +19,9 @@
    "status": "aligned",
    "order": 2
   },
-  "0c8589583107": {
-   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur 1{,}2 ; division par 0{,}8 ; produit 1{,}25 fois 0{,}8 ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
-   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient 1.2; division by 0.8; product 1.25 times 0.8; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
+  "f26919e403fd": {
+   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur [[m1]] ; division par [[m2]] ; produit [[m3]] fois [[m4]] ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
+   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient [[m1]]; division by [[m2]]; product [[m3]] times [[m4]]; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
    "status": "aligned",
    "order": 3
   },
@@ -55,15 +55,21 @@
    "status": "aligned",
    "order": 8
   },
+  "e8c31d3278ed": {
+   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
+   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
+   "status": "aligned",
+   "order": 9
+  },
   "7f78431bfa11": {
    "fr": "Strictement décroissante sur [[m1]], maximum 2 en 0. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
    "en": "Strictly decreasing on [[m1]], maximum 2 at 0. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
    "status": "aligned",
    "order": 10
   },
-  "3bfc3c33e13f": {
-   "fr": "[[m1]] ; approximation 1{,}9. Ce n’est pas une égalité exacte. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
-   "en": "[[m1]]; approximation 1.9. This is not an exact equality. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
+  "0170e429a26c": {
+   "fr": "[[m1]] ; approximation [[m2]]. Ce n’est pas une égalité exacte. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
+   "en": "[[m1]]; approximation [[m2]]. This is not an exact equality. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
    "status": "aligned",
    "order": 11
   },
@@ -78,12 +84,6 @@
    "en": "[[m1]], [[m2]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
    "status": "aligned",
    "order": 13
-  },
-  "e8c31d3278ed": {
-   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
-   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
-   "status": "aligned",
-   "order": 14
   },
   "bfd633aebe7b": {
    "fr": "Milieu (0;[[m1]]), AB horizontal ; médiatrice verticale [[m2]]. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",

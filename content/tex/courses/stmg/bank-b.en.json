@@ -25,6 +25,12 @@
    "status": "aligned",
    "order": 3
   },
+  "0eefd4339d37": {
+   "fr": "[[m1]], donc [[m2]].",
+   "en": "[[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 4
+  },
   "9031c28fb35e": {
    "fr": "[[m1]], soit [[m2]], donc [[m3]] et [[m4]].",
    "en": "[[m1]], i.e. [[m2]], so [[m3]] and [[m4]].",
@@ -89,7 +95,7 @@
    "fr": "[[m1]], donc [[m2]] (environ [[m3]]).",
    "en": "[[m1]], so [[m2]] (about [[m3]]).",
    "status": "aligned",
-   "order": 16
+   "order": 15
   },
   "2af6517cb9aa": {
    "fr": "[[m1]], donc [[m2]] (environ [[m3]], très proche de [[m4]] mais positif).",
@@ -145,833 +151,815 @@
    "status": "aligned",
    "order": 25
   },
-  "bf0de901b63d": {
-   "fr": "1.5em",
-   "en": "1.5em",
-   "status": "aligned",
-   "order": 27
-  },
   "0e93f484b34f": {
    "fr": "[[m1]]\\\\\nFin Tant que\\\\",
    "en": "[[m1]]\\\\\nEnd While\\\\",
    "status": "aligned",
-   "order": 28
+   "order": 26
   },
   "2363bcbbc763": {
    "fr": "Compléter l'algorithme pour qu'à la fin de son exécution, la variable [[m1]] contienne le nombre d'années au bout duquel la camionnette sera revendue.",
    "en": "Complete the algorithm so that, at the end of its execution, the variable [[m1]] contains the number of years after which the van will be sold.",
    "status": "aligned",
-   "order": 29
+   "order": 27
   },
   "c7e535450f6c": {
    "fr": "À l'aide de la calculatrice (tableau de valeurs), faire tourner l'algorithme et déterminer la valeur de [[m1]] obtenue. Donner la valeur de la camionnette au moment de la revente, arrondie à l'euro.",
    "en": "Using the calculator (table of values), run the algorithm and find the value of [[m1]] obtained. Give the value of the van when it is sold, rounded to the nearest euro.",
    "status": "aligned",
-   "order": 30
+   "order": 28
   },
   "269cfc1cb5d4": {
    "fr": "Écrire ce programme en langage Python, l'exécuter et comparer avec le résultat de la question 2.",
    "en": "Write this program in Python, run it and compare with the result of question 2.",
    "status": "aligned",
-   "order": 31
+   "order": 29
   },
   "7fffb54ebfa5": {
    "fr": "Une baisse de [[m1]] correspond au coefficient multiplicateur [[m2]]. On répète tant que la valeur n'est pas encore passée sous le seuil : « Tant que [[m3]] » et « [[m4]] ».",
    "en": "A [[m1]] decrease corresponds to the multiplier [[m2]]. We repeat as long as the value has not yet fallen below the threshold: “While [[m3]]” and “[[m4]]”.",
    "status": "aligned",
-   "order": 32
+   "order": 30
   },
   "96d385f5c38a": {
    "fr": "Valeurs successives arrondies à l'euro : [[m1]] : [[m2]]~€ ; [[m3]] : [[m4]]~€ ; [[m5]] : [[m6]]~€ ; [[m7]] : [[m8]]~€.\nComme [[m9]] et [[m10]], la boucle s'arrête avec [[m11]] : la camionnette sera revendue au bout de [[m12]] ans, pour une valeur d'environ [[m13]]~€.",
    "en": "Successive values rounded to the nearest euro: [[m1]]: [[m2]]~€; [[m3]]: [[m4]]~€; [[m5]]: [[m6]]~€; [[m7]]: [[m8]]~€.\nSince [[m9]] and [[m10]], the loop stops with [[m11]]: the van will be sold after [[m12]] years, for a value of about [[m13]]~€.",
    "status": "aligned",
-   "order": 33
+   "order": 31
   },
   "9142ce3b7002": {
    "fr": "Programme possible :\\\\\n\\texttt{V = 38000}\\\\\n\\texttt{N = 0}\\\\\n\\texttt{while V >= 10000:}\\\\",
    "en": "A possible program:\\\\\n\\texttt{V = 38000}\\\\\n\\texttt{N = 0}\\\\\n\\texttt{while V >= 10000:}\\\\",
    "status": "aligned",
-   "order": 34
+   "order": 32
   },
   "6e9d85ab2a20": {
    "fr": "\\texttt{V = 0.85 * V}\\\\",
    "en": "\\texttt{V = 0.85 * V}\\\\",
    "status": "aligned",
-   "order": 36
-  },
-  "5706be5e68ee": {
-   "fr": "2em",
-   "en": "2em",
-   "status": "aligned",
-   "order": 37
+   "order": 33
   },
   "c696b7e8c10b": {
    "fr": "\\texttt{N = N + 1}\\\\\n\\texttt{print(N, V)}\\\\\nLe programme affiche [[m1]] et environ [[m2]], ce qui confirme la question 2. Insister sur le point décimal en Python et sur l'indentation du bloc de la boucle.",
    "en": "\\texttt{N = N + 1}\\\\\n\\texttt{print(N, V)}\\\\\nThe program displays [[m1]] and about [[m2]], which confirms question 2. Stress the decimal point in Python and the indentation of the loop block.",
    "status": "aligned",
-   "order": 38
+   "order": 34
   },
   "f68ad1045ee3": {
    "fr": "Temps de doublement et dépassement",
    "en": "Doubling time and overtaking",
    "status": "aligned",
-   "order": 39
+   "order": 35
   },
   "c85b574982f9": {
    "fr": "Une boutique en ligne A a enregistré [[m1]] commandes en janvier 2026. On suppose que ce nombre augmente de [[m2]] par mois. On note [[m3]] le nombre de commandes [[m4]] mois après janvier 2026.",
    "en": "An online shop A received [[m1]] orders in January 2026. This number is assumed to increase by [[m2]] per month. Let [[m3]] be the number of orders [[m4]] months after January 2026.",
    "status": "aligned",
-   "order": 40
+   "order": 36
   },
   "e54b85cbd55d": {
    "fr": "Exprimer [[m1]] en fonction de [[m2]].",
    "en": "Express [[m1]] in terms of [[m2]].",
    "status": "aligned",
-   "order": 41
+   "order": 37
   },
   "a9c1690ea70b": {
    "fr": "Au bout de combien de mois le nombre mensuel de commandes aura-t-il doublé ?",
    "en": "After how many months will the monthly number of orders have doubled?",
    "status": "aligned",
-   "order": 42
+   "order": 38
   },
   "ed8c1392116d": {
    "fr": "Au bout de combien de mois aura-t-il quadruplé ? Ce résultat est-il le double du précédent ? Expliquer.",
    "en": "After how many months will it have quadrupled? Is this result twice the previous one? Explain.",
    "status": "aligned",
-   "order": 43
+   "order": 39
   },
   "ca8c8b8976d2": {
    "fr": "Une boutique concurrente B a enregistré [[m1]] commandes en janvier 2026, avec une hausse de [[m2]] par mois. À partir de combien de mois la boutique A aura-t-elle plus de commandes mensuelles que la boutique B ? En quel mois cela se produira-t-il ?",
    "en": "A competing shop B received [[m1]] orders in January 2026, with an increase of [[m2]] per month. From how many months on will shop A have more monthly orders than shop B? In which month will this happen?",
    "status": "aligned",
-   "order": 44
+   "order": 40
   },
   "6ca39d7249f9": {
    "fr": "Une hausse de [[m1]] correspond au coefficient [[m2]] : [[m3]].",
    "en": "An increase of [[m1]] corresponds to the multiplier [[m2]]: [[m3]].",
    "status": "aligned",
-   "order": 45
+   "order": 41
   },
   "c8ba85143305": {
    "fr": "[[m1]], car [[m2]] (on ne change pas le sens de l'inégalité). Or [[m3]] : il faut [[m4]] mois. Contrôle : [[m5]] et [[m6]].",
    "en": "[[m1]], because [[m2]] (the inequality keeps its direction). Now [[m3]]: [[m4]] months are needed. Check: [[m5]] and [[m6]].",
    "status": "aligned",
-   "order": 46
+   "order": 42
   },
   "63f9c13ce091": {
    "fr": "[[m1]] : il faut [[m2]] mois ([[m3]] et [[m4]]). Comme [[m5]], le seuil exact est bien le double ([[m6]]), mais l'arrondi à l'entier supérieur ne se fait qu'une fois : [[m7]] et non [[m8]].",
    "en": "[[m1]]: [[m2]] months are needed ([[m3]] and [[m4]]). Since [[m5]], the exact threshold is indeed doubled ([[m6]]), but rounding up to the next integer happens only once: [[m7]], not [[m8]].",
    "status": "aligned",
-   "order": 47
+   "order": 43
   },
   "a61167df751a": {
    "fr": "On cherche [[m1]] tel que [[m2]]. En divisant par [[m3]] : [[m4]]. Comme [[m5]], son logarithme est positif et [[m6]]. Il faut donc [[m7]] : contrôle [[m8]] et [[m9]]. La boutique A dépassera B en février 2027 ([[m10]] mois après janvier 2026).",
    "en": "We look for [[m1]] such that [[m2]]. Dividing by [[m3]]: [[m4]]. Since [[m5]], its logarithm is positive and [[m6]]. Hence [[m7]]: check [[m8]] and [[m9]]. Shop A will overtake shop B in February 2027 ([[m10]] months after January 2026).",
    "status": "aligned",
-   "order": 48
+   "order": 44
   },
   "680d25a5f16b": {
    "fr": "Trouver un taux : équation [[m1]]",
    "en": "Finding a rate: equation [[m1]]",
    "status": "aligned",
-   "order": 49
+   "order": 45
   },
   "b4e67a374959": {
    "fr": "Le prix public d'un modèle de panneau solaire est passé de [[m1]]~€ en mars 2021 à [[m2]]~€ en septembre 2025, soit une durée de [[m3]] ans et [[m4]] mois. On suppose que le prix a évolué à un taux annuel constant [[m5]].",
    "en": "The retail price of a solar panel model went from [[m1]]~€ in March 2021 to [[m2]]~€ in September 2025, a period of [[m3]] years and [[m4]] months. The price is assumed to have changed at a constant annual rate [[m5]].",
    "status": "aligned",
-   "order": 50
+   "order": 46
   },
   "9af58fb65b91": {
    "fr": "Justifier que [[m1]].",
    "en": "Justify that [[m1]].",
    "status": "aligned",
-   "order": 51
+   "order": 47
   },
   "aba7a602c738": {
    "fr": "En déduire [[m1]], arrondi à [[m2]]. Interpréter le signe du résultat.",
    "en": "Deduce [[m1]], rounded to [[m2]]. Interpret the sign of the result.",
    "status": "aligned",
-   "order": 52
+   "order": 48
   },
   "fb9d3d1a9ea5": {
    "fr": "Un second modèle coûte aujourd'hui [[m1]]~€. Si son prix évolue au même taux annuel, quel sera son prix dans [[m2]] ans et [[m3]] mois ? Arrondir à l'euro.",
    "en": "A second model costs [[m1]]~€ today. If its price changes at the same annual rate, what will its price be in [[m2]] years and [[m3]] months? Round to the nearest euro.",
    "status": "aligned",
-   "order": 53
+   "order": 49
   },
   "bb0bca82857b": {
    "fr": "Le fabricant de ce second modèle souhaite plutôt atteindre un prix de [[m1]]~€ dans [[m2]] ans et [[m3]] mois. Quel taux annuel constant doit-il appliquer ? Arrondir à [[m4]].",
    "en": "The manufacturer of this second model would rather reach a price of [[m1]]~€ in [[m2]] years and [[m3]] months. What constant annual rate should it apply? Round to [[m4]].",
    "status": "aligned",
-   "order": 54
+   "order": 50
   },
   "c3d3614c19c5": {
    "fr": "Sur une durée de [[m1]] ans, le prix est multiplié par [[m2]], donc [[m3]], soit [[m4]].",
    "en": "Over [[m1]] years, the price is multiplied by [[m2]], so [[m3]], i.e. [[m4]].",
    "status": "aligned",
-   "order": 55
+   "order": 51
   },
   "2c48ea38e279": {
    "fr": "[[m1]], donc [[m2]], d'où [[m3]], soit [[m4]]. Le taux est négatif : le prix a baissé en moyenne d'environ [[m5]] par an. Contrôle : [[m6]].",
    "en": "[[m1]], so [[m2]], hence [[m3]], i.e. [[m4]]. The rate is negative: the price fell on average by about [[m5]] per year. Check: [[m6]].",
    "status": "aligned",
-   "order": 56
+   "order": 52
   },
   "e35ef7d11ed1": {
    "fr": "[[m1]] ans et [[m2]] mois [[m3]] ans. Prix : [[m4]]. En gardant la valeur exacte de [[m5]] en mémoire : [[m6]]. Le prix serait d'environ [[m7]]~€.",
    "en": "[[m1]] years and [[m2]] months [[m3]] years. Price: [[m4]]. Keeping the exact value of [[m5]] in memory: [[m6]]. The price would be about [[m7]]~€.",
    "status": "aligned",
-   "order": 57
+   "order": 53
   },
   "987d6f45291d": {
    "fr": "On résout [[m1]], soit [[m2]], donc [[m3]] et [[m4]]. Il faudrait une baisse d'environ [[m5]] par an.",
    "en": "We solve [[m1]], i.e. [[m2]], so [[m3]] and [[m4]]. A decrease of about [[m5]] per year would be needed.",
    "status": "aligned",
-   "order": 58
+   "order": 54
   },
   "2d147e73ef57": {
    "fr": "Remarque : utiliser une valeur de [[m1]] arrondie trop tôt modifie légèrement les résultats (par exemple [[m2]]) ; garder la valeur en mémoire.",
    "en": "Remark: using a value of [[m1]] rounded too early slightly changes the results (for example [[m2]]); keep the value in memory.",
    "status": "aligned",
-   "order": 59
+   "order": 55
   },
   "0dff4e70b5a7": {
    "fr": "Utiliser une formule [[m1]]",
    "en": "Using a formula [[m1]]",
    "status": "aligned",
-   "order": 60
+   "order": 56
   },
   "808156eb3375": {
    "fr": "En laboratoire, une culture de cellules se multiplie par divisions successives : à chaque génération, le nombre de cellules double. Lorsque le nombre de cellules passe de [[m1]] à [[m2]], le nombre de générations écoulées est",
    "en": "In a laboratory, a cell culture grows by successive divisions: at each generation, the number of cells doubles. When the number of cells goes from [[m1]] to [[m2]], the number of generations that have elapsed is",
    "status": "aligned",
-   "order": 61
+   "order": 57
   },
   "92edd5c56879": {
    "fr": "Par exemple, passer de [[m1]] à [[m2]] cellules correspond à [[m3]] générations.",
    "en": "For example, going from [[m1]] to [[m2]] cells corresponds to [[m3]] generations.",
    "status": "aligned",
-   "order": 62
+   "order": 58
   },
   "6ec20f6805e8": {
    "fr": "Une culture passe de [[m1]] à [[m2]] cellules. Combien de générations se sont écoulées ?",
    "en": "A culture goes from [[m1]] to [[m2]] cells. How many generations have elapsed?",
    "status": "aligned",
-   "order": 63
+   "order": 59
   },
   "4e0becaf28f0": {
    "fr": "Une autre culture passe de [[m1]] à [[m2]] cellules. Même question.",
    "en": "Another culture goes from [[m1]] to [[m2]] cells. Same question.",
    "status": "aligned",
-   "order": 64
+   "order": 60
   },
   "517b3b2b1c69": {
    "fr": "Une culture de [[m1]] cellules évolue pendant [[m2]] générations. Combien de cellules compte-t-elle environ ?",
    "en": "A culture of [[m1]] cells develops for [[m2]] generations. About how many cells does it contain?",
    "status": "aligned",
-   "order": 65
+   "order": 61
   },
   "c5bfe06306b9": {
    "fr": "À partir d'une seule cellule, combien de cellules obtient-on après [[m1]] générations ?",
    "en": "Starting from a single cell, how many cells are obtained after [[m1]] generations?",
    "status": "aligned",
-   "order": 66
+   "order": 62
   },
   "1a4ee2285558": {
    "fr": "Un laboratoire part de [[m1]] cellules et veut en obtenir [[m2]]. Combien de générations faut-il ? Sachant qu'une génération dure [[m3]] minutes, quelle durée faut-il prévoir ?",
    "en": "A laboratory starts from [[m1]] cells and wants to obtain [[m2]]. How many generations are needed? Given that one generation lasts [[m3]] minutes, how much time should be planned?",
    "status": "aligned",
-   "order": 67
+   "order": 63
   },
   "9550f26841ea": {
    "fr": "[[m1]], donc [[m2]] générations.",
    "en": "[[m1]], so [[m2]] generations.",
    "status": "aligned",
-   "order": 69
+   "order": 64
   },
   "d5f70ba0bccd": {
    "fr": "[[m1]] donne [[m2]], donc [[m3]]. Ainsi [[m4]] cellules.",
    "en": "[[m1]] gives [[m2]], so [[m3]]. Thus [[m4]] cells.",
    "status": "aligned",
-   "order": 70
+   "order": 66
   },
   "41b0a1ac9c88": {
    "fr": "[[m1]] cellules, soit environ un million.",
    "en": "[[m1]] cells, i.e. about one million.",
    "status": "aligned",
-   "order": 71
+   "order": 67
   },
   "f6ca3d7629c0": {
    "fr": "[[m1]], donc [[m2]] : il faut [[m3]] générations complètes. Durée : [[m4]] minutes, soit environ [[m5]] heures.",
    "en": "[[m1]], so [[m2]]: [[m3]] complete generations are needed. Time: [[m4]] minutes, i.e. about [[m5]] hours.",
    "status": "aligned",
-   "order": 72
+   "order": 68
   },
   "38e71129ff39": {
    "fr": "Nombre de chiffres d'un entier",
    "en": "Number of digits of an integer",
    "status": "aligned",
-   "order": 73
+   "order": 69
   },
   "d0625bf07650": {
    "fr": "On cherche une méthode pour connaître le nombre de chiffres d'un entier naturel [[m1]] sans l'écrire en entier. On appelle partie entière d'un réel [[m2]] le plus grand entier inférieur ou égal à [[m3]] ; on la note [[m4]].",
    "en": "We look for a method to find the number of digits of a natural number [[m1]] without writing it out in full. The integer part of a real number [[m2]] is the greatest integer less than or equal to [[m3]]; it is denoted [[m4]].",
    "status": "aligned",
-   "order": 74
+   "order": 70
   },
   "5a750bf9d739": {
    "fr": "On prend [[m1]].",
    "en": "Let [[m1]].",
    "status": "aligned",
-   "order": 75
+   "order": 71
   },
   "e892fd3ee336": {
    "fr": "Encadrer [[m1]] entre deux puissances de [[m2]] consécutives. En déduire un encadrement de [[m3]] entre deux entiers consécutifs.",
    "en": "Bound [[m1]] between two consecutive powers of [[m2]]. Deduce bounds for [[m3]] between two consecutive integers.",
    "status": "aligned",
-   "order": 76
+   "order": 72
   },
   "6af2705b07d4": {
    "fr": "Comparer [[m1]] et le nombre de chiffres de [[m2]].",
    "en": "Compare [[m1]] with the number of digits of [[m2]].",
    "status": "aligned",
-   "order": 77
+   "order": 73
   },
   "24caf8911bfa": {
    "fr": "Un entier [[m1]] s'écrit avec [[m2]] chiffres.",
    "en": "An integer [[m1]] is written with [[m2]] digits.",
    "status": "aligned",
-   "order": 78
+   "order": 74
   },
   "85daafbbefe1": {
    "fr": "Encadrer [[m1]] entre deux puissances de [[m2]] consécutives, puis [[m3]] entre deux entiers consécutifs.",
    "en": "Bound [[m1]] between two consecutive powers of [[m2]], then [[m3]] between two consecutive integers.",
    "status": "aligned",
-   "order": 79
+   "order": 75
   },
   "2df731bc8dcd": {
    "fr": "Que vaut [[m1]] ?",
    "en": "What is [[m1]]?",
    "status": "aligned",
-   "order": 80
+   "order": 76
   },
   "ee805b960c55": {
    "fr": "Énoncer une règle donnant le nombre de chiffres de [[m1]] à partir de [[m2]]. La tester sur [[m3]].",
    "en": "State a rule giving the number of digits of [[m1]] from [[m2]]. Test it on [[m3]].",
    "status": "aligned",
-   "order": 81
+   "order": 77
   },
   "477210ae8307": {
    "fr": "Utiliser cette règle pour déterminer le nombre de chiffres de : a. [[m1]] ; b. [[m2]] ; c. [[m3]].",
    "en": "Use this rule to find the number of digits of: a. [[m1]]; b. [[m2]]; c. [[m3]].",
    "status": "aligned",
-   "order": 82
+   "order": 78
   },
   "8c15e6c8bebe": {
    "fr": "Un mot de passe est formé de [[m1]] caractères, chacun choisi parmi [[m2]] symboles ([[m3]] minuscules, [[m4]] majuscules, [[m5]] chiffres). Il existe [[m6]] mots de passe possibles. Combien de chiffres ce nombre comporte-t-il ?",
    "en": "A password is made of [[m1]] characters, each chosen from [[m2]] symbols ([[m3]] lower-case letters, [[m4]] upper-case letters, [[m5]] digits). There are [[m6]] possible passwords. How many digits does this number have?",
    "status": "aligned",
-   "order": 83
+   "order": 79
   },
   "15d74b04172b": {
    "fr": "[[m1]]. La fonction [[m2]] étant strictement croissante, [[m3]] (on trouve [[m4]]).",
    "en": "[[m1]]. Since [[m2]] is strictly increasing, [[m3]] (we find [[m4]]).",
    "status": "aligned",
-   "order": 84
+   "order": 80
   },
   "85a740e4eb52": {
    "fr": "[[m1]] et [[m2]] a [[m3]] chiffres : nombre de chiffres [[m4]].",
    "en": "[[m1]] and [[m2]] has [[m3]] digits: number of digits [[m4]].",
    "status": "aligned",
-   "order": 85
+   "order": 81
   },
   "3eac8ddd87d5": {
    "fr": "Le plus petit entier à [[m1]] chiffres est [[m2]] et le plus petit à [[m3]] chiffres est [[m4]] : [[m5]], donc [[m6]].",
    "en": "The smallest [[m1]]-digit integer is [[m2]] and the smallest [[m3]]-digit integer is [[m4]]: [[m5]], so [[m6]].",
    "status": "aligned",
-   "order": 86
+   "order": 82
   },
   "d12474941240": {
    "fr": "[[m1]], et [[m2]] chiffres.",
    "en": "[[m1]], and [[m2]] digits.",
    "status": "aligned",
-   "order": 87
+   "order": 83
   },
   "58e9cccff973": {
    "fr": "Si [[m1]] a [[m2]] chiffres, [[m3]], donc [[m4]] : [[m5]]. Règle : \\emph{le nombre de chiffres de $N$ est $E(\\log N)+1$}. Pour [[m6]] : [[m7]], [[m8]] chiffres, ce qui est correct.",
    "en": "If [[m1]] has [[m2]] digits, [[m3]], so [[m4]]: [[m5]]. Rule: \\emph{the number of digits of $N$ is $E(\\log N)+1$}. For [[m6]]: [[m7]], [[m8]] digits, which is correct.",
    "status": "aligned",
-   "order": 88
+   "order": 84
   },
   "208293af917b": {
    "fr": "a. [[m1]] : [[m2]] chiffres.\\\\\nb. [[m3]] : [[m4]] chiffres (en effet [[m5]]).\\\\\nc. [[m6]] : [[m7]] chiffres.",
    "en": "a. [[m1]]: [[m2]] digits.\\\\\nb. [[m3]]: [[m4]] digits (indeed [[m5]]).\\\\\nc. [[m6]]: [[m7]] digits.",
    "status": "aligned",
-   "order": 89
+   "order": 85
   },
   "dd5e24b4bc73": {
    "fr": "[[m1]] : [[m2]] s'écrit avec [[m3]] chiffres (environ [[m4]] mots de passe).",
    "en": "[[m1]]: [[m2]] is written with [[m3]] digits (about [[m4]] passwords).",
    "status": "aligned",
-   "order": 90
+   "order": 86
   },
   "b6b9849f5c3f": {
    "fr": "Tableau de valeurs et tracé d'hyperboles",
    "en": "Table of values and plotting hyperbolas",
    "status": "aligned",
-   "order": 91
+   "order": 87
   },
   "22548e4246c0": {
    "fr": "On considère les fonctions [[m1]] et [[m2]] définies sur [[m3]] par\n[[m4]] et [[m5]].",
    "en": "Consider the functions [[m1]] and [[m2]] defined on [[m3]] by\n[[m4]] and [[m5]].",
    "status": "aligned",
-   "order": 92
+   "order": 88
   },
   "1e07063b9da6": {
    "fr": "Expliquer pourquoi [[m1]] n'appartient pas à l'ensemble de définition de ces fonctions.",
    "en": "Explain why [[m1]] does not belong to the domain of these functions.",
    "status": "aligned",
-   "order": 93
+   "order": 89
   },
   "7ec720c7bb1a": {
    "fr": "Compléter le tableau de valeurs (valeurs arrondies au centième si nécessaire).",
    "en": "Complete the table of values (values rounded to the nearest hundredth if necessary).",
    "status": "aligned",
-   "order": 94
+   "order": 90
   },
   "2ce6740ae8ac": {
    "fr": "Placer les points et tracer les courbes [[m1]] et [[m2]] dans le repère ci-dessous.",
    "en": "Plot the points and draw the curves [[m1]] and [[m2]] on the grid below.",
    "status": "aligned",
-   "order": 95
+   "order": 91
   },
   "ce605e3d0c24": {
    "fr": "Montrer que, pour tout réel [[m1]] non nul, [[m2]]. Quelle symétrie de [[m3]] cela traduit-il ? Indiquer, pour chaque courbe, les droites dont elle se rapproche (asymptotes).",
    "en": "Show that, for every non-zero real [[m1]], [[m2]]. Which symmetry of [[m3]] does this express? For each curve, give the lines it gets closer and closer to (asymptotes).",
    "status": "aligned",
-   "order": 96
+   "order": 92
   },
   "5f2fd8ea9226": {
    "fr": "Le calcul de [[m1]] ou [[m2]] demande de diviser par [[m3]] ; la division par [[m4]] est impossible. L'ensemble de définition est [[m5]].",
    "en": "Computing [[m1]] or [[m2]] requires dividing by [[m3]]; division by [[m4]] is impossible. The domain is [[m5]].",
    "status": "aligned",
-   "order": 97
+   "order": 93
   },
   "646834461ebd": {
    "fr": "[[m1]]. Les points de coordonnées [[m2]] et [[m3]] sont symétriques par rapport à l'origine : [[m4]] est symétrique par rapport à l'origine [[m5]]. Asymptotes : pour [[m6]], les droites d'équations [[m7]] et [[m8]] ; pour [[m9]], les droites d'équations [[m10]] et [[m11]] (la courbe de [[m12]] est symétrique par rapport au point [[m13]], car [[m14]]).",
    "en": "[[m1]]. The points with coordinates [[m2]] and [[m3]] are symmetric about the origin: [[m4]] is symmetric about the origin [[m5]]. Asymptotes: for [[m6]], the lines with equations [[m7]] and [[m8]]; for [[m9]], the lines with equations [[m10]] and [[m11]] (the curve of [[m12]] is symmetric about the point [[m13]], since [[m14]]).",
    "status": "aligned",
-   "order": 98
+   "order": 94
   },
   "84cbe5612a3f": {
    "fr": "Comportement aux bornes et asymptotes",
    "en": "End behaviour and asymptotes",
    "status": "aligned",
-   "order": 99
-  },
-  "eff1bb5ded1e": {
-   "fr": "Calculer [[m1]] pour [[m2]]. Que peut-on conjecturer sur [[m3]] lorsque [[m4]] devient très grand en valeur absolue ? Quelle droite asymptote en déduit-on ?",
-   "en": "Compute [[m1]] for [[m2]]. What can be conjectured about [[m3]] when [[m4]] becomes very large in absolute value? Which asymptote can be deduced?",
-   "status": "aligned",
-   "order": 101
-  },
-  "e3084ee841e8": {
-   "fr": "Calculer [[m1]] pour [[m2]]. Décrire le comportement de [[m3]] lorsque [[m4]] se rapproche de [[m5]], par valeurs négatives puis par valeurs positives. Quelle droite asymptote en déduit-on ?",
-   "en": "Compute [[m1]] for [[m2]]. Describe the behaviour of [[m3]] when [[m4]] gets close to [[m5]], first through negative values, then through positive values. Which asymptote can be deduced?",
-   "status": "aligned",
-   "order": 102
-  },
-  "aa18eda9d02e": {
-   "fr": "Calculer [[m1]], [[m2]], [[m3]] et [[m4]], puis tracer l'allure de la courbe de [[m5]] et ses asymptotes dans le repère ci-dessous.",
-   "en": "Compute [[m1]], [[m2]], [[m3]] and [[m4]], then sketch the curve of [[m5]] and its asymptotes on the grid below.",
-   "status": "aligned",
-   "order": 103
-  },
-  "5be4e7034c42": {
-   "fr": "Application. Un organisme de formation loue une salle [[m1]]~€ la journée et dépense [[m2]]~€ de repas par participant. Pour [[m3]] participants ([[m4]]), le coût moyen par participant est [[m5]] (en euros).",
-   "en": "Application. A training organisation rents a room for [[m1]]~€ per day and spends [[m2]]~€ on meals per participant. For [[m3]] participants ([[m4]]), the average cost per participant is [[m5]] (in euros).",
-   "status": "aligned",
-   "order": 104
-  },
-  "6a2a13af8eb7": {
-   "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
-   "en": "Compute [[m1]], [[m2]] and [[m3]].",
-   "status": "aligned",
-   "order": 105
-  },
-  "3e78aee5178a": {
-   "fr": "De quelle valeur le coût moyen se rapproche-t-il lorsque le nombre de participants devient très grand ? Peut-il devenir inférieur à [[m1]]~€ ? Justifier.",
-   "en": "Which value does the average cost get closer to when the number of participants becomes very large? Can it fall below [[m1]]~€? Justify.",
-   "status": "aligned",
-   "order": 106
-  },
-  "15f024d45f3a": {
-   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. Quand [[m7]] devient très grand, [[m8]] se rapproche de [[m9]], donc [[m10]] se rapproche de [[m11]] (par valeurs inférieures en [[m12]], supérieures en [[m13]]). La droite d'équation [[m14]] est asymptote horizontale.",
-   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. When [[m7]] becomes very large, [[m8]] gets close to [[m9]], so [[m10]] gets close to [[m11]] (from below at [[m12]], from above at [[m13]]). The line with equation [[m14]] is a horizontal asymptote.",
-   "status": "aligned",
-   "order": 107
-  },
-  "030d1ceb40e1": {
-   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. Quand [[m7]] se rapproche de [[m8]] par valeurs négatives, [[m9]] devient négatif et aussi grand qu'on veut en valeur absolue ([[m10]]) ; par valeurs positives, [[m11]]. La droite d'équation [[m12]] est asymptote verticale.",
-   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. When [[m7]] gets close to [[m8]] through negative values, [[m9]] is negative and as large as we like in absolute value ([[m10]]); through positive values, [[m11]]. The line with equation [[m12]] is a vertical asymptote.",
-   "status": "aligned",
-   "order": 108
-  },
-  "ebea9cdd9f56": {
-   "fr": "Quand [[m1]] devient très grand, [[m2]] se rapproche de [[m3]] : le coût moyen se rapproche de [[m4]]~€ (asymptote [[m5]]). Comme [[m6]] pour [[m7]], on a toujours [[m8]] : le coût moyen ne descend jamais sous [[m9]]~€, le coût fixe de la salle se répartissant sur les participants sans disparaître.",
-   "en": "When [[m1]] becomes very large, [[m2]] gets close to [[m3]]: the average cost gets close to [[m4]]~€ (asymptote [[m5]]). Since [[m6]] for [[m7]], we always have [[m8]]: the average cost never falls below [[m9]]~€, as the fixed cost of the room is shared among the participants without disappearing.",
-   "status": "aligned",
-   "order": 109
-  },
-  "b1313b0bb24e": {
-   "fr": "Dériver une somme polynôme et [[m1]]",
-   "en": "Differentiate a polynomial plus [[m1]]",
-   "status": "aligned",
-   "order": 110
-  },
-  "08c5eb8d385b": {
-   "fr": "Calculer la dérivée de chacune des fonctions suivantes, définies sur [[m1]].",
-   "en": "Compute the derivative of each of the following functions, defined on [[m1]].",
-   "status": "aligned",
-   "order": 111
-  },
-  "36c979a17a7e": {
-   "fr": "[[m1]] \\quad (écrire d'abord [[m2]] sous la forme [[m3]], puis donner [[m4]] sous la forme d'un seul quotient)",
-   "en": "[[m1]] \\quad (first write [[m2]] in the form [[m3]], then give [[m4]] as a single quotient)",
-   "status": "aligned",
-   "order": 112
-  },
-  "f8ae9593bf8f": {
-   "fr": "On utilise : [[m1]], la dérivée d'une constante est nulle et, pour [[m2]], [[m3]].",
-   "en": "We use: [[m1]], the derivative of a constant is zero and, for [[m2]], [[m3]].",
-   "status": "aligned",
-   "order": 113
-  },
-  "0eefd4339d37": {
-   "fr": "[[m1]], donc [[m2]].",
-   "en": "[[m1]], so [[m2]].",
-   "status": "aligned",
-   "order": 114
-  },
-  "ae3d53c29660": {
-   "fr": "Erreur fréquente : écrire [[m1]] en oubliant le signe « [[m2]] ».",
-   "en": "Common error: writing [[m1]], forgetting the “[[m2]]” sign.",
-   "status": "aligned",
-   "order": 115
-  },
-  "e346ace2f65a": {
-   "fr": "Dérivée factorisée, signe et variations",
-   "en": "Factorised derivative, sign and variations",
-   "status": "aligned",
-   "order": 116
-  },
-  "0e7268ce471e": {
-   "fr": "Étudier le signe de [[m1]] sur [[m2]] à l'aide d'un tableau de signes.",
-   "en": "Study the sign of [[m1]] on [[m2]] using a sign table.",
-   "status": "aligned",
-   "order": 119
-  },
-  "0204d1c206f8": {
-   "fr": "En déduire le tableau de variations de [[m1]], en y faisant figurer les valeurs de [[m2]] et [[m3]].",
-   "en": "Deduce the table of variations of [[m1]], including the values of [[m2]] and [[m3]].",
-   "status": "aligned",
-   "order": 120
-  },
-  "9e1489f459c6": {
-   "fr": "Comparer [[m1]] et [[m2]]. Un maximum local peut-il être inférieur à un minimum local ? Expliquer à l'aide du tableau.",
-   "en": "Compare [[m1]] and [[m2]]. Can a local maximum be less than a local minimum? Explain using the table.",
-   "status": "aligned",
-   "order": 121
-  },
-  "61b12b4cd824": {
-   "fr": "[[m1]] (identité [[m2]] avec [[m3]], [[m4]]).",
-   "en": "[[m1]] (identity [[m2]] with [[m3]], [[m4]]).",
-   "status": "aligned",
-   "order": 122
-  },
-  "be4160a595b0": {
-   "fr": "[[m1]] pour [[m2]] : le signe de [[m3]] est celui de [[m4]]. [[m5]] ; [[m6]].",
-   "en": "[[m1]] for [[m2]]: the sign of [[m3]] is that of [[m4]]. [[m5]]; [[m6]].",
-   "status": "aligned",
-   "order": 123
-  },
-  "7b8c0189e799": {
-   "fr": "[[m1]] et [[m2]].",
-   "en": "[[m1]] and [[m2]].",
-   "status": "aligned",
-   "order": 124
-  },
-  "73970d374f69": {
-   "fr": "[[m1]] est croissante sur [[m2]], décroissante sur [[m3]] et sur [[m4]], croissante sur [[m5]].",
-   "en": "[[m1]] is increasing on [[m2]], decreasing on [[m3]] and on [[m4]], increasing on [[m5]].",
-   "status": "aligned",
-   "order": 125
-  },
-  "2d285f7926c1": {
-   "fr": "[[m1]] : le maximum local (atteint en [[m2]], sur [[m3]]) est inférieur au minimum local (atteint en [[m4]], sur [[m5]]). Ce n'est pas contradictoire : ce sont des extremums locaux sur deux intervalles séparés par la valeur interdite [[m6]], où la courbe « saute » (asymptote verticale).",
-   "en": "[[m1]]: the local maximum (reached at [[m2]], on [[m3]]) is less than the local minimum (reached at [[m4]], on [[m5]]). This is not a contradiction: they are local extrema on two intervals separated by the forbidden value [[m6]], where the curve “jumps” (vertical asymptote).",
-   "status": "aligned",
-   "order": 126
-  },
-  "e07aeffe0184": {
-   "fr": "Dérivée toujours positive et signe d'un quotient",
-   "en": "Always-positive derivative and sign of a quotient",
-   "status": "aligned",
-   "order": 127
+   "order": 95
   },
   "a083995e9ee9": {
    "fr": "Soit [[m1]] la fonction définie sur [[m2]] par [[m3]].",
    "en": "Let [[m1]] be the function defined on [[m2]] by [[m3]].",
    "status": "aligned",
-   "order": 128
+   "order": 96
+  },
+  "eff1bb5ded1e": {
+   "fr": "Calculer [[m1]] pour [[m2]]. Que peut-on conjecturer sur [[m3]] lorsque [[m4]] devient très grand en valeur absolue ? Quelle droite asymptote en déduit-on ?",
+   "en": "Compute [[m1]] for [[m2]]. What can be conjectured about [[m3]] when [[m4]] becomes very large in absolute value? Which asymptote can be deduced?",
+   "status": "aligned",
+   "order": 97
+  },
+  "e3084ee841e8": {
+   "fr": "Calculer [[m1]] pour [[m2]]. Décrire le comportement de [[m3]] lorsque [[m4]] se rapproche de [[m5]], par valeurs négatives puis par valeurs positives. Quelle droite asymptote en déduit-on ?",
+   "en": "Compute [[m1]] for [[m2]]. Describe the behaviour of [[m3]] when [[m4]] gets close to [[m5]], first through negative values, then through positive values. Which asymptote can be deduced?",
+   "status": "aligned",
+   "order": 98
+  },
+  "aa18eda9d02e": {
+   "fr": "Calculer [[m1]], [[m2]], [[m3]] et [[m4]], puis tracer l'allure de la courbe de [[m5]] et ses asymptotes dans le repère ci-dessous.",
+   "en": "Compute [[m1]], [[m2]], [[m3]] and [[m4]], then sketch the curve of [[m5]] and its asymptotes on the grid below.",
+   "status": "aligned",
+   "order": 99
+  },
+  "5be4e7034c42": {
+   "fr": "Application. Un organisme de formation loue une salle [[m1]]~€ la journée et dépense [[m2]]~€ de repas par participant. Pour [[m3]] participants ([[m4]]), le coût moyen par participant est [[m5]] (en euros).",
+   "en": "Application. A training organisation rents a room for [[m1]]~€ per day and spends [[m2]]~€ on meals per participant. For [[m3]] participants ([[m4]]), the average cost per participant is [[m5]] (in euros).",
+   "status": "aligned",
+   "order": 100
+  },
+  "6a2a13af8eb7": {
+   "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
+   "en": "Compute [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "3e78aee5178a": {
+   "fr": "De quelle valeur le coût moyen se rapproche-t-il lorsque le nombre de participants devient très grand ? Peut-il devenir inférieur à [[m1]]~€ ? Justifier.",
+   "en": "Which value does the average cost get closer to when the number of participants becomes very large? Can it fall below [[m1]]~€? Justify.",
+   "status": "aligned",
+   "order": 102
+  },
+  "15f024d45f3a": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. Quand [[m7]] devient très grand, [[m8]] se rapproche de [[m9]], donc [[m10]] se rapproche de [[m11]] (par valeurs inférieures en [[m12]], supérieures en [[m13]]). La droite d'équation [[m14]] est asymptote horizontale.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. When [[m7]] becomes very large, [[m8]] gets close to [[m9]], so [[m10]] gets close to [[m11]] (from below at [[m12]], from above at [[m13]]). The line with equation [[m14]] is a horizontal asymptote.",
+   "status": "aligned",
+   "order": 103
+  },
+  "030d1ceb40e1": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]] ; [[m5]] ; [[m6]]. Quand [[m7]] se rapproche de [[m8]] par valeurs négatives, [[m9]] devient négatif et aussi grand qu'on veut en valeur absolue ([[m10]]) ; par valeurs positives, [[m11]]. La droite d'équation [[m12]] est asymptote verticale.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]]. When [[m7]] gets close to [[m8]] through negative values, [[m9]] is negative and as large as we like in absolute value ([[m10]]); through positive values, [[m11]]. The line with equation [[m12]] is a vertical asymptote.",
+   "status": "aligned",
+   "order": 104
+  },
+  "ebea9cdd9f56": {
+   "fr": "Quand [[m1]] devient très grand, [[m2]] se rapproche de [[m3]] : le coût moyen se rapproche de [[m4]]~€ (asymptote [[m5]]). Comme [[m6]] pour [[m7]], on a toujours [[m8]] : le coût moyen ne descend jamais sous [[m9]]~€, le coût fixe de la salle se répartissant sur les participants sans disparaître.",
+   "en": "When [[m1]] becomes very large, [[m2]] gets close to [[m3]]: the average cost gets close to [[m4]]~€ (asymptote [[m5]]). Since [[m6]] for [[m7]], we always have [[m8]]: the average cost never falls below [[m9]]~€, as the fixed cost of the room is shared among the participants without disappearing.",
+   "status": "aligned",
+   "order": 105
+  },
+  "b1313b0bb24e": {
+   "fr": "Dériver une somme polynôme et [[m1]]",
+   "en": "Differentiate a polynomial plus [[m1]]",
+   "status": "aligned",
+   "order": 106
+  },
+  "08c5eb8d385b": {
+   "fr": "Calculer la dérivée de chacune des fonctions suivantes, définies sur [[m1]].",
+   "en": "Compute the derivative of each of the following functions, defined on [[m1]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "36c979a17a7e": {
+   "fr": "[[m1]] \\quad (écrire d'abord [[m2]] sous la forme [[m3]], puis donner [[m4]] sous la forme d'un seul quotient)",
+   "en": "[[m1]] \\quad (first write [[m2]] in the form [[m3]], then give [[m4]] as a single quotient)",
+   "status": "aligned",
+   "order": 108
+  },
+  "f8ae9593bf8f": {
+   "fr": "On utilise : [[m1]], la dérivée d'une constante est nulle et, pour [[m2]], [[m3]].",
+   "en": "We use: [[m1]], the derivative of a constant is zero and, for [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "ae3d53c29660": {
+   "fr": "Erreur fréquente : écrire [[m1]] en oubliant le signe « [[m2]] ».",
+   "en": "Common error: writing [[m1]], forgetting the “[[m2]]” sign.",
+   "status": "aligned",
+   "order": 111
+  },
+  "e346ace2f65a": {
+   "fr": "Dérivée factorisée, signe et variations",
+   "en": "Factorised derivative, sign and variations",
+   "status": "aligned",
+   "order": 112
   },
   "a17a0ec6762e": {
    "fr": "Montrer que, pour tout réel [[m1]] non nul, [[m2]].",
    "en": "Show that, for every non-zero real [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 129
+   "order": 114
+  },
+  "0e7268ce471e": {
+   "fr": "Étudier le signe de [[m1]] sur [[m2]] à l'aide d'un tableau de signes.",
+   "en": "Study the sign of [[m1]] on [[m2]] using a sign table.",
+   "status": "aligned",
+   "order": 115
+  },
+  "0204d1c206f8": {
+   "fr": "En déduire le tableau de variations de [[m1]], en y faisant figurer les valeurs de [[m2]] et [[m3]].",
+   "en": "Deduce the table of variations of [[m1]], including the values of [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 116
+  },
+  "9e1489f459c6": {
+   "fr": "Comparer [[m1]] et [[m2]]. Un maximum local peut-il être inférieur à un minimum local ? Expliquer à l'aide du tableau.",
+   "en": "Compare [[m1]] and [[m2]]. Can a local maximum be less than a local minimum? Explain using the table.",
+   "status": "aligned",
+   "order": 117
+  },
+  "61b12b4cd824": {
+   "fr": "[[m1]] (identité [[m2]] avec [[m3]], [[m4]]).",
+   "en": "[[m1]] (identity [[m2]] with [[m3]], [[m4]]).",
+   "status": "aligned",
+   "order": 118
+  },
+  "be4160a595b0": {
+   "fr": "[[m1]] pour [[m2]] : le signe de [[m3]] est celui de [[m4]]. [[m5]] ; [[m6]].",
+   "en": "[[m1]] for [[m2]]: the sign of [[m3]] is that of [[m4]]. [[m5]]; [[m6]].",
+   "status": "aligned",
+   "order": 119
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 120
+  },
+  "73970d374f69": {
+   "fr": "[[m1]] est croissante sur [[m2]], décroissante sur [[m3]] et sur [[m4]], croissante sur [[m5]].",
+   "en": "[[m1]] is increasing on [[m2]], decreasing on [[m3]] and on [[m4]], increasing on [[m5]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "2d285f7926c1": {
+   "fr": "[[m1]] : le maximum local (atteint en [[m2]], sur [[m3]]) est inférieur au minimum local (atteint en [[m4]], sur [[m5]]). Ce n'est pas contradictoire : ce sont des extremums locaux sur deux intervalles séparés par la valeur interdite [[m6]], où la courbe « saute » (asymptote verticale).",
+   "en": "[[m1]]: the local maximum (reached at [[m2]], on [[m3]]) is less than the local minimum (reached at [[m4]], on [[m5]]). This is not a contradiction: they are local extrema on two intervals separated by the forbidden value [[m6]], where the curve “jumps” (vertical asymptote).",
+   "status": "aligned",
+   "order": 122
+  },
+  "e07aeffe0184": {
+   "fr": "Dérivée toujours positive et signe d'un quotient",
+   "en": "Always-positive derivative and sign of a quotient",
+   "status": "aligned",
+   "order": 123
   },
   "a308e67db5b9": {
    "fr": "Étudier le signe de [[m1]] et en déduire les variations de [[m2]].",
    "en": "Study the sign of [[m1]] and deduce the variations of [[m2]].",
    "status": "aligned",
-   "order": 130
+   "order": 126
   },
   "a0a0c0928da7": {
    "fr": "Calculer [[m1]] et [[m2]]. Peut-on dire que « [[m3]] est croissante sur [[m4]] » ? Expliquer.",
    "en": "Compute [[m1]] and [[m2]]. Can we say that “[[m3]] is increasing on [[m4]]”? Explain.",
    "status": "aligned",
-   "order": 131
+   "order": 127
   },
   "998443e6cdf3": {
    "fr": "Montrer que, pour tout réel [[m1]] non nul, [[m2]]. Dresser le tableau de signes de [[m3]], puis résoudre l'inéquation [[m4]].",
    "en": "Show that, for every non-zero real [[m1]], [[m2]]. Draw the sign table of [[m3]], then solve the inequality [[m4]].",
    "status": "aligned",
-   "order": 132
+   "order": 128
   },
   "466939687d49": {
    "fr": "Pour [[m1]] : [[m2]] et [[m3]], donc [[m4]]. La fonction [[m5]] est strictement croissante sur [[m6]] et strictement croissante sur [[m7]].",
    "en": "For [[m1]]: [[m2]] and [[m3]], so [[m4]]. The function [[m5]] is strictly increasing on [[m6]] and strictly increasing on [[m7]].",
    "status": "aligned",
-   "order": 133
+   "order": 129
   },
   "b3b3a5e5af86": {
    "fr": "[[m1]] et [[m2]]. On a [[m3]] mais [[m4]] : [[m5]] n'est pas croissante sur [[m6]] tout entier. Elle est croissante sur chacun des deux intervalles, séparément.",
    "en": "[[m1]] and [[m2]]. We have [[m3]] but [[m4]]: [[m5]] is not increasing on the whole of [[m6]]. It is increasing on each of the two intervals, separately.",
    "status": "aligned",
-   "order": 134
+   "order": 130
   },
   "e66fd544fc0b": {
    "fr": "[[m1]]. Valeurs critiques : [[m2]], [[m3]] (valeur interdite) et [[m4]].",
    "en": "[[m1]]. Critical values: [[m2]], [[m3]] (forbidden value) and [[m4]].",
    "status": "aligned",
-   "order": 135
+   "order": 131
   },
   "51adc6e964b3": {
    "fr": "L'ensemble des solutions de [[m1]] est [[m2]] ([[m3]] est exclu car valeur interdite). Contrôle : [[m4]], [[m5]], [[m6]].",
    "en": "The solution set of [[m1]] is [[m2]] ([[m3]] is excluded as a forbidden value). Check: [[m4]], [[m5]], [[m6]].",
    "status": "aligned",
-   "order": 136
+   "order": 132
   },
   "45be9dc9cc96": {
    "fr": "Dérivée et variations de la fonction inverse",
    "en": "Derivative and variations of the reciprocal function",
    "status": "aligned",
-   "order": 137
+   "order": 133
   },
   "e256d62619cf": {
    "fr": "Soit [[m1]] la fonction inverse, définie sur [[m2]] par [[m3]].",
    "en": "Let [[m1]] be the reciprocal function, defined on [[m2]] by [[m3]].",
    "status": "aligned",
-   "order": 138
+   "order": 134
   },
   "4965b59c70a5": {
    "fr": "Soit [[m1]] un réel non nul, avec [[m2]]. Montrer que le taux de variation de [[m3]] entre [[m4]] et [[m5]] vaut\n[[m6]]. En faisant tendre [[m7]] vers [[m8]], en déduire [[m9]].",
    "en": "Let [[m1]] be a non-zero real number, with [[m2]]. Show that the rate of change of [[m3]] between [[m4]] and [[m5]] is\n[[m6]]. Letting [[m7]] tend to [[m8]], deduce [[m9]].",
    "status": "aligned",
-   "order": 139
+   "order": 135
   },
   "bde3174b6aec": {
    "fr": "On admet que, pour tout réel [[m1]] non nul, [[m2]]. Vérifier la cohérence avec la question 1, puis calculer [[m3]] et [[m4]].",
    "en": "We admit that, for every non-zero real [[m1]], [[m2]]. Check consistency with question 1, then compute [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 140
+   "order": 136
   },
   "dbe41cd016d1": {
    "fr": "Étudier le signe de [[m1]] et dresser le tableau de variations de [[m2]].",
    "en": "Study the sign of [[m1]] and draw the table of variations of [[m2]].",
    "status": "aligned",
-   "order": 141
+   "order": 137
   },
   "ca479e5b5d45": {
    "fr": "Un élève remarque que [[m1]] et [[m2]], et affirme que cela contredit la décroissance de [[m3]]. Que lui répondre ?",
    "en": "A student notices that [[m1]] and [[m2]], and claims that this contradicts the fact that [[m3]] is decreasing. What should we answer?",
    "status": "aligned",
-   "order": 142
+   "order": 138
   },
   "946f81ab176d": {
    "fr": "[[m1]]. En divisant par [[m2]] : [[m3]]. Lorsque [[m4]] tend vers [[m5]], ce taux tend vers [[m6]] : [[m7]].",
    "en": "[[m1]]. Dividing by [[m2]]: [[m3]]. When [[m4]] tends to [[m5]], this rate tends to [[m6]]: [[m7]].",
    "status": "aligned",
-   "order": 143
+   "order": 139
   },
   "f9b4fd294617": {
    "fr": "[[m1]] : cohérent. [[m2]] et [[m3]] (pentes des tangentes en ces points).",
    "en": "[[m1]]: consistent. [[m2]] and [[m3]] (slopes of the tangents at these points).",
    "status": "aligned",
-   "order": 144
+   "order": 140
   },
   "515e70564b4e": {
    "fr": "Pour [[m1]], [[m2]], donc [[m3]].",
    "en": "For [[m1]], [[m2]], so [[m3]].",
    "status": "aligned",
-   "order": 145
+   "order": 141
   },
   "9f94a5dd9ed8": {
    "fr": "[[m1]] est strictement décroissante sur [[m2]] et strictement décroissante sur [[m3]].",
    "en": "[[m1]] is strictly decreasing on [[m2]] and strictly decreasing on [[m3]].",
    "status": "aligned",
-   "order": 146
+   "order": 142
   },
   "828cfb0374f0": {
    "fr": "[[m1]] et [[m2]] : on a bien [[m3]]. Il n'y a pas de contradiction : [[m4]] et [[m5]] ne sont pas dans le même intervalle. La fonction inverse est décroissante sur chaque intervalle séparément, pas sur [[m6]] tout entier ; on ne peut comparer des images avec le sens de variation que pour deux réels d'un même intervalle.",
    "en": "[[m1]] and [[m2]]: indeed [[m3]]. There is no contradiction: [[m4]] and [[m5]] are not in the same interval. The reciprocal function is decreasing on each interval separately, not on the whole of [[m6]]; images can be compared using the direction of variation only for two real numbers in the same interval.",
    "status": "aligned",
-   "order": 147
+   "order": 143
   },
   "9b2aa460a549": {
    "fr": "Lecture graphique d'un coût moyen",
    "en": "Reading an average cost from a graph",
    "status": "aligned",
-   "order": 148
+   "order": 144
   },
   "f53dc2c77f58": {
    "fr": "Une entreprise assemble entre [[m1]] et [[m2]] vélos électriques par mois. Pour [[m3]] vélos assemblés, on note [[m4]] le coût de production unitaire moyen, en euros. La courbe de la fonction [[m5]] sur [[m6]] est donnée ci-dessous.",
    "en": "A company assembles between [[m1]] and [[m2]] electric bicycles per month. For [[m3]] bicycles assembled, let [[m4]] be the average unit production cost, in euros. The curve of the function [[m5]] on [[m6]] is given below.",
    "status": "aligned",
-   "order": 149
+   "order": 145
   },
   "96284d4f4c1f": {
    "fr": "nombre de vélos [[m1]]",
    "en": "number of bicycles [[m1]]",
    "status": "aligned",
-   "order": 150
+   "order": 146
   },
   "2408eb0b8e99": {
    "fr": "[[m1]] en €",
    "en": "[[m1]] in €",
    "status": "aligned",
-   "order": 151
+   "order": 147
   },
   "0097c94d12b4": {
    "fr": "Lire le coût unitaire moyen lorsque l'entreprise assemble [[m1]] vélos, puis [[m2]] vélos.",
    "en": "Read the average unit cost when the company assembles [[m1]] bicycles, then [[m2]] bicycles.",
    "status": "aligned",
-   "order": 152
+   "order": 148
   },
   "8f850e48f1e2": {
    "fr": "Pour quelles productions le coût unitaire moyen est-il égal à [[m1]]~€ ?",
    "en": "For which production levels is the average unit cost equal to [[m1]]~€?",
    "status": "aligned",
-   "order": 153
+   "order": 149
   },
   "d026c128490c": {
    "fr": "Quel est le coût unitaire moyen minimal ? Pour quelle production est-il atteint ?",
    "en": "What is the minimum average unit cost? For which production level is it reached?",
    "status": "aligned",
-   "order": 154
+   "order": 150
   },
   "0200181c716b": {
    "fr": "On admet que [[m1]]. Calculer [[m2]], vérifier que [[m3]] et confirmer par le calcul la réponse à la question 3.",
    "en": "We admit that [[m1]]. Compute [[m2]], check that [[m3]] and confirm the answer to question 3 by calculation.",
    "status": "aligned",
-   "order": 155
+   "order": 151
   },
   "a8296c6ffe90": {
    "fr": "Exiger des traits de lecture (pointillés) et des unités ; une lecture graphique est approchée.",
    "en": "Require reading lines (dotted) and units; a graphical reading is approximate.",
    "status": "aligned",
-   "order": 156
+   "order": 152
   },
   "56b45c52e409": {
    "fr": "On lit [[m1]]~€ et [[m2]]~€ (valeur exacte avec la formule de la question 4 : [[m3]]~€).",
    "en": "We read [[m1]]~€ and [[m2]]~€ (exact value with the formula of question 4: [[m3]]~€).",
    "status": "aligned",
-   "order": 157
+   "order": 153
   },
   "116e192ac4a2": {
    "fr": "On trace la droite d'équation [[m1]] : elle coupe la courbe aux points d'abscisses [[m2]] et [[m3]]. Le coût moyen vaut [[m4]]~€ pour [[m5]] ou [[m6]] vélos.",
    "en": "Draw the line with equation [[m1]]: it meets the curve at the points with abscissas [[m2]] and [[m3]]. The average cost is [[m4]]~€ for [[m5]] or [[m6]] bicycles.",
    "status": "aligned",
-   "order": 158
+   "order": 154
   },
   "416ca796f0fd": {
    "fr": "Le point le plus bas de la courbe a pour coordonnées environ [[m1]] : coût minimal d'environ [[m2]]~€ par vélo, pour [[m3]] vélos par mois.",
    "en": "The lowest point of the curve has coordinates about [[m1]]: minimum cost of about [[m2]]~€ per bicycle, for [[m3]] bicycles per month.",
    "status": "aligned",
-   "order": 159
+   "order": 155
   },
   "a80563cd4e3e": {
    "fr": "[[m1]]. Sur [[m2]], [[m3]] et [[m4]] : [[m5]] a le signe de [[m6]], négatif sur [[m7]] et positif sur [[m8]]. [[m9]] est décroissante sur [[m10]] puis croissante sur [[m11]] ; son minimum est [[m12]]~€. Contrôles : [[m13]] et [[m14]].",
    "en": "[[m1]]. On [[m2]], [[m3]] and [[m4]]: [[m5]] has the sign of [[m6]], negative on [[m7]] and positive on [[m8]]. [[m9]] is decreasing on [[m10]] then increasing on [[m11]]; its minimum is [[m12]]~€. Checks: [[m13]] and [[m14]].",
    "status": "aligned",
-   "order": 160
+   "order": 156
   },
   "9a312eb72d8d": {
    "fr": "Minimiser un coût moyen par la dérivée",
    "en": "Minimising an average cost with the derivative",
    "status": "aligned",
-   "order": 161
+   "order": 157
   },
   "b3fc21254e77": {
    "fr": "Une plateforme de compostage produit chaque semaine [[m1]] tonnes de compost, avec [[m2]]. Le coût total hebdomadaire de production, en euros, est modélisé par [[m3]].\nOn note [[m4]] la fonction qui donne le coût moyen de production d'une tonne : [[m5]].",
    "en": "A composting site produces [[m1]] tonnes of compost each week, with [[m2]]. The total weekly production cost, in euros, is modelled by [[m3]].\nLet [[m4]] be the function giving the average production cost of one tonne: [[m5]].",
    "status": "aligned",
-   "order": 162
+   "order": 158
   },
   "2c965d7ae448": {
    "fr": "Montrer que, pour tout [[m1]], [[m2]].",
    "en": "Show that, for every [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 163
+   "order": 159
   },
   "9c8655f30303": {
    "fr": "Calculer [[m1]] et montrer que, pour tout [[m2]], [[m3]].",
    "en": "Compute [[m1]] and show that, for every [[m2]], [[m3]].",
    "status": "aligned",
-   "order": 164
+   "order": 160
   },
   "cbf738e8ce17": {
    "fr": "Étudier le signe de [[m1]] sur [[m2]] et dresser le tableau de variations de [[m3]] (valeurs aux bornes comprises).",
    "en": "Study the sign of [[m1]] on [[m2]] and draw the table of variations of [[m3]] (including the values at the endpoints).",
    "status": "aligned",
-   "order": 165
+   "order": 161
   },
   "54194120647b": {
    "fr": "Quel est le coût moyen minimal d'une tonne de compost ? Pour quelle production hebdomadaire est-il atteint ? Quel est alors le coût total de la semaine ?",
    "en": "What is the minimum average cost of one tonne of compost? For which weekly production is it reached? What is the total cost of the week then?",
    "status": "aligned",
-   "order": 166
+   "order": 162
   },
   "54f1ec84c3bf": {
    "fr": "Pour [[m1]], [[m2]] : [[m3]].",
    "en": "For [[m1]], [[m2]]: [[m3]].",
    "status": "aligned",
-   "order": 167
+   "order": 163
   },
   "bc6cc062646f": {
    "fr": "Sur [[m1]] : [[m2]], [[m3]] et [[m4]], donc [[m5]] a le signe de [[m6]] : [[m7]] sur [[m8]], [[m9]], [[m10]] sur [[m11]].\n[[m12]] ; [[m13]] ; [[m14]].",
    "en": "On [[m1]]: [[m2]], [[m3]] and [[m4]], so [[m5]] has the sign of [[m6]]: [[m7]] on [[m8]], [[m9]], [[m10]] on [[m11]].\n[[m12]]; [[m13]]; [[m14]].",
    "status": "aligned",
-   "order": 168
+   "order": 164
   },
   "9f67ab12c0d2": {
    "fr": "Le coût moyen minimal est de [[m1]]~€ par tonne, atteint pour une production de [[m2]] tonnes par semaine. Le coût total est alors [[m3]]~€ (contrôle : [[m4]]).",
    "en": "The minimum average cost is [[m1]]~€ per tonne, reached for a production of [[m2]] tonnes per week. The total cost is then [[m3]]~€ (check: [[m4]]).",
    "status": "aligned",
-   "order": 169
+   "order": 165
   }
  }
 }

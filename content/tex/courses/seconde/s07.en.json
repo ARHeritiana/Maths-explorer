@@ -19,6 +19,12 @@
    "status": "aligned",
    "order": 2
   },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 3
+  },
   "1ad433202872": {
    "fr": "Une série décrit un caractère sur une population. Si la valeur [[m1]] apparaît [[m2]] fois, [[m3]] est son effectif. L'effectif total non nul est [[m4]] ; sa fréquence est [[m5]]. La moyenne est",
    "en": "A data set describes a characteristic over a population. If the value [[m1]] appears [[m2]] times, [[m3]] is its frequency count. The nonzero total count is [[m4]]; its relative frequency is [[m5]]. The mean is",
@@ -49,29 +55,53 @@
    "status": "aligned",
    "order": 8
   },
+  "a41dec33581e": {
+   "fr": "Pointure",
+   "en": "Size",
+   "status": "aligned",
+   "order": 9
+  },
+  "bbfbd27560b6": {
+   "fr": "Effectif",
+   "en": "Count",
+   "status": "aligned",
+   "order": 10
+  },
+  "9705d336af9c": {
+   "fr": "\\mxblank{3}",
+   "en": "\\mxblank{3}",
+   "status": "aligned",
+   "order": 11
+  },
   "4b7bd2a59ff1": {
    "fr": "\\mxblank{0}",
    "en": "\\mxblank{0}",
    "status": "aligned",
    "order": 12
   },
+  "166220321265": {
+   "fr": "\\mxblank{2}",
+   "en": "\\mxblank{2}",
+   "status": "aligned",
+   "order": 14
+  },
   "88be9afc9c86": {
    "fr": "\\mxblank{5}",
    "en": "\\mxblank{5}",
    "status": "aligned",
-   "order": 16
+   "order": 15
+  },
+  "89a1709e84e0": {
+   "fr": "\\mxblank{6}",
+   "en": "\\mxblank{6}",
+   "status": "aligned",
+   "order": 17
   },
   "8c91018339e9": {
    "fr": "\\mxblank{4}",
    "en": "\\mxblank{4}",
    "status": "aligned",
    "order": 18
-  },
-  "166220321265": {
-   "fr": "\\mxblank{2}",
-   "en": "\\mxblank{2}",
-   "status": "aligned",
-   "order": 19
   },
   "1fccb884e982": {
    "fr": "Effectifs : [[m1]], de somme [[m2]]. Les fréquences sont ces effectifs divisés par [[m3]], soit en pourcentage [[m4]] ; [[m5]] ; [[m6]] ; environ [[m7]] ; [[m8]] ; [[m9]] ; [[m10]] ; [[m11]] ; [[m12]].\n[[m13]], donc [[m14]]. L'étendue vaut [[m15]]. La moyenne n'est pas forcément une valeur de la série. La somme des pourcentages arrondis peut différer légèrement de [[m16]].",
@@ -109,29 +139,17 @@
    "status": "aligned",
    "order": 25
   },
-  "a41dec33581e": {
-   "fr": "Pointure",
-   "en": "Size",
-   "status": "aligned",
-   "order": 26
-  },
   "7d2cf73775f4": {
    "fr": "2\\\\\nECC",
    "en": "2\\\\\nACC",
    "status": "aligned",
    "order": 28
   },
-  "9705d336af9c": {
-   "fr": "\\mxblank{3}",
-   "en": "\\mxblank{3}",
+  "e19d77e170af": {
+   "fr": "\\mxblank{8}",
+   "en": "\\mxblank{8}",
    "status": "aligned",
-   "order": 30
-  },
-  "89a1709e84e0": {
-   "fr": "\\mxblank{6}",
-   "en": "\\mxblank{6}",
-   "status": "aligned",
-   "order": 31
+   "order": 32
   },
   "5842165b8974": {
    "fr": "\\mxblank{13}",
@@ -150,6 +168,18 @@
    "en": "\\mxblank{24}",
    "status": "aligned",
    "order": 35
+  },
+  "118cfebec51b": {
+   "fr": "\\mxblank{28}",
+   "en": "\\mxblank{28}",
+   "status": "aligned",
+   "order": 36
+  },
+  "20bdccf9af97": {
+   "fr": "\\mxblank{30}",
+   "en": "\\mxblank{30}",
+   "status": "aligned",
+   "order": 37
   },
   "26cba2ddc66d": {
    "fr": "Les rangs centraux sont [[m1]] et [[m2]]. Les ECC passent de [[m3]] pour [[m4]] à [[m5]] pour [[m6]] : les deux valeurs centrales valent [[m7]], donc [[m8]]. Au moins la moitié des pointures sont inférieures ou égales à [[m9]], et au moins la moitié supérieures ou égales à [[m10]].",
@@ -264,12 +294,6 @@
    "en": "Variance and standard deviation",
    "status": "aligned",
    "order": 57
-  },
-  "3ab32483375b": {
-   "fr": "Définitions",
-   "en": "Definitions",
-   "status": "aligned",
-   "order": 58
   },
   "3bf740c26283": {
    "fr": "[[m1]] est la variance ; [[m2]] est l'écart type. Il mesure la dispersion autour de la moyenne et a la même unité que les données. On peut aussi calculer [[m3]].",
@@ -409,12 +433,6 @@
    "status": "aligned",
    "order": 83
   },
-  "118cfebec51b": {
-   "fr": "\\mxblank{28}",
-   "en": "\\mxblank{28}",
-   "status": "aligned",
-   "order": 84
-  },
   "d4cd74c8ff88": {
    "fr": "\\mxblank{7}\\\\\nCentre (cm)",
    "en": "\\mxblank{7}\\\\\nCentre (cm)",
@@ -450,18 +468,6 @@
    "en": "\\mxblank{195}\\\\\nACC",
    "status": "aligned",
    "order": 90
-  },
-  "e19d77e170af": {
-   "fr": "\\mxblank{8}",
-   "en": "\\mxblank{8}",
-   "status": "aligned",
-   "order": 91
-  },
-  "20bdccf9af97": {
-   "fr": "\\mxblank{30}",
-   "en": "\\mxblank{30}",
-   "status": "aligned",
-   "order": 92
   },
   "64ce863c29e8": {
    "fr": "\\mxblank{65}",
@@ -523,17 +529,11 @@
    "status": "aligned",
    "order": 102
   },
-  "bbfbd27560b6": {
-   "fr": "Effectif",
-   "en": "Count",
-   "status": "aligned",
-   "order": 104
-  },
   "9a8b8654d2e6": {
    "fr": "Taille (cm)",
    "en": "Height (cm)",
    "status": "aligned",
-   "order": 105
+   "order": 103
   },
   "555c431f32bb": {
    "fr": "Fréquence cumulée (\\%)",

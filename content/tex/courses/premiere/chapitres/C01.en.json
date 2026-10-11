@@ -109,9 +109,9 @@
    "status": "aligned",
    "order": 17
   },
-  "cbd1a171e645": {
-   "fr": "En binômes, comparer deux offres de collecte : 20 kg la première semaine puis 5 kg de plus chaque semaine ; 20 kg puis une hausse de 20 \\% chaque semaine. Conjecturer laquelle collecte le plus au total en six semaines, puis justifier. Prévoir 10 min de recherche et 5 min de confrontation.",
-   "en": "In pairs, compare two collection offers: 20 kg in the first week then 5 kg more each week; 20 kg then a 20 \\% increase each week. Conjecture which collects more in total over six weeks, then justify. Allow 10 min for investigation and 5 min for comparison.",
+  "f76560f3630e": {
+   "fr": "En binômes, comparer deux offres de collecte : 20 kg la première semaine puis 5 kg de plus chaque semaine ; 20 kg puis une hausse de [[m1]] chaque semaine. Conjecturer laquelle collecte le plus au total en six semaines, puis justifier. Prévoir 10 min de recherche et 5 min de confrontation.",
+   "en": "In pairs, compare two collection offers: 20 kg in the first week then 5 kg more each week; 20 kg then a [[m1]] increase each week. Conjecture which collects more in total over six weeks, then justify. Allow 10 min for investigation and 5 min for comparison.",
    "status": "aligned",
    "order": 18
   },
@@ -133,11 +133,23 @@
    "status": "aligned",
    "order": 21
   },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
   "7482d4f6bee9": {
    "fr": "Une suite réelle est une fonction dont la variable est un entier : à chaque rang [[m1]] autorisé correspond un réel [[m2]]. La notation [[m3]] désigne la suite, [[m4]] un terme. Une formule explicite donne directement [[m5]] en fonction de [[m6]]. Une définition par récurrence fournit un premier terme et une règle de passage. La représentation est un ensemble de points [[m7]] : on ne relie pas nécessairement ces points.",
    "en": "A real sequence is a function whose variable is an integer: to each allowed index [[m1]] corresponds a real number [[m2]]. The notation [[m3]] denotes the sequence, [[m4]] a term. An explicit formula gives [[m5]] directly in terms of [[m6]]. A definition by recurrence gives a first term and a rule for passing from one term to the next. The representation is a set of points [[m7]]: these points are not necessarily joined up.",
    "status": "aligned",
    "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
   },
   "14ba99180398": {
    "fr": "Définition. L’unicité des termes obtenus à partir d’un premier terme et d’une règle déterministe est admise ; aucun raisonnement par récurrence formel n’est requis.",
@@ -217,9 +229,9 @@
    "status": "aligned",
    "order": 41
   },
-  "3d0f62460cd4": {
-   "fr": "Une quantité de 160 mg perd 25 \\% à chaque étape : [[m1]]. Les termes sont positifs et [[m2]]. On obtient [[m3]] mg, sans confondre baisse de 25 \\% et retrait de 25 mg.",
-   "en": "A quantity of 160 mg loses 25 \\% at each step: [[m1]]. The terms are positive and [[m2]]. We obtain [[m3]] mg, without confusing a 25 \\% decrease with removing 25 mg.",
+  "3510283708be": {
+   "fr": "Une quantité de 160 mg perd [[m1]] à chaque étape : [[m2]]. Les termes sont positifs et [[m3]]. On obtient [[m4]] mg, sans confondre baisse de [[m5]] et retrait de 25 mg.",
+   "en": "A quantity of 160 mg loses [[m1]] at each step: [[m2]]. The terms are positive and [[m3]]. We obtain [[m4]] mg, without confusing a [[m5]] decrease with removing 25 mg.",
    "status": "aligned",
    "order": 42
   },
@@ -277,23 +289,11 @@
    "status": "aligned",
    "order": 53
   },
-  "ebc073a34cf3": {
-   "fr": "Définition et résultats",
-   "en": "Definition and results",
-   "status": "aligned",
-   "order": 54
-  },
   "848cf25f010b": {
    "fr": "Une limite est ici abordée intuitivement. Les termes [[m1]] se rapprochent de 0 ; [[m2]] grandit sans borne ; [[m3]] ne se stabilise pas. Une expérience numérique suggère une conclusion mais ne prouve pas un comportement pour tous les rangs. Un algorithme de seuil doit préciser le sens de l’inégalité et prévoir un arrêt.",
    "en": "A limit is approached here intuitively. The terms [[m1]] get closer to 0; [[m2]] grows without bound; [[m3]] does not settle. A numerical experiment suggests a conclusion but does not prove a behaviour for all indices. A threshold algorithm must specify the direction of the inequality and provide a stopping condition.",
    "status": "aligned",
    "order": 55
-  },
-  "7815a69c0f26": {
-   "fr": "Statut et justification.",
-   "en": "Status and justification.",
-   "status": "aligned",
-   "order": 56
   },
   "9262dd9b2e7d": {
    "fr": "Constats illustratifs, sans théorie formelle des limites. La correction d’un seuil entier se vérifie en contrôlant le rang trouvé et le rang précédent, lorsque la monotonie est établie.",
@@ -619,6 +619,12 @@
    "status": "aligned",
    "order": 110
   },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 111
+  },
   "560cd5e7f68a": {
    "fr": "[[m1]] : [[m2]] vaut",
    "en": "[[m1]]: [[m2]] equals",
@@ -631,9 +637,9 @@
    "status": "aligned",
    "order": 113
   },
-  "0942b04adf82": {
-   "fr": "Une hausse de 8 \\% donne la raison",
-   "en": "An increase of 8 \\% gives the ratio",
+  "9c1f032a28a9": {
+   "fr": "Une hausse de [[m1]] donne la raison",
+   "en": "An increase of [[m1]] gives the ratio",
    "status": "aligned",
    "order": 114
   },
@@ -643,17 +649,17 @@
    "status": "aligned",
    "order": 115
   },
+  "709bdf5649bc": {
+   "fr": "[[m1]] vaut",
+   "en": "[[m1]] equals",
+   "status": "aligned",
+   "order": 116
+  },
   "cc229fe9b5f3": {
    "fr": "QCM 2 : comprendre et choisir",
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
    "order": 117
-  },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
-   "status": "aligned",
-   "order": 118
   },
   "7fc9388abb36": {
    "fr": "[[m1]] est",
@@ -684,12 +690,6 @@
    "en": "strictly decreasing",
    "status": "aligned",
    "order": 123
-  },
-  "709bdf5649bc": {
-   "fr": "[[m1]] vaut",
-   "en": "[[m1]] equals",
-   "status": "aligned",
-   "order": 124
   },
   "e90d9802520d": {
    "fr": "Pour [[m1]], premier rang où [[m2]] :",

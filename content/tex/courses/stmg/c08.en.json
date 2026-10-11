@@ -1,6 +1,12 @@
 {
  "unit": "c08.fr.tex",
  "segments": {
+  "04d7561b5487": {
+   "fr": "Révisions et consolidation",
+   "en": "Revision and consolidation",
+   "status": "aligned",
+   "order": 0
+  },
   "f1184d7a2e7d": {
    "fr": "Stratégie de révision",
    "en": "Revision strategy",
@@ -73,6 +79,12 @@
    "status": "aligned",
    "order": 12
   },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 13
+  },
   "97a1b80a71f9": {
    "fr": "Diagnostic des acquis",
    "en": "Diagnosis of what has been learned",
@@ -97,11 +109,41 @@
    "status": "aligned",
    "order": 18
   },
-  "7689c780629e": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=1{,}25$}",
-   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=1.25$}",
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 19
+  },
+  "d52d70ed4f38": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
    "status": "aligned",
    "order": 20
+  },
+  "3fc998aac887": {
+   "fr": "Donner la formule du terme général arithmétique depuis [[m1]]. \\mxblank{$u_n=u_0+nr$}",
+   "en": "Give the formula for the general term of an arithmetic sequence starting from [[m1]]. \\mxblank{$u_n=u_0+nr$}",
+   "status": "aligned",
+   "order": 21
+  },
+  "2f4c591ab42d": {
+   "fr": "Résoudre [[m1]]. \\mxblank{$x=3$}",
+   "en": "Solve [[m1]]. \\mxblank{$x=3$}",
+   "status": "aligned",
+   "order": 22
+  },
+  "32a7a2c3cd1f": {
+   "fr": "Dériver [[m1]]. \\mxblank{$1-\\dfrac4{x^2}$}",
+   "en": "Differentiate [[m1]]. \\mxblank{$1-\\dfrac4{x^2}$}",
+   "status": "aligned",
+   "order": 23
+  },
+  "c0235c0d273d": {
+   "fr": "Énoncer la formule des probabilités totales avec deux branches. \\mxblank{$P(B)=P(A)P_A(B)+P(\\overline A)P_{\\overline A}(B)$}",
+   "en": "State the law of total probability with two branches. \\mxblank{$P(B)=P(A)P_A(B)+P(\\overline A)P_{\\overline A}(B)$}",
+   "status": "aligned",
+   "order": 24
   },
   "455b09509fa8": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : identifier les acquis et classer les erreurs.",
@@ -127,17 +169,89 @@
    "status": "aligned",
    "order": 28
   },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.",
+   "status": "aligned",
+   "order": 29
+  },
   "974fb4f7eab0": {
    "fr": "La correction attend un profil d'erreurs et un plan de reprise, pas seulement une note globale.",
    "en": "The correction expects a profile of mistakes and a plan for catching up, not just an overall mark.",
    "status": "aligned",
    "order": 30
   },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 31
+  },
+  "c1e066762430": {
+   "fr": "Choisir entre suite arithmétique, suite géométrique et fonction exponentielle dans trois situations.",
+   "en": "Choose between an arithmetic sequence, a geometric sequence and an exponential function in three situations.",
+   "status": "aligned",
+   "order": 32
+  },
+  "4e292219171a": {
+   "fr": "Résoudre une équation exponentielle avec un logarithme.",
+   "en": "Solve an exponential equation using a logarithm.",
+   "status": "aligned",
+   "order": 33
+  },
+  "41411c5b455b": {
+   "fr": "Calculer une probabilité à partir d'un arbre puis interpréter.",
+   "en": "Calculate a probability from a tree, then interpret it.",
+   "status": "aligned",
+   "order": 34
+  },
+  "b160e08acb41": {
+   "fr": "Justifier chaque choix par variation absolue ou relative ; vérifier la positivité avant le logarithme ; multiplier le long d'un chemin et conclure par une phrase.",
+   "en": "Justify each choice by absolute or relative change; check positivity before taking the logarithm; multiply along a path and conclude with a sentence.",
+   "status": "aligned",
+   "order": 35
+  },
   "5f504bdf24b5": {
    "fr": "Réactivation des chapitres 1 à 7",
    "en": "Reactivation of chapters 1 to 7",
    "status": "aligned",
    "order": 36
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 37
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 38
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 39
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 40
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 41
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 42
   },
   "fedf219cf7e3": {
    "fr": "Réactivation : fonctions exponentielles",
@@ -205,11 +319,17 @@
    "status": "aligned",
    "order": 65
   },
-  "a114cba6d4b1": {
-   "fr": "B : 2 h -- C : 1 h",
-   "en": "B: 2 h -- C: 1 h",
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
    "status": "aligned",
-   "order": 71
+   "order": 66
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 69
   },
   "787b53a083a2": {
    "fr": "Réactivation : logarithme décimal",
@@ -277,35 +397,11 @@
    "status": "aligned",
    "order": 94
   },
-  "fdec5ba74355": {
-   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 95
-  },
-  "5655fa4b1e45": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1 and 2.",
-   "status": "aligned",
-   "order": 98
-  },
-  "702e35c25e86": {
-   "fr": "B : 1 h -- C : 2 h",
-   "en": "B: 1 h -- C: 2 h",
-   "status": "aligned",
-   "order": 100
-  },
   "1e987cbf7a38": {
    "fr": "Réactivation : fonction inverse",
    "en": "Reactivation: reciprocal function",
    "status": "aligned",
    "order": 101
-  },
-  "04d7561b5487": {
-   "fr": "Révisions et consolidation",
-   "en": "Revision and consolidation",
-   "status": "aligned",
-   "order": 102
   },
   "cfec53214954": {
    "fr": "Réactiver la fonction inverse.",
@@ -325,41 +421,11 @@
    "status": "aligned",
    "order": 105
   },
-  "28126275a16c": {
-   "fr": "6 à 8 minutes, sans calculatrice",
-   "en": "6 to 8 minutes, no calculator",
-   "status": "aligned",
-   "order": 106
-  },
-  "7031120460ce": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1{,}10$}",
-   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1.10$}",
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
    "status": "aligned",
    "order": 107
-  },
-  "c0235c0d273d": {
-   "fr": "Énoncer la formule des probabilités totales avec deux branches. \\mxblank{$P(B)=P(A)P_A(B)+P(\\overline A)P_{\\overline A}(B)$}",
-   "en": "State the law of total probability with two branches. \\mxblank{$P(B)=P(A)P_A(B)+P(\\overline A)P_{\\overline A}(B)$}",
-   "status": "aligned",
-   "order": 108
-  },
-  "3fc998aac887": {
-   "fr": "Donner la formule du terme général arithmétique depuis [[m1]]. \\mxblank{$u_n=u_0+nr$}",
-   "en": "Give the formula for the general term of an arithmetic sequence starting from [[m1]]. \\mxblank{$u_n=u_0+nr$}",
-   "status": "aligned",
-   "order": 109
-  },
-  "2f4c591ab42d": {
-   "fr": "Résoudre [[m1]]. \\mxblank{$x=3$}",
-   "en": "Solve [[m1]]. \\mxblank{$x=3$}",
-   "status": "aligned",
-   "order": 110
-  },
-  "32a7a2c3cd1f": {
-   "fr": "Dériver [[m1]]. \\mxblank{$1-\\dfrac4{x^2}$}",
-   "en": "Differentiate [[m1]]. \\mxblank{$1-\\dfrac4{x^2}$}",
-   "status": "aligned",
-   "order": 111
   },
   "889b9163e1db": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : réactiver la fonction inverse et mener une étude.",
@@ -385,83 +451,17 @@
    "status": "aligned",
    "order": 115
   },
-  "aa05b05d7735": {
-   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
-   "en": "Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.",
-   "status": "aligned",
-   "order": 116
-  },
   "c91eede47b77": {
    "fr": "[[m1]] ; minimum [[m2]].",
    "en": "[[m1]]; minimum [[m2]].",
    "status": "aligned",
    "order": 117
   },
-  "4a8f3fc74ed9": {
-   "fr": "essentiel",
-   "en": "essential",
-   "status": "aligned",
-   "order": 118
-  },
-  "c1e066762430": {
-   "fr": "Choisir entre suite arithmétique, suite géométrique et fonction exponentielle dans trois situations.",
-   "en": "Choose between an arithmetic sequence, a geometric sequence and an exponential function in three situations.",
-   "status": "aligned",
-   "order": 119
-  },
-  "4e292219171a": {
-   "fr": "Résoudre une équation exponentielle avec un logarithme.",
-   "en": "Solve an exponential equation using a logarithm.",
-   "status": "aligned",
-   "order": 120
-  },
-  "41411c5b455b": {
-   "fr": "Calculer une probabilité à partir d'un arbre puis interpréter.",
-   "en": "Calculate a probability from a tree, then interpret it.",
-   "status": "aligned",
-   "order": 121
-  },
-  "b160e08acb41": {
-   "fr": "Justifier chaque choix par variation absolue ou relative ; vérifier la positivité avant le logarithme ; multiplier le long d'un chemin et conclure par une phrase.",
-   "en": "Justify each choice by absolute or relative change; check positivity before taking the logarithm; multiply along a path and conclude with a sentence.",
-   "status": "aligned",
-   "order": 122
-  },
   "cc12a72790b7": {
    "fr": "Calao, p. 94, n° 1 à 9, puis p. 96, n° 10 à 21",
    "en": "Calao, p. 94, no.~1--9, then p. 96, no.~10--21",
    "status": "aligned",
    "order": 123
-  },
-  "c522c0aac4ab": {
-   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 124
-  },
-  "acac70116eb6": {
-   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
-   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
-   "status": "aligned",
-   "order": 125
-  },
-  "24e46784cbce": {
-   "fr": "3 minutes",
-   "en": "3 minutes",
-   "status": "aligned",
-   "order": 126
-  },
-  "4f9257a965a4": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1, 2 and 3.",
-   "status": "aligned",
-   "order": 127
-  },
-  "4ac648e44ed0": {
-   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
-   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
-   "status": "aligned",
-   "order": 128
   }
  }
 }

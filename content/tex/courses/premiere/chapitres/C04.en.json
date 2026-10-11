@@ -65,7 +65,7 @@
    "fr": "Calculer [[m1]] et [[m2]].",
    "en": "Calculate [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 11
+   "order": 10
   },
   "4fb1b06a28c8": {
    "fr": "Une droite de pente 2 passe par [[m1]]. Équation ?",
@@ -127,11 +127,23 @@
    "status": "aligned",
    "order": 21
   },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
   "a6c6a9e27e62": {
    "fr": "Pour [[m1]] dans le domaine de f, le taux de variation entre a et b vaut [[m2]]. C’est la pente de la sécante passant par les points correspondants. En contexte, l’unité du taux est l’unité de f divisée par celle de la variable.",
    "en": "For [[m1]] in the domain of f, the rate of change between a and b is [[m2]]. It is the slope of the secant through the corresponding points. In context, the unit of the rate is the unit of f divided by that of the variable.",
    "status": "aligned",
    "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
   },
   "7adca0bb06d9": {
    "fr": "Définition ; formule de la pente d’une droite déjà étudiée. Avec [[m1]], [[m2]], le taux devient [[m3]].",
@@ -139,9 +151,9 @@
    "status": "aligned",
    "order": 25
   },
-  "9fd731b4698d": {
-   "fr": "Pour [[m1]], entre 1 et 3, le taux vaut [[m2]]. Entre 1 et [[m3]], il vaut [[m4]]. Les pentes pour [[m5]] et [[m6]] sont 2{,}1 et 1{,}9.",
-   "en": "For [[m1]], between 1 and 3, the rate is [[m2]]. Between 1 and [[m3]], it is [[m4]]. The slopes for [[m5]] and [[m6]] are 2.1 and 1.9.",
+  "a3c760b0cbcf": {
+   "fr": "Pour [[m1]], entre 1 et 3, le taux vaut [[m2]]. Entre 1 et [[m3]], il vaut [[m4]]. Les pentes pour [[m5]] et [[m6]] sont [[m7]] et [[m8]].",
+   "en": "For [[m1]], between 1 and 3, the rate is [[m2]]. Between 1 and [[m3]], it is [[m4]]. The slopes for [[m5]] and [[m6]] are [[m7]] and [[m8]].",
    "status": "aligned",
    "order": 26
   },
@@ -235,23 +247,11 @@
    "status": "aligned",
    "order": 45
   },
-  "ebc073a34cf3": {
-   "fr": "Définition et résultats",
-   "en": "Definition and results",
-   "status": "aligned",
-   "order": 46
-  },
   "c7051d161c6a": {
    "fr": "La fonction racine carrée est définie sur [[m1]] mais n’est pas dérivable en 0. La fonction valeur absolue est définie sur [[m2]] mais n’est pas dérivable en 0. Être définie ou avoir une courbe continue ne garantit donc pas la dérivabilité.",
    "en": "The square root function is defined on [[m1]] but is not differentiable at 0. The absolute value function is defined on [[m2]] but is not differentiable at 0. Being defined, or having a continuous curve, therefore does not guarantee differentiability.",
    "status": "aligned",
    "order": 47
-  },
-  "7815a69c0f26": {
-   "fr": "Statut et justification.",
-   "en": "Status and justification.",
-   "status": "aligned",
-   "order": 48
   },
   "5b20b1fcc17e": {
    "fr": "Pour [[m1]], [[m2]], qui ne tend pas vers un réel fini lorsque h se rapproche de 0. Pour [[m3]], le taux [[m4]] vaut 1 à droite et [[m5]] à gauche : pas de valeur commune.",
@@ -589,6 +589,12 @@
    "status": "aligned",
    "order": 104
   },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 105
+  },
   "de15a48e63b4": {
    "fr": "Taux de [[m1]] entre 1 et 2 :",
    "en": "Rate of [[m1]] between 1 and 2:",
@@ -648,12 +654,6 @@
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
    "order": 115
-  },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
-   "status": "aligned",
-   "order": 116
   },
   "b64b7eee03b0": {
    "fr": "[[m1]] en 0 est",

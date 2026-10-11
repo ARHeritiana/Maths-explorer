@@ -12,7 +12,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \item Exprimer $3^{-2}$.
 \item Résoudre $2x+1=5$.
 \item Dériver $x^2+2x$.
-\item Une décroissance de 20 \% donne quel coefficient ?
+\item Une décroissance de \pc{20} donne quel coefficient ?
 \item Pour une suite géométrique $u_0=5,q=2$, calculer $u_n$.
 \end{enumerate}
 \paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
@@ -21,9 +21,10 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \section*{Chercher avant de formaliser}\label{C09-RECH}
 Comparer les accroissements de $e^x$ et les valeurs de la fonction autour de 0, avec plusieurs pas positifs. Construire trois étapes d’Euler et expliquer la règle choisie.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Définir une fonction nouvelle}\label{C09-U1}
 \begin{keypoint}[Définition et résultats]
-La fonction exponentielle est l’unique fonction f dérivable sur $\R$ vérifiant $f\prime=f$ et $f(0)=1$. Son existence et son unicité sont admises. On la note $\exp$, puis $e^x$ avec $e=\exp(1)\approx2{,}71828$. Le nombre e est une constante ; x est la variable. L’exponentielle est strictement positive.
+La fonction exponentielle est l’unique fonction f dérivable sur $\R$ vérifiant $f\prime=f$ et $f(0)=1$. Son existence et son unicité sont admises. On la note $\exp$, puis $e^x$ avec $e=\exp(1)\approx\num{2,71828}$. Le nombre e est une constante ; x est la variable. L’exponentielle est strictement positive.
 \end{keypoint}
 \paragraph{Statut et justification.} Existence et unicité admises conformément au programme. La positivité se déduit, après les propriétés algébriques admises ci-dessous, de $\exp (x)=\exp (\dfrac{x}{2})^2$ et de $\exp(x)\exp(-x)=1$.
 \begin{example}$\exp(0)=1$, $\exp(1)=e$, $\exp\prime(0)=1$. La tangente en 0 est donc $y=1+x$. La notation $e^x$ étend les propriétés des puissances à tout exposant réel.\end{example}\label{C09-EX1}
@@ -51,18 +52,19 @@ Pour a réel, $t\mapsto e^{at}$ est dérivable et sa dérivée vaut $ae^{at}$. P
 Un modèle $Q(t)=Q_0e^{kt}$, avec $Q_0>0$, représente une croissance si $k>0$, une décroissance si $k<0$, une constance si $k=0$. Pour un pas h fixe, $\dfrac{Q(t+h)}{Q(t)}=e^{kh}$. Les valeurs aux instants entiers forment une suite géométrique de raison $e^k$. L’unité de k est l’inverse de l’unité de temps.
 \end{keypoint}
 \paragraph{Statut et justification.} Le rapport résulte de $e^{k(t+h)}=e^{kt}e^{kh}$. Le sens de variation se déduit de $Q\prime(t)=kQ_0e^{kt}$ et de la positivité du facteur restant.
-\begin{example}$Q(t)=100e^{-0{,}2t}$, t en heures : $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-0{,}2}$. Une simulation peut chercher le premier nombre entier d’heures où Q passe sous 50 ; l’équation exacte n’est pas résolue par logarithme dans ce chapitre.\end{example}\label{C09-EX4}
+\begin{example}$Q(t)=100e^{-\num{0,2}t}$, t en heures : $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-\num{0,2}}$. Une simulation peut chercher le premier nombre entier d’heures où Q passe sous 50 ; l’équation exacte n’est pas résolue par logarithme dans ce chapitre.\end{example}\label{C09-EX4}
 \mxinclude{figures/C09-U4}
 \begin{pitfall}Le taux relatif par unité de temps discrète est $e^k-1$, pas exactement k ; ils sont proches seulement pour k petit.\end{pitfall}
-\begin{application}Pour $Q(t)=5e^{0{,}3t}$, exprimer $Q(n)$ et $\dfrac{Q(t+2)}{Q(t)}$.\end{application}\label{C09-AP4}
+\begin{application}Pour $Q(t)=5e^{\num{0,3}t}$, exprimer $Q(n)$ et $\dfrac{Q(t+2)}{Q(t)}$.\end{application}\label{C09-AP4}
 \section{Construire numériquement et démontrer une inégalité}\label{C09-U5}
 \begin{keypoint}[Définition et résultats]
-Pour approcher la solution de $y\prime=y$, $y(0)=1$ avec un pas $h$, Euler remplace l’accroissement par $hy$ : $y_{k+1}=(1+h)y_k$. Sur $[0;1]$ avec $h=\dfrac1n$, l’approximation de $e$ est $\left(1+\dfrac1n\right)^n$. Cette construction est expérimentale. L’inégalité $e^x\geq1+x$ s’obtient par étude de fonction.
+Pour approcher la solution de $y\prime=y$, $y(0)=1$ avec un pas $h$, Euler remplace l’accroissement par $hy$ : $y_{k+1}=(1+h)y_k$. Sur $\intff{0}{1}$ avec $h=\dfrac1n$, l’approximation de $e$ est $\left(1+\dfrac1n\right)^n$. Cette construction est expérimentale. L’inégalité $e^x\geq1+x$ s’obtient par étude de fonction.
 \end{keypoint}
 \paragraph{Statut et justification.} Pour $g(x)=e^x-1-x$, $g\prime(x)=e^x-1$, négative si x<0 et positive si x>0. Le minimum vaut $g(0)=0$, ce qui prouve l’inégalité ; égalité seulement en 0. La convergence d’Euler n’est pas démontrée ici.
-\begin{example}Avec n=2, Euler donne $y_0=1,y_1=1{,}5,y_2=2{,}25$. Avec n=10, $(1{,}1)^{10}\approx2{,}59374$. On compare à e ; on ne confond pas valeur approchée et définition de la fonction.\end{example}\label{C09-EX5}
+\begin{example}Avec n=2, Euler donne $y_0=1,y_1=\num{1,5},y_2=\num{2,25}$. Avec n=10, $(\num{1,1})^{10}\approx\num{2,59374}$. On compare à e ; on ne confond pas valeur approchée et définition de la fonction.\end{example}\label{C09-EX5}
 \begin{pitfall}Un graphique qui montre une courbe au-dessus d’une droite ne prouve pas l’inégalité sur tous les réels.\end{pitfall}
 \begin{application}Montrer que $e^{2x}\geq1+2x$ pour tout réel x.\end{application}\label{C09-AP5}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C09-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
@@ -79,14 +81,14 @@ On considère une équation et une inéquation d’inconnue réelle $x$ :\[e^{2x
 \item Lors de la résolution de l’inéquation, expliquer à quelle étape le sens de l’inégalité change. Donner l’ensemble des solutions sous forme d’intervalle.
 \end{enumerate}
 \mxexercisehead{C09-E3}{Produit et maximum}
-La fonction $f$ est définie sur $[0;4]$ par $f(x)=xe^{-x}$.
+La fonction $f$ est définie sur $\intff{0}{4}$ par $f(x)=xe^{-x}$.
 \begin{enumerate}[label=\arabic*.]
 \item Calculer $f\prime(x)$, puis étudier son signe sur l’intervalle.
 \item Dresser le tableau de variations de $f$. En déduire son maximum et l’abscisse où il est atteint.
 \item Contrôler que les valeurs aux bornes ne donnent pas un maximum plus grand. Conserver les valeurs exactes.
 \end{enumerate}
 \mxexercisehead{C09-E4}{Une population modélisée}
-Les deux parties suivantes sont indépendantes.\par\textbf{Partie A — Une population.} Une population est modélisée par $P(t)=200e^{0{,}1t}$, où $t\geq0$ est le temps écoulé en années. $P(t)$ est un effectif théorique, qui n’est pas nécessairement entier.
+Les deux parties suivantes sont indépendantes.\par\textbf{Partie A — Une population.} Une population est modélisée par $P(t)=200e^{\num{0,1}t}$, où $t\geq0$ est le temps écoulé en années. $P(t)$ est un effectif théorique, qui n’est pas nécessairement entier.
 \begin{enumerate}[label=\arabic*.]
 \item Déterminer l’effectif initial, puis le coefficient multiplicateur entre les instants $t$ et $t+1$. En déduire le taux annuel exact et son pourcentage arrondi au centième.
 \item Expliquer pourquoi ce modèle ne peut pas nécessairement décrire une population réelle indéfiniment.
@@ -210,7 +212,7 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \begin{enumerate}
 \item $e^{2x}=2e^x$ pour tout x.
 \item La fonction $t\mapsto e^{-3t}$ est décroissante.
-\item Un taux continu k=0{,}1 correspond exactement à 10 \% de hausse en une unité de temps.
+\item Un taux continu k=\num{0,1} correspond exactement à \pc{10} de hausse en une unité de temps.
 \end{enumerate}
 \begin{keypoint}[Bilan personnel]Je conserve les règles des puissances ; je connais la positivité ; je dérive avec le facteur ; je sépare modèle, calcul exact et simulation.
 

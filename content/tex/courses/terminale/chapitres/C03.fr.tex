@@ -1,6 +1,6 @@
-\setcounter{chapter}{1}\mxunit{terminale-c03}{Limites de suites}\label{ch:2}
+\mxunit[2]{terminale-c03}{Limites de suites}\label{ch:2}
 
-{\small\sffamily\color{mxmint}S14, S16, S19, S20\par}
+\mxsubtitle{S14, S16, S19, S20}
 
 \begin{keypoint}[Objectifs]Distinguer convergence et divergence ; calculer une limite ; utiliser comparaison, gendarmes et convergence monotone.\end{keypoint}
 
@@ -35,12 +35,14 @@ Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la conver
 \addplot[only marks,mxmint,domain=0:15,samples=16]{2+3/(x+1)};
 \addplot[mxink,dashed,domain=0:15]{2};\end{axis}\end{tikzpicture}\par\small Les points se rapprochent de $2$ sans l'atteindre : $u_n=2+\frac{3}{n+1}$.\end{center}
 
+\mxnewpage
 \section{Activité de recherche}\textbf{Une limite n'est pas un dernier terme --- 30 min.}\par On considère la suite $(u_n)$ définie sur $\N$ par $u_n=2+\frac3{n+1}$.
 \begin{enumerate}\item Calculer $u_0$, $u_9$ et $u_{99}$. Existe-t-il un entier $n$ tel que $u_n=2$ ? Justifier.
-\item Déterminer le plus petit entier $N$ tel que, pour tout entier $n\ge N$, $|u_n-2|<0{,}01$.
+\item Déterminer le plus petit entier $N$ tel que, pour tout entier $n\ge N$, $|u_n-2|<\num{0,01}$.
 \item Soit $\varepsilon>0$. Donner, en fonction de $\varepsilon$, un entier $N$ tel que $|u_n-2|<\varepsilon$ pour tout $n\ge N$.
 \item On définit sur $\N$ la suite $(v_n)$ par $v_n=2+\frac{(-1)^n}{n+1}$. Démontrer qu'elle converge vers $2$ et qu'elle n'est pas monotone. Que montre cet exemple ?\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
 \mxexerciseitem{1}{Entraînement}On définit sur $\N$ les suites $(u_n)$ et $(v_n)$ par $u_n=\frac{4n-1}{n+2}$ et $v_n=n^2-7n$. Déterminer leur limite en justifiant les transformations utilisées.
@@ -51,10 +53,11 @@ Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la conver
 
 \mxexerciseitem{4}{Entraînement}La suite $(u_n)$ est croissante et vérifie $u_n<5$ pour tout $n\in\N$. Justifier qu'elle converge et préciser ce que l'on peut affirmer de sa limite. Est-elle nécessairement égale à $5$ ? Justifier.
 
-\mxexerciseitem{5}{Entraînement}On définit $u_n=3-2(-0{,}6)^n$ pour tout $n\in\N$. Déterminer la limite de $(u_n)$. Cette suite est-elle monotone ? Justifier.
+\mxexerciseitem{5}{Entraînement}On définit $u_n=3-2(-\num{0,6})^n$ pour tout $n\in\N$. Déterminer la limite de $(u_n)$. Cette suite est-elle monotone ? Justifier.
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 62, exercices 17 et 24.} En S16 : exercice 17, pour lever une forme indéterminée en divisant par une puissance de $n$. À la maison après S20 : exercice 24, pour rédiger une application du théorème des gendarmes.
 
+\mxnewpage
 \section{Devoir à la maison}\textbf{DM2 --- Approcher une racine --- 50 min.}\par On considère $u_0=0$ et, pour tout $n\in\N$, $u_{n+1}=\sqrt{2+u_n}$. Les questions 1, 2 et 4 sont à traiter après S20 ; la question 3 sera reprise après le cours sur la continuité en S31.
 \begin{enumerate}\item Démontrer par récurrence que tous les termes sont définis et que $0\le u_n\le2$ pour tout $n\in\N$.
 \item Démontrer par récurrence que $u_{n+1}\ge u_n$ pour tout $n\in\N$. En déduire que $(u_n)$ converge.
@@ -64,8 +67,8 @@ Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la conver
 \ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]Le DS2 précède S19 et S20 : y évaluer les définitions et les opérations déjà rencontrées, sans exiger la convergence monotone, Bernoulli ou les gendarmes. Dessiner des bandes horizontales autour de la limite et faire chercher un rang à partir duquel tous les termes y restent. Exiger la convergence avant de résoudre l'équation du point fixe. Montrer $(-1)^n$ pour dissocier « bornée » et « convergente ».\end{teachernote}
 
 \subsection{Corrigé de l'activité}\begin{enumerate}
-\item $u_0=5$, $u_9=2{,}3$ et $u_{99}=2{,}03$. Puisque $\frac{3}{n+1}>0$ à tout rang, $u_n>2$ : aucun terme ne vaut $2$.
-\item $|u_n-2|<0{,}01\Longleftrightarrow \frac{3}{n+1}<0{,}01\Longleftrightarrow n+1>300\Longleftrightarrow n\ge300$. Le premier rang convenable est donc $N=300$. Au rang $299$, l'écart vaut exactement $0{,}01$ et l'inégalité stricte n'est pas satisfaite.
+\item $u_0=5$, $u_9=\num{2,3}$ et $u_{99}=\num{2,03}$. Puisque $\frac{3}{n+1}>0$ à tout rang, $u_n>2$ : aucun terme ne vaut $2$.
+\item $|u_n-2|<\num{0,01}\Longleftrightarrow \frac{3}{n+1}<\num{0,01}\Longleftrightarrow n+1>300\Longleftrightarrow n\ge300$. Le premier rang convenable est donc $N=300$. Au rang $299$, l'écart vaut exactement $\num{0,01}$ et l'inégalité stricte n'est pas satisfaite.
 \item Pour $\varepsilon>0$, prenons $N=\lceil\frac{3}{\varepsilon}\rceil$, le plus petit entier supérieur ou égal à $\frac{3}{\varepsilon}$. Si $n\ge N$, alors $n+1>\frac{3}{\varepsilon}$, donc $|u_n-2|<\varepsilon$. Ce choix convient, même lorsqu'il n'est pas minimal.
 \item $|v_n-2|=\frac{1}{n+1}\to0$, donc $v_n\to2$. Mais $v_0=3$, $v_1=\frac{3}{2}$ et $v_2=\frac{7}{3}$ : on observe une baisse puis une hausse. Cette suite convergente n'est pas monotone.
 \end{enumerate}
@@ -78,7 +81,7 @@ Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la conver
 
 \paragraph{E4.}La suite est croissante et majorée par $5$, donc converge. Par passage à la limite dans $u_n\le5$, sa limite vérifie $\ell\le5$. Elle n'est pas forcément égale à $5$ : $u_n=2-\frac{1}{n+1}$ est croissante, majorée par $5$ et converge vers $2$.
 
-\paragraph{E5.}Comme $|-0{,}6|<1$, $(-0{,}6)^n\to0$, donc $u_n\to3$. Cependant $u_0=1$, $u_1=4{,}2$ et $u_2=2{,}28$ : la suite monte puis descend et n'est pas monotone.
+\paragraph{E5.}Comme $|-\num{0,6}|<1$, $(-\num{0,6})^n\to0$, donc $u_n\to3$. Cependant $u_0=1$, $u_1=\num{4,2}$ et $u_2=\num{2,28}$ : la suite monte puis descend et n'est pas monotone.
 
 \subsection{Corrigé du DM2}\begin{enumerate}
 \item Notons $P(n)$ : « $u_n$ est défini et $0\le u_n\le2$ ». C'est vrai au rang $0$ puisque $u_0=0$. Fixons $n\ge0$ et supposons $P(n)$ vraie. On a $2\le2+u_n\le4$, donc $u_{n+1}=\sqrt{2+u_n}$ est défini et $\sqrt2\le u_{n+1}\le2$. Ainsi $P(n+1)$ est vraie. Par récurrence, tous les termes appartiennent à $[0,2]$.

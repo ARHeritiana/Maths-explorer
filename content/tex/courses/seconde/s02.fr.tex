@@ -53,8 +53,8 @@ $I$ est le milieu de $[AB]$ si et seulement si $\vect{AI}=\vect{IB}$, ou encore 
 
 \mxsection{Repères, bases et coordonnées}
 \begin{keypoint}[Définitions]
-Deux vecteurs non colinéaires $\vec i,\vec j$ forment une base du plan. Tout vecteur $\vec u$ s'écrit de manière unique $\vec u=x\vec i+y\vec j$ ; ses coordonnées sont $(x;y)$ ou $\vc{x}{y}$.
-Un repère $(O;\vec i,\vec j)$ associe au point $M$ les coordonnées de $\vect{OM}$. Il est \textbf{orthonormé} si les vecteurs de base sont perpendiculaires et de norme $1$.
+Deux vecteurs non colinéaires $\vec i,\vec j$ forment une base du plan. Tout vecteur $\vec u$ s'écrit de manière unique $\vec u=x\vec i+y\vec j$ ; ses coordonnées sont $\pt{x;y}$ ou $\vc{x}{y}$.
+Un repère $\pt{O;\vec i,\vec j}$ associe au point $M$ les coordonnées de $\vect{OM}$. Il est \textbf{orthonormé} si les vecteurs de base sont perpendiculaires et de norme $1$.
 \end{keypoint}
 \begin{center}\begin{tikzpicture}[>=Stealth,scale=.8]
 \draw[step=1,black!20](-1,-1)grid(6,4);\draw[->](-1,0)--(6.3,0)node[right]{$x$};\draw[->](0,-1)--(0,4.3)node[above]{$y$};
@@ -64,30 +64,30 @@ Un repère $(O;\vec i,\vec j)$ associe au point $M$ les coordonnées de $\vect{O
 \end{tikzpicture}\end{center}
 Ici $\vect{AB}=3\vec i+2\vec j$ : on se déplace de trois unités vers la droite et deux vers le haut.
 \begin{keypoint}[Calculs avec les coordonnées]
-Si $A(x_A;y_A)$, $B(x_B;y_B)$, $\vec u(x;y)$ et $\vec v(x';y')$ :
+Si $A\pt{x_A;y_A}$, $B\pt{x_B;y_B}$, $\vec u\pt{x;y}$ et $\vec v\pt{x';y'}$ :
 \[\vect{AB}=\vc{x_B-x_A}{y_B-y_A},\quad \vec u+\vec v=\vc{x+x'}{y+y'},\quad k\vec u=\vc{kx}{ky}.\]
 Deux vecteurs sont égaux si et seulement si leurs coordonnées respectives sont égales.
 \end{keypoint}
-\begin{example}Pour $\vec u(3;2)$ et $\vec v(-1;4)$, calculer $\vec u+\vec v$ et $2\vec u-\vec v$. Écrire $\vec w(5;-3)$ dans la base $(\vec i,\vec j)$.\end{example}
-\mxanswerspace[2.4]{$\vec u+\vec v=(2;6)$ ; $2\vec u-\vec v=(7;0)$ ; $\vec w=5\vec i-3\vec j$.}
+\begin{example}Pour $\vec u\pt{3;2}$ et $\vec v\pt{-1;4}$, calculer $\vec u+\vec v$ et $2\vec u-\vec v$. Écrire $\vec w\pt{5;-3}$ dans la base $(\vec i,\vec j)$.\end{example}
+\mxanswerspace[2.4]{$\vec u+\vec v=\pt{2;6}$ ; $2\vec u-\vec v=\pt{7;0}$ ; $\vec w=5\vec i-3\vec j$.}
 
 \mxsection{Norme, distance et milieu}
 \begin{keypoint}[Propriétés]
-Dans un repère \textbf{orthonormé}, pour $\vec u(x;y)$ et deux points $A,B$ :
+Dans un repère \textbf{orthonormé}, pour $\vec u\pt{x;y}$ et deux points $A,B$ :
 \[\|\vec u\|=\sqrt{x^2+y^2},\qquad AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}.\]
 Dans tout repère, le milieu de $[AB]$ est $I\left(\frac{x_A+x_B}{2};\frac{y_A+y_B}{2}\right)$.
 \end{keypoint}
 \mxwriteproof[3]{La formule de distance découle du théorème de Pythagore appliqué aux déplacements horizontal et vertical. Pour le milieu, $\vect{AI}=\frac12\vect{AB}$ donne $x_I-x_A=\frac{x_B-x_A}{2}$ et $y_I-y_A=\frac{y_B-y_A}{2}$ ; on isole $x_I,y_I$.}
-\begin{example}Dans un repère orthonormé, $A(3;0)$, $B(5;3)$, $C(4;0)$ et $D(6;4)$.
+\begin{example}Dans un repère orthonormé, $A\pt{3;0}$, $B\pt{5;3}$, $C\pt{4;0}$ et $D\pt{6;4}$.
 \begin{enumerate}
 \item Calculer $\vect{AB}$, $\vect{CD}$, puis $3\vect{AB}-5\vect{CD}$.
 \item Déterminer $U$ tel que $\vect{BU}=2\vect{AB}-\vect{CD}$.
 \item Déterminer $E$ tel que $ABCE$ soit un parallélogramme, puis son centre $I$.
 \item Calculer $AB$ et $CD$.
 \end{enumerate}\end{example}
-\mxanswerspace[6]{1. $\vect{AB}=(2;3)$ et $\vect{CD}=(2;4)$, donc $3\vect{AB}-5\vect{CD}=(-4;-11)$.\\
-2. $\vect{BU}=(2;2)$, donc $U=B+(2;2)=(7;5)$.\\
-3. $E=A+C-B=(2;-3)$. Le centre est le milieu de $[AC]$ : $I(7/2;0)$. Le milieu de $[BE]$ donne le même résultat.\\
+\mxanswerspace[6]{1. $\vect{AB}=\pt{2;3}$ et $\vect{CD}=\pt{2;4}$, donc $3\vect{AB}-5\vect{CD}=\pt{-4;-11}$.\\
+2. $\vect{BU}=\pt{2;2}$, donc $U=B+\pt{2;2}=\pt{7;5}$.\\
+3. $E=A+C-B=\pt{2;-3}$. Le centre est le milieu de $[AC]$ : $I\pt{7/2;0}$. Le milieu de $[BE]$ donne le même résultat.\\
 4. $AB=\sqrt{13}$ et $CD=\sqrt{20}=2\sqrt5$.}
 
 \mxsection{Colinéarité et déterminant}
@@ -96,12 +96,12 @@ Deux vecteurs non nuls sont colinéaires s'ils ont la même direction. Le vecteu
 \end{keypoint}
 \begin{pitfall}Dans la dernière caractérisation, la condition $\vec v\ne\vec0$ est nécessaire : un vecteur non nul ne peut pas être un multiple du vecteur nul.\end{pitfall}
 \begin{keypoint}[Déterminant et critère de colinéarité]
-Pour $\vec u(x;y)$, $\vec v(x';y')$, $\det(\vec u,\vec v)=xy'-yx'$.
+Pour $\vec u\pt{x;y}$, $\vec v\pt{x';y'}$, $\det(\vec u,\vec v)=xy'-yx'$.
 \[\vec u,\vec v\text{ colinéaires}\quad\Longleftrightarrow\quad\det(\vec u,\vec v)=0.\]
 \end{keypoint}
 \mxwriteproof[4.2]{Si $\vec u=k\vec v$, alors $xy'-yx'=kx'y'-ky'x'=0$. Le cas où un vecteur est nul est immédiat.
 Réciproquement, supposons $\vec v\ne\vec0$ et $xy'-yx'=0$. Si $x'\ne0$, posons $k=x/x'$. L'égalité donne $y=ky'$, donc $\vec u=k\vec v$. Si $x'=0$, alors $y'\ne0$, d'où $x=0$ ; avec $k=y/y'$, on obtient encore $\vec u=k\vec v$.}
-\begin{example}Étudier la colinéarité : (a) $\vec u(3;2)$ et $\vec v(-6;-5)$ ; (b) $\vec w(4;1)$ et $\vec t(3;3/4)$. Si $\vect{AB}=2\vect{CD}$ et $\vect{BD}=-5\vect{CD}$, relier $\vect{AB}$ et $\vect{BD}$.\end{example}
+\begin{example}Étudier la colinéarité : (a) $\vec u\pt{3;2}$ et $\vec v\pt{-6;-5}$ ; (b) $\vec w\pt{4;1}$ et $\vec t\pt{3;3/4}$. Si $\vect{AB}=2\vect{CD}$ et $\vect{BD}=-5\vect{CD}$, relier $\vect{AB}$ et $\vect{BD}$.\end{example}
 \mxanswerspace[3.2]{(a) $\det(\vec u,\vec v)=-15+12=-3\ne0$ : non colinéaires. (b) $\vec t=\frac34\vec w$ : colinéaires ; le déterminant vaut $4\times\frac34-3=0$. Enfin $\vect{AB}=-\frac25\vect{BD}$, y compris si les vecteurs sont nuls.}
 
 \mxsection{Alignement et parallélisme}
@@ -109,9 +109,9 @@ Réciproquement, supposons $\vec v\ne\vec0$ et $xy'-yx'=0$. Si $x'\ne0$, posons 
 Pour $A\ne B$ et $C\ne D$, les droites $(AB)$ et $(CD)$ sont parallèles (éventuellement confondues) si et seulement si $\det(\vect{AB},\vect{CD})=0$.
 Les points $A,B,C$ sont alignés si et seulement si $\det(\vect{AB},\vect{AC})=0$.
 \end{keypoint}
-\begin{example}Montrer que $(AB)$ et $(CD)$ sont parallèles avec $A(2;-4)$, $B(10;-2)$, $C(-16;-4)$ et $D(12;3)$.\end{example}
-\mxanswerspace[3.2]{$\vect{AB}=(8;2)$ et $\vect{CD}=(28;7)$. Leur déterminant vaut $8\times7-2\times28=0$. Les points de chaque paire sont distincts : les deux droites existent et sont parallèles.}
-\begin{example}Montrer que $E(0;1/2)$, $F(2;1)$ et $G(6;2)$ sont alignés.\end{example}
-\mxanswerspace[3.2]{$\vect{EF}=(2;1/2)$ et $\vect{EG}=(6;3/2)=3\vect{EF}$. Le déterminant vaut $2\times3/2-(1/2)\times6=0$ ; donc les points sont alignés.}
-\begin{example}Avec $A(-1;1)$, $B(3;2)$, $C(-2;-3)$, $D(6;-1)$, $E(5;0)$, montrer que $(AB)\parallel(CD)$ et que $E,B,D$ sont alignés.\end{example}
-\mxanswerspace[3.2]{$\vect{AB}=(4;1)$ et $\vect{CD}=(8;2)=2\vect{AB}$. Puis $\vect{EB}=(-2;2)$ et $\vect{ED}=(1;-1)=-\frac12\vect{EB}$. Les deux résultats suivent.}
+\begin{example}Montrer que $(AB)$ et $(CD)$ sont parallèles avec $A\pt{2;-4}$, $B\pt{10;-2}$, $C\pt{-16;-4}$ et $D\pt{12;3}$.\end{example}
+\mxanswerspace[3.2]{$\vect{AB}=\pt{8;2}$ et $\vect{CD}=\pt{28;7}$. Leur déterminant vaut $8\times7-2\times28=0$. Les points de chaque paire sont distincts : les deux droites existent et sont parallèles.}
+\begin{example}Montrer que $E\pt{0;1/2}$, $F\pt{2;1}$ et $G\pt{6;2}$ sont alignés.\end{example}
+\mxanswerspace[3.2]{$\vect{EF}=\pt{2;1/2}$ et $\vect{EG}=\pt{6;3/2}=3\vect{EF}$. Le déterminant vaut $2\times3/2-(1/2)\times6=0$ ; donc les points sont alignés.}
+\begin{example}Avec $A\pt{-1;1}$, $B\pt{3;2}$, $C\pt{-2;-3}$, $D\pt{6;-1}$, $E\pt{5;0}$, montrer que $(AB)\parallel(CD)$ et que $E,B,D$ sont alignés.\end{example}
+\mxanswerspace[3.2]{$\vect{AB}=\pt{4;1}$ et $\vect{CD}=\pt{8;2}=2\vect{AB}$. Puis $\vect{EB}=\pt{-2;2}$ et $\vect{ED}=\pt{1;-1}=-\frac12\vect{EB}$. Les deux résultats suivent.}

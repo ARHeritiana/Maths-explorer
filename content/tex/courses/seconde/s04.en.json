@@ -79,6 +79,12 @@
    "status": "aligned",
    "order": 12
   },
+  "5e345e0c779b": {
+   "fr": "Propriété",
+   "en": "Property",
+   "status": "aligned",
+   "order": 13
+  },
   "333493d26d7d": {
    "fr": "[[m1]] n'est pas un nombre décimal.",
    "en": "[[m1]] is not a decimal number.",
@@ -90,12 +96,6 @@
    "en": "Suppose [[m1]] with [[m2]], [[m3]]. Then [[m4]] would be a multiple of [[m5]]. Yet [[m6]] modulo [[m7]], so [[m8]] leaves remainder [[m9]] on division by [[m10]] (the divisibility rule for [[m11]] can also be used). Contradiction. Hence [[m12]].",
    "status": "aligned",
    "order": 15
-  },
-  "5e345e0c779b": {
-   "fr": "Propriété",
-   "en": "Property",
-   "status": "aligned",
-   "order": 16
   },
   "e1855e1a314a": {
    "fr": "[[m1]] est irrationnel.",
@@ -129,8 +129,8 @@
   },
   "ca16c2b88480": {
    "fr": "Pour deux réels [[m1]], les intervalles décrivent les réels compris entre deux bornes, avec ou sans les bornes. Un crochet fermé inclut la borne, un crochet ouvert l'exclut. Les symboles [[m2]] ne sont pas des réels et sont toujours accompagnés d'un crochet ouvert.",
-   "en": "For two real numbers [[m1]], intervals describe the real numbers lying between two endpoints, with or without the endpoints. A closed bracket includes the endpoint, an open bracket excludes it. The symbols [[m2]] are not real numbers and are always paired with an open bracket.",
-   "status": "aligned",
+   "en": "For two real numbers [[m1]], intervals describe the real numbers lying between two endpoints, with or without the endpoints. A square bracket includes the endpoint, a parenthesis excludes it. The symbols [[m2]] are not real numbers and always take a parenthesis.",
+   "status": "reviewed",
    "order": 22
   },
   "6da9e86ee206": {
@@ -253,23 +253,29 @@
    "status": "aligned",
    "order": 42
   },
-  "d6cf77984c5b": {
-   "fr": "\\mxblank{$[1;3]$}",
-   "en": "\\mxblank{$[1;3]$}",
+  "144e64daa9f4": {
+   "fr": "\\mxblank{$\\intff{1}{3}$}",
+   "en": "\\mxblank{$\\intff{1}{3}$}",
    "status": "aligned",
    "order": 43
   },
-  "2e68c0139a65": {
-   "fr": "\\mxblank{$]-4;5]$}\\\\\n[[m1]]",
-   "en": "\\mxblank{$]-4;5]$}\\\\\n[[m1]]",
+  "b33c33b72f85": {
+   "fr": "\\mxblank{$\\intof{-4}{5}$}\\\\\n[[m1]]",
+   "en": "\\mxblank{$\\intof{-4}{5}$}\\\\\n[[m1]]",
    "status": "aligned",
    "order": 44
   },
-  "7fe9c3472abc": {
-   "fr": "\\mxblank{$[-4;2]$}",
-   "en": "\\mxblank{$[-4;2]$}",
+  "5b71c21910b2": {
+   "fr": "\\mxblank{$\\intff{-4}{2}$}",
+   "en": "\\mxblank{$\\intff{-4}{2}$}",
    "status": "aligned",
    "order": 45
+  },
+  "b7f01d9652a2": {
+   "fr": "\\mxblank{$\\R$}\\\\\n[[m1]]",
+   "en": "\\mxblank{$\\R$}\\\\\n[[m1]]",
+   "status": "aligned",
+   "order": 46
   },
   "e074e0754fac": {
    "fr": "\\mxblank{$\\{7\\}$}",
@@ -277,17 +283,11 @@
    "status": "aligned",
    "order": 47
   },
-  "0895df2efe58": {
-   "fr": "\\mxblank{$[-3;5]$}",
-   "en": "\\mxblank{$[-3;5]$}",
+  "8c6413ba3c34": {
+   "fr": "\\mxblank{$\\intff{-3}{5}$}",
+   "en": "\\mxblank{$\\intff{-3}{5}$}",
    "status": "aligned",
    "order": 49
-  },
-  "b7f01d9652a2": {
-   "fr": "\\mxblank{$\\R$}\\\\\n[[m1]]",
-   "en": "\\mxblank{$\\R$}\\\\\n[[m1]]",
-   "status": "aligned",
-   "order": 50
   },
   "8e0548d7f664": {
    "fr": "\\mxblank{$\\varnothing$}",
@@ -295,9 +295,9 @@
    "status": "aligned",
    "order": 51
   },
-  "5630fd769b36": {
-   "fr": "\\mxblank{$]-2;0[\\cup]0;3]$}",
-   "en": "\\mxblank{$]-2;0[\\cup]0;3]$}",
+  "3a191f007e60": {
+   "fr": "\\mxblank{$\\intoo{-2}{0}\\cup\\intof{0}{3}$}",
+   "en": "\\mxblank{$\\intoo{-2}{0}\\cup\\intof{0}{3}$}",
    "status": "aligned",
    "order": 52
   },
@@ -425,7 +425,7 @@
    "fr": "si ",
    "en": "if ",
    "status": "aligned",
-   "order": 74
+   "order": 73
   }
  }
 }

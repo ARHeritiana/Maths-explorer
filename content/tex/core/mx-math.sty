@@ -1,5 +1,7 @@
-% mx-math.sty -- every mathematics macro, defined once. The slide player's MathJax macro table is generated from the
-% \mx@mj lines below (`python -m mxbuild mathjax`), so a macro used in a slide must be declared here.
+% mx-math.sty -- every mathematics macro that reads the same in both languages, defined once. Notations that differ
+% between French and English (numbers, intervals, points, sets) are in mx-notation.sty. The slide player's MathJax
+% macro table is generated from the \mxmathmacro lines below (`python -m mxbuild notation`), so a macro used in a
+% slide must be declared here.
 % Syntax: \mxmathmacro{\name}{nargs}{body} defines the LaTeX macro and records it for MathJax.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mx-math}[2026/10/11 Maths Explorer mathematics]
@@ -32,7 +34,6 @@
 \mxmathmacro{\abs}{1}{\left\lvert #1\right\rvert}
 \mxmathmacro{\dd}{0}{\,\mathrm{d}}                                % differential: \int f(x)\dd x
 \mxmathmacro{\e}{0}{\mathrm{e}}
-\mxmathmacro{\ent}{2}{\llbracket #1\,;#2\rrbracket}               % integer interval
 \mxmathmacro{\Card}{0}{\operatorname{Card}}
 \mxmathmacro{\E}{0}{\operatorname{E}}                            % expectation
 \mxmathmacro{\V}{0}{\operatorname{V}}                            % variance

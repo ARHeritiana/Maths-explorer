@@ -10,6 +10,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'content/tex/courses'
+sys.path.insert(0, str(ROOT / "build"))
+from mxbuild import notation   # per-language rendering of the notation commands (mirror of mx-notation.sty)
 OUT = ROOT / 'dist/slides/data'
 CATALOG = json.loads((ROOT / 'dist/resources/catalog.json').read_text())
 CH = {c['id']: c for c in CATALOG['chapters']}
@@ -356,8 +358,9 @@ def main():
     index = []; problems = []; decks = {}; jobs = {}
     for cid, course, n, fr, en, fn in files():
         if not fr.exists() or not en.exists(): problems.append('missing ' + cid); continue
-        sf, figs_f = extract_figs(inline_includes(fr.read_text(encoding='utf8'), SRC / course, 'fr'))
-        se, figs_e = extract_figs(inline_includes(en.read_text(encoding='utf8'), SRC / course, 'en'))
+        # notation commands (\num, intervals, \pt ...) are rendered per language, as the class prints them (mxbuild.notation)
+        sf, figs_f = extract_figs(notation.expand(inline_includes(fr.read_text(encoding='utf8'), SRC / course, 'fr'), 'fr'))
+        se, figs_e = extract_figs(notation.expand(inline_includes(en.read_text(encoding='utf8'), SRC / course, 'en'), 'en'))
         a = fn(sf, n); b = fn(se, n)
         if [x['k'] for x in a] != [x['k'] for x in b]: problems.append(f'{cid}: slide structure differs ({len(a)} vs {len(b)})'); continue
         slides = []

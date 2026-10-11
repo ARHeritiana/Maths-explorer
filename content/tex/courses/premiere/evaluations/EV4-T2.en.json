@@ -5,7 +5,7 @@
    "fr": "EV4-T2 -- Préparation EAM",
    "en": "EV4-T2 -- EAM preparation",
    "status": "aligned",
-   "order": 1
+   "order": 0
   },
   "ff047a8e1717": {
    "fr": "\\textbf{Sujet d’entraînement}. Ensemble du programme.",
@@ -25,27 +25,39 @@
    "status": "aligned",
    "order": 4
   },
-  "0a3a9e826657": {
-   "fr": "Douze questions, 0{,}5 point chacune. Une seule réponse correcte ; aucune justification demandée. Une réponse incorrecte ou absente rapporte 0, sans retrait de points.",
-   "en": "Twelve questions, 0.5 point each. Only one correct answer; no justification required. An incorrect or missing answer scores 0, with no loss of points.",
+  "3be7156bd6ab": {
+   "fr": "Douze questions, [[m1]] point chacune. Une seule réponse correcte ; aucune justification demandée. Une réponse incorrecte ou absente rapporte 0, sans retrait de points.",
+   "en": "Twelve questions, [[m1]] point each. Only one correct answer; no justification required. An incorrect or missing answer scores 0, with no loss of points.",
    "status": "aligned",
    "order": 5
   },
-  "8bf617d17c28": {
-   "fr": "Une valeur de 50 augmente de 20 \\%. Valeur finale ?",
-   "en": "A value of 50 increases by 20 \\%. Final value?",
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "3fe95882ddfe": {
+   "fr": "A. [[m1]]\\quad B. [[m2]]\\quad C. [[m3]]\\quad D. [[m4]]",
+   "en": "A. [[m1]]\\quad B. [[m2]]\\quad C. [[m3]]\\quad D. [[m4]]",
+   "status": "aligned",
+   "order": 7
+  },
+  "ae1dec348d74": {
+   "fr": "Une valeur de 50 augmente de [[m1]]. Valeur finale ?",
+   "en": "A value of 50 increases by [[m1]]. Final value?",
    "status": "aligned",
    "order": 12
   },
-  "a56389a268d1": {
-   "fr": "Une valeur de 80 est obtenue après une baisse de 20 \\%. Valeur initiale ?",
-   "en": "A value of 80 is obtained after a 20 \\% decrease. Initial value?",
+  "d3e6c29717d4": {
+   "fr": "Une valeur de 80 est obtenue après une baisse de [[m1]]. Valeur initiale ?",
+   "en": "A value of 80 is obtained after a [[m1]] decrease. Initial value?",
    "status": "aligned",
    "order": 14
   },
-  "f9734186361c": {
-   "fr": "Hausse de 25 \\% puis baisse de 20 \\% : coefficient global ?",
-   "en": "A 25 \\% increase then a 20 \\% decrease: overall coefficient?",
+  "aabd6bf5577b": {
+   "fr": "Hausse de [[m1]] puis baisse de [[m2]] : coefficient global ?",
+   "en": "A [[m1]] increase then a [[m2]] decrease: overall coefficient?",
    "status": "aligned",
    "order": 16
   },
@@ -85,12 +97,6 @@
    "status": "aligned",
    "order": 28
   },
-  "3fe95882ddfe": {
-   "fr": "A. [[m1]]\\quad B. [[m2]]\\quad C. [[m3]]\\quad D. [[m4]]",
-   "en": "A. [[m1]]\\quad B. [[m2]]\\quad C. [[m3]]\\quad D. [[m4]]",
-   "status": "aligned",
-   "order": 29
-  },
   "e5cd1536aa01": {
    "fr": "Partie 2 -- Exercices indépendants (14 points)",
    "en": "Part 2 -- Independent exercises (14 points)",
@@ -119,7 +125,19 @@
    "fr": "Calculer [[m1]] et [[m2]].",
    "en": "Calculate [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 36
+   "order": 34
+  },
+  "ecd5a728f8c3": {
+   "fr": "(1 pt)",
+   "en": "(1 pt)",
+   "status": "aligned",
+   "order": 35
+  },
+  "76913274accd": {
+   "fr": "(2 pts)",
+   "en": "(2 pts)",
+   "status": "aligned",
+   "order": 37
   },
   "074ddeae6203": {
    "fr": "Construire et compléter l’arbre pondéré dont le premier niveau distingue [[m1]] et [[m2]], puis le second [[m3]] et [[m4]].",
@@ -175,29 +193,11 @@
    "status": "aligned",
    "order": 50
   },
-  "edb66e001ece": {
-   "fr": "Calculer [[m1]].",
-   "en": "Calculate [[m1]].",
-   "status": "aligned",
-   "order": 52
-  },
-  "ecd5a728f8c3": {
-   "fr": "(1 pt)",
-   "en": "(1 pt)",
-   "status": "aligned",
-   "order": 53
-  },
   "77b6e5a81196": {
    "fr": "Déterminer l’angle non orienté AOB puis AB.",
    "en": "Determine the unoriented angle AOB then AB.",
    "status": "aligned",
    "order": 54
-  },
-  "76913274accd": {
-   "fr": "(2 pts)",
-   "en": "(2 pts)",
-   "status": "aligned",
-   "order": 55
   }
  }
 }

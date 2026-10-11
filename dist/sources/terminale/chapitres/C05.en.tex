@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
-\setcounter{chapter}{8}\mxunit{terminale-c05}{Combinatorics and counting}\label{ch:9}
+\mxunit[9]{terminale-c05}{Combinatorics and counting}\label{ch:9}
 
-{\small\sffamily\color{mxmint}S22, S25, S30, S35\par}
+\mxsubtitle{S22, S25, S30, S35}
 
 \begin{keypoint}[Objectives]Choose a counting model; distinguish order and repetition; use binomial coefficients and Pascal's rule.\end{keypoint}
 
@@ -31,6 +31,7 @@ The boundary cases are dealt with directly.
 \paragraph{Extension mentioned in the scheme of work.} The expansion $(a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k$ can be understood by choosing, in each of the $n$ factors, the term $a$ or $b$. This formula is not used as a prerequisite for the tests in this booklet.
 
 
+\mxnewpage
 \section{Research activity}\textbf{Order and repetition in counting --- 30 min.}\par Six distinct students volunteer to organise a debate.
 \begin{enumerate}\item Two students are chosen to form a pair with no roles assigned. How many pairs can be formed?
 \item A chair and a secretary are appointed, who must be two different students. How many assignments of the two roles are possible?
@@ -38,6 +39,7 @@ The boundary cases are dealt with directly.
 \item Start again with only four students, denoted $A$, $B$, $C$ and $D$. Write out all the pairs and all the assignments of the two roles. Then explain why there are $64$ programmes of three speeches, without listing them.
 \item For each of the three ways of choosing, state whether order matters and whether the same person may be chosen several times.\end{enumerate}
 
+\mxnewpage
 \section{Progressive exercises}
 
 \mxexerciseitem{1}{Practice}A code is a sequence of four digits chosen from $0,1,\ldots,9$. Repetitions and the digit $0$ in first position are allowed. How many codes contain at least one $0$?
@@ -46,12 +48,13 @@ The boundary cases are dealt with directly.
 
 \mxexerciseitem{3}{Practice}From seven distinct people, a group of three people is formed containing one person designated in advance. How many groups can be formed?
 
-\mxexerciseitem{4}{Practice}On a grid, we start from $(0;0)$ and reach $(4;3)$ using exactly four moves of one unit to the right and three upwards. How many different paths can be followed?
+\mxexerciseitem{4}{Practice}On a grid, we start from $\pt{0;0}$ and reach $\pt{4;3}$ using exactly four moves of one unit to the right and three upwards. How many different paths can be followed?
 
 \mxexerciseitem{5}{Practice}A class has eight girls and seven boys. How many groups of four students containing exactly two girls can be formed?
 
 \section{Textbook or past-paper work}\textbf{Barbazo, p. 294, exercise 37.} At home after S35: do both questions. State whether order matters and whether a card may be chosen several times before using a binomial coefficient.
 
+\mxnewpage
 \section{Homework}\textbf{Homework 9 --- Forming a committee --- 45 min, after S35.}\par A team consists of five teachers and seven students, all distinct. A committee of four people is formed.
 \begin{enumerate}\item How many different committees can be formed?
 \item How many committees contain exactly two students?
@@ -90,7 +93,7 @@ The boundary cases are dealt with directly.
 \[\sum_{k=0}^4\binom5k\binom7{4-k}=\binom{12}4=495.\]
 \end{enumerate}
 
-\subsection{Solutions to the textbook or past-paper work}A hand contains five distinct cards; order does not matter. There are therefore $\binom{52}5=2\,598\,960$ hands. For a hand containing the ace of spades, this card is already chosen; we choose the other four from the $51$ remaining cards. There are $\binom{51}4=249\,900$ hands. This result is not multiplied by $5$: the hand has no first or last position.
+\subsection{Solutions to the textbook or past-paper work}A hand contains five distinct cards; order does not matter. There are therefore $\binom{52}5=\num{2598960}$ hands. For a hand containing the ace of spades, this card is already chosen; we choose the other four from the $51$ remaining cards. There are $\binom{51}4=\num{249900}$ hands. This result is not multiplied by $5$: the hand has no first or last position.
 
 \fi
 

@@ -2,41 +2,41 @@
 \mxunit{automatismes-ch03}{Real numbers and intervals}
 
 \begin{fluencysheet}{Thu~19~Nov.~2026}{Sets of numbers: $\N,\Z,\D,\Q,\R$}
-\mxfq{Warm-up · Quick}{NUM}{Give the decimal form of $\dfrac38$ and an approximation of $\dfrac56$ to within $10^{-3}$.}{$0.375$; $0.833$.}{}
-\mxfq{Core · Method}{NUM}{Give the smallest set ($\N,\Z,\D,\Q,\R$) containing each of these numbers: $-4$; $0.25$; $\dfrac13$; $\sqrt2$; $\dfrac63$.}{$-4\in\Z$; $0.25\in\D$; $\dfrac13\in\Q$; $\sqrt2\in\R$; $\dfrac63=2\in\N$.}{The smallest set is the key: $\dfrac63$ is a natural number.}
+\mxfq{Warm-up · Quick}{NUM}{Give the decimal form of $\dfrac38$ and an approximation of $\dfrac56$ to within $10^{-3}$.}{$\num{0,375}$; $\num{0,833}$.}{}
+\mxfq{Core · Method}{NUM}{Give the smallest set ($\N,\Z,\D,\Q,\R$) containing each of these numbers: $-4$; $\num{0,25}$; $\dfrac13$; $\sqrt2$; $\dfrac63$.}{$-4\in\Z$; $\num{0,25}\in\D$; $\dfrac13\in\Q$; $\sqrt2\in\R$; $\dfrac63=2\in\N$.}{The smallest set is the key: $\dfrac63$ is a natural number.}
 \mxfq{Core + · True/false}{NUM}{True or false? Justify. The number $\dfrac13$ is a decimal number.}{False. If there were integers $a$ and $n$ with $\dfrac13=\dfrac{a}{10^n}$, then $10^n=3a$ would be divisible by $3$: impossible (the sum of the digits of $10^n$ is $1$).}{}
 \mxfq{Review · Quick}{SUB}{Calculate $(x+1)(x-3)$ for $x=2$.}{$-3$.}{}
 \mxfq{Thread · Quick}{SOL}{How many faces, vertices and edges does a right triangular prism have?}{$5$ faces ($2$ triangles, $3$ rectangles), $6$ vertices, $9$ edges.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Mon~23~Nov.~2026}{Decimal bounds and rounding}
-\mxfq{Warm-up · Quick}{NUM}{Round $3.14159$ to the nearest $10^{-2}$ and then to the nearest $10^{-3}$.}{$3.14$ then $3.142$.}{The next digit decides: $1<5$ then $5\geqslant5$.}
-\mxfq{Core · Method}{NUM}{Bound $\sqrt2$ between two decimals that differ by $10^{-2}$.}{$1.41^2=1.9881<2<2.0164=1.42^2$: $1.41<\sqrt2<1.42$.}{}
-\mxfq{Core + · Code reading}{ALG}{What is the final value of \code{k}? What can be deduced about $\sqrt2$?\par\smallskip{\ttfamily\small \hspace*{0.0em}k = 10\\ \hspace*{0.0em}while (k/10)**2 \textless{} 2:\\ \hspace*{2.4em}k = k + 1\par}}{$k=15$: $1.4^2=1.96<2$ and $1.5^2=2.25\geqslant2$, so $1.4<\sqrt2\leqslant1.5$.}{}
-\mxfq{Review · Quick}{QP}{$5$ kg of rice cost $12\,500$ Ar. How much do $8$ kg cost?}{$\dfrac{12\,500}{5}\times8=20\,000$ Ar.}{}
+\mxfq{Warm-up · Quick}{NUM}{Round $\num{3,14159}$ to the nearest $10^{-2}$ and then to the nearest $10^{-3}$.}{$\num{3,14}$ then $\num{3,142}$.}{The next digit decides: $1<5$ then $5\geqslant5$.}
+\mxfq{Core · Method}{NUM}{Bound $\sqrt2$ between two decimals that differ by $10^{-2}$.}{$\num{1,41}^2=\num{1,9881}<2<\num{2,0164}=\num{1,42}^2$: $\num{1,41}<\sqrt2<\num{1,42}$.}{}
+\mxfq{Core + · Code reading}{ALG}{What is the final value of \code{k}? What can be deduced about $\sqrt2$?\mxpseudo{k = 10\\ while (k/10)**2 \textless{} 2:\\ \mxtab k = k + 1}}{$k=15$: $\num{1,4}^2=\num{1,96}<2$ and $\num{1,5}^2=\num{2,25}\geqslant2$, so $\num{1,4}<\sqrt2\leqslant\num{1,5}$.}{}
+\mxfq{Review · Quick}{QP}{$5$ kg of rice cost $\num{12500}$ Ar. How much do $8$ kg cost?}{$\dfrac{\num{12500}}{5}\times8=\num{20000}$ Ar.}{}
 \mxfq{Thread · True/false}{DEM}{True or false? Justify. A quadrilateral whose diagonals have equal length is a rectangle.}{False. Counter-example: an isosceles trapezium has diagonals of equal length without being a rectangle.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Tue~24~Nov.~2026}{Irrational numbers: $\frac13$ is not decimal, $\sqrt2$ is irrational}
 \mxfq{Warm-up · Quick}{CAL}{Write $\sqrt{12}$ and $\sqrt{50}$ in the form $a\sqrt b$ with $b$ the smallest possible integer.}{$\sqrt{12}=2\sqrt3$; $\sqrt{50}=5\sqrt2$.}{}
-\mxfq{Core · Sorting}{NUM}{Among $0.333\ldots$; $\sqrt9$; $\sqrt2$; $\pi$; $\dfrac{22}{7}$, which are rational?}{$0.333\ldots=\dfrac13$; $\sqrt9=3$; $\dfrac{22}7$: rational. $\sqrt2$ and $\pi$ are irrational.}{$\dfrac{22}{7}$ is only an approximation of $\pi$, not equal to $\pi$.}
+\mxfq{Core · Sorting}{NUM}{Among $\num{0,333}\ldots$; $\sqrt9$; $\sqrt2$; $\pi$; $\dfrac{22}{7}$, which are rational?}{$\num{0,333}\ldots=\dfrac13$; $\sqrt9=3$; $\dfrac{22}7$: rational. $\sqrt2$ and $\pi$ are irrational.}{$\dfrac{22}{7}$ is only an approximation of $\pi$, not equal to $\pi$.}
 \mxfq{Core + · Reasoning}{DEM}{Suppose $\sqrt2=\dfrac pq$ with $\dfrac pq$ in lowest terms, so $p^2=2q^2$. What can be said about the parity of $p$, then of $q$? What contradiction arises?}{$p^2$ even, so $p$ even, $p=2k$; then $4k^2=2q^2$, $q^2=2k^2$: $q$ even. Contradiction with the fraction being in lowest terms.}{}
 \mxfq{Review · Table}{STA}{Values $1\,;\,2\,;\,3\,;\,4$ with frequencies $5\,;\,8\,;\,4\,;\,3$. Give the total frequency, the relative frequency of the value $2$ and the mean.\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|c|}\hline
 Value & 1 & 2 & 3 & 4 \\ \hline
 Frequency & 5 & 8 & 4 & 3 \\ \hline
-\end{tabular}\par }{Total $20$; relative frequency $\dfrac{8}{20}=40\,\%$; mean $\dfrac{5+16+12+12}{20}=2.25$.}{}
-\mxfq{Thread · Quick}{REP}{Give the coordinates of the reflection of $A(3;-2)$ in the y-axis.}{$(-3;-2)$.}{Pitfall: changing the sign of the ordinate (reflection in the x-axis).}
+\end{tabular}\par }{Total $20$; relative frequency $\dfrac{8}{20}=\pc{40}$; mean $\dfrac{5+16+12+12}{20}=\num{2,25}$.}{}
+\mxfq{Thread · Quick}{REP}{Give the coordinates of the reflection of $A\pt{3;-2}$ in the y-axis.}{$\pt{-3;-2}$.}{Pitfall: changing the sign of the ordinate (reflection in the x-axis).}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Thu~26~Nov.~2026}{Intervals of $\R$: notation and representation}
-\mxfq{Warm-up · Quick}{CMP}{Compare $-3$ and $-5$, then $-\dfrac12$ and $-0.6$.}{$-3>-5$; $-0.5>-0.6$.}{For negative numbers, the one with the smaller absolute value is the greater.}
-\mxfq{Core · Method}{NUM}{Write as an interval: $-2\leqslant x<5$; $x>3$; $x\leqslant0$.}{$[-2;5[$; $]3;+\infty[$; $]-\infty;0]$.}{The bracket faces inwards if the endpoint is included; $\infty$ is always excluded.}
-\mxfq{Core + · MCQ}{NUM}{The intersection $]-\infty;2[\,\cap\,[-1;4]$ is:\mxchoices{$]2;4]$}{$]-\infty;4]$}{$[-1;2[$}{$[-1;2]$}}{C.\ $[-1;2[$}{Intersection: values satisfying both conditions $x<2$ and $-1\leqslant x\leqslant4$.}
+\mxfq{Warm-up · Quick}{CMP}{Compare $-3$ and $-5$, then $-\dfrac12$ and $-\num{0,6}$.}{$-3>-5$; $-\num{0,5}>-\num{0,6}$.}{For negative numbers, the one with the smaller absolute value is the greater.}
+\mxfq{Core · Method}{NUM}{Write as an interval: $-2\leqslant x<5$; $x>3$; $x\leqslant0$.}{$\intfo{-2}{5}$; $\intoo{3}{+\infty}$; $\intof{-\infty}{0}$.}{The bracket faces inwards if the endpoint is included; $\infty$ is always excluded.}
+\mxfq{Core + · MCQ}{NUM}{The intersection $\intoo{-\infty}{2}\,\cap\,\intff{-1}{4}$ is:\mxchoices{$\intof{2}{4}$}{$\intof{-\infty}{4}$}{$\intfo{-1}{2}$}{$\intff{-1}{2}$}}{C.\ $\intfo{-1}{2}$}{Intersection: values satisfying both conditions $x<2$ and $-1\leqslant x\leqslant4$.}
 \mxfq{Review · Table}{LEC}{Journey times (min).\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|}\hline
-Class & $[0;10[$ & $[10;20[$ & $[20;30[$ \\ \hline
+Class & $\intfo{0}{10}$ & $\intfo{10}{20}$ & $\intfo{20}{30}$ \\ \hline
 Frequency & 4 & 9 & 7 \\ \hline
-\end{tabular}\par What are the total frequency, the modal class and the relative frequency of $[10;20[$?}{$20$; $[10;20[$; $\dfrac{9}{20}=45\,\%$.}{}
-\mxfq{Thread · Problem}{DIV}{One bus runs every $15$ min, another every $20$ min. They are together at $8$ a.m. At what time are they next together?}{$\ppcm(15\,;\,20)=60$: at $9$ a.m.}{}
+\end{tabular}\par What are the total frequency, the modal class and the relative frequency of $\intfo{10}{20}$?}{$20$; $\intfo{10}{20}$; $\dfrac{9}{20}=\pc{45}$.}{}
+\mxfq{Thread · Problem}{DIV}{One bus runs every $15$ min, another every $20$ min. They are together at $8$ a.m. At what time are they next together?}{$\ppcm\pt{15;20}=60$: at $9$ a.m.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Mon~30~Nov.~2026}{Absolute value and distance between two real numbers}
@@ -48,9 +48,9 @@ Frequency & 4 & 9 & 7 \\ \hline
 \end{fluencysheet}
 
 \begin{fluencysheet}{Tue~1\textsuperscript{st}~Dec.~2026}{Inequality $|x-a|\leqslant r$ and the associated interval}
-\mxfq{Warm-up · Quick}{EQ}{Solve $2x-3\leqslant5$.}{$2x\leqslant8$, $x\leqslant4$: $S=]-\infty;4]$.}{}
-\mxfq{Core · Method}{EQ}{Solve $|x-2|\leqslant3$ and give $S$ as an interval.}{The real numbers at distance at most $3$ from $2$: $S=[-1;5]$.}{Check: $|{-}1-2|=3$ and $|5-2|=3$.}
-\mxfq{Core + · Translate}{NUM}{Express as an inequality with absolute value: $x\in[-1;5]$ then $x\in]4;10[$.}{$|x-2|\leqslant3$ (centre $2$, radius $3$); $|x-7|<3$ (centre $7$, radius $3$).}{}
-\mxfq{Review · Problem}{CMP}{Pack A: $6$ yoghurts for €$4.20$. Pack B: $10$ yoghurts for €$6.80$. Which is better value?}{A: €$0.70$ each; B: €$0.68$: B.}{}
+\mxfq{Warm-up · Quick}{EQ}{Solve $2x-3\leqslant5$.}{$2x\leqslant8$, $x\leqslant4$: $S=\intof{-\infty}{4}$.}{}
+\mxfq{Core · Method}{EQ}{Solve $|x-2|\leqslant3$ and give $S$ as an interval.}{The real numbers at distance at most $3$ from $2$: $S=\intff{-1}{5}$.}{Check: $|{-}1-2|=3$ and $|5-2|=3$.}
+\mxfq{Core + · Translate}{NUM}{Express as an inequality with absolute value: $x\in\intff{-1}{5}$ then $x\in\intoo{4}{10}$.}{$|x-2|\leqslant3$ (centre $2$, radius $3$); $|x-7|<3$ (centre $7$, radius $3$).}{}
+\mxfq{Review · Problem}{CMP}{Pack A: $6$ yoghurts for €$\num{4,20}$. Pack B: $10$ yoghurts for €$\num{6,80}$. Which is better value?}{A: €$\num{0,70}$ each; B: €$\num{0,68}$: B.}{}
 \mxfq{Thread · Quick}{GEO}{A disc has radius $5$ cm. Give its area and its circumference (exact values).}{Area $=\pi\times5^2=25\pi$ cm$^2$; circumference $=2\pi\times5=10\pi$ cm.}{}
 \end{fluencysheet}

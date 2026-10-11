@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
-\setcounter{chapter}{0}\mxunit{terminale-c01}{Sequences and induction}\label{ch:1}
+\mxunit[1]{terminale-c01}{Sequences and induction}\label{ch:1}
 
-{\small\sffamily\color{mxmint}S2, S4, S5, S7, S10, S11, S13\par}
+\mxsubtitle{S2, S4, S5, S7, S10, S11, S13}
 
 \begin{keypoint}[Objectives]Calculate terms and a sum; write up a proof by induction; establish monotonicity and bounds; use an auxiliary sequence.\end{keypoint}
 
@@ -35,17 +35,19 @@ For $u_{n+1}=au_n+b$, $a\ne1$, solve $\ell=a\ell+b$, then set $v_n=u_n-\ell$. Th
 \[u_n=\ell+(u_0-\ell)a^n,\qquad\ell=\frac{b}{1-a}.\]
 If $a=1$, the sequence is arithmetic: do not divide by $1-a$.
 \end{method}
-\paragraph{Example.} If $u_0=10$ and $u_{n+1}=0.8u_n+6$, then $\ell=30$ and $u_n=30-20(0.8)^n$. We have $10\le u_n<30$ and $u_{n+1}-u_n=4(0.8)^n>0$.
+\paragraph{Example.} If $u_0=10$ and $u_{n+1}=\num{0,8}u_n+6$, then $\ell=30$ and $u_n=30-20(\num{0,8})^n$. We have $10\le u_n<30$ and $u_{n+1}-u_n=4(\num{0,8})^n>0$.
 \paragraph{Pitfall.} Checking a property on a hundred terms does not prove it. An increasing sequence is not necessarily positive; a bounded sequence is not necessarily monotonic.
 
 
-\section{Research activity}\textbf{A reservoir topped up every day --- 35 min.}\par A reservoir initially contains $100$ litres of water. Each day, $20\,\%$ of the volume present is drawn off, then $30$ litres are added. For every natural number $n$, let $u_n$ be the volume of water, in litres, after these two operations have been carried out $n$ times. Thus $u_0=100$.
+\mxnewpage
+\section{Research activity}\textbf{A reservoir topped up every day --- 35 min.}\par A reservoir initially contains $100$ litres of water. Each day, $\pc{20}$ of the volume present is drawn off, then $30$ litres are added. For every natural number $n$, let $u_n$ be the volume of water, in litres, after these two operations have been carried out $n$ times. Thus $u_0=100$.
 \begin{enumerate}\item Calculate $u_1$ and $u_2$, then express $u_{n+1}$ in terms of $u_n$.
 \item Which volume would remain unchanged after one day? Prove by induction that, for every $n\in\N$, $100\le u_n<150$.
 \item For every $n\in\N$, let $v_n=u_n-150$. Show that $(v_n)$ is geometric. Deduce the expressions of $v_n$ and $u_n$ in terms of $n$.
 \item Write a Python function with no argument that returns the first integer $n$ for which $u_n>145$. Run the program and interpret the result.
 \item A student has calculated the first hundred terms and notes that they are all less than $150$. Is this observation enough to prove that all the terms are? Justify.\end{enumerate}
 
+\mxnewpage
 \section{Progressive exercises}
 
 \mxexerciseitem{1}{Practice}Consider the sequence $(u_n)$ defined, for every natural number $n$, by $u_n=5-3n$. Calculate $u_4$, then the sum $\displaystyle\sum_{k=0}^{20}u_k$.
@@ -60,21 +62,22 @@ If $a=1$, the sequence is arithmetic: do not divide by $1-a$.
 
 \section{Textbook or past-paper work}\textbf{Barbazo, p. 28, exercises 22 and 25.} In class, in S5: exercise 22, to translate properties of sequences using a quantifier. At home after S11: the whole of exercise 25, to combine induction, upper bounds and monotonicity. Write the base case, the inductive step and the conclusion separately.
 
+\mxnewpage
 \section{Homework}\textbf{Homework 1 --- A sum and a threshold --- 45 min, after S11.}\par Consider the sequence $(u_n)$ defined by $u_0=2$ and, for every $n\in\N$, $u_{n+1}=\frac12u_n+3$.
 \begin{enumerate}\item Prove by induction that $2\le u_n<6$ for every $n\in\N$. Deduce the direction of variation of $(u_n)$.
 \item Let $v_n=u_n-6$ for every $n\in\N$. Show that $(v_n)$ is geometric, then express $u_n$ in terms of $n$.
 \item For every $n\in\N$, let $S_n=\displaystyle\sum_{k=0}^n u_k$. Express $S_n$ in terms of $n$.
-\item Using the explicit formula and powers of $2$, determine the smallest integer $n$ such that $u_n>5.99$. Check that the previous integer does not work.
+\item Using the explicit formula and powers of $2$, determine the smallest integer $n$ such that $u_n>\num{5,99}$. Check that the previous integer does not work.
 \item Express $6-\frac{S_n}{n+1}$ and justify that this difference is strictly positive. Interpret the result by considering the mean of the first $n+1$ terms; no limit calculation is required.\end{enumerate}
 
 \ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]In S2, immediately distinguish the index from the value of the term. In S4, have a loop executed by hand before Python. In S5 and S7, get students to say aloud ``we assume at index $n$, we prove at index $n+1$''. The sum and the divisibility come in S10, after Test 1: do not assess them in the first test. In S11, the search for the fixed point is an algebraic technique; the convergence theorem will be established in the next chapter. For weaker students, supply the property $P(n)$ and let them write the three steps; for the strongest, remove the hint about an auxiliary sequence.\end{teachernote}
 
 \subsection{Solutions to the activity}\begin{enumerate}
-\item $u_0=100$ L. After one day, $0.8u_0$ L remain, then $30$ L are added: $u_1=110$ L. Similarly, $u_2=0.8\times110+30=118$ L. For every $n\ge0$, $u_{n+1}=0.8u_n+30$.
-\item The equilibrium volume $L$ would have to satisfy $L=0.8L+30$, that is $L=150$ L. Let us prove $P(n)$: ``$100\le u_n<150$''. At index $0$, $u_0=100\in[100,150[$. Fix $n\ge0$ and assume $P(n)$ is true. Since $0.8>0$,
-\[110=0.8\times100+30\le0.8u_n+30<0.8\times150+30=150.\]
+\item $u_0=100$ L. After one day, $\num{0,8}u_0$ L remain, then $30$ L are added: $u_1=110$ L. Similarly, $u_2=\num{0,8}\times110+30=118$ L. For every $n\ge0$, $u_{n+1}=\num{0,8}u_n+30$.
+\item The equilibrium volume $L$ would have to satisfy $L=\num{0,8}L+30$, that is $L=150$ L. Let us prove $P(n)$: ``$100\le u_n<150$''. At index $0$, $u_0=100\in[100,150[$. Fix $n\ge0$ and assume $P(n)$ is true. Since $\num{0,8}>0$,
+\[110=\num{0,8}\times100+30\le\num{0,8}u_n+30<\num{0,8}\times150+30=150.\]
 Hence $100\le u_{n+1}<150$ and $P(n+1)$ is true. By induction, the bounds hold for every $n\in\N$.
-\item $v_{n+1}=u_{n+1}-150=0.8u_n-120=0.8(u_n-150)=0.8v_n$. The sequence $(v_n)$ is geometric, with common ratio $0.8$ and first term $v_0=-50$. Thus $v_n=-50(0.8)^n$, then $u_n=150-50(0.8)^n$.
+\item $v_{n+1}=u_{n+1}-150=\num{0,8}u_n-120=\num{0,8}(u_n-150)=\num{0,8}v_n$. The sequence $(v_n)$ is geometric, with common ratio $\num{0,8}$ and first term $v_0=-50$. Thus $v_n=-50(\num{0,8})^n$, then $u_n=150-50(\num{0,8})^n$.
 \item 
 \begin{lstlisting}
 def premier_jour():
@@ -84,7 +87,7 @@ def premier_jour():
         n += 1
     return n
 \end{lstlisting}
-The loop returns $11$. Indeed, $u_{10}\simeq144.63<145$ and $u_{11}\simeq145.71>145$. Moreover, $u_{n+1}-u_n=10(0.8)^n>0$: the threshold was not crossed earlier. Calculating these two values guarantees the loop stops here, without yet requiring a convergence theorem.
+The loop returns $11$. Indeed, $u_{10}\simeq\num{144,63}<145$ and $u_{11}\simeq\num{145,71}>145$. Moreover, $u_{n+1}-u_n=10(\num{0,8})^n>0$: the threshold was not crossed earlier. Calculating these two values guarantees the loop stops here, without yet requiring a convergence theorem.
 \item The simulation only calculates a finite number of terms. The inductive step, together with the base case, establishes the bounds for all integers; it is this that rules out any excess over $150$ L.
 \end{enumerate}
 
@@ -109,7 +112,7 @@ Since $8k+1$ is an integer, $P(n+1)$ is true. By induction, $7$ divides $8^n-1$ 
 \item The equation $L=\frac{L}{2}+3$ gives $L=6$. Let $v_n=u_n-6$. Then $v_{n+1}=\frac{u_n}{2}-3=\frac{v_n}{2}$ and $v_0=-4$. Hence $v_n=-\frac{4}{2^n}$ and $u_n=6-\frac{4}{2^n}$.
 \item By linearity of sums and the geometric formula,
 \[\begin{aligned}S_n&=6(n+1)-4\sum_{k=0}^n(\frac{1}{2})^k\\&=6(n+1)-8(1-2^{-(n+1)}).\end{aligned}\]
-\item $u_n>5.99$ is equivalent to $\frac{4}{2^n}<0.01$, that is $2^n>400$. Since $2^8=256\le400<512=2^9$ and $(2^n)$ is increasing, the smallest index is $9$.
+\item $u_n>\num{5,99}$ is equivalent to $\frac{4}{2^n}<\num{0,01}$, that is $2^n>400$. Since $2^8=256\le400<512=2^9$ and $(2^n)$ is increasing, the smallest index is $9$.
 \item The mean is less than $6$ and its distance from $6$ is
 \[6-\frac{S_n}{n+1}=\frac{8(1-2^{-(n+1)})}{n+1},\qquad 0<6-\frac{S_n}{n+1}<\frac8{n+1}.\]
 To make this distance less than a precision $\varepsilon>0$, it suffices to take $n+1>\frac{8}{\varepsilon}$. This is a quantitative control of the distance, which does not yet require a theorem on limits.

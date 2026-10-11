@@ -9,10 +9,11 @@ breaks by `\mxneed{n}` (`\Needspace`), never by hand. Minimal compilable example
 
 | File | Holds |
 |---|---|
-| `mxbook.cls` | options `course=`, `lang=fr\|en`, `edition=student\|teacher\|both`, `layout=booklet\|sheet\|slide-figs`; `\mxinclude`, `\mxunit`, `\mxlabel` |
+| `mxbook.cls` | the master: options `course=`, `lang=fr\|en`, `edition=student\|teacher\|both`, `layout=booklet\|sheet\|slide-figs`, `unit=chapter\|sequence`, `sections=numbered\|unnumbered`; loads every package below; `\mxinclude`, `\mxunit`, `\mxfront`, `\mxsubtitle`, `\mxnewpage`, `\mxsection`, `\mxlabel` |
 | `mx-i18n.sty` | babel, label dictionary (`\mxlabelof{key}`), `\mxtr{fr}{en}` (core only), `\mxdate{YYYY-MM-DD}`, `\mxdate*{...}` |
 | `mx-edition.sty` | `\ifmxteacher`, `\mxteacheronly{}`, `\mxstudentonly{}` |
-| `mx-math.sty` | every maths macro, once (`\R \N \Z \Q \D \C \vect \vi \vj \vk \norm \vc \deter \abs \dd \e \ent \Card \pgcd \ppcm \degre \un \sci`) |
+| `mx-math.sty` | every maths macro that reads the same in both languages, once (`\R \N \Z \Q \D \C \vect \vi \vj \vk \norm \vc \deter \abs \dd \e \Card \E \V \pgcd \ppcm \degre \un \sci`); source of the slide player's MathJax table |
+| `mx-notation.sty` | every notation that differs between French and English (`\num \pc \intff \intoo \intfo \intof \ent \pt \ens`), printed per language |
 | `mx-figures.sty` | palette `mxink mxmint mxmintpale mxteacher mxwarn mxline mxmuted mxpaper`; TikZ libraries; styles `mxcurve mxaux mxpoint mxaxisline` (TikZ), `mxaxis mxgridaxis` (pgfplots) |
 | `mx-layout.sty` | geometry per layout, headings, running heads, `\mxneed{n}` |
 | `mx-env.sty` | the environments below |
@@ -77,10 +78,43 @@ $u_{10}=-3+10\times2=17$.
 | `\zoneeleve{n}` (STMG) | `\mxlines{n}` |
 | `\versionprof`, `\VERSIONPROF`, `\VERSIONELEVE`, `\EditionProf`, `\PROFVERSION`, `\ifprof` | class option `edition=`, `\ifmxteacher` |
 
+## Notation (French and English)
+
+Units never type a notation that differs between the languages; they call these commands, and the class prints the
+convention of the edition (`content/tex/core/mx-notation.sty`, decision in `docs/ADR-0001-tex-i18n.md`):
+
+| Write | French prints | English prints | For |
+|---|---|---|---|
+| `\num{0,5}`, `\num{12500}` | 0,5 ; 12 500 | 0.5 ; 12,500 | a number with decimals or 4+ digits (input with a comma) |
+| `\pc{12,5}` | 12,5 % | 12.5% | a percentage |
+| `$\intff{a}{b}$` `$\intoo{a}{b}$` `$\intfo{a}{b}$` `$\intof{a}{b}$` | [a;b] ]a;b[ [a;b[ ]a;b] | [a,b] (a,b) [a,b) (a,b] | intervals (f = closed, o = open end) |
+| `$\ent{1}{n}$` | ⟦1;n⟧ | {1,…,n} | integer interval |
+| `$A\pt{1;-2}$`, `$\pt{1;2;3}$` | A(1;−2) | A(1,−2) | coordinates, pairs, triples |
+| `$\ens{1;2;3}$` | {1;2;3} | {1,2,3} | set listed in extension |
+| `$\pgcd(a,b)$`, `$\ppcm(a,b)$` | PGCD, PPCM | gcd, lcm | |
+
+`tests/tex_lint.py` refuses `0{,}5`, `12\,500`, `50\,\%`, `]0;1[`, `(1;2)` and `\{1;2\}` written by hand
+(`python -m mxbuild notation --migrate --write` converts them).
+
 ## Units
 
-A unit is one file `<id>.fr.tex` that starts with `\mxunit{<id>}{<title>}`. It may not load packages, define macros,
-counters or colours, use raw colours, or break pages by hand (`tests/tex_lint.py`). Labels are written `\mxlabel{name}`
+Every unit has the same shape. It is one file `<id>.fr.tex` that opens with `\mxunit{<id>}{<title>}` (or
+`\mxunit[n]{...}` to keep a textbook's chapter number n, or `\mxfront{<id>}` for front matter), then an optional
+`\mxsubtitle{...}`, then the canonical environments. A part included by a unit with `\mxinclude{path}` (figures,
+solutions, assessment parts) opens with neither. Every resource cut from a book (notes, exercises, activities,
+homework ...) starts with `\mxnewpage`, so French and English pages are balanced per resource. A unit may not load
+packages, define macros, counters or colours, use raw colours, break pages by hand, or style text by hand (`\color`,
+`\bfseries`, `\sffamily`, font sizes, `\hspace`, `\vspace`, `\noindent`, `\centering`, minipage; figure code is
+exempt): the class commands carry the design (`tests/tex_lint.py`).
+
+| Need | Command |
+|---|---|
+| book cover | `\mxcover{title}{course}{description}{details}{year}` (front unit) |
+| line under a unit title (sessions, dates) | `\mxsubtitle{...}` |
+| label line of an assessment paper | `\mxbanner{...}` (training), `\mxbanner*{...}` (reserved for assessment) |
+| running line of a continued paper | `\mxcontinued{...}` |
+| algorithm or code read in a question | `\mxpseudo{line\\ \mxtab indented line}` (inside arguments); `lstlisting` elsewhere |
+| figure with caption; two side by side | `figurebox[caption]`; `\mxtwocols{...}{...}` | Labels are written `\mxlabel{name}`
 and become `<id>:name`. A course main is generated from the manifest; by hand it is:
 ```latex
 \documentclass[course=premiere,lang=fr,edition=teacher]{mxbook}
@@ -91,10 +125,10 @@ and become `<id>:name`. A course main is generated from the manifest; by hand it
 
 ## Languages
 
-French is the source. Write decimals as `0{,}5` (never `0,5`), dates as `\mxdate{2026-09-15}`. The English unit
+French is the source. Write numbers and notation with the commands above (`\num{0,5}`, never `0{,}5` or `0,5`), dates as `\mxdate{2026-09-15}`. The English unit
 `<id>.en.tex` is generated (`python -m mxbuild twin gen <id>.fr.tex`) from the table `<id>.en.json`
 (`python -m mxbuild twin stub <id>.fr.tex` adds untranslated segments and removes unused ones; `twin check` fails on either); never edit it. Translate prose only: placeholders
-`[[mN]]` stand for maths and atoms (`\mxdate`, `\ref`, `\code`) and must each appear once. Figure node texts, axis labels
+`[[mN]]` stand for maths and atoms (`\mxdate`, `\ref`, `\code`, `\num`, `\pc`) and must each appear once. Figure node texts, axis labels
 and `\text{}` inside maths are separate segments. See `docs/ADR-0001-tex-i18n.md`.
 
 ## Figures

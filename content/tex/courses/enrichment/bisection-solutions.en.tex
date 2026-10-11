@@ -4,14 +4,14 @@
 \mxsubtitle{Upper high school · analysis and algorithms \textperiodcentered{} Worked solutions \textperiodcentered{} 12}
 
 \begin{note}
-\textbf{Given information.} For exercise 1: seek a zero of $f(x)=x^{2}-2$ on $[1 ; 2]$. After two halvings, the retained interval is $[1.25 ; 1.5]$.
+\textbf{Given information.} For exercise 1: seek a zero of $f(x)=x^{2}-2$ on $\intff{1}{2}$. After two halvings, the retained interval is $\intff{\num{1,25}}{\num{1,5}}$.
 \end{note}
 
 \begin{exercise}
 Carry out a third step of the example.
 \end{exercise}
 \begin{solution}
-The midpoint is $1.375$, whose square is $1.890625<2$. The new interval is $[1.375 ; 1.5]$.
+The midpoint is $\num{1,375}$, whose square is $\num{1,890625}<2$. The new interval is $\intff{\num{1,375}}{\num{1,5}}$.
 \end{solution}
 
 \begin{exercise}
@@ -25,20 +25,20 @@ $2^{9}=512<1000\leq 1024=2^{10}$, so 10 halvings suffice and 9 do not.
 Why does the sign change of $f(x)=\frac{1}{x}$ between $-1$ and 1 not prove the existence of a zero?
 \end{exercise}
 \begin{solution}
-The function is undefined at 0 and is not continuous on $[-1 ; 1]$. The theorem’s hypothesis fails; $\frac{1}{x}$ is never zero.
+The function is undefined at 0 and is not continuous on $\intff{-1}{1}$. The theorem’s hypothesis fails; $\frac{1}{x}$ is never zero.
 \end{solution}
 
 \begin{exercise}
-A root lies in $[1.4 ; 1.5]$. What maximum error is guaranteed by midpoint $1.45$?
+A root lies in $\intff{\num{1,4}}{\num{1,5}}$. What maximum error is guaranteed by midpoint $\num{1,45}$?
 \end{exercise}
 \begin{solution}
-The half-width is $\frac{1.5-1.4}{2}=0.05$.
+The half-width is $\frac{\num{1,5}-\num{1,4}}{2}=\num{0,05}$.
 \end{solution}
 
 \begin{problem}[Investigate, justify, conclude]
-For $f(x)=x^{3}-x-1$ on $[1 ; 2]$, prove existence and uniqueness of a root $\alpha $. Carry out three bisection steps. How many halvings guarantee that the final midpoint approximates $\alpha $ with error at most $0.001$?
+For $f(x)=x^{3}-x-1$ on $\intff{1}{2}$, prove existence and uniqueness of a root $\alpha $. Carry out three bisection steps. How many halvings guarantee that the final midpoint approximates $\alpha $ with error at most $\num{0,001}$?
 \end{problem}
 \begin{solution}
-$f(1)=-1$ and $f(2)=5$, and f is continuous. Also $f'(x)=3x^{2}-1\geq 2$ on $[1 ; 2]$, so f is strictly increasing. Midpoints $1.5$, $1.25$, $1.375$ give $[1 ; 1.5]$, $[1.25 ; 1.5]$, $[1.25 ; 1.375]$ because f takes values $0.875$, $-0.296875$ and $0.224609375$. After n halvings, midpoint error is at most $\frac{1}{2^{n+1}}$. Thus $2^{n+1}\geq 1000$, requiring $n\geq 9$.
+$f(1)=-1$ and $f(2)=5$, and f is continuous. Also $f'(x)=3x^{2}-1\geq 2$ on $\intff{1}{2}$, so f is strictly increasing. Midpoints $\num{1,5}$, $\num{1,25}$, $\num{1,375}$ give $\intff{1}{\num{1,5}}$, $\intff{\num{1,25}}{\num{1,5}}$, $\intff{\num{1,25}}{\num{1,375}}$ because f takes values $\num{0,875}$, $-\num{0,296875}$ and $\num{0,224609375}$. After n halvings, midpoint error is at most $\frac{1}{2^{n+1}}$. Thus $2^{n+1}\geq 1000$, requiring $n\geq 9$.
 \end{solution}
 

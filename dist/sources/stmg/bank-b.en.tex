@@ -7,42 +7,42 @@
 \mxexdef{15}{Isolate $10^x$, then take the logarithm}{%
 Solve the following equations in $\R$. When a solution exists, give its exact value and then its value rounded to the nearest thousandth.
 \begin{enumerate}[label=\alph*.]
-\item $4\times10^x=9.2$
-\item $7\times10^x-1.5=3\times10^x+0.9$
-\item $2.5\times10^x+12=6-0.5\times10^x$
+\item $4\times10^x=\num{9,2}$
+\item $7\times10^x-\num{1,5}=3\times10^x+\num{0,9}$
+\item $\num{2,5}\times10^x+12=6-\num{0,5}\times10^x$
 \item $10^{x+1}=50$ \quad (you may write $10^{x+1}=10\times10^x$)
 \end{enumerate}
 }{%
 Method: gather the terms in $10^x$ on one side, isolate $10^x$, check that the right-hand side is strictly positive, then use: for $b>0$, $10^x=b \iff x=\log(b)$.
 \begin{enumerate}[label=\alph*.]
-\item $10^x=\dfrac{9.2}{4}=2.3>0$, so $x=\log(2.3)\approx0.362$.
-\item $7\times10^x-3\times10^x=0.9+1.5$, i.e. $4\times10^x=2.4$, so $10^x=0.6>0$ and $x=\log(0.6)\approx-0.222$.
-\item $2.5\times10^x+0.5\times10^x=6-12$, i.e. $3\times10^x=-6$, so $10^x=-2$. But $10^x>0$ for every real $x$: the equation has no solution.
-\item $10\times10^x=50$, so $10^x=5>0$ and $x=\log(5)\approx0.699$. (Another way: $x+1=\log(50)$, so $x=\log(50)-1=\log(5)$.)
+\item $10^x=\dfrac{\num{9,2}}{4}=\num{2,3}>0$, so $x=\log(\num{2,3})\approx\num{0,362}$.
+\item $7\times10^x-3\times10^x=\num{0,9}+\num{1,5}$, i.e. $4\times10^x=\num{2,4}$, so $10^x=\num{0,6}>0$ and $x=\log(\num{0,6})\approx-\num{0,222}$.
+\item $\num{2,5}\times10^x+\num{0,5}\times10^x=6-12$, i.e. $3\times10^x=-6$, so $10^x=-2$. But $10^x>0$ for every real $x$: the equation has no solution.
+\item $10\times10^x=50$, so $10^x=5>0$ and $x=\log(5)\approx\num{0,699}$. (Another way: $x+1=\log(50)$, so $x=\log(50)-1=\log(5)$.)
 \end{enumerate}
-Recommended calculator check: $10^{0.362}\approx2.30$ and $10^{-0.222}\approx0.60$.
+Recommended calculator check: $10^{\num{0,362}}\approx\num{2,30}$ and $10^{-\num{0,222}}\approx\num{0,60}$.
 }{4}
 
 \mxexdef{16}{Sign of a logarithm and comparison}{%
-Recall that the function $\log$ is strictly increasing on $]0;+\infty[$ and that $\log(1)=0$.
+Recall that the function $\log$ is strictly increasing on $\intoo{0}{+\infty}$ and that $\log(1)=0$.
 \begin{enumerate}
 \item Without a calculator, give the sign of each of the following numbers, with a justification:
 \begin{enumerate}[label=\alph*.]
-\item $\log(0.9)$ ;
+\item $\log(\num{0,9})$ ;
 \item $\log\!\left(\dfrac{4}{3}\right)$ ;
-\item $\log(CM)$, where $CM$ is the multiplier associated with an increase of $0.2\,\%$.
+\item $\log(CM)$, where $CM$ is the multiplier associated with an increase of $\pc{0,2}$.
 \end{enumerate}
-\item Without a calculator, compare $\log(0.35)$ and $\log(0.53)$.
+\item Without a calculator, compare $\log(\num{0,35})$ and $\log(\num{0,53})$.
 \end{enumerate}
 }{%
 \begin{enumerate}
 \item For $a>0$: if $a>1$ then $\log(a)>\log(1)=0$; if $0<a<1$ then $\log(a)<0$ (since $\log$ is strictly increasing).
 \begin{enumerate}[label=\alph*.]
-\item $0<0.9<1$, so $\log(0.9)<0$ (about $-0.046$).
-\item $\dfrac43>1$, so $\log\!\left(\dfrac43\right)>0$ (about $0.125$).
-\item $CM=1+\dfrac{0.2}{100}=1.002>1$, so $\log(1.002)>0$ (about $0.000\,87$: very close to $0$ but positive).
+\item $0<\num{0,9}<1$, so $\log(\num{0,9})<0$ (about $-\num{0,046}$).
+\item $\dfrac43>1$, so $\log\!\left(\dfrac43\right)>0$ (about $\num{0,125}$).
+\item $CM=1+\dfrac{\num{0,2}}{100}=\num{1,002}>1$, so $\log(\num{1,002})>0$ (about $\num{0,000}\,87$: very close to $0$ but positive).
 \end{enumerate}
-\item $0<0.35<0.53$ and $\log$ is strictly increasing on $]0;+\infty[$, so $\log(0.35)<\log(0.53)$. Both numbers are negative (arguments less than $1$); the one closer to $0$ is $\log(0.53)$.
+\item $0<\num{0,35}<\num{0,53}$ and $\log$ is strictly increasing on $\intoo{0}{+\infty}$, so $\log(\num{0,35})<\log(\num{0,53})$. Both numbers are negative (arguments less than $1$); the one closer to $0$ is $\log(\num{0,53})$.
 \end{enumerate}
 }{3}
 
@@ -68,16 +68,16 @@ Error to point out: $\log(5)+\log(11)$ is not $\log(16)$; a sum of logarithms co
 }{4}
 
 \mxexdef{18}{Threshold algorithm for a change over time}{%
-A delivery company buys a van for $38\,000$~€. Its value is estimated to fall by $15\,\%$ each year. The company will sell the van as soon as its value becomes strictly less than $10\,000$~€.
+A delivery company buys a van for $\num{38000}$~€. Its value is estimated to fall by $\pc{15}$ each year. The company will sell the van as soon as its value becomes strictly less than $\num{10000}$~€.
 Let $V$ be the value of the van (in euros) and $N$ the number of years since the purchase.
 \begin{center}
 \begin{tabular}{|l|}
 \hline
-$V\leftarrow38\,000$\\
+$V\leftarrow\num{38000}$\\
 $N\leftarrow0$\\
 While $V\ \ldots\ldots\ldots$\\
-\hspace*{1.5em}$V\leftarrow\ldots\ldots\ldots$\\
-\hspace*{1.5em}$N\leftarrow N+1$\\
+\mxtab $V\leftarrow\ldots\ldots\ldots$\\
+\mxtab $N\leftarrow N+1$\\
 End While\\
 \hline
 \end{tabular}
@@ -89,22 +89,22 @@ End While\\
 \end{enumerate}
 }{%
 \begin{enumerate}
-\item A $15\,\%$ decrease corresponds to the multiplier $1-0.15=0.85$. We repeat as long as the value has not yet fallen below the threshold: “While $V\geqslant10\,000$” and “$V\leftarrow0.85\times V$”.
-\item Successive values rounded to the nearest euro: $N=6$: $14\,332$~€; $N=7$: $12\,182$~€; $N=8$: $10\,355$~€; $N=9$: $8\,801$~€.
-Since $38\,000\times0.85^8\approx10\,355\geqslant10\,000$ and $38\,000\times0.85^9\approx8\,801<10\,000$, the loop stops with $N=9$: the van will be sold after $9$ years, for a value of about $8\,801$~€.
+\item A $\pc{15}$ decrease corresponds to the multiplier $1-\num{0,15}=\num{0,85}$. We repeat as long as the value has not yet fallen below the threshold: “While $V\geqslant\num{10000}$” and “$V\leftarrow\num{0,85}\times V$”.
+\item Successive values rounded to the nearest euro: $N=6$: $\num{14332}$~€; $N=7$: $\num{12182}$~€; $N=8$: $\num{10355}$~€; $N=9$: $\num{8801}$~€.
+Since $\num{38000}\times\num{0,85}^8\approx\num{10355}\geqslant\num{10000}$ and $\num{38000}\times\num{0,85}^9\approx\num{8801}<\num{10000}$, the loop stops with $N=9$: the van will be sold after $9$ years, for a value of about $\num{8801}$~€.
 \item A possible program:\\
 \texttt{V = 38000}\\
 \texttt{N = 0}\\
 \texttt{while V >= 10000:}\\
-\hspace*{2em}\texttt{V = 0.85 * V}\\
-\hspace*{2em}\texttt{N = N + 1}\\
+\mxtab \texttt{V = 0.85 * V}\\
+\mxtab \texttt{N = N + 1}\\
 \texttt{print(N, V)}\\
-The program displays $9$ and about $8801.44$, which confirms question 2. Stress the decimal point in Python and the indentation of the loop block.
+The program displays $9$ and about $\num{8801,44}$, which confirms question 2. Stress the decimal point in Python and the indentation of the loop block.
 \end{enumerate}
 }{5}
 
 \mxexdef{19}{Doubling time and overtaking}{%
-An online shop A received $2\,500$ orders in January 2026. This number is assumed to increase by $7\,\%$ per month. Let $a_n$ be the number of orders $n$ months after January 2026.
+An online shop A received $\num{2500}$ orders in January 2026. This number is assumed to increase by $\pc{7}$ per month. Let $a_n$ be the number of orders $n$ months after January 2026.
 \begin{enumerate}
 \item
 \begin{enumerate}[label=\alph*.]
@@ -112,36 +112,36 @@ An online shop A received $2\,500$ orders in January 2026. This number is assume
 \item After how many months will the monthly number of orders have doubled?
 \item After how many months will it have quadrupled? Is this result twice the previous one? Explain.
 \end{enumerate}
-\item A competing shop B received $4\,000$ orders in January 2026, with an increase of $3\,\%$ per month. From how many months on will shop A have more monthly orders than shop B? In which month will this happen?
+\item A competing shop B received $\num{4000}$ orders in January 2026, with an increase of $\pc{3}$ per month. From how many months on will shop A have more monthly orders than shop B? In which month will this happen?
 \end{enumerate}
 }{%
 \begin{enumerate}
 \item
 \begin{enumerate}[label=\alph*.]
-\item An increase of $7\,\%$ corresponds to the multiplier $1.07$: $a_n=2\,500\times1.07^n$.
-\item $a_n\geqslant5\,000\iff1.07^n\geqslant2\iff n\log(1.07)\geqslant\log(2)\iff n\geqslant\dfrac{\log(2)}{\log(1.07)}$, because $\log(1.07)>0$ (the inequality keeps its direction). Now $\dfrac{\log 2}{\log 1.07}\approx10.24$: $11$ months are needed. Check: $1.07^{10}\approx1.967<2$ and $1.07^{11}\approx2.105\geqslant2$.
-\item $1.07^n\geqslant4\iff n\geqslant\dfrac{\log(4)}{\log(1.07)}\approx20.49$: $21$ months are needed ($1.07^{20}\approx3.870$ and $1.07^{21}\approx4.141$). Since $\log(4)=2\log(2)$, the exact threshold is indeed doubled ($20.49=2\times10.24$), but rounding up to the next integer happens only once: $21$, not $2\times11=22$.
+\item An increase of $\pc{7}$ corresponds to the multiplier $\num{1,07}$: $a_n=\num{2500}\times\num{1,07}^n$.
+\item $a_n\geqslant\num{5000}\iff\num{1,07}^n\geqslant2\iff n\log(\num{1,07})\geqslant\log(2)\iff n\geqslant\dfrac{\log(2)}{\log(\num{1,07})}$, because $\log(\num{1,07})>0$ (the inequality keeps its direction). Now $\dfrac{\log 2}{\log \num{1,07}}\approx\num{10,24}$: $11$ months are needed. Check: $\num{1,07}^{10}\approx\num{1,967}<2$ and $\num{1,07}^{11}\approx\num{2,105}\geqslant2$.
+\item $\num{1,07}^n\geqslant4\iff n\geqslant\dfrac{\log(4)}{\log(\num{1,07})}\approx\num{20,49}$: $21$ months are needed ($\num{1,07}^{20}\approx\num{3,870}$ and $\num{1,07}^{21}\approx\num{4,141}$). Since $\log(4)=2\log(2)$, the exact threshold is indeed doubled ($\num{20,49}=2\times\num{10,24}$), but rounding up to the next integer happens only once: $21$, not $2\times11=22$.
 \end{enumerate}
-\item We look for $n$ such that $2\,500\times1.07^n>4\,000\times1.03^n$. Dividing by $2\,500\times1.03^n>0$: $\left(\dfrac{1.07}{1.03}\right)^n>1.6$. Since $\dfrac{1.07}{1.03}>1$, its logarithm is positive and $n>\dfrac{\log(1.6)}{\log(1.07/1.03)}\approx12.34$. Hence $n=13$: check $a_{12}\approx5\,630<5\,703$ and $a_{13}\approx6\,025>5\,874$. Shop A will overtake shop B in February 2027 ($13$ months after January 2026).
+\item We look for $n$ such that $\num{2500}\times\num{1,07}^n>\num{4000}\times\num{1,03}^n$. Dividing by $\num{2500}\times\num{1,03}^n>0$: $\left(\dfrac{\num{1,07}}{\num{1,03}}\right)^n>\num{1,6}$. Since $\dfrac{\num{1,07}}{\num{1,03}}>1$, its logarithm is positive and $n>\dfrac{\log(\num{1,6})}{\log(\num{1,07}/\num{1,03})}\approx\num{12,34}$. Hence $n=13$: check $a_{12}\approx\num{5630}<\num{5703}$ and $a_{13}\approx\num{6025}>\num{5874}$. Shop A will overtake shop B in February 2027 ($13$ months after January 2026).
 \end{enumerate}
 }{5}
 
 \mxexdef{20}{Finding a rate: equation $x^n=b$}{%
 The retail price of a solar panel model went from $420$~€ in March 2021 to $260$~€ in September 2025, a period of $4$ years and $6$ months. The price is assumed to have changed at a constant annual rate $t$.
 \begin{enumerate}
-\item Justify that $(1+t)^{4.5}=\dfrac{260}{420}$.
-\item Deduce $t$, rounded to $0.1\,\%$. Interpret the sign of the result.
+\item Justify that $(1+t)^{\num{4,5}}=\dfrac{260}{420}$.
+\item Deduce $t$, rounded to $\pc{0,1}$. Interpret the sign of the result.
 \item A second model costs $395$~€ today. If its price changes at the same annual rate, what will its price be in $2$ years and $3$ months? Round to the nearest euro.
-\item The manufacturer of this second model would rather reach a price of $300$~€ in $2$ years and $3$ months. What constant annual rate should it apply? Round to $0.1\,\%$.
+\item The manufacturer of this second model would rather reach a price of $300$~€ in $2$ years and $3$ months. What constant annual rate should it apply? Round to $\pc{0,1}$.
 \end{enumerate}
 }{%
 \begin{enumerate}
-\item Over $4.5$ years, the price is multiplied by $(1+t)^{4.5}$, so $420(1+t)^{4.5}=260$, i.e. $(1+t)^{4.5}=\dfrac{260}{420}\approx0.619$.
-\item $1+t>0$, so $1+t=\left(\dfrac{260}{420}\right)^{1/4.5}\approx0.8989$, hence $t\approx-0.101$, i.e. $t\approx-10.1\,\%$. The rate is negative: the price fell on average by about $10.1\,\%$ per year. Check: $420\times0.8989^{4.5}\approx260$.
-\item $2$ years and $3$ months $=2.25$ years. Price: $395(1+t)^{2.25}$. Keeping the exact value of $1+t$ in memory: $395\times\left(\dfrac{260}{420}\right)^{2.25/4.5}=395\times\left(\dfrac{260}{420}\right)^{0.5}\approx395\times0.7868\approx310.78$. The price would be about $311$~€.
-\item We solve $395(1+t')^{2.25}=300$, i.e. $(1+t')^{2.25}=\dfrac{300}{395}\approx0.7595$, so $1+t'=\left(\dfrac{300}{395}\right)^{1/2.25}\approx0.8849$ and $t'\approx-11.5\,\%$. A decrease of about $11.5\,\%$ per year would be needed.
+\item Over $\num{4,5}$ years, the price is multiplied by $(1+t)^{\num{4,5}}$, so $420(1+t)^{\num{4,5}}=260$, i.e. $(1+t)^{\num{4,5}}=\dfrac{260}{420}\approx\num{0,619}$.
+\item $1+t>0$, so $1+t=\left(\dfrac{260}{420}\right)^{1/\num{4,5}}\approx\num{0,8989}$, hence $t\approx-\num{0,101}$, i.e. $t\approx-\pc{10,1}$. The rate is negative: the price fell on average by about $\pc{10,1}$ per year. Check: $420\times\num{0,8989}^{\num{4,5}}\approx260$.
+\item $2$ years and $3$ months $=\num{2,25}$ years. Price: $395(1+t)^{\num{2,25}}$. Keeping the exact value of $1+t$ in memory: $395\times\left(\dfrac{260}{420}\right)^{\num{2,25}/\num{4,5}}=395\times\left(\dfrac{260}{420}\right)^{\num{0,5}}\approx395\times\num{0,7868}\approx\num{310,78}$. The price would be about $311$~€.
+\item We solve $395(1+t')^{\num{2,25}}=300$, i.e. $(1+t')^{\num{2,25}}=\dfrac{300}{395}\approx\num{0,7595}$, so $1+t'=\left(\dfrac{300}{395}\right)^{1/\num{2,25}}\approx\num{0,8849}$ and $t'\approx-\pc{11,5}$. A decrease of about $\pc{11,5}$ per year would be needed.
 \end{enumerate}
-Remark: using a value of $t$ rounded too early slightly changes the results (for example $395\times0.899^{2.25}\approx310.85$); keep the value in memory.
+Remark: using a value of $t$ rounded too early slightly changes the results (for example $395\times\num{0,899}^{\num{2,25}}\approx\num{310,85}$); keep the value in memory.
 }{4}
 
 \mxexdef{21}{Using a formula $\log(N)/\log(2)$}{%
@@ -151,26 +151,26 @@ g=\frac{\log\!\left(\dfrac{N}{N_0}\right)}{\log(2)}.
 \]
 For example, going from $1$ to $8$ cells corresponds to $g=\dfrac{\log(8)}{\log(2)}=3$ generations.
 \begin{enumerate}
-\item A culture goes from $1\,000$ to $64\,000$ cells. How many generations have elapsed?
-\item Another culture goes from $500$ to $128\,000$ cells. Same question.
-\item A culture of $1\,000$ cells develops for $9.5$ generations. About how many cells does it contain?
+\item A culture goes from $\num{1000}$ to $\num{64000}$ cells. How many generations have elapsed?
+\item Another culture goes from $500$ to $\num{128000}$ cells. Same question.
+\item A culture of $\num{1000}$ cells develops for $\num{9,5}$ generations. About how many cells does it contain?
 \item Starting from a single cell, how many cells are obtained after $20$ generations?
-\item A laboratory starts from $1\,000$ cells and wants to obtain $1\,000\,000\,000$. How many generations are needed? Given that one generation lasts $30$ minutes, how much time should be planned?
+\item A laboratory starts from $\num{1000}$ cells and wants to obtain $\num{1000000000}$. How many generations are needed? Given that one generation lasts $30$ minutes, how much time should be planned?
 \end{enumerate}
 }{%
 \begin{enumerate}
 \item $\dfrac{N}{N_0}=64=2^6$, so $g=\dfrac{\log(2^6)}{\log(2)}=\dfrac{6\log(2)}{\log(2)}=6$ generations.
-\item $\dfrac{N}{N_0}=\dfrac{128\,000}{500}=256=2^8$, so $g=8$ generations.
-\item $g=9.5$ gives $\log\!\left(\dfrac{N}{1\,000}\right)=9.5\log(2)$, so $\dfrac{N}{1\,000}=10^{9.5\log(2)}=2^{9.5}\approx724.08$. Thus $N\approx724\,000$ cells.
-\item $N=2^{20}=1\,048\,576$ cells, i.e. about one million.
-\item $\dfrac{N}{N_0}=10^6$, so $g=\dfrac{\log(10^6)}{\log(2)}=\dfrac{6}{\log(2)}\approx19.93$: $20$ complete generations are needed. Time: $20\times30=600$ minutes, i.e. about $10$ hours.
+\item $\dfrac{N}{N_0}=\dfrac{\num{128000}}{500}=256=2^8$, so $g=8$ generations.
+\item $g=\num{9,5}$ gives $\log\!\left(\dfrac{N}{\num{1000}}\right)=\num{9,5}\log(2)$, so $\dfrac{N}{\num{1000}}=10^{\num{9,5}\log(2)}=2^{\num{9,5}}\approx\num{724,08}$. Thus $N\approx\num{724000}$ cells.
+\item $N=2^{20}=\num{1048576}$ cells, i.e. about one million.
+\item $\dfrac{N}{N_0}=10^6$, so $g=\dfrac{\log(10^6)}{\log(2)}=\dfrac{6}{\log(2)}\approx\num{19,93}$: $20$ complete generations are needed. Time: $20\times30=600$ minutes, i.e. about $10$ hours.
 \end{enumerate}
 }{5}
 
 \mxexdef{22}{Number of digits of an integer}{%
 We look for a method to find the number of digits of a natural number $N\geqslant1$ without writing it out in full. The integer part of a real number $y\geqslant0$ is the greatest integer less than or equal to $y$; it is denoted $E(y)$.
 \begin{enumerate}
-\item Let $N=4\,718$.
+\item Let $N=\num{4718}$.
 \begin{enumerate}[label=\alph*.]
 \item Bound $N$ between two consecutive powers of $10$. Deduce bounds for $\log(N)$ between two consecutive integers.
 \item Compare $E(\log N)$ with the number of digits of $N$.
@@ -180,7 +180,7 @@ We look for a method to find the number of digits of a natural number $N\geqslan
 \item Bound $N$ between two consecutive powers of $10$, then $\log(N)$ between two consecutive integers.
 \item What is $E(\log N)$?
 \end{enumerate}
-\item State a rule giving the number of digits of $N$ from $\log(N)$. Test it on $N=1\,000$.
+\item State a rule giving the number of digits of $N$ from $\log(N)$. Test it on $N=\num{1000}$.
 \item Use this rule to find the number of digits of: a. $3^{100}$; b. $2^{64}$; c. $365\times10^{15}$.
 \item A password is made of $12$ characters, each chosen from $62$ symbols ($26$ lower-case letters, $26$ upper-case letters, $10$ digits). There are $62^{12}$ possible passwords. How many digits does this number have?
 \end{enumerate}
@@ -188,7 +188,7 @@ We look for a method to find the number of digits of a natural number $N\geqslan
 \begin{enumerate}
 \item
 \begin{enumerate}[label=\alph*.]
-\item $10^3\leqslant4\,718<10^4$. Since $\log$ is strictly increasing, $3\leqslant\log(4\,718)<4$ (we find $\log(4\,718)\approx3.674$).
+\item $10^3\leqslant\num{4718}<10^4$. Since $\log$ is strictly increasing, $3\leqslant\log(\num{4718})<4$ (we find $\log(\num{4718})\approx\num{3,674}$).
 \item $E(\log N)=3$ and $N$ has $4$ digits: number of digits $=E(\log N)+1$.
 \end{enumerate}
 \item
@@ -196,11 +196,11 @@ We look for a method to find the number of digits of a natural number $N\geqslan
 \item The smallest $15$-digit integer is $10^{14}$ and the smallest $16$-digit integer is $10^{15}$: $10^{14}\leqslant N<10^{15}$, so $14\leqslant\log(N)<15$.
 \item $E(\log N)=14$, and $14+1=15$ digits.
 \end{enumerate}
-\item If $N$ has $k$ digits, $10^{k-1}\leqslant N<10^k$, so $k-1\leqslant\log(N)<k$: $E(\log N)=k-1$. Rule: \emph{the number of digits of $N$ is $E(\log N)+1$}. For $N=1\,000$: $\log(1\,000)=3$, $E(3)+1=4$ digits, which is correct.
-\item a. $\log(3^{100})=100\log(3)\approx47.71$: $47+1=48$ digits.\\
-b. $\log(2^{64})=64\log(2)\approx19.27$: $20$ digits (indeed $2^{64}=18\,446\,744\,073\,709\,551\,616$).\\
-c. $\log(365\times10^{15})=\log(365)+15\approx17.56$: $18$ digits.
-\item $\log(62^{12})=12\log(62)\approx21.51$: $62^{12}$ is written with $22$ digits (about $3.2\times10^{21}$ passwords).
+\item If $N$ has $k$ digits, $10^{k-1}\leqslant N<10^k$, so $k-1\leqslant\log(N)<k$: $E(\log N)=k-1$. Rule: \emph{the number of digits of $N$ is $E(\log N)+1$}. For $N=\num{1000}$: $\log(\num{1000})=3$, $E(3)+1=4$ digits, which is correct.
+\item a. $\log(3^{100})=100\log(3)\approx\num{47,71}$: $47+1=48$ digits.\\
+b. $\log(2^{64})=64\log(2)\approx\num{19,27}$: $20$ digits (indeed $2^{64}=\num{18446744073709551616}$).\\
+c. $\log(365\times10^{15})=\log(365)+15\approx\num{17,56}$: $18$ digits.
+\item $\log(62^{12})=12\log(62)\approx\num{21,51}$: $62^{12}$ is written with $22$ digits (about $\num{3,2}\times10^{21}$ passwords).
 \end{enumerate}
 }{6}
 
@@ -216,7 +216,7 @@ $f(x)=-\dfrac{2}{x}$ and $g(x)=1+\dfrac{3}{x}$.
 \begin{center}\small
 \begin{tabular}{|c|*{10}{c|}}
 \hline
-$x$ & $-4$ & $-3$ & $-2$ & $-1$ & $-0.5$ & $0.5$ & $1$ & $2$ & $3$ & $4$\\
+$x$ & $-4$ & $-3$ & $-2$ & $-1$ & $-\num{0,5}$ & $\num{0,5}$ & $1$ & $2$ & $3$ & $4$\\
 \hline
 $f(x)$ & & & & & & & & & & \\
 \hline
@@ -236,16 +236,16 @@ $g(x)$ & & & & & & & & & & \\
 \end{enumerate}
 }{%
 \begin{enumerate}
-\item Computing $\dfrac2x$ or $\dfrac3x$ requires dividing by $x$; division by $0$ is impossible. The domain is $\R^{*}=]-\infty;0[\cup]0;+\infty[$.
+\item Computing $\dfrac2x$ or $\dfrac3x$ requires dividing by $x$; division by $0$ is impossible. The domain is $\R^{*}=\intoo{-\infty}{0}\cup\intoo{0}{+\infty}$.
 \item
 \begin{center}\small
 \begin{tabular}{|c|*{10}{c|}}
 \hline
-$x$ & $-4$ & $-3$ & $-2$ & $-1$ & $-0.5$ & $0.5$ & $1$ & $2$ & $3$ & $4$\\
+$x$ & $-4$ & $-3$ & $-2$ & $-1$ & $-\num{0,5}$ & $\num{0,5}$ & $1$ & $2$ & $3$ & $4$\\
 \hline
-$f(x)$ & $0.5$ & $0.67$ & $1$ & $2$ & $4$ & $-4$ & $-2$ & $-1$ & $-0.67$ & $-0.5$\\
+$f(x)$ & $\num{0,5}$ & $\num{0,67}$ & $1$ & $2$ & $4$ & $-4$ & $-2$ & $-1$ & $-\num{0,67}$ & $-\num{0,5}$\\
 \hline
-$g(x)$ & $0.25$ & $0$ & $-0.5$ & $-2$ & $-5$ & $7$ & $4$ & $2.5$ & $2$ & $1.75$\\
+$g(x)$ & $\num{0,25}$ & $0$ & $-\num{0,5}$ & $-2$ & $-5$ & $7$ & $4$ & $\num{2,5}$ & $2$ & $\num{1,75}$\\
 \hline
 \end{tabular}
 \end{center}
@@ -264,15 +264,15 @@ $g(x)$ & $0.25$ & $0$ & $-0.5$ & $-2$ & $-5$ & $7$ & $4$ & $2.5$ & $2$ & $1.75$\
 \end{axis}
 \end{tikzpicture}
 \end{center}
-\item $f(-x)=-\dfrac{2}{-x}=\dfrac2x=-f(x)$. The points with coordinates $(x;f(x))$ and $(-x;-f(x))$ are symmetric about the origin: $\mathcal{C}_f$ is symmetric about the origin $O$. Asymptotes: for $\mathcal{C}_f$, the lines with equations $x=0$ and $y=0$; for $\mathcal{C}_g$, the lines with equations $x=0$ and $y=1$ (the curve of $g$ is symmetric about the point $(0;1)$, since $g(-x)+g(x)=2$).
+\item $f(-x)=-\dfrac{2}{-x}=\dfrac2x=-f(x)$. The points with coordinates $\pt{x;f(x)}$ and $\pt{-x;-f(x)}$ are symmetric about the origin: $\mathcal{C}_f$ is symmetric about the origin $O$. Asymptotes: for $\mathcal{C}_f$, the lines with equations $x=0$ and $y=0$; for $\mathcal{C}_g$, the lines with equations $x=0$ and $y=1$ (the curve of $g$ is symmetric about the point $\pt{0;1}$, since $g(-x)+g(x)=2$).
 \end{enumerate}
 }{5}
 
 \mxexdef{24}{End behaviour and asymptotes}{%
 Let $h$ be the function defined on $\R^{*}$ by $h(x)=-1+\dfrac{5}{x}$.
 \begin{enumerate}
-\item Compute $h(x)$ for $x\in\{-10\,000;-1\,000;-100;100;1\,000;10\,000\}$. What can be conjectured about $h(x)$ when $x$ becomes very large in absolute value? Which asymptote can be deduced?
-\item Compute $h(x)$ for $x\in\{-0.1;-0.01;-0.001;0.001;0.01;0.1\}$. Describe the behaviour of $h(x)$ when $x$ gets close to $0$, first through negative values, then through positive values. Which asymptote can be deduced?
+\item Compute $h(x)$ for $x\in\ens{-\num{10000};-\num{1000};-100;100;\num{1000};\num{10000}}$. What can be conjectured about $h(x)$ when $x$ becomes very large in absolute value? Which asymptote can be deduced?
+\item Compute $h(x)$ for $x\in\ens{-\num{0,1};-\num{0,01};-\num{0,001};\num{0,001};\num{0,01};\num{0,1}}$. Describe the behaviour of $h(x)$ when $x$ gets close to $0$, first through negative values, then through positive values. Which asymptote can be deduced?
 \item Compute $h(-5)$, $h(-1)$, $h(1)$ and $h(5)$, then sketch the curve of $h$ and its asymptotes on the grid below.
 \begin{center}
 \begin{tikzpicture}
@@ -289,8 +289,8 @@ Let $h$ be the function defined on $\R^{*}$ by $h(x)=-1+\dfrac{5}{x}$.
 \end{enumerate}
 }{%
 \begin{enumerate}
-\item $h(-10\,000)=-1.000\,5$; $h(-1\,000)=-1.005$; $h(-100)=-1.05$; $h(100)=-0.95$; $h(1\,000)=-0.995$; $h(10\,000)=-0.999\,5$. When $|x|$ becomes very large, $\dfrac5x$ gets close to $0$, so $h(x)$ gets close to $-1$ (from below at $-\infty$, from above at $+\infty$). The line with equation $y=-1$ is a horizontal asymptote.
-\item $h(-0.1)=-51$; $h(-0.01)=-501$; $h(-0.001)=-5\,001$; $h(0.001)=4\,999$; $h(0.01)=499$; $h(0.1)=49$. When $x$ gets close to $0$ through negative values, $h(x)$ is negative and as large as we like in absolute value ($h(x)\to-\infty$); through positive values, $h(x)\to+\infty$. The line with equation $x=0$ is a vertical asymptote.
+\item $h(-\num{10000})=-\num{1,000}\,5$; $h(-\num{1000})=-\num{1,005}$; $h(-100)=-\num{1,05}$; $h(100)=-\num{0,95}$; $h(\num{1000})=-\num{0,995}$; $h(\num{10000})=-\num{0,999}\,5$. When $|x|$ becomes very large, $\dfrac5x$ gets close to $0$, so $h(x)$ gets close to $-1$ (from below at $-\infty$, from above at $+\infty$). The line with equation $y=-1$ is a horizontal asymptote.
+\item $h(-\num{0,1})=-51$; $h(-\num{0,01})=-501$; $h(-\num{0,001})=-\num{5001}$; $h(\num{0,001})=\num{4999}$; $h(\num{0,01})=499$; $h(\num{0,1})=49$. When $x$ gets close to $0$ through negative values, $h(x)$ is negative and as large as we like in absolute value ($h(x)\to-\infty$); through positive values, $h(x)\to+\infty$. The line with equation $x=0$ is a vertical asymptote.
 \item $h(-5)=-2$, $h(-1)=-6$, $h(1)=4$, $h(5)=0$.
 \begin{center}
 \begin{tikzpicture}
@@ -363,7 +363,7 @@ f(x) & & \nearrow & -14 & \searrow & \| & \searrow & 10 & \nearrow & \\ \hline
 \end{array}
 \]
 $f$ is increasing on $\left]-\infty;-\dfrac23\right]$, decreasing on $\left[-\dfrac23;0\right[$ and on $\left]0;\dfrac23\right]$, increasing on $\left[\dfrac23;+\infty\right[$.
-\item $-14<10$: the local maximum (reached at $-\dfrac23$, on $]-\infty;0[$) is less than the local minimum (reached at $\dfrac23$, on $]0;+\infty[$). This is not a contradiction: they are local extrema on two intervals separated by the forbidden value $0$, where the curve “jumps” (vertical asymptote).
+\item $-14<10$: the local maximum (reached at $-\dfrac23$, on $\intoo{-\infty}{0}$) is less than the local minimum (reached at $\dfrac23$, on $\intoo{0}{+\infty}$). This is not a contradiction: they are local extrema on two intervals separated by the forbidden value $0$, where the curve “jumps” (vertical asymptote).
 \end{enumerate}
 }{4}
 
@@ -378,7 +378,7 @@ Let $h$ be the function defined on $\R^{*}$ by $h(x)=2x-3-\dfrac{5}{x}$.
 }{%
 \begin{enumerate}
 \item $h'(x)=2-\left(-\dfrac{5}{x^2}\right)=2+\dfrac{5}{x^2}=\dfrac{2x^2+5}{x^2}$.
-\item For $x\neq0$: $2x^2+5\geqslant5>0$ and $x^2>0$, so $h'(x)>0$. The function $h$ is strictly increasing on $]-\infty;0[$ and strictly increasing on $]0;+\infty[$.
+\item For $x\neq0$: $2x^2+5\geqslant5>0$ and $x^2>0$, so $h'(x)>0$. The function $h$ is strictly increasing on $\intoo{-\infty}{0}$ and strictly increasing on $\intoo{0}{+\infty}$.
 \[
 \begin{array}{|c|ccccc|}
 \hline
@@ -399,7 +399,7 @@ x & & - & & - & 0 & + & & + & \\ \hline
 h(x) & & - & 0 & + & \| & - & 0 & + & \\ \hline
 \end{array}
 \]
-The solution set of $h(x)\geqslant0$ is $[-1;0[\cup\left[\dfrac52;+\infty\right[$ ($0$ is excluded as a forbidden value). Check: $h(-0.5)=6>0$, $h(1)=-6<0$, $h(3)=\dfrac43>0$.
+The solution set of $h(x)\geqslant0$ is $\intfo{-1}{0}\cup\left[\dfrac52;+\infty\right[$ ($0$ is excluded as a forbidden value). Check: $h(-\num{0,5})=6>0$, $h(1)=-6<0$, $h(3)=\dfrac43>0$.
 \end{enumerate}
 }{5}
 
@@ -408,14 +408,14 @@ Let $f$ be the reciprocal function, defined on $\R^{*}$ by $f(x)=\dfrac1x$.
 \begin{enumerate}
 \item Let $h$ be a non-zero real number, with $h\neq-2$. Show that the rate of change of $f$ between $2$ and $2+h$ is
 $\dfrac{f(2+h)-f(2)}{h}=-\dfrac{1}{2(2+h)}$. Letting $h$ tend to $0$, deduce $f'(2)$.
-\item We admit that, for every non-zero real $x$, $f'(x)=-\dfrac1{x^2}$. Check consistency with question 1, then compute $f'(-1)$ and $f'(0.5)$.
+\item We admit that, for every non-zero real $x$, $f'(x)=-\dfrac1{x^2}$. Check consistency with question 1, then compute $f'(-1)$ and $f'(\num{0,5})$.
 \item Study the sign of $f'(x)$ and draw the table of variations of $f$.
 \item A student notices that $-2<3$ and $f(-2)<f(3)$, and claims that this contradicts the fact that $f$ is decreasing. What should we answer?
 \end{enumerate}
 }{%
 \begin{enumerate}
 \item $f(2+h)-f(2)=\dfrac1{2+h}-\dfrac12=\dfrac{2-(2+h)}{2(2+h)}=\dfrac{-h}{2(2+h)}$. Dividing by $h\neq0$: $\dfrac{f(2+h)-f(2)}{h}=-\dfrac1{2(2+h)}$. When $h$ tends to $0$, this rate tends to $-\dfrac1{2\times2}=-\dfrac14$: $f'(2)=-\dfrac14$.
-\item $-\dfrac1{2^2}=-\dfrac14$: consistent. $f'(-1)=-\dfrac1{(-1)^2}=-1$ and $f'(0.5)=-\dfrac1{0.25}=-4$ (slopes of the tangents at these points).
+\item $-\dfrac1{2^2}=-\dfrac14$: consistent. $f'(-1)=-\dfrac1{(-1)^2}=-1$ and $f'(\num{0,5})=-\dfrac1{\num{0,25}}=-4$ (slopes of the tangents at these points).
 \item For $x\neq0$, $x^2>0$, so $f'(x)=-\dfrac1{x^2}<0$.
 \[
 \begin{array}{|c|ccccc|}
@@ -425,13 +425,13 @@ f'(x) & & - & \| & - & \\ \hline
 f(x) & & \searrow & \| & \searrow & \\ \hline
 \end{array}
 \]
-$f$ is strictly decreasing on $]-\infty;0[$ and strictly decreasing on $]0;+\infty[$.
-\item $f(-2)=-0.5$ and $f(3)\approx0.33$: indeed $f(-2)<f(3)$. There is no contradiction: $-2$ and $3$ are not in the same interval. The reciprocal function is decreasing on each interval separately, not on the whole of $\R^{*}$; images can be compared using the direction of variation only for two real numbers in the same interval.
+$f$ is strictly decreasing on $\intoo{-\infty}{0}$ and strictly decreasing on $\intoo{0}{+\infty}$.
+\item $f(-2)=-\num{0,5}$ and $f(3)\approx\num{0,33}$: indeed $f(-2)<f(3)$. There is no contradiction: $-2$ and $3$ are not in the same interval. The reciprocal function is decreasing on each interval separately, not on the whole of $\R^{*}$; images can be compared using the direction of variation only for two real numbers in the same interval.
 \end{enumerate}
 }{4}
 
 \mxexdef{29}{Reading an average cost from a graph}{%
-A company assembles between $10$ and $70$ electric bicycles per month. For $x$ bicycles assembled, let $C(x)$ be the average unit production cost, in euros. The curve of the function $C$ on $[10;70]$ is given below.
+A company assembles between $10$ and $70$ electric bicycles per month. For $x$ bicycles assembled, let $C(x)$ be the average unit production cost, in euros. The curve of the function $C$ on $\intff{10}{70}$ is given below.
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[width=.85\linewidth,height=7.5cm,xmin=10,xmax=70,ymin=650,ymax=1050,
@@ -445,41 +445,41 @@ A company assembles between $10$ and $70$ electric bicycles per month. For $x$ b
 \item Read the average unit cost when the company assembles $15$ bicycles, then $50$ bicycles.
 \item For which production levels is the average unit cost equal to $800$~€?
 \item What is the minimum average unit cost? For which production level is it reached?
-\item We admit that $C(x)=8x+200+\dfrac{7\,200}{x}$. Compute $C'(x)$, check that $C'(x)=\dfrac{8(x-30)(x+30)}{x^2}$ and confirm the answer to question 3 by calculation.
+\item We admit that $C(x)=8x+200+\dfrac{\num{7200}}{x}$. Compute $C'(x)$, check that $C'(x)=\dfrac{8(x-30)(x+30)}{x^2}$ and confirm the answer to question 3 by calculation.
 \end{enumerate}
 }{%
 Require reading lines (dotted) and units; a graphical reading is approximate.
 \begin{enumerate}
 \item We read $C(15)\approx800$~€ and $C(50)\approx745$~€ (exact value with the formula of question 4: $744$~€).
 \item Draw the line with equation $y=800$: it meets the curve at the points with abscissas $15$ and $60$. The average cost is $800$~€ for $15$ or $60$ bicycles.
-\item The lowest point of the curve has coordinates about $(30;680)$: minimum cost of about $680$~€ per bicycle, for $30$ bicycles per month.
-\item $C'(x)=8-\dfrac{7\,200}{x^2}=\dfrac{8x^2-7\,200}{x^2}=\dfrac{8(x^2-900)}{x^2}=\dfrac{8(x-30)(x+30)}{x^2}$. On $[10;70]$, $x+30>0$ and $x^2>0$: $C'(x)$ has the sign of $x-30$, negative on $[10;30[$ and positive on $]30;70]$. $C$ is decreasing on $[10;30]$ then increasing on $[30;70]$; its minimum is $C(30)=240+200+240=680$~€. Checks: $C(15)=120+200+480=800$ and $C(60)=480+200+120=800$.
+\item The lowest point of the curve has coordinates about $\pt{30;680}$: minimum cost of about $680$~€ per bicycle, for $30$ bicycles per month.
+\item $C'(x)=8-\dfrac{\num{7200}}{x^2}=\dfrac{8x^2-\num{7200}}{x^2}=\dfrac{8(x^2-900)}{x^2}=\dfrac{8(x-30)(x+30)}{x^2}$. On $\intff{10}{70}$, $x+30>0$ and $x^2>0$: $C'(x)$ has the sign of $x-30$, negative on $\intfo{10}{30}$ and positive on $\intof{30}{70}$. $C$ is decreasing on $\intff{10}{30}$ then increasing on $\intff{30}{70}$; its minimum is $C(30)=240+200+240=680$~€. Checks: $C(15)=120+200+480=800$ and $C(60)=480+200+120=800$.
 \end{enumerate}
 }{5}
 
 \mxexdef{30}{Minimising an average cost with the derivative}{%
-A composting site produces $x$ tonnes of compost each week, with $x\in[2;25]$. The total weekly production cost, in euros, is modelled by $C(x)=2x^2+40x+288$.
+A composting site produces $x$ tonnes of compost each week, with $x\in\intff{2}{25}$. The total weekly production cost, in euros, is modelled by $C(x)=2x^2+40x+288$.
 Let $f$ be the function giving the average production cost of one tonne: $f(x)=\dfrac{C(x)}{x}$.
 \begin{enumerate}
-\item Show that, for every $x\in[2;25]$, $f(x)=2x+40+\dfrac{288}{x}$.
-\item Compute $f'(x)$ and show that, for every $x\in[2;25]$, $f'(x)=\dfrac{2(x-12)(x+12)}{x^2}$.
-\item Study the sign of $f'(x)$ on $[2;25]$ and draw the table of variations of $f$ (including the values at the endpoints).
+\item Show that, for every $x\in\intff{2}{25}$, $f(x)=2x+40+\dfrac{288}{x}$.
+\item Compute $f'(x)$ and show that, for every $x\in\intff{2}{25}$, $f'(x)=\dfrac{2(x-12)(x+12)}{x^2}$.
+\item Study the sign of $f'(x)$ on $\intff{2}{25}$ and draw the table of variations of $f$ (including the values at the endpoints).
 \item What is the minimum average cost of one tonne of compost? For which weekly production is it reached? What is the total cost of the week then?
 \end{enumerate}
 }{%
 \begin{enumerate}
-\item For $x\in[2;25]$, $x\neq0$: $f(x)=\dfrac{2x^2}{x}+\dfrac{40x}{x}+\dfrac{288}{x}=2x+40+\dfrac{288}{x}$.
+\item For $x\in\intff{2}{25}$, $x\neq0$: $f(x)=\dfrac{2x^2}{x}+\dfrac{40x}{x}+\dfrac{288}{x}=2x+40+\dfrac{288}{x}$.
 \item $f'(x)=2-\dfrac{288}{x^2}=\dfrac{2x^2-288}{x^2}=\dfrac{2(x^2-144)}{x^2}=\dfrac{2(x-12)(x+12)}{x^2}$.
-\item On $[2;25]$: $2>0$, $x+12>0$ and $x^2>0$, so $f'(x)$ has the sign of $x-12$: $f'(x)<0$ on $[2;12[$, $f'(12)=0$, $f'(x)>0$ on $]12;25]$.
-$f(2)=4+40+144=188$; $f(12)=24+40+24=88$; $f(25)=50+40+11.52=101.52$.
+\item On $\intff{2}{25}$: $2>0$, $x+12>0$ and $x^2>0$, so $f'(x)$ has the sign of $x-12$: $f'(x)<0$ on $\intfo{2}{12}$, $f'(12)=0$, $f'(x)>0$ on $\intof{12}{25}$.
+$f(2)=4+40+144=188$; $f(12)=24+40+24=88$; $f(25)=50+40+\num{11,52}=\num{101,52}$.
 \[
 \begin{array}{|c|ccccc|}
 \hline
 x & 2 & & 12 & & 25\\ \hline
 f'(x) & & - & 0 & + & \\ \hline
-f(x) & 188 & \searrow & 88 & \nearrow & 101.52\\ \hline
+f(x) & 188 & \searrow & 88 & \nearrow & \num{101,52}\\ \hline
 \end{array}
 \]
-\item The minimum average cost is $88$~€ per tonne, reached for a production of $12$ tonnes per week. The total cost is then $C(12)=288+480+288=1\,056$~€ (check: $12\times88=1\,056$).
+\item The minimum average cost is $88$~€ per tonne, reached for a production of $12$ tonnes per week. The total cost is then $C(12)=288+480+288=\num{1056}$~€ (check: $12\times88=\num{1056}$).
 \end{enumerate}
 }{4}

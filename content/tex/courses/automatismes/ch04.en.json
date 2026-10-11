@@ -19,6 +19,24 @@
    "status": "aligned",
    "order": 2
   },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 3
+  },
+  "974683f275db": {
+   "fr": "Résoudre [[m1]] puis [[m2]].",
+   "en": "Solve [[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 5
+  },
   "0e39862e0f8e": {
    "fr": "Ensemble de définition de [[m1]]\\,?",
    "en": "Domain of definition of [[m1]]?",
@@ -30,6 +48,12 @@
    "en": "Exclude the value that makes the denominator zero: [[m1]].",
    "status": "aligned",
    "order": 7
+  },
+  "8335706ea19c": {
+   "fr": "Cœur + · QCM",
+   "en": "Core + · MCQ",
+   "status": "aligned",
+   "order": 8
   },
   "054aeffcc9a3": {
    "fr": "L'ensemble de définition de [[m1]] est~:",
@@ -79,27 +103,45 @@
    "status": "aligned",
    "order": 16
   },
+  "e934a98b3b88": {
+   "fr": "def f(x):\\\\",
+   "en": "def f(x):\\\\",
+   "status": "aligned",
+   "order": 17
+  },
   "6bd0c618917f": {
    "fr": "return 3*x - 2",
    "en": "return 3*x - 2",
    "status": "aligned",
-   "order": 20
+   "order": 18
   },
   "57c15809e838": {
    "fr": "lun.~7~déc.~2026",
    "en": "Mon~7~Dec.~2026",
    "status": "aligned",
-   "order": 21
+   "order": 19
   },
   "2486daabf7e9": {
    "fr": "Courbe d'équation [[m1]]\\,; images et antécédents",
    "en": "Curve with equation [[m1]]; images and preimages",
    "status": "aligned",
-   "order": 22
+   "order": 20
   },
   "ad9dfb93fb3d": {
    "fr": "[[m1]]. Calculer [[m2]], [[m3]] et [[m4]].",
    "en": "[[m1]]. Calculate [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "516198443612": {
+   "fr": "Cœur · Graphique",
+   "en": "Core · Graph",
+   "status": "aligned",
+   "order": 23
+  },
+  "e26b638f96dc": {
+   "fr": "Courbe de [[m1]]~:",
+   "en": "Curve of [[m1]]:",
    "status": "aligned",
    "order": 24
   },
@@ -107,65 +149,83 @@
    "fr": "Lire [[m1]] et les antécédents de [[m2]].",
    "en": "Read off [[m1]] and the preimages of [[m2]].",
    "status": "aligned",
-   "order": 27
+   "order": 25
   },
   "34888f437f7f": {
    "fr": "[[m1]]\\,; antécédents de [[m2]]~: [[m3]] et [[m4]].",
    "en": "[[m1]]; preimages of [[m2]]: [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 28
+   "order": 26
   },
   "acd71551048d": {
    "fr": "Expression utilisée pour le tracé~: [[m1]].",
    "en": "Expression used for the plot: [[m1]].",
    "status": "aligned",
-   "order": 29
+   "order": 27
   },
   "83555b56cb87": {
    "fr": "Cœur + · Réflexion",
    "en": "Core + · Thinking",
    "status": "aligned",
-   "order": 30
+   "order": 28
   },
   "dd7a9ddf268a": {
    "fr": "Pour cette fonction, l'équation [[m1]] a-t-elle des solutions\\,?",
    "en": "For this function, does the equation [[m1]] have any solutions?",
    "status": "aligned",
-   "order": 31
+   "order": 29
   },
   "ffa33c319d0a": {
    "fr": "Non~: [[m1]] pour tout [[m2]]\\,; la courbe ne monte pas jusqu'à [[m3]].",
    "en": "No: [[m1]] for all [[m2]]; the curve does not rise as far as [[m3]].",
    "status": "aligned",
-   "order": 32
+   "order": 30
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 31
   },
   "55c968194dfa": {
    "fr": "Urne~: [[m1]] boules rouges, [[m2]] bleues, [[m3]] vertes. Probabilité de tirer une bleue\\,? Une non rouge\\,?",
    "en": "Urn: [[m1]] red balls, [[m2]] blue, [[m3]] green. Probability of drawing a blue one? A non-red one?",
    "status": "aligned",
-   "order": 34
+   "order": 32
+  },
+  "e5b3f9f5b4b2": {
+   "fr": "Fil rouge · Méthode",
+   "en": "Thread · Method",
+   "status": "aligned",
+   "order": 33
   },
   "aed57c0cde67": {
    "fr": "Résoudre dans [[m1]]~: [[m2]].",
    "en": "Solve in [[m1]]: [[m2]].",
    "status": "aligned",
-   "order": 36
+   "order": 34
   },
   "ffccb538560e": {
    "fr": "Piège~: diviser par [[m1]] sans changer le signe du résultat.",
    "en": "Pitfall: dividing by [[m1]] without changing the sign of the result.",
    "status": "aligned",
-   "order": 37
+   "order": 35
   },
   "ce2462d7fd94": {
    "fr": "mar.~8~déc.~2026",
    "en": "Tue~8~Dec.~2026",
    "status": "aligned",
-   "order": 38
+   "order": 36
   },
   "ae4eaeae4fb2": {
    "fr": "Fonctions de référence~: valeur absolue, carré, inverse",
    "en": "Reference functions: absolute value, square, inverse",
+   "status": "aligned",
+   "order": 37
+  },
+  "6a2a13af8eb7": {
+   "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
+   "en": "Calculate [[m1]], [[m2]] and [[m3]].",
    "status": "aligned",
    "order": 39
   },
@@ -173,409 +233,331 @@
    "fr": "Cœur · Tableau",
    "en": "Core · Table",
    "status": "aligned",
-   "order": 42
+   "order": 40
   },
   "548923357c69": {
    "fr": "Compléter pour [[m1]] les valeurs de [[m2]], [[m3]] et [[m4]].",
    "en": "Complete, for [[m1]], the values of [[m2]], [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 43
-  },
-  "8335706ea19c": {
-   "fr": "Cœur + · QCM",
-   "en": "Core + · MCQ",
-   "status": "aligned",
-   "order": 44
+   "order": 41
   },
   "cc68a94867b7": {
    "fr": "Quelle courbe de référence passe par [[m1]], [[m2]], [[m3]] et [[m4]]\\,?",
    "en": "Which reference curve passes through [[m1]], [[m2]], [[m3]] and [[m4]]?",
    "status": "aligned",
-   "order": 45
+   "order": 43
   },
   "534523e555db": {
    "fr": "la droite [[m1]]",
    "en": "the line [[m1]]",
    "status": "aligned",
-   "order": 46
+   "order": 44
   },
   "863ffd7ae923": {
    "fr": "celle de l'inverse",
    "en": "the inverse function",
    "status": "aligned",
-   "order": 47
+   "order": 45
   },
   "a45046629182": {
    "fr": "celle de la valeur absolue",
    "en": "the absolute value function",
    "status": "aligned",
-   "order": 48
+   "order": 46
   },
   "4c0a994dbc7c": {
    "fr": "celle du carré",
    "en": "the square function",
    "status": "aligned",
-   "order": 49
+   "order": 47
   },
   "894a774c4665": {
    "fr": "D.\\ celle du carré",
    "en": "D.\\ the square function",
    "status": "aligned",
-   "order": 50
+   "order": 48
   },
   "25971ef82609": {
    "fr": "La valeur absolue passerait par [[m1]]\\,; l'inverse n'est pas définie en [[m2]]\\,; la droite [[m3]] passe par [[m4]].",
    "en": "The absolute value function would pass through [[m1]]; the inverse function is not defined at [[m2]]; the line [[m3]] passes through [[m4]].",
    "status": "aligned",
-   "order": 51
+   "order": 49
   },
   "64cc430dd519": {
    "fr": "Un objet est agrandi avec le rapport [[m1]]. Que devient une longueur de [[m2]] cm\\,? Par quel nombre l'aire est-elle multipliée\\,?",
    "en": "An object is enlarged with scale factor [[m1]]. What does a length of [[m2]] cm become? By what number is the area multiplied?",
    "status": "aligned",
-   "order": 53
+   "order": 51
   },
   "688d16c54701": {
    "fr": "[[m1]] cm\\,; l'aire est multipliée par [[m2]].",
    "en": "[[m1]] cm; the area is multiplied by [[m2]].",
    "status": "aligned",
-   "order": 54
+   "order": 52
   },
   "188c7146db41": {
    "fr": "Fil rouge · Prouver",
    "en": "Thread · Prove",
    "status": "aligned",
-   "order": 55
+   "order": 53
   },
   "72f41ad347f7": {
    "fr": "Conjecture~: «~la somme de deux entiers consécutifs est impaire~». La démontrer.",
    "en": "Conjecture: ``the sum of two consecutive integers is odd''. Prove it.",
    "status": "aligned",
-   "order": 56
+   "order": 54
   },
   "9747d40b1bd8": {
    "fr": "[[m1]], de la forme [[m2]] avec [[m3]]~: impair.",
    "en": "[[m1]], of the form [[m2]] with [[m3]]: odd.",
    "status": "aligned",
-   "order": 57
+   "order": 55
   },
   "fadd78c17894": {
    "fr": "jeu.~10~déc.~2026",
    "en": "Thu~10~Dec.~2026",
    "status": "aligned",
-   "order": 58
+   "order": 56
   },
   "796ee245173b": {
    "fr": "Racine carrée et cube\\,; signe des fonctions de référence",
    "en": "Square root and cube; sign of reference functions",
    "status": "aligned",
-   "order": 59
-  },
-  "6a2a13af8eb7": {
-   "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
-   "en": "Calculate [[m1]], [[m2]] and [[m3]].",
-   "status": "aligned",
-   "order": 61
-  },
-  "86f6c483637b": {
-   "fr": "Cœur · Méthode",
-   "en": "Core · Method",
-   "status": "aligned",
-   "order": 62
+   "order": 57
   },
   "71accc081869": {
    "fr": "Étudier le signe de [[m1]].",
    "en": "Study the sign of [[m1]].",
    "status": "aligned",
-   "order": 63
+   "order": 61
   },
   "c5ff447113f4": {
    "fr": "[[m1]]\\,; [[m2]] pour [[m3]], [[m4]] pour [[m5]] (pente négative).",
    "en": "[[m1]]; [[m2]] for [[m3]], [[m4]] for [[m5]] (negative gradient).",
    "status": "aligned",
-   "order": 64
+   "order": 62
   },
   "07100f279aae": {
    "fr": "Cœur + · Vrai/faux",
    "en": "Core + · True/false",
    "status": "aligned",
-   "order": 65
+   "order": 63
   },
   "d8ea054952fa": {
    "fr": "Vrai ou faux\\,? Justifier. Pour tout réel [[m1]], [[m2]].",
    "en": "True or false? Justify. For every real number [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 66
+   "order": 64
   },
   "e5272b1774c3": {
    "fr": "Faux. Contre-exemple~: [[m1]]~: [[m2]]. En fait [[m3]].",
    "en": "False. Counter-example: [[m1]]: [[m2]]. In fact [[m3]].",
    "status": "aligned",
-   "order": 67
-  },
-  "1c37077501a9": {
-   "fr": "Retour · Flash",
-   "en": "Review · Quick",
-   "status": "aligned",
-   "order": 68
+   "order": 65
   },
   "c5179908efdf": {
    "fr": "Combien de carrés compose un patron de cube\\,? Une croix (rangée de [[m1]] carrés + [[m2]] carré de part et d'autre) convient-elle\\,?",
    "en": "How many squares make up a net of a cube? Does a cross (a row of [[m1]] squares + [[m2]] square on each side) work?",
    "status": "aligned",
-   "order": 69
+   "order": 67
   },
   "386cf8147f65": {
    "fr": "[[m1]] carrés\\,; oui, la croix se plie en cube.",
    "en": "[[m1]] squares; yes, the cross folds into a cube.",
    "status": "aligned",
-   "order": 70
-  },
-  "f43fec809a12": {
-   "fr": "Combien de faces, sommets et arêtes possède une pyramide à base carrée\\,?",
-   "en": "How many faces, vertices and edges does a square-based pyramid have?",
-   "status": "aligned",
-   "order": 72
-  },
-  "bc13a19892db": {
-   "fr": "[[m1]] faces, [[m2]] sommets, [[m3]] arêtes.",
-   "en": "[[m1]] faces, [[m2]] vertices, [[m3]] edges.",
-   "status": "aligned",
-   "order": 73
-  },
-  "01b85ac62392": {
-   "fr": "lun.~14~déc.~2026",
-   "en": "Mon~14~Dec.~2026",
-   "status": "aligned",
-   "order": 74
-  },
-  "7b02e599fc9b": {
-   "fr": "Résolution graphique et numérique~: [[m1]], [[m2]]",
-   "en": "Graphical and numerical solving: [[m1]], [[m2]]",
-   "status": "aligned",
-   "order": 75
-  },
-  "d06b3555aa4d": {
-   "fr": "[[m1]]\\,; aucune solution réelle ([[m2]]).",
-   "en": "[[m1]]; no real solution ([[m2]]).",
-   "status": "aligned",
-   "order": 78
-  },
-  "e26b638f96dc": {
-   "fr": "Courbe de [[m1]]~:",
-   "en": "Curve of [[m1]]:",
-   "status": "aligned",
-   "order": 80
-  },
-  "6b0ecc061e23": {
-   "fr": "Résoudre graphiquement [[m1]] puis [[m2]].",
-   "en": "Solve graphically [[m1]] then [[m2]].",
-   "status": "aligned",
-   "order": 81
-  },
-  "fa87733b2e53": {
-   "fr": "[[m1]]~: [[m2]] ou [[m3]]\\,; [[m4]]~: [[m5]].",
-   "en": "[[m1]]: [[m2]] or [[m3]]; [[m4]]: [[m5]].",
-   "status": "aligned",
-   "order": 82
-  },
-  "037eb43ec725": {
-   "fr": "Chercher les abscisses des points de la courbe situés sous la droite [[m1]].",
-   "en": "Look for the abscissas of the points of the curve lying below the line [[m1]].",
-   "status": "aligned",
-   "order": 83
-  },
-  "737e1b9ae557": {
-   "fr": "Cœur + · Méthode",
-   "en": "Core + · Method",
-   "status": "aligned",
-   "order": 84
-  },
-  "f74c153c24fe": {
-   "fr": "[[m1]]\\,; [[m2]] ou [[m3]].",
-   "en": "[[m1]]; [[m2]] or [[m3]].",
-   "status": "aligned",
-   "order": 86
-  },
-  "2ee4eb5d7a33": {
-   "fr": "Retour · Piège",
-   "en": "Review · Pitfall",
-   "status": "aligned",
-   "order": 87
-  },
-  "0c79186eb9e4": {
-   "fr": "Calculer [[m1]] puis [[m2]] pour [[m3]].",
-   "en": "Calculate [[m1]] then [[m2]] for [[m3]].",
-   "status": "aligned",
-   "order": 88
-  },
-  "7b8c0189e799": {
-   "fr": "[[m1]] et [[m2]].",
-   "en": "[[m1]] and [[m2]].",
-   "status": "aligned",
-   "order": 89
-  },
-  "e5b3f9f5b4b2": {
-   "fr": "Fil rouge · Méthode",
-   "en": "Thread · Method",
-   "status": "aligned",
-   "order": 90
-  },
-  "93e442411cfe": {
-   "fr": "Dans un triangle [[m1]], [[m2]] et [[m3]] sont les milieux de [[m4]] et [[m5]]. Que démontre-t-on\\,? Quelle propriété cite-t-on\\,?",
-   "en": "In a triangle [[m1]], [[m2]] and [[m3]] are the midpoints of [[m4]] and [[m5]]. What is being proved? Which property is cited?",
-   "status": "aligned",
-   "order": 91
-  },
-  "34e9031c717a": {
-   "fr": "[[m1]] et [[m2]]~: théorème de la droite des milieux.",
-   "en": "[[m1]] and [[m2]]: the midpoint theorem.",
-   "status": "aligned",
-   "order": 92
-  },
-  "0e0c66ee64f8": {
-   "fr": "mar.~15~déc.~2026",
-   "en": "Tue~15~Dec.~2026",
-   "status": "aligned",
-   "order": 93
-  },
-  "e00179e7a176": {
-   "fr": "Résolution de [[m1]] et [[m2]]",
-   "en": "Solving [[m1]] and [[m2]]",
-   "status": "aligned",
-   "order": 94
-  },
-  "bbfeac0129d0": {
-   "fr": "Échauffement · Flash",
-   "en": "Warm-up · Quick",
-   "status": "aligned",
-   "order": 95
-  },
-  "e3bc0dc0e302": {
-   "fr": "Résoudre [[m1]].",
-   "en": "Solve [[m1]].",
-   "status": "aligned",
-   "order": 96
-  },
-  "516198443612": {
-   "fr": "Cœur · Graphique",
-   "en": "Core · Graph",
-   "status": "aligned",
-   "order": 97
-  },
-  "84785b5587e5": {
-   "fr": "Courbes de [[m1]] et [[m2]]~:",
-   "en": "Curves of [[m1]] and [[m2]]:",
-   "status": "aligned",
-   "order": 98
-  },
-  "974683f275db": {
-   "fr": "Résoudre [[m1]] puis [[m2]].",
-   "en": "Solve [[m1]] then [[m2]].",
-   "status": "aligned",
-   "order": 99
-  },
-  "fb1e0c1efdb6": {
-   "fr": "[[m1]]~: [[m2]] ou [[m3]]\\,; [[m4]]~: la parabole est au-dessus de la droite pour [[m5]] ou [[m6]].",
-   "en": "[[m1]]: [[m2]] or [[m3]]; [[m4]]: the parabola is above the line for [[m5]] or [[m6]].",
-   "status": "aligned",
-   "order": 100
-  },
-  "f0020b848479": {
-   "fr": "Intervalles~: [[m1]].",
-   "en": "Intervals: [[m1]].",
-   "status": "aligned",
-   "order": 101
-  },
-  "be09bf3f9be3": {
-   "fr": "Cœur + · Lecture de code",
-   "en": "Core + · Code reading",
-   "status": "aligned",
-   "order": 102
-  },
-  "6c565a0af430": {
-   "fr": "Que renvoie [[m1]]\\,? Et [[m2]]\\,?",
-   "en": "What does [[m1]] return? And [[m2]]?",
-   "status": "aligned",
-   "order": 103
-  },
-  "e934a98b3b88": {
-   "fr": "def f(x):\\\\",
-   "en": "def f(x):\\\\",
-   "status": "aligned",
-   "order": 105
-  },
-  "4d34ca99381f": {
-   "fr": "return x*x\\\\",
-   "en": "return x*x\\\\",
-   "status": "aligned",
-   "order": 107
-  },
-  "848501079fa5": {
-   "fr": "0.0em",
-   "en": "0.0em",
-   "status": "aligned",
-   "order": 108
-  },
-  "46354964af63": {
-   "fr": "def g(x):\\\\",
-   "en": "def g(x):\\\\",
-   "status": "aligned",
-   "order": 109
-  },
-  "1225774c50f5": {
-   "fr": "2.4em",
-   "en": "2.4em",
-   "status": "aligned",
-   "order": 110
-  },
-  "5beda827ea00": {
-   "fr": "return 2*x + 3",
-   "en": "return 2*x + 3",
-   "status": "aligned",
-   "order": 111
-  },
-  "3a9fafa534d7": {
-   "fr": "[[m1]] ([[m2]]) puis [[m3]] ([[m4]])~: [[m5]] est solution de [[m6]], pas [[m7]].",
-   "en": "[[m1]] ([[m2]]) then [[m3]] ([[m4]]): [[m5]] is a solution of [[m6]], [[m7]] is not.",
-   "status": "aligned",
-   "order": 112
-  },
-  "d5efe8c7e51d": {
-   "fr": "Retour · Problème",
-   "en": "Review · Problem",
-   "status": "aligned",
-   "order": 113
-  },
-  "92555a41a81b": {
-   "fr": "Forfait A~: [[m1]] Ar fixes + [[m2]] Ar par séance. Forfait B~: [[m3]] Ar par séance. À partir de combien de séances A est-il moins cher\\,?",
-   "en": "Plan A: [[m1]] Ar fixed + [[m2]] Ar per session. Plan B: [[m3]] Ar per session. From how many sessions is A cheaper?",
-   "status": "aligned",
-   "order": 114
-  },
-  "0712d8adc9cf": {
-   "fr": "[[m1]]~: à partir de [[m2]] séances ([[m3]]~: égalité à [[m4]] Ar).",
-   "en": "[[m1]]: from [[m2]] sessions ([[m3]]: equal at [[m4]] Ar).",
-   "status": "aligned",
-   "order": 115
+   "order": 68
   },
   "968069c57071": {
    "fr": "Fil rouge · Flash",
    "en": "Thread · Quick",
    "status": "aligned",
-   "order": 116
+   "order": 69
+  },
+  "f43fec809a12": {
+   "fr": "Combien de faces, sommets et arêtes possède une pyramide à base carrée\\,?",
+   "en": "How many faces, vertices and edges does a square-based pyramid have?",
+   "status": "aligned",
+   "order": 70
+  },
+  "bc13a19892db": {
+   "fr": "[[m1]] faces, [[m2]] sommets, [[m3]] arêtes.",
+   "en": "[[m1]] faces, [[m2]] vertices, [[m3]] edges.",
+   "status": "aligned",
+   "order": 71
+  },
+  "01b85ac62392": {
+   "fr": "lun.~14~déc.~2026",
+   "en": "Mon~14~Dec.~2026",
+   "status": "aligned",
+   "order": 72
+  },
+  "7b02e599fc9b": {
+   "fr": "Résolution graphique et numérique~: [[m1]], [[m2]]",
+   "en": "Graphical and numerical solving: [[m1]], [[m2]]",
+   "status": "aligned",
+   "order": 73
+  },
+  "d06b3555aa4d": {
+   "fr": "[[m1]]\\,; aucune solution réelle ([[m2]]).",
+   "en": "[[m1]]; no real solution ([[m2]]).",
+   "status": "aligned",
+   "order": 76
+  },
+  "6b0ecc061e23": {
+   "fr": "Résoudre graphiquement [[m1]] puis [[m2]].",
+   "en": "Solve graphically [[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "fa87733b2e53": {
+   "fr": "[[m1]]~: [[m2]] ou [[m3]]\\,; [[m4]]~: [[m5]].",
+   "en": "[[m1]]: [[m2]] or [[m3]]; [[m4]]: [[m5]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "037eb43ec725": {
+   "fr": "Chercher les abscisses des points de la courbe situés sous la droite [[m1]].",
+   "en": "Look for the abscissas of the points of the curve lying below the line [[m1]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "737e1b9ae557": {
+   "fr": "Cœur + · Méthode",
+   "en": "Core + · Method",
+   "status": "aligned",
+   "order": 82
+  },
+  "f74c153c24fe": {
+   "fr": "[[m1]]\\,; [[m2]] ou [[m3]].",
+   "en": "[[m1]]; [[m2]] or [[m3]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "2ee4eb5d7a33": {
+   "fr": "Retour · Piège",
+   "en": "Review · Pitfall",
+   "status": "aligned",
+   "order": 85
+  },
+  "0c79186eb9e4": {
+   "fr": "Calculer [[m1]] puis [[m2]] pour [[m3]].",
+   "en": "Calculate [[m1]] then [[m2]] for [[m3]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "93e442411cfe": {
+   "fr": "Dans un triangle [[m1]], [[m2]] et [[m3]] sont les milieux de [[m4]] et [[m5]]. Que démontre-t-on\\,? Quelle propriété cite-t-on\\,?",
+   "en": "In a triangle [[m1]], [[m2]] and [[m3]] are the midpoints of [[m4]] and [[m5]]. What is being proved? Which property is cited?",
+   "status": "aligned",
+   "order": 89
+  },
+  "34e9031c717a": {
+   "fr": "[[m1]] et [[m2]]~: théorème de la droite des milieux.",
+   "en": "[[m1]] and [[m2]]: the midpoint theorem.",
+   "status": "aligned",
+   "order": 90
+  },
+  "0e0c66ee64f8": {
+   "fr": "mar.~15~déc.~2026",
+   "en": "Tue~15~Dec.~2026",
+   "status": "aligned",
+   "order": 91
+  },
+  "e00179e7a176": {
+   "fr": "Résolution de [[m1]] et [[m2]]",
+   "en": "Solving [[m1]] and [[m2]]",
+   "status": "aligned",
+   "order": 92
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "84785b5587e5": {
+   "fr": "Courbes de [[m1]] et [[m2]]~:",
+   "en": "Curves of [[m1]] and [[m2]]:",
+   "status": "aligned",
+   "order": 96
+  },
+  "fb1e0c1efdb6": {
+   "fr": "[[m1]]~: [[m2]] ou [[m3]]\\,; [[m4]]~: la parabole est au-dessus de la droite pour [[m5]] ou [[m6]].",
+   "en": "[[m1]]: [[m2]] or [[m3]]; [[m4]]: the parabola is above the line for [[m5]] or [[m6]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "f0020b848479": {
+   "fr": "Intervalles~: [[m1]].",
+   "en": "Intervals: [[m1]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "be09bf3f9be3": {
+   "fr": "Cœur + · Lecture de code",
+   "en": "Core + · Code reading",
+   "status": "aligned",
+   "order": 100
+  },
+  "6c565a0af430": {
+   "fr": "Que renvoie [[m1]]\\,? Et [[m2]]\\,?",
+   "en": "What does [[m1]] return? And [[m2]]?",
+   "status": "aligned",
+   "order": 101
+  },
+  "002516bba93e": {
+   "fr": "return x*x\\\\ def g(x):\\\\",
+   "en": "return x*x\\\\ def g(x):\\\\",
+   "status": "aligned",
+   "order": 103
+  },
+  "5beda827ea00": {
+   "fr": "return 2*x + 3",
+   "en": "return 2*x + 3",
+   "status": "aligned",
+   "order": 104
+  },
+  "3a9fafa534d7": {
+   "fr": "[[m1]] ([[m2]]) puis [[m3]] ([[m4]])~: [[m5]] est solution de [[m6]], pas [[m7]].",
+   "en": "[[m1]] ([[m2]]) then [[m3]] ([[m4]]): [[m5]] is a solution of [[m6]], [[m7]] is not.",
+   "status": "aligned",
+   "order": 105
+  },
+  "d5efe8c7e51d": {
+   "fr": "Retour · Problème",
+   "en": "Review · Problem",
+   "status": "aligned",
+   "order": 106
+  },
+  "92555a41a81b": {
+   "fr": "Forfait A~: [[m1]] Ar fixes + [[m2]] Ar par séance. Forfait B~: [[m3]] Ar par séance. À partir de combien de séances A est-il moins cher\\,?",
+   "en": "Plan A: [[m1]] Ar fixed + [[m2]] Ar per session. Plan B: [[m3]] Ar per session. From how many sessions is A cheaper?",
+   "status": "aligned",
+   "order": 107
+  },
+  "0712d8adc9cf": {
+   "fr": "[[m1]]~: à partir de [[m2]] séances ([[m3]]~: égalité à [[m4]] Ar).",
+   "en": "[[m1]]: from [[m2]] sessions ([[m3]]: equal at [[m4]] Ar).",
+   "status": "aligned",
+   "order": 108
   },
   "02d0c46038a8": {
    "fr": "Calculer les coordonnées du milieu de [[m1]] avec [[m2]] et [[m3]].",
    "en": "Calculate the coordinates of the midpoint of [[m1]] with [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 117
+   "order": 110
   },
   "8ee5a793900e": {
    "fr": "non défini",
    "en": "undefined",
    "status": "aligned",
-   "order": 118
+   "order": 111
   }
  }
 }

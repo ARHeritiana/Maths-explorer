@@ -24,16 +24,16 @@ Le quotient des probabilités de queue est $\frac{(1-p)^{m+n}}{1-p}^{m}=(1-p)^{n
 \end{solution}
 
 \begin{exercise}
-Une réussite a probabilité $0{,}2$ à chaque essai indépendant. Quelle est l’attente moyenne ? Le cinquième essai réussit-il nécessairement ?
+Une réussite a probabilité $\num{0,2}$ à chaque essai indépendant. Quelle est l’attente moyenne ? Le cinquième essai réussit-il nécessairement ?
 \end{exercise}
 \begin{solution}
-$E(T)=5$ essais. Non : chaque essai a toujours probabilité $0{,}2$ de réussir, indépendamment des échecs antérieurs.
+$E(T)=5$ essais. Non : chaque essai a toujours probabilité $\num{0,2}$ de réussir, indépendamment des échecs antérieurs.
 \end{solution}
 
 \begin{problem}[Chercher, justifier, conclure]
 On lance un dé équilibré jusqu’au premier 6, mais on s’arrête dans tous les cas après 10 lancers. Soit N le nombre de lancers réellement effectués. Calculer $P(N=10)$, la probabilité d’avoir obtenu au moins un 6 et E(N). Pour la moyenne, utiliser $E(N)=\sum  P(N>n)$, de $n=0$ à 9.
 \end{problem}
 \begin{solution}
-$N=10$ si les neuf premiers lancers sont des échecs, quel que soit le dixième : $P(N=10)=(\frac{5}{6})^{9}$. La probabilité d’au moins un 6 vaut $1-(\frac{5}{6})^{10}$. Pour $0\leq n\leq 9$, $P(N>n)=(\frac{5}{6})^{n}$, donc $E(N)=6[1-(\frac{5}{6})^{10}]$, soit environ $5{,}031$ lancers. La troncature diminue l’espérance par rapport à 6.
+$N=10$ si les neuf premiers lancers sont des échecs, quel que soit le dixième : $P(N=10)=(\frac{5}{6})^{9}$. La probabilité d’au moins un 6 vaut $1-(\frac{5}{6})^{10}$. Pour $0\leq n\leq 9$, $P(N>n)=(\frac{5}{6})^{n}$, donc $E(N)=6[1-(\frac{5}{6})^{10}]$, soit environ $\num{5,031}$ lancers. La troncature diminue l’espérance par rapport à 6.
 \end{solution}
 

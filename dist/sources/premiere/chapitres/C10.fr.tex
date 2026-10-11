@@ -11,7 +11,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \item Périmètre d’un cercle de rayon 1 ?
 \item Le quart d’un tour vaut combien de degrés ?
 \item Calculer $\sqrt {\dfrac{1}{2}}$.
-\item Abscisse et ordonnée du symétrique de $(a;b)$ par rapport à l’axe des abscisses ?
+\item Abscisse et ordonnée du symétrique de $\pt{a;b}$ par rapport à l’axe des abscisses ?
 \item Simplifier $\dfrac{5\pi}{3}-2\pi $.
 \item Dans un triangle rectangle, côté opposé 3 et hypoténuse 5 : sinus ?
 \end{enumerate}
@@ -21,6 +21,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \section*{Chercher avant de formaliser}\label{C10-RECH}
 Construire, sans rapporteur, un point d’angle $\dfrac{\pi}{3}$ puis un point d’angle $\dfrac{\pi}{4}$. Justifier les valeurs exactes de leurs coordonnées à partir des figures.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Mesurer un angle en radians}\label{C10-U1}
 \begin{keypoint}[Définition et résultats]
 Le cercle trigonométrique est le cercle de centre O et de rayon 1, orienté dans le sens inverse des aiguilles d’une montre. Un radian correspond à un arc de longueur 1 sur ce cercle. Un tour vaut $2\pi$ radians, un demi-tour $\pi$. Sur un cercle de rayon r, une longueur d’arc vaut $r\theta$ pour un angle positif $\theta$ exprimé en radians.
@@ -34,15 +35,15 @@ Le cercle trigonométrique est le cercle de centre O et de rayon 1, orienté dan
 À chaque réel x correspond un point M du cercle obtenu par un parcours orienté de longueur x depuis I(1;0). Deux réels ont la même image si leur différence est un multiple entier de $2\pi$. Un nombre négatif indique un parcours dans le sens horaire.
 \end{keypoint}
 \paragraph{Statut et justification.} Ajouter ou retirer un nombre entier de tours conserve le point d’arrivée. Réciproquement, revenir au même point exige un nombre entier de tours.
-\begin{example}$\dfrac{13\pi}{3}=4\pi +\dfrac{\pi}{3}$ a la même image que $\dfrac{\pi}{3}$. $-\dfrac{\pi}{2}$ a la même image que $\dfrac{3\pi}{2}$ : point $(0;-1)$.\end{example}\label{C10-EX2}
+\begin{example}$\dfrac{13\pi}{3}=4\pi +\dfrac{\pi}{3}$ a la même image que $\dfrac{\pi}{3}$. $-\dfrac{\pi}{2}$ a la même image que $\dfrac{3\pi}{2}$ : point $\pt{0;-1}$.\end{example}\label{C10-EX2}
 \begin{pitfall}Ajouter $\pi$ donne le point opposé, pas le même point.\end{pitfall}
 \begin{application}Placer les images de $\dfrac{7\pi}{2}$ et $-\dfrac{5\pi}{3}$ en les ramenant à un tour.\end{application}\label{C10-AP2}
 \section{Sinus, cosinus et valeurs remarquables}\label{C10-U3}
 \begin{keypoint}[Définition et résultats]
-Si M est l’image de x, $M=(\cos x;\sin x)$. Donc $-1\leq\cos x,\sin x\leq1$ et $\cos^2x+\sin^2x=1$. Pour $x=0,\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3},\dfrac{\pi}{2}$, les cosinus sont $1,\dfrac{\sqrt 3}{2},\dfrac{\sqrt 2}{2},\dfrac{1}{2},0$ et les sinus $0,\dfrac{1}{2},\dfrac{\sqrt 2}{2},\dfrac{\sqrt 3}{2},1$.
+Si M est l’image de x, $M=\pt{\cos x;\sin x}$. Donc $-1\leq\cos x,\sin x\leq1$ et $\cos^2x+\sin^2x=1$. Pour $x=0,\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3},\dfrac{\pi}{2}$, les cosinus sont $1,\dfrac{\sqrt 3}{2},\dfrac{\sqrt 2}{2},\dfrac{1}{2},0$ et les sinus $0,\dfrac{1}{2},\dfrac{\sqrt 2}{2},\dfrac{\sqrt 3}{2},1$.
 \end{keypoint}
 \paragraph{Statut et justification.} À $\dfrac{\pi}{4}$, les deux coordonnées sont égales et positives ; Pythagore donne $2a^2=1$, donc $a=\dfrac{\sqrt 2}{2}$. Un triangle équilatéral de côté 1, coupé par sa hauteur, a demi-base $\dfrac{1}{2}$ et hauteur $\dfrac{\sqrt 3}{2}$ : $\cos (\dfrac{\pi}{3})=\dfrac{1}{2}$, $\sin (\dfrac{\pi}{3})=\dfrac{\sqrt 3}{2}$. L’angle complémentaire donne $\dfrac{\pi}{6}$.
-\begin{example}Le point d’angle $\dfrac{\pi}{3}$ est $(\dfrac{1}{2};\dfrac{\sqrt 3}{2})$. Le produit scalaire de deux vecteurs unitaires faisant cet angle vaut son cosinus, donc $\dfrac{1}{2}$. Les chapitres de géométrie se raccordent ainsi au cercle.\end{example}\label{C10-EX3}
+\begin{example}Le point d’angle $\dfrac{\pi}{3}$ est $\pt{\dfrac{1}{2};\dfrac{\sqrt 3}{2}}$. Le produit scalaire de deux vecteurs unitaires faisant cet angle vaut son cosinus, donc $\dfrac{1}{2}$. Les chapitres de géométrie se raccordent ainsi au cercle.\end{example}\label{C10-EX3}
 \mxinclude{figures/C10-U3}
 \begin{pitfall}Le cosinus est l’abscisse, le sinus l’ordonnée. L’identité donne une valeur absolue : le quadrant détermine le signe.\end{pitfall}
 \begin{application}Si $\cos x=\dfrac{3}{5}$ et l’image de x est dans le quatrième quadrant, donner $\sin x$.\end{application}\label{C10-AP3}
@@ -59,9 +60,10 @@ Les symétries du cercle donnent $\cos(-x)=\cos x$, $\sin(-x)=-\sin x$ ; $\cos(\
 Un polygone régulier inscrit à n côtés dans le cercle unité a demi-périmètre $n\sin (\dfrac{\pi}{n})$ ; un polygone circonscrit a demi-périmètre $n\tan (\dfrac{\pi}{n})$, avec $\tan \theta =\dfrac{\sin \theta}{\cos}\theta $ ici. La méthode d’Archimède double le nombre de côtés et calcule les nouvelles longueurs par Pythagore, sans connaître pi à l’avance.
 \end{keypoint}
 \paragraph{Statut et justification.} Le périmètre inscrit est inférieur à celui du cercle et le circonscrit supérieur : encadrement géométrique admis. Si c est la corde d’un côté, poser $h=\sqrt {1-\dfrac{c^2}{4}}$ ; la corde du demi-angle vaut $\dfrac{c}{\sqrt {2(1+h)}}$. Cette formule vient de Pythagore et évite une soustraction de réels proches.
-\begin{example}Pour l’hexagone inscrit, c=1 et demi-périmètre 3. Le circonscrit donne $2\sqrt3\approx3{,}4641$. En doublant les côtés, on resserre l’encadrement. Le programme fourni part de n=6 et c=1.\end{example}\label{C10-EX5}
+\begin{example}Pour l’hexagone inscrit, c=1 et demi-périmètre 3. Le circonscrit donne $2\sqrt3\approx\num{3,4641}$. En doublant les côtés, on resserre l’encadrement. Le programme fourni part de n=6 et c=1.\end{example}\label{C10-EX5}
 \begin{pitfall}Utiliser directement une fonction sinus avec pi déjà connu vérifierait un calcul, mais ne construirait pas une approximation indépendante de pi.\end{pitfall}
 \begin{application}Pour n=6 et c=1, calculer la nouvelle corde après doublement.\end{application}\label{C10-AP5}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C10-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
@@ -75,7 +77,7 @@ On utilise le cercle trigonométrique pour mesurer les angles en radians.
 \mxexercisehead{C10-E2}{Réduire les angles}
 On considère les réels $\dfrac{17\pi}{6}$, $-\dfrac{7\pi}{4}$ et $5\pi$.
 \begin{enumerate}[label=\arabic*.]
-\item Pour chacun, déterminer un représentant dans $[0;2\pi[$ ayant la même image sur le cercle trigonométrique. Faire apparaître le nombre de tours ajoutés ou retirés.
+\item Pour chacun, déterminer un représentant dans $\intfo{0}{2\pi}$ ayant la même image sur le cercle trigonométrique. Faire apparaître le nombre de tours ajoutés ou retirés.
 \item Placer les trois images sur un cercle et les identifier par les réels de départ.
 \end{enumerate}
 \mxexercisehead{C10-E3}{Valeurs exactes}
@@ -91,7 +93,7 @@ Un réel $x$ vérifie $\sin x=\dfrac5{13}$. Son image sur le cercle trigonométr
 \item Expliquer pourquoi la seule donnée de $\sin x$ n’aurait pas suffi à choisir le signe de $\cos x$.
 \end{enumerate}
 \mxexercisehead{C10-E5}{Une roue}
-Une roue de rayon $0{,}30$ m roule sur un sol horizontal sans glisser. Elle effectue une rotation d’angle $\dfrac{5\pi}{3}$ radians. On cherche la distance parcourue par son axe dans la direction du déplacement.
+Une roue de rayon $\num{0,30}$ m roule sur un sol horizontal sans glisser. Elle effectue une rotation d’angle $\dfrac{5\pi}{3}$ radians. On cherche la distance parcourue par son axe dans la direction du déplacement.
 \begin{enumerate}[label=\arabic*.]
 \item Calculer cette distance sous forme exacte en expliquant le lien avec la longueur d’arc déroulée.
 \item Expliquer pourquoi on ne doit pas utiliser la longueur d’une corde du cercle. La trajectoire d’un point fixé sur le bord de la roue, vue depuis le sol, est-elle celle de l’axe ?
@@ -103,7 +105,7 @@ Sur le cercle trigonométrique de centre $O$, le point $A$ est l’image de 0 et
 \item Retrouver cette longueur en appliquant la relation d’Al-Kashi au triangle $OAB$. Préciser les longueurs et l’angle utilisés.
 \end{enumerate}
 \mxexercisehead{C10-E7}{Lire une équation sur le cercle}
-On cherche les réels $x$ de l’intervalle $[0;2\pi[$ dont l’image sur le cercle trigonométrique a pour abscisse $\dfrac12$.
+On cherche les réels $x$ de l’intervalle $\intfo{0}{2\pi}$ dont l’image sur le cercle trigonométrique a pour abscisse $\dfrac12$.
 \begin{enumerate}[label=\arabic*.]
 \item Traduire la condition sur l’abscisse par une équation faisant intervenir $\cos x$.
 \item Tracer la droite verticale correspondante sur un cercle, repérer ses intersections et donner les deux solutions. Vérifier qu’elles appartiennent à l’intervalle demandé.
@@ -181,10 +183,10 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \end{enumerate}
 \item Image de $\dfrac{3\pi}{2}$ :
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(1;0)$
-\item $(-1;0)$
-\item $(0;1)$
-\item $(0;-1)$
+\item $\pt{1;0}$
+\item $\pt{-1;0}$
+\item $\pt{0;1}$
+\item $\pt{0;-1}$
 \end{enumerate}
 \item Arc de rayon 3 et angle 2 radians : longueur
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]

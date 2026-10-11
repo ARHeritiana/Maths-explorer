@@ -10,7 +10,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \begin{enumerate}
 \item Calculer $3+2\times4$.
 \item Calculer $2^0$, $2^3$ et $2^{-2}$.
-\item Un effectif de 80 augmente de $5\,\%$. Donner le nouvel effectif.
+\item Un effectif de 80 augmente de $\pc{5}$. Donner le nouvel effectif.
 \item Pour $f(x)=3x-2$, calculer $f(0)$ et $f(4)$.
 \item Combien d’entiers y a-t-il de 3 à 10, bornes comprises ?
 \item Une boucle \code{for k in range(4)} prend quelles valeurs de $k$ ?
@@ -19,11 +19,12 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \paragraph{Oral et logique.} En 90 secondes, expliquer la différence entre rang, terme et nombre de termes. Donner un contre-exemple à une règle devinée sur trois valeurs.
 \mxnewpage
 \section*{Chercher avant de formaliser}\label{C01-RECH}
-En binômes, comparer deux offres de collecte : 20 kg la première semaine puis 5 kg de plus chaque semaine ; 20 kg puis une hausse de 20 \% chaque semaine. Conjecturer laquelle collecte le plus au total en six semaines, puis justifier. Prévoir 10 min de recherche et 5 min de confrontation.
+En binômes, comparer deux offres de collecte : 20 kg la première semaine puis 5 kg de plus chaque semaine ; 20 kg puis une hausse de \pc{20} chaque semaine. Conjecturer laquelle collecte le plus au total en six semaines, puis justifier. Prévoir 10 min de recherche et 5 min de confrontation.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Définir et représenter une suite}\label{C01-U1}
 \begin{keypoint}[Définition et résultats]
-Une suite réelle est une fonction dont la variable est un entier : à chaque rang $n$ autorisé correspond un réel $u_n$. La notation $(u_n)$ désigne la suite, $u_n$ un terme. Une formule explicite donne directement $u_n$ en fonction de $n$. Une définition par récurrence fournit un premier terme et une règle de passage. La représentation est un ensemble de points $(n;u_n)$ : on ne relie pas nécessairement ces points.
+Une suite réelle est une fonction dont la variable est un entier : à chaque rang $n$ autorisé correspond un réel $u_n$. La notation $(u_n)$ désigne la suite, $u_n$ un terme. Une formule explicite donne directement $u_n$ en fonction de $n$. Une définition par récurrence fournit un premier terme et une règle de passage. La représentation est un ensemble de points $\pt{n;u_n}$ : on ne relie pas nécessairement ces points.
 \end{keypoint}
 \paragraph{Statut et justification.} Définition. L’unicité des termes obtenus à partir d’un premier terme et d’une règle déterministe est admise ; aucun raisonnement par récurrence formel n’est requis.
 \begin{example}Pour $u_n=n^2+1$, $u_0=1$, $u_3=10$. Pour $v_0=1$ et $v_{n+1}=2v_n+1$, $v_1=3$, $v_2=7$, $v_3=15$. On ne peut pas remplacer $v_3$ par $2\times3+1$ : la règle porte sur le terme précédent.\end{example}\label{C01-EX1}
@@ -43,7 +44,7 @@ Une suite est arithmétique de raison $r$ si $u_{n+1}=u_n+r$ pour tout rang auto
 Une suite est géométrique de raison $q$ si $u_{n+1}=qu_n$. Pour $n\geq p$, $u_n=u_pq^{n-p}$, avec la convention qu’un produit vide vaut 1. Un taux constant $t$ donne $q=1+t$. La variation se décide avec $u_{n+1}-u_n=(q-1)u_n$. Pour $q<0$, les signes peuvent alterner.
 \end{keypoint}
 \paragraph{Statut et justification.} La formule donne le premier terme et sa multiplication par $q$ donne le terme suivant. L’unicité de la génération justifie la formule. Pour $q=0$, tous les termes après le premier sont nuls ; traiter ce cas directement.
-\begin{example}Une quantité de 160 mg perd 25 \% à chaque étape : $u_n=160(\dfrac{3}{4})^n$. Les termes sont positifs et $u_{n+1}-u_n=-\dfrac{u_n}{4}<0$. On obtient $u_2=90$ mg, sans confondre baisse de 25 \% et retrait de 25 mg.\end{example}\label{C01-EX3}
+\begin{example}Une quantité de 160 mg perd \pc{25} à chaque étape : $u_n=160(\dfrac{3}{4})^n$. Les termes sont positifs et $u_{n+1}-u_n=-\dfrac{u_n}{4}<0$. On obtient $u_2=90$ mg, sans confondre baisse de \pc{25} et retrait de 25 mg.\end{example}\label{C01-EX3}
 \begin{pitfall}$q>1$ ne suffit pas à conclure que toute suite géométrique est croissante : le signe du premier terme compte.\end{pitfall}
 \begin{application}Étudier la variation de $u_n=-2\times3^n$, puis de $v_n=2(-1)^n$.\end{application}\label{C01-AP3}
 \section{Sommes, indices et démonstrations}\label{C01-U4}
@@ -62,6 +63,7 @@ Une limite est ici abordée intuitivement. Les termes $\dfrac{1}{n+1}$ se rappro
 \begin{example}Pour $u_n=80(\dfrac{1}{2})^n$, le premier rang tel que $u_n<6$ est 4 : $u_3=10\geq6$ et $u_4=5<6$. Le programme commence avec $n=0,u=80$ et répète la division par 2 tant que $u\geq6$.\end{example}\label{C01-EX5}
 \begin{pitfall}Une boucle sans borne peut ne jamais s’arrêter si le seuil est inaccessible ; $<$ et $\leq$ ne sont pas interchangeables.\end{pitfall}
 \begin{application}Pour $u_n=48(\dfrac{1}{2})^n$, déterminer les premiers rangs où $u_n\leq6$ et où $u_n<6$.\end{application}\label{C01-AP5}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C01-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
@@ -145,12 +147,12 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \item $17$
 \item $15$
 \end{enumerate}
-\item Une hausse de 8 \% donne la raison
+\item Une hausse de \pc{8} donne la raison
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $0{,}08$
-\item $1{,}8$
-\item $0{,}92$
-\item $1{,}08$
+\item $\num{0,08}$
+\item $\num{1,8}$
+\item $\num{0,92}$
+\item $\num{1,08}$
 \end{enumerate}
 \item De $u_3$ à $u_9$ inclus, on compte
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]

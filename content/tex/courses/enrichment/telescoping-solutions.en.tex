@@ -25,16 +25,16 @@ $2k+1=(k+1)^{2}-k^{2}$. The sum is $(n+1)^{2}-0^{2}=(n+1)^{2}$.
 \end{solution}
 
 \begin{exercise}
-If $S_{n}=\frac{n}{n+1}$, find the least integer $n\geq 1$ with $1-S_{n}<0.01$.
+If $S_{n}=\frac{n}{n+1}$, find the least integer $n\geq 1$ with $1-S_{n}<\num{0,01}$.
 \end{exercise}
 \begin{solution}
 $\frac{1}{n+1}<\frac{1}{100}$ means $n+1>100$, hence $n\geq 100$. The minimum is 100.
 \end{solution}
 
 \begin{problem}[Investigate, justify, conclude]
-Let $T_{n}=\sum  \frac{1}{k(k+2)}$ for k from 1 to n. Derive an exact formula and find its limit. Find the least n such that the gap to the limit is strictly less than $0.01$.
+Let $T_{n}=\sum  \frac{1}{k(k+2)}$ for k from 1 to n. Derive an exact formula and find its limit. Find the least n such that the gap to the limit is strictly less than $\num{0,01}$.
 \end{problem}
 \begin{solution}
-After decomposition, all except the first two and last two terms cancel: $T_{n}=\frac{3}{4}-\frac{1}{2(n+1)}-\frac{1}{2(n+2)}$. The limit is $\frac{3}{4}$. The gap decreases with n. At $n=98$ it is $\frac{1}{198}+\frac{1}{200}>0.01$; at $n=99$ it is $\frac{1}{200}+\frac{1}{202}<0.01$. Therefore the minimum is 99.
+After decomposition, all except the first two and last two terms cancel: $T_{n}=\frac{3}{4}-\frac{1}{2(n+1)}-\frac{1}{2(n+2)}$. The limit is $\frac{3}{4}$. The gap decreases with n. At $n=98$ it is $\frac{1}{198}+\frac{1}{200}>\num{0,01}$; at $n=99$ it is $\frac{1}{200}+\frac{1}{202}<\num{0,01}$. Therefore the minimum is 99.
 \end{solution}
 

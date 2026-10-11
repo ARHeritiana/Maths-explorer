@@ -21,6 +21,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \section*{Chercher avant de formaliser}\label{C02-RECH}
 Un rectangle a une aire de 24 m$^2$ et un périmètre de 20 m. Sans essayer au hasard toutes les dimensions, déterminer ses côtés. Commencer par un dessin et expliquer les deux contraintes.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Trois formes, trois lectures}\label{C02-U1}
 \begin{keypoint}[Définition et résultats]
 Une fonction du second degré s’écrit $f(x)=ax^2+bx+c$ avec $a\ne0$. La forme développée facilite le calcul de $f(0)$ ; la forme canonique $a(x-\alpha)^2+\beta$ révèle sommet et extremum ; une forme factorisée $a(x-r_1)(x-r_2)$ révèle racines et signe. Les racines sont les solutions de $f(x)=0$.
@@ -48,12 +49,13 @@ Si deux racines réelles existent, leur somme vaut $-\dfrac{b}{a}$ et leur produ
 \begin{application}Déterminer le polynôme f de degré 2 tel que $f(1)=f(4)=0$ et $f(0)=-8$.\end{application}\label{C02-AP3}
 \section{Signe, inéquations et optimisation}\label{C02-U4}
 \begin{keypoint}[Définition et résultats]
-Pour deux racines distinctes $r<s$, le trinôme a le signe de a en dehors de $[r;s]$ et le signe opposé entre les racines. Il est nul aux racines. Sans racine réelle, il garde le signe de a. Avec une racine double, il garde le signe de a hors de celle-ci. L’optimisation se fait sur le domaine du problème, qui peut limiter l’accès au sommet.
+Pour deux racines distinctes $r<s$, le trinôme a le signe de a en dehors de $\intff{r}{s}$ et le signe opposé entre les racines. Il est nul aux racines. Sans racine réelle, il garde le signe de a. Avec une racine double, il garde le signe de a hors de celle-ci. L’optimisation se fait sur le domaine du problème, qui peut limiter l’accès au sommet.
 \end{keypoint}
 \paragraph{Statut et justification.} Le tableau de signes des facteurs $a(x-r)(x-s)$ donne le résultat. La forme canonique compare $f(x)$ à $\beta$ grâce au signe de $a(x-\alpha)^2$.
-\begin{example}$-2(x-1)(x-5)\geq0$ équivaut à $x\in[1;5]$. Pour $A(x)=x(12-x)$ sur $[0;12]$, $A(x)=36-(x-6)^2\leq36$, avec égalité en 6. Un rectangle de périmètre 24 m a donc une aire maximale de 36 m$^2$ lorsqu’il est carré.\end{example}\label{C02-EX4}
+\begin{example}$-2(x-1)(x-5)\geq0$ équivaut à $x\in\intff{1}{5}$. Pour $A(x)=x(12-x)$ sur $\intff{0}{12}$, $A(x)=36-(x-6)^2\leq36$, avec égalité en 6. Un rectangle de périmètre 24 m a donc une aire maximale de 36 m$^2$ lorsqu’il est carré.\end{example}\label{C02-EX4}
 \begin{pitfall}Dans une inéquation stricte, les racines sont exclues. Vérifier les bornes géométriques avant de conclure.\end{pitfall}
-\begin{application}Résoudre $x^2-4x-5<0$ puis maximiser $x(8-x)$ sur $[0;3]$.\end{application}\label{C02-AP4}
+\begin{application}Résoudre $x^2-4x-5<0$ puis maximiser $x(8-x)$ sur $\intff{0}{3}$.\end{application}\label{C02-AP4}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C02-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
@@ -79,7 +81,7 @@ On souhaite résoudre dans $\R$ les trois équations suivantes :\[x^2-9=0,\qquad
 \item Contrôler les solutions des deux premières équations par substitution. Pour la troisième, contrôler la somme et le produit des racines obtenues.
 \end{enumerate}
 \mxexercisehead{C02-E4}{Retrouver une parabole}
-La courbe d’une fonction polynôme $f$ de degré 2 coupe l’axe des abscisses aux points d’abscisses $-2$ et 3. Elle passe également par le point $A(1;12)$.
+La courbe d’une fonction polynôme $f$ de degré 2 coupe l’axe des abscisses aux points d’abscisses $-2$ et 3. Elle passe également par le point $A\pt{1;12}$.
 \begin{enumerate}[label=\arabic*.]
 \item Déterminer une expression de $f(x)$ à partir de ces trois informations. Préciser la forme choisie et pourquoi elle convient.
 \item Développer l’expression trouvée. En déduire l’ordonnée à l’origine de la courbe.
@@ -138,10 +140,10 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \end{enumerate}
 \item Le sommet de $(x-2)^2+5$ est
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(2;-5)$
-\item $(-2;5)$
-\item $(5;2)$
-\item $(2;5)$
+\item $\pt{2;-5}$
+\item $\pt{-2;5}$
+\item $\pt{5;2}$
+\item $\pt{2;5}$
 \end{enumerate}
 \item La somme des racines de $2x^2-6x+1$ vaut
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
@@ -154,8 +156,8 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $x>2$
 \item $x<-2$
-\item $x\in]-2;2[$
-\item $x\in[-2;2]$
+\item $x\in\intoo{-2}{2}$
+\item $x\in\intff{-2}{2}$
 \end{enumerate}
 \end{enumerate}
 \endgroup
@@ -177,7 +179,7 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \item $\dfrac{2}{3}$
 \item $-2$
 \end{enumerate}
-\item $-x^2+4x$ atteint sur $[0;1]$ son maximum en
+\item $-x^2+4x$ atteint sur $\intff{0}{1}$ son maximum en
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $2$
 \item $0$

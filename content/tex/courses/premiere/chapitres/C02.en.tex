@@ -22,6 +22,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \section*{Investigate before formalising}\label{C02-RECH}
 A rectangle has an area of 24 m$^2$ and a perimeter of 20 m. Without trying every possible dimension at random, determine its sides. Start with a drawing and explain the two constraints.
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
 \section{Three forms, three readings}\label{C02-U1}
 \begin{keypoint}[Definition and results]
 A quadratic function is written $f(x)=ax^2+bx+c$ with $a\ne0$. The expanded form makes it easy to calculate $f(0)$; the vertex form $a(x-\alpha)^2+\beta$ reveals the vertex and the extremum; a factorised form $a(x-r_1)(x-r_2)$ reveals the roots and the sign. The roots are the solutions of $f(x)=0$.
@@ -49,12 +50,13 @@ If two real roots exist, their sum is $-\dfrac{b}{a}$ and their product is $\dfr
 \begin{application}Determine the polynomial f of degree 2 such that $f(1)=f(4)=0$ and $f(0)=-8$.\end{application}\label{C02-AP3}
 \section{Sign, inequalities and optimisation}\label{C02-U4}
 \begin{keypoint}[Definition and results]
-For two distinct roots $r<s$, the quadratic has the sign of a outside $[r;s]$ and the opposite sign between the roots. It is zero at the roots. With no real root, it keeps the sign of a. With a double root, it keeps the sign of a away from that root. Optimisation is done on the domain of the problem, which may limit access to the vertex.
+For two distinct roots $r<s$, the quadratic has the sign of a outside $\intff{r}{s}$ and the opposite sign between the roots. It is zero at the roots. With no real root, it keeps the sign of a. With a double root, it keeps the sign of a away from that root. Optimisation is done on the domain of the problem, which may limit access to the vertex.
 \end{keypoint}
 \paragraph{Status and justification.} The sign table of the factors of $a(x-r)(x-s)$ gives the result. The vertex form compares $f(x)$ with $\beta$ through the sign of $a(x-\alpha)^2$.
-\begin{example}$-2(x-1)(x-5)\geq0$ is equivalent to $x\in[1;5]$. For $A(x)=x(12-x)$ on $[0;12]$, $A(x)=36-(x-6)^2\leq36$, with equality at 6. A rectangle with perimeter 24 m therefore has a maximum area of 36 m$^2$ when it is a square.\end{example}\label{C02-EX4}
+\begin{example}$-2(x-1)(x-5)\geq0$ is equivalent to $x\in\intff{1}{5}$. For $A(x)=x(12-x)$ on $\intff{0}{12}$, $A(x)=36-(x-6)^2\leq36$, with equality at 6. A rectangle with perimeter 24 m therefore has a maximum area of 36 m$^2$ when it is a square.\end{example}\label{C02-EX4}
 \begin{pitfall}In a strict inequality, the roots are excluded. Check the geometric bounds before concluding.\end{pitfall}
-\begin{application}Solve $x^2-4x-5<0$, then maximise $x(8-x)$ on $[0;3]$.\end{application}\label{C02-AP4}
+\begin{application}Solve $x^2-4x-5<0$, then maximise $x(8-x)$ on $\intff{0}{3}$.\end{application}\label{C02-AP4}
+\mxnewpage
 \section*{Exercise path}\label{C02-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
 \begingroup
@@ -80,7 +82,7 @@ We wish to solve the following three equations in $\R$:\[x^2-9=0,\qquad x^2-9x+2
 \item Check the solutions of the first two equations by substitution. For the third, check the sum and the product of the roots obtained.
 \end{enumerate}
 \mxexercisehead{C02-E4}{Recovering a parabola}
-The curve of a polynomial function $f$ of degree 2 crosses the x-axis at the points with x-coordinates $-2$ and 3. It also passes through the point $A(1;12)$.
+The curve of a polynomial function $f$ of degree 2 crosses the x-axis at the points with x-coordinates $-2$ and 3. It also passes through the point $A\pt{1;12}$.
 \begin{enumerate}[label=\arabic*.]
 \item Determine an expression for $f(x)$ from these three pieces of information. State the form chosen and why it is suitable.
 \item Expand the expression found. Deduce the y-intercept of the curve.
@@ -139,10 +141,10 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \end{enumerate}
 \item The vertex of $(x-2)^2+5$ is
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $(2;-5)$
-\item $(-2;5)$
-\item $(5;2)$
-\item $(2;5)$
+\item $\pt{2;-5}$
+\item $\pt{-2;5}$
+\item $\pt{5;2}$
+\item $\pt{2;5}$
 \end{enumerate}
 \item The sum of the roots of $2x^2-6x+1$ equals
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
@@ -155,8 +157,8 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $x>2$
 \item $x<-2$
-\item $x\in]-2;2[$
-\item $x\in[-2;2]$
+\item $x\in\intoo{-2}{2}$
+\item $x\in\intff{-2}{2}$
 \end{enumerate}
 \end{enumerate}
 \endgroup
@@ -178,7 +180,7 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \item $\dfrac{2}{3}$
 \item $-2$
 \end{enumerate}
-\item $-x^2+4x$ reaches its maximum on $[0;1]$ at
+\item $-x^2+4x$ reaches its maximum on $\intff{0}{1}$ at
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $2$
 \item $0$

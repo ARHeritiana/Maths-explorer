@@ -7,13 +7,14 @@ from mxbuild import enrichment as E, twin
 
 class Prose(unittest.TestCase):
     def test_text_is_escaped_and_maths_converted(self):
-        self.assertEqual(E.prose('50 % de $x²−1$'), r'50 \% de $x^{2}-1$')
+        self.assertEqual(E.prose('50 % de $x²−1$ et 100 \\'), r'\pc{50} de $x^{2}-1$ et 100 \textbackslash{}')
 
     def test_fraction_and_factorial(self):
         self.assertEqual(E.prose('$n!/[k!(n−k)!]$'), r'$\frac{n!}{k!(n-k)!}$')
 
     def test_set_braces(self):
         self.assertEqual(E.prose('${1,…,10}$'), r'$\{1,\ldots ,10\}$')
+        self.assertEqual(E.prose('${1;2}$'), r'$\ens{1;2}$')
 
     def test_gcd_by_the_class(self):
         self.assertEqual(E.prose('$PGCD(12,18) = 6$'), E.prose('$gcd(12,18) = 6$'))
@@ -21,8 +22,11 @@ class Prose(unittest.TestCase):
     def test_decimals_follow_the_english_twin(self):
         fr, en = 'On a $P(A)=0,4$ et (1,1).', 'We have $P(A)=0.4$ and (1,1).'
         dec = E.decimals(fr, en)
-        self.assertEqual(E.prose(fr, dec), r'On a $P(A)=0{,}4$ et (1,1).')
-        self.assertEqual(E.prose(en, dec), r'We have $P(A)=0{,}4$ and (1,1).')
+        self.assertEqual(E.prose(fr, dec), r'On a $P(A)=\num{0,4}$ et (1,1).')
+        self.assertEqual(E.prose(en, dec), r'We have $P(A)=\num{0,4}$ and (1,1).')
+
+    def test_intervals_and_percentages_use_the_notation_commands(self):
+        self.assertEqual(E.prose('sur $[1 ; 2]$, soit 50 %'), r'sur $\intff{1}{2}$, soit \pc{50}')
 
     def test_list_is_not_a_decimal(self):
         self.assertEqual(E.decimals('congru à 3,9,7,1', 'congruent to 3,9,7,1'), set())

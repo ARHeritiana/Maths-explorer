@@ -70,14 +70,12 @@ def main():
                 counts[(lang, 'bank-1')] = save(d, fa, fb, OUT / 'stmg-revision' / f'bank-1{suf}.pdf', res['stmg-revision-bank-1']['title'][L])
             counts[(lang, 'assess', role)] = save(d, ta, tb, OUT / f'stmg-assessments-{role}{suf}.pdf', 'Maths Explorer — ' + ('Devoirs surveillés' if lang == 'fr' else 'Supervised tests'))
             counts[(lang, 'formulas', role)] = save(d, fa, fb, OUT / f'stmg-formulas-{role}{suf}.pdf', 'Maths Explorer — ' + ('Formulaire raisonné' if lang == 'fr' else 'Annotated formula sheet'))
-    # Books must match exactly (checked as they compile); an excerpt may drift by one page (catalogue englishPages).
+    # Books and excerpts have equal page counts in both languages (every session is a balanced block).
     drift = sorted(k[1:] for k in counts if k[0] == 'fr' and counts[k] != counts[('en',) + k[1:]])
-    bad = [k for k in drift if abs(counts[('fr',) + k] - counts[('en',) + k]) > 1]
-    if bad: sys.exit('Page counts differ by more than one page: ' + ', '.join(map(str, bad)))
-    for k in drift: print(f'  note: {k} excerpt differs by one page between languages')
+    if drift: sys.exit('French and English excerpts differ: ' + ', '.join(map(str, drift)))
     manifest['texConverted'] = sorted(set(manifest['texConverted']) | {c['id'] for c in chapters.values()} | {'stmg-revision'})
     manifest_io.save(manifest)
-    print('FR/EN books have equal page counts; excerpts within one page')
+    print('FR/EN books and excerpts have equal page counts')
 
 
 main()

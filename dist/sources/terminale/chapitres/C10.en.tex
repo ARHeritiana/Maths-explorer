@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
-\setcounter{chapter}{6}\mxunit{terminale-c10}{Antiderivatives and differential equations}\label{ch:7}
+\mxunit[7]{terminale-c10}{Antiderivatives and differential equations}\label{ch:7}
 
-{\small\sffamily\color{mxmint}S52, S53, S55, S58\par}
+\mxsubtitle{S52, S53, S55, S58}
 
 \begin{keypoint}[Objectives]Calculate antiderivatives; solve a differential equation with an initial condition; interpret an Euler approximation.\end{keypoint}
 
@@ -39,13 +39,15 @@ If $g$ is a known particular solution of $y'=ay+f(x)$, the solutions are $y=g+Ce
 For $y'=ay+b$, with a step $h>0$, we approximate $y(t_k)$ by $Y_k$ according to $t_{k+1}=t_k+h$, $Y_{k+1}=Y_k+h(aY_k+b)$. This is an approximation using the tangent, not an equality on the exact solution. A smaller step can improve the approximation; check the error numerically on a known solution.
 
 
-\section{Research activity}\textbf{Cooling of a drink --- 40 min.}\par A drink initially at $80\,^{\circ}\mathrm C$ is placed in a room kept at $20\,^{\circ}\mathrm C$. For $t\ge0$, let $T(t)$ be its temperature in degrees Celsius, where $t$ is the elapsed time in minutes. We accept the model $T' (t)=-0.1(T(t)-20)$ and $T(0)=80$.
+\mxnewpage
+\section{Research activity}\textbf{Cooling of a drink --- 40 min.}\par A drink initially at $80\,^{\circ}\mathrm C$ is placed in a room kept at $20\,^{\circ}\mathrm C$. For $t\ge0$, let $T(t)$ be its temperature in degrees Celsius, where $t$ is the elapsed time in minutes. We accept the model $T' (t)=-\num{0,1}(T(t)-20)$ and $T(0)=80$.
 \begin{enumerate}\item Solve this initial value problem and give the expression of $T(t)$.
 \item Study the direction of variation of $T$ and find its limit at $+\infty$. Interpret the results.
 \item Find the first instant at which the temperature is $40\,^{\circ}\mathrm C$. Give the exact value, then an approximate value in minutes.
 \item Apply two steps of Euler's method with a step of $1$ minute. Compare the approximation obtained after two minutes with the exact value $T(2)$.
 \item Give a concrete situation in which the assumption of a constant room temperature would no longer be appropriate.\end{enumerate}
 
+\mxnewpage
 \section{Progressive exercises}
 
 \mxexerciseitem{1}{Practice}Find all the antiderivatives on $\R$ of the function $x\mapsto3x^2-4x+1$.
@@ -60,21 +62,22 @@ For $y'=ay+b$, with a step $h>0$, we approximate $y(t_k)$ by $Y_k$ according to 
 
 \section{Textbook or past-paper work}\textbf{Barbazo, p. 228, exercises 25 and 30.} In S55: exercise 30, to bring out a constant solution. At home: exercise 25 in full, distinguishing a condition on $f$ from a condition on $f'$.
 
-\section{Homework}\textbf{HW7 --- An evolution with variable input --- 60 min.}\par We look for a function $y$ defined and differentiable on $[0;+\infty[$ such that $y' (t)=-y(t)+2t+1$ and $y(0)=3$.
+\mxnewpage
+\section{Homework}\textbf{HW7 --- An evolution with variable input --- 60 min.}\par We look for a function $y$ defined and differentiable on $\intfo{0}{+\infty}$ such that $y' (t)=-y(t)+2t+1$ and $y(0)=3$.
 \begin{enumerate}\item Find two real numbers $a$ and $b$ such that $g(t)=at+b$ is a solution of the differential equation.
 \item Deduce the expression of the solution that satisfies $y(0)=3$.
 \item Study the variations of this solution and state its minimum and the instant at which it is attained.
-\item Write a Python function with argument $N$, a strictly positive integer, that applies Euler's method on $[0;2]$ with step $\frac2N$ and returns the approximation of $y(2)$. Compare with the exact value for $N=10$, then $N=100$.
+\item Write a Python function with argument $N$, a strictly positive integer, that applies Euler's method on $\intff{0}{2}$ with step $\frac2N$ and returns the approximation of $y(2)$. Compare with the exact value for $N=10$, then $N=100$.
 \item Why is checking the differential equality at only a few instants not enough to prove that a function is a solution?\end{enumerate}
 
 \ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]Distinguish the unknown function from the real variable. Have each antiderivative checked by differentiation. For $y'=ay+b$, look first for the constant solution. The case $a=0$ must remain visible. The trigonometric antiderivatives are given here as a reference table, but their assessed use awaits the trigonometry unit. For Euler, keep the units and compare with a known exact solution.\end{teachernote}
 
 \subsection{Solutions to the activity}\begin{enumerate}
-\item The equation is $T'=-0.1T+2$. A constant solution is $20$; all the solutions are $T(t)=20+Ce^{-0.1t}$. Since $T(0)=80$, $C=60$. We check $T'(t)=-6e^{-0.1t}=-0.1(T(t)-20)$ and $T(0)=80$.
-\item $T'(t)=-6e^{-0.1t}<0$: the temperature decreases strictly. Since $e^{-0.1t}\to0$ at $+\infty$, $T(t)\to20\,^{\circ}\mathrm C$, while remaining above $20\,^{\circ}\mathrm C$.
-\item $T(t)=40\Longleftrightarrow e^{-0.1t}=\frac{1}{3}$. Taking the logarithm, $-0.1t=-\ln3$, that is $t=10\ln3\simeq10.9861$ min. Strict decrease ensures that this is the only instant at which the temperature passes through $40\,^{\circ}\mathrm C$.
-\item For $h=1$, $Y_{k+1}=Y_k-0.1(Y_k-20)$. Thus $Y_1=80-6=74$ and $Y_2=74-5.4=68.6$. The exact solution gives $T(2)=20+60e^{-0.2}\simeq69.1238$. Euler underestimates the temperature here by about $0.5238\,^{\circ}\mathrm C$.
-\item The model assumes a room temperature of $20\,^{\circ}\mathrm C$ and a constant exchange coefficient of $0.1\,\mathrm{min}^{-1}$. A change of room, a lid or stirring can alter these assumptions; the formula is then no longer automatically appropriate.
+\item The equation is $T'=-\num{0,1}T+2$. A constant solution is $20$; all the solutions are $T(t)=20+Ce^{-\num{0,1}t}$. Since $T(0)=80$, $C=60$. We check $T'(t)=-6e^{-\num{0,1}t}=-\num{0,1}(T(t)-20)$ and $T(0)=80$.
+\item $T'(t)=-6e^{-\num{0,1}t}<0$: the temperature decreases strictly. Since $e^{-\num{0,1}t}\to0$ at $+\infty$, $T(t)\to20\,^{\circ}\mathrm C$, while remaining above $20\,^{\circ}\mathrm C$.
+\item $T(t)=40\Longleftrightarrow e^{-\num{0,1}t}=\frac{1}{3}$. Taking the logarithm, $-\num{0,1}t=-\ln3$, that is $t=10\ln3\simeq\num{10,9861}$ min. Strict decrease ensures that this is the only instant at which the temperature passes through $40\,^{\circ}\mathrm C$.
+\item For $h=1$, $Y_{k+1}=Y_k-\num{0,1}(Y_k-20)$. Thus $Y_1=80-6=74$ and $Y_2=74-\num{5,4}=\num{68,6}$. The exact solution gives $T(2)=20+60e^{-\num{0,2}}\simeq\num{69,1238}$. Euler underestimates the temperature here by about $\num{0,5238}\,^{\circ}\mathrm C$.
+\item The model assumes a room temperature of $20\,^{\circ}\mathrm C$ and a constant exchange coefficient of $\num{0,1}\,\mathrm{min}^{-1}$. A change of room, a lid or stirring can alter these assumptions; the formula is then no longer automatically appropriate.
 \end{enumerate}
 
 \paragraph{E1.}Linearity gives $F(x)=x^3-2x^2+x+C$, $C\in\R$. We check $F'(x)=3x^2-4x+1$. All the antiderivatives on the interval $\R$ differ by a constant.
@@ -101,7 +104,7 @@ def euler_dm7(N):
         y = y+h*(-y+2*t+1)
     return y
 \end{lstlisting}
-The time used in the right-hand side is that at the start of the step. The program gives $Y_{10}\simeq3.42950$ and $Y_{100}\simeq3.53048$, whereas $y(2)=3+4e^{-2}\simeq3.54134$. The absolute errors are about $0.11184$ and $0.01086$.
+The time used in the right-hand side is that at the start of the step. The program gives $Y_{10}\simeq\num{3,42950}$ and $Y_{100}\simeq\num{3,53048}$, whereas $y(2)=3+4e^{-2}\simeq\num{3,54134}$. The absolute errors are about $\num{0,11184}$ and $\num{0,01086}$.
 To check these values without a loop, let $Z_k=Y_k-(2kh-1)$. Euler's recurrence gives $Z_{k+1}=(1-h)Z_k$ and $Z_0=4$. So $Y_N=3+4(1-\frac{2}{N})^N$.
 \item A solution of a differential equation must satisfy an equality between functions on the whole interval, as well as the initial condition. A few numerical values only check a finite number of points; the symbolic substitution of question 2 is a check on the whole domain.
 \end{enumerate}

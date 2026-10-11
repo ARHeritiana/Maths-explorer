@@ -1,0 +1,50 @@
+% mx-notation.sty -- every notation that differs between French and English, defined once.
+% Units never type these notations by hand (tests/tex_lint.py refuses it); they call the commands below, and the
+% class prints the convention of the edition's language (class option lang=fr|en). The English unit, generated from
+% the French one, therefore carries byte-identical mathematics.
+%
+%   Command              French              English          Use
+%   \num{1234,5}         1 234,5             1,234.5          every number with a decimal part or 5+ digits
+%   \pc{12,5}            12,5 %              12.5%            percentages
+%   \intff{a}{b}         [a ; b]             [a, b]           closed interval
+%   \intoo{a}{b}         ]a ; b[             (a, b)           open interval
+%   \intfo{a}{b}         [a ; b[             [a, b)           closed on the left, open on the right
+%   \intof{a}{b}         ]a ; b]             (a, b]           open on the left, closed on the right
+%   \ent{a}{b}           [[a ; b]]           {a, ..., b}      integer interval
+%   \pt{x;y}, \pt{x;y;z} (x ; y)             (x, y)           coordinates of a point, pairs, triples
+%   \ens{a;b;c}          {a ; b ; c}         {a, b, c}        set listed in extension
+%   \pgcd, \ppcm         PGCD, PPCM          gcd, lcm         (mx-math.sty)
+%
+% Input: a decimal is written with a comma (\num{0,5}); lists inside \pt and \ens are separated by semicolons.
+% The slide builder renders the same commands for MathJax (build/mxbuild/notation.py); tests/test_notation.py
+% compiles every command in both languages and compares the two renderings.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-notation}[2026/10/11 Maths Explorer notation, French and English]
+\RequirePackage{siunitx}
+% Numbers: integer part grouped by three from 4 digits (French 1 500, English 1,500); decimals never grouped.
+\sisetup{input-decimal-markers={,.}, group-digits=integer, group-minimum-digits=4, retain-explicit-plus,
+  mode=match, reset-text-family=false, reset-text-series=false, reset-text-shape=false}
+\mxtr{\sisetup{output-decimal-marker={,}, group-separator={\,}}}{\sisetup{output-decimal-marker={.}, group-separator={,}}}
+\newcommand{\pc}[1]{\num{#1}\mxtr{\,}{}\%}
+% Intervals. French: brackets turned outwards for an open end, semicolon between the bounds.
+% English: parentheses for an open end, comma between the bounds.
+\newcommand{\mx@lo}[2]{\mathopen{\mxtr{#1}{#2}}}   % left delimiter: French, English
+\newcommand{\mx@sep}{\mxtr{;}{,}}
+\newcommand{\intff}[2]{\ensuremath{\mathopen{[}#1\mx@sep#2\mathclose{]}}}
+\newcommand{\intoo}[2]{\ensuremath{\mx@lo{]}{(}#1\mx@sep#2\mathclose{\mxtr{[}{)}}}}
+\newcommand{\intfo}[2]{\ensuremath{\mathopen{[}#1\mx@sep#2\mathclose{\mxtr{[}{)}}}}
+\newcommand{\intof}[2]{\ensuremath{\mx@lo{]}{(}#1\mx@sep#2\mathclose{]}}}
+\newcommand{\ent}[2]{\ensuremath{\mxtr{\llbracket #1\mathpunct{;}#2\rrbracket}{\{#1,\ldots,#2\}}}}
+% Points and sets: the semicolons of the argument become the language's separator.
+\ExplSyntaxOn
+\tl_new:N \l__mx_list_tl
+\cs_new_protected:Npn \__mx_list:nnn #1#2#3   % #1 opening, #2 list a;b;c, #3 closing
+  {
+    \tl_set:Nn \l__mx_list_tl {#2}
+    \tl_replace_all:Nnn \l__mx_list_tl {;} {\mx@sep}
+    \ensuremath{\mathopen{#1}\l__mx_list_tl\mathclose{#3}}
+  }
+\NewDocumentCommand \pt  { m } { \__mx_list:nnn {(} {#1} {)} }
+\NewDocumentCommand \ens { m } { \__mx_list:nnn {\{} {#1} {\}} }
+\ExplSyntaxOff
+\endinput

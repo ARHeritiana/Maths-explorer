@@ -133,11 +133,23 @@
    "status": "aligned",
    "order": 21
   },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
   "5368e990bc65": {
    "fr": "Pour [[m1]], la probabilité de B sachant A est [[m2]]. Dans un tableau d’effectifs équiprobables, elle est le quotient effectif de [[m3]] sur effectif de A. En général [[m4]].",
    "en": "For [[m1]], the probability of B given A is [[m2]]. In a table of equally likely counts, it is the quotient of the count of [[m3]] by the count of A. In general [[m4]].",
    "status": "aligned",
    "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
   },
   "d1f07e6921e4": {
    "fr": "Définition. En multipliant par [[m1]], on obtient la règle [[m2]]. La condition [[m3]] est indispensable.",
@@ -181,9 +193,9 @@
    "status": "aligned",
    "order": 33
   },
-  "7d10620a88d0": {
-   "fr": "Deux machines fournissent 60 \\% et 40 \\% d’une production ; leurs taux de défaut sont 2 \\% et 5 \\%. [[m1]]. Parmi les défauts, la première machine représente [[m2]].",
-   "en": "Two machines supply 60 \\% and 40 \\% of a production; their defect rates are 2 \\% and 5 \\%. [[m1]]. Among the defective items, the first machine accounts for [[m2]].",
+  "6909b30ed9e0": {
+   "fr": "Deux machines fournissent [[m1]] et [[m2]] d’une production ; leurs taux de défaut sont [[m3]] et [[m4]]. [[m5]]. Parmi les défauts, la première machine représente [[m6]].",
+   "en": "Two machines supply [[m1]] and [[m2]] of a production; their defect rates are [[m3]] and [[m4]]. [[m5]]. Among the defective items, the first machine accounts for [[m6]].",
    "status": "aligned",
    "order": 34
   },
@@ -277,23 +289,11 @@
    "status": "aligned",
    "order": 53
   },
-  "ebc073a34cf3": {
-   "fr": "Définition et résultats",
-   "en": "Definition and results",
-   "status": "aligned",
-   "order": 54
-  },
   "8bde7ccf557d": {
    "fr": "Une simulation pseudo-aléatoire produit des fréquences qui fluctuent autour d’une probabilité du modèle. Pour un point uniforme dans le carré [[m1]], la proportion vérifiant [[m2]] estime l’aire sous la parabole ; la proportion vérifiant [[m3]], multipliée par 4, estime [[m4]]. Les répétitions doivent utiliser de nouveaux tirages.",
    "en": "A pseudo-random simulation produces frequencies that fluctuate around a probability of the model. For a uniform point in the square [[m1]], the proportion satisfying [[m2]] estimates the area under the parabola; the proportion satisfying [[m3]], multiplied by 4, estimates [[m4]]. Repetitions must use new draws.",
    "status": "aligned",
    "order": 55
-  },
-  "7815a69c0f26": {
-   "fr": "Statut et justification.",
-   "en": "Status and justification.",
-   "status": "aligned",
-   "order": 56
   },
   "26922f8dec8c": {
    "fr": "Principe de simulation admis et expérimenté. L’égalité probabilité-aire est une interprétation du tirage uniforme ; l’intégration n’est pas un prérequis. Une simulation ne démontre pas une valeur exacte.",
@@ -625,6 +625,12 @@
    "status": "aligned",
    "order": 111
   },
+  "d9bb17147888": {
+   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 112
+  },
   "ca00813a6790": {
    "fr": "[[m1]] a pour dénominateur",
    "en": "[[m1]] has as denominator",
@@ -642,6 +648,12 @@
    "en": "A partition consists of events that are",
    "status": "aligned",
    "order": 115
+  },
+  "268a33ed79bc": {
+   "fr": "égaux",
+   "en": "equal",
+   "status": "aligned",
+   "order": 116
   },
   "5747e7d677e0": {
    "fr": "tous indépendants",
@@ -685,12 +697,6 @@
    "status": "aligned",
    "order": 123
   },
-  "268a33ed79bc": {
-   "fr": "égaux",
-   "en": "equal",
-   "status": "aligned",
-   "order": 124
-  },
   "afa8477c6ae6": {
    "fr": "complémentaires nécessairement",
    "en": "necessarily complementary",
@@ -702,12 +708,6 @@
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
    "order": 126
-  },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
-   "status": "aligned",
-   "order": 127
   },
   "d216747d98b6": {
    "fr": "Trois lancers indépendants d’une pièce équilibrée, au moins un pile :",
@@ -733,23 +733,23 @@
    "status": "aligned",
    "order": 131
   },
-  "5178e1dce8f5": {
-   "fr": "Une simulation donne une fréquence égale à 0{,}51. Cela",
-   "en": "A simulation gives a frequency equal to 0.51. This",
+  "d014acb1aa54": {
+   "fr": "Une simulation donne une fréquence égale à [[m1]]. Cela",
+   "en": "A simulation gives a frequency equal to [[m1]]. This",
    "status": "aligned",
    "order": 132
+  },
+  "745644419c11": {
+   "fr": "prouve [[m1]]",
+   "en": "proves [[m1]]",
+   "status": "aligned",
+   "order": 133
   },
   "0d47ca047257": {
    "fr": "est une observation fluctuante",
    "en": "is a fluctuating observation",
    "status": "aligned",
    "order": 134
-  },
-  "745644419c11": {
-   "fr": "prouve [[m1]]",
-   "en": "proves [[m1]]",
-   "status": "aligned",
-   "order": 135
   },
   "2acd617783cb": {
    "fr": "réfute [[m1]]",

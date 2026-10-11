@@ -6,19 +6,19 @@
 \item $4$. \textit{Action:} Add, then divide by the number of values.
 \item Yes: positive numbers with sum 1. \textit{Action:} Put over a common denominator.
 \item $9$. \textit{Action:} Keep the brackets before squaring.
-\item $0.4$. \textit{Action:} Use the complement.
+\item $\num{0,4}$. \textit{Action:} Use the complement.
 \item $5$. \textit{Action:} Write net gain = received minus paid.
-\item $0.5$. \textit{Action:} Check the square of the answer.
+\item $\num{0,5}$. \textit{Action:} Check the square of the answer.
 \end{enumerate}
 \subsection*{Investigation activity}
-Gains $(-1;0;1)$ and $(-3;0;3)$: expectation 0 in both cases, variances $\dfrac{2}{3}$ and 6. In standard deviation, the second is three times more dispersed.
+Gains $\pt{-1;0;1}$ and $\pt{-3;0;3}$: expectation 0 in both cases, variances $\dfrac{2}{3}$ and 6. In standard deviation, the second is three times more dispersed.
 \subsection*{Immediate applications}
 \begin{enumerate}
 \item Values 0, 1, 2; probabilities $\dfrac{1}{4}$, $\dfrac{1}{2}$, $\dfrac{1}{4}$. $P(X\leq1)=\dfrac{3}{4}$.
 \item $E(G)=\dfrac{10}{5}=2$. For a stake m, $E(G-m)=2-m$; fair stake 2.
 \item $E(X)=0$, $E(X^2)=1$, variance 1 and standard deviation 1.
 \item $E(Y)=-1$, $V(Y)=16$, $\sigma(Y)=4$.
-\item $\dfrac{2\sigma}{\sqrt n}=1$; interval $[4;6]$.
+\item $\dfrac{2\sigma}{\sqrt n}=1$; interval $\intff{4}{6}$.
 \end{enumerate}
 \subsection*{Exercises: method and results}
 \paragraph{Exercise 8.1 -- A distribution to build.} Values 0, 1, 2; each obtained from two faces, probabilities $\dfrac{1}{3}$. $P(X<2)=\dfrac{2}{3}$. Beware the remainder 0 for 3 and 6.
@@ -29,8 +29,8 @@ Gains $(-1;0;1)$ and $(-3;0;3)$: expectation 0 in both cases, variances $\dfrac{
 \paragraph{Exercise 8.6 -- A minimal loss.} Write $X-a=(X-\mu)+(\mu-a)$, expand, then use $E(X-\mu)=0$. The square $(a-\mu)^2$ is minimal, zero only for $a=\mu$. The mean minimises the mean squared error.
 \paragraph{Exercise 8.7 -- Letter frequencies.} Convert the text to lower case, keep the characters for which \code{isalpha()} is true, then count the ``a''s. Divide this number by the number of letters if it is nonzero. For a text with no letter, return \code{None}, because the frequency is not defined. For \code{Aba !}, two ``a''s out of three letters give $\dfrac23$; the other two tests give \code{None}. The supplied program \code{frequence_a} follows this convention.
 \paragraph{Exercise 8.8 -- Delayed review.} Distribution: $0,1,2$ with probabilities $\dfrac{1}{4},\dfrac{1}{2},\dfrac{1}{4}$. Expectation 1; second moment: $\dfrac{1}{2}+1=\dfrac{3}{2}$, variance $\dfrac{1}{2}$. The four paths are counted explicitly.
-\paragraph{CQFD, exercise 28 p.~306, all questions.} $E(X)=(-10)\times0.35+(-5)\times0.15+0\times0.4+20\times0.1=-2.25=-\dfrac94$. A negative expectation is compatible with a possible positive value.
-\paragraph{CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.} $E(X^2)=100\times0.35+25\times0.15+400\times0.1=78.75$. Thus $V(X)=78.75-(-2.25)^2=73.6875=\dfrac{1179}{16}$, then $\sigma(X)=\dfrac{\sqrt{1179}}4\approx8.6$. Do not round the expectation before calculating the variance.
+\paragraph{CQFD, exercise 28 p.~306, all questions.} $E(X)=(-10)\times\num{0,35}+(-5)\times\num{0,15}+0\times\num{0,4}+20\times\num{0,1}=-\num{2,25}=-\dfrac94$. A negative expectation is compatible with a possible positive value.
+\paragraph{CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.} $E(X^2)=100\times\num{0,35}+25\times\num{0,15}+400\times\num{0,1}=\num{78,75}$. Thus $V(X)=\num{78,75}-(-\num{2,25})^2=\num{73,6875}=\dfrac{1179}{16}$, then $\sigma(X)=\dfrac{\sqrt{1179}}4\approx\num{8,6}$. Do not round the expectation before calculating the variance.
 \subsection*{MCQ: answers and reasons}
 \textbf{MCQ 1.}
 \begin{enumerate}
@@ -46,7 +46,7 @@ Gains $(-1;0;1)$ and $(-3;0;3)$: expectation 0 in both cases, variances $\dfrac{
 \item A. Absolute value of the factor.
 \item D. A variable can be negative or have a mean that is never attained.
 \item B. A common finite sample space is enough.
-\item C. $\dfrac{4}{10}=0.4$.
+\item C. $\dfrac{4}{10}=\num{0,4}$.
 \end{enumerate}
 \subsection*{True or false}
 \begin{enumerate}

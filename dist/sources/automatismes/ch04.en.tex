@@ -3,13 +3,13 @@
 
 \begin{fluencysheet}{Thu~3~Dec.~2026}{Real-valued function; domain of definition}
 \mxfq{Warm-up · Quick}{EQ}{Solve $x-4=0$ then $2x+6=0$.}{$x=4$; $x=-3$.}{}
-\mxfq{Core · Method}{MOD}{Domain of definition of $f(x)=\dfrac{1}{x-4}$?}{Exclude the value that makes the denominator zero: $\R\setminus\{4\}=]-\infty;4[\,\cup\,]4;+\infty[$.}{}
-\mxfq{Core + · MCQ}{MOD}{The domain of definition of $h(x)=\dfrac{1}{x^2+1}$ is:\mxchoices{$\R\setminus\{1\}$}{$\R\setminus\{-1\,;\,1\}$}{$\R$}{$\R^*$}}{C.\ $\R$}{$x^2+1\geqslant1>0$: the denominator is never zero.}
+\mxfq{Core · Method}{MOD}{Domain of definition of $f(x)=\dfrac{1}{x-4}$?}{Exclude the value that makes the denominator zero: $\R\setminus\{4\}=\intoo{-\infty}{4}\,\cup\,\intoo{4}{+\infty}$.}{}
+\mxfq{Core + · MCQ}{MOD}{The domain of definition of $h(x)=\dfrac{1}{x^2+1}$ is:\mxchoices{$\R\setminus\{1\}$}{$\R\setminus\ens{-1;1}$}{$\R$}{$\R^*$}}{C.\ $\R$}{$x^2+1\geqslant1>0$: the denominator is never zero.}
 \mxfq{Review · Table}{PNP}{Is this table a proportionality table?\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|}\hline
 $x$ & 2 & 5 & 8 \\ \hline
 $y$ & 6 & 15 & 24 \\ \hline
 \end{tabular}\par }{Yes: $\dfrac{y}{x}=3$ for each column.}{}
-\mxfq{Thread · Code reading}{ALG}{What does $f(4)$ return?\par\smallskip{\ttfamily\small \hspace*{0.0em}def f(x):\\ \hspace*{2.4em}return 3*x - 2\par}}{$10$.}{}
+\mxfq{Thread · Code reading}{ALG}{What does $f(4)$ return?\mxpseudo{def f(x):\\ \mxtab return 3*x - 2}}{$10$.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Mon~7~Dec.~2026}{Curve with equation $y=f(x)$; images and preimages}
@@ -28,15 +28,15 @@ $y$ & 6 & 15 & 24 \\ \hline
 \end{fluencysheet}
 
 \begin{fluencysheet}{Tue~8~Dec.~2026}{Reference functions: absolute value, square, inverse}
-\mxfq{Warm-up · Quick}{CAL}{Calculate $|{-}2.5|$, $(-3)^2$ and $\dfrac{1}{-4}$.}{$2.5$; $9$; $-0.25$.}{}
+\mxfq{Warm-up · Quick}{CAL}{Calculate $|{-}\num{2,5}|$, $(-3)^2$ and $\dfrac{1}{-4}$.}{$\num{2,5}$; $9$; $-\num{0,25}$.}{}
 \mxfq{Core · Table}{REG}{Complete, for $x=-2\,;\,-1\,;\,0\,;\,1\,;\,2$, the values of $x\mapsto|x|$, $x\mapsto x^2$ and $x\mapsto\dfrac1x$.}{$|x|$: $2\,;\,1\,;\,0\,;\,1\,;\,2$; $x^2$: $4\,;\,1\,;\,0\,;\,1\,;\,4$; $\dfrac1x$: $-\dfrac12\ ;\ -1\ ;\ \text{undefined}\ ;\ 1\ ;\ \dfrac12$.}{}
-\mxfq{Core + · MCQ}{REG}{Which reference curve passes through $(-1;1)$, $(0;0)$, $(1;1)$ and $(2;4)$?\mxchoices{the line $y=x$}{the inverse function}{the absolute value function}{the square function}}{D.\ the square function}{The absolute value function would pass through $(2;2)$; the inverse function is not defined at $0$; the line $y=x$ passes through $(-1;-1)$.}
-\mxfq{Review · Quick}{PRO}{An object is enlarged with scale factor $1.5$. What does a length of $8$ cm become? By what number is the area multiplied?}{$12$ cm; the area is multiplied by $1.5^2=2.25$.}{}
+\mxfq{Core + · MCQ}{REG}{Which reference curve passes through $\pt{-1;1}$, $\pt{0;0}$, $\pt{1;1}$ and $\pt{2;4}$?\mxchoices{the line $y=x$}{the inverse function}{the absolute value function}{the square function}}{D.\ the square function}{The absolute value function would pass through $\pt{2;2}$; the inverse function is not defined at $0$; the line $y=x$ passes through $\pt{-1;-1}$.}
+\mxfq{Review · Quick}{PRO}{An object is enlarged with scale factor $\num{1,5}$. What does a length of $8$ cm become? By what number is the area multiplied?}{$12$ cm; the area is multiplied by $\num{1,5}^2=\num{2,25}$.}{}
 \mxfq{Thread · Prove}{LIT}{Conjecture: ``the sum of two consecutive integers is odd''. Prove it.}{$n+(n+1)=2n+1$, of the form $2k+1$ with $k=n$: odd.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Thu~10~Dec.~2026}{Square root and cube; sign of reference functions}
-\mxfq{Warm-up · Quick}{CAL}{Calculate $\sqrt{49}$, $\sqrt{0.25}$ and $(-2)^3$.}{$7$; $0.5$; $-8$.}{}
+\mxfq{Warm-up · Quick}{CAL}{Calculate $\sqrt{49}$, $\sqrt{\num{0,25}}$ and $(-2)^3$.}{$7$; $\num{0,5}$; $-8$.}{}
 \mxfq{Core · Method}{MOD}{Study the sign of $f(x)=-2x+6$.}{$-2x+6=0\Leftrightarrow x=3$; $f(x)>0$ for $x<3$, $f(x)<0$ for $x>3$ (negative gradient).}{}
 \mxfq{Core + · True/false}{MOD}{True or false? Justify. For every real number $x$, $\sqrt{x^2}=x$.}{False. Counter-example: $x=-3$: $\sqrt{9}=3\neq-3$. In fact $\sqrt{x^2}=|x|$.}{}
 \mxfq{Review · Quick}{PER}{How many squares make up a net of a cube? Does a cross (a row of $4$ squares + $1$ square on each side) work?}{$6$ squares; yes, the cross folds into a cube.}{}
@@ -52,8 +52,8 @@ $y$ & 6 & 15 & 24 \\ \hline
 \foreach \j in {-1,1,2,3,4,5,6}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
 \draw[thick,mxink,domain=-3:3,samples=60,smooth] plot (\x,{\x*\x});
 
-\end{tikzpicture}\par Solve graphically $f(x)=4$ then $f(x)<4$.}{$f(x)=4$: $x=-2$ or $x=2$; $f(x)<4$: $x\in]-2;2[$.}{Look for the abscissas of the points of the curve lying below the line $y=4$.}
-\mxfq{Core + · Method}{EQ}{Solve $|x|<3$ then $|x|=5$.}{$]-3;3[$; $x=-5$ or $x=5$.}{}
+\end{tikzpicture}\par Solve graphically $f(x)=4$ then $f(x)<4$.}{$f(x)=4$: $x=-2$ or $x=2$; $f(x)<4$: $x\in\intoo{-2}{2}$.}{Look for the abscissas of the points of the curve lying below the line $y=4$.}
+\mxfq{Core + · Method}{EQ}{Solve $|x|<3$ then $|x|=5$.}{$\intoo{-3}{3}$; $x=-5$ or $x=5$.}{}
 \mxfq{Review · Pitfall}{SUB}{Calculate $-x^2$ then $(-x)^2$ for $x=-3$.}{$-(-3)^2=-9$ and $(-(-3))^2=9$.}{}
 \mxfq{Thread · Method}{DEM}{In a triangle $ABC$, $M$ and $N$ are the midpoints of $[AB]$ and $[AC]$. What is being proved? Which property is cited?}{$(MN)\parallel(BC)$ and $MN=\dfrac12BC$: the midpoint theorem.}{}
 \end{fluencysheet}
@@ -68,8 +68,8 @@ $y$ & 6 & 15 & 24 \\ \hline
 \draw[thick,mxink,domain=-1:2,samples=60,smooth] plot (\x,{\x});
 \draw[thick,mxink,domain=-1:2,samples=60,smooth] plot (\x,{\x*\x});
 
-\end{tikzpicture}\par Solve $f(x)=g(x)$ then $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$: $x=0$ or $x=1$; $f(x)<g(x)$: the parabola is above the line for $x<0$ or $x>1$.}{Intervals: $]-\infty;0[\cup]1;+\infty[$.}
-\mxfq{Core + · Code reading}{ALG}{What does \code{f(-1) == g(-1)} return? And \code{f(0) == g(0)}?\par\smallskip{\ttfamily\small \hspace*{0.0em}def f(x):\\ \hspace*{2.4em}return x*x\\ \hspace*{0.0em}def g(x):\\ \hspace*{2.4em}return 2*x + 3\par}}{\code{True} ($1=-2+3$) then \code{False} ($0\neq3$): $-1$ is a solution of $f(x)=g(x)$, $0$ is not.}{}
-\mxfq{Review · Problem}{MOD}{Plan A: $15\,000$ Ar fixed + $1\,000$ Ar per session. Plan B: $2\,500$ Ar per session. From how many sessions is A cheaper?}{$15\,000+1\,000x<2\,500x\Leftrightarrow x>10$: from $11$ sessions ($10$: equal at $25\,000$ Ar).}{}
-\mxfq{Thread · Quick}{REP}{Calculate the coordinates of the midpoint of $[AB]$ with $A(-2;5)$ and $B(6;1)$.}{$\left(\dfrac{-2+6}{2};\dfrac{5+1}{2}\right)=(2;3)$.}{}
+\end{tikzpicture}\par Solve $f(x)=g(x)$ then $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$: $x=0$ or $x=1$; $f(x)<g(x)$: the parabola is above the line for $x<0$ or $x>1$.}{Intervals: $\intoo{-\infty}{0}\cup\intoo{1}{+\infty}$.}
+\mxfq{Core + · Code reading}{ALG}{What does \code{f(-1) == g(-1)} return? And \code{f(0) == g(0)}?\mxpseudo{def f(x):\\ \mxtab return x*x\\ def g(x):\\ \mxtab return 2*x + 3}}{\code{True} ($1=-2+3$) then \code{False} ($0\neq3$): $-1$ is a solution of $f(x)=g(x)$, $0$ is not.}{}
+\mxfq{Review · Problem}{MOD}{Plan A: $\num{15000}$ Ar fixed + $\num{1000}$ Ar per session. Plan B: $\num{2500}$ Ar per session. From how many sessions is A cheaper?}{$\num{15000}+\num{1000}x<\num{2500}x\Leftrightarrow x>10$: from $11$ sessions ($10$: equal at $\num{25000}$ Ar).}{}
+\mxfq{Thread · Quick}{REP}{Calculate the coordinates of the midpoint of $[AB]$ with $A\pt{-2;5}$ and $B\pt{6;1}$.}{$\left(\dfrac{-2+6}{2};\dfrac{5+1}{2}\right)=\pt{2;3}$.}{}
 \end{fluencysheet}

@@ -8,12 +8,12 @@
 \section*{Diagnostic : six questions, 10 minutes}\label{C03-D}
 Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.
 \begin{enumerate}
-\item Pour $A(1;2)$ et $B(4;-2)$, calculer $\vect{AB}$.
-\item Calculer la norme de $(3;-4)$.
+\item Pour $A\pt{1;2}$ et $B\pt{4;-2}$, calculer $\vect{AB}$.
+\item Calculer la norme de $\pt{3;-4}$.
 \item Simplifier $\vect{AB}+\vect{BC}$.
 \item Développer $(a+b)^2$.
 \item Dans un triangle rectangle, un angle a pour côtés adjacent 3 et hypoténuse 5. Donner son cosinus.
-\item Le milieu de $A(-2;1)$ et $B(4;3)$ ?
+\item Le milieu de $A\pt{-2;1}$ et $B\pt{4;3}$ ?
 \end{enumerate}
 \paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
 \paragraph{Oral et logique.} Comparer, sur un même problème, coordonnées et calcul vectoriel sans repère. Justifier pourquoi votre méthode utilise les données les plus directement.
@@ -21,23 +21,24 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \section*{Chercher avant de formaliser}\label{C03-RECH}
 Construire trois points M tels que $\vect{MA}\cdot\vect{MB}=0$ pour un segment AB de 6 cm. Conjecturer le lieu puis produire une preuve qui inclut A et B.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Projection et angle}\label{C03-U1}
 \begin{keypoint}[Définition et résultats]
-Pour deux vecteurs non nuls $\vec u,\vec v$, leur produit scalaire est le réel $\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta$, où $\theta\in[0;\pi]$ est leur angle non orienté. Avec un vecteur nul, le produit vaut 0. Si $H$ est le projeté de B sur $(OA)$, $\vect{OA}\cdot\vect{OB}$ vaut $OA\times OH$ lorsque H est sur la demi-droite $[OA)$, et son opposé sinon.
+Pour deux vecteurs non nuls $\vec u,\vec v$, leur produit scalaire est le réel $\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta$, où $\theta\in\intff{0}{\pi}$ est leur angle non orienté. Avec un vecteur nul, le produit vaut 0. Si $H$ est le projeté de B sur $(OA)$, $\vect{OA}\cdot\vect{OB}$ vaut $OA\times OH$ lorsque H est sur la demi-droite $[OA)$, et son opposé sinon.
 \end{keypoint}
 \paragraph{Statut et justification.} Définition ; l’équivalence avec la projection découle du cosinus dans les triangles rectangles, avec une projection algébrique négative pour un angle obtus.
-\begin{example}Pour deux vecteurs de normes 3 et 4 formant $60^\circ$, le produit vaut $\dfrac{3\times 4\times 1}{2}=6$. Avec $120^\circ$, il vaut $-6$. Si $A(3;0)$ et $B(-2;4)$, le projeté est $H(-2;0)$ et le produit vaut $-6$.\end{example}\label{C03-EX1}
+\begin{example}Pour deux vecteurs de normes 3 et 4 formant $60^\circ$, le produit vaut $\dfrac{3\times 4\times 1}{2}=6$. Avec $120^\circ$, il vaut $-6$. Si $A\pt{3;0}$ et $B\pt{-2;4}$, le projeté est $H\pt{-2;0}$ et le produit vaut $-6$.\end{example}\label{C03-EX1}
 \mxinclude{figures/C03-U1}
 \begin{pitfall}Le résultat est un nombre, pas un vecteur. L’angle droit correspond à 0, pas à 1.\end{pitfall}
 \begin{application}Deux vecteurs ont pour normes 2 et 5 et forment $90^\circ$, puis $180^\circ$. Calculer les produits.\end{application}\label{C03-AP1}
 \section{Coordonnées, norme et orthogonalité}\label{C03-U2}
 \begin{keypoint}[Définition et résultats]
-Dans une base orthonormée, pour $\vec u=(x;y)$ et $\vec v=(x\prime;y\prime)$, $\vec u\cdot\vec v=xx\prime+yy\prime$ et $\norm{\vec u}^2=x^2+y^2$. Les vecteurs sont orthogonaux si et seulement si leur produit est nul. Pour une base $(\vec i,\vec j)$ orthonormée, $x=\vec u\cdot\vec i$ et $y=\vec u\cdot\vec j$.
+Dans une base orthonormée, pour $\vec u=\pt{x;y}$ et $\vec v=\pt{x\prime;y\prime}$, $\vec u\cdot\vec v=xx\prime+yy\prime$ et $\norm{\vec u}^2=x^2+y^2$. Les vecteurs sont orthogonaux si et seulement si leur produit est nul. Pour une base $(\vec i,\vec j)$ orthonormée, $x=\vec u\cdot\vec i$ et $y=\vec u\cdot\vec j$.
 \end{keypoint}
 \paragraph{Statut et justification.} Propriétés démontrées à l’aide de la bilinéarité : développer $(x\vec i+y\vec j)\cdot(x\prime\vec i+y\prime\vec j)$ et utiliser $\vec i\cdot\vec i=\vec j\cdot\vec j=1$, $\vec i\cdot\vec j=0$.
-\begin{example}$\vec u=(2;3)$, $\vec v=(3;-2)$ : produit $6-6=0$. Les deux vecteurs sont orthogonaux. Leur norme vaut $\sqrt{13}$. Le produit de $(2;3)$ avec $(1;0)$ vaut 2 : on retrouve l’abscisse.\end{example}\label{C03-EX2}
+\begin{example}$\vec u=\pt{2;3}$, $\vec v=\pt{3;-2}$ : produit $6-6=0$. Les deux vecteurs sont orthogonaux. Leur norme vaut $\sqrt{13}$. Le produit de $\pt{2;3}$ avec $\pt{1;0}$ vaut 2 : on retrouve l’abscisse.\end{example}\label{C03-EX2}
 \begin{pitfall}La formule usuelle suppose une base orthonormée. Colinéarité et orthogonalité sont des propriétés différentes.\end{pitfall}
-\begin{application}Pour quel réel t les vecteurs $(t;2)$ et $(3;-6)$ sont-ils orthogonaux ?\end{application}\label{C03-AP2}
+\begin{application}Pour quel réel t les vecteurs $\pt{t;2}$ et $\pt{3;-6}$ sont-ils orthogonaux ?\end{application}\label{C03-AP2}
 \section{Calcul vectoriel et identités}\label{C03-U3}
 \begin{keypoint}[Définition et résultats]
 Le produit scalaire est symétrique et bilinéaire : $\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w$ et $(\lambda\vec u)\cdot\vec v=\lambda(\vec u\cdot\vec v)$. Ainsi $\norm{\vec u\pm\vec v}^2=\norm{\vec u}^2\pm2\vec u\cdot\vec v+\norm{\vec v}^2$. On en tire $\vec u\cdot \vec v=\dfrac{\norm{\vec u+\vec v}^2-\norm{\vec u}^2-\norm{\vec v}^2}{2}$.
@@ -59,22 +60,23 @@ Dans un triangle ABC, $BC^2=AB^2+AC^2-2AB\,AC\cos\widehat{BAC}$. Cette formule p
 Pour deux points distincts A et B de milieu I, $\vect {MA}\cdot \vect {MB}=MI^2-\dfrac{AB^2}{4}$. L’ensemble des points M tels que $\vect{MA}\cdot\vect{MB}=0$ est le cercle de centre I et de rayon $\dfrac{AB}{2}$, points A et B compris.
 \end{keypoint}
 \paragraph{Statut et justification.} Écrire $\vect{MA}=\vect{MI}+\vect{IA}$ et $\vect{MB}=\vect{MI}-\vect{IA}$. Les termes croisés s’annulent ; il reste $MI^2-IA^2$. Comme $IA=\dfrac{AB}{2}$, l’égalité à zéro équivaut à l’équation métrique du cercle.
-\begin{example}$A(-2;0)$ et $B(2;0)$ : I est l’origine. Le lieu est $x^2+y^2=4$. Pour $M(0;1)$, le produit vaut $1-4=-3$ ; pour $M(0;2)$, il vaut 0.\end{example}\label{C03-EX5}
+\begin{example}$A\pt{-2;0}$ et $B\pt{2;0}$ : I est l’origine. Le lieu est $x^2+y^2=4$. Pour $M\pt{0;1}$, le produit vaut $1-4=-3$ ; pour $M\pt{0;2}$, il vaut 0.\end{example}\label{C03-EX5}
 \mxinclude{figures/C03-U5}
 \begin{pitfall}Les extrémités appartiennent au lieu même si « triangle rectangle » ne convient pas à un triangle dégénéré.\end{pitfall}
-\begin{application}Pour $A(0;0)$, $B(6;0)$, déterminer les M tels que $\vect{MA}\cdot\vect{MB}=7$.\end{application}\label{C03-AP5}
+\begin{application}Pour $A\pt{0;0}$, $B\pt{6;0}$, déterminer les M tels que $\vect{MA}\cdot\vect{MB}=7$.\end{application}\label{C03-AP5}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C03-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
 \mxexercisehead{C03-E1}{Calculs directs}
-Dans une base orthonormée du plan, on considère les vecteurs $\vec u=(1;-2)$ et $\vec v=(4;3)$.
+Dans une base orthonormée du plan, on considère les vecteurs $\vec u=\pt{1;-2}$ et $\vec v=\pt{4;3}$.
 \begin{enumerate}[label=\arabic*.]
 \item Calculer le produit scalaire $\vec u\cdot\vec v$, puis les normes $\norm{\vec u}$ et $\norm{\vec v}$.
 \item Calculer les coordonnées de $\vec u+\vec v$ et en déduire $\norm{\vec u+\vec v}^2$.
 \item Retrouver ce dernier résultat à l’aide de l’identité faisant intervenir $\vec u\cdot\vec v$.
 \end{enumerate}
 \mxexercisehead{C03-E2}{Un triangle rectangle ?}
-Le plan est muni d’un repère orthonormé. On donne les points $A(1;1)$, $B(4;2)$ et $C(0;4)$.
+Le plan est muni d’un repère orthonormé. On donne les points $A\pt{1;1}$, $B\pt{4;2}$ et $C\pt{0;4}$.
 \begin{enumerate}[label=\arabic*.]
 \item Calculer les coordonnées de $\vect{AB}$ et $\vect{AC}$, puis leur produit scalaire.
 \item En déduire que le triangle $ABC$ est rectangle ; préciser en quel sommet.
@@ -129,14 +131,14 @@ Ces exercices se traitent dans votre manuel. La progression indique la séance ;
 \mxnewpage\section*{QCM 1 : comprendre et choisir}\label{C03-Q1}
 Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
 \begin{enumerate}
-\item $(2;1)\cdot(3;-4)$ vaut
+\item $\pt{2;1}\cdot\pt{3;-4}$ vaut
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $2$
 \item $10$
-\item $(6;-4)$
+\item $\pt{6;-4}$
 \item $-2$
 \end{enumerate}
-\item La norme de $(-3;4)$ vaut
+\item La norme de $\pt{-3;4}$ vaut
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $7$
 \item $25$

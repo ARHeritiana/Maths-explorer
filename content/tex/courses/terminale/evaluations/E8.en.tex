@@ -4,7 +4,7 @@
 
 \section*{Mock 2 · Practice 1}
 
-{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+\mxbanner{PRACTICE PAPER · TRAINING}
 
 \textbf{Duration: 4 hours · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -26,13 +26,13 @@
 
 \item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
 
-\item Split $[0;1]$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{5x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{5x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
 
 \item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ its representative curve.
 
 \begin{enumerate}
 
@@ -44,19 +44,19 @@
 
 \item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
 
-\item Prove that the equation $f(x)=\frac12 e^{3}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Prove that the equation $f(x)=\frac12 e^{3}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Determine an antiderivative of $f$ on $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Calculate the mean value of $f$ on $[1;e]$. \hfill\textit{(0.5 pt)}
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
 
 \item Independently of the previous questions, solve $\ln(x-3)+\ln(x+3)=\ln(27)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 2 · Practice 1 · continued}\par
+\mxnewpage\mxcontinued{Mock 2 · Practice 1 · continued}
 
-\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=10$ and the point $M(3;0;0)$. The line $d$ passes through $M$ and has direction vector $\vec n=(1;2;2)$.
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=10$ and the point $M\pt{3;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
 
@@ -90,13 +90,13 @@
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,20\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $20$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -194,21 +194,21 @@ The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to posi
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B(20,\frac{3}{10})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{3}{10})^2(\frac{7}{10})^{18}\simeq0.027846$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{3}{10})^2(\frac{7}{10})^{18}\simeq\num{0,027846}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{20}-20(\frac{3}{10})(\frac{7}{10})^{19}\simeq0.992363$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{20}-20(\frac{3}{10})(\frac{7}{10})^{19}\simeq\num{0,992363}$.
 
 \item \textit{[1 pt]} $E(X)=6$, $V(X)=\frac{21}{5}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{7}{10})^N$. It is strictly increasing with $N$, since $0<\frac{7}{10}<1$. The calculations give
-\[P_{8}\simeq0.942352<0.95,\qquad P_{9}\simeq0.959646\ge0.95.\]
+\[P_{8}\simeq\num{0,942352}<\num{0,95},\qquad P_{9}\simeq\num{0,959646}\ge\num{0,95}.\]
 Thus $9$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=20$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{20}j(\frac{3}{10})^j(\frac{7}{10})^{20-j}\simeq0.106289.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{20}j(\frac{3}{10})^j(\frac{7}{10})^{20-j}\simeq\num{0,106289}.\]
 
 \mxneed{24}
 
@@ -224,7 +224,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $9$. The cumulative values at ranks $8$ and $9$ are approximately $0.886669$ and $0.952038$: this confirms minimality.
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $9$. The cumulative values at ranks $8$ and $9$ are approximately $\num{0,886669}$ and $\num{0,952038}$: this confirms minimality.
 
 \end{enumerate}
 
@@ -234,7 +234,7 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \section*{Mock 2 · Practice 2}
 
-{\sffamily\bfseries\color{mxmint}PRACTICE PAPER · TRAINING\par}
+\mxbanner{PRACTICE PAPER · TRAINING}
 
 \textbf{Duration: 4 hours · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -256,13 +256,13 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
 
-\item Split $[0;1]$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{4x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{4x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
 
 \item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ its representative curve.
 
 \begin{enumerate}
 
@@ -274,19 +274,19 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
 
-\item Prove that the equation $f(x)=\frac12 e^{2}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Prove that the equation $f(x)=\frac12 e^{2}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Determine an antiderivative of $f$ on $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Calculate the mean value of $f$ on $[1;e]$. \hfill\textit{(0.5 pt)}
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
 
 \item Independently of the previous questions, solve $\ln(x-1)+\ln(x+1)=\ln(63)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 2 · Practice 2 · continued}\par
+\mxnewpage\mxcontinued{Mock 2 · Practice 2 · continued}
 
-\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=6$ and the point $M(1;0;0)$. The line $d$ passes through $M$ and has direction vector $\vec n=(1;2;2)$.
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=6$ and the point $M\pt{1;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
 
@@ -320,13 +320,13 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,17\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $17$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -424,21 +424,21 @@ The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to posi
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B(17,\frac{3}{10})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{3}{10})^2(\frac{7}{10})^{15}\simeq0.058110$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{3}{10})^2(\frac{7}{10})^{15}\simeq\num{0,058110}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{17}-17(\frac{3}{10})(\frac{7}{10})^{16}\simeq0.980725$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{17}-17(\frac{3}{10})(\frac{7}{10})^{16}\simeq\num{0,980725}$.
 
 \item \textit{[1 pt]} $E(X)=\frac{51}{10}$, $V(X)=\frac{357}{100}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{7}{10})^N$. It is strictly increasing with $N$, since $0<\frac{7}{10}<1$. The calculations give
-\[P_{8}\simeq0.942352<0.95,\qquad P_{9}\simeq0.959646\ge0.95.\]
+\[P_{8}\simeq\num{0,942352}<\num{0,95},\qquad P_{9}\simeq\num{0,959646}\ge\num{0,95}.\]
 Thus $9$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=17$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{3}{10})^j(\frac{7}{10})^{17-j}\simeq0.199581.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{3}{10})^j(\frac{7}{10})^{17-j}\simeq\num{0,199581}.\]
 
 \mxneed{24}
 
@@ -454,7 +454,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $8$. The cumulative values at ranks $7$ and $8$ are approximately $0.895360$ and $0.959723$: this confirms minimality.
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $8$. The cumulative values at ranks $7$ and $8$ are approximately $\num{0,895360}$ and $\num{0,959723}$: this confirms minimality.
 
 \end{enumerate}
 
@@ -466,7 +466,7 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \section*{Mock 2 · A}
 
-{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
 \textbf{Duration: 4 hours · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -488,13 +488,13 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
 
-\item Split $[0;1]$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{3x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{3x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
 
 \item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ its representative curve.
 
 \begin{enumerate}
 
@@ -506,19 +506,19 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
 
-\item Prove that the equation $f(x)=\frac12 e^{1}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Prove that the equation $f(x)=\frac12 e^{1}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Determine an antiderivative of $f$ on $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Calculate the mean value of $f$ on $[1;e]$. \hfill\textit{(0.5 pt)}
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
 
 \item Independently of the previous questions, solve $\ln(x-2)+\ln(x+2)=\ln(21)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 2 · A · continued}\par
+\mxnewpage\mxcontinued{Mock 2 · A · continued}
 
-\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=10$ and the point $M(2;0;0)$. The line $d$ passes through $M$ and has direction vector $\vec n=(1;2;2)$.
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=10$ and the point $M\pt{2;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
 
@@ -552,13 +552,13 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,18\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $18$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -656,21 +656,21 @@ The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to posi
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $18$ of identical independent trials with two outcomes; $X\sim\mathcal B(18,\frac{1}{5})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{18}2(\frac{1}{5})^2(\frac{4}{5})^{16}\simeq0.172263$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{18}2(\frac{1}{5})^2(\frac{4}{5})^{16}\simeq\num{0,172263}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{18}-18(\frac{1}{5})(\frac{4}{5})^{17}\simeq0.900921$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{18}-18(\frac{1}{5})(\frac{4}{5})^{17}\simeq\num{0,900921}$.
 
 \item \textit{[1 pt]} $E(X)=\frac{18}{5}$, $V(X)=\frac{72}{25}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{4}{5})^N$. It is strictly increasing with $N$, since $0<\frac{4}{5}<1$. The calculations give
-\[P_{13}\simeq0.945024<0.95,\qquad P_{14}\simeq0.956020\ge0.95.\]
+\[P_{13}\simeq\num{0,945024}<\num{0,95},\qquad P_{14}\simeq\num{0,956020}\ge\num{0,95}.\]
 Thus $14$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=18$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{5}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{18}j(\frac{1}{5})^j(\frac{4}{5})^{18-j}\simeq0.483011.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{18}j(\frac{1}{5})^j(\frac{4}{5})^{18-j}\simeq\num{0,483011}.\]
 
 \mxneed{24}
 
@@ -686,7 +686,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $7$. The cumulative values at ranks $6$ and $7$ are approximately $0.948729$ and $0.983720$: this confirms minimality.
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $7$. The cumulative values at ranks $6$ and $7$ are approximately $\num{0,948729}$ and $\num{0,983720}$: this confirms minimality.
 
 \end{enumerate}
 
@@ -700,7 +700,7 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \section*{Mock 2 · B}
 
-{\sffamily\bfseries\color{mxwarn}PAPER RESERVED FOR ASSESSMENT\par}
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
 \textbf{Duration: 4 hours · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
@@ -722,13 +722,13 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
 
-\item Split $[0;1]$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{2x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{2x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
 
 \item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $]0;+\infty[$ by $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ its representative curve.
 
 \begin{enumerate}
 
@@ -740,19 +740,19 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
 
-\item Prove that the equation $f(x)=\frac12 e^{4}$ has exactly two solutions in $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Prove that the equation $f(x)=\frac12 e^{4}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Determine an antiderivative of $f$ on $]0;+\infty[$. \hfill\textit{(0.5 pt)}
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
 
-\item Calculate the mean value of $f$ on $[1;e]$. \hfill\textit{(0.5 pt)}
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
 
 \item Independently of the previous questions, solve $\ln(x-3)+\ln(x+3)=\ln(27)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
-\mxnewpage\noindent{\sffamily\bfseries\color{mxink}Mock 2 · B · continued}\par
+\mxnewpage\mxcontinued{Mock 2 · B · continued}
 
-\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=11$ and the point $M(3;0;0)$. The line $d$ passes through $M$ and has direction vector $\vec n=(1;2;2)$.
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=11$ and the point $M\pt{3;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
 
@@ -786,13 +786,13 @@ The probabilities added are positive and the final cumulative value is $1$, so t
 
 \item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
 
-\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $0.95$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
 
 \item For an integer $j\in\{0,\ldots,20\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
 
 \item A series of $20$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
 
-\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge0.95$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
@@ -890,21 +890,21 @@ The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to posi
 
 \item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B(20,\frac{1}{10})$.
 
-\item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{1}{10})^2(\frac{9}{10})^{18}\simeq0.285180$.
+\item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{1}{10})^2(\frac{9}{10})^{18}\simeq\num{0,285180}$.
 
-\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{20}-20(\frac{1}{10})(\frac{9}{10})^{19}\simeq0.608253$.
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{20}-20(\frac{1}{10})(\frac{9}{10})^{19}\simeq\num{0,608253}$.
 
 \item \textit{[1 pt]} $E(X)=2$, $V(X)=\frac{9}{5}$.
 
 \item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{9}{10})^N$. It is strictly increasing with $N$, since $0<\frac{9}{10}<1$. The calculations give
-\[P_{28}\simeq0.947665<0.95,\qquad P_{29}\simeq0.952899\ge0.95.\]
+\[P_{28}\simeq\num{0,947665}<\num{0,95},\qquad P_{29}\simeq\num{0,952899}\ge\num{0,95}.\]
 Thus $29$ is the smallest suitable number of trials.
 
 \item \textit{[0.5 pt]} Let $n=20$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
 \[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
 
 \item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
-\[P(1\le X\le3)=\sum_{j=1}^3\binom{20}j(\frac{1}{10})^j(\frac{9}{10})^{20-j}\simeq0.745470.\]
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{20}j(\frac{1}{10})^j(\frac{9}{10})^{20-j}\simeq\num{0,745470}.\]
 
 \mxneed{24}
 
@@ -920,7 +920,7 @@ def quantile():
         cumul += comb(n, j)*p**j*(1-p)**(n-j)
     return j
 \end{lstlisting}
-The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $4$. The cumulative values at ranks $3$ and $4$ are approximately $0.867047$ and $0.956826$: this confirms minimality.
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $4$. The cumulative values at ranks $3$ and $4$ are approximately $\num{0,867047}$ and $\num{0,956826}$: this confirms minimality.
 
 \end{enumerate}
 

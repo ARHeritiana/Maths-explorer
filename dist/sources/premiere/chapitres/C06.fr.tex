@@ -21,6 +21,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \section*{Chercher avant de formaliser}\label{C06-RECH}
 Une fonction croissante peut-elle avoir une tangente horizontale ? Chercher un exemple ; peut-elle avoir une dérivée strictement négative en un point intérieur ?
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
 \section{Fonction dérivée et fonctions usuelles}\label{C06-U1}
 \begin{keypoint}[Définition et résultats]
 Une fonction est dérivable sur un intervalle lorsqu’elle l’est en chacun de ses points ; sa dérivée associe à x le nombre $f\prime(x)$. Les dérivées usuelles sont : constante $\mapsto0$ ; $x\mapsto1$ ; $x^2\mapsto2x$ ; $x^3\mapsto3x^2$ ; $\dfrac{1}{x}\mapsto -\dfrac{1}{x^2}$ pour $x\ne0$ ; $\sqrt x\mapsto \dfrac{1}{2\sqrt x}$ pour $x>0$. Pour $n\in\Z$, $(x^n)\prime=nx^{n-1}$ sur son domaine de dérivabilité ; pour $n=0$, la dérivée est 0 directement.
@@ -42,10 +43,10 @@ Pour u et v dérivables, $(u+v)\prime=u\prime+v\prime$, $(\lambda u)\prime=\lamb
 Sur un intervalle I, si $f\prime\geq0$, f est croissante ; si $f\prime\leq0$, elle est décroissante ; si $f\prime=0$ partout, elle est constante. Une dérivée strictement positive entraîne une stricte croissance. Si f possède un extremum local en un point intérieur où elle est dérivable, sa dérivée y est nulle. La réciproque est fausse.
 \end{keypoint}
 \paragraph{Statut et justification.} Théorèmes de variation admis. Pour un minimum intérieur en a, les taux à droite sont positifs ou nuls, ceux à gauche négatifs ou nuls ; s’ils convergent vers le même réel, il est 0. Même argument pour un maximum.
-\begin{example}$f(x)=x^3-3x$ : $f\prime(x)=3(x-1)(x+1)$. f croît sur $]-\infty;-1]$, décroît sur $[-1;1]$, croît sur $[1;+\infty[$ ; maximum local $f(-1)=2$, minimum local $f(1)=-2$. Aucun de ces extrema n’est global sur $\R$.\end{example}\label{C06-EX3}
+\begin{example}$f(x)=x^3-3x$ : $f\prime(x)=3(x-1)(x+1)$. f croît sur $\intof{-\infty}{-1}$, décroît sur $\intff{-1}{1}$, croît sur $\intfo{1}{+\infty}$ ; maximum local $f(-1)=2$, minimum local $f(1)=-2$. Aucun de ces extrema n’est global sur $\R$.\end{example}\label{C06-EX3}
 \mxinclude{figures/C06-U3}
 \begin{pitfall}Le théorème s’applique sur un intervalle. Une fonction peut décroître sur deux intervalles séparés sans décroître sur leur réunion.\end{pitfall}
-\begin{application}Étudier $f(x)=x^2-4x+1$ sur $[0;3]$ et donner ses extrema sur cet intervalle.\end{application}\label{C06-AP3}
+\begin{application}Étudier $f(x)=x^2-4x+1$ sur $\intff{0}{3}$ et donner ses extrema sur cet intervalle.\end{application}\label{C06-AP3}
 \section{Parité, inégalités et comparaison}\label{C06-U4}
 \begin{keypoint}[Définition et résultats]
 Sur un domaine symétrique par rapport à 0, f est paire si $f(-x)=f(x)$ et impaire si $f(-x)=-f(x)$. La courbe d’une fonction paire est symétrique par rapport à l’axe des ordonnées ; celle d’une impaire par rapport à l’origine. Pour comparer f et g, on étudie le signe de $f-g$, éventuellement avec sa dérivée.
@@ -59,9 +60,10 @@ Sur un domaine symétrique par rapport à 0, f est paire si $f(-x)=f(x)$ et impa
 Optimiser consiste à définir la variable et son domaine, exprimer la grandeur à optimiser, puis comparer toutes les valeurs candidates, y compris les bornes. La méthode de Newton utilise la tangente pour approcher une solution de $f(x)=0$ : $x_{n+1}=x_n-\dfrac{f(x_n)}{f}\prime (x_n)$ lorsque $f\prime(x_n)\ne0$. Elle n’est utilisée que dans des cas favorables.
 \end{keypoint}
 \paragraph{Statut et justification.} La formule de Newton vient de l’intersection avec l’axe horizontal de $y=f(x_n)+f\prime(x_n)(x-x_n)$. La convergence n’est pas garantie en général ; on la constate et contrôle dans le cas retenu.
-\begin{example}Pour $f(x)=x^2-2$ avec $x_0=1$, Newton donne $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. Les carrés sont 2{,}25 puis environ 2{,}00694 : on approche $\sqrt2$. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.\end{example}\label{C06-EX5}
+\begin{example}Pour $f(x)=x^2-2$ avec $x_0=1$, Newton donne $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. Les carrés sont \num{2,25} puis environ \num{2,00694} : on approche $\sqrt2$. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.\end{example}\label{C06-EX5}
 \begin{pitfall}Une valeur numérique fournie par un algorithme n’est pas une preuve de minimum ni de convergence.\end{pitfall}
 \begin{application}Un rectangle de périmètre 12 m a largeur x. Déterminer l’aire maximale par dérivation.\end{application}\label{C06-AP5}
+\mxnewpage
 \section*{Parcours d’exercices}\label{C06-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
 \begingroup
@@ -73,16 +75,16 @@ On considère les fonctions\[f(x)=3x^4-2x+7,\quad g(x)=(x^2+2)(x-1),\quad h(x)=\
 \item Contrôler le résultat concernant $g$ en développant son expression avant de dériver.
 \end{enumerate}
 \mxexercisehead{C06-E2}{Un tableau complet}
-La fonction $f$ est définie sur $[0;4]$ par $f(x)=x^3-6x^2+9x+1$. On cherche ses valeurs minimale et maximale sur cet intervalle.
+La fonction $f$ est définie sur $\intff{0}{4}$ par $f(x)=x^3-6x^2+9x+1$. On cherche ses valeurs minimale et maximale sur cet intervalle.
 \begin{enumerate}[label=\arabic*.]
-\item Calculer et factoriser $f\prime(x)$, puis étudier son signe sur $[0;4]$.
+\item Calculer et factoriser $f\prime(x)$, puis étudier son signe sur $\intff{0}{4}$.
 \item Dresser le tableau de variations de $f$ en indiquant les valeurs aux bornes et aux points où la dérivée s’annule.
 \item Donner le minimum et le maximum de $f$ sur l’intervalle, ainsi que toutes les abscisses où ils sont atteints.
 \end{enumerate}
 \mxexercisehead{C06-E3}{Un quotient}
 Pour tout réel strictement positif $x$, on pose $f(x)=x+\dfrac4x$.
 \begin{enumerate}[label=\arabic*.]
-\item Étudier les variations de $f$ sur $]0;+\infty[$. Présenter les facteurs qui déterminent le signe de la dérivée.
+\item Étudier les variations de $f$ sur $\intoo{0}{+\infty}$. Présenter les facteurs qui déterminent le signe de la dérivée.
 \item En déduire la plus petite valeur de $x+\dfrac4x$, puis écrire une inégalité valable pour tout $x>0$. Préciser exactement son cas d’égalité.
 \end{enumerate}
 \mxexercisehead{C06-E4}{Comparer deux courbes}
@@ -192,7 +194,7 @@ Cinq questions pédagogiques à réponse unique. Choisir une réponse par questi
 \item $\dfrac{\sqrt x}{2}$
 \item $\dfrac{1}{2\sqrt x}$, $x>0$
 \end{enumerate}
-\item Minimum de $x+\dfrac{1}{x}$ sur $]0;+\infty[$ :
+\item Minimum de $x+\dfrac{1}{x}$ sur $\intoo{0}{+\infty}$ :
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $0$
 \item $2$

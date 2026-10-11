@@ -22,6 +22,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \section*{Investigate before formalising}\label{C06-RECH}
 Can an increasing function have a horizontal tangent? Look for an example; can it have a strictly negative derivative at an interior point?
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
 \section{Derivative function and standard functions}\label{C06-U1}
 \begin{keypoint}[Definition and results]
 A function is differentiable on an interval when it is differentiable at each of its points; its derivative associates with x the number $f\prime(x)$. The standard derivatives are: constant $\mapsto0$; $x\mapsto1$; $x^2\mapsto2x$; $x^3\mapsto3x^2$; $\dfrac{1}{x}\mapsto -\dfrac{1}{x^2}$ for $x\ne0$; $\sqrt x\mapsto \dfrac{1}{2\sqrt x}$ for $x>0$. For $n\in\Z$, $(x^n)\prime=nx^{n-1}$ on its domain of differentiability; for $n=0$, the derivative is 0 directly.
@@ -43,10 +44,10 @@ For differentiable u and v, $(u+v)\prime=u\prime+v\prime$, $(\lambda u)\prime=\l
 On an interval I, if $f\prime\geq0$, f is increasing; if $f\prime\leq0$, it is decreasing; if $f\prime=0$ everywhere, it is constant. A strictly positive derivative implies strict increase. If f has a local extremum at an interior point where it is differentiable, its derivative is zero there. The converse is false.
 \end{keypoint}
 \paragraph{Status and justification.} Variation theorems accepted. For an interior minimum at a, the rates on the right are positive or zero, those on the left negative or zero; if they converge to the same real number, it is 0. Same argument for a maximum.
-\begin{example}$f(x)=x^3-3x$: $f\prime(x)=3(x-1)(x+1)$. f increases on $]-\infty;-1]$, decreases on $[-1;1]$, increases on $[1;+\infty[$; local maximum $f(-1)=2$, local minimum $f(1)=-2$. Neither of these extrema is global on $\R$.\end{example}\label{C06-EX3}
+\begin{example}$f(x)=x^3-3x$: $f\prime(x)=3(x-1)(x+1)$. f increases on $\intof{-\infty}{-1}$, decreases on $\intff{-1}{1}$, increases on $\intfo{1}{+\infty}$; local maximum $f(-1)=2$, local minimum $f(1)=-2$. Neither of these extrema is global on $\R$.\end{example}\label{C06-EX3}
 \mxinclude{figures/C06-U3}
 \begin{pitfall}The theorem applies on an interval. A function can decrease on two separate intervals without decreasing on their union.\end{pitfall}
-\begin{application}Study $f(x)=x^2-4x+1$ on $[0;3]$ and give its extrema on this interval.\end{application}\label{C06-AP3}
+\begin{application}Study $f(x)=x^2-4x+1$ on $\intff{0}{3}$ and give its extrema on this interval.\end{application}\label{C06-AP3}
 \section{Parity, inequalities and comparison}\label{C06-U4}
 \begin{keypoint}[Definition and results]
 On a domain symmetric about 0, f is even if $f(-x)=f(x)$ and odd if $f(-x)=-f(x)$. The curve of an even function is symmetric about the y-axis; that of an odd function about the origin. To compare f and g, we study the sign of $f-g$, possibly with its derivative.
@@ -60,9 +61,10 @@ On a domain symmetric about 0, f is even if $f(-x)=f(x)$ and odd if $f(-x)=-f(x)
 Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints. Newton's method uses the tangent to approximate a solution of $f(x)=0$: $x_{n+1}=x_n-\dfrac{f(x_n)}{f}\prime (x_n)$ when $f\prime(x_n)\ne0$. It is used only in favourable cases.
 \end{keypoint}
 \paragraph{Status and justification.} Newton's formula comes from the intersection of $y=f(x_n)+f\prime(x_n)(x-x_n)$ with the horizontal axis. Convergence is not guaranteed in general; it is observed and checked in the case chosen.
-\begin{example}For $f(x)=x^2-2$ with $x_0=1$, Newton gives $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. The squares are 2.25 then about 2.00694: we approach $\sqrt2$. The program must check for a zero derivative and a maximum number of steps.\end{example}\label{C06-EX5}
+\begin{example}For $f(x)=x^2-2$ with $x_0=1$, Newton gives $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. The squares are \num{2,25} then about \num{2,00694}: we approach $\sqrt2$. The program must check for a zero derivative and a maximum number of steps.\end{example}\label{C06-EX5}
 \begin{pitfall}A numerical value produced by an algorithm is not a proof of a minimum or of convergence.\end{pitfall}
 \begin{application}A rectangle of perimeter 12 m has width x. Determine the maximum area by differentiation.\end{application}\label{C06-AP5}
+\mxnewpage
 \section*{Exercise path}\label{C06-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
 \begingroup
@@ -74,16 +76,16 @@ Consider the functions\[f(x)=3x^4-2x+7,\quad g(x)=(x^2+2)(x-1),\quad h(x)=\dfrac
 \item Check the result for $g$ by expanding its expression before differentiating.
 \end{enumerate}
 \mxexercisehead{C06-E2}{A complete table}
-The function $f$ is defined on $[0;4]$ by $f(x)=x^3-6x^2+9x+1$. We look for its minimum and maximum values on this interval.
+The function $f$ is defined on $\intff{0}{4}$ by $f(x)=x^3-6x^2+9x+1$. We look for its minimum and maximum values on this interval.
 \begin{enumerate}[label=\arabic*.]
-\item Calculate and factorise $f\prime(x)$, then study its sign on $[0;4]$.
+\item Calculate and factorise $f\prime(x)$, then study its sign on $\intff{0}{4}$.
 \item Draw the variation table of $f$, giving the values at the endpoints and at the points where the derivative vanishes.
 \item Give the minimum and the maximum of $f$ on the interval, as well as all the x-coordinates where they are reached.
 \end{enumerate}
 \mxexercisehead{C06-E3}{A quotient}
 For every strictly positive real number $x$, let $f(x)=x+\dfrac4x$.
 \begin{enumerate}[label=\arabic*.]
-\item Study the variation of $f$ on $]0;+\infty[$. Present the factors that determine the sign of the derivative.
+\item Study the variation of $f$ on $\intoo{0}{+\infty}$. Present the factors that determine the sign of the derivative.
 \item Deduce the smallest value of $x+\dfrac4x$, then write an inequality valid for all $x>0$. State exactly its equality case.
 \end{enumerate}
 \mxexercisehead{C06-E4}{Comparing two curves}
@@ -193,7 +195,7 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \item $\dfrac{\sqrt x}{2}$
 \item $\dfrac{1}{2\sqrt x}$, $x>0$
 \end{enumerate}
-\item Minimum of $x+\dfrac{1}{x}$ on $]0;+\infty[$:
+\item Minimum of $x+\dfrac{1}{x}$ on $\intoo{0}{+\infty}$:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $0$
 \item $2$

@@ -1,6 +1,6 @@
-\setcounter{chapter}{0}\mxunit{terminale-c01}{Suites numériques et récurrence}\label{ch:1}
+\mxunit[1]{terminale-c01}{Suites numériques et récurrence}\label{ch:1}
 
-{\small\sffamily\color{mxmint}S2, S4, S5, S7, S10, S11, S13\par}
+\mxsubtitle{S2, S4, S5, S7, S10, S11, S13}
 
 \begin{keypoint}[Objectifs]Calculer des termes et une somme ; rédiger une récurrence ; établir monotonie et bornes ; exploiter une suite auxiliaire.\end{keypoint}
 
@@ -34,17 +34,19 @@ Pour $u_{n+1}=au_n+b$, $a\ne1$, résoudre $\ell=a\ell+b$, puis poser $v_n=u_n-\e
 \[u_n=\ell+(u_0-\ell)a^n,\qquad\ell=\frac{b}{1-a}.\]
 Si $a=1$, la suite est arithmétique : ne pas diviser par $1-a$.
 \end{method}
-\paragraph{Exemple.} Si $u_0=10$ et $u_{n+1}=0{,}8u_n+6$, alors $\ell=30$ et $u_n=30-20(0{,}8)^n$. On a $10\le u_n<30$ et $u_{n+1}-u_n=4(0{,}8)^n>0$.
+\paragraph{Exemple.} Si $u_0=10$ et $u_{n+1}=\num{0,8}u_n+6$, alors $\ell=30$ et $u_n=30-20(\num{0,8})^n$. On a $10\le u_n<30$ et $u_{n+1}-u_n=4(\num{0,8})^n>0$.
 \paragraph{Piège.} Vérifier une propriété sur cent termes ne la démontre pas. Une suite croissante n'est pas nécessairement positive ; une suite bornée n'est pas nécessairement monotone.
 
 
-\section{Activité de recherche}\textbf{Un réservoir alimenté chaque jour --- 35 min.}\par Un réservoir contient initialement $100$ litres d'eau. Chaque jour, on prélève $20\,\%$ du volume présent, puis on ajoute $30$ litres. Pour tout entier naturel $n$, on note $u_n$ le volume d'eau, en litres, après ces deux opérations effectuées $n$ fois. Ainsi, $u_0=100$.
+\mxnewpage
+\section{Activité de recherche}\textbf{Un réservoir alimenté chaque jour --- 35 min.}\par Un réservoir contient initialement $100$ litres d'eau. Chaque jour, on prélève $\pc{20}$ du volume présent, puis on ajoute $30$ litres. Pour tout entier naturel $n$, on note $u_n$ le volume d'eau, en litres, après ces deux opérations effectuées $n$ fois. Ainsi, $u_0=100$.
 \begin{enumerate}\item Calculer $u_1$ et $u_2$, puis exprimer $u_{n+1}$ en fonction de $u_n$.
 \item Quelle valeur du volume resterait inchangée après une journée ? Démontrer par récurrence que, pour tout $n\in\N$, $100\le u_n<150$.
 \item Pour tout $n\in\N$, on pose $v_n=u_n-150$. Montrer que $(v_n)$ est géométrique. En déduire les expressions de $v_n$ et de $u_n$ en fonction de $n$.
 \item Écrire une fonction Python sans argument qui renvoie le premier entier $n$ pour lequel $u_n>145$. Exécuter le programme et interpréter le résultat.
 \item Un élève a calculé les cent premiers termes et constate qu'ils sont inférieurs à $150$. Ce constat suffit-il à démontrer que tous les termes le sont ? Justifier.\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
 \mxexerciseitem{1}{Entraînement}On considère la suite $(u_n)$ définie, pour tout entier naturel $n$, par $u_n=5-3n$. Calculer $u_4$, puis la somme $\displaystyle\sum_{k=0}^{20}u_k$.
@@ -59,21 +61,22 @@ Si $a=1$, la suite est arithmétique : ne pas diviser par $1-a$.
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 28, exercices 22 et 25.} En classe, en S5 : exercice 22, pour traduire des propriétés de suites avec un quantificateur. À la maison après S11 : exercice 25 en entier, pour articuler récurrence, majoration et monotonie. Rédiger séparément l'initialisation, l'hérédité et la conclusion.
 
+\mxnewpage
 \section{Devoir à la maison}\textbf{DM1 --- Une somme et un seuil --- 45 min, après S11.}\par On considère la suite $(u_n)$ définie par $u_0=2$ et, pour tout $n\in\N$, $u_{n+1}=\frac12u_n+3$.
 \begin{enumerate}\item Démontrer par récurrence que $2\le u_n<6$ pour tout $n\in\N$. En déduire le sens de variation de $(u_n)$.
 \item On pose $v_n=u_n-6$ pour tout $n\in\N$. Montrer que $(v_n)$ est géométrique, puis exprimer $u_n$ en fonction de $n$.
 \item Pour tout $n\in\N$, on note $S_n=\displaystyle\sum_{k=0}^n u_k$. Exprimer $S_n$ en fonction de $n$.
-\item À l'aide de la formule explicite et de puissances de $2$, déterminer le plus petit entier $n$ tel que $u_n>5{,}99$. Vérifier que l'entier précédent ne convient pas.
+\item À l'aide de la formule explicite et de puissances de $2$, déterminer le plus petit entier $n$ tel que $u_n>\num{5,99}$. Vérifier que l'entier précédent ne convient pas.
 \item Exprimer $6-\frac{S_n}{n+1}$ et justifier que cette différence est strictement positive. Interpréter le résultat en considérant la moyenne des $n+1$ premiers termes ; on ne demande pas de calcul de limite.\end{enumerate}
 
 \ifmxteacher\mxnewpage\section{Conduite et corrigés}\begin{teachernote}[Repères pour le professeur]En S2, distinguer immédiatement le rang et la valeur du terme. En S4, faire exécuter une boucle à la main avant Python. En S5 et S7, faire verbaliser « on suppose au rang $n$, on démontre au rang $n+1$ ». La somme et la divisibilité arrivent en S10, après DS1 : ne pas les évaluer au premier DS. En S11, la recherche du point fixe est une technique algébrique ; le théorème de convergence sera établi au chapitre suivant. Pour les élèves fragiles, fournir la propriété $P(n)$ et laisser écrire les trois étapes ; pour les plus avancés, retirer la suggestion de suite auxiliaire.\end{teachernote}
 
 \subsection{Corrigé de l'activité}\begin{enumerate}
-\item $u_0=100$ L. Après une journée, il reste $0{,}8u_0$ L, puis on ajoute $30$ L : $u_1=110$ L. De même, $u_2=0{,}8\times110+30=118$ L. Pour tout $n\ge0$, $u_{n+1}=0{,}8u_n+30$.
-\item Le volume d'équilibre $L$ devrait satisfaire $L=0{,}8L+30$, soit $L=150$ L. Démontrons $P(n)$ : « $100\le u_n<150$ ». Au rang $0$, $u_0=100\in[100,150[$. Fixons $n\ge0$ et supposons $P(n)$ vraie. Comme $0{,}8>0$,
-\[110=0{,}8\times100+30\le0{,}8u_n+30<0{,}8\times150+30=150.\]
+\item $u_0=100$ L. Après une journée, il reste $\num{0,8}u_0$ L, puis on ajoute $30$ L : $u_1=110$ L. De même, $u_2=\num{0,8}\times110+30=118$ L. Pour tout $n\ge0$, $u_{n+1}=\num{0,8}u_n+30$.
+\item Le volume d'équilibre $L$ devrait satisfaire $L=\num{0,8}L+30$, soit $L=150$ L. Démontrons $P(n)$ : « $100\le u_n<150$ ». Au rang $0$, $u_0=100\in[100,150[$. Fixons $n\ge0$ et supposons $P(n)$ vraie. Comme $\num{0,8}>0$,
+\[110=\num{0,8}\times100+30\le\num{0,8}u_n+30<\num{0,8}\times150+30=150.\]
 Donc $100\le u_{n+1}<150$ et $P(n+1)$ est vraie. Par récurrence, l'encadrement est vrai pour tout $n\in\N$.
-\item $v_{n+1}=u_{n+1}-150=0{,}8u_n-120=0{,}8(u_n-150)=0{,}8v_n$. La suite $(v_n)$ est géométrique, de raison $0{,}8$ et de premier terme $v_0=-50$. Ainsi $v_n=-50(0{,}8)^n$, puis $u_n=150-50(0{,}8)^n$.
+\item $v_{n+1}=u_{n+1}-150=\num{0,8}u_n-120=\num{0,8}(u_n-150)=\num{0,8}v_n$. La suite $(v_n)$ est géométrique, de raison $\num{0,8}$ et de premier terme $v_0=-50$. Ainsi $v_n=-50(\num{0,8})^n$, puis $u_n=150-50(\num{0,8})^n$.
 \item 
 \begin{lstlisting}
 def premier_jour():
@@ -83,7 +86,7 @@ def premier_jour():
         n += 1
     return n
 \end{lstlisting}
-La boucle renvoie $11$. En effet, $u_{10}\simeq144{,}63<145$ et $u_{11}\simeq145{,}71>145$. De plus, $u_{n+1}-u_n=10(0{,}8)^n>0$ : le seuil n'a pas été franchi avant. Le calcul de ces deux valeurs garantit ici l'arrêt, sans exiger encore un théorème de convergence.
+La boucle renvoie $11$. En effet, $u_{10}\simeq\num{144,63}<145$ et $u_{11}\simeq\num{145,71}>145$. De plus, $u_{n+1}-u_n=10(\num{0,8})^n>0$ : le seuil n'a pas été franchi avant. Le calcul de ces deux valeurs garantit ici l'arrêt, sans exiger encore un théorème de convergence.
 \item La simulation ne calcule qu'un nombre fini de termes. L'hérédité, jointe à l'initialisation, établit l'encadrement pour tous les entiers ; c'est elle qui exclut tout dépassement de $150$ L.
 \end{enumerate}
 
@@ -108,7 +111,7 @@ Comme $8k+1$ est entier, $P(n+1)$ est vraie. Par récurrence, $7$ divise $8^n-1$
 \item L'équation $L=\frac{L}{2}+3$ donne $L=6$. Posons $v_n=u_n-6$. Alors $v_{n+1}=\frac{u_n}{2}-3=\frac{v_n}{2}$ et $v_0=-4$. Donc $v_n=-\frac{4}{2^n}$ et $u_n=6-\frac{4}{2^n}$.
 \item Par linéarité des sommes et formule géométrique,
 \[\begin{aligned}S_n&=6(n+1)-4\sum_{k=0}^n(\frac{1}{2})^k\\&=6(n+1)-8(1-2^{-(n+1)}).\end{aligned}\]
-\item $u_n>5{,}99$ équivaut à $\frac{4}{2^n}<0{,}01$, soit $2^n>400$. Comme $2^8=256\le400<512=2^9$ et $(2^n)$ est croissante, le plus petit rang est $9$.
+\item $u_n>\num{5,99}$ équivaut à $\frac{4}{2^n}<\num{0,01}$, soit $2^n>400$. Comme $2^8=256\le400<512=2^9$ et $(2^n)$ est croissante, le plus petit rang est $9$.
 \item La moyenne est inférieure à $6$ et son écart à $6$ vaut
 \[6-\frac{S_n}{n+1}=\frac{8(1-2^{-(n+1)})}{n+1},\qquad 0<6-\frac{S_n}{n+1}<\frac8{n+1}.\]
 Pour rendre cet écart inférieur à une précision $\varepsilon>0$, il suffit de prendre $n+1>\frac{8}{\varepsilon}$. C'est un contrôle quantitatif de l'écart, qui ne demande pas encore de théorème sur les limites.

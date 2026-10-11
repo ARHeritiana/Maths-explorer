@@ -7,9 +7,9 @@
    "status": "aligned",
    "order": 0
   },
-  "b078f9c45a8c": {
-   "fr": "\\textbf{QCM :} 1 A, 2 D, 3 D, 4 B, 5 B, 6 C, 7 B, 8 C, 9 A, 10 C, 11 D, 12 C. Chaque réponse correcte : 0{,}5 point ; total 6.",
-   "en": "\\textbf{MCQ:} 1 A, 2 D, 3 D, 4 B, 5 B, 6 C, 7 B, 8 C, 9 A, 10 C, 11 D, 12 C. Each correct answer: 0.5 point; total 6.",
+  "db7ad187c8e5": {
+   "fr": "\\textbf{QCM :} 1 A, 2 D, 3 D, 4 B, 5 B, 6 C, 7 B, 8 C, 9 A, 10 C, 11 D, 12 C. Chaque réponse correcte : [[m1]] point ; total 6.",
+   "en": "\\textbf{MCQ:} 1 A, 2 D, 3 D, 4 B, 5 B, 6 C, 7 B, 8 C, 9 A, 10 C, 11 D, 12 C. Each correct answer: [[m1]] point; total 6.",
    "status": "aligned",
    "order": 1
   },
@@ -19,9 +19,9 @@
    "status": "aligned",
    "order": 2
   },
-  "0c8589583107": {
-   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur 1{,}2 ; division par 0{,}8 ; produit 1{,}25 fois 0{,}8 ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
-   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient 1.2; division by 0.8; product 1.25 times 0.8; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
+  "f26919e403fd": {
+   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur [[m1]] ; division par [[m2]] ; produit [[m3]] fois [[m4]] ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
+   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient [[m1]]; division by [[m2]]; product [[m3]] times [[m4]]; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
    "status": "aligned",
    "order": 3
   },
@@ -37,6 +37,12 @@
    "status": "aligned",
    "order": 5
   },
+  "590b5ac13fef": {
+   "fr": "[[m1]] ; [[m2]]. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
+   "en": "[[m1]]; [[m2]]. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
+   "status": "aligned",
+   "order": 6
+  },
   "fd13212a3ad1": {
    "fr": "Non : [[m1]]. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
    "en": "No: [[m1]]. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
@@ -48,6 +54,12 @@
    "en": "Exercise 2 -- Minimum of a quotient",
    "status": "aligned",
    "order": 8
+  },
+  "e8c31d3278ed": {
+   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
+   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
+   "status": "aligned",
+   "order": 9
   },
   "f5e00bc6d388": {
    "fr": "Décroît jusqu’à 3 puis croît ; minimum 6. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
@@ -67,23 +79,11 @@
    "status": "aligned",
    "order": 12
   },
-  "e8c31d3278ed": {
-   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
-   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
-   "status": "aligned",
-   "order": 13
-  },
   "0a7e299abf7a": {
    "fr": "[[m1]] ; H(3;0). \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
    "en": "[[m1]]; H(3;0). \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
    "status": "aligned",
    "order": 14
-  },
-  "590b5ac13fef": {
-   "fr": "[[m1]] ; [[m2]]. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
-   "en": "[[m1]]; [[m2]]. \\textit{Marking: 2 points. Method or justification: 1; calculation and conclusion: 1.}",
-   "status": "aligned",
-   "order": 15
   },
   "c6d13c702c52": {
    "fr": "Étalonnage.",

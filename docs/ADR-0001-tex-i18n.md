@@ -24,8 +24,8 @@ for the 4 STMG exercise files only. Prose drifts, and fixes made in one language
    figures (node text, axis labels, titles, legend entries).
 5. **The tool fails** when a segment has no reviewed translation, when the English text adds, drops or alters a
    placeholder, or when the regenerated English unit's locked material differs from the French one. Language conventions
-   are applied by rule, not by hand: decimal separator (`0{,}5` becomes `0.5` in English), French spacing before high
-   punctuation, and dates through `\mxdate{YYYY-MM-DD}`.
+   are applied by the class, not by hand: dates through `\mxdate{YYYY-MM-DD}` and every notation through
+   `mx-notation.sty` (amendment below); the tool itself only drops the French thin space before high punctuation.
 6. **Labels in the class** may use `\mxtr{fr}{en}` inside `mx-i18n.sty` only; content units never do.
 7. **Invariant kept as a test:** numbers inside maths and figure code are identical for every pair (generalising
    `check-stmg-twins.py`), and the French and English PDFs of a unit have the same page count.
@@ -49,3 +49,23 @@ inside a list), STMG `exo-A` (maths differ), and 11 Enrichment units, which are 
 - Page-alignment hacks (`\clearpage` in one language only) become impossible; layout differences must be solved in the
   class (a lint forbids `\clearpage`/`\newpage` in units).
 - Proof-reading English becomes a review of one JSON table per unit, with the French segment beside it.
+
+## Amendment (2026-10-11): notation per language, defined once
+
+Owner decision: the English editions print English notation. Maths stays byte-identical in both units; the notations
+that differ are commands defined once in `content/tex/core/mx-notation.sty`, which the class prints per language:
+
+| Command | French | English |
+|---|---|---|
+| `\num{1234,5}` | 1 234,5 | 1,234.5 |
+| `\pc{12,5}` | 12,5 % | 12.5% |
+| `\intff{a}{b}`, `\intoo`, `\intfo`, `\intof` | [a;b], ]a;b[, [a;b[, ]a;b] | [a,b], (a,b), [a,b), (a,b] |
+| `\ent{a}{b}` | ⟦a;b⟧ | {a,…,b} |
+| `\pt{x;y}`, `\ens{a;b}` | (x;y), {a;b} | (x,y), {a,b} |
+| `\pgcd`, `\ppcm` | PGCD, PPCM | gcd, lcm |
+
+The former English rule `0{,}5 -> 0.5` is removed. `tests/tex_lint.py` refuses hand-written notation in units (the
+rewrite of `build/mxbuild/notation.py` must find nothing to do); `tests/test_notation.py` compiles every command with the
+class and with the slide renderer (`notation.expand`) in both languages and requires the same text. The migration of
+the 203 units (3,278 numbers, 427 percentages, 469 intervals, 663 points, 53 sets) re-aligned every pair and checked that
+the twin tool regenerates the rewritten English exactly.

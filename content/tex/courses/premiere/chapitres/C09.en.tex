@@ -13,7 +13,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \item Express $3^{-2}$.
 \item Solve $2x+1=5$.
 \item Differentiate $x^2+2x$.
-\item A 20 \% decrease gives which coefficient?
+\item A \pc{20} decrease gives which coefficient?
 \item For a geometric sequence $u_0=5,q=2$, calculate $u_n$.
 \end{enumerate}
 \paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
@@ -22,9 +22,10 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \section*{Investigate before formalising}\label{C09-RECH}
 Compare the increments of $e^x$ and the values of the function around 0, with several positive steps. Build three Euler steps and explain the rule chosen.
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
 \section{Defining a new function}\label{C09-U1}
 \begin{keypoint}[Definition and results]
-The exponential function is the unique function f differentiable on $\R$ satisfying $f\prime=f$ and $f(0)=1$. Its existence and uniqueness are accepted. It is written $\exp$, then $e^x$ with $e=\exp(1)\approx2.71828$. The number e is a constant; x is the variable. The exponential is strictly positive.
+The exponential function is the unique function f differentiable on $\R$ satisfying $f\prime=f$ and $f(0)=1$. Its existence and uniqueness are accepted. It is written $\exp$, then $e^x$ with $e=\exp(1)\approx\num{2,71828}$. The number e is a constant; x is the variable. The exponential is strictly positive.
 \end{keypoint}
 \paragraph{Status and justification.} Existence and uniqueness accepted in accordance with the programme. Positivity is deduced, after the algebraic properties accepted below, from $\exp (x)=\exp (\dfrac{x}{2})^2$ and from $\exp(x)\exp(-x)=1$.
 \begin{example}$\exp(0)=1$, $\exp(1)=e$, $\exp\prime(0)=1$. The tangent at 0 is therefore $y=1+x$. The notation $e^x$ extends the properties of powers to every real exponent.\end{example}\label{C09-EX1}
@@ -52,18 +53,19 @@ For real a, $t\mapsto e^{at}$ is differentiable and its derivative is $ae^{at}$.
 A model $Q(t)=Q_0e^{kt}$, with $Q_0>0$, represents growth if $k>0$, decay if $k<0$, constancy if $k=0$. For a fixed step h, $\dfrac{Q(t+h)}{Q(t)}=e^{kh}$. The values at integer times form a geometric sequence with common ratio $e^k$. The unit of k is the inverse of the unit of time.
 \end{keypoint}
 \paragraph{Status and justification.} The ratio follows from $e^{k(t+h)}=e^{kt}e^{kh}$. The direction of variation is deduced from $Q\prime(t)=kQ_0e^{kt}$ and the positivity of the remaining factor.
-\begin{example}$Q(t)=100e^{-0.2t}$, t in hours: $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-0.2}$. A simulation can look for the first whole number of hours at which Q falls below 50; the exact equation is not solved with a logarithm in this chapter.\end{example}\label{C09-EX4}
+\begin{example}$Q(t)=100e^{-\num{0,2}t}$, t in hours: $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-\num{0,2}}$. A simulation can look for the first whole number of hours at which Q falls below 50; the exact equation is not solved with a logarithm in this chapter.\end{example}\label{C09-EX4}
 \mxinclude{figures/C09-U4}
 \begin{pitfall}The relative rate per discrete unit of time is $e^k-1$, not exactly k; they are close only for small k.\end{pitfall}
-\begin{application}For $Q(t)=5e^{0.3t}$, express $Q(n)$ and $\dfrac{Q(t+2)}{Q(t)}$.\end{application}\label{C09-AP4}
+\begin{application}For $Q(t)=5e^{\num{0,3}t}$, express $Q(n)$ and $\dfrac{Q(t+2)}{Q(t)}$.\end{application}\label{C09-AP4}
 \section{Building numerically and proving an inequality}\label{C09-U5}
 \begin{keypoint}[Definition and results]
-To approximate the solution of $y\prime=y$, $y(0)=1$ with a step $h$, Euler replaces the increment by $hy$: $y_{k+1}=(1+h)y_k$. On $[0;1]$ with $h=\dfrac1n$, the approximation of $e$ is $\left(1+\dfrac1n\right)^n$. This construction is experimental. The inequality $e^x\geq1+x$ is obtained by studying a function.
+To approximate the solution of $y\prime=y$, $y(0)=1$ with a step $h$, Euler replaces the increment by $hy$: $y_{k+1}=(1+h)y_k$. On $\intff{0}{1}$ with $h=\dfrac1n$, the approximation of $e$ is $\left(1+\dfrac1n\right)^n$. This construction is experimental. The inequality $e^x\geq1+x$ is obtained by studying a function.
 \end{keypoint}
 \paragraph{Status and justification.} For $g(x)=e^x-1-x$, $g\prime(x)=e^x-1$, negative if x<0 and positive if x>0. The minimum is $g(0)=0$, which proves the inequality; equality only at 0. The convergence of Euler's method is not proved here.
-\begin{example}With n=2, Euler gives $y_0=1,y_1=1.5,y_2=2.25$. With n=10, $(1.1)^{10}\approx2.59374$. We compare with e; we do not confuse an approximate value with the definition of the function.\end{example}\label{C09-EX5}
+\begin{example}With n=2, Euler gives $y_0=1,y_1=\num{1,5},y_2=\num{2,25}$. With n=10, $(\num{1,1})^{10}\approx\num{2,59374}$. We compare with e; we do not confuse an approximate value with the definition of the function.\end{example}\label{C09-EX5}
 \begin{pitfall}A graph showing a curve above a line does not prove the inequality for all real numbers.\end{pitfall}
 \begin{application}Show that $e^{2x}\geq1+2x$ for every real number x.\end{application}\label{C09-AP5}
+\mxnewpage
 \section*{Exercise path}\label{C09-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
 \begingroup
@@ -80,14 +82,14 @@ Consider an equation and an inequality in the real unknown $x$:\[e^{2x-1}=e^{x+3
 \item While solving the inequality, explain at which step the direction of the inequality changes. Give the solution set as an interval.
 \end{enumerate}
 \mxexercisehead{C09-E3}{Product and maximum}
-The function $f$ is defined on $[0;4]$ by $f(x)=xe^{-x}$.
+The function $f$ is defined on $\intff{0}{4}$ by $f(x)=xe^{-x}$.
 \begin{enumerate}[label=\arabic*.]
 \item Calculate $f\prime(x)$, then study its sign on the interval.
 \item Draw the variation table of $f$. Deduce its maximum and the x-coordinate where it is reached.
 \item Check that the values at the endpoints do not give a larger maximum. Keep the exact values.
 \end{enumerate}
 \mxexercisehead{C09-E4}{A modelled population}
-The following two parts are independent.\par\textbf{Part A: A population.} A population is modelled by $P(t)=200e^{0.1t}$, where $t\geq0$ is the time elapsed in years. $P(t)$ is a theoretical count, which is not necessarily an integer.
+The following two parts are independent.\par\textbf{Part A: A population.} A population is modelled by $P(t)=200e^{\num{0,1}t}$, where $t\geq0$ is the time elapsed in years. $P(t)$ is a theoretical count, which is not necessarily an integer.
 \begin{enumerate}[label=\arabic*.]
 \item Determine the initial count, then the multiplying coefficient between times $t$ and $t+1$. Deduce the exact annual rate and its percentage rounded to the nearest hundredth.
 \item Explain why this model cannot necessarily describe a real population indefinitely.
@@ -211,7 +213,7 @@ Five single-answer questions for practice. Choose one answer per question; then 
 \begin{enumerate}
 \item $e^{2x}=2e^x$ for all x.
 \item The function $t\mapsto e^{-3t}$ is decreasing.
-\item A continuous rate k=0.1 corresponds exactly to a 10 \% increase in one unit of time.
+\item A continuous rate k=\num{0,1} corresponds exactly to a \pc{10} increase in one unit of time.
 \end{enumerate}
 \begin{keypoint}[Self-assessment]I keep the rules for powers; I know the positivity; I differentiate with the factor; I separate model, exact calculation and simulation.
 

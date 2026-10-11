@@ -38,6 +38,14 @@ overlay PDFs dropped (done).
   12 workshops x 4 resources + the quadratic sheet, sheet layout, pdfLaTeX; 37 student + 49 teacher pages, FR = EN,
   every resource 1 page except bayes solutions (now 1, was 2). XeLaTeX path, explorer.sty and 98 generated files removed.
 - Full `make tex`: 4 min 10 s (baseline 622 s). Rebuilt PDFs that differ only in /ID keep the committed copy.
+- Uniform structure and notation (owner request, 2026-10-11; English prints English notation, owner's choice):
+  `mx-notation.sty` defines once every notation that differs by language (`\num \pc \intff/\intoo/\intfo/\intof
+  \ent \pt \ens`); all 203 units rewritten (`python -m mxbuild notation --migrate`, round trip checked), the twin
+  decimal rule removed, slides render the same commands (`notation.expand`, tested against the class), the player's
+  MathJax table generated from `mx-math.sty`. Every unit has the same shape (lint): `\mxunit[n]` or `\mxfront` opening,
+  no hand styling (new class commands `\mxbanner`, `\mxcontinued`, `\mxpseudo`, `\mxtab`; figure minipages ->
+  `figurebox`), one cover command for every booklet. Every excerpt starts a balanced block: all 330 FR/EN PDF pairs have
+  equal page counts (`tests/pdf_parity.py`); Première 133/222 and Terminale 123/289 pages (were 121/210, 95/260).
 - NEXT: B4 (format file, figure externalisation, retire style-resource-pdfs.py).
 - Each course: write a PLANS entry in migrate.py, `python -m mxbuild migrate <course> --dry-run` until no refusals
   (fix source defects in the old files first), migrate, write the front unit, add the book to the manifest, point the

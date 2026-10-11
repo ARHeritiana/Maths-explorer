@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
-\setcounter{chapter}{1}\mxunit{terminale-c03}{Limits of sequences}\label{ch:2}
+\mxunit[2]{terminale-c03}{Limits of sequences}\label{ch:2}
 
-{\small\sffamily\color{mxmint}S14, S16, S19, S20\par}
+\mxsubtitle{S14, S16, S19, S20}
 
 \begin{keypoint}[Objectives]Distinguish convergence from divergence; calculate a limit; use comparison, the squeeze theorem and monotone convergence.\end{keypoint}
 
@@ -36,12 +36,14 @@ For $u_{n+1}=f(u_n)$, establish a bound and monotonicity to prove convergence. I
 \addplot[only marks,mxmint,domain=0:15,samples=16]{2+3/(x+1)};
 \addplot[mxink,dashed,domain=0:15]{2};\end{axis}\end{tikzpicture}\par\small The points get closer to $2$ without reaching it: $u_n=2+\frac{3}{n+1}$.\end{center}
 
+\mxnewpage
 \section{Research activity}\textbf{A limit is not a last term --- 30 min.}\par Consider the sequence $(u_n)$ defined on $\N$ by $u_n=2+\frac3{n+1}$.
 \begin{enumerate}\item Calculate $u_0$, $u_9$ and $u_{99}$. Is there an integer $n$ such that $u_n=2$? Justify.
-\item Determine the smallest integer $N$ such that, for every integer $n\ge N$, $|u_n-2|<0.01$.
+\item Determine the smallest integer $N$ such that, for every integer $n\ge N$, $|u_n-2|<\num{0,01}$.
 \item Let $\varepsilon>0$. Give, in terms of $\varepsilon$, an integer $N$ such that $|u_n-2|<\varepsilon$ for every $n\ge N$.
 \item Define on $\N$ the sequence $(v_n)$ by $v_n=2+\frac{(-1)^n}{n+1}$. Prove that it converges to $2$ and that it is not monotonic. What does this example show?\end{enumerate}
 
+\mxnewpage
 \section{Progressive exercises}
 
 \mxexerciseitem{1}{Practice}Define on $\N$ the sequences $(u_n)$ and $(v_n)$ by $u_n=\frac{4n-1}{n+2}$ and $v_n=n^2-7n$. Determine their limits, justifying the transformations used.
@@ -52,10 +54,11 @@ For $u_{n+1}=f(u_n)$, establish a bound and monotonicity to prove convergence. I
 
 \mxexerciseitem{4}{Practice}The sequence $(u_n)$ is increasing and satisfies $u_n<5$ for every $n\in\N$. Justify that it converges and state what can be asserted about its limit. Is it necessarily equal to $5$? Justify.
 
-\mxexerciseitem{5}{Practice}Define $u_n=3-2(-0.6)^n$ for every $n\in\N$. Determine the limit of $(u_n)$. Is this sequence monotonic? Justify.
+\mxexerciseitem{5}{Practice}Define $u_n=3-2(-\num{0,6})^n$ for every $n\in\N$. Determine the limit of $(u_n)$. Is this sequence monotonic? Justify.
 
 \section{Textbook or past-paper work}\textbf{Barbazo, p. 62, exercises 17 and 24.} In S16: exercise 17, to resolve an indeterminate form by dividing by a power of $n$. At home after S20: exercise 24, to write up an application of the squeeze theorem.
 
+\mxnewpage
 \section{Homework}\textbf{Homework 2 --- Approximating a root --- 50 min.}\par Consider $u_0=0$ and, for every $n\in\N$, $u_{n+1}=\sqrt{2+u_n}$. Questions 1, 2 and 4 are to be done after S20; question 3 will be revisited after the lesson on continuity in S31.
 \begin{enumerate}\item Prove by induction that all the terms are defined and that $0\le u_n\le2$ for every $n\in\N$.
 \item Prove by induction that $u_{n+1}\ge u_n$ for every $n\in\N$. Deduce that $(u_n)$ converges.
@@ -65,8 +68,8 @@ For $u_{n+1}=f(u_n)$, establish a bound and monotonicity to prove convergence. I
 \ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]Test 2 comes before S19 and S20: assess in it the definitions and the operations already met, without requiring monotone convergence, Bernoulli or the squeeze theorem. Draw horizontal bands around the limit and have students look for an index from which all the terms stay inside them. Require convergence before solving the fixed-point equation. Show $(-1)^n$ to separate ``bounded'' from ``convergent''.\end{teachernote}
 
 \subsection{Solutions to the activity}\begin{enumerate}
-\item $u_0=5$, $u_9=2.3$ and $u_{99}=2.03$. Since $\frac{3}{n+1}>0$ at every index, $u_n>2$: no term equals $2$.
-\item $|u_n-2|<0.01\Longleftrightarrow \frac{3}{n+1}<0.01\Longleftrightarrow n+1>300\Longleftrightarrow n\ge300$. The first suitable index is therefore $N=300$. At index $299$, the gap is exactly $0.01$ and the strict inequality is not satisfied.
+\item $u_0=5$, $u_9=\num{2,3}$ and $u_{99}=\num{2,03}$. Since $\frac{3}{n+1}>0$ at every index, $u_n>2$: no term equals $2$.
+\item $|u_n-2|<\num{0,01}\Longleftrightarrow \frac{3}{n+1}<\num{0,01}\Longleftrightarrow n+1>300\Longleftrightarrow n\ge300$. The first suitable index is therefore $N=300$. At index $299$, the gap is exactly $\num{0,01}$ and the strict inequality is not satisfied.
 \item For $\varepsilon>0$, take $N=\lceil\frac{3}{\varepsilon}\rceil$, the smallest integer greater than or equal to $\frac{3}{\varepsilon}$. If $n\ge N$, then $n+1>\frac{3}{\varepsilon}$, hence $|u_n-2|<\varepsilon$. This choice works, even when it is not minimal.
 \item $|v_n-2|=\frac{1}{n+1}\to0$, hence $v_n\to2$. But $v_0=3$, $v_1=\frac{3}{2}$ and $v_2=\frac{7}{3}$: we observe a decrease then an increase. This convergent sequence is not monotonic.
 \end{enumerate}
@@ -79,7 +82,7 @@ For $u_{n+1}=f(u_n)$, establish a bound and monotonicity to prove convergence. I
 
 \paragraph{E4.}The sequence is increasing and bounded above by $5$, so it converges. By passing to the limit in $u_n\le5$, its limit satisfies $\ell\le5$. It is not necessarily equal to $5$: $u_n=2-\frac{1}{n+1}$ is increasing, bounded above by $5$ and converges to $2$.
 
-\paragraph{E5.}Since $|-0.6|<1$, $(-0.6)^n\to0$, so $u_n\to3$. However $u_0=1$, $u_1=4.2$ and $u_2=2.28$: the sequence rises then falls and is not monotonic.
+\paragraph{E5.}Since $|-\num{0,6}|<1$, $(-\num{0,6})^n\to0$, so $u_n\to3$. However $u_0=1$, $u_1=\num{4,2}$ and $u_2=\num{2,28}$: the sequence rises then falls and is not monotonic.
 
 \subsection{Solutions to Homework 2}\begin{enumerate}
 \item Let $P(n)$ be the statement ``$u_n$ is defined and $0\le u_n\le2$''. It is true at index $0$ since $u_0=0$. Fix $n\ge0$ and assume $P(n)$ is true. We have $2\le2+u_n\le4$, so $u_{n+1}=\sqrt{2+u_n}$ is defined and $\sqrt2\le u_{n+1}\le2$. Thus $P(n+1)$ is true. By induction, all the terms belong to $[0,2]$.

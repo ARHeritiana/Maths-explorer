@@ -38,9 +38,10 @@ class Twin(unittest.TestCase):
         with self.assertRaises(twin.TwinError):
             twin.generate(r'\textbf{Note.} Texte.' + '\n', table([(r'\textbf{Note.} Texte.', r'\textbf{Note. Text.')]))
 
-    def test_decimal_comma_and_french_spacing(self):
-        fr = r'\item $0{,}5$\,; $1{,}25$' + '\n'
-        self.assertEqual(body(twin.generate(fr, table([]))), r'\item $0.5$; $1.25$' + '\n')
+    def test_notation_commands_are_kept_and_french_spacing_dropped(self):
+        fr = r'\item $\num{0,5}$\,; $\intoo{0}{1}$ et \num{1,25}' + '\n'
+        en = twin.generate(fr, table([(r'[[m1]]\,; [[m2]] et [[m3]]', '[[m1]]; [[m2]] and [[m3]]')]))
+        self.assertEqual(body(en), r'\item $\num{0,5}$; $\intoo{0}{1}$ and \num{1,25}' + '\n')
 
     def test_words_inside_display_maths(self):
         fr = r'\[|x|=\begin{cases}x&\text{si }x\geq0\\-x&\text{sinon}\end{cases}\]' + '\n'
@@ -63,7 +64,7 @@ class Twin(unittest.TestCase):
 
     def test_align_refuses_changed_maths(self):
         with self.assertRaises(twin.TwinError):
-            twin.align('On a $x=1{,}5$.\n', 'We have $x=1.6$.\n')
+            twin.align('On a $x=\\num{1,5}$.\n', 'We have $x=\\num{1,6}$.\n')
 
     def test_unclosed_inline_maths_raises(self):
         with self.assertRaises(twin.TwinError):
@@ -80,9 +81,9 @@ class Twin(unittest.TestCase):
         self.assertEqual(body(twin.generate(fr, table([]))), r'\item $\{x\,;\,x>0\}$; $1$' + '\n')
 
     def test_code_listing_does_not_shift_maths(self):
-        fr = '\\begin{lstlisting}\nx = a % 2  # un $ isolé\n\\end{lstlisting}\nValeurs $3,2,3$ et $0{,}5$.\n'
+        fr = '\\begin{lstlisting}\nx = a % 2  # un $ isolé\n\\end{lstlisting}\nValeurs $3,2,3$ et $\\num{0,5}$.\n'
         en = twin.generate(fr, table([('Valeurs [[m1]] et [[m2]].', 'Values [[m1]] and [[m2]].')]))
-        self.assertIn('Values $3,2,3$ and $0.5$.', en)
+        self.assertIn(r'Values $3,2,3$ and $\num{0,5}$.', en)
 
 
 if __name__ == '__main__':

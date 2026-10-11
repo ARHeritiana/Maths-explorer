@@ -49,11 +49,23 @@
    "status": "aligned",
    "order": 7
   },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 8
+  },
   "49755d222065": {
    "fr": "Espérance d'une variable aléatoire",
    "en": "Expected value of a random variable",
    "status": "aligned",
    "order": 9
+  },
+  "e2c047ad489d": {
+   "fr": "Variables aléatoires discrètes",
+   "en": "Discrete random variables",
+   "status": "aligned",
+   "order": 10
   },
   "b392ca4c66bd": {
    "fr": "Définir une loi.",
@@ -73,17 +85,41 @@
    "status": "aligned",
    "order": 13
   },
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 14
+  },
   "723d34d60e98": {
    "fr": "Réduire [[m1]]. \\mxblank{$2x+10$}",
    "en": "Simplify [[m1]]. \\mxblank{$2x+10$}",
    "status": "aligned",
    "order": 15
   },
+  "87b4fabe648d": {
+   "fr": "Donner [[m1]] pour [[m2]]. \\mxblank{$3$}",
+   "en": "Give [[m1]] for [[m2]]. \\mxblank{$3$}",
+   "status": "aligned",
+   "order": 16
+  },
+  "3d7187c61b03": {
+   "fr": "Calculer [[m1]]. \\mxblank{$10$}",
+   "en": "Calculate [[m1]]. \\mxblank{$10$}",
+   "status": "aligned",
+   "order": 17
+  },
   "4541f5c08999": {
    "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$8$}",
    "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$8$}",
    "status": "aligned",
    "order": 18
+  },
+  "55869d9709ee": {
+   "fr": "Traduire [[m1]] par un complémentaire. \\mxblank{$1-P(X=0)$}",
+   "en": "Express [[m1]] using a complement. \\mxblank{$1-P(X=0)$}",
+   "status": "aligned",
+   "order": 19
   },
   "db95eadfdb4d": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : définir une loi et calculer une espérance.",
@@ -109,17 +145,89 @@
    "status": "aligned",
    "order": 23
   },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.",
+   "status": "aligned",
+   "order": 24
+  },
   "134be74ae00b": {
    "fr": "[[m1]] vaut [[m2]]. [[m3]] euro : jeu défavorable en moyenne.",
    "en": "[[m1]] takes the values [[m2]]. [[m3]] euro: the game is unfavourable on average.",
    "status": "aligned",
    "order": 25
   },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 26
+  },
+  "562f76852a86": {
+   "fr": "Justifier que le nombre de succès parmi [[m1]] essais indépendants, avec [[m2]], suit une loi binomiale.",
+   "en": "Justify that the number of successes among [[m1]] independent trials, with [[m2]], follows a binomial distribution.",
+   "status": "aligned",
+   "order": 27
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "3b3770a45bfc": {
+   "fr": "En déduire [[m1]] et calculer [[m2]].",
+   "en": "Deduce [[m1]] and calculate [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "18d43d761ee1": {
+   "fr": "[[m1]]. [[m2]], [[m3]], [[m4]] et [[m5]].",
+   "en": "[[m1]]. [[m2]], [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 30
+  },
   "e257be27761a": {
    "fr": "Calao, cours p. 154--159 ; exercices p. 160, n° 1 à 5",
    "en": "Calao, course pp. 154--159; exercises p. 160, no.~1--5",
    "status": "aligned",
    "order": 31
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 32
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 33
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 34
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 35
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 36
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 37
   },
   "51e0925d3de2": {
    "fr": "Loi binomiale : reconnaître une situation",
@@ -193,6 +301,18 @@
    "status": "aligned",
    "order": 60
   },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 61
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 64
+  },
   "dbb3266ce3d8": {
    "fr": "Triangle de Pascal et coefficients binomiaux",
    "en": "Pascal's triangle and binomial coefficients",
@@ -217,9 +337,9 @@
    "status": "aligned",
    "order": 71
   },
-  "7031120460ce": {
-   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1{,}10$}",
-   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1.10$}",
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
    "status": "aligned",
    "order": 73
   },
@@ -264,12 +384,6 @@
    "en": "Calao, p. 164, no.~24--29, then p. 166, no.~36",
    "status": "aligned",
    "order": 89
-  },
-  "702e35c25e86": {
-   "fr": "B : 1 h -- C : 2 h",
-   "en": "B: 1 h -- C: 2 h",
-   "status": "aligned",
-   "order": 95
   },
   "1cbb09891f7d": {
    "fr": "Probabilités binomiales",
@@ -337,35 +451,11 @@
    "status": "aligned",
    "order": 117
   },
-  "fdec5ba74355": {
-   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 118
-  },
-  "5655fa4b1e45": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1 and 2.",
-   "status": "aligned",
-   "order": 121
-  },
-  "a114cba6d4b1": {
-   "fr": "B : 2 h -- C : 1 h",
-   "en": "B: 2 h -- C: 1 h",
-   "status": "aligned",
-   "order": 123
-  },
   "3cc0873cec7e": {
    "fr": "Bilan du chapitre et évaluation",
    "en": "Chapter review and test",
    "status": "aligned",
    "order": 124
-  },
-  "e2c047ad489d": {
-   "fr": "Variables aléatoires discrètes",
-   "en": "Discrete random variables",
-   "status": "aligned",
-   "order": 125
   },
   "491c89f521c0": {
    "fr": "Calculer et interpréter [[m1]].",
@@ -385,41 +475,17 @@
    "status": "aligned",
    "order": 128
   },
-  "28126275a16c": {
-   "fr": "6 à 8 minutes, sans calculatrice",
-   "en": "6 to 8 minutes, no calculator",
-   "status": "aligned",
-   "order": 129
-  },
   "26b897c1cab5": {
    "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$20$}",
    "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$20$}",
    "status": "aligned",
    "order": 130
   },
-  "87b4fabe648d": {
-   "fr": "Donner [[m1]] pour [[m2]]. \\mxblank{$3$}",
-   "en": "Give [[m1]] for [[m2]]. \\mxblank{$3$}",
-   "status": "aligned",
-   "order": 131
-  },
-  "3d7187c61b03": {
-   "fr": "Calculer [[m1]]. \\mxblank{$10$}",
-   "en": "Calculate [[m1]]. \\mxblank{$10$}",
-   "status": "aligned",
-   "order": 132
-  },
   "252e122e5f73": {
    "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$5$}",
    "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$5$}",
    "status": "aligned",
    "order": 133
-  },
-  "55869d9709ee": {
-   "fr": "Traduire [[m1]] par un complémentaire. \\mxblank{$1-P(X=0)$}",
-   "en": "Express [[m1]] using a complement. \\mxblank{$1-P(X=0)$}",
-   "status": "aligned",
-   "order": 134
   },
   "d0c45025aa7e": {
    "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer et interpréter [[m1]] et résoudre un problème binomial.",
@@ -445,83 +511,17 @@
    "status": "aligned",
    "order": 138
   },
-  "aa05b05d7735": {
-   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
-   "en": "Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.",
-   "status": "aligned",
-   "order": 139
-  },
   "a9eb1cf1e790": {
    "fr": "Par groupe [[m1]]. Sur 120 groupes, environ [[m2]] réclamations en moyenne ; ce n'est pas une certitude.",
    "en": "Per group [[m1]]. Over 120 groups, about [[m2]] complaints on average; this is not a certainty.",
    "status": "aligned",
    "order": 140
   },
-  "4a8f3fc74ed9": {
-   "fr": "essentiel",
-   "en": "essential",
-   "status": "aligned",
-   "order": 141
-  },
-  "562f76852a86": {
-   "fr": "Justifier que le nombre de succès parmi [[m1]] essais indépendants, avec [[m2]], suit une loi binomiale.",
-   "en": "Justify that the number of successes among [[m1]] independent trials, with [[m2]], follows a binomial distribution.",
-   "status": "aligned",
-   "order": 142
-  },
-  "cc0de7072879": {
-   "fr": "Calculer [[m1]] et [[m2]].",
-   "en": "Calculate [[m1]] and [[m2]].",
-   "status": "aligned",
-   "order": 143
-  },
-  "3b3770a45bfc": {
-   "fr": "En déduire [[m1]] et calculer [[m2]].",
-   "en": "Deduce [[m1]] and calculate [[m2]].",
-   "status": "aligned",
-   "order": 144
-  },
-  "18d43d761ee1": {
-   "fr": "[[m1]]. [[m2]], [[m3]], [[m4]] et [[m5]].",
-   "en": "[[m1]]. [[m2]], [[m3]], [[m4]] and [[m5]].",
-   "status": "aligned",
-   "order": 145
-  },
   "a59ab61f06d2": {
    "fr": "Calao, p. 160 à 169",
    "en": "Calao, pp. 160--169",
    "status": "aligned",
    "order": 146
-  },
-  "c522c0aac4ab": {
-   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
-   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
-   "status": "aligned",
-   "order": 147
-  },
-  "acac70116eb6": {
-   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
-   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
-   "status": "aligned",
-   "order": 148
-  },
-  "24e46784cbce": {
-   "fr": "3 minutes",
-   "en": "3 minutes",
-   "status": "aligned",
-   "order": 149
-  },
-  "4f9257a965a4": {
-   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
-   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1, 2 and 3.",
-   "status": "aligned",
-   "order": 150
-  },
-  "4ac648e44ed0": {
-   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
-   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
-   "status": "aligned",
-   "order": 151
   }
  }
 }

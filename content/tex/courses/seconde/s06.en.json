@@ -19,6 +19,12 @@
    "status": "aligned",
    "order": 2
   },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 3
+  },
   "9806226901b0": {
    "fr": "Une fonction à valeurs réelles associe à chaque réel [[m1]] de son ensemble de définition [[m2]] un unique réel [[m3]], appelé image de [[m4]]. Un antécédent de [[m5]] est un réel [[m6]] tel que [[m7]]. On note [[m8]]. Un nombre peut avoir aucun, un ou plusieurs antécédents.",
    "en": "A real-valued function associates to each real number [[m1]] of its domain [[m2]] a unique real number [[m3]], called the image of [[m4]]. A preimage of [[m5]] is a real number [[m6]] such that [[m7]]. We write [[m8]]. A number may have no preimage, one, or several.",
@@ -121,12 +127,6 @@
    "status": "aligned",
    "order": 20
   },
-  "beb84672add4": {
-   "fr": "Définition",
-   "en": "Definition",
-   "status": "aligned",
-   "order": 21
-  },
   "7bc61b9294f3": {
    "fr": "[[m1]] est l'ensemble des points [[m2]], avec [[m3]]. Ainsi [[m4]] et [[m5]].",
    "en": "[[m1]] is the set of points [[m2]], with [[m3]]. Thus [[m4]] and [[m5]].",
@@ -139,23 +139,23 @@
    "status": "aligned",
    "order": 23
   },
-  "3cae4aaec700": {
-   "fr": "\\mxblank{$0{,}25$}",
-   "en": "\\mxblank{$0.25$}",
-   "status": "aligned",
-   "order": 25
-  },
-  "d89e447254c2": {
-   "fr": "\\mxblank{$-1{,}75$}",
-   "en": "\\mxblank{$-1.75$}",
-   "status": "aligned",
-   "order": 26
-  },
   "15f3095cf2c6": {
    "fr": "\\mxblank{$2$}",
    "en": "\\mxblank{$2$}",
    "status": "aligned",
-   "order": 27
+   "order": 24
+  },
+  "c783364cd6e9": {
+   "fr": "\\mxblank{$\\num{0,25}$}",
+   "en": "\\mxblank{$\\num{0,25}$}",
+   "status": "aligned",
+   "order": 25
+  },
+  "82e2df7c69cc": {
+   "fr": "\\mxblank{$-\\num{1,75}$}",
+   "en": "\\mxblank{$-\\num{1,75}$}",
+   "status": "aligned",
+   "order": 26
   },
   "85a1a0bb1a1a": {
    "fr": "\\mxblank{$7$}",
@@ -174,6 +174,12 @@
    "en": "Graphical solving of equations and inequalities",
    "status": "aligned",
    "order": 30
+  },
+  "2e94172aba35": {
+   "fr": "Méthode",
+   "en": "Method",
+   "status": "aligned",
+   "order": 31
   },
   "3057ba45fb32": {
    "fr": "Les solutions de [[m1]] sont les abscisses des intersections de [[m2]] avec [[m3]]. Pour [[m4]], lire les abscisses où la courbe est en dessous de cette droite, intersections comprises ; avec [[m5]], les intersections sont exclues.",
@@ -205,12 +211,6 @@
    "status": "aligned",
    "order": 36
   },
-  "2e94172aba35": {
-   "fr": "Méthode",
-   "en": "Method",
-   "status": "aligned",
-   "order": 37
-  },
   "422be330971f": {
    "fr": "[[m1]] se lit aux intersections des courbes. Pour [[m2]], [[m3]] est strictement en dessous de [[m4]] à la même abscisse. Le signe de [[m5]] se lit par rapport à l'axe des abscisses.",
    "en": "[[m1]] is read at the intersections of the curves. For [[m2]], [[m3]] is strictly below [[m4]] at the same abscissa. The sign of [[m5]] is read relative to the x-axis.",
@@ -234,6 +234,12 @@
    "en": "Affine functions and absolute value",
    "status": "aligned",
    "order": 41
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 42
   },
   "8a293b692ddd": {
    "fr": "Une fonction affine est [[m1]] sur [[m2]]. Elle est linéaire si [[m3]], constante si [[m4]]. Pour [[m5]], elle s'annule en [[m6]] ; son signe est celui de [[m7]] à droite de ce nombre.\nLa fonction [[m8]] est définie sur [[m9]], positive ou nulle, et s'annule uniquement en [[m10]].",
@@ -354,12 +360,6 @@
    "en": "Using square root and cube",
    "status": "aligned",
    "order": 62
-  },
-  "3ab32483375b": {
-   "fr": "Définitions",
-   "en": "Definitions",
-   "status": "aligned",
-   "order": 63
   },
   "d84d3bb1734f": {
    "fr": "[[m1]] est définie sur [[m2]] et à valeurs positives ou nulles. Pour [[m3]], [[m4]] ; pour [[m5]], aucune solution.\n[[m6]] est définie sur [[m7]]. Chaque réel [[m8]] possède un unique antécédent, noté [[m9]].",

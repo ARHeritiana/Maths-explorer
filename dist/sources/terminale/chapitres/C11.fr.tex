@@ -1,6 +1,6 @@
-\setcounter{chapter}{7}\mxunit{terminale-c11}{Calcul intégral}\label{ch:8}
+\mxunit[8]{terminale-c11}{Calcul intégral}\label{ch:8}
 
-{\small\sffamily\color{mxmint}S59, S61, S63, S66\par}
+\mxsubtitle{S59, S61, S63, S66}
 
 \begin{keypoint}[Objectifs]Calculer et encadrer une intégrale ; distinguer aire et intégrale ; utiliser une intégration par parties ; étudier une suite d'intégrales.\end{keypoint}
 
@@ -44,20 +44,22 @@ Pour $I_n=\int_0^1x^nf(x)\,\dd x$, commencer par le signe et les comparaisons de
 \addplot[draw=none,fill=white,domain=0:1]{x^2}\closedcycle;
 \addplot[mxink,domain=0:1]{x};\addplot[mxmint,thick,domain=0:1]{x^2};\end{axis}\end{tikzpicture}\par\small L'aire entre $y=x$ et $y=x^2$ sur $[0,1]$ vaut $\frac{1}{6}$.\end{center}
 
-\section{Activité de recherche}\textbf{Encadrer une intégrale par des rectangles --- 35 min.}\par On cherche à encadrer $I=\displaystyle\int_0^1x^2\,\dd x$. Pour un entier $n\ge1$, on partage $[0;1]$ en $n$ intervalles de même longueur. On note $L_n$ la somme des aires des rectangles dont les hauteurs sont les valeurs de $x^2$ aux extrémités gauches, et $U_n$ celle obtenue aux extrémités droites.
+\mxnewpage
+\section{Activité de recherche}\textbf{Encadrer une intégrale par des rectangles --- 35 min.}\par On cherche à encadrer $I=\displaystyle\int_0^1x^2\,\dd x$. Pour un entier $n\ge1$, on partage $\intff{0}{1}$ en $n$ intervalles de même longueur. On note $L_n$ la somme des aires des rectangles dont les hauteurs sont les valeurs de $x^2$ aux extrémités gauches, et $U_n$ celle obtenue aux extrémités droites.
 \begin{enumerate}\item Pour $n=4$, représenter les deux familles de rectangles, puis calculer $L_4$ et $U_4$.
 \item Justifier que $L_4\le I\le U_4$.
 \item Écrire une fonction Python d'argument $n$ qui renvoie $L_n$ et $U_n$. Déterminer algébriquement $U_n-L_n$.
-\item Déterminer le plus petit entier $n$ pour lequel cet encadrement a une largeur au plus égale à $0{,}01$.
+\item Déterminer le plus petit entier $n$ pour lequel cet encadrement a une largeur au plus égale à $\num{0,01}$.
 \item Calculer la valeur exacte de $I$ à l'aide d'une primitive et vérifier qu'elle appartient à l'encadrement obtenu pour $n=4$.\end{enumerate}
 
+\mxnewpage
 \section{Exercices progressifs}
 
 \mxexerciseitem{1}{Entraînement}Calculer $\displaystyle\int_0^2(3x^2-2x+1)\,\dd x$ en déterminant une primitive.
 
 \mxexerciseitem{2}{Entraînement}Dans un repère orthonormé, calculer l'aire du domaine délimité par les courbes $y=x$ et $y=x^2$, entre les abscisses $0$ et $1$. Donner le résultat en unité d'aire.
 
-\mxexerciseitem{3}{Entraînement}Calculer la valeur moyenne de la fonction exponentielle sur l'intervalle $[0;2]$.
+\mxexerciseitem{3}{Entraînement}Calculer la valeur moyenne de la fonction exponentielle sur l'intervalle $\intff{0}{2}$.
 
 \mxexerciseitem{4}{Entraînement}À l'aide d'une intégration par parties, calculer $\displaystyle\int_1^e\ln x\,\dd x$.
 
@@ -65,6 +67,7 @@ Pour $I_n=\int_0^1x^nf(x)\,\dd x$, commencer par le signe et les comparaisons de
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 260, exercices 28 et 29.} En S66 : exercice 28, en explicitant les deux fonctions choisies pour l'intégration par parties. À la maison : exercice 29, pour adapter ce choix à un produit contenant un logarithme.
 
+\mxnewpage
 \section{Devoir à la maison}\textbf{DM8 --- Une suite d'intégrales --- 60 min.}\par Pour tout $n\in\N$, on pose $I_n=\displaystyle\int_0^1x^ne^x\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^x$.
 \begin{enumerate}\item Calculer $I_0$, puis $I_1$ à l'aide d'une intégration par parties.
 \item Démontrer que, pour tout $n\in\N$, $I_{n+1}=e-(n+1)I_n$.
@@ -78,19 +81,21 @@ Pour $I_n=\int_0^1x^nf(x)\,\dd x$, commencer par le signe et les comparaisons de
 \item Les quatre intervalles ont largeur $\frac{1}{4}$. La somme à gauche vaut
 \[L_4=\frac{1}{4}(0^2+(\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2)=\frac{7}{32}.\]
 À droite, $U_4=\frac{1}{4}((\frac{1}{4})^2+(\frac{1}{2})^2+(\frac{3}{4})^2+1)=\frac{15}{32}$. Les rectangles ont pour hauteurs les valeurs aux extrémités correspondantes.
-\begin{center}\begin{minipage}{.47\linewidth}\centering
+\mxtwocols{\begin{figurebox}[Rectangles à gauche : $L_4=\frac{7}{32}$.]
 \begin{tikzpicture}[x=4cm,y=3cm]
 \foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{(\k/4)^2}\filldraw[fill=mxmint!20,draw=mxmint] (\l,0) rectangle (\r,\h);}
 \draw[mxink,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
 \draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
 \node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
-\end{tikzpicture}\par\small Rectangles à gauche : $L_4=\frac{7}{32}$.\end{minipage}\hfill\begin{minipage}{.47\linewidth}\centering
+\end{tikzpicture}
+\end{figurebox}}{\begin{figurebox}[Rectangles à droite : $U_4=\frac{15}{32}$.]
 \begin{tikzpicture}[x=4cm,y=3cm]
 \foreach \k in {0,1,2,3}{\pgfmathsetmacro{\l}{\k/4}\pgfmathsetmacro{\r}{(\k+1)/4}\pgfmathsetmacro{\h}{((\k+1)/4)^2}\filldraw[fill=mxmint!20,draw=mxmint] (\l,0) rectangle (\r,\h);}
 \draw[mxink,thick,domain=0:1,samples=50]plot(\x,{\x*\x});
 \draw[->](0,0)--(1.15,0)node[right]{$x$};\draw[->](0,0)--(0,1.1)node[above]{$y$};
 \node[below left]at(0,0){$0$};\node[below]at(1,0){$1$};\node[left]at(0,1){$1$};
-\end{tikzpicture}\par\small Rectangles à droite : $U_4=\frac{15}{32}$.\end{minipage}\end{center}
+\end{tikzpicture}
+\end{figurebox}}
 \item Pour $x\in[\frac{k}{4},\frac{k+1}{4}]$, $(\frac{k}{4})^2\le x^2\le(\frac{k+1}{4})^2$ car la fonction carré est croissante sur $[0,1]$. L'intégration sur les quatre intervalles puis l'addition donnent $\frac{7}{32}\le I\le\frac{15}{32}$.
 \item 
 \begin{lstlisting}
@@ -101,7 +106,7 @@ def rectangles_carre(n):
     return bas, haut
 \end{lstlisting}
 Les termes intérieurs se compensent : $U_n-L_n=(\frac{1}{n})(1^2-0^2)=\frac{1}{n}$.
-\item $\frac{1}{n}\le0{,}01\Longleftrightarrow n\ge100$. Cent subdivisions suffisent ; c'est le premier entier qui donne cette largeur avec ces deux sommes.
+\item $\frac{1}{n}\le\num{0,01}\Longleftrightarrow n\ge100$. Cent subdivisions suffisent ; c'est le premier entier qui donne cette largeur avec ces deux sommes.
 \item Une primitive de $x^2$ est $\frac{x^3}{3}$. Donc $I=[\frac{x^3}{3}]_0^1=\frac{1}{3}$, bien compris entre $\frac{7}{32}$ et $\frac{15}{32}$.
 \end{enumerate}
 
@@ -128,9 +133,9 @@ Les deux bornes tendent vers $0$ ; le théorème des gendarmes donne $I_n\to0$.
 La valeur absolue de l'erreur est multipliée par $n+1$. En calcul machine, de nouvelles erreurs s'ajoutent à chaque étape. La décroissance des intégrales exactes ne garantit donc pas la stabilité de cette méthode de calcul.
 \end{enumerate}
 
-\subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 28.} Sur $[0;1]$, choisissons $u(x)=x$ et $v(x)=e^x$. Ces fonctions sont de classe $\mathcal C^1$, $u'(x)=1$ et $v'(x)=e^x$. L'intégration par parties donne
+\subsection{Corrigé du travail dans le manuel ou une annale}\paragraph{Exercice 28.} Sur $\intff{0}{1}$, choisissons $u(x)=x$ et $v(x)=e^x$. Ces fonctions sont de classe $\mathcal C^1$, $u'(x)=1$ et $v'(x)=e^x$. L'intégration par parties donne
 \[\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1.\]
-\paragraph{Exercice 29.} Sur $[1;e]$, choisissons $u(x)=\ln x$ et $v(x)=\frac{x^2}2$. Alors $u'(x)=\frac1x$ et $v'(x)=x$ ; ces fonctions sont de classe $\mathcal C^1$. D'où
+\paragraph{Exercice 29.} Sur $\intff{1}{e}$, choisissons $u(x)=\ln x$ et $v(x)=\frac{x^2}2$. Alors $u'(x)=\frac1x$ et $v'(x)=x$ ; ces fonctions sont de classe $\mathcal C^1$. D'où
 \[\begin{aligned}\int_1^e x\ln x\,\dd x&=\left[\frac{x^2}2\ln x\right]_1^e-\frac12\int_1^e x\,\dd x\\&=\frac{e^2}2-\frac{e^2-1}4=\frac{e^2+1}4.\end{aligned}\]
 
 \fi

@@ -19,11 +19,23 @@
    "status": "aligned",
    "order": 2
   },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 3
+  },
   "8d68b8a24cf8": {
    "fr": "Moyenne de [[m1]]\\,?",
    "en": "Mean of [[m1]]?",
    "status": "aligned",
    "order": 4
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 5
   },
   "2d53e2be0426": {
    "fr": "La série [[m1]] a pour moyenne [[m2]]. Quelle est la moyenne si l'on ajoute [[m3]] à chaque valeur\\,? si on multiplie chaque valeur par [[m4]]\\,?",
@@ -42,6 +54,12 @@
    "en": "No need to recompute the sum.",
    "status": "aligned",
    "order": 8
+  },
+  "07100f279aae": {
+   "fr": "Cœur + · Vrai/faux",
+   "en": "Core + · True/false",
+   "status": "aligned",
+   "order": 9
   },
   "0d7974803020": {
    "fr": "Vrai ou faux\\,? Justifier. La moyenne de deux nombres [[m1]] est toujours strictement comprise entre [[m2]] et [[m3]].",
@@ -72,6 +90,12 @@
    "en": "[[m1]] people; [[m2]].",
    "status": "aligned",
    "order": 14
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 15
   },
   "141b59756743": {
    "fr": "Calculer [[m1]] et en déduire la forme irréductible de [[m2]].",
@@ -133,6 +157,12 @@
    "status": "aligned",
    "order": 28
   },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 29
+  },
   "e0c7b1433200": {
    "fr": "Ranger [[m1]], [[m2]] et [[m3]] dans l'ordre croissant.",
    "en": "Put [[m1]], [[m2]] and [[m3]] in increasing order.",
@@ -169,6 +199,12 @@
    "status": "aligned",
    "order": 35
   },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 37
+  },
   "26ff890071d8": {
    "fr": "Série [[m1]]~: moyenne, variance et écart type (valeur approchée à [[m2]]).",
    "en": "Series [[m1]]: mean, variance and standard deviation (approximate value to [[m2]]).",
@@ -180,12 +216,6 @@
    "en": "Mean [[m1]]; variance [[m2]]; standard deviation [[m3]].",
    "status": "aligned",
    "order": 40
-  },
-  "07100f279aae": {
-   "fr": "Cœur + · Vrai/faux",
-   "en": "Core + · True/false",
-   "status": "aligned",
-   "order": 41
   },
   "244e51dfa119": {
    "fr": "Vrai ou faux\\,? Justifier. Ajouter [[m1]] à chaque valeur d'une série ne change pas son écart type.",
@@ -379,12 +409,6 @@
    "status": "aligned",
    "order": 78
   },
-  "968069c57071": {
-   "fr": "Fil rouge · Flash",
-   "en": "Thread · Quick",
-   "status": "aligned",
-   "order": 79
-  },
   "aed57c0cde67": {
    "fr": "Résoudre dans [[m1]]~: [[m2]].",
    "en": "Solve in [[m1]]: [[m2]].",
@@ -408,24 +432,6 @@
    "en": "Weighted mean, median class; spreadsheet and Python",
    "status": "aligned",
    "order": 83
-  },
-  "bbfeac0129d0": {
-   "fr": "Échauffement · Flash",
-   "en": "Warm-up · Quick",
-   "status": "aligned",
-   "order": 84
-  },
-  "edb66e001ece": {
-   "fr": "Calculer [[m1]].",
-   "en": "Calculate [[m1]].",
-   "status": "aligned",
-   "order": 85
-  },
-  "86f6c483637b": {
-   "fr": "Cœur · Méthode",
-   "en": "Core · Method",
-   "status": "aligned",
-   "order": 86
   },
   "15c8e52ad7ec": {
    "fr": "Classes [[m1]], [[m2]], [[m3]] d'effectifs [[m4]]. Estimer la moyenne avec les centres de classes\\,; donner la classe médiane.",
@@ -451,89 +457,53 @@
    "status": "aligned",
    "order": 90
   },
-  "eeb0d183d11a": {
-   "fr": "notes = [12, 15, 9, 14]\\\\",
-   "en": "notes = [12, 15, 9, 14]\\\\",
+  "4f34854405b2": {
+   "fr": "notes = [12, 15, 9, 14]\\\\ s = 0\\\\ for n in notes:\\\\",
+   "en": "notes = [12, 15, 9, 14]\\\\ s = 0\\\\ for n in notes:\\\\",
+   "status": "aligned",
+   "order": 91
+  },
+  "3205624f8baa": {
+   "fr": "s = s + n\\\\ print(s / len(notes))",
+   "en": "s = s + n\\\\ print(s / len(notes))",
    "status": "aligned",
    "order": 92
-  },
-  "97a5bed755b7": {
-   "fr": "s = 0\\\\",
-   "en": "s = 0\\\\",
-   "status": "aligned",
-   "order": 94
-  },
-  "5385cb919c25": {
-   "fr": "for n in notes:\\\\",
-   "en": "for n in notes:\\\\",
-   "status": "aligned",
-   "order": 96
-  },
-  "1225774c50f5": {
-   "fr": "2.4em",
-   "en": "2.4em",
-   "status": "aligned",
-   "order": 97
-  },
-  "560e436b4b70": {
-   "fr": "s = s + n\\\\",
-   "en": "s = s + n\\\\",
-   "status": "aligned",
-   "order": 98
-  },
-  "848501079fa5": {
-   "fr": "0.0em",
-   "en": "0.0em",
-   "status": "aligned",
-   "order": 99
-  },
-  "fec74a2009bf": {
-   "fr": "print(s / len(notes))",
-   "en": "print(s / len(notes))",
-   "status": "aligned",
-   "order": 100
   },
   "c47d2e36126b": {
    "fr": "La moyenne des notes~: [[m1]].",
    "en": "The mean of the marks: [[m1]].",
    "status": "aligned",
-   "order": 101
-  },
-  "1c37077501a9": {
-   "fr": "Retour · Flash",
-   "en": "Review · Quick",
-   "status": "aligned",
-   "order": 102
+   "order": 93
   },
   "41f0c0c0fc22": {
    "fr": "Un article à [[m1]] Ar est soldé à [[m2]]. Quel est le prix soldé\\,?",
    "en": "An item costing [[m1]] Ar is sold at [[m2]]. What is the sale price?",
    "status": "aligned",
-   "order": 103
+   "order": 95
   },
   "93719eaa5542": {
    "fr": "[[m1]] Ar.",
    "en": "[[m1]] Ar.",
    "status": "aligned",
-   "order": 104
+   "order": 96
   },
   "188c7146db41": {
    "fr": "Fil rouge · Prouver",
    "en": "Thread · Prove",
    "status": "aligned",
-   "order": 105
+   "order": 97
   },
   "924fbb28ed44": {
    "fr": "Programme~: choisir [[m1]]\\,; ajouter [[m2]]\\,; élever au carré\\,; soustraire [[m3]]. Montrer que le résultat est toujours un nombre impair.",
    "en": "Programme: choose [[m1]]; add [[m2]]; square it; subtract [[m3]]. Show that the result is always an odd number.",
    "status": "aligned",
-   "order": 106
+   "order": 98
   },
   "b2903029a179": {
    "fr": "[[m1]]~: impair pour tout entier [[m2]].",
    "en": "[[m1]]: odd for every integer [[m2]].",
    "status": "aligned",
-   "order": 107
+   "order": 99
   }
  }
 }

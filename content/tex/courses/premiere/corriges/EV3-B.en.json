@@ -7,9 +7,9 @@
    "status": "aligned",
    "order": 0
   },
-  "9f91a6c91e26": {
-   "fr": "\\textbf{QCM :} 1 A, 2 B, 3 A, 4 B, 5 D, 6 B, 7 C, 8 C, 9 C, 10 D, 11 D, 12 D. Chaque réponse correcte : 0{,}5 point ; total 6.",
-   "en": "\\textbf{MCQ:} 1 A, 2 B, 3 A, 4 B, 5 D, 6 B, 7 C, 8 C, 9 C, 10 D, 11 D, 12 D. Each correct answer: 0.5 point; total 6.",
+  "25153084bab4": {
+   "fr": "\\textbf{QCM :} 1 A, 2 B, 3 A, 4 B, 5 D, 6 B, 7 C, 8 C, 9 C, 10 D, 11 D, 12 D. Chaque réponse correcte : [[m1]] point ; total 6.",
+   "en": "\\textbf{MCQ:} 1 A, 2 B, 3 A, 4 B, 5 D, 6 B, 7 C, 8 C, 9 C, 10 D, 11 D, 12 D. Each correct answer: [[m1]] point; total 6.",
    "status": "aligned",
    "order": 1
   },
@@ -19,9 +19,9 @@
    "status": "aligned",
    "order": 2
   },
-  "0c8589583107": {
-   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur 1{,}2 ; division par 0{,}8 ; produit 1{,}25 fois 0{,}8 ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
-   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient 1.2; division by 0.8; product 1.25 times 0.8; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
+  "f26919e403fd": {
+   "fr": "Priorités ; somme de fractions ; soustraction des exposants ; coefficient multiplicateur [[m1]] ; division par [[m2]] ; produit [[m3]] fois [[m4]] ; résolution affine ; accroissement vertical divisé par l’horizontal ; moyenne ; angle divisé par 360 ; complément à 1 ; substitution entre parenthèses.",
+   "en": "Order of operations; sum of fractions; subtraction of exponents; multiplying coefficient [[m1]]; division by [[m2]]; product [[m3]] times [[m4]]; solving an affine equation; vertical increment divided by horizontal; mean; angle divided by 360; complement to 1; substitution in brackets.",
    "status": "aligned",
    "order": 3
   },
@@ -30,6 +30,12 @@
    "en": "Exercise 1 -- Four trials and a gain",
    "status": "aligned",
    "order": 4
+  },
+  "e8c31d3278ed": {
+   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
+   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
+   "status": "aligned",
+   "order": 5
   },
   "0db0dfd537a2": {
    "fr": "[[m1]], [[m2]] ; [[m3]]. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
@@ -48,12 +54,6 @@
    "en": "Exercise 2 -- A derivative of constant sign",
    "status": "aligned",
    "order": 8
-  },
-  "e8c31d3278ed": {
-   "fr": "[[m1]]. \\textit{Barème : 1 point. Résultat et justification élémentaire attendus ; demi-point possible pour démarche correcte inachevée.}",
-   "en": "[[m1]]. \\textit{Marking: 1 point. Result and basic justification expected; half a point possible for a correct but unfinished approach.}",
-   "status": "aligned",
-   "order": 9
   },
   "8fcea69a18d5": {
    "fr": "Positive sauf en -1 ; f croît strictement (sur les deux côtés et par raccord). Pas d’extremum en -1. \\textit{Barème : 2 points. Méthode ou justification : 1 ; calcul et conclusion : 1.}",
