@@ -18,6 +18,18 @@ def pairs():
             yield src, DIST / src.relative_to(SITE)
 
 
+# dist/ paths that are copies of site/ (anything else in them is an orphan); generated files are listed apart.
+MANAGED = ['index.html', 'styles/*', 'vendor/*', 'js/*', 'slides/*.html', 'slides/*.css', 'slides/*.js',
+           'resources/document-theme.css']
+GENERATED = {'js/resources-data.js', 'js/enrichment-data.js'}
+
+
+def orphans():
+    """dist/ copies whose source no longer exists in site/ (deleted or renamed there)."""
+    found = {str(p.relative_to(DIST)) for g in MANAGED for p in DIST.glob(g) if p.is_file()}
+    return sorted(DIST / f for f in found - GENERATED if not (SITE / f).exists())
+
+
 def write(check=False):
     stale = []
     for src, dst in pairs():
@@ -25,4 +37,7 @@ def write(check=False):
         stale.append(dst.relative_to(ROOT))
         if not check:
             dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst)
+    for o in orphans():
+        stale.append(o.relative_to(ROOT))
+        if not check: o.unlink()
     return stale

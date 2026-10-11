@@ -7,6 +7,11 @@ import subprocess, sys, time
 from . import ROOT, tex
 
 PY = sys.executable
+# Extra inputs per course beyond its TeX tree and the core (paths relative to the repository root).
+INPUTS = {
+    'enrichment': ['content/data/enrichment.json', 'scripts/build-enrichment-latex.py', 'scripts/enrichment_sections.py'],
+}
+COMMON_INPUTS = ['content/data/manifest.json', 'scripts/style-resource-pdfs.py']
 # Course -> builder command (relative to the repository root). The builders still live in scripts/ until phase B.
 COURSES = {
     'automatismes': ['scripts/build-automatismes.py'],
@@ -24,19 +29,22 @@ def run(cmd, **kw):
 
 
 def changed_pdfs():
-    out = subprocess.run(['git', 'status', '--porcelain', '--', 'dist/resources'], cwd=ROOT, capture_output=True, text=True).stdout
-    return [line[3:] for line in out.splitlines() if line.endswith('.pdf')]
+    """Modified or new PDFs under dist/resources (every untracked file listed, paths unquoted)."""
+    out = subprocess.run(['git', 'status', '--porcelain', '-z', '-uall', '--', 'dist/resources'], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    return [e[3:] for e in out.split('\0') if e.endswith('.pdf') and e[:2] != ' D']
 
 
 def build_tex(courses, force=False):
     for course in courses:
         script = COURSES[course]
-        digest = tex.inputs_hash(course, extra=[script[0], 'scripts/style-resource-pdfs.py'])
-        if not force and tex.cache_get(course) == digest:
+        extra = [script[0], *INPUTS.get(course, []), *COMMON_INPUTS]
+        if not force and tex.cache_get(course) == tex.inputs_hash(course, extra):
             print(f'{course}: unchanged since the last build (cache), skipped'); continue
         t0 = time.time()
         if run([PY, *script]).returncode: return 1
-        tex.cache_put(course, digest)
+        # taken after the build: builders may write generated sources (enrichment) or the manifest
+        tex.cache_put(course, tex.inputs_hash(course, extra))
         print(f'{course}: built in {time.time() - t0:.0f} s')
     pdfs = changed_pdfs()
     if pdfs and run([PY, 'scripts/style-resource-pdfs.py', *pdfs]).returncode: return 1

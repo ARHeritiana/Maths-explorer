@@ -12,16 +12,20 @@ RULES = [
     (r'\\(?:clearpage|newpage|pagebreak|cleardoublepage)\b', 'manual page break (the class handles breaks; use \\mxneed{n})'),
     (r'\\(?:usepackage|RequirePackage)\b', 'package loaded in a unit'),
     (r'\\(?:(?:re)?newcommand|providecommand|def|let|(?:re)?newenvironment|newcounter|DeclareMathOperator)\b', 'macro or counter defined in a unit'),
-    (r'\\(?:definecolor|colorlet)\b|\{(?:HTML|RGB|rgb|cmyk)\}', 'raw colour (use the mx palette)'),
-    (r'(?<![\d{])\d+,\d+(?!\})', 'decimal comma without braces (write 0{,}5)'),
+    (r'\\(?:definecolor|colorlet)\b|[{\[](?:HTML|RGB|rgb|cmyk)[}\]]', 'raw colour (use the mx palette)'),
+    (r'(?<![\d{])\d+,\d+(?!\})', 'decimal comma without braces (write 0{,}5)'),   # checked outside figures and (x,y) pairs
 ]
+
+
+FIGURE = re.compile(r'\\begin\{(tikzpicture|axis|pgfpicture)\}.*?\\end\{\1\}', re.S)
+PAIR = re.compile(r'\(\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?\s*\)')   # coordinates such as (1,2)
 
 
 def lint(path):
     out = []
-    for n, line in enumerate(path.read_text().splitlines(), 1):
-        code = re.sub(r'(?<!\\)%.*', '', line)
-        code = re.sub(r'\([^()]*\)', '', code) if '\\draw' in code or '\\node' in code or '\\addplot' in code else code
+    text = FIGURE.sub(lambda m: '\n' * m.group(0).count('\n'), path.read_text())   # figure code: coordinates, not decimals
+    for n, line in enumerate(text.splitlines(), 1):
+        code = PAIR.sub('', re.sub(r'(?<!\\)%.*', '', line))
         for pat, why in RULES:
             if re.search(pat, code): out.append(f'{path.relative_to(ROOT)}:{n}: {why}')
     return out

@@ -65,6 +65,20 @@ class Twin(unittest.TestCase):
         with self.assertRaises(twin.TwinError):
             twin.align('On a $x=1{,}5$.\n', 'We have $x=1.6$.\n')
 
+    def test_unclosed_inline_maths_raises(self):
+        with self.assertRaises(twin.TwinError):
+            twin.split('ab \\(x+1 sans fin\n')
+
+    def test_words_in_every_display_environment_are_translatable(self):
+        self.assertEqual(twin.translatable(r'\begin{flalign*}x&=1\text{ sinon}\end{flalign*}' + '\n'), [' sinon'])
+
+    def test_table_column_spec_is_locked(self):
+        self.assertEqual(twin.translatable(r'\begin{tabular}{|c|l|}Oui&Non\end{tabular}' + '\n'), ['Oui', 'Non'])
+
+    def test_spacing_inside_maths_is_kept(self):
+        fr = r'\item $\{x\,;\,x>0\}$\,; $1$' + '\n'
+        self.assertEqual(body(twin.generate(fr, table([]))), r'\item $\{x\,;\,x>0\}$; $1$' + '\n')
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=1)

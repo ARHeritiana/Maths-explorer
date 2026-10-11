@@ -64,6 +64,10 @@ def generate(manifest=None):
     converted = set(m['texConverted'])
     pages = {}
     cat = copy.deepcopy(m['catalog'])
+    comp = copy.deepcopy(m['companion'])
+    # Source records describe owner-supplied files: their URLs and storage ids must never reach the client.
+    comp.pop('folder', None)
+    for source in cat['sources'] + comp['sources']: source.pop('url', None); source.pop('id', None)
     for course in cat['courses']: course['language'] = 'bilingual'
     for r in cat['resources']:
         if r['format'] != 'PDF': continue
@@ -76,7 +80,6 @@ def generate(manifest=None):
         r.update(url=[fr, en], language='bilingual', bytes=pf.stat().st_size, englishBytes=pe.stat().st_size,
                  translation='tex-source' if (r['chapter'] in converted or r.get('texBuilt')) else 'authored-bilingual')
         # key order of the historical files: measured fields after the editorial ones
-    comp = copy.deepcopy(m['companion'])
     provenance = []
     for ch in comp['chapters'] + comp['supplements']:
         for f in ch['files']:

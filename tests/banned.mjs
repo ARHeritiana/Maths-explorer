@@ -4,7 +4,8 @@ import {readFileSync} from 'node:fs';
 const spec = JSON.parse(readFileSync(new URL('./banned-sha256.json', import.meta.url)));
 const hashes = new Set(spec.sha256);
 export const PERSONAL = /(?:drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint/i;
-const EMAIL = /(?<![\\\w.+-])[\w.+-]+@[\w-]+\.[A-Za-z][\w.]*/g;
+// Same as tests/banned.py: Unicode letters and digits, never ending on a period.
+const EMAIL = /(?<![\\\p{L}\p{N}_.+-])[\p{L}\p{N}_.+-]+@[\p{L}\p{N}_-]+\.[A-Za-z](?:[\p{L}\p{N}_.]*[\p{L}\p{N}_])?/gu;
 const EMAIL_OK = /noreply@anthropic\.com|@(?:users\.noreply\.github\.com|example\.(?:com|org))$/;
 const words = t => t.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').match(/[a-z0-9]+/g) || [];
 // Short reasons only; a matched banned phrase is never echoed.

@@ -29,6 +29,8 @@ LOCK_ARGS = set('label ref eqref pageref input include includegraphics setcounte
                 'refstepcounter vspace hspace rule color textcolor colorbox definecolor needspace Needspace mxneed '
                 'newpage clearpage hyperref url mxinclude mxunit_id usetikzlibrary tikzset pgfplotsset phantom '
                 'hphantom vphantom cite linewidth setlength mxdate mxlabel mxref lstinputlisting'.split())
+# Environments whose brace arguments are layout (column specs, widths, counts), never prose.
+LAYOUT_ENVS = set('tabular tabular* tabularx array longtable minipage multicols multicols* wrapfigure tblr'.split())
 # Inline atoms: kept inside the sentence like inline maths (a placeholder the translation must keep).
 ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code'.split())
 # Commands whose listed argument positions (0-based, brace arguments only) are never prose.
@@ -114,12 +116,17 @@ def tokenize(s):
                 while j < n and not (s[j] == '$' and s[j - 1] != '\\'): j += 1
                 j += 1
             else:
-                j = s.find('\\)', i) + 2
+                j = s.find('\\)', i)
+                if j < 0: raise TwinError(f'unclosed \\( at offset {i}')
+                j += 2
             out.add('P', '\x00' + s[i:j] + '\x01'); i = j; continue
         if c == '\\':
             m = re.match(r'\\([A-Za-z@]+\*?|.)', s[i:]); name = m.group(1); j = i + len(m.group(0))
             if name in ('begin', 'end'):
-                k = _group_end(s, j); out.add('L', s[i:k]); i = k
+                k = _group_end(s, j); env = s[j + 1:k - 1]; out.add('L', s[i:k]); i = k
+                if name == 'begin' and env in LAYOUT_ENVS:   # column specs, widths, column counts
+                    while i < n and s[i] == '{':
+                        k = _group_end(s, i); out.add('L', s[i:k]); i = k
                 if name == 'begin' and i < n and s[i] == '[':   # optional title of a box: its own segment
                     k = _group_end(s, i, '[', ']'); inner = s[i + 1:k - 1]
                     if '=' in inner or not LETTER.search(inner): out.add('L', s[i:k])
@@ -188,7 +195,7 @@ def split(s):
 
 
 MATHS_IN_LOCKED = re.compile(r'(?<!\\)%[^\n]*|\$\$.*?\$\$|(?<!\\)\$(?:\\.|[^$\\])*\$|\\\(.*?\\\)|\\\[.*?\\\]|'
-                             r'\\begin\{(equation|align|gather|multline)\*?\}.*?\\end\{\1\*?\}', re.S)
+                             r'\\begin\{(equation|align|gather|multline|alignat|flalign|displaymath)\*?\}.*?\\end\{\1\*?\}', re.S)
 
 
 def locked_maths(part):
@@ -202,11 +209,14 @@ def math_texts(m):
 
 
 # ---- language rules -------------------------------------------------------------------------------------------------
+def english_math(t):
+    """Language rule for maths: the decimal comma {,} becomes a point. Spacing inside maths is never touched."""
+    return re.sub(r'(?<=\d)\{,\}(?=\d)', '.', t)
+
+
 def english_locked(t):
-    """Language rules applied to locked text and maths when producing English."""
-    t = re.sub(r'(?<=\d)\{,\}(?=\d)', '.', t)
-    t = re.sub(r'\\,(?=[;:!?])|~(?=[;:!?])', '', t)
-    return t
+    """Language rules for text outside maths: decimal comma, and no French thin space before ; : ! ?"""
+    return re.sub(r'\\,(?=[;:!?])|~(?=[;:!?])', '', english_math(t))
 
 
 def _mask_words(t):
@@ -216,12 +226,16 @@ def _mask_words(t):
 def skeleton_key(parts):
     """Comparable form of a skeleton: comments dropped, words inside maths masked, language rules applied."""
     sk = ''.join('\x04' if isinstance(p, int) else p for p in parts)
-    sk = re.sub(r'(?<!\\)%[^\n]*', '', english_locked(_mask_words(sk)))
+    pos, buf = 0, []
+    for a, b in locked_maths(sk):
+        buf += [english_locked(sk[pos:a]), english_math(sk[a:b])]; pos = b
+    sk = ''.join(buf) + english_locked(sk[pos:])
+    sk = re.sub(r'(?<!\\)%[^\n]*', '', _mask_words(sk))
     return re.sub(r'\s+', '', sk)
 
 
 def norm_math(m):
-    m = english_locked(_mask_words(m))
+    m = english_math(_mask_words(m))
     return re.sub(r'\s+', '', m)
 
 
@@ -295,7 +309,7 @@ def _translate_math(m, tr):
     out, pos = [], 0
     for a, b, t in math_texts(m):
         out += [m[pos:a], tr(t)]; pos = b
-    return english_locked(''.join(out) + m[pos:])
+    return english_math(''.join(out) + m[pos:])
 
 
 def generate(fr_text, table, statuses=('aligned', 'reviewed')):
