@@ -21,9 +21,17 @@ OUT = ROOT / 'dist/resources'
 MAINS = books.write_mains('automatismes', BUILD / 'mains', str(ROOT / 'content/tex/core'))
 
 
+_DONE = {}
+
+
 def compile_pdf(entry):
+    """French and English of an edition are compiled together and balanced block by block (mxbuild.tex.compile_pair)."""
     job = entry[:-4]
-    return fitz.open(tex.compile(SRC, str(MAINS[job]), job, BUILD).report(job).pdf)
+    if job not in _DONE:
+        base = job.removesuffix('-en')
+        pair = tex.compile_pair(SRC, {'fr': str(MAINS[base]), 'en': str(MAINS[base + '-en'])}, {'fr': base, 'en': base + '-en'}, BUILD)
+        for r in (pair['fr'], pair['en']): _DONE[r.pdf.stem] = r.report(r.pdf.stem)
+    return fitz.open(_DONE[job].pdf)
 
 
 def main():

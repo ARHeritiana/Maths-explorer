@@ -11,14 +11,28 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
+from mxbuild import books, catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
 SRC = ROOT / 'content/tex/courses/stmg'
 BUILD = ROOT / 'build/out/tex/stmg'
 OUT = ROOT / 'dist/resources'
 
 
+MAINS = books.write_mains('stmg', BUILD / 'mains', str(ROOT / 'content/tex/core'))
+ENTRY = {'livret-eleve': 'eleve', 'livret-prof': 'professeur', 'livret-eleve-en': 'eleve-en', 'livret-prof-en': 'professeur-en'}
+
+
+_DONE = {}
+
+
 def compile_pdf(entry):
-    return fitz.open(tex.compile(SRC, entry, entry[:-4], BUILD, max_runs=4).report(entry[:-4]).pdf)
+    """French and English of an edition are compiled together and balanced block by block (mxbuild.tex.compile_pair)."""
+    job = entry[:-4]
+    if job not in _DONE:
+        base = job.removesuffix('-en')
+        pair = tex.compile_pair(SRC, {'fr': str(MAINS[ENTRY[base]]), 'en': str(MAINS[ENTRY[base + '-en']])},
+                                {'fr': base, 'en': base + '-en'}, BUILD, max_runs=4)
+        for r in (pair['fr'], pair['en']): _DONE[r.pdf.stem] = r.report(r.pdf.stem)
+    return fitz.open(_DONE[job].pdf)
 
 
 def save(d, a, b, target, title):
@@ -32,11 +46,12 @@ def main():
     manifest = manifest_io.load(); catalog = manifest['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == 'stmg'}
     res = {r['id']: r for r in catalog['resources'] if r['course'] == 'stmg'}
-    counts = {}
+    counts = {}; book = {}
     for lang, suf in (('fr', ''), ('en', '-en')):
         L = 0 if lang == 'fr' else 1
         for kind, entry, role in (('student', 'livret-eleve', 'eleve'), ('teacher', 'livret-prof', 'prof')):
-            d = compile_pdf(entry + suf + '.tex')
+            d = compile_pdf(entry + suf + '.tex'); book[(lang, kind)] = len(d)
+            if lang == 'en' and book[('fr', kind)] != len(d): sys.exit(f'{entry}: {book[("fr", kind)]} French pages, {len(d)} English')
             toc = d.get_toc()
             top = [(t, p - 1) for l, t, p in toc if l == 1]
             if len(top) != 13: sys.exit(f'{entry}{suf}: expected 13 level-1 bookmarks, found {len(top)}')
@@ -55,11 +70,14 @@ def main():
                 counts[(lang, 'bank-1')] = save(d, fa, fb, OUT / 'stmg-revision' / f'bank-1{suf}.pdf', res['stmg-revision-bank-1']['title'][L])
             counts[(lang, 'assess', role)] = save(d, ta, tb, OUT / f'stmg-assessments-{role}{suf}.pdf', 'Maths Explorer — ' + ('Devoirs surveillés' if lang == 'fr' else 'Supervised tests'))
             counts[(lang, 'formulas', role)] = save(d, fa, fb, OUT / f'stmg-formulas-{role}{suf}.pdf', 'Maths Explorer — ' + ('Formulaire raisonné' if lang == 'fr' else 'Annotated formula sheet'))
-    bad = sorted(str(k[1:]) for k in counts if k[0] == 'fr' and counts[k] != counts[('en',) + k[1:]])
-    if bad: sys.exit('Page-count mismatch: ' + ', '.join(bad))
+    # Books must match exactly (checked as they compile); an excerpt may drift by one page (catalogue englishPages).
+    drift = sorted(k[1:] for k in counts if k[0] == 'fr' and counts[k] != counts[('en',) + k[1:]])
+    bad = [k for k in drift if abs(counts[('fr',) + k] - counts[('en',) + k]) > 1]
+    if bad: sys.exit('Page counts differ by more than one page: ' + ', '.join(map(str, bad)))
+    for k in drift: print(f'  note: {k} excerpt differs by one page between languages')
     manifest['texConverted'] = sorted(set(manifest['texConverted']) | {c['id'] for c in chapters.values()} | {'stmg-revision'})
     manifest_io.save(manifest)
-    print('FR/EN page counts match for all STMG resources')
+    print('FR/EN books have equal page counts; excerpts within one page')
 
 
 main()

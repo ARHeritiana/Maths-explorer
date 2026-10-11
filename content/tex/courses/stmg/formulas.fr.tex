@@ -1,0 +1,19 @@
+\mxunit{stmg-formulas}{Formulaire raisonné}
+\begin{longtable}{p{.23\textwidth}p{.33\textwidth}p{.35\textwidth}}
+\toprule
+Objet & Formule & Contrôle à effectuer\\
+\midrule
+Suite arithmétique & $u_n=u_0+nr$ & Le rang initial est-il $0$ ou $1$ ?\\
+Somme arithmétique & $N\dfrac{\text{premier}+\text{dernier}}2$ & Compter les termes : dernier rang $-$ premier rang $+1$.\\
+Suite géométrique & $u_n=u_0q^n$ & $q$ est-il un coefficient et non un pourcentage ?\\
+Somme géométrique & $u_0\dfrac{1-q^{n+1}}{1-q}$ & $q\neq1$ et $n+1$ termes.\\
+Taux moyen & $q=Q^{\frac1n}$, $t=q-1$ & Ne pas diviser le taux global par $n$.\\
+Logarithme & $a^x=b\iff x=\dfrac{\log b}{\log a}$ & $a>0$, $a\neq1$, $b>0$.\\
+Fonction inverse & $\left(\dfrac1x\right)'=-\dfrac1{x^2}$ & Exclure $x=0$.\\
+Ajustement affine & $y=ax+b$ & Estimation, domaine observé, unité.\\
+Conditionnement & $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$ & $P(A)>0$ et ordre du conditionnement.\\
+Probabilités totales & $P(B)=\sum_iP(A_i)P_{A_i}(B)$ & Les $A_i$ forment-ils une partition ?\\
+Loi binomiale & $P(X=k)=\binom nkp^k(1-p)^{n-k}$ & Indépendance, même $p$, $0\leq k\leq n$.\\
+Espérance binomiale & $E(X)=np$ & Interprétation moyenne à long terme.\\
+\bottomrule
+\end{longtable}

@@ -14,6 +14,8 @@
 \fi\fi
 \ifx\mx@layout\mx@booklet\else\renewcommand{\thesection}{\arabic{section}}\fi   % no chapters outside booklets
 \setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2.5em}   % a looser line rather than an overfull one (long inline formulas)
+\tolerance=1000
 \setlength{\parskip}{4pt plus 1pt}
 \renewcommand{\familydefault}{\rmdefault}
 \titleformat{\chapter}[display]{\sffamily\bfseries\color{mxink}}{\large\color{mxmint}\MakeUppercase{\chaptername}~\thechapter}{4pt}{\huge}[{\color{mxmint}\titlerule[1.2pt]}]

@@ -17,10 +17,12 @@ def _sub(pattern, repl, flags=0):
 
 
 def _section_to_unit(uid):
-    """First \\section{...} of the file becomes \\mxunit{uid}{...}; header comments are dropped."""
+    """The first \\chapter{...} or \\section{...} becomes \\mxunit{uid}{...}; a file without heading gets \\mxfront{uid}.
+    Leading comment lines are dropped."""
     def f(s):
         s = re.sub(r'\A(?:%[^\n]*\n)+', '', s)
-        return s.replace('\\section{', '\\mxunit{%s}{' % uid, 1)
+        m = re.search(r'\\(?:chapter|section)\{', s)
+        return s[:m.start()] + '\\mxunit{%s}{' % uid + s[m.end():] if m else '\\mxfront{%s}\n' % uid + s
     return f
 
 
@@ -54,11 +56,75 @@ AUTOMATISMES_RULES = [
     _sub(r'(?<=[{,=\[\s])fond\b', 'mxpaper'), _sub(r'(?<=[{,=\[\s])rep\b(?=[!},\]])', 'mxteacher'),   # English-only page-alignment hack (ch13), not needed any more
 ]
 
+def _group_end(s, i):
+    depth = 0
+    for j in range(i, len(s)):
+        c = s[j]
+        if c == '\\': continue
+        if s[j - 1] == '\\' and (j < 2 or s[j - 2] != '\\'): continue
+        if c == '{': depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0: return j + 1
+    raise ValueError('unbalanced braces')
+
+
+def _cmd_to_env(cmd, env):
+    """\\cmd{body} -> \\begin{env}body\\end{env} (balanced braces)."""
+    def f(s):
+        out, pos = [], 0
+        for m in re.finditer(r'\\' + cmd + r'\{', s):
+            if m.start() < pos: continue
+            k = _group_end(s, m.end() - 1)
+            out += [s[pos:m.start()], '\\begin{%s}' % env, s[m.end():k - 1], '\\end{%s}' % env]; pos = k
+        return ''.join(out) + s[pos:]
+    return f
+
+
+MONTHS_EN = {m: i for i, m in enumerate('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(), 1)}
+
+
+def _dates(s):
+    """15/09/2026 and 15 Sep 2026 (session headers, schedules) -> \\mxdate*{2026-09-15}."""
+    s = re.sub(r'\b(\d{2})/(\d{2})/(20\d\d)\b', r'\\mxdate*{\3-\2-\1}', s)
+    return re.sub(r'\b(\d{1,2}) (%s) (20\d\d)\b' % '|'.join(MONTHS_EN),
+                  lambda m: '\\mxdate*{%s-%02d-%02d}' % (m.group(3), MONTHS_EN[m.group(2)], int(m.group(1))), s)
+
+
+STMG_COLOURS = [('Blue', 'mxteacher'), ('TeacherBlue', 'mxteacher'), ('Navy', 'mxink'), ('Ink', 'mxink'), ('Orange', 'mxwarn'),
+                ('Red', 'mxwarn'), ('Gold', 'mxwarn'), ('Green', 'mxmint'), ('Mint', 'mxmintpale'), ('Sky', 'mxpaper'),
+                ('Cream', 'mxpaper'), ('Rose', 'mxpaper'), ('Gray', 'mxpaper')]
+STMG_RULES = [
+    _cmd_to_env('enseignant', 'solution'),
+    _sub(r'\\begin\{exercice\}\[-- ([^\]]*)\]', r'\\begin{exercise}[\1]'),
+    _sub(r'\\begin\{exercice\}', r'\\begin{exercise}'), _sub(r'\\end\{exercice\}', r'\\end{exercise}'),
+    *[_sub(r'\\(begin|end)\{%s\}' % a, r'\\\1{%s}' % b) for a, b in [
+        ('objectifs', 'objectives'), ('prerequis', 'prerequisites'), ('activite', 'activity'), ('traceecrite', 'summary'),
+        ('methode', 'method'), ('exemple', 'example'), ('exerciceapp', 'application'), ('probleme', 'problem'), ('dm', 'homework'),
+        ('correction', 'solution'), ('erreur', 'pitfall'), ('retenir', 'keypoint')]],
+    _sub(r'\\begin\{automatismes\}', r'\\begin{fluency}[6 à 8 minutes, sans calculatrice]'),   # French title of the old box
+    _sub(r'\\end\{automatismes\}', r'\\end{fluency}'),
+    _sub(r'\\begin\{sortie\}', r'\\begin{exitticket}[3 minutes]'), _sub(r'\\end\{sortie\}', r'\\end{exitticket}'),
+    _sub(r'\\rep\b', r'\\mxblank'), _sub(r'\\zoneeleve\b', r'\\mxlines'), _sub(r'\\difficulte\b', r'\\mxdifficulty'),
+    _sub(r'\\competences\b', r'\\mxskills'), _sub(r'\\points\b', r'\\mxpoints'), _sub(r'\\deuxcolonnes\b', r'\\mxtwocols'),
+    _sub(r'\\manuelref\b', r'\\mxfurther'), _sub(r'\\DefExo\b', r'\\mxexdef'), _sub(r'\\ExoSession\b', r'\\mxexuse'),
+    _sub(r'\\sessionheader\b', r'\\mxsession'), _sub(r'\\dsheader\b', r'\\mxtest'), _sub(r'\\ifprof\b', r'\\ifmxteacher'),
+    _sub(r'\\renewcommand\{\\arraystretch\}\{([\d.]+)\}', r'\\mxarraystretch{\1}'),
+    _dates,
+    *[_sub(r'(?<=[{,=\[\s!])%s\b' % a, b) for a, b in STMG_COLOURS],
+]
+
 # course -> (unit map {old relative path (French): new stem}, rules)
 PLANS = {
     'automatismes': ({**{f'sections/ch{n:02d}.tex': f'ch{n:02d}' for n in range(1, 15)},
                       'sections/guide.tex': 'guide', 'sections/annexe_diag.tex': 'annexe-diag'},
                      AUTOMATISMES_RULES),
+    'stmg': ({'manuel/exo-A.tex': 'bank-a', 'manuel/exo-B.tex': 'bank-b', 'manuel/exo-C.tex': 'bank-c', 'manuel/exo-D.tex': 'bank-d',
+              'chapitres/01-suites.tex': 'c01', 'chapitres/02-exponentielles.tex': 'c02', 'chapitres/03-logarithme.tex': 'c03',
+              'chapitres/04-inverse.tex': 'c04', 'chapitres/05-statistiques.tex': 'c05', 'chapitres/06-conditionnelles.tex': 'c06',
+              'chapitres/07-binomiale.tex': 'c07', 'chapitres/08-revisions.tex': 'c08', 'evaluations/devoirs.tex': 'tests',
+              'annexes/formulaire.tex': 'formulas', 'annexes/programmation.tex': 'schedule', 'annexes/sources.tex': 'sources'},
+             STMG_RULES),
 }
 
 

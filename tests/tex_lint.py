@@ -13,7 +13,7 @@ RULES = [
     (r'\\(?:usepackage|RequirePackage)\b', 'package loaded in a unit'),
     (r'\\(?:(?:re)?newcommand|providecommand|def|let|(?:re)?newenvironment|newcounter|DeclareMathOperator)\b', 'macro or counter defined in a unit'),
     (r'\\(?:definecolor|colorlet)\b|[{\[](?:HTML|RGB|rgb|cmyk)[}\]]', 'raw colour (use the mx palette)'),
-    (r'(?<![\d{])\d+,\d+(?!\})', 'decimal comma without braces (write 0{,}5)'),   # checked outside figures and (x,y) pairs
+    (r'(?<![\d{])\d+,\d+(?!\})', 'decimal comma without braces (write 0{,}5)'),   # text only: not maths, figures or (x,y) pairs
 ]
 
 
@@ -29,8 +29,9 @@ def lint(path):
     text = CODE.sub(blank, text)                 # program code: argument lists, not decimals
     for n, line in enumerate(text.splitlines(), 1):
         code = PAIR.sub('', re.sub(r'(?<!\\)%.*', '', line))
+        text_only = re.sub(r'\$[^$]*\$', '', code)   # inside maths a comma may separate list items or bounds
         for pat, why in RULES:
-            if re.search(pat, code): out.append(f'{path.relative_to(ROOT)}:{n}: {why}')
+            if re.search(pat, text_only if 'decimal' in why else code): out.append(f'{path.relative_to(ROOT)}:{n}: {why}')
     return out
 
 

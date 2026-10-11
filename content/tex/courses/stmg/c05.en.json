@@ -1,0 +1,749 @@
+{
+ "unit": "c05.fr.tex",
+ "segments": {
+  "b1971cfebb87": {
+   "fr": "Statistiques à deux variables quantitatives",
+   "en": "Bivariate statistics",
+   "status": "aligned",
+   "order": 0
+  },
+  "0dd6883f7f54": {
+   "fr": "représenter, choisir un ajustement, interpoler, extrapoler avec prudence, communiquer",
+   "en": "represent, choose a linear regression, interpolate, extrapolate with caution, communicate",
+   "status": "aligned",
+   "order": 1
+  },
+  "de670816bbdd": {
+   "fr": "Cours de référence",
+   "en": "Reference course",
+   "status": "aligned",
+   "order": 2
+  },
+  "95dcee57ea23": {
+   "fr": "Une série statistique à deux variables est constituée de couples [[m1]]. Le nuage de points permet d'observer une tendance, une dispersion et d'éventuelles valeurs atypiques.",
+   "en": "A bivariate data set consists of pairs [[m1]]. The scatter plot shows a trend, the spread and any outliers.",
+   "status": "aligned",
+   "order": 3
+  },
+  "17635e8a4e9f": {
+   "fr": "budget publicitaire (centaines d'euros)",
+   "en": "advertising budget (hundreds of euros)",
+   "status": "aligned",
+   "order": 4
+  },
+  "004dd140bc6e": {
+   "fr": "commandes (centaines)",
+   "en": "orders (hundreds)",
+   "status": "aligned",
+   "order": 5
+  },
+  "028790ae8276": {
+   "fr": "Une droite d'ajustement [[m1]] fournit des estimations, pas des égalités exactes. Le coefficient [[m2]] décrit la variation moyenne estimée de [[m3]] quand [[m4]] augmente d'une unité. Une interpolation reste dans l'intervalle des valeurs observées ; une extrapolation sort de cet intervalle et doit être présentée avec prudence.",
+   "en": "A line of best fit [[m1]] gives estimates, not exact equalities. The coefficient [[m2]] describes the estimated average change in [[m3]] when [[m4]] increases by one unit. Interpolation stays within the range of observed values; extrapolation goes outside that range and must be presented with caution.",
+   "status": "aligned",
+   "order": 6
+  },
+  "117d7e862fb1": {
+   "fr": "Le point moyen [[m1]] a pour coordonnées [[m2]] et [[m3]]. Une droite de régression obtenue à la calculatrice passe par [[m4]], à l'arrondi près.",
+   "en": "The mean point [[m1]] has coordinates [[m2]] and [[m3]]. A regression line obtained with a calculator passes through [[m4]], up to rounding.",
+   "status": "aligned",
+   "order": 7
+  },
+  "19556a8e3b8a": {
+   "fr": "Pour exploiter [[m1]] : 1) remplacer [[m2]] par la valeur demandée pour estimer [[m3]] ; 2) résoudre [[m4]] pour estimer [[m5]] ; 3) arrondir selon le contexte ; 4) préciser interpolation ou extrapolation ; 5) rappeler que le résultat dépend du modèle.",
+   "en": "To use [[m1]]: 1) replace [[m2]] by the requested value to estimate [[m3]]; 2) solve [[m4]] to estimate [[m5]]; 3) round according to the context; 4) state whether it is interpolation or extrapolation; 5) remind that the result depends on the model.",
+   "status": "aligned",
+   "order": 8
+  },
+  "16657d2bb83a": {
+   "fr": "Un changement de variable, par exemple [[m1]] ou [[m2]], peut rendre un nuage approximativement aligné. On ajuste alors [[m3]], puis on revient à la variable [[m4]].",
+   "en": "A change of variable, for example [[m1]] or [[m2]], can make a scatter plot roughly linear. We then fit [[m3]], and afterwards return to the variable [[m4]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "c2d7076d29f4": {
+   "fr": "Nuage de points",
+   "en": "Scatter plot",
+   "status": "aligned",
+   "order": 11
+  },
+  "2ad6e62caace": {
+   "fr": "Construire un nuage.",
+   "en": "Construct a scatter plot.",
+   "status": "aligned",
+   "order": 13
+  },
+  "e3353e501ec2": {
+   "fr": "Choisir les échelles.",
+   "en": "Choose the scales.",
+   "status": "aligned",
+   "order": 14
+  },
+  "b106a81f1145": {
+   "fr": "Identifier les variables.",
+   "en": "Identify the variables.",
+   "status": "aligned",
+   "order": 15
+  },
+  "03ab2d14cd7b": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : construire un nuage et choisir les échelles.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: construct a scatter plot and choose the scales.",
+   "status": "aligned",
+   "order": 22
+  },
+  "4e032f652c32": {
+   "fr": "Le tableau [[m1]] donne les dépenses publicitaires et les ventes de six mois : [[m2]]. Choisir des échelles, tracer le nuage et placer le point moyen.",
+   "en": "The table [[m1]] gives the advertising spending and the sales over six months: [[m2]]. Choose scales, draw the scatter plot and plot the mean point.",
+   "status": "aligned",
+   "order": 23
+  },
+  "138db2d95b6d": {
+   "fr": "[[m1]] et [[m2]] environ. Le nuage présente une tendance croissante approximativement affine. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]] and [[m2]] approximately. The scatter plot shows an increasing, roughly linear trend. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 24
+  },
+  "7860a10340af": {
+   "fr": "Un nuage de points représente les couples [[m1]]. Les axes, unités et échelles doivent être indiqués ; chaque couple donne un seul point.",
+   "en": "A scatter plot represents the pairs [[m1]]. The axes, units and scales must be indicated; each pair gives a single point.",
+   "status": "aligned",
+   "order": 25
+  },
+  "14fcd00a2479": {
+   "fr": "[[m1]] et [[m2]] environ. Le nuage présente une tendance croissante approximativement affine.",
+   "en": "[[m1]] and [[m2]] approximately. The scatter plot shows an increasing, roughly linear trend.",
+   "status": "aligned",
+   "order": 27
+  },
+  "5c7d74fe83fa": {
+   "fr": "Calao, cours p. 110--113 ; exercices p. 114, n° 1 à 6",
+   "en": "Calao, course pp. 110--113; exercises p. 114, nos.~1--6",
+   "status": "aligned",
+   "order": 33
+  },
+  "0d5cefc60a04": {
+   "fr": "Lecture et interprétation du nuage",
+   "en": "Reading and interpreting a scatter plot",
+   "status": "aligned",
+   "order": 40
+  },
+  "f6688f265003": {
+   "fr": "Décrire une tendance.",
+   "en": "Describe a trend.",
+   "status": "aligned",
+   "order": 42
+  },
+  "304ee3041a3c": {
+   "fr": "Repérer dispersion et atypiques.",
+   "en": "Spot spread and outliers.",
+   "status": "aligned",
+   "order": 43
+  },
+  "997e1a727025": {
+   "fr": "Éviter causalité abusive.",
+   "en": "Avoid unwarranted causality.",
+   "status": "aligned",
+   "order": 44
+  },
+  "0b12910bf58c": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+9$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+9$}",
+   "status": "aligned",
+   "order": 46
+  },
+  "c03e95805d8b": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$9$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$9$}",
+   "status": "aligned",
+   "order": 47
+  },
+  "539f27f77b21": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : décrire une tendance et repérer dispersion et atypiques.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: describe a trend and spot spread and outliers.",
+   "status": "aligned",
+   "order": 51
+  },
+  "0e27741de903": {
+   "fr": "Comparer trois nuages : tendance croissante serrée, tendance décroissante dispersée, absence de tendance. Rédiger pour chacun deux phrases sans employer le mot « cause ».",
+   "en": "Compare three scatter plots: a tight increasing trend, a scattered decreasing trend, no trend. For each, write two sentences without using the word ``cause''.",
+   "status": "aligned",
+   "order": 52
+  },
+  "1799e8abca76": {
+   "fr": "La description porte sur direction, forme, dispersion et atypiques. Un nuage ne permet pas à lui seul d'établir une causalité. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The description covers direction, shape, spread and outliers. A scatter plot alone does not establish causality. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 53
+  },
+  "6cd146401ad6": {
+   "fr": "Décrire un nuage consiste à commenter la direction, la forme, la dispersion et les valeurs atypiques, sans affirmer une causalité non établie.",
+   "en": "Describing a scatter plot means commenting on its direction, shape, spread and outliers, without claiming a causality that has not been established.",
+   "status": "aligned",
+   "order": 54
+  },
+  "d09010fc3ecd": {
+   "fr": "La description porte sur direction, forme, dispersion et atypiques. Un nuage ne permet pas à lui seul d'établir une causalité.",
+   "en": "The description covers direction, shape, spread and outliers. A scatter plot alone does not establish causality.",
+   "status": "aligned",
+   "order": 56
+  },
+  "e49bfb8e02bb": {
+   "fr": "Calao, p. 116, n° 11 à 15",
+   "en": "Calao, p. 116, nos.~11--15",
+   "status": "aligned",
+   "order": 62
+  },
+  "6e88db2e4aa8": {
+   "fr": "Ajustement affine",
+   "en": "Linear regression",
+   "status": "aligned",
+   "order": 69
+  },
+  "0d58d972f982": {
+   "fr": "Obtenir un ajustement affine.",
+   "en": "Obtain a linear regression.",
+   "status": "aligned",
+   "order": 71
+  },
+  "5a06d474013f": {
+   "fr": "Interpréter [[m1]] et [[m2]].",
+   "en": "Interpret [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "2f9c3f548697": {
+   "fr": "Vérifier avec le point moyen.",
+   "en": "Check with the mean point.",
+   "status": "aligned",
+   "order": 73
+  },
+  "b02301b516ff": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$32$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$32$}",
+   "status": "aligned",
+   "order": 75
+  },
+  "1a7886aa3b89": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$10$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$10$}",
+   "status": "aligned",
+   "order": 79
+  },
+  "8c69f4f3cfe2": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : obtenir un ajustement affine et interpréter [[m1]] et [[m2]].",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: obtain a linear regression and interpret [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "764a753416ff": {
+   "fr": "Avec les données de la séance 31, obtenir la régression affine à la calculatrice. Interpréter la pente et vérifier que le point moyen appartient approximativement à la droite.",
+   "en": "With the data of session 31, obtain the linear regression with a calculator. Interpret the slope and check that the mean point lies approximately on the line.",
+   "status": "aligned",
+   "order": 81
+  },
+  "95a2709f19f5": {
+   "fr": "Une régression donne environ [[m1]]. Une centaine d'euros supplémentaire est associée à environ [[m2]] ventes supplémentaires si [[m3]] est en centaines. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "A regression gives approximately [[m1]]. An extra hundred euros is associated with about [[m2]] extra sales if [[m3]] is in hundreds. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 82
+  },
+  "a53afcaa431e": {
+   "fr": "Une droite [[m1]] ajuste un nuage. [[m2]] représente la variation moyenne estimée de [[m3]] pour une unité supplémentaire de [[m4]].",
+   "en": "A line [[m1]] fits a scatter plot. [[m2]] represents the estimated average change in [[m3]] for one extra unit of [[m4]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "c141f4ddb185": {
+   "fr": "Une régression donne environ [[m1]]. Une centaine d'euros supplémentaire est associée à environ [[m2]] ventes supplémentaires si [[m3]] est en centaines.",
+   "en": "A regression gives approximately [[m1]]. An extra hundred euros is associated with about [[m2]] extra sales if [[m3]] is in hundreds.",
+   "status": "aligned",
+   "order": 85
+  },
+  "f713bc0d34f3": {
+   "fr": "Calao, cours p. 110--113 ; exercices p. 117, n° 16 à 18",
+   "en": "Calao, course pp. 110--113; exercises p. 117, nos.~16--18",
+   "status": "aligned",
+   "order": 91
+  },
+  "6a9858c9bf31": {
+   "fr": "Interpolation",
+   "en": "Interpolation",
+   "status": "aligned",
+   "order": 98
+  },
+  "43f7902c3531": {
+   "fr": "Interpoler.",
+   "en": "Interpolate.",
+   "status": "aligned",
+   "order": 100
+  },
+  "174dd7b2640a": {
+   "fr": "Résoudre avec le modèle.",
+   "en": "Solve using the model.",
+   "status": "aligned",
+   "order": 101
+  },
+  "519249300358": {
+   "fr": "Exprimer une estimation.",
+   "en": "Express an estimate.",
+   "status": "aligned",
+   "order": 102
+  },
+  "7689c780629e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=1{,}25$}",
+   "en": "Write the multiplier for a [[m1]] increase. \\mxblank{$1+\\dfrac{25}{100}=1.25$}",
+   "status": "aligned",
+   "order": 104
+  },
+  "95a628ce9695": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$11$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$11$}",
+   "status": "aligned",
+   "order": 107
+  },
+  "4768dfd06d5d": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : interpoler et résoudre avec le modèle.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: interpolate and solve using the model.",
+   "status": "aligned",
+   "order": 109
+  },
+  "b906ce75442f": {
+   "fr": "Sur la période observée [[m1]], le modèle est [[m2]]. Estimer [[m3]] pour [[m4]], puis estimer [[m5]] lorsque [[m6]]. Qualifier chaque estimation.",
+   "en": "Over the observed period [[m1]], the model is [[m2]]. Estimate [[m3]] for [[m4]], then estimate [[m5]] when [[m6]]. Classify each estimate.",
+   "status": "aligned",
+   "order": 110
+  },
+  "eafd12ef7af9": {
+   "fr": "[[m1]] et [[m2]]. Les deux valeurs sont à l'intérieur de l'intervalle observé : interpolations. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]] and [[m2]]. Both values lie inside the observed range: interpolations. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 111
+  },
+  "616a438ebd47": {
+   "fr": "Une interpolation estime une valeur à l'intérieur de l'intervalle observé. Le résultat est une estimation dépendante du modèle.",
+   "en": "An interpolation estimates a value inside the observed range. The result is an estimate that depends on the model.",
+   "status": "aligned",
+   "order": 112
+  },
+  "a35711eebb23": {
+   "fr": "[[m1]] et [[m2]]. Les deux valeurs sont à l'intérieur de l'intervalle observé : interpolations.",
+   "en": "[[m1]] and [[m2]]. Both values lie inside the observed range: interpolations.",
+   "status": "aligned",
+   "order": 114
+  },
+  "54de80323844": {
+   "fr": "Calao, p. 118, n° 19 à 24",
+   "en": "Calao, p. 118, nos.~19--24",
+   "status": "aligned",
+   "order": 120
+  },
+  "a685c91414ff": {
+   "fr": "Extrapolation",
+   "en": "Extrapolation",
+   "status": "aligned",
+   "order": 127
+  },
+  "1829014f8883": {
+   "fr": "Extrapoler prudemment.",
+   "en": "Extrapolate with caution.",
+   "status": "aligned",
+   "order": 129
+  },
+  "49994702e88b": {
+   "fr": "Évaluer la plausibilité.",
+   "en": "Assess plausibility.",
+   "status": "aligned",
+   "order": 130
+  },
+  "d16c9542f87c": {
+   "fr": "Présenter une limite du modèle.",
+   "en": "Present a limitation of the model.",
+   "status": "aligned",
+   "order": 131
+  },
+  "36448e75eee8": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+5$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+5$}",
+   "status": "aligned",
+   "order": 133
+  },
+  "f3f89d5038d7": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$5$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$5$}",
+   "status": "aligned",
+   "order": 135
+  },
+  "b93c5eeb96b5": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : extrapoler prudemment et évaluer la plausibilité.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: extrapolate with caution and assess plausibility.",
+   "status": "aligned",
+   "order": 138
+  },
+  "d0d6f657f0a8": {
+   "fr": "Le même modèle [[m1]], ajusté sur [[m2]], est utilisé pour [[m3]]. Calculer l'estimation, puis donner trois raisons pour lesquelles elle peut être peu fiable.",
+   "en": "The same model [[m1]], fitted on [[m2]], is used for [[m3]]. Calculate the estimate, then give three reasons why it may be unreliable.",
+   "status": "aligned",
+   "order": 139
+  },
+  "d04d166f3a8d": {
+   "fr": "L'estimation vaut [[m1]]. Elle est éloignée des données, la tendance peut changer et des contraintes réelles peuvent plafonner la variable. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The estimate is [[m1]]. It is far from the data, the trend may change and real-world constraints may cap the variable. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 140
+  },
+  "a077ca15b9ed": {
+   "fr": "Une extrapolation estime hors de l'intervalle observé. Plus on s'en éloigne, plus la prudence est nécessaire.",
+   "en": "An extrapolation estimates outside the observed range. The further away we go, the more caution is needed.",
+   "status": "aligned",
+   "order": 141
+  },
+  "4b53b3a3dce9": {
+   "fr": "L'estimation vaut [[m1]]. Elle est éloignée des données, la tendance peut changer et des contraintes réelles peuvent plafonner la variable.",
+   "en": "The estimate is [[m1]]. It is far from the data, the trend may change and real-world constraints may cap the variable.",
+   "status": "aligned",
+   "order": 143
+  },
+  "5b1b9497f1aa": {
+   "fr": "Calao, p. 119, n° 25 à 27",
+   "en": "Calao, p. 119, nos.~25--27",
+   "status": "aligned",
+   "order": 149
+  },
+  "2eec9801e99c": {
+   "fr": "Changement de variable",
+   "en": "Change of variable",
+   "status": "aligned",
+   "order": 156
+  },
+  "d7c95b9fbafd": {
+   "fr": "Effectuer un changement de variable.",
+   "en": "Carry out a change of variable.",
+   "status": "aligned",
+   "order": 158
+  },
+  "5e06e361c23a": {
+   "fr": "Ajuster les nouvelles données.",
+   "en": "Fit the new data.",
+   "status": "aligned",
+   "order": 159
+  },
+  "4d46deeffa5d": {
+   "fr": "Revenir à la variable initiale.",
+   "en": "Return to the original variable.",
+   "status": "aligned",
+   "order": 160
+  },
+  "b8358577b233": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$4$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$4$}",
+   "status": "aligned",
+   "order": 162
+  },
+  "2d9ea42a4250": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$6$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$6$}",
+   "status": "aligned",
+   "order": 163
+  },
+  "f434f5072dc8": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : effectuer un changement de variable et ajuster les nouvelles données.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: carry out a change of variable and fit the new data.",
+   "status": "aligned",
+   "order": 167
+  },
+  "4fd7b02a38e6": {
+   "fr": "Les données semblent exponentielles. On pose [[m1]] et l'ajustement donne [[m2]]. Exprimer [[m3]] en fonction de [[m4]], puis calculer [[m5]] pour [[m6]].",
+   "en": "The data appear to be exponential. We set [[m1]] and the fit gives [[m2]]. Express [[m3]] as a function of [[m4]], then calculate [[m5]] for [[m6]].",
+   "status": "aligned",
+   "order": 168
+  },
+  "ae77a390fa28": {
+   "fr": "[[m1]]. Pour [[m2]], [[m3]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]. For [[m2]], [[m3]]. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 169
+  },
+  "f945267dbca4": {
+   "fr": "Un changement de variable peut aligner un nuage. Après l'ajustement dans la nouvelle variable, il faut revenir à la variable initiale.",
+   "en": "A change of variable can make a scatter plot linear. After fitting in the new variable, we must return to the original variable.",
+   "status": "aligned",
+   "order": 170
+  },
+  "9a1c877c6986": {
+   "fr": "[[m1]]. Pour [[m2]], [[m3]].",
+   "en": "[[m1]]. For [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 172
+  },
+  "3711f831fbc0": {
+   "fr": "Calao, p. 120, n° 28--29",
+   "en": "Calao, p. 120, nos.~28--29",
+   "status": "aligned",
+   "order": 178
+  },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 184
+  },
+  "524e6a2d6139": {
+   "fr": "Choix du modèle et ajustement",
+   "en": "Choosing the model and fitting",
+   "status": "aligned",
+   "order": 185
+  },
+  "8b917f57079d": {
+   "fr": "Comparer des modèles.",
+   "en": "Compare models.",
+   "status": "aligned",
+   "order": 187
+  },
+  "e7fb756b2f81": {
+   "fr": "Utiliser les résidus.",
+   "en": "Use residuals.",
+   "status": "aligned",
+   "order": 188
+  },
+  "d9fc27cea02b": {
+   "fr": "Définir un domaine d'usage.",
+   "en": "Define a range of use.",
+   "status": "aligned",
+   "order": 189
+  },
+  "7031120460ce": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=1{,}10$}",
+   "en": "Write the multiplier for a [[m1]] increase. \\mxblank{$1+\\dfrac{10}{100}=1.10$}",
+   "status": "aligned",
+   "order": 191
+  },
+  "c8d44dbca315": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$7$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$7$}",
+   "status": "aligned",
+   "order": 195
+  },
+  "f08bac0c23eb": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : comparer des modèles et utiliser les résidus.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: compare models and use residuals.",
+   "status": "aligned",
+   "order": 196
+  },
+  "5d5b74c6a224": {
+   "fr": "Deux modèles donnent des résidus absolus totaux [[m1]] et [[m2]] sur la zone observée. Le second comporte cependant une croissance irréaliste après [[m3]]. Choisir un modèle pour interpoler à [[m4]], puis discuter l'extrapolation à [[m5]].",
+   "en": "Two models give total absolute residuals of [[m1]] and [[m2]] over the observed range. The second, however, shows unrealistic growth beyond [[m3]]. Choose a model to interpolate at [[m4]], then discuss extrapolation at [[m5]].",
+   "status": "aligned",
+   "order": 197
+  },
+  "da8c2642b823": {
+   "fr": "Le second est préférable pour interpoler sur la zone observée si les autres critères sont comparables ; aucun choix automatique n'est justifié pour [[m1]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The second is preferable for interpolating over the observed range if the other criteria are comparable; no automatic choice is justified for [[m1]]. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 198
+  },
+  "e9d171464fb3": {
+   "fr": "On choisit un modèle selon la forme du nuage, la taille des résidus et le domaine d'usage. Un meilleur ajustement visuel n'autorise pas une extrapolation illimitée.",
+   "en": "We choose a model according to the shape of the scatter plot, the size of the residuals and the range of use. A better visual fit does not allow unlimited extrapolation.",
+   "status": "aligned",
+   "order": 199
+  },
+  "53076d355499": {
+   "fr": "Le second est préférable pour interpoler sur la zone observée si les autres critères sont comparables ; aucun choix automatique n'est justifié pour [[m1]].",
+   "en": "The second is preferable for interpolating over the observed range if the other criteria are comparable; no automatic choice is justified for [[m1]].",
+   "status": "aligned",
+   "order": 201
+  },
+  "f1377ba8d363": {
+   "fr": "Calao, p. 121, n° 30 à 32, puis p. 122, n° 33",
+   "en": "Calao, p. 121, nos.~30--32, then p. 122, no.~33",
+   "status": "aligned",
+   "order": 207
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value with [[m1]] and the rate or ratio with [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 208
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 211
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 213
+  },
+  "208842ecc15d": {
+   "fr": "Bilan et évaluation",
+   "en": "Review and assessment",
+   "status": "aligned",
+   "order": 214
+  },
+  "b555558a848b": {
+   "fr": "Statistiques à deux variables",
+   "en": "Bivariate statistics",
+   "status": "aligned",
+   "order": 215
+  },
+  "ce454f4d4dea": {
+   "fr": "Choisir et exploiter un ajustement.",
+   "en": "Choose and use a regression.",
+   "status": "aligned",
+   "order": 216
+  },
+  "47b8f421b71b": {
+   "fr": "Rédiger une conclusion statistique.",
+   "en": "Write a statistical conclusion.",
+   "status": "aligned",
+   "order": 217
+  },
+  "8fbb20f609a6": {
+   "fr": "Analyser une erreur.",
+   "en": "Analyse an error.",
+   "status": "aligned",
+   "order": 218
+  },
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 219
+  },
+  "b9624fe14346": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+8$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+8$}",
+   "status": "aligned",
+   "order": 220
+  },
+  "8645c54d99c4": {
+   "fr": "Avec [[m1]], calculer [[m2]] pour [[m3]]. \\mxblank{$19$}",
+   "en": "With [[m1]], calculate [[m2]] for [[m3]]. \\mxblank{$19$}",
+   "status": "aligned",
+   "order": 221
+  },
+  "d1912cd02182": {
+   "fr": "Résoudre [[m1]]. \\mxblank{$x=7$}",
+   "en": "Solve [[m1]]. \\mxblank{$x=7$}",
+   "status": "aligned",
+   "order": 222
+  },
+  "3a846e05a28e": {
+   "fr": "Calculer la moyenne de [[m1]], [[m2]] et [[m3]]. \\mxblank{$8$}",
+   "en": "Calculate the mean of [[m1]], [[m2]] and [[m3]]. \\mxblank{$8$}",
+   "status": "aligned",
+   "order": 223
+  },
+  "036f8024fa7e": {
+   "fr": "Donner la pente entre [[m1]] et [[m2]]. \\mxblank{$\\dfrac{9-3}{4-1}=2$}",
+   "en": "Give the slope between [[m1]] and [[m2]]. \\mxblank{$\\dfrac{9-3}{4-1}=2$}",
+   "status": "aligned",
+   "order": 224
+  },
+  "e8c0587ef694": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : choisir et exploiter un ajustement et rédiger une conclusion statistique.",
+   "en": "Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: choose and use a regression and write a statistical conclusion.",
+   "status": "aligned",
+   "order": 225
+  },
+  "9fec76ee1c9c": {
+   "fr": "À partir d'un nuage fourni par le professeur, produire une réponse complète : choix du modèle, équation, estimation, type d'estimation, unité et réserve. Échanger les copies et utiliser une grille de six critères.",
+   "en": "Starting from a scatter plot supplied by the teacher, produce a complete answer: choice of model, equation, estimate, type of estimate, unit and caveat. Swap papers and use a six-criterion grid.",
+   "status": "aligned",
+   "order": 226
+  },
+  "28161d970523": {
+   "fr": "La correction vérifie la cohérence du modèle et la présence des six éléments demandés, pas seulement le résultat numérique. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The marking checks the consistency of the model and the presence of the six required elements, not only the numerical result. Have students verbalise the piece of data that triggers the choice of method.",
+   "status": "aligned",
+   "order": 227
+  },
+  "46522016ee5b": {
+   "fr": "Une réponse statistique complète contient le modèle, le calcul, l'arrondi, l'unité, le type d'estimation et une réserve sur la validité.",
+   "en": "A complete statistical answer contains the model, the calculation, the rounding, the unit, the type of estimate and a caveat on validity.",
+   "status": "aligned",
+   "order": 228
+  },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.",
+   "status": "aligned",
+   "order": 229
+  },
+  "10bb66751ebf": {
+   "fr": "La correction vérifie la cohérence du modèle et la présence des six éléments demandés, pas seulement le résultat numérique.",
+   "en": "The marking checks the consistency of the model and the presence of the six required elements, not only the numerical result.",
+   "status": "aligned",
+   "order": 230
+  },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 231
+  },
+  "4a6dd3288910": {
+   "fr": "Pour [[m1]], estimer [[m2]] lorsque [[m3]].",
+   "en": "For [[m1]], estimate [[m2]] when [[m3]].",
+   "status": "aligned",
+   "order": 232
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 233
+  },
+  "a02d325ef671": {
+   "fr": "Le modèle a été établi sur [[m1]] : qualifier les estimations pour [[m2]] et [[m3]].",
+   "en": "The model was built on [[m1]]: classify the estimates for [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 234
+  },
+  "5a562b0a078c": {
+   "fr": "Pour [[m1]], [[m2]]. L'équation donne [[m3]]. [[m4]] donne une interpolation ; [[m5]] une extrapolation.",
+   "en": "For [[m1]], [[m2]]. The equation gives [[m3]]. [[m4]] gives an interpolation; [[m5]] an extrapolation.",
+   "status": "aligned",
+   "order": 235
+  },
+  "957ea6d94cb9": {
+   "fr": "Calao, p. 122--123",
+   "en": "Calao, pp. 122--123",
+   "status": "aligned",
+   "order": 236
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value with [[m1]] and the rate or ratio with [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 237
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 238
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 239
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 240
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 241
+  }
+ }
+}

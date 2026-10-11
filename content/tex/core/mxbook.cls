@@ -36,6 +36,27 @@
 \RequirePackage{mx-code}     % Python listings
 \RequirePackage[hidelinks,unicode]{hyperref}   % last, as hyperref requires
 
+% ---- French/English page balance -----------------------------------------------------------------------------------
+% Every block (a unit, or a session in session books) records its first page in \jobname.mxb. The build compares the
+% French and English records and, where one language is shorter, writes \mxsetpad{block}{pages} into \jobname.mxpad;
+% that many lined "Notes" pages then close the block, so both languages keep the same page numbers block by block.
+\newcounter{mxblock}
+\newwrite\mx@blockfile
+\AtBeginDocument{\immediate\openout\mx@blockfile=\jobname.mxb\relax\InputIfFileExists{\jobname.mxpad}{}{}}
+\newcommand{\mxsetpad}[2]{\expandafter\def\csname mx@pad@#1\endcsname{#2}}
+\newcommand{\mx@notespage}{\clearpage\section*{\mxlabelof{notes}}\mxnotelines\clearpage}
+% ruled lines filling exactly the rest of the page
+\newcommand{\mxnotelines}{\par{\color{mxline}\leaders\vbox to 8mm{\vss\hrule width\linewidth height .4pt}\vfill}}
+% \mx@newblock: close the previous block (padding), start a new page and record the new block with its absolute
+% page index (pages shipped so far + 1; independent of roman front-matter numbering).
+\newcommand{\mx@newblock}{%
+  \ifcsname mx@pad@\the\c@mxblock\endcsname
+    \foreach\mx@k in {1,...,\csname mx@pad@\the\c@mxblock\endcsname}{\mx@notespage}%
+  \fi
+  \clearpage\stepcounter{mxblock}%
+  \immediate\write\mx@blockfile{\the\c@mxblock\space\the\numexpr\ReadonlyShipoutCounter+1\relax}}
+\AtEndDocument{\mx@newblock}   % pads the last block and records the end
+
 % \mxinclude{path}: input a unit by its path below content/tex (no extension); the language suffix is added here,
 % so a main lists units once for both languages. Example: \mxinclude{courses/premiere/c05} reads c05.fr.tex or c05.en.tex.
 \newcommand{\mxinclude}[1]{\input{#1.\mx@lang.tex}}
@@ -44,8 +65,8 @@
 % A unit starts a new page: a chapter in the booklet layout, a section in the sheet layout. Per-unit PDF excerpts
 % therefore never carry the end of the previous unit.
 \def\mx@sheet{sheet}
-\newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}%
-  \ifx\mx@layout\mx@sheet\clearpage\section{#2}\else\chapter{#2}\fi\label{#1}}
+\newcommand{\mxunit}[2]{\renewcommand{\mxunitid}{#1}\mx@newblock
+  \ifx\mx@layout\mx@sheet\section{#2}\else\chapter{#2}\fi\label{#1}}
 % \mxfront{id}: opens a unit without heading (title block, introduction).
 \newcommand{\mxfront}[1]{\renewcommand{\mxunitid}{#1}}
 \newcommand{\mxlabel}[1]{\label{\mxunitid:#1}}

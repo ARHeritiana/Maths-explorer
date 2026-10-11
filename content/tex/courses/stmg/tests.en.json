@@ -1,0 +1,791 @@
+{
+ "unit": "tests.fr.tex",
+ "segments": {
+  "911b5370d52a": {
+   "fr": "Devoirs surveillés",
+   "en": "Supervised tests",
+   "status": "aligned",
+   "order": 0
+  },
+  "f6d312ea7068": {
+   "fr": "Deux versions sont proposées pour chaque chapitre. La structure de référence est : automatismes sur 6 points, exercice sur 6 points et problème sur 8 points.",
+   "en": "Two versions are provided for each chapter. The reference structure is: fluency questions worth 6 points, an exercise worth 6 points and a problem worth 8 points.",
+   "status": "aligned",
+   "order": 1
+  },
+  "1b3d285d77f5": {
+   "fr": "Chapitre 1 -- Suites numériques",
+   "en": "Chapter 1 -- Numerical sequences",
+   "status": "aligned",
+   "order": 2
+  },
+  "662250158dcd": {
+   "fr": "Suites numériques",
+   "en": "Numerical sequences",
+   "status": "aligned",
+   "order": 23
+  },
+  "f648abfd2285": {
+   "fr": "modéliser, calculer, raisonner, communiquer",
+   "en": "model, calculate, reason, communicate",
+   "status": "aligned",
+   "order": 24
+  },
+  "75955b4d8381": {
+   "fr": "1 -- Automatismes",
+   "en": "1 -- Fluency",
+   "status": "aligned",
+   "order": 25
+  },
+  "8ac507593d28": {
+   "fr": "Donner le coefficient multiplicateur associé à une hausse de [[m1]].",
+   "en": "Give the multiplier associated with an increase of [[m1]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "7690eda94b4d": {
+   "fr": "La suite [[m1]] est-elle arithmétique ? Donner sa raison.",
+   "en": "Is the sequence [[m1]] arithmetic? Give its common difference.",
+   "status": "aligned",
+   "order": 27
+  },
+  "0f23b49aa7ee": {
+   "fr": "Combien de termes contient [[m1]] ?",
+   "en": "How many terms does [[m1]] contain?",
+   "status": "aligned",
+   "order": 28
+  },
+  "b533059bf7bf": {
+   "fr": "Si [[m1]] et [[m2]], calculer [[m3]].",
+   "en": "If [[m1]] and [[m2]], calculate [[m3]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "64fccfac18da": {
+   "fr": "Écrire [[m1]] à l'aide du symbole [[m2]].",
+   "en": "Write [[m1]] using the symbol [[m2]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "1957f30750f2": {
+   "fr": "2 -- Abonnements",
+   "en": "2 -- Subscriptions",
+   "status": "aligned",
+   "order": 31
+  },
+  "d379e54bd615": {
+   "fr": "Une plateforme compte [[m1]] abonnés au début de l'année et en gagne [[m2]] chaque mois. On note [[m3]] le nombre d'abonnés, en milliers, après [[m4]] mois.",
+   "en": "A platform has [[m1]] subscribers at the start of the year and gains [[m2]] each month. Let [[m3]] be the number of subscribers, in thousands, after [[m4]] months.",
+   "status": "aligned",
+   "order": 32
+  },
+  "4a457e0d2c51": {
+   "fr": "Justifier que [[m1]] est arithmétique et préciser sa raison.",
+   "en": "Show that [[m1]] is arithmetic and state its common difference.",
+   "status": "aligned",
+   "order": 33
+  },
+  "84510a15ccb7": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]], puis calculer [[m3]].",
+   "en": "Express [[m1]] in terms of [[m2]], then calculate [[m3]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "1462ecb45565": {
+   "fr": "Calculer [[m1]]. Interpréter cette somme avec prudence.",
+   "en": "Calculate [[m1]]. Interpret this sum with caution.",
+   "status": "aligned",
+   "order": 35
+  },
+  "28ecf330f517": {
+   "fr": "3 -- Placement et objectif",
+   "en": "3 -- Investment and target",
+   "status": "aligned",
+   "order": 36
+  },
+  "563af97aa477": {
+   "fr": "Un capital initial de [[m1]] Ar augmente de [[m2]] par an. On note [[m3]] le capital après [[m4]] années.",
+   "en": "An initial capital of [[m1]] Ar increases by [[m2]] per year. Let [[m3]] be the capital after [[m4]] years.",
+   "status": "aligned",
+   "order": 37
+  },
+  "37d3536451da": {
+   "fr": "Écrire [[m1]] en fonction de [[m2]], puis [[m3]] en fonction de [[m4]].",
+   "en": "Write [[m1]] in terms of [[m2]], then [[m3]] in terms of [[m4]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "b205e42c2db4": {
+   "fr": "Calculer [[m1]], arrondi à l'ariary.",
+   "en": "Calculate [[m1]], rounded to the nearest ariary.",
+   "status": "aligned",
+   "order": 39
+  },
+  "9a2541ffce7b": {
+   "fr": "Déterminer à la calculatrice le premier entier [[m1]] pour lequel [[m2]] dépasse [[m3]] Ar.",
+   "en": "Use a calculator to find the first integer [[m1]] for which [[m2]] exceeds [[m3]] Ar.",
+   "status": "aligned",
+   "order": 40
+  },
+  "8e22bf453881": {
+   "fr": "Expliquer pourquoi le modèle est géométrique et non arithmétique.",
+   "en": "Explain why the model is geometric and not arithmetic.",
+   "status": "aligned",
+   "order": 41
+  },
+  "d0c3fc67f55c": {
+   "fr": "\\textbf{Barème.} Ex. 1 : 6 points répartis sur les automatismes. Ex. 2 : 6 points. Ex. 3 : 8 points.\\\\\n\\textbf{Éléments de correction.} Le coefficient est [[m1]]. La première suite flash est arithmétique de raison [[m2]] ; la somme contient [[m3]] termes ; [[m4]] et [[m5]]. Pour l'exercice 2, [[m6]], donc [[m7]] ; la somme demandée utilise [[m8]] et cumule des états mensuels, pas un nombre de personnes distinctes. Pour l'exercice 3, [[m9]] ; contrôler le seuil par deux valeurs consécutives.",
+   "en": "\\textbf{Marking scheme.} Ex. 1: 6 points spread over the fluency questions. Ex. 2: 6 points. Ex. 3: 8 points.\\\\\n\\textbf{Solution outline.} The multiplier is [[m1]]. The first sequence in the fluency questions is arithmetic with common difference [[m2]]; the sum contains [[m3]] terms; [[m4]] and [[m5]]. For exercise 2, [[m6]], so [[m7]]; the requested sum uses [[m8]] and accumulates monthly figures, not a number of distinct people. For exercise 3, [[m9]]; check the threshold with two consecutive values.",
+   "status": "aligned",
+   "order": 42
+  },
+  "938e5806ecc1": {
+   "fr": "Chapitre 2 -- Fonctions exponentielles",
+   "en": "Chapter 2 -- Exponential functions",
+   "status": "aligned",
+   "order": 43
+  },
+  "7d4e8fc38272": {
+   "fr": "Fonctions exponentielles",
+   "en": "Exponential functions",
+   "status": "aligned",
+   "order": 63
+  },
+  "bc67516e8572": {
+   "fr": "calculer, représenter, modéliser, interpréter",
+   "en": "calculate, represent, model, interpret",
+   "status": "aligned",
+   "order": 64
+  },
+  "a7e069f964a6": {
+   "fr": "1 -- Puissances et variations",
+   "en": "1 -- Powers and variations",
+   "status": "aligned",
+   "order": 65
+  },
+  "72cc18db1159": {
+   "fr": "Simplifier [[m1]] et [[m2]].",
+   "en": "Simplify [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "c5fd088d0f68": {
+   "fr": "Écrire [[m1]] sous forme de fraction.",
+   "en": "Write [[m1]] as a fraction.",
+   "status": "aligned",
+   "order": 67
+  },
+  "c4610b5e0e44": {
+   "fr": "Donner le sens de variation de [[m1]] et de [[m2]].",
+   "en": "Give the direction of variation of [[m1]] and of [[m2]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "e1c9402f0a4e": {
+   "fr": "Expliquer pourquoi [[m1]] est fausse en général.",
+   "en": "Explain why [[m1]] is false in general.",
+   "status": "aligned",
+   "order": 69
+  },
+  "fd8341166fda": {
+   "fr": "2 -- Fréquentation d'un site",
+   "en": "2 -- Website traffic",
+   "status": "aligned",
+   "order": 70
+  },
+  "52a9ee01ab05": {
+   "fr": "Au lancement, un site reçoit [[m1]] visites par jour. La fréquentation augmente de [[m2]] par semaine. On modélise par [[m3]].",
+   "en": "At launch, a website receives [[m1]] visits per day. Traffic increases by [[m2]] per week. It is modelled by [[m3]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "cb9e13650206": {
+   "fr": "Interpréter les nombres [[m1]] et [[m2]].",
+   "en": "Interpret the numbers [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "d087cb064ad4": {
+   "fr": "Calculer [[m1]], arrondi à l'unité.",
+   "en": "Calculate [[m1]], rounded to the nearest unit.",
+   "status": "aligned",
+   "order": 73
+  },
+  "7b5ecfc6815b": {
+   "fr": "Déterminer le premier nombre entier de semaines pour lequel [[m1]].",
+   "en": "Find the first whole number of weeks for which [[m1]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "18e2d39b6dc6": {
+   "fr": "3 -- Taux moyen",
+   "en": "3 -- Average rate",
+   "status": "aligned",
+   "order": 75
+  },
+  "649ab94248f8": {
+   "fr": "Le chiffre d'affaires d'une entreprise passe de [[m1]] à [[m2]] euros en quatre ans.",
+   "en": "A company's turnover goes from [[m1]] to [[m2]] euros in four years.",
+   "status": "aligned",
+   "order": 76
+  },
+  "59b24894e819": {
+   "fr": "Calculer le coefficient global.",
+   "en": "Calculate the overall multiplier.",
+   "status": "aligned",
+   "order": 77
+  },
+  "6c4d9cf298bc": {
+   "fr": "Écrire le coefficient annuel moyen sous la forme d'une puissance.",
+   "en": "Write the average annual multiplier as a power.",
+   "status": "aligned",
+   "order": 78
+  },
+  "abaef642636e": {
+   "fr": "Calculer le taux annuel moyen, arrondi à [[m1]].",
+   "en": "Calculate the average annual rate of change (percentage change), rounded to [[m1]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "7bd09a2d1487": {
+   "fr": "Expliquer pourquoi on ne divise pas simplement le taux global par quatre.",
+   "en": "Explain why the overall rate is not simply divided by four.",
+   "status": "aligned",
+   "order": 80
+  },
+  "70e5b8b6c7b0": {
+   "fr": "\\textbf{Barème :} [[m1]]. \\textbf{Correction :} [[m2]], [[m3]], [[m4]]. [[m5]] est croissante et [[m6]] croissante. Dans le problème, calculer [[m7]] puis tester deux entiers consécutifs autour du seuil. Pour le taux moyen, [[m8]] et [[m9]] ; les coefficients se multiplient.",
+   "en": "\\textbf{Marking scheme:} [[m1]]. \\textbf{Solution:} [[m2]], [[m3]], [[m4]]. [[m5]] is increasing and [[m6]] is increasing. In the problem, calculate [[m7]] then test two consecutive integers around the threshold. For the average rate, [[m8]] and [[m9]]; multipliers multiply.",
+   "status": "aligned",
+   "order": 81
+  },
+  "33cf889793af": {
+   "fr": "Chapitre 3 -- Fonction logarithme décimal",
+   "en": "Chapter 3 -- The common logarithm function",
+   "status": "aligned",
+   "order": 82
+  },
+  "0bff23b672d7": {
+   "fr": "Logarithme décimal",
+   "en": "Common logarithm",
+   "status": "aligned",
+   "order": 101
+  },
+  "c629b34c7cdf": {
+   "fr": "calculer, résoudre, raisonner, communiquer",
+   "en": "calculate, solve, reason, communicate",
+   "status": "aligned",
+   "order": 102
+  },
+  "e4ed0a78d38c": {
+   "fr": "1 -- Connaissances et calculs",
+   "en": "1 -- Knowledge and calculations",
+   "status": "aligned",
+   "order": 103
+  },
+  "6a2a13af8eb7": {
+   "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
+   "en": "Calculate [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 104
+  },
+  "85baba339458": {
+   "fr": "Pour [[m1]], développer [[m2]].",
+   "en": "For [[m1]], expand [[m2]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "26cba779c63c": {
+   "fr": "Résoudre [[m1]] et donner [[m2]] au centième.",
+   "en": "Solve [[m1]] and give [[m2]] to the nearest hundredth.",
+   "status": "aligned",
+   "order": 106
+  },
+  "1bb0ff9c0a8f": {
+   "fr": "2 -- Objectif de croissance",
+   "en": "2 -- Growth target",
+   "status": "aligned",
+   "order": 107
+  },
+  "77163b565054": {
+   "fr": "Une valeur est multipliée chaque année par [[m1]]. On cherche le temps nécessaire pour qu'elle double.",
+   "en": "A value is multiplied by [[m1]] each year. We look for the time needed for it to double.",
+   "status": "aligned",
+   "order": 108
+  },
+  "3ff050f14281": {
+   "fr": "Traduire le problème par une équation.",
+   "en": "Translate the problem into an equation.",
+   "status": "aligned",
+   "order": 109
+  },
+  "8eff5a30c113": {
+   "fr": "Résoudre cette équation à l'aide du logarithme décimal.",
+   "en": "Solve this equation using the common logarithm (base 10).",
+   "status": "aligned",
+   "order": 110
+  },
+  "78c0d6556c88": {
+   "fr": "Donner le premier nombre entier d'années permettant d'atteindre ou dépasser le double.",
+   "en": "Give the first whole number of years that reaches or exceeds double.",
+   "status": "aligned",
+   "order": 111
+  },
+  "5fef6aed21de": {
+   "fr": "Vérifier avec les deux puissances consécutives utiles.",
+   "en": "Check with the two relevant consecutive powers.",
+   "status": "aligned",
+   "order": 112
+  },
+  "36e5fb63499b": {
+   "fr": "3 -- Niveau sonore",
+   "en": "3 -- Sound level",
+   "status": "aligned",
+   "order": 113
+  },
+  "7990b1dd8414": {
+   "fr": "Le niveau sonore est [[m1]], en décibels.",
+   "en": "The sound level is [[m1]], in decibels.",
+   "status": "aligned",
+   "order": 114
+  },
+  "87aee7560664": {
+   "fr": "Calculer [[m1]] lorsque [[m2]].",
+   "en": "Calculate [[m1]] when [[m2]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "274d8f90e18e": {
+   "fr": "Pour [[m1]], exprimer puis calculer le rapport [[m2]].",
+   "en": "For [[m1]], express then calculate the ratio [[m2]].",
+   "status": "aligned",
+   "order": 116
+  },
+  "120215c7c405": {
+   "fr": "Comparer les intensités correspondant à [[m1]] dB et à [[m2]] dB.",
+   "en": "Compare the intensities corresponding to [[m1]] dB and [[m2]] dB.",
+   "status": "aligned",
+   "order": 117
+  },
+  "51d39541a8a9": {
+   "fr": "\\textbf{Barème :} [[m1]]. \\textbf{Correction :} Les valeurs usuelles sont [[m2]]. Le développement donne [[m3]]. [[m4]]. Pour le doublement, [[m5]] puis on prend l'entier supérieur et on contrôle. [[m6]] ; un écart de [[m7]] dB correspond à une intensité multipliée par [[m8]].",
+   "en": "\\textbf{Marking scheme:} [[m1]]. \\textbf{Solution:} The usual values are [[m2]]. The expansion gives [[m3]]. [[m4]]. For the doubling, [[m5]] then take the next integer up and check. [[m6]]; a difference of [[m7]] dB corresponds to an intensity multiplied by [[m8]].",
+   "status": "aligned",
+   "order": 118
+  },
+  "3d43ea712001": {
+   "fr": "Chapitre 4 -- Fonction inverse",
+   "en": "Chapter 4 -- The reciprocal function",
+   "status": "aligned",
+   "order": 119
+  },
+  "0f9638207283": {
+   "fr": "Fonction inverse",
+   "en": "Reciprocal function",
+   "status": "aligned",
+   "order": 136
+  },
+  "936e28409201": {
+   "fr": "calculer, raisonner, représenter, communiquer",
+   "en": "calculate, reason, represent, communicate",
+   "status": "aligned",
+   "order": 137
+  },
+  "4ed889cdfc51": {
+   "fr": "1 -- Fonction inverse",
+   "en": "1 -- Reciprocal function",
+   "status": "aligned",
+   "order": 138
+  },
+  "ba8d75a4938e": {
+   "fr": "On considère [[m1]].",
+   "en": "Consider [[m1]].",
+   "status": "aligned",
+   "order": 139
+  },
+  "4e53bc65d5b6": {
+   "fr": "Donner son domaine.",
+   "en": "Give its domain.",
+   "status": "aligned",
+   "order": 140
+  },
+  "60c15efa47ca": {
+   "fr": "Calculer sa dérivée et étudier son signe.",
+   "en": "Calculate its derivative and study its sign.",
+   "status": "aligned",
+   "order": 141
+  },
+  "56c7a11ffba5": {
+   "fr": "Donner ses asymptotes et son sens de variation sur chaque intervalle du domaine.",
+   "en": "Give its asymptotes and its direction of variation on each interval of the domain.",
+   "status": "aligned",
+   "order": 142
+  },
+  "cc9f3de08753": {
+   "fr": "2 -- Tableau de signes",
+   "en": "2 -- Sign table",
+   "status": "aligned",
+   "order": 143
+  },
+  "f4debec83aab": {
+   "fr": "Résoudre [[m1]]. Le tableau doit faire apparaître les zéros et la valeur interdite.",
+   "en": "Solve [[m1]]. The table must show the zeros and the excluded value.",
+   "status": "aligned",
+   "order": 144
+  },
+  "97b591aa5e5c": {
+   "fr": "3 -- Coût moyen",
+   "en": "3 -- Average cost",
+   "status": "aligned",
+   "order": 145
+  },
+  "9dbbf5cd0a43": {
+   "fr": "Pour [[m1]], un coût moyen est modélisé par [[m2]].",
+   "en": "For [[m1]], an average cost is modelled by [[m2]].",
+   "status": "aligned",
+   "order": 146
+  },
+  "34a3b22f70be": {
+   "fr": "Calculer [[m1]] et factoriser son numérateur.",
+   "en": "Calculate [[m1]] and factorise its numerator.",
+   "status": "aligned",
+   "order": 147
+  },
+  "a0fa8d5bd63d": {
+   "fr": "Dresser le tableau de variations de [[m1]] sur [[m2]].",
+   "en": "Draw up the variation table of [[m1]] on [[m2]].",
+   "status": "aligned",
+   "order": 148
+  },
+  "3cf2d1aab85e": {
+   "fr": "Déterminer la valeur de [[m1]] qui minimise le coût moyen et calculer ce minimum.",
+   "en": "Find the value of [[m1]] that minimises the average cost and calculate this minimum.",
+   "status": "aligned",
+   "order": 149
+  },
+  "94ddcd64131a": {
+   "fr": "Faire une esquisse cohérente de la courbe.",
+   "en": "Sketch a consistent graph of the curve.",
+   "status": "aligned",
+   "order": 150
+  },
+  "58d3087856d9": {
+   "fr": "\\textbf{Barème :} [[m1]]. \\textbf{Correction :} [[m2]], [[m3]], asymptotes [[m4]] et [[m5]]. Pour le quotient, ordonner [[m6]] et exclure [[m7]]. Pour le coût, [[m8]] ; minimum en [[m9]], de valeur [[m10]].",
+   "en": "\\textbf{Marking scheme:} [[m1]]. \\textbf{Solution:} [[m2]], [[m3]], asymptotes [[m4]] and [[m5]]. For the quotient, order [[m6]] and exclude [[m7]]. For the cost, [[m8]]; minimum at [[m9]], with value [[m10]].",
+   "status": "aligned",
+   "order": 151
+  },
+  "506bc2d6b779": {
+   "fr": "Chapitre 5 -- Statistiques à deux variables quantitatives",
+   "en": "Chapter 5 -- Statistics with two quantitative variables",
+   "status": "aligned",
+   "order": 152
+  },
+  "b555558a848b": {
+   "fr": "Statistiques à deux variables",
+   "en": "Two-variable statistics",
+   "status": "aligned",
+   "order": 171
+  },
+  "2579f0818dec": {
+   "fr": "représenter, modéliser, calculer, interpréter",
+   "en": "represent, model, calculate, interpret",
+   "status": "aligned",
+   "order": 172
+  },
+  "717d90b31c7a": {
+   "fr": "1 -- Construire et décrire",
+   "en": "1 -- Constructing and describing",
+   "status": "aligned",
+   "order": 173
+  },
+  "70c4c5fab4b5": {
+   "fr": "On observe les couples [[m1]], [[m2]], [[m3]], [[m4]], [[m5]] et [[m6]].",
+   "en": "We observe the pairs [[m1]], [[m2]], [[m3]], [[m4]], [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 174
+  },
+  "697d235289b5": {
+   "fr": "Représenter le nuage dans un repère correctement légendé.",
+   "en": "Draw the scatter plot on a correctly labelled coordinate system.",
+   "status": "aligned",
+   "order": 175
+  },
+  "ed2254526881": {
+   "fr": "Calculer les coordonnées du point moyen.",
+   "en": "Calculate the coordinates of the mean point.",
+   "status": "aligned",
+   "order": 176
+  },
+  "b8cfd391ba2e": {
+   "fr": "Décrire la tendance et la dispersion sans conclure à une causalité.",
+   "en": "Describe the trend and the spread without concluding that there is causality.",
+   "status": "aligned",
+   "order": 177
+  },
+  "4d956e300bdc": {
+   "fr": "2 -- Exploiter un ajustement",
+   "en": "2 -- Using a linear regression",
+   "status": "aligned",
+   "order": 178
+  },
+  "2fd4422b325d": {
+   "fr": "Une droite d'ajustement est [[m1]], établie pour [[m2]].",
+   "en": "A linear regression line is [[m1]], established for [[m2]].",
+   "status": "aligned",
+   "order": 179
+  },
+  "2d5cb23c5ba7": {
+   "fr": "Estimer [[m1]] pour [[m2]] et qualifier l'estimation.",
+   "en": "Estimate [[m1]] for [[m2]] and characterise the estimate.",
+   "status": "aligned",
+   "order": 180
+  },
+  "c4f2320d475d": {
+   "fr": "Estimer [[m1]] lorsque [[m2]].",
+   "en": "Estimate [[m1]] when [[m2]].",
+   "status": "aligned",
+   "order": 181
+  },
+  "67cdf612fddf": {
+   "fr": "Estimer [[m1]] pour [[m2]], puis expliquer pourquoi ce résultat doit être considéré avec prudence.",
+   "en": "Estimate [[m1]] for [[m2]], then explain why this result must be treated with caution.",
+   "status": "aligned",
+   "order": 182
+  },
+  "e6e66c516b1f": {
+   "fr": "3 -- Changement de variable",
+   "en": "3 -- Change of variable",
+   "status": "aligned",
+   "order": 183
+  },
+  "de821e3ca443": {
+   "fr": "On pose [[m1]] et l'ajustement de [[m2]] est [[m3]].",
+   "en": "Let [[m1]], and the linear regression of [[m2]] is [[m3]].",
+   "status": "aligned",
+   "order": 184
+  },
+  "e54b85cbd55d": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]].",
+   "en": "Express [[m1]] in terms of [[m2]].",
+   "status": "aligned",
+   "order": 185
+  },
+  "2502c2fb88c0": {
+   "fr": "Estimer [[m1]] pour [[m2]].",
+   "en": "Estimate [[m1]] for [[m2]].",
+   "status": "aligned",
+   "order": 186
+  },
+  "ca4c62423bbf": {
+   "fr": "Expliquer l'intérêt du changement de variable et une limite de l'extrapolation.",
+   "en": "Explain the benefit of the change of variable and one limitation of extrapolation.",
+   "status": "aligned",
+   "order": 187
+  },
+  "a06a830dd87c": {
+   "fr": "\\textbf{Barème :} [[m1]]. \\textbf{Correction :} Calculer [[m2]] et [[m3]] à partir des six valeurs. Avec la droite, substituer [[m4]] ou résoudre une équation ; [[m5]] est une interpolation et [[m6]] une extrapolation éloignée. Le dernier modèle est [[m7]].",
+   "en": "\\textbf{Marking scheme:} [[m1]]. \\textbf{Solution:} Calculate [[m2]] and [[m3]] from the six values. With the line, substitute [[m4]] or solve an equation; [[m5]] is an interpolation and [[m6]] a distant extrapolation. The final model is [[m7]].",
+   "status": "aligned",
+   "order": 188
+  },
+  "29dc72b63baf": {
+   "fr": "Chapitre 6 -- Probabilités conditionnelles",
+   "en": "Chapter 6 -- Conditional probability",
+   "status": "aligned",
+   "order": 189
+  },
+  "58a2973b93de": {
+   "fr": "Une proportion 0{,}35 des commandes est express. Le taux de retard est 0{,}05 parmi les commandes express et 0{,}12 parmi les autres.",
+   "en": "A proportion 0.35 of orders are express. The late-delivery rate is 0.05 among express orders and 0.12 among the others.",
+   "status": "aligned",
+   "order": 193
+  },
+  "cf6d2e91feab": {
+   "fr": "Probabilités conditionnelles",
+   "en": "Conditional probability",
+   "status": "aligned",
+   "order": 206
+  },
+  "23776bbc682d": {
+   "fr": "1 -- Arbre pondéré",
+   "en": "1 -- Weighted tree",
+   "status": "aligned",
+   "order": 208
+  },
+  "ce98ba564e8a": {
+   "fr": "Une proportion 0{,}45 des commandes est express. Le taux de retard est 0{,}08 parmi les commandes express et 0{,}15 parmi les autres.",
+   "en": "A proportion 0.45 of orders are express. The late-delivery rate is 0.08 among express orders and 0.15 among the others.",
+   "status": "aligned",
+   "order": 209
+  },
+  "2b742150d51a": {
+   "fr": "Définir les événements [[m1]] et [[m2]], puis construire l'arbre pondéré complet.",
+   "en": "Define the events [[m1]] and [[m2]], then build the complete weighted tree.",
+   "status": "aligned",
+   "order": 210
+  },
+  "66bd15a26fa7": {
+   "fr": "Calculer [[m1]] par la formule des probabilités totales.",
+   "en": "Calculate [[m1]] using the law of total probability.",
+   "status": "aligned",
+   "order": 212
+  },
+  "fda722b0d345": {
+   "fr": "Calculer [[m1]] et interpréter.",
+   "en": "Calculate [[m1]] and interpret.",
+   "status": "aligned",
+   "order": 213
+  },
+  "03462f87f442": {
+   "fr": "2 -- Indépendance",
+   "en": "2 -- Independence",
+   "status": "aligned",
+   "order": 214
+  },
+  "cadb789d373b": {
+   "fr": "Dans une autre étude, [[m1]], [[m2]] et [[m3]].",
+   "en": "In another study, [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 215
+  },
+  "839a81668b68": {
+   "fr": "Les événements sont-ils indépendants ? Justifier.",
+   "en": "Are the events independent? Justify.",
+   "status": "aligned",
+   "order": 217
+  },
+  "6ec7c17af170": {
+   "fr": "Calculer [[m1]] et confirmer la conclusion.",
+   "en": "Calculate [[m1]] and confirm the conclusion.",
+   "status": "aligned",
+   "order": 218
+  },
+  "2dafb75ba9af": {
+   "fr": "3 -- Tableau d'effectifs",
+   "en": "3 -- Frequency table",
+   "status": "aligned",
+   "order": 219
+  },
+  "9ef0519e1864": {
+   "fr": "Sur [[m1]] clients, [[m2]] ont une carte premium ; [[m3]] clients premium et [[m4]] clients non premium ont résilié. Construire le tableau complet puis calculer la probabilité d'être premium sachant que le client a résilié.",
+   "en": "Out of [[m1]] customers, [[m2]] have a premium card; [[m3]] premium customers and [[m4]] non-premium customers cancelled. Build the complete table, then calculate the conditional probability of being premium given that the customer cancelled.",
+   "status": "aligned",
+   "order": 220
+  },
+  "96d59f4f23f8": {
+   "fr": "\\textbf{Barème :} [[m1]]. \\textbf{Correction :} [[m2]] puis [[m3]]. Pour l'indépendance, comparer l'intersection au produit [[m4]]. Dans le tableau, il y a [[m5]] résiliations, donc [[m6]].",
+   "en": "\\textbf{Marking scheme:} [[m1]]. \\textbf{Solution:} [[m2]] then [[m3]]. For independence, compare the intersection with the product [[m4]]. In the table, there are [[m5]] cancellations, so [[m6]].",
+   "status": "aligned",
+   "order": 221
+  },
+  "6f8c932a5af4": {
+   "fr": "Chapitre 7 -- Variables aléatoires discrètes et loi binomiale",
+   "en": "Chapter 7 -- Discrete random variables and the binomial distribution",
+   "status": "aligned",
+   "order": 222
+  },
+  "1a249823437e": {
+   "fr": "Variables aléatoires et loi binomiale",
+   "en": "Random variables and the binomial distribution",
+   "status": "aligned",
+   "order": 241
+  },
+  "68cb49e661dd": {
+   "fr": "modéliser, calculer, raisonner, interpréter",
+   "en": "model, calculate, reason, interpret",
+   "status": "aligned",
+   "order": 242
+  },
+  "32b9f6acac87": {
+   "fr": "1 -- Espérance d'un jeu",
+   "en": "1 -- Expected value of a game",
+   "status": "aligned",
+   "order": 243
+  },
+  "28cae46e3766": {
+   "fr": "Un jeu coûte [[m1]] euros. Le gain brut vaut [[m2]], [[m3]] ou [[m4]] euros avec probabilités [[m5]], [[m6]] et [[m7]].",
+   "en": "A game costs [[m1]] euros. The gross winnings are [[m2]], [[m3]] or [[m4]] euros with probabilities [[m5]], [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 244
+  },
+  "252a3021e58c": {
+   "fr": "Construire la loi du gain net [[m1]].",
+   "en": "Build the distribution of the net gain [[m1]].",
+   "status": "aligned",
+   "order": 245
+  },
+  "7c6dc9b488bf": {
+   "fr": "Le jeu est-il favorable au joueur ? Interpréter sans affirmer ce qui arrivera lors d'une partie.",
+   "en": "Is the game favourable to the player? Interpret without claiming what will happen in a single play.",
+   "status": "aligned",
+   "order": 247
+  },
+  "af9563130fff": {
+   "fr": "2 -- Loi binomiale",
+   "en": "2 -- Binomial distribution",
+   "status": "aligned",
+   "order": 248
+  },
+  "9ce6a17c89da": {
+   "fr": "Un client répond favorablement avec probabilité [[m1]]. Un conseiller contacte indépendamment [[m2]] clients. On note [[m3]] le nombre de réponses favorables.",
+   "en": "A customer responds favourably with probability [[m1]]. An adviser contacts [[m2]] customers independently. Let [[m3]] be the number of favourable responses.",
+   "status": "aligned",
+   "order": 249
+  },
+  "9463f8f35159": {
+   "fr": "Justifier la loi de [[m1]] et donner ses paramètres.",
+   "en": "Justify the distribution of [[m1]] and give its parameters.",
+   "status": "aligned",
+   "order": 250
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 251
+  },
+  "9dc50f498ca9": {
+   "fr": "Calculer [[m1]] puis [[m2]].",
+   "en": "Calculate [[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 252
+  },
+  "491c89f521c0": {
+   "fr": "Calculer et interpréter [[m1]].",
+   "en": "Calculate and interpret [[m1]].",
+   "status": "aligned",
+   "order": 253
+  },
+  "ac94f89491d6": {
+   "fr": "3 -- Triangle de Pascal",
+   "en": "3 -- Pascal's triangle",
+   "status": "aligned",
+   "order": 254
+  },
+  "e02bac5f7f95": {
+   "fr": "Écrire la ligne [[m1]] du triangle de Pascal.",
+   "en": "Write row [[m1]] of Pascal's triangle.",
+   "status": "aligned",
+   "order": 255
+  },
+  "0403d12ac5f1": {
+   "fr": "Lire [[m1]] et [[m2]].",
+   "en": "Read off [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 256
+  },
+  "4309ea656c42": {
+   "fr": "Expliquer le rôle de [[m1]] dans la formule binomiale.",
+   "en": "Explain the role of [[m1]] in the binomial formula.",
+   "status": "aligned",
+   "order": 257
+  },
+  "08ee42f4b9d2": {
+   "fr": "\\textbf{Barème :} [[m1]]. \\textbf{Correction :} Le gain net vaut [[m2]] ; [[m3]] euro. [[m4]] ; appliquer la formule, utiliser [[m5]] pour « au moins un », et [[m6]]. La ligne [[m7]] est [[m8]].",
+   "en": "\\textbf{Marking scheme:} [[m1]]. \\textbf{Solution:} The net gain is [[m2]]; [[m3]] euro. [[m4]]; apply the formula, use [[m5]] for ``at least one'', and [[m6]]. Row [[m7]] is [[m8]].",
+   "status": "aligned",
+   "order": 258
+  }
+ }
+}

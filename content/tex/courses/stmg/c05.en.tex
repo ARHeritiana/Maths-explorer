@@ -1,0 +1,332 @@
+% GENERATED, edit the French unit or the translation table
+
+\mxunit{stmg-c05}{Bivariate statistics}
+\mxskills{represent, choose a linear regression, interpolate, extrapolate with caution, communicate}
+\section{Reference course}
+A bivariate data set consists of pairs $(x_i,y_i)$. The scatter plot shows a trend, the spread and any outliers.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.78\textwidth,height=6.2cm,axis lines=left,xmin=0,xmax=8,ymin=5,ymax=27,grid=major,xlabel={advertising budget (hundreds of euros)},ylabel={orders (hundreds)}]
+\addplot[only marks,mark=*,mxteacher,mark size=2.5pt] coordinates {(1,8)(2,10)(3,13)(4,15)(5,18)(6,20)(7,24)};
+\addplot[mxwarn,very thick,domain=.5:7.5]{2.55*x+5};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{keypoint}
+A line of best fit $y=ax+b$ gives estimates, not exact equalities. The coefficient $a$ describes the estimated average change in $y$ when $x$ increases by one unit. Interpolation stays within the range of observed values; extrapolation goes outside that range and must be presented with caution.
+\end{keypoint}
+
+The mean point $G(\bar x,\bar y)$ has coordinates $\bar x=\dfrac{x_1+\cdots+x_n}{n}$ and $\bar y=\dfrac{y_1+\cdots+y_n}{n}$. A regression line obtained with a calculator passes through $G$, up to rounding.
+
+\begin{method}
+To use $y=ax+b$: 1) replace $x$ by the requested value to estimate $y$; 2) solve $ax+b=y_0$ to estimate $x$; 3) round according to the context; 4) state whether it is interpolation or extrapolation; 5) remind that the result depends on the model.
+\end{method}
+
+A change of variable, for example $z=\log(y)$ or $z=\dfrac1y$, can make a scatter plot roughly linear. We then fit $(x,z)$, and afterwards return to the variable $y$.
+
+\mxsession{31}{\mxdate*{2027-01-26}}{B: 2 h -- C: 1 h}{Scatter plot}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Construct a scatter plot.\item Choose the scales.\item Identify the variables.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $10\,\%$ increase. \mxblank{$1+\dfrac{10}{100}=1.10$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: construct a scatter plot and choose the scales.\end{prerequisites}
+
+\begin{activity}
+The table $(x_i,y_i)$ gives the advertising spending and the sales over six months: $(1,12),(2,15),(3,17),(4,22),(5,24),(6,28)$. Choose scales, draw the scatter plot and plot the mean point.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}$\bar x=3.5$ and $\bar y=19.67$ approximately. The scatter plot shows an increasing, roughly linear trend. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}A scatter plot represents the pairs $(x_i,y_i)$. The axes, units and scales must be indicated; each pair gives a single point.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$\bar x=3.5$ and $\bar y=19.67$ approximately. The scatter plot shows an increasing, roughly linear trend.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=3x+13$, estimate $y$ when $x=8$.\item Solve $3x+13=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=37$. The equation gives $x=\dfrac{37}{3}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, course pp. 110--113; exercises p. 114, nos.~1--6}
+\mxexuse{31}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $275$ and the rate or ratio with $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{32}{\mxdate*{2027-01-28}}{B: 1 h -- C: 2 h}{Reading and interpreting a scatter plot}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Describe a trend.\item Spot spread and outliers.\item Avoid unwarranted causality.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+7-x+2$. \mxblank{$2x+9$}\item Calculate the mean of $7$, $9$ and $11$. \mxblank{$9$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: describe a trend and spot spread and outliers.\end{prerequisites}
+
+\begin{activity}
+Compare three scatter plots: a tight increasing trend, a scattered decreasing trend, no trend. For each, write two sentences without using the word ``cause''.
+
+\end{activity}
+\begin{solution}The description covers direction, shape, spread and outliers. A scatter plot alone does not establish causality. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}Describing a scatter plot means commenting on its direction, shape, spread and outliers, without claiming a causality that has not been established.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The description covers direction, shape, spread and outliers. A scatter plot alone does not establish causality.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=4x+14$, estimate $y$ when $x=8$.\item Solve $4x+14=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=46$. The equation gives $x=\dfrac{36}{4}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, p. 116, nos.~11--15}
+\mxexuse{32}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $280$ and the rate or ratio with $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{33}{\mxdate*{2027-02-02}}{B: 2 h -- C: 1 h}{Linear regression}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Obtain a linear regression.\item Interpret $a$ and $b$.\item Check with the mean point.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $20\,\%$ of $160$. \mxblank{$32$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $8$, $10$ and $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: obtain a linear regression and interpret $a$ and $b$.\end{prerequisites}
+
+\begin{activity}
+With the data of session 31, obtain the linear regression with a calculator. Interpret the slope and check that the mean point lies approximately on the line.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}A regression gives approximately $y=3.17x+8.57$. An extra hundred euros is associated with about $317$ extra sales if $y$ is in hundreds. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}A line $y=ax+b$ fits a scatter plot. $a$ represents the estimated average change in $y$ for one extra unit of $x$.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}A regression gives approximately $y=3.17x+8.57$. An extra hundred euros is associated with about $317$ extra sales if $y$ is in hundreds.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=5x+15$, estimate $y$ when $x=8$.\item Solve $5x+15=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=55$. The equation gives $x=\dfrac{35}{5}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, course pp. 110--113; exercises p. 117, nos.~16--18}
+\mxexuse{33}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $285$ and the rate or ratio with $5$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{34}{\mxdate*{2027-02-04}}{B: 1 h -- C: 2 h}{Interpolation}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Interpolate.\item Solve using the model.\item Express an estimate.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $25\,\%$ increase. \mxblank{$1+\dfrac{25}{100}=1.25$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $9$, $11$ and $13$. \mxblank{$11$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: interpolate and solve using the model.\end{prerequisites}
+
+\begin{activity}
+Over the observed period $x\in[1,12]$, the model is $y=2.8x+14$. Estimate $y$ for $x=7.5$, then estimate $x$ when $y=35$. Classify each estimate.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}$y=35$ and $x=7.5$. Both values lie inside the observed range: interpolations. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}An interpolation estimates a value inside the observed range. The result is an estimate that depends on the model.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$y=35$ and $x=7.5$. Both values lie inside the observed range: interpolations.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=6x+16$, estimate $y$ when $x=8$.\item Solve $6x+16=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=64$. The equation gives $x=\dfrac{34}{6}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, p. 118, nos.~19--24}
+\mxexuse{34}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $290$ and the rate or ratio with $6$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{35}{\mxdate*{2027-02-09}}{B: 2 h -- C: 1 h}{Extrapolation}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Extrapolate with caution.\item Assess plausibility.\item Present a limitation of the model.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+3-x+2$. \mxblank{$2x+5$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $3$, $5$ and $7$. \mxblank{$5$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: extrapolate with caution and assess plausibility.\end{prerequisites}
+
+\begin{activity}
+The same model $y=2.8x+14$, fitted on $[1,12]$, is used for $x=40$. Calculate the estimate, then give three reasons why it may be unreliable.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}The estimate is $126$. It is far from the data, the trend may change and real-world constraints may cap the variable. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}An extrapolation estimates outside the observed range. The further away we go, the more caution is needed.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The estimate is $126$. It is far from the data, the trend may change and real-world constraints may cap the variable.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=2x+12$, estimate $y$ when $x=8$.\item Solve $2x+12=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=28$. The equation gives $x=\dfrac{38}{2}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, p. 119, nos.~25--27}
+\mxexuse{35}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $295$ and the rate or ratio with $7$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{36}{\mxdate*{2027-02-11}}{B: 1 h -- C: 2 h}{Change of variable}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Carry out a change of variable.\item Fit the new data.\item Return to the original variable.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $5\,\%$ of $80$. \mxblank{$4$}\item Calculate the mean of $4$, $6$ and $8$. \mxblank{$6$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: carry out a change of variable and fit the new data.\end{prerequisites}
+
+\begin{activity}
+The data appear to be exponential. We set $z=\log(y)$ and the fit gives $z=0.08x+1.2$. Express $y$ as a function of $x$, then calculate $y$ for $x=5$.
+
+\end{activity}
+\begin{solution}$y=10^{0.08x+1.2}$. For $x=5$, $y=10^{1.6}\approx39.8$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}A change of variable can make a scatter plot linear. After fitting in the new variable, we must return to the original variable.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$y=10^{0.08x+1.2}$. For $x=5$, $y=10^{1.6}\approx39.8$.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=3x+13$, estimate $y$ when $x=8$.\item Solve $3x+13=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=37$. The equation gives $x=\dfrac{37}{3}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, p. 120, nos.~28--29}
+\mxexuse{36}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $300$ and the rate or ratio with $2$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{37}{\mxdate*{2027-03-02}}{B: 2 h -- C: 1 h}{Choosing the model and fitting}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Compare models.\item Use residuals.\item Define a range of use.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $10\,\%$ increase. \mxblank{$1+\dfrac{10}{100}=1.10$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $5$, $7$ and $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: compare models and use residuals.\end{prerequisites}
+
+\begin{activity}
+Two models give total absolute residuals of $18.4$ and $11.7$ over the observed range. The second, however, shows unrealistic growth beyond $x=20$. Choose a model to interpolate at $x=12$, then discuss extrapolation at $x=50$.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}The second is preferable for interpolating over the observed range if the other criteria are comparable; no automatic choice is justified for $x=50$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}We choose a model according to the shape of the scatter plot, the size of the residuals and the range of use. A better visual fit does not allow unlimited extrapolation.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The second is preferable for interpolating over the observed range if the other criteria are comparable; no automatic choice is justified for $x=50$.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=4x+14$, estimate $y$ when $x=8$.\item Solve $4x+14=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=46$. The equation gives $x=\dfrac{36}{4}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, p. 121, nos.~30--32, then p. 122, no.~33}
+\mxexuse{37}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $305$ and the rate or ratio with $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{38}{\mxdate*{2027-03-04}}{B: 1 h -- C: 2 h}{Review and assessment}{Bivariate statistics}
+\begin{objectives}\begin{itemize}\item Choose and use a regression.\item Write a statistical conclusion.\item Analyse an error.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+6-x+2$. \mxblank{$2x+8$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: choose and use a regression and write a statistical conclusion.\end{prerequisites}
+
+\begin{activity}
+Starting from a scatter plot supplied by the teacher, produce a complete answer: choice of model, equation, estimate, type of estimate, unit and caveat. Swap papers and use a six-criterion grid.
+
+\end{activity}
+\begin{solution}The marking checks the consistency of the model and the presence of the six required elements, not only the numerical result. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}A complete statistical answer contains the model, the calculation, the rounding, the unit, the type of estimate and a caveat on validity.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The marking checks the consistency of the model and the presence of the six required elements, not only the numerical result.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item For $y=5x+15$, estimate $y$ when $x=8$.\item Solve $5x+15=50$.\item The model was built on $[2,12]$: classify the estimates for $x=8$ and $x=30$.\end{enumerate}
+\end{exercise}
+\begin{solution}For $x=8$, $y=55$. The equation gives $x=\dfrac{35}{5}$. $x=8$ gives an interpolation; $x=30$ an extrapolation.\end{solution}
+
+\mxfurther{Calao, pp. 122--123}
+\mxexuse{38}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $310$ and the rate or ratio with $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi

@@ -1,0 +1,314 @@
+% GENERATED, edit the French unit or the translation table
+
+\mxunit{stmg-c01}{Number Sequences}
+\mxskills{investigate, model, represent, calculate, communicate}
+
+\section{Core Course Notes}
+A numerical sequence assigns to each natural number $n$ a number $u_n$. The index $n$ denotes a position in the sequence; it must not be confused with the value $u_n$.
+
+\subsection{Arithmetic sequence}
+\begin{keypoint}
+A sequence $(u_n)$ is \textbf{arithmetic} when there is a real number $r$ such that, for all $n$, $u_{n+1}=u_n+r$. The number $r$ is the common difference. If the first term is $u_0$, then $u_n=u_0+nr$. If the first term is $u_1$, then $u_n=u_1+(n-1)r$.
+\end{keypoint}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,node distance=18mm]
+\node[draw,rounded corners,fill=mxpaper] (u0) {$u_0$};
+\node[draw,rounded corners,fill=mxpaper,right=of u0] (u1) {$u_1$};
+\node[draw,rounded corners,fill=mxpaper,right=of u1] (u2) {$u_2$};
+\node[draw,rounded corners,fill=mxpaper,right=of u2] (un) {$u_n$};
+\draw[->,thick] (u0)--node[above] {$+r$}(u1);
+\draw[->,thick] (u1)--node[above] {$+r$}(u2);
+\draw[->,thick,dashed] (u2)--node[above] {$+(n-2)r$}(un);
+\end{tikzpicture}
+\end{center}
+
+Three numbers $x,y,z$, written in this order, are three consecutive terms of an arithmetic sequence if $y-x=z-y$, that is, if $y=\dfrac{x+z}{2}$. This last quantity is the arithmetic mean of $x$ and $z$.
+
+\begin{method}
+To model an additive situation: 1) define $u_n$ and state the unit; 2) identify the first term; 3) express the constant increase or decrease as the common difference $r$; 4) write the general term; 5) answer with a sentence in context.
+\end{method}
+
+\begin{example}
+A shop sells $480$ units in the first month and then $25$ more units each month. With $u_1=480$ and $r=25$, we get $u_n=480+25(n-1)$. Thus $u_{12}=755$: the shop expects to sell $755$ units in the twelfth month.
+\end{example}
+
+\subsection{Sum of arithmetic terms}
+For the $n+1$ terms from $u_0$ to $u_n$,
+\[
+u_0+u_1+\cdots+u_n=(n+1)\frac{u_0+u_n}{2}.
+\]
+The formula is easy to remember as: \emph{number of terms multiplied by the mean of the first and last terms}.
+
+\begin{pitfall}
+In $u_3+u_4+\cdots+u_{12}$, there are $12-3+1=10$ terms, not $9$ or $12$.
+\end{pitfall}
+
+\subsection{Geometric sequence}
+\begin{keypoint}
+A sequence $(u_n)$ is \textbf{geometric} when there is a real number $q$ such that $u_{n+1}=q u_n$. If the first term is $u_0$, then $u_n=u_0q^n$. If the first term is $u_1$, then $u_n=u_1q^{n-1}$.
+\end{keypoint}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,node distance=18mm]
+\node[draw,rounded corners,fill=mxmintpale] (u0) {$u_0$};
+\node[draw,rounded corners,fill=mxmintpale,right=of u0] (u1) {$u_1$};
+\node[draw,rounded corners,fill=mxmintpale,right=of u1] (u2) {$u_2$};
+\node[draw,rounded corners,fill=mxmintpale,right=of u2] (un) {$u_n$};
+\draw[->,thick] (u0)--node[above] {$\times q$}(u1);
+\draw[->,thick] (u1)--node[above] {$\times q$}(u2);
+\draw[->,thick,dashed] (u2)--node[above] {$\times q^{n-2}$}(un);
+\end{tikzpicture}
+\end{center}
+
+An increase of $t\,\%$ corresponds to $q=1+\dfrac{t}{100}$; a decrease of $t\,\%$ to $q=1-\dfrac{t}{100}$. Three positive terms $x,y,z$ are consecutive in a geometric sequence if $y^2=xz$; $y=\sqrt{xz}$ is their geometric mean.
+
+For $q\neq1$,
+\[
+u_0+u_1+\cdots+u_n=u_0\frac{1-q^{n+1}}{1-q}.
+\]
+
+\subsection{Algorithms: computing a sum}
+\begin{lstlisting}[style=python]
+def somme_carres(n):
+    s = 0
+    for k in range(1, n + 1):
+        s = s + k**2
+    return s
+\end{lstlisting}
+The accumulator \texttt{s} holds the partial sum; the counter \texttt{k} runs through the integers from $1$ to $n$.
+
+\mxsession{1}{\mxdate*{2026-09-15}}{B: 2 h -- C: 1 h}{Arithmetic sequences: recognising and modelling}{Number Sequences}
+    \begin{objectives}\begin{itemize}\item Recognise an additive change.\item Find the common difference.\item Define a sequence in context.\end{itemize}\end{objectives}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $10\,\%$ increase. \mxblank{$1+\dfrac{10}{100}=1.10$}\item Calculate $u_4$ if $u_0=14$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=26$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $8\,\%$ decrease. \mxblank{$0.92$}\item Give the common difference of $12,12+4,12+2\times4,\ldots$. \mxblank{$r=4$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: recognise an additive change and find the common difference.\end{prerequisites}
+
+    \begin{activity}
+    A club has $320$ members. It expects to gain $18$ more each year. Let $u_n$ be the number of members after $n$ years. Calculate $u_0,u_1,u_2$. Which operation takes you from one term to the next? Write a relation between $u_{n+1}$ and $u_n$, then predict $u_5$.
+    \begin{center}\begin{tikzpicture}[>=Stealth,node distance=17mm]
+\foreach \i in {0,...,4}{\node[draw,rounded corners,fill=mxpaper] (u\i) at (1.7*\i,0) {$u_\i$};}
+\foreach \i [evaluate=\i as \j using int(\i+1)] in {0,...,3}{\draw[->,thick] (u\i)--node[above] {$ +r $}(u\j);}
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$u_0=320$, $u_1=338$, $u_2=356$; we add $18$. So $u_{n+1}=u_n+18$ and $u_5=410$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+    \begin{summary}A sequence is arithmetic when $u_{n+1}-u_n=r$ is constant. In a real-life situation, a constant absolute increase leads to an arithmetic sequence.\end{summary}
+
+    \begin{example}
+    Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+    \end{example}
+    \begin{solution}$u_0=320$, $u_1=338$, $u_2=356$; we add $18$. So $u_{n+1}=u_n+18$ and $u_5=410$.\end{solution}
+
+    \begin{exercise}[essential]
+    \begin{enumerate}\item The sequence $(u_n)$ satisfies $u_0=110$ and $u_{n+1}=u_n+3$. Write $u_n$ then calculate $u_{12}$.\item A quantity is worth $420$ and decreases by $3\,\%$ per period. Write $v_n$ and calculate $v_5$.\item For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$u_n=110+3n$ and $u_{12}=146$, for the second one, $q=0.97$ and $v_n=420\times q^n$; the third item is justified by the constant difference or quotient,\end{solution}
+
+    \mxfurther{Calao, course notes pp. 18--21; exercises p. 24, no.~1--3}
+\mxexuse{1}
+
+    \begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $125$ and the rate or common difference/ratio by $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+    \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+    \end{method}
+    \fi
+\mxsession{2}{\mxdate*{2026-09-17}}{B: 1 h -- C: 2 h}{Arithmetic sequences: the general term}{Number Sequences}
+\begin{objectives}\begin{itemize}\item Move from the recurrence relation to the general term.\item Calculate a distant term.\item Interpret the index.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+5-x+2$. \mxblank{$2x+7$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $8\,\%$ decrease. \mxblank{$0.92$}\item Give the common difference of $12,12+5,12+2\times5,\ldots$. \mxblank{$r=5$}\item Calculate $u_4$ if $u_0=15$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: move from the recurrence relation to the general term and calculate a distant term.\end{prerequisites}
+
+\begin{activity}
+A shop has $1\,250$ active loyalty cards at index $0$ and gains $75$ per month. Without calculating all the terms, find the number of cards at index $n$, then at index $18$. Explain the role of $18$ in the calculation.
+
+\end{activity}
+\begin{solution}$u_n=1\,250+75n$, so $u_{18}=2\,600$. The number $18$ counts the increases since index $0$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}If $(u_n)$ is arithmetic with common difference $r$, then $u_n=u_0+nr$ or $u_n=u_1+(n-1)r$, depending on the index of the first term.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$u_n=1\,250+75n$, so $u_{18}=2\,600$. The number $18$ counts the increases since index $0$.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item The sequence $(u_n)$ satisfies $u_0=120$ and $u_{n+1}=u_n+4$. Write $u_n$ then calculate $u_{12}$.\item A quantity is worth $440$ and decreases by $4\,\%$ per period. Write $v_n$ and calculate $v_5$.\item For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.\end{enumerate}
+\end{exercise}
+\begin{solution}$u_n=120+4n$ and $u_{12}=168$, for the second one, $q=0.96$ and $v_n=440\times q^n$; the third item is justified by the constant difference or quotient,\end{solution}
+
+\mxfurther{Calao, course notes pp. 18--21; exercises p. 24, no.~5--8}
+\mxexuse{2}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $130$ and the rate or common difference/ratio by $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{3}{\mxdate*{2026-09-22}}{B: 2 h -- C: 1 h}{Sum of the terms of an arithmetic sequence}{Number Sequences}
+\begin{objectives}\begin{itemize}\item Count the terms of a sum.\item Apply the formula.\item Check the order of magnitude.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $20\,\%$ of $120$. \mxblank{$24$}\item Give the multiplier for a $8\,\%$ decrease. \mxblank{$0.92$}\item Give the common difference of $12,12+6,12+2\times6,\ldots$. \mxblank{$r=6$}\item Calculate $u_4$ if $u_0=16$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: count the terms of a sum and apply the formula.\end{prerequisites}
+
+\begin{activity}
+A company pays a monthly bonus: $45$ euros in the first month, then $5$ euros more each month. Calculate the total paid over the first twelve months in three ways: explicit sum, pairing first and last terms, formula.
+
+\end{activity}
+\begin{solution}$u_{12}=45+11\times5=100$. The total is $12\times\dfrac{45+100}{2}=870$ euros. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}A sum of arithmetic terms equals $\text{number of terms}\times\dfrac{\text{first}+\text{last}}2$. From $u_p$ to $u_q$, there are $q-p+1$ terms.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$u_{12}=45+11\times5=100$. The total is $12\times\dfrac{45+100}{2}=870$ euros.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item The sequence $(u_n)$ satisfies $u_0=130$ and $u_{n+1}=u_n+5$. Write $u_n$ then calculate $u_{12}$.\item A quantity is worth $460$ and decreases by $5\,\%$ per period. Write $v_n$ and calculate $v_5$.\item For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.\end{enumerate}
+\end{exercise}
+\begin{solution}$u_n=130+5n$ and $u_{12}=190$, for the second one, $q=0.95$ and $v_n=460\times q^n$; the third item is justified by the constant difference or quotient,\end{solution}
+
+\mxfurther{Calao, course notes pp. 20--21; exercises p. 24, no.~11--13, then p. 28, no.~43--44}
+\mxexuse{3}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $135$ and the rate or common difference/ratio by $5$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{4}{\mxdate*{2026-09-24}}{B: 1 h -- C: 2 h}{Geometric sequences: recognising and modelling}{Number Sequences}
+    \begin{objectives}\begin{itemize}\item Recognise a multiplicative change.\item Convert a rate into a multiplier.\item Compare arithmetic and geometric sequences.\end{itemize}\end{objectives}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $25\,\%$ increase. \mxblank{$1+\dfrac{25}{100}=1.25$}\item Give the common difference of $12,12+7,12+2\times7,\ldots$. \mxblank{$r=7$}\item Calculate $u_4$ if $u_0=17$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $8\,\%$ decrease. \mxblank{$0.92$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: recognise a multiplicative change and convert a rate into a multiplier.\end{prerequisites}
+
+    \begin{activity}
+    An online shop increases its number of visitors by $6\,\%$ per month, starting from $8\,000$ visitors. Calculate the first three values. Compare the differences, then the quotients. Identify the type of sequence.
+    \begin{center}\begin{tikzpicture}[>=Stealth,node distance=17mm]
+\foreach \i in {0,...,4}{\node[draw,rounded corners,fill=mxpaper] (u\i) at (1.7*\i,0) {$u_\i$};}
+\foreach \i [evaluate=\i as \j using int(\i+1)] in {0,...,3}{\draw[->,thick] (u\i)--node[above] {$ \times q $}(u\j);}
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}The multiplier is $1.06$: $8\,000$, $8\,480$, $8\,988.8$. The quotients are $1.06$; the sequence is geometric. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+    \begin{summary}A sequence is geometric when $\dfrac{u_{n+1}}{u_n}=q$ is constant (non-zero terms). A constant relative change leads to a geometric sequence.\end{summary}
+
+    \begin{example}
+    Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+    \end{example}
+    \begin{solution}The multiplier is $1.06$: $8\,000$, $8\,480$, $8\,988.8$. The quotients are $1.06$; the sequence is geometric.\end{solution}
+
+    \begin{exercise}[essential]
+    \begin{enumerate}\item The sequence $(u_n)$ satisfies $u_0=140$ and $u_{n+1}=u_n+6$. Write $u_n$ then calculate $u_{12}$.\item A quantity is worth $480$ and decreases by $6\,\%$ per period. Write $v_n$ and calculate $v_5$.\item For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$u_n=140+6n$ and $u_{12}=212$, for the second one, $q=0.94$ and $v_n=480\times q^n$; the third item is justified by the constant difference or quotient,\end{solution}
+
+    \mxfurther{Calao, course notes pp. 23--25; exercises p. 25, no.~14--18}
+\mxexuse{4}
+
+    \begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $140$ and the rate or common difference/ratio by $6$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+    \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+    \end{method}
+    \fi
+\mxsession{5}{\mxdate*{2026-09-29}}{B: 2 h -- C: 1 h}{Geometric sequences: general term and sum}{Number Sequences}
+\begin{objectives}\begin{itemize}\item Write the general term.\item Calculate a geometric sum.\item Interpret a cumulative change.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+8-x+2$. \mxblank{$2x+10$}\item Calculate $u_4$ if $u_0=18$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $8\,\%$ decrease. \mxblank{$0.92$}\item Give the common difference of $12,12+8,12+2\times8,\ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: write the general term and calculate a geometric sum.\end{prerequisites}
+
+\begin{activity}
+A capital of $250\,000$ Ar is invested at $4\,\%$ per year, compound interest. Write the capital $C_n$ after $n$ years. Calculate $C_6$, then the sum $C_0+\cdots+C_6$, and explain what this last sum represents mathematically and why it is not the final capital.
+
+\end{activity}
+\begin{solution}$C_n=250\,000\times1.04^n$ and $C_6\approx316\,330$ Ar. The sum is the sum of seven successive values, not an actual accumulation of the investment. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}If $(u_n)$ is geometric with common ratio $q$, $u_n=u_0q^n$ ou $u_n=u_1q^{n-1}$. For $q\neq1$, $u_0+\cdots+u_n=u_0\dfrac{1-q^{n+1}}{1-q}$.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$C_n=250\,000\times1.04^n$ and $C_6\approx316\,330$ Ar. The sum is the sum of seven successive values, not an actual accumulation of the investment.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item The sequence $(u_n)$ satisfies $u_0=150$ and $u_{n+1}=u_n+2$. Write $u_n$ then calculate $u_{12}$.\item A quantity is worth $500$ and decreases by $2\,\%$ per period. Write $v_n$ and calculate $v_5$.\item For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.\end{enumerate}
+\end{exercise}
+\begin{solution}$u_n=150+2n$ and $u_{12}=174$, for the second one, $q=0.98$ and $v_n=500\times q^n$; the third item is justified by the constant difference or quotient,\end{solution}
+
+\mxfurther{Calao, course notes pp. 25--28; exercises p. 25, no.~19--25, then p. 28, no.~42--44}
+\mxexuse{5}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $145$ and the rate or common difference/ratio by $7$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{6}{\mxdate*{2026-10-01}}{B: 1 h -- C: 2 h}{Review and formative assessment}{Number Sequences}
+\begin{objectives}\begin{itemize}\item Choose the right model.\item Use the formulas.\item Analyse one's own mistakes.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $5\,\%$ of $180$. \mxblank{$9$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $8\,\%$ decrease. \mxblank{$0.92$}\item Give the common difference of $12,12+9,12+2\times9,\ldots$. \mxblank{$r=9$}\item Calculate $u_4$ if $u_0=19$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: choose the right model and use the formulas.\end{prerequisites}
+
+\begin{activity}
+Sort eight situations into three categories: arithmetic, geometric, neither. For each situation, underline the word or piece of data that justifies the choice, then choose the appropriate formula.
+
+\end{activity}
+\begin{solution}A constant absolute change indicates the arithmetic model; a constant percentage or multiplier indicates the geometric model; otherwise neither is guaranteed. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}Before calculating, identify: type of sequence, first index, common difference or ratio, and the term or sum asked for. The conclusion states the unit and the index.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}A constant absolute change indicates the arithmetic model; a constant percentage or multiplier indicates the geometric model; otherwise neither is guaranteed.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item The sequence $(u_n)$ satisfies $u_0=160$ and $u_{n+1}=u_n+3$. Write $u_n$ then calculate $u_{12}$.\item A quantity is worth $520$ and decreases by $3\,\%$ per period. Write $v_n$ and calculate $v_5$.\item For each sequence, say whether the model is arithmetic or geometric and justify it with a difference or a quotient.\end{enumerate}
+\end{exercise}
+\begin{solution}$u_n=160+3n$ and $u_{12}=196$, for the second one, $q=0.97$ and $v_n=520\times q^n$; the third item is justified by the constant difference or quotient,\end{solution}
+
+\mxfurther{Calao, p. 29, no.~49--52}
+\mxexuse{6}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $150$ and the rate or common difference/ratio by $2$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi

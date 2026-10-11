@@ -75,6 +75,40 @@ def compile(src_dir, tex_input, jobname, outdir, engine='pdflatex', max_runs=4):
     return Result(outdir / (jobname + '.pdf'), log, run, time.time() - t0)
 
 
+# ---- French/English page balance -------------------------------------------------------------------------------------
+def _blocks(outdir, job):
+    """Block lengths in pages from <job>.mxb (lines 'block first-page'; the last line marks the end)."""
+    f = Path(outdir) / (job + '.mxb')
+    rows = [tuple(map(int, l.split())) for l in f.read_text().split('\n') if l.strip()] if f.exists() else []
+    return {rows[i][0]: rows[i + 1][1] - rows[i][1] for i in range(len(rows) - 1)}
+
+
+def _pads(outdir, job):
+    f = Path(outdir) / (job + '.mxpad')
+    return {int(a): int(b) for a, b in re.findall(r'\\mxsetpad\{(\d+)\}\{(\d+)\}', f.read_text())} if f.exists() else {}
+
+
+def compile_pair(src_dir, inputs, jobs, outdir, max_rounds=3, **kw):
+    """Compile a French and an English main (inputs/jobs: {'fr': ..., 'en': ...}) so that every block (unit or
+    session) has the same number of pages in both: the shorter side of a block gets lined notes pages
+    (\\mxsetpad in <job>.mxpad, read by mxbook.cls). Returns {'fr': Result, 'en': Result}."""
+    outdir = Path(outdir)
+    for _ in range(max_rounds):
+        res = {lang: compile(src_dir, inputs[lang], jobs[lang], outdir, **kw) for lang in ('fr', 'en')}
+        raw = {lang: {k: v - _pads(outdir, jobs[lang]).get(k, 0) for k, v in _blocks(outdir, jobs[lang]).items()} for lang in res}
+        if set(raw['fr']) != set(raw['en']):
+            raise CompileError(f'{jobs["fr"]}/{jobs["en"]}: different block structure in French and English')
+        want = {lang: {k: max(raw['fr'][k], raw['en'][k]) - raw[lang][k] for k in raw[lang]} for lang in res}
+        want = {lang: {k: v for k, v in w.items() if v} for lang, w in want.items()}
+        if all(want[lang] == _pads(outdir, jobs[lang]) for lang in res):
+            if any(want.values()):
+                print(f'  balanced: {sum(want["fr"].values())} notes page(s) in French, {sum(want["en"].values())} in English')
+            return res
+        for lang in res:
+            (outdir / (jobs[lang] + '.mxpad')).write_text(''.join('\\mxsetpad{%d}{%d}\n' % kv for kv in sorted(want[lang].items())))
+    raise CompileError(f'{jobs["fr"]}/{jobs["en"]}: page balance did not settle after {max_rounds} rounds')
+
+
 # ---- cache -------------------------------------------------------------------------------------------------------
 CACHE = OUT / 'tex-cache.json'
 

@@ -58,7 +58,7 @@ CHECKS = [
     ('catalogue up to date', [PY, '-m', 'mxbuild', 'catalog', '--check']),
     ('dist/ matches site/', [PY, '-m', 'mxbuild', 'site', '--check']),
     ('banned content', [PY, 'tests/banned.py']),
-    ('STMG twins', [PY, 'scripts/check-stmg-twins.py']),
+    ('FR/EN twin parity (maths and figures)', [PY, 'tests/twin_parity.py']),
     ('twin tool unit tests', [PY, 'tests/test_twin.py']),
     ('English units up to date', [PY, '-m', 'mxbuild', 'twin', 'check']),
     ('TeX unit lint', [PY, 'tests/tex_lint.py']),
