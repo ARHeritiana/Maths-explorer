@@ -1,4 +1,4 @@
-"""Build the Terminale STMG resource PDFs from content/latex/stmg (French and English twins).
+"""Build the Terminale STMG resource PDFs from content/tex/courses/stmg (French and English twins).
 
 pdfLaTeX without shell escape compiles livret-eleve / livret-prof and their -en twins. Level-1
 bookmarks give the eight chapters, the tests and the formula sheet; the first 'Séance'/'Session'
@@ -10,7 +10,7 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'content/latex/stmg'
+SRC = ROOT / 'content/tex/courses/stmg'
 BUILD = ROOT / 'build/tex/stmg'
 OUT = ROOT / 'dist/resources'
 

@@ -9,7 +9,7 @@ import argparse, collections, json, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'content/latex'
+SRC = ROOT / 'content/tex/courses'
 OUT = ROOT / 'docs/TEX_INVENTORY.md'
 
 DEF_PATTERNS = {

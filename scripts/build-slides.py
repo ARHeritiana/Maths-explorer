@@ -1,6 +1,6 @@
 """Extract classroom slide decks (French + English) from the bilingual LaTeX sources.
 
-Premiere (C01-C10), Seconde (S01-S15) and STMG (chapitres/01-08) are parsed from content/latex;
+Premiere (C01-C10), Seconde (S01-S15) and STMG (chapitres/01-08) are parsed from content/tex/courses;
 decks are written to dist/slides/data/<chapter id>.json and indexed in dist/slides/data/index.json.
 Teacher-only material (solutions boxes, \\enseignant, \\prof, fluency drills) is never included.
 Hand-authored decks (content/slides/*.json) are merged into the index unchanged.
@@ -9,7 +9,7 @@ import json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'content/latex'
+SRC = ROOT / 'content/tex/courses'
 OUT = ROOT / 'dist/slides/data'
 CATALOG = json.loads((ROOT / 'dist/resources/catalog.json').read_text())
 CH = {c['id']: c for c in CATALOG['chapters']}

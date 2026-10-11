@@ -6,7 +6,7 @@ not compared, so a difference points to a changed figure or number. Exit status 
 """
 import re, sys
 from pathlib import Path
-D = Path(__file__).resolve().parents[1] / 'content/latex/stmg/manuel'
+D = Path(__file__).resolve().parents[1] / 'content/tex/courses/stmg/manuel'
 
 def nums(s):   # set of numbers: phrasing may repeat or drop a figure, but never change one
     s = re.sub(r'\{,\}', '.', s); s = re.sub(r'(?<=\d)\\,(?=\d)', '', s)   # decimal comma, thin-space thousands

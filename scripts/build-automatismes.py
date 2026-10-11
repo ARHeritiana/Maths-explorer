@@ -1,4 +1,4 @@
-"""Build the Seconde fluency sheets (starter routines) from content/latex/automatismes.
+"""Build the Seconde fluency sheets (starter routines) from content/tex/courses/automatismes.
 
 pdfLaTeX without shell escape compiles the four entries (student/teacher, French/English);
 each level-1 bookmark (one per sequence) becomes seconde-NN/fluency-student[-en].pdf and
@@ -10,7 +10,7 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'content/latex/automatismes'
+SRC = ROOT / 'content/tex/courses/automatismes'
 BUILD = ROOT / 'build/tex/automatismes'
 OUT = ROOT / 'dist/resources'
 

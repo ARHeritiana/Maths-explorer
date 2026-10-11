@@ -4,7 +4,7 @@ Usage:
   python3 scripts/build-tex-resources.py premiere --chapters 5            # pilot chapter, both languages
   python3 scripts/build-tex-resources.py premiere --chapters 5 --lang fr   # French only
 
-Sources live in content/latex/<course>/. French entries are eleve.tex and
+Sources live in content/tex/courses/<course>/. French entries are eleve.tex and
 professeur.tex; English twins are eleve-en.tex and professeur-en.tex (babel
 english, translated prose, untouched mathematics and figures). While a course is
 being converted chapter by chapter, --pilot-entry names a reduced twin entry
@@ -21,7 +21,7 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'content/latex'
+SRC = ROOT / 'content/tex/courses'
 BUILD = ROOT / 'build/tex'
 OUT = ROOT / 'dist/resources'
 
@@ -314,7 +314,7 @@ def main():
         ledger = ROOT / 'docs/TEX_CONVERSION.json'
         done = set(json.loads(ledger.read_text())['converted']) if ledger.exists() else set()
         done |= {chapters[n]['id'] for n in a.chapters}
-        ledger.write_text(json.dumps({'note': 'Chapters whose French and English PDFs are compiled from content/latex.', 'converted': sorted(done)}, indent=2) + '\n')
+        ledger.write_text(json.dumps({'note': 'Chapters whose French and English PDFs are compiled from content/tex/courses.', 'converted': sorted(done)}, indent=2) + '\n')
     if course == 'terminale' and {'fr', 'en'} <= set(a.lang):
         register_terminale(catalog, chapters, placed, a.appendices)
     for (lang, number), pages in results.items():

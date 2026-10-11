@@ -8,7 +8,7 @@ import argparse,concurrent.futures,hashlib,json,re,shutil,subprocess,tempfile
 from pathlib import Path
 from enrichment_sections import sections
 ROOT=Path(__file__).resolve().parents[1]
-SOURCE=ROOT/'content/latex/enrichment';SOURCE.mkdir(parents=True,exist_ok=True)
+SOURCE=ROOT/'content/tex/courses/enrichment';SOURCE.mkdir(parents=True,exist_ok=True)
 OUT=ROOT/'dist/resources/enrichment'
 labels={'notes':['Leçon et méthode','Lesson and method'],'exercises':['Exercices progressifs','Progressive exercises'],'problems':['Problème de synthèse','Synthesis problem'],'solutions':['Solutions détaillées','Worked solutions']}
 special={'\\':r'\textbackslash{}','&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','{':r'\{','}':r'\}'}

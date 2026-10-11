@@ -1,6 +1,6 @@
 """Publish the LaTeX sources with the site and refuse anything that identifies the owner.
 
-Copies content/latex/** (TeX, class, style and bibliography files, figures) to
+Copies content/tex/courses/** (TeX, class, style and bibliography files, figures) to
 dist/sources/ and writes dist/sources/manifest.json, which the "Sources" page
 reads. The scan fails on personal-storage URLs, e-mail addresses and the names
 that earlier builds printed in running footers. Run it after editing sources.
@@ -9,7 +9,7 @@ import json, re, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'content/latex'
+SRC = ROOT / 'content/tex/courses'
 OUT = ROOT / 'dist/sources'
 KEEP = {'.tex', '.sty', '.cls', '.bib', '.bst', '.png', '.jpg', '.jpeg', '.pdf', '.svg'}
 BANNED = re.compile(r'(drive|docs)\.google\.com|dropbox\.com|onedrive|sharepoint|[\w.+-]+@[\w-]+\.[\w.]+|'

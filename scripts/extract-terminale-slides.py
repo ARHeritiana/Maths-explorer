@@ -1,7 +1,7 @@
 """One-off helper: French slide drafts for Terminale from the supplied LaTeX notes.
 
 Usage: python3 scripts/extract-terminale-slides.py [outdir]
-Reads content/latex/terminale/chapitres/C01..C14.tex (French) and the -en twins (figure code only) and writes
+Reads content/tex/courses/terminale/chapitres/C01..C14.tex (French) and the -en twins (figure code only) and writes
 <outdir>/terminale-NN.fr.json (default content/slides/draft; French only, teacher-only boxes excluded). Each slide may carry
 "f": [[n, n]] (figure numbers in the French and English chapter sources) and the draft holds "figs" / "figs_en" (the figure
 code). The English decks content/slides/terminale-NN.json are authored from these drafts; build-slides.py renders the figures.
@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('bs', ROOT / 'scripts/build-slides.py'); bs = importlib.util.module_from_spec(spec); spec.loader.exec_module(bs)
 
 OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / 'content/slides/draft'; OUT.mkdir(parents=True, exist_ok=True)
-CH = ROOT / 'content/latex/terminale/chapitres'
+CH = ROOT / 'content/tex/courses/terminale/chapitres'
 TOK = re.compile(r'\\subsection\{([^}]*)\}|\\begin\{(retenir|methode)\}\{([^}]*)\}|\\paragraph\{([^}]*)\}')
 for n in range(1, 15):
     src, figs = bs.extract_figs((CH / f'C{n:02d}.tex').read_text(encoding='utf8'))

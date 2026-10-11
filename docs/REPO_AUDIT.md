@@ -111,5 +111,5 @@ Enrichment: `xelatex`, one pass per file, as its builder does), 11 October 2026,
 
 Enrichment: 98 files, 100 pages in total, 127.0 s. **Total: 622 s** (about 10.4 min) for a full
 two-pass rebuild of every book and file, before splitting and restyling. Every FR/EN pair has equal page counts. STMG takes
-51 % of the time (65 to 95 s per entry). Automatismes reports 1 to 3 overfull boxes per entry (the handoff states 0; the
-builder does not count them).
+51 % of the time (65 to 95 s per entry). Automatismes reports 1 to 3 overfull boxes per entry (the handoff states 0; its
+builder prints the count but does not fail on it).
