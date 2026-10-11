@@ -35,7 +35,7 @@ for r in c['resources']:
     ep=len(fitz.open(path))
     if ep!=r['pages']:r['englishPages']=ep   # excerpts cut at section starts can differ by a page between editions
     else:r.pop('englishPages',None)
-    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if (r['chapter'] in converted or r.get('texBuilt')) else ('local-machine' if r.get('translation') in (None,'tex-source') else r['translation']))
+    r.update(url=[fr,en],language='bilingual',bytes=(ROOT/'dist'/fr.removeprefix('./')).stat().st_size,englishBytes=path.stat().st_size,translation='tex-source' if ((r['chapter'] in converted and not r.get('legacy')) or r.get('texBuilt')) else ('local-machine' if r.get('translation') in (None,'tex-source') else r['translation']))
 for source in c['sources']:source.pop('url',None);source.pop('id',None)
 catalog.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n')
 companion=ROOT/'dist/js/resources-data.js';c=json.loads(companion.read_text().split('=',1)[1].rstrip().rstrip(';'))

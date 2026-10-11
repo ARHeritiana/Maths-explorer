@@ -2462,7 +2462,7 @@ export const resourceCatalog = {
           "end": 53,
           "path": "resources/terminale-algorithms-eleve.pdf",
           "pages": 3,
-          "bytes": 219438,
+          "bytes": 219435,
           "englishPath": "resources/terminale-algorithms-eleve-en.pdf",
           "englishBytes": 216957
         },

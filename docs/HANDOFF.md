@@ -104,8 +104,11 @@ a scratchpad script (`check_tex.py`) and may need rewriting; `tests/slides_check
    - Slide decks follow the `math-interactive-slides` skill only in part (1280x720 stage, MathJax SVG, draggable handles, step reveal
      for Seconde answers are in place; one parameter object drives text and canvas per widget). No new apps were authored.
 
-6. Retire the overlay tooling (`patch-english-pdfs.py`, `fix-french-glyphs.py`, ledgers; keep `docs/translation-corrections.json`)
-   only after Terminale is built from TeX; update `docs/AUDIT.md` and `docs/RESOURCE_LIBRARY.md`; finish the English proof-read.
+6. Overlay tooling: NOT retired, on purpose. 156 `shared` resources and 17 legacy Terminale files (per-chapter guided practice and MCQ, banks
+   0 and 1) are still overlay PDFs, so `patch-english-pdfs.py`, `fix-french-glyphs.py`, the ledgers and `docs/translation-*.json` stay.
+   They can go only after those files are rebuilt from TeX or dropped. `docs/RESOURCE_LIBRARY.md` is updated; `docs/AUDIT.md` (dated
+   10 October) was not edited. Remaining English proof-read: overlay translations were reviewed in the earlier audit; the TeX twins
+   were checked by scripts and sampled by eye only.
 
 ## Final report must include
 The Terminale source limits (item 1), the Calao decision (item 2), the [VERIFY] flags (sampling fluctuation 2 sigma/sqrt(n) in

@@ -134,11 +134,18 @@ Resources are being rebuilt from the owner-supplied LaTeX sources in `content/la
 - Build: `python3 scripts/build-tex-resources.py premiere --chapters 5 --pilot-entry pilot-05` (pdfLaTeX, no shell escape, products in `build/`), then `scripts/style-resource-pdfs.py <pdf…>` and `scripts/finalize-resources.py`.
 - `docs/TEX_CONVERSION.json` lists the chapters already built from TeX (catalogue field `translation: "tex-source"`). Pilot: `premiere-05`. All other resources remain the earlier overlay PDFs until converted.
 
-## TeX-built resources (update)
-Seconde (15 sequences and their fluency sheets), Première (10 chapters and revision resources) and Terminale STMG (8 chapters,
-tests, formula sheet) are compiled from `content/latex` in French and English with matching page counts
-(`scripts/build-tex-resources.py`, `scripts/build-automatismes.py`, `scripts/build-stmg.py`, then
-`scripts/style-resource-pdfs.py` and `scripts/finalize-resources.py`). Terminale PDFs still come from the earlier import:
-the owner-supplied source in hand is the 6 September version, older than the published 7 September revision.
-`content/latex/stmg/manuel/extraits-calao*.tex` reproduces textbook exercise statements: [VERIFY] publication rights before
-keeping them in a public repository.
+## TeX-built resources (update, 11 October 2026)
+Seconde (15 sequences, fluency sheets), Première (10 chapters, revision resources, coverage matrix and annual schedule for teachers),
+Terminale specialty (14 chapters, algorithms, proofs, oral workshops, annual assessments) and Terminale STMG (8 chapters, tests,
+formula sheet) are compiled from `content/latex` in French and English with matching page counts
+(`scripts/build-tex-resources.py <course> --chapters ... --appendices`, `scripts/build-automatismes.py`, `scripts/build-stmg.py`; then
+`sh scripts/restyle-changed.sh`, which runs `style-resource-pdfs.py`, `finalize-resources.py` and `publish-sources.py`).
+- Terminale comes from the 6 September owner-supplied source (student 95 pages, teacher 262), thinner than the earlier published
+  "Refonte 7 sept" PDFs (166 and 346 pages). Per chapter: complete chapter, teacher chapter, research activity, notes, progressive exercises,
+  homework, teaching notes and solutions. Guided practice, MCQ and review PDFs, and the fluency and methods banks, have no counterpart in
+  that source: they remain the earlier overlay PDFs (catalogue `translation: "local-machine"`, `legacy: true`).
+- Terminale STMG: the textbook extracts were replaced by 55 original application exercises (`manuel/exo-A..D`), checked with
+  `scripts/check-stmg-twins.py`; the booklet only cites textbook page and exercise numbers.
+- Excerpts cut at section starts can differ by one page between editions (catalogue `englishPages`).
+- The overlay tooling (`patch-english-pdfs.py`, `fix-french-glyphs.py`, translation ledgers and corrections) is still needed: the
+  156 `shared` resources and the 17 legacy Terminale files are overlay PDFs.

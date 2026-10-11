@@ -180,6 +180,8 @@ def register_terminale(catalog, chapters, placed, appendices):
     first = idx[0]; mine = sorted((res[i] for i in idx), key=order)
     catalog['resources'] = [r for r in res if r['course'] != 'terminale']
     catalog['resources'][first:first] = mine
+    for r in catalog['resources']:   # no counterpart in the 6 September source: kept as the earlier overlay files
+        if r['course'] == 'terminale' and r['id'].rsplit('-', 1)[-1] in ('practice', 'assessment') and r['chapter'] != 'terminale-revision': r['legacy'] = True
     for r in catalog['resources']:   # the year's assessments come from the TeX books; the other banks stay legacy overlay files
         if r['id'] == 'terminale-revision-bank-2':
             r['texBuilt'] = True
