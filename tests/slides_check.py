@@ -10,7 +10,7 @@ def strip_text(m): return re.sub(r'\\(?:text|mathrm|mbox|textrm)\{[^{}]*\}', '',
 def math(h): return sorted(norm(strip_text(x)) for x in re.findall(r'\\\(.*?\\\)|\\\[.*?\\\]', h, re.S))
 def tags(h): return re.findall(r'</?(?:b|i|u|code|sup|br|ul|ol|li)>', re.sub(r'\\\(.*?\\\)|\\\[.*?\\\]', '', h, flags=re.S))
 bad = 0
-for n in (int(a) for a in sys.argv[1:]) or range(1, 15):
+for n in [int(a) for a in sys.argv[1:]] or range(1, 15):
     fr = json.loads((ROOT / f'content/slides/draft/terminale-{n:02d}.fr.json').read_text(encoding='utf8'))['slides']
     p = ROOT / f'content/slides/terminale-{n:02d}.json'
     if not p.exists(): print('missing', p.name); bad += 1; continue

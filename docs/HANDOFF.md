@@ -93,5 +93,37 @@ Change sources, then prove it: rebuild, compare French text with the previous PD
 heads), view sample pages, run `make check`, then commit with what was verified and how. Never claim a page was viewed
 unless it was rendered and looked at.
 
+## Capability checkpoint (2026-10-11; continuation 2026-10-12)
+- Step 0 resumed and verified. Step 1 (B4/B5) has not started; wait for the requested go-ahead.
+- Prerequisite fixes: remove stray `center` and trailing blank lines from Terminale 02's final activity slide;
+  restore its missing English figure caption; fix `tests/slides_check.py` so the default invocation actually checks
+  all 14 authored decks. French/English maths and HTML structure now agree. No TeX content or resource PDFs changed.
+- In the verified 11 October runtime, `make check` passed all 18 checks, including the bilingual browser suite and
+  every slide in all 47 decks. Additional scan of PDF link annotations and SVGs: no prohibited content.
+- pdfLaTeX (TeX Live 2023) compiled `content/tex/core/example.tex`; its page was rendered and viewed. All 31 external
+  core packages resolved. Node 24.19.0, Python 3.12.14, PyMuPDF 1.26.6, Playwright 1.56.0 and Chromium 141.0.7390.37
+  worked. Full `make tex FORCE=1` was not run. The documented optional `texlive-fonts-extra` and PSTricks packages
+  were absent; no requested check was blocked. French and science packages were in the recovered local TeX tree.
+  Browser tests used `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium`.
+- GitHub reads and branch writes are verified through the connected integration. The session-log commit is
+  `0d0f2a41d96723689ee494a8426d9ac7c966086d`; it also removes the personal description from this document.
+  Direct command-line Git has no GitHub credentials. Only `redesign/2026-10-11` is updated; no PR is opened.
+- Complete private capability Site: https://maths-explorer-check-20261011.warmshrew4.chatgpt.site
+  Active project: `appgprj_6acbc305fc488191a7e53ccd7a7dd959`; Site source commit:
+  `894a37ac52a9db00ac774706fcb25ad1c59796f1`. The deployment archive contained all 1,722 `dist/` files, 149,278,140
+  bytes, verified byte-for-byte, plus hosting metadata. Saved version:
+  `appgprj_6acbc305fc488191a7e53ccd7a7dd959~appgver_6245e7edc0c08191a07fc15ed89f35a3`.
+  The earlier repository hosting manifest points at a different project; reuse this capability Site for preview updates.
+- Hosted home, resource library, chapter PDF download and `slides/player.html` were checked in French and English.
+  The downloaded Seconde 01 PDFs matched the repository exactly. Both languages of all four samples were rendered
+  and viewed; slide navigation and SVG loading passed. HTML, slide CSS/JS, slide JSON and SVG asset bytes matched.
+  Browser QA used the runtime proxy with certificate bypass limited to that QA browser. No site code or access
+  setting was changed for QA.
+- Audience: private, current account only, no invited viewers or groups. Public access has not been requested.
+- Continuation after the pause: the earlier checkout and its extracted toolchain are unavailable. GitHub and the
+  published Site remain intact. The source fixes were reconstructed from the unchanged GitHub parent and compared
+  with the exact tested slide deck recovered from the preserved deployment archive. Restore a full checkout and
+  the toolchain before starting B4/B5 or claiming a fresh full build. The retained test results are from 11 October.
+
 ## Session log
 - 2026-10-11: ChatGPT session started
