@@ -47,7 +47,7 @@ Le rang $30$ correspond à l'année $2025+30=2055$ : selon ce modèle, l'entrepr
 \begin{enumerate}[label=\alph*.]
 \item Calculer $\displaystyle\sum_{i=1}^{365}i=1+2+\cdots+365$.
 \item Calculer $\displaystyle\sum_{k=100}^{365}k=100+101+\cdots+365$. Préciser le nombre de termes de cette somme.
-\item Pour se constituer une épargne, Lova applique un défi : le $k$-ième jour de l'année, elle dépose $k$ centimes dans une tirelire ($1$ centime le $1^{\text{er}}$ jour, $2$ centimes le $2^{\text{e}}$ jour, etc.). Quelle somme, en euros, aura-t-elle déposée au total sur une année de $365$ jours ? Et entre le $100^{\text{e}}$ et le $365^{\text{e}}$ jour inclus ?
+\item Pour se constituer une épargne, Lova applique un défi : le $k$-ième jour de l'année, elle dépose $k$ centimes dans une tirelire ($1$ centime le 1\textsuperscript{er} jour, $2$ centimes le 2\textsuperscript{e} jour, etc.). Quelle somme, en euros, aura-t-elle déposée au total sur une année de $365$ jours ? Et entre le 100\textsuperscript{e} et le 365\textsuperscript{e} jour inclus ?
 \end{enumerate}
 }{%
 \begin{enumerate}[label=\alph*.]
@@ -57,7 +57,7 @@ $\displaystyle\sum_{i=1}^{365}i=365\times\frac{1+365}{2}=365\times183=66\,795$.
 $\displaystyle\sum_{k=100}^{365}k=266\times\frac{100+365}{2}=266\times232{,}5=61\,845$.
 
 Contrôle : $66\,795-61\,845=4\,950=\dfrac{99\times100}{2}$, qui est bien la somme des entiers de $1$ à $99$.
-\item Le total déposé sur l'année est $66\,795$ centimes, soit $667{,}95$~€. Entre le $100^{\text{e}}$ et le $365^{\text{e}}$ jour, Lova dépose $61\,845$ centimes, soit $618{,}45$~€.
+\item Le total déposé sur l'année est $66\,795$ centimes, soit $667{,}95$~€. Entre le 100\textsuperscript{e} et le 365\textsuperscript{e} jour, Lova dépose $61\,845$ centimes, soit $618{,}45$~€.
 \end{enumerate}
 }{5}
 
@@ -120,20 +120,20 @@ Pour chaque proposition, dire si elle est vraie ou fausse. Justifier la réponse
 % Chapitre 2 -- Fonctions exponentielles
 % -----------------------------------------------------------------------------
 \DefExo{7}{Prolonger une suite géométrique en fonction}{%
-Au $1^{\text{er}}$ janvier 2024, la puissance des panneaux solaires installés dans une région est de $240$ mégawatts (MW). On estime que cette puissance augmente de $12\,\%$ par an. Pour tout entier naturel $n$, on note $u_n$ la puissance installée, en MW, au $1^{\text{er}}$ janvier de l'année $2024+n$ ; on admet que $(u_n)$ est une suite géométrique.
+Au 1\textsuperscript{er} janvier 2024, la puissance des panneaux solaires installés dans une région est de $240$ mégawatts (MW). On estime que cette puissance augmente de $12\,\%$ par an. Pour tout entier naturel $n$, on note $u_n$ la puissance installée, en MW, au 1\textsuperscript{er} janvier de l'année $2024+n$ ; on admet que $(u_n)$ est une suite géométrique.
 \begin{enumerate}
 \item Donner la raison de la suite $(u_n)$ et exprimer $u_n$ en fonction de $n$.
-\item On souhaite estimer la puissance installée à des dates quelconques. Proposer l'expression d'une fonction $f$ donnant la puissance installée $x$ années après le $1^{\text{er}}$ janvier 2024, $x$ étant un nombre réel positif.
-\item Estimer, à $0{,}1$~MW près, la puissance installée au $1^{\text{er}}$ janvier 2026, au $1^{\text{er}}$ avril 2027 et au $1^{\text{er}}$ juillet 2029. On assimile un trimestre à $0{,}25$ an.
+\item On souhaite estimer la puissance installée à des dates quelconques. Proposer l'expression d'une fonction $f$ donnant la puissance installée $x$ années après le 1\textsuperscript{er} janvier 2024, $x$ étant un nombre réel positif.
+\item Estimer, à $0{,}1$~MW près, la puissance installée au 1\textsuperscript{er} janvier 2026, au 1\textsuperscript{er} avril 2027 et au 1\textsuperscript{er} juillet 2029. On assimile un trimestre à $0{,}25$ an.
 \end{enumerate}
 }{%
 \begin{enumerate}
 \item Une hausse de $12\,\%$ correspond au coefficient $1+\dfrac{12}{100}=1{,}12$. La raison est $q=1{,}12$ et $u_n=240\times1{,}12^n$.
 \item On prolonge la suite aux réels positifs : $f(x)=240\times1{,}12^x$ (on a bien $f(n)=u_n$ pour tout entier $n$).
 \item \begin{itemize}
-\item $1^{\text{er}}$ janvier 2026 : $x=2$ et $f(2)=240\times1{,}12^2=301{,}056\approx301{,}1$~MW.
-\item $1^{\text{er}}$ avril 2027 : $3$ ans et un trimestre, soit $x=3{,}25$ ; $f(3{,}25)=240\times1{,}12^{3{,}25}\approx346{,}9$~MW.
-\item $1^{\text{er}}$ juillet 2029 : $5$ ans et demi, soit $x=5{,}5$ ; $f(5{,}5)=240\times1{,}12^{5{,}5}\approx447{,}6$~MW.
+\item 1\textsuperscript{er} janvier 2026 : $x=2$ et $f(2)=240\times1{,}12^2=301{,}056\approx301{,}1$~MW.
+\item 1\textsuperscript{er} avril 2027 : $3$ ans et un trimestre, soit $x=3{,}25$ ; $f(3{,}25)=240\times1{,}12^{3{,}25}\approx346{,}9$~MW.
+\item 1\textsuperscript{er} juillet 2029 : $5$ ans et demi, soit $x=5{,}5$ ; $f(5{,}5)=240\times1{,}12^{5{,}5}\approx447{,}6$~MW.
 \end{itemize}
 Selon ce modèle, la puissance installée serait d'environ $301{,}1$~MW, $346{,}9$~MW et $447{,}6$~MW à ces trois dates.
 \end{enumerate}
