@@ -1,5 +1,5 @@
 """PDF hygiene (personal-space links, stray per-file AI notices, banned content), then regenerate the catalogue from the manifest."""
-import json,re
+import json
 from pathlib import Path
 import fitz
 ROOT=Path(__file__).resolve().parents[1]

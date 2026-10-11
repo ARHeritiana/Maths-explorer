@@ -5,7 +5,7 @@ bookmarks give the eight chapters, the tests and the formula sheet; the first 'S
 bookmark of a chapter starts its activities excerpt. Run scripts/style-resource-pdfs.py and
 scripts/finalize-resources.py afterwards.
 """
-import json, re, subprocess, sys
+import re, sys
 from pathlib import Path
 import fitz
 
@@ -18,11 +18,7 @@ OUT = ROOT / 'dist/resources'
 
 
 def compile_pdf(entry):
-    res = tex.compile(SRC, entry, entry[:-4], BUILD, max_runs=4)
-    und = res.undefined; d = fitz.open(res.pdf)
-    print(f'  {entry[:-4]}: {len(d)} pages, {len(und)} undefined references, {res.overfull} overfull boxes')
-    if und: sys.exit('Undefined references in ' + entry)
-    return d
+    return fitz.open(tex.compile(SRC, entry, entry[:-4], BUILD, max_runs=4).report(entry[:-4]).pdf)
 
 
 def save(d, a, b, target, title):

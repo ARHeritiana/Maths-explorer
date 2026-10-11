@@ -16,7 +16,7 @@ chapter, teacher chapter, and excerpts (activities, notes, exercises,
 assessment, corrections). Run scripts/style-resource-pdfs.py afterwards, then
 scripts/finalize-resources.py.
 """
-import argparse, json, re, subprocess, sys
+import argparse, re, sys
 from pathlib import Path
 import fitz
 
@@ -64,12 +64,10 @@ def tidy(s): return re.sub(r'\s+', ' ', s).strip()
 
 
 def compile_pdf(course, entry, jobname, prof, defs=''):
-    """Two or three pdfLaTeX passes in the source directory; returns the PDF path."""
+    """Compile in the source directory until stable (mxbuild.tex); returns the PDF path."""
     res = tex.compile(SRC / course, ((r'\def\versionprof{1}' if prof else '') + defs + r'\input{%s}' % entry) if (prof or defs) else entry,
                       jobname, BUILD / course)
-    bad = res.undefined
-    print(f'  {jobname}: {res.pages()} pages, {len(bad)} undefined references, {res.overfull} overfull boxes')
-    if bad: sys.exit('Undefined references:\n' + '\n'.join(bad))
+    res.report(jobname)
     return res.pdf
 
 

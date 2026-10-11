@@ -14,7 +14,7 @@ for the 4 STMG exercise files only. Prose drifts, and fixes made in one language
    both languages is not used.
 2. **The French unit is the source.** It is written in the canonical environments of `content/tex/core/` and holds all
    mathematics, TikZ, listings and `\includegraphics`.
-3. **The English unit is generated** by the twin tool (`python -m mxbuild twin`, prototype `scripts/twin_prototype.py`) from the French unit and a reviewed translation table
+3. **The English unit is generated** by the twin tool (`python -m mxbuild twin`, `build/mxbuild/twin.py`) from the French unit and a reviewed translation table
    (`<unit>.en.json`, stable segment ids, English text, review status). The generated file starts with
    `% GENERATED, edit the French unit or the translation table` and is committed so people can compile locally.
 4. **Prose only is translated.** The tool splits the French unit into a locked skeleton and prose segments. Inline maths
@@ -35,7 +35,7 @@ for the 4 STMG exercise files only. Prose drifts, and fixes made in one language
 Existing English twins are aligned paragraph by paragraph into translation tables (status `aligned`, not yet `reviewed`).
 A pair is refused when its skeleton or its maths differ; refused units are listed and fixed by hand before migration.
 
-Prototype measurement (`python3 scripts/twin_prototype.py content/latex`, before any source change): **164 of 218 pairs align
+Prototype measurement (first prototype, since replaced by `build/mxbuild/twin.py`; before any source change): **164 of 218 pairs align
 automatically, 12,777 segments.** Of the 54 refused pairs, 39 differ only in ways the new system removes
 (18 entry, main and preamble files, which are replaced by the class and generated mains; 21 units with per-language
 figure inputs, include lists, STMG dates or decimals in table text); the other 15 are real divergences to review: Automatismes `ch02`, `ch13` (an English-only `\clearpage`), Terminale `E5` (a `\clearpage` moved

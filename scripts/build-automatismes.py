@@ -5,7 +5,7 @@ each level-1 bookmark (one per sequence) becomes seconde-NN/fluency-student[-en]
 fluency-teacher[-en].pdf, where NN = bookmark index + 1. Run scripts/style-resource-pdfs.py
 and scripts/finalize-resources.py afterwards.
 """
-import json, re, subprocess, sys
+import re, sys
 from pathlib import Path
 import fitz
 
@@ -18,11 +18,7 @@ OUT = ROOT / 'dist/resources'
 
 
 def compile_pdf(entry):
-    res = tex.compile(SRC, entry, entry[:-4], BUILD)
-    und = res.undefined; d = fitz.open(res.pdf)
-    print(f'  {entry[:-4]}: {len(d)} pages, {len(und)} undefined references, {res.overfull} overfull boxes')
-    if und: sys.exit('Undefined references in ' + entry)
-    return d
+    return fitz.open(tex.compile(SRC, entry, entry[:-4], BUILD).report(entry[:-4]).pdf)
 
 
 def main():

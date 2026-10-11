@@ -312,9 +312,9 @@ def generate(fr_text, table, statuses=('aligned', 'reviewed')):
     out = []
     for p in parts:
         if isinstance(p, int):
-            s = segs[p]; en = tr(s['text'])
+            s = segs[p]; missing = len(problems); en = tr(s['text']); missing = len(problems) > missing
             want = sorted(range(1, len(s['maths']) + 1)); got = sorted(int(x) for x in PLACEHOLDER.findall(en))
-            if got != want and en is not s['text']:
+            if got != want and not missing:
                 problems.append(f'placeholders {got} instead of {want} in [{seg_id(s["text"])}]')
             en = PLACEHOLDER.sub(lambda m: _translate_math(s['maths'][int(m.group(1)) - 1], tr) if int(m.group(1)) <= len(s['maths']) else m.group(0), en)
             out.append(en)

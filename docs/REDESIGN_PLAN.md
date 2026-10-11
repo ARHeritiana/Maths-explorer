@@ -71,7 +71,7 @@ for large boxes, `tcolorbox` for small ones; `\newcounter`; `\needspace`; `\ifmx
 (`keypoint`, `definition`, `theorem`, `method`, `example`, `proof`, `pitfall`, `activity`, `exercise`, `application`,
 `solution`, `teachernote`, `homework`, `exitticket`, `figurebox`, `fluency`) with French labels from `mx-i18n.sty`.
 Mapping from current names: `docs/TEX_INVENTORY.md` plus a hand-checked table in `docs/TEX_STYLE_GUIDE.md`.
-B2. `mxbuild twin` (prototype `scripts/twin_prototype.py`, section 4) with tests. B3. Migrate per course in the order Automatismes, STMG,
+B2. `mxbuild twin` (`build/mxbuild/twin.py`, section 4) with tests. B3. Migrate per course in the order Automatismes, STMG,
 Seconde, Première, Terminale, Enrichment: rewrite the French unit into canonical environments (mechanical, scripted,
 reviewed by diff), align the old English twin into the table, generate `unit.en.tex`, compile both editions in both
 languages, compare page counts and render a page sample before/after (viewed). B4. Generated mains, precompiled format,
@@ -100,7 +100,7 @@ tables (status `reviewed`); [VERIFY] list resolved with the owner.
 
 ## 4. TeX prototype result
 
-`scripts/twin_prototype.py` (tokenizer: locked skeleton, prose segments, maths placeholders, figure text slots, rules for
+The first prototype (tokenizer: locked skeleton, prose segments, maths placeholders, figure text slots, rules for
 decimal separator and French punctuation spacing), run on the unchanged sources: **164 of 218 pairs align, 12,777
 segments**. The refused pairs and their causes are listed in `docs/ADR-0001-tex-i18n.md`. Not yet prototyped: the class
 and the precompiled format (B1, B4).

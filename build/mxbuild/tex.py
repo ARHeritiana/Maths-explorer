@@ -30,6 +30,13 @@ class Result:
     @property
     def overfull(self): return len(OVERFULL.findall(self.log))
 
+    def report(self, name):
+        """Print the usual one-line summary and stop the build on undefined references; returns self."""
+        und = self.undefined
+        print(f'  {name}: {self.pages()} pages, {len(und)} undefined references, {self.overfull} overfull boxes')
+        if und: raise CompileError('Undefined references in ' + name + ':\n' + '\n'.join(und))
+        return self
+
     def pages(self):
         import pymupdf
         with pymupdf.open(self.pdf) as d: return len(d)
