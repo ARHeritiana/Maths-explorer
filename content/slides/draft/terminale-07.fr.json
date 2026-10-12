@@ -32,7 +32,7 @@
 {
 "k": "concept",
 "t": "Bernoulli et binomiale",
-"b": "Une épreuve de Bernoulli a deux issues, succès de probabilité \\(p\\) et échec de probabilité \\(1-p\\). La variable indicatrice \\(B\\) vaut \\(1\\) en cas de succès et \\(0\\) sinon : \\(E(B)=p\\), \\(V(B)=p(1-p)\\).\nUn schéma de Bernoulli est une répétition de \\(n\\) épreuves identiques et indépendantes. Le nombre \\(X\\) de succès suit la loi binomiale \\(\\mathcal B(n,p)\\).",
+"b": "Une épreuve de Bernoulli a deux issues, succès de probabilité \\(p\\) et échec de probabilité \\(1-p\\). La variable indicatrice \\(B\\) vaut \\(1\\) en cas de succès et \\(0\\) sinon : \\(E(B)=p\\), \\(V(B)=p(1-p)\\).\nUn schéma de Bernoulli est une répétition de \\(n\\) épreuves identiques et indépendantes. Le nombre \\(X\\) de succès suit la loi binomiale \\(\\mathcal B\\pt{n;p}\\).",
 "a": null,
 "h": null
 },
@@ -60,7 +60,7 @@
 {
 "k": "example",
 "t": "Événements cumulés",
-"b": "Pour \\(X\\sim\\mathcal B(10,0{,}2)\\), \\(E(X)=2\\) et \\(V(X)=1{,}6\\). \\(P(X=2)=45(0{,}2)^2(0{,}8)^8\\simeq0{,}3020\\) et \\(P(X\\ge1)=1-0{,}8^{10}\\simeq0{,}8926\\). L'espérance n'est ni un résultat certain ni nécessairement le plus probable.",
+"b": "Pour \\(X\\sim\\mathcal B\\pt{10;0{,}2}\\), \\(E(X)=2\\) et \\(V(X)=1{,}6\\). \\(P(X=2)=45(0{,}2)^2(0{,}8)^8\\simeq0{,}3020\\) et \\(P(X\\ge1)=1-0{,}8^{10}\\simeq0{,}8926\\). L'espérance n'est ni un résultat certain ni nécessairement le plus probable.",
 "a": null,
 "h": null
 },
@@ -74,7 +74,7 @@
 {
 "k": "concept",
 "t": "Épreuves indépendantes, au-delà de deux issues",
-"b": "Pour des expériences indépendantes, la probabilité d'une liste de résultats est le produit des probabilités de ses composantes. L'univers est le produit cartésien des univers de chaque expérience. Par exemple, pour deux lancers indépendants d'un dé équilibré, l'univers contient les \\(36\\) couples \\((i,j)\\), \\(1\\le i,j\\le6\\), chacun de probabilité \\(\\frac{1}{36}\\). La probabilité que la somme soit \\(5\\) vaut \\(\\frac{4}{36}=\\frac{1}{9}\\), car les couples favorables sont \\((1,4),(2,3),(3,2),(4,1)\\).\nDans un schéma de Bernoulli, on code le succès par \\(1\\) et l'échec par \\(0\\) : l'univers est \\(\\{0,1\\}^n\\). L'indépendance concerne toute la succession ; une simple égalité entre deux probabilités observées ne suffit pas à la prouver.",
+"b": "Pour des expériences indépendantes, la probabilité d'une liste de résultats est le produit des probabilités de ses composantes. L'univers est le produit cartésien des univers de chaque expérience. Par exemple, pour deux lancers indépendants d'un dé équilibré, l'univers contient les \\(36\\) couples \\(\\pt{i;j}\\), \\(1\\le i,j\\le6\\), chacun de probabilité \\(\\frac{1}{36}\\). La probabilité que la somme soit \\(5\\) vaut \\(\\frac{4}{36}=\\frac{1}{9}\\), car les couples favorables sont \\(\\pt{1;4},\\pt{2;3},\\pt{3;2},\\pt{4;1}\\).\nDans un schéma de Bernoulli, on code le succès par \\(1\\) et l'échec par \\(0\\) : l'univers est \\(\\{0,1\\}^n\\). L'indépendance concerne toute la succession ; une simple égalité entre deux probabilités observées ne suffit pas à la prouver.",
 "a": null,
 "h": null
 },

@@ -69,14 +69,14 @@ Pour $f$ continue et $f(a)f(b)<0$, calculer $m=\frac{a+b}{2}$. Si $f(m)=0$, arr�
 \item Les variations et les limites se résument par
 \[\begin{array}{c|ccccccc}x&-\infty&&-1&&1&&+\infty\\\hline f'(x)&&+&0&-&0&+&\\\hline f(x)&-\infty&\nearrow&2&\searrow&-2&\nearrow&+\infty\end{array}\]
 Le signe de $f''$ donne la concavité sur $]-\infty,0]$ et la convexité sur $[0,+\infty[$.
-\item La convexité change en $0$, et $f(0)=0$ : le point d'inflexion est $(0,0)$. Sa tangente a pour équation $y=f(0)+f'(0)x=-3x$.
+\item La convexité change en $0$, et $f(0)=0$ : le point d'inflexion est $\pt{0;0}$. Sa tangente a pour équation $y=f(0)+f'(0)x=-3x$.
 \item La fonction est continue. Sur $]-\infty,-1]$, elle est strictement croissante de $-\infty$ à $2$ : le niveau $1$ est atteint exactement une fois. Sur $[-1,1]$, elle décroît strictement de $2$ à $-2$ : une deuxième solution. Sur $[1,+\infty[$, elle croît strictement de $-2$ à $+\infty$ : une troisième. Les points $-1,1$ ne sont pas solutions, donc on ne compte aucune solution deux fois.
 \item La continuité fournit l'existence d'un antécédent pour les valeurs intermédiaires. Elle ne fournit pas l'unicité : la fonction étudiée est continue et le niveau $1$ possède trois antécédents.
 \end{enumerate}
 
 \paragraph{E1.}Pour $u=2x-1$, $(u^5)'=5u' u^4=10(2x-1)^4$. Pour $v=-x^2$, $(e^v)'=v' e^v=-2xe^{-x^2}$. Les deux fonctions sont dérivables sur $\R$.
 
-\paragraph{E2.}$f'=4x^3-12x$ puis $f''=12(x^2-1)$. Le signe de $f''$ est positif à l'extérieur de $[-1,1]$, négatif à l'intérieur. Donc $f$ est convexe sur $]-\infty,-1]$ et $[1,+\infty[$, concave sur $[-1,1]$. Les changements de convexité donnent les inflexions $(-1,-5)$ et $(1,-5)$.
+\paragraph{E2.}$f'=4x^3-12x$ puis $f''=12(x^2-1)$. Le signe de $f''$ est positif à l'extérieur de $[-1,1]$, négatif à l'intérieur. Donc $f$ est convexe sur $]-\infty,-1]$ et $[1,+\infty[$, concave sur $[-1,1]$. Les changements de convexité donnent les inflexions $\pt{-1;-5}$ et $\pt{1;-5}$.
 
 \paragraph{E3.}La tangente est $y=f(1)+f'(1)(x-1)=e+e(x-1)=ex$. Puisque $f''(x)=e^x>0$, l'exponentielle est convexe et sa courbe est au-dessus de cette tangente : $e^x\ge ex$ sur $\R$.
 
@@ -86,7 +86,7 @@ Le signe de $f''$ donne la concavité sur $]-\infty,0]$ et la convexité sur $[0
 
 \subsection{Corrigé du DM4}\begin{enumerate}
 \item $f(0)=1$ et $\lim_{x\to0^+}f(x)=1$. En $+\infty$, $f(x)=xe^{-x}+e^{-x}\to0$ par croissance comparée. Par produit, $f'(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. Cette dérivée est strictement négative pour $x>0$ : $f$ décroît strictement de $1$ vers $0$ sur $[0,+\infty[$.
-\item $f''(x)=-e^{-x}+xe^{-x}=(x-1)e^{-x}$. Donc $f$ est concave sur $[0,1]$, convexe sur $[1,+\infty[$. Le changement de convexité en $1$ donne le point d'inflexion $(1,\frac{2}{e})$.
+\item $f''(x)=-e^{-x}+xe^{-x}=(x-1)e^{-x}$. Donc $f$ est concave sur $[0,1]$, convexe sur $[1,+\infty[$. Le changement de convexité en $1$ donne le point d'inflexion $\pt{1;\frac{2}{e}}$.
 \item $f$ est continue et strictement décroissante sur $[0,+\infty[$ ; $f(0)=1>\frac{1}{2}$ et sa limite $0$ est inférieure à $\frac{1}{2}$. Le corollaire du TVI donne une unique solution $\alpha$. De plus, $f(1)=\frac{2}{e}\simeq\num{0,7358}>\frac{1}{2}$ et $f(2)=\frac{3}{e^2}\simeq\num{0,4060}<\frac{1}{2}$, donc $1<\alpha<2$.
 \item 
 \begin{lstlisting}

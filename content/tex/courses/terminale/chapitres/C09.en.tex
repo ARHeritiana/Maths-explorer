@@ -11,10 +11,10 @@ The coordinate calculations in this chapter are carried out in an orthonormal fr
 For non-zero vectors $\vec u,\vec v$, $\vec u\cdot\vec v=\|\vec u\|\|\vec v\|\cos\theta$, where $\theta\in[0,\pi]$ is their angle. If one of them is zero, the dot product is $0$.
 \[\vec u\cdot\vec v=\tfrac12(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2).
 \]
-In an orthonormal frame, for $\vec u=(x,y,z)$ and $\vec v=(x',y',z')$,
+In an orthonormal frame, for $\vec u=\pt{x;y;z}$ and $\vec v=\pt{x';y';z'}$,
 \[\vec u\cdot\vec v=xx'+yy'+zz'.\]
 The dot product is symmetric and bilinear; $\vec u\cdot\vec u=\|\vec u\|^2$. Two vectors are orthogonal if and only if their dot product is zero.
-\paragraph{Example.} $\vec u=(1,2,2)$ and $\vec v=(2,-1,0)$ are orthogonal: $2-2+0=0$. Their norms are $3$ and $\sqrt5$.
+\paragraph{Example.} $\vec u=\pt{1;2;2}$ and $\vec v=\pt{2;-1;0}$ are orthogonal: $2-2+0=0$. Their norms are $3$ and $\sqrt5$.
 \subsection{Line, plane and normal vector}
 Two lines are orthogonal if their direction vectors are. A line is orthogonal to a plane if it is orthogonal to two non-collinear directions of that plane. A normal vector to a plane is a non-zero vector orthogonal to all its directions.
 \paragraph{Why two directions suffice.} If $\vec n\cdot\vec u=\vec n\cdot\vec v=0$, then, for every $\vec w=s\vec u+t\vec v$, $\vec n\cdot\vec w=s\vec n\cdot\vec u+t\vec n\cdot\vec v=0$.
@@ -69,8 +69,8 @@ For two distinct points $A,B$ with midpoint $I$, the locus of points $M$ such th
 \ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]Begin with the three expressions of the dot product. Orthogonal lines are not necessarily intersecting: ``perpendicular'' requires an intersection. To prove that a line is orthogonal to a plane, choose two non-collinear directions. The general point-to-plane distance formula is not required by heart: favour the orthogonal projection. The Cartesian equations used in the S54 progression can be introduced through the vector condition, then formalised in S67.\end{teachernote}
 
 \subsection{Solutions to the activity}\begin{enumerate}
-\item A point $H$ of $d$ is written $H=A+t\vec u$, so $H(1+t,t,0)$ for $t\in\R$.
-\item $\vect{MH}=(1+t,t-2,-3)$. The dot product with $\vec u=(1,1,0)$ is $1+t+t-2=2t-1$. Setting it to zero gives $t=\frac{1}{2}$ and $H(\frac{3}{2},\frac{1}{2},0)$.
+\item A point $H$ of $d$ is written $H=A+t\vec u$, so $H\pt{1+t;t;0}$ for $t\in\R$.
+\item $\vect{MH}=\pt{1+t;t-2;-3}$. The dot product with $\vec u=\pt{1;1;0}$ is $1+t+t-2=2t-1$. Setting it to zero gives $t=\frac{1}{2}$ and $H\pt{\frac{3}{2};\frac{1}{2};0}$.
 \item The frame is orthonormal: $MH^2=(\frac{3}{2})^2+(-\frac{3}{2})^2+(-3)^2=\frac{27}{2}$. So $MH=\frac{3\sqrt{6}}{2}$.
 \item For $P\in d$, $\vect{HP}$ is collinear with $\vec u$ and hence orthogonal to $\vect{MH}$. Pythagoras' theorem gives $MP^2=MH^2+HP^2\ge MH^2$, with equality only if $P=H$. The point found is indeed the unique point of the line closest to $M$.
 \end{enumerate}
@@ -79,16 +79,16 @@ For two distinct points $A,B$ with midpoint $I$, the locus of points $M$ such th
 
 \paragraph{E2.}The dot product is $3a+2(-1)+1\times4=3a+2$. Orthogonality is equivalent to its vanishing: $3a+2=0$, so $a=-\frac{2}{3}$.
 
-\paragraph{E3.}The two direction vectors are non-collinear and both dot products are zero. The midpoint is $I(1,1,1)$. The required locus is the plane through $I$ with normal vector $\vect{AB}=(2,2,2)$, hence with normal vector $(1,1,1)$.
+\paragraph{E3.}The two direction vectors are non-collinear and both dot products are zero. The midpoint is $I\pt{1;1;1}$. The required locus is the plane through $I$ with normal vector $\vect{AB}=\pt{2;2;2}$, hence with normal vector $\pt{1;1;1}$.
 
 \paragraph{E4.}Both vectors are non-zero, with norms $\sqrt2$, and their dot product is $1$. So their angle $\theta\in[0,\pi]$ satisfies $\cos \theta=\frac{1}{\sqrt2\sqrt2}=\frac{1}{2}$, that is $\theta=\frac{\pi}{3}$.
 
 \paragraph{E5.}The area of the right-angled base is $\frac{3\times4}{2}=6\,\mathrm{cm}^2$. The height perpendicular to this base is $5$ cm, so $V=\frac{6\times5}{3}=10\,\mathrm{cm}^3$.
 
 \subsection{Solutions to HW11}\begin{enumerate}
-\item $\vect{AB}=(-2,2,0)$, $\vect{AC}=(-2,0,2)$ and $\vect{BC}=(0,-2,2)$; the three norms are $2\sqrt2$. The triangle is equilateral. Its height is $\sqrt{(2\sqrt2)^2-(\sqrt2)^2}=\sqrt6$; its area is therefore $\frac{(2\sqrt2)(\sqrt6)}{2}=2\sqrt{3}$.
-\item The vectors $\vect{AB},\vect{AC}$ are non-collinear. Their dot products with $(1,1,1)$ are respectively $-2+2=0$ and $-2+2=0$. The non-zero vector $\vec n$ is therefore normal to $(ABC)$.
-\item The projection of $O$ lies on the line through $O$ with direction vector $\vec n$, so $H=(t,t,t)$. Its condition for belonging to the plane is $(t-2)+t+t=0$, that is $t=\frac{2}{3}$. We obtain $H(\frac{2}{3},\frac{2}{3},\frac{2}{3})$, which satisfies both conditions for an orthogonal projection.
+\item $\vect{AB}=\pt{-2;2;0}$, $\vect{AC}=\pt{-2;0;2}$ and $\vect{BC}=\pt{0;-2;2}$; the three norms are $2\sqrt2$. The triangle is equilateral. Its height is $\sqrt{(2\sqrt2)^2-(\sqrt2)^2}=\sqrt6$; its area is therefore $\frac{(2\sqrt2)(\sqrt6)}{2}=2\sqrt{3}$.
+\item The vectors $\vect{AB},\vect{AC}$ are non-collinear. Their dot products with $\pt{1;1;1}$ are respectively $-2+2=0$ and $-2+2=0$. The non-zero vector $\vec n$ is therefore normal to $(ABC)$.
+\item The projection of $O$ lies on the line through $O$ with direction vector $\vec n$, so $H=\pt{t;t;t}$. Its condition for belonging to the plane is $(t-2)+t+t=0$, that is $t=\frac{2}{3}$. We obtain $H\pt{\frac{2}{3};\frac{2}{3};\frac{2}{3}}$, which satisfies both conditions for an orthogonal projection.
 \item $OH=\sqrt{3(\frac{2}{3})^2}=\frac{2}{\sqrt{3}}$. Taking $ABC$ as the base, the volume is $V=\frac{(2\sqrt3)(\frac{2}{\sqrt{3}})}{3}=\frac{4}{3}$ volume units. Other base: the triangle $OAB$ is right-angled at $O$, with area $\frac{2\times2}{2}=2$; the line $(OC)$ is perpendicular to the plane $(OAB)$, and $OC=2$. Thus $V=\frac{2\times2}{3}=\frac{4}{3}$.
 \end{enumerate}
 

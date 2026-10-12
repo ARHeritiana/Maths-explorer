@@ -20,10 +20,10 @@ A line and a plane: line contained in the plane, parallel and disjoint, or meeti
 \paragraph{Example in a cube.} In $ABCDEFGH$, the faces $ABCD$ and $EFGH$ are parallel and the edges $AE,BF,CG,DH$ correspond to one another. The lines $(AB)$ and $(CG)$ are neither parallel nor intersecting: they are non-coplanar.
 \subsection{Basis and coordinates}
 A basis of space is a family of three non-coplanar vectors. Every vector can be written uniquely in it as $x\vi +y\vj +z\vec k$. A frame of reference consists of an origin $O$ and a basis.
-\[\vect{AB}=(x_B-x_A,y_B-y_A,z_B-z_A),\qquad
+\[\vect{AB}=\pt{x_B-x_A;y_B-y_A;z_B-z_A},\qquad
 I=\left(\frac{x_A+x_B}2,\frac{y_A+y_B}2,\frac{z_A+z_B}2\right).\]
 In an orthonormal frame, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ and $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.
-\paragraph{Example.} In an orthonormal frame, for $A(1,0,2)$, $B(3,-1,4)$, $\vect{AB}=(2,-1,2)$, $AB=3$ and the midpoint is $(2,-\frac{1}{2},3)$.
+\paragraph{Example.} In an orthonormal frame, for $A\pt{1;0;2}$, $B\pt{3;-1;4}$, $\vect{AB}=\pt{2;-1;2}$, $AB=3$ and the midpoint is $\pt{2;-\frac{1}{2};3}$.
 \begin{method}[Testing a linear combination]
 Write the three coordinate equalities. Determine the coefficients from two equations when possible, then check the third. A contradiction proves non-membership; do not discard the awkward equation.
 \end{method}
@@ -39,7 +39,7 @@ Write the three coordinate equalities. Determine the coefficients from two equat
 \draw[mxmint,thick,dash pattern=on 5pt off 2pt](A)--(G);
 \foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
 \end{tikzpicture}\par\small $[AG]$ is a space diagonal, drawn dotted in green.\\The hidden edges are dashed in blue; $D$ and $F$ are not on $(AG)$.\end{center}
-\begin{enumerate}\item Express $\vect{IJ}$ and $\vect{IK}$ in the basis $(\vi,\vj,\vec k)$.
+\begin{enumerate}\item Express $\vect{IJ}$ and $\vect{IK}$ in the basis $\pt{\vi;\vj;\vec k}$.
 \item Prove that the points $I$, $J$ and $K$ are not collinear.
 \item Determine whether $O$ belongs to the plane $(IJK)$. Justify the answer by investigating whether $\vect{IO}$ is a linear combination of $\vect{IJ}$ and $\vect{IK}$.
 \item Why does simply reading the figure not allow one to prove that $O$ does or does not belong to the plane $(IJK)$?\end{enumerate}
@@ -53,7 +53,7 @@ Write the three coordinate equalities. Determine the coefficients from two equat
 
 \mxexerciseitem{3}{Practice}In a basis of space, consider $\vec u=\pt{1;0;1}$, $\vec v=\pt{0;1;1}$ and $\vec w=\pt{2;3;5}$. Express $\vec w$ as a linear combination of $\vec u$ and $\vec v$, then deduce that these three vectors are coplanar.
 
-\mxexerciseitem{4}{Practice}In a basis of space, the vectors $\vec u$, $\vec v$ and $\vec w$ have coordinates $\pt{1;0;1}$, $\pt{0;1;1}$ and $\pt{1;1;0}$. Is the triple $(\vec u,\vec v,\vec w)$ a basis of space? Justify.
+\mxexerciseitem{4}{Practice}In a basis of space, the vectors $\vec u$, $\vec v$ and $\vec w$ have coordinates $\pt{1;0;1}$, $\pt{0;1;1}$ and $\pt{1;1;0}$. Is the triple $\pt{\vec u;\vec v;\vec w}$ a basis of space? Justify.
 
 \mxexerciseitem{5}{Practice}In a frame of space, consider $A\pt{1;0;2}$, $B\pt{3;-1;4}$ and $C\pt{5;-2;6}$. Determine whether $C$ belongs to the line $(AB)$. Justify with a vector calculation.
 
@@ -79,20 +79,20 @@ The last two force $s=t=1$, whereas the first would require $s+t=0$. Contradicti
 
 \paragraph{E1.}The three coordinates of $\vec v$ are three times those of $\vec u$: $\vec v=3\vec u$. The two vectors are therefore collinear.
 
-\paragraph{E2.}The midpoint has coordinates $(\frac{0+4}{2},\frac{1-1}{2},\frac{2+0}{2})=(2,0,1)$. The coordinate differences give $\vect{AB}=(4,-2,-2)$; in the orthonormal frame, $AB=\sqrt{16+4+4}=2\sqrt6$.
+\paragraph{E2.}The midpoint has coordinates $\pt{\frac{0+4}{2};\frac{1-1}{2};\frac{2+0}{2}}=\pt{2;0;1}$. The coordinate differences give $\vect{AB}=\pt{4;-2;-2}$; in the orthonormal frame, $AB=\sqrt{16+4+4}=2\sqrt6$.
 
-\paragraph{E3.}We calculate $2\vec u+3\vec v=(2,0,2)+(0,3,3)=(2,3,5)=\vec w$. Thus $\vec w$ belongs to the vector plane spanned by the first two vectors: the three are coplanar.
+\paragraph{E3.}We calculate $2\vec u+3\vec v=\pt{2;0;2}+\pt{0;3;3}=\pt{2;3;5}=\vec w$. Thus $\vec w$ belongs to the vector plane spanned by the first two vectors: the three are coplanar.
 
 \paragraph{E4.}The first two vectors are non-collinear. If the third were their combination $\lambda(1,0,1)+\mu(0,1,1)$, the first two coordinates would force $\lambda=\mu=1$, but the third would equal $2\ne0$. The three vectors are non-coplanar; they therefore form a basis of space.
 
-\paragraph{E5.}$\vect{AB}=(2,-1,2)$ and $\vect{AC}=(4,-2,4)=2\vect{AB}$. Since $A\ne B$, the line $(AB)$ is defined and this collinearity proves $C\in(AB)$.
+\paragraph{E5.}$\vect{AB}=\pt{2;-1;2}$ and $\vect{AC}=\pt{4;-2;4}=2\vect{AB}$. Since $A\ne B$, the line $(AB)$ is defined and this collinearity proves $C\in(AB)$.
 
 \subsection{Solutions to Homework 10}\begin{enumerate}
 \item By Chasles and the definitions of midpoints,
 \[\vect{IJ}=\tfrac12\vect{AC}-\tfrac12\vect{AB}=\tfrac12\vect{BC},\qquad \vect{IK}=\tfrac12\vect{AD}-\tfrac12\vect{AB}=\tfrac12\vect{BD}.\]
 \item The points $B,C,D$ are not collinear, since the tetrahedron is non-degenerate. The vectors $\vect{BC},\vect{BD}$ are therefore non-collinear, and so are $\vect{IJ},\vect{IK}$. The planes have the same direction. They are distinct: if $I\in(BCD)$, the line $(BI)=(BA)$ would be contained in this plane, which would place $A$ in it, a contradiction. They are therefore strictly parallel.
-\item In the basis $(\vect{AB},\vect{AC},\vect{AD})$, we have $\vect{IG}=(-\frac{1}{4},\frac{1}{4},\frac{1}{4})$, $\vect{IJ}=(-\frac{1}{2},\frac{1}{2},0)$ and $\vect{IK}=(-\frac{1}{2},0,\frac{1}{2})$. A relation $\vect{IG}=s\vect{IJ}+t\vect{IK}$ forces $s=t=\frac{1}{2}$ by the last two coordinates; the first would then equal $-\frac{1}{2}$, and not $-\frac{1}{4}$. Hence $G\notin(IJK)$.
-\item In this particular case, $I(2,0,0)$, $J(0,2,0)$ and $K(0,0,2)$. We find $IJ=\sqrt{(-2)^2+2^2}=2\sqrt2$, and likewise $IK=JK=2\sqrt2$. The triangle is equilateral. This metric conclusion does not hold for every non-degenerate tetrahedron: it uses the coordinates of the particular case.
+\item In the basis $\pt{\vect{AB};\vect{AC};\vect{AD}}$, we have $\vect{IG}=\pt{-\frac{1}{4};\frac{1}{4};\frac{1}{4}}$, $\vect{IJ}=\pt{-\frac{1}{2};\frac{1}{2};0}$ and $\vect{IK}=\pt{-\frac{1}{2};0;\frac{1}{2}}$. A relation $\vect{IG}=s\vect{IJ}+t\vect{IK}$ forces $s=t=\frac{1}{2}$ by the last two coordinates; the first would then equal $-\frac{1}{2}$, and not $-\frac{1}{4}$. Hence $G\notin(IJK)$.
+\item In this particular case, $I\pt{2;0;0}$, $J\pt{0;2;0}$ and $K\pt{0;0;2}$. We find $IJ=\sqrt{(-2)^2+2^2}=2\sqrt2$, and likewise $IK=JK=2\sqrt2$. The triangle is equilateral. This metric conclusion does not hold for every non-degenerate tetrahedron: it uses the coordinates of the particular case.
 \end{enumerate}
 
 \subsection{Solutions to the textbook or past-paper work}In this exercise, $I$ is the midpoint of $[AB]$ and $J$ that of $[CD]$.

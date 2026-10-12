@@ -64,6 +64,10 @@ def main():
             print(f'{rel}: numbers in maths differ ({x[:6]})')
         if figures(a) != figures(b):
             bad += 1; print(f'{rel}: figure code differs')
+        # A doubled mark ("increasing??") is a translation slip unless the French has it too.
+        for mark in ('??', '!!', ',,', ';;', '::'):
+            if b.count(mark) > a.count(mark):
+                bad += 1; print(f'{rel}: "{mark}" in the English text only')
     print(f'twin parity: {n - bad}/{n} pairs OK' if bad else f'twin parity: {n} pairs OK')
     return 1 if bad else 0
 

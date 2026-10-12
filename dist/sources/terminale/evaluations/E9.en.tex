@@ -6,10 +6,11 @@
 
 \mxbanner{PRACTICE PAPER · TRAINING}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-9-1} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-9-1}
 \subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{2+\ln x}x$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -32,6 +33,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-9-1}
 \subsection*{Exercise 2 · Periodic phenomenon \hfill 5 points}A point moves on a wheel turning at constant speed in a vertical plane. Its height above the ground is modelled by $h(t)=9-3\cos\left(\frac{\pi t}{5}\right)$, where $t$ is expressed in seconds and $h(t)$ in metres. We study one complete revolution, for $t\in\intff{0}{10}$.
 
 \begin{enumerate}
@@ -56,6 +58,7 @@
 
 \mxnewpage\mxcontinued{Final mock · Practice 1 · continued}
 
+\mxtally{ex-9-1}
 \subsection*{Exercise 3 · Line, plane and projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=11$ and the point $M\pt{2;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -78,6 +81,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-9-1}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}We repeat $20$ times a trial with two outcomes, called success and failure. The trials are independent and the probability of success is $p=\frac{1}{5}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -118,7 +122,7 @@ Since $x>0$, $f(x)=0$ is equivalent to $2+\ln x=0$, that is $x=e^{-2}$.
 
 \item \textit{[1 pt]} Differentiating $(-1-\ln x)x^{-2}$:
 \[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
-The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[0.5 pt]} Let $m=\frac{e^{1}}{2}$ and $s=e^{-1}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the IVT gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
 
@@ -142,7 +146,7 @@ The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to posi
 \item \textit{[1 pt]} An antiderivative is $F(t)=9t-\frac{15}{\pi}\sin (\frac{\pi t}{5})$. Since $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{10}\int_0^{10}h(t)\,\dd t=\frac{F(10)-F(0)}{10}=\frac{90}{10}=9\ \mathrm{m}.\]
 
-\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{3\pi^2}{25}\cos (\frac{\pi t}{5})$. Its sign is that of the cosine: positive on $[0,\frac{5}{2}[$ and $]\frac{15}{2},10]$, negative between these two intervals. The function is convex on $[0,\frac{5}{2}]$ and $[\frac{15}{2},10]$, concave on $[\frac{5}{2},\frac{15}{2}]$. The two changes of convexity give the points of inflection $(\frac{5}{2},9)$ and $(\frac{15}{2},9)$.
+\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{3\pi^2}{25}\cos (\frac{\pi t}{5})$. Its sign is that of the cosine: positive on $[0,\frac{5}{2}[$ and $]\frac{15}{2},10]$, negative between these two intervals. The function is convex on $[0,\frac{5}{2}]$ and $[\frac{15}{2},10]$, concave on $[\frac{5}{2},\frac{15}{2}]$. The two changes of convexity give the points of inflection $\pt{\frac{5}{2};9}$ and $\pt{\frac{15}{2};9}$.
 
 \item \textit{[0.5 pt]} Between $\frac{10}{3}$ and $\frac{20}{3}$; duration $\frac{10}{3}$ s.
 
@@ -154,20 +158,20 @@ The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 3 · Line, plane and projection}\begin{enumerate}
 
-\item \textit{[0.5 pt]} $(x,y,z)=(2+t,2t,2t)$, $t\in\R$.
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{2+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[0.5 pt]} $2+9t=11$ gives $t=1$; $H=(3,2,2)$.
+\item \textit{[0.5 pt]} $2+9t=11$ gives $t=1$; $H=\pt{3;2;2}$.
 
-\item \textit{[0.5 pt]} The vector $\vec n=(1,2,2)$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
 \[d(M,\mathcal P)=MH=|1|\,3=3.\]
 
-\item \textit{[1 pt]} Set $y=z=s$; $x=11-4s$. Hence $(x,y,z)=(11,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Set $y=z=s$; $x=11-4s$. Hence $\pt{x;y;z}=\pt{11;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $3$.
 
 \item \textit{[0.5 pt]} $x+2y+2z=2$; same normal vector and passing through $M$.
 
-\item \textit{[0.5 pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$: angle $\frac{\pi}{2}$.
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every $P$ on this line, $NP^2=NH^2+HP^2$, so its minimal distance to $N$ is $NH$. Finally,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|1-1|\,\|\vec n\|=0.\]
@@ -176,7 +180,7 @@ The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B(20,\frac{1}{5})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{20;\frac{1}{5}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{1}{5})^2(\frac{4}{5})^{18}\simeq\num{0,136909}$.
 
@@ -211,10 +215,11 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \mxbanner{PRACTICE PAPER · TRAINING}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-9-2} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-9-2}
 \subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{5+\ln x}x$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -237,6 +242,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \end{enumerate}
 
+\mxtally{ex-9-2}
 \subsection*{Exercise 2 · Periodic phenomenon \hfill 5 points}A point moves on a wheel turning at constant speed in a vertical plane. Its height above the ground is modelled by $h(t)=12-4\cos\left(\frac{\pi t}{4}\right)$, where $t$ is expressed in seconds and $h(t)$ in metres. We study one complete revolution, for $t\in\intff{0}{8}$.
 
 \begin{enumerate}
@@ -261,6 +267,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \mxnewpage\mxcontinued{Final mock · Practice 2 · continued}
 
+\mxtally{ex-9-2}
 \subsection*{Exercise 3 · Line, plane and projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=7$ and the point $M\pt{3;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -283,6 +290,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \end{enumerate}
 
+\mxtally{ex-9-2}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}We repeat $17$ times a trial with two outcomes, called success and failure. The trials are independent and the probability of success is $p=\frac{3}{10}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -323,7 +331,7 @@ Since $x>0$, $f(x)=0$ is equivalent to $5+\ln x=0$, that is $x=e^{-5}$.
 
 \item \textit{[1 pt]} Differentiating $(-4-\ln x)x^{-2}$:
 \[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
-The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[0.5 pt]} Let $m=\frac{e^{4}}{2}$ and $s=e^{-4}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the IVT gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
 
@@ -347,7 +355,7 @@ The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to posi
 \item \textit{[1 pt]} An antiderivative is $F(t)=12t-\frac{16}{\pi}\sin (\frac{\pi t}{4})$. Since $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{8}\int_0^{8}h(t)\,\dd t=\frac{F(8)-F(0)}{8}=\frac{96}{8}=12\ \mathrm{m}.\]
 
-\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{4\pi^2}{16}\cos (\frac{\pi t}{4})$. Its sign is that of the cosine: positive on $[0,2[$ and $]6,8]$, negative between these two intervals. The function is convex on $[0,2]$ and $[6,8]$, concave on $[2,6]$. The two changes of convexity give the points of inflection $(2,12)$ and $(6,12)$.
+\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{4\pi^2}{16}\cos (\frac{\pi t}{4})$. Its sign is that of the cosine: positive on $[0,2[$ and $]6,8]$, negative between these two intervals. The function is convex on $[0,2]$ and $[6,8]$, concave on $[2,6]$. The two changes of convexity give the points of inflection $\pt{2;12}$ and $\pt{6;12}$.
 
 \item \textit{[0.5 pt]} Between $\frac{8}{3}$ and $\frac{16}{3}$; duration $\frac{8}{3}$ s.
 
@@ -359,20 +367,20 @@ The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 3 · Line, plane and projection}\begin{enumerate}
 
-\item \textit{[0.5 pt]} $(x,y,z)=(3+t,2t,2t)$, $t\in\R$.
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{3+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[0.5 pt]} $3+9t=7$ gives $t=\frac{4}{9}$; $H=(\frac{31}{9},\frac{8}{9},\frac{8}{9})$.
+\item \textit{[0.5 pt]} $3+9t=7$ gives $t=\frac{4}{9}$; $H=\pt{\frac{31}{9};\frac{8}{9};\frac{8}{9}}$.
 
-\item \textit{[0.5 pt]} The vector $\vec n=(1,2,2)$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{4}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{4}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
 \[d(M,\mathcal P)=MH=|\frac{4}{9}|\,3=\frac{4}{3}.\]
 
-\item \textit{[1 pt]} Set $y=z=s$; $x=7-4s$. Hence $(x,y,z)=(7,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Set $y=z=s$; $x=7-4s$. Hence $\pt{x;y;z}=\pt{7;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{4}{3}$.
 
 \item \textit{[0.5 pt]} $x+2y+2z=3$; same normal vector and passing through $M$.
 
-\item \textit{[0.5 pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$: angle $\frac{\pi}{2}$.
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every $P$ on this line, $NP^2=NH^2+HP^2$, so its minimal distance to $N$ is $NH$. Finally,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{4}{9}-1|\,\|\vec n\|=\frac{5}{3}.\]
@@ -381,7 +389,7 @@ The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B(17,\frac{3}{10})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{17;\frac{3}{10}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{3}{10})^2(\frac{7}{10})^{15}\simeq\num{0,058110}$.
 
@@ -418,10 +426,11 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-9-3} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-9-3}
 \subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{4+\ln x}x$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -444,6 +453,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \end{enumerate}
 
+\mxtally{ex-9-3}
 \subsection*{Exercise 2 · Periodic phenomenon \hfill 5 points}A point moves on a wheel turning at constant speed in a vertical plane. Its height above the ground is modelled by $h(t)=7-2\cos\left(\frac{\pi t}{3}\right)$, where $t$ is expressed in seconds and $h(t)$ in metres. We study one complete revolution, for $t\in\intff{0}{6}$.
 
 \begin{enumerate}
@@ -468,6 +478,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \mxnewpage\mxcontinued{Final mock · A · continued}
 
+\mxtally{ex-9-3}
 \subsection*{Exercise 3 · Line, plane and projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=8$ and the point $M\pt{1;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -490,6 +501,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \end{enumerate}
 
+\mxtally{ex-9-3}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}We repeat $18$ times a trial with two outcomes, called success and failure. The trials are independent and the probability of success is $p=\frac{1}{10}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -530,7 +542,7 @@ Since $x>0$, $f(x)=0$ is equivalent to $4+\ln x=0$, that is $x=e^{-4}$.
 
 \item \textit{[1 pt]} Differentiating $(-3-\ln x)x^{-2}$:
 \[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
-The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[0.5 pt]} Let $m=\frac{e^{3}}{2}$ and $s=e^{-3}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the IVT gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
 
@@ -554,7 +566,7 @@ The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to posi
 \item \textit{[1 pt]} An antiderivative is $F(t)=7t-\frac{6}{\pi}\sin (\frac{\pi t}{3})$. Since $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{6}\int_0^{6}h(t)\,\dd t=\frac{F(6)-F(0)}{6}=\frac{42}{6}=7\ \mathrm{m}.\]
 
-\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{2\pi^2}{9}\cos (\frac{\pi t}{3})$. Its sign is that of the cosine: positive on $[0,\frac{3}{2}[$ and $]\frac{9}{2},6]$, negative between these two intervals. The function is convex on $[0,\frac{3}{2}]$ and $[\frac{9}{2},6]$, concave on $[\frac{3}{2},\frac{9}{2}]$. The two changes of convexity give the points of inflection $(\frac{3}{2},7)$ and $(\frac{9}{2},7)$.
+\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{2\pi^2}{9}\cos (\frac{\pi t}{3})$. Its sign is that of the cosine: positive on $[0,\frac{3}{2}[$ and $]\frac{9}{2},6]$, negative between these two intervals. The function is convex on $[0,\frac{3}{2}]$ and $[\frac{9}{2},6]$, concave on $[\frac{3}{2},\frac{9}{2}]$. The two changes of convexity give the points of inflection $\pt{\frac{3}{2};7}$ and $\pt{\frac{9}{2};7}$.
 
 \item \textit{[0.5 pt]} Between $2$ and $4$; duration $2$ s.
 
@@ -566,20 +578,20 @@ The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 3 · Line, plane and projection}\begin{enumerate}
 
-\item \textit{[0.5 pt]} $(x,y,z)=(1+t,2t,2t)$, $t\in\R$.
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{1+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[0.5 pt]} $1+9t=8$ gives $t=\frac{7}{9}$; $H=(\frac{16}{9},\frac{14}{9},\frac{14}{9})$.
+\item \textit{[0.5 pt]} $1+9t=8$ gives $t=\frac{7}{9}$; $H=\pt{\frac{16}{9};\frac{14}{9};\frac{14}{9}}$.
 
-\item \textit{[0.5 pt]} The vector $\vec n=(1,2,2)$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{7}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{7}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
 \[d(M,\mathcal P)=MH=|\frac{7}{9}|\,3=\frac{7}{3}.\]
 
-\item \textit{[1 pt]} Set $y=z=s$; $x=8-4s$. Hence $(x,y,z)=(8,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Set $y=z=s$; $x=8-4s$. Hence $\pt{x;y;z}=\pt{8;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{7}{3}$.
 
 \item \textit{[0.5 pt]} $x+2y+2z=1$; same normal vector and passing through $M$.
 
-\item \textit{[0.5 pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$: angle $\frac{\pi}{2}$.
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every $P$ on this line, $NP^2=NH^2+HP^2$, so its minimal distance to $N$ is $NH$. Finally,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{7}{9}-1|\,\|\vec n\|=\frac{2}{3}.\]
@@ -588,7 +600,7 @@ The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $18$ of identical independent trials with two outcomes; $X\sim\mathcal B(18,\frac{1}{10})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $18$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{18;\frac{1}{10}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{18}2(\frac{1}{10})^2(\frac{9}{10})^{16}\simeq\num{0,283512}$.
 
@@ -627,10 +639,11 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-9-4} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-9-4}
 \subsection*{Exercise 1 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{3+\ln x}x$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -653,6 +666,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \end{enumerate}
 
+\mxtally{ex-9-4}
 \subsection*{Exercise 2 · Periodic phenomenon \hfill 5 points}A point moves on a wheel turning at constant speed in a vertical plane. Its height above the ground is modelled by $h(t)=10-3\cos\left(\frac{\pi t}{2}\right)$, where $t$ is expressed in seconds and $h(t)$ in metres. We study one complete revolution, for $t\in\intff{0}{4}$.
 
 \begin{enumerate}
@@ -677,6 +691,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \mxnewpage\mxcontinued{Final mock · B · continued}
 
+\mxtally{ex-9-4}
 \subsection*{Exercise 3 · Line, plane and projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=12$ and the point $M\pt{2;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -699,6 +714,7 @@ Taking the complement, we then have $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. The si
 
 \end{enumerate}
 
+\mxtally{ex-9-4}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}We repeat $20$ times a trial with two outcomes, called success and failure. The trials are independent and the probability of success is $p=\frac{3}{10}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -739,7 +755,7 @@ Since $x>0$, $f(x)=0$ is equivalent to $3+\ln x=0$, that is $x=e^{-3}$.
 
 \item \textit{[1 pt]} Differentiating $(-2-\ln x)x^{-2}$:
 \[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
-The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I(t,\frac{3}{2t})$.
+The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[0.5 pt]} Let $m=\frac{e^{2}}{2}$ and $s=e^{-2}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the IVT gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
 
@@ -763,7 +779,7 @@ The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to posi
 \item \textit{[1 pt]} An antiderivative is $F(t)=10t-\frac{6}{\pi}\sin (\frac{\pi t}{2})$. Since $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{4}\int_0^{4}h(t)\,\dd t=\frac{F(4)-F(0)}{4}=\frac{40}{4}=10\ \mathrm{m}.\]
 
-\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{3\pi^2}{4}\cos (\frac{\pi t}{2})$. Its sign is that of the cosine: positive on $[0,1[$ and $]3,4]$, negative between these two intervals. The function is convex on $[0,1]$ and $[3,4]$, concave on $[1,3]$. The two changes of convexity give the points of inflection $(1,10)$ and $(3,10)$.
+\item \textit{[0.5 pt]} The second derivative is $h''(t)=\frac{3\pi^2}{4}\cos (\frac{\pi t}{2})$. Its sign is that of the cosine: positive on $[0,1[$ and $]3,4]$, negative between these two intervals. The function is convex on $[0,1]$ and $[3,4]$, concave on $[1,3]$. The two changes of convexity give the points of inflection $\pt{1;10}$ and $\pt{3;10}$.
 
 \item \textit{[0.5 pt]} Between $\frac{4}{3}$ and $\frac{8}{3}$; duration $\frac{4}{3}$ s.
 
@@ -775,20 +791,20 @@ The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 3 · Line, plane and projection}\begin{enumerate}
 
-\item \textit{[0.5 pt]} $(x,y,z)=(2+t,2t,2t)$, $t\in\R$.
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{2+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[0.5 pt]} $2+9t=12$ gives $t=\frac{10}{9}$; $H=(\frac{28}{9},\frac{20}{9},\frac{20}{9})$.
+\item \textit{[0.5 pt]} $2+9t=12$ gives $t=\frac{10}{9}$; $H=\pt{\frac{28}{9};\frac{20}{9};\frac{20}{9}}$.
 
-\item \textit{[0.5 pt]} The vector $\vec n=(1,2,2)$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{10}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{10}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Hence
 \[d(M,\mathcal P)=MH=|\frac{10}{9}|\,3=\frac{10}{3}.\]
 
-\item \textit{[1 pt]} Set $y=z=s$; $x=12-4s$. Hence $(x,y,z)=(12,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Set $y=z=s$; $x=12-4s$. Hence $\pt{x;y;z}=\pt{12;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{10}{3}$.
 
 \item \textit{[0.5 pt]} $x+2y+2z=2$; same normal vector and passing through $M$.
 
-\item \textit{[0.5 pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$: angle $\frac{\pi}{2}$.
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every $P$ on this line, $NP^2=NH^2+HP^2$, so its minimal distance to $N$ is $NH$. Finally,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{10}{9}-1|\,\|\vec n\|=\frac{1}{3}.\]
@@ -797,7 +813,7 @@ The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to posi
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B(20,\frac{3}{10})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{20;\frac{3}{10}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{3}{10})^2(\frac{7}{10})^{18}\simeq\num{0,027846}$.
 

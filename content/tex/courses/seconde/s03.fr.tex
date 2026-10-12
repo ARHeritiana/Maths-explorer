@@ -2,7 +2,7 @@
 \section{Vecteur directeur et équation cartésienne}
 \begin{keypoint}[Définition]
 Un vecteur directeur d'une droite est un vecteur \textbf{non nul} ayant la direction de cette droite. Si $A\ne B$, $\vect{AB}$ dirige $(AB)$.
-Toute droite admet une équation $ax+by+c=0$ avec $(a,b)\ne(0,0)$. Un vecteur directeur est $\vc{-b}{a}$.
+Toute droite admet une équation $ax+by+c=0$ avec $\pt{a;b}\ne\pt{0;0}$. Un vecteur directeur est $\vc{-b}{a}$.
 \end{keypoint}
 \begin{example}Pour $A\pt{-2;4}$ et $B\pt{6;2}$, calculer $\vect{AB}$ puis vérifier que $\vec u\pt{4;-1}$ dirige $(AB)$.\end{example}
 \mxanswerspace[2.4]{$\vect{AB}=\pt{8;-2}=2\vec u$. Le vecteur $\vec u$ est non nul et colinéaire à $\vect{AB}$ ; il dirige donc $(AB)$.}
@@ -12,7 +12,7 @@ La droite passant par $A\pt{x_A;y_A}$ et dirigée par $\vec u\pt{\alpha;\beta}\n
 \end{keypoint}
 \mxwriteproof[4]{Un point $M\pt{x;y}$ appartient à la droite si et seulement si $\vect{AM}$ est colinéaire à $\vec u$, y compris pour $M=A$. Or
 \[\det(\vect{AM},\vec u)=(x-x_A)\beta-(y-y_A)\alpha.\]
-L'annulation du déterminant donne l'équation annoncée. En développant, $a=\beta$, $b=-\alpha$ et $c=-\beta x_A+\alpha y_A$ ; comme $\vec u\ne\vec0$, $(a,b)\ne(0,0)$.}
+L'annulation du déterminant donne l'équation annoncée. En développant, $a=\beta$, $b=-\alpha$ et $c=-\beta x_A+\alpha y_A$ ; comme $\vec u\ne\vec0$, $\pt{a;b}\ne\pt{0;0}$.}
 \begin{pitfall}Le vecteur nul ne dirige aucune droite. Le signe du déterminant dépend de l'ordre des vecteurs, mais son annulation n'en dépend pas.\end{pitfall}
 
 \mxsection{Déterminer une équation de droite}
@@ -22,7 +22,7 @@ L'annulation du déterminant donne l'équation annoncée. En développant, $a=\b
 \begin{example}Déterminer une équation cartésienne de la droite passant par $A\pt{2;-1}$ et dirigée par $\vec u\pt{3;2}$.\end{example}
 \mxanswerspace[4]{$a=2$, $b=-3$ conviennent. La droite a donc une équation $2x-3y+c=0$. Comme $A$ lui appartient, $4+3+c=0$, d'où $c=-7$. Une équation est $2x-3y-7=0$. Vérification : $2\times2-3\times(-1)-7=0$ et $\pt{3;2}$ est bien directeur.}
 \begin{example}Déterminer une équation cartésienne de $(AB)$ pour $A\pt{3;3}$ et $B\pt{2;-2}$.\end{example}
-\mxanswerspace[4]{$\vect{AB}=\pt{-1;-5}$ dirige la droite. On peut choisir $(a,b)=(5,-1)$. Avec $A$, $15-3+c=0$, donc $c=-12$. Ainsi $5x-y-12=0$. Pour $B$, $10+2-12=0$, ce qui confirme le résultat.}
+\mxanswerspace[4]{$\vect{AB}=\pt{-1;-5}$ dirige la droite. On peut choisir $\pt{a;b}=\pt{5;-1}$. Avec $A$, $15-3+c=0$, donc $c=-12$. Ainsi $5x-y-12=0$. Pour $B$, $10+2-12=0$, ce qui confirme le résultat.}
 \begin{example}Le point $P\pt{1;2}$ appartient-il à $d:2x-3y+4=0$ ? Le point $Q\pt{2;1}$ lui appartient-il ?\end{example}
 \mxanswerspace[2.4]{Pour $P$, $2-6+4=0$ : oui. Pour $Q$, $4-3+4=5\ne0$ : non.}
 

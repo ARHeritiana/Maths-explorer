@@ -55,8 +55,8 @@ Chromium at `/opt/pw-browsers`.
 ## Status
 - Phase A (structure): done. Phase B (TeX): B1 to B3 done for all six courses (Automatismes, STMG, Seconde, Première,
   Terminale, Enrichment), plus the uniform structure and notation layer requested on 11 October.
-- Page counts (student/teacher, FR = EN): Automatismes 27/47, STMG 151/198, Seconde 94/98, Première 133/222,
-  Terminale 123/289, Enrichment 37/49 sheets. 0 overfull boxes, 0 undefined references. Slides: 47 decks, 1,044 slides.
+- Page counts (student/teacher, FR = EN, 12 October): Automatismes 27/47, STMG 151/192, Seconde 94/98, Première 134/223,
+  Terminale 123/289, Enrichment 37/49 sheets. 0 overfull boxes, 0 undefined references. Slides: 47 decks, 1,045 slides.
 - Measured: full compile 622 s at baseline, about 4 min now (French and English compiled in parallel); rebuilt PDFs that
   differ only in their random /ID keep the committed copy (no binary churn).
 
@@ -73,7 +73,7 @@ Chromium at `/opt/pw-browsers`.
    before/after numbers (baseline in `docs/REPO_AUDIT.md`).
 
 ## Open questions for the owner ([VERIFY])
-- The one-page-per-resource rule grew Première to 133/222 and Terminale to 123/289 pages; Première and Terminale covers
+- The one-page-per-resource rule grew Première to 134/223 and Terminale to 123/289 pages; Première and Terminale covers
   now use the shared cover (their individual title pages, including the Première parabola, were dropped).
 - Owner, school and place names remain in git history (removing them needs a history rewrite and force-push). Owner
   answer (12 October): decide later.
@@ -87,6 +87,17 @@ the site chapter numbers (cross-references are `\ref{ch:N}`, labels keep the for
 `terminale-fluency-*` and `terminale-methods-*` removed; STMG "Pour prolonger" boxes removed (and the textbook line in
 the STMG sources); Terminale E6 counts its questions with `\mxcount`/`\mxcounted`; E7 model answer is a full
 sentence; "domaine disjoint" rewritten as a union of disjoint intervals; "Year 11 (seconde)" gloss replaced.
+
+Self-maintaining counts and notation (12 October, after the owner's remark that obvious defects must be fixed without
+being asked): every count in prose was checked against the content. Counts within one paper or list are now printed by
+TeX (`\mxcount`, `\mxCount`, `\mxTallied`; Terminale paper headers, E6, Première QCM and diagnostic headings, the STMG
+diagnostic list); book-wide claims are enforced by `tests/count_claims.py` (in `make check`), which also checks every
+Terminale and Première paper's points. Defects found on the way and fixed: the STMG diagnostic activity announced
+14 questions that did not exist (written, answers checked); 315 hand-written comma tuples printed (1,2,2) in French
+(now `\pt`, also in the enrichment converter, its web editions and the authored Terminale slides); C(n,k) in the
+enrichment units is now $\binom{n}{k}$; $\mathcal B(10,\num{0,3})$ printed "B(10, 0,3)" in French; the English STMG c02
+"increasing??" (a guard in `tests/twin_parity.py` now catches doubled marks); slides printed count keys and showed
+teacher answers (`\mxblank`) in plain view; long lists now continue on a second slide with their answers on demand.
 
 ## Working style that worked
 Change sources, then prove it: rebuild, compare French text with the previous PDFs (token comparison ignoring running

@@ -2,7 +2,7 @@
 \mxunit{stmg-c05}{Statistiques à deux variables quantitatives}
 \mxskills{représenter, choisir un ajustement, interpoler, extrapoler avec prudence, communiquer}
 \section{Cours de référence}
-Une série statistique à deux variables est constituée de couples $(x_i,y_i)$. Le nuage de points permet d'observer une tendance, une dispersion et d'éventuelles valeurs atypiques.
+Une série statistique à deux variables est constituée de couples $\pt{x_i;y_i}$. Le nuage de points permet d'observer une tendance, une dispersion et d'éventuelles valeurs atypiques.
 
 \begin{center}
 \begin{tikzpicture}
@@ -17,26 +17,26 @@ Une série statistique à deux variables est constituée de couples $(x_i,y_i)$.
 Une droite d'ajustement $y=ax+b$ fournit des estimations, pas des égalités exactes. Le coefficient $a$ décrit la variation moyenne estimée de $y$ quand $x$ augmente d'une unité. Une interpolation reste dans l'intervalle des valeurs observées ; une extrapolation sort de cet intervalle et doit être présentée avec prudence.
 \end{keypoint}
 
-Le point moyen $G(\bar x,\bar y)$ a pour coordonnées $\bar x=\dfrac{x_1+\cdots+x_n}{n}$ et $\bar y=\dfrac{y_1+\cdots+y_n}{n}$. Une droite de régression obtenue à la calculatrice passe par $G$, à l'arrondi près.
+Le point moyen $G\pt{\bar x;\bar y}$ a pour coordonnées $\bar x=\dfrac{x_1+\cdots+x_n}{n}$ et $\bar y=\dfrac{y_1+\cdots+y_n}{n}$. Une droite de régression obtenue à la calculatrice passe par $G$, à l'arrondi près.
 
 \begin{method}
 Pour exploiter $y=ax+b$ : 1) remplacer $x$ par la valeur demandée pour estimer $y$ ; 2) résoudre $ax+b=y_0$ pour estimer $x$ ; 3) arrondir selon le contexte ; 4) préciser interpolation ou extrapolation ; 5) rappeler que le résultat dépend du modèle.
 \end{method}
 
-Un changement de variable, par exemple $z=\log(y)$ ou $z=\dfrac1y$, peut rendre un nuage approximativement aligné. On ajuste alors $(x,z)$, puis on revient à la variable $y$.
+Un changement de variable, par exemple $z=\log(y)$ ou $z=\dfrac1y$, peut rendre un nuage approximativement aligné. On ajuste alors $\pt{x;z}$, puis on revient à la variable $y$.
 
 \mxsession{31}{\mxdate*{2027-01-26}}{B : 2 h -- C : 1 h}{Nuage de points}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Construire un nuage.\item Choisir les échelles.\item Identifier les variables.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $6$, $8$ et $10$. \mxblank{$8$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $6$, $8$ et $10$. \mxblank{$8$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : construire un nuage et choisir les échelles.\end{prerequisites}
 
 \begin{activity}
-Le tableau $(x_i,y_i)$ donne les dépenses publicitaires et les ventes de six mois : $(1,12),(2,15),(3,17),(4,22),(5,24),(6,28)$. Choisir des échelles, tracer le nuage et placer le point moyen.
+Le tableau $\pt{x_i;y_i}$ donne les dépenses publicitaires et les ventes de six mois : $\pt{1;12},\pt{2;15},\pt{3;17},\pt{4;22},\pt{5;24},\pt{6;28}$. Choisir des échelles, tracer le nuage et placer le point moyen.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}$\bar x=\num{3,5}$ et $\bar y=\num{19,67}$ environ. Le nuage présente une tendance croissante approximativement affine. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
-\begin{summary}Un nuage de points représente les couples $(x_i,y_i)$. Les axes, unités et échelles doivent être indiqués ; chaque couple donne un seul point.\end{summary}
+\begin{summary}Un nuage de points représente les couples $\pt{x_i;y_i}$. Les axes, unités et échelles doivent être indiqués ; chaque couple donne un seul point.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
@@ -64,7 +64,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{32}{\mxdate*{2027-01-28}}{B : 1 h -- C : 2 h}{Lecture et interprétation du nuage}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Décrire une tendance.\item Repérer dispersion et atypiques.\item Éviter causalité abusive.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+7-x+2$. \mxblank{$2x+9$}\item Calculer la moyenne de $7$, $9$ et $11$. \mxblank{$9$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+7-x+2$. \mxblank{$2x+9$}\item Calculer la moyenne de $7$, $9$ et $11$. \mxblank{$9$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : décrire une tendance et repérer dispersion et atypiques.\end{prerequisites}
 
 \begin{activity}
@@ -101,7 +101,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{33}{\mxdate*{2027-02-02}}{B : 2 h -- C : 1 h}{Ajustement affine}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Obtenir un ajustement affine.\item Interpréter $a$ et $b$.\item Vérifier avec le point moyen.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $160$. \mxblank{$32$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $8$, $10$ et $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $160$. \mxblank{$32$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $8$, $10$ et $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : obtenir un ajustement affine et interpréter $a$ et $b$.\end{prerequisites}
 
 \begin{activity}
@@ -138,7 +138,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{34}{\mxdate*{2027-02-04}}{B : 1 h -- C : 2 h}{Interpolation}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Interpoler.\item Résoudre avec le modèle.\item Exprimer une estimation.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $9$, $11$ et $13$. \mxblank{$11$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $9$, $11$ et $13$. \mxblank{$11$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : interpoler et résoudre avec le modèle.\end{prerequisites}
 
 \begin{activity}
@@ -175,7 +175,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{35}{\mxdate*{2027-02-09}}{B : 2 h -- C : 1 h}{Extrapolation}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Extrapoler prudemment.\item Évaluer la plausibilité.\item Présenter une limite du modèle.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+3-x+2$. \mxblank{$2x+5$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $3$, $5$ et $7$. \mxblank{$5$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+3-x+2$. \mxblank{$2x+5$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $3$, $5$ et $7$. \mxblank{$5$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : extrapoler prudemment et évaluer la plausibilité.\end{prerequisites}
 
 \begin{activity}
@@ -212,7 +212,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{36}{\mxdate*{2027-02-11}}{B : 1 h -- C : 2 h}{Changement de variable}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Effectuer un changement de variable.\item Ajuster les nouvelles données.\item Revenir à la variable initiale.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $80$. \mxblank{$4$}\item Calculer la moyenne de $4$, $6$ et $8$. \mxblank{$6$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $80$. \mxblank{$4$}\item Calculer la moyenne de $4$, $6$ et $8$. \mxblank{$6$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : effectuer un changement de variable et ajuster les nouvelles données.\end{prerequisites}
 
 \begin{activity}
@@ -249,7 +249,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{37}{\mxdate*{2027-03-02}}{B : 2 h -- C : 1 h}{Choix du modèle et ajustement}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Comparer des modèles.\item Utiliser les résidus.\item Définir un domaine d'usage.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $5$, $7$ et $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $5$, $7$ et $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : comparer des modèles et utiliser les résidus.\end{prerequisites}
 
 \begin{activity}
@@ -286,7 +286,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{38}{\mxdate*{2027-03-04}}{B : 1 h -- C : 2 h}{Bilan et évaluation}{Statistiques à deux variables}
 \begin{objectives}\begin{itemize}\item Choisir et exploiter un ajustement.\item Rédiger une conclusion statistique.\item Analyser une erreur.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+6-x+2$. \mxblank{$2x+8$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $6$, $8$ et $10$. \mxblank{$8$}\item Donner la pente entre $(1,3)$ et $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+6-x+2$. \mxblank{$2x+8$}\item Avec $y=2x+5$, calculer $y$ pour $x=7$. \mxblank{$19$}\item Résoudre $3x+4=25$. \mxblank{$x=7$}\item Calculer la moyenne de $6$, $8$ et $10$. \mxblank{$8$}\item Donner la pente entre $\pt{1;3}$ et $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : choisir et exploiter un ajustement et rédiger une conclusion statistique.\end{prerequisites}
 
 \begin{activity}

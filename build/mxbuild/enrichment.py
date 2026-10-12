@@ -76,6 +76,18 @@ def _fractions(s):
     return s
 
 
+def _tuple(m):
+    """(a,b) or (a,b,c) as \\pt{a;b}: commas inside braces (\\num{1,5}) belong to a number, not to the tuple."""
+    parts, depth, cur = [], 0, ''
+    for c in m[1]:
+        depth += (c == '{') - (c == '}')
+        if c == ',' and depth == 0: parts.append(cur); cur = ''
+        else: cur += c
+    parts.append(cur)
+    if not 2 <= len(parts) <= 3 or not all(p.strip() for p in parts): return m[0]
+    return r'\pt{' + ';'.join(p.strip() for p in parts) + '}'
+
+
 def math(s, decimal):
     s = s.replace('{', r'\{').replace('}', r'\}')   # braces in the data are set braces
     s = re.sub(WORD + ' ?', lambda m: r'\text{' + m[0] + '}', s)   # a following space stays in the text
@@ -87,6 +99,11 @@ def math(s, decimal):
     s = re.sub(r'√\(([^()]*)\)', lambda m: r'\sqrt{' + m[1] + '}', s)
     s = re.sub(r'√([a-zA-Z]|\d+)', lambda m: r'\sqrt{' + m[1] + '}', s)
     s = re.sub(r'(?<!\d)(?<!\d[.,])(\d+)([.,])(\d+)(?![.,]?\d)', lambda m: r'\num{' + m[1] + ',' + m[3] + '}' if m[0] in decimal else m[0], s)
+    # Once decimals are \num, a comma left between parentheses separates the entries of a pair or triple: C(n,k) is a
+    # binomial coefficient, other tuples (a point, a solution pair) are written (a ; b) in French and (a, b) in English.
+    s = re.sub(r'(?<![A-Za-z\\])C\(([^(),]+),([^(),]+)\)', r'\\binom{\1}{\2}', s)
+    s = re.sub(r'(?<![a-zA-Z\\])(?<![a-z][A-Z])\(([^()$;]+)\)', _tuple, s)
+    s = re.sub(r'(?<![A-Za-z\\])([A-Z])\(([^()$;]+)\)', lambda m: m[1] + _tuple(re.match(r'\((.*)\)', m[0][1:])), s)   # A(2,1): a point
     return notation.rewrite_maths(_fractions(s), 'fr')   # intervals [a ; b], points (a;b), sets {a;b}: notation commands
 
 
@@ -112,7 +129,7 @@ def decimals(fr, en):
 # ---- units -------------------------------------------------------------------------------------------------------
 FIGURES = {   # figure code is shared by both languages; words go in maths or node texts
     'complex-rotations': r'\begin{tikzpicture}[scale=.85]\draw[mxaxisline](-.5,0)--(3,0) node[right]{$x$};\draw[mxaxisline](0,-.5)--(0,3) node[above]{$y$};\draw[mxcurve](2,0)--(2,2)--(0,2)--(0,0)--cycle;\fill[mxink](1,1)circle(2pt)node[right]{$a=1+i$};\foreach \x/\y/\z in {2/0/2,2/2/2+2i,0/2/2i,0/0/0}{\fill[mxmint](\x,\y)circle(2pt)node[below left]{$\z$};}\end{tikzpicture}',
-    'lattice-paths': r'\begin{tikzpicture}[scale=.85]\draw[mxline](0,0)grid(3,2);\draw[mxmint,very thick,->](0,0)--(1,0)--(1,1)--(2,1)--(3,1)--(3,2);\fill[mxink](1,1)circle(3pt)node[above left]{$(1,1)$};\node[below]at(0,0){$(0,0)$};\node[above]at(3,2){$(3,2)$};\end{tikzpicture}',
+    'lattice-paths': r'\begin{tikzpicture}[scale=.85]\draw[mxline](0,0)grid(3,2);\draw[mxmint,very thick,->](0,0)--(1,0)--(1,1)--(2,1)--(3,1)--(3,2);\fill[mxink](1,1)circle(3pt)node[above left]{$\pt{1;1}$};\node[below]at(0,0){$\pt{0;0}$};\node[above]at(3,2){$\pt{3;2}$};\end{tikzpicture}',
     'bayes': r'\begin{tikzpicture}[x=1.6cm,y=.8cm]\draw[mxmint,thick](0,0)--(1,1)node[midway,above]{$\frac13$};\draw[mxmint,thick](0,0)--(1,-1)node[midway,below]{$\frac23$};\node at(1.2,1){$A$};\node at(1.2,-1){$B$};\draw[mxink,thick](1.5,1)--(3,1.5)node[midway,above]{$\frac34$};\draw[mxink,thick](1.5,-1)--(3,-.5)node[midway,above]{$\frac14$};\node[right]at(3,1.5){$A\cap R:\ \frac14$};\node[right]at(3,-.5){$B\cap R:\ \frac16$};\end{tikzpicture}',
     'euler-trails': r'\begin{tikzpicture}[scale=1.1]\draw[mxmint,thick](0,0)--(2,0)--(2,2)--(0,2)--cycle;\draw[mxink,thick](0,0)--(2,2);\foreach \x/\y/\z in {0/0/A,2/0/B,2/2/C,0/2/D}{\fill[mxmint](\x,\y)circle(2pt)node[above right]{$\z$};}\end{tikzpicture}',
 }

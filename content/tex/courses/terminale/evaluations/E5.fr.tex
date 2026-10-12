@@ -5,10 +5,11 @@
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-5-1} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-5-1}
 \subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{42+v_n}$.
 
 \begin{enumerate}
@@ -31,6 +32,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-5-1}
 \subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $\intfo{0}{+\infty}$ par $f(x)=(x+5)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -55,7 +57,8 @@
 
 \mxnewpage\mxcontinued{Blanc 1 · Zéro 1 · suite}
 
-\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\mxtally{ex-5-1}
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $\pt{\vi;\vj;\vec k}$ de l'espace, on définit les vecteurs
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=4\vi+6\vj+10\vec k,&\vec z&=4\vi+6\vj+11\vec k.\end{aligned}\]
 
@@ -67,18 +70,19 @@
 
 \item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(\num{0,5} pt)}
 
-\item Exprimer le vecteur $6\vec u-4\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Exprimer le vecteur $6\vec u-4\vec v$ dans la base $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(\num{0,5} pt)}
 
 \item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(\num{0,5} pt)}
 
-\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $\pt{\vi;\vj;\vec k}$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
 
 \item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-1}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $19$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{3}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -218,7 +222,7 @@ Les deux premières égalités donnent $\lambda+\mu=10$, en contradiction avec l
 
 \item \textit{[\num{0,5} pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
 
-\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, donc $BC=\sqrt2$.
 
 \item \textit{[\num{0,5} pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 4=\frac{\lambda}{2}\ \text{et}\ 6=\frac{\lambda}{2}.\]
@@ -230,7 +234,7 @@ Ici $4\ne 6$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas align�
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $19$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(19,\frac{3}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $19$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{19;\frac{3}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{19}2(\frac{3}{10})^2(\frac{7}{10})^{17}\simeq\num{0,035802}$.
 
@@ -274,10 +278,11 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-5-2} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-5-2}
 \subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{110+v_n}$.
 
 \begin{enumerate}
@@ -300,6 +305,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-5-2}
 \subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $\intfo{0}{+\infty}$ par $f(x)=(x+4)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -324,7 +330,8 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxnewpage\mxcontinued{Blanc 1 · Zéro 2 · suite}
 
-\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\mxtally{ex-5-2}
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $\pt{\vi;\vj;\vec k}$ de l'espace, on définit les vecteurs
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=3\vi+8\vj+11\vec k,&\vec z&=3\vi+8\vj+12\vec k.\end{aligned}\]
 
@@ -336,18 +343,19 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(\num{0,5} pt)}
 
-\item Exprimer le vecteur $8\vec u-3\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Exprimer le vecteur $8\vec u-3\vec v$ dans la base $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(\num{0,5} pt)}
 
 \item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(\num{0,5} pt)}
 
-\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $\pt{\vi;\vj;\vec k}$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
 
 \item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-2}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $16$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -487,7 +495,7 @@ Les deux premières égalités donnent $\lambda+\mu=11$, en contradiction avec l
 
 \item \textit{[\num{0,5} pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
 
-\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, donc $BC=\sqrt2$.
 
 \item \textit{[\num{0,5} pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 3=\frac{\lambda}{2}\ \text{et}\ 8=\frac{\lambda}{2}.\]
@@ -499,7 +507,7 @@ Ici $3\ne 8$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas align�
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $16$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(16,\frac{1}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $16$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{16;\frac{1}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{16}2(\frac{1}{10})^2(\frac{9}{10})^{14}\simeq\num{0,274522}$.
 
@@ -545,10 +553,11 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-5-3} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-5-3}
 \subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{132+v_n}$.
 
 \begin{enumerate}
@@ -571,6 +580,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-5-3}
 \subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $\intfo{0}{+\infty}$ par $f(x)=(x+3)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -595,7 +605,8 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxnewpage\mxcontinued{Blanc 1 · A · suite}
 
-\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\mxtally{ex-5-3}
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $\pt{\vi;\vj;\vec k}$ de l'espace, on définit les vecteurs
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=2\vi+5\vj+7\vec k,&\vec z&=2\vi+5\vj+8\vec k.\end{aligned}\]
 
@@ -607,18 +618,19 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(\num{0,5} pt)}
 
-\item Exprimer le vecteur $5\vec u-2\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Exprimer le vecteur $5\vec u-2\vec v$ dans la base $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(\num{0,5} pt)}
 
 \item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(\num{0,5} pt)}
 
-\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $\pt{\vi;\vj;\vec k}$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
 
 \item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-3}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $17$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{5}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -758,7 +770,7 @@ Les deux premières égalités donnent $\lambda+\mu=7$, en contradiction avec la
 
 \item \textit{[\num{0,5} pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
 
-\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, donc $BC=\sqrt2$.
 
 \item \textit{[\num{0,5} pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 2=\frac{\lambda}{2}\ \text{et}\ 5=\frac{\lambda}{2}.\]
@@ -770,7 +782,7 @@ Ici $2\ne 5$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas align�
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(17,\frac{1}{5})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{17;\frac{1}{5}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{17}2(\frac{1}{5})^2(\frac{4}{5})^{15}\simeq\num{0,191403}$.
 
@@ -818,10 +830,11 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-5-4} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-5-4}
 \subsection*{Exercice 1 · Récurrence et encadrement \hfill 5 points}On considère la suite $(v_n)$ définie par $v_0=0$ et, pour tout entier naturel $n$, $v_{n+1}=\sqrt{56+v_n}$.
 
 \begin{enumerate}
@@ -844,6 +857,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-5-4}
 \subsection*{Exercice 2 · Une courbe exponentielle \hfill 5 points}On considère la fonction $f$ définie sur $\intfo{0}{+\infty}$ par $f(x)=(x+2)e^{-x}$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -868,7 +882,8 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxnewpage\mxcontinued{Blanc 1 · B · suite}
 
-\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $(\vi,\vj,\vec k)$ de l'espace, on définit les vecteurs
+\mxtally{ex-5-4}
+\subsection*{Exercice 3 · Calcul vectoriel dans une base \hfill 5 points}Dans une base $\pt{\vi;\vj;\vec k}$ de l'espace, on définit les vecteurs
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=5\vi+6\vj+11\vec k,&\vec z&=5\vi+6\vj+12\vec k.\end{aligned}\]
 
@@ -880,18 +895,19 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \item Les vecteurs $\vec u$, $\vec v$ et $\vec z$ sont-ils coplanaires ? Justifier. \hfill\textit{(\num{0,5} pt)}
 
-\item Exprimer le vecteur $6\vec u-5\vec v$ dans la base $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Exprimer le vecteur $6\vec u-5\vec v$ dans la base $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item On choisit un point $A$, puis on définit $B$, $C$ et $D$ par $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ et $\vect{AD}=\vec w$. Démontrer que $A$, $B$, $C$ et $D$ sont coplanaires. \hfill\textit{(\num{0,5} pt)}
 
 \item Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances $AB$, $AC$ et $BC$. \hfill\textit{(\num{0,5} pt)}
 
-\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $(\vi,\vj,\vec k)$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
+\item On note $I$ le milieu de $[BC]$. Exprimer $\vect{AI}$ dans la base $\pt{\vi;\vj;\vec k}$, puis déterminer si les points $A$, $I$ et $D$ sont alignés. \hfill\textit{(\num{0,5} pt)}
 
 \item On définit $E$ par $\vect{AE}=\vec z$. La droite $(DE)$ est-elle incluse dans le plan $(ABC)$ ? Justifier. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-4}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $19$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -1031,7 +1047,7 @@ Les deux premières égalités donnent $\lambda+\mu=11$, en contradiction avec l
 
 \item \textit{[\num{0,5} pt]} $\vect{AB}$ et $\vect{AC}$ sont non colinéaires et $\vect{AD}$ est leur combinaison linéaire : $D\in(ABC)$.
 
-\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, donc $BC=\sqrt2$.
+\item \textit{[\num{0,5} pt]} $AB=AC=\sqrt2$ ; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, donc $BC=\sqrt2$.
 
 \item \textit{[\num{0,5} pt]} La formule du milieu donne $\vect{AI}=\frac12(\vec u+\vec v)$. Les vecteurs $\vec u,\vec v$ étant non colinéaires,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 5=\frac{\lambda}{2}\ \text{et}\ 6=\frac{\lambda}{2}.\]
@@ -1043,7 +1059,7 @@ Ici $5\ne 6$ : il n'existe pas de tel $\lambda$, donc $A,I,D$ ne sont pas align�
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $19$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(19,\frac{1}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $19$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{19;\frac{1}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{19}2(\frac{1}{10})^2(\frac{9}{10})^{17}\simeq\num{0,285180}$.
 

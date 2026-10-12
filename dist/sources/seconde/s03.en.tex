@@ -3,7 +3,7 @@
 \section{Direction vector and Cartesian equation}
 \begin{keypoint}[Definition]
 A direction vector of a line is a \textbf{nonzero} vector having the direction of that line. If $A\ne B$, $\vect{AB}$ directs $(AB)$.
-Every line has an equation $ax+by+c=0$ with $(a,b)\ne(0,0)$. A direction vector is $\vc{-b}{a}$.
+Every line has an equation $ax+by+c=0$ with $\pt{a;b}\ne\pt{0;0}$. A direction vector is $\vc{-b}{a}$.
 \end{keypoint}
 \begin{example}For $A\pt{-2;4}$ and $B\pt{6;2}$, calculate $\vect{AB}$ then check that $\vec u\pt{4;-1}$ directs $(AB)$.\end{example}
 \mxanswerspace[2.4]{$\vect{AB}=\pt{8;-2}=2\vec u$. The vector $\vec u$ is nonzero and collinear with $\vect{AB}$; it therefore directs $(AB)$.}
@@ -13,7 +13,7 @@ The line through $A\pt{x_A;y_A}$ with direction vector $\vec u\pt{\alpha;\beta}\
 \end{keypoint}
 \mxwriteproof[4]{A point $M\pt{x;y}$ belongs to the line if and only if $\vect{AM}$ is collinear with $\vec u$, including for $M=A$. Now
 \[\det(\vect{AM},\vec u)=(x-x_A)\beta-(y-y_A)\alpha.\]
-Setting the determinant to zero gives the stated equation. Expanding, $a=\beta$, $b=-\alpha$ and $c=-\beta x_A+\alpha y_A$; since $\vec u\ne\vec0$, $(a,b)\ne(0,0)$.}
+Setting the determinant to zero gives the stated equation. Expanding, $a=\beta$, $b=-\alpha$ and $c=-\beta x_A+\alpha y_A$; since $\vec u\ne\vec0$, $\pt{a;b}\ne\pt{0;0}$.}
 \begin{pitfall}The zero vector directs no line. The sign of the determinant depends on the order of the vectors, but whether it vanishes does not.\end{pitfall}
 
 \mxsection{Determining the equation of a line}
@@ -23,7 +23,7 @@ From a point and a direction vector: choose $a,b$ then replace $x,y$ by the coor
 \begin{example}Determine a Cartesian equation of the line through $A\pt{2;-1}$ with direction vector $\vec u\pt{3;2}$.\end{example}
 \mxanswerspace[4]{$a=2$, $b=-3$ will do. The line therefore has an equation $2x-3y+c=0$. Since $A$ belongs to it, $4+3+c=0$, so $c=-7$. An equation is $2x-3y-7=0$. Check: $2\times2-3\times(-1)-7=0$ and $\pt{3;2}$ is indeed a direction vector.}
 \begin{example}Determine a Cartesian equation of $(AB)$ for $A\pt{3;3}$ and $B\pt{2;-2}$.\end{example}
-\mxanswerspace[4]{$\vect{AB}=\pt{-1;-5}$ directs the line. We can choose $(a,b)=(5,-1)$. With $A$, $15-3+c=0$, so $c=-12$. Thus $5x-y-12=0$. For $B$, $10+2-12=0$, which confirms the result.}
+\mxanswerspace[4]{$\vect{AB}=\pt{-1;-5}$ directs the line. We can choose $\pt{a;b}=\pt{5;-1}$. With $A$, $15-3+c=0$, so $c=-12$. Thus $5x-y-12=0$. For $B$, $10+2-12=0$, which confirms the result.}
 \begin{example}Does the point $P\pt{1;2}$ belong to $d:2x-3y+4=0$? Does the point $Q\pt{2;1}$ belong to it?\end{example}
 \mxanswerspace[2.4]{For $P$, $2-6+4=0$: yes. For $Q$, $4-3+4=5\ne0$: no.}
 

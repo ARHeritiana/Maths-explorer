@@ -288,13 +288,13 @@ export const enrichment = [
         "The equation ax + by = c has integer solutions exactly when d divides c. Necessity follows because d divides ax + by; sufficiency follows by multiplying a Bézout identity by c/d."
       ],
       [
-        "Si (x₀,y₀) est une solution, toutes les solutions sont x = x₀ + (b/d)t et y = y₀ − (a/d)t, avec t entier. Les contraintes x ≥ 0 et y ≥ 0 doivent être traitées ensuite.",
-        "If (x₀,y₀) is one solution, all solutions are x = x₀ + (b/d)t and y = y₀ − (a/d)t for integer t. Conditions x ≥ 0 and y ≥ 0 must then be imposed separately."
+        "Si (x₀ ; y₀) est une solution, toutes les solutions sont x = x₀ + (b/d)t et y = y₀ − (a/d)t, avec t entier. Les contraintes x ≥ 0 et y ≥ 0 doivent être traitées ensuite.",
+        "If (x₀, y₀) is one solution, all solutions are x = x₀ + (b/d)t and y = y₀ − (a/d)t for integer t. Conditions x ≥ 0 and y ≥ 0 must then be imposed separately."
       ]
     ],
     "worked": [
-      "Pour 15x + 21y = 6, on a 21 = 15 + 6 et 15 = 2 × 6 + 3. Ainsi 3 = 3 × 15 − 2 × 21. Une solution est (6,−4), et toutes les solutions sont x = 6 + 7t, y = −4 − 5t.",
-      "For 15x + 21y = 6, use 21 = 15 + 6 and 15 = 2 × 6 + 3. Thus 3 = 3 × 15 − 2 × 21. One solution is (6,−4), and all solutions are x = 6 + 7t, y = −4 − 5t."
+      "Pour 15x + 21y = 6, on a 21 = 15 + 6 et 15 = 2 × 6 + 3. Ainsi 3 = 3 × 15 − 2 × 21. Une solution est (6 ; −4), et toutes les solutions sont x = 6 + 7t, y = −4 − 5t.",
+      "For 15x + 21y = 6, use 21 = 15 + 6 and 15 = 2 × 6 + 3. Thus 3 = 3 × 15 − 2 × 21. One solution is (6, −4), and all solutions are x = 6 + 7t, y = −4 − 5t."
     ],
     "activity": [
       "Tester plusieurs valeurs de t dans l’exemple, puis vérifier l’équation sans arrondir.",
@@ -327,8 +327,8 @@ export const enrichment = [
           "Find all integer solutions of 5x + 3y = 1."
         ],
         "a": [
-          "(−1,2) est une solution. Toutes sont x = −1 + 3t, y = 2 − 5t, avec t entier.",
-          "(−1,2) is a solution. All are x = −1 + 3t, y = 2 − 5t for integer t."
+          "(−1 ; 2) est une solution. Toutes sont x = −1 + 3t, y = 2 − 5t, avec t entier.",
+          "(−1, 2) is a solution. All are x = −1 + 3t, y = 2 − 5t for integer t."
         ]
       },
       {
@@ -337,8 +337,8 @@ export const enrichment = [
           "Among solutions of 5x + 3y = 31, find those with nonnegative x and y."
         ],
         "a": [
-          "Modulo 3, x ≡ 2. Avec 0 ≤ x ≤ 6, x vaut 2 ou 5. Les couples sont (2,7) et (5,2).",
-          "Modulo 3, x ≡ 2. Since 0 ≤ x ≤ 6, x is 2 or 5. The pairs are (2,7) and (5,2)."
+          "Modulo 3, x ≡ 2. Avec 0 ≤ x ≤ 6, x vaut 2 ou 5. Les couples sont (2 ; 7) et (5 ; 2).",
+          "Modulo 3, x ≡ 2. Since 0 ≤ x ≤ 6, x is 2 or 5. The pairs are (2, 7) and (5, 2)."
         ]
       }
     ],
@@ -370,8 +370,8 @@ export const enrichment = [
     ],
     "lesson": [
       [
-        "Un chemin de (0,0) à (a,b) n’utilisant que des pas vers la droite ou vers le haut comporte a + b pas. Choisir les positions des a pas horizontaux donne C(a+b,a) chemins.",
-        "A path from (0,0) to (a,b), using only rightward or upward steps, has a + b steps. Choosing the positions of the a horizontal steps gives C(a+b,a) paths."
+        "Un chemin de (0 ; 0) à (a ; b) n’utilisant que des pas vers la droite ou vers le haut comporte a + b pas. Choisir les positions des a pas horizontaux donne C(a+b,a) chemins.",
+        "A path from (0, 0) to (a, b), using only rightward or upward steps, has a + b steps. Choosing the positions of the a horizontal steps gives C(a+b,a) paths."
       ],
       [
         "Pour 0 ≤ k ≤ n, C(n,k) = n!/[k!(n−k)!]. L’ordre des objets choisis ne compte pas. La symétrie C(n,k) = C(n,n−k) revient à choisir les objets retenus ou ceux exclus.",
@@ -383,8 +383,8 @@ export const enrichment = [
       ]
     ],
     "worked": [
-      "De (0,0) à (3,2), il y a C(5,3) = 10 chemins. Pour passer par (1,1), il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : 2 × 3 = 6 chemins.",
-      "From (0,0) to (3,2), there are C(5,3) = 10 paths. To pass through (1,1), choose one of two paths to that point and one of three paths onward: 2 × 3 = 6 paths."
+      "De (0 ; 0) à (3 ; 2), il y a C(5,3) = 10 chemins. Pour passer par (1 ; 1), il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : 2 × 3 = 6 chemins.",
+      "From (0, 0) to (3, 2), there are C(5,3) = 10 paths. To pass through (1, 1), choose one of two paths to that point and one of three paths onward: 2 × 3 = 6 paths."
     ],
     "activity": [
       "Dessiner un petit quadrillage et écrire dans chaque sommet le nombre de chemins qui y arrivent. Additionner les valeurs du voisin de gauche et du voisin du bas.",
@@ -403,8 +403,8 @@ export const enrichment = [
       },
       {
         "q": [
-          "Compter les chemins monotones de (0,0) à (4,3).",
-          "Count monotone paths from (0,0) to (4,3)."
+          "Compter les chemins monotones de (0 ; 0) à (4 ; 3).",
+          "Count monotone paths from (0, 0) to (4, 3)."
         ],
         "a": [
           "Il faut quatre pas à droite parmi sept : C(7,4) = 35.",
@@ -413,8 +413,8 @@ export const enrichment = [
       },
       {
         "q": [
-          "Parmi ces chemins, combien passent par (2,1) ?",
-          "How many of these paths pass through (2,1)?"
+          "Parmi ces chemins, combien passent par (2 ; 1) ?",
+          "How many of these paths pass through (2, 1)?"
         ],
         "a": [
           "C(3,2) × C(4,2) = 3 × 6 = 18.",
@@ -433,8 +433,8 @@ export const enrichment = [
       }
     ],
     "problem": [
-      "Compter les chemins monotones de (0,0) à (5,4) qui évitent A(2,1) et B(3,3). Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.",
-      "Count monotone paths from (0,0) to (5,4) that avoid A(2,1) and B(3,3). Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back."
+      "Compter les chemins monotones de (0 ; 0) à (5 ; 4) qui évitent A(2,1) et B(3,3). Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.",
+      "Count monotone paths from (0, 0) to (5, 4) that avoid A(2,1) and B(3,3). Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back."
     ],
     "solution": [
       "Total : C(9,5) = 126. Par A : C(3,2)C(6,3) = 60. Par B : C(6,3)C(3,2) = 60. Par les deux : 3 × C(3,1) × 3 = 27. Les chemins passant par les deux ont été soustraits deux fois ; les rajouter une fois donne 126 − 60 − 60 + 27 = 33.",
@@ -738,8 +738,8 @@ export const enrichment = [
     ],
     "lesson": [
       [
-        "À z=x+iy correspond le point (x,y). Multiplier par i donne iz=−y+ix : le point devient (−y,x), soit un quart de tour direct autour de l’origine.",
-        "The complex number z=x+iy represents (x,y). Multiplying by i gives iz=−y+ix, which represents (−y,x): a counterclockwise quarter-turn about the origin."
+        "À z=x+iy correspond le point (x ; y). Multiplier par i donne iz=−y+ix : le point devient (−y ; x), soit un quart de tour direct autour de l’origine.",
+        "The complex number z=x+iy represents (x, y). Multiplying by i gives iz=−y+ix, which represents (−y, x): a counterclockwise quarter-turn about the origin."
       ],
       [
         "Multiplier par −1 donne un demi-tour et multiplier par −i donne un quart de tour horaire. Ces transformations conservent les distances à l’origine car |i|=1.",
@@ -751,8 +751,8 @@ export const enrichment = [
       ]
     ],
     "worked": [
-      "Pour a=1+i et z=3+2i, z−a=2+i, puis i(z−a)=−1+2i. L’image vaut z′=3i. Les vecteurs relatifs (2,1) et (−1,2) sont perpendiculaires et de même norme √5.",
-      "With a=1+i and z=3+2i, z−a=2+i and i(z−a)=−1+2i. The image is z′=3i. Relative vectors (2,1) and (−1,2) are perpendicular and both have norm √5."
+      "Pour a=1+i et z=3+2i, z−a=2+i, puis i(z−a)=−1+2i. L’image vaut z′=3i. Les vecteurs relatifs (2 ; 1) et (−1 ; 2) sont perpendiculaires et de même norme √5.",
+      "With a=1+i and z=3+2i, z−a=2+i and i(z−a)=−1+2i. The image is z′=3i. Relative vectors (2, 1) and (−1, 2) are perpendicular and both have norm √5."
     ],
     "activity": [
       "Dans le laboratoire des complexes, déplacer z puis comparer z et iz. Vérifier l’égalité des modules et la perpendicularité des vecteurs.",
@@ -805,8 +805,8 @@ export const enrichment = [
       "Define z₀=2 and zₙ₊₁=i zₙ+2. Find the fixed point a and an explicit formula for zₙ. Determine the minimal period and the sum z₀+z₁+z₂+z₃. Interpret the four points geometrically."
     ],
     "solution": [
-      "a=1+i et zₙ₊₁−a=i(zₙ−a), donc zₙ=1+i+iⁿ(1−i). Les valeurs sont 2, 2+2i, 2i, 0, puis 2. Elles sont distinctes sur les quatre premiers rangs : la période minimale est 4. Leur somme vaut 4+4i=4a. Les points forment un carré de centre (1,1), de côté 2 et de rayon √2.",
-      "a=1+i and zₙ₊₁−a=i(zₙ−a), so zₙ=1+i+iⁿ(1−i). The values are 2, 2+2i, 2i, 0, then 2. The first four are distinct, so the minimal period is 4. Their sum is 4+4i=4a. The points form a square centred at (1,1), with side 2 and radius √2."
+      "a=1+i et zₙ₊₁−a=i(zₙ−a), donc zₙ=1+i+iⁿ(1−i). Les valeurs sont 2, 2+2i, 2i, 0, puis 2. Elles sont distinctes sur les quatre premiers rangs : la période minimale est 4. Leur somme vaut 4+4i=4a. Les points forment un carré de centre (1 ; 1), de côté 2 et de rayon √2.",
+      "a=1+i and zₙ₊₁−a=i(zₙ−a), so zₙ=1+i+iⁿ(1−i). The values are 2, 2+2i, 2i, 0, then 2. The first four are distinct, so the minimal period is 4. Their sum is 4+4i=4a. The points form a square centred at (1, 1), with side 2 and radius √2."
     ]
   },
   {
@@ -1066,7 +1066,7 @@ export const enrichment = [
           "A root lies in [1.4 ; 1.5]. What maximum error is guaranteed by midpoint 1.45?"
         ],
         "a": [
-          "La demi-largeur vaut (1,5−1,4)/2=0,05.",
+          "La demi-largeur vaut (1 ; 5−1 ; 4)/2=0,05.",
           "The half-width is (1.5−1.4)/2=0.05."
         ]
       }

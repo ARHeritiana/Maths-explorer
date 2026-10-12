@@ -8,19 +8,19 @@ Products, factorials and unordered choices.
 \end{prerequisites}
 
 \begin{keypoint}[Ideas and method]
-A path from $(0,0)$ to (a,b), using only rightward or upward steps, has $a + b$ steps. Choosing the positions of the a horizontal steps gives $C(a+b,a)$ paths.
+A path from $\pt{0;0}$ to $\pt{a;b}$, using only rightward or upward steps, has $a + b$ steps. Choosing the positions of the a horizontal steps gives $\binom{a+b}{a}$ paths.
 
-For $0 \leq  k \leq  n$, $C(n,k) = \frac{n!}{k!(n-k)!}$. The order of the chosen objects does not matter. Symmetry $C(n,k) = C(n,n-k)$ corresponds to choosing included or excluded objects.
+For $0 \leq  k \leq  n$, $\binom{n}{k} = \frac{n!}{k!(n-k)!}$. The order of the chosen objects does not matter. Symmetry $\binom{n}{k} = \binom{n}{n-k}$ corresponds to choosing included or excluded objects.
 
-Pascal’s identity $C(n,k) = C(n-1,k-1) + C(n-1,k)$ splits choices by whether one fixed object is included. Paths can also be classified by their last step.
+Pascal’s identity $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$ splits choices by whether one fixed object is included. Paths can also be classified by their last step.
 \end{keypoint}
 
 \begin{example}
-From $(0,0)$ to $(3,2)$, there are $C(5,3) = 10$ paths. To pass through $(1,1)$, choose one of two paths to that point and one of three paths onward: $2 \times  3 = 6$ paths.
+From $\pt{0;0}$ to $\pt{3;2}$, there are $\binom{5}{3} = 10$ paths. To pass through $\pt{1;1}$, choose one of two paths to that point and one of three paths onward: $2 \times  3 = 6$ paths.
 \end{example}
 
 \begin{figurebox}
-\begin{tikzpicture}[scale=.85]\draw[mxline](0,0)grid(3,2);\draw[mxmint,very thick,->](0,0)--(1,0)--(1,1)--(2,1)--(3,1)--(3,2);\fill[mxink](1,1)circle(3pt)node[above left]{$(1,1)$};\node[below]at(0,0){$(0,0)$};\node[above]at(3,2){$(3,2)$};\end{tikzpicture}
+\begin{tikzpicture}[scale=.85]\draw[mxline](0,0)grid(3,2);\draw[mxmint,very thick,->](0,0)--(1,0)--(1,1)--(2,1)--(3,1)--(3,2);\fill[mxink](1,1)circle(3pt)node[above left]{$\pt{1;1}$};\node[below]at(0,0){$\pt{0;0}$};\node[above]at(3,2){$\pt{3;2}$};\end{tikzpicture}
 \end{figurebox}
 
 \begin{activity}[Explore]

@@ -7,7 +7,7 @@
 
 \section{Course notes}
 \subsection{Circle and functions}
-On the unit circle, the point located by an angle $x$ in radians has coordinates $(\cos x,\sin x)$. For every real number $x$,
+On the unit circle, the point located by an angle $x$ in radians has coordinates $\pt{\cos x;\sin x}$. For every real number $x$,
 \[\cos^2x+\sin^2x=1,\quad -1\le\cos x,\sin x\le1.\]
 Cosine is even: $\cos(-x)=\cos x$. Sine is odd: $\sin(-x)=-\sin x$. Both functions are $2\pi$-periodic.
 \[\begin{array}{c|ccccc}x&0&\frac{\pi}{6}&\frac{\pi}{4}&\frac{\pi}{3}&\frac{\pi}{2}\\\hline
@@ -30,7 +30,7 @@ To solve $\cos (2x)=\frac{1}{2}$ on $[-\pi,\pi]$, let $t=2x\in[-2\pi,2\pi]$, sol
 \end{method}
 \paragraph{Optimisation.} For $f(x)=\sin x+\frac12\sin(2x)$ on $[0,\pi]$, $f'=\cos x+\cos(2x)=2\cos^2x+\cos x-1=(2\cos x-1)(\cos x+1)$. The function increases up to $\frac{\pi}{3}$ then decreases; maximum $\frac{3\sqrt{3}}{4}$.
 \paragraph{Double-angle identities used in the exercises.} For every real number $x$, $\sin(2x)=2\sin x\cos x$ and $\cos(2x)=\cos^2x-\sin^2x=2\cos^2x-1$. These identities are recalled here so that their use in problems is not implicit.
-\paragraph{Symmetries of the curves.} The evenness of cosine corresponds to a symmetry about the vertical axis; the oddness of sine to a point symmetry about the origin. Periodicity extends each curve by translation by the vector $(2\pi,0)$.
+\paragraph{Symmetries of the curves.} The evenness of cosine corresponds to a symmetry about the vertical axis; the oddness of sine to a point symmetry about the origin. Periodicity extends each curve by translation by the vector $\pt{2\pi;0}$.
 
 
 \begin{center}\begin{tikzpicture}[scale=1.6]
@@ -38,7 +38,7 @@ To solve $\cos (2x)=\frac{1}{2}$ on $[-\pi,\pi]$, let $t=2x\in[-2\pi,2\pi]$, sol
 \draw[mxmint,thick](0,0)--(.5,.866);\draw[mxmint,dashed](.5,0)--(.5,.866)--(0,.866);
 \draw[->,mxmint](.35,0)arc(0:60:.35);\node[right]at(.25,.27){$x$};
 \node[below]at(.5,0){$\cos x$};\node[left]at(0,.866){$\sin x$};\node[above right]at(.5,.866){$M$};
-\end{tikzpicture}\par\small The coordinates of the point on the circle are $(\cos x,\sin x)$.\end{center}
+\end{tikzpicture}\par\small The coordinates of the point on the circle are $\pt{\cos x;\sin x}$.\end{center}
 
 \mxnewpage
 \section{Research activity}\textbf{Height of a point on a wheel --- 35 min.}\par A wheel turns at constant speed in a vertical plane. Its radius is $2$ m and its centre is $3$ m above the ground. A point on the wheel is at its lowest position at time $t=0$. The wheel makes one revolution in $8$ s. Its height is modelled by $h(t)=3-2\cos\left(\frac{\pi t}{4}\right)$, where $t$ is in seconds and $h(t)$ in metres.

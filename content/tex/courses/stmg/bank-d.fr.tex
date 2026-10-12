@@ -75,7 +75,7 @@ On note $R$ l'événement « le colis fait l'objet d'un retour » et $X$ la vari
 \item Premier niveau : $P(R)=\num{0,12}$ et $P(\overline R)=1-\num{0,12}=\num{0,88}$. Les tirages étant assimilés à des tirages avec remise, le second niveau reprend les mêmes probabilités : $\num{0,12}$ vers $R$ et $\num{0,88}$ vers $\overline R$ sur chacune des deux branches.
 \item On répète $2$ fois, de façon identique et indépendante (tirage assimilé à un tirage avec remise), une épreuve de Bernoulli dont le succès « le colis est retourné » a pour probabilité $\num{0,12}$. La variable $X$ compte le nombre de succès : $X$ suit la loi binomiale $\mathcal B\pt{2;\num{0,12}}$.
 \item $P(X=0)=\num{0,88}^2=\num{0,7744}$.
-Deux chemins réalisent $\{X=1\}$ : $(R,\overline R)$ et $(\overline R,R)$, d'où $P(X=1)=2\times\num{0,12}\times\num{0,88}=\num{0,2112}$.
+Deux chemins réalisent $\{X=1\}$ : $\pt{R;\overline R}$ et $\pt{\overline R;R}$, d'où $P(X=1)=2\times\num{0,12}\times\num{0,88}=\num{0,2112}$.
 $P(X=2)=\num{0,12}^2=\num{0,0144}$.
 Contrôle : $\num{0,7744}+\num{0,2112}+\num{0,0144}=1$.
 \item « Au moins un retour » est l'événement $\{X\geqslant1\}$.

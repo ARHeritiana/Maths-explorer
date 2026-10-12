@@ -5,10 +5,11 @@
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-9-1} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-9-1}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -31,6 +32,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-9-1}
 \subsection*{Exercice 2 · Phénomène périodique \hfill 5 points}Un point se déplace sur une roue tournant à vitesse constante dans un plan vertical. Sa hauteur au-dessus du sol est modélisée par $h(t)=9-3\cos\left(\frac{\pi t}{5}\right)$, où $t$ est exprimé en secondes et $h(t)$ en mètres. On étudie un tour complet, pour $t\in\intff{0}{10}$.
 
 \begin{enumerate}
@@ -55,6 +57,7 @@
 
 \mxnewpage\mxcontinued{Blanc final · Zéro 1 · suite}
 
+\mxtally{ex-9-1}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=11$ et le point $M\pt{2;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -77,6 +80,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-9-1}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $20$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{5}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -117,7 +121,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $2+\ln x=0$, soit $x=e^{-2}$.
 
 \item \textit{[1 pt]} On dérive $(-1-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{1}}{2}$ et $s=e^{-1}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -141,7 +145,7 @@ Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au si
 \item \textit{[1 pt]} Une primitive est $F(t)=9t-\frac{15}{\pi}\sin (\frac{\pi t}{5})$. Comme $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{10}\int_0^{10}h(t)\,\dd t=\frac{F(10)-F(0)}{10}=\frac{90}{10}=9\ \mathrm{m}.\]
 
-\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{3\pi^2}{25}\cos (\frac{\pi t}{5})$. Son signe est celui du cosinus : positif sur $[0,\frac{5}{2}[$ et $]\frac{15}{2},10]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,\frac{5}{2}]$ et $[\frac{15}{2},10]$, concave sur $[\frac{5}{2},\frac{15}{2}]$. Les deux changements de convexité donnent les points d'inflexion $(\frac{5}{2},9)$ et $(\frac{15}{2},9)$.
+\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{3\pi^2}{25}\cos (\frac{\pi t}{5})$. Son signe est celui du cosinus : positif sur $[0,\frac{5}{2}[$ et $]\frac{15}{2},10]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,\frac{5}{2}]$ et $[\frac{15}{2},10]$, concave sur $[\frac{5}{2},\frac{15}{2}]$. Les deux changements de convexité donnent les points d'inflexion $\pt{\frac{5}{2};9}$ et $\pt{\frac{15}{2};9}$.
 
 \item \textit{[\num{0,5} pt]} Entre $\frac{10}{3}$ et $\frac{20}{3}$ ; durée $\frac{10}{3}$ s.
 
@@ -153,20 +157,20 @@ Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(2+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{2+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $2+9t=11$ donne $t=1$ ; $H=(3,2,2)$.
+\item \textit{[\num{0,5} pt]} $2+9t=11$ donne $t=1$ ; $H=\pt{3;2;2}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|1|\,3=3.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=11-4s$. Donc $(x,y,z)=(11,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=11-4s$. Donc $\pt{x;y;z}=\pt{11;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $3$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=2$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|1-1|\,\|\vec n\|=0.\]
@@ -175,7 +179,7 @@ Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(20,\frac{1}{5})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{20;\frac{1}{5}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{20}2(\frac{1}{5})^2(\frac{4}{5})^{18}\simeq\num{0,136909}$.
 
@@ -210,10 +214,11 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $800
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-9-2} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-9-2}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -236,6 +241,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $800
 
 \end{enumerate}
 
+\mxtally{ex-9-2}
 \subsection*{Exercice 2 · Phénomène périodique \hfill 5 points}Un point se déplace sur une roue tournant à vitesse constante dans un plan vertical. Sa hauteur au-dessus du sol est modélisée par $h(t)=12-4\cos\left(\frac{\pi t}{4}\right)$, où $t$ est exprimé en secondes et $h(t)$ en mètres. On étudie un tour complet, pour $t\in\intff{0}{8}$.
 
 \begin{enumerate}
@@ -260,6 +266,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $800
 
 \mxnewpage\mxcontinued{Blanc final · Zéro 2 · suite}
 
+\mxtally{ex-9-2}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=7$ et le point $M\pt{3;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -282,6 +289,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $800
 
 \end{enumerate}
 
+\mxtally{ex-9-2}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $17$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{3}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -322,7 +330,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $5+\ln x=0$, soit $x=e^{-5}$.
 
 \item \textit{[1 pt]} On dérive $(-4-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{4}}{2}$ et $s=e^{-4}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -346,7 +354,7 @@ Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au si
 \item \textit{[1 pt]} Une primitive est $F(t)=12t-\frac{16}{\pi}\sin (\frac{\pi t}{4})$. Comme $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{8}\int_0^{8}h(t)\,\dd t=\frac{F(8)-F(0)}{8}=\frac{96}{8}=12\ \mathrm{m}.\]
 
-\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{4\pi^2}{16}\cos (\frac{\pi t}{4})$. Son signe est celui du cosinus : positif sur $[0,2[$ et $]6,8]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,2]$ et $[6,8]$, concave sur $[2,6]$. Les deux changements de convexité donnent les points d'inflexion $(2,12)$ et $(6,12)$.
+\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{4\pi^2}{16}\cos (\frac{\pi t}{4})$. Son signe est celui du cosinus : positif sur $[0,2[$ et $]6,8]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,2]$ et $[6,8]$, concave sur $[2,6]$. Les deux changements de convexité donnent les points d'inflexion $\pt{2;12}$ et $\pt{6;12}$.
 
 \item \textit{[\num{0,5} pt]} Entre $\frac{8}{3}$ et $\frac{16}{3}$ ; durée $\frac{8}{3}$ s.
 
@@ -358,20 +366,20 @@ Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(3+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{3+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $3+9t=7$ donne $t=\frac{4}{9}$ ; $H=(\frac{31}{9},\frac{8}{9},\frac{8}{9})$.
+\item \textit{[\num{0,5} pt]} $3+9t=7$ donne $t=\frac{4}{9}$ ; $H=\pt{\frac{31}{9};\frac{8}{9};\frac{8}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{4}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{4}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{4}{9}|\,3=\frac{4}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=7-4s$. Donc $(x,y,z)=(7,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=7-4s$. Donc $\pt{x;y;z}=\pt{7;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{4}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=3$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{4}{9}-1|\,\|\vec n\|=\frac{5}{3}.\]
@@ -380,7 +388,7 @@ Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(17,\frac{3}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{17;\frac{3}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{17}2(\frac{3}{10})^2(\frac{7}{10})^{15}\simeq\num{0,058110}$.
 
@@ -417,10 +425,11 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $105
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-9-3} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-9-3}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -443,6 +452,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $105
 
 \end{enumerate}
 
+\mxtally{ex-9-3}
 \subsection*{Exercice 2 · Phénomène périodique \hfill 5 points}Un point se déplace sur une roue tournant à vitesse constante dans un plan vertical. Sa hauteur au-dessus du sol est modélisée par $h(t)=7-2\cos\left(\frac{\pi t}{3}\right)$, où $t$ est exprimé en secondes et $h(t)$ en mètres. On étudie un tour complet, pour $t\in\intff{0}{6}$.
 
 \begin{enumerate}
@@ -467,6 +477,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $105
 
 \mxnewpage\mxcontinued{Blanc final · A · suite}
 
+\mxtally{ex-9-3}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=8$ et le point $M\pt{1;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -489,6 +500,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $105
 
 \end{enumerate}
 
+\mxtally{ex-9-3}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $18$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -529,7 +541,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $4+\ln x=0$, soit $x=e^{-4}$.
 
 \item \textit{[1 pt]} On dérive $(-3-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{3}}{2}$ et $s=e^{-3}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -553,7 +565,7 @@ Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au si
 \item \textit{[1 pt]} Une primitive est $F(t)=7t-\frac{6}{\pi}\sin (\frac{\pi t}{3})$. Comme $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{6}\int_0^{6}h(t)\,\dd t=\frac{F(6)-F(0)}{6}=\frac{42}{6}=7\ \mathrm{m}.\]
 
-\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{2\pi^2}{9}\cos (\frac{\pi t}{3})$. Son signe est celui du cosinus : positif sur $[0,\frac{3}{2}[$ et $]\frac{9}{2},6]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,\frac{3}{2}]$ et $[\frac{9}{2},6]$, concave sur $[\frac{3}{2},\frac{9}{2}]$. Les deux changements de convexité donnent les points d'inflexion $(\frac{3}{2},7)$ et $(\frac{9}{2},7)$.
+\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{2\pi^2}{9}\cos (\frac{\pi t}{3})$. Son signe est celui du cosinus : positif sur $[0,\frac{3}{2}[$ et $]\frac{9}{2},6]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,\frac{3}{2}]$ et $[\frac{9}{2},6]$, concave sur $[\frac{3}{2},\frac{9}{2}]$. Les deux changements de convexité donnent les points d'inflexion $\pt{\frac{3}{2};7}$ et $\pt{\frac{9}{2};7}$.
 
 \item \textit{[\num{0,5} pt]} Entre $2$ et $4$ ; durée $2$ s.
 
@@ -565,20 +577,20 @@ Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(1+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{1+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $1+9t=8$ donne $t=\frac{7}{9}$ ; $H=(\frac{16}{9},\frac{14}{9},\frac{14}{9})$.
+\item \textit{[\num{0,5} pt]} $1+9t=8$ donne $t=\frac{7}{9}$ ; $H=\pt{\frac{16}{9};\frac{14}{9};\frac{14}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{7}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{7}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{7}{9}|\,3=\frac{7}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=8-4s$. Donc $(x,y,z)=(8,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=8-4s$. Donc $\pt{x;y;z}=\pt{8;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{7}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=1$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{7}{9}-1|\,\|\vec n\|=\frac{2}{3}.\]
@@ -587,7 +599,7 @@ Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $18$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(18,\frac{1}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $18$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{18;\frac{1}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{18}2(\frac{1}{10})^2(\frac{9}{10})^{16}\simeq\num{0,283512}$.
 
@@ -626,10 +638,11 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $450
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-9-4} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-9-4}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -652,6 +665,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $450
 
 \end{enumerate}
 
+\mxtally{ex-9-4}
 \subsection*{Exercice 2 · Phénomène périodique \hfill 5 points}Un point se déplace sur une roue tournant à vitesse constante dans un plan vertical. Sa hauteur au-dessus du sol est modélisée par $h(t)=10-3\cos\left(\frac{\pi t}{2}\right)$, où $t$ est exprimé en secondes et $h(t)$ en mètres. On étudie un tour complet, pour $t\in\intff{0}{4}$.
 
 \begin{enumerate}
@@ -676,6 +690,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $450
 
 \mxnewpage\mxcontinued{Blanc final · B · suite}
 
+\mxtally{ex-9-4}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=12$ et le point $M\pt{2;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -698,6 +713,7 @@ Par complément, on a alors $P(|F_N-p|<\num{0,02})\ge\num{0,95}$. La taille $450
 
 \end{enumerate}
 
+\mxtally{ex-9-4}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $20$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{3}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -738,7 +754,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $3+\ln x=0$, soit $x=e^{-3}$.
 
 \item \textit{[1 pt]} On dérive $(-2-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{2}}{2}$ et $s=e^{-2}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -762,7 +778,7 @@ Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au si
 \item \textit{[1 pt]} Une primitive est $F(t)=10t-\frac{6}{\pi}\sin (\frac{\pi t}{2})$. Comme $\sin0=\sin(2\pi)=0$,
 \[\overline h=\frac{1}{4}\int_0^{4}h(t)\,\dd t=\frac{F(4)-F(0)}{4}=\frac{40}{4}=10\ \mathrm{m}.\]
 
-\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{3\pi^2}{4}\cos (\frac{\pi t}{2})$. Son signe est celui du cosinus : positif sur $[0,1[$ et $]3,4]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,1]$ et $[3,4]$, concave sur $[1,3]$. Les deux changements de convexité donnent les points d'inflexion $(1,10)$ et $(3,10)$.
+\item \textit{[\num{0,5} pt]} La dérivée seconde est $h''(t)=\frac{3\pi^2}{4}\cos (\frac{\pi t}{2})$. Son signe est celui du cosinus : positif sur $[0,1[$ et $]3,4]$, négatif entre ces deux intervalles. La fonction est convexe sur $[0,1]$ et $[3,4]$, concave sur $[1,3]$. Les deux changements de convexité donnent les points d'inflexion $\pt{1;10}$ et $\pt{3;10}$.
 
 \item \textit{[\num{0,5} pt]} Entre $\frac{4}{3}$ et $\frac{8}{3}$ ; durée $\frac{4}{3}$ s.
 
@@ -774,20 +790,20 @@ Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(2+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{2+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $2+9t=12$ donne $t=\frac{10}{9}$ ; $H=(\frac{28}{9},\frac{20}{9},\frac{20}{9})$.
+\item \textit{[\num{0,5} pt]} $2+9t=12$ donne $t=\frac{10}{9}$ ; $H=\pt{\frac{28}{9};\frac{20}{9};\frac{20}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{10}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{10}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{10}{9}|\,3=\frac{10}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=12-4s$. Donc $(x,y,z)=(12,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=12-4s$. Donc $\pt{x;y;z}=\pt{12;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{10}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=2$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{10}{9}-1|\,\|\vec n\|=\frac{1}{3}.\]
@@ -796,7 +812,7 @@ Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(20,\frac{3}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{20;\frac{3}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{20}2(\frac{3}{10})^2(\frac{7}{10})^{18}\simeq\num{0,027846}$.
 

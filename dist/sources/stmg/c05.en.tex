@@ -3,7 +3,7 @@
 \mxunit{stmg-c05}{Bivariate statistics}
 \mxskills{represent, choose a linear regression, interpolate, extrapolate with caution, communicate}
 \section{Reference course}
-A bivariate data set consists of pairs $(x_i,y_i)$. The scatter plot shows a trend, the spread and any outliers.
+A bivariate data set consists of pairs $\pt{x_i;y_i}$. The scatter plot shows a trend, the spread and any outliers.
 
 \begin{center}
 \begin{tikzpicture}
@@ -18,26 +18,26 @@ A bivariate data set consists of pairs $(x_i,y_i)$. The scatter plot shows a tre
 A line of best fit $y=ax+b$ gives estimates, not exact equalities. The coefficient $a$ describes the estimated average change in $y$ when $x$ increases by one unit. Interpolation stays within the range of observed values; extrapolation goes outside that range and must be presented with caution.
 \end{keypoint}
 
-The mean point $G(\bar x,\bar y)$ has coordinates $\bar x=\dfrac{x_1+\cdots+x_n}{n}$ and $\bar y=\dfrac{y_1+\cdots+y_n}{n}$. A regression line obtained with a calculator passes through $G$, up to rounding.
+The mean point $G\pt{\bar x;\bar y}$ has coordinates $\bar x=\dfrac{x_1+\cdots+x_n}{n}$ and $\bar y=\dfrac{y_1+\cdots+y_n}{n}$. A regression line obtained with a calculator passes through $G$, up to rounding.
 
 \begin{method}
 To use $y=ax+b$: 1) replace $x$ by the requested value to estimate $y$; 2) solve $ax+b=y_0$ to estimate $x$; 3) round according to the context; 4) state whether it is interpolation or extrapolation; 5) remind that the result depends on the model.
 \end{method}
 
-A change of variable, for example $z=\log(y)$ or $z=\dfrac1y$, can make a scatter plot roughly linear. We then fit $(x,z)$, and afterwards return to the variable $y$.
+A change of variable, for example $z=\log(y)$ or $z=\dfrac1y$, can make a scatter plot roughly linear. We then fit $\pt{x;z}$, and afterwards return to the variable $y$.
 
 \mxsession{31}{\mxdate*{2027-01-26}}{B: 2 h -- C: 1 h}{Scatter plot}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Construct a scatter plot.\item Choose the scales.\item Identify the variables.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: construct a scatter plot and choose the scales.\end{prerequisites}
 
 \begin{activity}
-The table $(x_i,y_i)$ gives the advertising spending and the sales over six months: $(1,12),(2,15),(3,17),(4,22),(5,24),(6,28)$. Choose scales, draw the scatter plot and plot the mean point.
+The table $\pt{x_i;y_i}$ gives the advertising spending and the sales over six months: $\pt{1;12},\pt{2;15},\pt{3;17},\pt{4;22},\pt{5;24},\pt{6;28}$. Choose scales, draw the scatter plot and plot the mean point.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=0,xmax=7,ymin=0,ymax=15,grid=major]\addplot[only marks,mxteacher,mark=*] coordinates {(1,3)(2,5)(3,6)(4,9)(5,10)(6,13)};\addplot[mxwarn,thick,domain=.5:6.5]{1.9*x+1};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}$\bar x=\num{3,5}$ and $\bar y=\num{19,67}$ approximately. The scatter plot shows an increasing, roughly linear trend. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
 
-\begin{summary}A scatter plot represents the pairs $(x_i,y_i)$. The axes, units and scales must be indicated; each pair gives a single point.\end{summary}
+\begin{summary}A scatter plot represents the pairs $\pt{x_i;y_i}$. The axes, units and scales must be indicated; each pair gives a single point.\end{summary}
 
 \begin{example}
 Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
@@ -65,7 +65,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{32}{\mxdate*{2027-01-28}}{B: 1 h -- C: 2 h}{Reading and interpreting a scatter plot}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Describe a trend.\item Spot spread and outliers.\item Avoid unwarranted causality.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+7-x+2$. \mxblank{$2x+9$}\item Calculate the mean of $7$, $9$ and $11$. \mxblank{$9$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+7-x+2$. \mxblank{$2x+9$}\item Calculate the mean of $7$, $9$ and $11$. \mxblank{$9$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: describe a trend and spot spread and outliers.\end{prerequisites}
 
 \begin{activity}
@@ -102,7 +102,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{33}{\mxdate*{2027-02-02}}{B: 2 h -- C: 1 h}{Linear regression}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Obtain a linear regression.\item Interpret $a$ and $b$.\item Check with the mean point.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $160$. \mxblank{$32$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $8$, $10$ and $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $160$. \mxblank{$32$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $8$, $10$ and $12$. \mxblank{$10$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: obtain a linear regression and interpret $a$ and $b$.\end{prerequisites}
 
 \begin{activity}
@@ -139,7 +139,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{34}{\mxdate*{2027-02-04}}{B: 1 h -- C: 2 h}{Interpolation}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Interpolate.\item Solve using the model.\item Express an estimate.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $9$, $11$ and $13$. \mxblank{$11$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $9$, $11$ and $13$. \mxblank{$11$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: interpolate and solve using the model.\end{prerequisites}
 
 \begin{activity}
@@ -176,7 +176,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{35}{\mxdate*{2027-02-09}}{B: 2 h -- C: 1 h}{Extrapolation}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Extrapolate with caution.\item Assess plausibility.\item Present a limitation of the model.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+3-x+2$. \mxblank{$2x+5$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $3$, $5$ and $7$. \mxblank{$5$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+3-x+2$. \mxblank{$2x+5$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $3$, $5$ and $7$. \mxblank{$5$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: extrapolate with caution and assess plausibility.\end{prerequisites}
 
 \begin{activity}
@@ -213,7 +213,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{36}{\mxdate*{2027-02-11}}{B: 1 h -- C: 2 h}{Change of variable}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Carry out a change of variable.\item Fit the new data.\item Return to the original variable.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $80$. \mxblank{$4$}\item Calculate the mean of $4$, $6$ and $8$. \mxblank{$6$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $80$. \mxblank{$4$}\item Calculate the mean of $4$, $6$ and $8$. \mxblank{$6$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: carry out a change of variable and fit the new data.\end{prerequisites}
 
 \begin{activity}
@@ -250,7 +250,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{37}{\mxdate*{2027-03-02}}{B: 2 h -- C: 1 h}{Choosing the model and fitting}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Compare models.\item Use residuals.\item Define a range of use.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $5$, $7$ and $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $5$, $7$ and $9$. \mxblank{$7$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: compare models and use residuals.\end{prerequisites}
 
 \begin{activity}
@@ -287,7 +287,7 @@ Take the data of the investigation and write the solution in order: definition o
 \fi
 \mxsession{38}{\mxdate*{2027-03-04}}{B: 1 h -- C: 2 h}{Review and assessment}{Bivariate statistics}
 \begin{objectives}\begin{itemize}\item Choose and use a regression.\item Write a statistical conclusion.\item Analyse an error.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+6-x+2$. \mxblank{$2x+8$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $(1,3)$ and $(4,9)$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+6-x+2$. \mxblank{$2x+8$}\item With $y=2x+5$, calculate $y$ for $x=7$. \mxblank{$19$}\item Solve $3x+4=25$. \mxblank{$x=7$}\item Calculate the mean of $6$, $8$ and $10$. \mxblank{$8$}\item Give the slope between $\pt{1;3}$ and $\pt{4;9}$. \mxblank{$\dfrac{9-3}{4-1}=2$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: choose and use a regression and write a statistical conclusion.\end{prerequisites}
 
 \begin{activity}

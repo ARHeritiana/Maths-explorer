@@ -19,6 +19,12 @@
    "status": "aligned",
    "order": 2
   },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 3
+  },
   "a8d06204d5bd": {
    "fr": "Un vecteur directeur d'une droite est un vecteur \\textbf{non nul} ayant la direction de cette droite. Si [[m1]], [[m2]] dirige [[m3]].\nToute droite admet une équation [[m4]] avec [[m5]]. Un vecteur directeur est [[m6]].",
    "en": "A direction vector of a line is a \\textbf{nonzero} vector having the direction of that line. If [[m1]], [[m2]] directs [[m3]].\nEvery line has an equation [[m4]] with [[m5]]. A direction vector is [[m6]].",
@@ -233,115 +239,109 @@
    "fr": "[[m1]] et [[m2]] ;",
    "en": "[[m1]] and [[m2]];",
    "status": "aligned",
-   "order": 40
+   "order": 39
   },
   "7b8c0189e799": {
    "fr": "[[m1]] et [[m2]].",
    "en": "[[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 41
+   "order": 40
   },
   "9268b8d4aa4d": {
    "fr": "1. La deuxième équation est le double de la première : droites confondues. 2. Deux verticales distinctes : strictement parallèles. 3. Les pentes [[m1]] et [[m2]] diffèrent : sécantes. Leur intersection vérifie [[m3]], donc [[m4]] et [[m5]].",
    "en": "1. The second equation is twice the first: coincident lines. 2. Two distinct vertical lines: strictly parallel. 3. The slopes [[m1]] and [[m2]] differ: intersecting. Their intersection satisfies [[m3]], so [[m4]] and [[m5]].",
    "status": "aligned",
-   "order": 42
+   "order": 41
   },
   "24ef3d0b612e": {
    "fr": "Intersection : résolution par substitution",
    "en": "Intersection: solving by substitution",
    "status": "aligned",
-   "order": 43
-  },
-  "beb84672add4": {
-   "fr": "Définition",
-   "en": "Definition",
-   "status": "aligned",
-   "order": 44
+   "order": 42
   },
   "33ef02b7a07b": {
    "fr": "Résoudre un système de deux équations en [[m1]], c'est trouver tous les couples [[m2]] vérifiant simultanément les deux équations. Pour deux équations de droites : une intersection donne un couple solution ; des droites strictement parallèles donnent aucune solution ; des droites confondues donnent une infinité de solutions.",
    "en": "Solving a system of two equations in [[m1]] means finding all the pairs [[m2]] satisfying both equations simultaneously. For two equations of lines: an intersection gives one solution pair; strictly parallel lines give no solution; coincident lines give infinitely many solutions.",
    "status": "aligned",
-   "order": 45
+   "order": 43
   },
   "03bf457162f6": {
    "fr": "Substitution",
    "en": "Substitution",
    "status": "aligned",
-   "order": 46
+   "order": 44
   },
   "04a49d4455d4": {
    "fr": "Isoler une inconnue dans une équation, remplacer son expression dans l'autre, résoudre puis retrouver la seconde inconnue. Vérifier le couple dans les deux équations initiales.",
    "en": "Isolate one unknown in one equation, substitute its expression into the other, solve, then find the second unknown. Check the pair in both original equations.",
    "status": "aligned",
-   "order": 47
+   "order": 45
   },
   "01ccb9e67d24": {
    "fr": "Résoudre [[m1]]",
    "en": "Solve [[m1]]",
    "status": "aligned",
-   "order": 48
+   "order": 46
   },
   "f48bb87b9eab": {
    "fr": "La première équation donne [[m1]]. En remplaçant dans la seconde : [[m2]], soit [[m3]]. Ainsi [[m4]] puis [[m5]]. L'ensemble solution est [[m6]]. Les substitutions donnent [[m7]] et [[m8]].",
    "en": "The first equation gives [[m1]]. Substituting into the second: [[m2]], that is [[m3]]. Thus [[m4]] then [[m5]]. The solution set is [[m6]]. The substitutions give [[m7]] and [[m8]].",
    "status": "aligned",
-   "order": 49
+   "order": 47
   },
   "039bb5b89d77": {
    "fr": "Résoudre par substitution :",
    "en": "Solve by substitution:",
    "status": "aligned",
-   "order": 50
+   "order": 48
   },
   "efde407d5e35": {
    "fr": "(a) [[m1]] puis [[m2]], d'où [[m3]], [[m4]].\\\\(b) [[m5]] ; [[m6]], donc [[m7]], puis [[m8]].",
    "en": "(a) [[m1]] then [[m2]], so [[m3]], [[m4]].\\\\(b) [[m5]]; [[m6]], so [[m7]], then [[m8]].",
    "status": "aligned",
-   "order": 51
+   "order": 49
   },
   "1a793a3571ac": {
    "fr": "Combinaison linéaire et Python",
    "en": "Linear combination and Python",
    "status": "aligned",
-   "order": 52
+   "order": 50
   },
   "7cb07c30eb2b": {
    "fr": "Combinaison linéaire",
    "en": "Linear combination",
    "status": "aligned",
-   "order": 53
+   "order": 51
   },
   "593857c8b77a": {
    "fr": "Multiplier les équations par des nombres non nuls pour obtenir des coefficients opposés d'une inconnue ; les additionner pour éliminer cette inconnue. Conserver une équation du système pour calculer l'autre inconnue.",
    "en": "Multiply the equations by nonzero numbers to obtain opposite coefficients for one unknown; add them to eliminate that unknown. Keep one equation of the system to calculate the other unknown.",
    "status": "aligned",
-   "order": 54
+   "order": 52
   },
   "2134c41bce16": {
    "fr": "Résoudre [[m1]] Reprendre ensuite les deux systèmes de l'exemple précédent par combinaison.",
    "en": "Solve [[m1]] Then redo the two systems of the previous example by linear combination.",
    "status": "aligned",
-   "order": 55
+   "order": 53
   },
   "64dbc196313f": {
    "fr": "Multiplier la première équation par [[m1]] et la seconde par [[m2]] donne [[m3]] et [[m4]]. La somme donne [[m5]], d'où [[m6]]. Puis [[m7]], donc [[m8]].\nPour (a), ajouter quatre fois la première équation à la seconde : [[m9]], donc [[m10]]. Pour (b), soustraire deux fois la première à la seconde : [[m11]], donc [[m12]].",
    "en": "Multiplying the first equation by [[m1]] and the second by [[m2]] gives [[m3]] and [[m4]]. The sum gives [[m5]], so [[m6]]. Then [[m7]], so [[m8]].\nFor (a), add four times the first equation to the second: [[m9]], so [[m10]]. For (b), subtract twice the first from the second: [[m11]], so [[m12]].",
    "status": "aligned",
-   "order": 56
+   "order": 54
   },
   "df6cddc9c275": {
    "fr": "Prévoir \\texttt{alignes((0,0), (2,1), (6,3))} puis \\texttt{alignes((0,0), (2,1), (6,4))}.",
    "en": "Predict \\texttt{alignes((0,0), (2,1), (6,3))} then \\texttt{alignes((0,0), (2,1), (6,4))}.",
    "status": "aligned",
-   "order": 57
+   "order": 55
   },
   "6e19944b3ba2": {
    "fr": "\\texttt{True}, puis \\texttt{False} : les déterminants sont [[m1]] et [[m2]]. Le test exact convient ici aux coordonnées entières ; les approximations flottantes demandent de tenir compte des erreurs numériques.",
    "en": "\\texttt{True}, then \\texttt{False}: the determinants are [[m1]] and [[m2]]. The exact test is suitable here for integer coordinates; floating-point approximations require taking numerical errors into account.",
    "status": "aligned",
-   "order": 58
+   "order": 56
   }
  }
 }

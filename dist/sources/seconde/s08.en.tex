@@ -193,4 +193,4 @@ def premiere_puissance(seuil):
     return n, p
 \end{lstlisting}
 \begin{example}What does \texttt{premiere\_puissance(100)} return? What relation between \texttt{p} and \texttt{n} stays true at each step? How can the sign of a number then be tested in Python?\end{example}
-\mxanswerspace[3.2]{The result is $(7,128)$. The invariant is $p=2^n$, true at initialisation and then preserved. For the sign, first test \texttt{x > 0}, then \texttt{x < 0}, otherwise $x=0$. Do not replace the loop's non-strict inequality by a strict one without changing the problem posed.}
+\mxanswerspace[3.2]{The result is $\pt{7;128}$. The invariant is $p=2^n$, true at initialisation and then preserved. For the sign, first test \texttt{x > 0}, then \texttt{x < 0}, otherwise $x=0$. Do not replace the loop's non-strict inequality by a strict one without changing the problem posed.}

@@ -84,6 +84,7 @@ CHECKS = [
     ('banned content', [PY, 'tests/banned.py']),
     ('FR/EN twin parity (maths and figures)', [PY, 'tests/twin_parity.py']),
     ('FR/EN PDFs: parity, local frames and safe links', [PY, 'tests/pdf_parity.py']),
+    ('stated counts match the content', [PY, 'tests/count_claims.py']),
     ('twin tool unit tests', [PY, 'tests/test_twin.py']),
     ('English units up to date', [PY, '-m', 'mxbuild', 'twin', 'check']),
     ('TeX unit lint', [PY, 'tests/tex_lint.py']),

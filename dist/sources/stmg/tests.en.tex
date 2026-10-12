@@ -240,7 +240,7 @@ A linear regression line is $y=\num{3,2}x+12$, established for $x\in[2,15]$.
 \end{enumerate}
 \end{exercise}
 \begin{exercise}[3 -- Change of variable]\mxpoints{8}
-Let $z=\log(y)$, and the linear regression of $(x,z)$ is $z=\num{0,06}x+\num{1,1}$.
+Let $z=\log(y)$, and the linear regression of $\pt{x;z}$ is $z=\num{0,06}x+\num{1,1}$.
 \begin{enumerate}
 \item Express $y$ in terms of $x$.
 \item Estimate $y$ for $x=8$.
@@ -267,7 +267,7 @@ A linear regression line is $y=\num{2,4}x+18$, established for $x\in[2,15]$.
 \end{enumerate}
 \end{exercise}
 \begin{exercise}[3 -- Change of variable]\mxpoints{8}
-Let $z=\log(y)$, and the linear regression of $(x,z)$ is $z=\num{0,06}x+\num{1,1}$.
+Let $z=\log(y)$, and the linear regression of $\pt{x;z}$ is $z=\num{0,06}x+\num{1,1}$.
 \begin{enumerate}
 \item Express $y$ in terms of $x$.
 \item Estimate $y$ for $x=8$.
@@ -349,7 +349,7 @@ A customer responds favourably with probability $\num{0,30}$. An adviser contact
 \item Explain the role of $\binom nk$ in the binomial formula.
 \end{enumerate}
 \end{exercise}
-\begin{solution}\textbf{Marking scheme:} $6+8+6$. \textbf{Solution:} The net gain is $-3,2,12$; $E(G)=-\num{1,95}+\num{0,50}+\num{1,20}=-\num{0,25}$ euro. $X\sim\mathcal B(10,\num{0,30})$; apply the formula, use $1-P(X=0)$ for ``at least one'', and $E(X)=np$. Row $n=6$ is $1,6,15,20,15,6,1$.\end{solution}
+\begin{solution}\textbf{Marking scheme:} $6+8+6$. \textbf{Solution:} The net gain is $-3,2,12$; $E(G)=-\num{1,95}+\num{0,50}+\num{1,20}=-\num{0,25}$ euro. $X\sim\mathcal B\pt{10;\num{0,30}}$; apply the formula, use $1-P(X=0)$ for ``at least one'', and $E(X)=np$. Row $n=6$ is $1,6,15,20,15,6,1$.\end{solution}
 
 \mxtest{7}{B}{Random variables and the binomial distribution}{model, calculate, reason, interpret}
 \begin{exercise}[1 -- Expected value of a game]\mxpoints{6}
@@ -376,4 +376,4 @@ A customer responds favourably with probability $\num{0,25}$. An adviser contact
 \item Explain the role of $\binom nk$ in the binomial formula.
 \end{enumerate}
 \end{exercise}
-\begin{solution}\textbf{Marking scheme:} $6+8+6$. \textbf{Solution:} The net gain is $-3,2,12$; $E(G)=-\num{1,95}+\num{0,50}+\num{1,20}=-\num{0,25}$ euro. $X\sim\mathcal B(8,\num{0,25})$; apply the formula, use $1-P(X=0)$ for ``at least one'', and $E(X)=np$. Row $n=6$ is $1,6,15,20,15,6,1$.\end{solution}
+\begin{solution}\textbf{Marking scheme:} $6+8+6$. \textbf{Solution:} The net gain is $-3,2,12$; $E(G)=-\num{1,95}+\num{0,50}+\num{1,20}=-\num{0,25}$ euro. $X\sim\mathcal B\pt{8;\num{0,25}}$; apply the formula, use $1-P(X=0)$ for ``at least one'', and $E(X)=np$. Row $n=6$ is $1,6,15,20,15,6,1$.\end{solution}

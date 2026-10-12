@@ -53,14 +53,14 @@
 {
 "k": "concept",
 "t": "Base et coordonnées",
-"b": "Une base de l'espace est une famille de trois vecteurs non coplanaires. Tout vecteur s'y écrit de manière unique \\(x\\vi +y\\vj +z\\vec k\\). Un repère est constitué d'une origine \\(O\\) et d'une base.\n\\[\\vect{AB}=(x_B-x_A,y_B-y_A,z_B-z_A),\\qquad\nI=\\left(\\frac{x_A+x_B}2,\\frac{y_A+y_B}2,\\frac{z_A+z_B}2\\right).\\]\nDans un repère orthonormé, \\(\\|\\vec u\\|=\\sqrt{x^2+y^2+z^2}\\) et \\(AB=\\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}\\).",
+"b": "Une base de l'espace est une famille de trois vecteurs non coplanaires. Tout vecteur s'y écrit de manière unique \\(x\\vi +y\\vj +z\\vec k\\). Un repère est constitué d'une origine \\(O\\) et d'une base.\n\\[\\vect{AB}=\\pt{x_B-x_A;y_B-y_A;z_B-z_A},\\qquad\nI=\\left(\\frac{x_A+x_B}2,\\frac{y_A+y_B}2,\\frac{z_A+z_B}2\\right).\\]\nDans un repère orthonormé, \\(\\|\\vec u\\|=\\sqrt{x^2+y^2+z^2}\\) et \\(AB=\\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}\\).",
 "a": null,
 "h": null
 },
 {
 "k": "example",
 "t": "Base et coordonnées",
-"b": "Dans un repère orthonormé, pour \\(A(1,0,2)\\), \\(B(3,-1,4)\\), \\(\\vect{AB}=(2,-1,2)\\), \\(AB=3\\) et le milieu est \\((2,-\\frac{1}{2},3)\\).",
+"b": "Dans un repère orthonormé, pour \\(A\\pt{1;0;2}\\), \\(B\\pt{3;-1;4}\\), \\(\\vect{AB}=\\pt{2;-1;2}\\), \\(AB=3\\) et le milieu est \\(\\pt{2;-\\frac{1}{2};3}\\).",
 "a": null,
 "h": null
 },
@@ -74,7 +74,7 @@
 {
 "k": "activity",
 "t": "Activité de recherche",
-"b": "<b>Trois milieux dans un cube — 40 min.</b><br><br> On considère le cube \\(ABCDEFGH\\) représenté ci-dessous. On pose \\(\\vi=\\vect{AB}\\), \\(\\vj=\\vect{AD}\\) et \\(\\vec k=\\vect{AE}\\). Les points \\(I\\), \\(J\\) et \\(K\\) sont les milieux respectifs de \\([AB]\\), \\([AD]\\) et \\([AE]\\). On note \\(O\\) le centre du cube.\n   \\([AG]\\) est une diagonale de l'espace, tracée en pointillés verts.<br>Les arêtes cachées sont en pointillés bleus ; \\(D\\) et \\(F\\) ne sont pas sur \\((AG)\\).\n<ol><li>Exprimer \\(\\vect{IJ}\\) et \\(\\vect{IK}\\) dans la base \\((\\vi,\\vj,\\vec k)\\).\n<li>Démontrer que les points \\(I\\), \\(J\\) et \\(K\\) ne sont pas alignés.\n<li>Déterminer si \\(O\\) appartient au plan \\((IJK)\\). On justifiera la réponse en cherchant si \\(\\vect{IO}\\) est une combinaison linéaire de \\(\\vect{IJ}\\) et \\(\\vect{IK}\\).\n<li>Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de \\(O\\) au plan \\((IJK)\\) ?</ol>",
+"b": "<b>Trois milieux dans un cube — 40 min.</b><br><br> On considère le cube \\(ABCDEFGH\\) représenté ci-dessous. On pose \\(\\vi=\\vect{AB}\\), \\(\\vj=\\vect{AD}\\) et \\(\\vec k=\\vect{AE}\\). Les points \\(I\\), \\(J\\) et \\(K\\) sont les milieux respectifs de \\([AB]\\), \\([AD]\\) et \\([AE]\\). On note \\(O\\) le centre du cube.\n   \\([AG]\\) est une diagonale de l'espace, tracée en pointillés verts.<br>Les arêtes cachées sont en pointillés bleus ; \\(D\\) et \\(F\\) ne sont pas sur \\((AG)\\).\n<ol><li>Exprimer \\(\\vect{IJ}\\) et \\(\\vect{IK}\\) dans la base \\(\\pt{\\vi;\\vj;\\vec k}\\).\n<li>Démontrer que les points \\(I\\), \\(J\\) et \\(K\\) ne sont pas alignés.\n<li>Déterminer si \\(O\\) appartient au plan \\((IJK)\\). On justifiera la réponse en cherchant si \\(\\vect{IO}\\) est une combinaison linéaire de \\(\\vect{IJ}\\) et \\(\\vect{IK}\\).\n<li>Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de \\(O\\) au plan \\((IJK)\\) ?</ol>",
 "a": null,
 "h": null,
 "f": [

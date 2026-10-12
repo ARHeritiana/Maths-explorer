@@ -19,7 +19,7 @@ L'espérance est $E(X)=\sum_i x_ip_i$. Elle représente la valeur moyenne à lon
 \end{center}
 
 \begin{keypoint}
-$X$ suit une loi binomiale $\mathcal B(n,p)$ lorsque $X$ compte le nombre de succès dans $n$ épreuves de Bernoulli indépendantes, de même probabilité de succès $p$. Alors
+$X$ suit une loi binomiale $\mathcal B\pt{n;p}$ lorsque $X$ compte le nombre de succès dans $n$ épreuves de Bernoulli indépendantes, de même probabilité de succès $p$. Alors
 \[
 P(X=k)=\binom nk p^k(1-p)^{n-k},\qquad E(X)=np.
 \]
@@ -34,11 +34,11 @@ Le coefficient $\binom nk$ compte le nombre de chemins contenant exactement $k$ 
 \end{axis}
 \end{tikzpicture}
 \end{center}
-Le diagramme représente approximativement $\mathcal B(10,\num{0,3})$ ; son centre est proche de $E(X)=3$.
+Le diagramme représente approximativement $\mathcal B\pt{10;\num{0,3}}$ ; son centre est proche de $E(X)=3$.
 
 \mxsession{47}{\mxdate*{2027-04-06}}{B : 2 h -- C : 1 h}{Espérance d'une variable aléatoire}{Variables aléatoires discrètes}
 \begin{objectives}\begin{itemize}\item Définir une loi.\item Calculer une espérance.\item Interpréter une moyenne théorique.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+8-x+2$. \mxblank{$2x+10$}\item Donner $E(X)$ pour $X\sim\mathcal B(10,\num{0,3})$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $8$. \mxblank{$8$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+8-x+2$. \mxblank{$2x+10$}\item Donner $E(X)$ pour $X\sim\mathcal B\pt{10;\num{0,3}}$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $8$. \mxblank{$8$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : définir une loi et calculer une espérance.\end{prerequisites}
 
 \begin{activity}
@@ -57,7 +57,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Justifier que le nombre de succès parmi $8$ essais indépendants, avec $p=\num{0,3}$, suit une loi binomiale.\item Calculer $P(X=2)$ et $P(X=0)$.\item En déduire $P(X\geq1)$ et calculer $E(X)$.\end{enumerate}
 \end{exercise}
-\begin{solution}$X\sim\mathcal B(8,\num{0,3})$. $P(X=2)=\binom{8}2 \num{0,3}^2 \num{0,7}^{6}$, $P(X=0)=\num{0,7}^{8}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{24}{10}$.\end{solution}
+\begin{solution}$X\sim\mathcal B\pt{8;\num{0,3}}$. $P(X=2)=\binom{8}2 \num{0,3}^2 \num{0,7}^{6}$, $P(X=0)=\num{0,7}^{8}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{24}{10}$.\end{solution}
 
 \mxexuse{47}
 
@@ -75,26 +75,26 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{48}{\mxdate*{2027-04-08}}{B : 1 h -- C : 2 h}{Loi binomiale : reconnaître une situation}{Variables aléatoires discrètes}
 \begin{objectives}\begin{itemize}\item Reconnaître un schéma de Bernoulli.\item Identifier $n$ et $p$.\item Définir $X$.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $180$. \mxblank{$9$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $9$. \mxblank{$9$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\item Donner $E(X)$ pour $X\sim\mathcal B(10,\num{0,3})$. \mxblank{$3$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $180$. \mxblank{$9$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $9$. \mxblank{$9$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\item Donner $E(X)$ pour $X\sim\mathcal B\pt{10;\num{0,3}}$. \mxblank{$3$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : reconnaître un schéma de bernoulli et identifier $n$ et $p$.\end{prerequisites}
 
 \begin{activity}
 Un client accepte une offre avec probabilité $\num{0,25}$. Un conseiller contacte indépendamment huit clients. Définir $X$, justifier la loi binomiale et identifier $n$ et $p$.
 
 \end{activity}
-\begin{solution}$X$ compte les acceptations ; répétition de 8 épreuves identiques et indépendantes, succès de probabilité $\num{0,25}$ : $X\sim\mathcal B(8,\num{0,25})$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}$X$ compte les acceptations ; répétition de 8 épreuves identiques et indépendantes, succès de probabilité $\num{0,25}$ : $X\sim\mathcal B\pt{8;\num{0,25}}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
-\begin{summary}$X\sim\mathcal B(n,p)$ si $X$ compte les succès dans $n$ épreuves indépendantes de même probabilité $p$.\end{summary}
+\begin{summary}$X\sim\mathcal B\pt{n;p}$ si $X$ compte les succès dans $n$ épreuves indépendantes de même probabilité $p$.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}$X$ compte les acceptations ; répétition de 8 épreuves identiques et indépendantes, succès de probabilité $\num{0,25}$ : $X\sim\mathcal B(8,\num{0,25})$.\end{solution}
+\begin{solution}$X$ compte les acceptations ; répétition de 8 épreuves identiques et indépendantes, succès de probabilité $\num{0,25}$ : $X\sim\mathcal B\pt{8;\num{0,25}}$.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Justifier que le nombre de succès parmi $9$ essais indépendants, avec $p=\num{0,3}$, suit une loi binomiale.\item Calculer $P(X=2)$ et $P(X=0)$.\item En déduire $P(X\geq1)$ et calculer $E(X)$.\end{enumerate}
 \end{exercise}
-\begin{solution}$X\sim\mathcal B(9,\num{0,3})$. $P(X=2)=\binom{9}2 \num{0,3}^2 \num{0,7}^{7}$, $P(X=0)=\num{0,7}^{9}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{27}{10}$.\end{solution}
+\begin{solution}$X\sim\mathcal B\pt{9;\num{0,3}}$. $P(X=2)=\binom{9}2 \num{0,3}^2 \num{0,7}^{7}$, $P(X=0)=\num{0,7}^{9}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{27}{10}$.\end{solution}
 
 \mxexuse{48}
 
@@ -112,7 +112,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{49}{\mxdate*{2027-04-27}}{B : 2 h -- C : 1 h}{Triangle de Pascal et coefficients binomiaux}{Variables aléatoires discrètes}
 \begin{objectives}\begin{itemize}\item Construire le triangle de Pascal.\item Lire $\binom nk$.\item Interpréter un coefficient.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Calculer l'espérance de $X$ constant égal à $3$. \mxblank{$3$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\item Donner $E(X)$ pour $X\sim\mathcal B(10,\num{0,3})$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Calculer l'espérance de $X$ constant égal à $3$. \mxblank{$3$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\item Donner $E(X)$ pour $X\sim\mathcal B\pt{10;\num{0,3}}$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : construire le triangle de pascal et lire $\binom nk$.\end{prerequisites}
 
 \begin{activity}
@@ -131,7 +131,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Justifier que le nombre de succès parmi $10$ essais indépendants, avec $p=\num{0,3}$, suit une loi binomiale.\item Calculer $P(X=2)$ et $P(X=0)$.\item En déduire $P(X\geq1)$ et calculer $E(X)$.\end{enumerate}
 \end{exercise}
-\begin{solution}$X\sim\mathcal B(10,\num{0,3})$. $P(X=2)=\binom{10}2 \num{0,3}^2 \num{0,7}^{8}$, $P(X=0)=\num{0,7}^{10}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{30}{10}$.\end{solution}
+\begin{solution}$X\sim\mathcal B\pt{10;\num{0,3}}$. $P(X=2)=\binom{10}2 \num{0,3}^2 \num{0,7}^{8}$, $P(X=0)=\num{0,7}^{10}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{30}{10}$.\end{solution}
 
 \mxexuse{49}
 
@@ -149,16 +149,16 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{50}{\mxdate*{2027-04-29}}{B : 1 h -- C : 2 h}{Probabilités binomiales}{Variables aléatoires discrètes}
 \begin{objectives}\begin{itemize}\item Calculer $P(X=k)$.\item Traduire au moins/au plus.\item Utiliser le complémentaire.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+4-x+2$. \mxblank{$2x+6$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\item Donner $E(X)$ pour $X\sim\mathcal B(10,\num{0,3})$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $4$. \mxblank{$4$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+4-x+2$. \mxblank{$2x+6$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\item Donner $E(X)$ pour $X\sim\mathcal B\pt{10;\num{0,3}}$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $4$. \mxblank{$4$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer $p(x=k)$ et traduire au moins/au plus.\end{prerequisites}
 
 \begin{activity}
-Pour $X\sim\mathcal B(8,\num{0,25})$, calculer $P(X=2)$, $P(X=0)$ puis $P(X\geq1)$. Traduire chaque événement en phrase.
+Pour $X\sim\mathcal B\pt{8;\num{0,25}}$, calculer $P(X=2)$, $P(X=0)$ puis $P(X\geq1)$. Traduire chaque événement en phrase.
 \begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-.5,xmax=8.5,ymin=0,ymax=.35,grid=major]\addplot[ybar,fill=mxteacher!55,draw=mxteacher] coordinates {(0,.10)(1,.267)(2,.311)(3,.208)(4,.087)(5,.023)(6,.004)(7,.0004)(8,.00002)};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}$P(X=2)=\binom82 \num{0,25}^2 \num{0,75}^6\approx\num{0,3115}$ ; $P(X=0)=\num{0,75}^8\approx\num{0,1001}$ ; $P(X\geq1)\approx\num{0,8999}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
-\begin{summary}Si $X\sim\mathcal B(n,p)$, alors $P(X=k)=\binom nkp^k(1-p)^{n-k}$. Traduire soigneusement « au moins », « au plus » et « aucun ».\end{summary}
+\begin{summary}Si $X\sim\mathcal B\pt{n;p}$, alors $P(X=k)=\binom nkp^k(1-p)^{n-k}$. Traduire soigneusement « au moins », « au plus » et « aucun ».\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
@@ -168,7 +168,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Justifier que le nombre de succès parmi $6$ essais indépendants, avec $p=\num{0,3}$, suit une loi binomiale.\item Calculer $P(X=2)$ et $P(X=0)$.\item En déduire $P(X\geq1)$ et calculer $E(X)$.\end{enumerate}
 \end{exercise}
-\begin{solution}$X\sim\mathcal B(6,\num{0,3})$. $P(X=2)=\binom{6}2 \num{0,3}^2 \num{0,7}^{4}$, $P(X=0)=\num{0,7}^{6}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{18}{10}$.\end{solution}
+\begin{solution}$X\sim\mathcal B\pt{6;\num{0,3}}$. $P(X=2)=\binom{6}2 \num{0,3}^2 \num{0,7}^{4}$, $P(X=0)=\num{0,7}^{6}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{18}{10}$.\end{solution}
 
 \mxexuse{50}
 
@@ -186,7 +186,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{51}{\mxdate*{2027-05-04}}{B : 2 h -- C : 1 h}{Bilan du chapitre et évaluation}{Variables aléatoires discrètes}
 \begin{objectives}\begin{itemize}\item Calculer et interpréter $E(X)$.\item Résoudre un problème binomial.\item Analyser ses erreurs.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $100$. \mxblank{$20$}\item Donner $E(X)$ pour $X\sim\mathcal B(10,\num{0,3})$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $5$. \mxblank{$5$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $100$. \mxblank{$20$}\item Donner $E(X)$ pour $X\sim\mathcal B\pt{10;\num{0,3}}$. \mxblank{$3$}\item Calculer $\binom52$. \mxblank{$10$}\item Calculer l'espérance de $X$ constant égal à $5$. \mxblank{$5$}\item Traduire $X\geq1$ par un complémentaire. \mxblank{$1-P(X=0)$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer et interpréter $e(x)$ et résoudre un problème binomial.\end{prerequisites}
 
 \begin{activity}
@@ -195,7 +195,7 @@ Un centre reçoit $120$ groupes de $10$ clients, chaque client réclamant avec p
 \end{activity}
 \begin{solution}Par groupe $E(X)=10\times\num{0,08}=\num{0,8}$. Sur 120 groupes, environ $96$ réclamations en moyenne ; ce n'est pas une certitude. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
-\begin{summary}Pour $X\sim\mathcal B(n,p)$, $E(X)=np$. La valeur donne le nombre moyen de succès sur un grand nombre de séries de $n$ épreuves.\end{summary}
+\begin{summary}Pour $X\sim\mathcal B\pt{n;p}$, $E(X)=np$. La valeur donne le nombre moyen de succès sur un grand nombre de séries de $n$ épreuves.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
@@ -205,7 +205,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Justifier que le nombre de succès parmi $7$ essais indépendants, avec $p=\num{0,3}$, suit une loi binomiale.\item Calculer $P(X=2)$ et $P(X=0)$.\item En déduire $P(X\geq1)$ et calculer $E(X)$.\end{enumerate}
 \end{exercise}
-\begin{solution}$X\sim\mathcal B(7,\num{0,3})$. $P(X=2)=\binom{7}2 \num{0,3}^2 \num{0,7}^{5}$, $P(X=0)=\num{0,7}^{7}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{21}{10}$.\end{solution}
+\begin{solution}$X\sim\mathcal B\pt{7;\num{0,3}}$. $P(X=2)=\binom{7}2 \num{0,3}^2 \num{0,7}^{5}$, $P(X=0)=\num{0,7}^{7}$, $P(X\geq1)=1-P(X=0)$ et $E(X)=\dfrac{21}{10}$.\end{solution}
 
 \mxexuse{51}
 

@@ -19,10 +19,10 @@ Une droite et un plan : droite incluse dans le plan, parallèle et disjointe, ou
 \paragraph{Exemple dans un cube.} Dans $ABCDEFGH$, les faces $ABCD$ et $EFGH$ sont parallèles et les arêtes $AE,BF,CG,DH$ se correspondent. Les droites $(AB)$ et $(CG)$ ne sont ni parallèles ni sécantes : elles sont non coplanaires.
 \subsection{Base et coordonnées}
 Une base de l'espace est une famille de trois vecteurs non coplanaires. Tout vecteur s'y écrit de manière unique $x\vi +y\vj +z\vec k$. Un repère est constitué d'une origine $O$ et d'une base.
-\[\vect{AB}=(x_B-x_A,y_B-y_A,z_B-z_A),\qquad
+\[\vect{AB}=\pt{x_B-x_A;y_B-y_A;z_B-z_A},\qquad
 I=\left(\frac{x_A+x_B}2,\frac{y_A+y_B}2,\frac{z_A+z_B}2\right).\]
 Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.
-\paragraph{Exemple.} Dans un repère orthonormé, pour $A(1,0,2)$, $B(3,-1,4)$, $\vect{AB}=(2,-1,2)$, $AB=3$ et le milieu est $(2,-\frac{1}{2},3)$.
+\paragraph{Exemple.} Dans un repère orthonormé, pour $A\pt{1;0;2}$, $B\pt{3;-1;4}$, $\vect{AB}=\pt{2;-1;2}$, $AB=3$ et le milieu est $\pt{2;-\frac{1}{2};3}$.
 \begin{method}[Tester une combinaison linéaire]
 Écrire les trois égalités de coordonnées. Déterminer les coefficients à partir de deux équations quand c'est possible, puis vérifier la troisième. Une contradiction prouve la non-appartenance ; on ne supprime pas l'équation gênante.
 \end{method}
@@ -38,7 +38,7 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \draw[mxmint,thick,dash pattern=on 5pt off 2pt](A)--(G);
 \foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
 \end{tikzpicture}\par\small $[AG]$ est une diagonale de l'espace, tracée en pointillés verts.\\Les arêtes cachées sont en pointillés bleus ; $D$ et $F$ ne sont pas sur $(AG)$.\end{center}
-\begin{enumerate}\item Exprimer $\vect{IJ}$ et $\vect{IK}$ dans la base $(\vi,\vj,\vec k)$.
+\begin{enumerate}\item Exprimer $\vect{IJ}$ et $\vect{IK}$ dans la base $\pt{\vi;\vj;\vec k}$.
 \item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés.
 \item Déterminer si $O$ appartient au plan $(IJK)$. On justifiera la réponse en cherchant si $\vect{IO}$ est une combinaison linéaire de $\vect{IJ}$ et $\vect{IK}$.
 \item Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de $O$ au plan $(IJK)$ ?\end{enumerate}
@@ -52,7 +52,7 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 
 \mxexerciseitem{3}{Entraînement}Dans une base de l'espace, on considère $\vec u=\pt{1;0;1}$, $\vec v=\pt{0;1;1}$ et $\vec w=\pt{2;3;5}$. Exprimer $\vec w$ comme combinaison linéaire de $\vec u$ et $\vec v$, puis en déduire que ces trois vecteurs sont coplanaires.
 
-\mxexerciseitem{4}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$, $\vec v$ et $\vec w$ ont pour coordonnées $\pt{1;0;1}$, $\pt{0;1;1}$ et $\pt{1;1;0}$. Le triplet $(\vec u,\vec v,\vec w)$ est-il une base de l'espace ? Justifier.
+\mxexerciseitem{4}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$, $\vec v$ et $\vec w$ ont pour coordonnées $\pt{1;0;1}$, $\pt{0;1;1}$ et $\pt{1;1;0}$. Le triplet $\pt{\vec u;\vec v;\vec w}$ est-il une base de l'espace ? Justifier.
 
 \mxexerciseitem{5}{Entraînement}Dans un repère de l'espace, on considère $A\pt{1;0;2}$, $B\pt{3;-1;4}$ et $C\pt{5;-2;6}$. Déterminer si $C$ appartient à la droite $(AB)$. Justifier par un calcul vectoriel.
 
@@ -78,20 +78,20 @@ Les deux dernières imposent $s=t=1$, alors que la première demanderait $s+t=0$
 
 \paragraph{E1.}Les trois coordonnées de $\vec v$ valent trois fois celles de $\vec u$ : $\vec v=3\vec u$. Les deux vecteurs sont donc colinéaires.
 
-\paragraph{E2.}Le milieu a pour coordonnées $(\frac{0+4}{2},\frac{1-1}{2},\frac{2+0}{2})=(2,0,1)$. La différence de coordonnées donne $\vect{AB}=(4,-2,-2)$ ; dans le repère orthonormé, $AB=\sqrt{16+4+4}=2\sqrt6$.
+\paragraph{E2.}Le milieu a pour coordonnées $\pt{\frac{0+4}{2};\frac{1-1}{2};\frac{2+0}{2}}=\pt{2;0;1}$. La différence de coordonnées donne $\vect{AB}=\pt{4;-2;-2}$ ; dans le repère orthonormé, $AB=\sqrt{16+4+4}=2\sqrt6$.
 
-\paragraph{E3.}On calcule $2\vec u+3\vec v=(2,0,2)+(0,3,3)=(2,3,5)=\vec w$. Ainsi $\vec w$ appartient au plan vectoriel dirigé par les deux premiers vecteurs : les trois sont coplanaires.
+\paragraph{E3.}On calcule $2\vec u+3\vec v=\pt{2;0;2}+\pt{0;3;3}=\pt{2;3;5}=\vec w$. Ainsi $\vec w$ appartient au plan vectoriel dirigé par les deux premiers vecteurs : les trois sont coplanaires.
 
 \paragraph{E4.}Les deux premiers vecteurs sont non colinéaires. Si le troisième était leur combinaison $\lambda(1,0,1)+\mu(0,1,1)$, les deux premières coordonnées imposeraient $\lambda=\mu=1$, mais la troisième vaudrait $2\ne0$. Les trois vecteurs sont non coplanaires ; ils forment donc une base de l'espace.
 
-\paragraph{E5.}$\vect{AB}=(2,-1,2)$ et $\vect{AC}=(4,-2,4)=2\vect{AB}$. Comme $A\ne B$, la droite $(AB)$ est définie et cette colinéarité prouve $C\in(AB)$.
+\paragraph{E5.}$\vect{AB}=\pt{2;-1;2}$ et $\vect{AC}=\pt{4;-2;4}=2\vect{AB}$. Comme $A\ne B$, la droite $(AB)$ est définie et cette colinéarité prouve $C\in(AB)$.
 
 \subsection{Corrigé du DM10}\begin{enumerate}
 \item Par Chasles et les définitions des milieux,
 \[\vect{IJ}=\tfrac12\vect{AC}-\tfrac12\vect{AB}=\tfrac12\vect{BC},\qquad \vect{IK}=\tfrac12\vect{AD}-\tfrac12\vect{AB}=\tfrac12\vect{BD}.\]
 \item Les points $B,C,D$ ne sont pas alignés, car le tétraèdre est non aplati. Les vecteurs $\vect{BC},\vect{BD}$ sont donc non colinéaires, de même que $\vect{IJ},\vect{IK}$. Les plans ont la même direction. Ils sont distincts : si $I\in(BCD)$, la droite $(BI)=(BA)$ serait incluse dans ce plan, ce qui y placerait $A$, contradiction. Ils sont donc strictement parallèles.
-\item Dans la base $(\vect{AB},\vect{AC},\vect{AD})$, on a $\vect{IG}=(-\frac{1}{4},\frac{1}{4},\frac{1}{4})$, $\vect{IJ}=(-\frac{1}{2},\frac{1}{2},0)$ et $\vect{IK}=(-\frac{1}{2},0,\frac{1}{2})$. Une relation $\vect{IG}=s\vect{IJ}+t\vect{IK}$ impose $s=t=\frac{1}{2}$ par les deux dernières coordonnées ; la première vaudrait alors $-\frac{1}{2}$, et non $-\frac{1}{4}$. Donc $G\notin(IJK)$.
-\item Dans ce cas particulier, $I(2,0,0)$, $J(0,2,0)$ et $K(0,0,2)$. On trouve $IJ=\sqrt{(-2)^2+2^2}=2\sqrt2$, et de même $IK=JK=2\sqrt2$. Le triangle est équilatéral. Cette conclusion métrique ne vaut pas pour tout tétraèdre non aplati : elle utilise les coordonnées du cas particulier.
+\item Dans la base $\pt{\vect{AB};\vect{AC};\vect{AD}}$, on a $\vect{IG}=\pt{-\frac{1}{4};\frac{1}{4};\frac{1}{4}}$, $\vect{IJ}=\pt{-\frac{1}{2};\frac{1}{2};0}$ et $\vect{IK}=\pt{-\frac{1}{2};0;\frac{1}{2}}$. Une relation $\vect{IG}=s\vect{IJ}+t\vect{IK}$ impose $s=t=\frac{1}{2}$ par les deux dernières coordonnées ; la première vaudrait alors $-\frac{1}{2}$, et non $-\frac{1}{4}$. Donc $G\notin(IJK)$.
+\item Dans ce cas particulier, $I\pt{2;0;0}$, $J\pt{0;2;0}$ et $K\pt{0;0;2}$. On trouve $IJ=\sqrt{(-2)^2+2^2}=2\sqrt2$, et de même $IK=JK=2\sqrt2$. Le triangle est équilatéral. Cette conclusion métrique ne vaut pas pour tout tétraèdre non aplati : elle utilise les coordonnées du cas particulier.
 \end{enumerate}
 
 \subsection{Corrigé du travail dans le manuel ou une annale}Dans cet exercice, $I$ est le milieu de $[AB]$ et $J$ celui de $[CD]$.

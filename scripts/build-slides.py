@@ -245,6 +245,61 @@ def compile_figs(course, lang, jobs):
 
 
 # ---------------------------------------------------------------- per-course extractors (return list of slides, flat)
+COUNT_WORDS = {'fr': 'zéro une deux trois quatre cinq six sept huit neuf dix onze douze'.split(),
+               'en': 'zero one two three four five six seven eight nine ten eleven twelve'.split()}
+MASC_FR = {1: 'un'}
+
+
+def resolve_counts(src, lang):
+    r"""The counts printed by mx-env.sty (\mxcount, \mxCount, \mxTallied), measured on the source as TeX does."""
+    def items(i):   # top-level items of the enumerate that encloses position i
+        depth, start = 0, None
+        for m in reversed(list(re.finditer(r'\\(begin|end)\{enumerate\}', src[:i]))):
+            depth += 1 if m.group(1) == 'end' else -1
+            if depth < 0: start = m.end(); break
+        n = depth = 0
+        for m in re.finditer(r'\\begin\{enumerate\}|\\end\{enumerate\}|\\item\b', src[start:i]):
+            t = m.group(0); depth += t.startswith('\\begin') - t.startswith('\\end')
+            if t == '\\item' and depth == 0: n += 1
+        return n
+    counts = {m.group(1): items(m.start()) for m in re.finditer(r'\\mxcounted\{([^}]*)\}', src)}
+    tallies = {k: len(re.findall(r'\\mxtally\{' + re.escape(k) + r'\}', src)) for k in re.findall(r'\\mxTallied\{([^}]*)\}', src)}
+    word = lambda n, cap=False, masc=False: (lambda w: w[:1].upper() + w[1:] if cap else w)(
+        (MASC_FR.get(n) if masc and lang == 'fr' else None) or COUNT_WORDS[lang][n] if n < len(COUNT_WORDS[lang]) else str(n))
+    src = re.sub(r'\\mxcount\{([^}]*)\}', lambda m: word(counts.get(m.group(1), 0)), src)
+    src = re.sub(r'\\mxCount\{([^}]*)\}', lambda m: word(counts.get(m.group(1), 0), cap=True), src)
+    src = re.sub(r'\\mxTallied\{([^}]*)\}', lambda m: word(tallies.get(m.group(1), 0), cap=True, masc=True), src)
+    return re.sub(r'\\mx(?:counted|tally)\{[^}]*\}%?\n?', '', src)
+
+
+BLANK = re.compile(r'\\mxblank\{((?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*)\}')
+MAX_ITEMS = 7   # list items per slide; longer lists continue on the next slide
+
+
+def inline_answers(answers, first):
+    """Answers on one line, numbered like the questions, so the revealed card stays inside the slide."""
+    return ' · '.join(f'<b>{first + i}.</b> {a}' for i, a in enumerate(answers))
+
+
+def box_slides(kind, unit, body, h):
+    r"""Slides for one box. Answers to fill in (\mxblank) are revealed on demand instead of printed; a long list is
+    continued on further slides, each with its own answers."""
+    answers = [text2html(x) for x in BLANK.findall(body)]
+    html = text2html(BLANK.sub('…', body))
+    parts = re.split(r'(<li>)', html)
+    if '<ol>' not in html or html.count('<li>') <= MAX_ITEMS:
+        return [slide(kind, unit, html, inline_answers(answers, 1) if answers else None, h)]
+    head, rest = html.split('<ol>', 1); lis, tail = rest.rsplit('</ol>', 1)
+    items = [x for x in lis.split('<li>') if x.strip()]
+    out = []
+    for k in range(0, len(items), MAX_ITEMS):
+        chunk = items[k:k + MAX_ITEMS]
+        body_k = (head if k == 0 else '') + f'<ol start="{k + 1}">' + ''.join('<li>' + x for x in chunk) + '</ol>' + (tail if k + MAX_ITEMS >= len(items) else '')
+        ans_k = answers[k:k + MAX_ITEMS] if len(answers) == len(items) else []
+        out.append(slide(kind, unit, body_k, inline_answers(ans_k, k + 1) if ans_k else None, h))
+    return out
+
+
 def canonical(src, number, attach_figures=False, extra=None, skip_sections=None, goals_first=False):
     """Units of the shared TeX system (docs/TEX_STYLE_GUIDE.md): the same vocabulary in every migrated course.
     An example followed by \\mxanswerspace gets that answer (revealed on demand); a proof to write becomes a proof slide.
@@ -274,8 +329,8 @@ def canonical(src, number, attach_figures=False, extra=None, skip_sections=None,
         elif name == 'mxsession': unit = clean_title(a[3])
         elif kind == 'code' and attach_figures: out.append(slide('code', 'Python', esc(a.strip('\n'))))
         elif kind == 'env' and name in kinds:
-            sl = slide(kinds[name], unit, text2html(a), None, clean_title(o) if o else None); out.append(sl)
-            pending = sl if name == 'example' else None
+            boxes = box_slides(kinds[name], unit, a, clean_title(o) if o else None); out.extend(boxes)
+            pending = boxes[-1] if name == 'example' else None
         elif name == 'mxanswerspace':
             if pending is not None and pending['a'] is None: pending['a'] = text2html(a[0])
             pending = None
@@ -363,8 +418,8 @@ def main():
     for cid, course, n, fr, en, fn in files():
         if not fr.exists() or not en.exists(): problems.append('missing ' + cid); continue
         # notation commands (\num, intervals, \pt ...) are rendered per language, as the class prints them (mxbuild.notation)
-        sf, figs_f = extract_figs(notation.expand(inline_includes(fr.read_text(encoding='utf8'), SRC / course, 'fr'), 'fr'))
-        se, figs_e = extract_figs(notation.expand(inline_includes(en.read_text(encoding='utf8'), SRC / course, 'en'), 'en'))
+        sf, figs_f = extract_figs(notation.expand(resolve_counts(inline_includes(fr.read_text(encoding='utf8'), SRC / course, 'fr'), 'fr'), 'fr'))
+        se, figs_e = extract_figs(notation.expand(resolve_counts(inline_includes(en.read_text(encoding='utf8'), SRC / course, 'en'), 'en'), 'en'))
         a = fn(sf, n); b = fn(se, n)
         if [x['k'] for x in a] != [x['k'] for x in b]: problems.append(f'{cid}: slide structure differs ({len(a)} vs {len(b)})'); continue
         slides = []
@@ -383,6 +438,10 @@ def main():
                     k = pf if lang == 'fr' else pe; jobs.setdefault((course, lang), []).append((cid, k, figs[k - 1]))
     for p in sorted((ROOT / 'content/slides').glob('*.json')) if (ROOT / 'content/slides').exists() else []:
         d = json.loads(p.read_text(encoding='utf8')); d['slides'] = add_widgets(d['id'], d['slides']); d['kind'] = 'authored'; decks[d['id']] = d
+        # Authored decks use the notation commands too (\pt{1;2}): print them per language, as for decks built from TeX.
+        for sl in d['slides']:
+            for key in ('t', 'b', 'a', 'h'):
+                if isinstance(sl.get(key), list): sl[key] = [notation.expand(x, lang) if x else x for x, lang in zip(sl[key], ('fr', 'en'))]
         # figures of authored decks come from the French draft, aligned by slide index
         dr = ROOT / 'content/slides/draft' / (d['id'] + '.fr.json')
         if dr.exists():

@@ -18,7 +18,7 @@
 {
 "k": "concept",
 "t": "Cercle et fonctions",
-"b": "Sur le cercle trigonométrique, le point repéré par un angle \\(x\\) en radians a pour coordonnées \\((\\cos x,\\sin x)\\). Pour tout réel \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosinus est paire : \\(\\cos(-x)=\\cos x\\). Sinus est impaire : \\(\\sin(-x)=-\\sin x\\). Les deux fonctions sont \\(2\\pi\\)-périodiques.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]",
+"b": "Sur le cercle trigonométrique, le point repéré par un angle \\(x\\) en radians a pour coordonnées \\(\\pt{\\cos x;\\sin x}\\). Pour tout réel \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosinus est paire : \\(\\cos(-x)=\\cos x\\). Sinus est impaire : \\(\\sin(-x)=-\\sin x\\). Les deux fonctions sont \\(2\\pi\\)-périodiques.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]",
 "a": null,
 "h": null
 },
@@ -74,7 +74,7 @@
 {
 "k": "concept",
 "t": "Équations et inéquations",
-"b": "La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \\((2\\pi,0)\\).   Les coordonnées du point du cercle sont \\((\\cos x,\\sin x)\\).",
+"b": "La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \\(\\pt{2\\pi;0}\\).   Les coordonnées du point du cercle sont \\(\\pt{\\cos x;\\sin x}\\).",
 "a": null,
 "h": "Symétries des courbes.",
 "f": [

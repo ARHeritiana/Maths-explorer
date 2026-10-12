@@ -5,10 +5,11 @@
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-6-1} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-6-1}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -25,6 +26,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-6-1}
 \subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les \mxcount{ex2-1} questions sont indépendantes. Pour chaque calcul de primitive, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
 
 \begin{enumerate}
@@ -44,6 +46,7 @@
 
 \mxnewpage\mxcontinued{DS4 · Zéro 1 · suite}
 
+\mxtally{ex-6-1}
 \subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{5}y+\frac{8}{5}$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=13$.
 
 \begin{enumerate}
@@ -60,6 +63,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-6-1}
 \subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{11;0;0}$, $B\pt{0;11;0}$ et $C\pt{0;0;11}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
 
 \begin{enumerate}
@@ -94,7 +98,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $3+\ln x=0$, soit $x=e^{-3}$.
 
 \item \textit{[1 pt]} On dérive $(-2-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[1 pt]} Posons $m=\frac{e^{2}}{2}$ et $s=e^{-2}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -136,11 +140,11 @@ La dernière étape inverse l'inégalité car on multiplie par $-5<0$. Le premie
 
 \subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
 
-\item \textit{[1 pt]} $\vect{AB}=(-11,11,0)$ et $\vect{AC}=(-11,0,11)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+\item \textit{[1 pt]} $\vect{AB}=\pt{-11;11;0}$ et $\vect{AC}=\pt{-11;0;11}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
 
-\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
 \[\vect{AH}\cdot\vec n=(t-11)+t+t=3t-11=0.\]
-Ainsi $t=\frac{11}{3}$ et $H=(\frac{11}{3},\frac{11}{3},\frac{11}{3})$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+Ainsi $t=\frac{11}{3}$ et $H=\pt{\frac{11}{3};\frac{11}{3};\frac{11}{3}}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
 
 \item \textit{[1 pt]} $OH=\frac{11}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
 
@@ -160,10 +164,11 @@ Son aire vaut donc $\frac12\times 11\sqrt2\times\frac{11\sqrt6}{2}=\frac{121}{2}
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-6-2} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-6-2}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -180,6 +185,7 @@ Son aire vaut donc $\frac12\times 11\sqrt2\times\frac{11\sqrt6}{2}=\frac{121}{2}
 
 \end{enumerate}
 
+\mxtally{ex-6-2}
 \subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les \mxcount{ex2-2} questions sont indépendantes. Pour chaque calcul de primitive, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
 
 \begin{enumerate}
@@ -199,6 +205,7 @@ Son aire vaut donc $\frac12\times 11\sqrt2\times\frac{11\sqrt6}{2}=\frac{121}{2}
 
 \mxnewpage\mxcontinued{DS4 · Zéro 2 · suite}
 
+\mxtally{ex-6-2}
 \subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{4}y+\frac{5}{2}$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=16$.
 
 \begin{enumerate}
@@ -215,6 +222,7 @@ Son aire vaut donc $\frac12\times 11\sqrt2\times\frac{11\sqrt6}{2}=\frac{121}{2}
 
 \end{enumerate}
 
+\mxtally{ex-6-2}
 \subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{7;0;0}$, $B\pt{0;7;0}$ et $C\pt{0;0;7}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
 
 \begin{enumerate}
@@ -249,7 +257,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $2+\ln x=0$, soit $x=e^{-2}$.
 
 \item \textit{[1 pt]} On dérive $(-1-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[1 pt]} Posons $m=\frac{e^{1}}{2}$ et $s=e^{-1}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -291,11 +299,11 @@ La dernière étape inverse l'inégalité car on multiplie par $-4<0$. Le premie
 
 \subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
 
-\item \textit{[1 pt]} $\vect{AB}=(-7,7,0)$ et $\vect{AC}=(-7,0,7)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+\item \textit{[1 pt]} $\vect{AB}=\pt{-7;7;0}$ et $\vect{AC}=\pt{-7;0;7}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
 
-\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
 \[\vect{AH}\cdot\vec n=(t-7)+t+t=3t-7=0.\]
-Ainsi $t=\frac{7}{3}$ et $H=(\frac{7}{3},\frac{7}{3},\frac{7}{3})$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+Ainsi $t=\frac{7}{3}$ et $H=\pt{\frac{7}{3};\frac{7}{3};\frac{7}{3}}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
 
 \item \textit{[1 pt]} $OH=\frac{7}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
 
@@ -317,10 +325,11 @@ Son aire vaut donc $\frac12\times 7\sqrt2\times\frac{7\sqrt6}{2}=\frac{49}{2}\sq
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-6-3} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-6-3}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -337,6 +346,7 @@ Son aire vaut donc $\frac12\times 7\sqrt2\times\frac{7\sqrt6}{2}=\frac{49}{2}\sq
 
 \end{enumerate}
 
+\mxtally{ex-6-3}
 \subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les \mxcount{ex2-3} questions sont indépendantes. Pour chaque calcul de primitive, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
 
 \begin{enumerate}
@@ -356,6 +366,7 @@ Son aire vaut donc $\frac12\times 7\sqrt2\times\frac{7\sqrt6}{2}=\frac{49}{2}\sq
 
 \mxnewpage\mxcontinued{DS4 · A · suite}
 
+\mxtally{ex-6-3}
 \subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{3}y+\frac{7}{3}$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=11$.
 
 \begin{enumerate}
@@ -372,6 +383,7 @@ Son aire vaut donc $\frac12\times 7\sqrt2\times\frac{7\sqrt6}{2}=\frac{49}{2}\sq
 
 \end{enumerate}
 
+\mxtally{ex-6-3}
 \subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{8;0;0}$, $B\pt{0;8;0}$ et $C\pt{0;0;8}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
 
 \begin{enumerate}
@@ -406,7 +418,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $5+\ln x=0$, soit $x=e^{-5}$.
 
 \item \textit{[1 pt]} On dérive $(-4-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[1 pt]} Posons $m=\frac{e^{4}}{2}$ et $s=e^{-4}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -448,11 +460,11 @@ La dernière étape inverse l'inégalité car on multiplie par $-3<0$. Le premie
 
 \subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
 
-\item \textit{[1 pt]} $\vect{AB}=(-8,8,0)$ et $\vect{AC}=(-8,0,8)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+\item \textit{[1 pt]} $\vect{AB}=\pt{-8;8;0}$ et $\vect{AC}=\pt{-8;0;8}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
 
-\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
 \[\vect{AH}\cdot\vec n=(t-8)+t+t=3t-8=0.\]
-Ainsi $t=\frac{8}{3}$ et $H=(\frac{8}{3},\frac{8}{3},\frac{8}{3})$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+Ainsi $t=\frac{8}{3}$ et $H=\pt{\frac{8}{3};\frac{8}{3};\frac{8}{3}}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
 
 \item \textit{[1 pt]} $OH=\frac{8}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
 
@@ -476,10 +488,11 @@ Son aire vaut donc $\frac12\times 8\sqrt2\times\frac{8\sqrt6}{2}=32\sqrt3$ unit�
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 2 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-6-4} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-6-4}
 \subsection*{Exercice 1 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -496,6 +509,7 @@ Son aire vaut donc $\frac12\times 8\sqrt2\times\frac{8\sqrt6}{2}=32\sqrt3$ unit�
 
 \end{enumerate}
 
+\mxtally{ex-6-4}
 \subsection*{Exercice 2 · Primitives et condition imposée \hfill 5 points}Les \mxcount{ex2-4} questions sont indépendantes. Pour chaque calcul de primitive, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.
 
 \begin{enumerate}
@@ -515,6 +529,7 @@ Son aire vaut donc $\frac12\times 8\sqrt2\times\frac{8\sqrt6}{2}=32\sqrt3$ unit�
 
 \mxnewpage\mxcontinued{DS4 · B · suite}
 
+\mxtally{ex-6-4}
 \subsection*{Exercice 3 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{2}y+\frac{9}{2}$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=14$.
 
 \begin{enumerate}
@@ -531,6 +546,7 @@ Son aire vaut donc $\frac12\times 8\sqrt2\times\frac{8\sqrt6}{2}=32\sqrt3$ unit�
 
 \end{enumerate}
 
+\mxtally{ex-6-4}
 \subsection*{Exercice 4 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{12;0;0}$, $B\pt{0;12;0}$ et $C\pt{0;0;12}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
 
 \begin{enumerate}
@@ -565,7 +581,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $4+\ln x=0$, soit $x=e^{-4}$.
 
 \item \textit{[1 pt]} On dérive $(-3-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[1 pt]} Posons $m=\frac{e^{3}}{2}$ et $s=e^{-3}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -607,11 +623,11 @@ La dernière étape inverse l'inégalité car on multiplie par $-2<0$. Le premie
 
 \subsection*{Exercice 4 · Projection et volume}\begin{enumerate}
 
-\item \textit{[1 pt]} $\vect{AB}=(-12,12,0)$ et $\vect{AC}=(-12,0,12)$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+\item \textit{[1 pt]} $\vect{AB}=\pt{-12;12;0}$ et $\vect{AC}=\pt{-12;0;12}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
 
-\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=(1,1,1)$. Son point $H$ s'écrit donc $(t,t,t)$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
 \[\vect{AH}\cdot\vec n=(t-12)+t+t=3t-12=0.\]
-Ainsi $t=4$ et $H=(4,4,4)$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+Ainsi $t=4$ et $H=\pt{4;4;4}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
 
 \item \textit{[1 pt]} $OH=\frac{12}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
 

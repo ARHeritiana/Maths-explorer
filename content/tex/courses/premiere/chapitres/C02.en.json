@@ -31,9 +31,9 @@
    "status": "aligned",
    "order": 4
   },
-  "5bfbb4ae69af": {
-   "fr": "Diagnostic : six questions, 10 minutes",
-   "en": "Diagnostic: six questions, 10 minutes",
+  "23409de27c2d": {
+   "fr": "Diagnostic : [[m1]] questions, 10 minutes",
+   "en": "Diagnostic: [[m1]] questions, 10 minutes",
    "status": "aligned",
    "order": 5
   },
@@ -185,529 +185,529 @@
    "fr": "Pour [[m1]] avec [[m2]], on pose [[m3]]. Si [[m4]], aucune racine réelle ; si [[m5]], une racine [[m6]] ; si [[m7]], deux racines [[m8]] et [[m9]]. Pour ordonner les racines, tenir compte du signe de a.",
    "en": "For [[m1]] with [[m2]], let [[m3]]. If [[m4]], there is no real root; if [[m5]], there is one root [[m6]]; if [[m7]], there are two roots [[m8]] and [[m9]]. To order the roots, take the sign of a into account.",
    "status": "aligned",
-   "order": 31
+   "order": 30
   },
   "6138eeb585d3": {
    "fr": "En multipliant l’équation par [[m1]], on obtient [[m2]]. Un carré est positif ou nul : les trois cas suivent. Si [[m3]], [[m4]]. La disjonction des cas évite de prendre la racine carrée d’un nombre négatif.",
    "en": "Multiplying the equation by [[m1]] gives [[m2]]. A square is positive or zero: the three cases follow. If [[m3]], [[m4]]. Splitting into cases avoids taking the square root of a negative number.",
    "status": "aligned",
-   "order": 33
+   "order": 31
   },
   "c6ad220a5c7e": {
    "fr": "[[m1]] : [[m2]] ; [[m3]], soit [[m4]] et [[m5]]. Vérification : [[m6]].",
    "en": "[[m1]]: [[m2]]; [[m3]], that is [[m4]] and [[m5]]. Check: [[m6]].",
    "status": "aligned",
-   "order": 34
+   "order": 32
   },
   "db9d95cf1586": {
    "fr": "Le dénominateur est [[m1]], pas 2 ; le signe de b est pris avec ses parenthèses dans [[m2]].",
    "en": "The denominator is [[m1]], not 2; the sign of b is kept with its brackets in [[m2]].",
    "status": "aligned",
-   "order": 35
+   "order": 33
   },
   "fdc5890fb0f7": {
    "fr": "Résoudre [[m1]] et [[m2]].",
    "en": "Solve [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 36
+   "order": 34
   },
   "8e6714535cad": {
    "fr": "Factoriser sans automatiser le discriminant",
    "en": "Factorising without automating the discriminant",
    "status": "aligned",
-   "order": 37
+   "order": 35
   },
   "0b87a25e6853": {
    "fr": "Si deux racines réelles existent, leur somme vaut [[m1]] et leur produit [[m2]]. Une racine apparente ou une identité remarquable permet souvent une factorisation plus courte. Les polynômes de degré 2 s’annulant en deux réels distincts r et s sont exactement [[m3]] avec [[m4]].",
    "en": "If two real roots exist, their sum is [[m1]] and their product is [[m2]]. An obvious root or a special product often allows a shorter factorisation. The polynomials of degree 2 that vanish at two distinct reals r and s are exactly [[m3]] with [[m4]].",
    "status": "aligned",
-   "order": 39
+   "order": 36
   },
   "0ce0396cb65b": {
    "fr": "En développant [[m1]], l’identification des coefficients donne les relations. Réciproquement, si r et s ont cette somme et ce produit, le développement retrouve le polynôme.",
    "en": "Expanding [[m1]], identifying the coefficients gives the relations. Conversely, if r and s have this sum and this product, the expansion recovers the polynomial.",
    "status": "aligned",
-   "order": 41
+   "order": 37
   },
   "a60c56c56e91": {
    "fr": "[[m1]] : 3 et 4 ont somme 7 et produit 12. Ainsi [[m2]]. Pour imposer en plus [[m3]], il faut [[m4]], donc [[m5]].",
    "en": "[[m1]]: 3 and 4 have sum 7 and product 12. Hence [[m2]]. To impose in addition [[m3]], we need [[m4]], so [[m5]].",
    "status": "aligned",
-   "order": 42
+   "order": 38
   },
   "9db5b99c165a": {
    "fr": "La somme des racines vaut [[m1]] ; ne pas oublier le signe moins. Une seule racine ne suffit pas à déterminer a.",
    "en": "The sum of the roots is [[m1]]; do not forget the minus sign. A single root is not enough to determine a.",
    "status": "aligned",
-   "order": 43
+   "order": 39
   },
   "7feea2835da2": {
    "fr": "Déterminer le polynôme f de degré 2 tel que [[m1]] et [[m2]].",
    "en": "Determine the polynomial f of degree 2 such that [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 44
+   "order": 40
   },
   "51a69b4dc0f1": {
    "fr": "Signe, inéquations et optimisation",
    "en": "Sign, inequalities and optimisation",
    "status": "aligned",
-   "order": 45
+   "order": 41
   },
   "8f05223753e2": {
    "fr": "Pour deux racines distinctes [[m1]], le trinôme a le signe de a en dehors de [[m2]] et le signe opposé entre les racines. Il est nul aux racines. Sans racine réelle, il garde le signe de a. Avec une racine double, il garde le signe de a hors de celle-ci. L’optimisation se fait sur le domaine du problème, qui peut limiter l’accès au sommet.",
    "en": "For two distinct roots [[m1]], the quadratic has the sign of a outside [[m2]] and the opposite sign between the roots. It is zero at the roots. With no real root, it keeps the sign of a. With a double root, it keeps the sign of a away from that root. Optimisation is done on the domain of the problem, which may limit access to the vertex.",
    "status": "aligned",
-   "order": 47
+   "order": 42
   },
   "fa41239b7cf1": {
    "fr": "Le tableau de signes des facteurs [[m1]] donne le résultat. La forme canonique compare [[m2]] à [[m3]] grâce au signe de [[m4]].",
    "en": "The sign table of the factors of [[m1]] gives the result. The vertex form compares [[m2]] with [[m3]] through the sign of [[m4]].",
    "status": "aligned",
-   "order": 49
+   "order": 43
   },
   "96950729c9ac": {
    "fr": "[[m1]] équivaut à [[m2]]. Pour [[m3]] sur [[m4]], [[m5]], avec égalité en 6. Un rectangle de périmètre 24 m a donc une aire maximale de 36 m[[m6]] lorsqu’il est carré.",
    "en": "[[m1]] is equivalent to [[m2]]. For [[m3]] on [[m4]], [[m5]], with equality at 6. A rectangle with perimeter 24 m therefore has a maximum area of 36 m[[m6]] when it is a square.",
    "status": "aligned",
-   "order": 50
+   "order": 44
   },
   "6ae10607380d": {
    "fr": "Dans une inéquation stricte, les racines sont exclues. Vérifier les bornes géométriques avant de conclure.",
    "en": "In a strict inequality, the roots are excluded. Check the geometric bounds before concluding.",
    "status": "aligned",
-   "order": 51
+   "order": 45
   },
   "9ba158417c06": {
    "fr": "Résoudre [[m1]] puis maximiser [[m2]] sur [[m3]].",
    "en": "Solve [[m1]], then maximise [[m2]] on [[m3]].",
    "status": "aligned",
-   "order": 52
+   "order": 46
   },
   "c82d22e2d8b1": {
    "fr": "Parcours d’exercices",
    "en": "Exercise path",
    "status": "aligned",
-   "order": 53
+   "order": 47
   },
   "31c1e4322269": {
    "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
    "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
    "status": "aligned",
-   "order": 54
+   "order": 48
   },
   "a8d2733f47f2": {
    "fr": "Compléter un carré",
    "en": "Completing the square",
    "status": "aligned",
-   "order": 55
+   "order": 49
   },
   "3a1ce7afb829": {
    "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]].",
    "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]].",
    "status": "aligned",
-   "order": 56
+   "order": 50
   },
   "aef293753dea": {
    "fr": "Compléter le carré pour écrire [[m1]] sous la forme [[m2]], où [[m3]] est un réel à déterminer.",
    "en": "Complete the square to write [[m1]] in the form [[m2]], where [[m3]] is a real number to be determined.",
    "status": "aligned",
-   "order": 57
+   "order": 51
   },
   "d82039677916": {
    "fr": "En déduire une factorisation de [[m1]] à l’aide d’une identité remarquable.",
    "en": "Deduce a factorisation of [[m1]] using a special product.",
    "status": "aligned",
-   "order": 58
+   "order": 52
   },
   "4a1218e1164c": {
    "fr": "Dresser le tableau de signes de [[m1]], puis résoudre dans [[m2]] l’inéquation [[m3]].",
    "en": "Draw the sign table of [[m1]], then solve the inequality [[m3]] in [[m2]].",
    "status": "aligned",
-   "order": 59
+   "order": 53
   },
   "457476b320d8": {
    "fr": "Discuter sans calcul lourd",
    "en": "Discussing without heavy calculation",
    "status": "aligned",
-   "order": 60
+   "order": 54
   },
   "eaa807423559": {
    "fr": "On étudie les fonctions [[m1]], [[m2]] et [[m3]], toutes définies sur [[m4]].",
    "en": "We study the functions [[m1]], [[m2]] and [[m3]], all defined on [[m4]].",
    "status": "aligned",
-   "order": 61
+   "order": 55
   },
   "1e9f71c5f918": {
    "fr": "Pour chaque fonction, déterminer les éventuelles racines réelles en exploitant directement la forme donnée.",
    "en": "For each function, determine any real roots by using the given form directly.",
    "status": "aligned",
-   "order": 62
+   "order": 56
   },
   "cd04617f08f7": {
    "fr": "Préciser le signe de chaque fonction sur [[m1]]. Indiquer explicitement les valeurs où elle s’annule.",
    "en": "State the sign of each function on [[m1]]. State explicitly the values where it vanishes.",
    "status": "aligned",
-   "order": 63
+   "order": 57
   },
   "2d876ba23c67": {
    "fr": "Expliquer pourquoi le calcul d’un discriminant n’est nécessaire dans aucun des trois cas.",
    "en": "Explain why calculating a discriminant is necessary in none of the three cases.",
    "status": "aligned",
-   "order": 64
+   "order": 58
   },
   "b08e55b166be": {
    "fr": "Choisir une stratégie",
    "en": "Choosing a strategy",
    "status": "aligned",
-   "order": 65
+   "order": 59
   },
   "745eac9da6db": {
    "fr": "On souhaite résoudre dans [[m1]] les trois équations suivantes :",
    "en": "We wish to solve the following three equations in [[m1]]:",
    "status": "aligned",
-   "order": 66
+   "order": 60
   },
   "4aac3d9c560b": {
    "fr": "Pour chaque équation, choisir une méthode : identité remarquable, recherche de deux nombres de somme et produit connus, ou discriminant. Expliquer ce choix.",
    "en": "For each equation, choose a method: special product, finding two numbers with a known sum and product, or discriminant. Explain this choice.",
    "status": "aligned",
-   "order": 67
+   "order": 61
   },
   "b634ee4be085": {
    "fr": "Résoudre les trois équations et donner les ensembles de solutions sous forme exacte.",
    "en": "Solve the three equations and give the solution sets in exact form.",
    "status": "aligned",
-   "order": 68
+   "order": 62
   },
   "9e712cfd7503": {
    "fr": "Contrôler les solutions des deux premières équations par substitution. Pour la troisième, contrôler la somme et le produit des racines obtenues.",
    "en": "Check the solutions of the first two equations by substitution. For the third, check the sum and the product of the roots obtained.",
    "status": "aligned",
-   "order": 69
+   "order": 63
   },
   "f5e758cef3c3": {
    "fr": "Retrouver une parabole",
    "en": "Recovering a parabola",
    "status": "aligned",
-   "order": 70
+   "order": 64
   },
   "dbc2998db21b": {
    "fr": "La courbe d’une fonction polynôme [[m1]] de degré 2 coupe l’axe des abscisses aux points d’abscisses [[m2]] et 3. Elle passe également par le point [[m3]].",
    "en": "The curve of a polynomial function [[m1]] of degree 2 crosses the x-axis at the points with x-coordinates [[m2]] and 3. It also passes through the point [[m3]].",
    "status": "aligned",
-   "order": 71
+   "order": 65
   },
   "ba27121d087f": {
    "fr": "Déterminer une expression de [[m1]] à partir de ces trois informations. Préciser la forme choisie et pourquoi elle convient.",
    "en": "Determine an expression for [[m1]] from these three pieces of information. State the form chosen and why it is suitable.",
    "status": "aligned",
-   "order": 72
+   "order": 66
   },
   "19b60d725bc6": {
    "fr": "Développer l’expression trouvée. En déduire l’ordonnée à l’origine de la courbe.",
    "en": "Expand the expression found. Deduce the y-intercept of the curve.",
    "status": "aligned",
-   "order": 73
+   "order": 67
   },
   "b842ffa6e122": {
    "fr": "Vérifier que la fonction obtenue satisfait les trois informations initiales.",
    "en": "Check that the function obtained satisfies the three initial pieces of information.",
    "status": "aligned",
-   "order": 74
+   "order": 68
   },
   "a53f2fc060ed": {
    "fr": "Un potager contre un mur",
    "en": "A vegetable garden against a wall",
    "status": "aligned",
-   "order": 75
+   "order": 69
   },
   "36351dfdafa0": {
    "fr": "Un jardinier dispose de 20 m de grillage pour entourer trois côtés d’un potager rectangulaire. Le quatrième côté longe un mur et ne nécessite pas de grillage. On note [[m1]] la longueur, en mètres, de chacun des deux côtés perpendiculaires au mur. Toute la longueur de grillage est utilisée.",
    "en": "A gardener has 20 m of fencing to enclose three sides of a rectangular vegetable garden. The fourth side runs along a wall and needs no fencing. Let [[m1]] be the length, in metres, of each of the two sides perpendicular to the wall. All the fencing is used.",
    "status": "aligned",
-   "order": 76
+   "order": 70
   },
   "7477c7486691": {
    "fr": "Faire un schéma et exprimer la longueur du côté parallèle au mur en fonction de [[m1]]. Préciser les valeurs de [[m2]] pour lesquelles le rectangle n’est pas aplati.",
    "en": "Make a sketch and express the length of the side parallel to the wall in terms of [[m1]]. State the values of [[m2]] for which the rectangle is not degenerate.",
    "status": "aligned",
-   "order": 77
+   "order": 71
   },
   "4cc7dbe24923": {
    "fr": "Exprimer l’aire [[m1]], en mètres carrés. Déterminer sa valeur maximale et les dimensions correspondantes, en choisissant la méthode de votre choix.",
    "en": "Express the area [[m1]], in square metres. Determine its maximum value and the corresponding dimensions, using the method of your choice.",
    "status": "aligned",
-   "order": 78
+   "order": 72
   },
   "b81a23528296": {
    "fr": "Contrôler que ces dimensions utilisent exactement 20 m de grillage.",
    "en": "Check that these dimensions use exactly 20 m of fencing.",
    "status": "aligned",
-   "order": 79
+   "order": 73
   },
   "74025811965a": {
    "fr": "Un paramètre",
    "en": "A parameter",
    "status": "aligned",
-   "order": 80
+   "order": 74
   },
   "10ac6e12d9c1": {
    "fr": "Pour chaque réel [[m1]], on considère l’équation d’inconnue réelle [[m2]] :",
    "en": "For each real number [[m1]], consider the equation in the real unknown [[m2]]:",
    "status": "aligned",
-   "order": 81
+   "order": 75
   },
   "a1b40eac4c57": {
    "fr": "Le nombre [[m1]] est un paramètre : il reste fixé lorsque l’on résout l’équation.",
    "en": "The number [[m1]] is a parameter: it stays fixed while the equation is solved.",
    "status": "aligned",
-   "order": 82
+   "order": 76
   },
   "3e6696bbfdf7": {
    "fr": "Déterminer les valeurs de [[m1]] pour lesquelles l’équation admet deux solutions réelles distinctes.",
    "en": "Determine the values of [[m1]] for which the equation has two distinct real solutions.",
    "status": "aligned",
-   "order": 83
+   "order": 77
   },
   "32434f9c693c": {
    "fr": "Déterminer les valeurs de [[m1]] pour lesquelles elle admet une unique solution réelle, puis celles pour lesquelles elle n’en admet aucune.",
    "en": "Determine the values of [[m1]] for which it has a single real solution, then those for which it has none.",
    "status": "aligned",
-   "order": 84
+   "order": 78
   },
   "49adfd562d65": {
    "fr": "Donner la solution dans le cas où elle est unique. Expliquer pourquoi les trois cas envisagés couvrent toutes les valeurs de [[m1]].",
    "en": "Give the solution in the case where it is unique. Explain why the three cases considered cover all values of [[m1]].",
    "status": "aligned",
-   "order": 85
+   "order": 79
   },
   "375a67d048b3": {
    "fr": "Lien avec les suites",
    "en": "Link with sequences",
    "status": "aligned",
-   "order": 86
+   "order": 80
   },
   "429b0218eb3f": {
    "fr": "On définit une suite par [[m1]] pour tout entier naturel [[m2]]. On cherche tous les rangs auxquels le terme de la suite est strictement négatif.",
    "en": "A sequence is defined by [[m1]] for every natural number [[m2]]. We look for all the indices at which the term of the sequence is strictly negative.",
    "status": "aligned",
-   "order": 87
+   "order": 81
   },
   "9838e29b689e": {
    "fr": "Résoudre d’abord dans [[m1]] l’inéquation [[m2]].",
    "en": "First solve the inequality [[m2]] in [[m1]].",
    "status": "aligned",
-   "order": 88
+   "order": 82
   },
   "31664a4c77ed": {
    "fr": "En déduire tous les entiers naturels [[m1]] tels que [[m2]]. Justifier pourquoi un intervalle réel ne constitue pas ici la réponse finale.",
    "en": "Deduce all the natural numbers [[m1]] such that [[m2]]. Justify why a real interval is not the final answer here.",
    "status": "aligned",
-   "order": 89
+   "order": 83
   },
   "2956a7106212": {
    "fr": "Reprise différée",
    "en": "Delayed review",
    "status": "aligned",
-   "order": 90
+   "order": 84
   },
   "9dcc66a00848": {
    "fr": "Une élève étudie la fonction [[m1]] définie sur [[m2]] par [[m3]]. Elle écrit : « Le minimum vaut [[m4]] et il est atteint pour [[m5]]. »",
    "en": "A student studies the function [[m1]] defined on [[m2]] by [[m3]]. She writes: ``The minimum is [[m4]] and it is reached at [[m5]].''",
    "status": "aligned",
-   "order": 91
+   "order": 85
   },
   "d179590798c1": {
    "fr": "Indiquer ce qui est correct et ce qui est faux dans cette phrase. La réécrire correctement en justifiant votre réponse.",
    "en": "State what is correct and what is wrong in this sentence. Rewrite it correctly, justifying your answer.",
    "status": "aligned",
-   "order": 92
+   "order": 86
   },
   "3cc7ad06169d": {
    "fr": "Résoudre dans [[m1]] l’inéquation [[m2]], puis contrôler les deux bornes de l’ensemble obtenu.",
    "en": "Solve the inequality [[m2]] in [[m1]], then check the two endpoints of the set obtained.",
    "status": "aligned",
-   "order": 93
+   "order": 87
   },
   "261ef763c4c8": {
    "fr": "Travail personnel.",
    "en": "Homework.",
    "status": "aligned",
-   "order": 94
+   "order": 88
   },
   "1e62d212eb03": {
    "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
    "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
    "status": "aligned",
-   "order": 95
+   "order": 89
   },
   "8a14bcc09f57": {
    "fr": "À faire dans le manuel CQFD",
    "en": "To do in the CQFD textbook",
    "status": "aligned",
-   "order": 96
+   "order": 90
   },
   "3b23cff4a4c2": {
    "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
    "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
    "status": "aligned",
-   "order": 97
+   "order": 91
   },
   "e484f74e8286": {
    "fr": "CQFD, exercice 43 p. 99, questions a et c.",
    "en": "CQFD, exercise 43 p.~99, questions a and c.",
    "status": "aligned",
-   "order": 98
+   "order": 92
   },
   "a9d8614c4559": {
    "fr": "Trouver d’abord une racine évidente, puis l’autre à l’aide du produit des racines.",
    "en": "First find an obvious root, then the other using the product of the roots.",
    "status": "aligned",
-   "order": 99
+   "order": 93
   },
   "69e94f3ddad8": {
    "fr": "CQFD, exercice 49 p. 99, questions a et b.",
    "en": "CQFD, exercise 49 p.~99, questions a and b.",
    "status": "aligned",
-   "order": 100
+   "order": 94
   },
   "0c7049c3f358": {
    "fr": "Traduire la somme et le produit par une équation ; ne pas supposer d’avance que les nombres existent.",
    "en": "Translate the sum and the product into an equation; do not assume in advance that the numbers exist.",
    "status": "aligned",
-   "order": 101
+   "order": 95
   },
   "3b951efef83f": {
    "fr": "QCM 1 : comprendre et choisir",
    "en": "MCQ 1: understand and choose",
    "status": "aligned",
-   "order": 102
+   "order": 96
   },
-  "d9bb17147888": {
-   "fr": "Cinq questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
-   "en": "Five single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+  "214bc4b49b04": {
+   "fr": "[[m1]] questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "[[m1]] single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
    "status": "aligned",
-   "order": 103
+   "order": 97
   },
   "fa22d5999899": {
    "fr": "Les racines de [[m1]] sont",
    "en": "The roots of [[m1]] are",
    "status": "aligned",
-   "order": 104
+   "order": 98
   },
   "fbfe0b620d93": {
    "fr": "[[m1]] et [[m2]]",
    "en": "[[m1]] and [[m2]]",
    "status": "aligned",
-   "order": 105
+   "order": 99
   },
   "9d4ac24ff584": {
    "fr": "Le discriminant de [[m1]] vaut",
    "en": "The discriminant of [[m1]] equals",
    "status": "aligned",
-   "order": 109
+   "order": 100
   },
   "182f6a830c46": {
    "fr": "Le sommet de [[m1]] est",
    "en": "The vertex of [[m1]] is",
    "status": "aligned",
-   "order": 110
+   "order": 101
   },
   "30c16e57dff0": {
    "fr": "La somme des racines de [[m1]] vaut",
    "en": "The sum of the roots of [[m1]] equals",
    "status": "aligned",
-   "order": 111
+   "order": 102
   },
   "efe1d7d2f69b": {
    "fr": "[[m1]] équivaut à",
    "en": "[[m1]] is equivalent to",
    "status": "aligned",
-   "order": 112
+   "order": 103
   },
   "cc229fe9b5f3": {
    "fr": "QCM 2 : comprendre et choisir",
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
-   "order": 113
+   "order": 104
   },
   "a59a5d1e675d": {
    "fr": "[[m1]] a pour factorisation",
    "en": "[[m1]] has as its factorisation",
    "status": "aligned",
-   "order": 115
+   "order": 105
   },
   "eefb673dfedc": {
    "fr": "Le produit des racines de [[m1]] vaut",
    "en": "The product of the roots of [[m1]] equals",
    "status": "aligned",
-   "order": 116
+   "order": 106
   },
   "384b7c557077": {
    "fr": "[[m1]] atteint sur [[m2]] son maximum en",
    "en": "[[m1]] reaches its maximum on [[m2]] at",
    "status": "aligned",
-   "order": 117
+   "order": 107
   },
   "9bd2589fc6ad": {
    "fr": "Une racine double impose",
    "en": "A double root requires",
    "status": "aligned",
-   "order": 118
+   "order": 108
   },
   "043b531a4d34": {
    "fr": "Les polynômes de degré 2 de racines 0 et 2 sont",
    "en": "The polynomials of degree 2 with roots 0 and 2 are",
    "status": "aligned",
-   "order": 119
+   "order": 109
   },
   "7ed6a8d36a1a": {
    "fr": "[[m1]] uniquement",
    "en": "[[m1]] only",
    "status": "aligned",
-   "order": 120
+   "order": 110
   },
   "d5fc4ef9b48b": {
    "fr": "Vrai ou faux ? Justifier.",
    "en": "True or false? Justify.",
    "status": "aligned",
-   "order": 121
+   "order": 111
   },
   "8f1fe8d2bf44": {
    "fr": "Une fonction du second degré possède toujours deux racines réelles.",
    "en": "A quadratic function always has two real roots.",
    "status": "aligned",
-   "order": 122
+   "order": 112
   },
   "ec32830bb878": {
    "fr": "Un trinôme ayant deux racines distinctes est négatif entre elles.",
    "en": "A quadratic with two distinct roots is negative between them.",
    "status": "aligned",
-   "order": 123
+   "order": 113
   },
   "7db114b1b607": {
    "fr": "Pour tout réel x, [[m1]].",
    "en": "For every real number x, [[m1]].",
    "status": "aligned",
-   "order": 124
+   "order": 114
   },
   "6630f206d598": {
    "fr": "Bilan personnel",
    "en": "Self-assessment",
    "status": "aligned",
-   "order": 125
+   "order": 115
   },
   "78bf9e74b50c": {
    "fr": "Je justifie le choix de la forme ; je distingue racines et sommet ; je termine une inéquation par un ensemble ; je respecte le domaine du modèle.",
    "en": "I justify the choice of form; I distinguish roots from vertex; I finish an inequality with a set; I respect the domain of the model.",
    "status": "aligned",
-   "order": 126
+   "order": 116
   },
   "4dab232b00d5": {
    "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
    "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
    "status": "aligned",
-   "order": 127
+   "order": 117
   }
  }
 }

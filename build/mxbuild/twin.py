@@ -28,11 +28,11 @@ FIGURE_ENVS = {'tikzpicture', 'axis', 'pgfpicture'}
 LOCK_ARGS = set('label ref eqref pageref input include includegraphics setcounter addtocounter stepcounter '
                 'refstepcounter vspace hspace rule color textcolor colorbox definecolor needspace Needspace mxneed '
                 'newpage clearpage hyperref url mxinclude mxunit_id usetikzlibrary tikzset pgfplotsset phantom '
-                'hphantom vphantom cite linewidth setlength mxdate mxlabel mxref lstinputlisting mxlabelof mxfront mxcount mxcounted'.split())
+                'hphantom vphantom cite linewidth setlength mxdate mxlabel mxref lstinputlisting mxlabelof mxfront mxcount mxCount mxcounted mxtally mxTallied'.split())
 # Environments whose brace arguments are layout (column specs, widths, counts), never prose.
 LAYOUT_ENVS = set('tabular tabular* tabularx array longtable minipage multicols multicols* wrapfigure tblr'.split())
 # Inline atoms: kept inside the sentence like inline maths (a placeholder the translation must keep).
-ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code mxtag num pc mxcount'.split())   # num, pc: numbers in prose (mx-notation)
+ATOM_CMDS = set('mxdate ref eqref mxref pageref cite code mxtag num pc mxcount mxCount mxTallied'.split())   # num, pc: numbers in prose (mx-notation)
 # Commands whose listed argument positions (0-based, brace arguments only) are never prose.
 LOCKED_ARG_POS = {'mxunit': {0}, 'href': {0}, 'mxfq': {1}, 'mxarraystretch': {0}, 'mxsession': {0}, 'mxtest': {0, 1},
                   'mxexdef': {0, 4}, 'mxexuse': {0}, 'mxpoints': {0}, 'mxlines': {0}, 'addcontentsline': {0, 1},

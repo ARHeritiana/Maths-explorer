@@ -12,7 +12,7 @@ Two events are independent when $P(A\cap B)=P(A)P(B)$. For $P(A)>0$, this is equ
 \paragraph{Example.} $P(A)=\num{0,4}$, $P_A(B)=\num{0,7}$, $P_{\overline A}(B)=\num{0,2}$. Then $P(B)=\num{0,4}\times\num{0,7}+\num{0,6}\times\num{0,2}=\num{0,4}$ and $P_B(A)=\frac{\num{0,28}}{\num{0,4}}=\num{0,7}$.
 \subsection{Bernoulli and the binomial distribution}
 A Bernoulli trial has two outcomes, success with probability $p$ and failure with probability $1-p$. The indicator variable $B$ equals $1$ in case of success and $0$ otherwise: $E(B)=p$, $V(B)=p(1-p)$.
-A Bernoulli scheme is a repetition of $n$ identical and independent trials. The number $X$ of successes follows the binomial distribution $\mathcal B(n,p)$.
+A Bernoulli scheme is a repetition of $n$ identical and independent trials. The number $X$ of successes follows the binomial distribution $\mathcal B\pt{n;p}$.
 \begin{keypoint}[Distribution and parameters]
 For $k\in\{0,\ldots,n\}$,
 \[P(X=k)=\binom nk p^k(1-p)^{n-k}.\]\[E(X)=np,\qquad V(X)=np(1-p),\qquad\sigma(X)=\sqrt{np(1-p)}.\]
@@ -21,12 +21,12 @@ For $k\in\{0,\ldots,n\}$,
 \subsection{Cumulative events}
 \[P(X\le k)=\sum_{j=0}^kP(X=j),\qquad P(X\ge k)=1-P(X\le k-1).\]\[P(a\le X\le b)=P(X\le b)-P(X\le a-1).\]
 For at least one success, $P(X\ge1)=1-(1-p)^n$. The complement of ``at least $k$'' is ``strictly fewer than $k$''.
-\paragraph{Example.} For $X\sim\mathcal B(10,\num{0,2})$, $E(X)=2$ and $V(X)=\num{1,6}$. $P(X=2)=45(\num{0,2})^2(\num{0,8})^8\simeq\num{0,3020}$ and $P(X\ge1)=1-\num{0,8}^{10}\simeq\num{0,8926}$. The expected value is neither a certain result nor necessarily the most likely one.
+\paragraph{Example.} For $X\sim\mathcal B\pt{10;\num{0,2}}$, $E(X)=2$ and $V(X)=\num{1,6}$. $P(X=2)=45(\num{0,2})^2(\num{0,8})^8\simeq\num{0,3020}$ and $P(X\ge1)=1-\num{0,8}^{10}\simeq\num{0,8926}$. The expected value is neither a certain result nor necessarily the most likely one.
 \subsection{Threshold and interval}
 To find the smallest $n$ such that $1-(1-p)^n\ge q$, a loop on $n$ is enough. After taking logarithms, one can solve $(1-p)^n\le1-q$ then round in the right direction.
 To find the smallest integer $k$ such that $P(X>k)\le\alpha$, increase $k$ until $P(X\le k)\ge1-\alpha$ is obtained, then check the previous value. One can also look for an interval $[a,b]$ containing at least a prescribed probability, without assuming that it is unique.
 \subsection{Independent trials, beyond two outcomes}
-For independent experiments, the probability of a list of results is the product of the probabilities of its components. The sample space is the Cartesian product of the sample spaces of each experiment. For example, for two independent throws of a fair die, the sample space contains the $36$ pairs $(i,j)$, $1\le i,j\le6$, each with probability $\frac{1}{36}$. The probability that the sum is $5$ is $\frac{4}{36}=\frac{1}{9}$, because the favourable pairs are $(1,4),(2,3),(3,2),(4,1)$.
+For independent experiments, the probability of a list of results is the product of the probabilities of its components. The sample space is the Cartesian product of the sample spaces of each experiment. For example, for two independent throws of a fair die, the sample space contains the $36$ pairs $\pt{i;j}$, $1\le i,j\le6$, each with probability $\frac{1}{36}$. The probability that the sum is $5$ is $\frac{4}{36}=\frac{1}{9}$, because the favourable pairs are $\pt{1;4},\pt{2;3},\pt{3;2},\pt{4;1}$.
 In a Bernoulli scheme, success is coded by $1$ and failure by $0$: the sample space is $\{0,1\}^n$. Independence concerns the whole succession; a mere equality between two observed probabilities is not enough to prove it.
 
 
@@ -70,7 +70,7 @@ In a Bernoulli scheme, success is coded by $1$ and failure by $0$: the sample sp
 \end{tikzpicture}\end{center}
 By total probability, $P(D)=P(A)P_A(D)+P(B)P_B(D)=\num{0,012}+\num{0,020}=\num{0,032}$.
 \item $P(D)>0$ and $P(A\cap D)=\num{0,6}\times\num{0,02}=\num{0,012}$. So $P_D(A)=\frac{P(A\cap D)}{P(D)}=\frac{\num{0,012}}{\num{0,032}}=\frac{3}{8}=\num{0,375}$.
-\item Each selection is a trial with two outcomes, ``defective'' or ``not defective'', with the same probability $\num{0,032}$ of a defect. Since the twenty selections are independent, $X\sim\mathcal B(20,\num{0,032})$.
+\item Each selection is a trial with two outcomes, ``defective'' or ``not defective'', with the same probability $\num{0,032}$ of a defect. Since the twenty selections are independent, $X\sim\mathcal B\pt{20;\num{0,032}}$.
 \item $P(X=0)=\num{0,968}^{20}\simeq\num{0,5218}$. By complement,
 \[P(X\ge2)=1-P(X=0)-P(X=1)=1-\num{0,968}^{20}-20(\num{0,032})\num{0,968}^{19}\simeq\num{0,1332}.\]
 Finally $E(X)=20\times\num{0,032}=\num{0,64}$. This expected value does not imply that a selection has a fractional number of defects.
@@ -88,7 +88,7 @@ Finally $E(X)=20\times\num{0,032}=\num{0,64}$. This expected value does not impl
 \paragraph{E5.}The probability of at least one success is $1-(\frac{1}{2})^n$. The condition is equivalent to $2^n\ge100$. Since $2^6=64<100\le128=2^7$, the first integer is $7$. The probability is then $\frac{127}{128}\simeq\num{0,99219}$.
 
 \subsection{Solutions to Homework 13}\begin{enumerate}
-\item $X$ counts the successes of twenty independent Bernoulli trials with parameter $\num{0,8}$. So $X\sim\mathcal B(20,\num{0,8})$, $E(X)=20\times\num{0,8}=16$ and $V(X)=20\times\num{0,8}\times\num{0,2}=\num{3,2}$.
+\item $X$ counts the successes of twenty independent Bernoulli trials with parameter $\num{0,8}$. So $X\sim\mathcal B\pt{20;\num{0,8}}$, $E(X)=20\times\num{0,8}=16$ and $V(X)=20\times\num{0,8}\times\num{0,2}=\num{3,2}$.
 \item The hall runs short of seats if $X>18$, that is $X=19$ or $X=20$. Since these events are mutually exclusive,
 \[P(X>18)=20(\num{0,8})^{19}(\num{0,2})+(\num{0,8})^{20}\simeq\num{0,069175}.\]
 The risk is about $\pc{6,92}$.

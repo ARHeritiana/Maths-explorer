@@ -5,10 +5,11 @@
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-8-1} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-8-1}
 \subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{5x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{5x}$.
 
 \begin{enumerate}
@@ -31,6 +32,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-8-1}
 \subsection*{Exercice 2 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -55,6 +57,7 @@
 
 \mxnewpage\mxcontinued{Blanc 2 · Zéro 1 · suite}
 
+\mxtally{ex-8-1}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=10$ et le point $M\pt{3;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -77,6 +80,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-8-1}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $20$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{3}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -154,7 +158,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $4+\ln x=0$, soit $x=e^{-4}$.
 
 \item \textit{[1 pt]} On dérive $(-3-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{3}}{2}$ et $s=e^{-3}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -169,20 +173,20 @@ Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(3+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{3+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $3+9t=10$ donne $t=\frac{7}{9}$ ; $H=(\frac{34}{9},\frac{14}{9},\frac{14}{9})$.
+\item \textit{[\num{0,5} pt]} $3+9t=10$ donne $t=\frac{7}{9}$ ; $H=\pt{\frac{34}{9};\frac{14}{9};\frac{14}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{7}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{7}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{7}{9}|\,3=\frac{7}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=10-4s$. Donc $(x,y,z)=(10,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=10-4s$. Donc $\pt{x;y;z}=\pt{10;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{7}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=3$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{7}{9}-1|\,\|\vec n\|=\frac{2}{3}.\]
@@ -191,7 +195,7 @@ Le numérateur s'annule en $t=e^{-\frac{5}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(20,\frac{3}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{20;\frac{3}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{20}2(\frac{3}{10})^2(\frac{7}{10})^{18}\simeq\num{0,027846}$.
 
@@ -235,10 +239,11 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-8-2} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-8-2}
 \subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{4x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{4x}$.
 
 \begin{enumerate}
@@ -261,6 +266,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-8-2}
 \subsection*{Exercice 2 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -285,6 +291,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxnewpage\mxcontinued{Blanc 2 · Zéro 2 · suite}
 
+\mxtally{ex-8-2}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=6$ et le point $M\pt{1;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -307,6 +314,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-8-2}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $17$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{3}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -384,7 +392,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $3+\ln x=0$, soit $x=e^{-3}$.
 
 \item \textit{[1 pt]} On dérive $(-2-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{2}}{2}$ et $s=e^{-2}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -399,20 +407,20 @@ Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(1+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{1+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $1+9t=6$ donne $t=\frac{5}{9}$ ; $H=(\frac{14}{9},\frac{10}{9},\frac{10}{9})$.
+\item \textit{[\num{0,5} pt]} $1+9t=6$ donne $t=\frac{5}{9}$ ; $H=\pt{\frac{14}{9};\frac{10}{9};\frac{10}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{5}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{5}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{5}{9}|\,3=\frac{5}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=6-4s$. Donc $(x,y,z)=(6,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=6-4s$. Donc $\pt{x;y;z}=\pt{6;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{5}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=1$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{5}{9}-1|\,\|\vec n\|=\frac{4}{3}.\]
@@ -421,7 +429,7 @@ Le numérateur s'annule en $t=e^{-\frac{3}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(17,\frac{3}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $17$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{17;\frac{3}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{17}2(\frac{3}{10})^2(\frac{7}{10})^{15}\simeq\num{0,058110}$.
 
@@ -467,10 +475,11 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-8-3} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-8-3}
 \subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{3x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{3x}$.
 
 \begin{enumerate}
@@ -493,6 +502,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-8-3}
 \subsection*{Exercice 2 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -517,6 +527,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxnewpage\mxcontinued{Blanc 2 · A · suite}
 
+\mxtally{ex-8-3}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=10$ et le point $M\pt{2;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -539,6 +550,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-8-3}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $18$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{5}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -616,7 +628,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $2+\ln x=0$, soit $x=e^{-2}$.
 
 \item \textit{[1 pt]} On dérive $(-1-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{1}}{2}$ et $s=e^{-1}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -631,20 +643,20 @@ Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(2+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{2+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $2+9t=10$ donne $t=\frac{8}{9}$ ; $H=(\frac{26}{9},\frac{16}{9},\frac{16}{9})$.
+\item \textit{[\num{0,5} pt]} $2+9t=10$ donne $t=\frac{8}{9}$ ; $H=\pt{\frac{26}{9};\frac{16}{9};\frac{16}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{8}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{8}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{8}{9}|\,3=\frac{8}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=10-4s$. Donc $(x,y,z)=(10,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=10-4s$. Donc $\pt{x;y;z}=\pt{10;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{8}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=2$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{8}{9}-1|\,\|\vec n\|=\frac{1}{3}.\]
@@ -653,7 +665,7 @@ Le numérateur s'annule en $t=e^{-\frac{1}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $18$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(18,\frac{1}{5})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $18$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{18;\frac{1}{5}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{18}2(\frac{1}{5})^2(\frac{4}{5})^{16}\simeq\num{0,172263}$.
 
@@ -701,10 +713,11 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
 
-\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+\textbf{Durée : 4 h · Note sur 20 · \mxTallied{ex-8-4} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
 
 \smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
 
+\mxtally{ex-8-4}
 \subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{2x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{2x}$.
 
 \begin{enumerate}
@@ -727,6 +740,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-8-4}
 \subsection*{Exercice 2 · Une fonction logarithmique \hfill 5 points}On considère la fonction $f$ définie sur $\intoo{0}{+\infty}$ par $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ sa courbe représentative.
 
 \begin{enumerate}
@@ -751,6 +765,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \mxnewpage\mxcontinued{Blanc 2 · B · suite}
 
+\mxtally{ex-8-4}
 \subsection*{Exercice 3 · Droite, plan et projeté \hfill 5 points}Dans un repère orthonormé de l'espace, on considère le plan $\mathcal P$ d'équation $x+2y+2z=11$ et le point $M\pt{3;0;0}$. La droite $d$ passe par $M$ et admet pour vecteur directeur $\vec n=\pt{1;2;2}$.
 
 \begin{enumerate}
@@ -773,6 +788,7 @@ Les probabilités ajoutées sont positives et le cumul final vaut $1$, donc la b
 
 \end{enumerate}
 
+\mxtally{ex-8-4}
 \subsection*{Exercice 4 · Répétitions et estimation \hfill 5 points}On répète $20$ fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est $p=\frac{1}{10}$ à chaque épreuve. On note $X$ le nombre de succès obtenus.
 
 \begin{enumerate}
@@ -850,7 +866,7 @@ Comme $x>0$, $f(x)=0$ équivaut à $5+\ln x=0$, soit $x=e^{-5}$.
 
 \item \textit{[1 pt]} On dérive $(-4-\ln x)x^{-2}$ :
 \[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
-Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I(t,\frac{3}{2t})$.
+Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au signe positif. La fonction est concave sur $]0,t]$, convexe sur $[t,+\infty[$. Elle change de convexité en $t$ et $f(t)=\frac{3}{2t}$ : le point d'inflexion est $I\pt{t;\frac{3}{2t}}$.
 
 \item \textit{[\num{0,5} pt]} Posons $m=\frac{e^{4}}{2}$ et $s=e^{-4}$. La fonction est continue sur $]0,+\infty[$. Sur $]0,s]$, elle est strictement croissante, de limite $-\infty$ en $0$ et de valeur $2m$ en $s$ : le corollaire du TVI donne exactement une solution dans $]0,s[$. Sur $[s,+\infty[$, elle est strictement décroissante de $2m$ vers $0<m$ : exactement une solution dans $]s,+\infty[$. Ces intervalles couvrent le domaine et $f(s)\ne m$ : il y a exactement deux solutions.
 
@@ -865,20 +881,20 @@ Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 3 · Droite, plan et projeté}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} $(x,y,z)=(3+t,2t,2t)$, $t\in\R$.
+\item \textit{[\num{0,5} pt]} $\pt{x;y;z}=\pt{3+t;2t;2t}$, $t\in\R$.
 
-\item \textit{[\num{0,5} pt]} $3+9t=11$ donne $t=\frac{8}{9}$ ; $H=(\frac{35}{9},\frac{16}{9},\frac{16}{9})$.
+\item \textit{[\num{0,5} pt]} $3+9t=11$ donne $t=\frac{8}{9}$ ; $H=\pt{\frac{35}{9};\frac{16}{9};\frac{16}{9}}$.
 
-\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=(1,2,2)$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{8}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
+\item \textit{[\num{0,5} pt]} Le vecteur $\vec n=\pt{1;2;2}$ est normal à $\mathcal P$. Comme $H\in\mathcal P$ et $\vect{MH}=\frac{8}{9}\vec n$, $H$ est le projeté orthogonal de $M$ sur le plan. Le repère étant orthonormé, $\|\vec n\|=\sqrt{1+4+4}=3$. Donc
 \[d(M,\mathcal P)=MH=|\frac{8}{9}|\,3=\frac{8}{3}.\]
 
-\item \textit{[1 pt]} Poser $y=z=s$ ; $x=11-4s$. Donc $(x,y,z)=(11,0,0)+s(-4,1,1)$.
+\item \textit{[1 pt]} Poser $y=z=s$ ; $x=11-4s$. Donc $\pt{x;y;z}=\pt{11;0;0}+s\pt{-4;1;1}$.
 
 \item \textit{[\num{0,5} pt]} Oui, ses deux dernières coordonnées sont égales. $H$ est dans la droite et $\vect{MH}$ est orthogonal à toute direction du plan, donc à cette droite. Distance $\frac{8}{3}$.
 
 \item \textit{[\num{0,5} pt]} $x+2y+2z=3$ ; même vecteur normal et passage par $M$.
 
-\item \textit{[\num{0,5} pt]} $\vec n\cdot(-4,1,1)=-4+2+2=0$ : angle $\frac{\pi}{2}$.
+\item \textit{[\num{0,5} pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$ : angle $\frac{\pi}{2}$.
 
 \item \textit{[1 pt]} $N=M+\vec n$ est sur la même droite normale que $M$ ; son projeté sur $\mathcal P$ est donc aussi $H$. Or $H\in\mathcal P\cap\mathcal Q$. Pour tout $P$ de cette droite, $NP^2=NH^2+HP^2$, donc sa distance minimale à $N$ est $NH$. Finalement,
 \[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{8}{9}-1|\,\|\vec n\|=\frac{1}{3}.\]
@@ -887,7 +903,7 @@ Le numérateur s'annule en $t=e^{-\frac{7}{2}}$ et passe du signe négatif au si
 
 \subsection*{Exercice 4 · Répétitions et estimation}\begin{enumerate}
 
-\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B(20,\frac{1}{10})$.
+\item \textit{[\num{0,5} pt]} Répétition d'un nombre fixe $20$ d'épreuves identiques indépendantes à deux issues ; $X\sim\mathcal B\pt{20;\frac{1}{10}}$.
 
 \item \textit{[\num{0,5} pt]} $P(X=2)=\binom{20}2(\frac{1}{10})^2(\frac{9}{10})^{18}\simeq\num{0,285180}$.
 

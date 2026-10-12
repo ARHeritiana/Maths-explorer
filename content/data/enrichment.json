@@ -370,8 +370,8 @@
     ],
     "lesson": [
       [
-        "Un chemin de $(0,0)$ à (a,b) n’utilisant que des pas vers la droite ou vers le haut comporte $a + b$ pas. Choisir les positions des a pas horizontaux donne $C(a+b,a)$ chemins.",
-        "A path from $(0,0)$ to (a,b), using only rightward or upward steps, has $a + b$ steps. Choosing the positions of the a horizontal steps gives $C(a+b,a)$ paths."
+        "Un chemin de $(0,0)$ à $(a,b)$ n’utilisant que des pas vers la droite ou vers le haut comporte $a + b$ pas. Choisir les positions des a pas horizontaux donne $C(a+b,a)$ chemins.",
+        "A path from $(0,0)$ to $(a,b)$, using only rightward or upward steps, has $a + b$ steps. Choosing the positions of the a horizontal steps gives $C(a+b,a)$ paths."
       ],
       [
         "Pour $0 ≤ k ≤ n$, $C(n,k) = n!/[k!(n−k)!]$. L’ordre des objets choisis ne compte pas. La symétrie $C(n,k) = C(n,n−k)$ revient à choisir les objets retenus ou ceux exclus.",

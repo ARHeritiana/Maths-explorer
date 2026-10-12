@@ -6,7 +6,7 @@
 
 \section{Notes de cours}
 \subsection{Cercle et fonctions}
-Sur le cercle trigonométrique, le point repéré par un angle $x$ en radians a pour coordonnées $(\cos x,\sin x)$. Pour tout réel $x$,
+Sur le cercle trigonométrique, le point repéré par un angle $x$ en radians a pour coordonnées $\pt{\cos x;\sin x}$. Pour tout réel $x$,
 \[\cos^2x+\sin^2x=1,\quad -1\le\cos x,\sin x\le1.\]
 Cosinus est paire : $\cos(-x)=\cos x$. Sinus est impaire : $\sin(-x)=-\sin x$. Les deux fonctions sont $2\pi$-périodiques.
 \[\begin{array}{c|ccccc}x&0&\frac{\pi}{6}&\frac{\pi}{4}&\frac{\pi}{3}&\frac{\pi}{2}\\\hline
@@ -29,7 +29,7 @@ Pour résoudre $\cos (2x)=\frac{1}{2}$ sur $[-\pi,\pi]$, poser $t=2x\in[-2\pi,2\
 \end{method}
 \paragraph{Optimisation.} Pour $f(x)=\sin x+\frac12\sin(2x)$ sur $[0,\pi]$, $f'=\cos x+\cos(2x)=2\cos^2x+\cos x-1=(2\cos x-1)(\cos x+1)$. La fonction croît jusqu'à $\frac{\pi}{3}$ puis décroît ; maximum $\frac{3\sqrt{3}}{4}$.
 \paragraph{Identités de duplication utilisées dans les exercices.} Pour tout réel $x$, $\sin(2x)=2\sin x\cos x$ et $\cos(2x)=\cos^2x-\sin^2x=2\cos^2x-1$. Ces identités sont rappelées ici pour que leur emploi dans les problèmes ne soit pas implicite.
-\paragraph{Symétries des courbes.} La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur $(2\pi,0)$.
+\paragraph{Symétries des courbes.} La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur $\pt{2\pi;0}$.
 
 
 \begin{center}\begin{tikzpicture}[scale=1.6]
@@ -37,7 +37,7 @@ Pour résoudre $\cos (2x)=\frac{1}{2}$ sur $[-\pi,\pi]$, poser $t=2x\in[-2\pi,2\
 \draw[mxmint,thick](0,0)--(.5,.866);\draw[mxmint,dashed](.5,0)--(.5,.866)--(0,.866);
 \draw[->,mxmint](.35,0)arc(0:60:.35);\node[right]at(.25,.27){$x$};
 \node[below]at(.5,0){$\cos x$};\node[left]at(0,.866){$\sin x$};\node[above right]at(.5,.866){$M$};
-\end{tikzpicture}\par\small Les coordonnées du point du cercle sont $(\cos x,\sin x)$.\end{center}
+\end{tikzpicture}\par\small Les coordonnées du point du cercle sont $\pt{\cos x;\sin x}$.\end{center}
 
 \mxnewpage
 \section{Activité de recherche}\textbf{Hauteur d'un point sur une roue --- 35 min.}\par Une roue tourne à vitesse constante dans un plan vertical. Son rayon est de $2$ m et son centre se trouve à $3$ m du sol. Un point de la roue est à sa position la plus basse à l'instant $t=0$. La roue effectue un tour en $8$ s. Sa hauteur est modélisée par $h(t)=3-2\cos\left(\frac{\pi t}{4}\right)$, où $t$ est exprimé en secondes et $h(t)$ en mètres.

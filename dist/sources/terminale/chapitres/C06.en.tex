@@ -70,14 +70,14 @@ For $f$ continuous and $f(a)f(b)<0$, compute $m=\frac{a+b}{2}$. If $f(m)=0$, sto
 \item The variations and the limits are summarised by
 \[\begin{array}{c|ccccccc}x&-\infty&&-1&&1&&+\infty\\\hline f'(x)&&+&0&-&0&+&\\\hline f(x)&-\infty&\nearrow&2&\searrow&-2&\nearrow&+\infty\end{array}\]
 The sign of $f''$ gives concavity on $]-\infty,0]$ and convexity on $[0,+\infty[$.
-\item The convexity changes at $0$, and $f(0)=0$: the point of inflection is $(0,0)$. Its tangent has equation $y=f(0)+f'(0)x=-3x$.
+\item The convexity changes at $0$, and $f(0)=0$: the point of inflection is $\pt{0;0}$. Its tangent has equation $y=f(0)+f'(0)x=-3x$.
 \item The function is continuous. On $]-\infty,-1]$, it is strictly increasing from $-\infty$ to $2$: the level $1$ is reached exactly once. On $[-1,1]$, it strictly decreases from $2$ to $-2$: a second solution. On $[1,+\infty[$, it strictly increases from $-2$ to $+\infty$: a third. The points $-1,1$ are not solutions, so no solution is counted twice.
 \item Continuity provides the existence of a preimage for intermediate values. It does not provide uniqueness: the function studied is continuous and the level $1$ has three preimages.
 \end{enumerate}
 
 \paragraph{E1.}For $u=2x-1$, $(u^5)'=5u' u^4=10(2x-1)^4$. For $v=-x^2$, $(e^v)'=v' e^v=-2xe^{-x^2}$. Both functions are differentiable on $\R$.
 
-\paragraph{E2.}$f'=4x^3-12x$ then $f''=12(x^2-1)$. The sign of $f''$ is positive outside $[-1,1]$, negative inside. So $f$ is convex on $]-\infty,-1]$ and $[1,+\infty[$, concave on $[-1,1]$. The changes of convexity give the points of inflection $(-1,-5)$ and $(1,-5)$.
+\paragraph{E2.}$f'=4x^3-12x$ then $f''=12(x^2-1)$. The sign of $f''$ is positive outside $[-1,1]$, negative inside. So $f$ is convex on $]-\infty,-1]$ and $[1,+\infty[$, concave on $[-1,1]$. The changes of convexity give the points of inflection $\pt{-1;-5}$ and $\pt{1;-5}$.
 
 \paragraph{E3.}The tangent is $y=f(1)+f'(1)(x-1)=e+e(x-1)=ex$. Since $f''(x)=e^x>0$, the exponential is convex and its curve lies above this tangent: $e^x\ge ex$ on $\R$.
 
@@ -87,7 +87,7 @@ The sign of $f''$ gives concavity on $]-\infty,0]$ and convexity on $[0,+\infty[
 
 \subsection{Solutions to Homework 4}\begin{enumerate}
 \item $f(0)=1$ and $\lim_{x\to0^+}f(x)=1$. At $+\infty$, $f(x)=xe^{-x}+e^{-x}\to0$ by comparison of growth rates. By the product rule, $f'(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. This derivative is strictly negative for $x>0$: $f$ strictly decreases from $1$ towards $0$ on $[0,+\infty[$.
-\item $f''(x)=-e^{-x}+xe^{-x}=(x-1)e^{-x}$. So $f$ is concave on $[0,1]$, convex on $[1,+\infty[$. The change of convexity at $1$ gives the point of inflection $(1,\frac{2}{e})$.
+\item $f''(x)=-e^{-x}+xe^{-x}=(x-1)e^{-x}$. So $f$ is concave on $[0,1]$, convex on $[1,+\infty[$. The change of convexity at $1$ gives the point of inflection $\pt{1;\frac{2}{e}}$.
 \item $f$ is continuous and strictly decreasing on $[0,+\infty[$; $f(0)=1>\frac{1}{2}$ and its limit $0$ is less than $\frac{1}{2}$. The corollary of the IVT gives a unique solution $\alpha$. Moreover, $f(1)=\frac{2}{e}\simeq\num{0,7358}>\frac{1}{2}$ and $f(2)=\frac{3}{e^2}\simeq\num{0,4060}<\frac{1}{2}$, so $1<\alpha<2$.
 \item 
 \begin{lstlisting}

@@ -11,685 +11,703 @@
    "fr": "SUJET ZÉRO · ENTRAÎNEMENT",
    "en": "PRACTICE PAPER · TRAINING",
    "status": "aligned",
-   "order": 2
+   "order": 1
   },
-  "5d8c55324a8b": {
-   "fr": "\\textbf{Durée : 4 h · Note sur 20 · Quatre exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
-   "en": "\\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+  "595d110f054c": {
+   "fr": "\\textbf{Durée : 4 h · Note sur 20 · \\mxTallied{ex-5-1} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 4 h · Marked out of 20 · \\mxTallied{ex-5-1} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
    "status": "aligned",
-   "order": 3
+   "order": 2
   },
   "fa3fed21455b": {
    "fr": "\\textbf{Nom :}\\enspace",
    "en": "\\textbf{Name:}\\enspace",
    "status": "aligned",
-   "order": 4
+   "order": 3
   },
   "48834c5703ef": {
    "fr": "\\quad\\textbf{Classe :}\\enspace",
    "en": "\\quad\\textbf{Class:}\\enspace",
    "status": "aligned",
-   "order": 5
+   "order": 4
   },
   "69782e4735b8": {
    "fr": "\\quad\\textbf{Date :}\\enspace",
    "en": "\\quad\\textbf{Date:}\\enspace",
    "status": "aligned",
-   "order": 6
+   "order": 5
   },
   "a8803824ab14": {
    "fr": "Exercice 1 · Récurrence et encadrement",
    "en": "Exercise 1 · Induction and bounds",
    "status": "aligned",
-   "order": 7
+   "order": 6
   },
   "6aee99d8eb5b": {
    "fr": "5 points",
    "en": "5 points",
    "status": "aligned",
-   "order": 8
+   "order": 7
   },
   "e17861f8f9af": {
    "fr": "On considère la suite [[m1]] définie par [[m2]] et, pour tout entier naturel [[m3]], [[m4]].",
    "en": "Consider the sequence [[m1]] defined by [[m2]] and, for every natural number [[m3]], [[m4]].",
    "status": "aligned",
-   "order": 9
+   "order": 8
   },
   "2bb802772957": {
    "fr": "Calculer [[m1]] et [[m2]]. On donnera les valeurs exactes.",
    "en": "Calculate [[m1]] and [[m2]]. Give the exact values.",
    "status": "aligned",
-   "order": 10
+   "order": 9
   },
   "dbed9cd87c63": {
    "fr": "\\textit{(\\num{0,25} pt)}",
    "en": "\\textit{(0.25 pt)}",
    "status": "aligned",
-   "order": 11
+   "order": 10
   },
   "6bda06a471e0": {
    "fr": "Démontrer par récurrence que tous les termes sont définis et que, pour tout [[m1]], [[m2]].",
    "en": "Prove by induction that all terms are defined and that, for all [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 12
+   "order": 11
   },
   "bc044f362775": {
    "fr": "\\textit{(\\num{0,75} pt)}",
    "en": "\\textit{(0.75 pt)}",
    "status": "aligned",
-   "order": 13
+   "order": 12
   },
   "26b9c5c89904": {
    "fr": "Démontrer par récurrence que, pour tout [[m1]], [[m2]].",
    "en": "Prove by induction that, for all [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 14
+   "order": 13
   },
   "ef30c6567e9e": {
    "fr": "Démontrer que, pour tout [[m1]], [[m2]].",
    "en": "Prove that, for all [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 16
+   "order": 14
   },
   "c2f7d61879c5": {
    "fr": "\\textit{(\\num{0,5} pt)}",
    "en": "\\textit{(0.5 pt)}",
    "status": "aligned",
-   "order": 17
+   "order": 15
   },
   "900b7d139ebd": {
    "fr": "Justifier que [[m1]] converge, puis déterminer sa limite.",
    "en": "Justify that [[m1]] converges, then determine its limit.",
    "status": "aligned",
-   "order": 18
+   "order": 16
   },
   "5c4e2c21ef59": {
    "fr": "En déduire par récurrence une majoration de [[m1]] en fonction de [[m2]]. Déterminer ensuite, par comparaison de puissances entières, un rang à partir duquel cette majoration garantit [[m3]].",
    "en": "Deduce by induction an upper bound for [[m1]] in terms of [[m2]]. Then determine, by comparing integer powers, an index from which this bound guarantees [[m3]].",
    "status": "aligned",
-   "order": 22
+   "order": 17
   },
   "82203721d56c": {
    "fr": "\\textit{(1 pt)}",
    "en": "\\textit{(1 pt)}",
    "status": "aligned",
-   "order": 23
+   "order": 18
   },
   "ff622a16fe4d": {
    "fr": "Écrire une fonction Python sans argument qui renvoie le premier entier [[m1]] tel que [[m2]]. Exécuter la fonction et comparer le rang obtenu au rang suffisant de la question précédente. Expliquer la différence éventuelle.",
    "en": "Write a Python function with no argument that returns the first integer [[m1]] such that [[m2]]. Run the function and compare the index obtained with the sufficient index from the previous question. Explain any difference.",
    "status": "aligned",
-   "order": 24
+   "order": 19
   },
   "6fb6679f8a6d": {
    "fr": "Exercice 2 · Une courbe exponentielle",
    "en": "Exercise 2 · An exponential curve",
    "status": "aligned",
-   "order": 26
+   "order": 20
   },
   "83933850ad5d": {
    "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. On note [[m4]] sa courbe représentative.",
    "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. Let [[m4]] denote its graph.",
    "status": "aligned",
-   "order": 28
+   "order": 21
   },
   "10fc20ac9653": {
    "fr": "Calculer [[m1]] et déterminer la limite de [[m2]] en [[m3]].",
    "en": "Calculate [[m1]] and determine the limit of [[m2]] at [[m3]].",
    "status": "aligned",
-   "order": 29
+   "order": 22
   },
   "6af1f4d9bcf4": {
    "fr": "Calculer [[m1]], puis dresser le tableau de variations de [[m2]].",
    "en": "Calculate [[m1]], then draw the variation table of [[m2]].",
    "status": "aligned",
-   "order": 31
+   "order": 23
   },
   "85cd37cb580d": {
    "fr": "Calculer [[m1]], puis étudier la convexité de [[m2]].",
    "en": "Calculate [[m1]], then study the convexity of [[m2]].",
    "status": "aligned",
-   "order": 33
+   "order": 24
   },
   "9dce96af1e0b": {
    "fr": "Démontrer que l'équation [[m1]] admet une unique solution [[m2]] dans [[m3]].",
    "en": "Prove that the equation [[m1]] has a unique solution [[m2]] in [[m3]].",
    "status": "aligned",
-   "order": 35
+   "order": 25
   },
   "4a5ad20c0b93": {
    "fr": "Déterminer une équation de la tangente à [[m1]] au point d'abscisse [[m2]]. En utilisant la convexité, donner une inégalité entre [[m3]] et l'expression affine de cette tangente, pour tout [[m4]].",
    "en": "Determine an equation of the tangent to [[m1]] at the point of abscissa [[m2]]. Using convexity, give an inequality between [[m3]] and the affine expression of this tangent, for all [[m4]].",
    "status": "aligned",
-   "order": 37
+   "order": 26
   },
   "c1502c36aeb6": {
    "fr": "Montrer que [[m1]]. Écrire une fonction Python qui applique la dichotomie sur [[m2]] et renvoie un encadrement de [[m3]] de largeur au plus [[m4]].",
    "en": "Show that [[m1]]. Write a Python function that applies bisection on [[m2]] and returns a bracketing of [[m3]] of width at most [[m4]].",
    "status": "aligned",
-   "order": 39
+   "order": 27
   },
   "0d0521a5e026": {
    "fr": "Déterminer le nombre minimal d'étapes de dichotomie garantissant cette largeur.",
    "en": "Determine the minimum number of bisection steps guaranteeing this width.",
    "status": "aligned",
-   "order": 41
+   "order": 28
   },
   "ed9508938bf0": {
    "fr": "Un élève affirme : « Puisque [[m1]] tend vers [[m2]], la courbe coupe l'axe des abscisses. » Réfuter cette affirmation en étudiant le signe de [[m3]].",
    "en": "A student claims: ``Since [[m1]] tends to [[m2]], the curve crosses the horizontal axis.'' Refute this claim by studying the sign of [[m3]].",
    "status": "aligned",
-   "order": 43
+   "order": 29
   },
   "da4f771bc3fa": {
    "fr": "Blanc 1 · Zéro 1 · suite",
    "en": "Mock 1 · Practice 1 · continued",
    "status": "aligned",
-   "order": 45
+   "order": 30
   },
   "8f155a17dde1": {
    "fr": "Exercice 3 · Calcul vectoriel dans une base",
    "en": "Exercise 3 · Vector calculation in a basis",
    "status": "aligned",
-   "order": 46
+   "order": 31
   },
   "402ad4db95f1": {
    "fr": "Dans une base [[m1]] de l'espace, on définit les vecteurs",
    "en": "In a basis [[m1]] of space, define the vectors",
    "status": "aligned",
-   "order": 48
+   "order": 32
   },
   "e5e49bd93a57": {
    "fr": "Justifier que [[m1]] et [[m2]] ne sont pas colinéaires.",
    "en": "Justify that [[m1]] and [[m2]] are not collinear.",
    "status": "aligned",
-   "order": 49
+   "order": 33
   },
   "8df95b264f41": {
    "fr": "Écrire [[m1]] comme combinaison linéaire de [[m2]] et [[m3]].",
    "en": "Write [[m1]] as a linear combination of [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 51
+   "order": 34
   },
   "2f7b09cec9fb": {
    "fr": "Les vecteurs [[m1]], [[m2]] et [[m3]] sont-ils coplanaires ? Justifier.",
    "en": "Are the vectors [[m1]], [[m2]] and [[m3]] coplanar? Justify.",
    "status": "aligned",
-   "order": 53
+   "order": 35
   },
   "d6692cd70459": {
    "fr": "Exprimer le vecteur [[m1]] dans la base [[m2]].",
    "en": "Express the vector [[m1]] in the basis [[m2]].",
    "status": "aligned",
-   "order": 55
+   "order": 36
   },
   "33b7a97a8edb": {
    "fr": "On choisit un point [[m1]], puis on définit [[m2]], [[m3]] et [[m4]] par [[m5]], [[m6]] et [[m7]]. Démontrer que [[m8]], [[m9]], [[m10]] et [[m11]] sont coplanaires.",
    "en": "Choose a point [[m1]], then define [[m2]], [[m3]] and [[m4]] by [[m5]], [[m6]] and [[m7]]. Prove that [[m8]], [[m9]], [[m10]] and [[m11]] are coplanar.",
    "status": "aligned",
-   "order": 57
+   "order": 37
   },
   "7e51cac053d0": {
    "fr": "Pour les questions 6 à 8, on suppose la base orthonormée. Calculer les distances [[m1]], [[m2]] et [[m3]].",
    "en": "For questions 6 to 8, assume the basis is orthonormal. Calculate the distances [[m1]], [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 59
+   "order": 38
   },
   "a0731c2c69cd": {
    "fr": "On note [[m1]] le milieu de [[m2]]. Exprimer [[m3]] dans la base [[m4]], puis déterminer si les points [[m5]], [[m6]] et [[m7]] sont alignés.",
    "en": "Let [[m1]] be the midpoint of [[m2]]. Express [[m3]] in the basis [[m4]], then determine whether the points [[m5]], [[m6]] and [[m7]] are collinear.",
    "status": "aligned",
-   "order": 61
+   "order": 39
   },
   "36ebeb7af5f0": {
    "fr": "On définit [[m1]] par [[m2]]. La droite [[m3]] est-elle incluse dans le plan [[m4]] ? Justifier.",
    "en": "Define [[m1]] by [[m2]]. Is the line [[m3]] contained in the plane [[m4]]? Justify.",
    "status": "aligned",
-   "order": 63
+   "order": 40
   },
   "17f2cf644c84": {
    "fr": "Exercice 4 · Répétitions et estimation",
    "en": "Exercise 4 · Repetitions and estimation",
    "status": "aligned",
-   "order": 65
+   "order": 41
   },
   "127683b449d4": {
    "fr": "On répète [[m1]] fois une épreuve à deux issues, appelées succès et échec. Les épreuves sont indépendantes et la probabilité de succès est [[m2]] à chaque épreuve. On note [[m3]] le nombre de succès obtenus.",
    "en": "A trial with two outcomes, called success and failure, is repeated [[m1]] times. The trials are independent and the probability of success is [[m2]] on each trial. Let [[m3]] denote the number of successes obtained.",
    "status": "aligned",
-   "order": 67
+   "order": 42
   },
   "7ff17ca37d1c": {
    "fr": "Justifier que [[m1]] suit une loi binomiale et préciser ses paramètres.",
    "en": "Justify that [[m1]] follows a binomial distribution and state its parameters.",
    "status": "aligned",
-   "order": 68
+   "order": 43
   },
   "989b878a4063": {
    "fr": "Calculer la probabilité d'obtenir exactement deux succès.",
    "en": "Calculate the probability of obtaining exactly two successes.",
    "status": "aligned",
-   "order": 70
+   "order": 44
   },
   "93f43a7482e6": {
    "fr": "Exprimer à l'aide des événements contraires, puis calculer, la probabilité d'obtenir au moins deux succès.",
    "en": "Express using complementary events, then calculate, the probability of obtaining at least two successes.",
    "status": "aligned",
-   "order": 72
+   "order": 45
   },
   "dc379ac75279": {
    "fr": "Calculer l'espérance et la variance de [[m1]].",
    "en": "Calculate the expected value and the variance of [[m1]].",
    "status": "aligned",
-   "order": 74
+   "order": 46
   },
   "c74d04cd55f8": {
    "fr": "On répète maintenant la même épreuve un nombre [[m1]] de fois, toujours indépendamment. Déterminer le plus petit entier [[m2]] pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à [[m3]]. Une recherche par tableau ou par boucle est autorisée.",
    "en": "The same trial is now repeated [[m1]] times, still independently. Determine the smallest integer [[m2]] for which the probability of obtaining at least one success is greater than or equal to [[m3]]. A search using a table or a loop is allowed.",
    "status": "aligned",
-   "order": 76
+   "order": 47
   },
   "7b88c7f00915": {
    "fr": "Pour un entier [[m1]], démontrer la formule de [[m2]] en dénombrant les positions possibles des succès.",
    "en": "For an integer [[m1]], prove the formula for [[m2]] by counting the possible positions of the successes.",
    "status": "aligned",
-   "order": 78
+   "order": 48
   },
   "40088f56cdb1": {
    "fr": "On accepte une série de [[m1]] épreuves si son nombre de succès est compris entre [[m2]] et [[m3]], bornes incluses. Calculer la probabilité qu'une série soit acceptée.",
    "en": "A series of [[m1]] trials is accepted if its number of successes is between [[m2]] and [[m3]] inclusive. Calculate the probability that a series is accepted.",
    "status": "aligned",
-   "order": 80
+   "order": 49
   },
   "031f432893bc": {
    "fr": "Écrire une fonction Python sans argument qui renvoie le plus petit entier [[m1]] tel que [[m2]]. Exécuter la fonction et vérifier la minimalité du résultat.",
    "en": "Write a Python function with no argument that returns the smallest integer [[m1]] such that [[m2]]. Run the function and check the minimality of the result.",
    "status": "aligned",
-   "order": 82
+   "order": 50
   },
   "10904114f635": {
    "fr": "Corrigé · Blanc 1 · Zéro 1",
    "en": "Solutions · Mock 1 · Practice 1",
    "status": "aligned",
-   "order": 84
+   "order": 51
   },
   "c7914c0967ee": {
    "fr": "\\textit{[\\num{0,25} pt]} [[m1]] et [[m2]].",
    "en": "\\textit{[0.25 pt]} [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 86
+   "order": 52
   },
   "e2736395c33b": {
    "fr": "\\textit{[\\num{0,75} pt]} Notons [[m1]] : « [[m2]] est défini et [[m3]] ».",
    "en": "\\textit{[0.75 pt]} Let [[m1]] be the statement: ``[[m2]] is defined and [[m3]]''.",
    "status": "aligned",
-   "order": 87
+   "order": 53
   },
   "98d4176d6269": {
    "fr": "\\textbf{Initialisation.} [[m1]] est défini et appartient à [[m2]] ; [[m3]] est vraie.",
    "en": "\\textbf{Base case.} [[m1]] is defined and belongs to [[m2]]; [[m3]] is true.",
    "status": "aligned",
-   "order": 88
+   "order": 54
   },
   "9f0cba7a0127": {
    "fr": "\\textbf{Hérédité.} Fixons [[m1]] et supposons [[m2]] vraie. Alors",
    "en": "\\textbf{Inductive step.} Fix [[m1]] and assume [[m2]] is true. Then",
    "status": "aligned",
-   "order": 89
+   "order": 55
   },
   "37ecdb10cc37": {
    "fr": "La racine carrée est donc définie et, par croissance de cette fonction sur [[m1]],",
    "en": "The square root is therefore defined and, since this function is increasing on [[m1]],",
    "status": "aligned",
-   "order": 90
+   "order": 56
   },
   "bc51faa84c2e": {
    "fr": "Ainsi [[m1]] est vraie.",
    "en": "Thus [[m1]] is true.",
    "status": "aligned",
-   "order": 91
+   "order": 57
   },
   "c3de557c7b83": {
    "fr": "\\textbf{Conclusion.} Par récurrence, tous les termes sont définis et appartiennent à [[m1]].",
    "en": "\\textbf{Conclusion.} By induction, all terms are defined and belong to [[m1]].",
    "status": "aligned",
-   "order": 92
+   "order": 58
   },
   "64ea0fd07802": {
    "fr": "\\textit{[\\num{0,75} pt]} Pour [[m1]], posons [[m2]] : « [[m3]] ».",
    "en": "\\textit{[0.75 pt]} For [[m1]], let [[m2]] be the statement: ``[[m3]]''.",
    "status": "aligned",
-   "order": 93
+   "order": 59
   },
   "a421c70aa3bc": {
    "fr": "\\textbf{Initialisation.} [[m1]] ; [[m2]] est vraie.",
    "en": "\\textbf{Base case.} [[m1]]; [[m2]] is true.",
    "status": "aligned",
-   "order": 94
+   "order": 60
   },
   "7f62c9169919": {
    "fr": "\\textbf{Hérédité.} Fixons [[m1]] et supposons [[m2]]. En ajoutant [[m3]] puis en appliquant la croissance de la racine carrée,",
    "en": "\\textbf{Inductive step.} Fix [[m1]] and assume [[m2]]. Adding [[m3]] and then applying the increasing property of the square root,",
    "status": "aligned",
-   "order": 95
+   "order": 61
   },
   "4a990ff0b3ab": {
    "fr": "C'est [[m1]].",
    "en": "This is [[m1]].",
    "status": "aligned",
-   "order": 96
+   "order": 62
   },
   "4355d6380301": {
    "fr": "\\textbf{Conclusion.} Par récurrence, [[m1]] pour tout [[m2]] : [[m3]] est croissante.",
    "en": "\\textbf{Conclusion.} By induction, [[m1]] for all [[m2]]: [[m3]] is increasing.",
    "status": "aligned",
-   "order": 97
+   "order": 63
   },
   "96c31bcf4a81": {
    "fr": "\\textit{[\\num{0,5} pt]} Notons [[m1]] : « [[m2]] ». Au rang [[m3]], [[m4]].\nFixons [[m5]] et supposons [[m6]] vraie. Les radicandes étant positifs, la stricte croissance de la racine carrée donne",
    "en": "\\textit{[0.5 pt]} Let [[m1]] be the statement: ``[[m2]]. At index [[m3]], [[m4]].\nFix [[m5]] and assume [[m6]] is true. Since the radicands are positive, the strict increase of the square root gives",
    "status": "aligned",
-   "order": 98
+   "order": 64
   },
   "0ffbe2d3728c": {
    "fr": "Donc [[m1]] est vraie. L'initialisation et l'hérédité établissent par récurrence que [[m2]] pour tout [[m3]].",
    "en": "So [[m1]] is true. The base case and the inductive step establish by induction that [[m2]] for all [[m3]].",
    "status": "aligned",
-   "order": 99
+   "order": 65
   },
   "606bd09425f1": {
    "fr": "\\textit{[\\num{0,75} pt]} La suite est croissante et majorée par [[m1]] : le théorème de convergence monotone donne une limite réelle [[m2]].\nLa fonction [[m3]] est continue sur cet intervalle. En passant à la limite dans la relation, [[m4]]. Puisque [[m5]], cela équivaut à",
    "en": "\\textit{[0.75 pt]} The sequence is increasing and bounded above by [[m1]]: the monotone convergence theorem gives a real limit [[m2]].\nThe function [[m3]] is continuous on this interval. Taking the limit in the relation, [[m4]]. Since [[m5]], this is equivalent to",
    "status": "aligned",
-   "order": 100
+   "order": 66
   },
   "d207f31466a4": {
    "fr": "La racine [[m1]] est exclue par [[m2]] ; donc [[m3]].",
    "en": "The root [[m1]] is excluded by [[m2]]; so [[m3]].",
    "status": "aligned",
-   "order": 101
+   "order": 67
   },
   "4ff020d1f828": {
    "fr": "\\textit{[\\num{0,5} pt]} Le résultat précédent assure [[m1]]. En multipliant par la quantité conjuguée,",
    "en": "\\textit{[0.5 pt]} The previous result ensures [[m1]]. Multiplying by the conjugate expression,",
    "status": "aligned",
-   "order": 102
+   "order": 68
   },
   "5ae7dedfa3e1": {
    "fr": "La dernière inégalité utilise un numérateur positif et un dénominateur au moins égal à [[m1]].",
    "en": "The last inequality uses a positive numerator and a denominator at least equal to [[m1]].",
    "status": "aligned",
-   "order": 103
+   "order": 69
   },
   "827cebfabeb1": {
    "fr": "\\textit{[1 pt]} Montrons par récurrence [[m1]] : « [[m2]] ».\nAu rang [[m3]], [[m4]]. Fixons [[m5]] et supposons [[m6]] vraie. La question précédente donne",
    "en": "\\textit{[1 pt]} Let us prove by induction [[m1]]: ``[[m2]]''.\nAt index [[m3]], [[m4]]. Fix [[m5]] and assume [[m6]] is true. The previous question gives",
    "status": "aligned",
-   "order": 104
+   "order": 70
   },
   "5ead2ce3ddf0": {
    "fr": "C'est [[m1]]. Par récurrence, l'encadrement est vrai à tout rang.\nPour avoir [[m2]], il suffit de [[m3]].\nOr [[m4]] et [[m5]]. Le rang [[m6]] est donc le premier garanti par cette majoration, sans recours au logarithme.",
    "en": "This is [[m1]]. By induction, the bounds hold at every index.\nTo have [[m2]], it suffices that [[m3]].\nNow [[m4]] and [[m5]]. Index [[m6]] is therefore the first one guaranteed by this bound, without using the logarithm.",
    "status": "aligned",
-   "order": 105
+   "order": 71
   },
   "7fe5ced618ab": {
    "fr": "\\textit{[\\num{0,5} pt]}",
    "en": "\\textit{[0.5 pt]}",
    "status": "aligned",
-   "order": 106
+   "order": 72
   },
   "29de1617dee1": {
    "fr": "La convergence vers [[m1]] assure l'arrêt. La boucle examine les rangs dans l'ordre : elle renvoie [[m2]], premier rang satisfaisant le critère pour les valeurs calculées. Ici, les écarts aux rangs [[m3]] et [[m4]] valent environ [[m5]] et [[m6]]. Ils sont nettement de part et d'autre de [[m7]]. Le rang garanti [[m8]] peut être plus grand ; il provient d'une majoration, pas de l'erreur exacte.",
    "en": "Convergence to [[m1]] ensures termination. The loop examines the indices in order: it returns [[m2]], the first index satisfying the criterion for the computed values. Here, the gaps at indices [[m3]] and [[m4]] are approximately [[m5]] and [[m6]]. They lie clearly on either side of [[m7]]. The guaranteed index [[m8]] may be larger; it comes from an upper bound, not from the exact error.",
    "status": "aligned",
-   "order": 107
+   "order": 73
   },
   "1e90d1990184": {
    "fr": "\\textit{[\\num{0,5} pt]} [[m1]] ; limite [[m2]] par croissance comparée.",
    "en": "\\textit{[0.5 pt]} [[m1]]; limit [[m2]] by comparison of growth rates.",
    "status": "aligned",
-   "order": 109
+   "order": 74
   },
   "40353d350362": {
    "fr": "\\textit{[\\num{0,5} pt]} Par la règle du produit,",
    "en": "\\textit{[0.5 pt]} By the product rule,",
    "status": "aligned",
-   "order": 110
+   "order": 75
   },
   "268459cc6cad": {
    "fr": "Les deux facteurs ont respectivement un signe strictement négatif et positif sur [[m1]] ; donc [[m2]].",
    "en": "The two factors are respectively strictly negative and positive on [[m1]]; hence [[m2]].",
    "status": "aligned",
-   "order": 111
+   "order": 76
   },
   "38464516de17": {
    "fr": "\\textit{[\\num{0,5} pt]} En dérivant le produit précédent,",
    "en": "\\textit{[0.5 pt]} Differentiating the previous product,",
    "status": "aligned",
-   "order": 112
+   "order": 77
   },
   "6fbbaec990b0": {
    "fr": "Sur le domaine, [[m1]] et [[m2]] : [[m3]] est convexe. Il n'y a aucun changement de convexité dans l'intérieur du domaine, donc aucun point d'inflexion.",
    "en": "On the domain, [[m1]] and [[m2]]: [[m3]] is convex. There is no change of convexity in the interior of the domain, hence no point of inflection.",
    "status": "aligned",
-   "order": 113
+   "order": 78
   },
   "5d953c9ec503": {
    "fr": "\\textit{[1 pt]} Continuité, stricte décroissance, [[m1]] et limite [[m2]] : exactement une solution.",
    "en": "\\textit{[1 pt]} Continuity, strict decrease, [[m1]] and limit [[m2]]: exactly one solution.",
    "status": "aligned",
-   "order": 114
+   "order": 79
   },
   "6931322a9eac": {
    "fr": "\\textit{[\\num{0,5} pt]} La tangente en [[m1]] a pour équation [[m2]]. Une fonction convexe est au-dessus de chacune de ses tangentes, donc [[m3]] pour tout [[m4]].",
    "en": "\\textit{[0.5 pt]} The tangent at [[m1]] has equation [[m2]]. A convex function lies above each of its tangents, so [[m3]] for all [[m4]].",
    "status": "aligned",
-   "order": 115
+   "order": 80
   },
   "f741e594242a": {
    "fr": "\\textit{[\\num{0,5} pt]} On sait [[m1]]. De plus, [[m2]]. Le zéro de [[m3]] est donc dans [[m4]]. Un programme est :",
    "en": "\\textit{[0.5 pt]} We know [[m1]]. Moreover, [[m2]]. The zero of [[m3]] is therefore in [[m4]]. A program is:",
    "status": "aligned",
-   "order": 116
+   "order": 81
   },
   "b93cdea5c163": {
    "fr": "La décroissance de [[m1]] conserve l'encadrement à chaque étape. Le résultat a une longueur au plus [[m2]] ; son milieu a une erreur au plus [[m3]].",
    "en": "Since [[m1]] is decreasing, the bracketing is preserved at each step. The result has length at most [[m2]]; its midpoint has an error of at most [[m3]].",
    "status": "aligned",
-   "order": 117
+   "order": 82
   },
   "1f7aea6a96cb": {
    "fr": "\\textit{[\\num{0,5} pt]} [[m1]] : [[m2]] étapes suffisent.",
    "en": "\\textit{[0.5 pt]} [[m1]]: [[m2]] steps suffice.",
    "status": "aligned",
-   "order": 118
+   "order": 83
   },
   "9e8375805424": {
    "fr": "\\textit{[1 pt]} Pour [[m1]], [[m2]] et [[m3]], donc [[m4]]. Une limite n'est pas nécessairement une valeur atteinte.",
    "en": "\\textit{[1 pt]} For [[m1]], [[m2]] and [[m3]], so [[m4]]. A limit is not necessarily an attained value.",
    "status": "aligned",
-   "order": 119
+   "order": 84
   },
   "ba56fad2c305": {
    "fr": "\\textit{[\\num{0,5} pt]} Dans une égalité [[m1]], le coefficient de [[m2]] serait [[m3]], contradiction par unicité des coordonnées dans une base.",
    "en": "\\textit{[0.5 pt]} In an equality [[m1]], the coefficient of [[m2]] would be [[m3]], a contradiction by uniqueness of coordinates in a basis.",
    "status": "aligned",
-   "order": 121
+   "order": 85
   },
   "b4ff22d9e5e9": {
    "fr": "\\textit{[\\num{0,5} pt]} En développant, [[m1]].",
    "en": "\\textit{[0.5 pt]} Expanding, [[m1]].",
    "status": "aligned",
-   "order": 122
+   "order": 86
   },
   "f6f27508ab4a": {
    "fr": "\\textit{[\\num{0,5} pt]} Comme [[m1]] ne sont pas colinéaires, la coplanarité équivaudrait à [[m2]]. L'unicité de la décomposition dans la base impose",
    "en": "\\textit{[0.5 pt]} Since [[m1]] are not collinear, coplanarity would be equivalent to [[m2]]. Uniqueness of the decomposition in the basis requires",
    "status": "aligned",
-   "order": 123
+   "order": 87
   },
   "f79a49d8a76f": {
    "fr": "Les deux premières égalités donnent [[m1]], en contradiction avec la troisième. Les trois vecteurs ne sont donc pas coplanaires.",
    "en": "The first two equalities give [[m1]], contradicting the third. The three vectors are therefore not coplanar.",
    "status": "aligned",
-   "order": 124
+   "order": 88
   },
   "72ee52e6d96c": {
    "fr": "\\textit{[1 pt]} [[m1]].",
    "en": "\\textit{[1 pt]} [[m1]].",
    "status": "aligned",
-   "order": 125
+   "order": 89
   },
   "d14c56a9d093": {
    "fr": "\\textit{[\\num{0,5} pt]} [[m1]] et [[m2]] sont non colinéaires et [[m3]] est leur combinaison linéaire : [[m4]].",
    "en": "\\textit{[0.5 pt]} [[m1]] and [[m2]] are not collinear and [[m3]] is their linear combination: [[m4]].",
    "status": "aligned",
-   "order": 126
+   "order": 90
   },
   "b1f8041f5711": {
    "fr": "\\textit{[\\num{0,5} pt]} [[m1]] ; [[m2]], donc [[m3]].",
    "en": "\\textit{[0.5 pt]} [[m1]]; [[m2]], so [[m3]].",
    "status": "aligned",
-   "order": 127
+   "order": 91
   },
   "cd8ed3945ed4": {
    "fr": "\\textit{[\\num{0,5} pt]} La formule du milieu donne [[m1]]. Les vecteurs [[m2]] étant non colinéaires,",
    "en": "\\textit{[0.5 pt]} The midpoint formula gives [[m1]]. Since the vectors [[m2]] are not collinear,",
    "status": "aligned",
-   "order": 128
+   "order": 92
   },
   "b63dbb009ab0": {
    "fr": "Ici [[m1]] : il n'existe pas de tel [[m2]], donc [[m3]] ne sont pas alignés.",
    "en": "Here [[m1]]: there is no such [[m2]], so [[m3]] are not collinear.",
    "status": "aligned",
-   "order": 129
+   "order": 93
   },
   "070c9ebdbfbc": {
    "fr": "\\textit{[1 pt]} Non : [[m1]] appartient au plan mais [[m2]] n'y appartient pas, d'après la non-coplanarité démontrée. L'intersection est exactement [[m3]].",
    "en": "\\textit{[1 pt]} No: [[m1]] belongs to the plane but [[m2]] does not, by the non-coplanarity shown above. The intersection is exactly [[m3]].",
    "status": "aligned",
-   "order": 130
+   "order": 94
   },
   "5c5cc62436f2": {
    "fr": "\\textit{[\\num{0,5} pt]} Répétition d'un nombre fixe [[m1]] d'épreuves identiques indépendantes à deux issues ; [[m2]].",
    "en": "\\textit{[0.5 pt]} Repetition of a fixed number [[m1]] of identical independent trials with two outcomes; [[m2]].",
    "status": "aligned",
-   "order": 132
+   "order": 95
   },
   "ff607648fba1": {
    "fr": "\\textit{[\\num{0,5} pt]} [[m1]].",
    "en": "\\textit{[0.5 pt]} [[m1]].",
    "status": "aligned",
-   "order": 133
+   "order": 96
   },
   "15ab9a8ff2db": {
    "fr": "\\textit{[1 pt]} [[m1]], [[m2]].",
    "en": "\\textit{[1 pt]} [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 135
+   "order": 97
   },
   "6afc0e03bc42": {
    "fr": "\\textit{[\\num{0,5} pt]} Pour [[m1]] essais indépendants, la probabilité d'aucun succès est [[m2]]. La probabilité demandée est donc [[m3]]. Elle est strictement croissante avec [[m4]], car [[m5]]. Les calculs donnent",
    "en": "\\textit{[0.5 pt]} For [[m1]] independent trials, the probability of no success is [[m2]]. The required probability is therefore [[m3]]. It is strictly increasing in [[m4]], since [[m5]]. Calculation gives",
    "status": "aligned",
-   "order": 136
+   "order": 98
   },
   "a16db86ebfbd": {
    "fr": "Ainsi [[m1]] est le plus petit nombre d'essais convenable.",
    "en": "Thus [[m1]] is the smallest suitable number of trials.",
    "status": "aligned",
-   "order": 137
+   "order": 99
   },
   "99a5bd19999b": {
    "fr": "\\textit{[\\num{0,5} pt]} Notons [[m1]]. Pour [[m2]], un résultat ordonné contenant [[m3]] succès et [[m4]] échecs a, par indépendance, la probabilité [[m5]]. Il existe [[m6]] choix des positions des succès. Ces résultats sont incompatibles, donc",
    "en": "\\textit{[0.5 pt]} Let [[m1]]. For [[m2]], an ordered outcome containing [[m3]] successes and [[m4]] failures has, by independence, probability [[m5]]. There are [[m6]] choices for the positions of the successes. These outcomes are mutually exclusive, so",
    "status": "aligned",
-   "order": 138
+   "order": 100
   },
   "3afea782a30a": {
    "fr": "\\textit{[\\num{0,5} pt]} Les événements [[m1]], [[m2]], [[m3]] sont incompatibles, donc",
    "en": "\\textit{[0.5 pt]} The events [[m1]], [[m2]], [[m3]] are mutually exclusive, so",
    "status": "aligned",
-   "order": 139
+   "order": 101
   },
   "7bd1b12f5cfa": {
    "fr": "\\textit{[1 pt]}",
    "en": "\\textit{[1 pt]}",
    "status": "aligned",
-   "order": 140
+   "order": 102
   },
   "86c4afdb1ab5": {
    "fr": "Les probabilités ajoutées sont positives et le cumul final vaut [[m1]], donc la boucle s'arrête. Elle renvoie [[m2]]. Les cumuls aux rangs [[m3]] et [[m4]] sont environ [[m5]] et [[m6]] : cela confirme la minimalité.",
    "en": "The probabilities added are positive and the final cumulative sum equals [[m1]], so the loop terminates. It returns [[m2]]. The cumulative sums at indices [[m3]] and [[m4]] are approximately [[m5]] and [[m6]]: this confirms minimality.",
    "status": "aligned",
-   "order": 141
+   "order": 103
   },
   "df607ae56926": {
    "fr": "Blanc 1 · Zéro 2",
    "en": "Mock 1 · Practice 2",
    "status": "aligned",
-   "order": 142
+   "order": 104
+  },
+  "82b00b04a0d6": {
+   "fr": "\\textbf{Durée : 4 h · Note sur 20 · \\mxTallied{ex-5-2} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 4 h · Marked out of 20 · \\mxTallied{ex-5-2} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 105
   },
   "1e9f616aa662": {
    "fr": "Blanc 1 · Zéro 2 · suite",
    "en": "Mock 1 · Practice 2 · continued",
    "status": "aligned",
-   "order": 187
+   "order": 106
   },
   "0f0e1fd4b8fa": {
    "fr": "Corrigé · Blanc 1 · Zéro 2",
    "en": "Solutions · Mock 1 · Practice 2",
    "status": "aligned",
-   "order": 226
+   "order": 107
   },
   "7a6d514c2927": {
    "fr": "Blanc 1 · A",
    "en": "Mock 1 · A",
    "status": "aligned",
-   "order": 284
+   "order": 108
   },
   "a50b15931b4e": {
    "fr": "SUJET RÉSERVÉ À L'ÉVALUATION",
    "en": "PAPER RESERVED FOR ASSESSMENT",
    "status": "aligned",
-   "order": 286
+   "order": 109
+  },
+  "5c94f68334ba": {
+   "fr": "\\textbf{Durée : 4 h · Note sur 20 · \\mxTallied{ex-5-3} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 4 h · Marked out of 20 · \\mxTallied{ex-5-3} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 110
   },
   "0847012e8835": {
    "fr": "Blanc 1 · A · suite",
    "en": "Mock 1 · A · continued",
    "status": "aligned",
-   "order": 329
+   "order": 111
   },
   "cda1acb966da": {
    "fr": "Corrigé · Blanc 1 · A",
    "en": "Solutions · Mock 1 · A",
    "status": "aligned",
-   "order": 368
+   "order": 112
   },
   "a93d8a8a87aa": {
    "fr": "Blanc 1 · B",
    "en": "Mock 1 · B",
    "status": "aligned",
-   "order": 426
+   "order": 113
+  },
+  "fc2cc46564d1": {
+   "fr": "\\textbf{Durée : 4 h · Note sur 20 · \\mxTallied{ex-5-4} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 4 h · Marked out of 20 · \\mxTallied{ex-5-4} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 114
   },
   "bf884adbabc5": {
    "fr": "Blanc 1 · B · suite",
    "en": "Mock 1 · B · continued",
    "status": "aligned",
-   "order": 471
+   "order": 115
   },
   "0051f72ba68a": {
    "fr": "Corrigé · Blanc 1 · B",
    "en": "Solutions · Mock 1 · B",
    "status": "aligned",
-   "order": 510
+   "order": 116
   },
   "a5bc1d9b2ae7": {
    "fr": "et",
    "en": "and",
    "status": "aligned",
-   "order": 568
+   "order": 117
   }
  }
 }

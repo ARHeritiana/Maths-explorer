@@ -6,10 +6,11 @@
 
 \mxbanner{PRACTICE PAPER · TRAINING}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-1} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-5-1}
 \subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{42+v_n}$.
 
 \begin{enumerate}
@@ -32,6 +33,7 @@
 
 \end{enumerate}
 
+\mxtally{ex-5-1}
 \subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+5)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -56,7 +58,8 @@
 
 \mxnewpage\mxcontinued{Mock 1 · Practice 1 · continued}
 
-\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
+\mxtally{ex-5-1}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=4\vi+6\vj+10\vec k,&\vec z&=4\vi+6\vj+11\vec k.\end{aligned}\]
 
@@ -68,18 +71,19 @@
 
 \item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
 
-\item Express the vector $6\vec u-4\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Express the vector $6\vec u-4\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
 
 \item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
 
-\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $(\vi,\vj,\vec k)$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
 
 \item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-1}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $19$ times. The trials are independent and the probability of success is $p=\frac{3}{10}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -219,7 +223,7 @@ The first two equalities give $\lambda+\mu=10$, contradicting the third. The thr
 
 \item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
 
-\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, so $BC=\sqrt2$.
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
 
 \item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 4=\frac{\lambda}{2}\ \text{and}\ 6=\frac{\lambda}{2}.\]
@@ -231,7 +235,7 @@ Here $4\ne 6$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B(19,\frac{3}{10})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{19;\frac{3}{10}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{3}{10})^2(\frac{7}{10})^{17}\simeq\num{0,035802}$.
 
@@ -275,10 +279,11 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \mxbanner{PRACTICE PAPER · TRAINING}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-2} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-5-2}
 \subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{110+v_n}$.
 
 \begin{enumerate}
@@ -301,6 +306,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
+\mxtally{ex-5-2}
 \subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+4)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -325,7 +331,8 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \mxnewpage\mxcontinued{Mock 1 · Practice 2 · continued}
 
-\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
+\mxtally{ex-5-2}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=3\vi+8\vj+11\vec k,&\vec z&=3\vi+8\vj+12\vec k.\end{aligned}\]
 
@@ -337,18 +344,19 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
 
-\item Express the vector $8\vec u-3\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Express the vector $8\vec u-3\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
 
 \item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
 
-\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $(\vi,\vj,\vec k)$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
 
 \item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-2}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $16$ times. The trials are independent and the probability of success is $p=\frac{1}{10}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -488,7 +496,7 @@ The first two equalities give $\lambda+\mu=11$, contradicting the third. The thr
 
 \item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
 
-\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, so $BC=\sqrt2$.
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
 
 \item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 3=\frac{\lambda}{2}\ \text{and}\ 8=\frac{\lambda}{2}.\]
@@ -500,7 +508,7 @@ Here $3\ne 8$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $16$ of identical independent trials with two outcomes; $X\sim\mathcal B(16,\frac{1}{10})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $16$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{16;\frac{1}{10}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{16}2(\frac{1}{10})^2(\frac{9}{10})^{14}\simeq\num{0,274522}$.
 
@@ -546,10 +554,11 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-3} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-5-3}
 \subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{132+v_n}$.
 
 \begin{enumerate}
@@ -572,6 +581,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
+\mxtally{ex-5-3}
 \subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+3)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -596,7 +606,8 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \mxnewpage\mxcontinued{Mock 1 · A · continued}
 
-\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
+\mxtally{ex-5-3}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=2\vi+5\vj+7\vec k,&\vec z&=2\vi+5\vj+8\vec k.\end{aligned}\]
 
@@ -608,18 +619,19 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
 
-\item Express the vector $5\vec u-2\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Express the vector $5\vec u-2\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
 
 \item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
 
-\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $(\vi,\vj,\vec k)$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
 
 \item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-3}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $17$ times. The trials are independent and the probability of success is $p=\frac{1}{5}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -759,7 +771,7 @@ The first two equalities give $\lambda+\mu=7$, contradicting the third. The thre
 
 \item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
 
-\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, so $BC=\sqrt2$.
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
 
 \item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 2=\frac{\lambda}{2}\ \text{and}\ 5=\frac{\lambda}{2}.\]
@@ -771,7 +783,7 @@ Here $2\ne 5$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B(17,\frac{1}{5})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{17;\frac{1}{5}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{1}{5})^2(\frac{4}{5})^{15}\simeq\num{0,191403}$.
 
@@ -819,10 +831,11 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \mxbanner*{PAPER RESERVED FOR ASSESSMENT}
 
-\textbf{Duration: 4 h · Marked out of 20 · Four independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-4} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
 
 \smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
 
+\mxtally{ex-5-4}
 \subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{56+v_n}$.
 
 \begin{enumerate}
@@ -845,6 +858,7 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \end{enumerate}
 
+\mxtally{ex-5-4}
 \subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+2)e^{-x}$. Let $\mathcal C_f$ denote its graph.
 
 \begin{enumerate}
@@ -869,7 +883,8 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \mxnewpage\mxcontinued{Mock 1 · B · continued}
 
-\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $(\vi,\vj,\vec k)$ of space, define the vectors
+\mxtally{ex-5-4}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
 \[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
 \vec w&=5\vi+6\vj+11\vec k,&\vec z&=5\vi+6\vj+12\vec k.\end{aligned}\]
 
@@ -881,18 +896,19 @@ The probabilities added are positive and the final cumulative sum equals $1$, so
 
 \item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
 
-\item Express the vector $6\vec u-5\vec v$ in the basis $(\vi,\vj,\vec k)$. \hfill\textit{(1 pt)}
+\item Express the vector $6\vec u-5\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
 
 \item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
 
 \item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
 
-\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $(\vi,\vj,\vec k)$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
 
 \item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
 
 \end{enumerate}
 
+\mxtally{ex-5-4}
 \subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $19$ times. The trials are independent and the probability of success is $p=\frac{1}{10}$ on each trial. Let $X$ denote the number of successes obtained.
 
 \begin{enumerate}
@@ -1032,7 +1048,7 @@ The first two equalities give $\lambda+\mu=11$, contradicting the third. The thr
 
 \item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
 
-\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=(-1,1,0)$, so $BC=\sqrt2$.
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
 
 \item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
 \[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 5=\frac{\lambda}{2}\ \text{and}\ 6=\frac{\lambda}{2}.\]
@@ -1044,7 +1060,7 @@ Here $5\ne 6$: there is no such $\lambda$, so $A,I,D$ are not collinear.
 
 \subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
 
-\item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B(19,\frac{1}{10})$.
+\item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{19;\frac{1}{10}}$.
 
 \item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{1}{10})^2(\frac{9}{10})^{17}\simeq\num{0,285180}$.
 

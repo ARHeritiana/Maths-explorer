@@ -76,7 +76,7 @@ Let $R$ be the event ``the parcel is returned'' and $X$ the random variable equa
 \item First level: $P(R)=\num{0,12}$ and $P(\overline R)=1-\num{0,12}=\num{0,88}$. Since the draws are treated as draws with replacement, the second level uses the same probabilities: $\num{0,12}$ towards $R$ and $\num{0,88}$ towards $\overline R$ on each of the two branches.
 \item A Bernoulli trial whose success ``the parcel is returned'' has probability $\num{0,12}$ is repeated $2$ times, identically and independently (draws treated as draws with replacement). The variable $X$ counts the successes: $X$ follows the binomial distribution $\mathcal B\pt{2;\num{0,12}}$.
 \item $P(X=0)=\num{0,88}^2=\num{0,7744}$.
-Two paths give $\{X=1\}$: $(R,\overline R)$ and $(\overline R,R)$, hence $P(X=1)=2\times\num{0,12}\times\num{0,88}=\num{0,2112}$.
+Two paths give $\{X=1\}$: $\pt{R;\overline R}$ and $\pt{\overline R;R}$, hence $P(X=1)=2\times\num{0,12}\times\num{0,88}=\num{0,2112}$.
 $P(X=2)=\num{0,12}^2=\num{0,0144}$.
 Check: $\num{0,7744}+\num{0,2112}+\num{0,0144}=1$.
 \item ``At least one return'' is the event $\{X\geqslant1\}$.

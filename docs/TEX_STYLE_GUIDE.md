@@ -96,6 +96,20 @@ convention of the edition (`content/tex/core/mx-notation.sty`, decision in `docs
 `tests/tex_lint.py` refuses `0{,}5`, `12\,500`, `50\,\%`, `]0;1[`, `(1;2)` and `\{1;2\}` written by hand
 (`python -m mxbuild notation --migrate --write` converts them).
 
+## Counts in prose
+
+Never type a count that the content can measure; it goes stale as soon as a question or exercise is added.
+- `\mxcounted{key}` as the last line of an `enumerate`, then `\mxcount{key}` (cinq / five) or `\mxCount{key}` (Cinq / Five)
+  anywhere in the same unit: the number of top-level items of that list.
+- `\mxtally{key}` before each counted element (an exercise of a paper), then `\mxTallied{key}` (Quatre / Four, masculine in
+  French): how many times the tally was stepped. Corrections that repeat the headings are not tallied.
+- Words go up to twelve; a first compilation prints ?? and the second (latexmk) resolves it. The slide builder resolves the
+  same commands from the source.
+- Counts that span a book (cover, front matter: sessions, papers, sheets) are checked by `tests/count_claims.py`, which
+  reads each claim from the French text and compares it with the content. Rewording such a claim means updating that check.
+- Tuples are written `\pt{a;b}` (points, solution pairs, parameters such as $\mathcal B\pt{n;p}$): French prints (a ; b) and
+  English (a, b). A hand-written (a,b) prints the English form in French.
+
 ## Units
 
 Every unit has the same shape. It is one file `<id>.fr.tex` that opens with `\mxunit{<id>}{<title>}` (or
