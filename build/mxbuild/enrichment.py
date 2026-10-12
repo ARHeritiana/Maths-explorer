@@ -11,7 +11,7 @@ page block). French and English are compiled together (page balance per unit) an
 into dist/resources/enrichment/<id>-<kind>[-en].pdf and dist/resources/quadratic-presentation[-en].pdf.
 """
 import json, re, sys
-from . import ROOT, DIST, books, catalog, notation, tex, twin
+from . import ROOT, DIST, books, catalog, notation, pdf, tex, twin
 
 SRC = ROOT / 'content/tex/courses/enrichment'
 DATA = ROOT / 'content/data/enrichment.json'
@@ -215,7 +215,8 @@ def build():
             starts = [p for _, p in toc] + [len(d)]
             for k, stem in enumerate(stems_):
                 if stem not in wanted: continue
-                out = pymupdf.open(); out.insert_pdf(d, from_page=starts[k], to_page=starts[k + 1] - 1)
+                # Book pages carry the book's sheet counter; the native excerpt frame restarts it at 1 / N.
+                out = pdf.excerpt(d, starts[k], starts[k + 1], lang)
                 out.set_metadata({'title': toc[k][0], 'author': 'Maths Explorer'}); out.subset_fonts()
                 target = (DIST / 'resources' if stem in EXTRA else DIST / 'resources/enrichment') / f'{stem}{suffix}.pdf'
                 target.parent.mkdir(parents=True, exist_ok=True); out.save(target, garbage=4, deflate=True)

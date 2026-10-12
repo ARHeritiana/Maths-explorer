@@ -42,13 +42,15 @@ MARKERS['seconde'] = {'fr': [], 'en': []}
 CORRECTIONS = {'seconde': {'fr': None, 'en': None}, 'premiere': {'fr': r'^Corrigés et conduite du chapitre', 'en': r'^Solutions and teaching notes for chapter'},
                'terminale': {'fr': r'^Conduite et corrigés', 'en': r'^Teaching notes and solutions'}}
 SEQUENCE = {'fr': r'^S[ée]quence \d+ : ', 'en': r'^Sequence \d+ ?: '}   # seconde: one level-1 bookmark per sequence
-# Level-1 bookmarks before chapter 1 in the (student, teacher) books: booklet notes, framework (terminale teacher: + preparation guide)
-FIRST_CHAPTER_ENTRY = {'premiere': (2, 2), 'terminale': (3, 4)}
-# Appendices after the chapters: (supplement id, student bookmark range, teacher bookmark range, bank resource id suffix or None).
-# Ranges are [first, end) indices into the level-1 bookmarks; the end may be several bookmarks on (assessments).
-APPENDICES = {'premiere': [('methods', (12, 13), (12, 13), 'bank-0'), ('fluency', (13, 14), (13, 14), 'bank-1'), ('assessments', (14, 15), (14, 15), 'bank-2')],
-              'terminale': [('algorithms', (17, 18), (18, 19), None), ('proofs', (18, 19), (19, 20), None), ('oral', (19, 20), (20, 21), None),
-                            ('assessments', (20, 39), (21, 58), 'bank-2')]}
+# Level-1 bookmarks before chapter 1 in the student book (booklet notes, framework). Teacher bookmarks are found by title
+# (teacher_entry), because the teacher book carries extra front matter whose length changes with the sources.
+FIRST_CHAPTER_ENTRY = {'premiere': 2, 'terminale': 3}
+# Appendices after the chapters: (supplement id, student bookmark range, bank resource id suffix or None).
+# Ranges are [first, end) indices into the student book's level-1 bookmarks; the end may be several bookmarks on
+# (assessments). The teacher range is the bookmarks with the same titles in the teacher book (teacher_entry).
+APPENDICES = {'premiere': [('methods', (12, 13), 'bank-0'), ('fluency', (13, 14), 'bank-1'), ('assessments', (14, 15), 'bank-2')],
+              'terminale': [('algorithms', (17, 18), None), ('proofs', (18, 19), None), ('oral', (19, 20), None),
+                            ('assessments', (20, 39), 'bank-2')]}
 # Terminale only: resources that do not exist yet in the catalogue (id suffix -> titles) and the title of those that do.
 TERMINALE_TITLES = {
     'activities': (['Activité de recherche', 'Research activity'], 'student'),
@@ -61,6 +63,15 @@ KIND_ORDER = ['chapter', 'teacher', 'activities', 'notes', 'practice', 'exercise
 
 
 def tidy(s): return re.sub(r'\s+', ' ', s).strip()
+
+
+def teacher_entry(sd, td, index):
+    """Index of the teacher-book level-1 bookmark titled like the student bookmark `index`. Past the student book's
+    last bookmark, the end is the teacher bookmark after that one (teacher-only annexes follow it)."""
+    st = [tidy(t) for l, t, p in sd.get_toc() if l == 1]; tt = [tidy(t) for l, t, p in td.get_toc() if l == 1]
+    if index == len(st): return teacher_entry(sd, td, index - 1) + 1
+    if st[index] not in tt: sys.exit(f'Teacher book has no bookmark titled {st[index]!r}')
+    return tt.index(st[index])
 
 
 _PAIRS = {}
@@ -99,8 +110,8 @@ def chapter_ranges(course, sd, td, lang, count):
             out.append(list(zip(seq, ends)))
         return [(a[0], a[1], b[0], b[1]) for a, b in zip(*out)][:count]
     st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
-    fs, ft = FIRST_CHAPTER_ENTRY[course]
-    return [(st[fs + k], st[fs + k + 1], tt[ft + k], tt[ft + k + 1]) for k in range(count)]
+    fs = FIRST_CHAPTER_ENTRY[course]
+    return [(st[fs + k], st[fs + k + 1], tt[teacher_entry(sd, td, fs + k)], tt[teacher_entry(sd, td, fs + k + 1)]) for k in range(count)]
 
 
 def find(doc, start, end, pattern):
@@ -296,7 +307,8 @@ def main():
                 if c: rec['corrections'] = ('teacher', c[0] + 1, t1)
                 placed[number] = rec
         if a.appendices and not reduced:
-            for name, (s_a, s_b), (t_a, t_b), bank in APPENDICES[course]:
+            for name, (s_a, s_b), bank in APPENDICES[course]:
+                t_a, t_b = teacher_entry(sd, td, s_a), teacher_entry(sd, td, s_b)
                 if bank:
                     bk = next(r for r in catalog['resources'] if r['id'] == f'{course}-revision-{bank}')
                     ttl = bk['title'][1 if lang == 'en' else 0]
