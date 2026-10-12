@@ -45,7 +45,7 @@ Les fichiers fournis s’exécutent avec Python 3. Une fonction reçoit des argu
 \begin{longtable}{p{.25\linewidth}p{.66\linewidth}}
 \toprule Fichier & Usages et contrôles à effectuer \\\midrule
 \code{suites.py} & Termes, sommes, seuils, factorielle, Fibonacci, Syracuse, manipulations de listes. Tester n=0, q=0, q=1, seuil déjà atteint et seuil inaccessible.\\
-\code{analyse.py} & Taux de sécantes, Newton, Euler, seuil exponentiel. Éviter pas nul et dérivée nulle ; distinguer arrêt et convergence.\\
+\code{analyse.py} & Taux de sécantes, seuil exponentiel ; les méthodes de Newton et d’Euler y figurent comme prolongements hors programme. Éviter pas nul et dérivée nulle ; distinguer arrêt et convergence.\\
 \code{probabilites.py} & Loi, moments, Monte-Carlo, échantillons, fréquence de lettres. Vérifier somme des probabilités, taille non nulle et graine de simulation.\\
 \code{archimede.py} & Polygones inscrits et circonscrits, sans utiliser pi dans la construction. Contrôler le resserrement des bornes.\\
 \code{verifier.py} & Exécuter les contrôles déterministes et les cas limites. Une simulation proche d’une valeur théorique ne constitue pas sa démonstration.\\\bottomrule
@@ -56,8 +56,8 @@ Les fichiers fournis s’exécutent avec Python 3. Une fonction reçoit des argu
 \item Suites : générer dix termes, comparer boucle et formule, puis calculer un cumul. Expliquer la longueur de la liste.
 \item Sécantes : prendre trois pas positifs et trois négatifs ; comparer au calcul algébrique du taux.
 \item Monte-Carlo : comparer \num{1000} puis \num{10000} points, avec deux graines ; commenter la fluctuation.
-\item Échantillons : simuler $N=\num{1000}$ échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance. Compter les moyennes dans le seuil $\dfrac{2\sigma}{\sqrt n}$.
-\item Euler et Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.
+\item Échantillons : simuler $N=\num{1000}$ échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance.
+\item Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.
 \end{enumerate}
 Ces TP sont des alternatives réparties sur les séances d’algorithmique et de consolidation. Ils ne s’ajoutent pas tous à une même semaine de cours. Les résultats d’une simulation dépendent de la graine ; le rapport de contrôle fournit un exemple d’exécution reproductible.
 

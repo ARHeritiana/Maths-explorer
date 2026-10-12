@@ -46,7 +46,7 @@ The supplied files run with Python 3. A function receives arguments and returns 
 \begin{longtable}{p{.25\linewidth}p{.66\linewidth}}
 \toprule File & Uses and checks to carry out \\\midrule
 \code{suites.py} & Terms, sums, thresholds, factorial, Fibonacci, Syracuse, list manipulation. Test n=0, q=0, q=1, a threshold already reached and an unreachable threshold.\\
-\code{analyse.py} & Rates of secants, Newton, Euler, exponential threshold. Avoid a zero step and a zero derivative; distinguish stopping from convergence.\\
+\code{analyse.py} & Rates of secants, exponential threshold; Newton's and Euler's methods appear as extensions beyond the syllabus. Avoid a zero step and a zero derivative; distinguish stopping from convergence.\\
 \code{probabilites.py} & Distribution, moments, Monte Carlo, samples, letter frequency. Check the sum of probabilities, nonzero size and simulation seed.\\
 \code{archimede.py} & Inscribed and circumscribed polygons, without using pi in the construction. Check that the bounds tighten.\\
 \code{verifier.py} & Run the deterministic checks and the edge cases. A simulation close to a theoretical value is not a proof of it.\\\bottomrule
@@ -57,8 +57,8 @@ The supplied files run with Python 3. A function receives arguments and returns 
 \item Sequences: generate ten terms, compare a loop with a formula, then calculate a running total. Explain the length of the list.
 \item Secants: take three positive and three negative steps; compare with the algebraic calculation of the rate.
 \item Monte Carlo: compare \num{1000} then \num{10000} points, with two seeds; comment on the fluctuation.
-\item Samples: simulate $N=\num{1000}$ samples of size n=10 then n=100; compare the observed mean and the expectation. Count the means within the threshold $\dfrac{2\sigma}{\sqrt n}$.
-\item Euler and Archimedes: produce a table of results at several resolutions; state what is observed and what has been proved.
+\item Samples: simulate $N=\num{1000}$ samples of size n=10 then n=100; compare the observed mean and the expectation.
+\item Archimedes: produce a table of results at several resolutions; state what is observed and what has been proved.
 \end{enumerate}
 These practical tasks are alternatives spread over the algorithmics and consolidation sessions. They are not all added to the same week of lessons. The results of a simulation depend on the seed; the check report supplies an example of a reproducible run.
 

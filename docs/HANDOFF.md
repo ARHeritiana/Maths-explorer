@@ -77,10 +77,10 @@ Chromium at `/opt/pw-browsers`.
   now use the shared cover (their individual title pages, including the Première parabola, were dropped).
 - Owner, school and place names remain in git history (removing them needs a history rewrite and force-push). Owner
   answer (12 October): decide later.
-- Programme scope not yet checked against the text of Première BO n°14 of 2 April 2026 (the official site is not
-  reachable from the build container): sampling fluctuation 2σ/√n in Première C08 and EV3, Newton's method in C06,
-  Euler's method in C09. They were in the 2019 programme (BO spécial n°1 of 22 January 2019) as algorithmic work;
-  mark them [HORS PROGRAMME] or as extensions only if the 2026 text drops them.
+- Programme scope (owner, 12 October): sampling fluctuation 2σ/√n, Newton's method and Euler's method are not in the
+  Première programme of BO n°14 of 2 April 2026. Course mentions are now in "Hors programme / Beyond the syllabus"
+  boxes (`beyond` environment, never in slides); the QCM items, automatismes R058/R067, the EV3-T2 question, the
+  research activity of C09 and the programming annex no longer use them; matrix rows BO165/BO166 removed.
 
 Owner decisions of 12 October 2026 (applied): English notation 1,500 / 12.5% / {1,…,n} accepted; Terminale PDFs use
 the site chapter numbers (cross-references are `\ref{ch:N}`, labels keep the former textbook numbers as names);

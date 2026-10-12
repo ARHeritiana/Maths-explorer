@@ -56,12 +56,13 @@ Sur un domaine symétrique par rapport à 0, f est paire si $f(-x)=f(x)$ et impa
 \begin{example}Pour $x>0$, $h(x)=x+\dfrac{1}{x}-2$ a pour dérivée $\dfrac{x^2-1}{x^2}$. Elle décroît jusqu’à 1 puis croît ; $h(1)=0$, donc $x+\dfrac{1}{x}\geq 2$. L’égalité est obtenue seulement en 1.\end{example}\label{C06-EX4}
 \begin{pitfall}Verifier le domaine avant la parité. Le signe de $f\prime-g\prime$ renseigne sur la variation de $f-g$, pas directement sur son signe.\end{pitfall}
 \begin{application}Étudier la parité de $x^4+x^2$ et $x^3-x$ ; démontrer $x^2+1\geq2x$.\end{application}\label{C06-AP4}
-\section{Optimisation et méthode de Newton}\label{C06-U5}
+\section{Optimisation}\label{C06-U5}
 \begin{keypoint}[Définition et résultats]
-Optimiser consiste à définir la variable et son domaine, exprimer la grandeur à optimiser, puis comparer toutes les valeurs candidates, y compris les bornes. La méthode de Newton utilise la tangente pour approcher une solution de $f(x)=0$ : $x_{n+1}=x_n-\dfrac{f(x_n)}{f}\prime (x_n)$ lorsque $f\prime(x_n)\ne0$. Elle n’est utilisée que dans des cas favorables.
+Optimiser consiste à définir la variable et son domaine, exprimer la grandeur à optimiser, puis comparer toutes les valeurs candidates, y compris les bornes.
 \end{keypoint}
-\paragraph{Statut et justification.} La formule de Newton vient de l’intersection avec l’axe horizontal de $y=f(x_n)+f\prime(x_n)(x-x_n)$. La convergence n’est pas garantie en général ; on la constate et contrôle dans le cas retenu.
-\begin{example}Pour $f(x)=x^2-2$ avec $x_0=1$, Newton donne $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. Les carrés sont \num{2,25} puis environ \num{2,00694} : on approche $\sqrt2$. Le programme doit contrôler dérivée nulle et nombre maximal d’étapes.\end{example}\label{C06-EX5}
+\paragraph{Statut et justification.} Sur un intervalle fermé, un extremum est atteint en une borne ou en un point où la dérivée s’annule en changeant de signe : le tableau de variations permet de comparer ces candidats.
+\begin{example}Une boîte sans couvercle a une base carrée de côté x et une hauteur $6-x$, avec $0\le x\le6$. Son volume $V(x)=x^2(6-x)$ a pour dérivée $V\prime(x)=12x-3x^2=3x(4-x)$, positive sur $\intff{0}{4}$ et négative sur $\intff{4}{6}$. Le volume maximal est $V(4)=32$.\end{example}\label{C06-EX5}
+\begin{beyond}[Méthode de Newton]La tangente en $x_n$ coupe l’axe des abscisses en $x_{n+1}=x_n-\dfrac{f(x_n)}{f\prime(x_n)}$ lorsque $f\prime(x_n)\ne0$. Pour $f(x)=x^2-2$ et $x_0=1$, on obtient $x_1=\dfrac{3}{2}$ puis $x_2=\dfrac{17}{12}$, de carrés \num{2,25} puis environ \num{2,00694} : on approche $\sqrt2$. La convergence n’est pas garantie en général. Cette méthode ne figure pas au programme de première et n’est pas évaluée.\end{beyond}
 \begin{pitfall}Une valeur numérique fournie par un algorithme n’est pas une preuve de minimum ni de convergence.\end{pitfall}
 \begin{application}Un rectangle de périmètre 12 m a largeur x. Déterminer l’aire maximale par dérivation.\end{application}\label{C06-AP5}
 \mxnewpage
@@ -203,12 +204,12 @@ Ces exercices se traitent dans votre manuel. La progression indique la séance ;
 \item $1$
 \item aucun
 \end{enumerate}
-\item Newton pour $x^2-2$ n’est pas défini avec $x_0=$
+\item Sur $\intff{0}{6}$, l’aire $A(x)=x(6-x)$ est maximale pour $x=$
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $1$
-\item $2$
 \item $0$
-\item $-1$
+\item $6$
+\item $3$
+\item $9$
 \end{enumerate}
 \mxcounted{qcm2}
 \end{enumerate}

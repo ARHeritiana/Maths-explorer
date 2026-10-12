@@ -20,7 +20,7 @@ Répondre sans consulter le cours. Indiquer les questions pour lesquelles une ai
 \paragraph{Oral et logique.} Expliquer la différence entre taux continu et coefficient multiplicateur discret ; présenter une inégalité prouvée par minimum d’une différence.
 \mxnewpage
 \section*{Chercher avant de formaliser}\label{C09-RECH}
-Comparer les accroissements de $e^x$ et les valeurs de la fonction autour de 0, avec plusieurs pas positifs. Construire trois étapes d’Euler et expliquer la règle choisie.
+Comparer les accroissements de $e^x$ et les valeurs de la fonction autour de 0, avec plusieurs pas positifs. Conjecturer une relation entre $\dfrac{e^{h}-1}{h}$ et 1 lorsque h devient petit.
 \paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
 \mxnewpage
 \section{Définir une fonction nouvelle}\label{C09-U1}
@@ -57,12 +57,13 @@ Un modèle $Q(t)=Q_0e^{kt}$, avec $Q_0>0$, représente une croissance si $k>0$, 
 \mxinclude{figures/C09-U4}
 \begin{pitfall}Le taux relatif par unité de temps discrète est $e^k-1$, pas exactement k ; ils sont proches seulement pour k petit.\end{pitfall}
 \begin{application}Pour $Q(t)=5e^{\num{0,3}t}$, exprimer $Q(n)$ et $\dfrac{Q(t+2)}{Q(t)}$.\end{application}\label{C09-AP4}
-\section{Construire numériquement et démontrer une inégalité}\label{C09-U5}
+\section{Démontrer une inégalité}\label{C09-U5}
 \begin{keypoint}[Définition et résultats]
-Pour approcher la solution de $y\prime=y$, $y(0)=1$ avec un pas $h$, Euler remplace l’accroissement par $hy$ : $y_{k+1}=(1+h)y_k$. Sur $\intff{0}{1}$ avec $h=\dfrac1n$, l’approximation de $e$ est $\left(1+\dfrac1n\right)^n$. Cette construction est expérimentale. L’inégalité $e^x\geq1+x$ s’obtient par étude de fonction.
+L’inégalité $e^x\geq1+x$, valable pour tout réel x, s’obtient par l’étude de la fonction $g(x)=e^x-1-x$ : la courbe de l’exponentielle est au-dessus de sa tangente en 0.
 \end{keypoint}
-\paragraph{Statut et justification.} Pour $g(x)=e^x-1-x$, $g\prime(x)=e^x-1$, négative si x<0 et positive si x>0. Le minimum vaut $g(0)=0$, ce qui prouve l’inégalité ; égalité seulement en 0. La convergence d’Euler n’est pas démontrée ici.
-\begin{example}Avec n=2, Euler donne $y_0=1,y_1=\num{1,5},y_2=\num{2,25}$. Avec n=10, $(\num{1,1})^{10}\approx\num{2,59374}$. On compare à e ; on ne confond pas valeur approchée et définition de la fonction.\end{example}\label{C09-EX5}
+\paragraph{Statut et justification.} Pour $g(x)=e^x-1-x$, $g\prime(x)=e^x-1$, négative si x<0 et positive si x>0. Le minimum vaut $g(0)=0$, ce qui prouve l’inégalité ; égalité seulement en 0.
+\begin{example}Avec $x=\num{0,1}$, l’inégalité donne $e^{\num{0,1}}\geq\num{1,1}$ ; la calculatrice affiche $e^{\num{0,1}}\approx\num{1,10517}$. Avec $x=-1$, elle donne $e^{-1}\geq0$, ce qui est vrai mais peu précis.\end{example}\label{C09-EX5}
+\begin{beyond}[Méthode d’Euler]Pour approcher la solution de $y\prime=y$, $y(0)=1$ avec un pas $h$, on remplace l’accroissement par $hy$ : $y_{k+1}=(1+h)y_k$. Avec $h=\dfrac1n$ sur $\intff{0}{1}$, on obtient $\left(1+\dfrac1n\right)^n$, soit \num{2,25} pour n=2 et environ \num{2,59374} pour n=10, à comparer à $e\approx\num{2,71828}$. Cette méthode ne figure pas au programme de première et n’est pas évaluée.\end{beyond}
 \begin{pitfall}Un graphique qui montre une courbe au-dessus d’une droite ne prouve pas l’inégalité sur tous les réels.\end{pitfall}
 \begin{application}Montrer que $e^{2x}\geq1+2x$ pour tout réel x.\end{application}\label{C09-AP5}
 \mxnewpage

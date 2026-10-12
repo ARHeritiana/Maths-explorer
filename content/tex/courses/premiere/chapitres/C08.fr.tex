@@ -1,6 +1,6 @@
 \mxunit{premiere-c08}{Variables aléatoires et dispersion}\label{C08}
 \begin{keypoint}[Le parcours du chapitre]
-\textbf{Objectifs.} Construire une loi ; interpréter des événements ; calculer espérance, variance, écart type ; utiliser la linéarité ; simuler des échantillons.
+\textbf{Objectifs.} Construire une loi ; interpréter des événements ; calculer espérance, variance, écart type ; utiliser la linéarité ; simuler des échantillons et calculer leur moyenne observée.
 
 \textbf{Prérequis.} Probabilités, moyenne pondérée, carrés, arbres et listes.
 
@@ -58,12 +58,13 @@ Pour a,b réels, $V(aX+b)=a^2V(X)$ et $\sigma(aX+b)=|a|\sigma(X)$. Une translati
 \begin{application}$E(X)=3$, $V(X)=4$. Donner les caractéristiques de $Y=-2X+5$.\end{application}\label{C08-AP4}
 \section{Échantillons et moyenne observée}\label{C08-U5}
 \begin{keypoint}[Définition et résultats]
-Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre. On compare m à $\mu=E(X)$ ; des répétitions permettent d’observer la proportion des échantillons satisfaisant $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$. Ce seuil est une tâche expérimentale du programme, pas une affirmation de taux de couverture exact.
+Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre ; on la compare à $\mu=E(X)$.
 \end{keypoint}
 \paragraph{Statut et justification.} Expérimentation : on ne démontre ici ni théorème de convergence ni loi normale. On vérifie la taille des listes, le calcul de la moyenne et la distinction entre n et le nombre N d’échantillons.
-\begin{example}Pour X de valeurs 0 et 2 équiprobables, $\mu=1$, $\sigma=1$. Pour n=100, seuil $\dfrac{2}{10}=\num{0,2}$ : on compte les moyennes dans $\intff{\num{0,8}}{\num{1,2}}$. Un résultat de 956 sur 1000 signifie fréquence observée \num{0,956} pour cette simulation seulement.\end{example}\label{C08-EX5}
-\begin{pitfall}Ne pas recopier un seul tirage n fois ; ne pas annoncer que la proportion vaut nécessairement \pc{95}.\end{pitfall}
-\begin{application}Pour $\mu=5$, $\sigma=3$ et n=36, donner l’intervalle expérimental demandé.\end{application}\label{C08-AP5}
+\begin{example}Pour X de valeurs 0 et 2 équiprobables, $\mu=1$. L’échantillon 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 a pour moyenne observée \num{1,2} ; un autre échantillon de même taille donnera en général une autre moyenne. Une simulation compare plusieurs moyennes observées à $\mu$ sans rien démontrer.\end{example}\label{C08-EX5}
+\begin{pitfall}Ne pas recopier un seul tirage n fois ; ne pas confondre la moyenne observée d’un échantillon avec l’espérance $\mu$.\end{pitfall}
+\begin{beyond}[Seuil de fluctuation]En répétant la simulation, on peut compter la proportion des échantillons vérifiant $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$ ; elle est souvent voisine de \pc{95} sans l’être nécessairement. Ce seuil ne figure pas au programme de première et n’est pas évalué.\end{beyond}
+\begin{application}X prend les valeurs 0 et 2 de façon équiprobable. Calculer la moyenne observée de l’échantillon 2, 0, 2, 2, 0, puis son écart à $E(X)$.\end{application}\label{C08-AP5}
 \mxnewpage
 \section*{Parcours d’exercices}\label{C08-PARC}
 Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
@@ -201,12 +202,12 @@ Ces exercices se traitent dans votre manuel. La progression indique la séance ;
 \item X=Y
 \item X positive
 \end{enumerate}
-\item Pour $\sigma=2$, n=100, $\dfrac{2\sigma}{\sqrt n}=$
+\item Si $E(X)=2$ et $E(X^2)=5$, alors $V(X)=$
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $4$
-\item $\num{0,04}$
-\item $\num{0,4}$
-\item $2$
+\item $3$
+\item $9$
+\item $1$
+\item $7$
 \end{enumerate}
 \mxcounted{qcm2}
 \end{enumerate}

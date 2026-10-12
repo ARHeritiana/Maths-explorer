@@ -205,9 +205,9 @@
    "status": "aligned",
    "order": 33
   },
-  "4b82b639b766": {
-   "fr": "Taux de sécantes, Newton, Euler, seuil exponentiel. Éviter pas nul et dérivée nulle ; distinguer arrêt et convergence.\\\\\n[[m1]]",
-   "en": "Rates of secants, Newton, Euler, exponential threshold. Avoid a zero step and a zero derivative; distinguish stopping from convergence.\\\\\n[[m1]]",
+  "616d98af50b1": {
+   "fr": "Taux de sécantes, seuil exponentiel ; les méthodes de Newton et d’Euler y figurent comme prolongements hors programme. Éviter pas nul et dérivée nulle ; distinguer arrêt et convergence.\\\\\n[[m1]]",
+   "en": "Rates of secants, exponential threshold; Newton's and Euler's methods appear as extensions beyond the syllabus. Avoid a zero step and a zero derivative; distinguish stopping from convergence.\\\\\n[[m1]]",
    "status": "aligned",
    "order": 34
   },
@@ -253,15 +253,15 @@
    "status": "aligned",
    "order": 41
   },
-  "1d12379ce3f8": {
-   "fr": "Échantillons : simuler [[m1]] échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance. Compter les moyennes dans le seuil [[m2]].",
-   "en": "Samples: simulate [[m1]] samples of size n=10 then n=100; compare the observed mean and the expectation. Count the means within the threshold [[m2]].",
+  "baedd42392f8": {
+   "fr": "Échantillons : simuler [[m1]] échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance.",
+   "en": "Samples: simulate [[m1]] samples of size n=10 then n=100; compare the observed mean and the expectation.",
    "status": "aligned",
    "order": 42
   },
-  "9ca0daca87b9": {
-   "fr": "Euler et Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.",
-   "en": "Euler and Archimedes: produce a table of results at several resolutions; state what is observed and what has been proved.",
+  "6a2da0835717": {
+   "fr": "Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.",
+   "en": "Archimedes: produce a table of results at several resolutions; state what is observed and what has been proved.",
    "status": "aligned",
    "order": 43
   },

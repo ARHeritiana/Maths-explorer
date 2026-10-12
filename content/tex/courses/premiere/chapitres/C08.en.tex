@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
 \mxunit{premiere-c08}{Random variables and dispersion}\label{C08}
 \begin{keypoint}[Chapter path]
-\textbf{Objectives.} Build a distribution; interpret events; calculate expectation, variance, standard deviation; use linearity; simulate samples.
+\textbf{Objectives.} Build a distribution; interpret events; calculate expectation, variance, standard deviation; use linearity; simulate samples and calculate their observed mean.
 
 \textbf{Prerequisites.} Probability, weighted mean, squares, trees and lists.
 
@@ -59,12 +59,13 @@ For real a,b, $V(aX+b)=a^2V(X)$ and $\sigma(aX+b)=|a|\sigma(X)$. A translation m
 \begin{application}$E(X)=3$, $V(X)=4$. Give the characteristics of $Y=-2X+5$.\end{application}\label{C08-AP4}
 \section{Samples and observed mean}\label{C08-U5}
 \begin{keypoint}[Definition and results]
-A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another. We compare m with $\mu=E(X)$; repetitions allow us to observe the proportion of samples satisfying $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$. This threshold is an experimental task of the programme, not a claim of an exact coverage rate.
+A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another; we compare it with $\mu=E(X)$.
 \end{keypoint}
 \paragraph{Status and justification.} Experimentation: neither a convergence theorem nor the normal distribution is proved here. We check the size of the lists, the calculation of the mean and the distinction between n and the number N of samples.
-\begin{example}For X with values 0 and 2 equally likely, $\mu=1$, $\sigma=1$. For n=100, threshold $\dfrac{2}{10}=\num{0,2}$: we count the means in $\intff{\num{0,8}}{\num{1,2}}$. A result of 956 out of 1000 means an observed frequency of \num{0,956} for this simulation only.\end{example}\label{C08-EX5}
-\begin{pitfall}Do not copy a single draw n times; do not announce that the proportion is necessarily \pc{95}.\end{pitfall}
-\begin{application}For $\mu=5$, $\sigma=3$ and n=36, give the experimental interval asked for.\end{application}\label{C08-AP5}
+\begin{example}For X taking the values 0 and 2 with equal probability, $\mu=1$. The sample 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 has observed mean \num{1,2}; another sample of the same size will usually give another mean. A simulation compares several observed means with $\mu$ without proving anything.\end{example}\label{C08-EX5}
+\begin{pitfall}Do not copy a single draw n times; do not confuse the observed mean of a sample with the expectation $\mu$.\end{pitfall}
+\begin{beyond}[Fluctuation threshold]By repeating the simulation, we can count the proportion of samples satisfying $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$; it is often close to \pc{95} without necessarily being equal to it. This threshold is not part of the première syllabus and is not assessed.\end{beyond}
+\begin{application}X takes the values 0 and 2 with equal probability. Calculate the observed mean of the sample 2, 0, 2, 2, 0, then its gap from $E(X)$.\end{application}\label{C08-AP5}
 \mxnewpage
 \section*{Exercise path}\label{C08-PARC}
 Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
@@ -202,12 +203,12 @@ These exercises are done in your textbook. The progression indicates the session
 \item X=Y
 \item X positive
 \end{enumerate}
-\item For $\sigma=2$, n=100, $\dfrac{2\sigma}{\sqrt n}=$
+\item If $E(X)=2$ and $E(X^2)=5$, then $V(X)=$
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $4$
-\item $\num{0,04}$
-\item $\num{0,4}$
-\item $2$
+\item $3$
+\item $9$
+\item $1$
+\item $7$
 \end{enumerate}
 \mxcounted{qcm2}
 \end{enumerate}

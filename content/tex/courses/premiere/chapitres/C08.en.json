@@ -13,9 +13,9 @@
    "status": "aligned",
    "order": 1
   },
-  "081d132eb762": {
-   "fr": "\\textbf{Objectifs.} Construire une loi ; interpréter des événements ; calculer espérance, variance, écart type ; utiliser la linéarité ; simuler des échantillons.",
-   "en": "\\textbf{Objectives.} Build a distribution; interpret events; calculate expectation, variance, standard deviation; use linearity; simulate samples.",
+  "ba47b542b620": {
+   "fr": "\\textbf{Objectifs.} Construire une loi ; interpréter des événements ; calculer espérance, variance, écart type ; utiliser la linéarité ; simuler des échantillons et calculer leur moyenne observée.",
+   "en": "\\textbf{Objectives.} Build a distribution; interpret events; calculate expectation, variance, standard deviation; use linearity; simulate samples and calculate their observed mean.",
    "status": "aligned",
    "order": 2
   },
@@ -283,9 +283,9 @@
    "status": "aligned",
    "order": 46
   },
-  "2a3b333a0248": {
-   "fr": "Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre. On compare m à [[m1]] ; des répétitions permettent d’observer la proportion des échantillons satisfaisant [[m2]]. Ce seuil est une tâche expérimentale du programme, pas une affirmation de taux de couverture exact.",
-   "en": "A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another. We compare m with [[m1]]; repetitions allow us to observe the proportion of samples satisfying [[m2]]. This threshold is an experimental task of the programme, not a claim of an exact coverage rate.",
+  "d84558598e9a": {
+   "fr": "Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre ; on la compare à [[m1]].",
+   "en": "A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another; we compare it with [[m1]].",
    "status": "aligned",
    "order": 47
   },
@@ -295,455 +295,467 @@
    "status": "aligned",
    "order": 48
   },
-  "7c1056933de1": {
-   "fr": "Pour X de valeurs 0 et 2 équiprobables, [[m1]], [[m2]]. Pour n=100, seuil [[m3]] : on compte les moyennes dans [[m4]]. Un résultat de 956 sur 1000 signifie fréquence observée [[m5]] pour cette simulation seulement.",
-   "en": "For X with values 0 and 2 equally likely, [[m1]], [[m2]]. For n=100, threshold [[m3]]: we count the means in [[m4]]. A result of 956 out of 1000 means an observed frequency of [[m5]] for this simulation only.",
+  "a7ecfe93bc97": {
+   "fr": "Pour X de valeurs 0 et 2 équiprobables, [[m1]]. L’échantillon 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 a pour moyenne observée [[m2]] ; un autre échantillon de même taille donnera en général une autre moyenne. Une simulation compare plusieurs moyennes observées à [[m3]] sans rien démontrer.",
+   "en": "For X taking the values 0 and 2 with equal probability, [[m1]]. The sample 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 has observed mean [[m2]]; another sample of the same size will usually give another mean. A simulation compares several observed means with [[m3]] without proving anything.",
    "status": "aligned",
    "order": 49
   },
-  "69f88cf62d33": {
-   "fr": "Ne pas recopier un seul tirage n fois ; ne pas annoncer que la proportion vaut nécessairement [[m1]].",
-   "en": "Do not copy a single draw n times; do not announce that the proportion is necessarily [[m1]].",
+  "8af4312db6f4": {
+   "fr": "Ne pas recopier un seul tirage n fois ; ne pas confondre la moyenne observée d’un échantillon avec l’espérance [[m1]].",
+   "en": "Do not copy a single draw n times; do not confuse the observed mean of a sample with the expectation [[m1]].",
    "status": "aligned",
    "order": 50
   },
-  "a947dd1153fa": {
-   "fr": "Pour [[m1]], [[m2]] et n=36, donner l’intervalle expérimental demandé.",
-   "en": "For [[m1]], [[m2]] and n=36, give the experimental interval asked for.",
+  "2b889e27d8cf": {
+   "fr": "Seuil de fluctuation",
+   "en": "Fluctuation threshold",
    "status": "aligned",
    "order": 51
+  },
+  "23ad603f2a1e": {
+   "fr": "En répétant la simulation, on peut compter la proportion des échantillons vérifiant [[m1]] ; elle est souvent voisine de [[m2]] sans l’être nécessairement. Ce seuil ne figure pas au programme de première et n’est pas évalué.",
+   "en": "By repeating the simulation, we can count the proportion of samples satisfying [[m1]]; it is often close to [[m2]] without necessarily being equal to it. This threshold is not part of the première syllabus and is not assessed.",
+   "status": "aligned",
+   "order": 52
+  },
+  "d40534038f6d": {
+   "fr": "X prend les valeurs 0 et 2 de façon équiprobable. Calculer la moyenne observée de l’échantillon 2, 0, 2, 2, 0, puis son écart à [[m1]].",
+   "en": "X takes the values 0 and 2 with equal probability. Calculate the observed mean of the sample 2, 0, 2, 2, 0, then its gap from [[m1]].",
+   "status": "aligned",
+   "order": 53
   },
   "c82d22e2d8b1": {
    "fr": "Parcours d’exercices",
    "en": "Exercise path",
    "status": "aligned",
-   "order": 52
+   "order": 54
   },
   "31c1e4322269": {
    "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
    "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
    "status": "aligned",
-   "order": 53
+   "order": 55
   },
   "95a895ccca7e": {
    "fr": "Une loi à construire",
    "en": "A distribution to build",
    "status": "aligned",
-   "order": 54
+   "order": 56
   },
   "aca96cace5cb": {
    "fr": "On lance un dé équilibré à six faces numérotées de 1 à 6. La variable aléatoire [[m1]] associe au résultat le reste de sa division euclidienne par 3. Par exemple, un résultat divisible par 3 donne [[m2]].",
    "en": "A fair six-sided die, with faces numbered 1 to 6, is rolled. The random variable [[m1]] associates with the result the remainder of its Euclidean division by 3. For example, a result divisible by 3 gives [[m2]].",
    "status": "aligned",
-   "order": 55
+   "order": 57
   },
   "6eb3f208a1bc": {
    "fr": "Pour chacune des six faces, indiquer la valeur prise par [[m1]].",
    "en": "For each of the six faces, state the value taken by [[m1]].",
    "status": "aligned",
-   "order": 56
+   "order": 58
   },
   "829ba1182a59": {
    "fr": "Présenter la loi de probabilité de [[m1]] dans un tableau et vérifier que la somme des probabilités vaut 1.",
    "en": "Present the probability distribution of [[m1]] in a table and check that the probabilities sum to 1.",
    "status": "aligned",
-   "order": 57
+   "order": 59
   },
   "77d98f64b73b": {
    "fr": "Calculer [[m1]] en précisant quelles valeurs de [[m2]] sont retenues.",
    "en": "Calculate [[m1]], stating which values of [[m2]] are retained.",
    "status": "aligned",
-   "order": 58
+   "order": 60
   },
   "f7e992df8146": {
    "fr": "Deux calculs de variance",
    "en": "Two variance calculations",
    "status": "aligned",
-   "order": 59
+   "order": 61
   },
   "bd43481eb4ec": {
    "fr": "La variable aléatoire [[m1]] prend les valeurs [[m2]], 0 et 4 avec les probabilités respectives [[m3]], [[m4]] et [[m5]].",
    "en": "The random variable [[m1]] takes the values [[m2]], 0 and 4 with respective probabilities [[m3]], [[m4]] and [[m5]].",
    "status": "aligned",
-   "order": 60
+   "order": 62
   },
   "cc21a5ccaa5b": {
    "fr": "Calculer son espérance [[m1]] et le moment [[m2]].",
    "en": "Calculate its expectation [[m1]] and the second moment [[m2]].",
    "status": "aligned",
-   "order": 61
+   "order": 63
   },
   "37829c93c179": {
    "fr": "Calculer [[m1]] à l’aide de la formule de König–Huygens, puis en déduire l’écart type exact.",
    "en": "Calculate [[m1]] using the König--Huygens formula, then deduce the exact standard deviation.",
    "status": "aligned",
-   "order": 62
+   "order": 64
   },
   "aac4bdc328e1": {
    "fr": "Retrouver la variance à partir de la définition [[m1]]. Présenter les trois contributions au calcul.",
    "en": "Recover the variance from the definition [[m1]]. Present the three contributions to the calculation.",
    "status": "aligned",
-   "order": 63
+   "order": 65
   },
   "1d01b27084ce": {
    "fr": "Un jeu équitable",
    "en": "A fair game",
    "status": "aligned",
-   "order": 64
+   "order": 66
   },
   "9b2b0857747d": {
    "fr": "Une roue comporte cinq secteurs de même angle, portant les nombres 0, 0, 0, 5 et 10. On suppose les cinq secteurs équiprobables. Le nombre obtenu représente un gain brut [[m1]], en unités monétaires. Pour jouer, on paie une mise [[m2]] ; le gain net est donc [[m3]].",
    "en": "A wheel has five sectors of equal angle, bearing the numbers 0, 0, 0, 5 and 10. The five sectors are assumed equally likely. The number obtained represents a gross gain [[m1]], in monetary units. To play, one pays a stake [[m2]]; the net gain is therefore [[m3]].",
    "status": "aligned",
-   "order": 65
+   "order": 67
   },
   "6dcf4e0bb663": {
    "fr": "Établir la loi de [[m1]], puis déterminer la mise [[m2]] qui rend le jeu équitable, c’est-à-dire telle que [[m3]].",
    "en": "Establish the distribution of [[m1]], then determine the stake [[m2]] that makes the game fair, that is, such that [[m3]].",
    "status": "aligned",
-   "order": 66
+   "order": 68
   },
   "9be01d7b55d1": {
    "fr": "Après l’étude de la variance, calculer l’écart type du gain brut. En déduire celui du gain net lorsque la mise est équitable.",
    "en": "After studying variance, calculate the standard deviation of the gross gain. Deduce that of the net gain when the stake is fair.",
    "status": "aligned",
-   "order": 67
+   "order": 69
   },
   "cde722b00402": {
    "fr": "Expliquer pourquoi modifier la mise change l’espérance du gain net mais pas son écart type.",
    "en": "Explain why changing the stake changes the expectation of the net gain but not its standard deviation.",
    "status": "aligned",
-   "order": 68
+   "order": 70
   },
   "e03c2923c13a": {
    "fr": "Même moyenne, autre risque",
    "en": "Same mean, different risk",
    "status": "aligned",
-   "order": 69
+   "order": 71
   },
   "2f6247003623": {
    "fr": "Deux placements fictifs sont proposés. Le premier procure avec certitude un gain [[m1]]. Le second procure un gain [[m2]] avec probabilité [[m3]] et un gain [[m4]] avec probabilité [[m5]]. Les gains sont exprimés dans la même unité monétaire.",
    "en": "Two fictitious investments are offered. The first yields a certain gain [[m1]]. The second yields a gain [[m2]] with probability [[m3]] and a gain [[m4]] with probability [[m5]]. The gains are expressed in the same monetary unit.",
    "status": "aligned",
-   "order": 70
+   "order": 72
   },
   "9fc7d53ad2ea": {
    "fr": "Comparer les espérances des deux gains, puis leurs variances.",
    "en": "Compare the expectations of the two gains, then their variances.",
    "status": "aligned",
-   "order": 71
+   "order": 73
   },
   "c30c588c31c7": {
    "fr": "Une personne déclare : « Ces placements sont équivalents puisqu’ils ont la même moyenne. » Expliquer ce que cette phrase omet et ce que la variance permet ici de distinguer.",
    "en": "Someone states: ``These investments are equivalent since they have the same mean.'' Explain what this sentence omits and what the variance makes it possible to distinguish here.",
    "status": "aligned",
-   "order": 72
+   "order": 74
   },
   "8abdcbc6bebc": {
    "fr": "Linéarité sans indépendance",
    "en": "Linearity without independence",
    "status": "aligned",
-   "order": 73
+   "order": 75
   },
   "03ba4d8229cf": {
    "fr": "On lance un dé équilibré numéroté de 1 à 6. On note [[m1]] le résultat du lancer et l’on définit [[m2]]. Les deux variables sont donc obtenues à partir du même lancer.",
    "en": "A fair die numbered 1 to 6 is rolled. Let [[m1]] be the result of the roll and define [[m2]]. The two variables are therefore obtained from the same roll.",
    "status": "aligned",
-   "order": 74
+   "order": 76
   },
   "f7d821be7c31": {
    "fr": "Calculer [[m1]] et [[m2]], puis [[m3]]. Vérifier la linéarité de l’espérance sur cet exemple.",
    "en": "Calculate [[m1]] and [[m2]], then [[m3]]. Check the linearity of expectation on this example.",
    "status": "aligned",
-   "order": 75
+   "order": 77
   },
   "3a717901d9c7": {
    "fr": "Les variables [[m1]] et [[m2]] sont-elles indépendantes ? Justifier en utilisant, par exemple, les événements [[m3]] et [[m4]].",
    "en": "Are the variables [[m1]] and [[m2]] independent? Justify using, for example, the events [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 76
+   "order": 78
   },
   "ec9d6f1ab82f": {
    "fr": "La linéarité de l’espérance exige-t-elle l’indépendance ? Conclure en s’appuyant sur vos résultats.",
    "en": "Does the linearity of expectation require independence? Conclude using your results.",
    "status": "aligned",
-   "order": 77
+   "order": 79
   },
   "841ba243a82a": {
    "fr": "Une perte minimale",
    "en": "A minimal loss",
    "status": "aligned",
-   "order": 78
+   "order": 80
   },
   "82f6ec311c64": {
    "fr": "Une variable aléatoire [[m1]] prend un nombre fini de valeurs et possède une espérance [[m2]]. Pour un réel [[m3]], on mesure l’erreur quadratique moyenne associée à la prévision constante [[m4]] par [[m5]].",
    "en": "A random variable [[m1]] takes finitely many values and has an expectation [[m2]]. For a real number [[m3]], the mean squared error associated with the constant forecast [[m4]] is measured by [[m5]].",
    "status": "aligned",
-   "order": 79
+   "order": 81
   },
   "c5b15b935fee": {
    "fr": "Démontrer que [[m1]]. On pourra écrire [[m2]].",
    "en": "Prove that [[m1]]. You may write [[m2]].",
    "status": "aligned",
-   "order": 80
+   "order": 82
   },
   "332531c804a6": {
    "fr": "En déduire la valeur de [[m1]] qui minimise cette erreur, puis la valeur minimale. Justifier l’unicité du choix optimal.",
    "en": "Deduce the value of [[m1]] that minimises this error, then the minimum value. Justify the uniqueness of the optimal choice.",
    "status": "aligned",
-   "order": 81
+   "order": 83
   },
   "ad27da2db7d8": {
    "fr": "Fréquences de lettres",
    "en": "Letter frequencies",
    "status": "aligned",
-   "order": 82
+   "order": 84
   },
   "34fbb6ea8c53": {
    "fr": "On souhaite mesurer la fréquence de la lettre « a » dans un texte. Le dénominateur est le nombre de caractères alphabétiques : les espaces, chiffres et signes de ponctuation sont exclus. Les majuscules sont assimilées aux minuscules ; les lettres accentuées restent distinctes de « a ».",
    "en": "We wish to measure the frequency of the letter ``a'' in a text. The denominator is the number of alphabetic characters: spaces, digits and punctuation marks are excluded. Capital letters are treated as lower case; accented letters remain distinct from ``a''.",
    "status": "aligned",
-   "order": 83
+   "order": 85
   },
   "49da08345981": {
    "fr": "Écrire une fonction Python qui renvoie cette fréquence. Préciser le résultat choisi lorsque le texte ne contient aucune lettre.",
    "en": "Write a Python function that returns this frequency. State the result chosen when the text contains no letters.",
    "status": "aligned",
-   "order": 84
+   "order": 86
   },
   "d6d0b5467404": {
    "fr": "Tester la fonction avec [[m1]], puis avec [[m2]] et avec la chaîne vide. Expliquer les résultats attendus avant d’exécuter le programme.",
    "en": "Test the function with [[m1]], then with [[m2]] and with the empty string. Explain the expected results before running the program.",
    "status": "aligned",
-   "order": 85
+   "order": 87
   },
   "2956a7106212": {
    "fr": "Reprise différée",
    "en": "Delayed review",
    "status": "aligned",
-   "order": 86
+   "order": 88
   },
   "99b761f91b59": {
    "fr": "On répète deux fois, de façon indépendante, une expérience dont la probabilité de succès vaut [[m1]]. La variable aléatoire [[m2]] compte le nombre de succès obtenus.",
    "en": "An experiment whose probability of success is [[m1]] is repeated twice, independently. The random variable [[m2]] counts the number of successes obtained.",
    "status": "aligned",
-   "order": 87
+   "order": 89
   },
   "91bfb928afc4": {
    "fr": "Retrouver la loi de [[m1]] à l’aide des quatre suites de résultats possibles.",
    "en": "Recover the distribution of [[m1]] using the four possible sequences of results.",
    "status": "aligned",
-   "order": 88
+   "order": 90
   },
   "21964c0e9c56": {
    "fr": "Calculer [[m1]] et [[m2]] en partant de cette loi.",
    "en": "Calculate [[m1]] and [[m2]] starting from this distribution.",
    "status": "aligned",
-   "order": 89
+   "order": 91
   },
   "261ef763c4c8": {
    "fr": "Travail personnel.",
    "en": "Homework.",
    "status": "aligned",
-   "order": 90
+   "order": 92
   },
   "1e62d212eb03": {
    "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
    "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
    "status": "aligned",
-   "order": 91
+   "order": 93
   },
   "8a14bcc09f57": {
    "fr": "À faire dans le manuel CQFD",
    "en": "To do in the CQFD textbook",
    "status": "aligned",
-   "order": 92
+   "order": 94
   },
   "3b23cff4a4c2": {
    "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
    "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
    "status": "aligned",
-   "order": 93
+   "order": 95
   },
   "b4a4b8f7e25f": {
    "fr": "CQFD, exercice 28 p. 306, questions toutes.",
    "en": "CQFD, exercise 28 p.~306, all questions.",
    "status": "aligned",
-   "order": 94
+   "order": 96
   },
   "b4acf3b454c3": {
    "fr": "Calculer l’espérance à partir du tableau de loi ; conserver les probabilités associées à chaque valeur.",
    "en": "Calculate the expectation from the distribution table; keep the probabilities associated with each value.",
    "status": "aligned",
-   "order": 95
+   "order": 97
   },
   "94d1a5c10deb": {
    "fr": "CQFD, exercice 31 p. 306, questions toutes ; utiliser la loi de l’exercice 28.",
    "en": "CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.",
    "status": "aligned",
-   "order": 96
+   "order": 98
   },
   "3c319d575094": {
    "fr": "Calculer la variance puis l’écart type, en respectant l’arrondi au dixième demandé par le manuel.",
    "en": "Calculate the variance then the standard deviation, respecting the rounding to the nearest tenth asked for by the textbook.",
    "status": "aligned",
-   "order": 97
+   "order": 99
   },
   "3b951efef83f": {
    "fr": "QCM 1 : comprendre et choisir",
    "en": "MCQ 1: understand and choose",
    "status": "aligned",
-   "order": 98
+   "order": 100
   },
   "214bc4b49b04": {
    "fr": "[[m1]] questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
    "en": "[[m1]] single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
    "status": "aligned",
-   "order": 99
+   "order": 101
   },
   "8da48384e786": {
    "fr": "Une loi de probabilité a une somme des probabilités égale à",
    "en": "A probability distribution has a sum of probabilities equal to",
    "status": "aligned",
-   "order": 100
+   "order": 102
   },
   "f4f527c832c4": {
    "fr": "la moyenne",
    "en": "the mean",
    "status": "aligned",
-   "order": 101
+   "order": 103
   },
   "dd073e21da27": {
    "fr": "X vaut 0 et 4 avec probabilités [[m1]] et [[m2]] ; [[m3]]",
    "en": "X is 0 or 4 with probabilities [[m1]] and [[m2]]; [[m3]]",
    "status": "aligned",
-   "order": 102
+   "order": 104
   },
   "709bdf5649bc": {
    "fr": "[[m1]] vaut",
    "en": "[[m1]] equals",
    "status": "aligned",
-   "order": 103
+   "order": 105
   },
   "7bd45f03990d": {
    "fr": "Si [[m1]], [[m2]]",
    "en": "If [[m1]], [[m2]]",
    "status": "aligned",
-   "order": 104
+   "order": 106
   },
   "cc229fe9b5f3": {
    "fr": "QCM 2 : comprendre et choisir",
    "en": "MCQ 2: understand and choose",
    "status": "aligned",
-   "order": 105
+   "order": 107
   },
   "9ace7912c717": {
    "fr": "L’espérance est nécessairement",
    "en": "The expectation is necessarily",
    "status": "aligned",
-   "order": 106
+   "order": 108
   },
   "6d0be6b09a4f": {
    "fr": "une valeur possible",
    "en": "a possible value",
    "status": "aligned",
-   "order": 107
+   "order": 109
   },
   "50ec51fa94bc": {
    "fr": "un entier",
    "en": "an integer",
    "status": "aligned",
-   "order": 108
+   "order": 110
   },
   "c4c6c5725301": {
    "fr": "positive",
    "en": "positive",
    "status": "aligned",
-   "order": 109
+   "order": 111
   },
   "6bbc17440134": {
    "fr": "aucune de ces trois affirmations",
    "en": "none of these three statements",
    "status": "aligned",
-   "order": 110
+   "order": 112
   },
   "d912141061cd": {
    "fr": "[[m1]] exige",
    "en": "[[m1]] requires",
    "status": "aligned",
-   "order": 111
+   "order": 113
   },
   "d836d4895725": {
    "fr": "l’indépendance",
    "en": "independence",
    "status": "aligned",
-   "order": 112
+   "order": 114
   },
   "4da7f6b4990f": {
    "fr": "aucune indépendance",
    "en": "no independence",
    "status": "aligned",
-   "order": 113
+   "order": 115
   },
   "2d4c00d9fa6b": {
    "fr": "X=Y",
    "en": "X=Y",
    "status": "aligned",
-   "order": 114
+   "order": 116
   },
   "9aee21e3ec77": {
    "fr": "X positive",
    "en": "X positive",
    "status": "aligned",
-   "order": 115
+   "order": 117
   },
-  "b0c1588084b3": {
-   "fr": "Pour [[m1]], n=100, [[m2]]",
-   "en": "For [[m1]], n=100, [[m2]]",
+  "8b6d4fb047d9": {
+   "fr": "Si [[m1]] et [[m2]], alors [[m3]]",
+   "en": "If [[m1]] and [[m2]], then [[m3]]",
    "status": "aligned",
-   "order": 116
+   "order": 118
   },
   "d5fc4ef9b48b": {
    "fr": "Vrai ou faux ? Justifier.",
    "en": "True or false? Justify.",
    "status": "aligned",
-   "order": 117
+   "order": 119
   },
   "1c7a2dea0875": {
    "fr": "Une variance peut être négative.",
    "en": "A variance can be negative.",
    "status": "aligned",
-   "order": 118
+   "order": 120
   },
   "74b12acee9a3": {
    "fr": "Deux variables de même espérance ont la même loi.",
    "en": "Two variables with the same expectation have the same distribution.",
    "status": "aligned",
-   "order": 119
+   "order": 121
   },
   "cc7f7144531a": {
    "fr": "Ajouter une constante à une variable ne change pas son écart type.",
    "en": "Adding a constant to a variable does not change its standard deviation.",
    "status": "aligned",
-   "order": 120
+   "order": 122
   },
   "6630f206d598": {
    "fr": "Bilan personnel",
    "en": "Self-assessment",
    "status": "aligned",
-   "order": 121
+   "order": 123
   },
   "39e397d89cb2": {
    "fr": "Je construis une loi complète ; je distingue brut et net ; je contrôle les deux formules de variance ; je ne confonds pas fréquence et probabilité.",
    "en": "I build a complete distribution; I distinguish gross from net; I check both variance formulas; I do not confuse frequency with probability.",
    "status": "aligned",
-   "order": 122
+   "order": 124
   },
   "4dab232b00d5": {
    "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
    "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
    "status": "aligned",
-   "order": 123
+   "order": 125
   }
  }
 }

@@ -57,12 +57,13 @@ On a domain symmetric about 0, f is even if $f(-x)=f(x)$ and odd if $f(-x)=-f(x)
 \begin{example}For $x>0$, $h(x)=x+\dfrac{1}{x}-2$ has derivative $\dfrac{x^2-1}{x^2}$. It decreases up to 1 then increases; $h(1)=0$, so $x+\dfrac{1}{x}\geq 2$. Equality is obtained only at 1.\end{example}\label{C06-EX4}
 \begin{pitfall}Check the domain before parity. The sign of $f\prime-g\prime$ tells us about the variation of $f-g$, not directly about its sign.\end{pitfall}
 \begin{application}Study the parity of $x^4+x^2$ and $x^3-x$; prove $x^2+1\geq2x$.\end{application}\label{C06-AP4}
-\section{Optimisation and Newton's method}\label{C06-U5}
+\section{Optimisation}\label{C06-U5}
 \begin{keypoint}[Definition and results]
-Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints. Newton's method uses the tangent to approximate a solution of $f(x)=0$: $x_{n+1}=x_n-\dfrac{f(x_n)}{f}\prime (x_n)$ when $f\prime(x_n)\ne0$. It is used only in favourable cases.
+Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints.
 \end{keypoint}
-\paragraph{Status and justification.} Newton's formula comes from the intersection of $y=f(x_n)+f\prime(x_n)(x-x_n)$ with the horizontal axis. Convergence is not guaranteed in general; it is observed and checked in the case chosen.
-\begin{example}For $f(x)=x^2-2$ with $x_0=1$, Newton gives $x_1=\dfrac{3}{2}$, $x_2=\dfrac{17}{12}$. The squares are \num{2,25} then about \num{2,00694}: we approach $\sqrt2$. The program must check for a zero derivative and a maximum number of steps.\end{example}\label{C06-EX5}
+\paragraph{Status and justification.} On a closed interval, an extremum is reached at an endpoint or at a point where the derivative vanishes and changes sign: the table of variations lets us compare these candidates.
+\begin{example}An open box has a square base of side x and height $6-x$, with $0\le x\le6$. Its volume $V(x)=x^2(6-x)$ has derivative $V\prime(x)=12x-3x^2=3x(4-x)$, positive on $\intff{0}{4}$ and negative on $\intff{4}{6}$. The maximum volume is $V(4)=32$.\end{example}\label{C06-EX5}
+\begin{beyond}[Newton's method]The tangent at $x_n$ meets the x-axis at $x_{n+1}=x_n-\dfrac{f(x_n)}{f\prime(x_n)}$ when $f\prime(x_n)\ne0$. For $f(x)=x^2-2$ and $x_0=1$, we obtain $x_1=\dfrac{3}{2}$ then $x_2=\dfrac{17}{12}$, whose squares are \num{2,25} then about \num{2,00694}: we approach $\sqrt2$. Convergence is not guaranteed in general. This method is not part of the première syllabus and is not assessed.\end{beyond}
 \begin{pitfall}A numerical value produced by an algorithm is not a proof of a minimum or of convergence.\end{pitfall}
 \begin{application}A rectangle of perimeter 12 m has width x. Determine the maximum area by differentiation.\end{application}\label{C06-AP5}
 \mxnewpage
@@ -204,12 +205,12 @@ These exercises are done in your textbook. The progression indicates the session
 \item $1$
 \item none
 \end{enumerate}
-\item Newton's method for $x^2-2$ is not defined with $x_0=$
+\item On $\intff{0}{6}$, the area $A(x)=x(6-x)$ is greatest for $x=$
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
-\item $1$
-\item $2$
 \item $0$
-\item $-1$
+\item $6$
+\item $3$
+\item $9$
 \end{enumerate}
 \mxcounted{qcm2}
 \end{enumerate}

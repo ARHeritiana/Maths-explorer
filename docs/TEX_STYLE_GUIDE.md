@@ -96,6 +96,11 @@ convention of the edition (`content/tex/core/mx-notation.sty`, decision in `docs
 `tests/tex_lint.py` refuses `0{,}5`, `12\,500`, `50\,\%`, `]0;1[`, `(1;2)` and `\{1;2\}` written by hand
 (`python -m mxbuild notation --migrate --write` converts them).
 
+## Content beyond the programme
+
+Put anything outside the official programme in `\begin{beyond}[title] ... \end{beyond}` ("Hors programme" / "Beyond the
+syllabus"). It is never used in assessments, QCM, automatismes or the coverage matrix, and the slide builder skips it.
+
 ## Counts in prose
 
 Never type a count that the content can measure; it goes stale as soon as a question or exercise is added.
