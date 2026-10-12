@@ -92,11 +92,44 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 
 ## 6. Design
 
-- Name: Maths Explorer.
-- Palette selector. Default themes: Navy-Gold and Charcoal-Yellow. Light print theme for PDFs.
-- Navy-Gold tokens, taken from the slides: background #0f1b2d, panel #13243b, grid #24364f, ink #f4f1ea, muted #8fa6c4, primary #e8a33d, positive #5fd0a0, negative #ff7a7a. Charcoal-Yellow tokens (decided, adjustable by the owner): background #16181d, panel #1f2229, ink #f2f0e8, muted #9aa3b0, primary #ffd23f, positive #6bd6a4, negative #ff7a7a. Computed text-contrast ratios (WCAG) on background / panel: Navy-Gold ink 15.3 / 13.9, muted 6.9 / 6.3, primary 8.0 / 7.2, positive 9.1 / 8.2, negative 6.8 / 6.2; Charcoal-Yellow ink 15.6 / 14.0, muted 7.0 / 6.2, primary 12.3 / 11.0, positive 10.0 / 8.9, negative 7.0 / 6.3. All exceed 4.5:1. This covers text colours only, not full conformity. Grid and panel-border tokens are to be defined with the engine.
-- The existing site uses navy, mint and violet; migrate it to the new palettes.
-- Check contrast (WCAG AA), keyboard use and reduced motion for every theme. Conformity is not established by automated checks alone.
+Design is delegated to the assistant by the owner (12 October 2026). Reference implementation: `design/prototype/` (run per its README). Read it before any visual work, and use the repo-level design skills (frontend-design, design-taste-frontend).
+
+**Design read.** Experiment-first learning site for lycée students and teachers, phone-first (Madagascar), trust and legibility over decoration, with a mathematical, bookish voice. Dials: variance 5, motion 2 (only motion that answers a user action), density 4.
+
+**Principles.**
+- The first screen is an experiment: a manipulable figure beside one sentence, not a catalogue. Hero figure: parabola with draggable roots. Second figure: determinant as signed area.
+- One memorable element (the figure panel); everything else is quiet. One accent per theme, one 10 px radius, no shadows, no gradients, no decorative animation, no emoji.
+- Semantic colour is fixed across themes: primary = the object under study, positive = valid or positive, negative = warning or negative, muted = secondary.
+- Structure encodes content: numbers appear only on real sequences (the five-part chapter sequence) and numbered chapter lists.
+
+**Typography.** STIX Two Text (headings, formulas, readouts: matches MathJax output and LaTeX) and Atkinson Hyperlegible (interface and body), both OFL, self-hosted, font-display swap. Body 18 px, line length under 70 characters, French number format (decimal comma, true minus sign U+2212), simplified coefficients.
+
+**Themes.** Selector in the header, choice saved locally (failure tolerated). Default Marine (Navy-Gold). Charbon (Charcoal-Yellow). Jour (daylight, for classroom projectors and print-like reading).
+
+| Token | Marine | Charbon | Jour |
+|---|---|---|---|
+| bg | #0f1b2d | #16181d | #f3f5f8 |
+| panel | #13243b | #1f2229 | #ffffff |
+| ink | #f4f1ea | #f2f0e8 | #14213a |
+| muted | #8fa6c4 | #9aa3b0 | #50607a |
+| primary | #e8a33d | #ffd23f | #8f5200 |
+| on-primary | #0f1b2d | #16181d | #ffffff |
+| pos | #5fd0a0 | #6bd6a4 | #17734f |
+| neg | #ff7a7a | #ff7a7a | #b3261e |
+| grid | #24364f | #2e323b | #d8dee8 |
+| border | #5d7699 | #6b7480 | #7a869b |
+
+Computed WCAG contrast on bg / panel: ink 15.3 / 13.9, 15.6 / 14.0, 14.7 / 16.1; muted 6.9 / 6.3, 7.0 / 6.2, 5.8 / 6.4; primary 8.0 / 7.2, 12.3 / 11.0, 5.7 / 6.2; pos 9.1 / 8.2, 10.0 / 8.9, 5.3 / 5.8; neg 6.8 / 6.2, 7.0 / 6.3, 6.0 / 6.5; button text on primary 8.0, 12.3, 6.2; control borders 3.7 / 3.4, 3.8 / 3.4, 3.4 / 3.7 (at least 3:1 for UI components). Grid lines are decorative and exempt. This covers colours only, not full conformity.
+
+**Layout.** Header one line (64 px), on phones a Menu button. Hero in two columns on desktop (words 5/12, figure 7/12), stacked on phones. Chapter list: level tabs (Seconde, Première, Terminale, Terminale STMG) and a two-column list on desktop. Minimal footer, no AI notice.
+
+**Slide on phones.** In portrait the 1280x720 stage must not be shrunk to illegibility: stack the figure above a controls and readout panel, keep touch targets at least 44 px, and leave a fullscreen/landscape option.
+
+**Accessibility rules.** Skip link; visible 3 px focus ring; draggable points are focusable (role slider) and move with arrow keys (Shift for larger steps), sliders always available as an alternative; debounced aria-live summary of the result; reduced motion respected; no horizontal scroll at 390 px; 200% text zoom must still work. Check each theme before shipping. Automated checks do not prove conformity.
+
+**Copy rules.** French, sentence case, plain verbs, buttons say what happens ("Choisir un chapitre"). No em or en dashes in copy. No all-caps labels, no eyebrow labels.
+
+- The existing site uses navy, mint and violet; migrate it to these themes. Print theme for PDFs stays light.
 
 ### Design flaws of the current site (visual audit, 12 October 2026)
 
@@ -146,7 +179,7 @@ Still open:
 1. Malagasy programme documents: the owner supplies them per chapter.
 2. The Terminale STMG programme in force this year.
 3. Whether maths expertes keeps the 2019 text beyond this year.
-4. Grid and border tokens for both themes.
+4. Owner review of the prototype design (themes, hero figure, fonts).
 
 ## 10. Skills stored in this repository
 
