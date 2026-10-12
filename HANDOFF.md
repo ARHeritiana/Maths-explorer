@@ -17,7 +17,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script. |
 | Private area | `private/` created with an empty `ledger.json`. No chapter has been through the pipeline yet. |
 | Chapters produced under v2 | None. No gold-standard chapter exists. |
-| Tooling in this sandbox | `xelatex`, `python3`, `node` 22 present (`which` check). Playwright Chromium at `/opt/pw-browsers/chromium`. Check SymPy before relying on it. |
+| Tooling in this sandbox | `xelatex`, `python3`, `node` 22 present (`which` check). Playwright Chromium at `/opt/pw-browsers/chromium`. SymPy is not installed here (`pip install --break-system-packages sympy`). |
 
 ## Rules you must not break (short form; brief section 2 is authoritative)
 
