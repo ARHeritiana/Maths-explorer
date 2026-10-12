@@ -306,7 +306,7 @@ export const labs = [
   },
   {
     id: "vectors",
-    symbol: "v⃗",
+    symbol: "↗",
     group: ["Géométrie", "Geometry"],
     title: ["Deux vecteurs font un chemin", "Two vectors make a path"],
     short: ["Vecteurs et produit scalaire", "Vectors and dot products"],

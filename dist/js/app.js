@@ -158,6 +158,9 @@ function render() {
     footer();
   if (page === "lab" && $("#plot")) updateLab();
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
+  // On narrow screens the navigation scrolls sideways: keep the current page's link visible.
+  const currentNav = $(".topbar nav [aria-current]");
+  if (currentNav && currentNav.parentElement.scrollWidth > currentNav.parentElement.clientWidth) { const nav = currentNav.parentElement; nav.scrollLeft += currentNav.getBoundingClientRect().left - nav.getBoundingClientRect().left - 16; }
   bindCommon();
   if (page === "lab") bindLab();
   if (page === "challenges") bindChallenges();
@@ -249,6 +252,24 @@ function handleAt(x, y, id, label, color = "teal") {
   return `<g data-handle="${id}" data-label="${esc(label)}" data-x="${x}" data-y="${y}" class="drag-handle ${color}" tabindex="0" role="button" aria-label="${esc(label)} · ${pair("déplacer avec les flèches", "move with arrow keys")}" aria-describedby="interaction-guide"><title>${esc(label)}</title><circle cx="${x}" cy="${y}" r="${radius}" class="handle-hit"/><circle cx="${x}" cy="${y}" r="10" class="handle-ring"/><circle cx="${x}" cy="${y}" r="5" class="handle-core"/><text x="${x > 660 ? x - 14 : x + 14}" y="${Math.max(18, y - 14)}" text-anchor="${x > 660 ? "end" : "start"}" class="handle-label">${esc(label)}</text></g>`;
 }
 
+// x + yi in algebraic form: "2 + i", "−1 − 2i", "3", "i" (a unit imaginary coefficient is implicit).
+function algebraic(x, y) {
+  const im = Math.abs(y) === 1 ? "i" : fmt(Math.abs(y)) + "i";
+  if (y === 0) return fmt(x);
+  if (x === 0) return (y < 0 ? "−" : "") + im;
+  return `${fmt(x)} ${y < 0 ? "−" : "+"} ${im}`;
+}
+// Bounds that contain the origin and the given points, rounded to whole units so the frame stays still while a
+// value changes inside the same unit; equal-scale charts then fill the panel instead of shrinking small vectors.
+function fitBounds(xs, ys, margin = 1, minSpan = 4) {
+  const range = (values) => {
+    let lo = Math.floor(Math.min(0, ...values) - margin), hi = Math.ceil(Math.max(0, ...values) + margin);
+    if (hi - lo < minSpan) { const grow = (minSpan - (hi - lo)) / 2; lo -= Math.ceil(grow); hi += Math.ceil(grow); }
+    return [lo, hi];
+  };
+  const [xmin, xmax] = range(xs), [ymin, ymax] = range(ys);
+  return { xmin, xmax, ymin, ymax };
+}
 // SVG is used only for mathematical diagrams and data visualization.
 function chart({
   xmin = -6,
@@ -269,10 +290,14 @@ function chart({
     pw = W - L - R,
     ph = H - T - B;
   if (equal) {
-    const mid = (xmin + xmax) / 2,
-      half = ((ymax - ymin) * pw) / ph / 2;
-    xmin = mid - half;
-    xmax = mid + half;
+    // One unit has the same length on both axes: widen whichever range is too short for the panel's shape.
+    const unit = Math.max((xmax - xmin) / pw, (ymax - ymin) / ph),
+      cx = (xmin + xmax) / 2,
+      cy = (ymin + ymax) / 2;
+    xmin = cx - (unit * pw) / 2;
+    xmax = cx + (unit * pw) / 2;
+    ymin = cy - (unit * ph) / 2;
+    ymax = cy + (unit * ph) / 2;
   }
   if (activeDrag?.bounds) ({ xmin, xmax, ymin, ymax } = activeDrag.bounds);
   plotBounds = { xmin, xmax, ymin, ymax };
@@ -535,10 +560,7 @@ function updateLab(animatedValues, moving = false) {
         ? (Math.acos(Math.max(-1, Math.min(1, dot / norms))) * 180) / Math.PI
         : null;
     plot = chart({
-      xmin: -9,
-      xmax: 9,
-      ymin: -9,
-      ymax: 9,
+      ...fitBounds([a, c, a + c], [b, d, b + d]),
       equal: true,
       label: pair("Vecteurs u, v et leur somme", "Vectors u, v and their sum"),
       draw: ({ line, point }) =>
@@ -619,10 +641,7 @@ function updateLab(animatedValues, moving = false) {
   } else if (lab.id === "complex") {
     const [a, b] = v;
     plot = chart({
-      xmin: -5,
-      xmax: 5,
-      ymin: -5,
-      ymax: 5,
+      ...fitBounds([a, -b], [b, a]),
       equal: true,
       label: pair(
         "Nombres complexes z et iz dans le plan",
@@ -637,8 +656,8 @@ function updateLab(animatedValues, moving = false) {
     });
     data = dataTable([pair("Nombre", "Number"),pair("Partie réelle", "Real part"),pair("Partie imaginaire", "Imaginary part")], [["z",fmt(a),fmt(b)],["iz",fmt(-b),fmt(a)]]);
     results =
-      metric("z", `${fmt(a)} ${b < 0 ? "−" : "+"} ${fmt(Math.abs(b))}i`) +
-      metric("iz", `${fmt(-b)} ${a < 0 ? "−" : "+"} ${fmt(Math.abs(a))}i`) +
+      metric("z", algebraic(a, b)) +
+      metric("iz", algebraic(-b, a)) +
       metric("|z|", fmt(Math.hypot(a, b)));
     caption = pair(
       "Vert : z. Orange : iz. La multiplication par i donne une rotation de 90° ; les axes ont la même échelle.",

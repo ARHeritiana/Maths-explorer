@@ -16,6 +16,14 @@ export function mount(spec, ctx) {
   return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
 }
 
+// Coordinates and intervals follow the language convention, as the TeX class does: (x ; y) and [a ; b[ in French,
+// (x, y) and [a, b) in English. Values are already formatted strings or numbers formatted with o.num.
+export function pt(o, ...c) { return "(" + c.map(v => (typeof v === "number" ? o.num(v) : v)).join(o.L ? ", " : " ; ") + ")"; }
+export function iv(o, a, b, closedA = true, closedB = true) {
+  const f = v => (typeof v === "number" ? o.num(v) : v);
+  return o.L ? `${closedA ? "[" : "("}${f(a)}, ${f(b)}${closedB ? "]" : ")"}` : `${closedA ? "[" : "]"}${f(a)} ; ${f(b)}${closedB ? "]" : "["}`;
+}
+
 export function fmt(n, lang, d = 2) {
   if (!Number.isFinite(n)) return "∞";
   let s = (Math.round(n * 10 ** d) / 10 ** d).toFixed(d).replace(/\.?0+$/, "");
@@ -77,11 +85,12 @@ export function curve(g, v, f, a, b, color = C.acc, w = 3) {
   }
   g.stroke(); g.restore();
 }
-export function dot(o, x, y, color = C.acc, label = "", cur = "grab", draggable = true) {
+export function dot(o, x, y, color = C.acc, label = "", cur = "grab", draggable = true, side = 1) {
   const g = o.g; g.save();
   if (draggable) { g.strokeStyle = color; g.lineWidth = 1.5; g.setLineDash([4, 4]); g.lineDashOffset = -(o.t || 0) * 8; g.beginPath(); g.arc(x, y, 15 + 2 * Math.sin((o.t || 0) * 3), 0, 7); g.stroke(); g.setLineDash([]); }
   g.fillStyle = color; g.beginPath(); g.arc(x, y, 7, 0, 7); g.fill();
-  if (label) { g.fillStyle = C.ink; g.font = "bold 18px system-ui"; g.fillText(label, x + 12, y - 12); }
+  // side = -1 writes the label to the left, so two nearby points keep readable labels.
+  if (label) { g.fillStyle = C.ink; g.font = "bold 18px system-ui"; g.textAlign = side < 0 ? "right" : "left"; g.fillText(label, x + 14 * side, y - 12); }
   g.restore();
 }
 export function text(g, s, x, y, color = C.ink, size = 18, align = "left") { g.save(); g.fillStyle = color; g.font = `${size}px system-ui`; g.textAlign = align; g.fillText(s, x, y); g.restore(); }

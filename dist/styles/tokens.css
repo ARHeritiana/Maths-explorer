@@ -1,0 +1,19 @@
+/* Design tokens for the screen theme. One accent (mint); every other colour is a neutral of the navy scale.
+   Later stylesheets refer to these names instead of literal colours. */
+:root {
+  --accent: #75efc9;
+  --accent-soft: #bff5e3;
+  --accent-ink: #0b1224;
+  --surface-0: #0b1224;
+  --surface-1: #10192b;
+  --surface-2: #172239;
+  --surface-3: #243653;
+  --text-strong: #eff5ff;
+  --text-label: #c9d6ed;
+  --text-muted: #a9b8d0;
+  --line-soft: #29364f;
+  --line-strong: #536787;
+  --warn: #ffc184;
+  --radius: 14px;
+  --radius-small: 8px;
+}

@@ -25,6 +25,7 @@ button,.secondary,select,input{min-height:44px}
 @media (max-width:650px){.resource-page .chapter-card{grid-template-columns:2.6rem 1fr;}.resource-page .chapter-open{grid-column:2}}
 @media (max-width:1100px){
   .topbar{flex-wrap:wrap;padding:12px 16px 0}
-  .topbar nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+  /* The fade on the right edge signals more links; the end padding lets the last link scroll fully clear of it. */
+  .topbar nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;scrollbar-width:thin;padding:0 40px 2px 0;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent)}
   .topbar nav a{min-height:44px;flex:none}
 }

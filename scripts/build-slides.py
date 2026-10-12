@@ -303,6 +303,10 @@ WTEXT = {
     'plane3d': (['Plan et projeté orthogonal', 'A plane and an orthogonal projection'], ['Déplacez M (ombre au sol, hauteur) et réglez d. Faites tourner la vue.', 'Drag M (floor shadow, height) and set d. Rotate the view.']),
     'line3d': (['Droite de l’espace', 'A line in space'], ['Déplacez A et B ; réglez t : équations paramétriques.', 'Drag A and B; set t: parametric equations.']),
     'integral': (['Aire sous la courbe', 'Area under the curve'], ['Déplacez les bornes a et b, augmentez n : la somme de Riemann tend vers l’intégrale.', 'Drag the bounds a and b, increase n: the Riemann sum tends to the integral.']),
+    'cobweb': (['Suite récurrente : toile', 'Recursive sequence: cobweb'], ['Déplacez u₀ sur l’axe, B et S pour changer b et a : la toile montre les termes, ℓ est le point fixe.', 'Drag u₀ along the axis, B and S to change b and a: the cobweb shows the terms; ℓ is the fixed point.']),
+    'limit': (['Limite d’une suite', 'Limit of a sequence'], ['Réglez ε, ℓ et u₀ : à partir du rang N, tous les termes restent dans la bande.', 'Set ε, ℓ and u₀: from rank N on, every term stays inside the band.']),
+    'convex': (['Convexité : tangente et corde', 'Convexity: tangent and chord'], ['Déplacez M (tangente), A et B (corde) : comparez la courbe avec ses tangentes et ses cordes.', 'Drag M (tangent), A and B (chord): compare the curve with its tangents and chords.']),
+    'lineplane': (['Droite et plan : intersection', 'A line and a plane: intersection'], ['Déplacez A, B et le plan : un point d’intersection, ou une droite parallèle au plan.', 'Move A, B and the plane: one intersection point, or a line parallel to the plane.']),
     'surface3d': (['Surface z = f(x ; y)', 'Surface z = f(x, y)'], ['Déplacez le point au sol ; faites tourner la surface.', 'Drag the floor point; rotate the surface.']),
 }
 # (deck id) -> [(regex on the unit title, widget spec)]: the widget slide is inserted after that unit
@@ -321,10 +325,10 @@ WIDGETS = {
     'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']})],
     'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'})],
     'stmg-07': [(r'Binomial distribution: recognising', {'type': 'binom'})],
-    'terminale-01': [(r'^Defining a sequence', {'type': 'seq'})], 'terminale-02': [(r'^Vector calculus', {'type': 'line3d'})],
-    'terminale-03': [(r'^Course notes', {'type': 'seq'})], 'terminale-06': [(r'^Convexity', {'type': 'tangent'})],
+    'terminale-01': [(r'^Proof by induction', {'type': 'cobweb'})], 'terminale-02': [(r'^Vector calculus', {'type': 'line3d'})],
+    'terminale-03': [(r'^Course notes', {'type': 'limit'})], 'terminale-06': [(r'^Convexity', {'type': 'convex'})],
     'terminale-07': [(r'^Reminders', {'type': 'tree'})], 'terminale-09': [(r'^Line, plane and normal', {'type': 'plane3d', 'normal': [1, 1, 2]})],
-    'terminale-12': [(r'^Sums and transformations', {'type': 'rv'})], 'terminale-13': [(r'^Parametric lines', {'type': 'line3d'})],
+    'terminale-12': [(r'^Sums and transformations', {'type': 'rv'})], 'terminale-13': [(r'^Parametric lines', {'type': 'line3d'}), (r'^Intersections', {'type': 'lineplane', 'normal': [1, 1, 2]})],
     'terminale-14': [(r'^Circle and functions', {'type': 'circle'})], 'terminale-11': [(r'^Area and antiderivative', {'type': 'integral'})],
 }
 
