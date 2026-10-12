@@ -34,7 +34,7 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 | No visible AI notice | No AI-content notice or review-status label anywhere on the published site, in resource cards or in PDFs (owner decision; this removes the old footer-notice rule). Provenance and review status are kept in the private ledger only. |
 | No accounts, no tracking | No analytics, no student tracking tools for now. |
 | Access control | None for now. Static hosting cannot truly gate files; a later code or paywall needs a server or paid platform [OPEN]. |
-| Owner review | The owner reviews slowly and before class use. AI output is draft until the owner marks it reviewed (private ledger). At launch only owner-reviewed content is published (decided: with no visible AI notice, unreviewed maths must not go public). The owner may override this. |
+| Publication gate | Decided by the owner on 12 October 2026: a resource may be published once it has been audited by two different AI agents (independent sessions, ideally different models) with no open finding, and every computed result has been verified by code. Human review by the owner is not required for publication. The private ledger records, per resource, whether it has been human-reviewed (`human_reviewed: true/false`) and by whom; this is never shown publicly. The owner still reviews slowly and always before using a resource in class. |
 
 ## 3. Scope and priority order (owner's order)
 
@@ -98,6 +98,18 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 - The existing site uses navy, mint and violet; migrate it to the new palettes.
 - Check contrast (WCAG AA), keyboard use and reduced motion for every theme. Conformity is not established by automated checks alone.
 
+### Design flaws of the current site (visual audit, 12 October 2026)
+
+Based on screenshots of four views (chapter catalogue and lab, desktop 1440 px; catalogue filters and lab, phone 390 px). The other views were captured but not inspected. The owner names design as one of the site's main flaws; the owner's own list of flaws is still to be collected [OPEN].
+- The landing page is a text catalogue of chapter cards, not an experiment. Nothing shows the experiment-first philosophy at first sight.
+- Chapter cards are visually empty (a number, a title, small grey text) and their text alignment varies from card to card.
+- The lab's formula shows unsimplified coefficients ("f(x) = 1x² + 0x − 2"), unlike the owner's slides, which simplify them.
+- In the lab, the graph is small and the controls fall below the first screen; the owner's five-step slide sits behind a small button rather than being the main experience.
+- The "Présenter et explorer" button sits on the card edge instead of inside its padding.
+- On a phone the navigation wraps onto two lines (an orphaned item) and a filter label is truncated ("Tous les parcou…").
+- One uniform navy-and-mint look gives little visual hierarchy; the owner's slides (navy and gold, semantic colours, large figure) are the stronger reference.
+- The design work must use the repo-level design skills (frontend-design, design-taste-frontend, theme-factory) and end with an accessibility check.
+
 ## 7. Technical architecture
 
 - Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is the private GitHub repository; optional static hosting on the ChatGPT sites platform (see `.openai/hosting.json`). Not launched until the owner judges it polished.
@@ -114,8 +126,8 @@ Per chapter, in order:
 3. Verify every result with code; keep the verification script in the private area.
 4. Compile LaTeX without errors; check page layout.
 5. Browser test of the slide (drag, sliders, steps, fullscreen, both themes, phone width).
-6. Independent audit by a second agent against this brief.
-7. Status in the private ledger: draft, audited, owner-reviewed, publishable.
+6. Two independent audits by two different agents against this brief (each audit recorded with agent identity, date and findings).
+7. Status in the private ledger: draft, audited once, audited twice (publishable), plus the separate flag `human_reviewed: true/false`.
 
 Evaluate the `math-series-guardrails` skill as the pipeline (its description matches this need; its instructions have not been read yet).
 
@@ -128,7 +140,7 @@ Settled by the assistant on the owner's instruction ("solve the remaining questi
 2. Charcoal-Yellow tokens defined and contrast-checked (section 6).
 3. French programme references collected (section 3).
 4. IB: AA first, then AI, SL and HL (section 3).
-5. At launch only owner-reviewed content is published (section 2).
+5. Publication gate (section 2): superseded by the owner on 12 October 2026. Publishable means audited by two different AI agents plus code verification; the hidden ledger shows the human-review state.
 
 Still open:
 1. Malagasy programme documents: the owner supplies them per chapter.
