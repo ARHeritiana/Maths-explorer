@@ -160,8 +160,12 @@ checkpoint or treat it as the completed migration. The private capability Site r
   The complete final `make check` has NOT run after the full rebuild. The working pipeline lists 17 check entries,
   whereas the owner requirement and earlier documentation say 18. Reconcile this discrepancy without inventing
   a check or overstating the pass count.
-- Source units, translation tables and mathematical content were not intentionally edited. Generated `dist/`
-  outputs are included to preserve the actual unfinished build; their presence is not approval for deployment.
+- Source units, translation tables and mathematical content were not intentionally edited. The source checkpoint
+  was pushed and verified as `566e492e809ee6bdddc0c6ea4733d495ff7c8b35`. Source changes and generated text
+  metadata are preserved there. The batch transfer of regenerated PDF binaries did not complete; those PDFs
+  remain local and are NOT included in the pushed checkpoint. Rebuild them before resource validation. Generated
+  catalogue/provenance metadata may therefore describe the local rebuild rather than the PDFs on the branch.
+  No Site deployment was performed. Some immutable PDF blobs were uploaded, but no branch commit includes them.
 
 Next: review this implementation, fix every resource's local counters, finish body-text comparison and final visual
 inspection, run the complete checks, update this hand-off, commit/push the verified result and synchronize the
