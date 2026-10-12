@@ -1,6 +1,6 @@
 # Maths Explorer v2: project brief
 
-Status: v0.3, owner decisions of 12 October 2026 incorporated and the remaining questions settled. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
+Status: v0.5, owner decisions of 12 October 2026 incorporated (language policy, two-agent publication gate, design delegated to the assistant). Start with HANDOFF.md for the current task queue. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
 
 Precedence: this brief supersedes every earlier instruction in the repository (AGENTS.md, README, docs/). Where they conflict, follow this brief. Only the owner can change it.
 
@@ -145,7 +145,7 @@ Based on screenshots of four views (chapter catalogue and lab, desktop 1440 px; 
 
 ## 7. Technical architecture
 
-- Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is the private GitHub repository; optional static hosting on the ChatGPT sites platform (see `.openai/hosting.json`). Not launched until the owner judges it polished.
+- Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is the private GitHub repository; the hidden area is `private/` (see its README; ledger schema there); optional static hosting on the ChatGPT sites platform (see `.openai/hosting.json`). Not launched until the owner judges it polished.
 - Keep from the current repo: the `[French, English]` content model, route scheme, tests and CI, the 98 LaTeX workshop sources, curriculum research notes (re-verify).
 - Rebuild: the interactive layer around the slide engine; the TeX-less PDFs.
 - Before launch, size and load time need attention (the current `dist/` is about 156 MB, mostly PDFs).

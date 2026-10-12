@@ -6,6 +6,8 @@ identifiers, or links in HTML, client-side catalogues, downloaded documents, or
 PDF annotations. Host resource copies within the Site. Contact links are an
 exception only in a specific, justified case authorised by the owner.
 
+Start with HANDOFF.md (state and task queue), then PROJECT_BRIEF.md.
+
 PROJECT_BRIEF.md is the governing document and supersedes every earlier
 instruction, including this file. Read it before any task. In particular, the
 earlier rules requiring French and English editions of every resource and a
