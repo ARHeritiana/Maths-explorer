@@ -173,541 +173,541 @@
    "fr": "Construire le triangle de Pascal jusqu'à la ligne [[m1]].",
    "en": "Build Pascal's triangle up to row [[m1]].",
    "status": "aligned",
-   "order": 29
+   "order": 28
   },
   "36dca518680f": {
    "fr": "Lire [[m1]] dans le triangle et interpréter ce nombre dans le contexte. Calculer [[m2]] sous forme de fraction, puis arrondie à [[m3]]. Interpréter le résultat.",
    "en": "Read [[m1]] in the triangle and interpret this number in context. Calculate [[m2]] as a fraction, then rounded to [[m3]]. Interpret the result.",
    "status": "aligned",
-   "order": 30
+   "order": 29
   },
   "b652e0beadcd": {
    "fr": "Calculer la probabilité qu'au moins [[m1]] des [[m2]] visiteurs voient la version B (fraction, puis arrondi à [[m3]]).",
    "en": "Calculate the probability that at least [[m1]] of the [[m2]] visitors see version B (as a fraction, then rounded to [[m3]]).",
    "status": "aligned",
-   "order": 31
+   "order": 30
   },
   "37ac16cabf35": {
    "fr": "Chaque visiteur constitue une épreuve de Bernoulli de succès « la version B est affichée », de probabilité [[m1]]. Les [[m2]] épreuves sont identiques et indépendantes, et [[m3]] compte les succès : [[m4]].",
    "en": "Each visitor is a Bernoulli trial whose success ``version B is displayed'' has probability [[m1]]. The [[m2]] trials are identical and independent, and [[m3]] counts the successes: [[m4]].",
    "status": "aligned",
-   "order": 32
+   "order": 31
   },
   "07c342be6e56": {
    "fr": "l",
    "en": "l",
    "status": "aligned",
-   "order": 33
+   "order": 32
   },
   "b3028631cfc3": {
    "fr": "coefficients [[m1]] pour [[m2]]",
    "en": "coefficients [[m1]] for [[m2]]",
    "status": "aligned",
-   "order": 34
+   "order": 33
   },
   "5d1a311b9fa2": {
    "fr": "Chaque coefficient intérieur est la somme du coefficient situé juste au-dessus et du coefficient placé à gauche de ce dernier (par exemple [[m1]]).",
    "en": "Each inner coefficient is the sum of the coefficient directly above it and the coefficient to the left of that one (for example [[m1]]).",
    "status": "aligned",
-   "order": 35
+   "order": 34
   },
   "cdccbd48a5e9": {
    "fr": "[[m1]] : il y a [[m2]] suites différentes de [[m3]] affichages contenant exactement [[m4]] fois la version B. Chaque suite a pour probabilité [[m5]], donc\n[[m6]]. Dans environ [[m7]] des séries de [[m8]] visiteurs, exactement [[m9]] voient la version B.",
    "en": "[[m1]]: there are [[m2]] different sequences of [[m3]] displays containing version B exactly [[m4]] times. Each sequence has probability [[m5]], so\n[[m6]]. In about [[m7]] of series of [[m8]] visitors, exactly [[m9]] see version B.",
    "status": "aligned",
-   "order": 36
+   "order": 35
   },
   "f954a99bbeda": {
    "fr": "Probabilités binomiales, triangle jusqu'à n = 8",
    "en": "Binomial probabilities, triangle up to n = 8",
    "status": "aligned",
-   "order": 37
+   "order": 36
   },
   "221b1fd4a2f4": {
    "fr": "Dans un cabinet médical, on estime qu'un patient ayant pris rendez-vous en ligne se présente effectivement à sa consultation avec une probabilité de [[m1]]. Un matin, un médecin a [[m2]] rendez-vous pris en ligne. On note [[m3]] la variable aléatoire égale au nombre de patients qui se présentent parmi ces [[m4]]. On admet que [[m5]] suit une loi binomiale.",
    "en": "In a medical practice, it is estimated that a patient who booked an appointment online actually turns up for the consultation with probability [[m1]]. One morning, a doctor has [[m2]] appointments booked online. Let [[m3]] be the random variable equal to the number of patients who turn up among these [[m4]]. Assume that [[m5]] follows a binomial distribution.",
    "status": "aligned",
-   "order": 38
+   "order": 37
   },
   "9e6189ae43f0": {
    "fr": "Les probabilités seront arrondies à [[m1]].",
    "en": "Probabilities will be rounded to [[m1]].",
    "status": "aligned",
-   "order": 39
+   "order": 38
   },
   "538acf34758d": {
    "fr": "Donner les paramètres [[m1]] et [[m2]] de la loi de [[m3]].",
    "en": "Give the parameters [[m1]] and [[m2]] of the distribution of [[m3]].",
    "status": "aligned",
-   "order": 40
+   "order": 39
   },
   "2017e23e5ede": {
    "fr": "Calculer la probabilité des événements suivants :\n[[m1]] : « les [[m2]] patients se présentent » ; [[m3]] : « au moins un patient ne se présente pas ».",
    "en": "Calculate the probability of the following events:\n[[m1]]: ``all [[m2]] patients turn up''; [[m3]]: ``at least one patient does not turn up''.",
    "status": "aligned",
-   "order": 41
+   "order": 40
   },
   "c4641517c809": {
    "fr": "Construire le triangle de Pascal jusqu'à la ligne [[m1]]. En déduire [[m2]], puis la probabilité de l'événement [[m3]] : « exactement [[m4]] patients se présentent ».",
    "en": "Build Pascal's triangle up to row [[m1]]. Deduce [[m2]], then the probability of the event [[m3]]: ``exactly [[m4]] patients turn up''.",
    "status": "aligned",
-   "order": 42
+   "order": 41
   },
   "f6ae30ea741f": {
    "fr": "Traduire par une phrase l'événement [[m1]], puis calculer [[m2]].",
    "en": "Express the event [[m1]] in a sentence, then calculate [[m2]].",
    "status": "aligned",
-   "order": 43
+   "order": 42
   },
   "a52a7e660253": {
    "fr": "[[m1]] et [[m2]] : [[m3]].",
    "en": "[[m1]] and [[m2]]: [[m3]].",
    "status": "aligned",
-   "order": 44
+   "order": 43
   },
   "6b9c124e755d": {
    "fr": "[[m1]].\n[[m2]] est l'événement contraire de [[m3]] : [[m4]].",
    "en": "[[m1]].\n[[m2]] is the complementary event of [[m3]]: [[m4]].",
    "status": "aligned",
-   "order": 45
+   "order": 44
   },
   "a1f321c42839": {
    "fr": "Ligne [[m1]] du triangle (obtenue à partir de la ligne [[m2]] : [[m3]]) : [[m4]]. Donc [[m5]].\n[[m6]].",
    "en": "Row [[m1]] of the triangle (obtained from row [[m2]]: [[m3]]): [[m4]]. So [[m5]].\n[[m6]].",
    "status": "aligned",
-   "order": 46
+   "order": 45
   },
   "47e0dc87194c": {
    "fr": "[[m1]] : « exactement [[m2]] des [[m3]] patients se présentent », c'est-à-dire exactement un patient est absent.\n[[m4]].",
    "en": "[[m1]]: ``exactly [[m2]] of the [[m3]] patients turn up'', that is, exactly one patient is absent.\n[[m4]].",
    "status": "aligned",
-   "order": 47
+   "order": 46
   },
   "bfbb1ec74092": {
    "fr": "Bilan : loi binomiale, au moins, espérance",
    "en": "Review: binomial law, at least, expected value",
    "status": "aligned",
-   "order": 48
+   "order": 47
   },
   "874c6016be85": {
    "fr": "Un producteur de semences potagères affirme que [[m1]] de ses graines de tomate germent. Les graines sont vendues en sachets de [[m2]]. La production est suffisamment importante pour que l'on puisse assimiler le remplissage d'un sachet à un tirage au hasard et avec remise de [[m3]] graines. On note [[m4]] la variable aléatoire qui, à chaque sachet, associe le nombre de graines qui germent.",
    "en": "A vegetable seed producer claims that [[m1]] of its tomato seeds germinate. The seeds are sold in packets of [[m2]]. Production is large enough for filling a packet to be treated as a random draw with replacement of [[m3]] seeds. Let [[m4]] be the random variable that associates with each packet the number of seeds that germinate.",
    "status": "aligned",
-   "order": 49
+   "order": 48
   },
   "91466b8ff44c": {
    "fr": "Quelle loi suit [[m1]] ? Justifier et préciser ses paramètres.",
    "en": "What distribution does [[m1]] follow? Justify and give its parameters.",
    "status": "aligned",
-   "order": 50
+   "order": 49
   },
   "e9db1238d65b": {
    "fr": "Donner [[m1]] et [[m2]].",
    "en": "Give [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 51
+   "order": 50
   },
   "4a2b65d8a60c": {
    "fr": "Calculer [[m1]] et [[m2]], arrondies à [[m3]]. Interpréter chacun de ces résultats.",
    "en": "Calculate [[m1]] and [[m2]], rounded to [[m3]]. Interpret each of these results.",
    "status": "aligned",
-   "order": 52
+   "order": 51
   },
   "086710c9c6a7": {
    "fr": "En déduire la probabilité, arrondie à [[m1]], qu'un sachet contienne au moins [[m2]] graines qui germent.",
    "en": "Deduce the probability, rounded to [[m1]], that a packet contains at least [[m2]] seeds that germinate.",
    "status": "aligned",
-   "order": 53
+   "order": 52
   },
   "11b5b14e6f3c": {
    "fr": "Calculer [[m1]] et interpréter ce nombre pour un jardinier qui achète régulièrement ces sachets.",
    "en": "Calculate [[m1]] and interpret this number for a gardener who regularly buys these packets.",
    "status": "aligned",
-   "order": 54
+   "order": 53
   },
   "d6943a3bc19f": {
    "fr": "On répète [[m1]] fois, de façon identique et indépendante (tirage assimilé à un tirage avec remise), l'épreuve de Bernoulli « une graine germe », de probabilité [[m2]]. [[m3]] compte les succès : [[m4]].",
    "en": "The Bernoulli trial ``a seed germinates'', with probability [[m2]], is repeated [[m1]] times, identically and independently (draw treated as a draw with replacement). [[m3]] counts the successes: [[m4]].",
    "status": "aligned",
-   "order": 55
+   "order": 54
   },
   "cf7ad46f3913": {
    "fr": "[[m1]] (choisir la seule graine qui ne germe pas) et [[m2]].",
    "en": "[[m1]] (choose the only seed that does not germinate) and [[m2]].",
    "status": "aligned",
-   "order": 56
+   "order": 55
   },
   "ca1b01001fe7": {
    "fr": "[[m1]] : environ [[m2]] des sachets contiennent exactement une graine qui ne germe pas.\n[[m3]] : environ [[m4]] des sachets ont toutes leurs graines qui germent.",
    "en": "[[m1]]: about [[m2]] of packets contain exactly one seed that does not germinate.\n[[m3]]: in about [[m4]] of packets, all the seeds germinate.",
    "status": "aligned",
-   "order": 57
+   "order": 56
   },
   "2444fc31841a": {
    "fr": "[[m1]] (calcul fait avec les valeurs non arrondies ; la somme des arrondis donnerait [[m2]]).",
    "en": "[[m1]] (computed with the unrounded values; adding the rounded values would give [[m2]]).",
    "status": "aligned",
-   "order": 58
+   "order": 57
   },
   "dd3cfe33a435": {
    "fr": "[[m1]]. Sur un grand nombre de sachets, il germe en moyenne [[m2]] graines par sachet ; ce n'est pas une valeur que [[m3]] peut prendre pour un sachet donné.",
    "en": "[[m1]]. Over a large number of packets, an average of [[m2]] seeds germinate per packet; this is not a value that [[m3]] can take for a given packet.",
    "status": "aligned",
-   "order": 59
+   "order": 58
   },
   "5b4aa1f611dd": {
    "fr": "Taux d'évolution, moyenne géométrique, suite géométrique",
    "en": "Rates of change, geometric mean, geometric sequence",
    "status": "aligned",
-   "order": 60
+   "order": 59
   },
   "2be9d3088c26": {
    "fr": "Une coopérative installe des kits solaires domestiques dans une région rurale. Le tableau ci-dessous donne le nombre de kits installés chaque année.",
    "en": "A cooperative installs home solar kits in a rural region. The table below gives the number of kits installed each year.",
    "status": "aligned",
-   "order": 61
+   "order": 60
   },
   "167cee0de532": {
    "fr": "\\textbf{Partie A}",
    "en": "\\textbf{Part A}",
    "status": "aligned",
-   "order": 62
+   "order": 61
   },
   "bb4260460f7b": {
    "fr": "Calculer le taux d'évolution du nombre de kits installés entre 2021 et 2022, puis entre 2022 et 2023 (en pourcentage, arrondi à [[m1]]).",
    "en": "Calculate the rate of change in the number of kits installed between 2021 and 2022, then between 2022 and 2023 (as a percentage, rounded to [[m1]]).",
    "status": "aligned",
-   "order": 63
+   "order": 62
   },
   "da3d85d1f2bc": {
    "fr": "Calculer la moyenne géométrique de [[m1]] et [[m2]] (arrondie à [[m3]]).",
    "en": "Calculate the geometric mean of [[m1]] and [[m2]] (rounded to [[m3]]).",
    "status": "aligned",
-   "order": 64
+   "order": 63
   },
   "e24f9fd2cdb9": {
    "fr": "En déduire le taux d'évolution annuel moyen entre 2021 et 2023.",
    "en": "Deduce the average annual rate of change between 2021 and 2023.",
    "status": "aligned",
-   "order": 65
+   "order": 64
   },
   "c80d6524b312": {
    "fr": "\\textbf{Partie B}",
    "en": "\\textbf{Part B}",
    "status": "aligned",
-   "order": 66
+   "order": 65
   },
   "82eed0680e3c": {
    "fr": "On suppose qu'à partir de 2023, le nombre de kits installés augmente de [[m1]] par an. On note [[m2]] le nombre de kits installés au cours de l'année [[m3]], les valeurs étant arrondies à l'unité.",
    "en": "Assume that from 2023 onwards, the number of kits installed increases by [[m1]] per year. Let [[m2]] be the number of kits installed during the year [[m3]], values being rounded to the nearest unit.",
    "status": "aligned",
-   "order": 67
+   "order": 66
   },
   "a7a303e46c18": {
    "fr": "Donner [[m1]], puis calculer [[m2]] et [[m3]].",
    "en": "Give [[m1]], then calculate [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 68
+   "order": 67
   },
   "d28024fb9614": {
    "fr": "Quelle est la nature de la suite [[m1]] ? Exprimer [[m2]] en fonction de [[m3]].",
    "en": "What kind of sequence is [[m1]]? Express [[m2]] in terms of [[m3]].",
    "status": "aligned",
-   "order": 69
+   "order": 68
   },
   "5520048e4672": {
    "fr": "Selon ce modèle, combien de kits seraient installés en 2028 ?",
    "en": "According to this model, how many kits would be installed in 2028?",
    "status": "aligned",
-   "order": 70
+   "order": 69
   },
   "f974cc1e2686": {
    "fr": "À l'aide de la calculatrice, déterminer l'année à partir de laquelle le nombre annuel de kits installés dépasserait [[m1]].",
    "en": "Using a calculator, determine the year from which the annual number of kits installed would exceed [[m1]].",
    "status": "aligned",
-   "order": 71
+   "order": 70
   },
   "9da3b6328bf6": {
    "fr": "[[m1]], soit une hausse d'environ [[m2]] ; [[m3]], soit une hausse d'environ [[m4]]. Les coefficients multiplicateurs sont donc environ [[m5]] et [[m6]].",
    "en": "[[m1]], an increase of about [[m2]]; [[m3]], an increase of about [[m4]]. The multipliers are therefore about [[m5]] and [[m6]].",
    "status": "aligned",
-   "order": 73
+   "order": 71
   },
   "87b1fce9961f": {
    "fr": "Le coefficient multiplicateur annuel moyen est environ [[m1]] : le taux annuel moyen est d'environ [[m2]] (contrôle direct : [[m3]]).",
    "en": "The average annual multiplier is about [[m1]]: the average annual rate is about [[m2]] (direct check: [[m3]]).",
    "status": "aligned",
-   "order": 74
+   "order": 72
   },
   "d24c14edb645": {
    "fr": "Une hausse de [[m1]] revient à multiplier par [[m2]] : [[m3]] est géométrique de premier terme [[m4]] et de raison [[m5]], donc [[m6]].",
    "en": "An increase of [[m1]] means multiplying by [[m2]]: [[m3]] is geometric with first term [[m4]] and common ratio [[m5]], so [[m6]].",
    "status": "aligned",
-   "order": 76
+   "order": 73
   },
   "ddf6150987a0": {
    "fr": "2028 correspond à [[m1]] : [[m2]] kits.",
    "en": "2028 corresponds to [[m1]]: [[m2]] kits.",
    "status": "aligned",
-   "order": 77
+   "order": 74
   },
   "c619610986ca": {
    "fr": "Avec le tableau de valeurs : [[m1]] et [[m2]]. Comme la raison est supérieure à [[m3]], la suite est croissante : le seuil est dépassé à partir de [[m4]], c'est-à-dire en 2031.",
    "en": "From the table of values: [[m1]] and [[m2]]. Since the ratio is greater than [[m3]], the sequence is increasing: the threshold is exceeded from [[m4]] onwards, that is, in 2031.",
    "status": "aligned",
-   "order": 78
+   "order": 75
   },
   "d12ecef964bd": {
    "fr": "Taux d'évolution annuel moyen sur trois ans",
    "en": "Average annual rate over three years",
    "status": "aligned",
-   "order": 79
+   "order": 76
   },
   "7bbc228fe4b2": {
    "fr": "La fréquentation d'un parc naturel a connu trois évolutions annuelles successives : une hausse de [[m1]], puis une baisse de [[m2]], puis une hausse de [[m3]].",
    "en": "The number of visitors to a nature park went through three successive annual changes: an increase of [[m1]], then a decrease of [[m2]], then an increase of [[m3]].",
    "status": "aligned",
-   "order": 80
+   "order": 77
   },
   "fa4a949a9fa1": {
    "fr": "Calculer le coefficient multiplicateur global sur les trois années et le taux d'évolution global correspondant (arrondi à [[m1]]).",
    "en": "Calculate the overall multiplier over the three years and the corresponding overall rate of change (rounded to [[m1]]).",
    "status": "aligned",
-   "order": 81
+   "order": 78
   },
   "102df56aded7": {
    "fr": "Calculer le taux d'évolution annuel moyen sur cette période (arrondi à [[m1]]).",
    "en": "Calculate the average annual rate of change over this period (rounded to [[m1]]).",
    "status": "aligned",
-   "order": 82
+   "order": 79
   },
   "18956e1754d7": {
    "fr": "La fréquentation initiale était de [[m1]] visiteurs. Calculer la fréquentation finale, puis vérifier qu'une hausse de ce taux moyen appliquée trois fois conduit à peu près au même résultat.",
    "en": "The initial number of visitors was [[m1]]. Calculate the final number of visitors, then check that an increase at this average rate applied three times leads to roughly the same result.",
    "status": "aligned",
-   "order": 83
+   "order": 80
   },
   "088208d3acc9": {
    "fr": "Les coefficients sont [[m1]], [[m2]] et [[m3]]. Coefficient global : [[m4]], soit une hausse globale d'environ [[m5]].",
    "en": "The multipliers are [[m1]], [[m2]] and [[m3]]. Overall multiplier: [[m4]], an overall increase of about [[m5]].",
    "status": "aligned",
-   "order": 84
+   "order": 81
   },
   "c2c5ef8f7948": {
    "fr": "Le coefficient annuel moyen [[m1]] vérifie [[m2]], donc [[m3]]. Le taux annuel moyen est d'environ [[m4]].",
    "en": "The average annual multiplier [[m1]] satisfies [[m2]], so [[m3]]. The average annual rate is about [[m4]].",
    "status": "aligned",
-   "order": 85
+   "order": 82
   },
   "96f8e749de66": {
    "fr": "Fréquentation finale : [[m1]] visiteurs. Avec le taux moyen : [[m2]] visiteurs ; l'écart vient seulement de l'arrondi de [[m3]].",
    "en": "Final number of visitors: [[m1]]. With the average rate: [[m2]] visitors; the difference only comes from rounding [[m3]].",
    "status": "aligned",
-   "order": 86
+   "order": 83
   },
   "3af1e937611e": {
    "fr": "Ordre de grandeur et logarithme décimal",
    "en": "Order of magnitude and common logarithm",
    "status": "aligned",
-   "order": 87
+   "order": 84
   },
   "ba30f98ee417": {
    "fr": "\\emph{Définition.} L'ordre de grandeur d'un réel [[m1]] est la puissance de [[m2]] la plus proche de [[m3]] (on compare les distances de [[m4]] aux deux puissances de [[m5]] qui l'encadrent).",
    "en": "\\emph{Definition.} The order of magnitude of a real number [[m1]] is the power of [[m2]] closest to [[m3]] (compare the distances from [[m4]] to the two powers of [[m5]] on either side of it).",
    "status": "aligned",
-   "order": 88
+   "order": 85
   },
   "ce19887cd71b": {
    "fr": "On considère [[m1]] et [[m2]].",
    "en": "Consider [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 89
+   "order": 86
   },
   "064d02796dec": {
    "fr": "Donner l'ordre de grandeur de [[m1]] et celui de [[m2]], en justifiant par un calcul de distances.",
    "en": "Give the order of magnitude of [[m1]] and of [[m2]], justifying with a calculation of distances.",
    "status": "aligned",
-   "order": 90
+   "order": 87
   },
   "baff0198d7be": {
    "fr": "À l'aide de la calculatrice, donner [[m1]] et [[m2]] arrondis à [[m3]]. Proposer une conjecture : comment obtenir l'ordre de grandeur à partir de l'arrondi à l'unité du logarithme ?",
    "en": "Using a calculator, give [[m1]] and [[m2]] rounded to [[m3]]. Make a conjecture: how can the order of magnitude be obtained from the logarithm rounded to the nearest unit?",
    "status": "aligned",
-   "order": 91
+   "order": 88
   },
   "44b74a620fce": {
    "fr": "On considère [[m1]]. Déterminer son ordre de grandeur et [[m2]]. La conjecture de la question 1 est-elle vérifiée ?",
    "en": "Consider [[m1]]. Determine its order of magnitude and [[m2]]. Does the conjecture of question 1 hold?",
    "status": "aligned",
-   "order": 92
+   "order": 89
   },
   "3ac8edc79000": {
    "fr": "On écrit [[m1]] en notation scientifique : [[m2]] avec [[m3]] et [[m4]] entier relatif. Selon la valeur de [[m5]], quel est l'ordre de grandeur de [[m6]] ? (En cas d'égalité des distances, on retient la plus grande puissance.)",
    "en": "Write [[m1]] in scientific notation: [[m2]] with [[m3]] and [[m4]] an integer. Depending on the value of [[m5]], what is the order of magnitude of [[m6]]? (If the distances are equal, take the larger power.)",
    "status": "aligned",
-   "order": 93
+   "order": 90
   },
   "6f18b0285837": {
    "fr": "Exprimer [[m1]] en fonction de [[m2]] et de [[m3]]. En déduire une méthode pour obtenir [[m4]], [[m5]], puis l'ordre de grandeur de [[m6]] à partir de [[m7]].",
    "en": "Express [[m1]] in terms of [[m2]] and [[m3]]. Deduce a method for obtaining [[m4]], [[m5]] and then the order of magnitude of [[m6]] from [[m7]].",
    "status": "aligned",
-   "order": 94
+   "order": 91
   },
   "beb26147edf3": {
    "fr": "En cybersécurité, on évalue la robustesse d'une clé ou d'un mot de passe par le nombre de possibilités. La calculatrice ne peut pas afficher directement les nombres suivants. Déterminer l'ordre de grandeur :",
    "en": "In cybersecurity, the strength of a key or a password is assessed by the number of possibilities. A calculator cannot display the following numbers directly. Determine the order of magnitude of:",
    "status": "aligned",
-   "order": 95
+   "order": 92
   },
   "206a17f1ada7": {
    "fr": "du nombre [[m1]] de clés de [[m2]] bits ;",
    "en": "the number [[m1]] of [[m2]]-bit keys;",
    "status": "aligned",
-   "order": 96
+   "order": 93
   },
   "548247da2490": {
    "fr": "du nombre [[m1]] de mots de passe de [[m2]] caractères choisis parmi [[m3]] caractères.",
    "en": "the number [[m1]] of [[m2]]-character passwords chosen from [[m3]] characters.",
    "status": "aligned",
-   "order": 97
+   "order": 94
   },
   "d69c2cb59994": {
    "fr": "[[m1]] : [[m2]] et [[m3]], donc l'ordre de grandeur de [[m4]] est [[m5]]. [[m6]] : [[m7]] et [[m8]], donc celui de [[m9]] est [[m10]].",
    "en": "[[m1]]: [[m2]] and [[m3]], so the order of magnitude of [[m4]] is [[m5]]. [[m6]]: [[m7]] and [[m8]], so that of [[m9]] is [[m10]].",
    "status": "aligned",
-   "order": 98
+   "order": 95
   },
   "c0bf7d04c69b": {
    "fr": "[[m1]] et [[m2]]. Les arrondis à l'unité sont [[m3]] et [[m4]] : conjecture « l'ordre de grandeur de [[m5]] est [[m6]], où [[m7]] est l'arrondi à l'unité de [[m8]] ».",
    "en": "[[m1]] and [[m2]]. Rounded to the nearest unit: [[m3]] and [[m4]]. Conjecture: ``the order of magnitude of [[m5]] is [[m6]], where [[m7]] is [[m8]] rounded to the nearest unit''.",
    "status": "aligned",
-   "order": 99
+   "order": 96
   },
   "043c275b234d": {
    "fr": "[[m1]] : [[m2]] et [[m3]], donc l'ordre de grandeur de [[m4]] est [[m5]]. Or [[m6]], dont l'arrondi est [[m7]] : la conjecture donnerait [[m8]]. Elle est fausse ([[m9]] est un contre-exemple).",
    "en": "[[m1]]: [[m2]] and [[m3]], so the order of magnitude of [[m4]] is [[m5]]. But [[m6]], which rounds to [[m7]]: the conjecture would give [[m8]]. It is false ([[m9]] is a counterexample).",
    "status": "aligned",
-   "order": 100
+   "order": 97
   },
   "dc3e89dbb5be": {
    "fr": "[[m1]] est compris entre [[m2]] et [[m3]], dont le milieu est [[m4]]. Donc l'ordre de grandeur est [[m5]] si [[m6]], et [[m7]] si [[m8]].",
    "en": "[[m1]] lies between [[m2]] and [[m3]], whose midpoint is [[m4]]. So the order of magnitude is [[m5]] if [[m6]], and [[m7]] if [[m8]].",
    "status": "aligned",
-   "order": 101
+   "order": 98
   },
   "2f4684ca3796": {
    "fr": "[[m1]], avec [[m2]]. Méthode : [[m3]] est la partie entière de [[m4]] ; [[m5]] ; on compare [[m6]] à [[m7]] (ce qui revient à comparer [[m8]] à [[m9]], et non à [[m10]]).",
    "en": "[[m1]], with [[m2]]. Method: [[m3]] is the integer part of [[m4]]; [[m5]]; compare [[m6]] with [[m7]] (which amounts to comparing [[m8]] with [[m9]], not with [[m10]]).",
    "status": "aligned",
-   "order": 102
+   "order": 99
   },
   "9f5f7846a4d7": {
    "fr": "[[m1]]. Donc [[m2]], [[m3]] : l'ordre de grandeur est [[m4]].",
    "en": "[[m1]]. So [[m2]], [[m3]]: the order of magnitude is [[m4]].",
    "status": "aligned",
-   "order": 103
+   "order": 100
   },
   "4cffa6cbdeaf": {
    "fr": "[[m1]]. Donc [[m2]], [[m3]] : l'ordre de grandeur est [[m4]]. (Arrondir le logarithme aurait donné à tort [[m5]].)",
    "en": "[[m1]]. So [[m2]], [[m3]]: the order of magnitude is [[m4]]. (Rounding the logarithm would wrongly give [[m5]].)",
    "status": "aligned",
-   "order": 104
+   "order": 101
   },
   "09c7fd79003a": {
    "fr": "Coût moyen minimal : dérivée et fonction inverse",
    "en": "Minimum average cost: derivative and reciprocal",
    "status": "aligned",
-   "order": 105
+   "order": 102
   },
   "5daecaf3d773": {
    "fr": "Un atelier fabrique des sacs en raphia. Le coût de production, en milliers d'ariary, de [[m1]] sacs par semaine est donné par [[m2]], pour [[m3]] compris entre [[m4]] et [[m5]]. L'atelier cherche le nombre de sacs pour lequel le coût moyen de fabrication d'un sac est le plus faible.",
    "en": "A workshop makes raffia bags. The production cost, in thousands of ariary, of [[m1]] bags per week is given by [[m2]], for [[m3]] between [[m4]] and [[m5]]. The workshop is looking for the number of bags for which the average cost of making one bag is lowest.",
    "status": "aligned",
-   "order": 106
+   "order": 103
   },
   "e3fee2ad573b": {
    "fr": "Calculer [[m1]] et interpréter ce résultat. Calculer le coût de production de [[m2]] sacs, puis le coût moyen d'un sac pour cette production.",
    "en": "Calculate [[m1]] and interpret this result. Calculate the production cost of [[m2]] bags, then the average cost of one bag for this production.",
    "status": "aligned",
-   "order": 107
+   "order": 104
   },
   "e887ffa0d654": {
    "fr": "On note [[m1]] le coût moyen d'un sac lorsque l'atelier fabrique [[m2]] sacs, pour [[m3]]. Montrer que [[m4]].",
    "en": "Let [[m1]] be the average cost of one bag when the workshop makes [[m2]] bags, for [[m3]]. Show that [[m4]].",
    "status": "aligned",
-   "order": 108
+   "order": 105
   },
   "e6b4da141952": {
    "fr": "Calculer [[m1]] et montrer que [[m2]].",
    "en": "Calculate [[m1]] and show that [[m2]].",
    "status": "aligned",
-   "order": 109
+   "order": 106
   },
   "76dcc485d184": {
    "fr": "Étudier le signe de [[m1]] sur [[m2]] et dresser le tableau de variations de [[m3]].",
    "en": "Study the sign of [[m1]] on [[m2]] and draw up the table of variations of [[m3]].",
    "status": "aligned",
-   "order": 110
+   "order": 107
   },
   "cc5e7e2a9b3a": {
    "fr": "Combien de sacs l'atelier doit-il fabriquer pour que le coût moyen soit minimal ? Donner ce coût moyen minimal.",
    "en": "How many bags should the workshop make for the average cost to be minimal? Give this minimum average cost.",
    "status": "aligned",
-   "order": 111
+   "order": 108
   },
   "8df50a6813bc": {
    "fr": "Les sacs sont vendus [[m1]]~Ar pièce. Pour cette production, quel est le bénéfice réalisé sur un sac ? sur la semaine ?",
    "en": "The bags are sold for [[m1]]~Ar each. For this production, what is the profit made on one bag? Over the week?",
    "status": "aligned",
-   "order": 112
+   "order": 109
   },
   "7ae498500a88": {
    "fr": "[[m1]] : les frais fixes s'élèvent à [[m2]] milliers d'ariary, soit [[m3]]~Ar par semaine. [[m4]] milliers d'ariary ; coût moyen : [[m5]] milliers d'ariary, soit [[m6]]~Ar par sac.",
    "en": "[[m1]]: the fixed costs amount to [[m2]] thousand ariary, that is, [[m3]]~Ar per week. [[m4]] thousand ariary; average cost: [[m5]] thousand ariary, that is, [[m6]]~Ar per bag.",
    "status": "aligned",
-   "order": 113
+   "order": 110
   },
   "3a82d2b960d9": {
    "fr": "Pour [[m1]], [[m2]].",
    "en": "For [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 114
+   "order": 111
   },
   "fa0a9114ae48": {
    "fr": "La dérivée de [[m1]] est [[m2]], donc [[m3]].",
    "en": "The derivative of [[m1]] is [[m2]], so [[m3]].",
    "status": "aligned",
-   "order": 115
+   "order": 112
   },
   "f73df09a4021": {
    "fr": "Sur [[m1]] : [[m2]], [[m3]] et [[m4]], donc [[m5]] a le signe de [[m6]]. Ainsi [[m7]] sur [[m8]], [[m9]] et [[m10]] sur [[m11]].\n[[m12]] est décroissante sur [[m13]] et croissante sur [[m14]], avec [[m15]], [[m16]] et [[m17]].",
    "en": "On [[m1]]: [[m2]], [[m3]] and [[m4]], so [[m5]] has the sign of [[m6]]. Thus [[m7]] on [[m8]], [[m9]] and [[m10]] on [[m11]].\n[[m12]] is decreasing on [[m13]] and increasing on [[m14]], with [[m15]], [[m16]] and [[m17]].",
    "status": "aligned",
-   "order": 116
+   "order": 113
   },
   "87e7fa54a8eb": {
    "fr": "Le minimum est atteint pour [[m1]] : il faut fabriquer [[m2]] sacs par semaine. Le coût moyen minimal vaut [[m3]] milliers d'ariary, soit [[m4]]~Ar par sac.",
    "en": "The minimum is reached for [[m1]]: [[m2]] bags should be made per week. The minimum average cost is [[m3]] thousand ariary, that is, [[m4]]~Ar per bag.",
    "status": "aligned",
-   "order": 117
+   "order": 114
   },
   "5c81bdb38266": {
    "fr": "Bénéfice par sac : [[m1]]~Ar. Sur la semaine : [[m2]]~Ar (contrôle : recette [[m3]] et coût [[m4]] milliers d'ariary, soit [[m5]] milliers d'ariary).",
    "en": "Profit per bag: [[m1]]~Ar. Over the week: [[m2]]~Ar (check: revenue [[m3]] and cost [[m4]] thousand ariary, that is, [[m5]] thousand ariary).",
    "status": "aligned",
-   "order": 118
+   "order": 115
   },
   "1f910d98d7d2": {
    "fr": "Année",
    "en": "Year",
    "status": "aligned",
-   "order": 119
+   "order": 116
   },
   "5d25e9c1692f": {
    "fr": "Nombre de kits installés",
    "en": "Number of kits installed",
    "status": "aligned",
-   "order": 120
+   "order": 117
   }
  }
 }

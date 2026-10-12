@@ -26,6 +26,7 @@
 \RequirePackage[framemethod=default]{mdframed}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{environ}
+\RequirePackage{refcount}
 
 \newcounter{mxexample}[chapter]
 \newcounter{mxexercise}[chapter]
@@ -165,3 +166,9 @@
 \newcommand{\mxcontinued}[1]{\par\noindent{\sffamily\bfseries\color{mxink}#1}\par}
 \newcommand{\mxpseudo}[1]{\par\smallskip{\ttfamily\small #1\par}}
 \newcommand{\mxtab}{\hspace*{2.4em}}
+
+% Counts written in words, measured from the list itself (two compilations, as for page references):
+% \mxcounted{key} as the last line of an enumerate records its number of items; \mxcount{key} prints that number as a
+% word in the document language (cinq / five). Adding or removing a question updates the sentence automatically.
+\newcommand{\mxcounted}[1]{\protected@edef\@currentlabel{\arabic{enumi}}\label{\mxunitid:count:#1}}
+\newcommand{\mxcount}[1]{\mxlabelof{count\getrefnumber{\mxunitid:count:#1}}}

@@ -37,9 +37,9 @@
    "status": "aligned",
    "order": 5
   },
-  "7d42003aee0a": {
-   "fr": "On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.\nUne primitive de [[m1]] sur un intervalle [[m2]] est une fonction dérivable [[m3]] telle que [[m4]] sur [[m5]]. Si [[m6]] est une primitive, toutes les primitives sur [[m7]] sont [[m8]], [[m9]].",
-   "en": "At this stage we accept that every continuous function on an interval has antiderivatives; the link with area will be established in chapter 8.\nAn antiderivative of [[m1]] on an interval [[m2]] is a differentiable function [[m3]] such that [[m4]] on [[m5]]. If [[m6]] is an antiderivative, all the antiderivatives on [[m7]] are [[m8]], [[m9]].",
+  "f9e561b4d618": {
+   "fr": "On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre~[[m1]].\nUne primitive de [[m2]] sur un intervalle [[m3]] est une fonction dérivable [[m4]] telle que [[m5]] sur [[m6]]. Si [[m7]] est une primitive, toutes les primitives sur [[m8]] sont [[m9]], [[m10]].",
+   "en": "At this stage we accept that every continuous function on an interval has antiderivatives; the link with area will be established in chapter~[[m1]].\nAn antiderivative of [[m2]] on an interval [[m3]] is a differentiable function [[m4]] such that [[m5]] on [[m6]]. If [[m7]] is an antiderivative, all the antiderivatives on [[m8]] are [[m9]], [[m10]].",
    "status": "aligned",
    "order": 6
   },
@@ -49,9 +49,9 @@
    "status": "aligned",
    "order": 7
   },
-  "cade0e6a5c84": {
-   "fr": "Si [[m1]], alors [[m2]] sur l'intervalle ; [[m3]] est donc constante. Réciproquement, [[m4]]. L'hypothèse d'intervalle est essentielle : sur un domaine disjoint, les constantes peuvent différer selon les intervalles.",
-   "en": "If [[m1]], then [[m2]] on the interval; [[m3]] is therefore constant. Conversely, [[m4]]. The interval hypothesis is essential: on a disconnected domain, the constants may differ from one interval to another.",
+  "38c81af69e2d": {
+   "fr": "Si [[m1]], alors [[m2]] sur l'intervalle ; [[m3]] est donc constante. Réciproquement, [[m4]]. L'hypothèse d'intervalle est essentielle : sur une réunion d'intervalles disjoints, comme [[m5]], la constante peut différer d'un intervalle à l'autre.",
+   "en": "If [[m1]], then [[m2]] on the interval; [[m3]] is therefore constant. Conversely, [[m4]]. The interval hypothesis is essential: on a union of disjoint intervals, such as [[m5]], the constant may differ from one interval to the other.",
    "status": "aligned",
    "order": 8
   },
@@ -137,367 +137,367 @@
    "fr": "[[m1]] et [[m2]] donnent [[m3]], puis [[m4]]. La solution [[m5]] croît vers l'équilibre [[m6]] lorsque [[m7]].",
    "en": "[[m1]] and [[m2]] give [[m3]], then [[m4]]. The solution [[m5]] increases towards the equilibrium [[m6]] as [[m7]].",
    "status": "aligned",
-   "order": 23
+   "order": 22
   },
   "10de71e2b047": {
    "fr": "Méthode d'Euler",
    "en": "Euler's method",
    "status": "aligned",
-   "order": 24
+   "order": 23
   },
   "2d935b1672ff": {
    "fr": "Pour [[m1]], avec un pas [[m2]], on approche [[m3]] par [[m4]] selon [[m5]], [[m6]]. C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.",
    "en": "For [[m1]], with a step [[m2]], we approximate [[m3]] by [[m4]] according to [[m5]], [[m6]]. This is an approximation using the tangent, not an equality on the exact solution. A smaller step can improve the approximation; check the error numerically on a known solution.",
    "status": "aligned",
-   "order": 25
+   "order": 24
   },
   "8744f41acc1f": {
    "fr": "Activité de recherche",
    "en": "Research activity",
    "status": "aligned",
-   "order": 26
+   "order": 25
   },
   "c178e9742f72": {
    "fr": "\\textbf{Refroidissement d'une boisson --- 40 min.}",
    "en": "\\textbf{Cooling of a drink --- 40 min.}",
    "status": "aligned",
-   "order": 27
+   "order": 26
   },
   "897eb75bac3c": {
    "fr": "Une boisson initialement à [[m1]] est placée dans une pièce maintenue à [[m2]]. Pour [[m3]], on note [[m4]] sa température en degrés Celsius, [[m5]] désignant le temps écoulé en minutes. On admet le modèle [[m6]] et [[m7]].",
    "en": "A drink initially at [[m1]] is placed in a room kept at [[m2]]. For [[m3]], let [[m4]] be its temperature in degrees Celsius, where [[m5]] is the elapsed time in minutes. We accept the model [[m6]] and [[m7]].",
    "status": "aligned",
-   "order": 28
+   "order": 27
   },
   "0b17c8b132f8": {
    "fr": "Résoudre ce problème initial et donner l'expression de [[m1]].",
    "en": "Solve this initial value problem and give the expression of [[m1]].",
    "status": "aligned",
-   "order": 29
+   "order": 28
   },
   "8163d4cbc2af": {
    "fr": "Étudier le sens de variation de [[m1]] et déterminer sa limite en [[m2]]. Interpréter les résultats.",
    "en": "Study the direction of variation of [[m1]] and find its limit at [[m2]]. Interpret the results.",
    "status": "aligned",
-   "order": 30
+   "order": 29
   },
   "01ad93adaf51": {
    "fr": "Déterminer le premier instant où la température vaut [[m1]]. Donner la valeur exacte, puis une valeur approchée en minutes.",
    "en": "Find the first instant at which the temperature is [[m1]]. Give the exact value, then an approximate value in minutes.",
    "status": "aligned",
-   "order": 31
+   "order": 30
   },
   "9f053f8e7089": {
    "fr": "Appliquer deux étapes de la méthode d'Euler avec un pas de [[m1]] minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte [[m2]].",
    "en": "Apply two steps of Euler's method with a step of [[m1]] minute. Compare the approximation obtained after two minutes with the exact value [[m2]].",
    "status": "aligned",
-   "order": 32
+   "order": 31
   },
   "ad9b6a6f5c92": {
    "fr": "Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.",
    "en": "Give a concrete situation in which the assumption of a constant room temperature would no longer be appropriate.",
    "status": "aligned",
-   "order": 33
+   "order": 32
   },
   "674a0397a1a5": {
    "fr": "Exercices progressifs",
    "en": "Progressive exercises",
    "status": "aligned",
-   "order": 34
+   "order": 33
   },
   "b40a9cfeef2f": {
    "fr": "Entraînement",
    "en": "Practice",
    "status": "aligned",
-   "order": 35
+   "order": 34
   },
   "33cea5760ae8": {
    "fr": "Déterminer toutes les primitives sur [[m1]] de la fonction [[m2]].",
    "en": "Find all the antiderivatives on [[m1]] of the function [[m2]].",
    "status": "aligned",
-   "order": 36
+   "order": 35
   },
   "dc264e68ed37": {
    "fr": "Déterminer la primitive [[m1]] de la fonction [[m2]] sur [[m3]] qui vérifie [[m4]].",
    "en": "Find the antiderivative [[m1]] of the function [[m2]] on [[m3]] that satisfies [[m4]].",
    "status": "aligned",
-   "order": 38
+   "order": 36
   },
   "b7b287e446fb": {
    "fr": "Déterminer la solution sur [[m1]] de l'équation différentielle [[m2]] qui vérifie [[m3]].",
    "en": "Find the solution on [[m1]] of the differential equation [[m2]] that satisfies [[m3]].",
    "status": "aligned",
-   "order": 40
+   "order": 37
   },
   "2ab14ccbbe0c": {
    "fr": "On considère l'équation différentielle [[m1]] sur [[m2]]. Vérifier que [[m3]] en est une solution, puis déterminer la solution de [[m4]] qui vérifie [[m5]].",
    "en": "Consider the differential equation [[m1]] on [[m2]]. Check that [[m3]] is a solution of it, then find the solution of [[m4]] that satisfies [[m5]].",
    "status": "aligned",
-   "order": 44
+   "order": 38
   },
   "1f497d8df0f3": {
    "fr": "Travail dans le manuel ou une annale",
    "en": "Textbook or past-paper work",
    "status": "aligned",
-   "order": 45
+   "order": 39
   },
   "fbc7428d0cf7": {
    "fr": "\\textbf{Barbazo, p. 228, exercices 25 et 30.} En S55 : exercice 30, pour faire apparaître une solution constante. À la maison : exercice 25 en entier, en distinguant une condition sur [[m1]] d'une condition sur [[m2]].",
    "en": "\\textbf{Barbazo, p. 228, exercises 25 and 30.} In S55: exercise 30, to bring out a constant solution. At home: exercise 25 in full, distinguishing a condition on [[m1]] from a condition on [[m2]].",
    "status": "aligned",
-   "order": 46
+   "order": 40
   },
   "4cf9c0208351": {
    "fr": "Devoir à la maison",
    "en": "Homework",
    "status": "aligned",
-   "order": 47
+   "order": 41
   },
   "8387f6ea0b97": {
    "fr": "\\textbf{DM7 --- Une évolution avec apport variable --- 60 min.}",
    "en": "\\textbf{HW7 --- An evolution with variable input --- 60 min.}",
    "status": "aligned",
-   "order": 48
+   "order": 42
   },
   "18b06fb791d3": {
    "fr": "On cherche une fonction [[m1]] définie et dérivable sur [[m2]] telle que [[m3]] et [[m4]].",
    "en": "We look for a function [[m1]] defined and differentiable on [[m2]] such that [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 49
+   "order": 43
   },
   "8c01dcf82aa0": {
    "fr": "Déterminer deux réels [[m1]] et [[m2]] pour que [[m3]] soit une solution de l'équation différentielle.",
    "en": "Find two real numbers [[m1]] and [[m2]] such that [[m3]] is a solution of the differential equation.",
    "status": "aligned",
-   "order": 50
+   "order": 44
   },
   "4abf5a80804e": {
    "fr": "En déduire l'expression de la solution qui vérifie [[m1]].",
    "en": "Deduce the expression of the solution that satisfies [[m1]].",
    "status": "aligned",
-   "order": 51
+   "order": 45
   },
   "df7462345937": {
    "fr": "Étudier les variations de cette solution et préciser son minimum ainsi que l'instant où il est atteint.",
    "en": "Study the variations of this solution and state its minimum and the instant at which it is attained.",
    "status": "aligned",
-   "order": 52
+   "order": 46
   },
   "ea447a94aada": {
    "fr": "Écrire une fonction Python d'argument [[m1]], entier strictement positif, qui applique la méthode d'Euler sur [[m2]] avec le pas [[m3]] et renvoie l'approximation de [[m4]]. Comparer avec la valeur exacte pour [[m5]], puis [[m6]].",
    "en": "Write a Python function with argument [[m1]], a strictly positive integer, that applies Euler's method on [[m2]] with step [[m3]] and returns the approximation of [[m4]]. Compare with the exact value for [[m5]], then [[m6]].",
    "status": "aligned",
-   "order": 53
+   "order": 47
   },
   "8baf26585dcd": {
    "fr": "Pourquoi la vérification de l'égalité différentielle en quelques instants seulement ne suffit-elle pas à prouver qu'une fonction est solution ?",
    "en": "Why is checking the differential equality at only a few instants not enough to prove that a function is a solution?",
    "status": "aligned",
-   "order": 54
+   "order": 48
   },
   "65f30ca65639": {
    "fr": "Conduite et corrigés",
    "en": "Teaching notes and solutions",
    "status": "aligned",
-   "order": 55
+   "order": 49
   },
   "a0ebd3e6cdb4": {
    "fr": "Repères pour le professeur",
    "en": "Teacher notes",
    "status": "aligned",
-   "order": 56
+   "order": 50
   },
   "126a11f40648": {
    "fr": "Distinguer fonction inconnue et variable réelle. Faire vérifier chaque primitive par dérivation. Pour [[m1]], chercher d'abord la solution constante. Le cas [[m2]] doit rester visible. Les primitives trigonométriques sont données ici comme table de référence, mais leur utilisation évaluée attend la séquence de trigonométrie. Pour Euler, garder les unités et comparer à une solution exacte connue.",
    "en": "Distinguish the unknown function from the real variable. Have each antiderivative checked by differentiation. For [[m1]], look first for the constant solution. The case [[m2]] must remain visible. The trigonometric antiderivatives are given here as a reference table, but their assessed use awaits the trigonometry unit. For Euler, keep the units and compare with a known exact solution.",
    "status": "aligned",
-   "order": 57
+   "order": 51
   },
   "6e62c2622711": {
    "fr": "Corrigé de l'activité",
    "en": "Solutions to the activity",
    "status": "aligned",
-   "order": 58
+   "order": 52
   },
   "0774be26a359": {
    "fr": "L'équation est [[m1]]. Une solution constante est [[m2]] ; toutes les solutions sont [[m3]]. Comme [[m4]], [[m5]]. On vérifie [[m6]] et [[m7]].",
    "en": "The equation is [[m1]]. A constant solution is [[m2]]; all the solutions are [[m3]]. Since [[m4]], [[m5]]. We check [[m6]] and [[m7]].",
    "status": "aligned",
-   "order": 59
+   "order": 53
   },
   "8b204b3bd7f2": {
    "fr": "[[m1]] : la température décroît strictement. Comme [[m2]] en [[m3]], [[m4]], en restant supérieure à [[m5]].",
    "en": "[[m1]]: the temperature decreases strictly. Since [[m2]] at [[m3]], [[m4]], while remaining above [[m5]].",
    "status": "aligned",
-   "order": 60
+   "order": 54
   },
   "39b2704821dc": {
    "fr": "[[m1]]. En prenant le logarithme, [[m2]], soit [[m3]] min. La stricte décroissance assure qu'il s'agit de l'unique instant de passage à [[m4]].",
    "en": "[[m1]]. Taking the logarithm, [[m2]], that is [[m3]] min. Strict decrease ensures that this is the only instant at which the temperature passes through [[m4]].",
    "status": "aligned",
-   "order": 61
+   "order": 55
   },
   "a84211cafeaa": {
    "fr": "Pour [[m1]], [[m2]]. Ainsi [[m3]] et [[m4]]. La solution exacte donne [[m5]]. Euler sous-estime ici la température d'environ [[m6]].",
    "en": "For [[m1]], [[m2]]. Thus [[m3]] and [[m4]]. The exact solution gives [[m5]]. Euler underestimates the temperature here by about [[m6]].",
    "status": "aligned",
-   "order": 62
+   "order": 56
   },
   "e5147f1f3bcd": {
    "fr": "Le modèle suppose une température ambiante de [[m1]] et un coefficient d'échange constant de [[m2]]. Un changement de pièce, un couvercle ou une agitation peut modifier ces hypothèses ; la formule n'est alors plus automatiquement adaptée.",
    "en": "The model assumes a room temperature of [[m1]] and a constant exchange coefficient of [[m2]]. A change of room, a lid or stirring can alter these assumptions; the formula is then no longer automatically appropriate.",
    "status": "aligned",
-   "order": 63
+   "order": 57
   },
   "b6c935d4f3c7": {
    "fr": "min",
    "en": "min",
    "status": "aligned",
-   "order": 64
+   "order": 58
   },
   "3f9e174708d5": {
    "fr": "E1.",
    "en": "E1.",
    "status": "aligned",
-   "order": 65
+   "order": 59
   },
   "dd09bd8d1a68": {
    "fr": "La linéarité donne [[m1]], [[m2]]. On vérifie [[m3]]. Toutes les primitives sur l'intervalle [[m4]] diffèrent d'une constante.",
    "en": "Linearity gives [[m1]], [[m2]]. We check [[m3]]. All the antiderivatives on the interval [[m4]] differ by a constant.",
    "status": "aligned",
-   "order": 66
+   "order": 60
   },
   "7234860dc67e": {
    "fr": "E2.",
    "en": "E2.",
    "status": "aligned",
-   "order": 67
+   "order": 61
   },
   "651934777aa6": {
    "fr": "Le dénominateur est positif et sa dérivée vaut [[m1]]. Les primitives sont [[m2]]. La condition en [[m3]] donne [[m4]], donc [[m5]] ; on vérifie [[m6]] et [[m7]].",
    "en": "The denominator is positive and its derivative is [[m1]]. The antiderivatives are [[m2]]. The condition at [[m3]] gives [[m4]], so [[m5]]; we check [[m6]] and [[m7]].",
    "status": "aligned",
-   "order": 68
+   "order": 62
   },
   "21f8cfd48d8e": {
    "fr": "E3.",
    "en": "E3.",
    "status": "aligned",
-   "order": 69
+   "order": 63
   },
   "f06957a97520": {
    "fr": "Les solutions de [[m1]] sont [[m2]]. La condition [[m3]] impose [[m4]]. Ainsi [[m5]], dont la dérivée vaut [[m6]] et dont la valeur en [[m7]] est [[m8]].",
    "en": "The solutions of [[m1]] are [[m2]]. The condition [[m3]] forces [[m4]]. Thus [[m5]], whose derivative is [[m6]] and whose value at [[m7]] is [[m8]].",
    "status": "aligned",
-   "order": 70
+   "order": 64
   },
   "6e1d1797da0a": {
    "fr": "E4.",
    "en": "E4.",
    "status": "aligned",
-   "order": 71
+   "order": 65
   },
   "16c63b84332e": {
    "fr": "La constante [[m1]] est une solution particulière. Les solutions sont donc [[m2]]. Comme [[m3]], [[m4]]. La solution est [[m5]] ; sa dérivée [[m6]] est bien [[m7]], et [[m8]].",
    "en": "The constant [[m1]] is a particular solution. The solutions are therefore [[m2]]. Since [[m3]], [[m4]]. The solution is [[m5]]; its derivative [[m6]] is indeed [[m7]], and [[m8]].",
    "status": "aligned",
-   "order": 72
+   "order": 66
   },
   "0108cddbae03": {
    "fr": "E5.",
    "en": "E5.",
    "status": "aligned",
-   "order": 73
+   "order": 67
   },
   "35e8e70011e7": {
    "fr": "[[m1]] vérifie [[m2]]. Si [[m3]], alors [[m4]], donc [[m5]]. La condition [[m6]] impose [[m7]]. On obtient [[m8]] et l'on vérifie [[m9]].",
    "en": "[[m1]] satisfies [[m2]]. If [[m3]], then [[m4]], so [[m5]]. The condition [[m6]] forces [[m7]]. We obtain [[m8]] and we check [[m9]].",
    "status": "aligned",
-   "order": 74
+   "order": 68
   },
   "29fcf9646643": {
    "fr": "Corrigé du DM7",
    "en": "Solutions to HW7",
    "status": "aligned",
-   "order": 75
+   "order": 69
   },
   "e550e0b1d077": {
    "fr": "Si [[m1]], alors [[m2]] et [[m3]]. Pour que l'identité soit vraie à tout [[m4]], il faut [[m5]] et [[m6]]. Donc [[m7]], [[m8]], et [[m9]].",
    "en": "If [[m1]], then [[m2]] and [[m3]]. For the identity to hold for every [[m4]], we need [[m5]] and [[m6]]. So [[m7]], [[m8]], and [[m9]].",
    "status": "aligned",
-   "order": 76
+   "order": 70
   },
   "f5bc17849a0d": {
    "fr": "Posons [[m1]]. En soustrayant les deux équations, [[m2]], donc [[m3]]. Ainsi [[m4]]. Comme [[m5]], [[m6]]. La fonction [[m7]] vérifie bien [[m8]] et [[m9]].",
    "en": "Let [[m1]]. Subtracting the two equations, [[m2]], so [[m3]]. Thus [[m4]]. Since [[m5]], [[m6]]. The function [[m7]] does satisfy [[m8]] and [[m9]].",
    "status": "aligned",
-   "order": 77
+   "order": 71
   },
   "9dad9c0fa345": {
    "fr": "[[m1]]. Cette dérivée est négative pour [[m2]], nulle en [[m3]], positive après. La solution décroît sur [[m4]] puis croît sur [[m5]]. Son minimum est [[m6]].",
    "en": "[[m1]]. This derivative is negative for [[m2]], zero at [[m3]], positive afterwards. The solution decreases on [[m4]] then increases on [[m5]]. Its minimum is [[m6]].",
    "status": "aligned",
-   "order": 78
+   "order": 72
   },
   "d2eaf72c1e1b": {
    "fr": "Le temps utilisé dans le second membre est celui du début du pas. Le programme donne [[m1]] et [[m2]], alors que [[m3]]. Les erreurs absolues valent environ [[m4]] et [[m5]].\nPour vérifier ces valeurs sans boucle, posons [[m6]]. La récurrence d'Euler donne [[m7]] et [[m8]]. Donc [[m9]].",
    "en": "The time used in the right-hand side is that at the start of the step. The program gives [[m1]] and [[m2]], whereas [[m3]]. The absolute errors are about [[m4]] and [[m5]].\nTo check these values without a loop, let [[m6]]. Euler's recurrence gives [[m7]] and [[m8]]. So [[m9]].",
    "status": "aligned",
-   "order": 79
+   "order": 73
   },
   "101916a6d235": {
    "fr": "Une solution d'équation différentielle doit vérifier une égalité entre fonctions sur tout l'intervalle, ainsi que la condition initiale. Quelques valeurs numériques ne contrôlent qu'un nombre fini de points ; la substitution symbolique de la question 2 est une vérification sur tout le domaine.",
    "en": "A solution of a differential equation must satisfy an equality between functions on the whole interval, as well as the initial condition. A few numerical values only check a finite number of points; the symbolic substitution of question 2 is a check on the whole domain.",
    "status": "aligned",
-   "order": 80
+   "order": 74
   },
   "d52bee406cfb": {
    "fr": "Corrigé du travail dans le manuel ou une annale",
    "en": "Solutions to the textbook or past-paper work",
    "status": "aligned",
-   "order": 81
+   "order": 75
   },
   "6696667f65a5": {
    "fr": "Exercice 30.",
    "en": "Exercise 30.",
    "status": "aligned",
-   "order": 82
+   "order": 76
   },
   "dd366f4c8738": {
    "fr": "Si [[m1]] est constante égale à [[m2]], l'équation devient [[m3]], donc [[m4]]. En posant [[m5]], on obtient [[m6]] ; toutes les solutions sont [[m7]], avec [[m8]].",
    "en": "If [[m1]] is constant equal to [[m2]], the equation becomes [[m3]], so [[m4]]. Setting [[m5]], we obtain [[m6]]; all the solutions are [[m7]], with [[m8]].",
    "status": "aligned",
-   "order": 83
+   "order": 77
   },
   "f19bc7851b2c": {
    "fr": "Exercice 25.",
    "en": "Exercise 25.",
    "status": "aligned",
-   "order": 84
+   "order": 78
   },
   "d94d2aea0ef7": {
    "fr": "[[m1]] donne [[m2]]. Comme [[m3]], [[m4]].",
    "en": "[[m1]] gives [[m2]]. Since [[m3]], [[m4]].",
    "status": "aligned",
-   "order": 85
+   "order": 79
   },
   "418e2a24270b": {
    "fr": "[[m1]] donne [[m2]]. La condition [[m3]] impose [[m4]] ; l'exponentielle n'étant jamais nulle, [[m5]]. La solution est la fonction nulle.",
    "en": "[[m1]] gives [[m2]]. The condition [[m3]] forces [[m4]]; since the exponential is never zero, [[m5]]. The solution is the zero function.",
    "status": "aligned",
-   "order": 86
+   "order": 80
   },
   "33be8a8386e3": {
    "fr": "[[m1]] donne [[m2]], donc [[m3]]. La condition porte sur la dérivée : [[m4]] équivaut à [[m5]], soit [[m6]]. Ainsi [[m7]].",
    "en": "[[m1]] gives [[m2]], so [[m3]]. The condition concerns the derivative: [[m4]] is equivalent to [[m5]], that is [[m6]]. Thus [[m7]].",
    "status": "aligned",
-   "order": 87
+   "order": 81
   },
   "20708a3d8acf": {
    "fr": "sur un intervalle évitant ",
    "en": "on an interval avoiding ",
    "status": "aligned",
-   "order": 88
+   "order": 82
   }
  }
 }

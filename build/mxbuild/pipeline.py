@@ -33,7 +33,7 @@ def changed_pdfs():
     """Modified or new PDFs under dist/resources (every untracked file listed, paths unquoted)."""
     out = subprocess.run(['git', 'status', '--porcelain', '-z', '-uall', '--', 'dist/resources'], cwd=ROOT,
                          capture_output=True, text=True).stdout
-    return [e[3:] for e in out.split('\0') if e.endswith('.pdf') and e[:2] != ' D']
+    return [e[3:] for e in out.split('\0') if e.endswith('.pdf') and 'D' not in e[:2]]   # deleted, staged or not
 
 
 PDF_ID = re.compile(rb'/ID\s*\[.*?\]>>', re.S)   # /ID pair (hex or literal strings) at the end of the trailer

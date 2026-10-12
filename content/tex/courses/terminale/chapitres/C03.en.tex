@@ -1,5 +1,5 @@
 % GENERATED, edit the French unit or the translation table
-\mxunit[2]{terminale-c03}{Limits of sequences}\label{ch:2}
+\mxunit[3]{terminale-c03}{Limits of sequences}\label{ch:2}
 
 \mxsubtitle{S14, S16, S19, S20}
 
@@ -28,7 +28,7 @@ Fix $n\ge0$ and assume $P(n)$ is true. Since $1+a>0$,
 \[(1+a)^{n+1}\ge(1+na)(1+a)=1+(n+1)a+na^2\ge1+(n+1)a.\]
 This is $P(n+1)$ since $na^2\ge0$. By induction, the inequality is true for every $n\ge0$. If $q>1$, take $a=q-1>0$ and compare with $1+na$. If $0<q<1$, apply this result to $\frac{1}{q}$, then take reciprocals. For $-1<q<0$, $|q^n|=|q|^n\to0$ and the squeeze theorem concludes. The case $q=0$ is handled from index $1$ onwards.
 \begin{method}[Recurrence sequence]
-For $u_{n+1}=f(u_n)$, establish a bound and monotonicity to prove convergence. If $f$ is continuous at the limit $\ell$, passing to the limit gives $\ell=f(\ell)$ (continuity is studied in chapter 4). Solving this equation never proves, on its own, that the sequence converges.
+For $u_{n+1}=f(u_n)$, establish a bound and monotonicity to prove convergence. If $f$ is continuous at the limit $\ell$, passing to the limit gives $\ell=f(\ell)$ (continuity is studied in chapter~\ref{ch:4}). Solving this equation never proves, on its own, that the sequence converges.
 \end{method}
 
 

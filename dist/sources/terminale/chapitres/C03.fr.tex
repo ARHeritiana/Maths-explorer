@@ -1,4 +1,4 @@
-\mxunit[2]{terminale-c03}{Limites de suites}\label{ch:2}
+\mxunit[3]{terminale-c03}{Limites de suites}\label{ch:2}
 
 \mxsubtitle{S14, S16, S19, S20}
 
@@ -27,7 +27,7 @@ Fixons $n\ge0$ et supposons $P(n)$ vraie. Comme $1+a>0$,
 \[(1+a)^{n+1}\ge(1+na)(1+a)=1+(n+1)a+na^2\ge1+(n+1)a.\]
 C'est $P(n+1)$ car $na^2\ge0$. Par récurrence, l'inégalité est vraie pour tout $n\ge0$. Si $q>1$, prendre $a=q-1>0$ et comparer à $1+na$. Si $0<q<1$, appliquer ce résultat à $\frac{1}{q}$, puis prendre les inverses. Pour $-1<q<0$, $|q^n|=|q|^n\to0$ et les gendarmes concluent. Le cas $q=0$ se traite à partir du rang $1$.
 \begin{method}[Suite récurrente]
-Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la convergence. Si $f$ est continue en la limite $\ell$, le passage à la limite donne $\ell=f(\ell)$ (continuité étudiée au chapitre 4). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.
+Pour $u_{n+1}=f(u_n)$, établir une borne et la monotonie pour prouver la convergence. Si $f$ est continue en la limite $\ell$, le passage à la limite donne $\ell=f(\ell)$ (continuité étudiée au chapitre~\ref{ch:4}). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.
 \end{method}
 
 

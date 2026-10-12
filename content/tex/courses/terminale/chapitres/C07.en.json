@@ -107,385 +107,385 @@
    "fr": "Pour [[m1]], [[m2]] et [[m3]]. [[m4]] et [[m5]]. L'espérance n'est ni un résultat certain ni nécessairement le plus probable.",
    "en": "For [[m1]], [[m2]] and [[m3]]. [[m4]] and [[m5]]. The expected value is neither a certain result nor necessarily the most likely one.",
    "status": "aligned",
-   "order": 18
+   "order": 17
   },
   "576f232346b7": {
    "fr": "Seuil et intervalle",
    "en": "Threshold and interval",
    "status": "aligned",
-   "order": 19
+   "order": 18
   },
   "f1cbf367d496": {
    "fr": "Pour chercher le plus petit [[m1]] tel que [[m2]], une boucle sur [[m3]] suffit. Après le logarithme, on peut résoudre [[m4]] puis arrondir dans le bon sens.\nPour trouver le plus petit entier [[m5]] tel que [[m6]], augmenter [[m7]] jusqu'à obtenir [[m8]], puis vérifier le rang précédent. On peut également chercher un intervalle [[m9]] contenant au moins une probabilité prescrite, sans supposer qu'il soit unique.",
    "en": "To find the smallest [[m1]] such that [[m2]], a loop on [[m3]] is enough. After taking logarithms, one can solve [[m4]] then round in the right direction.\nTo find the smallest integer [[m5]] such that [[m6]], increase [[m7]] until [[m8]] is obtained, then check the previous value. One can also look for an interval [[m9]] containing at least a prescribed probability, without assuming that it is unique.",
    "status": "aligned",
-   "order": 20
+   "order": 19
   },
   "ee1ddaaf0e0e": {
    "fr": "Épreuves indépendantes, au-delà de deux issues",
    "en": "Independent trials, beyond two outcomes",
    "status": "aligned",
-   "order": 21
+   "order": 20
   },
   "047eed2e0010": {
    "fr": "Pour des expériences indépendantes, la probabilité d'une liste de résultats est le produit des probabilités de ses composantes. L'univers est le produit cartésien des univers de chaque expérience. Par exemple, pour deux lancers indépendants d'un dé équilibré, l'univers contient les [[m1]] couples [[m2]], [[m3]], chacun de probabilité [[m4]]. La probabilité que la somme soit [[m5]] vaut [[m6]], car les couples favorables sont [[m7]].\nDans un schéma de Bernoulli, on code le succès par [[m8]] et l'échec par [[m9]] : l'univers est [[m10]]. L'indépendance concerne toute la succession ; une simple égalité entre deux probabilités observées ne suffit pas à la prouver.",
    "en": "For independent experiments, the probability of a list of results is the product of the probabilities of its components. The sample space is the Cartesian product of the sample spaces of each experiment. For example, for two independent throws of a fair die, the sample space contains the [[m1]] pairs [[m2]], [[m3]], each with probability [[m4]]. The probability that the sum is [[m5]] is [[m6]], because the favourable pairs are [[m7]].\nIn a Bernoulli scheme, success is coded by [[m8]] and failure by [[m9]]: the sample space is [[m10]]. Independence concerns the whole succession; a mere equality between two observed probabilities is not enough to prove it.",
    "status": "aligned",
-   "order": 22
+   "order": 21
   },
   "8744f41acc1f": {
    "fr": "Activité de recherche",
    "en": "Research activity",
    "status": "aligned",
-   "order": 23
+   "order": 22
   },
   "4e226e8733aa": {
    "fr": "\\textbf{Contrôle de composants --- 40 min.}",
    "en": "\\textbf{Checking components --- 40 min.}",
    "status": "aligned",
-   "order": 24
+   "order": 23
   },
   "e6d801784287": {
    "fr": "On choisit au hasard un composant dans une production issue de deux ateliers. On note [[m1]] l'événement « le composant provient du premier atelier », [[m2]] et [[m3]] l'événement « le composant est défectueux ». On donne [[m4]], [[m5]] et [[m6]]. Les résultats approchés seront arrondis à [[m7]].",
    "en": "A component is chosen at random from a production coming from two workshops. Denote by [[m1]] the event ``the component comes from the first workshop'', [[m2]] and [[m3]] the event ``the component is defective''. We are given [[m4]], [[m5]] and [[m6]]. Approximate results will be rounded to [[m7]].",
    "status": "aligned",
-   "order": 25
+   "order": 24
   },
   "23112d187176": {
    "fr": "Représenter la situation par un arbre pondéré, puis calculer [[m1]].",
    "en": "Represent the situation by a weighted tree, then calculate [[m1]].",
    "status": "aligned",
-   "order": 26
+   "order": 25
   },
   "a740464967d6": {
    "fr": "Le composant choisi est défectueux. Calculer la probabilité qu'il provienne du premier atelier.",
    "en": "The component chosen is defective. Calculate the probability that it comes from the first workshop.",
    "status": "aligned",
-   "order": 27
+   "order": 26
   },
   "f070e38e3fe3": {
    "fr": "On choisit maintenant vingt composants indépendamment, chacun suivant le modèle précédent. On note [[m1]] le nombre de composants défectueux parmi les vingt. Justifier la loi suivie par [[m2]] et préciser ses paramètres.",
    "en": "We now choose twenty components independently, each following the previous model. Denote by [[m1]] the number of defective components among the twenty. Justify the distribution followed by [[m2]] and state its parameters.",
    "status": "aligned",
-   "order": 28
+   "order": 27
   },
   "6a2a13af8eb7": {
    "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
    "en": "Calculate [[m1]], [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 29
+   "order": 28
   },
   "3968068dc524": {
    "fr": "Si les vingt composants étaient prélevés dans un même lot, quelle hypothèse du modèle faudrait-il réexaminer ? Expliquer pourquoi.",
    "en": "If the twenty components were taken from a single batch, which assumption of the model would need to be re-examined? Explain why.",
    "status": "aligned",
-   "order": 30
+   "order": 29
   },
   "674a0397a1a5": {
    "fr": "Exercices progressifs",
    "en": "Progressive exercises",
    "status": "aligned",
-   "order": 31
+   "order": 30
   },
   "b40a9cfeef2f": {
    "fr": "Entraînement",
    "en": "Practice",
    "status": "aligned",
-   "order": 32
+   "order": 31
   },
   "3fe01e0167e8": {
    "fr": "On considère deux événements [[m1]] et [[m2]] tels que [[m3]], [[m4]] et [[m5]]. Calculer [[m6]], puis [[m7]].",
    "en": "Consider two events [[m1]] and [[m2]] such that [[m3]], [[m4]] and [[m5]]. Calculate [[m6]], then [[m7]].",
    "status": "aligned",
-   "order": 33
+   "order": 32
   },
   "163afd5a0ade": {
    "fr": "La variable aléatoire [[m1]] suit la loi binomiale de paramètres [[m2]] et [[m3]]. Donner les valeurs exactes de [[m4]], [[m5]] et [[m6]].",
    "en": "The random variable [[m1]] follows the binomial distribution with parameters [[m2]] and [[m3]]. Give the exact values of [[m4]], [[m5]] and [[m6]].",
    "status": "aligned",
-   "order": 35
+   "order": 33
   },
   "ff7f74ce3385": {
    "fr": "Soit [[m1]] une variable aléatoire à valeurs entières. Pour tout entier [[m2]], on pose [[m3]]. Exprimer [[m4]] et [[m5]] à l'aide de [[m6]].",
    "en": "Let [[m1]] be a random variable taking integer values. For every integer [[m2]], set [[m3]]. Express [[m4]] and [[m5]] in terms of [[m6]].",
    "status": "aligned",
-   "order": 37
+   "order": 34
   },
   "271765d5a97b": {
    "fr": "On tire successivement cinq cartes, sans remise, dans un jeu de 52 cartes contenant quatre as. On note [[m1]] le nombre d'as obtenus. La variable [[m2]] suit-elle une loi binomiale ? Justifier.",
    "en": "Five cards are drawn in succession, without replacement, from a pack of 52 cards containing four aces. Let [[m1]] be the number of aces obtained. Does the variable [[m2]] follow a binomial distribution? Justify.",
    "status": "aligned",
-   "order": 39
+   "order": 35
   },
   "5f9a5f5d5436": {
    "fr": "On répète indépendamment une épreuve dont la probabilité de succès est [[m1]]. Déterminer le plus petit nombre d'épreuves pour lequel la probabilité d'obtenir au moins un succès est supérieure ou égale à [[m2]].",
    "en": "A trial whose probability of success is [[m1]] is repeated independently. Determine the smallest number of trials for which the probability of obtaining at least one success is greater than or equal to [[m2]].",
    "status": "aligned",
-   "order": 41
+   "order": 36
   },
   "1f497d8df0f3": {
    "fr": "Travail dans le manuel ou une annale",
    "en": "Textbook or past-paper work",
    "status": "aligned",
-   "order": 42
+   "order": 37
   },
   "72b8503d09b5": {
    "fr": "\\textbf{Baccalauréat, Métropole, 17 juin 2025 : exercice 1, question 5 (p. 3).} En classe après S41. Lire le contexte des questions 1 à 4 ; pour ce travail, admettre le résultat [[m1]] de la question 4. Le sujet est accessible ici :",
    "en": "\\textbf{Baccalauréat, Metropolitan France, 17 June 2025: exercise 1, question 5 (p. 3).} In class after S41. Read the context of questions 1 to 4; for this work, accept the result [[m1]] from question 4. The paper is available here:",
    "status": "aligned",
-   "order": 43
+   "order": 38
   },
   "5bcf79de9775": {
    "fr": "annale officielle",
    "en": "official past paper",
    "status": "aligned",
-   "order": 44
+   "order": 39
   },
   "1382b27bffc9": {
    "fr": ". Utiliser les données et les consignes de cette annale.",
    "en": ". Use the data and instructions of this past paper.",
    "status": "aligned",
-   "order": 45
+   "order": 40
   },
   "4cf9c0208351": {
    "fr": "Devoir à la maison",
    "en": "Homework",
    "status": "aligned",
-   "order": 46
+   "order": 41
   },
   "0a48a926c5c4": {
    "fr": "\\textbf{DM13 --- Réservations et surréservation --- 60 min.}",
    "en": "\\textbf{Homework 13 --- Reservations and overbooking --- 60 min.}",
    "status": "aligned",
-   "order": 47
+   "order": 42
   },
   "e01ead98c55a": {
    "fr": "Une salle dispose de dix-huit places. L'organisateur accepte vingt réservations, payées à l'avance. Chaque personne ayant réservé se présente avec une probabilité de [[m1]], indépendamment des autres. On note [[m2]] le nombre de personnes qui se présentent. Si plus de dix-huit personnes viennent, les personnes excédentaires sont refusées.",
    "en": "A hall has eighteen seats. The organiser accepts twenty reservations, paid in advance. Each person who has reserved turns up with probability [[m1]], independently of the others. Denote by [[m2]] the number of people who turn up. If more than eighteen people come, the surplus people are turned away.",
    "status": "aligned",
-   "order": 48
+   "order": 43
   },
   "709dc2366e76": {
    "fr": "Justifier la loi de [[m1]], puis calculer son espérance et sa variance.",
    "en": "Justify the distribution of [[m1]], then calculate its expected value and variance.",
    "status": "aligned",
-   "order": 49
+   "order": 44
   },
   "cca5b348b219": {
    "fr": "Calculer la probabilité que l'organisateur doive refuser au moins une personne. Arrondir à [[m1]].",
    "en": "Calculate the probability that the organiser has to turn away at least one person. Round to [[m1]].",
    "status": "aligned",
-   "order": 50
+   "order": 45
   },
   "59c77e1e4aaf": {
    "fr": "Chaque réservation rapporte [[m1]] unités monétaires, y compris si la personne ne vient pas. Chaque personne refusée reçoit un versement total de [[m2]] unités monétaires, remboursement et indemnité compris. On note [[m3]] le nombre de personnes refusées. Exprimer le gain [[m4]] en fonction de [[m5]], puis calculer [[m6]].",
    "en": "Each reservation brings in [[m1]] monetary units, even if the person does not come. Each person turned away receives a total payment of [[m2]] monetary units, refund and compensation included. Denote by [[m3]] the number of people turned away. Express the profit [[m4]] in terms of [[m5]], then calculate [[m6]].",
    "status": "aligned",
-   "order": 51
+   "order": 46
   },
   "ff16c60bb2f1": {
    "fr": "Calculer le gain si l'organisateur n'accepte que dix-huit réservations, avec les mêmes règles de paiement. Comparer les deux stratégies du point de vue du gain moyen.",
    "en": "Calculate the profit if the organiser accepts only eighteen reservations, with the same payment rules. Compare the two strategies in terms of mean profit.",
    "status": "aligned",
-   "order": 52
+   "order": 47
   },
   "1ae6c1d76a48": {
    "fr": "Citer une hypothèse du modèle qui peut être discutable en pratique, puis un critère autre que le gain monétaire à prendre en compte dans cette décision.",
    "en": "State one assumption of the model that may be questionable in practice, then a criterion other than monetary profit to take into account in this decision.",
    "status": "aligned",
-   "order": 53
+   "order": 48
   },
   "65f30ca65639": {
    "fr": "Conduite et corrigés",
    "en": "Teaching notes and solutions",
    "status": "aligned",
-   "order": 54
+   "order": 49
   },
   "a0ebd3e6cdb4": {
    "fr": "Repères pour le professeur",
    "en": "Teacher notes",
    "status": "aligned",
-   "order": 55
+   "order": 50
   },
-  "d47f55a4b666": {
-   "fr": "Réactiver les conditionnelles en S36 avant tout schéma de Bernoulli. L'indépendance est une hypothèse du modèle, elle ne découle pas de la seule répétition. Pour un tirage sans remise, ne pas invoquer automatiquement une loi binomiale. Les formules d'espérance et de variance sont utilisées en S39 ; leur preuve par somme d'indicatrices est reprise au chapitre 14. Un seuil demandé en décembre doit pouvoir être obtenu par une boucle, le logarithme n'étant pas encore enseigné.",
-   "en": "Reactivate conditional probabilities in S36 before any Bernoulli scheme. Independence is an assumption of the model; it does not follow from repetition alone. For a draw without replacement, do not automatically invoke a binomial distribution. The formulas for expected value and variance are used in S39; their proof by a sum of indicators is revisited in Chapter 14. A threshold requested in December must be obtainable by a loop, as the logarithm has not yet been taught.",
+  "9720dc67da68": {
+   "fr": "Réactiver les conditionnelles en S36 avant tout schéma de Bernoulli. L'indépendance est une hypothèse du modèle, elle ne découle pas de la seule répétition. Pour un tirage sans remise, ne pas invoquer automatiquement une loi binomiale. Les formules d'espérance et de variance sont utilisées en S39 ; leur preuve par somme d'indicatrices est reprise au chapitre~[[m1]]. Un seuil demandé en décembre doit pouvoir être obtenu par une boucle, le logarithme n'étant pas encore enseigné.",
+   "en": "Reactivate conditional probabilities in S36 before any Bernoulli scheme. Independence is an assumption of the model; it does not follow from repetition alone. For a draw without replacement, do not automatically invoke a binomial distribution. The formulas for expected value and variance are used in S39; their proof by a sum of indicators is revisited in chapter~[[m1]]. A threshold requested in December must be obtainable by a loop, as the logarithm has not yet been taught.",
    "status": "aligned",
-   "order": 56
+   "order": 51
   },
   "6e62c2622711": {
    "fr": "Corrigé de l'activité",
    "en": "Solutions to the activity",
    "status": "aligned",
-   "order": 57
+   "order": 52
   },
   "f60ab0e4b0f9": {
    "fr": "L'arbre porte les branches [[m1]] et [[m2]], de probabilités [[m3]] et [[m4]]. Depuis [[m5]], les branches [[m6]] portent [[m7]] ; depuis [[m8]], elles portent [[m9]].",
    "en": "The tree has branches [[m1]] and [[m2]], with probabilities [[m3]] and [[m4]]. From [[m5]], the branches [[m6]] carry [[m7]]; from [[m8]], they carry [[m9]].",
    "status": "aligned",
-   "order": 58
+   "order": 53
   },
   "74e8cb62de2b": {
    "fr": "Par probabilités totales, [[m1]].",
    "en": "By total probability, [[m1]].",
    "status": "aligned",
-   "order": 59
+   "order": 54
   },
   "c77b04f5ee1c": {
    "fr": "[[m1]] et [[m2]]. Donc [[m3]].",
    "en": "[[m1]] and [[m2]]. So [[m3]].",
    "status": "aligned",
-   "order": 60
+   "order": 55
   },
   "8a97ecf475ee": {
    "fr": "Chaque prélèvement est une épreuve à deux issues, « défectueux » ou « non défectueux », avec la même probabilité [[m1]] de défaut. Les vingt prélèvements étant indépendants, [[m2]].",
    "en": "Each selection is a trial with two outcomes, ``defective'' or ``not defective'', with the same probability [[m1]] of a defect. Since the twenty selections are independent, [[m2]].",
    "status": "aligned",
-   "order": 61
+   "order": 56
   },
   "a4242dd5306b": {
    "fr": "[[m1]]. Par complément,",
    "en": "[[m1]]. By complement,",
    "status": "aligned",
-   "order": 62
+   "order": 57
   },
   "22f687a6cfb1": {
    "fr": "Enfin [[m1]]. Cette espérance n'implique pas qu'un prélèvement présente un nombre fractionnaire de défauts.",
    "en": "Finally [[m1]]. This expected value does not imply that a selection has a fractional number of defects.",
    "status": "aligned",
-   "order": 63
+   "order": 58
   },
   "2d344b1c7a05": {
    "fr": "Une cause commune liée au lot pourrait rendre les défauts dépendants. La loi binomiale et ses calculs reposent sur l'indépendance donnée dans le modèle ; il faudrait réexaminer cette hypothèse pour un autre protocole.",
    "en": "A common cause linked to the batch could make the defects dependent. The binomial distribution and its calculations rely on the independence given in the model; this assumption would need to be re-examined for a different protocol.",
    "status": "aligned",
-   "order": 64
+   "order": 59
   },
   "3f9e174708d5": {
    "fr": "E1.",
    "en": "E1.",
    "status": "aligned",
-   "order": 65
+   "order": 60
   },
   "9e90e0f48f30": {
    "fr": "Par probabilités totales, [[m1]]. Puisque [[m2]], [[m3]].",
    "en": "By total probability, [[m1]]. Since [[m2]], [[m3]].",
    "status": "aligned",
-   "order": 66
+   "order": 61
   },
   "7234860dc67e": {
    "fr": "E2.",
    "en": "E2.",
    "status": "aligned",
-   "order": 67
+   "order": 62
   },
   "36f6d5674cb1": {
    "fr": "Par la formule binomiale, [[m1]]. Les paramètres donnent [[m2]] et [[m3]].",
    "en": "By the binomial formula, [[m1]]. The parameters give [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 68
+   "order": 63
   },
   "21f8cfd48d8e": {
    "fr": "E3.",
    "en": "E3.",
    "status": "aligned",
-   "order": 69
+   "order": 64
   },
   "156374d83771": {
    "fr": "Le complément de [[m1]] est [[m2]], donc [[m3]]. Pour l'intervalle, on enlève à [[m4]] les valeurs [[m5]], donc [[m6]].",
    "en": "The complement of [[m1]] is [[m2]], so [[m3]]. For the interval, we remove from [[m4]] the values [[m5]], so [[m6]].",
    "status": "aligned",
-   "order": 70
+   "order": 65
   },
   "6e1d1797da0a": {
    "fr": "E4.",
    "en": "E4.",
    "status": "aligned",
-   "order": 71
+   "order": 66
   },
   "e6cab70e298a": {
    "fr": "Non, dans un jeu usuel contenant quatre as. Sans remise, obtenir un as au premier tirage change la probabilité d'en obtenir un au second : les essais ne sont pas indépendants. En outre, le nombre d'as ne peut jamais valoir [[m1]], alors qu'une binomiale de paramètres [[m2]] et [[m3]] donne une probabilité positive à cette valeur.",
    "en": "No, in a standard pack containing four aces. Without replacement, obtaining an ace on the first draw changes the probability of obtaining one on the second: the trials are not independent. Moreover, the number of aces can never equal [[m1]], whereas a binomial distribution with parameters [[m2]] and [[m3]] gives this value a positive probability.",
    "status": "aligned",
-   "order": 72
+   "order": 67
   },
   "0108cddbae03": {
    "fr": "E5.",
    "en": "E5.",
    "status": "aligned",
-   "order": 73
+   "order": 68
   },
   "c3d6aba4dd86": {
    "fr": "La probabilité d'au moins un succès vaut [[m1]]. La condition est équivalente à [[m2]]. Comme [[m3]], le premier entier est [[m4]]. La probabilité vaut alors [[m5]].",
    "en": "The probability of at least one success is [[m1]]. The condition is equivalent to [[m2]]. Since [[m3]], the first integer is [[m4]]. The probability is then [[m5]].",
    "status": "aligned",
-   "order": 74
+   "order": 69
   },
   "6c25b681378d": {
    "fr": "Corrigé du DM13",
    "en": "Solutions to Homework 13",
    "status": "aligned",
-   "order": 75
+   "order": 70
   },
   "f59c24dc354c": {
    "fr": "[[m1]] compte les succès de vingt épreuves de Bernoulli indépendantes de paramètre [[m2]]. Donc [[m3]], [[m4]] et [[m5]].",
    "en": "[[m1]] counts the successes of twenty independent Bernoulli trials with parameter [[m2]]. So [[m3]], [[m4]] and [[m5]].",
    "status": "aligned",
-   "order": 76
+   "order": 71
   },
   "e4f1286b978e": {
    "fr": "La salle manque de places si [[m1]], c'est-à-dire [[m2]] ou [[m3]]. Ces événements étant incompatibles,",
    "en": "The hall runs short of seats if [[m1]], that is [[m2]] or [[m3]]. Since these events are mutually exclusive,",
    "status": "aligned",
-   "order": 77
+   "order": 72
   },
   "55947458e571": {
    "fr": "Le risque est d'environ [[m1]].",
    "en": "The risk is about [[m1]].",
    "status": "aligned",
-   "order": 78
+   "order": 73
   },
   "2d8e5bdc3e4f": {
    "fr": "Le nombre de refus [[m1]] vaut [[m2]] pour [[m3]], [[m4]] pour [[m5]] et [[m6]] pour [[m7]]. Par définition de l'espérance,",
    "en": "The number of refusals [[m1]] equals [[m2]] for [[m3]], [[m4]] for [[m5]] and [[m6]] for [[m7]]. By the definition of expected value,",
    "status": "aligned",
-   "order": 79
+   "order": 74
   },
   "8da1cf8192ec": {
    "fr": "Les recettes sont [[m1]] et les versements [[m2]], donc [[m3]]. Ainsi [[m4]] unités monétaires. Les [[m5]] incluent déjà tous les versements liés à un refus ; il ne faut pas retirer encore [[m6]].",
    "en": "The takings are [[m1]] and the payments [[m2]], so [[m3]]. Thus [[m4]] monetary units. The [[m5]] already includes all payments linked to a refusal; one must not subtract a further [[m6]].",
    "status": "aligned",
-   "order": 80
+   "order": 75
   },
   "a86c532fecdd": {
    "fr": "Avec dix-huit réservations, aucun refus n'est possible et les recettes sont [[m1]], quel que soit le nombre de présents. L'espérance du gain avec vingt réservations dépasse ce montant d'environ [[m2]] unités monétaires.",
    "en": "With eighteen reservations, no refusal is possible and the takings are [[m1]], whatever the number of people present. The expected profit with twenty reservations exceeds this amount by about [[m2]] monetary units.",
    "status": "aligned",
-   "order": 81
+   "order": 76
   },
   "da592d038937": {
    "fr": "Les venues de personnes d'un même groupe peuvent être dépendantes. En outre, la satisfaction du public et les conséquences d'un refus ne sont pas résumées par l'espérance du gain. Le résultat chiffre un modèle ; il ne suffit pas à lui seul à imposer une décision.",
    "en": "The arrivals of people from the same group may be dependent. Moreover, the satisfaction of the public and the consequences of a refusal are not summed up by the expected profit. The result quantifies a model; it is not enough on its own to dictate a decision.",
    "status": "aligned",
-   "order": 82
+   "order": 77
   },
   "d52bee406cfb": {
    "fr": "Corrigé du travail dans le manuel ou une annale",
    "en": "Solutions to the textbook or past-paper work",
    "status": "aligned",
-   "order": 83
+   "order": 78
   },
   "ea22cf33f829": {
    "fr": "Les [[m1]] choix sont indépendants, avec une même probabilité [[m2]]. Donc [[m3]].",
    "en": "The [[m1]] choices are independent, with the same probability [[m2]]. So [[m3]].",
    "status": "aligned",
-   "order": 84
+   "order": 79
   },
   "4a48d7c5b6fb": {
    "fr": "Enfin, [[m1]] et [[m2]].",
    "en": "Finally, [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 85
+   "order": 80
   }
  }
 }

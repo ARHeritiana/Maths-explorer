@@ -73,17 +73,20 @@ Chromium at `/opt/pw-browsers`.
    before/after numbers (baseline in `docs/REPO_AUDIT.md`).
 
 ## Open questions for the owner ([VERIFY])
-- English notation details chosen without explicit confirmation: thousands grouped from 4 digits (1,500), percent
-  without space (12.5%), integer interval printed {1,…,n}.
 - The one-page-per-resource rule grew Première to 133/222 and Terminale to 123/289 pages; Première and Terminale covers
   now use the shared cover (their individual title pages, including the Première parabola, were dropped).
-- Owner, school and place names remain in git history (removing them needs a history rewrite and force-push).
-- Drop `terminale-fluency-*` and `terminale-methods-*` supplement PDFs (overlay-era copies)?
-- Terminale prints the textbook's chapter numbers (e.g. vectors "Chapitre 10" while the site card says chapter 2).
-- STMG "Pour prolonger" boxes cite textbook pages and exercise numbers only: acceptable?
-- Glosses and content flags: "Year 11 (seconde)"; sampling fluctuation 2σ/√n in Première C08 and EV3; Newton in C06;
-  Euler in C09; Terminale E6 intro says four independent questions but has five; E7 solution starts "No." for a
-  compare-and-explain question; Terminale slide wording "sur un domaine disjoint".
+- Owner, school and place names remain in git history (removing them needs a history rewrite and force-push). Owner
+  answer (12 October): decide later.
+- Programme scope not yet checked against the text of Première BO n°14 of 2 April 2026 (the official site is not
+  reachable from the build container): sampling fluctuation 2σ/√n in Première C08 and EV3, Newton's method in C06,
+  Euler's method in C09. They were in the 2019 programme (BO spécial n°1 of 22 January 2019) as algorithmic work;
+  mark them [HORS PROGRAMME] or as extensions only if the 2026 text drops them.
+
+Owner decisions of 12 October 2026 (applied): English notation 1,500 / 12.5% / {1,…,n} accepted; Terminale PDFs use
+the site chapter numbers (cross-references are `\ref{ch:N}`, labels keep the former textbook numbers as names);
+`terminale-fluency-*` and `terminale-methods-*` removed; STMG "Pour prolonger" boxes removed (and the textbook line in
+the STMG sources); Terminale E6 counts its questions with `\mxcount`/`\mxcounted`; E7 model answer is a full
+sentence; "domaine disjoint" rewritten as a union of disjoint intervals; "Year 11 (seconde)" gloss replaced.
 
 ## Working style that worked
 Change sources, then prove it: rebuild, compare French text with the previous PDFs (token comparison ignoring running
@@ -160,4 +163,4 @@ rebuild), `60c9e81` (slides and site), then this hand-off.
   is very wide (font fallback), so "f(x)" in the quadratic workshop looks spaced here; not reproduced elsewhere.
 
 Next: Phase B quality review (`/simplify`, `/code-review`), the rest of Phase C above, Phase D. The [VERIFY] list
-above still stands; the Terminale chapter number mismatch (PDF "Chapitre 11" vs site "Chapter 9") is unchanged.
+above was updated with the owner decisions of 12 October; the Terminale chapter numbers now match the site.

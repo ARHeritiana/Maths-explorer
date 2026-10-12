@@ -24,6 +24,20 @@
 % Label dictionary: \mxlabelof{key} prints the displayed name of an environment or element.
 \newcommand{\mx@deflabel}[3]{\expandafter\def\csname mx@label@#1\endcsname{\mxtr{#2}{#3}}}
 \newcommand{\mxlabelof}[1]{\csname mx@label@#1\endcsname}
+% Words for \mxcount (feminine in French, as for « questions »); 0 means the count is not known yet.
+\mx@deflabel{count0}{??}{??}
+\mx@deflabel{count1}{une}{one}
+\mx@deflabel{count2}{deux}{two}
+\mx@deflabel{count3}{trois}{three}
+\mx@deflabel{count4}{quatre}{four}
+\mx@deflabel{count5}{cinq}{five}
+\mx@deflabel{count6}{six}{six}
+\mx@deflabel{count7}{sept}{seven}
+\mx@deflabel{count8}{huit}{eight}
+\mx@deflabel{count9}{neuf}{nine}
+\mx@deflabel{count10}{dix}{ten}
+\mx@deflabel{count11}{onze}{eleven}
+\mx@deflabel{count12}{douze}{twelve}
 \mx@deflabel{keypoint}{À retenir}{Key point}
 \mx@deflabel{definition}{Définition}{Definition}
 \mx@deflabel{theorem}{Propriété}{Property}
