@@ -1,6 +1,6 @@
 # Maths Explorer v2: project brief
 
-Status: v0.2, owner decisions of 12 October 2026 incorporated. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
+Status: v0.3, owner decisions of 12 October 2026 incorporated and the remaining questions settled. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
 
 Precedence: this brief supersedes every earlier instruction in the repository (AGENTS.md, README, docs/). Where they conflict, follow this brief. Only the owner can change it.
 
@@ -14,6 +14,7 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 4. Every PDF has its LaTeX source in the repository.
 5. Drafts, audit notes and review status stay in the private area, never in the published folder.
 6. Work in the priority order of section 3. Ask before changing a rule in section 2.
+7. For any interactive slide, read both skills in `.claude/skills/` first (section 10).
 
 ## 1. Mission and pedagogy
 
@@ -33,7 +34,7 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 | No visible AI notice | No AI-content notice or review-status label anywhere on the published site, in resource cards or in PDFs (owner decision; this removes the old footer-notice rule). Provenance and review status are kept in the private ledger only. |
 | No accounts, no tracking | No analytics, no student tracking tools for now. |
 | Access control | None for now. Static hosting cannot truly gate files; a later code or paywall needs a server or paid platform [OPEN]. |
-| Owner review | The owner reviews slowly and before class use. AI output is draft until the owner marks it reviewed (private ledger). |
+| Owner review | The owner reviews slowly and before class use. AI output is draft until the owner marks it reviewed (private ledger). At launch only owner-reviewed content is published (decided: with no visible AI notice, unreviewed maths must not go public). The owner may override this. |
 
 ## 3. Scope and priority order (owner's order)
 
@@ -41,14 +42,22 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 2. Malagasy Terminale (T12), all series, in the order S, then OSE, then L.
 3. Olympiad: progressive, Malagasy, then Pan-African, then international.
 4. Rest of the Malagasy curriculum.
-5. IB (English).
-6. University basics: calculus, analysis, algebra (narrow, basics only) [OPEN: rank not given; placed last].
+5. IB (English). Decided: AA first (SL and HL on a shared core, HL extensions clearly marked), then AI (SL and HL). Verify every item against the current IB subject guides before writing [VERIFY]. The earlier repo audit says complex numbers leave AI HL for first assessment in 2029 [VERIFY].
+6. University basics: calculus, analysis, algebra, narrow and basics only. Decided: last in rank; start only once each of items 1 to 4 has at least one audited pilot chapter.
 
-Programme versions (owner-stated, [VERIFY] with the official texts):
-- French reform applies to Seconde and Première this year; Terminale from next year. Terminale content this year follows the current programme.
-- Cite the specific bulletin (Eduscol / BO) in each chapter's private metadata. Bulletin numbers are not yet collected [OPEN].
-- Malagasy programmes: available on the ministry website; the owner also holds copies [OPEN: obtain].
-- Flag out-of-programme content: [HORS PROGRAMME].
+Programme references (French), checked on 12 October 2026 on the Eduscol page "Programmes et ressources en mathématiques - voie GT" and the BO index. [VERIFY] before relying on a detail.
+- New programmes: BO n° 14 du 2 avril 2026, arrêtés du 26 février 2026 (https://www.education.gouv.fr/bo/2026/Hebdo14). Applies from rentrée 2026-2027 to Seconde and Première; from rentrée 2027-2028 to Terminale (Eduscol).
+  - Seconde GT: MENE2602914A.
+  - Première, spécialité mathématiques: MENE2602917A.
+  - Première, mathématiques intégrées à l'enseignement scientifique: MENE2602916A.
+  - Première technologique: MENE2602918A.
+  - Terminale, spécialité mathématiques: MENE2602919A.
+  - Terminale, option mathématiques complémentaires: MENE2902920A.
+  - Terminale technologique (STMG): MENE2602921A.
+- Programmes in force this school year for Terminale: spécialité mathématiques and option mathématiques expertes, BO spécial n° 8 du 25 juillet 2019 (Eduscol, "programmes en vigueur"). No new maths expertes programme is listed; whether or when it changes is unknown [VERIFY].
+- The programme in force this year for Terminale STMG was not found in this check [OPEN: look it up on Eduscol before writing STMG material].
+- Cite the relevant NOR or BO reference in each chapter's private metadata. Flag out-of-programme content: [HORS PROGRAMME].
+- Malagasy programmes: published on the ministry website, and the owner holds copies. Series order S, then OSE, then L. The owner will supply the documents for each chapter; do not guess their content [OPEN: obtain].
 
 Language at launch (decided): French for the French and Malagasy curricula; English for IB; bilingual (French and English) for Olympiad. Full bilingual parity can wait. This overrides the old rule that every resource exists in both languages.
 
@@ -85,7 +94,7 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 
 - Name: Maths Explorer.
 - Palette selector. Default themes: Navy-Gold and Charcoal-Yellow. Light print theme for PDFs.
-- Navy-Gold tokens, taken from the slides: background #0f1b2d, panel #13243b, grid #24364f, ink #f4f1ea, muted #8fa6c4, primary #e8a33d, positive #5fd0a0, negative #ff7a7a. Charcoal-Yellow values are not yet defined [OPEN].
+- Navy-Gold tokens, taken from the slides: background #0f1b2d, panel #13243b, grid #24364f, ink #f4f1ea, muted #8fa6c4, primary #e8a33d, positive #5fd0a0, negative #ff7a7a. Charcoal-Yellow tokens (decided, adjustable by the owner): background #16181d, panel #1f2229, ink #f2f0e8, muted #9aa3b0, primary #ffd23f, positive #6bd6a4, negative #ff7a7a. Computed text-contrast ratios (WCAG) on background / panel: Navy-Gold ink 15.3 / 13.9, muted 6.9 / 6.3, primary 8.0 / 7.2, positive 9.1 / 8.2, negative 6.8 / 6.2; Charcoal-Yellow ink 15.6 / 14.0, muted 7.0 / 6.2, primary 12.3 / 11.0, positive 10.0 / 8.9, negative 7.0 / 6.3. All exceed 4.5:1. This covers text colours only, not full conformity. Grid and panel-border tokens are to be defined with the engine.
 - The existing site uses navy, mint and violet; migrate it to the new palettes.
 - Check contrast (WCAG AA), keyboard use and reduced motion for every theme. Conformity is not established by automated checks alone.
 
@@ -114,13 +123,31 @@ Evaluate the `math-series-guardrails` skill as the pipeline (its description mat
 
 Decided on 12 October 2026: no visible AI notice; language policy as in section 3; XeLaTeX; shared slide engine.
 
-Still open:
-1. Rank of university basics.
-2. Charcoal-Yellow colour values.
-3. Programme bulletin references (Eduscol/BO) and the Malagasy programme documents.
-4. IB tracks (AA/AI, SL/HL).
-5. What counts as publishable at launch: only owner-reviewed content, or everything (owner unsure; decide before launch).
+Settled by the assistant on the owner's instruction ("solve the remaining questions yourself"), all reversible by the owner:
+1. University basics rank last (section 3).
+2. Charcoal-Yellow tokens defined and contrast-checked (section 6).
+3. French programme references collected (section 3).
+4. IB: AA first, then AI, SL and HL (section 3).
+5. At launch only owner-reviewed content is published (section 2).
 
-## 10. Suggested first milestone
+Still open:
+1. Malagasy programme documents: the owner supplies them per chapter.
+2. The Terminale STMG programme in force this year.
+3. Whether maths expertes keeps the 2019 text beyond this year.
+4. Grid and border tokens for both themes.
+
+## 10. Skills stored in this repository
+
+Location: `.claude/skills/` (Claude Code loads this folder automatically; other agents should read the files directly).
+- `slides-interactive-math/`: base skill. `SKILL.md`, `assets/template.html`, `assets/example_trinome.html`, `references/engine-patterns.md`, `references/hyperframes-workflow.md`, `scripts/lint_slide.py`.
+- `slides-interactive-3d-math/`: add-on. Every canvas draggable; true rotatable 3D for 3D objects. Always read the base skill first.
+
+Notes:
+- Copied unchanged from the owner's account on 12 October 2026, with one fix: the add-on referred to the base skill as `math-interactive-slides`; it now says `slides-interactive-math`.
+- No identifying information was found in either skill (scan for names, school, organisation, email, Drive links).
+- Run `python3 -I .claude/skills/slides-interactive-math/scripts/lint_slide.py <slide.html>` on every slide. Both reference slides (trinôme, déterminant et colinéarité) pass this lint.
+- The shared engine (section 5) should be built from `references/engine-patterns.md` and the two reference slides; keep the skills in step with it when it changes.
+
+## 11. Suggested first milestone
 
 Pilot chapter: quadratic trinôme (Première spécialité), since the slide exists. Produce the full sequence, compile it, test it, have it audited and reviewed. Use the result as the gold standard for the template in section 4, then scale in the order of section 3.

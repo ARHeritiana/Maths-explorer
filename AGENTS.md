@@ -12,3 +12,7 @@ earlier rules requiring French and English editions of every resource and a
 footer AI-content notice are withdrawn: follow the language policy and the
 no-visible-AI-notice rule in the brief. Preserve equations and illustrations
 when translating PDFs.
+
+Interactive maths slides: read `.claude/skills/slides-interactive-math/SKILL.md`
+and then `.claude/skills/slides-interactive-3d-math/SKILL.md` before building
+or changing any slide.
