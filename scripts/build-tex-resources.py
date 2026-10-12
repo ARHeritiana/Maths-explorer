@@ -65,12 +65,18 @@ KIND_ORDER = ['chapter', 'teacher', 'activities', 'notes', 'practice', 'exercise
 def tidy(s): return re.sub(r'\s+', ' ', s).strip()
 
 
-def teacher_entry(sd, td, index):
-    """Index of the teacher-book level-1 bookmark titled like the student bookmark `index`. Past the student book's
-    last bookmark, the end is the teacher bookmark after that one (teacher-only annexes follow it)."""
+# Teacher-only annexes after the last student bookmark: the last teacher range ends where the first of them starts.
+TEACHER_ANNEXES = {'premiere': ['Matrice de couverture du programme', 'Curriculum coverage matrix'],
+                   'terminale': []}
+
+
+def teacher_entry(sd, td, index, course=None):
+    """Index of the teacher-book level-1 bookmark titled like the student bookmark `index`. Past the student book's last
+    bookmark, the end is the first teacher-only annex (TEACHER_ANNEXES) or the end of the teacher book."""
     st = [tidy(t) for l, t, p in sd.get_toc() if l == 1]; tt = [tidy(t) for l, t, p in td.get_toc() if l == 1]
-    if index == len(st): return teacher_entry(sd, td, index - 1) + 1
-    if st[index] not in tt: sys.exit(f'Teacher book has no bookmark titled {st[index]!r}')
+    if index == len(st):
+        return next((i for i, t in enumerate(tt) if t in TEACHER_ANNEXES.get(course, [])), len(tt))
+    if tt.count(st[index]) != 1: sys.exit(f'Teacher book has {tt.count(st[index])} bookmarks titled {st[index]!r}, expected one')
     return tt.index(st[index])
 
 
@@ -111,7 +117,7 @@ def chapter_ranges(course, sd, td, lang, count):
         return [(a[0], a[1], b[0], b[1]) for a, b in zip(*out)][:count]
     st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
     fs = FIRST_CHAPTER_ENTRY[course]
-    return [(st[fs + k], st[fs + k + 1], tt[teacher_entry(sd, td, fs + k)], tt[teacher_entry(sd, td, fs + k + 1)]) for k in range(count)]
+    return [(st[fs + k], st[fs + k + 1], tt[teacher_entry(sd, td, fs + k, course)], tt[teacher_entry(sd, td, fs + k + 1, course)]) for k in range(count)]
 
 
 def find(doc, start, end, pattern):
@@ -308,7 +314,7 @@ def main():
                 placed[number] = rec
         if a.appendices and not reduced:
             for name, (s_a, s_b), bank in APPENDICES[course]:
-                t_a, t_b = teacher_entry(sd, td, s_a), teacher_entry(sd, td, s_b)
+                t_a, t_b = teacher_entry(sd, td, s_a, course), teacher_entry(sd, td, s_b, course)
                 if bank:
                     bk = next(r for r in catalog['resources'] if r['id'] == f'{course}-revision-{bank}')
                     ttl = bk['title'][1 if lang == 'en' else 0]

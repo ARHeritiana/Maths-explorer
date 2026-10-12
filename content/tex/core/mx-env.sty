@@ -173,12 +173,14 @@
 % \mxcounted{key} as the last line of an enumerate records its number of items; \mxcount{key} prints that number as a
 % word in the document language (cinq / five). Adding or removing a question updates the sentence automatically.
 \newcommand{\mxcounted}[1]{\protected@edef\@currentlabel{\arabic{enumi}}\label{\mxunitid:count:#1}}
-\newcommand{\mxcount}[1]{\mxlabelof{count\getrefnumber{\mxunitid:count:#1}}}
+% Words exist up to twelve; a larger count is printed in digits (no silent blank).
+\newcommand{\mx@countword}[2]{\ifcsname mx@label@#1#2\endcsname\mxlabelof{#1#2}\else#2\fi}
+\newcommand{\mxcount}[1]{\mx@countword{count}{\getrefnumber{\mxunitid:count:#1}}}
 % \mxCount{key}: the same count, capitalised, at the start of a sentence (Cinq / Five).
-\newcommand{\mxCount}[1]{\mxlabelof{Fcount\getrefnumber{\mxunitid:count:#1}}}
+\newcommand{\mxCount}[1]{\mx@countword{Fcount}{\getrefnumber{\mxunitid:count:#1}}}
 % \mxtally{key} before each counted element (an exercise of a paper) adds one to that tally; \mxTallied{key} prints the
 % final tally as a capitalised word (Quatre / Four), so a header such as "Quatre exercices indépendants" follows the paper.
 % The last value is written to the .aux file; the first compilation prints ?? and latexmk's second pass resolves it.
 \newcommand{\mxtally}[1]{\@ifundefined{c@mxt@\mxunitid:#1}{\newcounter{mxt@\mxunitid:#1}}{}\stepcounter{mxt@\mxunitid:#1}%
   \immediate\write\@auxout{\string\global\string\@namedef{mx@tally@\mxunitid:#1}{\arabic{mxt@\mxunitid:#1}}}}
-\newcommand{\mxTallied}[1]{\mxlabelof{Count\@ifundefined{mx@tally@\mxunitid:#1}{0}{\@nameuse{mx@tally@\mxunitid:#1}}}}
+\newcommand{\mxTallied}[1]{\mx@countword{Count}{\@ifundefined{mx@tally@\mxunitid:#1}{0}{\@nameuse{mx@tally@\mxunitid:#1}}}}

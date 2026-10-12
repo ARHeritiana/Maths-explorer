@@ -64,6 +64,11 @@ def main():
             print(f'{rel}: numbers in maths differ ({x[:6]})')
         if figures(a) != figures(b):
             bad += 1; print(f'{rel}: figure code differs')
+        # French instruction words left in the English edition (outside maths and commands).
+        prose = re.sub(r'\$[^$]*\$|\\[a-zA-Z]+', '', b)
+        left = re.findall(r'\b(Calculer|Déterminer|Résoudre|Démontrer|Justifier|Vérifier|Exprimer|Étudier|Dresser|En déduire|est-elle|est-il)\b', prose)
+        if left:
+            bad += 1; print(f'{rel}: French left in the English text: {sorted(set(left))}')
         # A doubled mark ("increasing??") is a translation slip unless the French has it too.
         for mark in ('??', '!!', ',,', ';;', '::'):
             if b.count(mark) > a.count(mark):

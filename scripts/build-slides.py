@@ -264,8 +264,10 @@ def resolve_counts(src, lang):
         return n
     counts = {m.group(1): items(m.start()) for m in re.finditer(r'\\mxcounted\{([^}]*)\}', src)}
     tallies = {k: len(re.findall(r'\\mxtally\{' + re.escape(k) + r'\}', src)) for k in re.findall(r'\\mxTallied\{([^}]*)\}', src)}
-    word = lambda n, cap=False, masc=False: (lambda w: w[:1].upper() + w[1:] if cap else w)(
-        (MASC_FR.get(n) if masc and lang == 'fr' else None) or COUNT_WORDS[lang][n] if n < len(COUNT_WORDS[lang]) else str(n))
+    def word(n, cap=False, masc=False):   # as mx-env.sty: ?? for a key without \mxcounted, digits above twelve
+        if not n: return '??'
+        w = (MASC_FR.get(n) if masc and lang == 'fr' else None) or (COUNT_WORDS[lang][n] if n < len(COUNT_WORDS[lang]) else str(n))
+        return w[:1].upper() + w[1:] if cap else w
     src = re.sub(r'\\mxcount\{([^}]*)\}', lambda m: word(counts.get(m.group(1), 0)), src)
     src = re.sub(r'\\mxCount\{([^}]*)\}', lambda m: word(counts.get(m.group(1), 0), cap=True), src)
     src = re.sub(r'\\mxTallied\{([^}]*)\}', lambda m: word(tallies.get(m.group(1), 0), cap=True, masc=True), src)
@@ -286,17 +288,18 @@ def box_slides(kind, unit, body, h):
     continued on further slides, each with its own answers."""
     answers = [text2html(x) for x in BLANK.findall(body)]
     html = text2html(BLANK.sub('…', body))
-    parts = re.split(r'(<li>)', html)
-    if '<ol>' not in html or html.count('<li>') <= MAX_ITEMS:
+    # Split only one flat numbered list: nested or several lists stay on one slide rather than being cut mid-list.
+    if html.count('<ol>') != 1 or '<ul>' in html or html.count('<li>') <= MAX_ITEMS:
         return [slide(kind, unit, html, inline_answers(answers, 1) if answers else None, h)]
     head, rest = html.split('<ol>', 1); lis, tail = rest.rsplit('</ol>', 1)
     items = [x for x in lis.split('<li>') if x.strip()]
+    paired = len(answers) == len(items)   # one blank per item: each part reveals its own answers
     out = []
     for k in range(0, len(items), MAX_ITEMS):
-        chunk = items[k:k + MAX_ITEMS]
-        body_k = (head if k == 0 else '') + f'<ol start="{k + 1}">' + ''.join('<li>' + x for x in chunk) + '</ol>' + (tail if k + MAX_ITEMS >= len(items) else '')
-        ans_k = answers[k:k + MAX_ITEMS] if len(answers) == len(items) else []
-        out.append(slide(kind, unit, body_k, inline_answers(ans_k, k + 1) if ans_k else None, h))
+        last = k + MAX_ITEMS >= len(items)
+        body_k = (head if k == 0 else '') + f'<ol start="{k + 1}">' + ''.join('<li>' + x for x in items[k:k + MAX_ITEMS]) + '</ol>' + (tail if last else '')
+        ans_k = inline_answers(answers[k:k + MAX_ITEMS], k + 1) if paired else (inline_answers(answers, 1) if last and answers else None)
+        out.append(slide(kind, unit, body_k, ans_k or None, h))
     return out
 
 

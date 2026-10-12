@@ -38,6 +38,19 @@ class Prose(unittest.TestCase):
         with self.assertRaises(ValueError): E.prose('$x')
 
 
+    def test_tuples_are_points_not_products_intervals_or_indices(self):
+        self.assertEqual(E.math('(2,7)', set()), r'\pt{2;7}')
+        self.assertEqual(E.math('A(2,1)', set()), r'A\pt{2;1}')
+        for kept in ('2(3,4)', 'x∈(0,1)', 'u_(n,k)'):
+            self.assertEqual(E.math(kept, set()), kept)
+        self.assertEqual(E.math('C(8,2)', set()), r'\binom{8}{2}')
+
+    def test_web_text_uses_the_same_rule(self):
+        fr, en = E.web_tuples('$(1,5−1,4)/2=0,05$ et $(2,7)$', '$(1.5−1.4)/2=0.05$ and $(2,7)$')
+        self.assertEqual(fr, '$(1,5−1,4)/2=0,05$ et $(2 ; 7)$')
+        self.assertEqual(en, '$(1.5−1.4)/2=0.05$ and $(2, 7)$')
+
+
 class Units(unittest.TestCase):
     def test_every_workshop_aligns(self):
         """French and English of every resource carry the same maths (the twin tool would refuse the pair)."""

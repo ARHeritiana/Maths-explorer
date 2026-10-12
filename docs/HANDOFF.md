@@ -61,16 +61,17 @@ Chromium at `/opt/pw-browsers`.
   differ only in their random /ID keep the committed copy (no binary churn).
 
 ## Next steps (in order)
-1. B4/B5: done (12 October). Optional: precompiled format, figure externalisation (measure first; the class
-   preamble loads in about 1.3 s).
-2. Run `/simplify` and `/code-review` over Phase B, fix findings.
-3. Phase C (site and design system): audit every route at 360/768/1280 px in FR and EN (viewed, not only scripted),
-   then tokens, merged CSS, `app.js` split into route modules, catalogue view from the manifest. See `docs/REDESIGN_PLAN.md`.
-   The lab and canvas defects listed here earlier were fixed on 12 October (see the end of this document).
-4. Phase D (content integrity): curriculum map `content/data/curriculum.json`, English proof-read through the tables
-   (status `reviewed`; 16 of about 10,800 segments are reviewed), resolve the [VERIFY] list below.
-5. Final report to the owner: what changed, how it was verified (viewed vs scripted), what was not done, [VERIFY] flags,
-   before/after numbers (baseline in `docs/REPO_AUDIT.md`).
+1. English proof-read (largest quality gap): 16 of about 10,800 segments have status `reviewed`. Work course by course,
+   starting with the owner's course; edit `<id>.en.json`, then `twin gen`. Ask the owner before any multi-agent batch.
+2. Phase C (site): merge the six stylesheets onto `site/styles/tokens.css`, split `site/js/app.js` into route modules,
+   write `docs/DESIGN_SYSTEM.md`, catalogue view from the manifest, teacher mode. Re-view every route at 360/768/1280 px
+   in FR and EN after each step (`scratchpad` screenshot script pattern: Playwright, full page).
+3. Phase D: curriculum map `content/data/curriculum.json` (chapter to BO entries, Première BO n°14 of 2 April 2026,
+   Terminale STMG BO spécial n°8 of 25 July 2019) and a check that flags content outside it (`beyond` boxes excepted).
+4. Final report to the owner: what changed, how it was verified (viewed vs scripted), what was not done, before/after
+   numbers (baseline in `docs/REPO_AUDIT.md`).
+Done on 12 October: B4/B5 native frames; `/code-review` of the session's range (7d48634..HEAD), all findings fixed.
+Optional later: precompiled format, figure externalisation (measure first).
 
 ## Open questions for the owner ([VERIFY])
 - The one-page-per-resource rule grew Première to 134/223 and Terminale to 123/289 pages; Première and Terminale covers
@@ -98,6 +99,13 @@ Terminale and Première paper's points. Defects found on the way and fixed: the 
 enrichment units is now $\binom{n}{k}$; $\mathcal B(10,\num{0,3})$ printed "B(10, 0,3)" in French; the English STMG c02
 "increasing??" (a guard in `tests/twin_parity.py` now catches doubled marks); slides printed count keys and showed
 teacher answers (`\mxblank`) in plain view; long lists now continue on a second slide with their answers on demand.
+
+Code review of the 12 October work (range 7d48634..HEAD, all findings fixed): the web editions now use the PDFs' tuple
+rule (`mxbuild.enrichment.tuples` / `web_tuples`; the bisection page showed "(1 ; 5−1 ; 4)"); products, intervals and
+subscripts are no longer taken for tuples; counts above twelve print in digits (the committed STMG 08 PDF printed
+"aux questions" with no number); teacher ranges end at explicit teacher-only annexes and duplicate titles fail;
+slides print ?? for a missing count key and split only flat lists; English STMG c02 had four untranslated "Calculer"
+(the twin check now rejects French instruction words in English); `tests/count_claims.py` reports instead of crashing.
 
 ## Working style that worked
 Change sources, then prove it: rebuild, compare French text with the previous PDFs (token comparison ignoring running

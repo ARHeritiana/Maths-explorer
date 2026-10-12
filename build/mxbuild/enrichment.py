@@ -76,16 +76,38 @@ def _fractions(s):
     return s
 
 
-def _tuple(m):
-    """(a,b) or (a,b,c) as \\pt{a;b}: commas inside braces (\\num{1,5}) belong to a number, not to the tuple."""
-    parts, depth, cur = [], 0, ''
-    for c in m[1]:
-        depth += (c == '{') - (c == '}')
-        if c == ',' and depth == 0: parts.append(cur); cur = ''
-        else: cur += c
-    parts.append(cur)
-    if not 2 <= len(parts) <= 3 or not all(p.strip() for p in parts): return m[0]
-    return r'\pt{' + ';'.join(p.strip() for p in parts) + '}'
+TUPLE = re.compile(r'(?<![A-Za-z\\])([A-Z]?)\(([^()$;]+)\)')
+
+
+def tuples(s, sep, protected=()):
+    """Rewrite (a,b) and (a,b,c) inside one maths span. sep(parts) gives the replacement. A tuple is a point
+    (A(2,1)) or a free-standing pair; a group after a digit, a subscript or superscript mark, a closing bracket or
+    a membership sign is a product, an index or an interval and is left alone. Commas inside braces (\num{1,5})
+    and the decimal tokens in protected belong to numbers, not to the tuple."""
+    def one(m):
+        point, inner = m[1], m[2]
+        prev = s[:m.start()].rstrip()
+        if not point and prev and (prev[-1].isdigit() or prev[-1] in '_^)]' or prev.endswith(('∈', '\\in'))): return m[0]
+        hidden = inner
+        for k, d in enumerate(sorted(protected, key=len, reverse=True)): hidden = re.sub(r'(?<![\d.,])' + re.escape(d) + r'(?![\d.,]?\d)', f'\x00{k}\x00', hidden)
+        parts, depth, cur = [], 0, ''
+        for c in hidden:
+            depth += (c == '{') - (c == '}')
+            if c == ',' and depth == 0: parts.append(cur); cur = ''
+            else: cur += c
+        parts.append(cur)
+        if not 2 <= len(parts) <= 3 or not all(p.strip() for p in parts): return m[0]
+        restore = lambda t: re.sub('\x00(\\d+)\x00', lambda r: sorted(protected, key=len, reverse=True)[int(r[1])], t)
+        return point + sep([restore(p.strip()) for p in parts])
+    return TUPLE.sub(one, s)
+
+
+def web_tuples(fr, en):
+    """The web editions print the JSON text: (a ; b) in French and (a, b) in English, decided exactly as for the
+    PDFs (same tuple rule, decimals recognised by comparing the two languages)."""
+    dec = decimals(fr, en)
+    span = lambda text, sep: re.sub(r'\$[^$]*\$', lambda m: tuples(m[0], sep, dec), text)
+    return span(fr, lambda p: '(' + ' ; '.join(p) + ')'), span(en, lambda p: '(' + ', '.join(p) + ')')
 
 
 def math(s, decimal):
@@ -102,8 +124,7 @@ def math(s, decimal):
     # Once decimals are \num, a comma left between parentheses separates the entries of a pair or triple: C(n,k) is a
     # binomial coefficient, other tuples (a point, a solution pair) are written (a ; b) in French and (a, b) in English.
     s = re.sub(r'(?<![A-Za-z\\])C\(([^(),]+),([^(),]+)\)', r'\\binom{\1}{\2}', s)
-    s = re.sub(r'(?<![a-zA-Z\\])(?<![a-z][A-Z])\(([^()$;]+)\)', _tuple, s)
-    s = re.sub(r'(?<![A-Za-z\\])([A-Z])\(([^()$;]+)\)', lambda m: m[1] + _tuple(re.match(r'\((.*)\)', m[0][1:])), s)   # A(2,1): a point
+    s = tuples(s, lambda p: r'\pt{' + ';'.join(p) + '}')
     return notation.rewrite_maths(_fractions(s), 'fr')   # intervals [a ; b], points (a;b), sets {a;b}: notation commands
 
 

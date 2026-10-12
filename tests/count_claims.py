@@ -15,7 +15,17 @@ problems = []
 
 
 def number(token):
-    return int(token) if token.isdigit() else WORDS[token.lower()]
+    if token.isdigit(): return int(token)
+    if token.lower() not in WORDS:
+        problems.append(f'number word {token!r} unknown to tests/count_claims.py'); return -1
+    return WORDS[token.lower()]
+
+
+def found(pattern, text, what):
+    """First group of pattern in text, or None with a problem (never a crash that hides the other checks)."""
+    m = re.search(pattern, text)
+    if not m: problems.append(f'{what}: pattern {pattern!r} not found; update tests/count_claims.py')
+    return m.group(1) if m else None
 
 
 def read(rel):
@@ -73,12 +83,14 @@ if m:
     for key, body in papers:
         expect(f'Terminale paper {key} exercises', number(m.group(5)), len(re.findall(r'\\subsection\*\{Exercice', body)))
 for key, body in papers:
-    total = int(re.search(r'Note sur (\d+)', body).group(1)); found = 0
+    total = found(r'Note sur (\d+)', body, f'Terminale paper {key} total'); summed = 0
     for k, ex in enumerate(re.split(r'\\subsection\*\{Exercice', body)[1:], 1):
-        stated = points(re.search(r'\\hfill ((?:\\num\{)?\d+(?:,\d+)?\}?) points?\}', ex).group(1)); found += stated
-        expect(f'Terminale paper {key} exercise {k} points', stated,
+        stated = found(r'\\hfill ((?:\\num\{)?\d+(?:,\d+)?\}?) points?\}', ex, f'Terminale paper {key} exercise {k} points')
+        if stated is None: continue
+        summed += points(stated)
+        expect(f'Terminale paper {key} exercise {k} points', points(stated),
                sum(points(p) for p in re.findall(r'\\textit\{\(((?:\\num\{)?\d+(?:,\d+)?\}?) pts?\)\}', ex)))
-    expect(f'Terminale paper {key} total', total, found)
+    if total is not None: expect(f'Terminale paper {key} total', int(total), summed)
 
 # Première: the yearly papers (twelve questions at 0.5 point, then three exercises worth 14 points).
 m = claim('premiere/front.fr.tex', r'Chaque chapitre contient (\w+) QCM de (\w+) questions\. Les sujets annuels utilisent (\w+) questions à '
@@ -100,7 +112,9 @@ if m:
         expect(f'{f.name} part 2 points', int(m.group(6)), sum(points(p) for p in exercises))
         expect(f'{f.name} part 2 heading', int(part2.group(1)), sum(points(p) for p in exercises))
         for k, ex in enumerate(re.split(r'\\subsection\*\{Exercice \d+ -- ', s[part2.end():])[1:], 1):
-            stated = points(re.search(r'\((\d+(?:,\d+)?) points?\)\}', ex).group(1))
+            stated = found(r'\((\d+(?:,\d+)?) points?\)\}', ex, f'{f.name} exercise {k} points')
+            if stated is None: continue
+            stated = points(stated)
             qp = re.findall(r'\\hfill\s*\(((?:\\num\{)?\d+(?:,\d+)?\}?) pts?\)', ex)
             if qp: expect(f'{f.name} exercise {k} points', stated, sum(points(p) for p in qp))
 m = claim('premiere/automatismes.fr.tex', r'(?m)^(\w+) questions par séance')

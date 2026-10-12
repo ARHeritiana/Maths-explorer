@@ -6,24 +6,14 @@ import fitz
 ROOT=Path(__file__).resolve().parents[1];DIST=ROOT/'dist';OUT=DIST/'resources/enrichment';OUT.mkdir(exist_ok=True)
 document_theme=(ROOT/'site/resources/document-theme.css').read_text()
 packs=json.loads((ROOT/'content/data/enrichment.json').read_text())
-import re
-def french_tuples(v):
- """Web text writes pairs and triples as the PDFs do, (a ; b) in French and (a, b) in English: inside maths, a comma between parentheses is a
- separator unless the English twin writes the same token with a decimal point (mxbuild.enrichment.decimals)."""
- if isinstance(v,dict):return {k:french_tuples(x) for k,x in v.items()}
- if isinstance(v,list) and len(v)==2 and all(isinstance(x,str) for x in v):
-  dec=set(re.findall(r'(?<!\d)\d+,\d+(?!\d)',v[0]))&{x.replace('.',',') for x in re.findall(r'(?<!\d)\d+\.\d+(?!\d)',v[1])}
-  def tup(sep,skip):
-   def f(m):
-    inner=m.group(1);parts=inner.split(',')
-    if inner.strip() in skip or not 2<=len(parts)<=3:return m.group(0)
-    return '('+sep.join(x.strip() for x in parts)+')'
-   return lambda m:re.sub(r'(?<![A-Za-z])\(([^()$]+)\)',f,m.group(0))
-  en_dec={x.replace(',','.') for x in dec}
-  return [re.sub(r'\$[^$]*\$',tup(' ; ',dec),v[0]),re.sub(r'\$[^$]*\$',tup(', ',en_dec),v[1])]
- if isinstance(v,list):return [french_tuples(x) for x in v]
+sys.path.insert(0,str(ROOT/'build'))
+from mxbuild.enrichment import web_tuples   # the PDFs' tuple rule, so the web text and the PDFs agree
+def localise(v):
+ if isinstance(v,dict):return {k:localise(x) for k,x in v.items()}
+ if isinstance(v,list) and len(v)==2 and all(isinstance(x,str) for x in v):return list(web_tuples(*v))
+ if isinstance(v,list):return [localise(x) for x in v]
  return v
-packs=[french_tuples(p) for p in packs]
+packs=[localise(p) for p in packs]
 labels={'notes':['Leçon et méthode','Lesson and method'],'exercises':['Exercices progressifs','Progressive exercises'],'problems':['Problème de synthèse','Synthesis problem'],'solutions':['Solutions détaillées','Worked solutions']}
 notice=['Certains contenus et traductions sont générés par IA ; les vérifications humaines n’ont pas toujours été menées.','Some content and translations are AI-generated; human checks have not always been carried out.']
 esc=html.escape

@@ -370,21 +370,21 @@ export const enrichment = [
     ],
     "lesson": [
       [
-        "Un chemin de (0 ; 0) à (a ; b) n’utilisant que des pas vers la droite ou vers le haut comporte a + b pas. Choisir les positions des a pas horizontaux donne C(a+b,a) chemins.",
-        "A path from (0, 0) to (a, b), using only rightward or upward steps, has a + b steps. Choosing the positions of the a horizontal steps gives C(a+b,a) paths."
+        "Un chemin de (0 ; 0) à (a ; b) n’utilisant que des pas vers la droite ou vers le haut comporte a + b pas. Choisir les positions des a pas horizontaux donne C(a+b ; a) chemins.",
+        "A path from (0, 0) to (a, b), using only rightward or upward steps, has a + b steps. Choosing the positions of the a horizontal steps gives C(a+b, a) paths."
       ],
       [
-        "Pour 0 ≤ k ≤ n, C(n,k) = n!/[k!(n−k)!]. L’ordre des objets choisis ne compte pas. La symétrie C(n,k) = C(n,n−k) revient à choisir les objets retenus ou ceux exclus.",
-        "For 0 ≤ k ≤ n, C(n,k) = n!/[k!(n−k)!]. The order of the chosen objects does not matter. Symmetry C(n,k) = C(n,n−k) corresponds to choosing included or excluded objects."
+        "Pour 0 ≤ k ≤ n, C(n ; k) = n!/[k!(n−k)!]. L’ordre des objets choisis ne compte pas. La symétrie C(n ; k) = C(n ; n−k) revient à choisir les objets retenus ou ceux exclus.",
+        "For 0 ≤ k ≤ n, C(n, k) = n!/[k!(n−k)!]. The order of the chosen objects does not matter. Symmetry C(n, k) = C(n, n−k) corresponds to choosing included or excluded objects."
       ],
       [
-        "La relation de Pascal C(n,k) = C(n−1,k−1) + C(n−1,k) partage les choix selon la présence d’un objet fixé. On peut aussi classer les chemins selon leur dernier pas.",
-        "Pascal’s identity C(n,k) = C(n−1,k−1) + C(n−1,k) splits choices by whether one fixed object is included. Paths can also be classified by their last step."
+        "La relation de Pascal C(n ; k) = C(n−1 ; k−1) + C(n−1 ; k) partage les choix selon la présence d’un objet fixé. On peut aussi classer les chemins selon leur dernier pas.",
+        "Pascal’s identity C(n, k) = C(n−1, k−1) + C(n−1, k) splits choices by whether one fixed object is included. Paths can also be classified by their last step."
       ]
     ],
     "worked": [
-      "De (0 ; 0) à (3 ; 2), il y a C(5,3) = 10 chemins. Pour passer par (1 ; 1), il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : 2 × 3 = 6 chemins.",
-      "From (0, 0) to (3, 2), there are C(5,3) = 10 paths. To pass through (1, 1), choose one of two paths to that point and one of three paths onward: 2 × 3 = 6 paths."
+      "De (0 ; 0) à (3 ; 2), il y a C(5 ; 3) = 10 chemins. Pour passer par (1 ; 1), il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : 2 × 3 = 6 chemins.",
+      "From (0, 0) to (3, 2), there are C(5, 3) = 10 paths. To pass through (1, 1), choose one of two paths to that point and one of three paths onward: 2 × 3 = 6 paths."
     ],
     "activity": [
       "Dessiner un petit quadrillage et écrire dans chaque sommet le nombre de chemins qui y arrivent. Additionner les valeurs du voisin de gauche et du voisin du bas.",
@@ -393,12 +393,12 @@ export const enrichment = [
     "exercises": [
       {
         "q": [
-          "Calculer C(8,2) et expliquer pourquoi il vaut C(8,6).",
-          "Find C(8,2) and explain why it equals C(8,6)."
+          "Calculer C(8 ; 2) et expliquer pourquoi il vaut C(8 ; 6).",
+          "Find C(8, 2) and explain why it equals C(8, 6)."
         ],
         "a": [
-          "C(8,2) = 8 × 7 / 2 = 28. Choisir deux exclus équivaut à choisir les six retenus.",
-          "C(8,2) = 8 × 7 / 2 = 28. Choosing two excluded objects is equivalent to choosing six included objects."
+          "C(8 ; 2) = 8 × 7 / 2 = 28. Choisir deux exclus équivaut à choisir les six retenus.",
+          "C(8, 2) = 8 × 7 / 2 = 28. Choosing two excluded objects is equivalent to choosing six included objects."
         ]
       },
       {
@@ -407,8 +407,8 @@ export const enrichment = [
           "Count monotone paths from (0, 0) to (4, 3)."
         ],
         "a": [
-          "Il faut quatre pas à droite parmi sept : C(7,4) = 35.",
-          "Choose four rightward steps among seven: C(7,4) = 35."
+          "Il faut quatre pas à droite parmi sept : C(7 ; 4) = 35.",
+          "Choose four rightward steps among seven: C(7, 4) = 35."
         ]
       },
       {
@@ -417,8 +417,8 @@ export const enrichment = [
           "How many of these paths pass through (2, 1)?"
         ],
         "a": [
-          "C(3,2) × C(4,2) = 3 × 6 = 18.",
-          "C(3,2) × C(4,2) = 3 × 6 = 18."
+          "C(3 ; 2) × C(4 ; 2) = 3 × 6 = 18.",
+          "C(3, 2) × C(4, 2) = 3 × 6 = 18."
         ]
       },
       {
@@ -427,18 +427,18 @@ export const enrichment = [
           "Choose a team of three from eight people. Two specified people cannot be together. How many teams remain possible?"
         ],
         "a": [
-          "Il y a C(8,3) = 56 équipes. Celles contenant les deux personnes interdites sont au nombre de 6. Il reste 50 équipes.",
-          "There are C(8,3) = 56 teams. Exactly 6 contain both specified people. Therefore 50 teams remain."
+          "Il y a C(8 ; 3) = 56 équipes. Celles contenant les deux personnes interdites sont au nombre de 6. Il reste 50 équipes.",
+          "There are C(8, 3) = 56 teams. Exactly 6 contain both specified people. Therefore 50 teams remain."
         ]
       }
     ],
     "problem": [
-      "Compter les chemins monotones de (0 ; 0) à (5 ; 4) qui évitent A(2,1) et B(3,3). Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.",
-      "Count monotone paths from (0, 0) to (5, 4) that avoid A(2,1) and B(3,3). Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back."
+      "Compter les chemins monotones de (0 ; 0) à (5 ; 4) qui évitent A(2 ; 1) et B(3 ; 3). Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.",
+      "Count monotone paths from (0, 0) to (5, 4) that avoid A(2, 1) and B(3, 3). Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back."
     ],
     "solution": [
-      "Total : C(9,5) = 126. Par A : C(3,2)C(6,3) = 60. Par B : C(6,3)C(3,2) = 60. Par les deux : 3 × C(3,1) × 3 = 27. Les chemins passant par les deux ont été soustraits deux fois ; les rajouter une fois donne 126 − 60 − 60 + 27 = 33.",
-      "Total: C(9,5) = 126. Through A: C(3,2)C(6,3) = 60. Through B: C(6,3)C(3,2) = 60. Through both: 3 × C(3,1) × 3 = 27. Paths through both were subtracted twice; adding them back once gives 126 − 60 − 60 + 27 = 33."
+      "Total : C(9 ; 5) = 126. Par A : C(3 ; 2)C(6 ; 3) = 60. Par B : C(6 ; 3)C(3 ; 2) = 60. Par les deux : 3 × C(3 ; 1) × 3 = 27. Les chemins passant par les deux ont été soustraits deux fois ; les rajouter une fois donne 126 − 60 − 60 + 27 = 33.",
+      "Total: C(9, 5) = 126. Through A: C(3, 2)C(6, 3) = 60. Through B: C(6, 3)C(3, 2) = 60. Through both: 3 × C(3, 1) × 3 = 27. Paths through both were subtracted twice; adding them back once gives 126 − 60 − 60 + 27 = 33."
     ]
   },
   {
@@ -1066,7 +1066,7 @@ export const enrichment = [
           "A root lies in [1.4 ; 1.5]. What maximum error is guaranteed by midpoint 1.45?"
         ],
         "a": [
-          "La demi-largeur vaut (1 ; 5−1 ; 4)/2=0,05.",
+          "La demi-largeur vaut (1,5−1,4)/2=0,05.",
           "The half-width is (1.5−1.4)/2=0.05."
         ]
       }
