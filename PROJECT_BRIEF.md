@@ -1,6 +1,8 @@
 # Maths Explorer v2: project brief
 
-Status: DRAFT v0.1 for owner review. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
+Status: v0.2, owner decisions of 12 October 2026 incorporated. Items tagged [OPEN] are undecided. Items tagged [VERIFY] must be checked against an official source before use. Nothing in this brief is a confirmed fact about an official programme unless it is cited.
+
+Precedence: this brief supersedes every earlier instruction in the repository (AGENTS.md, README, docs/). Where they conflict, follow this brief. Only the owner can change it.
 
 ## 0. Kickoff prompt (paste into any AI agent)
 
@@ -25,9 +27,10 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 |---|---|
 | Anonymity | No owner name, employer, school or student names in HTML, PDF text, PDF/XMP metadata, LaTeX `\author`, file names or alt text. Existing PDFs have NOT yet been scanned for metadata: do this first. |
 | No tutoring link | The site is not tied to private tutoring. A separate site handles that, later. |
-| No personal-storage links | No Google Drive or other personal-space URLs anywhere (existing AGENTS.md rule, keep). |
+| No personal-storage links | No Google Drive or other personal-space URLs anywhere (carried over from AGENTS.md; this rule stays). |
 | LaTeX sources | Every PDF ships with its `.tex`. Imported PDFs without sources (about 574 in the current repo) are regenerated or replaced, in priority order. |
-| Hidden area | Status ledger, AI audit notes and drafts live outside the deploy folder (`dist/`). Only finished files are copied in. |
+| Hidden area | Status ledger, AI audit notes, provenance records and drafts live outside the deploy folder (`dist/`). Only finished files are copied in. |
+| No visible AI notice | No AI-content notice or review-status label anywhere on the published site, in resource cards or in PDFs (owner decision; this removes the old footer-notice rule). Provenance and review status are kept in the private ledger only. |
 | No accounts, no tracking | No analytics, no student tracking tools for now. |
 | Access control | None for now. Static hosting cannot truly gate files; a later code or paywall needs a server or paid platform [OPEN]. |
 | Owner review | The owner reviews slowly and before class use. AI output is draft until the owner marks it reviewed (private ledger). |
@@ -47,7 +50,7 @@ Programme versions (owner-stated, [VERIFY] with the official texts):
 - Malagasy programmes: available on the ministry website; the owner also holds copies [OPEN: obtain].
 - Flag out-of-programme content: [HORS PROGRAMME].
 
-Language at launch: French for French and Malagasy curricula; English for IB; bilingual for Olympiad. Full bilingual parity later. This changes the existing AGENTS.md rule (FR and EN for every resource); amend it only on the owner's confirmation [OPEN].
+Language at launch (decided): French for the French and Malagasy curricula; English for IB; bilingual (French and English) for Olympiad. Full bilingual parity can wait. This overrides the old rule that every resource exists in both languages.
 
 ## 4. The chapter unit (PROPOSED template, owner to correct)
 
@@ -61,7 +64,7 @@ No gold-standard chapter exists yet, so this is a proposal. Each chapter deliver
 
 Formats: PDF (from LaTeX, source included) and an interactive web edition. Corrections are separate files. Increase example complexity gradually. Student instructions: academic yet accessible, lycée level.
 
-LaTeX conventions (owner defaults): pdfLaTeX with mathpazo; automatic numbering with `\newcounter`; simple enumerations (1., 2., 3. or a., b., c.); `mdframed` for boxes; ask before adding a barème; student and teacher versions. The current repo builds with XeLaTeX [OPEN: keep XeLaTeX or move to pdfLaTeX].
+LaTeX conventions: build with XeLaTeX (owner decision), using the repository's shared style `content/latex/enrichment/explorer.sty` and its build script. The owner's usual pdfLaTeX and mathpazo default does not apply to this project unless the owner says otherwise. Other conventions stay: automatic numbering with `\newcounter`; simple enumerations (1., 2., 3. or a., b., c.); `mdframed` for boxes where compatible with the shared style; ask before adding a barème; student and teacher versions.
 
 ## 5. Interactive slide specification
 
@@ -75,7 +78,8 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 - Presets for the key cases (a>0, a<0, Δ>0, Δ=0, Δ<0). Alternative parameterisations when useful (a,b,c / a,α,β / a,x₁,x₂).
 - Colour meaning: primary object amber, positive/valid green, negative/warning red, secondary muted blue-grey.
 - A live computation panel must show the actual current numbers (for example the determinant ad − bc with signs).
-- Open design choice [OPEN]: keep each slide fully self-contained (portable, duplicated code) or move shared code into one engine file (easier maintenance). Recommendation: shared engine for the site, with a single-file export for portability.
+- Architecture (decided): one shared engine (rendering, steps, controls, dragging, sliders, themes); each chapter's slide supplies only its data and scenes. A single-file export for portability is optional, not required.
+- The two reference slides duplicate their engine code; the shared engine must reproduce their behaviour before they are migrated.
 
 ## 6. Design
 
@@ -91,6 +95,7 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 - Keep from the current repo: the `[French, English]` content model, route scheme, tests and CI, the 98 LaTeX workshop sources, curriculum research notes (re-verify).
 - Rebuild: the interactive layer around the slide engine; the TeX-less PDFs.
 - Before launch, size and load time need attention (the current `dist/` is about 156 MB, mostly PDFs).
+- Pending clean-up tasks from the decisions above: remove the visible AI footer notice from the site and the matching README text; scan all PDFs and web editions for identifying metadata; update the language handling so French-only and English-only resources are allowed; keep tests and CI passing after each change.
 
 ## 8. Production workflow and quality gates
 
@@ -107,12 +112,14 @@ Evaluate the `math-series-guardrails` skill as the pipeline (its description mat
 
 ## 9. Open decisions (summary)
 
-1. Footer notice about AI-assisted content: the existing rule keeps one; the owner's answer on visible status was "hidden, developers only" and did not settle the footer [OPEN].
-2. Language rule versus the existing AGENTS.md.
-3. XeLaTeX versus pdfLaTeX.
-4. Shared slide engine versus self-contained files.
-5. Rank of university basics; Charcoal-Yellow values; programme bulletin references; IB tracks (AA/AI, SL/HL).
-6. What counts as publishable at launch (only owner-reviewed content, or everything).
+Decided on 12 October 2026: no visible AI notice; language policy as in section 3; XeLaTeX; shared slide engine.
+
+Still open:
+1. Rank of university basics.
+2. Charcoal-Yellow colour values.
+3. Programme bulletin references (Eduscol/BO) and the Malagasy programme documents.
+4. IB tracks (AA/AI, SL/HL).
+5. What counts as publishable at launch: only owner-reviewed content, or everything (owner unsure; decide before launch).
 
 ## 10. Suggested first milestone
 
