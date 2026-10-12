@@ -1,5 +1,5 @@
 # Maths Explorer build. Python package: build/mxbuild (run with PYTHONPATH=build).
-#   make tex [COURSE=terminale]   compile course PDFs (cached per course), style, regenerate catalogue, publish sources
+#   make tex [COURSE=terminale]   compile native-framed course PDFs (cached), regenerate catalogue, publish sources
 #   make site                     copy site/ into dist/ (the served folder)
 #   make catalog                  regenerate catalog.json, resources-data.js, RESOURCE_PROVENANCE.json from the manifest
 #   make check [FAST=1]           every pre-push check

@@ -13,8 +13,8 @@ being converted chapter by chapter, --pilot-entry names a reduced twin entry
 pdfLaTeX runs without shell escape. Build products and logs go to build/tex,
 never to dist. Each compiled book is split like the previous imports: complete
 chapter, teacher chapter, and excerpts (activities, notes, exercises,
-assessment, corrections). Run scripts/style-resource-pdfs.py afterwards, then
-scripts/finalize-resources.py.
+assessment, corrections). The shared TeX class supplies the native frame. Run
+scripts/finalize-resources.py afterwards.
 """
 import argparse, re, sys
 from pathlib import Path
@@ -22,7 +22,7 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import books, catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
+from mxbuild import books, catalog as manifest_io, tex, pdf   # content/data/manifest.json is the source of truth
 MANIFEST = manifest_io.load()
 SRC = ROOT / 'content/tex/courses'
 BUILD = ROOT / 'build/out/tex'
@@ -114,8 +114,8 @@ def find(doc, start, end, pattern):
 
 def emit(target, chapter, kind, title, lang, doc, start, end, bounds=None, offset=0):
     """Write pages [start,end) of doc, or the clipped region bounds=((page,y),(page,y))."""
-    out = fitz.open()
     if bounds:
+        copies = []
         a, b = bounds
         for i in range(a[0], b[0] + 1):
             if i >= len(doc): continue
@@ -125,15 +125,13 @@ def emit(target, chapter, kind, title, lang, doc, start, end, bounds=None, offse
             if y1 - y0 < 12: continue
             clip = fitz.Rect(30, y0, r.width - 30, y1)
             if not page.get_text(clip=clip).strip(): continue
-            n = out.new_page(width=r.width, height=r.height)
             dest = fitz.Rect(30, 55, r.width - 30, 55 + clip.height)
-            if dest.y1 > r.height - 30: dest.y1 = r.height - 30
-            n.show_pdf_page(dest, doc, i, clip=clip)
-            n.insert_text((30, 23), 'Maths Explorer | ' + kind + ' | ' + chapter['id'], fontsize=9, color=(.1, .25, .3))
-            n.insert_text((30, r.height - 15), ('Page du livret ' if lang == 'fr' else 'Booklet page ') + str(offset + i + 1), fontsize=8)
-        if not len(out): sys.exit('Empty excerpt ' + str(target))
+            if dest.y1 > r.height - 38: dest.y1 = r.height - 38
+            copies.append((i, clip, dest))
+        if not copies: sys.exit('Empty excerpt ' + str(target))
+        out = pdf.assemble(doc, copies, lang)
     else:
-        out.insert_pdf(doc, from_page=start, to_page=end - 1)
+        out = pdf.excerpt(doc, start, end, lang)
         toc = [[1, t, p - start] for l, t, p in doc.get_toc() if start < p <= end]
         if toc: out.set_toc(toc)
     out.set_metadata({'title': title, 'author': 'Maths Explorer'})

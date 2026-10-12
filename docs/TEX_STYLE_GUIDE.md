@@ -15,7 +15,7 @@ breaks by `\mxneed{n}` (`\Needspace`), never by hand. Minimal compilable example
 | `mx-math.sty` | every maths macro that reads the same in both languages, once (`\R \N \Z \Q \D \C \vect \vi \vj \vk \norm \vc \deter \abs \dd \e \Card \E \V \pgcd \ppcm \degre \un \sci`); source of the slide player's MathJax table |
 | `mx-notation.sty` | every notation that differs between French and English (`\num \pc \intff \intoo \intfo \intof \ent \pt \ens`), printed per language |
 | `mx-figures.sty` | palette `mxink mxmint mxmintpale mxteacher mxwarn mxline mxmuted mxpaper`; TikZ libraries; styles `mxcurve mxaux mxpoint mxaxisline` (TikZ), `mxaxis mxgridaxis` (pgfplots) |
-| `mx-layout.sty` | geometry per layout, headings, running heads, `\mxneed{n}` |
+| `mx-layout.sty` | geometry, print palette, native header band and footer, headings, `\mxneed{n}` |
 | `mx-env.sty` | the environments below |
 | `mx-code.sty` | Python listings style, `\code{}` |
 
@@ -122,6 +122,21 @@ and become `<id>:name`. A course main is generated from the manifest; by hand it
 \mxinclude{courses/premiere/c05}
 \end{document}
 ```
+
+## Native document frame
+
+`mx-layout.sty` draws the dark header band, mint rule, language label and footer directly in TeX. The body remains
+Palatino through `mathpazo`; frame text uses the class's sans-serif family. Body geometry is unchanged. The native
+frame replaces the former secondary running heads and footers, so printed page counters refer to the downloaded
+file rather than to an enclosing book. The `slide-figs` layout remains bare and keeps its figure palette.
+
+`\mxdocumentpages` is recorded after the final shipout and settles on the normal auxiliary-file rerun. The
+pipeline also compiles `\mxframeonly{n}` on the same master class to obtain cached frames numbered 1 to n. When
+cutting an excerpt, `mxbuild.pdf` copies its selected body and the matching native frame, preserving page geometry,
+bookmarks and links to retained pages. No colour operators, equations, TikZ or code listings are rewritten.
+Do not add frame styling to units or reintroduce a Python PDF styler. The former document-style ledger is historical:
+`docs/history/DOCUMENT_STYLE_LEDGER-overlay.json`. The PDF parity check also verifies every local sheet counter,
+language label and PDF link policy.
 
 ## Languages
 

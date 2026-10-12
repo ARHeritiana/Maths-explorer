@@ -22,7 +22,7 @@
 %   \mxcontinued{text}       running line at the top of a continued paper
 %   \mxpseudo{lines}         algorithm or code read in a question (lines separated by \\, indent with \mxtab)
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{mx-env}[2026/10/11 Maths Explorer environments]
+\ProvidesPackage{mx-env}[2026/10/12 Maths Explorer environments]
 \RequirePackage[framemethod=default]{mdframed}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{environ}
@@ -50,12 +50,12 @@
     \begin{mdframed}[style=mxbox,linecolor=#2,backgroundcolor=#3]%
     \mx@title{#1}{#4}{##1}}%
   {\end{mdframed}}}
-\mx@defbox{keypoint}{mxmint}{mxmintpale!45}{}
-\mx@defbox{definition}{mxmint}{mxmintpale!45}{}
-\mx@defbox{theorem}{mxmint}{mxmintpale!45}{}
+\mx@defbox{keypoint}{mxmint}{mxkeyfill}{}
+\mx@defbox{definition}{mxmint}{mxkeyfill}{}
+\mx@defbox{theorem}{mxmint}{mxkeyfill}{}
 \mx@defbox{method}{mxink}{white}{}
 \mx@defbox{example}{mxink}{white}{mxexample}
-\mx@defbox{pitfall}{mxwarn}{mxwarn!5}{}
+\mx@defbox{pitfall}{mxwarn}{mxpitfallfill}{}
 \mx@defbox{activity}{mxmint}{white}{mxactivity}
 \mx@defbox{exercise}{mxmuted}{white}{mxexercise}
 \mx@defbox{application}{mxmuted}{white}{}
@@ -63,7 +63,7 @@
 \mx@defbox{exitticket}{mxwarn}{white}{}
 \mx@defbox{fluency}{mxink}{mxpaper}{}
 \mx@defbox{objectives}{mxteacher}{white}{}
-\mx@defbox{summary}{mxmint}{mxmintpale!45}{}
+\mx@defbox{summary}{mxmint}{mxkeyfill}{}
 \mx@defbox{problem}{mxink}{white}{}
 \mx@defbox{prerequisites}{mxmuted}{mxpaper}{}
 
@@ -72,7 +72,7 @@
 
 % Teacher-only boxes: the body is read by environ and dropped in the student edition.
 \NewEnviron{solution}[1][]{\ifmxteacher\colorlet{mx@accent}{mxteacher}\mxneed{4}%
-  \begin{mdframed}[style=mxbox,linecolor=mxteacher,backgroundcolor=mxteacher!4]\mx@title{solution}{}{#1}\BODY\end{mdframed}\fi}
+  \begin{mdframed}[style=mxbox,linecolor=mxteacher,backgroundcolor=mxsolutionfill]\mx@title{solution}{}{#1}\BODY\end{mdframed}\fi}
 \NewEnviron{teachernote}[1][]{\ifmxteacher\colorlet{mx@accent}{mxteacher}\mxneed{4}%
   \begin{mdframed}[style=mxbox,linecolor=mxteacher,backgroundcolor=white]\mx@title{teachernote}{}{#1}\BODY\end{mdframed}\fi}
 

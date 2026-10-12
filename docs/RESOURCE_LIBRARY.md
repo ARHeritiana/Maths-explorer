@@ -38,7 +38,7 @@ Regeneration order:
    catalogue and sources; see `docs/ARCHITECTURE.md`).
 4. Run `make check` and inspect representative rendered pages.
 
-See history/EXPANSION_VALIDATION.json and DOCUMENT_STYLE_LEDGER.json for evidence.
+See history/EXPANSION_VALIDATION.json and history/DOCUMENT_STYLE_LEDGER-overlay.json for historical evidence.
 No personal-space links are published.
 
 ## Earlier intake record
@@ -130,7 +130,15 @@ sequences, induction, diagnostic checks and lesson durations. Specific lost
 coordinates and sentence clauses found during review were restored. This is a
 targeted correction, not an exhaustive human review of all translated prose.
 
-## TeX-built resources (conversion in progress)
+## Native TeX framing (12 October 2026)
+
+The shared class now owns the header band, footer and print palette in `content/tex/core/mx-layout.sty`.
+Run `make tex [COURSE=x] [FORCE=1]`: builders compile the French and English books, assemble each excerpt with
+cached TeX frames and counters local to that download, then regenerate the catalogue and source bundle.
+`scripts/style-resource-pdfs.py` and `scripts/restyle-changed.sh` are retired. The former styling ledger is kept
+at `docs/history/DOCUMENT_STYLE_LEDGER-overlay.json`. The older conversion notes below describe historical builds.
+
+## TeX-built resources (historical conversion notes)
 
 Resources are being rebuilt from the owner-supplied LaTeX sources in `content/latex/<course>/`, one French and one English PDF per resource, instead of overlaying translated text on compiled French pages.
 

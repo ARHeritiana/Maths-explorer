@@ -3,8 +3,8 @@
 pdfLaTeX without shell escape compiles the four mains generated from the manifest (mxbuild.books:
 student/teacher, French/English; class mxbook, units *.fr.tex and generated *.en.tex);
 each level-1 bookmark (one per sequence) becomes seconde-NN/fluency-student[-en].pdf and
-fluency-teacher[-en].pdf, where NN = bookmark index + 1. Run scripts/style-resource-pdfs.py
-and scripts/finalize-resources.py afterwards.
+fluency-teacher[-en].pdf, where NN = bookmark index + 1. The shared TeX class supplies the native frame;
+run scripts/finalize-resources.py afterwards.
 """
 import re, sys
 from pathlib import Path
@@ -12,7 +12,7 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import books, catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
+from mxbuild import books, catalog as manifest_io, tex, pdf   # content/data/manifest.json is the source of truth
 SRC = ROOT / 'content/tex/courses/automatismes'
 BUILD = ROOT / 'build/out/tex/automatismes'
 OUT = ROOT / 'dist/resources'
@@ -51,7 +51,7 @@ def main():
                 ch = chapters[k + 2]
                 res = next(r for r in catalog['resources'] if r['id'] == f"{ch['id']}-fluency-{kind}")
                 title = res['title'][0 if lang == 'fr' else 1]
-                out = fitz.open(); out.insert_pdf(d, from_page=toc[k][1], to_page=ends[k] - 1)
+                out = pdf.excerpt(d, toc[k][1], ends[k], lang)
                 out.set_metadata({'title': ch['title'][0 if lang == 'fr' else 1] + ' — ' + title, 'author': 'Maths Explorer'})
                 out.subset_fonts()
                 target = OUT / ch['id'] / f'fluency-{kind}{suf}.pdf'

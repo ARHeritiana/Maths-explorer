@@ -1,6 +1,7 @@
 # Hand-off: Maths Explorer (start here)
 
-State at commit on branch `redesign/2026-10-11` (pushed; no PR; `main` and the other branches are untouched).
+Unfinished checkpoint on branch `redesign/2026-10-11`; no PR, `main` and the other branches are untouched.
+The 12 October checkpoint below supersedes older completion and toolchain notes for the native PDF migration.
 Detailed log of the 11 October 2026 session: `docs/history/HANDOFF-2026-10-11-session-log.md` (historical).
 
 ## The project
@@ -127,3 +128,41 @@ unless it was rendered and looked at.
 
 ## Session log
 - 2026-10-11: ChatGPT session started
+
+## 12 October 2026: unfinished native PDF migration checkpoint
+
+The owner explicitly requested this checkpoint be pushed after being told that validation is incomplete.
+This is an exception for preserving unfinished work, not a claim that `make check` passed. Do not deploy this
+checkpoint or treat it as the completed migration. The private capability Site remains on its last verified version.
+
+- The full checkout and toolchain were restored. A forced full build completed with exit 0 and reported zero
+  undefined references and zero overfull boxes for all six course books. Student/teacher page counts in each
+  language were Automatismes 27/47, STMG 151/198, Seconde 94/98, Premiere 133/222, Terminale 123/289 and
+  enrichment 37/49. This does not establish resource-level correctness.
+- Attempted migration: `mx-layout.sty` now defines the header band, footer, palette and native empty frame pages;
+  `mx-env.sty` preserves pale fills; new `build/mxbuild/pdf.py` assembles excerpts using TeX-compiled frames.
+  Automatismes, STMG and general TeX-resource builders use it. The pipeline no longer invokes the Python PDF
+  styler. Old styling scripts are retired and the style ledger is archived under `docs/history/`.
+- The expanded PDF parity check FAILS: the latest run recorded 98 incorrect local-sheet-counter reports, including
+  enrichment resources and the quadratic presentation. Direct extraction from the first page of the French
+  Bayes notes returned `19 / 37`; an independent resource needs `1 / N`. Inspect all building paths, especially
+  those that still extract source-book pages. The root cause has not been verified.
+- An earlier build encountered a readable but empty cached 17-page frame. Cache writes were changed to atomic
+  replacement with immutable-byte and page-count validation. The later full build succeeded; the original
+  corruption cause remains unknown.
+- French PDF text comparison against the prior committed/hosted copy is not established. The baseline comprises
+  330 French resources and 1,803 pages. The diagnostic comparison was still running at hand-off. Retain the old
+  committed PDFs before rebuilding, finish the comparison, and inspect differences rather than suppressing them.
+- Actual development viewing covered native empty frames, Automatismes first student pages and an STMG chapter
+  first page, in both languages. Final samples across Seconde, Premiere, Terminale, enrichment, teacher documents
+  and mathematical diagrams remain to be rendered and actually viewed.
+- Partial development checks passed: unit lint and twin parity for 204 units/pairs, and seven notation tests.
+  The complete final `make check` has NOT run after the full rebuild. The working pipeline lists 17 check entries,
+  whereas the owner requirement and earlier documentation say 18. Reconcile this discrepancy without inventing
+  a check or overstating the pass count.
+- Source units, translation tables and mathematical content were not intentionally edited. Generated `dist/`
+  outputs are included to preserve the actual unfinished build; their presence is not approval for deployment.
+
+Next: review this implementation, fix every resource's local counters, finish body-text comparison and final visual
+inspection, run the complete checks, update this hand-off, commit/push the verified result and synchronize the
+private Site. Then continue the Phase B quality review, Phase C visual route audit and Phase D integrity work.

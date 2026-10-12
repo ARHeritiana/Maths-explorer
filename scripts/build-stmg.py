@@ -2,8 +2,8 @@
 
 pdfLaTeX without shell escape compiles livret-eleve / livret-prof and their -en twins. Level-1
 bookmarks give the eight chapters, the tests and the formula sheet; the first 'Séance'/'Session'
-bookmark of a chapter starts its activities excerpt. Run scripts/style-resource-pdfs.py and
-scripts/finalize-resources.py afterwards.
+bookmark of a chapter starts its activities excerpt. The shared TeX class supplies the native frame;
+run scripts/finalize-resources.py afterwards.
 """
 import re, sys
 from pathlib import Path
@@ -11,7 +11,7 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'build'))
-from mxbuild import books, catalog as manifest_io, tex   # content/data/manifest.json is the source of truth
+from mxbuild import books, catalog as manifest_io, tex, pdf   # content/data/manifest.json is the source of truth
 SRC = ROOT / 'content/tex/courses/stmg'
 BUILD = ROOT / 'build/out/tex/stmg'
 OUT = ROOT / 'dist/resources'
@@ -36,7 +36,7 @@ def compile_pdf(entry):
 
 
 def save(d, a, b, target, title):
-    out = fitz.open(); out.insert_pdf(d, from_page=a, to_page=b - 1)
+    out = pdf.excerpt(d, a, b, 'en' if target.stem.endswith('-en') else 'fr')
     out.set_metadata({'title': title, 'author': 'Maths Explorer'}); out.subset_fonts()
     target.parent.mkdir(parents=True, exist_ok=True); out.save(target, garbage=4, deflate=True)
     n = len(out); out.close(); return n
