@@ -1,7 +1,7 @@
 # Hand-off: Maths Explorer (start here)
 
-Unfinished checkpoint on branch `redesign/2026-10-11`; no PR, `main` and the other branches are untouched.
-The 12 October checkpoint below supersedes older completion and toolchain notes for the native PDF migration.
+Branch `redesign/2026-10-11`; no PR, `main` and the other branches are untouched. The native PDF migration (B4/B5)
+is complete and verified; see "12 October 2026 (continuation)" at the end, which supersedes the earlier checkpoints.
 Detailed log of the 11 October 2026 session: `docs/history/HANDOFF-2026-10-11-session-log.md` (historical).
 
 ## The project
@@ -56,21 +56,17 @@ Chromium at `/opt/pw-browsers`.
 - Phase A (structure): done. Phase B (TeX): B1 to B3 done for all six courses (Automatismes, STMG, Seconde, Première,
   Terminale, Enrichment), plus the uniform structure and notation layer requested on 11 October.
 - Page counts (student/teacher, FR = EN): Automatismes 27/47, STMG 151/198, Seconde 94/98, Première 133/222,
-  Terminale 123/289, Enrichment 37/49 sheets. 0 overfull boxes, 0 undefined references. Slides: 47 decks, 1,043 slides.
+  Terminale 123/289, Enrichment 37/49 sheets. 0 overfull boxes, 0 undefined references. Slides: 47 decks, 1,044 slides.
 - Measured: full compile 622 s at baseline, about 4 min now (French and English compiled in parallel); rebuilt PDFs that
   differ only in their random /ID keep the committed copy (no binary churn).
 
 ## Next steps (in order)
-1. B4/B5: retire `scripts/style-resource-pdfs.py` (it recolours PDFs and adds the dark header band and footer after
-   compilation): move that design into `mx-layout.sty`, then rebuild everything once. Optional: precompiled format,
-   figure externalisation (measure first; the class preamble loads in about 1.3 s).
+1. B4/B5: done (12 October). Optional: precompiled format, figure externalisation (measure first; the class
+   preamble loads in about 1.3 s).
 2. Run `/simplify` and `/code-review` over Phase B, fix findings.
 3. Phase C (site and design system): audit every route at 360/768/1280 px in FR and EN (viewed, not only scripted),
    then tokens, merged CSS, `app.js` split into route modules, catalogue view from the manifest. See `docs/REDESIGN_PLAN.md`.
-   Known lab and canvas defects to fix there: vectors and complex labs keep an equal-scale frame that makes the default
-   vectors tiny on wide panels; the function explorer labels "(0 ; C)" and "(1 ; Cb)" are jargon and overlap when b is
-   near 1; terminale-01/03 reuse the generic "first terms" canvas (no limit, convexity or plane-intersection canvases);
-   labs not yet viewed in English, by drag/step-through, or on narrow screens.
+   The lab and canvas defects listed here earlier were fixed on 12 October (see the end of this document).
 4. Phase D (content integrity): curriculum map `content/data/curriculum.json`, English proof-read through the tables
    (status `reviewed`; 16 of about 10,800 segments are reviewed), resolve the [VERIFY] list below.
 5. Final report to the owner: what changed, how it was verified (viewed vs scripted), what was not done, [VERIFY] flags,
@@ -128,45 +124,40 @@ unless it was rendered and looked at.
 
 ## Session log
 - 2026-10-11: ChatGPT session started
+- 2026-10-12: Claude Code session: migration completed and verified, Terminale teacher mapping fixed, slides and site work
 
-## 12 October 2026: unfinished native PDF migration checkpoint
+## 12 October 2026 (continuation): native PDF migration completed
 
-The owner explicitly requested this checkpoint be pushed after being told that validation is incomplete.
-This is an exception for preserving unfinished work, not a claim that `make check` passed. Do not deploy this
-checkpoint or treat it as the completed migration. The private capability Site remains on its last verified version.
+Supersedes the "unfinished checkpoint" notes of the same day. Commits on this branch: `ed85c4d` (PDF fixes and full
+rebuild), `60c9e81` (slides and site), then this hand-off.
 
-- The full checkout and toolchain were restored. A forced full build completed with exit 0 and reported zero
-  undefined references and zero overfull boxes for all six course books. Student/teacher page counts in each
-  language were Automatismes 27/47, STMG 151/198, Seconde 94/98, Premiere 133/222, Terminale 123/289 and
-  enrichment 37/49. This does not establish resource-level correctness.
-- Attempted migration: `mx-layout.sty` now defines the header band, footer, palette and native empty frame pages;
-  `mx-env.sty` preserves pale fills; new `build/mxbuild/pdf.py` assembles excerpts using TeX-compiled frames.
-  Automatismes, STMG and general TeX-resource builders use it. The pipeline no longer invokes the Python PDF
-  styler. Old styling scripts are retired and the style ledger is archived under `docs/history/`.
-- The expanded PDF parity check FAILS: the latest run recorded 98 incorrect local-sheet-counter reports, including
-  enrichment resources and the quadratic presentation. Direct extraction from the first page of the French
-  Bayes notes returned `19 / 37`; an independent resource needs `1 / N`. Inspect all building paths, especially
-  those that still extract source-book pages. The root cause has not been verified.
-- An earlier build encountered a readable but empty cached 17-page frame. Cache writes were changed to atomic
-  replacement with immutable-byte and page-count validation. The later full build succeeded; the original
-  corruption cause remains unknown.
-- French PDF text comparison against the prior committed/hosted copy is not established. The baseline comprises
-  330 French resources and 1,803 pages. The diagnostic comparison was still running at hand-off. Retain the old
-  committed PDFs before rebuilding, finish the comparison, and inspect differences rather than suppressing them.
-- Actual development viewing covered native empty frames, Automatismes first student pages and an STMG chapter
-  first page, in both languages. Final samples across Seconde, Premiere, Terminale, enrichment, teacher documents
-  and mathematical diagrams remain to be rendered and actually viewed.
-- Partial development checks passed: unit lint and twin parity for 204 units/pairs, and seven notation tests.
-  The complete final `make check` has NOT run after the full rebuild. The working pipeline lists 17 check entries,
-  whereas the owner requirement and earlier documentation say 18. Reconcile this discrepancy without inventing
-  a check or overstating the pass count.
-- Source units, translation tables and mathematical content were not intentionally edited. The source checkpoint
-  was pushed and verified as `566e492e809ee6bdddc0c6ea4733d495ff7c8b35`. Source changes and generated text
-  metadata are preserved there. The batch transfer of regenerated PDF binaries did not complete; those PDFs
-  remain local and are NOT included in the pushed checkpoint. Rebuild them before resource validation. Generated
-  catalogue/provenance metadata may therefore describe the local rebuild rather than the PDFs on the branch.
-  No Site deployment was performed. Some immutable PDF blobs were uploaded, but no branch commit includes them.
+- Root cause of the 98 wrong local counters: `mxbuild.enrichment.build` split its books with a raw `insert_pdf`, so
+  every enrichment resource (and the quadratic presentation) kept the book counter. It now uses `mxbuild.pdf.excerpt`.
+- Found during review: Terminale teacher excerpts were one chapter late (the teacher book gained the bookmark
+  "Écarts entre les sources à arbitrer" and `FIRST_CHAPTER_ENTRY` was hard-coded): `terminale-N/teacher.pdf` and
+  `corrections.pdf` held chapter N-1, and the algorithms/proofs/oral/assessments teacher appendices were shifted.
+  This predates the migration (the previous committed PDFs had it). Teacher bookmarks are now matched by title.
+- Full forced build (5 min 33 s), then Terminale and Première rebuilt after the fix. 0 undefined references, 0 overfull
+  boxes; page counts unchanged (see Status).
+- `tests/pdf_parity.py`: 330 FR/EN pairs, equal page counts, local counters `1 / N`, safe links.
+- French body text compared token by token with the previous committed PDFs (330 resources, 1,803 pages, header and
+  footer bands excluded): no text inserted or replaced. The only removals are old running heads and the
+  "Maths Explorer | ... Page du livret N" stamps. (The Terminale teacher fix then changed those PDFs deliberately.)
+- Rendered and viewed: enrichment Bayes notes FR/EN, STMG 05 activities, Terminale 09 notes FR/EN and corrections,
+  first pages of Terminale 01/02/09/14 teacher and corrections, the four Terminale teacher appendices.
+- `make check`: all 17 pipeline checks plus the Drive-link grep pass. The "18 checks" in older notes counts that grep.
+- Slides: new canvases `cobweb` (terminale-01), `limit` (terminale-03), `convex` (terminale-06), `lineplane`
+  (terminale-13, 3D); widget readouts follow the language notation; function explorer labels fixed. 47 decks,
+  1,044 slides. New widgets viewed in FR and EN; every handle dragged to extremes in each mode.
+- Site: vectors/complex labs fit their frame to the vectors; `site/styles/tokens.css` and the purple second accent
+  removed; narrow-screen nav fade and current link scrolled into view; library count fixed; vector symbol glyph;
+  "2 + i" instead of "2 + 1i"; Terminale 09 guide dot product written xx′ + yy′ + zz′. Routes viewed at 360 and
+  1280 px in FR and EN: lab (quadratic, vectors, complex), resources, library, slides, chapter, workshop, challenges,
+  pack, pathways, sources. No horizontal overflow or console error at 360/768/1280 on any route.
+- Not done: the private preview Site was not synchronised (this session has no access to that hosting). Phase C items
+  still open: merged CSS (six stylesheets remain; only colours moved to tokens), `app.js` split into route modules,
+  `docs/DESIGN_SYSTEM.md`, catalogue view from the manifest, teacher mode. In this container the MathML "(" glyph
+  is very wide (font fallback), so "f(x)" in the quadratic workshop looks spaced here; not reproduced elsewhere.
 
-Next: review this implementation, fix every resource's local counters, finish body-text comparison and final visual
-inspection, run the complete checks, update this hand-off, commit/push the verified result and synchronize the
-private Site. Then continue the Phase B quality review, Phase C visual route audit and Phase D integrity work.
+Next: Phase B quality review (`/simplify`, `/code-review`), the rest of Phase C above, Phase D. The [VERIFY] list
+above still stands; the Terminale chapter number mismatch (PDF "Chapitre 11" vs site "Chapter 9") is unchanged.

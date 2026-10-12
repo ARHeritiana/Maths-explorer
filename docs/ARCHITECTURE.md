@@ -14,7 +14,7 @@ content/
   data/manifest.json      single source of truth for the resource catalogue
   data/enrichment.json    enrichment workshops (both languages, maths marked $...$), source of their TeX units, HTML and site data
   data/glossary.json      FR-EN terminology
-site/                     hand-written web source: index.html, styles/, js/, slides/ player, vendor/
+site/                     hand-written web source: index.html, styles/ (tokens.css first: colour tokens), js/, slides/ player, vendor/
 build/mxbuild/            pipeline package (python -m mxbuild ...), native PDF excerpt assembly; build/out/ holds products and logs (ignored)
 scripts/                  course builders and tools, called by mxbuild (to be folded into mxbuild in phase B)
 dist/                     served folder: copies of site/ plus generated files (committed)
