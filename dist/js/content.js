@@ -550,7 +550,7 @@ export const challenges = [
     id: "doors",
     type: "play",
     title: ["Les 100 portes", "The 100 doors"],
-    topic: ["Diviseurs", "Divisors"],
+    topic: ["Nombres entiers", "Whole numbers"],
     difficulty: 2,
     minutes: 10,
     prompt: [
@@ -580,13 +580,13 @@ export const challenges = [
   {
     id: "chess",
     type: "play",
-    title: ["Un échiquier sans deux coins", "A chessboard missing two corners"],
-    topic: ["Invariant", "Invariant"],
+    title: ["Des dominos sur un plateau", "Dominoes on a board"],
+    topic: ["Pavages", "Tilings"],
     difficulty: 2,
     minutes: 10,
     prompt: [
-      "On retire deux coins opposés d’un échiquier 8 × 8. Combien de pavages complets peut-on réaliser avec 31 dominos de taille 2 × 1 ?",
-      "Remove two opposite corners of an 8 × 8 chessboard. How many complete tilings are possible with 31 dominoes of size 2 × 1?",
+      "Un plateau de 8 × 8 cases a perdu deux coins opposés. On dispose d’autant de dominos 2 × 1 que l’on veut. Combien de pavages complets (sans trou ni chevauchement) existe-t-il ?",
+      "An 8 × 8 board has lost two opposite corners. You have as many 2 × 1 dominoes as you like. How many complete tilings (no gaps, no overlaps) exist?",
     ],
     answer: 0,
     hints: [
@@ -642,8 +642,8 @@ export const challenges = [
   {
     id: "pigeonhole",
     type: "olympiad",
-    title: ["Des restes qui se rencontrent", "When remainders meet"],
-    topic: ["Principe des tiroirs", "Pigeonhole principle"],
+    title: ["Une différence multiple de 7", "A difference that is a multiple of 7"],
+    topic: ["Arithmétique", "Number theory"],
     difficulty: 2,
     minutes: 10,
     prompt: [
@@ -673,7 +673,7 @@ export const challenges = [
   {
     id: "product",
     type: "olympiad",
-    title: ["Un produit toujours divisible", "An always-divisible product"],
+    title: ["Un diviseur commun à tous", "A divisor shared by all"],
     topic: ["Arithmétique", "Number theory"],
     difficulty: 2,
     minutes: 12,
@@ -702,7 +702,7 @@ export const challenges = [
     id: "inequality",
     type: "olympiad",
     title: ["Un minimum caché", "A hidden minimum"],
-    topic: ["Inégalités", "Inequalities"],
+    topic: ["Extrema", "Extrema"],
     difficulty: 3,
     minutes: 12,
     prompt: [
@@ -732,8 +732,8 @@ export const challenges = [
   {
     id: "squares",
     type: "olympiad",
-    title: ["La somme des nombres impairs", "The sum of odd numbers"],
-    topic: ["Preuve visuelle", "Visual proof"],
+    title: ["Additionner des nombres impairs", "Adding odd numbers"],
+    topic: ["Sommes", "Sums"],
     difficulty: 1,
     minutes: 8,
     prompt: [

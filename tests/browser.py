@@ -170,6 +170,36 @@ with sync_playwright() as p:
         page.goto(BASE+'/#'+route)
         page.add_style_tag(content='html{font-size:200%}')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('200% text',route)
+    # Each challenge has a hands-on activity that works without reading the solution.
+    page.set_viewport_size({'width':1366,'height':1100})
+    page.goto(BASE+'/#challenges/doors')
+    page.locator('#dr-k').fill('100')
+    assert page.locator('.door.open').count() == 10
+    page.goto(BASE+'/#challenges/handshakes')
+    page.locator('[data-person="0"]').click(); page.locator('[data-person="1"]').click()
+    assert page.locator('#hs-read').inner_text().startswith('1 ')
+    page.goto(BASE+'/#challenges/chess')
+    svg = page.locator('.dom-svg'); box = svg.bounding_box(); unit = box['width'] / (12 + 352 + 28 + 104 + 16)
+    def at(x, y): return box['x'] + x * unit, box['y'] + y * unit
+    page.mouse.move(*at(392 + 6 + 41, 12 + 84 + 19)); page.mouse.down(); page.mouse.move(*at(100, 78), steps=8); page.mouse.up()
+    assert page.locator('.dom[data-d]').count() == 1 and '60' in page.locator('#dm-read').inner_text()
+    page.mouse.move(*at(100, 78)); page.mouse.down(); page.mouse.move(box['x'] + box['width'] - 4, box['y'] + box['height'] - 4, steps=8); page.mouse.up()
+    assert page.locator('.dom[data-d]').count() == 0
+    page.goto(BASE+'/#challenges/nim')
+    page.locator('[data-take="1"]').click()
+    page.wait_for_function("document.querySelectorAll('.stone.gone').length >= 2")
+    page.goto(BASE+'/#challenges/pigeonhole')
+    for n in range(1, 8): page.locator('.pick[data-n="%d"]' % n).click()
+    assert page.locator('.pick.clash').count() == 0
+    page.locator('.pick[data-n="15"]').click()
+    assert page.locator('.pick.clash').count() == 2
+    page.goto(BASE+'/#challenges/product')
+    page.locator('#pr-d').fill('6'); assert page.locator('#pr-table tr.no').count() == 0
+    page.locator('#pr-d').fill('12'); assert page.locator('#pr-table tr.no').count() >= 1
+    page.goto(BASE+'/#challenges/inequality')
+    page.locator('#iq-x').fill('1'); assert '2' in page.locator('#iq-read strong').inner_text()
+    page.goto(BASE+'/#challenges/squares')
+    page.locator('#sq-n').fill('12'); assert '144' in page.locator('#sq-read strong').inner_text()
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')

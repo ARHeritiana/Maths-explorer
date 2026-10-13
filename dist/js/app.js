@@ -4,6 +4,7 @@ import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
+import { mountActivity, hasActivity } from "./challenge-activities.js";
 import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { createLabMotion, installInterfaceMotion, illuminateFeedback } from "./motion.js";
@@ -163,7 +164,7 @@ function render() {
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
   bindCommon();
   if (page === "lab") bindLab();
-  if (page === "challenges") bindChallenges();
+  if (page === "challenges") stopChapter = bindChallenges();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "chapter") {
     stopChapter = bindChapter(r.id, t, fmt);
@@ -968,9 +969,11 @@ function challengePage(id) {
     )}</div><div class="challenge-grid">${filtered.map((x, i) => `<a class="challenge-card" href="${link("challenges", x.id)}"><div class="card-top"><span class="tag ${x.type}">${x.type === "play" ? pair("Récréatif", "Recreational") : pair("Olympiade", "Olympiad")}</span><span class="card-number">${String(challenges.indexOf(x) + 1).padStart(2, "0")}</span></div><span class="challenge-motif" aria-hidden="true">${["∑", "□", "▦", "⋮", "≡", "n³", "≥", "n²"][challenges.indexOf(x)]}</span><h2>${t(x.title)}</h2><p>${t(x.topic)}</p><div class="card-bottom"><span>${"●".repeat(x.difficulty)}${"○".repeat(3 - x.difficulty)} <span class="sr-only">${pair("Difficulté", "Difficulty")} ${x.difficulty}/3</span></span><span>${completed.has(x.id) ? pair("✓ Réponse trouvée", "✓ Answer found") : x.minutes + " min"}</span></div></a>`).join("")}</div><p class="editorial-note">${pair("Problèmes classiques reformulés pour le laboratoire. « Esprit olympiade » désigne le type de raisonnement, pas une provenance officielle. Une réponse numérique ne remplace pas une preuve.", "Classic problems adapted for the laboratory. “Olympiad thinking” describes the reasoning style, not official contest provenance. A numerical answer does not replace a proof.")}</p></main>`;
 }
 function challengeDetail(c) {
-  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem">${t(c.prompt)}</p><div class="proof-callout"><strong>${pair("Pense comme un mathématicien", "Think like a mathematician")}</strong><p>${pair("Teste un petit exemple, cherche une régularité, puis explique pourquoi elle est vraie.", "Test a small example, look for a pattern, then explain why it is true.")}</p></div><form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${c.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p>${t(h)}</p></details>`).join("")}<details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary><p>${t(c.solution)}</p></details><div class="extension"><span class="eyebrow">${pair("Pour aller plus loin", "Take it further")}</span><p>${t(c.extension)}</p></div></aside></div></main>`;
+  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem">${t(c.prompt)}</p><div class="proof-callout"><strong>${pair("Pense comme un mathématicien", "Think like a mathematician")}</strong><p>${pair("Teste un petit exemple, cherche une régularité, puis explique pourquoi elle est vraie.", "Test a small example, look for a pattern, then explain why it is true.")}</p></div>${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${c.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p>${t(h)}</p></details>`).join("")}<details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary><p>${t(c.solution)}</p><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></aside></div></main>`;
 }
 function bindChallenges() {
+  const host = $("#activity");
+  const stop = host ? mountActivity(host.dataset.activity, host, { lang, reduced: reducedMotion }) : () => {};
   document.querySelectorAll("[data-filter]").forEach((b) =>
     b.addEventListener("click", () => {
       challengeFilter = b.dataset.filter;
@@ -998,6 +1001,7 @@ function bindChallenges() {
     $("#challenge-feedback").classList.toggle("success", correct);
     illuminateFeedback($("#challenge-feedback"), reducedMotion);
   });
+  return stop;
 }
 // Coefficients simplified for reading: 1x² + 0x − 2 becomes x² − 2.
 function simplifiedPolynomial(coefficients) {

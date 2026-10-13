@@ -67,7 +67,11 @@ Shape: containers 12 px, controls and chips 8 px. Spacing on a 4 px grid. Elevat
 
 Button (primary, secondary, quiet), segmented control, search field, chapter row (default, hover, selected, seen), preview stage, figure panel (with full-screen), result stat, step tabs, callout (note, success, warning), details, form fields, tab bar (phone), theme and language switches. All have a visible 3 px focus ring and work with keyboard.
 
-## 8. Success checks
+## 8. Challenge activities
+
+Every challenge has an activity placed between the statement and the answer box. Rules for them: the figure is a tool, not an explanation; it shows real numbers; it never states the answer or the method; the title, topic and statement of a challenge must not give the method away; hints and the extension stay behind their own disclosure; pointer, touch and keyboard all work; a simulation is always labelled as evidence, not proof.
+
+## 9. Success checks
 
 - Home: chapter chosen in two actions (level, row) with no scrolling on a 390 px phone.
 - No horizontal scroll at 320, 390, 768, 1440 px; 200% text zoom still works.
