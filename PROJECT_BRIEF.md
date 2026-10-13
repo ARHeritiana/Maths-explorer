@@ -94,6 +94,8 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 
 Design is delegated to the assistant by the owner (12 October 2026). Reference implementation: `design/prototype/` (run per its README). Read it before any visual work, and use the repo-level design skills (frontend-design, design-taste-frontend).
 
+**Owner override, 13 October 2026.** The owner asked for a dynamic, appealing, playful redesign and discarded the old look. The implemented system ("Atelier", see HANDOFF log) relaxes the dials below to variance 8, motion 7, density 4, allows gradients, tinted shadows and spring motion, and keeps everything else in this section: themes and semantic colours, fonts, accessibility rules, copy rules, no AI notice. Where the paragraphs below say motion 2, no shadows or no gradients, they are superseded.
+
 **Design read.** Experiment-first learning site for lycée students and teachers, phone-first (Madagascar), trust and legibility over decoration, with a mathematical, bookish voice. Dials: variance 5, motion 2 (only motion that answers a user action), density 4.
 
 **Principles.**

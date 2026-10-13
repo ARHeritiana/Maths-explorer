@@ -11,8 +11,8 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Area | State |
 |---|---|
 | Governing brief | `PROJECT_BRIEF.md` v0.5. Decisions settled, only the items in "Open for the owner" below remain. |
-| Design | Done as a prototype in `design/prototype/` (three themes, fonts, hero figures). Not yet applied to `dist/`. |
-| Live site `dist/` | Still the old v1 site (navy, mint, violet; catalogue landing). 157 MB, 672 PDFs, mostly without TeX source. |
+| Design | Redesigned 13 October 2026 at the owner's request ("Atelier", see Log). Applied to `dist/`: `explorer.css`, `pages.css`, `js/playground.js`, `js/fx.js`, `js/icons.js`, self-hosted fonts in `dist/fonts/`. `design/prototype/` is now superseded. |
+| Live site `dist/` | New design on the v1 content and routes. 157 MB, 672 PDFs, mostly without TeX source. |
 | Tests | `npm test`: 49 pass. `npm run check` passes. Browser tests not re-run this session. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script. |
 | Private area | `private/` created with an empty `ledger.json`. No chapter has been through the pipeline yet. |
@@ -46,8 +46,8 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 - [ ] Use the result to correct the chapter template (brief section 4) and ask the owner to review.
 
 ### 3. Apply the v2 design to the site
-- [ ] Port tokens, fonts and layout from `design/prototype/` into `dist/` (hero experiment, chapter tabs, five-part sequence, theme selector). Keep hash routes. Keep tests passing; update tests that assert old copy.
-- [ ] Check contrast, keyboard use, 390 px and 200% zoom in all three themes.
+- [x] Applied (13 October 2026) as the "Atelier" redesign instead of porting the prototype: hero experiment, three toys, level tabs, five moves, theme selector, tab bar on phones. Hash routes kept.
+- [ ] Still to do: contrast check of the new category hues in all three themes, keyboard pass on every page, 200% zoom on the home page (the 200% check in `tests/browser.py` covers labs, challenges and pathways only).
 
 ### 4. Scale in priority order
 Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympiad, rest of Malagasy, IB, university basics last. Each chapter goes through the same pipeline.
@@ -82,3 +82,5 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 ## Log
 
 - 2026-10-12: brief v0.5 (design section, two-agent gate), skills uploaded, design prototype added, README and handoff rewritten, private area created.
+
+- 2026-10-13: owner asked for a dynamic, playful redesign and discarded the old look. New design system "Atelier" in `dist/` (Bricolage Grotesque, Atkinson Hyperlegible, STIX Two Text; themes Marine, Charbon, Jour kept; one accent per theme plus four category hues on tiles; springs, scroll reveal and tile spotlight, all off under reduced motion). This overrides brief section 6 on motion, gradients, shadows and tone; accessibility, copy and language rules there still apply. Removed the AI footer notice and the all-caps labels. Two stale assertions in `tests/browser.py` fixed (trig lab has two SVGs in `#plot`).

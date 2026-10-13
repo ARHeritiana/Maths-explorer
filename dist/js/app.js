@@ -3,6 +3,8 @@ import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, re
 import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountLibrary } from "./library.js";
+import { icon } from "./icons.js";
+import { themes, currentTheme, cycleTheme, installFx, watchScroll } from "./fx.js";
 import { createLabMotion, installInterfaceMotion, illuminateFeedback } from "./motion.js";
 import { trigControls, trigDiagram } from "./trigonometry.js";
 import {
@@ -99,23 +101,25 @@ function route() {
 function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
 }
+const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="12" class="bm-bg"/><path d="M8 11Q20 45 32 11" class="bm-curve"/><circle cx="9" cy="20" r="3.4" class="bm-dot"/><circle cx="31" cy="20" r="3.4" class="bm-dot"/></svg>`;
 function header(page) {
-  return `<header class="topbar"><a class="brand" href="#resources"><span class="brandmark" aria-hidden="true">∿</span><span>maths<span class="brandlight">explorer</span><small>${pair("LE LABORATOIRE DES IDÉES", "THE LABORATORY OF IDEAS")}</small></span></a><nav aria-label="${pair("Navigation principale", "Main navigation")}">${[
-    ["resources", "Cours & exercices", "Lessons & exercises"],
-    ["lab", "Laboratoire", "Laboratory"],
-    ["challenges", "Défis", "Challenges"],
-    ["pathways", "Parcours", "Pathways"],
-  ]
+  const nav = [
+    ["resources", "Cours", "Lessons", "books"],
+    ["lab", "Laboratoire", "Laboratory", "flask"],
+    ["challenges", "Défis", "Challenges", "puzzle-piece"],
+    ["pathways", "Parcours", "Pathways", "path"],
+  ];
+  const theme = currentTheme();
+  const themeName = t(theme.name);
+  return `<header class="topbar"><a class="brand" href="#resources" aria-label="Maths Explorer">${brandMark}<span class="brand-name">maths<b>explorer</b></span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${nav
     .map(
-      ([id, fr, en]) =>
-        `<a href="#${id}" ${(page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources")) ? 'aria-current="page"' : ""}>${pair(fr, en)}</a>`,
+      ([id, fr, en, ic]) =>
+        `<a href="#${id}" ${page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources") ? 'aria-current="page"' : ""}>${icon(ic, 22)}<span>${pair(fr, en)}</span></a>`,
     )
-    .join(
-      "",
-    )}</nav><div class="language" role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><span aria-hidden="true">/</span><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></header>`;
+    .join("")}</nav><div class="tools"><button class="theme-btn" data-theme-cycle aria-label="${pair("Thème", "Theme")} : ${themeName}. ${pair("Changer de thème", "Change theme")}" title="${themeName}">${icon("palette", 20)}<span>${themeName}</span></button><div class="language" role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
 }
 function footer() {
-  return `<footer><span>Maths Explorer <span aria-hidden="true">·</span> ${pair("Observer. Conjecturer. Démontrer.", "Observe. Conjecture. Prove.")}</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")} <a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a></span><small class="content-origin">${pair("Certains contenus et traductions sont générés par IA ; les vérifications humaines n’ont pas toujours été menées.", "Some content and translations are AI-generated; human checks have not always been carried out.")}</small></footer>`;
+  return `<footer><div class="foot-brand">${brandMark}<span>Maths Explorer <em>${pair("Observer. Conjecturer. Démontrer.", "Observe. Conjecture. Prove.")}</em></span></div><p>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</p><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a></footer>`;
 }
 function render() {
   stopTrig();
@@ -139,7 +143,7 @@ function render() {
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "workshop" ? workshopMarkup(t) : page === "resources" ? libraryPage(t)
+    (page === "workshop" ? workshopMarkup(t) : page === "resources" ? libraryPage(t, { challenges, completed })
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? labPage(r.id)
@@ -156,13 +160,23 @@ function render() {
   bindCommon();
   if (page === "lab") bindLab();
   if (page === "challenges") bindChallenges();
-  if (page === "resources") bindLibrary(t);
+  if (page === "resources") stopChapter = bindLibrary(t, { lang, reduced: reducedMotion, fx: () => installFx($("#app"), reducedMotion) });
   if (page === "chapter") stopChapter = bindChapter(r.id, t, fmt);
   if (page === "workshop") stopChapter = bindWorkshop($("#main"),t,lang);
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   installInterfaceMotion($("#app"), reducedMotion);
+  installFx($("#app"), reducedMotion);
+  watchScroll();
 }
 function bindCommon() {
+  $("[data-theme-cycle]")?.addEventListener("click", () => {
+    cycleTheme();
+    const button = $("[data-theme-cycle]");
+    const name = t(currentTheme().name);
+    button.setAttribute("aria-label", `${pair("Thème", "Theme")} : ${name}. ${pair("Changer de thème", "Change theme")}`);
+    button.title = name;
+    button.querySelector("span").textContent = name;
+  });
   document.querySelectorAll("[data-lang]").forEach((b) =>
     b.addEventListener("click", () => {
       lang = b.dataset.lang;
@@ -183,9 +197,9 @@ function labPage(id) {
   const lab = labs.find((x) => x.id === id) || labs[0];
   currentLab = lab.id;
   const s = state(lab);
-  return `<div class="lab-layout"><aside class="sidebar" aria-label="${pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${pair("EXPLORER", "EXPLORE")} <span>09</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link("lab", x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${x.symbol}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
- <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("LE LABORATOIRE", "THE LABORATORY")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
- <div class="workbench"><section class="experiment" aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À TOI D’EXPÉRIMENTER", "YOUR TURN TO EXPERIMENT")}</span><button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
+  return `<div class="lab-layout"><aside class="sidebar" aria-label="${pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${pair("Explorer", "Explore")} <span>09</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link("lab", x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${x.symbol}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
+ <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("Le laboratoire", "The laboratory")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
+ <div class="workbench"><section class="experiment" aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
  ${
    lab.id === "sequences"
      ? `<fieldset class="mode"><legend>${pair("Type de suite", "Sequence type")}</legend>${[
@@ -204,7 +218,7 @@ function labPage(id) {
  ${lab.params.map(([name, min, max, step], i) => `<label class="slider-control" for="param-${i}"><span>${parameterLabel(lab.id, i, name)}<output id="value-${i}">${fmt(s.values[i])}${name === "θ" ? "°" : ""}</output></span><input id="param-${i}" data-param="${i}" type="range" min="${min}" max="${max}" step="${step}" value="${s.values[i]}"><span class="range-limits"><span>${fmt(min)}</span><span>${fmt(max)}</span></span></label>`).join("")}
  ${lab.id === "statistics" ? `<label class="data-label" for="data-input">${pair("Tes données", "Your data")}</label><textarea id="data-input" rows="2" aria-describedby="data-help data-error">${esc(s.data)}</textarea><p id="data-help" class="muted">${pair("1 à 100 valeurs séparées par des espaces ou des points-virgules. Décimales : 2,5 ou 2.5. Valeurs entre −10 000 et 10 000.", "1–100 values separated by spaces or semicolons. Decimals: 2.5 or 2,5. Values between −10,000 and 10,000.")}</p><p id="data-error" class="error" role="alert"></p>` : ""}
  ${lab.id === "probability" ? `<div class="simulation"><button class="primary" data-sim="100">${pair("Simuler 100 expériences", "Simulate 100 experiments")}</button><button class="secondary" data-sim="1000">${pair("En ajouter 1 000", "Add 1,000")}</button><p id="sim-status" class="muted" aria-live="polite"></p></div>` : ""}</div><div id="results" class="results" aria-live="polite" aria-atomic="true"></div></section>
- <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${lab.id === "trig" ? pair("Les valeurs sont exactes aux angles remarquables ; sinon, le signe ≈ indique une approximation. Les essais aident à conjecturer ; un argument général établit une preuve.", "Values are exact at remarkable angles; otherwise, ≈ indicates an approximation. Examples suggest a conjecture; a general argument establishes a proof.") : pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning"><label for="observation">${pair("Mon observation (avec les paramètres)", "My observation (including parameters)")}</label><textarea id="observation" data-note="observation" rows="2" maxlength="2000">${esc(s.observation)}</textarea><label for="conjecture">${pair("Ma conjecture et ses conditions", "My conjecture and its conditions")}</label><textarea id="conjecture" data-note="conjecture" rows="2" maxlength="2000">${esc(s.conjecture)}</textarea><p class="muted">${pair("Notes conservées pendant cette session seulement. Elles ne sont pas corrigées automatiquement.", "Notes stay in this session only. They are not marked automatically.")}</p><details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("LE PETIT DÉCLIC", "CHECK YOUR UNDERSTANDING")}</span><button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button><form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
+ <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${lab.id === "trig" ? pair("Les valeurs sont exactes aux angles remarquables ; sinon, le signe ≈ indique une approximation. Les essais aident à conjecturer ; un argument général établit une preuve.", "Values are exact at remarkable angles; otherwise, ≈ indicates an approximation. Examples suggest a conjecture; a general argument establishes a proof.") : pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning"><label for="observation">${pair("Mon observation (avec les paramètres)", "My observation (including parameters)")}</label><textarea id="observation" data-note="observation" rows="2" maxlength="2000">${esc(s.observation)}</textarea><label for="conjecture">${pair("Ma conjecture et ses conditions", "My conjecture and its conditions")}</label><textarea id="conjecture" data-note="conjecture" rows="2" maxlength="2000">${esc(s.conjecture)}</textarea><p class="muted">${pair("Notes conservées pendant cette session seulement. Elles ne sont pas corrigées automatiquement.", "Notes stay in this session only. They are not marked automatically.")}</p><details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span><button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button><form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
  <section class="lab-resources"><h2>${pair("Poursuivre ce chapitre", "Continue this topic")}</h2><p>${pair("Passer de l’expérience aux notes, aux exercices et aux problèmes.", "Move from the experiment to notes, exercises and problems.")}</p><a class="secondary" href="#library/@${lab.id}">${pair("Ressources liées à cette expérience", "Resources linked to this experiment")}</a></section>
  <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section></main></div>`;
 }
@@ -323,7 +337,7 @@ function updateLab(animatedValues, moving = false) {
   if (lab.id === "quadratic") {
     const [a, b, c] = v,
       q = quadratic(a, b, c);
-    formula = `f(x) = ${fmt(a)}x² ${b < 0 ? "−" : "+"} ${fmt(Math.abs(b))}x ${c < 0 ? "−" : "+"} ${fmt(Math.abs(c))}`;
+    formula = `f(x) = ${simplifiedPolynomial([a, b, c])}`;
     plot = chart({
       ymin: Math.min(-5, c, 4*a + 2*b + c) - 1,
       ymax: Math.max(7, c, 4*a + 2*b + c) + 1,
@@ -927,7 +941,7 @@ function challengePage(id) {
   const filtered = challenges.filter(
     (x) => challengeFilter === "all" || x.type === challengeFilter,
   );
-  return `<main id="main" class="page" tabindex="-1"><div class="section-kicker">${pair("LE TERRAIN DE JEU", "THE PLAYGROUND")}</div><div class="page-heading"><div><h1>${pair("À chaque problème, une découverte.", "A discovery in every problem.")}</h1><p>${pair("Prends un crayon. Essaie une idée. Les indices sont là si tu en as besoin.", "Grab a pencil. Try an idea. Hints are here when you need them.")}</p></div><div class="progress-badge"><strong>${challenges.filter((x) => completed.has(x.id)).length} / ${challenges.length}</strong><span>${pair("réponses trouvées", "answers found")}</span></div></div><div class="filter-row" role="group" aria-label="${pair("Type de défi", "Challenge type")}">${[
+  return `<main id="main" class="page" tabindex="-1"><div class="page-heading"><div><h1>${pair("À chaque problème, une découverte.", "A discovery in every problem.")}</h1><p>${pair("Prends un crayon. Essaie une idée. Les indices sont là si tu en as besoin.", "Grab a pencil. Try an idea. Hints are here when you need them.")}</p></div><div class="progress-badge"><strong>${challenges.filter((x) => completed.has(x.id)).length} / ${challenges.length}</strong><span>${pair("réponses trouvées", "answers found")}</span></div></div><div class="filter-row" role="group" aria-label="${pair("Type de défi", "Challenge type")}">${[
     ["all", "Tous les défis", "All challenges"],
     ["play", "Maths récréatives", "Recreational maths"],
     ["olympiad", "Esprit olympiade", "Olympiad thinking"],
@@ -938,10 +952,10 @@ function challengePage(id) {
     )
     .join(
       "",
-    )}</div><div class="challenge-grid">${filtered.map((x, i) => `<a class="challenge-card" href="${link("challenges", x.id)}"><div class="card-top"><span class="tag ${x.type}">${x.type === "play" ? pair("RÉCRÉATIF", "RECREATIONAL") : pair("OLYMPIADE", "OLYMPIAD")}</span><span class="card-number">${String(challenges.indexOf(x) + 1).padStart(2, "0")}</span></div><span class="challenge-motif" aria-hidden="true">${["∑", "□", "▦", "⋮", "≡", "n³", "≥", "n²"][challenges.indexOf(x)]}</span><h2>${t(x.title)}</h2><p>${t(x.topic)}</p><div class="card-bottom"><span>${"●".repeat(x.difficulty)}${"○".repeat(3 - x.difficulty)} <span class="sr-only">${pair("Difficulté", "Difficulty")} ${x.difficulty}/3</span></span><span>${completed.has(x.id) ? pair("✓ Réponse trouvée", "✓ Answer found") : x.minutes + " min"}</span></div></a>`).join("")}</div><p class="editorial-note">${pair("Problèmes classiques reformulés pour le laboratoire. « Esprit olympiade » désigne le type de raisonnement, pas une provenance officielle. Une réponse numérique ne remplace pas une preuve.", "Classic problems adapted for the laboratory. “Olympiad thinking” describes the reasoning style, not official contest provenance. A numerical answer does not replace a proof.")}</p></main>`;
+    )}</div><div class="challenge-grid">${filtered.map((x, i) => `<a class="challenge-card" href="${link("challenges", x.id)}"><div class="card-top"><span class="tag ${x.type}">${x.type === "play" ? pair("Récréatif", "Recreational") : pair("Olympiade", "Olympiad")}</span><span class="card-number">${String(challenges.indexOf(x) + 1).padStart(2, "0")}</span></div><span class="challenge-motif" aria-hidden="true">${["∑", "□", "▦", "⋮", "≡", "n³", "≥", "n²"][challenges.indexOf(x)]}</span><h2>${t(x.title)}</h2><p>${t(x.topic)}</p><div class="card-bottom"><span>${"●".repeat(x.difficulty)}${"○".repeat(3 - x.difficulty)} <span class="sr-only">${pair("Difficulté", "Difficulty")} ${x.difficulty}/3</span></span><span>${completed.has(x.id) ? pair("✓ Réponse trouvée", "✓ Answer found") : x.minutes + " min"}</span></div></a>`).join("")}</div><p class="editorial-note">${pair("Problèmes classiques reformulés pour le laboratoire. « Esprit olympiade » désigne le type de raisonnement, pas une provenance officielle. Une réponse numérique ne remplace pas une preuve.", "Classic problems adapted for the laboratory. “Olympiad thinking” describes the reasoning style, not official contest provenance. A numerical answer does not replace a proof.")}</p></main>`;
 }
 function challengeDetail(c) {
-  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} MIN</span><h1>${t(c.title)}</h1><p class="problem">${t(c.prompt)}</p><div class="proof-callout"><strong>${pair("Pense comme un mathématicien", "Think like a mathematician")}</strong><p>${pair("Teste un petit exemple, cherche une régularité, puis explique pourquoi elle est vraie.", "Test a small example, look for a pattern, then explain why it is true.")}</p></div><form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${c.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p>${t(h)}</p></details>`).join("")}<details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary><p>${t(c.solution)}</p></details><div class="extension"><span class="eyebrow">${pair("POUR ALLER PLUS LOIN", "TAKE IT FURTHER")}</span><p>${t(c.extension)}</p></div></aside></div></main>`;
+  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem">${t(c.prompt)}</p><div class="proof-callout"><strong>${pair("Pense comme un mathématicien", "Think like a mathematician")}</strong><p>${pair("Teste un petit exemple, cherche une régularité, puis explique pourquoi elle est vraie.", "Test a small example, look for a pattern, then explain why it is true.")}</p></div><form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${c.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p>${t(h)}</p></details>`).join("")}<details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary><p>${t(c.solution)}</p></details><div class="extension"><span class="eyebrow">${pair("Pour aller plus loin", "Take it further")}</span><p>${t(c.extension)}</p></div></aside></div></main>`;
 }
 function bindChallenges() {
   document.querySelectorAll("[data-filter]").forEach((b) =>
@@ -972,8 +986,20 @@ function bindChallenges() {
     illuminateFeedback($("#challenge-feedback"), reducedMotion);
   });
 }
+// Coefficients simplified for reading: 1x² + 0x − 2 becomes x² − 2.
+function simplifiedPolynomial(coefficients) {
+  const powers = ["x²", "x", ""];
+  let out = "";
+  coefficients.forEach((c, i) => {
+    if (Math.abs(c) < 1e-9) return;
+    const abs = Math.abs(c);
+    const body = powers[i] && Math.abs(abs - 1) < 1e-9 ? powers[i] : fmt(abs) + powers[i];
+    out += out ? (c < 0 ? " − " : " + ") + body : (c < 0 ? "−" : "") + body;
+  });
+  return out || "0";
+}
 function pathwayPage() {
-  return `<main id="main" class="page" tabindex="-1"><div class="section-kicker">${pair("CHOISIR SON CHEMIN", "CHOOSE YOUR PATH")}</div><h1>${pair("Les mêmes idées, plusieurs parcours.", "Shared ideas, different pathways.")}</h1><p class="page-intro">${pair("Pars de ton programme ou suis simplement ta curiosité. Chaque expérience précise ses prérequis.", "Start with your curriculum or simply follow your curiosity. Each experiment lists its prerequisites.")}</p><div class="pathway-grid">${pathways
+  return `<main id="main" class="page" tabindex="-1"><h1>${pair("Les mêmes idées, plusieurs parcours.", "Shared ideas, different pathways.")}</h1><p class="page-intro">${pair("Pars de ton programme ou suis simplement ta curiosité. Chaque expérience précise ses prérequis.", "Start with your curriculum or simply follow your curiosity. Each experiment lists its prerequisites.")}</p><div class="pathway-grid">${pathways
     .map(
       (p) =>
         `<section class="pathway-card"><div class="pathway-label">${p.label}</div><h2>${t(p.name)}</h2><p>${t(p.intro)}</p>${p.stages
