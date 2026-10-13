@@ -4,7 +4,8 @@ import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
-import { themes, currentTheme, cycleTheme, installFx, watchScroll } from "./fx.js";
+import { fullscreenButton } from "./visual-lessons.js";
+import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { createLabMotion, installInterfaceMotion, illuminateFeedback } from "./motion.js";
 import { trigControls, trigDiagram } from "./trigonometry.js";
 import {
@@ -44,6 +45,9 @@ const completed = new Set(
       )
     : [],
 );
+const chapterIds = new Set(resourceCatalog.chapters.map((c) => c.id));
+const seen = new Set(Array.isArray(saved.seen) ? saved.seen.filter((id) => chapterIds.has(id)) : []);
+let last = chapterIds.has(saved.last) ? saved.last : "";
 const states = {};
 let challengeFilter = "all";
 let currentLab = "quadratic";
@@ -72,7 +76,7 @@ function save() {
   try {
     localStorage.setItem(
       "maths-explorer-v1",
-      JSON.stringify({ lang, completed: [...completed] }),
+      JSON.stringify({ lang, completed: [...completed], seen: [...seen], last }),
     );
   } catch {
     storageWorks = false;
@@ -101,7 +105,7 @@ function route() {
 function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
 }
-const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="12" class="bm-bg"/><path d="M8 11Q20 45 32 11" class="bm-curve"/><circle cx="9" cy="20" r="3.4" class="bm-dot"/><circle cx="31" cy="20" r="3.4" class="bm-dot"/></svg>`;
+const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="10" class="bm-bg"/><path d="M9 11Q20 43 31 11" class="bm-curve"/><circle cx="10" cy="20" r="3.2" class="bm-dot"/><circle cx="30" cy="20" r="3.2" class="bm-dot"/></svg>`;
 function header(page) {
   const nav = [
     ["resources", "Cours", "Lessons", "books"],
@@ -109,17 +113,17 @@ function header(page) {
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
     ["pathways", "Parcours", "Pathways", "path"],
   ];
-  const theme = currentTheme();
-  const themeName = t(theme.name);
-  return `<header class="topbar"><a class="brand" href="#resources" aria-label="Maths Explorer">${brandMark}<span class="brand-name">maths<b>explorer</b></span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${nav
+  const dark = currentTheme() === "nuit";
+  const themeLabel = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
+  return `<header class="topbar"><a class="brand" href="#resources" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${nav
     .map(
       ([id, fr, en, ic]) =>
-        `<a href="#${id}" ${page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources") ? 'aria-current="page"' : ""}>${icon(ic, 22)}<span>${pair(fr, en)}</span></a>`,
+        `<a href="#${id}" ${page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources") ? 'aria-current="page"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`,
     )
-    .join("")}</nav><div class="tools"><button class="theme-btn" data-theme-cycle aria-label="${pair("Thème", "Theme")} : ${themeName}. ${pair("Changer de thème", "Change theme")}" title="${themeName}">${icon("palette", 20)}<span>${themeName}</span></button><div class="language" role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
+    .join("")}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
 }
 function footer() {
-  return `<footer><div class="foot-brand">${brandMark}<span>Maths Explorer <em>${pair("Observer. Conjecturer. Démontrer.", "Observe. Conjecture. Prove.")}</em></span></div><p>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</p><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a></footer>`;
+  return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a></footer>`;
 }
 function render() {
   stopTrig();
@@ -143,7 +147,7 @@ function render() {
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "workshop" ? workshopMarkup(t) : page === "resources" ? libraryPage(t, { challenges, completed })
+    (page === "workshop" ? workshopMarkup(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? labPage(r.id)
@@ -160,22 +164,29 @@ function render() {
   bindCommon();
   if (page === "lab") bindLab();
   if (page === "challenges") bindChallenges();
-  if (page === "resources") stopChapter = bindLibrary(t, { lang, reduced: reducedMotion, fx: () => installFx($("#app"), reducedMotion) });
-  if (page === "chapter") stopChapter = bindChapter(r.id, t, fmt);
+  if (page === "resources") stopChapter = bindLibrary(t, { fmt });
+  if (page === "chapter") {
+    stopChapter = bindChapter(r.id, t, fmt);
+    if (last !== r.id || !seen.has(r.id)) {
+      last = r.id;
+      seen.add(r.id);
+      save();
+    }
+  }
   if (page === "workshop") stopChapter = bindWorkshop($("#main"),t,lang);
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   installInterfaceMotion($("#app"), reducedMotion);
-  installFx($("#app"), reducedMotion);
-  watchScroll();
+  installPresenting();
 }
 function bindCommon() {
-  $("[data-theme-cycle]")?.addEventListener("click", () => {
-    cycleTheme();
-    const button = $("[data-theme-cycle]");
-    const name = t(currentTheme().name);
-    button.setAttribute("aria-label", `${pair("Thème", "Theme")} : ${name}. ${pair("Changer de thème", "Change theme")}`);
-    button.title = name;
-    button.querySelector("span").textContent = name;
+  $("[data-theme-toggle]")?.addEventListener("click", () => {
+    toggleTheme();
+    const dark = currentTheme() === "nuit";
+    const label = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
+    const button = $("[data-theme-toggle]");
+    button.setAttribute("aria-label", label);
+    button.title = label;
+    button.innerHTML = icon(dark ? "sun" : "moon", 22);
   });
   document.querySelectorAll("[data-lang]").forEach((b) =>
     b.addEventListener("click", () => {
@@ -193,13 +204,15 @@ const navLabs = [...labs].sort(
     ) -
     ["Algèbre", "Géométrie", "Données & hasard", "Analyse"].indexOf(b.group[0]),
 );
+// The combining arrow in the vector symbol is missing from the maths font: show a plain arrow.
+const glyph = (symbol) => (symbol.includes("\u20d7") ? "→" : symbol);
 function labPage(id) {
   const lab = labs.find((x) => x.id === id) || labs[0];
   currentLab = lab.id;
   const s = state(lab);
-  return `<div class="lab-layout"><aside class="sidebar" aria-label="${pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${pair("Explorer", "Explore")} <span>09</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link("lab", x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${x.symbol}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
+  return `<div class="lab-layout"><aside class="sidebar" aria-label="${pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${pair("Explorer", "Explore")} <span>09</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link("lab", x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
  <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("Le laboratoire", "The laboratory")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
- <div class="workbench"><section class="experiment" aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
+ <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
  ${
    lab.id === "sequences"
      ? `<fieldset class="mode"><legend>${pair("Type de suite", "Sequence type")}</legend>${[
@@ -1008,7 +1021,7 @@ function pathwayPage() {
               `<div class="stage"><h3>${t(s.name)}</h3>${s.note ? `<p class="muted">${t(s.note)}</p>` : ""}<ul>${s.ids
                 .map((id) => {
                   const l = labs.find((x) => x.id === id);
-                  return `<li><a href="${link("lab", id)}"><span aria-hidden="true">${l.symbol}</span>${t(l.short)}${completed.has(id) ? '<span class="check">✓</span>' : ""}</a></li>`;
+                  return `<li><a href="${link("lab", id)}"><span aria-hidden="true">${glyph(l.symbol)}</span>${t(l.short)}${completed.has(id) ? '<span class="check">✓</span>' : ""}</a></li>`;
                 })
                 .join("")}</ul></div>`,
           )

@@ -92,58 +92,13 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 
 ## 6. Design
 
-Design is delegated to the assistant by the owner (12 October 2026). Reference implementation: `design/prototype/` (run per its README). Read it before any visual work, and use the repo-level design skills (frontend-design, design-taste-frontend).
+The owner discarded every earlier design instruction on 13 October 2026 and delegated design to the assistant, working from the site's goal and functions. The current design ("Cahier"), its reasoning, tokens and components are in `docs/DESIGN_V3.md`; read it before any visual work. Rules that still bind any design, because they come from the site's purpose rather than from taste:
 
-**Owner override, 13 October 2026.** The owner asked for a dynamic, appealing, playful redesign and discarded the old look. The implemented system ("Atelier", see HANDOFF log) relaxes the dials below to variance 8, motion 7, density 4, allows gradients, tinted shadows and spring motion, and keeps everything else in this section: themes and semantic colours, fonts, accessibility rules, copy rules, no AI notice. Where the paragraphs below say motion 2, no shadows or no gradients, they are superseded.
-
-**Design read.** Experiment-first learning site for lycée students and teachers, phone-first (Madagascar), trust and legibility over decoration, with a mathematical, bookish voice. Dials: variance 5, motion 2 (only motion that answers a user action), density 4.
-
-**Principles.**
-- The first screen is an experiment: a manipulable figure beside one sentence, not a catalogue. Hero figure: parabola with draggable roots. Second figure: determinant as signed area.
-- One memorable element (the figure panel); everything else is quiet. One accent per theme, one 10 px radius, no shadows, no gradients, no decorative animation, no emoji.
-- Semantic colour is fixed across themes: primary = the object under study, positive = valid or positive, negative = warning or negative, muted = secondary.
-- Structure encodes content: numbers appear only on real sequences (the five-part chapter sequence) and numbered chapter lists.
-
-**Typography.** STIX Two Text (headings, formulas, readouts: matches MathJax output and LaTeX) and Atkinson Hyperlegible (interface and body), both OFL, self-hosted, font-display swap. Body 18 px, line length under 70 characters, French number format (decimal comma, true minus sign U+2212), simplified coefficients.
-
-**Themes.** Selector in the header, choice saved locally (failure tolerated). Default Marine (Navy-Gold). Charbon (Charcoal-Yellow). Jour (daylight, for classroom projectors and print-like reading).
-
-| Token | Marine | Charbon | Jour |
-|---|---|---|---|
-| bg | #0f1b2d | #16181d | #f3f5f8 |
-| panel | #13243b | #1f2229 | #ffffff |
-| ink | #f4f1ea | #f2f0e8 | #14213a |
-| muted | #8fa6c4 | #9aa3b0 | #50607a |
-| primary | #e8a33d | #ffd23f | #8f5200 |
-| on-primary | #0f1b2d | #16181d | #ffffff |
-| pos | #5fd0a0 | #6bd6a4 | #17734f |
-| neg | #ff7a7a | #ff7a7a | #b3261e |
-| grid | #24364f | #2e323b | #d8dee8 |
-| border | #5d7699 | #6b7480 | #7a869b |
-
-Computed WCAG contrast on bg / panel: ink 15.3 / 13.9, 15.6 / 14.0, 14.7 / 16.1; muted 6.9 / 6.3, 7.0 / 6.2, 5.8 / 6.4; primary 8.0 / 7.2, 12.3 / 11.0, 5.7 / 6.2; pos 9.1 / 8.2, 10.0 / 8.9, 5.3 / 5.8; neg 6.8 / 6.2, 7.0 / 6.3, 6.0 / 6.5; button text on primary 8.0, 12.3, 6.2; control borders 3.7 / 3.4, 3.8 / 3.4, 3.4 / 3.7 (at least 3:1 for UI components). Grid lines are decorative and exempt. This covers colours only, not full conformity.
-
-**Layout.** Header one line (64 px), on phones a Menu button. Hero in two columns on desktop (words 5/12, figure 7/12), stacked on phones. Chapter list: level tabs (Seconde, Première, Terminale, Terminale STMG) and a two-column list on desktop. Minimal footer, no AI notice.
-
-**Slide on phones.** In portrait the 1280x720 stage must not be shrunk to illegibility: stack the figure above a controls and readout panel, keep touch targets at least 44 px, and leave a fullscreen/landscape option.
-
-**Accessibility rules.** Skip link; visible 3 px focus ring; draggable points are focusable (role slider) and move with arrow keys (Shift for larger steps), sliders always available as an alternative; debounced aria-live summary of the result; reduced motion respected; no horizontal scroll at 390 px; 200% text zoom must still work. Check each theme before shipping. Automated checks do not prove conformity.
-
-**Copy rules.** French, sentence case, plain verbs, buttons say what happens ("Choisir un chapitre"). No em or en dashes in copy. No all-caps labels, no eyebrow labels.
-
-- The existing site uses navy, mint and violet; migrate it to these themes. Print theme for PDFs stays light.
-
-### Design flaws of the current site (visual audit, 12 October 2026)
-
-Based on screenshots of four views (chapter catalogue and lab, desktop 1440 px; catalogue filters and lab, phone 390 px). The other views were captured but not inspected. The owner names design as one of the site's main flaws; the owner's own list of flaws is still to be collected [OPEN].
-- The landing page is a text catalogue of chapter cards, not an experiment. Nothing shows the experiment-first philosophy at first sight.
-- Chapter cards are visually empty (a number, a title, small grey text) and their text alignment varies from card to card.
-- The lab's formula shows unsimplified coefficients ("f(x) = 1x² + 0x − 2"), unlike the owner's slides, which simplify them.
-- In the lab, the graph is small and the controls fall below the first screen; the owner's five-step slide sits behind a small button rather than being the main experience.
-- The "Présenter et explorer" button sits on the card edge instead of inside its padding.
-- On a phone the navigation wraps onto two lines (an orphaned item) and a filter label is truncated ("Tous les parcou…").
-- One uniform navy-and-mint look gives little visual hierarchy; the owner's slides (navy and gold, semantic colours, large figure) are the stronger reference.
-- The design work must use the repo-level design skills (frontend-design, design-taste-frontend, theme-factory) and end with an accessibility check.
+- Experiment first: the manipulable figure is the main content of a chapter, and the first screen offers a way into one.
+- Honest labelling: experiments give evidence, not proof; show the numbers behind a picture; simplify coefficients.
+- Phone first, low data: usable at 320 px width, no horizontal scroll, 44 px touch targets, readable at 200% text, no heavy assets.
+- Accessible: visible focus, full keyboard use (draggable points move with arrow keys, sliders as alternative), contrast checked in every theme, reduced motion respected.
+- No visible AI notice, no owner identity, no personal-storage links (section 2).
 
 ## 7. Technical architecture
 
@@ -181,7 +136,7 @@ Still open:
 1. Malagasy programme documents: the owner supplies them per chapter.
 2. The Terminale STMG programme in force this year.
 3. Whether maths expertes keeps the 2019 text beyond this year.
-4. Owner review of the prototype design (themes, hero figure, fonts).
+4. Owner review of the Cahier design (`docs/DESIGN_V3.md`).
 
 ## 10. Skills stored in this repository
 

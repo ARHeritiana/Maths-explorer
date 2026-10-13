@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr" data-theme="marine">
+<html lang="fr" data-theme="jour">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#0f1b2d" />
+    <meta name="theme-color" content="#f5f6f8" />
     <meta
       name="description"
       content="Des chapitres de lycée où l'on manipule d'abord, puis on formalise. Explore mathematics by experimenting first."
@@ -12,20 +12,20 @@
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23e8a33d'/%3E%3Cpath d='M8 12Q20 44 32 12' fill='none' stroke='%230f1b2d' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='9.5' cy='20' r='3' fill='%230f1b2d'/%3E%3Ccircle cx='30.5' cy='20' r='3' fill='%230f1b2d'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%231d4ed8'/%3E%3Cpath d='M8 12Q20 44 32 12' fill='none' stroke='%23ffffff' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='9.5' cy='20' r='3' fill='%23ffffff'/%3E%3Ccircle cx='30.5' cy='20' r='3' fill='%23ffffff'/%3E%3C/svg%3E"
     />
     <script>
       /* Apply the saved theme before first paint (no flash). Storage may be blocked. */
       try {
         var saved = localStorage.getItem("maths-explorer-theme");
-        var themes = ["marine", "charbon", "jour"];
-        if (themes.indexOf(saved) < 0)
-          saved = matchMedia("(prefers-color-scheme: light)").matches ? "jour" : "marine";
+        if (saved === "marine" || saved === "charbon") saved = "nuit";
+        if (saved !== "jour" && saved !== "nuit")
+          saved = matchMedia("(prefers-color-scheme: dark)").matches ? "nuit" : "jour";
         document.documentElement.dataset.theme = saved;
-        document.querySelector('meta[name="theme-color"]').content = { marine: "#0f1b2d", charbon: "#16181d", jour: "#f3f5f8" }[saved];
+        document.querySelector('meta[name="theme-color"]').content = saved === "nuit" ? "#0c111b" : "#f5f6f8";
       } catch (e) {}
     </script>
-    <link rel="preload" href="./fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/stix-two-text-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./explorer.css" />
     <link rel="stylesheet" href="./pages.css" />
     <script type="module" src="./js/app.js"></script>
