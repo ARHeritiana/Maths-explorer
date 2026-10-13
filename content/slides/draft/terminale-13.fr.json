@@ -1,0 +1,91 @@
+{
+"id": "terminale-13",
+"slides": [
+{
+"k": "title",
+"t": "Représentations paramétriques et équations cartésiennes",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Décrire une droite et un plan ; déterminer des intersections ; choisir une méthode pour une projection.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Notes de cours",
+"b": "Dans tout ce chapitre, les coordonnées sont données dans un repère orthonormé de l'espace. Cette hypothèse est nécessaire pour identifier un vecteur normal à partir des coefficients d'une équation et pour calculer les distances.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Droites paramétrées",
+"b": "La droite passant par \\(A\\pt{x_A;y_A;z_A}\\) de vecteur directeur non nul \\(\\pt{a;b;c}\\) admet la représentation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nUn point appartient à la droite s'il existe <i>un même</i> réel \\(t\\) satisfaisant les trois égalités. Une droite admet de nombreuses représentations : changement du point de départ ou multiplication du directeur par un réel non nul.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Droites paramétrées",
+"b": "\\(\\pt{x;y;z}=\\pt{1;2;0}+t\\pt{2;-1;3}\\) décrit la même droite que \\(\\pt{3;1;3}+s\\pt{4;-2;6}\\) ; le lien est \\(t=1+2s\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Plans cartésiens",
+"b": "Si \\(\\pt{a;b;c}\\ne\\pt{0;0;0}\\), l'ensemble \\(ax+by+cz+d=0\\) est un plan de vecteur normal \\(\\pt{a;b;c}\\). Le plan de normal \\(\\vec n\\) passant par \\(A\\) se construit en écrivant \\(\\vect{AM}\\cdot\\vec n=0\\).",
+"a": null,
+"h": "Équation d'un plan"
+},
+{
+"k": "proof",
+"t": "Plans cartésiens",
+"b": "La condition \\(\\vect{AM}\\cdot\\vec n=0\\) s'écrit \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). En développant, \\(d=-ax_A-by_A-cz_A\\). Réciproquement, tout point satisfaisant cette équation vérifie la condition d'orthogonalité, donc appartient au plan.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Plans cartésiens",
+"b": "Le plan de normal \\(\\pt{2;-1;3}\\) passant par \\(A\\pt{1;2;0}\\) est \\(2(x-1)-(y-2)+3z=0\\), soit \\(2x-y+3z=0\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Intersections",
+"b": "Pour une droite et un plan, remplacer \\(x,y,z\\) dans l'équation du plan par leurs expressions paramétriques. Une solution en \\(t\\) donne une intersection ponctuelle ; une identité donne une droite incluse ; une contradiction donne une droite parallèle disjointe.\nPour deux plans, des normales non colinéaires donnent une intersection suivant une droite ; résoudre le système à deux équations en choisissant une variable comme paramètre. Si les normales sont colinéaires, les plans sont parallèles : distinguer confondus et disjoints.\nPour deux droites, utiliser des paramètres \\(s,t\\) indépendants et résoudre les trois équations. Sans solution et avec directeurs non colinéaires, les droites sont non coplanaires.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Projection sur un plan",
+"b": "Si \\(\\mathcal P:ax+by+cz+d=0\\), chercher le projeté de \\(M\\) sur la droite normale passant par \\(M\\) : \\(H=M+t\\pt{a;b;c}\\). Remplacer dans l'équation du plan pour déterminer \\(t\\), puis calculer \\(MH\\).\nOn en déduit, sans en faire une formule à apprendre isolément,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Projection sur un plan",
+"b": "Après le calcul d'un projeté, contrôler simultanément \\(H\\in\\mathcal P\\) et la colinéarité de \\(\\vect{MH}\\) avec le normal.<br><br>",
+"a": null,
+"h": "Vérification indispensable."
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Trois droites face à un plan — 30 min.</b><br><br> Dans un repère orthonormé de l'espace, on considère le plan \\(\\mathcal P\\) d'équation \\(x+y+z=3\\). Dans chaque question, le paramètre \\(t\\) parcourt \\(\\R\\).\n<ol><li>La droite \\(d_1\\) admet la représentation \\((x;y;z)=(t;t;t)\\). Déterminer \\(d_1\\cap\\mathcal P\\).\n<li>La droite \\(d_2\\) admet la représentation \\((x;y;z)=(3+t;-t;0)\\). Déterminer \\(d_2\\cap\\mathcal P\\).\n<li>La droite \\(d_3\\) admet la représentation \\((x;y;z)=(t;-t;0)\\). Déterminer \\(d_3\\cap\\mathcal P\\).\n<li>Pour chaque droite, préciser si l'équation obtenue après substitution dans celle du plan a une solution unique, aucune solution ou tout réel pour solution. Relier ces cas aux positions géométriques trouvées.</ol><br><br>",
+"a": null,
+"h": null
+}
+],
+"figs": [],
+"figs_en": []
+}

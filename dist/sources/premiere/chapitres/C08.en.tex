@@ -1,0 +1,225 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{premiere-c08}{Random variables and dispersion}\label{C08}
+\begin{keypoint}[Chapter path]
+\textbf{Objectives.} Build a distribution; interpret events; calculate expectation, variance, standard deviation; use linearity; simulate samples and calculate their observed mean.
+
+\textbf{Prerequisites.} Probability, weighted mean, squares, trees and lists.
+
+\textbf{Yearly reference point.} 19--28 January: 8 hours\end{keypoint}
+\section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C08-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item Calculate the mean of 2, 4, 6.
+\item Check whether $\pt{\dfrac{1}{2};\dfrac{1}{3};\dfrac{1}{6}}$ can be a distribution.
+\item Calculate $(2-5)^2$.
+\item If $P(A)=\num{0,6}$, calculate $P(\overline A)$.
+\item A gross gain of 8 units and a stake of 3 give what net gain?
+\item Calculate $\sqrt{\num{0,25}}$.
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Explain why a theoretical mean can be an impossible gain. Present the difference between a distribution, a simulation and a data set.
+\mxnewpage
+\section*{Investigate before formalising}\label{C08-RECH}
+Create two games with three equally likely outcomes, both with expectation 0 but different standard deviations. Check their distributions and explain the difference.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
+\section{Variable, event and distribution}\label{C08-U1}
+\begin{keypoint}[Definition and results]
+On a finite sample space $\Omega$, a real random variable X is a function that associates a real number with each outcome. The event $\{X=a\}$ groups the outcomes giving the value a. Its distribution associates with each distinct value $x_i$ the probability $p_i=P(X=x_i)$, with $p_i\geq0$ and $\sum p_i=1$.
+\end{keypoint}
+\paragraph{Status and justification.} Definitions. The events associated with distinct values form a partition of the sample space; this justifies the sum of the probabilities.
+\begin{example}A fair die gives a gain X equal to 2 for 1 or 2, and to $-1$ otherwise. The distribution is $P(X=2)=\dfrac{1}{3}$, $P(X=-1)=\dfrac{2}{3}$. $\{X\leq0\}=\ens{3;4;5;6}$: probability $\dfrac{2}{3}$.\end{example}\label{C08-EX1}
+\mxinclude{figures/C08-U1}
+\begin{pitfall}The values are not always equally likely even if the outcomes are. Group the outcomes that give the same gain.\end{pitfall}
+\begin{application}Two fair coins are tossed. X counts the heads. Write its distribution and $P(X\leq1)$.\end{application}\label{C08-AP1}
+\section{Expectation and linearity}\label{C08-U2}
+\begin{keypoint}[Definition and results]
+The expectation is $E(X)=\sum_i x_ip_i$. It describes the long-term theoretical mean, not a result that is necessarily possible on a single trial. For variables X and Y on the same finite sample space and real numbers a,b: $E(aX+b)=aE(X)+b$ and $E(X+Y)=E(X)+E(Y)$, with no assumption of independence.
+\end{keypoint}
+\paragraph{Status and justification.} Summing over the outcomes $\omega$, $E(X+Y)=\sum_\omega(X(\omega)+Y(\omega))P(\omega)$; distributing the sum gives the result. The constant b has expectation b because the probabilities sum to 1.
+\begin{example}For the previous distribution $P(X=2)=\dfrac{1}{3}$, $P(X=-1)=\dfrac{2}{3}$, $E(X)=0$: the game is fair if X is the net gain. For $Y=3X-2$, $E(Y)=3\times0-2=-2$.\end{example}\label{C08-EX2}
+\begin{pitfall}An expectation is not an individual guarantee; a game can be losing at every observed horizon despite a positive expectation.\end{pitfall}
+\begin{application}A gross gain is 10 with probability $\dfrac{1}{5}$ and 0 otherwise. What stake makes the game fair?\end{application}\label{C08-AP2}
+\section{Variance, standard deviation and König--Huygens}\label{C08-U3}
+\begin{keypoint}[Definition and results]
+Writing $\mu=E(X)$, $V(X)=E((X-\mu)^2)=\sum_i(x_i-\mu)^2p_i$. The standard deviation is $\sigma(X)=\sqrt{V(X)}$. The König--Huygens formula gives $V(X)=E(X^2)-E(X)^2$. A variance is always positive or zero; the standard deviation has the same unit as X, the variance a squared unit.
+\end{keypoint}
+\paragraph{Status and justification.} Expand $(X-\mu)^2=X^2-2\mu X+\mu^2$, apply linearity and $E(X)=\mu$: $E(X^2)-2\mu^2+\mu^2$. We obtain the formula.
+\begin{example}For X with values 0 and 4 with probabilities $\dfrac{3}{4}$ and $\dfrac{1}{4}$, $E(X)=1$, $E(X^2)=4$, $V(X)=3$ and $\sigma=\sqrt3$. Direct calculation: $(0-1)^2(\dfrac{3}{4})+(4-1)^2(\dfrac{1}{4})=3$.\end{example}\label{C08-EX3}
+\begin{pitfall}$E(X^2)$ is not $E(X)^2$. A variance calculated as negative signals an error or a very small rounding error to be dealt with explicitly.\end{pitfall}
+\begin{application}For X with values $-1,1$ equally likely, calculate the expectation, variance and standard deviation.\end{application}\label{C08-AP3}
+\section{Transforming and comparing gains}\label{C08-U4}
+\begin{keypoint}[Definition and results]
+For real a,b, $V(aX+b)=a^2V(X)$ and $\sigma(aX+b)=|a|\sigma(X)$. A translation moves the mean without changing the dispersion; a multiplication changes the scale. Two games with the same expectation can have very different dispersions.
+\end{keypoint}
+\paragraph{Status and justification.} $aX+b-E(aX+b)=a(X-E(X))$. Squaring and then taking the expectation gives $a^2V(X)$. The square root of $a^2$ is $|a|$.
+\begin{example}A game A always pays 2. A game B pays 0 or 4 with equal probability. Both have expectation 2; variances 0 and 4. Their distributions are therefore not interchangeable despite the same mean.\end{example}\label{C08-EX4}
+\begin{pitfall}The variance of a sum is not, in general, the sum of the variances; no rule of this type is used without hypotheses.\end{pitfall}
+\begin{application}$E(X)=3$, $V(X)=4$. Give the characteristics of $Y=-2X+5$.\end{application}\label{C08-AP4}
+\section{Samples and observed mean}\label{C08-U5}
+\begin{keypoint}[Definition and results]
+A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another; we compare it with $\mu=E(X)$.
+\end{keypoint}
+\paragraph{Status and justification.} Experimentation: neither a convergence theorem nor the normal distribution is proved here. We check the size of the lists, the calculation of the mean and the distinction between n and the number N of samples.
+\begin{example}For X taking the values 0 and 2 with equal probability, $\mu=1$. The sample 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 has observed mean \num{1,2}; another sample of the same size will usually give another mean. A simulation compares several observed means with $\mu$ without proving anything.\end{example}\label{C08-EX5}
+\begin{pitfall}Do not copy a single draw n times; do not confuse the observed mean of a sample with the expectation $\mu$.\end{pitfall}
+\begin{beyond}[Fluctuation threshold]By repeating the simulation, we can count the proportion of samples satisfying $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$; it is often close to \pc{95} without necessarily being equal to it. This threshold is not part of the première syllabus and is not assessed.\end{beyond}
+\begin{application}X takes the values 0 and 2 with equal probability. Calculate the observed mean of the sample 2, 0, 2, 2, 0, then its gap from $E(X)$.\end{application}\label{C08-AP5}
+\mxnewpage
+\section*{Exercise path}\label{C08-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\mxexercisehead{C08-E1}{A distribution to build}
+A fair six-sided die, with faces numbered 1 to 6, is rolled. The random variable $X$ associates with the result the remainder of its Euclidean division by 3. For example, a result divisible by 3 gives $X=0$.
+\begin{enumerate}[label=\arabic*.]
+\item For each of the six faces, state the value taken by $X$.
+\item Present the probability distribution of $X$ in a table and check that the probabilities sum to 1.
+\item Calculate $P(X<2)$, stating which values of $X$ are retained.
+\end{enumerate}
+\mxexercisehead{C08-E2}{Two variance calculations}
+The random variable $X$ takes the values $-2$, 0 and 4 with respective probabilities $\dfrac14$, $\dfrac12$ and $\dfrac14$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate its expectation $\mu=E(X)$ and the second moment $E(X^2)$.
+\item Calculate $V(X)$ using the König--Huygens formula, then deduce the exact standard deviation.
+\item Recover the variance from the definition $V(X)=E((X-\mu)^2)$. Present the three contributions to the calculation.
+\end{enumerate}
+\mxexercisehead{C08-E3}{A fair game}
+A wheel has five sectors of equal angle, bearing the numbers 0, 0, 0, 5 and 10. The five sectors are assumed equally likely. The number obtained represents a gross gain $G$, in monetary units. To play, one pays a stake $m$; the net gain is therefore $X=G-m$.
+\begin{enumerate}[label=\arabic*.]
+\item Establish the distribution of $G$, then determine the stake $m$ that makes the game fair, that is, such that $E(X)=0$.
+\item After studying variance, calculate the standard deviation of the gross gain. Deduce that of the net gain when the stake is fair.
+\item Explain why changing the stake changes the expectation of the net gain but not its standard deviation.
+\end{enumerate}
+\mxinclude{figures/C08-E3}
+\mxexercisehead{C08-E4}{Same mean, different risk}
+Two fictitious investments are offered. The first yields a certain gain $X=1$. The second yields a gain $Y=-2$ with probability $\dfrac12$ and a gain $Y=4$ with probability $\dfrac12$. The gains are expressed in the same monetary unit.
+\begin{enumerate}[label=\arabic*.]
+\item Compare the expectations of the two gains, then their variances.
+\item Someone states: ``These investments are equivalent since they have the same mean.'' Explain what this sentence omits and what the variance makes it possible to distinguish here.
+\end{enumerate}
+\mxexercisehead{C08-E5}{Linearity without independence}
+A fair die numbered 1 to 6 is rolled. Let $X$ be the result of the roll and define $Y=7-X$. The two variables are therefore obtained from the same roll.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $E(X)$ and $E(Y)$, then $E(X+Y)$. Check the linearity of expectation on this example.
+\item Are the variables $X$ and $Y$ independent? Justify using, for example, the events $\{X=1\}$ and $\{Y=6\}$.
+\item Does the linearity of expectation require independence? Conclude using your results.
+\end{enumerate}
+\mxexercisehead{C08-E6}{A minimal loss}
+A random variable $X$ takes finitely many values and has an expectation $\mu$. For a real number $a$, the mean squared error associated with the constant forecast $a$ is measured by $E((X-a)^2)$.
+\begin{enumerate}[label=\arabic*.]
+\item Prove that $E((X-a)^2)=V(X)+(a-\mu)^2$. You may write $X-a=(X-\mu)+(\mu-a)$.
+\item Deduce the value of $a$ that minimises this error, then the minimum value. Justify the uniqueness of the optimal choice.
+\end{enumerate}
+\mxexercisehead{C08-E7}{Letter frequencies}
+We wish to measure the frequency of the letter ``a'' in a text. The denominator is the number of alphabetic characters: spaces, digits and punctuation marks are excluded. Capital letters are treated as lower case; accented letters remain distinct from ``a''.
+\begin{enumerate}[label=\arabic*.]
+\item Write a Python function that returns this frequency. State the result chosen when the text contains no letters.
+\item Test the function with \code{Aba !}, then with \code{123 !} and with the empty string. Explain the expected results before running the program.
+\end{enumerate}
+\mxexercisehead{C08-E8}{Delayed review}
+An experiment whose probability of success is $\dfrac12$ is repeated twice, independently. The random variable $X$ counts the number of successes obtained.
+\begin{enumerate}[label=\arabic*.]
+\item Recover the distribution of $X$ using the four possible sequences of results.
+\item Calculate $E(X)$ and $V(X)$ starting from this distribution.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\mxneed{12}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 28 p.~306, all questions.}\label{C08-M1} Calculate the expectation from the distribution table; keep the probabilities associated with each value.
+\paragraph{CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.}\label{C08-M2} Calculate the variance then the standard deviation, respecting the rounding to the nearest tenth asked for by the textbook.
+\begingroup\small
+\mxnewpage\section*{MCQ 1: understand and choose}\label{C08-Q1}
+\mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item A probability distribution has a sum of probabilities equal to
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $1$
+\item $n$
+\item the mean
+\end{enumerate}
+\item X is 0 or 4 with probabilities $\dfrac{3}{4}$ and $\dfrac{1}{4}$; $E(X)=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $1$
+\item $2$
+\item $3$
+\item $4$
+\end{enumerate}
+\item $V(X)$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $E(X^2)$
+\item $E(X)^2$
+\item $E(X^2)+E(X)^2$
+\item $E(X^2)-E(X)^2$
+\end{enumerate}
+\item If $V(X)=9$, $\sigma(X)=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $81$
+\item $9$
+\item $3$
+\item $\dfrac{1}{3}$
+\end{enumerate}
+\item $E(2X+1)$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2E(X)$
+\item $2E(X)+1$
+\item $E(X)+1$
+\item $E(X)^2+1$
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{MCQ 2: understand and choose}\label{C08-Q2}
+\mxCount{qcm2} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $V(X+5)$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $V(X)+5$
+\item $V(X)+25$
+\item $V(X)$
+\item $5V(X)$
+\end{enumerate}
+\item $\sigma(-3X)$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $3\sigma(X)$
+\item $-3\sigma(X)$
+\item $9\sigma(X)$
+\item $\sigma(X)$
+\end{enumerate}
+\item The expectation is necessarily
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item a possible value
+\item an integer
+\item positive
+\item none of these three statements
+\end{enumerate}
+\item $E(X+Y)=E(X)+E(Y)$ requires
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item independence
+\item no independence
+\item X=Y
+\item X positive
+\end{enumerate}
+\item If $E(X)=2$ and $E(X^2)=5$, then $V(X)=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $3$
+\item $9$
+\item $1$
+\item $7$
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C08-VF}
+\begin{enumerate}
+\item A variance can be negative.
+\item Two variables with the same expectation have the same distribution.
+\item Adding a constant to a variable does not change its standard deviation.
+\end{enumerate}
+\begin{keypoint}[Self-assessment]I build a complete distribution; I distinguish gross from net; I check both variance formulas; I do not confuse frequency with probability.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C08}\fi

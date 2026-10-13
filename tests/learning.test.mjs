@@ -10,7 +10,7 @@ const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
 const fmt=(n,d=4)=>n.toFixed(d),t=p=>p[0];
 test('all chapter extracts match the provenance manifest and have valid page pointers',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../docs/RESOURCE_PROVENANCE.json',import.meta.url)));
- assert.equal(resourceCatalog.chapters.length,47);assert.equal(manifest.length,144);
+ assert.equal(resourceCatalog.chapters.length,47);assert.equal(manifest.length,142);
  assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,47);
  for(const c of [...resourceCatalog.chapters,...resourceCatalog.supplements]){if(c.topic)assert.ok(guides[c.topic]);for(const f of c.files){
  const p=manifest.find(p=>p.path===f.path);assert.ok(p);assert.deepEqual(p.pages,[f.start,f.end]);assert.equal(f.pages,f.end-f.start+1);

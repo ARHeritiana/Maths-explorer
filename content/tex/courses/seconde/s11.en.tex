@@ -1,0 +1,66 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{seconde-s11}{Cross-tabulating two qualitative variables}\mxsubtitle{1--12 March 2027}
+\section{Two-way tables and marginal frequencies}
+\begin{keypoint}[Definitions]
+A qualitative variable describes a category. It is nominal if its categories have no natural order (means of transport), ordinal if they are ordered (level of satisfaction).
+A two-way table counts individuals according to two variables. The sums of the rows and columns are the margins. A marginal frequency divides a margin by the total count.
+\end{keypoint}
+\begin{example}In a population of $100$ individuals, two characteristics $A,B$ are observed:\end{example}
+\begin{center}\mxarraystretch{1.6}\begin{tabular}{c|rr|r}
+&$A$&$\overline A$&Total\\\hline
+$B$&20&15&35\\
+$\overline B$&12&53&65\\\hline
+Total&32&68&100
+\end{tabular}\end{center}
+Calculate the marginal frequencies of $A$, $B$, $\overline B$, then the frequency of individuals satisfying both $A$ and $B$.
+\mxanswerspace[2]{$f(A)=32/100=\num{0,32}$; $f(B)=35/100=\num{0,35}$; $f(\overline B)=65/100=\num{0,65}$. The frequency of $A\cap B$ is $20/100=\num{0,20}$; it is not a marginal frequency.}
+\begin{example}A première class of $32$ students is split as follows. Complete the margins and calculate the marginal frequencies ``CS'' and ``girls''.\end{example}
+\begin{center}\mxarraystretch{1.5}\begin{tabular}{c|rr|r}
+&Boys&Girls&Total\\\hline
+CS&12&9&\mxblank{21}\\
+No CS&6&5&\mxblank{11}\\\hline
+Total&\mxblank{18}&\mxblank{14}&32
+\end{tabular}\end{center}
+\mxanswerspace[1.6]{$f(\mathrm{CS})=21/32=\pc{65,625}$ ; $f(\mathrm{girls})=14/32=\pc{43,75}$.}
+
+\mxsection{Conditional frequencies and reading sentences}
+\begin{keypoint}[Definition]
+The frequency of $A$ \textbf{among the individuals of $B$}, if this subpopulation is nonempty, is
+\[f_B(A)=\frac{\text{count satisfying }A\text{ and }B}{\text{count of }B}.\]
+The denominator corresponds to the population introduced by ``among''.
+\end{keypoint}
+\begin{example}In the CS table, calculate the frequency of girls among the students without CS, then the frequency of students without CS among the girls. Are the two results equal?\end{example}
+\mxanswerspace[4]{Among the $11$ students without CS, $5$ are girls: $5/11\approx\pc{45,45}$. Among the $14$ girls, $5$ do not take CS: $5/14\approx\pc{35,71}$. The numerator is the same, the reference populations differ.}
+\begin{example}In the table of $100$ individuals, calculate $f_B(A)$, $f_A(B)$ and $f_{\overline A}(B)$. Translate each result into a sentence.\end{example}
+\mxanswerspace[4]{$f_B(A)=20/35=4/7\approx\pc{57,14}$ of the individuals of $B$ satisfy $A$. $f_A(B)=20/32=\pc{62,5}$ of the individuals of $A$ satisfy $B$. $f_{\overline A}(B)=15/68\approx\pc{22,06}$ of the individuals not satisfying $A$ satisfy $B$.}
+\begin{example}Does ``$\pc{60}$ of cyclists are students'' allow us to conclude that $\pc{60}$ of students are cyclists?\end{example}
+\mxanswerspace[2.4]{No. For example, out of $10$ cyclists, $6$ are students; if the population has $100$ students in all, only $\pc{6}$ of the students are cyclists.}
+
+\mxsection{Completing a table from frequencies}
+\begin{example}[Fictional situation]A group has $200$ people, of whom $120$ use a bus ($B$). Among these $120$ people, $\pc{75}$ have a pass ($A$). Among the other $80$, $\pc{25}$ have a pass.
+\begin{enumerate}\item Construct the two-way table $B/\overline B$ and $A/\overline A$ with its margins.\item Calculate the marginal frequency of $A$.\item Calculate the frequency of $B$ among $A$.\end{enumerate}\end{example}
+\mxanswerspace[6]{In $B$, $120\times\num{0,75}=90$ people satisfy $A$, so $30$ do not. In $\overline B$, $80\times\num{0,25}=20$ satisfy $A$, and $60$ do not.
+\begin{center}\begin{tabular}{c|rr|r}&$A$&$\overline A$&Total\\\hline $B$&90&30&120\\$\overline B$&20&60&80\\\hline Total&110&90&200\end{tabular}\end{center}
+$f(A)=110/200=\pc{55}$. $f_A(B)=90/110=9/11\approx\pc{81,82}$.}
+\begin{example}A headline announces ``Three pass holders in four take the bus'', based on $f_B(A)=\pc{75}$. Explain the error and propose a correct sentence.\end{example}
+\mxanswerspace[3.2]{The headline reverses the conditioning. The correct sentence is: ``Three people in four among those who take the bus have a pass.'' The proportion of pass holders who take the bus is here about $\pc{81,82}$.}
+
+\mxsection{Processing a file and collecting real data}
+\begin{lstlisting}
+# Exemple fictif : (transport, satisfaction)
+donnees = [("bus", "oui"), ("marche", "oui"),
+           ("bus", "non"), ("velo", "oui"),
+           ("bus", "oui"), ("marche", "non")]
+
+bus = [r for r in donnees if r[0] == "bus"]
+bus_satisfaits = [r for r in donnees
+                 if r[0] == "bus" and r[1] == "oui"]
+autres = [r for r in donnees if not r[0] == "bus"]
+\end{lstlisting}
+\begin{example}Give the sizes of the three lists. Calculate the frequency of satisfaction among bus users. Replace \texttt{and} by \texttt{or} in the second filter: how many rows are then selected?\end{example}
+\mxanswerspace[3.2]{Sizes: $3,2,3$. Among bus users, the frequency of satisfaction is $2/3$. With \texttt{or}, we select the $3$ bus users and the $2$ satisfied people using another means: $5$ rows, without counting twice the rows satisfying both criteria.}
+\begin{method}[Activity with the class data]
+Collect anonymously two variables: main means of transport and journey time in ordered categories ($<15$ min; from $15$ to under $30$ min; $\geq30$ min). One row per response, without names. Construct the two-way table, then two conditional frequencies in opposite directions. State the count, the collection date and any non-responses.
+\end{method}
+\begin{example}Carry out the collection and write two justified conclusions. Explain why the results do not automatically describe all students in Madagascar.\end{example}
+\mxanswerspace[4]{The values depend on the actual collection. Check: one category per variable and per response; sum of the cells equal to the number of usable responses; correct denominator for each frequency; announced rounding. The sample is one particular class, not a representative sample of all students in the country. Non-responses must be distinguished from an observed category.}

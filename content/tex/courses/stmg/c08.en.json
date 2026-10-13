@@ -1,0 +1,527 @@
+{
+ "unit": "c08.fr.tex",
+ "segments": {
+  "04d7561b5487": {
+   "fr": "Révisions et consolidation",
+   "en": "Revision and consolidation",
+   "status": "aligned",
+   "order": 0
+  },
+  "f1184d7a2e7d": {
+   "fr": "Stratégie de révision",
+   "en": "Revision strategy",
+   "status": "aligned",
+   "order": 1
+  },
+  "2b0eba1b1372": {
+   "fr": "Une révision efficace alterne récupération en mémoire, correction explicite des erreurs et réemploi dans un problème. Relire passivement le cours ne suffit pas : il faut tenter une question sans modèle, comparer sa réponse, puis refaire la question après un délai.",
+   "en": "Effective revision alternates retrieval from memory, explicit correction of mistakes and reuse in a problem. Passively rereading the course is not enough: you must attempt a question without a model, compare your answer, then redo the question after a delay.",
+   "status": "aligned",
+   "order": 2
+  },
+  "f1badc6e9ec7": {
+   "fr": "Pour chaque chapitre, utiliser le code suivant : \\textbf{V} (maîtrisé), \\textbf{O} (fragile), \\textbf{R} (à reprendre). Après le diagnostic, travailler en priorité une compétence orange ou rouge, puis vérifier immédiatement avec une question analogue.",
+   "en": "For each chapter, use the following code: \\textbf{V} (mastered), \\textbf{O} (shaky), \\textbf{R} (to redo). After the diagnosis, work first on an orange or red skill, then check immediately with a similar question.",
+   "status": "aligned",
+   "order": 3
+  },
+  "af548e81637b": {
+   "fr": "Compétence",
+   "en": "Skill",
+   "status": "aligned",
+   "order": 4
+  },
+  "c9ee5681d3c5": {
+   "fr": "V",
+   "en": "V",
+   "status": "aligned",
+   "order": 5
+  },
+  "08a914cde050": {
+   "fr": "O",
+   "en": "O",
+   "status": "aligned",
+   "order": 6
+  },
+  "06576556d1ad": {
+   "fr": "R",
+   "en": "R",
+   "status": "aligned",
+   "order": 7
+  },
+  "f191cac70b9f": {
+   "fr": "Action de remédiation \\\\",
+   "en": "Remedial action \\\\",
+   "status": "aligned",
+   "order": 8
+  },
+  "426a410cf846": {
+   "fr": "Choisir un modèle",
+   "en": "Choosing a model",
+   "status": "aligned",
+   "order": 9
+  },
+  "ed700f532fce": {
+   "fr": "Refaire un exercice de tri arithmétique/géométrique/exponentiel.\\\\\nLire et calculer",
+   "en": "Redo a sorting exercise: arithmetic/geometric/exponential.\\\\\nReading and calculating",
+   "status": "aligned",
+   "order": 10
+  },
+  "3d8619a143b4": {
+   "fr": "Reprendre les automatismes ciblés.\\\\\nRédiger et interpréter",
+   "en": "Redo the targeted fluency exercises.\\\\\nWriting up and interpreting",
+   "status": "aligned",
+   "order": 11
+  },
+  "944696c3df4f": {
+   "fr": "Ajouter données, formule, calcul, unité et phrase de réponse.\\\\",
+   "en": "Add data, formula, calculation, unit and concluding sentence.\\\\",
+   "status": "aligned",
+   "order": 12
+  },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 13
+  },
+  "97a1b80a71f9": {
+   "fr": "Diagnostic des acquis",
+   "en": "Diagnosis of what has been learned",
+   "status": "aligned",
+   "order": 14
+  },
+  "761c353d4aa9": {
+   "fr": "Identifier les acquis.",
+   "en": "Identify what has been learned.",
+   "status": "aligned",
+   "order": 15
+  },
+  "dce675399e35": {
+   "fr": "Classer les erreurs.",
+   "en": "Classify the mistakes.",
+   "status": "aligned",
+   "order": 16
+  },
+  "a78cef1e113c": {
+   "fr": "Planifier la remédiation.",
+   "en": "Plan the remediation.",
+   "status": "aligned",
+   "order": 17
+  },
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 18
+  },
+  "d52d70ed4f38": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "status": "aligned",
+   "order": 19
+  },
+  "3fc998aac887": {
+   "fr": "Donner la formule du terme général arithmétique depuis [[m1]]. \\mxblank{$u_n=u_0+nr$}",
+   "en": "Give the formula for the general term of an arithmetic sequence starting from [[m1]]. \\mxblank{$u_n=u_0+nr$}",
+   "status": "aligned",
+   "order": 20
+  },
+  "2f4c591ab42d": {
+   "fr": "Résoudre [[m1]]. \\mxblank{$x=3$}",
+   "en": "Solve [[m1]]. \\mxblank{$x=3$}",
+   "status": "aligned",
+   "order": 21
+  },
+  "32a7a2c3cd1f": {
+   "fr": "Dériver [[m1]]. \\mxblank{$1-\\dfrac4{x^2}$}",
+   "en": "Differentiate [[m1]]. \\mxblank{$1-\\dfrac4{x^2}$}",
+   "status": "aligned",
+   "order": 22
+  },
+  "c0235c0d273d": {
+   "fr": "Énoncer la formule des probabilités totales avec deux branches. \\mxblank{$P(B)=P(A)P_A(B)+P(\\overline A)P_{\\overline A}(B)$}",
+   "en": "State the law of total probability with two branches. \\mxblank{$P(B)=P(A)P_A(B)+P(\\overline A)P_{\\overline A}(B)$}",
+   "status": "aligned",
+   "order": 23
+  },
+  "455b09509fa8": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : identifier les acquis et classer les erreurs.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: identify what has been learned and classify the mistakes.",
+   "status": "aligned",
+   "order": 24
+  },
+  "799cbf4d69ef": {
+   "fr": "Répondre sans cours aux [[m1]] questions suivantes, deux par chapitre. Reporter chaque erreur dans une grille : connaissance, choix de méthode, calcul, lecture, rédaction. Choisir ensuite deux priorités personnelles.",
+   "en": "Answer the following [[m1]] questions without notes, two per chapter. Record each error in a grid: knowledge, choice of method, calculation, reading, written presentation. Then choose two personal priorities.",
+   "status": "aligned",
+   "order": 25
+  },
+  "7df6622fb013": {
+   "fr": "Suites. La suite [[m1]] est arithmétique de premier terme [[m2]] et de raison [[m3]]. Calculer [[m4]]. \\mxblank{$-23$}",
+   "en": "Sequences. The sequence [[m1]] is arithmetic with first term [[m2]] and common difference [[m3]]. Calculate [[m4]]. \\mxblank{$-23$}",
+   "status": "aligned",
+   "order": 26
+  },
+  "485a3da279e4": {
+   "fr": "Suites. La suite [[m1]] est géométrique de premier terme [[m2]] et de raison [[m3]]. Calculer [[m4]]. \\mxblank{$\\num{220,5}$}",
+   "en": "Sequences. The sequence [[m1]] is geometric with first term [[m2]] and common ratio [[m3]]. Calculate [[m4]]. \\mxblank{$\\num{220,5}$}",
+   "status": "aligned",
+   "order": 27
+  },
+  "cebaa787a3a5": {
+   "fr": "Exponentielles. Donner le sens de variation de [[m1]] sur [[m2]]. \\mxblank{décroissante}",
+   "en": "Exponential functions. State the direction of variation of [[m1]] on [[m2]]. \\mxblank{decreasing}",
+   "status": "aligned",
+   "order": 28
+  },
+  "699ae08b457c": {
+   "fr": "Exponentielles. Une quantité de 500 augmente de [[m1]] par an. Écrire le modèle [[m2]] après [[m3]] années. \\mxblank{$500\\times\\num{1,04}^x$}",
+   "en": "Exponential functions. A quantity of 500 increases by [[m1]] per year. Write the model [[m2]] after [[m3]] years. \\mxblank{$500\\times\\num{1,04}^x$}",
+   "status": "aligned",
+   "order": 29
+  },
+  "301518f45b2c": {
+   "fr": "Logarithme décimal. Résoudre [[m1]]. \\mxblank{$x=-2$}",
+   "en": "Common logarithm. Solve [[m1]]. \\mxblank{$x=-2$}",
+   "status": "aligned",
+   "order": 30
+  },
+  "44317e232729": {
+   "fr": "Logarithme décimal. Calculer [[m1]]. \\mxblank{$2$}",
+   "en": "Common logarithm. Calculate [[m1]]. \\mxblank{$2$}",
+   "status": "aligned",
+   "order": 31
+  },
+  "f1cb77669ac8": {
+   "fr": "Fonction inverse. Résoudre [[m1]] pour [[m2]]. \\mxblank{$\\num{0,25}$}",
+   "en": "Reciprocal function. Solve [[m1]] for [[m2]]. \\mxblank{$\\num{0,25}$}",
+   "status": "aligned",
+   "order": 32
+  },
+  "fe6df286f48d": {
+   "fr": "Fonction inverse. Donner le sens de variation de [[m1]] sur [[m2]]. \\mxblank{décroissante}",
+   "en": "Reciprocal function. State the direction of variation of [[m1]] on [[m2]]. \\mxblank{decreasing}",
+   "status": "aligned",
+   "order": 33
+  },
+  "adf3e063c952": {
+   "fr": "Deux variables. Avec l'ajustement [[m1]], estimer [[m2]] pour [[m3]]. \\mxblank{$23$}",
+   "en": "Two variables. With the fit [[m1]], estimate [[m2]] for [[m3]]. \\mxblank{$23$}",
+   "status": "aligned",
+   "order": 34
+  },
+  "f25a5951f61b": {
+   "fr": "Deux variables. Donner le point moyen de la série [[m1]] : 1, 2, 3 et [[m2]] : 4, 6, 8. \\mxblank{$G\\pt{2;6}$}",
+   "en": "Two variables. Give the mean point of the series [[m1]]: 1, 2, 3 and [[m2]]: 4, 6, 8. \\mxblank{$G\\pt{2;6}$}",
+   "status": "aligned",
+   "order": 35
+  },
+  "23d107977a67": {
+   "fr": "Probabilités conditionnelles. [[m1]] et [[m2]]. Calculer [[m3]]. \\mxblank{$\\num{0,2}$}",
+   "en": "Conditional probability. [[m1]] and [[m2]]. Calculate [[m3]]. \\mxblank{$\\num{0,2}$}",
+   "status": "aligned",
+   "order": 36
+  },
+  "aa27097d4db4": {
+   "fr": "Probabilités conditionnelles. [[m1]] et [[m2]]. Calculer [[m3]]. \\mxblank{$\\num{0,4}$}",
+   "en": "Conditional probability. [[m1]] and [[m2]]. Calculate [[m3]]. \\mxblank{$\\num{0,4}$}",
+   "status": "aligned",
+   "order": 37
+  },
+  "9585d06ae1ff": {
+   "fr": "Loi binomiale. [[m1]] suit la loi [[m2]]. Calculer [[m3]]. \\mxblank{$\\num{0,125}$}",
+   "en": "Binomial distribution. [[m1]] follows the distribution [[m2]]. Calculate [[m3]]. \\mxblank{$\\num{0,125}$}",
+   "status": "aligned",
+   "order": 38
+  },
+  "b66f6d97cc3d": {
+   "fr": "Variable aléatoire. [[m1]] prend les valeurs 0, 1, 2 avec les probabilités [[m2]], [[m3]], [[m4]]. Calculer [[m5]]. \\mxblank{$\\num{0,7}$}",
+   "en": "Random variable. [[m1]] takes the values 0, 1, 2 with probabilities [[m2]], [[m3]], [[m4]]. Calculate [[m5]]. \\mxblank{$\\num{0,7}$}",
+   "status": "aligned",
+   "order": 39
+  },
+  "3d555ea66380": {
+   "fr": "La correction attend un profil d'erreurs et un plan de reprise, pas seulement une note globale. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The correction expects a profile of mistakes and a plan for catching up, not just an overall mark. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 40
+  },
+  "4962c2f17500": {
+   "fr": "Le diagnostic sert à choisir la remédiation : reconnaître l'erreur, retrouver la règle utile, refaire une question analogue, puis vérifier sans aide.",
+   "en": "The diagnosis is used to choose the remediation: recognise the mistake, recall the useful rule, redo a similar question, then check without help.",
+   "status": "aligned",
+   "order": 41
+  },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.",
+   "status": "aligned",
+   "order": 42
+  },
+  "974fb4f7eab0": {
+   "fr": "La correction attend un profil d'erreurs et un plan de reprise, pas seulement une note globale.",
+   "en": "The correction expects a profile of mistakes and a plan for catching up, not just an overall mark.",
+   "status": "aligned",
+   "order": 43
+  },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 44
+  },
+  "c1e066762430": {
+   "fr": "Choisir entre suite arithmétique, suite géométrique et fonction exponentielle dans trois situations.",
+   "en": "Choose between an arithmetic sequence, a geometric sequence and an exponential function in three situations.",
+   "status": "aligned",
+   "order": 45
+  },
+  "4e292219171a": {
+   "fr": "Résoudre une équation exponentielle avec un logarithme.",
+   "en": "Solve an exponential equation using a logarithm.",
+   "status": "aligned",
+   "order": 46
+  },
+  "41411c5b455b": {
+   "fr": "Calculer une probabilité à partir d'un arbre puis interpréter.",
+   "en": "Calculate a probability from a tree, then interpret it.",
+   "status": "aligned",
+   "order": 47
+  },
+  "b160e08acb41": {
+   "fr": "Justifier chaque choix par variation absolue ou relative ; vérifier la positivité avant le logarithme ; multiplier le long d'un chemin et conclure par une phrase.",
+   "en": "Justify each choice by absolute or relative change; check positivity before taking the logarithm; multiply along a path and conclude with a sentence.",
+   "status": "aligned",
+   "order": 48
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 49
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 50
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 51
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 52
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 53
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 54
+  },
+  "fedf219cf7e3": {
+   "fr": "Réactivation : fonctions exponentielles",
+   "en": "Reactivation: exponential functions",
+   "status": "aligned",
+   "order": 55
+  },
+  "91afc1fa4c09": {
+   "fr": "Réactiver les modèles exponentiels.",
+   "en": "Reactivate exponential models.",
+   "status": "aligned",
+   "order": 56
+  },
+  "a79a4c7ada4c": {
+   "fr": "Résoudre et interpréter.",
+   "en": "Solve and interpret.",
+   "status": "aligned",
+   "order": 57
+  },
+  "4e8fcb794aef": {
+   "fr": "Contrôler les unités.",
+   "en": "Check the units.",
+   "status": "aligned",
+   "order": 58
+  },
+  "0b12910bf58c": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+9$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+9$}",
+   "status": "aligned",
+   "order": 59
+  },
+  "dc5f7b31ddf5": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : réactiver les modèles exponentiels et résoudre et interpréter.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: reactivate exponential models and solve and interpret.",
+   "status": "aligned",
+   "order": 60
+  },
+  "eb3dd97bce68": {
+   "fr": "Une valeur de [[m1]] augmente de [[m2]] par an. Écrire le modèle, calculer la valeur après huit ans et déterminer quand elle dépassera [[m3]].",
+   "en": "A value of [[m1]] increases by [[m2]] per year. Write the model, calculate the value after eight years and determine when it will exceed [[m3]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "a49a7fb6a957": {
+   "fr": "[[m1]], [[m2]]. Le seuil est dépassé à partir de la dixième année. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]], [[m2]]. The threshold is exceeded from the tenth year onwards. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 62
+  },
+  "c781557518a1": {
+   "fr": "Une fonction exponentielle modélise une évolution relative constante. Identifier d'abord la valeur initiale et le coefficient multiplicateur.",
+   "en": "An exponential function models a constant relative change. First identify the initial value and the multiplier.",
+   "status": "aligned",
+   "order": 63
+  },
+  "bdbdfe67c568": {
+   "fr": "[[m1]], [[m2]]. Le seuil est dépassé à partir de la dixième année.",
+   "en": "[[m1]], [[m2]]. The threshold is exceeded from the tenth year onwards.",
+   "status": "aligned",
+   "order": 64
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 65
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 66
+  },
+  "787b53a083a2": {
+   "fr": "Réactivation : logarithme décimal",
+   "en": "Reactivation: common logarithm (base 10)",
+   "status": "aligned",
+   "order": 67
+  },
+  "b3221ce1cfc5": {
+   "fr": "Réactiver les logarithmes.",
+   "en": "Reactivate logarithms.",
+   "status": "aligned",
+   "order": 68
+  },
+  "7347a701c69d": {
+   "fr": "Résoudre une équation.",
+   "en": "Solve an equation.",
+   "status": "aligned",
+   "order": 69
+  },
+  "fe6e21435e8f": {
+   "fr": "Vérifier les conditions.",
+   "en": "Check the conditions.",
+   "status": "aligned",
+   "order": 70
+  },
+  "8299c37c7e7a": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$8$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$8$}",
+   "status": "aligned",
+   "order": 71
+  },
+  "c1938a42704f": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : réactiver les logarithmes et résoudre une équation.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: reactivate logarithms and solve an equation.",
+   "status": "aligned",
+   "order": 72
+  },
+  "aac6ca7b63ca": {
+   "fr": "Résoudre [[m1]], [[m2]] et [[m3]]. Pour chaque réponse, distinguer valeur réelle, valeur approchée et rang entier minimal.",
+   "en": "Solve [[m1]], [[m2]] and [[m3]]. For each answer, distinguish the real value, the approximate value and the minimum integer index.",
+   "status": "aligned",
+   "order": 73
+  },
+  "c3d475c7b902": {
+   "fr": "[[m1]] ; [[m2]] ; pour le seuil entier, [[m3]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]; [[m2]]; for the integer threshold, [[m3]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 74
+  },
+  "db901e017977": {
+   "fr": "Le logarithme transforme une équation exponentielle en équation sur l'exposant. Conditions : base positive différente de [[m1]], second membre positif.",
+   "en": "The logarithm turns an exponential equation into an equation in the exponent. Conditions: base positive and different from [[m1]], right-hand side positive.",
+   "status": "aligned",
+   "order": 75
+  },
+  "66875f3d214e": {
+   "fr": "[[m1]] ; [[m2]] ; pour le seuil entier, [[m3]].",
+   "en": "[[m1]]; [[m2]]; for the integer threshold, [[m3]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "1e987cbf7a38": {
+   "fr": "Réactivation : fonction inverse",
+   "en": "Reactivation: reciprocal function",
+   "status": "aligned",
+   "order": 77
+  },
+  "cfec53214954": {
+   "fr": "Réactiver la fonction inverse.",
+   "en": "Reactivate the reciprocal function.",
+   "status": "aligned",
+   "order": 78
+  },
+  "2990fda02a1c": {
+   "fr": "Mener une étude.",
+   "en": "Carry out a study.",
+   "status": "aligned",
+   "order": 79
+  },
+  "50f0ed31b1ce": {
+   "fr": "Tracer et interpréter.",
+   "en": "Sketch and interpret.",
+   "status": "aligned",
+   "order": 80
+  },
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "status": "aligned",
+   "order": 81
+  },
+  "889b9163e1db": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : réactiver la fonction inverse et mener une étude.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: reactivate the reciprocal function and carry out a study.",
+   "status": "aligned",
+   "order": 82
+  },
+  "b17f90ec616a": {
+   "fr": "Étudier [[m1]] sur [[m2]] et interpréter son minimum dans un contexte de coût moyen. Produire le tableau de variations et une esquisse.",
+   "en": "Study [[m1]] on [[m2]] and interpret its minimum in an average-cost context. Produce the table of variations and a sketch.",
+   "status": "aligned",
+   "order": 83
+  },
+  "4fe2231517ed": {
+   "fr": "[[m1]] ; minimum [[m2]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]; minimum [[m2]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 84
+  },
+  "06aefe049ca5": {
+   "fr": "Pour une fonction contenant [[m1]], commencer par exclure [[m2]], puis dériver, factoriser et étudier le signe avant les variations.",
+   "en": "For a function containing [[m1]], start by excluding [[m2]], then differentiate, factorise and study the sign before the variations.",
+   "status": "aligned",
+   "order": 85
+  },
+  "c91eede47b77": {
+   "fr": "[[m1]] ; minimum [[m2]].",
+   "en": "[[m1]]; minimum [[m2]].",
+   "status": "aligned",
+   "order": 86
+  }
+ }
+}

@@ -1,0 +1,265 @@
+\mxfront{terminale-front}
+\mxcover{MATHÉMATIQUES}{Terminale spécialité}{Livret annuel de cours et d’entraînement}{Cours, activités, entraînement et devoirs · Progression en spirale}{2026--2027}
+\frontmatter
+\chapter*{Utiliser ce livret}
+\addcontentsline{toc}{chapter}{Utiliser ce livret}
+Révision du \mxdate{2026-09-06}. Sources fournies et agenda consultés le \mxdate{2026-09-05}.
+
+Ce livret accompagne le manuel \emph{Barbazo, Terminale spécialité mathématiques}, Hachette, édition 2020. Les chapitres gardent leurs numéros du manuel ; ils sont rangés ici selon leur première apparition dans la progression. L'analyse, la géométrie et les probabilités se travaillent en parallèle : le parcours annuel permet de suivre les retours successifs.
+Les \textbf{notes de cours} constituent la trace écrite à étudier. Les exemples et démonstrations de cours en font partie. Les \textbf{activités} servent à chercher avant la mise en commun. Les exercices E1 à E5 se repèrent à l'intérieur de chaque chapitre ; les DM portent le numéro du chapitre. Les sujets zéro permettent de connaître les exigences avant l'évaluation.
+\begin{keypoint}[Une séance et le travail personnel]
+Lire la consigne, identifier les objets et les hypothèses, chercher une première piste, rédiger les étapes, puis vérifier la cohérence du résultat. Pour préparer un devoir, refaire un sujet zéro sans regarder d'aide, puis reprendre les méthodes qui ont posé problème.
+Les temps indiqués pour les activités et DM sont des estimations de travail effectif. Les réponses sont à rédiger sur une feuille ou dans le cahier ; le livret ne réserve pas de grands espaces de réponse.
+\end{keypoint}
+\textbf{Exercices de référence.} Les rubriques « Travail dans le manuel ou une annale » donnent des numéros d'exercices et de pages précis, avec le travail demandé en classe ou à la maison. Les pages du manuel sont les pages imprimées. Les exercices E1 à E5 et les sujets du livret sont distincts de ces exercices de référence ; leurs énoncés sont écrits dans ce document.
+\textbf{Programme suivi.} Le programme de terminale de 2019 reste la référence pour 2026--2027 ; l'entrée en application du nouveau programme de terminale est prévue pour 2027--2028, selon la page Éduscol consultée le 5 septembre 2026. Les sources figurent en fin de livret.
+\ifmxteacher
+\mxnewpage
+\chapter*{Guide de préparation}
+\addcontentsline{toc}{chapter}{Guide de préparation}
+\begin{teachernote}[Contenu et diffusion]
+Les sources contiennent les deux éditions. L'option de classe \texttt{edition=teacher} produit l'édition professeur (\texttt{professeur.tex}) ; \texttt{edition=student}, l'édition élève (\texttt{eleve.tex}). Le PDF élève exclut les corrigés, les notes de conduite et les vrais sujets A et B. \textbf{Les fichiers sources restent des documents professeur} : leur texte contient les contenus masqués à la compilation.
+\end{teachernote}
+Les 14 chapitres comprennent chacun une activité, cinq exercices et un DM, tous corrigés. Le répertoire d'évaluations comporte 9 échéances, chacune avec Zéro 1, Zéro 2, A et B, soit 36 sujets de quatre exercices notés sur 5 points. Les versions sont parallèles : elles évaluent les mêmes méthodes avec des données différentes. Les trois blancs utilisent des exercices plus développés. Les durées sont prévues à 2 h ou 4 h, sans prétendre à un étalonnage empirique sur votre classe.
+\paragraph{Ajustements de prérequis après relecture.} En S3 et S6, introduire la décomposition unique sur la base des trois arêtes du cube avant de travailler les combinaisons ; les calculs métriques en repère restent en S15. Avant DS1, la monotonie est travaillée par le signe de $u_{n+1}-u_n$ à partir de la formule déjà démontrée. Le premier blanc ne requiert ni logarithme ni variance d'une moyenne. Dans DM2, seule la question 3 attend la continuité de S31. L'IPP doit être effectivement travaillée en S66 avant DS5 ; si cette séance déborde, décaler ce DS. Les questions d'intersection de plans des blancs reprennent le travail annoncé en S70.
+\paragraph{Statut des quatre versions.} Les deux sujets zéro et les sujets A/B sont des variantes proches, avec la même structure et des données différentes. Cette proximité prépare les méthodes annoncées, mais limite l'évaluation du transfert vers une situation inédite. Les sujets A/B restent confidentiels. Les blancs sont des entraînements couvrant les thèmes prévus ; leur durée n'a pas été mesurée auprès d'élèves et leur niveau ne prétend pas reproduire à lui seul toute la diversité d'une session nationale.
+\paragraph{Conduite d'une activité.} Prévoir 5 min de lecture individuelle, 10--15 min de recherche, 10 min d'échange par binômes et 10 min de mise en commun. Ne distribuer la correction qu'après une première tentative. Selon la difficulté, donner une aide portant sur le choix de l'outil et non immédiatement sur le calcul.
+\paragraph{Exercices du manuel et annales.} Les exercices retenus ont été consultés dans le manuel et leurs corrigés sont inclus dans l'édition professeur. Les travaux indiqués prolongent une méthode précise ; les placer dans le temps d'entraînement de la séance concernée, en réduisant si nécessaire le nombre d'exercices E traités ce jour-là. La copie fournie du manuel est tronquée : ses dernières pages ne sont pas lisibles. Pour les chapitres~\ref{ch:13}, \ref{ch:14} et~\ref{ch:12}, les exercices de référence sont donc choisis dans une annale officielle accessible par lien.
+\paragraph{Différenciation.} Faire reprendre les deux premiers exercices pour consolider les automatismes ; utiliser les exercices suivants et le DM pour la rédaction. En contexte multilingue, faire reformuler « au moins », « à partir d'un certain rang », « si et seulement si », puis conserver la formulation mathématique exacte. Donner le même objectif aux groupes et varier le degré d'aide.
+\mxunit{terminale-front}{Écarts entre les sources à arbitrer}
+\begin{enumerate}
+\item L'agenda comporte 103 événements de la classe du 4 septembre au 2 juillet, les lundi, mercredi et vendredi de 7 h 30 à 9 h 30. Les 103 événements ont été lus ; leurs descriptions sont des regroupements de notions, non des activités détaillées. Elles anticipent notamment la continuité en novembre et le calcul intégral dès janvier. Le séquencement S1--S93 du PDF est retenu pour les prérequis.
+\item La progression annonce un programme achevé en avril, mais S78--S79 terminent la trigonométrie la semaine du 3 mai. C'est cette fin effective qui est retenue.
+\item S28 correspondrait au vendredi 20 novembre dans une répartition lundi/mercredi/vendredi, alors que le devoir commun est demandé avant le 20/11. Le sujet est prêt ; sa date doit être harmonisée avec l'équipe.
+\item Le 12 mars est neutralisé par la progression mais présent dans l'agenda. L'éphéméride porte « nouvel an malagasy » sans indiquer explicitement « férié ». Le livret réserve cette date comme le PDF, en attendant confirmation de l'établissement.
+\item Les blancs de 4 h ne tiennent pas dans un événement ordinaire de 2 h. En particulier, la semaine du 29 mars ne conserve que mercredi et vendredi dans l'agenda, alors que le PDF y place S69, S70 et le blanc S71. Le total annoncé de 186 h n'intègre pas correctement toutes ces contraintes. Aucun créneau supplémentaire n'est inventé ici.
+\item L'agenda continue après S93 jusqu'au 2 juillet. Cette période reste une réserve de préparation individuelle et d'oral, sous réserve des convocations. Les dates nationales ne sont pas assimilées à des convocations du centre d'examen de Madagascar.
+\end{enumerate}
+\textbf{Choix éditorial.} Les contenus suivent les prérequis indiqués ci-dessous ; les conflits de calendrier recensés restent ouverts. Les durées des épreuves constituent des durées de passation proposées, à ajuster selon la vitesse de rédaction observée. Aucun événement de votre agenda n'a été modifié.
+\fi
+\tableofcontents
+\mxnewpage
+\chapter*{Parcours annuel}
+\addcontentsline{toc}{chapter}{Parcours annuel : S1 à S93}
+Les numéros S renvoient à la progression fournie. Une semaine n'est pas une date ferme d'évaluation. Pour chaque séance, le chapitre indiqué renvoie au dossier de cours ; les indications « E » sont locales à ce chapitre. Les corrigés apparaissent uniquement dans l'édition professeur.
+
+
+\small\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.09\textwidth}>{\raggedright\arraybackslash}p{.16\textwidth}>{\raggedright\arraybackslash}p{.27\textwidth}>{\raggedright\arraybackslash}p{.40\textwidth}@{}}\toprule\textbf{Séance}&\textbf{Semaine}&\textbf{Contenu}&\textbf{Ressource et travail}\\\midrule\endhead
+
+\textbf{S1}&1 · 2--5 septembre&Présentation et diagnostic&\ifmxteacher Diagnostic D0 ; correction collective et repérage des prérequis.\else Travail en classe : Présentation et diagnostic.\fi\\[3pt]
+
+\textbf{S2}&2 · 7--12 septembre&Suites de référence&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Cours : définir une suite ; E1--E2. Donner les sujets zéro du DS1.\else E1--E2\fi\\[3pt]
+
+\textbf{S3}&2&Opérations vectorielles et colinéarité&\hyperref[ch:10]{Ch.~\ref{ch:10}, p.~\pageref{ch:10}}. \ifmxteacher Cours : calcul vectoriel et lecture des coefficients dans une base donnée ; E1. Manipulation d'un cube.\else E1\fi\\[3pt]
+
+\textbf{S4}&2&Termes et sommes en Python&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher E1--E2 ; algorithme P1. Vérifier les bornes de la boucle.\else E1--E2, P1\fi\\[3pt]
+
+\textbf{S5}&3 · 14--19 septembre&Principe de récurrence&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Exemple rédigé ; E3. Faire expliciter la propriété P(n).\else E3\fi\\[3pt]
+
+\textbf{S6}&3&Combinaisons et coplanarité&\hyperref[ch:10]{Ch.~\ref{ch:10}, p.~\pageref{ch:10}}. \ifmxteacher Base donnée : unicité des coefficients ; E3. Activité du cube, questions 1--2.\else Activité. E3\fi\\[3pt]
+
+\textbf{S7}&3&Récurrences d'inégalités&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Activité réservoir, questions 1--2 ; sur le sujet zéro, calculer aussi le signe de u(n+1)-u(n).\else Activité. \fi\\[3pt]
+
+\textbf{S8}&4 · 21--26 septembre&Révision DS1&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Sujet zéro DS1 : confrontation des rédactions ; retour sur les vecteurs.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S9}&4&DS1 · 2 h&\ifmxteacher Évaluation : récurrence et calcul vectoriel. Version A ou B.\else Travail en classe : DS1 · 2 h.\fi\\[3pt]
+
+\textbf{S10}&4&Récurrences de sommes et divisibilité&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Démonstration somme des entiers ; E5.\else E5\fi\\[3pt]
+
+\textbf{S11}&5 · 28 septembre--3 octobre&Monotonie, bornes, suite auxiliaire&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Cours et activité réservoir, questions 3--5 ; donner DM1.\else Activité. DM1\fi\\[3pt]
+
+\textbf{S12}&5&Droites, plans et positions relatives&\hyperref[ch:10]{Ch.~\ref{ch:10}, p.~\pageref{ch:10}}. \ifmxteacher Cours : droite et plan ; fin activité cube ; E5 et DM10, questions 1--3.\else Activité. E5, DM10\fi\\[3pt]
+
+\textbf{S13}&5&Synthèse et programmation&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher Correction DM1 ; P1, seuil ; reprise de la convergence après le chapitre~\ref{ch:2}.\else DM1, P1\fi\\[3pt]
+
+\textbf{S14}&6 · 5--10 octobre&Définition des limites&\hyperref[ch:2]{Ch.~\ref{ch:2}, p.~\pageref{ch:2}}. \ifmxteacher Activité limite ; E1. Donner sujets zéro DS2 et devoir commun.\else Activité. E1\fi\\[3pt]
+
+\textbf{S15}&6&Repères et coordonnées&\hyperref[ch:10]{Ch.~\ref{ch:10}, p.~\pageref{ch:10}}. \ifmxteacher Cours coordonnées et base ; E2--E4 ; terminer DM10.\else E2--E4, DM10\fi\\[3pt]
+
+\textbf{S16}&6&Opérations sur les limites&\hyperref[ch:2]{Ch.~\ref{ch:2}, p.~\pageref{ch:2}}. \ifmxteacher E1--E2 ; sujet zéro DS2, calculs de limites.\else E1--E2\fi\\[3pt]
+
+\textbf{S17}&7 · 12--16 octobre&Synthèse avant DS2&\hyperref[ch:10]{Ch.~\ref{ch:10}, p.~\pageref{ch:10}}. \ifmxteacher Correction DM10 ; exercice cube du sujet zéro ; bilan des positions relatives.\else DM10\fi\\[3pt]
+
+\textbf{S18}&7&DS2 · 2 h&\ifmxteacher Évaluation : limites par opérations et géométrie vectorielle.\else Travail en classe : DS2 · 2 h.\fi\\[3pt]
+
+\textbf{S19}&7&Bernoulli et suites géométriques&\hyperref[ch:2]{Ch.~\ref{ch:2}, p.~\pageref{ch:2}}. \ifmxteacher Démonstration ; E5. Vacances de Toussaint du 17/10 au 01/11.\else E5\fi\\[3pt]
+
+\textbf{S20}&8 · 2--7 novembre&Comparaison et convergence monotone&\hyperref[ch:2]{Ch.~\ref{ch:2}, p.~\pageref{ch:2}}. \ifmxteacher E3--E4 ; donner DM2, questions 1--2 et 4 ; Q3 après S31.\else E3--E4, DM2\fi\\[3pt]
+
+\textbf{S21}&8&Limites à l'infini&\hyperref[ch:3]{Ch.~\ref{ch:3}, p.~\pageref{ch:3}}. \ifmxteacher Cours et E1 ; donner sujets zéro DS3.\else E1\fi\\[3pt]
+
+\textbf{S22}&8&Principes additif et multiplicatif&\hyperref[ch:9]{Ch.~\ref{ch:9}, p.~\pageref{ch:9}}. \ifmxteacher Activité, comptages ordonnés ; E1--E2.\else Activité. E1--E2\fi\\[3pt]
+
+\textbf{S23}&9 · 9--14 novembre&Limites en un réel, asymptotes&\hyperref[ch:3]{Ch.~\ref{ch:3}, p.~\pageref{ch:3}}. \ifmxteacher Activité ; E2--E3.\else Activité. E2--E3\fi\\[3pt]
+
+\textbf{S24}&9&Formes indéterminées&\hyperref[ch:3]{Ch.~\ref{ch:3}, p.~\pageref{ch:3}}. \ifmxteacher E5 ; donner DM3. Reporter E4 après la croissance comparée de S26.\else E5, DM3, E4\fi\\[3pt]
+
+\textbf{S25}&9&Listes, permutations&\hyperref[ch:9]{Ch.~\ref{ch:9}, p.~\pageref{ch:9}}. \ifmxteacher Cours : listes ordonnées ; sujet zéro du devoir commun, exercice codes.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S26}&10 · 16--21 novembre&Exponentielle et croissances comparées&\hyperref[ch:3]{Ch.~\ref{ch:3}, p.~\pageref{ch:3}}. \ifmxteacher Démonstrations ; E4 ; correction DM3.\else E4, DM3\fi\\[3pt]
+
+\textbf{S27}&10&Révision du devoir commun&\hyperref[ch:3]{Ch.~\ref{ch:3}, p.~\pageref{ch:3}}. \ifmxteacher Sujet zéro du devoir commun ; ne pas exiger les combinaisons.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S28}&10&Devoir commun · 2 h&\ifmxteacher Avant arrêt des notes : contradiction de date signalée dans le guide professeur.\else Travail en classe : Devoir commun · 2 h.\fi\\[3pt]
+
+\textbf{S29}&11 · 23--28 novembre&Dérivation et convexité&\hyperref[ch:4]{Ch.~\ref{ch:4}, p.~\pageref{ch:4}}. \ifmxteacher Cours ; E1--E3 ; activité, questions 1--3.\else Activité. E1--E3\fi\\[3pt]
+
+\textbf{S30}&11&Parties et combinaisons&\hyperref[ch:9]{Ch.~\ref{ch:9}, p.~\pageref{ch:9}}. \ifmxteacher Fin de l'activité ; E3--E5.\else Activité. E3--E5\fi\\[3pt]
+
+\textbf{S31}&11&Continuité et suites récurrentes&\hyperref[ch:4]{Ch.~\ref{ch:4}, p.~\pageref{ch:4}}. \ifmxteacher Cours ; terminer DM2, question 3. Donner DM4.\else DM2, DM4\fi\\[3pt]
+
+\textbf{S32}&12 · 30 novembre--5 décembre&TVI et dichotomie&\hyperref[ch:4]{Ch.~\ref{ch:4}, p.~\pageref{ch:4}}. \ifmxteacher Exemple rédigé ; E4--E5 ; algorithme P2.\else E4--E5, P2\fi\\[3pt]
+
+\textbf{S33}&12&Synthèse et préparation DS3&\hyperref[ch:4]{Ch.~\ref{ch:4}, p.~\pageref{ch:4}}. \ifmxteacher Correction DM4 ; activité, questions 4--5 ; preuve des tangentes.\else Activité. DM4\fi\\[3pt]
+
+\textbf{S34}&12&DS3 · 2 h&\ifmxteacher Limites, étude de fonction, TVI et combinaisons.\else Travail en classe : DS3 · 2 h.\fi\\[3pt]
+
+\textbf{S35}&13 · 7--12 décembre&Pascal et synthèse&\hyperref[ch:9]{Ch.~\ref{ch:9}, p.~\pageref{ch:9}}. \ifmxteacher Démonstrations ; donner DM9. Binôme de Newton facultatif.\else DM9\fi\\[3pt]
+
+\textbf{S36}&13&Rappels de probabilités conditionnelles&\hyperref[ch:13]{Ch.~\ref{ch:13}, p.~\pageref{ch:13}}. \ifmxteacher Cours : arbre ; E1 ; activité, questions 1--2. Donner sujets zéro Blanc 1.\else Activité. E1\fi\\[3pt]
+
+\textbf{S37}&13&Épreuves indépendantes&\hyperref[ch:13]{Ch.~\ref{ch:13}, p.~\pageref{ch:13}}. \ifmxteacher Épreuves indépendantes ; E4. Reporter activité questions 3--5 après la loi binomiale de S38.\else Activité. E4\fi\\[3pt]
+
+\textbf{S38}&14 · 14--18 décembre&Loi binomiale&\hyperref[ch:13]{Ch.~\ref{ch:13}, p.~\pageref{ch:13}}. \ifmxteacher Démonstration de la loi ; E2--E3 ; activité questions 3--5.\else Activité. E2--E3\fi\\[3pt]
+
+\textbf{S39}&14&Espérance, variance, simulation&\hyperref[ch:13]{Ch.~\ref{ch:13}, p.~\pageref{ch:13}}. \ifmxteacher Cours et P5 ; donner DM13.\else P5, DM13\fi\\[3pt]
+
+\textbf{S40}&14&Bilan d'analyse avant Noël&\hyperref[ch:4]{Ch.~\ref{ch:4}, p.~\pageref{ch:4}}. \ifmxteacher Reprendre DM1--DM4 selon erreurs ; vacances du 19/12 au 03/01.\else DM1, DM4\fi\\[3pt]
+
+\textbf{S41}&15 · 4--9 janvier&Synthèse probabilités&\hyperref[ch:13]{Ch.~\ref{ch:13}, p.~\pageref{ch:13}}. \ifmxteacher Correction DM13 ; E5 ; reprise DM9.\else DM13, E5, DM9\fi\\[3pt]
+
+\textbf{S42}&15&Préparation au blanc : géométrie et probabilités&\hyperref[ch:10]{Ch.~\ref{ch:10}, p.~\pageref{ch:10}}. \ifmxteacher Sujet zéro Blanc 1, exercices 3--4.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S43}&15&Préparation au blanc : analyse&\hyperref[ch:4]{Ch.~\ref{ch:4}, p.~\pageref{ch:4}}. \ifmxteacher Sujet zéro Blanc 1, exercices 1--2 ; correction de rédaction.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S44}&16 · 11--16 janvier&Définition et propriétés du logarithme&\hyperref[ch:6]{Ch.~\ref{ch:6}, p.~\pageref{ch:6}}. \ifmxteacher Cours ; E1--E2. Donner sujets zéro DS4. Ln exclu du Blanc 1.\else E1--E2\fi\\[3pt]
+
+\textbf{S45}&16&Blanc 1 · 4 h&\ifmxteacher Période établissement 14--16 janvier ; réserver un vrai créneau de 4 h.\else Travail en classe : Blanc 1 · 4 h.\fi\\[3pt]
+
+\textbf{S46}&17 · 18--23 janvier&Correction du Blanc 1&\ifmxteacher Corrigé de la version composée ; reprendre deux erreurs de méthode.\else Travail en classe : Correction du Blanc 1.\fi\\[3pt]
+
+\textbf{S47}&17&Dérivée et limites du logarithme&\hyperref[ch:6]{Ch.~\ref{ch:6}, p.~\pageref{ch:6}}. \ifmxteacher Démonstrations ; E3--E4.\else E3--E4\fi\\[3pt]
+
+\textbf{S48}&17&Produit scalaire&\hyperref[ch:11]{Ch.~\ref{ch:11}, p.~\pageref{ch:11}}. \ifmxteacher Cours ; E1--E2 ; angle E4.\else E1--E2, E4\fi\\[3pt]
+
+\textbf{S49}&18 · 25--30 janvier&Dérivée composée et croissance comparée&\hyperref[ch:6]{Ch.~\ref{ch:6}, p.~\pageref{ch:6}}. \ifmxteacher Activité seuil ; E5 ; donner DM6.\else Activité. E5, DM6\fi\\[3pt]
+
+\textbf{S50}&18&Synthèse logarithme&\hyperref[ch:6]{Ch.~\ref{ch:6}, p.~\pageref{ch:6}}. \ifmxteacher Correction DM6 ; sujet zéro DS4, exercice logarithme.\else DM6\fi\\[3pt]
+
+\textbf{S51}&18&Orthogonalité droite-plan&\hyperref[ch:11]{Ch.~\ref{ch:11}, p.~\pageref{ch:11}}. \ifmxteacher Cours ; E3 ; activité projeté.\else Activité. E3\fi\\[3pt]
+
+\textbf{S52}&19 · 1--6 février&Notion de primitive&\hyperref[ch:7]{Ch.~\ref{ch:7}, p.~\pageref{ch:7}}. \ifmxteacher Cours et E1--E2. Donner sujets zéro DS5.\else E1--E2\fi\\[3pt]
+
+\textbf{S53}&19&Calcul de primitives&\hyperref[ch:7]{Ch.~\ref{ch:7}, p.~\pageref{ch:7}}. \ifmxteacher Preuve de l'unicité à constante près ; entraînement sujet zéro DS4.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S54}&19&Normale et projection&\hyperref[ch:11]{Ch.~\ref{ch:11}, p.~\pageref{ch:11}}. \ifmxteacher Démonstration du minimum ; donner DM11.\else DM11\fi\\[3pt]
+
+\textbf{S55}&20 · 8--12 février&Équations différentielles et Euler&\hyperref[ch:7]{Ch.~\ref{ch:7}, p.~\pageref{ch:7}}. \ifmxteacher Cours ; E3--E5 ; activité ; donner DM7.\else Activité. E3--E5, DM7\fi\\[3pt]
+
+\textbf{S56}&20&Distances, aires et volumes&\hyperref[ch:11]{Ch.~\ref{ch:11}, p.~\pageref{ch:11}}. \ifmxteacher Correction DM11 ; E5.\else DM11, E5\fi\\[3pt]
+
+\textbf{S57}&20&DS4 · 2 h&\ifmxteacher Ln, primitives, équations différentielles, orthogonalité. Vacances 13--28/02.\else Travail en classe : DS4 · 2 h.\fi\\[3pt]
+
+\textbf{S58}&21 · 1--6 mars&Correction DS4 et synthèse&\hyperref[ch:7]{Ch.~\ref{ch:7}, p.~\pageref{ch:7}}. \ifmxteacher Correction DM7 ; exercices de modélisation.\else DM7\fi\\[3pt]
+
+\textbf{S59}&21&Intégrale et aire&\hyperref[ch:8]{Ch.~\ref{ch:8}, p.~\pageref{ch:8}}. \ifmxteacher Cours ; activité rectangles. Donner sujets zéro Blanc 2.\else Activité. \fi\\[3pt]
+
+\textbf{S60}&21&Synthèse de géométrie&\hyperref[ch:11]{Ch.~\ref{ch:11}, p.~\pageref{ch:11}}. \ifmxteacher Reprise DM11 et erreurs du DS4.\else DM11\fi\\[3pt]
+
+\textbf{S61}&22 · 8--13 mars&Propriétés de l'intégrale&\hyperref[ch:8]{Ch.~\ref{ch:8}, p.~\pageref{ch:8}}. \ifmxteacher Cours ; E1--E2. Le 12/03 est neutralisé dans la progression, à confirmer.\else E1--E2\fi\\[3pt]
+
+\textbf{S62}&22&Transformations de variables aléatoires&\hyperref[ch:14]{Ch.~\ref{ch:14}, p.~\pageref{ch:14}}. \ifmxteacher Cours sommes ; E1--E2.\else E1--E2\fi\\[3pt]
+
+\textbf{S63}&23 · 15--20 mars&Valeur moyenne et aire entre courbes&\hyperref[ch:8]{Ch.~\ref{ch:8}, p.~\pageref{ch:8}}. \ifmxteacher Cours ; E2--E3.\else E2--E3\fi\\[3pt]
+
+\textbf{S64}&23&Échantillon et moyenne&\hyperref[ch:14]{Ch.~\ref{ch:14}, p.~\pageref{ch:14}}. \ifmxteacher Cours ; E3. Ne pas anticiper les inégalités de concentration au DS5.\else E3\fi\\[3pt]
+
+\textbf{S65}&23&Représentations paramétriques&\hyperref[ch:12]{Ch.~\ref{ch:12}, p.~\pageref{ch:12}}. \ifmxteacher Cours ; E1. Activité, premières trajectoires.\else Activité. E1\fi\\[3pt]
+
+\textbf{S66}&24 · 22--27 mars&IPP, rectangles et suites d'intégrales&\hyperref[ch:8]{Ch.~\ref{ch:8}, p.~\pageref{ch:8}}. \ifmxteacher Démonstration ; E4--E5 ; donner DM8 ; P4.\else E4--E5, DM8, P4\fi\\[3pt]
+
+\textbf{S67}&24&Équations cartésiennes de plans&\hyperref[ch:12]{Ch.~\ref{ch:12}, p.~\pageref{ch:12}}. \ifmxteacher Démonstration ; E2 ; terminer activité. Préparer DM12 pour S70.\else Activité. E2, DM12\fi\\[3pt]
+
+\textbf{S68}&24&DS5 · 2 h&\ifmxteacher Intégrales, équations différentielles, distances, sommes de variables.\else Travail en classe : DS5 · 2 h.\fi\\[3pt]
+
+\textbf{S69}&25 · 29 mars--3 avril&Correction DS5 et préparation au blanc&\hyperref[ch:8]{Ch.~\ref{ch:8}, p.~\pageref{ch:8}}. \ifmxteacher Correction DM8 ; sujet zéro Blanc 2. Lundi 29/03 férié.\else DM8\fi\\[3pt]
+
+\textbf{S70}&25&Intersections et synthèse&\hyperref[ch:12]{Ch.~\ref{ch:12}, p.~\pageref{ch:12}}. \ifmxteacher E3--E5 ; donner DM12 après le cours des intersections ; correction en S72.\else E3--E5, DM12\fi\\[3pt]
+
+\textbf{S71}&25&Blanc 2 · 4 h&\ifmxteacher Période établissement 1--3 avril ; volume et créneau à harmoniser.\else Travail en classe : Blanc 2 · 4 h.\fi\\[3pt]
+
+\textbf{S72}&26 · 5--9 avril&Correction du Blanc 2&\ifmxteacher Corrigé de la version composée ; correction DM12 ; bilan individuel.\else Travail en classe : Correction du Blanc 2.\fi\\[3pt]
+
+\textbf{S73}&26&Bienaymé-Tchebychev&\hyperref[ch:14]{Ch.~\ref{ch:14}, p.~\pageref{ch:14}}. \ifmxteacher Cours ; E4--E5 ; activité, questions 2--4.\else Activité. E4--E5\fi\\[3pt]
+
+\textbf{S74}&26&Loi des grands nombres&\hyperref[ch:14]{Ch.~\ref{ch:14}, p.~\pageref{ch:14}}. \ifmxteacher Démonstration ; donner DM14. Vacances 10--25 avril.\else DM14\fi\\[3pt]
+
+\textbf{S75}&27 · 26 avril--1 mai&Cercle, parité, périodicité&\hyperref[ch:5]{Ch.~\ref{ch:5}, p.~\pageref{ch:5}}. \ifmxteacher Cours ; cercle gradué ; donner sujets zéro Blanc final.\else Cours et entraînement de la séquence.\fi\\[3pt]
+
+\textbf{S76}&27&Dérivées et variations&\hyperref[ch:5]{Ch.~\ref{ch:5}, p.~\pageref{ch:5}}. \ifmxteacher E3--E4 ; activité roue, questions 1--2.\else Activité. E3--E4\fi\\[3pt]
+
+\textbf{S77}&27&Simulation et synthèse&\hyperref[ch:14]{Ch.~\ref{ch:14}, p.~\pageref{ch:14}}. \ifmxteacher Fin activité ; P5--P6 ; correction DM14.\else Activité. P5, P6, DM14\fi\\[3pt]
+
+\textbf{S78}&28 · 3--8 mai&Équations et inéquations : cosinus&\hyperref[ch:5]{Ch.~\ref{ch:5}, p.~\pageref{ch:5}}. \ifmxteacher E2 ; activité, questions 3--4. Jeudi 6 et vendredi 7 mai fériés.\else Activité. E2\fi\\[3pt]
+
+\textbf{S79}&28&Équations et inéquations : sinus&\hyperref[ch:5]{Ch.~\ref{ch:5}, p.~\pageref{ch:5}}. \ifmxteacher E1 et E5 ; donner DM5. Fin effective du programme.\else E1, E5, DM5\fi\\[3pt]
+
+\textbf{S80}&29 · 10--15 mai&Révision suites&\hyperref[ch:1]{Ch.~\ref{ch:1}, p.~\pageref{ch:1}}. \ifmxteacher DM1--DM2 ; sujet zéro Blanc 1, exercice suites ; P1.\else DM1, DM2, P1\fi\\[3pt]
+
+\textbf{S81}&29&Révision limites&\hyperref[ch:3]{Ch.~\ref{ch:3}, p.~\pageref{ch:3}}. \ifmxteacher DM3--DM4 ; tableaux de limites et hypothèses du TVI.\else DM3, DM4\fi\\[3pt]
+
+\textbf{S82}&29&Grand oral : problématique et démonstration&\ifmxteacher Atelier oral O1 ; choix d'une démonstration déjà maîtrisée.\else Travail en classe : Grand oral : problématique et démonstration.\fi\\[3pt]
+
+\textbf{S83}&30 · 17--22 mai&Révision dérivation et logarithme&\hyperref[ch:6]{Ch.~\ref{ch:6}, p.~\pageref{ch:6}}. \ifmxteacher DM6 ; sujet zéro Blanc final, exercice analyse. Lundi 17/05 férié.\else DM6\fi\\[3pt]
+
+\textbf{S84}&30&Grand oral : exposition et échange&\ifmxteacher Atelier oral O2 ; exposés et questions mathématiques.\else Travail en classe : Grand oral : exposition et échange.\fi\\[3pt]
+
+\textbf{S85}&31 · 24--29 mai&Révision primitives, intégrales et trigonométrie&\hyperref[ch:8]{Ch.~\ref{ch:8}, p.~\pageref{ch:8}}. \ifmxteacher Correction DM5 ; DM7--DM8 ; P3--P4.\else DM5, DM7, DM8, P3, P4\fi\\[3pt]
+
+\textbf{S86}&31&Révision dénombrement et binomiale&\hyperref[ch:13]{Ch.~\ref{ch:13}, p.~\pageref{ch:13}}. \ifmxteacher DM9--DM13 ; sujet zéro Blanc 2, probabilités.\else DM9, DM13\fi\\[3pt]
+
+\textbf{S87}&31&Grand oral blanc interne&\ifmxteacher Atelier O3 ; passages à organiser selon effectif.\else Travail en classe : Grand oral blanc interne.\fi\\[3pt]
+
+\textbf{S88}&32 · 31 mai--5 juin&Révision concentration&\hyperref[ch:14]{Ch.~\ref{ch:14}, p.~\pageref{ch:14}}. \ifmxteacher DM14 ; sujet zéro Blanc final, probabilités.\else DM14\fi\\[3pt]
+
+\textbf{S89}&32&Révision géométrie et Python&\hyperref[ch:12]{Ch.~\ref{ch:12}, p.~\pageref{ch:12}}. \ifmxteacher DM10--DM12 ; algorithmes P1--P6.\else DM10, DM12, P1, P6\fi\\[3pt]
+
+\textbf{S90}&32&Blanc final · 4 h&\ifmxteacher Quatre exercices ; créneau de 4 h à réserver.\else Travail en classe : Blanc final · 4 h.\fi\\[3pt]
+
+\textbf{S91}&33 · 7--12 juin&Correction du Blanc final&\ifmxteacher Corrigé et reprise des deux domaines les plus fragiles.\else Travail en classe : Correction du Blanc final.\fi\\[3pt]
+
+\textbf{S92}&33&Entraînement final&\ifmxteacher Autre sujet zéro Blanc final ; démonstrations du répertoire.\else Travail en classe : Entraînement final.\fi\\[3pt]
+
+\textbf{S93}&33&Oral blanc général&\ifmxteacher Atelier O3 ; organisation interdisciplinaire à confirmer.\else Travail en classe : Oral blanc général.\fi\\[3pt]
+
+\bottomrule\end{longtable}\normalsize
+
+\mxnewpage\chapter*{D0 · Diagnostic de rentrée}
+\addcontentsline{toc}{chapter}{D0 · Diagnostic de rentrée}
+\textbf{S1 · 30 min · sans calculatrice · non noté.} Donner une justification brève. Pour une question non résolue, écrire ce qui bloque.
+\begin{enumerate}
+\item Factoriser $x^2-5x+6$, puis résoudre $x^2-5x+6\le0$.
+\item Dériver $(x+1)e^x$ et déterminer le signe de la dérivée.
+\item $u_0=3$, $u_{n+1}=2u_n$. Donner $u_3$ et une formule pour $u_n$.
+\item Calculer $1+2+\cdots+20$ et $1+2+4+8+16$.
+\item $A\pt{1;2}$, $B\pt{3;5}$, $C\pt{5;8}$. Les points sont-ils alignés ?
+\item $P(A)=\num{0,4}$, $P_A(B)=\num{0,5}$, $P_{\overline A}(B)=\num{0,2}$. Calculer $P(B)$.
+\item Une pièce équilibrée est lancée deux fois indépendamment. Calculer la probabilité d'obtenir exactement une fois pile.
+\item L'affirmation « si $x^2=4$, alors $x=2$ » est-elle vraie ? Donner la correction exacte.
+\end{enumerate}
+\ifmxteacher\begin{teachernote}[Corrigé D0 et exploitation]
+\begin{enumerate}
+\item $x^2-5x+6=(x-2)(x-3)$. Le produit est positif avant $2$ et après $3$, négatif entre les deux racines et nul aux racines. L'ensemble cherché est $[2,3]$.
+\item Par produit, la dérivée vaut $e^x+(x+1)e^x=(x+2)e^x$. Comme $e^x>0$, elle est négative pour $x<-2$, nulle en $-2$, positive pour $x>-2$.
+\item La suite est géométrique de raison $2$ : $u_n=3\times2^n$ et $u_3=3\times8=24$.
+\item La somme arithmétique vaut $\frac{20(1+20)}{2}=210$. La somme géométrique vaut $\frac{2^5-1}{2-1}=31$.
+\item $\vect{AB}=\pt{2;3}$ et $\vect{AC}=\pt{4;6}=2\vect{AB}$. Comme $A\ne B$, les points sont alignés.
+\item Par probabilités totales, $P(B)=\num{0,4}\times\num{0,5}+\num{0,6}\times\num{0,2}=\num{0,32}$.
+\item Les issues favorables sont pile--face et face--pile. L'indépendance donne à chacune la probabilité $\frac{1}{4}$ ; leur réunion a probabilité $\frac{1}{2}$.
+\item L'affirmation est fausse : $x=-2$ est un contre-exemple. L'équivalence exacte est $x^2=4\Longleftrightarrow x=2\text{ ou }x=-2$.
+\end{enumerate}
+Reprendre algèbre et signes si les questions 1--2 échouent ; suites et indices pour 3--4 ; coordonnées pour 5 ; lecture des événements pour 6--7 ; logique pour 8. Ce diagnostic sert à choisir les reprises, sans classer définitivement les élèves.
+\end{teachernote}\fi
+\mainmatter
+
+

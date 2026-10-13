@@ -1,0 +1,105 @@
+\mxunit{seconde-s14}{Probabilités : conditionnement et arbres pondérés}\mxsubtitle{26 avril--24 mai 2027}
+\section{Univers, issues et événements}
+\begin{keypoint}[Vocabulaire]
+Une expérience aléatoire possède plusieurs résultats possibles sans que l'on sache à l'avance lequel sera obtenu. Une issue est un résultat possible ; l'univers $\Omega$ est leur ensemble. Un événement est une partie de $\Omega$ ; un événement élémentaire contient une seule issue.
+L'événement impossible est $\varnothing$ ; l'événement certain est $\Omega$.
+\end{keypoint}
+\begin{keypoint}[Opérations sur les événements]
+$\overline A$ est l'événement contraire de $A$. $A\cap B$ signifie « $A$ et $B$ » ; $A\cup B$, « $A$ ou $B$ », éventuellement les deux. Deux événements sont incompatibles si $A\cap B=\varnothing$ ; sinon, ils sont compatibles.
+\end{keypoint}
+\begin{example}On lance un dé à six faces. Écrire $\Omega$, $A$ : « obtenir un nombre pair », $B$ : « obtenir $4$ », puis $\overline A$, $A\cap B$ et $A\cup B$. $A,B$ sont-ils compatibles ?\end{example}
+\mxanswerspace[4]{$\Omega=\ens{1;2;3;4;5;6}$, $A=\ens{2;4;6}$, $B=\{4\}$, $\overline A=\ens{1;3;5}$, $A\cap B=\{4\}$, $A\cup B=A$. Les événements sont compatibles car ils partagent l'issue $4$.}
+\begin{example}Avec $A=\ens{a;b;c;d;e}$ et $B=\ens{b;e;f;g;h}$, donner l'intersection et la réunion. Peut-on déterminer $\overline A$ sans préciser l'univers ?\end{example}
+\mxanswerspace[3.2]{$A\cap B=\ens{b;e}$ et $A\cup B=\ens{a;b;c;d;e;f;g;h}$. Le complémentaire dépend de l'univers ; on ne peut pas le déterminer sans cette information.}
+
+\mxsection{Modèle probabiliste et équiprobabilité}
+\begin{keypoint}[Probabilité dans un univers fini]
+À chaque issue, un modèle associe une probabilité positive ou nulle ; la somme vaut $1$. La probabilité d'un événement est la somme des probabilités de ses issues. On a
+\[P(\Omega)=1,\quad P(\varnothing)=0,\quad P(\overline A)=1-P(A).\]
+En équiprobabilité, toutes les issues ont même probabilité et
+\[P(A)=\frac{\Card(A)}{\Card(\Omega)}.\]
+L'équiprobabilité est une hypothèse du modèle, pas une conséquence de la seule liste des issues.
+\end{keypoint}
+\begin{example}On suppose le dé équilibré. Pour $A=$ « pair » et $C=$ « supérieur ou égal à $5$ », calculer $P(A)$, $P(C)$, $P(A\cap C)$ et $P(A\cup C)$.\end{example}
+\mxanswerspace[4]{$P(A)=3/6=1/2$, $P(C)=2/6=1/3$, $A\cap C=\{6\}$ donc $P(A\cap C)=1/6$. $A\cup C=\ens{2;4;5;6}$, donc $P(A\cup C)=4/6=2/3$. L'issue $6$ ne doit pas être comptée deux fois.}
+\begin{example}Une punaise peut tomber pointe vers le haut ou vers le bas. Peut-on en déduire que chaque issue a probabilité $1/2$ ? Comment proposer un modèle ?\end{example}
+\mxanswerspace[4]{Non : deux issues ne suffisent pas à imposer l'équiprobabilité. On peut répéter les lancers dans des conditions comparables et utiliser les fréquences observées pour proposer un modèle, en gardant à l'esprit les fluctuations et les caractéristiques de l'objet.}
+\begin{teachernote}Réactiver le lien entre fréquence observée et probabilité postulée. Un résultat expérimental ne démontre pas une équiprobabilité exacte.\end{teachernote}
+
+\mxsection{Probabilité conditionnelle à partir d'un tableau}
+\begin{keypoint}[Définition]
+Pour $P(A)>0$, la probabilité de $B$ sachant $A$ est
+\[P_A(B)=\frac{P(A\cap B)}{P(A)},\qquad P(A\cap B)=P(A)P_A(B).\]
+Dans un tirage équiprobable au sein d'une population finie :
+\[P_A(B)=\frac{\Card(A\cap B)}{\Card(A)}.\]
+On note aussi $P(B\mid A)$. $P_A(B)$ et $P_B(A)$ ne sont généralement pas égales.
+\end{keypoint}
+\begin{example}On tire uniformément un élève de la classe de $32$ élèves étudiée précédemment. $G$ : « garçon », $N$ : « suit NSI ».\end{example}
+\begin{center}\mxarraystretch{1.5}\begin{tabular}{c|rr|r}
+&$G$&$\overline G$&Total\\\hline
+$N$&12&9&21\\$\overline N$&6&5&11\\\hline Total&18&14&32
+\end{tabular}\end{center}
+Calculer $P(G)$, $P(N)$, $P(G\cap N)$, $P_N(G)$ et $P_G(N)$.
+\mxanswerspace[5]{$P(G)=18/32=9/16$, $P(N)=21/32$, $P(G\cap N)=12/32=3/8$.
+$P_N(G)=12/21=4/7$, tandis que $P_G(N)=12/18=2/3$.
+Par la formule : $P_N(G)=(12/32)/(21/32)=12/21$. Sachant que l'élève suit NSI, la population de référence est réduite aux $21$ élèves concernés.}
+\begin{pitfall}Le conditionnement exige une probabilité non nulle de l'événement connu ; on ne divise pas par zéro.\end{pitfall}
+
+\mxsection{Arbres pondérés et probabilité d'un chemin}
+\begin{keypoint}[Règles]
+À chaque nœud, la somme des probabilités des branches sortantes vaut $1$. Une branche du deuxième niveau porte une probabilité conditionnelle. Un chemin représente une intersection d'événements ; sa probabilité est le produit des probabilités inscrites sur ce chemin.
+\end{keypoint}
+\begin{center}\begin{tikzpicture}[grow=right,level 1/.style={level distance=4cm,sibling distance=3cm},level 2/.style={level distance=4cm,sibling distance=1.4cm},edge from parent/.style={draw},every node/.style={font=\normalsize}]
+\node{} child{node{$\overline A$} child{node{$\overline B$} edge from parent node[below]{$P_{\overline A}(\overline B)$}} child{node{$B$} edge from parent node[above]{$P_{\overline A}(B)$}} edge from parent node[below]{$P(\overline A)$}} child{node{$A$} child{node{$\overline B$} edge from parent node[below]{$P_A(\overline B)$}} child{node{$B$} edge from parent node[above]{$P_A(B)$}} edge from parent node[above]{$P(A)$}};
+\end{tikzpicture}\end{center}
+\begin{example}On sait $P(A)=\num{0,6}$, $P_A(B)=\num{0,7}$ et $P_{\overline A}(\overline B)=\num{0,9}$. Compléter les autres branches et calculer les probabilités des quatre chemins.\end{example}
+\mxanswerspace[5]{$P(\overline A)=\num{0,4}$, $P_A(\overline B)=\num{0,3}$, $P_{\overline A}(B)=\num{0,1}$.
+\[P(A\cap B)=\num{0,6}\times\num{0,7}=\num{0,42},\quad P(A\cap\overline B)=\num{0,18},\]
+\[P(\overline A\cap B)=\num{0,04},\qquad P(\overline A\cap\overline B)=\num{0,36}.\]
+La somme des quatre probabilités vaut $1$, ce qui contrôle la cohérence du modèle.}
+\begin{example}Justifier la multiplication sur le chemin $A$ puis $B$ à partir de la définition de $P_A(B)$.\end{example}
+\mxanswerspace[2.4]{Comme $P_A(B)=P(A\cap B)/P(A)$ et $P(A)>0$, multiplier par $P(A)$ donne $P(A)P_A(B)=P(A\cap B)$.}
+
+\mxsection{Passer d'un tableau à un arbre}
+\begin{example}Pour la classe de $32$ élèves, construire un arbre commençant par NSI / pas de NSI, puis garçon / fille. Construire ensuite l'arbre dans l'ordre inverse. Vérifier, dans les deux arbres, la probabilité de choisir une fille suivant NSI.\end{example}
+\mxanswerspace[7]{Premier arbre : branches initiales $P(N)=21/32$, $P(\overline N)=11/32$. Après $N$ : $P_N(G)=12/21=4/7$, $P_N(\overline G)=9/21=3/7$. Après $\overline N$ : $6/11$ et $5/11$.
+Second arbre : branches initiales $P(G)=18/32=9/16$, $P(\overline G)=14/32=7/16$. Après $G$ : $P_G(N)=12/18=2/3$, puis $1/3$. Après $\overline G$ : $P_{\overline G}(N)=9/14$, puis $5/14$.
+Le chemin recherché vaut $(21/32)(9/21)=9/32$ dans le premier arbre et $(14/32)(9/14)=9/32$ dans le second. Le changement d'ordre conserve les probabilités des intersections mais change les probabilités des branches.}
+\begin{example}Une urne contient $3$ boules rouges et $2$ bleues. On tire successivement deux boules \textbf{sans remise}. Construire l'arbre des couleurs et calculer la probabilité de tirer deux rouges.\end{example}
+\mxanswerspace[5]{Premier niveau : $R$ avec $3/5$, $B$ avec $2/5$. Après $R$, il reste $2$ rouges et $2$ bleues : branches $1/2,1/2$. Après $B$, il reste $3$ rouges et $1$ bleue : branches $3/4,1/4$. Donc $P(R_1\cap R_2)=(3/5)(1/2)=3/10$. Utiliser $3/5$ sur la seconde branche rouge ignorerait l'absence de remise.}
+
+\mxsection{Inversion des conditionnements et faux positifs}
+\begin{example}[Contrôle fictif de composants]Un lot contient $10000$ composants, dont $100$ défectueux. Un test est positif pour $99$ des composants défectueux et pour $495$ des composants non défectueux. On choisit uniformément un composant. $D$ : « défectueux » ; $T$ : « test positif ».
+\begin{enumerate}\item Compléter le tableau croisé test / état réel.\item Calculer $P_D(T)$ et $P_T(D)$.\item Donner le nombre de faux positifs et de faux négatifs.\item Calculer la sensibilité $P_D(T)$ et la spécificité $P_{\overline D}(\overline T)$.\end{enumerate}\end{example}
+\mxanswerspace[7]{
+\begin{center}\mxarraystretch{1.5}\begin{tabular}{c|rr|r}&$D$&$\overline D$&Total\\\hline $T$&99&495&594\\$\overline T$&1&9405&9406\\\hline Total&100&9900&10000\end{tabular}\end{center}
+$P_D(T)=99/100=\pc{99}$. En revanche $P_T(D)=99/594=1/6\approx\pc{16,67}$. Un test positif n'implique donc pas ici une probabilité de défaut de $\pc{99}$.
+Les $495$ faux positifs sont les composants sains testés positifs ; le faux négatif est le composant défectueux testé négatif. La sensibilité vaut $\pc{99}$ ; la spécificité $9405/9900=\pc{95}$.
+La faible proportion initiale de composants défectueux explique pourquoi les faux positifs sont plus nombreux que les vrais positifs malgré la bonne sensibilité.}
+\begin{keypoint}[Lire le résultat d'un test]
+« Positif parmi les défectueux » et « défectueux parmi les positifs » correspondent à deux conditionnements différents. Toujours nommer le groupe de référence avant le calcul.
+\end{keypoint}
+\begin{teachernote}Les nombres sont fictifs. Le tableau permet d'étudier l'inversion sans exiger une formule générale des probabilités totales : celle-ci n'est pas un attendu du programme de seconde 2026.\end{teachernote}
+
+\mxsection{Simulation et loi des grands nombres}
+\begin{keypoint}[Version vulgarisée]
+Lorsqu'on répète un grand nombre de fois une expérience dans le même modèle avec des répétitions indépendantes, la fréquence observée d'un événement est, sauf exception, proche de sa probabilité. Elle fluctue : elle ne s'en rapproche pas nécessairement à chaque nouvelle expérience.
+\end{keypoint}
+\begin{lstlisting}
+from random import Random
+
+def frequences_six(n, graine=1):
+    # n entier >= 1 ; modele de lancers independants
+    rng = Random(graine)
+    succes = 0
+    frequences = []
+    for k in range(1, n+1):
+        if rng.randint(1, 6) == 6:
+            succes = succes+1
+        frequences.append(succes/k)
+    return frequences
+\end{lstlisting}
+\begin{example}Tracer les fréquences pour $n=1000$, avec plusieurs graines. Comparer à $1/6$. Pourquoi fixer la graine ? Peut-on exiger que la fréquence finale soit exactement $1/6$ ?\end{example}
+\mxanswerspace[4]{Les tracés dépendent de la graine et fluctuent autour de $1/6$. Fixer la graine rend la simulation reproductible. Avec $1000$ lancers, une fréquence finale exactement $1/6$ est même impossible, car $1000/6$ n'est pas entier. Une fréquence proche est cohérente avec le modèle, mais n'en constitue pas une démonstration.}
+\begin{example}Modifier le programme pour suivre la fréquence de l'événement « résultat pair ». Quelle probabilité de référence utiliser ?\end{example}
+\mxanswerspace[3.2]{Remplacer le test par \texttt{rng.randint(1, 6) \% 2 == 0}. La probabilité de référence est $3/6=1/2$. Chaque expérience doit effectuer un seul tirage ; ne pas appeler plusieurs fois le générateur pour tester un même résultat.}

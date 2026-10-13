@@ -1,0 +1,44 @@
+% mx-math.sty -- every mathematics macro that reads the same in both languages, defined once. Notations that differ
+% between French and English (numbers, intervals, points, sets) are in mx-notation.sty. The slide player's MathJax
+% macro table is generated from the \mxmathmacro lines below (`python -m mxbuild notation`), so a macro used in a
+% slide must be declared here.
+% Syntax: \mxmathmacro{\name}{nargs}{body} defines the LaTeX macro and records it for MathJax.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-math}[2026/10/11 Maths Explorer mathematics]
+\RequirePackage{amsmath,amssymb,mathtools}
+\RequirePackage[sc]{mathpazo}          % Palatino text and maths (owner default)
+\RequirePackage[scaled=.92]{helvet}    % sans for headings and labels
+\RequirePackage{courier}
+\RequirePackage{stmaryrd}              % \llbracket for integer intervals
+\newcommand{\mxmathmacro}[3]{\ifx0#2\newcommand{#1}{#3}\else\newcommand{#1}[#2]{#3}\fi}
+% \mxmathoverride: same, for a name a loaded package already defines (listed conflicts only; others must error).
+\makeatletter
+\newcommand{\mxmathoverride}[3]{\let#1\@undefined\mxmathmacro{#1}{#2}{#3}}
+\makeatother
+% Number sets
+\mxmathmacro{\N}{0}{\mathbb{N}}
+\mxmathmacro{\Z}{0}{\mathbb{Z}}
+\mxmathmacro{\D}{0}{\mathbb{D}}
+\mxmathmacro{\Q}{0}{\mathbb{Q}}
+\mxmathmacro{\R}{0}{\mathbb{R}}
+\mxmathmacro{\C}{0}{\mathbb{C}}
+% Vectors and geometry
+\mxmathmacro{\vect}{1}{\overrightarrow{#1}}
+\mxmathmacro{\vi}{0}{\vec{\imath}}
+\mxmathmacro{\vj}{0}{\vec{\jmath}}
+\mxmathmacro{\vk}{0}{\vec{k}}
+\mxmathmacro{\norm}{1}{\left\lVert #1\right\rVert}
+\mxmathmacro{\vc}{2}{\begin{pmatrix}#1\\#2\end{pmatrix}}          % column vector (x ; y)
+\mxmathmacro{\deter}{2}{\det\left(#1,#2\right)}
+% Analysis and arithmetic
+\mxmathmacro{\abs}{1}{\left\lvert #1\right\rvert}
+\mxmathmacro{\dd}{0}{\,\mathrm{d}}                                % differential: \int f(x)\dd x
+\mxmathmacro{\e}{0}{\mathrm{e}}
+\mxmathmacro{\Card}{0}{\operatorname{Card}}
+\mxmathmacro{\E}{0}{\operatorname{E}}                            % expectation
+\mxmathmacro{\V}{0}{\operatorname{V}}                            % variance
+\mxmathmacro{\pgcd}{0}{\operatorname{\mxtr{PGCD}{gcd}}}   % operator names follow the language
+\mxmathmacro{\ppcm}{0}{\operatorname{\mxtr{PPCM}{lcm}}}
+\mxmathoverride{\degre}{0}{^{\circ}}          % babel-french defines a text \degre; ours is for maths
+\mxmathmacro{\un}{1}{\,\mathrm{#1}}                               % unit after a number: 3\un{cm}
+\mxmathmacro{\sci}{2}{#1\times10^{#2}}                            % scientific notation

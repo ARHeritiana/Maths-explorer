@@ -1,0 +1,424 @@
+% GENERATED, edit the French unit or the translation table
+\mxfront{stmg-bank-c}
+
+% -----------------------------------------------------------------------------
+% Chapitre 5 -- Statistiques à deux variables quantitatives
+% -----------------------------------------------------------------------------
+\mxexdef{31}{Building a scatter plot}{%
+Over six months, a convenience store compares the gap $x_i$ between the month's average temperature and the seasonal norm (in °C) with the change $y_i$ in its cold-drink sales compared with the same month of the previous year (in hundreds of bottles).
+\[
+\begin{array}{c|rrrrrr}
+\text{Temperature gap }x_i\text{ (°C)}&-4&-1&0&2&5&7\\\hline
+\text{Change in sales }y_i\text{ (hundreds)}&-3&-2&0&2&4&5
+\end{array}
+\]
+\begin{enumerate}
+\item State the variable placed on the horizontal axis, the one placed on the vertical axis, and their units.
+\item Choose suitable scales, then plot the scatter plot of the points $M_i\pt{x_i;y_i}$ on a coordinate grid.
+\item Calculate the coordinates of the mean point $G$ of the scatter plot and plot it.
+\item Describe the shape of the scatter plot in one sentence.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Horizontal axis: the temperature gap $x$, in °C; vertical axis: the change in sales $y$, in hundreds of bottles. Both variables take negative values: the axes must cross inside the graph.
+\item One can take $1$~cm for $1$~°C (from $-5$ to $8$) and $1$~cm for one hundred bottles (from $-4$ to $6$). Plot the six points $\pt{-4;-3}$, $\pt{-1;-2}$, $\pt{0;0}$, $\pt{2;2}$, $\pt{5;4}$ and $\pt{7;5}$, without joining them.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.62\textwidth,height=5.2cm,axis lines=middle,xmin=-5,xmax=8,ymin=-4,ymax=6,grid=major,xtick={-4,...,7},ytick={-3,...,5},xlabel={$x$},ylabel={$y$}]
+\addplot[only marks,mark=*,mxteacher,mark size=2.2pt] coordinates {(-4,-3)(-1,-2)(0,0)(2,2)(5,4)(7,5)};
+\addplot[only marks,mark=square*,mxwarn,mark size=2.6pt] coordinates {(1.5,1)};
+\node[mxwarn,anchor=south east] at (axis cs:1.5,1) {$G$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\item $\bar x=\dfrac{-4-1+0+2+5+7}{6}=\dfrac{9}{6}=\num{1,5}$ and $\bar y=\dfrac{-3-2+0+2+4+5}{6}=\dfrac{6}{6}=1$. Hence $G\pt{\num{1,5};1}$.
+\item The scatter plot rises: the warmer the month compared with the norm, the more cold-drink sales increase; the points lie close to a straight line.
+\end{enumerate}
+}{5}
+
+\mxexdef{32}{Interpreting a scatter plot without inferring causation}{%
+For eight summer weeks, a seaside ice-cream shop records its weekly sales $x$ (in hundreds of cones); the neighbouring pharmacy records the number $y$ of soothing sunburn creams sold in the same week. The resulting scatter plot is shown below.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.7\textwidth,height=5.4cm,axis lines=left,xmin=10,xmax=31,ymin=0,ymax=24,grid=major,xtick={10,12,...,30},xlabel={ice-cream sales (hundreds)},ylabel={creams sold}]
+\addplot[only marks,mark=*,mxteacher,mark size=2.4pt] coordinates {(12,8)(15,10)(18,13)(20,13)(23,16)(26,18)(28,21)(29,9)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Describe the scatter plot: direction, shape and spread.
+\item One point stands clearly apart from the others. Give its coordinates and suggest a plausible explanation.
+\item The pharmacist claims: ``Ice creams cause sunburn.'' What do you think of this claim?
+\item Suggest a factor that could explain why the two series change together.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Apart from one point, the scatter plot is increasing: the weeks when the shop sells more ice cream are also the weeks when the pharmacy sells more creams. The points are fairly close to a straight line, with little spread.
+\item The point $\pt{29;9}$ is an outlier: very high ice-cream sales but few creams sold. Possible explanation: a cloudy week with a festival that attracted many visitors without strong sun exposure.
+\item The scatter plot only shows that the two variables move in the same direction (correlation). It does not prove that one variable causes the other: the claim is not justified by these data.
+\item Sunshine (or heat, or tourist numbers) increases both ice-cream sales and sunburn: it is a factor common to both series.
+\end{enumerate}
+}{4}
+
+\mxexdef{33}{Assessing and using a fitted line}{%
+The manager of a gas-heated shop records, on some winter days, the average outdoor temperature $x_i$ (in °C) and the shop's gas consumption $y_i$ (in kWh).
+\[
+\begin{array}{c|rrrrrr}
+x_i\text{ (°C)}&-4&-2&0&3&6&9\\\hline
+y_i\text{ (kWh)}&62&55&50&41&32&24
+\end{array}
+\]
+\begin{enumerate}
+\item Plot the scatter plot on a coordinate grid, then calculate the coordinates of the mean point $G$.
+\item An intern suggests the line $d_1$ with equation $y=-2x+50$. Draw it. Does this fit seem satisfactory? Justify using the point $G$.
+\item From now on, the line $d_2$ with equation $y=-3x+50$ is used. Check that $G$ lies on $d_2$ and interpret the numbers $-3$ and $50$ in context.
+\item Using $d_2$, estimate:
+  \begin{itemize}
+  \item the consumption on a day when it is $1$~°C;
+  \item the consumption on a day when it is $12$~°C;
+  \item the temperature on a day when the consumption is $35$~kWh.
+  \end{itemize}
+  For the first two estimates, state whether it is an interpolation or an extrapolation.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Plot the six points. $\bar x=\dfrac{-4-2+0+3+6+9}{6}=\dfrac{12}{6}=2$ and $\bar y=\dfrac{62+55+50+41+32+24}{6}=\dfrac{264}{6}=44$, so $G\pt{2;44}$. The scatter plot is decreasing and almost aligned.
+\item For $x=2$, $d_1$ gives $y=-2\times2+50=46\neq44$: $d_1$ does not pass through $G$. Moreover, it is not steep enough: it runs below the first points ($58$ instead of $62$ at $-4$~°C) and well above the last ones ($32$ instead of $24$ at $9$~°C). The fit is not satisfactory.
+\item $-3\times2+50=44$: $G\in d_2$. The coefficient $-3$ means that one more degree corresponds, on average, to about $3$~kWh less consumed; $50$ is the estimated consumption on a day at $0$~°C.
+\item For $x=1$: $y=-3+50=47$, i.e.\ about $47$~kWh (interpolation, since $1\in\intff{-4}{9}$).\\
+For $x=12$: $y=-36+50=14$, i.e.\ about $14$~kWh (extrapolation, since $12>9$: to be interpreted with caution).\\
+$-3x+50=35$ is equivalent to $x=5$: a consumption of $35$~kWh corresponds to about $5$~°C.
+\end{enumerate}
+}{6}
+
+\mxexdef{34}{Linear regression and time-series forecast}{%
+A regional operator records the number of subscribers to its fibre-optic offer on 31 December each year.
+\[
+\begin{array}{c|cccccc}
+\text{Year}&2018&2019&2020&2021&2022&2023\\\hline
+\text{Year rank }x_i&0&1&2&3&4&5\\
+\text{Subscribers }y_i\text{ (thousands)}&\num{8,2}&\num{11,5}&\num{13,9}&\num{17,4}&\num{20,1}&\num{23,8}
+\end{array}
+\]
+\begin{enumerate}
+\item Plot the scatter plot of the points $M_i\pt{x_i;y_i}$. Is a linear fit reasonable?
+\item Using a calculator, find an equation of the least-squares regression line of $y$ on $x$. Round the coefficients to $10^{-2}$.
+\item Assuming the trend continues, estimate the number of subscribers at the end of 2026.
+\item According to this model, in which year would the number of subscribers exceed $\num{40000}$?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item The six points are almost aligned along an increasing straight line: a linear fit is relevant.
+\item The calculator gives $a\approx\num{3,0657}$ and $b\approx\num{8,1524}$, hence the line $y=\num{3,07}x+\num{8,15}$.
+\item The end of 2026 corresponds to rank $x=8$: $y=\num{3,07}\times8+\num{8,15}=\num{32,71}$. About $\num{32710}$ subscribers can be forecast. This is an extrapolation: the result assumes that the trend observed from 2018 to 2023 continues.
+\item Solve $\num{3,07}x+\num{8,15}>40$, i.e.\ $x>\dfrac{40-\num{8,15}}{\num{3,07}}\approx\num{10,37}$. The first suitable whole rank is $x=11$ (check: $\num{3,07}\times10+\num{8,15}=\num{38,85}<40$ and $\num{3,07}\times11+\num{8,15}=\num{41,92}>40$). The threshold would be exceeded in $2018+11=2029$.
+\end{enumerate}
+}{6}
+
+\mxexdef{35}{Line through two points and careful extrapolation}{%
+A logistics hub recorded the number of parcels shipped each year (in thousands).
+\[
+\begin{array}{c|ccccc}
+\text{Year}&2019&2020&2021&2022&2023\\\hline
+\text{Year rank }x_i&0&1&2&3&4\\
+\text{Parcels shipped }y_i\text{ (thousands)}&\num{212,4}&\num{268,0}&\num{341,7}&\num{398,2}&\num{463,6}
+\end{array}
+\]
+\begin{enumerate}
+\item Plot the scatter plot of the points $M_1,\ldots,M_5$ on an orthogonal grid.
+\item The scatter plot is fitted by the line $(M_1M_5)$ through the first and last points. Find an equation of this line (coefficients rounded to one decimal place if necessary).
+\item Using this model, estimate the number of parcels shipped in 2027.
+\item According to this model, in which year would the number of parcels shipped exceed one million?
+\item Give two reasons why these forecasts may turn out to be unreliable.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item The five points are almost aligned along an increasing straight line.
+\item $M_1\pt{0;\num{212,4}}$ and $M_5\pt{4;\num{463,6}}$. The gradient is $\dfrac{\num{463,6}-\num{212,4}}{4-0}=\dfrac{\num{251,2}}{4}=\num{62,8}$ and the intercept is $\num{212,4}$ (abscissa $0$). Equation: $y=\num{62,8}x+\num{212,4}$.
+\item 2027 corresponds to rank $x=8$: $y=\num{62,8}\times8+\num{212,4}=\num{714,8}$, i.e.\ about $\num{714800}$ parcels.
+\item One million parcels corresponds to $y=\num{1000}$. Solve $\num{62,8}x+\num{212,4}>\num{1000}$, i.e.\ $x>\dfrac{\num{787,6}}{\num{62,8}}\approx\num{12,54}$. The first whole rank is $x=13$ (check: $\num{62,8}\times12+\num{212,4}=966<\num{1000}$ and $\num{62,8}\times13+\num{212,4}=\num{1028,8}$). The threshold would be crossed in $2019+13=2032$.
+\item These are extrapolations far from the observed period (2019--2023): the trend may change (competition, economic crisis, the hub reaching full capacity); moreover the line is built from only two points.
+\end{enumerate}
+}{6}
+
+\mxexdef{36}{Linearising with a logarithmic change of variable}{%
+A marketing agency studies, for several clients, the monthly online advertising budget $x_i$ (in hundreds of euros) and the monthly number of visits $y_i$ to the client's website (in thousands).
+\[
+\begin{array}{c|rrrrrrrrrr}
+x_i&1&2&4&5&8&10&15&20&30&40\\\hline
+y_i&13&19&28&29&35&36&42&44&49&52
+\end{array}
+\]
+Visits increase more and more slowly as the budget increases: a linear fit of $y$ on $x$ is not relevant. Let $u_i=\log(x_i)$.
+\begin{enumerate}
+\item Calculate the values $u_i$, rounded to two decimal places.
+\item Plot the scatter plot of the points $\pt{u_i;y_i}$. Using a calculator, find an equation of the least-squares regression line of $y$ on $u$ (coefficients rounded to one decimal place).
+\item Deduce an expression of $y$ in terms of $x$.
+\item Estimate the number of visits for a budget of $\num{1200}$~€, then of $\num{6000}$~€. Comment on the reliability of each estimate.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item $u_i$ : $0$ ; $\num{0,30}$ ; $\num{0,60}$ ; $\num{0,70}$ ; $\num{0,90}$ ; $1$ ; $\num{1,18}$ ; $\num{1,30}$ ; $\num{1,48}$ ; $\num{1,60}$.
+\item The scatter plot of $\pt{u_i;y_i}$ is almost aligned. The calculator gives (with the rounded $u_i$) $a\approx\num{24,59}$ and $b\approx\num{12,42}$, hence $y=\num{24,6}u+\num{12,4}$.
+\item Since $u=\log(x)$, we get $y=\num{24,6}\log(x)+\num{12,4}$.
+\item $\num{1200}$~€ corresponds to $x=12$: $y=\num{24,6}\log(12)+\num{12,4}\approx\num{38,9}$, i.e.\ about $\num{38900}$ visits (interpolation, $12\in\intff{1}{40}$).\\
+$\num{6000}$~€ corresponds to $x=60$: $y=\num{24,6}\log(60)+\num{12,4}\approx\num{56,1}$, i.e.\ about $\num{56100}$ visits. This is an extrapolation ($60>40$): the estimate should be interpreted with caution.
+\end{enumerate}
+}{6}
+
+\mxexdef{37}{Calibration: fit, residual and validity range}{%
+A start-up is calibrating a low-cost carbon dioxide (CO$_2$) sensor intended for offices. Placed in chambers with a known concentration $C$ (in ppm, parts per million), the sensor delivers a voltage $U$ (in volts).
+\[
+\begin{array}{c|cccccc}
+\text{Voltage }U\text{ (V)}&\num{0,42}&\num{0,81}&\num{1,23}&\num{1,60}&\num{2,05}&\num{2,41}\\\hline
+\text{Concentration }C\text{ (ppm)}&400&800&\num{1200}&\num{1600}&\num{2000}&\num{2400}
+\end{array}
+\]
+\begin{enumerate}
+\item Plot the scatter plot of the points $\pt{U;C}$, with $U$ on the horizontal axis.
+\item Does a linear fit seem relevant? Using a calculator, find an equation of the regression line of $C$ on $U$, in the form $C=aU+b$ (coefficients rounded to the nearest unit).
+\item Calculate the residual for $U=\num{1,23}$, that is, the difference between the actual concentration and the one given by the model. Comment.
+\item In an office, the sensor reads $\num{1,4}$~V. Estimate the CO$_2$ concentration. A threshold of $\num{1000}$~ppm is often used as a guide for airing a room: should the room be aired?
+\item Can this model be used with the same confidence for a voltage of $\num{3,5}$~V? Justify.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item The six points are almost aligned along an increasing straight line.
+\item Yes. The calculator gives $a\approx\num{996,59}$ and $b\approx-\num{15,16}$, hence $C=997U-15$.
+\item The model gives $997\times\num{1,23}-15=\num{1211,31}$. The residual is $\num{1200}-\num{1211,31}\approx-11$~ppm, i.e.\ less than $\pc{1}$ of the value: the fit is good.
+\item $C=997\times\num{1,4}-15=\num{1380,8}$, i.e.\ about $\num{1381}$~ppm (interpolation, since $\num{1,4}\in\intff{\num{0,42}}{\num{2,41}}$). This value exceeds $\num{1000}$~ppm: the room should be aired.
+\item The model gives $997\times\num{3,5}-15=\num{3474,5}$~ppm, but $\num{3,5}$~V lies outside the calibration interval $\intff{\num{0,42}}{\num{2,41}}$: this is an extrapolation. Nothing guarantees that the sensor stays linear at high concentrations; the calibration should be extended.
+\end{enumerate}
+}{6}
+
+\mxexdef{38}{Mean point and regression line: justified choices}{%
+For each question, exactly one option is correct. Choose it and justify.
+
+Three stores of the same chain have a sales area $x$ (in hundreds of m$^2$) and a monthly turnover $y$ (in tens of thousands of euros) represented by the points $M_1\pt{2;5}$, $M_2\pt{4;11}$ and $M_3\pt{6;11}$.
+\begin{enumerate}
+\item The mean point $G$ of this scatter plot is:
+  \begin{enumerate}[label=\alph*.]
+  \item the point $M_2$;
+  \item the point with coordinates $\pt{4;9}$;
+  \item the point with coordinates $\pt{12;27}$.
+  \end{enumerate}
+\item An equation of the line $(M_1M_3)$ is:
+  \begin{enumerate}[label=\alph*.]
+  \item $y=\num{1,5}x+2$ ;
+  \item $y=2x+1$ ;
+  \item $y=\num{1,5}x+3$.
+  \end{enumerate}
+\item The least-squares regression line obtained with a calculator:
+  \begin{enumerate}[label=\alph*.]
+  \item passes through the point $M_2$;
+  \item passes through $G$ and has the same gradient as $(M_1M_3)$;
+  \item passes through the origin.
+  \end{enumerate}
+\item Using this regression line, the estimated turnover of a $500$~m$^2$ store is:
+  \begin{enumerate}[label=\alph*.]
+  \item $\num{95000}$~€ ;
+  \item $\num{105000}$~€ ;
+  \item $\num{110000}$~€.
+  \end{enumerate}
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Answer b: $\bar x=\dfrac{2+4+6}{3}=4$ and $\bar y=\dfrac{5+11+11}{3}=9$. Option c forgets to divide the sums by $3$.
+\item Answer a: the gradient is $\dfrac{11-5}{6-2}=\num{1,5}$ and $5=\num{1,5}\times2+b$ gives $b=2$. The line $y=2x+1$ passes through $M_1$ but not through $M_3$ ($2\times6+1=13\neq11$).
+\item Answer b: the calculator gives $y=\num{1,5}x+3$. It passes through $G$ ($\num{1,5}\times4+3=9$), has gradient $\num{1,5}$ like $(M_1M_3)$, and passes neither through $M_2$ ($\num{1,5}\times4+3=9\neq11$) nor through the origin ($b=3\neq0$).
+\item Answer b: $500$~m$^2$ corresponds to $x=5$, and $y=\num{1,5}\times5+3=\num{10,5}$ tens of thousands of euros, i.e.\ $\num{105000}$~€ (interpolation).
+\end{enumerate}
+}{3}
+
+% -----------------------------------------------------------------------------
+% Chapitre 6 -- Probabilités conditionnelles
+% -----------------------------------------------------------------------------
+\mxexdef{39}{Three-branch tree, total and reverse probability}{%
+An online retailer hands its parcels to three carriers: $\pc{45}$ to carrier $T_1$, $\pc{35}$ to carrier $T_2$ and the rest to carrier $T_3$. Customer service finds that $\pc{2}$ of the parcels delivered by $T_1$ arrive damaged, compared with $\pc{5}$ for $T_2$ and $\pc{8}$ for $T_3$.
+
+A parcel is chosen at random. Let $T_i$ be the event ``The parcel is delivered by carrier $T_i$'' and $E$ the event ``The parcel arrives damaged''.
+\begin{center}
+\begin{tikzpicture}[grow'=right,level distance=30mm,level 1/.style={sibling distance=20mm},level 2/.style={sibling distance=9mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {}
+ child {node {$T_1$}
+   child {node {$E$} edge from parent node[above] {$\num{0,02}$}}
+   child {node {$\overline E$} edge from parent node[below] {$\dots$}}
+   edge from parent node[above] {$\num{0,45}$}}
+ child {node {$T_2$}
+   child {node {$E$} edge from parent node[above] {$\dots$}}
+   child {node {$\overline E$} edge from parent node[below] {$\dots$}}
+   edge from parent node[above] {$\dots$}}
+ child {node {$T_3$}
+   child {node {$E$} edge from parent node[above] {$\dots$}}
+   child {node {$\overline E$} edge from parent node[below] {$\dots$}}
+   edge from parent node[below] {$\dots$}};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Copy and complete the weighted tree above.
+\item Calculate the probability that the parcel is delivered by $T_3$ and arrives damaged.
+\item Show that the probability that a parcel arrives damaged is equal to $\num{0,0425}$.
+\item A customer reports a damaged parcel. What is the probability that it was delivered by $T_3$? Round to $10^{-3}$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item $P(T_3)=1-\num{0,45}-\num{0,35}=\num{0,20}$. Second-level branches: $P_{T_1}(\overline E)=\num{0,98}$; $P_{T_2}(E)=\num{0,05}$ and $P_{T_2}(\overline E)=\num{0,95}$; $P_{T_3}(E)=\num{0,08}$ and $P_{T_3}(\overline E)=\num{0,92}$.
+\item $P(T_3\cap E)=P(T_3)\times P_{T_3}(E)=\num{0,20}\times\num{0,08}=\num{0,016}$.
+\item $T_1$, $T_2$, $T_3$ form a partition of the sample space. By the law of total probability:
+$P(E)=\num{0,45}\times\num{0,02}+\num{0,35}\times\num{0,05}+\num{0,20}\times\num{0,08}=\num{0,009}+\num{0,0175}+\num{0,016}=\num{0,0425}$.
+\item $P_E(T_3)=\dfrac{P(T_3\cap E)}{P(E)}=\dfrac{\num{0,016}}{\num{0,0425}}\approx\num{0,376}$. Although $T_3$ carries only $\pc{20}$ of the parcels, it accounts for about $\pc{37,6}$ of the damaged parcels.
+\end{enumerate}
+}{5}
+
+\mxexdef{40}{Completing a tree and computing intersections}{%
+In this exercise, results are given as fractions in lowest terms. Consider the weighted tree below, where $E$ is an event and $R$, $S$ and $T$ form a partition of the sample space.
+\begin{center}
+\begin{tikzpicture}[grow'=right,level distance=30mm,level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=10mm},every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {}
+ child {node {$E$}
+   child {node {$R$} edge from parent node[above] {$\tfrac14$}}
+   child {node {$S$} edge from parent node[above] {$\dots$}}
+   child {node {$T$} edge from parent node[below] {$\tfrac13$}}
+   edge from parent node[above] {$\tfrac49$}}
+ child {node {$\overline E$}
+   child {node {$R$} edge from parent node[above] {$\tfrac3{10}$}}
+   child {node {$S$} edge from parent node[above] {$\tfrac12$}}
+   child {node {$T$} edge from parent node[below] {$\dots$}}
+   edge from parent node[below] {$\dots$}};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Complete the tree, justifying each calculation.
+\item Calculate $P(E\cap R)$ and $P(\overline E\cap S)$.
+\item Calculate $P(T)$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item The branches leaving the same node add up to $1$: $P(\overline E)=1-\dfrac49=\dfrac59$; $P_E(S)=1-\dfrac14-\dfrac13=\dfrac5{12}$; $P_{\overline E}(T)=1-\dfrac3{10}-\dfrac12=\dfrac15$.
+\item $P(E\cap R)=\dfrac49\times\dfrac14=\dfrac19$ and $P(\overline E\cap S)=\dfrac59\times\dfrac12=\dfrac5{18}$.
+\item $E$ and $\overline E$ form a partition, so
+$P(T)=P(E\cap T)+P(\overline E\cap T)=\dfrac49\times\dfrac13+\dfrac59\times\dfrac15=\dfrac4{27}+\dfrac19=\dfrac4{27}+\dfrac3{27}=\dfrac7{27}$.
+\end{enumerate}
+}{5}
+
+\mxexdef{41}{Translating an event, product along a path}{%
+In a gym, $\pc{65}$ of members have an annual membership, the others a monthly membership. Each member chooses a main activity. Among annual members, $\pc{50}$ choose weight training, $\pc{30}$ group classes and the rest swimming. Among monthly members, $\pc{40}$ choose weight training, $\pc{45}$ group classes and the rest swimming.
+
+A member is chosen at random. Let $A$: ``The member has an annual membership'', $M$: ``Their main activity is weight training'', $C$: ``Their main activity is a group class'' and $N$: ``Their main activity is swimming''.
+\begin{enumerate}
+\item Draw a weighted tree describing the situation.
+\item Describe the event $\overline A\cap C$ in a sentence, then calculate its probability.
+\item Calculate the probability that the chosen member's main activity is swimming.
+\item The chosen member mainly swims. Calculate the probability that they have an annual membership. Round to $10^{-3}$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item First level: $P(A)=\num{0,65}$ and $P(\overline A)=\num{0,35}$. Under $A$: $P_A(M)=\num{0,50}$, $P_A(C)=\num{0,30}$, $P_A(N)=1-\num{0,50}-\num{0,30}=\num{0,20}$. Under $\overline A$: $P_{\overline A}(M)=\num{0,40}$, $P_{\overline A}(C)=\num{0,45}$, $P_{\overline A}(N)=1-\num{0,40}-\num{0,45}=\num{0,15}$.
+\item $\overline A\cap C$: ``The member has a monthly membership and their main activity is a group class''. $P(\overline A\cap C)=\num{0,35}\times\num{0,45}=\num{0,1575}$.
+\item By the law of total probability ($A$, $\overline A$ form a partition): $P(N)=\num{0,65}\times\num{0,20}+\num{0,35}\times\num{0,15}=\num{0,13}+\num{0,0525}=\num{0,1825}$.
+\item $P_N(A)=\dfrac{P(A\cap N)}{P(N)}=\dfrac{\num{0,13}}{\num{0,1825}}\approx\num{0,712}$.
+\end{enumerate}
+}{6}
+
+\mxexdef{42}{Using and testing independence}{%
+In a call centre, a call is chosen at random. Let $A$ be the event ``The customer waits more than $5$ minutes before being answered'' and $B$ the event ``The call is cut off because of a network incident''. We know that $P(A)=\num{0,12}$ and $P(B)=\num{0,05}$. In questions 1 to 3, assume that $A$ and $B$ are independent.
+\begin{enumerate}
+\item Calculate the probability that the customer waits more than $5$ minutes and that the call is cut off.
+\item Calculate the probability that neither of these two incidents occurs.
+\item Deduce the probability that at least one of the two incidents occurs.
+\item An audit actually shows that, among calls with a wait of more than $5$ minutes, $\pc{9}$ are cut off. Is the independence assumption confirmed? Justify.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item By independence, $P(A\cap B)=P(A)\times P(B)=\num{0,12}\times\num{0,05}=\num{0,006}$.
+\item If $A$ and $B$ are independent, so are $\overline A$ and $\overline B$: $P(\overline A\cap\overline B)=\num{0,88}\times\num{0,95}=\num{0,836}$.
+\item The event ``at least one incident'' is the complement of ``no incident'': its probability is $1-\num{0,836}=\num{0,164}$.
+\item The audit gives $P_A(B)=\num{0,09}$, whereas $P(B)=\num{0,05}$. Since $P_A(B)\neq P(B)$, $A$ and $B$ are not independent: a long wait goes together with a cut-off more often.
+\end{enumerate}
+}{5}
+
+\mxexdef{43}{From a two-way table to weighted trees}{%
+A group employs $\num{1600}$ staff across three sites: the head office, the factory and the warehouse. The staff who work from home at least one day a week have been counted.
+\[
+\begin{array}{l|ccc}
+&\text{Remote work}&\text{No remote work}&\text{Total}\\\hline
+\text{Head office}&300&\cdots&400\\
+\text{Factory}&\cdots&\cdots&\cdots\\
+\text{Warehouse}&\cdots&340&400\\\hline
+\text{Total}&420&\cdots&\num{1600}
+\end{array}
+\]
+\begin{enumerate}
+\item Complete the table.
+\item An employee is chosen at random. Let $S_1$: ``They work at the head office'', $S_2$: ``They work at the factory'', $S_3$: ``They work at the warehouse'' and $T$: ``They work from home''. Draw the weighted tree whose first level is $S_1$, $S_2$, $S_3$ and second level is $T$, $\overline T$.
+\item Draw the weighted tree whose first level is $T$, $\overline T$ and second level is $S_1$, $S_2$, $S_3$. Give the probabilities as fractions in lowest terms, then rounded to $10^{-3}$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Head office: $400-300=100$ without remote work. Warehouse: $400-340=60$ with remote work. Factory: $\num{1600}-400-400=800$ staff, of whom $420-300-60=60$ work from home and $800-60=740$ do not. Total without remote work: $100+740+340=\num{1180}$ ($=\num{1600}-420$).
+\item $P(S_1)=\dfrac{400}{\num{1600}}=\num{0,25}$, $P(S_2)=\dfrac{800}{\num{1600}}=\num{0,5}$, $P(S_3)=\num{0,25}$.\\
+$P_{S_1}(T)=\dfrac{300}{400}=\num{0,75}$ and $P_{S_1}(\overline T)=\num{0,25}$; $P_{S_2}(T)=\dfrac{60}{800}=\num{0,075}$ and $P_{S_2}(\overline T)=\num{0,925}$; $P_{S_3}(T)=\dfrac{60}{400}=\num{0,15}$ and $P_{S_3}(\overline T)=\num{0,85}$.
+\item $P(T)=\dfrac{420}{\num{1600}}=\dfrac{21}{80}=\num{0,2625}$ and $P(\overline T)=\dfrac{59}{80}=\num{0,7375}$.\\
+$P_T(S_1)=\dfrac{300}{420}=\dfrac57\approx\num{0,714}$, $P_T(S_2)=\dfrac{60}{420}=\dfrac17\approx\num{0,143}$, $P_T(S_3)=\dfrac17\approx\num{0,143}$.\\
+$P_{\overline T}(S_1)=\dfrac{100}{\num{1180}}=\dfrac5{59}\approx\num{0,085}$, $P_{\overline T}(S_2)=\dfrac{740}{\num{1180}}=\dfrac{37}{59}\approx\num{0,627}$, $P_{\overline T}(S_3)=\dfrac{340}{\num{1180}}=\dfrac{17}{59}\approx\num{0,288}$.\\
+Check: the fractions leaving each node add up to $1$.
+\end{enumerate}
+}{7}
+
+\mxexdef{44}{Reversing a conditional probability}{%
+A DIY chain surveys its customers. $\pc{45}$ of them have downloaded the chain's loyalty app; among these, $\pc{60}$ made at least one purchase on special offer during the last month. Overall, $\pc{36}$ of the customers surveyed made at least one purchase on special offer during the last month.
+
+A surveyed customer is chosen at random. Let $A$: ``The customer has downloaded the app'' and $R$: ``The customer made at least one purchase on special offer last month''.
+\begin{enumerate}
+\item Give $P(A)$, $P(R)$ and $P_A(R)$.
+\item Calculate $P(A\cap R)$, then $P_R(A)$. Interpret the latter result.
+\item Calculate the probability that a customer who has not downloaded the app made a purchase on special offer. Round to $10^{-3}$ and compare with $P_A(R)$.
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item $P(A)=\num{0,45}$, $P(R)=\num{0,36}$ and $P_A(R)=\num{0,60}$.
+\item $P(A\cap R)=P(A)\times P_A(R)=\num{0,45}\times\num{0,60}=\num{0,27}$. Then $P_R(A)=\dfrac{P(A\cap R)}{P(R)}=\dfrac{\num{0,27}}{\num{0,36}}=\num{0,75}$: three quarters of the customers who bought on special offer have downloaded the app.
+\item $P(\overline A\cap R)=P(R)-P(A\cap R)=\num{0,36}-\num{0,27}=\num{0,09}$ and $P(\overline A)=\num{0,55}$, so $P_{\overline A}(R)=\dfrac{\num{0,09}}{\num{0,55}}\approx\num{0,164}$. This is much less than $P_A(R)=\num{0,60}$: customers with the app buy on special offer far more often.
+\end{enumerate}
+}{4}
+
+\mxexdef{45}{Two-stage experiment, fractional results}{%
+In this exercise, results are given as fractions in lowest terms. During a promotional event, a customer draws one ticket at random from ten tickets numbered $1$ to $10$.
+\begin{itemize}
+\item If the number is $1$ or $2$, they scratch a card taken at random from box X, which contains $3$ winning cards out of $8$.
+\item If the number is a multiple of $3$, they scratch a card from box Y, which contains $2$ winning cards out of $9$.
+\item Otherwise, they scratch a card from box Z, which contains $1$ winning card out of $6$.
+\end{itemize}
+Let $X$, $Y$, $Z$ be the events ``The card comes from box X'' (Y, Z respectively) and $G$ the event ``The card is a winning card''.
+\begin{enumerate}
+\item Justify that $P(X)=\dfrac15$, $P(Y)=\dfrac3{10}$ and $P(Z)=\dfrac12$, then represent the situation with a weighted tree.
+\item Prove that the probability that the card is a winning card is equal to $\dfrac9{40}$.
+\item The customer has won. What is the probability that their card came from box X?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item The ten numbers are equally likely. $X$ corresponds to $\ens{1;2}$: $P(X)=\dfrac2{10}=\dfrac15$. $Y$ corresponds to $\ens{3;6;9}$: $P(Y)=\dfrac3{10}$. $Z$ corresponds to the five other numbers $\ens{4;5;7;8;10}$: $P(Z)=\dfrac5{10}=\dfrac12$.\\
+Tree: under $X$, $P_X(G)=\dfrac38$ and $P_X(\overline G)=\dfrac58$; under $Y$, $P_Y(G)=\dfrac29$ and $P_Y(\overline G)=\dfrac79$; under $Z$, $P_Z(G)=\dfrac16$ and $P_Z(\overline G)=\dfrac56$.
+\item $X$, $Y$, $Z$ form a partition:
+$P(G)=\dfrac15\times\dfrac38+\dfrac3{10}\times\dfrac29+\dfrac12\times\dfrac16=\dfrac3{40}+\dfrac1{15}+\dfrac1{12}=\dfrac{9}{120}+\dfrac{8}{120}+\dfrac{10}{120}=\dfrac{27}{120}=\dfrac9{40}$.
+\item $P_G(X)=\dfrac{P(X\cap G)}{P(G)}=\dfrac{3/40}{9/40}=\dfrac13$.
+\end{enumerate}
+}{6}
+
+\mxexdef{46}{Review: path, complement and independent repetition}{%
+A business incubator selects the projects it supports in three stages. $\pc{30}$ of the applications submitted pass the pre-selection. Pre-selected projects are presented to a panel, which keeps $\pc{50}$ of them. Finally, an investors' committee funds $\pc{20}$ of the projects kept by the panel. A project eliminated at one stage does not go on to the following stages.
+
+An application is chosen at random. Let $P$: ``The application passes the pre-selection'', $J$: ``The project is kept by the panel'' and $F$: ``The project is funded''.
+\begin{enumerate}
+\item Draw a weighted tree describing the situation. Prove that the probability that a project is not funded is equal to $\num{0,97}$.
+\item Eight entrepreneurs submit an application; assume that the applications are examined independently of one another. Calculate the probability that at least one of the eight projects is funded. Round to $10^{-3}$.
+\item What is the minimum number of applications the incubator must receive for the probability of funding at least one project to exceed $\num{0,99}$?
+\end{enumerate}
+}{%
+\begin{enumerate}
+\item Tree: $P$ ($\num{0,30}$) or $\overline P$ ($\num{0,70}$, end); after $P$: $J$ ($\num{0,50}$) or $\overline J$ ($\num{0,50}$, end); after $J$: $F$ ($\num{0,20}$) or $\overline F$ ($\num{0,80}$). A project is funded only if it passes all three stages, so, multiplying along this path:
+$P(F)=\num{0,30}\times\num{0,50}\times\num{0,20}=\num{0,03}$ and $P(\overline F)=1-\num{0,03}=\num{0,97}$.
+\item By independence, the probability that none of the eight projects is funded is $\num{0,97}^8$. The required probability is $1-\num{0,97}^8\approx\num{0,216}$.
+\item We look for the smallest whole number $n$ such that $1-\num{0,97}^n>\num{0,99}$, i.e.\ $\num{0,97}^n<\num{0,01}$. Since $\log$ is increasing, this is equivalent to $n\log(\num{0,97})<\log(\num{0,01})$, i.e.\ $n>\dfrac{\log(\num{0,01})}{\log(\num{0,97})}\approx\num{151,2}$ (dividing by $\log(\num{0,97})<0$ reverses the inequality). At least $152$ applications are needed (check: $1-\num{0,97}^{151}\approx\num{0,98994}$ and $1-\num{0,97}^{152}\approx\num{0,99024}$).
+\end{enumerate}
+}{6}

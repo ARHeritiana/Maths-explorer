@@ -1,0 +1,87 @@
+\mxunit{seconde-annexes}{Annexes professeur : utilisation et correspondance}
+\section*{Utiliser la source commune}
+\begin{keypoint}[Une seule source, deux versions]
+L'option de classe \texttt{edition=student} produit la version élève (\texttt{eleve.tex}) ; \texttt{edition=teacher} produit la version professeur (\texttt{professeur.tex}). Les énoncés et les contenus de cours sont communs. Les réponses, démonstrations rédigées, figures corrigées et repères pédagogiques apparaissent seulement en mode professeur.
+\end{keypoint}
+Tous les graphiques et schémas sont écrits en TikZ/PGFPlots. Aucune image externe ni page du PDF original n'est nécessaire à la compilation. Compiler deux fois avec PDFLaTeX pour actualiser la table des matières et les liens. Les deux PDF peuvent avoir des paginations différentes ; les références stables sont les numéros de séquence et d'exemple.
+\begin{method}[Repères de mise en œuvre]
+\begin{itemize}
+\item Avant un exemple : faire reformuler les données et la question ; autoriser une représentation préparatoire.
+\item Pendant la recherche : fournir une aide ciblée (première étape, schéma, cas simple) et une extension aux élèves qui ont terminé.
+\item À la correction : séparer résultat, méthode, justification et vérification. Faire expliquer une erreur fréquente.
+\item Pour les automatismes : mélanger des questions récentes et plus anciennes, puis refaire après un délai les questions fragiles.
+\item Pour la langue : expliciter « parmi », « au moins », « si », « et », « ou » et le sens des symboles avant le calcul.
+\end{itemize}
+\end{method}
+\section*{Critères communs pour une production}
+\begin{center}\small\mxarraystretch{1.6}\begin{tabularx}{\linewidth}{l X}
+Chercher&Une démarche est engagée ; les essais apportent une information.\\
+Modéliser&Les variables, le domaine et les hypothèses correspondent à la situation.\\
+Représenter&Le tableau, graphique ou schéma est lisible, légendé et cohérent.\\
+Raisonner&Les propriétés sont appliquées sous leurs conditions ; la conclusion suit.\\
+Calculer&Les opérations sont correctes ; les valeurs exactes sont conservées lorsque nécessaire.\\
+Communiquer&La rédaction répond à la question, avec unités et précision appropriées.
+\end{tabularx}\end{center}
+Pour chaque critère, on peut retenir quatre niveaux : non engagé, partiel, correct avec aide, autonome. Cette grille sert à donner un retour exploitable ; elle ne remplace pas un barème propre à une évaluation.
+
+\section*{Correspondance avec le livret d'origine}
+\begin{center}\small\mxarraystretch{1.5}\begin{tabularx}{\linewidth}{p{6.3cm} X}
+\textbf{Séquences du livret fourni}&\textbf{Destination dans cette adaptation}\\\hline
+1. Calcul littéral&8 ; réactivation dans les rituels dès la rentrée.\\
+2. Nombres et calculs&1 pour l'arithmétique ; 4 pour les ensembles ; 8 pour puissances, fractions et racines.\\
+3. Intervalles et valeur absolue&4 ; réinvestissement de la fonction valeur absolue en 6 et 10.\\
+4. Équations et inéquations&8 ; équations simples réactivées en 3 et 6.\\
+5. Proportion et évolution&9.\\
+6. Les vecteurs&2.\\
+7. Fonctions et représentation graphique&6 pour représentations et lectures ; 10 pour variations et extrémums.\\
+8. Notions de probabilité&14 ; vocabulaire ensembliste introduit en 1.\\
+9. Notions de colinéarité&2 ; grande synthèse déplacée en 12.\\
+10. Tableau de signes et inéquations&8.\\
+11. Statistique&7, avec compléments sur les graphiques et la médiane estimée.\\
+12. Droites et systèmes&3.\\
+13. Fonctions de référence (4 parties)&3 pour la droite affine ; 6 pour les références et résolutions ; 10 pour les variations.\\
+14. Fréquences et probabilités conditionnelles&11 pour les fréquences ; 14 pour le conditionnement et les arbres.\\\hline
+Temps de progression sans équivalent direct&5, 12, 13, 15 : bilans, synthèses et consolidation créés.
+\end{tabularx}\end{center}
+La maquette est reconstruite dans l'esprit du modèle : A4 portrait, typographie sérif, encadrés noirs, zones quadrillées, exemples et démonstrations. La recomposition et le changement d'ordre ne constituent pas un fac-similé page à page. La pagination est continue ; le sommaire n'utilise plus des numéros de page redémarrant à chaque ancienne séquence.
+Les exemples numériques exploitables du modèle ont été repris. Des figures ambiguës ont été remplacées par des courbes dont l'expression permet une vérification exacte. Les développements sur racine carrée, cube, simulation, données croisées et bilans complètent la progression. Les situations ajoutées à données inventées sont signalées comme fictives ; une collecte de classe est proposée pour travailler aussi sur des données réelles.
+
+\section*{Corrections de fond apportées au modèle}
+\begin{enumerate}
+\item \textbf{Puissances.} Le produit répété vaut pour un exposant entier strictement positif ; les exposants négatifs exigent une base non nulle.
+\item \textbf{Fractions.} Un quotient nul doit être défini ; seule une fraction non nulle possède un inverse. Les simplifications ne suppriment pas les restrictions initiales.
+\item \textbf{PGCD.} Les deux entiers ne sont pas tous deux nuls dans la définition par le plus grand diviseur ; $\pgcd(0,0)=0$ est une convention séparée.
+\item \textbf{Vecteurs.} Le vecteur nul ne dirige aucune droite. La caractérisation $\vec u=k\vec v$ exige $\vec v\ne\vec0$, ou un traitement séparé du cas nul. La multiplication par tout réel est explicitée.
+\item \textbf{Équations de droites.} La condition est $\pt{a;b}\ne\pt{0;0}$ ; l'ordre des vecteurs dans le déterminant a été rendu cohérent. $\vect{AM}$ peut être nul lorsque $M=A$ et n'est alors pas un directeur.
+\item \textbf{Intervalles.} $0$ est exclu de l'ensemble des réels strictement négatifs. Les infinis ne sont pas des nombres réels.
+\item \textbf{Racines.} Les conditions de positivité et $\sqrt{x^2}=|x|$ sont explicites. Une formule fausse en général n'est pas nécessairement une inégalité toujours vraie.
+\item \textbf{Fonctions.} Images et antécédents sont distingués ; les domaines des courbes couvrent les valeurs demandées. Les lectures graphiques ne sont pas affichées avec une précision injustifiée. La fonction inverse n'est pas déclarée décroissante sur tout $\R^*$.
+\item \textbf{Statistiques.} La médiane utilise « au moins la moitié ». L'ajout d'une valeur ne fait pas diminuer l'étendue. Les recalculs utilisent la somme exacte $1217$. Variance et écart type ne sont pas des fonctions linéaires des données : leurs transformations correctes sont précisées.
+\item \textbf{Classes.} Une série continue n'est pas définie par son seul regroupement. Moyenne à partir des centres et médiane interpolée sont des estimations sous hypothèses, distinctes des valeurs exactes.
+\item \textbf{Interprétation.} Une multiplication des notes n'est pas assimilée à une augmentation de difficulté. Proportion, taux et points de pourcentage sont distingués.
+\item \textbf{Probabilités.} Les populations de référence et les hypothèses de modèle sont nommées. Inversion des conditionnements, faux positifs, faux négatifs et fluctuations sont travaillés. Aucune formule générale des probabilités totales n'est exigée.
+\item \textbf{Optimisation.} Le balayage donne un maximum sur une grille ; une preuve séparée établit le maximum sur l'intervalle. Une dichotomie de recherche de zéro n'est pas présentée comme une méthode générale d'optimisation.
+\end{enumerate}
+
+\section*{Références et contrôle de couverture}
+\textbf{Document de progression retenu :} \emph{Programmation annuelle Seconde 2026--2027 rectifiée finale}, DOCX fourni. Dates et quinze étapes reprises ; les dates indiquent des plages, pas des séances sur les jours fériés.
+\par\textbf{Document de départ :} \emph{Livret\_2nde\_\_\_Eleve.pdf}, 91 pages, fourni pour cette adaptation. La source LaTeX d'origine n'étant pas jointe, la présente source est une reconstruction.
+\par\textbf{Programme officiel :} arrêté du 26 février 2026, BO n\textsuperscript{o} 14 du 2 avril 2026, NOR MENE2602914A, applicable à la rentrée 2026--2027 :
+\par\url{https://www.education.gouv.fr/bo/2026/Hebdo14/MENE2602914A}
+\par\textbf{Ressources fournies :} programme de seconde ; ressources « Automatismes 2de » et « Raisonnement et démonstration 2de ». Le livret ne prétend pas reproduire intégralement ces ressources.
+\begin{center}\small\mxarraystretch{1.5}\begin{tabularx}{\linewidth}{p{8cm} X}
+\textbf{Domaine / capacité}&\textbf{Séquences}\\\hline
+Entiers, multiples, parité, fractions irréductibles&1, 5, 8, 13\\
+Réels, intervalles, distance, encadrements&4, 5, 8\\
+Calcul littéral, puissances, racines, équations et signes&8 ; rituels toute l'année\\
+Vecteurs, bases, coordonnées, normes, déterminant&2, 12\\
+Équations de droites et intersections&3, 12\\
+Représentations et six fonctions de référence&6, 10\\
+Variations, extrémums, comparaison, optimisation&10, 13, 15\\
+Proportions et évolutions&9, 13, 15\\
+Statistiques, dispersion, classes, histogramme, cumulées&7\\
+Tableaux croisés, fréquences, données réelles&11\\
+Conditionnement, arbres, inversion, simulation&14\\
+Logique, preuves, Python, six compétences&Répartis dans les séquences et bilans
+\end{tabularx}\end{center}
+\textbf{Contrôle mathématique :} les calculs numériques, expressions algébriques, ensembles solutions, données des tableaux, coordonnées et programmes ont fait l'objet d'une relecture et de vérifications calculatoires. Pour les collectes et productions ouvertes, la correction fournit des critères de validité plutôt qu'un résultat inventé. Les estimations et modèles restent explicitement signalés.

@@ -1,0 +1,551 @@
+{
+ "unit": "C11.fr.tex",
+ "segments": {
+  "c8be931f587c": {
+   "fr": "Calcul intégral",
+   "en": "Integration",
+   "status": "aligned",
+   "order": 0
+  },
+  "edd07629402a": {
+   "fr": "S59, S61, S63, S66",
+   "en": "S59, S61, S63, S66",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "d1b5a5f38ae7": {
+   "fr": "Calculer et encadrer une intégrale ; distinguer aire et intégrale ; utiliser une intégration par parties ; étudier une suite d'intégrales.",
+   "en": "Calculate and bound an integral; distinguish area from integral; use integration by parts; study a sequence of integrals.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "66159e12060b": {
+   "fr": "Aire et primitive",
+   "en": "Area and antiderivative",
+   "status": "aligned",
+   "order": 5
+  },
+  "d7ad34849100": {
+   "fr": "Pour [[m1]] continue et positive sur [[m2]], [[m3]], l'intégrale [[m4]] est l'aire sous la courbe, au-dessus de l'axe, entre [[m5]] et [[m6]], exprimée en unités d'aire.",
+   "en": "For [[m1]] continuous and positive on [[m2]], [[m3]], the integral [[m4]] is the area under the curve, above the axis, between [[m5]] and [[m6]], expressed in area units.",
+   "status": "aligned",
+   "order": 6
+  },
+  "2ccb499258eb": {
+   "fr": "Théorème fondamental",
+   "en": "Fundamental theorem",
+   "status": "aligned",
+   "order": 7
+  },
+  "1e64d9c5684c": {
+   "fr": "Si [[m1]] est continue sur un intervalle [[m2]] et [[m3]], alors [[m4]] est la primitive de [[m5]] qui s'annule en [[m6]]. Pour toute primitive [[m7]],",
+   "en": "If [[m1]] is continuous on an interval [[m2]] and [[m3]], then [[m4]] is the antiderivative of [[m5]] that vanishes at [[m6]]. For every antiderivative [[m7]],",
+   "status": "aligned",
+   "order": 8
+  },
+  "1633cd5fe6b6": {
+   "fr": "Toute fonction continue sur un intervalle admet des primitives. Une intégrale est un nombre ; une primitive est une fonction.",
+   "en": "Every continuous function on an interval has antiderivatives. An integral is a number; an antiderivative is a function.",
+   "status": "aligned",
+   "order": 9
+  },
+  "d71e2c272e91": {
+   "fr": "Démonstration dans le cas positif croissant.",
+   "en": "Proof in the positive increasing case.",
+   "status": "aligned",
+   "order": 10
+  },
+  "83877f571888": {
+   "fr": "Pour [[m1]], les rectangles donnent [[m2]]. Après division par [[m3]] et passage à la limite, le taux d'accroissement tend vers [[m4]]. Pour [[m5]], la croissance donne [[m6]] sur [[m7]]. En intégrant,",
+   "en": "For [[m1]], the rectangles give [[m2]]. After dividing by [[m3]] and taking the limit, the rate of change tends to [[m4]]. For [[m5]], the increasing property gives [[m6]] on [[m7]]. Integrating,",
+   "status": "aligned",
+   "order": 11
+  },
+  "92c811969a62": {
+   "fr": "En divisant par [[m1]], on obtient",
+   "en": "Dividing by [[m1]], we obtain",
+   "status": "aligned",
+   "order": 12
+  },
+  "c15b5e544f36": {
+   "fr": "Les deux bornes tendent vers [[m1]]. Par continuité, [[m2]]. Toute autre primitive est [[m3]], d'où la formule de calcul aux bornes.",
+   "en": "Both bounds tend to [[m1]]. By continuity, [[m2]]. Every other antiderivative is [[m3]], hence the formula for evaluating between the bounds.",
+   "status": "aligned",
+   "order": 13
+  },
+  "d43f3df4dd1d": {
+   "fr": "Propriétés",
+   "en": "Properties",
+   "status": "aligned",
+   "order": 14
+  },
+  "137009476b4d": {
+   "fr": "Pour des fonctions continues et des bornes appartenant à un même intervalle :",
+   "en": "For continuous functions and bounds belonging to the same interval:",
+   "status": "aligned",
+   "order": 15
+  },
+  "ceeca80c7bc2": {
+   "fr": "Si [[m1]] et [[m2]], alors [[m3]]. En particulier, si [[m4]], alors [[m5]].\nPour une fonction de signe quelconque, l'intégrale est définie par les primitives. L'aire géométrique entre la courbe et l'axe est [[m6]], obtenue en découpant aux changements de signe. Entre deux courbes, elle vaut [[m7]].",
+   "en": "If [[m1]] and [[m2]], then [[m3]]. In particular, if [[m4]], then [[m5]].\nFor a function of arbitrary sign, the integral is defined through antiderivatives. The geometric area between the curve and the axis is [[m6]], obtained by splitting at the sign changes. Between two curves, it is [[m7]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 17
+  },
+  "214a5e29ba88": {
+   "fr": "[[m1]], mais l'aire entre la droite et l'axe sur cet intervalle vaut [[m2]].",
+   "en": "[[m1]], but the area between the line and the axis on this interval is [[m2]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "e9932328d70a": {
+   "fr": "Valeur moyenne et intégration par parties",
+   "en": "Mean value and integration by parts",
+   "status": "aligned",
+   "order": 19
+  },
+  "436f50b162d7": {
+   "fr": "Pour [[m1]], la valeur moyenne est [[m2]]. Le rectangle de hauteur [[m3]] et de largeur [[m4]] possède la même aire algébrique.",
+   "en": "For [[m1]], the mean value is [[m2]]. The rectangle of height [[m3]] and width [[m4]] has the same algebraic area.",
+   "status": "aligned",
+   "order": 20
+  },
+  "9f9527774b9e": {
+   "fr": "Intégration par parties",
+   "en": "Integration by parts",
+   "status": "aligned",
+   "order": 21
+  },
+  "d810e141596f": {
+   "fr": "Si [[m1]] sont de classe [[m2]] sur [[m3]],",
+   "en": "If [[m1]] are of class [[m2]] on [[m3]],",
+   "status": "aligned",
+   "order": 22
+  },
+  "65287abcfc7f": {
+   "fr": "Démonstration.",
+   "en": "Proof.",
+   "status": "aligned",
+   "order": 23
+  },
+  "c3a0d17b5bc0": {
+   "fr": "Intégrer [[m1]] puis isoler l'intégrale cherchée. Le crochet est indispensable.",
+   "en": "Integrate [[m1]], then isolate the required integral. The square bracket is indispensable.",
+   "status": "aligned",
+   "order": 24
+  },
+  "4766ffaa7fbe": {
+   "fr": "Avec [[m1]] et [[m2]], [[m3]].",
+   "en": "With [[m1]] and [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "2362eccb227c": {
+   "fr": "Rectangles et suites d'intégrales",
+   "en": "Rectangles and sequences of integrals",
+   "status": "aligned",
+   "order": 26
+  },
+  "b48a3b70dfb1": {
+   "fr": "Pour [[m1]] continue et croissante sur [[m2]], avec [[m3]] et [[m4]] et [[m5]], les sommes [[m6]] et [[m7]] encadrent l'intégrale. Leur différence est [[m8]].\nPour [[m9]], commencer par le signe et les comparaisons de l'intégrande. Si [[m10]], alors [[m11]] ; les gendarmes donnent [[m12]]. Une intégration par parties peut aussi fournir une relation entre [[m13]] et [[m14]].",
+   "en": "For [[m1]] continuous and increasing on [[m2]], with [[m3]] and [[m4]] and [[m5]], the sums [[m6]] and [[m7]] bound the integral. Their difference is [[m8]].\nFor [[m9]], begin with the sign and comparisons of the integrand. If [[m10]], then [[m11]]; the squeeze theorem gives [[m12]]. An integration by parts can also provide a relation between [[m13]] and [[m14]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "8cb1bffc7016": {
+   "fr": "Convention au rang zéro.",
+   "en": "Convention at rank zero.",
+   "status": "aligned",
+   "order": 28
+  },
+  "372709bb71e3": {
+   "fr": "Dans [[m1]], l'expression [[m2]] désigne la fonction constante [[m3]], y compris à la borne [[m4]]. Ainsi [[m5]] ; aucun calcul indéterminé n'est nécessaire.",
+   "en": "In [[m1]], the expression [[m2]] denotes the constant function [[m3]], including at the lower bound [[m4]]. Thus [[m5]]; no indeterminate calculation is needed.",
+   "status": "aligned",
+   "order": 29
+  },
+  "a627520df016": {
+   "fr": "L'aire entre [[m1]] et [[m2]] sur [[m3]] vaut [[m4]].",
+   "en": "The area between [[m1]] and [[m2]] on [[m3]] is [[m4]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 31
+  },
+  "71608bd95a4e": {
+   "fr": "\\textbf{Encadrer une intégrale par des rectangles --- 35 min.}",
+   "en": "\\textbf{Bounding an integral with rectangles --- 35 min.}",
+   "status": "aligned",
+   "order": 32
+  },
+  "f1fc3978a04a": {
+   "fr": "On cherche à encadrer [[m1]]. Pour un entier [[m2]], on partage [[m3]] en [[m4]] intervalles de même longueur. On note [[m5]] la somme des aires des rectangles dont les hauteurs sont les valeurs de [[m6]] aux extrémités gauches, et [[m7]] celle obtenue aux extrémités droites.",
+   "en": "We want to bound [[m1]]. For an integer [[m2]], we split [[m3]] into [[m4]] intervals of equal length. Let [[m5]] be the sum of the areas of the rectangles whose heights are the values of [[m6]] at the left endpoints, and [[m7]] the sum obtained at the right endpoints.",
+   "status": "aligned",
+   "order": 33
+  },
+  "fe82c9138e1c": {
+   "fr": "Pour [[m1]], représenter les deux familles de rectangles, puis calculer [[m2]] et [[m3]].",
+   "en": "For [[m1]], draw the two families of rectangles, then calculate [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "9af58fb65b91": {
+   "fr": "Justifier que [[m1]].",
+   "en": "Justify that [[m1]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "6d73bcd8cab3": {
+   "fr": "Écrire une fonction Python d'argument [[m1]] qui renvoie [[m2]] et [[m3]]. Déterminer algébriquement [[m4]].",
+   "en": "Write a Python function with argument [[m1]] that returns [[m2]] and [[m3]]. Find [[m4]] algebraically.",
+   "status": "aligned",
+   "order": 36
+  },
+  "660713988b8e": {
+   "fr": "Déterminer le plus petit entier [[m1]] pour lequel cet encadrement a une largeur au plus égale à [[m2]].",
+   "en": "Find the smallest integer [[m1]] for which this bound has a width of at most [[m2]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "01844fe80e0f": {
+   "fr": "Calculer la valeur exacte de [[m1]] à l'aide d'une primitive et vérifier qu'elle appartient à l'encadrement obtenu pour [[m2]].",
+   "en": "Calculate the exact value of [[m1]] using an antiderivative and check that it lies within the bound obtained for [[m2]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 39
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 40
+  },
+  "ee123eccfc6a": {
+   "fr": "Calculer [[m1]] en déterminant une primitive.",
+   "en": "Calculate [[m1]] by finding an antiderivative.",
+   "status": "aligned",
+   "order": 41
+  },
+  "2917ed2bf6fe": {
+   "fr": "Dans un repère orthonormé, calculer l'aire du domaine délimité par les courbes [[m1]] et [[m2]], entre les abscisses [[m3]] et [[m4]]. Donner le résultat en unité d'aire.",
+   "en": "In an orthonormal frame, calculate the area of the region bounded by the curves [[m1]] and [[m2]], between the abscissae [[m3]] and [[m4]]. Give the result in area units.",
+   "status": "aligned",
+   "order": 42
+  },
+  "6171fc0f4734": {
+   "fr": "Calculer la valeur moyenne de la fonction exponentielle sur l'intervalle [[m1]].",
+   "en": "Calculate the mean value of the exponential function on the interval [[m1]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "1bb61d1b12e1": {
+   "fr": "À l'aide d'une intégration par parties, calculer [[m1]].",
+   "en": "Using integration by parts, calculate [[m1]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "a8bbd8427055": {
+   "fr": "Pour tout [[m1]], on pose [[m2]], avec [[m3]] dans l'intégrande. Démontrer que [[m4]], puis en déduire la limite de [[m5]].",
+   "en": "For every [[m1]], let [[m2]], with [[m3]] in the integrand. Prove that [[m4]], then deduce the limit of [[m5]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 46
+  },
+  "5475d8852627": {
+   "fr": "\\textbf{Barbazo, p. 260, exercices 28 et 29.} En S66 : exercice 28, en explicitant les deux fonctions choisies pour l'intégration par parties. À la maison : exercice 29, pour adapter ce choix à un produit contenant un logarithme.",
+   "en": "\\textbf{Barbazo, p. 260, exercises 28 and 29.} In S66: exercise 28, stating explicitly the two functions chosen for the integration by parts. At home: exercise 29, to adapt this choice to a product containing a logarithm.",
+   "status": "aligned",
+   "order": 47
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 48
+  },
+  "bd8f3606d866": {
+   "fr": "\\textbf{DM8 --- Une suite d'intégrales --- 60 min.}",
+   "en": "\\textbf{HW8 --- A sequence of integrals --- 60 min.}",
+   "status": "aligned",
+   "order": 49
+  },
+  "64920226705e": {
+   "fr": "Pour tout [[m1]], on pose [[m2]]. Pour [[m3]], l'intégrande est la fonction [[m4]].",
+   "en": "For every [[m1]], let [[m2]]. For [[m3]], the integrand is the function [[m4]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "05b783fe8f95": {
+   "fr": "Calculer [[m1]], puis [[m2]] à l'aide d'une intégration par parties.",
+   "en": "Calculate [[m1]], then [[m2]] using integration by parts.",
+   "status": "aligned",
+   "order": 51
+  },
+  "ef30c6567e9e": {
+   "fr": "Démontrer que, pour tout [[m1]], [[m2]].",
+   "en": "Prove that, for every [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "959934a51d1e": {
+   "fr": "En comparant les intégrandes, démontrer que [[m1]] est positive et décroissante.",
+   "en": "By comparing the integrands, prove that [[m1]] is positive and decreasing.",
+   "status": "aligned",
+   "order": 53
+  },
+  "5d374279c932": {
+   "fr": "Montrer que [[m1]] pour tout [[m2]]. En déduire la limite de [[m3]].",
+   "en": "Show that [[m1]] for every [[m2]]. Deduce the limit of [[m3]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "3d34a46a7868": {
+   "fr": "Dans le calcul de [[m1]] par la relation de la question 2, par quel facteur une erreur sur [[m2]] est-elle multipliée si l'on néglige les autres erreurs d'arrondi ? Expliquer le risque d'un calcul répété de cette manière.",
+   "en": "In the calculation of [[m1]] using the relation of question 2, by what factor is an error on [[m2]] multiplied if the other rounding errors are neglected? Explain the risk of repeated calculation in this way.",
+   "status": "aligned",
+   "order": 55
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 56
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 57
+  },
+  "eebd4ee83d76": {
+   "fr": "Commencer par une aire positive, puis montrer un exemple dont les aires positive et négative se compensent. Pour une valeur moyenne, exiger une unité et une interprétation. Les suites d'intégrales arrivent en S66 ; réserver une vraie phase de recherche au choix de la comparaison. La preuve du théorème fondamental se limite au cas positif croissant indiqué au programme. Les calculs trigonométriques seront repris après mai.",
+   "en": "Begin with a positive area, then show an example in which the positive and negative areas cancel. For a mean value, require a unit and an interpretation. Sequences of integrals arrive in S66; reserve a genuine research phase for the choice of comparison. The proof of the fundamental theorem is limited to the positive increasing case stated in the syllabus. Trigonometric calculations will be taken up again after May.",
+   "status": "aligned",
+   "order": 58
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 59
+  },
+  "a5664a5001a9": {
+   "fr": "Les quatre intervalles ont largeur [[m1]]. La somme à gauche vaut",
+   "en": "The four intervals have width [[m1]]. The left sum is",
+   "status": "aligned",
+   "order": 60
+  },
+  "61ed1e15d36d": {
+   "fr": "À droite, [[m1]]. Les rectangles ont pour hauteurs les valeurs aux extrémités correspondantes.",
+   "en": "On the right, [[m1]]. The rectangles have heights equal to the values at the corresponding endpoints.",
+   "status": "aligned",
+   "order": 61
+  },
+  "e7e40c85925d": {
+   "fr": "Rectangles à gauche : [[m1]].",
+   "en": "Left rectangles: [[m1]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "c2c6d9399509": {
+   "fr": "Rectangles à droite : [[m1]].",
+   "en": "Right rectangles: [[m1]].",
+   "status": "aligned",
+   "order": 63
+  },
+  "af8f9c3e9ed7": {
+   "fr": "Pour [[m1]], [[m2]] car la fonction carré est croissante sur [[m3]]. L'intégration sur les quatre intervalles puis l'addition donnent [[m4]].",
+   "en": "For [[m1]], [[m2]] because the square function is increasing on [[m3]]. Integrating over the four intervals then adding gives [[m4]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "217439f73122": {
+   "fr": "Les termes intérieurs se compensent : [[m1]].",
+   "en": "The inner terms cancel: [[m1]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "a64b60cc87a1": {
+   "fr": "[[m1]]. Cent subdivisions suffisent ; c'est le premier entier qui donne cette largeur avec ces deux sommes.",
+   "en": "[[m1]]. One hundred subdivisions suffice; this is the first integer that gives this width with these two sums.",
+   "status": "aligned",
+   "order": 66
+  },
+  "7007c91babb4": {
+   "fr": "Une primitive de [[m1]] est [[m2]]. Donc [[m3]], bien compris entre [[m4]] et [[m5]].",
+   "en": "An antiderivative of [[m1]] is [[m2]]. So [[m3]], which indeed lies between [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 68
+  },
+  "cfa833dc0edf": {
+   "fr": "Une primitive est [[m1]]. L'intégrale vaut [[m2]].",
+   "en": "An antiderivative is [[m1]]. The integral is [[m2]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 70
+  },
+  "e93023623b12": {
+   "fr": "Sur [[m1]], [[m2]], donc la droite est au-dessus de la parabole. L'aire est [[m3]] unité d'aire.",
+   "en": "On [[m1]], [[m2]], so the line is above the parabola. The area is [[m3]] area unit.",
+   "status": "aligned",
+   "order": 71
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 72
+  },
+  "1b3d6d8e9a3e": {
+   "fr": "La longueur de l'intervalle est [[m1]]. La valeur moyenne vaut [[m2]].",
+   "en": "The length of the interval is [[m1]]. The mean value is [[m2]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 74
+  },
+  "30d1d55be8ca": {
+   "fr": "Choisissons [[m1]], [[m2]], [[m3]] et [[m4]] sur [[m5]]. L'IPP donne [[m6]].",
+   "en": "Choose [[m1]], [[m2]], [[m3]] and [[m4]] on [[m5]]. Integration by parts gives [[m6]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 76
+  },
+  "909baaab12f9": {
+   "fr": "Sur [[m1]], [[m2]] et [[m3]], donc [[m4]]. L'intégration donne [[m5]]. Les gendarmes donnent [[m6]].",
+   "en": "On [[m1]], [[m2]] and [[m3]], so [[m4]]. Integrating gives [[m5]]. The squeeze theorem gives [[m6]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "b6cff17d2ac2": {
+   "fr": "Corrigé du DM8",
+   "en": "Solutions to HW8",
+   "status": "aligned",
+   "order": 78
+  },
+  "68045fc205be": {
+   "fr": "[[m1]]. Pour [[m2]], une IPP avec [[m3]], [[m4]] donne [[m5]].",
+   "en": "[[m1]]. For [[m2]], integration by parts with [[m3]], [[m4]] gives [[m5]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "90e4e5888653": {
+   "fr": "Pour [[m1]], choisissons [[m2]], [[m3]], [[m4]] et [[m5]]. Les fonctions sont dérivables à dérivées continues sur [[m6]]. Alors",
+   "en": "For [[m1]], choose [[m2]], [[m3]], [[m4]] and [[m5]]. The functions are differentiable with continuous derivatives on [[m6]]. Then",
+   "status": "aligned",
+   "order": 80
+  },
+  "bde4701fb43f": {
+   "fr": "Sur [[m1]], [[m2]]. En multipliant par [[m3]] puis en intégrant, [[m4]] : la suite est positive et décroissante au sens large. Elle est même strictement positive et strictement décroissante, car les intégrandes de [[m5]] et de [[m6]] sont strictement positives sur [[m7]].",
+   "en": "On [[m1]], [[m2]]. Multiplying by [[m3]] then integrating, [[m4]]: the sequence is positive and non-increasing. It is even strictly positive and strictly decreasing, because the integrands of [[m5]] and of [[m6]] are strictly positive on [[m7]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "fe3a455879b6": {
+   "fr": "Comme [[m1]] et [[m2]] sur [[m3]], on peut intégrer [[m4]]. D'où",
+   "en": "Since [[m1]] and [[m2]] on [[m3]], we can integrate [[m4]]. Hence",
+   "status": "aligned",
+   "order": 82
+  },
+  "cb0cff23343a": {
+   "fr": "Les deux bornes tendent vers [[m1]] ; le théorème des gendarmes donne [[m2]].",
+   "en": "Both bounds tend to [[m1]]; the squeeze theorem gives [[m2]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "12f050e173e4": {
+   "fr": "Si [[m1]] et que la relation est ensuite appliquée sans nouvelle erreur, alors",
+   "en": "If [[m1]] and the relation is then applied with no new error, then",
+   "status": "aligned",
+   "order": 84
+  },
+  "02ef6a22a313": {
+   "fr": "La valeur absolue de l'erreur est multipliée par [[m1]]. En calcul machine, de nouvelles erreurs s'ajoutent à chaque étape. La décroissance des intégrales exactes ne garantit donc pas la stabilité de cette méthode de calcul.",
+   "en": "The absolute value of the error is multiplied by [[m1]]. In machine calculation, new errors are added at each step. The decrease of the exact integrals therefore does not guarantee the stability of this method of calculation.",
+   "status": "aligned",
+   "order": 85
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 86
+  },
+  "d8e039f29a68": {
+   "fr": "Exercice 28.",
+   "en": "Exercise 28.",
+   "status": "aligned",
+   "order": 87
+  },
+  "9aad7d6f9983": {
+   "fr": "Sur [[m1]], choisissons [[m2]] et [[m3]]. Ces fonctions sont de classe [[m4]], [[m5]] et [[m6]]. L'intégration par parties donne",
+   "en": "On [[m1]], choose [[m2]] and [[m3]]. These functions are of class [[m4]], [[m5]] and [[m6]]. Integration by parts gives",
+   "status": "aligned",
+   "order": 88
+  },
+  "b1851e9cc76c": {
+   "fr": "Exercice 29.",
+   "en": "Exercise 29.",
+   "status": "aligned",
+   "order": 89
+  },
+  "10763401fb63": {
+   "fr": "Sur [[m1]], choisissons [[m2]] et [[m3]]. Alors [[m4]] et [[m5]] ; ces fonctions sont de classe [[m6]]. D'où",
+   "en": "On [[m1]], choose [[m2]] and [[m3]]. Then [[m4]] and [[m5]]; these functions are of class [[m6]]. Hence",
+   "status": "aligned",
+   "order": 90
+  }
+ }
+}

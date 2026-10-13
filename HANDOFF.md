@@ -1,6 +1,6 @@
 # Handoff
 
-Last updated: 12 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict). If you only have time for one thing, read brief section 2 (rules) and the task queue below.
+Last updated: 13 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict). If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
 ## What this project is
 
@@ -11,20 +11,20 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Area | State |
 |---|---|
 | Governing brief | `PROJECT_BRIEF.md` v0.5. Decisions settled, only the items in "Open for the owner" below remain. |
-| Design | Design v3 "Cahier" applied to `dist/` (13 October 2026): `explorer.css`, `pages.css`, `js/ui.js`, `js/icons.js`, fonts in `dist/fonts/`. Reasoning and tokens in `docs/DESIGN_V3.md`. `design/prototype/` is superseded. |
-| Live site `dist/` | New design on the v1 content and routes. 157 MB, 672 PDFs, mostly without TeX source. |
-| Tests | `npm test`: 49 pass. `npm run check` passes. Browser tests not re-run this session. |
+| Design | Design v3 "Cahier" (reasoning and tokens in `docs/DESIGN_V3.md`). Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
+| Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (six courses migrated, 47 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
+| Tests | `npm test`: 53 pass. `npm run check` passes. `make check` (pipeline): all checks pass except the notation test, which needs `pdflatex` (not installed in the 13 October sandbox). Browser suite (`tests/browser.py`) passes; `tests/slides_smoke.py` was started but not confirmed. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script. |
 | Private area | `private/` created with an empty `ledger.json`. No chapter has been through the pipeline yet. |
-| Chapters produced under v2 | None. No gold-standard chapter exists. |
-| Tooling in this sandbox | `xelatex`, `python3`, `node` 22 present (`which` check). Playwright Chromium at `/opt/pw-browsers/chromium`. SymPy is not installed here (`pip install --break-system-packages sympy`). |
+| Publication gate | No chapter has been through the two-agent audit recorded in `private/ledger.json` yet. The TeX migration was verified by the pipeline checks, not by the gate. |
+| Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`. |
 
 ## Rules you must not break (short form; brief section 2 is authoritative)
 
 1. Anonymity: no name of the owner, employer, school or students in HTML, PDFs (text and XMP/metadata), `\author`, file names, alt text. Do not add any such detail to commit messages or docs either.
 2. No links to Google Drive or any personal storage. Host copies inside the site.
 3. No visible AI notice or review status anywhere published. Status lives only in `private/ledger.json`.
-4. Every PDF ships its `.tex` (XeLaTeX, `content/latex/enrichment/explorer.sty`).
+4. Every PDF has its TeX source in `content/tex/` (see `docs/TEX_STYLE_GUIDE.md`). English units are generated from translation tables, never edited directly.
 5. No accounts, no analytics.
 6. Publish only after two independent AI audits (different agents) with no open finding, plus code verification of every computed result. Record `human_reviewed` in the ledger.
 7. Never invent a source, bulletin number or programme requirement. Tag [VERIFY] or say you do not know.
@@ -35,7 +35,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 ## Task queue (do in order; tick here when done)
 
 ### 1. Clean-up of v1 (small, do first)
-- [ ] Remove the AI notice from the footer: `dist/js/app.js` line 118, the `<small class="content-origin">` element; remove its CSS and any test asserting it. Search again for other notices (`content-origin`, "IA", "AI-generated") in `dist/`, `docs/`, `README`.
+- [x] Remove the AI notice from the footer (done in the site code, 13 October 2026). Search again for other notices (`content-origin`, "IA", "AI-generated") in `docs/` and the PDFs.
 - [ ] Scan all 672 PDFs and web editions for identifying metadata (`pdfinfo`, `exiftool` or `qpdf`, plus XMP) and for names in text. Report findings in `private/audits/`; strip metadata only if the file is regenerated or with a safe tool, then re-run `npm test`.
 - [ ] Allow French-only and English-only resources in the library model (currently every resource is a FR/EN pair, `[French, English]` fields). Keep tests and CI green.
 
@@ -57,8 +57,11 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 1. Malagasy programme documents: the owner supplies them per chapter.
 2. Terminale STMG programme in force this year (not found on Eduscol in the 12 October check).
 3. Whether maths expertes keeps the 2019 text beyond this year.
-4. Owner review of the prototype design.
-5. Site licence; whether to merge or replace the 98 existing LaTeX workshops.
+4. Owner review of the Cahier design.
+5. Site licence.
+7. Policy conflicts left by the merge of the TeX branch: its documents (`docs/HANDOFF.md`, `docs/ARCHITECTURE.md`) still say one AI notice in the footer, one mint accent, and an English twin with equal page count for every resource. The brief withdrew the notice and replaced the language rule; the site follows the brief. Decide whether English twins stay mandatory for every resource.
+8. English proof-reading of the generated English units (16 of about 10,800 segments reviewed).
+9. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
 6. Later: access control (codes or paywall) needs a server or paid platform.
 
 ## How to verify your work
@@ -66,7 +69,8 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 ```sh
 npm run check && npm test
 python3 -I .claude/skills/slides-interactive-math/scripts/lint_slide.py <slide.html>
-python3 scripts/build-enrichment.py        # LaTeX builds (XeLaTeX)
+make check FAST=1                           # pipeline checks (TeX needed for the notation test)
+make tex COURSE=seconde                     # rebuild one course (TeX needed)
 grep -rn "—\|–" <files you wrote>           # no em or en dashes in copy
 ```
 
@@ -86,3 +90,4 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - 2026-10-13: owner discarded all design instructions. Design v3 "Cahier" (docs/DESIGN_V3.md): task-first home (level control, search, chapter list, live preview of the chapter's own figure, resume), calm notebook look, themes Jour and Nuit (follow the system), STIX Two Text and Atkinson Hyperlegible, full-screen button on figures, tab bar on phones, no ambient effects. File sizes shown before PDFs open. axe-core reports no WCAG 2.1 AA violation on 12 routes in both themes at 1366 and 390 px. Removed the AI footer notice and all-caps labels, simplified the quadratic lab formula, fixed two stale assertions in `tests/browser.py`.
 - 2026-10-13: every challenge now has a hands-on activity (`dist/js/challenge-activities.js`): handshakes (draw handshakes between people), 100 doors (step or play the passes, tap a door for its history), dominoes on a board (drag from an unlimited supply, tap to turn, drag off to remove, keyboard path), 21 stones (play the computer), choose integers (find a set with no pair differing by a multiple of 7, plus a labelled simulation), common divisor (table of n³ − n with a divisor tester), x + 1/x (draggable point, area-1 rectangle), odd numbers (build the square border by border, up to 12 so the general pattern still has to be found). Activities never state the answer or the method. Titles and topics that gave the method away were renamed (the board challenge is now "Des dominos sur un plateau", topic "Pavages") and "Pour aller plus loin" moved inside the worked solution. axe-core reports no violation on the eight challenge pages. `tests/browser.py` drives every activity.
 - 2026-10-13: the "IB" pathway is now labelled "International" (globe badge, library filter "Notions communes · International") and holds two programmes: IB (existing stages) and SAT Math (new: Algebra, Advanced math, Problem-solving and data analysis, Geometry and trigonometry, mapped to the existing laboratories with honest notes on what is not covered yet). SAT facts checked on 13 October 2026 against College Board's Math overview and specification pages; the domain shares (about 35, 35, 15, 15 %) differ between College Board documents, so the page tells readers to check the current specification. Pathways now allow `programmes`; use `pathwayStages(p)` to read stages. Next for this area: IB topic lists per course, SAT skill-level chapters, and an SAT-style practice set.
+- 2026-10-13: integrated the TeX/PDF migration branch (`redesign/2026-10-11`, which already contained the repository-audit branches) into main: shared TeX system, bilingual PDFs, 47 slide decks, pack builder, LaTeX sources page, build pipeline. The Cahier web layer was ported onto the new `site/` structure (Diaporamas joins the main navigation; Dossier sur mesure and Sources LaTeX are linked from the footer). The v1 style sheets and the design prototype were removed. The 8 October curriculum audit moved to `docs/history/`. The single-commit alternative redesign on `claude/vigilant-darwin-ywur5s` (commit 52c409f) was not merged: superseded by the Cahier design and the new decks. All branches other than main were deleted.

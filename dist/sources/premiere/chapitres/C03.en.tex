@@ -1,0 +1,225 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{premiere-c03}{Vector calculus and the scalar product}\label{C03}
+\begin{keypoint}[Chapter path]
+\textbf{Objectives.} Choose between projection, coordinates and angle; calculate a length; characterise orthogonality and a locus.
+
+\textbf{Prerequisites.} Vectors, Chasles's relation, Pythagoras, cosine in a right triangle, orthonormal frame.
+
+\textbf{Yearly reference point.} 6--15 October: 8 hours\end{keypoint}
+\section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C03-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item For $A\pt{1;2}$ and $B\pt{4;-2}$, calculate $\vect{AB}$.
+\item Calculate the norm of $\pt{3;-4}$.
+\item Simplify $\vect{AB}+\vect{BC}$.
+\item Expand $(a+b)^2$.
+\item In a right triangle, an angle has adjacent side 3 and hypotenuse 5. Give its cosine.
+\item What is the midpoint of $A\pt{-2;1}$ and $B\pt{4;3}$?
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Compare, on the same problem, coordinates and vector calculus without a frame. Justify why your method uses the data most directly.
+\mxnewpage
+\section*{Investigate before formalising}\label{C03-RECH}
+Construct three points M such that $\vect{MA}\cdot\vect{MB}=0$ for a segment AB of 6 cm. Conjecture the locus, then produce a proof that includes A and B.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
+\section{Projection and angle}\label{C03-U1}
+\begin{keypoint}[Definition and results]
+For two nonzero vectors $\vec u,\vec v$, their scalar product is the real number $\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta$, where $\theta\in\intff{0}{\pi}$ is their unoriented angle. With a zero vector, the product is 0. If $H$ is the projection of B onto $(OA)$, $\vect{OA}\cdot\vect{OB}$ equals $OA\times OH$ when H is on the ray $[OA)$, and its opposite otherwise.
+\end{keypoint}
+\paragraph{Status and justification.} Definition; the equivalence with the projection follows from the cosine in right triangles, with a negative algebraic projection for an obtuse angle.
+\begin{example}For two vectors of norms 3 and 4 forming $60^\circ$, the product is $\dfrac{3\times 4\times 1}{2}=6$. With $120^\circ$, it is $-6$. If $A\pt{3;0}$ and $B\pt{-2;4}$, the projection is $H\pt{-2;0}$ and the product is $-6$.\end{example}\label{C03-EX1}
+\mxinclude{figures/C03-U1}
+\begin{pitfall}The result is a number, not a vector. A right angle corresponds to 0, not to 1.\end{pitfall}
+\begin{application}Two vectors have norms 2 and 5 and form $90^\circ$, then $180^\circ$. Calculate the products.\end{application}\label{C03-AP1}
+\section{Coordinates, norm and orthogonality}\label{C03-U2}
+\begin{keypoint}[Definition and results]
+In an orthonormal basis, for $\vec u=\pt{x;y}$ and $\vec v=\pt{x\prime;y\prime}$, $\vec u\cdot\vec v=xx\prime+yy\prime$ and $\norm{\vec u}^2=x^2+y^2$. The vectors are orthogonal if and only if their product is zero. For an orthonormal basis $\pt{\vec i;\vec j}$, $x=\vec u\cdot\vec i$ and $y=\vec u\cdot\vec j$.
+\end{keypoint}
+\paragraph{Status and justification.} Properties proved using bilinearity: expand $(x\vec i+y\vec j)\cdot(x\prime\vec i+y\prime\vec j)$ and use $\vec i\cdot\vec i=\vec j\cdot\vec j=1$, $\vec i\cdot\vec j=0$.
+\begin{example}$\vec u=\pt{2;3}$, $\vec v=\pt{3;-2}$: product $6-6=0$. The two vectors are orthogonal. Their norm is $\sqrt{13}$. The product of $\pt{2;3}$ with $\pt{1;0}$ is 2: we recover the x-coordinate.\end{example}\label{C03-EX2}
+\begin{pitfall}The usual formula assumes an orthonormal basis. Collinearity and orthogonality are different properties.\end{pitfall}
+\begin{application}For which real number t are the vectors $\pt{t;2}$ and $\pt{3;-6}$ orthogonal?\end{application}\label{C03-AP2}
+\section{Vector calculus and identities}\label{C03-U3}
+\begin{keypoint}[Definition and results]
+The scalar product is symmetric and bilinear: $\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w$ and $(\lambda\vec u)\cdot\vec v=\lambda(\vec u\cdot\vec v)$. Hence $\norm{\vec u\pm\vec v}^2=\norm{\vec u}^2\pm2\vec u\cdot\vec v+\norm{\vec v}^2$. It follows that $\vec u\cdot \vec v=\dfrac{\norm{\vec u+\vec v}^2-\norm{\vec u}^2-\norm{\vec v}^2}{2}$.
+\end{keypoint}
+\paragraph{Status and justification.} Bilinearity accepted from the geometric definition; symmetry comes from the cosine. The identities are proved by expanding $(\vec u\pm\vec v)\cdot(\vec u\pm\vec v)$.
+\begin{example}If $\norm{\vec u}=3$, $\norm{\vec v}=4$ and $\norm{\vec u+\vec v}=5$, the product is $\dfrac{25-9-16}{2}=0$. We deduce orthogonality without coordinates.\end{example}\label{C03-EX3}
+\begin{pitfall}In general, $\norm{\vec u+\vec v}\ne\norm{\vec u}+\norm{\vec v}$. The identities concern the squares of the norms.\end{pitfall}
+\begin{application}Given $\norm{\vec u}=2$, $\norm{\vec v}=3$, $\vec u\cdot\vec v=1$. Calculate $\norm{\vec u-\vec v}$.\end{application}\label{C03-AP3}
+\section{Al-Kashi and choosing a method}\label{C03-U4}
+\begin{keypoint}[Definition and results]
+In a triangle ABC, $BC^2=AB^2+AC^2-2AB\,AC\cos\widehat{BAC}$. This formula allows us to calculate the third side from two sides and the included angle, or to find the cosine of an angle from the three sides.
+\end{keypoint}
+\paragraph{Status and justification.} By Chasles, $\vect{BC}=\vect{AC}-\vect{AB}$. Expanding its scalar square gives $BC^2=AC^2+AB^2-2\vect{AB}\cdot\vect{AC}$; then introduce the expression with the cosine.
+\begin{example}$AB=5$, $AC=3$ and $\widehat{BAC}=60^\circ$: $BC^2=25+9-15=19$, so $BC=\sqrt{19}$. With three sides, isolate the cosine before approximating the angle on a calculator, if one is allowed.\end{example}\label{C03-EX4}
+\begin{pitfall}The angle is included between the two sides of the product term. The minus sign is essential.\end{pitfall}
+\begin{application}A triangle has $AB=AC=4$ and $BC=4\sqrt2$. Determine the angle A.\end{application}\label{C03-AP4}
+\section{The circle with diameter AB}\label{C03-U5}
+\begin{keypoint}[Definition and results]
+For two distinct points A and B with midpoint I, $\vect {MA}\cdot \vect {MB}=MI^2-\dfrac{AB^2}{4}$. The set of points M such that $\vect{MA}\cdot\vect{MB}=0$ is the circle with centre I and radius $\dfrac{AB}{2}$, including the points A and B.
+\end{keypoint}
+\paragraph{Status and justification.} Write $\vect{MA}=\vect{MI}+\vect{IA}$ and $\vect{MB}=\vect{MI}-\vect{IA}$. The cross terms cancel; what remains is $MI^2-IA^2$. Since $IA=\dfrac{AB}{2}$, equality to zero is equivalent to the metric equation of the circle.
+\begin{example}$A\pt{-2;0}$ and $B\pt{2;0}$: I is the origin. The locus is $x^2+y^2=4$. For $M\pt{0;1}$, the product is $1-4=-3$; for $M\pt{0;2}$, it is 0.\end{example}\label{C03-EX5}
+\mxinclude{figures/C03-U5}
+\begin{pitfall}The endpoints belong to the locus even though ``right triangle'' does not apply to a degenerate triangle.\end{pitfall}
+\begin{application}For $A\pt{0;0}$, $B\pt{6;0}$, determine the points M such that $\vect{MA}\cdot\vect{MB}=7$.\end{application}\label{C03-AP5}
+\mxnewpage
+\section*{Exercise path}\label{C03-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\mxexercisehead{C03-E1}{Direct calculations}
+In an orthonormal basis of the plane, consider the vectors $\vec u=\pt{1;-2}$ and $\vec v=\pt{4;3}$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate the scalar product $\vec u\cdot\vec v$, then the norms $\norm{\vec u}$ and $\norm{\vec v}$.
+\item Calculate the coordinates of $\vec u+\vec v$ and deduce $\norm{\vec u+\vec v}^2$.
+\item Recover this last result using the identity involving $\vec u\cdot\vec v$.
+\end{enumerate}
+\mxexercisehead{C03-E2}{A right triangle?}
+The plane is equipped with an orthonormal frame. Given the points $A\pt{1;1}$, $B\pt{4;2}$ and $C\pt{0;4}$.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate the coordinates of $\vect{AB}$ and $\vect{AC}$, then their scalar product.
+\item Deduce that the triangle $ABC$ is right-angled; state at which vertex.
+\item Calculate the lengths of the two perpendicular sides, then the area of the triangle in area units.
+\end{enumerate}
+\mxexercisehead{C03-E3}{Length without a frame}
+The quadrilateral $ABCD$ is a parallelogram with $AB=4$, $AD=3$ and $\widehat{BAD}=60^\circ$. The lengths are expressed in the same unit.
+\begin{enumerate}[label=\arabic*.]
+\item Draw a figure and calculate the scalar product $\vect{AB}\cdot\vect{AD}$.
+\item Determine the exact lengths of the diagonals $[AC]$ and $[BD]$. Explain how the vectors corresponding to the diagonals are expressed in terms of $\vect{AB}$ and $\vect{AD}$.
+\item State which diagonal is longer and check that this result is consistent with your figure.
+\end{enumerate}
+\mxexercisehead{C03-E4}{Recovering an angle}
+Two nonzero vectors $\vec u$ and $\vec v$ satisfy $\norm{\vec u}=2$, $\norm{\vec v}=6$ and $\vec u\cdot\vec v=-6$. Let $\theta$ be their unoriented angle, between $0^\circ$ and $180^\circ$.
+\begin{enumerate}[label=\arabic*.]
+\item Determine the exact value of $\cos\theta$, then the measure of $\theta$.
+\item Explain how the sign of the scalar product made it possible to predict that the angle would be obtuse.
+\end{enumerate}
+\mxexercisehead{C03-E5}{A variable locus}
+The points $A$ and $B$ are distinct and fixed. Let $I$ be the midpoint of $[AB]$. For a fixed real number $k$, we look for the set of points $M$ of the plane that satisfy $\vect{MA}\cdot\vect{MB}=k$.
+\begin{enumerate}[label=\arabic*.]
+\item Express this scalar product in terms of $MI$ and $AB$ using Chasles's relation and a scalar identity.
+\item Describe precisely the set sought according to the value of $k$. For each case, state whether it is empty, a single point or a circle; then give its characteristics.
+\item Explain the role of the fact that a squared distance is positive or zero.
+\end{enumerate}
+\mxexercisehead{C03-E6}{Work done by a force}
+An object moves in a straight line from $A$ to $B$ over a distance of 4 m. It is subject to a constant force $\vec F$ of magnitude 50 N. The work done by this force is defined by $W=\vec F\cdot\vect{AB}$ and is expressed in joules.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $W$ when the angle between $\vec F$ and $\vect{AB}$ is $60^\circ$.
+\item Repeat the calculation for an angle of $120^\circ$.
+\item Compare the signs of the two works and explain, in each situation, whether the force helps the displacement or opposes it.
+\end{enumerate}
+\mxexercisehead{C03-E7}{Contrapositive}
+We wish to prove the following statement, valid for two vectors of the plane:\[\norm{\vec u+\vec v}^2\ne\norm{\vec u}^2+\norm{\vec v}^2\quad\Longrightarrow\quad \vec u\text{ and }\vec v\text{ are not orthogonal}.\]
+\begin{enumerate}[label=\arabic*.]
+\item State the contrapositive of this implication.
+\item Prove this contrapositive using a scalar identity, then conclude about the initial statement.
+\end{enumerate}
+\mxexercisehead{C03-E8}{Delayed review}
+A triangle $ABC$ satisfies $AB=3$, $AC=4$ and $BC=5$. We look for $\vect{AB}\cdot\vect{AC}$ without using coordinates.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate this scalar product using a formula involving the three lengths.
+\item Recover the result by determining the nature of the triangle. Name the theorem used and its numerical hypothesis.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\mxneed{12}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 9 p.~250, questions a and b.}\label{C03-M1} Calculate the scalar product in the orthonormal basis and detail the two products of coordinates.
+\paragraph{CQFD, exercise 11 p.~250, questions 1, 2 and 3.}\label{C03-M2} Use in turn the coordinates, Chasles's relation and the fact that I is the midpoint.
+\begingroup\small
+\mxnewpage\section*{MCQ 1: understand and choose}\label{C03-Q1}
+\mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $\pt{2;1}\cdot\pt{3;-4}$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2$
+\item $10$
+\item $\pt{6;-4}$
+\item $-2$
+\end{enumerate}
+\item The norm of $\pt{-3;4}$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $7$
+\item $25$
+\item $5$
+\item $1$
+\end{enumerate}
+\item Two vectors with zero product are
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item equal
+\item collinear
+\item opposite
+\item orthogonal
+\end{enumerate}
+\item Norms 2 and 3, angle $60^\circ$: product
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $6$
+\item $3$
+\item $\sqrt3$
+\item $0$
+\end{enumerate}
+\item $\norm{u-v}^2$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\norm u^2-\norm v^2$
+\item $\norm u^2+\norm v^2$
+\item $\norm u^2-2u\cdot v+\norm v^2$
+\item $\norm u^2+2u\cdot v+\norm v^2$
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{MCQ 2: understand and choose}\label{C03-Q2}
+\mxCount{qcm2} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item An obtuse angle between nonzero vectors gives a product that is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item positive
+\item zero
+\item equal to 1
+\item negative
+\end{enumerate}
+\item In an orthonormal basis, $u\cdot i$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item the x-coordinate of u
+\item the norm of u
+\item the y-coordinate of u
+\item always zero
+\end{enumerate}
+\item The locus $\vect{MA}\cdot\vect{MB}=0$ for $A\ne B$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item the perpendicular bisector
+\item the line AB
+\item the circle with diameter AB
+\item the midpoint alone
+\end{enumerate}
+\item If $u\cdot v=3$, $(2u)\cdot(-v)$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-3$
+\item $-6$
+\item $6$
+\item $9$
+\end{enumerate}
+\item For $AB=AC=2$ and a right angle at A, $BC$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $4$
+\item $2$
+\item $8$
+\item $2\sqrt2$
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C03-VF}
+\begin{enumerate}
+\item The scalar product of two vectors is always positive.
+\item The zero vector is orthogonal to every vector.
+\item $u\cdot v=0$ implies that one of the vectors is zero.
+\end{enumerate}
+\begin{keypoint}[Self-assessment]I distinguish the norm from its square; I choose a suitable formula; I check the frame; I write an equivalence for a locus.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C03}\fi

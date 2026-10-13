@@ -1,0 +1,641 @@
+\mxfront{terminale-e7}
+\mxnewpage\phantomsection\label{sujet:7-1}\addcontentsline{toc}{chapter}{DS5 · Zéro 1}
+
+\section*{DS5 · Zéro 1}
+
+\mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
+
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-7-1} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\mxtally{ex-7-1}
+\subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{4x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{4x}$.
+
+\begin{enumerate}
+
+\item Calculer $I_0$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, calculer $I_1$. \hfill\textit{(1 pt)}
+
+\item Démontrer, en comparant les intégrandes, que $(I_n)$ est positive et décroissante. \hfill\textit{(1 pt)}
+
+\item Montrer que $I_n\le\frac{e^{4}}{n+1}$ pour tout $n\in\N$. En déduire la limite de $(I_n)$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, exprimer $I_{n+1}$ en fonction de $I_n$ et de $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-1}
+\subsection*{Exercice 2 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{3}y+\frac{8}{3}$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=12$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le9$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{DS5 · Zéro 1 · suite}
+
+\mxtally{ex-7-1}
+\subsection*{Exercice 3 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{9;0;0}$, $B\pt{0;9;0}$ et $C\pt{0;0;9}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-1}
+\subsection*{Exercice 4 · Sommes de variables aléatoires \hfill 5 points}On pose $n=17$. On considère $n$ variables aléatoires indépendantes $X_1,\ldots,X_{17}$, qui suivent toutes la loi de Bernoulli de paramètre $p=\frac{1}{5}$. On pose $S=\displaystyle\sum_{i=1}^{17}X_i$ et $G=9S-17$.
+
+\begin{enumerate}
+
+\item Justifier la loi suivie par $S$ et calculer $E(S)$. \hfill\textit{(1 pt)}
+
+\item À partir de la variance d'une variable de Bernoulli et de l'indépendance, calculer $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculer $E(G)$ et $V(G)$. \hfill\textit{(1 pt)}
+
+\item On pose $M=\frac S{17}$. Calculer $E(M)$ et $V(M)$. \hfill\textit{(1 pt)}
+
+\item Pour cette question seulement, on remplace les $17$ variables par $17$ variables toutes égales à $X_1$. Calculer alors la variance de leur moyenne et la comparer à celle de la question 4. Expliquer pourquoi les résultats diffèrent. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS5 · Zéro 1}\label{cor:7-1}
+
+\subsection*{Exercice 1 · Intégrale et suite}\begin{enumerate}
+
+\item \textit{[1 pt]} La fonction $x\mapsto \frac{e^{4x}}{4}$ est une primitive de $e^{4x}$. Ainsi $I_0=[\frac{e^{4x}}{4}]_0^1=\frac{e^{4}-1}{4}$.
+
+\item \textit{[1 pt]} Choisissons $u(x)=x$ et $v(x)=\frac{e^{4x}}{4}$, deux fonctions dérivables à dérivées continues sur $[0,1]$. Alors $u'=1$ et $v'=e^{4x}$. L'intégration par parties donne
+\[\begin{aligned}I_1&=\left[\frac{xe^{4x}}{4}\right]_0^1-\frac{1}{4}\int_0^1e^{4x}\,\dd x\\&=\frac{e^{4}}{4}-\frac{e^{4}-1}{16}=\frac{3e^{4}+1}{16}.\end{aligned}\]
+
+\item \textit{[1 pt]} Pour $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Comme $e^{4x}>0$, l'intégration sur des bornes croissantes donne $0\le I_{n+1}\le I_n$. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de $I_n$ et de $I_n-I_{n+1}$ sont continues et strictement positives sur $]0,1[$.
+
+\item \textit{[1 pt]} $e^{4x}\le e^{4}$ ; donc $0\le I_n\le e^{4}\int_0^1x^n\,\dd x=\frac{e^{4}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Appliquons l'IPP à $u(x)=x^{n+1}$ et $v(x)=\frac{e^{4x}}{4}$. Comme $n+1\ge1$, le terme en $x=0$ est nul. D'où
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{4x}}{4}\right]_0^1-\frac{n+1}{4}\int_0^1x^ne^{4x}\,\dd x\\&=\frac{e^{4}}{4}-\frac{n+1}{4}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{3}y+\frac{8}{3}$ donne $y=8$.
+
+\item \textit{[1 pt]} La solution constante est $8$. Posons $z=y-8$ ; l'équation devient $z'=-\frac{z}{3}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{3}}$, donc toutes les solutions de l'équation initiale sont $y(t)=8+Ce^{-\frac{t}{3}}$.
+La condition $y(0)=12$ donne $C=4$. Pour la fonction obtenue,
+\[y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}=-\frac{y(t)}{3}+\frac{8}{3},\qquad y(0)=12.\]
+La solution du problème initial est donc $y(t)=8+4e^{-\frac{t}{3}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{4}{3}e^{-\frac{t}{3}}<0$ ; limite $8$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{3}}>0$, la dérivée $y'(t)=-\frac{4}{3}e^{-\frac{t}{3}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 9&\Longleftrightarrow 4e^{-\frac{t}{3}}\le1\\&\Longleftrightarrow -\frac{t}{3}\le-\ln 4\\&\Longleftrightarrow t\ge 3\ln 4.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-3<0$. Le premier instant est $3\ln 4\simeq\num{4,1589}$.
+
+\item \textit{[1 pt]} $Y_0=12$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{3}+\frac{8}{3})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=\pt{-9;9;0}$ et $\vect{AC}=\pt{-9;0;9}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-9)+t+t=3t-9=0.\]
+Ainsi $t=3$ et $H=\pt{3;3;3}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{9}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=9\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(9\sqrt2)^2-(\frac{9\sqrt{2}}{2})^2}=\frac{9\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 9\sqrt2\times\frac{9\sqrt6}{2}=\frac{81}{2}\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(\frac{81}{2}\sqrt3)(\frac{9}{\sqrt{3}})}{3}=\frac{243}{2}$. Base $OAB$ : aire $\frac{81}{2}$ et hauteur $9$, même valeur.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Sommes de variables aléatoires}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B\pt{17;\frac{1}{5}}$ ; $E(S)=\frac{17}{5}$.
+
+\item \textit{[1 pt]} Chaque $X_i$ vaut $0$ ou $1$, donc $X_i^2=X_i$. Ainsi $E(X_i)=p=\frac{1}{5}$ et
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{4}{25}.\]
+Les variables sont indépendantes ; l'additivité de la variance donne
+\[V(S)=\sum_{i=1}^{17}V(X_i)=17p(1-p)=\frac{68}{25}.\]
+
+\item \textit{[1 pt]} Par linéarité de l'espérance et par $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=9E(S)-17=\frac{68}{5},\qquad V(G)=81V(S)=\frac{5508}{25}.\]
+La constante $-17$ ne change pas la variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{5}$ et $V(M)=\frac{4}{425}$ ; le facteur de variance est $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} La moyenne de $17$ variables toutes égales à $X_1$ est $X_1$ elle-même : sa variance vaut $\frac{4}{25}$, soit $17$ fois la variance $\frac{4}{425}$ trouvée à la question 4. Les résultats diffèrent car l'additivité de la variance utilisée à la question 4 requiert l'indépendance, qui n'est plus vérifiée ici.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:7-2}\addcontentsline{toc}{chapter}{DS5 · Zéro 2}
+
+\section*{DS5 · Zéro 2}
+
+\mxbanner{SUJET ZÉRO · ENTRAÎNEMENT}
+
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-7-2} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\mxtally{ex-7-2}
+\subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{3x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{3x}$.
+
+\begin{enumerate}
+
+\item Calculer $I_0$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, calculer $I_1$. \hfill\textit{(1 pt)}
+
+\item Démontrer, en comparant les intégrandes, que $(I_n)$ est positive et décroissante. \hfill\textit{(1 pt)}
+
+\item Montrer que $I_n\le\frac{e^{3}}{n+1}$ pour tout $n\in\N$. En déduire la limite de $(I_n)$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, exprimer $I_{n+1}$ en fonction de $I_n$ et de $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-2}
+\subsection*{Exercice 2 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{2}y+5$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=15$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le11$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{DS5 · Zéro 2 · suite}
+
+\mxtally{ex-7-2}
+\subsection*{Exercice 3 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{13;0;0}$, $B\pt{0;13;0}$ et $C\pt{0;0;13}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-2}
+\subsection*{Exercice 4 · Sommes de variables aléatoires \hfill 5 points}On pose $n=14$. On considère $n$ variables aléatoires indépendantes $X_1,\ldots,X_{14}$, qui suivent toutes la loi de Bernoulli de paramètre $p=\frac{1}{4}$. On pose $S=\displaystyle\sum_{i=1}^{14}X_i$ et $G=6S-14$.
+
+\begin{enumerate}
+
+\item Justifier la loi suivie par $S$ et calculer $E(S)$. \hfill\textit{(1 pt)}
+
+\item À partir de la variance d'une variable de Bernoulli et de l'indépendance, calculer $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculer $E(G)$ et $V(G)$. \hfill\textit{(1 pt)}
+
+\item On pose $M=\frac S{14}$. Calculer $E(M)$ et $V(M)$. \hfill\textit{(1 pt)}
+
+\item Pour cette question seulement, on remplace les $14$ variables par $14$ variables toutes égales à $X_1$. Calculer alors la variance de leur moyenne et la comparer à celle de la question 4. Expliquer pourquoi les résultats diffèrent. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS5 · Zéro 2}\label{cor:7-2}
+
+\subsection*{Exercice 1 · Intégrale et suite}\begin{enumerate}
+
+\item \textit{[1 pt]} La fonction $x\mapsto \frac{e^{3x}}{3}$ est une primitive de $e^{3x}$. Ainsi $I_0=[\frac{e^{3x}}{3}]_0^1=\frac{e^{3}-1}{3}$.
+
+\item \textit{[1 pt]} Choisissons $u(x)=x$ et $v(x)=\frac{e^{3x}}{3}$, deux fonctions dérivables à dérivées continues sur $[0,1]$. Alors $u'=1$ et $v'=e^{3x}$. L'intégration par parties donne
+\[\begin{aligned}I_1&=\left[\frac{xe^{3x}}{3}\right]_0^1-\frac{1}{3}\int_0^1e^{3x}\,\dd x\\&=\frac{e^{3}}{3}-\frac{e^{3}-1}{9}=\frac{2e^{3}+1}{9}.\end{aligned}\]
+
+\item \textit{[1 pt]} Pour $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Comme $e^{3x}>0$, l'intégration sur des bornes croissantes donne $0\le I_{n+1}\le I_n$. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de $I_n$ et de $I_n-I_{n+1}$ sont continues et strictement positives sur $]0,1[$.
+
+\item \textit{[1 pt]} $e^{3x}\le e^{3}$ ; donc $0\le I_n\le e^{3}\int_0^1x^n\,\dd x=\frac{e^{3}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Appliquons l'IPP à $u(x)=x^{n+1}$ et $v(x)=\frac{e^{3x}}{3}$. Comme $n+1\ge1$, le terme en $x=0$ est nul. D'où
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{3x}}{3}\right]_0^1-\frac{n+1}{3}\int_0^1x^ne^{3x}\,\dd x\\&=\frac{e^{3}}{3}-\frac{n+1}{3}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{2}y+5$ donne $y=10$.
+
+\item \textit{[1 pt]} La solution constante est $10$. Posons $z=y-10$ ; l'équation devient $z'=-\frac{z}{2}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{2}}$, donc toutes les solutions de l'équation initiale sont $y(t)=10+Ce^{-\frac{t}{2}}$.
+La condition $y(0)=15$ donne $C=5$. Pour la fonction obtenue,
+\[y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}=-\frac{y(t)}{2}+5,\qquad y(0)=15.\]
+La solution du problème initial est donc $y(t)=10+5e^{-\frac{t}{2}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{5}{2}e^{-\frac{t}{2}}<0$ ; limite $10$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{2}}>0$, la dérivée $y'(t)=-\frac{5}{2}e^{-\frac{t}{2}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 11&\Longleftrightarrow 5e^{-\frac{t}{2}}\le1\\&\Longleftrightarrow -\frac{t}{2}\le-\ln 5\\&\Longleftrightarrow t\ge 2\ln 5.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-2<0$. Le premier instant est $2\ln 5\simeq\num{3,2189}$.
+
+\item \textit{[1 pt]} $Y_0=15$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{2}+5)$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=\pt{-13;13;0}$ et $\vect{AC}=\pt{-13;0;13}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-13)+t+t=3t-13=0.\]
+Ainsi $t=\frac{13}{3}$ et $H=\pt{\frac{13}{3};\frac{13}{3};\frac{13}{3}}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{13}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=13\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(13\sqrt2)^2-(\frac{13\sqrt{2}}{2})^2}=\frac{13\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 13\sqrt2\times\frac{13\sqrt6}{2}=\frac{169}{2}\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(\frac{169}{2}\sqrt3)(\frac{13}{\sqrt{3}})}{3}=\frac{2197}{6}$. Base $OAB$ : aire $\frac{169}{2}$ et hauteur $13$, même valeur.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Sommes de variables aléatoires}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B\pt{14;\frac{1}{4}}$ ; $E(S)=\frac{7}{2}$.
+
+\item \textit{[1 pt]} Chaque $X_i$ vaut $0$ ou $1$, donc $X_i^2=X_i$. Ainsi $E(X_i)=p=\frac{1}{4}$ et
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{3}{16}.\]
+Les variables sont indépendantes ; l'additivité de la variance donne
+\[V(S)=\sum_{i=1}^{14}V(X_i)=14p(1-p)=\frac{21}{8}.\]
+
+\item \textit{[1 pt]} Par linéarité de l'espérance et par $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=6E(S)-14=7,\qquad V(G)=36V(S)=\frac{189}{2}.\]
+La constante $-14$ ne change pas la variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{4}$ et $V(M)=\frac{3}{224}$ ; le facteur de variance est $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} La moyenne de $14$ variables toutes égales à $X_1$ est $X_1$ elle-même : sa variance vaut $\frac{3}{16}$, soit $14$ fois la variance $\frac{3}{224}$ trouvée à la question 4. Les résultats diffèrent car l'additivité de la variance utilisée à la question 4 requiert l'indépendance, qui n'est plus vérifiée ici.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:7-3}\addcontentsline{toc}{chapter}{DS5 · A}
+
+\section*{DS5 · A}
+
+\mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
+
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-7-3} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\mxtally{ex-7-3}
+\subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{2x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{2x}$.
+
+\begin{enumerate}
+
+\item Calculer $I_0$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, calculer $I_1$. \hfill\textit{(1 pt)}
+
+\item Démontrer, en comparant les intégrandes, que $(I_n)$ est positive et décroissante. \hfill\textit{(1 pt)}
+
+\item Montrer que $I_n\le\frac{e^{2}}{n+1}$ pour tout $n\in\N$. En déduire la limite de $(I_n)$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, exprimer $I_{n+1}$ en fonction de $I_n$ et de $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-3}
+\subsection*{Exercice 2 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{5}y+\frac{6}{5}$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=12$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le7$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{DS5 · A · suite}
+
+\mxtally{ex-7-3}
+\subsection*{Exercice 3 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{10;0;0}$, $B\pt{0;10;0}$ et $C\pt{0;0;10}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-3}
+\subsection*{Exercice 4 · Sommes de variables aléatoires \hfill 5 points}On pose $n=16$. On considère $n$ variables aléatoires indépendantes $X_1,\ldots,X_{16}$, qui suivent toutes la loi de Bernoulli de paramètre $p=\frac{1}{3}$. On pose $S=\displaystyle\sum_{i=1}^{16}X_i$ et $G=8S-16$.
+
+\begin{enumerate}
+
+\item Justifier la loi suivie par $S$ et calculer $E(S)$. \hfill\textit{(1 pt)}
+
+\item À partir de la variance d'une variable de Bernoulli et de l'indépendance, calculer $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculer $E(G)$ et $V(G)$. \hfill\textit{(1 pt)}
+
+\item On pose $M=\frac S{16}$. Calculer $E(M)$ et $V(M)$. \hfill\textit{(1 pt)}
+
+\item Pour cette question seulement, on remplace les $16$ variables par $16$ variables toutes égales à $X_1$. Calculer alors la variance de leur moyenne et la comparer à celle de la question 4. Expliquer pourquoi les résultats diffèrent. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS5 · A}\label{cor:7-3}
+
+\subsection*{Exercice 1 · Intégrale et suite}\begin{enumerate}
+
+\item \textit{[1 pt]} La fonction $x\mapsto \frac{e^{2x}}{2}$ est une primitive de $e^{2x}$. Ainsi $I_0=[\frac{e^{2x}}{2}]_0^1=\frac{e^{2}-1}{2}$.
+
+\item \textit{[1 pt]} Choisissons $u(x)=x$ et $v(x)=\frac{e^{2x}}{2}$, deux fonctions dérivables à dérivées continues sur $[0,1]$. Alors $u'=1$ et $v'=e^{2x}$. L'intégration par parties donne
+\[\begin{aligned}I_1&=\left[\frac{xe^{2x}}{2}\right]_0^1-\frac{1}{2}\int_0^1e^{2x}\,\dd x\\&=\frac{e^{2}}{2}-\frac{e^{2}-1}{4}=\frac{e^{2}+1}{4}.\end{aligned}\]
+
+\item \textit{[1 pt]} Pour $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Comme $e^{2x}>0$, l'intégration sur des bornes croissantes donne $0\le I_{n+1}\le I_n$. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de $I_n$ et de $I_n-I_{n+1}$ sont continues et strictement positives sur $]0,1[$.
+
+\item \textit{[1 pt]} $e^{2x}\le e^{2}$ ; donc $0\le I_n\le e^{2}\int_0^1x^n\,\dd x=\frac{e^{2}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Appliquons l'IPP à $u(x)=x^{n+1}$ et $v(x)=\frac{e^{2x}}{2}$. Comme $n+1\ge1$, le terme en $x=0$ est nul. D'où
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{2x}}{2}\right]_0^1-\frac{n+1}{2}\int_0^1x^ne^{2x}\,\dd x\\&=\frac{e^{2}}{2}-\frac{n+1}{2}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{5}y+\frac{6}{5}$ donne $y=6$.
+
+\item \textit{[1 pt]} La solution constante est $6$. Posons $z=y-6$ ; l'équation devient $z'=-\frac{z}{5}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{5}}$, donc toutes les solutions de l'équation initiale sont $y(t)=6+Ce^{-\frac{t}{5}}$.
+La condition $y(0)=12$ donne $C=6$. Pour la fonction obtenue,
+\[y'(t)=-\frac{6}{5}e^{-\frac{t}{5}}=-\frac{y(t)}{5}+\frac{6}{5},\qquad y(0)=12.\]
+La solution du problème initial est donc $y(t)=6+6e^{-\frac{t}{5}}$.
+
+\item \textit{[1 pt]} $y'=-\frac{6}{5}e^{-\frac{t}{5}}<0$ ; limite $6$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{5}}>0$, la dérivée $y'(t)=-\frac{6}{5}e^{-\frac{t}{5}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 7&\Longleftrightarrow 6e^{-\frac{t}{5}}\le1\\&\Longleftrightarrow -\frac{t}{5}\le-\ln 6\\&\Longleftrightarrow t\ge 5\ln 6.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-5<0$. Le premier instant est $5\ln 6\simeq\num{8,9588}$.
+
+\item \textit{[1 pt]} $Y_0=12$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{5}+\frac{6}{5})$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=\pt{-10;10;0}$ et $\vect{AC}=\pt{-10;0;10}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-10)+t+t=3t-10=0.\]
+Ainsi $t=\frac{10}{3}$ et $H=\pt{\frac{10}{3};\frac{10}{3};\frac{10}{3}}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{10}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=10\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(10\sqrt2)^2-(\frac{10\sqrt{2}}{2})^2}=\frac{10\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 10\sqrt2\times\frac{10\sqrt6}{2}=50\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(50\sqrt3)(\frac{10}{\sqrt{3}})}{3}=\frac{500}{3}$. Base $OAB$ : aire $50$ et hauteur $10$, même valeur.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Sommes de variables aléatoires}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B\pt{16;\frac{1}{3}}$ ; $E(S)=\frac{16}{3}$.
+
+\item \textit{[1 pt]} Chaque $X_i$ vaut $0$ ou $1$, donc $X_i^2=X_i$. Ainsi $E(X_i)=p=\frac{1}{3}$ et
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{2}{9}.\]
+Les variables sont indépendantes ; l'additivité de la variance donne
+\[V(S)=\sum_{i=1}^{16}V(X_i)=16p(1-p)=\frac{32}{9}.\]
+
+\item \textit{[1 pt]} Par linéarité de l'espérance et par $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=8E(S)-16=\frac{80}{3},\qquad V(G)=64V(S)=\frac{2048}{9}.\]
+La constante $-16$ ne change pas la variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{3}$ et $V(M)=\frac{1}{72}$ ; le facteur de variance est $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} La moyenne de $16$ variables toutes égales à $X_1$ est $X_1$ elle-même : sa variance vaut $\frac{2}{9}$, soit $16$ fois la variance $\frac{1}{72}$ trouvée à la question 4. Les résultats diffèrent car l'additivité de la variance utilisée à la question 4 requiert l'indépendance, qui n'est plus vérifiée ici.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:7-4}\addcontentsline{toc}{chapter}{DS5 · B}
+
+\section*{DS5 · B}
+
+\mxbanner*{SUJET RÉSERVÉ À L'ÉVALUATION}
+
+\textbf{Durée : 2 h · Note sur 20 · \mxTallied{ex-7-4} exercices indépendants.}\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à $10^{-6}$ et les autres approximations à $10^{-4}$, sauf précision différente.
+
+\smallskip\textbf{Nom :}\enspace\dotfill\quad\textbf{Classe :}\enspace\dotfill\quad\textbf{Date :}\enspace\dotfill
+
+\mxtally{ex-7-4}
+\subsection*{Exercice 1 · Intégrale et suite \hfill 5 points}Pour tout entier naturel $n$, on pose $I_n=\displaystyle\int_0^1x^ne^{5x}\,\dd x$. Pour $n=0$, l'intégrande est la fonction $x\mapsto e^{5x}$.
+
+\begin{enumerate}
+
+\item Calculer $I_0$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, calculer $I_1$. \hfill\textit{(1 pt)}
+
+\item Démontrer, en comparant les intégrandes, que $(I_n)$ est positive et décroissante. \hfill\textit{(1 pt)}
+
+\item Montrer que $I_n\le\frac{e^{5}}{n+1}$ pour tout $n\in\N$. En déduire la limite de $(I_n)$. \hfill\textit{(1 pt)}
+
+\item À l'aide d'une intégration par parties, exprimer $I_{n+1}$ en fonction de $I_n$ et de $n$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-4}
+\subsection*{Exercice 2 · Équation différentielle et évolution \hfill 5 points}On considère l'équation différentielle $(E):y'=-\frac1{4}y+2$ sur $\intfo{0}{+\infty}$. Dans les questions 2 à 5, on note $y$ la solution qui vérifie $y(0)=12$.
+
+\begin{enumerate}
+
+\item Déterminer la solution constante de $(E)$. \hfill\textit{(1 pt)}
+
+\item Déterminer l'expression de la solution vérifiant la condition initiale donnée. \hfill\textit{(1 pt)}
+
+\item Déterminer la limite de $y(t)$ lorsque $t$ tend vers $+\infty$. \hfill\textit{(1 pt)}
+
+\item Étudier le sens de variation de $y$, puis déterminer le plus petit réel $t\ge0$ tel que $y(t)\le9$. \hfill\textit{(1 pt)}
+
+\item On applique la méthode d'Euler avec un pas $h>0$ et on note $Y_k$ l'approximation de $y(kh)$. Donner la valeur de $Y_0$ et exprimer $Y_{k+1}$ en fonction de $Y_k$ et de $h$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{DS5 · B · suite}
+
+\mxtally{ex-7-4}
+\subsection*{Exercice 3 · Projection et volume \hfill 5 points}Dans un repère orthonormé d'origine $O$, on considère $A\pt{6;0;0}$, $B\pt{0;6;0}$ et $C\pt{0;0;6}$. On donne $\vec n=\pt{1;1;1}$. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.
+
+\begin{enumerate}
+
+\item Démontrer que $\vec n$ est normal au plan $(ABC)$. \hfill\textit{(1 pt)}
+
+\item On note $H$ le projeté orthogonal de $O$ sur $(ABC)$. Déterminer les coordonnées de $H$ en utilisant $\vect{AH}\cdot\vec n=0$. \hfill\textit{(1 pt)}
+
+\item Démontrer que $OH$ est la distance de $O$ au plan $(ABC)$ : pour tout $P\in(ABC)$, établir $OP^2\ge OH^2$. \hfill\textit{(1 pt)}
+
+\item Calculer l'aire du triangle $ABC$. \hfill\textit{(1 pt)}
+
+\item Calculer le volume du tétraèdre $OABC$ de deux façons, en choisissant deux bases différentes. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-7-4}
+\subsection*{Exercice 4 · Sommes de variables aléatoires \hfill 5 points}On pose $n=18$. On considère $n$ variables aléatoires indépendantes $X_1,\ldots,X_{18}$, qui suivent toutes la loi de Bernoulli de paramètre $p=\frac{1}{2}$. On pose $S=\displaystyle\sum_{i=1}^{18}X_i$ et $G=10S-18$.
+
+\begin{enumerate}
+
+\item Justifier la loi suivie par $S$ et calculer $E(S)$. \hfill\textit{(1 pt)}
+
+\item À partir de la variance d'une variable de Bernoulli et de l'indépendance, calculer $V(S)$. \hfill\textit{(1 pt)}
+
+\item Calculer $E(G)$ et $V(G)$. \hfill\textit{(1 pt)}
+
+\item On pose $M=\frac S{18}$. Calculer $E(M)$ et $V(M)$. \hfill\textit{(1 pt)}
+
+\item Pour cette question seulement, on remplace les $18$ variables par $18$ variables toutes égales à $X_1$. Calculer alors la variance de leur moyenne et la comparer à celle de la question 4. Expliquer pourquoi les résultats diffèrent. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Corrigé · DS5 · B}\label{cor:7-4}
+
+\subsection*{Exercice 1 · Intégrale et suite}\begin{enumerate}
+
+\item \textit{[1 pt]} La fonction $x\mapsto \frac{e^{5x}}{5}$ est une primitive de $e^{5x}$. Ainsi $I_0=[\frac{e^{5x}}{5}]_0^1=\frac{e^{5}-1}{5}$.
+
+\item \textit{[1 pt]} Choisissons $u(x)=x$ et $v(x)=\frac{e^{5x}}{5}$, deux fonctions dérivables à dérivées continues sur $[0,1]$. Alors $u'=1$ et $v'=e^{5x}$. L'intégration par parties donne
+\[\begin{aligned}I_1&=\left[\frac{xe^{5x}}{5}\right]_0^1-\frac{1}{5}\int_0^1e^{5x}\,\dd x\\&=\frac{e^{5}}{5}-\frac{e^{5}-1}{25}=\frac{4e^{5}+1}{25}.\end{aligned}\]
+
+\item \textit{[1 pt]} Pour $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Comme $e^{5x}>0$, l'intégration sur des bornes croissantes donne $0\le I_{n+1}\le I_n$. La suite est donc positive et décroissante au sens large. Les inégalités sont même strictes : les intégrandes de $I_n$ et de $I_n-I_{n+1}$ sont continues et strictement positives sur $]0,1[$.
+
+\item \textit{[1 pt]} $e^{5x}\le e^{5}$ ; donc $0\le I_n\le e^{5}\int_0^1x^n\,\dd x=\frac{e^{5}}{n+1}\to0$.
+
+\item \textit{[1 pt]} Appliquons l'IPP à $u(x)=x^{n+1}$ et $v(x)=\frac{e^{5x}}{5}$. Comme $n+1\ge1$, le terme en $x=0$ est nul. D'où
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{5x}}{5}\right]_0^1-\frac{n+1}{5}\int_0^1x^ne^{5x}\,\dd x\\&=\frac{e^{5}}{5}-\frac{n+1}{5}I_n.\end{aligned}\]
+
+\end{enumerate}
+
+\subsection*{Exercice 2 · Équation différentielle et évolution}\begin{enumerate}
+
+\item \textit{[1 pt]} $0=-\frac{1}{4}y+2$ donne $y=8$.
+
+\item \textit{[1 pt]} La solution constante est $8$. Posons $z=y-8$ ; l'équation devient $z'=-\frac{z}{4}$. Ses solutions sont $z(t)=Ce^{-\frac{t}{4}}$, donc toutes les solutions de l'équation initiale sont $y(t)=8+Ce^{-\frac{t}{4}}$.
+La condition $y(0)=12$ donne $C=4$. Pour la fonction obtenue,
+\[y'(t)=-e^{-\frac{t}{4}}=-\frac{y(t)}{4}+2,\qquad y(0)=12.\]
+La solution du problème initial est donc $y(t)=8+4e^{-\frac{t}{4}}$.
+
+\item \textit{[1 pt]} $y'=-e^{-\frac{t}{4}}<0$ ; limite $8$.
+
+\item \textit{[1 pt]} Comme $e^{-\frac{t}{4}}>0$, la dérivée $y'(t)=-e^{-\frac{t}{4}}$ est négative : $y$ est strictement décroissante. Résolvons
+\[\begin{aligned}y(t)\le 9&\Longleftrightarrow 4e^{-\frac{t}{4}}\le1\\&\Longleftrightarrow -\frac{t}{4}\le-\ln 4\\&\Longleftrightarrow t\ge 4\ln 4.\end{aligned}\]
+La dernière étape inverse l'inégalité car on multiplie par $-4<0$. Le premier instant est $4\ln 4\simeq\num{5,5452}$.
+
+\item \textit{[1 pt]} $Y_0=12$, $Y_{j+1}=Y_j+h(-\frac{Y_j}{4}+2)$, $t_j=jh$.
+
+\end{enumerate}
+
+\subsection*{Exercice 3 · Projection et volume}\begin{enumerate}
+
+\item \textit{[1 pt]} $\vect{AB}=\pt{-6;6;0}$ et $\vect{AC}=\pt{-6;0;6}$ sont non colinéaires et leurs produits scalaires avec $\vec n$ sont nuls.
+
+\item \textit{[1 pt]} La droite normale au plan passant par $O$ a pour directeur $\vec n=\pt{1;1;1}$. Son point $H$ s'écrit donc $\pt{t;t;t}$. Pour que $H$ soit dans $(ABC)$, il faut et il suffit que
+\[\vect{AH}\cdot\vec n=(t-6)+t+t=3t-6=0.\]
+Ainsi $t=2$ et $H=\pt{2;2;2}$. Ce point est dans le plan et $\vect{OH}$ est colinéaire au normal ; c'est bien le projeté recherché.
+
+\item \textit{[1 pt]} $OH=\frac{6}{\sqrt{3}}$ ; pour tout $P$ du plan, $OP^2=OH^2+HP^2\ge OH^2$, égalité seulement pour $P=H$.
+
+\item \textit{[1 pt]} Les différences de coordonnées donnent $AB=AC=BC=6\sqrt2$. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut
+\[\sqrt{(6\sqrt2)^2-(\frac{6\sqrt{2}}{2})^2}=\frac{6\sqrt6}{2}.\]
+Son aire vaut donc $\frac12\times 6\sqrt2\times\frac{6\sqrt6}{2}=18\sqrt3$ unités d'aire.
+
+\item \textit{[1 pt]} Base $ABC$ : volume $\frac{(18\sqrt3)(\frac{6}{\sqrt{3}})}{3}=36$. Base $OAB$ : aire $18$ et hauteur $6$, même valeur.
+
+\end{enumerate}
+
+\subsection*{Exercice 4 · Sommes de variables aléatoires}\begin{enumerate}
+
+\item \textit{[1 pt]} $S\sim\mathcal B\pt{18;\frac{1}{2}}$ ; $E(S)=9$.
+
+\item \textit{[1 pt]} Chaque $X_i$ vaut $0$ ou $1$, donc $X_i^2=X_i$. Ainsi $E(X_i)=p=\frac{1}{2}$ et
+\[V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)=\frac{1}{4}.\]
+Les variables sont indépendantes ; l'additivité de la variance donne
+\[V(S)=\sum_{i=1}^{18}V(X_i)=18p(1-p)=\frac{9}{2}.\]
+
+\item \textit{[1 pt]} Par linéarité de l'espérance et par $V(\lambda S+\mu)=\lambda^2V(S)$,
+\[E(G)=10E(S)-18=72,\qquad V(G)=100V(S)=450.\]
+La constante $-18$ ne change pas la variance.
+
+\item \textit{[1 pt]} $E(M)=\frac{1}{2}$ et $V(M)=\frac{1}{72}$ ; le facteur de variance est $\frac{1}{n^2}$.
+
+\item \textit{[1 pt]} La moyenne de $18$ variables toutes égales à $X_1$ est $X_1$ elle-même : sa variance vaut $\frac{1}{4}$, soit $18$ fois la variance $\frac{1}{72}$ trouvée à la question 4. Les résultats diffèrent car l'additivité de la variance utilisée à la question 4 requiert l'indépendance, qui n'est plus vérifiée ici.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

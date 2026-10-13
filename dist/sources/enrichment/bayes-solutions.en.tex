@@ -1,0 +1,48 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-bayes-solutions}{Reversing a conditional probability}
+\mxsubtitle{High school · probability \textperiodcentered{} Worked solutions \textperiodcentered{} 07}
+
+\begin{note}
+\textbf{Given information.} For exercises 1 and 2: choose urn A with probability $\frac{1}{3}$ and urn B with probability $\frac{2}{3}$. A contains 3 red balls and 1 blue; B contains 1 red and 3 blue. Then draw a ball uniformly from the chosen urn.
+\end{note}
+
+\begin{exercise}
+In the example, find $P(A \cap  \text{blue})$.
+\end{exercise}
+\begin{solution}
+$(\frac{1}{3})(\frac{1}{4}) = \frac{1}{12}$.
+\end{solution}
+
+\begin{exercise}
+Find $P(A|\text{blue})$.
+\end{exercise}
+\begin{solution}
+$P(\text{blue}) = \frac{7}{12}$. Hence $P(A|\text{blue}) = \frac{\frac{1}{12}}{\frac{7}{12}} = \frac{1}{7}$.
+\end{solution}
+
+\begin{exercise}
+In a class, 12 of 30 students play chess; 9 of those enjoy puzzles. Find $P(\text{puzzles}|\text{chess})$. Can $P(\text{chess}|\text{puzzles})$ be deduced?
+\end{exercise}
+\begin{solution}
+The first probability is $\frac{9}{12} = \frac{3}{4}$. The total number who enjoy puzzles is needed for the second.
+\end{solution}
+
+\begin{exercise}
+Events A and R satisfy $P(A)=\num{0,4}$, $P(R|A)=\num{0,5}$ and $P(R|\text{not }A)=\num{0,5}$. Find $P(A|R)$.
+\end{exercise}
+\begin{solution}
+$P(R)=\num{0,5}$ and $P(A \cap  R)=\num{0,2}$, so $P(A|R)=\num{0,4}$. Here observing R does not change the probability of A.
+\end{solution}
+
+\begin{note}
+\textbf{Given information.} Choose A with probability $\frac{1}{3}$ and B with probability $\frac{2}{3}$. Urn A contains 3 red balls and 1 blue; B contains 1 red and 3 blue. After observing one red ball, the probability that A was chosen is $\frac{3}{5}$.
+\end{note}
+
+\begin{problem}[Investigate, justify, conclude]
+Use the two urns from the example. Choose an urn once, then draw twice with replacement from that same urn. Find the probability of two red balls, then the probability that A was chosen given two red balls. Compare with observing one red ball and justify the products used.
+\end{problem}
+\begin{solution}
+Conditional on the selected urn, draws with replacement are independent. $P(RR) = (\frac{1}{3})(\frac{3}{4})^{2} + (\frac{2}{3})(\frac{1}{4})^{2} = \frac{9}{48} + \frac{2}{48} = \frac{11}{48}$. Thus $P(A|RR) = \frac{\frac{9}{48}}{\frac{11}{48}} = \frac{9}{11}$, greater than $\frac{3}{5}$. The draws are not independent unconditionally: they share the same hidden urn.
+\end{solution}
+

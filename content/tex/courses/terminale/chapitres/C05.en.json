@@ -1,0 +1,491 @@
+{
+ "unit": "C05.fr.tex",
+ "segments": {
+  "cc316f006d56": {
+   "fr": "Combinatoire et dénombrement",
+   "en": "Combinatorics and counting",
+   "status": "aligned",
+   "order": 0
+  },
+  "9ae3eb799673": {
+   "fr": "S22, S25, S30, S35",
+   "en": "S22, S25, S30, S35",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "a5c007cb73a7": {
+   "fr": "Choisir un modèle de comptage ; distinguer ordre et répétition ; utiliser coefficients binomiaux et relation de Pascal.",
+   "en": "Choose a counting model; distinguish order and repetition; use binomial coefficients and Pascal's rule.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "2db623198316": {
+   "fr": "Additionner ou multiplier",
+   "en": "Adding or multiplying",
+   "status": "aligned",
+   "order": 5
+  },
+  "9d729a98eb41": {
+   "fr": "Pour des ensembles finis deux à deux disjoints [[m1]], [[m2]]. Si les cas se recouvrent, il faut corriger le double comptage : [[m3]].\nLe nombre d'éléments du produit cartésien [[m4]] est [[m5]]. Pour une suite de choix, multiplier les nombres de possibilités à chaque étape, à condition que ces nombres soient valables pour chaque choix antérieur considéré.",
+   "en": "For pairwise disjoint finite sets [[m1]], [[m2]]. If the cases overlap, the double counting must be corrected: [[m3]].\nThe number of elements of the Cartesian product [[m4]] is [[m5]]. For a sequence of choices, multiply the numbers of possibilities at each stage, provided these numbers are valid for every earlier choice considered.",
+   "status": "aligned",
+   "order": 6
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 7
+  },
+  "6c33175bfc3b": {
+   "fr": "Un code de deux lettres choisies parmi [[m1]], suivies de trois chiffres, avec répétition autorisée, peut prendre [[m2]] valeurs. Un nombre à trois chiffres ne commence pas par [[m3]] : il y en a [[m4]].",
+   "en": "A code made of two letters chosen from [[m1]], followed by three digits, with repetition allowed, can take [[m2]] values. A three-digit number does not begin with [[m3]]: there are [[m4]] of them.",
+   "status": "aligned",
+   "order": 8
+  },
+  "9c1b63af7081": {
+   "fr": "Listes et parties",
+   "en": "Lists and subsets",
+   "status": "aligned",
+   "order": 9
+  },
+  "ae8fb788f4c2": {
+   "fr": "Dans un ensemble de [[m1]] éléments, il y a [[m2]] listes ordonnées de longueur [[m3]] avec répétition ; [[m4]] listes de [[m5]] éléments distincts, si [[m6]] ; [[m7]] permutations de tous les éléments. On pose [[m8]].",
+   "en": "In a set of [[m1]] elements, there are [[m2]] ordered lists of length [[m3]] with repetition; [[m4]] lists of [[m5]] distinct elements, if [[m6]]; [[m7]] permutations of all the elements. We set [[m8]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "2df4f2fcc693": {
+   "fr": "Combinaisons",
+   "en": "Combinations",
+   "status": "aligned",
+   "order": 11
+  },
+  "fdbc68f770ee": {
+   "fr": "Une combinaison de [[m1]] éléments parmi [[m2]] est une partie à [[m3]] éléments ; l'ordre n'intervient pas.",
+   "en": "A combination of [[m1]] elements from [[m2]] is a subset with [[m3]] elements; order does not matter.",
+   "status": "aligned",
+   "order": 12
+  },
+  "b0ba90d94843": {
+   "fr": "Pourquoi diviser par [[m1]] ?",
+   "en": "Why divide by [[m1]]?",
+   "status": "aligned",
+   "order": 13
+  },
+  "0d1cd0c3cf46": {
+   "fr": "Chaque partie de taille [[m1]] donne exactement [[m2]] listes distinctes selon l'ordre de ses éléments. Le nombre de listes sans répétition est donc [[m3]].",
+   "en": "Each subset of size [[m1]] gives exactly [[m2]] distinct lists according to the order of its elements. The number of lists without repetition is therefore [[m3]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "a5f80485d4a4": {
+   "fr": "Identités et démonstrations",
+   "en": "Identities and proofs",
+   "status": "aligned",
+   "order": 15
+  },
+  "8b52c46d1d74": {
+   "fr": "La relation de Pascal ci-dessus s'utilise pour [[m1]] ; les formules au bord se lisent directement avec les valeurs [[m2]].",
+   "en": "Pascal's rule above is used for [[m1]]; the boundary formulas are read directly from the values [[m2]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "d2f5fad759f5": {
+   "fr": "Symétrie.",
+   "en": "Symmetry.",
+   "status": "aligned",
+   "order": 17
+  },
+  "6dcbfde08f56": {
+   "fr": "Prendre le complémentaire établit une correspondance entre les parties de taille [[m1]] et celles de taille [[m2]].",
+   "en": "Taking the complement sets up a correspondence between the subsets of size [[m1]] and those of size [[m2]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "591f4543cdef": {
+   "fr": "Pascal, preuve combinatoire.",
+   "en": "Pascal, combinatorial proof.",
+   "status": "aligned",
+   "order": 19
+  },
+  "d6fb7f57cd51": {
+   "fr": "Dans un ensemble de [[m1]] éléments, fixer un élément [[m2]]. Une partie de taille [[m3]] contient [[m4]] (choisir [[m5]] autres éléments parmi [[m6]]) ou ne le contient pas (choisir [[m7]] éléments parmi [[m8]]). Les deux cas sont disjoints et couvrent toutes les possibilités.",
+   "en": "In a set of [[m1]] elements, fix an element [[m2]]. A subset of size [[m3]] either contains [[m4]] (choose [[m5]] other elements from [[m6]]) or does not contain it (choose [[m7]] elements from [[m8]]). The two cases are disjoint and cover all the possibilities.",
+   "status": "aligned",
+   "order": 20
+  },
+  "502d75d597fd": {
+   "fr": "Pascal, preuve algébrique.",
+   "en": "Pascal, algebraic proof.",
+   "status": "aligned",
+   "order": 21
+  },
+  "c00e4f7343d7": {
+   "fr": "Pour [[m1]], mettre au même dénominateur :",
+   "en": "For [[m1]], put over a common denominator:",
+   "status": "aligned",
+   "order": 22
+  },
+  "14e4999a5f12": {
+   "fr": "Les cas au bord se traitent directement.",
+   "en": "The boundary cases are dealt with directly.",
+   "status": "aligned",
+   "order": 23
+  },
+  "ea77ca38dcdf": {
+   "fr": "Nombre de parties.",
+   "en": "Number of subsets.",
+   "status": "aligned",
+   "order": 24
+  },
+  "eca54c8550b0": {
+   "fr": "Pour chacun des [[m1]] éléments, choisir « présent » ou « absent » donne [[m2]] parties. En les classant par taille, on en compte [[m3]] : les deux comptages sont égaux.",
+   "en": "For each of the [[m1]] elements, choosing ``present'' or ``absent'' gives [[m2]] subsets. Sorting them by size, we count [[m3]] of them: the two counts are equal.",
+   "status": "aligned",
+   "order": 25
+  },
+  "043b54961068": {
+   "fr": "Approfondissement mentionné dans la progression.",
+   "en": "Extension mentioned in the scheme of work.",
+   "status": "aligned",
+   "order": 26
+  },
+  "0771551a86f8": {
+   "fr": "Le développement [[m1]] se comprend en choisissant, dans chacun des [[m2]] facteurs, le terme [[m3]] ou [[m4]]. Cette formule n'est pas utilisée comme prérequis des DS de ce livret.",
+   "en": "The expansion [[m1]] can be understood by choosing, in each of the [[m2]] factors, the term [[m3]] or [[m4]]. This formula is not used as a prerequisite for the tests in this booklet.",
+   "status": "aligned",
+   "order": 27
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 28
+  },
+  "0445c3cfc2bb": {
+   "fr": "\\textbf{Ordre et répétition dans un dénombrement --- 30 min.}",
+   "en": "\\textbf{Order and repetition in counting --- 30 min.}",
+   "status": "aligned",
+   "order": 29
+  },
+  "baf803cf2c66": {
+   "fr": "Six élèves distincts se portent volontaires pour organiser un débat.",
+   "en": "Six distinct students volunteer to organise a debate.",
+   "status": "aligned",
+   "order": 30
+  },
+  "e891b188be5d": {
+   "fr": "On choisit deux élèves pour former un binôme sans attribuer de rôle. Combien de binômes peut-on former ?",
+   "en": "Two students are chosen to form a pair with no roles assigned. How many pairs can be formed?",
+   "status": "aligned",
+   "order": 31
+  },
+  "0a38c08e011e": {
+   "fr": "On désigne un président et un secrétaire, qui doivent être deux élèves différents. Combien d'attributions des deux rôles sont possibles ?",
+   "en": "A chair and a secretary are appointed, who must be two different students. How many assignments of the two roles are possible?",
+   "status": "aligned",
+   "order": 32
+  },
+  "c3b1728003a4": {
+   "fr": "On prévoit trois interventions successives. Un même élève peut intervenir plusieurs fois. Combien de programmes de trois interventions sont possibles ?",
+   "en": "Three successive speeches are planned. The same student may speak several times. How many programmes of three speeches are possible?",
+   "status": "aligned",
+   "order": 33
+  },
+  "82c90b7b3d6e": {
+   "fr": "On recommence avec quatre élèves seulement, désignés par [[m1]], [[m2]], [[m3]] et [[m4]]. Écrire tous les binômes et toutes les attributions des deux rôles. Expliquer ensuite pourquoi il existe [[m5]] programmes de trois interventions, sans les énumérer.",
+   "en": "Start again with only four students, denoted [[m1]], [[m2]], [[m3]] and [[m4]]. Write out all the pairs and all the assignments of the two roles. Then explain why there are [[m5]] programmes of three speeches, without listing them.",
+   "status": "aligned",
+   "order": 34
+  },
+  "ba65b1d5f23d": {
+   "fr": "Pour chacun des trois modes de choix, préciser si l'ordre intervient et si une même personne peut être choisie plusieurs fois.",
+   "en": "For each of the three ways of choosing, state whether order matters and whether the same person may be chosen several times.",
+   "status": "aligned",
+   "order": 35
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 36
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 37
+  },
+  "e92522ef154e": {
+   "fr": "Un code est une suite de quatre chiffres choisis parmi [[m1]]. Les répétitions et le chiffre [[m2]] en première position sont autorisés. Combien de codes contiennent au moins un [[m3]] ?",
+   "en": "A code is a sequence of four digits chosen from [[m1]]. Repetitions and the digit [[m2]] in first position are allowed. How many codes contain at least one [[m3]]?",
+   "status": "aligned",
+   "order": 38
+  },
+  "ee7c63265bb6": {
+   "fr": "Dix athlètes participent à une course sans ex æquo. Combien de podiums différents, avec une première, une deuxième et une troisième place, peut-on obtenir ?",
+   "en": "Ten athletes take part in a race with no ties. How many different podiums, with a first, a second and a third place, can be obtained?",
+   "status": "aligned",
+   "order": 39
+  },
+  "1cdf5718a27d": {
+   "fr": "Parmi sept personnes distinctes, on forme un groupe de trois personnes contenant une personne désignée à l'avance. Combien de groupes peut-on former ?",
+   "en": "From seven distinct people, a group of three people is formed containing one person designated in advance. How many groups can be formed?",
+   "status": "aligned",
+   "order": 40
+  },
+  "aabd9726adf1": {
+   "fr": "Sur un quadrillage, on part de [[m1]] pour atteindre [[m2]] en effectuant exactement quatre déplacements d'une unité vers la droite et trois vers le haut. Combien de chemins différents peut-on suivre ?",
+   "en": "On a grid, we start from [[m1]] and reach [[m2]] using exactly four moves of one unit to the right and three upwards. How many different paths can be followed?",
+   "status": "aligned",
+   "order": 41
+  },
+  "51dae0603ac7": {
+   "fr": "Une classe compte huit filles et sept garçons. Combien de groupes de quatre élèves contenant exactement deux filles peut-on former ?",
+   "en": "A class has eight girls and seven boys. How many groups of four students containing exactly two girls can be formed?",
+   "status": "aligned",
+   "order": 42
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 43
+  },
+  "52dc94e9f44e": {
+   "fr": "\\textbf{Barbazo, p. 294, exercice 37.} À la maison après S35 : traiter les deux questions. Préciser si l'ordre intervient et si une carte peut être choisie plusieurs fois avant d'utiliser un coefficient binomial.",
+   "en": "\\textbf{Barbazo, p. 294, exercise 37.} At home after S35: do both questions. State whether order matters and whether a card may be chosen several times before using a binomial coefficient.",
+   "status": "aligned",
+   "order": 44
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 45
+  },
+  "462d238bb030": {
+   "fr": "\\textbf{DM9 --- Former une commission --- 45 min, après S35.}",
+   "en": "\\textbf{Homework 9 --- Forming a committee --- 45 min, after S35.}",
+   "status": "aligned",
+   "order": 46
+  },
+  "47f8240bcba6": {
+   "fr": "Une équipe comprend cinq enseignants et sept élèves, tous distincts. On forme une commission de quatre personnes.",
+   "en": "A team consists of five teachers and seven students, all distinct. A committee of four people is formed.",
+   "status": "aligned",
+   "order": 47
+  },
+  "0cf28fb9b0e0": {
+   "fr": "Combien de commissions différentes peut-on former ?",
+   "en": "How many different committees can be formed?",
+   "status": "aligned",
+   "order": 48
+  },
+  "59e7aed0e82b": {
+   "fr": "Combien de commissions contiennent exactement deux élèves ?",
+   "en": "How many committees contain exactly two students?",
+   "status": "aligned",
+   "order": 49
+  },
+  "b35e0b65b9fd": {
+   "fr": "Combien de commissions contiennent au moins un enseignant et au moins un élève ?",
+   "en": "How many committees contain at least one teacher and at least one student?",
+   "status": "aligned",
+   "order": 50
+  },
+  "cb9c7f7852bf": {
+   "fr": "Parmi les membres d'une commission de la question 2, on désigne un président enseignant et un secrétaire élève. Dénombrer les choix de la commission accompagnée de ces deux attributions.",
+   "en": "Among the members of a committee from question 2, a teacher is appointed chair and a student secretary. Count the choices of the committee together with these two appointments.",
+   "status": "aligned",
+   "order": 51
+  },
+  "788bf21a2f8d": {
+   "fr": "En dénombrant les commissions selon leur nombre d'enseignants, démontrer que",
+   "en": "By counting the committees according to their number of teachers, prove that",
+   "status": "aligned",
+   "order": 52
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 53
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 54
+  },
+  "ed313faa8e4f": {
+   "fr": "Le devoir commun S28 précède les combinaisons de S30 : n'y mettre que principes et listes ordonnées. Le DS3 peut mobiliser les combinaisons, mais pas la relation de Pascal enseignée en S35. Faire formuler l'objet compté avant toute formule. Pour les élèves fragiles, utiliser des cartes portant des noms ; une permutation de cartes change-t-elle l'objet ? Le binôme de Newton, cité dans la progression, est un approfondissement : le garder explicitement facultatif.",
+   "en": "The common test in S28 comes before the combinations of S30: include only principles and ordered lists. Test 3 may involve combinations, but not Pascal's rule taught in S35. Have students state the object being counted before any formula. For weaker students, use cards bearing names; does permuting the cards change the object? Newton's binomial theorem, cited in the scheme of work, is an extension: keep it explicitly optional.",
+   "status": "aligned",
+   "order": 55
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 56
+  },
+  "53d4c215b942": {
+   "fr": "Un binôme est une partie de deux élèves parmi six : [[m1]].",
+   "en": "A pair is a subset of two students from six: [[m1]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "971be4461617": {
+   "fr": "Le président peut être choisi de six façons, puis le secrétaire parmi les cinq autres élèves : [[m1]] répartitions.",
+   "en": "The chair can be chosen in six ways, then the secretary from the other five students: [[m1]] assignments.",
+   "status": "aligned",
+   "order": 58
+  },
+  "01292c56439a": {
+   "fr": "Chaque intervention peut être confiée à l'un des six élèves, y compris à un élève déjà choisi. Les trois choix successifs donnent [[m1]] suites.",
+   "en": "Each speech can be given to any of the six students, including one already chosen. The three successive choices give [[m1]] sequences.",
+   "status": "aligned",
+   "order": 59
+  },
+  "207dcd4b0664": {
+   "fr": "Avec quatre cartes, les binômes sont [[m1]] : six choix. Les douze couples de rôles sont :",
+   "en": "With four cards, the pairs are [[m1]]: six choices. The twelve pairs of roles are:",
+   "status": "aligned",
+   "order": 60
+  },
+  "d4d39250ad79": {
+   "fr": "Les suites de trois interventions sont au nombre de [[m1]], car chaque position possède quatre choix.",
+   "en": "There are [[m1]] sequences of three speeches, since each position has four choices.",
+   "status": "aligned",
+   "order": 61
+  },
+  "88aedf547115": {
+   "fr": "Pour un binôme, l'ordre ne compte pas et on ne répète pas un élève. Pour les rôles, l'ordre compte, sans répétition. Pour les interventions, l'ordre compte et la répétition est autorisée.",
+   "en": "For a pair, order does not matter and a student is not repeated. For the roles, order matters, with no repetition. For the speeches, order matters and repetition is allowed.",
+   "status": "aligned",
+   "order": 62
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 63
+  },
+  "f91ec06201cb": {
+   "fr": "Il existe [[m1]] codes au total. Ceux qui ne comportent aucun [[m2]] ont neuf choix à chacune des quatre positions, soit [[m3]] codes. Par complément, le nombre demandé est [[m4]].",
+   "en": "There are [[m1]] codes in total. Those containing no [[m2]] have nine choices at each of the four positions, that is [[m3]] codes. By complement, the number required is [[m4]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 65
+  },
+  "b355db6dc5d0": {
+   "fr": "Il y a dix choix pour l'or, puis neuf pour l'argent et huit pour le bronze. Le principe multiplicatif donne [[m1]] podiums. Changer l'ordre change le podium.",
+   "en": "There are ten choices for gold, then nine for silver and eight for bronze. The multiplication principle gives [[m1]] podiums. Changing the order changes the podium.",
+   "status": "aligned",
+   "order": 66
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 67
+  },
+  "892036937bc4": {
+   "fr": "La personne imposée est déjà choisie. Il reste à choisir une partie de deux personnes parmi les six autres : [[m1]].",
+   "en": "The imposed person is already chosen. It remains to choose a subset of two people from the other six: [[m1]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 69
+  },
+  "6fbc86423aa4": {
+   "fr": "Un chemin est déterminé par les positions de ses quatre pas à droite parmi sept positions. Les trois autres pas sont alors imposés. On compte donc [[m1]] chemins.",
+   "en": "A path is determined by the positions of its four steps to the right among seven positions. The other three steps are then forced. We therefore count [[m1]] paths.",
+   "status": "aligned",
+   "order": 70
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 71
+  },
+  "b64ed34b24dc": {
+   "fr": "Il faut choisir deux filles parmi huit, puis deux garçons parmi sept. Chaque couple de choix donne un seul groupe : [[m1]].",
+   "en": "We must choose two girls from eight, then two boys from seven. Each pair of choices gives a single group: [[m1]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "f7109acffb65": {
+   "fr": "Corrigé du DM9",
+   "en": "Solutions to Homework 9",
+   "status": "aligned",
+   "order": 73
+  },
+  "43072e788b09": {
+   "fr": "L'ordre ne compte pas : il y a [[m1]] commissions.",
+   "en": "Order does not matter: there are [[m1]] committees.",
+   "status": "aligned",
+   "order": 74
+  },
+  "00e386bf400b": {
+   "fr": "On choisit deux élèves parmi sept et deux enseignants parmi cinq : [[m1]] commissions.",
+   "en": "We choose two students from seven and two teachers from five: [[m1]] committees.",
+   "status": "aligned",
+   "order": 75
+  },
+  "68785897d114": {
+   "fr": "On retire des [[m1]] commissions les [[m2]] commissions exclusivement enseignantes et les [[m3]] commissions exclusivement élèves. Ces catégories sont disjointes : [[m4]].",
+   "en": "From the [[m1]] committees, remove the [[m2]] committees made up only of teachers and the [[m3]] committees made up only of students. These categories are disjoint: [[m4]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "436fbbb690a6": {
+   "fr": "Chacune des [[m1]] commissions possède deux choix de président enseignant et deux choix de secrétaire élève : [[m2]] organisations.",
+   "en": "Each of the [[m1]] committees has two choices for the teacher chair and two choices for the student secretary: [[m2]] arrangements.",
+   "status": "aligned",
+   "order": 77
+  },
+  "252629a54453": {
+   "fr": "Classons les commissions selon le nombre [[m1]] d'enseignants, avec [[m2]]. La catégorie [[m3]] contient [[m4]] commissions. Les cinq catégories sont disjointes et couvrent toutes les commissions. Par addition,",
+   "en": "Sort the committees according to the number [[m1]] of teachers, with [[m2]]. Category [[m3]] contains [[m4]] committees. The five categories are disjoint and cover all the committees. By addition,",
+   "status": "aligned",
+   "order": 78
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 79
+  },
+  "f558f3c34642": {
+   "fr": "Une main contient cinq cartes distinctes ; l'ordre n'intervient pas. Il y a donc [[m1]] mains. Pour une main contenant l'as de pique, cette carte est déjà choisie ; on choisit les quatre autres parmi les [[m2]] cartes restantes. Il y a [[m3]] mains. On ne multiplie pas ce résultat par [[m4]] : la main n'a pas de première ou de dernière position.",
+   "en": "A hand contains five distinct cards; order does not matter. There are therefore [[m1]] hands. For a hand containing the ace of spades, this card is already chosen; we choose the other four from the [[m2]] remaining cards. There are [[m3]] hands. This result is not multiplied by [[m4]]: the hand has no first or last position.",
+   "status": "aligned",
+   "order": 80
+  }
+ }
+}

@@ -1,0 +1,809 @@
+{
+ "unit": "C05.fr.tex",
+ "segments": {
+  "af27a6b107ff": {
+   "fr": "Probabilités conditionnelles et indépendance",
+   "en": "Conditional probability and independence",
+   "status": "aligned",
+   "order": 0
+  },
+  "d7ffadecaa6d": {
+   "fr": "Le parcours du chapitre",
+   "en": "Chapter path",
+   "status": "aligned",
+   "order": 1
+  },
+  "fdc00c1925f3": {
+   "fr": "\\textbf{Objectifs.} Changer d’univers de référence ; construire un arbre ; employer une partition ; distinguer incompatibilité et indépendance ; traiter jusqu’à quatre Bernoulli.",
+   "en": "\\textbf{Objectives.} Change the reference sample space; build a tree; use a partition; distinguish disjoint events from independent events; handle up to four Bernoulli trials.",
+   "status": "aligned",
+   "order": 2
+  },
+  "e257bff91c77": {
+   "fr": "\\textbf{Prérequis.} Fractions, proportions, probabilités sur un univers fini, intersection et réunion.",
+   "en": "\\textbf{Prerequisites.} Fractions, proportions, probabilities on a finite sample space, intersection and union.",
+   "status": "aligned",
+   "order": 3
+  },
+  "77ca0369ea54": {
+   "fr": "\\textbf{Repère annuel.} 17–26 novembre : 8 h",
+   "en": "\\textbf{Yearly reference point.} 17--26 November: 8 hours",
+   "status": "aligned",
+   "order": 4
+  },
+  "23409de27c2d": {
+   "fr": "Diagnostic : [[m1]] questions, 10 minutes",
+   "en": "Diagnostic: [[m1]] questions, 10 minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "716eac61815e": {
+   "fr": "Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.",
+   "en": "Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.",
+   "status": "aligned",
+   "order": 6
+  },
+  "def723098ebf": {
+   "fr": "Sur 40 élèves, 12 pratiquent un sport donné. Proportion ?",
+   "en": "Out of 40 students, 12 play a given sport. What proportion is that?",
+   "status": "aligned",
+   "order": 7
+  },
+  "c870e10e5d6d": {
+   "fr": "Si [[m1]], donner [[m2]].",
+   "en": "If [[m1]], give [[m2]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "8d80f715f08e": {
+   "fr": "Exprimer « A et B » en notation ensembliste.",
+   "en": "Write ``A and B'' in set notation.",
+   "status": "aligned",
+   "order": 9
+  },
+  "a12a845454f4": {
+   "fr": "Exprimer « A ou B » avec le ou inclusif.",
+   "en": "Write ``A or B'' using the inclusive or.",
+   "status": "aligned",
+   "order": 10
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "68dc7d2b7826": {
+   "fr": "Un dé équilibré est lancé. Donner [[m1]].",
+   "en": "A fair die is rolled. Give [[m1]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "65855e601207": {
+   "fr": "Après le diagnostic.",
+   "en": "After the diagnostic.",
+   "status": "aligned",
+   "order": 13
+  },
+  "b2d2cf721c3d": {
+   "fr": "Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.",
+   "en": "Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.",
+   "status": "aligned",
+   "order": 14
+  },
+  "cc06b44f9251": {
+   "fr": "Oral et logique.",
+   "en": "Speaking and logic.",
+   "status": "aligned",
+   "order": 15
+  },
+  "6e56dfe45c66": {
+   "fr": "Expliquer à voix haute ce que signifient « sachant », « et » et « au moins ». Sur un arbre, justifier une addition et une multiplication.",
+   "en": "Explain aloud what ``given'', ``and'' and ``at least'' mean. On a tree, justify an addition and a multiplication.",
+   "status": "aligned",
+   "order": 16
+  },
+  "c7fad140da61": {
+   "fr": "Chercher avant de formaliser",
+   "en": "Investigate before formalising",
+   "status": "aligned",
+   "order": 17
+  },
+  "fc0d4e339151": {
+   "fr": "Construire un tableau de 100 personnes pour lequel A et B sont indépendants, avec 40 A et 30 B. Modifier deux cases en gardant ces marges pour détruire l’indépendance.",
+   "en": "Build a table of 100 people in which A and B are independent, with 40 in A and 30 in B. Change two cells, keeping these totals, so as to destroy the independence.",
+   "status": "aligned",
+   "order": 18
+  },
+  "6a201310450e": {
+   "fr": "Organisation.",
+   "en": "Organisation.",
+   "status": "aligned",
+   "order": 19
+  },
+  "e743e88cbeed": {
+   "fr": "Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.",
+   "en": "Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.",
+   "status": "aligned",
+   "order": 20
+  },
+  "c17fdeb38780": {
+   "fr": "Conditionner : changer le dénominateur",
+   "en": "Conditioning: changing the denominator",
+   "status": "aligned",
+   "order": 21
+  },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
+  "5368e990bc65": {
+   "fr": "Pour [[m1]], la probabilité de B sachant A est [[m2]]. Dans un tableau d’effectifs équiprobables, elle est le quotient effectif de [[m3]] sur effectif de A. En général [[m4]].",
+   "en": "For [[m1]], the probability of B given A is [[m2]]. In a table of equally likely counts, it is the quotient of the count of [[m3]] by the count of A. In general [[m4]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
+  },
+  "d1f07e6921e4": {
+   "fr": "Définition. En multipliant par [[m1]], on obtient la règle [[m2]]. La condition [[m3]] est indispensable.",
+   "en": "Definition. Multiplying by [[m1]] gives the rule [[m2]]. The condition [[m3]] is essential.",
+   "status": "aligned",
+   "order": 25
+  },
+  "651bec6defb2": {
+   "fr": "Sur 100 personnes, 40 appartiennent à A, 30 à B et 12 aux deux. [[m1]], tandis que [[m2]]. [[m3]].",
+   "en": "Out of 100 people, 40 belong to A, 30 to B and 12 to both. [[m1]], whereas [[m2]]. [[m3]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "6d870609ec11": {
+   "fr": "« Parmi les A » fixe le dénominateur. Une probabilité conditionnelle n’est pas une intersection.",
+   "en": "``Among the A's'' fixes the denominator. A conditional probability is not an intersection.",
+   "status": "aligned",
+   "order": 27
+  },
+  "de96a01a8c26": {
+   "fr": "Sur 60 objets, 20 sont rouges ; parmi les rouges, 5 sont abîmés. Calculer [[m1]] et [[m2]].",
+   "en": "Out of 60 objects, 20 are red; among the red ones, 5 are damaged. Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "b7c19196210e": {
+   "fr": "Arbres, partitions et probabilités totales",
+   "en": "Trees, partitions and total probability",
+   "status": "aligned",
+   "order": 29
+  },
+  "cf0063bcce60": {
+   "fr": "Une partition [[m1]] est une famille d’événements disjoints dont la réunion est l’univers. Si leurs probabilités sont positives, [[m2]]. Sur un arbre, les probabilités issues d’un même nœud ont une somme de 1 ; les probabilités d’un chemin se multiplient ; les chemins disjoints se réunissent en additionnant.",
+   "en": "A partition [[m1]] is a family of disjoint events whose union is the sample space. If their probabilities are positive, [[m2]]. On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.",
+   "status": "aligned",
+   "order": 30
+  },
+  "fda0434f8f2c": {
+   "fr": "[[m1]] est la réunion disjointe des [[m2]]. Par additivité et par définition des probabilités conditionnelles, [[m3]].",
+   "en": "[[m1]] is the disjoint union of the sets [[m2]]. By additivity and by the definition of conditional probability, [[m3]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "6909b30ed9e0": {
+   "fr": "Deux machines fournissent [[m1]] et [[m2]] d’une production ; leurs taux de défaut sont [[m3]] et [[m4]]. [[m5]]. Parmi les défauts, la première machine représente [[m6]].",
+   "en": "Two machines supply [[m1]] and [[m2]] of a production; their defect rates are [[m3]] and [[m4]]. [[m5]]. Among the defective items, the first machine accounts for [[m6]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "af1b38f776c0": {
+   "fr": "La moyenne simple des taux n’est correcte que si les poids des branches sont égaux.",
+   "en": "The simple average of the rates is correct only if the branches have equal weights.",
+   "status": "aligned",
+   "order": 33
+  },
+  "a168d6374660": {
+   "fr": "[[m1]], [[m2]], [[m3]]. Calculer [[m4]].",
+   "en": "[[m1]], [[m2]], [[m3]]. Calculate [[m4]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "c59ee9c17ac4": {
+   "fr": "Indépendance et incompatibilité",
+   "en": "Independence and disjointness",
+   "status": "aligned",
+   "order": 35
+  },
+  "e573c8490b27": {
+   "fr": "A et B sont indépendants si [[m1]]. Si [[m2]], cela équivaut à [[m3]]. Ils sont incompatibles si [[m4]]. Deux événements de probabilités strictement positives et incompatibles ne sont pas indépendants.",
+   "en": "A and B are independent if [[m1]]. If [[m2]], this is equivalent to [[m3]]. They are disjoint if [[m4]]. Two disjoint events of strictly positive probability are not independent.",
+   "status": "aligned",
+   "order": 36
+  },
+  "7b64501242fc": {
+   "fr": "Le critère conditionnel résulte d’une division par [[m1]]. Pour des événements incompatibles de probabilités positives, le membre de gauche vaut 0 et le produit de droite est strictement positif.",
+   "en": "The conditional criterion follows from a division by [[m1]]. For disjoint events of positive probability, the left-hand side is 0 and the right-hand product is strictly positive.",
+   "status": "aligned",
+   "order": 37
+  },
+  "f346ea83febe": {
+   "fr": "Sur un dé équilibré, A : résultat pair, B : résultat au moins 5. [[m1]], [[m2]], [[m3]] : indépendants. A et « résultat impair » sont incompatibles mais non indépendants.",
+   "en": "With a fair die, let A: the result is even, B: the result is at least 5. [[m1]], [[m2]], [[m3]]: independent. A and ``the result is odd'' are disjoint but not independent.",
+   "status": "aligned",
+   "order": 38
+  },
+  "3ee2e0904382": {
+   "fr": "Une indépendance dans un modèle doit être justifiée ou posée explicitement ; « deux événements différents » ne suffit pas.",
+   "en": "Independence in a model must be justified or stated explicitly; ``two different events'' is not enough.",
+   "status": "aligned",
+   "order": 39
+  },
+  "68167369722c": {
+   "fr": "On donne [[m1]], [[m2]], [[m3]]. Sont-ils indépendants ?",
+   "en": "Given [[m1]], [[m2]], [[m3]]. Are they independent?",
+   "status": "aligned",
+   "order": 40
+  },
+  "371734cb6cbc": {
+   "fr": "Épreuves successives et Bernoulli",
+   "en": "Successive trials and Bernoulli trials",
+   "status": "aligned",
+   "order": 41
+  },
+  "c7c1514ca841": {
+   "fr": "Une épreuve de Bernoulli a deux résultats : succès, de probabilité p, et échec, de probabilité [[m1]]. Dans une répétition de n épreuves indépendantes et identiques, avec [[m2]] ici, les probabilités des branches restent p et [[m3]]. Un chemin de k succès a pour probabilité [[m4]] ; on compte les chemins qui réalisent l’événement.",
+   "en": "A Bernoulli trial has two outcomes: success, with probability p, and failure, with probability [[m1]]. In a repetition of n independent, identical trials, with [[m2]] here, the branch probabilities remain p and [[m3]]. A path with k successes has probability [[m4]]; we count the paths that realise the event.",
+   "status": "aligned",
+   "order": 42
+  },
+  "a876347b5c58": {
+   "fr": "La probabilité d’un chemin est un produit, par indépendance. Les chemins correspondant à un événement sont disjoints : leurs probabilités s’additionnent.",
+   "en": "The probability of a path is a product, by independence. The paths corresponding to an event are disjoint: their probabilities add.",
+   "status": "aligned",
+   "order": 43
+  },
+  "5330c942a72b": {
+   "fr": "Pour trois essais avec [[m1]], exactement deux succès correspondent à SSE, SES, ESS. Chaque chemin a probabilité [[m2]], donc total [[m3]]. Au moins un succès a pour probabilité [[m4]].",
+   "en": "For three trials with [[m1]], exactly two successes correspond to SSF, SFS, FSS. Each path has probability [[m2]], so the total is [[m3]]. At least one success has probability [[m4]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "756c9df80dfd": {
+   "fr": "Sans remise dans une urne, les probabilités changent généralement après le premier tirage : le modèle indépendant peut être faux.",
+   "en": "When drawing without replacement from an urn, the probabilities generally change after the first draw: the independent model may be wrong.",
+   "status": "aligned",
+   "order": 45
+  },
+  "a37e0a7ca583": {
+   "fr": "Quatre essais indépendants de probabilité [[m1]]. Calculer la probabilité de quatre échecs puis d’au moins un succès.",
+   "en": "Four independent trials, each with probability [[m1]]. Calculate the probability of four failures, then of at least one success.",
+   "status": "aligned",
+   "order": 46
+  },
+  "9568329a8f1a": {
+   "fr": "Simuler et discuter le modèle",
+   "en": "Simulating and discussing the model",
+   "status": "aligned",
+   "order": 47
+  },
+  "8bde7ccf557d": {
+   "fr": "Une simulation pseudo-aléatoire produit des fréquences qui fluctuent autour d’une probabilité du modèle. Pour un point uniforme dans le carré [[m1]], la proportion vérifiant [[m2]] estime l’aire sous la parabole ; la proportion vérifiant [[m3]], multipliée par 4, estime [[m4]]. Les répétitions doivent utiliser de nouveaux tirages.",
+   "en": "A pseudo-random simulation produces frequencies that fluctuate around a probability of the model. For a uniform point in the square [[m1]], the proportion satisfying [[m2]] estimates the area under the parabola; the proportion satisfying [[m3]], multiplied by 4, estimates [[m4]]. Repetitions must use new draws.",
+   "status": "aligned",
+   "order": 48
+  },
+  "26922f8dec8c": {
+   "fr": "Principe de simulation admis et expérimenté. L’égalité probabilité-aire est une interprétation du tirage uniforme ; l’intégration n’est pas un prérequis. Une simulation ne démontre pas une valeur exacte.",
+   "en": "Simulation principle accepted and explored experimentally. The equality of probability and area is an interpretation of the uniform draw; integration is not a prerequisite. A simulation does not prove an exact value.",
+   "status": "aligned",
+   "order": 49
+  },
+  "509ccc5fa5ed": {
+   "fr": "Parmi 10000 points, si 7840 sont dans le quart de disque, l’estimation de [[m1]] vaut [[m2]]. Deux essais de même taille donnent en général des valeurs différentes.",
+   "en": "Among 10000 points, if 7840 lie in the quarter disc, the estimate of [[m1]] is [[m2]]. Two trials of the same size generally give different values.",
+   "status": "aligned",
+   "order": 50
+  },
+  "790207eaffef": {
+   "fr": "Fixer une graine permet de reproduire un essai, pas de supprimer l’aléa du modèle ni de garantir une précision.",
+   "en": "Fixing a seed makes a trial reproducible; it neither removes the randomness of the model nor guarantees any accuracy.",
+   "status": "aligned",
+   "order": 51
+  },
+  "cf68710d2f6a": {
+   "fr": "Une simulation de 2000 points donne 675 points sous [[m1]]. Quelle aire estime-t-elle ?",
+   "en": "A simulation of 2000 points gives 675 points below [[m1]]. What area does it estimate?",
+   "status": "aligned",
+   "order": 52
+  },
+  "c82d22e2d8b1": {
+   "fr": "Parcours d’exercices",
+   "en": "Exercise path",
+   "status": "aligned",
+   "order": 53
+  },
+  "31c1e4322269": {
+   "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
+   "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
+   "status": "aligned",
+   "order": 54
+  },
+  "76387f59213a": {
+   "fr": "Un tableau",
+   "en": "A table",
+   "status": "aligned",
+   "order": 55
+  },
+  "9442fedf4ca7": {
+   "fr": "Une enquête porte sur 100 usagers de deux services de transport A et B. Parmi eux, 40 utilisent A, 35 utilisent B et 15 utilisent les deux. On choisit au hasard l’un des 100 usagers ; tous ont la même probabilité d’être choisis. Les événements [[m1]] et [[m2]] signifient respectivement « l’usager utilise le service A » et « l’usager utilise le service B ».",
+   "en": "A survey covers 100 users of two transport services A and B. Of these, 40 use A, 35 use B and 15 use both. One of the 100 users is chosen at random; all are equally likely to be chosen. The events [[m1]] and [[m2]] mean, respectively, ``the user uses service A'' and ``the user uses service B''.",
+   "status": "aligned",
+   "order": 56
+  },
+  "4698febe5a19": {
+   "fr": "Construire et compléter un tableau à double entrée : utilisation ou non de A en lignes, utilisation ou non de B en colonnes. Ajouter les totaux.",
+   "en": "Build and complete a two-way table: use or non-use of A in the rows, use or non-use of B in the columns. Add the totals.",
+   "status": "aligned",
+   "order": 57
+  },
+  "8fedac29d55c": {
+   "fr": "Calculer [[m1]] et [[m2]]. Pour chaque calcul, préciser la population de référence utilisée au dénominateur.",
+   "en": "Calculate [[m1]] and [[m2]]. For each calculation, state the reference population used as the denominator.",
+   "status": "aligned",
+   "order": 58
+  },
+  "b12fa9df5931": {
+   "fr": "Interpréter les deux probabilités par deux phrases distinctes.",
+   "en": "Interpret the two probabilities in two distinct sentences.",
+   "status": "aligned",
+   "order": 59
+  },
+  "df70fc7991d3": {
+   "fr": "Production",
+   "en": "Production",
+   "status": "aligned",
+   "order": 60
+  },
+  "8dc2cf0828a1": {
+   "fr": "Une entreprise fabrique des objets dans deux ateliers A et B, qui assurent respectivement [[m1]] et [[m2]] de la production. Parmi les objets produits par A, 4 pour cent sont défectueux ; parmi ceux produits par B, 2 pour cent le sont. On choisit au hasard un objet dans l’ensemble de la production. On note [[m3]] l’événement « l’objet est défectueux ».",
+   "en": "A company makes objects in two workshops A and B, which provide [[m1]] and [[m2]] of the production respectively. Among the objects made by A, 4 percent are defective; among those made by B, 2 percent are. An object is chosen at random from the whole production. Let [[m3]] be the event ``the object is defective''.",
+   "status": "aligned",
+   "order": 61
+  },
+  "ce929eb212bb": {
+   "fr": "Représenter la situation par un arbre pondéré et préciser le sens de chaque probabilité du second niveau.",
+   "en": "Represent the situation with a weighted tree and state the meaning of each second-level probability.",
+   "status": "aligned",
+   "order": 62
+  },
+  "8d50ef79a78e": {
+   "fr": "Calculer [[m1]] et interpréter le résultat comme un taux global de défaut.",
+   "en": "Calculate [[m1]] and interpret the result as an overall defect rate.",
+   "status": "aligned",
+   "order": 63
+  },
+  "d4151998a366": {
+   "fr": "On sait maintenant que l’objet choisi est défectueux. Quelle est la probabilité qu’il ait été fabriqué dans l’atelier A ?",
+   "en": "It is now known that the chosen object is defective. What is the probability that it was made in workshop A?",
+   "status": "aligned",
+   "order": 64
+  },
+  "d6f46f6a6348": {
+   "fr": "Indépendance à vérifier",
+   "en": "Checking independence",
+   "status": "aligned",
+   "order": 65
+  },
+  "428b6568e6f8": {
+   "fr": "On lance un dé équilibré à six faces numérotées de 1 à 6. On considère les événements [[m1]] : « obtenir un nombre pair » et [[m2]] : « obtenir un nombre supérieur ou égal à 4 ».",
+   "en": "A fair six-sided die, with faces numbered 1 to 6, is rolled. Consider the events [[m1]]: ``obtain an even number'' and [[m2]]: ``obtain a number greater than or equal to 4''.",
+   "status": "aligned",
+   "order": 66
+  },
+  "6d2dff2b68dc": {
+   "fr": "Écrire les ensembles d’issues correspondant à [[m1]], [[m2]] et [[m3]].",
+   "en": "Write the sets of outcomes corresponding to [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "f9474b51f5f1": {
+   "fr": "Déterminer si les événements [[m1]] et [[m2]] sont indépendants. Justifier à l’aide d’un critère numérique.",
+   "en": "Determine whether the events [[m1]] and [[m2]] are independent. Justify using a numerical criterion.",
+   "status": "aligned",
+   "order": 68
+  },
+  "19056df0f8ef": {
+   "fr": "Expliquer pourquoi ils ne sont pas non plus incompatibles.",
+   "en": "Explain why they are not disjoint either.",
+   "status": "aligned",
+   "order": 69
+  },
+  "d8759e1847c6": {
+   "fr": "Sans remise",
+   "en": "Without replacement",
+   "status": "aligned",
+   "order": 70
+  },
+  "dda4100fcfdb": {
+   "fr": "Une urne contient trois boules rouges et deux boules bleues, indiscernables au toucher. On tire au hasard une première boule, puis une seconde sans remettre la première. À chaque tirage, toutes les boules présentes dans l’urne sont équiprobables.",
+   "en": "An urn contains three red balls and two blue balls, indistinguishable by touch. A first ball is drawn at random, then a second without replacing the first. At each draw, all the balls in the urn are equally likely.",
+   "status": "aligned",
+   "order": 71
+  },
+  "9c219106907b": {
+   "fr": "Construire l’arbre pondéré des deux tirages, en distinguant la couleur obtenue au premier et au second tirage.",
+   "en": "Build the weighted tree of the two draws, distinguishing the colour obtained at the first and at the second draw.",
+   "status": "aligned",
+   "order": 72
+  },
+  "65f352d8140b": {
+   "fr": "Calculer la probabilité d’obtenir deux boules rouges.",
+   "en": "Calculate the probability of drawing two red balls.",
+   "status": "aligned",
+   "order": 73
+  },
+  "f0b03df417b6": {
+   "fr": "Calculer la probabilité d’obtenir une boule de chaque couleur. Expliquer pourquoi deux chemins de l’arbre doivent être pris en compte.",
+   "en": "Calculate the probability of drawing one ball of each colour. Explain why two paths of the tree must be taken into account.",
+   "status": "aligned",
+   "order": 74
+  },
+  "e542710636f4": {
+   "fr": "Trois essais",
+   "en": "Three trials",
+   "status": "aligned",
+   "order": 75
+  },
+  "be3f45a32fdd": {
+   "fr": "Une expérience comporte un succès de probabilité [[m1]] et un échec. On la répète trois fois de façon indépendante, dans les mêmes conditions.",
+   "en": "An experiment has a success of probability [[m1]] and a failure. It is repeated three times independently, under the same conditions.",
+   "status": "aligned",
+   "order": 76
+  },
+  "c0f325aa236b": {
+   "fr": "Construire un arbre à trois niveaux, ou dresser la liste des huit suites de résultats possibles.",
+   "en": "Build a three-level tree, or list the eight possible sequences of outcomes.",
+   "status": "aligned",
+   "order": 77
+  },
+  "66c5641aca17": {
+   "fr": "Calculer la probabilité d’obtenir exactement un succès. Indiquer les chemins retenus.",
+   "en": "Calculate the probability of exactly one success. State the paths used.",
+   "status": "aligned",
+   "order": 78
+  },
+  "501902960a0c": {
+   "fr": "Calculer la probabilité d’obtenir au moins deux succès en distinguant les cas de deux et de trois succès.",
+   "en": "Calculate the probability of at least two successes, treating the cases of two and of three successes separately.",
+   "status": "aligned",
+   "order": 79
+  },
+  "afcc1edda4d1": {
+   "fr": "Détecteur",
+   "en": "Detector",
+   "status": "aligned",
+   "order": 80
+  },
+  "60bf36459dda": {
+   "fr": "Un dispositif contrôle des objets dont 2 pour cent sont défectueux. Il déclenche un signal pour 90 pour cent des objets défectueux et, à tort, pour 5 pour cent des objets sans défaut. On choisit au hasard un objet contrôlé. On note [[m1]] l’événement « l’objet est défectueux » et [[m2]] l’événement « le dispositif déclenche un signal ».",
+   "en": "A device checks objects of which 2 percent are defective. It raises an alarm for 90 percent of the defective objects and, wrongly, for 5 percent of the objects without a defect. An inspected object is chosen at random. Let [[m1]] be the event ``the object is defective'' and [[m2]] the event ``the device raises an alarm''.",
+   "status": "aligned",
+   "order": 81
+  },
+  "96d7e5e66711": {
+   "fr": "Déterminer la proportion d’objets réellement défectueux parmi les objets signalés. Choisir une représentation et détailler le raisonnement.",
+   "en": "Determine the proportion of truly defective objects among those flagged. Choose a representation and detail the reasoning.",
+   "status": "aligned",
+   "order": 82
+  },
+  "6db1a8657c1d": {
+   "fr": "Donner une valeur exacte, puis un pourcentage arrondi au dixième.",
+   "en": "Give an exact value, then a percentage rounded to the nearest tenth.",
+   "status": "aligned",
+   "order": 83
+  },
+  "cc018a14f9ea": {
+   "fr": "Une personne propose directement 90 pour cent comme réponse. Expliquer précisément quelle confusion de probabilités elle commet.",
+   "en": "Someone proposes 90 percent directly as the answer. Explain precisely which confusion of probabilities they are making.",
+   "status": "aligned",
+   "order": 84
+  },
+  "a476cacb22a1": {
+   "fr": "Ensembles et cardinal",
+   "en": "Sets and cardinality",
+   "status": "aligned",
+   "order": 85
+  },
+  "eff92281da4e": {
+   "fr": "On travaille dans l’ensemble [[m1]]. On considère ses parties [[m2]] et [[m3]].",
+   "en": "We work in the set [[m1]]. Consider its subsets [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "c0e10018156d": {
+   "fr": "Écrire [[m1]], [[m2]] et le complémentaire de [[m3]] dans [[m4]]. Donner le cardinal de chacun.",
+   "en": "Write [[m1]], [[m2]] and the complement of [[m3]] in [[m4]]. Give the cardinality of each.",
+   "status": "aligned",
+   "order": 87
+  },
+  "dbbe6abbd420": {
+   "fr": "Écrire tous les couples de [[m1]], puis donner son cardinal.",
+   "en": "Write all the pairs of [[m1]], then give its cardinality.",
+   "status": "aligned",
+   "order": 88
+  },
+  "3512e1d9e35c": {
+   "fr": "Expliquer pourquoi les couples [[m1]] et [[m2]] ne peuvent pas être confondus. Le second appartient-il à [[m3]] ?",
+   "en": "Explain why the pairs [[m1]] and [[m2]] cannot be confused. Does the second belong to [[m3]]?",
+   "status": "aligned",
+   "order": 89
+  },
+  "2956a7106212": {
+   "fr": "Reprise différée",
+   "en": "Delayed review",
+   "status": "aligned",
+   "order": 90
+  },
+  "01ae3c3e4281": {
+   "fr": "Dans une expérience aléatoire, deux événements [[m1]] et [[m2]] vérifient",
+   "en": "In a random experiment, two events [[m1]] and [[m2]] satisfy",
+   "status": "aligned",
+   "order": 91
+  },
+  "986f7978f7ae": {
+   "fr": "Calculer [[m1]] à l’aide d’un arbre ou de la formule des probabilités totales.",
+   "en": "Calculate [[m1]] using a tree or the law of total probability.",
+   "status": "aligned",
+   "order": 92
+  },
+  "b6c5259fac62": {
+   "fr": "Calculer [[m1]] en faisant apparaître l’événement commun utilisé au numérateur.",
+   "en": "Calculate [[m1]], making the common event used in the numerator explicit.",
+   "status": "aligned",
+   "order": 93
+  },
+  "f2bd870164b4": {
+   "fr": "Les probabilités [[m1]] et [[m2]] sont-elles égales ici ? Cette égalité est-elle une propriété générale ?",
+   "en": "Are the probabilities [[m1]] and [[m2]] equal here? Is this equality a general property?",
+   "status": "aligned",
+   "order": 94
+  },
+  "261ef763c4c8": {
+   "fr": "Travail personnel.",
+   "en": "Homework.",
+   "status": "aligned",
+   "order": 95
+  },
+  "1e62d212eb03": {
+   "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
+   "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
+   "status": "aligned",
+   "order": 96
+  },
+  "8a14bcc09f57": {
+   "fr": "À faire dans le manuel CQFD",
+   "en": "To do in the CQFD textbook",
+   "status": "aligned",
+   "order": 97
+  },
+  "3b23cff4a4c2": {
+   "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
+   "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
+   "status": "aligned",
+   "order": 98
+  },
+  "be3b9cbf57ba": {
+   "fr": "CQFD, exercice 67 p. 336, questions 1, 2 et 3.",
+   "en": "CQFD, exercise 67 p.~336, questions 1, 2 and 3.",
+   "status": "aligned",
+   "order": 99
+  },
+  "b99cfdd8338b": {
+   "fr": "Construire un arbre en conservant les événements D et N du manuel. Attention : N désigne un test négatif.",
+   "en": "Build a tree keeping the textbook's events D and N. Careful: N denotes a negative test.",
+   "status": "aligned",
+   "order": 100
+  },
+  "396d07419fb7": {
+   "fr": "CQFD, exercice 70 p. 336, questions a et b.",
+   "en": "CQFD, exercise 70 p.~336, questions a and b.",
+   "status": "aligned",
+   "order": 101
+  },
+  "cf672c3ed2bb": {
+   "fr": "Dénombrer les quatre issues équiprobables des deux lancers pour réfuter les égalités proposées.",
+   "en": "Count the four equally likely outcomes of the two throws to refute the proposed equalities.",
+   "status": "aligned",
+   "order": 102
+  },
+  "3b951efef83f": {
+   "fr": "QCM 1 : comprendre et choisir",
+   "en": "MCQ 1: understand and choose",
+   "status": "aligned",
+   "order": 103
+  },
+  "214bc4b49b04": {
+   "fr": "[[m1]] questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "[[m1]] single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 104
+  },
+  "ca00813a6790": {
+   "fr": "[[m1]] a pour dénominateur",
+   "en": "[[m1]] has as denominator",
+   "status": "aligned",
+   "order": 105
+  },
+  "3b68247817ec": {
+   "fr": "[[m1]], [[m2]] : intersection",
+   "en": "[[m1]], [[m2]]: intersection",
+   "status": "aligned",
+   "order": 106
+  },
+  "efa8900e1a39": {
+   "fr": "Une partition comporte des événements",
+   "en": "A partition consists of events that are",
+   "status": "aligned",
+   "order": 107
+  },
+  "268a33ed79bc": {
+   "fr": "égaux",
+   "en": "equal",
+   "status": "aligned",
+   "order": 108
+  },
+  "5747e7d677e0": {
+   "fr": "tous indépendants",
+   "en": "all independent",
+   "status": "aligned",
+   "order": 109
+  },
+  "8cef53c26b6f": {
+   "fr": "de même probabilité",
+   "en": "equally probable",
+   "status": "aligned",
+   "order": 110
+  },
+  "07e917e159b0": {
+   "fr": "disjoints et couvrant l’univers",
+   "en": "disjoint and covering the sample space",
+   "status": "aligned",
+   "order": 111
+  },
+  "6bd5836176d0": {
+   "fr": "Indépendance équivaut à",
+   "en": "Independence is equivalent to",
+   "status": "aligned",
+   "order": 112
+  },
+  "33662f540c29": {
+   "fr": "Deux événements incompatibles de probabilités positives sont",
+   "en": "Two disjoint events of positive probability are",
+   "status": "aligned",
+   "order": 113
+  },
+  "e99e3c6db7b0": {
+   "fr": "indépendants",
+   "en": "independent",
+   "status": "aligned",
+   "order": 114
+  },
+  "e50887b24ffb": {
+   "fr": "non indépendants",
+   "en": "not independent",
+   "status": "aligned",
+   "order": 115
+  },
+  "afa8477c6ae6": {
+   "fr": "complémentaires nécessairement",
+   "en": "necessarily complementary",
+   "status": "aligned",
+   "order": 116
+  },
+  "cc229fe9b5f3": {
+   "fr": "QCM 2 : comprendre et choisir",
+   "en": "MCQ 2: understand and choose",
+   "status": "aligned",
+   "order": 117
+  },
+  "d216747d98b6": {
+   "fr": "Trois lancers indépendants d’une pièce équilibrée, au moins un pile :",
+   "en": "Three independent tosses of a fair coin, at least one head:",
+   "status": "aligned",
+   "order": 118
+  },
+  "ecd76d66db09": {
+   "fr": "Deux essais indépendants avec [[m1]], deux succès :",
+   "en": "Two independent trials with [[m1]], two successes:",
+   "status": "aligned",
+   "order": 119
+  },
+  "fbeece45ab4b": {
+   "fr": "Les branches issues d’un même nœud ont pour somme",
+   "en": "The branches leaving the same node sum to",
+   "status": "aligned",
+   "order": 120
+  },
+  "4afb1fb463f6": {
+   "fr": "la probabilité du chemin",
+   "en": "the probability of the path",
+   "status": "aligned",
+   "order": 121
+  },
+  "d014acb1aa54": {
+   "fr": "Une simulation donne une fréquence égale à [[m1]]. Cela",
+   "en": "A simulation gives a frequency equal to [[m1]]. This",
+   "status": "aligned",
+   "order": 122
+  },
+  "745644419c11": {
+   "fr": "prouve [[m1]]",
+   "en": "proves [[m1]]",
+   "status": "aligned",
+   "order": 123
+  },
+  "0d47ca047257": {
+   "fr": "est une observation fluctuante",
+   "en": "is a fluctuating observation",
+   "status": "aligned",
+   "order": 124
+  },
+  "2acd617783cb": {
+   "fr": "réfute [[m1]]",
+   "en": "refutes [[m1]]",
+   "status": "aligned",
+   "order": 125
+  },
+  "ac5b0bb4147f": {
+   "fr": "Au tirage sans remise, après une rouge parmi 3 rouges et 2 bleues, probabilité de rouge :",
+   "en": "Drawing without replacement, after a red ball from 3 red and 2 blue, the probability of red is:",
+   "status": "aligned",
+   "order": 126
+  },
+  "d5fc4ef9b48b": {
+   "fr": "Vrai ou faux ? Justifier.",
+   "en": "True or false? Justify.",
+   "status": "aligned",
+   "order": 127
+  },
+  "64edcb6730cd": {
+   "fr": "[[m1]] pour tous événements de probabilités positives.",
+   "en": "[[m1]] for all events of positive probability.",
+   "status": "aligned",
+   "order": 128
+  },
+  "345d5fd2c3ef": {
+   "fr": "Si A et B sont indépendants, A et [[m1]] aussi.",
+   "en": "If A and B are independent, so are A and [[m1]].",
+   "status": "aligned",
+   "order": 129
+  },
+  "cdfb214066fa": {
+   "fr": "Deux tirages successifs sont toujours indépendants.",
+   "en": "Two successive draws are always independent.",
+   "status": "aligned",
+   "order": 130
+  },
+  "6630f206d598": {
+   "fr": "Bilan personnel",
+   "en": "Self-assessment",
+   "status": "aligned",
+   "order": 131
+  },
+  "a64e63a56c28": {
+   "fr": "Je repère le bon dénominateur ; je vérifie les sommes aux nœuds ; je justifie l’indépendance ; je compte les chemins sans les confondre.",
+   "en": "I identify the right denominator; I check the sums at the nodes; I justify independence; I count the paths without confusing them.",
+   "status": "aligned",
+   "order": 132
+  },
+  "4dab232b00d5": {
+   "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
+   "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
+   "status": "aligned",
+   "order": 133
+  }
+ }
+}

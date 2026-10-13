@@ -1,0 +1,166 @@
+{
+"id": "terminale-06",
+"course": "terminale",
+"number": 6,
+"title": [
+"Dérivation, convexité et continuité",
+"Differentiation, convexity and continuity"
+],
+"slides": [
+{
+"k": "title",
+"t": [
+"Dérivation, convexité et continuité",
+"Differentiation, convexity and continuity"
+],
+"b": [
+"",
+""
+]
+},
+{
+"k": "goals",
+"t": [
+"Objectifs",
+"Objectives"
+],
+"b": [
+"Dériver une composée ; étudier variations et convexité ; démontrer existence et unicité ; approcher une solution.",
+"Differentiate a composite function; study variations and convexity; prove existence and uniqueness; approximate a solution."
+]
+},
+{
+"k": "concept",
+"t": [
+"Dériver une composée",
+"Differentiating a composite"
+],
+"b": [
+"Si \\(u\\) est dérivable sur \\(I\\) et \\(v\\) dérivable sur un intervalle contenant \\(u(I)\\), alors \\((v\\circ u)'=(v'\\circ u)u'\\). Les domaines doivent être vérifiés avant le calcul.\n\\[ (u^n)'=nu'u^{n-1},\\quad(e^u)'=u'e^u,\\quad\n(\\frac{1}{u})'=-\\frac{u'}{u^2},\\quad(\\sqrt u)'=\\frac{u'}{2\\sqrt u}\\quad(u&gt;0).\\]\nPar exemple, \\(f(x)=\\sqrt{3x+1}\\) est dérivable pour \\(x&gt;-\\frac{1}{3}\\) et \\(f'(x)=\\frac{3}{2\\sqrt{3x+1}}\\). Le signe de \\(f'\\) détermine les variations de \\(f\\) ; le signe de \\(f\\) ne les détermine pas.",
+"If \\(u\\) is differentiable on \\(I\\) and \\(v\\) is differentiable on an interval containing \\(u(I)\\), then \\((v\\circ u)'=(v'\\circ u)u'\\). Domains must be checked before computing.\n\\[ (u^n)'=nu'u^{n-1},\\quad(e^u)'=u'e^u,\\quad\n(\\frac{1}{u})'=-\\frac{u'}{u^2},\\quad(\\sqrt u)'=\\frac{u'}{2\\sqrt u}\\quad(u&gt;0).\\]\nFor example, \\(f(x)=\\sqrt{3x+1}\\) is differentiable for \\(x&gt;-\\frac{1}{3}\\) and \\(f'(x)=\\frac{3}{2\\sqrt{3x+1}}\\). The sign of \\(f'\\) determines the variations of \\(f\\); the sign of \\(f\\) does not."
+]
+},
+{
+"k": "concept",
+"t": [
+"Convexité",
+"Convexity"
+],
+"b": [
+"Une fonction \\(f\\) est convexe sur un intervalle \\(I\\) si sa courbe est sous ses cordes : pour \\(x,y\\in I\\) et \\(t\\in[0,1]\\),\n\\[f((1-t)x+ty)\\le(1-t)f(x)+tf(y).\\]\nPour une fonction deux fois dérivable, on admet les équivalences : \\(f\\) convexe ; \\(f'\\) croissante ; \\(f''\\ge0\\) ; la courbe est au-dessus de toutes ses tangentes. Les inégalités sont inversées pour une fonction concave. Un point d'inflexion est un point où la courbe change de convexité.",
+"A function \\(f\\) is convex on an interval \\(I\\) if its curve lies below its chords: for \\(x,y\\in I\\) and \\(t\\in[0,1]\\),\n\\[f((1-t)x+ty)\\le(1-t)f(x)+tf(y).\\]\nFor a twice-differentiable function, the following equivalences are accepted without proof: \\(f\\) is convex; \\(f'\\) is increasing; \\(f''\\ge0\\); the curve lies above all its tangents. The inequalities are reversed for a concave function. A point of inflection is a point where the curve changes convexity."
+]
+},
+{
+"k": "proof",
+"t": [
+"Convexité",
+"Convexity"
+],
+"b": [
+"Supposons \\(f''\\ge0\\). Fixons \\(a\\) et posons \\(g(x)=f(x)-f(a)-f'(a)(x-a)\\). Comme \\(f'\\) est croissante, \\(g'(x)=f'(x)-f'(a)\\le0\\) pour \\(x\\le a\\) et \\(\\ge0\\) pour \\(x\\ge a\\). Ainsi \\(g\\) atteint son minimum \\(g(a)=0\\) en \\(a\\), donc \\(f(x)\\ge f(a)+f'(a)(x-a)\\).",
+"Suppose \\(f''\\ge0\\). Fix \\(a\\) and set \\(g(x)=f(x)-f(a)-f'(a)(x-a)\\). Since \\(f'\\) is increasing, \\(g'(x)=f'(x)-f'(a)\\le0\\) for \\(x\\le a\\) and \\(\\ge0\\) for \\(x\\ge a\\). Thus \\(g\\) attains its minimum \\(g(a)=0\\) at \\(a\\), so \\(f(x)\\ge f(a)+f'(a)(x-a)\\)."
+]
+},
+{
+"k": "example",
+"t": [
+"Convexité",
+"Convexity"
+],
+"b": [
+"\\(x^4\\) est convexe et \\(f''(0)=0\\), mais \\(0\\) n'est pas une abscisse d'inflexion. \\(x^3\\) change de convexité en \\(0\\). La convexité de l'exponentielle et sa tangente en \\(0\\) donnent \\(e^x\\ge1+x\\).",
+"\\(x^4\\) is convex and \\(f''(0)=0\\), but \\(0\\) is not the abscissa of a point of inflection. \\(x^3\\) changes convexity at \\(0\\). The convexity of the exponential and its tangent at \\(0\\) give \\(e^x\\ge1+x\\)."
+]
+},
+{
+"k": "concept",
+"t": [
+"Continuité et équations",
+"Continuity and equations"
+],
+"b": [
+"\\(f\\) est continue en \\(a\\) si \\(\\lim_{x\\to a}f(x)=f(a)\\). Toute fonction dérivable est continue. La réciproque est fausse : \\(|x|\\) est continue en \\(0\\) mais non dérivable en \\(0\\).",
+"\\(f\\) is continuous at \\(a\\) if \\(\\lim_{x\\to a}f(x)=f(a)\\). Every differentiable function is continuous. The converse is false: \\(|x|\\) is continuous at \\(0\\) but not differentiable at \\(0\\)."
+]
+},
+{
+"k": "concept",
+"t": [
+"Continuité et équations",
+"Continuity and equations"
+],
+"b": [
+"Si \\(f\\) est continue sur \\([a,b]\\), tout réel compris entre \\(f(a)\\) et \\(f(b)\\) possède au moins un antécédent dans \\([a,b]\\). Si \\(f\\) est en outre strictement monotone, cet antécédent est unique. On peut aussi travailler sur un intervalle ouvert en utilisant les limites aux bornes.",
+"If \\(f\\) is continuous on \\([a,b]\\), every real number between \\(f(a)\\) and \\(f(b)\\) has at least one preimage in \\([a,b]\\). If \\(f\\) is also strictly monotonic, this preimage is unique. One can also work on an open interval using the limits at the endpoints."
+],
+"h": [
+"Théorème des valeurs intermédiaires",
+"Intermediate value theorem"
+]
+},
+{
+"k": "example",
+"t": [
+"Continuité et équations",
+"Continuity and equations"
+],
+"b": [
+"\\(f(x)=x^3+x-1\\) est continue sur \\([0,1]\\). Comme \\(f(0)=-1\\) et \\(f(1)=1\\), le TVI donne un zéro dans \\(]0,1[\\). Puisque \\(f'(x)=3x^2+1&gt;0\\), il est unique. \\(f(0{,}68)&lt;0&lt;f(0{,}69)\\) fournit un encadrement, sans remplacer les justifications d'existence et d'unicité.",
+"\\(f(x)=x^3+x-1\\) is continuous on \\([0,1]\\). Since \\(f(0)=-1\\) and \\(f(1)=1\\), the IVT gives a zero in \\(]0,1[\\). Because \\(f'(x)=3x^2+1&gt;0\\), it is unique. \\(f(0.68)&lt;0&lt;f(0.69)\\) provides a bracketing interval, without replacing the justifications of existence and uniqueness."
+]
+},
+{
+"k": "concept",
+"t": [
+"Continuité et équations",
+"Continuity and equations"
+],
+"b": [
+"Pour \\(x\\ne1\\), poser \\(g(x)=\\frac{x^2-1}{x-1}\\), et poser \\(g(1)=a\\). Comme \\(g(x)=x+1\\) lorsque \\(x\\ne1\\), \\(\\lim_{x\\to1}g(x)=2\\). La fonction est continue en \\(1\\) si et seulement si \\(a=2\\). La valeur au point doit donc être comparée à la limite, et non remplacée par celle-ci sans justification.",
+"For \\(x\\ne1\\), set \\(g(x)=\\frac{x^2-1}{x-1}\\), and set \\(g(1)=a\\). Since \\(g(x)=x+1\\) when \\(x\\ne1\\), \\(\\lim_{x\\to1}g(x)=2\\). The function is continuous at \\(1\\) if and only if \\(a=2\\). The value at the point must therefore be compared with the limit, not replaced by it without justification."
+],
+"h": [
+"Une fonction définie par morceaux.",
+"A piecewise-defined function."
+]
+},
+{
+"k": "concept",
+"t": [
+"Continuité et équations",
+"Continuity and equations"
+],
+"b": [
+"Si \\(u_n\\to\\ell\\) et \\(f\\) est continue en \\(\\ell\\), alors \\(f(u_n)\\to f(\\ell)\\). Pour une suite récurrente convergente \\(u_{n+1}=f(u_n)\\), on obtient \\(\\ell=f(\\ell)\\).",
+"If \\(u_n\\to\\ell\\) and \\(f\\) is continuous at \\(\\ell\\), then \\(f(u_n)\\to f(\\ell)\\). For a convergent recursive sequence \\(u_{n+1}=f(u_n)\\), we obtain \\(\\ell=f(\\ell)\\)."
+],
+"h": [
+"Suites et continuité.",
+"Sequences and continuity."
+]
+},
+{
+"k": "concept",
+"t": [
+"Dichotomie",
+"Bisection"
+],
+"b": [
+"Pour \\(f\\) continue et \\(f(a)f(b)&lt;0\\), calculer \\(m=\\frac{a+b}{2}\\). Si \\(f(m)=0\\), arrêter ; sinon garder la moitié dont les extrémités ont des images de signes contraires. Après \\(n\\) étapes, la longueur vaut \\(\\frac{b-a}{2^n}\\). Le milieu donne une erreur au plus la demi-longueur. La méthode ne garantit pas l'unicité ; celle-ci se prouve séparément.   \\(y=x^3-3x\\) et sa tangente à l'inflexion.",
+"For \\(f\\) continuous and \\(f(a)f(b)&lt;0\\), compute \\(m=\\frac{a+b}{2}\\). If \\(f(m)=0\\), stop; otherwise keep the half whose endpoints have images of opposite signs. After \\(n\\) steps, the length is \\(\\frac{b-a}{2^n}\\). Taking the midpoint gives an error of at most half the length. The method does not guarantee uniqueness; this is proved separately.   \\(y=x^3-3x\\) and its tangent at the point of inflection."
+]
+},
+{
+"k": "activity",
+"t": [
+"Activité de recherche",
+"Research activity"
+],
+"b": [
+"<b>Dérivées et lectures graphiques — 35 min.</b><br><br> On considère la fonction \\(f\\) définie sur \\(\\R\\) par \\(f(x)=x^3-3x\\). On note \\(\\mathcal C_f\\) sa courbe représentative.\n<ol><li>Calculer \\(f' (x)\\) et \\(f'' (x)\\), puis dresser leurs tableaux de signes.\n<li>En déduire les variations de \\(f\\) et ses intervalles de convexité et de concavité.\n<li>Déterminer les coordonnées du point d'inflexion de \\(\\mathcal C_f\\) et une équation de la tangente en ce point.\n<li>En utilisant les limites, les extrema et le théorème des valeurs intermédiaires, déterminer le nombre de solutions réelles de \\(f(x)=1\\).\n<li>Expliquer, à partir de cet exemple, pourquoi la continuité ne suffit pas à assurer l'unicité d'une solution.</ol><br><br>",
+"<b>Derivatives and graphical readings — 35 min.</b><br><br> Consider the function \\(f\\) defined on \\(\\R\\) by \\(f(x)=x^3-3x\\). Let \\(\\mathcal C_f\\) denote its graph.\n<ol><li>Calculate \\(f' (x)\\) and \\(f'' (x)\\), then draw up their sign tables.\n<li>Deduce the variations of \\(f\\) and its intervals of convexity and concavity.\n<li>Find the coordinates of the point of inflection of \\(\\mathcal C_f\\) and an equation of the tangent at that point.\n<li>Using limits, extrema and the intermediate value theorem, determine the number of real solutions of \\(f(x)=1\\).\n<li>Explain, using this example, why continuity is not enough to guarantee the uniqueness of a solution.</ol><br><br>"
+]
+}
+]
+}

@@ -1,0 +1,28 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-lattice-paths-notes}{Chemins, combinaisons et Pascal}
+\mxsubtitle{Première--Terminale · dénombrement \textperiodcentered{} Leçon et méthode \textperiodcentered{} 05}
+
+\begin{prerequisites}
+Produit, factorielle et choix sans ordre.
+\end{prerequisites}
+
+\begin{keypoint}[Idées et méthode]
+Un chemin de $\pt{0;0}$ à $\pt{a;b}$ n’utilisant que des pas vers la droite ou vers le haut comporte $a + b$ pas. Choisir les positions des a pas horizontaux donne $\binom{a+b}{a}$ chemins.
+
+Pour $0 \leq  k \leq  n$, $\binom{n}{k} = \frac{n!}{k!(n-k)!}$. L’ordre des objets choisis ne compte pas. La symétrie $\binom{n}{k} = \binom{n}{n-k}$ revient à choisir les objets retenus ou ceux exclus.
+
+La relation de Pascal $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$ partage les choix selon la présence d’un objet fixé. On peut aussi classer les chemins selon leur dernier pas.
+\end{keypoint}
+
+\begin{example}
+De $\pt{0;0}$ à $\pt{3;2}$, il y a $\binom{5}{3} = 10$ chemins. Pour passer par $\pt{1;1}$, il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : $2 \times  3 = 6$ chemins.
+\end{example}
+
+\begin{figurebox}
+\begin{tikzpicture}[scale=.85]\draw[mxline](0,0)grid(3,2);\draw[mxmint,very thick,->](0,0)--(1,0)--(1,1)--(2,1)--(3,1)--(3,2);\fill[mxink](1,1)circle(3pt)node[above left]{$\pt{1;1}$};\node[below]at(0,0){$\pt{0;0}$};\node[above]at(3,2){$\pt{3;2}$};\end{tikzpicture}
+\end{figurebox}
+
+\begin{activity}[À explorer]
+Dessiner un petit quadrillage et écrire dans chaque sommet le nombre de chemins qui y arrivent. Additionner les valeurs du voisin de gauche et du voisin du bas.
+\end{activity}
+

@@ -1,0 +1,36 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{example}{Example unit}
+\begin{objectives}
+Understand how a unit is built; use the canonical environments.
+\end{objectives}
+\section{A definition}
+\begin{definition}[Arithmetic sequence]
+A sequence $(u_n)$ is arithmetic with common difference $r$ if $u_{n+1}=u_n+r$ for every $n\in\N$.
+\end{definition}
+\begin{example}
+With $u_0=2$ and $r=\num{0,5}$, we get $u_3=\num{3,5}$. \mxchip{5 min}
+\end{example}
+\begin{pitfall}
+The common difference is read from the difference $u_{n+1}-u_n$, not from the quotient.
+\end{pitfall}
+\begin{theorem}
+For every $n\in\N$, $u_n=u_0+nr$.
+\end{theorem}
+\begin{proof}
+By induction on $n$: the equality holds for $n=0$, and if $u_n=u_0+nr$ then $u_{n+1}=u_0+(n+1)r$.
+\end{proof}
+\begin{exercise}[Computing terms]
+Compute $u_{10}$ for $u_0=-3$ and $r=2$. Answer: $u_{10}=\mxblank{17}$.
+\mxlines{2}
+\end{exercise}
+\begin{solution}
+$u_{10}=-3+10\times2=17$.
+\end{solution}
+\begin{figurebox}[The terms lie on a line.]
+\begin{tikzpicture}\begin{axis}[mxaxis,width=7cm,height=4cm,xmin=0,xmax=5,ymin=0,ymax=5]
+\addplot[mxcurve,only marks] coordinates {(0,2)(1,2.5)(2,3)(3,3.5)(4,4)};
+\end{axis}\end{tikzpicture}
+\end{figurebox}
+\begin{teachernote}
+On \mxdate{2026-09-01}, have students restate the definition aloud.
+\end{teachernote}

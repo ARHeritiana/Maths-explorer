@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {quadraticModel,decimalFraction,coefficientsFromMode,signAt,explanation,graph} from '../dist/js/quadratic-workshop.js';
+import {quadraticModel,decimalFraction,coefficientsFromMode,signAt,explanation,graph,rationalSqrt} from '../dist/js/quadratic-workshop.js';
 const t=p=>p[0];
 test('exact discriminant and canonical form, including fractional coefficients',()=>{
  const q=quadraticModel('.25','-.5','-.75');
@@ -29,4 +29,12 @@ test('exact expressions and numerical graph are explicitly separated in both lan
  const e=explanation(q,4,t,lang);assert(e.includes('<mfrac>'));assert(e.includes('<msqrt>'));assert(e.includes('≈'));
  const svg=graph(q,5,t,lang);assert(!/NaN|Infinity|undefined/.test(svg));assert(svg.includes('q-positive'));assert(svg.includes('q-negative'));
  }
+});
+test('rational roots are simplified and vertex form avoids x − (−α)',()=>{
+ assert.deepEqual(rationalSqrt({n:64n,d:9n}),{n:8n,d:3n});assert.equal(rationalSqrt({n:5n,d:1n}),null);
+ const strip=s=>s.replace(/<[^>]+>/g,'');
+ const q=quadraticModel(4,4,-3),roots=strip(explanation(q,4,t,'en'));
+ assert(roots.includes('=−32')&&roots.includes('=12'),roots);
+ const v=strip(explanation(quadraticModel(1,2,1),2,t,'en'));
+ assert(v.includes('x+1')&&!v.includes('−(−'),v);
 });

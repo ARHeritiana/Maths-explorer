@@ -1,0 +1,743 @@
+{
+ "unit": "ch02.fr.tex",
+ "segments": {
+  "1f0e26671949": {
+   "fr": "Droites du plan",
+   "en": "Lines in the plane",
+   "status": "aligned",
+   "order": 0
+  },
+  "9c1dc7aee83d": {
+   "fr": "lun.~2~nov.~2026",
+   "en": "Mon~2~Nov.~2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "fb627f4e4b2a": {
+   "fr": "Vecteur directeur d'une droite",
+   "en": "Direction vector of a line",
+   "status": "aligned",
+   "order": 2
+  },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 3
+  },
+  "0f28c9fccde3": {
+   "fr": "Donner un vecteur colinéaire à [[m1]] à coordonnées entières plus simples.",
+   "en": "Give a vector collinear to [[m1]] with simpler integer coordinates.",
+   "status": "aligned",
+   "order": 4
+  },
+  "77d231ae89b2": {
+   "fr": "[[m1]] (on divise par [[m2]]).",
+   "en": "[[m1]] (divide by [[m2]]).",
+   "status": "aligned",
+   "order": 5
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 6
+  },
+  "52324841ab58": {
+   "fr": "Donner un vecteur directeur de [[m1]] pour [[m2]] et [[m3]].",
+   "en": "Give a direction vector of [[m1]] for [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "b79eab48c6c9": {
+   "fr": "[[m1]], ou [[m2]] qui lui est colinéaire.",
+   "en": "[[m1]], or [[m2]], which is collinear to it.",
+   "status": "aligned",
+   "order": 8
+  },
+  "8335706ea19c": {
+   "fr": "Cœur + · QCM",
+   "en": "Core + · MCQ",
+   "status": "aligned",
+   "order": 9
+  },
+  "30ffff35d3df": {
+   "fr": "Un vecteur directeur de la droite passant par [[m1]] et [[m2]] est~:",
+   "en": "A direction vector of the line through [[m1]] and [[m2]] is:",
+   "status": "aligned",
+   "order": 10
+  },
+  "e7becfcba0fb": {
+   "fr": "A.\\ [[m1]]",
+   "en": "A.\\ [[m1]]",
+   "status": "aligned",
+   "order": 11
+  },
+  "c08800e62686": {
+   "fr": "Ici [[m1]]\\,; on teste la colinéarité par le déterminant.",
+   "en": "Here [[m1]]; test collinearity with the determinant.",
+   "status": "aligned",
+   "order": 12
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 13
+  },
+  "4d995a4caf87": {
+   "fr": "Notes~: [[m1]]. Calculer la moyenne, la médiane et l'étendue.",
+   "en": "Marks: [[m1]]. Calculate the mean, the median and the range.",
+   "status": "aligned",
+   "order": 14
+  },
+  "26f99de2e301": {
+   "fr": "Moyenne [[m1]]\\,; médiane [[m2]]\\,; étendue [[m3]].",
+   "en": "Mean [[m1]]; median [[m2]]; range [[m3]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "8a044572b189": {
+   "fr": "Fil rouge · Propriété",
+   "en": "Thread · Property",
+   "status": "aligned",
+   "order": 16
+  },
+  "080893b9e433": {
+   "fr": "[[m1]] est rectangle en [[m2]] et [[m3]] est le milieu de [[m4]]. Que peut-on dire de [[m5]], [[m6]] et [[m7]]\\,? Pourquoi\\,?",
+   "en": "[[m1]] is right-angled at [[m2]] and [[m3]] is the midpoint of [[m4]]. What can be said about [[m5]], [[m6]] and [[m7]]? Why?",
+   "status": "aligned",
+   "order": 17
+  },
+  "6138c4f01daa": {
+   "fr": "[[m1]]~: le milieu de l'hypoténuse est le centre du cercle circonscrit.",
+   "en": "[[m1]]: the midpoint of the hypotenuse is the centre of the circumcircle.",
+   "status": "aligned",
+   "order": 18
+  },
+  "788d7008d2e8": {
+   "fr": "mar.~3~nov.~2026",
+   "en": "Tue~3~Nov.~2026",
+   "status": "aligned",
+   "order": 19
+  },
+  "c622c32597be": {
+   "fr": "Équation cartésienne d'une droite",
+   "en": "Cartesian equation of a line",
+   "status": "aligned",
+   "order": 20
+  },
+  "48d5e2897263": {
+   "fr": "Calculer [[m1]] pour [[m2]] et [[m3]].",
+   "en": "Calculate [[m1]] for [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "4b26c10b35ff": {
+   "fr": "La droite [[m1]] a pour équation [[m2]]. Donner un vecteur directeur et un point de [[m3]].",
+   "en": "The line [[m1]] has equation [[m2]]. Give a direction vector and a point of [[m3]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "dd54170f4c38": {
+   "fr": "Pour [[m1]], [[m2]] dirige la droite~: [[m3]]. Le point [[m4]] convient~: [[m5]].",
+   "en": "For [[m1]], [[m2]] is a direction vector: [[m3]]. The point [[m4]] works: [[m5]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "07100f279aae": {
+   "fr": "Cœur + · Vrai/faux",
+   "en": "Core + · True/false",
+   "status": "aligned",
+   "order": 26
+  },
+  "45fec30e5465": {
+   "fr": "Vrai ou faux\\,? Justifier. Les droites [[m1]] et [[m2]] sont parallèles.",
+   "en": "True or false? Justify. The lines [[m1]] and [[m2]] are parallel.",
+   "status": "aligned",
+   "order": 27
+  },
+  "6b5de8fbf14a": {
+   "fr": "Vrai. Vecteurs directeurs [[m1]] et [[m2]] colinéaires\\,; elles sont distinctes~: [[m3]] n'appartient pas à la seconde droite ([[m4]]).",
+   "en": "True. Direction vectors [[m1]] and [[m2]] are collinear; the lines are distinct: [[m3]] does not lie on the second line ([[m4]]).",
+   "status": "aligned",
+   "order": 28
+  },
+  "8ccc77a61b2f": {
+   "fr": "Retour · Tableau",
+   "en": "Review · Table",
+   "status": "aligned",
+   "order": 29
+  },
+  "376e65590ff3": {
+   "fr": "Mode de transport de [[m1]] élèves.",
+   "en": "Mode of transport of [[m1]] students.",
+   "status": "aligned",
+   "order": 30
+  },
+  "c10d76c9a4b8": {
+   "fr": "Transport",
+   "en": "Transport",
+   "status": "aligned",
+   "order": 31
+  },
+  "56070a568367": {
+   "fr": "Bus",
+   "en": "Bus",
+   "status": "aligned",
+   "order": 32
+  },
+  "5e64d9979f1a": {
+   "fr": "Vélo",
+   "en": "Bike",
+   "status": "aligned",
+   "order": 33
+  },
+  "113fca40e524": {
+   "fr": "Marche",
+   "en": "Walking",
+   "status": "aligned",
+   "order": 34
+  },
+  "4938fb9f27c2": {
+   "fr": "Voiture \\\\",
+   "en": "Car \\\\",
+   "status": "aligned",
+   "order": 35
+  },
+  "bbfbd27560b6": {
+   "fr": "Effectif",
+   "en": "Frequency",
+   "status": "aligned",
+   "order": 36
+  },
+  "4396e104781f": {
+   "fr": "Donner la part des élèves venant en bus et l'angle du secteur «~vélo~» d'un diagramme circulaire.",
+   "en": "Give the proportion of students who come by bus and the angle of the ``bike'' sector in a pie chart.",
+   "status": "aligned",
+   "order": 37
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 38
+  },
+  "006920aa02a4": {
+   "fr": "Sur une droite graduée, [[m1]] a pour abscisse [[m2]] et [[m3]] pour abscisse [[m4]]. Donner [[m5]] et l'abscisse du milieu de [[m6]].",
+   "en": "On a number line, [[m1]] has coordinate [[m2]] and [[m3]] has coordinate [[m4]]. Give [[m5]] and the coordinate of the midpoint of [[m6]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "fd67b67e707c": {
+   "fr": "[[m1]]\\,; milieu~: [[m2]].",
+   "en": "[[m1]]; midpoint: [[m2]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "98db37a768b1": {
+   "fr": "jeu.~5~nov.~2026",
+   "en": "Thu~5~Nov.~2026",
+   "status": "aligned",
+   "order": 41
+  },
+  "567fc9633866": {
+   "fr": "Équation réduite et pente d'une droite non verticale",
+   "en": "Slope-intercept equation and gradient of a non-vertical line",
+   "status": "aligned",
+   "order": 42
+  },
+  "7542089404b1": {
+   "fr": "Isoler [[m1]] dans [[m2]].",
+   "en": "Make [[m1]] the subject of [[m2]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "296bc0d45a61": {
+   "fr": "Donner la pente et l'ordonnée à l'origine de la droite [[m1]].",
+   "en": "Give the gradient and the y-intercept of the line [[m1]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "beecedcfd8ed": {
+   "fr": "[[m1]], [[m2]]~: pente [[m3]], ordonnée à l'origine [[m4]].",
+   "en": "[[m1]], [[m2]]: gradient [[m3]], y-intercept [[m4]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "e576c45ea704": {
+   "fr": "Piège~: diviser par [[m1]] chaque terme (signes).",
+   "en": "Pitfall: divide every term by [[m1]] (signs).",
+   "status": "aligned",
+   "order": 48
+  },
+  "9edba616f43b": {
+   "fr": "La pente de la droite [[m1]] avec [[m2]] et [[m3]] est~:",
+   "en": "The gradient of the line [[m1]] with [[m2]] and [[m3]] is:",
+   "status": "aligned",
+   "order": 50
+  },
+  "1fd5b2a271a6": {
+   "fr": "D.\\ [[m1]]",
+   "en": "D.\\ [[m1]]",
+   "status": "aligned",
+   "order": 51
+  },
+  "c5cadc7b39ea": {
+   "fr": "Pente [[m1]].",
+   "en": "Gradient [[m1]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "09ec08794610": {
+   "fr": "Fil rouge · Problème",
+   "en": "Thread · Problem",
+   "status": "aligned",
+   "order": 55
+  },
+  "dfdb042e7d25": {
+   "fr": "Deux engrenages ont [[m1]] et [[m2]] dents. Après combien de tours de chacun reviennent-ils ensemble à leur position de départ\\,?",
+   "en": "Two gears have [[m1]] and [[m2]] teeth. After how many turns of each do they return together to their starting position?",
+   "status": "aligned",
+   "order": 56
+  },
+  "5a9777524065": {
+   "fr": "[[m1]] dents~: [[m2]] tours du premier, [[m3]] tours du second.",
+   "en": "[[m1]] teeth: [[m2]] turns of the first, [[m3]] turns of the second.",
+   "status": "aligned",
+   "order": 57
+  },
+  "6032660dd11a": {
+   "fr": "lun.~9~nov.~2026",
+   "en": "Mon~9~Nov.~2026",
+   "status": "aligned",
+   "order": 58
+  },
+  "4416b63c2d0a": {
+   "fr": "Tracer une droite donnée par une équation",
+   "en": "Drawing a line given by an equation",
+   "status": "aligned",
+   "order": 59
+  },
+  "53a1fb81f6a4": {
+   "fr": "Pour [[m1]], calculer [[m2]] lorsque [[m3]] puis lorsque [[m4]].",
+   "en": "For [[m1]], calculate [[m2]] when [[m3]] and then when [[m4]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "efb3702f474e": {
+   "fr": "[[m1]] puis [[m2]].",
+   "en": "[[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "cbb7adf12bcc": {
+   "fr": "Donner deux points permettant de tracer la droite [[m1]].",
+   "en": "Give two points that allow you to draw the line [[m1]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "4f6aba5ba7fc": {
+   "fr": "Pour [[m1]]~: [[m2]]\\,; pour [[m3]]~: [[m4]]. Points [[m5]] et [[m6]].",
+   "en": "For [[m1]]: [[m2]]; for [[m3]]: [[m4]]. Points [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "8982c001404f": {
+   "fr": "Cœur + · Flash",
+   "en": "Core + · Quick",
+   "status": "aligned",
+   "order": 66
+  },
+  "6d65b9ddb3d4": {
+   "fr": "Quelle est la droite d'équation [[m1]]\\,? Donner un vecteur directeur. A-t-elle une pente\\,?",
+   "en": "What is the line with equation [[m1]]? Give a direction vector. Does it have a gradient?",
+   "status": "aligned",
+   "order": 67
+  },
+  "7d9295f7789d": {
+   "fr": "La verticale passant par [[m1]]\\,; [[m2]] la dirige\\,; elle n'a pas de pente\\,; équation cartésienne [[m3]].",
+   "en": "The vertical line through [[m1]]; [[m2]] is a direction vector; it has no gradient; Cartesian equation [[m3]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "df55b9a3b2f9": {
+   "fr": "Ne s'écrit pas [[m1]].",
+   "en": "Cannot be written [[m1]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "6ddc23a33b62": {
+   "fr": "Comparer [[m1]] et [[m2]].",
+   "en": "Compare [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "85481226f6bf": {
+   "fr": "Produits en croix~: [[m1]], donc [[m2]].",
+   "en": "Cross-multiplying: [[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "aed57c0cde67": {
+   "fr": "Résoudre dans [[m1]]~: [[m2]].",
+   "en": "Solve in [[m1]]: [[m2]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "b371b8388270": {
+   "fr": "Piège~: regrouper les [[m1]] d'un côté en changeant correctement de signe.",
+   "en": "Pitfall: collect the [[m1]] terms on one side, changing signs correctly.",
+   "status": "aligned",
+   "order": 75
+  },
+  "60f706f6e952": {
+   "fr": "mar.~10~nov.~2026",
+   "en": "Tue~10~Nov.~2026",
+   "status": "aligned",
+   "order": 76
+  },
+  "1b6667c7dee1": {
+   "fr": "Déterminer une équation de droite~: deux points, point et vecteur directeur, point et pente",
+   "en": "Finding the equation of a line: two points, a point and a direction vector, a point and a gradient",
+   "status": "aligned",
+   "order": 77
+  },
+  "1844910b68a3": {
+   "fr": "Pente de la droite passant par [[m1]] et [[m2]]\\,?",
+   "en": "Gradient of the line through [[m1]] and [[m2]]?",
+   "status": "aligned",
+   "order": 79
+  },
+  "8a731bee540d": {
+   "fr": "Équation réduite de la droite de pente [[m1]] passant par [[m2]].",
+   "en": "Slope-intercept equation of the line with gradient [[m1]] through [[m2]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "684e2784219b": {
+   "fr": "[[m1]], soit [[m2]].",
+   "en": "[[m1]], that is [[m2]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "ecf861bbd5e9": {
+   "fr": "Contrôle~: [[m1]].",
+   "en": "Check: [[m1]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "737e1b9ae557": {
+   "fr": "Cœur + · Méthode",
+   "en": "Core + · Method",
+   "status": "aligned",
+   "order": 84
+  },
+  "74e626f04b56": {
+   "fr": "Droite passant par [[m1]] de vecteur directeur [[m2]]~: équation cartésienne par le déterminant de [[m3]] et [[m4]].",
+   "en": "Line through [[m1]] with direction vector [[m2]]: Cartesian equation using the determinant of [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "32b7da53d428": {
+   "fr": "[[m1]]~: [[m2]], soit [[m3]].",
+   "en": "[[m1]]: [[m2]], that is [[m3]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "32bec96a841d": {
+   "fr": "Contrôle~: [[m1]]\\,; [[m2]] est bien colinéaire à [[m3]].",
+   "en": "Check: [[m1]]; [[m2]] is indeed collinear to [[m3]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "76ab1bb4f5da": {
+   "fr": "Simplifier [[m1]].",
+   "en": "Simplify [[m1]].",
+   "status": "aligned",
+   "order": 89
+  },
+  "f2c262fa741e": {
+   "fr": "Fil rouge · Tableau → formule",
+   "en": "Thread · Table → formula",
+   "status": "aligned",
+   "order": 90
+  },
+  "f0dd05393e1b": {
+   "fr": "Une fonction affine [[m1]] vérifie~: [[m2]], [[m3]], [[m4]]. Donner [[m5]].",
+   "en": "An affine function [[m1]] satisfies: [[m2]], [[m3]], [[m4]]. Give [[m5]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "ed36d158fdb3": {
+   "fr": "Pente [[m1]], ordonnée à l'origine [[m2]]~: [[m3]].",
+   "en": "Gradient [[m1]], y-intercept [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "74d68280e280": {
+   "fr": "jeu.~12~nov.~2026",
+   "en": "Thu~12~Nov.~2026",
+   "status": "aligned",
+   "order": 93
+  },
+  "0c8fe1218150": {
+   "fr": "Droites et fonctions affines~: lien entre les registres",
+   "en": "Lines and affine functions: linking the representations",
+   "status": "aligned",
+   "order": 94
+  },
+  "cf51aa70c5f0": {
+   "fr": "[[m1]]. Calculer [[m2]] et l'antécédent de [[m3]].",
+   "en": "[[m1]]. Calculate [[m2]] and the preimage of [[m3]].",
+   "status": "aligned",
+   "order": 96
+  },
+  "62df7118271f": {
+   "fr": "Déterminer la fonction affine [[m1]] telle que [[m2]] et [[m3]].",
+   "en": "Find the affine function [[m1]] such that [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "6d04bac9a73f": {
+   "fr": "Pente [[m1]]\\,; [[m2]] avec [[m3]]~: [[m4]].",
+   "en": "Gradient [[m1]]; [[m2]] with [[m3]]: [[m4]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "0e20f011f7c4": {
+   "fr": "Vrai ou faux\\,? Justifier. Toute droite du plan est la courbe d'une fonction affine.",
+   "en": "True or false? Justify. Every line in the plane is the graph of an affine function.",
+   "status": "aligned",
+   "order": 101
+  },
+  "44cb7d3782c2": {
+   "fr": "Faux. Contre-exemple~: la droite verticale [[m1]] n'est la courbe d'aucune fonction (le nombre [[m2]] aurait une infinité d'images).",
+   "en": "False. Counter-example: the vertical line [[m1]] is not the graph of any function (the number [[m2]] would have infinitely many images).",
+   "status": "aligned",
+   "order": 102
+  },
+  "c91660a57833": {
+   "fr": "On lance un dé équilibré à [[m1]] faces. Probabilité d'obtenir un multiple de [[m2]]\\,?",
+   "en": "A fair [[m1]]-sided die is rolled. What is the probability of getting a multiple of [[m2]]?",
+   "status": "aligned",
+   "order": 104
+  },
+  "283c7133356c": {
+   "fr": "Issues [[m1]] et [[m2]]~: [[m3]].",
+   "en": "Outcomes [[m1]] and [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "67b06cdae728": {
+   "fr": "[[m1]] est rectangle en [[m2]] avec [[m3]] cm et [[m4]] cm. Calculer [[m5]].",
+   "en": "[[m1]] is right-angled at [[m2]] with [[m3]] cm and [[m4]] cm. Calculate [[m5]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "8fcf3d710900": {
+   "fr": "[[m1]], donc [[m2]] cm.",
+   "en": "[[m1]], so [[m2]] cm.",
+   "status": "aligned",
+   "order": 108
+  },
+  "87471802bef9": {
+   "fr": "lun.~16~nov.~2026",
+   "en": "Mon~16~Nov.~2026",
+   "status": "aligned",
+   "order": 109
+  },
+  "2ace15f5bb6c": {
+   "fr": "Alignement, parallélisme, intersection de droites",
+   "en": "Collinearity, parallelism, intersection of lines",
+   "status": "aligned",
+   "order": 110
+  },
+  "7e616c7802db": {
+   "fr": "Le point [[m1]] appartient-il à la droite [[m2]]\\,?",
+   "en": "Does the point [[m1]] lie on the line [[m2]]?",
+   "status": "aligned",
+   "order": 112
+  },
+  "e20a68d05116": {
+   "fr": "[[m1]]~: oui.",
+   "en": "[[m1]]: yes.",
+   "status": "aligned",
+   "order": 113
+  },
+  "7d91ba777039": {
+   "fr": "Positions relatives de [[m1]] avec [[m2]], puis avec [[m3]].",
+   "en": "Relative positions of [[m1]] with [[m2]], then with [[m3]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "fe83e2ce04f8": {
+   "fr": "[[m1]] et [[m2]]~: même pente, ordonnées à l'origine distinctes~: parallèles strictement\\,; [[m3]] et [[m4]]~: pentes différentes~: sécantes.",
+   "en": "[[m1]] and [[m2]]: same gradient, different y-intercepts: strictly parallel; [[m3]] and [[m4]]: different gradients: intersecting.",
+   "status": "aligned",
+   "order": 116
+  },
+  "57dec0796974": {
+   "fr": "Montrer que [[m1]], [[m2]] et [[m3]] sont alignés de deux façons.",
+   "en": "Show in two ways that [[m1]], [[m2]] and [[m3]] are collinear.",
+   "status": "aligned",
+   "order": 118
+  },
+  "739c0a68d603": {
+   "fr": "(i) Tous vérifient [[m1]]. (ii) [[m2]], [[m3]]~: [[m4]].",
+   "en": "(i) All three satisfy [[m1]]. (ii) [[m2]], [[m3]]: [[m4]].",
+   "status": "aligned",
+   "order": 119
+  },
+  "02060ce3c544": {
+   "fr": "Sur une carte à l'échelle [[m1]], deux villes sont distantes de [[m2]] cm. Quelle est la distance réelle\\,?",
+   "en": "On a map with scale [[m1]], two towns are [[m2]] cm apart. What is the real distance?",
+   "status": "aligned",
+   "order": 121
+  },
+  "29d9e3972929": {
+   "fr": "[[m1]] cm [[m2]] km.",
+   "en": "[[m1]] cm [[m2]] km.",
+   "status": "aligned",
+   "order": 122
+  },
+  "e5b3f9f5b4b2": {
+   "fr": "Fil rouge · Méthode",
+   "en": "Thread · Method",
+   "status": "aligned",
+   "order": 123
+  },
+  "6b17ec1bfb9e": {
+   "fr": "Programme~: choisir un nombre [[m1]]\\,; ajouter [[m2]]\\,; multiplier par [[m3]]\\,; soustraire [[m4]]. Calculer le résultat pour [[m5]], puis écrire une expression en [[m6]] et la réduire. Que remarque-t-on\\,?",
+   "en": "Programme: choose a number [[m1]]; add [[m2]]; multiply by [[m3]]; subtract [[m4]]. Calculate the result for [[m5]], then write an expression in [[m6]] and simplify it. What do you notice?",
+   "status": "aligned",
+   "order": 124
+  },
+  "7641cb0c26bd": {
+   "fr": "Pour [[m1]]~: [[m2]]. Expression~: [[m3]]~: on obtient toujours le double du nombre choisi.",
+   "en": "For [[m1]]: [[m2]]. Expression: [[m3]]: the result is always twice the chosen number.",
+   "status": "aligned",
+   "order": 125
+  },
+  "19fbb23b31ab": {
+   "fr": "Lien A09~: l'écriture littérale prouve ce que les essais numériques suggèrent.",
+   "en": "Link A09: algebraic notation proves what numerical trials suggest.",
+   "status": "aligned",
+   "order": 126
+  },
+  "0970645228be": {
+   "fr": "mar.~17~nov.~2026",
+   "en": "Tue~17~Nov.~2026",
+   "status": "aligned",
+   "order": 127
+  },
+  "c65eefa99219": {
+   "fr": "Intersection de deux droites\\,; fonction Python d'alignement",
+   "en": "Intersection of two lines; Python collinearity function",
+   "status": "aligned",
+   "order": 128
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 130
+  },
+  "0eefd4339d37": {
+   "fr": "[[m1]], donc [[m2]].",
+   "en": "[[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 131
+  },
+  "420994d07683": {
+   "fr": "Coordonnées de l'intersection de [[m1]] et [[m2]].",
+   "en": "Coordinates of the intersection of [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 133
+  },
+  "1d591248352a": {
+   "fr": "[[m1]] puis [[m2]]~: [[m3]].",
+   "en": "[[m1]] then [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 134
+  },
+  "9a49eee4b6e3": {
+   "fr": "Contrôle dans la seconde équation~: [[m1]].",
+   "en": "Check in the second equation: [[m1]].",
+   "status": "aligned",
+   "order": 135
+  },
+  "be09bf3f9be3": {
+   "fr": "Cœur + · Lecture de code",
+   "en": "Core + · Code reading",
+   "status": "aligned",
+   "order": 136
+  },
+  "d0e5d81b8e51": {
+   "fr": "Que renvoient [[m1]] et [[m2]]\\,?",
+   "en": "What do [[m1]] and [[m2]] return?",
+   "status": "aligned",
+   "order": 137
+  },
+  "d8bf47cb0322": {
+   "fr": "def alignes(xa, ya, xb, yb, xc, yc):\\\\",
+   "en": "def alignes(xa, ya, xb, yb, xc, yc):\\\\",
+   "status": "aligned",
+   "order": 138
+  },
+  "facbd5bc38ee": {
+   "fr": "return (xb-xa)*(yc-ya) - (yb-ya)*(xc-xa) == 0",
+   "en": "return (xb-xa)*(yc-ya) - (yb-ya)*(xc-xa) == 0",
+   "status": "aligned",
+   "order": 139
+  },
+  "545e7e89d132": {
+   "fr": "[[m1]] puis [[m2]]~: déterminants [[m3]] et [[m4]].",
+   "en": "[[m1]] then [[m2]]: determinants [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 140
+  },
+  "cae98f65fcfc": {
+   "fr": "Retour · Développer",
+   "en": "Review · Expand",
+   "status": "aligned",
+   "order": 141
+  },
+  "b0bc755b2d16": {
+   "fr": "Développer et réduire [[m1]].",
+   "en": "Expand and simplify [[m1]].",
+   "status": "aligned",
+   "order": 142
+  },
+  "188c7146db41": {
+   "fr": "Fil rouge · Prouver",
+   "en": "Thread · Prove",
+   "status": "aligned",
+   "order": 143
+  },
+  "1f20fbf8814d": {
+   "fr": "Montrer que la somme de trois entiers consécutifs est un multiple de [[m1]].",
+   "en": "Show that the sum of three consecutive integers is a multiple of [[m1]].",
+   "status": "aligned",
+   "order": 144
+  },
+  "4d8b00ffa422": {
+   "fr": "Avec [[m1]]~: somme [[m2]], multiple de [[m3]].",
+   "en": "With [[m1]]: sum [[m2]], a multiple of [[m3]].",
+   "status": "aligned",
+   "order": 145
+  },
+  "b9aa4ce6e3b8": {
+   "fr": "Choisir le terme du milieu simplifie le calcul.",
+   "en": "Choosing the middle term simplifies the calculation.",
+   "status": "aligned",
+   "order": 146
+  }
+ }
+}

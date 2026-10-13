@@ -1,0 +1,377 @@
+{
+ "unit": "s14.fr.tex",
+ "segments": {
+  "53564021550e": {
+   "fr": "Probabilités : conditionnement et arbres pondérés",
+   "en": "Probability: conditioning and weighted trees",
+   "status": "aligned",
+   "order": 0
+  },
+  "68901135722b": {
+   "fr": "26 avril--24 mai 2027",
+   "en": "26 April--24 May 2027",
+   "status": "aligned",
+   "order": 1
+  },
+  "fa984469900e": {
+   "fr": "Univers, issues et événements",
+   "en": "Sample space, outcomes and events",
+   "status": "aligned",
+   "order": 2
+  },
+  "f48b7e41eb9a": {
+   "fr": "Vocabulaire",
+   "en": "Vocabulary",
+   "status": "aligned",
+   "order": 3
+  },
+  "69ec1006ea6b": {
+   "fr": "Une expérience aléatoire possède plusieurs résultats possibles sans que l'on sache à l'avance lequel sera obtenu. Une issue est un résultat possible ; l'univers [[m1]] est leur ensemble. Un événement est une partie de [[m2]] ; un événement élémentaire contient une seule issue.\nL'événement impossible est [[m3]] ; l'événement certain est [[m4]].",
+   "en": "A random experiment has several possible results, without it being known in advance which will occur. An outcome is a possible result; the sample space [[m1]] is the set of them. An event is a subset of [[m2]]; an elementary event contains a single outcome.\nThe impossible event is [[m3]]; the certain event is [[m4]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "596046cdb3ff": {
+   "fr": "Opérations sur les événements",
+   "en": "Operations on events",
+   "status": "aligned",
+   "order": 5
+  },
+  "ce21522a5785": {
+   "fr": "[[m1]] est l'événement contraire de [[m2]]. [[m3]] signifie « [[m4]] et [[m5]] » ; [[m6]], « [[m7]] ou [[m8]] », éventuellement les deux. Deux événements sont incompatibles si [[m9]] ; sinon, ils sont compatibles.",
+   "en": "[[m1]] is the complementary event of [[m2]]. [[m3]] means ``[[m4]] and [[m5]]''; [[m6]], ``[[m7]] or [[m8]]'', possibly both. Two events are mutually exclusive if [[m9]]; otherwise, they are compatible.",
+   "status": "aligned",
+   "order": 6
+  },
+  "164ee37230c2": {
+   "fr": "On lance un dé à six faces. Écrire [[m1]], [[m2]] : « obtenir un nombre pair », [[m3]] : « obtenir [[m4]] », puis [[m5]], [[m6]] et [[m7]]. [[m8]] sont-ils compatibles ?",
+   "en": "A six-sided die is rolled. Write [[m1]], [[m2]]: ``get an even number'', [[m3]]: ``get [[m4]]'', then [[m5]], [[m6]] and [[m7]]. Are [[m8]] compatible?",
+   "status": "aligned",
+   "order": 7
+  },
+  "05a1a6329f3f": {
+   "fr": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]], [[m6]]. Les événements sont compatibles car ils partagent l'issue [[m7]].",
+   "en": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]], [[m6]]. The events are compatible because they share the outcome [[m7]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "84695e99092f": {
+   "fr": "Avec [[m1]] et [[m2]], donner l'intersection et la réunion. Peut-on déterminer [[m3]] sans préciser l'univers ?",
+   "en": "With [[m1]] and [[m2]], give the intersection and the union. Can [[m3]] be determined without specifying the sample space?",
+   "status": "aligned",
+   "order": 9
+  },
+  "c69a5a0f9d4a": {
+   "fr": "[[m1]] et [[m2]]. Le complémentaire dépend de l'univers ; on ne peut pas le déterminer sans cette information.",
+   "en": "[[m1]] and [[m2]]. The complement depends on the sample space; it cannot be determined without this information.",
+   "status": "aligned",
+   "order": 10
+  },
+  "5d6ab268150f": {
+   "fr": "Modèle probabiliste et équiprobabilité",
+   "en": "Probability model and equally likely outcomes",
+   "status": "aligned",
+   "order": 11
+  },
+  "1b93e1ac6dfa": {
+   "fr": "Probabilité dans un univers fini",
+   "en": "Probability on a finite sample space",
+   "status": "aligned",
+   "order": 12
+  },
+  "4aed1bd38d86": {
+   "fr": "À chaque issue, un modèle associe une probabilité positive ou nulle ; la somme vaut [[m1]]. La probabilité d'un événement est la somme des probabilités de ses issues. On a",
+   "en": "To each outcome, a model assigns a probability that is positive or zero; the sum is [[m1]]. The probability of an event is the sum of the probabilities of its outcomes. We have",
+   "status": "aligned",
+   "order": 13
+  },
+  "352b6367d719": {
+   "fr": "En équiprobabilité, toutes les issues ont même probabilité et",
+   "en": "With equally likely outcomes, all outcomes have the same probability and",
+   "status": "aligned",
+   "order": 14
+  },
+  "342437f0918a": {
+   "fr": "L'équiprobabilité est une hypothèse du modèle, pas une conséquence de la seule liste des issues.",
+   "en": "Equal likelihood is an assumption of the model, not a consequence of the list of outcomes alone.",
+   "status": "aligned",
+   "order": 15
+  },
+  "f0442acbdadb": {
+   "fr": "On suppose le dé équilibré. Pour [[m1]] « pair » et [[m2]] « supérieur ou égal à [[m3]] », calculer [[m4]], [[m5]], [[m6]] et [[m7]].",
+   "en": "Assume the die is fair. For [[m1]] ``even'' and [[m2]] ``greater than or equal to [[m3]]'', calculate [[m4]], [[m5]], [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "ac71c4f24f38": {
+   "fr": "[[m1]], [[m2]], [[m3]] donc [[m4]]. [[m5]], donc [[m6]]. L'issue [[m7]] ne doit pas être comptée deux fois.",
+   "en": "[[m1]], [[m2]], [[m3]] so [[m4]]. [[m5]], so [[m6]]. The outcome [[m7]] must not be counted twice.",
+   "status": "aligned",
+   "order": 17
+  },
+  "da9a93f2e6f1": {
+   "fr": "Une punaise peut tomber pointe vers le haut ou vers le bas. Peut-on en déduire que chaque issue a probabilité [[m1]] ? Comment proposer un modèle ?",
+   "en": "A drawing pin can land point up or point down. Can we deduce that each outcome has probability [[m1]]? How can a model be proposed?",
+   "status": "aligned",
+   "order": 18
+  },
+  "98b9caac3986": {
+   "fr": "Non : deux issues ne suffisent pas à imposer l'équiprobabilité. On peut répéter les lancers dans des conditions comparables et utiliser les fréquences observées pour proposer un modèle, en gardant à l'esprit les fluctuations et les caractéristiques de l'objet.",
+   "en": "No: two outcomes are not enough to impose equal likelihood. One can repeat the throws under comparable conditions and use the observed frequencies to propose a model, bearing in mind fluctuations and the characteristics of the object.",
+   "status": "aligned",
+   "order": 19
+  },
+  "859ecc8b2bd3": {
+   "fr": "Réactiver le lien entre fréquence observée et probabilité postulée. Un résultat expérimental ne démontre pas une équiprobabilité exacte.",
+   "en": "Reactivate the link between observed frequency and postulated probability. An experimental result does not prove exact equal likelihood.",
+   "status": "aligned",
+   "order": 20
+  },
+  "58170882d310": {
+   "fr": "Probabilité conditionnelle à partir d'un tableau",
+   "en": "Conditional probability from a table",
+   "status": "aligned",
+   "order": 21
+  },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 22
+  },
+  "a709e671f2a6": {
+   "fr": "Pour [[m1]], la probabilité de [[m2]] sachant [[m3]] est",
+   "en": "For [[m1]], the probability of [[m2]] given [[m3]] is",
+   "status": "aligned",
+   "order": 23
+  },
+  "8740590e54d4": {
+   "fr": "Dans un tirage équiprobable au sein d'une population finie :",
+   "en": "For an equally likely draw within a finite population:",
+   "status": "aligned",
+   "order": 24
+  },
+  "f68eb2a28262": {
+   "fr": "On note aussi [[m1]]. [[m2]] et [[m3]] ne sont généralement pas égales.",
+   "en": "We also write [[m1]]. [[m2]] and [[m3]] are generally not equal.",
+   "status": "aligned",
+   "order": 25
+  },
+  "3395a7d28e43": {
+   "fr": "On tire uniformément un élève de la classe de [[m1]] élèves étudiée précédemment. [[m2]] : « garçon », [[m3]] : « suit NSI ».",
+   "en": "A student is drawn uniformly from the class of [[m1]] students studied earlier. [[m2]]: ``boy'', [[m3]]: ``takes CS''.",
+   "status": "aligned",
+   "order": 26
+  },
+  "617f12dcdb33": {
+   "fr": "Total\\\\",
+   "en": "Total\\\\",
+   "status": "aligned",
+   "order": 27
+  },
+  "b25928c69902": {
+   "fr": "Total",
+   "en": "Total",
+   "status": "aligned",
+   "order": 28
+  },
+  "aa70d9d69a62": {
+   "fr": "Calculer [[m1]], [[m2]], [[m3]], [[m4]] et [[m5]].",
+   "en": "Calculate [[m1]], [[m2]], [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "d90735564e7c": {
+   "fr": "[[m1]], [[m2]], [[m3]].\n[[m4]], tandis que [[m5]].\nPar la formule : [[m6]]. Sachant que l'élève suit NSI, la population de référence est réduite aux [[m7]] élèves concernés.",
+   "en": "[[m1]], [[m2]], [[m3]].\n[[m4]], whereas [[m5]].\nBy the formula: [[m6]]. Given that the student takes CS, the reference population is reduced to the [[m7]] students concerned.",
+   "status": "aligned",
+   "order": 30
+  },
+  "dfc8b2985154": {
+   "fr": "Le conditionnement exige une probabilité non nulle de l'événement connu ; on ne divise pas par zéro.",
+   "en": "Conditioning requires the known event to have nonzero probability; we do not divide by zero.",
+   "status": "aligned",
+   "order": 31
+  },
+  "d389a57e7c49": {
+   "fr": "Arbres pondérés et probabilité d'un chemin",
+   "en": "Weighted trees and the probability of a path",
+   "status": "aligned",
+   "order": 32
+  },
+  "dc725053be06": {
+   "fr": "Règles",
+   "en": "Rules",
+   "status": "aligned",
+   "order": 33
+  },
+  "4d55821e53f6": {
+   "fr": "À chaque nœud, la somme des probabilités des branches sortantes vaut [[m1]]. Une branche du deuxième niveau porte une probabilité conditionnelle. Un chemin représente une intersection d'événements ; sa probabilité est le produit des probabilités inscrites sur ce chemin.",
+   "en": "At each node, the sum of the probabilities of the outgoing branches is [[m1]]. A second-level branch carries a conditional probability. A path represents an intersection of events; its probability is the product of the probabilities written along that path.",
+   "status": "aligned",
+   "order": 34
+  },
+  "58bfdb316b57": {
+   "fr": "On sait [[m1]], [[m2]] et [[m3]]. Compléter les autres branches et calculer les probabilités des quatre chemins.",
+   "en": "We know [[m1]], [[m2]] and [[m3]]. Complete the other branches and calculate the probabilities of the four paths.",
+   "status": "aligned",
+   "order": 35
+  },
+  "5b6478fc8570": {
+   "fr": "La somme des quatre probabilités vaut [[m1]], ce qui contrôle la cohérence du modèle.",
+   "en": "The sum of the four probabilities is [[m1]], which checks the consistency of the model.",
+   "status": "aligned",
+   "order": 36
+  },
+  "455b4fc98b6f": {
+   "fr": "Justifier la multiplication sur le chemin [[m1]] puis [[m2]] à partir de la définition de [[m3]].",
+   "en": "Justify the multiplication along the path [[m1]] then [[m2]] from the definition of [[m3]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "b999f07e8551": {
+   "fr": "Comme [[m1]] et [[m2]], multiplier par [[m3]] donne [[m4]].",
+   "en": "Since [[m1]] and [[m2]], multiplying by [[m3]] gives [[m4]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "2b2973d434cf": {
+   "fr": "Passer d'un tableau à un arbre",
+   "en": "From a table to a tree",
+   "status": "aligned",
+   "order": 39
+  },
+  "3077093cf29e": {
+   "fr": "Pour la classe de [[m1]] élèves, construire un arbre commençant par NSI / pas de NSI, puis garçon / fille. Construire ensuite l'arbre dans l'ordre inverse. Vérifier, dans les deux arbres, la probabilité de choisir une fille suivant NSI.",
+   "en": "For the class of [[m1]] students, construct a tree starting with CS / no CS, then boy / girl. Then construct the tree in the reverse order. Check, in both trees, the probability of choosing a girl who takes CS.",
+   "status": "aligned",
+   "order": 40
+  },
+  "fe366266f5d6": {
+   "fr": "Premier arbre : branches initiales [[m1]], [[m2]]. Après [[m3]] : [[m4]], [[m5]]. Après [[m6]] : [[m7]] et [[m8]].\nSecond arbre : branches initiales [[m9]], [[m10]]. Après [[m11]] : [[m12]], puis [[m13]]. Après [[m14]] : [[m15]], puis [[m16]].\nLe chemin recherché vaut [[m17]] dans le premier arbre et [[m18]] dans le second. Le changement d'ordre conserve les probabilités des intersections mais change les probabilités des branches.",
+   "en": "First tree: initial branches [[m1]], [[m2]]. After [[m3]]: [[m4]], [[m5]]. After [[m6]]: [[m7]] and [[m8]].\nSecond tree: initial branches [[m9]], [[m10]]. After [[m11]]: [[m12]], then [[m13]]. After [[m14]]: [[m15]], then [[m16]].\nThe required path is worth [[m17]] in the first tree and [[m18]] in the second. Changing the order preserves the probabilities of the intersections but changes the probabilities of the branches.",
+   "status": "aligned",
+   "order": 41
+  },
+  "d3636a279120": {
+   "fr": "Une urne contient [[m1]] boules rouges et [[m2]] bleues. On tire successivement deux boules \\textbf{sans remise}. Construire l'arbre des couleurs et calculer la probabilité de tirer deux rouges.",
+   "en": "An urn contains [[m1]] red balls and [[m2]] blue balls. Two balls are drawn in succession \\textbf{without replacement}. Construct the tree of colours and calculate the probability of drawing two red balls.",
+   "status": "aligned",
+   "order": 42
+  },
+  "7e07da9e4104": {
+   "fr": "Premier niveau : [[m1]] avec [[m2]], [[m3]] avec [[m4]]. Après [[m5]], il reste [[m6]] rouges et [[m7]] bleues : branches [[m8]]. Après [[m9]], il reste [[m10]] rouges et [[m11]] bleue : branches [[m12]]. Donc [[m13]]. Utiliser [[m14]] sur la seconde branche rouge ignorerait l'absence de remise.",
+   "en": "First level: [[m1]] with [[m2]], [[m3]] with [[m4]]. After [[m5]], [[m6]] red and [[m7]] blue remain: branches [[m8]]. After [[m9]], [[m10]] red and [[m11]] blue remain: branches [[m12]]. So [[m13]]. Using [[m14]] on the second red branch would ignore the absence of replacement.",
+   "status": "aligned",
+   "order": 43
+  },
+  "a5c7f56ff40f": {
+   "fr": "Inversion des conditionnements et faux positifs",
+   "en": "Inverting conditioning and false positives",
+   "status": "aligned",
+   "order": 44
+  },
+  "c9833a34ec7c": {
+   "fr": "Contrôle fictif de composants",
+   "en": "Fictional component check",
+   "status": "aligned",
+   "order": 45
+  },
+  "fedc47073bdb": {
+   "fr": "Un lot contient [[m1]] composants, dont [[m2]] défectueux. Un test est positif pour [[m3]] des composants défectueux et pour [[m4]] des composants non défectueux. On choisit uniformément un composant. [[m5]] : « défectueux » ; [[m6]] : « test positif ».",
+   "en": "A batch contains [[m1]] components, of which [[m2]] are defective. A test is positive for [[m3]] of the defective components and for [[m4]] of the non-defective components. A component is chosen uniformly. [[m5]]: ``defective''; [[m6]]: ``test positive''.",
+   "status": "aligned",
+   "order": 46
+  },
+  "ff7a2ebac3b5": {
+   "fr": "Compléter le tableau croisé test / état réel.",
+   "en": "Complete the two-way table of test / true state.",
+   "status": "aligned",
+   "order": 47
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "f31f92e61805": {
+   "fr": "Donner le nombre de faux positifs et de faux négatifs.",
+   "en": "Give the number of false positives and false negatives.",
+   "status": "aligned",
+   "order": 49
+  },
+  "6a7ce6589209": {
+   "fr": "Calculer la sensibilité [[m1]] et la spécificité [[m2]].",
+   "en": "Calculate the sensitivity [[m1]] and the specificity [[m2]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "518a4b1d214d": {
+   "fr": "[[m1]]. En revanche [[m2]]. Un test positif n'implique donc pas ici une probabilité de défaut de [[m3]].\nLes [[m4]] faux positifs sont les composants sains testés positifs ; le faux négatif est le composant défectueux testé négatif. La sensibilité vaut [[m5]] ; la spécificité [[m6]].\nLa faible proportion initiale de composants défectueux explique pourquoi les faux positifs sont plus nombreux que les vrais positifs malgré la bonne sensibilité.",
+   "en": "[[m1]]. On the other hand [[m2]]. A positive test therefore does not imply here a [[m3]] probability of defect.\nThe [[m4]] false positives are the sound components that tested positive; the false negative is the defective component that tested negative. The sensitivity is [[m5]]; the specificity [[m6]].\nThe low initial proportion of defective components explains why false positives outnumber true positives despite the good sensitivity.",
+   "status": "aligned",
+   "order": 53
+  },
+  "0048177a3b67": {
+   "fr": "Lire le résultat d'un test",
+   "en": "Reading a test result",
+   "status": "aligned",
+   "order": 54
+  },
+  "b827244761b5": {
+   "fr": "« Positif parmi les défectueux » et « défectueux parmi les positifs » correspondent à deux conditionnements différents. Toujours nommer le groupe de référence avant le calcul.",
+   "en": "``Positive among the defective'' and ``defective among the positives'' correspond to two different conditionings. Always name the reference group before the calculation.",
+   "status": "aligned",
+   "order": 55
+  },
+  "ea136328b352": {
+   "fr": "Les nombres sont fictifs. Le tableau permet d'étudier l'inversion sans exiger une formule générale des probabilités totales : celle-ci n'est pas un attendu du programme de seconde 2026.",
+   "en": "The numbers are fictional. The table allows studying the inversion without requiring a general total-probability formula: this is not an expectation of the 2026 Seconde programme.",
+   "status": "aligned",
+   "order": 56
+  },
+  "755dd81fc98b": {
+   "fr": "Simulation et loi des grands nombres",
+   "en": "Simulation and the law of large numbers",
+   "status": "aligned",
+   "order": 57
+  },
+  "5f7620750c00": {
+   "fr": "Version vulgarisée",
+   "en": "Popularised version",
+   "status": "aligned",
+   "order": 58
+  },
+  "5348bff1236b": {
+   "fr": "Lorsqu'on répète un grand nombre de fois une expérience dans le même modèle avec des répétitions indépendantes, la fréquence observée d'un événement est, sauf exception, proche de sa probabilité. Elle fluctue : elle ne s'en rapproche pas nécessairement à chaque nouvelle expérience.",
+   "en": "When an experiment is repeated a large number of times in the same model with independent repetitions, the observed frequency of an event is, barring exceptions, close to its probability. It fluctuates: it does not necessarily get closer with each new trial.",
+   "status": "aligned",
+   "order": 59
+  },
+  "62bbe0d20192": {
+   "fr": "Tracer les fréquences pour [[m1]], avec plusieurs graines. Comparer à [[m2]]. Pourquoi fixer la graine ? Peut-on exiger que la fréquence finale soit exactement [[m3]] ?",
+   "en": "Plot the frequencies for [[m1]], with several seeds. Compare with [[m2]]. Why fix the seed? Can we require the final frequency to be exactly [[m3]]?",
+   "status": "aligned",
+   "order": 60
+  },
+  "d11691c49e16": {
+   "fr": "Les tracés dépendent de la graine et fluctuent autour de [[m1]]. Fixer la graine rend la simulation reproductible. Avec [[m2]] lancers, une fréquence finale exactement [[m3]] est même impossible, car [[m4]] n'est pas entier. Une fréquence proche est cohérente avec le modèle, mais n'en constitue pas une démonstration.",
+   "en": "The plots depend on the seed and fluctuate around [[m1]]. Fixing the seed makes the simulation reproducible. With [[m2]] throws, a final frequency of exactly [[m3]] is even impossible, because [[m4]] is not an integer. A nearby frequency is consistent with the model, but is not a proof of it.",
+   "status": "aligned",
+   "order": 61
+  },
+  "42989210a9cd": {
+   "fr": "Modifier le programme pour suivre la fréquence de l'événement « résultat pair ». Quelle probabilité de référence utiliser ?",
+   "en": "Modify the program to track the frequency of the event ``even result''. Which reference probability should be used?",
+   "status": "aligned",
+   "order": 62
+  },
+  "ce0d534bfe3b": {
+   "fr": "Remplacer le test par \\texttt{rng.randint(1, 6) \\% 2 == 0}. La probabilité de référence est [[m1]]. Chaque expérience doit effectuer un seul tirage ; ne pas appeler plusieurs fois le générateur pour tester un même résultat.",
+   "en": "Replace the test with \\texttt{rng.randint(1, 6) \\% 2 == 0}. The reference probability is [[m1]]. Each trial must make a single draw; do not call the generator several times to test the same result.",
+   "status": "aligned",
+   "order": 63
+  }
+ }
+}

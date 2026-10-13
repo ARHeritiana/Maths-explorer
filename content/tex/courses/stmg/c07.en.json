@@ -1,0 +1,497 @@
+{
+ "unit": "c07.fr.tex",
+ "segments": {
+  "c5d2582ce626": {
+   "fr": "Variables aléatoires discrètes et loi binomiale",
+   "en": "Discrete random variables and the binomial distribution",
+   "status": "aligned",
+   "order": 0
+  },
+  "735d044f25f0": {
+   "fr": "définir une loi, calculer et interpréter une espérance, reconnaître et utiliser une loi binomiale",
+   "en": "define a distribution, calculate and interpret an expected value, recognise and use a binomial distribution",
+   "status": "aligned",
+   "order": 1
+  },
+  "de670816bbdd": {
+   "fr": "Cours de référence",
+   "en": "Reference notes",
+   "status": "aligned",
+   "order": 2
+  },
+  "cb6e8735c9a3": {
+   "fr": "Une variable aléatoire discrète [[m1]] associe un nombre réel à chaque issue. Sa loi donne les valeurs [[m2]] et les probabilités [[m3]], avec [[m4]] et [[m5]].",
+   "en": "A discrete random variable [[m1]] assigns a real number to each outcome. Its distribution gives the values [[m2]] and the probabilities [[m3]], with [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "89d2acf45e34": {
+   "fr": "L'espérance est [[m1]]. Elle représente la valeur moyenne à long terme lorsque l'expérience est répétée dans les mêmes conditions ; elle n'est pas nécessairement une valeur effectivement prise par [[m2]].",
+   "en": "The expected value is [[m1]]. It represents the long-run average value when the experiment is repeated under the same conditions; it is not necessarily a value actually taken by [[m2]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "f4fd94d3f0df": {
+   "fr": "[[m1]] suit une loi binomiale [[m2]] lorsque [[m3]] compte le nombre de succès dans [[m4]] épreuves de Bernoulli indépendantes, de même probabilité de succès [[m5]]. Alors",
+   "en": "[[m1]] follows a binomial distribution [[m2]] when [[m3]] counts the number of successes in [[m4]] independent Bernoulli trials with the same probability of success [[m5]]. Then",
+   "status": "aligned",
+   "order": 5
+  },
+  "afbc56ea402a": {
+   "fr": "Le coefficient [[m1]] compte le nombre de chemins contenant exactement [[m2]] succès parmi [[m3]] épreuves. Pour [[m4]], il peut être lu dans le triangle de Pascal.",
+   "en": "The binomial coefficient [[m1]] counts the number of paths containing exactly [[m2]] successes among [[m3]] trials. For [[m4]], it can be read from Pascal's triangle.",
+   "status": "aligned",
+   "order": 6
+  },
+  "90c860b0db98": {
+   "fr": "Le diagramme représente approximativement [[m1]] ; son centre est proche de [[m2]].",
+   "en": "The diagram approximately represents [[m1]]; its centre is close to [[m2]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 8
+  },
+  "49755d222065": {
+   "fr": "Espérance d'une variable aléatoire",
+   "en": "Expected value of a random variable",
+   "status": "aligned",
+   "order": 9
+  },
+  "e2c047ad489d": {
+   "fr": "Variables aléatoires discrètes",
+   "en": "Discrete random variables",
+   "status": "aligned",
+   "order": 10
+  },
+  "b392ca4c66bd": {
+   "fr": "Définir une loi.",
+   "en": "Define a distribution.",
+   "status": "aligned",
+   "order": 11
+  },
+  "feb07a0b1b2a": {
+   "fr": "Calculer une espérance.",
+   "en": "Calculate an expected value.",
+   "status": "aligned",
+   "order": 12
+  },
+  "97fc7a3a5120": {
+   "fr": "Interpréter une moyenne théorique.",
+   "en": "Interpret a theoretical average.",
+   "status": "aligned",
+   "order": 13
+  },
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 14
+  },
+  "723d34d60e98": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+10$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+10$}",
+   "status": "aligned",
+   "order": 15
+  },
+  "87b4fabe648d": {
+   "fr": "Donner [[m1]] pour [[m2]]. \\mxblank{$3$}",
+   "en": "Give [[m1]] for [[m2]]. \\mxblank{$3$}",
+   "status": "aligned",
+   "order": 16
+  },
+  "3d7187c61b03": {
+   "fr": "Calculer [[m1]]. \\mxblank{$10$}",
+   "en": "Calculate [[m1]]. \\mxblank{$10$}",
+   "status": "aligned",
+   "order": 17
+  },
+  "4541f5c08999": {
+   "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$8$}",
+   "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$8$}",
+   "status": "aligned",
+   "order": 18
+  },
+  "55869d9709ee": {
+   "fr": "Traduire [[m1]] par un complémentaire. \\mxblank{$1-P(X=0)$}",
+   "en": "Express [[m1]] using a complement. \\mxblank{$1-P(X=0)$}",
+   "status": "aligned",
+   "order": 19
+  },
+  "db95eadfdb4d": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : définir une loi et calculer une espérance.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: define a distribution and calculate an expected value.",
+   "status": "aligned",
+   "order": 20
+  },
+  "b9ca8db5a8ae": {
+   "fr": "Un jeu coûte [[m1]] euros. Le gain brut vaut [[m2]], [[m3]] ou [[m4]] euros avec probabilités [[m5]], [[m6]], [[m7]]. Construire la loi du gain net [[m8]], calculer [[m9]] et décider si le jeu est favorable au joueur.",
+   "en": "A game costs [[m1]] euros. The gross winnings are [[m2]], [[m3]] or [[m4]] euros with probabilities [[m5]], [[m6]], [[m7]]. Construct the distribution of the net gain [[m8]], calculate [[m9]] and decide whether the game is favourable to the player.",
+   "status": "aligned",
+   "order": 21
+  },
+  "5b0dedbf8d27": {
+   "fr": "[[m1]] vaut [[m2]]. [[m3]] euro : jeu défavorable en moyenne. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]] takes the values [[m2]]. [[m3]] euro: the game is unfavourable on average. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 22
+  },
+  "e3ff20a06dee": {
+   "fr": "La loi de [[m1]] associe à chaque valeur [[m2]] la probabilité [[m3]]. L'espérance [[m4]] est une moyenne théorique à long terme.",
+   "en": "The distribution of [[m1]] assigns to each value [[m2]] the probability [[m3]]. The expected value [[m4]] is a theoretical long-run average.",
+   "status": "aligned",
+   "order": 23
+  },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.",
+   "status": "aligned",
+   "order": 24
+  },
+  "134be74ae00b": {
+   "fr": "[[m1]] vaut [[m2]]. [[m3]] euro : jeu défavorable en moyenne.",
+   "en": "[[m1]] takes the values [[m2]]. [[m3]] euro: the game is unfavourable on average.",
+   "status": "aligned",
+   "order": 25
+  },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 26
+  },
+  "562f76852a86": {
+   "fr": "Justifier que le nombre de succès parmi [[m1]] essais indépendants, avec [[m2]], suit une loi binomiale.",
+   "en": "Justify that the number of successes among [[m1]] independent trials, with [[m2]], follows a binomial distribution.",
+   "status": "aligned",
+   "order": 27
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "3b3770a45bfc": {
+   "fr": "En déduire [[m1]] et calculer [[m2]].",
+   "en": "Deduce [[m1]] and calculate [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "18d43d761ee1": {
+   "fr": "[[m1]]. [[m2]], [[m3]], [[m4]] et [[m5]].",
+   "en": "[[m1]]. [[m2]], [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 31
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 32
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 33
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 34
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 35
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 36
+  },
+  "51e0925d3de2": {
+   "fr": "Loi binomiale : reconnaître une situation",
+   "en": "Binomial distribution: recognising a situation",
+   "status": "aligned",
+   "order": 37
+  },
+  "79a7ae736bf9": {
+   "fr": "Reconnaître un schéma de Bernoulli.",
+   "en": "Recognise a Bernoulli scheme.",
+   "status": "aligned",
+   "order": 38
+  },
+  "965e8de9b816": {
+   "fr": "Identifier [[m1]] et [[m2]].",
+   "en": "Identify [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "8f1ad81df662": {
+   "fr": "Définir [[m1]].",
+   "en": "Define [[m1]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "e575a78015e2": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$9$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$9$}",
+   "status": "aligned",
+   "order": 41
+  },
+  "d0fa013d7f71": {
+   "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$9$}",
+   "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$9$}",
+   "status": "aligned",
+   "order": 42
+  },
+  "5c66c471dbf1": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : reconnaître un schéma de bernoulli et identifier [[m1]] et [[m2]].",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: recognise a Bernoulli scheme and identify [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "4da10b654d89": {
+   "fr": "Un client accepte une offre avec probabilité [[m1]]. Un conseiller contacte indépendamment huit clients. Définir [[m2]], justifier la loi binomiale et identifier [[m3]] et [[m4]].",
+   "en": "A customer accepts an offer with probability [[m1]]. An adviser contacts eight customers independently. Define [[m2]], justify the binomial distribution and identify [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "e5b817e30ec6": {
+   "fr": "[[m1]] compte les acceptations ; répétition de 8 épreuves identiques et indépendantes, succès de probabilité [[m2]] : [[m3]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]] counts the acceptances; repetition of 8 identical and independent trials, success with probability [[m2]]: [[m3]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 45
+  },
+  "d758b29a6f00": {
+   "fr": "[[m1]] si [[m2]] compte les succès dans [[m3]] épreuves indépendantes de même probabilité [[m4]].",
+   "en": "[[m1]] if [[m2]] counts the successes in [[m3]] independent trials with the same probability [[m4]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "61a3c65ff1a4": {
+   "fr": "[[m1]] compte les acceptations ; répétition de 8 épreuves identiques et indépendantes, succès de probabilité [[m2]] : [[m3]].",
+   "en": "[[m1]] counts the acceptances; repetition of 8 identical and independent trials, success with probability [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 48
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and give a confidence level from 1 to 4. Essential question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 49
+  },
+  "dbb3266ce3d8": {
+   "fr": "Triangle de Pascal et coefficients binomiaux",
+   "en": "Pascal's triangle and binomial coefficients",
+   "status": "aligned",
+   "order": 50
+  },
+  "518af6e316fd": {
+   "fr": "Construire le triangle de Pascal.",
+   "en": "Build Pascal's triangle.",
+   "status": "aligned",
+   "order": 51
+  },
+  "d7117e64205e": {
+   "fr": "Lire [[m1]].",
+   "en": "Read [[m1]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "93c95182ce94": {
+   "fr": "Interpréter un coefficient.",
+   "en": "Interpret a coefficient.",
+   "status": "aligned",
+   "order": 53
+  },
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "status": "aligned",
+   "order": 54
+  },
+  "bfdb3d574cf4": {
+   "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$3$}",
+   "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$3$}",
+   "status": "aligned",
+   "order": 55
+  },
+  "8562726923a3": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : construire le triangle de pascal et lire [[m1]].",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: build Pascal's triangle and read [[m1]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "09a6b46ffedf": {
+   "fr": "Construire les lignes [[m1]] à [[m2]] du triangle de Pascal. Expliquer le calcul du nombre [[m3]] de la ligne [[m4]], puis lire [[m5]] et [[m6]].",
+   "en": "Build rows [[m1]] to [[m2]] of Pascal's triangle. Explain the calculation of the number [[m3]] in row [[m4]], then read [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "7e45ddd5f430": {
+   "fr": "Chaque nombre intérieur est la somme des deux nombres situés au-dessus. [[m1]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "Each interior number is the sum of the two numbers above it. [[m1]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 58
+  },
+  "52aafa3d752b": {
+   "fr": "Le triangle de Pascal vérifie [[m1]]. Les bords valent [[m2]].",
+   "en": "Pascal's triangle satisfies [[m1]]. The edges equal [[m2]].",
+   "status": "aligned",
+   "order": 59
+  },
+  "b253f9eb2ec2": {
+   "fr": "Chaque nombre intérieur est la somme des deux nombres situés au-dessus. [[m1]].",
+   "en": "Each interior number is the sum of the two numbers above it. [[m1]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "1cbb09891f7d": {
+   "fr": "Probabilités binomiales",
+   "en": "Binomial probabilities",
+   "status": "aligned",
+   "order": 61
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "5ed67956b65b": {
+   "fr": "Traduire au moins/au plus.",
+   "en": "Translate at least/at most.",
+   "status": "aligned",
+   "order": 63
+  },
+  "30363c2cc9ad": {
+   "fr": "Utiliser le complémentaire.",
+   "en": "Use the complement.",
+   "status": "aligned",
+   "order": 64
+  },
+  "cc52747df950": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+6$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+6$}",
+   "status": "aligned",
+   "order": 65
+  },
+  "2ff8f9301dab": {
+   "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$4$}",
+   "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$4$}",
+   "status": "aligned",
+   "order": 66
+  },
+  "707e8e9507bd": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer [[m1]] et traduire au moins/au plus.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: calculate [[m1]] and translate at least/at most.",
+   "status": "aligned",
+   "order": 67
+  },
+  "a8c71a088e75": {
+   "fr": "Pour [[m1]], calculer [[m2]], [[m3]] puis [[m4]]. Traduire chaque événement en phrase.",
+   "en": "For [[m1]], calculate [[m2]], [[m3]], then [[m4]]. Translate each event into a sentence.",
+   "status": "aligned",
+   "order": 68
+  },
+  "311623b7de2a": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]; [[m2]]; [[m3]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 69
+  },
+  "f1017012f6d1": {
+   "fr": "Si [[m1]], alors [[m2]]. Traduire soigneusement « au moins », « au plus » et « aucun ».",
+   "en": "If [[m1]], then [[m2]]. Translate ``at least'', ``at most'' and ``none'' carefully.",
+   "status": "aligned",
+   "order": 70
+  },
+  "3cc0873cec7e": {
+   "fr": "Bilan du chapitre et évaluation",
+   "en": "Chapter review and test",
+   "status": "aligned",
+   "order": 71
+  },
+  "491c89f521c0": {
+   "fr": "Calculer et interpréter [[m1]].",
+   "en": "Calculate and interpret [[m1]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "9788442685ad": {
+   "fr": "Résoudre un problème binomial.",
+   "en": "Solve a binomial problem.",
+   "status": "aligned",
+   "order": 73
+  },
+  "09042b6c85c6": {
+   "fr": "Analyser ses erreurs.",
+   "en": "Analyse one's mistakes.",
+   "status": "aligned",
+   "order": 74
+  },
+  "26b897c1cab5": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$20$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$20$}",
+   "status": "aligned",
+   "order": 75
+  },
+  "252e122e5f73": {
+   "fr": "Calculer l'espérance de [[m1]] constant égal à [[m2]]. \\mxblank{$5$}",
+   "en": "Calculate the expected value of the constant [[m1]] equal to [[m2]]. \\mxblank{$5$}",
+   "status": "aligned",
+   "order": 76
+  },
+  "d0c45025aa7e": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer et interpréter [[m1]] et résoudre un problème binomial.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: calculate and interpret [[m1]] and solve a binomial problem.",
+   "status": "aligned",
+   "order": 77
+  },
+  "d344da197334": {
+   "fr": "Un centre reçoit [[m1]] groupes de [[m2]] clients, chaque client réclamant avec probabilité [[m3]]. Estimer le nombre moyen de réclamations par groupe, puis sur l'ensemble des groupes. Discuter ce que l'espérance permet ou non de prévoir.",
+   "en": "A centre receives [[m1]] groups of [[m2]] customers, each customer complaining with probability [[m3]]. Estimate the average number of complaints per group, then over all the groups. Discuss what the expected value does and does not allow us to predict.",
+   "status": "aligned",
+   "order": 78
+  },
+  "97e8f67be3f2": {
+   "fr": "Par groupe [[m1]]. Sur 120 groupes, environ [[m2]] réclamations en moyenne ; ce n'est pas une certitude. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "Per group [[m1]]. Over 120 groups, about [[m2]] complaints on average; this is not a certainty. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 79
+  },
+  "4fbfc0daab04": {
+   "fr": "Pour [[m1]], [[m2]]. La valeur donne le nombre moyen de succès sur un grand nombre de séries de [[m3]] épreuves.",
+   "en": "For [[m1]], [[m2]]. The value gives the average number of successes over a large number of series of [[m3]] trials.",
+   "status": "aligned",
+   "order": 80
+  },
+  "a9eb1cf1e790": {
+   "fr": "Par groupe [[m1]]. Sur 120 groupes, environ [[m2]] réclamations en moyenne ; ce n'est pas une certitude.",
+   "en": "Per group [[m1]]. Over 120 groups, about [[m2]] complaints on average; this is not a certainty.",
+   "status": "aligned",
+   "order": 81
+  }
+ }
+}

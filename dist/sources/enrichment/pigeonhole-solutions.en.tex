@@ -1,0 +1,40 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-pigeonhole-solutions}{The pigeonhole principle}
+\mxsubtitle{High school · olympiad thinking \textperiodcentered{} Worked solutions \textperiodcentered{} 02}
+
+\begin{exercise}
+Show that among 25 people, at least three were born in the same month.
+\end{exercise}
+\begin{solution}
+At most two per month would give at most 24 people. Therefore one month contains at least three.
+\end{solution}
+
+\begin{exercise}
+Choose six distinct numbers from $\{1,\ldots ,10\}$. Prove that two sum to 11.
+\end{exercise}
+\begin{solution}
+The five boxes are $\{1,10\}$, $\{2,9\}$, $\{3,8\}$, $\{4,7\}$, $\{5,6\}$. Six choices fill at least one pair.
+\end{solution}
+
+\begin{exercise}
+Prove that among eight integers, two have a difference divisible by 7.
+\end{exercise}
+\begin{solution}
+There are seven possible remainders modulo 7. Two integers share a remainder, so their difference is a multiple of 7.
+\end{solution}
+
+\begin{exercise}
+Five points lie in a square of side 2, including its boundary. Show that two are at distance at most $\sqrt{2}$.
+\end{exercise}
+\begin{solution}
+Divide the square into four unit squares, assigning each boundary point to just one square. Two points share a unit square, whose diagonal is $\sqrt{2}$.
+\end{solution}
+
+\begin{problem}[Investigate, justify, conclude]
+Choose 11 distinct integers from 1 to 20. Write each as $2^{k}m$ with m odd and $k \geq  0$. How many values of m are possible? Prove that one selected integer divides another. Show that the conclusion can fail with only ten integers.
+\end{problem}
+\begin{solution}
+Remove all factors of 2. The ten possible odd parts are $1,3,\ldots ,19$. Two chosen numbers share an odd part: $2^{a}m$ and $2^{b}m$, with $a < b$ because they are distinct. The second is $2^{b-a}$ times the first. For ten numbers choose $11,12,\ldots ,20$: twice any of them exceeds 20, so none divides another distinct one.
+\end{solution}
+

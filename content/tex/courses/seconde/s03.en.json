@@ -1,0 +1,347 @@
+{
+ "unit": "s03.fr.tex",
+ "segments": {
+  "1f0e26671949": {
+   "fr": "Droites du plan",
+   "en": "Straight lines in the plane",
+   "status": "aligned",
+   "order": 0
+  },
+  "cb412a13ca67": {
+   "fr": "1--16 octobre 2026",
+   "en": "1--16 October 2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "0e35bfe9843a": {
+   "fr": "Vecteur directeur et équation cartésienne",
+   "en": "Direction vector and Cartesian equation",
+   "status": "aligned",
+   "order": 2
+  },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 3
+  },
+  "a8d06204d5bd": {
+   "fr": "Un vecteur directeur d'une droite est un vecteur \\textbf{non nul} ayant la direction de cette droite. Si [[m1]], [[m2]] dirige [[m3]].\nToute droite admet une équation [[m4]] avec [[m5]]. Un vecteur directeur est [[m6]].",
+   "en": "A direction vector of a line is a \\textbf{nonzero} vector having the direction of that line. If [[m1]], [[m2]] directs [[m3]].\nEvery line has an equation [[m4]] with [[m5]]. A direction vector is [[m6]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "fd752f34c435": {
+   "fr": "Pour [[m1]] et [[m2]], calculer [[m3]] puis vérifier que [[m4]] dirige [[m5]].",
+   "en": "For [[m1]] and [[m2]], calculate [[m3]] then check that [[m4]] directs [[m5]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "5e5daf6d819e": {
+   "fr": "[[m1]]. Le vecteur [[m2]] est non nul et colinéaire à [[m3]] ; il dirige donc [[m4]].",
+   "en": "[[m1]]. The vector [[m2]] is nonzero and collinear with [[m3]]; it therefore directs [[m4]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "0bb9ef6fb19d": {
+   "fr": "Établir une équation à l'aide du déterminant",
+   "en": "Establishing an equation with the determinant",
+   "status": "aligned",
+   "order": 7
+  },
+  "06cff908b7fa": {
+   "fr": "La droite passant par [[m1]] et dirigée par [[m2]] a pour équation",
+   "en": "The line through [[m1]] with direction vector [[m2]] has equation",
+   "status": "aligned",
+   "order": 8
+  },
+  "778754c1ee63": {
+   "fr": "Un point [[m1]] appartient à la droite si et seulement si [[m2]] est colinéaire à [[m3]], y compris pour [[m4]]. Or",
+   "en": "A point [[m1]] belongs to the line if and only if [[m2]] is collinear with [[m3]], including for [[m4]]. Now",
+   "status": "aligned",
+   "order": 9
+  },
+  "06b11d958f62": {
+   "fr": "L'annulation du déterminant donne l'équation annoncée. En développant, [[m1]], [[m2]] et [[m3]] ; comme [[m4]], [[m5]].",
+   "en": "Setting the determinant to zero gives the stated equation. Expanding, [[m1]], [[m2]] and [[m3]]; since [[m4]], [[m5]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "56e25cb24a0a": {
+   "fr": "Le vecteur nul ne dirige aucune droite. Le signe du déterminant dépend de l'ordre des vecteurs, mais son annulation n'en dépend pas.",
+   "en": "The zero vector directs no line. The sign of the determinant depends on the order of the vectors, but whether it vanishes does not.",
+   "status": "aligned",
+   "order": 11
+  },
+  "e25dbf7af0c3": {
+   "fr": "Déterminer une équation de droite",
+   "en": "Determining the equation of a line",
+   "status": "aligned",
+   "order": 12
+  },
+  "631e1a5fc796": {
+   "fr": "À partir d'un point et d'un vecteur directeur : choisir [[m1]] puis remplacer [[m2]] par les coordonnées du point pour trouver [[m3]]. À partir de deux points distincts : calculer d'abord un vecteur directeur.",
+   "en": "From a point and a direction vector: choose [[m1]] then replace [[m2]] by the coordinates of the point to find [[m3]]. From two distinct points: first calculate a direction vector.",
+   "status": "aligned",
+   "order": 13
+  },
+  "ce4e9d45f9f5": {
+   "fr": "Déterminer une équation cartésienne de la droite passant par [[m1]] et dirigée par [[m2]].",
+   "en": "Determine a Cartesian equation of the line through [[m1]] with direction vector [[m2]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "cf121f869af2": {
+   "fr": "[[m1]], [[m2]] conviennent. La droite a donc une équation [[m3]]. Comme [[m4]] lui appartient, [[m5]], d'où [[m6]]. Une équation est [[m7]]. Vérification : [[m8]] et [[m9]] est bien directeur.",
+   "en": "[[m1]], [[m2]] will do. The line therefore has an equation [[m3]]. Since [[m4]] belongs to it, [[m5]], so [[m6]]. An equation is [[m7]]. Check: [[m8]] and [[m9]] is indeed a direction vector.",
+   "status": "aligned",
+   "order": 15
+  },
+  "1b520d4a871d": {
+   "fr": "Déterminer une équation cartésienne de [[m1]] pour [[m2]] et [[m3]].",
+   "en": "Determine a Cartesian equation of [[m1]] for [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "aaa220ebb1ae": {
+   "fr": "[[m1]] dirige la droite. On peut choisir [[m2]]. Avec [[m3]], [[m4]], donc [[m5]]. Ainsi [[m6]]. Pour [[m7]], [[m8]], ce qui confirme le résultat.",
+   "en": "[[m1]] directs the line. We can choose [[m2]]. With [[m3]], [[m4]], so [[m5]]. Thus [[m6]]. For [[m7]], [[m8]], which confirms the result.",
+   "status": "aligned",
+   "order": 17
+  },
+  "062b1ab47c00": {
+   "fr": "Le point [[m1]] appartient-il à [[m2]] ? Le point [[m3]] lui appartient-il ?",
+   "en": "Does the point [[m1]] belong to [[m2]]? Does the point [[m3]] belong to it?",
+   "status": "aligned",
+   "order": 18
+  },
+  "cec972671e58": {
+   "fr": "Pour [[m1]], [[m2]] : oui. Pour [[m3]], [[m4]] : non.",
+   "en": "For [[m1]], [[m2]]: yes. For [[m3]], [[m4]]: no.",
+   "status": "aligned",
+   "order": 19
+  },
+  "c23001657e01": {
+   "fr": "Équation réduite, pente et fonction affine",
+   "en": "Slope-intercept equation, slope and affine function",
+   "status": "aligned",
+   "order": 20
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 21
+  },
+  "da80d1a65fdb": {
+   "fr": "Une droite non verticale a une unique équation réduite [[m1]]. [[m2]] est la pente (coefficient directeur), [[m3]] l'ordonnée à l'origine. Elle représente la fonction affine [[m4]] ; [[m5]] est un vecteur directeur.\nUne droite verticale a une équation [[m6]] ; elle n'est pas la courbe d'une fonction de [[m7]]. Une droite horizontale a une équation [[m8]].",
+   "en": "A non-vertical line has a unique slope-intercept equation [[m1]]. [[m2]] is the slope, [[m3]] the y-intercept. It represents the affine function [[m4]]; [[m5]] is a direction vector.\nA vertical line has an equation [[m6]]; it is not the graph of a function of [[m7]]. A horizontal line has an equation [[m8]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "02a05aba5607": {
+   "fr": "Calcul de pente",
+   "en": "Calculating a slope",
+   "status": "aligned",
+   "order": 23
+  },
+  "43a0ce4327e0": {
+   "fr": "Si [[m1]], la pente de [[m2]] vaut [[m3]]. Pour trouver [[m4]], on utilise ensuite [[m5]].",
+   "en": "If [[m1]], the slope of [[m2]] is [[m3]]. To find [[m4]], we then use [[m5]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "b41a3b62a500": {
+   "fr": "Déterminer l'équation réduite de [[m1]], puis tracer [[m2]].",
+   "en": "Determine the slope-intercept equation of [[m1]], then draw [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "8a37a7575116": {
+   "fr": "[[m1]], donc [[m2]]. Pour [[m3]], placer [[m4]] et [[m5]], puis tracer la droite ; un déplacement de [[m6]] en abscisse correspond à [[m7]] en ordonnée.",
+   "en": "[[m1]], so [[m2]]. For [[m3]], plot [[m4]] and [[m5]], then draw the line; a move of [[m6]] along the x-axis corresponds to [[m7]] on the y-axis.",
+   "status": "aligned",
+   "order": 26
+  },
+  "1c4c0cc4e598": {
+   "fr": "Trouver la fonction affine [[m1]] telle que [[m2]] et [[m3]], puis la fonction affine [[m4]] dont la courbe passe par [[m5]] et [[m6]].",
+   "en": "Find the affine function [[m1]] such that [[m2]] and [[m3]], then the affine function [[m4]] whose graph passes through [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "bec5d36da60a": {
+   "fr": "[[m1]], car [[m2]]. Pour [[m3]], [[m4]] et [[m5]], donc [[m6]].",
+   "en": "[[m1]], since [[m2]]. For [[m3]], [[m4]] and [[m5]], so [[m6]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "0fd2d4f63afc": {
+   "fr": "Positions relatives de deux droites",
+   "en": "Relative positions of two lines",
+   "status": "aligned",
+   "order": 29
+  },
+  "d43f3df4dd1d": {
+   "fr": "Propriétés",
+   "en": "Properties",
+   "status": "aligned",
+   "order": 30
+  },
+  "e906e1b1a772": {
+   "fr": "Deux droites sont sécantes, strictement parallèles ou confondues. Pour [[m1]] et [[m2]] :",
+   "en": "Two lines are either intersecting, strictly parallel or coincident. For [[m1]] and [[m2]]:",
+   "status": "aligned",
+   "order": 31
+  },
+  "0b51abedacb0": {
+   "fr": "si [[m1]], elles sont sécantes ;",
+   "en": "if [[m1]], they intersect;",
+   "status": "aligned",
+   "order": 32
+  },
+  "97ed7875a0f6": {
+   "fr": "si [[m1]] et [[m2]], elles sont strictement parallèles ;",
+   "en": "if [[m1]] and [[m2]], they are strictly parallel;",
+   "status": "aligned",
+   "order": 33
+  },
+  "7a3dfe6fa031": {
+   "fr": "si [[m1]] et [[m2]], elles sont confondues.",
+   "en": "if [[m1]] and [[m2]], they coincide.",
+   "status": "aligned",
+   "order": 34
+  },
+  "d04f5d6b3f6d": {
+   "fr": "Pour des équations cartésiennes, on compare les directions avec le déterminant. Si les directions sont colinéaires, on teste ensuite l'appartenance d'un point pour distinguer droites confondues et strictement parallèles.",
+   "en": "For Cartesian equations, we compare the directions with the determinant. If the directions are collinear, we then test the membership of a point to distinguish coincident lines from strictly parallel ones.",
+   "status": "aligned",
+   "order": 35
+  },
+  "fb2352694c84": {
+   "fr": "Déterminer une équation de [[m1]] passant par [[m2]] et parallèle à [[m3]].",
+   "en": "Determine an equation of [[m1]] through [[m2]] and parallel to [[m3]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "a71e1fef84a7": {
+   "fr": "[[m1]] a pour vecteur directeur [[m2]]. On cherche [[m3]]. Comme [[m4]], [[m5]], donc [[m6]]. Ainsi [[m7]]. Les deux droites sont strictement parallèles, car les constantes diffèrent pour les mêmes coefficients de [[m8]].",
+   "en": "[[m1]] has direction vector [[m2]]. We look for [[m3]]. Since [[m4]], [[m5]], so [[m6]]. Thus [[m7]]. The two lines are strictly parallel, because the constants differ for the same coefficients of [[m8]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "3d39c16125c7": {
+   "fr": "Étudier les positions relatives :",
+   "en": "Study the relative positions:",
+   "status": "aligned",
+   "order": 38
+  },
+  "8cb0442911f7": {
+   "fr": "[[m1]] et [[m2]] ;",
+   "en": "[[m1]] and [[m2]];",
+   "status": "aligned",
+   "order": 39
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "9268b8d4aa4d": {
+   "fr": "1. La deuxième équation est le double de la première : droites confondues. 2. Deux verticales distinctes : strictement parallèles. 3. Les pentes [[m1]] et [[m2]] diffèrent : sécantes. Leur intersection vérifie [[m3]], donc [[m4]] et [[m5]].",
+   "en": "1. The second equation is twice the first: coincident lines. 2. Two distinct vertical lines: strictly parallel. 3. The slopes [[m1]] and [[m2]] differ: intersecting. Their intersection satisfies [[m3]], so [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 41
+  },
+  "24ef3d0b612e": {
+   "fr": "Intersection : résolution par substitution",
+   "en": "Intersection: solving by substitution",
+   "status": "aligned",
+   "order": 42
+  },
+  "33ef02b7a07b": {
+   "fr": "Résoudre un système de deux équations en [[m1]], c'est trouver tous les couples [[m2]] vérifiant simultanément les deux équations. Pour deux équations de droites : une intersection donne un couple solution ; des droites strictement parallèles donnent aucune solution ; des droites confondues donnent une infinité de solutions.",
+   "en": "Solving a system of two equations in [[m1]] means finding all the pairs [[m2]] satisfying both equations simultaneously. For two equations of lines: an intersection gives one solution pair; strictly parallel lines give no solution; coincident lines give infinitely many solutions.",
+   "status": "aligned",
+   "order": 43
+  },
+  "03bf457162f6": {
+   "fr": "Substitution",
+   "en": "Substitution",
+   "status": "aligned",
+   "order": 44
+  },
+  "04a49d4455d4": {
+   "fr": "Isoler une inconnue dans une équation, remplacer son expression dans l'autre, résoudre puis retrouver la seconde inconnue. Vérifier le couple dans les deux équations initiales.",
+   "en": "Isolate one unknown in one equation, substitute its expression into the other, solve, then find the second unknown. Check the pair in both original equations.",
+   "status": "aligned",
+   "order": 45
+  },
+  "01ccb9e67d24": {
+   "fr": "Résoudre [[m1]]",
+   "en": "Solve [[m1]]",
+   "status": "aligned",
+   "order": 46
+  },
+  "f48bb87b9eab": {
+   "fr": "La première équation donne [[m1]]. En remplaçant dans la seconde : [[m2]], soit [[m3]]. Ainsi [[m4]] puis [[m5]]. L'ensemble solution est [[m6]]. Les substitutions donnent [[m7]] et [[m8]].",
+   "en": "The first equation gives [[m1]]. Substituting into the second: [[m2]], that is [[m3]]. Thus [[m4]] then [[m5]]. The solution set is [[m6]]. The substitutions give [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "039bb5b89d77": {
+   "fr": "Résoudre par substitution :",
+   "en": "Solve by substitution:",
+   "status": "aligned",
+   "order": 48
+  },
+  "efde407d5e35": {
+   "fr": "(a) [[m1]] puis [[m2]], d'où [[m3]], [[m4]].\\\\(b) [[m5]] ; [[m6]], donc [[m7]], puis [[m8]].",
+   "en": "(a) [[m1]] then [[m2]], so [[m3]], [[m4]].\\\\(b) [[m5]]; [[m6]], so [[m7]], then [[m8]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "1a793a3571ac": {
+   "fr": "Combinaison linéaire et Python",
+   "en": "Linear combination and Python",
+   "status": "aligned",
+   "order": 50
+  },
+  "7cb07c30eb2b": {
+   "fr": "Combinaison linéaire",
+   "en": "Linear combination",
+   "status": "aligned",
+   "order": 51
+  },
+  "593857c8b77a": {
+   "fr": "Multiplier les équations par des nombres non nuls pour obtenir des coefficients opposés d'une inconnue ; les additionner pour éliminer cette inconnue. Conserver une équation du système pour calculer l'autre inconnue.",
+   "en": "Multiply the equations by nonzero numbers to obtain opposite coefficients for one unknown; add them to eliminate that unknown. Keep one equation of the system to calculate the other unknown.",
+   "status": "aligned",
+   "order": 52
+  },
+  "2134c41bce16": {
+   "fr": "Résoudre [[m1]] Reprendre ensuite les deux systèmes de l'exemple précédent par combinaison.",
+   "en": "Solve [[m1]] Then redo the two systems of the previous example by linear combination.",
+   "status": "aligned",
+   "order": 53
+  },
+  "64dbc196313f": {
+   "fr": "Multiplier la première équation par [[m1]] et la seconde par [[m2]] donne [[m3]] et [[m4]]. La somme donne [[m5]], d'où [[m6]]. Puis [[m7]], donc [[m8]].\nPour (a), ajouter quatre fois la première équation à la seconde : [[m9]], donc [[m10]]. Pour (b), soustraire deux fois la première à la seconde : [[m11]], donc [[m12]].",
+   "en": "Multiplying the first equation by [[m1]] and the second by [[m2]] gives [[m3]] and [[m4]]. The sum gives [[m5]], so [[m6]]. Then [[m7]], so [[m8]].\nFor (a), add four times the first equation to the second: [[m9]], so [[m10]]. For (b), subtract twice the first from the second: [[m11]], so [[m12]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "df6cddc9c275": {
+   "fr": "Prévoir \\texttt{alignes((0,0), (2,1), (6,3))} puis \\texttt{alignes((0,0), (2,1), (6,4))}.",
+   "en": "Predict \\texttt{alignes((0,0), (2,1), (6,3))} then \\texttt{alignes((0,0), (2,1), (6,4))}.",
+   "status": "aligned",
+   "order": 55
+  },
+  "6e19944b3ba2": {
+   "fr": "\\texttt{True}, puis \\texttt{False} : les déterminants sont [[m1]] et [[m2]]. Le test exact convient ici aux coordonnées entières ; les approximations flottantes demandent de tenir compte des erreurs numériques.",
+   "en": "\\texttt{True}, then \\texttt{False}: the determinants are [[m1]] and [[m2]]. The exact test is suitable here for integer coordinates; floating-point approximations require taking numerical errors into account.",
+   "status": "aligned",
+   "order": 56
+  }
+ }
+}

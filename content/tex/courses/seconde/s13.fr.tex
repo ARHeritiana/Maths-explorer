@@ -1,0 +1,37 @@
+\mxunit{seconde-s13}{Problèmes de synthèse, raisonnement et automatismes}\mxsubtitle{30 mars--9 avril 2027}
+\section{Implication, réciproque et contre-exemple}
+\begin{keypoint}[Outils à utiliser en situation]
+« Si $P$, alors $Q$ » est une implication $P\Rightarrow Q$. Sa réciproque est $Q\Rightarrow P$ ; elle n'est pas automatiquement vraie. Une équivalence $P\iff Q$ exige les deux implications.
+Un contre-exemple suffit à réfuter une assertion universelle ; quelques exemples ne suffisent pas à la prouver. La contraposée $\text{non }Q\Rightarrow\text{non }P$ est équivalente à $P\Rightarrow Q$.
+\end{keypoint}
+\begin{example}Pour un entier $n$ : « Si $n$ est multiple de $4$, alors $n$ est pair. » Démontrer l'implication, écrire sa réciproque et sa contraposée, puis dire lesquelles sont vraies.\end{example}
+\mxanswerspace[5]{Si $n=4k$, alors $n=2(2k)$ est pair. Réciproque : « Si $n$ est pair, alors $n$ est multiple de $4$ » ; elle est fausse avec $n=2$. Contraposée : « Si $n$ est impair, alors $n$ n'est pas multiple de $4$ » ; elle est vraie et équivalente à l'implication initiale.}
+\begin{example}Pour $x\in\R$, étudier « $x=3\Rightarrow x^2=9$ » et sa réciproque. Donner une équivalence correcte.\end{example}
+\mxanswerspace[3.2]{L'implication est vraie. La réciproque est fausse avec $x=-3$. L'équivalence correcte est $x^2=9\iff x=3\text{ ou }x=-3$. Avec l'hypothèse supplémentaire $x\geq0$, on peut écrire $x^2=9\iff x=3$.}
+\begin{teachernote}Ces notions sont explicitées à partir des problèmes ; elles ne constituent pas un chapitre autonome de logique formelle à mémoriser sans contexte.\end{teachernote}
+
+\mxsection{Négation, disjonction de cas et preuve}
+\begin{example}Nier correctement : « $x>2$ » ; « $x\in\intff{1}{4}$ » ; « Tous les élèves font du sport » ; « $A$ et $B$ sont réalisés ».\end{example}
+\mxanswerspace[4]{« $x\leq2$ » ; « $x<1$ ou $x>4$ » ; « Au moins un élève ne fait pas de sport » ; « $A$ n'est pas réalisé ou $B$ n'est pas réalisé ». Le « ou » est inclusif.}
+\begin{example}Montrer par disjonction de cas que $n(n+1)$ est pair pour tout entier $n$. Montrer ensuite que $n^2+n+1$ est impair.\end{example}
+\mxanswerspace[4]{Si $n$ est pair, $n(n+1)$ a un facteur pair. Si $n$ est impair, $n+1$ est pair ; le produit est encore pair. Les deux cas couvrent tous les entiers. Comme $n^2+n+1=n(n+1)+1$, c'est un entier impair.}
+\begin{example}Un élève écrit « $n^2$ pair implique $n$ pair, parce que je l'ai vérifié pour $n=2,4,6$ ». Remplacer cette justification par une preuve.\end{example}
+\mxanswerspace[3.2]{Si $n$ était impair, le résultat démontré en séquence 1 donnerait $n^2$ impair, contradiction. C'est un raisonnement par contraposée, ou présenté ici par l'absurde. Trois exemples ne traitent pas tous les entiers.}
+
+\mxsection{Croiser algèbre, fonctions et pourcentages}
+\begin{example}[Situation créée]Deux tarifs fictifs de location sont proposés pour $x$ heures, avec $x\in\intff{0}{8}$ : $A(x)=3000+2000x$ Ar et $B(x)=3500x$ Ar.
+\begin{enumerate}\item Calculer les coûts pour $1$ h et $4$ h.\item Trouver l'égalité des tarifs puis les durées où $A$ est moins cher.\item Une remise de $\pc{10}$ est accordée sur tout le tarif $A$. Donner le nouveau tarif $A_r$ et le nouveau seuil de comparaison.\end{enumerate}\end{example}
+\mxanswerspace[6]{1. À $1$ h : $5000$ Ar contre $3500$ Ar. À $4$ h : $11000$ Ar contre $14000$ Ar. 2. $3000+2000x=3500x\iff x=2$. $A<B$ pour $x>2$, donc sur $\intof{2}{8}$. 3. $A_r(x)=\num{0,9}(3000+2000x)=2700+1800x$. L'égalité avec $B$ donne $1700x=2700$, soit $x=27/17\approx\num{1,59}$ h. $A_r<B$ sur $\intof{27/17}{8}$. La remise s'applique aussi au forfait fixe.}
+\begin{lstlisting}
+def tarif_moins_cher(x):
+    a = 3000 + 2000*x
+    b = 3500*x
+    if a < b:
+        return "A"
+    elif b < a:
+        return "B"
+    else:
+        return "egalite"
+\end{lstlisting}
+\begin{example}Prévoir les résultats pour $x=1,2,4$. Modifier la ligne qui calcule $a$ pour prendre en compte la remise.\end{example}
+\mxanswerspace[2.4]{Résultats : \texttt{"B"}, \texttt{"egalite"}, \texttt{"A"}. Remplacer par \texttt{a = 0.9*(3000 + 2000*x)}. Le domaine $\intff{0}{8}$ est supposé respecté lors des appels.}

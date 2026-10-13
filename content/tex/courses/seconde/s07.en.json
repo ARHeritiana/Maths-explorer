@@ -1,0 +1,569 @@
+{
+ "unit": "s07.fr.tex",
+ "segments": {
+  "cd7021ebb135": {
+   "fr": "Statistiques descriptives à une variable",
+   "en": "One-variable descriptive statistics",
+   "status": "aligned",
+   "order": 0
+  },
+  "9dd4f7ba0a79": {
+   "fr": "7--18 décembre 2026",
+   "en": "7--18 December 2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "9dba388af9cc": {
+   "fr": "Effectifs, fréquences et moyenne",
+   "en": "Frequencies, relative frequencies and mean",
+   "status": "aligned",
+   "order": 2
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 3
+  },
+  "1ad433202872": {
+   "fr": "Une série décrit un caractère sur une population. Si la valeur [[m1]] apparaît [[m2]] fois, [[m3]] est son effectif. L'effectif total non nul est [[m4]] ; sa fréquence est [[m5]]. La moyenne est",
+   "en": "A data set describes a characteristic over a population. If the value [[m1]] appears [[m2]] times, [[m3]] is its frequency count. The nonzero total count is [[m4]]; its relative frequency is [[m5]]. The mean is",
+   "status": "aligned",
+   "order": 4
+  },
+  "437a2035989c": {
+   "fr": "L'étendue est [[m1]].",
+   "en": "The range is [[m1]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "8e91fce467fe": {
+   "fr": "Pointures -- données du livret",
+   "en": "Shoe sizes -- booklet data",
+   "status": "aligned",
+   "order": 6
+  },
+  "3b3739dbf9e8": {
+   "fr": "On étudie les pointures de [[m1]] élèves :",
+   "en": "We study the shoe sizes of [[m1]] students:",
+   "status": "aligned",
+   "order": 7
+  },
+  "481345b1a38a": {
+   "fr": "Compléter les effectifs, calculer les fréquences, la moyenne et l'étendue.",
+   "en": "Complete the counts, calculate the relative frequencies, the mean and the range.",
+   "status": "aligned",
+   "order": 8
+  },
+  "a41dec33581e": {
+   "fr": "Pointure",
+   "en": "Size",
+   "status": "aligned",
+   "order": 9
+  },
+  "bbfbd27560b6": {
+   "fr": "Effectif",
+   "en": "Count",
+   "status": "aligned",
+   "order": 10
+  },
+  "9705d336af9c": {
+   "fr": "\\mxblank{3}",
+   "en": "\\mxblank{3}",
+   "status": "aligned",
+   "order": 11
+  },
+  "4b7bd2a59ff1": {
+   "fr": "\\mxblank{0}",
+   "en": "\\mxblank{0}",
+   "status": "aligned",
+   "order": 12
+  },
+  "166220321265": {
+   "fr": "\\mxblank{2}",
+   "en": "\\mxblank{2}",
+   "status": "aligned",
+   "order": 14
+  },
+  "88be9afc9c86": {
+   "fr": "\\mxblank{5}",
+   "en": "\\mxblank{5}",
+   "status": "aligned",
+   "order": 15
+  },
+  "89a1709e84e0": {
+   "fr": "\\mxblank{6}",
+   "en": "\\mxblank{6}",
+   "status": "aligned",
+   "order": 17
+  },
+  "8c91018339e9": {
+   "fr": "\\mxblank{4}",
+   "en": "\\mxblank{4}",
+   "status": "aligned",
+   "order": 18
+  },
+  "1fccb884e982": {
+   "fr": "Effectifs : [[m1]], de somme [[m2]]. Les fréquences sont ces effectifs divisés par [[m3]], soit en pourcentage [[m4]] ; [[m5]] ; [[m6]] ; environ [[m7]] ; [[m8]] ; [[m9]] ; [[m10]] ; [[m11]] ; [[m12]].\n[[m13]], donc [[m14]]. L'étendue vaut [[m15]]. La moyenne n'est pas forcément une valeur de la série. La somme des pourcentages arrondis peut différer légèrement de [[m16]].",
+   "en": "Counts: [[m1]], with sum [[m2]]. The relative frequencies are these counts divided by [[m3]], that is as percentages [[m4]]; [[m5]]; [[m6]]; about [[m7]]; [[m8]]; [[m9]]; [[m10]]; [[m11]]; [[m12]].\n[[m13]], so [[m14]]. The range is [[m15]]. The mean is not necessarily a value of the data set. The sum of the rounded percentages may differ slightly from [[m16]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "ca208577ab48": {
+   "fr": "Médiane et effectifs cumulés",
+   "en": "Median and cumulative counts",
+   "status": "aligned",
+   "order": 21
+  },
+  "bcba7b5c90ea": {
+   "fr": "Définition et convention",
+   "en": "Definition and convention",
+   "status": "aligned",
+   "order": 22
+  },
+  "bb2a5d03e11a": {
+   "fr": "Une médiane est un nombre tel qu'au moins la moitié des valeurs lui soient inférieures ou égales, et au moins la moitié supérieures ou égales.\nDans la série ordonnée de [[m1]] valeurs, si [[m2]] est impair, prendre le rang [[m3]] ; si [[m4]] est pair, choisir la moyenne des valeurs de rangs [[m5]] et [[m6]].",
+   "en": "A median is a number such that at least half of the values are less than or equal to it, and at least half are greater than or equal to it.\nIn the ordered data set of [[m1]] values, if [[m2]] is odd, take the value of rank [[m3]]; if [[m4]] is even, choose the mean of the values of ranks [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "0c24a2be3fb5": {
+   "fr": "Avec des répétitions, plus de [[m1]] des valeurs peuvent être inférieures ou égales à la médiane.",
+   "en": "With repeated values, more than [[m1]] of the values can be less than or equal to the median.",
+   "status": "aligned",
+   "order": 24
+  },
+  "4078a88a8232": {
+   "fr": "Compléter les effectifs cumulés croissants (ECC) des pointures et déterminer la médiane.",
+   "en": "Complete the ascending cumulative counts (ACC) of the shoe sizes and determine the median.",
+   "status": "aligned",
+   "order": 25
+  },
+  "7d2cf73775f4": {
+   "fr": "2\\\\\nECC",
+   "en": "2\\\\\nACC",
+   "status": "aligned",
+   "order": 28
+  },
+  "e19d77e170af": {
+   "fr": "\\mxblank{8}",
+   "en": "\\mxblank{8}",
+   "status": "aligned",
+   "order": 32
+  },
+  "5842165b8974": {
+   "fr": "\\mxblank{13}",
+   "en": "\\mxblank{13}",
+   "status": "aligned",
+   "order": 33
+  },
+  "59fbf342934f": {
+   "fr": "\\mxblank{18}",
+   "en": "\\mxblank{18}",
+   "status": "aligned",
+   "order": 34
+  },
+  "85bc76d4f5fc": {
+   "fr": "\\mxblank{24}",
+   "en": "\\mxblank{24}",
+   "status": "aligned",
+   "order": 35
+  },
+  "118cfebec51b": {
+   "fr": "\\mxblank{28}",
+   "en": "\\mxblank{28}",
+   "status": "aligned",
+   "order": 36
+  },
+  "20bdccf9af97": {
+   "fr": "\\mxblank{30}",
+   "en": "\\mxblank{30}",
+   "status": "aligned",
+   "order": 37
+  },
+  "26cba2ddc66d": {
+   "fr": "Les rangs centraux sont [[m1]] et [[m2]]. Les ECC passent de [[m3]] pour [[m4]] à [[m5]] pour [[m6]] : les deux valeurs centrales valent [[m7]], donc [[m8]]. Au moins la moitié des pointures sont inférieures ou égales à [[m9]], et au moins la moitié supérieures ou égales à [[m10]].",
+   "en": "The central ranks are [[m1]] and [[m2]]. The ACC goes from [[m3]] for [[m4]] to [[m5]] for [[m6]]: both central values equal [[m7]], so [[m8]]. At least half of the sizes are less than or equal to [[m9]], and at least half are greater than or equal to [[m10]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "aef9bf135866": {
+   "fr": "Calculer les médianes de [[m1]] et de [[m2]].",
+   "en": "Calculate the medians of [[m1]] and of [[m2]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "a87116cbbdc8": {
+   "fr": "La troisième valeur de la première série vaut [[m1]]. Dans la seconde, [[m2]] ; la médiane choisie n'est pas une valeur de la série.",
+   "en": "The third value of the first data set is [[m1]]. In the second, [[m2]]; the chosen median is not a value of the data set.",
+   "status": "aligned",
+   "order": 40
+  },
+  "212ccf0b7d19": {
+   "fr": "Quartiles et diagramme en boîte",
+   "en": "Quartiles and box plot",
+   "status": "aligned",
+   "order": 41
+  },
+  "7d360ff8e763": {
+   "fr": "Le premier quartile [[m1]] est la valeur de rang [[m2]] : la plus petite valeur de la série telle qu'au moins [[m3]] des valeurs lui soient inférieures ou égales. [[m4]] est la valeur de rang [[m5]].\nL'écart interquartile est [[m6]]. Le diagramme en boîte indique minimum, [[m7]], médiane, [[m8]], maximum.",
+   "en": "The first quartile [[m1]] is the value of rank [[m2]]: the smallest value of the data set such that at least [[m3]] of the values are less than or equal to it. [[m4]] is the value of rank [[m5]].\nThe interquartile range is [[m6]]. The box plot shows the minimum, [[m7]], the median, [[m8]] and the maximum.",
+   "status": "aligned",
+   "order": 43
+  },
+  "67ca42669a8b": {
+   "fr": "Déterminer [[m1]], [[m2]] et l'écart interquartile des pointures, puis tracer le diagramme en boîte.",
+   "en": "Determine [[m1]], [[m2]] and the interquartile range of the shoe sizes, then draw the box plot.",
+   "status": "aligned",
+   "order": 44
+  },
+  "de1b90494ea3": {
+   "fr": "[[m1]] : rang [[m2]], donc [[m3]]. [[m4]] : rang [[m5]], donc [[m6]]. Écart interquartile [[m7]]. Le diagramme utilise [[m8]].",
+   "en": "[[m1]]: rank [[m2]], so [[m3]]. [[m4]]: rank [[m5]], so [[m6]]. Interquartile range [[m7]]. The plot uses [[m8]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "c0fd1ede6b0f": {
+   "fr": "Déterminer les quartiles de [[m1]]. Y a-t-il exactement [[m2]] des valeurs inférieures ou égales à [[m3]] ?",
+   "en": "Determine the quartiles of [[m1]]. Are exactly [[m2]] of the values less than or equal to [[m3]]?",
+   "status": "aligned",
+   "order": 46
+  },
+  "c0b747b290fe": {
+   "fr": "[[m1]] (rang [[m2]]), [[m3]] (rang [[m4]]). Ici [[m5]] des valeurs sont inférieures ou égales à [[m6]]. Il faut dire « au moins ».",
+   "en": "[[m1]] (rank [[m2]]), [[m3]] (rank [[m4]]). Here [[m5]] of the values are less than or equal to [[m6]]. One must say ``at least''.",
+   "status": "aligned",
+   "order": 47
+  },
+  "7b71352a6b8c": {
+   "fr": "Ajout ou suppression d'une valeur",
+   "en": "Adding or removing a value",
+   "status": "aligned",
+   "order": 48
+  },
+  "d43f3df4dd1d": {
+   "fr": "Propriétés",
+   "en": "Properties",
+   "status": "aligned",
+   "order": 49
+  },
+  "0d9485ae14fe": {
+   "fr": "Ajouter [[m1]] à une série de taille [[m2]] donne [[m3]].\nRetirer une occurrence de [[m4]], pour [[m5]], donne [[m6]]. Utiliser la somme exacte, sans arrondi intermédiaire. Réexaminer la médiane dans la nouvelle série ordonnée.",
+   "en": "Adding [[m1]] to a data set of size [[m2]] gives [[m3]].\nRemoving one occurrence of [[m4]], for [[m5]], gives [[m6]]. Use the exact sum, with no intermediate rounding. Re-examine the median in the new ordered data set.",
+   "status": "aligned",
+   "order": 50
+  },
+  "7933084a6999": {
+   "fr": "Dans la série des pointures, la somme vaut [[m1]], la médiane [[m2]].",
+   "en": "In the shoe-size data, the sum is [[m1]] and the median [[m2]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "10439f87eaab": {
+   "fr": "Ajouter une pointure [[m1]] et calculer les nouveaux indicateurs.",
+   "en": "Add a size [[m1]] and calculate the new statistics.",
+   "status": "aligned",
+   "order": 52
+  },
+  "7bf3b748bb77": {
+   "fr": "Repartir de la série initiale, retirer une pointure [[m1]] et recommencer.",
+   "en": "Starting again from the initial data, remove a size [[m1]] and repeat.",
+   "status": "aligned",
+   "order": 53
+  },
+  "5d222c036201": {
+   "fr": "1. Somme [[m1]], effectif [[m2]] : [[m3]]. Le rang central [[m4]] donne toujours [[m5]]. 2. Somme [[m6]], effectif [[m7]] : [[m8]]. Le rang central [[m9]] donne [[m10]]. La moyenne diminue dans les deux cas ; la médiane reste inchangée. Les situations sont indépendantes.",
+   "en": "1. Sum [[m1]], count [[m2]]: [[m3]]. The central rank [[m4]] still gives [[m5]]. 2. Sum [[m6]], count [[m7]]: [[m8]]. The central rank [[m9]] gives [[m10]]. The mean decreases in both cases; the median is unchanged. The situations are independent.",
+   "status": "aligned",
+   "order": 54
+  },
+  "0abd24ee8dab": {
+   "fr": "Justifier qu'ajouter la moyenne ne change pas la moyenne. L'étendue peut-elle diminuer lors d'un ajout ?",
+   "en": "Justify that adding the mean does not change the mean. Can the range decrease when a value is added?",
+   "status": "aligned",
+   "order": 55
+  },
+  "9ba1bad48766": {
+   "fr": "Si [[m1]], [[m2]]. Lors d'un ajout, le minimum ne peut qu'être conservé ou diminuer, le maximum être conservé ou augmenter : l'étendue ne diminue pas. Lors d'une suppression, elle n'augmente pas.",
+   "en": "If [[m1]], [[m2]]. When adding, the minimum can only stay the same or decrease, the maximum stay the same or increase: the range does not decrease. When removing, it does not increase.",
+   "status": "aligned",
+   "order": 56
+  },
+  "cffd12bc9ea9": {
+   "fr": "Variance et écart type",
+   "en": "Variance and standard deviation",
+   "status": "aligned",
+   "order": 57
+  },
+  "3bf740c26283": {
+   "fr": "[[m1]] est la variance ; [[m2]] est l'écart type. Il mesure la dispersion autour de la moyenne et a la même unité que les données. On peut aussi calculer [[m3]].",
+   "en": "[[m1]] is the variance; [[m2]] is the standard deviation. It measures the spread around the mean and has the same unit as the data. One can also compute [[m3]].",
+   "status": "aligned",
+   "order": 59
+  },
+  "3f8043099288": {
+   "fr": "Calculer la variance et l'écart type des pointures.",
+   "en": "Calculate the variance and the standard deviation of the shoe sizes.",
+   "status": "aligned",
+   "order": 60
+  },
+  "71d0d377f4ca": {
+   "fr": "[[m1]], donc",
+   "en": "[[m1]], so",
+   "status": "aligned",
+   "order": 61
+  },
+  "0eccf57daf28": {
+   "fr": "[[m1]]. L'écart type n'est pas la distance maximale à la moyenne.",
+   "en": "[[m1]]. The standard deviation is not the maximum distance from the mean.",
+   "status": "aligned",
+   "order": 62
+  },
+  "36da83d4d3ec": {
+   "fr": "Comparer [[m1]] et [[m2]] avec les couples moyenne--écart type et médiane--écart interquartile.",
+   "en": "Compare [[m1]] and [[m2]] using the mean--standard deviation pair and the median--interquartile range pair.",
+   "status": "aligned",
+   "order": 63
+  },
+  "ce0533980bd4": {
+   "fr": "Les moyennes et médianes valent toutes [[m1]]. [[m2]], [[m3]] ; [[m4]], [[m5]]. Quartiles : [[m6]] pour [[m7]] ; [[m8]] pour [[m9]]. Écarts interquartiles [[m10]] et [[m11]]. [[m12]] est beaucoup plus dispersée malgré des centres identiques.",
+   "en": "The means and medians are all [[m1]]. [[m2]], [[m3]]; [[m4]], [[m5]]. Quartiles: [[m6]] for [[m7]]; [[m8]] for [[m9]]. Interquartile ranges [[m10]] and [[m11]]. [[m12]] is much more spread out despite identical centres.",
+   "status": "aligned",
+   "order": 64
+  },
+  "a2b0dd1594d9": {
+   "fr": "La variance descriptive divise par [[m1]], sans correction par [[m2]]. Vérifier aussi la convention de quartiles des logiciels.",
+   "en": "The descriptive variance divides by [[m1]], with no [[m2]] correction. Also check the quartile convention of software.",
+   "status": "aligned",
+   "order": 65
+  },
+  "8a57ef52fa53": {
+   "fr": "Linéarité de la moyenne",
+   "en": "Linearity of the mean",
+   "status": "aligned",
+   "order": 66
+  },
+  "5e345e0c779b": {
+   "fr": "Propriété",
+   "en": "Property",
+   "status": "aligned",
+   "order": 67
+  },
+  "5d00defec18f": {
+   "fr": "Remplacer chaque [[m1]] par [[m2]] donne une moyenne [[m3]], un écart type [[m4]] et une variance [[m5]]. Ajouter une constante ne change ni variance ni écart type.",
+   "en": "Replacing each [[m1]] by [[m2]] gives a mean [[m3]], a standard deviation [[m4]] and a variance [[m5]]. Adding a constant changes neither variance nor standard deviation.",
+   "status": "aligned",
+   "order": 68
+  },
+  "053f282a4048": {
+   "fr": "Moyenne initiale [[m1]], écart type [[m2]]. Calculer les nouveaux indicateurs pour trois modifications indépendantes, sans plafonnement des notes : ajouter [[m3]] ; multiplier par [[m4]] ; multiplier par [[m5]] puis ajouter [[m6]].",
+   "en": "Initial mean [[m1]], standard deviation [[m2]]. Calculate the new statistics for three independent modifications, with no capping of marks: add [[m3]]; multiply by [[m4]]; multiply by [[m5]] then add [[m6]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "30eb523d4b0f": {
+   "fr": "Moyennes : [[m1]], [[m2]], [[m3]]. Écarts types : [[m4]], [[m5]], [[m6]]. Multiplier les notes par [[m7]] les augmente ; cela ne signifie pas augmenter la difficulté de l'évaluation. Avec un plafonnement à [[m8]], la transformation ne serait plus affine sur toutes les données.",
+   "en": "Means: [[m1]], [[m2]], [[m3]]. Standard deviations: [[m4]], [[m5]], [[m6]]. Multiplying the marks by [[m7]] raises them; this does not mean making the assessment harder. With a cap at [[m8]], the transformation would no longer be affine on all the data.",
+   "status": "aligned",
+   "order": 70
+  },
+  "8accf204d550": {
+   "fr": "Expliquer le programme ; prévoir son résultat pour \\texttt{[8, 10, 12]}.",
+   "en": "Explain the program; predict its result for \\texttt{[8, 10, 12]}.",
+   "status": "aligned",
+   "order": 71
+  },
+  "c4351dca86f9": {
+   "fr": "Il vérifie que la liste est non vide, calcule la moyenne, la moyenne des carrés des écarts, puis sa racine. Résultat : [[m1]].",
+   "en": "It checks that the list is nonempty, calculates the mean, the mean of the squared deviations, then its root. Result: [[m1]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "35e8d92b3035": {
+   "fr": "Séries continues regroupées en classes",
+   "en": "Continuous data grouped into classes",
+   "status": "aligned",
+   "order": 73
+  },
+  "b86ba169afe5": {
+   "fr": "Définitions et perte d'information",
+   "en": "Definitions and loss of information",
+   "status": "aligned",
+   "order": 74
+  },
+  "940d903b19a3": {
+   "fr": "Une variable quantitative continue peut prendre toutes les valeurs d'un intervalle. Ici, les observations sont regroupées en classes de même amplitude ; le centre de [[m1]] vaut [[m2]].\nSi les moyennes [[m3]] des classes sont connues, la moyenne globale exacte est [[m4]]. À défaut, les remplacer par les centres donne une estimation justifiée par un modèle uniforme dans chaque classe.",
+   "en": "A continuous quantitative variable can take every value in an interval. Here, the observations are grouped into classes of equal width; the centre of [[m1]] is [[m2]].\nIf the class means [[m3]] are known, the exact overall mean is [[m4]]. Otherwise, replacing them by the centres gives an estimate justified by a uniform model within each class.",
+   "status": "aligned",
+   "order": 75
+  },
+  "cdd379c5e475": {
+   "fr": "Tailles -- données du livret",
+   "en": "Heights -- booklet data",
+   "status": "aligned",
+   "order": 76
+  },
+  "e25c971da49c": {
+   "fr": "Compléter, estimer la moyenne à partir des centres et déterminer la classe médiane.",
+   "en": "Complete, estimate the mean from the centres and determine the median class.",
+   "status": "aligned",
+   "order": 77
+  },
+  "da9262620f8e": {
+   "fr": "Classe (cm)",
+   "en": "Class (cm)",
+   "status": "aligned",
+   "order": 78
+  },
+  "55c5ff89b6d5": {
+   "fr": "7\\\\\nFréquence (\\%)",
+   "en": "7\\\\\nRelative frequency (\\%)",
+   "status": "aligned",
+   "order": 80
+  },
+  "dfac78ca48d4": {
+   "fr": "\\mxblank{22}",
+   "en": "\\mxblank{22}",
+   "status": "aligned",
+   "order": 82
+  },
+  "8ed33f78e78a": {
+   "fr": "\\mxblank{35}",
+   "en": "\\mxblank{35}",
+   "status": "aligned",
+   "order": 83
+  },
+  "d4cd74c8ff88": {
+   "fr": "\\mxblank{7}\\\\\nCentre (cm)",
+   "en": "\\mxblank{7}\\\\\nCentre (cm)",
+   "status": "aligned",
+   "order": 85
+  },
+  "e358dd4685e2": {
+   "fr": "\\mxblank{155}",
+   "en": "\\mxblank{155}",
+   "status": "aligned",
+   "order": 86
+  },
+  "b0c7e1426392": {
+   "fr": "\\mxblank{165}",
+   "en": "\\mxblank{165}",
+   "status": "aligned",
+   "order": 87
+  },
+  "2f68b3738d22": {
+   "fr": "\\mxblank{175}",
+   "en": "\\mxblank{175}",
+   "status": "aligned",
+   "order": 88
+  },
+  "0bc8f4b24ea0": {
+   "fr": "\\mxblank{185}",
+   "en": "\\mxblank{185}",
+   "status": "aligned",
+   "order": 89
+  },
+  "a86d702ff6d3": {
+   "fr": "\\mxblank{195}\\\\\nECC",
+   "en": "\\mxblank{195}\\\\\nACC",
+   "status": "aligned",
+   "order": 90
+  },
+  "64ce863c29e8": {
+   "fr": "\\mxblank{65}",
+   "en": "\\mxblank{65}",
+   "status": "aligned",
+   "order": 93
+  },
+  "23892aae38bd": {
+   "fr": "\\mxblank{93}",
+   "en": "\\mxblank{93}",
+   "status": "aligned",
+   "order": 94
+  },
+  "c2cd39e72cd0": {
+   "fr": "\\mxblank{100}",
+   "en": "\\mxblank{100}",
+   "status": "aligned",
+   "order": 95
+  },
+  "0e18e23cb63d": {
+   "fr": "Amplitude [[m1]] cm, effectif total [[m2]]. Fréquences en pourcentage : [[m3]]. Centres : [[m4]] cm. La somme pondérée des centres vaut [[m5]], donc la moyenne estimée est [[m6]] cm. Les rangs centraux [[m7]] se trouvent dans [[m8]], classe médiane.",
+   "en": "Width [[m1]] cm, total count [[m2]]. Relative frequencies as percentages: [[m3]]. Centres: [[m4]] cm. The weighted sum of the centres is [[m5]], so the estimated mean is [[m6]] cm. The central ranks [[m7]] lie in [[m8]], the median class.",
+   "status": "aligned",
+   "order": 96
+  },
+  "3cdb445d04af": {
+   "fr": "Si les moyennes exactes des classes étaient [[m1]] cm, quelle serait la moyenne globale ?",
+   "en": "If the exact class means were [[m1]] cm, what would the overall mean be?",
+   "status": "aligned",
+   "order": 97
+  },
+  "a40e4048b7bd": {
+   "fr": "[[m1]] cm.",
+   "en": "[[m1]] cm.",
+   "status": "aligned",
+   "order": 98
+  },
+  "ecf8471cf7dd": {
+   "fr": "Histogramme et fréquences cumulées",
+   "en": "Histogram and cumulative frequencies",
+   "status": "aligned",
+   "order": 99
+  },
+  "01be5aa5c283": {
+   "fr": "Représentations",
+   "en": "Representations",
+   "status": "aligned",
+   "order": 100
+  },
+  "5fdbcb48dc13": {
+   "fr": "L'aire de chaque rectangle d'un histogramme est proportionnelle à l'effectif. À amplitudes égales, les hauteurs peuvent être les effectifs. Le polygone des fréquences cumulées joint les points (borne supérieure ; fréquence cumulée), en commençant à la première borne inférieure avec [[m1]].",
+   "en": "The area of each rectangle of a histogram is proportional to the count. For equal widths, the heights can be the counts. The cumulative frequency polygon joins the points (upper bound; cumulative frequency), starting at the first lower bound with [[m1]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "aa60c4413be2": {
+   "fr": "Construire les deux graphiques pour les tailles de l'exemple précédent.",
+   "en": "Construct both graphs for the heights of the previous example.",
+   "status": "aligned",
+   "order": 102
+  },
+  "9a8b8654d2e6": {
+   "fr": "Taille (cm)",
+   "en": "Height (cm)",
+   "status": "aligned",
+   "order": 103
+  },
+  "555c431f32bb": {
+   "fr": "Fréquence cumulée (\\%)",
+   "en": "Cumulative frequency (\\%)",
+   "status": "aligned",
+   "order": 106
+  },
+  "3122c8b0722b": {
+   "fr": "Estimer la médiane",
+   "en": "Estimating the median",
+   "status": "aligned",
+   "order": 107
+  },
+  "0f120461553c": {
+   "fr": "Sous l'hypothèse d'uniformité dans [[m1]], la fréquence cumulée passe linéairement de [[m2]] à [[m3]]. Rechercher l'abscisse correspondant à [[m4]].",
+   "en": "Under the assumption of uniformity in [[m1]], the cumulative frequency rises linearly from [[m2]] to [[m3]]. Look for the abscissa corresponding to [[m4]].",
+   "status": "aligned",
+   "order": 108
+  },
+  "48b32ddd34d9": {
+   "fr": "Calculer cette estimation et préciser sa portée.",
+   "en": "Calculate this estimate and state its scope.",
+   "status": "aligned",
+   "order": 109
+  },
+  "2cb3841ebd80": {
+   "fr": "On résout [[m1]], d'où [[m2]] cm. Il s'agit d'une estimation sous hypothèse d'uniformité, pas de la médiane exacte des données individuelles. Les effectifs des classes seuls ne déterminent pas cette dernière.",
+   "en": "Solve [[m1]], giving [[m2]] cm. This is an estimate under an assumption of uniformity, not the exact median of the individual data. The class counts alone do not determine the latter.",
+   "status": "aligned",
+   "order": 110
+  }
+ }
+}

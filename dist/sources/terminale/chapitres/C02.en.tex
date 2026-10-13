@@ -1,0 +1,106 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit[2]{terminale-c02}{Vectors, lines and planes in space}\label{ch:10}
+
+\mxsubtitle{S3, S6, S12, S15; synthesis S17}
+
+\begin{keypoint}[Objectives]Calculate with vectors; use collinearity and coplanarity; characterise lines and planes; work in a frame of reference.\end{keypoint}
+
+\section{Course notes}
+\subsection{Vector calculus}
+Chasles's relation $\vect{AB}+\vect{BC}=\vect{AC}$, the sum of vectors and the product by a real number extend to space. Two non-zero vectors are collinear if one is a multiple of the other. The zero vector is collinear with every vector.
+Three vectors are coplanar if they belong to the same vector plane. If $\vec u,\vec v$ are not collinear, $\vec u,\vec v,\vec w$ are coplanar if and only if $\vec w=\alpha\vec u+\beta\vec v$ for some real numbers $\alpha,\beta$.
+\begin{keypoint}[Line and plane]
+The line through $A$ with non-zero direction vector $\vec u$ is the set of points $M$ such that $\vect{AM}=t\vec u$ for a real number $t$.
+The plane through $A$ spanned by two non-collinear vectors $\vec u,\vec v$ is the set of points $M$ such that $\vect{AM}=s\vec u+t\vec v$ for real numbers $s,t$.
+\end{keypoint}
+Three non-collinear points define a plane. Four points $A,B,C,D$, with $A,B,C$ not collinear, are coplanar if and only if $\vect{AD}$ is a linear combination of $\vect{AB}$ and $\vect{AC}$.
+\subsection{Relative positions}
+Two lines are coincident, strictly parallel, intersecting or non-coplanar (skew). Collinear direction vectors characterise parallel lines in the broad sense. Non-collinear direction vectors do not guarantee an intersection.
+A line and a plane: line contained in the plane, parallel and disjoint, or meeting it in a single point. Two planes: coincident, strictly parallel, or intersecting along a line.
+\paragraph{Example in a cube.} In $ABCDEFGH$, the faces $ABCD$ and $EFGH$ are parallel and the edges $AE,BF,CG,DH$ correspond to one another. The lines $(AB)$ and $(CG)$ are neither parallel nor intersecting: they are non-coplanar.
+\subsection{Basis and coordinates}
+A basis of space is a family of three non-coplanar vectors. Every vector can be written uniquely in it as $x\vi +y\vj +z\vec k$. A frame of reference consists of an origin $O$ and a basis.
+\[\vect{AB}=\pt{x_B-x_A;y_B-y_A;z_B-z_A},\qquad
+I=\left(\frac{x_A+x_B}2,\frac{y_A+y_B}2,\frac{z_A+z_B}2\right).\]
+In an orthonormal frame, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ and $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.
+\paragraph{Example.} In an orthonormal frame, for $A\pt{1;0;2}$, $B\pt{3;-1;4}$, $\vect{AB}=\pt{2;-1;2}$, $AB=3$ and the midpoint is $\pt{2;-\frac{1}{2};3}$.
+\begin{method}[Testing a linear combination]
+Write the three coordinate equalities. Determine the coefficients from two equations when possible, then check the third. A contradiction proves non-membership; do not discard the awkward equation.
+\end{method}
+
+
+
+\mxnewpage
+\section{Research activity}\textbf{Three midpoints in a cube --- 40 min.}\par Consider the cube $ABCDEFGH$ shown below. Let $\vi=\vect{AB}$, $\vj=\vect{AD}$ and $\vec k=\vect{AE}$. The points $I$, $J$ and $K$ are the midpoints of $[AB]$, $[AD]$ and $[AE]$ respectively. Let $O$ be the centre of the cube.
+\begin{center}\begin{tikzpicture}[scale=1.1,line join=round]
+\coordinate(A)at(0,0);\coordinate(B)at(4,0);\coordinate(C)at(5.1,1.6);\coordinate(D)at(1.1,1.6);\coordinate(E)at(0,2.5);\coordinate(F)at(4,2.5);\coordinate(G)at(5.1,4.1);\coordinate(H)at(1.1,4.1);
+\draw[mxink,thick](A)--(B)--(C)--(G)--(H)--(E)--(A) (E)--(F)--(G) (B)--(F);
+\draw[mxink,dashed](A)--(D)--(C) (D)--(H);
+\draw[mxmint,thick,dash pattern=on 5pt off 2pt](A)--(G);
+\foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
+\end{tikzpicture}\par\small $[AG]$ is a space diagonal, drawn dotted in green.\\The hidden edges are dashed in blue; $D$ and $F$ are not on $(AG)$.\end{center}
+\begin{enumerate}\item Express $\vect{IJ}$ and $\vect{IK}$ in the basis $\pt{\vi;\vj;\vec k}$.
+\item Prove that the points $I$, $J$ and $K$ are not collinear.
+\item Determine whether $O$ belongs to the plane $(IJK)$. Justify the answer by investigating whether $\vect{IO}$ is a linear combination of $\vect{IJ}$ and $\vect{IK}$.
+\item Why does simply reading the figure not allow one to prove that $O$ does or does not belong to the plane $(IJK)$?\end{enumerate}
+
+\mxnewpage
+\section{Progressive exercises}
+
+\mxexerciseitem{1}{Practice}In a basis of space, the vectors $\vec u$ and $\vec v$ have coordinates $\pt{1;2;-1}$ and $\pt{3;6;-3}$ respectively. Are they collinear? Justify.
+
+\mxexerciseitem{2}{Practice}In an orthonormal frame of space, consider $A\pt{0;1;2}$ and $B\pt{4;-1;0}$. Determine the coordinates of the midpoint of $[AB]$, then calculate the distance $AB$.
+
+\mxexerciseitem{3}{Practice}In a basis of space, consider $\vec u=\pt{1;0;1}$, $\vec v=\pt{0;1;1}$ and $\vec w=\pt{2;3;5}$. Express $\vec w$ as a linear combination of $\vec u$ and $\vec v$, then deduce that these three vectors are coplanar.
+
+\mxexerciseitem{4}{Practice}In a basis of space, the vectors $\vec u$, $\vec v$ and $\vec w$ have coordinates $\pt{1;0;1}$, $\pt{0;1;1}$ and $\pt{1;1;0}$. Is the triple $\pt{\vec u;\vec v;\vec w}$ a basis of space? Justify.
+
+\mxexerciseitem{5}{Practice}In a frame of space, consider $A\pt{1;0;2}$, $B\pt{3;-1;4}$ and $C\pt{5;-2;6}$. Determine whether $C$ belongs to the line $(AB)$. Justify with a vector calculation.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 328, exercise 21.} In class after S15: do all three questions. For each intersection, begin by identifying each of the planes from the vertices of the cube and the midpoints given. Distinguish between intersecting, coincident and strictly parallel planes.
+
+\mxnewpage
+\section{Homework}\textbf{Homework 10 --- Points of a tetrahedron --- 50 min.}\par Consider a non-degenerate tetrahedron $ABCD$. The points $I$, $J$ and $K$ are the midpoints of $[AB]$, $[AC]$ and $[AD]$ respectively.
+\begin{enumerate}\item Express $\vect{IJ}$ in terms of $\vect{BC}$ and $\vect{IK}$ in terms of $\vect{BD}$.
+\item Deduce that the planes $(IJK)$ and $(BCD)$ are parallel.
+\item The point $G$ is defined by $\vect{AG}=\frac14(\vect{AB}+\vect{AC}+\vect{AD})$. Does the point $G$ belong to the plane $(IJK)$? Justify.
+\item For this question only, assume that, in an orthonormal frame, $A\pt{0;0;0}$, $B\pt{4;0;0}$, $C\pt{0;4;0}$ and $D\pt{0;0;4}$. Calculate the lengths $IJ$, $IK$ and $JK$.\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]Test 1 comes before S12 and S15: set vector geometry in a given basis, without requiring new coordinate techniques. Use a physical cube, then an oblique perspective drawing; mark the hidden edges. Two non-parallel lines in space do not necessarily intersect. The norm via coordinates requires an orthonormal frame. Formal parametric representations and equations of planes will be covered later.\end{teachernote}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item By Chasles, $\vect{IJ}=\vect{AJ}-\vect{AI}=-\frac12\vi +\frac12\vj $ and $\vect{IK}=-\frac12\vi +\frac12\vec k$.
+\item If $\vect{IK}=t\vect{IJ}$, the coefficient of $\vec k$ would be $\frac{1}{2}=0$, impossible in a basis. These two vectors are therefore non-collinear; $I,J,K$ define a plane.
+\item The centre of the cube satisfies $\vect{AO}=\frac12(\vi +\vj +\vec k)$, so $\vect{IO}=\frac12\vj +\frac12\vec k$. If $O\in(IJK)$, there exist $s,t$ such that $\vect{IO}=s\vect{IJ}+t\vect{IK}$. Comparing the coefficients of the basis,
+\[0=-\frac{s+t}2,\qquad \frac12=\frac s2,\qquad \frac12=\frac t2.\]
+The last two force $s=t=1$, whereas the first would require $s+t=0$. Contradiction: $O\notin(IJK)$.
+\item Oblique perspective is a projection onto a sheet of paper: distinct points may have the same image. It helps to conjecture, but an apparent overlap does not prove membership of a plane.
+\end{enumerate}
+
+\paragraph{E1.}The three coordinates of $\vec v$ are three times those of $\vec u$: $\vec v=3\vec u$. The two vectors are therefore collinear.
+
+\paragraph{E2.}The midpoint has coordinates $\pt{\frac{0+4}{2};\frac{1-1}{2};\frac{2+0}{2}}=\pt{2;0;1}$. The coordinate differences give $\vect{AB}=\pt{4;-2;-2}$; in the orthonormal frame, $AB=\sqrt{16+4+4}=2\sqrt6$.
+
+\paragraph{E3.}We calculate $2\vec u+3\vec v=\pt{2;0;2}+\pt{0;3;3}=\pt{2;3;5}=\vec w$. Thus $\vec w$ belongs to the vector plane spanned by the first two vectors: the three are coplanar.
+
+\paragraph{E4.}The first two vectors are non-collinear. If the third were their combination $\lambda(1,0,1)+\mu(0,1,1)$, the first two coordinates would force $\lambda=\mu=1$, but the third would equal $2\ne0$. The three vectors are non-coplanar; they therefore form a basis of space.
+
+\paragraph{E5.}$\vect{AB}=\pt{2;-1;2}$ and $\vect{AC}=\pt{4;-2;4}=2\vect{AB}$. Since $A\ne B$, the line $(AB)$ is defined and this collinearity proves $C\in(AB)$.
+
+\subsection{Solutions to Homework 10}\begin{enumerate}
+\item By Chasles and the definitions of midpoints,
+\[\vect{IJ}=\tfrac12\vect{AC}-\tfrac12\vect{AB}=\tfrac12\vect{BC},\qquad \vect{IK}=\tfrac12\vect{AD}-\tfrac12\vect{AB}=\tfrac12\vect{BD}.\]
+\item The points $B,C,D$ are not collinear, since the tetrahedron is non-degenerate. The vectors $\vect{BC},\vect{BD}$ are therefore non-collinear, and so are $\vect{IJ},\vect{IK}$. The planes have the same direction. They are distinct: if $I\in(BCD)$, the line $(BI)=(BA)$ would be contained in this plane, which would place $A$ in it, a contradiction. They are therefore strictly parallel.
+\item In the basis $\pt{\vect{AB};\vect{AC};\vect{AD}}$, we have $\vect{IG}=\pt{-\frac{1}{4};\frac{1}{4};\frac{1}{4}}$, $\vect{IJ}=\pt{-\frac{1}{2};\frac{1}{2};0}$ and $\vect{IK}=\pt{-\frac{1}{2};0;\frac{1}{2}}$. A relation $\vect{IG}=s\vect{IJ}+t\vect{IK}$ forces $s=t=\frac{1}{2}$ by the last two coordinates; the first would then equal $-\frac{1}{2}$, and not $-\frac{1}{4}$. Hence $G\notin(IJK)$.
+\item In this particular case, $I\pt{2;0;0}$, $J\pt{0;2;0}$ and $K\pt{0;0;2}$. We find $IJ=\sqrt{(-2)^2+2^2}=2\sqrt2$, and likewise $IK=JK=2\sqrt2$. The triangle is equilateral. This metric conclusion does not hold for every non-degenerate tetrahedron: it uses the coordinates of the particular case.
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}In this exercise, $I$ is the midpoint of $[AB]$ and $J$ that of $[CD]$.
+\begin{enumerate}
+\item The planes $(AIE)$ and $(BIG)$ both contain $(AB)$. They are distinct: $G$ does not belong to the plane of the face $ABFE$. Their intersection is therefore exactly the line $(AB)$.
+\item The points $A,D,I$ are three non-collinear points of the face $ABCD$; the same holds for $B,J,C$. The two planes are therefore both equal to $(ABC)$. The intersection is the whole plane, not a line.
+\item The plane $(HEF)$ is that of the top face; $(BJC)$ is that of the bottom face. These planes are strictly parallel: their intersection is empty.
+\end{enumerate}
+
+\fi
+

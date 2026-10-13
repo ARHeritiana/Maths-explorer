@@ -1,0 +1,24 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-bisection-notes}{Encadrer une racine par dichotomie}
+\mxsubtitle{Terminale · analyse et algorithmique \textperiodcentered{} Leçon et méthode \textperiodcentered{} 12}
+
+\begin{prerequisites}
+Continuité, signe et intervalles.
+\end{prerequisites}
+
+\begin{keypoint}[Idées et méthode]
+Si f est continue sur [a,b] et si f(a) et f(b) sont de signes opposés, le théorème des valeurs intermédiaires garantit au moins une racine dans [a,b]. Il ne garantit pas l’unicité.
+
+On calcule $m=\frac{a+b}{2}$. Si $f(m)=0$, on a trouvé une racine. Sinon, on garde la moitié dont les valeurs aux bornes ont des signes opposés. La continuité maintient la garantie à chaque étape.
+
+Après n partages, la largeur de l’intervalle est $\frac{b-a}{2^{n}}$. Son milieu approche une racine avec une erreur au plus égale à la moitié de cette largeur. La largeur n’est donc pas la même chose que l’erreur du milieu.
+\end{keypoint}
+
+\begin{example}
+Pour $f(x)=x^{2}-2$ sur $\intff{1}{2}$, f est continue et strictement croissante. Sa racine est unique. Les milieux $\num{1,5}$, puis $\num{1,25}$ donnent les intervalles $\intff{1}{\num{1,5}}$, puis $\intff{\num{1,25}}{\num{1,5}}$ : on conserve toujours un signe négatif à gauche et positif à droite.
+\end{example}
+
+\begin{activity}[À explorer]
+Sur une droite graduée, représenter les intervalles successifs autour de $\sqrt{2}$. Inscrire leur largeur à chaque étape.
+\end{activity}
+

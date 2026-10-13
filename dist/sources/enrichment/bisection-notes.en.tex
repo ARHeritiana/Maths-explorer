@@ -1,0 +1,25 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-bisection-notes}{Bracketing a root by bisection}
+\mxsubtitle{Upper high school · analysis and algorithms \textperiodcentered{} Lesson and method \textperiodcentered{} 12}
+
+\begin{prerequisites}
+Continuity, signs and intervals.
+\end{prerequisites}
+
+\begin{keypoint}[Ideas and method]
+If f is continuous on [a,b] and f(a), f(b) have opposite signs, the intermediate value theorem guarantees at least one root in [a,b]. It does not guarantee uniqueness.
+
+Compute $m=\frac{a+b}{2}$. If $f(m)=0$, a root has been found. Otherwise retain the half whose endpoint values have opposite signs. Continuity maintains the guarantee at every step.
+
+After n halvings, the interval width is $\frac{b-a}{2^{n}}$. Its midpoint approximates a root with error at most half that width. Width is therefore different from midpoint error.
+\end{keypoint}
+
+\begin{example}
+For $f(x)=x^{2}-2$ on $\intff{1}{2}$, f is continuous and strictly increasing, so its root is unique. Midpoints $\num{1,5}$ and then $\num{1,25}$ give intervals $\intff{1}{\num{1,5}}$ and $\intff{\num{1,25}}{\num{1,5}}$: the left value remains negative and the right value positive.
+\end{example}
+
+\begin{activity}[Explore]
+On a number line, draw the successive intervals around $\sqrt{2}$ and label each width.
+\end{activity}
+

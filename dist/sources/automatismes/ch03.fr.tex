@@ -1,0 +1,55 @@
+\mxunit{automatismes-ch03}{Nombres réels et intervalles}
+
+\begin{fluencysheet}{jeu.~19~nov.~2026}{Ensembles de nombres~: $\N,\Z,\D,\Q,\R$}
+\mxfq{Échauffement · Flash}{NUM}{Donner l'écriture décimale de $\dfrac38$ et une valeur approchée de $\dfrac56$ à $10^{-3}$ près.}{$\num{0,375}$\,; $\num{0,833}$.}{}
+\mxfq{Cœur · Méthode}{NUM}{Donner le plus petit ensemble ($\N,\Z,\D,\Q,\R$) contenant chacun de ces nombres~: $-4$\,; $\num{0,25}$\,; $\dfrac13$\,; $\sqrt2$\,; $\dfrac63$.}{$-4\in\Z$\,; $\num{0,25}\in\D$\,; $\dfrac13\in\Q$\,; $\sqrt2\in\R$\,; $\dfrac63=2\in\N$.}{Le plus petit ensemble est la clé~: $\dfrac63$ est un entier naturel.}
+\mxfq{Cœur + · Vrai/faux}{NUM}{Vrai ou faux\,? Justifier. Le nombre $\dfrac13$ est un nombre décimal.}{Faux. S'il existait $a$ et $n$ entiers avec $\dfrac13=\dfrac{a}{10^n}$, alors $10^n=3a$ serait divisible par $3$~: impossible (la somme des chiffres de $10^n$ vaut $1$).}{}
+\mxfq{Retour · Flash}{SUB}{Calculer $(x+1)(x-3)$ pour $x=2$.}{$-3$.}{}
+\mxfq{Fil rouge · Flash}{SOL}{Combien de faces, sommets et arêtes possède un prisme droit à base triangulaire\,?}{$5$ faces ($2$ triangles, $3$ rectangles), $6$ sommets, $9$ arêtes.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{lun.~23~nov.~2026}{Encadrements décimaux et arrondis}
+\mxfq{Échauffement · Flash}{NUM}{Arrondir $\num{3,14159}$ à $10^{-2}$ près puis à $10^{-3}$ près.}{$\num{3,14}$ puis $\num{3,142}$.}{Le chiffre suivant décide~: $1<5$ puis $5\geqslant5$.}
+\mxfq{Cœur · Méthode}{NUM}{Encadrer $\sqrt2$ par deux décimaux d'amplitude $10^{-2}$.}{$\num{1,41}^2=\num{1,9881}<2<\num{2,0164}=\num{1,42}^2$~: $\num{1,41}<\sqrt2<\num{1,42}$.}{}
+\mxfq{Cœur + · Lecture de code}{ALG}{Quelle est la valeur finale de \code{k}\,? Que peut-on en déduire sur $\sqrt2$\,?\mxpseudo{k = 10\\ while (k/10)**2 \textless{} 2:\\ \mxtab k = k + 1}}{$k=15$~: $\num{1,4}^2=\num{1,96}<2$ et $\num{1,5}^2=\num{2,25}\geqslant2$, donc $\num{1,4}<\sqrt2\leqslant\num{1,5}$.}{}
+\mxfq{Retour · Flash}{QP}{$5$ kg de riz coûtent $\num{12500}$ Ar. Combien coûtent $8$ kg\,?}{$\dfrac{\num{12500}}{5}\times8=\num{20000}$ Ar.}{}
+\mxfq{Fil rouge · Vrai/faux}{DEM}{Vrai ou faux\,? Justifier. Un quadrilatère dont les diagonales ont même longueur est un rectangle.}{Faux. Contre-exemple~: un trapèze isocèle a des diagonales de même longueur sans être un rectangle.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{mar.~24~nov.~2026}{Nombres irrationnels~: $\frac13$ n'est pas décimal, $\sqrt2$ est irrationnel}
+\mxfq{Échauffement · Flash}{CAL}{Écrire $\sqrt{12}$ et $\sqrt{50}$ sous la forme $a\sqrt b$ avec $b$ entier le plus petit possible.}{$\sqrt{12}=2\sqrt3$\,; $\sqrt{50}=5\sqrt2$.}{}
+\mxfq{Cœur · Tri}{NUM}{Parmi $\num{0,333}\ldots$\,; $\sqrt9$\,; $\sqrt2$\,; $\pi$\,; $\dfrac{22}{7}$, lesquels sont rationnels\,?}{$\num{0,333}\ldots=\dfrac13$\,; $\sqrt9=3$\,; $\dfrac{22}7$~: rationnels. $\sqrt2$ et $\pi$ sont irrationnels.}{$\dfrac{22}{7}$ n'est qu'une valeur approchée de $\pi$, pas égale à $\pi$.}
+\mxfq{Cœur + · Raisonnement}{DEM}{On suppose $\sqrt2=\dfrac pq$ avec $\dfrac pq$ irréductible, d'où $p^2=2q^2$. Que dire de la parité de $p$, puis de $q$\,? Quelle contradiction\,?}{$p^2$ pair, donc $p$ pair, $p=2k$\,; alors $4k^2=2q^2$, $q^2=2k^2$~: $q$ pair. Contradiction avec la fraction irréductible.}{}
+\mxfq{Retour · Tableau}{STA}{Valeurs $1\,;\,2\,;\,3\,;\,4$ d'effectifs $5\,;\,8\,;\,4\,;\,3$. Donner l'effectif total, la fréquence de la valeur $2$ et la moyenne.\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|c|}\hline
+Valeur & 1 & 2 & 3 & 4 \\ \hline
+Effectif & 5 & 8 & 4 & 3 \\ \hline
+\end{tabular}\par }{Total $20$\,; fréquence $\dfrac{8}{20}=\pc{40}$\,; moyenne $\dfrac{5+16+12+12}{20}=\num{2,25}$.}{}
+\mxfq{Fil rouge · Flash}{REP}{Donner les coordonnées du symétrique de $A\pt{3;-2}$ par rapport à l'axe des ordonnées.}{$\pt{-3;-2}$.}{Piège~: changer le signe de l'ordonnée (symétrie par rapport à l'axe des abscisses).}
+\end{fluencysheet}
+
+\begin{fluencysheet}{jeu.~26~nov.~2026}{Intervalles de $\R$~: notations et représentation}
+\mxfq{Échauffement · Flash}{CMP}{Comparer $-3$ et $-5$ puis $-\dfrac12$ et $-\num{0,6}$.}{$-3>-5$\,; $-\num{0,5}>-\num{0,6}$.}{Pour les négatifs, le plus petit en valeur absolue est le plus grand.}
+\mxfq{Cœur · Méthode}{NUM}{Écrire sous forme d'intervalle~: $-2\leqslant x<5$\,; $x>3$\,; $x\leqslant0$.}{$\intfo{-2}{5}$\,; $\intoo{3}{+\infty}$\,; $\intof{-\infty}{0}$.}{Le crochet est tourné vers l'intérieur si la borne est incluse\,; $\infty$ est toujours exclu.}
+\mxfq{Cœur + · QCM}{NUM}{L'intersection $\intoo{-\infty}{2}\,\cap\,\intff{-1}{4}$ est~:\mxchoices{$\intof{2}{4}$}{$\intof{-\infty}{4}$}{$\intfo{-1}{2}$}{$\intff{-1}{2}$}}{C.\ $\intfo{-1}{2}$}{Intersection~: valeurs vérifiant les deux conditions $x<2$ et $-1\leqslant x\leqslant4$.}
+\mxfq{Retour · Tableau}{LEC}{Durées de trajet (min).\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|}\hline
+Classe & $\intfo{0}{10}$ & $\intfo{10}{20}$ & $\intfo{20}{30}$ \\ \hline
+Effectif & 4 & 9 & 7 \\ \hline
+\end{tabular}\par Quel est l'effectif total, la classe modale et la fréquence de $\intfo{10}{20}$\,?}{$20$\,; $\intfo{10}{20}$\,; $\dfrac{9}{20}=\pc{45}$.}{}
+\mxfq{Fil rouge · Problème}{DIV}{Un bus passe toutes les $15$ min, un autre toutes les $20$ min. Ils se croisent à $8$ h. À quelle heure se recroisent-ils\,?}{$\ppcm\pt{15;20}=60$~: à $9$ h.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{lun.~30~nov.~2026}{Valeur absolue et distance entre deux réels}
+\mxfq{Échauffement · Flash}{REP}{Quelle est la distance entre $-3$ et $5$ sur la droite graduée\,?}{$|5-(-3)|=8$.}{}
+\mxfq{Cœur · Flash}{CAL}{Calculer $|{-}7|$, $|3-8|$ et $|\pi-4|$.}{$7$\,; $5$\,; $|\pi-4|=4-\pi$ car $\pi<4$.}{}
+\mxfq{Cœur + · Méthode}{EQ}{Résoudre $|x-3|=2$.}{Les réels à distance $2$ de $3$~: $x=1$ ou $x=5$.}{Interprétation géométrique plutôt que cas par cas.}
+\mxfq{Retour · Formule}{IMG}{$f(x)=x^2-3$. Donner l'image de $-2$ et les antécédents de $6$.}{$f(-2)=1$\,; $x^2-3=6\Leftrightarrow x^2=9$~: antécédents $-3$ et $3$.}{}
+\mxfq{Fil rouge · Formule → tableau}{REG}{$f(x)=-x+3$. Compléter~: $f(-1)$, $f(0)$, $f(2)$.}{$4\ ;\ 3\ ;\ 1$.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{mar.~1\textsuperscript{er}~déc.~2026}{Inéquation $|x-a|\leqslant r$ et intervalle associé}
+\mxfq{Échauffement · Flash}{EQ}{Résoudre $2x-3\leqslant5$.}{$2x\leqslant8$, $x\leqslant4$~: $S=\intof{-\infty}{4}$.}{}
+\mxfq{Cœur · Méthode}{EQ}{Résoudre $|x-2|\leqslant3$ et donner $S$ sous forme d'intervalle.}{Les réels à distance au plus $3$ de $2$~: $S=\intff{-1}{5}$.}{Contrôle~: $|{-}1-2|=3$ et $|5-2|=3$.}
+\mxfq{Cœur + · Traduire}{NUM}{Traduire par une inégalité avec valeur absolue~: $x\in\intff{-1}{5}$ puis $x\in\intoo{4}{10}$.}{$|x-2|\leqslant3$ (centre $2$, rayon $3$)\,; $|x-7|<3$ (centre $7$, rayon $3$).}{}
+\mxfq{Retour · Problème}{CMP}{Lot A~: $6$ yaourts pour $\num{4,20}$ €. Lot B~: $10$ yaourts pour $\num{6,80}$ €. Lequel est le plus avantageux\,?}{A~: $\num{0,70}$ € l'unité\,; B~: $\num{0,68}$ €~: B.}{}
+\mxfq{Fil rouge · Flash}{GEO}{Un disque a pour rayon $5$ cm. Donner son aire et son périmètre (valeurs exactes).}{Aire $=\pi\times5^2=25\pi$ cm$^2$\,; périmètre $=2\pi\times5=10\pi$ cm.}{}
+\end{fluencysheet}

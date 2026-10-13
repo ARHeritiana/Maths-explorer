@@ -1,0 +1,92 @@
+\mxunit{premiere-transversal}{Raisonner et préparer l’épreuve}\label{TRANS}
+\section{Logique : des mots aux preuves}\label{LOGIQUE}
+\begin{keypoint}[Ensembles et propositions]
+$x\in A$ signifie que x est un élément de A ; $A\subseteq B$ signifie que chaque élément de A appartient à B. L’ensemble vide est noté $\varnothing$. L’intersection correspond à « et », la réunion à « ou » inclusif. Dans un univers E, $E\setminus A$ est le complémentaire de A. Un couple $\pt{a;b}$ est ordonné ; $A\times B$ regroupe les couples dont la première composante est dans A et la seconde dans B. Le cardinal d’un ensemble fini est son nombre d’éléments.
+\end{keypoint}
+\begin{example}Pour $A=\ens{1;2}$ et $B=\ens{2;3}$, l’intersection est $\{2\}$, la réunion $\ens{1;2;3}$. Le produit $A\times B$ contient $\pt{1;2},\pt{1;3},\pt{2;2},\pt{2;3}$ : cardinal 4.\end{example}
+
+\paragraph{Nombres et intervalles.} $\N$ contient ici 0 et les entiers naturels ; $\Z$ les entiers relatifs ; $\mathbb D$ les décimaux à écriture finie ; $\mathbb Q$ les quotients de deux entiers, avec dénominateur non nul ; $\R$ les réels. On a $\N\subset\Z\subset\mathbb D\subset\mathbb Q\subset\R$. Ainsi $\dfrac{1}{3}$ est rationnel mais non décimal ; $\sqrt2$ est réel non rationnel (résultat antérieur). $\intfo{-2}{3}$ signifie $-2\leq x<3$ ; une borne infinie n’est jamais incluse.
+
+Une implication « si P, alors Q » exprime que P est une condition suffisante pour Q et Q une condition nécessaire pour P. Sa réciproque est « si Q, alors P ». Sa contraposée est « si non Q, alors non P » ; elle a la même valeur logique que l’implication. Une équivalence réunit les deux implications.
+\begin{example}« Si $x=2$, alors $x^2=4$ » est vraie. La réciproque est fausse pour $x=-2$. L’égalité $x=2$ est suffisante pour $x^2=4$, mais pas nécessaire. La contraposée « si $x^2\ne4$, alors $x\ne2$ » est vraie.\end{example}
+
+Pour réfuter une proposition universelle, un contre-exemple suffit. Pour prouver qu’un objet existe, on peut en construire un et vérifier ses propriétés. Nier « pour tout x, P(x) » donne « il existe x tel que non P(x) » ; nier « il existe x, P(x) » donne « pour tout x, non P(x) ». Les symboles des quantificateurs ne sont pas exigibles ; le sens des phrases l’est.
+\begin{example}La négation de « pour tout réel x, $x^2>0$ » est « il existe un réel x tel que $x^2\leq0$ ». Le choix x=0 vérifie cette négation.\end{example}
+
+\textbf{Disjonction de cas.} Résoudre $|x|=2$ en distinguant x positif ou nul et x négatif : on obtient 2 et -2. Les cas couvrent tout le domaine.\par
+\textbf{Absurde.} Supposons que $x^2+1=0$ ait une solution réelle. On aurait $x^2=-1$, en contradiction avec la positivité d’un carré. Il n’y a donc aucune solution réelle.\par
+\textbf{Identité, équation, paramètre.} $(x+1)^2=x^2+2x+1$ est une identité vraie pour tout réel x. $x^2=1$ est une équation dont x est l’inconnue. Dans $x^2-2mx+1=0$, m est un paramètre fixé lorsqu’on cherche x ; discuter selon m est un autre niveau de raisonnement.
+
+\subsection*{Exercices transversaux}\label{LOG-EX}
+\begin{enumerate}
+\item Nier : « Il existe un réel x tel que $x^2<0$ ». La proposition initiale est-elle vraie ?
+\item Donner la réciproque et la contraposée de : « Si un entier est multiple de 4, alors il est pair ». Lesquelles sont vraies ?
+\item Pour $A=\ens{0;1}$ et $B=\ens{1;2;3}$, calculer $A\cap B$, $A\cup B$, $A\times B$ et leurs cardinaux.
+\item Montrer par l’absurde qu’il n’existe pas de plus grand entier naturel.
+\item Classer $-2$, $\num{0,125}$, $\dfrac{1}{3}$, $\sqrt2$ dans le plus petit ensemble usuel ; traduire $x>1$ et $x\leq4$ par un intervalle. Préciser le statut de x et m dans $mx+1=0$. Résoudre selon m.
+\end{enumerate}
+\ifmxteacher
+\subsection*{Corrigés transversaux}
+1. Négation : pour tout réel x, $x^2\geq0$, vraie ; la proposition initiale est fausse.\par
+2. Réciproque fausse, contre-exemple 2. Contraposée : si un entier n’est pas pair, il n’est pas multiple de 4 ; vraie.\par
+3. Intersection $\{1\}$, cardinal 1 ; réunion $\ens{0;1;2;3}$, cardinal 4 ; produit de six couples $\pt{0;1},\pt{0;2},\pt{0;3},\pt{1;1},\pt{1;2},\pt{1;3}$.\par
+4. Si N était le plus grand, N+1 serait un entier naturel strictement plus grand : contradiction.\par
+5. Respectivement $\Z$, $\mathbb D$, $\mathbb Q$, $\R$ ; intervalle $\intof{1}{4}$. x inconnue, m paramètre. Si $m\ne0$, unique solution $-\dfrac{1}{m}$ ; si m=0, l’équation devient $1=0$, aucune solution.
+\fi
+
+\section{Python : comprendre ce que l’on exécute}\label{PYTHON}
+Les fichiers fournis s’exécutent avec Python 3. Une fonction reçoit des arguments et renvoie un résultat ; une boucle répète une action. Une variable de programme peut changer de valeur par affectation, contrairement à une inconnue fixe dans une équation.
+
+\begin{keypoint}[Listes et indices]
+\code{L=[1,4,9]} définit une liste en extension. \code{L.append(16)} ajoute un élément ; \code{del L[0]} supprime le premier. \code{L[0]} lit l’élément d’indice 0 et \code{len(L)} donne la longueur. Une liste en compréhension, telle que \code{[k*k for k in range(5)]}, contient les carrés de 0 à 4. L’ordre et les répétitions font partie de la liste : ce n’est pas un ensemble.
+\end{keypoint}
+\begin{example}Après \code{L=[1,4,9]}, \code{L.append(16)}, puis \code{del L[0]}, la liste vaut \code{[4,9,16]}. L’instruction \texttt{[x for x in L if x\%2==0]} produit \code{[4,16]}. Le test est une proposition logique exécutée pour chaque élément.\end{example}
+
+\begin{longtable}{p{.25\linewidth}p{.66\linewidth}}
+\toprule Fichier & Usages et contrôles à effectuer \\\midrule
+\code{suites.py} & Termes, sommes, seuils, factorielle, Fibonacci, Syracuse, manipulations de listes. Tester n=0, q=0, q=1, seuil déjà atteint et seuil inaccessible.\\
+\code{analyse.py} & Taux de sécantes, seuil exponentiel ; les méthodes de Newton et d’Euler y figurent comme prolongements hors programme. Éviter pas nul et dérivée nulle ; distinguer arrêt et convergence.\\
+\code{probabilites.py} & Loi, moments, Monte-Carlo, échantillons, fréquence de lettres. Vérifier somme des probabilités, taille non nulle et graine de simulation.\\
+\code{archimede.py} & Polygones inscrits et circonscrits, sans utiliser pi dans la construction. Contrôler le resserrement des bornes.\\
+\code{verifier.py} & Exécuter les contrôles déterministes et les cas limites. Une simulation proche d’une valeur théorique ne constitue pas sa démonstration.\\\bottomrule
+\end{longtable}
+
+\subsection*{Travaux pratiques à répartir}\label{TP}
+\begin{enumerate}
+\item Suites : générer dix termes, comparer boucle et formule, puis calculer un cumul. Expliquer la longueur de la liste.
+\item Sécantes : prendre trois pas positifs et trois négatifs ; comparer au calcul algébrique du taux.
+\item Monte-Carlo : comparer \num{1000} puis \num{10000} points, avec deux graines ; commenter la fluctuation.
+\item Échantillons : simuler $N=\num{1000}$ échantillons de taille n=10 puis n=100 ; comparer moyenne observée et espérance.
+\item Archimède : produire un tableau de résultats à plusieurs résolutions ; indiquer ce que l’on observe et ce que l’on a démontré.
+\end{enumerate}
+Ces TP sont des alternatives réparties sur les séances d’algorithmique et de consolidation. Ils ne s’ajoutent pas tous à une même semaine de cours. Les résultats d’une simulation dépendent de la graine ; le rapport de contrôle fournit un exemple d’exécution reproductible.
+
+\section{Lire et représenter des données}\label{STATS}
+Une moyenne pondérée est $\dfrac{\sum n_ix_i}{\sum}n_i$. La médiane partage une série ordonnée ; pour un effectif pair, on utilise ici la moyenne des deux valeurs centrales. Les quartiles de rangs plafonds $\dfrac{n}{4}$ et $\dfrac{3n}{4}$ sont explicitement utilisés lorsque des valeurs sont demandées. La variance descriptive utilise le dénominateur n, sans correction d’estimation.
+
+Dans un diagramme en barres, la hauteur représente l’effectif ou la fréquence. Dans un histogramme à classes de largeurs inégales, c’est l’aire du rectangle qui doit lui être proportionnelle. Un diagramme circulaire répartit les $360^\circ$ selon les proportions. Une boîte à moustaches représente des indicateurs de position et de dispersion, pas la fréquence de chaque valeur. Toujours lire origine, unités et échelle avant de comparer.
+\begin{example}Deux classes de largeur 2 et 4 contiennent chacune 20 observations. Des hauteurs 10 et 5 donnent dans les deux cas une aire de 20. Des hauteurs égales rendraient la deuxième classe artificiellement deux fois plus importante.\end{example}
+\begin{application}Les catégories A, B, C ont effectifs 10, 20, 30. Construire un diagramme en barres et calculer les angles d’un diagramme circulaire. Pour la série 1,1,3,3,7, donner moyenne, médiane, étendue et variance. Lire la boîte ci-dessous : minimum, quartiles, médiane et maximum. Peut-on retrouver toutes les données ?\end{application}\label{STATS-EX}
+\begin{center}\begin{tikzpicture}[x=.65cm,y=.7cm]
+\draw[->] (0,0)--(11,0);\foreach \x in {0,...,10}\draw (\x,.1)--(\x,-.1)node[below]{\small\x};
+\draw[thick,mxmint](1,1)--(3,1) (7,1)--(10,1) (1,.6)--(1,1.4) (10,.6)--(10,1.4);
+\draw[thick,mxmint](3,.5)rectangle(7,1.5);\draw[thick,mxwarn](5,.5)--(5,1.5);
+\end{tikzpicture}\par\small Boîte indépendante de la série précédente ; moustaches aux valeurs extrêmes.\end{center}
+\ifmxteacher
+\paragraph{Correction.} Boîte : minimum 1, premier quartile 3, médiane 5, troisième quartile 7, maximum 10. Ces cinq indicateurs ne déterminent pas toutes les observations. Effectif total 60 : angles $60^\circ$, $120^\circ$, $180^\circ$. Les hauteurs des barres sont 10,20,30. Série : moyenne 3 ; médiane 3 ; étendue 6 ; variance $\dfrac{4+4+0+0+16}{5}=\dfrac{24}{5}$.
+\fi
+
+\section{Annales : lire le format sans réduire le programme}\label{ANNALES}
+Les sujets de 2026 ont été consultés pour identifier les démarches demandées. Ils relèvent de la première édition de l’EAM, avant l’application du programme 2026 ; ils servent d’entraînement après vérification des notions étudiées. Les sujets originaux EV ne se présentent pas comme des sujets officiels.
+
+\begin{longtable}{p{.22\linewidth}p{.38\linewidth}p{.29\linewidth}}
+\toprule Source & Démarches observées & Réinvestissement \\\midrule
+Métropole 2026, 26-MATSPEGEME1 & Arbre avec probabilité inconnue ; affirmations justifiées ; géométrie reliant angle et équation. & C05, C03, C09 ; EV2-A, EV3-A et EV4-B.\\
+Sujet officiel 2026, 26-MATSPEGEG11 & Modèle discret, cumul et lecture de boucle ; coordonnées et angle ; tangente et quotient. & C01, C03, C06 ; EV1-T1, EV2-T1.\\
+Antilles-Guyane 2026, 26-MATSPEGEAG1 & Seuil d’une suite ; arbre et tarif aléatoire ; produit exponentiel et vrai/faux. & C01, C05, C08, C09 ; EV4-T1 et EV4-B.\\
+Sujets zéro Éduscol & Automatismes, problèmes indépendants et rédaction sans calculatrice. & Entraînements T1/T2 de chaque lot.\\\bottomrule
+\end{longtable}
+Les liens exacts sont fournis dans le fichier \code{SOURCES.md}. Les sujets ne sont pas reproduits intégralement. Pour travailler une annale, noter le code du sujet, l’exercice et les questions effectivement étudiées ; corriger les raisonnements, pas seulement les résultats.
+
+\subsection*{Préparer deux heures sans calculatrice}
+Commencer par lire les deux parties ; réserver environ 20 à 25 minutes aux automatismes. Pour un exercice, écrire les hypothèses et le domaine avant le calcul. Si une étape bloque, utiliser le résultat demandé pour poursuivre en le signalant. Garder une dizaine de minutes pour vérifier les signes, les arrondis demandés, les unités et les réponses aux questions. Ces repères sont à adapter au rythme constaté pendant les entraînements.

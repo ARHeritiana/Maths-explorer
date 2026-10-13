@@ -1,0 +1,89 @@
+{
+ "unit": "bayes-notes.fr.tex",
+ "segments": {
+  "fe9faeb89d51": {
+   "fr": "Inverser une probabilité conditionnelle",
+   "en": "Reversing a conditional probability",
+   "status": "aligned",
+   "order": 0
+  },
+  "87166ef6b646": {
+   "fr": "Première--Terminale · probabilités",
+   "en": "High school · probability",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "a511d5087635": {
+   "fr": "Arbres pondérés, intersections et probabilités conditionnelles.",
+   "en": "Probability trees, intersections and conditional probability.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "735fbd8179fb": {
+   "fr": "[[m1]] désigne la probabilité de A lorsqu’on sait B réalisé. Si [[m2]], [[m3]]. L’information B restreint l’univers considéré.",
+   "en": "[[m1]] is the probability of A given that B occurred. If [[m2]], [[m3]]. The information B restricts the sample space.",
+   "status": "aligned",
+   "order": 5
+  },
+  "af6e330ef6be": {
+   "fr": "[[m1]]. Si A et son contraire forment les deux premières branches d’un arbre, [[m2]].",
+   "en": "[[m1]]. If A and its complement form the first two branches of a tree, [[m2]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "37031f99ac78": {
+   "fr": "non ",
+   "en": "not ",
+   "status": "aligned",
+   "order": 7
+  },
+  "12c6cf073b31": {
+   "fr": "La formule de Bayes résulte de ces deux égalités. [[m1]] n’est généralement pas égal à [[m2]] : les dénominateurs correspondent à des populations différentes.",
+   "en": "Bayes’ formula follows from these two identities. [[m1]] generally differs from [[m2]]: the denominators refer to different populations.",
+   "status": "aligned",
+   "order": 9
+  },
+  "043edf20b1ff": {
+   "fr": "On choisit A avec probabilité [[m1]] et B avec probabilité [[m2]]. L’urne A contient 3 rouges et 1 bleue ; B contient 1 rouge et 3 bleues. [[m3]]. Sachant que la boule est rouge, [[m4]].",
+   "en": "Choose urn A with probability [[m1]] and B with probability [[m2]]. A contains 3 red and 1 blue ball; B contains 1 red and 3 blue balls. [[m3]]. Given a red ball, [[m4]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "d1695e2cec40": {
+   "fr": "rouge",
+   "en": "red",
+   "status": "aligned",
+   "order": 11
+  },
+  "edc6470205cd": {
+   "fr": "Seules les branches conduisant à une boule rouge sont représentées.",
+   "en": "Only branches leading to a red ball are shown.",
+   "status": "aligned",
+   "order": 13
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 14
+  },
+  "d529e9e6d5b1": {
+   "fr": "Représenter l’exemple sur 120 tirages fictifs respectant exactement les proportions. Compter les boules rouges venant de chaque urne.",
+   "en": "Represent the example with 120 hypothetical trials matching the proportions exactly. Count red balls from each urn.",
+   "status": "aligned",
+   "order": 15
+  }
+ }
+}

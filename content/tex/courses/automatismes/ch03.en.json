@@ -1,0 +1,563 @@
+{
+ "unit": "ch03.fr.tex",
+ "segments": {
+  "53bd598c5981": {
+   "fr": "Nombres réels et intervalles",
+   "en": "Real numbers and intervals",
+   "status": "aligned",
+   "order": 0
+  },
+  "6283545d7871": {
+   "fr": "jeu.~19~nov.~2026",
+   "en": "Thu~19~Nov.~2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "6c306a902c61": {
+   "fr": "Ensembles de nombres~: [[m1]]",
+   "en": "Sets of numbers: [[m1]]",
+   "status": "aligned",
+   "order": 2
+  },
+  "bbfeac0129d0": {
+   "fr": "Échauffement · Flash",
+   "en": "Warm-up · Quick",
+   "status": "aligned",
+   "order": 3
+  },
+  "34278e8fa518": {
+   "fr": "Donner l'écriture décimale de [[m1]] et une valeur approchée de [[m2]] à [[m3]] près.",
+   "en": "Give the decimal form of [[m1]] and an approximation of [[m2]] to within [[m3]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "86f6c483637b": {
+   "fr": "Cœur · Méthode",
+   "en": "Core · Method",
+   "status": "aligned",
+   "order": 5
+  },
+  "4a7dfcbf7cb7": {
+   "fr": "Donner le plus petit ensemble ([[m1]]) contenant chacun de ces nombres~: [[m2]]\\,; [[m3]]\\,; [[m4]]\\,; [[m5]]\\,; [[m6]].",
+   "en": "Give the smallest set ([[m1]]) containing each of these numbers: [[m2]]; [[m3]]; [[m4]]; [[m5]]; [[m6]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "89ada28ba25c": {
+   "fr": "Le plus petit ensemble est la clé~: [[m1]] est un entier naturel.",
+   "en": "The smallest set is the key: [[m1]] is a natural number.",
+   "status": "aligned",
+   "order": 7
+  },
+  "07100f279aae": {
+   "fr": "Cœur + · Vrai/faux",
+   "en": "Core + · True/false",
+   "status": "aligned",
+   "order": 8
+  },
+  "8c10a698c1a1": {
+   "fr": "Vrai ou faux\\,? Justifier. Le nombre [[m1]] est un nombre décimal.",
+   "en": "True or false? Justify. The number [[m1]] is a decimal number.",
+   "status": "aligned",
+   "order": 9
+  },
+  "140dc29258cd": {
+   "fr": "Faux. S'il existait [[m1]] et [[m2]] entiers avec [[m3]], alors [[m4]] serait divisible par [[m5]]~: impossible (la somme des chiffres de [[m6]] vaut [[m7]]).",
+   "en": "False. If there were integers [[m1]] and [[m2]] with [[m3]], then [[m4]] would be divisible by [[m5]]: impossible (the sum of the digits of [[m6]] is [[m7]]).",
+   "status": "aligned",
+   "order": 10
+  },
+  "1c37077501a9": {
+   "fr": "Retour · Flash",
+   "en": "Review · Quick",
+   "status": "aligned",
+   "order": 11
+  },
+  "ed91bde6db86": {
+   "fr": "Calculer [[m1]] pour [[m2]].",
+   "en": "Calculate [[m1]] for [[m2]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "968069c57071": {
+   "fr": "Fil rouge · Flash",
+   "en": "Thread · Quick",
+   "status": "aligned",
+   "order": 13
+  },
+  "d15b3b7c4904": {
+   "fr": "Combien de faces, sommets et arêtes possède un prisme droit à base triangulaire\\,?",
+   "en": "How many faces, vertices and edges does a right triangular prism have?",
+   "status": "aligned",
+   "order": 14
+  },
+  "e478f015c552": {
+   "fr": "[[m1]] faces ([[m2]] triangles, [[m3]] rectangles), [[m4]] sommets, [[m5]] arêtes.",
+   "en": "[[m1]] faces ([[m2]] triangles, [[m3]] rectangles), [[m4]] vertices, [[m5]] edges.",
+   "status": "aligned",
+   "order": 15
+  },
+  "f7cc29482eca": {
+   "fr": "lun.~23~nov.~2026",
+   "en": "Mon~23~Nov.~2026",
+   "status": "aligned",
+   "order": 16
+  },
+  "c373f80bcd2e": {
+   "fr": "Encadrements décimaux et arrondis",
+   "en": "Decimal bounds and rounding",
+   "status": "aligned",
+   "order": 17
+  },
+  "793e16a6f208": {
+   "fr": "Arrondir [[m1]] à [[m2]] près puis à [[m3]] près.",
+   "en": "Round [[m1]] to the nearest [[m2]] and then to the nearest [[m3]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "efb3702f474e": {
+   "fr": "[[m1]] puis [[m2]].",
+   "en": "[[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "1ac94d0758f4": {
+   "fr": "Le chiffre suivant décide~: [[m1]] puis [[m2]].",
+   "en": "The next digit decides: [[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 21
+  },
+  "b5d7580b6d35": {
+   "fr": "Encadrer [[m1]] par deux décimaux d'amplitude [[m2]].",
+   "en": "Bound [[m1]] between two decimals that differ by [[m2]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "be09bf3f9be3": {
+   "fr": "Cœur + · Lecture de code",
+   "en": "Core + · Code reading",
+   "status": "aligned",
+   "order": 24
+  },
+  "120a8d803d34": {
+   "fr": "Quelle est la valeur finale de [[m1]]\\,? Que peut-on en déduire sur [[m2]]\\,?",
+   "en": "What is the final value of [[m1]]? What can be deduced about [[m2]]?",
+   "status": "aligned",
+   "order": 25
+  },
+  "ea9f98dc48fd": {
+   "fr": "k = 10\\\\ while (k/10)**2",
+   "en": "k = 10\\\\ while (k/10)**2",
+   "status": "aligned",
+   "order": 26
+  },
+  "e03cb202edd4": {
+   "fr": "k = k + 1",
+   "en": "k = k + 1",
+   "status": "aligned",
+   "order": 27
+  },
+  "8718f573856b": {
+   "fr": "[[m1]]~: [[m2]] et [[m3]], donc [[m4]].",
+   "en": "[[m1]]: [[m2]] and [[m3]], so [[m4]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "abafc77bfa78": {
+   "fr": "[[m1]] kg de riz coûtent [[m2]] Ar. Combien coûtent [[m3]] kg\\,?",
+   "en": "[[m1]] kg of rice cost [[m2]] Ar. How much do [[m3]] kg cost?",
+   "status": "aligned",
+   "order": 30
+  },
+  "93719eaa5542": {
+   "fr": "[[m1]] Ar.",
+   "en": "[[m1]] Ar.",
+   "status": "aligned",
+   "order": 31
+  },
+  "e362a24f201e": {
+   "fr": "Fil rouge · Vrai/faux",
+   "en": "Thread · True/false",
+   "status": "aligned",
+   "order": 32
+  },
+  "8d3258af1757": {
+   "fr": "Vrai ou faux\\,? Justifier. Un quadrilatère dont les diagonales ont même longueur est un rectangle.",
+   "en": "True or false? Justify. A quadrilateral whose diagonals have equal length is a rectangle.",
+   "status": "aligned",
+   "order": 33
+  },
+  "966166225467": {
+   "fr": "Faux. Contre-exemple~: un trapèze isocèle a des diagonales de même longueur sans être un rectangle.",
+   "en": "False. Counter-example: an isosceles trapezium has diagonals of equal length without being a rectangle.",
+   "status": "aligned",
+   "order": 34
+  },
+  "93ace379ee5c": {
+   "fr": "mar.~24~nov.~2026",
+   "en": "Tue~24~Nov.~2026",
+   "status": "aligned",
+   "order": 35
+  },
+  "170777c98044": {
+   "fr": "Nombres irrationnels~: [[m1]] n'est pas décimal, [[m2]] est irrationnel",
+   "en": "Irrational numbers: [[m1]] is not decimal, [[m2]] is irrational",
+   "status": "aligned",
+   "order": 36
+  },
+  "5d4f35c70217": {
+   "fr": "Écrire [[m1]] et [[m2]] sous la forme [[m3]] avec [[m4]] entier le plus petit possible.",
+   "en": "Write [[m1]] and [[m2]] in the form [[m3]] with [[m4]] the smallest possible integer.",
+   "status": "aligned",
+   "order": 38
+  },
+  "3974c63ce6f5": {
+   "fr": "Cœur · Tri",
+   "en": "Core · Sorting",
+   "status": "aligned",
+   "order": 39
+  },
+  "1ad649ad48a5": {
+   "fr": "Parmi [[m1]]\\,; [[m2]]\\,; [[m3]]\\,; [[m4]]\\,; [[m5]], lesquels sont rationnels\\,?",
+   "en": "Among [[m1]]; [[m2]]; [[m3]]; [[m4]]; [[m5]], which are rational?",
+   "status": "aligned",
+   "order": 40
+  },
+  "36fe4fabbc93": {
+   "fr": "[[m1]]\\,; [[m2]]\\,; [[m3]]~: rationnels. [[m4]] et [[m5]] sont irrationnels.",
+   "en": "[[m1]]; [[m2]]; [[m3]]: rational. [[m4]] and [[m5]] are irrational.",
+   "status": "aligned",
+   "order": 41
+  },
+  "a7719177b482": {
+   "fr": "[[m1]] n'est qu'une valeur approchée de [[m2]], pas égale à [[m3]].",
+   "en": "[[m1]] is only an approximation of [[m2]], not equal to [[m3]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "8914ba1b6a65": {
+   "fr": "Cœur + · Raisonnement",
+   "en": "Core + · Reasoning",
+   "status": "aligned",
+   "order": 43
+  },
+  "faa04a14b84f": {
+   "fr": "On suppose [[m1]] avec [[m2]] irréductible, d'où [[m3]]. Que dire de la parité de [[m4]], puis de [[m5]]\\,? Quelle contradiction\\,?",
+   "en": "Suppose [[m1]] with [[m2]] in lowest terms, so [[m3]]. What can be said about the parity of [[m4]], then of [[m5]]? What contradiction arises?",
+   "status": "aligned",
+   "order": 44
+  },
+  "2cbe43948cca": {
+   "fr": "[[m1]] pair, donc [[m2]] pair, [[m3]]\\,; alors [[m4]], [[m5]]~: [[m6]] pair. Contradiction avec la fraction irréductible.",
+   "en": "[[m1]] even, so [[m2]] even, [[m3]]; then [[m4]], [[m5]]: [[m6]] even. Contradiction with the fraction being in lowest terms.",
+   "status": "aligned",
+   "order": 45
+  },
+  "8ccc77a61b2f": {
+   "fr": "Retour · Tableau",
+   "en": "Review · Table",
+   "status": "aligned",
+   "order": 46
+  },
+  "3c3030c5ece6": {
+   "fr": "Valeurs [[m1]] d'effectifs [[m2]]. Donner l'effectif total, la fréquence de la valeur [[m3]] et la moyenne.",
+   "en": "Values [[m1]] with frequencies [[m2]]. Give the total frequency, the relative frequency of the value [[m3]] and the mean.",
+   "status": "aligned",
+   "order": 47
+  },
+  "68f92b0dd425": {
+   "fr": "Valeur",
+   "en": "Value",
+   "status": "aligned",
+   "order": 48
+  },
+  "bbfbd27560b6": {
+   "fr": "Effectif",
+   "en": "Frequency",
+   "status": "aligned",
+   "order": 49
+  },
+  "52da82dacb4b": {
+   "fr": "Total [[m1]]\\,; fréquence [[m2]]\\,; moyenne [[m3]].",
+   "en": "Total [[m1]]; relative frequency [[m2]]; mean [[m3]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "9efe38f0f9f5": {
+   "fr": "Donner les coordonnées du symétrique de [[m1]] par rapport à l'axe des ordonnées.",
+   "en": "Give the coordinates of the reflection of [[m1]] in the y-axis.",
+   "status": "aligned",
+   "order": 52
+  },
+  "edd8b245c4de": {
+   "fr": "Piège~: changer le signe de l'ordonnée (symétrie par rapport à l'axe des abscisses).",
+   "en": "Pitfall: changing the sign of the ordinate (reflection in the x-axis).",
+   "status": "aligned",
+   "order": 53
+  },
+  "91f442077afd": {
+   "fr": "jeu.~26~nov.~2026",
+   "en": "Thu~26~Nov.~2026",
+   "status": "aligned",
+   "order": 54
+  },
+  "9831ffedca09": {
+   "fr": "Intervalles de [[m1]]~: notations et représentation",
+   "en": "Intervals of [[m1]]: notation and representation",
+   "status": "aligned",
+   "order": 55
+  },
+  "d93d83b1b781": {
+   "fr": "Comparer [[m1]] et [[m2]] puis [[m3]] et [[m4]].",
+   "en": "Compare [[m1]] and [[m2]], then [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "5640418ffe1f": {
+   "fr": "Pour les négatifs, le plus petit en valeur absolue est le plus grand.",
+   "en": "For negative numbers, the one with the smaller absolute value is the greater.",
+   "status": "aligned",
+   "order": 58
+  },
+  "58c91b3b8bf1": {
+   "fr": "Écrire sous forme d'intervalle~: [[m1]]\\,; [[m2]]\\,; [[m3]].",
+   "en": "Write as an interval: [[m1]]; [[m2]]; [[m3]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "79064999d9e3": {
+   "fr": "Le crochet est tourné vers l'intérieur si la borne est incluse\\,; [[m1]] est toujours exclu.",
+   "en": "A square bracket if the endpoint is included, a parenthesis otherwise; [[m1]] is always excluded.",
+   "status": "reviewed",
+   "order": 61
+  },
+  "8335706ea19c": {
+   "fr": "Cœur + · QCM",
+   "en": "Core + · MCQ",
+   "status": "aligned",
+   "order": 62
+  },
+  "43cb1f13b93d": {
+   "fr": "L'intersection [[m1]] est~:",
+   "en": "The intersection [[m1]] is:",
+   "status": "aligned",
+   "order": 63
+  },
+  "c2dcac2ca1db": {
+   "fr": "C.\\ [[m1]]",
+   "en": "C.\\ [[m1]]",
+   "status": "aligned",
+   "order": 64
+  },
+  "f6b8865d34a7": {
+   "fr": "Intersection~: valeurs vérifiant les deux conditions [[m1]] et [[m2]].",
+   "en": "Intersection: values satisfying both conditions [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "46c4a8f51806": {
+   "fr": "Durées de trajet (min).",
+   "en": "Journey times (min).",
+   "status": "aligned",
+   "order": 67
+  },
+  "3c38412a945a": {
+   "fr": "Classe",
+   "en": "Class",
+   "status": "aligned",
+   "order": 68
+  },
+  "d2fb53dfaa53": {
+   "fr": "Quel est l'effectif total, la classe modale et la fréquence de [[m1]]\\,?",
+   "en": "What are the total frequency, the modal class and the relative frequency of [[m1]]?",
+   "status": "aligned",
+   "order": 70
+  },
+  "09ec08794610": {
+   "fr": "Fil rouge · Problème",
+   "en": "Thread · Problem",
+   "status": "aligned",
+   "order": 71
+  },
+  "d52a36fa7e0c": {
+   "fr": "Un bus passe toutes les [[m1]] min, un autre toutes les [[m2]] min. Ils se croisent à [[m3]] h. À quelle heure se recroisent-ils\\,?",
+   "en": "One bus runs every [[m1]] min, another every [[m2]] min. They are together at [[m3]] a.m. At what time are they next together?",
+   "status": "aligned",
+   "order": 72
+  },
+  "d68158ad94e6": {
+   "fr": "[[m1]]~: à [[m2]] h.",
+   "en": "[[m1]]: at [[m2]] a.m.",
+   "status": "aligned",
+   "order": 73
+  },
+  "11d8a3bc2fc4": {
+   "fr": "lun.~30~nov.~2026",
+   "en": "Mon~30~Nov.~2026",
+   "status": "aligned",
+   "order": 74
+  },
+  "618810ccfa8d": {
+   "fr": "Valeur absolue et distance entre deux réels",
+   "en": "Absolute value and distance between two real numbers",
+   "status": "aligned",
+   "order": 75
+  },
+  "3ad1ab4fe8bd": {
+   "fr": "Quelle est la distance entre [[m1]] et [[m2]] sur la droite graduée\\,?",
+   "en": "What is the distance between [[m1]] and [[m2]] on the number line?",
+   "status": "aligned",
+   "order": 77
+  },
+  "df0bcc1195a5": {
+   "fr": "Cœur · Flash",
+   "en": "Core · Quick",
+   "status": "aligned",
+   "order": 78
+  },
+  "6a2a13af8eb7": {
+   "fr": "Calculer [[m1]], [[m2]] et [[m3]].",
+   "en": "Calculate [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "f898c7ad48e5": {
+   "fr": "[[m1]]\\,; [[m2]]\\,; [[m3]] car [[m4]].",
+   "en": "[[m1]]; [[m2]]; [[m3]] since [[m4]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "737e1b9ae557": {
+   "fr": "Cœur + · Méthode",
+   "en": "Core + · Method",
+   "status": "aligned",
+   "order": 81
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "baf8b6dc21de": {
+   "fr": "Les réels à distance [[m1]] de [[m2]]~: [[m3]] ou [[m4]].",
+   "en": "The real numbers at distance [[m1]] from [[m2]]: [[m3]] or [[m4]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "a433a32b3d98": {
+   "fr": "Interprétation géométrique plutôt que cas par cas.",
+   "en": "Geometric interpretation rather than case by case.",
+   "status": "aligned",
+   "order": 84
+  },
+  "30823a5c223c": {
+   "fr": "Retour · Formule",
+   "en": "Review · Formula",
+   "status": "aligned",
+   "order": 85
+  },
+  "17da5a7fb8a2": {
+   "fr": "[[m1]]. Donner l'image de [[m2]] et les antécédents de [[m3]].",
+   "en": "[[m1]]. Give the image of [[m2]] and the preimages of [[m3]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "1f1ab0b46902": {
+   "fr": "[[m1]]\\,; [[m2]]~: antécédents [[m3]] et [[m4]].",
+   "en": "[[m1]]; [[m2]]: preimages [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "3da78d719cf1": {
+   "fr": "Fil rouge · Formule → tableau",
+   "en": "Thread · Formula → table",
+   "status": "aligned",
+   "order": 88
+  },
+  "e61e85c57528": {
+   "fr": "[[m1]]. Compléter~: [[m2]], [[m3]], [[m4]].",
+   "en": "[[m1]]. Complete: [[m2]], [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 89
+  },
+  "9f37d85373dd": {
+   "fr": "mar.~1\\textsuperscript{er}~déc.~2026",
+   "en": "Tue~1\\textsuperscript{st}~Dec.~2026",
+   "status": "aligned",
+   "order": 90
+  },
+  "45bb49cf2476": {
+   "fr": "Inéquation [[m1]] et intervalle associé",
+   "en": "Inequality [[m1]] and the associated interval",
+   "status": "aligned",
+   "order": 91
+  },
+  "757da8eff1a1": {
+   "fr": "Résoudre [[m1]] et donner [[m2]] sous forme d'intervalle.",
+   "en": "Solve [[m1]] and give [[m2]] as an interval.",
+   "status": "aligned",
+   "order": 95
+  },
+  "3113caa61b1b": {
+   "fr": "Les réels à distance au plus [[m1]] de [[m2]]~: [[m3]].",
+   "en": "The real numbers at distance at most [[m1]] from [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 96
+  },
+  "3475a7b31523": {
+   "fr": "Contrôle~: [[m1]] et [[m2]].",
+   "en": "Check: [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "8cd69a9e20d2": {
+   "fr": "Cœur + · Traduire",
+   "en": "Core + · Translate",
+   "status": "aligned",
+   "order": 98
+  },
+  "5bde8dc2ff45": {
+   "fr": "Traduire par une inégalité avec valeur absolue~: [[m1]] puis [[m2]].",
+   "en": "Express as an inequality with absolute value: [[m1]] then [[m2]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "6c2f97ae68c7": {
+   "fr": "[[m1]] (centre [[m2]], rayon [[m3]])\\,; [[m4]] (centre [[m5]], rayon [[m6]]).",
+   "en": "[[m1]] (centre [[m2]], radius [[m3]]); [[m4]] (centre [[m5]], radius [[m6]]).",
+   "status": "aligned",
+   "order": 100
+  },
+  "d5efe8c7e51d": {
+   "fr": "Retour · Problème",
+   "en": "Review · Problem",
+   "status": "aligned",
+   "order": 101
+  },
+  "d540713378c0": {
+   "fr": "Lot A~: [[m1]] yaourts pour [[m2]] €. Lot B~: [[m3]] yaourts pour [[m4]] €. Lequel est le plus avantageux\\,?",
+   "en": "Pack A: [[m1]] yoghurts for €[[m2]]. Pack B: [[m3]] yoghurts for €[[m4]]. Which is better value?",
+   "status": "aligned",
+   "order": 102
+  },
+  "2d3931bda625": {
+   "fr": "A~: [[m1]] € l'unité\\,; B~: [[m2]] €~: B.",
+   "en": "A: €[[m1]] each; B: €[[m2]]: B.",
+   "status": "aligned",
+   "order": 103
+  },
+  "9e047b902ad4": {
+   "fr": "Un disque a pour rayon [[m1]] cm. Donner son aire et son périmètre (valeurs exactes).",
+   "en": "A disc has radius [[m1]] cm. Give its area and its circumference (exact values).",
+   "status": "aligned",
+   "order": 105
+  },
+  "086e33a316ad": {
+   "fr": "Aire [[m1]] cm[[m2]]\\,; périmètre [[m3]] cm.",
+   "en": "Area [[m1]] cm[[m2]]; circumference [[m3]] cm.",
+   "status": "aligned",
+   "order": 106
+  }
+ }
+}

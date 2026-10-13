@@ -1,0 +1,485 @@
+{
+ "unit": "C04.fr.tex",
+ "segments": {
+  "b2d53eae9be9": {
+   "fr": "Limites de fonctions",
+   "en": "Limits of functions",
+   "status": "aligned",
+   "order": 0
+  },
+  "8ab284dc3d82": {
+   "fr": "S21, S23, S24, S26",
+   "en": "S21, S23, S24, S26",
+   "status": "aligned",
+   "order": 1
+  },
+  "5702830759b3": {
+   "fr": "Objectifs",
+   "en": "Objectives",
+   "status": "aligned",
+   "order": 2
+  },
+  "f835f4504fe7": {
+   "fr": "Calculer des limites en un point et à l'infini ; lever une indétermination ; interpréter une asymptote.",
+   "en": "Calculate limits at a point and at infinity; resolve an indeterminate form; interpret an asymptote.",
+   "status": "aligned",
+   "order": 3
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 4
+  },
+  "957594a4c906": {
+   "fr": "Sens d'une limite",
+   "en": "Meaning of a limit",
+   "status": "aligned",
+   "order": 5
+  },
+  "93d4f43a9164": {
+   "fr": "[[m1]] lorsque [[m2]] signifie que [[m3]] peut être rendu aussi proche que souhaité de [[m4]] pour tous les [[m5]] suffisamment grands. Pour une limite en [[m6]], on considère des [[m7]] du domaine, proches de [[m8]] et distincts de [[m9]]. Les limites à gauche et à droite se notent [[m10]] et [[m11]]. Lorsque le domaine possède des points des deux côtés de [[m12]], une limite bilatérale existe si et seulement si les deux limites latérales existent et sont égales. À une extrémité du domaine, on étudie la limite du seul côté accessible.",
+   "en": "[[m1]] as [[m2]] means that [[m3]] can be made as close as desired to [[m4]] for all sufficiently large [[m5]]. For a limit at [[m6]], we consider values of [[m7]] in the domain, close to [[m8]] and different from [[m9]]. The left-hand and right-hand limits are written [[m10]] and [[m11]]. When the domain has points on both sides of [[m12]], a two-sided limit exists if and only if both one-sided limits exist and are equal. At an endpoint of the domain, we study the limit from the only accessible side.",
+   "status": "aligned",
+   "order": 6
+  },
+  "e027b26c4237": {
+   "fr": "Interprétation graphique",
+   "en": "Graphical interpretation",
+   "status": "aligned",
+   "order": 7
+  },
+  "59342d8b4562": {
+   "fr": "Si [[m1]] lorsque [[m2]] ou [[m3]], la droite [[m4]] est une asymptote horizontale dans cette direction. Si [[m5]] lorsque [[m6]] d'un côté, la droite [[m7]] est une asymptote verticale.",
+   "en": "If [[m1]] as [[m2]] or [[m3]], the line [[m4]] is a horizontal asymptote in that direction. If [[m5]] as [[m6]] from one side, the line [[m7]] is a vertical asymptote.",
+   "status": "aligned",
+   "order": 8
+  },
+  "665f3b33d4b6": {
+   "fr": "Une courbe peut couper une asymptote horizontale. La limite ne donne pas nécessairement la position de la courbe par rapport à l'asymptote : étudier le signe de [[m1]].",
+   "en": "A curve can cross a horizontal asymptote. The limit does not necessarily give the position of the curve relative to the asymptote: study the sign of [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "49ad9c93cb0f": {
+   "fr": "Références et opérations",
+   "en": "Reference limits and operations",
+   "status": "aligned",
+   "order": 10
+  },
+  "1a9b27350f62": {
+   "fr": "En [[m1]], [[m2]] pour [[m3]], [[m4]], [[m5]]. En [[m6]], le signe de [[m7]] dépend de la parité de [[m8]]. Les règles de somme, produit, quotient et comparaison sont celles des suites, avec les mêmes formes indéterminées.",
+   "en": "At [[m1]], [[m2]] for [[m3]], [[m4]], [[m5]]. At [[m6]], the sign of [[m7]] depends on the parity of [[m8]]. The rules for sum, product, quotient and comparison are those for sequences, with the same indeterminate forms.",
+   "status": "aligned",
+   "order": 11
+  },
+  "257a81803219": {
+   "fr": "Exemple.",
+   "en": "Example.",
+   "status": "aligned",
+   "order": 12
+  },
+  "7ecb54e45230": {
+   "fr": "Pour [[m1]], écrire [[m2]]. Les limites en [[m3]] valent [[m4]]. En [[m5]], [[m6]] ; en [[m7]], [[m8]]. Les asymptotes sont [[m9]] et [[m10]].",
+   "en": "For [[m1]], write [[m2]]. The limits at [[m3]] equal [[m4]]. At [[m5]], [[m6]]; at [[m7]], [[m8]]. The asymptotes are [[m9]] and [[m10]].",
+   "status": "aligned",
+   "order": 13
+  },
+  "2a1f5eec39df": {
+   "fr": "Conjugaison.",
+   "en": "Conjugation.",
+   "status": "aligned",
+   "order": 14
+  },
+  "49d1a678d881": {
+   "fr": "Pour [[m1]], [[m2]]. Pour [[m3]], attention : [[m4]].",
+   "en": "For [[m1]], [[m2]]. For [[m3]], take care: [[m4]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "bd7aa8cb26b5": {
+   "fr": "Exponentielle et croissance comparée",
+   "en": "Exponential and comparison of growth rates",
+   "status": "aligned",
+   "order": 16
+  },
+  "838a5b99e3f8": {
+   "fr": "On en déduit [[m1]] en [[m2]].",
+   "en": "We deduce [[m1]] at [[m2]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "f75103daf656": {
+   "fr": "Démonstration des limites de l'exponentielle.",
+   "en": "Proof of the limits of the exponential.",
+   "status": "aligned",
+   "order": 18
+  },
+  "8b83bd224d4b": {
+   "fr": "L'étude de [[m1]] donne [[m2]]. Par comparaison, [[m3]] en [[m4]]. En posant [[m5]], [[m6]].",
+   "en": "Studying [[m1]] gives [[m2]]. By comparison, [[m3]] at [[m4]]. Setting [[m5]], [[m6]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "f651ed485b7e": {
+   "fr": "Démonstration d'une croissance comparée.",
+   "en": "Proof of a comparison of growth rates.",
+   "status": "aligned",
+   "order": 20
+  },
+  "82430e87d013": {
+   "fr": "Pour tout entier [[m1]] et [[m2]], [[m3]]. Pour [[m4]], [[m5]]. Si l'inégalité est acquise à l'ordre [[m6]], la dérivée de [[m7]] est [[m8]] ; sa valeur en [[m9]] est positive. L'hérédité suit. En choisissant [[m10]], [[m11]].",
+   "en": "For every integer [[m1]] and [[m2]], [[m3]]. For [[m4]], [[m5]]. If the inequality holds at order [[m6]], the derivative of [[m7]] is [[m8]]; its value at [[m9]] is positive. The inductive step follows. Choosing [[m10]], [[m11]].",
+   "status": "aligned",
+   "order": 21
+  },
+  "1f021a0bd560": {
+   "fr": "Choisir une transformation",
+   "en": "Choosing a transformation",
+   "status": "aligned",
+   "order": 22
+  },
+  "cac32d6c46fc": {
+   "fr": "Quotient de polynômes : factoriser les plus grandes puissances. Différence de racines : quantité conjuguée. Quotient près d'un zéro : factoriser et étudier les signes. Exponentielle contre puissance : croissance comparée, après changement de variable si nécessaire.",
+   "en": "Quotient of polynomials: factorise the highest powers. Difference of roots: conjugate. Quotient near a zero: factorise and study the signs. Exponential against power: comparison of growth rates, after a change of variable if necessary.",
+   "status": "aligned",
+   "order": 23
+  },
+  "7d256ce1c494": {
+   "fr": "Comparaison et composition : conditions d'emploi",
+   "en": "Comparison and composition: conditions of use",
+   "status": "aligned",
+   "order": 24
+  },
+  "261194862fb8": {
+   "fr": "Si [[m1]] près du point ou de l'infini étudié, et si [[m2]] ont la même limite réelle [[m3]], alors [[m4]] (théorème des gendarmes). Si [[m5]] et [[m6]], alors [[m7]]. Pour une limite [[m8]], on utilise une majoration par une fonction tendant vers [[m9]].\nSi [[m10]] et [[m11]] est continue en [[m12]], alors [[m13]], lorsque la composée est définie. Par exemple [[m14]] en [[m15]]. Pour une limite infinie de la fonction extérieure, vérifier de quel côté [[m16]] approche la borne : [[m17]] n'a pas le même comportement selon le signe de [[m18]].",
+   "en": "If [[m1]] near the point or the infinity under study, and if [[m2]] have the same real limit [[m3]], then [[m4]] (squeeze theorem). If [[m5]] and [[m6]], then [[m7]]. For a limit of [[m8]], use an upper bound by a function tending to [[m9]].\nIf [[m10]] and [[m11]] is continuous at [[m12]], then [[m13]], whenever the composite is defined. For example [[m14]] at [[m15]]. For an infinite limit of the outer function, check from which side [[m16]] approaches the bound: [[m17]] does not behave in the same way depending on the sign of [[m18]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "8744f41acc1f": {
+   "fr": "Activité de recherche",
+   "en": "Research activity",
+   "status": "aligned",
+   "order": 26
+  },
+  "39002b432325": {
+   "fr": "\\textbf{Une courbe proche d'une droite --- 30 min.}",
+   "en": "\\textbf{A curve close to a line --- 30 min.}",
+   "status": "aligned",
+   "order": 27
+  },
+  "46945a9626d9": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. On note [[m4]] sa courbe dans un repère du plan.",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. Let [[m4]] be its curve in a plane frame of reference.",
+   "status": "aligned",
+   "order": 28
+  },
+  "2c965d7ae448": {
+   "fr": "Montrer que, pour tout [[m1]], [[m2]].",
+   "en": "Show that, for every [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "8e2b6e18fb6b": {
+   "fr": "Déterminer les limites de [[m1]] en [[m2]], en [[m3]], en [[m4]] et en [[m5]].",
+   "en": "Determine the limits of [[m1]] at [[m2]], at [[m3]], at [[m4]] and at [[m5]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "929ed80b728b": {
+   "fr": "Étudier le signe de [[m1]], puis préciser la position de [[m2]] par rapport à la droite d'équation [[m3]].",
+   "en": "Study the sign of [[m1]], then state the position of [[m2]] relative to the line with equation [[m3]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "d76c0300a87f": {
+   "fr": "Déterminer un réel [[m1]] tel que, pour tout [[m2]], [[m3]].",
+   "en": "Determine a real number [[m1]] such that, for every [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "77c7eebe2dfe": {
+   "fr": "La courbe [[m1]] coupe-t-elle son asymptote horizontale ? Justifier et expliquer pourquoi une fenêtre graphique trop large peut donner une impression trompeuse.",
+   "en": "Does the curve [[m1]] cross its horizontal asymptote? Justify, and explain why a graphing window that is too wide can give a misleading impression.",
+   "status": "aligned",
+   "order": 33
+  },
+  "674a0397a1a5": {
+   "fr": "Exercices progressifs",
+   "en": "Progressive exercises",
+   "status": "aligned",
+   "order": 34
+  },
+  "b40a9cfeef2f": {
+   "fr": "Entraînement",
+   "en": "Practice",
+   "status": "aligned",
+   "order": 35
+  },
+  "00da8454a41b": {
+   "fr": "Déterminer [[m1]] en justifiant.",
+   "en": "Determine [[m1]], with justification.",
+   "status": "aligned",
+   "order": 36
+  },
+  "7e355ac9b9da": {
+   "fr": "Soit [[m1]] la fonction définie sur [[m2]] par [[m3]]. Déterminer ses limites en [[m4]], en [[m5]], en [[m6]] et en [[m7]].",
+   "en": "Let [[m1]] be the function defined on [[m2]] by [[m3]]. Determine its limits at [[m4]], at [[m5]], at [[m6]] and at [[m7]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "751de61e28e4": {
+   "fr": "Déterminer [[m1]] en précisant pourquoi la simplification utilisée est valable au voisinage de [[m2]].",
+   "en": "Determine [[m1]], stating why the simplification used is valid in a neighbourhood of [[m2]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "388c36c368ee": {
+   "fr": "Déterminer [[m1]]. Citer le résultat de croissance comparée utilisé.",
+   "en": "Determine [[m1]]. State the result on comparison of growth rates that is used.",
+   "status": "aligned",
+   "order": 39
+  },
+  "cebe55dbf300": {
+   "fr": "Déterminer [[m1]]. Justifier notamment le traitement de [[m2]].",
+   "en": "Determine [[m1]]. Justify in particular the treatment of [[m2]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "1f497d8df0f3": {
+   "fr": "Travail dans le manuel ou une annale",
+   "en": "Textbook or past-paper work",
+   "status": "aligned",
+   "order": 41
+  },
+  "6976887dd704": {
+   "fr": "\\textbf{Barbazo, p. 96, exercices 26 et 29.} En S23 : exercice 29, pour relier limites et asymptotes. À la maison après S24 : exercice 26, pour construire trois contre-exemples à une règle de calcul abusive sur les limites.",
+   "en": "\\textbf{Barbazo, p. 96, exercises 26 and 29.} In S23: exercise 29, to link limits and asymptotes. At home after S24: exercise 26, to construct three counterexamples to an invalid rule for calculating with limits.",
+   "status": "aligned",
+   "order": 42
+  },
+  "4cf9c0208351": {
+   "fr": "Devoir à la maison",
+   "en": "Homework",
+   "status": "aligned",
+   "order": 43
+  },
+  "6a02e06cfb4f": {
+   "fr": "\\textbf{DM3 --- Une famille de courbes --- 45 min.}",
+   "en": "\\textbf{Homework 3 --- A family of curves --- 45 min.}",
+   "status": "aligned",
+   "order": 44
+  },
+  "0686c925ba71": {
+   "fr": "Pour chaque réel [[m1]], on considère la fonction [[m2]] définie par [[m3]]. On note [[m4]] sa courbe représentative.",
+   "en": "For each real number [[m1]], consider the function [[m2]] defined by [[m3]]. Let [[m4]] be its graph.",
+   "status": "aligned",
+   "order": 45
+  },
+  "7a7a045be61b": {
+   "fr": "Déterminer l'ensemble de définition de [[m1]], puis ses limites en [[m2]] et en [[m3]].",
+   "en": "Determine the domain of [[m1]], then its limits at [[m2]] and at [[m3]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "20d96541fe92": {
+   "fr": "Montrer que [[m1]]. Selon la valeur de [[m2]], préciser la position de [[m3]] par rapport à la droite d'équation [[m4]].",
+   "en": "Show that [[m1]]. Depending on the value of [[m2]], state the position of [[m3]] relative to the line with equation [[m4]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "b80ba1b25221": {
+   "fr": "Étudier les variations de [[m1]] en distinguant les cas [[m2]], [[m3]] et [[m4]]. Préciser les éventuels extrema et où ils sont atteints.",
+   "en": "Study the variations of [[m1]] by distinguishing the cases [[m2]], [[m3]] and [[m4]]. State any extrema and where they are attained.",
+   "status": "aligned",
+   "order": 48
+  },
+  "472a29c7f4f3": {
+   "fr": "On prend [[m1]]. Résoudre, pour [[m2]], l'inéquation [[m3]].",
+   "en": "Take [[m1]]. Solve, for [[m2]], the inequality [[m3]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "65f30ca65639": {
+   "fr": "Conduite et corrigés",
+   "en": "Teaching notes and solutions",
+   "status": "aligned",
+   "order": 50
+  },
+  "a0ebd3e6cdb4": {
+   "fr": "Repères pour le professeur",
+   "en": "Teacher notes",
+   "status": "aligned",
+   "order": 51
+  },
+  "21f66ba2c440": {
+   "fr": "En S21, relier chaque limite à une lecture graphique. En S23, exiger les signes du dénominateur à gauche et à droite. En S24, faire choisir la transformation avant de calculer : factorisation, conjugaison, développement local non utilisé. En S26, séparer la démonstration des croissances comparées de leur utilisation. Les asymptotes obliques ne sont pas requises ici.",
+   "en": "In S21, link each limit to a reading of the graph. In S23, require the signs of the denominator on the left and on the right. In S24, have students choose the transformation before calculating: factorisation, conjugation, local expansion not used. In S26, separate the proof of the comparison of growth rates from its use. Oblique asymptotes are not required here.",
+   "status": "aligned",
+   "order": 52
+  },
+  "6e62c2622711": {
+   "fr": "Corrigé de l'activité",
+   "en": "Solutions to the activity",
+   "status": "aligned",
+   "order": 53
+  },
+  "e683099748d1": {
+   "fr": "Comme [[m1]], pour [[m2]], [[m3]].",
+   "en": "Since [[m1]], for [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "23bd31199f45": {
+   "fr": "En [[m1]], [[m2]] : les limites valent [[m3]]. En [[m4]], [[m5]], donc [[m6]] ; en [[m7]], [[m8]], donc [[m9]].",
+   "en": "At [[m1]], [[m2]]: the limits equal [[m3]]. At [[m4]], [[m5]], so [[m6]]; at [[m7]], [[m8]], so [[m9]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "b46eab8a8028": {
+   "fr": "Le signe de [[m1]] est négatif pour [[m2]], positif pour [[m3]]. La courbe est donc respectivement au-dessous et au-dessus de l'asymptote [[m4]].",
+   "en": "The sign of [[m1]] is negative for [[m2]], positive for [[m3]]. The curve is therefore below and above the asymptote [[m4]] respectively.",
+   "status": "aligned",
+   "order": 56
+  },
+  "09011dff5cbf": {
+   "fr": "Pour [[m1]], [[m2]] équivaut à [[m3]], puis [[m4]]. On peut choisir [[m5]].",
+   "en": "For [[m1]], [[m2]] is equivalent to [[m3]], then [[m4]]. We can choose [[m5]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "cbaa4415ae16": {
+   "fr": "Non : [[m1]] n'est jamais nul. La courbe peut paraître confondue avec l'asymptote à la précision de l'écran, mais elle ne la rencontre pas.",
+   "en": "No: [[m1]] is never zero. The curve may appear to coincide with the asymptote at the precision of the screen, but it never meets it.",
+   "status": "aligned",
+   "order": 58
+  },
+  "3f9e174708d5": {
+   "fr": "E1.",
+   "en": "E1.",
+   "status": "aligned",
+   "order": 59
+  },
+  "5884de85ea6b": {
+   "fr": "Pour [[m1]], le quotient vaut [[m2]]. En [[m3]], les puissances inverses tendent vers [[m4]] et le dénominateur vers [[m5]]. La limite est [[m6]].",
+   "en": "For [[m1]], the quotient equals [[m2]]. At [[m3]], the inverse powers tend to [[m4]] and the denominator to [[m5]]. The limit is [[m6]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "7234860dc67e": {
+   "fr": "E2.",
+   "en": "E2.",
+   "status": "aligned",
+   "order": 61
+  },
+  "e86ead06ae55": {
+   "fr": "En [[m1]], [[m2]] par valeurs strictement positives des deux côtés ; son inverse tend donc vers [[m3]]. En [[m4]], le carré tend vers [[m5]] et son inverse vers [[m6]].",
+   "en": "At [[m1]], [[m2]] through strictly positive values on both sides; its reciprocal therefore tends to [[m3]]. At [[m4]], the square tends to [[m5]] and its reciprocal to [[m6]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "21f8cfd48d8e": {
+   "fr": "E3.",
+   "en": "E3.",
+   "status": "aligned",
+   "order": 63
+  },
+  "f2832585fd94": {
+   "fr": "Pour [[m1]], [[m2]], donc le quotient est égal à [[m3]]. Sa limite en [[m4]] est donc [[m5]]. Cette simplification calcule la limite ; elle ne rend pas la fonction initiale définie en [[m6]].",
+   "en": "For [[m1]], [[m2]], so the quotient is equal to [[m3]]. Its limit at [[m4]] is therefore [[m5]]. This simplification calculates the limit; it does not make the original function defined at [[m6]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "6e1d1797da0a": {
+   "fr": "E4.",
+   "en": "E4.",
+   "status": "aligned",
+   "order": 65
+  },
+  "1ed3b9214732": {
+   "fr": "Posons [[m1]]. Alors [[m2]], par croissance comparée de l'exponentielle et de la puissance.",
+   "en": "Set [[m1]]. Then [[m2]], by comparison of growth rates of the exponential and the power.",
+   "status": "aligned",
+   "order": 66
+  },
+  "0108cddbae03": {
+   "fr": "E5.",
+   "en": "E5.",
+   "status": "aligned",
+   "order": 67
+  },
+  "67a3026279e2": {
+   "fr": "Le conjugué donne [[m1]]. Lorsque [[m2]], les deux termes [[m3]] et [[m4]] tendent vers [[m5]] ; le dénominateur tend donc vers [[m6]]. La limite vaut [[m7]], par valeurs positives.",
+   "en": "The conjugate gives [[m1]]. As [[m2]], both terms [[m3]] and [[m4]] tend to [[m5]]; the denominator therefore tends to [[m6]]. The limit is [[m7]], through positive values.",
+   "status": "aligned",
+   "order": 68
+  },
+  "667593ccd8de": {
+   "fr": "Corrigé du DM3",
+   "en": "Solutions to Homework 3",
+   "status": "aligned",
+   "order": 69
+  },
+  "e924e5f6440c": {
+   "fr": "Comme [[m1]] sur [[m2]], le domaine est [[m3]]. En divisant par [[m4]] pour [[m5]], [[m6]] en [[m7]].",
+   "en": "Since [[m1]] on [[m2]], the domain is [[m3]]. Dividing by [[m4]] for [[m5]], [[m6]] at [[m7]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "03a149f080b9": {
+   "fr": "[[m1]]. Pour [[m2]], la courbe est au-dessus de [[m3]] ; pour [[m4]], elle est en dessous ; pour [[m5]], elle est confondue avec cette droite.",
+   "en": "[[m1]]. For [[m2]], the curve is above [[m3]]; for [[m4]], it is below; for [[m5]], it coincides with this line.",
+   "status": "aligned",
+   "order": 71
+  },
+  "b369cb1c68a8": {
+   "fr": "Par quotient, [[m1]].\nSi [[m2]], le signe est celui de [[m3]] : décroissance sur [[m4]], croissance sur [[m5]] ; minimum [[m6]] et pas de maximum (la borne [[m7]] n'est pas atteinte). Si [[m8]], les variations sont inversées : maximum [[m9]] et pas de minimum. Pour [[m10]], la fonction est constante, de valeur [[m11]].",
+   "en": "By the quotient rule, [[m1]].\nIf [[m2]], the sign is that of [[m3]]: decreasing on [[m4]], increasing on [[m5]]; minimum [[m6]] and no maximum (the bound [[m7]] is not attained). If [[m8]], the variations are reversed: maximum [[m9]] and no minimum. For [[m10]], the function is constant, with value [[m11]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "9f70f6ddfd41": {
+   "fr": "Pour [[m1]] et [[m2]], l'inégalité devient [[m3]]. Le dénominateur est positif, donc elle équivaut à [[m4]], soit [[m5]].",
+   "en": "For [[m1]] and [[m2]], the inequality becomes [[m3]]. The denominator is positive, so it is equivalent to [[m4]], that is [[m5]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "d52bee406cfb": {
+   "fr": "Corrigé du travail dans le manuel ou une annale",
+   "en": "Solutions to the textbook or past-paper work",
+   "status": "aligned",
+   "order": 74
+  },
+  "f2aab167cce2": {
+   "fr": "Exercice 26.",
+   "en": "Exercise 26.",
+   "status": "aligned",
+   "order": 75
+  },
+  "ec802224140e": {
+   "fr": "Lorsque [[m1]], les fonctions [[m2]] et [[m3]] tendent toutes deux vers [[m4]], mais leur différence est nulle. Avec [[m5]], [[m6]], la différence tend vers [[m7]] ; en échangeant [[m8]] et [[m9]], elle tend vers [[m10]]. Ces exemples établissent le caractère indéterminé de la différence.",
+   "en": "As [[m1]], the functions [[m2]] and [[m3]] both tend to [[m4]], but their difference is zero. With [[m5]], [[m6]], the difference tends to [[m7]]; swapping [[m8]] and [[m9]], it tends to [[m10]]. These examples establish that the difference is an indeterminate form.",
+   "status": "aligned",
+   "order": 76
+  },
+  "b1851e9cc76c": {
+   "fr": "Exercice 29.",
+   "en": "Exercise 29.",
+   "status": "aligned",
+   "order": 77
+  },
+  "599c34d651dc": {
+   "fr": "Le dénominateur s'annule en [[m1]], donc [[m2]]. On écrit",
+   "en": "The denominator vanishes at [[m1]], so [[m2]]. We write",
+   "status": "aligned",
+   "order": 78
+  },
+  "cb5a77b2f657": {
+   "fr": "Ainsi [[m1]] aux deux infinis. En [[m2]], le numérateur du second terme est positif et son dénominateur tend vers [[m3]] : la limite à gauche est [[m4]], celle à droite est [[m5]]. Les asymptotes ont pour équations [[m6]] et [[m7]].",
+   "en": "Thus [[m1]] at both infinities. At [[m2]], the numerator of the second term is positive and its denominator tends to [[m3]]: the left-hand limit is [[m4]], the right-hand limit is [[m5]]. The asymptotes have equations [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 79
+  }
+ }
+}

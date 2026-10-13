@@ -1,0 +1,71 @@
+{
+ "unit": "diophantine-notes.fr.tex",
+ "segments": {
+  "3678d9e3b0bc": {
+   "fr": "Bézout et équations entières",
+   "en": "Bézout and integer equations",
+   "status": "aligned",
+   "order": 0
+  },
+  "70c20efd0f4d": {
+   "fr": "Mathématiques expertes · approfondissement",
+   "en": "Advanced high school · extension",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "0e80e7b2f92d": {
+   "fr": "Algorithme d’Euclide et divisibilité dans [[m1]].",
+   "en": "Euclidean algorithm and divisibility in [[m1]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "c583eaa0581e": {
+   "fr": "Pour deux entiers positifs a et b, l’algorithme d’Euclide calcule [[m1]]. En remontant les divisions, on exprime d comme au + bv avec u et v entiers : c’est une identité de Bézout.",
+   "en": "For positive integers a and b, the Euclidean algorithm computes [[m1]]. Back-substitution expresses d as au + bv for integers u and v: a Bézout identity.",
+   "status": "aligned",
+   "order": 5
+  },
+  "3b5237b5958e": {
+   "fr": "L’équation ax + by = c possède des solutions entières si et seulement si d divise c. La nécessité vient du fait que d divise ax + by ; la suffisance vient d’une identité de Bézout multipliée par [[m1]].",
+   "en": "The equation ax + by = c has integer solutions exactly when d divides c. Necessity follows because d divides ax + by; sufficiency follows by multiplying a Bézout identity by [[m1]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "f32c6400efa5": {
+   "fr": "Si [[m1]] est une solution, toutes les solutions sont [[m2]] et [[m3]], avec t entier. Les contraintes [[m4]] et [[m5]] doivent être traitées ensuite.",
+   "en": "If [[m1]] is one solution, all solutions are [[m2]] and [[m3]] for integer t. Conditions [[m4]] and [[m5]] must then be imposed separately.",
+   "status": "aligned",
+   "order": 7
+  },
+  "7dba37cbc508": {
+   "fr": "Pour [[m1]], on a [[m2]] et [[m3]]. Ainsi [[m4]]. Une solution est [[m5]], et toutes les solutions sont [[m6]].",
+   "en": "For [[m1]], use [[m2]] and [[m3]]. Thus [[m4]]. One solution is [[m5]], and all solutions are [[m6]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 9
+  },
+  "1c0d9f03946a": {
+   "fr": "Tester plusieurs valeurs de t dans l’exemple, puis vérifier l’équation sans arrondir.",
+   "en": "Try several values of t in the example and verify the equation exactly.",
+   "status": "aligned",
+   "order": 10
+  }
+ }
+}

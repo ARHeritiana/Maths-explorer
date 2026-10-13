@@ -50,7 +50,9 @@ export async function mountLibrary(main,{lang,id}) {
       main.querySelector('#resource-course').innerHTML=`<option value="all">${p('Tous les cours','All courses')}</option>`+allowed.map(x=>`<option value="${x.id}" ${filters.course===x.id?'selected':''}>${esc(t(x.title))}</option>`).join('');
       main.querySelector('#pathway-resource-note').textContent=['mg','ib'].includes(filters.curriculum)?p('Notions à transférer à votre cours : ces fiches ne constituent pas un programme malgache ou international complet. Vérifiez votre niveau, votre série et votre option avec votre enseignant.','Concepts to transfer to your course: these sheets are not a complete Malagasy or international syllabus. Check your level, stream and option with your teacher.'):'';
       const matches=selectChapters(c,filters);
-      main.querySelector('#resource-results-count').textContent=p(`${matches.length} chapitres affichés${filters.lab?' · liés à cette expérience':''}`,`${matches.length} chapters shown${filters.lab?' · linked to this experiment':''}`);
+      // Count source chapters the same way as the heading; shared sheets and exercise banks are listed separately.
+      const sourceCount=matches.filter(x=>!['shared','explorations'].includes(x.course)&&x.number>0).length,extra=matches.length-sourceCount;
+      main.querySelector('#resource-results-count').textContent=p(`${sourceCount} chapitres sources${extra?` · ${extra} fiches transversales et banques`:''} affichés${filters.lab?' · liés à cette expérience':''}`,`${sourceCount} source chapters${extra?` · ${extra} shared sheets and banks`:''} shown${filters.lab?' · linked to this experiment':''}`);
       main.querySelector('#chapter-grid').innerHTML=matches.length?matches.map(ch=>{
         const rs=c.resources.filter(r=>(r.chapter===ch.id||r.chapter===ch.guide)&&(filters.solutions||r.audience!=='teacher')&&(filters.language!=='en'||r.language==='bilingual'));
         const types=[...new Set(rs.map(r=>r.type))];

@@ -1,0 +1,689 @@
+{
+ "unit": "c04.fr.tex",
+ "segments": {
+  "0f9638207283": {
+   "fr": "Fonction inverse",
+   "en": "Reciprocal (inverse) function",
+   "status": "aligned",
+   "order": 0
+  },
+  "666d856e370d": {
+   "fr": "déterminer un domaine, dériver, étudier un signe, dresser un tableau de variations, représenter",
+   "en": "finding a domain, differentiating, studying a sign, drawing up a table of variations, graphing",
+   "status": "aligned",
+   "order": 1
+  },
+  "de670816bbdd": {
+   "fr": "Cours de référence",
+   "en": "Reference notes",
+   "status": "aligned",
+   "order": 2
+  },
+  "4082a2fef9e4": {
+   "fr": "La fonction inverse est définie par [[m1]] sur [[m2]].",
+   "en": "The reciprocal function is defined by [[m1]] on [[m2]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "93dfae591719": {
+   "fr": "[[m1]] pour tout [[m2]]. La fonction inverse est strictement décroissante sur chacun des intervalles [[m3]] et [[m4]]. Les droites [[m5]] et [[m6]] sont des asymptotes.",
+   "en": "[[m1]] for every [[m2]]. The reciprocal function is strictly decreasing on each of the intervals [[m3]] and [[m4]]. The lines [[m5]] and [[m6]] are asymptotes.",
+   "status": "aligned",
+   "order": 4
+  },
+  "6bc3cb0bd814": {
+   "fr": "On ne peut pas écrire que la fonction inverse est décroissante « sur [[m1]] » sans préciser les deux intervalles. Par exemple [[m2]] mais [[m3]], ce qui contreditrait la définition globale de la décroissance.",
+   "en": "One cannot write that the reciprocal function is decreasing ``on [[m1]]'' without specifying the two intervals. For example [[m2]] but [[m3]], which would contradict the global definition of decreasing.",
+   "status": "aligned",
+   "order": 5
+  },
+  "aa0abf25c717": {
+   "fr": "Pour une fonction [[m1]], on procède dans cet ordre : domaine ; dérivée ; mise au même dénominateur et factorisation ; signe de la dérivée ; variations ; limites ou comportement aux bornes ; points utiles ; représentation.",
+   "en": "For a function [[m1]], proceed in this order: domain; derivative; common denominator and factorisation; sign of the derivative; variations; limits or behaviour at the boundaries; useful points; graph.",
+   "status": "aligned",
+   "order": 6
+  },
+  "9fb133fb7e4f": {
+   "fr": "Sur [[m1]], [[m2]] vérifie [[m3]]. Le dénominateur est positif ; [[m4]] est négative sur [[m5]] puis positive sur [[m6]]. La fonction admet un minimum [[m7]].",
+   "en": "On [[m1]], [[m2]] satisfies [[m3]]. The denominator is positive; [[m4]] is negative on [[m5]] then positive on [[m6]]. The function has a minimum [[m7]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "a114cba6d4b1": {
+   "fr": "B : 2 h -- C : 1 h",
+   "en": "B: 2 h -- C: 1 h",
+   "status": "aligned",
+   "order": 8
+  },
+  "896045e84198": {
+   "fr": "Définition et courbe de la fonction inverse",
+   "en": "Definition and graph of the reciprocal function",
+   "status": "aligned",
+   "order": 9
+  },
+  "259c3b0f2bff": {
+   "fr": "Déterminer le domaine.",
+   "en": "Find the domain.",
+   "status": "aligned",
+   "order": 10
+  },
+  "d9abfd817b26": {
+   "fr": "Construire la courbe.",
+   "en": "Draw the curve.",
+   "status": "aligned",
+   "order": 11
+  },
+  "6b093211d96d": {
+   "fr": "Utiliser les symétries.",
+   "en": "Use symmetries.",
+   "status": "aligned",
+   "order": 12
+  },
+  "28126275a16c": {
+   "fr": "6 à 8 minutes, sans calculatrice",
+   "en": "6 to 8 minutes, no calculator",
+   "status": "aligned",
+   "order": 13
+  },
+  "e47c4a032e35": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+7$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+7$}",
+   "status": "aligned",
+   "order": 14
+  },
+  "8fe82e56bf11": {
+   "fr": "Donner la valeur interdite de [[m1]]. \\mxblank{$x=0$}",
+   "en": "Give the excluded value of [[m1]]. \\mxblank{$x=0$}",
+   "status": "aligned",
+   "order": 15
+  },
+  "65fa35fee48b": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{5}$ et $-\\dfrac1{5}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{5}$ and $-\\dfrac1{5}$}",
+   "status": "aligned",
+   "order": 16
+  },
+  "47290ac1f29d": {
+   "fr": "Dériver [[m1]]. \\mxblank{$6x-5$}",
+   "en": "Differentiate [[m1]]. \\mxblank{$6x-5$}",
+   "status": "aligned",
+   "order": 17
+  },
+  "6c99fc900de0": {
+   "fr": "Résoudre [[m1]]. \\mxblank{$x=-1$ ou $x=2$}",
+   "en": "Solve [[m1]]. \\mxblank{$x=-1$ or $x=2$}",
+   "status": "aligned",
+   "order": 18
+  },
+  "9e0e11162c03": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : déterminer le domaine et construire la courbe.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: find the domain and draw the curve.",
+   "status": "aligned",
+   "order": 19
+  },
+  "89a1785ab35d": {
+   "fr": "Calculer [[m1]] pour [[m2]]. Placer les points et décrire les symétries. Pourquoi [[m3]] est-il absent ?",
+   "en": "Calculate [[m1]] for [[m2]]. Plot the points and describe the symmetries. Why is [[m3]] missing?",
+   "status": "aligned",
+   "order": 20
+  },
+  "37d0d6c7abf0": {
+   "fr": "Les valeurs sont respectivement [[m1]]. Le domaine exclut [[m2]] ; la courbe est symétrique par rapport à l'origine. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The values are respectively [[m1]]. The domain excludes [[m2]]; the curve is symmetric about the origin. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 21
+  },
+  "d2cc84d88114": {
+   "fr": "La fonction inverse est [[m1]] sur [[m2]]. Sa courbe est une hyperbole symétrique par rapport à l'origine.",
+   "en": "The reciprocal function is [[m1]] on [[m2]]. Its curve is a hyperbola symmetric about the origin.",
+   "status": "aligned",
+   "order": 22
+  },
+  "aa05b05d7735": {
+   "fr": "Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.",
+   "en": "Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.",
+   "status": "aligned",
+   "order": 23
+  },
+  "c30a9974c238": {
+   "fr": "Les valeurs sont respectivement [[m1]]. Le domaine exclut [[m2]] ; la courbe est symétrique par rapport à l'origine.",
+   "en": "The values are respectively [[m1]]. The domain excludes [[m2]]; the curve is symmetric about the origin.",
+   "status": "aligned",
+   "order": 24
+  },
+  "4a8f3fc74ed9": {
+   "fr": "essentiel",
+   "en": "essential",
+   "status": "aligned",
+   "order": 25
+  },
+  "2190af8f968f": {
+   "fr": "Donner le domaine et les asymptotes de [[m1]].",
+   "en": "Give the domain and the asymptotes of [[m1]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "bd66793eabe1": {
+   "fr": "Calculer [[m1]] et étudier son signe.",
+   "en": "Calculate [[m1]] and study its sign.",
+   "status": "aligned",
+   "order": 27
+  },
+  "0ca8386b7694": {
+   "fr": "Étudier sur [[m1]] la fonction [[m2]].",
+   "en": "Study the function [[m2]] on [[m1]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "ff05e2651d5a": {
+   "fr": "Le domaine est [[m1]] ; asymptotes [[m2]] et [[m3]]. [[m4]]. Pour [[m5]], [[m6]] et le minimum est atteint en [[m7]], de valeur [[m8]].",
+   "en": "The domain is [[m1]]; asymptotes [[m2]] and [[m3]]. [[m4]]. For [[m5]], [[m6]] and the minimum is reached at [[m7]], with value [[m8]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "c522c0aac4ab": {
+   "fr": "Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 2 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 30
+  },
+  "acac70116eb6": {
+   "fr": "La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.",
+   "en": "The answer depends on the exercise revisited. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.",
+   "status": "aligned",
+   "order": 31
+  },
+  "24e46784cbce": {
+   "fr": "3 minutes",
+   "en": "3 minutes",
+   "status": "aligned",
+   "order": 32
+  },
+  "4f9257a965a4": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and state your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.",
+   "status": "aligned",
+   "order": 33
+  },
+  "4ac648e44ed0": {
+   "fr": "\\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\\\\n\\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\\\\n\\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.",
+   "en": "\\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\\\\n\\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\\\\n\\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.",
+   "status": "aligned",
+   "order": 34
+  },
+  "702e35c25e86": {
+   "fr": "B : 1 h -- C : 2 h",
+   "en": "B: 1 h -- C: 2 h",
+   "status": "aligned",
+   "order": 35
+  },
+  "84cbe5612a3f": {
+   "fr": "Comportement aux bornes et asymptotes",
+   "en": "Behaviour at the boundaries and asymptotes",
+   "status": "aligned",
+   "order": 36
+  },
+  "11ea070b154a": {
+   "fr": "Décrire le comportement aux bornes.",
+   "en": "Describe the behaviour at the boundaries.",
+   "status": "aligned",
+   "order": 37
+  },
+  "c29ec02b08d8": {
+   "fr": "Identifier les asymptotes.",
+   "en": "Identify the asymptotes.",
+   "status": "aligned",
+   "order": 38
+  },
+  "f3ce9680b7bf": {
+   "fr": "Lire une représentation.",
+   "en": "Read a graph.",
+   "status": "aligned",
+   "order": 39
+  },
+  "57d5bc4a87c2": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$6$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$6$}",
+   "status": "aligned",
+   "order": 40
+  },
+  "78907f26b4aa": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{6}$ et $-\\dfrac1{6}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{6}$ and $-\\dfrac1{6}$}",
+   "status": "aligned",
+   "order": 41
+  },
+  "8713993ddfd1": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : décrire le comportement aux bornes et identifier les asymptotes.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: describe the behaviour at the boundaries and identify the asymptotes.",
+   "status": "aligned",
+   "order": 42
+  },
+  "796063b7146b": {
+   "fr": "À l'aide d'un tableau de valeurs près de [[m1]] et pour de grandes valeurs de [[m2]], décrire [[m3]]. Traduire chaque comportement par une asymptote et par une phrase.",
+   "en": "Using a table of values near [[m1]] and for large values of [[m2]], describe [[m3]]. Translate each behaviour into an asymptote and a sentence.",
+   "status": "aligned",
+   "order": 43
+  },
+  "f5d84c3f1943": {
+   "fr": "Près de [[m1]], les valeurs deviennent très grandes en valeur absolue : asymptote [[m2]]. Quand [[m3]] grandit, [[m4]] se rapproche de [[m5]] : asymptote [[m6]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "Near [[m1]], the values become very large in absolute value: asymptote [[m2]]. As [[m3]] grows, [[m4]] gets closer to [[m5]]: asymptote [[m6]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 44
+  },
+  "840fbacd90e6": {
+   "fr": "Pour [[m1]], [[m2]] est asymptote verticale et [[m3]] asymptote horizontale. Les branches s'en approchent sans les couper.",
+   "en": "For [[m1]], [[m2]] is a vertical asymptote and [[m3]] a horizontal asymptote. The branches approach them without crossing them.",
+   "status": "aligned",
+   "order": 45
+  },
+  "32650e5d9803": {
+   "fr": "Près de [[m1]], les valeurs deviennent très grandes en valeur absolue : asymptote [[m2]]. Quand [[m3]] grandit, [[m4]] se rapproche de [[m5]] : asymptote [[m6]].",
+   "en": "Near [[m1]], the values become very large in absolute value: asymptote [[m2]]. As [[m3]] grows, [[m4]] gets closer to [[m5]]: asymptote [[m6]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "fdec5ba74355": {
+   "fr": "Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par [[m1]] et le taux ou la raison par [[m2]]. Rédiger en quatre lignes : données, formule, calcul, conclusion.",
+   "en": "Redo practice exercise 3 with the following data: replace the initial value by [[m1]] and the rate or common ratio by [[m2]]. Write it up in four lines: data, formula, calculation, conclusion.",
+   "status": "aligned",
+   "order": 47
+  },
+  "5655fa4b1e45": {
+   "fr": "Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.",
+   "en": "On a half-sheet: write the main rule of the session, work through a very short example and state your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.",
+   "status": "aligned",
+   "order": 48
+  },
+  "0d5a7c4cd7f0": {
+   "fr": "Dérivée et sens de variation",
+   "en": "Derivative and direction of variation",
+   "status": "aligned",
+   "order": 49
+  },
+  "7533f37629b1": {
+   "fr": "Dériver la fonction inverse.",
+   "en": "Differentiate the reciprocal function.",
+   "status": "aligned",
+   "order": 50
+  },
+  "30068e972d4b": {
+   "fr": "Justifier les variations.",
+   "en": "Justify the variations.",
+   "status": "aligned",
+   "order": 51
+  },
+  "c0f9c435bf2d": {
+   "fr": "Dresser un tableau.",
+   "en": "Draw up a table.",
+   "status": "aligned",
+   "order": 52
+  },
+  "9b451c058a5e": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{10}{100}=\\num{1,10}$}",
+   "status": "aligned",
+   "order": 53
+  },
+  "fad9c29ea478": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{7}$ et $-\\dfrac1{7}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{7}$ and $-\\dfrac1{7}$}",
+   "status": "aligned",
+   "order": 54
+  },
+  "9559d67059dd": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : dériver la fonction inverse et justifier les variations.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: differentiate the reciprocal function and justify the variations.",
+   "status": "aligned",
+   "order": 55
+  },
+  "cb755ccfa47c": {
+   "fr": "À partir du taux d'accroissement de [[m1]], retrouver [[m2]]. Étudier son signe et vérifier la cohérence avec le graphique.",
+   "en": "Starting from the difference quotient of [[m1]], recover [[m2]]. Study its sign and check consistency with the graph.",
+   "status": "aligned",
+   "order": 56
+  },
+  "c3611d343648": {
+   "fr": "Le carré [[m1]] est positif pour [[m2]], donc la dérivée est strictement négative sur chacun des intervalles du domaine. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The square [[m1]] is positive for [[m2]], so the derivative is strictly negative on each interval of the domain. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 57
+  },
+  "f947e80fb847": {
+   "fr": "Pour [[m1]], [[m2]]. La fonction inverse décroît sur chacun des intervalles [[m3]] et [[m4]].",
+   "en": "For [[m1]], [[m2]]. The reciprocal function decreases on each of the intervals [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "7cd9b27d58a1": {
+   "fr": "Le carré [[m1]] est positif pour [[m2]], donc la dérivée est strictement négative sur chacun des intervalles du domaine.",
+   "en": "The square [[m1]] is positive for [[m2]], so the derivative is strictly negative on each interval of the domain.",
+   "status": "aligned",
+   "order": 59
+  },
+  "31006b730f9f": {
+   "fr": "Combinaisons avec des fonctions polynomiales",
+   "en": "Combinations with polynomial functions",
+   "status": "aligned",
+   "order": 60
+  },
+  "243a4f85acd4": {
+   "fr": "Dériver une combinaison.",
+   "en": "Differentiate a combination of functions.",
+   "status": "aligned",
+   "order": 61
+  },
+  "5c6852c29f56": {
+   "fr": "Réduire une expression.",
+   "en": "Simplify an expression.",
+   "status": "aligned",
+   "order": 62
+  },
+  "b3af86d338ac": {
+   "fr": "Organiser une étude.",
+   "en": "Organise a function study.",
+   "status": "aligned",
+   "order": 63
+  },
+  "723d34d60e98": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+10$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+10$}",
+   "status": "aligned",
+   "order": 64
+  },
+  "8ccf01b6e984": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{8}$ et $-\\dfrac1{8}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{8}$ and $-\\dfrac1{8}$}",
+   "status": "aligned",
+   "order": 65
+  },
+  "3c5bff1883d8": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : dériver une combinaison et réduire une expression.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: differentiate a combination of functions and simplify an expression.",
+   "status": "aligned",
+   "order": 66
+  },
+  "c24463735887": {
+   "fr": "Une entreprise produit [[m1]] centaines d'objets et son coût moyen est [[m2]]. Calculer [[m3]], factoriser son numérateur et chercher le niveau de production minimisant le coût moyen.",
+   "en": "A company produces [[m1]] hundred items and its average cost is [[m2]]. Calculate [[m3]], factorise its numerator and find the production level that minimises the average cost.",
+   "status": "aligned",
+   "order": 67
+  },
+  "6b019f59e8b1": {
+   "fr": "[[m1]]. Le minimum est atteint pour [[m2]], soit [[m3]] objets. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]. The minimum is reached for [[m2]], that is [[m3]] items. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 68
+  },
+  "5e634230657b": {
+   "fr": "Pour étudier [[m1]], déterminer le domaine, calculer la dérivée, réduire au même dénominateur, étudier son signe puis dresser les variations.",
+   "en": "To study [[m1]], find the domain, calculate the derivative, put over a common denominator, study its sign, then draw up the variations.",
+   "status": "aligned",
+   "order": 69
+  },
+  "a7d6931a6535": {
+   "fr": "[[m1]]. Le minimum est atteint pour [[m2]], soit [[m3]] objets.",
+   "en": "[[m1]]. The minimum is reached for [[m2]], that is [[m3]] items.",
+   "status": "aligned",
+   "order": 70
+  },
+  "5e7cf28a78d6": {
+   "fr": "Signe et factorisation",
+   "en": "Sign and factorisation",
+   "status": "aligned",
+   "order": 71
+  },
+  "012a94d09c6e": {
+   "fr": "Factoriser.",
+   "en": "Factorise.",
+   "status": "aligned",
+   "order": 72
+  },
+  "ffb93290fe91": {
+   "fr": "Construire un tableau de signes.",
+   "en": "Build a sign table.",
+   "status": "aligned",
+   "order": 73
+  },
+  "443c2bde8dc8": {
+   "fr": "Respecter les valeurs interdites.",
+   "en": "Respect excluded values.",
+   "status": "aligned",
+   "order": 74
+  },
+  "09c6a5287a86": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$36$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$36$}",
+   "status": "aligned",
+   "order": 75
+  },
+  "20aba3bc919f": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{9}$ et $-\\dfrac1{9}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{9}$ and $-\\dfrac1{9}$}",
+   "status": "aligned",
+   "order": 76
+  },
+  "6a8073ea472a": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : factoriser et construire un tableau de signes.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: factorise and build a sign table.",
+   "status": "aligned",
+   "order": 77
+  },
+  "bd77f08cb7d9": {
+   "fr": "Étudier le signe de [[m1]]. Construire le tableau avec les trois valeurs critiques, distinguer zéro et valeur interdite, puis résoudre l'inéquation [[m2]].",
+   "en": "Study the sign of [[m1]]. Build the table with the three critical values, distinguish a zero from an excluded value, then solve the inequality [[m2]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "bf17dc0a1aa8": {
+   "fr": "Les valeurs critiques sont [[m1]]. La solution est [[m2]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The critical values are [[m1]]. The solution is [[m2]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 79
+  },
+  "53eb8416d3c9": {
+   "fr": "Dans un quotient, le signe dépend du numérateur et du dénominateur. Les valeurs interdites sont exclues du tableau, même si un facteur se simplifie formellement.",
+   "en": "In a quotient, the sign depends on the numerator and the denominator. Excluded values are left out of the table, even if a factor formally cancels.",
+   "status": "aligned",
+   "order": 80
+  },
+  "9e40dab3805c": {
+   "fr": "Les valeurs critiques sont [[m1]]. La solution est [[m2]].",
+   "en": "The critical values are [[m1]]. The solution is [[m2]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "a509deeacdf8": {
+   "fr": "Dérivées de polynômes de degré au plus 3",
+   "en": "Derivatives of polynomials of degree at most 3",
+   "status": "aligned",
+   "order": 82
+  },
+  "466872c26460": {
+   "fr": "Dériver un polynôme.",
+   "en": "Differentiate a polynomial.",
+   "status": "aligned",
+   "order": 83
+  },
+  "d4bf696641ad": {
+   "fr": "Étudier une dérivée.",
+   "en": "Study a derivative.",
+   "status": "aligned",
+   "order": 84
+  },
+  "a8f1c02d9fff": {
+   "fr": "Déduire des variations.",
+   "en": "Deduce the variations.",
+   "status": "aligned",
+   "order": 85
+  },
+  "d52d70ed4f38": {
+   "fr": "Écrire le coefficient multiplicateur d'une hausse de [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "en": "Write the multiplier for an increase of [[m1]]. \\mxblank{$1+\\dfrac{25}{100}=\\num{1,25}$}",
+   "status": "aligned",
+   "order": 86
+  },
+  "56ee5e7baf35": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{3}$ et $-\\dfrac1{3}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{3}$ and $-\\dfrac1{3}$}",
+   "status": "aligned",
+   "order": 87
+  },
+  "48956105ccb0": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : dériver un polynôme et étudier une dérivée.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: differentiate a polynomial and study a derivative.",
+   "status": "aligned",
+   "order": 88
+  },
+  "33f9b2190c66": {
+   "fr": "Pour [[m1]], calculer [[m2]], factoriser, étudier son signe et en déduire les variations de [[m3]].",
+   "en": "For [[m1]], calculate [[m2]], factorise, study its sign and deduce the variations of [[m3]].",
+   "status": "aligned",
+   "order": 89
+  },
+  "0309d1357adc": {
+   "fr": "[[m1]]. La fonction croît sur [[m2]], décroît sur [[m3]], puis croît. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]. The function increases on [[m2]], decreases on [[m3]], then increases. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 90
+  },
+  "84da1d2e7f3e": {
+   "fr": "[[m1]]. Le signe de la dérivée donne le sens de variation de la fonction.",
+   "en": "[[m1]]. The sign of the derivative gives the direction of variation of the function.",
+   "status": "aligned",
+   "order": 91
+  },
+  "37067f8a2dc6": {
+   "fr": "[[m1]]. La fonction croît sur [[m2]], décroît sur [[m3]], puis croît.",
+   "en": "[[m1]]. The function increases on [[m2]], decreases on [[m3]], then increases.",
+   "status": "aligned",
+   "order": 92
+  },
+  "1e238587aab2": {
+   "fr": "Étude complète et représentation",
+   "en": "Full study and graph",
+   "status": "aligned",
+   "order": 93
+  },
+  "0750e7b9dbc6": {
+   "fr": "Mener une étude complète.",
+   "en": "Carry out a full study.",
+   "status": "aligned",
+   "order": 94
+  },
+  "65f1197d7149": {
+   "fr": "Tracer une courbe cohérente.",
+   "en": "Draw a consistent curve.",
+   "status": "aligned",
+   "order": 95
+  },
+  "36ad5f012af0": {
+   "fr": "Interpréter un extremum.",
+   "en": "Interpret an extremum.",
+   "status": "aligned",
+   "order": 96
+  },
+  "cc52747df950": {
+   "fr": "Réduire [[m1]]. \\mxblank{$2x+6$}",
+   "en": "Simplify [[m1]]. \\mxblank{$2x+6$}",
+   "status": "aligned",
+   "order": 97
+  },
+  "6179197aa55f": {
+   "fr": "Calculer [[m1]] et [[m2]]. \\mxblank{$\\dfrac1{4}$ et $-\\dfrac1{4}$}",
+   "en": "Calculate [[m1]] and [[m2]]. \\mxblank{$\\dfrac1{4}$ and $-\\dfrac1{4}$}",
+   "status": "aligned",
+   "order": 98
+  },
+  "086b20fa1daa": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : mener une étude complète et tracer une courbe cohérente.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: carry out a full study and draw a consistent curve.",
+   "status": "aligned",
+   "order": 99
+  },
+  "f7847c5cbd5a": {
+   "fr": "Étudier complètement [[m1]] sur [[m2]] : domaine, dérivée, signe, variations, minimum, comportement aux bornes et esquisse.",
+   "en": "Study [[m1]] completely on [[m2]]: domain, derivative, sign, variations, minimum, behaviour at the boundaries and sketch.",
+   "status": "aligned",
+   "order": 100
+  },
+  "2ef10aed7a6f": {
+   "fr": "[[m1]] ; minimum [[m2]] ; [[m3]] tend vers [[m4]] en [[m5]] et en [[m6]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "[[m1]]; minimum [[m2]]; [[m3]] tends to [[m4]] at [[m5]] and at [[m6]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 101
+  },
+  "1d2ebfba3c26": {
+   "fr": "Une étude complète comporte : domaine, dérivée, signe, variations, limites ou comportement aux bornes, points remarquables et graphique cohérent.",
+   "en": "A full study includes: domain, derivative, sign, variations, limits or behaviour at the boundaries, key points and a consistent graph.",
+   "status": "aligned",
+   "order": 102
+  },
+  "a6b936981048": {
+   "fr": "[[m1]] ; minimum [[m2]] ; [[m3]] tend vers [[m4]] en [[m5]] et en [[m6]].",
+   "en": "[[m1]]; minimum [[m2]]; [[m3]] tends to [[m4]] at [[m5]] and at [[m6]].",
+   "status": "aligned",
+   "order": 103
+  },
+  "208842ecc15d": {
+   "fr": "Bilan et évaluation",
+   "en": "Review and assessment",
+   "status": "aligned",
+   "order": 104
+  },
+  "bf671ef3413e": {
+   "fr": "Mobiliser domaine, dérivée et signe.",
+   "en": "Use domain, derivative and sign.",
+   "status": "aligned",
+   "order": 105
+  },
+  "657d2f6f8685": {
+   "fr": "Rédiger une étude.",
+   "en": "Write up a study.",
+   "status": "aligned",
+   "order": 106
+  },
+  "2f5544f8d314": {
+   "fr": "Corriger méthodiquement.",
+   "en": "Correct work methodically.",
+   "status": "aligned",
+   "order": 107
+  },
+  "6261d51f7e3a": {
+   "fr": "Calculer [[m1]] de [[m2]]. \\mxblank{$5$}",
+   "en": "Calculate [[m1]] of [[m2]]. \\mxblank{$5$}",
+   "status": "aligned",
+   "order": 108
+  },
+  "5ebb698766f6": {
+   "fr": "Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : mobiliser domaine, dérivée et signe et rédiger une étude.",
+   "en": "Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: use domain, derivative and sign and write up a study.",
+   "status": "aligned",
+   "order": 109
+  },
+  "4a78fcec5687": {
+   "fr": "Corriger une étude volontairement erronée de [[m1]] : domaine annoncé [[m2]], dérivée [[m3]], tableau sans rupture en [[m4]]. Réécrire une solution complète.",
+   "en": "Correct a deliberately flawed study of [[m1]]: stated domain [[m2]], derivative [[m3]], table with no break at [[m4]]. Rewrite a complete solution.",
+   "status": "aligned",
+   "order": 110
+  },
+  "b17f2d913dd2": {
+   "fr": "Le domaine est [[m1]] et [[m2]]. Le tableau est séparé en [[m3]] et tient compte de [[m4]] et [[m5]]. Faire verbaliser la donnée qui déclenche le choix de méthode.",
+   "en": "The domain is [[m1]] and [[m2]]. The table is split at [[m3]] and takes into account [[m4]] and [[m5]]. Have students say aloud which piece of data triggers the choice of method.",
+   "status": "aligned",
+   "order": 111
+  },
+  "77fff4a93118": {
+   "fr": "Contrôler séparément les quatre objets : domaine, expression de la dérivée, signe de la dérivée, variations. Une erreur à une étape ne doit pas masquer les suivantes.",
+   "en": "Check the four items separately: domain, expression of the derivative, sign of the derivative, variations. An error at one step must not hide the following ones.",
+   "status": "aligned",
+   "order": 112
+  },
+  "5ea927efa74b": {
+   "fr": "Le domaine est [[m1]] et [[m2]]. Le tableau est séparé en [[m3]] et tient compte de [[m4]] et [[m5]].",
+   "en": "The domain is [[m1]] and [[m2]]. The table is split at [[m3]] and takes into account [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 113
+  }
+ }
+}

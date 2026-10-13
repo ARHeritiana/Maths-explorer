@@ -1,0 +1,121 @@
+% mx-i18n.sty -- language-dependent labels, dates and conventions, from one dictionary keyed by language.
+% Content units never test the language; they use the labels and macros below. English units are generated from
+% French ones (docs/ADR-0001-tex-i18n.md); numbers, intervals and points are written with mx-notation.sty commands.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-i18n}[2026/10/11 Maths Explorer i18n]
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\def\mx@fr{fr}
+\ifx\mx@lang\mx@fr
+  \RequirePackage[french]{babel}
+  % Sources write French spacing by hand (x\,; or x~:); babel adds a space only where the source typed one.
+  \frenchsetup{SmallCapsFigTabCaptions=false,AutoSpacePunctuation=false,StandardLists=true,ReduceListSpacing=false}
+\else
+  \RequirePackage[english]{babel}
+\fi
+% Name before a unit number in booklets: Chapitre/Chapter, or Séquence/Sequence (class option unit=sequence).
+\AtBeginDocument{\def\mx@seq{sequence}\ifx\mx@unitname\mx@seq\renewcommand{\chaptername}{\mxlabelof{sequence}}\fi}
+% Same inter-sentence spacing in both languages, so French and English line breaks stay comparable.
+\AtBeginDocument{\frenchspacing}
+
+% \mxtr{french}{english}: pick the text for the current language. Allowed in core packages only, never in units.
+\newcommand{\mxtr}[2]{\ifx\mx@lang\mx@fr #1\else #2\fi}
+
+% Label dictionary: \mxlabelof{key} prints the displayed name of an environment or element.
+\newcommand{\mx@deflabel}[3]{\expandafter\def\csname mx@label@#1\endcsname{\mxtr{#2}{#3}}}
+\newcommand{\mxlabelof}[1]{\csname mx@label@#1\endcsname}
+% Words for \mxcount (feminine in French, as for « questions »); 0 means the count is not known yet.
+\mx@deflabel{count0}{??}{??}
+\mx@deflabel{count1}{une}{one}
+\mx@deflabel{count2}{deux}{two}
+\mx@deflabel{count3}{trois}{three}
+\mx@deflabel{count4}{quatre}{four}
+\mx@deflabel{count5}{cinq}{five}
+\mx@deflabel{count6}{six}{six}
+\mx@deflabel{count7}{sept}{seven}
+\mx@deflabel{count8}{huit}{eight}
+\mx@deflabel{count9}{neuf}{nine}
+\mx@deflabel{count10}{dix}{ten}
+\mx@deflabel{count11}{onze}{eleven}
+\mx@deflabel{count12}{douze}{twelve}
+% Capitalised feminine words for \mxCount (« Cinq questions »).
+\mx@deflabel{Fcount0}{??}{??}
+\mx@deflabel{Fcount1}{Une}{One}
+\mx@deflabel{Fcount2}{Deux}{Two}
+\mx@deflabel{Fcount3}{Trois}{Three}
+\mx@deflabel{Fcount4}{Quatre}{Four}
+\mx@deflabel{Fcount5}{Cinq}{Five}
+\mx@deflabel{Fcount6}{Six}{Six}
+\mx@deflabel{Fcount7}{Sept}{Seven}
+\mx@deflabel{Fcount8}{Huit}{Eight}
+\mx@deflabel{Fcount9}{Neuf}{Nine}
+\mx@deflabel{Fcount10}{Dix}{Ten}
+\mx@deflabel{Fcount11}{Onze}{Eleven}
+\mx@deflabel{Fcount12}{Douze}{Twelve}
+% Capitalised words for \mxTallied (masculine in French, as for « exercices »).
+\mx@deflabel{Count0}{??}{??}
+\mx@deflabel{Count1}{Un}{One}
+\mx@deflabel{Count2}{Deux}{Two}
+\mx@deflabel{Count3}{Trois}{Three}
+\mx@deflabel{Count4}{Quatre}{Four}
+\mx@deflabel{Count5}{Cinq}{Five}
+\mx@deflabel{Count6}{Six}{Six}
+\mx@deflabel{Count7}{Sept}{Seven}
+\mx@deflabel{Count8}{Huit}{Eight}
+\mx@deflabel{Count9}{Neuf}{Nine}
+\mx@deflabel{Count10}{Dix}{Ten}
+\mx@deflabel{Count11}{Onze}{Eleven}
+\mx@deflabel{Count12}{Douze}{Twelve}
+\mx@deflabel{keypoint}{À retenir}{Key point}
+\mx@deflabel{definition}{Définition}{Definition}
+\mx@deflabel{theorem}{Propriété}{Property}
+\mx@deflabel{method}{Méthode}{Method}
+\mx@deflabel{example}{Exemple}{Example}
+\mx@deflabel{proof}{Démonstration}{Proof}
+\mx@deflabel{pitfall}{Point de vigilance}{Watch out}
+\mx@deflabel{beyond}{Hors programme}{Beyond the syllabus}
+\mx@deflabel{activity}{Activité}{Activity}
+\mx@deflabel{exercise}{Exercice}{Exercise}
+\mx@deflabel{application}{Application}{Application}
+\mx@deflabel{solution}{Corrigé}{Solution}
+\mx@deflabel{teachernote}{Pour le professeur}{Teacher note}
+\mx@deflabel{homework}{Travail personnel}{Homework}
+\mx@deflabel{exitticket}{Billet de sortie}{Exit ticket}
+\mx@deflabel{fluency}{Automatismes}{Fluency}
+\mx@deflabel{objectives}{Objectifs}{Objectives}
+\mx@deflabel{prerequisites}{Prérequis}{Prerequisites}
+\mx@deflabel{answer}{Réponse}{Answer}
+\mx@deflabel{answershort}{Rép.}{Ans.}
+\mx@deflabel{sheet}{Fiche}{Sheet}
+\mx@deflabel{notes}{Notes}{Notes}
+\mx@deflabel{corrections}{Corrigés et conduite du chapitre}{Solutions and teaching notes for chapter}
+\mx@deflabel{sequence}{Séquence}{Sequence}
+\mx@deflabel{writeproof}{Démonstration à rédiger.}{Proof to write.}
+\mx@deflabel{summary}{Trace écrite}{Written record}
+\mx@deflabel{problem}{Problème}{Problem}
+\mx@deflabel{session}{Séance}{Session}
+\mx@deflabel{test}{Devoir surveillé}{Supervised test}
+\mx@deflabel{testshort}{DS}{Test}
+\mx@deflabel{version}{Version}{Version}
+\mx@deflabel{duration}{Durée : 1 h}{Duration: 1 h}
+\mx@deflabel{mark}{Note : /20}{Mark: /20}
+\mx@deflabel{name}{Nom :}{Name:}
+\mx@deflabel{class}{Classe :}{Class:}
+\mx@deflabel{testrules}{La calculatrice est autorisée sauf indication contraire. Toute démarche doit être lisible et les résultats contextualisés.}{A calculator is allowed unless stated otherwise. Every step must be legible and results must be put in context.}
+\mx@deflabel{skills}{Compétences :}{Skills:}
+\mx@deflabel{points}{points}{points}
+\mx@deflabel{target}{Cible :}{Target:}
+\mx@deflabel{further}{Pour prolonger :}{Further practice:}
+\mx@deflabel{furthernote}{L'exercice d'application ci-dessous est original ; ces références renvoient aux exercices du manuel pour s'entraîner davantage et retrouver ses figures.}{The application exercise below is original; these references point to textbook exercises for extra practice and for its figures.}
+\mx@deflabel{missingexercise}{Exercice à compléter pour la séance}{Exercise to be written for session}
+\mx@deflabel{student}{Édition élève}{Student edition}
+\mx@deflabel{teacher}{Édition professeur}{Teacher edition}
+
+% \mxdate{YYYY-MM-DD}: a date in the reader's language ("15 septembre 2026" / "15 September 2026");
+% \mxdate*{YYYY-MM-DD}: short form ("15/09/2026" / "15 Sep 2026").
+\def\mx@monthfr#1{\ifcase#1\or janvier\or février\or mars\or avril\or mai\or juin\or juillet\or août\or septembre\or octobre\or novembre\or décembre\fi}
+\def\mx@monthen#1{\ifcase#1\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi}
+\def\mx@monthenshort#1{\ifcase#1\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi}
+\def\mx@date#1-#2-#3\relax{\mxtr{\number#3\ifnum#3=1 \textsuperscript{er}\fi\ \mx@monthfr{#2} #1}{\number#3\ \mx@monthen{#2} #1}}
+\def\mx@shortdate#1-#2-#3\relax{\mxtr{#3/#2/#1}{\number#3\ \mx@monthenshort{#2} #1}}
+\NewDocumentCommand{\mxdate}{s m}{\IfBooleanTF{#1}{\mx@shortdate#2\relax}{\mx@date#2\relax}}

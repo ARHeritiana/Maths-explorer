@@ -1,0 +1,126 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit[6]{terminale-c06}{Differentiation, convexity and continuity}\label{ch:4}
+
+\mxsubtitle{S29, S31, S32; revisited in S33 and S40}
+
+\begin{keypoint}[Objectives]Differentiate a composite function; study variations and convexity; prove existence and uniqueness; approximate a solution.\end{keypoint}
+
+\section{Course notes}
+\subsection{Differentiating a composite function}
+If $u$ is differentiable on $I$ and $v$ is differentiable on an interval containing $u(I)$, then $(v\circ u)'=(v'\circ u)u'$. The domains must be checked before the calculation.
+\[ (u^n)'=nu'u^{n-1},\quad(e^u)'=u'e^u,\quad
+(\frac{1}{u})'=-\frac{u'}{u^2},\quad(\sqrt u)'=\frac{u'}{2\sqrt u}\quad(u>0).\]
+For example, $f(x)=\sqrt{3x+1}$ is differentiable for $x>-\frac{1}{3}$ and $f'(x)=\frac{3}{2\sqrt{3x+1}}$. The sign of $f'$ determines the variations of $f$; the sign of $f$ does not.
+\subsection{Convexity}
+A function $f$ is convex on an interval $I$ if its curve lies below its chords: for $x,y\in I$ and $t\in[0,1]$,
+\[f((1-t)x+ty)\le(1-t)f(x)+tf(y).\]
+For a twice-differentiable function, the following equivalences are accepted: $f$ is convex; $f'$ is increasing; $f''\ge0$; the curve lies above all its tangents. The inequalities are reversed for a concave function. A point of inflection is a point where the curve changes convexity.
+\paragraph{Proof: position relative to the tangents.} Suppose $f''\ge0$. Fix $a$ and set $g(x)=f(x)-f(a)-f'(a)(x-a)$. Since $f'$ is increasing, $g'(x)=f'(x)-f'(a)\le0$ for $x\le a$ and $\ge0$ for $x\ge a$. Thus $g$ attains its minimum $g(a)=0$ at $a$, so $f(x)\ge f(a)+f'(a)(x-a)$.
+\paragraph{Examples.} $x^4$ is convex and $f''(0)=0$, but $0$ is not the abscissa of a point of inflection. $x^3$ changes convexity at $0$. The convexity of the exponential and its tangent at $0$ give $e^x\ge1+x$.
+\subsection{Continuity and equations}
+$f$ is continuous at $a$ if $\lim_{x\to a}f(x)=f(a)$. Every differentiable function is continuous. The converse is false: $|x|$ is continuous at $0$ but not differentiable at $0$.
+\begin{keypoint}[Intermediate value theorem]
+If $f$ is continuous on $[a,b]$, every real number between $f(a)$ and $f(b)$ has at least one preimage in $[a,b]$. If $f$ is moreover strictly monotonic, this preimage is unique. One may also work on an open interval using the limits at the endpoints.
+\end{keypoint}
+\paragraph{Worked example.} $f(x)=x^3+x-1$ is continuous on $[0,1]$. Since $f(0)=-1$ and $f(1)=1$, the IVT gives a zero in $]0,1[$. Since $f'(x)=3x^2+1>0$, it is unique. $f(\num{0,68})<0<f(\num{0,69})$ provides a bracketing, without replacing the justifications of existence and uniqueness.
+\paragraph{A piecewise-defined function.} For $x\ne1$, set $g(x)=\frac{x^2-1}{x-1}$, and set $g(1)=a$. Since $g(x)=x+1$ when $x\ne1$, $\lim_{x\to1}g(x)=2$. The function is continuous at $1$ if and only if $a=2$. The value at the point must therefore be compared with the limit, and not replaced by it without justification.
+\paragraph{Sequences and continuity.} If $u_n\to\ell$ and $f$ is continuous at $\ell$, then $f(u_n)\to f(\ell)$. For a convergent recursively defined sequence $u_{n+1}=f(u_n)$, we obtain $\ell=f(\ell)$.
+\subsection{Bisection}
+For $f$ continuous and $f(a)f(b)<0$, compute $m=\frac{a+b}{2}$. If $f(m)=0$, stop; otherwise keep the half whose endpoints have images of opposite signs. After $n$ steps, the length is $\frac{b-a}{2^n}$. The midpoint gives an error of at most half the length. The method does not guarantee uniqueness; this is proved separately.
+
+
+\begin{center}\begin{tikzpicture}\begin{axis}[width=12cm,height=4.8cm,axis lines=middle,xmin=-2,xmax=2,ymin=-3,ymax=3,xlabel={$x$},ylabel={$y$},samples=100]
+\addplot[mxmint,thick,domain=-2:2]{x^3-3*x};\addplot[mxink,dashed,domain=-1:1]{-3*x};\end{axis}\end{tikzpicture}\par\small $y=x^3-3x$ and its tangent at the point of inflection.\end{center}
+
+\mxnewpage
+\section{Research activity}\textbf{Derivatives and reading graphs --- 35 min.}\par Consider the function $f$ defined on $\R$ by $f(x)=x^3-3x$. Denote its graph by $\mathcal C_f$.
+\begin{enumerate}\item Calculate $f' (x)$ and $f'' (x)$, then draw up their sign tables.
+\item Deduce the variations of $f$ and its intervals of convexity and concavity.
+\item Determine the coordinates of the point of inflection of $\mathcal C_f$ and an equation of the tangent at this point.
+\item Using the limits, the extrema and the intermediate value theorem, determine the number of real solutions of $f(x)=1$.
+\item Explain, from this example, why continuity is not enough to ensure that a solution is unique.\end{enumerate}
+
+\mxnewpage
+\section{Progressive exercises}
+
+\mxexerciseitem{1}{Practice}Define on $\R$ the functions $f(x)=(2x-1)^5$ and $g(x)=e^{-x^2}$. Calculate $f' (x)$ and $g' (x)$.
+
+\mxexerciseitem{2}{Practice}Let $f$ be the function defined on $\R$ by $f(x)=x^4-6x^2$. Determine the intervals on which $f$ is convex or concave.
+
+\mxexerciseitem{3}{Practice}Let $\mathcal C$ be the graph of the exponential function. Determine an equation of its tangent at the point with abscissa $1$. Using convexity, deduce an inequality valid for every real number $x$.
+
+\mxexerciseitem{4}{Practice}Prove that the equation $x^3+2x=5$ has a unique real solution. Bracket this solution between two consecutive integers.
+
+\mxexerciseitem{5}{Practice}A bisection algorithm starts from the interval $\intff{0}{2}$ and halves its length at each step. Determine the minimum number of steps guaranteeing an interval of length at most $10^{-3}$.
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 132, exercise 29.} In class after the study of convexity: questions 1 and 2. At home: finish questions 3 to 5. The aim is to distinguish the sign of $f'$, which governs the variations, from that of $f''$, which governs convexity.
+
+\mxnewpage
+\section{Homework}\textbf{Homework 4 --- A maximum and an equation --- 60 min.}\par Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+1)e^{-x}$. Its graph is denoted $\mathcal C_f$.
+\begin{enumerate}\item Calculate $f(0)$ and the limit of $f$ at $+\infty$. Calculate $f' (x)$, then draw up the table of variations of $f$.
+\item Calculate $f'' (x)$. Study the convexity of $f$ and determine the coordinates of the possible point of inflection of $\mathcal C_f$.
+\item Prove that the equation $f(x)=\frac12$ has a unique solution $\alpha$ on $\intfo{0}{+\infty}$.
+\item Write a Python function that uses bisection on $\intff{0}{2}$ and returns two real numbers $a$ and $b$ such that $a\le\alpha\le b$ and $b-a\le10^{-3}$. Justify the choice of the initial interval.
+\item Determine an equation of the tangent to $\mathcal C_f$ at the point with abscissa $0$. Is the position of the curve relative to this single tangent enough to state that $f$ is concave on its whole domain? Justify.\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]The scheme of work condenses this chapter into three sessions: genuinely split S29 between differentiation and convexity, then revisit the proof about tangents in S33. The vocabulary continuous/differentiable/convex must be distinguished by examples. Continuity gives existence via the IVT; strict monotonicity gives uniqueness. For bisection, require an initial interval where the sign changes and a continuous function. A change of convexity, and not merely the vanishing of $f''$, characterises a point of inflection.\end{teachernote}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item $f'(x)=3x^2-3=3(x-1)(x+1)$ and $f''(x)=6x$. The sign of $f'$ is positive on $]-\infty,-1[$ and $]1,+\infty[$, zero at $-1,1$, negative between these values. The sign of $f''$ is negative to the left of $0$, zero at $0$, positive to the right.
+\item The variations and the limits are summarised by
+\[\begin{array}{c|ccccccc}x&-\infty&&-1&&1&&+\infty\\\hline f'(x)&&+&0&-&0&+&\\\hline f(x)&-\infty&\nearrow&2&\searrow&-2&\nearrow&+\infty\end{array}\]
+The sign of $f''$ gives concavity on $]-\infty,0]$ and convexity on $[0,+\infty[$.
+\item The convexity changes at $0$, and $f(0)=0$: the point of inflection is $\pt{0;0}$. Its tangent has equation $y=f(0)+f'(0)x=-3x$.
+\item The function is continuous. On $]-\infty,-1]$, it is strictly increasing from $-\infty$ to $2$: the level $1$ is reached exactly once. On $[-1,1]$, it strictly decreases from $2$ to $-2$: a second solution. On $[1,+\infty[$, it strictly increases from $-2$ to $+\infty$: a third. The points $-1,1$ are not solutions, so no solution is counted twice.
+\item Continuity provides the existence of a preimage for intermediate values. It does not provide uniqueness: the function studied is continuous and the level $1$ has three preimages.
+\end{enumerate}
+
+\paragraph{E1.}For $u=2x-1$, $(u^5)'=5u' u^4=10(2x-1)^4$. For $v=-x^2$, $(e^v)'=v' e^v=-2xe^{-x^2}$. Both functions are differentiable on $\R$.
+
+\paragraph{E2.}$f'=4x^3-12x$ then $f''=12(x^2-1)$. The sign of $f''$ is positive outside $[-1,1]$, negative inside. So $f$ is convex on $]-\infty,-1]$ and $[1,+\infty[$, concave on $[-1,1]$. The changes of convexity give the points of inflection $\pt{-1;-5}$ and $\pt{1;-5}$.
+
+\paragraph{E3.}The tangent is $y=f(1)+f'(1)(x-1)=e+e(x-1)=ex$. Since $f''(x)=e^x>0$, the exponential is convex and its curve lies above this tangent: $e^x\ge ex$ on $\R$.
+
+\paragraph{E4.}Set $g(x)=x^3+2x-5$. This polynomial is continuous and $g'(x)=3x^2+2>0$ on $\R$. Moreover $g(1)=-2<0$ and $g(2)=7>0$: the IVT gives a zero in $]1,2[$, and strict increase on $\R$ ensures that it is unique.
+
+\paragraph{E5.}After $n$ steps, the length is $\frac{2}{2^n}$. The required condition is equivalent to $2^n\ge2000$. Since $2^{10}=1024<2000\le2048=2^{11}$, eleven steps suffice and ten do not.
+
+\subsection{Solutions to Homework 4}\begin{enumerate}
+\item $f(0)=1$ and $\lim_{x\to0^+}f(x)=1$. At $+\infty$, $f(x)=xe^{-x}+e^{-x}\to0$ by comparison of growth rates. By the product rule, $f'(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. This derivative is strictly negative for $x>0$: $f$ strictly decreases from $1$ towards $0$ on $[0,+\infty[$.
+\item $f''(x)=-e^{-x}+xe^{-x}=(x-1)e^{-x}$. So $f$ is concave on $[0,1]$, convex on $[1,+\infty[$. The change of convexity at $1$ gives the point of inflection $\pt{1;\frac{2}{e}}$.
+\item $f$ is continuous and strictly decreasing on $[0,+\infty[$; $f(0)=1>\frac{1}{2}$ and its limit $0$ is less than $\frac{1}{2}$. The corollary of the IVT gives a unique solution $\alpha$. Moreover, $f(1)=\frac{2}{e}\simeq\num{0,7358}>\frac{1}{2}$ and $f(2)=\frac{3}{e^2}\simeq\num{0,4060}<\frac{1}{2}$, so $1<\alpha<2$.
+\item 
+\begin{lstlisting}
+from math import exp
+
+def racine_dm4():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+1)*exp(-m) > 0.5:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+The decrease preserves $f(a)\ge\frac{1}{2}\ge f(b)$; $\alpha$ stays in $[a,b]$. After eleven steps, we obtain $[\num{1,677734375},\num{1,6787109375}]$, of length $\frac{1}{1024}<10^{-3}$. The value $\alpha\simeq\num{1,67835}$ is consistent with this bracketing.
+\item The tangent at $0$ is $y=f(0)+f'(0)x=1$. The variations give $f(x)\le1$, so the whole curve lies below this tangent. This does not characterise concavity: the curve would have to lie below all the tangents, whereas $f$ becomes convex after $1$.
+\end{enumerate}
+
+\mxnewpage
+
+\subsection{Solutions to the textbook or past-paper work}For $f(x)=5x^2e^x$, the product rule gives
+\[f'(x)=10xe^x+5x^2e^x=5x(x+2)e^x.\]
+Since $e^x>0$, $f'$ is positive on $\intoo{-\infty}{-2}$ and $\intoo{0}{+\infty}$, negative on $\intoo{-2}{0}$, zero at $-2$ and $0$. The function therefore increases up to $f(-2)=20e^{-2}$, decreases down to $f(0)=0$, then increases. Its limits are $0$ at $-\infty$ (comparison of growth rates) and $+\infty$ at $+\infty$.
+Differentiating again gives
+\[f''(x)=5(x^2+4x+2)e^x=5\bigl((x+2)^2-2\bigr)e^x.\]
+Set $a=-2-\sqrt2$ and $b=-2+\sqrt2$. The polynomial factor is positive outside $\intff{a}{b}$, negative in $\intoo{a}{b}$. Thus $f$ is convex on $\intof{-\infty}{a}$ and $\intfo{b}{+\infty}$, concave on $\intff{a}{b}$. The sign changes at the two roots: the points of inflection are $\pt{a;5a^2e^a}$ and $\pt{b;5b^2e^b}$.\par The table of variations is summarised as follows:
+\[\begin{array}{c|ccccccc}x&-\infty&&-2&&0&&+\infty\\\hline f'(x)&&+&0&-&0&+&\\\hline f(x)&0&\nearrow&20e^{-2}&\searrow&0&\nearrow&+\infty\end{array}\]
+For question 5, the window below makes the two changes of convexity and the two extrema visible. The marked points correspond to the points of inflection calculated; the plot serves to check the consistency of the study.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=11cm,height=5cm,axis lines=middle,xmin=-6,xmax=.8,ymin=-.3,ymax=5.5,xlabel={$x$},ylabel={$y$},samples=140,grid=major,grid style={gray!15}]
+\addplot[mxmint,thick,domain=-6:.8]{5*x^2*exp(x)};
+\addplot[only marks,mxink,mark=*] coordinates {(-3.41421356,1.91768495) (-.58578644,.95509113)};
+\end{axis}\end{tikzpicture}\end{center}
+
+\fi
+

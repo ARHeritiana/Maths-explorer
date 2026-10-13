@@ -1,0 +1,39 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-complex-rotations-solutions}{Rotations et nombres complexes}
+\mxsubtitle{Mathématiques expertes · géométrie \textperiodcentered{} Solutions détaillées \textperiodcentered{} 09}
+
+\begin{exercise}
+Calculer $i(2-3i)$, puis son module.
+\end{exercise}
+\begin{solution}
+$i(2-3i)=3+2i$ ; son module est $\sqrt{13}$, comme celui de $2-3i$.
+\end{solution}
+
+\begin{exercise}
+Calculer les images successives de $1+i$ par quatre multiplications par i.
+\end{exercise}
+\begin{solution}
+$-1+i$, $-1-i$, $1-i$, puis $1+i$. Quatre quarts de tour redonnent le point initial.
+\end{solution}
+
+\begin{exercise}
+La transformation $z'=iz+2$ a quel centre ?
+\end{exercise}
+\begin{solution}
+Le centre vérifie $a=i a+2$, donc $a=\frac{2}{1-i}=1+i$.
+\end{solution}
+
+\begin{exercise}
+Pour $z'=a+i(z-a)$, prouver $|z'-a|=|z-a|$.
+\end{exercise}
+\begin{solution}
+$z'-a=i(z-a)$, donc $|z'-a|=|i||z-a|=|z-a|$.
+\end{solution}
+
+\begin{problem}[Chercher, justifier, conclure]
+On définit $z_{0}=2$ et $z_{n+1}=i z_{n}+2$. Trouver le point fixe a, puis une formule explicite de $z_{n}$. Déterminer la période minimale de la suite et la somme $z_{0}+z_{1}+z_{2}+z_{3}$. Interpréter géométriquement les quatre points.
+\end{problem}
+\begin{solution}
+$a=1+i$ et $z_{n+1}-a=i(z_{n}-a)$, donc $z_{n}=1+i+i^{n}(1-i)$. Les valeurs sont $2, 2+2i, 2i, 0$, puis 2. Elles sont distinctes sur les quatre premiers rangs : la période minimale est 4. Leur somme vaut $4+4i=4a$. Les points forment un carré de centre $\pt{1;1}$, de côté 2 et de rayon $\sqrt{2}$.
+\end{solution}
+

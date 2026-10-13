@@ -1,0 +1,24 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-invariants-notes}{Parité et invariants}
+\mxsubtitle{Seconde · raisonnement \textperiodcentered{} Leçon et méthode \textperiodcentered{} 01}
+
+\begin{prerequisites}
+Entiers pairs et impairs ; preuve par contradiction.
+\end{prerequisites}
+
+\begin{keypoint}[Idées et méthode]
+Un invariant est une quantité ou une propriété conservée par chaque opération autorisée. Si l’état visé n’a pas la même valeur de cet invariant que l’état initial, il est inaccessible.
+
+Pour étudier la parité, on peut remplacer les entiers par leurs restes 0 ou 1 modulo 2. Deux nombres impairs ont une somme paire. Ajouter un nombre pair ne change pas la parité.
+
+Méthode : décrire précisément un coup, chercher ce qu’il conserve, calculer l’invariant initial et celui de la cible. Une obstruction prouve une impossibilité ; l’absence d’obstruction ne prouve pas la possibilité.
+\end{keypoint}
+
+\begin{example}
+On part de 0 et chaque coup ajoute ou retranche 6. Tous les nombres obtenus sont pairs. Atteindre 15 est donc impossible. Atteindre 14 est aussi impossible, mais la seule parité ne suffit pas à le prouver : il faut remarquer que tout résultat est multiple de 6.
+\end{example}
+
+\begin{activity}[À explorer]
+Écrire quelques suites de coups, puis classer les nombres atteints. Trouver une propriété commune plus précise que la parité.
+\end{activity}
+

@@ -1,0 +1,59 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{automatismes-ch05}{One-variable descriptive statistics}
+
+\begin{fluencysheet}{Thu~17~Dec.~2026}{Mean and linearity of the mean}
+\mxfq{Warm-up · Quick}{STA}{Mean of $12,\,15,\,9,\,14$?}{$\dfrac{50}{4}=\num{12,5}$.}{}
+\mxfq{Core · Method}{STA}{The series $4,\,6,\,8,\,10,\,12$ has mean $8$. What is the mean if $3$ is added to each value? If each value is multiplied by $2$?}{Linearity: $8+3=11$; $2\times8=16$.}{No need to recompute the sum.}
+\mxfq{Core + · True/false}{STA}{True or false? Justify. The mean of two numbers $a<b$ is always strictly between $a$ and $b$.}{True. $a<\dfrac{a+b}{2}<b$ because $b-a>0$.}{}
+\mxfq{Review · Reading}{LEC}{In a pie chart of $80$ people, one sector represents $\pc{25}$. How many people does it represent? What is its angle?}{$20$ people; $90\degre$.}{}
+\mxfq{Thread · Quick}{DIV}{Calculate $\pgcd\pt{84;126}$ and deduce the simplest form of $\dfrac{84}{126}$.}{$\pgcd=42$; $\dfrac{84}{126}=\dfrac23$.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{Mon~4~Jan.~2027}{Median and quartiles}
+\mxfq{Warm-up · Quick}{STA}{Order $7,\,2,\,9,\,4,\,5,\,11,\,3$ then give the median.}{$2\,;\,3\,;\,4\,;\,5\,;\,7\,;\,9\,;\,11$; median $5$ (rank $4$).}{}
+\mxfq{Core · Method}{STA}{Series $3\,;\,5\,;\,6\,;\,8\,;\,9\,;\,12\,;\,14\,;\,15$. Give $Q_1$, the median, $Q_3$ and the interquartile range.}{$n=8$: $Q_1$ has rank $\lceil8/4\rceil=2$: $5$; median $\dfrac{8+9}{2}=\num{8,5}$; $Q_3$ has rank $6$: $12$; $Q_3-Q_1=7$.}{Convention: the smallest value such that at least $\pc{25}$ (resp. $\pc{75}$) of the data are less than or equal to it.}
+\mxfq{Core + · True/false}{STA}{True or false? Justify. At least half of the values of a series are greater than or equal to its median.}{True. By definition of the median (at least $\pc{50}$ of the values on each side, endpoints included).}{}
+\mxfq{Review · Quick}{CMP}{Put $\num{0,6}$, $\dfrac58$ and $\pc{61}$ in increasing order.}{$\num{0,6}<\pc{61}=\num{0,61}<\dfrac58=\num{0,625}$.}{}
+\mxfq{Thread · Graph → formula}{REG}{The line below represents an affine function $f$. Determine $f(x)$.\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\draw[very thin,gray!45] (-1,-1) grid (5,3);
+\draw[->] (-1,0)--(5.3,0); \draw[->] (0,-1)--(0,3.3);
+\foreach \i in {-1,1,2,3,4,5}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
+\foreach \j in {-1,1,2,3}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
+\draw[thick,mxink,domain=-1:5,samples=60,smooth] plot (\x,{-0.5*\x+2});
+\fill[mxteacher] (0,2) circle (3pt);
+\fill[mxteacher] (2,1) circle (3pt);
+
+\end{tikzpicture}\par }{It passes through $\pt{0;2}$ and $\pt{2;1}$: slope $\dfrac{1-2}{2-0}=-\dfrac12$, $f(x)=-\dfrac12x+2$.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{Tue~5~Jan.~2027}{Standard deviation; effect of adding or removing a value}
+\mxfq{Warm-up · Quick}{CAL}{Calculate $(3-5)^2+(7-5)^2$.}{$4+4=8$.}{}
+\mxfq{Core · Method}{STA}{Series $2\,;\,4\,;\,6$: mean, variance and standard deviation (approximate value to $10^{-2}$).}{Mean $4$; variance $\dfrac{4+0+4}{3}=\dfrac83$; standard deviation $\sqrt{\dfrac83}\approx\num{1,63}$.}{}
+\mxfq{Core + · True/false}{STA}{True or false? Justify. Adding $5$ to each value of a series does not change its standard deviation.}{True. All the values and the mean are shifted by $5$: the deviations from the mean are unchanged.}{}
+\mxfq{Review · Construction}{CON}{Let $ABC$ be a triangle, $I$ the midpoint of $[AB]$ and $D$ the reflection of $C$ in $I$. What type of quadrilateral is $ACBD$?}{A parallelogram: its diagonals $[AB]$ and $[CD]$ have the same midpoint $I$.}{}
+\mxfq{Thread · Quick}{GEO}{$(MN)\parallel(BC)$, $M\in[AB]$, $N\in[AC]$, $AM=3$, $AB=5$, $AC=10$. Calculate $AN$.}{Thales: $\dfrac{AN}{AC}=\dfrac{AM}{AB}$, so $AN=10\times\dfrac35=6$.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{Thu~7~Jan.~2027}{Comparing series}
+\mxfq{Warm-up · Quick}{STA}{Range of $3,\,8,\,5,\,12$?}{$12-3=9$.}{}
+\mxfq{Core · Interpret}{STA}{Two series $A$ and $B$ have the same mean $12$; $\sigma_A=\num{1,5}$ and $\sigma_B=4$. Which one is more consistent?}{$A$: the values are closer together around the mean (smaller $\sigma$).}{}
+\mxfq{Core + · Interpret}{STA}{$A$: median $11$, interquartile range $2$. $B$: median $13$, interquartile range $6$. Compare the two series.}{$B$ is centred higher (median $13>11$) but more spread out (interquartile range $6>2$).}{}
+\mxfq{Review · Quick}{PRB}{Two fair coins are tossed. What is the probability of getting two heads?}{$4$ equally likely outcomes: $\dfrac14$.}{}
+\mxfq{Thread · Method}{ALG}{Programme: choose a number; square it; add $1$. Result for $-3$? Can $0$ be obtained? Justify.}{For $-3$: $(-3)^2+1=10$. No: $x^2\geqslant0$ so $x^2+1\geqslant1>0$.}{}
+\end{fluencysheet}
+
+\begin{fluencysheet}{Mon~11~Jan.~2027}{Grouped data: histogram and cumulative frequencies}
+\mxfq{Warm-up · Quick}{STA}{Give the width and the midpoint of the class $\intfo{20}{35}$.}{Width $15$; midpoint $\dfrac{20+35}{2}=\num{27,5}$.}{}
+\mxfq{Core · Table}{LEC}{Classes $\intfo{0}{10}$, $\intfo{10}{20}$, $\intfo{20}{30}$ with frequencies (counts) $4,\,6,\,10$. Give the relative frequencies, then the cumulative increasing relative frequencies.}{Total $20$; relative frequencies $\pc{20}$, $\pc{30}$, $\pc{50}$; cumulative $\pc{20}$, $\pc{50}$, $\pc{100}$.}{}
+\mxfq{Core + · Quick}{LEC}{In a histogram with classes of equal width, two rectangles have heights $3$ cm and $6$ cm. What is the ratio of their frequencies (counts)?}{The heights are proportional to the counts: $1$ to $2$.}{}
+\mxfq{Review · Quick}{NUM}{Write $\num{0,00032}$ in scientific notation.}{$\num{3,2}\times10^{-4}$.}{}
+\mxfq{Thread · Quick}{EQ}{Solve in $\R$: $2(x+3)=5x-9$.}{$x=5$}{Pitfall: forgetting to distribute the $2$ over the $3$.}
+\end{fluencysheet}
+
+\begin{fluencysheet}{Tue~12~Jan.~2027}{Weighted mean, median class; spreadsheet and Python}
+\mxfq{Warm-up · Quick}{CAL}{Calculate $\dfrac{2\times8+3\times12}{5}$.}{$\dfrac{52}{5}=\num{10,4}$.}{}
+\mxfq{Core · Method}{STA}{Classes $\intfo{0}{10}$, $\intfo{10}{20}$, $\intfo{20}{30}$ with frequencies (counts) $4\,;\,7\,;\,9$. Estimate the mean using the class midpoints; give the median class.}{Estimated mean $\dfrac{4\times5+7\times15+9\times25}{20}=\num{17,5}$; cumulative frequencies $4\,;\,11\,;\,20$: the $10^{\text e}$ and $11^{\text e}$ values are in $\intfo{10}{20}$: median class.}{}
+\mxfq{Core + · Code reading}{ALG}{What does this programme calculate and what value does it give?\mxpseudo{notes = [12, 15, 9, 14]\\ s = 0\\ for n in notes:\\ \mxtab s = s + n\\ print(s / len(notes))}}{The mean of the marks: $\dfrac{50}{4}=\num{12,5}$.}{}
+\mxfq{Review · Quick}{PRO}{An item costing $\num{45000}$ Ar is sold at $-\pc{30}$. What is the sale price?}{$\num{45000}\times\num{0,70}=\num{31500}$ Ar.}{}
+\mxfq{Thread · Prove}{LIT}{Programme: choose $n$; add $1$; square it; subtract $n^2$. Show that the result is always an odd number.}{$(n+1)^2-n^2=2n+1$: odd for every integer $n$.}{}
+\end{fluencysheet}

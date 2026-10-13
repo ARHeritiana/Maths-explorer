@@ -1,0 +1,1145 @@
+{
+ "unit": "bank-c.fr.tex",
+ "segments": {
+  "bf05ae0d4745": {
+   "fr": "Construire un nuage de points",
+   "en": "Building a scatter plot",
+   "status": "aligned",
+   "order": 0
+  },
+  "8fd1a19b4a15": {
+   "fr": "Une supérette compare, sur six mois, l'écart [[m1]] entre la température moyenne du mois et la normale saisonnière (en °C) et la variation [[m2]] de ses ventes de boissons fraîches par rapport au même mois de l'année précédente (en centaines de bouteilles).",
+   "en": "Over six months, a convenience store compares the gap [[m1]] between the month's average temperature and the seasonal norm (in °C) with the change [[m2]] in its cold-drink sales compared with the same month of the previous year (in hundreds of bottles).",
+   "status": "aligned",
+   "order": 1
+  },
+  "389e7ef88f77": {
+   "fr": "Indiquer la variable placée en abscisse, celle placée en ordonnée, ainsi que leurs unités.",
+   "en": "State the variable placed on the horizontal axis, the one placed on the vertical axis, and their units.",
+   "status": "aligned",
+   "order": 2
+  },
+  "ecb0b72ac7fb": {
+   "fr": "Choisir des échelles adaptées puis représenter le nuage de points [[m1]] dans un repère.",
+   "en": "Choose suitable scales, then plot the scatter plot of the points [[m1]] on a coordinate grid.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a4ae9ae4d706": {
+   "fr": "Calculer les coordonnées du point moyen [[m1]] du nuage et le placer.",
+   "en": "Calculate the coordinates of the mean point [[m1]] of the scatter plot and plot it.",
+   "status": "aligned",
+   "order": 4
+  },
+  "3b3db10bf946": {
+   "fr": "Décrire en une phrase l'allure du nuage.",
+   "en": "Describe the shape of the scatter plot in one sentence.",
+   "status": "aligned",
+   "order": 5
+  },
+  "c8ee37b55a19": {
+   "fr": "En abscisse : l'écart de température [[m1]], en °C ; en ordonnée : la variation des ventes [[m2]], en centaines de bouteilles. Les deux variables prennent des valeurs négatives : les axes doivent se couper à l'intérieur du graphique.",
+   "en": "Horizontal axis: the temperature gap [[m1]], in °C; vertical axis: the change in sales [[m2]], in hundreds of bottles. Both variables take negative values: the axes must cross inside the graph.",
+   "status": "aligned",
+   "order": 6
+  },
+  "cd1e4e8409e8": {
+   "fr": "On peut prendre [[m1]]~cm pour [[m2]]~°C (de [[m3]] à [[m4]]) et [[m5]]~cm pour une centaine de bouteilles (de [[m6]] à [[m7]]). On place les six points [[m8]], [[m9]], [[m10]], [[m11]], [[m12]] et [[m13]], sans les relier.",
+   "en": "One can take [[m1]]~cm for [[m2]]~°C (from [[m3]] to [[m4]]) and [[m5]]~cm for one hundred bottles (from [[m6]] to [[m7]]). Plot the six points [[m8]], [[m9]], [[m10]], [[m11]], [[m12]] and [[m13]], without joining them.",
+   "status": "aligned",
+   "order": 7
+  },
+  "c77b04f5ee1c": {
+   "fr": "[[m1]] et [[m2]]. Donc [[m3]].",
+   "en": "[[m1]] and [[m2]]. Hence [[m3]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "de5c63b6e365": {
+   "fr": "Le nuage est orienté vers le haut : plus le mois est chaud par rapport à la normale, plus les ventes de boissons fraîches augmentent ; les points sont proches d'une droite.",
+   "en": "The scatter plot rises: the warmer the month compared with the norm, the more cold-drink sales increase; the points lie close to a straight line.",
+   "status": "aligned",
+   "order": 9
+  },
+  "8f0cf2c08f28": {
+   "fr": "Interpréter un nuage sans conclure à une causalité",
+   "en": "Interpreting a scatter plot without inferring causation",
+   "status": "aligned",
+   "order": 10
+  },
+  "ac05df1e5fab": {
+   "fr": "Pendant huit semaines d'été, un glacier de bord de mer relève ses ventes hebdomadaires [[m1]] (en centaines de cornets) ; la pharmacie voisine relève le nombre [[m2]] de crèmes apaisantes pour coups de soleil vendues la même semaine. Le nuage de points obtenu est représenté ci-dessous.",
+   "en": "For eight summer weeks, a seaside ice-cream shop records its weekly sales [[m1]] (in hundreds of cones); the neighbouring pharmacy records the number [[m2]] of soothing sunburn creams sold in the same week. The resulting scatter plot is shown below.",
+   "status": "aligned",
+   "order": 11
+  },
+  "8d8cb5cda8da": {
+   "fr": "ventes de glaces (centaines)",
+   "en": "ice-cream sales (hundreds)",
+   "status": "aligned",
+   "order": 12
+  },
+  "df9a303024c2": {
+   "fr": "crèmes vendues",
+   "en": "creams sold",
+   "status": "aligned",
+   "order": 13
+  },
+  "5438e3052ae8": {
+   "fr": "Décrire le nuage : sens de variation, forme et dispersion.",
+   "en": "Describe the scatter plot: direction, shape and spread.",
+   "status": "aligned",
+   "order": 14
+  },
+  "3f3b5a1b2e47": {
+   "fr": "Un point s'écarte nettement des autres. Donner ses coordonnées et proposer une explication plausible.",
+   "en": "One point stands clearly apart from the others. Give its coordinates and suggest a plausible explanation.",
+   "status": "aligned",
+   "order": 15
+  },
+  "0200e8da3888": {
+   "fr": "Le pharmacien affirme : « Ce sont les glaces qui provoquent les coups de soleil. » Que penser de cette affirmation ?",
+   "en": "The pharmacist claims: ``Ice creams cause sunburn.'' What do you think of this claim?",
+   "status": "aligned",
+   "order": 16
+  },
+  "059022eabf37": {
+   "fr": "Proposer un facteur qui pourrait expliquer l'évolution simultanée des deux séries.",
+   "en": "Suggest a factor that could explain why the two series change together.",
+   "status": "aligned",
+   "order": 17
+  },
+  "d30c250506b8": {
+   "fr": "Hormis un point, le nuage est croissant : les semaines où le glacier vend davantage sont aussi celles où la pharmacie vend plus de crèmes. Les points sont assez proches d'une droite, avec une dispersion faible.",
+   "en": "Apart from one point, the scatter plot is increasing: the weeks when the shop sells more ice cream are also the weeks when the pharmacy sells more creams. The points are fairly close to a straight line, with little spread.",
+   "status": "aligned",
+   "order": 18
+  },
+  "190a09c1a883": {
+   "fr": "Le point [[m1]] est atypique : très fortes ventes de glaces mais peu de crèmes vendues. Explication possible : une semaine nuageuse marquée par un festival qui a attiré beaucoup de promeneurs sans exposition forte au soleil.",
+   "en": "The point [[m1]] is an outlier: very high ice-cream sales but few creams sold. Possible explanation: a cloudy week with a festival that attracted many visitors without strong sun exposure.",
+   "status": "aligned",
+   "order": 19
+  },
+  "032b85b44298": {
+   "fr": "Le nuage montre seulement que les deux variables varient dans le même sens (corrélation). Il ne prouve pas qu'une variable soit la cause de l'autre : l'affirmation n'est pas justifiée par ces données.",
+   "en": "The scatter plot only shows that the two variables move in the same direction (correlation). It does not prove that one variable causes the other: the claim is not justified by these data.",
+   "status": "aligned",
+   "order": 20
+  },
+  "527d24087fc8": {
+   "fr": "L'ensoleillement (ou la chaleur, la fréquentation touristique) fait augmenter à la fois les ventes de glaces et les coups de soleil : c'est un facteur commun aux deux séries.",
+   "en": "Sunshine (or heat, or tourist numbers) increases both ice-cream sales and sunburn: it is a factor common to both series.",
+   "status": "aligned",
+   "order": 21
+  },
+  "435c4698f2a0": {
+   "fr": "Juger une droite d'ajustement et l'exploiter",
+   "en": "Assessing and using a fitted line",
+   "status": "aligned",
+   "order": 22
+  },
+  "e404d129ee7d": {
+   "fr": "Le gérant d'une boutique chauffée au gaz relève, certains jours d'hiver, la température extérieure moyenne [[m1]] (en °C) et la consommation de gaz [[m2]] de la boutique (en kWh).",
+   "en": "The manager of a gas-heated shop records, on some winter days, the average outdoor temperature [[m1]] (in °C) and the shop's gas consumption [[m2]] (in kWh).",
+   "status": "aligned",
+   "order": 23
+  },
+  "6d15d2c3752b": {
+   "fr": "Représenter le nuage de points dans un repère, puis calculer les coordonnées du point moyen [[m1]].",
+   "en": "Plot the scatter plot on a coordinate grid, then calculate the coordinates of the mean point [[m1]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "24c60ebe7f07": {
+   "fr": "Un stagiaire propose la droite [[m1]] d'équation [[m2]]. La tracer. Cet ajustement paraît-il satisfaisant ? Justifier en utilisant le point [[m3]].",
+   "en": "An intern suggests the line [[m1]] with equation [[m2]]. Draw it. Does this fit seem satisfactory? Justify using the point [[m3]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "4db571257a5c": {
+   "fr": "On retient désormais la droite [[m1]] d'équation [[m2]]. Vérifier que [[m3]] appartient à [[m4]] et interpréter les nombres [[m5]] et [[m6]] dans le contexte.",
+   "en": "From now on, the line [[m1]] with equation [[m2]] is used. Check that [[m3]] lies on [[m4]] and interpret the numbers [[m5]] and [[m6]] in context.",
+   "status": "aligned",
+   "order": 26
+  },
+  "043f26cd654d": {
+   "fr": "À l'aide de [[m1]], estimer :",
+   "en": "Using [[m1]], estimate:",
+   "status": "aligned",
+   "order": 27
+  },
+  "85ba8b752b8c": {
+   "fr": "la consommation un jour où il fait [[m1]]~°C ;",
+   "en": "the consumption on a day when it is [[m1]]~°C;",
+   "status": "aligned",
+   "order": 28
+  },
+  "04f699655ae1": {
+   "fr": "la température d'un jour où la consommation est de [[m1]]~kWh.",
+   "en": "the temperature on a day when the consumption is [[m1]]~kWh.",
+   "status": "aligned",
+   "order": 29
+  },
+  "48f53704d30f": {
+   "fr": "Préciser, pour les deux premières estimations, s'il s'agit d'une interpolation ou d'une extrapolation.",
+   "en": "For the first two estimates, state whether it is an interpolation or an extrapolation.",
+   "status": "aligned",
+   "order": 30
+  },
+  "0a1f47f99864": {
+   "fr": "On place les six points. [[m1]] et [[m2]], donc [[m3]]. Le nuage est décroissant et presque aligné.",
+   "en": "Plot the six points. [[m1]] and [[m2]], so [[m3]]. The scatter plot is decreasing and almost aligned.",
+   "status": "aligned",
+   "order": 31
+  },
+  "8bbbbb28b224": {
+   "fr": "Pour [[m1]], [[m2]] donne [[m3]] : [[m4]] ne passe pas par [[m5]]. De plus, elle est trop peu inclinée : elle passe au-dessous des premiers points ([[m6]] pour [[m7]] à [[m8]]~°C) et nettement au-dessus des derniers ([[m9]] pour [[m10]] à [[m11]]~°C). L'ajustement n'est pas satisfaisant.",
+   "en": "For [[m1]], [[m2]] gives [[m3]]: [[m4]] does not pass through [[m5]]. Moreover, it is not steep enough: it runs below the first points ([[m6]] instead of [[m7]] at [[m8]]~°C) and well above the last ones ([[m9]] instead of [[m10]] at [[m11]]~°C). The fit is not satisfactory.",
+   "status": "aligned",
+   "order": 32
+  },
+  "76327c3a4418": {
+   "fr": "[[m1]] : [[m2]]. Le coefficient [[m3]] signifie qu'un degré de plus correspond, en moyenne, à environ [[m4]]~kWh consommés en moins ; [[m5]] est la consommation estimée un jour à [[m6]]~°C.",
+   "en": "[[m1]]: [[m2]]. The coefficient [[m3]] means that one more degree corresponds, on average, to about [[m4]]~kWh less consumed; [[m5]] is the estimated consumption on a day at [[m6]]~°C.",
+   "status": "aligned",
+   "order": 33
+  },
+  "3ad843d03fd1": {
+   "fr": "Pour [[m1]] : [[m2]], soit environ [[m3]]~kWh (interpolation, car [[m4]]).\\\\\nPour [[m5]] : [[m6]], soit environ [[m7]]~kWh (extrapolation, car [[m8]] : à interpréter avec prudence).\\\\\n[[m9]] équivaut à [[m10]] : une consommation de [[m11]]~kWh correspond à environ [[m12]]~°C.",
+   "en": "For [[m1]]: [[m2]], i.e.\\ about [[m3]]~kWh (interpolation, since [[m4]]).\\\\\nFor [[m5]]: [[m6]], i.e.\\ about [[m7]]~kWh (extrapolation, since [[m8]]: to be interpreted with caution).\\\\\n[[m9]] is equivalent to [[m10]]: a consumption of [[m11]]~kWh corresponds to about [[m12]]~°C.",
+   "status": "aligned",
+   "order": 34
+  },
+  "6bbf394aca49": {
+   "fr": "Régression affine et prévision chronologique",
+   "en": "Linear regression and time-series forecast",
+   "status": "aligned",
+   "order": 35
+  },
+  "1afd3a1f4c1d": {
+   "fr": "Un opérateur régional relève le nombre d'abonnés à son offre fibre optique au 31 décembre de chaque année.",
+   "en": "A regional operator records the number of subscribers to its fibre-optic offer on 31 December each year.",
+   "status": "aligned",
+   "order": 36
+  },
+  "02727df9cda8": {
+   "fr": "Représenter le nuage de points [[m1]]. Un ajustement affine est-il envisageable ?",
+   "en": "Plot the scatter plot of the points [[m1]]. Is a linear fit reasonable?",
+   "status": "aligned",
+   "order": 37
+  },
+  "9f1e2a132d8e": {
+   "fr": "À l'aide de la calculatrice, déterminer une équation de la droite d'ajustement de [[m1]] en [[m2]] obtenue par la méthode des moindres carrés. Arrondir les coefficients à [[m3]].",
+   "en": "Using a calculator, find an equation of the least-squares regression line of [[m1]] on [[m2]]. Round the coefficients to [[m3]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "e6c15cc5ec40": {
+   "fr": "En supposant que la tendance se maintient, estimer le nombre d'abonnés fin 2026.",
+   "en": "Assuming the trend continues, estimate the number of subscribers at the end of 2026.",
+   "status": "aligned",
+   "order": 39
+  },
+  "a263d73e58e9": {
+   "fr": "Selon ce modèle, en quelle année le nombre d'abonnés dépasserait-il [[m1]] ?",
+   "en": "According to this model, in which year would the number of subscribers exceed [[m1]]?",
+   "status": "aligned",
+   "order": 40
+  },
+  "3ab77b650979": {
+   "fr": "Les six points sont presque alignés selon une droite croissante : un ajustement affine est pertinent.",
+   "en": "The six points are almost aligned along an increasing straight line: a linear fit is relevant.",
+   "status": "aligned",
+   "order": 41
+  },
+  "ed4e4aec574a": {
+   "fr": "La calculatrice donne [[m1]] et [[m2]], d'où la droite [[m3]].",
+   "en": "The calculator gives [[m1]] and [[m2]], hence the line [[m3]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "6585e8f9726d": {
+   "fr": "Fin 2026 correspond au rang [[m1]] : [[m2]]. On peut prévoir environ [[m3]] abonnés. C'est une extrapolation : le résultat suppose que la tendance observée de 2018 à 2023 se poursuit.",
+   "en": "The end of 2026 corresponds to rank [[m1]]: [[m2]]. About [[m3]] subscribers can be forecast. This is an extrapolation: the result assumes that the trend observed from 2018 to 2023 continues.",
+   "status": "aligned",
+   "order": 43
+  },
+  "bb82e5c9825a": {
+   "fr": "On résout [[m1]], soit [[m2]]. Le premier rang entier convenable est [[m3]] (contrôle : [[m4]] et [[m5]]). Le seuil serait dépassé en [[m6]].",
+   "en": "Solve [[m1]], i.e.\\ [[m2]]. The first suitable whole rank is [[m3]] (check: [[m4]] and [[m5]]). The threshold would be exceeded in [[m6]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "47bbb588c034": {
+   "fr": "Droite par deux points et extrapolation prudente",
+   "en": "Line through two points and careful extrapolation",
+   "status": "aligned",
+   "order": 45
+  },
+  "4bb29f0d823d": {
+   "fr": "Une plateforme logistique a relevé le nombre de colis expédiés chaque année (en milliers).",
+   "en": "A logistics hub recorded the number of parcels shipped each year (in thousands).",
+   "status": "aligned",
+   "order": 46
+  },
+  "6ccc86fdd616": {
+   "fr": "Représenter le nuage de points [[m1]] dans un repère orthogonal.",
+   "en": "Plot the scatter plot of the points [[m1]] on an orthogonal grid.",
+   "status": "aligned",
+   "order": 47
+  },
+  "37e823d27175": {
+   "fr": "On ajuste ce nuage par la droite [[m1]] passant par le premier et le dernier point. Déterminer une équation de cette droite (coefficients arrondis au dixième si nécessaire).",
+   "en": "The scatter plot is fitted by the line [[m1]] through the first and last points. Find an equation of this line (coefficients rounded to one decimal place if necessary).",
+   "status": "aligned",
+   "order": 48
+  },
+  "43e5f339607a": {
+   "fr": "Avec ce modèle, estimer le nombre de colis expédiés en 2027.",
+   "en": "Using this model, estimate the number of parcels shipped in 2027.",
+   "status": "aligned",
+   "order": 49
+  },
+  "438f09b04460": {
+   "fr": "Selon ce modèle, au cours de quelle année le nombre de colis expédiés dépasserait-il un million ?",
+   "en": "According to this model, in which year would the number of parcels shipped exceed one million?",
+   "status": "aligned",
+   "order": 50
+  },
+  "6b66a823c25f": {
+   "fr": "Donner deux raisons pour lesquelles ces prévisions peuvent se révéler peu fiables.",
+   "en": "Give two reasons why these forecasts may turn out to be unreliable.",
+   "status": "aligned",
+   "order": 51
+  },
+  "8741013e3e20": {
+   "fr": "Les cinq points sont presque alignés selon une droite croissante.",
+   "en": "The five points are almost aligned along an increasing straight line.",
+   "status": "aligned",
+   "order": 52
+  },
+  "e84331c220d6": {
+   "fr": "[[m1]] et [[m2]]. Le coefficient directeur vaut [[m3]] et l'ordonnée à l'origine est [[m4]] (abscisse [[m5]]). Équation : [[m6]].",
+   "en": "[[m1]] and [[m2]]. The gradient is [[m3]] and the intercept is [[m4]] (abscissa [[m5]]). Equation: [[m6]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "7db19efe17fb": {
+   "fr": "2027 correspond au rang [[m1]] : [[m2]], soit environ [[m3]] colis.",
+   "en": "2027 corresponds to rank [[m1]]: [[m2]], i.e.\\ about [[m3]] parcels.",
+   "status": "aligned",
+   "order": 54
+  },
+  "99e8a1d986d7": {
+   "fr": "Un million de colis correspond à [[m1]]. On résout [[m2]], soit [[m3]]. Le premier rang entier est [[m4]] (contrôle : [[m5]] et [[m6]]). Le seuil serait franchi en [[m7]].",
+   "en": "One million parcels corresponds to [[m1]]. Solve [[m2]], i.e.\\ [[m3]]. The first whole rank is [[m4]] (check: [[m5]] and [[m6]]). The threshold would be crossed in [[m7]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "8c54753cc752": {
+   "fr": "Ce sont des extrapolations loin de la période observée (2019--2023) : la tendance peut changer (concurrence, crise économique, saturation de la capacité de la plateforme) ; de plus la droite est construite à partir de deux points seulement.",
+   "en": "These are extrapolations far from the observed period (2019--2023): the trend may change (competition, economic crisis, the hub reaching full capacity); moreover the line is built from only two points.",
+   "status": "aligned",
+   "order": 56
+  },
+  "4aeb3169ec96": {
+   "fr": "Linéariser par changement de variable logarithmique",
+   "en": "Linearising with a logarithmic change of variable",
+   "status": "aligned",
+   "order": 57
+  },
+  "86407716a804": {
+   "fr": "Une agence de communication étudie, pour plusieurs clients, le budget mensuel de publicité en ligne [[m1]] (en centaines d'euros) et le nombre mensuel de visites [[m2]] du site du client (en milliers).",
+   "en": "A marketing agency studies, for several clients, the monthly online advertising budget [[m1]] (in hundreds of euros) and the monthly number of visits [[m2]] to the client's website (in thousands).",
+   "status": "aligned",
+   "order": 58
+  },
+  "df151bfbc37c": {
+   "fr": "Les visites augmentent de moins en moins vite quand le budget augmente : un ajustement affine de [[m1]] en [[m2]] n'est pas pertinent. On pose [[m3]].",
+   "en": "Visits increase more and more slowly as the budget increases: a linear fit of [[m1]] on [[m2]] is not relevant. Let [[m3]].",
+   "status": "aligned",
+   "order": 59
+  },
+  "014b13ecb771": {
+   "fr": "Calculer les valeurs [[m1]], arrondies au centième.",
+   "en": "Calculate the values [[m1]], rounded to two decimal places.",
+   "status": "aligned",
+   "order": 60
+  },
+  "dbf5902d765e": {
+   "fr": "Représenter le nuage de points [[m1]]. À l'aide de la calculatrice, déterminer une équation de la droite d'ajustement de [[m2]] en [[m3]] par la méthode des moindres carrés (coefficients arrondis au dixième).",
+   "en": "Plot the scatter plot of the points [[m1]]. Using a calculator, find an equation of the least-squares regression line of [[m2]] on [[m3]] (coefficients rounded to one decimal place).",
+   "status": "aligned",
+   "order": 61
+  },
+  "cf8fd8a64205": {
+   "fr": "En déduire une expression de [[m1]] en fonction de [[m2]].",
+   "en": "Deduce an expression of [[m1]] in terms of [[m2]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "51a30964a494": {
+   "fr": "Estimer le nombre de visites pour un budget de [[m1]]~€, puis de [[m2]]~€. Commenter la fiabilité de chaque estimation.",
+   "en": "Estimate the number of visits for a budget of [[m1]]~€, then of [[m2]]~€. Comment on the reliability of each estimate.",
+   "status": "aligned",
+   "order": 63
+  },
+  "d2cc4949c842": {
+   "fr": "Le nuage [[m1]] est presque aligné. La calculatrice donne (avec les [[m2]] arrondis) [[m3]] et [[m4]], d'où [[m5]].",
+   "en": "The scatter plot of [[m1]] is almost aligned. The calculator gives (with the rounded [[m2]]) [[m3]] and [[m4]], hence [[m5]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "bd525f2163a2": {
+   "fr": "Comme [[m1]], on obtient [[m2]].",
+   "en": "Since [[m1]], we get [[m2]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "19a3c58f6daf": {
+   "fr": "[[m1]]~€ correspond à [[m2]] : [[m3]], soit environ [[m4]] visites (interpolation, [[m5]]).\\\\\n[[m6]]~€ correspond à [[m7]] : [[m8]], soit environ [[m9]] visites. C'est une extrapolation ([[m10]]) : estimation à interpréter avec prudence.",
+   "en": "[[m1]]~€ corresponds to [[m2]]: [[m3]], i.e.\\ about [[m4]] visits (interpolation, [[m5]]).\\\\\n[[m6]]~€ corresponds to [[m7]]: [[m8]], i.e.\\ about [[m9]] visits. This is an extrapolation ([[m10]]): the estimate should be interpreted with caution.",
+   "status": "aligned",
+   "order": 66
+  },
+  "cc209b60f855": {
+   "fr": "Étalonnage : ajustement, résidu et domaine de validité",
+   "en": "Calibration: fit, residual and validity range",
+   "status": "aligned",
+   "order": 67
+  },
+  "e9168c02c5d8": {
+   "fr": "Une jeune entreprise étalonne un capteur de dioxyde de carbone (CO[[m1]]) à bas coût destiné aux bureaux. Placé dans des enceintes de concentration connue [[m2]] (en ppm, parties par million), le capteur délivre une tension [[m3]] (en volts).",
+   "en": "A start-up is calibrating a low-cost carbon dioxide (CO[[m1]]) sensor intended for offices. Placed in chambers with a known concentration [[m2]] (in ppm, parts per million), the sensor delivers a voltage [[m3]] (in volts).",
+   "status": "aligned",
+   "order": 68
+  },
+  "6d57959c08c0": {
+   "fr": "Représenter le nuage de points [[m1]], avec [[m2]] en abscisse.",
+   "en": "Plot the scatter plot of the points [[m1]], with [[m2]] on the horizontal axis.",
+   "status": "aligned",
+   "order": 69
+  },
+  "a0c980629ff9": {
+   "fr": "Un ajustement affine semble-t-il pertinent ? Déterminer à la calculatrice une équation de la droite d'ajustement de [[m1]] en [[m2]], sous la forme [[m3]] (coefficients arrondis à l'unité).",
+   "en": "Does a linear fit seem relevant? Using a calculator, find an equation of the regression line of [[m1]] on [[m2]], in the form [[m3]] (coefficients rounded to the nearest unit).",
+   "status": "aligned",
+   "order": 70
+  },
+  "36250b0912c4": {
+   "fr": "Calculer le résidu pour [[m1]], c'est-à-dire l'écart entre la concentration réelle et celle donnée par le modèle. Commenter.",
+   "en": "Calculate the residual for [[m1]], that is, the difference between the actual concentration and the one given by the model. Comment.",
+   "status": "aligned",
+   "order": 71
+  },
+  "c0b29119f60d": {
+   "fr": "Dans un bureau, le capteur affiche [[m1]]~V. Estimer la concentration en CO[[m2]]. Un seuil de [[m3]]~ppm est souvent retenu comme repère pour aérer : faut-il aérer ?",
+   "en": "In an office, the sensor reads [[m1]]~V. Estimate the CO[[m2]] concentration. A threshold of [[m3]]~ppm is often used as a guide for airing a room: should the room be aired?",
+   "status": "aligned",
+   "order": 72
+  },
+  "212e8c189362": {
+   "fr": "Peut-on utiliser ce modèle avec la même confiance pour une tension de [[m1]]~V ? Justifier.",
+   "en": "Can this model be used with the same confidence for a voltage of [[m1]]~V? Justify.",
+   "status": "aligned",
+   "order": 73
+  },
+  "dd3d5f4050b7": {
+   "fr": "Les six points sont presque alignés selon une droite croissante.",
+   "en": "The six points are almost aligned along an increasing straight line.",
+   "status": "aligned",
+   "order": 74
+  },
+  "d1a248982c1c": {
+   "fr": "Oui. La calculatrice donne [[m1]] et [[m2]], d'où [[m3]].",
+   "en": "Yes. The calculator gives [[m1]] and [[m2]], hence [[m3]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "407bf978b723": {
+   "fr": "Le modèle donne [[m1]]. Le résidu vaut [[m2]]~ppm, soit moins de [[m3]] de la valeur : l'ajustement est de bonne qualité.",
+   "en": "The model gives [[m1]]. The residual is [[m2]]~ppm, i.e.\\ less than [[m3]] of the value: the fit is good.",
+   "status": "aligned",
+   "order": 76
+  },
+  "ba219203997d": {
+   "fr": "[[m1]], soit environ [[m2]]~ppm (interpolation, car [[m3]]). Cette valeur dépasse [[m4]]~ppm : il faut aérer.",
+   "en": "[[m1]], i.e.\\ about [[m2]]~ppm (interpolation, since [[m3]]). This value exceeds [[m4]]~ppm: the room should be aired.",
+   "status": "aligned",
+   "order": 77
+  },
+  "390f9ec0b9e4": {
+   "fr": "Le modèle donne [[m1]]~ppm, mais [[m2]]~V est hors de l'intervalle d'étalonnage [[m3]] : c'est une extrapolation. Rien ne garantit que le capteur reste linéaire à forte concentration ; il faudrait compléter l'étalonnage.",
+   "en": "The model gives [[m1]]~ppm, but [[m2]]~V lies outside the calibration interval [[m3]]: this is an extrapolation. Nothing guarantees that the sensor stays linear at high concentrations; the calibration should be extended.",
+   "status": "aligned",
+   "order": 78
+  },
+  "6590871d068f": {
+   "fr": "Point moyen et droite de régression : choix justifiés",
+   "en": "Mean point and regression line: justified choices",
+   "status": "aligned",
+   "order": 79
+  },
+  "b8530da9ee87": {
+   "fr": "Pour chaque question, une seule proposition est exacte. La choisir et justifier.",
+   "en": "For each question, exactly one option is correct. Choose it and justify.",
+   "status": "aligned",
+   "order": 80
+  },
+  "a20a2adb5724": {
+   "fr": "Trois magasins d'une même enseigne ont une surface de vente [[m1]] (en centaines de m[[m2]]) et un chiffre d'affaires mensuel [[m3]] (en dizaines de milliers d'euros) représentés par les points [[m4]], [[m5]] et [[m6]].",
+   "en": "Three stores of the same chain have a sales area [[m1]] (in hundreds of m[[m2]]) and a monthly turnover [[m3]] (in tens of thousands of euros) represented by the points [[m4]], [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "1a9081fff039": {
+   "fr": "Le point moyen [[m1]] de ce nuage est :",
+   "en": "The mean point [[m1]] of this scatter plot is:",
+   "status": "aligned",
+   "order": 82
+  },
+  "cb7b77fe6240": {
+   "fr": "le point [[m1]] ;",
+   "en": "the point [[m1]];",
+   "status": "aligned",
+   "order": 83
+  },
+  "8f5c4a8d9e57": {
+   "fr": "le point de coordonnées [[m1]] ;",
+   "en": "the point with coordinates [[m1]];",
+   "status": "aligned",
+   "order": 84
+  },
+  "aac566531b87": {
+   "fr": "le point de coordonnées [[m1]].",
+   "en": "the point with coordinates [[m1]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "199ee4ff2903": {
+   "fr": "Une équation de la droite [[m1]] est :",
+   "en": "An equation of the line [[m1]] is:",
+   "status": "aligned",
+   "order": 86
+  },
+  "98ae725c2e99": {
+   "fr": "La droite d'ajustement obtenue à la calculatrice par la méthode des moindres carrés :",
+   "en": "The least-squares regression line obtained with a calculator:",
+   "status": "aligned",
+   "order": 87
+  },
+  "44190b3ed201": {
+   "fr": "passe par le point [[m1]] ;",
+   "en": "passes through the point [[m1]];",
+   "status": "aligned",
+   "order": 88
+  },
+  "68f7d46b1e3e": {
+   "fr": "passe par [[m1]] et a le même coefficient directeur que [[m2]] ;",
+   "en": "passes through [[m1]] and has the same gradient as [[m2]];",
+   "status": "aligned",
+   "order": 89
+  },
+  "49a687703885": {
+   "fr": "passe par l'origine du repère.",
+   "en": "passes through the origin.",
+   "status": "aligned",
+   "order": 90
+  },
+  "d487eb4b91fb": {
+   "fr": "Avec cette droite d'ajustement, le chiffre d'affaires estimé d'un magasin de [[m1]]~m[[m2]] est :",
+   "en": "Using this regression line, the estimated turnover of a [[m1]]~m[[m2]] store is:",
+   "status": "aligned",
+   "order": 91
+  },
+  "4e8d9f744972": {
+   "fr": "Réponse b : [[m1]] et [[m2]]. La proposition c oublie de diviser les sommes par [[m3]].",
+   "en": "Answer b: [[m1]] and [[m2]]. Option c forgets to divide the sums by [[m3]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "1e2a979c43c1": {
+   "fr": "Réponse a : le coefficient directeur vaut [[m1]] et [[m2]] donne [[m3]]. La droite [[m4]] passe par [[m5]] mais pas par [[m6]] ([[m7]]).",
+   "en": "Answer a: the gradient is [[m1]] and [[m2]] gives [[m3]]. The line [[m4]] passes through [[m5]] but not through [[m6]] ([[m7]]).",
+   "status": "aligned",
+   "order": 93
+  },
+  "c940ed254d38": {
+   "fr": "Réponse b : la calculatrice donne [[m1]]. Elle passe par [[m2]] ([[m3]]), a pour coefficient directeur [[m4]] comme [[m5]], et ne passe ni par [[m6]] ([[m7]]) ni par l'origine ([[m8]]).",
+   "en": "Answer b: the calculator gives [[m1]]. It passes through [[m2]] ([[m3]]), has gradient [[m4]] like [[m5]], and passes neither through [[m6]] ([[m7]]) nor through the origin ([[m8]]).",
+   "status": "aligned",
+   "order": 94
+  },
+  "69cf0f6e5aca": {
+   "fr": "Réponse b : [[m1]]~m[[m2]] correspond à [[m3]], et [[m4]] dizaines de milliers d'euros, soit [[m5]]~€ (interpolation).",
+   "en": "Answer b: [[m1]]~m[[m2]] corresponds to [[m3]], and [[m4]] tens of thousands of euros, i.e.\\ [[m5]]~€ (interpolation).",
+   "status": "aligned",
+   "order": 95
+  },
+  "5b6d42b560f9": {
+   "fr": "Arbre à trois branches, probabilité totale et inverse",
+   "en": "Three-branch tree, total and reverse probability",
+   "status": "aligned",
+   "order": 96
+  },
+  "2aa9cf7dce38": {
+   "fr": "Un site de vente en ligne confie ses colis à trois transporteurs : [[m1]] au transporteur [[m2]], [[m3]] au transporteur [[m4]] et les autres au transporteur [[m5]]. Le service client constate que [[m6]] des colis acheminés par [[m7]] arrivent endommagés, contre [[m8]] pour [[m9]] et [[m10]] pour [[m11]].",
+   "en": "An online retailer hands its parcels to three carriers: [[m1]] to carrier [[m2]], [[m3]] to carrier [[m4]] and the rest to carrier [[m5]]. Customer service finds that [[m6]] of the parcels delivered by [[m7]] arrive damaged, compared with [[m8]] for [[m9]] and [[m10]] for [[m11]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "2431371d3848": {
+   "fr": "On choisit un colis au hasard. On note [[m1]] l'événement « Le colis est acheminé par le transporteur [[m2]] » et [[m3]] l'événement « Le colis arrive endommagé ».",
+   "en": "A parcel is chosen at random. Let [[m1]] be the event ``The parcel is delivered by carrier [[m2]]'' and [[m3]] the event ``The parcel arrives damaged''.",
+   "status": "aligned",
+   "order": 98
+  },
+  "694c72cf19de": {
+   "fr": "Recopier et compléter l'arbre pondéré ci-dessus.",
+   "en": "Copy and complete the weighted tree above.",
+   "status": "aligned",
+   "order": 99
+  },
+  "a4c023da614a": {
+   "fr": "Calculer la probabilité que le colis soit acheminé par [[m1]] et arrive endommagé.",
+   "en": "Calculate the probability that the parcel is delivered by [[m1]] and arrives damaged.",
+   "status": "aligned",
+   "order": 100
+  },
+  "455c8d61650d": {
+   "fr": "Montrer que la probabilité qu'un colis arrive endommagé est égale à [[m1]].",
+   "en": "Show that the probability that a parcel arrives damaged is equal to [[m1]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "e7a125f41eea": {
+   "fr": "Un client signale un colis endommagé. Quelle est la probabilité qu'il ait été acheminé par [[m1]] ? Arrondir à [[m2]].",
+   "en": "A customer reports a damaged parcel. What is the probability that it was delivered by [[m1]]? Round to [[m2]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "027da6f1204e": {
+   "fr": "[[m1]]. Branches de second niveau : [[m2]] ; [[m3]] et [[m4]] ; [[m5]] et [[m6]].",
+   "en": "[[m1]]. Second-level branches: [[m2]]; [[m3]] and [[m4]]; [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 103
+  },
+  "4d8252aee1c2": {
+   "fr": "[[m1]], [[m2]], [[m3]] forment une partition de l'univers. Par la formule des probabilités totales :\n[[m4]].",
+   "en": "[[m1]], [[m2]], [[m3]] form a partition of the sample space. By the law of total probability:\n[[m4]].",
+   "status": "aligned",
+   "order": 104
+  },
+  "2f00941ba7a5": {
+   "fr": "[[m1]]. Bien que [[m2]] ne transporte que [[m3]] des colis, il est concerné par environ [[m4]] des colis endommagés.",
+   "en": "[[m1]]. Although [[m2]] carries only [[m3]] of the parcels, it accounts for about [[m4]] of the damaged parcels.",
+   "status": "aligned",
+   "order": 105
+  },
+  "90a2525a60f9": {
+   "fr": "Compléter un arbre et calculer des intersections",
+   "en": "Completing a tree and computing intersections",
+   "status": "aligned",
+   "order": 106
+  },
+  "aafda6348d24": {
+   "fr": "Dans cet exercice, les résultats sont donnés sous forme de fractions irréductibles. On considère l'arbre pondéré ci-dessous, où [[m1]] est un événement et où [[m2]], [[m3]] et [[m4]] forment une partition de l'univers.",
+   "en": "In this exercise, results are given as fractions in lowest terms. Consider the weighted tree below, where [[m1]] is an event and [[m2]], [[m3]] and [[m4]] form a partition of the sample space.",
+   "status": "aligned",
+   "order": 107
+  },
+  "9807a195bcdc": {
+   "fr": "Compléter l'arbre en justifiant chaque calcul.",
+   "en": "Complete the tree, justifying each calculation.",
+   "status": "aligned",
+   "order": 108
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "606c96e86eed": {
+   "fr": "Les branches issues d'un même nœud ont pour somme [[m1]] : [[m2]] ; [[m3]] ; [[m4]].",
+   "en": "The branches leaving the same node add up to [[m1]]: [[m2]]; [[m3]]; [[m4]].",
+   "status": "aligned",
+   "order": 111
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 112
+  },
+  "389f5e066cd4": {
+   "fr": "[[m1]] et [[m2]] forment une partition, donc\n[[m3]].",
+   "en": "[[m1]] and [[m2]] form a partition, so\n[[m3]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "012224309f78": {
+   "fr": "Traduire un événement, produit sur un chemin",
+   "en": "Translating an event, product along a path",
+   "status": "aligned",
+   "order": 114
+  },
+  "2d960be7fbbb": {
+   "fr": "Dans une salle de sport, [[m1]] des inscrits ont un abonnement annuel, les autres un abonnement mensuel. Chaque inscrit choisit une activité principale. Parmi les abonnés annuels, [[m2]] choisissent la musculation, [[m3]] les cours collectifs et les autres la natation. Parmi les abonnés mensuels, [[m4]] choisissent la musculation, [[m5]] les cours collectifs et les autres la natation.",
+   "en": "In a gym, [[m1]] of members have an annual membership, the others a monthly membership. Each member chooses a main activity. Among annual members, [[m2]] choose weight training, [[m3]] group classes and the rest swimming. Among monthly members, [[m4]] choose weight training, [[m5]] group classes and the rest swimming.",
+   "status": "aligned",
+   "order": 115
+  },
+  "dc1dcb5099c3": {
+   "fr": "On choisit un inscrit au hasard. On note [[m1]] : « L'inscrit a un abonnement annuel », [[m2]] : « Son activité principale est la musculation », [[m3]] : « Son activité principale est un cours collectif » et [[m4]] : « Son activité principale est la natation ».",
+   "en": "A member is chosen at random. Let [[m1]]: ``The member has an annual membership'', [[m2]]: ``Their main activity is weight training'', [[m3]]: ``Their main activity is a group class'' and [[m4]]: ``Their main activity is swimming''.",
+   "status": "aligned",
+   "order": 116
+  },
+  "d8899ffde926": {
+   "fr": "Construire un arbre pondéré décrivant la situation.",
+   "en": "Draw a weighted tree describing the situation.",
+   "status": "aligned",
+   "order": 117
+  },
+  "d34e6cb5a0ba": {
+   "fr": "Décrire par une phrase l'événement [[m1]], puis calculer sa probabilité.",
+   "en": "Describe the event [[m1]] in a sentence, then calculate its probability.",
+   "status": "aligned",
+   "order": 118
+  },
+  "e354ab0b3833": {
+   "fr": "Calculer la probabilité que l'inscrit choisi ait la natation pour activité principale.",
+   "en": "Calculate the probability that the chosen member's main activity is swimming.",
+   "status": "aligned",
+   "order": 119
+  },
+  "2652f36eb628": {
+   "fr": "L'inscrit choisi pratique principalement la natation. Calculer la probabilité qu'il ait un abonnement annuel. Arrondir à [[m1]].",
+   "en": "The chosen member mainly swims. Calculate the probability that they have an annual membership. Round to [[m1]].",
+   "status": "aligned",
+   "order": 120
+  },
+  "1d93faf04c0a": {
+   "fr": "Premier niveau : [[m1]] et [[m2]]. Sous [[m3]] : [[m4]], [[m5]], [[m6]]. Sous [[m7]] : [[m8]], [[m9]], [[m10]].",
+   "en": "First level: [[m1]] and [[m2]]. Under [[m3]]: [[m4]], [[m5]], [[m6]]. Under [[m7]]: [[m8]], [[m9]], [[m10]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "c119f4819160": {
+   "fr": "[[m1]] : « L'inscrit a un abonnement mensuel et son activité principale est un cours collectif ». [[m2]].",
+   "en": "[[m1]]: ``The member has a monthly membership and their main activity is a group class''. [[m2]].",
+   "status": "aligned",
+   "order": 122
+  },
+  "98ef8b5c4b79": {
+   "fr": "Par les probabilités totales ([[m1]], [[m2]] forment une partition) : [[m3]].",
+   "en": "By the law of total probability ([[m1]], [[m2]] form a partition): [[m3]].",
+   "status": "aligned",
+   "order": 123
+  },
+  "cd6f6284fec1": {
+   "fr": "Utiliser et tester l'indépendance",
+   "en": "Using and testing independence",
+   "status": "aligned",
+   "order": 124
+  },
+  "4b0dbc6871b0": {
+   "fr": "Dans un centre d'appels, on choisit un appel au hasard. On note [[m1]] l'événement « Le client attend plus de [[m2]] minutes avant d'être pris en charge » et [[m3]] l'événement « La communication est coupée à cause d'un incident réseau ». On sait que [[m4]] et [[m5]]. On suppose dans les questions 1 à 3 que [[m6]] et [[m7]] sont indépendants.",
+   "en": "In a call centre, a call is chosen at random. Let [[m1]] be the event ``The customer waits more than [[m2]] minutes before being answered'' and [[m3]] the event ``The call is cut off because of a network incident''. We know that [[m4]] and [[m5]]. In questions 1 to 3, assume that [[m6]] and [[m7]] are independent.",
+   "status": "aligned",
+   "order": 125
+  },
+  "b14bcf348bc9": {
+   "fr": "Calculer la probabilité que le client attende plus de [[m1]] minutes et que la communication soit coupée.",
+   "en": "Calculate the probability that the customer waits more than [[m1]] minutes and that the call is cut off.",
+   "status": "aligned",
+   "order": 126
+  },
+  "250f4e27091f": {
+   "fr": "Calculer la probabilité qu'aucun de ces deux incidents ne se produise.",
+   "en": "Calculate the probability that neither of these two incidents occurs.",
+   "status": "aligned",
+   "order": 127
+  },
+  "806bfe21ca32": {
+   "fr": "En déduire la probabilité qu'au moins un des deux incidents se produise.",
+   "en": "Deduce the probability that at least one of the two incidents occurs.",
+   "status": "aligned",
+   "order": 128
+  },
+  "d4b387ad1029": {
+   "fr": "Un audit montre en réalité que, parmi les appels avec une attente de plus de [[m1]] minutes, [[m2]] sont coupés. L'hypothèse d'indépendance est-elle confirmée ? Justifier.",
+   "en": "An audit actually shows that, among calls with a wait of more than [[m1]] minutes, [[m2]] are cut off. Is the independence assumption confirmed? Justify.",
+   "status": "aligned",
+   "order": 129
+  },
+  "e4b35783136c": {
+   "fr": "Par indépendance, [[m1]].",
+   "en": "By independence, [[m1]].",
+   "status": "aligned",
+   "order": 130
+  },
+  "6d696c459c06": {
+   "fr": "Si [[m1]] et [[m2]] sont indépendants, [[m3]] et [[m4]] le sont aussi : [[m5]].",
+   "en": "If [[m1]] and [[m2]] are independent, so are [[m3]] and [[m4]]: [[m5]].",
+   "status": "aligned",
+   "order": 131
+  },
+  "c16ada41dae7": {
+   "fr": "L'événement « au moins un incident » est le contraire de « aucun incident » : sa probabilité est [[m1]].",
+   "en": "The event ``at least one incident'' is the complement of ``no incident'': its probability is [[m1]].",
+   "status": "aligned",
+   "order": 132
+  },
+  "2f2a46c909ee": {
+   "fr": "L'audit donne [[m1]], alors que [[m2]]. Comme [[m3]], [[m4]] et [[m5]] ne sont pas indépendants : une longue attente s'accompagne plus souvent d'une coupure.",
+   "en": "The audit gives [[m1]], whereas [[m2]]. Since [[m3]], [[m4]] and [[m5]] are not independent: a long wait goes together with a cut-off more often.",
+   "status": "aligned",
+   "order": 133
+  },
+  "097b52bd0c30": {
+   "fr": "Du tableau d'effectifs aux arbres pondérés",
+   "en": "From a two-way table to weighted trees",
+   "status": "aligned",
+   "order": 134
+  },
+  "270b98e2437f": {
+   "fr": "Un groupe emploie [[m1]] salariés répartis sur trois sites : le siège, l'usine et l'entrepôt. On a recensé les salariés pratiquant le télétravail au moins un jour par semaine.",
+   "en": "A group employs [[m1]] staff across three sites: the head office, the factory and the warehouse. The staff who work from home at least one day a week have been counted.",
+   "status": "aligned",
+   "order": 135
+  },
+  "8772d610321b": {
+   "fr": "Compléter le tableau.",
+   "en": "Complete the table.",
+   "status": "aligned",
+   "order": 136
+  },
+  "2ed9057f4862": {
+   "fr": "On choisit un salarié au hasard. On note [[m1]] : « Il travaille au siège », [[m2]] : « Il travaille à l'usine », [[m3]] : « Il travaille à l'entrepôt » et [[m4]] : « Il pratique le télétravail ». Construire l'arbre pondéré dont le premier niveau est [[m5]], [[m6]], [[m7]] et le second [[m8]], [[m9]].",
+   "en": "An employee is chosen at random. Let [[m1]]: ``They work at the head office'', [[m2]]: ``They work at the factory'', [[m3]]: ``They work at the warehouse'' and [[m4]]: ``They work from home''. Draw the weighted tree whose first level is [[m5]], [[m6]], [[m7]] and second level is [[m8]], [[m9]].",
+   "status": "aligned",
+   "order": 137
+  },
+  "c4e1362ffeba": {
+   "fr": "Construire l'arbre pondéré dont le premier niveau est [[m1]], [[m2]] et le second [[m3]], [[m4]], [[m5]]. Donner les probabilités sous forme de fractions irréductibles, puis arrondies à [[m6]].",
+   "en": "Draw the weighted tree whose first level is [[m1]], [[m2]] and second level is [[m3]], [[m4]], [[m5]]. Give the probabilities as fractions in lowest terms, then rounded to [[m6]].",
+   "status": "aligned",
+   "order": 138
+  },
+  "b61f252ace03": {
+   "fr": "Siège : [[m1]] sans télétravail. Entrepôt : [[m2]] en télétravail. Usine : [[m3]] salariés, dont [[m4]] en télétravail et [[m5]] sans. Total sans télétravail : [[m6]] ([[m7]]).",
+   "en": "Head office: [[m1]] without remote work. Warehouse: [[m2]] with remote work. Factory: [[m3]] staff, of whom [[m4]] work from home and [[m5]] do not. Total without remote work: [[m6]] ([[m7]]).",
+   "status": "aligned",
+   "order": 139
+  },
+  "ebe473ca11f8": {
+   "fr": "[[m1]], [[m2]], [[m3]].\\\\\n[[m4]] et [[m5]] ; [[m6]] et [[m7]] ; [[m8]] et [[m9]].",
+   "en": "[[m1]], [[m2]], [[m3]].\\\\\n[[m4]] and [[m5]]; [[m6]] and [[m7]]; [[m8]] and [[m9]].",
+   "status": "aligned",
+   "order": 140
+  },
+  "c03fe23a2ff3": {
+   "fr": "[[m1]] et [[m2]].\\\\\n[[m3]], [[m4]], [[m5]].\\\\\n[[m6]], [[m7]], [[m8]].\\\\\nContrôle : les fractions issues de chaque nœud ont pour somme [[m9]].",
+   "en": "[[m1]] and [[m2]].\\\\\n[[m3]], [[m4]], [[m5]].\\\\\n[[m6]], [[m7]], [[m8]].\\\\\nCheck: the fractions leaving each node add up to [[m9]].",
+   "status": "aligned",
+   "order": 141
+  },
+  "9cfa0bc6375b": {
+   "fr": "Inverser un conditionnement",
+   "en": "Reversing a conditional probability",
+   "status": "aligned",
+   "order": 142
+  },
+  "64fd2d33e7ed": {
+   "fr": "Une enseigne de bricolage interroge ses clients. [[m1]] d'entre eux ont téléchargé l'application de fidélité de l'enseigne ; parmi ceux-ci, [[m2]] ont effectué au moins un achat en promotion au cours du dernier mois. Au total, [[m3]] des clients interrogés ont effectué au moins un achat en promotion au cours du dernier mois.",
+   "en": "A DIY chain surveys its customers. [[m1]] of them have downloaded the chain's loyalty app; among these, [[m2]] made at least one purchase on special offer during the last month. Overall, [[m3]] of the customers surveyed made at least one purchase on special offer during the last month.",
+   "status": "aligned",
+   "order": 143
+  },
+  "8bd24cb76786": {
+   "fr": "On choisit au hasard un client interrogé. On note [[m1]] : « Le client a téléchargé l'application » et [[m2]] : « Le client a effectué au moins un achat en promotion le mois dernier ».",
+   "en": "A surveyed customer is chosen at random. Let [[m1]]: ``The customer has downloaded the app'' and [[m2]]: ``The customer made at least one purchase on special offer last month''.",
+   "status": "aligned",
+   "order": 144
+  },
+  "0bdad33949df": {
+   "fr": "Donner [[m1]], [[m2]] et [[m3]].",
+   "en": "Give [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 145
+  },
+  "bba93bc05008": {
+   "fr": "Calculer [[m1]], puis [[m2]]. Interpréter ce dernier résultat.",
+   "en": "Calculate [[m1]], then [[m2]]. Interpret the latter result.",
+   "status": "aligned",
+   "order": 146
+  },
+  "7da1202fadb2": {
+   "fr": "Calculer la probabilité qu'un client n'ayant pas téléchargé l'application ait effectué un achat en promotion. Arrondir à [[m1]] et comparer avec [[m2]].",
+   "en": "Calculate the probability that a customer who has not downloaded the app made a purchase on special offer. Round to [[m1]] and compare with [[m2]].",
+   "status": "aligned",
+   "order": 147
+  },
+  "b5fbdda463a7": {
+   "fr": "[[m1]], [[m2]] et [[m3]].",
+   "en": "[[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 148
+  },
+  "9f968eb5b308": {
+   "fr": "[[m1]]. Puis [[m2]] : les trois quarts des clients ayant acheté en promotion ont téléchargé l'application.",
+   "en": "[[m1]]. Then [[m2]]: three quarters of the customers who bought on special offer have downloaded the app.",
+   "status": "aligned",
+   "order": 149
+  },
+  "a12f05920b47": {
+   "fr": "[[m1]] et [[m2]], donc [[m3]]. C'est nettement moins que [[m4]] : les clients ayant l'application achètent bien plus souvent en promotion.",
+   "en": "[[m1]] and [[m2]], so [[m3]]. This is much less than [[m4]]: customers with the app buy on special offer far more often.",
+   "status": "aligned",
+   "order": 150
+  },
+  "a0d8646e1b47": {
+   "fr": "Expérience en deux étapes, résultats fractionnaires",
+   "en": "Two-stage experiment, fractional results",
+   "status": "aligned",
+   "order": 151
+  },
+  "ca146d71c9d1": {
+   "fr": "Dans cet exercice, les résultats sont donnés sous forme de fractions irréductibles. Lors d'une animation commerciale, un client tire au hasard un ticket parmi dix tickets numérotés de [[m1]] à [[m2]].",
+   "en": "In this exercise, results are given as fractions in lowest terms. During a promotional event, a customer draws one ticket at random from ten tickets numbered [[m1]] to [[m2]].",
+   "status": "aligned",
+   "order": 152
+  },
+  "fe2ed9377021": {
+   "fr": "Si le numéro est [[m1]] ou [[m2]], il gratte une carte prise au hasard dans le coffret X, qui contient [[m3]] cartes gagnantes sur [[m4]].",
+   "en": "If the number is [[m1]] or [[m2]], they scratch a card taken at random from box X, which contains [[m3]] winning cards out of [[m4]].",
+   "status": "aligned",
+   "order": 153
+  },
+  "57d9d15f9430": {
+   "fr": "Si le numéro est un multiple de [[m1]], il gratte une carte du coffret Y, qui contient [[m2]] cartes gagnantes sur [[m3]].",
+   "en": "If the number is a multiple of [[m1]], they scratch a card from box Y, which contains [[m2]] winning cards out of [[m3]].",
+   "status": "aligned",
+   "order": 154
+  },
+  "c4a8e101429e": {
+   "fr": "Sinon, il gratte une carte du coffret Z, qui contient [[m1]] carte gagnante sur [[m2]].",
+   "en": "Otherwise, they scratch a card from box Z, which contains [[m1]] winning card out of [[m2]].",
+   "status": "aligned",
+   "order": 155
+  },
+  "a9cd1b1292cd": {
+   "fr": "On note [[m1]], [[m2]], [[m3]] les événements « La carte provient du coffret X » (respectivement Y, Z) et [[m4]] l'événement « La carte est gagnante ».",
+   "en": "Let [[m1]], [[m2]], [[m3]] be the events ``The card comes from box X'' (Y, Z respectively) and [[m4]] the event ``The card is a winning card''.",
+   "status": "aligned",
+   "order": 156
+  },
+  "45422cc67ac3": {
+   "fr": "Justifier que [[m1]], [[m2]] et [[m3]], puis représenter la situation par un arbre pondéré.",
+   "en": "Justify that [[m1]], [[m2]] and [[m3]], then represent the situation with a weighted tree.",
+   "status": "aligned",
+   "order": 157
+  },
+  "c99bb86c2331": {
+   "fr": "Démontrer que la probabilité que la carte soit gagnante est égale à [[m1]].",
+   "en": "Prove that the probability that the card is a winning card is equal to [[m1]].",
+   "status": "aligned",
+   "order": 158
+  },
+  "e1ea4d38b8a0": {
+   "fr": "Le client a gagné. Quelle est la probabilité que sa carte provienne du coffret X ?",
+   "en": "The customer has won. What is the probability that their card came from box X?",
+   "status": "aligned",
+   "order": 159
+  },
+  "57dd129c9db0": {
+   "fr": "Les dix numéros sont équiprobables. [[m1]] correspond à [[m2]] : [[m3]]. [[m4]] correspond à [[m5]] : [[m6]]. [[m7]] correspond aux cinq autres numéros [[m8]] : [[m9]].\\\\\nArbre : sous [[m10]], [[m11]] et [[m12]] ; sous [[m13]], [[m14]] et [[m15]] ; sous [[m16]], [[m17]] et [[m18]].",
+   "en": "The ten numbers are equally likely. [[m1]] corresponds to [[m2]]: [[m3]]. [[m4]] corresponds to [[m5]]: [[m6]]. [[m7]] corresponds to the five other numbers [[m8]]: [[m9]].\\\\\nTree: under [[m10]], [[m11]] and [[m12]]; under [[m13]], [[m14]] and [[m15]]; under [[m16]], [[m17]] and [[m18]].",
+   "status": "aligned",
+   "order": 160
+  },
+  "e49435d17371": {
+   "fr": "[[m1]], [[m2]], [[m3]] forment une partition :\n[[m4]].",
+   "en": "[[m1]], [[m2]], [[m3]] form a partition:\n[[m4]].",
+   "status": "aligned",
+   "order": 161
+  },
+  "ffc21d1ae134": {
+   "fr": "Bilan : chemin, contraire et répétition indépendante",
+   "en": "Review: path, complement and independent repetition",
+   "status": "aligned",
+   "order": 162
+  },
+  "d259178e50c9": {
+   "fr": "Un incubateur d'entreprises sélectionne les projets qu'il accompagne en trois étapes. [[m1]] des dossiers déposés passent la présélection. Les projets présélectionnés sont présentés devant un jury, qui en retient [[m2]]. Enfin, un comité d'investisseurs finance [[m3]] des projets retenus par le jury. Un projet éliminé à une étape ne passe pas les étapes suivantes.",
+   "en": "A business incubator selects the projects it supports in three stages. [[m1]] of the applications submitted pass the pre-selection. Pre-selected projects are presented to a panel, which keeps [[m2]] of them. Finally, an investors' committee funds [[m3]] of the projects kept by the panel. A project eliminated at one stage does not go on to the following stages.",
+   "status": "aligned",
+   "order": 163
+  },
+  "ffee5ca18401": {
+   "fr": "On choisit un dossier au hasard. On note [[m1]] : « Le dossier passe la présélection », [[m2]] : « Le projet est retenu par le jury » et [[m3]] : « Le projet est financé ».",
+   "en": "An application is chosen at random. Let [[m1]]: ``The application passes the pre-selection'', [[m2]]: ``The project is kept by the panel'' and [[m3]]: ``The project is funded''.",
+   "status": "aligned",
+   "order": 164
+  },
+  "ec6a788d8bb6": {
+   "fr": "Construire un arbre pondéré décrivant la situation. Démontrer que la probabilité qu'un projet ne soit pas financé est égale à [[m1]].",
+   "en": "Draw a weighted tree describing the situation. Prove that the probability that a project is not funded is equal to [[m1]].",
+   "status": "aligned",
+   "order": 165
+  },
+  "2f02149bc7d1": {
+   "fr": "Huit porteurs de projet déposent un dossier ; on admet que les dossiers sont étudiés indépendamment les uns des autres. Calculer la probabilité qu'au moins un des huit projets soit financé. Arrondir à [[m1]].",
+   "en": "Eight entrepreneurs submit an application; assume that the applications are examined independently of one another. Calculate the probability that at least one of the eight projects is funded. Round to [[m1]].",
+   "status": "aligned",
+   "order": 166
+  },
+  "d6257607c634": {
+   "fr": "Combien de dossiers l'incubateur doit-il recevoir, au minimum, pour que la probabilité de financer au moins un projet dépasse [[m1]] ?",
+   "en": "What is the minimum number of applications the incubator must receive for the probability of funding at least one project to exceed [[m1]]?",
+   "status": "aligned",
+   "order": 167
+  },
+  "49a92c0d480d": {
+   "fr": "Arbre : [[m1]] ([[m2]]) ou [[m3]] ([[m4]], fin) ; après [[m5]] : [[m6]] ([[m7]]) ou [[m8]] ([[m9]], fin) ; après [[m10]] : [[m11]] ([[m12]]) ou [[m13]] ([[m14]]). Un projet n'est financé que s'il franchit les trois étapes, donc, en multipliant le long de ce chemin :\n[[m15]] et [[m16]].",
+   "en": "Tree: [[m1]] ([[m2]]) or [[m3]] ([[m4]], end); after [[m5]]: [[m6]] ([[m7]]) or [[m8]] ([[m9]], end); after [[m10]]: [[m11]] ([[m12]]) or [[m13]] ([[m14]]). A project is funded only if it passes all three stages, so, multiplying along this path:\n[[m15]] and [[m16]].",
+   "status": "aligned",
+   "order": 168
+  },
+  "c755ffa5bea5": {
+   "fr": "Par indépendance, la probabilité qu'aucun des huit projets ne soit financé est [[m1]]. La probabilité cherchée est [[m2]].",
+   "en": "By independence, the probability that none of the eight projects is funded is [[m1]]. The required probability is [[m2]].",
+   "status": "aligned",
+   "order": 169
+  },
+  "d2c99abb0e39": {
+   "fr": "On cherche le plus petit entier [[m1]] tel que [[m2]], c'est-à-dire [[m3]]. La fonction [[m4]] étant croissante, cela équivaut à [[m5]], soit [[m6]] (on divise par [[m7]], ce qui change le sens de l'inégalité). Il faut au minimum [[m8]] dossiers (contrôle : [[m9]] et [[m10]]).",
+   "en": "We look for the smallest whole number [[m1]] such that [[m2]], i.e.\\ [[m3]]. Since [[m4]] is increasing, this is equivalent to [[m5]], i.e.\\ [[m6]] (dividing by [[m7]] reverses the inequality). At least [[m8]] applications are needed (check: [[m9]] and [[m10]]).",
+   "status": "aligned",
+   "order": 170
+  },
+  "fcec67d25095": {
+   "fr": "Écart de température ",
+   "en": "Temperature gap ",
+   "status": "aligned",
+   "order": 171
+  },
+  "14b7d82a7e2d": {
+   "fr": "Variation des ventes ",
+   "en": "Change in sales ",
+   "status": "aligned",
+   "order": 172
+  },
+  "e15af60e37b6": {
+   "fr": " (centaines)",
+   "en": " (hundreds)",
+   "status": "aligned",
+   "order": 173
+  },
+  "27eb155ac5b6": {
+   "fr": " (kWh)",
+   "en": " (kWh)",
+   "status": "aligned",
+   "order": 174
+  },
+  "1f910d98d7d2": {
+   "fr": "Année",
+   "en": "Year",
+   "status": "aligned",
+   "order": 175
+  },
+  "0dedceca967d": {
+   "fr": "Rang de l'année ",
+   "en": "Year rank ",
+   "status": "aligned",
+   "order": 176
+  },
+  "fa75b9d9f232": {
+   "fr": "Abonnés ",
+   "en": "Subscribers ",
+   "status": "aligned",
+   "order": 177
+  },
+  "6a3e6fc67089": {
+   "fr": " (en milliers)",
+   "en": " (thousands)",
+   "status": "aligned",
+   "order": 178
+  },
+  "6e38788ea488": {
+   "fr": "Colis expédiés ",
+   "en": "Parcels shipped ",
+   "status": "aligned",
+   "order": 179
+  },
+  "82706763c35e": {
+   "fr": " (milliers)",
+   "en": " (thousands)",
+   "status": "aligned",
+   "order": 180
+  },
+  "471e1c6039b9": {
+   "fr": "Tension ",
+   "en": "Voltage ",
+   "status": "aligned",
+   "order": 181
+  },
+  "c3bc4cee55ed": {
+   "fr": "Concentration ",
+   "en": "Concentration ",
+   "status": "aligned",
+   "order": 182
+  },
+  "a7fd7a975edc": {
+   "fr": " (ppm)",
+   "en": " (ppm)",
+   "status": "aligned",
+   "order": 183
+  },
+  "e10d9523b801": {
+   "fr": "Télétravail",
+   "en": "Remote work",
+   "status": "aligned",
+   "order": 184
+  },
+  "66dc77906d4d": {
+   "fr": "Pas de télétravail",
+   "en": "No remote work",
+   "status": "aligned",
+   "order": 185
+  },
+  "b25928c69902": {
+   "fr": "Total",
+   "en": "Total",
+   "status": "aligned",
+   "order": 186
+  },
+  "f4f95278a6bd": {
+   "fr": "Siège",
+   "en": "Head office",
+   "status": "aligned",
+   "order": 187
+  },
+  "d88544baaa0e": {
+   "fr": "Usine",
+   "en": "Factory",
+   "status": "aligned",
+   "order": 188
+  },
+  "c349c0bc3a77": {
+   "fr": "Entrepôt",
+   "en": "Warehouse",
+   "status": "aligned",
+   "order": 189
+  }
+ }
+}

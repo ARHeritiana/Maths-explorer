@@ -1,0 +1,40 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-invariants-solutions}{Parity and invariants}
+\mxsubtitle{High school · reasoning \textperiodcentered{} Worked solutions \textperiodcentered{} 01}
+
+\begin{exercise}
+Start at 7 and add or subtract 4 each move. Can you reach 20? What about 23?
+\end{exercise}
+\begin{solution}
+Every result is congruent to 7 modulo 4, hence to 3. Since 20 is congruent to 0, it is unreachable. Four additions of 4 give 23.
+\end{solution}
+
+\begin{exercise}
+Five numbers, each 1 or $-1$, have product $-1$. Prove that changing two signs per move cannot make all five positive.
+\end{exercise}
+\begin{solution}
+Changing two signs multiplies the product by $(-1)^{2} = 1$. The product stays $-1$, whereas five positive signs give 1.
+\end{solution}
+
+\begin{exercise}
+Replace two integers a and b by $a + b$. What invariant does this preserve?
+\end{exercise}
+\begin{solution}
+The sum of all integers stays constant: the two terms contributing $a + b$ are replaced by that same number.
+\end{solution}
+
+\begin{exercise}
+Why need two states of the same parity not be connected by allowed moves? Give an example.
+\end{exercise}
+\begin{solution}
+Parity gives only a necessary condition. With steps of 6 from 0, the target 2 is even but is not a multiple of 6.
+\end{solution}
+
+\begin{problem}[Investigate, justify, conclude]
+An $8 \times  8$ chessboard is coloured alternately black and white. Remove two diagonally opposite corners. Can the 62 remaining squares be tiled by 31 dominoes of size $1 \times  2$, each covering two edge-adjacent squares? Count the removed colours and those covered by a domino. Compare with removing two neighbouring corners.
+\end{problem}
+\begin{solution}
+Opposite corners have the same colour, leaving 30 squares of that colour and 32 of the other. Each domino covers one of each; 31 dominoes would need 31 of each, so tiling is impossible. Neighbouring corners have different colours. A tiling then exists: after removing the two top corners, place three horizontal dominoes in the first row and four in each of the other seven rows. Rotate this construction for the other sides.
+\end{solution}
+

@@ -2,7 +2,7 @@
 
 A static, experiment-first mathematics resource site for lycée students and teachers (basic early-university topics last). Each chapter is a sequence: automatismes, an introductory activity, course notes, exercises and problems, and an interactive animated slide. Students manipulate a figure first, then conjecture, then prove.
 
-Curricula, in priority order: current French lycée classes (Seconde, Première spécialité, Terminale spécialité, maths expertes, Terminale STMG), Malagasy Terminale, Olympiad, rest of the Malagasy curriculum, IB. Language: French for French and Malagasy curricula, English for IB, bilingual for Olympiad.
+Curricula, in priority order: current French lycée classes (Seconde, Première spécialité, Terminale spécialité, maths expertes, Terminale STMG), Malagasy Terminale, Olympiad, rest of the Malagasy curriculum, International (IB, SAT). Language: French for French and Malagasy curricula, English for International, bilingual for Olympiad. French and English PDFs are produced from one set of TeX sources.
 
 Status: work in progress, not launched. The repository is private.
 
@@ -12,48 +12,43 @@ Read, in this order:
 
 1. `HANDOFF.md`: current state, task queue, how to verify your work.
 2. `PROJECT_BRIEF.md`: the governing document. It overrides this file, `AGENTS.md` and `docs/`.
-3. `design/prototype/`: reference for the new visual design (run per its README).
-4. `.claude/skills/slides-interactive-math/SKILL.md`, then `.claude/skills/slides-interactive-3d-math/SKILL.md`, before touching any slide.
-5. `private/README.md`: where review status and audit notes live (never published).
+3. `docs/HANDOFF.md` and `docs/ARCHITECTURE.md`: the TeX and build pipeline (status of the PDF migration, commands).
+4. `docs/DESIGN_V3.md`: the visual design and its reasons.
+5. `.claude/skills/slides-interactive-math/SKILL.md`, then `.claude/skills/slides-interactive-3d-math/SKILL.md`, before touching any slide.
+6. `private/README.md`: where review status and audit notes live (never published).
 
 ## Run locally
 
 Requires Node.js 18 or later.
 
 ```sh
-npm start          # serves dist/ at http://localhost:4173 (PORT overrides)
-npm run check      # syntax check of dist/js
-npm test           # 49 unit and content tests
+npm start              # serves dist/ at http://localhost:4173 (PORT overrides)
+npm run check          # syntax check of the site code
+npm test               # unit and content tests
 npm run test:browser   # needs python playwright (see tests/run_browser.py)
+make check             # the full check suite of the pipeline (needs TeX, see docs/HANDOFF.md)
 ```
 
-Hash routes, relative paths, no accounts, no analytics, no runtime dependency. `dist/` is the deployed folder and is committed on purpose. Opening files with `file://` is not supported (ES modules).
+Hash routes, relative paths, no accounts, no analytics, no runtime dependency. Opening files with `file://` is not supported (ES modules).
 
 ## Layout
 
 ```text
-dist/                 deployed site (current v1 site, being migrated to the v2 design)
-design/prototype/     v2 design reference: tokens, themes, fonts, hero figures (not deployed)
+site/                 hand-written web source: index.html, js/, styles/, fonts/, slides player and widgets, vendor/
+dist/                 the served folder, committed (the host has no build step): copies of site/ plus generated PDFs, catalogue and slide data
+content/tex/          TeX core (mxbook class and packages) and course units; English units are generated from translation tables
+content/data/         manifest.json (catalogue source of truth), enrichment.json, glossary.json
+content/slides/       slide decks sources
+build/mxbuild/        the pipeline (make tex, site, catalog, slides, check)
+design/               superseded design prototype (kept for reference only)
 private/              ledger, audits, verification scripts, drafts (never deployed)
-content/latex/        LaTeX sources and the shared style explorer.sty (XeLaTeX)
-content/contributions/ owner-submitted originals
 .claude/skills/       slide skills and lint script
-scripts/              build and import scripts, local server
-tests/                node tests and browser tests
-docs/                 older v1 notes (superseded by the brief where they conflict)
+scripts/              course builders, local server
+tests/                node tests, browser tests, slide, twin, notation, lint, parity and banned-phrase checks
+docs/                 architecture, TeX style guide, design, history (the brief wins where they conflict)
 ```
 
-## Building PDFs
-
-`python scripts/build-enrichment.py` builds the authored PDFs with XeLaTeX and regenerates their web editions and catalogue. Install XeLaTeX, DejaVu Sans, Latin Modern Math and the packages listed in `content/latex/enrichment/explorer.sty`. Every PDF ships with its `.tex`. `--skip-pdf` updates web editions and the catalogue only.
-
-## Slides
-
-Each interactive slide is one self-contained HTML file. Lint every slide:
-
-```sh
-python3 -I .claude/skills/slides-interactive-math/scripts/lint_slide.py <slide.html>
-```
+Edit `site/`, never the copies in `dist/`: `python -m mxbuild site` (or `make site`) copies `site/` into `dist/`, and `python -m mxbuild site --check` fails when a copy differs.
 
 ## Rules in one paragraph
 
@@ -61,4 +56,4 @@ No identifying information about the author or any employer anywhere published (
 
 ## Licences
 
-Fonts in `design/prototype/fonts/` are under the SIL Open Font License (licence files alongside). Site content licence: not yet decided.
+Fonts in `site/fonts/` are under the SIL Open Font License (licence files alongside). Site content licence: not yet decided.

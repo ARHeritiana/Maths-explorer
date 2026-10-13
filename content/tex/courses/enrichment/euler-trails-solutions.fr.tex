@@ -1,0 +1,39 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-euler-trails-solutions}{Parcours sans lever le crayon}
+\mxsubtitle{Lycée · graphes et logique \textperiodcentered{} Solutions détaillées \textperiodcentered{} 06}
+
+\begin{exercise}
+Un graphe a des degrés $2,3,3,4$. Combien d’arêtes possède-t-il ?
+\end{exercise}
+\begin{solution}
+La somme vaut 12, donc le graphe possède 6 arêtes.
+\end{solution}
+
+\begin{exercise}
+Prouver que le nombre de sommets de degré impair est pair.
+\end{exercise}
+\begin{solution}
+La somme des degrés est paire. Les degrés pairs ne changent pas sa parité ; la somme des degrés impairs doit donc aussi être paire, ce qui impose un nombre pair de tels sommets.
+\end{solution}
+
+\begin{exercise}
+Peut-on tracer un carré et ses deux diagonales sans repasser sur une arête ? Les intersections intérieures ne sont pas des sommets.
+\end{exercise}
+\begin{solution}
+Non : les quatre sommets ont degré 3. Quatre sommets impairs interdisent un parcours eulérien.
+\end{solution}
+
+\begin{exercise}
+Pourquoi deux cycles disjoints ne permettent-ils pas un parcours unique, alors que tous les degrés sont pairs ?
+\end{exercise}
+\begin{solution}
+On ne peut passer d’une composante à l’autre par une arête du graphe. La condition de connexité est indispensable.
+\end{solution}
+
+\begin{problem}[Chercher, justifier, conclure]
+Un réseau a pour arêtes AB, BC, CD, DA, AC et CE ; toutes ont longueur 1 km. On veut partir de A, visiter chaque arête au moins une fois et revenir à A. Quels sommets sont de degré impair ? Quelle longueur minimale faut-il parcourir ? Donner un itinéraire atteignant cette longueur.
+\end{problem}
+\begin{solution}
+Les degrés de A,B,C,D,E sont $3,2,4,2,1$ : A et E sont impairs. Un circuit fermé doit ajouter des passages reliant ces deux sommets ; leur plus courte liaison est A--C--E, de longueur 2 km. Le minimum est donc $6 + 2 = 8$ km. L’itinéraire A--B--C--D--A--C--E--C--A l’atteint : AC et CE sont parcourues deux fois, les autres une fois.
+\end{solution}
+

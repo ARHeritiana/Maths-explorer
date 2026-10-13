@@ -1,0 +1,119 @@
+\mxunit{seconde-s07}{Statistiques descriptives à une variable}\mxsubtitle{7--18 décembre 2026}
+\section{Effectifs, fréquences et moyenne}
+\begin{keypoint}[Définitions]
+Une série décrit un caractère sur une population. Si la valeur $x_i$ apparaît $n_i$ fois, $n_i$ est son effectif. L'effectif total non nul est $N=\sum_{i=1}^{p}n_i$ ; sa fréquence est $f_i=n_i/N$. La moyenne est
+\[\overline x=\frac{\sum_{i=1}^{p}n_ix_i}{N}=\sum_{i=1}^{p}f_ix_i.\]
+L'étendue est $x_{\max}-x_{\min}$.
+\end{keypoint}
+\begin{example}[Pointures -- données du livret]On étudie les pointures de $30$ élèves :
+\begin{center}\small\begin{tabular}{rrrrrrrrrrrrrrr}
+36&42&40&41&41&38&39&43&42&42&42&40&36&40&39\\
+41&40&38&44&42&40&42&43&38&43&36&41&41&44&43
+\end{tabular}\end{center}
+Compléter les effectifs, calculer les fréquences, la moyenne et l'étendue.\end{example}
+\begin{center}\mxarraystretch{1.6}\begin{tabular}{c|rrrrrrrrr}
+Pointure&36&37&38&39&40&41&42&43&44\\\hline
+Effectif&\mxblank{3}&\mxblank{0}&\mxblank{3}&\mxblank{2}&\mxblank{5}&\mxblank{5}&\mxblank{6}&\mxblank{4}&\mxblank{2}
+\end{tabular}\end{center}
+\mxanswerspace[6]{Effectifs : $3,0,3,2,5,5,6,4,2$, de somme $30$. Les fréquences sont ces effectifs divisés par $30$, soit en pourcentage $10$ ; $0$ ; $10$ ; environ $\num{6,67}$ ; $\num{16,67}$ ; $\num{16,67}$ ; $20$ ; $\num{13,33}$ ; $\num{6,67}$.
+$\sum n_ix_i=1217$, donc $\overline x=1217/30\approx\num{40,57}$. L'étendue vaut $8$. La moyenne n'est pas forcément une valeur de la série. La somme des pourcentages arrondis peut différer légèrement de $100$.}
+\mxsection{Médiane et effectifs cumulés}
+\begin{keypoint}[Définition et convention]
+Une médiane est un nombre tel qu'au moins la moitié des valeurs lui soient inférieures ou égales, et au moins la moitié supérieures ou égales.
+Dans la série ordonnée de $N$ valeurs, si $N$ est impair, prendre le rang $(N+1)/2$ ; si $N$ est pair, choisir la moyenne des valeurs de rangs $N/2$ et $N/2+1$.
+\end{keypoint}
+\begin{pitfall}Avec des répétitions, plus de $\pc{50}$ des valeurs peuvent être inférieures ou égales à la médiane.\end{pitfall}
+\begin{example}Compléter les effectifs cumulés croissants (ECC) des pointures et déterminer la médiane.\end{example}
+\begin{center}\mxarraystretch{1.7}\begin{tabular}{c|rrrrrrrrr}
+Pointure&36&37&38&39&40&41&42&43&44\\\hline
+Effectif&3&0&3&2&5&5&6&4&2\\
+ECC&\mxblank{3}&\mxblank{3}&\mxblank{6}&\mxblank{8}&\mxblank{13}&\mxblank{18}&\mxblank{24}&\mxblank{28}&\mxblank{30}
+\end{tabular}\end{center}
+\mxanswerspace[4]{Les rangs centraux sont $15$ et $16$. Les ECC passent de $13$ pour $40$ à $18$ pour $41$ : les deux valeurs centrales valent $41$, donc $M_e=41$. Au moins la moitié des pointures sont inférieures ou égales à $41$, et au moins la moitié supérieures ou égales à $41$.}
+\begin{example}Calculer les médianes de $1;2;2;8;9$ et de $1;2;8;9$.\end{example}
+\mxanswerspace[3.2]{La troisième valeur de la première série vaut $2$. Dans la seconde, $(2+8)/2=5$ ; la médiane choisie n'est pas une valeur de la série.}
+\mxsection{Quartiles et diagramme en boîte}
+\begin{keypoint}[Définitions]
+Le premier quartile $Q_1$ est la valeur de rang $\lceil N/4\rceil$ : la plus petite valeur de la série telle qu'au moins $\pc{25}$ des valeurs lui soient inférieures ou égales. $Q_3$ est la valeur de rang $\lceil3N/4\rceil$.
+L'écart interquartile est $Q_3-Q_1$. Le diagramme en boîte indique minimum, $Q_1$, médiane, $Q_3$, maximum.
+\end{keypoint}
+\begin{example}Déterminer $Q_1$, $Q_3$ et l'écart interquartile des pointures, puis tracer le diagramme en boîte.\end{example}
+\mxanswerspace[3.2]{$N/4=\num{7,5}$ : rang $8$, donc $Q_1=39$. $3N/4=\num{22,5}$ : rang $23$, donc $Q_3=42$. Écart interquartile $3$. Le diagramme utilise $(36;39;41;42;44)$.}
+\begin{center}\begin{tikzpicture}[x=1.5cm,y=1cm]
+\draw[->](-.5,0)--(8.5,0);\foreach \x in {36,...,44}{\draw(\x-36,-.1)--(\x-36,.1)node[below=3pt]{$\x$};}
+\ifmxteacher\draw[thick](0,1)--(3,1)(6,1)--(8,1);\draw[thick](3,.5)rectangle(6,1.5);\draw[thick](5,.5)--(5,1.5)(0,.7)--(0,1.3)(8,.7)--(8,1.3);\else\path(0,1.8);\fi
+\end{tikzpicture}\end{center}
+\begin{example}Déterminer les quartiles de $1;2;2;3;4;4;4;5$. Y a-t-il exactement $\pc{25}$ des valeurs inférieures ou égales à $Q_1$ ?\end{example}
+\mxanswerspace[4]{$Q_1=2$ (rang $2$), $Q_3=4$ (rang $6$). Ici $3/8=\pc{37,5}$ des valeurs sont inférieures ou égales à $Q_1$. Il faut dire « au moins ».}
+\mxsection{Ajout ou suppression d'une valeur}
+\begin{keypoint}[Propriétés]
+Ajouter $a$ à une série de taille $N$ donne $\overline x'=(N\overline x+a)/(N+1)$.
+Retirer une occurrence de $a$, pour $N>1$, donne $\overline x'=(N\overline x-a)/(N-1)$. Utiliser la somme exacte, sans arrondi intermédiaire. Réexaminer la médiane dans la nouvelle série ordonnée.
+\end{keypoint}
+\begin{example}Dans la série des pointures, la somme vaut $1217$, la médiane $41$.
+\begin{enumerate}\item Ajouter une pointure $36$ et calculer les nouveaux indicateurs.\item Repartir de la série initiale, retirer une pointure $44$ et recommencer.\end{enumerate}\end{example}
+\mxanswerspace[5]{1. Somme $1253$, effectif $31$ : $\overline x'=1253/31\approx\num{40,42}$. Le rang central $16$ donne toujours $41$. 2. Somme $1173$, effectif $29$ : $\overline x''=1173/29\approx\num{40,45}$. Le rang central $15$ donne $41$. La moyenne diminue dans les deux cas ; la médiane reste inchangée. Les situations sont indépendantes.}
+\begin{example}Justifier qu'ajouter la moyenne ne change pas la moyenne. L'étendue peut-elle diminuer lors d'un ajout ?\end{example}
+\mxanswerspace[4]{Si $a=\overline x$, $(N\overline x+\overline x)/(N+1)=\overline x$. Lors d'un ajout, le minimum ne peut qu'être conservé ou diminuer, le maximum être conservé ou augmenter : l'étendue ne diminue pas. Lors d'une suppression, elle n'augmente pas.}
+\mxsection{Variance et écart type}
+\begin{keypoint}[Définitions]
+$V=\dfrac{\sum n_i(x_i-\overline x)^2}{N}$ est la variance ; $\sigma=\sqrt V$ est l'écart type. Il mesure la dispersion autour de la moyenne et a la même unité que les données. On peut aussi calculer $V=\dfrac{\sum n_ix_i^2}{N}-\overline x^{\,2}$.
+\end{keypoint}
+\begin{example}Calculer la variance et l'écart type des pointures.\end{example}
+\mxanswerspace[4]{$\sum n_ix_i^2=49519$, donc
+\[V=\frac{49519}{30}-\left(\frac{1217}{30}\right)^2=\frac{4481}{900}\approx\num{4,979}.\]
+$\sigma=\sqrt{4481}/30\approx\num{2,23}$. L'écart type n'est pas la distance maximale à la moyenne.}
+\begin{example}Comparer $A:8;10;12$ et $B:0;10;20$ avec les couples moyenne--écart type et médiane--écart interquartile.\end{example}
+\mxanswerspace[5]{Les moyennes et médianes valent toutes $10$. $V_A=8/3$, $\sigma_A\approx\num{1,63}$ ; $V_B=200/3$, $\sigma_B\approx\num{8,16}$. Quartiles : $8,12$ pour $A$ ; $0,20$ pour $B$. Écarts interquartiles $4$ et $20$. $B$ est beaucoup plus dispersée malgré des centres identiques.}
+\begin{teachernote}La variance descriptive divise par $N$, sans correction par $N-1$. Vérifier aussi la convention de quartiles des logiciels.\end{teachernote}
+\mxsection{Linéarité de la moyenne}
+\begin{keypoint}[Propriété]
+Remplacer chaque $x_i$ par $kx_i+c$ donne une moyenne $k\overline x+c$, un écart type $|k|\sigma$ et une variance $k^2V$. Ajouter une constante ne change ni variance ni écart type.
+\end{keypoint}
+\begin{example}Moyenne initiale $12/20$, écart type $3$. Calculer les nouveaux indicateurs pour trois modifications indépendantes, sans plafonnement des notes : ajouter $\num{1,5}$ ; multiplier par $\num{0,8}$ ; multiplier par $\num{1,1}$ puis ajouter $\num{0,5}$.\end{example}
+\mxanswerspace[4]{Moyennes : $\num{13,5}$, $\num{9,6}$, $\num{13,7}$. Écarts types : $3$, $\num{2,4}$, $\num{3,3}$. Multiplier les notes par $\num{1,1}$ les augmente ; cela ne signifie pas augmenter la difficulté de l'évaluation. Avec un plafonnement à $20$, la transformation ne serait plus affine sur toutes les données.}
+\begin{lstlisting}
+from math import sqrt
+
+def moyenne_ecart_type(valeurs):
+    n = len(valeurs)
+    if n == 0:
+        raise ValueError("liste vide")
+    m = sum(valeurs)/n
+    v = sum((x-m)**2 for x in valeurs)/n
+    return m, sqrt(v)
+\end{lstlisting}
+\begin{example}Expliquer le programme ; prévoir son résultat pour \texttt{[8, 10, 12]}.\end{example}
+\mxanswerspace[3.2]{Il vérifie que la liste est non vide, calcule la moyenne, la moyenne des carrés des écarts, puis sa racine. Résultat : $\pt{10;\sqrt{8/3}}\approx\pt{10;\num{1,633}}$.}
+\mxsection{Séries continues regroupées en classes}
+\begin{keypoint}[Définitions et perte d'information]
+Une variable quantitative continue peut prendre toutes les valeurs d'un intervalle. Ici, les observations sont regroupées en classes de même amplitude ; le centre de $\intfo{a}{b}$ vaut $(a+b)/2$.
+Si les moyennes $m_i$ des classes sont connues, la moyenne globale exacte est $\sum n_im_i/N$. À défaut, les remplacer par les centres donne une estimation justifiée par un modèle uniforme dans chaque classe.
+\end{keypoint}
+\begin{example}[Tailles -- données du livret]Compléter, estimer la moyenne à partir des centres et déterminer la classe médiane.\end{example}
+\begin{center}\mxarraystretch{1.7}\begin{tabular}{c|ccccc}
+Classe (cm)&$\intfo{150}{160}$&$\intfo{160}{170}$&$\intfo{170}{180}$&$\intfo{180}{190}$&$\intfo{190}{200}$\\\hline
+Effectif&8&22&35&28&7\\
+Fréquence (\%)&\mxblank{8}&\mxblank{22}&\mxblank{35}&\mxblank{28}&\mxblank{7}\\
+Centre (cm)&\mxblank{155}&\mxblank{165}&\mxblank{175}&\mxblank{185}&\mxblank{195}\\
+ECC&\mxblank{8}&\mxblank{30}&\mxblank{65}&\mxblank{93}&\mxblank{100}
+\end{tabular}\end{center}
+\mxanswerspace[4]{Amplitude $10$ cm, effectif total $100$. Fréquences en pourcentage : $8,22,35,28,7$. Centres : $155,165,175,185,195$ cm. La somme pondérée des centres vaut $17540$, donc la moyenne estimée est $\num{175,4}$ cm. Les rangs centraux $50,51$ se trouvent dans $\intfo{170}{180}$, classe médiane.}
+\begin{example}Si les moyennes exactes des classes étaient $154;166;174;184;196$ cm, quelle serait la moyenne globale ?\end{example}
+\mxanswerspace[2.4]{$(8\times154+22\times166+35\times174+28\times184+7\times196)/100=\num{174,98}$ cm.}
+\mxsection{Histogramme et fréquences cumulées}
+\begin{keypoint}[Représentations]
+L'aire de chaque rectangle d'un histogramme est proportionnelle à l'effectif. À amplitudes égales, les hauteurs peuvent être les effectifs. Le polygone des fréquences cumulées joint les points (borne supérieure ; fréquence cumulée), en commençant à la première borne inférieure avec $0$.
+\end{keypoint}
+\begin{example}Construire les deux graphiques pour les tailles de l'exemple précédent.\end{example}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=8.3cm,height=6cm,xmin=150,xmax=200,ymin=0,ymax=40,xlabel={Taille (cm)},ylabel={Effectif},xtick={150,160,...,200},ytick={0,10,20,30,40},grid=major]
+\ifmxteacher\addplot[ybar interval,fill=black!15,draw=black]coordinates{(150,8)(160,22)(170,35)(180,28)(190,7)(200,0)};\fi
+\end{axis}\end{tikzpicture}
+\begin{tikzpicture}\begin{axis}[width=8.3cm,height=6cm,xmin=150,xmax=200,ymin=0,ymax=100,xlabel={Taille (cm)},ylabel={Fréquence cumulée (\%)},xtick={150,160,...,200},ytick={0,20,...,100},grid=major]
+\ifmxteacher\addplot[thick,mark=*]coordinates{(150,0)(160,8)(170,30)(180,65)(190,93)(200,100)};\fi
+\end{axis}\end{tikzpicture}\end{center}
+\begin{method}[Estimer la médiane]
+Sous l'hypothèse d'uniformité dans $\intfo{170}{180}$, la fréquence cumulée passe linéairement de $\pc{30}$ à $\pc{65}$. Rechercher l'abscisse correspondant à $\pc{50}$.
+\end{method}
+\begin{example}Calculer cette estimation et préciser sa portée.\end{example}
+\mxanswerspace[4]{On résout $(m-170)/10=(50-30)/(65-30)$, d'où $m=170+10\times20/35\approx\num{175,71}$ cm. Il s'agit d'une estimation sous hypothèse d'uniformité, pas de la médiane exacte des données individuelles. Les effectifs des classes seuls ne déterminent pas cette dernière.}

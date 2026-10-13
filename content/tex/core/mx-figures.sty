@@ -1,0 +1,25 @@
+% mx-figures.sty -- colours (named palette matching the site tokens; no raw RGB in units), TikZ and pgfplots styles.
+% Palette (site light theme, site/styles): ink, mint (the single accent), pale mint, teacher blue, warning orange.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mx-figures}[2026/10/11 Maths Explorer figures]
+\RequirePackage[table]{xcolor}
+\definecolor{mxink}{HTML}{18333A}
+\definecolor{mxmint}{HTML}{176754}
+\definecolor{mxmintpale}{HTML}{D6EEE5}
+\definecolor{mxteacher}{HTML}{416CA2}
+\definecolor{mxwarn}{HTML}{B35E32}
+\definecolor{mxline}{HTML}{DCE4E1}
+\definecolor{mxmuted}{HTML}{647579}
+\definecolor{mxpaper}{HTML}{F5F7F6}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,patterns,decorations.pathreplacing,trees,shapes.geometric,angles,quotes,3d}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\tikzset{mxcurve/.style={mxmint,thick}, mxaux/.style={mxmuted,dashed}, mxpoint/.style={circle,fill=mxink,inner sep=1.3pt}, mxaxisline/.style={->,mxmuted}}
+\pgfplotsset{mxaxis/.style={axis lines=middle,grid=major,grid style={mxline},tick label style={font=\footnotesize},
+  every axis plot/.append style={thick}}}
+% Square-grid axes for function graphs (former Seconde style "coursaxe").
+\pgfplotsset{mxgridaxis/.style={axis lines=middle,grid=both,minor tick num=1,width=11cm,height=7cm,xlabel={$x$},
+  ylabel={$y$},tick label style={font=\small},samples=100}}

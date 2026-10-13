@@ -1,0 +1,654 @@
+% GENERATED, edit the French unit or the translation table
+\mxfront{terminale-e3}
+\mxnewpage\phantomsection\label{sujet:3-1}\addcontentsline{toc}{chapter}{Common test · Practice 1}
+
+\section*{Common test · Practice 1}
+
+\mxbanner{PRACTICE PAPER · TRAINING}
+
+\textbf{Duration: 2 h · Marked out of 20 · \mxTallied{ex-3-1} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-3-1}
+\subsection*{Exercise 1 · A discrete evolution \hfill 5 points}Consider the sequence $(u_n)$ defined by $u_0=2$ and, for every natural number $n$, $u_{n+1}=\frac{1}{4}u_n+6$.
+
+\begin{enumerate}
+
+\item Calculate $u_1$ and $u_2$. \hfill\textit{(0.5 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $u_n=8-6\left(\frac{1}{4}\right)^n$. \hfill\textit{(2 pt)}
+
+\item Deduce that, for every natural number $n$, $2\le u_n<8$. \hfill\textit{(1 pt)}
+
+\item Study the sign of $u_{n+1}-u_n$ and deduce the direction of variation of $(u_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims: ``There exists an integer $n$ such that $u_n=8$.'' Is this claim true? Justify. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-1}
+\subsection*{Exercise 2 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{3n^2+5n-1}{4n^2+2}$ and $v_n=\sqrt{n^2+5n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{5}{\sqrt{1+\frac{5}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=3n^2-5n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Common test · Practice 1 · continued}
+
+\mxtally{ex-3-1}
+\subsection*{Exercise 3 · Limits and asymptotes \hfill 5 points}Consider the function $f$ defined by $f(x)=\frac{2x+6}{x-2}$. Denote by $\mathcal C_f$ its graph in a coordinate frame of the plane.
+
+\begin{enumerate}
+
+\item Determine the domain of $f$. Find two real numbers $A$ and $B$ such that, for all $x\ne2$, $f(x)=A+\frac B{x-2}$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $-\infty$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $2^-$ and at $2^+$. \hfill\textit{(1 pt)}
+
+\item Give the equations of the asymptotes of $\mathcal C_f$. State the position of the curve relative to its horizontal asymptote. \hfill\textit{(1 pt)}
+
+\item Independently of the previous questions, determine $\displaystyle\lim_{x\to+\infty}x^{2}e^{-2x}$ with justification. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-1}
+\subsection*{Exercise 4 · Codes and selections \hfill 5 points}A code is an ordered sequence of $4$ symbols chosen from an alphabet containing $15$ distinct symbols. The rules about repetitions are specified in each question, independently of the other questions.
+
+\begin{enumerate}
+
+\item How many codes can be formed if repetitions are allowed? \hfill\textit{(1 pt)}
+
+\item How many codes can be formed if each symbol must be used at most once? \hfill\textit{(1 pt)}
+
+\item A symbol of the alphabet is fixed in advance. Repetitions being allowed, how many codes contain this symbol at least once? \hfill\textit{(1 pt)}
+
+\item The first symbol of the code is imposed and repetitions are forbidden. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\item Two distinct symbols of the alphabet are forbidden. The other symbols may be repeated. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Common test · Practice 1}\label{cor:3-1}
+
+\subsection*{Exercise 1 · A discrete evolution}\begin{enumerate}
+
+\item \textit{[0.5 pt]} The relation is applied successively for indices $0$ and $1$:\[u_1=\frac{1}{4}\times 2+6=\frac{13}{2},\qquad u_2=\frac{1}{4}\times \frac{13}{2}+6=\frac{61}{8}.\]
+
+\item \textit{[2 pt]} For $n\in\N$, let $P(n)$ the property $u_n=8-6\left(\frac{1}{4}\right)^n$.
+\par\smallskip\textbf{Base case.} For $n=0$, $8-6\times1=2=u_0$. So $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix an integer $n\ge0$ and assume $P(n)$ true. By the relation defining the sequence, then by the induction hypothesis,
+\[\begin{aligned}u_{n+1}&=\frac{1}{4}u_n+6\\
+&=\frac{1}{4}\left[8-6\left(\frac{1}{4}\right)^n\right]+6\\
+&=2+6-6\left(\frac{1}{4}\right)^{n+1}\\
+&=8-6\left(\frac{1}{4}\right)^{n+1}.
+\end{aligned}\]
+This is $P(n+1)$: the property is hereditary.
+\par\smallskip\textbf{Conclusion.} The principle of induction gives $u_n=8-6\left(\frac{1}{4}\right)^n$ for all $n\in\N$.
+
+\item \textit{[1 pt]} Since $0<\frac{1}{4}<1$, for all $n\in\N$ we have $0<(\frac{1}{4})^n\le1$. Multiplying by $-6<0$ reverses the inequalities:
+\[-6\le-6(\frac{1}{4})^n<0.\]
+Adding $8$ and using the previous formula, we obtain $2\le u_n<8$.
+
+\item \textit{[1 pt]} For all $n\in\N$, the explicit formula gives
+\[\begin{aligned}u_{n+1}-u_n&=-6(\frac{1}{4})^{n+1}+6(\frac{1}{4})^n\\&=6(1-\frac{1}{4})(\frac{1}{4})^n=\frac{9}{2}(\frac{1}{4})^n>0.\end{aligned}\]
+The sequence is therefore strictly increasing.
+
+\item \textit{[0.5 pt]} The claim is false. For each integer $n$, $8-u_n=6(\frac{1}{4})^n>0$. So no term is equal to $8$, whatever the number of steps.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{3+\frac{5}{n}-\frac{1}{n^2}}{4+\frac{2}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $3$ and the denominator to $4\ne0$; by the quotient rule, $u_n\to\frac{3}{4}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+5n)-n^2}{\sqrt{n^2+5n}+n}\\&=\frac{5n}{n(\sqrt{1+\frac{5}{n}}+1)}=\frac{5}{\sqrt{1+\frac{5}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $\frac{5}{2}$.
+
+\item \textit{[1 pt]} $w_n=n^2(3-\frac{5}{n})\to+\infty$; the second factor tends to $3>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Limits and asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} The denominator vanishes only at $2$: $D_f=\R\setminus\{2\}$. Since $2x+6=2(x-2)+10$, we obtain $f(x)=2+\dfrac{10}{x-2}$.
+
+\item \textit{[1 pt]} Both limits equal $2$.
+
+\item \textit{[1 pt]} As $x\to 2^-$, $x-2\to0$ through negative values; since $10>0$, $\frac{10}{x-2}\to-\infty$, so $f(x)\to-\infty$. On the right, the denominator tends to $0$ through positive values: the quotient, and then $f(x)$, tend to $+\infty$.
+
+\item \textit{[1 pt]} $x=2$ and $y=2$; the curve is below for $x<2$ and above for $x>2$.
+
+\item \textit{[1 pt]} Let $t=2x$. Then $t\to+\infty$ and $x^2e^{-2x}=\frac{1}{4}\frac{t^2}{e^t}$. Comparison of growth rates gives $\frac{t^2}{e^t}\to0$; the required limit is therefore $0$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Codes and selections}\begin{enumerate}
+
+\item \textit{[1 pt]} $15^4=50625$ by the multiplication principle.
+
+\item \textit{[1 pt]} The successive choices have $15$, $14$, then one choice fewer at each step, down to $12$ possibilities. By multiplication,
+\[15\times14\times13\times12=32760.\]
+The order of the symbols is part of the code.
+
+\item \textit{[1 pt]} $15^4-14^4=12209$ by complement.
+
+\item \textit{[1 pt]} The symbol in the first position is fixed and can no longer be used. The $3$ following positions give successively $14,\ldots,12$ choices:
+\[14\times13\times12=2184.\]
+
+\item \textit{[1 pt]} $13^4=28561$.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:3-2}\addcontentsline{toc}{chapter}{Common test · Practice 2}
+
+\section*{Common test · Practice 2}
+
+\mxbanner{PRACTICE PAPER · TRAINING}
+
+\textbf{Duration: 2 h · Marked out of 20 · \mxTallied{ex-3-2} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-3-2}
+\subsection*{Exercise 1 · A discrete evolution \hfill 5 points}Consider the sequence $(u_n)$ defined by $u_0=3$ and, for every natural number $n$, $u_{n+1}=\frac{1}{3}u_n+\frac{20}{3}$.
+
+\begin{enumerate}
+
+\item Calculate $u_1$ and $u_2$. \hfill\textit{(0.5 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $u_n=10-7\left(\frac{1}{3}\right)^n$. \hfill\textit{(2 pt)}
+
+\item Deduce that, for every natural number $n$, $3\le u_n<10$. \hfill\textit{(1 pt)}
+
+\item Study the sign of $u_{n+1}-u_n$ and deduce the direction of variation of $(u_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims: ``There exists an integer $n$ such that $u_n=10$.'' Is this claim true? Justify. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-2}
+\subsection*{Exercise 2 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{2n^2+7n-1}{3n^2+3}$ and $v_n=\sqrt{n^2+7n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{7}{\sqrt{1+\frac{7}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=2n^2-7n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Common test · Practice 2 · continued}
+
+\mxtally{ex-3-2}
+\subsection*{Exercise 3 · Limits and asymptotes \hfill 5 points}Consider the function $f$ defined by $f(x)=\frac{5x+7}{x-3}$. Denote by $\mathcal C_f$ its graph in a coordinate frame of the plane.
+
+\begin{enumerate}
+
+\item Determine the domain of $f$. Find two real numbers $A$ and $B$ such that, for all $x\ne3$, $f(x)=A+\frac B{x-3}$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $-\infty$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $3^-$ and at $3^+$. \hfill\textit{(1 pt)}
+
+\item Give the equations of the asymptotes of $\mathcal C_f$. State the position of the curve relative to its horizontal asymptote. \hfill\textit{(1 pt)}
+
+\item Independently of the previous questions, determine $\displaystyle\lim_{x\to+\infty}x^{5}e^{-3x}$ with justification. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-2}
+\subsection*{Exercise 4 · Codes and selections \hfill 5 points}A code is an ordered sequence of $5$ symbols chosen from an alphabet containing $16$ distinct symbols. The rules about repetitions are specified in each question, independently of the other questions.
+
+\begin{enumerate}
+
+\item How many codes can be formed if repetitions are allowed? \hfill\textit{(1 pt)}
+
+\item How many codes can be formed if each symbol must be used at most once? \hfill\textit{(1 pt)}
+
+\item A symbol of the alphabet is fixed in advance. Repetitions being allowed, how many codes contain this symbol at least once? \hfill\textit{(1 pt)}
+
+\item The first symbol of the code is imposed and repetitions are forbidden. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\item Two distinct symbols of the alphabet are forbidden. The other symbols may be repeated. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Common test · Practice 2}\label{cor:3-2}
+
+\subsection*{Exercise 1 · A discrete evolution}\begin{enumerate}
+
+\item \textit{[0.5 pt]} The relation is applied successively for indices $0$ and $1$:\[u_1=\frac{1}{3}\times 3+\frac{20}{3}=\frac{23}{3},\qquad u_2=\frac{1}{3}\times \frac{23}{3}+\frac{20}{3}=\frac{83}{9}.\]
+
+\item \textit{[2 pt]} For $n\in\N$, let $P(n)$ the property $u_n=10-7\left(\frac{1}{3}\right)^n$.
+\par\smallskip\textbf{Base case.} For $n=0$, $10-7\times1=3=u_0$. So $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix an integer $n\ge0$ and assume $P(n)$ true. By the relation defining the sequence, then by the induction hypothesis,
+\[\begin{aligned}u_{n+1}&=\frac{1}{3}u_n+\frac{20}{3}\\
+&=\frac{1}{3}\left[10-7\left(\frac{1}{3}\right)^n\right]+\frac{20}{3}\\
+&=\frac{10}{3}+\frac{20}{3}-7\left(\frac{1}{3}\right)^{n+1}\\
+&=10-7\left(\frac{1}{3}\right)^{n+1}.
+\end{aligned}\]
+This is $P(n+1)$: the property is hereditary.
+\par\smallskip\textbf{Conclusion.} The principle of induction gives $u_n=10-7\left(\frac{1}{3}\right)^n$ for all $n\in\N$.
+
+\item \textit{[1 pt]} Since $0<\frac{1}{3}<1$, for all $n\in\N$ we have $0<(\frac{1}{3})^n\le1$. Multiplying by $-7<0$ reverses the inequalities:
+\[-7\le-7(\frac{1}{3})^n<0.\]
+Adding $10$ and using the previous formula, we obtain $3\le u_n<10$.
+
+\item \textit{[1 pt]} For all $n\in\N$, the explicit formula gives
+\[\begin{aligned}u_{n+1}-u_n&=-7(\frac{1}{3})^{n+1}+7(\frac{1}{3})^n\\&=7(1-\frac{1}{3})(\frac{1}{3})^n=\frac{14}{3}(\frac{1}{3})^n>0.\end{aligned}\]
+The sequence is therefore strictly increasing.
+
+\item \textit{[0.5 pt]} The claim is false. For each integer $n$, $10-u_n=7(\frac{1}{3})^n>0$. So no term is equal to $10$, whatever the number of steps.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{2+\frac{7}{n}-\frac{1}{n^2}}{3+\frac{3}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $2$ and the denominator to $3\ne0$; by the quotient rule, $u_n\to\frac{2}{3}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+7n)-n^2}{\sqrt{n^2+7n}+n}\\&=\frac{7n}{n(\sqrt{1+\frac{7}{n}}+1)}=\frac{7}{\sqrt{1+\frac{7}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $\frac{7}{2}$.
+
+\item \textit{[1 pt]} $w_n=n^2(2-\frac{7}{n})\to+\infty$; the second factor tends to $2>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Limits and asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} The denominator vanishes only at $3$: $D_f=\R\setminus\{3\}$. Since $5x+7=5(x-3)+22$, we obtain $f(x)=5+\dfrac{22}{x-3}$.
+
+\item \textit{[1 pt]} Both limits equal $5$.
+
+\item \textit{[1 pt]} As $x\to 3^-$, $x-3\to0$ through negative values; since $22>0$, $\frac{22}{x-3}\to-\infty$, so $f(x)\to-\infty$. On the right, the denominator tends to $0$ through positive values: the quotient, and then $f(x)$, tend to $+\infty$.
+
+\item \textit{[1 pt]} $x=3$ and $y=5$; the curve is below for $x<3$ and above for $x>3$.
+
+\item \textit{[1 pt]} Let $t=3x$. Then $t\to+\infty$ and $x^5e^{-3x}=\frac{1}{243}\frac{t^5}{e^t}$. Comparison of growth rates gives $\frac{t^5}{e^t}\to0$; the required limit is therefore $0$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Codes and selections}\begin{enumerate}
+
+\item \textit{[1 pt]} $16^5=1048576$ by the multiplication principle.
+
+\item \textit{[1 pt]} The successive choices have $16$, $15$, then one choice fewer at each step, down to $12$ possibilities. By multiplication,
+\[16\times15\times14\times13\times12=524160.\]
+The order of the symbols is part of the code.
+
+\item \textit{[1 pt]} $16^5-15^5=289201$ by complement.
+
+\item \textit{[1 pt]} The symbol in the first position is fixed and can no longer be used. The $4$ following positions give successively $15,\ldots,12$ choices:
+\[15\times14\times13\times12=32760.\]
+
+\item \textit{[1 pt]} $14^5=537824$.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:3-3}\addcontentsline{toc}{chapter}{Common test · A}
+
+\section*{Common test · A}
+
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
+
+\textbf{Duration: 2 h · Marked out of 20 · \mxTallied{ex-3-3} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-3-3}
+\subsection*{Exercise 1 · A discrete evolution \hfill 5 points}Consider the sequence $(u_n)$ defined by $u_0=1$ and, for every natural number $n$, $u_{n+1}=\frac{1}{2}u_n+6$.
+
+\begin{enumerate}
+
+\item Calculate $u_1$ and $u_2$. \hfill\textit{(0.5 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $u_n=12-11\left(\frac{1}{2}\right)^n$. \hfill\textit{(2 pt)}
+
+\item Deduce that, for every natural number $n$, $1\le u_n<12$. \hfill\textit{(1 pt)}
+
+\item Study the sign of $u_{n+1}-u_n$ and deduce the direction of variation of $(u_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims: ``There exists an integer $n$ such that $u_n=12$.'' Is this claim true? Justify. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-3}
+\subsection*{Exercise 2 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{5n^2+8n-1}{6n^2+1}$ and $v_n=\sqrt{n^2+8n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{8}{\sqrt{1+\frac{8}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=5n^2-8n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Common test · A · continued}
+
+\mxtally{ex-3-3}
+\subsection*{Exercise 3 · Limits and asymptotes \hfill 5 points}Consider the function $f$ defined by $f(x)=\frac{4x+4}{x-1}$. Denote by $\mathcal C_f$ its graph in a coordinate frame of the plane.
+
+\begin{enumerate}
+
+\item Determine the domain of $f$. Find two real numbers $A$ and $B$ such that, for all $x\ne1$, $f(x)=A+\frac B{x-1}$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $-\infty$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $1^-$ and at $1^+$. \hfill\textit{(1 pt)}
+
+\item Give the equations of the asymptotes of $\mathcal C_f$. State the position of the curve relative to its horizontal asymptote. \hfill\textit{(1 pt)}
+
+\item Independently of the previous questions, determine $\displaystyle\lim_{x\to+\infty}x^{4}e^{-1x}$ with justification. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-3}
+\subsection*{Exercise 4 · Codes and selections \hfill 5 points}A code is an ordered sequence of $3$ symbols chosen from an alphabet containing $12$ distinct symbols. The rules about repetitions are specified in each question, independently of the other questions.
+
+\begin{enumerate}
+
+\item How many codes can be formed if repetitions are allowed? \hfill\textit{(1 pt)}
+
+\item How many codes can be formed if each symbol must be used at most once? \hfill\textit{(1 pt)}
+
+\item A symbol of the alphabet is fixed in advance. Repetitions being allowed, how many codes contain this symbol at least once? \hfill\textit{(1 pt)}
+
+\item The first symbol of the code is imposed and repetitions are forbidden. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\item Two distinct symbols of the alphabet are forbidden. The other symbols may be repeated. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Common test · A}\label{cor:3-3}
+
+\subsection*{Exercise 1 · A discrete evolution}\begin{enumerate}
+
+\item \textit{[0.5 pt]} The relation is applied successively for indices $0$ and $1$:\[u_1=\frac{1}{2}\times 1+6=\frac{13}{2},\qquad u_2=\frac{1}{2}\times \frac{13}{2}+6=\frac{37}{4}.\]
+
+\item \textit{[2 pt]} For $n\in\N$, let $P(n)$ the property $u_n=12-11\left(\frac{1}{2}\right)^n$.
+\par\smallskip\textbf{Base case.} For $n=0$, $12-11\times1=1=u_0$. So $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix an integer $n\ge0$ and assume $P(n)$ true. By the relation defining the sequence, then by the induction hypothesis,
+\[\begin{aligned}u_{n+1}&=\frac{1}{2}u_n+6\\
+&=\frac{1}{2}\left[12-11\left(\frac{1}{2}\right)^n\right]+6\\
+&=6+6-11\left(\frac{1}{2}\right)^{n+1}\\
+&=12-11\left(\frac{1}{2}\right)^{n+1}.
+\end{aligned}\]
+This is $P(n+1)$: the property is hereditary.
+\par\smallskip\textbf{Conclusion.} The principle of induction gives $u_n=12-11\left(\frac{1}{2}\right)^n$ for all $n\in\N$.
+
+\item \textit{[1 pt]} Since $0<\frac{1}{2}<1$, for all $n\in\N$ we have $0<(\frac{1}{2})^n\le1$. Multiplying by $-11<0$ reverses the inequalities:
+\[-11\le-11(\frac{1}{2})^n<0.\]
+Adding $12$ and using the previous formula, we obtain $1\le u_n<12$.
+
+\item \textit{[1 pt]} For all $n\in\N$, the explicit formula gives
+\[\begin{aligned}u_{n+1}-u_n&=-11(\frac{1}{2})^{n+1}+11(\frac{1}{2})^n\\&=11(1-\frac{1}{2})(\frac{1}{2})^n=\frac{11}{2}(\frac{1}{2})^n>0.\end{aligned}\]
+The sequence is therefore strictly increasing.
+
+\item \textit{[0.5 pt]} The claim is false. For each integer $n$, $12-u_n=11(\frac{1}{2})^n>0$. So no term is equal to $12$, whatever the number of steps.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{5+\frac{8}{n}-\frac{1}{n^2}}{6+\frac{1}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $5$ and the denominator to $6\ne0$; by the quotient rule, $u_n\to\frac{5}{6}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+8n)-n^2}{\sqrt{n^2+8n}+n}\\&=\frac{8n}{n(\sqrt{1+\frac{8}{n}}+1)}=\frac{8}{\sqrt{1+\frac{8}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $4$.
+
+\item \textit{[1 pt]} $w_n=n^2(5-\frac{8}{n})\to+\infty$; the second factor tends to $5>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Limits and asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} The denominator vanishes only at $1$: $D_f=\R\setminus\{1\}$. Since $4x+4=4(x-1)+8$, we obtain $f(x)=4+\dfrac{8}{x-1}$.
+
+\item \textit{[1 pt]} Both limits equal $4$.
+
+\item \textit{[1 pt]} As $x\to 1^-$, $x-1\to0$ through negative values; since $8>0$, $\frac{8}{x-1}\to-\infty$, so $f(x)\to-\infty$. On the right, the denominator tends to $0$ through positive values: the quotient, and then $f(x)$, tend to $+\infty$.
+
+\item \textit{[1 pt]} $x=1$ and $y=4$; the curve is below for $x<1$ and above for $x>1$.
+
+\item \textit{[1 pt]} Comparison of growth rates between a power and the exponential gives directly $x^4e^{-x}=\frac{x^4}{e^x}\to0$ as $x\to+\infty$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Codes and selections}\begin{enumerate}
+
+\item \textit{[1 pt]} $12^3=1728$ by the multiplication principle.
+
+\item \textit{[1 pt]} The successive choices have $12$, $11$, then one choice fewer at each step, down to $10$ possibilities. By multiplication,
+\[12\times11\times10=1320.\]
+The order of the symbols is part of the code.
+
+\item \textit{[1 pt]} $12^3-11^3=397$ by complement.
+
+\item \textit{[1 pt]} The symbol in the first position is fixed and can no longer be used. The $2$ following positions give successively $11,\ldots,10$ choices:
+\[11\times10=110.\]
+
+\item \textit{[1 pt]} $10^3=1000$.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:3-4}\addcontentsline{toc}{chapter}{Common test · B}
+
+\section*{Common test · B}
+
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
+
+\textbf{Duration: 2 h · Marked out of 20 · \mxTallied{ex-3-4} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-3-4}
+\subsection*{Exercise 1 · A discrete evolution \hfill 5 points}Consider the sequence $(u_n)$ defined by $u_0=2$ and, for every natural number $n$, $u_{n+1}=\frac{1}{5}u_n+\frac{32}{5}$.
+
+\begin{enumerate}
+
+\item Calculate $u_1$ and $u_2$. \hfill\textit{(0.5 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $u_n=8-6\left(\frac{1}{5}\right)^n$. \hfill\textit{(2 pt)}
+
+\item Deduce that, for every natural number $n$, $2\le u_n<8$. \hfill\textit{(1 pt)}
+
+\item Study the sign of $u_{n+1}-u_n$ and deduce the direction of variation of $(u_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims: ``There exists an integer $n$ such that $u_n=8$.'' Is this claim true? Justify. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-4}
+\subsection*{Exercise 2 · Limits calculated and justified \hfill 5 points}For every integer $n\ge1$, we define $u_n=\frac{4n^2+5n-1}{5n^2+2}$ and $v_n=\sqrt{n^2+5n}-n$.
+
+\begin{enumerate}
+
+\item Determine the limit of $(u_n)$, detailing the transformation of its expression. \hfill\textit{(1 pt)}
+
+\item Show that, for every integer $n\ge1$, $v_n=\frac{5}{\sqrt{1+\frac{5}n}+1}$. \hfill\textit{(1 pt)}
+
+\item Deduce the limit of $(v_n)$. \hfill\textit{(1 pt)}
+
+\item We define $w_n=4n^2-5n$ for $n\ge1$. Determine the limit of $(w_n)$. \hfill\textit{(1 pt)}
+
+\item A student claims that the difference of two sequences tending to $+\infty$ always tends to $0$. Is this claim true? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Common test · B · continued}
+
+\mxtally{ex-3-4}
+\subsection*{Exercise 3 · Limits and asymptotes \hfill 5 points}Consider the function $f$ defined by $f(x)=\frac{3x+6}{x-2}$. Denote by $\mathcal C_f$ its graph in a coordinate frame of the plane.
+
+\begin{enumerate}
+
+\item Determine the domain of $f$. Find two real numbers $A$ and $B$ such that, for all $x\ne2$, $f(x)=A+\frac B{x-2}$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $-\infty$ and at $+\infty$. \hfill\textit{(1 pt)}
+
+\item Determine the limits of $f$ at $2^-$ and at $2^+$. \hfill\textit{(1 pt)}
+
+\item Give the equations of the asymptotes of $\mathcal C_f$. State the position of the curve relative to its horizontal asymptote. \hfill\textit{(1 pt)}
+
+\item Independently of the previous questions, determine $\displaystyle\lim_{x\to+\infty}x^{3}e^{-2x}$ with justification. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-3-4}
+\subsection*{Exercise 4 · Codes and selections \hfill 5 points}A code is an ordered sequence of $4$ symbols chosen from an alphabet containing $13$ distinct symbols. The rules about repetitions are specified in each question, independently of the other questions.
+
+\begin{enumerate}
+
+\item How many codes can be formed if repetitions are allowed? \hfill\textit{(1 pt)}
+
+\item How many codes can be formed if each symbol must be used at most once? \hfill\textit{(1 pt)}
+
+\item A symbol of the alphabet is fixed in advance. Repetitions being allowed, how many codes contain this symbol at least once? \hfill\textit{(1 pt)}
+
+\item The first symbol of the code is imposed and repetitions are forbidden. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\item Two distinct symbols of the alphabet are forbidden. The other symbols may be repeated. How many codes can be formed? \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Common test · B}\label{cor:3-4}
+
+\subsection*{Exercise 1 · A discrete evolution}\begin{enumerate}
+
+\item \textit{[0.5 pt]} The relation is applied successively for indices $0$ and $1$:\[u_1=\frac{1}{5}\times 2+\frac{32}{5}=\frac{34}{5},\qquad u_2=\frac{1}{5}\times \frac{34}{5}+\frac{32}{5}=\frac{194}{25}.\]
+
+\item \textit{[2 pt]} For $n\in\N$, let $P(n)$ the property $u_n=8-6\left(\frac{1}{5}\right)^n$.
+\par\smallskip\textbf{Base case.} For $n=0$, $8-6\times1=2=u_0$. So $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix an integer $n\ge0$ and assume $P(n)$ true. By the relation defining the sequence, then by the induction hypothesis,
+\[\begin{aligned}u_{n+1}&=\frac{1}{5}u_n+\frac{32}{5}\\
+&=\frac{1}{5}\left[8-6\left(\frac{1}{5}\right)^n\right]+\frac{32}{5}\\
+&=\frac{8}{5}+\frac{32}{5}-6\left(\frac{1}{5}\right)^{n+1}\\
+&=8-6\left(\frac{1}{5}\right)^{n+1}.
+\end{aligned}\]
+This is $P(n+1)$: the property is hereditary.
+\par\smallskip\textbf{Conclusion.} The principle of induction gives $u_n=8-6\left(\frac{1}{5}\right)^n$ for all $n\in\N$.
+
+\item \textit{[1 pt]} Since $0<\frac{1}{5}<1$, for all $n\in\N$ we have $0<(\frac{1}{5})^n\le1$. Multiplying by $-6<0$ reverses the inequalities:
+\[-6\le-6(\frac{1}{5})^n<0.\]
+Adding $8$ and using the previous formula, we obtain $2\le u_n<8$.
+
+\item \textit{[1 pt]} For all $n\in\N$, the explicit formula gives
+\[\begin{aligned}u_{n+1}-u_n&=-6(\frac{1}{5})^{n+1}+6(\frac{1}{5})^n\\&=6(1-\frac{1}{5})(\frac{1}{5})^n=\frac{24}{5}(\frac{1}{5})^n>0.\end{aligned}\]
+The sequence is therefore strictly increasing.
+
+\item \textit{[0.5 pt]} The claim is false. For each integer $n$, $8-u_n=6(\frac{1}{5})^n>0$. So no term is equal to $8$, whatever the number of steps.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · Limits calculated and justified}\begin{enumerate}
+
+\item \textit{[1 pt]} For $n\ge1$, we divide by $n^2\ne0$:
+\[u_n=\frac{4+\frac{5}{n}-\frac{1}{n^2}}{5+\frac{2}{n^2}}.\]
+The terms $\frac{1}{n}$ and $\frac{1}{n^2}$ tend to $0$. The numerator tends to $4$ and the denominator to $5\ne0$; by the quotient rule, $u_n\to\frac{4}{5}$.
+
+\item \textit{[1 pt]} The conjugate is positive. For $n\ge1$, $\sqrt{n^2}=n$, hence
+\[\begin{aligned}v_n&=\frac{(n^2+5n)-n^2}{\sqrt{n^2+5n}+n}\\&=\frac{5n}{n(\sqrt{1+\frac{5}{n}}+1)}=\frac{5}{\sqrt{1+\frac{5}{n}}+1}.\end{aligned}\]
+
+\item \textit{[1 pt]} The denominator tends to $2$; limit $\frac{5}{2}$.
+
+\item \textit{[1 pt]} $w_n=n^2(4-\frac{5}{n})\to+\infty$; the second factor tends to $4>0$.
+
+\item \textit{[1 pt]} No: $(2n)-n=n\to+\infty$. The sign $\infty-\infty$ is an indeterminate form, not a rule of calculation.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Limits and asymptotes}\begin{enumerate}
+
+\item \textit{[1 pt]} The denominator vanishes only at $2$: $D_f=\R\setminus\{2\}$. Since $3x+6=3(x-2)+12$, we obtain $f(x)=3+\dfrac{12}{x-2}$.
+
+\item \textit{[1 pt]} Both limits equal $3$.
+
+\item \textit{[1 pt]} As $x\to 2^-$, $x-2\to0$ through negative values; since $12>0$, $\frac{12}{x-2}\to-\infty$, so $f(x)\to-\infty$. On the right, the denominator tends to $0$ through positive values: the quotient, and then $f(x)$, tend to $+\infty$.
+
+\item \textit{[1 pt]} $x=2$ and $y=3$; the curve is below for $x<2$ and above for $x>2$.
+
+\item \textit{[1 pt]} Let $t=2x$. Then $t\to+\infty$ and $x^3e^{-2x}=\frac{1}{8}\frac{t^3}{e^t}$. Comparison of growth rates gives $\frac{t^3}{e^t}\to0$; the required limit is therefore $0$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Codes and selections}\begin{enumerate}
+
+\item \textit{[1 pt]} $13^4=28561$ by the multiplication principle.
+
+\item \textit{[1 pt]} The successive choices have $13$, $12$, then one choice fewer at each step, down to $10$ possibilities. By multiplication,
+\[13\times12\times11\times10=17160.\]
+The order of the symbols is part of the code.
+
+\item \textit{[1 pt]} $13^4-12^4=7825$ by complement.
+
+\item \textit{[1 pt]} The symbol in the first position is fixed and can no longer be used. The $3$ following positions give successively $12,\ldots,10$ choices:
+\[12\times11\times10=1320.\]
+
+\item \textit{[1 pt]} $11^4=14641$.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

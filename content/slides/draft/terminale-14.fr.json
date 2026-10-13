@@ -1,0 +1,101 @@
+{
+"id": "terminale-14",
+"slides": [
+{
+"k": "title",
+"t": "Fonctions trigonométriques",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Utiliser parité et périodicité ; dériver sinus et cosinus ; résoudre équations et inéquations ; étudier une fonction périodique.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Cercle et fonctions",
+"b": "Sur le cercle trigonométrique, le point repéré par un angle \\(x\\) en radians a pour coordonnées \\(\\pt{\\cos x;\\sin x}\\). Pour tout réel \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosinus est paire : \\(\\cos(-x)=\\cos x\\). Sinus est impaire : \\(\\sin(-x)=-\\sin x\\). Les deux fonctions sont \\(2\\pi\\)-périodiques.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Dérivées et variations",
+"b": "\\[(\\sin x)'=\\cos x,\\qquad(\\cos x)'=-\\sin x.\\]\\[\n(\\sin(ax+b))'=a\\cos(ax+b),\\quad(\\cos(ax+b))'=-a\\sin(ax+b).\\]\nSur \\([-\\pi,\\pi]\\), cosinus croît sur \\([-\\pi,0]\\) de \\(-1\\) à \\(1\\), puis décroît sur \\([0,\\pi]\\) de \\(1\\) à \\(-1\\). Sinus décroît sur \\([-\\pi,-\\frac{\\pi}{2}]\\), croît sur \\([-\\frac{\\pi}{2},\\frac{\\pi}{2}]\\), puis décroît sur \\([\\frac{\\pi}{2},\\pi]\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Dérivées et variations",
+"b": "Lire le signe de sinus et cosinus sur le cercle puis appliquer le lien dérivée–variations. La périodicité prolonge les courbes ; elle ne dispense pas d'étudier un intervalle de longueur suffisante.",
+"a": null,
+"h": "Justification."
+},
+{
+"k": "concept",
+"t": "Équations et inéquations",
+"b": "Si \\(|a|&gt;1\\), \\(\\cos x=a\\) et \\(\\sin x=a\\) n'ont aucune solution réelle. Pour un angle connu \\(\\theta\\),\n\\[\\cos x=\\cos\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{ou}\\ x=-\\theta+2k\\pi,\\]\n\\[\\sin x=\\sin\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{ou}\\ x=\\pi-\\theta+2k\\pi,\\quad k\\in\\Z.\\]\nOn restreint ensuite les solutions à l'intervalle demandé et on élimine les doublons.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Équations et inéquations",
+"b": "\\(\\cos x=\\frac{1}{2}\\) donne \\(x=\\pm\\frac{\\pi}{3}\\) ; \\(\\sin x=\\frac{1}{2}\\) donne \\(x=\\frac{\\pi}{6}\\) ou \\(\\frac{5\\pi}{6}\\). \\(\\cos x\\le\\frac{1}{2}\\) donne \\([-\\pi,-\\frac{\\pi}{3}]\\cup[\\frac{\\pi}{3},\\pi]\\) ; \\(\\sin x\\ge\\frac{1}{2}\\) donne \\([\\frac{\\pi}{6},\\frac{5\\pi}{6}]\\).",
+"a": null,
+"h": null
+},
+{
+"k": "method",
+"t": "Équations et inéquations",
+"b": "Pour résoudre \\(\\cos (2x)=\\frac{1}{2}\\) sur \\([-\\pi,\\pi]\\), poser \\(t=2x\\in[-2\\pi,2\\pi]\\), résoudre pour \\(t\\), puis diviser par \\(2\\). On obtient \\(x\\in\\{-\\frac{5\\pi}{6},-\\frac{\\pi}{6},\\frac{\\pi}{6},\\frac{5\\pi}{6}\\}\\).",
+"a": null,
+"h": "Une composée trigonométrique"
+},
+{
+"k": "concept",
+"t": "Équations et inéquations",
+"b": "Pour \\(f(x)=\\sin x+\\frac12\\sin(2x)\\) sur \\([0,\\pi]\\), \\(f'=\\cos x+\\cos(2x)=2\\cos^2x+\\cos x-1=(2\\cos x-1)(\\cos x+1)\\). La fonction croît jusqu'à \\(\\frac{\\pi}{3}\\) puis décroît ; maximum \\(\\frac{3\\sqrt{3}}{4}\\).",
+"a": null,
+"h": "Optimisation."
+},
+{
+"k": "concept",
+"t": "Équations et inéquations",
+"b": "Pour tout réel \\(x\\), \\(\\sin(2x)=2\\sin x\\cos x\\) et \\(\\cos(2x)=\\cos^2x-\\sin^2x=2\\cos^2x-1\\). Ces identités sont rappelées ici pour que leur emploi dans les problèmes ne soit pas implicite.",
+"a": null,
+"h": "Identités de duplication utilisées dans les exercices."
+},
+{
+"k": "concept",
+"t": "Équations et inéquations",
+"b": "La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \\(\\pt{2\\pi;0}\\).   Les coordonnées du point du cercle sont \\(\\pt{\\cos x;\\sin x}\\).",
+"a": null,
+"h": "Symétries des courbes.",
+"f": [
+[
+1,
+1
+]
+]
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Hauteur d'un point sur une roue — 35 min.</b><br><br> Une roue tourne à vitesse constante dans un plan vertical. Son rayon est de \\(2\\) m et son centre se trouve à \\(3\\) m du sol. Un point de la roue est à sa position la plus basse à l'instant \\(t=0\\). La roue effectue un tour en \\(8\\) s. Sa hauteur est modélisée par \\(h(t)=3-2\\cos\\left(\\frac{\\pi t}{4}\\right)\\), où \\(t\\) est exprimé en secondes et \\(h(t)\\) en mètres.\n<ol><li>Vérifier que le modèle donne la hauteur initiale annoncée, une période de \\(8\\) s et les hauteurs minimale et maximale attendues.\n<li>Calculer \\(h' (t)\\), puis étudier les variations de \\(h\\) sur \\([0;8]\\).\n<li>Déterminer tous les instants \\(t\\in[0;8]\\) pour lesquels la hauteur vaut \\(4\\) m.\n<li>Déterminer la durée totale, au cours de ce tour, pendant laquelle le point se trouve à au moins \\(4\\) m du sol.</ol><br><br>",
+"a": null,
+"h": null
+}
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}[scale=1.6]\n\\draw[->,gray](-1.3,0)--(1.4,0);\\draw[->,gray](0,-1.25)--(0,1.4);\\draw[mxink](0,0)circle(1);\n\\draw[mxmint,thick](0,0)--(.5,.866);\\draw[mxmint,dashed](.5,0)--(.5,.866)--(0,.866);\n\\draw[->,mxmint](.35,0)arc(0:60:.35);\\node[right]at(.25,.27){$x$};\n\\node[below]at(.5,0){$\\cos x$};\\node[left]at(0,.866){$\\sin x$};\\node[above right]at(.5,.866){$M$};\n\\end{tikzpicture}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}[scale=1.6]\n\\draw[->,gray](-1.3,0)--(1.4,0);\\draw[->,gray](0,-1.25)--(0,1.4);\\draw[mxink](0,0)circle(1);\n\\draw[mxmint,thick](0,0)--(.5,.866);\\draw[mxmint,dashed](.5,0)--(.5,.866)--(0,.866);\n\\draw[->,mxmint](.35,0)arc(0:60:.35);\\node[right]at(.25,.27){$x$};\n\\node[below]at(.5,0){$\\cos x$};\\node[left]at(0,.866){$\\sin x$};\\node[above right]at(.5,.866){$M$};\n\\end{tikzpicture}"
+]
+}

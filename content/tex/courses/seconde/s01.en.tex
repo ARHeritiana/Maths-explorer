@@ -1,0 +1,81 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{seconde-s01}{Arithmetic}\mxsubtitle{2--11 September 2026}
+\section{Integers, multiples and divisors}
+\begin{keypoint}[Definitions]
+$\N=\ens{0;1;2;\ldots}$ is the set of natural numbers. $\Z$ contains the natural numbers and their opposites.
+For $a,b\in\Z$, saying that $a$ is a \textbf{multiple of $b$} means that there exists $k\in\Z$ such that $a=bk$. We also say that $b$ divides $a$.
+\end{keypoint}
+$18=6\times3$: $18$ is a multiple of $3$ and of $6$. Every integer is a multiple of $1$ and of itself; $0$ is a multiple of every integer. The only multiple of $0$ is $0$.
+\begin{example}List the positive divisors of $18$ and of $24$. Write three multiples of $7$, one of them negative. Is $35$ a multiple of $5$? of $6$? Justify.\end{example}
+\mxanswerspace[4]{Divisors of $18$: $1,2,3,6,9,18$. Divisors of $24$: $1,2,3,4,6,8,12,24$. For example $-7,0,14$ are multiples of $7$. $35=5\times7$ is a multiple of $5$; $35=6\times5+5$ is not a multiple of $6$.}
+\begin{keypoint}[Sum of multiples]
+The sum of two multiples of an integer $a$ is a multiple of $a$.
+\end{keypoint}
+\mxwriteproof[3]{Write $u=ak$ and $v=a\ell$, with $k,\ell\in\Z$. Then $u+v=a(k+\ell)$ and $k+\ell\in\Z$. So $u+v$ is a multiple of $a$. This also holds for $a=0$.}
+\begin{fluency}[5--10 min]Calculate $\frac23+\frac16$; $3(x+2)-x$; the image of $2$ under $x\mapsto 2x-3$.\mxanswer{$\frac56$ ; $2x+6$ ; $1$.}\end{fluency}
+
+\mxsection{Parity and prime numbers}
+\begin{keypoint}[Definitions]
+An integer $n$ is \textbf{even} if it can be written $2k$, with $k\in\Z$, and \textbf{odd} if it can be written $2k+1$.
+A \textbf{prime number} is a natural number greater than or equal to $2$ that has exactly two positive divisors: $1$ and itself.
+\end{keypoint}
+The prime numbers less than $100$ are: $2$, $3$, $5$, $7$, $11$, $13$, $17$, $19$, $23$, $29$, $31$, $37$, $41$, $43$, $47$, $53$, $59$, $61$, $67$, $71$, $73$, $79$, $83$, $89$, $97$.
+\begin{keypoint}[Property to prove]
+The square of an odd integer is odd.
+\end{keypoint}
+\mxwriteproof[4]{If $n=2k+1$, then $n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1$. Since $2k^2+2k\in\Z$, $n^2$ is odd. The final form justifies the parity; a few numerical trials are not enough to prove the statement.}
+\begin{method}[Testing whether an integer is prime]
+For $n\geq2$, it is enough to test the prime divisors less than or equal to $\sqrt n$. Indeed, if $n=ab$ with $1<a\leq b$, then $a\leq\sqrt n$; $a$ has a prime divisor which also divides $n$.
+\end{method}
+\begin{example}Show that $157$ is prime and that $161$ is not.\end{example}
+\mxanswerspace[4]{Since $12^2<157<13^2$, we test $2,3,5,7,11$. None divides $157$: for $7$, $157=7\times22+3$; for $11$, $157=11\times14+3$. So $157$ is prime. On the other hand, $161=7\times23$ is composite.}
+
+\mxsection{GCD and irreducible fractions}
+\begin{keypoint}[Definition and convention]
+For two integers $a,b$ \textbf{not both zero}, $\pgcd(a,b)$ is the greatest of their common positive divisors. We have $\pgcd(a,b)=\pgcd(|a|,|b|)$ and $\pgcd(a,0)=|a|$ if $a\ne0$. By convention, we set $\pgcd(0,0)=0$; this last case does not come under the definition by the greatest divisor.
+\end{keypoint}
+For example, $\pgcd(18,24)=6$, and changing the signs of $18$ or $24$ does not change this result.
+\begin{keypoint}[Prime factorisation -- accepted]
+Every natural number greater than or equal to $2$ is a product of prime numbers. This factorisation is unique up to the order of the factors.
+\end{keypoint}
+\begin{example}Factorise $140$, $150$, $630$ and $120$ into prime factors.\end{example}
+\mxanswerspace[3.2]{$140=2^2\times5\times7$; $150=2\times3\times5^2$; $630=2\times3^2\times5\times7$; $120=2^3\times3\times5$. We divide successively by prime numbers and check the final product.}
+\begin{method}[Making a fraction irreducible]
+For $b\ne0$, divide the numerator $a$ and the denominator $b$ by $\pgcd(a,b)$. The fraction obtained has a numerator and a denominator that are coprime.
+\end{method}
+\begin{example}Make $\dfrac{140}{630}$, $\dfrac{84}{126}$ and $\dfrac{-120}{150}$ irreducible.\end{example}
+\mxanswerspace[3.2]{The GCDs are $70$, $42$, $30$ respectively. Thus $140/630=2/9$, $84/126=2/3$ and $-120/150=-4/5$. For $140/630$, we can also cancel the factors $2,5,7$ in the factorisations.}
+
+\mxsection{Set vocabulary in context}
+\begin{keypoint}[Definitions and notation]
+$x\in A$ means that $x$ is an element of $A$; $A\subseteq B$ means that every element of $A$ belongs to $B$. $\varnothing$ is the empty set.
+\begin{itemize}
+\item $A\cap B$: elements belonging to $A$ \textbf{and} to $B$;
+\item $A\cup B$: elements belonging to $A$ \textbf{or} to $B$ (possibly both);
+\item in a reference set $E$, $\overline A=E\setminus A$ contains the elements of $E$ that are not in $A$;
+\item for a finite set, $\Card(A)$ is its number of elements.
+\end{itemize}
+\end{keypoint}
+\begin{example}In $E=\ens{1;2;3;4;5;6}$, let $A=\ens{2;4;6}$ and $B=\ens{3;6}$. Give $A\cap B$, $A\cup B$, $\overline A$ and $\Card(A)$. Are the statements $2\in A$, $\{2\}\subseteq A$ and $A\subseteq B$ true?\end{example}
+\mxanswerspace[3.2]{$A\cap B=\{6\}$, $A\cup B=\ens{2;3;4;6}$, $\overline A=\ens{1;3;5}$, $\Card(A)=3$. The first two statements are true. The third is false, for example $2\in A$ and $2\notin B$.}
+\begin{keypoint}[Pair and Cartesian product]
+A pair $\pt{a;b}$ is ordered: in general $\pt{a;b}\ne\pt{b;a}$. The Cartesian product $A\times B$ is the set of pairs $\pt{a;b}$ with $a\in A$ and $b\in B$. For finite sets, $\Card(A\times B)=\Card(A)\Card(B)$.
+\end{keypoint}
+\begin{example}Write all the elements of $\ens{1;2}\times\ens{3;4;5}$.\end{example}
+\mxanswerspace[2]{$\ens{\pt{1;3};\pt{1;4};\pt{1;5};\pt{2;3};\pt{2;4};\pt{2;5}}$. There are $2\times3=6$ pairs.}
+
+\mxsection{Algorithms and putting it to use}
+\begin{method}[Python: integer, Boolean and condition]
+\texttt{a \% b} is the remainder of the Euclidean division for integers and $b\ne0$. A test returns a Boolean: \texttt{True} or \texttt{False}. Equality is tested with \texttt{==}; assignment uses \texttt{=}.
+\end{method}
+\begin{lstlisting}
+def est_multiple(a, b):
+    if b == 0:
+        return a == 0
+    return a % b == 0
+\end{lstlisting}
+\begin{example}Predict the results of \texttt{est\_multiple(35, 5)} and \texttt{est\_multiple(35, 6)}, then of \texttt{est\_multiple(0, 7)}, \texttt{est\_multiple(7, 0)} and \texttt{est\_multiple(0, 0)}. Explain the role of the condition.\end{example}
+\mxanswerspace[3]{The results are \texttt{True}, \texttt{False}, \texttt{True}, \texttt{False}, \texttt{True}. The case $b=0$ avoids calculating a remainder modulo zero, which is impossible, and applies the definition: only $0$ is a multiple of $0$.}
+\begin{example}[Problem]We have $84$ notebooks and $126$ pencils. We want to make as many identical packs as possible, using all the material. How many packs can we make? What does each contain?\end{example}
+\mxanswerspace[4]{The number of packs divides $84$ and $126$. Its maximum is therefore $\pgcd(84,126)=42$. Each pack contains $84/42=2$ notebooks and $126/42=3$ pencils. The check $42\times2=84$, $42\times3=126$ confirms that all the material is used.}
+\begin{teachernote}Diagnostic: have students state ``divides'' and ``is a multiple of''. Help: start by testing 2, 3, 6 packs. Extension: prove that $n(n+1)$ is even by distinguishing the two parities of $n$.\end{teachernote}

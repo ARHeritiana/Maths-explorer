@@ -1,0 +1,345 @@
+
+\mxunit{stmg-c06}{Probabilités conditionnelles}
+\mxskills{modéliser par un arbre ou un tableau, calculer, raisonner sur l'indépendance, interpréter}
+\section{Cours de référence}
+Pour deux événements $A$ et $B$ avec $P(A)>0$, la probabilité de $B$ sachant $A$ est
+\[
+P_A(B)=P(B\mid A)=\frac{P(A\cap B)}{P(A)}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[grow=right,level distance=34mm,sibling distance=13mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$}
+ child {node {$A$}
+   child {node {$B$} edge from parent node[above] {$P_A(B)$}}
+   child {node {$\overline B$} edge from parent node[below] {$1-P_A(B)$}}
+   edge from parent node[above] {$P(A)$}}
+ child {node {$\overline A$}
+   child {node {$B$} edge from parent node[above] {$P_{\overline A}(B)$}}
+   child {node {$\overline B$} edge from parent node[below] {$1-P_{\overline A}(B)$}}
+   edge from parent node[below] {$1-P(A)$}};
+\end{tikzpicture}
+\end{center}
+
+\begin{keypoint}
+Dans un arbre pondéré, les probabilités issues d'un même nœud ont pour somme $1$. On multiplie les probabilités le long d'un chemin : $P(A\cap B)=P(A)P_A(B)$. On additionne les probabilités de chemins incompatibles menant à l'événement recherché.
+\end{keypoint}
+
+Si $A_1,\ldots,A_n$ forment une partition de l'univers, alors
+\[
+P(B)=P(A_1)P_{A_1}(B)+\cdots+P(A_n)P_{A_n}(B).
+\]
+Deux événements $A$ et $B$ de probabilités non nulles sont indépendants si $P(A\cap B)=P(A)P(B)$, ou de manière équivalente si $P_A(B)=P(B)$.
+
+\begin{pitfall}
+Ne pas confondre $P_A(B)$ et $P_B(A)$. La condition figure après le mot « sachant » et se place en indice dans la notation française.
+\end{pitfall}
+
+\begin{example}
+$\pc{40}$ des clients achètent en ligne. Parmi eux, $\pc{12}$ retournent leur commande ; parmi les autres, $\pc{5}$ la retournent. Alors $P(R)=\num{0,40}\times\num{0,12}+\num{0,60}\times\num{0,05}=\num{0,078}$. Le taux global de retour est donc $\pc{7,8}$.
+\end{example}
+
+\mxsession{39}{\mxdate*{2027-03-09}}{B : 2 h -- C : 1 h}{Conditionnement}{Probabilités conditionnelles}
+\begin{objectives}\begin{itemize}\item Définir une probabilité conditionnelle.\item Passer des effectifs aux probabilités.\item Interpréter.\end{itemize}\end{objectives}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $140$. \mxblank{$28$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\item Calculer $\num{0,7}\times\num{0,4}$. \mxblank{$\num{0,28}$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : définir une probabilité conditionnelle et passer des effectifs aux probabilités.\end{prerequisites}
+
+\begin{activity}
+Dans une enquête, $180$ clients sur $600$ utilisent une carte premium et $72$ de ces $180$ clients achètent chaque semaine. Calculer $P(P)$, $P(P\cap H)$ et $P_P(H)$, puis interpréter.
+
+\end{activity}
+\begin{solution}$P(P)=\num{0,30}$, $P(P\cap H)=\num{0,12}$ et $P_P(H)=\dfrac{72}{180}=\num{0,40}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+\begin{summary}Pour $P(A)>0$, $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$. Il s'agit de la probabilité de $B$ dans la population restreinte à $A$.\end{summary}
+
+\begin{example}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{example}
+\begin{solution}$P(P)=\num{0,30}$, $P(P\cap H)=\num{0,12}$ et $P_P(H)=\dfrac{72}{180}=\num{0,40}$.\end{solution}
+
+\begin{exercise}[essentiel]
+\begin{enumerate}\item On sait $P(A)=\num{0,35}$, $P_A(B)=\num{0,6}$ et $P_{\overline A}(B)=\num{0,8}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,35}\times\num{0,6}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{39}
+
+\begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $315$ et le taux ou la raison par $5$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+\begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{method}
+\fi
+\mxsession{40}{\mxdate*{2027-03-11}}{B : 1 h -- C : 2 h}{Arbres pondérés}{Probabilités conditionnelles}
+    \begin{objectives}\begin{itemize}\item Construire et compléter un arbre.\item Lire une probabilité conditionnelle.\item Contrôler les sommes.\end{itemize}\end{objectives}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Calculer $\num{0,8}\times\num{0,4}$. \mxblank{$\num{0,32}$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : construire et compléter un arbre et lire une probabilité conditionnelle.\end{prerequisites}
+
+    \begin{activity}
+    $\pc{35}$ des commandes sont express. Parmi elles, $\pc{4}$ sont en retard ; parmi les commandes standard, $\pc{9}$ sont en retard. Construire et compléter l'arbre.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}Premières branches : $\num{0,35}$ et $\num{0,65}$. Puis $\num{0,04}$ et $\num{0,96}$ ; enfin $\num{0,09}$ et $\num{0,91}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+    \begin{summary}Dans un arbre, les branches issues d'un nœud ont pour somme $1$. Les probabilités de second niveau sont conditionnelles.\end{summary}
+
+    \begin{example}
+    Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+    \end{example}
+    \begin{solution}Premières branches : $\num{0,35}$ et $\num{0,65}$. Puis $\num{0,04}$ et $\num{0,96}$ ; enfin $\num{0,09}$ et $\num{0,91}$.\end{solution}
+
+    \begin{exercise}[essentiel]
+    \begin{enumerate}\item On sait $P(A)=\num{0,40}$, $P_A(B)=\num{0,2}$ et $P_{\overline A}(B)=\num{0,4}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,40}\times\num{0,2}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{40}
+
+    \begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $320$ et le taux ou la raison par $6$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+    \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+    \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+    \end{method}
+    \fi
+\mxsession{41}{\mxdate*{2027-03-16}}{B : 2 h -- C : 1 h}{Produit des probabilités le long d'un chemin}{Probabilités conditionnelles}
+    \begin{objectives}\begin{itemize}\item Calculer une intersection.\item Combiner les chemins.\item Traduire un événement.\end{itemize}\end{objectives}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+9-x+2$. \mxblank{$2x+11$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\item Calculer $\num{0,9}\times\num{0,4}$. \mxblank{$\num{0,36}$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer une intersection et combiner les chemins.\end{prerequisites}
+
+    \begin{activity}
+    Avec l'arbre de la séance 40, calculer la probabilité d'une commande express et en retard, puis la probabilité totale d'un retard. Interpréter les deux résultats.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$P(E\cap R)=\num{0,35}\times\num{0,04}=\num{0,014}$. $P(R)=\num{0,014}+\num{0,65}\times\num{0,09}=\num{0,0725}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+    \begin{summary}On multiplie le long d'un chemin : $P(A\cap B)=P(A)P_A(B)$. On additionne les chemins incompatibles qui réalisent l'événement.\end{summary}
+
+    \begin{example}
+    Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+    \end{example}
+    \begin{solution}$P(E\cap R)=\num{0,35}\times\num{0,04}=\num{0,014}$. $P(R)=\num{0,014}+\num{0,65}\times\num{0,09}=\num{0,0725}$.\end{solution}
+
+    \begin{exercise}[essentiel]
+    \begin{enumerate}\item On sait $P(A)=\num{0,45}$, $P_A(B)=\num{0,3}$ et $P_{\overline A}(B)=\num{0,5}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,45}\times\num{0,3}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{41}
+
+    \begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $325$ et le taux ou la raison par $7$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+    \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+    \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+    \end{method}
+    \fi
+\mxsession{42}{\mxdate*{2027-03-18}}{B : 1 h -- C : 2 h}{Indépendance}{Probabilités conditionnelles}
+\begin{objectives}\begin{itemize}\item Tester l'indépendance.\item Comparer probabilités.\item Justifier une conclusion.\end{itemize}\end{objectives}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $60$. \mxblank{$3$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\item Calculer $\num{0,3}\times\num{0,4}$. \mxblank{$\num{0,12}$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : tester l'indépendance et comparer probabilités.\end{prerequisites}
+
+\begin{activity}
+Dans une population, $P(A)=\num{0,4}$, $P(B)=\num{0,3}$ et $P(A\cap B)=\num{0,12}$. Tester l'indépendance de deux façons. Modifier ensuite $P(A\cap B)$ en $\num{0,15}$ et recommencer.
+
+\end{activity}
+\begin{solution}$\num{0,4}\times\num{0,3}=\num{0,12}$ : indépendance. Avec $\num{0,15}$, les événements ne sont plus indépendants. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+\begin{summary}$A$ et $B$ sont indépendants si $P(A\cap B)=P(A)P(B)$, équivalemment si $P_A(B)=P(B)$ lorsque $P(A)>0$.\end{summary}
+
+\begin{example}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{example}
+\begin{solution}$\num{0,4}\times\num{0,3}=\num{0,12}$ : indépendance. Avec $\num{0,15}$, les événements ne sont plus indépendants.\end{solution}
+
+\begin{exercise}[essentiel]
+\begin{enumerate}\item On sait $P(A)=\num{0,20}$, $P_A(B)=\num{0,4}$ et $P_{\overline A}(B)=\num{0,6}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,20}\times\num{0,4}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{42}
+
+\begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $330$ et le taux ou la raison par $2$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+\begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{method}
+\fi
+\mxsession{43}{\mxdate*{2027-03-23}}{B : 2 h -- C : 1 h}{Partition et probabilités totales}{Probabilités conditionnelles}
+    \begin{objectives}\begin{itemize}\item Reconnaître une partition.\item Appliquer les probabilités totales.\item Organiser le calcul.\end{itemize}\end{objectives}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\item Calculer $\num{0,4}\times\num{0,4}$. \mxblank{$\num{0,16}$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : reconnaître une partition et appliquer les probabilités totales.\end{prerequisites}
+
+    \begin{activity}
+    Une usine possède trois lignes A, B, C produisant respectivement $\pc{20}$, $\pc{50}$, $\pc{30}$ des articles. Leurs taux de défaut sont $\pc{1}$, $\pc{2}$, $\pc{4}$. Calculer le taux global de défaut.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$P(D)=\num{0,2}\times\num{0,01}+\num{0,5}\times\num{0,02}+\num{0,3}\times\num{0,04}=\num{0,024}$, soit $\pc{2,4}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+    \begin{summary}Si $(A_i)$ est une partition, $P(B)=\sum_i P(A_i)P_{A_i}(B)$. Chaque terme correspond à un chemin menant à $B$.\end{summary}
+
+    \begin{example}
+    Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+    \end{example}
+    \begin{solution}$P(D)=\num{0,2}\times\num{0,01}+\num{0,5}\times\num{0,02}+\num{0,3}\times\num{0,04}=\num{0,024}$, soit $\pc{2,4}$.\end{solution}
+
+    \begin{exercise}[essentiel]
+    \begin{enumerate}\item On sait $P(A)=\num{0,25}$, $P_A(B)=\num{0,5}$ et $P_{\overline A}(B)=\num{0,7}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,25}\times\num{0,5}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{43}
+
+    \begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $335$ et le taux ou la raison par $3$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+    \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+    \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+    \end{method}
+    \fi
+\mxsession{44}{\mxdate*{2027-03-25}}{B : 1 h -- C : 2 h}{Problèmes contextualisés}{Probabilités conditionnelles}
+\begin{objectives}\begin{itemize}\item Choisir arbre ou tableau.\item Résoudre un problème contextualisé.\item Interpréter.\end{itemize}\end{objectives}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+5-x+2$. \mxblank{$2x+7$}\item Calculer $\num{0,5}\times\num{0,4}$. \mxblank{$\num{0,20}$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : choisir arbre ou tableau et résoudre un problème contextualisé.\end{prerequisites}
+
+\begin{activity}
+Transformer un tableau d'effectifs clients/abonnement/résiliation en arbre, puis répondre à une question dans chaque sens : probabilité de résilier sachant l'abonnement ; probabilité d'avoir l'abonnement sachant la résiliation.
+
+\end{activity}
+\begin{solution}La première lecture utilise une ligne ou une branche ; la seconde nécessite de rapporter l'intersection au total des résiliations. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+\begin{summary}Choisir entre arbre et tableau : l'arbre met en valeur l'ordre du conditionnement ; le tableau convient bien aux effectifs et aux lectures inversées.\end{summary}
+
+\begin{example}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{example}
+\begin{solution}La première lecture utilise une ligne ou une branche ; la seconde nécessite de rapporter l'intersection au total des résiliations.\end{solution}
+
+\begin{exercise}[essentiel]
+\begin{enumerate}\item On sait $P(A)=\num{0,30}$, $P_A(B)=\num{0,6}$ et $P_{\overline A}(B)=\num{0,8}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,30}\times\num{0,6}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{44}
+
+\begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $340$ et le taux ou la raison par $4$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+\begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{method}
+\fi
+\mxsession{45}{\mxdate*{2027-03-30}}{B : 2 h -- C : 1 h}{Entraînement mixte}{Probabilités conditionnelles}
+    \begin{objectives}\begin{itemize}\item Calculer une probabilité inverse.\item Enchaîner total et conditionnement.\item Contrôler le résultat.\end{itemize}\end{objectives}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $120$. \mxblank{$24$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\item Calculer $\num{0,6}\times\num{0,4}$. \mxblank{$\num{0,24}$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : calculer une probabilité inverse et enchaîner total et conditionnement.\end{prerequisites}
+
+    \begin{activity}
+    Dans la situation de la séance 43, sachant qu'un article est défectueux, calculer la probabilité qu'il provienne de la ligne C. Expliquer pourquoi ce résultat n'est pas $\pc{30}$.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$P_D(C)=\dfrac{\num{0,3}\times\num{0,04}}{\num{0,024}}=\num{0,5}$. Le conditionnement modifie la répartition parce que les taux de défaut diffèrent. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+    \begin{summary}Pour une probabilité inverse, calculer d'abord la probabilité totale de l'événement conditionnant, puis utiliser la définition de la probabilité conditionnelle.\end{summary}
+
+    \begin{example}
+    Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+    \end{example}
+    \begin{solution}$P_D(C)=\dfrac{\num{0,3}\times\num{0,04}}{\num{0,024}}=\num{0,5}$. Le conditionnement modifie la répartition parce que les taux de défaut diffèrent.\end{solution}
+
+    \begin{exercise}[essentiel]
+    \begin{enumerate}\item On sait $P(A)=\num{0,35}$, $P_A(B)=\num{0,2}$ et $P_{\overline A}(B)=\num{0,4}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,35}\times\num{0,2}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{45}
+
+    \begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $345$ et le taux ou la raison par $5$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+    \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+    \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+    \end{method}
+    \fi
+\mxsession{46}{\mxdate*{2027-04-01}}{B : 1 h -- C : 2 h}{Bilan et évaluation}{Probabilités conditionnelles}
+\begin{objectives}\begin{itemize}\item Mobiliser toutes les méthodes.\item Rédiger avec les notations.\item Remédier aux erreurs.\end{itemize}\end{objectives}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Simplifier $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item Que vaut la somme des branches issues d'un nœud ? \mxblank{$1$}\item Calculer $\num{0,7}\times\num{0,4}$. \mxblank{$\num{0,28}$}\item Si $P(A)=\num{0,37}$, calculer $P(\overline A)$. \mxblank{$\num{0,63}$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : mobiliser toutes les méthodes et rédiger avec les notations.\end{prerequisites}
+
+\begin{activity}
+Réaliser un parcours de quatre postes : compléter un arbre ; calculer une intersection ; appliquer la formule totale ; tester l'indépendance. Chaque groupe laisse une justification écrite au groupe suivant.
+
+\end{activity}
+\begin{solution}Les productions doivent contenir formules et interprétations. Les erreurs sont classées : notation, complément, produit, somme, conditionnement inverse. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+
+\begin{summary}Toujours nommer les événements, compléter toutes les branches, écrire la formule avant le calcul et interpréter la probabilité finale.\end{summary}
+
+\begin{example}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{example}
+\begin{solution}Les productions doivent contenir formules et interprétations. Les erreurs sont classées : notation, complément, produit, somme, conditionnement inverse.\end{solution}
+
+\begin{exercise}[essentiel]
+\begin{enumerate}\item On sait $P(A)=\num{0,40}$, $P_A(B)=\num{0,3}$ et $P_{\overline A}(B)=\num{0,5}$. Construire l'arbre.\item Calculer $P(A\cap B)$ puis $P(B)$.\item Calculer $P_B(A)$ et tester l'indépendance.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,40}\times\num{0,3}$. Puis $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ et $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Comparer à $P(A)$.\end{solution}
+
+\mxexuse{46}
+
+\begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $350$ et le taux ou la raison par $6$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
+
+\begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{method}
+\fi

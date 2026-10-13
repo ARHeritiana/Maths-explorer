@@ -1,0 +1,29 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{seconde-s12}{Coordinate geometry: vectors and lines synthesis}\mxsubtitle{15--26 March 2027}
+\section{Parallelogram and intersection}
+\begin{example}[Booklet synthesis]In an orthonormal frame, $A\pt{-4;-3}$, $B\pt{1;-1}$ and $C\pt{-1;3}$.
+\begin{enumerate}
+\item Determine $D$ such that $ABCD$ is a parallelogram.
+\item Determine its centre $I$ in two ways.
+\item With $E\pt{2;1}$, determine $K$, the intersection of $(AB)$ and $(CE)$.
+\item Determine $F$ such that $\vect{AF}=\frac23\vect{AE}$. Are $D,F,B$ collinear?
+\end{enumerate}\end{example}
+\begin{center}\begin{tikzpicture}\begin{axis}[mxgridaxis,axis equal image,xmin=-7,xmax=5,ymin=-4,ymax=4,width=12cm,height=7cm,xtick={-7,...,5},ytick={-4,...,4}]
+\addplot[only marks]coordinates{(-4,-3)(1,-1)(-1,3)(2,1)};
+\node[below]at(axis cs:-4,-3){$A$};\node[below]at(axis cs:1,-1){$B$};\node[above]at(axis cs:-1,3){$C$};\node[above]at(axis cs:2,1){$E$};
+\ifmxteacher\addplot[thick]coordinates{(-4,-3)(1,-1)(-1,3)(-6,1)(-4,-3)};\addplot[dashed,domain=-6:5]{.4*x-1.4};\addplot[dashed,domain=-2:5]{-2*x/3+7/3};\addplot[only marks]coordinates{(3.5,0)(0,-.333333)};\node[above]at(axis cs:-6,1){$D$};\node[above]at(axis cs:3.5,0){$K$};\node[below right]at(axis cs:0,-.33333){$F$};\fi
+\end{axis}\end{tikzpicture}\end{center}
+\mxanswerspace[4]{1. $D=A+C-B=\pt{-6;1}$. 2. Midpoint of $[AC]$ and of $[BD]$: $I\pt{-5/2;0}$. 3. $(AB):2x-5y-7=0$; $(CE):2x+3y-7=0$. Subtracting gives $8y=0$, then $x=7/2$, so $K\pt{7/2;0}$. 4. $\vect{AE}=\pt{6;4}$, so $F=A+\pt{4;8/3}=\pt{0;-1/3}$. $\vect{DF}=\pt{6;-4/3}$, $\vect{DB}=\pt{7;-2}$; determinant $-12+28/3=-8/3\ne0$. The three points are not collinear.}
+
+\mxsection{Comparing a vector method and a coordinate method}
+\begin{example}In a non-degenerate triangle $ABC$, $I$ is the midpoint of $[AB]$ and $J$ the midpoint of $[AC]$.
+\begin{enumerate}\item Prove with vectors that $(IJ)\parallel(BC)$.\item Check with $A\pt{0;0}$, $B\pt{6;0}$, $C\pt{2;4}$.\item For these coordinates, determine the equations of $(IJ)$ and $(BC)$, then the ratio $IJ/BC$.\end{enumerate}\end{example}
+\mxanswerspace[7]{1. $\vect{IJ}=\vect{IA}+\vect{AJ}=\frac12(\vect{BA}+\vect{AC})=\frac12\vect{BC}$. The vectors are nonzero and collinear.\\2. $I\pt{3;0}$, $J\pt{1;2}$; $\vect{IJ}=\pt{-2;2}$ and $\vect{BC}=\pt{-4;4}$.\\3. $(IJ):x+y-3=0$; $(BC):x+y-6=0$. Their direction vectors are collinear. $IJ=\sqrt8$, $BC=\sqrt{32}$, so $IJ/BC=1/2$. The vector proof is general; the numerical check only proves this particular case.}
+\begin{example}A figure seems to show two parallel lines. What is the difference between this observation and a proof?\end{example}
+\mxanswerspace[3.2]{The figure suggests a conjecture and may be imprecise. A proof uses exact data and a property, for example a zero determinant of nonzero direction vectors. A conclusion must state the objects concerned.}
+
+\mxsection{Recognising a configuration and justifying}
+\begin{example}[Original situation]In an orthonormal frame, $A\pt{0;0}$, $B\pt{4;2}$, $C\pt{3;4}$ and $D\pt{-1;2}$.
+\begin{enumerate}\item Show that $ABCD$ is a parallelogram.\item Calculate the four lengths and determine whether it is a rhombus.\item Calculate $AC^2$, $BD^2$ and determine whether it is a rectangle.\item Determine its centre and an equation of each diagonal.\end{enumerate}\end{example}
+\mxanswerspace[8]{1. $\vect{AB}=\pt{4;2}=\vect{DC}$: it is a parallelogram. 2. $AB=CD=\sqrt{20}=2\sqrt5$, $BC=DA=\sqrt5$; adjacent sides are not equal, so it is not a rhombus. 3. $AC^2=3^2+4^2=25$; $BD^2=(-5)^2+0^2=25$. A parallelogram whose diagonals have the same length is a rectangle. One can also use $AB^2+BC^2=20+5=25=AC^2$ and the converse of Pythagoras. 4. The centre is $I\pt{3/2;2}$. $(AC):4x-3y=0$; $(BD):y=2$. Their intersection recovers $I$.}
+\begin{teachernote}Comparison of approaches: a proof by Pythagoras or by the property of the diagonals is enough. Do not impose the dot product, which is not needed here. For the oral part, distribute the methods among groups, then ask for a joint justification.\end{teachernote}

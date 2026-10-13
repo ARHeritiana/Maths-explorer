@@ -1,0 +1,83 @@
+{
+ "unit": "lattice-paths-solutions.fr.tex",
+ "segments": {
+  "9b453cc0b507": {
+   "fr": "Chemins, combinaisons et Pascal",
+   "en": "Paths, combinations and Pascal",
+   "status": "aligned",
+   "order": 0
+  },
+  "014e613e0937": {
+   "fr": "Première--Terminale · dénombrement",
+   "en": "High school · counting",
+   "status": "aligned",
+   "order": 1
+  },
+  "db2fd0bfdf52": {
+   "fr": "Solutions détaillées",
+   "en": "Worked solutions",
+   "status": "aligned",
+   "order": 2
+  },
+  "4e01446c5a23": {
+   "fr": "Calculer [[m1]] et expliquer pourquoi il vaut [[m2]].",
+   "en": "Find [[m1]] and explain why it equals [[m2]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "da6227a35aed": {
+   "fr": "[[m1]]. Choisir deux exclus équivaut à choisir les six retenus.",
+   "en": "[[m1]]. Choosing two excluded objects is equivalent to choosing six included objects.",
+   "status": "aligned",
+   "order": 4
+  },
+  "be5b771b2f69": {
+   "fr": "Compter les chemins monotones de [[m1]] à [[m2]].",
+   "en": "Count monotone paths from [[m1]] to [[m2]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "29f52d875943": {
+   "fr": "Il faut quatre pas à droite parmi sept : [[m1]].",
+   "en": "Choose four rightward steps among seven: [[m1]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "833935f39fbd": {
+   "fr": "Parmi ces chemins, combien passent par [[m1]] ?",
+   "en": "How many of these paths pass through [[m1]]?",
+   "status": "aligned",
+   "order": 7
+  },
+  "0d5eb60bc6d6": {
+   "fr": "Une équipe de trois personnes est choisie parmi huit. Deux personnes fixées ne peuvent pas être ensemble. Combien d’équipes restent possibles ?",
+   "en": "Choose a team of three from eight people. Two specified people cannot be together. How many teams remain possible?",
+   "status": "aligned",
+   "order": 8
+  },
+  "914e8bd0e66d": {
+   "fr": "Il y a [[m1]] équipes. Celles contenant les deux personnes interdites sont au nombre de 6. Il reste 50 équipes.",
+   "en": "There are [[m1]] teams. Exactly 6 contain both specified people. Therefore 50 teams remain.",
+   "status": "aligned",
+   "order": 9
+  },
+  "7541c663b666": {
+   "fr": "Chercher, justifier, conclure",
+   "en": "Investigate, justify, conclude",
+   "status": "aligned",
+   "order": 10
+  },
+  "cadc8b9e1496": {
+   "fr": "Compter les chemins monotones de [[m1]] à [[m2]] qui évitent [[m3]] et [[m4]]. Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.",
+   "en": "Count monotone paths from [[m1]] to [[m2]] that avoid [[m3]] and [[m4]]. Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back.",
+   "status": "aligned",
+   "order": 11
+  },
+  "283d2873e372": {
+   "fr": "Total : [[m1]]. Par A : [[m2]]. Par B : [[m3]]. Par les deux : [[m4]]. Les chemins passant par les deux ont été soustraits deux fois ; les rajouter une fois donne [[m5]].",
+   "en": "Total: [[m1]]. Through A: [[m2]]. Through B: [[m3]]. Through both: [[m4]]. Paths through both were subtracted twice; adding them back once gives [[m5]].",
+   "status": "aligned",
+   "order": 12
+  }
+ }
+}

@@ -273,8 +273,8 @@ export const labs = [
     params: [["N", 2, 100, 1, 8]],
     steps: [
       [
-        "Avec deux rectangles, pourquoi l’approximation est-elle inférieure à l’aire exacte ?",
-        "With two rectangles, why is the approximation below the exact area?",
+        "Avec deux rectangles à gauche, pourquoi l’approximation est-elle inférieure à l’aire exacte ? Et à droite ?",
+        "With two left-endpoint rectangles, why is the approximation below the exact area? What about right endpoints?",
       ],
       [
         "Compare les rectangles à gauche, à droite et au milieu. Augmente N et observe les erreurs.",
@@ -306,7 +306,7 @@ export const labs = [
   },
   {
     id: "vectors",
-    symbol: "v⃗",
+    symbol: "↗",
     group: ["Géométrie", "Geometry"],
     title: ["Deux vecteurs font un chemin", "Two vectors make a path"],
     short: ["Vecteurs et produit scalaire", "Vectors and dot products"],
@@ -781,7 +781,7 @@ export const pathways = [
     intro:["Voie générale : seconde et première, programmes 2026–2027 ; terminale spécialité, programme 2019 encore applicable en 2026–2027. Le nouveau programme de terminale s’applique en 2027–2028. Les voies technologiques et les maths complémentaires ne sont pas cartographiées ici.","General pathway: seconde and première use the 2026–2027 programmes; terminale specialty still uses the 2019 programme in 2026–2027. Its new programme starts in 2027–2028. Technological pathways and maths complémentaires are not mapped here."],
     stages:[
       {name:["Seconde · Explorer","Seconde · Explore"],ids:["statistics","vectors","quadratic"],note:["Vecteurs : addition et coordonnées. Produit scalaire et discriminant général : prolongements, pas des attendus de seconde.","Vectors: addition and coordinates. Dot products and the general discriminant are extensions, not seconde requirements."]},
-      {name:["Première · Spécialité","Première · Specialty"],ids:["quadratic","trig","sequences","derivative","vectors"]},
+      {name:["Première · Spécialité","Première · Specialty"],ids:["quadratic","trig","sequences","derivative","vectors","probability"],note:["Probabilités (BO n° 14 du 2 avril 2026) : indépendance, probabilités totales, arbre de n ⩽ 4 épreuves de Bernoulli, espérance et variance. Le labo de probabilités s’utilise avec n ⩽ 4 et un arbre ; la loi binomiale B(n, p) relève de la terminale.","Probability (BO no. 14, 2 April 2026): independence, total probability, trees for n ⩽ 4 Bernoulli trials, expectation and variance. Use the probability lab with n ⩽ 4 and a tree; the binomial distribution B(n, p) belongs to terminale."]},
       {name:["Terminale · Spécialité (2026–2027)","Terminale · Specialty (2026–2027)"],ids:["probability","integral"]},
       {name:["Terminale · Option maths expertes","Terminale · Maths expertes option"],ids:["complex"]}
     ],

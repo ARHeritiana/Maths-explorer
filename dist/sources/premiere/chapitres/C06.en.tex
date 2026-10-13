@@ -1,0 +1,227 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{premiere-c06}{Differentiation, variation and optimisation}\label{C06}
+\begin{keypoint}[Chapter path]
+\textbf{Objectives.} Calculate a derivative on its domain; study variation and extrema; compare curves; optimise; use symmetries.
+
+\textbf{Prerequisites.} Derivative at a point, algebraic calculation, sign of a quadratic, intervals.
+
+\textbf{Yearly reference point.} 1--10 December: 8 hours, consolidation on the 15th and 17th\end{keypoint}
+\section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C06-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item Derivative of $x^2$ at 3?
+\item Domain of $\dfrac{1}{x-2}$?
+\item Sign of $(x-1)(x+2)$?
+\item Expand $(x^2+1)(x-2)$.
+\item For $f(x)=x^2$, compare $f(-x)$ and $f(x)$.
+\item If $f(1)=2$, $f\prime(1)=0$, what is the equation of the tangent?
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Present a variation table, distinguishing the sign of f from the sign of its derivative. Explain why the endpoints of an optimisation problem must be examined.
+\mxnewpage
+\section*{Investigate before formalising}\label{C06-RECH}
+Can an increasing function have a horizontal tangent? Look for an example; can it have a strictly negative derivative at an interior point?
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
+\section{Derivative function and standard functions}\label{C06-U1}
+\begin{keypoint}[Definition and results]
+A function is differentiable on an interval when it is differentiable at each of its points; its derivative associates with x the number $f\prime(x)$. The standard derivatives are: constant $\mapsto0$; $x\mapsto1$; $x^2\mapsto2x$; $x^3\mapsto3x^2$; $\dfrac{1}{x}\mapsto -\dfrac{1}{x^2}$ for $x\ne0$; $\sqrt x\mapsto \dfrac{1}{2\sqrt x}$ for $x>0$. For $n\in\Z$, $(x^n)\prime=nx^{n-1}$ on its domain of differentiability; for $n=0$, the derivative is 0 directly.
+\end{keypoint}
+\paragraph{Status and justification.} Square: the rate is $2a+h$. Reciprocal: for $a\ne0$, $h\ne0$ and $a+h\ne0$, $\dfrac{[\dfrac{1}{a+h}-\dfrac{1}{a}]}{h}=-\dfrac{1}{[a(a+h)]}$, which tends to $-\dfrac{1}{a^2}$. The other formulas are accepted here.
+\begin{example}For $f(x)=x^{-3}$, the domain is $\R\setminus\{0\}$ and $f\prime (x)=-3x^{-4}=-\dfrac{3}{x^4}$. For $g(x)=\sqrt x$, the function exists at 0, its standard derivative only for $x>0$.\end{example}\label{C06-EX1}
+\begin{pitfall}The domain of differentiability may be smaller than the domain of definition.\end{pitfall}
+\begin{application}Differentiate $x^5$, $x^{-2}$ and $\sqrt x$, stating the domains.\end{application}\label{C06-AP1}
+\section{Sum, product, reciprocal and quotient}\label{C06-U2}
+\begin{keypoint}[Definition and results]
+For differentiable u and v, $(u+v)\prime=u\prime+v\prime$, $(\lambda u)\prime=\lambda u\prime$, $(uv)\prime=u\prime v+uv\prime$. Where $v\ne0$, $(\dfrac{1}{v})\prime =-\dfrac{v\prime}{v^2}$ and $(\dfrac{u}{v})\prime =\dfrac{u\prime v-uv\prime}{v^2}$.
+\end{keypoint}
+\paragraph{Status and justification.} For the product, add and subtract $u(a+h)v(a)$ in the numerator. The rate becomes $\dfrac{u(a+h)[v(a+h)-v(a)]}{h}+\dfrac{v(a)[u(a+h)-u(a)]}{h}$. Since a differentiable function is continuous (accepted), we obtain $u(a)v\prime(a)+v(a)u\prime(a)$. The other rules are accepted.
+\begin{example}For $f(x)=\dfrac{x^2+1}{x-1}$, $x\ne1$, $f\prime (x)=\dfrac{[2x(x-1)-(x^2+1)]}{(x-1)^2}=\dfrac{x^2-2x-1}{(x-1)^2}$. Keeping the brackets avoids changing the sign of a single term instead of the whole numerator.\end{example}\label{C06-EX2}
+\begin{pitfall}The derivative of a product is not the product of the derivatives; the derivative of a quotient is not their quotient.\end{pitfall}
+\begin{application}Differentiate $(x^2+1)(3x-2)$, then $\dfrac{1}{x^2+1}$.\end{application}\label{C06-AP2}
+\section{Sign of the derivative and extrema}\label{C06-U3}
+\begin{keypoint}[Definition and results]
+On an interval I, if $f\prime\geq0$, f is increasing; if $f\prime\leq0$, it is decreasing; if $f\prime=0$ everywhere, it is constant. A strictly positive derivative implies strict increase. If f has a local extremum at an interior point where it is differentiable, its derivative is zero there. The converse is false.
+\end{keypoint}
+\paragraph{Status and justification.} Variation theorems accepted. For an interior minimum at a, the rates on the right are positive or zero, those on the left negative or zero; if they converge to the same real number, it is 0. Same argument for a maximum.
+\begin{example}$f(x)=x^3-3x$: $f\prime(x)=3(x-1)(x+1)$. f increases on $\intof{-\infty}{-1}$, decreases on $\intff{-1}{1}$, increases on $\intfo{1}{+\infty}$; local maximum $f(-1)=2$, local minimum $f(1)=-2$. Neither of these extrema is global on $\R$.\end{example}\label{C06-EX3}
+\mxinclude{figures/C06-U3}
+\begin{pitfall}The theorem applies on an interval. A function can decrease on two separate intervals without decreasing on their union.\end{pitfall}
+\begin{application}Study $f(x)=x^2-4x+1$ on $\intff{0}{3}$ and give its extrema on this interval.\end{application}\label{C06-AP3}
+\section{Parity, inequalities and comparison}\label{C06-U4}
+\begin{keypoint}[Definition and results]
+On a domain symmetric about 0, f is even if $f(-x)=f(x)$ and odd if $f(-x)=-f(x)$. The curve of an even function is symmetric about the y-axis; that of an odd function about the origin. To compare f and g, we study the sign of $f-g$, possibly with its derivative.
+\end{keypoint}
+\paragraph{Status and justification.} The symmetries follow from the coordinates of the image points. For an inequality, a study of variation may give a minimum of the difference, then its sign; the derivative does not directly replace this difference.
+\begin{example}For $x>0$, $h(x)=x+\dfrac{1}{x}-2$ has derivative $\dfrac{x^2-1}{x^2}$. It decreases up to 1 then increases; $h(1)=0$, so $x+\dfrac{1}{x}\geq 2$. Equality is obtained only at 1.\end{example}\label{C06-EX4}
+\begin{pitfall}Check the domain before parity. The sign of $f\prime-g\prime$ tells us about the variation of $f-g$, not directly about its sign.\end{pitfall}
+\begin{application}Study the parity of $x^4+x^2$ and $x^3-x$; prove $x^2+1\geq2x$.\end{application}\label{C06-AP4}
+\section{Optimisation}\label{C06-U5}
+\begin{keypoint}[Definition and results]
+Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints.
+\end{keypoint}
+\paragraph{Status and justification.} On a closed interval, an extremum is reached at an endpoint or at a point where the derivative vanishes and changes sign: the table of variations lets us compare these candidates.
+\begin{example}An open box has a square base of side x and height $6-x$, with $0\le x\le6$. Its volume $V(x)=x^2(6-x)$ has derivative $V\prime(x)=12x-3x^2=3x(4-x)$, positive on $\intff{0}{4}$ and negative on $\intff{4}{6}$. The maximum volume is $V(4)=32$.\end{example}\label{C06-EX5}
+\begin{beyond}[Newton's method]The tangent at $x_n$ meets the x-axis at $x_{n+1}=x_n-\dfrac{f(x_n)}{f\prime(x_n)}$ when $f\prime(x_n)\ne0$. For $f(x)=x^2-2$ and $x_0=1$, we obtain $x_1=\dfrac{3}{2}$ then $x_2=\dfrac{17}{12}$, whose squares are \num{2,25} then about \num{2,00694}: we approach $\sqrt2$. Convergence is not guaranteed in general. This method is not part of the première syllabus and is not assessed.\end{beyond}
+\begin{pitfall}A numerical value produced by an algorithm is not a proof of a minimum or of convergence.\end{pitfall}
+\begin{application}A rectangle of perimeter 12 m has width x. Determine the maximum area by differentiation.\end{application}\label{C06-AP5}
+\mxnewpage
+\section*{Exercise path}\label{C06-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\mxexercisehead{C06-E1}{A collection of derivatives}
+Consider the functions\[f(x)=3x^4-2x+7,\quad g(x)=(x^2+2)(x-1),\quad h(x)=\dfrac{2x+1}{x+3}.\]
+\begin{enumerate}[label=\arabic*.]
+\item State the domain of definition of each of these functions.
+\item Calculate their derivatives, naming the rule used each time. For $g$, first keep the two terms of the product rule; for $h$, write the numerator before simplifying it.
+\item Check the result for $g$ by expanding its expression before differentiating.
+\end{enumerate}
+\mxexercisehead{C06-E2}{A complete table}
+The function $f$ is defined on $\intff{0}{4}$ by $f(x)=x^3-6x^2+9x+1$. We look for its minimum and maximum values on this interval.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate and factorise $f\prime(x)$, then study its sign on $\intff{0}{4}$.
+\item Draw the variation table of $f$, giving the values at the endpoints and at the points where the derivative vanishes.
+\item Give the minimum and the maximum of $f$ on the interval, as well as all the x-coordinates where they are reached.
+\end{enumerate}
+\mxexercisehead{C06-E3}{A quotient}
+For every strictly positive real number $x$, let $f(x)=x+\dfrac4x$.
+\begin{enumerate}[label=\arabic*.]
+\item Study the variation of $f$ on $\intoo{0}{+\infty}$. Present the factors that determine the sign of the derivative.
+\item Deduce the smallest value of $x+\dfrac4x$, then write an inequality valid for all $x>0$. State exactly its equality case.
+\end{enumerate}
+\mxexercisehead{C06-E4}{Comparing two curves}
+The functions $f(x)=x^3$ and $g(x)=x$ are defined on $\R$. Let $\mathcal C_f$ and $\mathcal C_g$ be their curves in the same frame.
+\begin{enumerate}[label=\arabic*.]
+\item Determine the points of intersection of these two curves.
+\item Study their relative position on $\R$ using a suitable method. Express your result as the intervals where $\mathcal C_f$ is above or below $\mathcal C_g$.
+\end{enumerate}
+\mxexercisehead{C06-E5}{A box}
+A box without a lid is made from a square sheet of side 12 cm. A square of side $x$ cm is cut from each of the four corners, then the remaining edges are folded up. The thickness of the sheet is neglected.
+\begin{enumerate}[label=\arabic*.]
+\item Draw the net and express the height and the two dimensions of the base of the box. State the values of $x$ that give a box of nonzero volume.
+\item Express the volume $V(x)$ in cubic centimetres. Determine the dimensions that make this volume maximal.
+\item Check the values at the two endpoints of the domain and give the exact maximum volume.
+\end{enumerate}
+\mxinclude{figures/C06-E5}
+\mxexercisehead{C06-E6}{Stationary without an extremum}
+A student claims: ``If the derivative vanishes at a point, the function necessarily has a local extremum at that point.'' We study the function $f(x)=x^3$ to test this claim.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $f\prime(0)$.
+\item Compare with $f(0)$ the values of $f(x)$ for negative then positive real numbers $x$, as close to 0 as we like.
+\item Conclude about the existence of a local extremum at 0 and about the claim proposed.
+\end{enumerate}
+\mxexercisehead{C06-E7}{Comparing strategies}
+We wish to prove that, for every real number $x$, $x^2-6x+12\geq3$.
+\begin{enumerate}[label=\arabic*.]
+\item Give a proof by making a square appear.
+\item Give a second proof by studying the variation of a function.
+\item State the equality case. Compare the two methods: which requires the least calculation here?
+\end{enumerate}
+\mxexercisehead{C06-E8}{Delayed review}
+The reciprocal function $f(x)=\dfrac1x$ has domain $D=\R\setminus\{0\}$. A student calculates $f\prime(x)=-\dfrac1{x^2}<0$ and concludes that $f$ is decreasing on all of $D$.
+\begin{enumerate}[label=\arabic*.]
+\item Identify the missing hypothesis in the application of the theorem linking the sign of the derivative and variation.
+\item State the two intervals on which the conclusion is correct.
+\item Using the numbers $-1$ and 1, construct a counterexample to the conclusion on all of $D$.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\mxneed{12}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 12 p.~156, questions 1 and 2.}\label{C06-M1} Calculate the difference, study its sign and translate this into the relative position of the curves.
+\paragraph{CQFD, exercise 16 p.~156, questions f and g.}\label{C06-M2} For each function, give an interval on which it is both negative and increasing; justify the two properties separately.
+\begingroup\small
+\mxnewpage\section*{MCQ 1: understand and choose}\label{C06-Q1}
+\mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $(x^3)\prime$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x^2$
+\item $3x^2$
+\item $3x$
+\item $\dfrac{x^4}{4}$
+\end{enumerate}
+\item $(\dfrac{1}{x})\prime $ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-\dfrac{1}{x^2}$
+\item $\dfrac{1}{x^2}$
+\item $-\dfrac{1}{x}$
+\item $1$
+\end{enumerate}
+\item $(uv)\prime$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $u\prime v\prime$
+\item $u\prime+v\prime$
+\item $uv\prime$
+\item $u\prime v+uv\prime$
+\end{enumerate}
+\item $f\prime>0$ on an interval implies
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item f positive
+\item f negative
+\item f strictly increasing
+\item f constant
+\end{enumerate}
+\item $\dfrac{x^2+1}{x-1}$ is defined if
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x>0$
+\item $x\ne1$
+\item $x\ne-1$
+\item $x\ne0$
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{MCQ 2: understand and choose}\label{C06-Q2}
+\mxCount{qcm2} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $x^3-x$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item even
+\item constant
+\item odd
+\item neither even nor odd
+\end{enumerate}
+\item $f\prime(a)=0$ necessarily implies
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item a horizontal tangent
+\item a maximum
+\item a minimum
+\item f constant
+\end{enumerate}
+\item Derivative of $\sqrt x$:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2\sqrt x$
+\item $\dfrac{1}{\sqrt x}$
+\item $\dfrac{\sqrt x}{2}$
+\item $\dfrac{1}{2\sqrt x}$, $x>0$
+\end{enumerate}
+\item Minimum of $x+\dfrac{1}{x}$ on $\intoo{0}{+\infty}$:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $2$
+\item $1$
+\item none
+\end{enumerate}
+\item On $\intff{0}{6}$, the area $A(x)=x(6-x)$ is greatest for $x=$
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $6$
+\item $3$
+\item $9$
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C06-VF}
+\begin{enumerate}
+\item The derivative of a positive function is positive.
+\item An interior extremum of a differentiable function gives a zero derivative.
+\item The product of two increasing functions is increasing.
+\end{enumerate}
+\begin{keypoint}[Self-assessment]I differentiate on the right domain; I simplify without losing the forbidden values; I distinguish local from global extremum; I sometimes choose a factorisation rather than a derivative.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C06}\fi

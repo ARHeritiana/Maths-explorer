@@ -1,0 +1,28 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-complex-rotations-notes}{Rotations et nombres complexes}
+\mxsubtitle{Mathématiques expertes · géométrie \textperiodcentered{} Leçon et méthode \textperiodcentered{} 09}
+
+\begin{prerequisites}
+Forme algébrique, module et coordonnées.
+\end{prerequisites}
+
+\begin{keypoint}[Idées et méthode]
+À $z=x+iy$ correspond le point $\pt{x;y}$. Multiplier par $i$ donne $iz=-y+ix$ : le point devient $\pt{-y;x}$, soit un quart de tour direct autour de l’origine.
+
+Multiplier par $-1$ donne un demi-tour et multiplier par $-i$ donne un quart de tour horaire. Ces transformations conservent les distances à l’origine car $|i|=1$.
+
+Pour tourner autour d’un centre d’affixe a, on translate vers l’origine, on tourne, puis on revient : $z'=a+i(z-a)$. La rotation directe de centre a conserve les distances entre tous les points.
+\end{keypoint}
+
+\begin{example}
+Pour $a=1+i$ et $z=3+2i$, $z-a=2+i$, puis $i(z-a)=-1+2i$. L’image vaut $z'=3i$. Les vecteurs relatifs $\pt{2;1}$ et $\pt{-1;2}$ sont perpendiculaires et de même norme $\sqrt{5}$.
+\end{example}
+
+\begin{figurebox}
+\begin{tikzpicture}[scale=.85]\draw[mxaxisline](-.5,0)--(3,0) node[right]{$x$};\draw[mxaxisline](0,-.5)--(0,3) node[above]{$y$};\draw[mxcurve](2,0)--(2,2)--(0,2)--(0,0)--cycle;\fill[mxink](1,1)circle(2pt)node[right]{$a=1+i$};\foreach \x/\y/\z in {2/0/2,2/2/2+2i,0/2/2i,0/0/0}{\fill[mxmint](\x,\y)circle(2pt)node[below left]{$\z$};}\end{tikzpicture}
+\end{figurebox}
+
+\begin{activity}[À explorer]
+Dans le laboratoire des complexes, déplacer z puis comparer z et iz. Vérifier l’égalité des modules et la perpendicularité des vecteurs.
+\end{activity}
+

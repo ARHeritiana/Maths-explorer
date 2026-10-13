@@ -1,0 +1,347 @@
+{
+ "unit": "s01.fr.tex",
+ "segments": {
+  "1657725da476": {
+   "fr": "Arithmétique",
+   "en": "Arithmetic",
+   "status": "aligned",
+   "order": 0
+  },
+  "83b528b6bf2b": {
+   "fr": "2--11 septembre 2026",
+   "en": "2--11 September 2026",
+   "status": "aligned",
+   "order": 1
+  },
+  "e41d9aedc560": {
+   "fr": "Entiers, multiples et diviseurs",
+   "en": "Integers, multiples and divisors",
+   "status": "aligned",
+   "order": 2
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 3
+  },
+  "e0c2dcd662bc": {
+   "fr": "[[m1]] est l'ensemble des entiers naturels. [[m2]] contient les entiers naturels et leurs opposés.\nPour [[m3]], dire que [[m4]] est un \\textbf{multiple de $b$} signifie qu'il existe [[m5]] tel que [[m6]]. On dit aussi que [[m7]] divise [[m8]].",
+   "en": "[[m1]] is the set of natural numbers. [[m2]] contains the natural numbers and their opposites.\nFor [[m3]], saying that [[m4]] is a \\textbf{multiple of $b$} means that there exists [[m5]] such that [[m6]]. We also say that [[m7]] divides [[m8]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "2eb006201697": {
+   "fr": "[[m1]] : [[m2]] est un multiple de [[m3]] et de [[m4]]. Tout entier est multiple de [[m5]] et de lui-même ; [[m6]] est multiple de tout entier. Le seul multiple de [[m7]] est [[m8]].",
+   "en": "[[m1]]: [[m2]] is a multiple of [[m3]] and of [[m4]]. Every integer is a multiple of [[m5]] and of itself; [[m6]] is a multiple of every integer. The only multiple of [[m7]] is [[m8]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "0b829e29f02b": {
+   "fr": "Lister les diviseurs positifs de [[m1]] et de [[m2]]. Écrire trois multiples de [[m3]], dont un négatif. [[m4]] est-il un multiple de [[m5]] ? de [[m6]] ? Justifier.",
+   "en": "List the positive divisors of [[m1]] and of [[m2]]. Write three multiples of [[m3]], one of them negative. Is [[m4]] a multiple of [[m5]]? of [[m6]]? Justify.",
+   "status": "aligned",
+   "order": 6
+  },
+  "1242ea36e110": {
+   "fr": "Diviseurs de [[m1]] : [[m2]]. Diviseurs de [[m3]] : [[m4]]. Par exemple [[m5]] sont des multiples de [[m6]]. [[m7]] est multiple de [[m8]] ; [[m9]] n'est pas multiple de [[m10]].",
+   "en": "Divisors of [[m1]]: [[m2]]. Divisors of [[m3]]: [[m4]]. For example [[m5]] are multiples of [[m6]]. [[m7]] is a multiple of [[m8]]; [[m9]] is not a multiple of [[m10]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "7720e3e46dff": {
+   "fr": "Somme de multiples",
+   "en": "Sum of multiples",
+   "status": "aligned",
+   "order": 8
+  },
+  "af108dff6928": {
+   "fr": "La somme de deux multiples d'un entier [[m1]] est un multiple de [[m2]].",
+   "en": "The sum of two multiples of an integer [[m1]] is a multiple of [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "b68dbc9ca279": {
+   "fr": "Écrivons [[m1]] et [[m2]], avec [[m3]]. Alors [[m4]] et [[m5]]. Donc [[m6]] est un multiple de [[m7]]. Cela vaut aussi pour [[m8]].",
+   "en": "Write [[m1]] and [[m2]], with [[m3]]. Then [[m4]] and [[m5]]. So [[m6]] is a multiple of [[m7]]. This also holds for [[m8]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "1dab7cf868b6": {
+   "fr": "5--10 min",
+   "en": "5--10 min",
+   "status": "aligned",
+   "order": 11
+  },
+  "7385b0c1bab8": {
+   "fr": "Calculer [[m1]] ; [[m2]] ; l'image de [[m3]] par [[m4]].",
+   "en": "Calculate [[m1]]; [[m2]]; the image of [[m3]] under [[m4]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "aa1a309e8f28": {
+   "fr": "Parité et nombres premiers",
+   "en": "Parity and prime numbers",
+   "status": "aligned",
+   "order": 13
+  },
+  "c2c46d15e09d": {
+   "fr": "Un entier [[m1]] est \\textbf{pair} s'il s'écrit [[m2]], avec [[m3]], et \\textbf{impair} s'il s'écrit [[m4]].\nUn \\textbf{nombre premier} est un entier naturel supérieur ou égal à [[m5]] qui possède exactement deux diviseurs positifs : [[m6]] et lui-même.",
+   "en": "An integer [[m1]] is \\textbf{even} if it can be written [[m2]], with [[m3]], and \\textbf{odd} if it can be written [[m4]].\nA \\textbf{prime number} is a natural number greater than or equal to [[m5]] that has exactly two positive divisors: [[m6]] and itself.",
+   "status": "aligned",
+   "order": 14
+  },
+  "24925a81fe78": {
+   "fr": "Les nombres premiers inférieurs à [[m1]] sont : [[m2]], [[m3]], [[m4]], [[m5]], [[m6]], [[m7]], [[m8]], [[m9]], [[m10]], [[m11]], [[m12]], [[m13]], [[m14]], [[m15]], [[m16]], [[m17]], [[m18]], [[m19]], [[m20]], [[m21]], [[m22]], [[m23]], [[m24]], [[m25]], [[m26]].",
+   "en": "The prime numbers less than [[m1]] are: [[m2]], [[m3]], [[m4]], [[m5]], [[m6]], [[m7]], [[m8]], [[m9]], [[m10]], [[m11]], [[m12]], [[m13]], [[m14]], [[m15]], [[m16]], [[m17]], [[m18]], [[m19]], [[m20]], [[m21]], [[m22]], [[m23]], [[m24]], [[m25]], [[m26]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "d2722731c173": {
+   "fr": "Propriété à démontrer",
+   "en": "Property to prove",
+   "status": "aligned",
+   "order": 16
+  },
+  "52d9cf310a9e": {
+   "fr": "Le carré d'un entier impair est impair.",
+   "en": "The square of an odd integer is odd.",
+   "status": "aligned",
+   "order": 17
+  },
+  "bdc9857289af": {
+   "fr": "Si [[m1]], alors [[m2]]. Comme [[m3]], [[m4]] est impair. La forme finale justifie la parité ; quelques essais numériques ne suffisent pas à démontrer l'énoncé.",
+   "en": "If [[m1]], then [[m2]]. Since [[m3]], [[m4]] is odd. The final form justifies the parity; a few numerical trials are not enough to prove the statement.",
+   "status": "aligned",
+   "order": 18
+  },
+  "3361886bef15": {
+   "fr": "Tester si un entier est premier",
+   "en": "Testing whether an integer is prime",
+   "status": "aligned",
+   "order": 19
+  },
+  "8695f51e450e": {
+   "fr": "Pour [[m1]], il suffit de tester les diviseurs premiers inférieurs ou égaux à [[m2]]. En effet, si [[m3]] avec [[m4]], alors [[m5]] ; [[m6]] possède un diviseur premier qui divise aussi [[m7]].",
+   "en": "For [[m1]], it is enough to test the prime divisors less than or equal to [[m2]]. Indeed, if [[m3]] with [[m4]], then [[m5]]; [[m6]] has a prime divisor which also divides [[m7]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "a4aed313b4b5": {
+   "fr": "Montrer que [[m1]] est premier et que [[m2]] ne l'est pas.",
+   "en": "Show that [[m1]] is prime and that [[m2]] is not.",
+   "status": "aligned",
+   "order": 21
+  },
+  "5c728e0dd971": {
+   "fr": "Comme [[m1]], on teste [[m2]]. Aucun ne divise [[m3]] : pour [[m4]], [[m5]] ; pour [[m6]], [[m7]]. Donc [[m8]] est premier. En revanche, [[m9]] est composé.",
+   "en": "Since [[m1]], we test [[m2]]. None divides [[m3]]: for [[m4]], [[m5]]; for [[m6]], [[m7]]. So [[m8]] is prime. On the other hand, [[m9]] is composite.",
+   "status": "aligned",
+   "order": 22
+  },
+  "37edc9f0f040": {
+   "fr": "PGCD et fractions irréductibles",
+   "en": "GCD and irreducible fractions",
+   "status": "aligned",
+   "order": 23
+  },
+  "bcba7b5c90ea": {
+   "fr": "Définition et convention",
+   "en": "Definition and convention",
+   "status": "aligned",
+   "order": 24
+  },
+  "b81435864b57": {
+   "fr": "Pour deux entiers [[m1]] \\textbf{non tous deux nuls}, [[m2]] est le plus grand de leurs diviseurs positifs communs. On a [[m3]] et [[m4]] si [[m5]]. Par convention, on pose [[m6]] ; ce dernier cas ne relève pas de la définition par le plus grand diviseur.",
+   "en": "For two integers [[m1]] \\textbf{not both zero}, [[m2]] is the greatest of their common positive divisors. We have [[m3]] and [[m4]] if [[m5]]. By convention, we set [[m6]]; this last case does not come under the definition by the greatest divisor.",
+   "status": "aligned",
+   "order": 25
+  },
+  "79c8b0ceab91": {
+   "fr": "Par exemple, [[m1]], et les changements de signe de [[m2]] ou [[m3]] ne modifient pas ce résultat.",
+   "en": "For example, [[m1]], and changing the signs of [[m2]] or [[m3]] does not change this result.",
+   "status": "aligned",
+   "order": 26
+  },
+  "c971de805ff9": {
+   "fr": "Décomposition en facteurs premiers -- admise",
+   "en": "Prime factorisation -- accepted",
+   "status": "aligned",
+   "order": 27
+  },
+  "1919fbcc7820": {
+   "fr": "Tout entier naturel supérieur ou égal à [[m1]] est un produit de nombres premiers. Cette décomposition est unique à l'ordre des facteurs près.",
+   "en": "Every natural number greater than or equal to [[m1]] is a product of prime numbers. This factorisation is unique up to the order of the factors.",
+   "status": "aligned",
+   "order": 28
+  },
+  "08d95a74b78e": {
+   "fr": "Décomposer [[m1]], [[m2]], [[m3]] et [[m4]] en facteurs premiers.",
+   "en": "Factorise [[m1]], [[m2]], [[m3]] and [[m4]] into prime factors.",
+   "status": "aligned",
+   "order": 29
+  },
+  "d256136e5322": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]] ; [[m4]]. On divise successivement par des nombres premiers et on vérifie le produit final.",
+   "en": "[[m1]]; [[m2]]; [[m3]]; [[m4]]. We divide successively by prime numbers and check the final product.",
+   "status": "aligned",
+   "order": 30
+  },
+  "f9c23a9264c7": {
+   "fr": "Rendre une fraction irréductible",
+   "en": "Making a fraction irreducible",
+   "status": "aligned",
+   "order": 31
+  },
+  "2acf48e7acb9": {
+   "fr": "Pour [[m1]], diviser le numérateur [[m2]] et le dénominateur [[m3]] par [[m4]]. La fraction obtenue a un numérateur et un dénominateur premiers entre eux.",
+   "en": "For [[m1]], divide the numerator [[m2]] and the denominator [[m3]] by [[m4]]. The fraction obtained has a numerator and a denominator that are coprime.",
+   "status": "aligned",
+   "order": 32
+  },
+  "ade66619e787": {
+   "fr": "Rendre irréductibles [[m1]], [[m2]] et [[m3]].",
+   "en": "Make [[m1]], [[m2]] and [[m3]] irreducible.",
+   "status": "aligned",
+   "order": 33
+  },
+  "a3f47b4eb4c3": {
+   "fr": "Les PGCD valent respectivement [[m1]], [[m2]], [[m3]]. Ainsi [[m4]], [[m5]] et [[m6]]. Pour [[m7]], on peut aussi simplifier les facteurs [[m8]] dans les décompositions.",
+   "en": "The GCDs are [[m1]], [[m2]], [[m3]] respectively. Thus [[m4]], [[m5]] and [[m6]]. For [[m7]], we can also cancel the factors [[m8]] in the factorisations.",
+   "status": "aligned",
+   "order": 34
+  },
+  "e9cffaf868ea": {
+   "fr": "Vocabulaire ensembliste en contexte",
+   "en": "Set vocabulary in context",
+   "status": "aligned",
+   "order": 35
+  },
+  "39e7ec69aafc": {
+   "fr": "Définitions et notations",
+   "en": "Definitions and notation",
+   "status": "aligned",
+   "order": 36
+  },
+  "f03d3931bde1": {
+   "fr": "[[m1]] signifie que [[m2]] est un élément de [[m3]] ; [[m4]] signifie que tout élément de [[m5]] appartient à [[m6]]. [[m7]] est l'ensemble vide.",
+   "en": "[[m1]] means that [[m2]] is an element of [[m3]]; [[m4]] means that every element of [[m5]] belongs to [[m6]]. [[m7]] is the empty set.",
+   "status": "aligned",
+   "order": 37
+  },
+  "8e34d73e8397": {
+   "fr": "[[m1]] : éléments appartenant à [[m2]] \\textbf{et} à [[m3]] ;",
+   "en": "[[m1]]: elements belonging to [[m2]] \\textbf{and} to [[m3]];",
+   "status": "aligned",
+   "order": 38
+  },
+  "1e831119dcb3": {
+   "fr": "[[m1]] : éléments appartenant à [[m2]] \\textbf{ou} à [[m3]] (éventuellement aux deux) ;",
+   "en": "[[m1]]: elements belonging to [[m2]] \\textbf{or} to [[m3]] (possibly both);",
+   "status": "aligned",
+   "order": 39
+  },
+  "59a9c19ead51": {
+   "fr": "dans un ensemble de référence [[m1]], [[m2]] contient les éléments de [[m3]] qui ne sont pas dans [[m4]] ;",
+   "en": "in a reference set [[m1]], [[m2]] contains the elements of [[m3]] that are not in [[m4]];",
+   "status": "aligned",
+   "order": 40
+  },
+  "82faf03eecd8": {
+   "fr": "pour un ensemble fini, [[m1]] est son nombre d'éléments.",
+   "en": "for a finite set, [[m1]] is its number of elements.",
+   "status": "aligned",
+   "order": 41
+  },
+  "04d2ca3e5f0b": {
+   "fr": "Dans [[m1]], on pose [[m2]] et [[m3]]. Donner [[m4]], [[m5]], [[m6]] et [[m7]]. Les assertions [[m8]], [[m9]] et [[m10]] sont-elles vraies ?",
+   "en": "In [[m1]], let [[m2]] and [[m3]]. Give [[m4]], [[m5]], [[m6]] and [[m7]]. Are the statements [[m8]], [[m9]] and [[m10]] true?",
+   "status": "aligned",
+   "order": 42
+  },
+  "8e65e9ab0bc4": {
+   "fr": "[[m1]], [[m2]], [[m3]], [[m4]]. Les deux premières assertions sont vraies. La troisième est fausse, par exemple [[m5]] et [[m6]].",
+   "en": "[[m1]], [[m2]], [[m3]], [[m4]]. The first two statements are true. The third is false, for example [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "6a5d9c877a71": {
+   "fr": "Couple et produit cartésien",
+   "en": "Pair and Cartesian product",
+   "status": "aligned",
+   "order": 44
+  },
+  "34250a8529f1": {
+   "fr": "Un couple [[m1]] est ordonné : en général [[m2]]. Le produit cartésien [[m3]] est l'ensemble des couples [[m4]] avec [[m5]] et [[m6]]. Pour des ensembles finis, [[m7]].",
+   "en": "A pair [[m1]] is ordered: in general [[m2]]. The Cartesian product [[m3]] is the set of pairs [[m4]] with [[m5]] and [[m6]]. For finite sets, [[m7]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "59360f1b4b3c": {
+   "fr": "Écrire tous les éléments de [[m1]].",
+   "en": "Write all the elements of [[m1]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "af908d3bc19f": {
+   "fr": "[[m1]]. Il y a [[m2]] couples.",
+   "en": "[[m1]]. There are [[m2]] pairs.",
+   "status": "aligned",
+   "order": 47
+  },
+  "dd0938d730b0": {
+   "fr": "Algorithmique et réinvestissement",
+   "en": "Algorithms and putting it to use",
+   "status": "aligned",
+   "order": 48
+  },
+  "2cfe1512c065": {
+   "fr": "Python : entier, booléen et condition",
+   "en": "Python: integer, Boolean and condition",
+   "status": "aligned",
+   "order": 49
+  },
+  "a35a2f793cd1": {
+   "fr": "\\texttt{a \\% b} est le reste de la division euclidienne pour des entiers et [[m1]]. Un test renvoie un booléen : \\texttt{True} ou \\texttt{False}. L'égalité se teste par \\texttt{==} ; l'affectation utilise \\texttt{=}.",
+   "en": "\\texttt{a \\% b} is the remainder of the Euclidean division for integers and [[m1]]. A test returns a Boolean: \\texttt{True} or \\texttt{False}. Equality is tested with \\texttt{==}; assignment uses \\texttt{=}.",
+   "status": "aligned",
+   "order": 50
+  },
+  "63519f00b0d2": {
+   "fr": "Prévoir les résultats de \\texttt{est\\_multiple(35, 5)} et \\texttt{est\\_multiple(35, 6)}, puis de \\texttt{est\\_multiple(0, 7)}, \\texttt{est\\_multiple(7, 0)} et \\texttt{est\\_multiple(0, 0)}. Expliquer le rôle de la condition.",
+   "en": "Predict the results of \\texttt{est\\_multiple(35, 5)} and \\texttt{est\\_multiple(35, 6)}, then of \\texttt{est\\_multiple(0, 7)}, \\texttt{est\\_multiple(7, 0)} and \\texttt{est\\_multiple(0, 0)}. Explain the role of the condition.",
+   "status": "aligned",
+   "order": 51
+  },
+  "78e522368b57": {
+   "fr": "Les résultats sont \\texttt{True}, \\texttt{False}, \\texttt{True}, \\texttt{False}, \\texttt{True}. Le cas [[m1]] évite le calcul d'un reste modulo zéro, impossible, et applique la définition : seul [[m2]] est multiple de [[m3]].",
+   "en": "The results are \\texttt{True}, \\texttt{False}, \\texttt{True}, \\texttt{False}, \\texttt{True}. The case [[m1]] avoids calculating a remainder modulo zero, which is impossible, and applies the definition: only [[m2]] is a multiple of [[m3]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 53
+  },
+  "1a6576fc669d": {
+   "fr": "On dispose de [[m1]] cahiers et [[m2]] crayons. On veut former le plus grand nombre possible de lots identiques en utilisant tout le matériel. Combien de lots peut-on faire ? Que contient chacun d'eux ?",
+   "en": "We have [[m1]] notebooks and [[m2]] pencils. We want to make as many identical packs as possible, using all the material. How many packs can we make? What does each contain?",
+   "status": "aligned",
+   "order": 54
+  },
+  "798b705e86c5": {
+   "fr": "Le nombre de lots divise [[m1]] et [[m2]]. Son maximum est donc [[m3]]. Chaque lot contient [[m4]] cahiers et [[m5]] crayons. La vérification [[m6]], [[m7]] confirme l'utilisation de tout le matériel.",
+   "en": "The number of packs divides [[m1]] and [[m2]]. Its maximum is therefore [[m3]]. Each pack contains [[m4]] notebooks and [[m5]] pencils. The check [[m6]], [[m7]] confirms that all the material is used.",
+   "status": "aligned",
+   "order": 55
+  },
+  "b98ab4bb9fb2": {
+   "fr": "Diagnostic : faire expliciter « divise » et « est multiple de ». Aide : commencer par tester 2, 3, 6 lots. Approfondissement : démontrer que [[m1]] est pair en distinguant les deux parités de [[m2]].",
+   "en": "Diagnostic: have students state ``divides'' and ``is a multiple of''. Help: start by testing 2, 3, 6 packs. Extension: prove that [[m1]] is even by distinguishing the two parities of [[m2]].",
+   "status": "aligned",
+   "order": 56
+  }
+ }
+}

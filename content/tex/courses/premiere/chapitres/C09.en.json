@@ -1,0 +1,779 @@
+{
+ "unit": "C09.fr.tex",
+ "segments": {
+  "78db51962e28": {
+   "fr": "Fonction exponentielle et modèles continus",
+   "en": "The exponential function and continuous models",
+   "status": "aligned",
+   "order": 0
+  },
+  "d7ffadecaa6d": {
+   "fr": "Le parcours du chapitre",
+   "en": "Chapter path",
+   "status": "aligned",
+   "order": 1
+  },
+  "a8863213b3e8": {
+   "fr": "\\textbf{Objectifs.} Utiliser les propriétés algébriques ; dériver ; étudier une croissance ou décroissance ; relier exponentielle et suites géométriques.",
+   "en": "\\textbf{Objectives.} Use the algebraic properties; differentiate; study growth or decay; link the exponential to geometric sequences.",
+   "status": "aligned",
+   "order": 2
+  },
+  "798c855feaf7": {
+   "fr": "\\textbf{Prérequis.} Puissances, suites géométriques, dérivation et signe.",
+   "en": "\\textbf{Prerequisites.} Powers, geometric sequences, differentiation and sign.",
+   "status": "aligned",
+   "order": 3
+  },
+  "e5199e2ca3cb": {
+   "fr": "\\textbf{Repère annuel.} 2–11 février : 8 h",
+   "en": "\\textbf{Yearly reference point.} 2--11 February: 8 hours",
+   "status": "aligned",
+   "order": 4
+  },
+  "23409de27c2d": {
+   "fr": "Diagnostic : [[m1]] questions, 10 minutes",
+   "en": "Diagnostic: [[m1]] questions, 10 minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "716eac61815e": {
+   "fr": "Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.",
+   "en": "Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.",
+   "status": "aligned",
+   "order": 6
+  },
+  "76ab1bb4f5da": {
+   "fr": "Simplifier [[m1]].",
+   "en": "Simplify [[m1]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "558033064c02": {
+   "fr": "Exprimer [[m1]].",
+   "en": "Express [[m1]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "d0a3723f4cf0": {
+   "fr": "Dériver [[m1]].",
+   "en": "Differentiate [[m1]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "ba3523d23720": {
+   "fr": "Une décroissance de [[m1]] donne quel coefficient ?",
+   "en": "A [[m1]] decrease gives which coefficient?",
+   "status": "aligned",
+   "order": 11
+  },
+  "0cf692d623b0": {
+   "fr": "Pour une suite géométrique [[m1]], calculer [[m2]].",
+   "en": "For a geometric sequence [[m1]], calculate [[m2]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "65855e601207": {
+   "fr": "Après le diagnostic.",
+   "en": "After the diagnostic.",
+   "status": "aligned",
+   "order": 13
+  },
+  "b2d2cf721c3d": {
+   "fr": "Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.",
+   "en": "Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.",
+   "status": "aligned",
+   "order": 14
+  },
+  "cc06b44f9251": {
+   "fr": "Oral et logique.",
+   "en": "Speaking and logic.",
+   "status": "aligned",
+   "order": 15
+  },
+  "5cc3315ea5a4": {
+   "fr": "Expliquer la différence entre taux continu et coefficient multiplicateur discret ; présenter une inégalité prouvée par minimum d’une différence.",
+   "en": "Explain the difference between a continuous rate and a discrete multiplying coefficient; present an inequality proved through the minimum of a difference.",
+   "status": "aligned",
+   "order": 16
+  },
+  "c7fad140da61": {
+   "fr": "Chercher avant de formaliser",
+   "en": "Investigate before formalising",
+   "status": "aligned",
+   "order": 17
+  },
+  "1cc0d6f082e1": {
+   "fr": "Comparer les accroissements de [[m1]] et les valeurs de la fonction autour de 0, avec plusieurs pas positifs. Conjecturer une relation entre [[m2]] et 1 lorsque h devient petit.",
+   "en": "Compare the increments of [[m1]] and the values of the function around 0, with several positive steps. Conjecture a relation between [[m2]] and 1 when h becomes small.",
+   "status": "aligned",
+   "order": 18
+  },
+  "6a201310450e": {
+   "fr": "Organisation.",
+   "en": "Organisation.",
+   "status": "aligned",
+   "order": 19
+  },
+  "e743e88cbeed": {
+   "fr": "Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.",
+   "en": "Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.",
+   "status": "aligned",
+   "order": 20
+  },
+  "7ec91fb141d1": {
+   "fr": "Définir une fonction nouvelle",
+   "en": "Defining a new function",
+   "status": "aligned",
+   "order": 21
+  },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
+  "fbd7a56ea32a": {
+   "fr": "La fonction exponentielle est l’unique fonction f dérivable sur [[m1]] vérifiant [[m2]] et [[m3]]. Son existence et son unicité sont admises. On la note [[m4]], puis [[m5]] avec [[m6]]. Le nombre e est une constante ; x est la variable. L’exponentielle est strictement positive.",
+   "en": "The exponential function is the unique function f differentiable on [[m1]] satisfying [[m2]] and [[m3]]. Its existence and uniqueness are accepted. It is written [[m4]], then [[m5]] with [[m6]]. The number e is a constant; x is the variable. The exponential is strictly positive.",
+   "status": "aligned",
+   "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
+  },
+  "f1eedf2a87db": {
+   "fr": "Existence et unicité admises conformément au programme. La positivité se déduit, après les propriétés algébriques admises ci-dessous, de [[m1]] et de [[m2]].",
+   "en": "Existence and uniqueness accepted in accordance with the programme. Positivity is deduced, after the algebraic properties accepted below, from [[m1]] and from [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "f887dfa54cdc": {
+   "fr": "[[m1]], [[m2]], [[m3]]. La tangente en 0 est donc [[m4]]. La notation [[m5]] étend les propriétés des puissances à tout exposant réel.",
+   "en": "[[m1]], [[m2]], [[m3]]. The tangent at 0 is therefore [[m4]]. The notation [[m5]] extends the properties of powers to every real exponent.",
+   "status": "aligned",
+   "order": 26
+  },
+  "2b9c924d4878": {
+   "fr": "[[m1]], pas 0. La fonction ne prend jamais la valeur 0, même pour des x négatifs.",
+   "en": "[[m1]], not 0. The function never takes the value 0, even for negative x.",
+   "status": "aligned",
+   "order": 27
+  },
+  "90433a87e09b": {
+   "fr": "Quelle est l’équation de la tangente à [[m1]] en 1 ?",
+   "en": "What is the equation of the tangent to [[m1]] at 1?",
+   "status": "aligned",
+   "order": 28
+  },
+  "3ac4e0974a24": {
+   "fr": "Propriétés algébriques et comparaisons",
+   "en": "Algebraic properties and comparisons",
+   "status": "aligned",
+   "order": 29
+  },
+  "a908c942938e": {
+   "fr": "Pour tous réels x,y, [[m1]], [[m2]], [[m3]]. Pour n entier, [[m4]]. La fonction est strictement croissante sur [[m5]], donc [[m6]] et [[m7]].",
+   "en": "For all real x,y, [[m1]], [[m2]], [[m3]]. For integer n, [[m4]]. The function is strictly increasing on [[m5]], so [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "d2d0de17997a": {
+   "fr": "La relation d’addition est admise dans le parcours commun ; elle peut être approfondie via l’unicité. La positivité et [[m1]] donnent la stricte croissance. Celle-ci justifie les équivalences sur équations et inéquations.",
+   "en": "The addition relation is accepted in the common pathway; it can be explored further via uniqueness. Positivity and [[m1]] give strict increase. This justifies the equivalences for equations and inequalities.",
+   "status": "aligned",
+   "order": 31
+  },
+  "3e123b6b1a45": {
+   "fr": "[[m1]]. [[m2]] équivaut à [[m3]], donc x=3. [[m4]] équivaut à [[m5]].",
+   "en": "[[m1]]. [[m2]] is equivalent to [[m3]], so x=3. [[m4]] is equivalent to [[m5]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "89fe7b4acc70": {
+   "fr": "[[m1]] est un produit, jamais en général [[m2]]. On ne résout pas [[m3]] avec un logarithme non étudié en première.",
+   "en": "[[m1]] is a product, in general never [[m2]]. We do not solve [[m3]] with a logarithm, which is not studied in Première.",
+   "status": "aligned",
+   "order": 33
+  },
+  "1e4a8d169891": {
+   "fr": "Simplifier [[m1]] ; résoudre [[m2]].",
+   "en": "Simplify [[m1]]; solve [[m2]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "c15f0569a429": {
+   "fr": "Dériver et étudier",
+   "en": "Differentiating and studying",
+   "status": "aligned",
+   "order": 35
+  },
+  "cb4286484b60": {
+   "fr": "Pour a réel, [[m1]] est dérivable et sa dérivée vaut [[m2]]. Pour [[m3]], la dérivée est [[m4]]. Les règles de produit et quotient s’appliquent avec les dérivées déjà connues. Le signe de l’exponentielle simplifie souvent l’étude du signe de la dérivée.",
+   "en": "For real a, [[m1]] is differentiable and its derivative is [[m2]]. For [[m3]], the derivative is [[m4]]. The product and quotient rules apply with the derivatives already known. The sign of the exponential often simplifies the study of the sign of the derivative.",
+   "status": "aligned",
+   "order": 36
+  },
+  "5e60ecfb48b2": {
+   "fr": "La formule de dérivation de [[m1]] est admise ; le cas avec b en découle en sortant le facteur constant [[m2]]. La dérivation composée générale n’est pas nécessaire ici.",
+   "en": "The formula for differentiating [[m1]] is accepted; the case with b follows by taking out the constant factor [[m2]]. The general chain rule is not needed here.",
+   "status": "aligned",
+   "order": 37
+  },
+  "931339663cd2": {
+   "fr": "Pour [[m1]], [[m2]]. Comme [[m3]], la dérivée a le signe de [[m4]] : maximum global 1 en 0.",
+   "en": "For [[m1]], [[m2]]. Since [[m3]], the derivative has the sign of [[m4]]: global maximum 1 at 0.",
+   "status": "aligned",
+   "order": 38
+  },
+  "8646d28a9dc7": {
+   "fr": "Ne pas oublier le facteur a ni le signe négatif dans [[m1]]. Le facteur exponentiel est positif, pas nécessairement croissant.",
+   "en": "Do not forget the factor a or the negative sign in [[m1]]. The exponential factor is positive, not necessarily increasing.",
+   "status": "aligned",
+   "order": 39
+  },
+  "8faabfcdafef": {
+   "fr": "Dériver [[m1]] et étudier son sens de variation.",
+   "en": "Differentiate [[m1]] and study its direction of variation.",
+   "status": "aligned",
+   "order": 40
+  },
+  "2ec7ec8fd7f0": {
+   "fr": "Du discret au continu",
+   "en": "From discrete to continuous",
+   "status": "aligned",
+   "order": 41
+  },
+  "480449712548": {
+   "fr": "Un modèle [[m1]], avec [[m2]], représente une croissance si [[m3]], une décroissance si [[m4]], une constance si [[m5]]. Pour un pas h fixe, [[m6]]. Les valeurs aux instants entiers forment une suite géométrique de raison [[m7]]. L’unité de k est l’inverse de l’unité de temps.",
+   "en": "A model [[m1]], with [[m2]], represents growth if [[m3]], decay if [[m4]], constancy if [[m5]]. For a fixed step h, [[m6]]. The values at integer times form a geometric sequence with common ratio [[m7]]. The unit of k is the inverse of the unit of time.",
+   "status": "aligned",
+   "order": 42
+  },
+  "90dfac631808": {
+   "fr": "Le rapport résulte de [[m1]]. Le sens de variation se déduit de [[m2]] et de la positivité du facteur restant.",
+   "en": "The ratio follows from [[m1]]. The direction of variation is deduced from [[m2]] and the positivity of the remaining factor.",
+   "status": "aligned",
+   "order": 43
+  },
+  "ff50e4abb356": {
+   "fr": "[[m1]], t en heures : [[m2]], [[m3]]. Une simulation peut chercher le premier nombre entier d’heures où Q passe sous 50 ; l’équation exacte n’est pas résolue par logarithme dans ce chapitre.",
+   "en": "[[m1]], t in hours: [[m2]], [[m3]]. A simulation can look for the first whole number of hours at which Q falls below 50; the exact equation is not solved with a logarithm in this chapter.",
+   "status": "aligned",
+   "order": 44
+  },
+  "e197371a7383": {
+   "fr": "Le taux relatif par unité de temps discrète est [[m1]], pas exactement k ; ils sont proches seulement pour k petit.",
+   "en": "The relative rate per discrete unit of time is [[m1]], not exactly k; they are close only for small k.",
+   "status": "aligned",
+   "order": 45
+  },
+  "5888960b45d1": {
+   "fr": "Pour [[m1]], exprimer [[m2]] et [[m3]].",
+   "en": "For [[m1]], express [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "7400f66cebb1": {
+   "fr": "Démontrer une inégalité",
+   "en": "Proving an inequality",
+   "status": "aligned",
+   "order": 47
+  },
+  "1b62b44fe0a8": {
+   "fr": "L’inégalité [[m1]], valable pour tout réel x, s’obtient par l’étude de la fonction [[m2]] : la courbe de l’exponentielle est au-dessus de sa tangente en 0.",
+   "en": "The inequality [[m1]], true for every real x, is obtained by studying the function [[m2]]: the curve of the exponential lies above its tangent at 0.",
+   "status": "aligned",
+   "order": 48
+  },
+  "2c8a2121d4e5": {
+   "fr": "Pour [[m1]], [[m2]], négative si x<0 et positive si x>0. Le minimum vaut [[m3]], ce qui prouve l’inégalité ; égalité seulement en 0.",
+   "en": "For [[m1]], [[m2]], negative if x<0 and positive if x>0. The minimum is [[m3]], which proves the inequality; equality only at 0.",
+   "status": "aligned",
+   "order": 49
+  },
+  "b04c820c2f7d": {
+   "fr": "Avec [[m1]], l’inégalité donne [[m2]] ; la calculatrice affiche [[m3]]. Avec [[m4]], elle donne [[m5]], ce qui est vrai mais peu précis.",
+   "en": "With [[m1]], the inequality gives [[m2]]; the calculator displays [[m3]]. With [[m4]], it gives [[m5]], which is true but not very precise.",
+   "status": "aligned",
+   "order": 50
+  },
+  "ee95dcfad40d": {
+   "fr": "Méthode d’Euler",
+   "en": "Euler's method",
+   "status": "aligned",
+   "order": 51
+  },
+  "241271121e6c": {
+   "fr": "Pour approcher la solution de [[m1]], [[m2]] avec un pas [[m3]], on remplace l’accroissement par [[m4]] : [[m5]]. Avec [[m6]] sur [[m7]], on obtient [[m8]], soit [[m9]] pour n=2 et environ [[m10]] pour n=10, à comparer à [[m11]]. Cette méthode ne figure pas au programme de première et n’est pas évaluée.",
+   "en": "To approximate the solution of [[m1]], [[m2]] with a step [[m3]], we replace the increment by [[m4]]: [[m5]]. With [[m6]] on [[m7]], we obtain [[m8]], that is [[m9]] for n=2 and about [[m10]] for n=10, to be compared with [[m11]]. This method is not part of the première syllabus and is not assessed.",
+   "status": "aligned",
+   "order": 52
+  },
+  "f837a7889e31": {
+   "fr": "Un graphique qui montre une courbe au-dessus d’une droite ne prouve pas l’inégalité sur tous les réels.",
+   "en": "A graph showing a curve above a line does not prove the inequality for all real numbers.",
+   "status": "aligned",
+   "order": 53
+  },
+  "5db337048f22": {
+   "fr": "Montrer que [[m1]] pour tout réel x.",
+   "en": "Show that [[m1]] for every real number x.",
+   "status": "aligned",
+   "order": 54
+  },
+  "c82d22e2d8b1": {
+   "fr": "Parcours d’exercices",
+   "en": "Exercise path",
+   "status": "aligned",
+   "order": 55
+  },
+  "31c1e4322269": {
+   "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
+   "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
+   "status": "aligned",
+   "order": 56
+  },
+  "68c170c0011c": {
+   "fr": "Transformer",
+   "en": "Transforming",
+   "status": "aligned",
+   "order": 57
+  },
+  "4daf285468fd": {
+   "fr": "Pour tout réel [[m1]], on considère les expressions",
+   "en": "For every real number [[m1]], consider the expressions",
+   "status": "aligned",
+   "order": 58
+  },
+  "3fe1ebaf1a3e": {
+   "fr": "Simplifier [[m1]] et [[m2]] en justifiant chaque regroupement d’exposants.",
+   "en": "Simplify [[m1]] and [[m2]], justifying each grouping of exponents.",
+   "status": "aligned",
+   "order": 59
+  },
+  "f846bd297942": {
+   "fr": "Développer puis simplifier [[m1]]. Expliquer pourquoi une somme ne se simplifie pas de la même façon qu’un produit.",
+   "en": "Expand then simplify [[m1]]. Explain why a sum does not simplify in the same way as a product.",
+   "status": "aligned",
+   "order": 60
+  },
+  "d92eea8959fb": {
+   "fr": "Équations et inéquations",
+   "en": "Equations and inequalities",
+   "status": "aligned",
+   "order": 61
+  },
+  "02aeff501de6": {
+   "fr": "On considère une équation et une inéquation d’inconnue réelle [[m1]] :",
+   "en": "Consider an equation and an inequality in the real unknown [[m1]]:",
+   "status": "aligned",
+   "order": 62
+  },
+  "87d14895f5ea": {
+   "fr": "Résoudre chacune dans [[m1]], en citant la propriété de l’exponentielle qui autorise la comparaison des exposants.",
+   "en": "Solve each in [[m1]], citing the property of the exponential that allows the exponents to be compared.",
+   "status": "aligned",
+   "order": 63
+  },
+  "c9b2153cbfe9": {
+   "fr": "Lors de la résolution de l’inéquation, expliquer à quelle étape le sens de l’inégalité change. Donner l’ensemble des solutions sous forme d’intervalle.",
+   "en": "While solving the inequality, explain at which step the direction of the inequality changes. Give the solution set as an interval.",
+   "status": "aligned",
+   "order": 64
+  },
+  "98fd6d529bab": {
+   "fr": "Produit et maximum",
+   "en": "Product and maximum",
+   "status": "aligned",
+   "order": 65
+  },
+  "97e99a13bbc5": {
+   "fr": "La fonction [[m1]] est définie sur [[m2]] par [[m3]].",
+   "en": "The function [[m1]] is defined on [[m2]] by [[m3]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "582a4005dcbd": {
+   "fr": "Calculer [[m1]], puis étudier son signe sur l’intervalle.",
+   "en": "Calculate [[m1]], then study its sign on the interval.",
+   "status": "aligned",
+   "order": 67
+  },
+  "b7792657495b": {
+   "fr": "Dresser le tableau de variations de [[m1]]. En déduire son maximum et l’abscisse où il est atteint.",
+   "en": "Draw the variation table of [[m1]]. Deduce its maximum and the x-coordinate where it is reached.",
+   "status": "aligned",
+   "order": 68
+  },
+  "52966eb169bb": {
+   "fr": "Contrôler que les valeurs aux bornes ne donnent pas un maximum plus grand. Conserver les valeurs exactes.",
+   "en": "Check that the values at the endpoints do not give a larger maximum. Keep the exact values.",
+   "status": "aligned",
+   "order": 69
+  },
+  "30e5591c1631": {
+   "fr": "Une population modélisée",
+   "en": "A modelled population",
+   "status": "aligned",
+   "order": 70
+  },
+  "47a1ffec79e7": {
+   "fr": "Les deux parties suivantes sont indépendantes.",
+   "en": "The following two parts are independent.",
+   "status": "aligned",
+   "order": 71
+  },
+  "9fe6a9529b0f": {
+   "fr": "\\textbf{Partie A — Une population.} Une population est modélisée par [[m1]], où [[m2]] est le temps écoulé en années. [[m3]] est un effectif théorique, qui n’est pas nécessairement entier.",
+   "en": "\\textbf{Part A: A population.} A population is modelled by [[m1]], where [[m2]] is the time elapsed in years. [[m3]] is a theoretical count, which is not necessarily an integer.",
+   "status": "aligned",
+   "order": 72
+  },
+  "3cae12fa85c6": {
+   "fr": "Déterminer l’effectif initial, puis le coefficient multiplicateur entre les instants [[m1]] et [[m2]]. En déduire le taux annuel exact et son pourcentage arrondi au centième.",
+   "en": "Determine the initial count, then the multiplying coefficient between times [[m1]] and [[m2]]. Deduce the exact annual rate and its percentage rounded to the nearest hundredth.",
+   "status": "aligned",
+   "order": 73
+  },
+  "830d45ca9857": {
+   "fr": "Expliquer pourquoi ce modèle ne peut pas nécessairement décrire une population réelle indéfiniment.",
+   "en": "Explain why this model cannot necessarily describe a real population indefinitely.",
+   "status": "aligned",
+   "order": 74
+  },
+  "318acd1378b5": {
+   "fr": "\\textbf{Partie B — Deux courbes.} Dans un même repère, esquisser les courbes de [[m1]] et [[m2]]. Préciser leurs variations, leur point commun et leur symétrie. Identifier clairement chaque courbe.",
+   "en": "\\textbf{Part B: Two curves.} In the same frame, sketch the curves of [[m1]] and [[m2]]. State their variation, their common point and their symmetry. Identify each curve clearly.",
+   "status": "aligned",
+   "order": 75
+  },
+  "8c5db2f46273": {
+   "fr": "Recherche d’un seuil",
+   "en": "Searching for a threshold",
+   "status": "aligned",
+   "order": 76
+  },
+  "0cabb1496948": {
+   "fr": "La quantité d’une substance, en milligrammes, est modélisée à l’instant [[m1]] par [[m2]], où [[m3]] est exprimé en heures. Les contrôles ont lieu aux instants entiers [[m4]]. On cherche le premier contrôle pour lequel la quantité est strictement inférieure à 10 mg.",
+   "en": "The quantity of a substance, in milligrams, is modelled at time [[m1]] by [[m2]], where [[m3]] is expressed in hours. Checks take place at integer times [[m4]]. We look for the first check at which the quantity is strictly less than 10 mg.",
+   "status": "aligned",
+   "order": 77
+  },
+  "ff73069b8e76": {
+   "fr": "Écrire un algorithme de recherche de ce premier entier. Prévoir une borne d’itérations et préciser ce que le programme renvoie si la borne est atteinte.",
+   "en": "Write an algorithm that searches for this first integer. Provide an iteration bound and state what the program returns if the bound is reached.",
+   "status": "aligned",
+   "order": 78
+  },
+  "c1377391d6c6": {
+   "fr": "Exécuter l’algorithme, puis vérifier numériquement la quantité au rang trouvé et au rang précédent.",
+   "en": "Run the algorithm, then check numerically the quantity at the index found and at the previous index.",
+   "status": "aligned",
+   "order": 79
+  },
+  "9413c7932837": {
+   "fr": "Justifier, à l’aide de la décroissance de [[m1]], que ce double contrôle établit qu’il s’agit bien du premier rang. Ne pas utiliser de logarithme.",
+   "en": "Justify, using the decrease of [[m1]], that this double check establishes that it is indeed the first index. Do not use a logarithm.",
+   "status": "aligned",
+   "order": 80
+  },
+  "6e911677ab8d": {
+   "fr": "Une symétrie",
+   "en": "A symmetry",
+   "status": "aligned",
+   "order": 81
+  },
+  "3a1ce7afb829": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]].",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "993100da892e": {
+   "fr": "Étudier la parité de [[m1]] et interpréter le résultat pour sa courbe.",
+   "en": "Study the parity of [[m1]] and interpret the result for its curve.",
+   "status": "aligned",
+   "order": 83
+  },
+  "09764d2d447b": {
+   "fr": "Démontrer que [[m1]] pour tout réel [[m2]], en choisissant une méthode. Préciser le cas d’égalité.",
+   "en": "Prove that [[m1]] for every real number [[m2]], choosing a method. State the equality case.",
+   "status": "aligned",
+   "order": 84
+  },
+  "d8377306b6d4": {
+   "fr": "Proposer un contrôle du résultat par une seconde méthode, à partir d’un carré ou d’une étude de variations.",
+   "en": "Suggest a check of the result by a second method, from a square or a study of variation.",
+   "status": "aligned",
+   "order": 85
+  },
+  "0881f0183201": {
+   "fr": "Unicité sous une hypothèse",
+   "en": "Uniqueness under a hypothesis",
+   "status": "aligned",
+   "order": 86
+  },
+  "9e8388f698ca": {
+   "fr": "\\textbf{Approfondissement.} On suppose que la fonction exponentielle a déjà été construite. Soit [[m1]] une fonction dérivable sur [[m2]] qui vérifie [[m3]] pour tout réel [[m4]] et [[m5]]. On pose [[m6]].",
+   "en": "\\textbf{Extension.} Assume that the exponential function has already been constructed. Let [[m1]] be a function differentiable on [[m2]] that satisfies [[m3]] for every real number [[m4]] and [[m5]]. Let [[m6]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "b82773d2388f": {
+   "fr": "Calculer [[m1]] et expliquer pourquoi [[m2]] est constante sur [[m3]].",
+   "en": "Calculate [[m1]] and explain why [[m2]] is constant on [[m3]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "24ffa2c0ba73": {
+   "fr": "Déterminer cette constante, puis en déduire l’expression de [[m1]].",
+   "en": "Determine this constant, then deduce the expression of [[m1]].",
+   "status": "aligned",
+   "order": 89
+  },
+  "77a31859d1cc": {
+   "fr": "Cette démonstration établit-elle l’existence ou l’unicité de la fonction cherchée ? Justifier.",
+   "en": "Does this proof establish the existence or the uniqueness of the function sought? Justify.",
+   "status": "aligned",
+   "order": 90
+  },
+  "2956a7106212": {
+   "fr": "Reprise différée",
+   "en": "Delayed review",
+   "status": "aligned",
+   "order": 91
+  },
+  "11716528a9a3": {
+   "fr": "On définit la suite [[m1]] par [[m2]] pour tout entier naturel [[m3]].",
+   "en": "Define the sequence [[m1]] by [[m2]] for every natural number [[m3]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "1f71c4c708e3": {
+   "fr": "Démontrer que cette suite est géométrique, puis préciser son premier terme et sa raison.",
+   "en": "Prove that this sequence is geometric, then state its first term and common ratio.",
+   "status": "aligned",
+   "order": 93
+  },
+  "8b28e555426f": {
+   "fr": "Calculer [[m1]] sous forme exacte. Comparer le calcul direct et l’utilisation d’une formule de somme.",
+   "en": "Calculate [[m1]] in exact form. Compare the direct calculation with the use of a sum formula.",
+   "status": "aligned",
+   "order": 94
+  },
+  "261ef763c4c8": {
+   "fr": "Travail personnel.",
+   "en": "Homework.",
+   "status": "aligned",
+   "order": 95
+  },
+  "1e62d212eb03": {
+   "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
+   "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
+   "status": "aligned",
+   "order": 96
+  },
+  "8a14bcc09f57": {
+   "fr": "À faire dans le manuel CQFD",
+   "en": "To do in the CQFD textbook",
+   "status": "aligned",
+   "order": 97
+  },
+  "3b23cff4a4c2": {
+   "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
+   "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
+   "status": "aligned",
+   "order": 98
+  },
+  "267ef9550ab0": {
+   "fr": "CQFD, exercice 18 p. 187, questions a, b et c.",
+   "en": "CQFD, exercise 18 p.~187, questions a, b and c.",
+   "status": "aligned",
+   "order": 99
+  },
+  "bd1a11997291": {
+   "fr": "Simplifier les produits et quotients en citant la propriété des exponentielles employée.",
+   "en": "Simplify the products and quotients, citing the property of exponentials used.",
+   "status": "aligned",
+   "order": 100
+  },
+  "07386e1fa86a": {
+   "fr": "CQFD, exercice 30 p. 187, questions a, b et c.",
+   "en": "CQFD, exercise 30 p.~187, questions a, b and c.",
+   "status": "aligned",
+   "order": 101
+  },
+  "9b633b920641": {
+   "fr": "Résoudre les trois inéquations et écrire les ensembles de solutions sous forme d’intervalles.",
+   "en": "Solve the three inequalities and write the solution sets as intervals.",
+   "status": "aligned",
+   "order": 102
+  },
+  "3b951efef83f": {
+   "fr": "QCM 1 : comprendre et choisir",
+   "en": "MCQ 1: understand and choose",
+   "status": "aligned",
+   "order": 103
+  },
+  "214bc4b49b04": {
+   "fr": "[[m1]] questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "[[m1]] single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 104
+  },
+  "3089e3b021dc": {
+   "fr": "Dérivée de [[m1]] :",
+   "en": "Derivative of [[m1]]:",
+   "status": "aligned",
+   "order": 105
+  },
+  "efe1d7d2f69b": {
+   "fr": "[[m1]] équivaut à",
+   "en": "[[m1]] is equivalent to",
+   "status": "aligned",
+   "order": 106
+  },
+  "4b614216f27f": {
+   "fr": "aucune solution",
+   "en": "no solution",
+   "status": "aligned",
+   "order": 107
+  },
+  "bda207d7b742": {
+   "fr": "Le signe de [[m1]] est",
+   "en": "The sign of [[m1]] is",
+   "status": "aligned",
+   "order": 108
+  },
+  "f510afe763bd": {
+   "fr": "négatif si x>0",
+   "en": "negative if x>0",
+   "status": "aligned",
+   "order": 109
+  },
+  "23a10281237c": {
+   "fr": "toujours strictement positif",
+   "en": "always strictly positive",
+   "status": "aligned",
+   "order": 110
+  },
+  "1aa3a9f0597b": {
+   "fr": "nul en 0",
+   "en": "zero at 0",
+   "status": "aligned",
+   "order": 111
+  },
+  "b46d0172433d": {
+   "fr": "variable",
+   "en": "variable",
+   "status": "aligned",
+   "order": 112
+  },
+  "cc229fe9b5f3": {
+   "fr": "QCM 2 : comprendre et choisir",
+   "en": "MCQ 2: understand and choose",
+   "status": "aligned",
+   "order": 113
+  },
+  "2c454934102d": {
+   "fr": "[[m1]] a pour raison",
+   "en": "[[m1]] has common ratio",
+   "status": "aligned",
+   "order": 114
+  },
+  "35b72b6f23a1": {
+   "fr": "Tangente à [[m1]] en 0 :",
+   "en": "Tangent to [[m1]] at 0:",
+   "status": "aligned",
+   "order": 115
+  },
+  "f27444236a7e": {
+   "fr": "[[m1]] a égalité",
+   "en": "[[m1]] has equality",
+   "status": "aligned",
+   "order": 116
+  },
+  "f82d9e61af37": {
+   "fr": "pour tout x",
+   "en": "for all x",
+   "status": "aligned",
+   "order": 117
+  },
+  "f8c58d796069": {
+   "fr": "en 1 seulement",
+   "en": "at 1 only",
+   "status": "aligned",
+   "order": 118
+  },
+  "44fa0c40fa0e": {
+   "fr": "en 0 seulement",
+   "en": "at 0 only",
+   "status": "aligned",
+   "order": 119
+  },
+  "3f1e319f11e8": {
+   "fr": "jamais",
+   "en": "never",
+   "status": "aligned",
+   "order": 120
+  },
+  "d5fc4ef9b48b": {
+   "fr": "Vrai ou faux ? Justifier.",
+   "en": "True or false? Justify.",
+   "status": "aligned",
+   "order": 121
+  },
+  "f4969130ee8c": {
+   "fr": "[[m1]] pour tout x.",
+   "en": "[[m1]] for all x.",
+   "status": "aligned",
+   "order": 122
+  },
+  "8ea7078eaa7f": {
+   "fr": "La fonction [[m1]] est décroissante.",
+   "en": "The function [[m1]] is decreasing.",
+   "status": "aligned",
+   "order": 123
+  },
+  "9ae6b39fdebf": {
+   "fr": "Un taux continu k=[[m1]] correspond exactement à [[m2]] de hausse en une unité de temps.",
+   "en": "A continuous rate k=[[m1]] corresponds exactly to a [[m2]] increase in one unit of time.",
+   "status": "aligned",
+   "order": 124
+  },
+  "6630f206d598": {
+   "fr": "Bilan personnel",
+   "en": "Self-assessment",
+   "status": "aligned",
+   "order": 125
+  },
+  "a49c287fac37": {
+   "fr": "Je conserve les règles des puissances ; je connais la positivité ; je dérive avec le facteur ; je sépare modèle, calcul exact et simulation.",
+   "en": "I keep the rules for powers; I know the positivity; I differentiate with the factor; I separate model, exact calculation and simulation.",
+   "status": "aligned",
+   "order": 126
+  },
+  "4dab232b00d5": {
+   "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
+   "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
+   "status": "aligned",
+   "order": 127
+  },
+  "a5bc1d9b2ae7": {
+   "fr": "et",
+   "en": "and",
+   "status": "aligned",
+   "order": 128
+  }
+ }
+}

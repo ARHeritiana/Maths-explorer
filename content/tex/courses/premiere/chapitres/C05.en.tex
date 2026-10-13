@@ -1,0 +1,227 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{premiere-c05}{Conditional probability and independence}\label{C05}
+\begin{keypoint}[Chapter path]
+\textbf{Objectives.} Change the reference sample space; build a tree; use a partition; distinguish disjoint events from independent events; handle up to four Bernoulli trials.
+
+\textbf{Prerequisites.} Fractions, proportions, probabilities on a finite sample space, intersection and union.
+
+\textbf{Yearly reference point.} 17--26 November: 8 hours\end{keypoint}
+\section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C05-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item Out of 40 students, 12 play a given sport. What proportion is that?
+\item If $P(A)=\num{0,3}$, give $P(\overline A)$.
+\item Write ``A and B'' in set notation.
+\item Write ``A or B'' using the inclusive or.
+\item Calculate $\num{0,4}\times\num{0,25}$.
+\item A fair die is rolled. Give $P(\ens{2;4;6})$.
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Explain aloud what ``given'', ``and'' and ``at least'' mean. On a tree, justify an addition and a multiplication.
+\mxnewpage
+\section*{Investigate before formalising}\label{C05-RECH}
+Build a table of 100 people in which A and B are independent, with 40 in A and 30 in B. Change two cells, keeping these totals, so as to destroy the independence.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
+\section{Conditioning: changing the denominator}\label{C05-U1}
+\begin{keypoint}[Definition and results]
+For $P(A)>0$, the probability of B given A is $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$. In a table of equally likely counts, it is the quotient of the count of $A\cap B$ by the count of A. In general $P_A(B)\ne P_B(A)$.
+\end{keypoint}
+\paragraph{Status and justification.} Definition. Multiplying by $P(A)$ gives the rule $P(A\cap B)=P(A)P_A(B)$. The condition $P(A)>0$ is essential.
+\begin{example}Out of 100 people, 40 belong to A, 30 to B and 12 to both. $P_A(B)=\dfrac{12}{40}=\num{0,3}$, whereas $P_B(A)=\dfrac{12}{30}=\num{0,4}$. $P(A\cap B)=\num{0,12}$.\end{example}\label{C05-EX1}
+\begin{pitfall}``Among the A's'' fixes the denominator. A conditional probability is not an intersection.\end{pitfall}
+\begin{application}Out of 60 objects, 20 are red; among the red ones, 5 are damaged. Calculate $P(R\cap D)$ and $P_R(D)$.\end{application}\label{C05-AP1}
+\section{Trees, partitions and total probability}\label{C05-U2}
+\begin{keypoint}[Definition and results]
+A partition $A_1,\ldots,A_k$ is a family of disjoint events whose union is the sample space. If their probabilities are positive, $P(B)=\sum_iP(A_i)P_{A_i}(B)$. On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.
+\end{keypoint}
+\paragraph{Status and justification.} $B$ is the disjoint union of the sets $B\cap A_i$. By additivity and by the definition of conditional probability, $P(B)=\sum_iP(B\cap A_i)=\sum_iP(A_i)P_{A_i}(B)$.
+\begin{example}Two machines supply \pc{60} and \pc{40} of a production; their defect rates are \pc{2} and \pc{5}. $P(D)=\num{0,6}\times\num{0,02}+\num{0,4}\times\num{0,05}=\num{0,032}$. Among the defective items, the first machine accounts for $\dfrac{\num{0,012}}{\num{0,032}}=\dfrac{3}{8}$.\end{example}\label{C05-EX2}
+\mxinclude{figures/C05-U2}
+\begin{pitfall}The simple average of the rates is correct only if the branches have equal weights.\end{pitfall}
+\begin{application}$P(A)=\dfrac{1}{3}$, $P_A(B)=\dfrac{3}{4}$, $P_{\overline A}(B)=\dfrac{1}{4}$. Calculate $P(B)$.\end{application}\label{C05-AP2}
+\section{Independence and disjointness}\label{C05-U3}
+\begin{keypoint}[Definition and results]
+A and B are independent if $P(A\cap B)=P(A)P(B)$. If $P(A)>0$, this is equivalent to $P_A(B)=P(B)$. They are disjoint if $A\cap B=\varnothing$. Two disjoint events of strictly positive probability are not independent.
+\end{keypoint}
+\paragraph{Status and justification.} The conditional criterion follows from a division by $P(A)>0$. For disjoint events of positive probability, the left-hand side is 0 and the right-hand product is strictly positive.
+\begin{example}With a fair die, let A: the result is even, B: the result is at least 5. $P(A)=\dfrac{1}{2}$, $P(B)=\dfrac{1}{3}$, $P(A\cap B)=\dfrac{1}{6}$: independent. A and ``the result is odd'' are disjoint but not independent.\end{example}\label{C05-EX3}
+\begin{pitfall}Independence in a model must be justified or stated explicitly; ``two different events'' is not enough.\end{pitfall}
+\begin{application}Given $P(A)=\num{0,4}$, $P(B)=\num{0,5}$, $P(A\cap B)=\num{0,18}$. Are they independent?\end{application}\label{C05-AP3}
+\section{Successive trials and Bernoulli trials}\label{C05-U4}
+\begin{keypoint}[Definition and results]
+A Bernoulli trial has two outcomes: success, with probability p, and failure, with probability $1-p$. In a repetition of n independent, identical trials, with $n\leq4$ here, the branch probabilities remain p and $1-p$. A path with k successes has probability $p^k(1-p)^{n-k}$; we count the paths that realise the event.
+\end{keypoint}
+\paragraph{Status and justification.} The probability of a path is a product, by independence. The paths corresponding to an event are disjoint: their probabilities add.
+\begin{example}For three trials with $p=\dfrac{1}{2}$, exactly two successes correspond to SSF, SFS, FSS. Each path has probability $\dfrac{1}{8}$, so the total is $\dfrac{3}{8}$. At least one success has probability $1-(\dfrac{1}{2})^3=\dfrac{7}{8}$.\end{example}\label{C05-EX4}
+\begin{pitfall}When drawing without replacement from an urn, the probabilities generally change after the first draw: the independent model may be wrong.\end{pitfall}
+\begin{application}Four independent trials, each with probability $p=\dfrac{1}{3}$. Calculate the probability of four failures, then of at least one success.\end{application}\label{C05-AP4}
+\section{Simulating and discussing the model}\label{C05-U5}
+\begin{keypoint}[Definition and results]
+A pseudo-random simulation produces frequencies that fluctuate around a probability of the model. For a uniform point in the square $\intff{0}{1}^2$, the proportion satisfying $y\leq x^2$ estimates the area under the parabola; the proportion satisfying $x^2+y^2\leq1$, multiplied by 4, estimates $\pi$. Repetitions must use new draws.
+\end{keypoint}
+\paragraph{Status and justification.} Simulation principle accepted and explored experimentally. The equality of probability and area is an interpretation of the uniform draw; integration is not a prerequisite. A simulation does not prove an exact value.
+\begin{example}Among 10000 points, if 7840 lie in the quarter disc, the estimate of $\pi$ is $\dfrac{4\times 7840}{10000}=\num{3,136}$. Two trials of the same size generally give different values.\end{example}\label{C05-EX5}
+\begin{pitfall}Fixing a seed makes a trial reproducible; it neither removes the randomness of the model nor guarantees any accuracy.\end{pitfall}
+\begin{application}A simulation of 2000 points gives 675 points below $y=x^2$. What area does it estimate?\end{application}\label{C05-AP5}
+\mxnewpage
+\section*{Exercise path}\label{C05-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\mxexercisehead{C05-E1}{A table}
+A survey covers 100 users of two transport services A and B. Of these, 40 use A, 35 use B and 15 use both. One of the 100 users is chosen at random; all are equally likely to be chosen. The events $A$ and $B$ mean, respectively, ``the user uses service A'' and ``the user uses service B''.
+\begin{enumerate}[label=\arabic*.]
+\item Build and complete a two-way table: use or non-use of A in the rows, use or non-use of B in the columns. Add the totals.
+\item Calculate $P_A(B)$ and $P_B(A)$. For each calculation, state the reference population used as the denominator.
+\item Interpret the two probabilities in two distinct sentences.
+\end{enumerate}
+\mxexercisehead{C05-E2}{Production}
+A company makes objects in two workshops A and B, which provide $\dfrac14$ and $\dfrac34$ of the production respectively. Among the objects made by A, 4 percent are defective; among those made by B, 2 percent are. An object is chosen at random from the whole production. Let $D$ be the event ``the object is defective''.
+\begin{enumerate}[label=\arabic*.]
+\item Represent the situation with a weighted tree and state the meaning of each second-level probability.
+\item Calculate $P(D)$ and interpret the result as an overall defect rate.
+\item It is now known that the chosen object is defective. What is the probability that it was made in workshop A?
+\end{enumerate}
+\mxexercisehead{C05-E3}{Checking independence}
+A fair six-sided die, with faces numbered 1 to 6, is rolled. Consider the events $A$: ``obtain an even number'' and $B$: ``obtain a number greater than or equal to 4''.
+\begin{enumerate}[label=\arabic*.]
+\item Write the sets of outcomes corresponding to $A$, $B$ and $A\cap B$.
+\item Determine whether the events $A$ and $B$ are independent. Justify using a numerical criterion.
+\item Explain why they are not disjoint either.
+\end{enumerate}
+\mxexercisehead{C05-E4}{Without replacement}
+An urn contains three red balls and two blue balls, indistinguishable by touch. A first ball is drawn at random, then a second without replacing the first. At each draw, all the balls in the urn are equally likely.
+\begin{enumerate}[label=\arabic*.]
+\item Build the weighted tree of the two draws, distinguishing the colour obtained at the first and at the second draw.
+\item Calculate the probability of drawing two red balls.
+\item Calculate the probability of drawing one ball of each colour. Explain why two paths of the tree must be taken into account.
+\end{enumerate}
+\mxexercisehead{C05-E5}{Three trials}
+An experiment has a success of probability $\dfrac13$ and a failure. It is repeated three times independently, under the same conditions.
+\begin{enumerate}[label=\arabic*.]
+\item Build a three-level tree, or list the eight possible sequences of outcomes.
+\item Calculate the probability of exactly one success. State the paths used.
+\item Calculate the probability of at least two successes, treating the cases of two and of three successes separately.
+\end{enumerate}
+\mxexercisehead{C05-E6}{Detector}
+A device checks objects of which 2 percent are defective. It raises an alarm for 90 percent of the defective objects and, wrongly, for 5 percent of the objects without a defect. An inspected object is chosen at random. Let $D$ be the event ``the object is defective'' and $S$ the event ``the device raises an alarm''.
+\begin{enumerate}[label=\arabic*.]
+\item Determine the proportion of truly defective objects among those flagged. Choose a representation and detail the reasoning.
+\item Give an exact value, then a percentage rounded to the nearest tenth.
+\item Someone proposes 90 percent directly as the answer. Explain precisely which confusion of probabilities they are making.
+\end{enumerate}
+\mxexercisehead{C05-E7}{Sets and cardinality}
+We work in the set $E=\ens{1;2;3;4}$. Consider its subsets $A=\ens{1;2}$ and $B=\ens{2;4}$.
+\begin{enumerate}[label=\arabic*.]
+\item Write $A\cap B$, $A\cup B$ and the complement of $A$ in $E$. Give the cardinality of each.
+\item Write all the pairs of $A\times B$, then give its cardinality.
+\item Explain why the pairs $\pt{1;2}$ and $\pt{2;1}$ cannot be confused. Does the second belong to $A\times B$?
+\end{enumerate}
+\mxexercisehead{C05-E8}{Delayed review}
+In a random experiment, two events $A$ and $B$ satisfy\[P(A)=\dfrac12,\qquad P_A(B)=\dfrac14,\qquad P_{\overline A}(B)=\dfrac34.\]
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $P(B)$ using a tree or the law of total probability.
+\item Calculate $P_B(A)$, making the common event used in the numerator explicit.
+\item Are the probabilities $P_A(B)$ and $P_B(A)$ equal here? Is this equality a general property?
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\mxneed{12}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 67 p.~336, questions 1, 2 and 3.}\label{C05-M1} Build a tree keeping the textbook's events D and N. Careful: N denotes a negative test.
+\paragraph{CQFD, exercise 70 p.~336, questions a and b.}\label{C05-M2} Count the four equally likely outcomes of the two throws to refute the proposed equalities.
+\begingroup\small
+\mxnewpage\section*{MCQ 1: understand and choose}\label{C05-Q1}
+\mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $P_A(B)$ has as denominator
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $P(B)$
+\item $P(A)$
+\item $P(A\cap B)$
+\item $1-P(A)$
+\end{enumerate}
+\item $P(A)=\num{0,4}$, $P_A(B)=\num{0,2}$: intersection
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\num{0,08}$
+\item $\num{0,6}$
+\item $\num{0,5}$
+\item $\num{0,2}$
+\end{enumerate}
+\item A partition consists of events that are
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item equal
+\item all independent
+\item equally probable
+\item disjoint and covering the sample space
+\end{enumerate}
+\item Independence is equivalent to
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $P(A)=P(B)$
+\item $P(A\cap B)=0$
+\item $P(A\cap B)=P(A)P(B)$
+\item $A=B$
+\end{enumerate}
+\item Two disjoint events of positive probability are
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item independent
+\item not independent
+\item equal
+\item necessarily complementary
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{MCQ 2: understand and choose}\label{C05-Q2}
+\mxCount{qcm2} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item Three independent tosses of a fair coin, at least one head:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\dfrac{1}{8}$
+\item $\dfrac{3}{8}$
+\item $\dfrac{7}{8}$
+\item $\dfrac{1}{2}$
+\end{enumerate}
+\item Two independent trials with $p=\dfrac{1}{3}$, two successes:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\dfrac{1}{9}$
+\item $\dfrac{2}{3}$
+\item $\dfrac{1}{3}$
+\item $\dfrac{4}{9}$
+\end{enumerate}
+\item The branches leaving the same node sum to
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $0$
+\item $2$
+\item the probability of the path
+\item $1$
+\end{enumerate}
+\item A simulation gives a frequency equal to \num{0,51}. This
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item proves $p=\num{0,51}$
+\item is a fluctuating observation
+\item proves $p=\dfrac{1}{2}$
+\item refutes $p=\dfrac{1}{2}$
+\end{enumerate}
+\item Drawing without replacement, after a red ball from 3 red and 2 blue, the probability of red is:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\dfrac{3}{5}$
+\item $\dfrac{3}{4}$
+\item $\dfrac{1}{2}$
+\item $\dfrac{2}{5}$
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C05-VF}
+\begin{enumerate}
+\item $P_A(B)=P_B(A)$ for all events of positive probability.
+\item If A and B are independent, so are A and $\overline B$.
+\item Two successive draws are always independent.
+\end{enumerate}
+\begin{keypoint}[Self-assessment]I identify the right denominator; I check the sums at the nodes; I justify independence; I count the paths without confusing them.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C05}\fi

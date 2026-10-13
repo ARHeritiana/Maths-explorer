@@ -1,0 +1,39 @@
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-diophantine-solutions}{Bézout et équations entières}
+\mxsubtitle{Mathématiques expertes · approfondissement \textperiodcentered{} Solutions détaillées \textperiodcentered{} 04}
+
+\begin{exercise}
+Calculer $\pgcd(84,30)$ et donner une identité de Bézout.
+\end{exercise}
+\begin{solution}
+$84 = 2 \times  30 + 24$ et $30 = 24 + 6$. Donc $6 = 3 \times  30 - 84$ et le PGCD vaut 6.
+\end{solution}
+
+\begin{exercise}
+L’équation $12x + 18y = 5$ admet-elle des solutions entières ?
+\end{exercise}
+\begin{solution}
+Non : $\pgcd(12,18) = 6$, qui ne divise pas 5.
+\end{solution}
+
+\begin{exercise}
+Donner toutes les solutions entières de $5x + 3y = 1$.
+\end{exercise}
+\begin{solution}
+$\pt{-1;2}$ est une solution. Toutes sont $x = -1 + 3t, y = 2 - 5t$, avec t entier.
+\end{solution}
+
+\begin{exercise}
+Parmi les solutions de $5x + 3y = 31$, trouver celles avec x et y positifs ou nuls.
+\end{exercise}
+\begin{solution}
+Modulo 3, $x \equiv  2$. Avec $0 \leq  x \leq  6$, $x$ vaut 2 ou 5. Les couples sont $\pt{2;7}$ et $\pt{5;2}$.
+\end{solution}
+
+\begin{problem}[Chercher, justifier, conclure]
+Une commande de 100 objets doit être livrée en boîtes de 7 et de 11 objets, sans ouvrir de boîte. Déterminer toutes les répartitions possibles, puis celle utilisant le moins de boîtes. Justifier qu’aucune autre solution positive ou nulle n’a été oubliée.
+\end{problem}
+\begin{solution}
+On résout $7x + 11y = 100$. Modulo 7, $4y \equiv  2$, donc $y \equiv  4$ (mod 7). Comme $0 \leq  y \leq  9$, seule la valeur $y = 4$ convient, d’où $x = 8$. Il faut 12 boîtes. Cette solution est unique, donc minimise automatiquement le nombre de boîtes.
+\end{solution}
+

@@ -1,0 +1,25 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-invariants-notes}{Parity and invariants}
+\mxsubtitle{High school · reasoning \textperiodcentered{} Lesson and method \textperiodcentered{} 01}
+
+\begin{prerequisites}
+Even and odd integers; proof by contradiction.
+\end{prerequisites}
+
+\begin{keypoint}[Ideas and method]
+An invariant is a quantity or property preserved by every allowed move. If the target has a different invariant value from the initial state, it cannot be reached.
+
+To study parity, replace integers with their remainders 0 or 1 modulo 2. Two odd integers have an even sum. Adding an even integer preserves parity.
+
+Method: specify one move, find what it preserves, and compute the invariant at the start and at the target. An obstruction proves impossibility; the absence of an obstruction does not prove possibility.
+\end{keypoint}
+
+\begin{example}
+Start at 0 and add or subtract 6 at each move. Every reachable number is even, so 15 is unreachable. The number 14 is also unreachable, but parity alone cannot prove this: every reachable number is a multiple of 6.
+\end{example}
+
+\begin{activity}[Explore]
+Write several sequences of moves, then classify the reached numbers. Find a common property more precise than parity.
+\end{activity}
+

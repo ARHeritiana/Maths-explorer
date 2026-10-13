@@ -1,0 +1,946 @@
+% GENERATED, edit the French unit or the translation table
+\mxfront{terminale-e8}
+\mxnewpage\phantomsection\label{sujet:8-1}\addcontentsline{toc}{chapter}{Mock 2 · Practice 1}
+
+\section*{Mock 2 · Practice 1}
+
+\mxbanner{PRACTICE PAPER · TRAINING}
+
+\textbf{Duration: 4 hours · Marked out of 20 · \mxTallied{ex-8-1} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-8-1}
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, let $I_n=\displaystyle\int_0^1x^ne^{5x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{5x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(0.5 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(0.5 pt)}
+
+\item Prove, by comparing the integrands, that $(I_n)$ is positive and decreasing. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\le\frac{e^{5}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
+
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{5x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+
+\item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-1}
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{4+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw up the table of variations of $f$. \hfill\textit{(0.5 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(0.5 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{3}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
+
+\item Independently of the previous questions, solve $\ln(x-3)+\ln(x+3)=\ln(27)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 2 · Practice 1 · continued}
+
+\mxtally{ex-8-1}
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=10$ and the point $M\pt{3;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
+
+\begin{enumerate}
+
+\item Give a parametric representation of $d$. \hfill\textit{(0.5 pt)}
+
+\item Prove that $d$ meets $\mathcal P$ at a point $H$, then calculate the coordinates of $H$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $H$ is the orthogonal projection of $M$ onto $\mathcal P$, then calculate the distance from $M$ to $\mathcal P$. \hfill\textit{(0.5 pt)}
+
+\item Consider the plane $\mathcal Q$ with equation $y=z$. Prove that $\mathcal P\cap\mathcal Q$ is a line and give a parametric representation of it. \hfill\textit{(1 pt)}
+
+\item Check that $H\in\mathcal Q$. Deduce the distance from $M$ to the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Determine a Cartesian equation of the plane parallel to $\mathcal P$ passing through $M$. \hfill\textit{(0.5 pt)}
+
+\item Determine the angle between $d$ and the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Define the point $N$ by $\vect{MN}=\vec n$. Calculate the distances from $N$ to the plane $\mathcal P$ and to the line $\mathcal P\cap\mathcal Q$, then compare them. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-1}
+\subsection*{Exercise 4 · Repeated trials and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $20$ times. The trials are independent and the probability of success is $p=\frac{3}{10}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Using complementary events, express and then calculate the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,20\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $20$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 2 · Practice 1}\label{cor:8-1}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[0.5 pt]} La fonction $x\mapsto \frac{e^{5x}}{5}$ is an antiderivative of $e^{5x}$. Thus $I_0=[\frac{e^{5x}}{5}]_0^1=\frac{e^{5}-1}{5}$.
+
+\item \textit{[0.5 pt]} Take $u(x)=x$ and $v(x)=\frac{e^{5x}}{5}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{5x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{5x}}{5}\right]_0^1-\frac{1}{5}\int_0^1e^{5x}\,\dd x\\&=\frac{e^{5}}{5}-\frac{e^{5}-1}{25}=\frac{4e^{5}+1}{25}.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{5x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and decreasing (in the weak sense). The inequalities are even strict: the integrands of $I_n$ and of $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{5x}\le e^{5}$; so $0\le I_n\le e^{5}\int_0^1x^n\,\dd x=\frac{e^{5}}{n+1}\to0$.
+
+\item \textit{[0.5 pt]} Apply integration by parts with $u(x)=x^{n+1}$ and $v(x)=\frac{e^{5x}}{5}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{5x}}{5}\right]_0^1-\frac{n+1}{5}\int_0^1x^ne^{5x}\,\dd x\\&=\frac{e^{5}}{5}-\frac{n+1}{5}I_n.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $0\le x\le1$, $e^{5x}\ge1$ and $x^n\ge0$. So $x^n\le x^ne^{5x}$; integrating,
+\[I_n\ge\int_0^1x^n\,\dd x=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}.\]
+
+\item \textit{[0.5 pt]} The function $x\mapsto e^{5x}$ is increasing. On each interval $[\frac{j}{N},\frac{j+1}{N}]$, the values at the endpoints bound the function. Integrating and then summing,
+\[L_N=\frac{1}{N}\sum_{j=0}^{N-1}e^{\frac{5j}{N}}\le I_0\le U_N=\frac{1}{N}\sum_{j=1}^Ne^{\frac{5j}{N}}.\]
+The interior terms cancel in the difference, so $U_N-L_N=\frac{e^{5}-1}{N}$.
+
+\mxneed{24}
+
+\item \textit{[1 pt]} The width is at most $10^{-2}$ if $N\ge100(e^{5}-1)$. The first integer satisfying this bound is $N=14742$. Here is the computation of the bounds:
+\begin{lstlisting}
+from math import exp, ceil
+
+def bornes():
+    N = ceil(100*(exp(5)-1))
+    bas = sum(exp(5*j/N) for j in range(N))/N
+    haut = bas+(exp(5)-1)/N
+    return N, bas, haut
+\end{lstlisting}
+
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[0.5 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(4+\ln x)}{x^2}=\frac{-3-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-3}$, is positive for $0<x<s$ and negative for $x>s$. Thus $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[0.5 pt]} The maximum is attained only at $s=e^{-3}$ and equals
+\[f(s)=\frac{4- 3}{e^{-3}}=e^{3}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $4+\ln x=0$, that is $x=e^{-4}$.
+
+\item \textit{[1 pt]} Differentiating $(-3-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-3-\ln x)x^{-3}=\frac{2\ln x+5}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{5}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
+
+\item \textit{[0.5 pt]} Let $m=\frac{e^{3}}{2}$ and $s=e^{-3}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\item \textit{[0.5 pt]} Let $F(x)=4\ln x+\frac12(\ln x)^2$, differentiable for $x>0$. Then $F'(x)=\frac{4}{x}+\frac{\ln x}{x}=f(x)$; $F$ is an antiderivative on $]0,+\infty[$.
+
+\item \textit{[0.5 pt]} With this antiderivative, $F(e)=\frac{9}{2}$ and $F(1)=0$. The integral is therefore $\frac{9}{2}$, and the mean value is
+\[\mu=\frac{1}{e-1}\int_1^e f(x)\,\dd x=\frac{9}{2(e-1)}.\]
+
+\item \textit{[1 pt]} Domain $x>3$; $x^2-9=27$, so $x=6$, the negative root being excluded.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Line, plane and orthogonal projection}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{3+t;2t;2t}$, $t\in\R$.
+
+\item \textit{[0.5 pt]} $3+9t=10$ gives $t=\frac{7}{9}$; $H=\pt{\frac{34}{9};\frac{14}{9};\frac{14}{9}}$.
+
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{7}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Therefore
+\[d(M,\mathcal P)=MH=|\frac{7}{9}|\,3=\frac{7}{3}.\]
+
+\item \textit{[1 pt]} Set $y=z=s$; $x=10-4s$. So $\pt{x;y;z}=\pt{10;0;0}+s\pt{-4;1;1}$.
+
+\item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{7}{3}$.
+
+\item \textit{[0.5 pt]} $x+2y+2z=3$; same normal vector, passing through $M$.
+
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
+
+\item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its orthogonal projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every point $P$ of this line, $NP^2=NH^2+HP^2$, so its minimum distance to $N$ is $NH$. Finally,
+\[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{7}{9}-1|\,\|\vec n\|=\frac{2}{3}.\]
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repeated trials and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{20;\frac{3}{10}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{3}{10})^2(\frac{7}{10})^{18}\simeq\num{0,027846}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{20}-20(\frac{3}{10})(\frac{7}{10})^{19}\simeq\num{0,992363}$.
+
+\item \textit{[1 pt]} $E(X)=6$, $V(X)=\frac{21}{5}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{7}{10})^N$. It is strictly increasing with $N$, since $0<\frac{7}{10}<1$. The calculations give
+\[P_{8}\simeq\num{0,942352}<\num{0,95},\qquad P_{9}\simeq\num{0,959646}\ge\num{0,95}.\]
+Thus $9$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=20$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{20}j(\frac{3}{10})^j(\frac{7}{10})^{20-j}\simeq\num{0,106289}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 20, 3/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $9$. The cumulative values at ranks $8$ and $9$ are approximately $\num{0,886669}$ and $\num{0,952038}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:8-2}\addcontentsline{toc}{chapter}{Mock 2 · Practice 2}
+
+\section*{Mock 2 · Practice 2}
+
+\mxbanner{PRACTICE PAPER · TRAINING}
+
+\textbf{Duration: 4 hours · Marked out of 20 · \mxTallied{ex-8-2} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-8-2}
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, let $I_n=\displaystyle\int_0^1x^ne^{4x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{4x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(0.5 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(0.5 pt)}
+
+\item Prove, by comparing the integrands, that $(I_n)$ is positive and decreasing. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\le\frac{e^{4}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
+
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{4x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+
+\item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-2}
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{3+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw up the table of variations of $f$. \hfill\textit{(0.5 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(0.5 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{2}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
+
+\item Independently of the previous questions, solve $\ln(x-1)+\ln(x+1)=\ln(63)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 2 · Practice 2 · continued}
+
+\mxtally{ex-8-2}
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=6$ and the point $M\pt{1;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
+
+\begin{enumerate}
+
+\item Give a parametric representation of $d$. \hfill\textit{(0.5 pt)}
+
+\item Prove that $d$ meets $\mathcal P$ at a point $H$, then calculate the coordinates of $H$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $H$ is the orthogonal projection of $M$ onto $\mathcal P$, then calculate the distance from $M$ to $\mathcal P$. \hfill\textit{(0.5 pt)}
+
+\item Consider the plane $\mathcal Q$ with equation $y=z$. Prove that $\mathcal P\cap\mathcal Q$ is a line and give a parametric representation of it. \hfill\textit{(1 pt)}
+
+\item Check that $H\in\mathcal Q$. Deduce the distance from $M$ to the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Determine a Cartesian equation of the plane parallel to $\mathcal P$ passing through $M$. \hfill\textit{(0.5 pt)}
+
+\item Determine the angle between $d$ and the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Define the point $N$ by $\vect{MN}=\vec n$. Calculate the distances from $N$ to the plane $\mathcal P$ and to the line $\mathcal P\cap\mathcal Q$, then compare them. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-2}
+\subsection*{Exercise 4 · Repeated trials and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $17$ times. The trials are independent and the probability of success is $p=\frac{3}{10}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Using complementary events, express and then calculate the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,17\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $17$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 2 · Practice 2}\label{cor:8-2}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[0.5 pt]} La fonction $x\mapsto \frac{e^{4x}}{4}$ is an antiderivative of $e^{4x}$. Thus $I_0=[\frac{e^{4x}}{4}]_0^1=\frac{e^{4}-1}{4}$.
+
+\item \textit{[0.5 pt]} Take $u(x)=x$ and $v(x)=\frac{e^{4x}}{4}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{4x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{4x}}{4}\right]_0^1-\frac{1}{4}\int_0^1e^{4x}\,\dd x\\&=\frac{e^{4}}{4}-\frac{e^{4}-1}{16}=\frac{3e^{4}+1}{16}.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{4x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and decreasing (in the weak sense). The inequalities are even strict: the integrands of $I_n$ and of $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{4x}\le e^{4}$; so $0\le I_n\le e^{4}\int_0^1x^n\,\dd x=\frac{e^{4}}{n+1}\to0$.
+
+\item \textit{[0.5 pt]} Apply integration by parts with $u(x)=x^{n+1}$ and $v(x)=\frac{e^{4x}}{4}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{4x}}{4}\right]_0^1-\frac{n+1}{4}\int_0^1x^ne^{4x}\,\dd x\\&=\frac{e^{4}}{4}-\frac{n+1}{4}I_n.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $0\le x\le1$, $e^{4x}\ge1$ and $x^n\ge0$. So $x^n\le x^ne^{4x}$; integrating,
+\[I_n\ge\int_0^1x^n\,\dd x=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}.\]
+
+\item \textit{[0.5 pt]} The function $x\mapsto e^{4x}$ is increasing. On each interval $[\frac{j}{N},\frac{j+1}{N}]$, the values at the endpoints bound the function. Integrating and then summing,
+\[L_N=\frac{1}{N}\sum_{j=0}^{N-1}e^{\frac{4j}{N}}\le I_0\le U_N=\frac{1}{N}\sum_{j=1}^Ne^{\frac{4j}{N}}.\]
+The interior terms cancel in the difference, so $U_N-L_N=\frac{e^{4}-1}{N}$.
+
+\mxneed{24}
+
+\item \textit{[1 pt]} The width is at most $10^{-2}$ if $N\ge100(e^{4}-1)$. The first integer satisfying this bound is $N=5360$. Here is the computation of the bounds:
+\begin{lstlisting}
+from math import exp, ceil
+
+def bornes():
+    N = ceil(100*(exp(4)-1))
+    bas = sum(exp(4*j/N) for j in range(N))/N
+    haut = bas+(exp(4)-1)/N
+    return N, bas, haut
+\end{lstlisting}
+
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[0.5 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(3+\ln x)}{x^2}=\frac{-2-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-2}$, is positive for $0<x<s$ and negative for $x>s$. Thus $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[0.5 pt]} The maximum is attained only at $s=e^{-2}$ and equals
+\[f(s)=\frac{3- 2}{e^{-2}}=e^{2}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $3+\ln x=0$, that is $x=e^{-3}$.
+
+\item \textit{[1 pt]} Differentiating $(-2-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-2-\ln x)x^{-3}=\frac{2\ln x+3}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{3}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
+
+\item \textit{[0.5 pt]} Let $m=\frac{e^{2}}{2}$ and $s=e^{-2}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\item \textit{[0.5 pt]} Let $F(x)=3\ln x+\frac12(\ln x)^2$, differentiable for $x>0$. Then $F'(x)=\frac{3}{x}+\frac{\ln x}{x}=f(x)$; $F$ is an antiderivative on $]0,+\infty[$.
+
+\item \textit{[0.5 pt]} With this antiderivative, $F(e)=\frac{7}{2}$ and $F(1)=0$. The integral is therefore $\frac{7}{2}$, and the mean value is
+\[\mu=\frac{1}{e-1}\int_1^e f(x)\,\dd x=\frac{7}{2(e-1)}.\]
+
+\item \textit{[1 pt]} Domain $x>1$; $x^2-1=63$, so $x=8$, the negative root being excluded.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Line, plane and orthogonal projection}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{1+t;2t;2t}$, $t\in\R$.
+
+\item \textit{[0.5 pt]} $1+9t=6$ gives $t=\frac{5}{9}$; $H=\pt{\frac{14}{9};\frac{10}{9};\frac{10}{9}}$.
+
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{5}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Therefore
+\[d(M,\mathcal P)=MH=|\frac{5}{9}|\,3=\frac{5}{3}.\]
+
+\item \textit{[1 pt]} Set $y=z=s$; $x=6-4s$. So $\pt{x;y;z}=\pt{6;0;0}+s\pt{-4;1;1}$.
+
+\item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{5}{3}$.
+
+\item \textit{[0.5 pt]} $x+2y+2z=1$; same normal vector, passing through $M$.
+
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
+
+\item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its orthogonal projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every point $P$ of this line, $NP^2=NH^2+HP^2$, so its minimum distance to $N$ is $NH$. Finally,
+\[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{5}{9}-1|\,\|\vec n\|=\frac{4}{3}.\]
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repeated trials and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{17;\frac{3}{10}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{3}{10})^2(\frac{7}{10})^{15}\simeq\num{0,058110}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{17}-17(\frac{3}{10})(\frac{7}{10})^{16}\simeq\num{0,980725}$.
+
+\item \textit{[1 pt]} $E(X)=\frac{51}{10}$, $V(X)=\frac{357}{100}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{7}{10})^N$. It is strictly increasing with $N$, since $0<\frac{7}{10}<1$. The calculations give
+\[P_{8}\simeq\num{0,942352}<\num{0,95},\qquad P_{9}\simeq\num{0,959646}\ge\num{0,95}.\]
+Thus $9$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=17$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{3}{10})^j(\frac{7}{10})^{17-j}\simeq\num{0,199581}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 17, 3/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $8$. The cumulative values at ranks $7$ and $8$ are approximately $\num{0,895360}$ and $\num{0,959723}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:8-3}\addcontentsline{toc}{chapter}{Mock 2 · A}
+
+\section*{Mock 2 · A}
+
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
+
+\textbf{Duration: 4 hours · Marked out of 20 · \mxTallied{ex-8-3} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-8-3}
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, let $I_n=\displaystyle\int_0^1x^ne^{3x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{3x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(0.5 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(0.5 pt)}
+
+\item Prove, by comparing the integrands, that $(I_n)$ is positive and decreasing. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\le\frac{e^{3}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
+
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{3x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+
+\item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-3}
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{2+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw up the table of variations of $f$. \hfill\textit{(0.5 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(0.5 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{1}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
+
+\item Independently of the previous questions, solve $\ln(x-2)+\ln(x+2)=\ln(21)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 2 · A · continued}
+
+\mxtally{ex-8-3}
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=10$ and the point $M\pt{2;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
+
+\begin{enumerate}
+
+\item Give a parametric representation of $d$. \hfill\textit{(0.5 pt)}
+
+\item Prove that $d$ meets $\mathcal P$ at a point $H$, then calculate the coordinates of $H$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $H$ is the orthogonal projection of $M$ onto $\mathcal P$, then calculate the distance from $M$ to $\mathcal P$. \hfill\textit{(0.5 pt)}
+
+\item Consider the plane $\mathcal Q$ with equation $y=z$. Prove that $\mathcal P\cap\mathcal Q$ is a line and give a parametric representation of it. \hfill\textit{(1 pt)}
+
+\item Check that $H\in\mathcal Q$. Deduce the distance from $M$ to the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Determine a Cartesian equation of the plane parallel to $\mathcal P$ passing through $M$. \hfill\textit{(0.5 pt)}
+
+\item Determine the angle between $d$ and the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Define the point $N$ by $\vect{MN}=\vec n$. Calculate the distances from $N$ to the plane $\mathcal P$ and to the line $\mathcal P\cap\mathcal Q$, then compare them. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-3}
+\subsection*{Exercise 4 · Repeated trials and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $18$ times. The trials are independent and the probability of success is $p=\frac{1}{5}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Using complementary events, express and then calculate the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,18\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $18$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 2 · A}\label{cor:8-3}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[0.5 pt]} La fonction $x\mapsto \frac{e^{3x}}{3}$ is an antiderivative of $e^{3x}$. Thus $I_0=[\frac{e^{3x}}{3}]_0^1=\frac{e^{3}-1}{3}$.
+
+\item \textit{[0.5 pt]} Take $u(x)=x$ and $v(x)=\frac{e^{3x}}{3}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{3x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{3x}}{3}\right]_0^1-\frac{1}{3}\int_0^1e^{3x}\,\dd x\\&=\frac{e^{3}}{3}-\frac{e^{3}-1}{9}=\frac{2e^{3}+1}{9}.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{3x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and decreasing (in the weak sense). The inequalities are even strict: the integrands of $I_n$ and of $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{3x}\le e^{3}$; so $0\le I_n\le e^{3}\int_0^1x^n\,\dd x=\frac{e^{3}}{n+1}\to0$.
+
+\item \textit{[0.5 pt]} Apply integration by parts with $u(x)=x^{n+1}$ and $v(x)=\frac{e^{3x}}{3}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{3x}}{3}\right]_0^1-\frac{n+1}{3}\int_0^1x^ne^{3x}\,\dd x\\&=\frac{e^{3}}{3}-\frac{n+1}{3}I_n.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $0\le x\le1$, $e^{3x}\ge1$ and $x^n\ge0$. So $x^n\le x^ne^{3x}$; integrating,
+\[I_n\ge\int_0^1x^n\,\dd x=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}.\]
+
+\item \textit{[0.5 pt]} The function $x\mapsto e^{3x}$ is increasing. On each interval $[\frac{j}{N},\frac{j+1}{N}]$, the values at the endpoints bound the function. Integrating and then summing,
+\[L_N=\frac{1}{N}\sum_{j=0}^{N-1}e^{\frac{3j}{N}}\le I_0\le U_N=\frac{1}{N}\sum_{j=1}^Ne^{\frac{3j}{N}}.\]
+The interior terms cancel in the difference, so $U_N-L_N=\frac{e^{3}-1}{N}$.
+
+\mxneed{24}
+
+\item \textit{[1 pt]} The width is at most $10^{-2}$ if $N\ge100(e^{3}-1)$. The first integer satisfying this bound is $N=1909$. Here is the computation of the bounds:
+\begin{lstlisting}
+from math import exp, ceil
+
+def bornes():
+    N = ceil(100*(exp(3)-1))
+    bas = sum(exp(3*j/N) for j in range(N))/N
+    haut = bas+(exp(3)-1)/N
+    return N, bas, haut
+\end{lstlisting}
+
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[0.5 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(2+\ln x)}{x^2}=\frac{-1-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-1}$, is positive for $0<x<s$ and negative for $x>s$. Thus $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[0.5 pt]} The maximum is attained only at $s=e^{-1}$ and equals
+\[f(s)=\frac{2- 1}{e^{-1}}=e^{1}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $2+\ln x=0$, that is $x=e^{-2}$.
+
+\item \textit{[1 pt]} Differentiating $(-1-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-1-\ln x)x^{-3}=\frac{2\ln x+1}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{1}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
+
+\item \textit{[0.5 pt]} Let $m=\frac{e^{1}}{2}$ and $s=e^{-1}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\item \textit{[0.5 pt]} Let $F(x)=2\ln x+\frac12(\ln x)^2$, differentiable for $x>0$. Then $F'(x)=\frac{2}{x}+\frac{\ln x}{x}=f(x)$; $F$ is an antiderivative on $]0,+\infty[$.
+
+\item \textit{[0.5 pt]} With this antiderivative, $F(e)=\frac{5}{2}$ and $F(1)=0$. The integral is therefore $\frac{5}{2}$, and the mean value is
+\[\mu=\frac{1}{e-1}\int_1^e f(x)\,\dd x=\frac{5}{2(e-1)}.\]
+
+\item \textit{[1 pt]} Domain $x>2$; $x^2-4=21$, so $x=5$, the negative root being excluded.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Line, plane and orthogonal projection}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{2+t;2t;2t}$, $t\in\R$.
+
+\item \textit{[0.5 pt]} $2+9t=10$ gives $t=\frac{8}{9}$; $H=\pt{\frac{26}{9};\frac{16}{9};\frac{16}{9}}$.
+
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{8}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Therefore
+\[d(M,\mathcal P)=MH=|\frac{8}{9}|\,3=\frac{8}{3}.\]
+
+\item \textit{[1 pt]} Set $y=z=s$; $x=10-4s$. So $\pt{x;y;z}=\pt{10;0;0}+s\pt{-4;1;1}$.
+
+\item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{8}{3}$.
+
+\item \textit{[0.5 pt]} $x+2y+2z=2$; same normal vector, passing through $M$.
+
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
+
+\item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its orthogonal projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every point $P$ of this line, $NP^2=NH^2+HP^2$, so its minimum distance to $N$ is $NH$. Finally,
+\[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{8}{9}-1|\,\|\vec n\|=\frac{1}{3}.\]
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repeated trials and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $18$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{18;\frac{1}{5}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{18}2(\frac{1}{5})^2(\frac{4}{5})^{16}\simeq\num{0,172263}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{18}-18(\frac{1}{5})(\frac{4}{5})^{17}\simeq\num{0,900921}$.
+
+\item \textit{[1 pt]} $E(X)=\frac{18}{5}$, $V(X)=\frac{72}{25}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{4}{5})^N$. It is strictly increasing with $N$, since $0<\frac{4}{5}<1$. The calculations give
+\[P_{13}\simeq\num{0,945024}<\num{0,95},\qquad P_{14}\simeq\num{0,956020}\ge\num{0,95}.\]
+Thus $14$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=18$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{5}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{18}j(\frac{1}{5})^j(\frac{4}{5})^{18-j}\simeq\num{0,483011}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 18, 2/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $7$. The cumulative values at ranks $6$ and $7$ are approximately $\num{0,948729}$ and $\num{0,983720}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:8-4}\addcontentsline{toc}{chapter}{Mock 2 · B}
+
+\section*{Mock 2 · B}
+
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
+
+\textbf{Duration: 4 hours · Marked out of 20 · \mxTallied{ex-8-4} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete approaches will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-8-4}
+\subsection*{Exercise 1 · Integral and sequence \hfill 5 points}For every natural number $n$, let $I_n=\displaystyle\int_0^1x^ne^{2x}\,\dd x$. For $n=0$, the integrand is the function $x\mapsto e^{2x}$.
+
+\begin{enumerate}
+
+\item Calculate $I_0$. \hfill\textit{(0.5 pt)}
+
+\item Using integration by parts, calculate $I_1$. \hfill\textit{(0.5 pt)}
+
+\item Prove, by comparing the integrands, that $(I_n)$ is positive and decreasing. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\le\frac{e^{2}}{n+1}$ for all $n\in\N$. Deduce the limit of $(I_n)$. \hfill\textit{(1 pt)}
+
+\item Using integration by parts, express $I_{n+1}$ in terms of $I_n$ and $n$. \hfill\textit{(0.5 pt)}
+
+\item Show that $I_n\ge\frac1{n+1}$ for all $n\in\N$. \hfill\textit{(0.5 pt)}
+
+\item Split $\intff{0}{1}$ into $N$ intervals of equal length, with $N\ge1$. Write the sums $L_N$ and $U_N$ of the areas of the rectangles built using the values of $e^{2x}$ at the left and right endpoints. Justify $L_N\le I_0\le U_N$, then calculate $U_N-L_N$. \hfill\textit{(0.5 pt)}
+
+\item Find the smallest integer $N$ guaranteeing that this bracketing has a width at most equal to $10^{-2}$. Write a Python function that returns $N$, $L_N$ and $U_N$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-4}
+\subsection*{Exercise 2 · A logarithmic function \hfill 5 points}Consider the function $f$ defined on $\intoo{0}{+\infty}$ by $f(x)=\frac{5+\ln x}x$. On note $\mathcal C_f$ its representative curve.
+
+\begin{enumerate}
+
+\item Determine the limits of $f$ at $0^+$ and at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw up the table of variations of $f$. \hfill\textit{(0.5 pt)}
+
+\item State the value of the maximum of $f$, then solve $f(x)=0$. \hfill\textit{(0.5 pt)}
+
+\item Study the convexity of $f$ and determine the coordinates of the point of inflection of $\mathcal C_f$. \hfill\textit{(1 pt)}
+
+\item Prove that the equation $f(x)=\frac12 e^{4}$ has exactly two solutions in $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Determine an antiderivative of $f$ on $\intoo{0}{+\infty}$. \hfill\textit{(0.5 pt)}
+
+\item Calculate the mean value of $f$ on $\intff{1}{e}$. \hfill\textit{(0.5 pt)}
+
+\item Independently of the previous questions, solve $\ln(x-3)+\ln(x+3)=\ln(27)$, after stating the set on which this equation is defined. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 2 · B · continued}
+
+\mxtally{ex-8-4}
+\subsection*{Exercise 3 · Line, plane and orthogonal projection \hfill 5 points}In an orthonormal coordinate system of space, consider the plane $\mathcal P$ with equation $x+2y+2z=11$ and the point $M\pt{3;0;0}$. The line $d$ passes through $M$ and has direction vector $\vec n=\pt{1;2;2}$.
+
+\begin{enumerate}
+
+\item Give a parametric representation of $d$. \hfill\textit{(0.5 pt)}
+
+\item Prove that $d$ meets $\mathcal P$ at a point $H$, then calculate the coordinates of $H$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $H$ is the orthogonal projection of $M$ onto $\mathcal P$, then calculate the distance from $M$ to $\mathcal P$. \hfill\textit{(0.5 pt)}
+
+\item Consider the plane $\mathcal Q$ with equation $y=z$. Prove that $\mathcal P\cap\mathcal Q$ is a line and give a parametric representation of it. \hfill\textit{(1 pt)}
+
+\item Check that $H\in\mathcal Q$. Deduce the distance from $M$ to the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Determine a Cartesian equation of the plane parallel to $\mathcal P$ passing through $M$. \hfill\textit{(0.5 pt)}
+
+\item Determine the angle between $d$ and the line $\mathcal P\cap\mathcal Q$. \hfill\textit{(0.5 pt)}
+
+\item Define the point $N$ by $\vect{MN}=\vec n$. Calculate the distances from $N$ to the plane $\mathcal P$ and to the line $\mathcal P\cap\mathcal Q$, then compare them. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-8-4}
+\subsection*{Exercise 4 · Repeated trials and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $20$ times. The trials are independent and the probability of success is $p=\frac{1}{10}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Using complementary events, express and then calculate the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item We now repeat the same trial $N\ge1$ times, again independently. Find the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,20\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $20$ trials is accepted if its number of successes is between $1$ and $3$, inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 2 · B}\label{cor:8-4}
+
+\subsection*{Exercise 1 · Integral and sequence}\begin{enumerate}
+
+\item \textit{[0.5 pt]} La fonction $x\mapsto \frac{e^{2x}}{2}$ is an antiderivative of $e^{2x}$. Thus $I_0=[\frac{e^{2x}}{2}]_0^1=\frac{e^{2}-1}{2}$.
+
+\item \textit{[0.5 pt]} Take $u(x)=x$ and $v(x)=\frac{e^{2x}}{2}$, two differentiable functions with continuous derivatives on $[0,1]$. Then $u'=1$ and $v'=e^{2x}$. Integration by parts gives
+\[\begin{aligned}I_1&=\left[\frac{xe^{2x}}{2}\right]_0^1-\frac{1}{2}\int_0^1e^{2x}\,\dd x\\&=\frac{e^{2}}{2}-\frac{e^{2}-1}{4}=\frac{e^{2}+1}{4}.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $x\in[0,1]$, $0\le x^{n+1}\le x^n$. Since $e^{2x}>0$, integrating over increasing bounds gives $0\le I_{n+1}\le I_n$. The sequence is therefore positive and decreasing (in the weak sense). The inequalities are even strict: the integrands of $I_n$ and of $I_n-I_{n+1}$ are continuous and strictly positive on $]0,1[$.
+
+\item \textit{[1 pt]} $e^{2x}\le e^{2}$; so $0\le I_n\le e^{2}\int_0^1x^n\,\dd x=\frac{e^{2}}{n+1}\to0$.
+
+\item \textit{[0.5 pt]} Apply integration by parts with $u(x)=x^{n+1}$ and $v(x)=\frac{e^{2x}}{2}$. Since $n+1\ge1$, the term at $x=0$ is zero. Hence
+\[\begin{aligned}I_{n+1}&=\left[\frac{x^{n+1}e^{2x}}{2}\right]_0^1-\frac{n+1}{2}\int_0^1x^ne^{2x}\,\dd x\\&=\frac{e^{2}}{2}-\frac{n+1}{2}I_n.\end{aligned}\]
+
+\item \textit{[0.5 pt]} For $0\le x\le1$, $e^{2x}\ge1$ and $x^n\ge0$. So $x^n\le x^ne^{2x}$; integrating,
+\[I_n\ge\int_0^1x^n\,\dd x=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}.\]
+
+\item \textit{[0.5 pt]} The function $x\mapsto e^{2x}$ is increasing. On each interval $[\frac{j}{N},\frac{j+1}{N}]$, the values at the endpoints bound the function. Integrating and then summing,
+\[L_N=\frac{1}{N}\sum_{j=0}^{N-1}e^{\frac{2j}{N}}\le I_0\le U_N=\frac{1}{N}\sum_{j=1}^Ne^{\frac{2j}{N}}.\]
+The interior terms cancel in the difference, so $U_N-L_N=\frac{e^{2}-1}{N}$.
+
+\mxneed{24}
+
+\item \textit{[1 pt]} The width is at most $10^{-2}$ if $N\ge100(e^{2}-1)$. The first integer satisfying this bound is $N=639$. Here is the computation of the bounds:
+\begin{lstlisting}
+from math import exp, ceil
+
+def bornes():
+    N = ceil(100*(exp(2)-1))
+    bas = sum(exp(2*j/N) for j in range(N))/N
+    haut = bas+(exp(2)-1)/N
+    return N, bas, haut
+\end{lstlisting}
+
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · A logarithmic function}\begin{enumerate}
+
+\item \textit{[0.5 pt]} At $0^+$, the numerator tends to $-\infty$ and the denominator to $0^+$: limit $-\infty$; at $+\infty$, limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the quotient rule,
+\[f'(x)=\frac{(\frac{1}{x})x-(5+\ln x)}{x^2}=\frac{-4-\ln x}{x^2}.\]
+The denominator is positive. The numerator vanishes at $s=e^{-4}$, is positive for $0<x<s$ and negative for $x>s$. Thus $f$ is strictly increasing on $]0,s]$, then strictly decreasing on $[s,+\infty[$.
+
+\item \textit{[0.5 pt]} The maximum is attained only at $s=e^{-4}$ and equals
+\[f(s)=\frac{5- 4}{e^{-4}}=e^{4}.\]
+Since $x>0$, $f(x)=0$ is equivalent to $5+\ln x=0$, that is $x=e^{-5}$.
+
+\item \textit{[1 pt]} Differentiating $(-4-\ln x)x^{-2}$:
+\[f''(x)=-x^{-3}-2(-4-\ln x)x^{-3}=\frac{2\ln x+7}{x^3}.\]
+The numerator vanishes at $t=e^{-\frac{7}{2}}$ and changes from negative to positive. The function is concave on $]0,t]$, convex on $[t,+\infty[$. It changes convexity at $t$ and $f(t)=\frac{3}{2t}$: the point of inflection is $I\pt{t;\frac{3}{2t}}$.
+
+\item \textit{[0.5 pt]} Let $m=\frac{e^{4}}{2}$ and $s=e^{-4}$. The function is continuous on $]0,+\infty[$. On $]0,s]$, it is strictly increasing, with limit $-\infty$ at $0$ and value $2m$ at $s$: the corollary of the intermediate value theorem (IVT) gives exactly one solution in $]0,s[$. On $[s,+\infty[$, it is strictly decreasing from $2m$ to $0<m$: exactly one solution in $]s,+\infty[$. These intervals cover the domain and $f(s)\ne m$: there are exactly two solutions.
+
+\item \textit{[0.5 pt]} Let $F(x)=5\ln x+\frac12(\ln x)^2$, differentiable for $x>0$. Then $F'(x)=\frac{5}{x}+\frac{\ln x}{x}=f(x)$; $F$ is an antiderivative on $]0,+\infty[$.
+
+\item \textit{[0.5 pt]} With this antiderivative, $F(e)=\frac{11}{2}$ and $F(1)=0$. The integral is therefore $\frac{11}{2}$, and the mean value is
+\[\mu=\frac{1}{e-1}\int_1^e f(x)\,\dd x=\frac{11}{2(e-1)}.\]
+
+\item \textit{[1 pt]} Domain $x>3$; $x^2-9=27$, so $x=6$, the negative root being excluded.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Line, plane and orthogonal projection}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $\pt{x;y;z}=\pt{3+t;2t;2t}$, $t\in\R$.
+
+\item \textit{[0.5 pt]} $3+9t=11$ gives $t=\frac{8}{9}$; $H=\pt{\frac{35}{9};\frac{16}{9};\frac{16}{9}}$.
+
+\item \textit{[0.5 pt]} The vector $\vec n=\pt{1;2;2}$ is normal to $\mathcal P$. Since $H\in\mathcal P$ and $\vect{MH}=\frac{8}{9}\vec n$, $H$ is the orthogonal projection of $M$ onto the plane. The coordinate system being orthonormal, $\|\vec n\|=\sqrt{1+4+4}=3$. Therefore
+\[d(M,\mathcal P)=MH=|\frac{8}{9}|\,3=\frac{8}{3}.\]
+
+\item \textit{[1 pt]} Set $y=z=s$; $x=11-4s$. So $\pt{x;y;z}=\pt{11;0;0}+s\pt{-4;1;1}$.
+
+\item \textit{[0.5 pt]} Yes, its last two coordinates are equal. $H$ lies on the line and $\vect{MH}$ is orthogonal to every direction of the plane, hence to this line. Distance $\frac{8}{3}$.
+
+\item \textit{[0.5 pt]} $x+2y+2z=3$; same normal vector, passing through $M$.
+
+\item \textit{[0.5 pt]} $\vec n\cdot\pt{-4;1;1}=-4+2+2=0$: angle $\frac{\pi}{2}$.
+
+\item \textit{[1 pt]} $N=M+\vec n$ lies on the same normal line as $M$; its orthogonal projection onto $\mathcal P$ is therefore also $H$. Now $H\in\mathcal P\cap\mathcal Q$. For every point $P$ of this line, $NP^2=NH^2+HP^2$, so its minimum distance to $N$ is $NH$. Finally,
+\[d(N,\mathcal P)=d(N,\mathcal P\cap\mathcal Q)=\|\vect{NH}\|=|\frac{8}{9}-1|\,\|\vec n\|=\frac{1}{3}.\]
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repeated trials and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $20$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{20;\frac{1}{10}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{20}2(\frac{1}{10})^2(\frac{9}{10})^{18}\simeq\num{0,285180}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{20}-20(\frac{1}{10})(\frac{9}{10})^{19}\simeq\num{0,608253}$.
+
+\item \textit{[1 pt]} $E(X)=2$, $V(X)=\frac{9}{5}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{9}{10})^N$. It is strictly increasing with $N$, since $0<\frac{9}{10}<1$. The calculations give
+\[P_{28}\simeq\num{0,947665}<\num{0,95},\qquad P_{29}\simeq\num{0,952899}\ge\num{0,95}.\]
+Thus $29$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=20$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{20}j(\frac{1}{10})^j(\frac{9}{10})^{20-j}\simeq\num{0,745470}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 20, 1/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative value is $1$, so the loop terminates. It returns $4$. The cumulative values at ranks $3$ and $4$ are approximately $\num{0,867047}$ and $\num{0,956826}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

@@ -1,0 +1,219 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{premiere-c04}{Differentiation: from rate to tangent}\label{C04}
+\begin{keypoint}[Chapter path]
+\textbf{Objectives.} Interpret a rate; approximate a derivative at a point; determine a tangent; understand why differentiability fails.
+
+\textbf{Prerequisites.} Images, slope of a line, algebraic manipulation, square root and absolute value.
+
+\textbf{Yearly reference point.} 3--12 November: 8 hours\end{keypoint}
+\section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C04-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item What is the slope of the line through $\pt{1;2}$ and $\pt{3;8}$?
+\item Expand $(2+h)^2-4$.
+\item Simplify $\dfrac{4h+h^2}{h}$ if $h\ne0$.
+\item Calculate $\sqrt0$ and $\sqrt{\num{0,01}}$.
+\item Calculate $|-3|$ and $|2|$.
+\item A line of slope 2 passes through $\pt{1;5}$. What is its equation?
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Explain to a classmate why we simplify the rate before letting h tend to 0. Distinguish average speed from instantaneous speed.
+\mxnewpage
+\section*{Investigate before formalising}\label{C04-RECH}
+For $f(x)=x^2$, let h vary, positive and negative, around 0, keeping the point A with x-coordinate 1. Draw three secants; conjecture a limiting line, then determine it without reading a graph.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
+\section{Rate of change and secants}\label{C04-U1}
+\begin{keypoint}[Definition and results]
+For $a\ne b$ in the domain of f, the rate of change between a and b is $\dfrac{f(b)-f(a)}{b-a}$. It is the slope of the secant through the corresponding points. In context, the unit of the rate is the unit of f divided by that of the variable.
+\end{keypoint}
+\paragraph{Status and justification.} Definition; formula for the slope of a line, already studied. With $b=a+h$, $h\ne0$, the rate becomes $\dfrac{[f(a+h)-f(a)]}{h}$.
+\begin{example}For $f(x)=x^2$, between 1 and 3, the rate is $\dfrac{9-1}{3-1}=4$. Between 1 and $1+h$, it is $2+h$. The slopes for $h=\num{0,1}$ and $h=-\num{0,1}$ are \num{2,1} and \num{1,9}.\end{example}\label{C04-EX1}
+\begin{pitfall}The rate is not $\dfrac{f(b)}{f(a)}$; h represents a gap, positive or negative depending on the domain.\end{pitfall}
+\begin{application}Calculate the rate of $f(x)=x^2+3x$ between 2 and $2+h$.\end{application}\label{C04-AP1}
+\section{Derivative at a point}\label{C04-U2}
+\begin{keypoint}[Definition and results]
+f is differentiable at a when the rate $\dfrac{[f(a+h)-f(a)]}{h}$ tends to a real number as h tends to 0, within the domain. This real number is $f\prime(a)$. An intuitive approach to the limit is used here. In kinematics, if f gives a position in metres and time is in seconds, the derivative at a point represents an instantaneous speed in $\mathrm{m\,s^{-1}}$.
+\end{keypoint}
+\paragraph{Status and justification.} For $f(x)=x^2$, the rate at a is $2a+h$, which gets closer to $2a$; hence $f\prime(a)=2a$. This calculation will be taken up again as a derivative function in chapter 6.
+\begin{example}For $s(t)=t^2+3t$, the rate around 2 is $7+h$, so $s\prime(2)=7\ \mathrm{m\,s^{-1}}$. The average speed on $\intff{2}{3}$ is $8\ \mathrm{m\,s^{-1}}$; it is not the speed at time 2.\end{example}\label{C04-EX2}
+\begin{pitfall}We do not replace h by 0 in an unsimplified quotient: we would get a division by 0.\end{pitfall}
+\begin{application}For $f(x)=3x^2-2x$, calculate $f\prime(1)$ from the rate.\end{application}\label{C04-AP2}
+\section{Tangent and affine approximation}\label{C04-U3}
+\begin{keypoint}[Definition and results]
+If f is differentiable at a, the tangent at the point $\pt{a;f(a)}$ has equation $y=f(a)+f\prime(a)(x-a)$. For small h, we use $f(a+h)\approx f(a)+f\prime(a)h$. This local approximation does not by itself provide a bound on the error.
+\end{keypoint}
+\paragraph{Status and justification.} The tangent has slope $f\prime(a)$ and passes through $\pt{a;f(a)}$. In $y=f\prime(a)x+p$, substituting this point gives $p=f(a)-af\prime(a)$, hence the equation.
+\begin{example}For $f(x)=x^2$ at 2, tangent $y=4+4(x-2)=4x-4$. We approximate $\num{2,01}^2$ by $4+4(\num{0,01})=\num{4,04}$; the exact value is $\num{4,0401}$, error $\num{0,0001}=h^2$.\end{example}\label{C04-EX3}
+\mxinclude{figures/C04-U3}
+\begin{pitfall}A tangent may cross the curve again elsewhere. ``Only one common point'' is not a definition.\end{pitfall}
+\begin{application}Given $f(3)=5$ and $f\prime(3)=-2$. Write the tangent and approximate $f(\num{3,04})$.\end{application}\label{C04-AP3}
+\section{When differentiability fails}\label{C04-U4}
+\begin{keypoint}[Definition and results]
+The square root function is defined on $\intfo{0}{+\infty}$ but is not differentiable at 0. The absolute value function is defined on $\R$ but is not differentiable at 0. Being defined, or having a continuous curve, therefore does not guarantee differentiability.
+\end{keypoint}
+\paragraph{Status and justification.} For $h>0$, $\dfrac{\sqrt h-0}{h}=\dfrac{1}{\sqrt h}$, which does not tend to a finite real number as h gets closer to 0. For $|x|$, the rate $\dfrac{|h|}{h}$ equals 1 on the right and $-1$ on the left: no common value.
+\begin{example}For $|x|$, the secants from the origin all have slope 1 on the right and $-1$ on the left. The corner point does not have a unique tangent with finite slope. For the square root, the limiting direction is vertical; there is no real derivative.\end{example}\label{C04-EX4}
+\begin{pitfall}A very large slope is not a proof of non-differentiability; the behaviour of the rate must be explained.\end{pitfall}
+\begin{application}Justify that $g(x)=|x-2|$ is not differentiable at 2. Also study the differentiability of $x\mapsto\sqrt{x}$ at 0 through its rate.\end{application}\label{C04-AP4}
+\mxnewpage
+\section*{Exercise path}\label{C04-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\mxexercisehead{C04-E1}{Two secants}
+The function $f$ is defined on $\R$ by $f(x)=x^2-1$. Let $A$ be the point of its curve with x-coordinate 1.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate the slope of the secant joining $A$ to the point of the curve with x-coordinate 2.
+\item Repeat the calculation with the point of the curve with x-coordinate $\num{1,1}$.
+\item After studying the derivative at a point, determine $f\prime(1)$ and compare this value with the two rates calculated. Explain what changes when the second point gets closer to $A$.
+\end{enumerate}
+\mxexercisehead{C04-E2}{A tangent}
+Consider the function $f(x)=2x^2+1$, defined on $\R$. The aim is to determine the equation of its tangent at the point with x-coordinate $-1$, starting from the rate of change.
+\begin{enumerate}[label=\arabic*.]
+\item For $h\ne0$, write then simplify $\dfrac{f(-1+h)-f(-1)}{h}$.
+\item Deduce $f\prime(-1)$. Also calculate $f(-1)$.
+\item Write the slope-intercept equation of the tangent and check that it passes through the point of contact.
+\end{enumerate}
+\mxexercisehead{C04-E3}{Marginal cost}
+A company uses the model $C(q)=q^2+20q+100$, where $q\geq0$ is the quantity produced and $C(q)$ its cost in monetary units. The model extends the quantity to a real variable so as to study small changes in production.
+\begin{enumerate}[label=\arabic*.]
+\item Calculate $C(10)$ and $C(11)$, then the rate of change of $C$ between 10 and 11. Interpret this rate in context.
+\item From the rate between 10 and $10+h$, determine $C\prime(10)$.
+\item Compare the two results. Explain why the cost of one extra unit is not exactly equal to the derivative in this model.
+\end{enumerate}
+\mxexercisehead{C04-E4}{Reading a tangent}
+This exercise has two independent situations. A tangent to a curve is a line: another point of this line does not necessarily belong to the curve.
+\begin{enumerate}[label=\arabic*.]
+\item On the figure in the section on the tangent, read the coordinates of two points of the green line. Deduce its slope and check the value stated in the legend.
+\item In another situation, the tangent to the curve of a function $f$ at the point $A\pt{2;3}$ passes through $B\pt{4;2}$. Determine $f(2)$ and $f\prime(2)$. Can we deduce $f(4)$?
+\item Use this tangent to suggest an approximate value of $f(\num{2,1})$. Make the ``approximately equal'' sign appear in the conclusion.
+\end{enumerate}
+\mxexercisehead{C04-E5}{Checking an approximation}
+We wish to approximate $\num{0,98}^2$ without first carrying out the multiplication. We use the tangent to the curve of the square function at the point with x-coordinate 1.
+\begin{enumerate}[label=\arabic*.]
+\item Write the equation of this tangent and deduce the required approximation.
+\item Then calculate the exact value of $\num{0,98}^2$. Define the error as ``exact value minus approximate value'': calculate this error and state its sign.
+\item Explain the result using the identity $(1+h)^2=1+2h+h^2$.
+\end{enumerate}
+\mxexercisehead{C04-E6}{Tangent and intersection}
+The function $f$ is defined on $\R$ by $f(x)=x^3$. We accept that $f\prime(1)=3$. A student claims that a tangent and a curve always have a single common point.
+\begin{enumerate}[label=\arabic*.]
+\item Determine the equation of the tangent to the curve of $f$ at the point with x-coordinate 1.
+\item Check by expanding that $x^3-3x+2=(x-1)^2(x+2)$.
+\item Determine all the points of intersection of the curve and this tangent. Is the student's claim correct?
+\end{enumerate}
+\mxexercisehead{C04-E7}{Numerical secants}
+To study the square function near 1, define, for $h\ne0$,\[T(h)=\dfrac{(1+h)^2-1}{h}.\]We will use the six values $\num{0,1}$, $\num{0,01}$, $\num{0,001}$ and their opposites.
+\begin{enumerate}[label=\arabic*.]
+\item Write a Python function that calculates $T(h)$, then produce a table of six results.
+\item Conjecture the value of the derivative of the square function at 1.
+\item Simplify $T(h)$ algebraically to justify the conjecture. Explain why trying numerical values is not, on its own, enough to prove the result.
+\end{enumerate}
+\mxexercisehead{C04-E8}{Delayed review}
+The reciprocal function is defined by $f(x)=\dfrac1x$ for $x\ne0$. We study it near 1.
+\begin{enumerate}[label=\arabic*.]
+\item State the forbidden values of $h$ in the rate $\dfrac{f(1+h)-f(1)}h$, then simplify it.
+\item Deduce $f\prime(1)$ and the equation of the tangent at 1.
+\item Use this tangent to approximate $\dfrac1{\num{1,02}}$. Keep the distinction between exact value and approximate value.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\mxneed{12}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 17 p.~127, all questions.}\label{C04-M1} Read two points on each tangent; write the quotient of the increments rather than estimating its steepness.
+\paragraph{CQFD, exercise 19 p.~127, questions 1 and 2.}\label{C04-M2} Distinguish the y-coordinate of the point of contact from the slope of the tangent line.
+\begingroup\small
+\mxnewpage\section*{MCQ 1: understand and choose}\label{C04-Q1}
+\mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item Rate of $x^2$ between 1 and 2:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2$
+\item $3$
+\item $1$
+\item $4$
+\end{enumerate}
+\item If $f(1)=4$, $f\prime(1)=2$, the tangent is:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $y=2x+2$
+\item $y=4x+2$
+\item $y=2x+4$
+\item $y=x+3$
+\end{enumerate}
+\item The derivative at a point is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item a function
+\item an area
+\item an x-coordinate
+\item a real number if the derivative exists
+\end{enumerate}
+\item For $x^2$ at 3, the derivative at that point is:
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $9$
+\item $3$
+\item $6$
+\item $12$
+\end{enumerate}
+\item The approximation of $f(a+h)$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $f(a)f\prime(a)$
+\item $f(a)+hf\prime(a)$
+\item $f(a)+f\prime(h)$
+\item $hf(a)$
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{MCQ 2: understand and choose}\label{C04-Q2}
+\mxCount{qcm2} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $\sqrt{x}$ at 0 is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item differentiable with derivative 0
+\item differentiable with derivative 1
+\item not differentiable
+\item not defined
+\end{enumerate}
+\item $\dfrac{|h|}{h}$ for $h<0$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-1$
+\item $1$
+\item $0$
+\item $h$
+\end{enumerate}
+\item A tangent of slope 0 is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item vertical
+\item oblique
+\item impossible
+\item horizontal
+\end{enumerate}
+\item Position in m and time in s: the unit of the derivative is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\mathrm{m^2}$
+\item $\mathrm{m\,s^{-1}}$
+\item $\mathrm{s\,m^{-1}}$
+\item $\mathrm{m}$
+\end{enumerate}
+\item For f differentiable at a, replacing $f(a+h)$ by $f(a)+hf\prime(a)$ is in general
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item an exact identity
+\item a definition of h
+\item a local approximation
+\item always false, even for an affine function
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C04-VF}
+\begin{enumerate}
+\item A tangent can never cross a curve again.
+\item The absolute value function is differentiable at 0.
+\item An affine function $mx+p$ has derivative m at every real number.
+\end{enumerate}
+\begin{keypoint}[Self-assessment]I give the domain and h nonzero; I read a slope; I use the point of tangency; I distinguish exact from approximate.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C04}\fi

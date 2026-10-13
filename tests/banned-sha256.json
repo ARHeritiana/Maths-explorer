@@ -1,0 +1,13 @@
+{
+ "note": "SHA-256 of banned phrases (owner, school and place names), normalised: lower case, accents removed, words [a-z0-9]+ joined by one space. Plain text is deliberately not stored. Checked by tests/banned.py and tests/banned.mjs over every window of 1 to 6 words.",
+ "maxWords": 6,
+ "sha256": [
+  "2b1e93e30646dedcc35bb198e6c8706d59cb30799128dc9857320c700a4e4972",
+  "374d4a6584cdf2a61a5ee8b82d5783edbae87afdfdda3f8f525e78e0e2364686",
+  "3888fe1daac62ce594f151bb47580f6429661194f7ead94100ce503355617da9",
+  "3f98c5dcba786b20904d7db5ea3943c72a8e4c814a41d96420948d19837a0cae",
+  "5c04b46d13e3e5e3b48891a0d7ccc819245233403be3e5d230f7bb0890da8baf",
+  "edb63a35e7605622851a1711c3a2a8e09faa9998012b4f6589ad675c558f5fcb",
+  "fc45b25064ed8123d97b8dcfa0d853dae558b88c8290b970cdf0310662ad0d71"
+ ]
+}

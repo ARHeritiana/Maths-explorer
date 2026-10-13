@@ -1,0 +1,71 @@
+{
+ "unit": "lattice-paths-notes.fr.tex",
+ "segments": {
+  "9b453cc0b507": {
+   "fr": "Chemins, combinaisons et Pascal",
+   "en": "Paths, combinations and Pascal",
+   "status": "aligned",
+   "order": 0
+  },
+  "014e613e0937": {
+   "fr": "Première--Terminale · dénombrement",
+   "en": "High school · counting",
+   "status": "aligned",
+   "order": 1
+  },
+  "bb846217ac30": {
+   "fr": "Leçon et méthode",
+   "en": "Lesson and method",
+   "status": "aligned",
+   "order": 2
+  },
+  "0d8353f2ded7": {
+   "fr": "Produit, factorielle et choix sans ordre.",
+   "en": "Products, factorials and unordered choices.",
+   "status": "aligned",
+   "order": 3
+  },
+  "a3458ea8eea6": {
+   "fr": "Idées et méthode",
+   "en": "Ideas and method",
+   "status": "aligned",
+   "order": 4
+  },
+  "e4e312f21d1f": {
+   "fr": "Un chemin de [[m1]] à [[m2]] n’utilisant que des pas vers la droite ou vers le haut comporte [[m3]] pas. Choisir les positions des a pas horizontaux donne [[m4]] chemins.",
+   "en": "A path from [[m1]] to [[m2]], using only rightward or upward steps, has [[m3]] steps. Choosing the positions of the a horizontal steps gives [[m4]] paths.",
+   "status": "aligned",
+   "order": 5
+  },
+  "16aa2ed66060": {
+   "fr": "Pour [[m1]], [[m2]]. L’ordre des objets choisis ne compte pas. La symétrie [[m3]] revient à choisir les objets retenus ou ceux exclus.",
+   "en": "For [[m1]], [[m2]]. The order of the chosen objects does not matter. Symmetry [[m3]] corresponds to choosing included or excluded objects.",
+   "status": "aligned",
+   "order": 6
+  },
+  "fb1284e55cd7": {
+   "fr": "La relation de Pascal [[m1]] partage les choix selon la présence d’un objet fixé. On peut aussi classer les chemins selon leur dernier pas.",
+   "en": "Pascal’s identity [[m1]] splits choices by whether one fixed object is included. Paths can also be classified by their last step.",
+   "status": "aligned",
+   "order": 7
+  },
+  "1cbbc7623e66": {
+   "fr": "De [[m1]] à [[m2]], il y a [[m3]] chemins. Pour passer par [[m4]], il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : [[m5]] chemins.",
+   "en": "From [[m1]] to [[m2]], there are [[m3]] paths. To pass through [[m4]], choose one of two paths to that point and one of three paths onward: [[m5]] paths.",
+   "status": "aligned",
+   "order": 8
+  },
+  "dc29ec196502": {
+   "fr": "À explorer",
+   "en": "Explore",
+   "status": "aligned",
+   "order": 9
+  },
+  "96ecfafd2cc2": {
+   "fr": "Dessiner un petit quadrillage et écrire dans chaque sommet le nombre de chemins qui y arrivent. Additionner les valeurs du voisin de gauche et du voisin du bas.",
+   "en": "Draw a small grid and write the number of arriving paths at each vertex. Add the values of its left and lower neighbours.",
+   "status": "aligned",
+   "order": 10
+  }
+ }
+}

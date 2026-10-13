@@ -1,0 +1,1087 @@
+[
+  {
+    "id": "invariants",
+    "title": [
+      "Parité et invariants",
+      "Parity and invariants"
+    ],
+    "level": [
+      "Seconde · raisonnement",
+      "High school · reasoning"
+    ],
+    "labs": [],
+    "prerequisites": [
+      "Entiers pairs et impairs ; preuve par contradiction.",
+      "Even and odd integers; proof by contradiction."
+    ],
+    "lesson": [
+      [
+        "Un invariant est une quantité ou une propriété conservée par chaque opération autorisée. Si l’état visé n’a pas la même valeur de cet invariant que l’état initial, il est inaccessible.",
+        "An invariant is a quantity or property preserved by every allowed move. If the target has a different invariant value from the initial state, it cannot be reached."
+      ],
+      [
+        "Pour étudier la parité, on peut remplacer les entiers par leurs restes 0 ou 1 modulo 2. Deux nombres impairs ont une somme paire. Ajouter un nombre pair ne change pas la parité.",
+        "To study parity, replace integers with their remainders 0 or 1 modulo 2. Two odd integers have an even sum. Adding an even integer preserves parity."
+      ],
+      [
+        "Méthode : décrire précisément un coup, chercher ce qu’il conserve, calculer l’invariant initial et celui de la cible. Une obstruction prouve une impossibilité ; l’absence d’obstruction ne prouve pas la possibilité.",
+        "Method: specify one move, find what it preserves, and compute the invariant at the start and at the target. An obstruction proves impossibility; the absence of an obstruction does not prove possibility."
+      ]
+    ],
+    "worked": [
+      "On part de 0 et chaque coup ajoute ou retranche 6. Tous les nombres obtenus sont pairs. Atteindre 15 est donc impossible. Atteindre 14 est aussi impossible, mais la seule parité ne suffit pas à le prouver : il faut remarquer que tout résultat est multiple de 6.",
+      "Start at 0 and add or subtract 6 at each move. Every reachable number is even, so 15 is unreachable. The number 14 is also unreachable, but parity alone cannot prove this: every reachable number is a multiple of 6."
+    ],
+    "activity": [
+      "Écrire quelques suites de coups, puis classer les nombres atteints. Trouver une propriété commune plus précise que la parité.",
+      "Write several sequences of moves, then classify the reached numbers. Find a common property more precise than parity."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "On part de 7 et on ajoute ou retranche 4 à chaque coup. Peut-on atteindre 20 ? Et 23 ?",
+          "Start at 7 and add or subtract 4 each move. Can you reach 20? What about 23?"
+        ],
+        "a": [
+          "Tout résultat est congru à 7 modulo 4, donc à 3. Comme 20 est congru à 0, il est inaccessible. Quatre additions de 4 donnent 23.",
+          "Every result is congruent to 7 modulo 4, hence to 3. Since 20 is congruent to 0, it is unreachable. Four additions of 4 give 23."
+        ]
+      },
+      {
+        "q": [
+          "Un produit de cinq nombres égaux à 1 ou $−1$ vaut $−1$. Montrer qu’il est impossible de rendre tous les nombres positifs en changeant deux signes à chaque coup.",
+          "Five numbers, each 1 or $−1$, have product $−1$. Prove that changing two signs per move cannot make all five positive."
+        ],
+        "a": [
+          "Chaque changement de deux signes multiplie le produit par $(−1)² = 1$. Le produit reste $−1$, alors que cinq signes positifs donnent 1.",
+          "Changing two signs multiplies the product by $(−1)² = 1$. The product stays $−1$, whereas five positive signs give 1."
+        ]
+      },
+      {
+        "q": [
+          "On remplace deux entiers a et b par $a + b$. Quel invariant conserve cette opération ?",
+          "Replace two integers a and b by $a + b$. What invariant does this preserve?"
+        ],
+        "a": [
+          "La somme de tous les entiers reste constante : la contribution $a + b$ des deux termes est remplacée par le même nombre.",
+          "The sum of all integers stays constant: the two terms contributing $a + b$ are replaced by that same number."
+        ]
+      },
+      {
+        "q": [
+          "Pourquoi deux états ayant la même parité ne sont-ils pas nécessairement reliés par les coups autorisés ? Donner un exemple.",
+          "Why need two states of the same parity not be connected by allowed moves? Give an example."
+        ],
+        "a": [
+          "La parité donne seulement une condition nécessaire. Avec des pas de 6 depuis 0, la cible 2 est paire, mais n’est pas multiple de 6.",
+          "Parity gives only a necessary condition. With steps of 6 from 0, the target 2 is even but is not a multiple of 6."
+        ]
+      }
+    ],
+    "problem": [
+      "Un échiquier $8 × 8$ est colorié alternativement en noir et blanc. On retire deux coins diagonalement opposés. Peut-on recouvrir les 62 cases restantes par 31 dominos $1 × 2$, chaque domino couvrant deux cases voisines par un côté ? Compter les couleurs retirées et les couleurs couvertes par un domino. Comparer avec le retrait de deux coins voisins.",
+      "An $8 × 8$ chessboard is coloured alternately black and white. Remove two diagonally opposite corners. Can the 62 remaining squares be tiled by 31 dominoes of size $1 × 2$, each covering two edge-adjacent squares? Count the removed colours and those covered by a domino. Compare with removing two neighbouring corners."
+    ],
+    "solution": [
+      "Les coins opposés ont la même couleur. Il reste 30 cases de cette couleur et 32 de l’autre. Chaque domino couvre une case de chaque couleur : 31 dominos exigeraient 31 de chaque, donc le pavage est impossible. Deux coins voisins ont des couleurs différentes. Dans ce cas, un pavage existe : pour les deux coins supérieurs retirés, placer trois dominos horizontaux dans la première ligne et quatre dans chacune des sept autres lignes. Une rotation traite les autres côtés.",
+      "Opposite corners have the same colour, leaving 30 squares of that colour and 32 of the other. Each domino covers one of each; 31 dominoes would need 31 of each, so tiling is impossible. Neighbouring corners have different colours. A tiling then exists: after removing the two top corners, place three horizontal dominoes in the first row and four in each of the other seven rows. Rotate this construction for the other sides."
+    ]
+  },
+  {
+    "id": "pigeonhole",
+    "title": [
+      "Le principe des tiroirs",
+      "The pigeonhole principle"
+    ],
+    "level": [
+      "Seconde · olympiades",
+      "High school · olympiad thinking"
+    ],
+    "labs": [],
+    "prerequisites": [
+      "Division euclidienne et dénombrement élémentaire.",
+      "Euclidean division and elementary counting."
+    ],
+    "lesson": [
+      [
+        "Si $n + 1$ objets sont rangés dans n tiroirs, au moins un tiroir contient deux objets. Sinon, chaque tiroir en contiendrait au plus un et il y aurait au plus n objets.",
+        "If $n + 1$ objects are placed in n boxes, at least one box contains two objects. Otherwise, each box would contain at most one, giving at most n objects."
+      ],
+      [
+        "Plus généralement, si N objets occupent k tiroirs, un tiroir en contient au moins $⌈N/k⌉$. Le plafond $⌈x⌉$ est le plus petit entier supérieur ou égal à x.",
+        "More generally, if N objects occupy k boxes, one box contains at least $⌈N/k⌉$. The ceiling $⌈x⌉$ is the smallest integer greater than or equal to x."
+      ],
+      [
+        "Le choix des tiroirs fait la preuve : restes d’une division, mois de naissance, petits carrés d’un quadrillage ou classes de nombres. Il faut justifier que chaque objet appartient à un tiroir.",
+        "Choosing the boxes is the key: remainders, birth months, small grid squares or classes of integers. Explain why every object belongs to one box."
+      ]
+    ],
+    "worked": [
+      "Parmi 13 personnes, deux sont nées le même mois : les 12 mois sont les tiroirs. Cela ne garantit pas deux anniversaires le même jour.",
+      "Among 13 people, two were born in the same month: the 12 months are the boxes. This does not guarantee two birthdays on the same day."
+    ],
+    "activity": [
+      "Choisir six entiers distincts entre 1 et 10. Les grouper par paires de somme 11 et repérer une paire complète.",
+      "Choose six distinct integers from 1 to 10. Group them into pairs summing to 11 and find a complete pair."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Montrer que parmi 25 personnes, trois au moins sont nées le même mois.",
+          "Show that among 25 people, at least three were born in the same month."
+        ],
+        "a": [
+          "Avec au plus deux personnes par mois, il y aurait au plus 24 personnes. Donc un mois en contient au moins trois.",
+          "At most two per month would give at most 24 people. Therefore one month contains at least three."
+        ]
+      },
+      {
+        "q": [
+          "On choisit six nombres distincts dans ${1,…,10}$. Prouver que deux ont pour somme 11.",
+          "Choose six distinct numbers from ${1,…,10}$. Prove that two sum to 11."
+        ],
+        "a": [
+          "Les cinq tiroirs sont ${1,10}$, ${2,9}$, ${3,8}$, ${4,7}$, ${5,6}$. Six choix occupent entièrement au moins une paire.",
+          "The five boxes are ${1,10}$, ${2,9}$, ${3,8}$, ${4,7}$, ${5,6}$. Six choices fill at least one pair."
+        ]
+      },
+      {
+        "q": [
+          "Prouver que parmi huit entiers, deux ont une différence divisible par 7.",
+          "Prove that among eight integers, two have a difference divisible by 7."
+        ],
+        "a": [
+          "Il y a sept restes possibles modulo 7. Deux des huit entiers ont le même reste, donc leur différence est multiple de 7.",
+          "There are seven possible remainders modulo 7. Two integers share a remainder, so their difference is a multiple of 7."
+        ]
+      },
+      {
+        "q": [
+          "Cinq points sont dans un carré de côté 2, bord compris. Montrer que deux sont à distance au plus $√2$.",
+          "Five points lie in a square of side 2, including its boundary. Show that two are at distance at most $√2$."
+        ],
+        "a": [
+          "Partager le carré en quatre carrés de côté 1, en affectant chaque point des frontières à un seul carré. Deux points appartiennent au même petit carré ; sa diagonale vaut $√2$.",
+          "Divide the square into four unit squares, assigning each boundary point to just one square. Two points share a unit square, whose diagonal is $√2$."
+        ]
+      }
+    ],
+    "problem": [
+      "On choisit 11 entiers distincts entre 1 et 20. Écrire chaque entier sous la forme $2ᵏm$ avec m impair et $k ≥ 0$. Combien de valeurs de m sont possibles ? Prouver que l’un des entiers choisis divise un autre. Montrer qu’avec seulement dix entiers, la conclusion peut être fausse.",
+      "Choose 11 distinct integers from 1 to 20. Write each as $2ᵏm$ with m odd and $k ≥ 0$. How many values of m are possible? Prove that one selected integer divides another. Show that the conclusion can fail with only ten integers."
+    ],
+    "solution": [
+      "La décomposition s’obtient en retirant les facteurs 2. Les dix parties impaires possibles sont $1,3,…,19$. Deux nombres choisis partagent donc la même partie impaire : $2ᵃm$ et $2ᵇm$, avec $a < b$ puisqu’ils sont distincts. Le second vaut $2ᵇ⁻ᵃ$ fois le premier. Pour dix nombres, choisir $11,12,…,20$ : le double de chacun dépasse 20, donc aucun n’en divise un autre distinct.",
+      "Remove all factors of 2. The ten possible odd parts are $1,3,…,19$. Two chosen numbers share an odd part: $2ᵃm$ and $2ᵇm$, with $a < b$ because they are distinct. The second is $2ᵇ⁻ᵃ$ times the first. For ten numbers choose $11,12,…,20$: twice any of them exceeds 20, so none divides another distinct one."
+    ]
+  },
+  {
+    "id": "modular",
+    "title": [
+      "Congruences et derniers chiffres",
+      "Congruences and last digits"
+    ],
+    "level": [
+      "Lycée · arithmétique",
+      "High school · number theory"
+    ],
+    "labs": [],
+    "prerequisites": [
+      "Divisibilité, puissances et division euclidienne.",
+      "Divisibility, powers and Euclidean division."
+    ],
+    "lesson": [
+      [
+        "$a ≡ b$ (mod m), avec $m ≥ 2$, signifie que m divise $a − b$. Les deux nombres ont le même reste dans la division par m. Par exemple, $−1 ≡ 6$ (mod 7).",
+        "$a ≡ b$ (mod m), with $m ≥ 2$, means that m divides $a − b$. They have the same remainder upon division by m. For example, $−1 ≡ 6$ (mod 7)."
+      ],
+      [
+        "Les congruences se conservent par addition et multiplication, donc par élévation à une puissance entière positive. Pour trouver un dernier chiffre, travailler modulo 10.",
+        "Congruences are preserved by addition and multiplication, hence by positive integer powers. Work modulo 10 to find a last digit."
+      ],
+      [
+        "On ne simplifie pas toujours un facteur : $2 × 1 ≡ 2 × 4$ (mod 6), mais 1 n’est pas congru à 4 modulo 6. Un facteur premier avec le module peut être simplifié.",
+        "A factor cannot always be cancelled: $2 × 1 ≡ 2 × 4$ (mod 6), but 1 is not congruent to 4 modulo 6. A factor coprime to the modulus can be cancelled."
+      ]
+    ],
+    "worked": [
+      "Les derniers chiffres de $3¹, 3², 3³, 3⁴$ sont $3,9,7,1$. Le cycle recommence ensuite car $3⁴ ≡ 1$ (mod 10). Comme $2026 = 4 × 506 + 2$, le dernier chiffre de $3²⁰²⁶$ est 9.",
+      "The last digits of $3¹, 3², 3³, 3⁴$ are $3,9,7,1$. The cycle repeats because $3⁴ ≡ 1$ (mod 10). Since $2026 = 4 × 506 + 2$, the last digit of $3²⁰²⁶$ is 9."
+    ],
+    "activity": [
+      "Construire les tables des carrés modulo 3, 4 et 5. Repérer les restes impossibles.",
+      "Build tables of squares modulo 3, 4 and 5. Identify impossible remainders."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Trouver le reste de $−37$ modulo 8.",
+          "Find the remainder of $−37$ modulo 8."
+        ],
+        "a": [
+          "$−37 = 8 × (−5) + 3$, donc le reste est 3.",
+          "$−37 = 8 × (−5) + 3$, so the remainder is 3."
+        ]
+      },
+      {
+        "q": [
+          "Déterminer le dernier chiffre de $7²⁰²⁶$.",
+          "Find the last digit of $7²⁰²⁶$."
+        ],
+        "a": [
+          "Le cycle est $7,9,3,1$ et $2026 ≡ 2$ (mod 4). Le dernier chiffre est 9.",
+          "The cycle is $7,9,3,1$ and $2026 ≡ 2$ (mod 4). The last digit is 9."
+        ]
+      },
+      {
+        "q": [
+          "Prouver qu’un carré entier n’est jamais congru à 2 modulo 3.",
+          "Prove that an integer square is never congruent to 2 modulo 3."
+        ],
+        "a": [
+          "Un entier est congru à 0, 1 ou 2. Les carrés correspondants sont 0, 1 et $4 ≡ 1$ modulo 3.",
+          "An integer is congruent to 0, 1 or 2. The corresponding squares are 0, 1 and $4 ≡ 1$ modulo 3."
+        ]
+      },
+      {
+        "q": [
+          "Résoudre $3x ≡ 1$ (mod 7).",
+          "Solve $3x ≡ 1$ (mod 7)."
+        ],
+        "a": [
+          "$3 × 5 = 15 ≡ 1$. Multiplier par 5 donne $x ≡ 5$ (mod 7). Réciproquement, toutes ces valeurs conviennent.",
+          "$3 × 5 = 15 ≡ 1$. Multiplying by 5 gives $x ≡ 5$ (mod 7). Conversely, every such value works."
+        ]
+      }
+    ],
+    "problem": [
+      "Un entier N est congru à 2 modulo 3 et à 3 modulo 5. Écrire $N = 3k + 2$, déterminer k modulo 5, puis donner toutes les solutions modulo 15. Parmi les solutions entre 0 et 100 inclus, lesquelles sont paires ?",
+      "An integer N is congruent to 2 modulo 3 and to 3 modulo 5. Write $N = 3k + 2$, determine k modulo 5, then give all solutions modulo 15. Which solutions from 0 to 100 inclusive are even?"
+    ],
+    "solution": [
+      "$3k + 2 ≡ 3$ (mod 5), donc $3k ≡ 1$ et $k ≡ 2$ (mod 5), car $3 × 2 ≡ 1$. Ainsi $N = 15t + 8$. Dans $[0 ; 100]$, on obtient $8,23,38,53,68,83,98$. Les valeurs paires sont $8,38,68,98$. La substitution vérifie les deux congruences pour toute valeur entière de t.",
+      "$3k + 2 ≡ 3$ (mod 5), so $3k ≡ 1$ and $k ≡ 2$ (mod 5), since $3 × 2 ≡ 1$. Thus $N = 15t + 8$. In $[0 ; 100]$ the values are $8,23,38,53,68,83,98$. The even values are $8,38,68,98$. Substitution verifies both congruences for every integer t."
+    ]
+  },
+  {
+    "id": "diophantine",
+    "title": [
+      "Bézout et équations entières",
+      "Bézout and integer equations"
+    ],
+    "level": [
+      "Mathématiques expertes · approfondissement",
+      "Advanced high school · extension"
+    ],
+    "labs": [],
+    "prerequisites": [
+      "Algorithme d’Euclide et divisibilité dans $ℤ$.",
+      "Euclidean algorithm and divisibility in $ℤ$."
+    ],
+    "lesson": [
+      [
+        "Pour deux entiers positifs a et b, l’algorithme d’Euclide calcule $d = PGCD(a,b)$. En remontant les divisions, on exprime d comme au + bv avec u et v entiers : c’est une identité de Bézout.",
+        "For positive integers a and b, the Euclidean algorithm computes $d = gcd(a,b)$. Back-substitution expresses d as au + bv for integers u and v: a Bézout identity."
+      ],
+      [
+        "L’équation ax + by = c possède des solutions entières si et seulement si d divise c. La nécessité vient du fait que d divise ax + by ; la suffisance vient d’une identité de Bézout multipliée par $c/d$.",
+        "The equation ax + by = c has integer solutions exactly when d divides c. Necessity follows because d divides ax + by; sufficiency follows by multiplying a Bézout identity by $c/d$."
+      ],
+      [
+        "Si $(x₀,y₀)$ est une solution, toutes les solutions sont $x = x₀ + (b/d)t$ et $y = y₀ − (a/d)t$, avec t entier. Les contraintes $x ≥ 0$ et $y ≥ 0$ doivent être traitées ensuite.",
+        "If $(x₀,y₀)$ is one solution, all solutions are $x = x₀ + (b/d)t$ and $y = y₀ − (a/d)t$ for integer t. Conditions $x ≥ 0$ and $y ≥ 0$ must then be imposed separately."
+      ]
+    ],
+    "worked": [
+      "Pour $15x + 21y = 6$, on a $21 = 15 + 6$ et $15 = 2 × 6 + 3$. Ainsi $3 = 3 × 15 − 2 × 21$. Une solution est $(6,−4)$, et toutes les solutions sont $x = 6 + 7t, y = −4 − 5t$.",
+      "For $15x + 21y = 6$, use $21 = 15 + 6$ and $15 = 2 × 6 + 3$. Thus $3 = 3 × 15 − 2 × 21$. One solution is $(6,−4)$, and all solutions are $x = 6 + 7t, y = −4 − 5t$."
+    ],
+    "activity": [
+      "Tester plusieurs valeurs de t dans l’exemple, puis vérifier l’équation sans arrondir.",
+      "Try several values of t in the example and verify the equation exactly."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Calculer $PGCD(84,30)$ et donner une identité de Bézout.",
+          "Find $gcd(84,30)$ and a Bézout identity."
+        ],
+        "a": [
+          "$84 = 2 × 30 + 24$ et $30 = 24 + 6$. Donc $6 = 3 × 30 − 84$ et le PGCD vaut 6.",
+          "$84 = 2 × 30 + 24$ and $30 = 24 + 6$. Hence $6 = 3 × 30 − 84$ and the gcd is 6."
+        ]
+      },
+      {
+        "q": [
+          "L’équation $12x + 18y = 5$ admet-elle des solutions entières ?",
+          "Does $12x + 18y = 5$ have integer solutions?"
+        ],
+        "a": [
+          "Non : $PGCD(12,18) = 6$, qui ne divise pas 5.",
+          "No: $gcd(12,18) = 6$ does not divide 5."
+        ]
+      },
+      {
+        "q": [
+          "Donner toutes les solutions entières de $5x + 3y = 1$.",
+          "Find all integer solutions of $5x + 3y = 1$."
+        ],
+        "a": [
+          "$(−1,2)$ est une solution. Toutes sont $x = −1 + 3t, y = 2 − 5t$, avec t entier.",
+          "$(−1,2)$ is a solution. All are $x = −1 + 3t, y = 2 − 5t$ for integer t."
+        ]
+      },
+      {
+        "q": [
+          "Parmi les solutions de $5x + 3y = 31$, trouver celles avec x et y positifs ou nuls.",
+          "Among solutions of $5x + 3y = 31$, find those with nonnegative x and y."
+        ],
+        "a": [
+          "Modulo 3, $x ≡ 2$. Avec $0 ≤ x ≤ 6$, $x$ vaut 2 ou 5. Les couples sont $(2,7)$ et $(5,2)$.",
+          "Modulo 3, $x ≡ 2$. Since $0 ≤ x ≤ 6$, $x$ is 2 or 5. The pairs are $(2,7)$ and $(5,2)$."
+        ]
+      }
+    ],
+    "problem": [
+      "Une commande de 100 objets doit être livrée en boîtes de 7 et de 11 objets, sans ouvrir de boîte. Déterminer toutes les répartitions possibles, puis celle utilisant le moins de boîtes. Justifier qu’aucune autre solution positive ou nulle n’a été oubliée.",
+      "An order of 100 items must be delivered in boxes of 7 and 11, without opening a box. Find every possible combination, then the one using the fewest boxes. Justify that no nonnegative solution has been missed."
+    ],
+    "solution": [
+      "On résout $7x + 11y = 100$. Modulo 7, $4y ≡ 2$, donc $y ≡ 4$ (mod 7). Comme $0 ≤ y ≤ 9$, seule la valeur $y = 4$ convient, d’où $x = 8$. Il faut 12 boîtes. Cette solution est unique, donc minimise automatiquement le nombre de boîtes.",
+      "Solve $7x + 11y = 100$. Modulo 7, $4y ≡ 2$, so $y ≡ 4$ (mod 7). Since $0 ≤ y ≤ 9$, only $y = 4$ works, giving $x = 8$. This requires 12 boxes. The solution is unique, so it automatically minimises the number of boxes."
+    ]
+  },
+  {
+    "id": "lattice-paths",
+    "title": [
+      "Chemins, combinaisons et Pascal",
+      "Paths, combinations and Pascal"
+    ],
+    "level": [
+      "Première–Terminale · dénombrement",
+      "High school · counting"
+    ],
+    "labs": [
+      "probability"
+    ],
+    "prerequisites": [
+      "Produit, factorielle et choix sans ordre.",
+      "Products, factorials and unordered choices."
+    ],
+    "lesson": [
+      [
+        "Un chemin de $(0,0)$ à $(a,b)$ n’utilisant que des pas vers la droite ou vers le haut comporte $a + b$ pas. Choisir les positions des a pas horizontaux donne $C(a+b,a)$ chemins.",
+        "A path from $(0,0)$ to $(a,b)$, using only rightward or upward steps, has $a + b$ steps. Choosing the positions of the a horizontal steps gives $C(a+b,a)$ paths."
+      ],
+      [
+        "Pour $0 ≤ k ≤ n$, $C(n,k) = n!/[k!(n−k)!]$. L’ordre des objets choisis ne compte pas. La symétrie $C(n,k) = C(n,n−k)$ revient à choisir les objets retenus ou ceux exclus.",
+        "For $0 ≤ k ≤ n$, $C(n,k) = n!/[k!(n−k)!]$. The order of the chosen objects does not matter. Symmetry $C(n,k) = C(n,n−k)$ corresponds to choosing included or excluded objects."
+      ],
+      [
+        "La relation de Pascal $C(n,k) = C(n−1,k−1) + C(n−1,k)$ partage les choix selon la présence d’un objet fixé. On peut aussi classer les chemins selon leur dernier pas.",
+        "Pascal’s identity $C(n,k) = C(n−1,k−1) + C(n−1,k)$ splits choices by whether one fixed object is included. Paths can also be classified by their last step."
+      ]
+    ],
+    "worked": [
+      "De $(0,0)$ à $(3,2)$, il y a $C(5,3) = 10$ chemins. Pour passer par $(1,1)$, il faut choisir un des deux chemins jusqu’à ce point, puis un des trois chemins jusqu’à l’arrivée : $2 × 3 = 6$ chemins.",
+      "From $(0,0)$ to $(3,2)$, there are $C(5,3) = 10$ paths. To pass through $(1,1)$, choose one of two paths to that point and one of three paths onward: $2 × 3 = 6$ paths."
+    ],
+    "activity": [
+      "Dessiner un petit quadrillage et écrire dans chaque sommet le nombre de chemins qui y arrivent. Additionner les valeurs du voisin de gauche et du voisin du bas.",
+      "Draw a small grid and write the number of arriving paths at each vertex. Add the values of its left and lower neighbours."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Calculer $C(8,2)$ et expliquer pourquoi il vaut $C(8,6)$.",
+          "Find $C(8,2)$ and explain why it equals $C(8,6)$."
+        ],
+        "a": [
+          "$C(8,2) = 8 × 7 / 2 = 28$. Choisir deux exclus équivaut à choisir les six retenus.",
+          "$C(8,2) = 8 × 7 / 2 = 28$. Choosing two excluded objects is equivalent to choosing six included objects."
+        ]
+      },
+      {
+        "q": [
+          "Compter les chemins monotones de $(0,0)$ à $(4,3)$.",
+          "Count monotone paths from $(0,0)$ to $(4,3)$."
+        ],
+        "a": [
+          "Il faut quatre pas à droite parmi sept : $C(7,4) = 35$.",
+          "Choose four rightward steps among seven: $C(7,4) = 35$."
+        ]
+      },
+      {
+        "q": [
+          "Parmi ces chemins, combien passent par $(2,1)$ ?",
+          "How many of these paths pass through $(2,1)$?"
+        ],
+        "a": [
+          "$C(3,2) × C(4,2) = 3 × 6 = 18$.",
+          "$C(3,2) × C(4,2) = 3 × 6 = 18$."
+        ]
+      },
+      {
+        "q": [
+          "Une équipe de trois personnes est choisie parmi huit. Deux personnes fixées ne peuvent pas être ensemble. Combien d’équipes restent possibles ?",
+          "Choose a team of three from eight people. Two specified people cannot be together. How many teams remain possible?"
+        ],
+        "a": [
+          "Il y a $C(8,3) = 56$ équipes. Celles contenant les deux personnes interdites sont au nombre de 6. Il reste 50 équipes.",
+          "There are $C(8,3) = 56$ teams. Exactly 6 contain both specified people. Therefore 50 teams remain."
+        ]
+      }
+    ],
+    "problem": [
+      "Compter les chemins monotones de $(0,0)$ à $(5,4)$ qui évitent $A(2,1)$ et $B(3,3)$. Commencer par tous les chemins, puis compter ceux passant par A, par B et par les deux. Expliquer pourquoi la dernière catégorie doit être rajoutée.",
+      "Count monotone paths from $(0,0)$ to $(5,4)$ that avoid $A(2,1)$ and $B(3,3)$. Count all paths, then those passing through A, through B and through both. Explain why the last category must be added back."
+    ],
+    "solution": [
+      "Total : $C(9,5) = 126$. Par A : $C(3,2)C(6,3) = 60$. Par B : $C(6,3)C(3,2) = 60$. Par les deux : $3 × C(3,1) × 3 = 27$. Les chemins passant par les deux ont été soustraits deux fois ; les rajouter une fois donne $126 − 60 − 60 + 27 = 33$.",
+      "Total: $C(9,5) = 126$. Through A: $C(3,2)C(6,3) = 60$. Through B: $C(6,3)C(3,2) = 60$. Through both: $3 × C(3,1) × 3 = 27$. Paths through both were subtracted twice; adding them back once gives $126 − 60 − 60 + 27 = 33$."
+    ]
+  },
+  {
+    "id": "euler-trails",
+    "title": [
+      "Parcours sans lever le crayon",
+      "Routes without lifting the pencil"
+    ],
+    "level": [
+      "Lycée · graphes et logique",
+      "High school · graphs and logic"
+    ],
+    "labs": [],
+    "prerequisites": [
+      "Sommets, arêtes et comptage.",
+      "Vertices, edges and counting."
+    ],
+    "lesson": [
+      [
+        "Dans un graphe non orienté, le degré d’un sommet est le nombre d’extrémités d’arêtes qui y sont attachées. Une boucle compte deux fois. La somme des degrés vaut deux fois le nombre d’arêtes.",
+        "In an undirected graph, a vertex’s degree counts incident edge ends. A loop counts twice. The sum of the degrees is twice the number of edges."
+      ],
+      [
+        "Un parcours eulérien utilise chaque arête exactement une fois. À un sommet intermédiaire, toute entrée doit être associée à une sortie. Seuls le départ et l’arrivée peuvent donc avoir un degré impair.",
+        "An Euler trail uses each edge exactly once. At an intermediate vertex, each arrival must pair with a departure. Only the starting and ending vertices can therefore have odd degree."
+      ],
+      [
+        "Pour un graphe dont les sommets de degré non nul sont reliés, un parcours eulérien existe s’il y a zéro ou deux sommets de degré impair. Avec zéro, on revient au départ ; avec deux, on va de l’un à l’autre. On peut construire le parcours en raccordant des cycles.",
+        "If all vertices of nonzero degree are connected, an Euler trail exists when there are zero or two odd-degree vertices. With zero it ends where it starts; with two it runs between them. A trail can be built by joining cycles."
+      ]
+    ],
+    "worked": [
+      "Dans un carré ABCD avec la diagonale AC, les degrés sont $3,2,3,2$. Un parcours existe de A à C : A–B–C–D–A–C. Il utilise bien les cinq arêtes une seule fois.",
+      "In a square ABCD with diagonal AC, degrees are $3,2,3,2$. A trail exists from A to C: A–B–C–D–A–C. It uses all five edges exactly once."
+    ],
+    "activity": [
+      "Dessiner ce carré, puis ajouter la seconde diagonale. Recompter les degrés avant de tenter un tracé.",
+      "Draw the square, then add the other diagonal. Recount degrees before trying a trail."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Un graphe a des degrés $2,3,3,4$. Combien d’arêtes possède-t-il ?",
+          "A graph has degrees $2,3,3,4$. How many edges does it have?"
+        ],
+        "a": [
+          "La somme vaut 12, donc le graphe possède 6 arêtes.",
+          "The degree sum is 12, so there are 6 edges."
+        ]
+      },
+      {
+        "q": [
+          "Prouver que le nombre de sommets de degré impair est pair.",
+          "Prove that the number of odd-degree vertices is even."
+        ],
+        "a": [
+          "La somme des degrés est paire. Les degrés pairs ne changent pas sa parité ; la somme des degrés impairs doit donc aussi être paire, ce qui impose un nombre pair de tels sommets.",
+          "The degree sum is even. Even degrees do not affect parity, so the odd degrees must also sum to an even number. Thus there are an even number of them."
+        ]
+      },
+      {
+        "q": [
+          "Peut-on tracer un carré et ses deux diagonales sans repasser sur une arête ? Les intersections intérieures ne sont pas des sommets.",
+          "Can a square and both diagonals be drawn without repeating an edge? Interior crossings are not vertices."
+        ],
+        "a": [
+          "Non : les quatre sommets ont degré 3. Quatre sommets impairs interdisent un parcours eulérien.",
+          "No: all four vertices have degree 3. Four odd-degree vertices prevent an Euler trail."
+        ]
+      },
+      {
+        "q": [
+          "Pourquoi deux cycles disjoints ne permettent-ils pas un parcours unique, alors que tous les degrés sont pairs ?",
+          "Why do two disjoint cycles not admit one trail even though all degrees are even?"
+        ],
+        "a": [
+          "On ne peut passer d’une composante à l’autre par une arête du graphe. La condition de connexité est indispensable.",
+          "No edge connects the two components, so one cannot move between them. Connectivity is essential."
+        ]
+      }
+    ],
+    "problem": [
+      "Un réseau a pour arêtes AB, BC, CD, DA, AC et CE ; toutes ont longueur 1 km. On veut partir de A, visiter chaque arête au moins une fois et revenir à A. Quels sommets sont de degré impair ? Quelle longueur minimale faut-il parcourir ? Donner un itinéraire atteignant cette longueur.",
+      "A network has edges AB, BC, CD, DA, AC and CE, each 1 km long. Starting at A, visit every edge at least once and return to A. Which vertices have odd degree? What is the minimum route length? Give a route attaining it."
+    ],
+    "solution": [
+      "Les degrés de A,B,C,D,E sont $3,2,4,2,1$ : A et E sont impairs. Un circuit fermé doit ajouter des passages reliant ces deux sommets ; leur plus courte liaison est A–C–E, de longueur 2 km. Le minimum est donc $6 + 2 = 8$ km. L’itinéraire A–B–C–D–A–C–E–C–A l’atteint : AC et CE sont parcourues deux fois, les autres une fois.",
+      "Degrees at A,B,C,D,E are $3,2,4,2,1$, so A and E are odd. A closed route must add traversals joining these two vertices; their shortest connection is A–C–E, of length 2 km. The minimum is $6 + 2 = 8$ km. Route A–B–C–D–A–C–E–C–A attains it: AC and CE are used twice and the other edges once."
+    ]
+  },
+  {
+    "id": "bayes",
+    "title": [
+      "Inverser une probabilité conditionnelle",
+      "Reversing a conditional probability"
+    ],
+    "level": [
+      "Première–Terminale · probabilités",
+      "High school · probability"
+    ],
+    "labs": [
+      "probability"
+    ],
+    "prerequisites": [
+      "Arbres pondérés, intersections et probabilités conditionnelles.",
+      "Probability trees, intersections and conditional probability."
+    ],
+    "lesson": [
+      [
+        "$P(A|B)$ désigne la probabilité de A lorsqu’on sait B réalisé. Si $P(B) > 0$, $P(A|B) = P(A ∩ B)/P(B)$. L’information B restreint l’univers considéré.",
+        "$P(A|B)$ is the probability of A given that B occurred. If $P(B) > 0$, $P(A|B) = P(A ∩ B)/P(B)$. The information B restricts the sample space."
+      ],
+      [
+        "$P(A ∩ B) = P(A)P(B|A)$. Si A et son contraire forment les deux premières branches d’un arbre, $P(B) = P(A)P(B|A) + P(non A)P(B|non A)$.",
+        "$P(A ∩ B) = P(A)P(B|A)$. If A and its complement form the first two branches of a tree, $P(B) = P(A)P(B|A) + P(not A)P(B|not A)$."
+      ],
+      [
+        "La formule de Bayes résulte de ces deux égalités. $P(A|B)$ n’est généralement pas égal à $P(B|A)$ : les dénominateurs correspondent à des populations différentes.",
+        "Bayes’ formula follows from these two identities. $P(A|B)$ generally differs from $P(B|A)$: the denominators refer to different populations."
+      ]
+    ],
+    "worked": [
+      "On choisit A avec probabilité $1/3$ et B avec probabilité $2/3$. L’urne A contient 3 rouges et 1 bleue ; B contient 1 rouge et 3 bleues. $P(rouge) = (1/3)(3/4) + (2/3)(1/4) = 5/12$. Sachant que la boule est rouge, $P(A|rouge) = (1/4)/(5/12) = 3/5$.",
+      "Choose urn A with probability $1/3$ and B with probability $2/3$. A contains 3 red and 1 blue ball; B contains 1 red and 3 blue balls. $P(red) = (1/3)(3/4) + (2/3)(1/4) = 5/12$. Given a red ball, $P(A|red) = (1/4)/(5/12) = 3/5$."
+    ],
+    "activity": [
+      "Représenter l’exemple sur 120 tirages fictifs respectant exactement les proportions. Compter les boules rouges venant de chaque urne.",
+      "Represent the example with 120 hypothetical trials matching the proportions exactly. Count red balls from each urn."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Dans l’exemple, calculer $P(A ∩ bleue)$.",
+          "In the example, find $P(A ∩ blue)$."
+        ],
+        "a": [
+          "$(1/3)(1/4) = 1/12$.",
+          "$(1/3)(1/4) = 1/12$."
+        ]
+      },
+      {
+        "q": [
+          "Calculer $P(A|bleue)$.",
+          "Find $P(A|blue)$."
+        ],
+        "a": [
+          "$P(bleue) = 7/12$. Donc $P(A|bleue) = (1/12)/(7/12) = 1/7$.",
+          "$P(blue) = 7/12$. Hence $P(A|blue) = (1/12)/(7/12) = 1/7$."
+        ]
+      },
+      {
+        "q": [
+          "Dans une classe, 12 élèves sur 30 jouent aux échecs ; parmi eux 9 aiment les énigmes. Calculer $P(énigmes|échecs)$. Peut-on en déduire $P(échecs|énigmes)$ ?",
+          "In a class, 12 of 30 students play chess; 9 of those enjoy puzzles. Find $P(puzzles|chess)$. Can $P(chess|puzzles)$ be deduced?"
+        ],
+        "a": [
+          "La première probabilité vaut $9/12 = 3/4$. Il manque le nombre total d’élèves aimant les énigmes pour calculer la seconde.",
+          "The first probability is $9/12 = 3/4$. The total number who enjoy puzzles is needed for the second."
+        ]
+      },
+      {
+        "q": [
+          "Deux événements A et R vérifient $P(A)=0,4$, $P(R|A)=0,5$ et $P(R|non A)=0,5$. Calculer $P(A|R)$.",
+          "Events A and R satisfy $P(A)=0.4$, $P(R|A)=0.5$ and $P(R|not A)=0.5$. Find $P(A|R)$."
+        ],
+        "a": [
+          "$P(R)=0,5$ et $P(A ∩ R)=0,2$, donc $P(A|R)=0,4$. Ici observer R ne change pas la probabilité de A.",
+          "$P(R)=0.5$ and $P(A ∩ R)=0.2$, so $P(A|R)=0.4$. Here observing R does not change the probability of A."
+        ]
+      }
+    ],
+    "problem": [
+      "On reprend les deux urnes de l’exemple. Après avoir choisi une urne une seule fois, on effectue deux tirages avec remise dans cette même urne. Calculer la probabilité de deux rouges, puis celle d’avoir choisi A sachant que les deux boules sont rouges. Comparer avec l’observation d’une seule rouge et justifier les produits utilisés.",
+      "Use the two urns from the example. Choose an urn once, then draw twice with replacement from that same urn. Find the probability of two red balls, then the probability that A was chosen given two red balls. Compare with observing one red ball and justify the products used."
+    ],
+    "solution": [
+      "Conditionnellement à l’urne choisie, les tirages avec remise sont indépendants. $P(RR) = (1/3)(3/4)² + (2/3)(1/4)² = 9/48 + 2/48 = 11/48$. Ainsi $P(A|RR) = (9/48)/(11/48) = 9/11$, supérieur à $3/5$. Les tirages ne sont pas indépendants sans conditionnement : ils partagent la même urne cachée.",
+      "Conditional on the selected urn, draws with replacement are independent. $P(RR) = (1/3)(3/4)² + (2/3)(1/4)² = 9/48 + 2/48 = 11/48$. Thus $P(A|RR) = (9/48)/(11/48) = 9/11$, greater than $3/5$. The draws are not independent unconditionally: they share the same hidden urn."
+    ],
+    "exerciseContext": [
+      "Pour les exercices 1 et 2 : on choisit l’urne A avec probabilité $1/3$, l’urne B avec probabilité $2/3$. A contient 3 boules rouges et 1 bleue ; B contient 1 rouge et 3 bleues. On tire ensuite une boule au hasard dans l’urne choisie.",
+      "For exercises 1 and 2: choose urn A with probability $1/3$ and urn B with probability $2/3$. A contains 3 red balls and 1 blue; B contains 1 red and 3 blue. Then draw a ball uniformly from the chosen urn."
+    ],
+    "problemContext": [
+      "On choisit A avec probabilité $1/3$ et B avec probabilité $2/3$. L’urne A contient 3 rouges et 1 bleue ; B contient 1 rouge et 3 bleues. Pour une seule boule rouge observée, la probabilité d’avoir choisi A est $3/5$.",
+      "Choose A with probability $1/3$ and B with probability $2/3$. Urn A contains 3 red balls and 1 blue; B contains 1 red and 3 blue. After observing one red ball, the probability that A was chosen is $3/5$."
+    ]
+  },
+  {
+    "id": "waiting-time",
+    "title": [
+      "Attendre le premier succès",
+      "Waiting for the first success"
+    ],
+    "level": [
+      "Terminale · probabilités et suites",
+      "Upper high school · probability and sequences"
+    ],
+    "labs": [
+      "probability",
+      "sequences"
+    ],
+    "prerequisites": [
+      "Épreuves indépendantes, suites géométriques et sommes.",
+      "Independent trials, geometric sequences and sums."
+    ],
+    "lesson": [
+      [
+        "On répète des essais indépendants ayant chacun une probabilité p de succès, avec $0 < p ≤ 1$. T est le numéro du premier succès, en commençant à 1.",
+        "Repeat independent trials, each with success probability p, where $0 < p ≤ 1$. T is the trial number of the first success, starting at 1."
+      ],
+      [
+        "L’événement $T = k$ impose $k−1$ échecs puis un succès : $P(T=k) = (1−p)ᵏ⁻¹p$. De même, $P(T>n) = (1−p)ⁿ$ pour $n ≥ 0$.",
+        "The event $T = k$ requires $k−1$ failures followed by success: $P(T=k) = (1−p)ᵏ⁻¹p$. Likewise, $P(T>n) = (1−p)ⁿ$ for $n ≥ 0$."
+      ],
+      [
+        "L’espérance vaut $E(T)=1/p$. On peut la retrouver par la somme des probabilités de queue : $E(T)=Σ P(T>n)$, pour $n ≥ 0$, donc par la somme géométrique. Il s’agit d’une moyenne, pas d’une date garantie de succès.",
+        "The expectation is $E(T)=1/p$. It follows from the tail-sum formula $E(T)=Σ P(T>n)$, for $n ≥ 0$, and the geometric series. This is an average, not a guaranteed success time."
+      ]
+    ],
+    "worked": [
+      "Pour un dé équilibré et le succès « obtenir 6 », $p=1/6$. L’attente moyenne est 6 lancers, mais la probabilité d’attendre plus de 6 lancers est $(5/6)⁶$, soit environ $0,335$.",
+      "For a fair die with success defined as rolling 6, $p=1/6$. The mean waiting time is 6 rolls, but the probability of waiting more than 6 rolls is $(5/6)⁶$, about $0.335$."
+    ],
+    "activity": [
+      "Pour $p=1/4$, comparer $P(T>n)$ pour $n=0,1,…,10$. Relier la diminution au facteur géométrique $3/4$.",
+      "For $p=1/4$, compare $P(T>n)$ for $n=0,1,…,10$. Relate the decrease to the geometric factor $3/4$."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Avec $p=1/4$, calculer $P(T=3)$.",
+          "With $p=1/4$, find $P(T=3)$."
+        ],
+        "a": [
+          "$(3/4)²(1/4)=9/64$.",
+          "$(3/4)²(1/4)=9/64$."
+        ]
+      },
+      {
+        "q": [
+          "Avec $p=1/4$, calculer $P(T≤3)$.",
+          "With $p=1/4$, find $P(T≤3)$."
+        ],
+        "a": [
+          "$1−P(T>3)=1−(3/4)³=37/64$.",
+          "$1−P(T>3)=1−(3/4)³=37/64$."
+        ]
+      },
+      {
+        "q": [
+          "Pour $0<p<1$, calculer $P(T>m+n|T>m)$.",
+          "For $0<p<1$, find $P(T>m+n|T>m)$."
+        ],
+        "a": [
+          "Le quotient des probabilités de queue est $(1−p)ᵐ⁺ⁿ/(1−p)ᵐ=(1−p)ⁿ$. Après les m échecs, la loi de l’attente restante est inchangée.",
+          "The ratio of tail probabilities is $(1−p)ᵐ⁺ⁿ/(1−p)ᵐ=(1−p)ⁿ$. After m failures, the remaining waiting-time distribution is unchanged."
+        ]
+      },
+      {
+        "q": [
+          "Une réussite a probabilité $0,2$ à chaque essai indépendant. Quelle est l’attente moyenne ? Le cinquième essai réussit-il nécessairement ?",
+          "Success has probability $0.2$ at each independent trial. What is the mean waiting time? Must the fifth trial succeed?"
+        ],
+        "a": [
+          "$E(T)=5$ essais. Non : chaque essai a toujours probabilité $0,2$ de réussir, indépendamment des échecs antérieurs.",
+          "$E(T)=5$ trials. No: every trial still has success probability $0.2$, independently of previous failures."
+        ]
+      }
+    ],
+    "problem": [
+      "On lance un dé équilibré jusqu’au premier 6, mais on s’arrête dans tous les cas après 10 lancers. Soit N le nombre de lancers réellement effectués. Calculer $P(N=10)$, la probabilité d’avoir obtenu au moins un 6 et E(N). Pour la moyenne, utiliser $E(N)=Σ P(N>n)$, de $n=0$ à 9.",
+      "Roll a fair die until the first 6, but stop after 10 rolls in any case. Let N be the number of rolls actually made. Find $P(N=10)$, the probability of obtaining at least one 6, and E(N). For the mean, use $E(N)=Σ P(N>n)$, from $n=0$ to 9."
+    ],
+    "solution": [
+      "$N=10$ si les neuf premiers lancers sont des échecs, quel que soit le dixième : $P(N=10)=(5/6)⁹$. La probabilité d’au moins un 6 vaut $1−(5/6)¹⁰$. Pour $0≤n≤9$, $P(N>n)=(5/6)ⁿ$, donc $E(N)=6[1−(5/6)¹⁰]$, soit environ $5,031$ lancers. La troncature diminue l’espérance par rapport à 6.",
+      "$N=10$ when the first nine rolls fail, regardless of the tenth: $P(N=10)=(5/6)⁹$. The probability of at least one 6 is $1−(5/6)¹⁰$. For $0≤n≤9$, $P(N>n)=(5/6)ⁿ$, giving $E(N)=6[1−(5/6)¹⁰]$, about $5.031$ rolls. Truncation reduces the expectation below 6."
+    ]
+  },
+  {
+    "id": "complex-rotations",
+    "title": [
+      "Rotations et nombres complexes",
+      "Rotations and complex numbers"
+    ],
+    "level": [
+      "Mathématiques expertes · géométrie",
+      "Advanced high school · geometry"
+    ],
+    "labs": [
+      "complex",
+      "vectors"
+    ],
+    "prerequisites": [
+      "Forme algébrique, module et coordonnées.",
+      "Algebraic form, modulus and coordinates."
+    ],
+    "lesson": [
+      [
+        "À $z=x+iy$ correspond le point $(x,y)$. Multiplier par $i$ donne $iz=−y+ix$ : le point devient $(−y,x)$, soit un quart de tour direct autour de l’origine.",
+        "The complex number $z=x+iy$ represents $(x,y)$. Multiplying by $i$ gives $iz=−y+ix$, which represents $(−y,x)$: a counterclockwise quarter-turn about the origin."
+      ],
+      [
+        "Multiplier par $−1$ donne un demi-tour et multiplier par $−i$ donne un quart de tour horaire. Ces transformations conservent les distances à l’origine car $|i|=1$.",
+        "Multiplication by $−1$ gives a half-turn, and by $−i$ a clockwise quarter-turn. They preserve distances from the origin because $|i|=1$."
+      ],
+      [
+        "Pour tourner autour d’un centre d’affixe a, on translate vers l’origine, on tourne, puis on revient : $z′=a+i(z−a)$. La rotation directe de centre a conserve les distances entre tous les points.",
+        "For rotation about centre a, translate to the origin, rotate and translate back: $z′=a+i(z−a)$. This counterclockwise rotation preserves distances between all points."
+      ]
+    ],
+    "worked": [
+      "Pour $a=1+i$ et $z=3+2i$, $z−a=2+i$, puis $i(z−a)=−1+2i$. L’image vaut $z′=3i$. Les vecteurs relatifs $(2,1)$ et $(−1,2)$ sont perpendiculaires et de même norme $√5$.",
+      "With $a=1+i$ and $z=3+2i$, $z−a=2+i$ and $i(z−a)=−1+2i$. The image is $z′=3i$. Relative vectors $(2,1)$ and $(−1,2)$ are perpendicular and both have norm $√5$."
+    ],
+    "activity": [
+      "Dans le laboratoire des complexes, déplacer z puis comparer z et iz. Vérifier l’égalité des modules et la perpendicularité des vecteurs.",
+      "In the complex-number lab, move z and compare z with iz. Check equal moduli and perpendicular vectors."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Calculer $i(2−3i)$, puis son module.",
+          "Find $i(2−3i)$, then its modulus."
+        ],
+        "a": [
+          "$i(2−3i)=3+2i$ ; son module est $√13$, comme celui de $2−3i$.",
+          "$i(2−3i)=3+2i$; its modulus is $√13$, the same as that of $2−3i$."
+        ]
+      },
+      {
+        "q": [
+          "Calculer les images successives de $1+i$ par quatre multiplications par i.",
+          "Find the successive images of $1+i$ under four multiplications by i."
+        ],
+        "a": [
+          "$−1+i$, $−1−i$, $1−i$, puis $1+i$. Quatre quarts de tour redonnent le point initial.",
+          "$−1+i$, $−1−i$, $1−i$, then $1+i$. Four quarter-turns return to the starting point."
+        ]
+      },
+      {
+        "q": [
+          "La transformation $z′=iz+2$ a quel centre ?",
+          "What is the centre of $z′=iz+2$?"
+        ],
+        "a": [
+          "Le centre vérifie $a=i a+2$, donc $a=2/(1−i)=1+i$.",
+          "The centre satisfies $a=i a+2$, so $a=2/(1−i)=1+i$."
+        ]
+      },
+      {
+        "q": [
+          "Pour $z′=a+i(z−a)$, prouver $|z′−a|=|z−a|$.",
+          "For $z′=a+i(z−a)$, prove $|z′−a|=|z−a|$."
+        ],
+        "a": [
+          "$z′−a=i(z−a)$, donc $|z′−a|=|i||z−a|=|z−a|$.",
+          "$z′−a=i(z−a)$, hence $|z′−a|=|i||z−a|=|z−a|$."
+        ]
+      }
+    ],
+    "problem": [
+      "On définit $z₀=2$ et $zₙ₊₁=i zₙ+2$. Trouver le point fixe a, puis une formule explicite de $zₙ$. Déterminer la période minimale de la suite et la somme $z₀+z₁+z₂+z₃$. Interpréter géométriquement les quatre points.",
+      "Define $z₀=2$ and $zₙ₊₁=i zₙ+2$. Find the fixed point a and an explicit formula for $zₙ$. Determine the minimal period and the sum $z₀+z₁+z₂+z₃$. Interpret the four points geometrically."
+    ],
+    "solution": [
+      "$a=1+i$ et $zₙ₊₁−a=i(zₙ−a)$, donc $zₙ=1+i+iⁿ(1−i)$. Les valeurs sont $2, 2+2i, 2i, 0$, puis 2. Elles sont distinctes sur les quatre premiers rangs : la période minimale est 4. Leur somme vaut $4+4i=4a$. Les points forment un carré de centre $(1,1)$, de côté 2 et de rayon $√2$.",
+      "$a=1+i$ and $zₙ₊₁−a=i(zₙ−a)$, so $zₙ=1+i+iⁿ(1−i)$. The values are $2, 2+2i, 2i, 0$, then 2. The first four are distinct, so the minimal period is 4. Their sum is $4+4i=4a$. The points form a square centred at $(1,1)$, with side 2 and radius $√2$."
+    ]
+  },
+  {
+    "id": "telescoping",
+    "title": [
+      "Sommes télescopiques",
+      "Telescoping sums"
+    ],
+    "level": [
+      "Première–Terminale · suites",
+      "High school · sequences"
+    ],
+    "labs": [
+      "sequences"
+    ],
+    "prerequisites": [
+      "Fractions, sommes finies et indices.",
+      "Fractions, finite sums and indices."
+    ],
+    "lesson": [
+      [
+        "Une somme télescopique s’écrit comme une somme de différences consécutives. Les termes intérieurs s’annulent : $Σ(aₖ−aₖ₊₁)=a₁−aₙ₊₁$ pour k allant de 1 à n.",
+        "A telescoping sum is a sum of consecutive differences. Interior terms cancel: $Σ(aₖ−aₖ₊₁)=a₁−aₙ₊₁$ for k from 1 to n."
+      ],
+      [
+        "Écrire d’abord trois termes et les deux derniers permet de voir les annulations et de contrôler les bornes. Une simplification terme à terme ne dispense pas de préciser les indices.",
+        "Write the first three terms and the last two to expose cancellation and check endpoints. Term-by-term simplification does not remove the need to specify indices."
+      ],
+      [
+        "Une décomposition utile est $1/[k(k+1)]=1/k−1/(k+1)$, valable pour $k≥1$. On la vérifie en mettant les fractions au même dénominateur.",
+        "A useful decomposition is $1/[k(k+1)]=1/k−1/(k+1)$, valid for $k≥1$. Verify it by taking a common denominator."
+      ]
+    ],
+    "worked": [
+      "$Σ 1/[k(k+1)]$, de $k=1$ à n, vaut $1−1/(n+1)=n/(n+1)$. La somme est inférieure à 1 et tend vers 1 lorsque n augmente.",
+      "$Σ 1/[k(k+1)]$, from $k=1$ to n, equals $1−1/(n+1)=n/(n+1)$. The sum is below 1 and tends to 1 as n grows."
+    ],
+    "activity": [
+      "Calculer les cinq premières sommes partielles, puis étudier l’écart à 1. Distinguer la somme finie de sa limite.",
+      "Compute the first five partial sums, then study the gap to 1. Distinguish the finite sum from its limit."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Calculer $Σ[1/k−1/(k+1)]$ de $k=3$ à 10.",
+          "Find $Σ[1/k−1/(k+1)]$ from $k=3$ to 10."
+        ],
+        "a": [
+          "Les termes intermédiaires s’annulent : $1/3−1/11=8/33$.",
+          "Interior terms cancel: $1/3−1/11=8/33$."
+        ]
+      },
+      {
+        "q": [
+          "Décomposer $1/[k(k+2)]$ en une différence de deux fractions.",
+          "Express $1/[k(k+2)]$ as a difference of two fractions."
+        ],
+        "a": [
+          "$1/[k(k+2)]=(1/2)[1/k−1/(k+2)]$.",
+          "$1/[k(k+2)]=(1/2)[1/k−1/(k+2)]$."
+        ]
+      },
+      {
+        "q": [
+          "Calculer $Σ(2k+1)$ de $k=0$ à n en utilisant $(k+1)²−k²$.",
+          "Find $Σ(2k+1)$ from $k=0$ to n using $(k+1)²−k²$."
+        ],
+        "a": [
+          "$2k+1=(k+1)²−k²$. La somme vaut $(n+1)²−0²=(n+1)²$.",
+          "$2k+1=(k+1)²−k²$. The sum is $(n+1)²−0²=(n+1)²$."
+        ]
+      },
+      {
+        "q": [
+          "Si $Sₙ=n/(n+1)$, trouver le plus petit entier $n≥1$ tel que $1−Sₙ<0,01$.",
+          "If $Sₙ=n/(n+1)$, find the least integer $n≥1$ with $1−Sₙ<0.01$."
+        ],
+        "a": [
+          "$1/(n+1)<1/100$ équivaut à $n+1>100$, donc $n≥100$. Le minimum est 100.",
+          "$1/(n+1)<1/100$ means $n+1>100$, hence $n≥100$. The minimum is 100."
+        ]
+      }
+    ],
+    "problem": [
+      "Soit $Tₙ=Σ 1/[k(k+2)]$ pour k de 1 à n. Établir une expression exacte en fonction de n, puis calculer sa limite. Trouver le plus petit n tel que l’écart à la limite soit strictement inférieur à $0,01$.",
+      "Let $Tₙ=Σ 1/[k(k+2)]$ for k from 1 to n. Derive an exact formula and find its limit. Find the least n such that the gap to the limit is strictly less than $0.01$."
+    ],
+    "solution": [
+      "Après décomposition, tous les termes sauf les deux premiers et les deux derniers s’annulent : $Tₙ=3/4−1/[2(n+1)]−1/[2(n+2)]$. La limite est $3/4$. L’écart décroît avec n. Pour $n=98$, il vaut $1/198+1/200>0,01$ ; pour $n=99$, il vaut $1/200+1/202<0,01$. Le minimum est donc 99.",
+      "After decomposition, all except the first two and last two terms cancel: $Tₙ=3/4−1/[2(n+1)]−1/[2(n+2)]$. The limit is $3/4$. The gap decreases with n. At $n=98$ it is $1/198+1/200>0.01$; at $n=99$ it is $1/200+1/202<0.01$. Therefore the minimum is 99."
+    ]
+  },
+  {
+    "id": "inequalities",
+    "title": [
+      "Inégalités et cas d’égalité",
+      "Inequalities and equality cases"
+    ],
+    "level": [
+      "Lycée · optimisation et olympiades",
+      "High school · optimisation and olympiads"
+    ],
+    "labs": [
+      "quadratic"
+    ],
+    "prerequisites": [
+      "Carrés, factorisation et racines carrées.",
+      "Squares, factorisation and square roots."
+    ],
+    "lesson": [
+      [
+        "Pour tout réel $u$, $u²≥0$, avec égalité exactement lorsque $u=0$. Beaucoup d’inégalités se ramènent à cette observation.",
+        "For every real $u$, $u²≥0$, with equality exactly when $u=0$. Many inequalities reduce to this observation."
+      ],
+      [
+        "Pour $a,b≥0$, $(√a−√b)²≥0$ donne $a+b≥2√(ab)$. C’est l’inégalité entre les moyennes arithmétique et géométrique. L’égalité a lieu si et seulement si $a=b$.",
+        "For $a,b≥0$, $(√a−√b)²≥0$ gives $a+b≥2√(ab)$, the arithmetic–geometric mean inequality. Equality holds exactly when $a=b$."
+      ],
+      [
+        "Prouver une borne ne suffit pas à annoncer un maximum : il faut vérifier qu’un cas d’égalité autorisé l’atteint. Les contraintes de positivité et de domaine font partie du raisonnement.",
+        "Proving a bound is not enough to announce a maximum: an admissible equality case must attain it. Positivity and domain conditions are part of the argument."
+      ]
+    ],
+    "worked": [
+      "Si $a+b=10$ avec $a,b≥0$, alors $(a−b)²≥0$ donne $100−4ab≥0$, donc $ab≤25$. Le couple $a=b=5$ atteint 25 : c’est bien le maximum.",
+      "If $a+b=10$ with $a,b≥0$, then $(a−b)²≥0$ gives $100−4ab≥0$, so $ab≤25$. The pair $a=b=5$ attains 25, proving that it is the maximum."
+    ],
+    "activity": [
+      "Tracer $f(x)=x(10−x)$ pour $0≤x≤10$ et déplacer le point. Retrouver ensuite le maximum sans utiliser le dessin.",
+      "Plot $f(x)=x(10−x)$ for $0≤x≤10$ and move the point. Then prove the maximum without relying on the picture."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Pour $x>0$, prouver $x+1/x≥2$ et déterminer l’égalité.",
+          "For $x>0$, prove $x+1/x≥2$ and determine equality."
+        ],
+        "a": [
+          "$x+1/x−2=(x−1)²/x≥0$. L’égalité a lieu exactement pour $x=1$.",
+          "$x+1/x−2=(x−1)²/x≥0$. Equality holds exactly at $x=1$."
+        ]
+      },
+      {
+        "q": [
+          "Déterminer le minimum de $x²−6x+13$ sur $ℝ$.",
+          "Find the minimum of $x²−6x+13$ on $ℝ$."
+        ],
+        "a": [
+          "$x²−6x+13=(x−3)²+4≥4$. Le minimum 4 est atteint en $x=3$.",
+          "$x²−6x+13=(x−3)²+4≥4$. The minimum 4 is attained at $x=3$."
+        ]
+      },
+      {
+        "q": [
+          "Un rectangle a pour périmètre 24 m. Quelle est son aire maximale ?",
+          "A rectangle has perimeter 24 m. What is its greatest area?"
+        ],
+        "a": [
+          "Ses côtés $a,b>0$ vérifient $a+b=12$. Donc $ab≤36$, avec égalité pour $a=b=6 m$. L’aire maximale est $36 m²$.",
+          "Its sides $a,b>0$ satisfy $a+b=12$. Thus $ab≤36$, with equality at $a=b=6 m$. The maximum area is $36 m²$."
+        ]
+      },
+      {
+        "q": [
+          "Pour a,b réels, prouver $a²+b²≥2ab$. Faut-il supposer a et b positifs ?",
+          "For real a,b, prove $a²+b²≥2ab$. Must a and b be positive?"
+        ],
+        "a": [
+          "$a²+b²−2ab=(a−b)²≥0$ pour tous réels a,b. Aucune positivité n’est nécessaire ; l’égalité équivaut à $a=b$.",
+          "$a²+b²−2ab=(a−b)²≥0$ for all real a,b. No positivity is needed; equality means $a=b$."
+        ]
+      }
+    ],
+    "problem": [
+      "On dispose de 40 m de clôture pour trois côtés d’un enclos rectangulaire adossé à un mur. La largeur x, perpendiculaire au mur, est strictement positive. Exprimer la longueur et l’aire en fonction de x, déterminer le domaine, puis prouver l’aire maximale sans dérivée. Comparer avec un rectangle fermé de périmètre 40 m.",
+      "There are 40 m of fencing for three sides of a rectangular enclosure against a wall. Its width x, perpendicular to the wall, is positive. Express its length and area in terms of x, determine the domain, then prove the maximum area without derivatives. Compare with a fully fenced rectangle of perimeter 40 m."
+    ],
+    "solution": [
+      "La longueur vaut $40−2x$ et $0<x<20$. L’aire est $A(x)=x(40−2x)=200−2(x−10)²≤200$. L’égalité est atteinte pour largeur 10 m et longueur 20 m : $200 m²$. Pour quatre côtés clôturés, $a+b=20$ et l’aire maximale est $100 m²$, atteinte par le carré de côté 10 m.",
+      "Length is $40−2x$ and $0<x<20$. Area is $A(x)=x(40−2x)=200−2(x−10)²≤200$. Equality occurs at width 10 m and length 20 m: $200 m²$. With all four sides fenced, $a+b=20$ and the maximum area is $100 m²$, attained by a square of side 10 m."
+    ]
+  },
+  {
+    "id": "bisection",
+    "title": [
+      "Encadrer une racine par dichotomie",
+      "Bracketing a root by bisection"
+    ],
+    "level": [
+      "Terminale · analyse et algorithmique",
+      "Upper high school · analysis and algorithms"
+    ],
+    "labs": [
+      "derivative",
+      "quadratic"
+    ],
+    "prerequisites": [
+      "Continuité, signe et intervalles.",
+      "Continuity, signs and intervals."
+    ],
+    "lesson": [
+      [
+        "Si f est continue sur [a,b] et si f(a) et f(b) sont de signes opposés, le théorème des valeurs intermédiaires garantit au moins une racine dans [a,b]. Il ne garantit pas l’unicité.",
+        "If f is continuous on [a,b] and f(a), f(b) have opposite signs, the intermediate value theorem guarantees at least one root in [a,b]. It does not guarantee uniqueness."
+      ],
+      [
+        "On calcule $m=(a+b)/2$. Si $f(m)=0$, on a trouvé une racine. Sinon, on garde la moitié dont les valeurs aux bornes ont des signes opposés. La continuité maintient la garantie à chaque étape.",
+        "Compute $m=(a+b)/2$. If $f(m)=0$, a root has been found. Otherwise retain the half whose endpoint values have opposite signs. Continuity maintains the guarantee at every step."
+      ],
+      [
+        "Après n partages, la largeur de l’intervalle est $(b−a)/2ⁿ$. Son milieu approche une racine avec une erreur au plus égale à la moitié de cette largeur. La largeur n’est donc pas la même chose que l’erreur du milieu.",
+        "After n halvings, the interval width is $(b−a)/2ⁿ$. Its midpoint approximates a root with error at most half that width. Width is therefore different from midpoint error."
+      ]
+    ],
+    "worked": [
+      "Pour $f(x)=x²−2$ sur $[1 ; 2]$, f est continue et strictement croissante. Sa racine est unique. Les milieux $1,5$, puis $1,25$ donnent les intervalles $[1 ; 1,5]$, puis $[1,25 ; 1,5]$ : on conserve toujours un signe négatif à gauche et positif à droite.",
+      "For $f(x)=x²−2$ on $[1 ; 2]$, f is continuous and strictly increasing, so its root is unique. Midpoints $1.5$ and then $1.25$ give intervals $[1 ; 1.5]$ and $[1.25 ; 1.5]$: the left value remains negative and the right value positive."
+    ],
+    "activity": [
+      "Sur une droite graduée, représenter les intervalles successifs autour de $√2$. Inscrire leur largeur à chaque étape.",
+      "On a number line, draw the successive intervals around $√2$ and label each width."
+    ],
+    "exercises": [
+      {
+        "q": [
+          "Poursuivre l’exemple une troisième fois.",
+          "Carry out a third step of the example."
+        ],
+        "a": [
+          "Le milieu vaut $1,375$ ; son carré vaut $1,890625<2$. Le nouvel intervalle est $[1,375 ; 1,5]$.",
+          "The midpoint is $1.375$, whose square is $1.890625<2$. The new interval is $[1.375 ; 1.5]$."
+        ]
+      },
+      {
+        "q": [
+          "Partant d’un intervalle de largeur 1, combien de partages garantissent une largeur au plus $1/1000$ ?",
+          "Starting with width 1, how many halvings guarantee width at most $1/1000$?"
+        ],
+        "a": [
+          "$2⁹=512<1000≤1024=2¹⁰$, donc 10 partages suffisent et 9 ne suffisent pas.",
+          "$2⁹=512<1000≤1024=2¹⁰$, so 10 halvings suffice and 9 do not."
+        ]
+      },
+      {
+        "q": [
+          "Pourquoi le changement de signe de $f(x)=1/x$ entre $−1$ et 1 ne prouve-t-il pas l’existence d’un zéro ?",
+          "Why does the sign change of $f(x)=1/x$ between $−1$ and 1 not prove the existence of a zero?"
+        ],
+        "a": [
+          "La fonction n’est pas définie en 0 et n’est pas continue sur $[−1 ; 1]$. L’hypothèse du théorème n’est pas satisfaite ; $1/x$ n’est jamais nul.",
+          "The function is undefined at 0 and is not continuous on $[−1 ; 1]$. The theorem’s hypothesis fails; $1/x$ is never zero."
+        ]
+      },
+      {
+        "q": [
+          "Une racine est dans $[1,4 ; 1,5]$. Quelle erreur maximale garantit le milieu $1,45$ ?",
+          "A root lies in $[1.4 ; 1.5]$. What maximum error is guaranteed by midpoint $1.45$?"
+        ],
+        "a": [
+          "La demi-largeur vaut $(1,5−1,4)/2=0,05$.",
+          "The half-width is $(1.5−1.4)/2=0.05$."
+        ]
+      }
+    ],
+    "problem": [
+      "Pour $f(x)=x³−x−1$ sur $[1 ; 2]$, prouver l’existence et l’unicité d’une racine $α$. Effectuer trois partages par dichotomie. Combien de partages garantissent que le milieu final approche $α$ avec une erreur au plus $0,001$ ?",
+      "For $f(x)=x³−x−1$ on $[1 ; 2]$, prove existence and uniqueness of a root $α$. Carry out three bisection steps. How many halvings guarantee that the final midpoint approximates $α$ with error at most $0.001$?"
+    ],
+    "solution": [
+      "$f(1)=−1$ et $f(2)=5$ ; f est continue. De plus $f′(x)=3x²−1≥2$ sur $[1 ; 2]$, donc f est strictement croissante. Les milieux $1,5$, $1,25$, $1,375$ donnent successivement $[1 ; 1,5]$, $[1,25 ; 1,5]$, $[1,25 ; 1,375]$ car les valeurs de f sont $0,875$, $−0,296875$ et $0,224609375$. Après n partages, l’erreur du milieu est au plus $1/2ⁿ⁺¹$. Il faut $2ⁿ⁺¹≥1000$, donc $n≥9$.",
+      "$f(1)=−1$ and $f(2)=5$, and f is continuous. Also $f′(x)=3x²−1≥2$ on $[1 ; 2]$, so f is strictly increasing. Midpoints $1.5$, $1.25$, $1.375$ give $[1 ; 1.5]$, $[1.25 ; 1.5]$, $[1.25 ; 1.375]$ because f takes values $0.875$, $−0.296875$ and $0.224609375$. After n halvings, midpoint error is at most $1/2ⁿ⁺¹$. Thus $2ⁿ⁺¹≥1000$, requiring $n≥9$."
+    ],
+    "exerciseContext": [
+      "Pour l’exercice 1 : on cherche un zéro de $f(x)=x²−2$ sur $[1 ; 2]$. Après deux partages, l’intervalle conservé est $[1,25 ; 1,5]$.",
+      "For exercise 1: seek a zero of $f(x)=x²−2$ on $[1 ; 2]$. After two halvings, the retained interval is $[1.25 ; 1.5]$."
+    ]
+  }
+]

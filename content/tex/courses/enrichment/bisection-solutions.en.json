@@ -1,0 +1,95 @@
+{
+ "unit": "bisection-solutions.fr.tex",
+ "segments": {
+  "f0b3ded6f38f": {
+   "fr": "Encadrer une racine par dichotomie",
+   "en": "Bracketing a root by bisection",
+   "status": "aligned",
+   "order": 0
+  },
+  "f379b0849355": {
+   "fr": "Terminale · analyse et algorithmique",
+   "en": "Upper high school · analysis and algorithms",
+   "status": "aligned",
+   "order": 1
+  },
+  "db2fd0bfdf52": {
+   "fr": "Solutions détaillées",
+   "en": "Worked solutions",
+   "status": "aligned",
+   "order": 2
+  },
+  "a13bfa8ba012": {
+   "fr": "\\textbf{Données.} Pour l’exercice 1 : on cherche un zéro de [[m1]] sur [[m2]]. Après deux partages, l’intervalle conservé est [[m3]].",
+   "en": "\\textbf{Given information.} For exercise 1: seek a zero of [[m1]] on [[m2]]. After two halvings, the retained interval is [[m3]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "e6b37bd42239": {
+   "fr": "Poursuivre l’exemple une troisième fois.",
+   "en": "Carry out a third step of the example.",
+   "status": "aligned",
+   "order": 4
+  },
+  "cc753ac03898": {
+   "fr": "Le milieu vaut [[m1]] ; son carré vaut [[m2]]. Le nouvel intervalle est [[m3]].",
+   "en": "The midpoint is [[m1]], whose square is [[m2]]. The new interval is [[m3]].",
+   "status": "aligned",
+   "order": 5
+  },
+  "9c1e512169d1": {
+   "fr": "Partant d’un intervalle de largeur 1, combien de partages garantissent une largeur au plus [[m1]] ?",
+   "en": "Starting with width 1, how many halvings guarantee width at most [[m1]]?",
+   "status": "aligned",
+   "order": 6
+  },
+  "c11e2656177c": {
+   "fr": "[[m1]], donc 10 partages suffisent et 9 ne suffisent pas.",
+   "en": "[[m1]], so 10 halvings suffice and 9 do not.",
+   "status": "aligned",
+   "order": 7
+  },
+  "6b39284dbb58": {
+   "fr": "Pourquoi le changement de signe de [[m1]] entre [[m2]] et 1 ne prouve-t-il pas l’existence d’un zéro ?",
+   "en": "Why does the sign change of [[m1]] between [[m2]] and 1 not prove the existence of a zero?",
+   "status": "aligned",
+   "order": 8
+  },
+  "7c9feb2553cc": {
+   "fr": "La fonction n’est pas définie en 0 et n’est pas continue sur [[m1]]. L’hypothèse du théorème n’est pas satisfaite ; [[m2]] n’est jamais nul.",
+   "en": "The function is undefined at 0 and is not continuous on [[m1]]. The theorem’s hypothesis fails; [[m2]] is never zero.",
+   "status": "aligned",
+   "order": 9
+  },
+  "ab4ff79588a0": {
+   "fr": "Une racine est dans [[m1]]. Quelle erreur maximale garantit le milieu [[m2]] ?",
+   "en": "A root lies in [[m1]]. What maximum error is guaranteed by midpoint [[m2]]?",
+   "status": "aligned",
+   "order": 10
+  },
+  "79c0286e5e35": {
+   "fr": "La demi-largeur vaut [[m1]].",
+   "en": "The half-width is [[m1]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "7541c663b666": {
+   "fr": "Chercher, justifier, conclure",
+   "en": "Investigate, justify, conclude",
+   "status": "aligned",
+   "order": 12
+  },
+  "dfd9ba6ce5cb": {
+   "fr": "Pour [[m1]] sur [[m2]], prouver l’existence et l’unicité d’une racine [[m3]]. Effectuer trois partages par dichotomie. Combien de partages garantissent que le milieu final approche [[m4]] avec une erreur au plus [[m5]] ?",
+   "en": "For [[m1]] on [[m2]], prove existence and uniqueness of a root [[m3]]. Carry out three bisection steps. How many halvings guarantee that the final midpoint approximates [[m4]] with error at most [[m5]]?",
+   "status": "aligned",
+   "order": 13
+  },
+  "a22a1760387e": {
+   "fr": "[[m1]] et [[m2]] ; f est continue. De plus [[m3]] sur [[m4]], donc f est strictement croissante. Les milieux [[m5]], [[m6]], [[m7]] donnent successivement [[m8]], [[m9]], [[m10]] car les valeurs de f sont [[m11]], [[m12]] et [[m13]]. Après n partages, l’erreur du milieu est au plus [[m14]]. Il faut [[m15]], donc [[m16]].",
+   "en": "[[m1]] and [[m2]], and f is continuous. Also [[m3]] on [[m4]], so f is strictly increasing. Midpoints [[m5]], [[m6]], [[m7]] give [[m8]], [[m9]], [[m10]] because f takes values [[m11]], [[m12]] and [[m13]]. After n halvings, midpoint error is at most [[m14]]. Thus [[m15]], requiring [[m16]].",
+   "status": "aligned",
+   "order": 14
+  }
+ }
+}

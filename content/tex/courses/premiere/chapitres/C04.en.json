@@ -1,0 +1,803 @@
+{
+ "unit": "C04.fr.tex",
+ "segments": {
+  "a9b7fa485eda": {
+   "fr": "Dérivation : du taux à la tangente",
+   "en": "Differentiation: from rate to tangent",
+   "status": "aligned",
+   "order": 0
+  },
+  "d7ffadecaa6d": {
+   "fr": "Le parcours du chapitre",
+   "en": "Chapter path",
+   "status": "aligned",
+   "order": 1
+  },
+  "f3139f9c6bb0": {
+   "fr": "\\textbf{Objectifs.} Interpréter un taux ; approcher un nombre dérivé ; déterminer une tangente ; comprendre les échecs de dérivabilité.",
+   "en": "\\textbf{Objectives.} Interpret a rate; approximate a derivative at a point; determine a tangent; understand why differentiability fails.",
+   "status": "aligned",
+   "order": 2
+  },
+  "3d3c6c91f723": {
+   "fr": "\\textbf{Prérequis.} Images, pente d’une droite, calcul littéral, racine carrée et valeur absolue.",
+   "en": "\\textbf{Prerequisites.} Images, slope of a line, algebraic manipulation, square root and absolute value.",
+   "status": "aligned",
+   "order": 3
+  },
+  "14860d68a73f": {
+   "fr": "\\textbf{Repère annuel.} 3–12 novembre : 8 h",
+   "en": "\\textbf{Yearly reference point.} 3--12 November: 8 hours",
+   "status": "aligned",
+   "order": 4
+  },
+  "23409de27c2d": {
+   "fr": "Diagnostic : [[m1]] questions, 10 minutes",
+   "en": "Diagnostic: [[m1]] questions, 10 minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "716eac61815e": {
+   "fr": "Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.",
+   "en": "Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.",
+   "status": "aligned",
+   "order": 6
+  },
+  "4e26bd7c7d8e": {
+   "fr": "Pente de la droite passant par [[m1]] et [[m2]] ?",
+   "en": "What is the slope of the line through [[m1]] and [[m2]]?",
+   "status": "aligned",
+   "order": 7
+  },
+  "e4c26f7751e1": {
+   "fr": "Développer [[m1]].",
+   "en": "Expand [[m1]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "73a658db2441": {
+   "fr": "Simplifier [[m1]] si [[m2]].",
+   "en": "Simplify [[m1]] if [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "4fb1b06a28c8": {
+   "fr": "Une droite de pente 2 passe par [[m1]]. Équation ?",
+   "en": "A line of slope 2 passes through [[m1]]. What is its equation?",
+   "status": "aligned",
+   "order": 11
+  },
+  "65855e601207": {
+   "fr": "Après le diagnostic.",
+   "en": "After the diagnostic.",
+   "status": "aligned",
+   "order": 12
+  },
+  "b2d2cf721c3d": {
+   "fr": "Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.",
+   "en": "Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.",
+   "status": "aligned",
+   "order": 13
+  },
+  "cc06b44f9251": {
+   "fr": "Oral et logique.",
+   "en": "Speaking and logic.",
+   "status": "aligned",
+   "order": 14
+  },
+  "dd08b20c61e6": {
+   "fr": "Expliquer à un camarade pourquoi on simplifie le taux avant de faire tendre h vers 0. Distinguer vitesse moyenne et instantanée.",
+   "en": "Explain to a classmate why we simplify the rate before letting h tend to 0. Distinguish average speed from instantaneous speed.",
+   "status": "aligned",
+   "order": 15
+  },
+  "c7fad140da61": {
+   "fr": "Chercher avant de formaliser",
+   "en": "Investigate before formalising",
+   "status": "aligned",
+   "order": 16
+  },
+  "a7c70c4f3cb3": {
+   "fr": "Pour [[m1]], faire varier h positif et négatif autour de 0 en gardant le point A d’abscisse 1. Dessiner trois sécantes ; conjecturer une droite limite puis la déterminer sans lecture graphique.",
+   "en": "For [[m1]], let h vary, positive and negative, around 0, keeping the point A with x-coordinate 1. Draw three secants; conjecture a limiting line, then determine it without reading a graph.",
+   "status": "aligned",
+   "order": 17
+  },
+  "6a201310450e": {
+   "fr": "Organisation.",
+   "en": "Organisation.",
+   "status": "aligned",
+   "order": 18
+  },
+  "e743e88cbeed": {
+   "fr": "Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.",
+   "en": "Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.",
+   "status": "aligned",
+   "order": 19
+  },
+  "a94dcaf8f656": {
+   "fr": "Taux de variation et sécantes",
+   "en": "Rate of change and secants",
+   "status": "aligned",
+   "order": 20
+  },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 21
+  },
+  "a6c6a9e27e62": {
+   "fr": "Pour [[m1]] dans le domaine de f, le taux de variation entre a et b vaut [[m2]]. C’est la pente de la sécante passant par les points correspondants. En contexte, l’unité du taux est l’unité de f divisée par celle de la variable.",
+   "en": "For [[m1]] in the domain of f, the rate of change between a and b is [[m2]]. It is the slope of the secant through the corresponding points. In context, the unit of the rate is the unit of f divided by that of the variable.",
+   "status": "aligned",
+   "order": 22
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 23
+  },
+  "7adca0bb06d9": {
+   "fr": "Définition ; formule de la pente d’une droite déjà étudiée. Avec [[m1]], [[m2]], le taux devient [[m3]].",
+   "en": "Definition; formula for the slope of a line, already studied. With [[m1]], [[m2]], the rate becomes [[m3]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "a3c760b0cbcf": {
+   "fr": "Pour [[m1]], entre 1 et 3, le taux vaut [[m2]]. Entre 1 et [[m3]], il vaut [[m4]]. Les pentes pour [[m5]] et [[m6]] sont [[m7]] et [[m8]].",
+   "en": "For [[m1]], between 1 and 3, the rate is [[m2]]. Between 1 and [[m3]], it is [[m4]]. The slopes for [[m5]] and [[m6]] are [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "3a7e889cf1cb": {
+   "fr": "Le taux n’est pas [[m1]] ; h représente un écart, positif ou négatif selon le domaine.",
+   "en": "The rate is not [[m1]]; h represents a gap, positive or negative depending on the domain.",
+   "status": "aligned",
+   "order": 26
+  },
+  "d2664dd84ccd": {
+   "fr": "Calculer le taux de [[m1]] entre 2 et [[m2]].",
+   "en": "Calculate the rate of [[m1]] between 2 and [[m2]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "d9ec3c8da591": {
+   "fr": "Nombre dérivé",
+   "en": "Derivative at a point",
+   "status": "aligned",
+   "order": 28
+  },
+  "53fc352c4866": {
+   "fr": "f est dérivable en a lorsque le taux [[m1]] tend vers un réel quand h tend vers 0, dans le domaine. Ce réel est [[m2]]. On emploie ici une approche intuitive de la limite. En cinématique, si f donne une position en mètres et le temps en secondes, le nombre dérivé représente une vitesse instantanée en [[m3]].",
+   "en": "f is differentiable at a when the rate [[m1]] tends to a real number as h tends to 0, within the domain. This real number is [[m2]]. An intuitive approach to the limit is used here. In kinematics, if f gives a position in metres and time is in seconds, the derivative at a point represents an instantaneous speed in [[m3]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "ef966d1f525c": {
+   "fr": "Pour [[m1]], le taux en a vaut [[m2]], qui se rapproche de [[m3]] ; ainsi [[m4]]. Ce calcul sera repris comme fonction dérivée au chapitre 6.",
+   "en": "For [[m1]], the rate at a is [[m2]], which gets closer to [[m3]]; hence [[m4]]. This calculation will be taken up again as a derivative function in chapter 6.",
+   "status": "aligned",
+   "order": 30
+  },
+  "e3782cd0e67c": {
+   "fr": "Pour [[m1]], le taux autour de 2 vaut [[m2]], donc [[m3]]. La vitesse moyenne sur [[m4]] vaut [[m5]] ; elle n’est pas la vitesse à l’instant 2.",
+   "en": "For [[m1]], the rate around 2 is [[m2]], so [[m3]]. The average speed on [[m4]] is [[m5]]; it is not the speed at time 2.",
+   "status": "aligned",
+   "order": 31
+  },
+  "1783261e4f11": {
+   "fr": "On ne remplace pas h par 0 dans un quotient non simplifié : on obtiendrait une division par 0.",
+   "en": "We do not replace h by 0 in an unsimplified quotient: we would get a division by 0.",
+   "status": "aligned",
+   "order": 32
+  },
+  "c6368506f06c": {
+   "fr": "Pour [[m1]], calculer [[m2]] à partir du taux.",
+   "en": "For [[m1]], calculate [[m2]] from the rate.",
+   "status": "aligned",
+   "order": 33
+  },
+  "d5dabe1a0d68": {
+   "fr": "Tangente et approximation affine",
+   "en": "Tangent and affine approximation",
+   "status": "aligned",
+   "order": 34
+  },
+  "8862d3ecec33": {
+   "fr": "Si f est dérivable en a, la tangente au point [[m1]] a pour équation [[m2]]. Pour h petit, on utilise [[m3]]. Cette approximation locale ne fournit pas à elle seule une borne de l’erreur.",
+   "en": "If f is differentiable at a, the tangent at the point [[m1]] has equation [[m2]]. For small h, we use [[m3]]. This local approximation does not by itself provide a bound on the error.",
+   "status": "aligned",
+   "order": 35
+  },
+  "d54094e1a23a": {
+   "fr": "La tangente a pente [[m1]] et passe par [[m2]]. Dans [[m3]], substituer ce point donne [[m4]], d’où l’équation.",
+   "en": "The tangent has slope [[m1]] and passes through [[m2]]. In [[m3]], substituting this point gives [[m4]], hence the equation.",
+   "status": "aligned",
+   "order": 36
+  },
+  "adeb4d4799fd": {
+   "fr": "Pour [[m1]] en 2, tangente [[m2]]. On approche [[m3]] par [[m4]] ; la valeur exacte est [[m5]], écart [[m6]].",
+   "en": "For [[m1]] at 2, tangent [[m2]]. We approximate [[m3]] by [[m4]]; the exact value is [[m5]], error [[m6]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "213b28248d65": {
+   "fr": "Une tangente peut recouper la courbe ailleurs. « Un seul point commun » n’est pas une définition.",
+   "en": "A tangent may cross the curve again elsewhere. ``Only one common point'' is not a definition.",
+   "status": "aligned",
+   "order": 38
+  },
+  "baae962b5e8f": {
+   "fr": "On donne [[m1]] et [[m2]]. Écrire la tangente et approcher [[m3]].",
+   "en": "Given [[m1]] and [[m2]]. Write the tangent and approximate [[m3]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "43675a3145f1": {
+   "fr": "Quand la dérivabilité échoue",
+   "en": "When differentiability fails",
+   "status": "aligned",
+   "order": 40
+  },
+  "c7051d161c6a": {
+   "fr": "La fonction racine carrée est définie sur [[m1]] mais n’est pas dérivable en 0. La fonction valeur absolue est définie sur [[m2]] mais n’est pas dérivable en 0. Être définie ou avoir une courbe continue ne garantit donc pas la dérivabilité.",
+   "en": "The square root function is defined on [[m1]] but is not differentiable at 0. The absolute value function is defined on [[m2]] but is not differentiable at 0. Being defined, or having a continuous curve, therefore does not guarantee differentiability.",
+   "status": "aligned",
+   "order": 41
+  },
+  "5b20b1fcc17e": {
+   "fr": "Pour [[m1]], [[m2]], qui ne tend pas vers un réel fini lorsque h se rapproche de 0. Pour [[m3]], le taux [[m4]] vaut 1 à droite et [[m5]] à gauche : pas de valeur commune.",
+   "en": "For [[m1]], [[m2]], which does not tend to a finite real number as h gets closer to 0. For [[m3]], the rate [[m4]] equals 1 on the right and [[m5]] on the left: no common value.",
+   "status": "aligned",
+   "order": 42
+  },
+  "fd2265c47dc3": {
+   "fr": "Pour [[m1]], les sécantes issues de l’origine ont toutes pente 1 à droite et [[m2]] à gauche. Le point anguleux ne possède pas une tangente de pente finie unique. Pour la racine, la direction limite est verticale ; il n’y a pas de nombre dérivé réel.",
+   "en": "For [[m1]], the secants from the origin all have slope 1 on the right and [[m2]] on the left. The corner point does not have a unique tangent with finite slope. For the square root, the limiting direction is vertical; there is no real derivative.",
+   "status": "aligned",
+   "order": 43
+  },
+  "45d0877ebd14": {
+   "fr": "Une pente très grande n’est pas une preuve de non-dérivabilité ; il faut expliquer le comportement du taux.",
+   "en": "A very large slope is not a proof of non-differentiability; the behaviour of the rate must be explained.",
+   "status": "aligned",
+   "order": 44
+  },
+  "6c2e254e5d86": {
+   "fr": "Justifier que [[m1]] n’est pas dérivable en 2. Étudier aussi la dérivabilité de [[m2]] en 0 par son taux.",
+   "en": "Justify that [[m1]] is not differentiable at 2. Also study the differentiability of [[m2]] at 0 through its rate.",
+   "status": "aligned",
+   "order": 45
+  },
+  "c82d22e2d8b1": {
+   "fr": "Parcours d’exercices",
+   "en": "Exercise path",
+   "status": "aligned",
+   "order": 46
+  },
+  "31c1e4322269": {
+   "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
+   "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
+   "status": "aligned",
+   "order": 47
+  },
+  "6bc0aa4d719c": {
+   "fr": "Deux sécantes",
+   "en": "Two secants",
+   "status": "aligned",
+   "order": 48
+  },
+  "b40cce367b11": {
+   "fr": "La fonction [[m1]] est définie sur [[m2]] par [[m3]]. On note [[m4]] le point de sa courbe d’abscisse 1.",
+   "en": "The function [[m1]] is defined on [[m2]] by [[m3]]. Let [[m4]] be the point of its curve with x-coordinate 1.",
+   "status": "aligned",
+   "order": 49
+  },
+  "7013605fc9ba": {
+   "fr": "Calculer le coefficient directeur de la sécante joignant [[m1]] au point de la courbe d’abscisse 2.",
+   "en": "Calculate the slope of the secant joining [[m1]] to the point of the curve with x-coordinate 2.",
+   "status": "aligned",
+   "order": 50
+  },
+  "b12f1281dbfd": {
+   "fr": "Reprendre le calcul avec le point de la courbe d’abscisse [[m1]].",
+   "en": "Repeat the calculation with the point of the curve with x-coordinate [[m1]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "67c94ffbd21c": {
+   "fr": "Après l’étude du nombre dérivé, déterminer [[m1]] et comparer cette valeur aux deux taux calculés. Expliquer ce qui change lorsque le second point se rapproche de [[m2]].",
+   "en": "After studying the derivative at a point, determine [[m1]] and compare this value with the two rates calculated. Explain what changes when the second point gets closer to [[m2]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "9533737ae4de": {
+   "fr": "Une tangente",
+   "en": "A tangent",
+   "status": "aligned",
+   "order": 53
+  },
+  "f6f5d2647b46": {
+   "fr": "On considère la fonction [[m1]], définie sur [[m2]]. L’objectif est de déterminer l’équation de sa tangente au point d’abscisse [[m3]], en partant du taux de variation.",
+   "en": "Consider the function [[m1]], defined on [[m2]]. The aim is to determine the equation of its tangent at the point with x-coordinate [[m3]], starting from the rate of change.",
+   "status": "aligned",
+   "order": 54
+  },
+  "de7912a98c7f": {
+   "fr": "Pour [[m1]], écrire puis simplifier [[m2]].",
+   "en": "For [[m1]], write then simplify [[m2]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "94c4da9557e3": {
+   "fr": "En déduire [[m1]]. Calculer également [[m2]].",
+   "en": "Deduce [[m1]]. Also calculate [[m2]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "7ec01d83fc9e": {
+   "fr": "Écrire l’équation réduite de la tangente et vérifier qu’elle passe par le point de contact.",
+   "en": "Write the slope-intercept equation of the tangent and check that it passes through the point of contact.",
+   "status": "aligned",
+   "order": 57
+  },
+  "602fa6c1c19b": {
+   "fr": "Coût marginal",
+   "en": "Marginal cost",
+   "status": "aligned",
+   "order": 58
+  },
+  "778724206484": {
+   "fr": "Une entreprise utilise le modèle [[m1]], où [[m2]] désigne la quantité produite et [[m3]] son coût en unités monétaires. Le modèle prolonge la quantité par une variable réelle afin d’étudier de petites variations de production.",
+   "en": "A company uses the model [[m1]], where [[m2]] is the quantity produced and [[m3]] its cost in monetary units. The model extends the quantity to a real variable so as to study small changes in production.",
+   "status": "aligned",
+   "order": 59
+  },
+  "0c2fa55926b2": {
+   "fr": "Calculer [[m1]] et [[m2]], puis le taux de variation de [[m3]] entre 10 et 11. Interpréter ce taux dans le contexte.",
+   "en": "Calculate [[m1]] and [[m2]], then the rate of change of [[m3]] between 10 and 11. Interpret this rate in context.",
+   "status": "aligned",
+   "order": 60
+  },
+  "c8dae3d100d2": {
+   "fr": "À partir du taux entre 10 et [[m1]], déterminer [[m2]].",
+   "en": "From the rate between 10 and [[m1]], determine [[m2]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "ee5ae377e493": {
+   "fr": "Comparer les deux résultats. Expliquer pourquoi le coût d’une unité supplémentaire n’est pas exactement égal au nombre dérivé dans ce modèle.",
+   "en": "Compare the two results. Explain why the cost of one extra unit is not exactly equal to the derivative in this model.",
+   "status": "aligned",
+   "order": 62
+  },
+  "1c865c750aec": {
+   "fr": "Lire une tangente",
+   "en": "Reading a tangent",
+   "status": "aligned",
+   "order": 63
+  },
+  "1f99cf3dd640": {
+   "fr": "Cet exercice comporte deux situations indépendantes. Une tangente à une courbe est une droite : un autre point de cette droite n’appartient pas nécessairement à la courbe.",
+   "en": "This exercise has two independent situations. A tangent to a curve is a line: another point of this line does not necessarily belong to the curve.",
+   "status": "aligned",
+   "order": 64
+  },
+  "64ff20aa5820": {
+   "fr": "Sur la figure de la section consacrée à la tangente, lire les coordonnées de deux points de la droite verte. En déduire sa pente et vérifier la valeur annoncée dans la légende.",
+   "en": "On the figure in the section on the tangent, read the coordinates of two points of the green line. Deduce its slope and check the value stated in the legend.",
+   "status": "aligned",
+   "order": 65
+  },
+  "4ab2394bae4c": {
+   "fr": "Dans une autre situation, la tangente à la courbe d’une fonction [[m1]] au point [[m2]] passe par [[m3]]. Déterminer [[m4]] et [[m5]]. Peut-on en déduire [[m6]] ?",
+   "en": "In another situation, the tangent to the curve of a function [[m1]] at the point [[m2]] passes through [[m3]]. Determine [[m4]] and [[m5]]. Can we deduce [[m6]]?",
+   "status": "aligned",
+   "order": 66
+  },
+  "67ca9ede3150": {
+   "fr": "Utiliser cette tangente pour proposer une valeur approchée de [[m1]]. Faire apparaître le signe « environ égal » dans la conclusion.",
+   "en": "Use this tangent to suggest an approximate value of [[m1]]. Make the ``approximately equal'' sign appear in the conclusion.",
+   "status": "aligned",
+   "order": 67
+  },
+  "c3631fc6a19d": {
+   "fr": "Contrôler une approximation",
+   "en": "Checking an approximation",
+   "status": "aligned",
+   "order": 68
+  },
+  "50c5b45dd678": {
+   "fr": "On souhaite approcher [[m1]] sans effectuer d’abord la multiplication. On utilise la tangente à la courbe de la fonction carré au point d’abscisse 1.",
+   "en": "We wish to approximate [[m1]] without first carrying out the multiplication. We use the tangent to the curve of the square function at the point with x-coordinate 1.",
+   "status": "aligned",
+   "order": 69
+  },
+  "854ddf842e40": {
+   "fr": "Écrire l’équation de cette tangente et en déduire l’approximation recherchée.",
+   "en": "Write the equation of this tangent and deduce the required approximation.",
+   "status": "aligned",
+   "order": 70
+  },
+  "7806ad83102e": {
+   "fr": "Calculer ensuite la valeur exacte de [[m1]]. On définit l’erreur par « valeur exacte moins valeur approchée » : calculer cette erreur et préciser son signe.",
+   "en": "Then calculate the exact value of [[m1]]. Define the error as ``exact value minus approximate value'': calculate this error and state its sign.",
+   "status": "aligned",
+   "order": 71
+  },
+  "3cdffabab3bc": {
+   "fr": "Expliquer le résultat à partir de l’identité [[m1]].",
+   "en": "Explain the result using the identity [[m1]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "646ccf9dd138": {
+   "fr": "Tangente et intersection",
+   "en": "Tangent and intersection",
+   "status": "aligned",
+   "order": 73
+  },
+  "cd1073052f55": {
+   "fr": "La fonction [[m1]] est définie sur [[m2]] par [[m3]]. On admet que [[m4]]. Un élève affirme qu’une tangente et une courbe ont toujours un seul point commun.",
+   "en": "The function [[m1]] is defined on [[m2]] by [[m3]]. We accept that [[m4]]. A student claims that a tangent and a curve always have a single common point.",
+   "status": "aligned",
+   "order": 74
+  },
+  "f32ff7e709bf": {
+   "fr": "Déterminer l’équation de la tangente à la courbe de [[m1]] au point d’abscisse 1.",
+   "en": "Determine the equation of the tangent to the curve of [[m1]] at the point with x-coordinate 1.",
+   "status": "aligned",
+   "order": 75
+  },
+  "66e6e82e0a4e": {
+   "fr": "Vérifier en développant que [[m1]].",
+   "en": "Check by expanding that [[m1]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "b2ee4eeb4458": {
+   "fr": "Déterminer tous les points d’intersection de la courbe et de cette tangente. L’affirmation de l’élève est-elle correcte ?",
+   "en": "Determine all the points of intersection of the curve and this tangent. Is the student's claim correct?",
+   "status": "aligned",
+   "order": 77
+  },
+  "5aae3627d4c6": {
+   "fr": "Sécantes numériques",
+   "en": "Numerical secants",
+   "status": "aligned",
+   "order": 78
+  },
+  "6d5c95bfbdfb": {
+   "fr": "Pour étudier la fonction carré au voisinage de 1, on définit, pour [[m1]],",
+   "en": "To study the square function near 1, define, for [[m1]],",
+   "status": "aligned",
+   "order": 79
+  },
+  "d1bda6eb2c3d": {
+   "fr": "On utilisera les six valeurs [[m1]], [[m2]], [[m3]] et leurs opposés.",
+   "en": "We will use the six values [[m1]], [[m2]], [[m3]] and their opposites.",
+   "status": "aligned",
+   "order": 80
+  },
+  "da118a4097e1": {
+   "fr": "Écrire une fonction Python qui calcule [[m1]], puis produire un tableau de six résultats.",
+   "en": "Write a Python function that calculates [[m1]], then produce a table of six results.",
+   "status": "aligned",
+   "order": 81
+  },
+  "9ca01e43d7a3": {
+   "fr": "Conjecturer la valeur du nombre dérivé de la fonction carré en 1.",
+   "en": "Conjecture the value of the derivative of the square function at 1.",
+   "status": "aligned",
+   "order": 82
+  },
+  "16ae271eee77": {
+   "fr": "Simplifier algébriquement [[m1]] pour justifier la conjecture. Expliquer pourquoi l’essai de valeurs numériques ne suffit pas, à lui seul, à démontrer le résultat.",
+   "en": "Simplify [[m1]] algebraically to justify the conjecture. Explain why trying numerical values is not, on its own, enough to prove the result.",
+   "status": "aligned",
+   "order": 83
+  },
+  "2956a7106212": {
+   "fr": "Reprise différée",
+   "en": "Delayed review",
+   "status": "aligned",
+   "order": 84
+  },
+  "311269ea32cd": {
+   "fr": "La fonction inverse est définie par [[m1]] pour [[m2]]. On l’étudie au voisinage de 1.",
+   "en": "The reciprocal function is defined by [[m1]] for [[m2]]. We study it near 1.",
+   "status": "aligned",
+   "order": 85
+  },
+  "f322d19a61d1": {
+   "fr": "Préciser les valeurs interdites de [[m1]] dans le taux [[m2]], puis le simplifier.",
+   "en": "State the forbidden values of [[m1]] in the rate [[m2]], then simplify it.",
+   "status": "aligned",
+   "order": 86
+  },
+  "1b66c7aab5e6": {
+   "fr": "En déduire [[m1]] et l’équation de la tangente en 1.",
+   "en": "Deduce [[m1]] and the equation of the tangent at 1.",
+   "status": "aligned",
+   "order": 87
+  },
+  "ff2ec9188d8f": {
+   "fr": "Utiliser cette tangente pour approcher [[m1]]. Conserver la distinction entre valeur exacte et valeur approchée.",
+   "en": "Use this tangent to approximate [[m1]]. Keep the distinction between exact value and approximate value.",
+   "status": "aligned",
+   "order": 88
+  },
+  "261ef763c4c8": {
+   "fr": "Travail personnel.",
+   "en": "Homework.",
+   "status": "aligned",
+   "order": 89
+  },
+  "1e62d212eb03": {
+   "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
+   "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
+   "status": "aligned",
+   "order": 90
+  },
+  "8a14bcc09f57": {
+   "fr": "À faire dans le manuel CQFD",
+   "en": "To do in the CQFD textbook",
+   "status": "aligned",
+   "order": 91
+  },
+  "3b23cff4a4c2": {
+   "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
+   "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
+   "status": "aligned",
+   "order": 92
+  },
+  "6848840cbfea": {
+   "fr": "CQFD, exercice 17 p. 127, questions toutes.",
+   "en": "CQFD, exercise 17 p.~127, all questions.",
+   "status": "aligned",
+   "order": 93
+  },
+  "a3916b20f43c": {
+   "fr": "Lire deux points de chaque tangente ; écrire le quotient des accroissements plutôt qu’estimer son inclinaison.",
+   "en": "Read two points on each tangent; write the quotient of the increments rather than estimating its steepness.",
+   "status": "aligned",
+   "order": 94
+  },
+  "b6d249ff133b": {
+   "fr": "CQFD, exercice 19 p. 127, questions 1 et 2.",
+   "en": "CQFD, exercise 19 p.~127, questions 1 and 2.",
+   "status": "aligned",
+   "order": 95
+  },
+  "a9d50e1f7bf2": {
+   "fr": "Distinguer l’ordonnée du point de contact et la pente de la droite tangente.",
+   "en": "Distinguish the y-coordinate of the point of contact from the slope of the tangent line.",
+   "status": "aligned",
+   "order": 96
+  },
+  "3b951efef83f": {
+   "fr": "QCM 1 : comprendre et choisir",
+   "en": "MCQ 1: understand and choose",
+   "status": "aligned",
+   "order": 97
+  },
+  "214bc4b49b04": {
+   "fr": "[[m1]] questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "[[m1]] single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 98
+  },
+  "de15a48e63b4": {
+   "fr": "Taux de [[m1]] entre 1 et 2 :",
+   "en": "Rate of [[m1]] between 1 and 2:",
+   "status": "aligned",
+   "order": 99
+  },
+  "79f44f708af5": {
+   "fr": "Si [[m1]], [[m2]], tangente :",
+   "en": "If [[m1]], [[m2]], the tangent is:",
+   "status": "aligned",
+   "order": 100
+  },
+  "0c9c5aef2cd9": {
+   "fr": "Le nombre dérivé est",
+   "en": "The derivative at a point is",
+   "status": "aligned",
+   "order": 101
+  },
+  "f6ee0dbb1545": {
+   "fr": "une fonction",
+   "en": "a function",
+   "status": "aligned",
+   "order": 102
+  },
+  "b76f8a9253fc": {
+   "fr": "une aire",
+   "en": "an area",
+   "status": "aligned",
+   "order": 103
+  },
+  "ec970f0952ed": {
+   "fr": "une abscisse",
+   "en": "an x-coordinate",
+   "status": "aligned",
+   "order": 104
+  },
+  "7539d44bbf15": {
+   "fr": "un réel si la dérivée existe",
+   "en": "a real number if the derivative exists",
+   "status": "aligned",
+   "order": 105
+  },
+  "d6b23b2ee035": {
+   "fr": "Pour [[m1]] en 3, nombre dérivé :",
+   "en": "For [[m1]] at 3, the derivative at that point is:",
+   "status": "aligned",
+   "order": 106
+  },
+  "03e87be0c3c8": {
+   "fr": "L’approximation de [[m1]] est",
+   "en": "The approximation of [[m1]] is",
+   "status": "aligned",
+   "order": 107
+  },
+  "cc229fe9b5f3": {
+   "fr": "QCM 2 : comprendre et choisir",
+   "en": "MCQ 2: understand and choose",
+   "status": "aligned",
+   "order": 108
+  },
+  "b64b7eee03b0": {
+   "fr": "[[m1]] en 0 est",
+   "en": "[[m1]] at 0 is",
+   "status": "aligned",
+   "order": 109
+  },
+  "3932dab57f9d": {
+   "fr": "dérivable de dérivée 0",
+   "en": "differentiable with derivative 0",
+   "status": "aligned",
+   "order": 110
+  },
+  "06b0c979c776": {
+   "fr": "dérivable de dérivée 1",
+   "en": "differentiable with derivative 1",
+   "status": "aligned",
+   "order": 111
+  },
+  "a808b2a281d4": {
+   "fr": "non dérivable",
+   "en": "not differentiable",
+   "status": "aligned",
+   "order": 112
+  },
+  "ac6fc0fcbf52": {
+   "fr": "non définie",
+   "en": "not defined",
+   "status": "aligned",
+   "order": 113
+  },
+  "1a9476744271": {
+   "fr": "[[m1]] pour [[m2]] vaut",
+   "en": "[[m1]] for [[m2]] equals",
+   "status": "aligned",
+   "order": 114
+  },
+  "9ee2edba5d80": {
+   "fr": "Une tangente de pente 0 est",
+   "en": "A tangent of slope 0 is",
+   "status": "aligned",
+   "order": 115
+  },
+  "44718b8c653a": {
+   "fr": "verticale",
+   "en": "vertical",
+   "status": "aligned",
+   "order": 116
+  },
+  "6cb023bf05bd": {
+   "fr": "oblique",
+   "en": "oblique",
+   "status": "aligned",
+   "order": 117
+  },
+  "a708dd233307": {
+   "fr": "impossible",
+   "en": "impossible",
+   "status": "aligned",
+   "order": 118
+  },
+  "b2d747380d2c": {
+   "fr": "horizontale",
+   "en": "horizontal",
+   "status": "aligned",
+   "order": 119
+  },
+  "0e509212e03a": {
+   "fr": "Position en m et temps en s : unité de la dérivée",
+   "en": "Position in m and time in s: the unit of the derivative is",
+   "status": "aligned",
+   "order": 120
+  },
+  "1eb4c7e7e5b8": {
+   "fr": "Pour f dérivable en a, remplacer [[m1]] par [[m2]] est en général",
+   "en": "For f differentiable at a, replacing [[m1]] by [[m2]] is in general",
+   "status": "aligned",
+   "order": 121
+  },
+  "f42f64c80350": {
+   "fr": "une identité exacte",
+   "en": "an exact identity",
+   "status": "aligned",
+   "order": 122
+  },
+  "400f09bce43f": {
+   "fr": "une définition de h",
+   "en": "a definition of h",
+   "status": "aligned",
+   "order": 123
+  },
+  "988695bfc4d3": {
+   "fr": "une approximation locale",
+   "en": "a local approximation",
+   "status": "aligned",
+   "order": 124
+  },
+  "d6cd27d0e170": {
+   "fr": "toujours faux même pour une affine",
+   "en": "always false, even for an affine function",
+   "status": "aligned",
+   "order": 125
+  },
+  "d5fc4ef9b48b": {
+   "fr": "Vrai ou faux ? Justifier.",
+   "en": "True or false? Justify.",
+   "status": "aligned",
+   "order": 126
+  },
+  "dd747a82f268": {
+   "fr": "Une tangente ne peut jamais recouper une courbe.",
+   "en": "A tangent can never cross a curve again.",
+   "status": "aligned",
+   "order": 127
+  },
+  "6abc89568635": {
+   "fr": "La fonction valeur absolue est dérivable en 0.",
+   "en": "The absolute value function is differentiable at 0.",
+   "status": "aligned",
+   "order": 128
+  },
+  "c6b43f7f4bee": {
+   "fr": "Une fonction affine [[m1]] a pour nombre dérivé m en tout réel.",
+   "en": "An affine function [[m1]] has derivative m at every real number.",
+   "status": "aligned",
+   "order": 129
+  },
+  "6630f206d598": {
+   "fr": "Bilan personnel",
+   "en": "Self-assessment",
+   "status": "aligned",
+   "order": 130
+  },
+  "f4498af789a4": {
+   "fr": "Je donne le domaine et h non nul ; je lis une pente ; j’utilise le point de tangence ; je distingue exact et approché.",
+   "en": "I give the domain and h nonzero; I read a slope; I use the point of tangency; I distinguish exact from approximate.",
+   "status": "aligned",
+   "order": 131
+  },
+  "4dab232b00d5": {
+   "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
+   "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
+   "status": "aligned",
+   "order": 132
+  }
+ }
+}

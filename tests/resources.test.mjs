@@ -18,7 +18,7 @@ test('resource catalog resolves every downloadable file and provenance record',(
     if(r.source){assert.ok(c.sources.some(s=>s.name===r.source));assert.ok(r.sourcePages[0]>=1&&r.sourcePages[1]>=r.sourcePages[0]);}
     if(r.type==='solutions')assert.equal(r.audience,'teacher');
     assert.equal(r.language,'bilingual');assert.ok(Array.isArray(r.url)&&r.url.length===2);
-    if(r.format==='PDF'){assert.ok(r.url[1].endsWith('-en.pdf'));assert.ok(['local-machine','authored-bilingual'].includes(r.translation));}
+    if(r.format==='PDF'){assert.ok(r.url[1].endsWith('-en.pdf'));assert.ok(['local-machine','authored-bilingual','tex-source'].includes(r.translation));}
   }
   for(const ch of c.chapters){
     assert.ok(ch.title.length===2&&ch.title.every(Boolean));

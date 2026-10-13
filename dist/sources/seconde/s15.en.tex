@@ -1,0 +1,39 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{seconde-s15}{Consolidation and transition to première}\mxsubtitle{25 May--11 June 2027}
+\section{Review of calculation, functions and geometry}
+\begin{example}[Annual review -- part A]\begin{enumerate}
+\item Reduce $168/252$ to lowest terms; calculate $2^{-3}+1/4$.
+\item Factorise $x^2-6x+9$, then solve $(x-3)^2=4$.
+\item Solve $\dfrac{x-2}{x+1}\geq0$.
+\item For $f(x)=4-(x-1)^2$ on $\intff{-2}{3}$, give the maximum and the abscissae where $f(x)=0$.
+\item With $A\pt{0;1}$, $B\pt{4;3}$, $C\pt{6;4}$, prove collinearity and give an equation of the line.
+\end{enumerate}\end{example}
+\mxanswerspace[9]{1. $168/252=2/3$, and $2^{-3}+1/4=1/8+2/8=3/8$. 2. $(x-3)^2$; $x-3=\pm2$, so $S=\ens{1;5}$. 3. Forbidden $-1$, zero $2$; signs $+,-,+$, so $S=\intoo{-\infty}{-1}\cup\intfo{2}{+\infty}$. 4. The square is positive or zero, so $f(x)\leq4$, with equality at $x=1$. The zeros are $x=-1,3$, both in the domain. 5. $\vect{AB}=\pt{4;2}$, $\vect{AC}=\pt{6;3}=\frac32\vect{AB}$. An equation is $x-2y+2=0$.}
+\begin{teachernote}Indicative marking: 10 points, 2 per question. For question 3, reserve one point for the domain and the endpoints. For question 5, ask for the conclusion after the calculation.\end{teachernote}
+
+\mxsection{Review of data, probability and modelling}
+\begin{example}[Annual review -- part B]\begin{enumerate}
+\item Calculate the mean and median of $2;4;4;6;9$. Determine $Q_1,Q_3$.
+\item A price drops by $\pc{15}$, then rises by $\pc{20}$. Give the overall rate and the rate that then restores the initial price.
+\item In a fictional population of $100$ people, $40$ play sport ($S$), $30$ come by bike ($V$), $18$ do both. Construct the two-way table and calculate $P_S(V)$, $P_V(S)$ for an equally likely draw.
+\item For a rectangle of perimeter $24$ m, express the area as a function of one dimension $x$ and prove its maximum.
+\end{enumerate}\end{example}
+\mxanswerspace[9]{1. Mean $25/5=5$, median $4$. Quartile ranks $2$ and $4$, so $Q_1=4$, $Q_3=6$.\\2. Overall multiplier $\num{0,85}\times\num{1,20}=\num{1,02}$: an increase of $\pc{2}$. Reverse rate $1/\num{1,02}-1=-1/51\approx-\pc{1,96}$.\\3. Table: $S\cap V=18$, $S\cap\overline V=22$, $\overline S\cap V=12$, $\overline S\cap\overline V=48$. $P_S(V)=18/40=\pc{45}$, $P_V(S)=18/30=\pc{60}$.\\4. $A(x)=x(12-x)=36-(x-6)^2$ on $\intoo{0}{12}$. The maximum is $36$ m$^2$, attained for the square of side $6$ m.}
+\begin{teachernote}Indicative marking: 10 points, respectively 2, 2, 3, 3. The review of parts A and B can be offered in one hour, then revisited with the course materials.\end{teachernote}
+
+\mxsection{Choosing a strategy and preparing what comes next}
+\begin{example}[A program to explain]For a given function $f$, explain the following program. What does it return with $f(x)=x^2$?\end{example}
+\begin{lstlisting}
+def tableau(f):
+    valeurs = []
+    for x in range(-3, 4):
+        valeurs.append((x, f(x)))
+    return valeurs
+\end{lstlisting}
+\mxanswerspace[3.2]{It returns a list of abscissa--image pairs for the integers from $-3$ to $3$ inclusive: $\pt{-3;9},\pt{-2;4},\pt{-1;1},\pt{0;0},\pt{1;1},\pt{2;4},\pt{3;9}$. The bound $4$ of \texttt{range} is excluded. The table does not describe the images of all real numbers between $-3$ and $3$.}
+\begin{keypoint}[Six skills to mobilise]
+\textbf{Search}: try things out, organise leads. \textbf{Model}: choose variables, domain and assumptions. \textbf{Represent}: move from text to table, figure or graph. \textbf{Reason}: justify and distinguish conjecture from proof. \textbf{Calculate}: choose a form and check the operations. \textbf{Communicate}: explain clearly with suitable notation and units.
+\end{keypoint}
+\begin{example}[End-of-year portfolio]Choose a successful piece of work and a corrected one. For each, identify the skills used, explain one method and state a personal goal for the following year. Then redo an exercise matching this goal without looking at the correction.\end{example}
+\mxanswerspace[4]{There is no single numerical answer. A satisfactory piece of work precisely identifies the problem, the chosen method, a justification and a check. The goal must be observable, for example: ``state the forbidden values before solving a quotient equation'', rather than ``get better at calculation''.}
+\begin{teachernote}To present the première pathways, rely on the courses actually offered in the school and their programmes in force. The booklet sets no automatic mark threshold for guidance.\end{teachernote}

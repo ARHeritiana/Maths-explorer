@@ -1,0 +1,105 @@
+{
+"id": "terminale-05",
+"slides": [
+{
+"k": "title",
+"t": "Combinatoire et dénombrement",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Choisir un modèle de comptage ; distinguer ordre et répétition ; utiliser coefficients binomiaux et relation de Pascal.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Additionner ou multiplier",
+"b": "Pour des ensembles finis deux à deux disjoints \\(A_i\\), \\(|\\bigcup A_i|=\\sum|A_i|\\). Si les cas se recouvrent, il faut corriger le double comptage : \\(|A\\cup B|=|A|+|B|-|A\\cap B|\\).\nLe nombre d'éléments du produit cartésien \\(A\\times B\\) est \\(|A||B|\\). Pour une suite de choix, multiplier les nombres de possibilités à chaque étape, à condition que ces nombres soient valables pour chaque choix antérieur considéré.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Additionner ou multiplier",
+"b": "Un code de deux lettres choisies parmi \\(26\\), suivies de trois chiffres, avec répétition autorisée, peut prendre \\(26^2\\times10^3\\) valeurs. Un nombre à trois chiffres ne commence pas par \\(0\\) : il y en a \\(9\\times10^2\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Listes et parties",
+"b": "Dans un ensemble de \\(n\\) éléments, il y a \\(n^k\\) listes ordonnées de longueur \\(k\\) avec répétition ; \\(n(n-1)\\cdots(n-k+1)=\\frac{n!}{(n-k)!}\\) listes de \\(k\\) éléments distincts, si \\(0\\le k\\le n\\) ; \\(n!\\) permutations de tous les éléments. On pose \\(0!=1\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Listes et parties",
+"b": "Une combinaison de \\(k\\) éléments parmi \\(n\\) est une partie à \\(k\\) éléments ; l'ordre n'intervient pas.\n\\[\\binom nk=\\frac{n!}{k!(n-k)!},\\quad\\binom n0=\\binom nn=1,\\quad\\binom n1=n,\\quad\\binom n2=\\frac{n(n-1)}2.\\]",
+"a": null,
+"h": "Combinaisons"
+},
+{
+"k": "concept",
+"t": "Listes et parties",
+"b": "Chaque partie de taille \\(k\\) donne exactement \\(k!\\) listes distinctes selon l'ordre de ses éléments. Le nombre de listes sans répétition est donc \\(k!\\binom nk\\).",
+"a": null,
+"h": "Pourquoi diviser par \\(k!\\) ?"
+},
+{
+"k": "concept",
+"t": "Identités et démonstrations",
+"b": "\\[\\binom nk=\\binom n{n-k},\\qquad \\binom nk+\\binom n{k+1}=\\binom{n+1}{k+1},\\qquad\\sum_{k=0}^n\\binom nk=2^n.\\]\nLa relation de Pascal ci-dessus s'utilise pour \\(0\\le k&lt;n\\) ; les formules au bord se lisent directement avec les valeurs \\(1\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Identités et démonstrations",
+"b": "Prendre le complémentaire établit une correspondance entre les parties de taille \\(k\\) et celles de taille \\(n-k\\).",
+"a": null,
+"h": "Symétrie."
+},
+{
+"k": "concept",
+"t": "Identités et démonstrations",
+"b": "Dans un ensemble de \\(n+1\\) éléments, fixer un élément \\(a\\). Une partie de taille \\(k+1\\) contient \\(a\\) (choisir \\(k\\) autres éléments parmi \\(n\\)) ou ne le contient pas (choisir \\(k+1\\) éléments parmi \\(n\\)). Les deux cas sont disjoints et couvrent toutes les possibilités.",
+"a": null,
+"h": "Pascal, preuve combinatoire."
+},
+{
+"k": "concept",
+"t": "Identités et démonstrations",
+"b": "Pour \\(0\\le k&lt;n\\), mettre au même dénominateur :\n\\[\\frac{n!}{k!(n-k)!}+\\frac{n!}{(k+1)!(n-k-1)!}\n=\\frac{n!((k+1)+(n-k))}{(k+1)!(n-k)!}\n=\\frac{(n+1)!}{(k+1)!(n-k)!}.\\]\nLes cas au bord se traitent directement.",
+"a": null,
+"h": "Pascal, preuve algébrique."
+},
+{
+"k": "concept",
+"t": "Identités et démonstrations",
+"b": "Pour chacun des \\(n\\) éléments, choisir « présent » ou « absent » donne \\(2^n\\) parties. En les classant par taille, on en compte \\(\\sum_{k=0}^n\\binom nk\\) : les deux comptages sont égaux.",
+"a": null,
+"h": "Nombre de parties."
+},
+{
+"k": "concept",
+"t": "Identités et démonstrations",
+"b": "Le développement \\((a+b)^n=\\sum_{k=0}^n\\binom nk a^{n-k}b^k\\) se comprend en choisissant, dans chacun des \\(n\\) facteurs, le terme \\(a\\) ou \\(b\\). Cette formule n'est pas utilisée comme prérequis des DS de ce livret.<br><br>",
+"a": null,
+"h": "Approfondissement mentionné dans la progression."
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Ordre et répétition dans un dénombrement — 30 min.</b><br><br> Six élèves distincts se portent volontaires pour organiser un débat.\n<ol><li>On choisit deux élèves pour former un binôme sans attribuer de rôle. Combien de binômes peut-on former ?\n<li>On désigne un président et un secrétaire, qui doivent être deux élèves différents. Combien d'attributions des deux rôles sont possibles ?\n<li>On prévoit trois interventions successives. Un même élève peut intervenir plusieurs fois. Combien de programmes de trois interventions sont possibles ?\n<li>On recommence avec quatre élèves seulement, désignés par \\(A\\), \\(B\\), \\(C\\) et \\(D\\). Écrire tous les binômes et toutes les attributions des deux rôles. Expliquer ensuite pourquoi il existe \\(64\\) programmes de trois interventions, sans les énumérer.\n<li>Pour chacun des trois modes de choix, préciser si l'ordre intervient et si une même personne peut être choisie plusieurs fois.</ol><br><br>",
+"a": null,
+"h": null
+}
+],
+"figs": [],
+"figs_en": []
+}

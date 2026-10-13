@@ -1,0 +1,29 @@
+% GENERATED, edit the French unit or the translation table
+% GENERATED from content/data/enrichment.json by mxbuild.enrichment; do not edit.
+\mxunit{enrichment-complex-rotations-notes}{Rotations and complex numbers}
+\mxsubtitle{Advanced high school · geometry \textperiodcentered{} Lesson and method \textperiodcentered{} 09}
+
+\begin{prerequisites}
+Algebraic form, modulus and coordinates.
+\end{prerequisites}
+
+\begin{keypoint}[Ideas and method]
+The complex number $z=x+iy$ represents $\pt{x;y}$. Multiplying by $i$ gives $iz=-y+ix$, which represents $\pt{-y;x}$: a counterclockwise quarter-turn about the origin.
+
+Multiplication by $-1$ gives a half-turn, and by $-i$ a clockwise quarter-turn. They preserve distances from the origin because $|i|=1$.
+
+For rotation about centre a, translate to the origin, rotate and translate back: $z'=a+i(z-a)$. This counterclockwise rotation preserves distances between all points.
+\end{keypoint}
+
+\begin{example}
+With $a=1+i$ and $z=3+2i$, $z-a=2+i$ and $i(z-a)=-1+2i$. The image is $z'=3i$. Relative vectors $\pt{2;1}$ and $\pt{-1;2}$ are perpendicular and both have norm $\sqrt{5}$.
+\end{example}
+
+\begin{figurebox}
+\begin{tikzpicture}[scale=.85]\draw[mxaxisline](-.5,0)--(3,0) node[right]{$x$};\draw[mxaxisline](0,-.5)--(0,3) node[above]{$y$};\draw[mxcurve](2,0)--(2,2)--(0,2)--(0,0)--cycle;\fill[mxink](1,1)circle(2pt)node[right]{$a=1+i$};\foreach \x/\y/\z in {2/0/2,2/2/2+2i,0/2/2i,0/0/0}{\fill[mxmint](\x,\y)circle(2pt)node[below left]{$\z$};}\end{tikzpicture}
+\end{figurebox}
+
+\begin{activity}[Explore]
+In the complex-number lab, move z and compare z with iz. Check equal moduli and perpendicular vectors.
+\end{activity}
+

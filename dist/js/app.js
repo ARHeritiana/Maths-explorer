@@ -1,5 +1,7 @@
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
+import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
+import { slidesPage, bindSlides } from "./slides-page.js";
 import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountLibrary } from "./library.js";
@@ -110,6 +112,7 @@ const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true"
 function header(page) {
   const nav = [
     ["resources", "Cours", "Lessons", "books"],
+    ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["lab", "Laboratoire", "Laboratory", "flask"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
     ["pathways", "Parcours", "Pathways", "path"],
@@ -124,7 +127,7 @@ function header(page) {
     .join("")}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
 }
 function footer() {
-  return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a></footer>`;
+  return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a></nav></footer>`;
 }
 function render() {
   stopTrig();
@@ -142,13 +145,13 @@ function render() {
   );
   const valid = (r.page === "lab" && (!r.id || labs.some(l => l.id === r.id))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "pathways" && !r.id) || r.page === "library" ||
+    (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "workshop" ? workshopMarkup(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? labPage(r.id)
@@ -166,6 +169,9 @@ function render() {
   if (page === "lab") bindLab();
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
+  if (page === "pack") bindPack(t);
+  if (page === "sources") bindSources(t);
+  if (page === "slides") bindSlides(t);
   if (page === "chapter") {
     stopChapter = bindChapter(r.id, t, fmt);
     if (last !== r.id || !seen.has(r.id)) {
@@ -269,6 +275,24 @@ function handleAt(x, y, id, label, color = "teal") {
   return `<g data-handle="${id}" data-label="${esc(label)}" data-x="${x}" data-y="${y}" class="drag-handle ${color}" tabindex="0" role="button" aria-label="${esc(label)} · ${pair("déplacer avec les flèches", "move with arrow keys")}" aria-describedby="interaction-guide"><title>${esc(label)}</title><circle cx="${x}" cy="${y}" r="${radius}" class="handle-hit"/><circle cx="${x}" cy="${y}" r="10" class="handle-ring"/><circle cx="${x}" cy="${y}" r="5" class="handle-core"/><text x="${x > 660 ? x - 14 : x + 14}" y="${Math.max(18, y - 14)}" text-anchor="${x > 660 ? "end" : "start"}" class="handle-label">${esc(label)}</text></g>`;
 }
 
+// x + yi in algebraic form: "2 + i", "−1 − 2i", "3", "i" (a unit imaginary coefficient is implicit).
+function algebraic(x, y) {
+  const im = Math.abs(y) === 1 ? "i" : fmt(Math.abs(y)) + "i";
+  if (y === 0) return fmt(x);
+  if (x === 0) return (y < 0 ? "−" : "") + im;
+  return `${fmt(x)} ${y < 0 ? "−" : "+"} ${im}`;
+}
+// Bounds that contain the origin and the given points, rounded to whole units so the frame stays still while a
+// value changes inside the same unit; equal-scale charts then fill the panel instead of shrinking small vectors.
+function fitBounds(xs, ys, margin = 1, minSpan = 4) {
+  const range = (values) => {
+    let lo = Math.floor(Math.min(0, ...values) - margin), hi = Math.ceil(Math.max(0, ...values) + margin);
+    if (hi - lo < minSpan) { const grow = (minSpan - (hi - lo)) / 2; lo -= Math.ceil(grow); hi += Math.ceil(grow); }
+    return [lo, hi];
+  };
+  const [xmin, xmax] = range(xs), [ymin, ymax] = range(ys);
+  return { xmin, xmax, ymin, ymax };
+}
 // SVG is used only for mathematical diagrams and data visualization.
 function chart({
   xmin = -6,
@@ -289,10 +313,14 @@ function chart({
     pw = W - L - R,
     ph = H - T - B;
   if (equal) {
-    const mid = (xmin + xmax) / 2,
-      half = ((ymax - ymin) * pw) / ph / 2;
-    xmin = mid - half;
-    xmax = mid + half;
+    // One unit has the same length on both axes: widen whichever range is too short for the panel's shape.
+    const unit = Math.max((xmax - xmin) / pw, (ymax - ymin) / ph),
+      cx = (xmin + xmax) / 2,
+      cy = (ymin + ymax) / 2;
+    xmin = cx - (unit * pw) / 2;
+    xmax = cx + (unit * pw) / 2;
+    ymin = cy - (unit * ph) / 2;
+    ymax = cy + (unit * ph) / 2;
   }
   if (activeDrag?.bounds) ({ xmin, xmax, ymin, ymax } = activeDrag.bounds);
   plotBounds = { xmin, xmax, ymin, ymax };
@@ -351,7 +379,10 @@ function updateLab(animatedValues, moving = false) {
   if (lab.id === "quadratic") {
     const [a, b, c] = v,
       q = quadratic(a, b, c);
-    formula = `f(x) = ${simplifiedPolynomial([a, b, c])}`;
+    // Conventional writing: omit zero terms and unit coefficients.
+    const terms = [[a, "x²"], [b, "x"], [c, ""]].filter(([k]) => k !== 0)
+      .map(([k, x], i) => `${k < 0 ? (i ? " − " : "−") : i ? " + " : ""}${Math.abs(k) === 1 && x ? "" : fmt(Math.abs(k))}${x}`);
+    formula = `f(x) = ${terms.join("") || "0"}`;
     plot = chart({
       ymin: Math.min(-5, c, 4*a + 2*b + c) - 1,
       ymax: Math.max(7, c, 4*a + 2*b + c) + 1,
@@ -401,7 +432,7 @@ function updateLab(animatedValues, moving = false) {
     plot = figure.svg;
     formula = figure.formula;
     caption = figure.caption;
-    data = `<table><caption>${pair("Valeurs exactes aux angles remarquables ; sinon valeurs approchées", "Exact values at remarkable angles; otherwise approximate values")}</caption><thead><tr><th>${pair("Grandeur", "Quantity")}</th><th>${pair("Valeur", "Value")}</th></tr></thead><tbody>${figure.rows.map(([k,val])=>`<tr><th scope="row">${esc(k)}</th><td>${esc(val)}</td></tr>`).join("")}</tbody></table>`;
+    data = `<table><caption>${pair("Valeurs exactes aux angles remarquables ; sinon valeurs approchées", "Exact values at remarkable angles; otherwise approximate values")}</caption><thead><tr><th scope="col">${pair("Grandeur", "Quantity")}</th><th scope="col">${pair("Valeur", "Value")}</th></tr></thead><tbody>${figure.rows.map(([k,val])=>`<tr><th scope="row">${esc(k)}</th><td>${esc(val)}</td></tr>`).join("")}</tbody></table>`;
     results = metric("cos x",figure.cos)+metric("sin x",figure.sin)+metric(pair("Angle en radians","Angle in radians"),figure.q.radians || "≈ "+fmt(v[0]*Math.PI/180));
     if ($("#remarkable-angle")) $("#remarkable-angle").value = [...$("#remarkable-angle").options].some(o=>o.value===String(v[0])) ? String(v[0]) : "";
   } else if (lab.id === "sequences") {
@@ -429,7 +460,7 @@ function updateLab(animatedValues, moving = false) {
     data = dataTable(["n", "uₙ"], values.map((y,i) => [i,fmt(y)]));
     results =
       metric("u₀", fmt(first)) +
-      metric(`u${n - 1}`, fmt(values.at(-1))) +
+      metric("u" + String(n - 1).replace(/\d/g, d => "₀₁₂₃₄₅₆₇₈₉"[d]), fmt(values.at(-1))) +
       metric(
         pair("Somme des N termes", "Sum of N terms"),
         fmt(values.reduce((a, b) => a + b, 0)),
@@ -552,10 +583,7 @@ function updateLab(animatedValues, moving = false) {
         ? (Math.acos(Math.max(-1, Math.min(1, dot / norms))) * 180) / Math.PI
         : null;
     plot = chart({
-      xmin: -9,
-      xmax: 9,
-      ymin: -9,
-      ymax: 9,
+      ...fitBounds([a, c, a + c], [b, d, b + d]),
       equal: true,
       label: pair("Vecteurs u, v et leur somme", "Vectors u, v and their sum"),
       draw: ({ line, point }) =>
@@ -636,10 +664,7 @@ function updateLab(animatedValues, moving = false) {
   } else if (lab.id === "complex") {
     const [a, b] = v;
     plot = chart({
-      xmin: -5,
-      xmax: 5,
-      ymin: -5,
-      ymax: 5,
+      ...fitBounds([a, -b], [b, a]),
       equal: true,
       label: pair(
         "Nombres complexes z et iz dans le plan",
@@ -654,8 +679,8 @@ function updateLab(animatedValues, moving = false) {
     });
     data = dataTable([pair("Nombre", "Number"),pair("Partie réelle", "Real part"),pair("Partie imaginaire", "Imaginary part")], [["z",fmt(a),fmt(b)],["iz",fmt(-b),fmt(a)]]);
     results =
-      metric("z", `${fmt(a)} ${b < 0 ? "−" : "+"} ${fmt(Math.abs(b))}i`) +
-      metric("iz", `${fmt(-b)} ${a < 0 ? "−" : "+"} ${fmt(Math.abs(a))}i`) +
+      metric("z", algebraic(a, b)) +
+      metric("iz", algebraic(-b, a)) +
       metric("|z|", fmt(Math.hypot(a, b)));
     caption = pair(
       "Vert : z. Orange : iz. La multiplication par i donne une rotation de 90° ; les axes ont la même échelle.",
@@ -1002,18 +1027,6 @@ function bindChallenges() {
     illuminateFeedback($("#challenge-feedback"), reducedMotion);
   });
   return stop;
-}
-// Coefficients simplified for reading: 1x² + 0x − 2 becomes x² − 2.
-function simplifiedPolynomial(coefficients) {
-  const powers = ["x²", "x", ""];
-  let out = "";
-  coefficients.forEach((c, i) => {
-    if (Math.abs(c) < 1e-9) return;
-    const abs = Math.abs(c);
-    const body = powers[i] && Math.abs(abs - 1) < 1e-9 ? powers[i] : fmt(abs) + powers[i];
-    out += out ? (c < 0 ? " − " : " + ") + body : (c < 0 ? "−" : "") + body;
-  });
-  return out || "0";
 }
 // Stages (with their explorations) and the source link of a pathway or of one of its programmes.
 function pathwayBlock(x, heading) {

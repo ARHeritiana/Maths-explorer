@@ -82,7 +82,7 @@ The first version is complete when:
 - Browser checks cover desktop, tablet, mobile, 200% text size, keyboard input and saved progress.
 - Source, documentation and repeatable checks are pushed to the requested GitHub repository.
 
-See `VALIDATION.md` for the checks performed and their limits. This release is a functioning laboratory with a selected topic collection, not a complete digital textbook.
+See `history/VALIDATION.md` for the checks performed and their limits. This release is a functioning laboratory with a selected topic collection, not a complete digital textbook.
 
 ## Subsequent content development
 
@@ -94,4 +94,4 @@ See `VALIDATION.md` for the checks performed and their limits. This release is a
 
 ## Audit continuation — 7 October 2026
 
-See `AUDIT.md` for reproducible findings and their priority. This pass preserves nine labs and eight challenges while improving their learning depth, chart alternatives, focus/routing and numerical display. It adds no runtime dependencies. `CURRICULUM.md` now distinguishes source-verified dates/topic relationships, indicative pathways and unmapped courses. The short plan has been implemented; future scope remains teacher review, student trials and focused topic extensions, not features claimed in this release.
+See `history/AUDIT.md` for reproducible findings and their priority. This pass preserves nine labs and eight challenges while improving their learning depth, chart alternatives, focus/routing and numerical display. It adds no runtime dependencies. `CURRICULUM.md` now distinguishes source-verified dates/topic relationships, indicative pathways and unmapped courses. The short plan has been implemented; future scope remains teacher review, student trials and focused topic extensions, not features claimed in this release.

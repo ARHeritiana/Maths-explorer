@@ -1,0 +1,30 @@
+\mxunit{quadratic-presentation}{Trinôme du second degré}
+\mxsubtitle{Première spécialité \textperiodcentered{} Présenter et explorer}
+
+\begin{definition}[Forme développée]
+Pour $f(x)=ax^2+bx+c$, avec $a,b,c\in\R$ et $a\neq0$, le domaine est $\R$. Le coefficient $a$ détermine le sens d’ouverture de la parabole.
+\end{definition}
+
+\begin{theorem}[Forme canonique]
+$f(x)=a(x-\alpha)^2+\beta$, où $\alpha=-\dfrac{b}{2a}$ et $\beta=f(\alpha)=c-\dfrac{b^2}{4a}$. Le sommet est $S(\alpha,\beta)$ et l’axe de symétrie est $x=\alpha$. Si $a>0$, $f$ décroît sur $\intof{-\infty}{\alpha}$ et croît sur $\intfo{\alpha}{+\infty}$ ; $\beta$ est le minimum. Si $a<0$, les variations sont inversées et $\beta$ est le maximum.
+\end{theorem}
+
+\begin{theorem}[Discriminant et racines]
+$\Delta=b^2-4ac$ et $\beta=-\dfrac{\Delta}{4a}$. Si $\Delta>0$, les deux racines sont $\dfrac{-b-\sqrt\Delta}{2a}$ et $\dfrac{-b+\sqrt\Delta}{2a}$ : les ordonner avant de les appeler $x_1<x_2$ (l’ordre des deux formules dépend du signe de $a$). Si $\Delta=0$, la racine double est $x_0=\alpha$. Si $\Delta<0$, il n’y a aucune racine réelle.
+\end{theorem}
+
+\begin{keypoint}[Factorisation et signe]
+Si $\Delta>0$, $f(x)=a(x-x_1)(x-x_2)$. À l’extérieur des racines, les deux facteurs sont de même signe ; entre elles, ils sont de signes opposés. Le trinôme est donc du signe de $a$ à l’extérieur, du signe opposé entre les racines, et nul aux racines. Si $\Delta=0$, $f(x)=a(x-x_0)^2$ est du signe de $a$ sauf en $x_0$. Si $\Delta<0$, $f$ est strictement du signe de $a$ sur $\R$ et ne se factorise pas en facteurs du premier degré à coefficients réels.
+\end{keypoint}
+
+\begin{example}
+$2x^2-4x-6=2(x-1)^2-8=2(x+1)(x-3)$. Le sommet est $(1,-8)$, $\Delta=64$ et les racines sont $-1$ et $3$. Ainsi $f(x)\leq0$ équivaut à $x\in\intff{-1}{3}$.
+\end{example}
+
+\begin{figurebox}
+\begin{tikzpicture}[x=.65cm,y=.13cm]\draw[mxaxisline](-3,0)--(5,0)node[right]{$x$};\draw[mxaxisline](0,-10)--(0,12)node[above]{$y$};\draw[mxcurve,domain=-2.15:4.15,samples=100]plot(\x,{2*(\x-1)^2-8});\draw[mxaux](1,-9)--(1,11);\fill[mxmint](-1,0)circle(2pt)node[below]{$-1$};\fill[mxmint](3,0)circle(2pt)node[below]{$3$};\fill[mxink](1,-8)circle(2pt)node[right]{$S(1,-8)$};\end{tikzpicture}
+\end{figurebox}
+
+\begin{activity}[Chercher et justifier]
+Étudier les variations, les racines et le signe de $-x^2+2x+3$, de $x^2-2$ et de $x^2+x+1$. Donner les racines sous forme exacte, puis une approximation clairement indiquée par $\approx$. Vérifier les résultats en développant une factorisation ou en substituant les racines.
+\end{activity}

@@ -1,0 +1,695 @@
+{
+ "unit": "C10.fr.tex",
+ "segments": {
+  "0a5c6ab9c9c4": {
+   "fr": "Trigonométrie : cercle, radians et angles associés",
+   "en": "Trigonometry: circle, radians and related angles",
+   "status": "aligned",
+   "order": 0
+  },
+  "d7ffadecaa6d": {
+   "fr": "Le parcours du chapitre",
+   "en": "Chapter path",
+   "status": "aligned",
+   "order": 1
+  },
+  "1644d0a05bd4": {
+   "fr": "\\textbf{Objectifs.} Passer des degrés aux radians ; placer des points ; calculer sinus et cosinus remarquables ; exploiter les symétries du cercle.",
+   "en": "\\textbf{Objectives.} Convert from degrees to radians; place points; calculate standard sines and cosines; use the symmetries of the circle.",
+   "status": "aligned",
+   "order": 2
+  },
+  "d9d23e946f20": {
+   "fr": "\\textbf{Prérequis.} Cercle, Pythagore, cosinus et sinus dans un triangle rectangle, symétries, fractions.",
+   "en": "\\textbf{Prerequisites.} Circle, Pythagoras, cosine and sine in a right triangle, symmetries, fractions.",
+   "status": "aligned",
+   "order": 3
+  },
+  "adb279e802c7": {
+   "fr": "\\textbf{Repère annuel.} 2–11 mars : 8 h",
+   "en": "\\textbf{Yearly reference point.} 2--11 March: 8 hours",
+   "status": "aligned",
+   "order": 4
+  },
+  "23409de27c2d": {
+   "fr": "Diagnostic : [[m1]] questions, 10 minutes",
+   "en": "Diagnostic: [[m1]] questions, 10 minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "716eac61815e": {
+   "fr": "Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.",
+   "en": "Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.",
+   "status": "aligned",
+   "order": 6
+  },
+  "3c7081dfd651": {
+   "fr": "Périmètre d’un cercle de rayon 1 ?",
+   "en": "Perimeter of a circle of radius 1?",
+   "status": "aligned",
+   "order": 7
+  },
+  "007c3e40704e": {
+   "fr": "Le quart d’un tour vaut combien de degrés ?",
+   "en": "How many degrees is a quarter turn?",
+   "status": "aligned",
+   "order": 8
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "42d3f6753c77": {
+   "fr": "Abscisse et ordonnée du symétrique de [[m1]] par rapport à l’axe des abscisses ?",
+   "en": "What are the x- and y-coordinates of the reflection of [[m1]] in the x-axis?",
+   "status": "aligned",
+   "order": 10
+  },
+  "76ab1bb4f5da": {
+   "fr": "Simplifier [[m1]].",
+   "en": "Simplify [[m1]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "e5e88a9c8b09": {
+   "fr": "Dans un triangle rectangle, côté opposé 3 et hypoténuse 5 : sinus ?",
+   "en": "In a right triangle, opposite side 3 and hypotenuse 5: sine?",
+   "status": "aligned",
+   "order": 12
+  },
+  "65855e601207": {
+   "fr": "Après le diagnostic.",
+   "en": "After the diagnostic.",
+   "status": "aligned",
+   "order": 13
+  },
+  "b2d2cf721c3d": {
+   "fr": "Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.",
+   "en": "Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.",
+   "status": "aligned",
+   "order": 14
+  },
+  "cc06b44f9251": {
+   "fr": "Oral et logique.",
+   "en": "Speaking and logic.",
+   "status": "aligned",
+   "order": 15
+  },
+  "684079dc975d": {
+   "fr": "Présenter une égalité d’angles associés en nommant la symétrie qui la justifie ; expliquer ce qu’un radian mesure.",
+   "en": "Present an equality of related angles, naming the symmetry that justifies it; explain what a radian measures.",
+   "status": "aligned",
+   "order": 16
+  },
+  "c7fad140da61": {
+   "fr": "Chercher avant de formaliser",
+   "en": "Investigate before formalising",
+   "status": "aligned",
+   "order": 17
+  },
+  "a9a7bda31582": {
+   "fr": "Construire, sans rapporteur, un point d’angle [[m1]] puis un point d’angle [[m2]]. Justifier les valeurs exactes de leurs coordonnées à partir des figures.",
+   "en": "Construct, without a protractor, a point at angle [[m1]] then a point at angle [[m2]]. Justify the exact values of their coordinates from the figures.",
+   "status": "aligned",
+   "order": 18
+  },
+  "6a201310450e": {
+   "fr": "Organisation.",
+   "en": "Organisation.",
+   "status": "aligned",
+   "order": 19
+  },
+  "e743e88cbeed": {
+   "fr": "Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.",
+   "en": "Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.",
+   "status": "aligned",
+   "order": 20
+  },
+  "0a3a1b2e4b56": {
+   "fr": "Mesurer un angle en radians",
+   "en": "Measuring an angle in radians",
+   "status": "aligned",
+   "order": 21
+  },
+  "ebc073a34cf3": {
+   "fr": "Définition et résultats",
+   "en": "Definition and results",
+   "status": "aligned",
+   "order": 22
+  },
+  "cf18a450e735": {
+   "fr": "Le cercle trigonométrique est le cercle de centre O et de rayon 1, orienté dans le sens inverse des aiguilles d’une montre. Un radian correspond à un arc de longueur 1 sur ce cercle. Un tour vaut [[m1]] radians, un demi-tour [[m2]]. Sur un cercle de rayon r, une longueur d’arc vaut [[m3]] pour un angle positif [[m4]] exprimé en radians.",
+   "en": "The unit circle is the circle with centre O and radius 1, oriented anticlockwise. One radian corresponds to an arc of length 1 on this circle. A full turn is [[m1]] radians, a half turn [[m2]]. On a circle of radius r, an arc length is [[m3]] for a positive angle [[m4]] expressed in radians.",
+   "status": "aligned",
+   "order": 23
+  },
+  "7815a69c0f26": {
+   "fr": "Statut et justification.",
+   "en": "Status and justification.",
+   "status": "aligned",
+   "order": 24
+  },
+  "c92217ebaacd": {
+   "fr": "Définitions et proportionnalité entre angle au centre et longueur d’arc. La conversion est [[m1]] radians ; on multiplie les degrés par [[m2]].",
+   "en": "Definitions and proportionality between central angle and arc length. The conversion is [[m1]] radians; we multiply degrees by [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "437194fcd14e": {
+   "fr": "[[m1]] ; [[m2]]. Un angle de [[m3]] sur un cercle de rayon 6 cm donne un arc de [[m4]] cm.",
+   "en": "[[m1]]; [[m2]]. An angle of [[m3]] on a circle of radius 6 cm gives an arc of [[m4]] cm.",
+   "status": "aligned",
+   "order": 26
+  },
+  "5e9aa42bda38": {
+   "fr": "La longueur d’un arc n’est pas celle de la corde. En calcul trigonométrique, vérifier le mode degré ou radian de l’outil.",
+   "en": "The length of an arc is not that of the chord. In trigonometric calculations, check the degree or radian mode of the tool.",
+   "status": "aligned",
+   "order": 27
+  },
+  "4bde04d44ff6": {
+   "fr": "Convertir [[m1]], [[m2]] ; donner l’arc de rayon 2 m et angle [[m3]].",
+   "en": "Convert [[m1]], [[m2]]; give the arc for radius 2 m and angle [[m3]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "915ea35400aa": {
+   "fr": "Enroulement et image d’un réel",
+   "en": "Wrapping and the image of a real number",
+   "status": "aligned",
+   "order": 29
+  },
+  "8924c844ec72": {
+   "fr": "À chaque réel x correspond un point M du cercle obtenu par un parcours orienté de longueur x depuis I(1;0). Deux réels ont la même image si leur différence est un multiple entier de [[m1]]. Un nombre négatif indique un parcours dans le sens horaire.",
+   "en": "To each real number x corresponds a point M of the circle, obtained by an oriented path of length x starting from I(1;0). Two real numbers have the same image if their difference is an integer multiple of [[m1]]. A negative number indicates a path in the clockwise direction.",
+   "status": "aligned",
+   "order": 30
+  },
+  "95e40ede3810": {
+   "fr": "Ajouter ou retirer un nombre entier de tours conserve le point d’arrivée. Réciproquement, revenir au même point exige un nombre entier de tours.",
+   "en": "Adding or removing a whole number of turns keeps the end point. Conversely, returning to the same point requires a whole number of turns.",
+   "status": "aligned",
+   "order": 31
+  },
+  "7c2b400869fe": {
+   "fr": "[[m1]] a la même image que [[m2]]. [[m3]] a la même image que [[m4]] : point [[m5]].",
+   "en": "[[m1]] has the same image as [[m2]]. [[m3]] has the same image as [[m4]]: the point [[m5]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "2d6108412a9f": {
+   "fr": "Ajouter [[m1]] donne le point opposé, pas le même point.",
+   "en": "Adding [[m1]] gives the opposite point, not the same point.",
+   "status": "aligned",
+   "order": 33
+  },
+  "a9846ab0d1be": {
+   "fr": "Placer les images de [[m1]] et [[m2]] en les ramenant à un tour.",
+   "en": "Place the images of [[m1]] and [[m2]] by reducing them to within one turn.",
+   "status": "aligned",
+   "order": 34
+  },
+  "ddef091862b4": {
+   "fr": "Sinus, cosinus et valeurs remarquables",
+   "en": "Sine, cosine and standard values",
+   "status": "aligned",
+   "order": 35
+  },
+  "00df525f83cd": {
+   "fr": "Si M est l’image de x, [[m1]]. Donc [[m2]] et [[m3]]. Pour [[m4]], les cosinus sont [[m5]] et les sinus [[m6]].",
+   "en": "If M is the image of x, [[m1]]. So [[m2]] and [[m3]]. For [[m4]], the cosines are [[m5]] and the sines [[m6]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "8f300d9bcc01": {
+   "fr": "À [[m1]], les deux coordonnées sont égales et positives ; Pythagore donne [[m2]], donc [[m3]]. Un triangle équilatéral de côté 1, coupé par sa hauteur, a demi-base [[m4]] et hauteur [[m5]] : [[m6]], [[m7]]. L’angle complémentaire donne [[m8]].",
+   "en": "At [[m1]], the two coordinates are equal and positive; Pythagoras gives [[m2]], so [[m3]]. An equilateral triangle of side 1, cut by its altitude, has half-base [[m4]] and height [[m5]]: [[m6]], [[m7]]. The complementary angle gives [[m8]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "529b39c2b104": {
+   "fr": "Le point d’angle [[m1]] est [[m2]]. Le produit scalaire de deux vecteurs unitaires faisant cet angle vaut son cosinus, donc [[m3]]. Les chapitres de géométrie se raccordent ainsi au cercle.",
+   "en": "The point at angle [[m1]] is [[m2]]. The scalar product of two unit vectors forming this angle equals its cosine, so [[m3]]. The geometry chapters thus connect to the circle.",
+   "status": "aligned",
+   "order": 38
+  },
+  "4737e2c454ea": {
+   "fr": "Le cosinus est l’abscisse, le sinus l’ordonnée. L’identité donne une valeur absolue : le quadrant détermine le signe.",
+   "en": "The cosine is the x-coordinate, the sine the y-coordinate. The identity gives an absolute value: the quadrant determines the sign.",
+   "status": "aligned",
+   "order": 39
+  },
+  "fd10a005bdcd": {
+   "fr": "Si [[m1]] et l’image de x est dans le quatrième quadrant, donner [[m2]].",
+   "en": "If [[m1]] and the image of x is in the fourth quadrant, give [[m2]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "2a9f9b3be59b": {
+   "fr": "Angles associés et symétries",
+   "en": "Related angles and symmetries",
+   "status": "aligned",
+   "order": 41
+  },
+  "a8705682d81c": {
+   "fr": "Les symétries du cercle donnent [[m1]], [[m2]] ; [[m3]], [[m4]] ; [[m5]], [[m6]]. Ajouter [[m7]], k entier, ne change ni sinus ni cosinus.",
+   "en": "The symmetries of the circle give [[m1]], [[m2]]; [[m3]], [[m4]]; [[m5]], [[m6]]. Adding [[m7]], k an integer, changes neither sine nor cosine.",
+   "status": "aligned",
+   "order": 42
+  },
+  "29dd3bfcdac9": {
+   "fr": "Chaque égalité se lit sur les coordonnées des points symétriques : axe horizontal pour [[m1]], axe vertical pour [[m2]], centre O pour [[m3]]. Il ne s’agit pas d’un catalogue sans justification.",
+   "en": "Each equality can be read from the coordinates of the symmetric points: horizontal axis for [[m1]], vertical axis for [[m2]], centre O for [[m3]]. This is not a catalogue without justification.",
+   "status": "aligned",
+   "order": 43
+  },
+  "455eea309257": {
+   "fr": "[[m1]], [[m2]] par symétrie de [[m3]]. [[m4]], [[m5]].",
+   "en": "[[m1]], [[m2]] by symmetry from [[m3]]. [[m4]], [[m5]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "31e617dfaf8c": {
+   "fr": "Deux angles de même cosinus n’ont pas nécessairement le même sinus. Réduire l’angle puis lire les signes.",
+   "en": "Two angles with the same cosine do not necessarily have the same sine. Reduce the angle, then read the signs.",
+   "status": "aligned",
+   "order": 45
+  },
+  "387a87747891": {
+   "fr": "Calculer les deux coordonnées des images de [[m1]] et [[m2]].",
+   "en": "Calculate the two coordinates of the images of [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "96ae2dbd228c": {
+   "fr": "Approximer pi et réinvestir",
+   "en": "Approximating pi and putting it to use",
+   "status": "aligned",
+   "order": 47
+  },
+  "6fe55e33c401": {
+   "fr": "Un polygone régulier inscrit à n côtés dans le cercle unité a demi-périmètre [[m1]] ; un polygone circonscrit a demi-périmètre [[m2]], avec [[m3]] ici. La méthode d’Archimède double le nombre de côtés et calcule les nouvelles longueurs par Pythagore, sans connaître pi à l’avance.",
+   "en": "A regular inscribed polygon with n sides in the unit circle has half-perimeter [[m1]]; a circumscribed polygon has half-perimeter [[m2]], with [[m3]] here. Archimedes' method doubles the number of sides and calculates the new lengths by Pythagoras, without knowing pi in advance.",
+   "status": "aligned",
+   "order": 48
+  },
+  "372e9884c919": {
+   "fr": "Le périmètre inscrit est inférieur à celui du cercle et le circonscrit supérieur : encadrement géométrique admis. Si c est la corde d’un côté, poser [[m1]] ; la corde du demi-angle vaut [[m2]]. Cette formule vient de Pythagore et évite une soustraction de réels proches.",
+   "en": "The inscribed perimeter is less than that of the circle and the circumscribed one greater: geometric bounds accepted. If c is the chord of one side, let [[m1]]; the chord of the half-angle is [[m2]]. This formula comes from Pythagoras and avoids a subtraction of nearby real numbers.",
+   "status": "aligned",
+   "order": 49
+  },
+  "fd3851bce7d9": {
+   "fr": "Pour l’hexagone inscrit, c=1 et demi-périmètre 3. Le circonscrit donne [[m1]]. En doublant les côtés, on resserre l’encadrement. Le programme fourni part de n=6 et c=1.",
+   "en": "For the inscribed hexagon, c=1 and half-perimeter 3. The circumscribed one gives [[m1]]. By doubling the sides, we tighten the bounds. The supplied program starts from n=6 and c=1.",
+   "status": "aligned",
+   "order": 50
+  },
+  "ccc29bde4474": {
+   "fr": "Utiliser directement une fonction sinus avec pi déjà connu vérifierait un calcul, mais ne construirait pas une approximation indépendante de pi.",
+   "en": "Using a sine function directly with pi already known would check a calculation, but would not construct an approximation independent of pi.",
+   "status": "aligned",
+   "order": 51
+  },
+  "525ff7b9f839": {
+   "fr": "Pour n=6 et c=1, calculer la nouvelle corde après doublement.",
+   "en": "For n=6 and c=1, calculate the new chord after doubling.",
+   "status": "aligned",
+   "order": 52
+  },
+  "c82d22e2d8b1": {
+   "fr": "Parcours d’exercices",
+   "en": "Exercise path",
+   "status": "aligned",
+   "order": 53
+  },
+  "31c1e4322269": {
+   "fr": "Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.",
+   "en": "Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.",
+   "status": "aligned",
+   "order": 54
+  },
+  "cd764eb1ac9b": {
+   "fr": "Convertir et mesurer",
+   "en": "Converting and measuring",
+   "status": "aligned",
+   "order": 55
+  },
+  "2a314c3b36a1": {
+   "fr": "On utilise le cercle trigonométrique pour mesurer les angles en radians.",
+   "en": "We use the unit circle to measure angles in radians.",
+   "status": "aligned",
+   "order": 56
+  },
+  "b3f4ebf3abc5": {
+   "fr": "Convertir [[m1]] et [[m2]] en radians, en faisant apparaître le facteur de conversion.",
+   "en": "Convert [[m1]] and [[m2]] to radians, showing the conversion factor.",
+   "status": "aligned",
+   "order": 57
+  },
+  "da7baa380dc8": {
+   "fr": "Un secteur circulaire a un rayon de 4 cm et un angle de [[m1]] radians. Calculer la longueur exacte de son arc.",
+   "en": "A circular sector has radius 4 cm and an angle of [[m1]] radians. Calculate the exact length of its arc.",
+   "status": "aligned",
+   "order": 58
+  },
+  "998fa40b8c68": {
+   "fr": "Expliquer pourquoi une mesure d’angle peut être négative alors qu’une longueur d’arc géométrique est positive.",
+   "en": "Explain why an angle measure can be negative while a geometric arc length is positive.",
+   "status": "aligned",
+   "order": 59
+  },
+  "0898843fcc93": {
+   "fr": "Réduire les angles",
+   "en": "Reducing angles",
+   "status": "aligned",
+   "order": 60
+  },
+  "76d16b6efa3d": {
+   "fr": "On considère les réels [[m1]], [[m2]] et [[m3]].",
+   "en": "Consider the real numbers [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "c06f7a067d7c": {
+   "fr": "Pour chacun, déterminer un représentant dans [[m1]] ayant la même image sur le cercle trigonométrique. Faire apparaître le nombre de tours ajoutés ou retirés.",
+   "en": "For each, determine a representative in [[m1]] having the same image on the unit circle. Show the number of turns added or removed.",
+   "status": "aligned",
+   "order": 62
+  },
+  "2f5663b2e6e1": {
+   "fr": "Placer les trois images sur un cercle et les identifier par les réels de départ.",
+   "en": "Place the three images on a circle and identify them by the starting real numbers.",
+   "status": "aligned",
+   "order": 63
+  },
+  "7fff09293f19": {
+   "fr": "Valeurs exactes",
+   "en": "Exact values",
+   "status": "aligned",
+   "order": 64
+  },
+  "68e238316e75": {
+   "fr": "On cherche les valeurs exactes du cosinus et du sinus de [[m1]], [[m2]] et [[m3]].",
+   "en": "We look for the exact values of the cosine and sine of [[m1]], [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 65
+  },
+  "75f3ccc2e483": {
+   "fr": "Placer les trois images sur le cercle trigonométrique. Pour chacune, préciser le signe attendu de ses deux coordonnées.",
+   "en": "Place the three images on the unit circle. For each, state the expected sign of its two coordinates.",
+   "status": "aligned",
+   "order": 66
+  },
+  "4c41bdc4f935": {
+   "fr": "Calculer les valeurs exactes en utilisant un angle remarquable et une symétrie. Présenter la réponse dans un tableau : angle, cosinus, sinus.",
+   "en": "Calculate the exact values using a standard angle and a symmetry. Present the answer in a table: angle, cosine, sine.",
+   "status": "aligned",
+   "order": 67
+  },
+  "bac317d35088": {
+   "fr": "Retrouver le signe",
+   "en": "Recovering the sign",
+   "status": "aligned",
+   "order": 68
+  },
+  "024905a06e88": {
+   "fr": "Un réel [[m1]] vérifie [[m2]]. Son image sur le cercle trigonométrique se situe dans le deuxième quadrant, donc à gauche de l’axe des ordonnées et au-dessus de l’axe des abscisses.",
+   "en": "A real number [[m1]] satisfies [[m2]]. Its image on the unit circle lies in the second quadrant, that is to the left of the y-axis and above the x-axis.",
+   "status": "aligned",
+   "order": 69
+  },
+  "a78cc3b0f9c5": {
+   "fr": "Déterminer la valeur exacte de [[m1]]. Justifier à la fois sa valeur absolue et son signe.",
+   "en": "Determine the exact value of [[m1]]. Justify both its absolute value and its sign.",
+   "status": "aligned",
+   "order": 70
+  },
+  "d6ef1a718098": {
+   "fr": "Expliquer pourquoi la seule donnée de [[m1]] n’aurait pas suffi à choisir le signe de [[m2]].",
+   "en": "Explain why the value of [[m1]] alone would not have been enough to choose the sign of [[m2]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "9e6698d06aea": {
+   "fr": "Une roue",
+   "en": "A wheel",
+   "status": "aligned",
+   "order": 72
+  },
+  "457655428378": {
+   "fr": "Une roue de rayon [[m1]] m roule sur un sol horizontal sans glisser. Elle effectue une rotation d’angle [[m2]] radians. On cherche la distance parcourue par son axe dans la direction du déplacement.",
+   "en": "A wheel of radius [[m1]] m rolls on horizontal ground without slipping. It turns through an angle of [[m2]] radians. We look for the distance travelled by its axle in the direction of motion.",
+   "status": "aligned",
+   "order": 73
+  },
+  "090eb14e971e": {
+   "fr": "Calculer cette distance sous forme exacte en expliquant le lien avec la longueur d’arc déroulée.",
+   "en": "Calculate this distance in exact form, explaining the link with the arc length unrolled.",
+   "status": "aligned",
+   "order": 74
+  },
+  "1a823c4027c5": {
+   "fr": "Expliquer pourquoi on ne doit pas utiliser la longueur d’une corde du cercle. La trajectoire d’un point fixé sur le bord de la roue, vue depuis le sol, est-elle celle de l’axe ?",
+   "en": "Explain why the length of a chord of the circle must not be used. Is the path of a point fixed on the rim of the wheel, seen from the ground, the same as that of the axle?",
+   "status": "aligned",
+   "order": 75
+  },
+  "56144f859a81": {
+   "fr": "Corde et produit scalaire",
+   "en": "Chord and scalar product",
+   "status": "aligned",
+   "order": 76
+  },
+  "252fa3ddebe3": {
+   "fr": "Sur le cercle trigonométrique de centre [[m1]], le point [[m2]] est l’image de 0 et le point [[m3]] celle de [[m4]].",
+   "en": "On the unit circle with centre [[m1]], the point [[m2]] is the image of 0 and the point [[m3]] that of [[m4]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "665dae35ac7a": {
+   "fr": "Déterminer les coordonnées exactes de [[m1]] et [[m2]], puis calculer la longueur [[m3]].",
+   "en": "Determine the exact coordinates of [[m1]] and [[m2]], then calculate the length [[m3]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "8d2d37466294": {
+   "fr": "Retrouver cette longueur en appliquant la relation d’Al-Kashi au triangle [[m1]]. Préciser les longueurs et l’angle utilisés.",
+   "en": "Recover this length by applying the Al-Kashi relation to the triangle [[m1]]. State the lengths and the angle used.",
+   "status": "aligned",
+   "order": 79
+  },
+  "d3492f27a6eb": {
+   "fr": "Lire une équation sur le cercle",
+   "en": "Reading an equation on the circle",
+   "status": "aligned",
+   "order": 80
+  },
+  "1d7594aede72": {
+   "fr": "On cherche les réels [[m1]] de l’intervalle [[m2]] dont l’image sur le cercle trigonométrique a pour abscisse [[m3]].",
+   "en": "We look for the real numbers [[m1]] in the interval [[m2]] whose image on the unit circle has x-coordinate [[m3]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "a93837f14a84": {
+   "fr": "Traduire la condition sur l’abscisse par une équation faisant intervenir [[m1]].",
+   "en": "Translate the condition on the x-coordinate into an equation involving [[m1]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "2956a6cbd712": {
+   "fr": "Tracer la droite verticale correspondante sur un cercle, repérer ses intersections et donner les deux solutions. Vérifier qu’elles appartiennent à l’intervalle demandé.",
+   "en": "Draw the corresponding vertical line on a circle, mark its intersections and give the two solutions. Check that they belong to the interval required.",
+   "status": "aligned",
+   "order": 83
+  },
+  "2956a7106212": {
+   "fr": "Reprise différée",
+   "en": "Delayed review",
+   "status": "aligned",
+   "order": 84
+  },
+  "de4b27521d30": {
+   "fr": "On considère l’angle de mesure [[m1]] radians. Les réponses doivent être exactes, sans approximation décimale.",
+   "en": "Consider the angle of measure [[m1]] radians. The answers must be exact, with no decimal approximation.",
+   "status": "aligned",
+   "order": 85
+  },
+  "942308ca0e3e": {
+   "fr": "Réduire cet angle en faisant apparaître un nombre entier de tours complets.",
+   "en": "Reduce this angle, showing a whole number of complete turns.",
+   "status": "aligned",
+   "order": 86
+  },
+  "0843b3a4ce29": {
+   "fr": "En déduire son cosinus et son sinus. Justifier les valeurs à l’aide du cercle trigonométrique.",
+   "en": "Deduce its cosine and sine. Justify the values using the unit circle.",
+   "status": "aligned",
+   "order": 87
+  },
+  "261ef763c4c8": {
+   "fr": "Travail personnel.",
+   "en": "Homework.",
+   "status": "aligned",
+   "order": 88
+  },
+  "1e62d212eb03": {
+   "fr": "Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.",
+   "en": "Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.",
+   "status": "aligned",
+   "order": 89
+  },
+  "8a14bcc09f57": {
+   "fr": "À faire dans le manuel CQFD",
+   "en": "To do in the CQFD textbook",
+   "status": "aligned",
+   "order": 90
+  },
+  "3b23cff4a4c2": {
+   "fr": "Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).",
+   "en": "These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).",
+   "status": "aligned",
+   "order": 91
+  },
+  "59419768b26a": {
+   "fr": "CQFD, exercice 32 p. 220, questions a et b.",
+   "en": "CQFD, exercise 32 p.~220, questions a and b.",
+   "status": "aligned",
+   "order": 92
+  },
+  "a02280970b73": {
+   "fr": "Utiliser la valeur exacte fournie et les angles associés, sans calculatrice.",
+   "en": "Use the exact value supplied and the related angles, without a calculator.",
+   "status": "aligned",
+   "order": 93
+  },
+  "afe5412f2539": {
+   "fr": "CQFD, exercice 39 p. 220, questions 1, 2, 3 et 5.",
+   "en": "CQFD, exercise 39 p.~220, questions 1, 2, 3 and 5.",
+   "status": "aligned",
+   "order": 94
+  },
+  "b768337d3573": {
+   "fr": "Traiter les quatre questions de calcul et de lecture du cercle ; justifier les réponses sur la copie.",
+   "en": "Do the four calculation and circle-reading questions; justify the answers on your paper.",
+   "status": "aligned",
+   "order": 95
+  },
+  "3b951efef83f": {
+   "fr": "QCM 1 : comprendre et choisir",
+   "en": "MCQ 1: understand and choose",
+   "status": "aligned",
+   "order": 96
+  },
+  "214bc4b49b04": {
+   "fr": "[[m1]] questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.",
+   "en": "[[m1]] single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.",
+   "status": "aligned",
+   "order": 97
+  },
+  "709bdf5649bc": {
+   "fr": "[[m1]] vaut",
+   "en": "[[m1]] equals",
+   "status": "aligned",
+   "order": 98
+  },
+  "a7d8bee7168e": {
+   "fr": "Un même point correspond à des angles différant de",
+   "en": "The same point corresponds to angles differing by",
+   "status": "aligned",
+   "order": 99
+  },
+  "d2c526d0d36a": {
+   "fr": "[[m1]], k entier",
+   "en": "[[m1]], k an integer",
+   "status": "aligned",
+   "order": 100
+  },
+  "cc229fe9b5f3": {
+   "fr": "QCM 2 : comprendre et choisir",
+   "en": "MCQ 2: understand and choose",
+   "status": "aligned",
+   "order": 101
+  },
+  "2a16cf2f8063": {
+   "fr": "Image de [[m1]] :",
+   "en": "Image of [[m1]]:",
+   "status": "aligned",
+   "order": 102
+  },
+  "11c2936c9bff": {
+   "fr": "Arc de rayon 3 et angle 2 radians : longueur",
+   "en": "Arc of radius 3 and angle 2 radians: length",
+   "status": "aligned",
+   "order": 103
+  },
+  "bf657f549879": {
+   "fr": "Intérieur du deuxième quadrant : signe du cosinus",
+   "en": "Interior of the second quadrant: sign of the cosine",
+   "status": "aligned",
+   "order": 104
+  },
+  "557f42dd79e9": {
+   "fr": "positif",
+   "en": "positive",
+   "status": "aligned",
+   "order": 105
+  },
+  "fa9ade5cb03d": {
+   "fr": "nul partout",
+   "en": "zero everywhere",
+   "status": "aligned",
+   "order": 106
+  },
+  "2e2d55f11c72": {
+   "fr": "négatif",
+   "en": "negative",
+   "status": "aligned",
+   "order": 107
+  },
+  "0d3135be8fd8": {
+   "fr": "indéterminable",
+   "en": "cannot be determined",
+   "status": "aligned",
+   "order": 108
+  },
+  "d5fc4ef9b48b": {
+   "fr": "Vrai ou faux ? Justifier.",
+   "en": "True or false? Justify.",
+   "status": "aligned",
+   "order": 109
+  },
+  "f4969130ee8c": {
+   "fr": "[[m1]] pour tout x.",
+   "en": "[[m1]] for all x.",
+   "status": "aligned",
+   "order": 110
+  },
+  "3a3a40f68d0b": {
+   "fr": "La donnée de [[m1]] détermine toujours [[m2]].",
+   "en": "The value of [[m1]] always determines [[m2]].",
+   "status": "aligned",
+   "order": 111
+  },
+  "6630f206d598": {
+   "fr": "Bilan personnel",
+   "en": "Self-assessment",
+   "status": "aligned",
+   "order": 112
+  },
+  "fb4a805591c8": {
+   "fr": "Je réduis les angles par tours complets ; je lis cosinus et sinus dans le bon ordre ; je justifie les signes ; je conserve les valeurs exactes.",
+   "en": "I reduce angles by complete turns; I read cosine and sine in the right order; I justify the signs; I keep the exact values.",
+   "status": "aligned",
+   "order": 113
+  },
+  "4dab232b00d5": {
+   "fr": "Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.",
+   "en": "For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.",
+   "status": "aligned",
+   "order": 114
+  }
+ }
+}

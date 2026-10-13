@@ -1,0 +1,1102 @@
+% GENERATED, edit the French unit or the translation table
+\mxfront{terminale-e5}
+\mxnewpage\phantomsection\label{sujet:5-1}\addcontentsline{toc}{chapter}{Mock 1 · Practice 1}
+
+\section*{Mock 1 · Practice 1}
+
+\mxbanner{PRACTICE PAPER · TRAINING}
+
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-1} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-5-1}
+\subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{42+v_n}$.
+
+\begin{enumerate}
+
+\item Calculate $v_1$ and $v_2$. Give the exact values. \hfill\textit{(0.25 pt)}
+
+\item Prove by induction that all terms are defined and that, for all $n\in\N$, $0\le v_n\le7$. \hfill\textit{(0.75 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $v_n<7$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $(v_n)$ converges, then determine its limit. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $0\le 7-v_{n+1}\le\frac{7-v_n}{7}$. \hfill\textit{(0.5 pt)}
+
+\item Deduce by induction an upper bound for $7-v_n$ in terms of $n$. Then determine, by comparing integer powers, an index from which this bound guarantees $7-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Write a Python function with no argument that returns the first integer $n$ such that $7-v_n\le10^{-3}$. Run the function and compare the index obtained with the sufficient index from the previous question. Explain any difference. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-1}
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+5)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+
+\begin{enumerate}
+
+\item Calculate $f(0)$ and determine the limit of $f$ at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw the variation table of $f$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
+
+\item Prove that the equation $f(x)=\frac{5}{2}$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
+
+\item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
+
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+
+\item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
+
+\item A student claims: ``Since $f(x)$ tends to $0$, the curve crosses the horizontal axis.'' Refute this claim by studying the sign of $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 1 · Practice 1 · continued}
+
+\mxtally{ex-5-1}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=4\vi+6\vj+10\vec k,&\vec z&=4\vi+6\vj+11\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(0.5 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
+
+\item Express the vector $6\vec u-4\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
+
+\item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
+
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+
+\item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-1}
+\subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $19$ times. The trials are independent and the probability of success is $p=\frac{3}{10}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Express using complementary events, then calculate, the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,19\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $19$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 1 · Practice 1}\label{cor:5-1}
+
+\subsection*{Exercise 1 · Induction and bounds}\begin{enumerate}
+
+\item \textit{[0.25 pt]} $v_1=\sqrt{42+0}=\sqrt{42}$ and $v_2=\sqrt{42+\sqrt{42}}$.
+
+\item \textit{[0.75 pt]} Let $P(n)$ be the statement: ``$v_n$ is defined and $0\le v_n\le 7$''.
+\par\smallskip\textbf{Base case.} $v_0=0$ is defined and belongs to $[0,7]$; $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\in\N$ and assume $P(n)$ is true. Then
+\[0\le 42\le 42+v_n\le 42+7=49.\]
+The square root is therefore defined and, since this function is increasing on $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{42+v_n}\le\sqrt{49}=7.\]
+Thus $P(n+1)$ is true.
+\par\smallskip\textbf{Conclusion.} By induction, all terms are defined and belong to $[0,7]$.
+
+\item \textit{[0.75 pt]} For $n\in\N$, let $R(n)$ be the statement: ``$v_{n+1}\ge v_n$''.
+\par\smallskip\textbf{Base case.} $v_1=\sqrt{42}>0=v_0$; $R(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\ge0$ and assume $v_{n+1}\ge v_n$. Adding $42$ and then applying the increasing property of the square root,
+\[v_{n+2}=\sqrt{42+v_{n+1}}\ge\sqrt{42+v_n}=v_{n+1}.\]
+This is $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} By induction, $v_{n+1}\ge v_n$ for all $n\ge0$: $(v_n)$ is increasing.
+
+\item \textit{[0.5 pt]} Let $S(n)$ be the statement: ``$v_n<7$. At index $0$, $v_0=0<7$.
+Fix $n\ge0$ and assume $S(n)$ is true. Since the radicands are positive, the strict increase of the square root gives
+\[v_{n+1}=\sqrt{42+v_n}<\sqrt{42+7}=\sqrt{49}=7.\]
+So $S(n+1)$ is true. The base case and the inductive step establish by induction that $v_n<7$ for all $n\in\N$.
+
+\item \textit{[0.75 pt]} The sequence is increasing and bounded above by $7$: the monotone convergence theorem gives a real limit $\ell\in[0,7]$.
+The function $x\mapsto\sqrt{42+x}$ is continuous on this interval. Taking the limit in the relation, $\ell=\sqrt{42+\ell}$. Since $\ell\ge0$, this is equivalent to
+\[\ell^2-\ell-42=0\quad\Longleftrightarrow\quad(\ell-7)(\ell+6)=0.\]
+The root $-6$ is excluded by $\ell\ge0$; so $\lim v_n=7$.
+
+\item \textit{[0.5 pt]} The previous result ensures $7-v_{n+1}\ge0$. Multiplying by the conjugate expression,
+\[\begin{aligned}7-v_{n+1}&=\frac{49-(42+v_n)}{7+\sqrt{42+v_n}}\\&=\frac{7-v_n}{7+\sqrt{42+v_n}}\le\frac{7-v_n}{7}.\end{aligned}\]
+The last inequality uses a positive numerator and a denominator at least equal to $7>0$.
+
+\item \textit{[1 pt]} Let us prove by induction $T(n)$: ``$0\le 7-v_n\le 7^{1-n}$''.
+At index $0$, $7-v_0=7=7^1$. Fix $n\ge0$ and assume $T(n)$ is true. The previous question gives
+\[0\le 7-v_{n+1}\le\frac{7-v_n}{7}\le\frac{7^{1-n}}{7}=7^{1-(n+1)}.\]
+This is $T(n+1)$. By induction, the bounds hold at every index.
+To have $7^{1-n}\le10^{-3}$, it suffices that $7^{n-1}\ge1000$.
+Now $7^{3}=343<1000$ and $7^{4}=2401\ge1000$. Index $5$ is therefore the first one guaranteed by this bound, without using the logarithm.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 7-v > 1e-3:
+        v = sqrt(42+v)
+        n += 1
+    return n
+\end{lstlisting}
+Convergence to $7$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $\num{0,00265684}$ and $\num{0,00018978}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $5$ may be larger; it comes from an upper bound, not from the exact error.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · An exponential curve}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $f(0)=5$; limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the product rule,
+\[f'(x)=e^{-x}-(x+5)e^{-x}=(-x-4)e^{-x}.\]
+The two factors are respectively strictly negative and positive on $[0,+\infty[$; hence $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&5&\searrow&0\end{array}\]
+
+\item \textit{[0.5 pt]} Differentiating the previous product,
+\[f''(x)=-e^{-x}-(-x-4)e^{-x}=(x+3)e^{-x}.\]
+On the domain, $x+3\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of convexity in the interior of the domain, hence no point of inflection.
+
+\item \textit{[1 pt]} Continuity, strict decrease, $f(0)=5>\frac{5}{2}$ and limit $0<\frac{5}{2}$: exactly one solution.
+
+\item \textit{[0.5 pt]} The tangent at $0$ has equation $y=f(0)+f'(0)x=5-4x$. A convex function lies above each of its tangents, so $(x+5)e^{-x}\ge 5-4x$ for all $x\ge0$.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} We know $f(0)=5>\frac{5}{2}$. Moreover, $f(2)=7e^{-2}\simeq\num{0,9473}<\frac{5}{2}$. The zero of $f-\frac{5}{2}$ is therefore in $]0,2[$. A program is:
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+5)*exp(-m) > 5/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+Since $f$ is decreasing, the bracketing is preserved at each step. The result has length at most $10^{-3}$; its midpoint has an error of at most $5\times10^{-4}$.
+
+\item \textit{[0.5 pt]} $\frac{2}{2^n}\le10^{-3}$: $n=11$ steps suffice.
+
+\item \textit{[1 pt]} For $x\ge0$, $x+5>0$ and $e^{-x}>0$, so $f(x)>0$. A limit is not necessarily an attained value.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculation in a basis}\begin{enumerate}
+
+\item \textit{[0.5 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $4\vec u+6\vec v=4(\vi +\vec k)+6(\vj +\vec k)=4\vi +6\vj +10\vec k=\vec w$.
+
+\item \textit{[0.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=4,\qquad\mu=6,\qquad\lambda+\mu=11.\]
+The first two equalities give $\lambda+\mu=10$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $6\vec u-4\vec v=6(\vi +\vec k)-4(\vj +\vec k)=6\vi -4\vj +2\vec k$.
+
+\item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
+
+\item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 4=\frac{\lambda}{2}\ \text{and}\ 6=\frac{\lambda}{2}.\]
+Here $4\ne 6$: there is no such $\lambda$, so $A,I,D$ are not collinear.
+
+\item \textit{[1 pt]} No: $D$ belongs to the plane but $E$ does not, by the non-coplanarity shown above. The intersection is exactly $D$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{19;\frac{3}{10}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{3}{10})^2(\frac{7}{10})^{17}\simeq\num{0,035802}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{7}{10})^{19}-19(\frac{3}{10})(\frac{7}{10})^{18}\simeq\num{0,989578}$.
+
+\item \textit{[1 pt]} $E(X)=\frac{57}{10}$, $V(X)=\frac{399}{100}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{7}{10})^N$. It is strictly increasing in $N$, since $0<\frac{7}{10}<1$. Calculation gives
+\[P_{8}\simeq\num{0,942352}<\num{0,95},\qquad P_{9}\simeq\num{0,959646}\ge\num{0,95}.\]
+Thus $9$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=19$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{3}{10}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{3}{10})^j(\frac{7}{10})^{19-j}\simeq\num{0,132031}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 19, 3/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $9$. The cumulative sums at indices $8$ and $9$ are approximately $\num{0,916085}$ and $\num{0,967447}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\mxnewpage\phantomsection\label{sujet:5-2}\addcontentsline{toc}{chapter}{Mock 1 · Practice 2}
+
+\section*{Mock 1 · Practice 2}
+
+\mxbanner{PRACTICE PAPER · TRAINING}
+
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-2} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-5-2}
+\subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{110+v_n}$.
+
+\begin{enumerate}
+
+\item Calculate $v_1$ and $v_2$. Give the exact values. \hfill\textit{(0.25 pt)}
+
+\item Prove by induction that all terms are defined and that, for all $n\in\N$, $0\le v_n\le11$. \hfill\textit{(0.75 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $v_n<11$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $(v_n)$ converges, then determine its limit. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $0\le 11-v_{n+1}\le\frac{11-v_n}{11}$. \hfill\textit{(0.5 pt)}
+
+\item Deduce by induction an upper bound for $11-v_n$ in terms of $n$. Then determine, by comparing integer powers, an index from which this bound guarantees $11-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Write a Python function with no argument that returns the first integer $n$ such that $11-v_n\le10^{-3}$. Run the function and compare the index obtained with the sufficient index from the previous question. Explain any difference. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-2}
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+4)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+
+\begin{enumerate}
+
+\item Calculate $f(0)$ and determine the limit of $f$ at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw the variation table of $f$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
+
+\item Prove that the equation $f(x)=2$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
+
+\item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
+
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+
+\item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
+
+\item A student claims: ``Since $f(x)$ tends to $0$, the curve crosses the horizontal axis.'' Refute this claim by studying the sign of $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 1 · Practice 2 · continued}
+
+\mxtally{ex-5-2}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=3\vi+8\vj+11\vec k,&\vec z&=3\vi+8\vj+12\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(0.5 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
+
+\item Express the vector $8\vec u-3\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
+
+\item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
+
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+
+\item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-2}
+\subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $16$ times. The trials are independent and the probability of success is $p=\frac{1}{10}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Express using complementary events, then calculate, the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,16\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $16$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 1 · Practice 2}\label{cor:5-2}
+
+\subsection*{Exercise 1 · Induction and bounds}\begin{enumerate}
+
+\item \textit{[0.25 pt]} $v_1=\sqrt{110+0}=\sqrt{110}$ and $v_2=\sqrt{110+\sqrt{110}}$.
+
+\item \textit{[0.75 pt]} Let $P(n)$ be the statement: ``$v_n$ is defined and $0\le v_n\le 11$''.
+\par\smallskip\textbf{Base case.} $v_0=0$ is defined and belongs to $[0,11]$; $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\in\N$ and assume $P(n)$ is true. Then
+\[0\le 110\le 110+v_n\le 110+11=121.\]
+The square root is therefore defined and, since this function is increasing on $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{110+v_n}\le\sqrt{121}=11.\]
+Thus $P(n+1)$ is true.
+\par\smallskip\textbf{Conclusion.} By induction, all terms are defined and belong to $[0,11]$.
+
+\item \textit{[0.75 pt]} For $n\in\N$, let $R(n)$ be the statement: ``$v_{n+1}\ge v_n$''.
+\par\smallskip\textbf{Base case.} $v_1=\sqrt{110}>0=v_0$; $R(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\ge0$ and assume $v_{n+1}\ge v_n$. Adding $110$ and then applying the increasing property of the square root,
+\[v_{n+2}=\sqrt{110+v_{n+1}}\ge\sqrt{110+v_n}=v_{n+1}.\]
+This is $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} By induction, $v_{n+1}\ge v_n$ for all $n\ge0$: $(v_n)$ is increasing.
+
+\item \textit{[0.5 pt]} Let $S(n)$ be the statement: ``$v_n<11$. At index $0$, $v_0=0<11$.
+Fix $n\ge0$ and assume $S(n)$ is true. Since the radicands are positive, the strict increase of the square root gives
+\[v_{n+1}=\sqrt{110+v_n}<\sqrt{110+11}=\sqrt{121}=11.\]
+So $S(n+1)$ is true. The base case and the inductive step establish by induction that $v_n<11$ for all $n\in\N$.
+
+\item \textit{[0.75 pt]} The sequence is increasing and bounded above by $11$: the monotone convergence theorem gives a real limit $\ell\in[0,11]$.
+The function $x\mapsto\sqrt{110+x}$ is continuous on this interval. Taking the limit in the relation, $\ell=\sqrt{110+\ell}$. Since $\ell\ge0$, this is equivalent to
+\[\ell^2-\ell-110=0\quad\Longleftrightarrow\quad(\ell-11)(\ell+10)=0.\]
+The root $-10$ is excluded by $\ell\ge0$; so $\lim v_n=11$.
+
+\item \textit{[0.5 pt]} The previous result ensures $11-v_{n+1}\ge0$. Multiplying by the conjugate expression,
+\[\begin{aligned}11-v_{n+1}&=\frac{121-(110+v_n)}{11+\sqrt{110+v_n}}\\&=\frac{11-v_n}{11+\sqrt{110+v_n}}\le\frac{11-v_n}{11}.\end{aligned}\]
+The last inequality uses a positive numerator and a denominator at least equal to $11>0$.
+
+\item \textit{[1 pt]} Let us prove by induction $T(n)$: ``$0\le 11-v_n\le 11^{1-n}$''.
+At index $0$, $11-v_0=11=11^1$. Fix $n\ge0$ and assume $T(n)$ is true. The previous question gives
+\[0\le 11-v_{n+1}\le\frac{11-v_n}{11}\le\frac{11^{1-n}}{11}=11^{1-(n+1)}.\]
+This is $T(n+1)$. By induction, the bounds hold at every index.
+To have $11^{1-n}\le10^{-3}$, it suffices that $11^{n-1}\ge1000$.
+Now $11^{2}=121<1000$ and $11^{3}=1331\ge1000$. Index $4$ is therefore the first one guaranteed by this bound, without using the logarithm.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 11-v > 1e-3:
+        v = sqrt(110+v)
+        n += 1
+    return n
+\end{lstlisting}
+Convergence to $11$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $\num{0,00105884}$ and $\num{0,00004813}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $4$ may be larger; it comes from an upper bound, not from the exact error.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · An exponential curve}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $f(0)=4$; limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the product rule,
+\[f'(x)=e^{-x}-(x+4)e^{-x}=(-x-3)e^{-x}.\]
+The two factors are respectively strictly negative and positive on $[0,+\infty[$; hence $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&4&\searrow&0\end{array}\]
+
+\item \textit{[0.5 pt]} Differentiating the previous product,
+\[f''(x)=-e^{-x}-(-x-3)e^{-x}=(x+2)e^{-x}.\]
+On the domain, $x+2\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of convexity in the interior of the domain, hence no point of inflection.
+
+\item \textit{[1 pt]} Continuity, strict decrease, $f(0)=4>2$ and limit $0<2$: exactly one solution.
+
+\item \textit{[0.5 pt]} The tangent at $0$ has equation $y=f(0)+f'(0)x=4-3x$. A convex function lies above each of its tangents, so $(x+4)e^{-x}\ge 4-3x$ for all $x\ge0$.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} We know $f(0)=4>2$. Moreover, $f(2)=6e^{-2}\simeq\num{0,8120}<2$. The zero of $f-2$ is therefore in $]0,2[$. A program is:
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+4)*exp(-m) > 4/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+Since $f$ is decreasing, the bracketing is preserved at each step. The result has length at most $10^{-3}$; its midpoint has an error of at most $5\times10^{-4}$.
+
+\item \textit{[0.5 pt]} $\frac{2}{2^n}\le10^{-3}$: $n=11$ steps suffice.
+
+\item \textit{[1 pt]} For $x\ge0$, $x+4>0$ and $e^{-x}>0$, so $f(x)>0$. A limit is not necessarily an attained value.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculation in a basis}\begin{enumerate}
+
+\item \textit{[0.5 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $3\vec u+8\vec v=3(\vi +\vec k)+8(\vj +\vec k)=3\vi +8\vj +11\vec k=\vec w$.
+
+\item \textit{[0.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=3,\qquad\mu=8,\qquad\lambda+\mu=12.\]
+The first two equalities give $\lambda+\mu=11$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $8\vec u-3\vec v=8(\vi +\vec k)-3(\vj +\vec k)=8\vi -3\vj +5\vec k$.
+
+\item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
+
+\item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 3=\frac{\lambda}{2}\ \text{and}\ 8=\frac{\lambda}{2}.\]
+Here $3\ne 8$: there is no such $\lambda$, so $A,I,D$ are not collinear.
+
+\item \textit{[1 pt]} No: $D$ belongs to the plane but $E$ does not, by the non-coplanarity shown above. The intersection is exactly $D$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $16$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{16;\frac{1}{10}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{16}2(\frac{1}{10})^2(\frac{9}{10})^{14}\simeq\num{0,274522}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{16}-16(\frac{1}{10})(\frac{9}{10})^{15}\simeq\num{0,485272}$.
+
+\item \textit{[1 pt]} $E(X)=\frac{8}{5}$, $V(X)=\frac{36}{25}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{9}{10})^N$. It is strictly increasing in $N$, since $0<\frac{9}{10}<1$. Calculation gives
+\[P_{28}\simeq\num{0,947665}<\num{0,95},\qquad P_{29}\simeq\num{0,952899}\ge\num{0,95}.\]
+Thus $29$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=16$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{16}j(\frac{1}{10})^j(\frac{9}{10})^{16-j}\simeq\num{0,746292}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 16, 1/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $4$. The cumulative sums at indices $3$ and $4$ are approximately $\num{0,931594}$ and $\num{0,982996}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:5-3}\addcontentsline{toc}{chapter}{Mock 1 · A}
+
+\section*{Mock 1 · A}
+
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
+
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-3} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-5-3}
+\subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{132+v_n}$.
+
+\begin{enumerate}
+
+\item Calculate $v_1$ and $v_2$. Give the exact values. \hfill\textit{(0.25 pt)}
+
+\item Prove by induction that all terms are defined and that, for all $n\in\N$, $0\le v_n\le12$. \hfill\textit{(0.75 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $v_n<12$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $(v_n)$ converges, then determine its limit. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $0\le 12-v_{n+1}\le\frac{12-v_n}{12}$. \hfill\textit{(0.5 pt)}
+
+\item Deduce by induction an upper bound for $12-v_n$ in terms of $n$. Then determine, by comparing integer powers, an index from which this bound guarantees $12-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Write a Python function with no argument that returns the first integer $n$ such that $12-v_n\le10^{-3}$. Run the function and compare the index obtained with the sufficient index from the previous question. Explain any difference. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-3}
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+3)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+
+\begin{enumerate}
+
+\item Calculate $f(0)$ and determine the limit of $f$ at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw the variation table of $f$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
+
+\item Prove that the equation $f(x)=\frac{3}{2}$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
+
+\item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
+
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+
+\item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
+
+\item A student claims: ``Since $f(x)$ tends to $0$, the curve crosses the horizontal axis.'' Refute this claim by studying the sign of $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 1 · A · continued}
+
+\mxtally{ex-5-3}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=2\vi+5\vj+7\vec k,&\vec z&=2\vi+5\vj+8\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(0.5 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
+
+\item Express the vector $5\vec u-2\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
+
+\item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
+
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+
+\item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-3}
+\subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $17$ times. The trials are independent and the probability of success is $p=\frac{1}{5}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Express using complementary events, then calculate, the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,17\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $17$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 1 · A}\label{cor:5-3}
+
+\subsection*{Exercise 1 · Induction and bounds}\begin{enumerate}
+
+\item \textit{[0.25 pt]} $v_1=\sqrt{132+0}=\sqrt{132}$ and $v_2=\sqrt{132+\sqrt{132}}$.
+
+\item \textit{[0.75 pt]} Let $P(n)$ be the statement: ``$v_n$ is defined and $0\le v_n\le 12$''.
+\par\smallskip\textbf{Base case.} $v_0=0$ is defined and belongs to $[0,12]$; $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\in\N$ and assume $P(n)$ is true. Then
+\[0\le 132\le 132+v_n\le 132+12=144.\]
+The square root is therefore defined and, since this function is increasing on $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{132+v_n}\le\sqrt{144}=12.\]
+Thus $P(n+1)$ is true.
+\par\smallskip\textbf{Conclusion.} By induction, all terms are defined and belong to $[0,12]$.
+
+\item \textit{[0.75 pt]} For $n\in\N$, let $R(n)$ be the statement: ``$v_{n+1}\ge v_n$''.
+\par\smallskip\textbf{Base case.} $v_1=\sqrt{132}>0=v_0$; $R(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\ge0$ and assume $v_{n+1}\ge v_n$. Adding $132$ and then applying the increasing property of the square root,
+\[v_{n+2}=\sqrt{132+v_{n+1}}\ge\sqrt{132+v_n}=v_{n+1}.\]
+This is $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} By induction, $v_{n+1}\ge v_n$ for all $n\ge0$: $(v_n)$ is increasing.
+
+\item \textit{[0.5 pt]} Let $S(n)$ be the statement: ``$v_n<12$. At index $0$, $v_0=0<12$.
+Fix $n\ge0$ and assume $S(n)$ is true. Since the radicands are positive, the strict increase of the square root gives
+\[v_{n+1}=\sqrt{132+v_n}<\sqrt{132+12}=\sqrt{144}=12.\]
+So $S(n+1)$ is true. The base case and the inductive step establish by induction that $v_n<12$ for all $n\in\N$.
+
+\item \textit{[0.75 pt]} The sequence is increasing and bounded above by $12$: the monotone convergence theorem gives a real limit $\ell\in[0,12]$.
+The function $x\mapsto\sqrt{132+x}$ is continuous on this interval. Taking the limit in the relation, $\ell=\sqrt{132+\ell}$. Since $\ell\ge0$, this is equivalent to
+\[\ell^2-\ell-132=0\quad\Longleftrightarrow\quad(\ell-12)(\ell+11)=0.\]
+The root $-11$ is excluded by $\ell\ge0$; so $\lim v_n=12$.
+
+\item \textit{[0.5 pt]} The previous result ensures $12-v_{n+1}\ge0$. Multiplying by the conjugate expression,
+\[\begin{aligned}12-v_{n+1}&=\frac{144-(132+v_n)}{12+\sqrt{132+v_n}}\\&=\frac{12-v_n}{12+\sqrt{132+v_n}}\le\frac{12-v_n}{12}.\end{aligned}\]
+The last inequality uses a positive numerator and a denominator at least equal to $12>0$.
+
+\item \textit{[1 pt]} Let us prove by induction $T(n)$: ``$0\le 12-v_n\le 12^{1-n}$''.
+At index $0$, $12-v_0=12=12^1$. Fix $n\ge0$ and assume $T(n)$ is true. The previous question gives
+\[0\le 12-v_{n+1}\le\frac{12-v_n}{12}\le\frac{12^{1-n}}{12}=12^{1-(n+1)}.\]
+This is $T(n+1)$. By induction, the bounds hold at every index.
+To have $12^{1-n}\le10^{-3}$, it suffices that $12^{n-1}\ge1000$.
+Now $12^{2}=144<1000$ and $12^{3}=1728\ge1000$. Index $4$ is therefore the first one guaranteed by this bound, without using the logarithm.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 12-v > 1e-3:
+        v = sqrt(132+v)
+        n += 1
+    return n
+\end{lstlisting}
+Convergence to $12$ ensures termination. The loop examines the indices in order: it returns $3$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $2$ and $3$ are approximately $\num{0,02130536}$ and $\num{0,00088776}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $4$ may be larger; it comes from an upper bound, not from the exact error.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · An exponential curve}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $f(0)=3$; limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the product rule,
+\[f'(x)=e^{-x}-(x+3)e^{-x}=(-x-2)e^{-x}.\]
+The two factors are respectively strictly negative and positive on $[0,+\infty[$; hence $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&3&\searrow&0\end{array}\]
+
+\item \textit{[0.5 pt]} Differentiating the previous product,
+\[f''(x)=-e^{-x}-(-x-2)e^{-x}=(x+1)e^{-x}.\]
+On the domain, $x+1\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of convexity in the interior of the domain, hence no point of inflection.
+
+\item \textit{[1 pt]} Continuity, strict decrease, $f(0)=3>\frac{3}{2}$ and limit $0<\frac{3}{2}$: exactly one solution.
+
+\item \textit{[0.5 pt]} The tangent at $0$ has equation $y=f(0)+f'(0)x=3-2x$. A convex function lies above each of its tangents, so $(x+3)e^{-x}\ge 3-2x$ for all $x\ge0$.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} We know $f(0)=3>\frac{3}{2}$. Moreover, $f(2)=5e^{-2}\simeq\num{0,6767}<\frac{3}{2}$. The zero of $f-\frac{3}{2}$ is therefore in $]0,2[$. A program is:
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+3)*exp(-m) > 3/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+Since $f$ is decreasing, the bracketing is preserved at each step. The result has length at most $10^{-3}$; its midpoint has an error of at most $5\times10^{-4}$.
+
+\item \textit{[0.5 pt]} $\frac{2}{2^n}\le10^{-3}$: $n=11$ steps suffice.
+
+\item \textit{[1 pt]} For $x\ge0$, $x+3>0$ and $e^{-x}>0$, so $f(x)>0$. A limit is not necessarily an attained value.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculation in a basis}\begin{enumerate}
+
+\item \textit{[0.5 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $2\vec u+5\vec v=2(\vi +\vec k)+5(\vj +\vec k)=2\vi +5\vj +7\vec k=\vec w$.
+
+\item \textit{[0.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=2,\qquad\mu=5,\qquad\lambda+\mu=8.\]
+The first two equalities give $\lambda+\mu=7$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $5\vec u-2\vec v=5(\vi +\vec k)-2(\vj +\vec k)=5\vi -2\vj +3\vec k$.
+
+\item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
+
+\item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 2=\frac{\lambda}{2}\ \text{and}\ 5=\frac{\lambda}{2}.\]
+Here $2\ne 5$: there is no such $\lambda$, so $A,I,D$ are not collinear.
+
+\item \textit{[1 pt]} No: $D$ belongs to the plane but $E$ does not, by the non-coplanarity shown above. The intersection is exactly $D$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $17$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{17;\frac{1}{5}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{17}2(\frac{1}{5})^2(\frac{4}{5})^{15}\simeq\num{0,191403}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{4}{5})^{17}-17(\frac{1}{5})(\frac{4}{5})^{16}\simeq\num{0,881781}$.
+
+\item \textit{[1 pt]} $E(X)=\frac{17}{5}$, $V(X)=\frac{68}{25}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{4}{5})^N$. It is strictly increasing in $N$, since $0<\frac{4}{5}<1$. Calculation gives
+\[P_{13}\simeq\num{0,945024}<\num{0,95},\qquad P_{14}\simeq\num{0,956020}\ge\num{0,95}.\]
+Thus $14$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=17$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{5}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{17}j(\frac{1}{5})^j(\frac{4}{5})^{17-j}\simeq\num{0,526358}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 17, 2/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $6$. The cumulative sums at indices $5$ and $6$ are approximately $\num{0,894299}$ and $\num{0,962337}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\fi
+
+\ifmxteacher
+
+\mxnewpage\phantomsection\label{sujet:5-4}\addcontentsline{toc}{chapter}{Mock 1 · B}
+
+\section*{Mock 1 · B}
+
+\mxbanner*{PAPER RESERVED FOR ASSESSMENT}
+
+\textbf{Duration: 4 h · Marked out of 20 · \mxTallied{ex-5-4} independent exercises.}\\Calculator allowed. Every answer must be justified; incomplete working will be taken into account. Give exact values; round probabilities to $10^{-6}$ and other approximations to $10^{-4}$, unless stated otherwise.
+
+\smallskip\textbf{Name:}\enspace\dotfill\quad\textbf{Class:}\enspace\dotfill\quad\textbf{Date:}\enspace\dotfill
+
+\mxtally{ex-5-4}
+\subsection*{Exercise 1 · Induction and bounds \hfill 5 points}Consider the sequence $(v_n)$ defined by $v_0=0$ and, for every natural number $n$, $v_{n+1}=\sqrt{56+v_n}$.
+
+\begin{enumerate}
+
+\item Calculate $v_1$ and $v_2$. Give the exact values. \hfill\textit{(0.25 pt)}
+
+\item Prove by induction that all terms are defined and that, for all $n\in\N$, $0\le v_n\le8$. \hfill\textit{(0.75 pt)}
+
+\item Prove by induction that, for all $n\in\N$, $v_{n+1}\ge v_n$. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $v_n<8$. \hfill\textit{(0.5 pt)}
+
+\item Justify that $(v_n)$ converges, then determine its limit. \hfill\textit{(0.75 pt)}
+
+\item Prove that, for all $n\in\N$, $0\le 8-v_{n+1}\le\frac{8-v_n}{8}$. \hfill\textit{(0.5 pt)}
+
+\item Deduce by induction an upper bound for $8-v_n$ in terms of $n$. Then determine, by comparing integer powers, an index from which this bound guarantees $8-v_n\le10^{-3}$. \hfill\textit{(1 pt)}
+
+\item Write a Python function with no argument that returns the first integer $n$ such that $8-v_n\le10^{-3}$. Run the function and compare the index obtained with the sufficient index from the previous question. Explain any difference. \hfill\textit{(0.5 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-4}
+\subsection*{Exercise 2 · An exponential curve \hfill 5 points}Consider the function $f$ defined on $\intfo{0}{+\infty}$ by $f(x)=(x+2)e^{-x}$. Let $\mathcal C_f$ denote its graph.
+
+\begin{enumerate}
+
+\item Calculate $f(0)$ and determine the limit of $f$ at $+\infty$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f' (x)$, then draw the variation table of $f$. \hfill\textit{(0.5 pt)}
+
+\item Calculate $f'' (x)$, then study the convexity of $f$. \hfill\textit{(0.5 pt)}
+
+\item Prove that the equation $f(x)=1$ has a unique solution $\alpha$ in $\intfo{0}{+\infty}$. \hfill\textit{(1 pt)}
+
+\item Determine an equation of the tangent to $\mathcal C_f$ at the point of abscissa $0$. Using convexity, give an inequality between $f(x)$ and the affine expression of this tangent, for all $x\ge0$. \hfill\textit{(0.5 pt)}
+
+\item Show that $0<\alpha<2$. Write a Python function that applies bisection on $\intff{0}{2}$ and returns a bracketing of $\alpha$ of width at most $10^{-3}$. \hfill\textit{(0.5 pt)}
+
+\item Determine the minimum number of bisection steps guaranteeing this width. \hfill\textit{(0.5 pt)}
+
+\item A student claims: ``Since $f(x)$ tends to $0$, the curve crosses the horizontal axis.'' Refute this claim by studying the sign of $f(x)$. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxnewpage\mxcontinued{Mock 1 · B · continued}
+
+\mxtally{ex-5-4}
+\subsection*{Exercise 3 · Vector calculation in a basis \hfill 5 points}In a basis $\pt{\vi;\vj;\vec k}$ of space, define the vectors
+\[\begin{aligned}\vec u&=\vi+\vec k,&\vec v&=\vj+\vec k,\\
+\vec w&=5\vi+6\vj+11\vec k,&\vec z&=5\vi+6\vj+12\vec k.\end{aligned}\]
+
+\begin{enumerate}
+
+\item Justify that $\vec u$ and $\vec v$ are not collinear. \hfill\textit{(0.5 pt)}
+
+\item Write $\vec w$ as a linear combination of $\vec u$ and $\vec v$. \hfill\textit{(0.5 pt)}
+
+\item Are the vectors $\vec u$, $\vec v$ and $\vec z$ coplanar? Justify. \hfill\textit{(0.5 pt)}
+
+\item Express the vector $6\vec u-5\vec v$ in the basis $\pt{\vi;\vj;\vec k}$. \hfill\textit{(1 pt)}
+
+\item Choose a point $A$, then define $B$, $C$ and $D$ by $\vect{AB}=\vec u$, $\vect{AC}=\vec v$ and $\vect{AD}=\vec w$. Prove that $A$, $B$, $C$ and $D$ are coplanar. \hfill\textit{(0.5 pt)}
+
+\item For questions 6 to 8, assume the basis is orthonormal. Calculate the distances $AB$, $AC$ and $BC$. \hfill\textit{(0.5 pt)}
+
+\item Let $I$ be the midpoint of $[BC]$. Express $\vect{AI}$ in the basis $\pt{\vi;\vj;\vec k}$, then determine whether the points $A$, $I$ and $D$ are collinear. \hfill\textit{(0.5 pt)}
+
+\item Define $E$ by $\vect{AE}=\vec z$. Is the line $(DE)$ contained in the plane $(ABC)$? Justify. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\mxtally{ex-5-4}
+\subsection*{Exercise 4 · Repetitions and estimation \hfill 5 points}A trial with two outcomes, called success and failure, is repeated $19$ times. The trials are independent and the probability of success is $p=\frac{1}{10}$ on each trial. Let $X$ denote the number of successes obtained.
+
+\begin{enumerate}
+
+\item Justify that $X$ follows a binomial distribution and state its parameters. \hfill\textit{(0.5 pt)}
+
+\item Calculate the probability of obtaining exactly two successes. \hfill\textit{(0.5 pt)}
+
+\item Express using complementary events, then calculate, the probability of obtaining at least two successes. \hfill\textit{(0.5 pt)}
+
+\item Calculate the expected value and the variance of $X$. \hfill\textit{(1 pt)}
+
+\item The same trial is now repeated $N\ge1$ times, still independently. Determine the smallest integer $N$ for which the probability of obtaining at least one success is greater than or equal to $\num{0,95}$. A search using a table or a loop is allowed. \hfill\textit{(0.5 pt)}
+
+\item For an integer $j\in\{0,\ldots,19\}$, prove the formula for $P(X=j)$ by counting the possible positions of the successes. \hfill\textit{(0.5 pt)}
+
+\item A series of $19$ trials is accepted if its number of successes is between $1$ and $3$ inclusive. Calculate the probability that a series is accepted. \hfill\textit{(0.5 pt)}
+
+\item Write a Python function with no argument that returns the smallest integer $j$ such that $P(X\le j)\ge\num{0,95}$. Run the function and check the minimality of the result. \hfill\textit{(1 pt)}
+
+\end{enumerate}
+
+\ifmxteacher\mxnewpage
+
+\section*{Solutions · Mock 1 · B}\label{cor:5-4}
+
+\subsection*{Exercise 1 · Induction and bounds}\begin{enumerate}
+
+\item \textit{[0.25 pt]} $v_1=\sqrt{56+0}=\sqrt{56}$ and $v_2=\sqrt{56+\sqrt{56}}$.
+
+\item \textit{[0.75 pt]} Let $P(n)$ be the statement: ``$v_n$ is defined and $0\le v_n\le 8$''.
+\par\smallskip\textbf{Base case.} $v_0=0$ is defined and belongs to $[0,8]$; $P(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\in\N$ and assume $P(n)$ is true. Then
+\[0\le 56\le 56+v_n\le 56+8=64.\]
+The square root is therefore defined and, since this function is increasing on $[0,+\infty[$,
+\[0\le v_{n+1}=\sqrt{56+v_n}\le\sqrt{64}=8.\]
+Thus $P(n+1)$ is true.
+\par\smallskip\textbf{Conclusion.} By induction, all terms are defined and belong to $[0,8]$.
+
+\item \textit{[0.75 pt]} For $n\in\N$, let $R(n)$ be the statement: ``$v_{n+1}\ge v_n$''.
+\par\smallskip\textbf{Base case.} $v_1=\sqrt{56}>0=v_0$; $R(0)$ is true.
+\par\smallskip\textbf{Inductive step.} Fix $n\ge0$ and assume $v_{n+1}\ge v_n$. Adding $56$ and then applying the increasing property of the square root,
+\[v_{n+2}=\sqrt{56+v_{n+1}}\ge\sqrt{56+v_n}=v_{n+1}.\]
+This is $R(n+1)$.
+\par\smallskip\textbf{Conclusion.} By induction, $v_{n+1}\ge v_n$ for all $n\ge0$: $(v_n)$ is increasing.
+
+\item \textit{[0.5 pt]} Let $S(n)$ be the statement: ``$v_n<8$. At index $0$, $v_0=0<8$.
+Fix $n\ge0$ and assume $S(n)$ is true. Since the radicands are positive, the strict increase of the square root gives
+\[v_{n+1}=\sqrt{56+v_n}<\sqrt{56+8}=\sqrt{64}=8.\]
+So $S(n+1)$ is true. The base case and the inductive step establish by induction that $v_n<8$ for all $n\in\N$.
+
+\item \textit{[0.75 pt]} The sequence is increasing and bounded above by $8$: the monotone convergence theorem gives a real limit $\ell\in[0,8]$.
+The function $x\mapsto\sqrt{56+x}$ is continuous on this interval. Taking the limit in the relation, $\ell=\sqrt{56+\ell}$. Since $\ell\ge0$, this is equivalent to
+\[\ell^2-\ell-56=0\quad\Longleftrightarrow\quad(\ell-8)(\ell+7)=0.\]
+The root $-7$ is excluded by $\ell\ge0$; so $\lim v_n=8$.
+
+\item \textit{[0.5 pt]} The previous result ensures $8-v_{n+1}\ge0$. Multiplying by the conjugate expression,
+\[\begin{aligned}8-v_{n+1}&=\frac{64-(56+v_n)}{8+\sqrt{56+v_n}}\\&=\frac{8-v_n}{8+\sqrt{56+v_n}}\le\frac{8-v_n}{8}.\end{aligned}\]
+The last inequality uses a positive numerator and a denominator at least equal to $8>0$.
+
+\item \textit{[1 pt]} Let us prove by induction $T(n)$: ``$0\le 8-v_n\le 8^{1-n}$''.
+At index $0$, $8-v_0=8=8^1$. Fix $n\ge0$ and assume $T(n)$ is true. The previous question gives
+\[0\le 8-v_{n+1}\le\frac{8-v_n}{8}\le\frac{8^{1-n}}{8}=8^{1-(n+1)}.\]
+This is $T(n+1)$. By induction, the bounds hold at every index.
+To have $8^{1-n}\le10^{-3}$, it suffices that $8^{n-1}\ge1000$.
+Now $8^{3}=512<1000$ and $8^{4}=4096\ge1000$. Index $5$ is therefore the first one guaranteed by this bound, without using the logarithm.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} 
+\begin{lstlisting}
+from math import sqrt
+
+def premier_rang():
+    n, v = 0, 0.0
+    while 8-v > 1e-3:
+        v = sqrt(56+v)
+        n += 1
+    return n
+\end{lstlisting}
+Convergence to $8$ ensures termination. The loop examines the indices in order: it returns $4$, the first index satisfying the criterion for the computed values. Here, the gaps at indices $3$ and $4$ are approximately $\num{0,00202265}$ and $\num{0,00012642}$. They lie clearly on either side of $10^{-3}$. The guaranteed index $5$ may be larger; it comes from an upper bound, not from the exact error.
+
+\end{enumerate}
+
+\subsection*{Exercise 2 · An exponential curve}\begin{enumerate}
+
+\item \textit{[0.5 pt]} $f(0)=2$; limit $0$ by comparison of growth rates.
+
+\item \textit{[0.5 pt]} By the product rule,
+\[f'(x)=e^{-x}-(x+2)e^{-x}=(-x-1)e^{-x}.\]
+The two factors are respectively strictly negative and positive on $[0,+\infty[$; hence $f'<0$.
+\[\begin{array}{c|ccc}x&0&&+\infty\\\hline f'(x)&&-&\\\hline f(x)&2&\searrow&0\end{array}\]
+
+\item \textit{[0.5 pt]} Differentiating the previous product,
+\[f''(x)=-e^{-x}-(-x-1)e^{-x}=xe^{-x}.\]
+On the domain, $x+0\ge0$ and $e^{-x}>0$: $f$ is convex. There is no change of convexity in the interior of the domain, hence no point of inflection.
+
+\item \textit{[1 pt]} Continuity, strict decrease, $f(0)=2>1$ and limit $0<1$: exactly one solution.
+
+\item \textit{[0.5 pt]} The tangent at $0$ has equation $y=f(0)+f'(0)x=2-x$. A convex function lies above each of its tangents, so $(x+2)e^{-x}\ge 2-x$ for all $x\ge0$.
+
+\mxneed{24}
+
+\item \textit{[0.5 pt]} We know $f(0)=2>1$. Moreover, $f(2)=4e^{-2}\simeq\num{0,5413}<1$. The zero of $f-1$ is therefore in $]0,2[$. A program is:
+\begin{lstlisting}
+from math import exp
+
+def encadrement():
+    a, b = 0.0, 2.0
+    while b-a > 1e-3:
+        m = (a+b)/2
+        if (m+2)*exp(-m) > 2/2:
+            a = m
+        else:
+            b = m
+    return a, b
+\end{lstlisting}
+Since $f$ is decreasing, the bracketing is preserved at each step. The result has length at most $10^{-3}$; its midpoint has an error of at most $5\times10^{-4}$.
+
+\item \textit{[0.5 pt]} $\frac{2}{2^n}\le10^{-3}$: $n=11$ steps suffice.
+
+\item \textit{[1 pt]} For $x\ge0$, $x+2>0$ and $e^{-x}>0$, so $f(x)>0$. A limit is not necessarily an attained value.
+
+\end{enumerate}
+
+\subsection*{Exercise 3 · Vector calculation in a basis}\begin{enumerate}
+
+\item \textit{[0.5 pt]} In an equality $\vec v=t\vec u$, the coefficient of $\vj $ would be $1=0$, a contradiction by uniqueness of coordinates in a basis.
+
+\item \textit{[0.5 pt]} Expanding, $5\vec u+6\vec v=5(\vi +\vec k)+6(\vj +\vec k)=5\vi +6\vj +11\vec k=\vec w$.
+
+\item \textit{[0.5 pt]} Since $\vec u,\vec v$ are not collinear, coplanarity would be equivalent to $\vec z=\lambda\vec u+\mu\vec v$. Uniqueness of the decomposition in the basis requires
+\[\lambda=5,\qquad\mu=6,\qquad\lambda+\mu=12.\]
+The first two equalities give $\lambda+\mu=11$, contradicting the third. The three vectors are therefore not coplanar.
+
+\item \textit{[1 pt]} $6\vec u-5\vec v=6(\vi +\vec k)-5(\vj +\vec k)=6\vi -5\vj +\vec k$.
+
+\item \textit{[0.5 pt]} $\vect{AB}$ and $\vect{AC}$ are not collinear and $\vect{AD}$ is their linear combination: $D\in(ABC)$.
+
+\item \textit{[0.5 pt]} $AB=AC=\sqrt2$; $\vect{BC}=\vec v-\vec u=\pt{-1;1;0}$, so $BC=\sqrt2$.
+
+\item \textit{[0.5 pt]} The midpoint formula gives $\vect{AI}=\frac12(\vec u+\vec v)$. Since the vectors $\vec u,\vec v$ are not collinear,
+\[\vect{AD}=\lambda\vect{AI}\quad\Longleftrightarrow\quad 5=\frac{\lambda}{2}\ \text{and}\ 6=\frac{\lambda}{2}.\]
+Here $5\ne 6$: there is no such $\lambda$, so $A,I,D$ are not collinear.
+
+\item \textit{[1 pt]} No: $D$ belongs to the plane but $E$ does not, by the non-coplanarity shown above. The intersection is exactly $D$.
+
+\end{enumerate}
+
+\subsection*{Exercise 4 · Repetitions and estimation}\begin{enumerate}
+
+\item \textit{[0.5 pt]} Repetition of a fixed number $19$ of identical independent trials with two outcomes; $X\sim\mathcal B\pt{19;\frac{1}{10}}$.
+
+\item \textit{[0.5 pt]} $P(X=2)=\binom{19}2(\frac{1}{10})^2(\frac{9}{10})^{17}\simeq\num{0,285180}$.
+
+\item \textit{[0.5 pt]} $1-P(X=0)-P(X=1)=1-(\frac{9}{10})^{19}-19(\frac{1}{10})(\frac{9}{10})^{18}\simeq\num{0,579735}$.
+
+\item \textit{[1 pt]} $E(X)=\frac{19}{10}$, $V(X)=\frac{171}{100}$.
+
+\item \textit{[0.5 pt]} For $N$ independent trials, the probability of no success is $(1-p)^N$. The required probability is therefore $1-(\frac{9}{10})^N$. It is strictly increasing in $N$, since $0<\frac{9}{10}<1$. Calculation gives
+\[P_{28}\simeq\num{0,947665}<\num{0,95},\qquad P_{29}\simeq\num{0,952899}\ge\num{0,95}.\]
+Thus $29$ is the smallest suitable number of trials.
+
+\item \textit{[0.5 pt]} Let $n=19$. For $j\in\{0,\ldots,n\}$, an ordered outcome containing $j$ successes and $n-j$ failures has, by independence, probability $p^j(1-p)^{n-j}$. There are $\binom nj$ choices for the positions of the successes. These outcomes are mutually exclusive, so
+\[P(X=j)=\binom nj p^j(1-p)^{n-j},\qquad p=\frac{1}{10}.\]
+
+\item \textit{[0.5 pt]} The events $X=1$, $X=2$, $X=3$ are mutually exclusive, so
+\[P(1\le X\le3)=\sum_{j=1}^3\binom{19}j(\frac{1}{10})^j(\frac{9}{10})^{19-j}\simeq\num{0,749917}.\]
+
+\mxneed{24}
+
+\item \textit{[1 pt]} 
+\begin{lstlisting}
+from math import comb
+
+def quantile():
+    n, p = 19, 1/10
+    j, cumul = 0, (1-p)**n
+    while cumul < 0.95:
+        j += 1
+        cumul += comb(n, j)*p**j*(1-p)**(n-j)
+    return j
+\end{lstlisting}
+The probabilities added are positive and the final cumulative sum equals $1$, so the loop terminates. It returns $4$. The cumulative sums at indices $3$ and $4$ are approximately $\num{0,885002}$ and $\num{0,964806}$: this confirms minimality.
+
+\end{enumerate}
+
+\fi
+
+\fi
+

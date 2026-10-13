@@ -1,0 +1,467 @@
+{
+ "unit": "E6.fr.tex",
+ "segments": {
+  "f79d97c0b063": {
+   "fr": "DS4 · Zéro 1",
+   "en": "Test 4 · Practice 1",
+   "status": "aligned",
+   "order": 0
+  },
+  "b3a0f5fddcc6": {
+   "fr": "SUJET ZÉRO · ENTRAÎNEMENT",
+   "en": "PRACTICE PAPER · TRAINING",
+   "status": "aligned",
+   "order": 1
+  },
+  "486d4be4067b": {
+   "fr": "\\textbf{Durée : 2 h · Note sur 20 · \\mxTallied{ex-6-1} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 2 h · Marked out of 20 · \\mxTallied{ex-6-1} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 2
+  },
+  "fa3fed21455b": {
+   "fr": "\\textbf{Nom :}\\enspace",
+   "en": "\\textbf{Name:}\\enspace",
+   "status": "aligned",
+   "order": 3
+  },
+  "48834c5703ef": {
+   "fr": "\\quad\\textbf{Classe :}\\enspace",
+   "en": "\\quad\\textbf{Class:}\\enspace",
+   "status": "aligned",
+   "order": 4
+  },
+  "69782e4735b8": {
+   "fr": "\\quad\\textbf{Date :}\\enspace",
+   "en": "\\quad\\textbf{Date:}\\enspace",
+   "status": "aligned",
+   "order": 5
+  },
+  "75258d1b467d": {
+   "fr": "Exercice 1 · Une fonction logarithmique",
+   "en": "Exercise 1 · A logarithmic function",
+   "status": "aligned",
+   "order": 6
+  },
+  "6aee99d8eb5b": {
+   "fr": "5 points",
+   "en": "5 points",
+   "status": "aligned",
+   "order": 7
+  },
+  "83933850ad5d": {
+   "fr": "On considère la fonction [[m1]] définie sur [[m2]] par [[m3]]. On note [[m4]] sa courbe représentative.",
+   "en": "Consider the function [[m1]] defined on [[m2]] by [[m3]]. We denote by [[m4]] its graph.",
+   "status": "aligned",
+   "order": 8
+  },
+  "a570d9ed490f": {
+   "fr": "Déterminer les limites de [[m1]] en [[m2]] et en [[m3]].",
+   "en": "Determine the limits of [[m1]] at [[m2]] and at [[m3]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "82203721d56c": {
+   "fr": "\\textit{(1 pt)}",
+   "en": "\\textit{(1 pt)}",
+   "status": "aligned",
+   "order": 10
+  },
+  "6af1f4d9bcf4": {
+   "fr": "Calculer [[m1]], puis dresser le tableau de variations de [[m2]].",
+   "en": "Calculate [[m1]], then draw the table of variations of [[m2]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "572d7ceb8ecc": {
+   "fr": "Préciser la valeur du maximum de [[m1]], puis résoudre [[m2]].",
+   "en": "State the value of the maximum of [[m1]], then solve [[m2]].",
+   "status": "aligned",
+   "order": 12
+  },
+  "5b81cb26ab4d": {
+   "fr": "Étudier la convexité de [[m1]] et déterminer les coordonnées du point d'inflexion de [[m2]].",
+   "en": "Study the convexity of [[m1]] and determine the coordinates of the point of inflection of [[m2]].",
+   "status": "aligned",
+   "order": 13
+  },
+  "5b14d31814bc": {
+   "fr": "Démontrer que l'équation [[m1]] admet exactement deux solutions dans [[m2]].",
+   "en": "Prove that the equation [[m1]] has exactly two solutions in [[m2]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "10508303264e": {
+   "fr": "Exercice 2 · Primitives et condition imposée",
+   "en": "Exercise 2 · Antiderivatives with a given condition",
+   "status": "aligned",
+   "order": 15
+  },
+  "6b8936f6a17a": {
+   "fr": "Les [[m1]] questions sont indépendantes. Pour chaque calcul de primitive, préciser l'expression des primitives demandées et vérifier le résultat par dérivation.",
+   "en": "The [[m1]] questions are independent. For each antiderivative calculation, state the expression of the antiderivatives requested and check the result by differentiation.",
+   "status": "aligned",
+   "order": 16
+  },
+  "417779c4522f": {
+   "fr": "Déterminer toutes les primitives sur [[m1]] de [[m2]].",
+   "en": "Determine all antiderivatives on [[m1]] of [[m2]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "2a3446a59991": {
+   "fr": "Déterminer la primitive [[m1]] de [[m2]] sur [[m3]] telle que [[m4]].",
+   "en": "Determine the antiderivative [[m1]] of [[m2]] on [[m3]] such that [[m4]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "f8498ebace57": {
+   "fr": "Déterminer une primitive sur [[m1]] de [[m2]].",
+   "en": "Determine an antiderivative on [[m1]] of [[m2]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "9b3eed3d9f0f": {
+   "fr": "Soit [[m1]] et [[m2]] deux primitives d'une même fonction sur un intervalle [[m3]]. Démontrer qu'il existe une constante réelle [[m4]] telle que [[m5]] pour tout [[m6]].",
+   "en": "Let [[m1]] and [[m2]] be two antiderivatives of the same function on an interval [[m3]]. Prove that there exists a real constant [[m4]] such that [[m5]] for all [[m6]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "eeaee122c036": {
+   "fr": "DS4 · Zéro 1 · suite",
+   "en": "Test 4 · Practice 1 · continued",
+   "status": "aligned",
+   "order": 21
+  },
+  "e1cd170f945a": {
+   "fr": "Exercice 3 · Équation différentielle et évolution",
+   "en": "Exercise 3 · Differential equation and evolution",
+   "status": "aligned",
+   "order": 22
+  },
+  "a562931434d6": {
+   "fr": "On considère l'équation différentielle [[m1]] sur [[m2]]. Dans les questions 2 à 5, on note [[m3]] la solution qui vérifie [[m4]].",
+   "en": "Consider the differential equation [[m1]] on [[m2]]. In questions 2 to 5, denote by [[m3]] the solution satisfying [[m4]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "140f08eec45e": {
+   "fr": "Déterminer la solution constante de [[m1]].",
+   "en": "Determine the constant solution of [[m1]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "afe1afbb92e5": {
+   "fr": "Déterminer l'expression de la solution vérifiant la condition initiale donnée.",
+   "en": "Determine the expression of the solution satisfying the given initial condition.",
+   "status": "aligned",
+   "order": 25
+  },
+  "abc534ac7762": {
+   "fr": "Déterminer la limite de [[m1]] lorsque [[m2]] tend vers [[m3]].",
+   "en": "Determine the limit of [[m1]] as [[m2]] tends to [[m3]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "dbfe960ba488": {
+   "fr": "Étudier le sens de variation de [[m1]], puis déterminer le plus petit réel [[m2]] tel que [[m3]].",
+   "en": "Study the variations of [[m1]], then determine the smallest real number [[m2]] such that [[m3]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "46219334ed20": {
+   "fr": "On applique la méthode d'Euler avec un pas [[m1]] et on note [[m2]] l'approximation de [[m3]]. Donner la valeur de [[m4]] et exprimer [[m5]] en fonction de [[m6]] et de [[m7]].",
+   "en": "Apply Euler's method with step size [[m1]] and denote by [[m2]] the approximation of [[m3]]. Give the value of [[m4]] and express [[m5]] in terms of [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "261ef0c74b82": {
+   "fr": "Exercice 4 · Projection et volume",
+   "en": "Exercise 4 · Projection and volume",
+   "status": "aligned",
+   "order": 29
+  },
+  "1d5c8a7fc3c9": {
+   "fr": "Dans un repère orthonormé d'origine [[m1]], on considère [[m2]], [[m3]] et [[m4]]. On donne [[m5]]. Les longueurs, aires et volumes seront exprimés respectivement en unité de longueur, d'aire et de volume.",
+   "en": "In an orthonormal coordinate system with origin [[m1]], consider [[m2]], [[m3]] and [[m4]]. We are given [[m5]]. Lengths, areas and volumes will be expressed in units of length, area and volume respectively.",
+   "status": "aligned",
+   "order": 30
+  },
+  "dbcc90785024": {
+   "fr": "Démontrer que [[m1]] est normal au plan [[m2]].",
+   "en": "Prove that [[m1]] is normal to the plane [[m2]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "b1d1df303510": {
+   "fr": "On note [[m1]] le projeté orthogonal de [[m2]] sur [[m3]]. Déterminer les coordonnées de [[m4]] en utilisant [[m5]].",
+   "en": "Let [[m1]] be the orthogonal projection of [[m2]] onto [[m3]]. Determine the coordinates of [[m4]] using [[m5]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "fad94b857560": {
+   "fr": "Démontrer que [[m1]] est la distance de [[m2]] au plan [[m3]] : pour tout [[m4]], établir [[m5]].",
+   "en": "Prove that [[m1]] is the distance from [[m2]] to the plane [[m3]]: for every [[m4]], prove that [[m5]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "616faef2fd51": {
+   "fr": "Calculer l'aire du triangle [[m1]].",
+   "en": "Calculate the area of triangle [[m1]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "b3bd3638670c": {
+   "fr": "Calculer le volume du tétraèdre [[m1]] de deux façons, en choisissant deux bases différentes.",
+   "en": "Calculate the volume of the tetrahedron [[m1]] in two ways, by choosing two different bases.",
+   "status": "aligned",
+   "order": 35
+  },
+  "819ea6c2e8e2": {
+   "fr": "Corrigé · DS4 · Zéro 1",
+   "en": "Solutions · Test 4 · Practice 1",
+   "status": "aligned",
+   "order": 36
+  },
+  "bea7c3107dac": {
+   "fr": "\\textit{[1 pt]} En [[m1]], le numérateur tend vers [[m2]] et le dénominateur vers [[m3]] : limite [[m4]] ; en [[m5]], limite [[m6]] par croissance comparée.",
+   "en": "\\textit{[1 pt]} At [[m1]], the numerator tends to [[m2]] and the denominator to [[m3]]: limit [[m4]]; at [[m5]], limit [[m6]] by comparison of growth rates.",
+   "status": "aligned",
+   "order": 37
+  },
+  "55b5cafaa93f": {
+   "fr": "\\textit{[1 pt]} Par la règle du quotient,",
+   "en": "\\textit{[1 pt]} By the quotient rule,",
+   "status": "aligned",
+   "order": 38
+  },
+  "90c84ba475a3": {
+   "fr": "Le dénominateur est positif. Le numérateur s'annule en [[m1]], est positif pour [[m2]] et négatif pour [[m3]]. Ainsi [[m4]] croît strictement sur [[m5]], puis décroît strictement sur [[m6]].",
+   "en": "The denominator is positive. The numerator vanishes at [[m1]], is positive for [[m2]] and negative for [[m3]]. Hence [[m4]] is strictly increasing on [[m5]], then strictly decreasing on [[m6]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "a3323befb16a": {
+   "fr": "\\textit{[1 pt]} Le maximum est atteint uniquement en [[m1]] et vaut",
+   "en": "\\textit{[1 pt]} The maximum is attained only at [[m1]] and equals",
+   "status": "aligned",
+   "order": 40
+  },
+  "01063075d367": {
+   "fr": "Comme [[m1]], [[m2]] équivaut à [[m3]], soit [[m4]].",
+   "en": "Since [[m1]], [[m2]] is equivalent to [[m3]], that is [[m4]].",
+   "status": "aligned",
+   "order": 41
+  },
+  "27a7c4ea5147": {
+   "fr": "\\textit{[1 pt]} On dérive [[m1]] :",
+   "en": "\\textit{[1 pt]} We differentiate [[m1]]:",
+   "status": "aligned",
+   "order": 42
+  },
+  "78480cc4a70c": {
+   "fr": "Le numérateur s'annule en [[m1]] et passe du signe négatif au signe positif. La fonction est concave sur [[m2]], convexe sur [[m3]]. Elle change de convexité en [[m4]] et [[m5]] : le point d'inflexion est [[m6]].",
+   "en": "The numerator vanishes at [[m1]] and changes from negative to positive. The function is concave on [[m2]], convex on [[m3]]. It changes convexity at [[m4]] and [[m5]]: the point of inflection is [[m6]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "f7c5caf6462b": {
+   "fr": "\\textit{[1 pt]} Posons [[m1]] et [[m2]]. La fonction est continue sur [[m3]]. Sur [[m4]], elle est strictement croissante, de limite [[m5]] en [[m6]] et de valeur [[m7]] en [[m8]] : le corollaire du TVI donne exactement une solution dans [[m9]]. Sur [[m10]], elle est strictement décroissante de [[m11]] vers [[m12]] : exactement une solution dans [[m13]]. Ces intervalles couvrent le domaine et [[m14]] : il y a exactement deux solutions.",
+   "en": "\\textit{[1 pt]} Let [[m1]] and [[m2]]. The function is continuous on [[m3]]. On [[m4]], it is strictly increasing, with limit [[m5]] at [[m6]] and value [[m7]] at [[m8]]: the corollary of the intermediate value theorem (IVT) gives exactly one solution in [[m9]]. On [[m10]], it is strictly decreasing from [[m11]] to [[m12]]: exactly one solution in [[m13]]. These intervals cover the domain and [[m14]]: there are exactly two solutions.",
+   "status": "aligned",
+   "order": 44
+  },
+  "89684f2d015e": {
+   "fr": "\\textit{[1 pt]} Par linéarité, les primitives sont [[m1]], [[m2]]. En effet, [[m3]]. La dérivée ne dépend pas de [[m4]], et toutes les primitives diffèrent d'une constante sur [[m5]].",
+   "en": "\\textit{[1 pt]} By linearity, the antiderivatives are [[m1]], [[m2]]. Indeed, [[m3]]. The derivative does not depend on [[m4]], and all antiderivatives differ by a constant on [[m5]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "d06d14f6f498": {
+   "fr": "\\textit{[1 pt]} Les primitives sont [[m1]]. La condition [[m2]] impose [[m3]], d'où [[m4]]. La dérivée de [[m5]] est [[m6]] : la fonction obtenue vérifie bien les deux conditions.",
+   "en": "\\textit{[1 pt]} The antiderivatives are [[m1]]. The condition [[m2]] requires [[m3]], hence [[m4]]. The derivative of [[m5]] is [[m6]]: the function obtained does satisfy both conditions.",
+   "status": "aligned",
+   "order": 46
+  },
+  "bbee1ccf78f7": {
+   "fr": "\\textit{[1 pt]} Posons [[m1]] sur [[m2]] ; [[m3]]. Les primitives sont donc [[m4]], car leur dérivée vaut [[m5]].",
+   "en": "\\textit{[1 pt]} Let [[m1]] on [[m2]]; [[m3]]. The antiderivatives are therefore [[m4]], since their derivative equals [[m5]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "1547a91697db": {
+   "fr": "\\textit{[1 pt]} Une primitive est [[m1]]. En effet, par dérivation d'une composée,",
+   "en": "\\textit{[1 pt]} An antiderivative is [[m1]]. Indeed, by differentiating a composite function,",
+   "status": "aligned",
+   "order": 48
+  },
+  "01c8c830ab6e": {
+   "fr": "\\textit{[1 pt]} La dérivée de leur différence est nulle sur l'intervalle ; la différence est donc constante. Le caractère d'intervalle intervient dans ce résultat.",
+   "en": "\\textit{[1 pt]} The derivative of their difference is zero on the interval; the difference is therefore constant. The fact that the domain is an interval is used in this result.",
+   "status": "aligned",
+   "order": 49
+  },
+  "5264c3b34b42": {
+   "fr": "\\textit{[1 pt]} [[m1]] donne [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]] gives [[m2]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "a5de10df18cd": {
+   "fr": "\\textit{[1 pt]} La solution constante est [[m1]]. Posons [[m2]] ; l'équation devient [[m3]]. Ses solutions sont [[m4]], donc toutes les solutions de l'équation initiale sont [[m5]].\nLa condition [[m6]] donne [[m7]]. Pour la fonction obtenue,",
+   "en": "\\textit{[1 pt]} The constant solution is [[m1]]. Let [[m2]]; the equation becomes [[m3]]. Its solutions are [[m4]], so all the solutions of the original equation are [[m5]].\nThe condition [[m6]] gives [[m7]]. For the function obtained,",
+   "status": "aligned",
+   "order": 51
+  },
+  "ec3d39e41919": {
+   "fr": "La solution du problème initial est donc [[m1]].",
+   "en": "The solution of the initial value problem is therefore [[m1]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "829101feabd9": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; limite [[m2]].",
+   "en": "\\textit{[1 pt]} [[m1]]; limit [[m2]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "271a48fd6bcc": {
+   "fr": "\\textit{[1 pt]} Comme [[m1]], la dérivée [[m2]] est négative : [[m3]] est strictement décroissante. Résolvons",
+   "en": "\\textit{[1 pt]} Since [[m1]], the derivative [[m2]] is negative: [[m3]] is strictly decreasing. We solve",
+   "status": "aligned",
+   "order": 54
+  },
+  "422f72c4fc0c": {
+   "fr": "La dernière étape inverse l'inégalité car on multiplie par [[m1]]. Le premier instant est [[m2]].",
+   "en": "The last step reverses the inequality because we multiply by [[m1]]. The first time is [[m2]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "9f5c09565ad6": {
+   "fr": "\\textit{[1 pt]} [[m1]], [[m2]], [[m3]].",
+   "en": "\\textit{[1 pt]} [[m1]], [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "7b5388dec5d5": {
+   "fr": "\\textit{[1 pt]} [[m1]] et [[m2]] sont non colinéaires et leurs produits scalaires avec [[m3]] sont nuls.",
+   "en": "\\textit{[1 pt]} [[m1]] and [[m2]] are non-collinear and their dot products with [[m3]] are zero.",
+   "status": "aligned",
+   "order": 57
+  },
+  "94e5c489ee00": {
+   "fr": "\\textit{[1 pt]} La droite normale au plan passant par [[m1]] a pour directeur [[m2]]. Son point [[m3]] s'écrit donc [[m4]]. Pour que [[m5]] soit dans [[m6]], il faut et il suffit que",
+   "en": "\\textit{[1 pt]} The line normal to the plane passing through [[m1]] has direction vector [[m2]]. Its point [[m3]] is therefore written [[m4]]. For [[m5]] to lie in [[m6]], it is necessary and sufficient that",
+   "status": "aligned",
+   "order": 58
+  },
+  "143cb0fb8ccc": {
+   "fr": "Ainsi [[m1]] et [[m2]]. Ce point est dans le plan et [[m3]] est colinéaire au normal ; c'est bien le projeté recherché.",
+   "en": "Hence [[m1]] and [[m2]]. This point lies in the plane and [[m3]] is collinear with the normal vector; it is indeed the required orthogonal projection.",
+   "status": "aligned",
+   "order": 59
+  },
+  "16580e3dcf2c": {
+   "fr": "\\textit{[1 pt]} [[m1]] ; pour tout [[m2]] du plan, [[m3]], égalité seulement pour [[m4]].",
+   "en": "\\textit{[1 pt]} [[m1]]; for every [[m2]] in the plane, [[m3]], with equality only for [[m4]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "3895451d2970": {
+   "fr": "\\textit{[1 pt]} Les différences de coordonnées donnent [[m1]]. Le triangle est équilatéral. Sa hauteur partage un côté en deux parties égales et vaut",
+   "en": "\\textit{[1 pt]} The coordinate differences give [[m1]]. The triangle is equilateral. Its height splits a side into two equal parts and equals",
+   "status": "aligned",
+   "order": 61
+  },
+  "6f924e895bcf": {
+   "fr": "Son aire vaut donc [[m1]] unités d'aire.",
+   "en": "Its area is therefore [[m1]] square units.",
+   "status": "aligned",
+   "order": 62
+  },
+  "1945fa477a20": {
+   "fr": "\\textit{[1 pt]} Base [[m1]] : volume [[m2]]. Base [[m3]] : aire [[m4]] et hauteur [[m5]], même valeur.",
+   "en": "\\textit{[1 pt]} Base [[m1]]: volume [[m2]]. Base [[m3]]: area [[m4]] and height [[m5]], the same value.",
+   "status": "aligned",
+   "order": 63
+  },
+  "02eb85d3964a": {
+   "fr": "DS4 · Zéro 2",
+   "en": "Test 4 · Practice 2",
+   "status": "aligned",
+   "order": 64
+  },
+  "2d28dff11e26": {
+   "fr": "\\textbf{Durée : 2 h · Note sur 20 · \\mxTallied{ex-6-2} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 2 h · Marked out of 20 · \\mxTallied{ex-6-2} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 65
+  },
+  "8cabf922e87d": {
+   "fr": "DS4 · Zéro 2 · suite",
+   "en": "Test 4 · Practice 2 · continued",
+   "status": "aligned",
+   "order": 66
+  },
+  "d56a8cea2326": {
+   "fr": "Corrigé · DS4 · Zéro 2",
+   "en": "Solutions · Test 4 · Practice 2",
+   "status": "aligned",
+   "order": 67
+  },
+  "9212047937ee": {
+   "fr": "DS4 · A",
+   "en": "Test 4 · A",
+   "status": "aligned",
+   "order": 68
+  },
+  "a50b15931b4e": {
+   "fr": "SUJET RÉSERVÉ À L'ÉVALUATION",
+   "en": "PAPER RESERVED FOR ASSESSMENT",
+   "status": "aligned",
+   "order": 69
+  },
+  "dbccf31bc291": {
+   "fr": "\\textbf{Durée : 2 h · Note sur 20 · \\mxTallied{ex-6-3} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 2 h · Marked out of 20 · \\mxTallied{ex-6-3} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 70
+  },
+  "3e612ae2816f": {
+   "fr": "DS4 · A · suite",
+   "en": "Test 4 · A · continued",
+   "status": "aligned",
+   "order": 71
+  },
+  "eb4a4faf236b": {
+   "fr": "Corrigé · DS4 · A",
+   "en": "Solutions · Test 4 · A",
+   "status": "aligned",
+   "order": 72
+  },
+  "5a8dd0211396": {
+   "fr": "DS4 · B",
+   "en": "Test 4 · B",
+   "status": "aligned",
+   "order": 73
+  },
+  "b47601d69344": {
+   "fr": "\\textbf{Durée : 2 h · Note sur 20 · \\mxTallied{ex-6-4} exercices indépendants.}\\\\Calculatrice autorisée. Toute réponse doit être justifiée ; les démarches incomplètes seront prises en compte. Donner les valeurs exactes ; arrondir les probabilités à [[m1]] et les autres approximations à [[m2]], sauf précision différente.",
+   "en": "\\textbf{Duration: 2 h · Marked out of 20 · \\mxTallied{ex-6-4} independent exercises.}\\\\Calculator allowed. Every answer must be justified; incomplete attempts will be taken into account. Give exact values; round probabilities to [[m1]] and other approximations to [[m2]], unless stated otherwise.",
+   "status": "aligned",
+   "order": 74
+  },
+  "d4837327e1a2": {
+   "fr": "DS4 · B · suite",
+   "en": "Test 4 · B · continued",
+   "status": "aligned",
+   "order": 75
+  },
+  "ffb90cbe000b": {
+   "fr": "Corrigé · DS4 · B",
+   "en": "Solutions · Test 4 · B",
+   "status": "aligned",
+   "order": 76
+  }
+ }
+}

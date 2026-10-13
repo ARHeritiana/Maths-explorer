@@ -1,0 +1,719 @@
+{
+ "unit": "bank-a.fr.tex",
+ "segments": {
+  "57046dbded59": {
+   "fr": "Reconnaître une suite arithmétique par différence",
+   "en": "Recognise an arithmetic sequence by differences",
+   "status": "aligned",
+   "order": 0
+  },
+  "62c8647ea55c": {
+   "fr": "Le responsable d'un entrepôt teste trois modèles. Pour tout entier naturel [[m1]], [[m2]] désigne le numéro de la semaine.",
+   "en": "A warehouse manager is testing three models. For every natural number [[m1]], [[m2]] is the week number.",
+   "status": "aligned",
+   "order": 1
+  },
+  "8e77b0be56d1": {
+   "fr": "Nombre de colis préparés : [[m1]].",
+   "en": "Number of parcels prepared: [[m1]].",
+   "status": "aligned",
+   "order": 2
+  },
+  "80dbb3129786": {
+   "fr": "Nombre de réclamations clients : [[m1]].",
+   "en": "Number of customer complaints: [[m1]].",
+   "status": "aligned",
+   "order": 3
+  },
+  "199d326b8093": {
+   "fr": "Nombre de palettes encore en stock : [[m1]].",
+   "en": "Number of pallets still in stock: [[m1]].",
+   "status": "aligned",
+   "order": 4
+  },
+  "4cd2f10efd41": {
+   "fr": "Pour chacune des trois suites, calculer [[m1]] (avec [[m2]], [[m3]] ou [[m4]]) et préciser si la suite est arithmétique ; si oui, donner sa raison.",
+   "en": "For each of the three sequences, calculate [[m1]] (with [[m2]], [[m3]] or [[m4]]) and state whether the sequence is arithmetic; if so, give its common difference.",
+   "status": "aligned",
+   "order": 5
+  },
+  "5e68972b6a3d": {
+   "fr": "Pour chaque suite arithmétique, interpréter la raison dans le contexte.",
+   "en": "For each arithmetic sequence, interpret the common difference in context.",
+   "status": "aligned",
+   "order": 6
+  },
+  "411b5c3094df": {
+   "fr": "\\textbf{Suite $(a_n)$.} On développe : [[m1]]. Alors [[m2]]. La différence est constante : [[m3]] est arithmétique de raison [[m4]] (premier terme [[m5]]).",
+   "en": "\\textbf{Sequence $(a_n)$.} Expanding: [[m1]]. Then [[m2]]. The difference is constant: [[m3]] is arithmetic with common difference [[m4]] (first term [[m5]]).",
+   "status": "aligned",
+   "order": 7
+  },
+  "727a0b23f721": {
+   "fr": "\\textbf{Suite $(b_n)$.} [[m1]]. Cette différence dépend de [[m2]] : par exemple [[m3]], [[m4]], [[m5]], donc [[m6]] et [[m7]]. La suite [[m8]] n'est pas arithmétique.",
+   "en": "\\textbf{Sequence $(b_n)$.} [[m1]]. This difference depends on [[m2]]: for example [[m3]], [[m4]], [[m5]], so [[m6]] and [[m7]]. The sequence [[m8]] is not arithmetic.",
+   "status": "aligned",
+   "order": 8
+  },
+  "cbb6c943e3b9": {
+   "fr": "\\textbf{Suite $(c_n)$.} [[m1]]. La suite [[m2]] est arithmétique de raison [[m3]] (premier terme [[m4]]).",
+   "en": "\\textbf{Sequence $(c_n)$.} [[m1]]. The sequence [[m2]] is arithmetic with common difference [[m3]] (first term [[m4]]).",
+   "status": "aligned",
+   "order": 9
+  },
+  "c7c8f9aeeea4": {
+   "fr": "Chaque semaine, l'entrepôt prépare [[m1]] colis de plus que la semaine précédente. Chaque semaine, le stock diminue de [[m2]] palettes (raison négative : diminution).",
+   "en": "Each week, the warehouse prepares [[m1]] more parcels than the week before. Each week, the stock goes down by [[m2]] pallets (a negative common difference means a decrease).",
+   "status": "aligned",
+   "order": 10
+  },
+  "9290d66bb678": {
+   "fr": "Terme général et termes éloignés (arithmétique)",
+   "en": "General term and distant terms (arithmetic)",
+   "status": "aligned",
+   "order": 11
+  },
+  "f0c1b0a6e1b2": {
+   "fr": "Une entreprise de livraison remplace progressivement ses véhicules diesel par des véhicules électriques. Au début de l'année 2025 (rang [[m1]]), elle possède [[m2]] véhicules diesel et elle en retire [[m3]] chaque année. On note [[m4]] le nombre de véhicules diesel au début de l'année [[m5]] ; la suite [[m6]] est arithmétique.",
+   "en": "A delivery company is gradually replacing its diesel vehicles with electric ones. At the start of 2025 (rank [[m1]]), it owns [[m2]] diesel vehicles and it withdraws [[m3]] of them every year. Let [[m4]] be the number of diesel vehicles at the start of the year [[m5]]; the sequence [[m6]] is arithmetic.",
+   "status": "aligned",
+   "order": 12
+  },
+  "6366f20014f2": {
+   "fr": "Donner le premier terme [[m1]] et la raison de la suite [[m2]].",
+   "en": "Give the first term [[m1]] and the common difference of the sequence [[m2]].",
+   "status": "aligned",
+   "order": 13
+  },
+  "3f69be6b54b3": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]] pour tout entier naturel [[m3]].",
+   "en": "Express [[m1]] in terms of [[m2]] for every natural number [[m3]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "9fd669d5dd53": {
+   "fr": "Calculer [[m1]] et [[m2]]. Interpréter [[m3]] par une phrase.",
+   "en": "Calculate [[m1]] and [[m2]]. Interpret [[m3]] in a sentence.",
+   "status": "aligned",
+   "order": 15
+  },
+  "98e41ff0df64": {
+   "fr": "[[m1]] ; on retire [[m2]] véhicules par an, donc [[m3]] : la raison est [[m4]].",
+   "en": "[[m1]]; [[m2]] vehicles are withdrawn each year, so [[m3]]: the common difference is [[m4]].",
+   "status": "aligned",
+   "order": 16
+  },
+  "93a4ab6cb457": {
+   "fr": "Pour une suite arithmétique de premier terme [[m1]] : [[m2]], soit [[m3]].",
+   "en": "For an arithmetic sequence with first term [[m1]]: [[m2]], that is [[m3]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 18
+  },
+  "800dff272719": {
+   "fr": "Le rang [[m1]] correspond à l'année [[m2]] : selon ce modèle, l'entreprise possèdera encore [[m3]] véhicules diesel au début de l'année [[m4]].",
+   "en": "Rank [[m1]] corresponds to the year [[m2]]: according to this model, the company will still own [[m3]] diesel vehicles at the start of [[m4]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "6459d2f18f83": {
+   "fr": "Somme de termes consécutifs d'entiers",
+   "en": "Sum of consecutive integers",
+   "status": "aligned",
+   "order": 20
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Calculate [[m1]].",
+   "status": "aligned",
+   "order": 21
+  },
+  "ecc51172695f": {
+   "fr": "Calculer [[m1]]. Préciser le nombre de termes de cette somme.",
+   "en": "Calculate [[m1]]. State the number of terms in this sum.",
+   "status": "aligned",
+   "order": 22
+  },
+  "1a2d36a20593": {
+   "fr": "Pour se constituer une épargne, Lova applique un défi : le [[m1]]-ième jour de l'année, elle dépose [[m2]] centimes dans une tirelire ([[m3]] centime le 1\\textsuperscript{er} jour, [[m4]] centimes le 2\\textsuperscript{e} jour, etc.). Quelle somme, en euros, aura-t-elle déposée au total sur une année de [[m5]] jours ? Et entre le 100\\textsuperscript{e} et le 365\\textsuperscript{e} jour inclus ?",
+   "en": "To build up some savings, Lova takes on a challenge: on the [[m1]]-th day of the year, she puts [[m2]] cents into a money box ([[m3]] cent on day 1, [[m4]] cents on day 2, and so on). How much, in euros, will she have put in altogether over a [[m5]]-day year? And from day 100 to day 365 inclusive?",
+   "status": "aligned",
+   "order": 23
+  },
+  "1ceb456375c4": {
+   "fr": "Les entiers de [[m1]] à [[m2]] forment une suite arithmétique de raison [[m3]] ; il y a [[m4]] termes. Donc\n[[m5]].",
+   "en": "The integers from [[m1]] to [[m2]] form an arithmetic sequence with common difference [[m3]]; there are [[m4]] terms. So\n[[m5]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "fcfba148c793": {
+   "fr": "De [[m1]] à [[m2]], il y a [[m3]] termes. Donc\n[[m4]].",
+   "en": "From [[m1]] to [[m2]] there are [[m3]] terms. So\n[[m4]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "1145c2811ad7": {
+   "fr": "Contrôle : [[m1]], qui est bien la somme des entiers de [[m2]] à [[m3]].",
+   "en": "Check: [[m1]], which is indeed the sum of the integers from [[m2]] to [[m3]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "c4b1059d73f7": {
+   "fr": "Le total déposé sur l'année est [[m1]] centimes, soit [[m2]]~€. Entre le 100\\textsuperscript{e} et le 365\\textsuperscript{e} jour, Lova dépose [[m3]] centimes, soit [[m4]]~€.",
+   "en": "The total for the year is [[m1]] cents, that is €[[m2]]. From day 100 to day 365, Lova puts in [[m3]] cents, that is €[[m4]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "fa6d0cd7e463": {
+   "fr": "Terme général d'une suite géométrique",
+   "en": "General term of a geometric sequence",
+   "status": "aligned",
+   "order": 28
+  },
+  "6a0c92e4aa24": {
+   "fr": "Une application est testée avant son lancement. La semaine [[m1]], [[m2]] testeurs l'installent. On suppose que, chaque semaine, le nombre de nouveaux testeurs est multiplié par [[m3]]. On note [[m4]] le nombre de nouveaux testeurs de la semaine [[m5]] ; la suite [[m6]] est géométrique.",
+   "en": "An app is being tested before its launch. In week [[m1]], [[m2]] testers install it. We assume that, each week, the number of new testers is multiplied by [[m3]]. Let [[m4]] be the number of new testers in week [[m5]]; the sequence [[m6]] is geometric.",
+   "status": "aligned",
+   "order": 29
+  },
+  "e8153333a4e6": {
+   "fr": "Donner le premier terme et la raison de la suite [[m1]], puis exprimer [[m2]] en fonction de [[m3]].",
+   "en": "Give the first term and the common ratio of the sequence [[m1]], then express [[m2]] in terms of [[m3]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Calculate [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "7ab036f94237": {
+   "fr": "Le modèle vous semble-t-il réaliste sur une longue durée ? Justifier par une phrase.",
+   "en": "Does the model seem realistic over a long period? Justify in a sentence.",
+   "status": "aligned",
+   "order": 32
+  },
+  "5a08a67e7656": {
+   "fr": "[[m1]] et [[m2]] : la raison est [[m3]]. Pour une suite géométrique, [[m4]], donc [[m5]].",
+   "en": "[[m1]] and [[m2]]: the common ratio is [[m3]]. For a geometric sequence, [[m4]], so [[m5]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "918374b96dcf": {
+   "fr": "Non : selon le modèle, il y aurait [[m1]] nouveaux testeurs la semaine [[m2]], et plus de [[m3]] millions la semaine suivante ([[m4]]). Une croissance aussi rapide ne peut pas durer : le nombre d'utilisateurs potentiels est limité.",
+   "en": "No: according to the model there would be [[m1]] new testers in week [[m2]], and over [[m3]] million the following week ([[m4]]). Such fast growth cannot last: the number of potential users is limited.",
+   "status": "aligned",
+   "order": 34
+  },
+  "0507705f6dd0": {
+   "fr": "Terme général et somme géométrique",
+   "en": "General term and geometric sum",
+   "status": "aligned",
+   "order": 35
+  },
+  "ac4773f048ac": {
+   "fr": "Une association de reboisement plante [[m1]] arbres la première année de son programme. Grâce à de nouveaux bénévoles, le nombre d'arbres plantés double chaque année. On note [[m2]] le nombre d'arbres plantés la première année et [[m3]] le nombre d'arbres plantés la [[m4]]-ième année.",
+   "en": "A reforestation association plants [[m1]] trees in the first year of its programme. Thanks to new volunteers, the number of trees planted doubles every year. Let [[m2]] be the number of trees planted in the first year and [[m3]] the number of trees planted in year [[m4]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "3d0e5f636e63": {
+   "fr": "Justifier que [[m1]] est une suite géométrique. Exprimer [[m2]] en fonction de [[m3]] et en déduire [[m4]].",
+   "en": "Justify that [[m1]] is a geometric sequence. Express [[m2]] in terms of [[m3]] and deduce [[m4]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "5ea9886bf618": {
+   "fr": "Calculer [[m1]] et interpréter ce résultat dans le contexte.",
+   "en": "Calculate [[m1]] and interpret this result in context.",
+   "status": "aligned",
+   "order": 38
+  },
+  "8e5809450cd2": {
+   "fr": "Doubler revient à multiplier par [[m1]] : [[m2]]. La suite [[m3]] est géométrique de premier terme [[m4]] et de raison [[m5]]. Donc [[m6]] et [[m7]].",
+   "en": "Doubling means multiplying by [[m1]]: [[m2]]. The sequence [[m3]] is geometric with first term [[m4]] and common ratio [[m5]]. So [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "32f6e09c21ac": {
+   "fr": "La somme comporte [[m1]] termes (de [[m2]] à [[m3]]) et [[m4]] :",
+   "en": "The sum has [[m1]] terms (from [[m2]] to [[m3]]) and [[m4]]:",
+   "status": "aligned",
+   "order": 40
+  },
+  "74aa9ea9f01d": {
+   "fr": "Sur les sept premières années du programme, l'association a planté [[m1]] arbres au total.",
+   "en": "Over the first seven years of the programme, the association planted [[m1]] trees in total.",
+   "status": "aligned",
+   "order": 41
+  },
+  "8c18430e45fc": {
+   "fr": "Choisir entre modèle arithmétique et géométrique",
+   "en": "Choose an arithmetic or geometric model",
+   "status": "aligned",
+   "order": 42
+  },
+  "90d2794a302a": {
+   "fr": "Pour chaque proposition, dire si elle est vraie ou fausse. Justifier la réponse.",
+   "en": "For each statement, say whether it is true or false. Justify your answer.",
+   "status": "aligned",
+   "order": 43
+  },
+  "acadaf1ff487": {
+   "fr": "Le prix d'un abonnement annuel de transport augmente de [[m1]]~€ chaque année. Cette situation peut être modélisée par une suite arithmétique de raison [[m2]].",
+   "en": "The price of an annual travel pass goes up by €[[m1]] every year. This situation can be modelled by an arithmetic sequence with common difference [[m2]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "4d6e4e59e6a8": {
+   "fr": "Une voiture perd [[m1]] de sa valeur chaque année. Cette situation peut être modélisée par une suite géométrique de raison [[m2]].",
+   "en": "A car loses [[m1]] of its value every year. This situation can be modelled by a geometric sequence with common ratio [[m2]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "142775f0949f": {
+   "fr": "Une somme est placée sur un livret à intérêts composés au taux annuel de [[m1]], sans aucun dépôt ni retrait. Le capital peut être modélisé par une suite géométrique de raison [[m2]].",
+   "en": "A sum is invested in a savings account with compound interest at an annual rate of [[m1]], with no deposits or withdrawals. The capital can be modelled by a geometric sequence with common ratio [[m2]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "585ae1f35ec6": {
+   "fr": "Une cuve de récupération d'eau de pluie contient [[m1]]~L. Chaque jour, elle perd [[m2]] de son contenu, puis on y ajoute [[m3]]~L. Le volume peut être modélisé par une suite géométrique de raison [[m4]].",
+   "en": "A rainwater tank holds [[m1]]~L. Each day it loses [[m2]] of its contents, then [[m3]]~L are added. The volume can be modelled by a geometric sequence with common ratio [[m4]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "9db9075db108": {
+   "fr": "La population d'une commune augmente de [[m1]] par an. Cette situation peut être modélisée par une suite arithmétique de raison [[m2]].",
+   "en": "The population of a town grows by [[m1]] per year. This situation can be modelled by an arithmetic sequence with common difference [[m2]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "151d67e457dc": {
+   "fr": "Un prêt de [[m1]]~€ est accordé à intérêts simples au taux annuel de [[m2]]. La somme due peut être modélisée par une suite arithmétique de raison [[m3]].",
+   "en": "A loan of €[[m1]] is granted with simple interest at an annual rate of [[m2]]. The amount owed can be modelled by an arithmetic sequence with common difference [[m3]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "6b179771d985": {
+   "fr": "Le nombre de visites mensuelles d'un site internet diminue de [[m1]] chaque mois. Cette situation peut être modélisée par une suite géométrique.",
+   "en": "The number of monthly visits to a website decreases by [[m1]] every month. This situation can be modelled by a geometric sequence.",
+   "status": "aligned",
+   "order": 50
+  },
+  "d7f7bd79ebbe": {
+   "fr": "\\textbf{Vrai.} On ajoute [[m1]]~€ chaque année : [[m2]], la variation absolue est constante.",
+   "en": "\\textbf{True.} €[[m1]] is added every year: [[m2]], the absolute change is constant.",
+   "status": "aligned",
+   "order": 51
+  },
+  "d4ac2abca291": {
+   "fr": "\\textbf{Faux.} Une baisse de [[m1]] correspond au coefficient [[m2]] : la suite est géométrique de raison [[m3]], et non [[m4]] (qui traduirait une hausse).",
+   "en": "\\textbf{False.} A [[m1]] decrease corresponds to the multiplier [[m2]]: the sequence is geometric with common ratio [[m3]], not [[m4]] (which would mean an increase).",
+   "status": "aligned",
+   "order": 52
+  },
+  "785d5a2cf1f9": {
+   "fr": "\\textbf{Vrai.} Chaque année le capital est multiplié par [[m1]] : [[m2]].",
+   "en": "\\textbf{True.} Each year the capital is multiplied by [[m1]]: [[m2]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "cdb811b92ba8": {
+   "fr": "\\textbf{Faux.} On a [[m1]] : une opération additive s'ajoute à la multiplication. Avec [[m2]] : [[m3]] et [[m4]] ; [[m5]] et [[m6]] ne sont pas égaux, la suite n'est pas géométrique (elle n'est pas non plus arithmétique : [[m7]]).",
+   "en": "\\textbf{False.} We have [[m1]]: an addition comes on top of the multiplication. With [[m2]]: [[m3]] and [[m4]]; [[m5]] and [[m6]] are not equal, so the sequence is not geometric (nor is it arithmetic: [[m7]]).",
+   "status": "aligned",
+   "order": 54
+  },
+  "35049805c0e7": {
+   "fr": "\\textbf{Faux.} Une hausse de [[m1]] par an est une évolution relative constante : la suite est géométrique de raison [[m2]].",
+   "en": "\\textbf{False.} A [[m1]] rise per year is a constant relative change: the sequence is geometric with common ratio [[m2]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "11cd39c21fb3": {
+   "fr": "\\textbf{Vrai.} Aux intérêts simples, les intérêts sont calculés sur la somme initiale : [[m1]]~€ s'ajoutent chaque année. La somme due augmente donc de [[m2]]~€ par an.",
+   "en": "\\textbf{True.} With simple interest, the interest is calculated on the initial amount: [[m1]] euros are added each year. The amount owed therefore goes up by [[m2]] euros per year.",
+   "status": "aligned",
+   "order": 56
+  },
+  "bf781f719c90": {
+   "fr": "\\textbf{Faux.} La diminution est absolue et constante ([[m1]] par mois) : la suite est arithmétique de raison [[m2]].",
+   "en": "\\textbf{False.} The decrease is absolute and constant ([[m1]] per month): the sequence is arithmetic with common difference [[m2]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "3cc9084b2267": {
+   "fr": "Prolonger une suite géométrique en fonction",
+   "en": "Extend a geometric sequence to a function",
+   "status": "aligned",
+   "order": 58
+  },
+  "971f33a9b5f9": {
+   "fr": "Au 1\\textsuperscript{er} janvier 2024, la puissance des panneaux solaires installés dans une région est de [[m1]] mégawatts (MW). On estime que cette puissance augmente de [[m2]] par an. Pour tout entier naturel [[m3]], on note [[m4]] la puissance installée, en MW, au 1\\textsuperscript{er} janvier de l'année [[m5]] ; on admet que [[m6]] est une suite géométrique.",
+   "en": "On 1 January 2024, the capacity of the solar panels installed in a region is [[m1]] megawatts (MW). This capacity is estimated to grow by [[m2]] per year. For every natural number [[m3]], let [[m4]] be the installed capacity, in MW, on 1 January of the year [[m5]]; we assume that [[m6]] is a geometric sequence.",
+   "status": "aligned",
+   "order": 59
+  },
+  "32f434f887b2": {
+   "fr": "Donner la raison de la suite [[m1]] et exprimer [[m2]] en fonction de [[m3]].",
+   "en": "Give the common ratio of the sequence [[m1]] and express [[m2]] in terms of [[m3]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "edb4b8f504d1": {
+   "fr": "On souhaite estimer la puissance installée à des dates quelconques. Proposer l'expression d'une fonction [[m1]] donnant la puissance installée [[m2]] années après le 1\\textsuperscript{er} janvier 2024, [[m3]] étant un nombre réel positif.",
+   "en": "We want to estimate the installed capacity at any date. Suggest an expression for a function [[m1]] giving the installed capacity [[m2]] years after 1 January 2024, where [[m3]] is a positive real number.",
+   "status": "aligned",
+   "order": 61
+  },
+  "d72c5f69b0b2": {
+   "fr": "Estimer, à [[m1]]~MW près, la puissance installée au 1\\textsuperscript{er} janvier 2026, au 1\\textsuperscript{er} avril 2027 et au 1\\textsuperscript{er} juillet 2029. On assimile un trimestre à [[m2]] an.",
+   "en": "Estimate, to the nearest [[m1]]~MW, the installed capacity on 1 January 2026, on 1 April 2027 and on 1 July 2029. A quarter is taken as [[m2]] year.",
+   "status": "aligned",
+   "order": 62
+  },
+  "548921cb65e4": {
+   "fr": "Une hausse de [[m1]] correspond au coefficient [[m2]]. La raison est [[m3]] et [[m4]].",
+   "en": "A [[m1]] increase corresponds to the multiplier [[m2]]. The common ratio is [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 63
+  },
+  "8c9f904575e6": {
+   "fr": "On prolonge la suite aux réels positifs : [[m1]] (on a bien [[m2]] pour tout entier [[m3]]).",
+   "en": "We extend the sequence to positive real numbers: [[m1]] (indeed [[m2]] for every integer [[m3]]).",
+   "status": "aligned",
+   "order": 64
+  },
+  "f4b873807cc0": {
+   "fr": "1\\textsuperscript{er} janvier 2026 : [[m1]] et [[m2]]~MW.",
+   "en": "1 January 2026: [[m1]] and [[m2]]~MW.",
+   "status": "aligned",
+   "order": 65
+  },
+  "fad985023dbe": {
+   "fr": "1\\textsuperscript{er} avril 2027 : [[m1]] ans et un trimestre, soit [[m2]] ; [[m3]]~MW.",
+   "en": "1 April 2027: [[m1]] years and one quarter, so [[m2]]; [[m3]]~MW.",
+   "status": "aligned",
+   "order": 66
+  },
+  "9e32e63ea964": {
+   "fr": "1\\textsuperscript{er} juillet 2029 : [[m1]] ans et demi, soit [[m2]] ; [[m3]]~MW.",
+   "en": "1 July 2029: [[m1]] and a half years, so [[m2]]; [[m3]]~MW.",
+   "status": "aligned",
+   "order": 67
+  },
+  "7a293cb759ac": {
+   "fr": "Selon ce modèle, la puissance installée serait d'environ [[m1]]~MW, [[m2]]~MW et [[m3]]~MW à ces trois dates.",
+   "en": "According to this model, the installed capacity would be about [[m1]]~MW, [[m2]]~MW and [[m3]]~MW on these three dates.",
+   "status": "aligned",
+   "order": 68
+  },
+  "2685f59ba557": {
+   "fr": "Propriétés algébriques des puissances",
+   "en": "Algebraic rules for powers",
+   "status": "aligned",
+   "order": 69
+  },
+  "baeba2973a9a": {
+   "fr": "Écrire chacun des nombres suivants sous la forme d'une seule puissance de [[m1]] :",
+   "en": "Write each of the following numbers as a single power of [[m1]]:",
+   "status": "aligned",
+   "order": 70
+  },
+  "9649ad0d7dd8": {
+   "fr": "[[m1]] (règle [[m2]]).",
+   "en": "[[m1]] (rule [[m2]]).",
+   "status": "aligned",
+   "order": 71
+  },
+  "d300f5d09ca7": {
+   "fr": "[[m1]] et [[m2]], donc [[m3]] ; ainsi [[m4]].",
+   "en": "[[m1]] and [[m2]], so [[m3]]; hence [[m4]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "0eefd4339d37": {
+   "fr": "[[m1]], donc [[m2]].",
+   "en": "[[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "bc5aebbb0dbb": {
+   "fr": "On peut contrôler à la calculatrice, par exemple [[m1]] et [[m2]].",
+   "en": "This can be checked on a calculator, for example [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "ee8105bb5c5b": {
+   "fr": "Sens de variation de [[m1]]",
+   "en": "Direction of variation of [[m1]]",
+   "status": "aligned",
+   "order": 75
+  },
+  "58cf00ed03b6": {
+   "fr": "Déterminer le sens de variation sur [[m1]] des fonctions définies par :",
+   "en": "Determine the direction of variation on [[m1]] of the functions defined by:",
+   "status": "aligned",
+   "order": 76
+  },
+  "262d2c28f731": {
+   "fr": "[[m1]], donc [[m2]] est strictement décroissante ; le coefficient [[m3]] est positif et conserve le sens de variation : [[m4]] est strictement décroissante.",
+   "en": "[[m1]], so [[m2]] is strictly decreasing; the coefficient [[m3]] is positive and keeps the direction of variation: [[m4]] is strictly decreasing.",
+   "status": "aligned",
+   "order": 77
+  },
+  "0df0d80764d5": {
+   "fr": "[[m1]], donc [[m2]] est strictement croissante ; le coefficient [[m3]] est négatif et inverse le sens de variation : [[m4]] est strictement décroissante.",
+   "en": "[[m1]], so [[m2]] is strictly increasing; the coefficient [[m3]] is negative and reverses the direction of variation: [[m4]] is strictly decreasing.",
+   "status": "aligned",
+   "order": 78
+  },
+  "570d618bfa5a": {
+   "fr": "[[m1]], donc [[m2]] est strictement décroissante ; le coefficient [[m3]] est négatif et inverse le sens de variation : [[m4]] est strictement croissante.",
+   "en": "[[m1]], so [[m2]] is strictly decreasing; the coefficient [[m3]] is negative and reverses the direction of variation: [[m4]] is strictly increasing.",
+   "status": "aligned",
+   "order": 79
+  },
+  "1f8379573d85": {
+   "fr": "Contrôle numérique : [[m1]], [[m2]] et [[m3]] : les valeurs augmentent.",
+   "en": "Numerical check: [[m1]], [[m2]] and [[m3]]: the values increase.",
+   "status": "aligned",
+   "order": 80
+  },
+  "b33d63855b22": {
+   "fr": "Taux d'évolution annuel moyen",
+   "en": "Average annual rate of change",
+   "status": "aligned",
+   "order": 81
+  },
+  "0314f8b474d5": {
+   "fr": "En cinq ans, une usine a réduit sa consommation d'eau de [[m1]].",
+   "en": "Over five years, a factory has reduced its water consumption by [[m1]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "aaaf07acf9c1": {
+   "fr": "Donner le coefficient multiplicateur global sur les cinq ans.",
+   "en": "Give the overall multiplier over the five years.",
+   "status": "aligned",
+   "order": 83
+  },
+  "5f773cae9397": {
+   "fr": "Calculer le taux d'évolution annuel moyen de la consommation d'eau, à [[m1]] près.",
+   "en": "Calculate the average annual rate of change of the water consumption, to the nearest [[m1]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "613b721036e6": {
+   "fr": "Vérifier le résultat en appliquant cinq fois ce coefficient moyen arrondi.",
+   "en": "Check the result by applying this rounded average multiplier five times.",
+   "status": "aligned",
+   "order": 85
+  },
+  "798908c51e4c": {
+   "fr": "Une baisse de [[m1]] correspond au coefficient global [[m2]].",
+   "en": "A [[m1]] decrease corresponds to the overall multiplier [[m2]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "c249b8948f16": {
+   "fr": "Si [[m1]] est le coefficient annuel moyen, alors [[m2]], donc [[m3]]. Le taux annuel moyen est [[m4]] : la consommation d'eau a baissé en moyenne d'environ [[m5]] par an.",
+   "en": "If [[m1]] is the average annual multiplier, then [[m2]], so [[m3]]. The average annual rate is [[m4]]: water consumption fell on average by about [[m5]] per year.",
+   "status": "aligned",
+   "order": 87
+  },
+  "ae96debdf113": {
+   "fr": "[[m1]], ce qui correspond bien à une baisse globale d'environ [[m2]].",
+   "en": "[[m1]], which does correspond to an overall decrease of about [[m2]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "34b82314a7dd": {
+   "fr": "Lectures graphiques sur des courbes [[m1]]",
+   "en": "Reading graphs of [[m1]] curves",
+   "status": "aligned",
+   "order": 89
+  },
+  "a595dc2e3494": {
+   "fr": "On a représenté ci-dessous, dans un repère, les fonctions [[m1]] et [[m2]] définies sur [[m3]] par [[m4]] et [[m5]], ainsi que la droite d'équation [[m6]].",
+   "en": "The graph below shows, in a coordinate system, the functions [[m1]] and [[m2]] defined on [[m3]] by [[m4]] and [[m5]], together with the line with equation [[m6]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "ddfe05377aff": {
+   "fr": "Quelle courbe représente la fonction [[m1]] ? Justifier ce choix.",
+   "en": "Which curve represents the function [[m1]]? Justify your choice.",
+   "status": "aligned",
+   "order": 91
+  },
+  "c68ad41d136b": {
+   "fr": "Résoudre graphiquement l'équation [[m1]]. À l'aide d'un tableau de valeurs de la calculatrice, donner une valeur approchée de la solution à [[m2]] près.",
+   "en": "Solve the equation [[m1]] graphically. Using a table of values on the calculator, give an approximate value of the solution to the nearest [[m2]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "309532fee633": {
+   "fr": "Déterminer graphiquement l'ensemble des réels [[m1]] tels que [[m2]], puis l'ensemble des réels [[m3]] tels que [[m4]].",
+   "en": "Determine graphically the set of real numbers [[m1]] such that [[m2]], then the set of real numbers [[m3]] such that [[m4]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "ef604ebbc422": {
+   "fr": "[[m1]], donc [[m2]] est strictement croissante ; [[m3]], donc [[m4]] est strictement décroissante. La courbe croissante [[m5]] représente [[m6]] (et [[m7]] représente [[m8]]). Les deux courbes passent par le point [[m9]].",
+   "en": "[[m1]], so [[m2]] is strictly increasing; [[m3]], so [[m4]] is strictly decreasing. The increasing curve [[m5]] represents [[m6]] (and [[m7]] represents [[m8]]). Both curves pass through the point [[m9]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "1c18be2fa868": {
+   "fr": "La courbe [[m1]] coupe la droite [[m2]] en un point d'abscisse lue proche de [[m3]]. Avec la calculatrice : [[m4]] et [[m5]], donc la solution est comprise entre [[m6]] et [[m7]] ; la valeur [[m8]] donne l'image la plus proche de [[m9]]. La solution est [[m10]].",
+   "en": "The curve [[m1]] meets the line [[m2]] at a point whose \\textit{x}-coordinate reads close to [[m3]]. With the calculator: [[m4]] and [[m5]], so the solution lies between [[m6]] and [[m7]]; the value [[m8]] gives the image closest to [[m9]]. The solution is [[m10]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "2d0c7bebd5c3": {
+   "fr": "[[m1]] lorsque [[m2]] est au-dessus de la droite [[m3]], c'est-à-dire pour [[m4]] environ : [[m5]] (valeur approchée de la borne).",
+   "en": "[[m1]] when [[m2]] is above the line [[m3]], that is for [[m4]] approximately: [[m5]] (approximate value of the endpoint).",
+   "status": "aligned",
+   "order": 96
+  },
+  "680b9cccdf0a": {
+   "fr": "[[m1]] est décroissante et [[m2]] coupe la droite [[m3]] pour une abscisse proche de [[m4]] (calculatrice : [[m5]] et [[m6]], soit [[m7]]). Ainsi [[m8]] pour [[m9]] environ : [[m10]] (valeur approchée de la borne).",
+   "en": "[[m1]] is decreasing and [[m2]] meets the line [[m3]] at an abscissa close to [[m4]] (calculator: [[m5]] and [[m6]], so [[m7]]). Hence [[m8]] for [[m9]] approximately: [[m10]] (approximate value of the endpoint).",
+   "status": "aligned",
+   "order": 97
+  },
+  "8db15e1c5ecc": {
+   "fr": "Inéquations avec une même base",
+   "en": "Inequalities with the same base",
+   "status": "aligned",
+   "order": 98
+  },
+  "07fe83220ad2": {
+   "fr": "Résoudre sur [[m1]] les inéquations suivantes.",
+   "en": "Solve the following inequalities on [[m1]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "320e9c771698": {
+   "fr": "[[m1]] : la fonction [[m2]] est strictement décroissante, elle inverse l'ordre. Donc [[m3]]. Ensemble des solutions : [[m4]].",
+   "en": "[[m1]]: the function [[m2]] is strictly decreasing, so it reverses the order. Hence [[m3]]. Solution set: [[m4]].",
+   "status": "aligned",
+   "order": 100
+  },
+  "7ad89b5e26f2": {
+   "fr": "[[m1]] : la fonction [[m2]] est strictement croissante, elle conserve l'ordre. Donc [[m3]]. Ensemble des solutions : [[m4]].",
+   "en": "[[m1]]: the function [[m2]] is strictly increasing, so it preserves the order. Hence [[m3]]. Solution set: [[m4]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "81480209e5c4": {
+   "fr": "[[m1]], donc l'inéquation s'écrit [[m2]]. Comme [[m3]] est strictement décroissante : [[m4]]. Ensemble des solutions : [[m5]].",
+   "en": "[[m1]], so the inequality reads [[m2]]. Since [[m3]] is strictly decreasing: [[m4]]. Solution set: [[m5]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "a1e348b9c29e": {
+   "fr": "Modéliser par [[m1]] et calculer",
+   "en": "Model with [[m1]] and compute",
+   "status": "aligned",
+   "order": 103
+  },
+  "112d53a524fd": {
+   "fr": "Juste après une injection, la concentration d'un médicament dans le sang d'un patient est de [[m1]]~mg/L. Cette concentration diminue ensuite de [[m2]] chaque heure. Il s'agit d'une décroissance exponentielle.",
+   "en": "Just after an injection, the concentration of a drug in a patient's blood is [[m1]]~mg/L. This concentration then decreases by [[m2]] every hour. This is an exponential decay.",
+   "status": "aligned",
+   "order": 104
+  },
+  "b7ae8382085e": {
+   "fr": "On la modélise par une fonction [[m1]] du temps [[m2]], exprimé en heures, vérifiant [[m3]].",
+   "en": "It is modelled by a function [[m1]] of the time [[m2]], in hours, such that [[m3]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "04d2ae561015": {
+   "fr": "Déterminer les constantes [[m1]] et [[m2]].",
+   "en": "Determine the constants [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 106
+  },
+  "65143cf025ee": {
+   "fr": "Calculer la concentration au bout de [[m1]]~h~[[m2]]~min, à [[m3]]~mg/L près.",
+   "en": "Calculate the concentration after [[m1]]~h~[[m2]]~min, to the nearest [[m3]]~mg/L.",
+   "status": "aligned",
+   "order": 107
+  },
+  "2a2b19276f81": {
+   "fr": "Le médecin prévoit une nouvelle injection dès que la concentration passe sous [[m1]]~mg/L. Est-ce déjà le cas au bout de [[m2]]~h~[[m3]]~min ? Répondre par une phrase.",
+   "en": "The doctor plans a new injection as soon as the concentration drops below [[m1]]~mg/L. Is this already the case after [[m2]]~h~[[m3]]~min? Answer in a sentence.",
+   "status": "aligned",
+   "order": 108
+  },
+  "45b0665e8d14": {
+   "fr": "[[m1]], et [[m2]], donc [[m3]]. Une baisse de [[m4]] par heure correspond au coefficient [[m5]], donc [[m6]] et [[m7]].",
+   "en": "[[m1]], and [[m2]], so [[m3]]. A [[m4]] decrease per hour corresponds to the multiplier [[m5]], so [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "7db59ef104e8": {
+   "fr": "[[m1]]~h~[[m2]]~min [[m3]]~h. [[m4]]~mg/L.",
+   "en": "[[m1]]~h~[[m2]]~min [[m3]]~h. [[m4]]~mg/L.",
+   "status": "aligned",
+   "order": 110
+  },
+  "6d764ef80d17": {
+   "fr": "[[m1]] : au bout de [[m2]]~h~[[m3]]~min, la concentration est déjà passée sous [[m4]]~mg/L, la nouvelle injection est donc prévue (d'ailleurs [[m5]]~mg/L, la concentration est sous ce seuil dès [[m6]]~h).",
+   "en": "[[m1]]: after [[m2]]~h~[[m3]]~min the concentration has already dropped below [[m4]]~mg/L, so the new injection is due (in fact [[m5]]~mg/L, so the concentration is below this threshold from [[m6]]~h onwards).",
+   "status": "aligned",
+   "order": 111
+  },
+  "e07e44d7b998": {
+   "fr": "Taux moyen de deux évolutions successives",
+   "en": "Average rate of two successive changes",
+   "status": "aligned",
+   "order": 112
+  },
+  "69f87122f55e": {
+   "fr": "Le cours d'une monnaie numérique augmente de [[m1]] une année, puis baisse de [[m2]] l'année suivante. Quel est le taux d'évolution annuel moyen sur ces deux années ?",
+   "en": "The price of a digital currency rises by [[m1]] one year, then falls by [[m2]] the following year. What is the average annual rate of change over these two years?",
+   "status": "aligned",
+   "order": 113
+  },
+  "055137ecf536": {
+   "fr": "Le prix d'une matière première augmente de [[m1]] un mois, puis baisse de [[m2]] le mois suivant. Quel est le taux d'évolution mensuel moyen ?",
+   "en": "The price of a raw material rises by [[m1]] one month, then falls by [[m2]] the following month. What is the average monthly rate of change?",
+   "status": "aligned",
+   "order": 114
+  },
+  "187afd9c6cd5": {
+   "fr": "Un élève affirme que, dans la question 2, le taux moyen est [[m1]]. Expliquer par une phrase pourquoi il se trompe.",
+   "en": "A student claims that, in question 2, the average rate is [[m1]]. Explain in a sentence why this is wrong.",
+   "status": "aligned",
+   "order": 115
+  },
+  "f852574c42ae": {
+   "fr": "Les coefficients sont [[m1]] et [[m2]]. Le coefficient global est [[m3]]. Le coefficient annuel moyen [[m4]] vérifie [[m5]], donc [[m6]] : hausse annuelle moyenne de [[m7]].",
+   "en": "The multipliers are [[m1]] and [[m2]]. The overall multiplier is [[m3]]. The average annual multiplier [[m4]] satisfies [[m5]], so [[m6]]: an average annual rise of [[m7]].",
+   "status": "aligned",
+   "order": 116
+  },
+  "6676ee24a132": {
+   "fr": "Les coefficients sont [[m1]] et [[m2]] ; le coefficient global est [[m3]]. Le coefficient moyen est [[m4]], soit une baisse mensuelle moyenne de [[m5]].",
+   "en": "The multipliers are [[m1]] and [[m2]]; the overall multiplier is [[m3]]. The average multiplier is [[m4]], that is an average monthly fall of [[m5]].",
+   "status": "aligned",
+   "order": 117
+  },
+  "57ed4a8c2c59": {
+   "fr": "Les évolutions successives se composent en multipliant les coefficients, pas en additionnant les taux : la baisse de [[m1]] s'applique à un prix déjà augmenté. Sur les deux mois, le prix est multiplié par [[m2]] (baisse globale de [[m3]]), ce qui correspond à une baisse moyenne de [[m4]] par mois et non à une hausse de [[m5]].",
+   "en": "Successive changes combine by multiplying the multipliers, not by adding the rates: the [[m1]] fall applies to a price that has already risen. Over the two months the price is multiplied by [[m2]] (an overall fall of [[m3]]), which corresponds to an average fall of [[m4]] per month, not a rise of [[m5]].",
+   "status": "aligned",
+   "order": 118
+  }
+ }
+}

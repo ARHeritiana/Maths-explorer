@@ -48,7 +48,7 @@ Unchanged routes and sections (Cours, Laboratoire, Défis, Parcours). New struct
 
 Metaphor: a maths notebook on a desk. Light theme "Jour" is clean paper; dark theme "Nuit" is a night desk. Graph-paper lines appear only inside figure panels, where they have a job.
 
-Tokens (both themes defined in `dist/explorer.css`):
+Tokens (both themes defined in `site/styles/explorer.css`):
 
 | Role | Jour | Nuit |
 |---|---|---|

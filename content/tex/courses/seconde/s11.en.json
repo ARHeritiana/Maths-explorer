@@ -1,0 +1,293 @@
+{
+ "unit": "s11.fr.tex",
+ "segments": {
+  "de1afb0f3ad0": {
+   "fr": "Croisement de deux variables qualitatives",
+   "en": "Cross-tabulating two qualitative variables",
+   "status": "aligned",
+   "order": 0
+  },
+  "6d754c9e4594": {
+   "fr": "1--12 mars 2027",
+   "en": "1--12 March 2027",
+   "status": "aligned",
+   "order": 1
+  },
+  "e29395320b75": {
+   "fr": "Tableaux croisés et fréquences marginales",
+   "en": "Two-way tables and marginal frequencies",
+   "status": "aligned",
+   "order": 2
+  },
+  "3ab32483375b": {
+   "fr": "Définitions",
+   "en": "Definitions",
+   "status": "aligned",
+   "order": 3
+  },
+  "89327b61e614": {
+   "fr": "Une variable qualitative décrit une catégorie. Elle est nominale si ses modalités n'ont pas d'ordre naturel (moyen de transport), ordinale si elles sont ordonnées (degré de satisfaction).\nUn tableau croisé compte les individus selon deux variables. Les sommes des lignes et colonnes sont les marges. Une fréquence marginale divise une marge par l'effectif total.",
+   "en": "A qualitative variable describes a category. It is nominal if its categories have no natural order (means of transport), ordinal if they are ordered (level of satisfaction).\nA two-way table counts individuals according to two variables. The sums of the rows and columns are the margins. A marginal frequency divides a margin by the total count.",
+   "status": "aligned",
+   "order": 4
+  },
+  "448dd9200743": {
+   "fr": "Dans une population de [[m1]] individus, on observe deux caractères [[m2]] :",
+   "en": "In a population of [[m1]] individuals, two characteristics [[m2]] are observed:",
+   "status": "aligned",
+   "order": 5
+  },
+  "617f12dcdb33": {
+   "fr": "Total\\\\",
+   "en": "Total\\\\",
+   "status": "aligned",
+   "order": 6
+  },
+  "b25928c69902": {
+   "fr": "Total",
+   "en": "Total",
+   "status": "aligned",
+   "order": 7
+  },
+  "175e9b69b8b0": {
+   "fr": "Calculer les fréquences marginales de [[m1]], [[m2]], [[m3]], puis la fréquence des individus vérifiant à la fois [[m4]] et [[m5]].",
+   "en": "Calculate the marginal frequencies of [[m1]], [[m2]], [[m3]], then the frequency of individuals satisfying both [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "dfc2ae9487ed": {
+   "fr": "[[m1]] ; [[m2]] ; [[m3]]. La fréquence de [[m4]] est [[m5]] ; ce n'est pas une fréquence marginale.",
+   "en": "[[m1]]; [[m2]]; [[m3]]. The frequency of [[m4]] is [[m5]]; it is not a marginal frequency.",
+   "status": "aligned",
+   "order": 9
+  },
+  "0c2aba7bb176": {
+   "fr": "Une classe de Première de [[m1]] élèves est répartie ainsi. Compléter les marges et calculer les fréquences marginales « NSI » et « filles ».",
+   "en": "A première class of [[m1]] students is split as follows. Complete the margins and calculate the marginal frequencies ``CS'' and ``girls''.",
+   "status": "aligned",
+   "order": 10
+  },
+  "e242e2f684da": {
+   "fr": "Garçons",
+   "en": "Boys",
+   "status": "aligned",
+   "order": 11
+  },
+  "56c2f2685764": {
+   "fr": "Filles",
+   "en": "Girls",
+   "status": "aligned",
+   "order": 12
+  },
+  "5a63a58f8d68": {
+   "fr": "NSI",
+   "en": "CS",
+   "status": "aligned",
+   "order": 14
+  },
+  "4579533128e6": {
+   "fr": "\\mxblank{21}\\\\\nPas de NSI",
+   "en": "\\mxblank{21}\\\\\nNo CS",
+   "status": "aligned",
+   "order": 15
+  },
+  "51eecb82afc1": {
+   "fr": "\\mxblank{11}\\\\",
+   "en": "\\mxblank{11}\\\\",
+   "status": "aligned",
+   "order": 16
+  },
+  "59fbf342934f": {
+   "fr": "\\mxblank{18}",
+   "en": "\\mxblank{18}",
+   "status": "aligned",
+   "order": 18
+  },
+  "97093bdf1df1": {
+   "fr": "\\mxblank{14}",
+   "en": "\\mxblank{14}",
+   "status": "aligned",
+   "order": 19
+  },
+  "da30da3eac01": {
+   "fr": "Fréquences conditionnelles et lecture de phrases",
+   "en": "Conditional frequencies and reading sentences",
+   "status": "aligned",
+   "order": 20
+  },
+  "beb84672add4": {
+   "fr": "Définition",
+   "en": "Definition",
+   "status": "aligned",
+   "order": 21
+  },
+  "f0dab71ab943": {
+   "fr": "La fréquence de [[m1]] \\textbf{parmi les individus de $B$}, si cette sous-population est non vide, est",
+   "en": "The frequency of [[m1]] \\textbf{among the individuals of $B$}, if this subpopulation is nonempty, is",
+   "status": "aligned",
+   "order": 22
+  },
+  "41133b6f21a2": {
+   "fr": "Le dénominateur correspond à la population introduite par « parmi ».",
+   "en": "The denominator corresponds to the population introduced by ``among''.",
+   "status": "aligned",
+   "order": 23
+  },
+  "c75f03d95707": {
+   "fr": "Dans le tableau NSI, calculer la fréquence de filles parmi les élèves sans NSI, puis la fréquence des élèves sans NSI parmi les filles. Les deux résultats sont-ils égaux ?",
+   "en": "In the CS table, calculate the frequency of girls among the students without CS, then the frequency of students without CS among the girls. Are the two results equal?",
+   "status": "aligned",
+   "order": 24
+  },
+  "d08b382652b5": {
+   "fr": "Parmi les [[m1]] élèves sans NSI, [[m2]] sont des filles : [[m3]]. Parmi les [[m4]] filles, [[m5]] ne font pas NSI : [[m6]]. Le numérateur est le même, les populations de référence diffèrent.",
+   "en": "Among the [[m1]] students without CS, [[m2]] are girls: [[m3]]. Among the [[m4]] girls, [[m5]] do not take CS: [[m6]]. The numerator is the same, the reference populations differ.",
+   "status": "aligned",
+   "order": 25
+  },
+  "af2cf48e7f64": {
+   "fr": "Dans le tableau de [[m1]] individus, calculer [[m2]], [[m3]] et [[m4]]. Traduire chaque résultat par une phrase.",
+   "en": "In the table of [[m1]] individuals, calculate [[m2]], [[m3]] and [[m4]]. Translate each result into a sentence.",
+   "status": "aligned",
+   "order": 26
+  },
+  "9343650fe3fb": {
+   "fr": "[[m1]] des individus de [[m2]] vérifient [[m3]]. [[m4]] des individus de [[m5]] vérifient [[m6]]. [[m7]] des individus ne vérifiant pas [[m8]] vérifient [[m9]].",
+   "en": "[[m1]] of the individuals of [[m2]] satisfy [[m3]]. [[m4]] of the individuals of [[m5]] satisfy [[m6]]. [[m7]] of the individuals not satisfying [[m8]] satisfy [[m9]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "602897487021": {
+   "fr": "« [[m1]] des cyclistes sont des élèves » permet-il de conclure que [[m2]] des élèves sont cyclistes ?",
+   "en": "Does ``[[m1]] of cyclists are students'' allow us to conclude that [[m2]] of students are cyclists?",
+   "status": "aligned",
+   "order": 28
+  },
+  "152e1b498291": {
+   "fr": "Non. Par exemple, sur [[m1]] cyclistes, [[m2]] sont élèves ; si la population compte [[m3]] élèves au total, seulement [[m4]] des élèves sont cyclistes.",
+   "en": "No. For example, out of [[m1]] cyclists, [[m2]] are students; if the population has [[m3]] students in all, only [[m4]] of the students are cyclists.",
+   "status": "aligned",
+   "order": 29
+  },
+  "76bfd4497090": {
+   "fr": "Compléter un tableau à partir de fréquences",
+   "en": "Completing a table from frequencies",
+   "status": "aligned",
+   "order": 30
+  },
+  "bbddf505a75e": {
+   "fr": "Situation fictive",
+   "en": "Fictional situation",
+   "status": "aligned",
+   "order": 31
+  },
+  "279b51e16294": {
+   "fr": "Un groupe compte [[m1]] personnes, dont [[m2]] utilisent un bus ([[m3]]). Parmi ces [[m4]] personnes, [[m5]] possèdent un abonnement ([[m6]]). Parmi les [[m7]] autres, [[m8]] possèdent un abonnement.",
+   "en": "A group has [[m1]] people, of whom [[m2]] use a bus ([[m3]]). Among these [[m4]] people, [[m5]] have a pass ([[m6]]). Among the other [[m7]], [[m8]] have a pass.",
+   "status": "aligned",
+   "order": 32
+  },
+  "b64794703a21": {
+   "fr": "Construire le tableau croisé [[m1]] et [[m2]] avec ses marges.",
+   "en": "Construct the two-way table [[m1]] and [[m2]] with its margins.",
+   "status": "aligned",
+   "order": 33
+  },
+  "42f0ab6fed45": {
+   "fr": "Calculer la fréquence marginale de [[m1]].",
+   "en": "Calculate the marginal frequency of [[m1]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "70801b0b6996": {
+   "fr": "Calculer la fréquence de [[m1]] parmi [[m2]].",
+   "en": "Calculate the frequency of [[m1]] among [[m2]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "a32c69d4b48d": {
+   "fr": "Dans [[m1]], [[m2]] personnes vérifient [[m3]], donc [[m4]] ne le vérifient pas. Dans [[m5]], [[m6]] vérifient [[m7]], et [[m8]] ne le vérifient pas.",
+   "en": "In [[m1]], [[m2]] people satisfy [[m3]], so [[m4]] do not. In [[m5]], [[m6]] satisfy [[m7]], and [[m8]] do not.",
+   "status": "aligned",
+   "order": 36
+  },
+  "7866e7c8f525": {
+   "fr": "Un titre annonce « Trois abonnés sur quatre prennent le bus », en s'appuyant sur [[m1]]. Expliquer l'erreur et proposer une phrase correcte.",
+   "en": "A headline announces ``Three pass holders in four take the bus'', based on [[m1]]. Explain the error and propose a correct sentence.",
+   "status": "aligned",
+   "order": 39
+  },
+  "f3357bbe14b7": {
+   "fr": "Le titre inverse le conditionnement. La phrase correcte est : « Trois personnes sur quatre parmi celles qui prennent le bus possèdent un abonnement. » La proportion des abonnés qui prennent le bus vaut ici environ [[m1]].",
+   "en": "The headline reverses the conditioning. The correct sentence is: ``Three people in four among those who take the bus have a pass.'' The proportion of pass holders who take the bus is here about [[m1]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "b0240f16e289": {
+   "fr": "Traiter un fichier et recueillir des données réelles",
+   "en": "Processing a file and collecting real data",
+   "status": "aligned",
+   "order": 41
+  },
+  "85fc9a429646": {
+   "fr": "Donner les effectifs des trois listes. Calculer la fréquence de satisfaction parmi les usagers du bus. Remplacer \\texttt{and} par \\texttt{or} dans le second filtre : combien de lignes sont alors sélectionnées ?",
+   "en": "Give the sizes of the three lists. Calculate the frequency of satisfaction among bus users. Replace \\texttt{and} by \\texttt{or} in the second filter: how many rows are then selected?",
+   "status": "aligned",
+   "order": 42
+  },
+  "433af0758e2c": {
+   "fr": "Effectifs : [[m1]]. Parmi les usagers du bus, la fréquence de satisfaction vaut [[m2]]. Avec \\texttt{or}, on sélectionne les [[m3]] usagers du bus et les [[m4]] personnes satisfaites utilisant un autre moyen : [[m5]] lignes, sans compter deux fois les lignes qui vérifient les deux critères.",
+   "en": "Sizes: [[m1]]. Among bus users, the frequency of satisfaction is [[m2]]. With \\texttt{or}, we select the [[m3]] bus users and the [[m4]] satisfied people using another means: [[m5]] rows, without counting twice the rows satisfying both criteria.",
+   "status": "aligned",
+   "order": 43
+  },
+  "56c8e09e3306": {
+   "fr": "Activité avec les données de la classe",
+   "en": "Activity with the class data",
+   "status": "aligned",
+   "order": 44
+  },
+  "477b6c017172": {
+   "fr": "Recueillir anonymement deux variables : moyen de transport principal et durée du trajet par catégories ordonnées ([[m1]] min ; de [[m2]] à moins de [[m3]] min ; [[m4]] min). Une ligne par réponse, sans nom. Construire le tableau croisé, puis deux fréquences conditionnelles de sens opposés. Présenter effectif, date de collecte et éventuelles non-réponses.",
+   "en": "Collect anonymously two variables: main means of transport and journey time in ordered categories ([[m1]] min; from [[m2]] to under [[m3]] min; [[m4]] min). One row per response, without names. Construct the two-way table, then two conditional frequencies in opposite directions. State the count, the collection date and any non-responses.",
+   "status": "aligned",
+   "order": 45
+  },
+  "6267a43a8994": {
+   "fr": "Réaliser la collecte et rédiger deux conclusions justifiées. Expliquer pourquoi les résultats ne décrivent pas automatiquement tous les élèves de Madagascar.",
+   "en": "Carry out the collection and write two justified conclusions. Explain why the results do not automatically describe all students in Madagascar.",
+   "status": "aligned",
+   "order": 46
+  },
+  "34b034f87915": {
+   "fr": "Les valeurs dépendent de la collecte réelle. Vérifier : une catégorie par variable et par réponse ; somme des cellules égale au nombre de réponses exploitables ; dénominateur correct pour chaque fréquence ; arrondi annoncé. L'échantillon est une classe particulière, pas un échantillon représentatif de tous les élèves du pays. Les non-réponses doivent être distinguées d'une modalité observée.",
+   "en": "The values depend on the actual collection. Check: one category per variable and per response; sum of the cells equal to the number of usable responses; correct denominator for each frequency; announced rounding. The sample is one particular class, not a representative sample of all students in the country. Non-responses must be distinguished from an observed category.",
+   "status": "aligned",
+   "order": 47
+  },
+  "8948dc1ce565": {
+   "fr": "filles",
+   "en": "girls",
+   "status": "aligned",
+   "order": 49
+  },
+  "f452d30a2e3c": {
+   "fr": "effectif vérifiant ",
+   "en": "count satisfying ",
+   "status": "aligned",
+   "order": 50
+  },
+  "a5bc1d9b2ae7": {
+   "fr": " et ",
+   "en": " and ",
+   "status": "aligned",
+   "order": 51
+  },
+  "fdde71e2efb4": {
+   "fr": "effectif de ",
+   "en": "count of ",
+   "status": "aligned",
+   "order": 52
+  }
+ }
+}

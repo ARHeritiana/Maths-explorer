@@ -1,0 +1,218 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{premiere-c02}{Quadratics: forms and choice of method}\label{C02}
+\begin{keypoint}[Chapter path]
+\textbf{Objectives.} Choose a form; solve an equation or an inequality; read an extremum; prove the formula for the roots.
+
+\textbf{Prerequisites.} Special products, zero-product property, sign of a product, square roots.
+
+\textbf{Yearly reference point.} 22 September--1 October: 8 hours\end{keypoint}
+\section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C02-D}
+Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
+\begin{enumerate}
+\item Expand $(x-3)^2$.
+\item Factorise $x^2-16$.
+\item Solve $(x-2)(x+5)=0$.
+\item Solve $x^2=9$ in $\R$.
+\item Give the sign of $2x-6$.
+\item Find the minimum of $(x-1)^2+4$.
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
+\paragraph{Speaking and logic.} Present two methods for factorising a quadratic. In the proof using the discriminant, name the three cases and explain why they are exhaustive.
+\mxnewpage
+\section*{Investigate before formalising}\label{C02-RECH}
+A rectangle has an area of 24 m$^2$ and a perimeter of 20 m. Without trying every possible dimension at random, determine its sides. Start with a drawing and explain the two constraints.
+\paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
+\mxnewpage
+\section{Three forms, three readings}\label{C02-U1}
+\begin{keypoint}[Definition and results]
+A quadratic function is written $f(x)=ax^2+bx+c$ with $a\ne0$. The expanded form makes it easy to calculate $f(0)$; the vertex form $a(x-\alpha)^2+\beta$ reveals the vertex and the extremum; a factorised form $a(x-r_1)(x-r_2)$ reveals the roots and the sign. The roots are the solutions of $f(x)=0$.
+\end{keypoint}
+\paragraph{Status and justification.} Completing the square relies on $x^2+2ux=(x+u)^2-u^2$. The existence of the vertex form is proved by expansion; its general computation is not an expected routine.
+\begin{example}$f(x)=x^2-6x+5=(x-3)^2-4=(x-1)(x-5)$. The minimum is $-4$ at 3; the roots are 1 and 5; the y-intercept is 5.\end{example}\label{C02-EX1}
+\mxinclude{figures/C02-U1}
+\begin{pitfall}A factorised expression is not obtained by putting each term separately in brackets.\end{pitfall}
+\begin{application}Give three forms of $g(x)=x^2+2x-3$. Read off its roots and its minimum.\end{application}\label{C02-AP1}
+\section{Discriminant and solving}\label{C02-U2}
+\begin{keypoint}[Definition and results]
+For $ax^2+bx+c=0$ with $a\ne0$, let $\Delta=b^2-4ac$. If $\Delta<0$, there is no real root; if $\Delta=0$, there is one root $-\dfrac{b}{2a}$; if $\Delta>0$, there are two roots $\dfrac{-b-\sqrt\Delta}{2a}$ and $\dfrac{-b+\sqrt\Delta}{2a}$. To order the roots, take the sign of a into account.
+\end{keypoint}
+\paragraph{Status and justification.} Multiplying the equation by $4a\ne0$ gives $(2ax+b)^2=\Delta$. A square is positive or zero: the three cases follow. If $\Delta>0$, $2ax+b=\pm\sqrt\Delta$. Splitting into cases avoids taking the square root of a negative number.
+\begin{example}$2x^2+x-3=0$: $\Delta=1+24=25$; $x=\dfrac{-1\pm5}{4}$, that is $1$ and $-\dfrac{3}{2}$. Check: $(x-1)(2x+3)=2x^2+x-3$.\end{example}\label{C02-EX2}
+\begin{pitfall}The denominator is $2a$, not 2; the sign of b is kept with its brackets in $b^2$.\end{pitfall}
+\begin{application}Solve $3x^2-6x+3=0$ and $x^2+2x+5=0$.\end{application}\label{C02-AP2}
+\section{Factorising without automating the discriminant}\label{C02-U3}
+\begin{keypoint}[Definition and results]
+If two real roots exist, their sum is $-\dfrac{b}{a}$ and their product is $\dfrac{c}{a}$. An obvious root or a special product often allows a shorter factorisation. The polynomials of degree 2 that vanish at two distinct reals r and s are exactly $a(x-r)(x-s)$ with $a\ne0$.
+\end{keypoint}
+\paragraph{Status and justification.} Expanding $a(x-r)(x-s)=ax^2-a(r+s)x+ars$, identifying the coefficients gives the relations. Conversely, if r and s have this sum and this product, the expansion recovers the polynomial.
+\begin{example}$x^2-7x+12$: 3 and 4 have sum 7 and product 12. Hence $(x-3)(x-4)$. To impose in addition $f(0)=24$, we need $12a=24$, so $a=2$.\end{example}\label{C02-EX3}
+\begin{pitfall}The sum of the roots is $-\dfrac{b}{a}$; do not forget the minus sign. A single root is not enough to determine a.\end{pitfall}
+\begin{application}Determine the polynomial f of degree 2 such that $f(1)=f(4)=0$ and $f(0)=-8$.\end{application}\label{C02-AP3}
+\section{Sign, inequalities and optimisation}\label{C02-U4}
+\begin{keypoint}[Definition and results]
+For two distinct roots $r<s$, the quadratic has the sign of a outside $\intff{r}{s}$ and the opposite sign between the roots. It is zero at the roots. With no real root, it keeps the sign of a. With a double root, it keeps the sign of a away from that root. Optimisation is done on the domain of the problem, which may limit access to the vertex.
+\end{keypoint}
+\paragraph{Status and justification.} The sign table of the factors of $a(x-r)(x-s)$ gives the result. The vertex form compares $f(x)$ with $\beta$ through the sign of $a(x-\alpha)^2$.
+\begin{example}$-2(x-1)(x-5)\geq0$ is equivalent to $x\in\intff{1}{5}$. For $A(x)=x(12-x)$ on $\intff{0}{12}$, $A(x)=36-(x-6)^2\leq36$, with equality at 6. A rectangle with perimeter 24 m therefore has a maximum area of 36 m$^2$ when it is a square.\end{example}\label{C02-EX4}
+\begin{pitfall}In a strict inequality, the roots are excluded. Check the geometric bounds before concluding.\end{pitfall}
+\begin{application}Solve $x^2-4x-5<0$, then maximise $x(8-x)$ on $\intff{0}{3}$.\end{application}\label{C02-AP4}
+\mxnewpage
+\section*{Exercise path}\label{C02-PARC}
+Start with exercises 1 and 2. Then choose one of exercises 3 or 4 and do it without help. Exercises 5 to 7 are a reserve for transfer, investigation or programming: the teacher designates one. Exercise 8 is revisited after a delay.
+\begingroup
+\mxexercisehead{C02-E1}{Completing the square}
+Consider the function $f$ defined on $\R$ by $f(x)=x^2-8x+7$.
+\begin{enumerate}[label=\arabic*.]
+\item Complete the square to write $f(x)$ in the form $(x-4)^2+k$, where $k$ is a real number to be determined.
+\item Deduce a factorisation of $f(x)$ using a special product.
+\item Draw the sign table of $f$, then solve the inequality $f(x)\leq0$ in $\R$.
+\end{enumerate}
+\mxexercisehead{C02-E2}{Discussing without heavy calculation}
+We study the functions $f(x)=x^2+4$, $g(x)=(x+2)^2$ and $h(x)=-3(x-1)(x+4)$, all defined on $\R$.
+\begin{enumerate}[label=\arabic*.]
+\item For each function, determine any real roots by using the given form directly.
+\item State the sign of each function on $\R$. State explicitly the values where it vanishes.
+\item Explain why calculating a discriminant is necessary in none of the three cases.
+\end{enumerate}
+\mxexercisehead{C02-E3}{Choosing a strategy}
+We wish to solve the following three equations in $\R$:\[x^2-9=0,\qquad x^2-9x+20=0,\qquad 2x^2-3x-1=0.\]
+\begin{enumerate}[label=\arabic*.]
+\item For each equation, choose a method: special product, finding two numbers with a known sum and product, or discriminant. Explain this choice.
+\item Solve the three equations and give the solution sets in exact form.
+\item Check the solutions of the first two equations by substitution. For the third, check the sum and the product of the roots obtained.
+\end{enumerate}
+\mxexercisehead{C02-E4}{Recovering a parabola}
+The curve of a polynomial function $f$ of degree 2 crosses the x-axis at the points with x-coordinates $-2$ and 3. It also passes through the point $A\pt{1;12}$.
+\begin{enumerate}[label=\arabic*.]
+\item Determine an expression for $f(x)$ from these three pieces of information. State the form chosen and why it is suitable.
+\item Expand the expression found. Deduce the y-intercept of the curve.
+\item Check that the function obtained satisfies the three initial pieces of information.
+\end{enumerate}
+\mxexercisehead{C02-E5}{A vegetable garden against a wall}
+A gardener has 20 m of fencing to enclose three sides of a rectangular vegetable garden. The fourth side runs along a wall and needs no fencing. Let $x$ be the length, in metres, of each of the two sides perpendicular to the wall. All the fencing is used.
+\begin{enumerate}[label=\arabic*.]
+\item Make a sketch and express the length of the side parallel to the wall in terms of $x$. State the values of $x$ for which the rectangle is not degenerate.
+\item Express the area $A(x)$, in square metres. Determine its maximum value and the corresponding dimensions, using the method of your choice.
+\item Check that these dimensions use exactly 20 m of fencing.
+\end{enumerate}
+\mxinclude{figures/C02-E5}
+\mxexercisehead{C02-E6}{A parameter}
+For each real number $m$, consider the equation in the real unknown $x$:\[x^2-2x+m=0.\]The number $m$ is a parameter: it stays fixed while the equation is solved.
+\begin{enumerate}[label=\arabic*.]
+\item Determine the values of $m$ for which the equation has two distinct real solutions.
+\item Determine the values of $m$ for which it has a single real solution, then those for which it has none.
+\item Give the solution in the case where it is unique. Explain why the three cases considered cover all values of $m$.
+\end{enumerate}
+\mxexercisehead{C02-E7}{Link with sequences}
+A sequence is defined by $u_n=n^2-5n+4$ for every natural number $n$. We look for all the indices at which the term of the sequence is strictly negative.
+\begin{enumerate}[label=\arabic*.]
+\item First solve the inequality $x^2-5x+4<0$ in $\R$.
+\item Deduce all the natural numbers $n$ such that $u_n<0$. Justify why a real interval is not the final answer here.
+\end{enumerate}
+\mxexercisehead{C02-E8}{Delayed review}
+A student studies the function $f$ defined on $\R$ by $f(x)=2(x+3)^2-5$. She writes: ``The minimum is $-5$ and it is reached at $x=3$.''
+\begin{enumerate}[label=\arabic*.]
+\item State what is correct and what is wrong in this sentence. Rewrite it correctly, justifying your answer.
+\item Solve the inequality $f(x)\leq-3$ in $\R$, then check the two endpoints of the set obtained.
+\end{enumerate}
+\paragraph{Homework.} Do only the task designated at the end of the session, in the dated progression: 10--20 min at most. The exercises depend on the topics already studied, so some questions are deferred. Revisit exercise 8 one week after the chapter (10 min). If the allotted time is exceeded, note the difficulty and bring your attempts; do not pile up the whole reserve.
+\endgroup
+\mxneed{12}\section*{To do in the CQFD textbook}
+These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
+\paragraph{CQFD, exercise 43 p.~99, questions a and c.}\label{C02-M1} First find an obvious root, then the other using the product of the roots.
+\paragraph{CQFD, exercise 49 p.~99, questions a and b.}\label{C02-M2} Translate the sum and the product into an equation; do not assume in advance that the numbers exist.
+\begingroup\small
+\mxnewpage\section*{MCQ 1: understand and choose}\label{C02-Q1}
+\mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item The roots of $(x+1)(x-4)$ are
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $1$ and $4$
+\item $-1$ and $-4$
+\item $-1$ and $4$
+\item $1$ and $-4$
+\end{enumerate}
+\item The discriminant of $x^2-2x+3$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-8$
+\item $8$
+\item $16$
+\item $-2$
+\end{enumerate}
+\item The vertex of $(x-2)^2+5$ is
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\pt{2;-5}$
+\item $\pt{-2;5}$
+\item $\pt{5;2}$
+\item $\pt{2;5}$
+\end{enumerate}
+\item The sum of the roots of $2x^2-6x+1$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $6$
+\item $3$
+\item $-3$
+\item $\dfrac{1}{2}$
+\end{enumerate}
+\item $x^2-4<0$ is equivalent to
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $x>2$
+\item $x<-2$
+\item $x\in\intoo{-2}{2}$
+\item $x\in\intff{-2}{2}$
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{MCQ 2: understand and choose}\label{C02-Q2}
+\mxCount{qcm2} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.
+\begin{enumerate}
+\item $x^2+6x+9$ has as its factorisation
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $(x-3)^2$
+\item $(x+9)(x+1)$
+\item $(x+6)^2$
+\item $(x+3)^2$
+\end{enumerate}
+\item The product of the roots of $3x^2+x-2$ equals
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-\dfrac{2}{3}$
+\item $-\dfrac{1}{3}$
+\item $\dfrac{2}{3}$
+\item $-2$
+\end{enumerate}
+\item $-x^2+4x$ reaches its maximum on $\intff{0}{1}$ at
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2$
+\item $0$
+\item $1$
+\item $4$
+\end{enumerate}
+\item A double root requires
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $a=0$
+\item $\Delta=0$
+\item $b=0$
+\item $c=0$
+\end{enumerate}
+\item The polynomials of degree 2 with roots 0 and 2 are
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $a(x+2)$
+\item $a(x-2)^2$
+\item $x(x-2)$ only
+\item $ax(x-2)$, $a\ne0$
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{True or false? Justify.}\label{C02-VF}
+\begin{enumerate}
+\item A quadratic function always has two real roots.
+\item A quadratic with two distinct roots is negative between them.
+\item For every real number x, $(x-2)^2\geq0$.
+\end{enumerate}
+\begin{keypoint}[Self-assessment]I justify the choice of form; I distinguish roots from vertex; I finish an inequality with a set; I respect the domain of the model.
+
+For each objective, indicate: achieved without help; achieved with help; to be reworked. Write one example and one mistake to avoid.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C02}\fi

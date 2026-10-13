@@ -1,0 +1,346 @@
+% GENERATED, edit the French unit or the translation table
+
+\mxunit{stmg-c06}{Conditional probability}
+\mxskills{model with a tree or a table, calculate, reason about independence, interpret}
+\section{Reference course}
+For two events $A$ and $B$ with $P(A)>0$, the probability of $B$ given $A$ is
+\[
+P_A(B)=P(B\mid A)=\frac{P(A\cap B)}{P(A)}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[grow=right,level distance=34mm,sibling distance=13mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$}
+ child {node {$A$}
+   child {node {$B$} edge from parent node[above] {$P_A(B)$}}
+   child {node {$\overline B$} edge from parent node[below] {$1-P_A(B)$}}
+   edge from parent node[above] {$P(A)$}}
+ child {node {$\overline A$}
+   child {node {$B$} edge from parent node[above] {$P_{\overline A}(B)$}}
+   child {node {$\overline B$} edge from parent node[below] {$1-P_{\overline A}(B)$}}
+   edge from parent node[below] {$1-P(A)$}};
+\end{tikzpicture}
+\end{center}
+
+\begin{keypoint}
+In a weighted tree, the probabilities leaving the same node sum to $1$. We multiply the probabilities along a path: $P(A\cap B)=P(A)P_A(B)$. We add the probabilities of mutually exclusive paths leading to the event we are looking for.
+\end{keypoint}
+
+If $A_1,\ldots,A_n$ form a partition of the sample space, then
+\[
+P(B)=P(A_1)P_{A_1}(B)+\cdots+P(A_n)P_{A_n}(B).
+\]
+Two events $A$ and $B$ with nonzero probabilities are independent if $P(A\cap B)=P(A)P(B)$, or equivalently if $P_A(B)=P(B)$.
+
+\begin{pitfall}
+Do not confuse $P_A(B)$ and $P_B(A)$. The condition comes after the word ``given'' and is written as a subscript in this notation.
+\end{pitfall}
+
+\begin{example}
+$\pc{40}$ of customers buy online. Among them, $\pc{12}$ return their order; among the others, $\pc{5}$ return it. Then $P(R)=\num{0,40}\times\num{0,12}+\num{0,60}\times\num{0,05}=\num{0,078}$. The overall return rate is therefore $\pc{7,8}$.
+\end{example}
+
+\mxsession{39}{\mxdate*{2027-03-09}}{B: 2 h -- C: 1 h}{Conditioning}{Conditional probability}
+\begin{objectives}\begin{itemize}\item Define a conditional probability.\item Move from counts to probabilities.\item Interpret.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $140$. \mxblank{$28$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\item Calculate $\num{0,7}\times\num{0,4}$. \mxblank{$\num{0,28}$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: define a conditional probability and move from counts to probabilities.\end{prerequisites}
+
+\begin{activity}
+In a survey, $180$ customers out of $600$ use a premium card and $72$ of these $180$ customers buy every week. Calculate $P(P)$, $P(P\cap H)$ and $P_P(H)$, then interpret.
+
+\end{activity}
+\begin{solution}$P(P)=\num{0,30}$, $P(P\cap H)=\num{0,12}$ and $P_P(H)=\dfrac{72}{180}=\num{0,40}$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}For $P(A)>0$, $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$. This is the probability of $B$ within the population restricted to $A$.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$P(P)=\num{0,30}$, $P(P\cap H)=\num{0,12}$ and $P_P(H)=\dfrac{72}{180}=\num{0,40}$.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item We know $P(A)=\num{0,35}$, $P_A(B)=\num{0,6}$ and $P_{\overline A}(B)=\num{0,8}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,35}\times\num{0,6}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{39}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $315$ and the rate or ratio with $5$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{40}{\mxdate*{2027-03-11}}{B: 1 h -- C: 2 h}{Weighted trees}{Conditional probability}
+    \begin{objectives}\begin{itemize}\item Construct and complete a tree.\item Read a conditional probability.\item Check the sums.\end{itemize}\end{objectives}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Calculate $\num{0,8}\times\num{0,4}$. \mxblank{$\num{0,32}$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: construct and complete a tree and read a conditional probability.\end{prerequisites}
+
+    \begin{activity}
+    $\pc{35}$ of orders are express. Among them, $\pc{4}$ are late; among standard orders, $\pc{9}$ are late. Construct and complete the tree.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}First branches: $\num{0,35}$ and $\num{0,65}$. Then $\num{0,04}$ and $\num{0,96}$; finally $\num{0,09}$ and $\num{0,91}$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+    \begin{summary}In a tree, the branches leaving a node sum to $1$. The second-level probabilities are conditional.\end{summary}
+
+    \begin{example}
+    Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+    \end{example}
+    \begin{solution}First branches: $\num{0,35}$ and $\num{0,65}$. Then $\num{0,04}$ and $\num{0,96}$; finally $\num{0,09}$ and $\num{0,91}$.\end{solution}
+
+    \begin{exercise}[essential]
+    \begin{enumerate}\item We know $P(A)=\num{0,40}$, $P_A(B)=\num{0,2}$ and $P_{\overline A}(B)=\num{0,4}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,40}\times\num{0,2}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{40}
+
+    \begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $320$ and the rate or ratio with $6$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+    \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+    \end{method}
+    \fi
+\mxsession{41}{\mxdate*{2027-03-16}}{B: 2 h -- C: 1 h}{Product of probabilities along a path}{Conditional probability}
+    \begin{objectives}\begin{itemize}\item Calculate an intersection.\item Combine paths.\item Translate an event.\end{itemize}\end{objectives}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+9-x+2$. \mxblank{$2x+11$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\item Calculate $\num{0,9}\times\num{0,4}$. \mxblank{$\num{0,36}$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: calculate an intersection and combine paths.\end{prerequisites}
+
+    \begin{activity}
+    Using the tree from session 40, calculate the probability of an order being express and late, then the total probability of a delay. Interpret both results.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$P(E\cap R)=\num{0,35}\times\num{0,04}=\num{0,014}$. $P(R)=\num{0,014}+\num{0,65}\times\num{0,09}=\num{0,0725}$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+    \begin{summary}We multiply along a path: $P(A\cap B)=P(A)P_A(B)$. We add the mutually exclusive paths that realise the event.\end{summary}
+
+    \begin{example}
+    Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+    \end{example}
+    \begin{solution}$P(E\cap R)=\num{0,35}\times\num{0,04}=\num{0,014}$. $P(R)=\num{0,014}+\num{0,65}\times\num{0,09}=\num{0,0725}$.\end{solution}
+
+    \begin{exercise}[essential]
+    \begin{enumerate}\item We know $P(A)=\num{0,45}$, $P_A(B)=\num{0,3}$ and $P_{\overline A}(B)=\num{0,5}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,45}\times\num{0,3}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{41}
+
+    \begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $325$ and the rate or ratio with $7$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+    \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+    \end{method}
+    \fi
+\mxsession{42}{\mxdate*{2027-03-18}}{B: 1 h -- C: 2 h}{Independence}{Conditional probability}
+\begin{objectives}\begin{itemize}\item Test independence.\item Compare probabilities.\item Justify a conclusion.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $60$. \mxblank{$3$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\item Calculate $\num{0,3}\times\num{0,4}$. \mxblank{$\num{0,12}$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: test independence and compare probabilities.\end{prerequisites}
+
+\begin{activity}
+In a population, $P(A)=\num{0,4}$, $P(B)=\num{0,3}$ and $P(A\cap B)=\num{0,12}$. Test independence in two ways. Then change $P(A\cap B)$ to $\num{0,15}$ and start again.
+
+\end{activity}
+\begin{solution}$\num{0,4}\times\num{0,3}=\num{0,12}$: independence. With $\num{0,15}$, the events are no longer independent. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}$A$ and $B$ are independent if $P(A\cap B)=P(A)P(B)$, equivalently if $P_A(B)=P(B)$ when $P(A)>0$.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$\num{0,4}\times\num{0,3}=\num{0,12}$: independence. With $\num{0,15}$, the events are no longer independent.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item We know $P(A)=\num{0,20}$, $P_A(B)=\num{0,4}$ and $P_{\overline A}(B)=\num{0,6}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,20}\times\num{0,4}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{42}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $330$ and the rate or ratio with $2$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{43}{\mxdate*{2027-03-23}}{B: 2 h -- C: 1 h}{Partition and total probability}{Conditional probability}
+    \begin{objectives}\begin{itemize}\item Recognise a partition.\item Apply total probability.\item Organise the calculation.\end{itemize}\end{objectives}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\item Calculate $\num{0,4}\times\num{0,4}$. \mxblank{$\num{0,16}$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: recognise a partition and apply total probability.\end{prerequisites}
+
+    \begin{activity}
+    A factory has three lines A, B, C producing $\pc{20}$, $\pc{50}$ and $\pc{30}$ of the items respectively. Their defect rates are $\pc{1}$, $\pc{2}$ and $\pc{4}$. Calculate the overall defect rate.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$P(D)=\num{0,2}\times\num{0,01}+\num{0,5}\times\num{0,02}+\num{0,3}\times\num{0,04}=\num{0,024}$, that is $\pc{2,4}$. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+    \begin{summary}If $(A_i)$ is a partition, $P(B)=\sum_i P(A_i)P_{A_i}(B)$. Each term corresponds to a path leading to $B$.\end{summary}
+
+    \begin{example}
+    Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+    \end{example}
+    \begin{solution}$P(D)=\num{0,2}\times\num{0,01}+\num{0,5}\times\num{0,02}+\num{0,3}\times\num{0,04}=\num{0,024}$, that is $\pc{2,4}$.\end{solution}
+
+    \begin{exercise}[essential]
+    \begin{enumerate}\item We know $P(A)=\num{0,25}$, $P_A(B)=\num{0,5}$ and $P_{\overline A}(B)=\num{0,7}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,25}\times\num{0,5}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{43}
+
+    \begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $335$ and the rate or ratio with $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+    \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+    \end{method}
+    \fi
+\mxsession{44}{\mxdate*{2027-03-25}}{B: 1 h -- C: 2 h}{Problems in context}{Conditional probability}
+\begin{objectives}\begin{itemize}\item Choose a tree or a table.\item Solve a problem in context.\item Interpret.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+5-x+2$. \mxblank{$2x+7$}\item Calculate $\num{0,5}\times\num{0,4}$. \mxblank{$\num{0,20}$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: choose a tree or a table and solve a problem in context.\end{prerequisites}
+
+\begin{activity}
+Turn a table of counts (customers/subscription/cancellation) into a tree, then answer a question in each direction: probability of cancelling given the subscription; probability of having the subscription given the cancellation.
+
+\end{activity}
+\begin{solution}The first reading uses a row or a branch; the second requires dividing the intersection by the total number of cancellations. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}Choosing between a tree and a table: the tree highlights the order of conditioning; the table suits counts and reversed readings well.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The first reading uses a row or a branch; the second requires dividing the intersection by the total number of cancellations.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item We know $P(A)=\num{0,30}$, $P_A(B)=\num{0,6}$ and $P_{\overline A}(B)=\num{0,8}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,30}\times\num{0,6}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{44}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $340$ and the rate or ratio with $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{45}{\mxdate*{2027-03-30}}{B: 2 h -- C: 1 h}{Mixed practice}{Conditional probability}
+    \begin{objectives}\begin{itemize}\item Calculate a reverse probability.\item Chain total probability and conditioning.\item Check the result.\end{itemize}\end{objectives}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $120$. \mxblank{$24$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\item Calculate $\num{0,6}\times\num{0,4}$. \mxblank{$\num{0,24}$}\end{enumerate}\end{fluency}
+    \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: calculate a reverse probability and chain total probability and conditioning.\end{prerequisites}
+
+    \begin{activity}
+    In the situation of session 43, given that an item is defective, calculate the probability that it comes from line C. Explain why this result is not $\pc{30}$.
+    \begin{center}\begin{tikzpicture}[grow=right,level distance=30mm,sibling distance=10mm,every node/.style={font=\small},edge from parent/.style={draw,-{Stealth}}]
+\node {$\Omega$} child {node {$A$} child {node {$B$}} child {node {$\overline B$}}} child {node {$\overline A$} child {node {$B$}} child {node {$\overline B$}}};
+\end{tikzpicture}\end{center}
+    \end{activity}
+    \begin{solution}$P_D(C)=\dfrac{\num{0,3}\times\num{0,04}}{\num{0,024}}=\num{0,5}$. Conditioning changes the distribution because the defect rates differ. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+    \begin{summary}For a reverse probability, first calculate the total probability of the conditioning event, then use the definition of conditional probability.\end{summary}
+
+    \begin{example}
+    Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+    \end{example}
+    \begin{solution}$P_D(C)=\dfrac{\num{0,3}\times\num{0,04}}{\num{0,024}}=\num{0,5}$. Conditioning changes the distribution because the defect rates differ.\end{solution}
+
+    \begin{exercise}[essential]
+    \begin{enumerate}\item We know $P(A)=\num{0,35}$, $P_A(B)=\num{0,2}$ and $P_{\overline A}(B)=\num{0,4}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+    \end{exercise}
+    \begin{solution}$P(A\cap B)=\num{0,35}\times\num{0,2}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{45}
+
+    \begin{homework}Redo practice exercise 2 with the following data: replace the initial value with $345$ and the rate or ratio with $5$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+    \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+    \ifmxteacher
+    \begin{method}
+    \textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+    \end{method}
+    \fi
+\mxsession{46}{\mxdate*{2027-04-01}}{B: 1 h -- C: 2 h}{Review and assessment}{Conditional probability}
+\begin{objectives}\begin{itemize}\item Use all the methods.\item Write up with the notation.\item Remedy mistakes.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Simplify $\dfrac{18}{30}$. \mxblank{$\dfrac35$}\item What is the sum of the branches leaving a node? \mxblank{$1$}\item Calculate $\num{0,7}\times\num{0,4}$. \mxblank{$\num{0,28}$}\item If $P(A)=\num{0,37}$, calculate $P(\overline A)$. \mxblank{$\num{0,63}$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations used today. Before the investigation, have the keywords restated: use all the methods and write up with the notation.\end{prerequisites}
+
+\begin{activity}
+Complete a four-station circuit: complete a tree; calculate an intersection; apply the total probability formula; test independence. Each group leaves a written justification for the next group.
+
+\end{activity}
+\begin{solution}The work produced must contain formulas and interpretations. Mistakes are sorted into: notation, complement, product, sum, reversed conditioning. Have students verbalise the piece of data that triggers the choice of method.\end{solution}
+
+\begin{summary}Always name the events, complete all the branches, write the formula before calculating and interpret the final probability.\end{summary}
+
+\begin{example}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The work produced must contain formulas and interpretations. Mistakes are sorted into: notation, complement, product, sum, reversed conditioning.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item We know $P(A)=\num{0,40}$, $P_A(B)=\num{0,3}$ and $P_{\overline A}(B)=\num{0,5}$. Construct the tree.\item Calculate $P(A\cap B)$ then $P(B)$.\item Calculate $P_B(A)$ and test independence.\end{enumerate}
+\end{exercise}
+\begin{solution}$P(A\cap B)=\num{0,40}\times\num{0,3}$. Then $P(B)=P(A)P_A(B)+(1-P(A))P_{\overline A}(B)$ and $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$. Compare with $P(A)$.\end{solution}
+
+\mxexuse{46}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value with $350$ and the rate or ratio with $6$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The solution depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and indicate your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{method}
+\fi

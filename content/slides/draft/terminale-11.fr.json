@@ -1,0 +1,119 @@
+{
+"id": "terminale-11",
+"slides": [
+{
+"k": "title",
+"t": "Calcul intégral",
+"b": "",
+"a": null,
+"h": null
+},
+{
+"k": "goals",
+"t": "Objectifs",
+"b": "Calculer et encadrer une intégrale ; distinguer aire et intégrale ; utiliser une intégration par parties ; étudier une suite d'intégrales.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Aire et primitive",
+"b": "Pour \\(f\\) continue et positive sur \\([a,b]\\), \\(a\\le b\\), l'intégrale \\(\\int_a^b f(x)\\,\\dd x\\) est l'aire sous la courbe, au-dessus de l'axe, entre \\(x=a\\) et \\(x=b\\), exprimée en unités d'aire.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Aire et primitive",
+"b": "Si \\(f\\) est continue sur un intervalle \\(I\\) et \\(a\\in I\\), alors \\(F_a(x)=\\int_a^x f(t)\\,\\dd t\\) est la primitive de \\(f\\) qui s'annule en \\(a\\). Pour toute primitive \\(F\\),\n\\[\\int_a^b f(x)\\,\\dd x=F(b)-F(a).\\]\nToute fonction continue sur un intervalle admet des primitives. Une intégrale est un nombre ; une primitive est une fonction.",
+"a": null,
+"h": "Théorème fondamental"
+},
+{
+"k": "proof",
+"t": "Aire et primitive",
+"b": "Pour \\(h&gt;0\\), les rectangles donnent \\(hf(x)\\le F_a(x+h)-F_a(x)\\le hf(x+h)\\). Après division par \\(h\\) et passage à la limite, le taux d'accroissement tend vers \\(f(x)\\). Pour \\(h&lt;0\\), la croissance donne \\(f(x+h)\\le f(t)\\le f(x)\\) sur \\([x+h,x]\\). En intégrant,\n\\[(-h)f(x+h)\\le F_a(x)-F_a(x+h)\\le(-h)f(x).\\]\nEn divisant par \\(-h&gt;0\\), on obtient\n\\[f(x+h)\\le\\frac{F_a(x+h)-F_a(x)}h\\le f(x).\\]\nLes deux bornes tendent vers \\(f(x)\\). Par continuité, \\(F_a'=f\\). Toute autre primitive est \\(F_a+C\\), d'où la formule de calcul aux bornes.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Propriétés",
+"b": "Pour des fonctions continues et des bornes appartenant à un même intervalle :\n\\[\\int_a^a f=0,\\quad\\int_b^a f=-\\int_a^b f,\\quad\n\\int_a^c f=\\int_a^b f+\\int_b^c f,\\quad\n\\int_a^b(\\lambda f+\\mu g)=\\lambda\\int_a^b f+\\mu\\int_a^b g.\\]\nSi \\(a\\le b\\) et \\(f\\le g\\), alors \\(\\int_a^b f\\le\\int_a^b g\\). En particulier, si \\(m\\le f\\le M\\), alors \\(m(b-a)\\le\\int_a^b f\\le M(b-a)\\).\nPour une fonction de signe quelconque, l'intégrale est définie par les primitives. L'aire géométrique entre la courbe et l'axe est \\(\\int_a^b|f|\\), obtenue en découpant aux changements de signe. Entre deux courbes, elle vaut \\(\\int_a^b|f-g|\\).",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Propriétés",
+"b": "\\(\\int_{-1}^{1}x\\,\\dd x=0\\), mais l'aire entre la droite et l'axe sur cet intervalle vaut \\(1\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Valeur moyenne et intégration par parties",
+"b": "Pour \\(a&lt;b\\), la valeur moyenne est \\(\\mu=\\frac1{b-a}\\int_a^b f(x)\\,\\dd x\\). Le rectangle de hauteur \\(\\mu\\) et de largeur \\(b-a\\) possède la même aire algébrique.",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Valeur moyenne et intégration par parties",
+"b": "Si \\(u,v\\) sont de classe \\(\\mathcal C^1\\) sur \\([a,b]\\),\n\\[\\int_a^b u(x)v'(x)\\,\\dd x=[u(x)v(x)]_a^b-\\int_a^b u'(x)v(x)\\,\\dd x.\\]",
+"a": null,
+"h": "Intégration par parties"
+},
+{
+"k": "proof",
+"t": "Valeur moyenne et intégration par parties",
+"b": "Intégrer \\((uv)'=u'v+uv'\\) puis isoler l'intégrale cherchée. Le crochet est indispensable.",
+"a": null,
+"h": null
+},
+{
+"k": "example",
+"t": "Valeur moyenne et intégration par parties",
+"b": "Avec \\(u=x\\) et \\(v'=e^x\\), \\(\\int_0^1xe^x\\,\\dd x=[xe^x]_0^1-\\int_0^1e^x\\,\\dd x=e-(e-1)=1\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Rectangles et suites d'intégrales",
+"b": "Pour \\(f\\) continue et croissante sur \\([a,b]\\), avec \\(a&lt;b\\) et \\(n\\ge1\\) et \\(h=\\frac{b-a}{n}\\), les sommes \\(h\\sum_{k=0}^{n-1}f(a+kh)\\) et \\(h\\sum_{k=1}^{n}f(a+kh)\\) encadrent l'intégrale. Leur différence est \\(h(f(b)-f(a))\\).\nPour \\(I_n=\\int_0^1x^nf(x)\\,\\dd x\\), commencer par le signe et les comparaisons de l'intégrande. Si \\(0\\le f\\le M\\), alors \\(0\\le I_n\\le \\frac{M}{n+1}\\) ; les gendarmes donnent \\(I_n\\to0\\). Une intégration par parties peut aussi fournir une relation entre \\(I_n\\) et \\(I_{n+1}\\).",
+"a": null,
+"h": null
+},
+{
+"k": "concept",
+"t": "Rectangles et suites d'intégrales",
+"b": "Dans \\(I_n=\\int_0^1x^nf(x)\\,\\dd x\\), l'expression \\(x^0\\) désigne la fonction constante \\(1\\), y compris à la borne \\(0\\). Ainsi \\(I_0=\\int_0^1f(x)\\,\\dd x\\) ; aucun calcul indéterminé n'est nécessaire.   L'aire entre \\(y=x\\) et \\(y=x^2\\) sur \\([0,1]\\) vaut \\(\\frac{1}{6}\\).",
+"a": null,
+"h": "Convention au rang zéro.",
+"f": [
+[
+1,
+1
+]
+]
+},
+{
+"k": "activity",
+"t": "Activité de recherche",
+"b": "<b>Encadrer une intégrale par des rectangles — 35 min.</b><br><br> On cherche à encadrer \\(I=\\displaystyle\\int_0^1x^2\\,\\dd x\\). Pour un entier \\(n\\ge1\\), on partage \\([0;1]\\) en \\(n\\) intervalles de même longueur. On note \\(L_n\\) la somme des aires des rectangles dont les hauteurs sont les valeurs de \\(x^2\\) aux extrémités gauches, et \\(U_n\\) celle obtenue aux extrémités droites.\n<ol><li>Pour \\(n=4\\), représenter les deux familles de rectangles, puis calculer \\(L_4\\) et \\(U_4\\).\n<li>Justifier que \\(L_4\\le I\\le U_4\\).\n<li>Écrire une fonction Python d'argument \\(n\\) qui renvoie \\(L_n\\) et \\(U_n\\). Déterminer algébriquement \\(U_n-L_n\\).\n<li>Déterminer le plus petit entier \\(n\\) pour lequel cet encadrement a une largeur au plus égale à \\(0{,}01\\).\n<li>Calculer la valeur exacte de \\(I\\) à l'aide d'une primitive et vérifier qu'elle appartient à l'encadrement obtenu pour \\(n=4\\).</ol><br><br>",
+"a": null,
+"h": null
+}
+],
+"figs": [
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=11cm,height=4.6cm,axis lines=middle,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x$},ylabel={$y$},samples=80]\n\\addplot[draw=none,fill=mxmint!15,domain=0:1]{x}\\closedcycle;\n\\addplot[draw=none,fill=white,domain=0:1]{x^2}\\closedcycle;\n\\addplot[mxink,domain=0:1]{x};\\addplot[mxmint,thick,domain=0:1]{x^2};\\end{axis}\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{(\\k/4)^2}\\filldraw[fill=mxmint!20,draw=mxmint] (\\l,0) rectangle (\\r,\\h);}\n\\draw[mxink,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{((\\k+1)/4)^2}\\filldraw[fill=mxmint!20,draw=mxmint] (\\l,0) rectangle (\\r,\\h);}\n\\draw[mxink,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}"
+],
+"figs_en": [
+"\\begin{center}\\begin{tikzpicture}\\begin{axis}[width=11cm,height=4.6cm,axis lines=middle,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x$},ylabel={$y$},samples=80]\n\\addplot[draw=none,fill=mxmint!15,domain=0:1]{x}\\closedcycle;\n\\addplot[draw=none,fill=white,domain=0:1]{x^2}\\closedcycle;\n\\addplot[mxink,domain=0:1]{x};\\addplot[mxmint,thick,domain=0:1]{x^2};\\end{axis}\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{(\\k/4)^2}\\filldraw[fill=mxmint!20,draw=mxmint] (\\l,0) rectangle (\\r,\\h);}\n\\draw[mxink,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}",
+"\\begin{tikzpicture}[x=4cm,y=3cm]\n\\foreach \\k in {0,1,2,3}{\\pgfmathsetmacro{\\l}{\\k/4}\\pgfmathsetmacro{\\r}{(\\k+1)/4}\\pgfmathsetmacro{\\h}{((\\k+1)/4)^2}\\filldraw[fill=mxmint!20,draw=mxmint] (\\l,0) rectangle (\\r,\\h);}\n\\draw[mxink,thick,domain=0:1,samples=50]plot(\\x,{\\x*\\x});\n\\draw[->](0,0)--(1.15,0)node[right]{$x$};\\draw[->](0,0)--(0,1.1)node[above]{$y$};\n\\node[below left]at(0,0){$0$};\\node[below]at(1,0){$1$};\\node[left]at(0,1){$1$};\n\\end{tikzpicture}"
+]
+}

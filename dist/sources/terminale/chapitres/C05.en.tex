@@ -1,0 +1,99 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit[5]{terminale-c05}{Combinatorics and counting}\label{ch:9}
+
+\mxsubtitle{S22, S25, S30, S35}
+
+\begin{keypoint}[Objectives]Choose a counting model; distinguish order and repetition; use binomial coefficients and Pascal's rule.\end{keypoint}
+
+\section{Course notes}
+\subsection{Adding or multiplying}
+For pairwise disjoint finite sets $A_i$, $|\bigcup A_i|=\sum|A_i|$. If the cases overlap, the double counting must be corrected: $|A\cup B|=|A|+|B|-|A\cap B|$.
+The number of elements of the Cartesian product $A\times B$ is $|A||B|$. For a sequence of choices, multiply the numbers of possibilities at each stage, provided these numbers are valid for every earlier choice considered.
+\paragraph{Example.} A code made of two letters chosen from $26$, followed by three digits, with repetition allowed, can take $26^2\times10^3$ values. A three-digit number does not begin with $0$: there are $9\times10^2$ of them.
+\subsection{Lists and subsets}
+In a set of $n$ elements, there are $n^k$ ordered lists of length $k$ with repetition; $n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!}$ lists of $k$ distinct elements, if $0\le k\le n$; $n!$ permutations of all the elements. We set $0!=1$.
+\begin{keypoint}[Combinations]
+A combination of $k$ elements from $n$ is a subset with $k$ elements; order does not matter.
+\[\binom nk=\frac{n!}{k!(n-k)!},\quad\binom n0=\binom nn=1,\quad\binom n1=n,\quad\binom n2=\frac{n(n-1)}2.\]
+\end{keypoint}
+\paragraph{Why divide by $k!$?} Each subset of size $k$ gives exactly $k!$ distinct lists according to the order of its elements. The number of lists without repetition is therefore $k!\binom nk$.
+\subsection{Identities and proofs}
+\[\binom nk=\binom n{n-k},\qquad \binom nk+\binom n{k+1}=\binom{n+1}{k+1},\qquad\sum_{k=0}^n\binom nk=2^n.\]
+Pascal's rule above is used for $0\le k<n$; the boundary formulas are read directly from the values $1$.
+\paragraph{Symmetry.} Taking the complement sets up a correspondence between the subsets of size $k$ and those of size $n-k$.
+\paragraph{Pascal, combinatorial proof.} In a set of $n+1$ elements, fix an element $a$. A subset of size $k+1$ either contains $a$ (choose $k$ other elements from $n$) or does not contain it (choose $k+1$ elements from $n$). The two cases are disjoint and cover all the possibilities.
+\paragraph{Pascal, algebraic proof.} For $0\le k<n$, put over a common denominator:
+\[\frac{n!}{k!(n-k)!}+\frac{n!}{(k+1)!(n-k-1)!}
+=\frac{n!((k+1)+(n-k))}{(k+1)!(n-k)!}
+=\frac{(n+1)!}{(k+1)!(n-k)!}.\]
+The boundary cases are dealt with directly.
+\paragraph{Number of subsets.} For each of the $n$ elements, choosing ``present'' or ``absent'' gives $2^n$ subsets. Sorting them by size, we count $\sum_{k=0}^n\binom nk$ of them: the two counts are equal.
+\paragraph{Extension mentioned in the scheme of work.} The expansion $(a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k$ can be understood by choosing, in each of the $n$ factors, the term $a$ or $b$. This formula is not used as a prerequisite for the tests in this booklet.
+
+
+\mxnewpage
+\section{Research activity}\textbf{Order and repetition in counting --- 30 min.}\par Six distinct students volunteer to organise a debate.
+\begin{enumerate}\item Two students are chosen to form a pair with no roles assigned. How many pairs can be formed?
+\item A chair and a secretary are appointed, who must be two different students. How many assignments of the two roles are possible?
+\item Three successive speeches are planned. The same student may speak several times. How many programmes of three speeches are possible?
+\item Start again with only four students, denoted $A$, $B$, $C$ and $D$. Write out all the pairs and all the assignments of the two roles. Then explain why there are $64$ programmes of three speeches, without listing them.
+\item For each of the three ways of choosing, state whether order matters and whether the same person may be chosen several times.\end{enumerate}
+
+\mxnewpage
+\section{Progressive exercises}
+
+\mxexerciseitem{1}{Practice}A code is a sequence of four digits chosen from $0,1,\ldots,9$. Repetitions and the digit $0$ in first position are allowed. How many codes contain at least one $0$?
+
+\mxexerciseitem{2}{Practice}Ten athletes take part in a race with no ties. How many different podiums, with a first, a second and a third place, can be obtained?
+
+\mxexerciseitem{3}{Practice}From seven distinct people, a group of three people is formed containing one person designated in advance. How many groups can be formed?
+
+\mxexerciseitem{4}{Practice}On a grid, we start from $\pt{0;0}$ and reach $\pt{4;3}$ using exactly four moves of one unit to the right and three upwards. How many different paths can be followed?
+
+\mxexerciseitem{5}{Practice}A class has eight girls and seven boys. How many groups of four students containing exactly two girls can be formed?
+
+\section{Textbook or past-paper work}\textbf{Barbazo, p. 294, exercise 37.} At home after S35: do both questions. State whether order matters and whether a card may be chosen several times before using a binomial coefficient.
+
+\mxnewpage
+\section{Homework}\textbf{Homework 9 --- Forming a committee --- 45 min, after S35.}\par A team consists of five teachers and seven students, all distinct. A committee of four people is formed.
+\begin{enumerate}\item How many different committees can be formed?
+\item How many committees contain exactly two students?
+\item How many committees contain at least one teacher and at least one student?
+\item Among the members of a committee from question 2, a teacher is appointed chair and a student secretary. Count the choices of the committee together with these two appointments.
+\item By counting the committees according to their number of teachers, prove that \[\sum_{k=0}^4\binom5k\binom7{4-k}=\binom{12}4.\]\end{enumerate}
+
+\ifmxteacher\mxnewpage\section{Teaching notes and solutions}\begin{teachernote}[Teacher notes]The common test in S28 comes before the combinations of S30: include only principles and ordered lists. Test 3 may involve combinations, but not Pascal's rule taught in S35. Have students state the object being counted before any formula. For weaker students, use cards bearing names; does permuting the cards change the object? Newton's binomial theorem, cited in the scheme of work, is an extension: keep it explicitly optional.\end{teachernote}
+
+\subsection{Solutions to the activity}\begin{enumerate}
+\item A pair is a subset of two students from six: $\binom{6}{2}=\frac{6\times5}{2}=15$.
+\item The chair can be chosen in six ways, then the secretary from the other five students: $6\times5=30$ assignments.
+\item Each speech can be given to any of the six students, including one already chosen. The three successive choices give $6^3=216$ sequences.
+\item With four cards, the pairs are $AB,AC,AD,BC,BD,CD$: six choices. The twelve pairs of roles are:\[\begin{array}{lll}\pt{A;B}&\pt{A;C}&\pt{A;D}\\(B,A)&\pt{B;C}&\pt{B;D}\\(C,A)&\pt{C;B}&\pt{C;D}\\(D,A)&\pt{D;B}&\pt{D;C}\end{array}\] There are $4^3=64$ sequences of three speeches, since each position has four choices.
+\item For a pair, order does not matter and a student is not repeated. For the roles, order matters, with no repetition. For the speeches, order matters and repetition is allowed.
+\end{enumerate}
+
+\paragraph{E1.}There are $10^4$ codes in total. Those containing no $0$ have nine choices at each of the four positions, that is $9^4$ codes. By complement, the number required is $10^4-9^4=3439$.
+
+\paragraph{E2.}There are ten choices for gold, then nine for silver and eight for bronze. The multiplication principle gives $10\times9\times8=720$ podiums. Changing the order changes the podium.
+
+\paragraph{E3.}The imposed person is already chosen. It remains to choose a subset of two people from the other six: $\binom{6}{2}=\frac{6\times5}{2}=15$.
+
+\paragraph{E4.}A path is determined by the positions of its four steps to the right among seven positions. The other three steps are then forced. We therefore count $\binom74=35$ paths.
+
+\paragraph{E5.}We must choose two girls from eight, then two boys from seven. Each pair of choices gives a single group: $\binom82\binom72=28\times21=588$.
+
+\mxneed{30}
+
+\subsection{Solutions to Homework 9}\begin{enumerate}
+\item Order does not matter: there are $\binom{12}{4}=\frac{12\times11\times10\times9}{24}=495$ committees.
+\item We choose two students from seven and two teachers from five: $\binom72\binom52=21\times10=210$ committees.
+\item From the $495$ committees, remove the $\binom54=5$ committees made up only of teachers and the $\binom74=35$ committees made up only of students. These categories are disjoint: $495-5-35=455$.
+\item Each of the $210$ committees has two choices for the teacher chair and two choices for the student secretary: $210\times2\times2=840$ arrangements.
+\item Sort the committees according to the number $k$ of teachers, with $0\le k\le4$. Category $k$ contains $\binom5k\binom7{4-k}$ committees. The five categories are disjoint and cover all the committees. By addition,
+\[\sum_{k=0}^4\binom5k\binom7{4-k}=\binom{12}4=495.\]
+\end{enumerate}
+
+\subsection{Solutions to the textbook or past-paper work}A hand contains five distinct cards; order does not matter. There are therefore $\binom{52}5=\num{2598960}$ hands. For a hand containing the ace of spades, this card is already chosen; we choose the other four from the $51$ remaining cards. There are $\binom{51}4=\num{249900}$ hands. This result is not multiplied by $5$: the hand has no first or last position.
+
+\fi
+

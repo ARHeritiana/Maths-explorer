@@ -1,0 +1,218 @@
+\mxunit{premiere-c04}{Dérivation : du taux à la tangente}\label{C04}
+\begin{keypoint}[Le parcours du chapitre]
+\textbf{Objectifs.} Interpréter un taux ; approcher un nombre dérivé ; déterminer une tangente ; comprendre les échecs de dérivabilité.
+
+\textbf{Prérequis.} Images, pente d’une droite, calcul littéral, racine carrée et valeur absolue.
+
+\textbf{Repère annuel.} 3–12 novembre : 8 h\end{keypoint}
+\section*{Diagnostic : \mxcount{diag} questions, 10 minutes}\label{C04-D}
+Répondre sans consulter le cours. Indiquer les questions pour lesquelles une aide est nécessaire. Ce diagnostic ne donne pas lieu à une note.
+\begin{enumerate}
+\item Pente de la droite passant par $\pt{1;2}$ et $\pt{3;8}$ ?
+\item Développer $(2+h)^2-4$.
+\item Simplifier $\dfrac{4h+h^2}{h}$ si $h\ne0$.
+\item Calculer $\sqrt0$ et $\sqrt{\num{0,01}}$.
+\item Calculer $|-3|$ et $|2|$.
+\item Une droite de pente 2 passe par $\pt{1;5}$. Équation ?
+\mxcounted{diag}
+\end{enumerate}
+\paragraph{Après le diagnostic.} Reprendre les notions signalées avec le professeur ; refaire une question analogue, puis expliquer la règle utilisée.
+\paragraph{Oral et logique.} Expliquer à un camarade pourquoi on simplifie le taux avant de faire tendre h vers 0. Distinguer vitesse moyenne et instantanée.
+\mxnewpage
+\section*{Chercher avant de formaliser}\label{C04-RECH}
+Pour $f(x)=x^2$, faire varier h positif et négatif autour de 0 en gardant le point A d’abscisse 1. Dessiner trois sécantes ; conjecturer une droite limite puis la déterminer sans lecture graphique.
+\paragraph{Organisation.} Recherche individuelle 5 min, confrontation à deux 5 min, mise en commun 5 min. Garder une trace d’un essai, même non abouti. Une conjecture doit ensuite être justifiée.
+\mxnewpage
+\section{Taux de variation et sécantes}\label{C04-U1}
+\begin{keypoint}[Définition et résultats]
+Pour $a\ne b$ dans le domaine de f, le taux de variation entre a et b vaut $\dfrac{f(b)-f(a)}{b-a}$. C’est la pente de la sécante passant par les points correspondants. En contexte, l’unité du taux est l’unité de f divisée par celle de la variable.
+\end{keypoint}
+\paragraph{Statut et justification.} Définition ; formule de la pente d’une droite déjà étudiée. Avec $b=a+h$, $h\ne0$, le taux devient $\dfrac{[f(a+h)-f(a)]}{h}$.
+\begin{example}Pour $f(x)=x^2$, entre 1 et 3, le taux vaut $\dfrac{9-1}{3-1}=4$. Entre 1 et $1+h$, il vaut $2+h$. Les pentes pour $h=\num{0,1}$ et $h=-\num{0,1}$ sont \num{2,1} et \num{1,9}.\end{example}\label{C04-EX1}
+\begin{pitfall}Le taux n’est pas $\dfrac{f(b)}{f(a)}$ ; h représente un écart, positif ou négatif selon le domaine.\end{pitfall}
+\begin{application}Calculer le taux de $f(x)=x^2+3x$ entre 2 et $2+h$.\end{application}\label{C04-AP1}
+\section{Nombre dérivé}\label{C04-U2}
+\begin{keypoint}[Définition et résultats]
+f est dérivable en a lorsque le taux $\dfrac{[f(a+h)-f(a)]}{h}$ tend vers un réel quand h tend vers 0, dans le domaine. Ce réel est $f\prime(a)$. On emploie ici une approche intuitive de la limite. En cinématique, si f donne une position en mètres et le temps en secondes, le nombre dérivé représente une vitesse instantanée en $\mathrm{m\,s^{-1}}$.
+\end{keypoint}
+\paragraph{Statut et justification.} Pour $f(x)=x^2$, le taux en a vaut $2a+h$, qui se rapproche de $2a$ ; ainsi $f\prime(a)=2a$. Ce calcul sera repris comme fonction dérivée au chapitre 6.
+\begin{example}Pour $s(t)=t^2+3t$, le taux autour de 2 vaut $7+h$, donc $s\prime(2)=7\ \mathrm{m\,s^{-1}}$. La vitesse moyenne sur $\intff{2}{3}$ vaut $8\ \mathrm{m\,s^{-1}}$ ; elle n’est pas la vitesse à l’instant 2.\end{example}\label{C04-EX2}
+\begin{pitfall}On ne remplace pas h par 0 dans un quotient non simplifié : on obtiendrait une division par 0.\end{pitfall}
+\begin{application}Pour $f(x)=3x^2-2x$, calculer $f\prime(1)$ à partir du taux.\end{application}\label{C04-AP2}
+\section{Tangente et approximation affine}\label{C04-U3}
+\begin{keypoint}[Définition et résultats]
+Si f est dérivable en a, la tangente au point $\pt{a;f(a)}$ a pour équation $y=f(a)+f\prime(a)(x-a)$. Pour h petit, on utilise $f(a+h)\approx f(a)+f\prime(a)h$. Cette approximation locale ne fournit pas à elle seule une borne de l’erreur.
+\end{keypoint}
+\paragraph{Statut et justification.} La tangente a pente $f\prime(a)$ et passe par $\pt{a;f(a)}$. Dans $y=f\prime(a)x+p$, substituer ce point donne $p=f(a)-af\prime(a)$, d’où l’équation.
+\begin{example}Pour $f(x)=x^2$ en 2, tangente $y=4+4(x-2)=4x-4$. On approche $\num{2,01}^2$ par $4+4(\num{0,01})=\num{4,04}$ ; la valeur exacte est $\num{4,0401}$, écart $\num{0,0001}=h^2$.\end{example}\label{C04-EX3}
+\mxinclude{figures/C04-U3}
+\begin{pitfall}Une tangente peut recouper la courbe ailleurs. « Un seul point commun » n’est pas une définition.\end{pitfall}
+\begin{application}On donne $f(3)=5$ et $f\prime(3)=-2$. Écrire la tangente et approcher $f(\num{3,04})$.\end{application}\label{C04-AP3}
+\section{Quand la dérivabilité échoue}\label{C04-U4}
+\begin{keypoint}[Définition et résultats]
+La fonction racine carrée est définie sur $\intfo{0}{+\infty}$ mais n’est pas dérivable en 0. La fonction valeur absolue est définie sur $\R$ mais n’est pas dérivable en 0. Être définie ou avoir une courbe continue ne garantit donc pas la dérivabilité.
+\end{keypoint}
+\paragraph{Statut et justification.} Pour $h>0$, $\dfrac{\sqrt h-0}{h}=\dfrac{1}{\sqrt h}$, qui ne tend pas vers un réel fini lorsque h se rapproche de 0. Pour $|x|$, le taux $\dfrac{|h|}{h}$ vaut 1 à droite et $-1$ à gauche : pas de valeur commune.
+\begin{example}Pour $|x|$, les sécantes issues de l’origine ont toutes pente 1 à droite et $-1$ à gauche. Le point anguleux ne possède pas une tangente de pente finie unique. Pour la racine, la direction limite est verticale ; il n’y a pas de nombre dérivé réel.\end{example}\label{C04-EX4}
+\begin{pitfall}Une pente très grande n’est pas une preuve de non-dérivabilité ; il faut expliquer le comportement du taux.\end{pitfall}
+\begin{application}Justifier que $g(x)=|x-2|$ n’est pas dérivable en 2. Étudier aussi la dérivabilité de $x\mapsto\sqrt{x}$ en 0 par son taux.\end{application}\label{C04-AP4}
+\mxnewpage
+\section*{Parcours d’exercices}\label{C04-PARC}
+Commencer par les exercices 1 et 2. Choisir ensuite un exercice 3 ou 4 sans aide. Les exercices 5 à 7 sont une réserve de transfert, de recherche ou de programmation : le professeur en désigne un. L’exercice 8 se reprend à distance.
+\begingroup
+\mxexercisehead{C04-E1}{Deux sécantes}
+La fonction $f$ est définie sur $\R$ par $f(x)=x^2-1$. On note $A$ le point de sa courbe d’abscisse 1.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer le coefficient directeur de la sécante joignant $A$ au point de la courbe d’abscisse 2.
+\item Reprendre le calcul avec le point de la courbe d’abscisse $\num{1,1}$.
+\item Après l’étude du nombre dérivé, déterminer $f\prime(1)$ et comparer cette valeur aux deux taux calculés. Expliquer ce qui change lorsque le second point se rapproche de $A$.
+\end{enumerate}
+\mxexercisehead{C04-E2}{Une tangente}
+On considère la fonction $f(x)=2x^2+1$, définie sur $\R$. L’objectif est de déterminer l’équation de sa tangente au point d’abscisse $-1$, en partant du taux de variation.
+\begin{enumerate}[label=\arabic*.]
+\item Pour $h\ne0$, écrire puis simplifier $\dfrac{f(-1+h)-f(-1)}{h}$.
+\item En déduire $f\prime(-1)$. Calculer également $f(-1)$.
+\item Écrire l’équation réduite de la tangente et vérifier qu’elle passe par le point de contact.
+\end{enumerate}
+\mxexercisehead{C04-E3}{Coût marginal}
+Une entreprise utilise le modèle $C(q)=q^2+20q+100$, où $q\geq0$ désigne la quantité produite et $C(q)$ son coût en unités monétaires. Le modèle prolonge la quantité par une variable réelle afin d’étudier de petites variations de production.
+\begin{enumerate}[label=\arabic*.]
+\item Calculer $C(10)$ et $C(11)$, puis le taux de variation de $C$ entre 10 et 11. Interpréter ce taux dans le contexte.
+\item À partir du taux entre 10 et $10+h$, déterminer $C\prime(10)$.
+\item Comparer les deux résultats. Expliquer pourquoi le coût d’une unité supplémentaire n’est pas exactement égal au nombre dérivé dans ce modèle.
+\end{enumerate}
+\mxexercisehead{C04-E4}{Lire une tangente}
+Cet exercice comporte deux situations indépendantes. Une tangente à une courbe est une droite : un autre point de cette droite n’appartient pas nécessairement à la courbe.
+\begin{enumerate}[label=\arabic*.]
+\item Sur la figure de la section consacrée à la tangente, lire les coordonnées de deux points de la droite verte. En déduire sa pente et vérifier la valeur annoncée dans la légende.
+\item Dans une autre situation, la tangente à la courbe d’une fonction $f$ au point $A\pt{2;3}$ passe par $B\pt{4;2}$. Déterminer $f(2)$ et $f\prime(2)$. Peut-on en déduire $f(4)$ ?
+\item Utiliser cette tangente pour proposer une valeur approchée de $f(\num{2,1})$. Faire apparaître le signe « environ égal » dans la conclusion.
+\end{enumerate}
+\mxexercisehead{C04-E5}{Contrôler une approximation}
+On souhaite approcher $\num{0,98}^2$ sans effectuer d’abord la multiplication. On utilise la tangente à la courbe de la fonction carré au point d’abscisse 1.
+\begin{enumerate}[label=\arabic*.]
+\item Écrire l’équation de cette tangente et en déduire l’approximation recherchée.
+\item Calculer ensuite la valeur exacte de $\num{0,98}^2$. On définit l’erreur par « valeur exacte moins valeur approchée » : calculer cette erreur et préciser son signe.
+\item Expliquer le résultat à partir de l’identité $(1+h)^2=1+2h+h^2$.
+\end{enumerate}
+\mxexercisehead{C04-E6}{Tangente et intersection}
+La fonction $f$ est définie sur $\R$ par $f(x)=x^3$. On admet que $f\prime(1)=3$. Un élève affirme qu’une tangente et une courbe ont toujours un seul point commun.
+\begin{enumerate}[label=\arabic*.]
+\item Déterminer l’équation de la tangente à la courbe de $f$ au point d’abscisse 1.
+\item Vérifier en développant que $x^3-3x+2=(x-1)^2(x+2)$.
+\item Déterminer tous les points d’intersection de la courbe et de cette tangente. L’affirmation de l’élève est-elle correcte ?
+\end{enumerate}
+\mxexercisehead{C04-E7}{Sécantes numériques}
+Pour étudier la fonction carré au voisinage de 1, on définit, pour $h\ne0$,\[T(h)=\dfrac{(1+h)^2-1}{h}.\]On utilisera les six valeurs $\num{0,1}$, $\num{0,01}$, $\num{0,001}$ et leurs opposés.
+\begin{enumerate}[label=\arabic*.]
+\item Écrire une fonction Python qui calcule $T(h)$, puis produire un tableau de six résultats.
+\item Conjecturer la valeur du nombre dérivé de la fonction carré en 1.
+\item Simplifier algébriquement $T(h)$ pour justifier la conjecture. Expliquer pourquoi l’essai de valeurs numériques ne suffit pas, à lui seul, à démontrer le résultat.
+\end{enumerate}
+\mxexercisehead{C04-E8}{Reprise différée}
+La fonction inverse est définie par $f(x)=\dfrac1x$ pour $x\ne0$. On l’étudie au voisinage de 1.
+\begin{enumerate}[label=\arabic*.]
+\item Préciser les valeurs interdites de $h$ dans le taux $\dfrac{f(1+h)-f(1)}h$, puis le simplifier.
+\item En déduire $f\prime(1)$ et l’équation de la tangente en 1.
+\item Utiliser cette tangente pour approcher $\dfrac1{\num{1,02}}$. Conserver la distinction entre valeur exacte et valeur approchée.
+\end{enumerate}
+\paragraph{Travail personnel.} Effectuer uniquement la tâche désignée à l’issue de la séance, dans la progression datée : 10–20 min maximum. Les exercices dépendent des notions déjà étudiées ; certaines questions sont donc différées. Reprendre l’exercice 8 une semaine après le chapitre (10 min). Si le temps prévu est dépassé, noter la difficulté et apporter les essais ; ne pas accumuler toute la réserve.
+\endgroup
+\mxneed{12}\section*{À faire dans le manuel CQFD}
+Ces exercices se traitent dans votre manuel. La progression indique la séance ; ils remplacent le travail personnel prévu ce jour-là (10 à 20 minutes au total).
+\paragraph{CQFD, exercice 17 p. 127, questions toutes.}\label{C04-M1} Lire deux points de chaque tangente ; écrire le quotient des accroissements plutôt qu’estimer son inclinaison.
+\paragraph{CQFD, exercice 19 p. 127, questions 1 et 2.}\label{C04-M2} Distinguer l’ordonnée du point de contact et la pente de la droite tangente.
+\begingroup\small
+\mxnewpage\section*{QCM 1 : comprendre et choisir}\label{C04-Q1}
+\mxCount{qcm1} questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item Taux de $x^2$ entre 1 et 2 :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $2$
+\item $3$
+\item $1$
+\item $4$
+\end{enumerate}
+\item Si $f(1)=4$, $f\prime(1)=2$, tangente :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $y=2x+2$
+\item $y=4x+2$
+\item $y=2x+4$
+\item $y=x+3$
+\end{enumerate}
+\item Le nombre dérivé est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item une fonction
+\item une aire
+\item une abscisse
+\item un réel si la dérivée existe
+\end{enumerate}
+\item Pour $x^2$ en 3, nombre dérivé :
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $9$
+\item $3$
+\item $6$
+\item $12$
+\end{enumerate}
+\item L’approximation de $f(a+h)$ est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $f(a)f\prime(a)$
+\item $f(a)+hf\prime(a)$
+\item $f(a)+f\prime(h)$
+\item $hf(a)$
+\end{enumerate}
+\mxcounted{qcm1}
+\end{enumerate}
+\endgroup
+\begingroup\small
+\mxneed{18}\section*{QCM 2 : comprendre et choisir}\label{C04-Q2}
+\mxCount{qcm2} questions pédagogiques à réponse unique. Choisir une réponse par question ; expliquer ensuite un distracteur. Ce format de chapitre ne reproduit pas le format officiel de l’EAM.
+\begin{enumerate}
+\item $\sqrt{x}$ en 0 est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item dérivable de dérivée 0
+\item dérivable de dérivée 1
+\item non dérivable
+\item non définie
+\end{enumerate}
+\item $\dfrac{|h|}{h}$ pour $h<0$ vaut
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $-1$
+\item $1$
+\item $0$
+\item $h$
+\end{enumerate}
+\item Une tangente de pente 0 est
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item verticale
+\item oblique
+\item impossible
+\item horizontale
+\end{enumerate}
+\item Position en m et temps en s : unité de la dérivée
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item $\mathrm{m^2}$
+\item $\mathrm{m\,s^{-1}}$
+\item $\mathrm{s\,m^{-1}}$
+\item $\mathrm{m}$
+\end{enumerate}
+\item Pour f dérivable en a, remplacer $f(a+h)$ par $f(a)+hf\prime(a)$ est en général
+\begin{enumerate}[label=\Alph*.,itemsep=2pt]
+\item une identité exacte
+\item une définition de h
+\item une approximation locale
+\item toujours faux même pour une affine
+\end{enumerate}
+\mxcounted{qcm2}
+\end{enumerate}
+\subsection*{Vrai ou faux ? Justifier.}\label{C04-VF}
+\begin{enumerate}
+\item Une tangente ne peut jamais recouper une courbe.
+\item La fonction valeur absolue est dérivable en 0.
+\item Une fonction affine $mx+p$ a pour nombre dérivé m en tout réel.
+\end{enumerate}
+\begin{keypoint}[Bilan personnel]Je donne le domaine et h non nul ; je lis une pente ; j’utilise le point de tangence ; je distingue exact et approché.
+
+Pour chaque objectif, indiquer : acquis sans aide ; réussi avec aide ; à retravailler. Écrire un exemple et une erreur à éviter.\end{keypoint}
+\endgroup
+\ifmxteacher\mxinclude{corriges/C04}\fi

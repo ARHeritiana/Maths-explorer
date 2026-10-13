@@ -1,0 +1,336 @@
+% GENERATED, edit the French unit or the translation table
+
+\mxunit{stmg-c02}{Exponential Functions}
+\mxskills{model a continuous change, switch between representations, calculate, interpret}
+\section{Core Course Notes}
+For $a>0$, the function $x\mapsto a^x$ extends the integer powers of $a$ to all real numbers. It satisfies $a^0=1$ and $a^{-x}=\dfrac{1}{a^x}$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.78\textwidth,height=6cm,axis lines=middle,xmin=-3,xmax=4,ymin=-2,ymax=6,grid=major,xlabel={$x$},ylabel={$y$},legend style={at={(.03,.97)},anchor=north west,draw=none,fill=white}]
+\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.6^x};\addlegendentry{$\num{1,6}^x$}
+\addplot[mxwarn,very thick,samples=100,domain=-3:4]{0.65^x};\addlegendentry{$\num{0,65}^x$}
+\addplot[mxmint,very thick,samples=100,domain=-3:4]{-1.2*1.35^x};\addlegendentry{$-\num{1,2}\times\num{1,35}^x$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{keypoint}
+If $a>1$, $x\mapsto a^x$ is strictly increasing. If $0<a<1$, it is strictly decreasing. For $f(x)=ka^x$, multiplying by $k<0$ reverses the direction of variation. In every case, $a^x>0$.
+\end{keypoint}
+
+For $a>0$ and all real numbers $x,y$:
+\[
+a^{x+y}=a^xa^y,\qquad a^{x-y}=\frac{a^x}{a^y},\qquad (a^x)^y=a^{xy}.
+\]
+
+\begin{pitfall}
+In general, $a^x+a^y\neq a^{x+y}$. The rules apply to products and quotients, not to sums.
+\end{pitfall}
+
+\subsection{Changes and average rate}
+A quantity with initial value $V_0$ undergoing a constant relative change with multiplier $q$ is modelled by $V(t)=V_0q^t$. If an overall multiplier $Q$ results from $n$ identical changes, the average multiplier is $q=Q^{\frac1n}$ and the average rate is $t=q-1$.
+
+\begin{example}
+A company's turnover goes from $\num{80000}$ to $\num{95000}$ euros in four years. The overall multiplier is $Q=\dfrac{\num{95000}}{\num{80000}}=\num{1,1875}$. The average annual multiplier is $q=\num{1,1875}^{\frac14}\approx\num{1,0440}$: the average annual rate is therefore about $\pc{4,40}$.
+\end{example}
+
+\subsection{Solving and interpreting}
+When both sides can be written with the same base, we use injectivity: for $a>0$ and $a\neq1$, $a^u=a^v$ is equivalent to $u=v$. Otherwise, a graphical or numerical solution gives an approximate value; the common logarithm (base 10), studied later, will give a formula.
+
+\mxsession{7}{\mxdate*{2026-10-06}}{B: 2 h -- C: 1 h}{Definition and direction of variation of $a^x$}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Make sense of $a^x$.\item Link the base to the direction of variation.\item Read curves.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\item Calculate $2^4\times2^3$. \mxblank{$2^7$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: make sense of $a^x$ and link the base to the direction of variation.\end{prerequisites}
+
+\begin{activity}
+Using a calculator, complete a table of values of $\num{1,5}^x$ and $\num{0,7}^x$ for $x=-2,-1,0,1,2,3$. Plot the points, conjecture the variations and identify the point common to both curves.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}$a^0=1$, so the curves pass through $\pt{0;1}$. The first increases and the second decreases. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}For $a>0$, $a^x$ is defined for every real number $x$. The function is increasing if $a>1$ and decreasing if $0<a<1$.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$a^0=1$, so the curves pass through $\pt{0;1}$. The first increases and the second decreases.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+4}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=4\times\num{1,04}^x$ and $g(x)=-4\times\num{0,8}^x$.\item An initial value of $1350$ increases by $\pc{4}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^4$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1350\times\left(1+\dfrac{4}{100}\right)^t$.\end{solution}
+
+\mxexuse{7}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $155$ and the rate or common difference/ratio by $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{8}{\mxdate*{2026-10-08}}{B: 1 h -- C: 2 h}{Powers and algebraic rules}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Transform powers.\item Use negative exponents.\item Spot a rule that does not apply.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+4-x+2$. \mxblank{$2x+6$}\item Calculate $2^1\times2^3$. \mxblank{$2^4$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: transform powers and use negative exponents.\end{prerequisites}
+
+\begin{activity}
+Simplify $2^3\times2^{-5}$, $5^{x+2}\div5^x$ and $(3^x)^2$. Then invent a numerical counterexample to $a^x+a^y=a^{x+y}$.
+
+\end{activity}
+\begin{solution}We get $2^{-2}=\dfrac14$, $5^2=25$ and $3^{2x}$. With $a=2,x=y=1$, $2+2\neq4$? Here the equality holds by accident; choose $a=3$: $3+3\neq9$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}$a^{x+y}=a^xa^y$, $a^{x-y}=\dfrac{a^x}{a^y}$ and $(a^x)^y=a^{xy}$. These rules require the same positive base.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}We get $2^{-2}=\dfrac14$, $5^2=25$ and $3^{2x}$. With $a=2,x=y=1$, $2+2\neq4$? Here the equality holds by accident; choose $a=3$: $3+3\neq9$.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+5}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=5\times\num{1,05}^x$ and $g(x)=-5\times\num{0,8}^x$.\item An initial value of $1400$ increases by $\pc{5}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^5$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1400\times\left(1+\dfrac{5}{100}\right)^t$.\end{solution}
+
+\mxexuse{8}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $160$ and the rate or common difference/ratio by $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{9}{\mxdate*{2026-10-13}}{B: 2 h -- C: 1 h}{Functions $x\mapsto k a^x$: variation and graph}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Study $ka^x$.\item Combine sign and variation.\item Link formula and graph.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $100$. \mxblank{$20$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\item Calculate $2^2\times2^3$. \mxblank{$2^5$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: study $ka^x$ and combine sign and variation.\end{prerequisites}
+
+\begin{activity}
+Match the four functions $2^x$, $\num{0,6}^x$, $-2^x$ and $-\num{0,6}^x$ to four curves. Justify each choice using the sign, the \textit{y}-intercept and the direction of variation.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}All have absolute value $1$ at $0$. The sign distinguishes the two pairs; the base and the sign of the coefficient determine the variation. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}For $f(x)=ka^x$, the sign is that of $k$. If $k<0$, multiplying by $k$ reverses the direction of variation of $a^x$.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}All have absolute value $1$ at $0$. The sign distinguishes the two pairs; the base and the sign of the coefficient determine the variation.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+6}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=6\times\num{1,06}^x$ and $g(x)=-6\times\num{0,8}^x$.\item An initial value of $1450$ increases by $\pc{6}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^6$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1450\times\left(1+\dfrac{6}{100}\right)^t$.\end{solution}
+
+\mxexuse{9}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $165$ and the rate or common difference/ratio by $5$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{10}{\mxdate*{2026-10-15}}{B: 1 h -- C: 2 h}{Average rate of change}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Calculate an average rate.\item Distinguish overall and average rates.\item Interpret an exponent $\frac1n$.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\item Calculate $2^3\times2^3$. \mxblank{$2^6$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: calculate an average rate and distinguish overall and average rates.\end{prerequisites}
+
+\begin{activity}
+The price of a service goes from $18$ to $\num{23,50}$ euros in five years. Calculate the overall multiplier, then the average annual multiplier and the average annual rate. Check by applying the change five times in a row.
+
+\end{activity}
+\begin{solution}$Q=\dfrac{\num{23,5}}{18}\approx\num{1,3056}$, $q=Q^{\frac15}\approx\num{1,0548}$, that is, about $\pc{5,48}$ per year. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}If $Q$ is the overall multiplier of $n$ identical changes, the average multiplier is $q=Q^{\frac1n}$ and the average rate is $q-1$.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$Q=\dfrac{\num{23,5}}{18}\approx\num{1,3056}$, $q=Q^{\frac15}\approx\num{1,0548}$, that is, about $\pc{5,48}$ per year.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+2}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=2\times\num{1,02}^x$ and $g(x)=-2\times\num{0,8}^x$.\item An initial value of $1500$ increases by $\pc{2}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^2$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1500\times\left(1+\dfrac{2}{100}\right)^t$.\end{solution}
+
+\mxexuse{10}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $170$ and the rate or common difference/ratio by $6$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{11}{\mxdate*{2026-11-03}}{B: 2 h -- C: 1 h}{Reading graphical representations}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Read outputs and find the inputs that give them.\item Compare two models.\item Estimate graphically.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+7-x+2$. \mxblank{$2x+9$}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\item Calculate $2^4\times2^3$. \mxblank{$2^7$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: read outputs and find the inputs that give them and compare two models.\end{prerequisites}
+
+\begin{activity}
+Two commercial offers are modelled by $f(x)=120\times\num{1,08}^x$ and $g(x)=180\times\num{0,96}^x$. Draw the curves on $[0,12]$, read off their point of intersection and interpret the regions where each value is the greater.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}The graph places the intersection near $x\approx\num{3,5}$. Before that point $g$ is greater; after it, $f$ is greater. An approximate value is expected. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}Reading $f(x)$ means going from $x$ to the curve and then to the \textit{y}-axis. Finding an input for a given $y$ means going from $y$ to the curve and then to the \textit{x}-axis.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The graph places the intersection near $x\approx\num{3,5}$. Before that point $g$ is greater; after it, $f$ is greater. An approximate value is expected.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+3}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=3\times\num{1,03}^x$ and $g(x)=-3\times\num{0,8}^x$.\item An initial value of $1550$ increases by $\pc{3}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^3$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1550\times\left(1+\dfrac{3}{100}\right)^t$.\end{solution}
+
+\mxexuse{11}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $175$ and the rate or common difference/ratio by $7$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{12}{\mxdate*{2026-11-05}}{B: 1 h -- C: 2 h}{Simple exponential equations}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Solve using a common base.\item Approximate a solution.\item Check plausibility.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $160$. \mxblank{$8$}\item Calculate $2^1\times2^3$. \mxblank{$2^4$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: solve using a common base and approximate a solution.\end{prerequisites}
+
+\begin{activity}
+Solve $4^x=64$, $9^x=\dfrac13$ and $\num{1,12}^x=2$: first using a common base when possible, then numerically for the last one. Bracket the last solution between two integers.
+
+\end{activity}
+\begin{solution}$x=3$; $9^x=3^{-1}$ so $2x=-1$ and $x=-\dfrac12$; finally $x\approx\num{6,12}$, between $6$ and $7$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}To solve $a^x=b$: use a common base when possible; otherwise bracket the solution or use a numerical tool. Check that $b>0$.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$x=3$; $9^x=3^{-1}$ so $2x=-1$ and $x=-\dfrac12$; finally $x\approx\num{6,12}$, between $6$ and $7$.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+4}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=4\times\num{1,04}^x$ and $g(x)=-4\times\num{0,8}^x$.\item An initial value of $1600$ increases by $\pc{4}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^4$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1600\times\left(1+\dfrac{4}{100}\right)^t$.\end{solution}
+
+\mxexuse{12}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $180$ and the rate or common difference/ratio by $2$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{13}{\mxdate*{2026-11-10}}{B: 2 h -- C: 1 h}{Modelling with an exponential function}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Build an exponential model.\item Identify the parameters.\item Predict and interpret.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{10}$ increase. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\item Calculate $2^2\times2^3$. \mxblank{$2^5$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: build an exponential model and identify the parameters.\end{prerequisites}
+
+\begin{activity}
+An app has $\num{12000}$ users at launch and its usage grows by $\pc{9}$ per month. Build $f(t)$, calculate $f(6)$, then determine numerically when it will exceed $\num{25000}$ users.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\end{activity}
+\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20126}$. The threshold is exceeded from the ninth month onwards. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}A constant relative change with multiplier $q$ is modelled by $f(t)=V_0q^t$. $V_0$ is the initial value and $q$ the multiplier per unit of time.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20126}$. The threshold is exceeded from the ninth month onwards.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+5}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=5\times\num{1,05}^x$ and $g(x)=-5\times\num{0,8}^x$.\item An initial value of $1650$ increases by $\pc{5}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^5$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1650\times\left(1+\dfrac{5}{100}\right)^t$.\end{solution}
+
+\mxexuse{13}
+
+\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $185$ and the rate or common difference/ratio by $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi
+\mxsession{14}{\mxdate*{2026-11-12}}{B: 1 h -- C: 2 h}{Review and chapter assessment}{Exponential Functions}
+\begin{objectives}\begin{itemize}\item Use what the chapter has covered.\item Write up a modelling solution.\item Correct a mistake.\end{itemize}\end{objectives}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+3-x+2$. \mxblank{$2x+5$}\item Is the function $x\mapsto\num{0,7}^x$ increasing? \mxblank{No, it is decreasing.}\item Compare $\num{1,04}^3$ and $\num{1,04}^7$. \mxblank{$\num{1,04}^3<\num{1,04}^7$}\item Calculate $2^4\times2^3$. \mxblank{$2^7$}\item Write $5^{-2}$ as a fraction. \mxblank{$\dfrac1{25}$}\end{enumerate}\end{fluency}
+\begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: use what the chapter has covered and write up a modelling solution.\end{prerequisites}
+
+\begin{activity}
+Using four pieces of student work, spot and correct: rate/multiplier confusion, a false power rule, an error in the direction of variation and a conclusion without a unit.
+
+\end{activity}
+\begin{solution}The correction must name the mistake, state the correct rule, redo the calculation and conclude in context. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+
+\begin{summary}To validate an exponential model: identify $V_0$ and $q$, calculate with the units, check the order of magnitude and interpret the result.\end{summary}
+
+\begin{example}
+Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{example}
+\begin{solution}The correction must name the mistake, state the correct rule, redo the calculation and conclude in context.\end{solution}
+
+\begin{exercise}[essential]
+\begin{enumerate}\item Simplify $3^{x+6}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=6\times\num{1,06}^x$ and $g(x)=-6\times\num{0,8}^x$.\item An initial value of $1700$ increases by $\pc{6}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
+\end{exercise}
+\begin{solution}$3^6$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1700\times\left(1+\dfrac{6}{100}\right)^t$.\end{solution}
+
+\mxexuse{14}
+
+\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $190$ and the rate or common difference/ratio by $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
+
+\begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
+
+\ifmxteacher
+\begin{method}
+\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
+\end{method}
+\fi

@@ -1,0 +1,89 @@
+{
+ "unit": "invariants-solutions.fr.tex",
+ "segments": {
+  "b058012da0f1": {
+   "fr": "Parité et invariants",
+   "en": "Parity and invariants",
+   "status": "aligned",
+   "order": 0
+  },
+  "28768685dfa1": {
+   "fr": "Seconde · raisonnement",
+   "en": "High school · reasoning",
+   "status": "aligned",
+   "order": 1
+  },
+  "db2fd0bfdf52": {
+   "fr": "Solutions détaillées",
+   "en": "Worked solutions",
+   "status": "aligned",
+   "order": 2
+  },
+  "92419e3395fe": {
+   "fr": "On part de 7 et on ajoute ou retranche 4 à chaque coup. Peut-on atteindre 20 ? Et 23 ?",
+   "en": "Start at 7 and add or subtract 4 each move. Can you reach 20? What about 23?",
+   "status": "aligned",
+   "order": 3
+  },
+  "13957d8951c9": {
+   "fr": "Tout résultat est congru à 7 modulo 4, donc à 3. Comme 20 est congru à 0, il est inaccessible. Quatre additions de 4 donnent 23.",
+   "en": "Every result is congruent to 7 modulo 4, hence to 3. Since 20 is congruent to 0, it is unreachable. Four additions of 4 give 23.",
+   "status": "aligned",
+   "order": 4
+  },
+  "7662e4105821": {
+   "fr": "Un produit de cinq nombres égaux à 1 ou [[m1]] vaut [[m2]]. Montrer qu’il est impossible de rendre tous les nombres positifs en changeant deux signes à chaque coup.",
+   "en": "Five numbers, each 1 or [[m1]], have product [[m2]]. Prove that changing two signs per move cannot make all five positive.",
+   "status": "aligned",
+   "order": 5
+  },
+  "71d81aa5b009": {
+   "fr": "Chaque changement de deux signes multiplie le produit par [[m1]]. Le produit reste [[m2]], alors que cinq signes positifs donnent 1.",
+   "en": "Changing two signs multiplies the product by [[m1]]. The product stays [[m2]], whereas five positive signs give 1.",
+   "status": "aligned",
+   "order": 6
+  },
+  "dbdcd626578b": {
+   "fr": "On remplace deux entiers a et b par [[m1]]. Quel invariant conserve cette opération ?",
+   "en": "Replace two integers a and b by [[m1]]. What invariant does this preserve?",
+   "status": "aligned",
+   "order": 7
+  },
+  "c3b1c6acf9ae": {
+   "fr": "La somme de tous les entiers reste constante : la contribution [[m1]] des deux termes est remplacée par le même nombre.",
+   "en": "The sum of all integers stays constant: the two terms contributing [[m1]] are replaced by that same number.",
+   "status": "aligned",
+   "order": 8
+  },
+  "4d31948b28ec": {
+   "fr": "Pourquoi deux états ayant la même parité ne sont-ils pas nécessairement reliés par les coups autorisés ? Donner un exemple.",
+   "en": "Why need two states of the same parity not be connected by allowed moves? Give an example.",
+   "status": "aligned",
+   "order": 9
+  },
+  "88c3adc29d2f": {
+   "fr": "La parité donne seulement une condition nécessaire. Avec des pas de 6 depuis 0, la cible 2 est paire, mais n’est pas multiple de 6.",
+   "en": "Parity gives only a necessary condition. With steps of 6 from 0, the target 2 is even but is not a multiple of 6.",
+   "status": "aligned",
+   "order": 10
+  },
+  "7541c663b666": {
+   "fr": "Chercher, justifier, conclure",
+   "en": "Investigate, justify, conclude",
+   "status": "aligned",
+   "order": 11
+  },
+  "823bb6407b88": {
+   "fr": "Un échiquier [[m1]] est colorié alternativement en noir et blanc. On retire deux coins diagonalement opposés. Peut-on recouvrir les 62 cases restantes par 31 dominos [[m2]], chaque domino couvrant deux cases voisines par un côté ? Compter les couleurs retirées et les couleurs couvertes par un domino. Comparer avec le retrait de deux coins voisins.",
+   "en": "An [[m1]] chessboard is coloured alternately black and white. Remove two diagonally opposite corners. Can the 62 remaining squares be tiled by 31 dominoes of size [[m2]], each covering two edge-adjacent squares? Count the removed colours and those covered by a domino. Compare with removing two neighbouring corners.",
+   "status": "aligned",
+   "order": 12
+  },
+  "5f8969da78f3": {
+   "fr": "Les coins opposés ont la même couleur. Il reste 30 cases de cette couleur et 32 de l’autre. Chaque domino couvre une case de chaque couleur : 31 dominos exigeraient 31 de chaque, donc le pavage est impossible. Deux coins voisins ont des couleurs différentes. Dans ce cas, un pavage existe : pour les deux coins supérieurs retirés, placer trois dominos horizontaux dans la première ligne et quatre dans chacune des sept autres lignes. Une rotation traite les autres côtés.",
+   "en": "Opposite corners have the same colour, leaving 30 squares of that colour and 32 of the other. Each domino covers one of each; 31 dominoes would need 31 of each, so tiling is impossible. Neighbouring corners have different colours. A tiling then exists: after removing the two top corners, place three horizontal dominoes in the first row and four in each of the other seven rows. Rotate this construction for the other sides.",
+   "status": "aligned",
+   "order": 13
+  }
+ }
+}
