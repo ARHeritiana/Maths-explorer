@@ -789,7 +789,10 @@ export const pathways = [
     sourceName:["MEN · Programmes et options du lycée","Ministry · Lycée programmes and options"]
   },
   {
-    id:"ib",label:"IB",name:["International Baccalaureate","International Baccalaureate"],
+    id:"int",label:"INT",icon:"globe",name:["International","International"],
+    intro:["Deux référentiels pour commencer : le Baccalauréat International (IB) et le SAT. Les placements sont pédagogiques et indicatifs ; les explorations couvrent une partie seulement de chaque référentiel.","Two frameworks to start with: the International Baccalaureate (IB) and the SAT. Placements are pedagogical suggestions; the explorations cover only part of each framework."],
+    programmes:[{
+    id:"ib",name:["Baccalauréat International (IB)","International Baccalaureate (IB)"],
     intro:["AA = Analysis and Approaches ; AI = Applications and Interpretation. SL = niveau moyen ; HL = niveau supérieur. Les repères ci-dessous distinguent le programme actuel (première évaluation 2021) des changements pour la première évaluation 2029.","AA = Analysis and Approaches; AI = Applications and Interpretation. SL = standard level; HL = higher level. These guides distinguish the current syllabus (first assessment 2021) from changes for first assessment 2029."],
     stages:[
       {name:["AA & AI · SL/HL · Idées communes","AA & AI · SL/HL · Shared ideas"],ids:["quadratic","sequences","statistics","probability","derivative","integral"]},
@@ -800,5 +803,20 @@ export const pathways = [
     ],
     source:"https://ibo.org/programmes/diploma-programme/curriculum/mathematics/",
     sourceName:["IB · Cours actuels et première évaluation 2029","IB · Current courses and first assessment 2029"]
+  },{
+    id:"sat",name:["SAT Math","SAT Math"],
+    intro:["Le SAT numérique comporte une section de mathématiques de 44 questions en deux modules, répartie en quatre domaines. Les parts indiquées sont approximatives et varient d’un document à l’autre : vérifie la fiche College Board en vigueur. Dérivation et intégration ne figurent pas dans ces domaines.","The digital SAT has one maths section of 44 questions in two modules, split across four domains. The shares shown are approximate and differ between documents: check the current College Board specification. Differentiation and integration are not among these domains."],
+    stages:[
+      {name:["Algèbre · environ 35 %","Algebra · about 35%"],ids:[],note:["Équations et inéquations affines, fonctions affines, systèmes de deux équations. Pas encore d’exploration dédiée.","Linear equations and inequalities, linear functions, systems of two equations. No dedicated exploration yet."]},
+      {name:["Mathématiques avancées · environ 35 %","Advanced math · about 35%"],ids:["quadratic","sequences"],note:["Équations et fonctions non linéaires : quadratiques, exponentielles, polynomiales. Les suites géométriques donnent le modèle discret de la croissance exponentielle.","Nonlinear equations and functions: quadratic, exponential, polynomial. Geometric sequences give the discrete model of exponential growth."]},
+      {name:["Résolution de problèmes et analyse de données · environ 15 %","Problem-solving and data analysis · about 15%"],ids:["statistics","probability"],note:["Données à une et deux variables, probabilités. Probabilités conditionnelles, marge d’erreur, rapports et pourcentages : pas encore couverts.","One- and two-variable data, probability. Conditional probability, margin of error, ratios and percentages: not yet covered."]},
+      {name:["Géométrie et trigonométrie · environ 15 %","Geometry and trigonometry · about 15%"],ids:["trig"],note:["Triangles rectangles et trigonométrie. Aires, volumes, angles et cercles : pas encore couverts.","Right triangles and trigonometry. Area, volume, angles and circles: not yet covered."]}
+    ],
+    source:"https://satsuite.collegeboard.org/sat/whats-on-the-test/math/overview",
+    sourceName:["College Board · SAT, section Mathématiques (consulté le 13 octobre 2026)","College Board · SAT Math section (consulted 13 October 2026)"]
+  }]
   }
 ];
+
+// Stages of a pathway, whether it lists them directly or through programmes.
+export const pathwayStages = (p) => (p.programmes ? p.programmes.flatMap((x) => x.stages) : p.stages);

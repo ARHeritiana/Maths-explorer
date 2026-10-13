@@ -42,7 +42,7 @@ You are a collaborator on Maths Explorer, a static, bilingual, experiment-first 
 2. Malagasy Terminale (T12), all series, in the order S, then OSE, then L.
 3. Olympiad: progressive, Malagasy, then Pan-African, then international.
 4. Rest of the Malagasy curriculum.
-5. IB (English). Decided: AA first (SL and HL on a shared core, HL extensions clearly marked), then AI (SL and HL). Verify every item against the current IB subject guides before writing [VERIFY]. The earlier repo audit says complex numbers leave AI HL for first assessment in 2029 [VERIFY].
+5. International (English): the pathway is labelled "International" and holds the IB and, since 13 October 2026, the SAT (Math section, four College Board domains). IB: Decided: AA first (SL and HL on a shared core, HL extensions clearly marked), then AI (SL and HL). Verify every item against the current IB subject guides before writing [VERIFY]. The earlier repo audit says complex numbers leave AI HL for first assessment in 2029 [VERIFY].
 6. University basics: calculus, analysis, algebra, narrow and basics only. Decided: last in rank; start only once each of items 1 to 4 has at least one audited pilot chapter.
 
 Programme references (French), checked on 12 October 2026 on the Eduscol page "Programmes et ressources en mathématiques - voie GT" and the BO index. [VERIFY] before relying on a detail.

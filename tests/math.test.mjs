@@ -10,7 +10,7 @@ import {
   riemann,
   isAnswer,
 } from "../dist/js/math.js";
-import { labs, challenges, pathways } from "../dist/js/content.js";
+import { labs, challenges, pathways, pathwayStages } from "../dist/js/content.js";
 
 test("quadratics handle two, one and no roots and degenerate equations", () => {
   assert.deepEqual(quadratic(1, 0, -4).roots, [-2, 2]);
@@ -112,6 +112,6 @@ test("content links resolve and all learning content has two language versions",
     assert.equal(c.hints.length, 2);
   }
   for (const p of pathways)
-    for (const stage of p.stages)
+    for (const stage of pathwayStages(p))
       for (const id of stage.ids) assert.ok(labs.some((l) => l.id === id));
 });

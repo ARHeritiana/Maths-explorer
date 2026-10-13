@@ -200,7 +200,7 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .pathway-card h2 { font-size: 1.35rem; }
 .pathway-card > p { color: var(--ink-2); }
 .pathway-card .stage { margin-top: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
-.pathway-card .stage h3 { color: var(--muted); font: 700 0.95rem var(--body); letter-spacing: 0; }
+.pathway-card .stage h3, .pathway-card .stage h4 { color: var(--muted); font: 700 0.95rem var(--body); letter-spacing: 0; }
 .pathway-card .stage ul { list-style: none; padding: 0; margin: 4px 0 0; }
 .pathway-card .stage li a { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 4px 0; transition: color var(--t); }
 .pathway-card .stage li a:hover { color: var(--accent); }
@@ -488,3 +488,9 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .activity { padding: 14px; margin-left: -4px; margin-right: -4px; }
   .doors, .pick-grid { gap: 3px; }
 }
+
+.programme { margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--line-strong); }
+.programme-title { font-size: 1.2rem; margin-bottom: 6px; }
+.programme > p { color: var(--ink-2); font-size: 0.98rem; }
+.pathway-card.has-programmes { grid-column: 1 / -1; }
+.programmes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 0 32px; }

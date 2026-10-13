@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { quadratic, riemann, squareSecant, formatNumber, axisTicks } from "../dist/js/math.js";
-import { labs, challenges, pathways } from "../dist/js/content.js";
+import { labs, challenges, pathways, pathwayStages } from "../dist/js/content.js";
 const near = (a,b) => assert.ok(Math.abs(a-b) < 1e-10, `${a} != ${b}`);
 
 test("unequal quadratic roots retain the small nonzero root", () => {
@@ -50,7 +50,7 @@ test("all reasoning, presets and pathway notes are bilingual and valid", () => {
     values.forEach((v,i)=>{const [_,lo,hi,step]=l.params[i];assert.ok(v>=lo && v<=hi);near((v-lo)/step,Math.round((v-lo)/step));});
     assert.match(l.source,/^https:\/\/mathshistory.st-andrews.ac.uk\//);
   }
-  for (const p of pathways) for (const s of p.stages) {
+  for (const p of pathways) for (const s of pathwayStages(p)) {
     assert.ok(s.name.length===2 && s.name.every(Boolean));
     if(s.note) assert.ok(s.note.length===2 && s.note.every(Boolean));
   }
