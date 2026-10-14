@@ -655,3 +655,22 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .var-choice legend { font-weight: 700; float: left; margin-right: 12px; padding: 0; }
 .var-choice label { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 .var-choice input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* Laboratory objects (Galton board, Reuleaux, Platonic solids, chaos game) */
+.object-stage { display: grid; gap: 12px; margin-top: 8px; }
+.obj-stage { display: grid; gap: 10px; }
+.obj-canvas { display: block; width: 100%; height: auto; max-width: 100%; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); touch-action: manipulation; }
+.obj-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 4px; }
+.obj-tabs button { min-height: 40px; padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.obj-tabs button[aria-pressed="true"], .obj-tabs button[aria-selected="true"] { background: var(--ink); color: var(--surface); border-color: transparent; }
+.pl-why-grid { display: grid; gap: 14px; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+@media (max-width: 760px) { .pl-why-grid { grid-template-columns: minmax(0, 1fr); } }
+#pl-table { overflow-x: auto; }
+.pl-table { border-collapse: separate; border-spacing: 3px; width: 100%; table-layout: fixed; }
+.pl-table th, .pl-table td { padding: 2px; font-size: 0.85rem; text-align: center; }
+.pl-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 48px; padding: 4px 2px; border-radius: 6px; border: 2px solid transparent; font: 600 0.85rem var(--math); color: var(--ink); background: var(--sunken); cursor: pointer; }
+.pl-cell span { font: 500 0.66rem var(--body); line-height: 1.15; overflow-wrap: normal; }
+.pl-cell.solid { background: color-mix(in srgb, var(--c3) 30%, var(--surface)); }
+.pl-cell.flat { background: color-mix(in srgb, var(--c4) 30%, var(--surface)); }
+.pl-cell.overlap { background: color-mix(in srgb, var(--c1) 18%, var(--surface)); }
+.pl-cell.sel { border-color: var(--ink); }

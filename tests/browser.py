@@ -258,6 +258,23 @@ with sync_playwright() as p:
         tp.wait_for_timeout(200)
         assert tp.locator('.dom[data-d]').count() == 1 and abs(tp.evaluate('scrollY') - y0) < 5, 'a finger dragging a domino must not scroll the page'
         touch.close()
+    # Laboratory objects: each scene mounts, draws on a canvas, reacts, stays inside the viewport and its quiz works.
+    OBJECTS = {'galton':'0.375','reuleaux':'6','platonic':'30','chaos':'27'}
+    for width in [1280,390]:
+        page.set_viewport_size({'width':width,'height':900})
+        for lab,answer in OBJECTS.items():
+            page.goto(BASE+'/#lab/'+lab)
+            page.locator('#object-stage canvas').first.wait_for()
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), (width,lab)
+            assert not page.locator('#plot').count()
+            page.fill('#quiz-answer', answer); page.locator('#lab-quiz button[type=submit]').click()
+            assert page.locator('#quiz-feedback').inner_text().strip(), lab
+    page.set_viewport_size({'width':1280,'height':900})
+    page.goto(BASE+'/#lab/galton'); page.get_by_role('button', name='+ 100').or_(page.get_by_role('button', name='Add 100')).first.click(); page.wait_for_timeout(300)
+    assert 'billes' in page.locator('.act-readout').first.inner_text() or 'balls' in page.locator('.act-readout').first.inner_text()
+    page.goto(BASE+'/#lab/platonic'); page.get_by_role('tab', name='Pourquoi seulement cinq ?').click()
+    assert page.locator('.pl-cell.solid').count() == 5, 'exactly five (p, q) pairs make a solid'
+    page.locator('.pl-cell[data-p="4"][data-q="4"]').click(); assert 'plat' in page.locator('#object-stage').inner_text()
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')

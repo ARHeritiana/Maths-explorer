@@ -451,6 +451,106 @@ export const labs = [
     ],
     source: "https://mathshistory.st-andrews.ac.uk/Biographies/Bombelli/",
   },
+  {
+    id: "galton",
+    custom: true,
+    symbol: "∴",
+    group: ["Données & hasard", "Data & chance"],
+    title: ["La planche de Galton", "The Galton board"],
+    short: ["Planche de Galton", "Galton board"],
+    intro: ["Des billes tombent entre des clous : à chaque clou, gauche ou droite. Pourquoi une cloche apparaît-elle ?", "Balls fall through pegs: left or right at every peg. Why does a bell shape appear?"],
+    prereq: ["Probabilités, triangle de Pascal", "Probability, Pascal’s triangle"],
+    formula: "",
+    params: [],
+    steps: [
+      ["Fais tomber quelques billes, puis des centaines. La forme se stabilise-t-elle ?", "Drop a few balls, then hundreds. Does the shape settle down?"],
+      ["Change p : où se déplace le sommet ? Compare avec la courbe binomiale.", "Change p: where does the peak move? Compare with the binomial curve."],
+      ["Compte les trajets menant à chaque case : retrouves-tu une ligne du triangle de Pascal ?", "Count the paths to each bin: do you recognise a row of Pascal’s triangle?"],
+    ],
+    quiz: ["Une planche de Galton a 4 rangées de clous et p = 1/2. Quelle est la probabilité qu’une bille termine dans la case centrale ? (décimal ou fraction)", "A Galton board has 4 rows of pegs and p = 1/2. What is the probability that a ball ends in the central bin? (decimal or fraction)"],
+    answer: 0.375,
+    explain: ["Il y a 2⁴ = 16 trajets équiprobables ; ceux qui comptent 2 droites et 2 gauches sont C(4,2) = 6. Donc 6/16 = 3/8 = 0,375.", "There are 2⁴ = 16 equally likely paths; those with 2 rights and 2 lefts number C(4,2) = 6. So 6/16 = 3/8 = 0.375."],
+    history: ["Galton · 1889", "Galton · 1889"],
+    story: ["Francis Galton a imaginé cette planche pour montrer comment de nombreux petits hasards indépendants se combinent en une loi régulière, ancêtre intuitif du théorème central limite.", "Francis Galton devised this board to show how many small independent chances combine into a regular law, an intuitive forerunner of the central limit theorem."],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Galton/",
+    duration: 8,
+    level: ["Première · Terminale", "Intermediate"],
+  },
+  {
+    id: "reuleaux",
+    custom: true,
+    symbol: "◇",
+    group: ["Géométrie", "Geometry"],
+    title: ["Les courbes de largeur constante", "Curves of constant width"],
+    short: ["Triangle de Reuleaux", "Reuleaux triangle"],
+    intro: ["Un triangle aux côtés bombés qui roule aussi bien qu’un disque, et qui perce des trous presque carrés. Comment est-ce possible ?", "A triangle with bulging sides that rolls as well as a disc and drills almost-square holes. How is that possible?"],
+    prereq: ["Cercles, arcs, périmètre", "Circles, arcs, perimeter"],
+    formula: "",
+    params: [],
+    steps: [
+      ["Fais tourner la forme : la distance entre deux droites parallèles qui l’enserrent change-t-elle ?", "Rotate the shape: does the distance between two parallel lines enclosing it change?"],
+      ["Passe de 3 à 5, 7, 9 sommets. Que devient le périmètre ? Et l’aire ?", "Go from 3 to 5, 7, 9 vertices. What happens to the perimeter? And the area?"],
+      ["Compare l’aire avec celle du disque de même largeur : laquelle est maximale ?", "Compare the area with that of the disc of the same width: which is larger?"],
+    ],
+    quiz: ["Un triangle de Reuleaux a un périmètre de 6π cm. Quelle est sa largeur, en cm ?", "A Reuleaux triangle has perimeter 6π cm. What is its width, in cm?"],
+    answer: 6,
+    explain: ["Une courbe de largeur constante w a pour périmètre πw (théorème de Barbier). Donc πw = 6π et w = 6 cm.", "A curve of constant width w has perimeter πw (Barbier’s theorem). So πw = 6π and w = 6 cm."],
+    history: ["Reuleaux · 1875", "Reuleaux · 1875"],
+    story: ["Franz Reuleaux étudia ces courbes en cinématique des mécanismes. Barbier avait montré dès 1860 que toutes les courbes de même largeur ont le même périmètre.", "Franz Reuleaux studied these curves in the kinematics of mechanisms. Barbier had shown in 1860 that all curves of the same width have the same perimeter."],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Reuleaux/",
+    duration: 10,
+    level: ["Première · Terminale", "Intermediate"],
+  },
+  {
+    id: "platonic",
+    custom: true,
+    symbol: "△",
+    group: ["Géométrie", "Geometry"],
+    title: ["Les cinq solides de Platon", "The five Platonic solids"],
+    short: ["Solides de Platon", "Platonic solids"],
+    intro: ["Des faces toutes identiques, le même nombre d’arêtes à chaque sommet : il n’en existe que cinq. Regarde pourquoi.", "Identical faces, the same number of edges at every vertex: there are only five. See why."],
+    prereq: ["Polygones réguliers, angles, formule d’Euler", "Regular polygons, angles, Euler’s formula"],
+    formula: "",
+    params: [],
+    steps: [
+      ["Fais tourner chaque solide et compte sommets, arêtes, faces : calcule S − A + F.", "Rotate each solid and count vertices, edges, faces: compute V − E + F."],
+      ["Dans « Pourquoi seulement cinq ? », ajoute des faces autour d’un sommet : quand l’angle total atteint-il 360° ?", "In “Why only five?”, add faces around a vertex: when does the total angle reach 360°?"],
+      ["Essaie des pentagones ou des hexagones : combien peut-on en rassembler au plus ?", "Try pentagons or hexagons: how many can you gather at most?"],
+    ],
+    quiz: ["Un solide a 12 sommets et 20 faces triangulaires. Combien d’arêtes a-t-il ?", "A solid has 12 vertices and 20 triangular faces. How many edges does it have?"],
+    answer: 30,
+    explain: ["Chaque face a 3 arêtes et chaque arête borde 2 faces : E = 3 × 20 / 2 = 30. Euler : 12 − 30 + 20 = 2 ✓ (c’est l’icosaèdre).", "Each face has 3 edges and each edge borders 2 faces: E = 3 × 20 / 2 = 30. Euler: 12 − 30 + 20 = 2 ✓ (the icosahedron)."],
+    history: ["Théétète · Ve s. av. J.-C.", "Theaetetus · 5th c. BC"],
+    story: ["La classification des cinq solides réguliers est attribuée à Théétète et exposée à la fin des Éléments d’Euclide (livre XIII). L’argument des angles autour d’un sommet y figure déjà en substance.", "The classification of the five regular solids is attributed to Theaetetus and set out at the end of Euclid’s Elements (Book XIII). The angle-sum argument at a vertex is already there in substance."],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Theaetetus/",
+    duration: 12,
+    level: ["Première · Terminale", "Intermediate"],
+  },
+  {
+    id: "chaos",
+    custom: true,
+    symbol: "⁘",
+    group: ["Géométrie", "Geometry"],
+    title: ["Le jeu du chaos", "The chaos game"],
+    short: ["Jeu du chaos", "Chaos game"],
+    intro: ["Un point saute au hasard à mi-chemin d’un sommet : le désordre dessine un triangle de Sierpiński. Pourquoi ?", "A point jumps at random halfway to a vertex: disorder draws a Sierpiński triangle. Why?"],
+    prereq: ["Homothéties, suites géométriques", "Homotheties, geometric sequences"],
+    formula: "",
+    params: [],
+    steps: [
+      ["Lance le jeu avec 3 sommets : que remarques-tu après quelques milliers de points ?", "Run the game with 3 vertices: what do you notice after a few thousand points?"],
+      ["Déplace un sommet, ou passe à 4, 5 ou 6 sommets : la figure change-t-elle de nature ?", "Move a vertex, or switch to 4, 5 or 6 vertices: does the figure change nature?"],
+      ["Dans la construction par niveaux, compare le nombre de triangles et l’aire restante.", "In the level-by-level construction, compare the number of triangles and the remaining area."],
+    ],
+    quiz: ["On construit le triangle de Sierpiński : à chaque niveau, chaque triangle plein est remplacé par 3 triangles de moitié de côté. Combien de triangles pleins au niveau 3 ?", "We build the Sierpiński triangle: at each level, each filled triangle is replaced by 3 triangles of half the side. How many filled triangles at level 3?"],
+    answer: 27,
+    explain: ["Le nombre est multiplié par 3 à chaque niveau : 3³ = 27. L’aire, elle, est multipliée par 3/4 : (3/4)³ ≈ 0,42, et tend vers 0.", "The number is multiplied by 3 at each level: 3³ = 27. The area is multiplied by 3/4: (3/4)³ ≈ 0.42, tending to 0."],
+    history: ["Sierpiński · 1915", "Sierpiński · 1915"],
+    story: ["Wacław Sierpiński décrit ce triangle en 1915. Le jeu du chaos, popularisé par Michael Barnsley dans les années 1980, montre qu’il apparaît aussi comme limite d’un processus aléatoire.", "Wacław Sierpiński described this triangle in 1915. The chaos game, popularised by Michael Barnsley in the 1980s, shows it also emerges as the limit of a random process."],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Sierpinski/",
+    duration: 8,
+    level: ["Première · Terminale", "Intermediate"],
+  },
 ];
 
 // Activities give examples, conditions and a general argument separately.
@@ -495,6 +595,26 @@ const reasoning = {
     proof: ["La somme augmente de d et l’effectif n reste fixe : la moyenne augmente donc de d/n. La médiane est la valeur centrale de la liste ordonnée (ici, la moyenne des deux valeurs centrales si n est pair). Si une valeur extrême reste du même côté des positions centrales, la médiane ne change pas. L’écart-type affiché décrit toute la série et utilise le diviseur n, pas n − 1.", "The sum increases by d while n stays fixed, so the mean increases by d/n. The median is the central ordered value (here the average of the two central values for even n). If an extreme value stays on the same side of the central positions, the median stays unchanged. The displayed standard deviation describes the whole data set and divides by n, not n − 1."],
     transfer: ["À tester : 2 ; 3 ; 4 ; 5 ; 100 puis 2 ; 3 ; 4 ; 5 ; 1000. La médiane ne change pas ici ; elle peut changer si une valeur traverse la position centrale.", "Try 2; 3; 4; 5; 100, then 2; 3; 4; 5; 1000. The median stays fixed here; it can change when a value crosses the central position."]
   },
+  galton: {
+    conjecture: ["Avec p = 1/2, la répartition est symétrique et se concentre autour du centre quand le nombre de billes augmente.", "With p = 1/2 the distribution is symmetric and concentrates around the centre as the number of balls grows."],
+    proof: ["Une bille fait n choix indépendants gauche/droite. La probabilité d’aboutir dans la case k est C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ : il y a C(n,k) trajets à k virages à droite, chacun de probabilité pᵏ(1 − p)ⁿ⁻ᵏ. L’espérance est np. La simulation illustre ce résultat, elle ne le démontre pas.", "A ball makes n independent left/right choices. The probability of bin k is C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ: there are C(n,k) paths with k right turns, each of probability pᵏ(1 − p)ⁿ⁻ᵏ. The mean is np. The simulation illustrates this result; it does not prove it."],
+    transfer: ["À tester : p = 0,2 avec 12 rangées. La courbe est-elle encore symétrique ? Où est son sommet ?", "Try p = 0.2 with 12 rows. Is the curve still symmetric? Where is its peak?"]
+  },
+  reuleaux: {
+    conjecture: ["Un polygone de Reuleaux à n sommets (n impair) garde la même largeur dans toutes les directions et son périmètre vaut πw.", "A Reuleaux polygon with n vertices (n odd) has the same width in every direction and its perimeter equals πw."],
+    proof: ["Chaque arc a pour rayon w et pour angle π/n, donc pour longueur πw/n ; avec n arcs, le périmètre est πw. La largeur est constante car chaque point d’un arc est à distance w du sommet opposé, et deux tangentes parallèles touchent la courbe en un sommet et en un point de l’arc opposé. Ce raisonnement suppose n impair.", "Each arc has radius w and angle π/n, hence length πw/n; with n arcs the perimeter is πw. The width is constant because each point of an arc is at distance w from the opposite vertex, and two parallel tangents touch the curve at a vertex and at a point of the opposite arc. The argument assumes n is odd."],
+    transfer: ["À discuter : pourquoi un carré ne peut-il pas être une courbe de largeur constante ? Calcule sa largeur selon l’axe puis selon la diagonale.", "Discuss: why can a square not be a curve of constant width? Compute its width along an axis and along a diagonal."]
+  },
+  platonic: {
+    conjecture: ["Autour d’un sommet, il faut au moins 3 faces et la somme de leurs angles doit être strictement inférieure à 360° : cela ne laisse que cinq possibilités.", "At a vertex at least 3 faces are needed and their angles must add up to strictly less than 360°: only five possibilities remain."],
+    proof: ["Le polygone régulier à p côtés a pour angle intérieur 180°(p − 2)/p. Avec q faces par sommet, la condition est q · 180°(p − 2)/p < 360°, soit (p − 2)(q − 2) < 4. Les couples (p,q) avec p, q ≥ 3 sont (3,3), (3,4), (3,5), (4,3), (5,3). Cette condition est nécessaire ; l’existence de chaque solide se vérifie par construction. Euler : S − A + F = 2.", "The regular p-gon has interior angle 180°(p − 2)/p. With q faces at a vertex the condition is q · 180°(p − 2)/p < 360°, i.e. (p − 2)(q − 2) < 4. The pairs (p,q) with p, q ≥ 3 are (3,3), (3,4), (3,5), (4,3), (5,3). This condition is necessary; the existence of each solid is checked by construction. Euler: V − E + F = 2."],
+    transfer: ["À tester : trois hexagones en un sommet donnent exactement 360°. Que se passe-t-il : un solide ou un pavage du plan ?", "Try three hexagons at a vertex: exactly 360°. What happens: a solid or a tiling of the plane?"]
+  },
+  chaos: {
+    conjecture: ["Quel que soit le point de départ, les points du jeu du chaos à trois sommets se rassemblent sur le triangle de Sierpiński.", "Whatever the starting point, the points of the three-vertex chaos game gather on the Sierpiński triangle."],
+    proof: ["Chaque saut est l’homothétie de rapport 1/2 et de centre un sommet. Les trois homothéties envoient le triangle sur trois copies réduites ; l’ensemble limite K vérifie K = h₁(K) ∪ h₂(K) ∪ h₃(K). Le point de départ est « oublié » car chaque saut divise la distance à K par 2. La simulation illustre ; la preuve repose sur cette contraction.", "Each jump is the homothety of ratio 1/2 centred at a vertex. The three homotheties send the triangle to three reduced copies; the limit set K satisfies K = h₁(K) ∪ h₂(K) ∪ h₃(K). The starting point is “forgotten” because each jump halves the distance to K. The simulation illustrates; the proof rests on this contraction."],
+    transfer: ["À tester : 4 sommets avec le rapport 1/2. Que remarques-tu ? Essaie ensuite le bouton « Valeur qui donne un joli motif ».", "Try 4 vertices with ratio 1/2. What do you notice? Then try the “Value that gives a clean pattern” button."]
+  },
   complex: {
     conjecture: ["Multiplier par i conserve le module et fait tourner de 90° dans le sens direct. L’origine reste fixe.", "Multiplication by i preserves modulus and rotates 90° counterclockwise. The origin stays fixed."],
     proof: ["i(a + ib) = −b + ia, donc (a,b) devient (−b,a). Le module au carré reste a² + b². Pour z ≠ 0, les vecteurs (a,b) et (−b,a) ont un produit scalaire nul et leur déterminant vaut a² + b² > 0 : l’angle orienté vaut +90°. Pour z = 0, l’argument est indéfini.", "i(a + ib) = −b + ia, so (a,b) becomes (−b,a). Squared modulus remains a² + b². For z ≠ 0, vectors (a,b) and (−b,a) have zero dot product and determinant a² + b² > 0: the directed angle is +90°. For z = 0, the argument is undefined."],
@@ -505,7 +625,8 @@ const quizStates = {
   quadratic: {values:[1,0,-4]}, trig:{values:[180]},
   sequences:{values:[3,2,5],mode:"geometric"}, probability:{values:[10,0.3]},
   derivative:{values:[3,0.01],direction:1}, integral:{values:[8],method:"left"},
-  vectors:{values:[2,1,-1,2]}, statistics:{data:"2 3 4 5 100"}, complex:{values:[3,4]}
+  vectors:{values:[2,1,-1,2]}, statistics:{data:"2 3 4 5 100"}, complex:{values:[3,4]},
+  galton:{}, reuleaux:{}, platonic:{}, chaos:{}
 };
 for (const lab of labs) {
   lab.reasoning = reasoning[lab.id];
