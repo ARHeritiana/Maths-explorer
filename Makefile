@@ -17,6 +17,7 @@ catalog:
 	$(PY) -m mxbuild catalog
 slides:
 	python3 scripts/build-slides.py
+	python3 scripts/export-slides.py
 inventory:
 	python3 scripts/tex-inventory.py
 check:

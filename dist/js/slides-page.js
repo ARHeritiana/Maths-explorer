@@ -19,7 +19,7 @@ export async function bindSlides(t) {
       const decks = index.filter(d => d.course === id).sort((a, b) => a.number - b.number);
       if (!decks.length) return '';
       return `<section class="source-course"><div class="source-head"><h2>${name[L]}</h2><span>${decks.length} ${P('diaporamas', 'decks')[L]} · ${decks.reduce((s, d) => s + d.slides, 0)} ${P('diapositives', 'slides')[L]}</span></div>
-      <ul class="deck-list">${decks.map(d => `<li><a href="./slides/player.html?deck=${E(d.id)}&amp;lang=${lang}">${E(d.title[L])}</a> <span>${d.slides} ${P('diapositives', 'slides')[L]}</span></li>`).join('')}</ul></section>`;
+      <ul class="deck-list">${decks.map(d => `<li><a href="./slides/player.html?deck=${E(d.id)}&amp;lang=${lang}">${E(d.title[L])}</a> <span>${d.slides} ${P('diapositives', 'slides')[L]}</span> <a class="deck-download" href="./slides/export/${E(d.id)}.html" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(d.title[L])}">${P('Télécharger HTML', 'Download HTML')[L]}</a></li>`).join('')}</ul></section>`;
     }).join('');
   } catch { host.innerHTML = `<p class="pack-error">${P('Impossible de charger la liste.', 'Could not load the list.')[L]}</p>`; }
 }

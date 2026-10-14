@@ -23,17 +23,23 @@ with sync_playwright() as p:
     for d in index:
         if only and d['id'] not in only: continue
         for lang in ('fr', 'en'):
-            pg.goto(f'http://127.0.0.1:{port}/slides/player.html?deck={d["id"]}&lang={lang}#0'); pg.wait_for_selector('.foot')
+            pg.goto(f'http://127.0.0.1:{port}/slides/player.html?deck={d["id"]}&lang={lang}#0'); pg.wait_for_selector('#r1')
             for i in range(d['slides']):
                 pg.evaluate(f'location.hash="#{i}"'); pg.wait_for_function(f'document.querySelector(".count")?.textContent.startsWith("{i+1} /")')
                 pg.wait_for_timeout(60)
+                pg.evaluate('document.querySelector("#all-steps")?.click()')   # reveal every step so the whole slide is checked
                 bad = pg.evaluate('''() => {
                   const st = document.querySelector('#stage'), out = [];
                   if (st.querySelector('[data-mml-node="mtext"][fill="red"]')) out.push('undefined macro (red text) in maths');
                   if (st.querySelector('mjx-merror,[data-mjx-error]')) out.push('mathjax error: ' + (st.querySelector('mjx-merror,[data-mjx-error]').textContent||'').slice(0,80));
                   if (/\\\\\\(|\\\\\\[|\\\\[a-z]{3,}/.test(st.querySelector('.body')?.innerText||'')) out.push('raw TeX: ' + (st.querySelector('.body').innerText.match(/\\\\[a-zA-Z]+|\\\\\\(/)||[''])[0]);
-                  const body = st.querySelector('.body'); if (body && body.scrollHeight > body.clientHeight + 16) out.push('overflow ' + (body.scrollHeight - body.clientHeight));
-                  if (!body || body.innerText.trim().length < 3) out.push('empty');
+                  const flow = st.querySelector('#flow');
+                  if (!flow || flow.innerText.trim().length < 3) out.push('empty');
+                  else { if (flow.scrollWidth > flow.clientWidth + 2) out.push('text wider than the column ' + (flow.scrollWidth - flow.clientWidth));
+                    const wide = [...flow.querySelectorAll('mjx-container[display="true"]')].find(m => m.scrollWidth > m.clientWidth + 2);
+                    if (wide) out.push('equation wider than the column ' + (wide.scrollWidth - wide.clientWidth)); }
+                  if (st.scrollWidth > st.clientWidth + 2 || st.scrollHeight > st.clientHeight + 2) out.push('stage overflow');
+                  const dl = st.querySelector('#dl'); if (!dl || !dl.getAttribute('href').endsWith('/' + new URLSearchParams(location.search).get('deck') + '.html')) out.push('download link missing');
                   return out; }''')
                 for x in bad: errors.append(f'{d["id"]} {lang} #{i}: {x}')
                 if pg.query_selector('canvas'):

@@ -528,6 +528,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .deck-list { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: 0 24px; }
 .deck-list li { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; border-bottom: 1px solid var(--line); }
 .deck-list a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.deck-list a.deck-download { font-weight: 600; font-size: .85em; white-space: nowrap; }
 .deck-list span { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
 @media (max-width: 900px) { .pack-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .pack-grid { grid-template-columns: 1fr; } .source-files { columns: 1; } }

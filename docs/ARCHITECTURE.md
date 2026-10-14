@@ -35,6 +35,7 @@ content/data/enrichment.json ──(build-enrichment.py: mxbuild.enrichment)─�
                                                                         dist/js/enrichment-data.js
 site/js/study-guides.js ──(build-study-guides.mjs)──► dist/resources/shared/*.html + manifest entries
 content/slides + content/tex ──(make slides: build-slides.py)──► dist/slides/data, dist/slides/fig
+dist/slides/data + site/slides ──(make slides: export-slides.py)──► dist/slides/export/<deck>.html (one self-contained file per deck, offered as "Télécharger HTML")
 site/ ──(make site)──► dist/
 ```
 
@@ -62,7 +63,7 @@ Rules:
 | `make tex [COURSE=x] [FORCE=1]` | Build native-framed courses (skipped when inputs are unchanged), assemble excerpts, regenerate the catalogue, republish sources. |
 | `make site` | Copy `site/` into `dist/`. |
 | `make catalog` | Regenerate the catalogue files from the manifest. |
-| `make slides` | Rebuild slide decks and figures. |
+| `make slides` | Rebuild slide decks and figures, then the single-file HTML export of every deck. |
 | `make inventory` | Regenerate `docs/TEX_INVENTORY.md`. |
 | `make check [FAST=1]` | All pre-push checks (FAST skips the two browser suites). |
 
