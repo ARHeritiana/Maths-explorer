@@ -1,9 +1,11 @@
 // Chapter-specific progression assembled from the reviewed chapter decks.
 export function sequenceModel(deck) {
-  const lessons = [], tasks = [], activities = [], goals = [];
+  const lessons = [], tasks = [], activities = [], goals = [], diagnostics = [], checks = [];
   let current = null;
   for (const [index, slide] of deck.slides.entries()) {
     if (slide.k === 'title') continue;
+    if(slide.stage==='diagnostic'){diagnostics.push(slide);continue;}
+    if(slide.stage==='check'){checks.push(slide);continue;}
     if (slide.k === 'goals') { goals.push(slide); continue; }
     if (slide.k === 'widget' || slide.k === 'activity') { activities.push({ ...slide, index }); continue; }
     if (['concept', 'method', 'proof'].includes(slide.k)) {
@@ -23,7 +25,7 @@ export function sequenceModel(deck) {
     }
   }
   if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a) tasks.push({ ...slide, lesson:lesson.title, reused:true });
-  return { goals, lessons, tasks, activities };
+  return { goals, lessons, tasks, activities, diagnostics, checks };
 }
 
 export function goalFields(slides, language) {

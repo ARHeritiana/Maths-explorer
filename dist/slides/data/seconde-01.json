@@ -1,1 +1,529 @@
-{"id":"seconde-01","course":"seconde","number":1,"title":["Arithmétique","Arithmetic"],"slides":[{"k":"title","t":["Arithmétique","Arithmetic"],"b":["",""]},{"k":"concept","t":["Entiers, multiples et diviseurs","Integers, multiples and divisors"],"b":["\\(\\N=\\{0;1;2;\\ldots\\}\\) est l'ensemble des entiers naturels. \\(\\Z\\) contient les entiers naturels et leurs opposés.\nPour \\(a,b\\in\\Z\\), dire que \\(a\\) est un multiple de \\(b\\) signifie qu'il existe \\(k\\in\\Z\\) tel que \\(a=bk\\). On dit aussi que \\(b\\) divise \\(a\\).","\\(\\N=\\{0,1,2,\\ldots\\}\\) is the set of natural numbers. \\(\\Z\\) contains the natural numbers and their opposites.\nFor \\(a,b\\in\\Z\\), saying that \\(a\\) is a multiple of \\(b\\) means that there exists \\(k\\in\\Z\\) such that \\(a=bk\\). We also say that \\(b\\) divides \\(a\\)."],"h":["Définitions","Definitions"]},{"k":"example","t":["Entiers, multiples et diviseurs","Integers, multiples and divisors"],"b":["Lister les diviseurs positifs de \\(18\\) et de \\(24\\). Écrire trois multiples de \\(7\\), dont un négatif. \\(35\\) est-il un multiple de \\(5\\) ? de \\(6\\) ? Justifier.","List the positive divisors of \\(18\\) and of \\(24\\). Write three multiples of \\(7\\), one of them negative. Is \\(35\\) a multiple of \\(5\\)? of \\(6\\)? Justify."],"a":["Diviseurs de \\(18\\) : \\(1,2,3,6,9,18\\). Diviseurs de \\(24\\) : \\(1,2,3,4,6,8,12,24\\). Par exemple \\(-7,0,14\\) sont des multiples de \\(7\\). \\(35=5\\times7\\) est multiple de \\(5\\) ; \\(35=6\\times5+5\\) n'est pas multiple de \\(6\\).","Divisors of \\(18\\): \\(1,2,3,6,9,18\\). Divisors of \\(24\\): \\(1,2,3,4,6,8,12,24\\). For example \\(-7,0,14\\) are multiples of \\(7\\). \\(35=5\\times7\\) is a multiple of \\(5\\); \\(35=6\\times5+5\\) is not a multiple of \\(6\\)."]},{"k":"concept","t":["Entiers, multiples et diviseurs","Integers, multiples and divisors"],"b":["La somme de deux multiples d'un entier \\(a\\) est un multiple de \\(a\\).","The sum of two multiples of an integer \\(a\\) is a multiple of \\(a\\)."],"h":["Somme de multiples","Sum of multiples"]},{"k":"proof","t":["Entiers, multiples et diviseurs","Integers, multiples and divisors"],"b":["Écrivons \\(u=ak\\) et \\(v=a\\ell\\), avec \\(k,\\ell\\in\\Z\\). Alors \\(u+v=a(k+\\ell)\\) et \\(k+\\ell\\in\\Z\\). Donc \\(u+v\\) est un multiple de \\(a\\). Cela vaut aussi pour \\(a=0\\).","Write \\(u=ak\\) and \\(v=a\\ell\\), with \\(k,\\ell\\in\\Z\\). Then \\(u+v=a(k+\\ell)\\) and \\(k+\\ell\\in\\Z\\). So \\(u+v\\) is a multiple of \\(a\\). This also holds for \\(a=0\\)."]},{"k":"concept","t":["Parité et nombres premiers","Parity and prime numbers"],"b":["Un entier \\(n\\) est <b>pair</b> s'il s'écrit \\(2k\\), avec \\(k\\in\\Z\\), et <b>impair</b> s'il s'écrit \\(2k+1\\).\nUn <b>nombre premier</b> est un entier naturel supérieur ou égal à \\(2\\) qui possède exactement deux diviseurs positifs : \\(1\\) et lui-même.","An integer \\(n\\) is <b>even</b> if it can be written \\(2k\\), with \\(k\\in\\Z\\), and <b>odd</b> if it can be written \\(2k+1\\).\nA <b>prime number</b> is a natural number greater than or equal to \\(2\\) that has exactly two positive divisors: \\(1\\) and itself."],"h":["Définitions","Definitions"]},{"k":"concept","t":["Parité et nombres premiers","Parity and prime numbers"],"b":["Le carré d'un entier impair est impair.","The square of an odd integer is odd."],"h":["Propriété à démontrer","Property to prove"]},{"k":"proof","t":["Parité et nombres premiers","Parity and prime numbers"],"b":["Si \\(n=2k+1\\), alors \\(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\\). Comme \\(2k^2+2k\\in\\Z\\), \\(n^2\\) est impair. La forme finale justifie la parité ; quelques essais numériques ne suffisent pas à démontrer l'énoncé.","If \\(n=2k+1\\), then \\(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\\). Since \\(2k^2+2k\\in\\Z\\), \\(n^2\\) is odd. The final form justifies the parity; a few numerical trials are not enough to prove the statement."]},{"k":"method","t":["Parité et nombres premiers","Parity and prime numbers"],"b":["Pour \\(n\\geq2\\), il suffit de tester les diviseurs premiers inférieurs ou égaux à \\(\\sqrt n\\). En effet, si \\(n=ab\\) avec \\(1&lt;a\\leq b\\), alors \\(a\\leq\\sqrt n\\) ; \\(a\\) possède un diviseur premier qui divise aussi \\(n\\).","For \\(n\\geq2\\), it is enough to test the prime divisors less than or equal to \\(\\sqrt n\\). Indeed, if \\(n=ab\\) with \\(1&lt;a\\leq b\\), then \\(a\\leq\\sqrt n\\); \\(a\\) has a prime divisor which also divides \\(n\\)."],"h":["Tester si un entier est premier","Testing whether an integer is prime"]},{"k":"example","t":["Parité et nombres premiers","Parity and prime numbers"],"b":["Montrer que \\(157\\) est premier et que \\(161\\) ne l'est pas.","Show that \\(157\\) is prime and that \\(161\\) is not."],"a":["Comme \\(12^2&lt;157&lt;13^2\\), on teste \\(2,3,5,7,11\\). Aucun ne divise \\(157\\) : pour \\(7\\), \\(157=7\\times22+3\\) ; pour \\(11\\), \\(157=11\\times14+3\\). Donc \\(157\\) est premier. En revanche, \\(161=7\\times23\\) est composé.","Since \\(12^2&lt;157&lt;13^2\\), we test \\(2,3,5,7,11\\). None divides \\(157\\): for \\(7\\), \\(157=7\\times22+3\\); for \\(11\\), \\(157=11\\times14+3\\). So \\(157\\) is prime. On the other hand, \\(161=7\\times23\\) is composite."]},{"k":"concept","t":["PGCD et fractions irréductibles","GCD and irreducible fractions"],"b":["Pour deux entiers \\(a,b\\) <b>non tous deux nuls</b>, \\(\\operatorname{PGCD}(a,b)\\) est le plus grand de leurs diviseurs positifs communs. On a \\(\\operatorname{PGCD}(a,b)=\\operatorname{PGCD}(|a|,|b|)\\) et \\(\\operatorname{PGCD}(a,0)=|a|\\) si \\(a\\ne0\\). Par convention, on pose \\(\\operatorname{PGCD}(0,0)=0\\) ; ce dernier cas ne relève pas de la définition par le plus grand diviseur.","For two integers \\(a,b\\) <b>not both zero</b>, \\(\\operatorname{gcd}(a,b)\\) is the greatest of their common positive divisors. We have \\(\\operatorname{gcd}(a,b)=\\operatorname{gcd}(|a|,|b|)\\) and \\(\\operatorname{gcd}(a,0)=|a|\\) if \\(a\\ne0\\). By convention, we set \\(\\operatorname{gcd}(0,0)=0\\); this last case does not come under the definition by the greatest divisor."],"h":["Définition et convention","Definition and convention"]},{"k":"concept","t":["PGCD et fractions irréductibles","GCD and irreducible fractions"],"b":["Tout entier naturel supérieur ou égal à \\(2\\) est un produit de nombres premiers. Cette décomposition est unique à l'ordre des facteurs près.","Every natural number greater than or equal to \\(2\\) is a product of prime numbers. This factorisation is unique up to the order of the factors."],"h":["Décomposition en facteurs premiers – admise","Prime factorisation – accepted"]},{"k":"example","t":["PGCD et fractions irréductibles","GCD and irreducible fractions"],"b":["Décomposer \\(140\\), \\(150\\), \\(630\\) et \\(120\\) en facteurs premiers.","Factorise \\(140\\), \\(150\\), \\(630\\) and \\(120\\) into prime factors."],"a":["\\(140=2^2\\times5\\times7\\) ; \\(150=2\\times3\\times5^2\\) ; \\(630=2\\times3^2\\times5\\times7\\) ; \\(120=2^3\\times3\\times5\\). On divise successivement par des nombres premiers et on vérifie le produit final.","\\(140=2^2\\times5\\times7\\); \\(150=2\\times3\\times5^2\\); \\(630=2\\times3^2\\times5\\times7\\); \\(120=2^3\\times3\\times5\\). We divide successively by prime numbers and check the final product."]},{"k":"method","t":["PGCD et fractions irréductibles","GCD and irreducible fractions"],"b":["Pour \\(b\\ne0\\), diviser le numérateur \\(a\\) et le dénominateur \\(b\\) par \\(\\operatorname{PGCD}(a,b)\\). La fraction obtenue a un numérateur et un dénominateur premiers entre eux.","For \\(b\\ne0\\), divide the numerator \\(a\\) and the denominator \\(b\\) by \\(\\operatorname{gcd}(a,b)\\). The fraction obtained has a numerator and a denominator that are coprime."],"h":["Rendre une fraction irréductible","Making a fraction irreducible"]},{"k":"example","t":["PGCD et fractions irréductibles","GCD and irreducible fractions"],"b":["Rendre irréductibles \\(\\dfrac{140}{630}\\), \\(\\dfrac{84}{126}\\) et \\(\\dfrac{-120}{150}\\).","Make \\(\\dfrac{140}{630}\\), \\(\\dfrac{84}{126}\\) and \\(\\dfrac{-120}{150}\\) irreducible."],"a":["Les PGCD valent respectivement \\(70\\), \\(42\\), \\(30\\). Ainsi \\(140/630=2/9\\), \\(84/126=2/3\\) et \\(-120/150=-4/5\\). Pour \\(140/630\\), on peut aussi simplifier les facteurs \\(2,5,7\\) dans les décompositions.","The GCDs are \\(70\\), \\(42\\), \\(30\\) respectively. Thus \\(140/630=2/9\\), \\(84/126=2/3\\) and \\(-120/150=-4/5\\). For \\(140/630\\), we can also cancel the factors \\(2,5,7\\) in the factorisations."]},{"k":"concept","t":["Vocabulaire ensembliste en contexte","Set vocabulary in context"],"b":["\\(x\\in A\\) signifie que \\(x\\) est un élément de \\(A\\) ; \\(A\\subseteq B\\) signifie que tout élément de \\(A\\) appartient à \\(B\\). \\(\\varnothing\\) est l'ensemble vide.\n<ul>\n<li>\\(A\\cap B\\) : éléments appartenant à \\(A\\) <b>et</b> à \\(B\\) ;\n<li>\\(A\\cup B\\) : éléments appartenant à \\(A\\) <b>ou</b> à \\(B\\) (éventuellement aux deux) ;\n<li>dans un ensemble de référence \\(E\\), \\(\\overline A=E\\setminus A\\) contient les éléments de \\(E\\) qui ne sont pas dans \\(A\\) ;\n<li>pour un ensemble fini, \\(\\Card(A)\\) est son nombre d'éléments.\n</ul>","\\(x\\in A\\) means that \\(x\\) is an element of \\(A\\); \\(A\\subseteq B\\) means that every element of \\(A\\) belongs to \\(B\\). \\(\\varnothing\\) is the empty set.\n<ul>\n<li>\\(A\\cap B\\): elements belonging to \\(A\\) <b>and</b> to \\(B\\);\n<li>\\(A\\cup B\\): elements belonging to \\(A\\) <b>or</b> to \\(B\\) (possibly both);\n<li>in a reference set \\(E\\), \\(\\overline A=E\\setminus A\\) contains the elements of \\(E\\) that are not in \\(A\\);\n<li>for a finite set, \\(\\Card(A)\\) is its number of elements.\n</ul>"],"h":["Définitions et notations","Definitions and notation"]},{"k":"example","t":["Vocabulaire ensembliste en contexte","Set vocabulary in context"],"b":["Dans \\(E=\\{1;2;3;4;5;6\\}\\), on pose \\(A=\\{2;4;6\\}\\) et \\(B=\\{3;6\\}\\). Donner \\(A\\cap B\\), \\(A\\cup B\\), \\(\\overline A\\) et \\(\\Card(A)\\). Les assertions \\(2\\in A\\), \\(\\{2\\}\\subseteq A\\) et \\(A\\subseteq B\\) sont-elles vraies ?","In \\(E=\\{1,2,3,4,5,6\\}\\), let \\(A=\\{2,4,6\\}\\) and \\(B=\\{3,6\\}\\). Give \\(A\\cap B\\), \\(A\\cup B\\), \\(\\overline A\\) and \\(\\Card(A)\\). Are the statements \\(2\\in A\\), \\(\\{2\\}\\subseteq A\\) and \\(A\\subseteq B\\) true?"],"a":["\\(A\\cap B=\\{6\\}\\), \\(A\\cup B=\\{2;3;4;6\\}\\), \\(\\overline A=\\{1;3;5\\}\\), \\(\\Card(A)=3\\). Les deux premières assertions sont vraies. La troisième est fausse, par exemple \\(2\\in A\\) et \\(2\\notin B\\).","\\(A\\cap B=\\{6\\}\\), \\(A\\cup B=\\{2,3,4,6\\}\\), \\(\\overline A=\\{1,3,5\\}\\), \\(\\Card(A)=3\\). The first two statements are true. The third is false, for example \\(2\\in A\\) and \\(2\\notin B\\)."]},{"k":"concept","t":["Vocabulaire ensembliste en contexte","Set vocabulary in context"],"b":["Un couple \\((a;b)\\) est ordonné : en général \\((a;b)\\ne(b;a)\\). Le produit cartésien \\(A\\times B\\) est l'ensemble des couples \\((a;b)\\) avec \\(a\\in A\\) et \\(b\\in B\\). Pour des ensembles finis, \\(\\Card(A\\times B)=\\Card(A)\\Card(B)\\).","A pair \\((a,b)\\) is ordered: in general \\((a,b)\\ne(b,a)\\). The Cartesian product \\(A\\times B\\) is the set of pairs \\((a,b)\\) with \\(a\\in A\\) and \\(b\\in B\\). For finite sets, \\(\\Card(A\\times B)=\\Card(A)\\Card(B)\\)."],"h":["Couple et produit cartésien","Pair and Cartesian product"]},{"k":"example","t":["Vocabulaire ensembliste en contexte","Set vocabulary in context"],"b":["Écrire tous les éléments de \\(\\{1;2\\}\\times\\{3;4;5\\}\\).","Write all the elements of \\(\\{1,2\\}\\times\\{3,4,5\\}\\)."],"a":["\\(\\{(1;3);(1;4);(1;5);(2;3);(2;4);(2;5)\\}\\). Il y a \\(2\\times3=6\\) couples.","\\(\\{(1,3),(1,4),(1,5),(2,3),(2,4),(2,5)\\}\\). There are \\(2\\times3=6\\) pairs."]},{"k":"method","t":["Algorithmique et réinvestissement","Algorithms and putting it to use"],"b":["<code>a % b</code> est le reste de la division euclidienne pour des entiers et \\(b\\ne0\\). Un test renvoie un booléen : <code>True</code> ou <code>False</code>. L'égalité se teste par <code>==</code> ; l'affectation utilise <code>=</code>.","<code>a % b</code> is the remainder of the Euclidean division for integers and \\(b\\ne0\\). A test returns a Boolean: <code>True</code> or <code>False</code>. Equality is tested with <code>==</code>; assignment uses <code>=</code>."],"h":["Python : entier, booléen et condition","Python: integer, Boolean and condition"]},{"k":"code","t":["Python","Python"],"b":["def est_multiple(a, b):\n    if b == 0:\n        return a == 0\n    return a","def est_multiple(a, b):\n    if b == 0:\n        return a == 0\n    return a"]},{"k":"example","t":["Algorithmique et réinvestissement","Algorithms and putting it to use"],"b":["Prévoir les résultats de <code>est_multiple(35, 5)</code> et <code>est_multiple(35, 6)</code>, puis de <code>est_multiple(0, 7)</code>, <code>est_multiple(7, 0)</code> et <code>est_multiple(0, 0)</code>. Expliquer le rôle de la condition.","Predict the results of <code>est_multiple(35, 5)</code> and <code>est_multiple(35, 6)</code>, then of <code>est_multiple(0, 7)</code>, <code>est_multiple(7, 0)</code> and <code>est_multiple(0, 0)</code>. Explain the role of the condition."],"a":["Les résultats sont <code>True</code>, <code>False</code>, <code>True</code>, <code>False</code>, <code>True</code>. Le cas \\(b=0\\) évite le calcul d'un reste modulo zéro, impossible, et applique la définition : seul \\(0\\) est multiple de \\(0\\).","The results are <code>True</code>, <code>False</code>, <code>True</code>, <code>False</code>, <code>True</code>. The case \\(b=0\\) avoids calculating a remainder modulo zero, which is impossible, and applies the definition: only \\(0\\) is a multiple of \\(0\\)."]},{"k":"example","t":["Algorithmique et réinvestissement","Algorithms and putting it to use"],"b":["On dispose de \\(84\\) cahiers et \\(126\\) crayons. On veut former le plus grand nombre possible de lots identiques en utilisant tout le matériel. Combien de lots peut-on faire ? Que contient chacun d'eux ?","We have \\(84\\) notebooks and \\(126\\) pencils. We want to make as many identical packs as possible, using all the material. How many packs can we make? What does each contain?"],"a":["Le nombre de lots divise \\(84\\) et \\(126\\). Son maximum est donc \\(\\operatorname{PGCD}(84,126)=42\\). Chaque lot contient \\(84/42=2\\) cahiers et \\(126/42=3\\) crayons. La vérification \\(42\\times2=84\\), \\(42\\times3=126\\) confirme l'utilisation de tout le matériel.","The number of packs divides \\(84\\) and \\(126\\). Its maximum is therefore \\(\\operatorname{gcd}(84,126)=42\\). Each pack contains \\(84/42=2\\) notebooks and \\(126/42=3\\) pencils. The check \\(42\\times2=84\\), \\(42\\times3=126\\) confirms that all the material is used."],"h":["Problème","Problem"]}]}
+{
+ "id": "seconde-01",
+ "course": "seconde",
+ "number": 1,
+ "title": [
+  "Arithmétique",
+  "Arithmetic"
+ ],
+ "slides": [
+  {
+   "k": "title",
+   "t": [
+    "Arithmétique",
+    "Arithmetic"
+   ],
+   "b": [
+    "",
+    ""
+   ]
+  },
+  {
+   "k": "goals",
+   "t": [
+    "Objectifs du chapitre",
+    "Chapter objectives"
+   ],
+   "b": [
+    "<ul><li>Justifier une divisibilité par une égalité avec un facteur entier.</li><li>Écrire un entier pair ou impair et démontrer une propriété de parité.</li><li>Tester la primalité d’un petit entier et réduire une fraction.</li><li>Modéliser un partage en lots identiques et justifier son maximum.</li><li>Lire et tester une fonction Python de divisibilité.</li></ul><p>Les tests de primalité, l’algorithme d’Euclide et les produits cartésiens sont proposés comme approfondissements. Ils ne sont pas présentés comme des attendus de la rubrique Arithmétique du programme français de 2026.</p>",
+    "<ul><li>Justify divisibility with an integer factor.</li><li>Express parity algebraically and prove a parity property.</li><li>Test a small integer for primality and reduce a fraction.</li><li>Model identical packs and justify their maximum number.</li><li>Read and test a Python divisibility function.</li></ul><p>Primality tests, Euclid’s algorithm and Cartesian products are offered as enrichment; they are not presented as required outcomes of the 2026 French arithmetic section.</p>"
+   ]
+  },
+  {
+   "k": "goals",
+   "t": [
+    "Prérequis à réactiver",
+    "Prerequisites to recall"
+   ],
+   "b": [
+    "Tables de multiplication, division euclidienne, priorité des opérations, fractions égales et distributivité. Les écritures avec un entier arbitraire sont expliquées dans le cours.",
+    "Multiplication tables, Euclidean division, order of operations, equivalent fractions and distributivity. Expressions with an arbitrary integer are explained in the lesson."
+   ]
+  },
+  {
+   "k": "try",
+   "t": [
+    "Vérifier ses acquis",
+    "Check what you know"
+   ],
+   "b": [
+    "Justifie : \\(36\\) est-il multiple de \\(9\\) ? Écris \\(-42\\) comme un multiple de \\(7\\). Simplifie \\(\\dfrac{18}{30}\\).",
+    "Justify: is \\(36\\) a multiple of \\(9\\)? Express \\(-42\\) as a multiple of \\(7\\). Reduce \\(\\dfrac{18}{30}\\)."
+   ],
+   "stage": "diagnostic",
+   "difficulty": 1,
+   "a": [
+    "\\(36=9\\times4\\). \\(-42=7\\times(-6)\\). \\(\\dfrac{18}{30}=\\dfrac{3}{5}\\), en divisant les deux termes par \\(6\\). Si une de ces étapes est difficile, commence par les automatismes du livret.",
+    "\\(36=9\\times4\\), \\(-42=7\\times(-6)\\), and \\(\\dfrac{18}{30}=\\dfrac35\\) after dividing both terms by six. If a step is difficult, begin with the booklet’s fluency exercises."
+   ]
+  },
+  {
+   "k": "activity",
+   "t": [
+    "Partager sans reste",
+    "Share without leftovers"
+   ],
+   "b": [
+    "On dispose de 84 cahiers et 126 crayons. Prépare des lots tous identiques, avec au moins un objet de chaque sorte par lot, en utilisant tout le matériel. Teste plusieurs nombres de lots, puis cherche le plus grand possible. Explique pourquoi il est impossible d’en faire davantage.",
+    "There are 84 notebooks and 126 pencils. Make identical packs, each containing at least one item of each kind, using everything. Try several numbers of packs, then find the greatest possible number. Explain why no larger number can work."
+   ],
+   "a": [
+    "Le nombre de lots doit diviser les deux quantités. Les possibilités sont \\(\\{1;2;3;6;7;14;21;42\\}\\). Le maximum est \\(42\\) : chaque lot contient \\(2\\) cahiers et \\(3\\) crayons. La liste complète des diviseurs communs établit qu’un nombre plus grand est impossible.",
+    "The number of packs must divide both quantities. The possibilities are \\(\\{1,2,3,6,7,14,21,42\\}\\). The maximum is \\(42\\): each pack contains \\(2\\) notebooks and \\(3\\) pencils. The complete list rules out any larger number."
+   ],
+   "hints": [
+    [
+     "Si tu essaies un nombre de lots, calcule le nombre de cahiers et de crayons dans chaque lot. Ces deux nombres doivent être entiers.",
+     "For a proposed number of packs, calculate the items in each pack. Both numbers must be integers."
+    ],
+    [
+     "Dresse les diviseurs positifs de chaque quantité, puis compare les listes.",
+     "List the positive divisors of each quantity, then compare the lists."
+    ]
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Entiers, multiples et diviseurs",
+    "Integers, multiples and divisors"
+   ],
+   "b": [
+    "<p>Un multiple est obtenu en multipliant un entier par un autre entier. Pour prouver que \\(a\\) est un multiple de \\(b\\), cherche une égalité \\(a=bk\\) avec \\(k\\in\\Z\\). Le facteur \\(k\\) doit être entier : un quotient non entier ne convient pas.</p><p>Dans \\(a=bk\\), \\(b\\) est un diviseur de \\(a\\), et \\(a\\) est un multiple de \\(b\\). Ces deux formulations décrivent la même relation, lue dans deux sens différents. Les entiers naturels sont \\(\\N=\\{0;1;2;\\ldots\\}\\) ; les entiers relatifs \\(\\Z\\) comprennent aussi leurs opposés.</p><p>Si \\(b\\ne0\\), teste si \\(a/b\\) est entier, ou si la division de \\(a\\) par \\(|b|\\) laisse un reste nul. Zéro est multiple de tout entier ; le seul multiple de zéro est zéro.</p>",
+    "<p>A multiple is obtained by multiplying an integer by another integer. To prove that \\(a\\) is a multiple of \\(b\\), find an equality \\(a=bk\\) with \\(k\\in\\Z\\). The factor must be an integer; a non-integer quotient does not qualify.</p><p>In \\(a=bk\\), \\(b\\) is a divisor of \\(a\\), and \\(a\\) is a multiple of \\(b\\). These describe the same relation in opposite directions. Natural numbers are \\(\\N=\\{0,1,2,\\ldots\\}\\); integers \\(\\Z\\) also include their negatives.</p><p>If \\(b\\ne0\\), check whether \\(a/b\\) is an integer or whether division by \\(|b|\\) has zero remainder. Zero is a multiple of every integer; zero is the only multiple of zero.</p>"
+   ],
+   "h": [
+    "Définitions",
+    "Definitions"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Entiers, multiples et diviseurs",
+    "Integers, multiples and divisors"
+   ],
+   "b": [
+    "Lister les diviseurs positifs de \\(18\\) et de \\(24\\). Écrire trois multiples de \\(7\\), dont un négatif. \\(35\\) est-il un multiple de \\(5\\) ? de \\(6\\) ? Justifier.",
+    "List the positive divisors of \\(18\\) and of \\(24\\). Write three multiples of \\(7\\), one of them negative. Is \\(35\\) a multiple of \\(5\\)? of \\(6\\)? Justify."
+   ],
+   "a": [
+    "Diviseurs de \\(18\\) : \\(1,2,3,6,9,18\\). Diviseurs de \\(24\\) : \\(1,2,3,4,6,8,12,24\\). Par exemple \\(-7,0,14\\) sont des multiples de \\(7\\). \\(35=5\\times7\\) est multiple de \\(5\\) ; \\(35=6\\times5+5\\) n'est pas multiple de \\(6\\).",
+    "Divisors of \\(18\\): \\(1,2,3,6,9,18\\). Divisors of \\(24\\): \\(1,2,3,4,6,8,12,24\\). For example \\(-7,0,14\\) are multiples of \\(7\\). \\(35=5\\times7\\) is a multiple of \\(5\\); \\(35=6\\times5+5\\) is not a multiple of \\(6\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Entiers, multiples et diviseurs",
+    "Integers, multiples and divisors"
+   ],
+   "b": [
+    "La somme de deux multiples d'un entier \\(a\\) est un multiple de \\(a\\).",
+    "The sum of two multiples of an integer \\(a\\) is a multiple of \\(a\\)."
+   ],
+   "h": [
+    "Somme de multiples",
+    "Sum of multiples"
+   ]
+  },
+  {
+   "k": "proof",
+   "t": [
+    "Entiers, multiples et diviseurs",
+    "Integers, multiples and divisors"
+   ],
+   "b": [
+    "Écrivons \\(u=ak\\) et \\(v=a\\ell\\), avec \\(k,\\ell\\in\\Z\\). Alors \\(u+v=a(k+\\ell)\\) et \\(k+\\ell\\in\\Z\\). Donc \\(u+v\\) est un multiple de \\(a\\). Cela vaut aussi pour \\(a=0\\).",
+    "Write \\(u=ak\\) and \\(v=a\\ell\\), with \\(k,\\ell\\in\\Z\\). Then \\(u+v=a(k+\\ell)\\) and \\(k+\\ell\\in\\Z\\). So \\(u+v\\) is a multiple of \\(a\\). This also holds for \\(a=0\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Parité et nombres premiers",
+    "Parity and prime numbers"
+   ],
+   "b": [
+    "<p>Dire « pair » revient à dire « multiple de deux ». Un entier pair s'écrit \\(n=2k\\), où \\(k\\in\\Z\\). Un entier impair s'écrit \\(n=2k+1\\). Ces écritures servent aussi pour les entiers négatifs.</p><p>Une vérification numérique donne un exemple ; une écriture avec un entier arbitraire permet une démonstration. Pour démontrer qu'un nombre est pair, cherche une forme \\(2\\times\\text{entier}\\).</p><p>Un nombre premier est un entier naturel au moins égal à deux qui a exactement deux diviseurs positifs : un et lui-même. Un n'a qu'un diviseur positif, donc n'est pas premier. Deux est premier et constitue le seul nombre premier pair.</p>",
+    "<p>Even means a multiple of two. An even integer has the form \\(n=2k\\), where \\(k\\in\\Z\\). An odd integer has the form \\(n=2k+1\\). These descriptions also cover negative integers.</p><p>A numerical check gives an example; an expression with an arbitrary integer gives a proof. To prove a number even, aim for two times an integer.</p><p>A prime is a natural number at least two with exactly two positive divisors: one and itself. One has only one positive divisor, so it is not prime. Two is prime and is the only even prime.</p>"
+   ],
+   "h": [
+    "Définitions",
+    "Definitions"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Parité et nombres premiers",
+    "Parity and prime numbers"
+   ],
+   "b": [
+    "Le carré d'un entier impair est impair.",
+    "The square of an odd integer is odd."
+   ],
+   "h": [
+    "Propriété à démontrer",
+    "Property to prove"
+   ]
+  },
+  {
+   "k": "proof",
+   "t": [
+    "Parité et nombres premiers",
+    "Parity and prime numbers"
+   ],
+   "b": [
+    "Si \\(n=2k+1\\), alors \\(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\\). Comme \\(2k^2+2k\\in\\Z\\), \\(n^2\\) est impair. La forme finale justifie la parité ; quelques essais numériques ne suffisent pas à démontrer l'énoncé.",
+    "If \\(n=2k+1\\), then \\(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\\). Since \\(2k^2+2k\\in\\Z\\), \\(n^2\\) is odd. The final form justifies the parity; a few numerical trials are not enough to prove the statement."
+   ]
+  },
+  {
+   "k": "method",
+   "t": [
+    "Parité et nombres premiers",
+    "Parity and prime numbers"
+   ],
+   "b": [
+    "Pour \\(n\\ge2\\), teste la divisibilité par les nombres premiers inférieurs ou égaux à \\(\\sqrt n\\), borne comprise. Si aucun ne divise \\(n\\), il est premier. En effet, si \\(n=ab\\) avec \\(1&lt;a\\le b\\), alors \\(a^2\\le n\\), donc \\(a\\le\\sqrt n\\). Le plus petit diviseur de \\(a\\) strictement supérieur à un est premier : sinon, il posséderait un diviseur strictement compris entre un et lui-même. Ce nombre premier divise aussi \\(n\\).",
+    "For \\(n\\ge2\\), test divisibility by primes at most \\(\\sqrt n\\), including the endpoint. If none divides \\(n\\), it is prime. If \\(n=ab\\) with \\(1&lt;a\\le b\\), then \\(a^2\\le n\\), so \\(a\\le\\sqrt n\\). The smallest divisor of \\(a\\) greater than one is prime; otherwise it would have a smaller divisor greater than one. That prime also divides \\(n\\)."
+   ],
+   "h": [
+    "Tester si un entier est premier",
+    "Testing whether an integer is prime"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Parité et nombres premiers",
+    "Parity and prime numbers"
+   ],
+   "b": [
+    "Montrer que \\(157\\) est premier et que \\(161\\) ne l'est pas.",
+    "Show that \\(157\\) is prime and that \\(161\\) is not."
+   ],
+   "a": [
+    "Comme \\(12^2&lt;157&lt;13^2\\), on teste \\(2,3,5,7,11\\). Aucun ne divise \\(157\\) : pour \\(7\\), \\(157=7\\times22+3\\) ; pour \\(11\\), \\(157=11\\times14+3\\). Donc \\(157\\) est premier. En revanche, \\(161=7\\times23\\) est composé.",
+    "Since \\(12^2&lt;157&lt;13^2\\), we test \\(2,3,5,7,11\\). None divides \\(157\\): for \\(7\\), \\(157=7\\times22+3\\); for \\(11\\), \\(157=11\\times14+3\\). So \\(157\\) is prime. On the other hand, \\(161=7\\times23\\) is composite."
+   ]
+  },
+  {
+   "k": "try",
+   "t": [
+    "Justifier une parité",
+    "Justify parity"
+   ],
+   "b": [
+    "Si \\(n\\) est impair, montrer que \\(n+3\\) est pair. L’affirmation « la somme de deux nombres premiers est toujours paire » est-elle vraie ? Justifier par une preuve ou un contre-exemple.",
+    "If \\(n\\) is odd, prove that \\(n+3\\) is even. Is “the sum of two primes is always even” true? Give a proof or counterexample."
+   ],
+   "difficulty": 2,
+   "hints": [
+    [
+     "Remplace n par 2k+1, où k est entier.",
+     "Replace n by 2k+1, where k is an integer."
+    ],
+    [
+     "Pour la seconde question, pense au cas du seul nombre premier pair.",
+     "For the second question, consider the only even prime."
+    ]
+   ],
+   "a": [
+    "\\(n=2k+1\\) entraîne \\(n+3=2k+4=2(k+2)\\). Le facteur \\(k+2\\) est entier : le nombre est pair. La seconde affirmation est fausse : \\(2\\) et \\(3\\) sont premiers et \\(2+3=5\\) est impair. Deux nombres premiers impairs ont, eux, une somme paire.",
+    "\\(n=2k+1\\) gives \\(n+3=2(k+2)\\), which is even because \\(k+2\\) is an integer. The second statement is false: \\(2\\) and \\(3\\) are primes but their sum is \\(5\\), which is odd. Two odd primes do have an even sum."
+   ]
+  },
+  {
+   "k": "try",
+   "t": [
+    "Choisir les tests nécessaires",
+    "Choose the necessary tests"
+   ],
+   "b": [
+    "\\(97\\), \\(121\\) et \\(221\\) sont-ils premiers ? Écris les diviseurs premiers qu’il suffit de tester et justifie la fin de la recherche.",
+    "Are \\(97\\), \\(121\\) and \\(221\\) prime? State which prime divisors need checking and justify when the search ends."
+   ],
+   "difficulty": 2,
+   "hints": [
+    [
+     "Encadre la racine carrée du nombre entre deux entiers.",
+     "Bound the square root between two integers."
+    ],
+    [
+     "Si un nombre composé vaut ab avec a ≤ b, le plus petit facteur ne dépasse pas sa racine carrée.",
+     "If a composite is ab with a ≤ b, its smaller factor does not exceed its square root."
+    ]
+   ],
+   "a": [
+    "Pour \\(97\\), \\(9^2&lt;97&lt;10^2\\) : les tests \\(2,3,5,7\\) suffisent et aucun ne divise \\(97\\), donc il est premier. \\(121=11^2\\) et \\(221=13\\times17\\) sont composés. Pour \\(121\\), on inclut le diviseur \\(11=\\sqrt{121}\\) : s’arrêter strictement avant la racine carrée donnerait un mauvais résultat. Pour \\(121\\), les candidats sont \\(2,3,5,7,11\\), car \\(\\sqrt{121}=11\\). Pour \\(221\\), \\(14^2&lt;221&lt;15^2\\), donc les candidats sont \\(2,3,5,7,11,13\\). Dès qu’un diviseur est trouvé, on peut conclure que le nombre n’est pas premier.",
+    "For \\(97\\), \\(9^2&lt;97&lt;10^2\\): checking \\(2,3,5,7\\) suffices and none divides it, so it is prime. \\(121=11^2\\) and \\(221=13\\times17\\) are composite. For \\(121\\), include the divisor \\(11=\\sqrt{121}\\); stopping strictly before the square root would give the wrong answer. For \\(121\\), the candidates are \\(2,3,5,7,11\\), since \\(\\sqrt{121}=11\\). For \\(221\\), \\(14^2&lt;221&lt;15^2\\), giving candidates \\(2,3,5,7,11,13\\). Once a divisor is found, you can conclude that the number is not prime."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and irreducible fractions"
+   ],
+   "b": [
+    "Pour deux entiers \\(a,b\\) <b>non tous deux nuls</b>, \\(\\operatorname{PGCD}(a,b)\\) est le plus grand de leurs diviseurs positifs communs. On a \\(\\operatorname{PGCD}(a,b)=\\operatorname{PGCD}(|a|,|b|)\\) et \\(\\operatorname{PGCD}(a,0)=|a|\\) si \\(a\\ne0\\). Par convention, on pose \\(\\operatorname{PGCD}(0,0)=0\\) ; ce dernier cas ne relève pas de la définition par le plus grand diviseur.",
+    "For two integers \\(a,b\\) <b>not both zero</b>, \\(\\operatorname{gcd}(a,b)\\) is the greatest of their common positive divisors. We have \\(\\operatorname{gcd}(a,b)=\\operatorname{gcd}(|a|,|b|)\\) and \\(\\operatorname{gcd}(a,0)=|a|\\) if \\(a\\ne0\\). By convention, we set \\(\\operatorname{gcd}(0,0)=0\\); this last case does not come under the definition by the greatest divisor."
+   ],
+   "h": [
+    "Définition et convention",
+    "Definition and convention"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and irreducible fractions"
+   ],
+   "b": [
+    "<b>Propriété admise dans ce chapitre.</b> Tout entier naturel supérieur ou égal à \\(2\\) est un produit de nombres premiers. Cette décomposition est unique à l'ordre des facteurs près.",
+    "<b>Property accepted without proof in this chapter.</b> Every natural number greater than or equal to \\(2\\) is a product of prime numbers. This factorisation is unique up to the order of the factors."
+   ],
+   "h": [
+    "Décomposition en facteurs premiers – admise",
+    "Prime factorisation – accepted"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and irreducible fractions"
+   ],
+   "b": [
+    "Décomposer \\(140\\), \\(150\\), \\(630\\) et \\(120\\) en facteurs premiers.",
+    "Factorise \\(140\\), \\(150\\), \\(630\\) and \\(120\\) into prime factors."
+   ],
+   "a": [
+    "\\(140=2^2\\times5\\times7\\) ; \\(150=2\\times3\\times5^2\\) ; \\(630=2\\times3^2\\times5\\times7\\) ; \\(120=2^3\\times3\\times5\\). On divise successivement par des nombres premiers et on vérifie le produit final.",
+    "\\(140=2^2\\times5\\times7\\); \\(150=2\\times3\\times5^2\\); \\(630=2\\times3^2\\times5\\times7\\); \\(120=2^3\\times3\\times5\\). We divide successively by prime numbers and check the final product."
+   ]
+  },
+  {
+   "k": "method",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and reduced fractions"
+   ],
+   "b": [
+    "<p><b>Pourquoi les divisions successives fonctionnent.</b> Pour \\(a,b\\) entiers strictement positifs, écris \\(a=bq+r\\). Un entier qui divise \\(a\\) et \\(b\\) divise aussi \\(r=a-bq\\). Réciproquement, un entier qui divise \\(b\\) et \\(r\\) divise \\(a=bq+r\\). Les diviseurs communs sont donc les mêmes : \\(\\operatorname{PGCD}(a,b)=\\operatorname{PGCD}(b,r)\\).</p><p>Remplace la paire par \\((b,r)\\) et recommence. Le reste est toujours inférieur au diviseur : les restes positifs diminuent, puis on arrive à zéro. Quand le reste devient nul, le diviseur de cette dernière division est le PGCD. Cette formulation couvre aussi le cas où la première division donne déjà un reste nul.</p>",
+    "<p><b>Why successive divisions work.</b> For positive integers \\(a,b\\), write \\(a=bq+r\\). A common divisor of \\(a,b\\) divides \\(r=a-bq\\). Conversely, a common divisor of \\(b,r\\) divides \\(a=bq+r\\). Thus the common divisors, and hence the GCD, are unchanged.</p><p>Replace the pair by \\((b,r)\\) and repeat. Each remainder is less than its divisor, so positive remainders decrease until zero is reached. When the remainder becomes zero, the divisor in that final division is the GCD. This also covers a zero remainder in the very first division.</p>"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and reduced fractions"
+   ],
+   "b": [
+    "Calculer le PGCD de \\(252\\) et \\(180\\), en expliquant chaque passage à la paire suivante.",
+    "Find the GCD of \\(252\\) and \\(180\\), explaining each change of pair."
+   ],
+   "a": [
+    "\\(252=180+72\\), donc le PGCD de \\(252,180\\) est celui de \\(180,72\\). Puis \\(180=2\\times72+36\\), donc on passe à \\(72,36\\). Enfin \\(72=2\\times36+0\\). Le dernier reste non nul est \\(36\\). Vérification : \\(252=7\\times36\\) et \\(180=5\\times36\\).",
+    "\\(252=180+72\\), so move to \\((180,72)\\). Then \\(180=2\\times72+36\\), so move to \\((72,36)\\). Finally \\(72=2\\times36+0\\). The last nonzero remainder is \\(36\\). Check: \\(252=7\\times36\\) and \\(180=5\\times36\\)."
+   ]
+  },
+  {
+   "k": "method",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and irreducible fractions"
+   ],
+   "b": [
+    "<p>Une fraction \\(\\dfrac ab\\) est irréductible si \\(a\\) et \\(b\\ne0\\) n'ont aucun diviseur positif commun autre que un. Diviser le numérateur et le dénominateur par le même entier non nul conserve la valeur de la fraction.</p><ol><li>Calcule le PGCD des valeurs absolues du numérateur et du dénominateur.</li><li>Divise les deux par ce PGCD.</li><li>Vérifie que tu ne peux plus simplifier et place, si nécessaire, le signe moins devant la fraction.</li></ol><p>Ne simplifie jamais seulement un terme d'une somme : on simplifie des facteurs d'un produit commun au numérateur et au dénominateur.</p>",
+    "<p>A fraction \\(\\dfrac ab\\) is reduced when \\(a\\) and \\(b\\ne0\\) have no common positive divisor other than one. Dividing both numerator and denominator by the same nonzero integer preserves its value.</p><ol><li>Find the GCD of their absolute values.</li><li>Divide both by that GCD.</li><li>Check that no further cancellation is possible and place any minus sign in front of the fraction.</li></ol><p>Never cancel a single term in a sum: cancellation removes common factors of products.</p>"
+   ],
+   "h": [
+    "Rendre une fraction irréductible",
+    "Making a fraction irreducible"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "PGCD et fractions irréductibles",
+    "GCD and irreducible fractions"
+   ],
+   "b": [
+    "Rendre irréductibles \\(\\dfrac{140}{630}\\), \\(\\dfrac{84}{126}\\) et \\(\\dfrac{-120}{150}\\).",
+    "Make \\(\\dfrac{140}{630}\\), \\(\\dfrac{84}{126}\\) and \\(\\dfrac{-120}{150}\\) irreducible."
+   ],
+   "a": [
+    "Les PGCD valent respectivement \\(70\\), \\(42\\), \\(30\\). Ainsi \\(140/630=2/9\\), \\(84/126=2/3\\) et \\(-120/150=-4/5\\). Pour \\(140/630\\), on peut aussi simplifier les facteurs \\(2,5,7\\) dans les décompositions.",
+    "The GCDs are \\(70\\), \\(42\\), \\(30\\) respectively. Thus \\(140/630=2/9\\), \\(84/126=2/3\\) and \\(-120/150=-4/5\\). For \\(140/630\\), we can also cancel the factors \\(2,5,7\\) in the factorisations."
+   ]
+  },
+  {
+   "k": "try",
+   "t": [
+    "Un partage et sa justification",
+    "A sharing problem and its justification"
+   ],
+   "b": [
+    "Une association possède 180 cartes et 252 jetons. Former le plus grand nombre de lots identiques sans reste. Donner le contenu d’un lot et expliquer pourquoi aucun nombre supérieur de lots ne convient.",
+    "An association has 180 cards and 252 tokens. Make the greatest possible number of identical packs without leftovers. Give the contents of a pack and explain why no larger number works."
+   ],
+   "difficulty": 3,
+   "hints": [
+    [
+     "Le nombre de lots doit être un diviseur commun.",
+     "The number of packs must be a common divisor."
+    ],
+    [
+     "Calcule le PGCD, puis divise chaque quantité par ce nombre.",
+     "Find the GCD, then divide each quantity by it."
+    ]
+   ],
+   "a": [
+    "Le PGCD est \\(36\\). Par divisions successives : \\(252=180+72\\), \\(180=2\\times72+36\\), \\(72=2\\times36\\). Il y a donc \\(36\\) lots, contenant \\(5\\) cartes et \\(7\\) jetons chacun. Un nombre de lots admissible divise le PGCD et ne peut donc pas le dépasser.",
+    "The GCD is \\(36\\): \\(252=180+72\\), \\(180=2\\times72+36\\), \\(72=2\\times36\\). Thus make \\(36\\) packs, each with \\(5\\) cards and \\(7\\) tokens. Any admissible number of packs divides the GCD, so cannot exceed it."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Vocabulaire ensembliste en contexte",
+    "Set vocabulary in context"
+   ],
+   "b": [
+    "\\(x\\in A\\) signifie que \\(x\\) est un élément de \\(A\\) ; \\(A\\subseteq B\\) signifie que tout élément de \\(A\\) appartient à \\(B\\). \\(\\varnothing\\) est l'ensemble vide.\n<ul>\n<li>\\(A\\cap B\\) : éléments appartenant à \\(A\\) <b>et</b> à \\(B\\) ;\n<li>\\(A\\cup B\\) : éléments appartenant à \\(A\\) <b>ou</b> à \\(B\\) (éventuellement aux deux) ;\n<li>dans un ensemble de référence \\(E\\), \\(\\overline A=E\\setminus A\\) contient les éléments de \\(E\\) qui ne sont pas dans \\(A\\) ;\n<li>pour un ensemble fini, \\(\\Card(A)\\) est son nombre d'éléments.\n</ul>",
+    "\\(x\\in A\\) means that \\(x\\) is an element of \\(A\\); \\(A\\subseteq B\\) means that every element of \\(A\\) belongs to \\(B\\). \\(\\varnothing\\) is the empty set.\n<ul>\n<li>\\(A\\cap B\\): elements belonging to \\(A\\) <b>and</b> to \\(B\\);\n<li>\\(A\\cup B\\): elements belonging to \\(A\\) <b>or</b> to \\(B\\) (possibly both);\n<li>in a reference set \\(E\\), \\(\\overline A=E\\setminus A\\) contains the elements of \\(E\\) that are not in \\(A\\);\n<li>for a finite set, \\(\\Card(A)\\) is its number of elements.\n</ul>"
+   ],
+   "h": [
+    "Définitions et notations",
+    "Definitions and notation"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Vocabulaire ensembliste en contexte",
+    "Set vocabulary in context"
+   ],
+   "b": [
+    "Dans \\(E=\\{1;2;3;4;5;6\\}\\), on pose \\(A=\\{2;4;6\\}\\) et \\(B=\\{3;6\\}\\). Donner \\(A\\cap B\\), \\(A\\cup B\\), \\(\\overline A\\) et \\(\\Card(A)\\). Les assertions \\(2\\in A\\), \\(\\{2\\}\\subseteq A\\) et \\(A\\subseteq B\\) sont-elles vraies ? Ici, \\(A\\) regroupe les multiples de deux et \\(B\\) les multiples de trois dans \\(E\\). Leur intersection exprime donc les deux conditions à la fois.",
+    "In \\(E=\\{1,2,3,4,5,6\\}\\), let \\(A=\\{2,4,6\\}\\) and \\(B=\\{3,6\\}\\). Give \\(A\\cap B\\), \\(A\\cup B\\), \\(\\overline A\\) and \\(\\Card(A)\\). Are the statements \\(2\\in A\\), \\(\\{2\\}\\subseteq A\\) and \\(A\\subseteq B\\) true? Here \\(A\\) contains the multiples of two and \\(B\\) the multiples of three within \\(E\\); their intersection expresses both conditions at once."
+   ],
+   "a": [
+    "\\(A\\cap B=\\{6\\}\\), \\(A\\cup B=\\{2;3;4;6\\}\\), \\(\\overline A=\\{1;3;5\\}\\), \\(\\Card(A)=3\\). Les deux premières assertions sont vraies. La troisième est fausse, par exemple \\(2\\in A\\) et \\(2\\notin B\\).",
+    "\\(A\\cap B=\\{6\\}\\), \\(A\\cup B=\\{2,3,4,6\\}\\), \\(\\overline A=\\{1,3,5\\}\\), \\(\\Card(A)=3\\). The first two statements are true. The third is false, for example \\(2\\in A\\) and \\(2\\notin B\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Pour aller plus loin : couples et produits cartésiens",
+    "Extension: ordered pairs and Cartesian products"
+   ],
+   "b": [
+    "Un couple \\((a;b)\\) est ordonné : en général \\((a;b)\\ne(b;a)\\). Le produit cartésien \\(A\\times B\\) est l'ensemble des couples \\((a;b)\\) avec \\(a\\in A\\) et \\(b\\in B\\). Pour des ensembles finis, \\(\\Card(A\\times B)=\\Card(A)\\Card(B)\\).",
+    "A pair \\((a,b)\\) is ordered: in general \\((a,b)\\ne(b,a)\\). The Cartesian product \\(A\\times B\\) is the set of pairs \\((a,b)\\) with \\(a\\in A\\) and \\(b\\in B\\). For finite sets, \\(\\Card(A\\times B)=\\Card(A)\\Card(B)\\)."
+   ],
+   "h": [
+    "Couple et produit cartésien",
+    "Pair and Cartesian product"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Pour aller plus loin : couples et produits cartésiens",
+    "Extension: ordered pairs and Cartesian products"
+   ],
+   "b": [
+    "Écrire tous les éléments de \\(\\{1;2\\}\\times\\{3;4;5\\}\\).",
+    "Write all the elements of \\(\\{1,2\\}\\times\\{3,4,5\\}\\)."
+   ],
+   "a": [
+    "\\(\\{(1;3);(1;4);(1;5);(2;3);(2;4);(2;5)\\}\\). Il y a \\(2\\times3=6\\) couples.",
+    "\\(\\{(1,3),(1,4),(1,5),(2,3),(2,4),(2,5)\\}\\). There are \\(2\\times3=6\\) pairs."
+   ]
+  },
+  {
+   "k": "method",
+   "t": [
+    "Algorithmique et réinvestissement",
+    "Algorithms and putting it to use"
+   ],
+   "b": [
+    "Pour des entiers et \\(b&gt;0\\), <code>a % b</code> est le reste de la division euclidienne. Avec un diviseur négatif, Python donne un reste nul ou de même signe que ce diviseur ; ce n’est plus le reste non négatif de la convention usuelle. En revanche, <code>a % b == 0</code> teste bien la divisibilité pour tout entier non nul \\(b\\). Un test renvoie un booléen : <code>True</code> ou <code>False</code>. L’égalité se teste par <code>==</code> ; l’affectation utilise <code>=</code>.",
+    "For integers and \\(b&gt;0\\), <code>a % b</code> is the Euclidean remainder. With a negative divisor, Python returns zero or a remainder with the divisor’s sign, rather than the usual nonnegative remainder. However, <code>a % b == 0</code> correctly tests divisibility for every nonzero integer \\(b\\). A test returns a Boolean: <code>True</code> or <code>False</code>. Equality is tested with <code>==</code>; assignment uses <code>=</code>."
+   ],
+   "h": [
+    "Python : entier, booléen et condition",
+    "Python: integer, Boolean and condition"
+   ]
+  },
+  {
+   "k": "code",
+   "t": [
+    "Python",
+    "Python"
+   ],
+   "b": [
+    "def est_multiple(a, b):\n    if b == 0:\n        return a == 0\n    return a % b == 0",
+    "def is_multiple(a, b):\n    if b == 0:\n        return a == 0\n    return a % b == 0"
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Algorithmique et réinvestissement",
+    "Algorithms and putting it to use"
+   ],
+   "b": [
+    "Prévoir les résultats de <code>est_multiple(35, 5)</code> et <code>est_multiple(35, 6)</code>, puis de <code>est_multiple(0, 7)</code>, <code>est_multiple(7, 0)</code> et <code>est_multiple(0, 0)</code>. Expliquer le rôle de la condition.",
+    "Predict the results of <code>is_multiple(35, 5)</code> and <code>is_multiple(35, 6)</code>, then of <code>is_multiple(0, 7)</code>, <code>is_multiple(7, 0)</code> and <code>is_multiple(0, 0)</code>. Explain the role of the condition."
+   ],
+   "a": [
+    "Les résultats sont <code>True</code>, <code>False</code>, <code>True</code>, <code>False</code>, <code>True</code>. Le cas \\(b=0\\) évite le calcul d'un reste modulo zéro, impossible, et applique la définition : seul \\(0\\) est multiple de \\(0\\).",
+    "The results are <code>True</code>, <code>False</code>, <code>True</code>, <code>False</code>, <code>True</code>. The case \\(b=0\\) avoids calculating a remainder modulo zero, which is impossible, and applies the definition: only \\(0\\) is a multiple of \\(0\\)."
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Algorithmique et réinvestissement",
+    "Algorithms and putting it to use"
+   ],
+   "b": [
+    "On dispose de \\(84\\) cahiers et \\(126\\) crayons. On veut former le plus grand nombre possible de lots identiques en utilisant tout le matériel. Combien de lots peut-on faire ? Que contient chacun d'eux ?",
+    "We have \\(84\\) notebooks and \\(126\\) pencils. We want to make as many identical packs as possible, using all the material. How many packs can we make? What does each contain?"
+   ],
+   "a": [
+    "Le nombre de lots divise \\(84\\) et \\(126\\). Son maximum est donc \\(\\operatorname{PGCD}(84,126)=42\\). Chaque lot contient \\(84/42=2\\) cahiers et \\(126/42=3\\) crayons. La vérification \\(42\\times2=84\\), \\(42\\times3=126\\) confirme l'utilisation de tout le matériel.",
+    "The number of packs divides \\(84\\) and \\(126\\). Its maximum is therefore \\(\\operatorname{gcd}(84,126)=42\\). Each pack contains \\(84/42=2\\) notebooks and \\(126/42=3\\) pencils. The check \\(42\\times2=84\\), \\(42\\times3=126\\) confirms that all the material is used."
+   ],
+   "h": [
+    "Problème",
+    "Problem"
+   ]
+  },
+  {
+   "k": "try",
+   "t": [
+    "Bilan sans aide",
+    "Review without help"
+   ],
+   "b": [
+    "1. Pourquoi \\(0\\) est-il multiple de \\(7\\), mais \\(7\\) n’est-il pas multiple de \\(0\\) ? 2. Réduire \\(\\dfrac{210}{462}\\). 3. Montrer que la somme de deux entiers impairs est paire.",
+    "1. Why is \\(0\\) a multiple of \\(7\\) but \\(7\\) not a multiple of \\(0\\)? 2. Reduce \\(\\dfrac{210}{462}\\). 3. Prove the sum of two odd integers even."
+   ],
+   "stage": "check",
+   "difficulty": 3,
+   "a": [
+    "1. \\(0=7\\times0\\), alors que \\(7=0\\times k\\) est impossible. 2. Le PGCD est \\(42\\), donc \\(\\dfrac{210}{462}=\\dfrac5{11}\\). 3. Écris les nombres sous la forme \\(2k+1\\) et \\(2\\ell+1\\). Leur somme vaut \\(2(k+\\ell+1)\\), donc est paire.",
+    "1. \\(0=7\\times0\\), whereas \\(7=0\\times k\\) is impossible. 2. The GCD is \\(42\\), giving \\(\\dfrac5{11}\\). 3. Write the integers as \\(2k+1\\) and \\(2\\ell+1\\). Their sum is \\(2(k+\\ell+1)\\), so is even."
+   ]
+  }
+ ]
+}

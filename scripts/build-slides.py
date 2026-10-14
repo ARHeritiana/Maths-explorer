@@ -61,7 +61,17 @@ def env_end(s, i, name):
     raise ValueError('missing \\end{%s}' % name)
 
 
-def strip_comments(s): return re.sub(r'(?<!\\)%.*', '', s)
+def strip_comments(s):
+    # Percent is Python's modulo operator inside listings, not a TeX comment.
+    listings = []
+    def protect(match):
+        listings.append(match.group(0))
+        return f'@@MXLISTING{len(listings) - 1}@@'
+    protected = re.sub(r'\\begin\{lstlisting\}(?:\[[^\]]*\])?[\s\S]*?\\end\{lstlisting\}', protect, s)
+    cleaned = re.sub(r'(?<!\\)%.*', '', protected)
+    for i, listing in enumerate(listings):
+        cleaned = cleaned.replace(f'@@MXLISTING{i}@@', listing)
+    return cleaned
 
 
 MATH = re.compile(r'\$\$.*?\$\$|\\\[.*?\\\]|\$[^$]*\$|\\begin\{(?:align\*?|equation\*?|gather\*?)\}.*?\\end\{(?:align\*?|equation\*?|gather\*?)\}', re.S)
@@ -393,6 +403,8 @@ WIDGETS = {
 
 def add_widgets(cid, slides):
     for rx, spec in WIDGETS.get(cid, []):
+        if any(sl.get('k') == 'widget' and sl.get('w') == spec for sl in slides):
+            continue
         idx = [i for i, s in enumerate(slides) if re.search(rx, s['t'][1])]
         if not idx: print('  no unit for widget', cid, rx); continue
         j = idx[0]
@@ -474,3 +486,4 @@ def main():
 
 
 if __name__ == '__main__': main()
+

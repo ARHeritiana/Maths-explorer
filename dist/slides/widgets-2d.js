@@ -37,8 +37,9 @@ export const W2 = {
         dot(o, V.X(al), V.Y(be), C.acc, "S"); dot(o, V.X(al + 1), V.Y(a + be), C.warn);
         const N = o.num, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
         const canon = (a === 1 ? "" : a === -1 ? "−" : N(a)) + shifted("x", al, N) + "²" + (Math.abs(be) < 1e-9 ? "" : (be < 0 ? " − " : " + ") + N(Math.abs(be)));
-        const roots = d < -1e-9 ? o.pair("aucune racine réelle", "no real root") : d < 1e-9 ? `x = ${N(al)}` : `x₁ = ${N((-b - Math.sqrt(d)) / (2 * a))}, x₂ = ${N((-b + Math.sqrt(d)) / (2 * a))}`;
-        set(o, lines(o.pair(`Forme canonique : f(x) = ${canon}`, `Canonical form: f(x) = ${canon}`), `f(x) = ${poly([[a, "x²"], [b, "x"], [c, ""]], N)}`, `Δ = ${N(d)}`, o.pair("Racines : ", "Roots: ") + roots, a > 0 ? o.pair("Minimum en α.", "Minimum at α.") : o.pair("Maximum en α.", "Maximum at α.")));
+        const ordered = d > 1e-9 ? [(-b-Math.sqrt(d))/(2*a),(-b+Math.sqrt(d))/(2*a)].sort((x,y)=>x-y) : [al];
+        const roots = d < -1e-9 ? o.pair("aucune racine réelle", "no real root") : d < 1e-9 ? `x = ${N(al)}` : `x₁ = ${N(ordered[0])}, x₂ = ${N(ordered[1])}`;
+        set(o, lines(o.pair(`Forme canonique : f(x) = ${canon}`, `Canonical form: f(x) = ${canon}`), `f(x) = ${poly([[a, "x²"], [b, "x"], [c, ""]], N)}`, o.spec.showDelta === false ? "" : `Δ = ${N(d)}`, o.pair("Zéros (intersections) : ", "Zeros (intersections): ") + roots, a > 0 ? o.pair("Minimum en α.", "Minimum at α.") : o.pair("Maximum en α.", "Maximum at α.")));
       },
     };
   },

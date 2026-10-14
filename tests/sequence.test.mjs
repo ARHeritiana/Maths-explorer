@@ -14,7 +14,7 @@ test('chapter progression retains the authored mathematics and task answers',()=
    if(['concept','method','proof','code'].includes(s.k))assert.ok(statements.includes(s),deck.id+' missing statement');
    if(s.k==='example')assert.ok(examples.includes(s),deck.id+' missing example');
    if(s.k==='activity'||s.k==='widget')assert.ok(model.activities.some(a=>a.b===s.b),deck.id+' missing activity');
-   if(s.k==='try')assert.ok(model.tasks.some(a=>a.b===s.b&&a.a===s.a),deck.id+' missing task');
+   if(s.k==='try')assert.ok([...model.tasks,...model.diagnostics,...model.checks].some(a=>a.b===s.b&&a.a===s.a),deck.id+' missing task');
   }
  }
 });

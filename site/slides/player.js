@@ -83,7 +83,8 @@ function advance(direction){
 }
 function companion(spec){
  if(live){live.destroy?.();live=null;}
- live=mount(spec,{host:$('#wcanvas'),controls:$('#wctl'),readout:$('#readout'),hint:$('#whint'),lang});
+ const defined=deck.slides.findIndex(x=>x.k==='concept'&&/Discriminant/.test(x.t[0]));
+ live=mount({...spec,showDelta:defined<0||index>=defined},{host:$('#wcanvas'),controls:$('#wctl'),readout:$('#readout'),hint:$('#whint'),lang});
 }
 async function render() {
   const renderId=++generation;
