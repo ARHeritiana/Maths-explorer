@@ -714,3 +714,65 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .iv-row { display: flex; align-items: flex-end; gap: 6px; min-height: 160px; }
 .iv-bar { flex: 1 1 0; min-width: 28px; max-width: 70px; border: 2px solid var(--ink); border-radius: 6px 6px 0 0; color: var(--ink); font: 700 1rem var(--body); display: flex; align-items: flex-start; justify-content: center; padding-top: 4px; cursor: pointer; transition: height 160ms ease; }
 .iv-bar:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* ---- challenge emblems (site/js/challenge-icons.js): static by default, looping motion only without reduced-motion */
+.challenge-motif .ci { display: block; width: 64px; height: 64px; overflow: visible; }
+.challenge-motif .ci * { transform-box: fill-box; transform-origin: center; }
+.ci-draw, .ci-trace { stroke-dasharray: 100; stroke-dashoffset: 0; }
+
+/* Queens board: the checkerboard must stay readable under the "free" tint, so each parity gets its own mix;
+   attacked squares keep the plain board colour and an explicit hatch so they are not mistaken for free ones. */
+.qn-cell { background: color-mix(in srgb, var(--ink) 4%, var(--surface)); }
+.qn-cell.dark { background: color-mix(in srgb, var(--ink) 22%, var(--surface)); }
+.qn-cell.free { background: color-mix(in srgb, var(--c3) 30%, var(--surface)); }
+.qn-cell.dark.free { background: color-mix(in srgb, var(--c3) 62%, var(--surface)); }
+.qn-cell:not(.free):not(.queen) { background-image: repeating-linear-gradient(45deg, transparent 0 6px, color-mix(in srgb, var(--ink) 8%, transparent) 6px 7px); }
+.qn-cell.queen { background: color-mix(in srgb, var(--c2) 38%, var(--surface)); }
+.qn-cell.dark.queen { background: color-mix(in srgb, var(--c2) 62%, var(--surface)); }
+.qn-cell { outline: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); outline-offset: -1px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .qn-cell.queen { animation: qn-drop 420ms cubic-bezier(.3,1.5,.5,1) both; }
+  .qn-cell { transition: background-color 260ms; }
+  .ci-door { animation: ci-door 3s ease-in-out infinite; transform-origin: left center; }
+  .ci-slide { animation: ci-slide 3.2s ease-in-out infinite; }
+  .ci-blink { animation: ci-blink 2.4s ease-in-out infinite var(--d, 0s); }
+  .ci-bob { animation: ci-bob 2.2s ease-in-out infinite; }
+  .ci-bob2 { animation: ci-bob 2.2s ease-in-out infinite .5s; }
+  .ci-fall { animation: ci-fall 2.4s cubic-bezier(.5,0,.9,.5) infinite; }
+  .ci-spin { animation: ci-spin 14s linear infinite; }
+  .ci-spin-slow { animation: ci-spin 22s linear infinite; }
+  .ci-pulse { animation: ci-pulse 2.4s ease-in-out infinite; }
+  .ci-draw { animation: ci-draw 3.4s ease-in-out infinite; }
+  .ci-trace { animation: ci-trace 4s linear infinite; }
+  .ci-run { animation: ci-run 3.6s ease-in-out infinite var(--d, 0s); }
+  .ci-cut { animation: ci-cut 3s ease-in-out infinite; }
+  .ci-climb { animation: ci-climb 3.6s ease-in-out infinite; }
+  .ci-cross { animation: ci-cross 4s ease-in-out infinite var(--d, 0s); }
+  .ci-tilt { animation: ci-tilt 3.4s ease-in-out infinite; }
+  .ci-merge-l { animation: ci-merge-l 3.2s ease-in-out infinite; }
+  .ci-merge-r { animation: ci-merge-r 3.2s ease-in-out infinite; }
+  .ci-hue { animation: ci-hue 3s steps(1) infinite var(--d, 0s); }
+  .ci-swap-a { animation: ci-swap-a 3s ease-in-out infinite; }
+  .ci-swap-b { animation: ci-swap-b 3s ease-in-out infinite; }
+}
+@keyframes qn-drop { from { transform: scale(1.5) translateY(-10px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ci-door { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.2); } }
+@keyframes ci-slide { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, 0); } }
+@keyframes ci-blink { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
+@keyframes ci-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes ci-fall { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(36px); opacity: 1; } 78% { transform: translateY(36px) scale(1.4, .5); opacity: 1; } 100% { transform: translateY(36px) scale(1.4, .5); opacity: 0; } }
+@keyframes ci-spin { to { transform: rotate(360deg); } }
+@keyframes ci-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(1.06); } }
+@keyframes ci-draw { 0% { stroke-dashoffset: 100; } 55%, 100% { stroke-dashoffset: 0; } }
+@keyframes ci-trace { to { stroke-dashoffset: -114; } }
+@keyframes ci-run { 0% { transform: translateX(0); } 100% { transform: translateX(40px); } }
+@keyframes ci-cut { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-6px); opacity: .6; } }
+@keyframes ci-climb { 0% { transform: translateY(0); } 45% { transform: translateY(-38px); } 60% { transform: translateY(-31px); } 100% { transform: translateY(0); } }
+@keyframes ci-cross { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate(22px, -9px); } 90% { opacity: 1; } 100% { transform: translate(44px, 0); opacity: 0; } }
+@keyframes ci-tilt { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
+@keyframes ci-merge-l { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(11px) scale(1.25); } }
+@keyframes ci-merge-r { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-11px) scale(1.25); } }
+@keyframes ci-hue { 0%, 100% { fill: var(--c1); } 33% { fill: var(--c2); } 66% { fill: var(--c3); } }
+@keyframes ci-swap-a { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(13px); } }
+@keyframes ci-swap-b { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-13px); } }

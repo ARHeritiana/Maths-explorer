@@ -128,6 +128,7 @@ export function eggs(root, { t, q }) {
     read.innerHTML = `${t("Lancers", "Drops")} : <strong>${drops}</strong> · ${t("œufs intacts", "intact eggs")} : <strong>${left}</strong>. ${
       lo === 0 && hi === FLOORS + 1 ? "" : `${t("L’étage critique est entre", "The critical floor is between")} ${lo} ${t("et", "and")} ${hi - 1}${certain === 0 ? ` ${t("(un seul candidat)", "(one candidate only)")}` : ""}.`} ${msg}`.trim();
     root.querySelector("#eg-say").disabled = done;
+    root.querySelector("#eg-guess").disabled = done;   // the verdict belongs to the announced value: no editing it afterwards
   }
   grid.addEventListener("click", (e) => {
     const b = e.target.closest("button[data-f]");
@@ -144,9 +145,11 @@ export function eggs(root, { t, q }) {
     const v = Number(root.querySelector("#eg-guess").value);
     if (!Number.isInteger(v) || v < 0 || v > FLOORS || root.querySelector("#eg-guess").value === "") { draw(t(`Entre un entier de 0 à ${FLOORS}.`, `Enter an integer from 0 to ${FLOORS}.`)); return; }
     done = true;
-    draw(v === crit ? t(`Exact : l’étage critique est ${crit}. Tu as utilisé ${drops} lancers.`, `Correct: the critical floor is ${crit}. You used ${drops} drops.`) : t(`Faux : l’étage critique était ${crit}.`, `Wrong: the critical floor was ${crit}.`));
+    const open = hi - lo - 1;   // floors still undecided after the drops
+    const why = open > 0 ? ` ${t(`Il restait ${open + 1} candidats (${lo} à ${hi - 1}) : ton plan n’avait pas assez de lancers ou d’œufs pour trancher, c’était un pari.`, `${open + 1} candidates were left (${lo} to ${hi - 1}): your plan did not have enough drops or eggs to decide, so it was a guess.`)}` : "";
+    draw(v === crit ? t(`Tu as annoncé ${v} : exact, l’étage critique est ${crit}. Tu as utilisé ${drops} lancers.`, `You announced ${v}: correct, the critical floor is ${crit}. You used ${drops} drops.`) + why : t(`Tu as annoncé ${v} : faux, l’étage critique était ${crit}.`, `You announced ${v}: wrong, the critical floor was ${crit}.`) + why);
   });
-  root.querySelector("#eg-new").addEventListener("click", () => { fresh(); draw(); });
+  root.querySelector("#eg-new").addEventListener("click", () => { fresh(); root.querySelector("#eg-guess").value = ""; draw(); });
   fresh();
   draw();
   return () => {};

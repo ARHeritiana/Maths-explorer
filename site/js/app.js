@@ -8,6 +8,7 @@ import { mountObject } from "./lab-objects.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
 import { mountActivity, hasActivity } from "./challenge-activities.js";
+import { challengeIcon } from "./challenge-icons.js";
 import { mountSolution, hasSolution } from "./challenge-solutions.js";
 import { VARIANTS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant } from "./challenge-variants.js";
 import { fullscreenButton } from "./visual-lessons.js";
@@ -981,13 +982,6 @@ function bindLab() {
     illuminateFeedback($("#quiz-feedback"), reducedMotion);
   });
 }
-// Glyph shown on each challenge card, keyed by id so new challenges never shift or lose their icon.
-const CHALLENGE_MOTIFS = {
-  doors: "□", chess: "▦", nim: "⋮", pigeonhole: "≡", squares: "n²", hanoi: "△", eggs: "◯", konigsberg: "⌘",
-  josephus: "↻", ramsey: "⬠", artgallery: "◇", gridpaths: "⇢", horses: "♞", cake: "▣", queens: "♛", snail: "∞",
-  bridge: "⌒", lighteggs: "✦", fakecoins: "⚖", reflect: "⟋", lunes: "☾", star: "★", box: "▭", merge: "⊕",
-  cham: "χ", inversions: "⇅", piles: "≥"
-};
 function challengePage(id) {
   const c = challenges.find((x) => x.id === id);
   if (c) return challengeDetail(c);
@@ -1005,7 +999,7 @@ function challengePage(id) {
     )
     .join(
       "",
-    )}</div><div class="challenge-grid">${filtered.map((x, i) => `<a class="challenge-card" href="${link("challenges", x.id)}"><div class="card-top"><span class="tag ${x.type}">${x.type === "play" ? pair("Récréatif", "Recreational") : pair("Olympiade", "Olympiad")}</span><span class="card-number">${String(challenges.indexOf(x) + 1).padStart(2, "0")}</span></div><span class="challenge-motif" aria-hidden="true">${CHALLENGE_MOTIFS[x.id] || (x.type === "play" ? "?" : "∴")}</span><h2>${t(x.title)}</h2><p>${t(x.topic)}</p><div class="card-bottom"><span>${"●".repeat(x.difficulty)}${"○".repeat(3 - x.difficulty)} <span class="sr-only">${pair("Difficulté", "Difficulty")} ${x.difficulty}/3</span></span><span>${completed.has(x.id) ? pair("✓ Réponse trouvée", "✓ Answer found") : x.minutes + " min"}</span></div></a>`).join("")}</div><p class="editorial-note">${pair("Problèmes classiques reformulés pour le laboratoire. « Esprit olympiade » désigne le type de raisonnement, pas une provenance officielle. Une réponse numérique ne remplace pas une preuve.", "Classic problems adapted for the laboratory. “Olympiad thinking” describes the reasoning style, not official contest provenance. A numerical answer does not replace a proof.")}</p></main>`;
+    )}</div><div class="challenge-grid">${filtered.map((x, i) => `<a class="challenge-card" href="${link("challenges", x.id)}"><div class="card-top"><span class="tag ${x.type}">${x.type === "play" ? pair("Récréatif", "Recreational") : pair("Olympiade", "Olympiad")}</span><span class="card-number">${String(challenges.indexOf(x) + 1).padStart(2, "0")}</span></div><span class="challenge-motif" aria-hidden="true">${challengeIcon(x.id)}</span><h2>${t(x.title)}</h2><p>${t(x.topic)}</p><div class="card-bottom"><span>${"●".repeat(x.difficulty)}${"○".repeat(3 - x.difficulty)} <span class="sr-only">${pair("Difficulté", "Difficulty")} ${x.difficulty}/3</span></span><span>${completed.has(x.id) ? pair("✓ Réponse trouvée", "✓ Answer found") : x.minutes + " min"}</span></div></a>`).join("")}</div><p class="editorial-note">${pair("Problèmes classiques reformulés pour le laboratoire. « Esprit olympiade » désigne le type de raisonnement, pas une provenance officielle. Une réponse numérique ne remplace pas une preuve.", "Classic problems adapted for the laboratory. “Olympiad thinking” describes the reasoning style, not official contest provenance. A numerical answer does not replace a proof.")}</p></main>`;
 }
 // Parameters of the variation currently shown, per challenge (kept while the visitor browses; not stored).
 const variantState = {};
