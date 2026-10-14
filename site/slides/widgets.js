@@ -1,9 +1,9 @@
-// Interactive canvases for the slide player. Every canvas has draggable handles (pointer events, keyboard-free by design:
-// the same quantities are mirrored by the readout so a teacher can talk through them). Pure 2D except space3d.
+// Interactive canvases for the slide player. Every canvas has draggable handles, keyboard movement and explicit controls.
+// The same quantities are mirrored by the readout; space scenes use true 3D.
 import { W2 } from "./widgets-2d.js";
 import { W3 } from "./widgets-3d.js";
 
-export const C = { bg: "#142024", grid: "#27393f", axis: "#6f8587", ink: "#eef3f1", muted: "#93a8a8", acc: "#6fd3b0", warn: "#e8b4a0", blue: "#8fb7ff" };
+export const C = { bg: "#13243b", grid: "#24364f", axis: "#8fa6c4", ink: "#f4f1ea", muted: "#8fa6c4", acc: "#e8a33d", warn: "#ff7a7a", blue: "#8fb7ff" };
 
 export function mount(spec, ctx) {
   const f = W2[spec.type] || W3[spec.type];
@@ -13,6 +13,20 @@ export function mount(spec, ctx) {
   ctx.hint.textContent = api.pair(spec.hintFr || "Interactif : glissez les points.", spec.hintEn || "Interactive: drag the points.");
   const inst = f(api) || {};
   cv.start(inst);
+  const handles=()=>cv.handles();
+  if(handles().length){
+    const group=document.createElement('div');group.className='canvas-keyboard';
+    const pick=document.createElement('select');pick.setAttribute('aria-label',api.pair('Point à déplacer','Point to move'));
+    handles().forEach((h,i)=>{const option=document.createElement('option');option.value=i;option.textContent=api.pair('Point ','Point ')+(i+1);pick.append(option);});group.append(pick);
+    let selected=0;pick.onchange=()=>{selected=+pick.value;};
+    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;h.move(h.x+dx,h.y+dy);cv.redraw();};
+    for(const [label,dx,dy,fr,en] of [['←',-14,0,'Déplacer vers la gauche','Move left'],['→',14,0,'Déplacer vers la droite','Move right'],['↑',0,-14,'Déplacer vers le haut','Move up'],['↓',0,14,'Déplacer vers le bas','Move down']]){
+      const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',api.pair(fr,en));button.onclick=()=>move(dx,dy);group.append(button);
+    }
+    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : flèches pour déplacer le point choisi','Interactive figure: arrow keys move the selected point'));
+    cv.c.onkeydown=e=>{const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
+    ctx.controls.append(group);
+  }
   return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
 }
 
