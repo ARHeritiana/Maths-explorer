@@ -6,8 +6,8 @@ from playwright.sync_api import sync_playwright
 
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
 ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
-CHALLENGES = ['handshakes','doors','chess','nim','pigeonhole','product','inequality','squares']
-CHALLENGE_ANSWERS = ['15','10','0','1','8','6','2','400']
+CHALLENGES = ['handshakes','doors','chess','nim','pigeonhole','product','inequality','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery']
+CHALLENGE_ANSWERS = ['15','10','0','1','8','6','2','400','63','14','1','19','6','4']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -70,9 +70,9 @@ with sync_playwright() as p:
     assert page.locator('#results strong').nth(1).inner_text() == '4'
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'
-    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 17
+    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 23
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',4),('olympiad',4),('all',8)]:
+    for kind,count in [('play',8),('olympiad',6),('all',14)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
@@ -200,6 +200,51 @@ with sync_playwright() as p:
     page.locator('#iq-x').fill('1'); assert '2' in page.locator('#iq-read strong').inner_text()
     page.goto(BASE+'/#challenges/squares')
     page.locator('#sq-n').fill('12'); assert '144' in page.locator('#sq-read strong').inner_text()
+    # Challenges added in October 2026: activities, animated solutions and the touch fix for the domino board.
+    page.goto(BASE+'/#challenges/artgallery')
+    box = page.locator('.ag-svg').bounding_box(); unit = box['width'] / 360
+    page.mouse.click(box['x'] + (18 + 9 * 18) * unit, box['y'] + (18 + 9 * 18) * unit)   # a point inside the body of the comb
+    assert page.locator('.ag-guard').count() == 1 and '%' in page.locator('#ag-read').inner_text()
+    page.goto(BASE+'/#challenges/eggs')
+    page.locator('.floor[data-f="50"]').click()
+    assert page.locator('#eg-read strong').first.inner_text() == '1'
+    page.goto(BASE+'/#challenges/hanoi')
+    page.locator('#hn-n').fill('2')
+    for a, b in [(0, 1), (0, 2), (1, 2)]:
+        page.locator('.hn-peg[data-peg="%d"]' % a).click(); page.locator('.hn-peg[data-peg="%d"]' % b).click()
+    assert 'Pile déplacée en 3' in page.locator('#hn-read').inner_text() or 'Stack moved in 3' in page.locator('#hn-read').inner_text()
+    page.goto(BASE+'/#challenges/ramsey')
+    page.locator('[data-e="0-1"]').click()
+    assert page.locator('.rm-edge.c1').count() == 1
+    page.goto(BASE+'/#challenges/konigsberg')
+    page.locator('[data-b="0"]').dispatch_event('click'); page.locator('[data-b="1"]').dispatch_event('click')   # curved: the centre of the box is not on the stroke
+    assert page.locator('.kb-bridge.crossed').count() == 2
+    page.goto(BASE+'/#challenges/josephus')
+    page.locator('#js-n').fill('7'); page.locator('#js-run').click()
+    page.wait_for_function("document.querySelector('#js-read strong')")
+    assert page.locator('#js-read strong').inner_text() == '7'
+    for challenge in CHALLENGES:
+        page.goto(BASE+'/#challenges/'+challenge)
+        page.locator('.solution summary').click()
+        first = page.locator('.sol-cap').inner_text()
+        for _ in range(6):   # a click first finishes the step being animated, the next one moves on
+            if '3 /' in page.locator('.sol-count').inner_text(): break
+            page.locator('[data-a="next"]').click()
+        assert '3 /' in page.locator('.sol-count').inner_text(), challenge
+        assert page.locator('.sol-cap').inner_text() != first, challenge
+        assert page.evaluate("!/NaN|undefined|Infinity/.test(document.querySelector('.sol-svg').innerHTML)"), challenge
+    if engine == 'chromium':
+        touch = browser.new_context(viewport={'width': 390, 'height': 844}, has_touch=True, is_mobile=True)
+        tp = touch.new_page(); tp.goto(BASE+'/#challenges/chess'); tp.locator('.dom-svg').scroll_into_view_if_needed()
+        cdp = touch.new_cdp_session(tp)
+        src = tp.locator('[data-src="h"]').bounding_box(); target = tp.locator('.dom-svg').bounding_box(); y0 = tp.evaluate('scrollY')
+        sx, sy = src['x'] + src['width'] / 2, src['y'] + src['height'] / 2; ex, ey = target['x'] + target['width'] * 0.4, target['y'] + target['height'] * 0.3
+        cdp.send('Input.dispatchTouchEvent', {'type': 'touchStart', 'touchPoints': [{'x': sx, 'y': sy}]})
+        for i in range(1, 11): cdp.send('Input.dispatchTouchEvent', {'type': 'touchMove', 'touchPoints': [{'x': sx + (ex - sx) * i / 10, 'y': sy + (ey - sy) * i / 10}]})
+        cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []})
+        tp.wait_for_timeout(200)
+        assert tp.locator('.dom[data-d]').count() == 1 and abs(tp.evaluate('scrollY') - y0) < 5, 'a finger dragging a domino must not scroll the page'
+        touch.close()
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')

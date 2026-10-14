@@ -760,6 +760,192 @@ export const challenges = [
       "Also write a proof by induction.",
     ],
   },
+  {
+    id: "hanoi",
+    type: "play",
+    title: ["Les tours de Hanoï", "The Tower of Hanoi"],
+    topic: ["Récurrence", "Recursion"],
+    difficulty: 2,
+    minutes: 10,
+    prompt: [
+      "Trois tiges. Six disques de tailles différentes sont empilés sur la première, le plus grand en bas. À chaque coup, on déplace un seul disque, sans jamais le poser sur un disque plus petit. Quel est le plus petit nombre de coups pour transférer toute la pile sur une autre tige ?",
+      "Three pegs. Six disks of different sizes are stacked on the first, the largest at the bottom. Each move shifts one disk, never onto a smaller disk. What is the smallest number of moves needed to transfer the whole stack to another peg?",
+    ],
+    answer: 63,
+    hints: [
+      [
+        "Commence avec 1, 2 puis 3 disques et note le nombre minimal de coups.",
+        "Start with 1, 2 then 3 disks and note the minimum number of moves.",
+      ],
+      [
+        "Pour bouger le plus grand disque, les autres doivent être ailleurs. Combien de coups pour les y mettre, puis pour les remettre dessus ?",
+        "To move the largest disk, the others must be elsewhere. How many moves to put them there, then back on top?",
+      ],
+    ],
+    solution: [
+      "Pour libérer le plus grand disque, il faut déplacer les n − 1 autres sur la tige intermédiaire, déplacer le grand disque, puis ramener les n − 1 dessus : u(n) = 2u(n − 1) + 1 avec u(1) = 1. On obtient u(n) = 2<sup>n</sup> − 1 : 1, 3, 7, 15, 31, 63. Le grand disque doit bouger au moins une fois, ce qui rend cette stratégie optimale. Pour 6 disques : 63 coups.",
+      "To free the largest disk, move the other n − 1 to the spare peg, move the large disk, then bring the n − 1 back on top: u(n) = 2u(n − 1) + 1 with u(1) = 1. This gives u(n) = 2<sup>n</sup> − 1: 1, 3, 7, 15, 31, 63. The large disk must move at least once, which makes the strategy optimal. For 6 disks: 63 moves.",
+    ],
+    extension: [
+      "Démontre par récurrence que u(n) = 2^n − 1, puis montre que le plus petit disque bouge un coup sur deux.",
+      "Prove by induction that u(n) = 2^n − 1, then show that the smallest disk moves every other move.",
+    ],
+  },
+  {
+    id: "eggs",
+    type: "play",
+    title: ["Les deux œufs d’autruche", "The two ostrich eggs"],
+    topic: ["Optimisation", "Optimization"],
+    difficulty: 3,
+    minutes: 15,
+    prompt: [
+      "Tu as deux œufs d’autruche identiques et un immeuble de 100 étages. Il existe un étage critique : d’un étage inférieur ou égal, un œuf ne se brise pas ; d’un étage supérieur, il se brise. Un œuf intact peut resservir, un œuf brisé non. Quel est le plus petit nombre de lancers qui suffit, dans le pire des cas, pour trouver l’étage critique ?",
+      "You have two identical ostrich eggs and a 100-floor building. There is a critical floor: from that floor or below an egg does not break, from above it does. An intact egg can be reused, a broken one cannot. What is the smallest number of drops that is enough, in the worst case, to find the critical floor?",
+    ],
+    answer: 14,
+    hints: [
+      [
+        "Avec un seul œuf, la seule méthode sûre est de monter un étage à la fois.",
+        "With a single egg the only safe method is to climb one floor at a time.",
+      ],
+      [
+        "Si le premier œuf se brise au k-ième lancer, combien de lancers restent-ils au second ? Fais diminuer le pas à chaque lancer.",
+        "If the first egg breaks on the kth drop, how many drops does the second have left? Make the step shrink with each drop.",
+      ],
+    ],
+    solution: [
+      "Lâche le premier œuf des étages 14, 27, 39, 50, 60, 69, 77, 84, 90, 95, 99, 100 : les pas valent 14, 13, 12, …, diminuent de 1. S’il se brise au k-ième lancer, le second parcourt les étages restants un par un : au total toujours au plus 14 lancers. Avec n lancers, on couvre n + (n − 1) + … + 1 = n(n + 1)/2 étages. Il faut n(n + 1)/2 ≥ 100 : 13 × 14/2 = 91 est insuffisant, 14 × 15/2 = 105 convient. Réponse : 14.",
+      "Drop the first egg from floors 14, 27, 39, 50, 60, 69, 77, 84, 90, 95, 99, 100: the steps are 14, 13, 12, … and shrink by 1. If it breaks on the kth drop, the second egg walks through the remaining floors one by one: the total is always at most 14 drops. With n drops you cover n + (n − 1) + … + 1 = n(n + 1)/2 floors. You need n(n + 1)/2 ≥ 100: 13 × 14/2 = 91 is not enough, 14 × 15/2 = 105 works. Answer: 14.",
+    ],
+    extension: [
+      "Que devient la réponse avec 3 œufs ? Cherche un tableau « étages couverts » en fonction du nombre d’œufs et de lancers.",
+      "What happens with 3 eggs? Look for a table of floors covered as a function of eggs and drops.",
+    ],
+  },
+  {
+    id: "konigsberg",
+    type: "play",
+    title: ["Les sept ponts de Königsberg", "The seven bridges of Königsberg"],
+    topic: ["Graphes", "Graphs"],
+    difficulty: 2,
+    minutes: 10,
+    prompt: [
+      "Quatre quartiers A, B, C, D sont reliés par 7 ponts : deux entre A et B, deux entre A et C, un entre A et D, un entre B et D, un entre C et D. Combien de ponts faut-il retirer, au minimum, pour qu’une promenade traverse chaque pont restant exactement une fois ?",
+      "Four districts A, B, C, D are joined by 7 bridges: two between A and B, two between A and C, one between A and D, one between B and D, one between C and D. What is the minimum number of bridges to remove so that a walk crosses every remaining bridge exactly once?",
+    ],
+    answer: 1,
+    hints: [
+      [
+        "Pour chaque quartier, compte les ponts qui y arrivent.",
+        "For each district, count the bridges that reach it.",
+      ],
+      [
+        "Quand tu traverses un quartier, tu utilises deux ponts : un pour entrer, un pour sortir. Que peut-il se passer au départ et à l’arrivée ?",
+        "Passing through a district uses two bridges: one in, one out. What can differ at the start and at the end?",
+      ],
+    ],
+    solution: [
+      "Les quartiers A, B, C, D touchent 5, 3, 3, 3 ponts : quatre nombres impairs. Un parcours qui traverse chaque pont une fois n’autorise que 0 ou 2 quartiers impairs (le départ et l’arrivée), car partout ailleurs les ponts vont par paires entrée et sortie. Retirer 0 pont est donc impossible. Si on retire le pont entre B et D, B et D deviennent pairs : il reste A et C impairs et le réseau reste connexe. La promenade A, B, A, C, A, D, C traverse alors chaque pont restant une fois. Minimum : 1 (Euler, 1736).",
+      "Districts A, B, C, D touch 5, 3, 3, 3 bridges: four odd numbers. A route crossing every bridge once allows only 0 or 2 odd districts (the start and the end), since everywhere else bridges come in in-out pairs. Removing 0 bridges is therefore impossible. If the bridge between B and D is removed, B and D become even: A and C stay odd and the network remains connected. The walk A, B, A, C, A, D, C then crosses every remaining bridge once. Minimum: 1 (Euler, 1736).",
+    ],
+    extension: [
+      "Quelle condition sur les degrés permet une promenade qui revient à son point de départ ?",
+      "What condition on the degrees allows a walk that returns to its starting point?",
+    ],
+  },
+  {
+    id: "josephus",
+    type: "play",
+    title: ["Le cercle de Josèphe", "The Josephus circle"],
+    topic: ["Récurrence", "Recursion"],
+    difficulty: 3,
+    minutes: 12,
+    prompt: [
+      "41 personnes, numérotées de 1 à 41, forment un cercle. On saute la personne 1, on élimine la 2, on saute la 3, on élimine la 4, et ainsi de suite en tournant et sans s’arrêter jusqu’à ce qu’il n’en reste qu’une. Quel est le numéro de la dernière personne restante ?",
+      "41 people, numbered 1 to 41, stand in a circle. Skip person 1, remove 2, skip 3, remove 4, and so on around the circle without stopping until one person is left. What is the number of the last person standing?",
+    ],
+    answer: 19,
+    hints: [
+      [
+        "Cherche la survivante pour n = 1, 2, 3, …, 10 : quel motif apparaît quand n est une puissance de 2 ?",
+        "Find the survivor for n = 1, 2, 3, …, 10: what pattern appears when n is a power of 2?",
+      ],
+      [
+        "Après avoir éliminé assez de personnes pour tomber sur une puissance de 2, qui est la première personne sautée ?",
+        "After removing enough people to land on a power of 2, who is the first person skipped?",
+      ],
+    ],
+    solution: [
+      "Si le cercle compte 2<sup>m</sup> personnes, un tour élimine une personne sur deux et recommence au même point : la première personne sautée, la numéro 1, survit. Pour n = 2<sup>m</sup> + l avec 0 ≤ l &lt; 2<sup>m</sup>, après l éliminations (2, 4, …, 2l) il reste 2<sup>m</sup> personnes et la prochaine sautée est 2l + 1 : elle survit. Ici 41 = 32 + 9, donc le survivant est 2 × 9 + 1 = 19.",
+      "If the circle has 2<sup>m</sup> people, one lap removes every second person and restarts at the same spot: the first person skipped survives. For n = 2<sup>m</sup> + l with 0 ≤ l &lt; 2<sup>m</sup>, after l removals (2, 4, …, 2l) there are 2<sup>m</sup> people left and the next one skipped is 2l + 1: that person survives. Here 41 = 32 + 9, so the survivor is 2 × 9 + 1 = 19.",
+    ],
+    extension: [
+      "Écris le numéro du survivant en binaire à partir de celui de n : que remarques-tu ?",
+      "Write n in binary and the survivor’s number in binary: what do you notice?",
+    ],
+  },
+  {
+    id: "ramsey",
+    type: "olympiad",
+    title: ["Trois amis ou trois inconnus", "Three friends or three strangers"],
+    topic: ["Graphes", "Graph theory"],
+    difficulty: 3,
+    minutes: 15,
+    prompt: [
+      "Dans un groupe de n personnes, deux personnes quelconques sont soit amies, soit non amies. Quel est le plus petit n qui garantit de trouver trois personnes deux à deux amies, ou trois personnes deux à deux non amies ?",
+      "In a group of n people, any two are either friends or not friends. What is the smallest n that guarantees three people who are pairwise friends, or three people who are pairwise not friends?",
+    ],
+    answer: 6,
+    hints: [
+      [
+        "Montre d’abord que 5 ne suffit pas : cherche un coloriage des traits d’un pentagone et de ses diagonales sans trio d’une seule couleur.",
+        "First show that 5 is not enough: look for a colouring of a pentagon’s sides and diagonals with no one-colour trio.",
+      ],
+      [
+        "Avec 6 personnes, fixe l’une d’elles et regarde ses 5 relations avec les autres : le principe des tiroirs s’applique.",
+        "With 6 people, fix one of them and look at her 5 relations with the others: the pigeonhole principle applies.",
+      ],
+    ],
+    solution: [
+      "5 personnes ne suffisent pas : en pentagone, amis = côtés, non amis = diagonales, aucun trio n’est d’une seule couleur. Avec 6 personnes, la personne A a 5 relations, donc au moins 3 du même type (tiroirs), par exemple 3 amis B, C, D. Si deux d’entre eux sont amis, ils forment avec A un trio d’amis. Sinon B, C, D sont deux à deux non amis. Dans tous les cas il y a un trio d’une seule couleur : R(3, 3) = 6.",
+      "5 people are not enough: arranged as a pentagon, friends = sides, not friends = diagonals, no trio is one colour. With 6 people, person A has 5 relations, so at least 3 of one kind (pigeonhole), say 3 friends B, C, D. If two of them are friends, they form a trio of friends with A. Otherwise B, C, D are pairwise not friends. Either way there is a one-colour trio: R(3, 3) = 6.",
+    ],
+    extension: [
+      "Combien de trios faut-il vérifier pour 6 personnes ? Pourquoi R(3, 3) = 6 ne dépend-il pas du coloriage choisi ?",
+      "How many trios must be checked for 6 people? Why does R(3, 3) = 6 not depend on the colouring chosen?",
+    ],
+  },
+  {
+    id: "artgallery",
+    type: "olympiad",
+    title: ["Le problème de la galerie d’art", "The art gallery problem"],
+    topic: ["Géométrie", "Geometry"],
+    difficulty: 3,
+    minutes: 15,
+    prompt: [
+      "Une galerie d’art est un polygone simple à 12 côtés, pas forcément convexe. Un gardien immobile voit tout point qu’il peut joindre par un segment contenu dans la galerie. Quel est le plus petit nombre de gardiens qui suffit à surveiller toute galerie à 12 côtés, quelle que soit sa forme ?",
+      "An art gallery is a simple polygon with 12 sides, not necessarily convex. A guard standing still sees every point he can join by a segment lying inside the gallery. What is the smallest number of guards that is enough to watch every 12-sided gallery, whatever its shape?",
+    ],
+    answer: 4,
+    hints: [
+      [
+        "Découpe le polygone en triangles par des diagonales intérieures. Un gardien posé sur un sommet d’un triangle voit tout ce triangle.",
+        "Cut the polygon into triangles with inside diagonals. A guard standing at a vertex of a triangle sees the whole triangle.",
+      ],
+      [
+        "Colorie les sommets avec trois couleurs pour que chaque triangle porte les trois couleurs. Que dire de la couleur la moins utilisée ?",
+        "Colour the vertices with three colours so that each triangle carries all three. What can you say about the least-used colour?",
+      ],
+    ],
+    solution: [
+      "Tout polygone à n côtés se découpe en n − 2 triangles. Ses sommets se colorient avec 3 couleurs de sorte que chaque triangle ait trois couleurs différentes. La couleur la moins fréquente est portée par au plus ⌊n/3⌋ sommets : des gardiens posés sur eux voient chaque triangle, donc toute la galerie. Pour n = 12 : 4 gardiens suffisent. Ils sont nécessaires pour une galerie en peigne à quatre dents : un point ne voit jamais deux pointes à la fois, donc chaque dent exige son gardien (théorème de Chvátal, preuve de Fisk).",
+      "Every polygon with n sides can be cut into n − 2 triangles. Its vertices can be coloured with 3 colours so that every triangle has three different colours. The least frequent colour sits on at most ⌊n/3⌋ vertices: guards standing on them see every triangle, hence the whole gallery. For n = 12: 4 guards are enough. They are necessary for a comb with four teeth: no point sees two tips at once, so each tooth needs its own guard (Chvátal’s theorem, Fisk’s proof).",
+    ],
+    extension: [
+      "Construis une galerie à 15 côtés qui exige 5 gardiens. Peut-on faire mieux avec des gardiens qui se déplacent le long d’un mur ?",
+      "Build a 15-sided gallery that needs 5 guards. Can guards who patrol along a wall do better?",
+    ],
+  },
 ];
 
 export const pathways = [

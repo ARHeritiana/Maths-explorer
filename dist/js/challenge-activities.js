@@ -5,24 +5,10 @@
 // polite live region, and returns a function that stops timers when the page changes.
 import { formatNumber } from "./math.js";
 
-const NS = "http://www.w3.org/2000/svg";
-const MINUS = "−";
-const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
+import { artgallery, eggs, hanoi, ramsey, konigsberg, josephus } from "./challenge-more.js";
 
-function svgEl(name, attrs = {}, parent) {
-  const el = document.createElementNS(NS, name);
-  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
-  if (parent) parent.append(el);
-  return el;
-}
 const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
-
-function toLocal(svg, event) {
-  const p = svg.createSVGPoint();
-  p.x = event.clientX;
-  p.y = event.clientY;
-  return p.matrixTransform(svg.getScreenCTM().inverse());
-}
 
 /* ------------------------------------------------------------- handshakes */
 function handshakes(root, { t }) {
@@ -42,6 +28,7 @@ function handshakes(root, { t }) {
     </div>
     <p class="act-readout" id="hs-read" role="status" aria-live="polite"></p>`;
   const svg = root.querySelector("svg");
+  lockTouch(svg, "[data-person]");
   const pos = (i) => {
     const a = (-90 + (360 * i) / n) * (Math.PI / 180);
     return [CX + R * Math.cos(a), CY + R * Math.sin(a)];
@@ -249,10 +236,12 @@ function dominoes(root, { t, reduced }) {
     <div class="act-controls">
       <button class="btn btn-secondary" id="dm-colour" type="button" aria-pressed="false">${t("Colorier les cases", "Colour the squares")}</button>
       <button class="btn btn-secondary" id="dm-orient" type="button">${t("Domino au clavier : horizontal", "Keyboard domino: horizontal")}</button>
+      <button class="btn btn-secondary" id="dm-auto" type="button">${t("Essai au hasard", "Random attempt")}</button>
       <button class="btn-quiet" id="dm-clear" type="button">${t("Tout enlever", "Remove all")}</button>
     </div>
     <p class="act-readout" id="dm-read" role="status" aria-live="polite"></p>`;
   const svg = root.querySelector("svg");
+  lockTouch(svg, "[data-src], [data-d]");   // touch-action does not apply to SVG children: stop the page scrolling under a dragged domino
   const board = svgEl("g", {}, svg);
   const placed = svgEl("g", {}, svg);
   const tray = svgEl("g", { class: "dom-tray" }, svg);
@@ -284,7 +273,13 @@ function dominoes(root, { t, reduced }) {
   const announce = (text) => (root.querySelector("#dm-read").textContent = text);
   function summary(extra = "") {
     const n = dominos.length;
-    announce(`${n} ${t(n > 1 ? "dominos posés" : "domino posé", n > 1 ? "dominoes placed" : "domino placed")}, ${62 - 2 * n} ${t("cases libres", "free squares")}. ${extra}`.trim());
+    let split = "";
+    if (colour) {
+      const free = { a: 0, b: 0 }, occ = occupied(null);
+      for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) if (!removed.has(`${c},${r}`) && !occ.has(`${c},${r}`)) free[(c + r) % 2 ? "b" : "a"] += 1;
+      split = ` ${t("Libres", "Free")} : ${free.a} ${t("claires", "light")}, ${free.b} ${t("sombres", "dark")}.`;
+    }
+    announce(`${n} ${t(n > 1 ? "dominos posés" : "domino posé", n > 1 ? "dominoes placed" : "domino placed")}, ${62 - 2 * n} ${t("cases libres", "free squares")}.${split} ${extra}`.trim());
   }
   function drawBoard() {
     board.replaceChildren();
@@ -449,6 +444,17 @@ function dominoes(root, { t, reduced }) {
     colour = !colour;
     e.currentTarget.setAttribute("aria-pressed", String(colour));
     drawBoard();
+    summary();
+  });
+  // A greedy random attempt: dominoes are laid one by one in random places until none fits. It never completes the board.
+  root.querySelector("#dm-auto").addEventListener("click", () => {
+    dominos = [];
+    const spots = [];
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) for (const o of ["h", "v"]) spots.push({ c, r, o });
+    for (let i = spots.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [spots[i], spots[j]] = [spots[j], spots[i]]; }
+    for (const d of spots) if (valid(d, null)) dominos.push({ id: nextId++, c: d.c, r: d.r, o: d.o });
+    drawPlaced();
+    summary(t("Essai terminé : aucun domino ne peut plus être posé.", "Attempt finished: no more domino fits."));
   });
   root.querySelector("#dm-clear").addEventListener("click", () => {
     dominos = [];
@@ -666,6 +672,7 @@ function inequality(root, { t, lang }) {
     <p class="act-readout" id="iq-read" role="status" aria-live="polite"></p>
     <button class="btn-quiet" id="iq-reset" type="button">${t("Effacer la plus petite valeur trouvée", "Clear the smallest value found")}</button>`;
   const plot = root.querySelector("#iq-plot"), rect = root.querySelector("#iq-rect");
+  lockTouch(plot, ".toy-handle");
   for (let i = 0; i <= 5; i++) {
     svgEl("line", { x1: X(i), y1: Y(0), x2: X(i), y2: Y(YMAX), class: i === 0 ? "ax" : "gl" }, plot);
     svgEl("text", { x: X(i), y: Y(0) + 18, "text-anchor": "middle", class: "tk" }, plot).textContent = i;
@@ -741,11 +748,17 @@ function inequality(root, { t, lang }) {
 }
 
 /* ---------------------------------------------------------------- squares */
+// Each border (an L of 1, 3, 5, … dots) has its own colour, an outline that wraps the whole L, and a matching line in
+// the legend, so the grouping "1 + 3 + 5 + …" is visible on the picture itself. Colour is never the only cue: the
+// newest border is outlined thick and every legend line states its dot count.
 function squares(root, { t }) {
   let n = 5;
   root.innerHTML = `
-    <p class="act-help">${t("Ajoute des bordures de points une à une et compte les points de chacune.", "Add borders of dots one at a time and count the dots in each.")}</p>
-    <svg class="act-svg" id="sq-svg" viewBox="0 0 300 300" role="img" aria-label="${t("Points disposés en carré", "Dots arranged in a square")}"></svg>
+    <p class="act-help">${t("Ajoute des bordures de points une à une et compte les points de chacune. Chaque bordure a sa couleur et son contour.", "Add borders of dots one at a time and count the dots in each. Every border has its own colour and outline.")}</p>
+    <div class="sq-layout">
+      <svg class="act-svg" id="sq-svg" viewBox="0 0 300 300" role="img" aria-label="${t("Points disposés en carré, une couleur par bordure", "Dots arranged in a square, one colour per border")}"></svg>
+      <ol class="sq-legend" id="sq-legend" aria-label="${t("Bordures et nombre de points", "Borders and dot counts")}"></ol>
+    </div>
     <div class="act-controls">
       <label class="act-field" for="sq-n"><span class="act-label">${t("Nombre de bordures", "Number of borders")} <output id="sq-out"></output></span><input id="sq-n" type="range" min="1" max="12" step="1" value="5"></label>
       <div class="act-buttons">
@@ -754,16 +767,33 @@ function squares(root, { t }) {
       </div>
     </div>
     <p class="act-readout" id="sq-read" role="status" aria-live="polite"></p>`;
-  const svg = root.querySelector("svg");
-  const SP = 23;
+  const svg = root.querySelector("#sq-svg"), legend = root.querySelector("#sq-legend");
+  const SP = 23, R = 8;
   function draw() {
     svg.replaceChildren();
-    const OX = (300 - (n - 1) * SP) / 2, OY = OX;
+    legend.replaceChildren();
+    const OX = (300 - (n - 1) * SP) / 2, OY = OX, P = (i, j) => [OX + j * SP, OY + i * SP];
+    for (let k = 1; k <= n; k++) {
+      // outline of border k: the L made of row k − 1 and column k − 1, drawn as one rounded polygon around the dots
+      const pad = R + 3, a = k - 1, c0 = P(0, 0), x0 = c0[0] - pad, y0 = c0[1] - pad, ex = c0[0] + a * SP + pad, ey = c0[1] + a * SP + pad, ix = c0[0] + (a - 1) * SP + pad, iy = c0[1] + (a - 1) * SP + pad;
+      const d = k === 1 ? `M${x0} ${y0}H${ex}V${ey}H${x0}Z` : `M${x0} ${iy}H${ix}V${y0}H${ex}V${ey}H${x0}Z`;
+      svgEl("path", { d, class: `sq-border${k === n ? " newest" : ""}`, style: `stroke:${colour(k - 1)};fill:${colour(k - 1)}` }, svg);
+    }
     for (let i = 0; i < n; i++)
       for (let j = 0; j < n; j++) {
-        const layer = Math.max(i, j) + 1;
-        svgEl("circle", { cx: OX + j * SP, cy: OY + i * SP, r: 8, class: `sq-dot l${layer % 2}${layer === n ? " newest" : ""}` }, svg);
+        const layer = Math.max(i, j) + 1, [cx, cy] = P(i, j);
+        svgEl("circle", { cx, cy, r: R, class: "sq-dot", style: `fill:${colour(layer - 1)}` }, svg);
       }
+    // border numbers along the left column of the picture
+    for (let k = 1; k <= n; k++) { const [cx, cy] = P(k - 1, 0); void cx; if (n <= 8) svgEl("text", { x: P(0, 0)[0] - 22, y: cy + 4, "text-anchor": "end", class: "sq-k" }, svg).textContent = k; }
+    let sum = 0;
+    for (let k = 1; k <= n; k++) {
+      sum += 2 * k - 1;
+      const li = document.createElement("li");
+      li.className = k === n ? "newest" : "";
+      li.innerHTML = `<span class="sw" style="background:${colour(k - 1)}"></span><span>${t("Bordure", "Border")} ${k} : <strong>${2 * k - 1}</strong> ${t(k > 1 ? "points" : "point", k > 1 ? "dots" : "dot")}</span><span class="tot">${t("total", "total")} ${sum}</span>`;
+      legend.append(li);
+    }
     const terms = Array.from({ length: n }, (_, k) => 2 * k + 1);
     const shown = n > 8 ? `${terms.slice(0, 4).join(" + ")} + … + ${terms.slice(-2).join(" + ")}` : terms.join(" + ");
     root.querySelector("#sq-out").textContent = n;
@@ -783,7 +813,7 @@ function squares(root, { t }) {
   return () => {};
 }
 
-const activities = { handshakes, doors, chess: dominoes, nim, pigeonhole, product, inequality, squares };
+const activities = { handshakes, doors, chess: dominoes, nim, pigeonhole, product, inequality, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus };
 
 export function hasActivity(id) {
   return Object.hasOwn(activities, id);

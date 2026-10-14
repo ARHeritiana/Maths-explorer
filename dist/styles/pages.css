@@ -442,6 +442,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .dom-svg .cell.gone { fill: none; stroke-dasharray: 3 4; opacity: 0.7; }
 .dom-svg .cell.a { fill: var(--surface); } .dom-svg .cell.b { fill: color-mix(in srgb, var(--ink) 30%, var(--surface)); }
 .dom rect { stroke-width: 2.5; }
+.dom[data-d] rect { fill-opacity: 0.5; }   /* the colouring of the squares stays visible under a placed domino */
 .dom.ha rect { fill: var(--accent-soft); stroke: var(--accent); } .dom.va rect { fill: color-mix(in srgb, var(--obj2) 20%, var(--surface)); stroke: var(--obj2); }
 .dom line { stroke: var(--ink-2); stroke-width: 2; opacity: 0.5; }
 .dom[data-d], .dom.src { cursor: grab; touch-action: none; }
@@ -480,8 +481,18 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .act-svg .toy-handle:focus-visible .ring, .act-svg .toy-handle.grabbed .ring { stroke: var(--ink); stroke-width: 5; }
 
 /* squares */
-.sq-dot.l1 { fill: var(--accent); } .sq-dot.l0 { fill: var(--obj2); }
-.sq-dot.newest { stroke: var(--ink); stroke-width: 2.5; }
+/* odd numbers: one colour, one outline and one legend line per border */
+.sq-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 17rem); gap: 16px; align-items: start; }
+.sq-dot { stroke: var(--surface); stroke-width: 1.5; }
+.sq-border { fill-opacity: 0.16; stroke-width: 2; stroke-linejoin: round; }
+.sq-border.newest { stroke-width: 4.5; fill-opacity: 0.28; }
+.sq-k { font: 700 12px var(--body); fill: var(--muted); }
+.sq-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 0.98rem; }
+.sq-legend li { display: grid; grid-template-columns: 18px 1fr auto; gap: 8px; align-items: center; padding: 3px 8px; border-radius: 6px; }
+.sq-legend li.newest { background: var(--sunken); outline: 2px solid var(--ink); }
+.sq-legend .sw { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--ink); }
+.sq-legend .tot { color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .sq-layout { grid-template-columns: 1fr; } }
 
 @media (max-width: 560px) {
   .ineq-figs { grid-template-columns: 1fr; }
@@ -547,3 +558,86 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 @media(max-width:850px){.sequence-layout{grid-template-columns:1fr;gap:20px}.sequence-nav{position:static}.sequence-nav ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.sequence-nav a{font-size:.9rem;padding:8px;gap:8px}.sequence-objectives{grid-template-columns:1fr}}
 @media(max-width:520px){.sequence-nav ol{grid-template-columns:repeat(2,minmax(0,1fr))}.sequence-card{padding:18px}.sequence-forward{align-items:stretch;flex-direction:column}.sequence-experiment{padding:12px}.sequence-experiment .canvas-wrap{height:280px}.sequence-checklist li{align-items:flex-start}}
 .sequence-code{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;padding:18px;background:var(--sunken);border:1px solid var(--line);border-radius:var(--r-sm);font:1rem/1.6 ui-monospace,Consolas,monospace}
+
+/* ------------------------------------------- new challenge activities */
+.ag-poly { fill: var(--neg-soft); stroke: none; }
+.ag-vis { fill: var(--pos-soft); stroke: var(--pos); stroke-width: 0.6; }
+.ag-wall { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.ag-guard { cursor: grab; outline: none; touch-action: none; }
+.ag-guard .hit { fill: transparent; }
+.ag-guard .dot { stroke: var(--ink); stroke-width: 2; }
+.ag-guard .ring { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 3 3; }
+.ag-guard:focus-visible .ring, .ag-guard.sel .ring { stroke-width: 4; stroke-dasharray: none; }
+.egg-status { display: flex; gap: 10px; margin-bottom: 8px; }
+.egg { width: 26px; height: 34px; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; border: 2px solid var(--ink); background: var(--surface); }
+.egg.broken { opacity: 0.4; background: repeating-linear-gradient(135deg, var(--neg-soft) 0 4px, var(--surface) 4px 8px); }
+.egg-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; }
+.floor { min-height: 38px; padding: 0; border: 1.5px solid var(--line-strong); border-radius: 6px; background: var(--surface); color: var(--ink); font: 600 0.88rem var(--math); cursor: pointer; }
+.floor.maybe { background: var(--accent-soft); }
+.floor.safe { background: var(--pos); border-color: var(--pos); color: var(--surface); }
+.floor.broke { background: var(--neg); border-color: var(--neg); color: var(--surface); text-decoration: line-through; }
+.floor:disabled { cursor: default; opacity: 1; }
+.floor:disabled:not(.safe):not(.broke) { opacity: 0.55; }
+.hn-base, .hn-pole { fill: var(--line-strong); }
+.hn-pole.from { fill: var(--accent); }
+.hn-disk { stroke: var(--ink); stroke-width: 1.5; }
+.hn-pegs { margin-top: 8px; } .hn-peg { flex: 1 1 0; }
+.rm-edge { outline: none; cursor: pointer; }
+.rm-edge .hit { stroke: transparent; stroke-width: 22; }
+.rm-edge .ln { stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 2 6; stroke-linecap: round; opacity: 0.7; }
+.rm-edge.c1 .ln { stroke: var(--accent); stroke-width: 5; stroke-dasharray: none; opacity: 1; }
+.rm-edge.c2 .ln { stroke: var(--obj2); stroke-width: 5; stroke-dasharray: 11 7; opacity: 1; }
+.rm-edge:focus-visible .ln { stroke-width: 8; }
+.rm-node { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.rm-label { font: 700 14px var(--body); fill: var(--ink); }
+.rm-tri { stroke: none; } .rm-tri.c1 { fill: var(--accent); opacity: 0.28; } .rm-tri.c2 { fill: var(--obj2); opacity: 0.28; }
+.kb-bridge { outline: none; cursor: pointer; }
+.kb-bridge .hit { fill: none; stroke: transparent; stroke-width: 20; }
+.kb-bridge .ln { fill: none; stroke: var(--ink-2); stroke-width: 7; stroke-linecap: round; }
+.kb-bridge.crossed .ln { stroke: var(--pos); }
+.kb-bridge.gone .ln { stroke: var(--neg); stroke-dasharray: 4 9; opacity: 0.5; }
+.kb-bridge:focus-visible .ln { stroke-width: 11; }
+.kb-land { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; } .kb-land.here { fill: var(--accent); }
+.kb-name { font: 700 18px var(--body); fill: var(--ink); pointer-events: none; }
+.act-svg .num-bg { fill: var(--surface); stroke: var(--pos); stroke-width: 2; } .act-svg .num { font: 700 12px var(--body); fill: var(--ink); pointer-events: none; }
+.js-p { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; } .js-p.dead { fill: var(--sunken); stroke: var(--line); } .js-p.win { fill: var(--pos); stroke: var(--ink); stroke-width: 3; }
+.js-n { font: 600 9px var(--body); fill: var(--ink); pointer-events: none; } .js-n.dead { fill: var(--muted); opacity: 0.5; }
+.js-p.win + .js-n { fill: var(--surface); }
+
+/* ------------------------------------------------ animated solutions */
+.sol-host { margin: 10px 0 14px; }
+.sol-svg { width: 100%; height: auto; background: var(--sunken); border-radius: var(--r-sm); user-select: none; -webkit-user-select: none; }
+.sol-cap { min-height: 3.6em; margin: 10px 0; font-size: 1rem; line-height: 1.5; }
+.sol-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sol-count { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sol-svg text { font-family: var(--body); }
+.sol-label { font: 700 14px var(--body); fill: var(--ink); }
+.sol-big { font: 700 46px var(--math); fill: var(--ink); } .sol-big.small { font-size: 26px; }
+.sol-sub { font: 400 16px var(--body); fill: var(--muted); }
+.sol-small { font: 400 13px var(--body); fill: var(--ink-2); }
+.sol-line { font: 600 18px var(--math); fill: var(--ink); }
+.sol-hot { font: 700 22px var(--math); fill: var(--pos); }
+.sol-tiny { font: 600 9px var(--body); fill: var(--muted); } .sol-tiny.on { fill: var(--surface); }
+.sol-edge { fill: none; stroke-width: 4; stroke-linecap: round; } .sol-edge.thin { stroke-width: 2.2; }
+.sol-node { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.sol-door { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; } .sol-door.open { stroke: none; }
+.sol-ring { fill: none; stroke: var(--neg); stroke-width: 3; }
+.sol-cell { stroke: var(--line-strong); stroke-width: 1; } .sol-cell.gone { fill: none; stroke-dasharray: 3 4; opacity: 0.7; }
+.sol-domino { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; }
+.sol-stone { stroke-width: 1.5; }
+.sol-bracket { fill: none; stroke-width: 3; }
+.sol-box { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; } .sol-box.hot { stroke: var(--neg); stroke-width: 4; }
+.sol-ball { stroke: var(--ink); stroke-width: 1.5; } .sol-ball-n { font: 700 14px var(--body); fill: #fff; }
+.sol-window { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 5; }
+.sol-axis { stroke: var(--line-strong); stroke-width: 1.5; }
+.sol-curve { fill: none; stroke: var(--accent); stroke-width: 4; }
+.sol-guide { stroke-width: 3; stroke-dasharray: 8 6; }
+.sol-wall { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.sol-diag { stroke: var(--muted); stroke-width: 1.6; }
+.sol-vis { fill: var(--pos-soft); stroke: none; }
+.sol-vertex { stroke-width: 2; }
+.sol-floor { stroke: var(--line-strong); stroke-width: 1; }
+.sol-bridge { fill: none; stroke-width: 7; stroke-linecap: round; }
+.sol-tri { stroke: none; }
+.sol-sq-dot { stroke: var(--surface); stroke-width: 1; }
+.sol-last { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }

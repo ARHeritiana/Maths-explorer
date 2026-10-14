@@ -21,6 +21,7 @@
   --obj2: #b45309; --obj3: #6d3fc0;
   --pos: #136c46; --pos-soft: #e1f3ea; --neg: #b42318; --neg-soft: #fbe7e5;
   --mark: #fde68a;
+  --c1: #2563eb; --c2: #e8710a; --c3: #0f9d58; --c4: #c2185b; --c5: #7b1fa2; --c6: #00838f; --c7: #b8860b; --c8: #d84315;   /* categorical colours for groups */
 }
 :root[data-theme="nuit"] {
   color-scheme: dark;
@@ -31,6 +32,7 @@
   --obj2: #f0b04d; --obj3: #b9a6ff;
   --pos: #5fd0a0; --pos-soft: #12301f; --neg: #ff8a80; --neg-soft: #3a1714;
   --mark: #4d4210;
+  --c1: #7aa2ff; --c2: #ffa94d; --c3: #5fd0a0; --c4: #ff7eb6; --c5: #c9a6ff; --c6: #4dd0e1; --c7: #ffd54f; --c8: #ff8a65;
 }
 :root {
   --display: "STIX Two Text", "Times New Roman", serif;
