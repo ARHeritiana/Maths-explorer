@@ -26,7 +26,7 @@ const UI = {
   home: ["Toutes les séries", "All decks"], loadErr: ["Série introuvable.", "Deck not found."],
   hint: ["Flèches : étapes et diapositives · R réponse · G plan · L langue · F plein écran", "Arrows: steps and slides · R answer · G outline · L language · F full screen"],
   slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
-  explore: ["Explorer le chapitre", "Explore the chapter"],
+  explore: ["Explorer le chapitre", "Explore the chapter"], figure: ["Figure", "Figure"],
   free: ["La figure est réglable librement ; ses valeurs peuvent différer de celles de l’exemple.", "The figure is freely adjustable; its values may differ from the worked example."],
   blocked: ["Plein écran bloqué par l’application. Ouvrez le lien dans le navigateur, puis touchez ⛶.", "Full screen is blocked here. Open the page in the browser, then tap ⛶."],
   noMath: ["Les formules n’ont pas pu se charger : une connexion internet est nécessaire.", "Formulas could not load: an internet connection is required."],
@@ -52,7 +52,7 @@ function shell() {
   $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
 <div id="rt"></div>
 <div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
-<div id="r2"><button class="b" id="rev" hidden></button><button class="b" id="lng"></button><button class="b" id="lst" aria-pressed="false"></button>${EXPORT ? "" : `<a class="b" id="dl" download></a>`}<button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lng"></button><button class="b" id="lst" aria-pressed="false"></button>${EXPORT ? "" : `<a class="b" id="dl" download></a>`}<button class="b" id="fs" title="Plein écran">⛶</button></div>
 <div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
 }
 
@@ -78,8 +78,40 @@ function sizeClass(html) {
   const n = html.replace(/<[^>]+>/g, "").length + (html.match(/\\[(\[]/g) || []).length * 25 + (html.match(/<li>/g) || []).length * 70 + (html.match(/\\\\/g) || []).length * 45;
   return n > SIZE_NARROW ? "s4" : n > 1100 ? "s3" : n > 750 ? "s2" : n > 420 ? "s1" : "";
 }
-const tex = s => lang ? s.replace(/\\pgcd/g, "\\gcd").replace(/\\ppcm/g, "\\operatorname{lcm}") : s;
+// ---- mathematics: normalise the deck TeX to the skill's rules before MathJax sees it
+const SUB = "₀₁₂₃₄₅₆₇₈₉", SUP = { "²": "2", "³": "3" };
+const MATH_ANY = /\\\((.*?)\\\)|\\\[(.*?)\\\]/gs;
+// Fractions are always \dfrac; French intervals and lists take a thin space before ";" (entities such as &lt; are left alone).
+const fixTeX = t => {
+  t = t.replace(/\\frac(?![A-Za-z])/g, "\\dfrac");
+  if (!lang) t = t.replace(/(\\[,;]|\\text\{[^}]*\}|&[a-z]+;)|;/g, (m, keep) => keep || "\\,;");
+  return t;
+};
+// Unicode sub/superscripts in prose become TeX: x₁ -> \(x_1\).
+const uniMath = h => h.replace(/([A-Za-z])([₀-₉]+|[²³])/g, (_, v, u) => `\\(${v}${SUP[u] ? "^" + SUP[u] : "_{" + [...u].map(c => SUB.indexOf(c)).join("") + "}"}\\)`);
+// \begin{array}{c|c} ... \hline ... \end{array} is an HTML <table> with CSS rules (MathJax array rules do not render reliably).
+const arrayTable = (spec, body) => {
+  const cols = []; let rule = false;
+  for (const c of spec) { if (c === "|") { if (cols.length) cols[cols.length - 1].r = true; else rule = true; } else cols.push({ l: rule, r: false }), rule = false; }
+  const rows = []; let top = false;
+  for (let row of body.split(/\\\\/)) {
+    let line = false; row = row.replace(/\\hline/g, () => { line = true; return ""; });
+    if (!row.trim()) { if (line) top = true; continue; }
+    rows.push({ cells: row.split("&amp;").map(c => c.trim()), top: top || line }); top = false;
+  }
+  const tr = rows.map((r, i) => `<tr${r.top && i ? ' class="rule"' : ""}>${r.cells.map((c, j) => `<td${cols[j]?.l ? ' class="l"' : ""}${cols[j]?.r ? ' class="r"' : ""}>${c ? `\\(${c}\\)` : ""}</td>`).join("")}</tr>`).join("");
+  return `<table class="sg">${tr}</table>`;
+};
+const tex = s => {
+  s = s.replace(/\\\[\s*\\begin\{array\}\{([^}]*)\}([\s\S]*?)\\end\{array\}\s*\\\]/g, (_, spec, body) => arrayTable(spec, fixTeX(body)));
+  s = s.replace(MATH_ANY, (m, a, b) => (a !== undefined ? `\\(${fixTeX(a)}\\)` : `\\[${fixTeX(b)}\\]`));
+  s = s.split(/(\\\(.*?\\\)|\\\[.*?\\\]|<table[\s\S]*?<\/table>)/gs).map((part, i) => (i % 2 ? part : uniMath(part))).join("");
+  return lang ? s.replace(/\\pgcd/g, "\\gcd").replace(/\\ppcm/g, "\\operatorname{lcm}") : s;
+};
+const plain = s => String(s).replace(/\\\((.*?)\\\)/g, (_, t) => t.replace(/\\[a-zA-Z]+\s?/g, "").replace(/[{}]/g, ""));
 
+// Text nodes come back from the DOM decoded ("<" for &lt;): escape them again before they are re-parsed.
+const escText = x => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 // Cumulative reveal: one block per sentence, list item, paragraph or table, shown step by step.
 function revealMarkup(html) {
   const template = document.createElement("template"); template.innerHTML = html;
@@ -93,9 +125,9 @@ function revealMarkup(html) {
       for (let i = 0; i < text.length; i++) {
         if (text.slice(i, i + 2) === "\\(" || text.slice(i, i + 2) === "\\[") math = true;
         if (text.slice(i, i + 2) === "\\)" || text.slice(i, i + 2) === "\\]") math = false;
-        if (!math && text[i] === "." && /^\s+[A-ZÀ-Ý]/.test(text.slice(i + 1))) { pending += text.slice(start, i + 1); flush(); start = i + 1; }
+        if (!math && text[i] === "." && /^\s+[A-ZÀ-Ý]/.test(text.slice(i + 1))) { pending += escText(text.slice(start, i + 1)); flush(); start = i + 1; }
       }
-      pending += text.slice(start);
+      pending += escText(text.slice(start));
     } else if (node.nodeType === 1) {
       if (node.tagName === "BR") flush(); else if (["P", "DIV", "TABLE", "PRE"].includes(node.tagName)) { flush(); parts.push(node.outerHTML); } else pending += node.outerHTML;
     }
@@ -112,6 +144,7 @@ function paintSteps() {
   $("#step-prev").disabled = step <= 1 && index === 0; $("#step-next").disabled = step >= n && index === deck.slides.length - 1;
   $("#all-steps").classList.toggle("on", all.length > 0 && step >= all.length && all.length > 1);
   $("#all-steps").hidden = all.length < 2;
+  if (typeof MathJax !== "undefined" && $("#flow").querySelector("mjx-container")) fitMath();
 }
 function advance(direction) {
   const n = blocks().length;
@@ -133,14 +166,14 @@ async function render() {
   if (live) { live.destroy?.(); live = null; }
   const s = deck.slides[index], k = s.k, label = KIND[k]?.[lang] || k;
   document.documentElement.lang = lang ? "en" : "fr";
-  document.title = `${deck.title[lang]} · Maths Explorer`;
+  document.title = `${plain(deck.title[lang])} · Maths Explorer`;
   const title = esc(s.t[lang]), rawBody = tex(s.b[lang] || "");
   const widgets = deck.slides.filter(x => x.k === "widget"), shared = widgets[0];
   const ans = s.a ? tex(s.a[lang]) : "";
-  const figs = (s.f || []).map(p => `<figure class="fig"><img src="${figSrc(deckId, p[lang])}" alt="${esc(s.t[lang])}"></figure>`).join("");
+  const figs = (s.f || []).map(p => `<figure class="fig"><img src="${figSrc(deckId, p[lang])}" alt="${esc(plain(s.t[lang]))}"></figure>`).join("");
   const mode = k === "title" || k === "code" ? "none" : k === "widget" ? "widget" : figs ? "fig" : shared && k !== "goals" ? "explore" : "none";
   const col = $("#col"), flow = $("#flow"), rt = $("#rt");
-  col.className = mode === "none" ? "wide" : ""; col.dataset.kind = k;
+  col.dataset.kind = k;
   $("#live").hidden = true; $("#readout").innerHTML = "";
 
   if (k === "title") {
@@ -154,11 +187,19 @@ async function render() {
 
   if (mode === "fig") rt.innerHTML = `<div class="figcol">${figs}</div>`;
   else if (mode === "widget" || mode === "explore") {
-    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(w.t[lang])}</option>`).join("")}</select></label><p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
+    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label><p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
   } else rt.innerHTML = "";
-  rt.hidden = mode === "none";
 
   chrome();
+  figHidden = false; layout(mode);
+  try { history.replaceState(null, "", EXPORT ? `#${index}` : `?deck=${encodeURIComponent(deckId)}&lang=${lang ? "en" : "fr"}#${index}`); } catch {}
+  // Formulas first: the widget readouts are typeset as they are written, so MathJax must be ready before they mount.
+  let ready = true;
+  try {
+    if (typeof MathJax === "undefined") throw new Error("MathJax");
+    await MathJax.startup.promise; await document.fonts.load('400 25px "STIX Two Text"');
+  } catch (e) { ready = false; console.warn(e); if (renderId === generation) toast(t("noMath")); }
+  if (renderId !== generation) return;
   const defined = deck.slides.findIndex(x => x.k === "concept" && /Discriminant/.test(x.t[0]));
   if (mode === "widget") companion(s.w, true);
   else if (mode === "explore") {
@@ -166,12 +207,37 @@ async function render() {
     $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
   }
   paintSteps(); flow.scrollTop = 0;
-  try { history.replaceState(null, "", EXPORT ? `#${index}` : `?deck=${encodeURIComponent(deckId)}&lang=${lang ? "en" : "fr"}#${index}`); } catch {}
-  try {
-    if (typeof MathJax === "undefined") throw new Error("MathJax");
-    await MathJax.startup.promise; await document.fonts.load('400 25px "STIX Two Text"');
-    if (renderId === generation) { await MathJax.typesetPromise([$("#stage")]); $("#stage").querySelectorAll("mjx-assistive-mml").forEach(x => x.remove()); }
-  } catch (e) { console.warn(e); if (renderId === generation && typeof MathJax === "undefined") toast(t("noMath")); }
+  if (ready) {
+    try { await MathJax.typesetPromise([$("#stage")]); $("#stage").querySelectorAll("mjx-assistive-mml").forEach(x => x.remove()); } catch (e) { console.warn(e); }
+    if (renderId !== generation) return;
+    fitMath();
+    // A figure that is only an exploration aid gives way when an equation needs the whole width.
+    if (mode === "explore" && needsWidth()) { figHidden = true; layout(mode); fitMath(); }
+  }
+}
+
+// ---- layout: the flow column is 520 px wide beside a figure, 1200 px without one
+let figHidden = false;
+function layout(mode) {
+  const wide = mode === "none" || (mode === "explore" && figHidden);
+  $("#col").className = wide ? "wide" : ""; $("#rt").hidden = wide;
+  const tg = $("#tg"); tg.hidden = mode !== "explore"; tg.setAttribute("aria-pressed", String(!figHidden)); tg.textContent = t("figure");
+}
+// Shrink any formula wider than the column so that nothing is cut off or needs sideways scrolling (never below MIN_SCALE).
+const MIN_SCALE = .6;
+function fitMath() {
+  const flow = $("#flow"), avail = flow.clientWidth - 4;
+  flow.querySelectorAll("mjx-container").forEach(m => { m.style.fontSize = ""; });
+  flow.querySelectorAll("mjx-container").forEach(m => {
+    if (!m.offsetParent) return;
+    const svg = m.querySelector("svg"); if (!svg) return;
+    const room = m.getAttribute("display") === "true" ? Math.min(avail, m.parentElement.clientWidth || avail) : avail;
+    const w = svg.getBoundingClientRect().width / (flow.getBoundingClientRect().width / flow.offsetWidth);
+    if (w > room) m.style.fontSize = Math.max(MIN_SCALE, room / w) * 100 + "%";
+  });
+}
+function needsWidth() {
+  return [...$("#flow").querySelectorAll("mjx-container")].some(m => m.offsetParent && m.querySelector("svg") && m.scrollWidth > m.clientWidth + 2 || m.offsetParent && m.style.fontSize && parseFloat(m.style.fontSize) <= MIN_SCALE * 100 + 1);
 }
 
 function chrome() {
@@ -190,8 +256,9 @@ function chrome() {
 
 function buildDrawer() {
   const d = $("#drawer");
-  d.innerHTML = deck.slides.map((x, i) => `<button data-i="${i}">${i + 1}. ${esc((KIND[x.k]?.[lang] || x.k) + " · " + x.t[lang])}</button>`).join("");
+  d.innerHTML = deck.slides.map((x, i) => `<button data-i="${i}">${i + 1}. ${esc(KIND[x.k]?.[lang] || x.k)} · ${esc(x.t[lang])}</button>`).join("");
   d.querySelectorAll("button").forEach(b => { b.onclick = () => { setDrawer(false); go(+b.dataset.i); }; });
+  if (typeof MathJax !== "undefined" && MathJax.typesetPromise) MathJax.startup.promise.then(() => MathJax.typesetPromise([d])).then(() => d.querySelectorAll("mjx-assistive-mml").forEach(x => x.remove())).catch(() => {});
 }
 function setDrawer(on) { $("#drawer").hidden = !on; $("#lst").setAttribute("aria-pressed", on); }
 
@@ -214,6 +281,7 @@ function bind() {
   $("#lng").onclick = () => setLang(lang ? 0 : 1);
   $("#lst").onclick = () => setDrawer($("#drawer").hidden);
   $("#rev").onclick = toggleAnswer;
+  $("#tg").onclick = () => { figHidden = !figHidden; layout("explore"); fitMath(); };
   $("#fs").onclick = () => {
     const de = document.documentElement;
     if (document.fullscreenElement || document.webkitFullscreenElement) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
