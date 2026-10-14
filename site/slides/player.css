@@ -18,7 +18,7 @@ mjx-assistive-mml{display:none!important}
 #col{position:absolute;left:40px;top:24px;width:520px;height:636px;display:flex;flex-direction:column;gap:10px;min-height:0}
 #col.wide{width:1200px}
 #col.wide #flow{font-size:28px}
-#col.wide .steps,#col.wide .answer{max-width:900px}
+#col.wide .steps,#col.wide .answer{max-width:1180px}
 #flow{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:12px;font-size:25px;scrollbar-width:none;outline:0}
 #flow::-webkit-scrollbar{display:none}
 .hd{display:flex;gap:12px;align-items:baseline;color:var(--amber);font-weight:600;font-size:21px}

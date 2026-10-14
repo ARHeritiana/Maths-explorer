@@ -224,7 +224,7 @@ function layout(mode) {
   const tg = $("#tg"); tg.hidden = mode !== "explore"; tg.setAttribute("aria-pressed", String(!figHidden)); tg.textContent = t("figure");
 }
 // Shrink any formula wider than the column so that nothing is cut off or needs sideways scrolling (never below MIN_SCALE).
-const MIN_SCALE = .6;
+const MIN_SCALE = .5;
 function fitMath() {
   const flow = $("#flow"), avail = flow.clientWidth - 4;
   flow.querySelectorAll("mjx-container").forEach(m => { m.style.fontSize = ""; });
