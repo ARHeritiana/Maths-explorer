@@ -565,6 +565,10 @@ export function hasActivity(id) {
 
 export function mountActivity(id, root, { lang, reduced, params = {} }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);
-  const stop = activities[id]?.(root, { t, lang, reduced, q: params });
+  // Each mount gets a fresh inner element: activities attach listeners to their root, and the host element survives a
+  // change of variation, so listeners from the previous parameters would otherwise keep running on the new content.
+  const inner = document.createElement("div");
+  root.replaceChildren(inner);
+  const stop = activities[id]?.(inner, { t, lang, reduced, q: params });
   return stop || (() => {});
 }
