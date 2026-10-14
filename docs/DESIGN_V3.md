@@ -4,7 +4,7 @@ Written 13 October 2026. All earlier design instructions (brief section 6, the v
 
 ## 1. What the site is for
 
-A free, static, bilingual maths resource for lycée students and their teachers. Maths is learned by manipulating an object first, then reading the rule. Each of the 47 chapters has: a guide with one central idea and a figure to manipulate, practice with a hint and solution, and PDFs (lessons, exercises, solutions, fluency drills). Around the chapters: 9 laboratories, 8 challenges, curriculum pathways, a slide for the quadratic chapter, a file library.
+A free, static, bilingual maths resource for lycée students and their teachers. Maths is learned by manipulating an object first, then reading the rule. Each of the 47 chapters has: a guide with one central idea and a figure to manipulate, practice with a hint and solution, and PDFs (lessons, exercises, solutions, fluency drills). Around the chapters: 9 laboratories, 11 challenges with variations, curriculum pathways, a slide for the quadratic chapter, a file library.
 
 ## 2. Who uses it, and for what
 

@@ -10,134 +10,17 @@ import { artgallery, eggs, hanoi, ramsey, konigsberg, josephus } from "./challen
 
 const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
 
-/* ------------------------------------------------------------- handshakes */
-function handshakes(root, { t }) {
-  const W = 380, H = 380, CX = 190, CY = 190, R = 135;
-  let n = 6;
-  let edges = new Set();
-  let selected = null;
-  let drag = null;
-  const letters = "ABCDEFGH";
-
-  root.innerHTML = `
-    <p class="act-help">${t("Relie deux personnes pour une poignée de main : glisse de l’une à l’autre, ou touche-les l’une après l’autre. Rejoins la même paire pour l’annuler.", "Join two people to shake hands: drag from one to the other, or tap them one after the other. Join the same pair again to undo it.")}</p>
-    <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Personnes autour d’une table", "People around a table")}"></svg>
-    <div class="act-controls">
-      <label class="act-field" for="hs-n"><span class="act-label">${t("Nombre de personnes", "Number of people")} <output id="hs-out"></output></span><input id="hs-n" type="range" min="2" max="8" step="1" value="6"></label>
-      <button class="btn btn-secondary" id="hs-clear" type="button">${t("Effacer les poignées", "Clear handshakes")}</button>
-    </div>
-    <p class="act-readout" id="hs-read" role="status" aria-live="polite"></p>`;
-  const svg = root.querySelector("svg");
-  lockTouch(svg, "[data-person]");
-  const pos = (i) => {
-    const a = (-90 + (360 * i) / n) * (Math.PI / 180);
-    return [CX + R * Math.cos(a), CY + R * Math.sin(a)];
-  };
-  const key = (a, b) => (a < b ? `${a}-${b}` : `${b}-${a}`);
-  const degree = (i) => [...edges].filter((e) => e.split("-").map(Number).includes(i)).length;
-
-  function draw() {
-    svg.replaceChildren();
-    const lines = svgEl("g", { class: "hs-lines" }, svg);
-    for (const e of edges) {
-      const [a, b] = e.split("-").map(Number);
-      const [x1, y1] = pos(a), [x2, y2] = pos(b);
-      svgEl("line", { x1, y1, x2, y2 }, lines);
-    }
-    if (drag?.to) {
-      const [x1, y1] = pos(drag.from);
-      svgEl("line", { x1, y1, x2: drag.to.x, y2: drag.to.y, class: "hs-temp" }, lines);
-    }
-    for (let i = 0; i < n; i++) {
-      const [x, y] = pos(i);
-      const d = degree(i);
-      const g = svgEl("g", { class: `hs-person${selected === i ? " selected" : ""}`, "data-person": i, tabindex: "0", role: "button", "aria-pressed": String(selected === i), "aria-label": `${letters[i]}, ${t("personne", "person")}, ${d} ${t(d > 1 ? "poignées de main" : "poignée de main", d > 1 ? "handshakes" : "handshake")}` }, svg);
-      svgEl("circle", { cx: x, cy: y, r: 26 }, g);
-      svgEl("text", { x, y: y + 6, "text-anchor": "middle", class: "hs-letter" }, g).textContent = letters[i];
-      const bx = x + (x - CX) * 0.3, by = y + (y - CY) * 0.3;
-      svgEl("text", { x: bx, y: by + 5, "text-anchor": "middle", class: "hs-count", "aria-hidden": "true" }, svg).textContent = d;
-    }
-    root.querySelector("#hs-out").textContent = n;
-    const total = edges.size;
-    root.querySelector("#hs-read").textContent = `${total} ${t(total > 1 ? "poignées de main échangées" : "poignée de main échangée", total > 1 ? "handshakes so far" : "handshake so far")}.`;
-  }
-  const toggle = (a, b) => {
-    const k = key(a, b);
-    if (edges.has(k)) edges.delete(k);
-    else edges.add(k);
-  };
-  const click = (i) => {
-    if (selected === null) selected = i;
-    else if (selected === i) selected = null;
-    else {
-      toggle(selected, i);
-      selected = null;
-    }
-    draw();
-    svg.querySelector(`[data-person="${i}"]`)?.focus();
-  };
-  svg.addEventListener("pointerdown", (e) => {
-    const node = e.target.closest("[data-person]");
-    if (!node) return;
-    e.preventDefault();
-    drag = { from: Number(node.dataset.person), x: e.clientX, y: e.clientY, moved: false };
-    svg.setPointerCapture(e.pointerId);
-  });
-  svg.addEventListener("pointermove", (e) => {
-    if (!drag) return;
-    if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 8) drag.moved = true;
-    if (drag.moved) {
-      drag.to = toLocal(svg, e);
-      draw();
-    }
-  });
-  svg.addEventListener("pointerup", (e) => {
-    if (!drag) return;
-    const d = drag;
-    drag = null;
-    if (!d.moved) return click(d.from);
-    const over = document.elementFromPoint(e.clientX, e.clientY)?.closest("[data-person]");
-    const to = over ? Number(over.dataset.person) : null;
-    if (to !== null && to !== d.from) toggle(d.from, to);
-    selected = null;
-    draw();
-  });
-  svg.addEventListener("pointercancel", () => {
-    drag = null;
-    draw();
-  });
-  svg.addEventListener("keydown", (e) => {
-    const node = e.target.closest("[data-person]");
-    if (node && (e.key === "Enter" || e.key === " ")) {
-      e.preventDefault();
-      click(Number(node.dataset.person));
-    }
-  });
-  root.querySelector("#hs-n").addEventListener("input", (e) => {
-    n = Number(e.target.value);
-    edges = new Set();
-    selected = null;
-    draw();
-  });
-  root.querySelector("#hs-clear").addEventListener("click", () => {
-    edges = new Set();
-    selected = null;
-    draw();
-  });
-  draw();
-  return () => {};
-}
-
 /* ------------------------------------------------------------------ doors */
-function doors(root, { t }) {
+function doors(root, { t, q }) {
+  const ND = q.n;
   let k = 0;
   let picked = null;
   let timer = null;
   root.innerHTML = `
     <p class="act-help">${t("Fais avancer les passages et regarde les portes changer d’état. Touche une porte pour voir quand elle a été changée.", "Step through the passes and watch the doors change. Tap a door to see when it was changed.")}</p>
-    <div class="doors" id="dr-grid" role="group" aria-label="${t("100 portes", "100 doors")}"></div>
+    <div class="doors" id="dr-grid" role="group" aria-label="${ND} ${t("portes", "doors")}"></div>
     <div class="act-controls">
-      <label class="act-field" for="dr-k"><span class="act-label">${t("Après le passage", "After pass")} <output id="dr-out"></output></span><input id="dr-k" type="range" min="0" max="100" step="1" value="0"></label>
+      <label class="act-field" for="dr-k"><span class="act-label">${t("Après le passage", "After pass")} <output id="dr-out"></output></span><input id="dr-k" type="range" min="0" max="${ND}" step="1" value="0"></label>
       <div class="act-buttons">
         <button class="btn btn-secondary" id="dr-prev" type="button">${t("Passage précédent", "Previous pass")}</button>
         <button class="btn btn-primary" id="dr-next" type="button">${t("Passage suivant", "Next pass")}</button>
@@ -152,7 +35,7 @@ function doors(root, { t }) {
     for (let d = 1; d <= Math.min(k, n); d++) if (n % d === 0) c++;
     return c;
   };
-  grid.innerHTML = Array.from({ length: 100 }, (_, i) => `<button type="button" class="door" data-n="${i + 1}"><span>${i + 1}</span></button>`).join("");
+  grid.innerHTML = Array.from({ length: ND }, (_, i) => `<button type="button" class="door" data-n="${i + 1}"><span>${i + 1}</span></button>`).join("");
   const stop = () => {
     clearInterval(timer);
     timer = null;
@@ -180,10 +63,10 @@ function doors(root, { t }) {
     }
     root.querySelector("#dr-read").textContent = text;
     root.querySelector("#dr-prev").disabled = k === 0;
-    root.querySelector("#dr-next").disabled = k === 100;
+    root.querySelector("#dr-next").disabled = k === ND;
   }
   const go = (v) => {
-    k = clamp(v, 0, 100);
+    k = clamp(v, 0, ND);
     render();
   };
   grid.addEventListener("click", (e) => {
@@ -202,11 +85,11 @@ function doors(root, { t }) {
   });
   root.querySelector("#dr-play").addEventListener("click", (e) => {
     if (timer) return stop();
-    if (k >= 100) k = 0;
+    if (k >= ND) k = 0;
     e.currentTarget.setAttribute("aria-pressed", "true");
     e.currentTarget.textContent = t("Pause", "Pause");
     timer = setInterval(() => {
-      if (k >= 100) return stop();
+      if (k >= ND) return stop();
       go(k + 1);
     }, 220);
   });
@@ -215,19 +98,19 @@ function doors(root, { t }) {
 }
 
 /* --------------------------------------------------------------- dominoes */
-function dominoes(root, { t, reduced }) {
-  const N = 8, C = 44, BX = 12, BY = 12, BW = N * C;
+function dominoes(root, { t, reduced, q }) {
+  const N = q.n, C = Math.floor(352 / q.n), BX = 12, BY = 12, BW = N * C;
   // Wide screens: supply beside the board. Narrow screens: supply under it, so cells stay large.
   const compact = root.clientWidth > 0 && root.clientWidth < 560;
   const TR = compact ? { x: BX, y: BY + BW + 14, w: BW, h: 112 } : { x: BX + BW + 28, y: BY, w: 104, h: BW };
   const W = compact ? BX * 2 + BW : TR.x + TR.w + 16, H = compact ? TR.y + TR.h + BY : BY * 2 + BW;
-  const removed = new Set(["0,0", "7,7"]);
+  const removed = new Set(q.kind === "opp" ? ["0,0", `${N - 1},${N - 1}`] : ["0,0", `${N - 1},0`]);
   let dominos = [];
   let nextId = 1;
   let drag = null;
   let colour = false;
   let kbo = "h";
-  let cursor = { c: 3, r: 3 };
+  let cursor = { c: Math.floor(N / 2) - 1, r: Math.floor(N / 2) - 1 };
   let focused = false;
 
   root.innerHTML = `
@@ -279,7 +162,7 @@ function dominoes(root, { t, reduced }) {
       for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) if (!removed.has(`${c},${r}`) && !occ.has(`${c},${r}`)) free[(c + r) % 2 ? "b" : "a"] += 1;
       split = ` ${t("Libres", "Free")} : ${free.a} ${t("claires", "light")}, ${free.b} ${t("sombres", "dark")}.`;
     }
-    announce(`${n} ${t(n > 1 ? "dominos posés" : "domino posé", n > 1 ? "dominoes placed" : "domino placed")}, ${62 - 2 * n} ${t("cases libres", "free squares")}.${split} ${extra}`.trim());
+    announce(`${n} ${t(n > 1 ? "dominos posés" : "domino posé", n > 1 ? "dominoes placed" : "domino placed")}, ${N * N - 2 - 2 * n} ${t("cases libres", "free squares")}.${split} ${extra}`.trim());
   }
   function drawBoard() {
     board.replaceChildren();
@@ -469,14 +352,15 @@ function dominoes(root, { t, reduced }) {
 }
 
 /* -------------------------------------------------------------------- nim */
-function nim(root, { t, reduced }) {
-  let stones = 21, turn = "you", over = false, userFirst = true, perfect = true;
+function nim(root, { t, reduced, q }) {
+  const N0 = q.n, MAXT = q.m;
+  let stones = N0, turn = "you", over = false, userFirst = true, perfect = true;
   let wins = 0, games = 0, log = [], timer = null;
   root.innerHTML = `
-    <p class="act-help">${t("Joue contre l’ordinateur. À ton tour, retire 1, 2 ou 3 pierres. Celui qui prend la dernière pierre gagne.", "Play the computer. On your turn take 1, 2 or 3 stones. Whoever takes the last stone wins.")}</p>
-    <div class="nim-pile" id="nim-pile" aria-hidden="true">${Array.from({ length: 21 }, () => '<span class="stone"></span>').join("")}</div>
+    <p class="act-help">${t(`Joue contre l’ordinateur. À ton tour, retire de 1 à ${MAXT} pierres. Celui qui prend la dernière pierre gagne.`, `Play the computer. On your turn take 1 to ${MAXT} stones. Whoever takes the last stone wins.`)}</p>
+    <div class="nim-pile" id="nim-pile" aria-hidden="true">${Array.from({ length: N0 }, () => '<span class="stone"></span>').join("")}</div>
     <p class="act-readout nim-status" id="nim-status" role="status" aria-live="polite"></p>
-    <div class="act-buttons">${[1, 2, 3].map((k) => `<button class="btn btn-primary" type="button" data-take="${k}">${t("Prendre", "Take")} ${k}</button>`).join("")}</div>
+    <div class="act-buttons">${Array.from({ length: MAXT }, (_, i) => i + 1).map((k) => `<button class="btn btn-primary" type="button" data-take="${k}">${t("Prendre", "Take")} ${k}</button>`).join("")}</div>
     <div class="act-controls">
       <fieldset class="act-choice"><legend>${t("Qui commence ?", "Who starts?")}</legend>
         <label><input type="radio" name="nim-first" value="you" checked> ${t("Moi", "Me")}</label>
@@ -512,13 +396,13 @@ function nim(root, { t, reduced }) {
     if (!over && turn === "cpu") timer = setTimeout(cpu, reduced() ? 0 : 700);
   }
   function cpu() {
-    const max = Math.min(3, stones);
-    const k = perfect ? stones % 4 || 1 + Math.floor(Math.random() * max) : 1 + Math.floor(Math.random() * max);
+    const max = Math.min(MAXT, stones);
+    const k = perfect ? stones % (MAXT + 1) || 1 + Math.floor(Math.random() * max) : 1 + Math.floor(Math.random() * max);
     take("cpu", clamp(k, 1, max));
   }
   function start() {
     clearTimeout(timer);
-    stones = 21;
+    stones = N0;
     over = false;
     log = [];
     turnWinner = null;
@@ -535,13 +419,13 @@ function nim(root, { t, reduced }) {
 }
 
 /* -------------------------------------------------------------- pigeonhole */
-function pigeonhole(root, { t, lang }) {
-  const MAX = 60;
+function pigeonhole(root, { t, lang, q }) {
+  const MAX = 60, MOD = q.m;
   const fmt = fmtFor(lang);
   const sel = new Set();
   let best = 0;
   root.innerHTML = `
-    <p class="act-help">${t("Choisis des nombres en les touchant. Le but : en choisir le plus possible sans qu’aucune paire n’ait une différence multiple de 7.", "Pick numbers by tapping them. The aim: pick as many as you can without any pair having a difference that is a multiple of 7.")}</p>
+    <p class="act-help">${t(`Choisis des nombres en les touchant. Le but : en choisir le plus possible sans qu’aucune paire n’ait une différence multiple de ${MOD}.`, `Pick numbers by tapping them. The aim: pick as many as you can without any pair having a difference that is a multiple of ${MOD}.`)}</p>
     <div class="pick-grid" id="pg-grid" role="group" aria-label="${t("Entiers de 1 à 60", "Integers from 1 to 60")}">${Array.from({ length: MAX }, (_, i) => `<button type="button" class="pick" data-n="${i + 1}" aria-pressed="false">${i + 1}</button>`).join("")}</div>
     <p class="act-readout" id="pg-read" role="status" aria-live="polite"></p>
     <div class="act-controls">
@@ -557,7 +441,7 @@ function pigeonhole(root, { t, lang }) {
     let first = null;
     for (let i = 0; i < a.length; i++)
       for (let j = i + 1; j < a.length; j++)
-        if ((a[j] - a[i]) % 7 === 0) {
+        if ((a[j] - a[i]) % MOD === 0) {
           bad.add(a[i]);
           bad.add(a[j]);
           first ??= [a[i], a[j]];
@@ -574,8 +458,8 @@ function pigeonhole(root, { t, lang }) {
     if (!first && sel.size > best) best = sel.size;
     const count = sel.size;
     root.querySelector("#pg-read").textContent = first
-      ? `${count} ${t("nombres choisis.", "numbers chosen.")} ${t("Paire trouvée", "Pair found")} : ${first[1]} ${MINUS} ${first[0]} = ${first[1] - first[0]} = 7 × ${(first[1] - first[0]) / 7}.`
-      : `${count} ${t("nombres choisis, aucune paire dont la différence soit un multiple de 7.", "numbers chosen, no pair whose difference is a multiple of 7.")}${best ? ` ${t("Ton record sans paire", "Your best without a pair")} : ${best}.` : ""}`;
+      ? `${count} ${t("nombres choisis.", "numbers chosen.")} ${t("Paire trouvée", "Pair found")} : ${first[1]} ${MINUS} ${first[0]} = ${first[1] - first[0]} = ${MOD} × ${(first[1] - first[0]) / MOD}.`
+      : `${count} ${t(`nombres choisis, aucune paire dont la différence soit un multiple de ${MOD}.`, `numbers chosen, no pair whose difference is a multiple of ${MOD}.`)}${best ? ` ${t("Ton record sans paire", "Your best without a pair")} : ${best}.` : ""}`;
   }
   grid.addEventListener("click", (e) => {
     const b = e.target.closest(".pick");
@@ -602,148 +486,6 @@ function pigeonhole(root, { t, lang }) {
     root.querySelector("#pg-sim-read").textContent = `${t("Sur 1 000 tirages de", "Out of 1,000 draws of")} ${k} ${t("nombres", "numbers")} : ${free} ${t("sans aucune paire de ce type", "with no such pair")} (${fmt((free / 1000) * 100, 1)} %). ${t("Une simulation suggère, elle ne prouve pas.", "A simulation suggests; it does not prove.")}`;
   });
   render();
-  return () => {};
-}
-
-/* ---------------------------------------------------------------- product */
-function product(root, { t, lang }) {
-  const fmt = fmtFor(lang);
-  let N = 12, d = "", factors = false, best = 0;
-  root.innerHTML = `
-    <p class="act-help">${t("Regarde les valeurs de n³ − n, puis propose un diviseur d. Le tableau montre pour quels n il marche.", "Look at the values of n³ − n, then try a divisor d. The table shows for which n it works.")}</p>
-    <div class="act-controls">
-      <label class="act-field" for="pr-n"><span class="act-label">${t("n va de 2 à", "n goes from 2 to")} <output id="pr-nout"></output></span><input id="pr-n" type="range" min="3" max="40" value="12"></label>
-      <label class="act-field act-number" for="pr-d">${t("Diviseur essayé", "Divisor tried")}<input id="pr-d" type="number" min="1" max="5000" inputmode="numeric" placeholder="d"></label>
-      <label class="act-check"><input id="pr-f" type="checkbox"> ${t("Montrer la factorisation de chaque valeur", "Show each value’s factorisation")}</label>
-    </div>
-    <p class="act-readout" id="pr-read" role="status" aria-live="polite"></p>
-    <div class="table-scroll" tabindex="0" role="region" aria-label="${t("Valeurs de n³ − n", "Values of n³ − n")}"><table class="act-table" id="pr-table"></table></div>`;
-  const v = (n) => n ** 3 - n;
-  function render() {
-    root.querySelector("#pr-nout").textContent = N;
-    const dn = Number(d);
-    const use = Number.isInteger(dn) && dn >= 1;
-    let fail = null;
-    const rows = [];
-    for (let n = 2; n <= N; n++) {
-      const ok = use ? v(n) % dn === 0 : null;
-      if (use && !ok && fail === null) fail = n;
-      rows.push(`<tr class="${ok === null ? "" : ok ? "yes" : "no"}"><th scope="row">${n}</th><td>${v(n).toLocaleString(lang)}</td>${factors ? `<td>${n - 1} × ${n} × ${n + 1}</td>` : ""}<td>${ok === null ? "" : ok ? "✓" : "✗"}</td></tr>`);
-    }
-    root.querySelector("#pr-table").innerHTML = `<thead><tr><th scope="col">n</th><th scope="col">n³ ${MINUS} n</th>${factors ? `<th scope="col">${t("Facteurs", "Factors")}</th>` : ""}<th scope="col">${use ? `${t("divisible par", "divisible by")} ${dn} ?` : t("Divisible ?", "Divisible?")}</th></tr></thead><tbody>${rows.join("")}</tbody>`;
-    const read = root.querySelector("#pr-read");
-    if (!use) read.textContent = t("Entre un entier d pour le tester.", "Enter an integer d to test it.");
-    else if (fail !== null) read.textContent = `${dn} ${t("ne divise pas", "does not divide")} n³ ${MINUS} n ${t("pour n =", "for n =")} ${fail} (${fmt(v(fail), 0)}).`;
-    else {
-      if (dn > best) best = dn;
-      read.textContent = `${dn} ${t("divise n³ − n pour tous les n de 2 à", "divides n³ − n for every n from 2 to")} ${N}. ${t("Le plus grand d validé jusqu’ici", "Largest d that has passed so far")} : ${best}. ${t("Tester jusqu’à N ne prouve pas que ça marche pour tout n.", "Testing up to N does not prove it works for every n.")}`;
-    }
-  }
-  root.querySelector("#pr-n").addEventListener("input", (e) => {
-    N = Number(e.target.value);
-    render();
-  });
-  root.querySelector("#pr-d").addEventListener("input", (e) => {
-    d = e.target.value;
-    render();
-  });
-  root.querySelector("#pr-f").addEventListener("change", (e) => {
-    factors = e.target.checked;
-    render();
-  });
-  render();
-  return () => {};
-}
-
-/* ------------------------------------------------------------- inequality */
-function inequality(root, { t, lang }) {
-  const fmt = fmtFor(lang);
-  const W = 400, H = 300, XMAX = 5.2, YMAX = 7;
-  const X = (x) => 40 + (x * 340) / XMAX, Y = (y) => 268 - (y * 246) / YMAX;
-  let x = 3;
-  let best = null;
-  root.innerHTML = `
-    <p class="act-help">${t("Déplace le point sur la courbe, ou utilise le curseur. Le rectangle a toujours une aire égale à 1.", "Move the point along the curve, or use the slider. The rectangle always has an area of 1.")}</p>
-    <div class="ineq-figs">
-      <svg class="act-svg" id="iq-plot" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Courbe de x + 1/x", "Graph of x + 1/x")}"></svg>
-      <svg class="act-svg" id="iq-rect" viewBox="0 0 260 260" role="img" aria-label="${t("Rectangle de côtés x et 1/x", "Rectangle with sides x and 1/x")}"></svg>
-    </div>
-    <label class="act-field" for="iq-x"><span class="act-label">${t("Valeur de x", "Value of x")} <output id="iq-out"></output></span><input id="iq-x" type="range" min="0.15" max="5" step="0.05" value="3"></label>
-    <p class="act-readout" id="iq-read" role="status" aria-live="polite"></p>
-    <button class="btn-quiet" id="iq-reset" type="button">${t("Effacer la plus petite valeur trouvée", "Clear the smallest value found")}</button>`;
-  const plot = root.querySelector("#iq-plot"), rect = root.querySelector("#iq-rect");
-  lockTouch(plot, ".toy-handle");
-  for (let i = 0; i <= 5; i++) {
-    svgEl("line", { x1: X(i), y1: Y(0), x2: X(i), y2: Y(YMAX), class: i === 0 ? "ax" : "gl" }, plot);
-    svgEl("text", { x: X(i), y: Y(0) + 18, "text-anchor": "middle", class: "tk" }, plot).textContent = i;
-  }
-  for (let j = 0; j <= 7; j++) {
-    svgEl("line", { x1: X(0), y1: Y(j), x2: X(XMAX), y2: Y(j), class: j === 0 ? "ax" : "gl" }, plot);
-    if (j) svgEl("text", { x: X(0) - 8, y: Y(j) + 4, "text-anchor": "end", class: "tk" }, plot).textContent = j;
-  }
-  const clip = svgEl("clipPath", { id: "iq-clip" }, svgEl("defs", {}, plot));
-  svgEl("rect", { x: X(0), y: Y(YMAX), width: X(XMAX) - X(0), height: Y(0) - Y(YMAX) }, clip);
-  let d = "";
-  for (let i = 0; i <= 200; i++) {
-    const xv = 0.13 + (i * (XMAX - 0.13)) / 200;
-    d += (i ? "L" : "M") + X(xv).toFixed(1) + " " + Y(xv + 1 / xv).toFixed(1);
-  }
-  svgEl("path", { d, class: "curve", "clip-path": "url(#iq-clip)" }, plot);
-  const drop = svgEl("line", { class: "drop" }, plot);
-  const dot = svgEl("g", { class: "toy-handle", tabindex: "0", role: "slider", "aria-label": t("Valeur de x", "Value of x"), "aria-valuemin": 0.15, "aria-valuemax": 5 }, plot);
-  svgEl("circle", { r: 24, class: "hit" }, dot);
-  svgEl("circle", { r: 10, class: "ring" }, dot);
-  svgEl("circle", { r: 4, class: "core" }, dot);
-  function draw() {
-    const y = x + 1 / x;
-    dot.setAttribute("transform", `translate(${X(x)} ${Y(Math.min(y, YMAX))})`);
-    dot.setAttribute("aria-valuenow", x);
-    dot.setAttribute("aria-valuetext", `x = ${fmt(x)}`);
-    drop.setAttribute("x1", X(x)); drop.setAttribute("x2", X(x)); drop.setAttribute("y1", Y(0)); drop.setAttribute("y2", Y(Math.min(y, YMAX)));
-    rect.replaceChildren();
-    const s = 190 / Math.max(x, 1 / x, 1);
-    const w = x * s, h = s / x;
-    const ox = 30, oy = 230;
-    svgEl("rect", { x: ox, y: oy - h, width: w, height: h, class: "iq-rect" }, rect);
-    svgEl("text", { x: ox + w / 2, y: oy + 18, "text-anchor": "middle", class: "tk" }, rect).textContent = `x = ${fmt(x)}`;
-    svgEl("text", { x: ox - 6, y: oy - h / 2, "text-anchor": "end", class: "tk" }, rect).textContent = `1/x = ${fmt(1 / x)}`;
-    if (!best || y < best.y - 1e-12) best = { x, y };
-    root.querySelector("#iq-x").value = x;
-    root.querySelector("#iq-out").textContent = fmt(x);
-    root.querySelector("#iq-read").innerHTML = `x + 1/x = ${fmt(x)} + ${fmt(1 / x)} = <strong>${fmt(y, 3)}</strong><br>${t("Plus petite valeur trouvée", "Smallest value found")} : ${fmt(best.y, 3)} ${t("pour", "at")} x = ${fmt(best.x)}`;
-  }
-  const setX = (v) => {
-    x = clamp(Math.round(v / 0.05) * 0.05, 0.15, 5);
-    draw();
-  };
-  dot.addEventListener("pointerdown", (e) => {
-    e.preventDefault();
-    dot.setPointerCapture(e.pointerId);
-    dot.classList.add("grabbed");
-    const move = (ev) => setX(((toLocal(plot, ev).x - 40) * XMAX) / 340);
-    const up = () => {
-      dot.classList.remove("grabbed");
-      dot.removeEventListener("pointermove", move);
-      dot.removeEventListener("pointerup", up);
-      dot.removeEventListener("pointercancel", up);
-    };
-    dot.addEventListener("pointermove", move);
-    dot.addEventListener("pointerup", up);
-    dot.addEventListener("pointercancel", up);
-    move(e);
-  });
-  dot.addEventListener("keydown", (e) => {
-    const dir = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key];
-    if (!dir) return;
-    e.preventDefault();
-    setX(x + dir * (e.shiftKey ? 0.5 : 0.05));
-  });
-  root.querySelector("#iq-x").addEventListener("input", (e) => setX(Number(e.target.value)));
-  root.querySelector("#iq-reset").addEventListener("click", () => {
-    best = null;
-    draw();
-  });
-  draw();
   return () => {};
 }
 
@@ -813,14 +555,14 @@ function squares(root, { t }) {
   return () => {};
 }
 
-const activities = { handshakes, doors, chess: dominoes, nim, pigeonhole, product, inequality, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus };
+const activities = { doors, chess: dominoes, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus };
 
 export function hasActivity(id) {
   return Object.hasOwn(activities, id);
 }
 
-export function mountActivity(id, root, { lang, reduced }) {
+export function mountActivity(id, root, { lang, reduced, params = {} }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);
-  const stop = activities[id]?.(root, { t, lang, reduced });
+  const stop = activities[id]?.(root, { t, lang, reduced, q: params });
   return stop || (() => {});
 }

@@ -6,8 +6,8 @@ from playwright.sync_api import sync_playwright
 
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
 ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
-CHALLENGES = ['handshakes','doors','chess','nim','pigeonhole','product','inequality','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery']
-CHALLENGE_ANSWERS = ['15','10','0','1','8','6','2','400','63','14','1','19','6','4']
+CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -70,9 +70,9 @@ with sync_playwright() as p:
     assert page.locator('#results strong').nth(1).inner_text() == '4'
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'
-    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 23
+    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 20
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',8),('olympiad',6),('all',14)]:
+    for kind,count in [('play',7),('olympiad',4),('all',11)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
@@ -175,11 +175,8 @@ with sync_playwright() as p:
     page.goto(BASE+'/#challenges/doors')
     page.locator('#dr-k').fill('100')
     assert page.locator('.door.open').count() == 10
-    page.goto(BASE+'/#challenges/handshakes')
-    page.locator('[data-person="0"]').click(); page.locator('[data-person="1"]').click()
-    assert page.locator('#hs-read').inner_text().startswith('1 ')
     page.goto(BASE+'/#challenges/chess')
-    svg = page.locator('.dom-svg'); box = svg.bounding_box(); unit = box['width'] / (12 + 352 + 28 + 104 + 16)
+    svg = page.locator('.dom-svg'); svg.scroll_into_view_if_needed(); box = svg.bounding_box(); unit = box['width'] / (12 + 352 + 28 + 104 + 16)
     def at(x, y): return box['x'] + x * unit, box['y'] + y * unit
     page.mouse.move(*at(392 + 6 + 41, 12 + 84 + 19)); page.mouse.down(); page.mouse.move(*at(100, 78), steps=8); page.mouse.up()
     assert page.locator('.dom[data-d]').count() == 1 and '60' in page.locator('#dm-read').inner_text()
@@ -193,16 +190,11 @@ with sync_playwright() as p:
     assert page.locator('.pick.clash').count() == 0
     page.locator('.pick[data-n="15"]').click()
     assert page.locator('.pick.clash').count() == 2
-    page.goto(BASE+'/#challenges/product')
-    page.locator('#pr-d').fill('6'); assert page.locator('#pr-table tr.no').count() == 0
-    page.locator('#pr-d').fill('12'); assert page.locator('#pr-table tr.no').count() >= 1
-    page.goto(BASE+'/#challenges/inequality')
-    page.locator('#iq-x').fill('1'); assert '2' in page.locator('#iq-read strong').inner_text()
     page.goto(BASE+'/#challenges/squares')
     page.locator('#sq-n').fill('12'); assert '144' in page.locator('#sq-read strong').inner_text()
     # Challenges added in October 2026: activities, animated solutions and the touch fix for the domino board.
     page.goto(BASE+'/#challenges/artgallery')
-    box = page.locator('.ag-svg').bounding_box(); unit = box['width'] / 360
+    page.locator('.ag-svg').scroll_into_view_if_needed(); box = page.locator('.ag-svg').bounding_box(); unit = box['width'] / 360
     page.mouse.click(box['x'] + (18 + 9 * 18) * unit, box['y'] + (18 + 9 * 18) * unit)   # a point inside the body of the comb
     assert page.locator('.ag-guard').count() == 1 and '%' in page.locator('#ag-read').inner_text()
     page.goto(BASE+'/#challenges/eggs')
@@ -233,6 +225,27 @@ with sync_playwright() as p:
         assert '3 /' in page.locator('.sol-count').inner_text(), challenge
         assert page.locator('.sol-cap').inner_text() != first, challenge
         assert page.evaluate("!/NaN|undefined|Infinity/.test(document.querySelector('.sol-svg').innerHTML)"), challenge
+    # Variations: the statement, the answer check, the experiment and the animated solution follow the chosen data.
+    page.goto(BASE+'/#challenges/doors')
+    page.locator('input[data-var="n"]').fill('50')
+    page.locator('input[data-var="n"]').dispatch_event('change')
+    assert '50' in page.locator('#problem').inner_text() and page.locator('.door').count() == 50
+    page.locator('#challenge-answer').fill('7'); page.locator('#challenge-form button').click()
+    assert 'success' in page.locator('#challenge-feedback').get_attribute('class')   # floor(sqrt(50)) = 7
+    page.locator('#var-reset').click()
+    assert page.locator('.door').count() == 100
+    for challenge in CHALLENGES:
+        page.goto(BASE+'/#challenges/'+challenge)
+        for _ in range(3):
+            page.locator('#var-random').click()
+            body = page.locator('main').inner_text()
+            assert not any(w in body for w in ('NaN', 'undefined', 'Infinity', 'null')), (challenge, body[:200])
+            page.locator('.solution summary').click() if page.locator('.solution[open]').count() == 0 else None
+            page.locator('[data-a="restart"]').click()
+            for _ in range(12):
+                if page.locator('[data-a="next"]').is_disabled(): break
+                page.locator('[data-a="next"]').click()
+            assert page.evaluate("!/NaN|undefined|Infinity/.test(document.querySelector('.sol-svg').innerHTML)"), challenge
     if engine == 'chromium':
         touch = browser.new_context(viewport={'width': 390, 'height': 844}, has_touch=True, is_mobile=True)
         tp = touch.new_page(); tp.goto(BASE+'/#challenges/chess'); tp.locator('.dom-svg').scroll_into_view_if_needed()

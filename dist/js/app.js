@@ -8,6 +8,7 @@ import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
 import { mountActivity, hasActivity } from "./challenge-activities.js";
 import { mountSolution, hasSolution } from "./challenge-solutions.js";
+import { VARIANTS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant } from "./challenge-variants.js";
 import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { createLabMotion, installInterfaceMotion, illuminateFeedback } from "./motion.js";
@@ -994,17 +995,63 @@ function challengePage(id) {
       "",
     )}</div><div class="challenge-grid">${filtered.map((x, i) => `<a class="challenge-card" href="${link("challenges", x.id)}"><div class="card-top"><span class="tag ${x.type}">${x.type === "play" ? pair("Récréatif", "Recreational") : pair("Olympiade", "Olympiad")}</span><span class="card-number">${String(challenges.indexOf(x) + 1).padStart(2, "0")}</span></div><span class="challenge-motif" aria-hidden="true">${["∑", "□", "▦", "⋮", "≡", "n³", "≥", "n²"][challenges.indexOf(x)]}</span><h2>${t(x.title)}</h2><p>${t(x.topic)}</p><div class="card-bottom"><span>${"●".repeat(x.difficulty)}${"○".repeat(3 - x.difficulty)} <span class="sr-only">${pair("Difficulté", "Difficulty")} ${x.difficulty}/3</span></span><span>${completed.has(x.id) ? pair("✓ Réponse trouvée", "✓ Answer found") : x.minutes + " min"}</span></div></a>`).join("")}</div><p class="editorial-note">${pair("Problèmes classiques reformulés pour le laboratoire. « Esprit olympiade » désigne le type de raisonnement, pas une provenance officielle. Une réponse numérique ne remplace pas une preuve.", "Classic problems adapted for the laboratory. “Olympiad thinking” describes the reasoning style, not official contest provenance. A numerical answer does not replace a proof.")}</p></main>`;
 }
+// Parameters of the variation currently shown, per challenge (kept while the visitor browses; not stored).
+const variantState = {};
+const paramsOf = (id) => (variantState[id] ??= hasVariants(id) ? variantDefaults(id) : {});
+const variantText = (c, q) => {
+  const v = VARIANTS[c.id];
+  return v ? { prompt: v.prompt(q), answer: v.answer(q), solution: v.solution(q), hints: v.hints ? v.hints(q) : c.hints } : { prompt: c.prompt, answer: c.answer, solution: c.solution, hints: c.hints };
+};
+function variationPanel(c) {
+  if (!hasVariants(c.id)) return "";
+  const q = paramsOf(c.id);
+  const controls = VARIANTS[c.id].params.map((prm) => prm.kind === "int"
+    ? `<label class="var-field"><span class="var-label">${t(prm.label)} <output data-out="${prm.id}">${c.id === "konigsberg" && q[prm.id] === 0 ? pair("0 (Königsberg)", "0 (Königsberg)") : q[prm.id]}</output></span><input type="range" data-var="${prm.id}" min="${prm.min}" max="${prm.max}" step="${prm.step}" value="${q[prm.id]}"></label>`
+    : `<fieldset class="var-choice"><legend>${t(prm.label)}</legend>${prm.options.map(([val, fr, en]) => `<label><input type="radio" name="var-${prm.id}" data-var="${prm.id}" value="${val}" ${String(q[prm.id]) === String(val) ? "checked" : ""}> ${pair(fr, en)}</label>`).join("")}</fieldset>`).join("");
+  return `<section class="variation" aria-labelledby="variation-title"><div class="variation-head"><h2 id="variation-title">${pair("Change les données", "Change the data")}</h2><span class="variation-actions"><button class="secondary" id="var-random" type="button">${pair("Au hasard", "Surprise me")}</button><button class="text-button" id="var-reset" type="button">${pair("Valeurs d’origine", "Original values")}</button></span></div><p class="muted">${pair("Le problème, la solution et l’expérience suivent tes réglages.", "The problem, the solution and the experiment follow your settings.")}</p><div class="var-controls">${controls}</div></section>`;
+}
 function challengeDetail(c) {
-  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem">${t(c.prompt)}</p><div class="proof-callout"><strong>${pair("Pense comme un mathématicien", "Think like a mathematician")}</strong><p>${pair("Teste un petit exemple, cherche une régularité, puis explique pourquoi elle est vraie.", "Test a small example, look for a pattern, then explain why it is true.")}</p></div>${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${c.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p>${t(h)}</p></details>`).join("")}<details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<p>${t(c.solution)}</p><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></aside></div></main>`;
+  const v = variantText(c, paramsOf(c.id));
+  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1><p class="problem" id="problem">${t(v.prompt)}</p>${variationPanel(c)}<div class="proof-callout"><strong>${pair("Pense comme un mathématicien", "Think like a mathematician")}</strong><p>${pair("Teste un petit exemple, cherche une régularité, puis explique pourquoi elle est vraie.", "Test a small example, look for a pattern, then explain why it is true.")}</p></div>${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${v.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p data-hint="${i}">${t(h)}</p></details>`).join("")}<details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<p id="solution-text">${t(v.solution)}</p><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></aside></div></main>`;
 }
 function bindChallenges() {
-  const host = $("#activity");
-  const stopActivity = host ? mountActivity(host.dataset.activity, host, { lang, reduced: reducedMotion }) : () => {};
+  const host = $("#activity"), solHost = $("#solution-anim"), form = $("#challenge-form"), cid = form?.dataset.id;
+  let stopActivity = () => {}, sol = null;
+  // (Re)mount the experiment and the animated solution for the parameters now chosen.
+  function mountAll() {
+    stopActivity(); sol?.stop();
+    const q = cid ? paramsOf(cid) : {};
+    stopActivity = host ? mountActivity(host.dataset.activity, host, { lang, reduced: reducedMotion, params: q }) : () => {};
+    sol = solHost ? mountSolution(solHost.dataset.solution, solHost, { lang, reduced: reducedMotion, params: q }) : null;
+    if ($(".solution")?.open) sol?.start();
+  }
   // The animated solution starts the first time the worked solution is opened and stops when it is closed.
-  const solHost = $("#solution-anim");
-  const sol = solHost ? mountSolution(solHost.dataset.solution, solHost, { lang, reduced: reducedMotion }) : null;
   $(".solution")?.addEventListener("toggle", (e) => (e.target.open ? sol?.start() : sol?.stop()));
+  mountAll();
   const stop = () => { stopActivity(); sol?.stop(); };
+  if (cid && hasVariants(cid)) {
+    const c = challenges.find((x) => x.id === cid);
+    const refresh = () => {
+      const q = paramsOf(cid), v = variantText(c, q);
+      $("#problem").innerHTML = t(v.prompt);
+      document.querySelectorAll("[data-hint]").forEach((el) => { el.innerHTML = t(v.hints[+el.dataset.hint]); });
+      $("#solution-text").innerHTML = t(v.solution);
+      $("#challenge-feedback").textContent = ""; $("#challenge-feedback").classList.remove("success");
+      $("#challenge-answer").value = "";
+      mountAll();
+    };
+    const syncControls = () => {
+      const q = paramsOf(cid);
+      document.querySelectorAll("[data-var]").forEach((el) => { if (el.type === "radio") el.checked = String(q[el.dataset.var]) === el.value; else { el.value = q[el.dataset.var]; const o = $(`[data-out="${el.dataset.var}"]`); if (o) o.textContent = q[el.dataset.var]; } });
+    };
+    const read = () => { const q = {}; document.querySelectorAll("[data-var]").forEach((el) => { if (el.type !== "radio" || el.checked) q[el.dataset.var] = el.value; }); variantState[cid] = normaliseVariant(cid, q); };
+    document.querySelectorAll("[data-var]").forEach((el) => {
+      el.addEventListener("input", () => { const o = $(`[data-out="${el.dataset.var}"]`); if (o && el.type !== "radio") o.textContent = el.value; });
+      el.addEventListener("change", () => { read(); refresh(); });
+    });
+    $("#var-random")?.addEventListener("click", () => { variantState[cid] = randomParams(cid); syncControls(); refresh(); $("#var-random").focus(); });
+    $("#var-reset")?.addEventListener("click", () => { variantState[cid] = variantDefaults(cid); syncControls(); refresh(); $("#var-reset").focus(); });
+  }
   document.querySelectorAll("[data-filter]").forEach((b) =>
     b.addEventListener("click", () => {
       challengeFilter = b.dataset.filter;
@@ -1015,7 +1062,7 @@ function bindChallenges() {
   $("#challenge-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
     const c = challenges.find((x) => x.id === e.target.dataset.id),
-      correct = isAnswer($("#challenge-answer").value, c.answer);
+      correct = isAnswer($("#challenge-answer").value, variantText(c, paramsOf(c.id)).answer);
     if (correct) {
       completed.add(c.id);
       save();

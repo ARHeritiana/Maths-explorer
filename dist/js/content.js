@@ -1,4 +1,5 @@
 // Bilingual content: every pair is [French, English]. Topic placements are indicative.
+import { VARIANTS, defaults } from "./challenge-variants.js";
 export const labs = [
   {
     id: "quadratic",
@@ -511,41 +512,9 @@ for (const lab of labs) {
   lab.quizState = quizStates[lab.id];
 }
 
-export const challenges = [
-  {
-    id: "handshakes",
-    type: "play",
-    title: [
-      "Une salle, beaucoup de poignées de main",
-      "A room full of handshakes",
-    ],
-    topic: ["Combinatoire", "Counting"],
-    difficulty: 1,
-    minutes: 5,
-    prompt: [
-      "Six personnes se serrent la main. Chaque paire se salue exactement une fois. Combien y a-t-il de poignées de main ?",
-      "Six people shake hands. Every pair shakes hands exactly once. How many handshakes are there?",
-    ],
-    answer: 15,
-    hints: [
-      [
-        "Chaque personne salue cinq autres personnes.",
-        "Each person greets five other people.",
-      ],
-      [
-        "Le produit 6 × 5 compte chaque paire deux fois.",
-        "The product 6 × 5 counts every pair twice.",
-      ],
-    ],
-    solution: [
-      "Il y a 6 × 5 / 2 = 15 paires. Pour n personnes, on obtient n(n − 1)/2.",
-      "There are 6 × 5 / 2 = 15 pairs. For n people, the count is n(n − 1)/2.",
-    ],
-    extension: [
-      "Justifie la formule générale avec un dessin ou un double comptage.",
-      "Justify the general formula with a drawing or double counting.",
-    ],
-  },
+// The statement, the expected answer, the hints and the worked solution of each challenge come from its variant
+// (challenge-variants.js) with the default parameters: one source, so the page and the tests cannot drift apart.
+const challengeBase = [
   {
     id: "doors",
     type: "play",
@@ -553,60 +522,18 @@ export const challenges = [
     topic: ["Nombres entiers", "Whole numbers"],
     difficulty: 2,
     minutes: 10,
-    prompt: [
-      "100 portes sont fermées. Au passage k, on change l’état des portes dont le numéro est un multiple de k, pour k = 1 à 100. Combien restent ouvertes ?",
-      "100 doors start closed. On pass k, toggle every door whose number is a multiple of k, for k = 1 to 100. How many doors remain open?",
-    ],
-    answer: 10,
-    hints: [
-      [
-        "La porte n change d’état une fois par diviseur positif de n.",
-        "Door n is toggled once for each positive divisor of n.",
-      ],
-      [
-        "Les diviseurs se regroupent par paires d et n/d. Quand sont-ils égaux ?",
-        "Divisors pair up as d and n/d. When are they equal?",
-      ],
-    ],
-    solution: [
-      "Seuls les carrés parfaits ont un nombre impair de diviseurs : le diviseur √n se retrouve seul. Les portes 1², 2², …, 10² restent ouvertes, soit 10 portes.",
-      "Only perfect squares have an odd number of divisors: √n is unpaired. Doors 1², 2², …, 10² remain open, so there are 10.",
-    ],
-    extension: [
-      "Combien de portes restent ouvertes s’il y en a N ? Explique pourquoi.",
-      "How many remain open with N doors? Explain why.",
-    ],
+    hints: [["La porte n change d’état une fois par diviseur positif de n.", "Door n is toggled once for each positive divisor of n."], ["Les diviseurs se regroupent par paires d et n/d. Quand sont-ils égaux ?", "Divisors pair up as d and n/d. When are they equal?"]],
+    extension: ["Combien de portes restent ouvertes s’il y en a N ? Explique pourquoi.", "How many remain open with N doors? Explain why."],
   },
   {
     id: "chess",
     type: "play",
-    title: ["Des dominos sur un plateau", "Dominoes on a board"],
+    title: ["Des dominos sur un plateau mutilé", "Dominoes on a damaged board"],
     topic: ["Pavages", "Tilings"],
     difficulty: 2,
     minutes: 10,
-    prompt: [
-      "Un plateau de 8 × 8 cases a perdu deux coins opposés. On dispose d’autant de dominos 2 × 1 que l’on veut. Combien de pavages complets (sans trou ni chevauchement) existe-t-il ?",
-      "An 8 × 8 board has lost two opposite corners. You have as many 2 × 1 dominoes as you like. How many complete tilings (no gaps, no overlaps) exist?",
-    ],
-    answer: 0,
-    hints: [
-      [
-        "Colorie les cases en noir et blanc.",
-        "Color the squares black and white.",
-      ],
-      [
-        "Les coins opposés sont de même couleur. Chaque domino couvre deux couleurs différentes.",
-        "Opposite corners have the same color. Every domino covers one square of each color.",
-      ],
-    ],
-    solution: [
-      "Il reste 30 cases d’une couleur et 32 de l’autre. Chaque domino couvre une case de chaque couleur. Un pavage exigerait des effectifs égaux : aucun pavage n’est possible.",
-      "There are 30 squares of one color and 32 of the other. Every domino covers one of each. A tiling would require equal counts, so no tiling is possible.",
-    ],
-    extension: [
-      "Si on retire deux cases de couleurs différentes, est-ce suffisant pour garantir un pavage ? Cherche avant de conclure.",
-      "If two squares of different colors are removed, is that enough to guarantee a tiling? Investigate before concluding.",
-    ],
+    hints: [["Colorie les cases en noir et blanc.", "Colour the squares black and white."], ["Chaque domino couvre une case de chaque couleur. Que dire des deux cases retirées ?", "Every domino covers one square of each colour. What can you say about the two removed squares?"]],
+    extension: ["Si on retire deux cases de couleurs différentes quelconques, le plateau 8 × 8 reste-t-il toujours pavable ? Cherche avant de conclure.", "If two squares of different colours are removed, can the 8 × 8 board always be tiled? Investigate before concluding."],
   },
   {
     id: "nim",
@@ -615,29 +542,8 @@ export const challenges = [
     topic: ["Stratégie", "Strategy"],
     difficulty: 2,
     minutes: 8,
-    prompt: [
-      "Il y a 21 pierres. À tour de rôle, on en retire 1, 2 ou 3. Prendre la dernière fait gagner. Tu commences : combien dois-tu en prendre pour garantir la victoire avec un jeu parfait ?",
-      "There are 21 stones. Players take turns removing 1, 2 or 3. Taking the last stone wins. You move first: how many should you take to guarantee victory with perfect play?",
-    ],
-    answer: 1,
-    hints: [
-      [
-        "Avec 4 pierres, le joueur qui doit jouer perd contre un adversaire parfait.",
-        "With 4 stones, the player to move loses against perfect play.",
-      ],
-      [
-        "Après le premier coup, complète chaque coup adverse pour retirer 4 pierres au total.",
-        "After your first move, complement each opponent move to remove 4 stones in total.",
-      ],
-    ],
-    solution: [
-      "Prends 1 pierre pour en laisser 20. Si l’adversaire prend k pierres, prends 4 − k. Tu lui laisses successivement 16, 12, 8, puis 4 pierres et tu prends la dernière.",
-      "Take 1 to leave 20. If your opponent takes k, take 4 − k. You leave 16, 12, 8, then 4, and take the last stone.",
-    ],
-    extension: [
-      "Adapte la stratégie si on peut retirer de 1 à 5 pierres.",
-      "Adapt the strategy when players may remove 1 to 5 stones.",
-    ],
+    hints: [["Avec 4 pierres, le joueur qui doit jouer perd contre un adversaire parfait.", "With 4 stones, the player to move loses against perfect play."], ["Après le premier coup, complète chaque coup adverse pour retirer 4 pierres au total.", "After your first move, complement each opponent move to remove 4 stones in total."]],
+    extension: ["Adapte la stratégie si on peut retirer de 1 à 5 pierres.", "Adapt the strategy when players may remove 1 to 5 stones."],
   },
   {
     id: "pigeonhole",
@@ -646,88 +552,8 @@ export const challenges = [
     topic: ["Arithmétique", "Number theory"],
     difficulty: 2,
     minutes: 10,
-    prompt: [
-      "Quel est le plus petit nombre d’entiers distincts à choisir pour être certain que deux d’entre eux ont une différence divisible par 7 ?",
-      "What is the smallest number of distinct integers you must choose to guarantee that two have a difference divisible by 7?",
-    ],
-    answer: 8,
-    hints: [
-      [
-        "Classe les entiers selon leur reste dans la division par 7.",
-        "Sort integers by their remainder when divided by 7.",
-      ],
-      [
-        "Il n’y a que sept restes possibles. Montre aussi que sept entiers ne suffisent pas toujours.",
-        "There are only seven possible remainders. Also show that seven integers do not always suffice.",
-      ],
-    ],
-    solution: [
-      "Avec 8 entiers et 7 restes, deux entiers ont le même reste, donc leur différence est divisible par 7. La liste 0, 1, …, 6 montre que 7 ne suffisent pas. Le minimum est donc 8.",
-      "Among 8 integers and 7 remainders, two share a remainder, so their difference is divisible by 7. The list 0, 1, …, 6 shows that 7 are not enough. The minimum is 8.",
-    ],
-    extension: [
-      "Généralise à la divisibilité par m et rédige les deux parties de la preuve.",
-      "Generalize to divisibility by m and write both parts of the proof.",
-    ],
-  },
-  {
-    id: "product",
-    type: "olympiad",
-    title: ["Un diviseur commun à tous", "A divisor shared by all"],
-    topic: ["Arithmétique", "Number theory"],
-    difficulty: 2,
-    minutes: 12,
-    prompt: [
-      "Quel est le plus grand entier positif qui divise n³ − n pour tout entier n ≥ 2 ?",
-      "What is the largest positive integer that divides n³ − n for every integer n ≥ 2?",
-    ],
-    answer: 6,
-    hints: [
-      ["Factorise n³ − n.", "Factor n³ − n."],
-      [
-        "Regarde trois entiers consécutifs, puis utilise n = 2 pour borner le diviseur.",
-        "Look at three consecutive integers, then use n = 2 to bound the divisor.",
-      ],
-    ],
-    solution: [
-      "n³ − n = (n − 1)n(n + 1). Parmi trois entiers consécutifs, l’un est divisible par 3 et au moins l’un est pair. Le produit est divisible par 6. Pour n = 2, il vaut 6, donc aucun diviseur commun plus grand n’est possible.",
-      "n³ − n = (n − 1)n(n + 1). Among three consecutive integers, one is divisible by 3 and at least one is even. The product is divisible by 6. At n = 2 it equals 6, so no larger common divisor is possible.",
-    ],
-    extension: [
-      "Explique pourquoi « divisible par 2 et par 3 » implique ici « divisible par 6 ».",
-      "Explain why “divisible by 2 and by 3” implies “divisible by 6” here.",
-    ],
-  },
-  {
-    id: "inequality",
-    type: "olympiad",
-    title: ["Un minimum caché", "A hidden minimum"],
-    topic: ["Extrema", "Extrema"],
-    difficulty: 3,
-    minutes: 12,
-    prompt: [
-      "Pour x > 0, quelle est la plus petite valeur possible de x + 1/x ?",
-      "For x > 0, what is the smallest possible value of x + 1/x?",
-    ],
-    answer: 2,
-    hints: [
-      [
-        "Un carré est toujours positif ou nul.",
-        "A square is always nonnegative.",
-      ],
-      [
-        "Développe (x − 1)² ≥ 0, puis divise par x > 0.",
-        "Expand (x − 1)² ≥ 0, then divide by x > 0.",
-      ],
-    ],
-    solution: [
-      "(x − 1)² ≥ 0 donne x² − 2x + 1 ≥ 0. En divisant par x > 0, on obtient x + 1/x ≥ 2. L’égalité est atteinte pour x = 1 : le minimum vaut donc 2.",
-      "(x − 1)² ≥ 0 gives x² − 2x + 1 ≥ 0. Dividing by x > 0 gives x + 1/x ≥ 2. Equality is attained at x = 1, so the minimum is 2.",
-    ],
-    extension: [
-      "Trouve le minimum de x + a/x pour a > 0 et justifie le cas d’égalité.",
-      "Find the minimum of x + a/x for a > 0 and justify the equality case.",
-    ],
+    hints: [["Classe les entiers selon leur reste dans la division par 7.", "Sort integers by their remainder when divided by 7."], ["Il n’y a que sept restes possibles. Montre aussi que sept entiers ne suffisent pas toujours.", "There are only seven possible remainders. Also show that seven integers do not always suffice."]],
+    extension: ["Généralise à la divisibilité par m et rédige les deux parties de la preuve.", "Generalize to divisibility by m and write both parts of the proof."],
   },
   {
     id: "squares",
@@ -736,29 +562,8 @@ export const challenges = [
     topic: ["Sommes", "Sums"],
     difficulty: 1,
     minutes: 8,
-    prompt: [
-      "Combien vaut 1 + 3 + 5 + … + 39 ? Cherche une méthode qui explique aussi le résultat pour n termes.",
-      "What is 1 + 3 + 5 + … + 39? Find a method that also explains the result for n terms.",
-    ],
-    answer: 400,
-    hints: [
-      [
-        "Le k-ième entier impair est 2k − 1. Combien de termes y a-t-il ?",
-        "The kth odd integer is 2k − 1. How many terms are there?",
-      ],
-      [
-        "Pour passer d’un carré de côté k − 1 à un carré de côté k, ajoute une bordure de 2k − 1 points.",
-        "To grow a square of side k − 1 into a square of side k, add a border of 2k − 1 dots.",
-      ],
-    ],
-    solution: [
-      "Il y a 20 termes car 39 = 2 × 20 − 1. Les bordures successives de 1, 3, 5, … points construisent un carré : la somme des n premiers impairs vaut n². Le résultat est 20² = 400.",
-      "There are 20 terms because 39 = 2 × 20 − 1. Successive borders of 1, 3, 5, … dots build a square: the first n odd numbers sum to n². The result is 20² = 400.",
-    ],
-    extension: [
-      "Rédige aussi une preuve par récurrence.",
-      "Also write a proof by induction.",
-    ],
+    hints: [["Le k-ième entier impair est 2k − 1. Combien de termes y a-t-il ?", "The kth odd integer is 2k − 1. How many terms are there?"], ["Pour passer d’un carré de côté k − 1 à un carré de côté k, ajoute une bordure de 2k − 1 points.", "To grow a square of side k − 1 into a square of side k, add a border of 2k − 1 dots."]],
+    extension: ["Rédige aussi une preuve par récurrence.", "Also write a proof by induction."],
   },
   {
     id: "hanoi",
@@ -767,29 +572,8 @@ export const challenges = [
     topic: ["Récurrence", "Recursion"],
     difficulty: 2,
     minutes: 10,
-    prompt: [
-      "Trois tiges. Six disques de tailles différentes sont empilés sur la première, le plus grand en bas. À chaque coup, on déplace un seul disque, sans jamais le poser sur un disque plus petit. Quel est le plus petit nombre de coups pour transférer toute la pile sur une autre tige ?",
-      "Three pegs. Six disks of different sizes are stacked on the first, the largest at the bottom. Each move shifts one disk, never onto a smaller disk. What is the smallest number of moves needed to transfer the whole stack to another peg?",
-    ],
-    answer: 63,
-    hints: [
-      [
-        "Commence avec 1, 2 puis 3 disques et note le nombre minimal de coups.",
-        "Start with 1, 2 then 3 disks and note the minimum number of moves.",
-      ],
-      [
-        "Pour bouger le plus grand disque, les autres doivent être ailleurs. Combien de coups pour les y mettre, puis pour les remettre dessus ?",
-        "To move the largest disk, the others must be elsewhere. How many moves to put them there, then back on top?",
-      ],
-    ],
-    solution: [
-      "Pour libérer le plus grand disque, il faut déplacer les n − 1 autres sur la tige intermédiaire, déplacer le grand disque, puis ramener les n − 1 dessus : u(n) = 2u(n − 1) + 1 avec u(1) = 1. On obtient u(n) = 2<sup>n</sup> − 1 : 1, 3, 7, 15, 31, 63. Le grand disque doit bouger au moins une fois, ce qui rend cette stratégie optimale. Pour 6 disques : 63 coups.",
-      "To free the largest disk, move the other n − 1 to the spare peg, move the large disk, then bring the n − 1 back on top: u(n) = 2u(n − 1) + 1 with u(1) = 1. This gives u(n) = 2<sup>n</sup> − 1: 1, 3, 7, 15, 31, 63. The large disk must move at least once, which makes the strategy optimal. For 6 disks: 63 moves.",
-    ],
-    extension: [
-      "Démontre par récurrence que u(n) = 2^n − 1, puis montre que le plus petit disque bouge un coup sur deux.",
-      "Prove by induction that u(n) = 2^n − 1, then show that the smallest disk moves every other move.",
-    ],
+    hints: [["Commence avec 1, 2 puis 3 disques et note le nombre minimal de coups.", "Start with 1, 2 then 3 disks and note the minimum number of moves."], ["Pour bouger le plus grand disque, les autres doivent être ailleurs. Combien de coups pour les y mettre, puis pour les remettre dessus ?", "To move the largest disk, the others must be elsewhere. How many moves to put them there, then back on top?"]],
+    extension: ["Démontre par récurrence que u(n) = 2^n − 1, puis montre que le plus petit disque bouge un coup sur deux.", "Prove by induction that u(n) = 2^n − 1, then show that the smallest disk moves every other move."],
   },
   {
     id: "eggs",
@@ -798,29 +582,8 @@ export const challenges = [
     topic: ["Optimisation", "Optimization"],
     difficulty: 3,
     minutes: 15,
-    prompt: [
-      "Tu as deux œufs d’autruche identiques et un immeuble de 100 étages. Il existe un étage critique : d’un étage inférieur ou égal, un œuf ne se brise pas ; d’un étage supérieur, il se brise. Un œuf intact peut resservir, un œuf brisé non. Quel est le plus petit nombre de lancers qui suffit, dans le pire des cas, pour trouver l’étage critique ?",
-      "You have two identical ostrich eggs and a 100-floor building. There is a critical floor: from that floor or below an egg does not break, from above it does. An intact egg can be reused, a broken one cannot. What is the smallest number of drops that is enough, in the worst case, to find the critical floor?",
-    ],
-    answer: 14,
-    hints: [
-      [
-        "Avec un seul œuf, la seule méthode sûre est de monter un étage à la fois.",
-        "With a single egg the only safe method is to climb one floor at a time.",
-      ],
-      [
-        "Si le premier œuf se brise au k-ième lancer, combien de lancers restent-ils au second ? Fais diminuer le pas à chaque lancer.",
-        "If the first egg breaks on the kth drop, how many drops does the second have left? Make the step shrink with each drop.",
-      ],
-    ],
-    solution: [
-      "Lâche le premier œuf des étages 14, 27, 39, 50, 60, 69, 77, 84, 90, 95, 99, 100 : les pas valent 14, 13, 12, …, diminuent de 1. S’il se brise au k-ième lancer, le second parcourt les étages restants un par un : au total toujours au plus 14 lancers. Avec n lancers, on couvre n + (n − 1) + … + 1 = n(n + 1)/2 étages. Il faut n(n + 1)/2 ≥ 100 : 13 × 14/2 = 91 est insuffisant, 14 × 15/2 = 105 convient. Réponse : 14.",
-      "Drop the first egg from floors 14, 27, 39, 50, 60, 69, 77, 84, 90, 95, 99, 100: the steps are 14, 13, 12, … and shrink by 1. If it breaks on the kth drop, the second egg walks through the remaining floors one by one: the total is always at most 14 drops. With n drops you cover n + (n − 1) + … + 1 = n(n + 1)/2 floors. You need n(n + 1)/2 ≥ 100: 13 × 14/2 = 91 is not enough, 14 × 15/2 = 105 works. Answer: 14.",
-    ],
-    extension: [
-      "Que devient la réponse avec 3 œufs ? Cherche un tableau « étages couverts » en fonction du nombre d’œufs et de lancers.",
-      "What happens with 3 eggs? Look for a table of floors covered as a function of eggs and drops.",
-    ],
+    hints: [["Avec un seul œuf, la seule méthode sûre est de monter un étage à la fois.", "With a single egg the only safe method is to climb one floor at a time."], ["Si le premier œuf se brise au k-ième lancer, combien de lancers restent-ils au second ? Fais diminuer le pas à chaque lancer.", "If the first egg breaks on the kth drop, how many drops does the second have left? Make the step shrink with each drop."]],
+    extension: ["Que devient la réponse avec 3 œufs ? Cherche un tableau « étages couverts » en fonction du nombre d’œufs et de lancers.", "What happens with 3 eggs? Look for a table of floors covered as a function of eggs and drops."],
   },
   {
     id: "konigsberg",
@@ -829,29 +592,8 @@ export const challenges = [
     topic: ["Graphes", "Graphs"],
     difficulty: 2,
     minutes: 10,
-    prompt: [
-      "Quatre quartiers A, B, C, D sont reliés par 7 ponts : deux entre A et B, deux entre A et C, un entre A et D, un entre B et D, un entre C et D. Combien de ponts faut-il retirer, au minimum, pour qu’une promenade traverse chaque pont restant exactement une fois ?",
-      "Four districts A, B, C, D are joined by 7 bridges: two between A and B, two between A and C, one between A and D, one between B and D, one between C and D. What is the minimum number of bridges to remove so that a walk crosses every remaining bridge exactly once?",
-    ],
-    answer: 1,
-    hints: [
-      [
-        "Pour chaque quartier, compte les ponts qui y arrivent.",
-        "For each district, count the bridges that reach it.",
-      ],
-      [
-        "Quand tu traverses un quartier, tu utilises deux ponts : un pour entrer, un pour sortir. Que peut-il se passer au départ et à l’arrivée ?",
-        "Passing through a district uses two bridges: one in, one out. What can differ at the start and at the end?",
-      ],
-    ],
-    solution: [
-      "Les quartiers A, B, C, D touchent 5, 3, 3, 3 ponts : quatre nombres impairs. Un parcours qui traverse chaque pont une fois n’autorise que 0 ou 2 quartiers impairs (le départ et l’arrivée), car partout ailleurs les ponts vont par paires entrée et sortie. Retirer 0 pont est donc impossible. Si on retire le pont entre B et D, B et D deviennent pairs : il reste A et C impairs et le réseau reste connexe. La promenade A, B, A, C, A, D, C traverse alors chaque pont restant une fois. Minimum : 1 (Euler, 1736).",
-      "Districts A, B, C, D touch 5, 3, 3, 3 bridges: four odd numbers. A route crossing every bridge once allows only 0 or 2 odd districts (the start and the end), since everywhere else bridges come in in-out pairs. Removing 0 bridges is therefore impossible. If the bridge between B and D is removed, B and D become even: A and C stay odd and the network remains connected. The walk A, B, A, C, A, D, C then crosses every remaining bridge once. Minimum: 1 (Euler, 1736).",
-    ],
-    extension: [
-      "Quelle condition sur les degrés permet une promenade qui revient à son point de départ ?",
-      "What condition on the degrees allows a walk that returns to its starting point?",
-    ],
+    hints: [["Pour chaque quartier, compte les ponts qui y arrivent.", "For each district, count the bridges that reach it."], ["Quand tu traverses un quartier, tu utilises deux ponts : un pour entrer, un pour sortir. Que peut-il se passer au départ et à l’arrivée ?", "Passing through a district uses two bridges: one in, one out. What can differ at the start and at the end?"]],
+    extension: ["Quelle condition sur les degrés permet une promenade qui revient à son point de départ ?", "What condition on the degrees allows a walk that returns to its starting point?"],
   },
   {
     id: "josephus",
@@ -860,29 +602,8 @@ export const challenges = [
     topic: ["Récurrence", "Recursion"],
     difficulty: 3,
     minutes: 12,
-    prompt: [
-      "41 personnes, numérotées de 1 à 41, forment un cercle. On saute la personne 1, on élimine la 2, on saute la 3, on élimine la 4, et ainsi de suite en tournant et sans s’arrêter jusqu’à ce qu’il n’en reste qu’une. Quel est le numéro de la dernière personne restante ?",
-      "41 people, numbered 1 to 41, stand in a circle. Skip person 1, remove 2, skip 3, remove 4, and so on around the circle without stopping until one person is left. What is the number of the last person standing?",
-    ],
-    answer: 19,
-    hints: [
-      [
-        "Cherche la survivante pour n = 1, 2, 3, …, 10 : quel motif apparaît quand n est une puissance de 2 ?",
-        "Find the survivor for n = 1, 2, 3, …, 10: what pattern appears when n is a power of 2?",
-      ],
-      [
-        "Après avoir éliminé assez de personnes pour tomber sur une puissance de 2, qui est la première personne sautée ?",
-        "After removing enough people to land on a power of 2, who is the first person skipped?",
-      ],
-    ],
-    solution: [
-      "Si le cercle compte 2<sup>m</sup> personnes, un tour élimine une personne sur deux et recommence au même point : la première personne sautée, la numéro 1, survit. Pour n = 2<sup>m</sup> + l avec 0 ≤ l &lt; 2<sup>m</sup>, après l éliminations (2, 4, …, 2l) il reste 2<sup>m</sup> personnes et la prochaine sautée est 2l + 1 : elle survit. Ici 41 = 32 + 9, donc le survivant est 2 × 9 + 1 = 19.",
-      "If the circle has 2<sup>m</sup> people, one lap removes every second person and restarts at the same spot: the first person skipped survives. For n = 2<sup>m</sup> + l with 0 ≤ l &lt; 2<sup>m</sup>, after l removals (2, 4, …, 2l) there are 2<sup>m</sup> people left and the next one skipped is 2l + 1: that person survives. Here 41 = 32 + 9, so the survivor is 2 × 9 + 1 = 19.",
-    ],
-    extension: [
-      "Écris le numéro du survivant en binaire à partir de celui de n : que remarques-tu ?",
-      "Write n in binary and the survivor’s number in binary: what do you notice?",
-    ],
+    hints: [["Cherche la survivante pour n = 1, 2, 3, …, 10 : quel motif apparaît quand n est une puissance de 2 ?", "Find the survivor for n = 1, 2, 3, …, 10: what pattern appears when n is a power of 2?"], ["Après avoir éliminé assez de personnes pour tomber sur une puissance de 2, qui est la première personne sautée ?", "After removing enough people to land on a power of 2, who is the first person skipped?"]],
+    extension: ["Écris le numéro du survivant en binaire à partir de celui de n : que remarques-tu ?", "Write n in binary and the survivor’s number in binary: what do you notice?"],
   },
   {
     id: "ramsey",
@@ -891,29 +612,8 @@ export const challenges = [
     topic: ["Graphes", "Graph theory"],
     difficulty: 3,
     minutes: 15,
-    prompt: [
-      "Dans un groupe de n personnes, deux personnes quelconques sont soit amies, soit non amies. Quel est le plus petit n qui garantit de trouver trois personnes deux à deux amies, ou trois personnes deux à deux non amies ?",
-      "In a group of n people, any two are either friends or not friends. What is the smallest n that guarantees three people who are pairwise friends, or three people who are pairwise not friends?",
-    ],
-    answer: 6,
-    hints: [
-      [
-        "Montre d’abord que 5 ne suffit pas : cherche un coloriage des traits d’un pentagone et de ses diagonales sans trio d’une seule couleur.",
-        "First show that 5 is not enough: look for a colouring of a pentagon’s sides and diagonals with no one-colour trio.",
-      ],
-      [
-        "Avec 6 personnes, fixe l’une d’elles et regarde ses 5 relations avec les autres : le principe des tiroirs s’applique.",
-        "With 6 people, fix one of them and look at her 5 relations with the others: the pigeonhole principle applies.",
-      ],
-    ],
-    solution: [
-      "5 personnes ne suffisent pas : en pentagone, amis = côtés, non amis = diagonales, aucun trio n’est d’une seule couleur. Avec 6 personnes, la personne A a 5 relations, donc au moins 3 du même type (tiroirs), par exemple 3 amis B, C, D. Si deux d’entre eux sont amis, ils forment avec A un trio d’amis. Sinon B, C, D sont deux à deux non amis. Dans tous les cas il y a un trio d’une seule couleur : R(3, 3) = 6.",
-      "5 people are not enough: arranged as a pentagon, friends = sides, not friends = diagonals, no trio is one colour. With 6 people, person A has 5 relations, so at least 3 of one kind (pigeonhole), say 3 friends B, C, D. If two of them are friends, they form a trio of friends with A. Otherwise B, C, D are pairwise not friends. Either way there is a one-colour trio: R(3, 3) = 6.",
-    ],
-    extension: [
-      "Combien de trios faut-il vérifier pour 6 personnes ? Pourquoi R(3, 3) = 6 ne dépend-il pas du coloriage choisi ?",
-      "How many trios must be checked for 6 people? Why does R(3, 3) = 6 not depend on the colouring chosen?",
-    ],
+    hints: [["Montre d’abord que 5 ne suffit pas : cherche un coloriage des traits d’un pentagone et de ses diagonales sans trio d’une seule couleur.", "First show that 5 is not enough: look for a colouring of a pentagon’s sides and diagonals with no one-colour trio."], ["Avec 6 personnes, fixe l’une d’elles et regarde ses 5 relations avec les autres : le principe des tiroirs s’applique.", "With 6 people, fix one of them and look at her 5 relations with the others: the pigeonhole principle applies."]],
+    extension: ["Combien de trios faut-il vérifier pour 6 personnes ? Pourquoi R(3, 3) = 6 ne dépend-il pas du coloriage choisi ?", "How many trios must be checked for 6 people? Why does R(3, 3) = 6 not depend on the colouring chosen?"],
   },
   {
     id: "artgallery",
@@ -922,31 +622,14 @@ export const challenges = [
     topic: ["Géométrie", "Geometry"],
     difficulty: 3,
     minutes: 15,
-    prompt: [
-      "Une galerie d’art est un polygone simple à 12 côtés, pas forcément convexe. Un gardien immobile voit tout point qu’il peut joindre par un segment contenu dans la galerie. Quel est le plus petit nombre de gardiens qui suffit à surveiller toute galerie à 12 côtés, quelle que soit sa forme ?",
-      "An art gallery is a simple polygon with 12 sides, not necessarily convex. A guard standing still sees every point he can join by a segment lying inside the gallery. What is the smallest number of guards that is enough to watch every 12-sided gallery, whatever its shape?",
-    ],
-    answer: 4,
-    hints: [
-      [
-        "Découpe le polygone en triangles par des diagonales intérieures. Un gardien posé sur un sommet d’un triangle voit tout ce triangle.",
-        "Cut the polygon into triangles with inside diagonals. A guard standing at a vertex of a triangle sees the whole triangle.",
-      ],
-      [
-        "Colorie les sommets avec trois couleurs pour que chaque triangle porte les trois couleurs. Que dire de la couleur la moins utilisée ?",
-        "Colour the vertices with three colours so that each triangle carries all three. What can you say about the least-used colour?",
-      ],
-    ],
-    solution: [
-      "Tout polygone à n côtés se découpe en n − 2 triangles. Ses sommets se colorient avec 3 couleurs de sorte que chaque triangle ait trois couleurs différentes. La couleur la moins fréquente est portée par au plus ⌊n/3⌋ sommets : des gardiens posés sur eux voient chaque triangle, donc toute la galerie. Pour n = 12 : 4 gardiens suffisent. Ils sont nécessaires pour une galerie en peigne à quatre dents : un point ne voit jamais deux pointes à la fois, donc chaque dent exige son gardien (théorème de Chvátal, preuve de Fisk).",
-      "Every polygon with n sides can be cut into n − 2 triangles. Its vertices can be coloured with 3 colours so that every triangle has three different colours. The least frequent colour sits on at most ⌊n/3⌋ vertices: guards standing on them see every triangle, hence the whole gallery. For n = 12: 4 guards are enough. They are necessary for a comb with four teeth: no point sees two tips at once, so each tooth needs its own guard (Chvátal’s theorem, Fisk’s proof).",
-    ],
-    extension: [
-      "Construis une galerie à 15 côtés qui exige 5 gardiens. Peut-on faire mieux avec des gardiens qui se déplacent le long d’un mur ?",
-      "Build a 15-sided gallery that needs 5 guards. Can guards who patrol along a wall do better?",
-    ],
+    hints: [["Découpe le polygone en triangles par des diagonales intérieures. Un gardien posé sur un sommet d’un triangle voit tout ce triangle.", "Cut the polygon into triangles with inside diagonals. A guard standing at a vertex of a triangle sees the whole triangle."], ["Colorie les sommets avec trois couleurs pour que chaque triangle porte les trois couleurs. Que dire de la couleur la moins utilisée ?", "Colour the vertices with three colours so that each triangle carries all three. What can you say about the least-used colour?"]],
+    extension: ["Construis une galerie à 15 côtés qui exige 5 gardiens. Peut-on faire mieux avec des gardiens qui se déplacent le long d’un mur ?", "Build a 15-sided gallery that needs 5 guards. Can guards who patrol along a wall do better?"],
   },
 ];
+export const challenges = challengeBase.map((c) => {
+  const v = VARIANTS[c.id], q = defaults(c.id);
+  return { ...c, prompt: v.prompt(q), answer: v.answer(q), solution: v.solution(q), hints: v.hints ? v.hints(q) : c.hints };
+});
 
 export const pathways = [
   {

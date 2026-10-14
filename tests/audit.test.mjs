@@ -58,17 +58,11 @@ test("all reasoning, presets and pathway notes are bilingual and valid", () => {
 });
 test("classic challenge answers agree with independent small-case calculations", () => {
   const answer=id=>challenges.find(c=>c.id===id).answer;
-  let pairs=0; for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)pairs++;
-  assert.equal(answer("handshakes"),pairs);
   const doors=Array(101).fill(false);for(let k=1;k<=100;k++)for(let j=k;j<=100;j+=k)doors[j]=!doors[j];
   assert.equal(answer("doors"),doors.filter(Boolean).length);
-  const colours=[0,0];for(let x=0;x<8;x++)for(let y=0;y<8;y++)if(!((x===0&&y===0)||(x===7&&y===7)))colours[(x+y)%2]++;
-  assert.notEqual(colours[0],colours[1]);assert.equal(answer("chess"),0);
   const wins=[false];for(let n=1;n<=21;n++)wins[n]=[1,2,3].some(k=>k<=n&&!wins[n-k]);
   assert.deepEqual([1,2,3].filter(k=>!wins[21-k]),[answer("nim")]);
   assert.equal(answer("pigeonhole"),7+1);assert.equal(new Set([0,1,2,3,4,5,6].map(x=>x%7)).size,7);
-  for(let n=2;n<100;n++)assert.equal((n**3-n)%answer("product"),0);assert.equal(2**3-2,answer("product"));
-  assert.equal(1+1/1,answer("inequality"));for(const x of [.1,.5,1,2,10])assert.ok(x+1/x>=answer("inequality"));
   assert.equal(answer("squares"),Array.from({length:20},(_,i)=>2*i+1).reduce((a,b)=>a+b,0));
 });
 
