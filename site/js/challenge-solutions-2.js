@@ -1,5 +1,6 @@
 // Animated solutions of the classic puzzles (see challenge-solutions.js for the format: { size, steps(q), draw(c, step, p, q) }).
 import { colour } from "./challenge-kit.js";
+import { bridge } from "./solution-bridge.js";
 import { pascalGrid, gridPaths, horseRaces, cakeCream, QUEENS, queensK, unattacked, snailDown, snailTrace, snailDays, bridgePlans, bridgeTimes, bridgeBest, eggWeighings, splitThree, minSample, classicSample } from "./challenge-puzzles.js";
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -177,47 +178,6 @@ const snail = {
   },
 };
 
-/* ---------------------------------------------------------------- bridge */
-const NAMES = ["a", "b", "c", "d"];
-const bridge = {
-  size: [520, 300],
-  steps: (q) => { const t = bridgeTimes(q.set).sort((x, y) => x - y), pl = bridgePlans(t), which = pl.A.total <= pl.B.total ? "A" : "B", mv = pl[which].moves, who = (m) => m[0].join(" + ");
-    return [
-      P(`Quatre soldats : ${t.join(", ")} min. Une lampe, deux personnes au plus par traversée, au rythme du plus lent.`, `Four soldiers: ${t.join(", ")} min. One lamp, at most two people per crossing, at the pace of the slower one.`),
-      ...mv.map((m, i) => P(`Traversée ${i + 1} : ${who(m)} ${m[1] === "over" ? "passent" : "revient"} (${m[2]} min). Total : ${mv.slice(0, i + 1).reduce((s, x) => s + x[2], 0)} min.`, `Crossing ${i + 1}: ${who(m)} ${m[1] === "over" ? "cross" : "comes back"} (${m[2]} min). Total: ${mv.slice(0, i + 1).reduce((s, x) => s + x[2], 0)} min.`)),
-      P(`Plan 1 : ${pl.A.total} min. Plan 2 (le plus rapide escorte chacun) : ${pl.B.total} min. Le meilleur : ${bridgeBest(t)} min. L’idée : les deux plus lents passent ensemble, leur lenteur ne coûte qu’une fois.`, `Plan 1: ${pl.A.total} min. Plan 2 (the fastest escorts everyone): ${pl.B.total} min. The better: ${bridgeBest(t)} min. The idea: the two slowest cross together so their slowness is paid only once.`),
-    ]; },
-  draw(c, s, p, q) {
-    const t = bridgeTimes(q.set).sort((x, y) => x - y), pl = bridgePlans(t), which = pl.A.total <= pl.B.total ? "A" : "B", mv = pl[which].moves;
-    c.rect(20, 80, 140, 140, { rx: 8, fill: "var(--surface)", stroke: "var(--line-strong)", "stroke-width": 2 }); c.rect(360, 80, 140, 140, { rx: 8, fill: "var(--surface)", stroke: "var(--line-strong)", "stroke-width": 2 });
-    c.path("M160 150Q260 120 360 150", { fill: "none", stroke: colour(5), "stroke-width": 10, opacity: 0.5 });
-    const side = [0, 0, 0, 0]; let torch = 0, elapsed = 0; const doneMoves = s === 0 ? 0 : Math.min(mv.length, s - 1);
-    const idx = (time) => t.indexOf(time);
-    for (let i = 0; i < doneMoves; i++) { mv[i][0].forEach((tm) => { side[idx(tm)] ^= 1; }); torch ^= 1; elapsed += mv[i][2]; }
-    const moving = s >= 1 && s <= mv.length ? mv[s - 1] : null;
-    if (moving) { /* the moving people are drawn separately */ }
-    const k = moving ? ez(seg(p, 0.1, 0.9)) : 0, mover = moving ? moving[0].map(idx) : [];
-    const slot = (sd, n) => ({ x: (sd === 0 ? 50 : 390) + (n % 2) * 52, y: 108 + Math.floor(n / 2) * 58 });
-    const cnt = [0, 0];
-    t.forEach((tm, i) => {
-      if (mover.includes(i)) return;
-      const sd = side[i], pt = slot(sd, cnt[sd]++);
-      c.circ(pt.x + 20, pt.y + 20, 22, { fill: `color-mix(in srgb, ${colour(i)} 55%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 2 }); c.text(pt.x + 20, pt.y + 26, tm, { ...ink, class: "sol-line" });
-    });
-    if (moving) mover.forEach((i, j) => {
-      const from = moving[1] === "over" ? 0 : 1, to = 1 - from, a = slot(from, cnt[from] + j), b = slot(to, cnt[to] + j), x = lerp(a.x, b.x, k), y = lerp(a.y, b.y, k) - 30 * Math.sin(Math.PI * k);
-      c.circ(x + 20, y + 20, 22, { fill: `color-mix(in srgb, ${colour(i)} 55%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 3 }); c.text(x + 20, y + 26, t[i], { ...ink, class: "sol-line" });
-    });
-    const lampSide = moving ? (k < 0.5 ? (moving[1] === "over" ? 0 : 1) : (moving[1] === "over" ? 1 : 0)) : torch;
-    c.text(lampSide === 0 ? 90 : 430, 72, "🔦", { ...ink, style: "font-size:26px" });
-    if (s >= 1 && s <= mv.length) c.text(260, 36, `${c.t("Temps", "Time")} : ${elapsed + (moving ? Math.round(moving[2] * ez(seg(p, 0.1, 0.9))) : 0)} min`, { ...ink, class: "sol-big small" });
-    if (s === mv.length + 1) {
-      const maxT = Math.max(pl.A.total, pl.B.total);
-      [["A", pl.A.total, colour(2)], ["B", pl.B.total, colour(1)]].forEach(([n2, v, col], i) => { const wBar = 300 * (v / maxT) * ez(seg(p, 0, 0.8)); c.rect(150, 90 + i * 70, wBar, 34, { rx: 6, fill: col }); c.text(140, 113 + i * 70, `${c.t("Plan", "Plan")} ${i + 1}`, { "text-anchor": "end", class: "sol-label" }); c.text(156 + wBar, 113 + i * 70, `${v} min`, { class: v === bridgeBest(t) ? "sol-hot" : "sol-line" }); });
-    }
-  },
-};
-
 /* ------------------------------------------------------------ light egg */
 const lighteggs = {
   size: [520, 300],
@@ -272,4 +232,4 @@ const fakecoins = {
 };
 
 export const SOLUTIONS_2 = { gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins };
-void [lerp, NAMES, gridPaths];
+void [lerp, gridPaths];

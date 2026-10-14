@@ -460,8 +460,9 @@ export function mountSolution(id, root, { lang, reduced: reducedPref, params = {
   const def = SOLUTIONS[id];
   if (!def) return null;
   const t = (fr, en) => (lang === "fr" ? fr : en);
-  const [w, h] = def.size, DUR = 2600, HOLD = 900, steps = def.steps(params), nSteps = steps.length;
-  let step = 0, p = reduced() ? 1 : 0, auto = false, raf = 0, started = false;
+  const [w, h] = def.size, HOLD = 900, steps = def.steps(params), nSteps = steps.length;
+  const durOf = () => (def.dur ? def.dur(step, params) : 2600);   // a solution may pace each step itself
+  let step = 0, p = reduced() ? 1 : 0, auto = false, raf = 0, started = false, scene = null;
   root.innerHTML = `
     <div class="sol-anim">
       <svg class="sol-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${t("Animation de la solution", "Solution animation")}"></svg>
@@ -477,8 +478,8 @@ export function mountSolution(id, root, { lang, reduced: reducedPref, params = {
   const svg = root.querySelector("svg"), cap = root.querySelector(".sol-cap"), count = root.querySelector(".sol-count");
   const btn = (a) => root.querySelector(`[data-a="${a}"]`), playBtn = btn("play");
   function paint() {
-    svg.replaceChildren();
-    def.draw(ctxFor(svg, lang), step, p, params);
+    if (def.mount) { scene ||= (svg.replaceChildren(), def.mount(ctxFor(svg, lang), params)); def.update(scene, step, p, params); }   // built once, then posed
+    else { svg.replaceChildren(); def.draw(ctxFor(svg, lang), step, p, params); }
     cap.textContent = steps[step][lang === "fr" ? 0 : 1];
     count.textContent = `${t("Étape", "Step")} ${step + 1} / ${nSteps}`;
     btn("prev").disabled = step === 0;
@@ -490,9 +491,9 @@ export function mountSolution(id, root, { lang, reduced: reducedPref, params = {
   // Animate the current step from its progress p to 1; with auto, carry on to the next steps.
   function run() {
     cancelAnimationFrame(raf);
-    let start = performance.now() - p * DUR;
+    let start = performance.now() - p * durOf();
     const tick = (now) => {
-      const e = now - start;
+      const e = now - start, DUR = durOf();
       p = Math.min(1, Math.max(0, e / DUR));   // a frame timestamp can predate the start by a few ms
       paint();
       if (p < 1) { raf = requestAnimationFrame(tick); return; }

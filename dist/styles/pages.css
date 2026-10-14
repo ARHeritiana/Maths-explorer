@@ -776,3 +776,18 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 @keyframes ci-hue { 0%, 100% { fill: var(--c1); } 33% { fill: var(--c2); } 66% { fill: var(--c3); } }
 @keyframes ci-swap-a { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(13px); } }
 @keyframes ci-swap-b { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-13px); } }
+
+/* ---- scene kit (site/js/scene-kit.js): ambient motion of the cartoon solutions */
+.sol-svg .sd, .sol-svg .lt { pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .sc-star { animation: sc-twinkle 3.2s ease-in-out infinite var(--d, 0s); }
+  .sc-wave { animation: sc-wave 3.4s ease-in-out infinite var(--d, 0s); }
+  .sc-mist { animation: sc-mist 16s ease-in-out infinite alternate; }
+  .sc-flame { animation: sc-flame 1.3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .sd-idle .sd-head { animation: sd-breathe 2.6s ease-in-out infinite; }
+}
+@keyframes sc-twinkle { 0%, 100% { opacity: .95; } 50% { opacity: .25; } }
+@keyframes sc-wave { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(9px); } }
+@keyframes sc-mist { from { transform: translateX(-18px); } to { transform: translateX(22px); } }
+@keyframes sc-flame { 0%, 100% { transform: scale(1); opacity: 1; } 35% { transform: scale(1.07); opacity: .88; } 70% { transform: scale(.96); opacity: 1; } }
+@keyframes sd-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.1px); } }
