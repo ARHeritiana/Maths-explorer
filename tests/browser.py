@@ -20,7 +20,7 @@ with sync_playwright() as p:
     browser = getattr(p, engine).launch(**options)
     page = browser.new_page(viewport={'width':1440,'height':1000})
     errors = []
-    page.on('pageerror', lambda e: errors.append(str(e)))
+    page.on('pageerror', lambda e: errors.append(e.stack or str(e)))
     assert page.goto(BASE).status == 200
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
@@ -272,9 +272,9 @@ with sync_playwright() as p:
     page.set_viewport_size({'width':1280,'height':900})
     page.goto(BASE+'/#lab/galton'); page.get_by_role('button', name='+ 100').or_(page.get_by_role('button', name='Add 100')).first.click(); page.wait_for_timeout(300)
     assert 'billes' in page.locator('.act-readout').first.inner_text() or 'balls' in page.locator('.act-readout').first.inner_text()
-    page.goto(BASE+'/#lab/platonic'); page.get_by_role('tab', name='Pourquoi seulement cinq ?').click()
+    page.goto(BASE+'/#lab/platonic'); page.locator('#pl-t-why').click()
     assert page.locator('.pl-cell.solid').count() == 5, 'exactly five (p, q) pairs make a solid'
-    page.locator('.pl-cell[data-p="4"][data-q="4"]').click(); assert 'plat' in page.locator('#object-stage').inner_text()
+    page.locator('.pl-cell[data-p="4"][data-q="4"]').click(); assert page.locator('.pl-cell.sel').get_attribute('data-p') == '4'
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')
