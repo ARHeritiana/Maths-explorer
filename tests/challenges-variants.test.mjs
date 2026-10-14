@@ -20,7 +20,7 @@ test("every challenge has variants whose defaults give the statement shown on th
 
 test("statements, answers and solutions are well formed over the whole parameter range", () => {
   for (const id of Object.keys(VARIANTS)) {
-    const v = VARIANTS[id], pools = v.params.map((p) => (p.kind === "int" ? [p.min, p.max, p.value, Math.round((p.min + p.max) / 2)] : p.options.map((o) => o[0])));
+    const v = VARIANTS[id], pools = v.params.map((p) => (p.kind === "int" ? [p.min, p.max, p.value, p.min + p.step * Math.round((p.max - p.min) / 2 / p.step)] : p.options.map((o) => o[0])));
     const combos = pools.reduce((acc, pool) => acc.flatMap((a) => pool.map((x) => [...a, x])), [[]]);
     for (const combo of combos) {
       const q = Object.fromEntries(v.params.map((p, i) => [p.id, combo[i]])), n = normalise(id, q);

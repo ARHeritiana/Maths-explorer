@@ -705,3 +705,12 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .fc-count { min-width: 2ch; text-align: center; font: 700 1.1rem var(--math); font-variant-numeric: tabular-nums; }
 .fc-step { min-width: 44px; justify-content: center; font-size: 1.2rem; }
 .fc-g { min-width: 48px; }
+.cl-merge { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
+.cl-piles { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+.cm-bars { display: grid; gap: 6px; margin: 4px 0 8px; }
+.cm-row { display: grid; grid-template-columns: 5.5rem 1fr 3rem; align-items: center; gap: 8px; }
+.cm-bar { display: block; height: 22px; min-width: 2px; border-radius: 6px; border: 1.5px solid var(--ink); transition: width 200ms ease; }
+.cm-row strong { font: 700 1.1rem var(--math); text-align: right; }
+.iv-row { display: flex; align-items: flex-end; gap: 6px; min-height: 160px; }
+.iv-bar { flex: 1 1 0; min-width: 28px; max-width: 70px; border: 2px solid var(--ink); border-radius: 6px 6px 0 0; color: var(--ink); font: 700 1rem var(--body); display: flex; align-items: flex-start; justify-content: center; padding-top: 4px; cursor: pointer; transition: height 160ms ease; }
+.iv-bar:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }

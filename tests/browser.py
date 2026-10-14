@@ -6,8 +6,8 @@ from playwright.sync_api import sync_playwright
 
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
 ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
-CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins']
-CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45']
+CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','inversions','piles']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45','5','24','180','5','719','0','13','45']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -70,9 +70,9 @@ with sync_playwright() as p:
     assert page.locator('#results strong').nth(1).inner_text() == '4'
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'
-    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 28
+    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 36
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',13),('olympiad',6),('all',19)]:
+    for kind,count in [('play',18),('olympiad',9),('all',27)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
@@ -282,6 +282,19 @@ with sync_playwright() as p:
     grams = int(re.search(r'(\d+) g', page.locator('#fc-read').inner_text()).group(1))
     page.locator('.fc-g[data-i="%d"]'%(550 - grams - 1)).click()
     assert 'strong' in page.locator('#fc-read').inner_html(), 'the shortfall names the fake pile'
+    # Euclidean geometry and invariants: each activity responds and agrees with the mathematics.
+    go('reflect'); page.locator('#rf-mirror').click(); assert 'AB′' in page.locator('#rf-read').inner_text() and '5 m' in page.locator('#rf-read').inner_text()
+    go('lunes'); assert '24' in page.locator('#ln-read').inner_text()
+    go('star'); page.locator('#st-rand').click(); assert '180' in page.locator('#st-read').inner_text()
+    go('box')
+    for i in range(3): page.locator('input[name="bx"]').nth(i).check()
+    assert page.locator('#bx-read strong').count() == 2
+    go('merge')
+    for _ in range(4): page.locator('#mg-rand').click()
+    assert '720' in page.locator('#mg-read').inner_text().replace('\u202f','').replace('\u00a0','').replace(' ','')
+    go('cham'); page.locator('.cm-meet:not([disabled])').first.click(); assert 'Rencontres' in page.locator('#cm-read').inner_text() or 'Meetings' in page.locator('#cm-read').inner_text()
+    go('inversions'); page.locator('#iv-all').click(); assert '13' in page.locator('#iv-read').inner_text()
+    go('piles'); page.locator('#pl-rand').click(); assert '45' in page.locator('#pl-read').inner_text()
     if engine == 'chromium':
         touch = browser.new_context(viewport={'width': 390, 'height': 844}, has_touch=True, is_mobile=True)
         tp = touch.new_page(); tp.goto(BASE+'/#challenges/chess'); tp.locator('.dom-svg').scroll_into_view_if_needed()

@@ -7,6 +7,7 @@
 import { svgEl, colour } from "./challenge-kit.js";
 import { triangulate, threeColour, visibility } from "./challenge-geometry.js";
 import { SOLUTIONS_2 } from "./challenge-solutions-2.js";
+import { SOLUTIONS_3 } from "./challenge-solutions-3.js";
 import { comb, josephusOrder, eggPlan, eggCover, eggDrops, graphFor, layoutOf, bridgeGeom, degrees, minRemoval, trailOf } from "./challenge-variants.js";
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -449,7 +450,7 @@ const josephus = {
   },
 };
 
-export const SOLUTIONS = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2 };
+export const SOLUTIONS = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2, ...SOLUTIONS_3 };
 export const hasSolution = (id) => Object.hasOwn(SOLUTIONS, id);
 export const stepsOf = (id, q) => SOLUTIONS[id].steps(q);
 
@@ -492,7 +493,7 @@ export function mountSolution(id, root, { lang, reduced: reducedPref, params = {
     let start = performance.now() - p * DUR;
     const tick = (now) => {
       const e = now - start;
-      p = Math.min(1, e / DUR);
+      p = Math.min(1, Math.max(0, e / DUR));   // a frame timestamp can predate the start by a few ms
       paint();
       if (p < 1) { raf = requestAnimationFrame(tick); return; }
       if (auto && step < nSteps - 1) {
