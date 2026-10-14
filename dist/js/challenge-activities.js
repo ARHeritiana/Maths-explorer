@@ -7,6 +7,7 @@ import { formatNumber } from "./math.js";
 
 import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
 import { artgallery, eggs, hanoi, ramsey, konigsberg, josephus } from "./challenge-more.js";
+import { gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins } from "./challenge-classics.js";
 
 const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
 
@@ -555,7 +556,7 @@ function squares(root, { t }) {
   return () => {};
 }
 
-const activities = { doors, chess: dominoes, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus };
+const activities = { doors, chess: dominoes, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins };
 
 export function hasActivity(id) {
   return Object.hasOwn(activities, id);

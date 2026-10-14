@@ -6,8 +6,8 @@ from playwright.sync_api import sync_playwright
 
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
 ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
-CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery']
-CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4']
+CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -70,9 +70,9 @@ with sync_playwright() as p:
     assert page.locator('#results strong').nth(1).inner_text() == '4'
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'
-    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 20
+    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 28
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',7),('olympiad',4),('all',11)]:
+    for kind,count in [('play',13),('olympiad',6),('all',19)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
@@ -246,6 +246,42 @@ with sync_playwright() as p:
                 if page.locator('[data-a="next"]').is_disabled(): break
                 page.locator('[data-a="next"]').click()
             assert page.evaluate("!/NaN|undefined|Infinity/.test(document.querySelector('.sol-svg').innerHTML)"), challenge
+    # The classic puzzles: each activity responds and agrees with the mathematics.
+    page.set_viewport_size({'width':1100,'height':1000})
+    def go(c):   # the variation panel remembers the last data: start each puzzle from its defaults
+        page.goto(BASE+'/#challenges/'+c)
+        if page.locator('#var-reset').count(): page.locator('#var-reset').click()
+    go('gridpaths')
+    page.locator('#gp-rand').click(); page.locator('#gp-counts').check()
+    assert '210' in page.locator('#gp-read').inner_text() and 'Chemin au hasard' not in page.locator('#gp-read').inner_text()
+    go('horses')
+    for h in range(5): page.locator('.cl-tok[data-h="%d"]'%h).click()
+    page.locator('#hs-race').click(); assert page.locator('#hs-log li').count() == 1
+    go('cake')
+    page.locator('#ck-even').click(); assert page.locator('#ck-read strong').count() == 1, 'equally spaced cuts are fair'
+    go('queens')
+    page.locator('#qn-peek').click(); assert page.locator('.qn-cell.free').count() == 3 and page.locator('.qn-cell.queen').count() == 5
+    go('snail')
+    for _ in range(15): page.locator('#sn-next').click()
+    assert '8' in page.locator('#sn-read strong').last.inner_text() or '10' in page.locator('#sn-read').inner_text()
+    assert page.locator('#sn-next').is_disabled()
+    go('bridge')
+    def cross(*who):
+        for i in who: page.locator('.br-man[data-i="%d"]'%i).click()
+        page.locator('#br-go').click()
+    cross(0,1); cross(0); cross(2,3); cross(1); cross(0,1)
+    assert '17' in page.locator('#br-read').inner_text() and page.locator('#br-log li').count() == 5
+    go('lighteggs')
+    for i in (1,2,3): page.locator('.cl-egg[data-i="%d"]'%(i-1)).click()
+    for i in (4,5,6):
+        page.locator('.cl-egg[data-i="%d"]'%(i-1)).click(); page.locator('.cl-egg[data-i="%d"]'%(i-1)).click()
+    page.locator('#eg-weigh').click(); assert page.locator('#eg-read').inner_text().strip()
+    go('fakecoins')
+    page.locator('#fc-classic').click(); page.locator('#fc-weigh').click()
+    import re
+    grams = int(re.search(r'(\d+) g', page.locator('#fc-read').inner_text()).group(1))
+    page.locator('.fc-g[data-i="%d"]'%(550 - grams - 1)).click()
+    assert 'strong' in page.locator('#fc-read').inner_html(), 'the shortfall names the fake pile'
     if engine == 'chromium':
         touch = browser.new_context(viewport={'width': 390, 'height': 844}, has_touch=True, is_mobile=True)
         tp = touch.new_page(); tp.goto(BASE+'/#challenges/chess'); tp.locator('.dom-svg').scroll_into_view_if_needed()

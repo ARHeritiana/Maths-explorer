@@ -6,6 +6,7 @@
 // finished state. The caption of the current step is announced in a polite live region.
 import { svgEl, colour } from "./challenge-kit.js";
 import { triangulate, threeColour, visibility } from "./challenge-geometry.js";
+import { SOLUTIONS_2 } from "./challenge-solutions-2.js";
 import { comb, josephusOrder, eggPlan, eggCover, eggDrops, graphFor, layoutOf, bridgeGeom, degrees, minRemoval, trailOf } from "./challenge-variants.js";
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -448,7 +449,7 @@ const josephus = {
   },
 };
 
-export const SOLUTIONS = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus };
+export const SOLUTIONS = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2 };
 export const hasSolution = (id) => Object.hasOwn(SOLUTIONS, id);
 export const stepsOf = (id, q) => SOLUTIONS[id].steps(q);
 
