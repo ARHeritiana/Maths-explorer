@@ -226,3 +226,42 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
   .topbar, .mainnav, .tools, footer, .preview, .chooser-tools, .elsewhere { display: none !important; }
   body { background: #fff; color: #000; padding: 0; }
 }
+
+/* ------------------------------------------------------------------ v4 "Vivid" layer (see docs/DESIGN_V4.md)
+   Colour as identity, motion as welcome and reward. Everything that moves sits inside no-preference. */
+.challenge-card { position: relative; overflow: hidden; border-top: 4px solid var(--cc, var(--accent)); }
+.challenge-card .challenge-motif { color: var(--cc, var(--accent)); }
+.challenge-card:hover { border-color: var(--cc, var(--accent)); background: color-mix(in srgb, var(--cc, var(--accent)) 9%, var(--surface)); }
+.challenge-card:nth-child(8n+1), .lab-links a:nth-of-type(8n+1) { --cc: var(--c1); }
+.challenge-card:nth-child(8n+2), .lab-links a:nth-of-type(8n+2) { --cc: var(--c2); }
+.challenge-card:nth-child(8n+3), .lab-links a:nth-of-type(8n+3) { --cc: var(--c3); }
+.challenge-card:nth-child(8n+4), .lab-links a:nth-of-type(8n+4) { --cc: var(--c4); }
+.challenge-card:nth-child(8n+5), .lab-links a:nth-of-type(8n+5) { --cc: var(--c5); }
+.challenge-card:nth-child(8n+6), .lab-links a:nth-of-type(8n+6) { --cc: var(--c6); }
+.challenge-card:nth-child(8n+7), .lab-links a:nth-of-type(8n+7) { --cc: var(--c7); }
+.challenge-card:nth-child(8n+8), .lab-links a:nth-of-type(8n+8) { --cc: var(--c8); }
+/* Laboratory rail: each experiment gets its own colour chip; text stays in the ink colours for contrast. */
+.lab-link .lab-symbol { height: 30px; border-radius: 50%; background: color-mix(in srgb, var(--cc, var(--accent)) 20%, var(--surface)); color: var(--ink); border: 1.5px solid var(--cc, var(--accent)); }
+.lab-link.selected { box-shadow: inset 4px 0 0 var(--cc, var(--accent)); background: color-mix(in srgb, var(--cc, var(--accent)) 12%, var(--surface)); color: var(--ink); }
+.lab-main .lab-heading { padding-top: 10px; border-top: 5px solid; border-image: linear-gradient(90deg, var(--c1), var(--c3), var(--c2), var(--c4), var(--c5)) 1; }
+.page-heading h1, .lab-heading h1, .library-heading h1 { background: linear-gradient(100deg, var(--ink) 55%, var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+@media (forced-colors: active) { .page-heading h1, .lab-heading h1, .library-heading h1 { -webkit-text-fill-color: currentColor; background: none; } }
+.btn-primary, .primary { box-shadow: 0 2px 0 color-mix(in srgb, var(--accent) 55%, #000); }
+
+@media (prefers-reduced-motion: no-preference) {
+  main > *, .challenge-card { animation: v4-rise 460ms cubic-bezier(.16,1,.3,1) both; }
+  main > *:nth-child(2) { animation-delay: 50ms; } main > *:nth-child(3) { animation-delay: 100ms; } main > *:nth-child(n+4) { animation-delay: 150ms; }
+  .challenge-card:nth-child(1) { animation-delay: 40ms; } .challenge-card:nth-child(2) { animation-delay: 80ms; } .challenge-card:nth-child(3) { animation-delay: 120ms; }
+  .challenge-card:nth-child(4) { animation-delay: 160ms; } .challenge-card:nth-child(n+5) { animation-delay: 200ms; }
+  .challenge-card, .lab-link, .btn, .primary, .secondary { transition: transform 160ms cubic-bezier(.2,.7,.3,1), box-shadow 160ms, border-color var(--t), background-color var(--t), color var(--t); }
+  .challenge-card:hover { transform: translateY(-4px) rotate(-.4deg); box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--cc, var(--accent)) 70%, transparent); }
+  .challenge-card:hover .challenge-motif { animation: v4-wiggle 600ms ease both; transform-origin: 20% 70%; }
+  .lab-link:hover .lab-symbol { animation: v4-pop 420ms cubic-bezier(.3,1.6,.5,1) both; }
+  .btn:active, .primary:active, .secondary:active { transform: translateY(1px) scale(.98); }
+  .btn-primary:hover, .primary:hover { transform: translateY(-1px); }
+  .lab-link.selected .lab-symbol { animation: v4-pulse 2.8s ease-in-out infinite; }
+}
+@keyframes v4-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes v4-wiggle { 0% { transform: rotate(0); } 30% { transform: rotate(-9deg) scale(1.08); } 60% { transform: rotate(6deg) scale(1.08); } 100% { transform: rotate(0) scale(1); } }
+@keyframes v4-pop { 0% { transform: scale(1); } 50% { transform: scale(1.22) rotate(-8deg); } 100% { transform: scale(1); } }
+@keyframes v4-pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--cc, var(--accent)) 45%, transparent); } 50% { box-shadow: 0 0 0 6px transparent; } }
