@@ -563,6 +563,9 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .ag-poly { fill: var(--neg-soft); stroke: none; }
 .ag-vis { fill: var(--pos-soft); stroke: var(--pos); stroke-width: 0.6; }
 .ag-wall { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.ag-vertex { cursor: grab; outline: none; touch-action: none; }
+.ag-vertex .hit { fill: transparent; } .ag-vertex .sq { fill: var(--surface); stroke: var(--ink); stroke-width: 2.4; }
+.ag-vertex:focus-visible .sq { stroke-width: 4; fill: var(--accent-soft); }
 .ag-guard { cursor: grab; outline: none; touch-action: none; }
 .ag-guard .hit { fill: transparent; }
 .ag-guard .dot { stroke: var(--ink); stroke-width: 2; }
@@ -678,6 +681,11 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 /* Classic puzzles: tokens, boards and small logs shared by the activities */
 .cl-grid { display: grid; gap: 6px; }
 .cl-horses { grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 420px; }
+/* The horses' field: a free board; tokens sit in cells (--c, --r) and follow the pointer while dragged. */
+.cl-arena { position: relative; max-width: 440px; aspect-ratio: 8 / 7; border: 2px solid var(--line-strong); border-radius: var(--r-sm); background-color: var(--sunken); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 12.5% 14.2857%; }
+.cl-arena .cl-tok { position: absolute; left: calc(var(--c, 0) * 12.5%); top: calc(var(--r, 0) * 14.2857%); width: calc(12.5% - 4px); height: calc(14.2857% - 4px); min-width: 0; min-height: 0; margin: 2px; padding: 0; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; box-sizing: border-box; }
+.cl-arena .cl-tok.dragging { z-index: 5; cursor: grabbing; box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .5); transform: scale(1.12); }
+@media (prefers-reduced-motion: no-preference) { .cl-arena .cl-tok:not(.dragging) { transition: left .22s cubic-bezier(.2,.8,.3,1), top .22s cubic-bezier(.2,.8,.3,1), background-color var(--t), border-color var(--t); } }
 .cl-eggs { grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); }
 .cl-tok { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-height: 48px; min-width: 48px; padding: 4px 8px; border: 2px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); color: var(--ink); font: 700 1.05rem var(--body); cursor: pointer; transition: background-color var(--t), border-color var(--t); }
 .cl-tok small { font: 500 0.75rem var(--body); color: var(--ink-2); }
@@ -791,3 +799,8 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 @keyframes sc-mist { from { transform: translateX(-18px); } to { transform: translateX(22px); } }
 @keyframes sc-flame { 0%, 100% { transform: scale(1); opacity: 1; } 35% { transform: scale(1.07); opacity: .88; } 70% { transform: scale(.96); opacity: 1; } }
 @keyframes sd-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.1px); } }
+
+/* Original question (answered with a teacher or alone) above the version the site can check */
+.original { margin: 16px 0 6px; padding: 8px 0 2px 16px; border-left: 4px solid var(--c2); }
+.original .original-q { margin: 6px 0 4px; font-size: clamp(1.1rem, 1.7vw, 1.3rem); }
+.check-kicker { display: block; margin-top: 8px; }

@@ -19,6 +19,19 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Publication gate | No chapter has been through the two-agent audit recorded in `private/ledger.json` yet. The TeX migration was verified by the pipeline checks, not by the gate. |
 | Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`. |
 
+## Conventions added on 15 October 2026
+
+- Git: commit and push to `main` only (see `CLAUDE.md`, `AGENTS.md`). Branches `claude/vigilant-darwin-ywur5s`,
+  `claude/repository-audit-bsfs8y` and `ccr-80defba8-6udo9f` were compared with `main` on 15 October and judged superseded
+  (older KaTeX redesign, and the earlier PDF-patching pipeline replaced by the TeX sources in `content/tex/`); they are
+  to be deleted on GitHub together with the branches already merged into `main`.
+- Challenges have two versions: the original question (strategy, algorithm, construction or proof; answered alone or with
+  a teacher; `site/js/challenge-originals.js`, shown under the statement) and the version the site can check (a number;
+  `challenge-variants.js`). Every challenge needs both; a test enforces it. An original never states the answer or method.
+- Art gallery: the learner explores random, convex and star-shaped galleries and can drag vertices; no preset is a worst
+  case. The comb appears only in the animated solution, after the learner has asked for it.
+- 25 horses: horses can be dragged to any free cell of the field (arrow keys too); positions do not affect speeds.
+
 ## Rules you must not break (short form; brief section 2 is authoritative)
 
 1. Anonymity: no name of the owner, employer, school or students in HTML, PDFs (text and XMP/metadata), `\author`, file names, alt text. Do not add any such detail to commit messages or docs either.

@@ -194,9 +194,12 @@ with sync_playwright() as p:
     page.locator('#sq-n').fill('12'); assert '144' in page.locator('#sq-read strong').inner_text()
     # Challenges added in October 2026: activities, animated solutions and the touch fix for the domino board.
     page.goto(BASE+'/#challenges/artgallery')
-    page.locator('.ag-svg').scroll_into_view_if_needed(); box = page.locator('.ag-svg').bounding_box(); unit = box['width'] / 360
-    page.mouse.click(box['x'] + (18 + 9 * 18) * unit, box['y'] + (18 + 9 * 18) * unit)   # a point inside the body of the comb
-    assert page.locator('.ag-guard').count() == 1 and '%' in page.locator('#ag-read').inner_text()
+    page.locator('#ag-convex').click(); page.locator('.ag-svg').scroll_into_view_if_needed(); box = page.locator('.ag-svg').bounding_box()
+    page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)   # the centre of a convex gallery is inside it
+    assert page.locator('.ag-guard').count() == 1 and '100 %' in page.locator('#ag-read').inner_text(), 'one guard watches a convex gallery'
+    page.locator('#ag-m-vertex').click(); assert page.locator('.ag-vertex').count() == 12, 'vertices can be moved'
+    page.locator('#ag-random').click(); assert page.locator('.ag-guard').count() == 0, 'a new gallery starts without guards'
+    assert page.locator('#original').count() == 1, 'the original question is shown above the checkable one'
     page.goto(BASE+'/#challenges/eggs')
     page.locator('.floor[data-f="50"]').click()
     assert page.locator('#eg-read strong').first.inner_text() == '1'
@@ -257,6 +260,13 @@ with sync_playwright() as p:
     go('horses')
     for h in range(5): page.locator('.cl-tok[data-h="%d"]'%h).click()
     page.locator('#hs-race').click(); assert page.locator('#hs-log li').count() == 1
+    tok = page.locator('.cl-tok[data-h="24"]').bounding_box(); arena = page.locator('.cl-arena').bounding_box()   # horses can be rearranged by dragging
+    page.mouse.move(tok['x'] + tok['width'] / 2, tok['y'] + tok['height'] / 2); page.mouse.down()
+    page.mouse.move(arena['x'] + arena['width'] * 0.95, arena['y'] + arena['height'] * 0.95, steps=6); page.mouse.up()
+    assert page.locator('.cl-tok[data-h="24"]').evaluate("e => e.style.getPropertyValue('--c')") == '7', 'a dragged horse lands in the cell under the pointer'
+    assert page.locator('.cl-tok[data-h="24"]').get_attribute('aria-pressed') == 'false', 'dragging does not select'
+    page.locator('#hs-home').click(); assert page.locator('.cl-tok[data-h="24"]').evaluate("e => e.style.getPropertyValue('--c')") == '4'
+
     go('cake')
     page.locator('#ck-even').click(); assert page.locator('#ck-read strong').count() == 1, 'equally spaced cuts are fair'
     go('queens')

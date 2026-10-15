@@ -119,7 +119,7 @@ test("art gallery: every comb is a simple polygon needing exactly k guards", () 
     const tris = triangulate(poly); assert.equal(tris.length, 3 * k - 2);
     const col = threeColour(poly.length, tris); assert.ok(tris.every((t) => new Set(t.map((i) => col[i])).size === 3));
     const sizes = [0, 1, 2].map((c) => col.filter((x) => x === c).length), best = sizes.indexOf(Math.min(...sizes));
-    assert.ok(sizes[best] <= k); assert.equal(VARIANTS.artgallery.answer({ k }), k);
+    assert.ok(sizes[best] <= k); assert.equal(VARIANTS.artgallery.answer({ n: 3 * k }), k);
     const W = 5 * k - 2, guards = poly.filter((_, i) => col[i] === best).map((g) => visibility(poly, g));
     for (let x = 0.07; x < W; x += 0.21) for (let y = 0.07; y < 10; y += 0.21) if (pointInPolygon([x, y], poly)) assert.ok(guards.some((v) => pointInPolygon([x, y], v)), `uncovered ${k} ${x},${y}`);
     const tips = Array.from({ length: k }, (_, i) => poly[2 + 3 * i]);
@@ -131,4 +131,22 @@ import { hasActivity } from "../dist/js/challenge-activities.js";
 import { hasSolution } from "../dist/js/challenge-solutions.js";
 test("every challenge has a hands-on activity and an animated solution", () => {
   for (const c of challenges) { assert.ok(hasActivity(c.id), `activity ${c.id}`); assert.ok(hasSolution(c.id), `solution ${c.id}`); }
+});
+
+import { randomGallery, isSimple } from "../dist/js/challenge-more.js";
+import { ORIGINALS } from "../dist/js/challenge-originals.js";
+
+test("art gallery: random galleries are simple polygons with the requested number of sides, and none is a preset worst case", () => {
+  for (const n of [6, 9, 12, 15, 18]) for (let i = 0; i < 25; i++) {
+    const poly = randomGallery(n);
+    assert.equal(poly.length, n); assert.ok(isSimple(poly), `simple ${n}`); assert.ok(area2(poly) > 0, `ccw ${n}`);
+  }
+});
+
+test("every challenge has an original question in both languages, with no em or en dash and no unfilled parameter", () => {
+  for (const id of Object.keys(VARIANTS)) {
+    assert.ok(ORIGINALS[id], `original for ${id}`);
+    const q = Object.fromEntries(VARIANTS[id].params.map((p) => [p.id, p.value])), [fr, en] = ORIGINALS[id](q);
+    for (const text of [fr, en]) { assert.ok(text.length > 30, id); assert.ok(!/undefined|NaN|[—–]/.test(text), `${id}: ${text}`); }
+  }
 });

@@ -217,16 +217,16 @@ function gallery(k) {
 const GCOL = ["var(--c1)", "var(--c2)", "var(--c3)"];
 const artgallery = {
   size: [520, 300],
-  steps: (q) => { const n = 3 * q.k, g = gallery(q.k); return [
+  steps: (q) => { const n = 3 * (q.n / 3), g = gallery((q.n / 3)); return [
     P(`Une galerie à ${n} murs, en forme de peigne. Combien de gardiens immobiles faut-il pour tout voir ?`, `A gallery with ${n} walls, shaped like a comb. How many fixed guards are needed to see everything?`),
     P(`On découpe la galerie en triangles avec des diagonales intérieures : ${n} − 2 = ${n - 2} triangles. Un gardien placé à un sommet voit tout son triangle.`, `Cut the gallery into triangles with inside diagonals: ${n} − 2 = ${n - 2} triangles. A guard standing at a vertex sees all of its triangle.`),
     P("On colorie les sommets avec 3 couleurs pour que chaque triangle ait trois couleurs différentes.", "Colour the vertices with 3 colours so that every triangle has three different colours."),
-    P(`Les couleurs sont portées par ${g.sizes.join(", ")} sommets. Une couleur au plus ⌊${n} ÷ 3⌋ = ${q.k} : on met un gardien sur chaque sommet de cette couleur.`, `The colours sit on ${g.sizes.join(", ")} vertices. Some colour is used at most ⌊${n} ÷ 3⌋ = ${q.k} times: put a guard on each vertex of that colour.`),
-    P(`Chaque triangle contient un sommet de cette couleur, donc est vu : ${q.k} gardiens suffisent.`, `Every triangle contains a vertex of that colour, so it is watched: ${q.k} guards suffice.`),
-    P(`Mais ${q.k} sont nécessaires : un point voit au plus une pointe des ${q.k} dents. Chaque zone colorée montre d’où l’on voit une pointe.`, `But ${q.k} are needed: a point sees at most one of the ${q.k} tooth tips. Each coloured zone shows where a tip can be seen from.`),
+    P(`Les couleurs sont portées par ${g.sizes.join(", ")} sommets. Une couleur au plus ⌊${n} ÷ 3⌋ = ${(q.n / 3)} : on met un gardien sur chaque sommet de cette couleur.`, `The colours sit on ${g.sizes.join(", ")} vertices. Some colour is used at most ⌊${n} ÷ 3⌋ = ${(q.n / 3)} times: put a guard on each vertex of that colour.`),
+    P(`Chaque triangle contient un sommet de cette couleur, donc est vu : ${(q.n / 3)} gardiens suffisent.`, `Every triangle contains a vertex of that colour, so it is watched: ${(q.n / 3)} guards suffice.`),
+    P(`Mais ${(q.n / 3)} sont nécessaires : un point voit au plus une pointe des ${(q.n / 3)} dents. Chaque zone colorée montre d’où l’on voit une pointe.`, `But ${(q.n / 3)} are needed: a point sees at most one of the ${(q.n / 3)} tooth tips. Each coloured zone shows where a tip can be seen from.`),
   ]; },
   draw(c, s, p, q) {
-    const { poly, tris, col, best, tips, sizes } = gallery(q.k), WIDTH = 5 * q.k - 2, S = Math.min(24, 420 / WIDTH), OX = (520 - WIDTH * S) / 2, OY = 22;
+    const { poly, tris, col, best, tips, sizes } = gallery((q.n / 3)), WIDTH = 5 * (q.n / 3) - 2, S = Math.min(24, 420 / WIDTH), OX = (520 - WIDTH * S) / 2, OY = 22;
     const X = (x) => OX + x * S, Y = (y) => OY + (10 - y) * S * 0.92 + 8;
     const d = (pts) => pts.map((v, i) => `${i ? "L" : "M"}${X(v[0]).toFixed(1)} ${Y(v[1]).toFixed(1)}`).join("") + "Z";
     if (s >= 4) poly.forEach((v, i) => { if (col[i] === best) c.path(d(visibility(poly, v)), { class: "sol-vis", style: `opacity:${s === 4 ? ez(p) * 0.9 : 0.25}` }); });
@@ -238,7 +238,7 @@ const artgallery = {
       else c.circ(X(v[0]), Y(v[1]), 3.5, { style: "fill:var(--ink)" });
     });
     if (s >= 3) poly.forEach((v, i) => { if (col[i] === best) c.circ(X(v[0]), Y(v[1]), 13 + (s === 3 ? 3 * Math.sin(p * 12) : 0), { class: "sol-ring" }); });
-    if (s >= 3) c.text(504, 24, `${sizes.join(" + ")} = ${3 * q.k}`, { class: "sol-small", "text-anchor": "end" });
+    if (s >= 3) c.text(504, 24, `${sizes.join(" + ")} = ${3 * (q.n / 3)}`, { class: "sol-small", "text-anchor": "end" });
   },
 };
 
