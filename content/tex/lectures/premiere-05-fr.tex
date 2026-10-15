@@ -1,0 +1,126 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Probabilités conditionnelles et indépendance}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Probabilités conditionnelles et indépendance}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Le parcours du chapitre}
+\textbf{Objectifs.} Changer d’univers de référence ; construire un arbre ; employer une partition ; distinguer incompatibilité et indépendance ; traiter jusqu’à quatre Bernoulli.
+
+\textbf{Prérequis.} Fractions, proportions, probabilités sur un univers fini, intersection et réunion.
+
+\textbf{Repère annuel.} 17-26 novembre : 8 h
+\end{frame}
+\begin{frame}{Conditionner : changer le dénominateur}
+Pour \(P(A)>0\), la probabilité de B sachant A est \(P_A(B)=\dfrac{P(A\cap B)}{P(A)}\). Dans un tableau d’effectifs équiprobables, elle est le quotient effectif de \(A\cap B\) sur effectif de A. En général \(P_A(B)\ne P_B(A)\).
+\end{frame}
+\begin{frame}{Conditionner : changer le dénominateur}
+Sur 100 personnes, 40 appartiennent à A, 30 à B et 12 aux deux. \(P_A(B)=\dfrac{12}{40}=0{,}3\), tandis que \(P_B(A)=\dfrac{12}{30}=0{,}4\). \(P(A\cap B)=0{,}12\).
+\end{frame}
+\begin{frame}{Conditionner : changer le dénominateur}
+« Parmi les A » fixe le dénominateur. Une probabilité conditionnelle n’est pas une intersection.
+\end{frame}
+\begin{frame}{Conditionner : changer le dénominateur}
+Sur 60 objets, 20 sont rouges ; parmi les rouges, 5 sont abîmés. Calculer \(P(R\cap D)\) et \(P_R(D)\).
+\end{frame}
+\begin{frame}{Arbres, partitions et probabilités totales}
+Une partition \(A_1,\ldots,A_k\) est une famille d’événements disjoints dont la réunion est l’univers. Si leurs probabilités sont positives, \(P(B)=\sum_iP(A_i)P_{A_i}(B)\). Sur un arbre, les probabilités issues d’un même nœud ont une somme de 1 ; les probabilités d’un chemin se multiplient ; les chemins disjoints se réunissent en additionnant.
+\end{frame}
+\begin{frame}{Arbres, partitions et probabilités totales}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Deux machines fournissent 60 \% et 40 \% d’une production ; leurs taux de défaut sont 2 \% et 5 \%. \(P(D)=0{,}6\times0{,}02+0{,}4\times0{,}05=0{,}032\). Parmi les défauts, la première machine représente \(\dfrac{0{,}012}{0{,}032}=\dfrac{3}{8}\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-05-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Arbres, partitions et probabilités totales}
+La moyenne simple des taux n’est correcte que si les poids des branches sont égaux.
+\end{frame}
+\begin{frame}{Arbres, partitions et probabilités totales}
+\(P(A)=\dfrac{1}{3}\), \(P_A(B)=\dfrac{3}{4}\), \(P_{\overline A}(B)=\dfrac{1}{4}\). Calculer \(P(B)\).
+\end{frame}
+\begin{frame}{Indépendance et incompatibilité}
+A et B sont indépendants si \(P(A\cap B)=P(A)P(B)\). Si \(P(A)>0\), cela équivaut à \(P_A(B)=P(B)\). Ils sont incompatibles si \(A\cap B=\varnothing\). Deux événements de probabilités strictement positives et incompatibles ne sont pas indépendants.
+\end{frame}
+\begin{frame}{Indépendance et incompatibilité}
+Sur un dé équilibré, A : résultat pair, B : résultat au moins 5. \(P(A)=\dfrac{1}{2}\), \(P(B)=\dfrac{1}{3}\), \(P(A\cap B)=\dfrac{1}{6}\) : indépendants. A et « résultat impair » sont incompatibles mais non indépendants.
+\end{frame}
+\begin{frame}{Indépendance et incompatibilité}
+Une indépendance dans un modèle doit être justifiée ou posée explicitement ; « deux événements différents » ne suffit pas.
+\end{frame}
+\begin{frame}{Indépendance et incompatibilité}
+On donne \(P(A)=0{,}4\), \(P(B)=0{,}5\), \(P(A\cap B)=0{,}18\). Sont-ils indépendants ?
+\end{frame}
+\begin{frame}{Épreuves successives et Bernoulli}
+Une épreuve de Bernoulli a deux résultats : succès, de probabilité p, et échec, de probabilité \(1-p\). Dans une répétition de n épreuves indépendantes et identiques, avec \(n\leq4\) ici, les probabilités des branches restent p et \(1-p\). Un chemin de k succès a pour probabilité \(p^k(1-p)^{n-k}\) ; on compte les chemins qui réalisent l’événement.
+\end{frame}
+\begin{frame}{Épreuves successives et Bernoulli}
+Pour trois essais avec \(p=\dfrac{1}{2}\), exactement deux succès correspondent à SSE, SES, ESS. Chaque chemin a probabilité \(\dfrac{1}{8}\), donc total \(\dfrac{3}{8}\). Au moins un succès a pour probabilité \(1-(\dfrac{1}{2})^3=\dfrac{7}{8}\).
+\end{frame}
+\begin{frame}{Épreuves successives et Bernoulli}
+Sans remise dans une urne, les probabilités changent généralement après le premier tirage : le modèle indépendant peut être faux.
+\end{frame}
+\begin{frame}{Épreuves successives et Bernoulli}
+Quatre essais indépendants de probabilité \(p=\dfrac{1}{3}\). Calculer la probabilité de quatre échecs puis d’au moins un succès.
+\end{frame}
+\begin{frame}{Simuler et discuter le modèle}
+Une simulation pseudo-aléatoire produit des fréquences qui fluctuent autour d’une probabilité du modèle. Pour un point uniforme dans le carré \([0;1]^2\), la proportion vérifiant \(y\leq x^2\) estime l’aire sous la parabole ; la proportion vérifiant \(x^2+y^2\leq1\), multipliée par 4, estime \(\pi\). Les répétitions doivent utiliser de nouveaux tirages.
+\end{frame}
+\begin{frame}{Simuler et discuter le modèle}
+Parmi 10000 points, si 7840 sont dans le quart de disque, l’estimation de \(\pi\) vaut \(\dfrac{4\times 7840}{10000}=3{,}136\). Deux essais de même taille donnent en général des valeurs différentes.
+\end{frame}
+\begin{frame}{Simuler et discuter le modèle}
+Fixer une graine permet de reproduire un essai, pas de supprimer l’aléa du modèle ni de garantir une précision.
+\end{frame}
+\begin{frame}{Simuler et discuter le modèle}
+Une simulation de 2000 points donne 675 points sous \(y=x^2\). Quelle aire estime-t-elle ?
+\end{frame}
+\end{document}

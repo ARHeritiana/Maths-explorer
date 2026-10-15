@@ -41,3 +41,4 @@ for(const k of ['courses','chapters','resources'])catalog[k].splice(slot[k],0,..
 for(const c of catalog.chapters.filter(c=>c.course!=='shared'&&c.course!=='explorations'))c.guide='shared-'+c.topic;
 fs.writeFileSync(manifestPath,JSON.stringify(manifest,null,2)+'\n');
 console.log(JSON.stringify({guides:Object.keys(guides).length,chapters:catalog.chapters.length,resources:catalog.resources.length,htmlFiles:Object.keys(guides).length*8}));
+

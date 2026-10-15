@@ -1,0 +1,129 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Proportions et évolutions}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Proportions et évolutions}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Proportion et proportion de proportion}
+Dans un ensemble fini non vide \(E\), la proportion d'une partie \(F\) est \(p=\Card(F)/\Card(E)\) ; \(0\leq p\leq1\). Son expression en pourcentage est \(100p\,\%\).
+Si \(G\subseteq F\subseteq E\), \(F\ne\varnothing\), et si \(p_1\) est la proportion de \(F\) dans \(E\), \(p_2\) celle de \(G\) dans \(F\), la proportion de \(G\) dans \(E\) vaut \(p_1p_2\).
+\end{frame}
+\begin{frame}{Proportion et proportion de proportion}
+Un lycée compte \(1500\) élèves dont \(652\) demi-pensionnaires. Calculer leur proportion. Dans une classe, \(60\,\%\) des élèves font du sport ; parmi eux, \(40\,\%\) sont des garçons. Quelle proportion de la classe représentent les garçons faisant du sport ?
+\end{frame}
+\begin{frame}{Correction : Proportion et proportion de proportion}
+\(652/1500\approx0{,}4347\), soit environ \(43{,}47\,\%\). Pour la classe, \(0{,}60\times0{,}40=0{,}24\), soit \(24\,\%\). Le deuxième pourcentage a pour référence les sportifs, pas toute la classe.
+\end{frame}
+\begin{frame}{Proportion et proportion de proportion}
+Dans un établissement fictif de \(800\) élèves, \(35\,\%\) pratiquent un sport en club ; parmi eux, \(45\,\%\) pratiquent un sport collectif. Calculer les deux effectifs et la proportion finale.
+\end{frame}
+\begin{frame}{Correction : Proportion et proportion de proportion}
+\(800\times0{,}35=280\) élèves en club. \(280\times0{,}45=126\) en sport collectif. La proportion finale vaut \(126/800=0{,}1575=15{,}75\,\%\).
+\end{frame}
+\begin{frame}{Proportion et proportion de proportion}
+La proportion et le taux d'évolution ne répondent pas à la même question : une proportion compare une partie à un ensemble, un taux compare une variation à une valeur initiale.
+\end{frame}
+\begin{frame}{Variation absolue et taux d'évolution}
+Pour une valeur initiale \(V_I>0\) et une valeur finale \(V_F>0\), la variation absolue vaut \(V_F-V_I\) ; le taux d'évolution est
+\[t=\dfrac{V_F-V_I}{V_I}.\]
+Le taux est sans unité. Il est positif pour une hausse, négatif pour une baisse. La référence est toujours la valeur initiale.
+\end{frame}
+\begin{frame}{Variation absolue et taux d'évolution}
+Un fromage est vendu \(2{,}13\) euros au lieu de \(3{,}55\) euros. Calculer la variation absolue et le taux.
+\end{frame}
+\begin{frame}{Correction : Variation absolue et taux d'évolution}
+Variation absolue : \(2{,}13-3{,}55=-1{,}42\) euro. Taux : \(-1{,}42/3{,}55=-0{,}40\), soit une baisse de \(40\,\%\).
+\end{frame}
+\begin{frame}{Variation absolue et taux d'évolution}
+\(CM=V_F/V_I=1+t\), donc \(V_F=V_I(1+t)\). Pour retrouver \(V_I\), diviser \(V_F\) par \(1+t\) (non nul).
+\end{frame}
+\begin{frame}{Variation absolue et taux d'évolution}
+Un article fictif de \(50000\) Ar augmente de \(12\,\%\), puis on considère séparément une remise de \(12\,\%\) sur le prix initial. Donner les prix finaux. Un prix après hausse de \(20\,\%\) vaut \(72000\) Ar ; retrouver son prix initial.
+\end{frame}
+\begin{frame}{Correction : Variation absolue et taux d'évolution}
+Hausse : \(50000\times1{,}12=56000\) Ar. Remise : \(50000\times0{,}88=44000\) Ar. Dernière question : \(V_I=72000/1{,}20=60000\) Ar.
+\end{frame}
+\begin{frame}{Évolutions successives}
+Des évolutions successives de taux \(t_1,t_2\) ont pour coefficient global
+\[CM_G=(1+t_1)(1+t_2),\qquad t_G=(1+t_1)(1+t_2)-1.\]
+On multiplie les coefficients ; on n'additionne pas simplement les taux.
+\end{frame}
+\begin{frame}{Évolutions successives}
+Un fabricant a vendu \(5600\) vélos en 2022, soit \(25\,\%\) de plus qu'en 2021. Ses ventes diminuent de \(15\,\%\) en 2023. Déterminer les ventes de 2021 et 2023, puis le taux global entre ces deux années.
+\end{frame}
+\begin{frame}{Correction : Évolutions successives}
+2021 : \(5600/1{,}25=4480\) vélos. 2023 : \(5600\times0{,}85=4760\) vélos. Coefficient global \(1{,}25\times0{,}85=1{,}0625\), donc hausse globale de \(6{,}25\,\%\). Vérification : \((4760-4480)/4480=0{,}0625\).
+\end{frame}
+\begin{frame}{Évolutions successives}
+Un prix augmente de \(10\,\%\) puis baisse de \(10\,\%\). Revient-il au prix initial ?
+\end{frame}
+\begin{frame}{Correction : Évolutions successives}
+\(CM_G=1{,}10\times0{,}90=0{,}99\). Le prix final représente \(99\,\%\) du prix initial : baisse globale de \(1\,\%\). Les deux taux se rapportent à des valeurs de référence différentes.
+\end{frame}
+\begin{frame}{Évolutions successives}
+Un taux passe de \(20\,\%\) à \(25\,\%\). Expliquer la différence entre l'augmentation en points de pourcentage et l'évolution relative.
+\end{frame}
+\begin{frame}{Correction : Évolutions successives}
+L'écart vaut \(5\) points de pourcentage. La variation relative est \((0{,}25-0{,}20)/0{,}20=0{,}25\), soit une hausse de \(25\,\%\).
+\end{frame}
+\begin{frame}{Évolution réciproque}
+Pour revenir à la valeur initiale après une évolution de taux \(t>-1\), utiliser le coefficient \(1/(1+t)\). Le taux réciproque est
+\[t_{\text{réciproque}}=\dfrac1{1+t}-1=\dfrac{-t}{1+t}.\]
+\end{frame}
+\begin{frame}{Évolution réciproque}
+Quel taux compense une hausse de \(25\,\%\) ? Quel taux compense une baisse de \(20\,\%\) ?
+\end{frame}
+\begin{frame}{Correction : Évolution réciproque}
+Après une hausse de \(25\,\%\), le coefficient réciproque est \(1/1{,}25=0{,}8\) : baisse de \(20\,\%\). Après une baisse de \(20\,\%\), il est \(1/0{,}8=1{,}25\) : hausse de \(25\,\%\).
+\end{frame}
+\begin{frame}{Évolution réciproque}
+Un prix subit une remise de \(30\,\%\), puis une hausse de \(10\,\%\). Quel pourcentage d'augmentation supplémentaire permet de retrouver le prix initial ?
+\end{frame}
+\begin{frame}{Correction : Évolution réciproque}
+Le coefficient actuel est \(0{,}70\times1{,}10=0{,}77\). Le coefficient recherché vaut \(1/0{,}77=100/77\). Le taux vaut \(23/77\approx0{,}2987\), soit environ \(29{,}87\,\%\). Vérifier \(0{,}77\times(100/77)=1\).
+\end{frame}
+\end{document}

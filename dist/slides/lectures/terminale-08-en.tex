@@ -1,0 +1,112 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={The logarithm function}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{The logarithm function}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Use the properties of ln; solve equations and thresholds; differentiate and study logarithmic functions.
+\end{frame}
+\begin{frame}{Definition and properties}
+The exponential is continuous and strictly increasing on \(\R\), and its range is \(]0,+\infty[\). For every \(x>0\), there is a unique real number \(y\) such that \(e^y=x\): it is denoted \(\ln x\).
+\[\ln(e^y)=y\quad(y\in\R),\qquad e^{\ln x}=x\quad(x>0),\qquad\ln1=0,\quad\ln e=1.\]
+For \(a,b>0\) and \(n\in\Z\),
+\[\ln (ab)=\ln a+\ln b,\quad\ln (\dfrac{a}{b})=\ln a-\ln b,\quad\ln (a^n)=n\ln a,\quad\ln \sqrt{a}=\tfrac{1}{2}\ln a.\]
+\end{frame}
+\begin{frame}{Definition and properties}
+\(e^{\ln a+\ln b}=e^{\ln a}e^{\ln b}=ab\); the uniqueness of the preimage gives the formula. There is no analogous formula for \(\ln(a+b)\).
+\end{frame}
+\begin{frame}{Derivative, variations and limits}
+We accept that ln is differentiable on \(]0,+\infty[\). Differentiating \(e^{\ln x}=x\) gives \(e^{\ln x}(\ln x)'=1\); hence \((\ln x)'=\dfrac{1}{x}>0\). Ln is strictly increasing and concave, since its second derivative is \(-\dfrac{1}{x^2}\).
+\[\lim_{x\to0^+}\ln x=-\infty,\qquad\lim_{x\to+\infty}\ln x=+\infty.\]
+Its curve is the reflection of that of the exponential in the line \(y=x\). The line \(x=0\) is a vertical asymptote. Its tangent at \(1\) gives \(\ln x\le x-1\) for \(x>0\).
+\end{frame}
+\begin{frame}{Derivative, variations and limits}
+If \(u>0\) is differentiable, \((\ln u)'=\dfrac{u'}{u}\). For every integer \(m\ge1\),
+\[\lim_{x\to+\infty}\dfrac{\ln x}{x^m}=0,\qquad\lim_{x\to0^+}x^m\ln x=0.\]
+\end{frame}
+\begin{frame}{Derivative, variations and limits}
+Set \(t=-\ln x\); as \(x\to0^+\), \(t\to+\infty\) and \(x\ln x=-te^{-t}\to0\) by comparative growth. For \(m\ge1\), the same reasoning gives \(-te^{-mt}\to0\). At \(+\infty\), set \(t=\ln x\) to write \(\dfrac{\ln x}{x^m}=\dfrac{t}{e^{mt}}\to0\).
+\end{frame}
+\begin{frame}{Equations and thresholds}
+For \(A,B>0\), \(\ln A=\ln B\Leftrightarrow A=B\) and \(\ln A\le\ln B\Leftrightarrow A\le B\). Always start with the domain.
+\end{frame}
+\begin{frame}{Equations and thresholds}
+\(\ln(x-1)+\ln(x+1)=\ln8\) requires \(x>1\). The equation becomes \(x^2-1=8\), so \(x=3\) only.
+\end{frame}
+\begin{frame}{Equations and thresholds}
+\(0.8^n\le0.1\) is equivalent to \(n\ln0.8\le\ln0.1\), then \(n\ge\dfrac{\ln 0.1}{\ln 0.8}\simeq10.319\). The first integer is \(11\).
+\end{frame}
+\begin{frame}{Equations and thresholds}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For \(f(x)=\dfrac{\ln x}{x}\), \(f'=\dfrac{1-\ln x}{x^2}\); \(f\) increases on \(]0,e]\), decreases on \([e,+\infty[\), and its maximum is \(\dfrac{1}{e}\). Its limit at \(0^+\) is \(-\infty\), its limit at \(+\infty\) is \(0\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-08-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Controlling a calculation error - 30 min.}
+
+A calculation method produces an initial error \(e_0=5\). At each step, the error is multiplied by \(0.7\). Let \(e_n\) denote the error after \(n\) steps, for \(n\in\N\).
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Express \(e_n\) in terms of \(n\).
+
+\item Using the logarithm, find the smallest integer \(n\) such that \(e_n\le10^{-4}\).
+
+\item Using a calculator, compute the error at the value found and at the previous one to check that it is the minimum.
+
+\item Now require an error of at most \(10^{-6}\). Find the new minimum number of steps. Does dividing the tolerance by \(100\) multiply the number of steps by \(100\)?
+
+\end{enumerate}
+\end{frame}
+\end{document}

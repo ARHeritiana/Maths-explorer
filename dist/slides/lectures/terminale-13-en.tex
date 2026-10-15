@@ -1,0 +1,104 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Parametric representations and Cartesian equations}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Parametric representations and Cartesian equations}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Describe a line and a plane; determine intersections; choose a method for a projection.
+\end{frame}
+\begin{frame}{Course notes}
+Throughout this chapter, coordinates are given in an orthonormal frame of space. This assumption is necessary to identify a normal vector from the coefficients of an equation and to compute distances.
+\end{frame}
+\begin{frame}{Parametric lines}
+The line through \(A(x_A,y_A,z_A)\) with non-zero direction vector \((a,b,c)\) has the representation
+\[d:\quad\begin{cases}x=x_A+at\\y=y_A+bt\\z=z_A+ct\end{cases}\quad(t\in\R).\]
+A point belongs to the line if there exists \emph{one and the same} real number \(t\) satisfying the three equalities. A line has many representations: change the starting point or multiply the direction vector by a non-zero real number.
+\end{frame}
+\begin{frame}{Parametric lines}
+\((x,y,z)=(1,2,0)+t(2,-1,3)\) describes the same line as \((3,1,3)+s(4,-2,6)\); the link is \(t=1+2s\).
+\end{frame}
+\begin{frame}{Cartesian planes}
+If \((a,b,c)\ne(0,0,0)\), the set \(ax+by+cz+d=0\) is a plane with normal vector \((a,b,c)\). The plane with normal \(\vec n\) through \(A\) is constructed by writing \(\vect{AM}\cdot\vec n=0\).
+\end{frame}
+\begin{frame}{Cartesian planes}
+The condition \(\vect{AM}\cdot\vec n=0\) is written \(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\). Expanding, \(d=-ax_A-by_A-cz_A\). Conversely, any point satisfying this equation satisfies the orthogonality condition, and therefore belongs to the plane.
+\end{frame}
+\begin{frame}{Cartesian planes}
+The plane with normal \((2,-1,3)\) through \(A(1,2,0)\) is \(2(x-1)-(y-2)+3z=0\), that is \(2x-y+3z=0\).
+\end{frame}
+\begin{frame}{Intersections}
+For a line and a plane, substitute the parametric expressions for \(x,y,z\) into the equation of the plane. A single solution in \(t\) gives a single intersection point; an identity gives a line contained in the plane; a contradiction gives a parallel, disjoint line.
+For two planes, non-collinear normals give an intersection along a line; solve the system of two equations by choosing one variable as a parameter. If the normals are collinear, the planes are parallel: distinguish coincident from disjoint.
+For two lines, use independent parameters \(s,t\) and solve the three equations. With no solution and non-collinear direction vectors, the lines are non-coplanar.
+\end{frame}
+\begin{frame}{Projection onto a plane}
+If \(\mathcal P:ax+by+cz+d=0\), find the projection of \(M\) on the normal line through \(M\): \(H=M+t(a,b,c)\). Substitute into the equation of the plane to determine \(t\), then compute \(MH\).
+We deduce, without making it a formula to be learned in isolation,
+\[d(M,\mathcal P)=\dfrac{|ax_M+by_M+cz_M+d|}{\sqrt{a^2+b^2+c^2}}.\]
+\end{frame}
+\begin{frame}{Projection onto a plane}
+After computing a projection, check simultaneously that \(H\in\mathcal P\) and that \(\vect{MH}\) is collinear with the normal vector.
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Three lines facing a plane - 30 min.}
+
+In an orthonormal frame of space, consider the plane \(\mathcal P\) with equation \(x+y+z=3\). In each question, the parameter \(t\) ranges over \(\R\).
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item The line \(d_1\) has the representation \((x;y;z)=(t;t;t)\). Determine \(d_1\cap\mathcal P\).
+
+\item The line \(d_2\) has the representation \((x;y;z)=(3+t;-t;0)\). Determine \(d_2\cap\mathcal P\).
+
+\item The line \(d_3\) has the representation \((x;y;z)=(t;-t;0)\). Determine \(d_3\cap\mathcal P\).
+
+\item For each line, state whether the equation obtained after substituting into that of the plane has a unique solution, no solution, or every real number as a solution. Relate these cases to the geometric positions found.
+
+\end{enumerate}
+\end{frame}
+\end{document}

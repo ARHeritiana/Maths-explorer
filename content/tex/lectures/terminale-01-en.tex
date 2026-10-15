@@ -1,0 +1,122 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Sequences and induction}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Sequences and induction}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Compute terms and a sum; write an induction proof; establish monotonicity and bounds; use an auxiliary sequence.
+\end{frame}
+\begin{frame}{Defining a sequence and computing}
+A real sequence is a function defined on \(\N\), or on the integers from some index \(n_0\) onwards. We write \(u_n\) for its term of index \(n\). An explicit formula gives \(u_n\) directly; a recurrence relation also requires an initial term. For example, \(u_0=2\) and \(u_{n+1}=3u_n-1\) give \(u_1=5\), \(u_2=14\).
+\end{frame}
+\begin{frame}{Defining a sequence and computing}
+If \(u_{n+1}=u_n+r\), then \(u_n=u_p+(n-p)r\). If \(u_{n+1}=qu_n\), then \(u_n=u_pq^{n-p}\) for \(n\ge p\).
+\[\sum_{k=p}^n u_k=(n-p+1)\dfrac{u_p+u_n}{2}\quad\text{(arithmétique)},\qquad
+\sum_{k=p}^n u_k=u_p\dfrac{1-q^{n-p+1}}{1-q}\quad(q\ne1).\]
+When \(q=1\), the second sum equals \((n-p+1)u_p\).
+\end{frame}
+\begin{frame}{Proof by induction}
+To prove \(P(n)\) for every integer \(n\ge n_0\): check \(P(n_0)\); fix an arbitrary integer \(n\ge n_0\) and assume \(P(n)\) is true; deduce \(P(n+1)\); conclude by the principle of induction. The hypothesis is not the conclusion: it may only be used at the fixed index.
+\end{frame}
+\begin{frame}{Proof by induction}
+Let \(u_0=1\), \(u_{n+1}=2u_n+3\). For \(n\in\N\), let \(P(n)\) be: "\(u_n=4\times2^n-3\)".
+
+\textbf{Base case.} \(4\times2^0-3=1=u_0\); \(P(0)\) is true.
+
+\textbf{Inductive step.} Fix \(n\in\N\) and assume \(P(n)\) is true. By the definition of the sequence, then by this hypothesis,
+\[\begin{aligned}u_{n+1}&=2u_n+3\\&=2(4\times2^n-3)+3\\&=8\times2^n-3=4\times2^{n+1}-3.\end{aligned}\]
+This is \(P(n+1)\): the property is inherited.
+
+\textbf{Conclusion.} By the principle of induction, \(u_n=4\times2^n-3\) for every \(n\in\N\).
+\end{frame}
+\begin{frame}{Proof by induction}
+Let \(P(n)\) be: "\(\sum_{k=0}^n k=\dfrac{n(n+1)}{2}\)".
+For \(n=0\), both sides equal \(0\): \(P(0)\) is true.
+Fix \(n\ge0\) and assume \(P(n)\) is true. Then
+\[\begin{aligned}\sum_{k=0}^{n+1}k&=\sum_{k=0}^nk+(n+1)\\&=\dfrac{n(n+1)}2+(n+1)\\&=\dfrac{(n+1)(n+2)}2.\end{aligned}\]
+We have established \(P(n+1)\). By induction, the formula holds for every \(n\in\N\).
+\end{frame}
+\begin{frame}{Global behaviour}
+A sequence is increasing if \(u_{n+1}\ge u_n\) for every index, decreasing if the inequality is reversed. It is bounded above if there is a real number \(M\) such that \(u_n\le M\) for every \(n\); bounded below if there is \(m\) such that \(u_n\ge m\); bounded if it is both bounded below and bounded above.
+To study monotonicity, one can study the sign of \(u_{n+1}-u_n\). If all terms are strictly positive, one can compare \(\dfrac{u_{n+1}}{u_n}\) with \(1\). Studying a function \(f\) such that \(u_n=f(n)\) is another possibility.
+\end{frame}
+\begin{frame}{Global behaviour}
+For \(u_{n+1}=au_n+b\), \(a\ne1\), solve \(\ell=a\ell+b\), then set \(v_n=u_n-\ell\). This gives \(v_{n+1}=av_n\), hence
+\[u_n=\ell+(u_0-\ell)a^n,\qquad\ell=\dfrac{b}{1-a}.\]
+If \(a=1\), the sequence is arithmetic: do not divide by \(1-a\).
+\end{frame}
+\begin{frame}{Global behaviour}
+If \(u_0=10\) and \(u_{n+1}=0.8u_n+6\), then \(\ell=30\) and \(u_n=30-20(0.8)^n\). We have \(10\le u_n<30\) and \(u_{n+1}-u_n=4(0.8)^n>0\).
+\end{frame}
+\begin{frame}{Global behaviour}
+Checking a property on a hundred terms does not prove it. An increasing sequence is not necessarily positive; a bounded sequence is not necessarily monotonic.
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{A tank topped up every day - 35 min.}
+
+A tank initially contains \(100\) litres of water. Each day, \(20\,\%\) of the volume present is drawn off, then \(30\) litres are added. For every natural number \(n\), let \(u_n\) be the volume of water, in litres, after these two operations have been carried out \(n\) times. Thus \(u_0=100\).
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Compute \(u_1\) and \(u_2\), then express \(u_{n+1}\) in terms of \(u_n\).
+
+\item Which volume would remain unchanged after one day? Prove by induction that, for every \(n\in\N\), \(100\le u_n<150\).
+
+\item For every \(n\in\N\), let \(v_n=u_n-150\). Show that \((v_n)\) is geometric. Deduce the expressions of \(v_n\) and \(u_n\) in terms of \(n\).
+
+\item Write a Python function with no argument that returns the first integer \(n\) for which \(u_n>145\). Run the program and interpret the result.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Research activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item A student has computed the first hundred terms and notes that they are all less than \(150\). Is this observation enough to prove that all the terms are? Justify.
+
+\end{enumerate}
+\end{frame}
+\end{document}

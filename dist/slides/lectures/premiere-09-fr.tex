@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonction exponentielle et modèles continus}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonction exponentielle et modèles continus}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Le parcours du chapitre}
+\textbf{Objectifs.} Utiliser les propriétés algébriques ; dériver ; étudier une croissance ou décroissance ; relier exponentielle et suites géométriques.
+
+\textbf{Prérequis.} Puissances, suites géométriques, dérivation et signe.
+
+\textbf{Repère annuel.} 2-11 février : 8 h
+\end{frame}
+\begin{frame}{Définir une fonction nouvelle}
+La fonction exponentielle est l’unique fonction f dérivable sur \(\R\) vérifiant \(f\prime=f\) et \(f(0)=1\). Son existence et son unicité sont admises. On la note \(\exp\), puis \(e^x\) avec \(e=\exp(1)\approx2{,}71828\). Le nombre e est une constante ; x est la variable. L’exponentielle est strictement positive.
+\end{frame}
+\begin{frame}{Définir une fonction nouvelle}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(\exp(0)=1\), \(\exp(1)=e\), \(\exp\prime(0)=1\). La tangente en 0 est donc \(y=1+x\). La notation \(e^x\) étend les propriétés des puissances à tout exposant réel.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-09-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Définir une fonction nouvelle}
+\(e^0=1\), pas 0. La fonction ne prend jamais la valeur 0, même pour des x négatifs.
+\end{frame}
+\begin{frame}{Définir une fonction nouvelle}
+Quelle est l’équation de la tangente à \(e^x\) en 1 ?
+\end{frame}
+\begin{frame}{Propriétés algébriques et comparaisons}
+Pour tous réels x,y, \(e^{x+y}=e^xe^y\), \(e^{-x}=\dfrac{1}{e^x}\), \(e^{x-y}=\dfrac{e^x}{e^y}\). Pour n entier, \((e^x)^n=e^{nx}\). La fonction est strictement croissante sur \(\R\), donc \(e^u=e^v\iff u=v\) et \(e^u<e^v\iff u<v\).
+\end{frame}
+\begin{frame}{Propriétés algébriques et comparaisons}
+\(e^{2x}e^{1-x}=e^{x+1}\). \(e^{3x-2}=e^{x+4}\) équivaut à \(3x-2=x+4\), donc x=3. \(e^{2x}\leq1=e^0\) équivaut à \(x\leq0\).
+\end{frame}
+\begin{frame}{Propriétés algébriques et comparaisons}
+\(e^{x+y}\) est un produit, jamais en général \(e^x+e^y\). On ne résout pas \(e^x=2\) avec un logarithme non étudié en première.
+\end{frame}
+\begin{frame}{Propriétés algébriques et comparaisons}
+Simplifier \(\dfrac{e^{3x}}{e^{x-1}}\) ; résoudre \(e^{x+2}>e^{2x}\).
+\end{frame}
+\begin{frame}{Dériver et étudier}
+Pour a réel, \(t\mapsto e^{at}\) est dérivable et sa dérivée vaut \(ae^{at}\). Pour \(e^{at+b}=e^be^{at}\), la dérivée est \(ae^{at+b}\). Les règles de produit et quotient s’appliquent avec les dérivées déjà connues. Le signe de l’exponentielle simplifie souvent l’étude du signe de la dérivée.
+\end{frame}
+\begin{frame}{Dériver et étudier}
+Pour \(f(x)=(x+1)e^{-x}\), \(f\prime(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}\). Comme \(e^{-x}>0\), la dérivée a le signe de \(-x\) : maximum global 1 en 0.
+\end{frame}
+\begin{frame}{Dériver et étudier}
+Ne pas oublier le facteur a ni le signe négatif dans \(e^{-x}\). Le facteur exponentiel est positif, pas nécessairement croissant.
+\end{frame}
+\begin{frame}{Dériver et étudier}
+Dériver \(g(t)=3e^{-2t}\) et étudier son sens de variation.
+\end{frame}
+\begin{frame}{Du discret au continu}
+Un modèle \(Q(t)=Q_0e^{kt}\), avec \(Q_0>0\), représente une croissance si \(k>0\), une décroissance si \(k<0\), une constance si \(k=0\). Pour un pas h fixe, \(\dfrac{Q(t+h)}{Q(t)}=e^{kh}\). Les valeurs aux instants entiers forment une suite géométrique de raison \(e^k\). L’unité de k est l’inverse de l’unité de temps.
+\end{frame}
+\begin{frame}{Du discret au continu}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(Q(t)=100e^{-0{,}2t}\), t en heures : \(Q(0)=100\), \(\dfrac{Q(t+1)}{Q(t)}=e^{-0{,}2}\). Une simulation peut chercher le premier nombre entier d’heures où Q passe sous 50 ; l’équation exacte n’est pas résolue par logarithme dans ce chapitre.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-09-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Du discret au continu}
+Le taux relatif par unité de temps discrète est \(e^k-1\), pas exactement k ; ils sont proches seulement pour k petit.
+\end{frame}
+\begin{frame}{Du discret au continu}
+Pour \(Q(t)=5e^{0{,}3t}\), exprimer \(Q(n)\) et \(\dfrac{Q(t+2)}{Q(t)}\).
+\end{frame}
+\begin{frame}{Démontrer une inégalité}
+L’inégalité \(e^x\geq1+x\), valable pour tout réel x, s’obtient par l’étude de la fonction \(g(x)=e^x-1-x\) : la courbe de l’exponentielle est au-dessus de sa tangente en 0.
+\end{frame}
+\begin{frame}{Démontrer une inégalité}
+Avec \(x=0{,}1\), l’inégalité donne \(e^{0{,}1}\geq1{,}1\) ; la calculatrice affiche \(e^{0{,}1}\approx1{,}10517\). Avec \(x=-1\), elle donne \(e^{-1}\geq0\), ce qui est vrai mais peu précis.
+\end{frame}
+\begin{frame}{Démontrer une inégalité}
+Un graphique qui montre une courbe au-dessus d’une droite ne prouve pas l’inégalité sur tous les réels.
+\end{frame}
+\begin{frame}{Démontrer une inégalité}
+Montrer que \(e^{2x}\geq1+2x\) pour tout réel x.
+\end{frame}
+\end{document}

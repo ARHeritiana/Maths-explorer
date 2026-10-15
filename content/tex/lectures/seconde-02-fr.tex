@@ -1,0 +1,217 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Vecteurs du plan}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Vecteurs du plan}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Translation et vecteurs}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+La translation qui transforme \(A\) en \(B\) associe à tout point \(M\) l'unique point \(M'\) tel que \(ABM'M\) soit un parallélogramme, éventuellement aplati. Elle est appelée translation de vecteur \(\vect{AB}\).
+Un vecteur non nul possède une direction, un sens et une norme. \(\|\vect{AB}\|=AB\). Le vecteur \(\vect{AA}\) est le vecteur nul, noté \(\vec0\) ; il n'a ni direction ni sens.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/seconde-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Translation et vecteurs}
+\(\vect{AB}=\vect{CD}\) lorsque la translation de vecteur \(\vect{AB}\) transforme \(C\) en \(D\). Deux vecteurs non nuls sont égaux si et seulement s'ils ont même direction, même sens et même norme.
+Le vecteur opposé de \(\vect{AB}\) est \(\vect{BA}\) : \(\vect{BA}=-\vect{AB}\).
+\end{frame}
+\begin{frame}{Translation et vecteurs}
+Tracer un segment \([AB]\) et placer un point \(C\) hors de \((AB)\). Construire \(D\) tel que \(\vect{AB}=\vect{CD}\). Nommer le parallélogramme obtenu. Construire \(E\) tel que \(\vect{CE}=-\vect{AB}\).
+\end{frame}
+\begin{frame}{Correction : Translation et vecteurs}
+\(D\) se construit en reportant depuis \(C\) la direction, le sens et la longueur de \(\vect{AB}\). Le parallélogramme est \(ABDC\), dans cet ordre. \(E\) est le symétrique de \(D\) par rapport à \(C\), car \(\vect{CE}=-\vect{CD}\).
+\end{frame}
+\begin{frame}{Somme, différence et relation de Chasles}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+La somme \(\vec u+\vec v\) correspond à l'enchaînement des translations de vecteurs \(\vec u\) et \(\vec v\). Pour tous points \(A,B,C\) :
+\[\boxed{\vect{AB}+\vect{BC}=\vect{AC}}\qquad\text{(relation de Chasles).}\]
+On a \(\vec u-\vec v=\vec u+(-\vec v)\) et \(\vect{AB}+\vect{BA}=\vec0\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/seconde-02-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Somme, différence et relation de Chasles}
+\(ABDC\) est un parallélogramme si et seulement si \(\vect{AD}=\vect{AB}+\vect{AC}\).
+\end{frame}
+\begin{frame}{Somme, différence et relation de Chasles}
+Simplifier : \(\vect{AB}+\vect{BC}\) ; \(\vect{AB}+\vect{CA}\) ; \(\vect{AB}+\vect{BC}+\vect{CD}\) ; \(\vect{AB}-\vect{AC}\).
+\end{frame}
+\begin{frame}{Correction : Somme, différence et relation de Chasles}
+\(\vect{AC}\) ; \(\vect{CA}+\vect{AB}=\vect{CB}\) ; \(\vect{AD}\) ; \(\vect{AB}+\vect{CA}=\vect{CB}\). La commutativité de l'addition permet de réordonner les vecteurs.
+\end{frame}
+\begin{frame}{Somme, différence et relation de Chasles}
+Dans un parallélogramme \(ABCD\), justifier que \(\vect{AB}+\vect{AD}=\vect{AC}\).
+\end{frame}
+\begin{frame}{Correction : Somme, différence et relation de Chasles}
+Dans \(ABCD\), \(\vect{AD}=\vect{BC}\). Donc \(\vect{AB}+\vect{AD}=\vect{AB}+\vect{BC}=\vect{AC}\).
+\end{frame}
+\begin{frame}{Produit d'un vecteur par un réel}
+Pour \(k\in\R\), \(k\vec u=\vec0\) si \(k=0\) ou \(\vec u=\vec0\). Sinon, \(k\vec u\) a la même direction que \(\vec u\), le même sens si \(k>0\), le sens opposé si \(k<0\), et sa norme vaut \(|k|\|\vec u\|\).
+\[(k+\ell)\vec u=k\vec u+\ell\vec u,\quad k(\vec u+\vec v)=k\vec u+k\vec v,\quad k(\ell\vec u)=(k\ell)\vec u.\]
+\end{frame}
+\begin{frame}{Produit d'un vecteur par un réel}
+Pour un vecteur \(\vec u\) de norme \(4\) cm, représenter \(2\vec u\), \(-\vec u\) et \(\dfrac12\vec u\) à partir d'une même origine. Préciser leurs normes.
+\end{frame}
+\begin{frame}{Correction : Produit d'un vecteur par un réel}
+Les normes sont \(8\) cm, \(4\) cm, \(2\) cm. Les vecteurs \(2\vec u\) et \(\dfrac12\vec u\) ont le sens de \(\vec u\) ; \(-\vec u\) a le sens opposé.
+\end{frame}
+\begin{frame}{Produit d'un vecteur par un réel}
+\(I\) est le milieu de \([AB]\) si et seulement si \(\vect{AI}=\vect{IB}\), ou encore \(\vect{AI}=\dfrac12\vect{AB}\), ou \(\vect{IA}+\vect{IB}=\vec0\).
+\end{frame}
+\begin{frame}{Produit d'un vecteur par un réel}
+Dans un triangle \(ABC\), \(I\) est le milieu de \([AB]\) et \(J\) celui de \([AC]\). Montrer que \(\vect{IJ}=\dfrac12\vect{BC}\).
+\end{frame}
+\begin{frame}{Correction : Produit d'un vecteur par un réel}
+Par Chasles, \(\vect{IJ}=\vect{IA}+\vect{AJ}=-\dfrac12\vect{AB}+\dfrac12\vect{AC}=\dfrac12(\vect{BA}+\vect{AC})=\dfrac12\vect{BC}\). On retrouve le parallélisme des droites \((IJ)\) et \((BC)\) lorsque le triangle n'est pas aplati.
+\end{frame}
+\begin{frame}{Repères, bases et coordonnées}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Deux vecteurs non colinéaires \(\vec i,\vec j\) forment une base du plan. Tout vecteur \(\vec u\) s'écrit de manière unique \(\vec u=x\vec i+y\vec j\) ; ses coordonnées sont \((x;y)\) ou \(\vc{x}{y}\).
+Un repère \((O;\vec i,\vec j)\) associe au point \(M\) les coordonnées de \(\vect{OM}\). Il est \textbf{orthonormé} si les vecteurs de base sont perpendiculaires et de norme \(1\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/seconde-02-3.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Repères, bases et coordonnées}
+Si \(A(x_A;y_A)\), \(B(x_B;y_B)\), \(\vec u(x;y)\) et \(\vec v(x';y')\) :
+\[\vect{AB}=\vc{x_B-x_A}{y_B-y_A},\quad \vec u+\vec v=\vc{x+x'}{y+y'},\quad k\vec u=\vc{kx}{ky}.\]
+Deux vecteurs sont égaux si et seulement si leurs coordonnées respectives sont égales.
+\end{frame}
+\begin{frame}{Repères, bases et coordonnées}
+Pour \(\vec u(3;2)\) et \(\vec v(-1;4)\), calculer \(\vec u+\vec v\) et \(2\vec u-\vec v\). Écrire \(\vec w(5;-3)\) dans la base \((\vec i;\vec j)\).
+\end{frame}
+\begin{frame}{Correction : Repères, bases et coordonnées}
+\(\vec u+\vec v=(2;6)\) ; \(2\vec u-\vec v=(7;0)\) ; \(\vec w=5\vec i-3\vec j\).
+\end{frame}
+\begin{frame}{Norme, distance et milieu}
+Dans un repère \textbf{orthonormé}, pour \(\vec u(x;y)\) et deux points \(A,B\) :
+\[\|\vec u\|=\sqrt{x^2+y^2},\qquad AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}.\]
+Dans tout repère, le milieu de \([AB]\) est \(I\left(\dfrac{x_A+x_B}{2};\dfrac{y_A+y_B}{2}\right)\).
+\end{frame}
+\begin{frame}{Norme, distance et milieu}
+La formule de distance découle du théorème de Pythagore appliqué aux déplacements horizontal et vertical. Pour le milieu, \(\vect{AI}=\dfrac12\vect{AB}\) donne \(x_I-x_A=\dfrac{x_B-x_A}{2}\) et \(y_I-y_A=\dfrac{y_B-y_A}{2}\) ; on isole \(x_I,y_I\).
+\end{frame}
+\begin{frame}{Norme, distance et milieu}
+Dans un repère orthonormé, \(A(3;0)\), \(B(5;3)\), \(C(4;0)\) et \(D(6;4)\).
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item Calculer \(\vect{AB}\), \(\vect{CD}\), puis \(3\vect{AB}-5\vect{CD}\).
+
+\item Déterminer \(U\) tel que \(\vect{BU}=2\vect{AB}-\vect{CD}\).
+
+\item Déterminer \(E\) tel que \(ABCE\) soit un parallélogramme, puis son centre \(I\).
+
+\item Calculer \(AB\) et \(CD\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Correction : Norme, distance et milieu}
+1. \(\vect{AB}=(2;3)\) et \(\vect{CD}=(2;4)\), donc \(3\vect{AB}-5\vect{CD}=(-4;-11)\).
+
+2. \(\vect{BU}=(2;2)\), donc \(U=B+(2;2)=(7;5)\).
+
+3. \(E=A+C-B=(2;-3)\). Le centre est le milieu de \([AC]\) : \(I(7/2;0)\). Le milieu de \([BE]\) donne le même résultat.
+
+4. \(AB=\sqrt{13}\) et \(CD=\sqrt{20}=2\sqrt5\).
+\end{frame}
+\begin{frame}{Colinéarité et déterminant}
+Deux vecteurs non nuls sont colinéaires s'ils ont la même direction. Le vecteur nul est colinéaire à tout vecteur. Si \(\vec v\ne\vec0\), \(\vec u\) et \(\vec v\) sont colinéaires si et seulement s'il existe un réel \(k\) tel que \(\vec u=k\vec v\).
+\end{frame}
+\begin{frame}{Colinéarité et déterminant}
+Dans la dernière caractérisation, la condition \(\vec v\ne\vec0\) est nécessaire : un vecteur non nul ne peut pas être un multiple du vecteur nul.
+\end{frame}
+\begin{frame}{Colinéarité et déterminant}
+Pour \(\vec u(x;y)\), \(\vec v(x';y')\), \(\det(\vec u,\vec v)=xy'-yx'\).
+\[\vec u,\vec v\text{ colinéaires}\quad\Longleftrightarrow\quad\det(\vec u,\vec v)=0.\]
+\end{frame}
+\begin{frame}{Colinéarité et déterminant}
+Si \(\vec u=k\vec v\), alors \(xy'-yx'=kx'y'-ky'x'=0\). Le cas où un vecteur est nul est immédiat.
+Réciproquement, supposons \(\vec v\ne\vec0\) et \(xy'-yx'=0\). Si \(x'\ne0\), posons \(k=x/x'\). L'égalité donne \(y=ky'\), donc \(\vec u=k\vec v\). Si \(x'=0\), alors \(y'\ne0\), d'où \(x=0\) ; avec \(k=y/y'\), on obtient encore \(\vec u=k\vec v\).
+\end{frame}
+\begin{frame}{Colinéarité et déterminant}
+Étudier la colinéarité : (a) \(\vec u(3;2)\) et \(\vec v(-6;-5)\) ; (b) \(\vec w(4;1)\) et \(\vec t(3;3/4)\). Si \(\vect{AB}=2\vect{CD}\) et \(\vect{BD}=-5\vect{CD}\), relier \(\vect{AB}\) et \(\vect{BD}\).
+\end{frame}
+\begin{frame}{Correction : Colinéarité et déterminant}
+(a) \(\det(\vec u,\vec v)=-15+12=-3\ne0\) : non colinéaires. (b) \(\vec t=\dfrac34\vec w\) : colinéaires ; le déterminant vaut \(4\times\dfrac34-3=0\). Enfin \(\vect{AB}=-\dfrac25\vect{BD}\), y compris si les vecteurs sont nuls.
+\end{frame}
+\begin{frame}{Alignement et parallélisme}
+Pour \(A\ne B\) et \(C\ne D\), les droites \((AB)\) et \((CD)\) sont parallèles (éventuellement confondues) si et seulement si \(\det(\vect{AB},\vect{CD})=0\).
+Les points \(A,B,C\) sont alignés si et seulement si \(\det(\vect{AB},\vect{AC})=0\).
+\end{frame}
+\begin{frame}{Alignement et parallélisme}
+Montrer que \((AB)\) et \((CD)\) sont parallèles avec \(A(2;-4)\), \(B(10;-2)\), \(C(-16;-4)\) et \(D(12;3)\).
+\end{frame}
+\begin{frame}{Correction : Alignement et parallélisme}
+\(\vect{AB}=(8;2)\) et \(\vect{CD}=(28;7)\). Leur déterminant vaut \(8\times7-2\times28=0\). Les points de chaque paire sont distincts : les deux droites existent et sont parallèles.
+\end{frame}
+\begin{frame}{Alignement et parallélisme}
+Montrer que \(E(0;1/2)\), \(F(2;1)\) et \(G(6;2)\) sont alignés.
+\end{frame}
+\begin{frame}{Correction : Alignement et parallélisme}
+\(\vect{EF}=(2;1/2)\) et \(\vect{EG}=(6;3/2)=3\vect{EF}\). Le déterminant vaut \(2\times3/2-(1/2)\times6=0\) ; donc les points sont alignés.
+\end{frame}
+\begin{frame}{Alignement et parallélisme}
+Avec \(A(-1;1)\), \(B(3;2)\), \(C(-2;-3)\), \(D(6;-1)\), \(E(5;0)\), montrer que \((AB)\parallel(CD)\) et que \(E,B,D\) sont alignés.
+\end{frame}
+\begin{frame}{Correction : Alignement et parallélisme}
+\(\vect{AB}=(4;1)\) et \(\vect{CD}=(8;2)=2\vect{AB}\). Puis \(\vect{EB}=(-2;2)\) et \(\vect{ED}=(1;-1)=-\dfrac12\vect{EB}\). Les deux résultats suivent.
+\end{frame}
+\end{document}

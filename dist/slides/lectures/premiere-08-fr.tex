@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Variables aléatoires et dispersion}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Variables aléatoires et dispersion}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Le parcours du chapitre}
+\textbf{Objectifs.} Construire une loi ; interpréter des événements ; calculer espérance, variance, écart type ; utiliser la linéarité ; simuler des échantillons et calculer leur moyenne observée.
+
+\textbf{Prérequis.} Probabilités, moyenne pondérée, carrés, arbres et listes.
+
+\textbf{Repère annuel.} 19-28 janvier : 8 h
+\end{frame}
+\begin{frame}{Variable, événement et loi}
+Sur un univers fini \(\Omega\), une variable aléatoire réelle X est une fonction qui associe un nombre réel à chaque issue. L’événement \(\{X=a\}\) regroupe les issues donnant la valeur a. Sa loi associe à chaque valeur distincte \(x_i\) la probabilité \(p_i=P(X=x_i)\), avec \(p_i\geq0\) et \(\sum p_i=1\).
+\end{frame}
+\begin{frame}{Variable, événement et loi}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Un dé équilibré donne un gain X égal à 2 pour 1 ou 2, et à \(-1\) sinon. La loi est \(P(X=2)=\dfrac{1}{3}\), \(P(X=-1)=\dfrac{2}{3}\). \(\{X\leq0\}=\{3;4;5;6\}\) : probabilité \(\dfrac{2}{3}\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-08-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Variable, événement et loi}
+Les valeurs ne sont pas toujours équiprobables même si les issues le sont. Regrouper les issues qui donnent le même gain.
+\end{frame}
+\begin{frame}{Variable, événement et loi}
+Deux pièces équilibrées sont lancées. X compte les piles. Écrire sa loi et \(P(X\leq1)\).
+\end{frame}
+\begin{frame}{Espérance et linéarité}
+L’espérance est \(E(X)=\sum_i x_ip_i\). Elle décrit la moyenne théorique à long terme, pas un résultat nécessairement possible sur un essai. Pour des variables X et Y sur le même univers fini et des réels a,b : \(E(aX+b)=aE(X)+b\) et \(E(X+Y)=E(X)+E(Y)\), sans hypothèse d’indépendance.
+\end{frame}
+\begin{frame}{Espérance et linéarité}
+Pour la loi précédente \(P(X=2)=\dfrac{1}{3}\), \(P(X=-1)=\dfrac{2}{3}\), \(E(X)=0\) : le jeu est équitable si X est le gain net. Pour \(Y=3X-2\), \(E(Y)=3\times0-2=-2\).
+\end{frame}
+\begin{frame}{Espérance et linéarité}
+Une espérance n’est pas une garantie individuelle ; un jeu peut être perdant à chaque horizon observé malgré une espérance positive.
+\end{frame}
+\begin{frame}{Espérance et linéarité}
+Un gain brut vaut 10 avec probabilité \(\dfrac{1}{5}\) et 0 sinon. Quelle mise rend le jeu équitable ?
+\end{frame}
+\begin{frame}{Variance, écart type et König-Huygens}
+En notant \(\mu=E(X)\), \(V(X)=E((X-\mu)^2)=\sum_i(x_i-\mu)^2p_i\). L’écart type est \(\sigma(X)=\sqrt{V(X)}\). La formule de König-Huygens donne \(V(X)=E(X^2)-E(X)^2\). Une variance est toujours positive ou nulle ; l’écart type a la même unité que X, la variance une unité au carré.
+\end{frame}
+\begin{frame}{Variance, écart type et König-Huygens}
+Pour X de valeurs 0 et 4 avec probabilités \(\dfrac{3}{4}\) et \(\dfrac{1}{4}\), \(E(X)=1\), \(E(X^2)=4\), \(V(X)=3\) et \(\sigma=\sqrt3\). Calcul direct : \((0-1)^2(\dfrac{3}{4})+(4-1)^2(\dfrac{1}{4})=3\).
+\end{frame}
+\begin{frame}{Variance, écart type et König-Huygens}
+\(E(X^2)\) n’est pas \(E(X)^2\). Une variance calculée négative signale une erreur ou une très petite erreur d’arrondi à traiter explicitement.
+\end{frame}
+\begin{frame}{Variance, écart type et König-Huygens}
+Pour X de valeurs \(-1,1\) équiprobables, calculer espérance, variance et écart type.
+\end{frame}
+\begin{frame}{Transformer et comparer des gains}
+Pour a,b réels, \(V(aX+b)=a^2V(X)\) et \(\sigma(aX+b)=|a|\sigma(X)\). Une translation déplace la moyenne sans changer la dispersion ; une multiplication change l’échelle. Deux jeux de même espérance peuvent avoir des dispersions très différentes.
+\end{frame}
+\begin{frame}{Transformer et comparer des gains}
+Un jeu A rapporte toujours 2. Un jeu B rapporte 0 ou 4 équiprobablement. Les deux ont espérance 2 ; variances 0 et 4. Leurs distributions ne sont donc pas interchangeables malgré la même moyenne.
+\end{frame}
+\begin{frame}{Transformer et comparer des gains}
+La variance d’une somme n’est pas, en général, la somme des variances ; aucune règle de ce type n’est utilisée sans hypothèses.
+\end{frame}
+\begin{frame}{Transformer et comparer des gains}
+\(E(X)=3\), \(V(X)=4\). Donner les caractéristiques de \(Y=-2X+5\).
+\end{frame}
+\begin{frame}{Échantillons et moyenne observée}
+Un échantillon de taille n est ici une liste de n réalisations indépendantes d’une même variable X. Sa moyenne observée m varie d’un échantillon à l’autre ; on la compare à \(\mu=E(X)\).
+\end{frame}
+\begin{frame}{Échantillons et moyenne observée}
+Pour X de valeurs 0 et 2 équiprobables, \(\mu=1\). L’échantillon 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 a pour moyenne observée 1,2 ; un autre échantillon de même taille donnera en général une autre moyenne. Une simulation compare plusieurs moyennes observées à \(\mu\) sans rien démontrer.
+\end{frame}
+\begin{frame}{Échantillons et moyenne observée}
+Ne pas recopier un seul tirage n fois ; ne pas confondre la moyenne observée d’un échantillon avec l’espérance \(\mu\).
+\end{frame}
+\begin{frame}{Échantillons et moyenne observée}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+X prend les valeurs 0 et 2 de façon équiprobable. Calculer la moyenne observée de l’échantillon 2, 0, 2, 2, 0, puis son écart à \(E(X)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-08-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

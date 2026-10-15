@@ -1,0 +1,112 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonction logarithme}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonction logarithme}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Utiliser les propriétés de ln ; résoudre équations et seuils ; dériver et étudier des fonctions logarithmiques.
+\end{frame}
+\begin{frame}{Définition et propriétés}
+L'exponentielle est continue, strictement croissante sur \(\R\), et son image est \(]0,+\infty[\). Pour tout \(x>0\), il existe un unique réel \(y\) tel que \(e^y=x\) : on le note \(\ln x\).
+\[\ln(e^y)=y\quad(y\in\R),\qquad e^{\ln x}=x\quad(x>0),\qquad\ln1=0,\quad\ln e=1.\]
+Pour \(a,b>0\) et \(n\in\Z\),
+\[\ln (ab)=\ln a+\ln b,\quad\ln (\dfrac{a}{b})=\ln a-\ln b,\quad\ln (a^n)=n\ln a,\quad\ln \sqrt{a}=\tfrac{1}{2}\ln a.\]
+\end{frame}
+\begin{frame}{Définition et propriétés}
+\(e^{\ln a+\ln b}=e^{\ln a}e^{\ln b}=ab\) ; l'unicité de l'antécédent donne la formule. Il n'existe pas de formule analogue pour \(\ln(a+b)\).
+\end{frame}
+\begin{frame}{Dérivée, variations et limites}
+On admet ln dérivable sur \(]0,+\infty[\). Dériver \(e^{\ln x}=x\) donne \(e^{\ln x}(\ln x)'=1\) ; donc \((\ln x)'=\dfrac{1}{x}>0\). Ln est strictement croissante et concave, car sa dérivée seconde vaut \(-\dfrac{1}{x^2}\).
+\[\lim_{x\to0^+}\ln x=-\infty,\qquad\lim_{x\to+\infty}\ln x=+\infty.\]
+Sa courbe est symétrique de celle de l'exponentielle par rapport à \(y=x\). La droite \(x=0\) est une asymptote verticale. Sa tangente en \(1\) donne \(\ln x\le x-1\) pour \(x>0\).
+\end{frame}
+\begin{frame}{Dérivée, variations et limites}
+Si \(u>0\) est dérivable, \((\ln u)'=\dfrac{u'}{u}\). Pour tout entier \(m\ge1\),
+\[\lim_{x\to+\infty}\dfrac{\ln x}{x^m}=0,\qquad\lim_{x\to0^+}x^m\ln x=0.\]
+\end{frame}
+\begin{frame}{Dérivée, variations et limites}
+Poser \(t=-\ln x\) ; lorsque \(x\to0^+\), \(t\to+\infty\) et \(x\ln x=-te^{-t}\to0\) par croissance comparée. Pour \(m\ge1\), le même raisonnement donne \(-te^{-mt}\to0\). En \(+\infty\), poser \(t=\ln x\) pour écrire \(\dfrac{\ln x}{x^m}=\dfrac{t}{e^{mt}}\to0\).
+\end{frame}
+\begin{frame}{Équations et seuils}
+Pour \(A,B>0\), \(\ln A=\ln B\Leftrightarrow A=B\) et \(\ln A\le\ln B\Leftrightarrow A\le B\). Toujours commencer par le domaine.
+\end{frame}
+\begin{frame}{Équations et seuils}
+\(\ln(x-1)+\ln(x+1)=\ln8\) exige \(x>1\). L'équation devient \(x^2-1=8\), donc \(x=3\) seul.
+\end{frame}
+\begin{frame}{Équations et seuils}
+\(0{,}8^n\le0{,}1\) équivaut à \(n\ln0{,}8\le\ln0{,}1\), puis \(n\ge\dfrac{\ln 0{,}1}{\ln 0{,}8}\simeq10{,}319\). Le premier entier est \(11\).
+\end{frame}
+\begin{frame}{Équations et seuils}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Pour \(f(x)=\dfrac{\ln x}{x}\), \(f'=\dfrac{1-\ln x}{x^2}\) ; \(f\) croît sur \(]0,e]\), décroît sur \([e,+\infty[\), et son maximum vaut \(\dfrac{1}{e}\). Sa limite en \(0^+\) est \(-\infty\), sa limite en \(+\infty\) est \(0\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-08-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Contrôler une erreur de calcul - 30 min.}
+
+Une méthode de calcul produit une erreur initiale \(e_0=5\). À chaque étape, l'erreur est multipliée par \(0{,}7\). On note \(e_n\) l'erreur après \(n\) étapes, pour \(n\in\N\).
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Exprimer \(e_n\) en fonction de \(n\).
+
+\item À l'aide du logarithme, déterminer le plus petit entier \(n\) tel que \(e_n\le10^{-4}\).
+
+\item Calculer, à la calculatrice, l'erreur au rang trouvé et au rang précédent pour vérifier la minimalité du rang.
+
+\item On impose maintenant une erreur au plus égale à \(10^{-6}\). Déterminer le nouveau nombre minimal d'étapes. La division de la tolérance par \(100\) multiplie-t-elle le nombre d'étapes par \(100\) ?
+
+\end{enumerate}
+\end{frame}
+\end{document}

@@ -1,0 +1,242 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Arithmétique}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Arithmétique}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs du chapitre}
+\begin{itemize}
+\item Justifier une divisibilité par une égalité avec un facteur entier.
+\item Écrire un entier pair ou impair et démontrer une propriété de parité.
+\item Tester la primalité d’un petit entier et réduire une fraction.
+\item Modéliser un partage en lots identiques et justifier son maximum.
+\item Lire et tester une fonction Python de divisibilité.
+
+\end{itemize}
+
+Les tests de primalité, l’algorithme d’Euclide et les produits cartésiens sont proposés comme approfondissements. Ils ne sont pas présentés comme des attendus de la rubrique Arithmétique du programme français de 2026.
+\end{frame}
+\begin{frame}{Prérequis à réactiver}
+Tables de multiplication, division euclidienne, priorité des opérations, fractions égales et distributivité. Les écritures avec un entier arbitraire sont expliquées dans le cours.
+\end{frame}
+\begin{frame}{Vérifier ses acquis}
+Justifie : \(36\) est-il multiple de \(9\) ? Écris \(-42\) comme un multiple de \(7\). Simplifie \(\dfrac{18}{30}\).
+\end{frame}
+\begin{frame}{Correction : Vérifier ses acquis}
+\(36=9\times4\). \(-42=7\times(-6)\). \(\dfrac{18}{30}=\dfrac{3}{5}\), en divisant les deux termes par \(6\). Si une de ces étapes est difficile, commence par les automatismes du livret.
+\end{frame}
+\begin{frame}{Partager sans reste}
+On dispose de 84 cahiers et 126 crayons. Prépare des lots tous identiques, avec au moins un objet de chaque sorte par lot, en utilisant tout le matériel. Teste plusieurs nombres de lots, puis cherche le plus grand possible. Explique pourquoi il est impossible d’en faire davantage.
+\end{frame}
+\begin{frame}{Correction : Partager sans reste}
+Le nombre de lots doit diviser les deux quantités. Les possibilités sont \(\{1;2;3;6;7;14;21;42\}\). Le maximum est \(42\) : chaque lot contient \(2\) cahiers et \(3\) crayons. La liste complète des diviseurs communs établit qu’un nombre plus grand est impossible.
+\end{frame}
+\begin{frame}{Entiers, multiples et diviseurs}
+Un multiple est obtenu en multipliant un entier par un autre entier. Pour prouver que \(a\) est un multiple de \(b\), cherche une égalité \(a=bk\) avec \(k\in\Z\). Le facteur \(k\) doit être entier : un quotient non entier ne convient pas.
+
+Dans \(a=bk\), \(b\) est un diviseur de \(a\), et \(a\) est un multiple de \(b\). Ces deux formulations décrivent la même relation, lue dans deux sens différents. Les entiers naturels sont \(\N=\{0;1;2;\ldots\}\) ; les entiers relatifs \(\Z\) comprennent aussi leurs opposés.
+\end{frame}
+\begin{frame}{Entiers, multiples et diviseurs (2)}
+Si \(b\ne0\), teste si \(a/b\) est entier, ou si la division de \(a\) par \(|b|\) laisse un reste nul. Zéro est multiple de tout entier ; le seul multiple de zéro est zéro.
+\end{frame}
+\begin{frame}{Entiers, multiples et diviseurs}
+Lister les diviseurs positifs de \(18\) et de \(24\). Écrire trois multiples de \(7\), dont un négatif. \(35\) est-il un multiple de \(5\) ? de \(6\) ? Justifier.
+\end{frame}
+\begin{frame}{Correction : Entiers, multiples et diviseurs}
+Diviseurs de \(18\) : \(1,2,3,6,9,18\). Diviseurs de \(24\) : \(1,2,3,4,6,8,12,24\). Par exemple \(-7,0,14\) sont des multiples de \(7\). \(35=5\times7\) est multiple de \(5\) ; \(35=6\times5+5\) n'est pas multiple de \(6\).
+\end{frame}
+\begin{frame}{Entiers, multiples et diviseurs}
+La somme de deux multiples d'un entier \(a\) est un multiple de \(a\).
+\end{frame}
+\begin{frame}{Entiers, multiples et diviseurs}
+Écrivons \(u=ak\) et \(v=a\ell\), avec \(k,\ell\in\Z\). Alors \(u+v=a(k+\ell)\) et \(k+\ell\in\Z\). Donc \(u+v\) est un multiple de \(a\). Cela vaut aussi pour \(a=0\).
+\end{frame}
+\begin{frame}{Parité et nombres premiers}
+Dire « pair » revient à dire « multiple de deux ». Un entier pair s'écrit \(n=2k\), où \(k\in\Z\). Un entier impair s'écrit \(n=2k+1\). Ces écritures servent aussi pour les entiers négatifs.
+
+Une vérification numérique donne un exemple ; une écriture avec un entier arbitraire permet une démonstration. Pour démontrer qu'un nombre est pair, cherche une forme \(2\times\text{entier}\).
+\end{frame}
+\begin{frame}{Parité et nombres premiers (2)}
+Un nombre premier est un entier naturel au moins égal à deux qui a exactement deux diviseurs positifs : un et lui-même. Un n'a qu'un diviseur positif, donc n'est pas premier. Deux est premier et constitue le seul nombre premier pair.
+\end{frame}
+\begin{frame}{Parité et nombres premiers}
+Le carré d'un entier impair est impair.
+\end{frame}
+\begin{frame}{Parité et nombres premiers}
+Si \(n=2k+1\), alors \(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\). Comme \(2k^2+2k\in\Z\), \(n^2\) est impair. La forme finale justifie la parité ; quelques essais numériques ne suffisent pas à démontrer l'énoncé.
+\end{frame}
+\begin{frame}{Parité et nombres premiers}
+Pour \(n\ge2\), teste la divisibilité par les nombres premiers inférieurs ou égaux à \(\sqrt n\), borne comprise. Si aucun ne divise \(n\), il est premier. En effet, si \(n=ab\) avec \(1<a\le b\), alors \(a^2\le n\), donc \(a\le\sqrt n\). Le plus petit diviseur de \(a\) strictement supérieur à un est premier : sinon, il posséderait un diviseur strictement compris entre un et lui-même. Ce nombre premier divise aussi \(n\).
+\end{frame}
+\begin{frame}{Parité et nombres premiers}
+Montrer que \(157\) est premier et que \(161\) ne l'est pas.
+\end{frame}
+\begin{frame}{Correction : Parité et nombres premiers}
+Comme \(12^2<157<13^2\), on teste \(2,3,5,7,11\). Aucun ne divise \(157\) : pour \(7\), \(157=7\times22+3\) ; pour \(11\), \(157=11\times14+3\). Donc \(157\) est premier. En revanche, \(161=7\times23\) est composé.
+\end{frame}
+\begin{frame}{Justifier une parité}
+Si \(n\) est impair, montrer que \(n+3\) est pair. L’affirmation « la somme de deux nombres premiers est toujours paire » est-elle vraie ? Justifier par une preuve ou un contre-exemple.
+\end{frame}
+\begin{frame}{Correction : Justifier une parité}
+\(n=2k+1\) entraîne \(n+3=2k+4=2(k+2)\). Le facteur \(k+2\) est entier : le nombre est pair. La seconde affirmation est fausse : \(2\) et \(3\) sont premiers et \(2+3=5\) est impair. Deux nombres premiers impairs ont, eux, une somme paire.
+\end{frame}
+\begin{frame}{Choisir les tests nécessaires}
+\(97\), \(121\) et \(221\) sont-ils premiers ? Écris les diviseurs premiers qu’il suffit de tester et justifie la fin de la recherche.
+\end{frame}
+\begin{frame}{Correction : Choisir les tests nécessaires}
+Pour \(97\), \(9^2<97<10^2\) : les tests \(2,3,5,7\) suffisent et aucun ne divise \(97\), donc il est premier. \(121=11^2\) et \(221=13\times17\) sont composés. Pour \(121\), on inclut le diviseur \(11=\sqrt{121}\) : s’arrêter strictement avant la racine carrée donnerait un mauvais résultat. Pour \(121\), les candidats sont \(2,3,5,7,11\), car \(\sqrt{121}=11\). Pour \(221\), \(14^2<221<15^2\), donc les candidats sont \(2,3,5,7,11,13\). Dès qu’un diviseur est trouvé, on peut conclure que le nombre n’est pas premier.
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+Pour deux entiers \(a,b\) \textbf{non tous deux nuls}, \(\operatorname{PGCD}(a,b)\) est le plus grand de leurs diviseurs positifs communs. On a \(\operatorname{PGCD}(a,b)=\operatorname{PGCD}(|a|,|b|)\) et \(\operatorname{PGCD}(a,0)=|a|\) si \(a\ne0\). Par convention, on pose \(\operatorname{PGCD}(0,0)=0\) ; ce dernier cas ne relève pas de la définition par le plus grand diviseur.
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+\textbf{Propriété admise dans ce chapitre.} Tout entier naturel supérieur ou égal à \(2\) est un produit de nombres premiers. Cette décomposition est unique à l'ordre des facteurs près.
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+Décomposer \(140\), \(150\), \(630\) et \(120\) en facteurs premiers.
+\end{frame}
+\begin{frame}{Correction : PGCD et fractions irréductibles}
+\(140=2^2\times5\times7\) ; \(150=2\times3\times5^2\) ; \(630=2\times3^2\times5\times7\) ; \(120=2^3\times3\times5\). On divise successivement par des nombres premiers et on vérifie le produit final.
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+\textbf{Pourquoi les divisions successives fonctionnent.} Pour \(a,b\) entiers strictement positifs, écris \(a=bq+r\). Un entier qui divise \(a\) et \(b\) divise aussi \(r=a-bq\). Réciproquement, un entier qui divise \(b\) et \(r\) divise \(a=bq+r\). Les diviseurs communs sont donc les mêmes : \(\operatorname{PGCD}(a,b)=\operatorname{PGCD}(b,r)\).
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles (2)}
+Remplace la paire par \((b,r)\) et recommence. Le reste est toujours inférieur au diviseur : les restes positifs diminuent, puis on arrive à zéro. Quand le reste devient nul, le diviseur de cette dernière division est le PGCD. Cette formulation couvre aussi le cas où la première division donne déjà un reste nul.
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+Calculer le PGCD de \(252\) et \(180\), en expliquant chaque passage à la paire suivante.
+\end{frame}
+\begin{frame}{Correction : PGCD et fractions irréductibles}
+\(252=180+72\), donc le PGCD de \(252,180\) est celui de \(180,72\). Puis \(180=2\times72+36\), donc on passe à \(72,36\). Enfin \(72=2\times36+0\). Le dernier reste non nul est \(36\). Vérification : \(252=7\times36\) et \(180=5\times36\).
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+Une fraction \(\dfrac ab\) est irréductible si \(a\) et \(b\ne0\) n'ont aucun diviseur positif commun autre que un. Diviser le numérateur et le dénominateur par le même entier non nul conserve la valeur de la fraction.
+
+\begin{enumerate}
+\setcounter{enumi}{0}\item Calcule le PGCD des valeurs absolues du numérateur et du dénominateur.
+\item Divise les deux par ce PGCD.
+\item Vérifie que tu ne peux plus simplifier et place, si nécessaire, le signe moins devant la fraction.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles (2)}
+Ne simplifie jamais seulement un terme d'une somme : on simplifie des facteurs d'un produit commun au numérateur et au dénominateur.
+\end{frame}
+\begin{frame}{PGCD et fractions irréductibles}
+Rendre irréductibles \(\dfrac{140}{630}\), \(\dfrac{84}{126}\) et \(\dfrac{-120}{150}\).
+\end{frame}
+\begin{frame}{Correction : PGCD et fractions irréductibles}
+Les PGCD valent respectivement \(70\), \(42\), \(30\). Ainsi \(140/630=2/9\), \(84/126=2/3\) et \(-120/150=-4/5\). Pour \(140/630\), on peut aussi simplifier les facteurs \(2,5,7\) dans les décompositions.
+\end{frame}
+\begin{frame}{Un partage et sa justification}
+Une association possède 180 cartes et 252 jetons. Former le plus grand nombre de lots identiques sans reste. Donner le contenu d’un lot et expliquer pourquoi aucun nombre supérieur de lots ne convient.
+\end{frame}
+\begin{frame}{Correction : Un partage et sa justification}
+Le PGCD est \(36\). Par divisions successives : \(252=180+72\), \(180=2\times72+36\), \(72=2\times36\). Il y a donc \(36\) lots, contenant \(5\) cartes et \(7\) jetons chacun. Un nombre de lots admissible divise le PGCD et ne peut donc pas le dépasser.
+\end{frame}
+\begin{frame}{Vocabulaire ensembliste en contexte}
+\(x\in A\) signifie que \(x\) est un élément de \(A\) ; \(A\subseteq B\) signifie que tout élément de \(A\) appartient à \(B\). \(\varnothing\) est l'ensemble vide.
+
+\begin{itemize}
+
+\item \(A\cap B\) : éléments appartenant à \(A\) \textbf{et} à \(B\) ;
+
+\item \(A\cup B\) : éléments appartenant à \(A\) \textbf{ou} à \(B\) (éventuellement aux deux) ;
+
+\item dans un ensemble de référence \(E\), \(\overline A=E\setminus A\) contient les éléments de \(E\) qui ne sont pas dans \(A\) ;
+
+\item pour un ensemble fini, \(\Card(A)\) est son nombre d'éléments.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Vocabulaire ensembliste en contexte}
+Dans \(E=\{1;2;3;4;5;6\}\), on pose \(A=\{2;4;6\}\) et \(B=\{3;6\}\). Donner \(A\cap B\), \(A\cup B\), \(\overline A\) et \(\Card(A)\). Les assertions \(2\in A\), \(\{2\}\subseteq A\) et \(A\subseteq B\) sont-elles vraies ? Ici, \(A\) regroupe les multiples de deux et \(B\) les multiples de trois dans \(E\). Leur intersection exprime donc les deux conditions à la fois.
+\end{frame}
+\begin{frame}{Correction : Vocabulaire ensembliste en contexte}
+\(A\cap B=\{6\}\), \(A\cup B=\{2;3;4;6\}\), \(\overline A=\{1;3;5\}\), \(\Card(A)=3\). Les deux premières assertions sont vraies. La troisième est fausse, par exemple \(2\in A\) et \(2\notin B\).
+\end{frame}
+\begin{frame}{Pour aller plus loin : couples et produits cartésiens}
+Un couple \((a;b)\) est ordonné : en général \((a;b)\ne(b;a)\). Le produit cartésien \(A\times B\) est l'ensemble des couples \((a;b)\) avec \(a\in A\) et \(b\in B\). Pour des ensembles finis, \(\Card(A\times B)=\Card(A)\Card(B)\).
+\end{frame}
+\begin{frame}{Pour aller plus loin : couples et produits cartésiens}
+Écrire tous les éléments de \(\{1;2\}\times\{3;4;5\}\).
+\end{frame}
+\begin{frame}{Correction : Pour aller plus loin : couples et produits cartésiens}
+\(\{(1;3);(1;4);(1;5);(2;3);(2;4);(2;5)\}\). Il y a \(2\times3=6\) couples.
+\end{frame}
+\begin{frame}{Algorithmique et réinvestissement}
+Pour des entiers et \(b>0\), \texttt{a \% b} est le reste de la division euclidienne. Avec un diviseur négatif, Python donne un reste nul ou de même signe que ce diviseur ; ce n’est plus le reste non négatif de la convention usuelle. En revanche, \texttt{a \% b == 0} teste bien la divisibilité pour tout entier non nul \(b\). Un test renvoie un booléen : \texttt{True} ou \texttt{False}. L’égalité se teste par \texttt{==} ; l’affectation utilise \texttt{=}.
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def est_multiple(a, b):
+    if b == 0:
+        return a == 0
+    return a % b == 0
+\end{verbatim}
+\end{frame}
+\begin{frame}{Algorithmique et réinvestissement}
+Prévoir les résultats de \texttt{est\_multiple(35, 5)} et \texttt{est\_multiple(35, 6)}, puis de \texttt{est\_multiple(0, 7)}, \texttt{est\_multiple(7, 0)} et \texttt{est\_multiple(0, 0)}. Expliquer le rôle de la condition.
+\end{frame}
+\begin{frame}{Correction : Algorithmique et réinvestissement}
+Les résultats sont \texttt{True}, \texttt{False}, \texttt{True}, \texttt{False}, \texttt{True}. Le cas \(b=0\) évite le calcul d'un reste modulo zéro, impossible, et applique la définition : seul \(0\) est multiple de \(0\).
+\end{frame}
+\begin{frame}{Algorithmique et réinvestissement}
+On dispose de \(84\) cahiers et \(126\) crayons. On veut former le plus grand nombre possible de lots identiques en utilisant tout le matériel. Combien de lots peut-on faire ? Que contient chacun d'eux ?
+\end{frame}
+\begin{frame}{Correction : Algorithmique et réinvestissement}
+Le nombre de lots divise \(84\) et \(126\). Son maximum est donc \(\operatorname{PGCD}(84,126)=42\). Chaque lot contient \(84/42=2\) cahiers et \(126/42=3\) crayons. La vérification \(42\times2=84\), \(42\times3=126\) confirme l'utilisation de tout le matériel.
+\end{frame}
+\begin{frame}{Bilan sans aide}
+1. Pourquoi \(0\) est-il multiple de \(7\), mais \(7\) n’est-il pas multiple de \(0\) ? 2. Réduire \(\dfrac{210}{462}\). 3. Montrer que la somme de deux entiers impairs est paire.
+\end{frame}
+\begin{frame}{Correction : Bilan sans aide}
+1. \(0=7\times0\), alors que \(7=0\times k\) est impossible. 2. Le PGCD est \(42\), donc \(\dfrac{210}{462}=\dfrac5{11}\). 3. Écris les nombres sous la forme \(2k+1\) et \(2\ell+1\). Leur somme vaut \(2(k+\ell+1)\), donc est paire.
+\end{frame}
+\end{document}

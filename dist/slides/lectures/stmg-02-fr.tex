@@ -1,0 +1,284 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonctions exponentielles}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonctions exponentielles}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Cours de référence}
+Si \(a>1\), \(x\mapsto a^x\) est strictement croissante. Si \(0<a<1\), elle est strictement décroissante. Pour \(f(x)=ka^x\), multiplier par \(k<0\) inverse le sens de variation. Dans tous les cas, \(a^x>0\).
+\end{frame}
+\begin{frame}{Cours de référence}
+En général, \(a^x+a^y\neq a^{x+y}\). Les propriétés portent sur les produits et les quotients, pas sur les sommes.
+\end{frame}
+\begin{frame}{Cours de référence}
+Un chiffre d'affaires passe de \(80\,000\) à \(95\,000\) euros en quatre ans. Le coefficient global vaut \(Q=\dfrac{95\,000}{80\,000}=1{,}1875\). Le coefficient annuel moyen est \(q=1{,}1875^{\dfrac14}\approx1{,}0440\) : le taux annuel moyen est donc environ \(4{,}40\,\%\).
+\end{frame}
+\begin{frame}{Définition et sens de variation de \(a^x\)}
+\begin{itemize}
+\item Donner du sens à \(a^x\).
+\item Relier base et variation.
+\item Lire des courbes.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Définition et sens de variation de \(a^x\)}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+À l'aide d'une calculatrice, compléter un tableau de valeurs de \(1{,}5^x\) et \(0{,}7^x\) pour \(x=-2,-1,0,1,2,3\). Tracer les points, conjecturer les variations et identifier le point commun aux deux courbes.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-02-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Définition et sens de variation de \(a^x\)}
+Pour \(a>0\), \(a^x\) est défini pour tout réel \(x\). La fonction est croissante si \(a>1\) et décroissante si \(0<a<1\).
+\end{frame}
+\begin{frame}{Définition et sens de variation de \(a^x\)}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Définition et sens de variation de \(a^x\)}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Puissances et propriétés algébriques}
+\begin{itemize}
+\item Transformer des puissances.
+\item Utiliser les exposants négatifs.
+\item Repérer une règle inapplicable.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Puissances et propriétés algébriques}
+Simplifier \(2^3\times2^{-5}\), \(5^{x+2}\div5^x\) et \((3^x)^2\). Inventer ensuite un contre-exemple numérique à \(a^x+a^y=a^{x+y}\).
+\end{frame}
+\begin{frame}{Puissances et propriétés algébriques}
+\(a^{x+y}=a^xa^y\), \(a^{x-y}=\dfrac{a^x}{a^y}\) et \((a^x)^y=a^{xy}\). Ces règles exigent une même base positive.
+\end{frame}
+\begin{frame}{Puissances et propriétés algébriques}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Puissances et propriétés algébriques}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Fonctions \(x\mapsto k a^x\) : variations et graphique}
+\begin{itemize}
+\item Étudier \(ka^x\).
+\item Combiner signe et variation.
+\item Relier formule et graphique.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Fonctions \(x\mapsto k a^x\) : variations et graphique}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Associer les quatre fonctions \(2^x\), \(0{,}6^x\), \(-2^x\) et \(-0{,}6^x\) à quatre courbes. Justifier chaque choix par le signe, le point d'ordonnée à l'origine et le sens de variation.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-02-3.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Fonctions \(x\mapsto k a^x\) : variations et graphique}
+Pour \(f(x)=ka^x\), le signe est celui de \(k\). Si \(k<0\), la multiplication par \(k\) inverse le sens de variation de \(a^x\).
+\end{frame}
+\begin{frame}{Fonctions \(x\mapsto k a^x\) : variations et graphique}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Fonctions \(x\mapsto k a^x\) : variations et graphique}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Taux d'évolution moyen}
+\begin{itemize}
+\item Calculer un taux moyen.
+\item Distinguer taux global et moyen.
+\item Interpréter un exposant \(\dfrac1n\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Taux d'évolution moyen}
+Le prix d'un service passe de \(18\) à \(23{,}50\) euros en cinq ans. Calculer le coefficient global, puis le coefficient annuel moyen et le taux annuel moyen. Vérifier en recomposant cinq fois l'évolution.
+\end{frame}
+\begin{frame}{Taux d'évolution moyen}
+Si \(Q\) est le coefficient global de \(n\) évolutions identiques, le coefficient moyen est \(q=Q^{\dfrac1n}\) et le taux moyen est \(q-1\).
+\end{frame}
+\begin{frame}{Taux d'évolution moyen}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Taux d'évolution moyen}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Lecture de représentations graphiques}
+\begin{itemize}
+\item Lire images et antécédents.
+\item Comparer deux modèles.
+\item Estimer graphiquement.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Lecture de représentations graphiques}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Deux offres commerciales sont modélisées par \(f(x)=120\times1{,}08^x\) et \(g(x)=180\times0{,}96^x\). Tracer les courbes sur \([0,12]\), lire leur point d'intersection et interpréter les zones où chaque valeur est la plus grande.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-02-4.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Lecture de représentations graphiques}
+Lire \(f(x)\) consiste à partir de \(x\) vers la courbe puis vers l'axe des ordonnées. Chercher un antécédent de \(y\) consiste à partir de \(y\) vers la courbe puis vers l'axe des abscisses.
+\end{frame}
+\begin{frame}{Lecture de représentations graphiques}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Lecture de représentations graphiques}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Équations exponentielles simples}
+\begin{itemize}
+\item Résoudre avec une même base.
+\item Approcher une solution.
+\item Vérifier la vraisemblance.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Équations exponentielles simples}
+Résoudre \(4^x=64\), \(9^x=\dfrac13\) et \(1{,}12^x=2\) : d'abord par même base lorsque c'est possible, puis numériquement pour la dernière. Encadrer la dernière solution entre deux entiers.
+\end{frame}
+\begin{frame}{Équations exponentielles simples}
+Pour résoudre \(a^x=b\) : utiliser une même base quand c'est possible ; sinon encadrer ou utiliser un outil numérique. Vérifier que \(b>0\).
+\end{frame}
+\begin{frame}{Équations exponentielles simples}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Équations exponentielles simples}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Modélisation par une fonction exponentielle}
+\begin{itemize}
+\item Construire un modèle exponentiel.
+\item Identifier les paramètres.
+\item Prévoir et interpréter.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Modélisation par une fonction exponentielle}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Une application compte \(12\,000\) utilisateurs au lancement et sa fréquentation augmente de \(9\,\%\) par mois. Construire \(f(t)\), calculer \(f(6)\), puis déterminer numériquement quand elle dépassera \(25\,000\) utilisateurs.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-02-5.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Modélisation par une fonction exponentielle}
+Une évolution relative constante de coefficient \(q\) se modélise par \(f(t)=V_0q^t\). \(V_0\) est la valeur initiale et \(q\) le coefficient par unité de temps.
+\end{frame}
+\begin{frame}{Modélisation par une fonction exponentielle}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Modélisation par une fonction exponentielle}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Bilan et évaluation du chapitre}
+\begin{itemize}
+\item Mobiliser les acquis du chapitre.
+\item Rédiger une modélisation.
+\item Corriger une erreur.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Bilan et évaluation du chapitre}
+À partir de quatre productions d'élèves, repérer et corriger : confusion taux/coefficient, propriété de puissances fausse, erreur de sens de variation et conclusion sans unité.
+\end{frame}
+\begin{frame}{Bilan et évaluation du chapitre}
+Pour valider un modèle exponentiel : identifier \(V_0\) et \(q\), calculer avec les unités, vérifier l'ordre de grandeur et interpréter le résultat.
+\end{frame}
+\begin{frame}{Bilan et évaluation du chapitre}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Bilan et évaluation du chapitre}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\end{document}

@@ -53,3 +53,4 @@ for k in ('courses','chapters','resources'):catalog[k][slot[k]:slot[k]]=fresh[k]
 manifest_io.save(manifest);manifest_io.write()
 (DIST/'js/enrichment-data.js').write_text('export const enrichment = '+json.dumps(plain(packs),ensure_ascii=False,indent=2)+';\n')
 print(f'Created {len(packs)} bilingual packs: {8*len(packs)} PDFs and {8*len(packs)} HTML reading editions.')
+

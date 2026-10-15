@@ -1,0 +1,116 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Differentiation, convexity and continuity}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Differentiation, convexity and continuity}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Differentiate a composite function; study variations and convexity; prove existence and uniqueness; approximate a solution.
+\end{frame}
+\begin{frame}{Differentiating a composite}
+If \(u\) is differentiable on \(I\) and \(v\) is differentiable on an interval containing \(u(I)\), then \((v\circ u)'=(v'\circ u)u'\). Domains must be checked before computing.
+\[ (u^n)'=nu'u^{n-1},\quad(e^u)'=u'e^u,\quad
+(\dfrac{1}{u})'=-\dfrac{u'}{u^2},\quad(\sqrt u)'=\dfrac{u'}{2\sqrt u}\quad(u>0).\]
+For example, \(f(x)=\sqrt{3x+1}\) is differentiable for \(x>-\dfrac{1}{3}\) and \(f'(x)=\dfrac{3}{2\sqrt{3x+1}}\). The sign of \(f'\) determines the variations of \(f\); the sign of \(f\) does not.
+\end{frame}
+\begin{frame}{Convexity}
+A function \(f\) is convex on an interval \(I\) if its curve lies below its chords: for \(x,y\in I\) and \(t\in[0,1]\),
+\[f((1-t)x+ty)\le(1-t)f(x)+tf(y).\]
+For a twice-differentiable function, the following equivalences are accepted without proof: \(f\) is convex; \(f'\) is increasing; \(f''\ge0\); the curve lies above all its tangents. The inequalities are reversed for a concave function. A point of inflection is a point where the curve changes convexity.
+\end{frame}
+\begin{frame}{Convexity}
+Suppose \(f''\ge0\). Fix \(a\) and set \(g(x)=f(x)-f(a)-f'(a)(x-a)\). Since \(f'\) is increasing, \(g'(x)=f'(x)-f'(a)\le0\) for \(x\le a\) and \(\ge0\) for \(x\ge a\). Thus \(g\) attains its minimum \(g(a)=0\) at \(a\), so \(f(x)\ge f(a)+f'(a)(x-a)\).
+\end{frame}
+\begin{frame}{Convexity}
+\(x^4\) is convex and \(f''(0)=0\), but \(0\) is not the abscissa of a point of inflection. \(x^3\) changes convexity at \(0\). The convexity of the exponential and its tangent at \(0\) give \(e^x\ge1+x\).
+\end{frame}
+\begin{frame}{Continuity and equations}
+\(f\) is continuous at \(a\) if \(\lim_{x\to a}f(x)=f(a)\). Every differentiable function is continuous. The converse is false: \(|x|\) is continuous at \(0\) but not differentiable at \(0\).
+\end{frame}
+\begin{frame}{Continuity and equations}
+If \(f\) is continuous on \([a,b]\), every real number between \(f(a)\) and \(f(b)\) has at least one preimage in \([a,b]\). If \(f\) is also strictly monotonic, this preimage is unique. One can also work on an open interval using the limits at the endpoints.
+\end{frame}
+\begin{frame}{Continuity and equations}
+\(f(x)=x^3+x-1\) is continuous on \([0,1]\). Since \(f(0)=-1\) and \(f(1)=1\), the IVT gives a zero in \(]0,1[\). Because \(f'(x)=3x^2+1>0\), it is unique. \(f(0.68)<0<f(0.69)\) provides a bracketing interval, without replacing the justifications of existence and uniqueness.
+\end{frame}
+\begin{frame}{Continuity and equations}
+For \(x\ne1\), set \(g(x)=\dfrac{x^2-1}{x-1}\), and set \(g(1)=a\). Since \(g(x)=x+1\) when \(x\ne1\), \(\lim_{x\to1}g(x)=2\). The function is continuous at \(1\) if and only if \(a=2\). The value at the point must therefore be compared with the limit, not replaced by it without justification.
+\end{frame}
+\begin{frame}{Continuity and equations}
+If \(u_n\to\ell\) and \(f\) is continuous at \(\ell\), then \(f(u_n)\to f(\ell)\). For a convergent recursive sequence \(u_{n+1}=f(u_n)\), we obtain \(\ell=f(\ell)\).
+\end{frame}
+\begin{frame}{Bisection}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For \(f\) continuous and \(f(a)f(b)<0\), compute \(m=\dfrac{a+b}{2}\). If \(f(m)=0\), stop; otherwise keep the half whose endpoints have images of opposite signs. After \(n\) steps, the length is \(\dfrac{b-a}{2^n}\). Taking the midpoint gives an error of at most half the length. The method does not guarantee uniqueness; this is proved separately.   \(y=x^3-3x\) and its tangent at the point of inflection.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-06-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Derivatives and graphical readings - 35 min.}
+
+Consider the function \(f\) defined on \(\R\) by \(f(x)=x^3-3x\). Let \(\mathcal C_f\) denote its graph.
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Calculate \(f' (x)\) and \(f'' (x)\), then draw up their sign tables.
+
+\item Deduce the variations of \(f\) and its intervals of convexity and concavity.
+
+\item Find the coordinates of the point of inflection of \(\mathcal C_f\) and an equation of the tangent at that point.
+
+\item Using limits, extrema and the intermediate value theorem, determine the number of real solutions of \(f(x)=1\).
+
+\item Explain, using this example, why continuity is not enough to guarantee the uniqueness of a solution.
+
+\end{enumerate}
+\end{frame}
+\end{document}

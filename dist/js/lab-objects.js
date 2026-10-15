@@ -91,6 +91,8 @@ export const sierpinskiArea = (level) => 0.75 ** level;
 
 /* ================================================================= UI */
 import { NS, css, palette, canvasIn, field, bind, loopFor } from "./object-kit.js";
+import { mountComplex } from "./complex-explorer.js";
+import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery-objects.js";
 
 /* ---------------------------------------------------------------- Galton */
@@ -179,6 +181,9 @@ function galton(root, { t, reduced, lang }) {
   root.querySelector("#gb-pascal").addEventListener("change", (e) => (pascal = e.target.checked));
   root.querySelector("#gb-theory").addEventListener("change", (e) => (theory = e.target.checked));
   root.querySelector("#gb-run").addEventListener("click", (e) => { if (reduced()) return; continuous = !continuous; e.currentTarget.setAttribute("aria-pressed", String(continuous)); e.currentTarget.textContent = continuous ? t("Arrêter", "Stop") : t("En continu", "Keep dropping"); });
+  o.cv.addEventListener('click',()=>drop(false));
+  o.cv.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();drop(false);}});
+  o.cv.setAttribute('aria-label',t('Planche de Galton : toucher ou Entrée pour lâcher une bille.','Galton board: tap or press Enter to drop a ball.'));
   reset(); o.redraw = () => draw(0);
   const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
   return stop;
@@ -246,101 +251,18 @@ function reuleauxLab(root, { t, reduced, lang }) {
   const psiEl = bind(root, "rl-psi", (v) => { psi = (v * Math.PI) / 180; playing = false; root.querySelector("#rl-play").textContent = t("Lecture", "Play"); root.querySelector("#rl-play").setAttribute("aria-pressed", "false"); });
   void psiEl;
   root.querySelector("#rl-play").addEventListener("click", (e) => { playing = !playing; e.currentTarget.textContent = playing ? t("Pause", "Pause") : t("Lecture", "Play"); e.currentTarget.setAttribute("aria-pressed", String(playing)); });
-  o.redraw = () => draw(0);
+  let dragging=false;
+  o.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;dragging=true;playing=false;o.cv.setPointerCapture(e.pointerId);});
+  o.cv.addEventListener('pointermove',e=>{if(!dragging)return;const [x,y]=o.point(e);psi=Math.atan2(o.H/2-y,x-o.W/2);root.querySelector('#rl-psi').value=((psi*180/Math.PI)%360+360)%360;root.querySelector('#rl-psi-out').textContent=Math.round(((psi*180/Math.PI)%360+360)%360);root.querySelector('#rl-play').setAttribute('aria-pressed','false');root.querySelector('#rl-play').textContent=t('Lecture','Play');draw(0);});
+  for(const ev of ['pointerup','pointercancel','view-gesture'])o.cv.addEventListener(ev,()=>dragging=false);
+  o.cv.style.cursor='grab';o.redraw=()=>draw(0);
   return loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
 }
 
 /* -------------------------------------------------------------- Platonic */
-function platonicLab(root, { t, reduced }) {
-  let name = "dodecahedron", yaw = 0.5, pitch = 0.45, spin = !reduced(), tab = "solids", p = 3, q = 3, drag = null, fan = 0, playingFan = false;
-  const solids = Object.fromEntries(SOLIDS.map((s) => [s, platonic(s)]));
-  const NAMES = { tetrahedron: ["Tétraèdre", "Tetrahedron"], cube: ["Cube", "Cube"], octahedron: ["Octaèdre", "Octahedron"], dodecahedron: ["Dodécaèdre", "Dodecahedron"], icosahedron: ["Icosaèdre", "Icosahedron"] };
-  root.innerHTML = `
-    <div class="obj-tabs" role="tablist" aria-label="${t("Vues", "Views")}">
-      <button class="btn btn-secondary" role="tab" id="pl-t-solids" aria-selected="true" type="button">${t("Les cinq solides", "The five solids")}</button>
-      <button class="btn btn-secondary" role="tab" id="pl-t-why" aria-selected="false" type="button">${t("Pourquoi seulement cinq ?", "Why only five?")}</button></div>
-    <div id="pl-solids">
-      <p class="act-help">${t("Fais glisser le solide pour le tourner. Chaque face est le même polygone régulier, chaque sommet a le même nombre de faces.", "Drag the solid to turn it. Every face is the same regular polygon, every vertex has the same number of faces.")}</p>
-      <div class="obj-stage" id="pl-stage"></div>
-      <div class="act-buttons" role="group" aria-label="${t("Solide", "Solid")}">${SOLIDS.map((s) => `<button class="btn btn-secondary" data-solid="${s}" type="button" aria-pressed="${s === name}">${t(...NAMES[s])}</button>`).join("")}</div>
-      <div class="act-controls"><label class="act-check"><input id="pl-spin" type="checkbox" ${spin ? "checked" : ""}> ${t("Rotation automatique", "Auto-rotate")}</label></div>
-      <p class="act-readout" id="pl-read" role="status" aria-live="polite"></p>
-    </div>
-    <div id="pl-why" hidden>
-      <p class="act-help">${t("Autour d’un sommet d’un solide convexe, on place q polygones réguliers à p côtés. Pour que le sommet fasse un « coin » en relief, la somme de leurs angles doit rester inférieure à 360°. Choisis p et q, ou lance l’animation.", "Around a vertex of a convex solid we place q regular p-gons. For the vertex to be a raised corner, the sum of their angles must stay below 360°. Choose p and q, or play the animation.")}</p>
-      <div class="pl-why-grid"><div class="obj-stage" id="pl-fan-stage"></div><div id="pl-table"></div></div>
-      <div class="act-controls">
-        <button class="btn btn-primary" id="pl-play" type="button">${t("Lancer l’animation", "Play the animation")}</button>
-        <button class="btn btn-secondary" id="pl-more" type="button">${t("Ajouter un polygone", "Add a polygon")}</button>
-        <button class="btn-quiet" id="pl-less" type="button">${t("En retirer un", "Remove one")}</button></div>
-      <p class="act-readout" id="pl-fan-read" role="status" aria-live="polite"></p>
-    </div>`;
-  const o = canvasIn(root.querySelector("#pl-stage"), 640 / 400), g = o.g;
-  const fo = canvasIn(root.querySelector("#pl-fan-stage"), 1), fg = fo.g;
-  const read = root.querySelector("#pl-read"), fanRead = root.querySelector("#pl-fan-read");
-  const rot = (v) => { const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), x1 = cy * v[0] - sy * v[1], y1 = sy * v[0] + cy * v[1]; return [x1, v[2] * cp + y1 * sp, y1 * cp - v[2] * sp]; };
-  function drawSolid(dt) {
-    const C = palette(), S = solids[name]; if (spin && !drag) yaw += dt * 0.6;
-    g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
-    const sc = 150, cx = o.W / 2, cy = o.H / 2, P = S.verts.map(rot), light = [-0.35, -0.55, 0.76];
-    const faces = S.faces.map((f, i) => { const nr = rot(f.n), depth = f.verts.reduce((s, v) => s + P[v][2], 0) / f.verts.length; return { f, i, depth, front: nr[2] < 0 || true, nr }; }).sort((a, b) => b.depth - a.depth);
-    faces.forEach(({ f, i, nr }) => {
-      const shade = 0.55 + 0.45 * Math.abs(nr[0] * light[0] + nr[2] * light[1] * 0 + nr[1] * light[2] * 0 + nr[2] * light[2] * 0.6 + nr[1] * light[1] * 0.4);
-      g.beginPath(); f.verts.forEach((v, k) => { const X = cx + sc * P[v][0], Y = cy - sc * P[v][1]; k ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.closePath();
-      g.globalAlpha = 0.78; g.fillStyle = C.c[i % 8]; g.fill(); g.globalAlpha = shade * 0.25; g.fillStyle = "#000"; g.fill(); g.globalAlpha = 1;
-      g.strokeStyle = C.ink; g.lineWidth = 2; g.lineJoin = "round"; g.stroke();
-    });
-    g.fillStyle = C.ink; P.forEach((v) => { g.beginPath(); g.arc(cx + sc * v[0], cy - sc * v[1], 3.4, 0, TAU); g.fill(); });
-  }
-  const fmt = (x) => String(Math.round(x * 100) / 100);
-  function info() {
-    const S = solids[name], a = interiorAngle(S.p);
-    read.innerHTML = `<strong>${t(...NAMES[name])}</strong> · {${S.p}, ${S.q}} : ${S.F} ${t(`faces à ${S.p} côtés`, `faces with ${S.p} sides`)}, ${S.q} ${t("faces par sommet", "faces at each vertex")}. V = <strong>${S.V}</strong>, E = <strong>${S.E}</strong>, F = <strong>${S.F}</strong> ; V − E + F = <strong>${S.V - S.E + S.F}</strong>. ${t("Angle autour d’un sommet", "Angle around a vertex")} : ${S.q} × ${fmt(a)}° = <strong>${fmt(S.q * a)}°</strong> &lt; 360°.`;
-    root.querySelectorAll("[data-solid]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.solid === name)));
-  }
-  // ----- the explanation: q regular p-gons around a vertex
-  const table = root.querySelector("#pl-table");
-  function drawTable() {
-    table.innerHTML = `<table class="act-table pl-table" aria-label="${t("Somme des angles autour d’un sommet", "Sum of angles around a vertex")}"><thead><tr><th>p \\ q</th>${[3, 4, 5, 6].map((k) => `<th scope="col">${k}</th>`).join("")}</tr></thead><tbody>${[3, 4, 5, 6].map((pp) => `<tr><th scope="row">${pp} ${t("côtés", "sides")}</th>${[3, 4, 5, 6].map((qq) => { const v = vertexVerdict(pp, qq), sel = pp === p && qq === q; const label = v === "solid" ? t(NAMES[SOLIDS.find((s) => SCHLAFLI[s][0] === pp && SCHLAFLI[s][1] === qq)][0], NAMES[SOLIDS.find((s) => SCHLAFLI[s][0] === pp && SCHLAFLI[s][1] === qq)][1]) : v === "flat" ? t("plat", "flat") : t("trop", "too much"); return `<td><button class="pl-cell ${v}${sel ? " sel" : ""}" data-p="${pp}" data-q="${qq}" type="button" aria-label="p=${pp}, q=${qq} : ${qq * interiorAngle(pp)}°, ${label}">${fmt(qq * interiorAngle(pp))}°<span>${label}</span></button></td>`; }).join("")}</tr>`).join("")}</tbody></table>`;
-  }
-  function drawFan(dt) {
-    const C = palette(); if (playingFan) { fan += dt * 1.1; const seq = PLATONIC_CASES; const i = Math.floor(fan) % seq.length; if (seq[i].p !== p || seq[i].q !== q) { p = seq[i].p; q = seq[i].q; drawTable(); } }
-    const k = Math.min(1, playingFan ? fan % 1 * 2 : 1), cx = fo.W / 2, cy = fo.H / 2, R = 150, a = (interiorAngle(p) * Math.PI) / 180, side = R * 0.62;
-    fg.clearRect(0, 0, fo.W, fo.H); fg.fillStyle = C.sunken; fg.fillRect(0, 0, fo.W, fo.H);
-    const verdict = vertexVerdict(p, q), total = q * a;
-    for (let i = 0; i < q; i++) {
-      const a0 = -Math.PI / 2 + i * a, a1 = a0 + a, grow = i === q - 1 ? k : 1;
-      // a corner of a regular p-gon with the vertex at the centre: the two sides of length `side`, closed by the rest of the polygon
-      const poly = [[0, 0]]; for (let m = 0; m < p; m++) { const turn = m * ((TAU) / p); const ux = Math.cos(a0 + a / 2) , uy = Math.sin(a0 + a / 2); void ux; void uy; }
-      const pts = []; let x = 0, y = 0, dir = a0;
-      pts.push([x, y]); for (let m = 0; m < p - 1; m++) { x += side * Math.cos(dir); y += side * Math.sin(dir); pts.push([x, y]); dir += TAU / p; }
-      void poly; void a1;
-      fg.beginPath(); pts.forEach(([px, py], m) => { const X = cx + px * grow, Y = cy + py * grow; m ? fg.lineTo(X, Y) : fg.moveTo(X, Y); }); fg.closePath();
-      fg.globalAlpha = verdict === "overlap" && i === q - 1 ? 0.55 : 0.75; fg.fillStyle = verdict === "overlap" && i >= Math.floor(TAU / a) ? C.neg : C.c[i % 8]; fg.fill(); fg.globalAlpha = 1; fg.strokeStyle = C.ink; fg.lineWidth = 2; fg.stroke();
-    }
-    // the gap (angle missing to 360 degrees)
-    if (total < TAU - 1e-9) { fg.fillStyle = C.pos; fg.globalAlpha = 0.35; fg.beginPath(); fg.moveTo(cx, cy); fg.arc(cx, cy, 70, -Math.PI / 2 + total, -Math.PI / 2 + TAU); fg.closePath(); fg.fill(); fg.globalAlpha = 1; }
-    fg.fillStyle = C.ink; fg.beginPath(); fg.arc(cx, cy, 5, 0, TAU); fg.fill();
-    fg.fillStyle = C.ink; fg.font = "700 22px system-ui"; fg.textAlign = "left"; fg.fillText(`${q} × ${fmt(interiorAngle(p))}° = ${fmt(total * 180 / Math.PI)}°`, 14, 30);
-    const solid = SOLIDS.find((s) => SCHLAFLI[s][0] === p && SCHLAFLI[s][1] === q);
-    const msg = verdict === "solid" ? t(`< 360° : il reste ${fmt(360 - (total * 180) / Math.PI)}° de vide, on peut refermer le sommet : ${NAMES[solid][0]}.`, `< 360°: ${fmt(360 - (total * 180) / Math.PI)}° of gap remain, the vertex can be closed: ${NAMES[solid][1]}.`) : verdict === "flat" ? t("= 360° : les polygones couvrent le plan, sans relief : aucun solide.", "= 360°: the polygons tile the plane, no relief: no solid.") : t("> 360° : les polygones se chevauchent, impossible : aucun solide.", "> 360°: the polygons overlap, impossible: no solid.");
-    if (fanRead.textContent !== msg) fanRead.textContent = msg;
-    fg.fillStyle = verdict === "solid" ? C.pos : C.neg; fg.font = "600 15px system-ui"; fg.fillText(verdict === "solid" ? t("solide possible", "solid possible") : verdict === "flat" ? t("pavage plat", "flat tiling") : t("impossible", "impossible"), 14, 54);
-  }
-  const showTab = (name2) => { tab = name2; root.querySelector("#pl-solids").hidden = name2 !== "solids"; root.querySelector("#pl-why").hidden = name2 !== "why"; ["solids", "why"].forEach((k) => root.querySelector(`#pl-t-${k}`).setAttribute("aria-selected", String(k === name2))); if (name2 === "why") { fan = 0; drawTable(); } };
-  root.querySelector("#pl-t-solids").addEventListener("click", () => showTab("solids"));
-  root.querySelector("#pl-t-why").addEventListener("click", () => showTab("why"));
-  root.querySelectorAll("[data-solid]").forEach((b) => b.addEventListener("click", () => { name = b.dataset.solid; info(); }));
-  root.querySelector("#pl-spin").addEventListener("change", (e) => (spin = e.target.checked));
-  o.cv.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, y: e.clientY }; o.cv.setPointerCapture(e.pointerId); });
-  o.cv.addEventListener("pointermove", (e) => { if (!drag) return; yaw += (e.clientX - drag.x) * 0.01; pitch = clampN(pitch + (e.clientY - drag.y) * 0.008, -1.45, 1.45); drag = { x: e.clientX, y: e.clientY }; });
-  const endDrag = () => { drag = null; }; o.cv.addEventListener("pointerup", endDrag); o.cv.addEventListener("pointercancel", endDrag);
-  table.addEventListener("click", (e) => { const b = e.target.closest(".pl-cell"); if (!b) return; playingFan = false; p = Number(b.dataset.p); q = Number(b.dataset.q); root.querySelector("#pl-play").textContent = t("Lancer l’animation", "Play the animation"); drawTable(); });
-  root.querySelector("#pl-play").addEventListener("click", (e) => { if (reduced()) { p = (p % 6) + (q === 6 ? 1 : 0) || 3; q = q === 6 ? 3 : q + 1; if (p > 6) p = 3; drawTable(); return; } playingFan = !playingFan; fan = 0; e.currentTarget.textContent = playingFan ? t("Arrêter l’animation", "Stop the animation") : t("Lancer l’animation", "Play the animation"); });
-  root.querySelector("#pl-more").addEventListener("click", () => { playingFan = false; q = Math.min(7, q + 1); drawTable(); });
-  root.querySelector("#pl-less").addEventListener("click", () => { playingFan = false; q = Math.max(2, q - 1); drawTable(); });
-  info(); drawTable(); o.redraw = () => drawSolid(0); fo.redraw = () => drawFan(0);
-  return loopFor((dt) => { if (tab === "solids") drawSolid(reduced() ? 0 : dt); else drawFan(reduced() ? 0 : dt); }, reduced);
+function platonicLab(root, options) {
+  const names = {tetrahedron:['Tétraèdre','Tetrahedron'],cube:['Cube','Cube'],octahedron:['Octaèdre','Octahedron'],dodecahedron:['Dodécaèdre','Dodecahedron'],icosahedron:['Icosaèdre','Icosahedron']};
+  return mountPlatonic(root, options, Object.fromEntries(SOLIDS.map(id=>[id,platonic(id)])), names, SCHLAFLI, interiorAngle, vertexVerdict);
 }
 
 /* ------------------------------------------------------------ Chaos game */
@@ -396,11 +318,11 @@ function chaos(root, { t, reduced, lang }) {
   return loopFor(() => draw(), reduced);
 }
 
-export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS };
+export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, complex: mountComplex, ...GALLERY_OBJECTS };
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
-export function mountObject(id, root, { lang, reduced }) {
+export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);
-  const stop = OBJECTS[id](root, { t, reduced: typeof reduced === "function" ? reduced : () => !!reduced, lang });
+  const stop = OBJECTS[id](root, { ...options, t, reduced: typeof reduced === "function" ? reduced : () => !!reduced, lang });
   return stop || (() => {});
 }
 void NS;

@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Differentiation, variation and optimisation}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Differentiation, variation and optimisation}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Calculate a derivative on its domain; study variation and extrema; compare curves; optimise; use symmetries.
+
+\textbf{Prerequisites.} Derivative at a point, algebraic calculation, sign of a quadratic, intervals.
+
+\textbf{Yearly reference point.} 1-10 December: 8 hours, consolidation on the 15th and 17th
+\end{frame}
+\begin{frame}{Derivative function and standard functions}
+A function is differentiable on an interval when it is differentiable at each of its points; its derivative associates with x the number \(f\prime(x)\). The standard derivatives are: constant \(\mapsto0\); \(x\mapsto1\); \(x^2\mapsto2x\); \(x^3\mapsto3x^2\); \(\dfrac{1}{x}\mapsto -\dfrac{1}{x^2}\) for \(x\ne0\); \(\sqrt x\mapsto \dfrac{1}{2\sqrt x}\) for \(x>0\). For \(n\in\Z\), \((x^n)\prime=nx^{n-1}\) on its domain of differentiability; for \(n=0\), the derivative is 0 directly.
+\end{frame}
+\begin{frame}{Derivative function and standard functions}
+For \(f(x)=x^{-3}\), the domain is \(\R\setminus\{0\}\) and \(f\prime (x)=-3x^{-4}=-\dfrac{3}{x^4}\). For \(g(x)=\sqrt x\), the function exists at 0, its standard derivative only for \(x>0\).
+\end{frame}
+\begin{frame}{Derivative function and standard functions}
+The domain of differentiability may be smaller than the domain of definition.
+\end{frame}
+\begin{frame}{Derivative function and standard functions}
+Differentiate \(x^5\), \(x^{-2}\) and \(\sqrt x\), stating the domains.
+\end{frame}
+\begin{frame}{Sum, product, reciprocal and quotient}
+For differentiable u and v, \((u+v)\prime=u\prime+v\prime\), \((\lambda u)\prime=\lambda u\prime\), \((uv)\prime=u\prime v+uv\prime\). Where \(v\ne0\), \((\dfrac{1}{v})\prime =-\dfrac{v\prime}{v^2}\) and \((\dfrac{u}{v})\prime =\dfrac{u\prime v-uv\prime}{v^2}\).
+\end{frame}
+\begin{frame}{Sum, product, reciprocal and quotient}
+For \(f(x)=\dfrac{x^2+1}{x-1}\), \(x\ne1\), \(f\prime (x)=\dfrac{[2x(x-1)-(x^2+1)]}{(x-1)^2}=\dfrac{x^2-2x-1}{(x-1)^2}\). Keeping the brackets avoids changing the sign of a single term instead of the whole numerator.
+\end{frame}
+\begin{frame}{Sum, product, reciprocal and quotient}
+The derivative of a product is not the product of the derivatives; the derivative of a quotient is not their quotient.
+\end{frame}
+\begin{frame}{Sum, product, reciprocal and quotient}
+Differentiate \((x^2+1)(3x-2)\), then \(\dfrac{1}{x^2+1}\).
+\end{frame}
+\begin{frame}{Sign of the derivative and extrema}
+On an interval I, if \(f\prime\geq0\), f is increasing; if \(f\prime\leq0\), it is decreasing; if \(f\prime=0\) everywhere, it is constant. A strictly positive derivative implies strict increase. If f has a local extremum at an interior point where it is differentiable, its derivative is zero there. The converse is false.
+\end{frame}
+\begin{frame}{Sign of the derivative and extrema}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(f(x)=x^3-3x\): \(f\prime(x)=3(x-1)(x+1)\). f increases on \((-\infty,-1]\), decreases on \([-1,1]\), increases on \([1,+\infty)\); local maximum \(f(-1)=2\), local minimum \(f(1)=-2\). Neither of these extrema is global on \(\R\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-06-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Sign of the derivative and extrema}
+The theorem applies on an interval. A function can decrease on two separate intervals without decreasing on their union.
+\end{frame}
+\begin{frame}{Sign of the derivative and extrema}
+Study \(f(x)=x^2-4x+1\) on \([0,3]\) and give its extrema on this interval.
+\end{frame}
+\begin{frame}{Parity, inequalities and comparison}
+On a domain symmetric about 0, f is even if \(f(-x)=f(x)\) and odd if \(f(-x)=-f(x)\). The curve of an even function is symmetric about the y-axis; that of an odd function about the origin. To compare f and g, we study the sign of \(f-g\), possibly with its derivative.
+\end{frame}
+\begin{frame}{Parity, inequalities and comparison}
+For \(x>0\), \(h(x)=x+\dfrac{1}{x}-2\) has derivative \(\dfrac{x^2-1}{x^2}\). It decreases up to 1 then increases; \(h(1)=0\), so \(x+\dfrac{1}{x}\geq 2\). Equality is obtained only at 1.
+\end{frame}
+\begin{frame}{Parity, inequalities and comparison}
+Check the domain before parity. The sign of \(f\prime-g\prime\) tells us about the variation of \(f-g\), not directly about its sign.
+\end{frame}
+\begin{frame}{Parity, inequalities and comparison}
+Study the parity of \(x^4+x^2\) and \(x^3-x\); prove \(x^2+1\geq2x\).
+\end{frame}
+\begin{frame}{Optimisation}
+Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints.
+\end{frame}
+\begin{frame}{Optimisation}
+An open box has a square base of side x and height \(6-x\), with \(0\le x\le6\). Its volume \(V(x)=x^2(6-x)\) has derivative \(V\prime(x)=12x-3x^2=3x(4-x)\), positive on \([0,4]\) and negative on \([4,6]\). The maximum volume is \(V(4)=32\).
+\end{frame}
+\begin{frame}{Optimisation}
+A numerical value produced by an algorithm is not a proof of a minimum or of convergence.
+\end{frame}
+\begin{frame}{Optimisation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+A rectangle of perimeter 12 m has width x. Determine the maximum area by differentiation.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-06-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

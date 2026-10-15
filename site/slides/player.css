@@ -104,3 +104,4 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
   #prog{position:fixed}
   #live{max-height:none}
 }
+.canvas-navigation{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:6px;font:16px system-ui}.canvas-navigation button{min-width:44px;min-height:44px;padding:4px 8px;font-size:20px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:var(--panel);cursor:pointer}.canvas-navigation output{color:var(--muted);margin-left:6px}

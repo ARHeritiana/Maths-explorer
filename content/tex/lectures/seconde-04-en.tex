@@ -1,0 +1,174 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Real numbers and intervals}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Real numbers and intervals}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Sets of numbers}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{itemize}
+
+\item \(\N\): natural numbers; \(\Z\): integers.
+
+\item \(\D\): decimal numbers, of the form \(a/10^n\) with \(a\in\Z\), \(n\in\N\).
+
+\item \(\Q\): rational numbers, of the form \(a/b\) with \(a,b\in\Z\), \(b\ne0\).
+
+\item \(\R\): real numbers, represented by the abscissae of the points of a graduated line. A real number that is not rational is \textbf{irrational}.
+
+\end{itemize}
+
+\[\N\subsetneq\Z\subsetneq\D\subsetneq\Q\subsetneq\R.\]
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/seconde-04-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Sets of numbers}
+Give the smallest of the five sets containing each of the numbers: \(-95\); \(7.29\); \(5/3\); \(\sqrt{25}\); \(\sqrt2\); \(\pi\); \(0.0002\).
+\end{frame}
+\begin{frame}{Worked answer: Sets of numbers}
+\(-95\in\Z\); \(7.29\in\D\); \(5/3\in\Q\); \(\sqrt{25}=5\in\N\); \(\sqrt2,\pi\in\R\setminus\Q\); \(0.0002=2/10^4\in\D\). The irrationality of \(\pi\) is accepted here.
+\end{frame}
+\begin{frame}{Two proofs by contradiction}
+To prove a statement, assume its negation, deduce a contradiction, then conclude that the statement is true.
+\end{frame}
+\begin{frame}{Two proofs by contradiction}
+\(\dfrac13\) is not a decimal number.
+\end{frame}
+\begin{frame}{Two proofs by contradiction}
+Suppose \(1/3=a/10^n\) with \(a\in\Z\), \(n\in\N\). Then \(10^n=3a\) would be a multiple of \(3\). Yet \(10\equiv1\) modulo \(3\), so \(10^n\) leaves remainder \(1\) on division by \(3\) (the divisibility rule for \(3\) can also be used). Contradiction. Hence \(1/3\notin\D\).
+\end{frame}
+\begin{frame}{Two proofs by contradiction}
+\(\sqrt2\) is irrational.
+\end{frame}
+\begin{frame}{Two proofs by contradiction}
+Suppose \(\sqrt2=p/q\) with \(p,q\in\N\), \(q\ne0\), and \(p/q\) in lowest terms. Then \(p^2=2q^2\), so \(p^2\) is even. If \(p\) were odd, its square would be odd: so \(p\) is even. Write \(p=2k\). We get \(4k^2=2q^2\), then \(q^2=2k^2\); so \(q\) is even in turn. Thus \(2\) divides \(p\) and \(q\), contradicting irreducibility. Hence \(\sqrt2\notin\Q\).
+\end{frame}
+\begin{frame}{Intervals of the real line}
+For two real numbers \(a<b\), intervals describe the real numbers lying between two endpoints, with or without the endpoints. A square bracket includes the endpoint, a parenthesis excludes it. The symbols \(-\infty,+\infty\) are not real numbers and always take a parenthesis.
+\end{frame}
+\begin{frame}{Intervals of the real line}
+The strictly negative real numbers form \((-\infty,0)\): \(0\) is excluded. \([a,a]=\{a\}\); \((a,a)=\varnothing\).
+\end{frame}
+\begin{frame}{Intervals of the real line}
+Write as an interval then represent: \(2\leq x\leq5\); \(x>4\); \(-6<x\leq2\); \(x<0\).
+\end{frame}
+\begin{frame}{Worked answer: Intervals of the real line}
+\([2,5]\); \((4,+\infty)\); \((-6,2]\); \((-\infty,0)\). On the number line, mark the endpoints, then show each one as included or excluded.
+\end{frame}
+\begin{frame}{Intersection and union of intervals}
+\(\,I\cap J\) corresponds to the condition “belonging to \(I\) \textbf{and} to \(J\)”; \(I\cup J\) corresponds to “belonging to \(I\) \textbf{or} to \(J\)”. A union of intervals is not always an interval.
+\end{frame}
+\begin{frame}{Intersection and union of intervals}
+With \(I=[0,12]\) and \(J=[3,20]\), determine \(I\cap J\) and \(I\cup J\).
+\end{frame}
+\begin{frame}{Worked answer: Intersection and union of intervals}
+\(I\cap J=[3,12]\) and \(I\cup J=[0,20]\).
+\end{frame}
+\begin{frame}{Intersection and union of intervals}
+Complete, justifying with representations on a number line.
+\end{frame}
+\begin{frame}{Worked answer: Intersection and union of intervals}
+For each intersection, keep the points common to both representations; for each union, keep all the points of at least one. In the last row, \(0\) belongs to neither interval: the union cannot be replaced by \((-2,3]\).
+\end{frame}
+\begin{frame}{Absolute value and distance}
+\(|x|\) is the distance from the real number \(x\) to \(0\); \(|x|\geq0\) and
+\[|x|=\begin{cases}x&\text{if }x\geq0,\\-x&\text{if }x<0.\end{cases}\]
+The distance between \(a\) and \(b\) is \(|b-a|\). For \(a\in\R\) and \(r\geq0\):
+\[|x-a|\leq r\iff x\in[a-r,a+r],\qquad |x-a|<r\iff x\in(a-r,a+r).\]
+\end{frame}
+\begin{frame}{Absolute value and distance}
+Calculate \(|3.2|\), \(|-1.6|\), \(|\sqrt3-2|\), then the distances between \(2\) and \(5\), \(2\) and \(-5\), \(-2\) and \(-5\).
+\end{frame}
+\begin{frame}{Worked answer: Absolute value and distance}
+\(3.2\); \(1.6\); \(2-\sqrt3\) since \(\sqrt3<2\). The distances are \(3\), \(7\) and \(3\).
+\end{frame}
+\begin{frame}{Absolute value and distance}
+Solve: \(|x-7/3|=14\); \(|x-2|\leq3\); \(|x+3|<5\).
+\end{frame}
+\begin{frame}{Worked answer: Absolute value and distance}
+For the first equation, \(x-7/3=14\) or \(x-7/3=-14\), so \(S=\{-35/3,49/3\}\). Then \(|x-2|\leq3\iff x\in[-1,5]\). Finally \(|x+3|=|x-(-3)|<5\iff x\in(-8,2)\).
+\end{frame}
+\begin{frame}{Absolute value and distance}
+Write \(x\in[4,10]\) as an inequality with an absolute value.
+\end{frame}
+\begin{frame}{Worked answer: Absolute value and distance}
+The centre is \((4+10)/2=7\) and the radius \((10-4)/2=3\): \(|x-7|\leq3\).
+\end{frame}
+\begin{frame}{Bounds and approximations}
+To bound \(x\) is to give \(a\leq x\leq b\); the width is \(b-a\). An approximation from below is less than or equal to \(x\); an approximation from above is greater than or equal to it. Rounding chooses the nearest value at the required precision.
+Significant figures are counted from the first nonzero digit; the displayed precision must suit the context.
+\end{frame}
+\begin{frame}{Bounds and approximations}
+Bound \(\sqrt2\) between two consecutive hundredths. Give its rounding to the nearest hundredth. Round \(0.004567\) to three significant figures, then \(12345\) to three significant figures in scientific notation.
+\end{frame}
+\begin{frame}{Worked answer: Bounds and approximations}
+\(1.41^2=1.9881<2<2.0164=1.42^2\), so \(1.41<\sqrt2<1.42\) (width \(0.01\)). The rounding to the nearest hundredth is \(1.41\). The other roundings are \(0.00457\) and \(1.23\times10^4\).
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def encadre_racine2(p):
+    # p entier naturel ; calculs entiers exacts
+    q = 10**p
+    k = 0
+    while (k+1)**2 <= 2*q*q:
+        k = k+1
+    return k/q, (k+1)/q
+\end{verbatim}
+\end{frame}
+\begin{frame}{Bounds and approximations}
+Explain why this function bounds \(\sqrt2\). What does it return for \(p=2\)? Why does it terminate?
+\end{frame}
+\begin{frame}{Worked answer: Bounds and approximations}
+The loop looks for the largest integer \(k\) such that \(k^2\leq2q^2\). On exit, \(k^2\leq2q^2<(k+1)^2\), so \(k/q\leq\sqrt2<(k+1)/q\). For \(p=2\), it returns \((1.41,1.42)\). Since \((2q)^2>2q^2\), the counter eventually reaches a value that makes the test false. The final divisions are floating-point approximations; the square tests are exact.
+\end{frame}
+\end{document}

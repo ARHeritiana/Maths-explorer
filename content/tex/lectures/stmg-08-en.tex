@@ -1,0 +1,207 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Revision and consolidation}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Revision and consolidation}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Revision strategy}
+Effective revision alternates retrieval from memory, explicit correction of mistakes and reuse in a problem. Passively rereading the course is not enough: you must attempt a question without a model, compare your answer, then redo the question after a delay.
+\end{frame}
+\begin{frame}{Diagnosis of what has been learned}
+\begin{itemize}
+\item Identify what has been learned.
+\item Classify the mistakes.
+\item Plan the remediation.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Diagnosis of what has been learned}
+Answer the following 14 questions without notes, two per chapter. Record each error in a grid: knowledge, choice of method, calculation, reading, written presentation. Then choose two personal priorities.
+
+\begin{enumerate}
+\setcounter{enumi}{0}\item Sequences. The sequence \((u_n)\) is arithmetic with first term \(u_0=7\) and common difference \(-3\). Calculate \(u_{10}\). \ldots{}
+
+\item Sequences. The sequence \((v_n)\) is geometric with first term \(v_0=200\) and common ratio \(1.05\). Calculate \(v_2\). \ldots{}
+
+\item Exponential functions. State the direction of variation of \(f(x)=3\times0.8^x\) on \([0,+\infty)\). \ldots{}
+
+\item Exponential functions. A quantity of 500 increases by \(4\%\) per year. Write the model \(f(x)\) after \(x\) years. \ldots{}
+
+\item Common logarithm. Solve \(10^x=0.01\). \ldots{}
+
+\item Common logarithm. Calculate \(\log(1000)-\log(10)\). \ldots{}
+
+\item Reciprocal function. Solve \(\dfrac1x=4\) for \(x\neq0\). \ldots{}
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Worked answer: Diagnosis of what has been learned}
+\textbf{1.} \(-23\) \ensuremath{\cdot} \textbf{2.} \(220.5\) \ensuremath{\cdot} \textbf{3.} decreasing \ensuremath{\cdot} \textbf{4.} \(500\times1.04^x\) \ensuremath{\cdot} \textbf{5.} \(x=-2\) \ensuremath{\cdot} \textbf{6.} \(2\) \ensuremath{\cdot} \textbf{7.} \(0.25\)
+\end{frame}
+\begin{frame}{Diagnosis of what has been learned}
+\begin{enumerate}
+\setcounter{enumi}{7}\item Reciprocal function. State the direction of variation of \(x\mapsto\dfrac1x\) on \((0,+\infty)\). \ldots{}
+
+\item Two variables. With the fit \(y=2x+3\), estimate \(y\) for \(x=10\). \ldots{}
+
+\item Two variables. Give the mean point of the series \(x\): 1, 2, 3 and \(y\): 4, 6, 8. \ldots{}
+
+\item Conditional probability. \(P(A)=0.4\) and \(P_A(B)=0.5\). Calculate \(P(A\cap B)\). \ldots{}
+
+\item Conditional probability. \(P(A\cap B)=0.12\) and \(P(A)=0.3\). Calculate \(P_A(B)\). \ldots{}
+
+\item Binomial distribution. \(X\) follows the distribution \(\mathcal B(3,0.5)\). Calculate \(P(X=3)\). \ldots{}
+
+\item Random variable. \(X\) takes the values 0, 1, 2 with probabilities \(0.5\), \(0.3\), \(0.2\). Calculate \(E(X)\). \ldots{}
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Worked answer: Diagnosis of what has been learned}
+\textbf{8.} decreasing \ensuremath{\cdot} \textbf{9.} \(23\) \ensuremath{\cdot} \textbf{10.} \(G(2,6)\) \ensuremath{\cdot} \textbf{11.} \(0.2\) \ensuremath{\cdot} \textbf{12.} \(0.4\) \ensuremath{\cdot} \textbf{13.} \(0.125\) \ensuremath{\cdot} \textbf{14.} \(0.7\)
+\end{frame}
+\begin{frame}{Diagnosis of what has been learned}
+The diagnosis is used to choose the remediation: recognise the mistake, recall the useful rule, redo a similar question, then check without help.
+\end{frame}
+\begin{frame}{Diagnosis of what has been learned}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Diagnosis of what has been learned}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Reactivation: exponential functions}
+\begin{itemize}
+\item Reactivate exponential models.
+\item Solve and interpret.
+\item Check the units.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Reactivation: exponential functions}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+A value of \(18{,}000\) increases by \(3.5\%\) per year. Write the model, calculate the value after eight years and determine when it will exceed \(25{,}000\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-08-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Reactivation: exponential functions}
+An exponential function models a constant relative change. First identify the initial value and the multiplier.
+\end{frame}
+\begin{frame}{Reactivation: exponential functions}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Reactivation: exponential functions}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Reactivation: common logarithm (base 10)}
+\begin{itemize}
+\item Reactivate logarithms.
+\item Solve an equation.
+\item Check the conditions.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Reactivation: common logarithm (base 10)}
+Solve \(10^x=340\), \(1.06^n=2\) and \(1.06^n\geq2\). For each answer, distinguish the real value, the approximate value and the minimum integer index.
+\end{frame}
+\begin{frame}{Reactivation: common logarithm (base 10)}
+The logarithm turns an exponential equation into an equation in the exponent. Conditions: base positive and different from \(1\), right-hand side positive.
+\end{frame}
+\begin{frame}{Reactivation: common logarithm (base 10)}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Reactivation: common logarithm (base 10)}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Reactivation: reciprocal function}
+\begin{itemize}
+\item Reactivate the reciprocal function.
+\item Carry out a study.
+\item Sketch and interpret.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Reactivation: reciprocal function}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Study \(f(x)=x+\dfrac{16}{x}\) on \(]0,+\infty[\) and interpret its minimum in an average-cost context. Produce the table of variations and a sketch.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-08-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Reactivation: reciprocal function}
+For a function containing \(\dfrac1x\), start by excluding \(x=0\), then differentiate, factorise and study the sign before the variations.
+\end{frame}
+\begin{frame}{Reactivation: reciprocal function}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Reactivation: reciprocal function}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\end{document}

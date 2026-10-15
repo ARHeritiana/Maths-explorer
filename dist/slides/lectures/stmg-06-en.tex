@@ -1,0 +1,284 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Conditional probability}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Conditional probability}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Reference course}
+In a weighted tree, the probabilities leaving the same node sum to \(1\). We multiply the probabilities along a path: \(P(A\cap B)=P(A)P_A(B)\). We add the probabilities of mutually exclusive paths leading to the event we are looking for.
+\end{frame}
+\begin{frame}{Reference course}
+Do not confuse \(P_A(B)\) and \(P_B(A)\). The condition comes after the word “given” and is written as a subscript in this notation.
+\end{frame}
+\begin{frame}{Reference course}
+\(40\%\) of customers buy online. Among them, \(12\%\) return their order; among the others, \(5\%\) return it. Then \(P(R)=0.40\times0.12+0.60\times0.05=0.078\). The overall return rate is therefore \(7.8\%\).
+\end{frame}
+\begin{frame}{Conditioning}
+\begin{itemize}
+\item Define a conditional probability.
+\item Move from counts to probabilities.
+\item Interpret.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Conditioning}
+In a survey, \(180\) customers out of \(600\) use a premium card and \(72\) of these \(180\) customers buy every week. Calculate \(P(P)\), \(P(P\cap H)\) and \(P_P(H)\), then interpret.
+\end{frame}
+\begin{frame}{Conditioning}
+For \(P(A)>0\), \(P_A(B)=\dfrac{P(A\cap B)}{P(A)}\). This is the probability of \(B\) within the population restricted to \(A\).
+\end{frame}
+\begin{frame}{Conditioning}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Conditioning}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Weighted trees}
+\begin{itemize}
+\item Construct and complete a tree.
+\item Read a conditional probability.
+\item Check the sums.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Weighted trees}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(35\%\) of orders are express. Among them, \(4\%\) are late; among standard orders, \(9\%\) are late. Construct and complete the tree.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Weighted trees}
+In a tree, the branches leaving a node sum to \(1\). The second-level probabilities are conditional.
+\end{frame}
+\begin{frame}{Weighted trees}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Weighted trees}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Product of probabilities along a path}
+\begin{itemize}
+\item Calculate an intersection.
+\item Combine paths.
+\item Translate an event.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Product of probabilities along a path}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Using the tree from session 40, calculate the probability of an order being express and late, then the total probability of a delay. Interpret both results.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-3-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Product of probabilities along a path}
+We multiply along a path: \(P(A\cap B)=P(A)P_A(B)\). We add the mutually exclusive paths that realise the event.
+\end{frame}
+\begin{frame}{Product of probabilities along a path}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Product of probabilities along a path}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Independence}
+\begin{itemize}
+\item Test independence.
+\item Compare probabilities.
+\item Justify a conclusion.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Independence}
+In a population, \(P(A)=0.4\), \(P(B)=0.3\) and \(P(A\cap B)=0.12\). Test independence in two ways. Then change \(P(A\cap B)\) to \(0.15\) and start again.
+\end{frame}
+\begin{frame}{Independence}
+\(A\) and \(B\) are independent if \(P(A\cap B)=P(A)P(B)\), equivalently if \(P_A(B)=P(B)\) when \(P(A)>0\).
+\end{frame}
+\begin{frame}{Independence}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Independence}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Partition and total probability}
+\begin{itemize}
+\item Recognise a partition.
+\item Apply total probability.
+\item Organise the calculation.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Partition and total probability}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+A factory has three lines A, B, C producing \(20\%\), \(50\%\) and \(30\%\) of the items respectively. Their defect rates are \(1\%\), \(2\%\) and \(4\%\). Calculate the overall defect rate.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-4-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Partition and total probability}
+If \((A_i)\) is a partition, \(P(B)=\sum_i P(A_i)P_{A_i}(B)\). Each term corresponds to a path leading to \(B\).
+\end{frame}
+\begin{frame}{Partition and total probability}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Partition and total probability}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Problems in context}
+\begin{itemize}
+\item Choose a tree or a table.
+\item Solve a problem in context.
+\item Interpret.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Problems in context}
+Turn a table of counts (customers/subscription/cancellation) into a tree, then answer a question in each direction: probability of cancelling given the subscription; probability of having the subscription given the cancellation.
+\end{frame}
+\begin{frame}{Problems in context}
+Choosing between a tree and a table: the tree highlights the order of conditioning; the table suits counts and reversed readings well.
+\end{frame}
+\begin{frame}{Problems in context}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Problems in context}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Mixed practice}
+\begin{itemize}
+\item Calculate a reverse probability.
+\item Chain total probability and conditioning.
+\item Check the result.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Mixed practice}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+In the situation of session 43, given that an item is defective, calculate the probability that it comes from line C. Explain why this result is not \(30\%\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-5-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Mixed practice}
+For a reverse probability, first calculate the total probability of the conditioning event, then use the definition of conditional probability.
+\end{frame}
+\begin{frame}{Mixed practice}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Mixed practice}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Review and assessment}
+\begin{itemize}
+\item Use all the methods.
+\item Write up with the notation.
+\item Remedy mistakes.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Review and assessment}
+Complete a four-station circuit: complete a tree; calculate an intersection; apply the total probability formula; test independence. Each group leaves a written justification for the next group.
+\end{frame}
+\begin{frame}{Review and assessment}
+Always name the events, complete all the branches, write the formula before calculating and interpret the final probability.
+\end{frame}
+\begin{frame}{Review and assessment}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Review and assessment}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\end{document}

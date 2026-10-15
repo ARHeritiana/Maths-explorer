@@ -1,0 +1,284 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Probabilités conditionnelles}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Probabilités conditionnelles}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Cours de référence}
+Dans un arbre pondéré, les probabilités issues d'un même nœud ont pour somme \(1\). On multiplie les probabilités le long d'un chemin : \(P(A\cap B)=P(A)P_A(B)\). On additionne les probabilités de chemins incompatibles menant à l'événement recherché.
+\end{frame}
+\begin{frame}{Cours de référence}
+Ne pas confondre \(P_A(B)\) et \(P_B(A)\). La condition figure après le mot « sachant » et se place en indice dans la notation française.
+\end{frame}
+\begin{frame}{Cours de référence}
+\(40\,\%\) des clients achètent en ligne. Parmi eux, \(12\,\%\) retournent leur commande ; parmi les autres, \(5\,\%\) la retournent. Alors \(P(R)=0{,}40\times0{,}12+0{,}60\times0{,}05=0{,}078\). Le taux global de retour est donc \(7{,}8\,\%\).
+\end{frame}
+\begin{frame}{Conditionnement}
+\begin{itemize}
+\item Définir une probabilité conditionnelle.
+\item Passer des effectifs aux probabilités.
+\item Interpréter.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Conditionnement}
+Dans une enquête, \(180\) clients sur \(600\) utilisent une carte premium et \(72\) de ces \(180\) clients achètent chaque semaine. Calculer \(P(P)\), \(P(P\cap H)\) et \(P_P(H)\), puis interpréter.
+\end{frame}
+\begin{frame}{Conditionnement}
+Pour \(P(A)>0\), \(P_A(B)=\dfrac{P(A\cap B)}{P(A)}\). Il s'agit de la probabilité de \(B\) dans la population restreinte à \(A\).
+\end{frame}
+\begin{frame}{Conditionnement}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Conditionnement}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Arbres pondérés}
+\begin{itemize}
+\item Construire et compléter un arbre.
+\item Lire une probabilité conditionnelle.
+\item Contrôler les sommes.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Arbres pondérés}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(35\,\%\) des commandes sont express. Parmi elles, \(4\,\%\) sont en retard ; parmi les commandes standard, \(9\,\%\) sont en retard. Construire et compléter l'arbre.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Arbres pondérés}
+Dans un arbre, les branches issues d'un nœud ont pour somme \(1\). Les probabilités de second niveau sont conditionnelles.
+\end{frame}
+\begin{frame}{Arbres pondérés}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Arbres pondérés}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Produit des probabilités le long d'un chemin}
+\begin{itemize}
+\item Calculer une intersection.
+\item Combiner les chemins.
+\item Traduire un événement.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Produit des probabilités le long d'un chemin}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Avec l'arbre de la séance 40, calculer la probabilité d'une commande express et en retard, puis la probabilité totale d'un retard. Interpréter les deux résultats.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-3.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Produit des probabilités le long d'un chemin}
+On multiplie le long d'un chemin : \(P(A\cap B)=P(A)P_A(B)\). On additionne les chemins incompatibles qui réalisent l'événement.
+\end{frame}
+\begin{frame}{Produit des probabilités le long d'un chemin}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Produit des probabilités le long d'un chemin}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Indépendance}
+\begin{itemize}
+\item Tester l'indépendance.
+\item Comparer probabilités.
+\item Justifier une conclusion.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Indépendance}
+Dans une population, \(P(A)=0{,}4\), \(P(B)=0{,}3\) et \(P(A\cap B)=0{,}12\). Tester l'indépendance de deux façons. Modifier ensuite \(P(A\cap B)\) en \(0{,}15\) et recommencer.
+\end{frame}
+\begin{frame}{Indépendance}
+\(A\) et \(B\) sont indépendants si \(P(A\cap B)=P(A)P(B)\), équivalemment si \(P_A(B)=P(B)\) lorsque \(P(A)>0\).
+\end{frame}
+\begin{frame}{Indépendance}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Indépendance}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Partition et probabilités totales}
+\begin{itemize}
+\item Reconnaître une partition.
+\item Appliquer les probabilités totales.
+\item Organiser le calcul.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Partition et probabilités totales}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Une usine possède trois lignes A, B, C produisant respectivement \(20\,\%\), \(50\,\%\), \(30\,\%\) des articles. Leurs taux de défaut sont \(1\,\%\), \(2\,\%\), \(4\,\%\). Calculer le taux global de défaut.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-4.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Partition et probabilités totales}
+Si \((A_i)\) est une partition, \(P(B)=\sum_i P(A_i)P_{A_i}(B)\). Chaque terme correspond à un chemin menant à \(B\).
+\end{frame}
+\begin{frame}{Partition et probabilités totales}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Partition et probabilités totales}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+\begin{itemize}
+\item Choisir arbre ou tableau.
+\item Résoudre un problème contextualisé.
+\item Interpréter.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+Transformer un tableau d'effectifs clients/abonnement/résiliation en arbre, puis répondre à une question dans chaque sens : probabilité de résilier sachant l'abonnement ; probabilité d'avoir l'abonnement sachant la résiliation.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+Choisir entre arbre et tableau : l'arbre met en valeur l'ordre du conditionnement ; le tableau convient bien aux effectifs et aux lectures inversées.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Entraînement mixte}
+\begin{itemize}
+\item Calculer une probabilité inverse.
+\item Enchaîner total et conditionnement.
+\item Contrôler le résultat.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Entraînement mixte}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Dans la situation de la séance 43, sachant qu'un article est défectueux, calculer la probabilité qu'il provienne de la ligne C. Expliquer pourquoi ce résultat n'est pas \(30\,\%\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-06-5.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Entraînement mixte}
+Pour une probabilité inverse, calculer d'abord la probabilité totale de l'événement conditionnant, puis utiliser la définition de la probabilité conditionnelle.
+\end{frame}
+\begin{frame}{Entraînement mixte}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Entraînement mixte}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\begin{itemize}
+\item Mobiliser toutes les méthodes.
+\item Rédiger avec les notations.
+\item Remédier aux erreurs.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Réaliser un parcours de quatre postes : compléter un arbre ; calculer une intersection ; appliquer la formule totale ; tester l'indépendance. Chaque groupe laisse une justification écrite au groupe suivant.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Toujours nommer les événements, compléter toutes les branches, écrire la formule avant le calcul et interpréter la probabilité finale.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\end{document}

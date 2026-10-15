@@ -286,8 +286,8 @@ export const W2 = {
     return {
       handles() { const bw = o.W - 80; return [{ x: 40 + p * bw, y: o.H - 12, r: 26, cur: "ew-resize", move(X) { p = clamp(snap((X - 40) / bw, .01), .01, .99); } }]; },
       draw(g) {
-        const pr = Array.from({ length: n + 1 }, (_, k) => ch(k) * p ** k * (1 - p) ** (n - k)), mx = Math.max(...pr) * 1.15, V = view(o, -.5, n + .5, 0, mx, 40);
-        axes(g, { ...V, y1: mx }, { lang: o.L, sx: Math.max(1, Math.round(n / 10)), sy: 1e9, noLabels: false });
+        const pr = Array.from({ length: n + 1 }, (_, k) => ch(k) * p ** k * (1 - p) ** (n - k)), V = v();
+        axes(g, V, { lang: o.L, sx: Math.max(1, Math.round(n / 10)), sy: 1e9, noLabels: false });
         pr.forEach((q, k) => { const x = V.X(k), w = Math.max(3, (V.X(1) - V.X(0)) * .7); g.fillStyle = C.acc; g.fillRect(x - w / 2, V.Y(q), w, V.Y(0) - V.Y(q)); });
         g.fillStyle = C.grid; g.fillRect(40, o.H - 18, o.W - 80, 6); g.fillStyle = C.acc; g.fillRect(40, o.H - 18, p * (o.W - 80), 6); dot(o, 40 + p * (o.W - 80), o.H - 15, C.warn, "p");
         const N = o.tn; set(o, lines(inl(`X\\sim\\mathcal{B}${tpt(o, n, p)}`), o.pair(`Espérance ${inl(`E(X)=np=${N(n * p)}`)}`, `Expected value ${inl(`E(X)=np=${N(n * p)}`)}`), o.pair(`Variance ${inl(`V(X)=np(1-p)=${N(n * p * (1 - p))}`)}`, `Variance ${inl(`V(X)=np(1-p)=${N(n * p * (1 - p))}`)}`)));

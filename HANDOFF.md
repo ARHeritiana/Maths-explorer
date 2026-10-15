@@ -152,3 +152,14 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 4. The `.tex` sources, including correction files with marking schemes, are published by design (`dist/sources/`); the owner accepted this on 15 October.
 - 2026-10-15: content licence set to CC BY-NC-SA 4.0 (owner's choice from the suggestions): `LICENSE.md`, footer link in `site/js/app.js`, README. The legal text itself is not copied into the repository (not reachable from the sandbox); `LICENSE.md` points to the official legal code. Program code left without a licence for now.
 - 2026-10-15: program code licensed MIT (`LICENSE-CODE`, holder named "Maths Explorer", no personal name); `LICENSE.md` and README updated. The root `LICENSE` file name is deliberately not used, so GitHub does not badge the whole repo as MIT.
+
+## 15 October 2026: canvas interaction and two slide editions
+
+- Home and gallery Fourier traces break when the circle count changes or a frame gap exceeds 0.15 s. Old traces still fade; no segment bridges the changed endpoint.
+- Laboratory SVG bounds persist across parameter changes. Explicit zoom/pan/reset and Fit objects control the view. SVG navigators survive redraws in the trigonometry and quadratic workshop and cover challenge editors. Canvas navigation unprojects pointer coordinates and cancels object dragging for a pinch; galleries and slide widgets have matching controls.
+- Platonic solids use rigid hinge trees (`platonic-fold.js`) with verified non-overlapping flat nets, fixed scale, all five closed meshes, face picking and a fold slider. The vertex-angle explanation distinguishes the inequality from the constructed examples.
+- Complex exploration (`complex-explorer.js`): linked input/output planes, draggable z/a/image, mapped grids and a house/circle, translation/multiplication/square/reciprocal/conjugation, and a labelled further-exploration local derivative comparison. Zero poles, zero multipliers and undefined arguments are explicit.
+- 47 exploratory HTML decks remain under `dist/slides/export`. 94 Metropolis Beamer lecture PDFs (FR and EN), matching TeX and source ZIPs are under `dist/slides/lectures`; generated source lives in `content/tex/lectures`. `make lectures` builds with XeLaTeX; `make slides` builds both editions. `build-lecture-slides.py --check` checks identity, sources, PDFs and bundles without recompiling.
+- `npm ci` installs the jsdom development dependency; `npm run test:dom` verifies DOM behavior using a recording canvas. This is not browser/pixel QA. Independent audits are recorded under `private/audits`, with resource hashes in the private ledger. Human review remains false.
+
+

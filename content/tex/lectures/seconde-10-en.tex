@@ -1,0 +1,213 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Variation and extrema}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Variation and extrema}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Increasing, decreasing and monotonicity}
+On an interval \(I\), \(f\) is increasing if for all \(a,b\in I\), \(a<b\Rightarrow f(a)\leq f(b)\); decreasing if \(a<b\Rightarrow f(a)\geq f(b)\). The variations are strict when the inequalities between images are strict. A constant function has the same value everywhere; it is both increasing and decreasing in the broad sense.
+A function that is monotonic on \(I\) is increasing or decreasing there.
+\end{frame}
+\begin{frame}{Increasing, decreasing and monotonicity}
+Indicate the domain, the intervals of monotonicity, the values at the endpoints when defined, then the arrows. A sign table shows whether \(f(x)\) is positive or negative; a table of variations shows how its values change.
+\end{frame}
+\begin{frame}{Increasing, decreasing and monotonicity}
+On \([-3,4]\), \(f(x)=(x-1)^2-2\). Using the square, extending the curve studied in sequence 6, draw its table of variations. Give two numbers \(a<b\) such that \(f(a)>f(b)\).
+\end{frame}
+\begin{frame}{Worked answer: Increasing, decreasing and monotonicity}
+The function decreases strictly on \([-3,1]\), then increases strictly on \([1,4]\). \(f(-3)=14\), \(f(1)=-2\), \(f(4)=7\).
+\[\begin{array}{c|ccccc}x&-3&&1&&4\\\hline f(x)&14&\searrow&-2&\nearrow&7\end{array}\]
+For example \(a=0<b=1\) and \(f(0)=-1>-2=f(1)\).
+\end{frame}
+\begin{frame}{Increasing, decreasing and monotonicity}
+Can a function be negative and increasing? Give an example on an interval.
+\end{frame}
+\begin{frame}{Worked answer: Increasing, decreasing and monotonicity}
+Yes: \(f(x)=x-5\) on \([0,2]\) is strictly increasing and stays between \(-5\) and \(-3\), so it is strictly negative.
+\end{frame}
+\begin{frame}{Maximum and minimum on an interval}
+\(f\) has a maximum at \(a\in I\) if, for every \(x\in I\), \(f(x)\leq f(a)\). The value of the maximum is \(f(a)\).
+\(f\) has a minimum at \(b\in I\) if, for every \(x\in I\), \(f(x)\geq f(b)\).
+An extremum must be attained. Distinguish its value from the abscissa where it is attained.
+\end{frame}
+\begin{frame}{Maximum and minimum on an interval}
+Return to \(f(x)=(x-1)^2-2\) on \([-3,4]\). Give the minimum and maximum, then where they are attained. Repeat on \([0,4]\).
+\end{frame}
+\begin{frame}{Worked answer: Maximum and minimum on an interval}
+On \([-3,4]\), minimum \(-2\) at \(x=1\), maximum \(14\) at \(x=-3\). On \([0,4]\), the minimum remains \(-2\) at \(1\), but the maximum is \(7\) at \(4\). The maximum depends on the domain.
+\end{frame}
+\begin{frame}{Maximum and minimum on an interval}
+Does the function \(f(x)=x\) have a maximum on \([0,1)\)? A minimum?
+\end{frame}
+\begin{frame}{Worked answer: Maximum and minimum on an interval}
+It has minimum \(0\), attained at \(0\). It has no maximum: for every \(x<1\), \((x+1)/2\) still belongs to \([0,1)\) and has a larger image. The number \(1\) is an upper bound, but is not attained.
+\end{frame}
+\begin{frame}{Maximum and minimum on an interval}
+A table of variations does not provide all the intermediate images. It allows comparing certain images; if the abscissae lie on different branches, the comparison may be indeterminate.
+\end{frame}
+\begin{frame}{Maximum and minimum on an interval}
+Does the mere fact that a function decreases then increases allow comparing two images on either side of the minimum?
+\end{frame}
+\begin{frame}{Worked answer: Maximum and minimum on an interval}
+No. Additional information is needed. For \(x\mapsto x^2\), the images of \(-2\) and \(1\) are \(4\) and \(1\), while those of \(-1\) and \(2\) are \(1\) and \(4\).
+\end{frame}
+\begin{frame}{Variations of affine functions}
+For \(f(x)=mx+p\) and \(a\ne b\),
+\[\dfrac{f(b)-f(a)}{b-a}=m.\]
+If \(m>0\), \(f\) is strictly increasing; if \(m<0\), strictly decreasing; if \(m=0\), constant.
+\end{frame}
+\begin{frame}{Variations of affine functions}
+For \(a<b\), \(f(b)-f(a)=m(b-a)\). Since \(b-a>0\), the difference has the sign of \(m\). It is positive, negative or zero according to the three cases, which gives the stated variations. Dividing by \(b-a\) gives the constant rate of change.
+\end{frame}
+\begin{frame}{Variations of affine functions}
+Determine the variations of \(f(x)=3x+2\), \(g(x)=7-6x\), \(h(x)=-x\). Give the sign of \(2x-6\) and explain why the sign of this function does not stay constant although it is increasing.
+\end{frame}
+\begin{frame}{Worked answer: Variations of affine functions}
+\(f\) is strictly increasing; \(g,h\) strictly decreasing. \(2x-6\) is negative for \(x<3\), zero at \(3\), positive for \(x>3\). An increasing function can cross \(0\); its direction of variation does not determine a single sign.
+\end{frame}
+\begin{frame}{Variations of affine functions}
+An affine function \(u\) satisfies \(u(2)=5\), \(u(6)=13\). Determine \(u\), then its minimum and maximum on \([-1,4]\).
+\end{frame}
+\begin{frame}{Worked answer: Variations of affine functions}
+\(m=(13-5)/(6-2)=2\), \(p=1\), so \(u(x)=2x+1\). It is increasing: minimum \(u(-1)=-1\), maximum \(u(4)=9\).
+\end{frame}
+\begin{frame}{Variations of the square and the absolute value}
+\(x\mapsto x^2\) and \(x\mapsto|x|\) are strictly decreasing on \((-\infty,0]\) and strictly increasing on \([0,+\infty)\). Their minimum on \(\R\) is \(0\), attained only at \(0\).
+\end{frame}
+\begin{frame}{Variations of the square and the absolute value}
+For \(a<b\), \(b^2-a^2=(b-a)(a+b)\). If \(0\leq a<b\), both factors are strictly positive: \(a^2<b^2\). If \(a<b\leq0\), the first factor is positive and the second negative: \(a^2>b^2\).
+For the absolute value, on \([0,+\infty)\), \(|x|=x\) is increasing; on \((-\infty,0]\), \(|x|=-x\) is decreasing. Positivity and vanishing at \(0\) give the minimum.
+\end{frame}
+\begin{frame}{Variations of the square and the absolute value}
+Compare without a calculator: \((-3.2)^2\) and \((-3.1)^2\); \(1.2^2\) and \(1.3^2\); \(|-5|\) and \(|-2|\).
+\end{frame}
+\begin{frame}{Worked answer: Variations of the square and the absolute value}
+On the negatives, the square reverses the order: \((-3.2)^2>(-3.1)^2\). On the positives, \(1.2^2<1.3^2\). Finally \(|-5|>|-2|\), that is \(5>2\).
+\end{frame}
+\begin{frame}{Variations of the square and the absolute value}
+Bound \(x^2\) if \(-3\leq x\leq2\). Why can we not simply square the two bounds?
+\end{frame}
+\begin{frame}{Worked answer: Variations of the square and the absolute value}
+The minimum is \(0\) and the maximum \(9\): \(0\leq x^2\leq9\). The square is not monotonic on \([-3,2]\). Squaring only the bounds would wrongly give \(9\leq x^2\leq4\).
+\end{frame}
+\begin{frame}{Variations of the inverse function}
+The inverse function is strictly decreasing on \((-\infty,0)\) and on \((0,+\infty)\), separately. It is not decreasing on the whole of \(\R^*\).
+\end{frame}
+\begin{frame}{Variations of the inverse function}
+For \(a<b\) of the same sign, \(ab>0\) and
+\[\dfrac1b-\dfrac1a=\dfrac{a-b}{ab}<0.\]
+So \(1/b<1/a\). On the other hand, \(-1<1\) and \(1/(-1)=-1<1=1/1\): the decreasing criterion fails on the whole of \(\R^*\).
+\end{frame}
+\begin{frame}{Variations of the inverse function}
+Compare \(1/(-4)\) and \(1/(-2)\), then \(1/3\) and \(1/5\). Bound \(1/x\) if \(2\leq x\leq5\), then if \(-5\leq x\leq-2\).
+\end{frame}
+\begin{frame}{Worked answer: Variations of the inverse function}
+\(-1/4>-1/2\); \(1/3>1/5\). For \(x\in[2,5]\), \(1/5\leq1/x\leq1/2\). For \(x\in[-5,-2]\), \(-1/2\leq1/x\leq-1/5\).
+\end{frame}
+\begin{frame}{Variations of the inverse function}
+Why is the interval \([-1,1]\) not suitable for directly applying a variation rule of the inverse function?
+\end{frame}
+\begin{frame}{Worked answer: Variations of the inverse function}
+The function is not defined at \(0\), which belongs to the interval. One must work on the two parts of the domain; moreover, the comparison behaviour of the function is not the same when crossing \(0\).
+\end{frame}
+\begin{frame}{Relative position of a number and its square}
+For \(0\leq x\leq1\), \(x^2\leq x\); for \(x\geq1\), \(x^2\geq x\). Equality holds at \(0\) and \(1\).
+\end{frame}
+\begin{frame}{Relative position of a number and its square}
+\(x^2-x=x(x-1)\). On \([0,1]\), the first factor is positive or zero, the second negative or zero: their product is negative or zero. On \([1,+\infty)\), both are positive or zero. The product is zero if \(x=0\) or \(x=1\).
+\end{frame}
+\begin{frame}{Relative position of a number and its square}
+The square root function is strictly increasing on \([0,+\infty)\). The cube function is strictly increasing on \(\R\).
+\end{frame}
+\begin{frame}{Relative position of a number and its square}
+Explain why the square root is increasing from the increase of the square on the positives. For the cube, use \(b^3-a^3=(b-a)(a^2+ab+b^2)\).
+\end{frame}
+\begin{frame}{Worked answer: Relative position of a number and its square}
+If \(0\leq a<b\) but \(\sqrt a\geq\sqrt b\), the increase of the square on the positives would give \(a\geq b\), a contradiction. For \(a<b\), \(b-a>0\) and \(a^2+ab+b^2=(a+b/2)^2+3b^2/4>0\) (equality would require \(a=b=0\)). So \(b^3-a^3>0\).
+\end{frame}
+\begin{frame}{Relative position of a number and its square}
+Compare \(\sqrt{5}\) and \(\sqrt6\), then \((-2)^3\) and \((-1)^3\).
+\end{frame}
+\begin{frame}{Worked answer: Relative position of a number and its square}
+\(\sqrt5<\sqrt6\) and \(-8<-1\), consistent with the two increasing behaviours.
+\end{frame}
+\begin{frame}{Optimising: conjecture and prove}
+A rectangle of perimeter \(20\) m has area \(A(x)=x(10-x)\) with \(x\in(0,10)\).
+
+\begin{enumerate}
+\setcounter{enumi}{0}\item Conjecture the maximum area using a table of values.
+\item Show that \(A(x)=25-(x-5)^2\). Deduce the exact maximum and the corresponding dimensions.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Worked answer: Optimising: conjecture and prove}
+For \(x=1,2,3,4,5,6,7,8,9\), the areas are \(9,16,21,24,25,24,21,16,9\) m\(^2\). Expanding, \(25-(x-5)^2=10x-x^2=A(x)\). Since \((x-5)^2\geq0\), \(A(x)\leq25\), with equality only at \(x=5\). The optimal rectangle is a square of side \(5\) m.
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def aire(x):
+    return x*(10-x)
+
+def maximum_grille(N):
+    # N entier >= 2 ; points strictement entre 0 et 10
+    meilleur_x = 10/N
+    meilleur_y = aire(meilleur_x)
+    for k in range(2, N):
+        x = 10*k/N
+        if aire(x) > meilleur_y:
+            meilleur_x, meilleur_y = x, aire(x)
+    return meilleur_x, meilleur_y
+\end{verbatim}
+\end{frame}
+\begin{frame}{Optimising: conjecture and prove}
+What does the program return for \(N=10\)? Does a numerical sweep always prove the maximum of a function on an interval?
+\end{frame}
+\begin{frame}{Worked answer: Optimising: conjecture and prove}
+For \(N=10\), \((5,25)\). The program finds the maximum only over the sampled points. It can miss a maximum between two points: the algebraic proof gives the exact result here. An ordinary bisection for finding a zero does not automatically apply to finding an extremum.
+\end{frame}
+\end{document}

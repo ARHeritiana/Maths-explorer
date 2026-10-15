@@ -1,0 +1,117 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonctions trigonométriques}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonctions trigonométriques}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Utiliser parité et périodicité ; dériver sinus et cosinus ; résoudre équations et inéquations ; étudier une fonction périodique.
+\end{frame}
+\begin{frame}{Cercle et fonctions}
+Sur le cercle trigonométrique, le point repéré par un angle \(x\) en radians a pour coordonnées \((\cos x;\sin x)\). Pour tout réel \(x\),
+\[\cos^2x+\sin^2x=1,\quad -1\le\cos x,\sin x\le1.\]
+Cosinus est paire : \(\cos(-x)=\cos x\). Sinus est impaire : \(\sin(-x)=-\sin x\). Les deux fonctions sont \(2\pi\)-périodiques.
+\[\begin{array}{c|ccccc}x&0&\dfrac{\pi}{6}&\dfrac{\pi}{4}&\dfrac{\pi}{3}&\dfrac{\pi}{2}\\\hline
+\cos x&1&\dfrac{\sqrt{3}}{2}&\dfrac{\sqrt{2}}{2}&\dfrac{1}{2}&0\\
+\sin x&0&\dfrac{1}{2}&\dfrac{\sqrt{2}}{2}&\dfrac{\sqrt{3}}{2}&1
+\end{array}\]
+\end{frame}
+\begin{frame}{Dérivées et variations}
+\[(\sin x)'=\cos x,\qquad(\cos x)'=-\sin x.\]\[
+(\sin(ax+b))'=a\cos(ax+b),\quad(\cos(ax+b))'=-a\sin(ax+b).\]
+Sur \([-\pi,\pi]\), cosinus croît sur \([-\pi,0]\) de \(-1\) à \(1\), puis décroît sur \([0,\pi]\) de \(1\) à \(-1\). Sinus décroît sur \([-\pi,-\dfrac{\pi}{2}]\), croît sur \([-\dfrac{\pi}{2},\dfrac{\pi}{2}]\), puis décroît sur \([\dfrac{\pi}{2},\pi]\).
+\end{frame}
+\begin{frame}{Dérivées et variations}
+Lire le signe de sinus et cosinus sur le cercle puis appliquer le lien dérivée-variations. La périodicité prolonge les courbes ; elle ne dispense pas d'étudier un intervalle de longueur suffisante.
+\end{frame}
+\begin{frame}{Équations et inéquations}
+Si \(|a|>1\), \(\cos x=a\) et \(\sin x=a\) n'ont aucune solution réelle. Pour un angle connu \(\theta\),
+\[\cos x=\cos\theta\Longleftrightarrow x=\theta+2k\pi\ \text{ou}\ x=-\theta+2k\pi,\]
+\[\sin x=\sin\theta\Longleftrightarrow x=\theta+2k\pi\ \text{ou}\ x=\pi-\theta+2k\pi,\quad k\in\Z.\]
+On restreint ensuite les solutions à l'intervalle demandé et on élimine les doublons.
+\end{frame}
+\begin{frame}{Équations et inéquations}
+\(\cos x=\dfrac{1}{2}\) donne \(x=\pm\dfrac{\pi}{3}\) ; \(\sin x=\dfrac{1}{2}\) donne \(x=\dfrac{\pi}{6}\) ou \(\dfrac{5\pi}{6}\). \(\cos x\le\dfrac{1}{2}\) donne \([-\pi,-\dfrac{\pi}{3}]\cup[\dfrac{\pi}{3},\pi]\) ; \(\sin x\ge\dfrac{1}{2}\) donne \([\dfrac{\pi}{6},\dfrac{5\pi}{6}]\).
+\end{frame}
+\begin{frame}{Équations et inéquations}
+Pour résoudre \(\cos (2x)=\dfrac{1}{2}\) sur \([-\pi,\pi]\), poser \(t=2x\in[-2\pi,2\pi]\), résoudre pour \(t\), puis diviser par \(2\). On obtient \(x\in\{-\dfrac{5\pi}{6},-\dfrac{\pi}{6},\dfrac{\pi}{6},\dfrac{5\pi}{6}\}\).
+\end{frame}
+\begin{frame}{Équations et inéquations}
+Pour \(f(x)=\sin x+\dfrac12\sin(2x)\) sur \([0,\pi]\), \(f'=\cos x+\cos(2x)=2\cos^2x+\cos x-1=(2\cos x-1)(\cos x+1)\). La fonction croît jusqu'à \(\dfrac{\pi}{3}\) puis décroît ; maximum \(\dfrac{3\sqrt{3}}{4}\).
+\end{frame}
+\begin{frame}{Équations et inéquations}
+Pour tout réel \(x\), \(\sin(2x)=2\sin x\cos x\) et \(\cos(2x)=\cos^2x-\sin^2x=2\cos^2x-1\). Ces identités sont rappelées ici pour que leur emploi dans les problèmes ne soit pas implicite.
+\end{frame}
+\begin{frame}{Équations et inéquations}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \((2\pi;0)\).   Les coordonnées du point du cercle sont \((\cos x;\sin x)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-14-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Hauteur d'un point sur une roue - 35 min.}
+
+Une roue tourne à vitesse constante dans un plan vertical. Son rayon est de \(2\) m et son centre se trouve à \(3\) m du sol. Un point de la roue est à sa position la plus basse à l'instant \(t=0\). La roue effectue un tour en \(8\) s. Sa hauteur est modélisée par \(h(t)=3-2\cos\left(\dfrac{\pi t}{4}\right)\), où \(t\) est exprimé en secondes et \(h(t)\) en mètres.
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Vérifier que le modèle donne la hauteur initiale annoncée, une période de \(8\) s et les hauteurs minimale et maximale attendues.
+
+\item Calculer \(h' (t)\), puis étudier les variations de \(h\) sur \([0;8]\).
+
+\item Déterminer tous les instants \(t\in[0;8]\) pour lesquels la hauteur vaut \(4\) m.
+
+\item Déterminer la durée totale, au cours de ce tour, pendant laquelle le point se trouve à au moins \(4\) m du sol.
+
+\end{enumerate}
+\end{frame}
+\end{document}

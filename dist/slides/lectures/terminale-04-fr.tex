@@ -1,0 +1,109 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Limites de fonctions}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Limites de fonctions}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Calculer des limites en un point et à l'infini ; lever une indétermination ; interpréter une asymptote.
+\end{frame}
+\begin{frame}{Sens d'une limite}
+\(f(x)\to\ell\) lorsque \(x\to+\infty\) signifie que \(f(x)\) peut être rendu aussi proche que souhaité de \(\ell\) pour tous les \(x\) suffisamment grands. Pour une limite en \(a\), on considère des \(x\) du domaine, proches de \(a\) et distincts de \(a\). Les limites à gauche et à droite se notent \(\lim_{x\to a^-}f(x)\) et \(\lim_{x\to a^+}f(x)\). Lorsque le domaine possède des points des deux côtés de \(a\), une limite bilatérale existe si et seulement si les deux limites latérales existent et sont égales. À une extrémité du domaine, on étudie la limite du seul côté accessible.
+\end{frame}
+\begin{frame}{Sens d'une limite}
+Si \(f(x)\to\ell\in\R\) lorsque \(x\to+\infty\) ou \(-\infty\), la droite \(y=\ell\) est une asymptote horizontale dans cette direction. Si \(f(x)\to\pm\infty\) lorsque \(x\to a\) d'un côté, la droite \(x=a\) est une asymptote verticale.
+\end{frame}
+\begin{frame}{Sens d'une limite}
+Une courbe peut couper une asymptote horizontale. La limite ne donne pas nécessairement la position de la courbe par rapport à l'asymptote : étudier le signe de \(f(x)-\ell\).
+\end{frame}
+\begin{frame}{Références et opérations}
+En \(+\infty\), \(x^m\to+\infty\) pour \(m\ge1\), \(\dfrac{1}{x^m}\to0\), \(\sqrt x\to+\infty\). En \(-\infty\), le signe de \(x^m\) dépend de la parité de \(m\). Les règles de somme, produit, quotient et comparaison sont celles des suites, avec les mêmes formes indéterminées.
+\end{frame}
+\begin{frame}{Références et opérations}
+Pour \(f(x)=\dfrac{2x+1}{x-3}\), écrire \(f(x)=2+\dfrac{7}{x-3}\). Les limites en \(\pm\infty\) valent \(2\). En \(3^-\), \(f\to-\infty\) ; en \(3^+\), \(f\to+\infty\). Les asymptotes sont \(x=3\) et \(y=2\).
+\end{frame}
+\begin{frame}{Références et opérations}
+Pour \(x>0\), \(\sqrt{x^2+4x}-x=\dfrac{4}{\sqrt{1+\dfrac{4}{x}}+1}\to2\). Pour \(x<0\), attention : \(\sqrt{x^2}=|x|=-x\).
+\end{frame}
+\begin{frame}{Exponentielle et croissance comparée}
+\[\lim_{x\to+\infty}e^x=+\infty,\quad\lim_{x\to-\infty}e^x=0,\quad
+\lim_{x\to+\infty}\dfrac{e^x}{x^m}=+\infty\quad(m\in\N).\]
+On en déduit \(x^me^{-x}\to0\) en \(+\infty\).
+\end{frame}
+\begin{frame}{Exponentielle et croissance comparée}
+L'étude de \(e^x-x-1\) donne \(e^x\ge1+x\). Par comparaison, \(e^x\to+\infty\) en \(+\infty\). En posant \(t=-x\to+\infty\), \(e^x=\dfrac{1}{e^t}\to0\).
+\end{frame}
+\begin{frame}{Exponentielle et croissance comparée}
+Pour tout entier \(k\ge0\) et \(x\ge0\), \(e^x\ge \dfrac{x^k}{k!}\). Pour \(k=0\), \(e^x\ge1\). Si l'inégalité est acquise à l'ordre \(k\), la dérivée de \(e^x-\dfrac{x^{k+1}}{(k+1)!}\) est \(e^x-\dfrac{x^k}{k!}\ge0\) ; sa valeur en \(0\) est positive. L'hérédité suit. En choisissant \(k=m+1\), \(\dfrac{e^x}{x^m}\ge \dfrac{x}{(m+1)!}\to+\infty\).
+\end{frame}
+\begin{frame}{Exponentielle et croissance comparée}
+Quotient de polynômes : factoriser les plus grandes puissances. Différence de racines : quantité conjuguée. Quotient près d'un zéro : factoriser et étudier les signes. Exponentielle contre puissance : croissance comparée, après changement de variable si nécessaire.
+\end{frame}
+\begin{frame}{Comparaison et composition : conditions d'emploi}
+Si \(g(x)\le f(x)\le h(x)\) près du point ou de l'infini étudié, et si \(g,h\) ont la même limite réelle \(\ell\), alors \(f(x)\to\ell\) (théorème des gendarmes). Si \(g\le f\) et \(g\to+\infty\), alors \(f\to+\infty\). Pour une limite \(-\infty\), on utilise une majoration par une fonction tendant vers \(-\infty\).
+Si \(u(x)\to a\) et \(v\) est continue en \(a\), alors \(v(u(x))\to v(a)\), lorsque la composée est définie. Par exemple \(\sqrt{1+\dfrac{1}{x}}\to1\) en \(+\infty\). Pour une limite infinie de la fonction extérieure, vérifier de quel côté \(u(x)\) approche la borne : \(\dfrac{1}{u(x)}\) n'a pas le même comportement selon le signe de \(u(x)\).
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Une courbe proche d'une droite - 30 min.}
+
+On considère la fonction \(f\) définie sur \(\R\setminus\{1\}\) par \(f(x)=\dfrac{3x-2}{x-1}\). On note \(\mathcal C_f\) sa courbe dans un repère du plan.
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Montrer que, pour tout \(x\ne1\), \(f(x)=3+\dfrac1{x-1}\).
+
+\item Déterminer les limites de \(f\) en \(-\infty\), en \(1^-\), en \(1^+\) et en \(+\infty\).
+
+\item Étudier le signe de \(f(x)-3\), puis préciser la position de \(\mathcal C_f\) par rapport à la droite d'équation \(y=3\).
+
+\item Déterminer un réel \(A>1\) tel que, pour tout \(x>A\), \(|f(x)-3|<0{,}01\).
+
+\item La courbe \(\mathcal C_f\) coupe-t-elle son asymptote horizontale ? Justifier et expliquer pourquoi une fenêtre graphique trop large peut donner une impression trompeuse.
+
+\end{enumerate}
+\end{frame}
+\end{document}

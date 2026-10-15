@@ -17,7 +17,7 @@ FIG = ROOT / 'dist/slides/fig'
 OUT = ROOT / 'dist/slides/export'
 MATHJAX = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js'
 FONTS = 'https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap'
-MODULES = ['widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js first: it defines what the others import
+MODULES = ['../js/canvas-navigation.js', 'widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js first: it defines what the others import
 
 
 def bundle():

@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Calcul vectoriel et produit scalaire}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Calcul vectoriel et produit scalaire}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Le parcours du chapitre}
+\textbf{Objectifs.} Choisir entre projection, coordonnées et angle ; calculer une longueur ; caractériser une orthogonalité et un lieu.
+
+\textbf{Prérequis.} Vecteurs, Chasles, Pythagore, cosinus dans un triangle rectangle, repère orthonormé.
+
+\textbf{Repère annuel.} 6-15 octobre : 8 h
+\end{frame}
+\begin{frame}{Projection et angle}
+Pour deux vecteurs non nuls \(\vec u,\vec v\), leur produit scalaire est le réel \(\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta\), où \(\theta\in[0;\pi]\) est leur angle non orienté. Avec un vecteur nul, le produit vaut 0. Si \(H\) est le projeté de B sur \((OA)\), \(\vect{OA}\cdot\vect{OB}\) vaut \(OA\times OH\) lorsque H est sur la demi-droite \([OA)\), et son opposé sinon.
+\end{frame}
+\begin{frame}{Projection et angle}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Pour deux vecteurs de normes 3 et 4 formant \(60^\circ\), le produit vaut \(\dfrac{3\times 4\times 1}{2}=6\). Avec \(120^\circ\), il vaut \(-6\). Si \(A(3;0)\) et \(B(-2;4)\), le projeté est \(H(-2;0)\) et le produit vaut \(-6\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-03-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Projection et angle}
+Le résultat est un nombre, pas un vecteur. L’angle droit correspond à 0, pas à 1.
+\end{frame}
+\begin{frame}{Projection et angle}
+Deux vecteurs ont pour normes 2 et 5 et forment \(90^\circ\), puis \(180^\circ\). Calculer les produits.
+\end{frame}
+\begin{frame}{Coordonnées, norme et orthogonalité}
+Dans une base orthonormée, pour \(\vec u=(x;y)\) et \(\vec v=(x\prime;y\prime)\), \(\vec u\cdot\vec v=xx\prime+yy\prime\) et \(\norm{\vec u}^2=x^2+y^2\). Les vecteurs sont orthogonaux si et seulement si leur produit est nul. Pour une base \((\vec i;\vec j)\) orthonormée, \(x=\vec u\cdot\vec i\) et \(y=\vec u\cdot\vec j\).
+\end{frame}
+\begin{frame}{Coordonnées, norme et orthogonalité}
+\(\vec u=(2;3)\), \(\vec v=(3;-2)\) : produit \(6-6=0\). Les deux vecteurs sont orthogonaux. Leur norme vaut \(\sqrt{13}\). Le produit de \((2;3)\) avec \((1;0)\) vaut 2 : on retrouve l’abscisse.
+\end{frame}
+\begin{frame}{Coordonnées, norme et orthogonalité}
+La formule usuelle suppose une base orthonormée. Colinéarité et orthogonalité sont des propriétés différentes.
+\end{frame}
+\begin{frame}{Coordonnées, norme et orthogonalité}
+Pour quel réel t les vecteurs \((t;2)\) et \((3;-6)\) sont-ils orthogonaux ?
+\end{frame}
+\begin{frame}{Calcul vectoriel et identités}
+Le produit scalaire est symétrique et bilinéaire : \(\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w\) et \((\lambda\vec u)\cdot\vec v=\lambda(\vec u\cdot\vec v)\). Ainsi \(\norm{\vec u\pm\vec v}^2=\norm{\vec u}^2\pm2\vec u\cdot\vec v+\norm{\vec v}^2\). On en tire \(\vec u\cdot \vec v=\dfrac{\norm{\vec u+\vec v}^2-\norm{\vec u}^2-\norm{\vec v}^2}{2}\).
+\end{frame}
+\begin{frame}{Calcul vectoriel et identités}
+Si \(\norm{\vec u}=3\), \(\norm{\vec v}=4\) et \(\norm{\vec u+\vec v}=5\), le produit vaut \(\dfrac{25-9-16}{2}=0\). On déduit l’orthogonalité sans coordonnées.
+\end{frame}
+\begin{frame}{Calcul vectoriel et identités}
+En général, \(\norm{\vec u+\vec v}\ne\norm{\vec u}+\norm{\vec v}\). Les identités concernent les carrés des normes.
+\end{frame}
+\begin{frame}{Calcul vectoriel et identités}
+On donne \(\norm{\vec u}=2\), \(\norm{\vec v}=3\), \(\vec u\cdot\vec v=1\). Calculer \(\norm{\vec u-\vec v}\).
+\end{frame}
+\begin{frame}{Al-Kashi et choix d’une méthode}
+Dans un triangle ABC, \(BC^2=AB^2+AC^2-2AB\,AC\cos\widehat{BAC}\). Cette formule permet de calculer le troisième côté à partir de deux côtés et de l’angle compris, ou de déterminer le cosinus d’un angle à partir des trois côtés.
+\end{frame}
+\begin{frame}{Al-Kashi et choix d’une méthode}
+\(AB=5\), \(AC=3\) et \(\widehat{BAC}=60^\circ\) : \(BC^2=25+9-15=19\), donc \(BC=\sqrt{19}\). Avec trois côtés, isoler le cosinus avant d’approcher l’angle à la calculatrice si elle est autorisée.
+\end{frame}
+\begin{frame}{Al-Kashi et choix d’une méthode}
+L’angle est compris entre les deux côtés du terme produit. Le signe moins est essentiel.
+\end{frame}
+\begin{frame}{Al-Kashi et choix d’une méthode}
+Un triangle a \(AB=AC=4\) et \(BC=4\sqrt2\). Déterminer l’angle A.
+\end{frame}
+\begin{frame}{Le cercle de diamètre AB}
+Pour deux points distincts A et B de milieu I, \(\vect {MA}\cdot \vect {MB}=MI^2-\dfrac{AB^2}{4}\). L’ensemble des points M tels que \(\vect{MA}\cdot\vect{MB}=0\) est le cercle de centre I et de rayon \(\dfrac{AB}{2}\), points A et B compris.
+\end{frame}
+\begin{frame}{Le cercle de diamètre AB}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(A(-2;0)\) et \(B(2;0)\) : I est l’origine. Le lieu est \(x^2+y^2=4\). Pour \(M(0;1)\), le produit vaut \(1-4=-3\) ; pour \(M(0;2)\), il vaut 0.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-03-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Le cercle de diamètre AB}
+Les extrémités appartiennent au lieu même si « triangle rectangle » ne convient pas à un triangle dégénéré.
+\end{frame}
+\begin{frame}{Le cercle de diamètre AB}
+Pour \(A(0;0)\), \(B(6;0)\), déterminer les M tels que \(\vect{MA}\cdot\vect{MB}=7\).
+\end{frame}
+\end{document}

@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={The exponential function and continuous models}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{The exponential function and continuous models}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Use the algebraic properties; differentiate; study growth or decay; link the exponential to geometric sequences.
+
+\textbf{Prerequisites.} Powers, geometric sequences, differentiation and sign.
+
+\textbf{Yearly reference point.} 2-11 February: 8 hours
+\end{frame}
+\begin{frame}{Defining a new function}
+The exponential function is the unique function f differentiable on \(\R\) satisfying \(f\prime=f\) and \(f(0)=1\). Its existence and uniqueness are accepted. It is written \(\exp\), then \(e^x\) with \(e=\exp(1)\approx2.71828\). The number e is a constant; x is the variable. The exponential is strictly positive.
+\end{frame}
+\begin{frame}{Defining a new function}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(\exp(0)=1\), \(\exp(1)=e\), \(\exp\prime(0)=1\). The tangent at 0 is therefore \(y=1+x\). The notation \(e^x\) extends the properties of powers to every real exponent.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-09-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Defining a new function}
+\(e^0=1\), not 0. The function never takes the value 0, even for negative x.
+\end{frame}
+\begin{frame}{Defining a new function}
+What is the equation of the tangent to \(e^x\) at 1?
+\end{frame}
+\begin{frame}{Algebraic properties and comparisons}
+For all real x,y, \(e^{x+y}=e^xe^y\), \(e^{-x}=\dfrac{1}{e^x}\), \(e^{x-y}=\dfrac{e^x}{e^y}\). For integer n, \((e^x)^n=e^{nx}\). The function is strictly increasing on \(\R\), so \(e^u=e^v\iff u=v\) and \(e^u<e^v\iff u<v\).
+\end{frame}
+\begin{frame}{Algebraic properties and comparisons}
+\(e^{2x}e^{1-x}=e^{x+1}\). \(e^{3x-2}=e^{x+4}\) is equivalent to \(3x-2=x+4\), so x=3. \(e^{2x}\leq1=e^0\) is equivalent to \(x\leq0\).
+\end{frame}
+\begin{frame}{Algebraic properties and comparisons}
+\(e^{x+y}\) is a product, in general never \(e^x+e^y\). We do not solve \(e^x=2\) with a logarithm, which is not studied in Première.
+\end{frame}
+\begin{frame}{Algebraic properties and comparisons}
+Simplify \(\dfrac{e^{3x}}{e^{x-1}}\); solve \(e^{x+2}>e^{2x}\).
+\end{frame}
+\begin{frame}{Differentiating and studying}
+For real a, \(t\mapsto e^{at}\) is differentiable and its derivative is \(ae^{at}\). For \(e^{at+b}=e^be^{at}\), the derivative is \(ae^{at+b}\). The product and quotient rules apply with the derivatives already known. The sign of the exponential often simplifies the study of the sign of the derivative.
+\end{frame}
+\begin{frame}{Differentiating and studying}
+For \(f(x)=(x+1)e^{-x}\), \(f\prime(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}\). Since \(e^{-x}>0\), the derivative has the sign of \(-x\): global maximum 1 at 0.
+\end{frame}
+\begin{frame}{Differentiating and studying}
+Do not forget the factor a or the negative sign in \(e^{-x}\). The exponential factor is positive, not necessarily increasing.
+\end{frame}
+\begin{frame}{Differentiating and studying}
+Differentiate \(g(t)=3e^{-2t}\) and study its direction of variation.
+\end{frame}
+\begin{frame}{From discrete to continuous}
+A model \(Q(t)=Q_0e^{kt}\), with \(Q_0>0\), represents growth if \(k>0\), decay if \(k<0\), constancy if \(k=0\). For a fixed step h, \(\dfrac{Q(t+h)}{Q(t)}=e^{kh}\). The values at integer times form a geometric sequence with common ratio \(e^k\). The unit of k is the inverse of the unit of time.
+\end{frame}
+\begin{frame}{From discrete to continuous}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(Q(t)=100e^{-0.2t}\), t in hours: \(Q(0)=100\), \(\dfrac{Q(t+1)}{Q(t)}=e^{-0.2}\). A simulation can look for the first whole number of hours at which Q falls below 50; the exact equation is not solved with a logarithm in this chapter.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-09-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{From discrete to continuous}
+The relative rate per discrete unit of time is \(e^k-1\), not exactly k; they are close only for small k.
+\end{frame}
+\begin{frame}{From discrete to continuous}
+For \(Q(t)=5e^{0.3t}\), express \(Q(n)\) and \(\dfrac{Q(t+2)}{Q(t)}\).
+\end{frame}
+\begin{frame}{Proving an inequality}
+The inequality \(e^x\geq1+x\), true for every real x, is obtained by studying the function \(g(x)=e^x-1-x\): the curve of the exponential lies above its tangent at 0.
+\end{frame}
+\begin{frame}{Proving an inequality}
+With \(x=0.1\), the inequality gives \(e^{0.1}\geq1.1\); the calculator displays \(e^{0.1}\approx1.10517\). With \(x=-1\), it gives \(e^{-1}\geq0\), which is true but not very precise.
+\end{frame}
+\begin{frame}{Proving an inequality}
+A graph showing a curve above a line does not prove the inequality for all real numbers.
+\end{frame}
+\begin{frame}{Proving an inequality}
+Show that \(e^{2x}\geq1+2x\) for every real number x.
+\end{frame}
+\end{document}

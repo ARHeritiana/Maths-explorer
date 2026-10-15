@@ -1,0 +1,117 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Combinatorics and counting}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Combinatorics and counting}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Choose a counting model; distinguish order and repetition; use binomial coefficients and Pascal's rule.
+\end{frame}
+\begin{frame}{Add or multiply}
+For pairwise disjoint finite sets \(A_i\), \(|\bigcup A_i|=\sum|A_i|\). If the cases overlap, the double counting must be corrected: \(|A\cup B|=|A|+|B|-|A\cap B|\).
+The number of elements of the Cartesian product \(A\times B\) is \(|A||B|\). For a sequence of choices, multiply the numbers of possibilities at each step, provided these numbers are valid for every earlier choice considered.
+\end{frame}
+\begin{frame}{Add or multiply}
+A code made of two letters chosen from \(26\), followed by three digits, with repetition allowed, can take \(26^2\times10^3\) values. A three-digit number does not start with \(0\): there are \(9\times10^2\) of them.
+\end{frame}
+\begin{frame}{Lists and subsets}
+In a set of \(n\) elements, there are \(n^k\) ordered lists of length \(k\) with repetition; \(n(n-1)\cdots(n-k+1)=\dfrac{n!}{(n-k)!}\) lists of \(k\) distinct elements, if \(0\le k\le n\); and \(n!\) permutations of all the elements. We set \(0!=1\).
+\end{frame}
+\begin{frame}{Lists and subsets}
+A combination of \(k\) elements from \(n\) is a subset with \(k\) elements; order does not matter.
+\[\binom nk=\dfrac{n!}{k!(n-k)!},\quad\binom n0=\binom nn=1,\quad\binom n1=n,\quad\binom n2=\dfrac{n(n-1)}2.\]
+\end{frame}
+\begin{frame}{Lists and subsets}
+Each subset of size \(k\) gives exactly \(k!\) distinct lists, according to the order of its elements. The number of lists without repetition is therefore \(k!\binom nk\).
+\end{frame}
+\begin{frame}{Identities and proofs}
+\[\binom nk=\binom n{n-k},\qquad \binom nk+\binom n{k+1}=\binom{n+1}{k+1},\qquad\sum_{k=0}^n\binom nk=2^n.\]
+Pascal's rule above is used for \(0\le k<n\); the boundary formulas can be read directly from the values \(1\).
+\end{frame}
+\begin{frame}{Identities and proofs}
+Taking the complement sets up a one-to-one correspondence between subsets of size \(k\) and those of size \(n-k\).
+\end{frame}
+\begin{frame}{Identities and proofs}
+In a set of \(n+1\) elements, fix an element \(a\). A subset of size \(k+1\) either contains \(a\) (choose \(k\) other elements from \(n\)) or does not contain it (choose \(k+1\) elements from \(n\)). The two cases are disjoint and cover all possibilities.
+\end{frame}
+\begin{frame}{Identities and proofs}
+For \(0\le k<n\), put over a common denominator:
+\[\dfrac{n!}{k!(n-k)!}+\dfrac{n!}{(k+1)!(n-k-1)!}
+=\dfrac{n!((k+1)+(n-k))}{(k+1)!(n-k)!}
+=\dfrac{(n+1)!}{(k+1)!(n-k)!}.\]
+The boundary cases are handled directly.
+\end{frame}
+\begin{frame}{Identities and proofs}
+For each of the \(n\) elements, choosing "present" or "absent" gives \(2^n\) subsets. Sorting them by size, we count \(\sum_{k=0}^n\binom nk\): the two counts are equal.
+\end{frame}
+\begin{frame}{Identities and proofs}
+The expansion \((a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k\) is understood by choosing, in each of the \(n\) factors, either the term \(a\) or the term \(b\). This formula is not used as a prerequisite for the assessments in this booklet.
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Order and repetition in a counting problem - 30 min.}
+
+Six distinct students volunteer to organise a debate.
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Two students are chosen to form a pair, with no roles assigned. How many pairs can be formed?
+
+\item A chair and a secretary are appointed, and they must be two different students. How many assignments of the two roles are possible?
+
+\item Three successive speeches are planned. The same student may speak several times. How many programmes of three speeches are possible?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Research activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Start again with only four students, labelled \(A\), \(B\), \(C\) and \(D\). Write out all the pairs and all the assignments of the two roles. Then explain why there are \(64\) programmes of three speeches, without listing them.
+
+\item For each of the three ways of choosing, state whether order matters and whether the same person can be chosen several times.
+
+\end{enumerate}
+\end{frame}
+\end{document}

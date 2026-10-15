@@ -1,0 +1,141 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Vecteurs, droites et plans de l'espace}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Vecteurs, droites et plans de l'espace}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Calculer avec des vecteurs ; utiliser colinéarité et coplanarité ; caractériser droites et plans ; travailler dans un repère.
+\end{frame}
+\begin{frame}{Calcul vectoriel}
+La relation de Chasles \(\vect{AB}+\vect{BC}=\vect{AC}\), la somme de vecteurs et le produit par un réel se prolongent à l'espace. Deux vecteurs non nuls sont colinéaires si l'un est un multiple de l'autre. Le vecteur nul est colinéaire à tout vecteur.
+Trois vecteurs sont coplanaires s'ils appartiennent à un même plan vectoriel. Si \(\vec u,\vec v\) ne sont pas colinéaires, \(\vec u,\vec v,\vec w\) sont coplanaires si et seulement si \(\vec w=\alpha\vec u+\beta\vec v\) pour certains réels \(\alpha,\beta\).
+\end{frame}
+\begin{frame}{Calcul vectoriel}
+La droite passant par \(A\) de vecteur directeur non nul \(\vec u\) est l'ensemble des points \(M\) tels que \(\vect{AM}=t\vec u\) pour un réel \(t\).
+Le plan passant par \(A\) et dirigé par deux vecteurs non colinéaires \(\vec u,\vec v\) est l'ensemble des points \(M\) tels que \(\vect{AM}=s\vec u+t\vec v\) pour des réels \(s,t\).
+\end{frame}
+\begin{frame}{Calcul vectoriel}
+Trois points non alignés définissent un plan. Quatre points \(A,B,C,D\), avec \(A,B,C\) non alignés, sont coplanaires si et seulement si \(\vect{AD}\) est combinaison linéaire de \(\vect{AB}\) et \(\vect{AC}\).
+\end{frame}
+\begin{frame}{Positions relatives}
+Deux droites sont confondues, strictement parallèles, sécantes ou non coplanaires. Des vecteurs directeurs colinéaires caractérisent des droites parallèles au sens large. Des directeurs non colinéaires n'assurent pas l'intersection.
+Une droite et un plan : droite incluse dans le plan, parallèle et disjointe, ou sécante en un seul point. Deux plans : confondus, strictement parallèles, ou sécants suivant une droite.
+\end{frame}
+\begin{frame}{Positions relatives}
+Dans \(ABCDEFGH\), les faces \(ABCD\) et \(EFGH\) sont parallèles et les arêtes \(AE,BF,CG,DH\) se correspondent. Les droites \((AB)\) et \((CG)\) ne sont ni parallèles ni sécantes : elles sont non coplanaires.
+\end{frame}
+\begin{frame}{Base et coordonnées}
+Une base de l'espace est une famille de trois vecteurs non coplanaires. Tout vecteur s'y écrit de manière unique \(x\vi +y\vj +z\vec k\). Un repère est constitué d'une origine \(O\) et d'une base.
+\[\vect{AB}=(x_B-x_A;y_B-y_A;z_B-z_A),\qquad
+I=\left(\dfrac{x_A+x_B}2,\dfrac{y_A+y_B}2,\dfrac{z_A+z_B}2\right).\]
+Dans un repère orthonormé, \(\|\vec u\|=\sqrt{x^2+y^2+z^2}\) et \(AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}\).
+\end{frame}
+\begin{frame}{Base et coordonnées}
+Dans un repère orthonormé, pour \(A(1;0;2)\), \(B(3;-1;4)\), \(\vect{AB}=(2;-1;2)\), \(AB=3\) et le milieu est \((2;-\dfrac{1}{2};3)\).
+\end{frame}
+\begin{frame}{Base et coordonnées}
+Écrire les trois égalités de coordonnées. Déterminer les coefficients à partir de deux équations quand c'est possible, puis vérifier la troisième. Une contradiction prouve la non-appartenance ; on ne supprime pas l'équation gênante.
+\end{frame}
+\begin{frame}{Activité de recherche}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\textbf{Trois milieux dans un cube - 40 min.}
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+On considère le cube \(ABCDEFGH\) représenté ci-dessous. On pose \(\vi=\vect{AB}\), \(\vj=\vect{AD}\) et \(\vec k=\vect{AE}\). Les points \(I\), \(J\) et \(K\) sont les milieux respectifs de \([AB]\), \([AD]\) et \([AE]\). On note \(O\) le centre du cube.
+   \([AG]\) est une diagonale de l'espace, tracée en pointillés verts.
+
+Les arêtes cachées sont en pointillés bleus ; \(D\) et \(F\) ne sont pas sur \((AG)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche (3)}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Exprimer \(\vect{IJ}\) et \(\vect{IK}\) dans la base \((\vi;\vj;\vec k)\).
+
+\item Démontrer que les points \(I\), \(J\) et \(K\) ne sont pas alignés.
+
+\item Déterminer si \(O\) appartient au plan \((IJK)\). On justifiera la réponse en cherchant si \(\vect{IO}\) est une combinaison linéaire de \(\vect{IJ}\) et \(\vect{IK}\).
+
+\end{enumerate}
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche (4)}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Pourquoi la seule lecture de la figure ne permet-elle pas de démontrer l'appartenance ou la non-appartenance de \(O\) au plan \((IJK)\) ?
+
+\end{enumerate}
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

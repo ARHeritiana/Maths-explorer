@@ -1,0 +1,263 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonction logarithme décimal}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonction logarithme décimal}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Cours de référence}
+Pour tout \(b>0\), \(\log(b)\) est l'unique réel \(x\) tel que \(10^x=b\). Ainsi \(\log(10^x)=x\) et, pour \(b>0\), \(10^{\log(b)}=b\). La fonction \(\log\) est définie sur \(]0,+\infty[\) et elle est strictement croissante.
+\end{frame}
+\begin{frame}{Cours de référence}
+\(\log(a+b)\) ne se simplifie pas. Avant tout calcul logarithmique, vérifier que chaque argument est strictement positif.
+\end{frame}
+\begin{frame}{Cours de référence}
+Pour résoudre \(a^x=b\), avec \(a>0\), \(a\neq1\) et \(b>0\), on prend le logarithme : \(x\log(a)=\log(b)\), donc \(x=\dfrac{\log(b)}{\log(a)}\).
+\end{frame}
+\begin{frame}{Cours de référence}
+Résoudre \(1{,}08^x=2\) revient à écrire \(x=\dfrac{\log(2)}{\log(1{,}08)}\approx9{,}01\). Une valeur multipliée chaque année par \(1{,}08\) double donc après un peu plus de neuf ans.
+\end{frame}
+\begin{frame}{Définition du logarithme décimal}
+\begin{itemize}
+\item Relier puissance de 10 et logarithme.
+\item Calculer des valeurs usuelles.
+\item Utiliser la calculatrice.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Définition du logarithme décimal}
+Compléter les couples \(10^x=b\) et \(x=\log(b)\) pour \(b=0{,}001;0{,}1;1;10;1\,000\). Puis utiliser la calculatrice pour \(b=7\).
+\end{frame}
+\begin{frame}{Définition du logarithme décimal}
+Pour \(b>0\), \(\log(b)\) est l'unique solution de \(10^x=b\). En particulier \(\log(1)=0\), \(\log(10)=1\) et \(\log(100)=2\).
+\end{frame}
+\begin{frame}{Définition du logarithme décimal}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Définition du logarithme décimal}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Sens de variation et représentation}
+\begin{itemize}
+\item Connaître le domaine.
+\item Utiliser la croissance.
+\item Lire la courbe.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Sens de variation et représentation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Tracer \(y=10^x\) et la droite \(y=x\), puis obtenir la courbe du logarithme par symétrie. En déduire son domaine, son sens de variation et l'asymptote.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-03-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Sens de variation et représentation}
+La fonction \(\log\) est définie sur \(]0,+\infty[\), strictement croissante, et sa courbe admet \(x=0\) comme asymptote verticale.
+\end{frame}
+\begin{frame}{Sens de variation et représentation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Sens de variation et représentation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Propriétés algébriques}
+\begin{itemize}
+\item Développer ou condenser des logarithmes.
+\item Vérifier les conditions.
+\item Éviter les fausses propriétés.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Propriétés algébriques}
+À partir de \(10^2\times10^3=10^5\), conjecturer \(\log(ab)=\log a+\log b\). Tester numériquement avec \(a=2,b=5\), puis expliquer pourquoi \(a,b\) doivent être positifs.
+\end{frame}
+\begin{frame}{Propriétés algébriques}
+Pour \(a,b>0\), \(\log(ab)=\log a+\log b\) et \(\log\!\left(\dfrac ab\right)=\log a-\log b\). De plus \(\log(a^n)=n\log a\).
+\end{frame}
+\begin{frame}{Propriétés algébriques}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Propriétés algébriques}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Résoudre \(10^x=b\)}
+\begin{itemize}
+\item Résoudre \(10^x=b\).
+\item Encadrer une solution.
+\item Interpréter un ordre de grandeur.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Résoudre \(10^x=b\)}
+Un appareil mesure des intensités \(b=0{,}04;3{,}2;850\). Pour chaque valeur, résoudre \(10^x=b\), donner \(x\) au centième et vérifier en calculant \(10^x\).
+\end{frame}
+\begin{frame}{Résoudre \(10^x=b\)}
+L'équation \(10^x=b\) n'a de solution que si \(b>0\) ; cette solution est \(x=\log(b)\).
+\end{frame}
+\begin{frame}{Résoudre \(10^x=b\)}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Résoudre \(10^x=b\)}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Résoudre \(a^x=b\)}
+\begin{itemize}
+\item Résoudre \(a^x=b\).
+\item Utiliser un quotient de logarithmes.
+\item Arrondir avec sens.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Résoudre \(a^x=b\)}
+Le nombre d'abonnés est multiplié par \(1{,}15\) chaque mois. Déterminer au bout de combien de mois il aura triplé. Poser l'équation, la résoudre avec les logarithmes et interpréter l'arrondi.
+\end{frame}
+\begin{frame}{Résoudre \(a^x=b\)}
+Pour \(a>0\), \(a\neq1\) et \(b>0\), \(a^x=b\) équivaut à \(x=\dfrac{\log(b)}{\log(a)}\).
+\end{frame}
+\begin{frame}{Résoudre \(a^x=b\)}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Résoudre \(a^x=b\)}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Équations \(x^a=b\) et inégalités simples}
+\begin{itemize}
+\item Résoudre une puissance inconnue.
+\item Traiter une inégalité.
+\item Tenir compte du domaine.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Équations \(x^a=b\) et inégalités simples}
+Résoudre sur \([0,+\infty[\) : \(x^3=40\), puis \(x^4=16\). Résoudre ensuite \(1{,}08^x<1{,}5\) et expliquer le rôle de la croissance.
+\end{frame}
+\begin{frame}{Équations \(x^a=b\) et inégalités simples}
+Pour résoudre \(x^n=b\), tenir compte du domaine et de la parité de \(n\). Pour une inégalité exponentielle, le sens dépend de la croissance ou décroissance de la fonction.
+\end{frame}
+\begin{frame}{Équations \(x^a=b\) et inégalités simples}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Équations \(x^a=b\) et inégalités simples}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+\begin{itemize}
+\item Modéliser une situation.
+\item Choisir une équation.
+\item Conclure dans le contexte.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+Le niveau sonore est \(L=10\log\!\left(\dfrac I{I_0}\right)\). Calculer \(L\) lorsque \(I=10^6I_0\). Puis déterminer le rapport \(\dfrac I{I_0}\) pour \(L=85\) dB.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+Dans un problème, définir la variable, poser l'équation, résoudre, contrôler le domaine et conclure avec l'unité. Une solution numérique sans interprétation est incomplète.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Problèmes contextualisés}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\begin{itemize}
+\item Synthétiser les méthodes.
+\item Identifier les conditions.
+\item Remédier aux erreurs.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Réaliser une carte de méthodes : domaine ; propriétés ; équations \(10^x=b\) ; équations \(a^x=b\) ; inégalités. Associer à chaque branche une condition et un exemple.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Avant un calcul de logarithme : vérifier la positivité. Avant une comparaison : identifier le sens de variation. Avant une conclusion : contrôler la vraisemblance.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\end{document}

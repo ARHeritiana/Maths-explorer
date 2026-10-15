@@ -16,3 +16,4 @@ icons.
 
 The site's program code (`site/js/`, `site/styles/`, `site/index.html`, `build/`, `scripts/`, `tests/` and the copies
 of the site files in `dist/`) is licensed under the **MIT License**: see `LICENSE-CODE`.
+

@@ -1,0 +1,117 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Random variables, concentration and the law of large numbers}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Random variables, concentration and the law of large numbers}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Compute the expected value and variance of a sum and of a mean; apply the Bienaymé-Chebyshev inequality; determine a sample size.
+\end{frame}
+\begin{frame}{Sums and transformations}
+For a finite random variable \(X\), taking the values \(x_i\) with probabilities \(p_i\),
+\[E(X)=\sum_i x_ip_i,\qquad V(X)=\sum_i(x_i-E(X))^2p_i=E(X^2)-E(X)^2.\]
+The standard deviation is \(\sigma(X)=\sqrt{V(X)}\). When the square in \(V(aX+b)\) is expanded, the shift \(b\) cancels and the factor \(a\) is squared.
+For finite random variables \(X,Y\) and real numbers \(a,b\),
+\[E(X+Y)=E(X)+E(Y),\quad E(aX+b)=aE(X)+b,\quad V(aX+b)=a^2V(X).\]
+Linearity of expected value does not require independence. If \(X,Y\) are independent, \(V(X+Y)=V(X)+V(Y)\) (accepted without proof). Without this assumption, this formula cannot be applied. The standard deviation of \(aX+b\) is \(|a|\sigma(X)\).
+\end{frame}
+\begin{frame}{Sums and transformations}
+If \(Y=X\), then \(V(X+Y)=V(2X)=4V(X)\), and not \(2V(X)\) as soon as \(V(X)\ne0\).
+\end{frame}
+\begin{frame}{Sums and transformations}
+Write \(X=B_1+\cdots+B_n\) with the independent indicator variables of the successes. Each \(B_i\) satisfies \(E(B_i)=p\), \(E(B_i^2)=p\) and \(V(B_i)=p-p^2\). By linearity and additivity under independence, \(E(X)=np\), \(V(X)=np(1-p)\).
+\end{frame}
+\begin{frame}{Sample and mean}
+A sample of size \(n\) from a distribution is a family of \(n\) independent random variables with the same distribution. If they have expected value \(\mu\) and variance \(\sigma^2\), we write \(S_n=\sum_{i=1}^nX_i\) and \(M_n=\dfrac{S_n}{n}\).
+\end{frame}
+\begin{frame}{Sample and mean}
+\[E(S_n)=n\mu,\quad V(S_n)=n\sigma^2,\qquad E(M_n)=\mu,\quad V(M_n)=\dfrac{\sigma^2}{n},\quad\sigma(M_n)=\dfrac\sigma{\sqrt n}.\]
+\end{frame}
+\begin{frame}{Sample and mean}
+To divide the standard deviation of the mean by \(2\), multiply the size by \(4\). The variance of the sum increases; that of the mean decreases.
+\end{frame}
+\begin{frame}{Concentration}
+For a variable with expected value \(\mu\), variance \(\sigma^2\), and \(\delta>0\),
+\[P(|X-\mu|\ge\delta)\le\dfrac{\sigma^2}{\delta^2}.\]
+An upper bound greater than \(1\) remains true, but gives no additional information; it can be replaced by \(1\).
+\end{frame}
+\begin{frame}{Concentration}
+In \(V(X)=\sum_x(x-\mu)^2P(X=x)\), keep only the values satisfying \(|x-\mu|\ge\delta\). Each square is then at least \(\delta^2\). Hence \(V(X)\ge\delta^2P(|X-\mu|\ge\delta)\).
+\end{frame}
+\begin{frame}{Law of large numbers}
+Applied to the mean of a sample,
+\[P(|M_n-\mu|\ge\delta)\le\dfrac{\sigma^2}{n\delta^2}\xrightarrow[n\to\infty]{}0.\]
+This is the law of large numbers in the setting considered: for a fixed precision, the probability of a deviation at least equal to that precision tends to zero. This result does not say that each realisation gets closer to \(\mu\) monotonically.
+\end{frame}
+\begin{frame}{Law of large numbers}
+To guarantee \(P(|M_n-\mu|<\delta)\ge1-\alpha\), it suffices to choose
+\[n\ge\dfrac{\sigma^2}{\alpha\delta^2}.\]
+Take the ceiling. This is the smallest integer satisfying \emph{this bound}, not necessarily the minimum size for the exact probability.
+\end{frame}
+\begin{frame}{Law of large numbers}
+For a frequency of successes, \(\mu=p\) and \(\sigma^2=p(1-p)\le\dfrac{1}{4}\). If \(p\) is unknown, \(n\ge\dfrac{1}{4\alpha\delta^2}\) is a uniform guarantee.
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Fluctuations of a frequency - 40 min.}
+
+A fair coin is tossed independently. For every integer \(n\ge1\), let \(F_n\) denote the frequency of "heads" among the first \(n\) tosses.
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Write a program that simulates 1000 tosses, then plot the points \((n;F_n)\) for \(1\le n\le1000\). Does the distance from \(\dfrac12\) necessarily decrease at each toss?
+
+\item Express \(E(F_n)\) and \(V(F_n)\) in terms of \(n\).
+
+\item Using Bienaymé-Chebyshev, find an upper bound for \(P(|F_{1000}-\dfrac12|\ge0.05)\).
+
+\item Determine an integer \(n\) large enough that \(P(|F_n-\dfrac12|<0.05)\ge0.99\).
+
+\item State what the simulated trajectory shows and what the inequality obtained guarantees. Does a single simulation constitute a proof of this guarantee?
+
+\end{enumerate}
+\end{frame}
+\end{document}

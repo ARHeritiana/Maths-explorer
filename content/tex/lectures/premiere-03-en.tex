@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Vectors and the scalar product}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Vectors and the scalar product}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Choose between projection, coordinates and angle; calculate a length; characterise orthogonality and a locus.
+
+\textbf{Prerequisites.} Vectors, Chasles's relation, Pythagoras, cosine in a right triangle, orthonormal frame.
+
+\textbf{Yearly reference point.} 6-15 October: 8 hours
+\end{frame}
+\begin{frame}{Projection and angle}
+For two nonzero vectors \(\vec u,\vec v\), their scalar product is the real number \(\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta\), where \(\theta\in[0,\pi]\) is their unoriented angle. With a zero vector, the product is 0. If \(H\) is the projection of B onto \((OA)\), \(\vect{OA}\cdot\vect{OB}\) equals \(OA\times OH\) when H is on the ray \([OA)\), and its opposite otherwise.
+\end{frame}
+\begin{frame}{Projection and angle}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For two vectors of norms 3 and 4 forming \(60^\circ\), the product is \(\dfrac{3\times 4\times 1}{2}=6\). With \(120^\circ\), it is \(-6\). If \(A(3,0)\) and \(B(-2,4)\), the projection is \(H(-2,0)\) and the product is \(-6\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-03-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Projection and angle}
+The result is a number, not a vector. A right angle corresponds to 0, not to 1.
+\end{frame}
+\begin{frame}{Projection and angle}
+Two vectors have norms 2 and 5 and form \(90^\circ\), then \(180^\circ\). Calculate the products.
+\end{frame}
+\begin{frame}{Coordinates, norm and orthogonality}
+In an orthonormal basis, for \(\vec u=(x,y)\) and \(\vec v=(x\prime,y\prime)\), \(\vec u\cdot\vec v=xx\prime+yy\prime\) and \(\norm{\vec u}^2=x^2+y^2\). The vectors are orthogonal if and only if their product is zero. For an orthonormal basis \((\vec i,\vec j)\), \(x=\vec u\cdot\vec i\) and \(y=\vec u\cdot\vec j\).
+\end{frame}
+\begin{frame}{Coordinates, norm and orthogonality}
+\(\vec u=(2,3)\), \(\vec v=(3,-2)\): product \(6-6=0\). The two vectors are orthogonal. Their norm is \(\sqrt{13}\). The product of \((2,3)\) with \((1,0)\) is 2: we recover the x-coordinate.
+\end{frame}
+\begin{frame}{Coordinates, norm and orthogonality}
+The usual formula assumes an orthonormal basis. Collinearity and orthogonality are different properties.
+\end{frame}
+\begin{frame}{Coordinates, norm and orthogonality}
+For which real number t are the vectors \((t,2)\) and \((3,-6)\) orthogonal?
+\end{frame}
+\begin{frame}{Vector calculus and identities}
+The scalar product is symmetric and bilinear: \(\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w\) and \((\lambda\vec u)\cdot\vec v=\lambda(\vec u\cdot\vec v)\). Hence \(\norm{\vec u\pm\vec v}^2=\norm{\vec u}^2\pm2\vec u\cdot\vec v+\norm{\vec v}^2\). It follows that \(\vec u\cdot \vec v=\dfrac{\norm{\vec u+\vec v}^2-\norm{\vec u}^2-\norm{\vec v}^2}{2}\).
+\end{frame}
+\begin{frame}{Vector calculus and identities}
+If \(\norm{\vec u}=3\), \(\norm{\vec v}=4\) and \(\norm{\vec u+\vec v}=5\), the product is \(\dfrac{25-9-16}{2}=0\). We deduce orthogonality without coordinates.
+\end{frame}
+\begin{frame}{Vector calculus and identities}
+In general, \(\norm{\vec u+\vec v}\ne\norm{\vec u}+\norm{\vec v}\). The identities concern the squares of the norms.
+\end{frame}
+\begin{frame}{Vector calculus and identities}
+Given \(\norm{\vec u}=2\), \(\norm{\vec v}=3\), \(\vec u\cdot\vec v=1\). Calculate \(\norm{\vec u-\vec v}\).
+\end{frame}
+\begin{frame}{Al-Kashi and choosing a method}
+In a triangle ABC, \(BC^2=AB^2+AC^2-2AB\,AC\cos\widehat{BAC}\). This formula allows us to calculate the third side from two sides and the included angle, or to find the cosine of an angle from the three sides.
+\end{frame}
+\begin{frame}{Al-Kashi and choosing a method}
+\(AB=5\), \(AC=3\) and \(\widehat{BAC}=60^\circ\): \(BC^2=25+9-15=19\), so \(BC=\sqrt{19}\). With three sides, isolate the cosine before approximating the angle on a calculator, if one is allowed.
+\end{frame}
+\begin{frame}{Al-Kashi and choosing a method}
+The angle is included between the two sides of the product term. The minus sign is essential.
+\end{frame}
+\begin{frame}{Al-Kashi and choosing a method}
+A triangle has \(AB=AC=4\) and \(BC=4\sqrt2\). Determine the angle A.
+\end{frame}
+\begin{frame}{The circle with diameter AB}
+For two distinct points A and B with midpoint I, \(\vect {MA}\cdot \vect {MB}=MI^2-\dfrac{AB^2}{4}\). The set of points M such that \(\vect{MA}\cdot\vect{MB}=0\) is the circle with centre I and radius \(\dfrac{AB}{2}\), including the points A and B.
+\end{frame}
+\begin{frame}{The circle with diameter AB}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(A(-2,0)\) and \(B(2,0)\): I is the origin. The locus is \(x^2+y^2=4\). For \(M(0,1)\), the product is \(1-4=-3\); for \(M(0,2)\), it is 0.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-03-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{The circle with diameter AB}
+The endpoints belong to the locus even though “right triangle” does not apply to a degenerate triangle.
+\end{frame}
+\begin{frame}{The circle with diameter AB}
+For \(A(0,0)\), \(B(6,0)\), determine the points M such that \(\vect{MA}\cdot\vect{MB}=7\).
+\end{frame}
+\end{document}

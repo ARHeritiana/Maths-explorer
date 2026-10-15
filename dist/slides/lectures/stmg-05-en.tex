@@ -1,0 +1,289 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Bivariate statistics}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Bivariate statistics}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Reference course}
+A line of best fit \(y=ax+b\) gives estimates, not exact equalities. The coefficient \(a\) describes the estimated average change in \(y\) when \(x\) increases by one unit. Interpolation stays within the range of observed values; extrapolation goes outside that range and must be presented with caution.
+\end{frame}
+\begin{frame}{Reference course}
+To use \(y=ax+b\): 1) replace \(x\) by the requested value to estimate \(y\); 2) solve \(ax+b=y_0\) to estimate \(x\); 3) round according to the context; 4) state whether it is interpolation or extrapolation; 5) remind that the result depends on the model.
+\end{frame}
+\begin{frame}{Scatter plot}
+\begin{itemize}
+\item Construct a scatter plot.
+\item Choose the scales.
+\item Identify the variables.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Scatter plot}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+The table \((x_i,y_i)\) gives the advertising spending and the sales over six months: \((1,12),(2,15),(3,17),(4,22),(5,24),(6,28)\). Choose scales, draw the scatter plot and plot the mean point.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Scatter plot}
+A scatter plot represents the pairs \((x_i,y_i)\). The axes, units and scales must be indicated; each pair gives a single point.
+\end{frame}
+\begin{frame}{Scatter plot}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Scatter plot}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Reading and interpreting a scatter plot}
+\begin{itemize}
+\item Describe a trend.
+\item Spot spread and outliers.
+\item Avoid unwarranted causality.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Reading and interpreting a scatter plot}
+Compare three scatter plots: a tight increasing trend, a scattered decreasing trend, no trend. For each, write two sentences without using the word “cause”.
+\end{frame}
+\begin{frame}{Reading and interpreting a scatter plot}
+Describing a scatter plot means commenting on its direction, shape, spread and outliers, without claiming a causality that has not been established.
+\end{frame}
+\begin{frame}{Reading and interpreting a scatter plot}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Reading and interpreting a scatter plot}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Linear regression}
+\begin{itemize}
+\item Obtain a linear regression.
+\item Interpret \(a\) and \(b\).
+\item Check with the mean point.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Linear regression}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+With the data of session 31, obtain the linear regression with a calculator. Interpret the slope and check that the mean point lies approximately on the line.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-3-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Linear regression}
+A line \(y=ax+b\) fits a scatter plot. \(a\) represents the estimated average change in \(y\) for one extra unit of \(x\).
+\end{frame}
+\begin{frame}{Linear regression}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Linear regression}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Interpolation}
+\begin{itemize}
+\item Interpolate.
+\item Solve using the model.
+\item Express an estimate.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Interpolation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Over the observed period \(x\in[1,12]\), the model is \(y=2.8x+14\). Estimate \(y\) for \(x=7.5\), then estimate \(x\) when \(y=35\). Classify each estimate.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-4-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Interpolation}
+An interpolation estimates a value inside the observed range. The result is an estimate that depends on the model.
+\end{frame}
+\begin{frame}{Interpolation}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Interpolation}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Extrapolation}
+\begin{itemize}
+\item Extrapolate with caution.
+\item Assess plausibility.
+\item Present a limitation of the model.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Extrapolation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+The same model \(y=2.8x+14\), fitted on \([1,12]\), is used for \(x=40\). Calculate the estimate, then give three reasons why it may be unreliable.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-5-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Extrapolation}
+An extrapolation estimates outside the observed range. The further away we go, the more caution is needed.
+\end{frame}
+\begin{frame}{Extrapolation}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Extrapolation}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Change of variable}
+\begin{itemize}
+\item Carry out a change of variable.
+\item Fit the new data.
+\item Return to the original variable.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Change of variable}
+The data appear to be exponential. We set \(z=\log(y)\) and the fit gives \(z=0.08x+1.2\). Express \(y\) as a function of \(x\), then calculate \(y\) for \(x=5\).
+\end{frame}
+\begin{frame}{Change of variable}
+A change of variable can make a scatter plot linear. After fitting in the new variable, we must return to the original variable.
+\end{frame}
+\begin{frame}{Change of variable}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Change of variable}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Choosing the model and fitting}
+\begin{itemize}
+\item Compare models.
+\item Use residuals.
+\item Define a range of use.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Choosing the model and fitting}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Two models give total absolute residuals of \(18.4\) and \(11.7\) over the observed range. The second, however, shows unrealistic growth beyond \(x=20\). Choose a model to interpolate at \(x=12\), then discuss extrapolation at \(x=50\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-6-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Choosing the model and fitting}
+We choose a model according to the shape of the scatter plot, the size of the residuals and the range of use. A better visual fit does not allow unlimited extrapolation.
+\end{frame}
+\begin{frame}{Choosing the model and fitting}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Choosing the model and fitting}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Review and assessment}
+\begin{itemize}
+\item Choose and use a regression.
+\item Write a statistical conclusion.
+\item Analyse an error.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Review and assessment}
+Starting from a scatter plot supplied by the teacher, produce a complete answer: choice of model, equation, estimate, type of estimate, unit and caveat. Swap papers and use a six-criterion grid.
+\end{frame}
+\begin{frame}{Review and assessment}
+A complete statistical answer contains the model, the calculation, the rounding, the unit, the type of estimate and a caveat on validity.
+\end{frame}
+\begin{frame}{Review and assessment}
+Take the data of the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Review and assessment}
+\textbf{One-hour plan:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{Two-hour plan:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast students to produce a counterexample, a justification or a second method.
+\end{frame}
+\end{document}

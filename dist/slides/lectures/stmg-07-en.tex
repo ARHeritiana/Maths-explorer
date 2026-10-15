@@ -1,0 +1,197 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Discrete random variables and the binomial distribution}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Discrete random variables and the binomial distribution}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Reference notes}
+The expected value is \(E(X)=\sum_i x_ip_i\). It represents the long-run average value when the experiment is repeated under the same conditions; it is not necessarily a value actually taken by \(X\).
+\end{frame}
+\begin{frame}{Reference notes}
+\(X\) follows a binomial distribution \(\mathcal B(n,p)\) when \(X\) counts the number of successes in \(n\) independent Bernoulli trials with the same probability of success \(p\). Then
+\[
+P(X=k)=\binom nk p^k(1-p)^{n-k},\qquad E(X)=np.
+\]
+\end{frame}
+\begin{frame}{Expected value of a random variable}
+\begin{itemize}
+\item Define a distribution.
+\item Calculate an expected value.
+\item Interpret a theoretical average.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Expected value of a random variable}
+A game costs \(2\) euros. The gross winnings are \(0\), \(3\) or \(10\) euros with probabilities \(0.6\), \(0.3\), \(0.1\). Construct the distribution of the net gain \(X\), calculate \(E(X)\) and decide whether the game is favourable to the player.
+\end{frame}
+\begin{frame}{Expected value of a random variable}
+The distribution of \(X\) assigns to each value \(x_i\) the probability \(p_i\). The expected value \(E(X)=\sum x_ip_i\) is a theoretical long-run average.
+\end{frame}
+\begin{frame}{Expected value of a random variable}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Expected value of a random variable}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Binomial distribution: recognising a situation}
+\begin{itemize}
+\item Recognise a Bernoulli scheme.
+\item Identify \(n\) and \(p\).
+\item Define \(X\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Binomial distribution: recognising a situation}
+A customer accepts an offer with probability \(0.25\). An adviser contacts eight customers independently. Define \(X\), justify the binomial distribution and identify \(n\) and \(p\).
+\end{frame}
+\begin{frame}{Binomial distribution: recognising a situation}
+\(X\sim\mathcal B(n,p)\) if \(X\) counts the successes in \(n\) independent trials with the same probability \(p\).
+\end{frame}
+\begin{frame}{Binomial distribution: recognising a situation}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Binomial distribution: recognising a situation}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Pascal's triangle and binomial coefficients}
+\begin{itemize}
+\item Build Pascal's triangle.
+\item Read \(\binom nk\).
+\item Interpret a coefficient.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Pascal's triangle and binomial coefficients}
+Build rows \(n=0\) to \(n=6\) of Pascal's triangle. Explain the calculation of the number \(15\) in row \(6\), then read \(\binom62\) and \(\binom64\).
+centertabular*9c\&\&\&\&1\&\&\&\&
+
+\&\&\&1\&\&1\&\&\&
+
+\&\&1\&\&2\&\&1\&\&
+
+\&1\&\&3\&\&3\&\&1\&
+
+1\&\&4\&\&6\&\&4\&\&1tabularcenter
+\end{frame}
+\begin{frame}{Pascal's triangle and binomial coefficients}
+Pascal's triangle satisfies \(\binom nk=\binom{n-1}{k-1}+\binom{n-1}{k}\). The edges equal \(1\).
+\end{frame}
+\begin{frame}{Pascal's triangle and binomial coefficients}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Pascal's triangle and binomial coefficients}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Binomial probabilities}
+\begin{itemize}
+\item Calculate \(P(X=k)\).
+\item Translate at least/at most.
+\item Use the complement.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Binomial probabilities}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For \(X\sim\mathcal B(8,0.25)\), calculate \(P(X=2)\), \(P(X=0)\), then \(P(X\geq1)\). Translate each event into a sentence.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-07-3-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Binomial probabilities}
+If \(X\sim\mathcal B(n,p)\), then \(P(X=k)=\binom nkp^k(1-p)^{n-k}\). Translate “at least”, “at most” and “none” carefully.
+\end{frame}
+\begin{frame}{Binomial probabilities}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Binomial probabilities}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Chapter review and test}
+\begin{itemize}
+\item Calculate and interpret \(E(X)\).
+\item Solve a binomial problem.
+\item Analyse one's mistakes.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Chapter review and test}
+A centre receives \(120\) groups of \(10\) customers, each customer complaining with probability \(0.08\). Estimate the average number of complaints per group, then over all the groups. Discuss what the expected value does and does not allow us to predict.
+\end{frame}
+\begin{frame}{Chapter review and test}
+For \(X\sim\mathcal B(n,p)\), \(E(X)=np\). The value gives the average number of successes over a large number of series of \(n\) trials.
+\end{frame}
+\begin{frame}{Chapter review and test}
+Take the data from the investigation and write the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer is in the teacher edition.
+\end{frame}
+\begin{frame}{Chapter review and test}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\end{document}

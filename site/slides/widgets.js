@@ -1,5 +1,6 @@
 // Interactive canvases for the slide player. Every canvas has draggable handles, keyboard movement and explicit controls.
 // The same quantities are mirrored by the readout; space scenes use true 3D.
+import { canvasNavigation } from "../js/canvas-navigation.js";
 import { W2 } from "./widgets-2d.js";
 import { W3 } from "./widgets-3d.js";
 
@@ -89,7 +90,7 @@ export const sgn = c => (c < 0 ? "-" : "+");
 export function mount(spec, ctx) {
   const f = W2[spec.type] || W3[spec.type];
   if (!f) { ctx.host.textContent = "?"; return { destroy() {} }; }
-  const cv = canvas(ctx.host); repaint = () => cv.redraw();
+  const cv = canvas(ctx.host,ctx); repaint = () => cv.redraw();
   const api = Object.assign(cv, { ...ctx, spec, L: ctx.lang, num: n => fmt(n, ctx.lang), tn: (n, d) => tnum(n, ctx.lang, d), pair: (fr, en) => (ctx.lang ? en : fr) });
   ctx.hint.textContent = api.pair(spec.hintFr || "Interactif : glissez les points.", spec.hintEn || "Interactive: drag the points.");
   const inst = f(api) || {};
@@ -126,7 +127,7 @@ export function fmt(n, lang, d = 2) {
   return lang ? s : s.replace(".", ",");
 }
 
-function canvas(host) {
+function canvas(host,ctx) {
   const c = document.createElement("canvas"); host.appendChild(c);
   const g = c.getContext("2d");
   const o = { c, g, W: 0, H: 0, handles: () => [], draw() {}, drag: null };
@@ -137,17 +138,19 @@ function canvas(host) {
     c.width = Math.round(o.W * d); c.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw();
   };
   o.redraw = () => { g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.bg; g.fillRect(0, 0, o.W, o.H); o.draw(g); };
-  const pt = e => { const r = c.getBoundingClientRect(); return [(e.clientX - r.left) / (r.width || 1) * o.W, (e.clientY - r.top) / (r.height || 1) * o.H]; };
+  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr'});
+  const pt=navigation.point;
+  c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
   const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };
   let t0 = 0, raf = 0;
   const pulse = () => { o.t = performance.now() / 1000; if (!matchMedia("(prefers-reduced-motion: reduce)").matches) o.redraw(); raf = requestAnimationFrame(pulse); };
-  c.addEventListener("pointerdown", e => { const [x, y] = pt(e), h = hit(x, y); if (!h) { o.rotate?.start(e, pt); return; } o.drag = h; c.setPointerCapture(e.pointerId); c.style.cursor = "grabbing"; e.preventDefault(); h.move(x, y); o.redraw(); });
+  c.addEventListener("pointerdown", e => { const [x, y] = pt(e), h = hit(x, y); if (!h) { if(o.rotate){c.setPointerCapture(e.pointerId);o.rotate.start(e, pt);} return; } o.drag = h; c.setPointerCapture(e.pointerId); c.style.cursor = "grabbing"; e.preventDefault(); h.move(x, y); o.redraw(); });
   c.addEventListener("pointermove", e => { const [x, y] = pt(e); if (o.drag) { o.drag.move(x, y); o.redraw(); } else if (o.rotate?.active) o.rotate.move(e, pt); else c.style.cursor = hit(x, y)?.cur || "default"; });
   const end = () => { o.drag = null; o.rotate?.end(); c.style.cursor = "default"; o.redraw(); };
   c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
   const ro = new ResizeObserver(resize);
   o.start = inst => { Object.assign(o, inst); ro.observe(host); resize(); if (matchMedia("(prefers-reduced-motion: no-preference)").matches) raf = requestAnimationFrame(pulse); };
-  o.stop = () => { ro.disconnect(); cancelAnimationFrame(raf); };
+  o.stop = () => { navigation.destroy();ro.disconnect(); cancelAnimationFrame(raf); };
   return o;
 }
 

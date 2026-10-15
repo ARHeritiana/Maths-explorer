@@ -1,0 +1,276 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Fonction inverse}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Fonction inverse}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Cours de référence}
+\(f'(x)=-\dfrac1{x^2}<0\) pour tout \(x\neq0\). La fonction inverse est strictement décroissante sur chacun des intervalles \(]-\infty,0[\) et \(]0,+\infty[\). Les droites \(x=0\) et \(y=0\) sont des asymptotes.
+\end{frame}
+\begin{frame}{Cours de référence}
+On ne peut pas écrire que la fonction inverse est décroissante « sur \(\R\setminus\{0\}\) » sans préciser les deux intervalles. Par exemple \(-1<1\) mais \(f(-1)=-1<1=f(1)\), ce qui contreditrait la définition globale de la décroissance.
+\end{frame}
+\begin{frame}{Cours de référence}
+Sur \(]0,+\infty[\), \(g(x)=x+\dfrac4x\) vérifie \(g'(x)=1-\dfrac4{x^2}=\dfrac{(x-2)(x+2)}{x^2}\). Le dénominateur est positif ; \(g'\) est négative sur \(]0,2[\) puis positive sur \(]2,+\infty[\). La fonction admet un minimum \(g(2)=4\).
+\end{frame}
+\begin{frame}{Définition et courbe de la fonction inverse}
+\begin{itemize}
+\item Déterminer le domaine.
+\item Construire la courbe.
+\item Utiliser les symétries.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Définition et courbe de la fonction inverse}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Calculer \(\dfrac1x\) pour \(x=-4,-2,-1,-\dfrac12,\dfrac12,1,2,4\). Placer les points et décrire les symétries. Pourquoi \(x=0\) est-il absent ?
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-04-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Définition et courbe de la fonction inverse}
+La fonction inverse est \(f(x)=\dfrac1x\) sur \(\R\setminus\{0\}\). Sa courbe est une hyperbole symétrique par rapport à l'origine.
+\end{frame}
+\begin{frame}{Définition et courbe de la fonction inverse}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Définition et courbe de la fonction inverse}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Comportement aux bornes et asymptotes}
+\begin{itemize}
+\item Décrire le comportement aux bornes.
+\item Identifier les asymptotes.
+\item Lire une représentation.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Comportement aux bornes et asymptotes}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+À l'aide d'un tableau de valeurs près de \(0\) et pour de grandes valeurs de \(|x|\), décrire \(\dfrac1x\). Traduire chaque comportement par une asymptote et par une phrase.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-04-3.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Comportement aux bornes et asymptotes}
+Pour \(f(x)=\dfrac1x\), \(x=0\) est asymptote verticale et \(y=0\) asymptote horizontale. Les branches s'en approchent sans les couper.
+\end{frame}
+\begin{frame}{Comportement aux bornes et asymptotes}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Comportement aux bornes et asymptotes}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Dérivée et sens de variation}
+\begin{itemize}
+\item Dériver la fonction inverse.
+\item Justifier les variations.
+\item Dresser un tableau.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Dérivée et sens de variation}
+À partir du taux d'accroissement de \(f(x)=\dfrac1x\), retrouver \(f'(x)=-\dfrac1{x^2}\). Étudier son signe et vérifier la cohérence avec le graphique.
+\end{frame}
+\begin{frame}{Dérivée et sens de variation}
+Pour \(x\neq0\), \(f'(x)=-\dfrac1{x^2}<0\). La fonction inverse décroît sur chacun des intervalles \(]-\infty,0[\) et \(]0,+\infty[\).
+\end{frame}
+\begin{frame}{Dérivée et sens de variation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Dérivée et sens de variation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Combinaisons avec des fonctions polynomiales}
+\begin{itemize}
+\item Dériver une combinaison.
+\item Réduire une expression.
+\item Organiser une étude.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Combinaisons avec des fonctions polynomiales}
+Une entreprise produit \(x>0\) centaines d'objets et son coût moyen est \(C(x)=2x+30+\dfrac{200}{x}\). Calculer \(C'(x)\), factoriser son numérateur et chercher le niveau de production minimisant le coût moyen.
+\end{frame}
+\begin{frame}{Combinaisons avec des fonctions polynomiales}
+Pour étudier \(P(x)+\dfrac{k}{x}\), déterminer le domaine, calculer la dérivée, réduire au même dénominateur, étudier son signe puis dresser les variations.
+\end{frame}
+\begin{frame}{Combinaisons avec des fonctions polynomiales}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Combinaisons avec des fonctions polynomiales}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Signe et factorisation}
+\begin{itemize}
+\item Factoriser.
+\item Construire un tableau de signes.
+\item Respecter les valeurs interdites.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Signe et factorisation}
+Étudier le signe de \(\dfrac{(x-2)(x+3)}x\). Construire le tableau avec les trois valeurs critiques, distinguer zéro et valeur interdite, puis résoudre l'inéquation \(\dfrac{(x-2)(x+3)}x\geq0\).
+\end{frame}
+\begin{frame}{Signe et factorisation}
+Dans un quotient, le signe dépend du numérateur et du dénominateur. Les valeurs interdites sont exclues du tableau, même si un facteur se simplifie formellement.
+\end{frame}
+\begin{frame}{Signe et factorisation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Signe et factorisation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Dérivées de polynômes de degré au plus 3}
+\begin{itemize}
+\item Dériver un polynôme.
+\item Étudier une dérivée.
+\item Déduire des variations.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Dérivées de polynômes de degré au plus 3}
+Pour \(f(x)=2x^3-3x^2-12x+5\), calculer \(f'(x)\), factoriser, étudier son signe et en déduire les variations de \(f\).
+\end{frame}
+\begin{frame}{Dérivées de polynômes de degré au plus 3}
+\((ax^3+bx^2+cx+d)'=3ax^2+2bx+c\). Le signe de la dérivée donne le sens de variation de la fonction.
+\end{frame}
+\begin{frame}{Dérivées de polynômes de degré au plus 3}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Dérivées de polynômes de degré au plus 3}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Étude complète et représentation}
+\begin{itemize}
+\item Mener une étude complète.
+\item Tracer une courbe cohérente.
+\item Interpréter un extremum.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Étude complète et représentation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Étudier complètement \(g(x)=x+\dfrac9x\) sur \(]0,+\infty[\) : domaine, dérivée, signe, variations, minimum, comportement aux bornes et esquisse.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-04-4.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Étude complète et représentation}
+Une étude complète comporte : domaine, dérivée, signe, variations, limites ou comportement aux bornes, points remarquables et graphique cohérent.
+\end{frame}
+\begin{frame}{Étude complète et représentation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Étude complète et représentation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\begin{itemize}
+\item Mobiliser domaine, dérivée et signe.
+\item Rédiger une étude.
+\item Corriger méthodiquement.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Corriger une étude volontairement erronée de \(h(x)=x+\dfrac4x\) : domaine annoncé \(\R\), dérivée \(1+\dfrac4{x^2}\), tableau sans rupture en \(0\). Réécrire une solution complète.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Contrôler séparément les quatre objets : domaine, expression de la dérivée, signe de la dérivée, variations. Une erreur à une étape ne doit pas masquer les suivantes.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\end{document}

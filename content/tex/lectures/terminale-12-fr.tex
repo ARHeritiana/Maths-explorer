@@ -1,0 +1,121 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Variables aléatoires, concentration et loi des grands nombres}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Variables aléatoires, concentration et loi des grands nombres}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Calculer espérance et variance d'une somme et d'une moyenne ; appliquer Bienaymé-Tchebychev ; déterminer une taille d'échantillon.
+\end{frame}
+\begin{frame}{Sommes et transformations}
+Pour une variable aléatoire finie \(X\), prenant les valeurs \(x_i\) avec probabilités \(p_i\),
+\[E(X)=\sum_i x_ip_i,\qquad V(X)=\sum_i(x_i-E(X))^2p_i=E(X^2)-E(X)^2.\]
+L'écart type est \(\sigma(X)=\sqrt{V(X)}\). En développant le carré dans \(V(aX+b)\), le décalage \(b\) s'élimine et le facteur \(a\) est élevé au carré.
+Pour des variables aléatoires finies \(X,Y\) et des réels \(a,b\),
+\[E(X+Y)=E(X)+E(Y),\quad E(aX+b)=aE(X)+b,\quad V(aX+b)=a^2V(X).\]
+La linéarité de l'espérance ne demande pas l'indépendance. Si \(X,Y\) sont indépendantes, \(V(X+Y)=V(X)+V(Y)\) (admis). Sans cette hypothèse, on ne peut pas appliquer cette formule. L'écart type de \(aX+b\) vaut \(|a|\sigma(X)\).
+\end{frame}
+\begin{frame}{Sommes et transformations}
+Si \(Y=X\), alors \(V(X+Y)=V(2X)=4V(X)\), et non \(2V(X)\) dès que \(V(X)\ne0\).
+\end{frame}
+\begin{frame}{Sommes et transformations}
+Écrire \(X=B_1+\cdots+B_n\) avec les indicatrices indépendantes des succès. Chaque \(B_i\) vérifie \(E(B_i)=p\), \(E(B_i^2)=p\) et \(V(B_i)=p-p^2\). Par linéarité et additivité sous indépendance, \(E(X)=np\), \(V(X)=np(1-p)\).
+\end{frame}
+\begin{frame}{Échantillon et moyenne}
+Un échantillon de taille \(n\) d'une loi est une famille de \(n\) variables indépendantes de même loi. Si elles ont espérance \(\mu\) et variance \(\sigma^2\), on note \(S_n=\sum_{i=1}^nX_i\) et \(M_n=\dfrac{S_n}{n}\).
+\end{frame}
+\begin{frame}{Échantillon et moyenne}
+\[E(S_n)=n\mu,\quad V(S_n)=n\sigma^2,\qquad E(M_n)=\mu,\quad V(M_n)=\dfrac{\sigma^2}{n},\quad\sigma(M_n)=\dfrac\sigma{\sqrt n}.\]
+\end{frame}
+\begin{frame}{Échantillon et moyenne}
+Pour diviser l'écart type de la moyenne par \(2\), multiplier la taille par \(4\). La variance de la somme augmente ; celle de la moyenne diminue.
+\end{frame}
+\begin{frame}{Concentration}
+Pour une variable d'espérance \(\mu\), de variance \(\sigma^2\), et \(\delta>0\),
+\[P(|X-\mu|\ge\delta)\le\dfrac{\sigma^2}{\delta^2}.\]
+Une borne supérieure à \(1\) reste vraie, mais n'apporte pas d'information supplémentaire ; on peut la remplacer par \(1\).
+\end{frame}
+\begin{frame}{Concentration}
+Dans \(V(X)=\sum_x(x-\mu)^2P(X=x)\), ne conserver que les valeurs vérifiant \(|x-\mu|\ge\delta\). Chaque carré est alors au moins \(\delta^2\). Donc \(V(X)\ge\delta^2P(|X-\mu|\ge\delta)\).
+\end{frame}
+\begin{frame}{Loi des grands nombres}
+Appliquée à la moyenne d'un échantillon,
+\[P(|M_n-\mu|\ge\delta)\le\dfrac{\sigma^2}{n\delta^2}\xrightarrow[n\to\infty]{}0.\]
+C'est la loi des grands nombres dans le cadre considéré : pour une précision fixée, la probabilité d'un écart au moins égal à cette précision tend vers zéro. Ce résultat ne dit pas que chaque réalisation se rapproche de \(\mu\) de façon monotone.
+\end{frame}
+\begin{frame}{Loi des grands nombres}
+Pour garantir \(P(|M_n-\mu|<\delta)\ge1-\alpha\), il suffit de choisir
+\[n\ge\dfrac{\sigma^2}{\alpha\delta^2}.\]
+Prendre le plafond. Il s'agit du plus petit entier satisfaisant \emph{cette borne}, pas nécessairement de la taille minimale pour la probabilité exacte.
+\end{frame}
+\begin{frame}{Loi des grands nombres}
+Pour une fréquence de succès, \(\mu=p\) et \(\sigma^2=p(1-p)\le\dfrac{1}{4}\). Si \(p\) est inconnu, \(n\ge\dfrac{1}{4\alpha\delta^2}\) est une garantie uniforme.
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Fluctuations d'une fréquence - 40 min.}
+
+On lance indépendamment une pièce équilibrée. Pour tout entier \(n\ge1\), on note \(F_n\) la fréquence de « pile » parmi les \(n\) premiers lancers.
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Écrire un programme qui simule 1000 lancers, puis représenter les points \((n;F_n)\) pour \(1\le n\le1000\). L'écart à \(\dfrac12\) diminue-t-il nécessairement à chaque lancer ?
+
+\item Exprimer \(E(F_n)\) et \(V(F_n)\) en fonction de \(n\).
+
+\item À l'aide de Bienaymé-Tchebychev, majorer \(P(|F_{1000}-\dfrac12|\ge0{,}05)\).
+
+\item Déterminer un entier \(n\) suffisant pour que \(P(|F_n-\dfrac12|<0{,}05)\ge0{,}99\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité de recherche (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Préciser ce que montre la trajectoire simulée et ce que garantit l'inégalité obtenue. Une seule simulation constitue-t-elle une preuve de cette garantie ?
+
+\end{enumerate}
+\end{frame}
+\end{document}

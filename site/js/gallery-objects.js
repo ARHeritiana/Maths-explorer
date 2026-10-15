@@ -1,6 +1,7 @@
 // Curiosity gallery, objects that are not a formula with sliders: circles that redraw any closed curve (Madagascar, a heart,
 // a star or your own drawing) and a Mandelbrot explorer with a live Julia set. Mounted into #object-stage like the other
 // laboratory objects; the mathematics lives in gallery-math.js.
+import { navigationButtons } from "./canvas-navigation.js";
 import { canvasIn, palette, loopFor } from "./object-kit.js";
 import { escape, MADAGASCAR, resample, fourier, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 
@@ -77,9 +78,9 @@ function fourierLab(root, { t, reduced, lang }) {
       for (let i = 0; i <= 240; i++) { const q = arms(co, i / 240, count).at(-1), [x, y] = toScreen(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
       g.stroke();
     } else {
-      trail.push({ x: tip[0], y: tip[1], ts: clock }); while (trail.length && clock - trail[0].ts > FADE) trail.shift();
+      trail.push({ x: tip[0], y: tip[1], ts: clock, count }); while (trail.length && clock - trail[0].ts > FADE) trail.shift();
       g.lineWidth = 3.4; g.strokeStyle = C.accent;
-      for (let i = 1; i < trail.length; i++) { const k = 1 - (clock - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = toScreen(trail[i - 1].x, trail[i - 1].y), b = toScreen(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+      for (let i = 1; i < trail.length; i++) { if (trail[i].count !== trail[i-1].count || trail[i].ts-trail[i-1].ts > .15) continue; const k = 1 - (clock - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = toScreen(trail[i - 1].x, trail[i - 1].y), b = toScreen(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
       g.globalAlpha = 1;
     }
     g.lineWidth = 1;
@@ -122,6 +123,7 @@ function fourierLab(root, { t, reduced, lang }) {
 /* =========================================================== Mandelbrot */
 function mandelbrotLab(root, { t, reduced, lang }) {
   const SEAHORSE = [-0.743643887037151, 0.13182590420533], W0 = 3.4;
+  let jx=0,jy=0,jw=3.2;
   let cx = -0.5, cy = 0, w = W0, cSel = [-0.4, 0.6], drag = null, flying = null, dirty = true, hq = true, last = "";
   root.innerHTML = `
     <p class="act-help">${t("Chaque point c du plan est testé : on répète z → z² + c depuis 0. S’il ne s’échappe jamais, c est noir. Déplace le pointeur : l’ensemble de Julia de c change à droite. Glisse pour te déplacer, molette ou boutons pour zoomer.", "Every point c of the plane is tested: repeat z → z² + c from 0. If it never escapes, c is black. Move the pointer: the Julia set of c changes on the right. Drag to pan, wheel or buttons to zoom.")}</p>
@@ -133,7 +135,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
       <button class="btn-quiet" id="mb-reset" type="button">${t("Revenir au début", "Back to the start")}</button>
     </div>
     <p class="act-readout" id="mb-read" role="status" aria-live="polite"></p>`;
-  const o = canvasIn(root.querySelector("#mb-stage"), 640 / 400), j = canvasIn(root.querySelector("#mb-julia"), 640 / 400), read = root.querySelector("#mb-read");
+  const o = canvasIn(root.querySelector("#mb-stage"), 640 / 400, {navigation:false}), j = canvasIn(root.querySelector("#mb-julia"), 640 / 400, {navigation:false}), read = root.querySelector("#mb-read");
   o.cv.style.touchAction = "none"; o.cv.style.cursor = "crosshair";
   const maxIt = () => clamp(Math.round(90 + 38 * Math.log2(W0 / w)), 90, 1500);
   // cosine palette on the smooth escape time; the inside of the set is dark
@@ -156,8 +158,8 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   }
   function renderJulia() {
     const res = 2, pw = Math.round(j.W / res), ph = Math.round(j.H / res); oj.width = pw; oj.height = ph;
-    const c2 = oj.getContext("2d"), img = c2.createImageData(pw, ph), px = new Uint32Array(img.data.buffer), W = 3.2, h = (W * j.H) / j.W;
-    for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) px[y * pw + x] = colour(escape(((x + 0.5) / pw - 0.5) * W, -((y + 0.5) / ph - 0.5) * h, cSel[0], cSel[1], 110, true), 110);
+    const c2 = oj.getContext("2d"), img = c2.createImageData(pw, ph), px = new Uint32Array(img.data.buffer), W = jw, h = (W * j.H) / j.W;
+    for (let y = 0; y < ph; y++) for (let x = 0; x < pw; x++) px[y * pw + x] = colour(escape(jx+((x + 0.5) / pw - 0.5) * W, jy-((y + 0.5) / ph - 0.5) * h, cSel[0], cSel[1], 160, true), 110);
     c2.putImageData(img, 0, 0); j.g.drawImage(oj, 0, 0, j.W, j.H);
   }
   const f = (v) => (lang === "fr" ? String(Math.round(v * 1e6) / 1e6).replace(".", ",") : String(Math.round(v * 1e6) / 1e6));
@@ -191,7 +193,24 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   root.querySelector("#mb-fly").addEventListener("click", () => { if (reduced()) { cx = SEAHORSE[0]; cy = SEAHORSE[1]; w = 0.02; hq = true; dirty = true; return; } cx = -0.5; cy = 0; w = W0; flying = { t: 0 }; });
   o.cv.tabIndex = 0; o.cv.setAttribute("role", "application"); o.cv.setAttribute("aria-label", t("Ensemble de Mandelbrot : flèches pour se déplacer, + et − pour zoomer", "Mandelbrot set: arrow keys to pan, + and − to zoom"));
   o.cv.addEventListener("keydown", (e) => { const s = w * 0.1, d = { ArrowLeft: [-s, 0], ArrowRight: [s, 0], ArrowUp: [0, s], ArrowDown: [0, -s] }[e.key]; if (d) { e.preventDefault(); cx += d[0]; cy += d[1]; dirty = true; } else if (e.key === "+" || e.key === "=") zoom(0.7); else if (e.key === "-") zoom(1 / 0.7); });
-  void stop; return stop;
+  const fractalView=(panel,get,set,initial)=>{
+    const action=id=>{let [x,y,width]=get();if(id==='reset')[x,y,width]=initial;else if(id==='in'||id==='out')width=clamp(width*(id==='in'?.7:1/.7),2e-13,6);else{const d={left:[-1,0],right:[1,0],up:[0,1],down:[0,-1]}[id];x+=d[0]*width*.12;y+=d[1]*width*.12;}set([x,y,width]);bar.update(initial[2]/width);};
+    const bar=navigationButtons(panel.cv.parentElement,action,lang);panel.cv.style.touchAction='none';panel.cv.tabIndex=0;
+    const pointers=new Map();let pinch=null;
+    panel.cv.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){const a=[...pointers.values()];pinch=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);drag=null;panel.cv.dispatchEvent(new CustomEvent('view-gesture'));e.preventDefault();e.stopImmediatePropagation();}},true);
+    panel.cv.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pinch&&pointers.size===2){const a=[...pointers.values()],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),[x,y,width]=get();const next=clamp(width*pinch/Math.max(1,d),2e-13,6);set([x,y,next]);bar.update(initial[2]/next);pinch=d;e.preventDefault();e.stopImmediatePropagation();}},true);
+    for(const ev of ['pointerup','pointercancel'])panel.cv.addEventListener(ev,e=>{pointers.delete(e.pointerId);if(pointers.size<2)pinch=null;},true);
+    panel.cv.addEventListener('keydown',e=>{if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}},true);
+    return bar;
+  };
+  fractalView(o,()=>[cx,cy,w],v=>{[cx,cy,w]=v;flying=null;dirty=true;},[-.5,0,W0]);
+  fractalView(j,()=>[jx,jy,jw],v=>{[jx,jy,jw]=v;dirty=true;},[0,0,3.2]);
+  let jdrag=null;j.cv.style.cursor='grab';
+  j.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;jdrag={x:e.clientX,y:e.clientY,jx,jy};j.cv.setPointerCapture(e.pointerId);});
+  j.cv.addEventListener('pointermove',e=>{if(!jdrag)return;const r=j.cv.getBoundingClientRect();jx=jdrag.jx-(e.clientX-jdrag.x)/r.width*jw;jy=jdrag.jy+(e.clientY-jdrag.y)/r.height*jw*j.H/j.W;dirty=true;});
+  for(const ev of ['pointerup','pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
+  j.cv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
+  return stop;
 }
 
 export const GALLERY_OBJECTS = { fourier: fourierLab, mandelbrot: mandelbrotLab };

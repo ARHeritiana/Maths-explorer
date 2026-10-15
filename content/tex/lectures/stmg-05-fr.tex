@@ -1,0 +1,289 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Statistiques à deux variables quantitatives}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Statistiques à deux variables quantitatives}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Cours de référence}
+Une droite d'ajustement \(y=ax+b\) fournit des estimations, pas des égalités exactes. Le coefficient \(a\) décrit la variation moyenne estimée de \(y\) quand \(x\) augmente d'une unité. Une interpolation reste dans l'intervalle des valeurs observées ; une extrapolation sort de cet intervalle et doit être présentée avec prudence.
+\end{frame}
+\begin{frame}{Cours de référence}
+Pour exploiter \(y=ax+b\) : 1) remplacer \(x\) par la valeur demandée pour estimer \(y\) ; 2) résoudre \(ax+b=y_0\) pour estimer \(x\) ; 3) arrondir selon le contexte ; 4) préciser interpolation ou extrapolation ; 5) rappeler que le résultat dépend du modèle.
+\end{frame}
+\begin{frame}{Nuage de points}
+\begin{itemize}
+\item Construire un nuage.
+\item Choisir les échelles.
+\item Identifier les variables.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Nuage de points}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Le tableau \((x_i;y_i)\) donne les dépenses publicitaires et les ventes de six mois : \((1;12),(2;15),(3;17),(4;22),(5;24),(6;28)\). Choisir des échelles, tracer le nuage et placer le point moyen.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Nuage de points}
+Un nuage de points représente les couples \((x_i;y_i)\). Les axes, unités et échelles doivent être indiqués ; chaque couple donne un seul point.
+\end{frame}
+\begin{frame}{Nuage de points}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Nuage de points}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Lecture et interprétation du nuage}
+\begin{itemize}
+\item Décrire une tendance.
+\item Repérer dispersion et atypiques.
+\item Éviter causalité abusive.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Lecture et interprétation du nuage}
+Comparer trois nuages : tendance croissante serrée, tendance décroissante dispersée, absence de tendance. Rédiger pour chacun deux phrases sans employer le mot « cause ».
+\end{frame}
+\begin{frame}{Lecture et interprétation du nuage}
+Décrire un nuage consiste à commenter la direction, la forme, la dispersion et les valeurs atypiques, sans affirmer une causalité non établie.
+\end{frame}
+\begin{frame}{Lecture et interprétation du nuage}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Lecture et interprétation du nuage}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Ajustement affine}
+\begin{itemize}
+\item Obtenir un ajustement affine.
+\item Interpréter \(a\) et \(b\).
+\item Vérifier avec le point moyen.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Ajustement affine}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Avec les données de la séance 31, obtenir la régression affine à la calculatrice. Interpréter la pente et vérifier que le point moyen appartient approximativement à la droite.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-3.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Ajustement affine}
+Une droite \(y=ax+b\) ajuste un nuage. \(a\) représente la variation moyenne estimée de \(y\) pour une unité supplémentaire de \(x\).
+\end{frame}
+\begin{frame}{Ajustement affine}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Ajustement affine}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Interpolation}
+\begin{itemize}
+\item Interpoler.
+\item Résoudre avec le modèle.
+\item Exprimer une estimation.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Interpolation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Sur la période observée \(x\in[1,12]\), le modèle est \(y=2{,}8x+14\). Estimer \(y\) pour \(x=7{,}5\), puis estimer \(x\) lorsque \(y=35\). Qualifier chaque estimation.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-4.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Interpolation}
+Une interpolation estime une valeur à l'intérieur de l'intervalle observé. Le résultat est une estimation dépendante du modèle.
+\end{frame}
+\begin{frame}{Interpolation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Interpolation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Extrapolation}
+\begin{itemize}
+\item Extrapoler prudemment.
+\item Évaluer la plausibilité.
+\item Présenter une limite du modèle.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Extrapolation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Le même modèle \(y=2{,}8x+14\), ajusté sur \([1,12]\), est utilisé pour \(x=40\). Calculer l'estimation, puis donner trois raisons pour lesquelles elle peut être peu fiable.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-5.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Extrapolation}
+Une extrapolation estime hors de l'intervalle observé. Plus on s'en éloigne, plus la prudence est nécessaire.
+\end{frame}
+\begin{frame}{Extrapolation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Extrapolation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Changement de variable}
+\begin{itemize}
+\item Effectuer un changement de variable.
+\item Ajuster les nouvelles données.
+\item Revenir à la variable initiale.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Changement de variable}
+Les données semblent exponentielles. On pose \(z=\log(y)\) et l'ajustement donne \(z=0{,}08x+1{,}2\). Exprimer \(y\) en fonction de \(x\), puis calculer \(y\) pour \(x=5\).
+\end{frame}
+\begin{frame}{Changement de variable}
+Un changement de variable peut aligner un nuage. Après l'ajustement dans la nouvelle variable, il faut revenir à la variable initiale.
+\end{frame}
+\begin{frame}{Changement de variable}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Changement de variable}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Choix du modèle et ajustement}
+\begin{itemize}
+\item Comparer des modèles.
+\item Utiliser les résidus.
+\item Définir un domaine d'usage.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Choix du modèle et ajustement}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Deux modèles donnent des résidus absolus totaux \(18{,}4\) et \(11{,}7\) sur la zone observée. Le second comporte cependant une croissance irréaliste après \(x=20\). Choisir un modèle pour interpoler à \(x=12\), puis discuter l'extrapolation à \(x=50\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-05-6.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Choix du modèle et ajustement}
+On choisit un modèle selon la forme du nuage, la taille des résidus et le domaine d'usage. Un meilleur ajustement visuel n'autorise pas une extrapolation illimitée.
+\end{frame}
+\begin{frame}{Choix du modèle et ajustement}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Choix du modèle et ajustement}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\begin{itemize}
+\item Choisir et exploiter un ajustement.
+\item Rédiger une conclusion statistique.
+\item Analyser une erreur.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+À partir d'un nuage fourni par le professeur, produire une réponse complète : choix du modèle, équation, estimation, type d'estimation, unité et réserve. Échanger les copies et utiliser une grille de six critères.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Une réponse statistique complète contient le modèle, le calcul, l'arrondi, l'unité, le type d'estimation et une réserve sur la validité.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Bilan et évaluation}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\end{document}

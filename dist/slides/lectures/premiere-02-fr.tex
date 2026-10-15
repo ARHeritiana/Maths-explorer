@@ -1,0 +1,192 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Second degré : formes et choix de méthode}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Second degré : formes et choix de méthode}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Le parcours du chapitre}
+\textbf{Objectifs.} Choisir une forme adaptée à une question ; passer entre des formes dans des cas simples ; démontrer et utiliser la formule des racines ; justifier un signe et résoudre une inéquation ; optimiser en tenant compte du domaine.
+
+\textbf{Prérequis.} Développer et factoriser, identités remarquables, produit nul, signe d’un produit, racines carrées et lecture d’une courbe.
+\end{frame}
+\begin{frame}{Avant le second degré}
+Développer \((x-2)^2\). Résoudre \((x-3)(x+1)=0\). Pourquoi \(u^2\) est-il positif ou nul pour tout réel \(u\) ?
+\end{frame}
+\begin{frame}{Correction : Avant le second degré}
+\((x-2)^2=x^2-4x+4\) : le terme en \(x\) ne doit pas être oublié. Un produit est nul si et seulement si un facteur est nul : \(x=3\) ou \(x=-1\). Le produit de deux réels de même signe est positif, et \(0^2=0\).
+\end{frame}
+\begin{frame}{Un rectangle à explorer}
+On construit un rectangle de périmètre 24 unités. Choisis plusieurs largeurs strictement positives donnant un rectangle. Calcule la longueur et l’aire correspondantes. Quelle largeur semble donner la plus grande aire ? Formule une conjecture, puis cherche une justification valable pour toutes les largeurs.
+\end{frame}
+\begin{frame}{Correction : Un rectangle à explorer}
+La longueur vaut \(12-x\), avec \(0<x<12\). L’aire est \(A(x)=x(12-x)=36-(x-6)^2\). Le carré est positif ou nul, donc \(A(x)\le36\), avec égalité en \(x=6\). La longueur vaut aussi \(6\) : le rectangle maximal est carré. Les essais suggèrent le résultat ; la forme canonique le démontre pour toutes les largeurs admissibles.
+\end{frame}
+\begin{frame}{Trois formes, trois lectures}
+Une fonction polynôme du second degré a la forme \(f(x)=ax^2+bx+c\), avec \(a\ne0\). Le mot « second degré » vient du terme \(x^2\). Si \(a=0\), le problème change de nature et les formules de ce chapitre ne s'appliquent plus.
+\end{frame}
+\begin{frame}{Trois formes, trois lectures (2)}
+\begin{center}\begin{tabular}{ll}
+Forme & Ce qu’elle rend visible \\ 
+\(ax^2+bx+c\) & L’image de zéro est \(c\). \\ 
+\(a(x-\alpha)^2+\beta\) & Le sommet est \((\alpha;\beta)\) ; \(\beta\) est l’extrémum sur \(\R\). \\ 
+\(a(x-r_1)(x-r_2)\) & Les racines et le signe, lorsqu’une factorisation réelle existe. \\ 
+\end{tabular}\end{center}Ces écritures représentent la même fonction, pas trois fonctions différentes. On choisit celle qui rend la question la plus courte à résoudre.
+\end{frame}
+\begin{frame}{Trois formes, trois lectures}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Pour \(f(x)=x^2-6x+5\), complète un carré : \(x^2-6x=(x-3)^2-9\). Donc \(f(x)=(x-3)^2-4\). Comme un carré est positif ou nul, \(f(x)\ge-4\), avec égalité seulement en \(x=3\).
+
+Pour les zéros, utilise une différence de carrés : \((x-3)^2-2^2=(x-5)(x-1)\). Le produit est nul exactement en \(1\) ou \(5\). Enfin, la forme développée donne directement \(f(0)=5\). Vérifie chaque transformation en développant.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Trois formes, trois lectures}
+Une expression factorisée ne s’obtient pas en mettant séparément chacun des termes entre parenthèses.
+\end{frame}
+\begin{frame}{Trois formes, trois lectures}
+Donner trois formes de \(g(x)=x^2+2x-3\). Lire ses racines et son minimum.
+\end{frame}
+\begin{frame}{Correction : Trois formes, trois lectures}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Complète le carré : \(x^2+2x-3=(x+1)^2-4\).
+\item Factorise la différence de carrés : \((x+1-2)(x+1+2)=(x-1)(x+3)\).
+\item Les racines sont \(-3\) et \(1\). Le minimum sur \(\R\) est \(-4\), atteint en \(-1\).
+\item Le développement de chaque forme redonne \(x^2+2x-3\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Discriminant et résolution}
+Pour \(ax^2+bx+c=0\) avec \(a\ne0\), on pose \(\Delta=b^2-4ac\). Si \(\Delta<0\), aucune racine réelle ; si \(\Delta=0\), une racine \(-\dfrac{b}{2a}\) ; si \(\Delta>0\), deux racines \(\dfrac{-b-\sqrt\Delta}{2a}\) et \(\dfrac{-b+\sqrt\Delta}{2a}\). Pour ordonner les racines, tenir compte du signe de a.
+\end{frame}
+\begin{frame}{Discriminant et résolution}
+\textbf{Démonstration.} Pour \(a\ne0\), multiplier \(ax^2+bx+c=0\) par \(4a\) est réversible. On obtient \(4a^2x^2+4abx+4ac=0\), puis \((2ax+b)^2=b^2-4ac=\Delta\).
+
+\begin{itemize}
+\item Si \(\Delta<0\), aucun carré réel ne convient.
+\item Si \(\Delta=0\), \(2ax+b=0\) donne \(x=-\dfrac b{2a}\).
+\item Si \(\Delta>0\), \(2ax+b=\sqrt\Delta\) ou \(2ax+b=-\sqrt\Delta\). En isolant \(x\), on trouve \(\dfrac{-b+\sqrt\Delta}{2a}\) et \(\dfrac{-b-\sqrt\Delta}{2a}\).
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Discriminant et résolution (2)}
+Chaque étape est une équivalence : les solutions obtenues sont donc toutes les solutions. Les deux expressions doivent être ordonnées avant de construire un tableau de signes.
+\end{frame}
+\begin{frame}{Discriminant et résolution}
+\(2x^2+x-3=0\) : \(\Delta=1+24=25\) ; \(x=\dfrac{-1\pm5}{4}\), soit \(1\) et \(-\dfrac{3}{2}\). Vérification : \((x-1)(2x+3)=2x^2+x-3\).
+\end{frame}
+\begin{frame}{Discriminant et résolution}
+Le dénominateur est \(2a\), pas 2 ; le signe de b est pris avec ses parenthèses dans \(b^2\).
+\end{frame}
+\begin{frame}{Discriminant et résolution}
+Résoudre \(3x^2-6x+3=0\) et \(x^2+2x+5=0\).
+\end{frame}
+\begin{frame}{Correction : Discriminant et résolution}
+\(3x^2-6x+3=3(x-1)^2\), donc l’unique racine est \(1\) ; le discriminant vaut \(0\). Pour \(x^2+2x+5\), le discriminant vaut \(-16\), donc il n’y a pas de racine réelle. Autre justification : \(x^2+2x+5=(x+1)^2+4\ge4\), ce qui empêche la fonction de s’annuler.
+\end{frame}
+\begin{frame}{Factoriser sans automatiser le discriminant}
+Si deux racines réelles existent, leur somme vaut \(-\dfrac{b}{a}\) et leur produit \(\dfrac{c}{a}\). Une racine apparente ou une identité remarquable permet souvent une factorisation plus courte. Les polynômes de degré 2 s’annulant en deux réels distincts r et s sont exactement \(a(x-r)(x-s)\) avec \(a\ne0\).
+\end{frame}
+\begin{frame}{Factoriser sans automatiser le discriminant}
+Posons \(P(x)=x^2-7x+12\). Les nombres \(3\) et \(4\) ont pour somme \(7\) et pour produit \(12\), donc \(P(x)=(x-3)(x-4)\). \textbf{Autre question :} chercher une fonction \(f\) dont les racines sont \(3\) et \(4\), et telle que \(f(0)=24\). Écrivons \(f(x)=a(x-3)(x-4)\). Alors \(f(0)=12a=24\), donc \(a=2\) et \(f(x)=2(x-3)(x-4)\). Cette fonction \(f\) est différente de \(P\).
+\end{frame}
+\begin{frame}{Factoriser sans automatiser le discriminant}
+La somme des racines vaut \(-\dfrac{b}{a}\) ; ne pas oublier le signe moins. Une seule racine ne suffit pas à déterminer a.
+\end{frame}
+\begin{frame}{Factoriser sans automatiser le discriminant}
+Déterminer le polynôme f de degré 2 tel que \(f(1)=f(4)=0\) et \(f(0)=-8\).
+\end{frame}
+\begin{frame}{Correction : Factoriser sans automatiser le discriminant}
+Les racines distinctes \(1\) et \(4\) imposent \(f(x)=a(x-1)(x-4)\), avec \(a\ne0\). Puis \(f(0)=4a=-8\), donc \(a=-2\). Ainsi \(f(x)=-2(x-1)(x-4)=-2x^2+10x-8\). Les trois données sont vérifiées par substitution.
+\end{frame}
+\begin{frame}{Sommet, variations et domaine}
+Dans \(a(x-\alpha)^2+\beta\), le carré mesure l’éloignement de \(x\) par rapport à \(\alpha\). Il diminue lorsqu’on approche de \(\alpha\), puis augmente quand on s’en éloigne.
+
+Si \(a>0\), \(f\) est décroissante sur \(]-\infty;\alpha]\), puis croissante sur \([\alpha;+\infty[\). Le minimum est \(\beta\). Si \(a<0\), multiplier par \(a\) inverse l’ordre : \(f\) est croissante puis décroissante, et \(\beta\) est un maximum.
+\end{frame}
+\begin{frame}{Sommet, variations et domaine (2)}
+Sur un intervalle imposé, vérifie d’abord si \(\alpha\) est autorisé. Sinon, compare les valeurs admissibles à l’aide des variations. Un extrémum sur \(\R\) n’est pas automatiquement atteint sur le domaine du problème.
+\end{frame}
+\begin{frame}{Signe, inéquations et optimisation}
+Pour deux racines distinctes \(r<s\), le trinôme a le signe de a en dehors de \([r;s]\) et le signe opposé entre les racines. Il est nul aux racines. Sans racine réelle, il garde le signe de a. Avec une racine double, il garde le signe de a hors de celle-ci. L’optimisation se fait sur le domaine du problème, qui peut limiter l’accès au sommet.
+\end{frame}
+\begin{frame}{Signe, inéquations et optimisation}
+Si \(r<s\), \(x-r\) et \(x-s\) sont tous deux négatifs avant \(r\), de signes opposés entre \(r\) et \(s\), puis tous deux positifs après \(s\). Leur produit est donc positif à l’extérieur et négatif à l’intérieur. Multiplier par \(a\) donne le signe du trinôme.
+
+Au lieu de retenir une règle sans raison, refais ce raisonnement avec les deux facteurs. Pour \(f(x)>0\), les racines sont exclues ; pour \(f(x)\ge0\), elles peuvent être incluses. Intersecte ensuite l’ensemble obtenu avec le domaine du problème.
+\end{frame}
+\begin{frame}{Signe, inéquations et optimisation}
+\(-2(x-1)(x-5)\geq0\) équivaut à \(x\in[1;5]\). Pour \(A(x)=x(12-x)\) sur \(]0;12[\), \(A(x)=36-(x-6)^2\leq36\), avec égalité en 6. Un rectangle de périmètre 24 m a donc une aire maximale de 36 m\(^2\) lorsqu’il est carré.
+\end{frame}
+\begin{frame}{Signe, inéquations et optimisation}
+Dans une inéquation stricte, les racines sont exclues. Vérifier les bornes géométriques avant de conclure.
+\end{frame}
+\begin{frame}{Signe, inéquations et optimisation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Résoudre \(x^2-4x-5<0\) puis maximiser \(x(8-x)\) sur \([0;3]\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-02-2.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Correction : Signe, inéquations et optimisation}
+\(x^2-4x-5=(x+1)(x-5)\). Entre \(-1\) et \(5\), les facteurs sont de signes opposés ; en dehors, ils ont le même signe. L’inégalité stricte a donc pour solution \(]-1;5[\), sans les bornes. Pour \(A(x)=x(8-x)=16-(x-4)^2\), le sommet \(4\) est hors de \([0;3]\). Sur cet intervalle, la distance à \(4\) diminue jusqu’à \(x=3\) : le maximum vaut \(A(3)=15\), et non \(16\).
+\end{frame}
+\begin{frame}{Bilan : choisir et justifier}
+1. Résoudre \(x^2-9=0\) avec une méthode courte. 2. Pour \(h(x)=-2(x-1)^2+8\), donner le maximum sur \(\R\) et les racines. 3. L’inégalité \((x-1)^2<0\) peut-elle avoir une solution réelle ? Justifier.
+\end{frame}
+\begin{frame}{Correction : Bilan : choisir et justifier}
+1. \(x^2-9=(x-3)(x+3)\) donne \(x=-3\) ou \(x=3\). 2. Le carré est positif ou nul, donc \(h(x)\le8\), atteint en \(x=1\). Pour les racines, \((x-1)^2=4\) donne \(x=-1\) ou \(x=3\). 3. Aucun réel : un carré ne peut pas être négatif.
+\end{frame}
+\end{document}

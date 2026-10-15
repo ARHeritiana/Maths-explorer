@@ -1,0 +1,263 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={The common logarithm}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{The common logarithm}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Reference notes}
+For every \(b>0\), \(\log(b)\) is the unique real number \(x\) such that \(10^x=b\). Hence \(\log(10^x)=x\) and, for \(b>0\), \(10^{\log(b)}=b\). The function \(\log\) is defined on \(]0,+\infty[\) and it is strictly increasing.
+\end{frame}
+\begin{frame}{Reference notes}
+\(\log(a+b)\) does not simplify. Before any logarithmic calculation, check that each argument is strictly positive.
+\end{frame}
+\begin{frame}{Reference notes}
+To solve \(a^x=b\), with \(a>0\), \(a\neq1\) and \(b>0\), take the logarithm: \(x\log(a)=\log(b)\), so \(x=\dfrac{\log(b)}{\log(a)}\).
+\end{frame}
+\begin{frame}{Reference notes}
+Solving \(1.08^x=2\) amounts to writing \(x=\dfrac{\log(2)}{\log(1.08)}\approx9.01\). A value multiplied by \(1.08\) each year therefore doubles after a little more than nine years.
+\end{frame}
+\begin{frame}{Definition of the common logarithm}
+\begin{itemize}
+\item Link powers of 10 and logarithms.
+\item Calculate common values.
+\item Use the calculator.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Definition of the common logarithm}
+Complete the pairs \(10^x=b\) and \(x=\log(b)\) for \(b=0.001;0.1;1;10;1{,}000\). Then use the calculator for \(b=7\).
+\end{frame}
+\begin{frame}{Definition of the common logarithm}
+For \(b>0\), \(\log(b)\) is the unique solution of \(10^x=b\). In particular \(\log(1)=0\), \(\log(10)=1\) and \(\log(100)=2\).
+\end{frame}
+\begin{frame}{Definition of the common logarithm}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Definition of the common logarithm}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Variations and graph}
+\begin{itemize}
+\item Know the domain.
+\item Use the fact that the function is increasing.
+\item Read the curve.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Variations and graph}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Plot \(y=10^x\) and the line \(y=x\), then obtain the curve of the logarithm by symmetry. Deduce its domain, its direction of variation and its asymptote.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-03-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Variations and graph}
+The function \(\log\) is defined on \(]0,+\infty[\), is strictly increasing, and its curve has \(x=0\) as a vertical asymptote.
+\end{frame}
+\begin{frame}{Variations and graph}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Variations and graph}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Algebraic properties}
+\begin{itemize}
+\item Expand or condense logarithms.
+\item Check the conditions.
+\item Avoid false properties.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Algebraic properties}
+Starting from \(10^2\times10^3=10^5\), conjecture \(\log(ab)=\log a+\log b\). Test numerically with \(a=2,b=5\), then explain why \(a,b\) must be positive.
+\end{frame}
+\begin{frame}{Algebraic properties}
+For \(a,b>0\), \(\log(ab)=\log a+\log b\) and \(\log\!\left(\dfrac ab\right)=\log a-\log b\). Moreover \(\log(a^n)=n\log a\).
+\end{frame}
+\begin{frame}{Algebraic properties}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Algebraic properties}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Solving \(10^x=b\)}
+\begin{itemize}
+\item Solve \(10^x=b\).
+\item Bracket a solution.
+\item Interpret an order of magnitude.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Solving \(10^x=b\)}
+A device measures intensities \(b=0.04;3.2;850\). For each value, solve \(10^x=b\), give \(x\) to the nearest hundredth and check by calculating \(10^x\).
+\end{frame}
+\begin{frame}{Solving \(10^x=b\)}
+The equation \(10^x=b\) has a solution only if \(b>0\); this solution is \(x=\log(b)\).
+\end{frame}
+\begin{frame}{Solving \(10^x=b\)}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Solving \(10^x=b\)}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Solving \(a^x=b\)}
+\begin{itemize}
+\item Solve \(a^x=b\).
+\item Use a quotient of logarithms.
+\item Round sensibly.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Solving \(a^x=b\)}
+The number of subscribers is multiplied by \(1.15\) each month. Determine after how many months it will have tripled. Set up the equation, solve it using logarithms and interpret the rounding.
+\end{frame}
+\begin{frame}{Solving \(a^x=b\)}
+For \(a>0\), \(a\neq1\) and \(b>0\), \(a^x=b\) is equivalent to \(x=\dfrac{\log(b)}{\log(a)}\).
+\end{frame}
+\begin{frame}{Solving \(a^x=b\)}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Solving \(a^x=b\)}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Equations \(x^a=b\) and simple inequalities}
+\begin{itemize}
+\item Solve equations where the variable is the base.
+\item Deal with an inequality.
+\item Take the domain into account.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Equations \(x^a=b\) and simple inequalities}
+Solve on \([0,+\infty[\): \(x^3=40\), then \(x^4=16\). Then solve \(1.08^x<1.5\) and explain the role of the function being increasing.
+\end{frame}
+\begin{frame}{Equations \(x^a=b\) and simple inequalities}
+To solve \(x^n=b\), take the domain and the parity of \(n\) into account. For an exponential inequality, the direction depends on whether the function is increasing or decreasing.
+\end{frame}
+\begin{frame}{Equations \(x^a=b\) and simple inequalities}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Equations \(x^a=b\) and simple inequalities}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Problems in context}
+\begin{itemize}
+\item Model a situation.
+\item Choose an equation.
+\item Conclude in context.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Problems in context}
+The sound level is \(L=10\log\!\left(\dfrac I{I_0}\right)\). Calculate \(L\) when \(I=10^6I_0\). Then determine the ratio \(\dfrac I{I_0}\) for \(L=85\) dB.
+\end{frame}
+\begin{frame}{Problems in context}
+In a problem, define the variable, set up the equation, solve, check the domain and conclude with the unit. A numerical solution without interpretation is incomplete.
+\end{frame}
+\begin{frame}{Problems in context}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Problems in context}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Review and assessment}
+\begin{itemize}
+\item Summarise the methods.
+\item Identify the conditions.
+\item Correct mistakes.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Review and assessment}
+Make a map of methods: domain; properties; equations \(10^x=b\); equations \(a^x=b\); inequalities. Attach a condition and an example to each branch.
+\end{frame}
+\begin{frame}{Review and assessment}
+Before calculating a logarithm: check positivity. Before a comparison: identify the direction of variation. Before a conclusion: check that the result is plausible.
+\end{frame}
+\begin{frame}{Review and assessment}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Review and assessment}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\end{document}

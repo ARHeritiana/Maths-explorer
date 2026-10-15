@@ -1,0 +1,190 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Quadratics: forms and methods}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Quadratics: forms and methods}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Choose a form suited to a question; switch forms in simple cases; prove and use the root formula; justify signs and solve inequalities; optimise while respecting the domain.
+
+\textbf{Prerequisites.} Expansion, factorisation, special products, zero-product property, signs of products, square roots and reading graphs.
+\end{frame}
+\begin{frame}{Before quadratics}
+Expand \((x-2)^2\), solve \((x-3)(x+1)=0\), and explain why a real square is nonnegative.
+\end{frame}
+\begin{frame}{Worked answer: Before quadratics}
+\((x-2)^2=x^2-4x+4\). A product is zero exactly when one factor is zero: \(x=3\) or \(x=-1\). Two real numbers with the same sign have positive product, and \(0^2=0\).
+\end{frame}
+\begin{frame}{Explore a rectangle}
+Build a rectangle of perimeter 24 units. Choose several positive widths that give a rectangle. Calculate the matching length and area. Which width seems to give the largest area? State a conjecture, then seek a justification valid for every width.
+\end{frame}
+\begin{frame}{Worked answer: Explore a rectangle}
+The length is \(12-x\), with \(0<x<12\). Thus \(A(x)=36-(x-6)^2\le36\), with equality at \(x=6\). The length is also \(6\), so the maximum-area rectangle is a square. Experiments suggest the result; the completed square proves it for every admissible width.
+\end{frame}
+\begin{frame}{Three forms, three readings}
+A quadratic polynomial has the form \(f(x)=ax^2+bx+c\), with \(a\ne0\). If \(a=0\), the equation changes type and this chapter’s formulas do not apply.
+
+\begin{center}\begin{tabular}{ll}
+Form & What it reveals \\ 
+\(ax^2+bx+c\) & The value at zero is \(c\). \\ 
+\(a(x-\alpha)^2+\beta\) & The vertex is \((\alpha,\beta)\); \(\beta\) is the extremum on \(\R\). \\ 
+\(a(x-r_1)(x-r_2)\) & The roots and sign, when real factorisation is possible. \\ 
+\end{tabular}\end{center}These expressions describe the same function. Choose the one that makes the question easiest to answer.
+\end{frame}
+\begin{frame}{Three forms, three readings}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For \(f(x)=x^2-6x+5\), complete the square: \(x^2-6x=(x-3)^2-9\). Thus \(f(x)=(x-3)^2-4\). A square is nonnegative, so \(f(x)\ge-4\), with equality only at \(x=3\).
+
+For the zeros, use a difference of squares: \((x-3)^2-2^2=(x-5)(x-1)\). The product vanishes exactly at \(1\) or \(5\). The expanded form gives \(f(0)=5\). Check every transformation by expanding.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-02-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Three forms, three readings}
+A factorised expression is not obtained by putting each term separately in brackets.
+\end{frame}
+\begin{frame}{Three forms, three readings}
+Give three forms of \(g(x)=x^2+2x-3\). Read off its roots and its minimum.
+\end{frame}
+\begin{frame}{Worked answer: Three forms, three readings}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Complete the square: \(x^2+2x-3=(x+1)^2-4\).
+\item Factorise the difference of squares to obtain \((x-1)(x+3)\).
+\item The roots are \(-3\) and \(1\); the minimum is \(-4\), attained at \(-1\).
+\item Expanding either form gives \(x^2+2x-3\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Discriminant and solving}
+For \(ax^2+bx+c=0\) with \(a\ne0\), let \(\Delta=b^2-4ac\). If \(\Delta<0\), there is no real root; if \(\Delta=0\), there is one root \(-\dfrac{b}{2a}\); if \(\Delta>0\), there are two roots \(\dfrac{-b-\sqrt\Delta}{2a}\) and \(\dfrac{-b+\sqrt\Delta}{2a}\). To order the roots, take the sign of a into account.
+\end{frame}
+\begin{frame}{Discriminant and solving}
+\textbf{Proof.} For \(a\ne0\), multiply the equation by \(4a\). This is reversible and gives \(4a^2x^2+4abx+4ac=0\), hence \((2ax+b)^2=b^2-4ac=\Delta\).
+
+\begin{itemize}
+\item If \(\Delta<0\), no real square works.
+\item If \(\Delta=0\), \(2ax+b=0\), giving \(x=-\dfrac b{2a}\).
+\item If \(\Delta>0\), \(2ax+b=\pm\sqrt\Delta\); solving for \(x\) gives the two usual roots.
+
+\end{itemize}
+
+Every step is an equivalence, so all solutions have been found. Order the two roots before building a sign table.
+\end{frame}
+\begin{frame}{Discriminant and solving}
+\(2x^2+x-3=0\): \(\Delta=1+24=25\); \(x=\dfrac{-1\pm5}{4}\), that is \(1\) and \(-\dfrac{3}{2}\). Check: \((x-1)(2x+3)=2x^2+x-3\).
+\end{frame}
+\begin{frame}{Discriminant and solving}
+The denominator is \(2a\), not 2; the sign of b is kept with its brackets in \(b^2\).
+\end{frame}
+\begin{frame}{Discriminant and solving}
+Solve \(3x^2-6x+3=0\) and \(x^2+2x+5=0\).
+\end{frame}
+\begin{frame}{Worked answer: Discriminant and solving}
+\(3x^2-6x+3=3(x-1)^2\), so the only root is \(1\); its discriminant is \(0\). For \(x^2+2x+5\), the discriminant is \(-16\), so there is no real root. Independently, \((x+1)^2+4\ge4\), ruling out a zero.
+\end{frame}
+\begin{frame}{Factorising without automating the discriminant}
+If two real roots exist, their sum is \(-\dfrac{b}{a}\) and their product is \(\dfrac{c}{a}\). An obvious root or a special product often allows a shorter factorisation. The polynomials of degree 2 that vanish at two distinct reals r and s are exactly \(a(x-r)(x-s)\) with \(a\ne0\).
+\end{frame}
+\begin{frame}{Factorising without automating the discriminant}
+Let \(P(x)=x^2-7x+12\). The numbers \(3\) and \(4\) have sum \(7\) and product \(12\), hence \(P(x)=(x-3)(x-4)\). \textbf{A separate question:} find \(f\) with roots \(3\) and \(4\) and \(f(0)=24\). Write \(f(x)=a(x-3)(x-4)\). Then \(12a=24\), giving \(f(x)=2(x-3)(x-4)\). This \(f\) is a different function from \(P\).
+\end{frame}
+\begin{frame}{Factorising without automating the discriminant}
+The sum of the roots is \(-\dfrac{b}{a}\); do not forget the minus sign. A single root is not enough to determine a.
+\end{frame}
+\begin{frame}{Factorising without automating the discriminant}
+Determine the polynomial f of degree 2 such that \(f(1)=f(4)=0\) and \(f(0)=-8\).
+\end{frame}
+\begin{frame}{Worked answer: Factorising without automating the discriminant}
+The distinct roots \(1\) and \(4\) give \(f(x)=a(x-1)(x-4)\). Then \(f(0)=4a=-8\), giving \(a=-2\). Thus \(f(x)=-2(x-1)(x-4)=-2x^2+10x-8\). Substitution verifies all three conditions.
+\end{frame}
+\begin{frame}{Vertex, monotonicity and domain}
+In \(a(x-\alpha)^2+\beta\), the square measures how far \(x\) lies from \(\alpha\). It decreases as \(x\) approaches \(\alpha\), then increases.
+
+For \(a>0\), \(f\) decreases on \((-\infty,\alpha]\) and increases on \([\alpha,+\infty)\); the minimum is \(\beta\). For \(a<0\), multiplying by \(a\) reverses the order, giving increasing then decreasing behaviour and a maximum \(\beta\).
+\end{frame}
+\begin{frame}{Vertex, monotonicity and domain (2)}
+On a restricted interval, first check whether \(\alpha\) is allowed. Otherwise use monotonicity to compare admissible values. An extremum on \(\R\) need not be attained on the problem’s domain.
+\end{frame}
+\begin{frame}{Sign, inequalities and optimisation}
+For two distinct roots \(r<s\), the quadratic has the sign of a outside \([r,s]\) and the opposite sign between the roots. It is zero at the roots. With no real root, it keeps the sign of a. With a double root, it keeps the sign of a away from that root. Optimisation is done on the domain of the problem, which may limit access to the vertex.
+\end{frame}
+\begin{frame}{Sign, inequalities and optimisation}
+For \(r<s\), the factors \(x-r\) and \(x-s\) are both negative before \(r\), opposite in sign between the roots, and both positive after \(s\). Their product is positive outside and negative inside; multiplying by \(a\) gives the quadratic’s sign.
+
+Rebuild this argument from the factors rather than memorising a rule. Strict inequalities exclude roots; non-strict inequalities may include them. Intersect the solution set with the problem’s domain.
+\end{frame}
+\begin{frame}{Sign, inequalities and optimisation}
+\(-2(x-1)(x-5)\geq0\) is equivalent to \(x\in[1,5]\). For \(A(x)=x(12-x)\) on \((0,12)\), \(A(x)=36-(x-6)^2\leq36\), with equality at 6. A rectangle with perimeter 24 m therefore has a maximum area of 36 m\(^2\) when it is a square.
+\end{frame}
+\begin{frame}{Sign, inequalities and optimisation}
+In a strict inequality, the roots are excluded. Check the geometric bounds before concluding.
+\end{frame}
+\begin{frame}{Sign, inequalities and optimisation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Solve \(x^2-4x-5<0\), then maximise \(x(8-x)\) on \([0,3]\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-02-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Worked answer: Sign, inequalities and optimisation}
+\(x^2-4x-5=(x+1)(x-5)\). Between \(-1\) and \(5\) the factors have opposite signs, so the strict inequality holds on \((-1,5)\), excluding endpoints. For \(A(x)=16-(x-4)^2\), the vertex \(4\) is outside \([0,3]\). The distance to \(4\) decreases up to \(3\), so the maximum is \(A(3)=15\), not \(16\).
+\end{frame}
+\begin{frame}{Review: choose and justify}
+1. Solve \(x^2-9=0\) with a short method. 2. For \(h(x)=-2(x-1)^2+8\), find the maximum on \(\R\) and its roots. 3. Can \((x-1)^2<0\) have a real solution? Justify.
+\end{frame}
+\begin{frame}{Worked answer: Review: choose and justify}
+1. Factor to get roots \(-3\) and \(3\). 2. Since a square is nonnegative, \(h(x)\le8\), attained at \(1\). Its zeros satisfy \((x-1)^2=4\), giving \(-1\) and \(3\). 3. There is no real solution because a square cannot be negative.
+\end{frame}
+\end{document}

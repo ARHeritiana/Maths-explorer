@@ -1,0 +1,132 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Vectors, lines and planes in space}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Vectors, lines and planes in space}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Calculate with vectors; use collinearity and coplanarity; characterise lines and planes; work in a frame.
+\end{frame}
+\begin{frame}{Vector calculus}
+Chasles' relation \(\vect{AB}+\vect{BC}=\vect{AC}\), the sum of vectors and multiplication by a real number extend to space. Two non-zero vectors are collinear if one is a multiple of the other. The zero vector is collinear with every vector.
+Three vectors are coplanar if they belong to the same vector plane. If \(\vec u,\vec v\) are not collinear, then \(\vec u,\vec v,\vec w\) are coplanar if and only if \(\vec w=\alpha\vec u+\beta\vec v\) for some real numbers \(\alpha,\beta\).
+\end{frame}
+\begin{frame}{Vector calculus}
+The line through \(A\) with non-zero direction vector \(\vec u\) is the set of points \(M\) such that \(\vect{AM}=t\vec u\) for some real number \(t\).
+The plane through \(A\) spanned by two non-collinear vectors \(\vec u,\vec v\) is the set of points \(M\) such that \(\vect{AM}=s\vec u+t\vec v\) for some real numbers \(s,t\).
+\end{frame}
+\begin{frame}{Vector calculus}
+Three non-collinear points define a plane. Four points \(A,B,C,D\), with \(A,B,C\) not collinear, are coplanar if and only if \(\vect{AD}\) is a linear combination of \(\vect{AB}\) and \(\vect{AC}\).
+\end{frame}
+\begin{frame}{Relative positions}
+Two lines are coincident, strictly parallel, intersecting or non-coplanar (skew). Collinear direction vectors characterise lines that are parallel in the broad sense. Non-collinear direction vectors do not guarantee an intersection.
+A line and a plane: line contained in the plane, parallel and disjoint, or meeting at a single point. Two planes: coincident, strictly parallel, or intersecting along a line.
+\end{frame}
+\begin{frame}{Relative positions}
+In \(ABCDEFGH\), the faces \(ABCD\) and \(EFGH\) are parallel and the edges \(AE,BF,CG,DH\) correspond. The lines \((AB)\) and \((CG)\) are neither parallel nor intersecting: they are non-coplanar.
+\end{frame}
+\begin{frame}{Basis and coordinates}
+A basis of space is a family of three non-coplanar vectors. Every vector can be written in it in a unique way as \(x\vi +y\vj +z\vec k\). A frame consists of an origin \(O\) and a basis.
+\[\vect{AB}=(x_B-x_A,y_B-y_A,z_B-z_A),\qquad
+I=\left(\dfrac{x_A+x_B}2,\dfrac{y_A+y_B}2,\dfrac{z_A+z_B}2\right).\]
+In an orthonormal frame, \(\|\vec u\|=\sqrt{x^2+y^2+z^2}\) and \(AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}\).
+\end{frame}
+\begin{frame}{Basis and coordinates}
+In an orthonormal frame, for \(A(1,0,2)\), \(B(3,-1,4)\), \(\vect{AB}=(2,-1,2)\), \(AB=3\) and the midpoint is \((2,-\dfrac{1}{2},3)\).
+\end{frame}
+\begin{frame}{Basis and coordinates}
+Write the three coordinate equalities. Determine the coefficients from two equations when possible, then check the third. A contradiction proves non-membership; do not discard the inconvenient equation.
+\end{frame}
+\begin{frame}{Research activity}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\textbf{Three midpoints in a cube - 40 min.}
+
+Consider the cube \(ABCDEFGH\) shown below. Let \(\vi=\vect{AB}\), \(\vj=\vect{AD}\) and \(\vec k=\vect{AE}\). The points \(I\), \(J\) and \(K\) are the midpoints of \([AB]\), \([AD]\) and \([AE]\) respectively. Let \(O\) be the centre of the cube.
+   \([AG]\) is a space diagonal, drawn as a green dashed line.
+
+The hidden edges are dashed blue; \(D\) and \(F\) do not lie on \((AG)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Express \(\vect{IJ}\) and \(\vect{IK}\) in the basis \((\vi,\vj,\vec k)\).
+
+\item Prove that the points \(I\), \(J\) and \(K\) are not collinear.
+
+\item Determine whether \(O\) belongs to the plane \((IJK)\). Justify the answer by investigating whether \(\vect{IO}\) is a linear combination of \(\vect{IJ}\) and \(\vect{IK}\).
+
+\end{enumerate}
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity (3)}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Why does simply reading the figure not allow one to prove that \(O\) does or does not belong to the plane \((IJK)\)?
+
+\end{enumerate}
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-02-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

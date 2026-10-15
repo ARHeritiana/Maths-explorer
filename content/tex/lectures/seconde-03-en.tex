@@ -1,0 +1,202 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Straight lines in the plane}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Straight lines in the plane}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Direction vector and Cartesian equation}
+A direction vector of a line is a \textbf{nonzero} vector having the direction of that line. If \(A\ne B\), \(\vect{AB}\) directs \((AB)\).
+Every line has an equation \(ax+by+c=0\) with \((a,b)\ne(0,0)\). A direction vector is \(\vc{-b}{a}\).
+\end{frame}
+\begin{frame}{Direction vector and Cartesian equation}
+For \(A(-2,4)\) and \(B(6,2)\), calculate \(\vect{AB}\) then check that \(\vec u(4,-1)\) directs \((AB)\).
+\end{frame}
+\begin{frame}{Worked answer: Direction vector and Cartesian equation}
+\(\vect{AB}=(8,-2)=2\vec u\). The vector \(\vec u\) is nonzero and collinear with \(\vect{AB}\); it therefore directs \((AB)\).
+\end{frame}
+\begin{frame}{Direction vector and Cartesian equation}
+The line through \(A(x_A,y_A)\) with direction vector \(\vec u(\alpha,\beta)\ne\vec0\) has equation
+\[\beta(x-x_A)-\alpha(y-y_A)=0.\]
+\end{frame}
+\begin{frame}{Direction vector and Cartesian equation}
+A point \(M(x,y)\) belongs to the line if and only if \(\vect{AM}\) is collinear with \(\vec u\), including for \(M=A\). Now
+\[\det(\vect{AM},\vec u)=(x-x_A)\beta-(y-y_A)\alpha.\]
+Setting the determinant to zero gives the stated equation. Expanding, \(a=\beta\), \(b=-\alpha\) and \(c=-\beta x_A+\alpha y_A\); since \(\vec u\ne\vec0\), \((a,b)\ne(0,0)\).
+\end{frame}
+\begin{frame}{Direction vector and Cartesian equation}
+The zero vector directs no line. The sign of the determinant depends on the order of the vectors, but whether it vanishes does not.
+\end{frame}
+\begin{frame}{Determining the equation of a line}
+From a point and a direction vector: choose \(a,b\) then replace \(x,y\) by the coordinates of the point to find \(c\). From two distinct points: first calculate a direction vector.
+\end{frame}
+\begin{frame}{Determining the equation of a line}
+Determine a Cartesian equation of the line through \(A(2,-1)\) with direction vector \(\vec u(3,2)\).
+\end{frame}
+\begin{frame}{Worked answer: Determining the equation of a line}
+\(a=2\), \(b=-3\) will do. The line therefore has an equation \(2x-3y+c=0\). Since \(A\) belongs to it, \(4+3+c=0\), so \(c=-7\). An equation is \(2x-3y-7=0\). Check: \(2\times2-3\times(-1)-7=0\) and \((3,2)\) is indeed a direction vector.
+\end{frame}
+\begin{frame}{Determining the equation of a line}
+Determine a Cartesian equation of \((AB)\) for \(A(3,3)\) and \(B(2,-2)\).
+\end{frame}
+\begin{frame}{Worked answer: Determining the equation of a line}
+\(\vect{AB}=(-1,-5)\) directs the line. We can choose \((a,b)=(5,-1)\). With \(A\), \(15-3+c=0\), so \(c=-12\). Thus \(5x-y-12=0\). For \(B\), \(10+2-12=0\), which confirms the result.
+\end{frame}
+\begin{frame}{Determining the equation of a line}
+Does the point \(P(1,2)\) belong to \(d:2x-3y+4=0\)? Does the point \(Q(2,1)\) belong to it?
+\end{frame}
+\begin{frame}{Worked answer: Determining the equation of a line}
+For \(P\), \(2-6+4=0\): yes. For \(Q\), \(4-3+4=5\ne0\): no.
+\end{frame}
+\begin{frame}{Slope-intercept equation, slope and affine function}
+A non-vertical line has a unique slope-intercept equation \(y=mx+p\). \(m\) is the slope, \(p\) the y-intercept. It represents the affine function \(x\mapsto mx+p\); \((1,m)\) is a direction vector.
+A vertical line has an equation \(x=k\); it is not the graph of a function of \(x\). A horizontal line has an equation \(y=k\).
+\end{frame}
+\begin{frame}{Slope-intercept equation, slope and affine function}
+If \(x_A\ne x_B\), the slope of \((AB)\) is \(m=\dfrac{y_B-y_A}{x_B-x_A}\). To find \(p\), we then use \(y_A=mx_A+p\).
+\end{frame}
+\begin{frame}{Slope-intercept equation, slope and affine function}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Determine the slope-intercept equation of \(2x+3y-1=0\), then draw \(d:y=-2x+3\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/seconde-03-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Worked answer: Slope-intercept equation, slope and affine function}
+\(3y=-2x+1\), so \(y=-\dfrac23x+\dfrac13\). For \(d\), plot \((0,3)\) and \((1,1)\), then draw the line; a move of \(1\) along the x-axis corresponds to \(-2\) on the y-axis.
+\end{frame}
+\begin{frame}{Slope-intercept equation, slope and affine function}
+Find the affine function \(f\) such that \(f(0)=3\) and \(f(-1)=5\), then the affine function \(g\) whose graph passes through \(C(-1,2)\) and \(E(5,-2)\).
+\end{frame}
+\begin{frame}{Worked answer: Slope-intercept equation, slope and affine function}
+\(f(x)=-2x+3\), since \(m=(3-5)/(0+1)=-2\). For \(g\), \(m=(-2-2)/(5+1)=-2/3\) and \(p=2-2/3=4/3\), so \(g(x)=-\dfrac23x+\dfrac43\).
+\end{frame}
+\begin{frame}{Relative positions of two lines}
+Two lines are either intersecting, strictly parallel or coincident. For \(y=mx+p\) and \(y=m'x+p'\):
+
+\begin{itemize}
+\item if \(m\ne m'\), they intersect;
+\item if \(m=m'\) and \(p\ne p'\), they are strictly parallel;
+\item if \(m=m'\) and \(p=p'\), they coincide.
+
+\end{itemize}
+
+For Cartesian equations, we compare the directions with the determinant. If the directions are collinear, we then test the membership of a point to distinguish coincident lines from strictly parallel ones.
+\end{frame}
+\begin{frame}{Relative positions of two lines}
+Determine an equation of \(d\) through \(A(2,3)\) and parallel to \(d':x-3y-3=0\).
+\end{frame}
+\begin{frame}{Worked answer: Relative positions of two lines}
+\(d'\) has direction vector \((3,1)\). We look for \(d:x-3y+c=0\). Since \(A\in d\), \(2-9+c=0\), so \(c=7\). Thus \(d:x-3y+7=0\). The two lines are strictly parallel, because the constants differ for the same coefficients of \(x,y\).
+\end{frame}
+\begin{frame}{Relative positions of two lines}
+Study the relative positions:
+
+\begin{enumerate}
+\setcounter{enumi}{0}\item \(2x-y+1=0\) and \(4x-2y+2=0\);
+\item \(x=2\) and \(x=-1\);
+\item \(y=2x-3\) and \(y=-x+3\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Worked answer: Relative positions of two lines}
+1. The second equation is twice the first: coincident lines. 2. Two distinct vertical lines: strictly parallel. 3. The slopes \(2\) and \(-1\) differ: intersecting. Their intersection satisfies \(2x-3=-x+3\), so \(x=2\) and \(y=1\).
+\end{frame}
+\begin{frame}{Intersection: solving by substitution}
+Solving a system of two equations in \(x,y\) means finding all the pairs \((x,y)\) satisfying both equations simultaneously. For two equations of lines: an intersection gives one solution pair; strictly parallel lines give no solution; coincident lines give infinitely many solutions.
+\end{frame}
+\begin{frame}{Intersection: solving by substitution}
+Isolate one unknown in one equation, substitute its expression into the other, solve, then find the second unknown. Check the pair in both original equations.
+\end{frame}
+\begin{frame}{Intersection: solving by substitution}
+Solve \(\begin{cases}-2x+y+3=0,\\3x-5y-2=0.\end{cases}\)
+\end{frame}
+\begin{frame}{Worked answer: Intersection: solving by substitution}
+The first equation gives \(y=2x-3\). Substituting into the second: \(3x-5(2x-3)-2=0\), that is \(-7x+13=0\). Thus \(x=13/7\) then \(y=5/7\). The solution set is \(S=\{(13/7,5/7)\}\). The substitutions give \((-26+5+21)/7=0\) and \((39-25-14)/7=0\).
+\end{frame}
+\begin{frame}{Intersection: solving by substitution}
+Solve by substitution:
+\[\text{(a) }\begin{cases}-2x+y+3=0\\x-4y+5=0\end{cases}\qquad
+\text{(b) }\begin{cases}2x+3y-10=0\\4x+5y-16=0.\end{cases}\]
+\end{frame}
+\begin{frame}{Worked answer: Intersection: solving by substitution}
+(a) \(y=2x-3\) then \(x-4(2x-3)+5=0\), so \(x=17/7\), \(y=13/7\).
+
+(b) \(x=(10-3y)/2\); \(2(10-3y)+5y-16=0\), so \(y=4\), then \(x=-1\).
+\end{frame}
+\begin{frame}{Linear combination and Python}
+Multiply the equations by nonzero numbers to obtain opposite coefficients for one unknown; add them to eliminate that unknown. Keep one equation of the system to calculate the other unknown.
+\end{frame}
+\begin{frame}{Linear combination and Python}
+Solve \(\begin{cases}2x+3y+1=0\\3x-4y-2=0.\end{cases}\) Then redo the two systems of the previous example by linear combination.
+\end{frame}
+\begin{frame}{Worked answer: Linear combination and Python}
+Multiplying the first equation by \(3\) and the second by \(-2\) gives \(6x+9y+3=0\) and \(-6x+8y+4=0\). The sum gives \(17y+7=0\), so \(y=-7/17\). Then \(2x-21/17+1=0\), so \(x=2/17\).
+For (a), add four times the first equation to the second: \(-7x+17=0\), so \((x,y)=(17/7,13/7)\). For (b), subtract twice the first from the second: \(-y+4=0\), so \((x,y)=(-1,4)\).
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def determinant(u, v):
+    return u[0]*v[1] - u[1]*v[0]
+
+def alignes(A, B, C):
+    AB = (B[0]-A[0], B[1]-A[1])
+    AC = (C[0]-A[0], C[1]-A[1])
+    return determinant(AB, AC) == 0
+\end{verbatim}
+\end{frame}
+\begin{frame}{Linear combination and Python}
+Predict \texttt{alignes((0,0), (2,1), (6,3))} then \texttt{alignes((0,0), (2,1), (6,4))}.
+\end{frame}
+\begin{frame}{Worked answer: Linear combination and Python}
+\texttt{True}, then \texttt{False}: the determinants are \(0\) and \(2\). The exact test is suitable here for integer coordinates; floating-point approximations require taking numerical errors into account.
+\end{frame}
+\end{document}

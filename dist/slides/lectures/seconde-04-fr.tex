@@ -1,0 +1,174 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Nombres réels et intervalles}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Nombres réels et intervalles}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Les ensembles de nombres}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\begin{itemize}
+
+\item \(\N\) : entiers naturels ; \(\Z\) : entiers relatifs.
+
+\item \(\D\) : nombres décimaux, de la forme \(a/10^n\) avec \(a\in\Z\), \(n\in\N\).
+
+\item \(\Q\) : nombres rationnels, de la forme \(a/b\) avec \(a,b\in\Z\), \(b\ne0\).
+
+\item \(\R\) : nombres réels, représentés par les abscisses des points d'une droite graduée. Un réel non rationnel est \textbf{irrationnel}.
+
+\end{itemize}
+
+\[\N\subsetneq\Z\subsetneq\D\subsetneq\Q\subsetneq\R.\]
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/seconde-04-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Les ensembles de nombres}
+Donner le plus petit des cinq ensembles contenant chacun des nombres : \(-95\) ; \(7{,}29\) ; \(5/3\) ; \(\sqrt{25}\) ; \(\sqrt2\) ; \(\pi\) ; \(0{,}0002\).
+\end{frame}
+\begin{frame}{Correction : Les ensembles de nombres}
+\(-95\in\Z\) ; \(7{,}29\in\D\) ; \(5/3\in\Q\) ; \(\sqrt{25}=5\in\N\) ; \(\sqrt2,\pi\in\R\setminus\Q\) ; \(0{,}0002=2/10^4\in\D\). L'irrationalité de \(\pi\) est admise ici.
+\end{frame}
+\begin{frame}{Deux démonstrations par l'absurde}
+Pour prouver une proposition, supposer sa négation, en déduire une contradiction, puis conclure que la proposition est vraie.
+\end{frame}
+\begin{frame}{Deux démonstrations par l'absurde}
+\(\dfrac13\) n'est pas un nombre décimal.
+\end{frame}
+\begin{frame}{Deux démonstrations par l'absurde}
+Supposons \(1/3=a/10^n\) avec \(a\in\Z\), \(n\in\N\). Alors \(10^n=3a\) serait multiple de \(3\). Pourtant \(10\equiv1\) modulo \(3\), donc \(10^n\) a un reste de \(1\) dans la division par \(3\) (on peut aussi utiliser le critère de divisibilité par \(3\)). Contradiction. Donc \(1/3\notin\D\).
+\end{frame}
+\begin{frame}{Deux démonstrations par l'absurde}
+\(\sqrt2\) est irrationnel.
+\end{frame}
+\begin{frame}{Deux démonstrations par l'absurde}
+Supposons \(\sqrt2=p/q\) avec \(p,q\in\N\), \(q\ne0\), et \(p/q\) irréductible. Alors \(p^2=2q^2\), donc \(p^2\) est pair. Si \(p\) était impair, son carré le serait aussi : ainsi \(p\) est pair. Écrivons \(p=2k\). On obtient \(4k^2=2q^2\), puis \(q^2=2k^2\) ; \(q\) est donc pair à son tour. Ainsi \(2\) divise \(p\) et \(q\), contrairement à l'irréductibilité. Donc \(\sqrt2\notin\Q\).
+\end{frame}
+\begin{frame}{Intervalles de la droite réelle}
+Pour deux réels \(a<b\), les intervalles décrivent les réels compris entre deux bornes, avec ou sans les bornes. Un crochet fermé inclut la borne, un crochet ouvert l'exclut. Les symboles \(-\infty,+\infty\) ne sont pas des réels et sont toujours accompagnés d'un crochet ouvert.
+\end{frame}
+\begin{frame}{Intervalles de la droite réelle}
+Les réels strictement négatifs forment \(]-\infty;0[\) : \(0\) est exclu. \([a;a]=\{a\}\) ; \(]a;a[=\varnothing\).
+\end{frame}
+\begin{frame}{Intervalles de la droite réelle}
+Écrire sous forme d'intervalle puis représenter : \(2\leq x\leq5\) ; \(x>4\) ; \(-6<x\leq2\) ; \(x<0\).
+\end{frame}
+\begin{frame}{Correction : Intervalles de la droite réelle}
+\([2;5]\) ; \(]4;+\infty[\) ; \(]-6;2]\) ; \(]-\infty;0[\). Sur la droite graduée, indiquer les bornes, puis matérialiser chacune comme incluse ou exclue.
+\end{frame}
+\begin{frame}{Intersection et réunion d'intervalles}
+\(\,I\cap J\) correspond à la condition « appartenir à \(I\) \textbf{et} à \(J\) » ; \(I\cup J\) correspond à « appartenir à \(I\) \textbf{ou} à \(J\) ». Une réunion d'intervalles n'est pas toujours un intervalle.
+\end{frame}
+\begin{frame}{Intersection et réunion d'intervalles}
+Avec \(I=[0;12]\) et \(J=[3;20]\), déterminer \(I\cap J\) et \(I\cup J\).
+\end{frame}
+\begin{frame}{Correction : Intersection et réunion d'intervalles}
+\(I\cap J=[3;12]\) et \(I\cup J=[0;20]\).
+\end{frame}
+\begin{frame}{Intersection et réunion d'intervalles}
+Compléter, en justifiant par des représentations sur une droite graduée.
+\end{frame}
+\begin{frame}{Correction : Intersection et réunion d'intervalles}
+Pour chaque intersection, conserver les points communs aux deux représentations ; pour chaque réunion, conserver tous les points de l'une au moins. Dans la dernière ligne, \(0\) n'appartient à aucun intervalle : on ne peut pas remplacer la réunion par \(]-2;3]\).
+\end{frame}
+\begin{frame}{Valeur absolue et distance}
+\(|x|\) est la distance du réel \(x\) à \(0\) ; \(|x|\geq0\) et
+\[|x|=\begin{cases}x&\text{si }x\geq0,\\-x&\text{si }x<0.\end{cases}\]
+La distance entre \(a\) et \(b\) est \(|b-a|\). Pour \(a\in\R\) et \(r\geq0\) :
+\[|x-a|\leq r\iff x\in[a-r;a+r],\qquad |x-a|<r\iff x\in]a-r;a+r[.\]
+\end{frame}
+\begin{frame}{Valeur absolue et distance}
+Calculer \(|3{,}2|\), \(|-1{,}6|\), \(|\sqrt3-2|\), puis les distances entre \(2\) et \(5\), \(2\) et \(-5\), \(-2\) et \(-5\).
+\end{frame}
+\begin{frame}{Correction : Valeur absolue et distance}
+\(3{,}2\) ; \(1{,}6\) ; \(2-\sqrt3\) puisque \(\sqrt3<2\). Les distances sont \(3\), \(7\) et \(3\).
+\end{frame}
+\begin{frame}{Valeur absolue et distance}
+Résoudre : \(|x-7/3|=14\) ; \(|x-2|\leq3\) ; \(|x+3|<5\).
+\end{frame}
+\begin{frame}{Correction : Valeur absolue et distance}
+Pour la première équation, \(x-7/3=14\) ou \(x-7/3=-14\), donc \(S=\{-35/3;49/3\}\). Puis \(|x-2|\leq3\iff x\in[-1;5]\). Enfin \(|x+3|=|x-(-3)|<5\iff x\in]-8;2[\).
+\end{frame}
+\begin{frame}{Valeur absolue et distance}
+Écrire \(x\in[4;10]\) sous forme d'une inégalité avec valeur absolue.
+\end{frame}
+\begin{frame}{Correction : Valeur absolue et distance}
+Le centre est \((4+10)/2=7\) et le rayon \((10-4)/2=3\) : \(|x-7|\leq3\).
+\end{frame}
+\begin{frame}{Encadrements et approximations}
+Encadrer \(x\), c'est donner \(a\leq x\leq b\) ; l'amplitude est \(b-a\). Une valeur approchée par défaut est inférieure ou égale à \(x\) ; une valeur approchée par excès lui est supérieure ou égale. L'arrondi choisit la valeur la plus proche à la précision demandée.
+Les chiffres significatifs se comptent à partir du premier chiffre non nul ; la précision affichée doit convenir au contexte.
+\end{frame}
+\begin{frame}{Encadrements et approximations}
+Encadrer \(\sqrt2\) par deux centièmes consécutifs. Donner son arrondi au centième. Arrondir \(0{,}004567\) à trois chiffres significatifs, puis \(12345\) à trois chiffres significatifs en écriture scientifique.
+\end{frame}
+\begin{frame}{Correction : Encadrements et approximations}
+\(1{,}41^2=1{,}9881<2<2{,}0164=1{,}42^2\), donc \(1{,}41<\sqrt2<1{,}42\) (amplitude \(0{,}01\)). L'arrondi au centième est \(1{,}41\). Les autres arrondis sont \(0{,}00457\) et \(1{,}23\times10^4\).
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def encadre_racine2(p):
+    # p entier naturel ; calculs entiers exacts
+    q = 10**p
+    k = 0
+    while (k+1)**2 <= 2*q*q:
+        k = k+1
+    return k/q, (k+1)/q
+\end{verbatim}
+\end{frame}
+\begin{frame}{Encadrements et approximations}
+Expliquer pourquoi cette fonction encadre \(\sqrt2\). Que renvoie-t-elle pour \(p=2\) ? Pourquoi termine-t-elle ?
+\end{frame}
+\begin{frame}{Correction : Encadrements et approximations}
+La boucle cherche le plus grand entier \(k\) tel que \(k^2\leq2q^2\). À la sortie, \(k^2\leq2q^2<(k+1)^2\), donc \(k/q\leq\sqrt2<(k+1)/q\). Pour \(p=2\), elle renvoie \((1{,}41;1{,}42)\). Comme \((2q)^2>2q^2\), le compteur finit par atteindre une valeur qui rend le test faux. Les divisions finales sont des approximations flottantes ; les tests de carrés sont exacts.
+\end{frame}
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Limites de suites}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Limites de suites}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Distinguer convergence et divergence ; calculer une limite ; utiliser comparaison, gendarmes et convergence monotone.
+\end{frame}
+\begin{frame}{Notes de cours}
+\(u_n\to\ell\in\R\) signifie que tout intervalle ouvert contenant \(\ell\) contient tous les termes à partir d'un certain rang. On dit que \((u_n)\) converge vers \(\ell\).
+\(u_n\to+\infty\) signifie que pour tout réel \(A\), il existe un rang \(N\) tel que \(n\ge N\Rightarrow u_n\ge A\). \(u_n\to-\infty\) signifie que pour tout réel \(A\), il existe \(N\) tel que \(n\ge N\Rightarrow u_n\le A\).
+\end{frame}
+\begin{frame}{Notes de cours}
+Une suite peut n'avoir aucune limite, même infinie : \((-1)^n\) oscille entre \(-1\) et \(1\). Toute suite convergente est bornée, mais la réciproque est fausse.
+\end{frame}
+\begin{frame}{Opérations et comparaisons}
+Pour deux suites convergentes de limites \(a,b\), la somme tend vers \(a+b\), le produit vers \(ab\) et le quotient vers \(\dfrac{a}{b}\) si \(b\ne0\). Les règles avec l'infini s'utilisent en contrôlant les signes. Les formes \(+\infty-\infty\), \(0\times\infty\), \(\dfrac{\infty}{\infty}\), \(\dfrac{0}{0}\) ne permettent pas de conclure directement.
+\end{frame}
+\begin{frame}{Opérations et comparaisons}
+\(\dfrac{3n^2-n+1}{2n^2+4}=\dfrac{3-\dfrac{1}{n}+\dfrac{1}{n^2}}{2+\dfrac{4}{n^2}}\to\dfrac{3}{2}\). Pour \(\sqrt{n^2+n}-n\), multiplier par la quantité conjuguée donne \(\dfrac{1}{\sqrt{1+\dfrac{1}{n}}+1}\to\dfrac{1}{2}\).
+\end{frame}
+\begin{frame}{Opérations et comparaisons}
+Si \(u_n\le v_n\) à partir d'un certain rang et \(u_n\to+\infty\), alors \(v_n\to+\infty\). Si \(a_n\le u_n\le b_n\) à partir d'un certain rang et \(a_n,b_n\to\ell\), alors \(u_n\to\ell\) (gendarmes).
+Toute suite croissante et majorée converge. Toute suite décroissante et minorée converge. Ce théorème est admis.
+\end{frame}
+\begin{frame}{Opérations et comparaisons}
+Pour tout \(A\), les termes de \(u\) dépassent \(A\) au-delà d'un rang \(N_1\). L'inégalité \(v_n\ge u_n\) vaut au-delà d'un rang \(N_2\). Pour \(n\ge\max(N_1,N_2)\), \(v_n\ge A\).
+\end{frame}
+\begin{frame}{Opérations et comparaisons}
+Pour tout \(A\), la non-majoration fournit \(N\) tel que \(u_N>A\). Par croissance, \(n\ge N\Rightarrow u_n\ge u_N>A\), d'où \(u_n\to+\infty\). La non-majoration seule ne suffit pas.
+\end{frame}
+\begin{frame}{Suites géométriques}
+\[q^n\longrightarrow\begin{cases}0&\text{si }-1<q<1,\\1&\text{si }q=1,\\+\infty&\text{si }q>1.\end{cases}\]
+Si \(q\le-1\), \((q^n)\) n'a pas de limite : alternance pour \(q=-1\) ; sous-suites paire et impaire de signes opposés et de modules non bornés pour \(q<-1\).
+\end{frame}
+\begin{frame}{Suites géométriques}
+Fixons \(a\ge0\). Démontrons \(P(n)\) : « \((1+a)^n\ge1+na\) ». Au rang \(0\), les deux membres valent \(1\).
+Fixons \(n\ge0\) et supposons \(P(n)\) vraie. Comme \(1+a>0\),
+\[(1+a)^{n+1}\ge(1+na)(1+a)=1+(n+1)a+na^2\ge1+(n+1)a.\]
+C'est \(P(n+1)\) car \(na^2\ge0\). Par récurrence, l'inégalité est vraie pour tout \(n\ge0\). Si \(q>1\), prendre \(a=q-1>0\) et comparer à \(1+na\). Si \(0<q<1\), appliquer ce résultat à \(\dfrac{1}{q}\), puis prendre les inverses. Pour \(-1<q<0\), \(|q^n|=|q|^n\to0\) et les gendarmes concluent. Le cas \(q=0\) se traite à partir du rang \(1\).
+\end{frame}
+\begin{frame}{Suites géométriques}
+Pour \(u_{n+1}=f(u_n)\), établir une borne et la monotonie pour prouver la convergence. Si \(f\) est continue en la limite \(\ell\), le passage à la limite donne \(\ell=f(\ell)\) (continuité étudiée au chapitre 4). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.
+\end{frame}
+\begin{frame}{Suites géométriques}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Les points se rapprochent de \(2\) sans l'atteindre : \(u_n=2+\dfrac{3}{n+1}\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-03-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Une limite n'est pas un dernier terme - 30 min.}
+
+On considère la suite \((u_n)\) définie sur \(\N\) par \(u_n=2+\dfrac3{n+1}\).
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Calculer \(u_0\), \(u_9\) et \(u_{99}\). Existe-t-il un entier \(n\) tel que \(u_n=2\) ? Justifier.
+
+\item Déterminer le plus petit entier \(N\) tel que, pour tout entier \(n\ge N\), \(|u_n-2|<0{,}01\).
+
+\item Soit \(\varepsilon>0\). Donner, en fonction de \(\varepsilon\), un entier \(N\) tel que \(|u_n-2|<\varepsilon\) pour tout \(n\ge N\).
+
+\item On définit sur \(\N\) la suite \((v_n)\) par \(v_n=2+\dfrac{(-1)^n}{n+1}\). Démontrer qu'elle converge vers \(2\) et qu'elle n'est pas monotone. Que montre cet exemple ?
+
+\end{enumerate}
+\end{frame}
+\end{document}

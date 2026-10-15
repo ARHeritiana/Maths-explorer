@@ -1,0 +1,110 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Probabilités conditionnelles et loi binomiale}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Probabilités conditionnelles et loi binomiale}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Construire un arbre ; choisir une loi binomiale ; calculer une probabilité cumulée et un seuil ; interpréter espérance et variance.
+\end{frame}
+\begin{frame}{Rappels : conditionnement et indépendance}
+Si \(P(A)>0\), \(P_A(B)=\dfrac{P(A\cap B)}{P(A)}\). Une branche d'arbre porte une probabilité conditionnelle ; la probabilité d'un chemin est le produit de ses branches. Pour une partition \(A_1,\ldots,A_r\), \(P(B)=\sum_iP(A_i\cap B)\) ; si tous les \(P(A_i)>0\), elle s'écrit \(\sum_iP(A_i)P_{A_i}(B)\).
+Deux événements sont indépendants lorsque \(P(A\cap B)=P(A)P(B)\). Pour \(P(A)>0\), cela équivaut à \(P_A(B)=P(B)\). Ne pas confondre \(P_A(B)\) et \(P_B(A)\).
+\end{frame}
+\begin{frame}{Rappels : conditionnement et indépendance}
+\(P(A)=0{,}4\), \(P_A(B)=0{,}7\), \(P_{\overline A}(B)=0{,}2\). Alors \(P(B)=0{,}4\times0{,}7+0{,}6\times0{,}2=0{,}4\) et \(P_B(A)=\dfrac{0{,}28}{0{,}4}=0{,}7\).
+\end{frame}
+\begin{frame}{Bernoulli et binomiale}
+Une épreuve de Bernoulli a deux issues, succès de probabilité \(p\) et échec de probabilité \(1-p\). La variable indicatrice \(B\) vaut \(1\) en cas de succès et \(0\) sinon : \(E(B)=p\), \(V(B)=p(1-p)\).
+Un schéma de Bernoulli est une répétition de \(n\) épreuves identiques et indépendantes. Le nombre \(X\) de succès suit la loi binomiale \(\mathcal B(n;p)\).
+\end{frame}
+\begin{frame}{Bernoulli et binomiale}
+Pour \(k\in\{0,\ldots,n\}\),
+\[P(X=k)=\binom nk p^k(1-p)^{n-k}.\]\[E(X)=np,\qquad V(X)=np(1-p),\qquad\sigma(X)=\sqrt{np(1-p)}.\]
+\end{frame}
+\begin{frame}{Bernoulli et binomiale}
+Chaque chemin comportant \(k\) succès a probabilité \(p^k(1-p)^{n-k}\) par indépendance. Il existe \(\binom nk\) choix des positions des succès. Ces chemins sont incompatibles ; additionner leurs probabilités.
+\end{frame}
+\begin{frame}{Événements cumulés}
+\[P(X\le k)=\sum_{j=0}^kP(X=j),\qquad P(X\ge k)=1-P(X\le k-1).\]\[P(a\le X\le b)=P(X\le b)-P(X\le a-1).\]
+Pour au moins un succès, \(P(X\ge1)=1-(1-p)^n\). Le complément de « au moins \(k\) » est « strictement moins de \(k\) ».
+\end{frame}
+\begin{frame}{Événements cumulés}
+Pour \(X\sim\mathcal B(10;0{,}2)\), \(E(X)=2\) et \(V(X)=1{,}6\). \(P(X=2)=45(0{,}2)^2(0{,}8)^8\simeq0{,}3020\) et \(P(X\ge1)=1-0{,}8^{10}\simeq0{,}8926\). L'espérance n'est ni un résultat certain ni nécessairement le plus probable.
+\end{frame}
+\begin{frame}{Seuil et intervalle}
+Pour chercher le plus petit \(n\) tel que \(1-(1-p)^n\ge q\), une boucle sur \(n\) suffit. Après le logarithme, on peut résoudre \((1-p)^n\le1-q\) puis arrondir dans le bon sens.
+Pour trouver le plus petit entier \(k\) tel que \(P(X>k)\le\alpha\), augmenter \(k\) jusqu'à obtenir \(P(X\le k)\ge1-\alpha\), puis vérifier le rang précédent. On peut également chercher un intervalle \([a,b]\) contenant au moins une probabilité prescrite, sans supposer qu'il soit unique.
+\end{frame}
+\begin{frame}{Épreuves indépendantes, au-delà de deux issues}
+Pour des expériences indépendantes, la probabilité d'une liste de résultats est le produit des probabilités de ses composantes. L'univers est le produit cartésien des univers de chaque expérience. Par exemple, pour deux lancers indépendants d'un dé équilibré, l'univers contient les \(36\) couples \((i;j)\), \(1\le i,j\le6\), chacun de probabilité \(\dfrac{1}{36}\). La probabilité que la somme soit \(5\) vaut \(\dfrac{4}{36}=\dfrac{1}{9}\), car les couples favorables sont \((1;4),(2;3),(3;2),(4;1)\).
+Dans un schéma de Bernoulli, on code le succès par \(1\) et l'échec par \(0\) : l'univers est \(\{0,1\}^n\). L'indépendance concerne toute la succession ; une simple égalité entre deux probabilités observées ne suffit pas à la prouver.
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Contrôle de composants - 40 min.}
+
+On choisit au hasard un composant dans une production issue de deux ateliers. On note \(A\) l'événement « le composant provient du premier atelier », \(B=\overline A\) et \(D\) l'événement « le composant est défectueux ». On donne \(P(A)=0{,}6\), \(P_A(D)=0{,}02\) et \(P_B(D)=0{,}05\). Les résultats approchés seront arrondis à \(10^{-4}\).
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Représenter la situation par un arbre pondéré, puis calculer \(P(D)\).
+
+\item Le composant choisi est défectueux. Calculer la probabilité qu'il provienne du premier atelier.
+
+\item On choisit maintenant vingt composants indépendamment, chacun suivant le modèle précédent. On note \(X\) le nombre de composants défectueux parmi les vingt. Justifier la loi suivie par \(X\) et préciser ses paramètres.
+
+\item Calculer \(P(X=0)\), \(P(X\ge2)\) et \(E(X)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité de recherche (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Si les vingt composants étaient prélevés dans un même lot, quelle hypothèse du modèle faudrait-il réexaminer ? Expliquer pourquoi.
+
+\end{enumerate}
+\end{frame}
+\end{document}

@@ -94,6 +94,8 @@ CHECKS = [
     ('slide MathJax table from mx-math', [PY, '-m', 'mxbuild', 'notation', '--check']),
     ('slides check', [PY, 'tests/slides_check.py']),
     ('slide HTML exports: up to date, skill lint', [PY, 'tests/slides_export_check.py']),
+    ('lecture Beamer sources and PDFs', [PY, 'scripts/build-lecture-slides.py', '--check']),
+    ('DOM interaction smoke', ['npm', 'run', 'test:dom']),
     ('browser', [PY, 'tests/run_browser.py']),
     ('slides smoke', [PY, 'tests/slides_smoke.py']),
 ]

@@ -1,0 +1,126 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Trigonométrie : cercle, radians et angles associés}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Trigonométrie : cercle, radians et angles associés}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Le parcours du chapitre}
+\textbf{Objectifs.} Passer des degrés aux radians ; placer des points ; calculer sinus et cosinus remarquables ; exploiter les symétries du cercle.
+
+\textbf{Prérequis.} Cercle, Pythagore, cosinus et sinus dans un triangle rectangle, symétries, fractions.
+
+\textbf{Repère annuel.} 2-11 mars : 8 h
+\end{frame}
+\begin{frame}{Mesurer un angle en radians}
+Le cercle trigonométrique est le cercle de centre O et de rayon 1, orienté dans le sens inverse des aiguilles d’une montre. Un radian correspond à un arc de longueur 1 sur ce cercle. Un tour vaut \(2\pi\) radians, un demi-tour \(\pi\). Sur un cercle de rayon r, une longueur d’arc vaut \(r\theta\) pour un angle positif \(\theta\) exprimé en radians.
+\end{frame}
+\begin{frame}{Mesurer un angle en radians}
+\(60^\circ =\dfrac{\pi}{3}\) ; \(\dfrac{3\pi}{2}=270^\circ \). Un angle de \(\dfrac{\pi}{3}\) sur un cercle de rayon 6 cm donne un arc de \(2\pi\) cm.
+\end{frame}
+\begin{frame}{Mesurer un angle en radians}
+La longueur d’un arc n’est pas celle de la corde. En calcul trigonométrique, vérifier le mode degré ou radian de l’outil.
+\end{frame}
+\begin{frame}{Mesurer un angle en radians}
+Convertir \(45^\circ\), \(120^\circ\) ; donner l’arc de rayon 2 m et angle \(\dfrac{3\pi}{4}\).
+\end{frame}
+\begin{frame}{Enroulement et image d’un réel}
+À chaque réel x correspond un point M du cercle obtenu par un parcours orienté de longueur x depuis I(1;0). Deux réels ont la même image si leur différence est un multiple entier de \(2\pi\). Un nombre négatif indique un parcours dans le sens horaire.
+\end{frame}
+\begin{frame}{Enroulement et image d’un réel}
+\(\dfrac{13\pi}{3}=4\pi +\dfrac{\pi}{3}\) a la même image que \(\dfrac{\pi}{3}\). \(-\dfrac{\pi}{2}\) a la même image que \(\dfrac{3\pi}{2}\) : point \((0;-1)\).
+\end{frame}
+\begin{frame}{Enroulement et image d’un réel}
+Ajouter \(\pi\) donne le point opposé, pas le même point.
+\end{frame}
+\begin{frame}{Enroulement et image d’un réel}
+Placer les images de \(\dfrac{7\pi}{2}\) et \(-\dfrac{5\pi}{3}\) en les ramenant à un tour.
+\end{frame}
+\begin{frame}{Sinus, cosinus et valeurs remarquables}
+Si M est l’image de x, \(M=(\cos x;\sin x)\). Donc \(-1\leq\cos x,\sin x\leq1\) et \(\cos^2x+\sin^2x=1\). Pour \(x=0,\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3},\dfrac{\pi}{2}\), les cosinus sont \(1,\dfrac{\sqrt 3}{2},\dfrac{\sqrt 2}{2},\dfrac{1}{2},0\) et les sinus \(0,\dfrac{1}{2},\dfrac{\sqrt 2}{2},\dfrac{\sqrt 3}{2},1\).
+\end{frame}
+\begin{frame}{Sinus, cosinus et valeurs remarquables}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Le point d’angle \(\dfrac{\pi}{3}\) est \((\dfrac{1}{2};\dfrac{\sqrt 3}{2})\). Le produit scalaire de deux vecteurs unitaires faisant cet angle vaut son cosinus, donc \(\dfrac{1}{2}\). Les chapitres de géométrie se raccordent ainsi au cercle.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-10-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Sinus, cosinus et valeurs remarquables}
+Le cosinus est l’abscisse, le sinus l’ordonnée. L’identité donne une valeur absolue : le quadrant détermine le signe.
+\end{frame}
+\begin{frame}{Sinus, cosinus et valeurs remarquables}
+Si \(\cos x=\dfrac{3}{5}\) et l’image de x est dans le quatrième quadrant, donner \(\sin x\).
+\end{frame}
+\begin{frame}{Angles associés et symétries}
+Les symétries du cercle donnent \(\cos(-x)=\cos x\), \(\sin(-x)=-\sin x\) ; \(\cos(\pi-x)=-\cos x\), \(\sin(\pi-x)=\sin x\) ; \(\cos(\pi+x)=-\cos x\), \(\sin(\pi+x)=-\sin x\). Ajouter \(2k\pi\), k entier, ne change ni sinus ni cosinus.
+\end{frame}
+\begin{frame}{Angles associés et symétries}
+\(\cos (\dfrac{5\pi}{6})=-\dfrac{\sqrt 3}{2}\), \(\sin (\dfrac{5\pi}{6})=\dfrac{1}{2}\) par symétrie de \(\dfrac{\pi}{6}\). \(\cos (-\dfrac{\pi}{4})=\dfrac{\sqrt 2}{2}\), \(\sin (-\dfrac{\pi}{4})=-\dfrac{\sqrt 2}{2}\).
+\end{frame}
+\begin{frame}{Angles associés et symétries}
+Deux angles de même cosinus n’ont pas nécessairement le même sinus. Réduire l’angle puis lire les signes.
+\end{frame}
+\begin{frame}{Angles associés et symétries}
+Calculer les deux coordonnées des images de \(\dfrac{4\pi}{3}\) et \(\dfrac{7\pi}{4}\).
+\end{frame}
+\begin{frame}{Approximer pi et réinvestir}
+Un polygone régulier inscrit à n côtés dans le cercle unité a demi-périmètre \(n\sin (\dfrac{\pi}{n})\) ; un polygone circonscrit a demi-périmètre \(n\tan (\dfrac{\pi}{n})\), avec \(\tan \theta =\dfrac{\sin \theta}{\cos}\theta \) ici. La méthode d’Archimède double le nombre de côtés et calcule les nouvelles longueurs par Pythagore, sans connaître pi à l’avance.
+\end{frame}
+\begin{frame}{Approximer pi et réinvestir}
+Pour l’hexagone inscrit, c=1 et demi-périmètre 3. Le circonscrit donne \(2\sqrt3\approx3{,}4641\). En doublant les côtés, on resserre l’encadrement. Le programme fourni part de n=6 et c=1.
+\end{frame}
+\begin{frame}{Approximer pi et réinvestir}
+Utiliser directement une fonction sinus avec pi déjà connu vérifierait un calcul, mais ne construirait pas une approximation indépendante de pi.
+\end{frame}
+\begin{frame}{Approximer pi et réinvestir}
+Pour n=6 et c=1, calculer la nouvelle corde après doublement.
+\end{frame}
+\end{document}

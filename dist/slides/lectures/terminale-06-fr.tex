@@ -1,0 +1,116 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Dérivation, convexité et continuité}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Dérivation, convexité et continuité}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Dériver une composée ; étudier variations et convexité ; démontrer existence et unicité ; approcher une solution.
+\end{frame}
+\begin{frame}{Dériver une composée}
+Si \(u\) est dérivable sur \(I\) et \(v\) dérivable sur un intervalle contenant \(u(I)\), alors \((v\circ u)'=(v'\circ u)u'\). Les domaines doivent être vérifiés avant le calcul.
+\[ (u^n)'=nu'u^{n-1},\quad(e^u)'=u'e^u,\quad
+(\dfrac{1}{u})'=-\dfrac{u'}{u^2},\quad(\sqrt u)'=\dfrac{u'}{2\sqrt u}\quad(u>0).\]
+Par exemple, \(f(x)=\sqrt{3x+1}\) est dérivable pour \(x>-\dfrac{1}{3}\) et \(f'(x)=\dfrac{3}{2\sqrt{3x+1}}\). Le signe de \(f'\) détermine les variations de \(f\) ; le signe de \(f\) ne les détermine pas.
+\end{frame}
+\begin{frame}{Convexité}
+Une fonction \(f\) est convexe sur un intervalle \(I\) si sa courbe est sous ses cordes : pour \(x,y\in I\) et \(t\in[0,1]\),
+\[f((1-t)x+ty)\le(1-t)f(x)+tf(y).\]
+Pour une fonction deux fois dérivable, on admet les équivalences : \(f\) convexe ; \(f'\) croissante ; \(f''\ge0\) ; la courbe est au-dessus de toutes ses tangentes. Les inégalités sont inversées pour une fonction concave. Un point d'inflexion est un point où la courbe change de convexité.
+\end{frame}
+\begin{frame}{Convexité}
+Supposons \(f''\ge0\). Fixons \(a\) et posons \(g(x)=f(x)-f(a)-f'(a)(x-a)\). Comme \(f'\) est croissante, \(g'(x)=f'(x)-f'(a)\le0\) pour \(x\le a\) et \(\ge0\) pour \(x\ge a\). Ainsi \(g\) atteint son minimum \(g(a)=0\) en \(a\), donc \(f(x)\ge f(a)+f'(a)(x-a)\).
+\end{frame}
+\begin{frame}{Convexité}
+\(x^4\) est convexe et \(f''(0)=0\), mais \(0\) n'est pas une abscisse d'inflexion. \(x^3\) change de convexité en \(0\). La convexité de l'exponentielle et sa tangente en \(0\) donnent \(e^x\ge1+x\).
+\end{frame}
+\begin{frame}{Continuité et équations}
+\(f\) est continue en \(a\) si \(\lim_{x\to a}f(x)=f(a)\). Toute fonction dérivable est continue. La réciproque est fausse : \(|x|\) est continue en \(0\) mais non dérivable en \(0\).
+\end{frame}
+\begin{frame}{Continuité et équations}
+Si \(f\) est continue sur \([a,b]\), tout réel compris entre \(f(a)\) et \(f(b)\) possède au moins un antécédent dans \([a,b]\). Si \(f\) est en outre strictement monotone, cet antécédent est unique. On peut aussi travailler sur un intervalle ouvert en utilisant les limites aux bornes.
+\end{frame}
+\begin{frame}{Continuité et équations}
+\(f(x)=x^3+x-1\) est continue sur \([0,1]\). Comme \(f(0)=-1\) et \(f(1)=1\), le TVI donne un zéro dans \(]0,1[\). Puisque \(f'(x)=3x^2+1>0\), il est unique. \(f(0{,}68)<0<f(0{,}69)\) fournit un encadrement, sans remplacer les justifications d'existence et d'unicité.
+\end{frame}
+\begin{frame}{Continuité et équations}
+Pour \(x\ne1\), poser \(g(x)=\dfrac{x^2-1}{x-1}\), et poser \(g(1)=a\). Comme \(g(x)=x+1\) lorsque \(x\ne1\), \(\lim_{x\to1}g(x)=2\). La fonction est continue en \(1\) si et seulement si \(a=2\). La valeur au point doit donc être comparée à la limite, et non remplacée par celle-ci sans justification.
+\end{frame}
+\begin{frame}{Continuité et équations}
+Si \(u_n\to\ell\) et \(f\) est continue en \(\ell\), alors \(f(u_n)\to f(\ell)\). Pour une suite récurrente convergente \(u_{n+1}=f(u_n)\), on obtient \(\ell=f(\ell)\).
+\end{frame}
+\begin{frame}{Dichotomie}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Pour \(f\) continue et \(f(a)f(b)<0\), calculer \(m=\dfrac{a+b}{2}\). Si \(f(m)=0\), arrêter ; sinon garder la moitié dont les extrémités ont des images de signes contraires. Après \(n\) étapes, la longueur vaut \(\dfrac{b-a}{2^n}\). Le milieu donne une erreur au plus la demi-longueur. La méthode ne garantit pas l'unicité ; celle-ci se prouve séparément.   \(y=x^3-3x\) et sa tangente à l'inflexion.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-06-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Dérivées et lectures graphiques - 35 min.}
+
+On considère la fonction \(f\) définie sur \(\R\) par \(f(x)=x^3-3x\). On note \(\mathcal C_f\) sa courbe représentative.
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Calculer \(f' (x)\) et \(f'' (x)\), puis dresser leurs tableaux de signes.
+
+\item En déduire les variations de \(f\) et ses intervalles de convexité et de concavité.
+
+\item Déterminer les coordonnées du point d'inflexion de \(\mathcal C_f\) et une équation de la tangente en ce point.
+
+\item En utilisant les limites, les extrema et le théorème des valeurs intermédiaires, déterminer le nombre de solutions réelles de \(f(x)=1\).
+
+\item Expliquer, à partir de cet exemple, pourquoi la continuité ne suffit pas à assurer l'unicité d'une solution.
+
+\end{enumerate}
+\end{frame}
+\end{document}

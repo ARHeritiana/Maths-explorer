@@ -1,0 +1,276 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={The reciprocal function}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{The reciprocal function}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Reference notes}
+\(f'(x)=-\dfrac1{x^2}<0\) for every \(x\neq0\). The reciprocal function is strictly decreasing on each of the intervals \(]-\infty,0[\) and \(]0,+\infty[\). The lines \(x=0\) and \(y=0\) are asymptotes.
+\end{frame}
+\begin{frame}{Reference notes}
+One cannot write that the reciprocal function is decreasing “on \(\R\setminus\{0\}\)” without specifying the two intervals. For example \(-1<1\) but \(f(-1)=-1<1=f(1)\), which would contradict the global definition of decreasing.
+\end{frame}
+\begin{frame}{Reference notes}
+On \(]0,+\infty[\), \(g(x)=x+\dfrac4x\) satisfies \(g'(x)=1-\dfrac4{x^2}=\dfrac{(x-2)(x+2)}{x^2}\). The denominator is positive; \(g'\) is negative on \(]0,2[\) then positive on \(]2,+\infty[\). The function has a minimum \(g(2)=4\).
+\end{frame}
+\begin{frame}{Definition and graph of the reciprocal function}
+\begin{itemize}
+\item Find the domain.
+\item Draw the curve.
+\item Use symmetries.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Definition and graph of the reciprocal function}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Calculate \(\dfrac1x\) for \(x=-4,-2,-1,-\dfrac12,\dfrac12,1,2,4\). Plot the points and describe the symmetries. Why is \(x=0\) missing?
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-04-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Definition and graph of the reciprocal function}
+The reciprocal function is \(f(x)=\dfrac1x\) on \(\R\setminus\{0\}\). Its curve is a hyperbola symmetric about the origin.
+\end{frame}
+\begin{frame}{Definition and graph of the reciprocal function}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Definition and graph of the reciprocal function}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Behaviour at the boundaries and asymptotes}
+\begin{itemize}
+\item Describe the behaviour at the boundaries.
+\item Identify the asymptotes.
+\item Read a graph.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Behaviour at the boundaries and asymptotes}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Using a table of values near \(0\) and for large values of \(|x|\), describe \(\dfrac1x\). Translate each behaviour into an asymptote and a sentence.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-04-3-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Behaviour at the boundaries and asymptotes}
+For \(f(x)=\dfrac1x\), \(x=0\) is a vertical asymptote and \(y=0\) a horizontal asymptote. The branches approach them without crossing them.
+\end{frame}
+\begin{frame}{Behaviour at the boundaries and asymptotes}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Behaviour at the boundaries and asymptotes}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Derivative and direction of variation}
+\begin{itemize}
+\item Differentiate the reciprocal function.
+\item Justify the variations.
+\item Draw up a table.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Derivative and direction of variation}
+Starting from the difference quotient of \(f(x)=\dfrac1x\), recover \(f'(x)=-\dfrac1{x^2}\). Study its sign and check consistency with the graph.
+\end{frame}
+\begin{frame}{Derivative and direction of variation}
+For \(x\neq0\), \(f'(x)=-\dfrac1{x^2}<0\). The reciprocal function decreases on each of the intervals \(]-\infty,0[\) and \(]0,+\infty[\).
+\end{frame}
+\begin{frame}{Derivative and direction of variation}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Derivative and direction of variation}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Combinations with polynomial functions}
+\begin{itemize}
+\item Differentiate a combination of functions.
+\item Simplify an expression.
+\item Organise a function study.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Combinations with polynomial functions}
+A company produces \(x>0\) hundred items and its average cost is \(C(x)=2x+30+\dfrac{200}{x}\). Calculate \(C'(x)\), factorise its numerator and find the production level that minimises the average cost.
+\end{frame}
+\begin{frame}{Combinations with polynomial functions}
+To study \(P(x)+\dfrac{k}{x}\), find the domain, calculate the derivative, put over a common denominator, study its sign, then draw up the variations.
+\end{frame}
+\begin{frame}{Combinations with polynomial functions}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Combinations with polynomial functions}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Sign and factorisation}
+\begin{itemize}
+\item Factorise.
+\item Build a sign table.
+\item Respect excluded values.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Sign and factorisation}
+Study the sign of \(\dfrac{(x-2)(x+3)}x\). Build the table with the three critical values, distinguish a zero from an excluded value, then solve the inequality \(\dfrac{(x-2)(x+3)}x\geq0\).
+\end{frame}
+\begin{frame}{Sign and factorisation}
+In a quotient, the sign depends on the numerator and the denominator. Excluded values are left out of the table, even if a factor formally cancels.
+\end{frame}
+\begin{frame}{Sign and factorisation}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Sign and factorisation}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Derivatives of polynomials of degree at most 3}
+\begin{itemize}
+\item Differentiate a polynomial.
+\item Study a derivative.
+\item Deduce the variations.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Derivatives of polynomials of degree at most 3}
+For \(f(x)=2x^3-3x^2-12x+5\), calculate \(f'(x)\), factorise, study its sign and deduce the variations of \(f\).
+\end{frame}
+\begin{frame}{Derivatives of polynomials of degree at most 3}
+\((ax^3+bx^2+cx+d)'=3ax^2+2bx+c\). The sign of the derivative gives the direction of variation of the function.
+\end{frame}
+\begin{frame}{Derivatives of polynomials of degree at most 3}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Derivatives of polynomials of degree at most 3}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Full study and graph}
+\begin{itemize}
+\item Carry out a full study.
+\item Draw a consistent curve.
+\item Interpret an extremum.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Full study and graph}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Study \(g(x)=x+\dfrac9x\) completely on \(]0,+\infty[\): domain, derivative, sign, variations, minimum, behaviour at the boundaries and sketch.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-04-4-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Full study and graph}
+A full study includes: domain, derivative, sign, variations, limits or behaviour at the boundaries, key points and a consistent graph.
+\end{frame}
+\begin{frame}{Full study and graph}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Full study and graph}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\begin{frame}{Review and assessment}
+\begin{itemize}
+\item Use domain, derivative and sign.
+\item Write up a study.
+\item Correct work methodically.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Review and assessment}
+Correct a deliberately flawed study of \(h(x)=x+\dfrac4x\): stated domain \(\R\), derivative \(1+\dfrac4{x^2}\), table with no break at \(0\). Rewrite a complete solution.
+\end{frame}
+\begin{frame}{Review and assessment}
+Check the four items separately: domain, expression of the derivative, sign of the derivative, variations. An error at one step must not hide the following ones.
+\end{frame}
+\begin{frame}{Review and assessment}
+Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
+\end{frame}
+\begin{frame}{Review and assessment}
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.
+
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.
+
+\textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask quick students to produce a counterexample, a justification or a second method.
+\end{frame}
+\end{document}

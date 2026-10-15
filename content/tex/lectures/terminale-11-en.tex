@@ -1,0 +1,127 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Integration}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Integration}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Calculate and bound an integral; distinguish area from integral; use integration by parts; study a sequence of integrals.
+\end{frame}
+\begin{frame}{Area and antiderivative}
+For \(f\) continuous and non-negative on \([a,b]\), \(a\le b\), the integral \(\int_a^b f(x)\,\dd x\) is the area under the curve, above the x-axis, between \(x=a\) and \(x=b\), expressed in area units.
+\end{frame}
+\begin{frame}{Area and antiderivative}
+If \(f\) is continuous on an interval \(I\) and \(a\in I\), then \(F_a(x)=\int_a^x f(t)\,\dd t\) is the antiderivative of \(f\) that vanishes at \(a\). For any antiderivative \(F\),
+\[\int_a^b f(x)\,\dd x=F(b)-F(a).\]
+Every continuous function on an interval has antiderivatives. An integral is a number; an antiderivative is a function.
+\end{frame}
+\begin{frame}{Area and antiderivative}
+For \(h>0\), the rectangles give \(hf(x)\le F_a(x+h)-F_a(x)\le hf(x+h)\). After dividing by \(h\) and taking the limit, the rate of change tends to \(f(x)\). For \(h<0\), the function being increasing gives \(f(x+h)\le f(t)\le f(x)\) on \([x+h,x]\). Integrating,
+\[(-h)f(x+h)\le F_a(x)-F_a(x+h)\le(-h)f(x).\]
+Dividing by \(-h>0\), we obtain
+\[f(x+h)\le\dfrac{F_a(x+h)-F_a(x)}h\le f(x).\]
+Both bounds tend to \(f(x)\). By continuity, \(F_a'=f\). Any other antiderivative is \(F_a+C\), hence the formula for evaluating between the limits.
+\end{frame}
+\begin{frame}{Properties}
+For continuous functions and limits belonging to the same interval:
+\[\int_a^a f=0,\quad\int_b^a f=-\int_a^b f,\quad
+\int_a^c f=\int_a^b f+\int_b^c f,\quad
+\int_a^b(\lambda f+\mu g)=\lambda\int_a^b f+\mu\int_a^b g.\]
+If \(a\le b\) and \(f\le g\), then \(\int_a^b f\le\int_a^b g\). In particular, if \(m\le f\le M\), then \(m(b-a)\le\int_a^b f\le M(b-a)\).
+For a function of arbitrary sign, the integral is defined using antiderivatives. The geometric area between the curve and the axis is \(\int_a^b|f|\), obtained by splitting at the sign changes. Between two curves, it equals \(\int_a^b|f-g|\).
+\end{frame}
+\begin{frame}{Properties}
+\(\int_{-1}^{1}x\,\dd x=0\), but the area between the line and the axis over this interval is \(1\).
+\end{frame}
+\begin{frame}{Mean value and integration by parts}
+For \(a<b\), the mean value is \(\mu=\dfrac1{b-a}\int_a^b f(x)\,\dd x\). The rectangle of height \(\mu\) and width \(b-a\) has the same signed area.
+\end{frame}
+\begin{frame}{Mean value and integration by parts}
+If \(u,v\) are of class \(\mathcal C^1\) on \([a,b]\),
+\[\int_a^b u(x)v'(x)\,\dd x=[u(x)v(x)]_a^b-\int_a^b u'(x)v(x)\,\dd x.\]
+\end{frame}
+\begin{frame}{Mean value and integration by parts}
+Integrate \((uv)'=u'v+uv'\) then isolate the required integral. The bracket is indispensable.
+\end{frame}
+\begin{frame}{Mean value and integration by parts}
+With \(u=x\) and \(v'=e^x\), \(\int_0^1xe^x\,\dd x=[xe^x]_0^1-\int_0^1e^x\,\dd x=e-(e-1)=1\).
+\end{frame}
+\begin{frame}{Rectangles and sequences of integrals}
+For \(f\) continuous and increasing on \([a,b]\), with \(a<b\) and \(n\ge1\) and \(h=\dfrac{b-a}{n}\), the sums \(h\sum_{k=0}^{n-1}f(a+kh)\) and \(h\sum_{k=1}^{n}f(a+kh)\) bound the integral. Their difference is \(h(f(b)-f(a))\).
+For \(I_n=\int_0^1x^nf(x)\,\dd x\), begin with the sign and comparisons of the integrand. If \(0\le f\le M\), then \(0\le I_n\le \dfrac{M}{n+1}\); the squeeze theorem gives \(I_n\to0\). Integration by parts can also provide a relation between \(I_n\) and \(I_{n+1}\).
+\end{frame}
+\begin{frame}{Rectangles and sequences of integrals}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+In \(I_n=\int_0^1x^nf(x)\,\dd x\), the expression \(x^0\) denotes the constant function \(1\), including at the endpoint \(0\). Thus \(I_0=\int_0^1f(x)\,\dd x\); no indeterminate calculation is needed.   The area between \(y=x\) and \(y=x^2\) on \([0,1]\) equals \(\dfrac{1}{6}\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-11-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Bounding an integral with rectangles - 35 min.}
+
+We wish to bound \(I=\displaystyle\int_0^1x^2\,\dd x\). For an integer \(n\ge1\), we split \([0;1]\) into \(n\) intervals of equal length. Let \(L_n\) be the sum of the areas of the rectangles whose heights are the values of \(x^2\) at the left endpoints, and \(U_n\) the sum obtained at the right endpoints.
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item For \(n=4\), draw both families of rectangles, then calculate \(L_4\) and \(U_4\).
+
+\item Justify that \(L_4\le I\le U_4\).
+
+\item Write a Python function with argument \(n\) that returns \(L_n\) and \(U_n\). Determine \(U_n-L_n\) algebraically.
+
+\item Find the smallest integer \(n\) for which this bounding has a width at most equal to \(0.01\).
+
+\item Calculate the exact value of \(I\) using an antiderivative and check that it lies within the bounds obtained for \(n=4\).
+
+\end{enumerate}
+\end{frame}
+\end{document}

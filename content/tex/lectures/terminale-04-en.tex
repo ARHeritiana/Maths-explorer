@@ -1,0 +1,109 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Limits of functions}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Limits of functions}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Compute limits at a point and at infinity; resolve an indeterminate form; interpret an asymptote.
+\end{frame}
+\begin{frame}{Meaning of a limit}
+\(f(x)\to\ell\) as \(x\to+\infty\) means that \(f(x)\) can be made as close as desired to \(\ell\) for all sufficiently large \(x\). For a limit at \(a\), we consider values of \(x\) in the domain, close to \(a\) and different from \(a\). Left-hand and right-hand limits are written \(\lim_{x\to a^-}f(x)\) and \(\lim_{x\to a^+}f(x)\). When the domain contains points on both sides of \(a\), a two-sided limit exists if and only if both one-sided limits exist and are equal. At an endpoint of the domain, we study the limit from the only accessible side.
+\end{frame}
+\begin{frame}{Meaning of a limit}
+If \(f(x)\to\ell\in\R\) as \(x\to+\infty\) or \(-\infty\), the line \(y=\ell\) is a horizontal asymptote in that direction. If \(f(x)\to\pm\infty\) as \(x\to a\) from one side, the line \(x=a\) is a vertical asymptote.
+\end{frame}
+\begin{frame}{Meaning of a limit}
+A curve may cross a horizontal asymptote. The limit does not necessarily give the position of the curve relative to the asymptote: study the sign of \(f(x)-\ell\).
+\end{frame}
+\begin{frame}{Standard limits and operations}
+At \(+\infty\), \(x^m\to+\infty\) for \(m\ge1\), \(\dfrac{1}{x^m}\to0\), \(\sqrt x\to+\infty\). At \(-\infty\), the sign of \(x^m\) depends on the parity of \(m\). The rules for sums, products, quotients and comparison are those for sequences, with the same indeterminate forms.
+\end{frame}
+\begin{frame}{Standard limits and operations}
+For \(f(x)=\dfrac{2x+1}{x-3}\), write \(f(x)=2+\dfrac{7}{x-3}\). The limits at \(\pm\infty\) equal \(2\). At \(3^-\), \(f\to-\infty\); at \(3^+\), \(f\to+\infty\). The asymptotes are \(x=3\) and \(y=2\).
+\end{frame}
+\begin{frame}{Standard limits and operations}
+For \(x>0\), \(\sqrt{x^2+4x}-x=\dfrac{4}{\sqrt{1+\dfrac{4}{x}}+1}\to2\). For \(x<0\), be careful: \(\sqrt{x^2}=|x|=-x\).
+\end{frame}
+\begin{frame}{Exponential and comparison of growth rates}
+\[\lim_{x\to+\infty}e^x=+\infty,\quad\lim_{x\to-\infty}e^x=0,\quad
+\lim_{x\to+\infty}\dfrac{e^x}{x^m}=+\infty\quad(m\in\N).\]
+We deduce \(x^me^{-x}\to0\) at \(+\infty\).
+\end{frame}
+\begin{frame}{Exponential and comparison of growth rates}
+Studying \(e^x-x-1\) gives \(e^x\ge1+x\). By comparison, \(e^x\to+\infty\) at \(+\infty\). Setting \(t=-x\to+\infty\), \(e^x=\dfrac{1}{e^t}\to0\).
+\end{frame}
+\begin{frame}{Exponential and comparison of growth rates}
+For every integer \(k\ge0\) and \(x\ge0\), \(e^x\ge \dfrac{x^k}{k!}\). For \(k=0\), \(e^x\ge1\). If the inequality holds at order \(k\), the derivative of \(e^x-\dfrac{x^{k+1}}{(k+1)!}\) is \(e^x-\dfrac{x^k}{k!}\ge0\); its value at \(0\) is positive. The inductive step follows. Choosing \(k=m+1\), \(\dfrac{e^x}{x^m}\ge \dfrac{x}{(m+1)!}\to+\infty\).
+\end{frame}
+\begin{frame}{Exponential and comparison of growth rates}
+Quotient of polynomials: factorise the highest powers. Difference of roots: conjugate expression. Quotient near a zero: factorise and study the signs. Exponential against power: comparison of growth rates, after a change of variable if necessary.
+\end{frame}
+\begin{frame}{Comparison and composition: conditions of use}
+If \(g(x)\le f(x)\le h(x)\) near the point or the infinity under study, and if \(g,h\) have the same real limit \(\ell\), then \(f(x)\to\ell\) (squeeze theorem). If \(g\le f\) and \(g\to+\infty\), then \(f\to+\infty\). For a limit of \(-\infty\), we use an upper bound by a function tending to \(-\infty\).
+If \(u(x)\to a\) and \(v\) is continuous at \(a\), then \(v(u(x))\to v(a)\), whenever the composite is defined. For example \(\sqrt{1+\dfrac{1}{x}}\to1\) at \(+\infty\). For an infinite limit of the outer function, check from which side \(u(x)\) approaches the bound: \(\dfrac{1}{u(x)}\) does not behave the same way depending on the sign of \(u(x)\).
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{A curve close to a line - 30 min.}
+
+Consider the function \(f\) defined on \(\R\setminus\{1\}\) by \(f(x)=\dfrac{3x-2}{x-1}\). Let \(\mathcal C_f\) be its curve in a frame of the plane.
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Show that, for every \(x\ne1\), \(f(x)=3+\dfrac1{x-1}\).
+
+\item Determine the limits of \(f\) at \(-\infty\), at \(1^-\), at \(1^+\) and at \(+\infty\).
+
+\item Study the sign of \(f(x)-3\), then state the position of \(\mathcal C_f\) relative to the line with equation \(y=3\).
+
+\item Find a real number \(A>1\) such that, for every \(x>A\), \(|f(x)-3|<0.01\).
+
+\item Does the curve \(\mathcal C_f\) cross its horizontal asymptote? Justify, and explain why a graphing window that is too wide can give a misleading impression.
+
+\end{enumerate}
+\end{frame}
+\end{document}

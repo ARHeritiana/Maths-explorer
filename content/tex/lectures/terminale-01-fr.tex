@@ -1,0 +1,122 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Suites numériques et récurrence}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Suites numériques et récurrence}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Calculer des termes et une somme ; rédiger une récurrence ; établir monotonie et bornes ; exploiter une suite auxiliaire.
+\end{frame}
+\begin{frame}{Définir une suite et calculer}
+Une suite réelle est une fonction définie sur \(\N\), ou sur les entiers à partir d'un rang \(n_0\). On note \(u_n\) son terme de rang \(n\). Une formule explicite donne \(u_n\) directement ; une relation de récurrence exige aussi un terme initial. Par exemple, \(u_0=2\) et \(u_{n+1}=3u_n-1\) donnent \(u_1=5\), \(u_2=14\).
+\end{frame}
+\begin{frame}{Définir une suite et calculer}
+Si \(u_{n+1}=u_n+r\), alors \(u_n=u_p+(n-p)r\). Si \(u_{n+1}=qu_n\), alors \(u_n=u_pq^{n-p}\) pour \(n\ge p\).
+\[\sum_{k=p}^n u_k=(n-p+1)\dfrac{u_p+u_n}{2}\quad\text{(arithmétique)},\qquad
+\sum_{k=p}^n u_k=u_p\dfrac{1-q^{n-p+1}}{1-q}\quad(q\ne1).\]
+Lorsque \(q=1\), la deuxième somme vaut \((n-p+1)u_p\).
+\end{frame}
+\begin{frame}{Raisonnement par récurrence}
+Pour prouver \(P(n)\) pour tout entier \(n\ge n_0\) : vérifier \(P(n_0)\) ; fixer un entier arbitraire \(n\ge n_0\) et supposer \(P(n)\) vraie ; en déduire \(P(n+1)\) ; conclure par le principe de récurrence. L'hypothèse n'est pas la conclusion : elle ne peut être utilisée qu'au rang fixé.
+\end{frame}
+\begin{frame}{Raisonnement par récurrence}
+Soit \(u_0=1\), \(u_{n+1}=2u_n+3\). Pour \(n\in\N\), notons \(P(n)\) : « \(u_n=4\times2^n-3\) ».
+
+\textbf{Initialisation.} \(4\times2^0-3=1=u_0\) ; \(P(0)\) est vraie.
+
+\textbf{Hérédité.} Fixons \(n\in\N\) et supposons \(P(n)\) vraie. Par la définition de la suite, puis par cette hypothèse,
+\[\begin{aligned}u_{n+1}&=2u_n+3\\&=2(4\times2^n-3)+3\\&=8\times2^n-3=4\times2^{n+1}-3.\end{aligned}\]
+C'est \(P(n+1)\) : la propriété est héréditaire.
+
+\textbf{Conclusion.} Par le principe de récurrence, \(u_n=4\times2^n-3\) pour tout \(n\in\N\).
+\end{frame}
+\begin{frame}{Raisonnement par récurrence}
+Notons \(P(n)\) : « \(\sum_{k=0}^n k=\dfrac{n(n+1)}{2}\) ».
+Pour \(n=0\), les deux membres valent \(0\) : \(P(0)\) est vraie.
+Fixons \(n\ge0\) et supposons \(P(n)\) vraie. Alors
+\[\begin{aligned}\sum_{k=0}^{n+1}k&=\sum_{k=0}^nk+(n+1)\\&=\dfrac{n(n+1)}2+(n+1)\\&=\dfrac{(n+1)(n+2)}2.\end{aligned}\]
+On a établi \(P(n+1)\). Par récurrence, la formule est vraie pour tout \(n\in\N\).
+\end{frame}
+\begin{frame}{Comportement global}
+La suite est croissante si \(u_{n+1}\ge u_n\) pour tout rang, décroissante si l'inégalité est inversée. Elle est majorée s'il existe un réel \(M\) tel que \(u_n\le M\) pour tout \(n\) ; minorée s'il existe \(m\) tel que \(u_n\ge m\) ; bornée si elle est à la fois minorée et majorée.
+Pour étudier la monotonie, on peut étudier le signe de \(u_{n+1}-u_n\). Si tous les termes sont strictement positifs, on peut comparer \(\dfrac{u_{n+1}}{u_n}\) à \(1\). L'étude d'une fonction \(f\) telle que \(u_n=f(n)\) est une autre possibilité.
+\end{frame}
+\begin{frame}{Comportement global}
+Pour \(u_{n+1}=au_n+b\), \(a\ne1\), résoudre \(\ell=a\ell+b\), puis poser \(v_n=u_n-\ell\). On obtient \(v_{n+1}=av_n\), donc
+\[u_n=\ell+(u_0-\ell)a^n,\qquad\ell=\dfrac{b}{1-a}.\]
+Si \(a=1\), la suite est arithmétique : ne pas diviser par \(1-a\).
+\end{frame}
+\begin{frame}{Comportement global}
+Si \(u_0=10\) et \(u_{n+1}=0{,}8u_n+6\), alors \(\ell=30\) et \(u_n=30-20(0{,}8)^n\). On a \(10\le u_n<30\) et \(u_{n+1}-u_n=4(0{,}8)^n>0\).
+\end{frame}
+\begin{frame}{Comportement global}
+Vérifier une propriété sur cent termes ne la démontre pas. Une suite croissante n'est pas nécessairement positive ; une suite bornée n'est pas nécessairement monotone.
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Un réservoir alimenté chaque jour - 35 min.}
+
+Un réservoir contient initialement \(100\) litres d'eau. Chaque jour, on prélève \(20\,\%\) du volume présent, puis on ajoute \(30\) litres. Pour tout entier naturel \(n\), on note \(u_n\) le volume d'eau, en litres, après ces deux opérations effectuées \(n\) fois. Ainsi, \(u_0=100\).
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Calculer \(u_1\) et \(u_2\), puis exprimer \(u_{n+1}\) en fonction de \(u_n\).
+
+\item Quelle valeur du volume resterait inchangée après une journée ? Démontrer par récurrence que, pour tout \(n\in\N\), \(100\le u_n<150\).
+
+\item Pour tout \(n\in\N\), on pose \(v_n=u_n-150\). Montrer que \((v_n)\) est géométrique. En déduire les expressions de \(v_n\) et de \(u_n\) en fonction de \(n\).
+
+\item Écrire une fonction Python sans argument qui renvoie le premier entier \(n\) pour lequel \(u_n>145\). Exécuter le programme et interpréter le résultat.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité de recherche (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Un élève a calculé les cent premiers termes et constate qu'ils sont inférieurs à \(150\). Ce constat suffit-il à démontrer que tous les termes le sont ? Justifier.
+
+\end{enumerate}
+\end{frame}
+\end{document}

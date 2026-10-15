@@ -1,0 +1,118 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Limits of sequences}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Limits of sequences}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Distinguish convergence from divergence; compute a limit; use comparison, the squeeze theorem and monotone convergence.
+\end{frame}
+\begin{frame}{Course notes}
+\(u_n\to\ell\in\R\) means that every open interval containing \(\ell\) contains all the terms from some index onwards. We say that \((u_n)\) converges to \(\ell\).
+\(u_n\to+\infty\) means that for every real number \(A\), there is an index \(N\) such that \(n\ge N\Rightarrow u_n\ge A\). \(u_n\to-\infty\) means that for every real number \(A\), there is \(N\) such that \(n\ge N\Rightarrow u_n\le A\).
+\end{frame}
+\begin{frame}{Course notes}
+A sequence may have no limit at all, not even an infinite one: \((-1)^n\) oscillates between \(-1\) and \(1\). Every convergent sequence is bounded, but the converse is false.
+\end{frame}
+\begin{frame}{Operations and comparisons}
+For two convergent sequences with limits \(a,b\), the sum tends to \(a+b\), the product to \(ab\) and the quotient to \(\dfrac{a}{b}\) if \(b\ne0\). The rules involving infinity are used by keeping track of the signs. The forms \(+\infty-\infty\), \(0\times\infty\), \(\dfrac{\infty}{\infty}\), \(\dfrac{0}{0}\) do not allow a direct conclusion.
+\end{frame}
+\begin{frame}{Operations and comparisons}
+\(\dfrac{3n^2-n+1}{2n^2+4}=\dfrac{3-\dfrac{1}{n}+\dfrac{1}{n^2}}{2+\dfrac{4}{n^2}}\to\dfrac{3}{2}\). For \(\sqrt{n^2+n}-n\), multiplying by the conjugate expression gives \(\dfrac{1}{\sqrt{1+\dfrac{1}{n}}+1}\to\dfrac{1}{2}\).
+\end{frame}
+\begin{frame}{Operations and comparisons}
+If \(u_n\le v_n\) from some index onwards and \(u_n\to+\infty\), then \(v_n\to+\infty\). If \(a_n\le u_n\le b_n\) from some index onwards and \(a_n,b_n\to\ell\), then \(u_n\to\ell\) (squeeze theorem).
+Every increasing sequence that is bounded above converges. Every decreasing sequence that is bounded below converges. This theorem is admitted (taken without proof).
+\end{frame}
+\begin{frame}{Operations and comparisons}
+For every \(A\), the terms of \(u\) exceed \(A\) beyond an index \(N_1\). The inequality \(v_n\ge u_n\) holds beyond an index \(N_2\). For \(n\ge\max(N_1,N_2)\), \(v_n\ge A\).
+\end{frame}
+\begin{frame}{Operations and comparisons}
+For every \(A\), the fact that the sequence is not bounded above provides \(N\) such that \(u_N>A\). Since the sequence is increasing, \(n\ge N\Rightarrow u_n\ge u_N>A\), hence \(u_n\to+\infty\). Not being bounded above is not enough on its own.
+\end{frame}
+\begin{frame}{Geometric sequences}
+\[q^n\longrightarrow\begin{cases}0&\text{si }-1<q<1,\\1&\text{si }q=1,\\+\infty&\text{si }q>1.\end{cases}\]
+If \(q\le-1\), \((q^n)\) has no limit: alternation for \(q=-1\); for \(q<-1\), the even and odd subsequences have opposite signs and unbounded moduli.
+\end{frame}
+\begin{frame}{Geometric sequences}
+Fix \(a\ge0\). Let us prove \(P(n)\): "\((1+a)^n\ge1+na\)". At index \(0\), both sides equal \(1\).
+Fix \(n\ge0\) and assume \(P(n)\) is true. Since \(1+a>0\),
+\[(1+a)^{n+1}\ge(1+na)(1+a)=1+(n+1)a+na^2\ge1+(n+1)a.\]
+This is \(P(n+1)\) because \(na^2\ge0\). By induction, the inequality holds for every \(n\ge0\). If \(q>1\), take \(a=q-1>0\) and compare with \(1+na\). If \(0<q<1\), apply this result to \(\dfrac{1}{q}\), then take reciprocals. For \(-1<q<0\), \(|q^n|=|q|^n\to0\) and the squeeze theorem concludes. The case \(q=0\) is handled from index \(1\) onwards.
+\end{frame}
+\begin{frame}{Geometric sequences}
+For \(u_{n+1}=f(u_n)\), establish a bound and monotonicity to prove convergence. If \(f\) is continuous at the limit \(\ell\), passing to the limit gives \(\ell=f(\ell)\) (continuity is studied in chapter 4). Solving this equation never proves, on its own, that the sequence converges.
+\end{frame}
+\begin{frame}{Geometric sequences}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+The points get closer to \(2\) without reaching it: \(u_n=2+\dfrac{3}{n+1}\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-03-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{A limit is not a last term - 30 min.}
+
+Consider the sequence \((u_n)\) defined on \(\N\) by \(u_n=2+\dfrac3{n+1}\).
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Compute \(u_0\), \(u_9\) and \(u_{99}\). Is there an integer \(n\) such that \(u_n=2\)? Justify.
+
+\item Find the smallest integer \(N\) such that, for every integer \(n\ge N\), \(|u_n-2|<0.01\).
+
+\item Let \(\varepsilon>0\). Give, in terms of \(\varepsilon\), an integer \(N\) such that \(|u_n-2|<\varepsilon\) for every \(n\ge N\).
+
+\item Define on \(\N\) the sequence \((v_n)\) by \(v_n=2+\dfrac{(-1)^n}{n+1}\). Prove that it converges to \(2\) and that it is not monotonic. What does this example show?
+
+\end{enumerate}
+\end{frame}
+\end{document}

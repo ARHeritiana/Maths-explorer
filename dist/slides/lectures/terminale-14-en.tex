@@ -1,0 +1,117 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Trigonometric functions}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Trigonometric functions}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Use parity and periodicity; differentiate sine and cosine; solve equations and inequalities; study a periodic function.
+\end{frame}
+\begin{frame}{Circle and functions}
+On the unit circle, the point located by an angle \(x\) in radians has coordinates \((\cos x,\sin x)\). For every real number \(x\),
+\[\cos^2x+\sin^2x=1,\quad -1\le\cos x,\sin x\le1.\]
+Cosine is even: \(\cos(-x)=\cos x\). Sine is odd: \(\sin(-x)=-\sin x\). Both functions are \(2\pi\)-periodic.
+\[\begin{array}{c|ccccc}x&0&\dfrac{\pi}{6}&\dfrac{\pi}{4}&\dfrac{\pi}{3}&\dfrac{\pi}{2}\\\hline
+\cos x&1&\dfrac{\sqrt{3}}{2}&\dfrac{\sqrt{2}}{2}&\dfrac{1}{2}&0\\
+\sin x&0&\dfrac{1}{2}&\dfrac{\sqrt{2}}{2}&\dfrac{\sqrt{3}}{2}&1
+\end{array}\]
+\end{frame}
+\begin{frame}{Derivatives and variations}
+\[(\sin x)'=\cos x,\qquad(\cos x)'=-\sin x.\]\[
+(\sin(ax+b))'=a\cos(ax+b),\quad(\cos(ax+b))'=-a\sin(ax+b).\]
+On \([-\pi,\pi]\), cosine increases on \([-\pi,0]\) from \(-1\) to \(1\), then decreases on \([0,\pi]\) from \(1\) to \(-1\). Sine decreases on \([-\pi,-\dfrac{\pi}{2}]\), increases on \([-\dfrac{\pi}{2},\dfrac{\pi}{2}]\), then decreases on \([\dfrac{\pi}{2},\pi]\).
+\end{frame}
+\begin{frame}{Derivatives and variations}
+Read the sign of sine and cosine on the circle, then apply the link between derivative and variations. Periodicity extends the curves; it does not remove the need to study an interval of sufficient length.
+\end{frame}
+\begin{frame}{Equations and inequalities}
+If \(|a|>1\), \(\cos x=a\) and \(\sin x=a\) have no real solution. For a known angle \(\theta\),
+\[\cos x=\cos\theta\Longleftrightarrow x=\theta+2k\pi\ \text{or}\ x=-\theta+2k\pi,\]
+\[\sin x=\sin\theta\Longleftrightarrow x=\theta+2k\pi\ \text{or}\ x=\pi-\theta+2k\pi,\quad k\in\Z.\]
+Then restrict the solutions to the required interval and eliminate duplicates.
+\end{frame}
+\begin{frame}{Equations and inequalities}
+\(\cos x=\dfrac{1}{2}\) gives \(x=\pm\dfrac{\pi}{3}\); \(\sin x=\dfrac{1}{2}\) gives \(x=\dfrac{\pi}{6}\) or \(\dfrac{5\pi}{6}\). \(\cos x\le\dfrac{1}{2}\) gives \([-\pi,-\dfrac{\pi}{3}]\cup[\dfrac{\pi}{3},\pi]\); \(\sin x\ge\dfrac{1}{2}\) gives \([\dfrac{\pi}{6},\dfrac{5\pi}{6}]\).
+\end{frame}
+\begin{frame}{Equations and inequalities}
+To solve \(\cos (2x)=\dfrac{1}{2}\) on \([-\pi,\pi]\), set \(t=2x\in[-2\pi,2\pi]\), solve for \(t\), then divide by \(2\). We obtain \(x\in\{-\dfrac{5\pi}{6},-\dfrac{\pi}{6},\dfrac{\pi}{6},\dfrac{5\pi}{6}\}\).
+\end{frame}
+\begin{frame}{Equations and inequalities}
+For \(f(x)=\sin x+\dfrac12\sin(2x)\) on \([0,\pi]\), \(f'=\cos x+\cos(2x)=2\cos^2x+\cos x-1=(2\cos x-1)(\cos x+1)\). The function increases up to \(\dfrac{\pi}{3}\) then decreases; maximum \(\dfrac{3\sqrt{3}}{4}\).
+\end{frame}
+\begin{frame}{Equations and inequalities}
+For every real number \(x\), \(\sin(2x)=2\sin x\cos x\) and \(\cos(2x)=\cos^2x-\sin^2x=2\cos^2x-1\). These identities are recalled here so that their use in the problems is not left implicit.
+\end{frame}
+\begin{frame}{Equations and inequalities}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+The evenness of cosine corresponds to a symmetry about the y-axis; the oddness of sine to a point symmetry about the origin. Periodicity extends each curve by translation of vector \((2\pi,0)\).   The coordinates of the point on the circle are \((\cos x,\sin x)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/terminale-14-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Height of a point on a wheel - 35 min.}
+
+A wheel turns at constant speed in a vertical plane. Its radius is \(2\) m and its centre is \(3\) m above the ground. A point on the wheel is at its lowest position at time \(t=0\). The wheel makes one revolution in \(8\) s. Its height is modelled by \(h(t)=3-2\cos\left(\dfrac{\pi t}{4}\right)\), where \(t\) is in seconds and \(h(t)\) in metres.
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Check that the model gives the stated initial height, a period of \(8\) s and the expected minimum and maximum heights.
+
+\item Compute \(h' (t)\), then study the variations of \(h\) on \([0;8]\).
+
+\item Determine all the times \(t\in[0;8]\) at which the height is \(4\) m.
+
+\item Determine the total time, during this revolution, for which the point is at least \(4\) m above the ground.
+
+\end{enumerate}
+\end{frame}
+\end{document}

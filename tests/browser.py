@@ -35,9 +35,12 @@ with sync_playwright() as p:
         page.locator('[data-lang="'+language+'"]').click()
         for lab,answer in zip(LABS,ANSWERS):
             page.goto(BASE+'/#lab/'+lab)
-            page.locator('#plot svg').first.wait_for()
+            page.locator('#cx-input canvas' if lab == 'complex' else '#plot svg').first.wait_for()
             assert page.locator('html').get_attribute('lang') == language
-            assert page.locator('#results strong').count() == 3
+            if lab == 'complex':
+                assert page.locator('#cx-output canvas').count() == 1
+            else:
+                assert page.locator('#results strong').count() == 3
             sliders = page.locator('[data-param]')
             for i in range(sliders.count()):
                 slider = sliders.nth(i)
@@ -103,6 +106,9 @@ with sync_playwright() as p:
     for lab in LABS:
         page.goto(BASE+'/#lab/'+lab)
         page.locator('#quiz-preset').click()
+        if lab == 'complex':
+            assert '|z| = 5' in page.locator('#cx-read').inner_text()
+            continue
         assert page.locator('#chart-data table').count() == 1
         assert lab == 'trig' or page.locator('#chart-data th[scope="col"]').count() >= 2
         assert page.locator('#results strong').count() == 3
@@ -373,9 +379,16 @@ with sync_playwright() as p:
     page.set_viewport_size({'width':1280,'height':900})
     page.goto(BASE+'/#lab/galton'); page.get_by_role('button', name='+ 100').or_(page.get_by_role('button', name='Add 100')).first.click(); page.wait_for_timeout(300)
     assert 'billes' in page.locator('.act-readout').first.inner_text() or 'balls' in page.locator('.act-readout').first.inner_text()
-    page.goto(BASE+'/#lab/platonic'); page.locator('#pl-t-why').click()
-    assert page.locator('.pl-cell.solid').count() == 5, 'exactly five (p, q) pairs make a solid'
-    page.locator('.pl-cell[data-p="4"][data-q="4"]').click(); assert page.locator('.pl-cell.sel').get_attribute('data-p') == '4'
+    page.goto(BASE+'/#gallery/platonic')
+    assert page.locator('[data-case]').count() == 5, 'exactly five (p, q) pairs make a solid'
+    page.locator('#pl-open').click(); assert page.locator('#pl-fold').input_value() == '0'
+    page.locator('#pl-fold').fill('100'); assert page.locator('#pl-fold-out').inner_text() == '100 %'
+    page.locator('#pl-p').fill('4'); page.locator('#pl-q').fill('4')
+    assert page.locator('#pl-build-case').is_disabled()
+    page.goto(BASE+'/#slides'); page.locator('[data-slide-type=lecture]').click()
+    assert page.locator('.deck-download[href$=".pdf"]').count() == 47
+    page.locator('[data-slide-type=explore]').click()
+    assert page.locator('.deck-download[href$=".html"]').count() == 47
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')

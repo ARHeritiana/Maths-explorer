@@ -1,0 +1,213 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Variations et extrémums d'une fonction}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Variations et extrémums d'une fonction}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Croissance, décroissance et monotonie}
+Sur un intervalle \(I\), \(f\) est croissante si pour tous \(a,b\in I\), \(a<b\Rightarrow f(a)\leq f(b)\) ; décroissante si \(a<b\Rightarrow f(a)\geq f(b)\). Les variations sont strictes lorsque les inégalités entre images sont strictes. Une fonction constante a la même valeur partout ; elle est à la fois croissante et décroissante au sens large.
+Une fonction monotone sur \(I\) y est croissante ou décroissante.
+\end{frame}
+\begin{frame}{Croissance, décroissance et monotonie}
+Indiquer le domaine, les intervalles de monotonie, les valeurs aux bornes lorsqu'elles sont définies, puis les flèches. Un tableau de signes indique si \(f(x)\) est positif ou négatif ; un tableau de variations indique comment ses valeurs évoluent.
+\end{frame}
+\begin{frame}{Croissance, décroissance et monotonie}
+Sur \([-3;4]\), \(f(x)=(x-1)^2-2\). À l'aide du carré, en prolongeant la courbe étudiée en séquence 6, dresser son tableau de variations. Donner deux nombres \(a<b\) tels que \(f(a)>f(b)\).
+\end{frame}
+\begin{frame}{Correction : Croissance, décroissance et monotonie}
+La fonction décroît strictement sur \([-3;1]\), puis croît strictement sur \([1;4]\). \(f(-3)=14\), \(f(1)=-2\), \(f(4)=7\).
+\[\begin{array}{c|ccccc}x&-3&&1&&4\\\hline f(x)&14&\searrow&-2&\nearrow&7\end{array}\]
+Par exemple \(a=0<b=1\) et \(f(0)=-1>-2=f(1)\).
+\end{frame}
+\begin{frame}{Croissance, décroissance et monotonie}
+Une fonction peut-elle être négative et croissante ? Donner un exemple sur un intervalle.
+\end{frame}
+\begin{frame}{Correction : Croissance, décroissance et monotonie}
+Oui : \(f(x)=x-5\) sur \([0;2]\) est strictement croissante et reste entre \(-5\) et \(-3\), donc strictement négative.
+\end{frame}
+\begin{frame}{Maximum et minimum sur un intervalle}
+\(f\) admet un maximum en \(a\in I\) si, pour tout \(x\in I\), \(f(x)\leq f(a)\). La valeur du maximum est \(f(a)\).
+\(f\) admet un minimum en \(b\in I\) si, pour tout \(x\in I\), \(f(x)\geq f(b)\).
+Un extrémum doit être atteint. Distinguer sa valeur de l'abscisse où il est atteint.
+\end{frame}
+\begin{frame}{Maximum et minimum sur un intervalle}
+Reprendre \(f(x)=(x-1)^2-2\) sur \([-3;4]\). Donner minimum et maximum, puis leurs lieux d'atteinte. Refaire sur \([0;4]\).
+\end{frame}
+\begin{frame}{Correction : Maximum et minimum sur un intervalle}
+Sur \([-3;4]\), minimum \(-2\) en \(x=1\), maximum \(14\) en \(x=-3\). Sur \([0;4]\), le minimum reste \(-2\) en \(1\), mais le maximum vaut \(7\) en \(4\). Le maximum dépend du domaine.
+\end{frame}
+\begin{frame}{Maximum et minimum sur un intervalle}
+La fonction \(f(x)=x\) possède-t-elle un maximum sur \([0;1[\) ? Un minimum ?
+\end{frame}
+\begin{frame}{Correction : Maximum et minimum sur un intervalle}
+Elle a pour minimum \(0\), atteint en \(0\). Elle n'a pas de maximum : pour tout \(x<1\), \((x+1)/2\) appartient encore à \([0;1[\) et possède une image plus grande. Le nombre \(1\) est une borne supérieure, mais n'est pas atteint.
+\end{frame}
+\begin{frame}{Maximum et minimum sur un intervalle}
+Un tableau de variations ne fournit pas toutes les images intermédiaires. Il permet de comparer certaines images ; si les abscisses se situent sur des branches différentes, la comparaison peut être indéterminée.
+\end{frame}
+\begin{frame}{Maximum et minimum sur un intervalle}
+Le seul fait qu'une fonction décroisse puis croisse permet-il de comparer deux images situées de part et d'autre du minimum ?
+\end{frame}
+\begin{frame}{Correction : Maximum et minimum sur un intervalle}
+Non. Il faut des informations supplémentaires. Pour \(x\mapsto x^2\), les images de \(-2\) et \(1\) valent \(4\) et \(1\), tandis que celles de \(-1\) et \(2\) valent \(1\) et \(4\).
+\end{frame}
+\begin{frame}{Variations des fonctions affines}
+Pour \(f(x)=mx+p\) et \(a\ne b\),
+\[\dfrac{f(b)-f(a)}{b-a}=m.\]
+Si \(m>0\), \(f\) est strictement croissante ; si \(m<0\), strictement décroissante ; si \(m=0\), constante.
+\end{frame}
+\begin{frame}{Variations des fonctions affines}
+Pour \(a<b\), \(f(b)-f(a)=m(b-a)\). Comme \(b-a>0\), la différence a le signe de \(m\). Elle est positive, négative ou nulle selon les trois cas, ce qui donne les variations annoncées. La division par \(b-a\) donne le taux d'accroissement constant.
+\end{frame}
+\begin{frame}{Variations des fonctions affines}
+Déterminer les variations de \(f(x)=3x+2\), \(g(x)=7-6x\), \(h(x)=-x\). Donner le signe de \(2x-6\) et expliquer pourquoi le signe de cette fonction ne reste pas constant alors qu'elle est croissante.
+\end{frame}
+\begin{frame}{Correction : Variations des fonctions affines}
+\(f\) est strictement croissante ; \(g,h\) strictement décroissantes. \(2x-6\) est négatif pour \(x<3\), nul en \(3\), positif pour \(x>3\). Une fonction croissante peut franchir \(0\) ; son sens de variation ne détermine pas un signe unique.
+\end{frame}
+\begin{frame}{Variations des fonctions affines}
+Une fonction affine \(u\) vérifie \(u(2)=5\), \(u(6)=13\). Déterminer \(u\), puis son minimum et son maximum sur \([-1;4]\).
+\end{frame}
+\begin{frame}{Correction : Variations des fonctions affines}
+\(m=(13-5)/(6-2)=2\), \(p=1\), donc \(u(x)=2x+1\). Elle est croissante : minimum \(u(-1)=-1\), maximum \(u(4)=9\).
+\end{frame}
+\begin{frame}{Variations du carré et de la valeur absolue}
+\(x\mapsto x^2\) et \(x\mapsto|x|\) sont strictement décroissantes sur \(]-\infty;0]\) et strictement croissantes sur \([0;+\infty[\). Leur minimum sur \(\R\) vaut \(0\), atteint uniquement en \(0\).
+\end{frame}
+\begin{frame}{Variations du carré et de la valeur absolue}
+Pour \(a<b\), \(b^2-a^2=(b-a)(a+b)\). Si \(0\leq a<b\), les deux facteurs sont strictement positifs : \(a^2<b^2\). Si \(a<b\leq0\), le premier facteur est positif et le second négatif : \(a^2>b^2\).
+Pour la valeur absolue, sur \([0;+\infty[\), \(|x|=x\) est croissante ; sur \(]-\infty;0]\), \(|x|=-x\) est décroissante. La positivité et l'annulation en \(0\) donnent le minimum.
+\end{frame}
+\begin{frame}{Variations du carré et de la valeur absolue}
+Comparer sans calculatrice : \((-3{,}2)^2\) et \((-3{,}1)^2\) ; \(1{,}2^2\) et \(1{,}3^2\) ; \(|-5|\) et \(|-2|\).
+\end{frame}
+\begin{frame}{Correction : Variations du carré et de la valeur absolue}
+Sur les négatifs, le carré renverse l'ordre : \((-3{,}2)^2>(-3{,}1)^2\). Sur les positifs, \(1{,}2^2<1{,}3^2\). Enfin \(|-5|>|-2|\), soit \(5>2\).
+\end{frame}
+\begin{frame}{Variations du carré et de la valeur absolue}
+Encadrer \(x^2\) si \(-3\leq x\leq2\). Pourquoi ne peut-on pas simplement élever les deux bornes au carré ?
+\end{frame}
+\begin{frame}{Correction : Variations du carré et de la valeur absolue}
+Le minimum est \(0\) et le maximum \(9\) : \(0\leq x^2\leq9\). Le carré n'est pas monotone sur \([-3;2]\). Élever les seules bornes donnerait à tort \(9\leq x^2\leq4\).
+\end{frame}
+\begin{frame}{Variations de la fonction inverse}
+La fonction inverse est strictement décroissante sur \(]-\infty;0[\) et sur \(]0;+\infty[\), séparément. Elle n'est pas décroissante sur tout \(\R^*\).
+\end{frame}
+\begin{frame}{Variations de la fonction inverse}
+Pour \(a<b\) de même signe, \(ab>0\) et
+\[\dfrac1b-\dfrac1a=\dfrac{a-b}{ab}<0.\]
+Donc \(1/b<1/a\). En revanche, \(-1<1\) et \(1/(-1)=-1<1=1/1\) : le critère de décroissance échoue sur tout \(\R^*\).
+\end{frame}
+\begin{frame}{Variations de la fonction inverse}
+Comparer \(1/(-4)\) et \(1/(-2)\), puis \(1/3\) et \(1/5\). Encadrer \(1/x\) si \(2\leq x\leq5\), puis si \(-5\leq x\leq-2\).
+\end{frame}
+\begin{frame}{Correction : Variations de la fonction inverse}
+\(-1/4>-1/2\) ; \(1/3>1/5\). Pour \(x\in[2;5]\), \(1/5\leq1/x\leq1/2\). Pour \(x\in[-5;-2]\), \(-1/2\leq1/x\leq-1/5\).
+\end{frame}
+\begin{frame}{Variations de la fonction inverse}
+Pourquoi l'intervalle \([-1;1]\) ne convient-il pas pour appliquer directement une règle de variation de la fonction inverse ?
+\end{frame}
+\begin{frame}{Correction : Variations de la fonction inverse}
+La fonction n'est pas définie en \(0\), qui appartient à l'intervalle. Il faut travailler sur les deux parties du domaine ; de plus, la fonction n'a pas le même comportement de comparaison lorsqu'on traverse \(0\).
+\end{frame}
+\begin{frame}{Position relative d'un nombre et de son carré}
+Pour \(0\leq x\leq1\), \(x^2\leq x\) ; pour \(x\geq1\), \(x^2\geq x\). L'égalité a lieu en \(0\) et \(1\).
+\end{frame}
+\begin{frame}{Position relative d'un nombre et de son carré}
+\(x^2-x=x(x-1)\). Sur \([0;1]\), le premier facteur est positif ou nul, le second négatif ou nul : leur produit est négatif ou nul. Sur \([1;+\infty[\), les deux sont positifs ou nuls. Le produit est nul si \(x=0\) ou \(x=1\).
+\end{frame}
+\begin{frame}{Position relative d'un nombre et de son carré}
+La fonction racine carrée est strictement croissante sur \([0;+\infty[\). La fonction cube est strictement croissante sur \(\R\).
+\end{frame}
+\begin{frame}{Position relative d'un nombre et de son carré}
+Expliquer la croissance de la racine carrée à partir de celle du carré sur les positifs. Pour le cube, utiliser \(b^3-a^3=(b-a)(a^2+ab+b^2)\).
+\end{frame}
+\begin{frame}{Correction : Position relative d'un nombre et de son carré}
+Si \(0\leq a<b\) mais \(\sqrt a\geq\sqrt b\), la croissance du carré sur les positifs donnerait \(a\geq b\), contradiction. Pour \(a<b\), \(b-a>0\) et \(a^2+ab+b^2=(a+b/2)^2+3b^2/4>0\) (l'égalité exigerait \(a=b=0\)). Donc \(b^3-a^3>0\).
+\end{frame}
+\begin{frame}{Position relative d'un nombre et de son carré}
+Comparer \(\sqrt{5}\) et \(\sqrt6\), puis \((-2)^3\) et \((-1)^3\).
+\end{frame}
+\begin{frame}{Correction : Position relative d'un nombre et de son carré}
+\(\sqrt5<\sqrt6\) et \(-8<-1\), en accord avec les deux croissances.
+\end{frame}
+\begin{frame}{Optimiser : conjecturer et démontrer}
+Un rectangle de périmètre \(20\) m a pour aire \(A(x)=x(10-x)\) avec \(x\in]0;10[\).
+
+\begin{enumerate}
+\setcounter{enumi}{0}\item Conjecturer l'aire maximale par un tableau de valeurs.
+\item Montrer \(A(x)=25-(x-5)^2\). En déduire le maximum exact et les dimensions correspondantes.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Correction : Optimiser : conjecturer et démontrer}
+Pour \(x=1,2,3,4,5,6,7,8,9\), les aires sont \(9,16,21,24,25,24,21,16,9\) m\(^2\). En développant, \(25-(x-5)^2=10x-x^2=A(x)\). Comme \((x-5)^2\geq0\), \(A(x)\leq25\), avec égalité seulement en \(x=5\). Le rectangle optimal est un carré de côté \(5\) m.
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def aire(x):
+    return x*(10-x)
+
+def maximum_grille(N):
+    # N entier >= 2 ; points strictement entre 0 et 10
+    meilleur_x = 10/N
+    meilleur_y = aire(meilleur_x)
+    for k in range(2, N):
+        x = 10*k/N
+        if aire(x) > meilleur_y:
+            meilleur_x, meilleur_y = x, aire(x)
+    return meilleur_x, meilleur_y
+\end{verbatim}
+\end{frame}
+\begin{frame}{Optimiser : conjecturer et démontrer}
+Que renvoie le programme pour \(N=10\) ? Un balayage numérique prouve-t-il toujours le maximum d'une fonction sur un intervalle ?
+\end{frame}
+\begin{frame}{Correction : Optimiser : conjecturer et démontrer}
+Pour \(N=10\), \((5;25)\). Le programme trouve le maximum sur les seuls points échantillonnés. Il peut manquer un maximum entre deux points : la preuve algébrique donne ici le résultat exact. Une dichotomie ordinaire de recherche d'un zéro ne s'applique pas automatiquement à la recherche d'un extrémum.
+\end{frame}
+\end{document}

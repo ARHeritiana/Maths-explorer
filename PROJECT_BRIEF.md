@@ -90,6 +90,13 @@ Derived from the owner's two attached slides (trinôme, déterminant et colinéa
 - Architecture (decided): one shared engine (rendering, steps, controls, dragging, sliders, themes); each chapter's slide supplies only its data and scenes. A single-file export for portability is optional, not required.
 - The two reference slides duplicate their engine code; the shared engine must reproduce their behaviour before they are migrated.
 
+### Slide purposes and canvas views (owner request, 15 October 2026)
+
+- Two editions per chapter: exploratory HTML built with the interactive maths slide skill, and an actual 16:9 Beamer Metropolis lecture PDF. They have different uses and layouts, not a browser print export. A purpose toggle switches the catalogue between them.
+- HTML retains live figures and step reveal. Lecture PDFs present definitions, proofs, methods, questions and separate worked answers, with vector figures. Interactive-only scenes are omitted. Downloadable Beamer source bundles accompany the PDFs.
+- Keep a canvas camera separate from its mathematical state. Moving a point or changing a parameter does not automatically rescale a laboratory graph. Zoom, pan, reset and explicit fitting are deliberate actions; keep picking correct after a camera change and after a figure redraw.
+- Platonic solids must have rigid, non-overlapping nets that fold into all five solids. Explain the strict vertex-angle inequality and the exclusion of p >= 6. Complex-number exploration uses geometric transformations of points, figures and grids, following the geometric approach of Visual Complex Analysis with original figures and wording.
+
 ## 6. Design
 
 The owner discarded every earlier design instruction on 13 October 2026 and delegated design to the assistant, working from the site's goal and functions. The current design ("Cahier"), its reasoning, tokens and components are in `docs/DESIGN_V3.md`; read it before any visual work. Rules that still bind any design, because they come from the site's purpose rather than from taste:

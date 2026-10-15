@@ -1,0 +1,126 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Conditional probability and independence}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Conditional probability and independence}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Change the reference sample space; build a tree; use a partition; distinguish disjoint events from independent events; handle up to four Bernoulli trials.
+
+\textbf{Prerequisites.} Fractions, proportions, probabilities on a finite sample space, intersection and union.
+
+\textbf{Yearly reference point.} 17-26 November: 8 hours
+\end{frame}
+\begin{frame}{Conditioning: changing the denominator}
+For \(P(A)>0\), the probability of B given A is \(P_A(B)=\dfrac{P(A\cap B)}{P(A)}\). In a table of equally likely counts, it is the quotient of the count of \(A\cap B\) by the count of A. In general \(P_A(B)\ne P_B(A)\).
+\end{frame}
+\begin{frame}{Conditioning: changing the denominator}
+Out of 100 people, 40 belong to A, 30 to B and 12 to both. \(P_A(B)=\dfrac{12}{40}=0.3\), whereas \(P_B(A)=\dfrac{12}{30}=0.4\). \(P(A\cap B)=0.12\).
+\end{frame}
+\begin{frame}{Conditioning: changing the denominator}
+“Among the A's” fixes the denominator. A conditional probability is not an intersection.
+\end{frame}
+\begin{frame}{Conditioning: changing the denominator}
+Out of 60 objects, 20 are red; among the red ones, 5 are damaged. Calculate \(P(R\cap D)\) and \(P_R(D)\).
+\end{frame}
+\begin{frame}{Trees, partitions and total probability}
+A partition \(A_1,\ldots,A_k\) is a family of disjoint events whose union is the sample space. If their probabilities are positive, \(P(B)=\sum_iP(A_i)P_{A_i}(B)\). On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.
+\end{frame}
+\begin{frame}{Trees, partitions and total probability}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Two machines supply 60\% and 40\% of a production; their defect rates are 2\% and 5\%. \(P(D)=0.6\times0.02+0.4\times0.05=0.032\). Among the defective items, the first machine accounts for \(\dfrac{0.012}{0.032}=\dfrac{3}{8}\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-05-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Trees, partitions and total probability}
+The simple average of the rates is correct only if the branches have equal weights.
+\end{frame}
+\begin{frame}{Trees, partitions and total probability}
+\(P(A)=\dfrac{1}{3}\), \(P_A(B)=\dfrac{3}{4}\), \(P_{\overline A}(B)=\dfrac{1}{4}\). Calculate \(P(B)\).
+\end{frame}
+\begin{frame}{Independence and disjointness}
+A and B are independent if \(P(A\cap B)=P(A)P(B)\). If \(P(A)>0\), this is equivalent to \(P_A(B)=P(B)\). They are disjoint if \(A\cap B=\varnothing\). Two disjoint events of strictly positive probability are not independent.
+\end{frame}
+\begin{frame}{Independence and disjointness}
+With a fair die, let A: the result is even, B: the result is at least 5. \(P(A)=\dfrac{1}{2}\), \(P(B)=\dfrac{1}{3}\), \(P(A\cap B)=\dfrac{1}{6}\): independent. A and “the result is odd” are disjoint but not independent.
+\end{frame}
+\begin{frame}{Independence and disjointness}
+Independence in a model must be justified or stated explicitly; “two different events” is not enough.
+\end{frame}
+\begin{frame}{Independence and disjointness}
+Given \(P(A)=0.4\), \(P(B)=0.5\), \(P(A\cap B)=0.18\). Are they independent?
+\end{frame}
+\begin{frame}{Successive trials and Bernoulli trials}
+A Bernoulli trial has two outcomes: success, with probability p, and failure, with probability \(1-p\). In a repetition of n independent, identical trials, with \(n\leq4\) here, the branch probabilities remain p and \(1-p\). A path with k successes has probability \(p^k(1-p)^{n-k}\); we count the paths that realise the event.
+\end{frame}
+\begin{frame}{Successive trials and Bernoulli trials}
+For three trials with \(p=\dfrac{1}{2}\), exactly two successes correspond to SSF, SFS, FSS. Each path has probability \(\dfrac{1}{8}\), so the total is \(\dfrac{3}{8}\). At least one success has probability \(1-(\dfrac{1}{2})^3=\dfrac{7}{8}\).
+\end{frame}
+\begin{frame}{Successive trials and Bernoulli trials}
+When drawing without replacement from an urn, the probabilities generally change after the first draw: the independent model may be wrong.
+\end{frame}
+\begin{frame}{Successive trials and Bernoulli trials}
+Four independent trials, each with probability \(p=\dfrac{1}{3}\). Calculate the probability of four failures, then of at least one success.
+\end{frame}
+\begin{frame}{Simulating and discussing the model}
+A pseudo-random simulation produces frequencies that fluctuate around a probability of the model. For a uniform point in the square \([0,1]^2\), the proportion satisfying \(y\leq x^2\) estimates the area under the parabola; the proportion satisfying \(x^2+y^2\leq1\), multiplied by 4, estimates \(\pi\). Repetitions must use new draws.
+\end{frame}
+\begin{frame}{Simulating and discussing the model}
+Among 10000 points, if 7840 lie in the quarter disc, the estimate of \(\pi\) is \(\dfrac{4\times 7840}{10000}=3.136\). Two trials of the same size generally give different values.
+\end{frame}
+\begin{frame}{Simulating and discussing the model}
+Fixing a seed makes a trial reproducible; it neither removes the randomness of the model nor guarantees any accuracy.
+\end{frame}
+\begin{frame}{Simulating and discussing the model}
+A simulation of 2000 points gives 675 points below \(y=x^2\). What area does it estimate?
+\end{frame}
+\end{document}

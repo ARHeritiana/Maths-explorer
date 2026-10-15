@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Sequences and discrete models}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Sequences and discrete models}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Turn a story into a sequence; distinguish increment from rate; compute terms and sums; justify a variation; investigate a threshold.
+
+\textbf{Prerequisites.} Algebraic manipulation, integer powers, percentages, affine function, Python loop.
+
+\textbf{Yearly reference point.} 8-17 September: 8 hours, then revisits
+\end{frame}
+\begin{frame}{Defining and representing a sequence}
+A real sequence is a function whose variable is an integer: to each allowed index \(n\) corresponds a real number \(u_n\). The notation \((u_n)\) denotes the sequence, \(u_n\) a term. An explicit formula gives \(u_n\) directly in terms of \(n\). A definition by recurrence gives a first term and a rule for passing from one term to the next. The representation is a set of points \((n,u_n)\): these points are not necessarily joined up.
+\end{frame}
+\begin{frame}{Defining and representing a sequence}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For \(u_n=n^2+1\), \(u_0=1\), \(u_3=10\). For \(v_0=1\) and \(v_{n+1}=2v_n+1\), \(v_1=3\), \(v_2=7\), \(v_3=15\). We cannot replace \(v_3\) by \(2\times3+1\): the rule applies to the previous term.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-01-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Defining and representing a sequence}
+The index is not the value. A finite list of terms does not determine a unique rule.
+\end{frame}
+\begin{frame}{Defining and representing a sequence}
+Calculate the first four terms of \(w_0=2\), \(w_{n+1}=w_n+2n+1\); suggest an explicit formula.
+\end{frame}
+\begin{frame}{Arithmetic sequences}
+A sequence is arithmetic with common difference \(r\) if \(u_{n+1}=u_n+r\) for every allowed index. Then \(u_n=u_p+(n-p)r\) for \(n\geq p\). If \(r>0\) it is strictly increasing; if \(r<0\), strictly decreasing; if \(r=0\), constant. The points lie on a straight line.
+\end{frame}
+\begin{frame}{Arithmetic sequences}
+A tank holds 140 L and receives 12 L per minute. After \(n\) minutes, \(u_n=140+12n\). At 5 min: 200 L. If we start the indexing at 1 with 140 L, we write \(u_n=140+12(n-1)\).
+\end{frame}
+\begin{frame}{Arithmetic sequences}
+Adding a constant percentage does not generally give an arithmetic sequence.
+\end{frame}
+\begin{frame}{Arithmetic sequences}
+We know \(u_3=17\) and \(u_8=37\) for an arithmetic sequence. Determine \(r\) and \(u_0\).
+\end{frame}
+\begin{frame}{Geometric sequences}
+A sequence is geometric with common ratio \(q\) if \(u_{n+1}=qu_n\). For \(n\geq p\), \(u_n=u_pq^{n-p}\), with the convention that an empty product equals 1. A constant rate \(t\) gives \(q=1+t\). The variation is decided with \(u_{n+1}-u_n=(q-1)u_n\). For \(q<0\), the signs may alternate.
+\end{frame}
+\begin{frame}{Geometric sequences}
+A quantity of 160 mg loses 25\% at each step: \(u_n=160(\dfrac{3}{4})^n\). The terms are positive and \(u_{n+1}-u_n=-\dfrac{u_n}{4}<0\). We obtain \(u_2=90\) mg, without confusing a 25\% decrease with removing 25 mg.
+\end{frame}
+\begin{frame}{Geometric sequences}
+\(q>1\) is not enough to conclude that every geometric sequence is increasing: the sign of the first term matters.
+\end{frame}
+\begin{frame}{Geometric sequences}
+Study the variation of \(u_n=-2\times3^n\), then of \(v_n=2(-1)^n\).
+\end{frame}
+\begin{frame}{Sums, indices and proofs}
+For \(n\geq1\), \(1+2+\cdots +n=\dfrac{n(n+1)}{2}\). For \(q\ne1\) and \(n\geq0\), \(1+q+\cdots +q^n=\dfrac{1-q^{n+1}}{1-q}\). For \(q=1\), the sum equals \(n+1\). Hence, from \(u_p\) to \(u_n\), an arithmetic sum equals \(\dfrac{(n-p+1)(u_p+u_n)}{2}\); a geometric sum equals \(\dfrac{u_p(1-q^{n-p+1})}{1-q}\) if \(q\ne1\).
+\end{frame}
+\begin{frame}{Sums, indices and proofs}
+For \(u_n=3+2n\), \(u_2+\cdots +u_6=\dfrac{5(7+15)}{2}=55\). For \(v_n=2\times3^n\), \(v_0+\cdots +v_3=\dfrac{2(1-3^4)}{1-3}=80\).
+\end{frame}
+\begin{frame}{Sums, indices and proofs}
+Count the terms before using the formula: from 0 to n there are n+1.
+\end{frame}
+\begin{frame}{Sums, indices and proofs}
+Calculate \(\sum_{k=2}^{5}2^k\) without the summation symbol in the answer.
+\end{frame}
+\begin{frame}{Conjecturing a limit and programming a threshold}
+A limit is approached here intuitively. The terms \(\dfrac{1}{n+1}\) get closer to 0; \(n^2\) grows without bound; \((-1)^n\) does not settle. A numerical experiment suggests a conclusion but does not prove a behaviour for all indices. A threshold algorithm must specify the direction of the inequality and provide a stopping condition.
+\end{frame}
+\begin{frame}{Conjecturing a limit and programming a threshold}
+For \(u_n=80(\dfrac{1}{2})^n\), the first index with \(u_n<6\) is 4: \(u_3=10\geq6\) and \(u_4=5<6\). The program starts with \(n=0,u=80\) and repeats the division by 2 while \(u\geq6\).
+\end{frame}
+\begin{frame}{Conjecturing a limit and programming a threshold}
+A loop with no bound may never stop if the threshold cannot be reached; \(<\) and \(\leq\) are not interchangeable.
+\end{frame}
+\begin{frame}{Conjecturing a limit and programming a threshold}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+For \(u_n=48(\dfrac{1}{2})^n\), determine the first indices where \(u_n\leq6\) and where \(u_n<6\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-01-2-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

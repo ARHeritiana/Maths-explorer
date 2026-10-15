@@ -46,9 +46,9 @@ function fourierArt(cv, opts) {
     g.lineCap = "round"; g.lineJoin = "round";
     if (still) { g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath(); for (let i = 0; i <= 260; i++) { const q = arms(co, i / 260, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); }
     else {
-      trail.push({ x: tip[0], y: tip[1], ts: t }); while (trail.length && t - trail[0].ts > FADE) trail.shift();
+      trail.push({ x: tip[0], y: tip[1], ts: t, count }); while (trail.length && t - trail[0].ts > FADE) trail.shift();
       g.lineWidth = 3.4; g.strokeStyle = C.accent;
-      for (let i = 1; i < trail.length; i++) { const k = 1 - (t - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = P(trail[i - 1].x, trail[i - 1].y), b = P(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+      for (let i = 1; i < trail.length; i++) { if (trail[i].count !== trail[i-1].count || trail[i].ts-trail[i-1].ts > .15) continue; const k = 1 - (t - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = P(trail[i - 1].x, trail[i - 1].y), b = P(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
       g.globalAlpha = 1;
     }
     g.lineWidth = 1;

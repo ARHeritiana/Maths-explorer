@@ -1,0 +1,226 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Suites numériques}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Suites numériques}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Cours de référence}
+Une suite \((u_n)\) est \textbf{arithmétique} lorsqu'il existe un réel \(r\) tel que, pour tout \(n\), \(u_{n+1}=u_n+r\). Le nombre \(r\) est la raison. Si le premier terme est \(u_0\), alors \(u_n=u_0+nr\). Si le premier terme est \(u_1\), alors \(u_n=u_1+(n-1)r\).
+\end{frame}
+\begin{frame}{Cours de référence}
+Pour modéliser une situation additive : 1) définir \(u_n\) et préciser l'unité ; 2) identifier le premier terme ; 3) traduire l'augmentation ou la diminution constante par la raison \(r\) ; 4) écrire le terme général ; 5) répondre par une phrase contextualisée.
+\end{frame}
+\begin{frame}{Cours de référence}
+Un commerce vend \(480\) unités le premier mois puis \(25\) unités de plus chaque mois. Avec \(u_1=480\) et \(r=25\), on obtient \(u_n=480+25(n-1)\). Ainsi \(u_{12}=755\) : le commerce prévoit \(755\) unités vendues au douzième mois.
+\end{frame}
+\begin{frame}{Cours de référence}
+Dans \(u_3+u_4+\cdots+u_{12}\), il y a \(12-3+1=10\) termes, et non \(9\) ni \(12\).
+\end{frame}
+\begin{frame}{Cours de référence}
+Une suite \((u_n)\) est \textbf{géométrique} lorsqu'il existe un réel \(q\) tel que \(u_{n+1}=q u_n\). Si le premier terme est \(u_0\), alors \(u_n=u_0q^n\). Si le premier terme est \(u_1\), alors \(u_n=u_1q^{n-1}\).
+\end{frame}
+\begin{frame}{Suite arithmétique : reconnaître et modéliser}
+\begin{itemize}
+\item Reconnaître une évolution additive.
+\item Déterminer la raison.
+\item Définir une suite dans un contexte.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Suite arithmétique : reconnaître et modéliser}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Une association compte \(320\) adhérents. Elle prévoit d'en gagner \(18\) chaque année. On note \(u_n\) l'effectif après \(n\) années. Calculer \(u_0,u_1,u_2\). Quelle opération fait passer d'un terme au suivant ? Écrire une relation entre \(u_{n+1}\) et \(u_n\), puis prévoir \(u_5\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-01-3.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Suite arithmétique : reconnaître et modéliser}
+Une suite est arithmétique lorsque \(u_{n+1}-u_n=r\) est constant. Dans une situation, une augmentation absolue constante conduit à une suite arithmétique.
+\end{frame}
+\begin{frame}{Suite arithmétique : reconnaître et modéliser}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Suite arithmétique : reconnaître et modéliser}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Suite arithmétique : terme général}
+\begin{itemize}
+\item Passer de la récurrence au terme général.
+\item Calculer un terme éloigné.
+\item Interpréter le rang.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Suite arithmétique : terme général}
+Un magasin possède \(1\,250\) cartes de fidélité actives au rang \(0\) et en gagne \(75\) par mois. Sans calculer tous les termes, déterminer l'effectif au rang \(n\), puis au rang \(18\). Expliquer le rôle de \(18\) dans le calcul.
+\end{frame}
+\begin{frame}{Suite arithmétique : terme général}
+Si \((u_n)\) est arithmétique de raison \(r\), alors \(u_n=u_0+nr\) ou \(u_n=u_1+(n-1)r\), selon le rang du premier terme.
+\end{frame}
+\begin{frame}{Suite arithmétique : terme général}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Suite arithmétique : terme général}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Somme des termes d'une suite arithmétique}
+\begin{itemize}
+\item Compter les termes d'une somme.
+\item Appliquer la formule.
+\item Contrôler l'ordre de grandeur.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Somme des termes d'une suite arithmétique}
+Une entreprise verse une prime mensuelle : \(45\) euros le premier mois, puis \(5\) euros de plus chaque mois. Calculer le total versé pendant les douze premiers mois de trois façons : somme explicite, regroupement premier-dernier, formule.
+\end{frame}
+\begin{frame}{Somme des termes d'une suite arithmétique}
+Une somme de termes arithmétiques vaut \(\text{nombre de termes}\times\dfrac{\text{premier}+\text{dernier}}2\). De \(u_p\) à \(u_q\), il y a \(q-p+1\) termes.
+\end{frame}
+\begin{frame}{Somme des termes d'une suite arithmétique}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Somme des termes d'une suite arithmétique}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Suite géométrique : reconnaître et modéliser}
+\begin{itemize}
+\item Reconnaître une évolution multiplicative.
+\item Passer d'un taux à un coefficient.
+\item Comparer arithmétique et géométrique.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Suite géométrique : reconnaître et modéliser}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Une boutique en ligne augmente son nombre de visiteurs de \(6\,\%\) par mois à partir de \(8\,000\) visiteurs. Calculer les trois premières valeurs. Comparer les différences puis les quotients. Identifier la nature de la suite.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/stmg-01-4.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Suite géométrique : reconnaître et modéliser}
+Une suite est géométrique lorsque \(\dfrac{u_{n+1}}{u_n}=q\) est constant (termes non nuls). Une évolution relative constante conduit à une suite géométrique.
+\end{frame}
+\begin{frame}{Suite géométrique : reconnaître et modéliser}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Suite géométrique : reconnaître et modéliser}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+    \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+    \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Suite géométrique : terme général et somme}
+\begin{itemize}
+\item Écrire le terme général.
+\item Calculer une somme géométrique.
+\item Interpréter une évolution cumulée.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Suite géométrique : terme général et somme}
+Un capital de \(250\,000\) Ar est placé à \(4\,\%\) par an, intérêts composés. Écrire le capital \(C_n\) après \(n\) années. Calculer \(C_6\), puis la somme \(C_0+\cdots+C_6\) et expliquer ce que cette dernière somme représente mathématiquement et pourquoi elle n'est pas le capital final.
+\end{frame}
+\begin{frame}{Suite géométrique : terme général et somme}
+Si \((u_n)\) est géométrique de raison \(q\), \(u_n=u_0q^n\) ou \(u_n=u_1q^{n-1}\). Pour \(q\neq1\), \(u_0+\cdots+u_n=u_0\dfrac{1-q^{n+1}}{1-q}\).
+\end{frame}
+\begin{frame}{Suite géométrique : terme général et somme}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Suite géométrique : terme général et somme}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\begin{frame}{Bilan et évaluation formative}
+\begin{itemize}
+\item Choisir le bon modèle.
+\item Mobiliser les formules.
+\item Analyser ses erreurs.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Bilan et évaluation formative}
+Classer huit situations selon trois catégories : arithmétique, géométrique, ni l'une ni l'autre. Pour chaque situation, souligner le mot ou la donnée qui justifie le choix, puis choisir la formule adaptée.
+\end{frame}
+\begin{frame}{Bilan et évaluation formative}
+Avant de calculer, identifier : type de suite, premier rang, raison, terme ou somme demandé. La conclusion précise l'unité et le rang.
+\end{frame}
+\begin{frame}{Bilan et évaluation formative}
+Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
+\end{frame}
+\begin{frame}{Bilan et évaluation formative}
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.
+
+\textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.
+
+\textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
+\end{frame}
+\end{document}

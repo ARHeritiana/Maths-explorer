@@ -2,6 +2,7 @@ import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
 import { slidesPage, bindSlides } from "./slides-page.js";
+import { navigationButtons, observeSvgNavigation } from "./canvas-navigation.js";
 import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountObject } from "./lab-objects.js";
@@ -65,6 +66,7 @@ let stopChapter = () => {};
 let stopObject = () => {};
 let stopArt = [];
 let stopTrig = () => {};
+let stopViews = [];
 let plotBounds = null;
 let activeDrag = null;
 const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
@@ -140,6 +142,7 @@ function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
 }
 function render() {
+  stopViews.forEach(stop=>stop()); stopViews=[];
   stopTrig();
   stopTrig = () => {};
   stopChapter();
@@ -183,7 +186,7 @@ function render() {
     footer();
   if (page === "lab" && $("#plot")) updateLab();
   if (page === "home" || (page === "gallery" && !r.id)) stopArt = [...document.querySelectorAll("canvas[data-art]")].map((cv) => mountArt(cv, cv.dataset.art, { reduced: reducedMotion }));
-  if ((page === "lab" || page === "gallery") && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion });
+  if ((page === "lab" || page === "gallery") && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion, initialValues: state(labs.find(x=>x.id===currentLab)).values, onChange: values => { state(labs.find(x=>x.id===currentLab)).values = values; } });
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
   bindCommon();
   if (page === "lab" || (page === "gallery" && r.id)) bindLab();
@@ -201,6 +204,7 @@ function render() {
     }
   }
   if (page === "workshop") stopChapter = bindWorkshop($("#main"),t,lang);
+  stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg, #plot.trig-plot svg",lang));
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   installInterfaceMotion($("#app"), reducedMotion);
   installPresenting();
@@ -234,7 +238,7 @@ function labPage(id, mode = "lab") {
   const s = state(lab);
   return `<div class="lab-layout"><aside class="sidebar" aria-label="${mode === "gallery" ? pair("Galerie", "Gallery") : pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${mode === "gallery" ? pair("Choisir une merveille", "Choose a wonder") : pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Explorer", "Explore")} <span>${String(navLabs.length).padStart(2, "0")}</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link(mode, x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
  <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Le laboratoire", "The laboratory")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
- <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}${lab.custom ? `<div id="object-stage" class="object-stage" data-object="${lab.id}"></div>` : `<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
+ <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}${lab.custom || lab.id === "complex" ? `<div id="object-stage" class="object-stage" data-object="${lab.id}"></div>` : `<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div id="plot-navigation"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
  ${
    lab.id === "sequences"
      ? `<fieldset class="mode"><legend>${pair("Type de suite", "Sequence type")}</legend>${[
@@ -337,7 +341,10 @@ function chart({
     ymin = cy - (unit * ph) / 2;
     ymax = cy + (unit * ph) / 2;
   }
-  if (activeDrag?.bounds) ({ xmin, xmax, ymin, ymax } = activeDrag.bounds);
+  const cameraState = state(labs.find(x=>x.id===currentLab));
+  cameraState.homeView ??= {xmin,xmax,ymin,ymax};
+  cameraState.view ??= {...cameraState.homeView};
+  ({xmin,xmax,ymin,ymax} = activeDrag?.bounds || cameraState.view);
   plotBounds = { xmin, xmax, ymin, ymax };
   const X = (x) => L + ((x - xmin) / (xmax - xmin)) * pw,
     Y = (y) => H - B - ((y - ymin) / (ymax - ymin)) * ph;
@@ -363,7 +370,10 @@ function chart({
   };
   const rect = (x, y, w, h, color = "teal") =>
     `<rect x="${X(x)}" y="${Y(y + h)}" width="${Math.max(0.1, (w * pw) / (xmax - xmin))}" height="${Math.max(0, (h * ph) / (ymax - ymin))}" class="bar ${color}"/>`;
-  const handle = (x, y, id, label, color) => handleAt(Math.max(L, Math.min(W-R, X(x))), Math.max(T, Math.min(H-B, Y(y))), id, label, color);
+  const handle = (x,y,id,label,color) => {
+    const outside=x<xmin||x>xmax||y<ymin||y>ymax;
+    return handleAt(Math.max(L,Math.min(W-R,X(x))),Math.max(T,Math.min(H-B,Y(y))),id,label+(outside?pair(' (hors cadre)',' (offscreen)'):''),color);
+  };
   return `<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="${esc(label)}"><title>${esc(label)}</title><defs>${["teal","orange","blue"].map(c => `<marker id="arrow-${c}" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 3L0 6" class="curve ${c}"/></marker>`).join("")}<clipPath id="plot-clip"><rect x="${L}" y="${T}" width="${pw}" height="${ph}"/></clipPath></defs>${grid}<g clip-path="url(#plot-clip)">${xmin <= 0 && xmax >= 0 ? `<path d="M${X(0)} ${T}V${H - B}" class="axis"/>` : ""}${ymin <= 0 && ymax >= 0 ? `<path d="M${L} ${Y(0)}H${W - R}" class="axis"/>` : ""}${draw({ X, Y, line, point, path, rect, pw, ph })}</g><g class="handle-layer">${handles({ handle, line })}</g></svg>`;
 }
 function dataTable(headers, rows) {
@@ -438,8 +448,8 @@ function updateLab(animatedValues, moving = false) {
         q.vertex ? `(${fmt(q.vertex[0])} ; ${fmt(q.vertex[1])})` : "—",
       );
     caption = pair(
-      "x ∈ [−6 ; 6]. L’échelle verticale s’adapte pour garder C et A visibles ; elle reste fixe pendant le déplacement. Certaines racines ou le sommet peuvent être hors champ.",
-      "x ∈ [−6, 6]. The vertical scale adjusts to keep C and A visible; it stays fixed while dragging. Some roots or the vertex may be outside the view.",
+      "x ∈ [−6 ; 6]. L’échelle reste fixe. Utilise les boutons de zoom et les flèches pour cadrer la courbe. Certaines racines ou le sommet peuvent être hors champ.",
+      "x ∈ [−6, 6]. The scale stays fixed. Use zoom and pan controls to frame the curve. Some roots or the vertex may be outside the view.",
     );
   } else if (lab.id === "trig") {
     const figure = trigDiagram(v[0],s,t,fmt,handleAt);
@@ -481,8 +491,8 @@ function updateLab(animatedValues, moving = false) {
         fmt(values.reduce((a, b) => a + b, 0)),
       );
     caption = pair(
-      "N termes, à partir de u₀. Les points sont discrets ; l’échelle verticale s’adapte.",
-      "N terms, starting at u₀. Points are discrete; the vertical scale adjusts.",
+      "N termes, à partir de u₀. Les points sont discrets ; l’échelle reste fixe ; les boutons permettent de cadrer la suite.",
+      "N terms, starting at u₀. Points are discrete; the scale stays fixed; use the view controls to frame the sequence.",
     );
   } else if (lab.id === "probability") {
     const [n, p] = v,
@@ -748,6 +758,31 @@ function bindPlot(lab, s) {
     if (!matrix) return null;
     return new DOMPoint(e.clientX, e.clientY).matrixTransform(matrix.inverse());
   };
+  if (lab.id !== "trig") {
+    const zoom = (factor, anchor) => {
+      labMotion.settle(); const b=s.view, c=anchor || {x:(b.xmin+b.xmax)/2,y:(b.ymin+b.ymax)/2};
+      const xspan=b.xmax-b.xmin, k=Math.max(1e-4,Math.min(1e7,xspan*factor))/xspan;
+      s.view={xmin:c.x+(b.xmin-c.x)*k,xmax:c.x+(b.xmax-c.x)*k,ymin:c.y+(b.ymin-c.y)*k,ymax:c.y+(b.ymax-c.y)*k};updateLab();bar.update((s.homeView.xmax-s.homeView.xmin)/(s.view.xmax-s.view.xmin));
+    };
+    const action=id=>{if(id==='in'||id==='out'){zoom(id==='in'?.8:1.25);return;}if(id==='reset')s.view={...s.homeView};else{const b=s.view,d={left:[-1,0],right:[1,0],up:[0,1],down:[0,-1]}[id],dx=d[0]*(b.xmax-b.xmin)*.15,dy=d[1]*(b.ymax-b.ymin)*.15;s.view={xmin:b.xmin+dx,xmax:b.xmax+dx,ymin:b.ymin+dy,ymax:b.ymax+dy};}updateLab();bar.update((s.homeView.xmax-s.homeView.xmin)/(s.view.xmax-s.view.xmin));};
+    const bar=navigationButtons($("#plot-navigation"),action,lang);
+    const fit=document.createElement('button');fit.type='button';fit.textContent=pair('Cadrer les objets','Fit objects');fit.className='text-button';fit.addEventListener('click',()=>{s.homeView=null;s.view=null;updateLab();bar.update(1);});$('#plot-navigation').append(fit);
+
+    plot.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;const p=svgPosition(e);if(!p)return;e.preventDefault();zoom(Math.exp(e.deltaY*.004),graphPosition(p,s.view));},{passive:false});
+    const touches=new Map();let pinch=null,pan=null;
+    plot.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='touch')touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(touches.size===2){const a=[...touches.values()];pinch={distance:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)};activeDrag=null;plot.classList.remove('dragging');}
+      if(pinch||e.altKey||e.shiftKey||e.button===1){if(!pinch)pan={point:svgPosition(e),bounds:{...s.view}};plot.setPointerCapture(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}
+    },true);
+    plot.addEventListener('pointermove',e=>{
+      if(touches.has(e.pointerId))touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(pinch&&touches.size===2){const a=[...touches.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);zoom(pinch.distance/Math.max(1,d));pinch.distance=d;e.preventDefault();e.stopImmediatePropagation();}
+      else if(pan){const p=svgPosition(e),b=pan.bounds,dx=(p.x-pan.point.x)/650*(b.xmax-b.xmin),dy=(p.y-pan.point.y)/292*(b.ymax-b.ymin);s.view={xmin:b.xmin-dx,xmax:b.xmax-dx,ymin:b.ymin+dy,ymax:b.ymax+dy};updateLab();e.preventDefault();e.stopImmediatePropagation();}
+    },true);
+    const endView=e=>{touches.delete(e.pointerId);if(touches.size<2)pinch=null;pan=null;};for(const ev of ['pointerup','pointercancel','lostpointercapture'])plot.addEventListener(ev,endView,true);
+    plot.addEventListener('keydown',e=>{if(e.target.closest('[data-handle]'))return;if(['+','=','-','0'].includes(e.key)){e.preventDefault();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}});plot.tabIndex=0;
+  }
   const modelPosition = (point, bounds) => lab.id === "trig"
     ? { x: (point.x - 185) / 115, y: (171 - point.y) / 115 }
     : graphPosition(point, bounds);

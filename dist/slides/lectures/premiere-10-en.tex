@@ -1,0 +1,126 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Trigonometry: circle, radians and related angles}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Trigonometry: circle, radians and related angles}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter path}
+\textbf{Objectives.} Convert from degrees to radians; place points; calculate standard sines and cosines; use the symmetries of the circle.
+
+\textbf{Prerequisites.} Circle, Pythagoras, cosine and sine in a right triangle, symmetries, fractions.
+
+\textbf{Yearly reference point.} 2-11 March: 8 hours
+\end{frame}
+\begin{frame}{Measuring an angle in radians}
+The unit circle is the circle with centre O and radius 1, oriented anticlockwise. One radian corresponds to an arc of length 1 on this circle. A full turn is \(2\pi\) radians, a half turn \(\pi\). On a circle of radius r, an arc length is \(r\theta\) for a positive angle \(\theta\) expressed in radians.
+\end{frame}
+\begin{frame}{Measuring an angle in radians}
+\(60^\circ =\dfrac{\pi}{3}\); \(\dfrac{3\pi}{2}=270^\circ \). An angle of \(\dfrac{\pi}{3}\) on a circle of radius 6 cm gives an arc of \(2\pi\) cm.
+\end{frame}
+\begin{frame}{Measuring an angle in radians}
+The length of an arc is not that of the chord. In trigonometric calculations, check the degree or radian mode of the tool.
+\end{frame}
+\begin{frame}{Measuring an angle in radians}
+Convert \(45^\circ\), \(120^\circ\); give the arc for radius 2 m and angle \(\dfrac{3\pi}{4}\).
+\end{frame}
+\begin{frame}{Wrapping and the image of a real number}
+To each real number x corresponds a point M of the circle, obtained by an oriented path of length x starting from I(1;0). Two real numbers have the same image if their difference is an integer multiple of \(2\pi\). A negative number indicates a path in the clockwise direction.
+\end{frame}
+\begin{frame}{Wrapping and the image of a real number}
+\(\dfrac{13\pi}{3}=4\pi +\dfrac{\pi}{3}\) has the same image as \(\dfrac{\pi}{3}\). \(-\dfrac{\pi}{2}\) has the same image as \(\dfrac{3\pi}{2}\): the point \((0,-1)\).
+\end{frame}
+\begin{frame}{Wrapping and the image of a real number}
+Adding \(\pi\) gives the opposite point, not the same point.
+\end{frame}
+\begin{frame}{Wrapping and the image of a real number}
+Place the images of \(\dfrac{7\pi}{2}\) and \(-\dfrac{5\pi}{3}\) by reducing them to within one turn.
+\end{frame}
+\begin{frame}{Sine, cosine and standard values}
+If M is the image of x, \(M=(\cos x,\sin x)\). So \(-1\leq\cos x,\sin x\leq1\) and \(\cos^2x+\sin^2x=1\). For \(x=0,\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3},\dfrac{\pi}{2}\), the cosines are \(1,\dfrac{\sqrt 3}{2},\dfrac{\sqrt 2}{2},\dfrac{1}{2},0\) and the sines \(0,\dfrac{1}{2},\dfrac{\sqrt 2}{2},\dfrac{\sqrt 3}{2},1\).
+\end{frame}
+\begin{frame}{Sine, cosine and standard values}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+The point at angle \(\dfrac{\pi}{3}\) is \((\dfrac{1}{2},\dfrac{\sqrt 3}{2})\). The scalar product of two unit vectors forming this angle equals its cosine, so \(\dfrac{1}{2}\). The geometry chapters thus connect to the circle.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/premiere-10-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Sine, cosine and standard values}
+The cosine is the x-coordinate, the sine the y-coordinate. The identity gives an absolute value: the quadrant determines the sign.
+\end{frame}
+\begin{frame}{Sine, cosine and standard values}
+If \(\cos x=\dfrac{3}{5}\) and the image of x is in the fourth quadrant, give \(\sin x\).
+\end{frame}
+\begin{frame}{Related angles and symmetries}
+The symmetries of the circle give \(\cos(-x)=\cos x\), \(\sin(-x)=-\sin x\); \(\cos(\pi-x)=-\cos x\), \(\sin(\pi-x)=\sin x\); \(\cos(\pi+x)=-\cos x\), \(\sin(\pi+x)=-\sin x\). Adding \(2k\pi\), k an integer, changes neither sine nor cosine.
+\end{frame}
+\begin{frame}{Related angles and symmetries}
+\(\cos (\dfrac{5\pi}{6})=-\dfrac{\sqrt 3}{2}\), \(\sin (\dfrac{5\pi}{6})=\dfrac{1}{2}\) by symmetry from \(\dfrac{\pi}{6}\). \(\cos (-\dfrac{\pi}{4})=\dfrac{\sqrt 2}{2}\), \(\sin (-\dfrac{\pi}{4})=-\dfrac{\sqrt 2}{2}\).
+\end{frame}
+\begin{frame}{Related angles and symmetries}
+Two angles with the same cosine do not necessarily have the same sine. Reduce the angle, then read the signs.
+\end{frame}
+\begin{frame}{Related angles and symmetries}
+Calculate the two coordinates of the images of \(\dfrac{4\pi}{3}\) and \(\dfrac{7\pi}{4}\).
+\end{frame}
+\begin{frame}{Approximating pi and putting it to use}
+A regular inscribed polygon with n sides in the unit circle has half-perimeter \(n\sin (\dfrac{\pi}{n})\); a circumscribed polygon has half-perimeter \(n\tan (\dfrac{\pi}{n})\), with \(\tan \theta =\dfrac{\sin \theta}{\cos}\theta \) here. Archimedes' method doubles the number of sides and calculates the new lengths by Pythagoras, without knowing pi in advance.
+\end{frame}
+\begin{frame}{Approximating pi and putting it to use}
+For the inscribed hexagon, c=1 and half-perimeter 3. The circumscribed one gives \(2\sqrt3\approx3.4641\). By doubling the sides, we tighten the bounds. The supplied program starts from n=6 and c=1.
+\end{frame}
+\begin{frame}{Approximating pi and putting it to use}
+Using a sine function directly with pi already known would check a calculation, but would not construct an approximation independent of pi.
+\end{frame}
+\begin{frame}{Approximating pi and putting it to use}
+For n=6 and c=1, calculate the new chord after doubling.
+\end{frame}
+\end{document}

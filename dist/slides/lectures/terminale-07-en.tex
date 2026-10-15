@@ -1,0 +1,110 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Conditional probability and the binomial distribution}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Conditional probability and the binomial distribution}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Build a tree; choose a binomial distribution; calculate a cumulative probability and a threshold; interpret expected value and variance.
+\end{frame}
+\begin{frame}{Reminders: conditioning and independence}
+If \(P(A)>0\), \(P_A(B)=\dfrac{P(A\cap B)}{P(A)}\). A branch of a tree carries a conditional probability; the probability of a path is the product of its branches. For a partition \(A_1,\ldots,A_r\), \(P(B)=\sum_iP(A_i\cap B)\); if all \(P(A_i)>0\), it can be written \(\sum_iP(A_i)P_{A_i}(B)\).
+Two events are independent when \(P(A\cap B)=P(A)P(B)\). For \(P(A)>0\), this is equivalent to \(P_A(B)=P(B)\). Do not confuse \(P_A(B)\) with \(P_B(A)\).
+\end{frame}
+\begin{frame}{Reminders: conditioning and independence}
+\(P(A)=0.4\), \(P_A(B)=0.7\), \(P_{\overline A}(B)=0.2\). Then \(P(B)=0.4\times0.7+0.6\times0.2=0.4\) and \(P_B(A)=\dfrac{0.28}{0.4}=0.7\).
+\end{frame}
+\begin{frame}{Bernoulli and binomial}
+A Bernoulli trial has two outcomes: success with probability \(p\) and failure with probability \(1-p\). The indicator variable \(B\) equals \(1\) on success and \(0\) otherwise: \(E(B)=p\), \(V(B)=p(1-p)\).
+A Bernoulli scheme is a repetition of \(n\) identical, independent trials. The number \(X\) of successes follows the binomial distribution \(\mathcal B(n,p)\).
+\end{frame}
+\begin{frame}{Bernoulli and binomial}
+For \(k\in\{0,\ldots,n\}\),
+\[P(X=k)=\binom nk p^k(1-p)^{n-k}.\]\[E(X)=np,\qquad V(X)=np(1-p),\qquad\sigma(X)=\sqrt{np(1-p)}.\]
+\end{frame}
+\begin{frame}{Bernoulli and binomial}
+Each path with \(k\) successes has probability \(p^k(1-p)^{n-k}\) by independence. There are \(\binom nk\) ways to choose the positions of the successes. These paths are mutually exclusive; add their probabilities.
+\end{frame}
+\begin{frame}{Cumulative events}
+\[P(X\le k)=\sum_{j=0}^kP(X=j),\qquad P(X\ge k)=1-P(X\le k-1).\]\[P(a\le X\le b)=P(X\le b)-P(X\le a-1).\]
+For at least one success, \(P(X\ge1)=1-(1-p)^n\). The complement of "at least \(k\)" is "strictly fewer than \(k\)".
+\end{frame}
+\begin{frame}{Cumulative events}
+For \(X\sim\mathcal B(10,0.2)\), \(E(X)=2\) and \(V(X)=1.6\). \(P(X=2)=45(0.2)^2(0.8)^8\simeq0.3020\) and \(P(X\ge1)=1-0.8^{10}\simeq0.8926\). The expected value is neither a certain outcome nor necessarily the most likely one.
+\end{frame}
+\begin{frame}{Threshold and interval}
+To find the smallest \(n\) such that \(1-(1-p)^n\ge q\), a loop over \(n\) is enough. After taking the logarithm, one can solve \((1-p)^n\le1-q\) and then round in the right direction.
+To find the smallest integer \(k\) such that \(P(X>k)\le\alpha\), increase \(k\) until \(P(X\le k)\ge1-\alpha\), then check the previous value. One can also look for an interval \([a,b]\) containing at least a prescribed probability, without assuming that it is unique.
+\end{frame}
+\begin{frame}{Independent trials, beyond two outcomes}
+For independent experiments, the probability of a list of results is the product of the probabilities of its components. The sample space is the Cartesian product of the sample spaces of each experiment. For example, for two independent rolls of a fair die, the sample space contains the \(36\) pairs \((i,j)\), \(1\le i,j\le6\), each of probability \(\dfrac{1}{36}\). The probability that the sum is \(5\) is \(\dfrac{4}{36}=\dfrac{1}{9}\), because the favourable pairs are \((1,4),(2,3),(3,2),(4,1)\).
+In a Bernoulli scheme, success is coded by \(1\) and failure by \(0\): the sample space is \(\{0,1\}^n\). Independence concerns the whole sequence; a simple equality between two observed probabilities is not enough to prove it.
+\end{frame}
+\begin{frame}{Research activity}
+\textbf{Component inspection - 40 min.}
+
+A component is chosen at random from a production coming from two workshops. Let \(A\) be the event "the component comes from the first workshop", \(B=\overline A\), and \(D\) the event "the component is defective". We are given \(P(A)=0.6\), \(P_A(D)=0.02\) and \(P_B(D)=0.05\). Approximate results will be rounded to \(10^{-4}\).
+\end{frame}
+\begin{frame}{Research activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Represent the situation with a weighted tree, then calculate \(P(D)\).
+
+\item The chosen component is defective. Calculate the probability that it comes from the first workshop.
+
+\item Now twenty components are chosen independently, each following the previous model. Let \(X\) be the number of defective components among the twenty. Justify the distribution followed by \(X\) and state its parameters.
+
+\item Calculate \(P(X=0)\), \(P(X\ge2)\) and \(E(X)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Research activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item If the twenty components were taken from a single batch, which assumption of the model would need to be re-examined? Explain why.
+
+\end{enumerate}
+\end{frame}
+\end{document}

@@ -1,0 +1,239 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Arithmetic}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Arithmetic}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Chapter objectives}
+\begin{itemize}
+\item Justify divisibility with an integer factor.
+\item Express parity algebraically and prove a parity property.
+\item Test a small integer for primality and reduce a fraction.
+\item Model identical packs and justify their maximum number.
+\item Read and test a Python divisibility function.
+
+\end{itemize}
+
+Primality tests, Euclid’s algorithm and Cartesian products are offered as enrichment; they are not presented as required outcomes of the 2026 French arithmetic section.
+\end{frame}
+\begin{frame}{Prerequisites to recall}
+Multiplication tables, Euclidean division, order of operations, equivalent fractions and distributivity. Expressions with an arbitrary integer are explained in the lesson.
+\end{frame}
+\begin{frame}{Check what you know}
+Justify: is \(36\) a multiple of \(9\)? Express \(-42\) as a multiple of \(7\). Reduce \(\dfrac{18}{30}\).
+\end{frame}
+\begin{frame}{Worked answer: Check what you know}
+\(36=9\times4\), \(-42=7\times(-6)\), and \(\dfrac{18}{30}=\dfrac35\) after dividing both terms by six. If a step is difficult, begin with the booklet’s fluency exercises.
+\end{frame}
+\begin{frame}{Share without leftovers}
+There are 84 notebooks and 126 pencils. Make identical packs, each containing at least one item of each kind, using everything. Try several numbers of packs, then find the greatest possible number. Explain why no larger number can work.
+\end{frame}
+\begin{frame}{Worked answer: Share without leftovers}
+The number of packs must divide both quantities. The possibilities are \(\{1,2,3,6,7,14,21,42\}\). The maximum is \(42\): each pack contains \(2\) notebooks and \(3\) pencils. The complete list rules out any larger number.
+\end{frame}
+\begin{frame}{Integers, multiples and divisors}
+A multiple is obtained by multiplying an integer by another integer. To prove that \(a\) is a multiple of \(b\), find an equality \(a=bk\) with \(k\in\Z\). The factor must be an integer; a non-integer quotient does not qualify.
+
+In \(a=bk\), \(b\) is a divisor of \(a\), and \(a\) is a multiple of \(b\). These describe the same relation in opposite directions. Natural numbers are \(\N=\{0,1,2,\ldots\}\); integers \(\Z\) also include their negatives.
+\end{frame}
+\begin{frame}{Integers, multiples and divisors (2)}
+If \(b\ne0\), check whether \(a/b\) is an integer or whether division by \(|b|\) has zero remainder. Zero is a multiple of every integer; zero is the only multiple of zero.
+\end{frame}
+\begin{frame}{Integers, multiples and divisors}
+List the positive divisors of \(18\) and of \(24\). Write three multiples of \(7\), one of them negative. Is \(35\) a multiple of \(5\)? of \(6\)? Justify.
+\end{frame}
+\begin{frame}{Worked answer: Integers, multiples and divisors}
+Divisors of \(18\): \(1,2,3,6,9,18\). Divisors of \(24\): \(1,2,3,4,6,8,12,24\). For example \(-7,0,14\) are multiples of \(7\). \(35=5\times7\) is a multiple of \(5\); \(35=6\times5+5\) is not a multiple of \(6\).
+\end{frame}
+\begin{frame}{Integers, multiples and divisors}
+The sum of two multiples of an integer \(a\) is a multiple of \(a\).
+\end{frame}
+\begin{frame}{Integers, multiples and divisors}
+Write \(u=ak\) and \(v=a\ell\), with \(k,\ell\in\Z\). Then \(u+v=a(k+\ell)\) and \(k+\ell\in\Z\). So \(u+v\) is a multiple of \(a\). This also holds for \(a=0\).
+\end{frame}
+\begin{frame}{Parity and prime numbers}
+Even means a multiple of two. An even integer has the form \(n=2k\), where \(k\in\Z\). An odd integer has the form \(n=2k+1\). These descriptions also cover negative integers.
+
+A numerical check gives an example; an expression with an arbitrary integer gives a proof. To prove a number even, aim for two times an integer.
+
+A prime is a natural number at least two with exactly two positive divisors: one and itself. One has only one positive divisor, so it is not prime. Two is prime and is the only even prime.
+\end{frame}
+\begin{frame}{Parity and prime numbers}
+The square of an odd integer is odd.
+\end{frame}
+\begin{frame}{Parity and prime numbers}
+If \(n=2k+1\), then \(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\). Since \(2k^2+2k\in\Z\), \(n^2\) is odd. The final form justifies the parity; a few numerical trials are not enough to prove the statement.
+\end{frame}
+\begin{frame}{Parity and prime numbers}
+For \(n\ge2\), test divisibility by primes at most \(\sqrt n\), including the endpoint. If none divides \(n\), it is prime. If \(n=ab\) with \(1<a\le b\), then \(a^2\le n\), so \(a\le\sqrt n\). The smallest divisor of \(a\) greater than one is prime; otherwise it would have a smaller divisor greater than one. That prime also divides \(n\).
+\end{frame}
+\begin{frame}{Parity and prime numbers}
+Show that \(157\) is prime and that \(161\) is not.
+\end{frame}
+\begin{frame}{Worked answer: Parity and prime numbers}
+Since \(12^2<157<13^2\), we test \(2,3,5,7,11\). None divides \(157\): for \(7\), \(157=7\times22+3\); for \(11\), \(157=11\times14+3\). So \(157\) is prime. On the other hand, \(161=7\times23\) is composite.
+\end{frame}
+\begin{frame}{Justify parity}
+If \(n\) is odd, prove that \(n+3\) is even. Is “the sum of two primes is always even” true? Give a proof or counterexample.
+\end{frame}
+\begin{frame}{Worked answer: Justify parity}
+\(n=2k+1\) gives \(n+3=2(k+2)\), which is even because \(k+2\) is an integer. The second statement is false: \(2\) and \(3\) are primes but their sum is \(5\), which is odd. Two odd primes do have an even sum.
+\end{frame}
+\begin{frame}{Choose the necessary tests}
+Are \(97\), \(121\) and \(221\) prime? State which prime divisors need checking and justify when the search ends.
+\end{frame}
+\begin{frame}{Worked answer: Choose the necessary tests}
+For \(97\), \(9^2<97<10^2\): checking \(2,3,5,7\) suffices and none divides it, so it is prime. \(121=11^2\) and \(221=13\times17\) are composite. For \(121\), include the divisor \(11=\sqrt{121}\); stopping strictly before the square root would give the wrong answer. For \(121\), the candidates are \(2,3,5,7,11\), since \(\sqrt{121}=11\). For \(221\), \(14^2<221<15^2\), giving candidates \(2,3,5,7,11,13\). Once a divisor is found, you can conclude that the number is not prime.
+\end{frame}
+\begin{frame}{GCD and irreducible fractions}
+For two integers \(a,b\) \textbf{not both zero}, \(\operatorname{gcd}(a,b)\) is the greatest of their common positive divisors. We have \(\operatorname{gcd}(a,b)=\operatorname{gcd}(|a|,|b|)\) and \(\operatorname{gcd}(a,0)=|a|\) if \(a\ne0\). By convention, we set \(\operatorname{gcd}(0,0)=0\); this last case does not come under the definition by the greatest divisor.
+\end{frame}
+\begin{frame}{GCD and irreducible fractions}
+\textbf{Property accepted without proof in this chapter.} Every natural number greater than or equal to \(2\) is a product of prime numbers. This factorisation is unique up to the order of the factors.
+\end{frame}
+\begin{frame}{GCD and irreducible fractions}
+Factorise \(140\), \(150\), \(630\) and \(120\) into prime factors.
+\end{frame}
+\begin{frame}{Worked answer: GCD and irreducible fractions}
+\(140=2^2\times5\times7\); \(150=2\times3\times5^2\); \(630=2\times3^2\times5\times7\); \(120=2^3\times3\times5\). We divide successively by prime numbers and check the final product.
+\end{frame}
+\begin{frame}{GCD and reduced fractions}
+\textbf{Why successive divisions work.} For positive integers \(a,b\), write \(a=bq+r\). A common divisor of \(a,b\) divides \(r=a-bq\). Conversely, a common divisor of \(b,r\) divides \(a=bq+r\). Thus the common divisors, and hence the GCD, are unchanged.
+
+Replace the pair by \((b,r)\) and repeat. Each remainder is less than its divisor, so positive remainders decrease until zero is reached. When the remainder becomes zero, the divisor in that final division is the GCD. This also covers a zero remainder in the very first division.
+\end{frame}
+\begin{frame}{GCD and reduced fractions}
+Find the GCD of \(252\) and \(180\), explaining each change of pair.
+\end{frame}
+\begin{frame}{Worked answer: GCD and reduced fractions}
+\(252=180+72\), so move to \((180,72)\). Then \(180=2\times72+36\), so move to \((72,36)\). Finally \(72=2\times36+0\). The last nonzero remainder is \(36\). Check: \(252=7\times36\) and \(180=5\times36\).
+\end{frame}
+\begin{frame}{GCD and irreducible fractions}
+A fraction \(\dfrac ab\) is reduced when \(a\) and \(b\ne0\) have no common positive divisor other than one. Dividing both numerator and denominator by the same nonzero integer preserves its value.
+
+\begin{enumerate}
+\setcounter{enumi}{0}\item Find the GCD of their absolute values.
+\item Divide both by that GCD.
+\item Check that no further cancellation is possible and place any minus sign in front of the fraction.
+
+\end{enumerate}
+
+Never cancel a single term in a sum: cancellation removes common factors of products.
+\end{frame}
+\begin{frame}{GCD and irreducible fractions}
+Make \(\dfrac{140}{630}\), \(\dfrac{84}{126}\) and \(\dfrac{-120}{150}\) irreducible.
+\end{frame}
+\begin{frame}{Worked answer: GCD and irreducible fractions}
+The GCDs are \(70\), \(42\), \(30\) respectively. Thus \(140/630=2/9\), \(84/126=2/3\) and \(-120/150=-4/5\). For \(140/630\), we can also cancel the factors \(2,5,7\) in the factorisations.
+\end{frame}
+\begin{frame}{A sharing problem and its justification}
+An association has 180 cards and 252 tokens. Make the greatest possible number of identical packs without leftovers. Give the contents of a pack and explain why no larger number works.
+\end{frame}
+\begin{frame}{Worked answer: A sharing problem and its justification}
+The GCD is \(36\): \(252=180+72\), \(180=2\times72+36\), \(72=2\times36\). Thus make \(36\) packs, each with \(5\) cards and \(7\) tokens. Any admissible number of packs divides the GCD, so cannot exceed it.
+\end{frame}
+\begin{frame}{Set vocabulary in context}
+\(x\in A\) means that \(x\) is an element of \(A\); \(A\subseteq B\) means that every element of \(A\) belongs to \(B\). \(\varnothing\) is the empty set.
+
+\begin{itemize}
+
+\item \(A\cap B\): elements belonging to \(A\) \textbf{and} to \(B\);
+
+\item \(A\cup B\): elements belonging to \(A\) \textbf{or} to \(B\) (possibly both);
+
+\item in a reference set \(E\), \(\overline A=E\setminus A\) contains the elements of \(E\) that are not in \(A\);
+
+\item for a finite set, \(\Card(A)\) is its number of elements.
+
+\end{itemize}
+\end{frame}
+\begin{frame}{Set vocabulary in context}
+In \(E=\{1,2,3,4,5,6\}\), let \(A=\{2,4,6\}\) and \(B=\{3,6\}\). Give \(A\cap B\), \(A\cup B\), \(\overline A\) and \(\Card(A)\). Are the statements \(2\in A\), \(\{2\}\subseteq A\) and \(A\subseteq B\) true? Here \(A\) contains the multiples of two and \(B\) the multiples of three within \(E\); their intersection expresses both conditions at once.
+\end{frame}
+\begin{frame}{Worked answer: Set vocabulary in context}
+\(A\cap B=\{6\}\), \(A\cup B=\{2,3,4,6\}\), \(\overline A=\{1,3,5\}\), \(\Card(A)=3\). The first two statements are true. The third is false, for example \(2\in A\) and \(2\notin B\).
+\end{frame}
+\begin{frame}{Extension: ordered pairs and Cartesian products}
+A pair \((a,b)\) is ordered: in general \((a,b)\ne(b,a)\). The Cartesian product \(A\times B\) is the set of pairs \((a,b)\) with \(a\in A\) and \(b\in B\). For finite sets, \(\Card(A\times B)=\Card(A)\Card(B)\).
+\end{frame}
+\begin{frame}{Extension: ordered pairs and Cartesian products}
+Write all the elements of \(\{1,2\}\times\{3,4,5\}\).
+\end{frame}
+\begin{frame}{Worked answer: Extension: ordered pairs and Cartesian products}
+\(\{(1,3),(1,4),(1,5),(2,3),(2,4),(2,5)\}\). There are \(2\times3=6\) pairs.
+\end{frame}
+\begin{frame}{Algorithms and putting it to use}
+For integers and \(b>0\), \texttt{a \% b} is the Euclidean remainder. With a negative divisor, Python returns zero or a remainder with the divisor’s sign, rather than the usual nonnegative remainder. However, \texttt{a \% b == 0} correctly tests divisibility for every nonzero integer \(b\). A test returns a Boolean: \texttt{True} or \texttt{False}. Equality is tested with \texttt{==}; assignment uses \texttt{=}.
+\end{frame}
+\begin{frame}[fragile]{Python}
+\small
+\begin{verbatim}
+def is_multiple(a, b):
+    if b == 0:
+        return a == 0
+    return a % b == 0
+\end{verbatim}
+\end{frame}
+\begin{frame}{Algorithms and putting it to use}
+Predict the results of \texttt{is\_multiple(35, 5)} and \texttt{is\_multiple(35, 6)}, then of \texttt{is\_multiple(0, 7)}, \texttt{is\_multiple(7, 0)} and \texttt{is\_multiple(0, 0)}. Explain the role of the condition.
+\end{frame}
+\begin{frame}{Worked answer: Algorithms and putting it to use}
+The results are \texttt{True}, \texttt{False}, \texttt{True}, \texttt{False}, \texttt{True}. The case \(b=0\) avoids calculating a remainder modulo zero, which is impossible, and applies the definition: only \(0\) is a multiple of \(0\).
+\end{frame}
+\begin{frame}{Algorithms and putting it to use}
+We have \(84\) notebooks and \(126\) pencils. We want to make as many identical packs as possible, using all the material. How many packs can we make? What does each contain?
+\end{frame}
+\begin{frame}{Worked answer: Algorithms and putting it to use}
+The number of packs divides \(84\) and \(126\). Its maximum is therefore \(\operatorname{gcd}(84,126)=42\). Each pack contains \(84/42=2\) notebooks and \(126/42=3\) pencils. The check \(42\times2=84\), \(42\times3=126\) confirms that all the material is used.
+\end{frame}
+\begin{frame}{Review without help}
+1. Why is \(0\) a multiple of \(7\) but \(7\) not a multiple of \(0\)? 2. Reduce \(\dfrac{210}{462}\). 3. Prove the sum of two odd integers even.
+\end{frame}
+\begin{frame}{Worked answer: Review without help}
+1. \(0=7\times0\), whereas \(7=0\times k\) is impossible. 2. The GCD is \(42\), giving \(\dfrac5{11}\). 3. Write the integers as \(2k+1\) and \(2\ell+1\). Their sum is \(2(k+\ell+1)\), so is even.
+\end{frame}
+\end{document}

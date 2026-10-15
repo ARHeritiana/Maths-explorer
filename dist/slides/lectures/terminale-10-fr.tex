@@ -1,0 +1,120 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Primitives et équations différentielles}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Primitives et équations différentielles}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Calculer des primitives ; résoudre une équation différentielle avec condition initiale ; interpréter une approximation d'Euler.
+\end{frame}
+\begin{frame}{Primitives sur un intervalle}
+On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.
+Une primitive de \(f\) sur un intervalle \(I\) est une fonction dérivable \(F\) telle que \(F'=f\) sur \(I\). Si \(F\) est une primitive, toutes les primitives sur \(I\) sont \(F+C\), \(C\in\R\).
+\end{frame}
+\begin{frame}{Primitives sur un intervalle}
+Si \(F'=G'=f\), alors \((F-G)'=0\) sur l'intervalle ; \(F-G\) est donc constante. Réciproquement, \((F+C)'=f\). L'hypothèse d'intervalle est essentielle : sur une réunion d'intervalles disjoints, comme \(\mathbb{R}\setminus\{0\}\), réunion de deux intervalles, la constante peut différer d'un intervalle à l'autre.
+\end{frame}
+\begin{frame}{Primitives sur un intervalle}
+\[\begin{array}{c|c}
+f(x)&F(x)\\\hline
+x^n\ (n\in\Z,\ n\ne-1)&\dfrac{x^{n+1}}{n+1}\\
+\dfrac{1}{x}&\ln|x|\quad\text{sur un intervalle évitant }0\\
+\dfrac{1}{\sqrt{x}}&2\sqrt{x}\quad(x>0)\\
+e^x&e^x\\
+\cos x&\sin x\\
+\sin x&-\cos x
+\end{array}\]
+La constante additive peut toujours être ajoutée. Les deux dernières lignes seront réinvesties après l'étude de la trigonométrie.
+\end{frame}
+\begin{frame}{Reconnaître une composition}
+Pour une fonction \(u\) dérivable, les primitives de \(u'u^n\), \(u'e^u\), \(\dfrac{u'}{u}\) sont respectivement \(\dfrac{u^{n+1}}{n+1}\) (\(n\ne-1\)), \(e^u\), \(\ln|u|\), sur les intervalles où les expressions ont un sens. La linéarité permet de traiter les sommes.
+\end{frame}
+\begin{frame}{Reconnaître une composition}
+Une primitive de \(6x(x^2+1)^2\) est \((x^2+1)^3\) ; une primitive de \(e^{3x}\) est \(\dfrac{e^{3x}}{3}\). Pour imposer \(F(0)=2\) dans ce dernier cas, prendre \(F(x)=\dfrac{e^{3x}}{3}+\dfrac{5}{3}\).
+\end{frame}
+\begin{frame}{Équations différentielles}
+Une équation différentielle relie une fonction inconnue à ses dérivées. Une solution doit être vérifiée sur un intervalle précisé.
+\end{frame}
+\begin{frame}{Équations différentielles}
+\(y'=ay\) a pour solutions \(y(x)=Ce^{ax}\). Pour \(a\ne0\), \(y'=ay+b\) a pour solutions
+\[y(x)=Ce^{ax}-\dfrac ba.\]
+Si \(a=0\), l'équation devient \(y'=b\) et \(y(x)=bx+C\).
+Si \(g\) est une solution particulière connue de \(y'=ay+f(x)\), les solutions sont \(y=g+Ce^{ax}\).
+\end{frame}
+\begin{frame}{Équations différentielles}
+Si \(y\) est solution, \(z(x)=e^{-ax}y(x)\) vérifie \(z'=e^{-ax}(y'-ay)=0\) ; \(z=C\). Réciproquement, la dérivée de \(Ce^{ax}\) est \(aCe^{ax}\). Pour \(y'=ay+b\), soustraire la solution constante \(-\dfrac{b}{a}\) ramène à l'équation homogène. Pour un second membre variable, faire de même avec \(g\).
+\end{frame}
+\begin{frame}{Équations différentielles}
+\(y'=-2y+6\) et \(y(0)=1\) donnent \(y=3+Ce^{-2x}\), puis \(C=-2\). La solution \(3-2e^{-2x}\) croît vers l'équilibre \(3\) lorsque \(x\to+\infty\).
+\end{frame}
+\begin{frame}{Méthode d'Euler}
+Pour \(y'=ay+b\), avec un pas \(h>0\), on approche \(y(t_k)\) par \(Y_k\) selon \(t_{k+1}=t_k+h\), \(Y_{k+1}=Y_k+h(aY_k+b)\). C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.
+\end{frame}
+\begin{frame}{Activité de recherche}
+\textbf{Refroidissement d'une boisson - 40 min.}
+
+Une boisson initialement à \(80\,^{\circ}\mathrm C\) est placée dans une pièce maintenue à \(20\,^{\circ}\mathrm C\). Pour \(t\ge0\), on note \(T(t)\) sa température en degrés Celsius, \(t\) désignant le temps écoulé en minutes. On admet le modèle \(T' (t)=-0{,}1(T(t)-20)\) et \(T(0)=80\).
+\end{frame}
+\begin{frame}{Activité de recherche (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Résoudre ce problème initial et donner l'expression de \(T(t)\).
+
+\item Étudier le sens de variation de \(T\) et déterminer sa limite en \(+\infty\). Interpréter les résultats.
+
+\item Déterminer le premier instant où la température vaut \(40\,^{\circ}\mathrm C\). Donner la valeur exacte, puis une valeur approchée en minutes.
+
+\item Appliquer deux étapes de la méthode d'Euler avec un pas de \(1\) minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte \(T(2)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité de recherche (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.
+
+\end{enumerate}
+\end{frame}
+\end{document}
