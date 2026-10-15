@@ -273,7 +273,7 @@ with sync_playwright() as p:
     go('cake')
     assert page.locator('#ck-kit').is_hidden() and page.locator('[data-hint-act]').count() == 2, 'the cake starts as a 3D view only; hints carry the buttons'
     page.locator('#ck-lock').click(); page.wait_for_timeout(1000)
-    hint(1, 'top'); page.wait_for_timeout(300); assert 'O (' not in page.locator('.ck-stage').inner_text() or True
+    hint(1, 'top'); page.wait_for_timeout(300)
     hint(2, 'grid'); page.wait_for_timeout(300)
     assert page.locator('#ck-size-out').inner_text() == '5' and page.locator('#ck-snap').is_checked(), 'hint 2 places the grid with a side of 5 units'
     box = page.locator('.ck-stage').bounding_box(); kx, ky = box['width'] / 640, box['height'] / 430
