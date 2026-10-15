@@ -1,7 +1,7 @@
 // Hands-on activities for the classic puzzles: grid paths, the 25 horses, the cake, queens, the snail, the bridge,
 // the light egg and the fake coins. Each is mounted by mountActivity (challenge-activities.js) with the parameters q
 // of the variation on show; the mathematics lives in challenge-puzzles.js.
-import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
+import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
 import { pascalGrid, gridPaths, horseRaces, squarePoint, cakeShares, unattacked, QUEENS, queensK, queensBest, snailDown, snailTrace, snailDays, bridgeBest, bridgePlans, bridgeTimes, eggWeighings, minSample, identifies } from "./challenge-puzzles.js";
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -148,56 +148,6 @@ export function horses(root, { t, q }) {
   return () => {};
 }
 
-/* ------------------------------------------------------------------ cake */
-export function cake(root, { t, q }) {
-  const N = Number(q.n), S = 300, X0 = 40, Y0 = 20, W = 380, H = 340;
-  let cuts = Array.from({ length: N }, (_, i) => (4 * i) / N + 0.15 * Math.sin(i * 7 + 1) + 0.12);   // deliberately uneven start
-  root.innerHTML = `
-    <p class="act-help">${t(`Vue de dessus. Les ${N} coupes partent du centre et sont verticales : fais glisser les poignées sur le bord pour qu’il y ait ${N} parts égales en volume et en crème. Au clavier : flèches (Maj : pas plus grand).`, `Seen from above. The ${N} cuts start at the centre and are vertical: drag the handles along the edge so that the ${N} portions are equal in volume and in cream. Keyboard: arrow keys (Shift: bigger step).`)}</p>
-    <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Gâteau vu de dessus", "Cake seen from above")}"></svg>
-    <div class="act-controls"><button class="btn btn-secondary" id="ck-even" type="button">${t("Espacer régulièrement", "Space evenly")}</button><button class="btn-quiet" id="ck-rand" type="button">${t("Positions au hasard", "Random positions")}</button></div>
-    <div id="ck-table"></div>
-    <p class="act-readout" id="ck-read" role="status" aria-live="polite"></p>`;
-  const svg = root.querySelector("svg"), table = root.querySelector("#ck-table"), read = root.querySelector("#ck-read");
-  const P = (pt) => [X0 + pt[0] * S, Y0 + (1 - pt[1]) * S];
-  const norm = (u) => ((u % 4) + 4) % 4;
-  function pieces() {
-    const ts = cuts.map((c, i) => ({ t: norm(c), i })).sort((a, b) => a.t - b.t), out = [];
-    for (let k = 0; k < N; k++) { const a = ts[k].t, b = k + 1 < N ? ts[k + 1].t : ts[0].t + 4, pts = [[0.5, 0.5], squarePoint(a)]; for (let c = Math.floor(a) + 1; c < b; c++) pts.push(squarePoint(c)); pts.push(squarePoint(b)); out.push(pts); }
-    return out;
-  }
-  function draw() {
-    svg.replaceChildren();
-    const polys = pieces(), shares = cakeShares(cuts), ordered = [...cuts].map(norm).sort((a, b) => a - b);
-    polys.forEach((pts, k) => svgEl("polygon", { points: pts.map((p) => P(p).join(",")).join(" "), fill: `color-mix(in srgb, ${colour(k)} 55%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 2, "stroke-linejoin": "round" }, svg));
-    polys.forEach((pts, k) => { const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length, cy = pts.reduce((s, p) => s + p[1], 0) / pts.length, [x, y] = P([0.5 + (cx - 0.5) * 0.9, 0.5 + (cy - 0.5) * 0.9]); const tx = svgEl("text", { x, y: y + 5, "text-anchor": "middle", style: "font:700 14px var(--body);fill:var(--ink);pointer-events:none" }, svg); tx.textContent = `${Math.round(shares[k].volume * 1000) / 10}%`; });
-    svgEl("circle", { cx: P([0.5, 0.5])[0], cy: P([0.5, 0.5])[1], r: 4, fill: "var(--ink)" }, svg);
-    cuts.forEach((c, i) => {
-      const [x, y] = P(squarePoint(c)), gEl = svgEl("g", { class: "toy-handle", tabindex: 0, role: "slider", "aria-label": `${t("Coupe", "Cut")} ${i + 1}`, "aria-valuemin": 0, "aria-valuemax": 4, "aria-valuenow": Math.round(norm(c) * 100) / 100, "aria-valuetext": `${Math.round((norm(c) / 4) * 1000) / 10} % ${t("du tour", "of the way round")}`, "data-i": i }, svg);
-      svgEl("circle", { class: "hit", cx: x, cy: y, r: 22 }, gEl); svgEl("circle", { class: "ring", cx: x, cy: y, r: 10 }, gEl); svgEl("circle", { class: "core", cx: x, cy: y, r: 4 }, gEl);
-    });
-    void ordered;
-    const eq = (k) => shares.every((s) => Math.abs(s[k] - 1 / N) < 0.002), fair = eq("volume") && eq("cream");
-    table.innerHTML = `<table class="act-table"><thead><tr><th>${t("Part", "Portion")}</th><th>${t("Volume de gâteau", "Volume of cake")}</th><th>${t("Crème", "Cream")}</th></tr></thead><tbody>${shares.map((s, k) => `<tr><td><span class="cl-dot" style="background:${colour(k)}"></span> ${k + 1}</td><td>${(s.volume * 100).toFixed(1)} %</td><td>${(s.cream * 100).toFixed(1)} %</td></tr>`).join("")}</tbody></table>`;
-    read.innerHTML = fair ? `<strong>${t("Partage équitable !", "A fair sharing!")}</strong> ${t(`Chaque part a ${(100 / N).toFixed(1)} % du gâteau et de la crème.`, `Each portion has ${(100 / N).toFixed(1)}% of the cake and of the cream.`)}` : t(`Objectif : ${(100 / N).toFixed(1)} % de volume et ${(100 / N).toFixed(1)} % de crème pour chaque part.`, `Goal: ${(100 / N).toFixed(1)}% of the volume and ${(100 / N).toFixed(1)}% of the cream for each portion.`);
-  }
-  const project = (p) => { // nearest point of the square's edge, as a perimeter coordinate in [0, 4)
-    const x = clamp((p.x - X0) / S, 0, 1), y = clamp(1 - (p.y - Y0) / S, 0, 1), d = [y, 1 - x, 1 - y, x];   // distance to bottom, right, top, left
-    const side = d.indexOf(Math.min(...d));
-    return side === 0 ? x : side === 1 ? 1 + y : side === 2 ? 2 + (1 - x) : 3 + (1 - y);
-  };
-  let grab = -1;
-  svg.addEventListener("pointerdown", (e) => { const h = e.target.closest(".toy-handle"); if (!h) return; grab = Number(h.dataset.i); svg.setPointerCapture(e.pointerId); e.preventDefault(); });
-  svg.addEventListener("pointermove", (e) => { if (grab < 0) return; cuts[grab] = project(toLocal(svg, e)); draw(); });
-  const drop = () => { grab = -1; }; svg.addEventListener("pointerup", drop); svg.addEventListener("pointercancel", drop);
-  lockTouch(svg, ".toy-handle");
-  svg.addEventListener("keydown", (e) => { const h = e.target.closest?.(".toy-handle"); if (!h) return; const d = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key]; if (!d) return; e.preventDefault(); const i = Number(h.dataset.i); cuts[i] = norm(cuts[i] + d * (e.shiftKey ? 0.1 : 0.02)); draw(); svg.querySelector(`.toy-handle[data-i="${i}"]`)?.focus(); });
-  root.querySelector("#ck-even").addEventListener("click", () => { const s = norm(cuts[0]); cuts = Array.from({ length: N }, (_, i) => s + (4 * i) / N); draw(); });
-  root.querySelector("#ck-rand").addEventListener("click", () => { cuts = Array.from({ length: N }, () => Math.random() * 4); draw(); });
-  draw();
-  return () => {};
-}
-
 /* ---------------------------------------------------------------- queens */
 export function queens(root, { t, q }) {
   const n = q.n, k = queensK(n, q.k), [best, example] = QUEENS[`${n},${k}`], queensSet = new Set();
@@ -205,7 +155,7 @@ export function queens(root, { t, q }) {
   root.innerHTML = `
     <p class="act-help">${t(`Touche une case pour poser ou retirer une dame (${k} au plus). Les cases vertes sont libres : ni occupées ni attaquées. Une dame est arrêtée par la première pièce rencontrée.`, `Tap a square to place or remove a queen (${k} at most). Green squares are free: neither occupied nor attacked. A queen's line of sight stops at the first piece.`)}</p>
     <div class="qn-board" id="qn-board" style="--n:${n}" role="grid" aria-label="${t("Échiquier", "Chessboard")}"></div>
-    <div class="act-controls"><button class="btn-quiet" id="qn-clear" type="button">${t("Tout retirer", "Remove all")}</button><button class="btn btn-secondary" id="qn-peek" type="button">${t("Montrer un placement optimal", "Show an optimal placement")}</button></div>
+    <div class="act-controls"><button class="btn-quiet" id="qn-clear" type="button">${t("Tout retirer", "Remove all")}</button></div>
     <p class="act-readout" id="qn-read" role="status" aria-live="polite"></p>`;
   const board = root.querySelector("#qn-board"), read = root.querySelector("#qn-read");
   function draw() {
@@ -216,9 +166,8 @@ export function queens(root, { t, q }) {
   }
   board.addEventListener("click", (e) => { const b = e.target.closest(".qn-cell"); if (!b) return; const s = Number(b.dataset.s); if (queensSet.has(s)) queensSet.delete(s); else if (queensSet.size < k) queensSet.add(s); draw(); board.querySelector(`[data-s="${s}"]`)?.focus(); });
   root.querySelector("#qn-clear").addEventListener("click", () => { queensSet.clear(); draw(); });
-  root.querySelector("#qn-peek").addEventListener("click", () => { peeked = true; queensSet.clear(); example.forEach((s) => queensSet.add(s)); draw(); });
   draw();
-  return () => {};
+  return onHintAction("queens", { peek: () => { const s = example.find((x) => !queensSet.has(x)); if (s !== undefined && queensSet.size < k) { queensSet.add(s); draw(); } } });
 }
 
 /* ----------------------------------------------------------------- snail */
@@ -229,7 +178,7 @@ export function snail(root, { t, reduced, q }) {
   const steps = [];   // heights after each half-day
   trace.forEach((d) => { steps.push(d.peak); if (!d.done) steps.push(d.end); });
   root.innerHTML = `
-    <p class="act-help">${t("Fais avancer l’escargot demi-journée par demi-journée et observe la courbe : que se passe-t-il le dernier jour ?", "Move the snail forward half a day at a time and watch the curve: what happens on the last day?")}</p>
+    <p class="act-help">${t("Fais avancer l’escargot demi-journée par demi-journée.", "Move the snail forward half a day at a time.")}</p>
     <svg class="act-svg" viewBox="0 0 ${W} ${HT}" role="img" aria-label="${t("Poteau et courbe de la hauteur de l’escargot", "Post and graph of the snail’s height")}"></svg>
     <div class="act-buttons">
       <button class="btn btn-primary" id="sn-next" type="button">${t("Demi-journée suivante", "Next half-day")}</button>
@@ -351,7 +300,7 @@ export function fakecoins(root, { t, q }) {
   root.innerHTML = `
     <p class="act-help">${t("Choisis combien de pièces prendre dans chaque pile, puis pèse (les vraies pèsent 10 g, les fausses 9 g). Un seul pesage est autorisé dans l’énoncé : ici on les compte. Ensuite, désigne la pile fausse.", "Choose how many coins to take from each pile, then weigh (genuine coins weigh 10 g, fake ones 9 g). The problem allows one weighing: here they are counted. Then name the fake pile.")}</p>
     <div class="fc-piles" id="fc-piles"></div>
-    <div class="act-buttons" style="margin-top:10px"><button class="btn btn-primary" id="fc-weigh" type="button">${t("Peser", "Weigh")}</button><button class="btn-quiet" id="fc-classic" type="button">${t("Remplir 1, 2, 3, …", "Fill in 1, 2, 3, …")}</button><button class="btn-quiet" id="fc-zero" type="button">${t("Tout à zéro", "All to zero")}</button><button class="btn-quiet" id="fc-new" type="button">${t("Nouvelle pile fausse", "New fake pile")}</button></div>
+    <div class="act-buttons" style="margin-top:10px"><button class="btn btn-primary" id="fc-weigh" type="button">${t("Peser", "Weigh")}</button><button class="btn-quiet" id="fc-zero" type="button">${t("Tout à zéro", "All to zero")}</button><button class="btn-quiet" id="fc-new" type="button">${t("Nouvelle pile fausse", "New fake pile")}</button></div>
     <p class="act-readout" id="fc-read" role="status" aria-live="polite"></p>
     <div class="act-buttons" id="fc-guess" role="group" aria-label="${t("Quelle pile est fausse ?", "Which pile is fake?")}"></div>`;
   const piles = root.querySelector("#fc-piles"), read = root.querySelector("#fc-read"), guess = root.querySelector("#fc-guess");
@@ -371,11 +320,10 @@ export function fakecoins(root, { t, q }) {
     }
   });
   root.querySelector("#fc-weigh").addEventListener("click", () => { weighed++; reading = 10 * counts.reduce((a, b) => a + b, 0) - counts[fake]; solved = false; draw(); });
-  root.querySelector("#fc-classic").addEventListener("click", () => { counts = Array.from({ length: N }, (_, i) => i + 1); reading = null; draw(); });
   root.querySelector("#fc-zero").addEventListener("click", () => { counts = Array(N).fill(0); reading = null; draw(); });
   root.querySelector("#fc-new").addEventListener("click", () => { fresh(); draw(); });
   fresh(); draw();
-  return () => {};
+  return onHintAction("fakecoins", { fill: () => { counts = Array.from({ length: N }, (_, i) => i + 1); reading = null; draw(); } });
 }
 
 void esc;

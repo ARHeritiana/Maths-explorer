@@ -15,6 +15,7 @@ import { SCENES_4 } from "./solution-scenes-4.js";
 import { SCENES_5 } from "./solution-scenes-5.js";
 import { SCENES_6 } from "./solution-scenes-6.js";
 import { SCENES_7 } from "./solution-scenes-7.js";
+import { SCENES_8 } from "./solution-scenes-8.js";
 import { nimScript } from "./challenge-puzzles2.js";
 import { comb, josephusOrder, eggPlan, eggCover, eggDrops, graphFor, layoutOf, bridgeGeom, degrees, minRemoval, trailOf } from "./challenge-variants.js";
 
@@ -437,7 +438,7 @@ const josephus = {
 
 const LEGACY = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2, ...SOLUTIONS_3 };
 // Cartoon scenes (mount/update) replace the older diagram of the same challenge but keep its captions (steps).
-const SCENES = { ...SCENES_1, ...SCENES_2, ...SCENES_3, ...SCENES_4, ...SCENES_5, ...SCENES_6, ...SCENES_7 };
+const SCENES = { ...SCENES_1, ...SCENES_2, ...SCENES_3, ...SCENES_4, ...SCENES_5, ...SCENES_6, ...SCENES_7, ...SCENES_8 };
 export const SOLUTIONS = Object.fromEntries(Object.entries(LEGACY).map(([id, old]) => {
   const sc = SCENES[id];
   return [id, sc ? { ...old, ...sc, steps: sc.steps ?? old.steps, draw: undefined } : old];

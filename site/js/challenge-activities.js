@@ -7,8 +7,10 @@ import { formatNumber } from "./math.js";
 
 import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
 import { artgallery, eggs, hanoi, ramsey, konigsberg, josephus } from "./challenge-more.js";
-import { reflect, lunes, star, box, merge, cham, inversionsAct, piles } from "./challenge-classics2.js";
-import { gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins } from "./challenge-classics.js";
+import { reflect, lunes, star, merge, cham, inversionsAct, piles } from "./challenge-classics2.js";
+import { gridpaths, horses, queens, snail, bridge, lighteggs, fakecoins } from "./challenge-classics.js";
+import { boxLab as box } from "./challenge-box.js";
+import { cakeLab as cake } from "./challenge-cake.js";
 
 const fmtFor = (lang) => (n, d = 2) => formatNumber(Math.abs(n) < 1e-12 ? 0 : n, lang, d).replace(/-/g, MINUS);
 

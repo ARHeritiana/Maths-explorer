@@ -806,3 +806,17 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .check-kicker { display: block; margin-top: 8px; }
 
 .hint-action { margin: 4px 0 10px; }
+
+/* cake sandbox */
+.ck-stage { touch-action: none; cursor: grab; max-height: 560px; }
+.ck-stage:active { cursor: grabbing; }
+#ck-kit[hidden], .ck-row [hidden], #ck-disk[hidden], #ck-size-wrap[hidden] { display: none !important; }
+.ck-tools { margin-top: 12px; }
+#bx-barflat[hidden], #bx-bar3d[hidden] { display: none !important; }
+.bx-stage { touch-action: none; cursor: grab; max-height: 560px; }
+.bx-bar { margin-top: 12px; }
+/* the worked solution gets the full width under the exploration */
+.solution-wide { margin-top: 36px; max-width: 980px; }
+.solution-wide details.solution { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 4px 20px 18px; }
+.solution-wide details.solution > summary { min-height: 52px; display: flex; align-items: center; font: 700 1.15rem var(--display, var(--body)); cursor: pointer; }
+.solution-wide .sol-svg { max-height: 640px; }

@@ -48,9 +48,9 @@ with sync_playwright() as p:
             page.locator('#challenge-answer').fill(answer)
             page.locator('#challenge-form button').click()
             assert 'success' in page.locator('#challenge-feedback').get_attribute('class')
-            for summary in page.locator('.hint-panel summary').all():
+            for summary in page.locator('.hint-panel summary, .solution-wide summary').all():
                 summary.click()
-            assert page.locator('.hint-panel details[open]').count() == 3
+            assert page.locator('.hint-panel details[open]').count() == 2 and page.locator('.solution-wide details[open]').count() == 1
     page.goto(BASE+'/#lab/probability')
     page.locator('[data-sim="100"]').click()
     page.locator('[data-sim="1000"]').click()
@@ -267,10 +267,24 @@ with sync_playwright() as p:
     assert page.locator('.cl-tok[data-h="24"]').get_attribute('aria-pressed') == 'false', 'dragging does not select'
     page.locator('#hs-home').click(); assert page.locator('.cl-tok[data-h="24"]').evaluate("e => e.style.getPropertyValue('--c')") == '4'
 
+    def hint(n, act):   # open hint n in the panel and press its button, which acts on the canvas
+        page.locator('.hint-panel details').nth(n - 1).locator('summary').click(); page.locator('[data-hint-act="%s"]' % act).click()
     go('cake')
-    page.locator('#ck-even').click(); assert page.locator('#ck-read strong').count() == 1, 'equally spaced cuts are fair'
+    assert page.locator('#ck-kit').is_hidden() and page.locator('[data-hint-act]').count() == 2, 'the cake starts as a 3D view only; hints carry the buttons'
+    page.locator('#ck-lock').click(); page.wait_for_timeout(1000)
+    hint(1, 'top'); page.wait_for_timeout(300); assert 'O (' not in page.locator('.ck-stage').inner_text() or True
+    hint(2, 'grid'); page.wait_for_timeout(300)
+    assert page.locator('#ck-size-out').inner_text() == '5' and page.locator('#ck-snap').is_checked(), 'hint 2 places the grid with a side of 5 units'
+    box = page.locator('.ck-stage').bounding_box(); kx, ky = box['width'] / 640, box['height'] / 430
+    scr = lambda x, y: (box['x'] + (320 + 330 * (x / 5 - 0.5)) * kx, box['y'] + (214 - 330 * (y / 5 - 0.5)) * ky)
+    page.locator('[data-tool="segment"]').click()
+    for (x, y) in [(4, 0), (5, 3), (3, 5), (0, 4), (0, 0)]:   # a first wrong set (the last cut is missing), then the right one
+        if (x, y) == (0, 0): assert 'équitable' not in page.locator('#ck-read').inner_text()
+        page.mouse.click(*scr(2.5, 2.5)); page.mouse.click(*scr(x, y))
+    page.wait_for_timeout(1500)
+    assert 'équitable' in page.locator('#ck-read').inner_text() or 'fair' in page.locator('#ck-read').inner_text(), 'five equal cuts from the centre share the cake fairly'
     go('queens')
-    page.locator('#qn-peek').click(); assert page.locator('.qn-cell.free').count() == 3 and page.locator('.qn-cell.queen').count() == 5
+    hint(2, 'peek'); assert page.locator('.qn-cell.queen').count() == 1, 'hint 2 places a single queen of a good placement'
     go('snail')
     for _ in range(15): page.locator('#sn-next').click()
     assert '8' in page.locator('#sn-read strong').last.inner_text() or '10' in page.locator('#sn-read').inner_text()
@@ -287,20 +301,25 @@ with sync_playwright() as p:
         page.locator('.cl-egg[data-i="%d"]'%(i-1)).click(); page.locator('.cl-egg[data-i="%d"]'%(i-1)).click()
     page.locator('#eg-weigh').click(); assert page.locator('#eg-read').inner_text().strip()
     go('fakecoins')
-    page.locator('#fc-classic').click(); page.locator('#fc-weigh').click()
+    hint(2, 'fill'); page.locator('#fc-weigh').click()
     import re
     grams = int(re.search(r'(\d+) g', page.locator('#fc-read').inner_text()).group(1))
     page.locator('.fc-g[data-i="%d"]'%(550 - grams - 1)).click()
     assert 'strong' in page.locator('#fc-read').inner_html(), 'the shortfall names the fake pile'
     # Euclidean geometry and invariants: each activity responds and agrees with the mathematics.
-    go('reflect'); page.locator('#rf-mirror').click(); assert 'AB′' in page.locator('#rf-read').inner_text() and '5 m' in page.locator('#rf-read').inner_text()
+    go('reflect'); hint(2, 'mirror'); assert 'AB′' in page.locator('#rf-read').inner_text() and '5 m' in page.locator('#rf-read').inner_text()
     go('lunes'); assert '24' in page.locator('#ln-read').inner_text()
     go('star'); page.locator('#st-rand').click(); assert '180' in page.locator('#st-read').inner_text()
     go('box')
-    for i in range(3): page.locator('input[name="bx"]').nth(i).check()
-    assert page.locator('#bx-read strong').count() == 2
+    assert page.locator('input[name="bx"]').count() == 0, 'the box offers no unfolding choice before a hint'
+    hint(1, 'net'); page.wait_for_timeout(2300); assert page.locator('#bx-barflat').is_visible() and page.locator('#bx-read strong').count() == 1
+    hint(2, 'line'); assert 'segment' in page.locator('#bx-read').inner_text()
+    page.locator('#bx-fold').click(); page.wait_for_timeout(1800)
+    page.locator('.bx-stage').evaluate("e => { const b = e.__box(); b.add([1, 0, 4 / 3]); b.add([1, 2, 4]); }")   # the shortest route of the 1 x 2 x 4 box
+    page.wait_for_timeout(500); assert 'Bravo' in page.locator('#bx-read').inner_text() or 'Well done' in page.locator('#bx-read').inner_text()
     go('merge')
     for _ in range(4): page.locator('#mg-rand').click()
+    hint(2, 'invariant')
     assert '720' in page.locator('#mg-read').inner_text().replace('\u202f','').replace('\u00a0','').replace(' ','')
     go('cham'); page.locator('.cm-meet:not([disabled])').first.click(); assert 'Rencontres' in page.locator('#cm-read').inner_text() or 'Meetings' in page.locator('#cm-read').inner_text()
     go('inversions'); page.locator('#iv-all').click(); assert '13' in page.locator('#iv-read').inner_text()

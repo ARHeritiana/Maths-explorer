@@ -1,6 +1,6 @@
 // Hands-on activities for the Euclidean-geometry and invariant puzzles (see challenge-puzzles2.js for the mathematics).
-import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
-import { pathLength, shortestVia, bestContact, reflectSet, luneArea, luneTotal, starK, starSumDegrees, boxSet, boxUnfoldings, boxPath, mergeFinal, mergeProduct, chamSet, chamMin, permOf, inversions, bubbleSwaps, splitTotal } from "./challenge-puzzles2.js";
+import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
+import { pathLength, shortestVia, bestContact, reflectSet, luneArea, luneTotal, starK, starSumDegrees, mergeFinal, mergeProduct, chamSet, chamMin, permOf, inversions, bubbleSwaps, splitTotal } from "./challenge-puzzles2.js";
 
 const f1 = (x) => String(Math.round(x * 10) / 10);
 const TAU = Math.PI * 2;
@@ -10,10 +10,9 @@ export function reflect(root, { t, q }) {
   const [a, b, d] = reflectSet(q.set), W = 520, H = 300, s = Math.min(380 / d, 100 / Math.max(a, b), 36), X0 = 70, RY = 150;
   let x = d / 2, best = Infinity, mirror = false, grab = false;
   root.innerHTML = `
-    <p class="act-help">${t("Fais glisser le point X le long de la rivière (ou utilise le curseur) : la longueur AX + XB change. Où est-elle la plus petite ? Le bouton « Symétrique de B » montre l’astuce.", "Drag the point X along the river (or use the slider): the length AX + XB changes. Where is it smallest? The “Mirror image of B” button shows the trick.")}</p>
+    <p class="act-help">${t("Fais glisser le point X le long de la rivière (ou utilise le curseur) : la longueur AX + XB change. Où est-elle la plus petite ?", "Drag the point X along the river (or use the slider): the length AX + XB changes. Where is it smallest?")}</p>
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Rivière, points A et B, point de puisage X", "River, points A and B, water point X")}"></svg>
-    <div class="act-controls"><label class="act-field" for="rf-x"><span class="act-label">${t("Position de X", "Position of X")} <output id="rf-xout"></output></span><input id="rf-x" type="range" min="0" max="${d}" step="0.05" value="${x}"></label>
-      <button class="btn btn-secondary" id="rf-mirror" type="button" aria-pressed="false">${t("Symétrique de B", "Mirror image of B")}</button></div>
+    <div class="act-controls"><label class="act-field" for="rf-x"><span class="act-label">${t("Position de X", "Position of X")} <output id="rf-xout"></output></span><input id="rf-x" type="range" min="0" max="${d}" step="0.05" value="${x}"></label></div>
     <p class="act-readout" id="rf-read" role="status" aria-live="polite"></p>`;
   const svg = root.querySelector("svg"), read = root.querySelector("#rf-read"), slider = root.querySelector("#rf-x");
   const P = (u, v) => [X0 + u * s, RY - v * s];
@@ -29,7 +28,6 @@ export function reflect(root, { t, q }) {
     svgEl("circle", { class: "hit", cx: X[0], cy: X[1], r: 24 }, gEl); svgEl("circle", { class: "ring", cx: X[0], cy: X[1], r: 10 }, gEl); svgEl("circle", { class: "core", cx: X[0], cy: X[1], r: 4 }, gEl);
     const L = pathLength(a, b, d, x); best = Math.min(best, L);
     root.querySelector("#rf-xout").textContent = `${f1(x)} m`; slider.value = x;
-    root.querySelector("#rf-mirror").setAttribute("aria-pressed", String(mirror));
     read.innerHTML = `AX + XB = <strong>${(Math.round(L * 100) / 100).toString()} m</strong> · ${t("meilleur essai", "best try")} : <strong>${(Math.round(best * 100) / 100).toString()} m</strong>${mirror ? ` · AB′ = √(${d}² + ${a + b}²) = <strong>${shortestVia(a, b, d)} m</strong> ${t("(contact en", "(contact at")} ${f1(bestContact(a, b, d))} m)` : ""}`;
   }
   const move = (e) => { const p = toLocal(svg, e); x = clamp((p.x - X0) / s, 0, d); draw(); };
@@ -39,7 +37,6 @@ export function reflect(root, { t, q }) {
   lockTouch(svg, ".toy-handle");
   svg.addEventListener("keydown", (e) => { if (!e.target.closest?.(".toy-handle")) return; const dd = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 }[e.key]; if (!dd) return; e.preventDefault(); x = clamp(x + dd * (e.shiftKey ? 0.5 : 0.1), 0, d); draw(); svg.querySelector(".toy-handle")?.focus(); });
   slider.addEventListener("input", () => { x = Number(slider.value); draw(); });
-  root.querySelector("#rf-mirror").addEventListener("click", () => { mirror = !mirror; draw(); });
   draw();
   return () => {};
 }
@@ -84,7 +81,7 @@ export function star(root, { t, q }) {
   let n = q.n, k = starK(q.n, q.k), irregular = false, angles = [];
   const regular = () => Array.from({ length: n }, (_, i) => (TAU * i) / n);
   root.innerHTML = `
-    <p class="act-help">${t("Choisis le nombre de points et le saut. Les angles aux pointes sont mesurés à partir des coordonnées. Le bouton « Points au hasard » déplace les points sur le cercle : que devient la somme ?", "Choose the number of points and the skip. The tip angles are measured from the coordinates. The “Random points” button moves the points on the circle: what happens to the sum?")}</p>
+    <p class="act-help">${t("Choisis le nombre de points et le saut. Les angles aux pointes sont mesurés à partir des coordonnées. Le bouton « Points au hasard » déplace les points sur le cercle.", "Choose the number of points and the skip. The tip angles are measured from the coordinates. The “Random points” button moves the points on the circle.")}</p>
     <svg class="act-svg" viewBox="0 0 520 320" role="img" aria-label="${t("Étoile à n branches", "Star with n points")}"></svg>
     <div class="act-controls">
       <label class="act-field" for="st-n"><span class="act-label">${t("Points", "Points")} <output id="st-nout"></output></span><input id="st-n" type="range" min="5" max="13" step="1" value="${n}"></label>
@@ -118,40 +115,13 @@ export function star(root, { t, q }) {
   return () => {};
 }
 
-/* ------------------------------------------------------------------- box */
-export function box(root, { t, q }) {
-  const [a, b, c] = boxSet(q.set), U = boxUnfoldings(a, b, c);
-  let pick = 0;
-  root.innerHTML = `
-    <p class="act-help">${t("La fourmi traverse deux faces voisines. Choisis la paire de faces : on les déplie en un rectangle et le trajet devient un segment de droite. Laquelle donne le plus court trajet ?", "The ant crosses two neighbouring faces. Choose the pair of faces: they are unfolded into one rectangle and the route becomes a straight segment. Which pair gives the shortest route?")}</p>
-    <svg class="act-svg" viewBox="0 0 520 280" role="img" aria-label="${t("Deux faces dépliées", "Two unfolded faces")}"></svg>
-    <fieldset class="act-choice" role="radiogroup"><legend>${t("Faces dépliées", "Unfolded faces")}</legend>${U.map((u, i) => `<label><input type="radio" name="bx" value="${i}" ${i === 0 ? "checked" : ""}> ${t("dimensions", "dimensions")} ${u.cross[0]} + ${u.cross[1]} ${t("et hauteur", "and height")} ${u.height}</label>`).join("")}</fieldset>
-    <p class="act-readout" id="bx-read" role="status" aria-live="polite"></p>`;
-  const svg = root.querySelector("svg"), read = root.querySelector("#bx-read"), seen = new Set();
-  function draw() {
-    svg.replaceChildren();
-    const u = U[pick], w = u.cross[0] + u.cross[1], h = u.height, sc = Math.min(440 / w, 210 / h), x0 = (520 - w * sc) / 2, y0 = 20;
-    svgEl("rect", { x: x0, y: y0, width: u.cross[0] * sc, height: h * sc, fill: `color-mix(in srgb, ${colour(0)} 35%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 2 }, svg);
-    svgEl("rect", { x: x0 + u.cross[0] * sc, y: y0, width: u.cross[1] * sc, height: h * sc, fill: `color-mix(in srgb, ${colour(2)} 35%, var(--surface))`, stroke: "var(--ink)", "stroke-width": 2 }, svg);
-    svgEl("line", { x1: x0, y1: y0 + h * sc, x2: x0 + w * sc, y2: y0, stroke: colour(1), "stroke-width": 4, "stroke-linecap": "round" }, svg);
-    svgEl("circle", { cx: x0, cy: y0 + h * sc, r: 6, fill: colour(1) }, svg); svgEl("circle", { cx: x0 + w * sc, cy: y0, r: 6, fill: colour(1) }, svg);
-    for (const [x, y, s2, anchor] of [[x0 + (u.cross[0] * sc) / 2, y0 + h * sc + 20, `${u.cross[0]}`, "middle"], [x0 + u.cross[0] * sc + (u.cross[1] * sc) / 2, y0 + h * sc + 20, `${u.cross[1]}`, "middle"], [x0 - 10, y0 + (h * sc) / 2, `${h}`, "end"]]) { const tx = svgEl("text", { x, y, "text-anchor": anchor, style: "font:700 14px var(--body);fill:var(--ink)" }, svg); tx.textContent = s2; }
-    seen.add(pick);
-    const done = seen.size === 3, best = boxPath(a, b, c);
-    read.innerHTML = `√((${u.cross[0]} + ${u.cross[1]})² + ${h}²) = √${w * w + h * h} ≈ <strong>${Math.round(u.length * 100) / 100} cm</strong>${done ? ` · ${t("le plus court des trois", "the shortest of the three")} : <strong>${Math.round(best * 100) / 100} cm</strong>` : ` · ${t("essaie les deux autres paires", "try the other two pairs")}`}`;
-  }
-  root.querySelectorAll('input[name="bx"]').forEach((r) => r.addEventListener("change", () => { pick = Number(r.value); draw(); }));
-  draw();
-  return () => {};
-}
-
 /* ----------------------------------------------------------------- merge */
 export function merge(root, { t, q }) {
   const N = q.n;
-  let nums, history, sel;
+  let nums, history, sel, showInv = false;
   const reset = () => { nums = Array.from({ length: N }, (_, i) => i + 1); history = []; sel = []; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche deux nombres pour les remplacer par a + b + ab. Regarde la quantité calculée en dessous : change-t-elle ?", "Tap two numbers to replace them by a + b + ab. Watch the quantity computed below: does it change?")}</p>
+    <p class="act-help">${t("Touche deux nombres pour les remplacer par a + b + ab.", "Tap two numbers to replace them by a + b + ab.")}</p>
     <div class="cl-grid cl-merge" id="mg-board" role="group" aria-label="${t("Nombres au tableau", "Numbers on the board")}"></div>
     <div class="act-controls"><button class="btn btn-secondary" id="mg-rand" type="button">${t("Fusion au hasard", "Random merge")}</button><button class="btn-quiet" id="mg-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="mg-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="mg-read" role="status" aria-live="polite"></p>
@@ -161,7 +131,7 @@ export function merge(root, { t, q }) {
     board.innerHTML = nums.map((x, i) => `<button type="button" class="cl-tok" data-i="${i}" aria-pressed="${sel.includes(i)}">${x}</button>`).join("");
     logEl.innerHTML = history.map((h) => `<li>${h.a} + ${h.b} + ${h.a}×${h.b} = <strong>${h.r}</strong></li>`).join("");
     const prod = mergeProduct(nums);
-    read.innerHTML = `${t("Produit de tous les (nombre + 1)", "Product of all the (number + 1)")} = <strong>${prod.toLocaleString(t("fr-FR", "en-US"))}</strong>${nums.length === 1 ? ` — ${t("il reste", "left")} <strong>${nums[0]}</strong>, ${t("soit", "that is")} ${prod.toLocaleString(t("fr-FR", "en-US"))} − 1.` : ""}`;
+    read.innerHTML = `${t("Étapes", "Steps")} : <strong>${history.length}</strong>${showInv ? ` · ${t("Produit de tous les (nombre + 1)", "Product of all the (number + 1)")} = <strong>${prod.toLocaleString(t("fr-FR", "en-US"))}</strong>` : ""}${nums.length === 1 ? ` · ${t("il reste", "left")} <strong>${nums[0]}</strong>${showInv ? `, ${t("soit", "that is")} ${prod.toLocaleString(t("fr-FR", "en-US"))} − 1` : ""}.` : ""}`;
     root.querySelector("#mg-undo").disabled = !history.length; root.querySelector("#mg-rand").disabled = nums.length < 2;
   }
   function doMerge(i, j) { const a = nums[i], b = nums[j], r = a + b + a * b; history.push({ a, b, r, nums: [...nums] }); nums = nums.filter((_, k) => k !== i && k !== j); nums.push(r); sel = []; draw(); }
@@ -171,16 +141,16 @@ export function merge(root, { t, q }) {
   root.querySelector("#mg-reset").addEventListener("click", () => { reset(); draw(); });
   void mergeFinal;
   reset(); draw();
-  return () => {};
+  return onHintAction("merge", { invariant: () => { showInv = true; draw(); } });
 }
 
 /* ------------------------------------------------------------ chameleons */
 export function cham(root, { t, q }) {
   const start = chamSet(q.set), NAMES = [t("rouges", "red"), t("verts", "green"), t("bleus", "blue")], COL = [colour(3), colour(2), colour(0)];
-  let s, hist;
+  let s, hist, level = 0;   // 0: nothing, 1: raw differences (hint 1), 2: differences modulo 3 (hint 2)
   const reset = () => { s = [...start]; hist = []; };
   root.innerHTML = `
-    <p class="act-help">${t("Choisis quelles couleurs se rencontrent : les deux prennent la troisième couleur. Peux-tu rendre tous les caméléons de la même couleur ? Observe les différences modulo 3.", "Choose which colours meet: both take the third colour. Can you make all the chameleons the same colour? Watch the differences modulo 3.")}</p>
+    <p class="act-help">${t("Choisis quelles couleurs se rencontrent : les deux prennent la troisième couleur. Peux-tu rendre tous les caméléons de la même couleur ?", "Choose which colours meet: both take the third colour. Can you make all the chameleons the same colour?")}</p>
     <div class="cm-bars" id="cm-bars" aria-hidden="true"></div>
     <div class="act-buttons" id="cm-btns" role="group" aria-label="${t("Rencontres", "Meetings")}"></div>
     <div class="act-controls"><button class="btn-quiet" id="cm-undo" type="button">${t("Annuler", "Undo")}</button><button class="btn-quiet" id="cm-reset" type="button">${t("Recommencer", "Restart")}</button></div>
@@ -193,22 +163,22 @@ export function cham(root, { t, q }) {
     btns.innerHTML = PAIRS.map(([i, j, k]) => `<button type="button" class="btn btn-secondary cm-meet" data-i="${i}" data-j="${j}" data-k="${k}" ${s[i] > 0 && s[j] > 0 ? "" : "disabled"}>${NAMES[i]} + ${NAMES[j]} → ${NAMES[k]}</button>`).join("");
     root.querySelector("#cm-undo").disabled = !hist.length;
     const single = s.filter((x) => x > 0).length === 1;
-    read.innerHTML = `${t("Rencontres", "Meetings")} : <strong>${hist.length}</strong> · r − v ≡ <strong>${mod(s[0] - s[1])}</strong>, v − b ≡ <strong>${mod(s[1] - s[2])}</strong>, b − r ≡ <strong>${mod(s[2] - s[0])}</strong> (mod 3)${single ? ` — <strong>${t("tous de la même couleur !", "all one colour!")}</strong> ${t(`En ${hist.length} rencontres ; le minimum possible est ${chamMin(...start)}.`, `In ${hist.length} meetings; the least possible is ${chamMin(...start)}.`)}` : ""}`;
+    read.innerHTML = `${t("Rencontres", "Meetings")} : <strong>${hist.length}</strong>${level === 1 ? ` · r − v = <strong>${s[0] - s[1]}</strong>, v − b = <strong>${s[1] - s[2]}</strong>, b − r = <strong>${s[2] - s[0]}</strong>` : level === 2 ? ` · r − v ≡ <strong>${mod(s[0] - s[1])}</strong>, v − b ≡ <strong>${mod(s[1] - s[2])}</strong>, b − r ≡ <strong>${mod(s[2] - s[0])}</strong> (mod 3)` : ""}${single ? ` · <strong>${t("tous de la même couleur !", "all one colour!")}</strong> ${t(`En ${hist.length} rencontres ; le minimum possible est ${chamMin(...start)}.`, `In ${hist.length} meetings; the least possible is ${chamMin(...start)}.`)}` : ""}`;
   }
   btns.addEventListener("click", (e) => { const b = e.target.closest(".cm-meet"); if (!b) return; const [i, j, k] = [b.dataset.i, b.dataset.j, b.dataset.k].map(Number); hist.push([...s]); s[i]--; s[j]--; s[k] += 2; draw(); });
   root.querySelector("#cm-undo").addEventListener("click", () => { const p = hist.pop(); if (p) { s = p; draw(); } });
   root.querySelector("#cm-reset").addEventListener("click", () => { reset(); draw(); });
   reset(); draw();
-  return () => {};
+  return onHintAction("cham", { diff: () => { level = Math.max(level, 1); draw(); }, mod: () => { level = 2; draw(); } });
 }
 
 /* ------------------------------------------------------------ inversions */
 export function inversionsAct(root, { t, q }) {
   const p0 = permOf(q.n, q.seed), N = q.n, total = inversions(p0);
-  let row, swaps;
+  let row, swaps, showCounter = false;
   const reset = () => { row = [...p0]; swaps = 0; };
   root.innerHTML = `
-    <p class="act-help">${t("Touche une personne pour la faire échanger sa place avec sa voisine de droite, si elle est plus grande. Combien d’échanges au total ? Regarde le compteur d’inversions.", "Tap a person to swap places with the neighbour on the right, if taller. How many swaps in all? Watch the inversion counter.")}</p>
+    <p class="act-help">${t("Touche une personne pour la faire échanger sa place avec sa voisine de droite, si elle est plus grande. Combien d’échanges au total ?", "Tap a person to swap places with the neighbour on the right, if taller. How many swaps in all?")}</p>
     <div class="iv-row" id="iv-row" role="group" aria-label="${t("Rangée de personnes", "Row of people")}"></div>
     <div class="act-controls"><button class="btn btn-secondary" id="iv-one" type="button">${t("Un échange au hasard", "One random swap")}</button><button class="btn btn-secondary" id="iv-all" type="button">${t("Tout trier", "Sort it all")}</button><button class="btn-quiet" id="iv-reset" type="button">${t("Recommencer", "Restart")}</button></div>
     <p class="act-readout" id="iv-read" role="status" aria-live="polite"></p>`;
@@ -217,7 +187,7 @@ export function inversionsAct(root, { t, q }) {
     rowEl.innerHTML = row.map((h, i) => `<button type="button" class="iv-bar" data-i="${i}" style="height:${28 + (h / N) * 120}px;background:color-mix(in srgb, ${colour(h - 1)} 55%, var(--surface))" aria-label="${t("taille", "height")} ${h}">${h}</button>`).join("");
     const inv = inversions(row);
     root.querySelector("#iv-one").disabled = inv === 0; root.querySelector("#iv-all").disabled = inv === 0;
-    read.innerHTML = msg || `${t("Échanges faits", "Swaps made")} : <strong>${swaps}</strong> · ${t("inversions restantes", "inversions left")} : <strong>${inv}</strong> · ${t("somme", "sum")} <strong>${swaps + inv}</strong>${inv === 0 ? ` — ${t(`rangée triée en ${swaps} échanges.`, `row sorted in ${swaps} swaps.`)}` : ""}`;
+    read.innerHTML = msg || `${t("Échanges faits", "Swaps made")} : <strong>${swaps}</strong>${showCounter ? ` · ${t("inversions restantes", "inversions left")} : <strong>${inv}</strong> · ${t("somme", "sum")} <strong>${swaps + inv}</strong>` : ""}${inv === 0 ? ` · ${t(`rangée triée en ${swaps} échanges.`, `row sorted in ${swaps} swaps.`)}` : ""}`;
   }
   const swap = (i) => { [row[i], row[i + 1]] = [row[i + 1], row[i]]; swaps++; };
   rowEl.addEventListener("click", (e) => { const b = e.target.closest(".iv-bar"); if (!b) return; const i = Number(b.dataset.i); if (i + 1 < N && row[i] > row[i + 1]) { swap(i); draw(); } else draw(t("Pas d’échange : cette personne n’est pas plus grande que sa voisine de droite.", "No swap: this person is not taller than the neighbour on the right.")); });
@@ -226,7 +196,7 @@ export function inversionsAct(root, { t, q }) {
   root.querySelector("#iv-reset").addEventListener("click", () => { reset(); draw(); });
   void total;
   reset(); draw();
-  return () => {};
+  return onHintAction("inversions", { counter: () => { showCounter = true; draw(); } });
 }
 
 /* ----------------------------------------------------------------- piles */

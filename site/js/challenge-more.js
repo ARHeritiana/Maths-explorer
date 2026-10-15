@@ -76,7 +76,7 @@ export function artgallery(root, { t, q }) {
   const guards = [];
   let drag = null, sel = -1, mode = "guard", best = 0;
   root.innerHTML = `
-    <p class="act-help">${t(`Une galerie à ${N} côtés. Pose des gardiens (touche la galerie ; glisse un gardien pour le déplacer, touche-le pour l’enlever). Puis change de galerie ou déforme celle-ci : glisse un sommet, tant que les murs ne se croisent pas. Cherche des formes qui demandent beaucoup de gardiens.`, `A gallery with ${N} sides. Place guards (tap the gallery; drag a guard to move it, tap it to remove it). Then change the gallery or reshape this one: drag a vertex as long as the walls do not cross. Look for shapes that need many guards.`)}</p>
+    <p class="act-help">${t(`Une galerie à ${N} côtés. Pose des gardiens (touche la galerie ; glisse un gardien pour le déplacer, touche-le pour l’enlever). Puis change de galerie ou déforme celle-ci : glisse un sommet, tant que les murs ne se croisent pas.`, `A gallery with ${N} sides. Place guards (tap the gallery; drag a guard to move it, tap it to remove it). Then change the gallery or reshape this one: drag a vertex as long as the walls do not cross.`)}</p>
     <div class="act-controls" role="group" aria-label="${t("Que déplacer ?", "What to move?")}">
       <button class="btn btn-secondary" id="ag-m-guard" type="button" aria-pressed="true">${t("Gardiens", "Guards")}</button>
       <button class="btn btn-secondary" id="ag-m-vertex" type="button" aria-pressed="false">${t("Sommets", "Vertices")}</button>

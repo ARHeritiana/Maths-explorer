@@ -38,3 +38,11 @@ export function makeCtx(svg, lang) {
   const wrap = (x, y, str, max, attrs = {}, dy = 17) => { const words = String(str).split(" "); let ln = "", k = 0; for (const w of words) { if ((ln + " " + w).trim().length > max) { text(x, y + k++ * dy, ln, attrs); ln = w; } else ln = (ln + " " + w).trim(); } if (ln) text(x, y + k * dy, ln, attrs); };
   return { svg, t, line, circ, rect, text, path, wrap };
 }
+
+// Hints can act on the canvas: the hint panel dispatches "challenge-action" ({ id, act }); an activity registers its handlers
+// here and calls the returned function when it stops.
+export function onHintAction(id, handlers) {
+  const fn = (e) => { if (e.detail?.id === id) handlers[e.detail.act]?.(); };
+  document.addEventListener("challenge-action", fn);
+  return () => document.removeEventListener("challenge-action", fn);
+}
