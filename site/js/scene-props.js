@@ -127,3 +127,79 @@ export function makeBalance(parent, { x = 260, y = 150, arm = 86, post = 70 } = 
     lerp,
   };
 }
+
+/* ------------------------------------------------------------------ a racehorse */
+// Drawn facing right with its hooves at y = 0. set({ x, y, dir, phase, amp, scale, label, dim, glow }): phase is the gallop
+// cycle in turns, amp the stride (0 = standing), label is written on the saddle cloth.
+export function makeHorse(parent, { coat = "#9a5b2e", mane = "#3b2312", cloth = "#2563eb" } = {}) {
+  const root = el("g", { class: "hs" }, parent), glow = el("ellipse", { cx: 4, cy: -28, rx: 34, ry: 28, fill: "#ffe08a", opacity: 0 }, root), flip = el("g", {}, root), bob = el("g", {}, flip);
+  const leg = (x) => { const g = el("g", { transform: `translate(${x} -21)` }, bob); el("rect", { x: -2.6, y: 0, width: 5.2, height: 21, rx: 2.4, fill: coat, stroke: "#0003", "stroke-width": 0.6 }, g); el("rect", { x: -3, y: 17.5, width: 6, height: 4, rx: 1.6, fill: mane }, g); return g; };
+  const legs = [leg(-14), leg(-10), leg(12), leg(16)];
+  el("path", { d: "M-21 -30 Q-34 -26 -31 -10 Q-27 -20 -20 -24", fill: mane }, bob);
+  el("ellipse", { cx: 0, cy: -27, rx: 23, ry: 10.5, fill: coat, stroke: "#0003", "stroke-width": 0.8 }, bob);
+  el("path", { d: "M12 -33 L22 -48 L32 -44 L24 -28Z", fill: coat, stroke: "#0003", "stroke-width": 0.8, "stroke-linejoin": "round" }, bob);
+  el("ellipse", { cx: 32, cy: -45, rx: 10, ry: 5.2, fill: coat, stroke: "#0003", "stroke-width": 0.8, transform: "rotate(24 32 -45)" }, bob);
+  el("path", { d: "M24 -50 L27 -57 L30 -49Z", fill: coat, stroke: "#0003", "stroke-width": 0.6 }, bob);
+  el("path", { d: "M14 -34 Q20 -50 24 -50 Q20 -42 17 -33Z", fill: mane }, bob);
+  el("circle", { cx: 30, cy: -47, r: 1.5, fill: "#111" }, bob);
+  el("rect", { x: -10, y: -34, width: 18, height: 13, rx: 4, fill: cloth, stroke: "#0004", "stroke-width": 0.8 }, bob);
+  const txt = el("text", { x: -1, y: -24.5, "text-anchor": "middle", style: "font:700 10px var(--body);fill:#fff" }, root);
+  return {
+    root,
+    set({ x, y, dir = 1, phase = 0, amp = 0, scale = 1, label = "", dim = 0, glow: gl = 0, cloth: c }) {
+      root.setAttribute("visibility", scale <= 0.01 ? "hidden" : "visible");
+      root.setAttribute("transform", `translate(${x.toFixed(2)} ${y.toFixed(2)}) scale(${(scale * dir).toFixed(3)} ${scale.toFixed(3)})`);
+      root.setAttribute("opacity", String(1 - 0.72 * dim));
+      glow.setAttribute("opacity", String(0.42 * gl));
+      const s = Math.sin(phase * Math.PI * 2), s2 = Math.sin(phase * Math.PI * 2 + 1.6);
+      bob.setAttribute("transform", `translate(0 ${(-Math.abs(s) * 3.5 * amp).toFixed(2)})`);
+      legs[0].setAttribute("transform", `translate(-14 -21) rotate(${(-38 * amp * s2).toFixed(1)})`); legs[1].setAttribute("transform", `translate(-10 -21) rotate(${(38 * amp * s).toFixed(1)})`);
+      legs[2].setAttribute("transform", `translate(12 -21) rotate(${(38 * amp * s2).toFixed(1)})`); legs[3].setAttribute("transform", `translate(16 -21) rotate(${(-38 * amp * s).toFixed(1)})`);
+      if (c) bob.children[bob.children.length - 1].setAttribute("fill", c);
+      txt.textContent = label; txt.setAttribute("transform", dir < 0 ? "scale(-1 1) translate(2 0)" : "");
+    },
+  };
+}
+
+/* ------------------------------------------------------------------ an ant */
+export function makeAnt(parent, { body = "#3a2418", accent = "#b8442a" } = {}) {
+  const root = el("g", { class: "an" }, parent), inner = el("g", {}, root);
+  const legs = [-6, -1, 4].map((x, i) => { const g = el("g", { transform: `translate(${x} -5)` }, inner); el("path", { d: "M0 0 L-3 5 M0 0 L3 5", stroke: body, "stroke-width": 1.3, "stroke-linecap": "round", fill: "none" }, g); return g; });
+  el("path", { d: "M8 -9 Q12 -16 16 -14 M8 -9 Q11 -17 13 -18", stroke: body, "stroke-width": 1.2, fill: "none", "stroke-linecap": "round" }, inner);
+  el("circle", { cx: -11, cy: -7, r: 5.6, fill: accent, stroke: body, "stroke-width": 1.2 }, inner);
+  el("circle", { cx: -1, cy: -7, r: 3.8, fill: body }, inner);
+  el("circle", { cx: 7, cy: -8, r: 4.6, fill: body }, inner);
+  el("circle", { cx: 9, cy: -9, r: 1.3, fill: "#fff" }, inner); el("circle", { cx: 9.4, cy: -9, r: 0.6, fill: "#111" }, inner);
+  return {
+    root,
+    set({ x, y, rot = 0, dir = 1, phase = 0, amp = 1, scale = 1 }) {
+      root.setAttribute("transform", `translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${rot.toFixed(2)}) scale(${(dir * scale).toFixed(3)} ${scale.toFixed(3)})`);
+      legs.forEach((g, i) => { const a = Math.sin((phase + i / 3) * Math.PI * 2) * 28 * amp; g.setAttribute("transform", `translate(${[-6, -1, 4][i]} -5) rotate(${a.toFixed(1)})`); });
+      inner.setAttribute("transform", `translate(0 ${(-Math.abs(Math.sin(phase * Math.PI * 2)) * 0.9 * amp).toFixed(2)})`);
+    },
+  };
+}
+
+/* ------------------------------------------------------------------ a chameleon */
+// Facing right, feet at y = 0. set({ x, y, dir, scale, from, to, t, hop, eye }): the skin is `from` mixed `t` towards `to`.
+export function makeChameleon(parent) {
+  const root = el("g", { class: "cm" }, parent), skin = [];
+  const part = (name, attrs) => { const e = el(name, { stroke: "#0003", "stroke-width": 1, ...attrs }, root); skin.push(e); return e; };
+  part("path", { d: "M-12 -9 C-26 -9 -30 -20 -22 -24 C-16 -26 -14 -19 -19 -18", fill: "none", "stroke-width": 4.5, "stroke-linecap": "round", stroke: "#fff0" }).setAttribute("stroke", "currentColor");
+  el("path", { d: "M-6 0 L-8 -6 M6 0 L8 -6", stroke: "#2a2a2a", "stroke-width": 2.4, "stroke-linecap": "round" }, root);
+  part("ellipse", { cx: 0, cy: -10, rx: 15, ry: 8.5 });
+  part("path", { d: "M-8 -17 l3 -4 l3 4 l3 -4 l3 4 l3 -4 l3 4", "stroke-width": 1.4 });
+  part("ellipse", { cx: 14, cy: -13, rx: 7.5, ry: 6 });
+  el("circle", { cx: 16, cy: -15, r: 3.4, fill: "#fff", stroke: "#222", "stroke-width": 1 }, root); const pupil = el("circle", { cx: 17, cy: -15, r: 1.5, fill: "#111" }, root);
+  el("path", { d: "M-8 -3 l-2 5 M7 -3 l2 5", stroke: "#2a2a2a", "stroke-width": 2.4, "stroke-linecap": "round" }, root);
+  return {
+    root,
+    set({ x, y, dir = 1, scale = 1, from = "#c2185b", to = from, t = 0, hop = 0, glance = 0 }) {
+      root.setAttribute("transform", `translate(${x.toFixed(2)} ${(y - hop).toFixed(2)}) scale(${(dir * scale).toFixed(3)} ${scale.toFixed(3)})`);
+      root.setAttribute("visibility", scale <= 0.01 ? "hidden" : "visible");
+      const fill = t <= 0 ? from : t >= 1 ? to : `color-mix(in srgb, ${to} ${(t * 100).toFixed(0)}%, ${from})`;
+      skin.forEach((e) => { if (e.tagName === "path" && e.getAttribute("stroke") === "currentColor") e.style.stroke = fill; else e.setAttribute("fill", fill); });
+      pupil.setAttribute("cx", String(17 + glance));
+    },
+  };
+}

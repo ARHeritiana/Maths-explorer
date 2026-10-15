@@ -9,6 +9,8 @@ import { triangulate, threeColour, visibility } from "./challenge-geometry.js";
 import { SOLUTIONS_2 } from "./challenge-solutions-2.js";
 import { SOLUTIONS_3 } from "./challenge-solutions-3.js";
 import { SCENES_1 } from "./solution-scenes-1.js";
+import { SCENES_2 } from "./solution-scenes-2.js";
+import { SCENES_3 } from "./solution-scenes-3.js";
 import { comb, josephusOrder, eggPlan, eggCover, eggDrops, graphFor, layoutOf, bridgeGeom, degrees, minRemoval, trailOf } from "./challenge-variants.js";
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -443,7 +445,7 @@ const josephus = {
 
 const LEGACY = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2, ...SOLUTIONS_3 };
 // Cartoon scenes (mount/update) replace the older diagram of the same challenge but keep its captions (steps).
-const SCENES = { ...SCENES_1 };
+const SCENES = { ...SCENES_1, ...SCENES_2, ...SCENES_3 };
 export const SOLUTIONS = Object.fromEntries(Object.entries(LEGACY).map(([id, old]) => {
   const sc = SCENES[id];
   return [id, sc ? { ...old, ...sc, steps: sc.steps ?? old.steps, draw: undefined } : old];
