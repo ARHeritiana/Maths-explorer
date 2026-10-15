@@ -111,14 +111,16 @@ function dominoes(root, { t, reduced, q }) {
   let nextId = 1;
   let drag = null;
   let colour = false;
+  let tapRemoves = false;   // what a tap on a placed domino does: turn it (default) or remove it
   let kbo = "h";
   let cursor = { c: Math.floor(N / 2) - 1, r: Math.floor(N / 2) - 1 };
   let focused = false;
 
   root.innerHTML = `
-    <p class="act-help">${t("Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. With a keyboard: arrows, Enter to place, Delete to remove.")}</p>
+    <p class="act-help">${t("Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Sur téléphone, le bouton « Toucher un domino » permet aussi de les enlever d’un simple toucher. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. On a phone, the “Tapping a domino” button also lets you remove one with a simple tap. With a keyboard: arrows, Enter to place, Delete to remove.")}</p>
     <svg class="act-svg dom-svg" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("Plateau de dominos", "Domino board")}"></svg>
     <div class="act-controls">
+      <button class="btn btn-secondary" id="dm-tap" type="button" aria-pressed="false">${t("Toucher un domino : le tourner", "Tapping a domino: turn it")}</button>
       <button class="btn btn-secondary" id="dm-orient" type="button">${t("Domino au clavier : horizontal", "Keyboard domino: horizontal")}</button>
       <button class="btn btn-secondary" id="dm-auto" type="button">${t("Essai au hasard", "Random attempt")}</button>
       <button class="btn-quiet" id="dm-clear" type="button">${t("Tout enlever", "Remove all")}</button>
@@ -257,6 +259,8 @@ function dominoes(root, { t, reduced, q }) {
     let note = "";
     if (cancel) {
       if (d.origin) place(d.origin);
+    } else if (!d.moved && d.origin && tapRemoves) {
+      note = t("Domino enlevé.", "Domino removed.");
     } else if (!d.moved && d.origin) {
       const turned = { ...d.origin, o: d.origin.o === "h" ? "v" : "h" };
       if (valid(turned, null)) place(turned);
@@ -324,6 +328,11 @@ function dominoes(root, { t, reduced, q }) {
     root.querySelector("#dm-orient").textContent = `${t("Domino au clavier", "Keyboard domino")} : ${kbo === "h" ? t("horizontal", "horizontal") : t("vertical", "vertical")}`;
   }
   root.querySelector("#dm-orient").addEventListener("click", toggleOrient);
+  root.querySelector("#dm-tap").addEventListener("click", (e) => {
+    tapRemoves = !tapRemoves;
+    e.currentTarget.setAttribute("aria-pressed", String(tapRemoves));
+    e.currentTarget.textContent = tapRemoves ? t("Toucher un domino : l’enlever", "Tapping a domino: remove it") : t("Toucher un domino : le tourner", "Tapping a domino: turn it");
+  });
   // The colouring is a hint, so its button lives with hint 1 in the hint panel (see HINT_ACTIONS in app.js). It reaches
   // the activity as a "challenge-action" event; the activity keeps the button's pressed state in step.
   const hintButton = () => document.querySelector('[data-hint-act="colour"]');
