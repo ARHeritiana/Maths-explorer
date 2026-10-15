@@ -25,3 +25,16 @@ export const colour = (i) => `var(--c${(((i % 8) + 8) % 8) + 1})`;
 export function lockTouch(svg, selector) {
   svg.addEventListener("touchstart", (e) => { if (e.target.closest?.(selector)) e.preventDefault(); }, { passive: false });
 }
+
+// Drawing helpers bound to an SVG element (or group) for the animated solutions; t picks the language.
+export function makeCtx(svg, lang) {
+  const t = (fr, en) => (lang === "fr" ? fr : en);
+  const line = (x1, y1, x2, y2, attrs = {}) => svgEl("line", { x1, y1, x2, y2, ...attrs }, svg);
+  const circ = (cx, cy, r, attrs = {}) => svgEl("circle", { cx, cy, r, ...attrs }, svg);
+  const rect = (x, y, width, height, attrs = {}) => svgEl("rect", { x, y, width, height, ...attrs }, svg);
+  const text = (x, y, s, attrs = {}) => { const el = svgEl("text", { x, y, ...attrs }, svg); el.textContent = s; return el; };
+  const path = (d, attrs = {}) => svgEl("path", { d, ...attrs }, svg);
+  // greedy word wrap into several <text> lines of at most `max` characters
+  const wrap = (x, y, str, max, attrs = {}, dy = 17) => { const words = String(str).split(" "); let ln = "", k = 0; for (const w of words) { if ((ln + " " + w).trim().length > max) { text(x, y + k++ * dy, ln, attrs); ln = w; } else ln = (ln + " " + w).trim(); } if (ln) text(x, y + k * dy, ln, attrs); };
+  return { svg, t, line, circ, rect, text, path, wrap };
+}

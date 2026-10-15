@@ -1034,6 +1034,7 @@ function bindChallenges() {
     const q = cid ? paramsOf(cid) : {};
     stopActivity = host ? mountActivity(host.dataset.activity, host, { lang, reduced: reducedMotion, params: q }) : () => {};
     sol = solHost ? mountSolution(solHost.dataset.solution, solHost, { lang, reduced: reducedMotion, params: q }) : null;
+    if (solHost) solHost.__solution = sol;   // handle for the browser tests (seek to any frame)
     if ($(".solution")?.open) sol?.start();
   }
   // The animated solution starts the first time the worked solution is opened and stops when it is closed.

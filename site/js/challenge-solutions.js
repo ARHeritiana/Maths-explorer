@@ -4,10 +4,11 @@
 // so any frame can be reproduced and scrubbed.
 // Controls: restart, previous, play or pause, next. With reduced motion nothing plays by itself: each step shows its
 // finished state. The caption of the current step is announced in a polite live region.
-import { svgEl, colour } from "./challenge-kit.js";
+import { svgEl, colour, makeCtx } from "./challenge-kit.js";
 import { triangulate, threeColour, visibility } from "./challenge-geometry.js";
 import { SOLUTIONS_2 } from "./challenge-solutions-2.js";
 import { SOLUTIONS_3 } from "./challenge-solutions-3.js";
+import { SCENES_1 } from "./solution-scenes-1.js";
 import { comb, josephusOrder, eggPlan, eggCover, eggDrops, graphFor, layoutOf, bridgeGeom, degrees, minRemoval, trailOf } from "./challenge-variants.js";
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -16,17 +17,7 @@ const seg = (p, a, b) => clamp01((p - a) / (b - a));   // sub-progress of p betw
 const lerp = (a, b, k) => a + (b - a) * k;
 const P = (fr, en) => [fr, en];
 
-function ctxFor(svg, lang) {
-  const t = (fr, en) => (lang === "fr" ? fr : en);
-  const line = (x1, y1, x2, y2, attrs = {}) => svgEl("line", { x1, y1, x2, y2, ...attrs }, svg);
-  const circ = (cx, cy, r, attrs = {}) => svgEl("circle", { cx, cy, r, ...attrs }, svg);
-  const rect = (x, y, width, height, attrs = {}) => svgEl("rect", { x, y, width, height, ...attrs }, svg);
-  const text = (x, y, s, attrs = {}) => { const el = svgEl("text", { x, y, ...attrs }, svg); el.textContent = s; return el; };
-  const path = (d, attrs = {}) => svgEl("path", { d, ...attrs }, svg);
-  // greedy word wrap into several <text> lines of at most `max` characters
-  const wrap = (x, y, str, max, attrs = {}, dy = 17) => { const words = String(str).split(" "); let ln = "", k = 0; for (const w of words) { if ((ln + " " + w).trim().length > max) { text(x, y + k++ * dy, ln, attrs); ln = w; } else ln = (ln + " " + w).trim(); } if (ln) text(x, y + k * dy, ln, attrs); };
-  return { svg, t, line, circ, rect, text, path, wrap };
-}
+const ctxFor = makeCtx;
 
 /* ----------------------------------------------------------------- doors */
 const doors = {
@@ -450,7 +441,13 @@ const josephus = {
   },
 };
 
-export const SOLUTIONS = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2, ...SOLUTIONS_3 };
+const LEGACY = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2, ...SOLUTIONS_3 };
+// Cartoon scenes (mount/update) replace the older diagram of the same challenge but keep its captions (steps).
+const SCENES = { ...SCENES_1 };
+export const SOLUTIONS = Object.fromEntries(Object.entries(LEGACY).map(([id, old]) => {
+  const sc = SCENES[id];
+  return [id, sc ? { ...old, ...sc, steps: sc.steps ?? old.steps, draw: undefined } : old];
+}));
 export const hasSolution = (id) => Object.hasOwn(SOLUTIONS, id);
 export const stepsOf = (id, q) => SOLUTIONS[id].steps(q);
 
@@ -518,7 +515,8 @@ export function mountSolution(id, root, { lang, reduced: reducedPref, params = {
     else { if (step === nSteps - 1 && p >= 1) { step = 0; p = 0; } auto = true; paint(); run(); }
   });
   paint();
-  return { stop: halt, start: () => { if (!started && !reduced()) { started = true; auto = true; paint(); run(); } } };
+  // seek: show the frame at (step, p) without playing; used by the browser tests and for scrubbing
+  return { stop: halt, seek: (k, pp = 1) => { halt(); step = clamp(k, 0, nSteps - 1); p = clamp(pp, 0, 1); paint(); }, steps: nSteps, start: () => { if (!started && !reduced()) { started = true; auto = true; paint(); run(); } } };
 }
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 void lerp;
