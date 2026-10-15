@@ -6,7 +6,7 @@ dist/ is what the host serves and is committed (the host has no build step). It 
     js/enrichment-data.js), written by the other pipeline steps.
 Edit site/, never the dist/ copies; `python -m mxbuild site --check` fails when a copy differs from its source.
 """
-import shutil
+import hashlib, re, shutil
 from . import ROOT, DIST
 
 SITE = ROOT / 'site'
@@ -30,8 +30,36 @@ def orphans():
     return sorted(DIST / f for f in found - GENERATED if not (SITE / f).exists())
 
 
+# Cache busting without a build step on the host: index.html carries an import map that gives every script a URL with the
+# hash of its content, so a changed script is fetched again and an unchanged one stays cached. Browsers that cached an old
+# lab-objects.js beside a new app.js would otherwise show a mix of old and new pages. The block is regenerated here.
+MAP_START, MAP_END = '<!-- importmap:start -->', '<!-- importmap:end -->'
+
+
+def _hash(path):
+    return hashlib.sha1(path.read_bytes()).hexdigest()[:10]
+
+
+def versioned_index():
+    """index.html with its import map, script and style versions brought up to date from the files of dist/ (and site/)."""
+    text = (SITE / 'index.html').read_text(encoding='utf-8')
+    def current(rel):   # the dist copy once written, else the source: they are byte-identical after `make site`
+        return DIST / rel if (DIST / rel).exists() and not (SITE / rel).exists() else SITE / rel
+    files = sorted({p.relative_to(SITE).as_posix() for p in (SITE / 'js').glob('*.js')} | {p.relative_to(DIST).as_posix() for p in (DIST / 'js').glob('*.js')})
+    imports = {f'./{f}': f'./{f}?v={_hash(current(f))}' for f in files}
+    import json
+    block = (MAP_START + '\n    <script type="importmap">\n' + json.dumps({'imports': imports}, indent=2).replace('\n', '\n    ') + '\n    </script>\n    '
+             + f'<script type="module" src="{imports["./js/app.js"]}"></script>\n    ' + MAP_END)
+    text = re.sub(re.escape(MAP_START) + r'.*?' + re.escape(MAP_END), lambda m: block, text, flags=re.S) if MAP_START in text else \
+        text.replace('<script type="module" src="./js/app.js"></script>', block)
+    text = re.sub(r'href="\./(styles/[\w-]+\.css)(?:\?v=\w+)?"', lambda m: f'href="./{m.group(1)}?v={_hash(SITE / m.group(1))}"', text)
+    return text
+
+
 def write(check=False):
     stale = []
+    if not check: (SITE / 'index.html').write_text(versioned_index(), encoding='utf-8')
+    elif versioned_index() != (SITE / 'index.html').read_text(encoding='utf-8'): stale.append((SITE / 'index.html').relative_to(ROOT))
     for src, dst in pairs():
         if dst.exists() and dst.read_bytes() == src.read_bytes(): continue
         stale.append(dst.relative_to(ROOT))

@@ -98,3 +98,7 @@ export function arms(coeffs, t, count) {
 // A closed polyline from a parametric curve, for the other shapes of the lab.
 export const heart = (n) => Array.from({ length: n }, (_, i) => { const t = (TAU * i) / n; return [16 * Math.sin(t) ** 3, 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)]; });
 export const star = (n, spikes = 5) => Array.from({ length: n }, (_, i) => { const t = (TAU * i) / n, r = 1 + 0.45 * Math.cos(spikes * t); return [r * Math.cos(t) * 10, r * Math.sin(t) * 10]; });
+
+// How the circles are added: one more batch after each full turn of the tip (the number of circles during turn 1, 2, 3, ...).
+export const COUNT_SCHEDULE = [1, 2, 3, 4, 6, 9, 13, 19, 28, 40, 56, 80, 110, 150];
+export const REVOLUTION = 6.5;   // seconds per full turn

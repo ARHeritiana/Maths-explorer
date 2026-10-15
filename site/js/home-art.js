@@ -1,6 +1,6 @@
 // Small live drawings for the home page and the gallery cards. Each one draws on a canvas, pauses when it is off screen or the
 // tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery-math.js and lab-objects.js.
-import { escape, MADAGASCAR, resample, fourier, arms } from "./gallery-math.js";
+import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 import { platonic, reuleaux, binomial } from "./lab-objects.js";
 
 const TAU = Math.PI * 2;
@@ -32,21 +32,26 @@ function runner(cv, draw, { reduced = () => false, still = 6, trailing = false }
 // centred on its mean, so that the constant term of the transform vanishes and every circle really turns
 const OUTLINE = (() => { const raw = resample(MADAGASCAR, 256), mx = raw.reduce((q, p) => q + p[0] / raw.length, 0), my = raw.reduce((q, p) => q + p[1] / raw.length, 0), pts = raw.map((p) => [p[0] - mx, p[1] - my]); return { pts, co: fourier(pts) }; })();
 function fourierArt(cv, opts) {
-  const dark = !!opts.dark;
-  const { pts, co } = OUTLINE, xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), cxy = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2], span = [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
-  let trail = [], lastCount = 0;
+  const dark = !!opts.dark, { pts, co } = OUTLINE, xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), cxy = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2], span = [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
+  const FADE = 1.7 * REVOLUTION; let trail = [], prevRev = -1;
   return runner(cv, (g, W, H, t, C0) => {
     const C = dark ? { ...C0, ink: "#ffffff", muted: "#cfd8ff", accent: "#ffd54a", line: "#9fb0ff", neg: "#ff6b9a" } : C0;
-    const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s];
-    const cycle = 34, u = (t % cycle) / cycle, count = opts.reduced?.() ? 90 : Math.max(1, Math.min(110, Math.floor(1 + 109 * Math.min(1, u * 2.1) ** 1.6)));
-    const phase = opts.reduced?.() ? 0 : (t / 9) % 1;
-    void lastCount; void trail;
-    // the whole curve drawn by the first `count` circles (it sharpens as circles are added), then the arms and the moving tip
-    g.strokeStyle = C.accent; g.lineWidth = 3.2; g.lineJoin = "round"; g.beginPath();
-    for (let i = 0; i <= 220; i++) { const q = arms(co, i / 220, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
-    g.stroke();
+    const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s], still = opts.reduced?.();
+    // The tip traces the curve of the first `count` circles as it goes and the old trace fades slowly; a circle is added only
+    // after a full turn. The shape is never drawn in advance: it appears, sharpens turn after turn, and the loop starts over.
+    const loop = (COUNT_SCHEDULE.length + 2) * REVOLUTION, tt = still ? 0 : t % loop, rev = Math.floor(tt / REVOLUTION);
+    const count = still ? 110 : COUNT_SCHEDULE[Math.min(rev, COUNT_SCHEDULE.length - 1)], phase = still ? 0 : (tt / REVOLUTION) % 1;
+    if (rev < prevRev) trail = []; prevRev = rev;
     const chain = arms(co, phase, count), tip = chain[chain.length - 1];
-    g.globalAlpha = 1; g.lineWidth = 1;
+    g.lineCap = "round"; g.lineJoin = "round";
+    if (still) { g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath(); for (let i = 0; i <= 260; i++) { const q = arms(co, i / 260, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); }
+    else {
+      trail.push({ x: tip[0], y: tip[1], ts: t }); while (trail.length && t - trail[0].ts > FADE) trail.shift();
+      g.lineWidth = 3.4; g.strokeStyle = C.accent;
+      for (let i = 1; i < trail.length; i++) { const k = 1 - (t - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = P(trail[i - 1].x, trail[i - 1].y), b = P(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+      g.globalAlpha = 1;
+    }
+    g.lineWidth = 1;
     for (let i = 1; i < chain.length; i++) { const a = P(chain[i - 1][0], chain[i - 1][1]), b = P(chain[i][0], chain[i][1]), r = chain[i][2] * s; g.strokeStyle = C.muted; g.globalAlpha = 0.4; if (r > 1) { g.beginPath(); g.arc(a[0], a[1], r, 0, TAU); g.stroke(); } g.globalAlpha = 0.8; g.strokeStyle = C.ink; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
     g.globalAlpha = 1; const [tx, ty] = P(tip[0], tip[1]); g.fillStyle = C.neg; g.beginPath(); g.arc(tx, ty, 4.5, 0, TAU); g.fill();
   }, { reduced: opts.reduced });

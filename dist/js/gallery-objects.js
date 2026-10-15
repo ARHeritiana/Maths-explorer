@@ -2,7 +2,7 @@
 // a star or your own drawing) and a Mandelbrot explorer with a live Julia set. Mounted into #object-stage like the other
 // laboratory objects; the mathematics lives in gallery-math.js.
 import { canvasIn, palette, loopFor } from "./object-kit.js";
-import { escape, MADAGASCAR, resample, fourier, arms, heart, star } from "./gallery-math.js";
+import { escape, MADAGASCAR, resample, fourier, arms, heart, star, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -15,7 +15,7 @@ const SHAPES = {
 /* ============================================================ Fourier */
 function fourierLab(root, { t, reduced, lang }) {
   const N = 256, fmt = (v, d = 1) => (lang === "fr" ? String(Math.round(v * 10 ** d) / 10 ** d).replace(".", ",") : String(Math.round(v * 10 ** d) / 10 ** d));
-  let shape = "madagascar", pts = [], co = [], count = 1, auto = true, showCircles = true, showFull = true, phase = 0, trail = [], drawing = null, userCurve = null, scale = 1, centre = [0, 0], acc = 0;
+  let shape = "madagascar", pts = [], co = [], count = 1, auto = true, showCircles = true, showFull = false, clock = 0, trail = [], drawing = null, userCurve = null, scale = 1, centre = [0, 0], lastCount = 0;
   root.innerHTML = `
     <p class="act-help">${t("Chaque cercle tourne à vitesse constante, centré sur le bout du précédent. Ensemble, ils redessinent une forme fermée. Ajoute des cercles : la forme se précise. Tu peux aussi dessiner la tienne.", "Each circle turns at a constant speed, centred on the tip of the previous one. Together they redraw a closed shape. Add circles: the shape sharpens. You can also draw your own.")}</p>
     <div class="obj-stage" id="fr-stage"></div>
@@ -26,7 +26,8 @@ function fourierLab(root, { t, reduced, lang }) {
     <div class="act-controls">
       <label class="act-field" for="fr-n"><span class="act-label">${t("Nombre de cercles", "Number of circles")} <output id="fr-n-out">1</output></span><input id="fr-n" type="range" min="1" max="150" step="1" value="1"></label>
       <label class="act-check"><input id="fr-circles" type="checkbox" checked> ${t("Montrer les cercles", "Show the circles")}</label>
-      <label class="act-check"><input id="fr-full" type="checkbox" checked> ${t("Montrer la forme à atteindre", "Show the target shape")}</label>
+      <label class="act-check"><input id="fr-full" type="checkbox"> ${t("Montrer la forme à atteindre", "Show the target shape")}</label>
+      <button class="btn btn-secondary" id="fr-build" type="button">${t("Reconstruire peu à peu", "Build up again")}</button>
     </div>
     <p class="act-readout" id="fr-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#fr-stage"), 640 / 420), g = o.g, read = root.querySelector("#fr-read"), slider = root.querySelector("#fr-n"), out = root.querySelector("#fr-n-out");
@@ -36,7 +37,7 @@ function fourierLab(root, { t, reduced, lang }) {
     pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts);   // centred: the constant term vanishes and every circle turns
     const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
     scale = Math.min((o.W - 120) / w, (o.H - 80) / h); centre = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2];
-    trail = []; phase = 0; auto = shape !== "mine" || !!raw;
+    trail = []; clock = 0; auto = shape !== "mine" || !!raw;
     if (name !== "mine" || raw) { count = 1; slider.value = 1; }
     update();
   };
@@ -44,15 +45,23 @@ function fourierLab(root, { t, reduced, lang }) {
   const rms = () => Math.sqrt(co.reduce((s, c) => s + c.amp ** 2, 0));
   function update() {
     out.textContent = count; slider.value = count;
-    if (reduced()) frame(0, 0);
+    if (reduced()) frame(0);
     if (!co.length) { read.textContent = t("Dessine une forme fermée avec le doigt ou la souris.", "Draw a closed shape with your finger or the mouse."); return; }
     const left = Math.sqrt(co.slice(count).reduce((s, c) => s + c.amp ** 2, 0)), pct = (100 * left) / rms();
     read.innerHTML = `${count} ${t(count > 1 ? "cercles" : "cercle", count > 1 ? "circles" : "circle")} · ${t("écart moyen avec la forme", "mean gap from the shape")} : <strong>${fmt(pct)} %</strong> ${t("de sa taille", "of its size")}${count < co.length ? "" : ` · ${t("tous les cercles : la forme est exacte", "all the circles: the shape is exact")}`}`;
   }
-  function frame(dt, now) {
+  // The tip traces the curve of the first `count` circles as it goes; the old trace fades slowly. A circle is added only
+  // when the tip has completed a full turn (COUNT_SCHEDULE), so each turn sharpens the picture a little more.
+  const FADE = 1.7 * REVOLUTION;
+  function frame(dt) {
     const C = palette();
-    if (auto && count < 70) { acc += dt; if (acc > 0.32) { acc = 0; count++; update(); } }
-    if (!reduced() && !drawing) phase = (phase + dt / 14) % 1;
+    if (!reduced() && !drawing) clock += dt;
+    if (auto && !reduced() && co.length) {
+      const rev = Math.floor(clock / REVOLUTION), next = Math.min(COUNT_SCHEDULE[Math.min(rev, COUNT_SCHEDULE.length - 1)], co.length);
+      if (rev > COUNT_SCHEDULE.length + 1) { clock = 0; trail = []; count = 1; update(); }
+      else if (next !== count) { count = next; update(); }
+    }
+    const phase = reduced() ? 0 : (clock / REVOLUTION) % 1;
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (drawing) {
       g.strokeStyle = C.accent; g.lineWidth = 3; g.lineCap = "round"; g.beginPath(); drawing.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]))); g.stroke();
@@ -61,23 +70,32 @@ function fourierLab(root, { t, reduced, lang }) {
     }
     if (!co.length) { g.fillStyle = C.muted; g.font = "600 16px system-ui"; g.textAlign = "center"; g.fillText(t("Dessine une forme fermée ici", "Draw a closed shape here"), o.W / 2, o.H / 2); return; }
     if (showFull) { g.strokeStyle = C.line; g.lineWidth = 2; g.setLineDash([4, 5]); g.beginPath(); pts.forEach((p, i) => { const [x, y] = toScreen(p[0], p[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.closePath(); g.stroke(); g.setLineDash([]); }
-    // the whole curve drawn by the first `count` circles, then the arms and the moving tip
     const chain = arms(co, phase, count), tip = chain[chain.length - 1];
-    g.lineCap = "round"; g.lineJoin = "round"; g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath();
-    for (let i = 0; i <= 240; i++) { const q = arms(co, i / 240, count).at(-1), [x, y] = toScreen(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
-    g.stroke(); g.lineWidth = 1;
+    g.lineCap = "round"; g.lineJoin = "round";
+    if (reduced()) {   // no motion: the whole curve of the current circles, once
+      g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath();
+      for (let i = 0; i <= 240; i++) { const q = arms(co, i / 240, count).at(-1), [x, y] = toScreen(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
+      g.stroke();
+    } else {
+      trail.push({ x: tip[0], y: tip[1], ts: clock }); while (trail.length && clock - trail[0].ts > FADE) trail.shift();
+      g.lineWidth = 3.4; g.strokeStyle = C.accent;
+      for (let i = 1; i < trail.length; i++) { const k = 1 - (clock - trail[i].ts) / FADE; g.globalAlpha = Math.max(0, k) ** 1.4; const a = toScreen(trail[i - 1].x, trail[i - 1].y), b = toScreen(trail[i].x, trail[i].y); g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+      g.globalAlpha = 1;
+    }
+    g.lineWidth = 1;
     if (showCircles) for (let i = 1; i < chain.length; i++) {
       const [px, py] = toScreen(chain[i - 1][0], chain[i - 1][1]), [qx, qy] = toScreen(chain[i][0], chain[i][1]), r = chain[i][2] * scale;
       g.strokeStyle = C.muted; g.globalAlpha = 0.55; g.lineWidth = 1; if (r > 0.5) { g.beginPath(); g.arc(px, py, r, 0, TAU); g.stroke(); }
       g.globalAlpha = 0.9; g.strokeStyle = C.ink; g.beginPath(); g.moveTo(px, py); g.lineTo(qx, qy); g.stroke();
     }
     g.globalAlpha = 1; const [tx, ty] = toScreen(tip[0], tip[1]); g.fillStyle = C.neg; g.beginPath(); g.arc(tx, ty, 5, 0, TAU); g.fill();
-    void now;
+    void lastCount;
   }
-  const stop = loopFor((dt, now) => frame(reduced() ? 0 : dt, now), reduced);
-  o.redraw = () => frame(0, 0);
+  const stop = loopFor((dt) => frame(reduced() ? 0 : dt), reduced);
+  o.redraw = () => frame(0);
   // controls
   slider.addEventListener("input", () => { count = Number(slider.value); auto = false; trail = []; update(); });
+  root.querySelector("#fr-build").addEventListener("click", () => { auto = co.length > 0; clock = 0; trail = []; count = 1; update(); });
   root.querySelectorAll('[name="fr-shape"]').forEach((r) => r.addEventListener("change", () => {
     shape = r.value;
     if (shape !== "mine") setShape(shape); else if (userCurve) setShape("mine", userCurve); else { pts = []; co = []; trail = []; update(); }

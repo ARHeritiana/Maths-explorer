@@ -119,7 +119,7 @@ with sync_playwright() as p:
     page.locator('[name="method"][value="midpoint"]').check()
     assert page.locator('#results strong').first.inner_text() == '0.3125'
     # Notes survive in-session navigation, language changes and a control reset.
-    page.locator('#observation').fill('N=2, midpoint sum < 1/3 < right sum')
+    page.locator('.notes summary').click(); page.locator('#observation').fill('N=2, midpoint sum < 1/3 < right sum')
     page.locator('[data-lang="fr"]').click()
     assert page.locator('#observation').input_value().startswith('N=2')
     page.locator('#reset').click()

@@ -885,3 +885,5 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .stage-text h1 { margin: 0; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 1; letter-spacing: -0.03em; color: #fff; }
 .stage-text p { margin: 0 0 14px; font: 600 clamp(1rem, 2vw, 1.4rem) var(--body); opacity: 0.85; }
 .stage-cta { min-width: 9rem; justify-content: center; font-size: 1.1rem; }
+
+.reasoning .notes { margin: 8px 0; border-top: 1px solid var(--line); } .reasoning .notes > summary { cursor: pointer; padding: 10px 0; font-weight: 700; color: var(--ink-2); }
