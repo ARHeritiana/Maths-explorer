@@ -119,7 +119,6 @@ function dominoes(root, { t, reduced, q }) {
     <p class="act-help">${t("Fais glisser un domino depuis la réserve jusqu’au plateau. Touche un domino posé pour le tourner, ou fais-le glisser hors du plateau pour l’enlever. Au clavier : flèches, Entrée pour poser, Suppr pour enlever.", "Drag a domino from the supply onto the board. Tap a placed domino to turn it, or drag it off the board to remove it. With a keyboard: arrows, Enter to place, Delete to remove.")}</p>
     <svg class="act-svg dom-svg" viewBox="0 0 ${W} ${H}" tabindex="0" role="application" aria-label="${t("Plateau de dominos", "Domino board")}"></svg>
     <div class="act-controls">
-      <button class="btn btn-secondary" id="dm-colour" type="button" aria-pressed="false">${t("Colorier les cases", "Colour the squares")}</button>
       <button class="btn btn-secondary" id="dm-orient" type="button">${t("Domino au clavier : horizontal", "Keyboard domino: horizontal")}</button>
       <button class="btn btn-secondary" id="dm-auto" type="button">${t("Essai au hasard", "Random attempt")}</button>
       <button class="btn-quiet" id="dm-clear" type="button">${t("Tout enlever", "Remove all")}</button>
@@ -325,12 +324,13 @@ function dominoes(root, { t, reduced, q }) {
     root.querySelector("#dm-orient").textContent = `${t("Domino au clavier", "Keyboard domino")} : ${kbo === "h" ? t("horizontal", "horizontal") : t("vertical", "vertical")}`;
   }
   root.querySelector("#dm-orient").addEventListener("click", toggleOrient);
-  root.querySelector("#dm-colour").addEventListener("click", (e) => {
-    colour = !colour;
-    e.currentTarget.setAttribute("aria-pressed", String(colour));
-    drawBoard();
-    summary();
-  });
+  // The colouring is a hint, so its button lives with hint 1 in the hint panel (see HINT_ACTIONS in app.js). It reaches
+  // the activity as a "challenge-action" event; the activity keeps the button's pressed state in step.
+  const hintButton = () => document.querySelector('[data-hint-act="colour"]');
+  const setColour = (on) => { colour = on; hintButton()?.setAttribute("aria-pressed", String(colour)); drawBoard(); summary(); };
+  const onAction = (e) => { if (e.detail?.id === "chess" && e.detail.act === "colour") setColour(!colour); };
+  document.addEventListener("challenge-action", onAction);
+  hintButton()?.setAttribute("aria-pressed", "false");
   // A greedy random attempt: dominoes are laid one by one in random places until none fits. It never completes the board.
   root.querySelector("#dm-auto").addEventListener("click", () => {
     dominos = [];
@@ -350,7 +350,7 @@ function dominoes(root, { t, reduced, q }) {
   redraw();
   summary();
   void reduced;
-  return () => {};
+  return () => document.removeEventListener("challenge-action", onAction);
 }
 
 /* -------------------------------------------------------------------- nim */
