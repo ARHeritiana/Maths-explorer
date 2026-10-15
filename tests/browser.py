@@ -23,11 +23,11 @@ with sync_playwright() as p:
     page.on('pageerror', lambda e: errors.append(e.stack or str(e)))
     assert page.goto(BASE).status == 200
     # The welcome page is neutral (no school level in its text), draws live art, and the gallery holds the curiosities.
-    page.wait_for_selector('.welcome-art canvas'); page.wait_for_timeout(1200)
+    page.wait_for_selector('.stage-fg'); page.wait_for_timeout(1200)
     home = page.locator('.welcome').inner_text()
     assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac']), 'the home page does not assume a curriculum'
-    assert page.evaluate("() => { const c = document.querySelector('.welcome-art canvas'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n > 500; }"), 'the hero drawing is not blank'
-    assert page.locator('.wonder').count() == 6
+    assert page.evaluate("() => { const c = document.querySelector('.stage-fg'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n > 500; }"), 'the hero drawing is not blank'
+    assert page.locator('.wonder').count() == 0 and page.locator('.stage-cta').count() == 1, 'the home page is one animation and one door'
     page.goto(BASE+'/#gallery'); assert page.locator('.wonder').count() == 6
     page.goto(BASE+'/#lab'); assert page.locator('.lab-link').count() == 9, 'the laboratory keeps the nine guided experiments'
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'

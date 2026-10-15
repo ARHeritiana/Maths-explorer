@@ -32,9 +32,11 @@ function runner(cv, draw, { reduced = () => false, still = 6, trailing = false }
 // centred on its mean, so that the constant term of the transform vanishes and every circle really turns
 const OUTLINE = (() => { const raw = resample(MADAGASCAR, 256), mx = raw.reduce((q, p) => q + p[0] / raw.length, 0), my = raw.reduce((q, p) => q + p[1] / raw.length, 0), pts = raw.map((p) => [p[0] - mx, p[1] - my]); return { pts, co: fourier(pts) }; })();
 function fourierArt(cv, opts) {
+  const dark = !!opts.dark;
   const { pts, co } = OUTLINE, xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), cxy = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2], span = [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
   let trail = [], lastCount = 0;
-  return runner(cv, (g, W, H, t, C) => {
+  return runner(cv, (g, W, H, t, C0) => {
+    const C = dark ? { ...C0, ink: "#ffffff", muted: "#cfd8ff", accent: "#ffd54a", line: "#9fb0ff", neg: "#ff6b9a" } : C0;
     const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s];
     const cycle = 34, u = (t % cycle) / cycle, count = opts.reduced?.() ? 90 : Math.max(1, Math.min(110, Math.floor(1 + 109 * Math.min(1, u * 2.1) ** 1.6)));
     const phase = opts.reduced?.() ? 0 : (t / 9) % 1;
@@ -60,9 +62,10 @@ function fractalArt(cv, opts, field) {
   const off = document.createElement("canvas"), RW = 150, RH = 94; off.width = RW; off.height = RH; const oc = off.getContext("2d"), img = oc.createImageData(RW, RH), px = new Uint32Array(img.data.buffer);
   return runner(cv, (g, W, H, t) => { field(px, RW, RH, t); oc.putImageData(img, 0, 0); g.imageSmoothingEnabled = true; g.drawImage(off, 0, 0, W, H); }, { reduced: opts.reduced, still: 2 });
 }
+const dim = (c, f) => (255 << 24) | ((((c >> 16) & 255) * f) << 16) | ((((c >> 8) & 255) * f) << 8) | ((c & 255) * f);
 const juliaArt = (cv, o) => fractalArt(cv, o, (px, w, h, t) => {
   const a = 0.6 + t * 0.25, cr = 0.7885 * Math.cos(a), ci = 0.7885 * Math.sin(a), W = 3.0, H = (W * h) / w, max = 70;
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) px[y * w + x] = shade(escape(((x + 0.5) / w - 0.5) * W, -((y + 0.5) / h - 0.5) * H, cr, ci, max, true), max);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const c = shade(escape(((x + 0.5) / w - 0.5) * W, -((y + 0.5) / h - 0.5) * H, cr, ci, max, true), max); px[y * w + x] = o.dark ? dim(c, 0.42) : c; }
 });
 const mandelArt = (cv, o) => fractalArt(cv, o, (px, w, h, t) => {
   const k = ((t % 24) / 24), z = Math.exp(Math.log(3.4) + (Math.log(0.0035) - Math.log(3.4)) * (o.reduced?.() ? 0.62 : k * k * (3 - 2 * k))), cx = -0.5 + (-0.743643887037151 + 0.5) * Math.min(1, (1 - z / 3.4) * 1.3), cy = 0.13182590420533 * Math.min(1, (1 - z / 3.4) * 1.3), max = Math.round(80 + 40 * Math.log2(3.4 / z)), H = (z * h) / w;
@@ -133,5 +136,5 @@ function platonicArt(cv, opts) {
   }, { reduced: opts.reduced, still: 3 });
 }
 
-export const ART = { fourier: fourierArt, julia: juliaArt, mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt };
+export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }
