@@ -29,7 +29,11 @@ npm run test:browser   # needs python playwright (see tests/run_browser.py)
 make check             # the full check suite of the pipeline (needs TeX, see docs/HANDOFF.md)
 ```
 
-Hash routes, relative paths, no accounts, no analytics, no runtime dependency. Opening files with `file://` is not supported (ES modules).
+Hash routes, relative paths (the site also works under a sub-path such as `/Maths-explorer/`), no accounts, no analytics, no runtime dependency. Opening files with `file://` is not supported (ES modules).
+
+## Publishing (GitHub Pages)
+
+`.github/workflows/pages.yml` uploads `dist/` and deploys it on every push to `main`. One-time setup: repository Settings, Pages, Source: "GitHub Actions". Run `make site` before pushing so `dist/` is current. The site is then public at `https://<owner>.github.io/Maths-explorer/`.
 
 ## Layout
 
