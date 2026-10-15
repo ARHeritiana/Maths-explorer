@@ -53,7 +53,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
   experiments (formula and sliders); the curiosities (Galton board, Reuleaux, Platonic solids, chaos game, Fourier circles,
   Mandelbrot) are in the gallery (`#gallery`, every lab with `custom: true`; `#lab/<custom id>` redirects). Live drawings for the
   home page and the gallery cards are in `home-art.js`. The Madagascar outline in `gallery-math.js` is 360 points traced (PIL and numpy, smoothed, resampled) from an outline image supplied by the
-  owner; it is a drawing aid, not a survey. The image carried a third-party credit line: confirm the licence before publishing the site publicly.
+  owner; it is a drawing aid, not a survey.
 
 ## Rules you must not break (short form; brief section 2 is authoritative)
 
@@ -94,7 +94,7 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 2. Terminale STMG programme in force this year (not found on Eduscol in the 12 October check).
 3. Whether maths expertes keeps the 2019 text beyond this year.
 4. Owner review of the Cahier design.
-5. Site licence.
+5. Site licence (suggestions given 15 October 2026; owner to choose).
 7. Policy conflicts left by the merge of the TeX branch: its documents (`docs/HANDOFF.md`, `docs/ARCHITECTURE.md`) still say one AI notice in the footer, one mint accent, and an English twin with equal page count for every resource. The brief withdrew the notice and replaced the language rule; the site follows the brief. Decide whether English twins stay mandatory for every resource.
 8. English proof-reading of the generated English units (16 of about 10,800 segments reviewed).
 9. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
@@ -141,4 +141,12 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - 2026-10-15 (third pass): Madagascar outline replaced by the traced one (hero and lab now need about 60 circles for the bays and 150 for an almost exact match). Touch checks added for the gallery (finger-drawn shape, Mandelbrot drag) and the phone layout of the home page and gallery (no horizontal overflow at 390 px). The exploring canvases of the light eggs (eggs, smiling when ruled out) and the chameleons (coloured chameleons) now use the cartoon kit, like the snail and the bridge. Not done: horses, balance and coins keep plain tokens (the horse arena cells are too small for a sprite); English copy of the new pages read once by me only, not by the owner.
 - 2026-10-15 (fourth pass): the home page is now only an animation, a greeting ("Tonga soa", Bienvenue) and one button: a dark full-screen stage with a slowly morphing Julia set behind the Fourier circles redrawing Madagascar. No cards, explanations or school links (the owner asked for that); the curiosity cards live on the gallery page, the curriculum under Cours and Parcours.
 - 2026-10-15 (fifth pass): the owner saw a mix of old and new files on the deployed site (Galton with bars, empty Madagascar and Mandelbrot stages): the host served a cached old `lab-objects.js` beside a new `app.js`. `make site` now writes an import map into `index.html` (block between `importmap:start` and `importmap:end`) giving every script a `?v=<content hash>` URL, and versions the style sheets the same way, so a changed file is fetched again. Always run `make site` before pushing; `mxbuild site --check` fails when the block is out of date. The Madagascar drawing now traces the curve with the tip as it goes, the old trace fades slowly, and a circle batch is added only after each full turn (`COUNT_SCHEDULE`, `REVOLUTION` in `gallery-math.js`); the target shape is hidden unless asked for. The notes block (observation, conjecture) is removed on gallery pages and optional (closed `details`) in the laboratory.
-- 2026-10-15: GitHub Pages deployment added (`.github/workflows/pages.yml`, publishes `dist/` on push to `main`). Needs Settings, Pages, Source: GitHub Actions, once. Publishing makes the site public: check the open points (Madagascar outline image licence, site licence, PDF metadata scan in task 1, owner review) before enabling.
+- 2026-10-15: GitHub Pages deployment added (`.github/workflows/pages.yml`, publishes `dist/` on push to `main`). Needs Settings, Pages, Source: GitHub Actions, once; the workflow token cannot enable it. Pages publishes `dist/` only; the repository stays private and must never be made public (history holds names, open point 9).
+- 2026-10-15: pre-launch scan of `dist/`: no personal-storage links, no e-mail addresses, banned-phrase check passes, all 652 PDFs have author "Maths Explorer" and no personal metadata (task 1 PDF scan: done for metadata fields and PDF text; not done: names inside the text of every PDF beyond `tests/banned.py`). The visible AI notice that 408 generated HTML pages (FR and EN, `dist/resources/shared` and `enrichment`) still carried is removed, and the generators (`scripts/build-enrichment.py`, `scripts/build-study-guides.mjs`) no longer write it. The owner settled the Madagascar outline question (no credit or licence issue; the credit-line note is removed).
+
+## Before the site is made public (owner checklist)
+
+1. Run the two-agent audit and ledger record for what is published (publication gate), and proof-read the English (open point 8). The owner said he will do this before launch.
+2. Choose a site licence (open point 5). Suggestions were given in the 15 October session.
+3. Settings, Pages, Source: GitHub Actions (or another static host), then run the "Deploy to GitHub Pages" workflow.
+4. The `.tex` sources, including correction files with marking schemes, are published by design (`dist/sources/`); the owner accepted this on 15 October.
