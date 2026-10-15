@@ -94,7 +94,7 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 2. Terminale STMG programme in force this year (not found on Eduscol in the 12 October check).
 3. Whether maths expertes keeps the 2019 text beyond this year.
 4. Owner review of the Cahier design.
-5. Program code licence (content is CC BY-NC-SA 4.0 since 15 October 2026; code has none yet).
+5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
 7. Policy conflicts left by the merge of the TeX branch: its documents (`docs/HANDOFF.md`, `docs/ARCHITECTURE.md`) still say one AI notice in the footer, one mint accent, and an English twin with equal page count for every resource. The brief withdrew the notice and replaced the language rule; the site follows the brief. Decide whether English twins stay mandatory for every resource.
 8. English proof-reading of the generated English units (16 of about 10,800 segments reviewed).
 9. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
@@ -147,7 +147,8 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 ## Before the site is made public (owner checklist)
 
 1. Run the two-agent audit and ledger record for what is published (publication gate), and proof-read the English (open point 8). The owner said he will do this before launch.
-2. Licence: content is CC BY-NC-SA 4.0 (`LICENSE.md`, footer link); decide the code licence if wanted (open point 5).
+2. Licence: content is CC BY-NC-SA 4.0 (`LICENSE.md`, footer link); code is MIT (`LICENSE-CODE`).
 3. Settings, Pages, Source: GitHub Actions (or another static host), then run the "Deploy to GitHub Pages" workflow.
 4. The `.tex` sources, including correction files with marking schemes, are published by design (`dist/sources/`); the owner accepted this on 15 October.
 - 2026-10-15: content licence set to CC BY-NC-SA 4.0 (owner's choice from the suggestions): `LICENSE.md`, footer link in `site/js/app.js`, README. The legal text itself is not copied into the repository (not reachable from the sandbox); `LICENSE.md` points to the official legal code. Program code left without a licence for now.
+- 2026-10-15: program code licensed MIT (`LICENSE-CODE`, holder named "Maths Explorer", no personal name); `LICENSE.md` and README updated. The root `LICENSE` file name is deliberately not used, so GitHub does not badge the whole repo as MIT.

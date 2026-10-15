@@ -60,4 +60,4 @@ No identifying information about the author or any employer anywhere published (
 
 ## Licences
 
-Fonts in `site/fonts/` are under the SIL Open Font License (licence files alongside). Site content: CC BY-NC-SA 4.0 (see `LICENSE.md`). Program code: no separate licence yet.
+Fonts in `site/fonts/` are under the SIL Open Font License (licence files alongside). Site content: CC BY-NC-SA 4.0 (see `LICENSE.md`). Program code: MIT (see `LICENSE-CODE`).

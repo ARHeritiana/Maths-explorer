@@ -14,5 +14,5 @@ Not covered by this licence, each keeping its own licence (files alongside them)
 (SIL Open Font Licence and the licence texts there), the libraries in `site/vendor/` (MathJax, JSZip, pdf-lib), and the
 icons.
 
-The site's program code (`site/js/`, `build/`, `scripts/`, `tests/`) has no separate open-source licence yet; until the
-owner decides, treat it as all rights reserved.
+The site's program code (`site/js/`, `site/styles/`, `site/index.html`, `build/`, `scripts/`, `tests/` and the copies
+of the site files in `dist/`) is licensed under the **MIT License**: see `LICENSE-CODE`.
