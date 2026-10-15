@@ -150,3 +150,17 @@ test("every challenge has an original question in both languages, with no em or 
     for (const text of [fr, en]) { assert.ok(text.length > 30, id); assert.ok(!/undefined|NaN|[—–]/.test(text), `${id}: ${text}`); }
   }
 });
+
+import { SOLUTIONS } from "../dist/js/challenge-solutions.js";
+
+test("every challenge has an animated solution with captions in both languages and a finite pace for each step", () => {
+  for (const id of Object.keys(VARIANTS)) {
+    const sol = SOLUTIONS[id], q = defaults(id);
+    assert.ok(sol, `solution for ${id}`);
+    const steps = sol.steps(q);
+    assert.ok(steps.length >= 2, `${id}: at least two steps`);
+    for (const [fr, en] of steps) assert.ok(fr && en && !/undefined|NaN/.test(fr + en), `${id}: caption`);
+    assert.ok(sol.mount ? typeof sol.update === "function" : typeof sol.draw === "function", `${id}: mount with update, or draw`);
+    if (sol.dur) steps.forEach((_, s) => { const d = sol.dur(s, q); assert.ok(Number.isFinite(d) && d >= 500 && d <= 20000, `${id}: duration of step ${s}`); });
+  }
+});

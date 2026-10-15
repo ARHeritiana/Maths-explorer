@@ -32,6 +32,12 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
   case. The comb appears only in the animated solution, after the learner has asked for it.
 - 25 horses: horses can be dragged to any free cell of the field (arrow keys too); positions do not affect speeds.
 
+- Animated solutions: every challenge solution is a cartoon scene (`site/js/solution-scenes-1.js` to `-7.js`, `solution-bridge.js`) built
+  from `scene-kit.js` (night bridge, soldier, lantern) and `scene-props.js` (daylight, egg, snail, balance, horse, ant,
+  chameleon, pigeon). Protocol: `mount(c, q)` builds the SVG once, `update(S, step, p, q)` poses it, so a frame is a pure
+  function of (step, p); `dur(step, q)` sets the pace of each step; the captions (`steps`) stay in the older definitions.
+  The player exposes `seek(step, p)` on `#solution-anim.__solution`, used to check frames in the browser.
+
 ## Rules you must not break (short form; brief section 2 is authoritative)
 
 1. Anonymity: no name of the owner, employer, school or students in HTML, PDFs (text and XMP/metadata), `\author`, file names, alt text. Do not add any such detail to commit messages or docs either.

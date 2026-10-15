@@ -103,7 +103,7 @@ export function makeSoldier(parent, { uniform, hat = 0, size = 1, skin = "#f1c27
   head.innerHTML = `<circle cx="0" cy="-40" r="8.2" fill="${skin}" stroke="#0002" stroke-width=".6"/><circle cx="3.2" cy="-41" r="1.15" fill="#222"/><circle cx="6.6" cy="-41" r="1.15" fill="#222"/><circle cx="8.3" cy="-38.6" r="1.7" fill="#d9a066"/><path d="M3.6 -36.2 q2.4 1.8 4.6 0" fill="none" stroke="#7a3b2a" stroke-width="1" stroke-linecap="round"/>${moustache ? `<path d="M2.5 -37.4 q3 -1.6 6 0 q-3 2.2 -6 0Z" fill="#eee"/>` : ""}${HATS[hat]()}`;
   const legF = mk("sd-leg", 3.5, -16, legBody);
   const armF = mk("sd-arm", 7, -30, armBody);
-  const badge = el("g", {}, root);
+  const badge = el("g", { visibility: label === "" ? "hidden" : "visible" }, root);
   el("circle", { r: 9, fill: "#fff", stroke: uniform, "stroke-width": 2.4 }, badge);
   const txt = el("text", { y: 4.4, "text-anchor": "middle", style: "font:700 12px var(--math, serif);fill:#1a1a2e" }, badge);
   txt.textContent = label;

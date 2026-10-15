@@ -95,3 +95,18 @@ export function bubbleSwaps(p) { const a = [...p], log = []; let moved = true; w
 // is n(n − 1)/2 whatever the splits, because each pair of stones is separated exactly once.
 export const splitTotal = (n) => (n * (n - 1)) / 2;
 export function randomSplitTotal(n, rnd = Math.random) { const piles = [n]; let total = 0; while (piles.some((x) => x > 1)) { const i = piles.findIndex((x) => x > 1), s = piles[i], a = 1 + Math.floor(rnd() * (s - 1)); piles.splice(i, 1, a, s - a); total += a * (s - a); } return total; }
+
+/* ------------------------------------------------------------------ nim: a scripted game for the animated solution */
+// A scripted game. With r = n mod (m + 1) > 0 you open with r, then answer each opponent move k with m + 1 − k.
+// With r = 0 you open with 1 and the opponent answers so that a multiple of m + 1 is left to you.
+export function nimScript(q) {
+  const b = q.m + 1, r = q.n % b, moves = [];
+  let left = q.n, i = 0;
+  if (r > 0) { moves.push([1, r]); left -= r; } else { moves.push([1, 1]); left -= 1; }
+  while (left > 0) {
+    const k = r > 0 ? Math.min(left, ((i * 2) % q.m) + 1) : left % b === 0 ? Math.min(left, 1) : left % b;   // opponent move (the perfect one when r = 0)
+    i++; moves.push([2, k]); left -= k;
+    if (left > 0) { const reply = Math.min(left, r > 0 ? b - k : 1 + ((i * 3) % q.m)); moves.push([1, reply]); left -= reply; }
+  }
+  return moves;
+}

@@ -11,6 +11,11 @@ import { SOLUTIONS_3 } from "./challenge-solutions-3.js";
 import { SCENES_1 } from "./solution-scenes-1.js";
 import { SCENES_2 } from "./solution-scenes-2.js";
 import { SCENES_3 } from "./solution-scenes-3.js";
+import { SCENES_4 } from "./solution-scenes-4.js";
+import { SCENES_5 } from "./solution-scenes-5.js";
+import { SCENES_6 } from "./solution-scenes-6.js";
+import { SCENES_7 } from "./solution-scenes-7.js";
+import { nimScript } from "./challenge-puzzles2.js";
 import { comb, josephusOrder, eggPlan, eggCover, eggDrops, graphFor, layoutOf, bridgeGeom, degrees, minRemoval, trailOf } from "./challenge-variants.js";
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -92,19 +97,6 @@ const chess = {
 };
 
 /* ------------------------------------------------------------------- nim */
-// A scripted game. With r = n mod (m + 1) > 0 you open with r, then answer each opponent move k with m + 1 − k.
-// With r = 0 you open with 1 and the opponent answers so that a multiple of m + 1 is left to you.
-function nimScript(q) {
-  const b = q.m + 1, r = q.n % b, moves = [];
-  let left = q.n, i = 0;
-  if (r > 0) { moves.push([1, r]); left -= r; } else { moves.push([1, 1]); left -= 1; }
-  while (left > 0) {
-    const k = r > 0 ? Math.min(left, ((i * 2) % q.m) + 1) : left % b === 0 ? Math.min(left, 1) : left % b;   // opponent move (the perfect one when r = 0)
-    i++; moves.push([2, k]); left -= k;
-    if (left > 0) { const reply = Math.min(left, r > 0 ? b - k : 1 + ((i * 3) % q.m)); moves.push([1, reply]); left -= reply; }
-  }
-  return moves;
-}
 const nim = {
   size: [520, 300],
   steps: (q) => {
@@ -445,7 +437,7 @@ const josephus = {
 
 const LEGACY = { doors, chess, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, ...SOLUTIONS_2, ...SOLUTIONS_3 };
 // Cartoon scenes (mount/update) replace the older diagram of the same challenge but keep its captions (steps).
-const SCENES = { ...SCENES_1, ...SCENES_2, ...SCENES_3 };
+const SCENES = { ...SCENES_1, ...SCENES_2, ...SCENES_3, ...SCENES_4, ...SCENES_5, ...SCENES_6, ...SCENES_7 };
 export const SOLUTIONS = Object.fromEntries(Object.entries(LEGACY).map(([id, old]) => {
   const sc = SCENES[id];
   return [id, sc ? { ...old, ...sc, steps: sc.steps ?? old.steps, draw: undefined } : old];
