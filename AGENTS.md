@@ -6,6 +6,10 @@ identifiers, or links in HTML, client-side catalogues, downloaded documents, or
 PDF annotations. Host resource copies within the Site. Contact links are an
 exception only in a specific, justified case authorised by the owner.
 
+Git rule, set by the owner and binding on every agent: commit and push to the `main` branch only. Do not create or
+use feature, session or agent branches, and do not open pull requests unless the owner asks. Run `npm test` and
+`npm run check` before each push.
+
 Start with HANDOFF.md (state and task queue), then PROJECT_BRIEF.md. The TeX and
 build pipeline is documented in docs/HANDOFF.md and docs/ARCHITECTURE.md.
 
