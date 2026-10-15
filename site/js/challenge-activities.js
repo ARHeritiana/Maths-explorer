@@ -5,7 +5,7 @@
 // polite live region, and returns a function that stops timers when the page changes.
 import { formatNumber } from "./math.js";
 
-import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
+import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
 import { artgallery, eggs, hanoi, ramsey, konigsberg, josephus } from "./challenge-more.js";
 import { reflect, lunes, star, merge, cham, inversionsAct, piles } from "./challenge-classics2.js";
 import { gridpaths, horses, queens, snail, bridge, lighteggs, fakecoins } from "./challenge-classics.js";
@@ -39,7 +39,7 @@ function doors(root, { t, q }) {
     for (let d = 1; d <= Math.min(k, n); d++) if (n % d === 0) c++;
     return c;
   };
-  grid.innerHTML = Array.from({ length: ND }, (_, i) => `<button type="button" class="door" data-n="${i + 1}"><span>${i + 1}</span></button>`).join("");
+  grid.innerHTML = Array.from({ length: ND }, (_, i) => `<button type="button" class="door" data-n="${i + 1}"><span>${i + 1}</span><small class="door-div" aria-hidden="true"></small></button>`).join("");
   const stop = () => {
     clearInterval(timer);
     timer = null;
@@ -47,6 +47,8 @@ function doors(root, { t, q }) {
     play.setAttribute("aria-pressed", "false");
     play.textContent = t("Lire", "Play");
   };
+  let showDiv = false;   // hint 1: the number of divisors written on each door
+  const divisors = (n) => { let c = 0; for (let d = 1; d <= n; d++) if (n % d === 0) c++; return c; };
   function render() {
     let open = 0;
     grid.querySelectorAll(".door").forEach((b) => {
@@ -56,6 +58,7 @@ function doors(root, { t, q }) {
       b.classList.toggle("open", isOpen);
       b.classList.toggle("flipped", k > 0 && n % k === 0);
       b.classList.toggle("picked", picked === n);
+      b.querySelector(".door-div").textContent = showDiv ? divisors(n) : "";
       b.setAttribute("aria-label", `${t("Porte", "Door")} ${n}, ${isOpen ? t("ouverte", "open") : t("fermée", "closed")}`);
     });
     root.querySelector("#dr-k").value = k;
@@ -98,7 +101,8 @@ function doors(root, { t, q }) {
     }, 220);
   });
   render();
-  return stop;
+  const off = onHintAction("doors", { divisors: () => { showDiv = true; render(); } });
+  return () => { stop(); off(); };
 }
 
 /* --------------------------------------------------------------- dominoes */
@@ -461,10 +465,12 @@ function pigeonhole(root, { t, lang, q }) {
         }
     return { bad, first };
   };
+  let showRem = false;   // hint 1: colour every number by its remainder
   function render() {
     const { bad, first } = pairOf(sel);
     grid.querySelectorAll(".pick").forEach((b) => {
       const n = Number(b.dataset.n);
+      if (showRem) { b.dataset.rem = n % MOD; b.style.setProperty("--rem", colour(n % MOD)); }
       b.setAttribute("aria-pressed", String(sel.has(n)));
       b.classList.toggle("clash", bad.has(n));
     });
@@ -499,7 +505,7 @@ function pigeonhole(root, { t, lang, q }) {
     root.querySelector("#pg-sim-read").textContent = `${t("Sur 1 000 tirages de", "Out of 1,000 draws of")} ${k} ${t("nombres", "numbers")} : ${free} ${t("sans aucune paire de ce type", "with no such pair")} (${fmt((free / 1000) * 100, 1)} %). ${t("Une simulation suggère, elle ne prouve pas.", "A simulation suggests; it does not prove.")}`;
   });
   render();
-  return () => {};
+  return onHintAction("pigeonhole", { remainders: () => { showRem = true; render(); } });
 }
 
 /* ---------------------------------------------------------------- squares */

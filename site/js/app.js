@@ -1016,6 +1016,11 @@ const HINT_ACTIONS = {
   fakecoins: { 1: ["fill", "Remplir 1, 2, 3, …", "Fill in 1, 2, 3, …"] },
   merge: { 1: ["invariant", "Afficher le produit des (nombre + 1)", "Show the product of the (number + 1)"] },
   cham: { 0: ["diff", "Afficher r − v, v − b, b − r", "Show r − v, v − b, b − r"], 1: ["mod", "Afficher ces différences modulo 3", "Show these differences modulo 3"] },
+  doors: { 0: ["divisors", "Écrire le nombre de diviseurs sur chaque porte", "Write the number of divisors on each door"] },
+  pigeonhole: { 0: ["remainders", "Colorier chaque nombre selon son reste", "Colour each number by its remainder"] },
+  konigsberg: { 0: ["degrees", "Afficher le nombre de ponts de chaque quartier", "Show the number of bridges at each district"] },
+  gridpaths: { 1: ["counts", "Afficher le nombre de chemins en chaque point", "Show the number of paths at every point"] },
+  artgallery: { 0: ["triangulate", "Découper la galerie en triangles", "Cut the gallery into triangles"], 1: ["colour", "Colorier les sommets avec trois couleurs", "Colour the vertices with three colours"] },
   inversions: { 0: ["counter", "Afficher le compteur d’inversions", "Show the inversion counter"] },
 };
 const hintAction = (id, i) => { const a = HINT_ACTIONS[id]?.[i]; return a ? `<button class="btn btn-secondary hint-action" type="button" data-hint-act="${a[0]}"${a[3] ? ' aria-pressed="false"' : ""}>${pair(a[1], a[2])}</button>` : ""; };

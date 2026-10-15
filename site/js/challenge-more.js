@@ -1,8 +1,8 @@
 // Hands-on activities for the challenges added in October 2026: art gallery, eggs, Hanoi, Ramsey, Königsberg, Josephus.
 // Same rules as challenge-activities.js: try, fail and notice before answering; no activity states the answer or the
 // method; pointer, touch and keyboard all work; state is announced in a polite live region.
-import { svgEl, toLocal, clamp, colour, lockTouch, MINUS } from "./challenge-kit.js";
-import { pointInPolygon, visibility } from "./challenge-geometry.js";
+import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
+import { pointInPolygon, visibility, triangulate, threeColour } from "./challenge-geometry.js";
 import { graphFor, josephusOrder, layoutOf, bridgeGeom } from "./challenge-variants.js";
 
 /* ---------------------------------------------------------- art gallery */
@@ -74,7 +74,7 @@ export function artgallery(root, { t, q }) {
   const inv = (p) => [(p.x - PAD) / SC, GH - (p.y - PAD) / SC];
   let poly = randomGallery(N), cells = [];
   const guards = [];
-  let drag = null, sel = -1, mode = "guard", best = 0;
+  let drag = null, sel = -1, mode = "guard", best = 0, aid = 0;   // aid: 0 none, 1 triangulation (hint 1), 2 plus 3-colouring (hint 2)
   root.innerHTML = `
     <p class="act-help">${t(`Une galerie à ${N} côtés. Pose des gardiens (touche la galerie ; glisse un gardien pour le déplacer, touche-le pour l’enlever). Puis change de galerie ou déforme celle-ci : glisse un sommet, tant que les murs ne se croisent pas.`, `A gallery with ${N} sides. Place guards (tap the gallery; drag a guard to move it, tap it to remove it). Then change the gallery or reshape this one: drag a vertex as long as the walls do not cross.`)}</p>
     <div class="act-controls" role="group" aria-label="${t("Que déplacer ?", "What to move?")}">
@@ -102,6 +102,11 @@ export function artgallery(root, { t, q }) {
     const vis = guards.map((g) => visibility(poly, g));
     vis.forEach((v) => svgEl("path", { d: path(v), class: "ag-vis" }, svg));
     svgEl("path", { d: path(poly), class: "ag-wall" }, svg);
+    if (aid >= 1) {
+      const tris = triangulate(poly);
+      tris.forEach(([a, b, c]) => svgEl("path", { d: path([poly[a], poly[b], poly[c]]), fill: "none", stroke: "var(--muted)", "stroke-width": 1.4, "stroke-dasharray": "4 4", "pointer-events": "none" }, svg));
+      if (aid >= 2) threeColour(poly.length, tris).forEach((c, i) => { svgEl("circle", { cx: X(poly[i][0]), cy: Y(poly[i][1]), r: 7, fill: colour(c * 2 + 1), stroke: "var(--ink)", "stroke-width": 1.5, "pointer-events": "none" }, svg); });
+    }
     if (mode === "vertex") poly.forEach((v, i) => {
       const grp = svgEl("g", { class: "ag-vertex", "data-v": i, tabindex: 0, role: "button", "aria-label": `${t("Sommet", "Vertex")} ${i + 1}` }, svg);
       svgEl("circle", { cx: X(v[0]), cy: Y(v[1]), r: 16, class: "hit" }, grp);
@@ -172,7 +177,7 @@ export function artgallery(root, { t, q }) {
   root.querySelector("#ag-star").addEventListener("click", () => setPoly(starGallery(N)));
   root.querySelector("#ag-clear").addEventListener("click", () => { guards.length = 0; sel = -1; draw(); });
   sample(); draw();
-  return () => {};
+  return onHintAction("artgallery", { triangulate: () => { aid = Math.max(aid, 1); draw(); }, colour: () => { aid = 2; draw(); } });
 }
 
 /* ------------------------------------------------------------------ eggs */
@@ -359,6 +364,7 @@ export function ramsey(root, { t, q }) {
 export function konigsberg(root, { t, q }) {
   const W = 520, H = 300, graph = graphFor(q.g), pos = layoutOf(graph), E = graph.edges.length;
   const state = { removed: new Set(), walk: [], at: null, mode: "walk" };
+  let showDeg = false;   // hint 1: the number of bridges at each district
   root.innerHTML = `
     <p class="act-help">${t(`${graph.names.length} quartiers (${graph.names.join(", ")}) reliés par ${E} ponts. Mode promenade : touche un pont pour le traverser, puis un autre pont qui part de là où tu es. Mode retrait : touche un pont pour le supprimer ou le rétablir.`, `${graph.names.length} districts (${graph.names.join(", ")}) joined by ${E} bridges. Walk mode: tap a bridge to cross it, then another bridge leaving the district you are in. Removal mode: tap a bridge to remove or restore it.`)}</p>
     <svg class="act-svg" viewBox="0 0 ${W} ${H}" role="group" aria-label="${t("Quartiers et ponts", "Districts and bridges")}"></svg>
@@ -390,6 +396,11 @@ export function konigsberg(root, { t, q }) {
       const [x, y] = pos[v];
       svgEl("circle", { cx: x, cy: y, r: 22, class: `kb-land${state.at === v ? " here" : ""}` }, svg);
       svgEl("text", { x, y: y + 6, "text-anchor": "middle", class: "kb-name" }, svg).textContent = name;
+      if (showDeg) {
+        const deg = graph.edges.filter((b, i) => !state.removed.has(i) && (b[0] === v || b[1] === v)).length;
+        svgEl("circle", { cx: x + 24, cy: y - 22, r: 10, fill: deg % 2 ? "var(--neg)" : "var(--pos)", "pointer-events": "none" }, svg);
+        svgEl("text", { x: x + 24, y: y - 17.5, "text-anchor": "middle", style: "font:700 13px var(--body);fill:#fff;pointer-events:none" }, svg).textContent = deg;
+      }
     });
     const total = E - state.removed.size, k = state.walk.length;
     let status = `${t("Ponts restants", "Bridges left")} : <strong>${total}</strong> · ${t("traversés", "crossed")} : <strong>${k}</strong>.`;
@@ -416,7 +427,7 @@ export function konigsberg(root, { t, q }) {
   root.querySelector("#kb-undo").addEventListener("click", () => { const w = state.walk.pop(); if (w) state.at = state.walk.length ? w.from : null; draw(); });
   root.querySelector("#kb-reset").addEventListener("click", () => { state.walk = []; state.at = null; state.removed.clear(); draw(); });
   draw();
-  return () => {};
+  return onHintAction("konigsberg", { degrees: () => { showDeg = true; draw(); } });
 }
 
 /* -------------------------------------------------------------- josephus */

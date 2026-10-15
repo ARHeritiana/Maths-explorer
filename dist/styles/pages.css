@@ -820,3 +820,8 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .solution-wide details.solution { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 4px 20px 18px; }
 .solution-wide details.solution > summary { min-height: 52px; display: flex; align-items: center; font: 700 1.15rem var(--display, var(--body)); cursor: pointer; }
 .solution-wide .sol-svg { max-height: 640px; }
+
+/* aids switched on by hints */
+.door .door-div { display: block; font-size: 0.7em; opacity: 0.75; min-height: 1em; }
+.pick[data-rem] { background: color-mix(in srgb, var(--rem) 35%, var(--surface)); border-color: var(--rem); }
+.pick[data-rem]::after { content: attr(data-rem); display: block; font-size: 0.65em; opacity: 0.75; }

@@ -22,7 +22,6 @@ export function gridpaths(root, { t, q }) {
       <button class="btn-quiet" id="gp-clear" type="button">${t("Nouveau chemin", "New path")}</button>
       <button class="btn btn-secondary" id="gp-rand" type="button">${t("Chemin au hasard", "Random path")}</button>
     </div>
-    <div class="act-controls"><label class="act-check"><input id="gp-counts" type="checkbox"><span>${t("Afficher, en chaque point, le nombre de chemins qui y mènent", "Show, at every point, the number of paths leading to it")}</span></label></div>
     <p class="act-readout" id="gp-read" role="status" aria-live="polite"></p>`;
   const svg = root.querySelector("svg"), read = root.querySelector("#gp-read"), pos = () => walk.reduce(([i, j], s) => (s === "R" ? [i + 1, j] : [i, j + 1]), [0, 0]);
   const word = (w) => w.join("");
@@ -48,10 +47,9 @@ export function gridpaths(root, { t, q }) {
   root.querySelector("#gp-undo").addEventListener("click", () => { walk.pop(); draw(); });
   root.querySelector("#gp-clear").addEventListener("click", () => { walk = []; draw(); });
   root.querySelector("#gp-rand").addEventListener("click", () => { const w = [...Array(m).fill("R"), ...Array(n).fill("U")]; for (let i = w.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [w[i], w[j]] = [w[j], w[i]]; } walk = w; found.add(word(w)); draw(); });
-  root.querySelector("#gp-counts").addEventListener("change", (e) => { counts = e.target.checked; draw(); });
   svg.addEventListener("click", (e) => { const c = e.target.closest("circle"); if (!c) return; const [i, j] = pos(), ti = Number(c.dataset.i), tj = Number(c.dataset.j); if (ti === i + 1 && tj === j) step("R"); else if (ti === i && tj === j + 1) step("U"); });
   draw();
-  return () => {};
+  return onHintAction("gridpaths", { counts: () => { counts = true; draw(); } });
 }
 
 /* ---------------------------------------------------------------- horses */

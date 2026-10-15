@@ -254,8 +254,11 @@ with sync_playwright() as p:
     def go(c):   # the variation panel remembers the last data: start each puzzle from its defaults
         page.goto(BASE+'/#challenges/'+c)
         if page.locator('#var-reset').count(): page.locator('#var-reset').click()
+    def hint(n, act):   # open hint n in the panel and press its button, which acts on the canvas
+        page.locator('.hint-panel details').nth(n - 1).locator('summary').click(); page.locator('[data-hint-act="%s"]' % act).click()
     go('gridpaths')
-    page.locator('#gp-rand').click(); page.locator('#gp-counts').check()
+    assert page.locator('#gp-counts').count() == 0, 'the path counts are a hint, not a control'
+    page.locator('#gp-rand').click(); hint(2, 'counts')
     assert '210' in page.locator('#gp-read').inner_text() and 'Chemin au hasard' not in page.locator('#gp-read').inner_text()
     go('horses')
     for h in range(5): page.locator('.cl-tok[data-h="%d"]'%h).click()
@@ -267,8 +270,6 @@ with sync_playwright() as p:
     assert page.locator('.cl-tok[data-h="24"]').get_attribute('aria-pressed') == 'false', 'dragging does not select'
     page.locator('#hs-home').click(); assert page.locator('.cl-tok[data-h="24"]').evaluate("e => e.style.getPropertyValue('--c')") == '4'
 
-    def hint(n, act):   # open hint n in the panel and press its button, which acts on the canvas
-        page.locator('.hint-panel details').nth(n - 1).locator('summary').click(); page.locator('[data-hint-act="%s"]' % act).click()
     go('cake')
     assert page.locator('#ck-kit').is_hidden() and page.locator('[data-hint-act]').count() == 2, 'the cake starts as a 3D view only; hints carry the buttons'
     page.locator('#ck-lock').click(); page.wait_for_timeout(1000)
