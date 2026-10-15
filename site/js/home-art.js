@@ -1,0 +1,137 @@
+// Small live drawings for the home page and the gallery cards. Each one draws on a canvas, pauses when it is off screen or the
+// tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery-math.js and lab-objects.js.
+import { escape, MADAGASCAR, planar, resample, fourier, arms } from "./gallery-math.js";
+import { platonic, reuleaux, binomial } from "./lab-objects.js";
+
+const TAU = Math.PI * 2;
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
+const cols = () => ({ ink: css("--ink"), muted: css("--muted"), accent: css("--accent"), line: css("--line-strong"), surface: css("--surface"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)), neg: css("--neg") });
+
+// Shared frame loop: sizes the canvas to its box, runs draw(g, W, H, time, C) only while visible.
+function runner(cv, draw, { reduced = () => false, still = 6, trailing = false } = {}) {
+  const g = cv.getContext("2d"); let W = 0, H = 0, raf = 0, visible = true, alive = true, C = cols(), frames = 0, t0 = performance.now(), cleared = false;
+  const size = () => { const r = cv.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1); W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height)); cv.width = Math.round(W * d); cv.height = Math.round(H * d); g.setTransform(d, 0, 0, d, 0, 0); cleared = false; };
+  size();
+  const ro = new ResizeObserver(() => { size(); if (reduced() || !visible) frame(performance.now()); }); ro.observe(cv);
+  const io = new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible && alive && !raf && !reduced()) raf = requestAnimationFrame(frame); }); io.observe(cv);
+  function frame(now) {
+    raf = 0; if (!alive) return;
+    if (frames++ % 90 === 0) C = cols();
+    const t = reduced() ? still : (now - t0) / 1000;
+    if (!trailing || !cleared) { g.clearRect(0, 0, W, H); cleared = true; }
+    draw(g, W, H, t, C, frames);
+    if (!reduced() && visible && !document.hidden) raf = requestAnimationFrame(frame);
+  }
+  const onVis = () => { if (!document.hidden && visible && alive && !raf && !reduced()) raf = requestAnimationFrame(frame); };
+  document.addEventListener("visibilitychange", onVis);
+  raf = requestAnimationFrame(frame);
+  return () => { alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", onVis); };
+}
+
+/* ------------------------------------------------------------ Madagascar by circles */
+// centred on its mean, so that the constant term of the transform vanishes and every circle really turns
+const OUTLINE = (() => { const raw = resample(planar(MADAGASCAR), 128), mx = raw.reduce((q, p) => q + p[0] / raw.length, 0), my = raw.reduce((q, p) => q + p[1] / raw.length, 0), pts = raw.map((p) => [p[0] - mx, p[1] - my]); return { pts, co: fourier(pts) }; })();
+function fourierArt(cv, opts) {
+  const { pts, co } = OUTLINE, xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), cxy = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2], span = [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
+  let trail = [], lastCount = 0;
+  return runner(cv, (g, W, H, t, C) => {
+    const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s];
+    const cycle = 26, u = (t % cycle) / cycle, count = opts.reduced?.() ? 45 : Math.max(1, Math.min(48, Math.floor(1 + 47 * Math.min(1, u * 2.1) ** 1.4)));
+    const phase = opts.reduced?.() ? 0 : (t / 9) % 1;
+    void lastCount; void trail;
+    // the whole curve drawn by the first `count` circles (it sharpens as circles are added), then the arms and the moving tip
+    g.strokeStyle = C.accent; g.lineWidth = 3.2; g.lineJoin = "round"; g.beginPath();
+    for (let i = 0; i <= 220; i++) { const q = arms(co, i / 220, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }
+    g.stroke();
+    const chain = arms(co, phase, count), tip = chain[chain.length - 1];
+    g.globalAlpha = 1; g.lineWidth = 1;
+    for (let i = 1; i < chain.length; i++) { const a = P(chain[i - 1][0], chain[i - 1][1]), b = P(chain[i][0], chain[i][1]), r = chain[i][2] * s; g.strokeStyle = C.muted; g.globalAlpha = 0.4; if (r > 1) { g.beginPath(); g.arc(a[0], a[1], r, 0, TAU); g.stroke(); } g.globalAlpha = 0.8; g.strokeStyle = C.ink; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
+    g.globalAlpha = 1; const [tx, ty] = P(tip[0], tip[1]); g.fillStyle = C.neg; g.beginPath(); g.arc(tx, ty, 4.5, 0, TAU); g.fill();
+  }, { reduced: opts.reduced });
+}
+
+/* ------------------------------------------------------------ fractals */
+const shade = (v, max) => {
+  if (v >= max) return 0xff140c0a;
+  const k = 0.045 * v + 0.2, r = 0.5 + 0.5 * Math.cos(TAU * k), g = 0.5 + 0.5 * Math.cos(TAU * (k + 0.12)), b = 0.5 + 0.5 * Math.cos(TAU * (k + 0.28));
+  return (255 << 24) | ((b * 235 + 12) << 16) | ((g * 220 + 12) << 8) | (r * 215 + 20);
+};
+function fractalArt(cv, opts, field) {
+  const off = document.createElement("canvas"), RW = 150, RH = 94; off.width = RW; off.height = RH; const oc = off.getContext("2d"), img = oc.createImageData(RW, RH), px = new Uint32Array(img.data.buffer);
+  return runner(cv, (g, W, H, t) => { field(px, RW, RH, t); oc.putImageData(img, 0, 0); g.imageSmoothingEnabled = true; g.drawImage(off, 0, 0, W, H); }, { reduced: opts.reduced, still: 2 });
+}
+const juliaArt = (cv, o) => fractalArt(cv, o, (px, w, h, t) => {
+  const a = 0.6 + t * 0.25, cr = 0.7885 * Math.cos(a), ci = 0.7885 * Math.sin(a), W = 3.0, H = (W * h) / w, max = 70;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) px[y * w + x] = shade(escape(((x + 0.5) / w - 0.5) * W, -((y + 0.5) / h - 0.5) * H, cr, ci, max, true), max);
+});
+const mandelArt = (cv, o) => fractalArt(cv, o, (px, w, h, t) => {
+  const k = ((t % 24) / 24), z = Math.exp(Math.log(3.4) + (Math.log(0.0035) - Math.log(3.4)) * (o.reduced?.() ? 0.62 : k * k * (3 - 2 * k))), cx = -0.5 + (-0.743643887037151 + 0.5) * Math.min(1, (1 - z / 3.4) * 1.3), cy = 0.13182590420533 * Math.min(1, (1 - z / 3.4) * 1.3), max = Math.round(80 + 40 * Math.log2(3.4 / z)), H = (z * h) / w;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) px[y * w + x] = shade(escape(0, 0, cx + ((x + 0.5) / w - 0.5) * z, cy - ((y + 0.5) / h - 0.5) * H, max, true), max);
+});
+
+/* ------------------------------------------------------------ chaos game */
+function chaosArt(cv, opts) {
+  let x = 0.3, y = 0.3, n = 0, ctxReset = false;
+  const V = [[0.5, 0.06], [0.06, 0.94], [0.94, 0.94]];
+  return runner(cv, (g, W, H, t, C, frames) => {
+    if (!ctxReset || n > 60000) { g.clearRect(0, 0, W, H); n = 0; ctxReset = true; }
+    const batch = opts.reduced?.() ? 14000 : 160;
+    for (let i = 0; i < batch; i++) { const k = Math.floor(Math.random() * 3); x = (x + V[k][0]) / 2; y = (y + V[k][1]) / 2; g.fillStyle = C.c[(k * 2) % 8]; g.fillRect(x * W, y * H, 1.6, 1.6); n++; }
+    void t; void frames;
+  }, { reduced: opts.reduced, trailing: true });
+}
+
+/* ------------------------------------------------------------ Galton board */
+function galtonArt(cv, opts) {
+  const ROWS = 8, balls = [], bins = Array(ROWS + 1).fill(0); let acc = 0, last = 0;
+  return runner(cv, (g, W, H, t, C) => {
+    const dt = Math.min(0.05, t - last || 0.016); last = t; const dx = Math.min(W / (ROWS + 3), 34), top = 20, dy = (H * 0.5) / ROWS, bottom = H - 8, R = Math.max(2.2, dx * 0.15);
+    if (opts.reduced?.()) { if (!bins.some(Boolean)) for (let i = 0; i < 160; i++) { let j = 0; for (let r = 0; r < ROWS; r++) if (Math.random() < 0.5) j++; bins[j]++; } }
+    else { acc += dt; if (acc > 0.22 && balls.length < 14) { acc = 0; const path = Array.from({ length: ROWS }, () => Math.random() < 0.5), bin = path.filter(Boolean).length; balls.push({ path, tau: 0, bin, slot: bins[bin] }); } }
+    for (const b of balls) b.tau += dt * 7; for (let i = balls.length - 1; i >= 0; i--) if (balls[i].tau >= ROWS + 1.2) { bins[balls[i].bin]++; balls.splice(i, 1); }
+    if (bins.some((c) => c * R * 2 / 2 > H * 0.36)) bins.fill(0);
+    const px = (r, j) => W / 2 + (j - r / 2) * dx, py = (r) => top + r * dy;
+    g.fillStyle = C.muted; for (let r = 0; r < ROWS; r++) for (let j = 0; j <= r; j++) { g.beginPath(); g.arc(px(r, j), py(r), 2.2, 0, TAU); g.fill(); }
+    const slotXY = (k, i) => { const per = Math.max(1, Math.floor((dx - 3) / (2 * R))); return [W / 2 + (k - ROWS / 2) * dx - per * R + R + (i % per) * 2 * R, bottom - R - Math.floor(i / per) * 2 * R]; };
+    for (let k = 0; k <= ROWS; k++) for (let i = 0; i < bins[k]; i++) { const [x, y] = slotXY(k, i); g.fillStyle = C.c[k % 8]; g.beginPath(); g.arc(x, y, R * 0.92, 0, TAU); g.fill(); }
+    for (const b of balls) {
+      const s = Math.min(b.tau, ROWS), w = Math.floor(s), f = s - w; let j = 0; for (let r = 0; r < w; r++) if (b.path[r]) j++;
+      let x, y; if (b.tau <= ROWS) { const nj = j + (w < ROWS && b.path[w] ? 1 : 0); x = px(w, j) + (px(w + 1, nj) - px(w, j)) * f; y = py(w) + (py(w + 1) - py(w)) * f - Math.sin(f * Math.PI) * 3; }
+      else { const [sx, sy] = slotXY(b.bin, b.slot), k = Math.min(1, (b.tau - ROWS) / 1.2); x = px(ROWS, b.bin) + (sx - px(ROWS, b.bin)) * k; y = py(ROWS) + (sy - py(ROWS)) * k * k; }
+      g.fillStyle = C.c[b.bin % 8]; g.beginPath(); g.arc(x, y, R * 0.92, 0, TAU); g.fill();
+    }
+    void binomial;
+  }, { reduced: opts.reduced });
+}
+
+/* ------------------------------------------------------------ curve of constant width */
+function reuleauxArt(cv, opts) {
+  const shape = reuleaux(3, 1), pts = shape.pts, c0 = pts.reduce((a, p) => [a[0] + p[0] / pts.length, a[1] + p[1] / pts.length], [0, 0]);
+  return runner(cv, (g, W, H, t, C) => {
+    // the shape turns; two parallel lines in a fixed direction always touch it, and their distance never changes
+    const s = Math.min(W, H) * 0.5, spin = t * 1.1, cs = Math.cos(spin), sn = Math.sin(spin), cx = W / 2, cy = H / 2;
+    const R = pts.map((p) => { const x = p[0] - c0[0], y = p[1] - c0[1]; return [x * cs - y * sn, x * sn + y * cs]; });
+    const th = 0.6, u = [Math.cos(th), Math.sin(th)], d = [-u[1], u[0]], proj = R.map((p) => p[0] * u[0] + p[1] * u[1]), hmax = Math.max(...proj), hmin = Math.min(...proj);
+    const X = (x, y) => [cx + x * s, cy - y * s];
+    g.fillStyle = C.accent; g.globalAlpha = 0.22; g.beginPath(); R.forEach((p, i) => { const [x, y] = X(p[0], p[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.closePath(); g.fill();
+    g.globalAlpha = 1; g.strokeStyle = C.accent; g.lineWidth = 3; g.stroke();
+    g.strokeStyle = C.ink; g.lineWidth = 1.6;
+    for (const h of [hmax, hmin]) { const A = X(u[0] * h - d[0] * 0.75, u[1] * h - d[1] * 0.75), B = X(u[0] * h + d[0] * 0.75, u[1] * h + d[1] * 0.75); g.beginPath(); g.moveTo(...A); g.lineTo(...B); g.stroke(); }
+    const m = X(u[0] * hmin, u[1] * hmin), n = X(u[0] * hmax, u[1] * hmax); g.setLineDash([4, 4]); g.beginPath(); g.moveTo(...m); g.lineTo(...n); g.stroke(); g.setLineDash([]);
+  }, { reduced: opts.reduced });
+}
+
+/* ------------------------------------------------------------ Platonic solid */
+function platonicArt(cv, opts) {
+  const S = platonic("dodecahedron");
+  return runner(cv, (g, W, H, t, C) => {
+    const a = t * 0.5, b = 0.5 + 0.25 * Math.sin(t * 0.3), ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b), s = Math.min(W, H) * 0.36;
+    const P = S.verts.map(([x, y, z]) => { const x1 = x * ca + z * sa, z1 = -x * sa + z * ca, y1 = y * cb - z1 * sb, z2 = y * sb + z1 * cb; return [W / 2 + x1 * s, H / 2 - y1 * s, z2]; });
+    const faces = S.faces.map((f) => ({ f, d: f.verts.reduce((q, v) => q + P[v][2], 0) / f.verts.length })).sort((p, q) => p.d - q.d);
+    faces.forEach(({ f, d }, i) => { g.globalAlpha = 0.18 + 0.4 * ((d + 1) / 2); g.fillStyle = C.c[i % 8]; g.beginPath(); f.verts.forEach((v, k) => (k ? g.lineTo(P[v][0], P[v][1]) : g.moveTo(P[v][0], P[v][1]))); g.closePath(); g.fill(); });
+    g.globalAlpha = 0.9; g.strokeStyle = C.ink; g.lineWidth = 1.4; for (const [p, q] of S.edges) { g.beginPath(); g.moveTo(P[p][0], P[p][1]); g.lineTo(P[q][0], P[q][1]); g.stroke(); } g.globalAlpha = 1;
+  }, { reduced: opts.reduced, still: 3 });
+}
+
+export const ART = { fourier: fourierArt, julia: juliaArt, mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt };
+export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

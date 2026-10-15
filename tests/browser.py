@@ -22,6 +22,15 @@ with sync_playwright() as p:
     errors = []
     page.on('pageerror', lambda e: errors.append(e.stack or str(e)))
     assert page.goto(BASE).status == 200
+    # The welcome page is neutral (no school level in its text), draws live art, and the gallery holds the curiosities.
+    page.wait_for_selector('.welcome-art canvas'); page.wait_for_timeout(1200)
+    home = page.locator('.welcome').inner_text()
+    assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac']), 'the home page does not assume a curriculum'
+    assert page.evaluate("() => { const c = document.querySelector('.welcome-art canvas'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n > 500; }"), 'the hero drawing is not blank'
+    assert page.locator('.wonder').count() == 6
+    page.goto(BASE+'/#gallery'); assert page.locator('.wonder').count() == 6
+    page.goto(BASE+'/#lab'); assert page.locator('.lab-link').count() == 9, 'the laboratory keeps the nine guided experiments'
+    page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
         for lab,answer in zip(LABS,ANSWERS):
@@ -338,7 +347,7 @@ with sync_playwright() as p:
         assert tp.locator('.dom[data-d]').count() == 1 and abs(tp.evaluate('scrollY') - y0) < 5, 'a finger dragging a domino must not scroll the page'
         touch.close()
     # Laboratory objects: each scene mounts, draws on a canvas, reacts, stays inside the viewport and its quiz works.
-    OBJECTS = {'galton':'0.375','reuleaux':'6','platonic':'30','chaos':'27'}
+    OBJECTS = {'galton':'0.375','reuleaux':'6','platonic':'30','chaos':'27','fourier':'4','mandelbrot':'3'}
     for width in [1280,390]:
         page.set_viewport_size({'width':width,'height':900})
         for lab,answer in OBJECTS.items():

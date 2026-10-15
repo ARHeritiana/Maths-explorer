@@ -5,6 +5,8 @@ import { slidesPage, bindSlides } from "./slides-page.js";
 import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountObject } from "./lab-objects.js";
+import { homePage, galleryPage as galleryIndex } from "./welcome.js";
+import { mountArt } from "./home-art.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
 import { mountActivity, hasActivity } from "./challenge-activities.js";
@@ -61,6 +63,7 @@ let challengeFilter = "all";
 let currentLab = "quadratic";
 let stopChapter = () => {};
 let stopObject = () => {};
+let stopArt = [];
 let stopTrig = () => {};
 let plotBounds = null;
 let activeDrag = null;
@@ -109,7 +112,7 @@ function state(lab) {
 }
 function route() {
   const parts = location.hash.slice(1).split("/");
-  return { page: parts[0] || "resources", id: parts[1], tab: parts[2] };
+  return { page: parts[0] || "home", id: parts[1], tab: parts[2] };
 }
 function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
@@ -120,12 +123,13 @@ function header(page) {
     ["resources", "Cours", "Lessons", "books"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["lab", "Laboratoire", "Laboratory", "flask"],
+    ["gallery", "Galerie", "Gallery", "sparkle"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
     ["pathways", "Parcours", "Pathways", "path"],
   ];
   const dark = currentTheme() === "nuit";
   const themeLabel = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
-  return `<header class="topbar"><a class="brand" href="#resources" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${nav
+  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${nav
     .map(
       ([id, fr, en, ic]) =>
         `<a href="#${id}" ${page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources") ? 'aria-current="page"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`,
@@ -141,28 +145,34 @@ function render() {
   stopChapter();
   stopChapter = () => {};
   stopObject();
+  stopArt.forEach((f) => f());
+  stopArt = [];
   stopObject = () => {};
   activeDrag = null;
   plotBounds = null;
   labMotion.reset();
-  const r = route();
+  let r = route();
+  // the curiosities live in the gallery, whatever link points at them
+  if (r.page === "lab" && labs.some((l) => l.id === r.id && l.custom)) { history.replaceState(null, "", link("gallery", r.id)); r = route(); }
   document.documentElement.lang = lang;
   document.title = pair(
     "Maths Explorer · Laboratoire de mathématiques",
     "Maths Explorer · Mathematics laboratory",
   );
-  const valid = (r.page === "lab" && (!r.id || labs.some(l => l.id === r.id))) ||
+  const valid = (r.page === "lab" && (!r.id || labs.some(l => l.id === r.id && !l.custom))) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "home" ? homePage({ pair, t, link, labs }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? labPage(r.id)
+      : page === "gallery"
+      ? (r.id ? labPage(r.id, "gallery") : galleryIndex({ pair, t, link, labs }))
       : page === "challenges"
         ? challengePage(r.id)
         : page === "library"
@@ -172,10 +182,11 @@ function render() {
           : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#lab">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></main>`) +
     footer();
   if (page === "lab" && $("#plot")) updateLab();
-  if (page === "lab" && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion });
+  if (page === "home" || (page === "gallery" && !r.id)) stopArt = [...document.querySelectorAll("canvas[data-art]")].map((cv) => mountArt(cv, cv.dataset.art, { reduced: reducedMotion }));
+  if ((page === "lab" || page === "gallery") && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion });
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
   bindCommon();
-  if (page === "lab") bindLab();
+  if (page === "lab" || (page === "gallery" && r.id)) bindLab();
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pack") bindPack(t);
@@ -213,21 +224,16 @@ function bindCommon() {
     }),
   );
 }
-const navLabs = [...labs].sort(
-  (a, b) =>
-    ["Algèbre", "Géométrie", "Données & hasard", "Analyse"].indexOf(
-      a.group[0],
-    ) -
-    ["Algèbre", "Géométrie", "Données & hasard", "Analyse"].indexOf(b.group[0]),
-);
+const groupRank = (l) => ["Algèbre", "Géométrie", "Données & hasard", "Analyse"].indexOf(l.group[0]);
 // The combining arrow in the vector symbol is missing from the maths font: show a plain arrow.
 const glyph = (symbol) => (symbol.includes("\u20d7") ? "→" : symbol);
-function labPage(id) {
-  const lab = labs.find((x) => x.id === id) || labs[0];
+function labPage(id, mode = "lab") {
+  const pool = labs.filter((x) => (mode === "gallery") === !!x.custom), navLabs = mode === "gallery" ? pool : [...pool].sort((p, q) => groupRank(p) - groupRank(q));
+  const lab = pool.find((x) => x.id === id) || pool[0];
   currentLab = lab.id;
   const s = state(lab);
-  return `<div class="lab-layout"><aside class="sidebar" aria-label="${pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${pair("Explorer", "Explore")} <span>${String(labs.length).padStart(2, "0")}</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link("lab", x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
- <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("Le laboratoire", "The laboratory")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
+  return `<div class="lab-layout"><aside class="sidebar" aria-label="${mode === "gallery" ? pair("Galerie", "Gallery") : pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${mode === "gallery" ? pair("Choisir une merveille", "Choose a wonder") : pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Explorer", "Explore")} <span>${String(navLabs.length).padStart(2, "0")}</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link(mode, x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
+ <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Le laboratoire", "The laboratory")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
  <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}${lab.custom ? `<div id="object-stage" class="object-stage" data-object="${lab.id}"></div>` : `<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
  ${
    lab.id === "sequences"
@@ -246,9 +252,9 @@ function labPage(id) {
  ${lab.id === "integral" ? `<fieldset class="mode"><legend>${pair("Hauteur des rectangles", "Rectangle heights")}</legend>${[["left","À gauche","Left endpoint"],["right","À droite","Right endpoint"],["midpoint","Au milieu","Midpoint"]].map(([v,fr,en]) => `<label><input type="radio" name="method" value="${v}" ${s.method === v ? "checked" : ""}>${pair(fr,en)}</label>`).join("")}</fieldset>` : ""}
  ${lab.params.map(([name, min, max, step], i) => `<label class="slider-control" for="param-${i}"><span>${parameterLabel(lab.id, i, name)}<output id="value-${i}">${fmt(s.values[i])}${name === "θ" ? "°" : ""}</output></span><input id="param-${i}" data-param="${i}" type="range" min="${min}" max="${max}" step="${step}" value="${s.values[i]}"><span class="range-limits"><span>${fmt(min)}</span><span>${fmt(max)}</span></span></label>`).join("")}
  ${lab.id === "statistics" ? `<label class="data-label" for="data-input">${pair("Tes données", "Your data")}</label><textarea id="data-input" rows="2" aria-describedby="data-help data-error">${esc(s.data)}</textarea><p id="data-help" class="muted">${pair("1 à 100 valeurs séparées par des espaces ou des points-virgules. Décimales : 2,5 ou 2.5. Valeurs entre −10 000 et 10 000.", "1–100 values separated by spaces or semicolons. Decimals: 2.5 or 2,5. Values between −10,000 and 10,000.")}</p><p id="data-error" class="error" role="alert"></p>` : ""}
- ${lab.id === "probability" ? `<div class="simulation"><button class="primary" data-sim="100">${pair("Simuler 100 expériences", "Simulate 100 experiments")}</button><button class="secondary" data-sim="1000">${pair("En ajouter 1 000", "Add 1,000")}</button><p id="sim-status" class="muted" aria-live="polite"></p></div>` : ""}</div><div id="results" class="results" aria-live="polite" aria-atomic="true"></div>`}</section>
+ ${lab.id === "probability" ? `<div class="simulation"><button class="primary" data-sim="100">${pair("Simuler 100 expériences", "Simulate 100 experiments")}</button><button class="secondary" data-sim="1000">${pair("En ajouter 1 000", "Add 1,000")}</button><p id="sim-status" class="muted" aria-live="polite"></p><div id="sim-tray" class="sim-tray" aria-label="${pair("Les dernières expériences : pièce pleine = succès", "The latest experiments: filled coin = success")}" role="img"></div></div>` : ""}</div><div id="results" class="results" aria-live="polite" aria-atomic="true"></div>`}</section>
  <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${lab.id === "trig" ? pair("Les valeurs sont exactes aux angles remarquables ; sinon, le signe ≈ indique une approximation. Les essais aident à conjecturer ; un argument général établit une preuve.", "Values are exact at remarkable angles; otherwise, ≈ indicates an approximation. Examples suggest a conjecture; a general argument establishes a proof.") : pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning"><label for="observation">${pair("Mon observation (avec les paramètres)", "My observation (including parameters)")}</label><textarea id="observation" data-note="observation" rows="2" maxlength="2000">${esc(s.observation)}</textarea><label for="conjecture">${pair("Ma conjecture et ses conditions", "My conjecture and its conditions")}</label><textarea id="conjecture" data-note="conjecture" rows="2" maxlength="2000">${esc(s.conjecture)}</textarea><p class="muted">${pair("Notes conservées pendant cette session seulement. Elles ne sont pas corrigées automatiquement.", "Notes stay in this session only. They are not marked automatically.")}</p><details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span><button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button><form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
- <section class="lab-resources"><h2>${pair("Poursuivre ce chapitre", "Continue this topic")}</h2><p>${pair("Passer de l’expérience aux notes, aux exercices et aux problèmes.", "Move from the experiment to notes, exercises and problems.")}</p><a class="secondary" href="#library/@${lab.id}">${pair("Ressources liées à cette expérience", "Resources linked to this experiment")}</a></section>
+ ${mode === "gallery" ? "" : `<section class="lab-resources"><h2>${pair("Poursuivre ce chapitre", "Continue this topic")}</h2><p>${pair("Passer de l’expérience aux notes, aux exercices et aux problèmes.", "Move from the experiment to notes, exercises and problems.")}</p><a class="secondary" href="#library/@${lab.id}">${pair("Ressources liées à cette expérience", "Resources linked to this experiment")}</a></section>`}
  <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section></main></div>`;
 }
 
@@ -916,7 +922,7 @@ function bindLab() {
     s = state(lab);
   if ($("#plot")) bindPlot(lab, s);
   if (lab.id === "trig") bindTrigonometry(s);
-  $("#lab-picker")?.addEventListener("change", e => { location.hash = link("lab", e.target.value); });
+  $("#lab-picker")?.addEventListener("change", e => { location.hash = link(route().page === "gallery" ? "gallery" : "lab", e.target.value); });
   document.querySelectorAll("[data-param]").forEach((input) =>
     input.addEventListener("input", () => {
       s.values[+input.dataset.param] = +input.value;
@@ -953,8 +959,11 @@ function bindLab() {
   });
   document.querySelectorAll("[data-sim]").forEach((b) =>
     b.addEventListener("click", () => {
-      const count = +b.dataset.sim,
-        bins = sampleBinomial(...s.values, count);
+      const count = +b.dataset.sim, [n, p] = s.values, bins = Array(n + 1).fill(0), tray = [];
+      // each experiment is n trials: the last few are shown as rows of coins (filled = success) so the counts have a visible origin
+      for (let i = 0; i < count; i++) { const row = Array.from({ length: n }, () => Math.random() < p); bins[row.filter(Boolean).length]++; if (i >= count - 8) tray.push(row); }
+      const host = $("#sim-tray");
+      if (host) host.innerHTML = tray.map((row) => `<div class="sim-row">${row.map((x) => `<span class="coin${x ? " on" : ""}"></span>`).join("")}<b>${row.filter(Boolean).length}</b></div>`).join("");
       s.bins = bins.map((x, i) => x + (s.bins?.[i] || 0));
       s.trials += count;
       updateLab();

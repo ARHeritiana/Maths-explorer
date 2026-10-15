@@ -90,25 +90,13 @@ export const sierpinskiCount = (level) => 3 ** level;
 export const sierpinskiArea = (level) => 0.75 ** level;
 
 /* ================================================================= UI */
-const NS = "http://www.w3.org/2000/svg";
-const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888";
-const palette = () => ({ ink: css("--ink"), muted: css("--muted"), line: css("--line-strong"), surface: css("--surface"), sunken: css("--sunken"), accent: css("--accent"), obj2: css("--obj2"), obj3: css("--obj3"), pos: css("--pos"), neg: css("--neg"), grid: css("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)) });
-function canvasIn(host, aspect) {
-  const cv = document.createElement("canvas"); cv.className = "obj-canvas"; host.append(cv);
-  const g = cv.getContext("2d"), o = { cv, g, W: 640, H: Math.round(640 / aspect) };
-  const resize = () => { const d = devicePixelRatio || 1; cv.width = Math.round(o.W * d); cv.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw?.(); };
-  cv.style.aspectRatio = `${o.W} / ${o.H}`; resize();
-  o.point = (e) => { const r = cv.getBoundingClientRect(); return [((e.clientX - r.left) / r.width) * o.W, ((e.clientY - r.top) / r.height) * o.H]; };
-  return o;
-}
-const field = (id, label, min, max, step, value) => `<label class="act-field" for="${id}"><span class="act-label">${label} <output id="${id}-out"></output></span><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}"></label>`;
-const bind = (root, id, fn, fmt = (v) => v) => { const el = root.querySelector(`#${id}`), out = root.querySelector(`#${id}-out`); const run = () => { out.textContent = fmt(Number(el.value)); fn(Number(el.value)); }; el.addEventListener("input", run); out.textContent = fmt(Number(el.value)); return el; };
-const loopFor = (draw, reduced) => { let raf = 0, last = 0, alive = true; const tick = (now) => { if (!alive) return; const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now; draw(dt, now / 1000); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); void reduced; return () => { alive = false; cancelAnimationFrame(raf); }; };
+import { NS, css, palette, canvasIn, field, bind, loopFor } from "./object-kit.js";
+import { GALLERY_OBJECTS } from "./gallery-objects.js";
 
 /* ---------------------------------------------------------------- Galton */
 function galton(root, { t, reduced, lang }) {
-  let rows = 10, p = 0.5, counts = [], total = 0, balls = [], continuous = false, pascal = false, theory = true, acc = 0;
-  const reset = () => { counts = Array(rows + 1).fill(0); total = 0; balls = []; };
+  let rows = 10, p = 0.5, counts = [], pending = [], total = 0, balls = [], continuous = false, pascal = false, theory = true, acc = 0;
+  const reset = () => { counts = Array(rows + 1).fill(0); pending = Array(rows + 1).fill(0); total = 0; balls = []; };
   root.innerHTML = `
     <p class="act-help">${t("Chaque bille rencontre une rangée de clous : à chaque clou, elle part à droite avec la probabilité p, à gauche sinon. Lâche des billes et compare l’histogramme à la loi binomiale.", "Each ball meets a row of pegs: at each peg it goes right with probability p, left otherwise. Drop balls and compare the histogram with the binomial law.")}</p>
     <div class="obj-stage" id="gb-stage"></div>
@@ -128,7 +116,7 @@ function galton(root, { t, reduced, lang }) {
   const drop = (instant) => {
     const path = []; let j = 0; for (let r = 0; r < rows; r++) { const right = Math.random() < p; path.push(right); if (right) j++; }
     if (instant || reduced()) { counts[j]++; total++; return; }
-    balls.push({ path, tau: 0, bin: j });
+    balls.push({ path, tau: 0, bin: j, slot: counts[j] + pending[j]++ });   // the slot it will take on the stack of its column
   };
   function stats() {
     if (!total) return t("Aucune bille pour l’instant. Théorie : moyenne np et écart type √(np(1−p)).", "No ball yet. Theory: mean np and standard deviation √(np(1−p)).");
@@ -141,20 +129,25 @@ function galton(root, { t, reduced, lang }) {
     const C = palette(), G = geo();
     acc += dt; if (continuous && acc > 0.1 && balls.length < 70) { acc = 0; drop(false); }
     balls.forEach((b) => { b.tau += dt * 9; });
-    for (const b of balls) if (b.tau >= rows + 1.4) { counts[b.bin]++; total++; b.done = true; }
+    for (const b of balls) if (b.tau >= rows + 1.4) { counts[b.bin]++; pending[b.bin]--; total++; b.done = true; }
     balls = balls.filter((b) => !b.done);
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
-    // bins and histogram
-    const pr = binomial(rows, p), maxCount = Math.max(1, ...counts), maxExp = Math.max(...pr.map((x) => x * total)), scale = G.hmax / Math.max(maxCount, maxExp, 6);
+    // columns: the balls that have landed stay balls, packed from the floor of their column; the radius shrinks when a
+    // column gets tall so that the fullest one still fits (a ball never turns into a bar)
+    const pr = binomial(rows, p), fullest = Math.max(1, ...counts.map((c, k) => c + pending[k]));
+    let R = 5, cols = Math.max(1, Math.floor((G.dx - 4) / (2 * R)));
+    while (R > 1.2 && Math.ceil(fullest / cols) * 2 * R > G.hmax) { R -= 0.2; cols = Math.max(1, Math.floor((G.dx - 4) / (2 * R))); }
+    const perBall = (2 * R) / cols, slot = (k, i) => [G.cx + (k - rows / 2) * G.dx - cols * R + R + (i % cols) * 2 * R, G.bottom - R - Math.floor(i / cols) * 2 * R];
     for (let k = 0; k <= rows; k++) {
-      const x = G.cx + (k - rows / 2) * G.dx - G.dx / 2, h = counts[k] * scale;
+      const x = G.cx + (k - rows / 2) * G.dx - G.dx / 2;
       g.strokeStyle = C.line; g.lineWidth = 1; g.strokeRect(x, G.base, G.dx, G.bottom - G.base);
-      g.fillStyle = C.c[(k % 8)]; g.globalAlpha = 0.85; g.fillRect(x + 2, G.bottom - h, G.dx - 4, h); g.globalAlpha = 1;
-      if (counts[k] && G.dx > 22) { g.fillStyle = C.ink; g.font = "600 12px system-ui"; g.textAlign = "center"; g.fillText(counts[k], x + G.dx / 2, G.bottom - h - 4); }
+      g.fillStyle = C.c[k % 8]; g.strokeStyle = C.ink; g.lineWidth = 0.8;
+      for (let i = 0; i < counts[k]; i++) { const [bx, by] = slot(k, i); g.beginPath(); g.arc(bx, by, R * 0.92, 0, TAU); g.fill(); g.stroke(); }
+      if (counts[k] && G.dx > 22) { const top = slot(k, counts[k] - 1)[1] - R; g.fillStyle = C.ink; g.font = "600 12px system-ui"; g.textAlign = "center"; g.fillText(counts[k], G.cx + (k - rows / 2) * G.dx, top - 4); }
     }
     if (theory && total) {
       g.strokeStyle = C.ink; g.lineWidth = 2; g.setLineDash([5, 4]); g.beginPath();
-      for (let k = 0; k <= rows; k++) { const X = G.cx + (k - rows / 2) * G.dx, Y = G.bottom - pr[k] * total * scale; k ? g.lineTo(X, Y) : g.moveTo(X, Y); }
+      for (let k = 0; k <= rows; k++) { const X = G.cx + (k - rows / 2) * G.dx, Y = G.bottom - pr[k] * total * perBall; k ? g.lineTo(X, Y) : g.moveTo(X, Y); }
       g.stroke(); g.setLineDash([]);
     }
     // pegs
@@ -172,8 +165,8 @@ function galton(root, { t, reduced, lang }) {
       for (let r = 0; r < whole; r++) if (b.path[r]) j++;
       const nextJ = j + (whole < rows && b.path[whole] ? 1 : 0), x0 = pegX(whole, j, G) - (whole === 0 ? 0 : 0), x1 = pegX(whole + 1, nextJ, G);
       if (s <= rows) { x = lerp(pegX(whole, j - (whole ? 0 : 0), G), x1, frac); y = lerp(pegY(whole, G) - (whole === 0 ? 14 : 0), pegY(whole + 1, G), frac) - Math.sin(frac * Math.PI) * 5; void x0; }
-      else { x = G.cx + (b.bin - rows / 2) * G.dx; y = lerp(pegY(rows, G) - 8, G.bottom - counts[b.bin] * scale - 6, clampN(s - rows, 0, 1.4) / 1.4); }
-      g.fillStyle = C.obj2; g.strokeStyle = C.ink; g.lineWidth = 1.5; g.beginPath(); g.arc(x, y, 5, 0, TAU); g.fill(); g.stroke();
+      else { const [sx, sy] = slot(b.bin, b.slot), k = clampN(s - rows, 0, 1.4) / 1.4; x = lerp(G.cx + (b.bin - rows / 2) * G.dx, sx, k); y = lerp(pegY(rows, G) - 8, sy, k * k); }
+      g.fillStyle = C.c[b.bin % 8]; g.strokeStyle = C.ink; g.lineWidth = 0.8; g.beginPath(); g.arc(x, y, R * 0.92, 0, TAU); g.fill(); g.stroke();
     }
     const text = stats(); if (text !== lastText && (!balls.length || total % 5 === 0)) { read.innerHTML = text; lastText = text; }
   }
@@ -403,7 +396,7 @@ function chaos(root, { t, reduced, lang }) {
   return loopFor(() => draw(), reduced);
 }
 
-export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos };
+export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS };
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

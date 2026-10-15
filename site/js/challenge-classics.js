@@ -1,6 +1,8 @@
 // Hands-on activities for the classic puzzles: grid paths, the 25 horses, the cake, queens, the snail, the bridge,
 // the light egg and the fake coins. Each is mounted by mountActivity (challenge-activities.js) with the parameters q
 // of the variation on show; the mathematics lives in challenge-puzzles.js.
+import { makeSnail } from "./scene-props.js";
+import { makeSoldier } from "./scene-kit.js";
 import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
 import { pascalGrid, gridPaths, horseRaces, squarePoint, cakeShares, unattacked, QUEENS, queensK, queensBest, snailDown, snailTrace, snailDays, bridgeBest, bridgePlans, bridgeTimes, eggWeighings, minSample, identifies } from "./challenge-puzzles.js";
 
@@ -197,9 +199,8 @@ export function snail(root, { t, reduced, q }) {
     svgEl("polyline", { points: pts.map(([i, h]) => `${px(i)},${py(h)}`).join(" "), fill: "none", stroke: colour(0), "stroke-width": 4, "stroke-linejoin": "round" }, svg);
     const h = half === 0 ? 0 : steps[half - 1], sy = py(h);
     svgEl("circle", { cx: px(Math.min(half, total)), cy: py(h), r: 6, fill: colour(0) }, svg);
-    svgEl("ellipse", { cx: PX + 30, cy: sy - 6, rx: 12, ry: 7, fill: "var(--ink-2)" }, svg);
-    svgEl("circle", { cx: PX + 26, cy: sy - 14, r: 10, fill: colour(3), stroke: "var(--ink)", "stroke-width": 1.5 }, svg);
-    svgEl("circle", { cx: PX + 26, cy: sy - 14, r: 4, fill: "none", stroke: "var(--ink)" }, svg);
+    // the cartoon snail of the worked solution, climbing the post (scared while it slides back at night)
+    const critter = makeSnail(svg); critter.set({ x: PX + 8, y: Math.max(sy, 50), rot: 90, dir: -1, mood: half > 0 && half % 2 === 0 && half < total ? "scared" : "ok", size: 0.95 });
     const tx = svgEl("text", { x: 505, y: py(H) - 6, "text-anchor": "end", style: "font:700 13px var(--body);fill:var(--ink)" }, svg); tx.textContent = `${t("Sommet", "Top")} : ${H} m`;
     const day = Math.min(days, Math.floor(half / 2) + 1), done = half >= total;
     read.innerHTML = half === 0 ? t("Début du jour 1, à 0 m.", "Start of day 1, at 0 m.") : `${t("Jour", "Day")} ${Math.floor((half - 1) / 2) + 1}, ${(half - 1) % 2 === 0 ? t("fin de la journée", "end of the day") : t("après la nuit", "after the night")} : <strong>${h} m</strong>${done ? ` — ${t("sommet atteint le jour", "top reached on day")} <strong>${days}</strong>` : ""}`;
@@ -216,6 +217,8 @@ export function snail(root, { t, reduced, q }) {
 }
 
 /* ---------------------------------------------------------------- bridge */
+// Looks of the four soldiers (the same as in the animated solution), fastest first.
+const SOLDIERS = [{ uniform: "#3b82f6", size: 0.86 * 1.1, skin: "#f1c27d" }, { uniform: "#e8710a", size: 0.94 * 1.1, skin: "#e0ac69" }, { uniform: "#2fa866", size: 1.1, skin: "#f5d0a9" }, { uniform: "#c2185b", size: 1.1 * 1.1, skin: "#d8a47f", moustache: true, top: 80 }];
 export function bridge(root, { t, q }) {
   const times = bridgeTimes(q.set).sort((a, b) => a - b), best = bridgeBest(times), NAMES = ["A", "B", "C", "D"];
   let side, torch, elapsed, hist, sel;
@@ -228,7 +231,9 @@ export function bridge(root, { t, q }) {
     <ol class="cl-log" id="br-log" aria-label="${t("Traversées", "Crossings")}"></ol>`;
   const read = root.querySelector("#br-read"), logEl = root.querySelector("#br-log");
   function draw(msg = "") {
-    for (const [id, s] of [["#br-left", 0], ["#br-right", 1]]) root.querySelector(id).innerHTML = `<span class="br-lamp ${torch === s ? "on" : ""}" aria-label="${torch === s ? t("lampe ici", "lamp here") : ""}">${torch === s ? "🔦" : ""}</span>${times.map((tm, i) => side[i] === s ? `<button type="button" class="cl-tok br-man" data-i="${i}" aria-pressed="${sel.has(i)}" ${torch === s ? "" : "disabled"}>${NAMES[i]}<small>${tm} min</small></button>` : "").join("")}`;
+    for (const [id, s] of [["#br-left", 0], ["#br-right", 1]]) root.querySelector(id).innerHTML = `<span class="br-lamp ${torch === s ? "on" : ""}" aria-label="${torch === s ? t("lampe ici", "lamp here") : ""}">${torch === s ? "🔦" : ""}</span>${times.map((tm, i) => side[i] === s ? `<button type="button" class="cl-tok br-man" data-i="${i}" aria-pressed="${sel.has(i)}" ${torch === s ? "" : "disabled"}><svg class="br-sd" viewBox="-22 -84 44 90" width="38" height="78" aria-hidden="true"></svg>${NAMES[i]}<small>${tm} min</small></button>` : "").join("")}`;
+    // each person is the soldier of the worked solution: same look, slower people are bigger and wear different colours
+    root.querySelectorAll(".br-man").forEach((b) => { const k = Number(b.dataset.i), look = SOLDIERS[k % 4]; makeSoldier(b.querySelector(".br-sd"), { ...look, label: "" }).set({ x: 0, y: 4, dir: 1, amp: 0 }); });
     root.querySelector("#br-go").disabled = sel.size < 1 || sel.size > 2;
     root.querySelector("#br-undo").disabled = !hist.length;
     logEl.innerHTML = hist.map((h) => `<li>${h.who.map((i) => NAMES[i]).join(" + ")} ${h.dir === "over" ? "→" : "←"} (${h.cost} min)</li>`).join("");

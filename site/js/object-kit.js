@@ -1,0 +1,16 @@
+// Small helpers shared by the laboratory objects and the gallery: canvas sized for the screen, theme colours, sliders, loop.
+export const NS = "http://www.w3.org/2000/svg";
+export const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888";
+export const palette = () => ({ ink: css("--ink"), muted: css("--muted"), line: css("--line-strong"), surface: css("--surface"), sunken: css("--sunken"), accent: css("--accent"), obj2: css("--obj2"), obj3: css("--obj3"), pos: css("--pos"), neg: css("--neg"), grid: css("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)) });
+export function canvasIn(host, aspect) {
+  const cv = document.createElement("canvas"); cv.className = "obj-canvas"; host.append(cv);
+  const g = cv.getContext("2d"), o = { cv, g, W: 640, H: Math.round(640 / aspect) };
+  const resize = () => { const d = devicePixelRatio || 1; cv.width = Math.round(o.W * d); cv.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw?.(); };
+  cv.style.aspectRatio = `${o.W} / ${o.H}`; resize();
+  o.point = (e) => { const r = cv.getBoundingClientRect(); return [((e.clientX - r.left) / r.width) * o.W, ((e.clientY - r.top) / r.height) * o.H]; };
+  return o;
+}
+export const field = (id, label, min, max, step, value) => `<label class="act-field" for="${id}"><span class="act-label">${label} <output id="${id}-out"></output></span><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}"></label>`;
+export const bind = (root, id, fn, fmt = (v) => v) => { const el = root.querySelector(`#${id}`), out = root.querySelector(`#${id}-out`); const run = () => { out.textContent = fmt(Number(el.value)); fn(Number(el.value)); }; el.addEventListener("input", run); out.textContent = fmt(Number(el.value)); return el; };
+export const loopFor = (draw, reduced) => { let raf = 0, last = 0, alive = true; const tick = (now) => { if (!alive) return; const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now; draw(dt, now / 1000); raf = requestAnimationFrame(tick); }; raf = requestAnimationFrame(tick); void reduced; return () => { alive = false; cancelAnimationFrame(raf); }; };
+

@@ -551,6 +551,56 @@ export const labs = [
     duration: 8,
     level: ["Première · Terminale", "Intermediate"],
   },
+  {
+    id: "fourier",
+    custom: true,
+    symbol: "◎",
+    group: ["Formes & mouvement", "Shapes & motion"],
+    title: ["Des cercles qui dessinent Madagascar", "Circles that draw Madagascar"],
+    short: ["Cercles de Fourier", "Fourier circles"],
+    intro: ["Des cercles qui tournent, chacun porté par le précédent, suffisent à redessiner n’importe quelle forme fermée. Combien en faut-il pour reconnaître une île ?", "Turning circles, each carried by the previous one, are enough to redraw any closed shape. How many does it take to recognise an island?"],
+    prereq: ["Aucun : curiosité, ou nombres complexes et trigonométrie pour aller plus loin", "None: curiosity, or complex numbers and trigonometry to go further"],
+    formula: "",
+    params: [],
+    steps: [
+      ["Regarde la forme apparaître avec un seul cercle, puis deux, puis dix. Que gagne-t-on à chaque cercle ajouté ?", "Watch the shape appear with one circle, then two, then ten. What does each added circle bring?"],
+      ["Cache les cercles : il reste une seule pointe qui trace la forme. Quels cercles sont les plus grands ?", "Hide the circles: a single tip remains and traces the shape. Which circles are the largest?"],
+      ["Dessine ta propre forme avec le doigt ou la souris, puis augmente le nombre de cercles.", "Draw your own shape with your finger or the mouse, then increase the number of circles."],
+    ],
+    quiz: ["Un cercle de rayon 3 tourne à 1 tour par seconde. Sur son bord, un second cercle de rayon 1 tourne à 2 tours par seconde autour de ce point. Quelle est la plus grande distance possible entre le bout du second cercle et le centre du premier ?", "A circle of radius 3 turns once per second. On its edge, a second circle of radius 1 turns twice per second around that point. What is the greatest possible distance between the tip of the second circle and the centre of the first?"],
+    answer: 4,
+    explain: ["La distance est au plus 3 + 1 = 4, atteinte quand les deux bras sont alignés dans le même sens : à cet instant le bout est à 4 du centre.", "The distance is at most 3 + 1 = 4, reached when both arms point the same way: at that moment the tip is 4 from the centre."],
+    history: ["Fourier · 1822", "Fourier · 1822"],
+    story: ["Joseph Fourier a montré, dans sa Théorie analytique de la chaleur (1822), qu’une fonction périodique se décompose en une somme de mouvements circulaires de fréquences entières. Les cercles de cette page sont la même idée appliquée à une courbe du plan. Le contour de Madagascar est une silhouette stylisée, dessinée à partir de coordonnées approchées de villes et de caps côtiers : ce n’est pas un levé cartographique.", "In his Analytical Theory of Heat (1822), Joseph Fourier showed that a periodic function splits into a sum of circular motions with whole-number frequencies. The circles on this page are the same idea applied to a plane curve. The outline of Madagascar is a stylised silhouette drawn from approximate coordinates of coastal towns and capes: it is not a survey."],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Fourier/",
+    duration: 10,
+    level: ["Pour tous", "For everyone"],
+  },
+  {
+    id: "mandelbrot",
+    custom: true,
+    symbol: "❋",
+    group: ["Formes & mouvement", "Shapes & motion"],
+    title: ["L’ensemble de Mandelbrot", "The Mandelbrot set"],
+    short: ["Ensemble de Mandelbrot", "Mandelbrot set"],
+    intro: ["Une règle d’une ligne, z → z² + c, et un monde infini de détails. Explore-le, zoome, et regarde l’ensemble de Julia de chaque point.", "A one-line rule, z → z² + c, and an infinite world of detail. Explore it, zoom in, and watch the Julia set of every point."],
+    prereq: ["Aucun : curiosité, ou nombres complexes et suites pour aller plus loin", "None: curiosity, or complex numbers and sequences to go further"],
+    formula: "",
+    params: [],
+    steps: [
+      ["Déplace le pointeur dans le grand disque central puis dans les bulbes : l’ensemble de Julia reste-t-il d’un seul tenant ?", "Move the pointer inside the big central disc and then in the bulbs: does the Julia set stay in one piece?"],
+      ["Zoome sur le bord : les formes se répètent-elles à une autre échelle ?", "Zoom in on the edge: do the shapes repeat at another scale?"],
+      ["Lance le voyage vers la vallée des hippocampes et observe le nombre d’itérations nécessaires.", "Take the trip to the seahorse valley and watch the number of iterations needed."],
+    ],
+    quiz: ["On part de z₀ = 0 et on répète zₙ₊₁ = zₙ² + c avec c = 1. À quelle étape n la valeur |zₙ| dépasse-t-elle 2 pour la première fois ?", "Start from z₀ = 0 and repeat zₙ₊₁ = zₙ² + c with c = 1. At which step n does |zₙ| exceed 2 for the first time?"],
+    answer: 3,
+    explain: ["z₁ = 1, z₂ = 1² + 1 = 2 (pas encore supérieur à 2), z₃ = 2² + 1 = 5 > 2. Le point c = 1 s’échappe : il n’est pas dans l’ensemble de Mandelbrot.", "z₁ = 1, z₂ = 1² + 1 = 2 (not yet greater than 2), z₃ = 2² + 1 = 5 > 2. The point c = 1 escapes: it is not in the Mandelbrot set."],
+    history: ["Mandelbrot · 1980", "Mandelbrot · 1980"],
+    story: ["Benoît Mandelbrot a visualisé cet ensemble par ordinateur en 1980. Les ensembles de Julia, étudiés dès 1918 par Gaston Julia et Pierre Fatou, en sont les pièces : l’ensemble de Mandelbrot indique, pour chaque c, si l’ensemble de Julia associé est d’un seul tenant.", "Benoit Mandelbrot visualised this set by computer in 1980. The Julia sets, studied from 1918 by Gaston Julia and Pierre Fatou, are its building blocks: the Mandelbrot set records, for each c, whether the associated Julia set is in one piece."],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Mandelbrot/",
+    duration: 10,
+    level: ["Pour tous", "For everyone"],
+  },
 ];
 
 // Activities give examples, conditions and a general argument separately.
@@ -619,6 +669,16 @@ const reasoning = {
     conjecture: ["Multiplier par i conserve le module et fait tourner de 90° dans le sens direct. L’origine reste fixe.", "Multiplication by i preserves modulus and rotates 90° counterclockwise. The origin stays fixed."],
     proof: ["i(a + ib) = −b + ia, donc (a,b) devient (−b,a). Le module au carré reste a² + b². Pour z ≠ 0, les vecteurs (a,b) et (−b,a) ont un produit scalaire nul et leur déterminant vaut a² + b² > 0 : l’angle orienté vaut +90°. Pour z = 0, l’argument est indéfini.", "i(a + ib) = −b + ia, so (a,b) becomes (−b,a). Squared modulus remains a² + b². For z ≠ 0, vectors (a,b) and (−b,a) have zero dot product and determinant a² + b² > 0: the directed angle is +90°. For z = 0, the argument is undefined."],
     transfer: ["À tester : applique mentalement quatre multiplications par i. Pourquoi retrouves-tu z ? Utilise i⁴ = 1.", "Mentally multiply by i four times. Why do you recover z? Use i⁴ = 1."]
+  },
+  fourier: {
+    conjecture: ["Plus on ajoute de cercles, plus la courbe tracée se rapproche de la forme, et les premiers cercles, les plus grands, suffisent à reconnaître l’île.", "The more circles are added, the closer the traced curve gets to the shape, and the first, largest circles are enough to recognise the island."],
+    proof: ["Une courbe fermée z(t), périodique de période 1, se développe en série de Fourier z(t) = Σ cₖ e^(2iπkt). Chaque terme est un mouvement circulaire uniforme de rayon |cₖ| et de fréquence k. Pour des points échantillonnés, la transformée de Fourier discrète donne les cₖ et la somme complète redonne exactement les points. L’erreur quadratique moyenne de la somme partielle vaut la somme des |cₖ|² des termes omis (égalité de Parseval), donc ranger les cercles par rayon décroissant la fait diminuer le plus vite.", "A closed curve z(t) of period 1 expands as a Fourier series z(t) = Σ cₖ e^(2iπkt). Each term is a uniform circular motion of radius |cₖ| and frequency k. For sampled points, the discrete Fourier transform gives the cₖ and the full sum returns the points exactly. The mean squared error of a partial sum equals the sum of |cₖ|² over the omitted terms (Parseval), so ordering the circles by decreasing radius makes it fall fastest."],
+    transfer: ["À tester : dessine un carré, puis un cercle. Combien de cercles faut-il pour chacun, et pourquoi le cercle n’en demande-t-il qu’un ?", "Try drawing a square, then a circle. How many circles does each need, and why does the circle need only one?"]
+  },
+  mandelbrot: {
+    conjecture: ["Les points proches du centre de l’ensemble ne s’échappent jamais ; ceux loin de lui s’échappent vite ; le bord est infiniment détaillé.", "Points near the middle of the set never escape; those far from it escape quickly; the edge is endlessly detailed."],
+    proof: ["Si |c| > 2, alors |z₁| = |c| > 2 et, par récurrence, |zₙ₊₁| ≥ |zₙ|² − |c| > |zₙ|, donc la suite tend vers l’infini. Plus généralement, dès qu’un terme dépasse 2 en module, la suite s’échappe : c’est ce critère qui permet de tester chaque point par un nombre fini d’itérations. L’ensemble est donc contenu dans le disque de rayon 2.", "If |c| > 2 then |z₁| = |c| > 2 and, by induction, |zₙ₊₁| ≥ |zₙ|² − |c| > |zₙ|, so the sequence tends to infinity. More generally, as soon as a term exceeds 2 in modulus the sequence escapes: this is the criterion that lets each point be tested with finitely many iterations. The set is therefore contained in the disc of radius 2."],
+    transfer: ["À tester : c = −1 donne la suite 0, −1, 0, −1… Pourquoi ce point est-il dans l’ensemble ? Trouve un autre point du même genre.", "Try c = −1: the sequence is 0, −1, 0, −1… Why is that point in the set? Find another point of the same kind."]
   }
 };
 const quizStates = {
@@ -626,7 +686,7 @@ const quizStates = {
   sequences:{values:[3,2,5],mode:"geometric"}, probability:{values:[10,0.3]},
   derivative:{values:[3,0.01],direction:1}, integral:{values:[8],method:"left"},
   vectors:{values:[2,1,-1,2]}, statistics:{data:"2 3 4 5 100"}, complex:{values:[3,4]},
-  galton:{}, reuleaux:{}, platonic:{}, chaos:{}
+  galton:{}, reuleaux:{}, platonic:{}, chaos:{}, fourier:{}, mandelbrot:{}
 };
 for (const lab of labs) {
   lab.reasoning = reasoning[lab.id];

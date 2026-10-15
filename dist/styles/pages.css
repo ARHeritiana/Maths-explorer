@@ -825,3 +825,49 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .door .door-div { display: block; font-size: 0.7em; opacity: 0.75; min-height: 1em; }
 .pick[data-rem] { background: color-mix(in srgb, var(--rem) 35%, var(--surface)); border-color: var(--rem); }
 .pick[data-rem]::after { content: attr(data-rem); display: block; font-size: 0.65em; opacity: 0.75; }
+
+/* the latest simulated experiments, as rows of coins */
+.sim-tray { display: grid; gap: 4px; margin-top: 10px; }
+.sim-row { display: flex; align-items: center; gap: 4px; }
+.sim-row .coin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; box-sizing: border-box; }
+.sim-row .coin.on { background: var(--accent); }
+.sim-row b { margin-left: 6px; font: 700 0.95rem var(--math); color: var(--ink-2); }
+
+/* ------------------------------------------------------------ welcome page and gallery */
+.welcome { max-width: 1240px; width: 100%; margin: 0 auto; padding: clamp(16px, 3vw, 40px) clamp(16px, 3vw, 32px) 8px; }
+.welcome:focus { outline: none; }
+.welcome-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 56px); align-items: center; padding: clamp(18px, 3vw, 36px); border-radius: 20px; background: radial-gradient(120% 120% at 85% 20%, color-mix(in srgb, var(--accent) 16%, var(--surface)) 0%, var(--surface) 60%); border: 1px solid var(--line); }
+.welcome-greet { margin: 0 0 10px; font: 700 1.05rem var(--body); color: var(--accent); letter-spacing: 0.01em; }
+.welcome-text h1 { font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
+.welcome-lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--ink-2); max-width: 46ch; margin: 0 0 22px; }
+.welcome-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.welcome-art { margin: 0; }
+.welcome-art canvas { display: block; width: 100%; aspect-ratio: 1 / 1.02; max-height: 520px; }
+.welcome-art figcaption { margin-top: 6px; color: var(--muted); font-size: 0.92rem; text-align: center; }
+.welcome-section { margin-top: clamp(28px, 4vw, 52px); }
+.welcome-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.wonder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; margin-top: 14px; }
+.wonder { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; color: inherit; text-decoration: none; transition: transform 0.25s ease, border-color 0.2s ease; }
+.wonder:hover, .wonder:focus-visible { transform: translateY(-4px); border-color: var(--accent); }
+.wonder canvas { display: block; width: 100%; aspect-ratio: 16 / 10; background: var(--sunken); }
+.wonder-body { display: grid; gap: 6px; padding: 14px 16px 16px; }
+.wonder-body strong { font: 700 1.1rem var(--display, var(--body)); }
+.wonder-body > span { color: var(--ink-2); font-size: 0.95rem; line-height: 1.45; }
+.wonder-body .wonder-go { color: var(--accent); font-weight: 700; margin-top: 4px; }
+.door-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; margin-top: 12px; }
+.door-card { display: grid; gap: 6px; padding: 20px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); color: inherit; text-decoration: none; transition: border-color 0.2s ease, transform 0.25s ease; }
+.door-card:hover, .door-card:focus-visible { border-color: var(--accent); transform: translateY(-3px); }
+.door-card strong { font: 700 1.25rem var(--display, var(--body)); }
+.door-card span { color: var(--ink-2); }
+.welcome-school { margin-top: clamp(28px, 4vw, 48px); padding: 16px 20px; border-radius: 14px; background: var(--sunken); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
+.welcome-school p { margin: 0; color: var(--ink-2); }
+.welcome-school-links { display: flex; gap: 18px; font-weight: 700; }
+.gallery-page .wonder-grid { margin-top: 0; }
+.mb-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px; align-items: start; }
+.mb-grid .obj-canvas { width: 100%; }
+@media (max-width: 800px) { .welcome-hero, .mb-grid { grid-template-columns: 1fr; } .welcome-art canvas { max-height: 380px; } }
+@media (prefers-reduced-motion: reduce) { .wonder, .door-card { transition: none; } .wonder:hover, .door-card:hover { transform: none; } }
+
+/* cartoon characters inside the exploring canvases */
+.br-man { display: inline-flex; flex-direction: column; align-items: center; gap: 0; height: auto; padding: 4px 8px 6px; }
+.br-man .br-sd { display: block; pointer-events: none; }
