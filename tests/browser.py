@@ -276,9 +276,9 @@ with sync_playwright() as p:
     hint(1, 'top'); page.wait_for_timeout(300)
     hint(2, 'grid'); page.wait_for_timeout(300)
     assert page.locator('#ck-size-out').inner_text() == '5' and page.locator('#ck-snap').is_checked(), 'hint 2 places the grid with a side of 5 units'
+    page.locator('[data-tool="segment"]').click(); page.locator('.ck-stage').scroll_into_view_if_needed()   # scroll first: the stage position is read in viewport coordinates
     box = page.locator('.ck-stage').bounding_box(); kx, ky = box['width'] / 640, box['height'] / 430
     scr = lambda x, y: (box['x'] + (320 + 330 * (x / 5 - 0.5)) * kx, box['y'] + (214 - 330 * (y / 5 - 0.5)) * ky)
-    page.locator('[data-tool="segment"]').click()
     for (x, y) in [(4, 0), (5, 3), (3, 5), (0, 4), (0, 0)]:   # a first wrong set (the last cut is missing), then the right one
         if (x, y) == (0, 0): assert 'équitable' not in page.locator('#ck-read').inner_text()
         page.mouse.click(*scr(2.5, 2.5)); page.mouse.click(*scr(x, y))
