@@ -1,7 +1,7 @@
 // Hands-on activities for the classic puzzles: grid paths, the 25 horses, the cake, queens, the snail, the bridge,
 // the light egg and the fake coins. Each is mounted by mountActivity (challenge-activities.js) with the parameters q
 // of the variation on show; the mathematics lives in challenge-puzzles.js.
-import { makeSnail } from "./scene-props.js";
+import { makeSnail, makeEgg } from "./scene-props.js";
 import { makeSoldier } from "./scene-kit.js";
 import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
 import { pascalGrid, gridPaths, horseRaces, squarePoint, cakeShares, unattacked, QUEENS, queensK, queensBest, snailDown, snailTrace, snailDays, bridgeBest, bridgePlans, bridgeTimes, eggWeighings, minSample, identifies } from "./challenge-puzzles.js";
@@ -263,7 +263,9 @@ export function lighteggs(root, { t, q }) {
     <div class="act-buttons" style="margin-top:10px"><button class="btn btn-primary" id="eg-weigh" type="button">${t("Peser", "Weigh")}</button><button class="btn btn-secondary" id="eg-name" type="button" aria-pressed="false">${t("Désigner l’œuf abîmé", "Name the spoiled egg")}</button><button class="btn-quiet" id="eg-new" type="button">${t("Nouvelle partie", "New game")}</button></div>
     <p class="act-readout" id="eg-read" role="status" aria-live="polite"></p>`;
   const grid = root.querySelector("#eg-grid"), scale = root.querySelector("#eg-scale"), read = root.querySelector("#eg-read");
-  grid.innerHTML = Array.from({ length: N }, (_, i) => `<button type="button" class="cl-tok cl-egg" data-i="${i}">${i + 1}</button>`).join("");
+  grid.innerHTML = Array.from({ length: N }, (_, i) => `<button type="button" class="cl-tok cl-egg" data-i="${i}"><svg class="eg-ic" viewBox="-17 -44 34 48" width="30" height="42" aria-hidden="true"></svg><span>${i + 1}</span></button>`).join("");
+  // the eggs of the worked solution: a ruled-out egg smiles
+  const eggIcons = [...grid.querySelectorAll(".eg-ic")].map((svg) => makeEgg(svg));
   let tilt = 0;
   function drawScale() {
     scale.replaceChildren();
@@ -273,7 +275,7 @@ export function lighteggs(root, { t, q }) {
     for (const [x, y, n] of [[lx, ly, state.filter((s) => s === 1).length], [rx, ry, state.filter((s) => s === 2).length]]) { svgEl("path", { d: `M${x - 40} ${y - 20} Q${x} ${y + 20} ${x + 40} ${y - 20}Z`, fill: "var(--surface)", stroke: "var(--ink)", "stroke-width": 2 }, scale); const tx = svgEl("text", { x, y: y - 2, "text-anchor": "middle", style: "font:700 15px var(--body);fill:var(--ink)" }, scale); tx.textContent = n; }
   }
   function draw(msg = "") {
-    grid.querySelectorAll(".cl-egg").forEach((b) => { const s = state[Number(b.dataset.i)]; b.dataset.s = s; b.setAttribute("aria-label", `${t("Œuf", "Egg")} ${Number(b.dataset.i) + 1}: ${[t("à côté", "aside"), t("plateau gauche", "left pan"), t("plateau droit", "right pan"), t("écarté", "cleared")][s]}`); });
+    grid.querySelectorAll(".cl-egg").forEach((b) => { const s = state[Number(b.dataset.i)]; b.dataset.s = s; eggIcons[Number(b.dataset.i)].set({ x: 0, y: 0, face: s === 3 ? "happy" : "ok" }); b.setAttribute("aria-label", `${t("Œuf", "Egg")} ${Number(b.dataset.i) + 1}: ${[t("à côté", "aside"), t("plateau gauche", "left pan"), t("plateau droit", "right pan"), t("écarté", "cleared")][s]}`); });
     drawScale();
     root.querySelector("#eg-name").setAttribute("aria-pressed", String(mode === "name"));
     root.querySelector("#eg-weigh").disabled = over || mode === "name" || state.filter((s) => s === 1).length === 0 || state.filter((s) => s === 1).length !== state.filter((s) => s === 2).length;

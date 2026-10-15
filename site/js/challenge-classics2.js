@@ -1,5 +1,6 @@
 // Hands-on activities for the Euclidean-geometry and invariant puzzles (see challenge-puzzles2.js for the mathematics).
 import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
+import { makeChameleon } from "./scene-props.js";
 import { pathLength, shortestVia, bestContact, reflectSet, luneArea, luneTotal, starK, starSumDegrees, mergeFinal, mergeProduct, chamSet, chamMin, permOf, inversions, bubbleSwaps, splitTotal } from "./challenge-puzzles2.js";
 
 const f1 = (x) => String(Math.round(x * 10) / 10);
@@ -159,7 +160,8 @@ export function cham(root, { t, q }) {
   const PAIRS = [[0, 1, 2], [0, 2, 1], [1, 2, 0]], mod = (x) => ((x % 3) + 3) % 3;
   function draw() {
     const total = s[0] + s[1] + s[2];
-    bars.innerHTML = s.map((v, i) => `<div class="cm-row"><span class="cm-name">${NAMES[i]}</span><span class="cm-bar" style="width:${(v / total) * 100}%;background:${COL[i]}"></span><strong>${v}</strong></div>`).join("");
+    bars.innerHTML = s.map((v, i) => `<div class="cm-row"><svg class="cm-ic" viewBox="-6 -28 54 36" width="46" height="31" aria-hidden="true"></svg><span class="cm-name">${NAMES[i]}</span><span class="cm-bar" style="width:${(v / total) * 100}%;background:${COL[i]}"></span><strong>${v}</strong></div>`).join("");
+    bars.querySelectorAll(".cm-ic").forEach((svg, i) => makeChameleon(svg).set({ x: 20, y: 0, from: COL[i] }));   // the chameleons of the worked solution, in their colour
     btns.innerHTML = PAIRS.map(([i, j, k]) => `<button type="button" class="btn btn-secondary cm-meet" data-i="${i}" data-j="${j}" data-k="${k}" ${s[i] > 0 && s[j] > 0 ? "" : "disabled"}>${NAMES[i]} + ${NAMES[j]} → ${NAMES[k]}</button>`).join("");
     root.querySelector("#cm-undo").disabled = !hist.length;
     const single = s.filter((x) => x > 0).length === 1;

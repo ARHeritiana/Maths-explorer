@@ -1,6 +1,6 @@
 // Small live drawings for the home page and the gallery cards. Each one draws on a canvas, pauses when it is off screen or the
 // tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery-math.js and lab-objects.js.
-import { escape, MADAGASCAR, planar, resample, fourier, arms } from "./gallery-math.js";
+import { escape, MADAGASCAR, resample, fourier, arms } from "./gallery-math.js";
 import { platonic, reuleaux, binomial } from "./lab-objects.js";
 
 const TAU = Math.PI * 2;
@@ -30,13 +30,13 @@ function runner(cv, draw, { reduced = () => false, still = 6, trailing = false }
 
 /* ------------------------------------------------------------ Madagascar by circles */
 // centred on its mean, so that the constant term of the transform vanishes and every circle really turns
-const OUTLINE = (() => { const raw = resample(planar(MADAGASCAR), 128), mx = raw.reduce((q, p) => q + p[0] / raw.length, 0), my = raw.reduce((q, p) => q + p[1] / raw.length, 0), pts = raw.map((p) => [p[0] - mx, p[1] - my]); return { pts, co: fourier(pts) }; })();
+const OUTLINE = (() => { const raw = resample(MADAGASCAR, 256), mx = raw.reduce((q, p) => q + p[0] / raw.length, 0), my = raw.reduce((q, p) => q + p[1] / raw.length, 0), pts = raw.map((p) => [p[0] - mx, p[1] - my]); return { pts, co: fourier(pts) }; })();
 function fourierArt(cv, opts) {
   const { pts, co } = OUTLINE, xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), cxy = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2], span = [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
   let trail = [], lastCount = 0;
   return runner(cv, (g, W, H, t, C) => {
     const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s];
-    const cycle = 26, u = (t % cycle) / cycle, count = opts.reduced?.() ? 45 : Math.max(1, Math.min(48, Math.floor(1 + 47 * Math.min(1, u * 2.1) ** 1.4)));
+    const cycle = 34, u = (t % cycle) / cycle, count = opts.reduced?.() ? 90 : Math.max(1, Math.min(110, Math.floor(1 + 109 * Math.min(1, u * 2.1) ** 1.6)));
     const phase = opts.reduced?.() ? 0 : (t / 9) % 1;
     void lastCount; void trail;
     // the whole curve drawn by the first `count` circles (it sharpens as circles are added), then the arms and the moving tip

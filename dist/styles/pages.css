@@ -716,7 +716,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .cl-merge { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
 .cl-piles { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
 .cm-bars { display: grid; gap: 6px; margin: 4px 0 8px; }
-.cm-row { display: grid; grid-template-columns: 5.5rem 1fr 3rem; align-items: center; gap: 8px; }
+.cm-row { display: grid; grid-template-columns: 46px 5rem 1fr 3rem; align-items: center; gap: 8px; }
 .cm-bar { display: block; height: 22px; min-width: 2px; border-radius: 6px; border: 1.5px solid var(--ink); transition: width 200ms ease; }
 .cm-row strong { font: 700 1.1rem var(--math); text-align: right; }
 .iv-row { display: flex; align-items: flex-end; gap: 6px; min-height: 160px; }
@@ -871,3 +871,5 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 /* cartoon characters inside the exploring canvases */
 .br-man { display: inline-flex; flex-direction: column; align-items: center; gap: 0; height: auto; padding: 4px 8px 6px; }
 .br-man .br-sd { display: block; pointer-events: none; }
+.cl-egg { gap: 0; padding: 2px 4px 4px; } .cl-egg .eg-ic { display: block; pointer-events: none; }
+.cm-row .cm-ic { display: block; pointer-events: none; }

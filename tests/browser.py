@@ -345,6 +345,19 @@ with sync_playwright() as p:
         cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []})
         tp.wait_for_timeout(200)
         assert tp.locator('.dom[data-d]').count() == 1 and abs(tp.evaluate('scrollY') - y0) < 5, 'a finger dragging a domino must not scroll the page'
+        # The gallery on a phone: a finger-drawn shape becomes the curve to redraw, and neither piece scrolls the page.
+        import math
+        def swipe(pts, box):
+            cdp.send('Input.dispatchTouchEvent', {'type': 'touchStart', 'touchPoints': [{'x': box['x'] + pts[0][0] * box['width'], 'y': box['y'] + pts[0][1] * box['height']}]})
+            for fx, fy in pts[1:]: cdp.send('Input.dispatchTouchEvent', {'type': 'touchMove', 'touchPoints': [{'x': box['x'] + fx * box['width'], 'y': box['y'] + fy * box['height']}]})
+            cdp.send('Input.dispatchTouchEvent', {'type': 'touchEnd', 'touchPoints': []})
+        tp.goto(BASE+'/#gallery/fourier'); tp.wait_for_selector('#fr-stage canvas'); tp.locator('#fr-stage canvas').scroll_into_view_if_needed(); y1 = tp.evaluate('scrollY')
+        swipe([(0.5 + 0.25 * math.cos(a / 20 * 2 * math.pi), 0.5 + 0.3 * math.sin(a / 20 * 2 * math.pi)) for a in range(21)], tp.locator('#fr-stage canvas').bounding_box()); tp.wait_for_timeout(300)
+        assert tp.locator('[name="fr-shape"][value="mine"]').is_checked() and abs(tp.evaluate('scrollY') - y1) < 5, 'a finger-drawn shape is redrawn by circles without scrolling'
+        tp.goto(BASE+'/#gallery/mandelbrot'); tp.wait_for_selector('#mb-stage canvas'); tp.locator('#mb-stage canvas').scroll_into_view_if_needed(); y1 = tp.evaluate('scrollY')
+        swipe([(0.6, 0.5), (0.5, 0.5), (0.4, 0.5), (0.3, 0.5)], tp.locator('#mb-stage canvas').bounding_box()); tp.wait_for_timeout(300)
+        assert abs(tp.evaluate('scrollY') - y1) < 5, 'dragging the Mandelbrot set does not scroll the page'
+        assert tp.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         touch.close()
     # Laboratory objects: each scene mounts, draws on a canvas, reacts, stays inside the viewport and its quiz works.
     OBJECTS = {'galton':'0.375','reuleaux':'6','platonic':'30','chaos':'27','fourier':'4','mandelbrot':'3'}

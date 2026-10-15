@@ -2,19 +2,19 @@
 // a star or your own drawing) and a Mandelbrot explorer with a live Julia set. Mounted into #object-stage like the other
 // laboratory objects; the mathematics lives in gallery-math.js.
 import { canvasIn, palette, loopFor } from "./object-kit.js";
-import { escape, MADAGASCAR, planar, resample, fourier, arms, heart, star } from "./gallery-math.js";
+import { escape, MADAGASCAR, resample, fourier, arms, heart, star } from "./gallery-math.js";
 
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const SHAPES = {
-  madagascar: () => planar(MADAGASCAR).map(([x, y]) => [x, y]),
+  madagascar: () => MADAGASCAR,
   heart: () => heart(160),
   star: () => star(160),
 };
 
 /* ============================================================ Fourier */
 function fourierLab(root, { t, reduced, lang }) {
-  const N = 160, fmt = (v, d = 1) => (lang === "fr" ? String(Math.round(v * 10 ** d) / 10 ** d).replace(".", ",") : String(Math.round(v * 10 ** d) / 10 ** d));
+  const N = 256, fmt = (v, d = 1) => (lang === "fr" ? String(Math.round(v * 10 ** d) / 10 ** d).replace(".", ",") : String(Math.round(v * 10 ** d) / 10 ** d));
   let shape = "madagascar", pts = [], co = [], count = 1, auto = true, showCircles = true, showFull = true, phase = 0, trail = [], drawing = null, userCurve = null, scale = 1, centre = [0, 0], acc = 0;
   root.innerHTML = `
     <p class="act-help">${t("Chaque cercle tourne à vitesse constante, centré sur le bout du précédent. Ensemble, ils redessinent une forme fermée. Ajoute des cercles : la forme se précise. Tu peux aussi dessiner la tienne.", "Each circle turns at a constant speed, centred on the tip of the previous one. Together they redraw a closed shape. Add circles: the shape sharpens. You can also draw your own.")}</p>
@@ -24,7 +24,7 @@ function fourierLab(root, { t, reduced, lang }) {
         ${[["madagascar", "Madagascar", "Madagascar"], ["heart", "Cœur", "Heart"], ["star", "Étoile", "Star"], ["mine", "Ma forme", "My shape"]].map(([v, fr, en]) => `<label><input type="radio" name="fr-shape" value="${v}" ${v === shape ? "checked" : ""}> ${t(fr, en)}</label>`).join("")}</fieldset>
     </div>
     <div class="act-controls">
-      <label class="act-field" for="fr-n"><span class="act-label">${t("Nombre de cercles", "Number of circles")} <output id="fr-n-out">1</output></span><input id="fr-n" type="range" min="1" max="80" step="1" value="1"></label>
+      <label class="act-field" for="fr-n"><span class="act-label">${t("Nombre de cercles", "Number of circles")} <output id="fr-n-out">1</output></span><input id="fr-n" type="range" min="1" max="150" step="1" value="1"></label>
       <label class="act-check"><input id="fr-circles" type="checkbox" checked> ${t("Montrer les cercles", "Show the circles")}</label>
       <label class="act-check"><input id="fr-full" type="checkbox" checked> ${t("Montrer la forme à atteindre", "Show the target shape")}</label>
     </div>
@@ -51,7 +51,7 @@ function fourierLab(root, { t, reduced, lang }) {
   }
   function frame(dt, now) {
     const C = palette();
-    if (auto && count < 60) { acc += dt; if (acc > 0.32) { acc = 0; count++; update(); } }
+    if (auto && count < 70) { acc += dt; if (acc > 0.32) { acc = 0; count++; update(); } }
     if (!reduced() && !drawing) phase = (phase + dt / 14) % 1;
     g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.sunken; g.fillRect(0, 0, o.W, o.H);
     if (drawing) {
@@ -97,7 +97,7 @@ function fourierLab(root, { t, reduced, lang }) {
   o.cv.addEventListener("pointerup", finish); o.cv.addEventListener("pointercancel", () => (drawing = null));
   o.cv.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
   setShape("madagascar");
-  if (reduced()) { count = 40; auto = false; update(); }
+  if (reduced()) { count = 80; auto = false; update(); }
   return stop;
 }
 
