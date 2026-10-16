@@ -5,7 +5,7 @@ decks are written to dist/slides/data/<chapter id>.json and indexed in dist/slid
 Teacher-only material (solutions boxes, \\enseignant, \\prof, fluency drills) is never included.
 Hand-authored decks (content/slides/*.json) are merged into the index unchanged.
 """
-import json, re, sys
+import hashlib, json, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,7 +13,7 @@ SRC = ROOT / 'content/tex/courses'
 sys.path.insert(0, str(ROOT / "build"))
 from mxbuild import notation   # per-language rendering of the notation commands (mirror of mx-notation.sty)
 OUT = ROOT / 'dist/slides/data'
-CATALOG = json.loads((ROOT / 'dist/resources/catalog.json').read_text())
+CATALOG = json.loads((ROOT / 'content/data/manifest.json').read_text())['catalog']
 CH = {c['id']: c for c in CATALOG['chapters']}
 
 
@@ -192,7 +192,7 @@ def slide(kind, title, body, ans=None, h=None): return {'k': kind, 't': title, '
 
 
 # ---------------------------------------------------------------- figures
-FIGRE = re.compile(r'(?:\\begin\{center\}\s*)?\\begin\{tikzpicture\}.*?\\end\{tikzpicture\}(?:\s*\\end\{center\})?|\\input\{figures/[^}]+\}', re.S)
+FIGRE = re.compile(r'\\begin\{tikzpicture\}.*?\\end\{tikzpicture\}|\\input\{figures/[^}]+\}', re.S)
 
 
 def inline_includes(src, base, lang):
@@ -226,13 +226,16 @@ def compile_figs(course, lang, jobs):
     figdir = OUT.parent / 'fig'; figdir.mkdir(parents=True, exist_ok=True)
     done = set()
     def run(items, job):
-        body = '\n'.join('\\begin{preview}%s\\end{preview}' % code for _, _, code in items)
+        items=[(cid,n,re.sub(r'^(?:\\begin\{center\}\s*)|(?:\s*\\end\{center\})$', '', code.strip())) for cid,n,code in items]
+        body = '\n'.join('\\begin{preview}\n%s\n\\end{preview}' % code for _, _, code in items)
         tex = head + '\\usepackage[active,tightpage]{preview}\\setlength\\PreviewBorder{5pt}\\pagestyle{empty}\\begin{document}\n' + body + '\n\\end{document}\n'
         (base / (job + '.tex')).write_text(tex, encoding='utf8')
-        subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
+        pdf = build / (job + '.pdf')
+        pdf.unlink(missing_ok=True)
+        result = subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
         (base / (job + '.tex')).unlink()
         pdf = build / (job + '.pdf')
-        return pdf if pdf.exists() else None
+        return pdf if result.returncode==0 and pdf.exists() else None
     pdf = run(jobs, f'_figs_{lang}')
     d = pymupdf.open(pdf) if pdf else None
     ok = d is not None and len(d) == len(jobs)
@@ -247,10 +250,10 @@ def compile_figs(course, lang, jobs):
         deck, n, _ = it
         try:
             page = (one[0] if one is not None and len(one) else None) if not ok else d[k]
-            if page is None: print('  figure failed:', deck, n); continue
+            if page is None: raise RuntimeError(f'Figure compilation failed: {deck} {n}')
             svg = page.get_svg_image(text_as_path=True)
             (figdir / f'{deck}-{n}{"-en" if lang == "en" else ""}.svg').write_text(svg, encoding='utf8'); done.add((deck, n))
-        except Exception as e: print('  figure failed:', deck, n, e)
+        except Exception as e: raise RuntimeError(f'Figure export failed: {deck} {n}') from e
     return done
 
 
@@ -415,15 +418,16 @@ def add_widgets(cid, slides):
 
 
 def files():
-    for n in range(1, 11):
-        yield (f'premiere-{n:02d}', 'premiere', n, SRC / f'premiere/chapitres/C{n:02d}.fr.tex', SRC / f'premiere/chapitres/C{n:02d}.en.tex',
-               lambda src, n: canonical(src, n, attach_figures=True, extra={'application': 'try', 'proof': 'proof'},
-                                        skip_sections=r'(MCQ|QCM|Diagnostic)', goals_first=True))
-    for n in range(1, 16):
-        yield (f'seconde-{n:02d}', 'seconde', n, SRC / f'seconde/s{n:02d}.fr.tex', SRC / f'seconde/s{n:02d}.en.tex',
-               lambda src, n: canonical(src, n, attach_figures=True))
-    for n in range(1, 9):
-        yield f'stmg-{n:02d}', 'stmg', n, SRC / f'stmg/c{n:02d}.fr.tex', SRC / f'stmg/c{n:02d}.en.tex', canonical
+    parsers = {
+        'premiere': ('chapitres/C{n:02d}', lambda src,n: canonical(src,n,attach_figures=True,extra={'application':'try','proof':'proof'},skip_sections=r'(MCQ|QCM|Diagnostic)',goals_first=True)),
+        'seconde': ('s{n:02d}', lambda src,n: canonical(src,n,attach_figures=True)),
+        'stmg': ('c{n:02d}', canonical),
+    }
+    for chapter in CATALOG['chapters']:
+        course,n=chapter['course'],chapter['number']
+        if course not in parsers or not n:continue
+        pattern,parser=parsers[course];base=pattern.format(n=n)
+        yield chapter['id'],course,n,SRC/course/(base+'.fr.tex'),SRC/course/(base+'.en.tex'),parser
 
 
 def main():
@@ -452,7 +456,10 @@ def main():
                 for pf, pe in sl.get('f', []):
                     k = pf if lang == 'fr' else pe; jobs.setdefault((course, lang), []).append((cid, k, figs[k - 1]))
     for p in sorted((ROOT / 'content/slides').glob('*.json')) if (ROOT / 'content/slides').exists() else []:
-        d = json.loads(p.read_text(encoding='utf8')); d['slides'] = add_widgets(d['id'], d['slides']); d['kind'] = 'authored'; decks[d['id']] = d
+        d = json.loads(p.read_text(encoding='utf8'))
+        if d['id'] not in CH: continue
+        d['course']=CH[d['id']]['course'];d['number']=CH[d['id']]['number']
+        d['slides'] = add_widgets(d['id'], d['slides']); d['kind'] = 'authored'; decks[d['id']] = d
         # Authored decks use the notation commands too (\pt{1;2}): print them per language, as for decks built from TeX.
         for sl in d['slides']:
             for key in ('t', 'b', 'a', 'h'):
@@ -466,7 +473,7 @@ def main():
             for lang in ('fr', 'en'):
                 for sl in d['slides']:
                     for pf, pe in sl.get('f', []):
-                        k = pf if lang == 'fr' else pe; jobs.setdefault(('terminale', lang), []).append((d['id'], k, draft['figs' if lang == 'fr' else 'figs_en'][k - 1]))
+                        k = pf if lang == 'fr' else pe; jobs.setdefault((d['course'], lang), []).append((d['id'], k, draft['figs' if lang == 'fr' else 'figs_en'][k - 1]))
     rendered = {}
     for (course, lang), js in jobs.items():
         print(f'figures {course} {lang}: {len(js)}'); rendered[(course, lang)] = compile_figs(course, lang, js)
@@ -477,7 +484,11 @@ def main():
                 sl['f'] = [[pf, pe] for pf, pe in sl['f'] if (cid, pf) in rendered.get((course, 'fr'), set()) and (cid, pe) in rendered.get((course, 'en'), set())]
                 if not sl['f']: del sl['f']
         title = CH[cid]['title'] if cid in CH else d['title']
-        deck = {'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': d['slides']}
+        for slide in d['slides']:
+            if slide['k']=='title': slide['t']=title
+        course_meta = next(c for c in CATALOG['courses'] if c['id']==course)
+        deck = {'language': course_meta.get('contentLanguage'), 'courseTitle':course_meta['title'], 'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': d['slides']}
+        deck['figureVersion']=hashlib.sha256(b''.join(p.read_bytes() for p in sorted((OUT.parent/'fig').glob(cid+'-*.svg')))).hexdigest()[:16]
         (OUT / (cid + '.json')).write_text(json.dumps(deck, ensure_ascii=False, separators=(',', ':')))
         index.append({'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': len(d['slides']), 'kind': d['kind']})
     (OUT / 'index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1))

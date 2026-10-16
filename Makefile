@@ -14,7 +14,7 @@ university:
 tex:
 	$(PY) -m mxbuild tex $(COURSE) $(if $(FORCE),--force)
 site:
-	$(PY) -m mxbuild site
+	$(PY) -m mxbuild.refresh
 catalog:
 	$(PY) -m mxbuild catalog
 slides:
@@ -27,4 +27,4 @@ inventory:
 	python3 scripts/tex-inventory.py
 check:
 	$(PY) -m mxbuild check $(if $(FAST),--fast)
-all: tex site catalog check
+all: site check

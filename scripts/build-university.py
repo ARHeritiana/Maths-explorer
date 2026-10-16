@@ -9,7 +9,7 @@ SLIDES = ROOT / 'content/slides/university/foundations'
 OUT = ROOT / 'dist/resources/university/foundations'
 
 def digest(collection):
-    h = hashlib.sha256(json.dumps(collection, ensure_ascii=False, sort_keys=True).encode())
+    h = hashlib.sha256()
     for folder in (TEX, SLIDES):
         for p in sorted(folder.rglob('*')):
             if p.is_file(): h.update(p.relative_to(ROOT).as_posix().encode()); h.update(p.read_bytes())
@@ -32,7 +32,7 @@ def main():
         index = json.loads(index_path.read_text()); assert index['sourceDigest'] == digest(collection), 'University sources changed: rebuild the collection'
         for r in index['files'].values():
             p = ROOT / 'dist' / r['path']; assert p.stat().st_size == r['bytes']; assert hashlib.sha256(p.read_bytes()).hexdigest() == r['sha256']
-        for section in index['sections'][:1]:
+        for section in [s for s in index['sections'] if s['id'] == 'foundations']:
             for seq in section['sequences']:
                 for edition in ['student', 'teacher']:
                     assert 1 <= seq[edition + 'Page'] <= index['files'][edition]['pages']
@@ -51,20 +51,20 @@ def main():
             print(key, 'layout warnings:', len(warnings))
             doc = pymupdf.open(cwd / entry.replace('.tex', '.pdf'))
             toc = [x for x in doc.get_toc() if x[0] == 1]
-            assert len(toc) == 6, toc
+            assert len(toc) == len(next(s for s in collection['sections'] if s['id'] == 'foundations')['sequences']), toc
             starts[key] = [x[2] for x in toc]
-            doc.set_metadata({'title': 'Fondements mathématiques : ' + ('notes de cours' if key == 'student' else 'guide enseignant'), 'author': '', 'subject': 'Six séquences pour les études supérieures', 'keywords': ''})
+            doc.set_metadata({'title': 'Fondements mathématiques : ' + ('notes de cours' if key == 'student' else 'guide enseignant'), 'author': '', 'subject': 'Séquences pour les études supérieures', 'keywords': ''})
             doc.del_xml_metadata(); doc.save(OUT / output, garbage=4, deflate=True); doc.close()
         doc = pymupdf.open(OUT / output); files[key] = {'path': (OUT / output).relative_to(ROOT / 'dist').as_posix(), 'pages': len(doc)}; doc.close()
-    section = collection['sections'][0]
+    section = next(s for s in collection['sections'] if s['id'] == 'foundations')
     for n, seq in enumerate(section['sequences'], 1):
         head = (SLIDES / 'shell_head.html').read_text().replace('@TITLE@', seq['title'][0])
-        body = head + (SLIDES / 'lib.js').read_text() + '\n' + (SLIDES / f'deck{n}.js').read_text() + '\nboot();\n})();\n</script>\n</body>\n</html>\n'
+        body = head + (SLIDES / 'lib.js').read_text() + '\n' + (SLIDES / seq['sourceDeck']).read_text() + '\nboot();\n})();\n</script>\n</body>\n</html>\n'
         p = OUT / 'slides' / seq['slide']; p.write_text(body)
-        seq['studentPage'] = starts['student'][n - 1]; seq['teacherPage'] = starts['teacher'][n - 1]
+        seq['studentPage'] = starts['student'][seq['pdfChapter'] - 1]; seq['teacherPage'] = starts['teacher'][seq['pdfChapter'] - 1]
         files[seq['id']] = {'path': p.relative_to(ROOT / 'dist').as_posix()}
-    bundle(OUT / 'sources-latex.zip', TEX, 'Deux éditions, mêmes sections. Compiler deux fois avec XeLaTeX : main.tex (guide enseignant), student.tex (notes étudiant). Les dix-huit ateliers de la collection et leurs solutions sont inclus.\n')
-    bundle(OUT / 'sources-slides.zip', SLIDES, 'Sources des six diaporamas. Les exports HTML sont assemblés par scripts/build-university.py dans le dépôt Maths Explorer.\n')
+    bundle(OUT / 'sources-latex.zip', TEX, 'Deux éditions, mêmes sections. Compiler deux fois avec XeLaTeX : main.tex (guide enseignant), student.tex (notes étudiant). Les ateliers de la collection et leurs solutions sont inclus.\n')
+    bundle(OUT / 'sources-slides.zip', SLIDES, 'Sources des diaporamas de la collection. Les exports HTML sont assemblés par scripts/build-university.py dans le dépôt Maths Explorer.\n')
     for key, name in [('tex', 'sources-latex.zip'), ('slidesSource', 'sources-slides.zip')]: files[key] = {'path': (OUT / name).relative_to(ROOT / 'dist').as_posix()}
     for r in files.values():
         p = ROOT / 'dist' / r['path']; r.update(bytes=p.stat().st_size, sha256=hashlib.sha256(p.read_bytes()).hexdigest())
@@ -74,6 +74,6 @@ def main():
     index_path.write_text(json.dumps(collection, ensure_ascii=False, indent=2) + '\n')
     if any(s['id'] == 'module-maths' for s in collection['sections']):
         subprocess.run(['python3', str(ROOT / 'scripts/build-module-maths.py')], check=True)
-    print('University collection: two PDF editions, six HTML decks, two editable source bundles.')
+    print('University foundations: PDF editions, HTML decks and editable source bundles rebuilt.')
 
 if __name__ == '__main__': main()

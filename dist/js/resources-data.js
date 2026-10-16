@@ -166,7 +166,7 @@ export const resourceCatalog = {
       "number": 3,
       "title": [
         "Droites du plan",
-        "Lines in the plane"
+        "Straight lines in the plane"
       ],
       "topic": "lines",
       "files": [
@@ -302,7 +302,7 @@ export const resourceCatalog = {
       "number": 5,
       "title": [
         "Bilan de trimestre et remédiation",
-        "Review and remediation"
+        "Term review and consolidation"
       ],
       "topic": "reasoning",
       "files": [
@@ -340,7 +340,7 @@ export const resourceCatalog = {
       "number": 6,
       "title": [
         "Fonctions : représentations et fonctions de référence",
-        "Functions and reference graphs"
+        "Functions: representations and reference functions"
       ],
       "topic": "functions",
       "files": [
@@ -679,7 +679,7 @@ export const resourceCatalog = {
       "number": 11,
       "title": [
         "Croisement de deux variables qualitatives",
-        "Two-way tables"
+        "Two-way categorical tables"
       ],
       "topic": "conditioning",
       "files": [
@@ -747,7 +747,7 @@ export const resourceCatalog = {
       "number": 12,
       "title": [
         "Géométrie repérée : synthèse vecteurs et droites",
-        "Coordinate geometry: synthesis"
+        "Coordinate geometry: vectors and lines"
       ],
       "topic": "lines",
       "files": [
@@ -814,7 +814,7 @@ export const resourceCatalog = {
       "number": 13,
       "title": [
         "Problèmes de synthèse, raisonnement et automatismes",
-        "Synthesis problems and reasoning"
+        "Synthesis, reasoning and fluency"
       ],
       "topic": "reasoning",
       "files": [
@@ -881,7 +881,7 @@ export const resourceCatalog = {
       "number": 14,
       "title": [
         "Probabilités : conditionnement et arbres pondérés",
-        "Conditional probability and trees"
+        "Probability: conditioning and trees"
       ],
       "topic": "conditioning",
       "files": [
@@ -1083,7 +1083,7 @@ export const resourceCatalog = {
       "number": 2,
       "title": [
         "Second degré : formes et choix de méthode",
-        "Quadratics: choosing a useful form"
+        "Quadratics: forms and methods"
       ],
       "topic": "quadratic",
       "files": [
@@ -1122,7 +1122,7 @@ export const resourceCatalog = {
       "number": 3,
       "title": [
         "Calcul vectoriel et produit scalaire",
-        "Vectors and the dot product"
+        "Vectors and the scalar product"
       ],
       "topic": "vectors",
       "files": [
@@ -1160,7 +1160,7 @@ export const resourceCatalog = {
       "number": 4,
       "title": [
         "Dérivation : du taux à la tangente",
-        "Derivatives: from rates to tangents"
+        "Differentiation: rates and tangents"
       ],
       "topic": "derivative",
       "files": [
@@ -1236,7 +1236,7 @@ export const resourceCatalog = {
       "number": 6,
       "title": [
         "Dérivation, variations et optimisation",
-        "Derivatives, variation and optimisation"
+        "Differentiation, variation and optimisation"
       ],
       "topic": "variations",
       "files": [
@@ -1274,7 +1274,7 @@ export const resourceCatalog = {
       "number": 7,
       "title": [
         "Géométrie repérée : droites, projections et cercles",
-        "Lines, projections and circles"
+        "Coordinate geometry: lines, projections and circles"
       ],
       "topic": "lines",
       "files": [
@@ -1351,7 +1351,7 @@ export const resourceCatalog = {
       "number": 9,
       "title": [
         "Fonction exponentielle et modèles continus",
-        "The exponential function"
+        "The exponential function and continuous models"
       ],
       "topic": "exponential",
       "files": [
@@ -1389,7 +1389,7 @@ export const resourceCatalog = {
       "number": 10,
       "title": [
         "Trigonométrie : cercle, radians et angles associés",
-        "Trigonometry: circles and radians"
+        "Trigonometry: circle, radians and related angles"
       ],
       "topic": "trigonometry",
       "files": [
@@ -1623,7 +1623,7 @@ export const resourceCatalog = {
       "number": 6,
       "title": [
         "Dérivation, convexité et continuité",
-        "Derivatives, convexity and continuity"
+        "Differentiation, convexity and continuity"
       ],
       "topic": "variations",
       "files": [
@@ -1662,7 +1662,7 @@ export const resourceCatalog = {
       "number": 7,
       "title": [
         "Probabilités conditionnelles et loi binomiale",
-        "Conditional probability and the binomial law"
+        "Conditional probability and the binomial distribution"
       ],
       "topic": "binomial",
       "files": [
@@ -1701,7 +1701,7 @@ export const resourceCatalog = {
       "number": 8,
       "title": [
         "Fonction logarithme",
-        "The natural logarithm"
+        "The logarithm function"
       ],
       "topic": "logarithm",
       "files": [
@@ -1857,7 +1857,7 @@ export const resourceCatalog = {
       "number": 12,
       "title": [
         "Variables aléatoires, concentration et loi des grands nombres",
-        "Random variables, concentration and large numbers"
+        "Random variables, concentration and the law of large numbers"
       ],
       "topic": "lln",
       "files": [
@@ -1896,7 +1896,7 @@ export const resourceCatalog = {
       "number": 13,
       "title": [
         "Représentations paramétriques et équations cartésiennes",
-        "Parametric and Cartesian equations"
+        "Parametric representations and Cartesian equations"
       ],
       "topic": "space",
       "files": [
@@ -2052,7 +2052,7 @@ export const resourceCatalog = {
       "number": 3,
       "title": [
         "Fonction logarithme décimal",
-        "The decimal logarithm"
+        "The common logarithm"
       ],
       "topic": "log10",
       "files": [
@@ -2130,7 +2130,7 @@ export const resourceCatalog = {
       "number": 5,
       "title": [
         "Statistiques à deux variables quantitatives",
-        "Bivariate statistics and regression"
+        "Bivariate statistics"
       ],
       "topic": "regression",
       "files": [
@@ -2208,7 +2208,7 @@ export const resourceCatalog = {
       "number": 7,
       "title": [
         "Variables aléatoires discrètes et loi binomiale",
-        "Discrete random variables and the binomial law"
+        "Discrete random variables and the binomial distribution"
       ],
       "topic": "binomial",
       "files": [
@@ -2247,7 +2247,7 @@ export const resourceCatalog = {
       "number": 8,
       "title": [
         "Révisions et consolidation",
-        "Review and consolidation"
+        "Revision and consolidation"
       ],
       "topic": "reasoning",
       "files": [

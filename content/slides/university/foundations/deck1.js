@@ -85,7 +85,7 @@ S=[
   txt('\u25cf (n,k)',WP.x+14,WP.y+22,AMB,18,'left');txt('\u25cf (n,n\u2212k)',WP.x+14,WP.y+44,GRN,18,'left');txt('\u25cf parents',WP.x+14,WP.y+66,BLU,18,'left');unpan()},
  hit:function(x,y){if(!WP.has(x,y))return null;return{cur:'pointer',move:function(X,Y){var r=clamp(Math.round((Y-80)/44),0,9),c=clamp(Math.round((X-920)/56+r/2),0,r);P.n=r;P.k=c}}}},
 
-{title:'Formule du binôme',hint:'Déplacez (a,b) et n. La graduation reste fixe ; Ajuster les objets recadre les barres.',
+{title:'Formule du binôme',hint:'Déplacez (a,b) et n. La graduation reste fixe ; double-cliquez pour réinitialiser la vue.',
  init:function(){return{n:4,a:1,b:1,viewY:19.2}},
  sl:[{k:'n',l:'n',min:1,max:8,step:1}],
  steps:[

@@ -117,7 +117,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 </head>
 <body>
 <div id="wrap"><main id="stage"></main></div>
-<script>window.__MX_EXPORT__={"deck":{"id":"terminale-10","course":"terminale","number":10,"title":["Primitives et équations différentielles","Antiderivatives and differential equations"],"slides":[{"k":"title","t":["Primitives et équations différentielles","Antiderivatives and differential equations"],"b":["",""]},{"k":"goals","t":["Objectifs","Objectives"],"b":["Calculer des primitives ; résoudre une équation différentielle avec condition initiale ; interpréter une approximation d'Euler.","Calculate antiderivatives; solve a differential equation with an initial condition; interpret an Euler approximation."]},{"k":"concept","t":["Primitives sur un intervalle","Antiderivatives on an interval"],"b":["On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.\nUne primitive de \\(f\\) sur un intervalle \\(I\\) est une fonction dérivable \\(F\\) telle que \\(F'=f\\) sur \\(I\\). Si \\(F\\) est une primitive, toutes les primitives sur \\(I\\) sont \\(F+C\\), \\(C\\in\\R\\).","At this stage we accept that every continuous function on an interval has antiderivatives; the link with area will be established in chapter 8.\nAn antiderivative of \\(f\\) on an interval \\(I\\) is a differentiable function \\(F\\) such that \\(F'=f\\) on \\(I\\). If \\(F\\) is an antiderivative, all the antiderivatives on \\(I\\) are \\(F+C\\), \\(C\\in\\R\\)."]},{"k":"proof","t":["Primitives sur un intervalle","Antiderivatives on an interval"],"b":["Si \\(F'=G'=f\\), alors \\((F-G)'=0\\) sur l'intervalle ; \\(F-G\\) est donc constante. Réciproquement, \\((F+C)'=f\\). L'hypothèse d'intervalle est essentielle : sur une réunion d'intervalles disjoints, comme \\(\\mathbb{R}\\setminus\\{0\\}\\), réunion de deux intervalles, la constante peut différer d'un intervalle à l'autre.","If \\(F'=G'=f\\), then \\((F-G)'=0\\) on the interval; \\(F-G\\) is therefore constant. Conversely, \\((F+C)'=f\\). The interval hypothesis is essential: on a union of disjoint intervals, such as \\(\\mathbb{R}\\setminus\\{0\\}\\), a union of two intervals, the constant may differ from one interval to the other."]},{"k":"concept","t":["Primitives sur un intervalle","Antiderivatives on an interval"],"b":["\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nLa constante additive peut toujours être ajoutée. Les deux dernières lignes seront réinvesties après l'étude de la trigonométrie.","\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nThe additive constant can always be added. The last two lines will be revisited after the study of trigonometry."],"h":["Table de primitives — à lire en sens inverse des dérivées","Table of antiderivatives — read in reverse from derivatives"]},{"k":"concept","t":["Reconnaître une composition","Recognising a composition"],"b":["Pour une fonction \\(u\\) dérivable, les primitives de \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) sont respectivement \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), sur les intervalles où les expressions ont un sens. La linéarité permet de traiter les sommes.","For a differentiable function \\(u\\), the antiderivatives of \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) are respectively \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), on the intervals where the expressions make sense. Linearity allows us to handle sums."]},{"k":"example","t":["Reconnaître une composition","Recognising a composition"],"b":["Une primitive de \\(6x(x^2+1)^2\\) est \\((x^2+1)^3\\) ; une primitive de \\(e^{3x}\\) est \\(\\frac{e^{3x}}{3}\\). Pour imposer \\(F(0)=2\\) dans ce dernier cas, prendre \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\).","An antiderivative of \\(6x(x^2+1)^2\\) is \\((x^2+1)^3\\); an antiderivative of \\(e^{3x}\\) is \\(\\frac{e^{3x}}{3}\\). To impose \\(F(0)=2\\) in the latter case, take \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\)."]},{"k":"concept","t":["Équations différentielles","Differential equations"],"b":["Une équation différentielle relie une fonction inconnue à ses dérivées. Une solution doit être vérifiée sur un intervalle précisé.","A differential equation relates an unknown function to its derivatives. A solution must be verified on a specified interval."]},{"k":"concept","t":["Équations différentielles","Differential equations"],"b":["\\(y'=ay\\) a pour solutions \\(y(x)=Ce^{ax}\\). Pour \\(a\\ne0\\), \\(y'=ay+b\\) a pour solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nSi \\(a=0\\), l'équation devient \\(y'=b\\) et \\(y(x)=bx+C\\).\nSi \\(g\\) est une solution particulière connue de \\(y'=ay+f(x)\\), les solutions sont \\(y=g+Ce^{ax}\\).","\\(y'=ay\\) has solutions \\(y(x)=Ce^{ax}\\). For \\(a\\ne0\\), \\(y'=ay+b\\) has solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nIf \\(a=0\\), the equation becomes \\(y'=b\\) and \\(y(x)=bx+C\\).\nIf \\(g\\) is a known particular solution of \\(y'=ay+f(x)\\), the solutions are \\(y=g+Ce^{ax}\\)."],"h":["Solutions usuelles","Standard solutions"]},{"k":"proof","t":["Équations différentielles","Differential equations"],"b":["Si \\(y\\) est solution, \\(z(x)=e^{-ax}y(x)\\) vérifie \\(z'=e^{-ax}(y'-ay)=0\\) ; \\(z=C\\). Réciproquement, la dérivée de \\(Ce^{ax}\\) est \\(aCe^{ax}\\). Pour \\(y'=ay+b\\), soustraire la solution constante \\(-\\frac{b}{a}\\) ramène à l'équation homogène. Pour un second membre variable, faire de même avec \\(g\\).","If \\(y\\) is a solution, \\(z(x)=e^{-ax}y(x)\\) satisfies \\(z'=e^{-ax}(y'-ay)=0\\); \\(z=C\\). Conversely, the derivative of \\(Ce^{ax}\\) is \\(aCe^{ax}\\). For \\(y'=ay+b\\), subtracting the constant solution \\(-\\frac{b}{a}\\) reduces it to the homogeneous equation. For a variable right-hand side, do the same with \\(g\\)."]},{"k":"example","t":["Équations différentielles","Differential equations"],"b":["\\(y'=-2y+6\\) et \\(y(0)=1\\) donnent \\(y=3+Ce^{-2x}\\), puis \\(C=-2\\). La solution \\(3-2e^{-2x}\\) croît vers l'équilibre \\(3\\) lorsque \\(x\\to+\\infty\\).","\\(y'=-2y+6\\) and \\(y(0)=1\\) give \\(y=3+Ce^{-2x}\\), then \\(C=-2\\). The solution \\(3-2e^{-2x}\\) increases towards the equilibrium \\(3\\) as \\(x\\to+\\infty\\)."]},{"k":"concept","t":["Méthode d'Euler","Euler's method"],"b":["Pour \\(y'=ay+b\\), avec un pas \\(h&gt;0\\), on approche \\(y(t_k)\\) par \\(Y_k\\) selon \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.","For \\(y'=ay+b\\), with step \\(h&gt;0\\), we approximate \\(y(t_k)\\) by \\(Y_k\\) according to \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). This is an approximation using the tangent, not an equality for the exact solution. A smaller step may improve the approximation; check the error numerically on a known solution."]},{"k":"activity","t":["Activité de recherche","Research activity"],"b":["<b>Refroidissement d'une boisson — 40 min.<\/b><br><br> Une boisson initialement à \\(80\\,^{\\circ}\\mathrm C\\) est placée dans une pièce maintenue à \\(20\\,^{\\circ}\\mathrm C\\). Pour \\(t\\ge0\\), on note \\(T(t)\\) sa température en degrés Celsius, \\(t\\) désignant le temps écoulé en minutes. On admet le modèle \\(T' (t)=-0{,}1(T(t)-20)\\) et \\(T(0)=80\\).\n<ol><li>Résoudre ce problème initial et donner l'expression de \\(T(t)\\).\n<li>Étudier le sens de variation de \\(T\\) et déterminer sa limite en \\(+\\infty\\). Interpréter les résultats.\n<li>Déterminer le premier instant où la température vaut \\(40\\,^{\\circ}\\mathrm C\\). Donner la valeur exacte, puis une valeur approchée en minutes.\n<li>Appliquer deux étapes de la méthode d'Euler avec un pas de \\(1\\) minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte \\(T(2)\\).\n<li>Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.<\/ol><br><br>","<b>Cooling of a drink — 40 min.<\/b><br><br> A drink initially at \\(80\\,^{\\circ}\\mathrm C\\) is placed in a room kept at \\(20\\,^{\\circ}\\mathrm C\\). For \\(t\\ge0\\), let \\(T(t)\\) denote its temperature in degrees Celsius, where \\(t\\) is the time elapsed in minutes. We accept the model \\(T' (t)=-0.1(T(t)-20)\\) and \\(T(0)=80\\).\n<ol><li>Solve this initial value problem and give the expression of \\(T(t)\\).\n<li>Study the direction of variation of \\(T\\) and find its limit at \\(+\\infty\\). Interpret the results.\n<li>Find the first time at which the temperature equals \\(40\\,^{\\circ}\\mathrm C\\). Give the exact value, then an approximate value in minutes.\n<li>Apply two steps of Euler's method with a step of \\(1\\) minute. Compare the approximation obtained after two minutes with the exact value \\(T(2)\\).\n<li>Give a concrete situation in which the assumption of a constant room temperature would no longer be appropriate.<\/ol><br><br>"]}]},"figs":{}};</script>
+<script>window.__MX_EXPORT__={"deck":{"language":"fr","courseTitle":["Terminale spécialité","Terminale · Mathematics specialism"],"id":"terminale-10","course":"terminale","number":10,"title":["Primitives et équations différentielles","Antiderivatives and differential equations"],"slides":[{"k":"title","t":["Primitives et équations différentielles","Antiderivatives and differential equations"],"b":["",""]},{"k":"goals","t":["Objectifs","Objectives"],"b":["Calculer des primitives ; résoudre une équation différentielle avec condition initiale ; interpréter une approximation d'Euler.","Calculate antiderivatives; solve a differential equation with an initial condition; interpret an Euler approximation."]},{"k":"concept","t":["Primitives sur un intervalle","Antiderivatives on an interval"],"b":["On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.\nUne primitive de \\(f\\) sur un intervalle \\(I\\) est une fonction dérivable \\(F\\) telle que \\(F'=f\\) sur \\(I\\). Si \\(F\\) est une primitive, toutes les primitives sur \\(I\\) sont \\(F+C\\), \\(C\\in\\R\\).","At this stage we accept that every continuous function on an interval has antiderivatives; the link with area will be established in chapter 8.\nAn antiderivative of \\(f\\) on an interval \\(I\\) is a differentiable function \\(F\\) such that \\(F'=f\\) on \\(I\\). If \\(F\\) is an antiderivative, all the antiderivatives on \\(I\\) are \\(F+C\\), \\(C\\in\\R\\)."]},{"k":"proof","t":["Primitives sur un intervalle","Antiderivatives on an interval"],"b":["Si \\(F'=G'=f\\), alors \\((F-G)'=0\\) sur l'intervalle ; \\(F-G\\) est donc constante. Réciproquement, \\((F+C)'=f\\). L'hypothèse d'intervalle est essentielle : sur une réunion d'intervalles disjoints, comme \\(\\mathbb{R}\\setminus\\{0\\}\\), réunion de deux intervalles, la constante peut différer d'un intervalle à l'autre.","If \\(F'=G'=f\\), then \\((F-G)'=0\\) on the interval; \\(F-G\\) is therefore constant. Conversely, \\((F+C)'=f\\). The interval hypothesis is essential: on a union of disjoint intervals, such as \\(\\mathbb{R}\\setminus\\{0\\}\\), a union of two intervals, the constant may differ from one interval to the other."]},{"k":"concept","t":["Primitives sur un intervalle","Antiderivatives on an interval"],"b":["\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nLa constante additive peut toujours être ajoutée. Les deux dernières lignes seront réinvesties après l'étude de la trigonométrie.","\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nThe additive constant can always be added. The last two lines will be revisited after the study of trigonometry."],"h":["Table de primitives — à lire en sens inverse des dérivées","Table of antiderivatives — read in reverse from derivatives"]},{"k":"concept","t":["Reconnaître une composition","Recognising a composition"],"b":["Pour une fonction \\(u\\) dérivable, les primitives de \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) sont respectivement \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), sur les intervalles où les expressions ont un sens. La linéarité permet de traiter les sommes.","For a differentiable function \\(u\\), the antiderivatives of \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) are respectively \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), on the intervals where the expressions make sense. Linearity allows us to handle sums."]},{"k":"example","t":["Reconnaître une composition","Recognising a composition"],"b":["Une primitive de \\(6x(x^2+1)^2\\) est \\((x^2+1)^3\\) ; une primitive de \\(e^{3x}\\) est \\(\\frac{e^{3x}}{3}\\). Pour imposer \\(F(0)=2\\) dans ce dernier cas, prendre \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\).","An antiderivative of \\(6x(x^2+1)^2\\) is \\((x^2+1)^3\\); an antiderivative of \\(e^{3x}\\) is \\(\\frac{e^{3x}}{3}\\). To impose \\(F(0)=2\\) in the latter case, take \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\)."]},{"k":"concept","t":["Équations différentielles","Differential equations"],"b":["Une équation différentielle relie une fonction inconnue à ses dérivées. Une solution doit être vérifiée sur un intervalle précisé.","A differential equation relates an unknown function to its derivatives. A solution must be verified on a specified interval."]},{"k":"concept","t":["Équations différentielles","Differential equations"],"b":["\\(y'=ay\\) a pour solutions \\(y(x)=Ce^{ax}\\). Pour \\(a\\ne0\\), \\(y'=ay+b\\) a pour solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nSi \\(a=0\\), l'équation devient \\(y'=b\\) et \\(y(x)=bx+C\\).\nSi \\(g\\) est une solution particulière connue de \\(y'=ay+f(x)\\), les solutions sont \\(y=g+Ce^{ax}\\).","\\(y'=ay\\) has solutions \\(y(x)=Ce^{ax}\\). For \\(a\\ne0\\), \\(y'=ay+b\\) has solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nIf \\(a=0\\), the equation becomes \\(y'=b\\) and \\(y(x)=bx+C\\).\nIf \\(g\\) is a known particular solution of \\(y'=ay+f(x)\\), the solutions are \\(y=g+Ce^{ax}\\)."],"h":["Solutions usuelles","Standard solutions"]},{"k":"proof","t":["Équations différentielles","Differential equations"],"b":["Si \\(y\\) est solution, \\(z(x)=e^{-ax}y(x)\\) vérifie \\(z'=e^{-ax}(y'-ay)=0\\) ; \\(z=C\\). Réciproquement, la dérivée de \\(Ce^{ax}\\) est \\(aCe^{ax}\\). Pour \\(y'=ay+b\\), soustraire la solution constante \\(-\\frac{b}{a}\\) ramène à l'équation homogène. Pour un second membre variable, faire de même avec \\(g\\).","If \\(y\\) is a solution, \\(z(x)=e^{-ax}y(x)\\) satisfies \\(z'=e^{-ax}(y'-ay)=0\\); \\(z=C\\). Conversely, the derivative of \\(Ce^{ax}\\) is \\(aCe^{ax}\\). For \\(y'=ay+b\\), subtracting the constant solution \\(-\\frac{b}{a}\\) reduces it to the homogeneous equation. For a variable right-hand side, do the same with \\(g\\)."]},{"k":"example","t":["Équations différentielles","Differential equations"],"b":["\\(y'=-2y+6\\) et \\(y(0)=1\\) donnent \\(y=3+Ce^{-2x}\\), puis \\(C=-2\\). La solution \\(3-2e^{-2x}\\) croît vers l'équilibre \\(3\\) lorsque \\(x\\to+\\infty\\).","\\(y'=-2y+6\\) and \\(y(0)=1\\) give \\(y=3+Ce^{-2x}\\), then \\(C=-2\\). The solution \\(3-2e^{-2x}\\) increases towards the equilibrium \\(3\\) as \\(x\\to+\\infty\\)."]},{"k":"concept","t":["Méthode d'Euler","Euler's method"],"b":["Pour \\(y'=ay+b\\), avec un pas \\(h&gt;0\\), on approche \\(y(t_k)\\) par \\(Y_k\\) selon \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.","For \\(y'=ay+b\\), with step \\(h&gt;0\\), we approximate \\(y(t_k)\\) by \\(Y_k\\) according to \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). This is an approximation using the tangent, not an equality for the exact solution. A smaller step may improve the approximation; check the error numerically on a known solution."]},{"k":"activity","t":["Activité de recherche","Research activity"],"b":["<b>Refroidissement d'une boisson — 40 min.<\/b><br><br> Une boisson initialement à \\(80\\,^{\\circ}\\mathrm C\\) est placée dans une pièce maintenue à \\(20\\,^{\\circ}\\mathrm C\\). Pour \\(t\\ge0\\), on note \\(T(t)\\) sa température en degrés Celsius, \\(t\\) désignant le temps écoulé en minutes. On admet le modèle \\(T' (t)=-0{,}1(T(t)-20)\\) et \\(T(0)=80\\).\n<ol><li>Résoudre ce problème initial et donner l'expression de \\(T(t)\\).\n<li>Étudier le sens de variation de \\(T\\) et déterminer sa limite en \\(+\\infty\\). Interpréter les résultats.\n<li>Déterminer le premier instant où la température vaut \\(40\\,^{\\circ}\\mathrm C\\). Donner la valeur exacte, puis une valeur approchée en minutes.\n<li>Appliquer deux étapes de la méthode d'Euler avec un pas de \\(1\\) minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte \\(T(2)\\).\n<li>Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.<\/ol><br><br>","<b>Cooling of a drink — 40 min.<\/b><br><br> A drink initially at \\(80\\,^{\\circ}\\mathrm C\\) is placed in a room kept at \\(20\\,^{\\circ}\\mathrm C\\). For \\(t\\ge0\\), let \\(T(t)\\) denote its temperature in degrees Celsius, where \\(t\\) is the time elapsed in minutes. We accept the model \\(T' (t)=-0.1(T(t)-20)\\) and \\(T(0)=80\\).\n<ol><li>Solve this initial value problem and give the expression of \\(T(t)\\).\n<li>Study the direction of variation of \\(T\\) and find its limit at \\(+\\infty\\). Interpret the results.\n<li>Find the first time at which the temperature equals \\(40\\,^{\\circ}\\mathrm C\\). Give the exact value, then an approximate value in minutes.\n<li>Apply two steps of Euler's method with a step of \\(1\\) minute. Compare the approximation obtained after two minutes with the exact value \\(T(2)\\).\n<li>Give a concrete situation in which the assumption of a constant room temperature would no longer be appropriate.<\/ol><br><br>"]}],"figureVersion":"e3b0c44298fc1c14"},"figs":{}};</script>
 <script>
 (function(){
 "use strict";
@@ -131,13 +131,11 @@ function camera2D() {
   c.reset=()=>{c.scale=1;c.x=c.y=0;};return c;
 }
 function navigationButtons(host,action,lang='fr') {
-  const en=lang==='en',bar=document.createElement('div');bar.className='canvas-navigation';bar.setAttribute('role','group');bar.setAttribute('aria-label',en?'View controls':'Commandes de la vue');
-  for(const [id,text,fr,english] of [['in','+','Agrandir','Zoom in'],['out','−','Réduire','Zoom out'],['reset','↺','Vue initiale','Reset view'],['left','←','Vue vers la gauche','Pan left'],['right','→','Vue vers la droite','Pan right'],['up','↑','Vue vers le haut','Pan up'],['down','↓','Vue vers le bas','Pan down']]) {
-    const b=document.createElement('button');b.type='button';b.textContent=text;b.dataset.view=id;b.title=en?english:fr;b.setAttribute('aria-label',b.title);b.addEventListener('click',()=>action(id));bar.append(b);
-  }
-  const label=document.createElement('output');label.setAttribute('aria-live','polite');bar.append(label);host.append(bar);bar.update=scale=>{label.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
+  const bar=document.createElement('output');bar.className='canvas-navigation';bar.hidden=true;
+  bar.setAttribute('aria-live','polite');host.append(bar);
+  bar.update=scale=>{bar.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
 }
-function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang}={}) {
+function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang,canPan=()=>false}={}) {
   const camera=camera2D(),rawClear=g.clearRect.bind(g);let last=null,gesture=null;
   const pointers=new Map(),point=e=>{const r=c.getBoundingClientRect(),[w,h]=size();return [(e.clientX-r.left)/r.width*w,(e.clientY-r.top)/r.height*h];};
   const apply=()=>{const [w]=size(),d=c.width/w;g.setTransform(d*camera.scale,0,0,d*camera.scale,d*camera.x,d*camera.y);};
@@ -145,29 +143,45 @@ function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.do
   const refresh=()=>{apply();bar.update(camera.scale);redraw();};
   const action=id=>{const [w,h]=size();if(id==='reset')camera.reset();else if(id==='in'||id==='out')camera.zoomAt(id==='in'?1.25:.8,[w/2,h/2]);else{const d={left:[40,0],right:[-40,0],up:[0,40],down:[0,-40]}[id];camera.x+=d[0];camera.y+=d[1];}refresh();};
   const bar=navigationButtons(host,action,lang);c.style.touchAction='none';if(c.tabIndex<0)c.tabIndex=0;
-  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
+  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey||canPan(camera.unproject(point(e)))){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
   const move=e=>{if(pointers.has(e.pointerId))pointers.set(e.pointerId,point(e));if(gesture&&pointers.size===2){const a=[...pointers.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);camera.zoomAt(d/Math.max(1,gesture.distance),gesture.mid);camera.x+=mid[0]-gesture.mid[0];camera.y+=mid[1]-gesture.mid[1];gesture={distance:d,mid};refresh();e.preventDefault();e.stopImmediatePropagation();}else if(last){const q=point(e);camera.x+=q[0]-last[0];camera.y+=q[1]-last[1];last=q;refresh();e.preventDefault();e.stopImmediatePropagation();}};
   const end=e=>{const handled=!!last||!!gesture;pointers.delete(e.pointerId);last=null;if(pointers.size<2)gesture=null;if(handled){e.preventDefault();e.stopImmediatePropagation();}};
-  const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
-  const key=e=>{if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
-  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['keydown',key]];
+  const wheel=e=>{e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};if(e.shiftKey&&arrows[e.key]){e.preventDefault();e.stopImmediatePropagation();action(arrows[e.key]);return;}if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
+  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['dblclick',()=>action('reset')],['keydown',key]];
   for(const [name,fn] of events)c.addEventListener(name,fn,{capture:true,passive:false});
   return {camera,point:e=>camera.unproject(point(e)),apply,destroy(){bar.remove();g.clearRect=rawClear;for(const[n,f]of events)c.removeEventListener(n,f,true);}};
 }
 // Changing viewBox preserves the inverse screen transform used by the SVG editors for picking.
-function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={}}={}) {
-  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null;
+function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={},canPan=()=>false}={}) {
+  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null,pinch=null;const touches=new Map();
   const paint=()=>{state.box=[...box];svg.setAttribute('viewBox',box.join(' '));bar.update(original[2]/box[2]);};
   const zoom=(k,fx=.5,fy=.5)=>{const w=Math.max(original[2]/12,Math.min(original[2]*5,box[2]*k)),h=w*original[3]/original[2];box=[box[0]+(box[2]-w)*fx,box[1]+(box[3]-h)*fy,w,h];paint();};
   const action=id=>{if(id==='reset'){box=[...original];paint();}else if(id==='in'||id==='out')zoom(id==='in'?.8:1.25);else{const d={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[id];box[0]+=d[0]*box[2]*.12;box[1]+=d[1]*box[3]*.12;paint();}};
-  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';
+  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';if(svg.tabIndex<0)svg.tabIndex=0;
+  svg.setAttribute('aria-label',lang==='en'?'Interactive figure: wheel or pinch to zoom, Shift-drag to pan, + or - to zoom, 0 to reset':'Figure interactive : molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue, + ou - pour zoomer, 0 pour réinitialiser');
   const observer=new MutationObserver(()=>{if(svg.getAttribute('viewBox')!==box.join(' '))paint();});observer.observe(svg,{attributes:true,attributeFilter:['viewBox']});
-  const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
-  const down=e=>{if(!(e.altKey||e.shiftKey||e.button===1))return;e.preventDefault();e.stopImmediatePropagation();drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture(e.pointerId);};
-  const move=e=>{if(!drag)return;const r=svg.getBoundingClientRect();box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();e.stopImmediatePropagation();};const end=()=>{drag=null;};
-  svg.addEventListener('wheel',wheel,{passive:false});svg.addEventListener('pointerdown',down,true);svg.addEventListener('pointermove',move,true);svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
+  const wheel=e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
+  const down=e=>{
+    if(e.pointerType==='touch')touches.set(e.pointerId,[e.clientX,e.clientY]);
+    if(touches.size===2){const a=[...touches.values()];pinch={d:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};drag=null;svg.dispatchEvent(new CustomEvent('view-gesture'));}
+    if(!pinch&&!(e.altKey||e.shiftKey||e.button===1)&&!canPan(e))return;
+    e.preventDefault();e.stopImmediatePropagation();if(!pinch)drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture?.(e.pointerId);
+  };
+  const move=e=>{
+    if(touches.has(e.pointerId))touches.set(e.pointerId,[e.clientX,e.clientY]);
+    const r=svg.getBoundingClientRect();
+    if(pinch&&touches.size===2){const a=[...touches.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);zoom(pinch.d/Math.max(1,d),(pinch.mid[0]-r.left)/r.width,(pinch.mid[1]-r.top)/r.height);box[0]-=(mid[0]-pinch.mid[0])/r.width*box[2];box[1]-=(mid[1]-pinch.mid[1])/r.height*box[3];pinch={d,mid};paint();}
+    else if(drag){box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();}
+    else return;e.preventDefault();e.stopImmediatePropagation();
+  };
+  const end=e=>{touches.delete(e.pointerId);drag=null;if(touches.size<2)pinch=null;};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};const id=e.key==='0'?'reset':e.key==='-'?'out':['+','='].includes(e.key)?'in':e.shiftKey?arrows[e.key]:null;if(!id||e.target.closest('[data-handle],[data-drag]'))return;e.preventDefault();e.stopPropagation();action(id);};
+  const reset=()=>action('reset');
+  const events=[['wheel',wheel],['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['lostpointercapture',end],['keydown',key],['dblclick',reset]];
+  for(const [name,fn]of events)svg.addEventListener(name,fn,{capture:true,passive:false});
   paint();
-  const stop=()=>{observer.disconnect();bar.remove();svg.removeEventListener('wheel',wheel);svg.removeEventListener('pointerdown',down,true);svg.removeEventListener('pointermove',move,true);svg.removeEventListener('pointerup',end);svg.removeEventListener('pointercancel',end);};stop.bar=bar;return stop;
+  const stop=()=>{observer.disconnect();bar.remove();for(const [name,fn]of events)svg.removeEventListener(name,fn,true);};stop.bar=bar;return stop;
 }
 
 function observeSvgNavigation(root,selector,lang) {
@@ -275,17 +289,12 @@ function mount(spec, ctx) {
   cv.start(inst);
   const handles=()=>cv.handles();
   if(handles().length){
-    const group=document.createElement('div');group.className='canvas-keyboard';
-    const pick=document.createElement('select');pick.setAttribute('aria-label',api.pair('Point à déplacer','Point to move'));
-    handles().forEach((h,i)=>{const option=document.createElement('option');option.value=i;option.textContent=api.pair('Point ','Point ')+(i+1);pick.append(option);});group.append(pick);
-    let selected=0;pick.onchange=()=>{selected=+pick.value;};
-    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;h.move(h.x+dx,h.y+dy);cv.redraw();};
-    for(const [label,dx,dy,fr,en] of [['←',-14,0,'Déplacer vers la gauche','Move left'],['→',14,0,'Déplacer vers la droite','Move right'],['↑',0,-14,'Déplacer vers le haut','Move up'],['↓',0,14,'Déplacer vers le bas','Move down']]){
-      const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',api.pair(fr,en));button.onclick=()=>move(dx,dy);group.append(button);
-    }
-    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : flèches pour déplacer le point choisi','Interactive figure: arrow keys move the selected point'));
-    cv.c.onkeydown=e=>{const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
-    ctx.controls.append(group);
+    let selected=0,cursor=null;
+    cv.c.addEventListener("pointerdown",()=>{cursor=null;});
+    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;if(!cursor)cursor=[h.x,h.y];cursor[0]+=dx;cursor[1]+=dy;h.move(...cursor);cv.redraw();};
+    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : H pour choisir un point, flèches pour le déplacer ; molette pour zoomer, glisser le fond pour déplacer la vue, 0 pour réinitialiser','Interactive figure: H selects a point, arrows move it; wheel to zoom, drag background to pan, 0 to reset'));
+    cv.c.onkeydown=e=>{if(e.key.toLowerCase()==='h'){selected=(selected+1)%handles().length;cursor=null;e.preventDefault();e.stopPropagation();cv.c.setAttribute('aria-label',api.pair('Point ','Point ')+(selected+1));return;}const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
+
   }
   return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
 }
@@ -316,7 +325,7 @@ function canvas(host,ctx) {
     c.width = Math.round(o.W * d); c.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw();
   };
   o.redraw = () => { g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.bg; g.fillRect(0, 0, o.W, o.H); o.draw(g); };
-  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr'});
+  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr',canPan:([x,y])=>!o.rotate&&!o.handles().some(h=>Math.hypot(h.x-x,h.y-y)<(h.r||22))});
   const pt=navigation.point;
   c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
   const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };
@@ -917,7 +926,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const EXPORT = typeof window !== "undefined" && window.__MX_EXPORT__ ? window.__MX_EXPORT__ : null;
 const params = new URLSearchParams(location.search);
 const deckId = EXPORT ? EXPORT.deck.id : params.get("deck") || "premiere-01";
-const stored = () => { try { return localStorage.getItem("me-slides-lang") === "en" ? 1 : 0; } catch { return 0; } };
+const stored = () => { try { return JSON.parse(localStorage.getItem("maths-explorer-v1") || "{}").lang === "en" ? 1 : 0; } catch { return 0; } };
 let lang = params.get("lang") === "en" ? 1 : params.get("lang") === "fr" ? 0 : stored();
 let deck, index = 0, revealed = false, live = null, step = 1, generation = 0, toastTimer = 0;
 
@@ -933,7 +942,7 @@ const UI = {
   lang: ["English", "Français"], list: ["Plan", "Outline"], full: ["Plein écran", "Full screen"],
   download: ["Télécharger HTML", "Download HTML"], downloadTip: ["Télécharger ce diaporama en un seul fichier HTML", "Download this deck as a single HTML file"],
   home: ["Toutes les séries", "All decks"], loadErr: ["Série introuvable.", "Deck not found."],
-  hint: ["Flèches : étapes et diapositives · R réponse · G plan · L langue · F plein écran", "Arrows: steps and slides · R answer · G outline · L language · F full screen"],
+  hint: ["Flèches : étapes et diapositives · R réponse · G plan · F plein écran", "Arrows: steps and slides · R answer · G outline · F full screen"],
   slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
   explore: ["Explorer le chapitre", "Explore the chapter"], figure: ["Figure", "Figure"],
   free: ["La figure est réglable librement ; ses valeurs peuvent différer de celles de l’exemple.", "The figure is freely adjustable; its values may differ from the worked example."],
@@ -961,7 +970,7 @@ function shell() {
   $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
 <div id="rt"></div>
 <div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
-<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lng"></button><button class="b" id="lst" aria-pressed="false"></button>${EXPORT ? "" : `<a class="b" id="dl" download></a>`}<button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
 <div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
 }
 
@@ -969,7 +978,7 @@ async function load() {
   if (EXPORT) deck = EXPORT.deck;
   else {
     try {
-      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`);
+      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`, {cache:"no-store"});
       if (!r.ok) throw new Error(r.status);
       deck = await r.json();
     } catch {
@@ -977,6 +986,7 @@ async function load() {
       return;
     }
   }
+  if (deck.language) lang = deck.language === "en" ? 1 : 0;
   shell(); bind();
   const h = parseInt(location.hash.slice(1), 10);
   index = Number.isFinite(h) ? Math.min(Math.max(h, 0), deck.slides.length - 1) : 0;
@@ -1068,7 +1078,7 @@ function companion(spec, showDelta) {
   live = mount({ ...spec, showDelta }, { host: $("#wcanvas"), controls: $("#wctl"), readout: $("#readout"), hint: $("#whint"), lang });
 }
 
-function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}`; }
+function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}?v=${deck.figureVersion || ""}`; }
 
 async function render() {
   const renderId = ++generation;
@@ -1086,7 +1096,7 @@ async function render() {
   $("#live").hidden = true; $("#readout").innerHTML = "";
 
   if (k === "title") {
-    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
+    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(deck.courseTitle?.[lang] || COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
   } else if (k === "code") {
     flow.innerHTML = `<div class="hd">${esc(label)}</div><h2 class="tt">${title}</h2><pre>${s.b[lang]}</pre>`;
   } else {
@@ -1096,7 +1106,7 @@ async function render() {
 
   if (mode === "fig") rt.innerHTML = `<div class="figcol">${figs}</div>`;
   else if (mode === "widget" || mode === "explore") {
-    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label><p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
+    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `${widgets.length > 1 ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label>` : ""}<p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
   } else rt.innerHTML = "";
 
   chrome();
@@ -1113,7 +1123,7 @@ async function render() {
   if (mode === "widget") companion(s.w, true);
   else if (mode === "explore") {
     companion(shared.w, defined < 0 || index >= defined);
-    $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
+    if ($("#explore-choice")) $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
   }
   paintSteps(); flow.scrollTop = 0;
   if (ready) {
@@ -1157,8 +1167,8 @@ function chrome() {
   $("#step-prev").setAttribute("aria-label", t("stepPrev")); $("#step-next").setAttribute("aria-label", t("stepNext"));
   $("#all-steps").textContent = t("all");
   const rev = $("#rev"); rev.hidden = !s.a; rev.textContent = revealed ? t("hide") : t("answer"); rev.setAttribute("aria-pressed", revealed);
-  $("#lng").textContent = t("lang"); $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
-  const dl = $("#dl"); if (dl) { dl.href = `./export/${encodeURIComponent(deckId)}.html`; dl.setAttribute("download", `${deckId}.html`); dl.textContent = "⬇ HTML"; dl.title = t("downloadTip"); dl.setAttribute("aria-label", t("downloadTip")); }
+  $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
+
   $("#prog i").style.width = `${((index + 1) / n) * 100}%`;
   document.querySelectorAll("#drawer button").forEach((b, i) => b.toggleAttribute("aria-current", i === index));
 }
@@ -1181,13 +1191,12 @@ function toggleAnswer() {
   const b = $("#rev"); b.setAttribute("aria-pressed", revealed); b.textContent = revealed ? t("hide") : t("answer");
   if (revealed) $("#ans").scrollIntoView({ block: "nearest", behavior: "instant" });
 }
-function setLang(v) { lang = v; try { localStorage.setItem("me-slides-lang", lang ? "en" : "fr"); } catch {} buildDrawer(); render(); }
+
 
 function bind() {
   $("#nx").onclick = () => go(index + 1); $("#pv").onclick = () => go(index - 1);
   $("#step-next").onclick = () => advance(1); $("#step-prev").onclick = () => advance(-1);
   $("#all-steps").onclick = () => { step = blocks().length; paintSteps(); };
-  $("#lng").onclick = () => setLang(lang ? 0 : 1);
   $("#lst").onclick = () => setDrawer($("#drawer").hidden);
   $("#rev").onclick = toggleAnswer;
   $("#tg").onclick = () => { figHidden = !figHidden; layout("explore"); fitMath(); };
@@ -1207,7 +1216,6 @@ addEventListener("keydown", e => {
   else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); advance(-1); }
   else if (k === "Home") go(0); else if (k === "End") go(deck.slides.length - 1);
   else if (k === "r" || k === "R" || k === "ArrowDown") { e.preventDefault(); toggleAnswer(); }
-  else if (k === "l" || k === "L") setLang(lang ? 0 : 1);
   else if (k === "g" || k === "G") setDrawer($("#drawer").hidden);
   else if (k === "f" || k === "F") $("#fs").click();
   else if (k === "Escape" && !$("#drawer").hidden) setDrawer(false);

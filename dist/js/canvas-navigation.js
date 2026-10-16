@@ -7,13 +7,11 @@ export function camera2D() {
   c.reset=()=>{c.scale=1;c.x=c.y=0;};return c;
 }
 export function navigationButtons(host,action,lang='fr') {
-  const en=lang==='en',bar=document.createElement('div');bar.className='canvas-navigation';bar.setAttribute('role','group');bar.setAttribute('aria-label',en?'View controls':'Commandes de la vue');
-  for(const [id,text,fr,english] of [['in','+','Agrandir','Zoom in'],['out','−','Réduire','Zoom out'],['reset','↺','Vue initiale','Reset view'],['left','←','Vue vers la gauche','Pan left'],['right','→','Vue vers la droite','Pan right'],['up','↑','Vue vers le haut','Pan up'],['down','↓','Vue vers le bas','Pan down']]) {
-    const b=document.createElement('button');b.type='button';b.textContent=text;b.dataset.view=id;b.title=en?english:fr;b.setAttribute('aria-label',b.title);b.addEventListener('click',()=>action(id));bar.append(b);
-  }
-  const label=document.createElement('output');label.setAttribute('aria-live','polite');bar.append(label);host.append(bar);bar.update=scale=>{label.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
+  const bar=document.createElement('output');bar.className='canvas-navigation';bar.hidden=true;
+  bar.setAttribute('aria-live','polite');host.append(bar);
+  bar.update=scale=>{bar.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
 }
-export function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang}={}) {
+export function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang,canPan=()=>false}={}) {
   const camera=camera2D(),rawClear=g.clearRect.bind(g);let last=null,gesture=null;
   const pointers=new Map(),point=e=>{const r=c.getBoundingClientRect(),[w,h]=size();return [(e.clientX-r.left)/r.width*w,(e.clientY-r.top)/r.height*h];};
   const apply=()=>{const [w]=size(),d=c.width/w;g.setTransform(d*camera.scale,0,0,d*camera.scale,d*camera.x,d*camera.y);};
@@ -21,29 +19,45 @@ export function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=docu
   const refresh=()=>{apply();bar.update(camera.scale);redraw();};
   const action=id=>{const [w,h]=size();if(id==='reset')camera.reset();else if(id==='in'||id==='out')camera.zoomAt(id==='in'?1.25:.8,[w/2,h/2]);else{const d={left:[40,0],right:[-40,0],up:[0,40],down:[0,-40]}[id];camera.x+=d[0];camera.y+=d[1];}refresh();};
   const bar=navigationButtons(host,action,lang);c.style.touchAction='none';if(c.tabIndex<0)c.tabIndex=0;
-  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
+  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey||canPan(camera.unproject(point(e)))){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
   const move=e=>{if(pointers.has(e.pointerId))pointers.set(e.pointerId,point(e));if(gesture&&pointers.size===2){const a=[...pointers.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);camera.zoomAt(d/Math.max(1,gesture.distance),gesture.mid);camera.x+=mid[0]-gesture.mid[0];camera.y+=mid[1]-gesture.mid[1];gesture={distance:d,mid};refresh();e.preventDefault();e.stopImmediatePropagation();}else if(last){const q=point(e);camera.x+=q[0]-last[0];camera.y+=q[1]-last[1];last=q;refresh();e.preventDefault();e.stopImmediatePropagation();}};
   const end=e=>{const handled=!!last||!!gesture;pointers.delete(e.pointerId);last=null;if(pointers.size<2)gesture=null;if(handled){e.preventDefault();e.stopImmediatePropagation();}};
-  const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
-  const key=e=>{if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
-  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['keydown',key]];
+  const wheel=e=>{e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};if(e.shiftKey&&arrows[e.key]){e.preventDefault();e.stopImmediatePropagation();action(arrows[e.key]);return;}if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
+  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['dblclick',()=>action('reset')],['keydown',key]];
   for(const [name,fn] of events)c.addEventListener(name,fn,{capture:true,passive:false});
   return {camera,point:e=>camera.unproject(point(e)),apply,destroy(){bar.remove();g.clearRect=rawClear;for(const[n,f]of events)c.removeEventListener(n,f,true);}};
 }
 // Changing viewBox preserves the inverse screen transform used by the SVG editors for picking.
-export function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={}}={}) {
-  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null;
+export function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={},canPan=()=>false}={}) {
+  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null,pinch=null;const touches=new Map();
   const paint=()=>{state.box=[...box];svg.setAttribute('viewBox',box.join(' '));bar.update(original[2]/box[2]);};
   const zoom=(k,fx=.5,fy=.5)=>{const w=Math.max(original[2]/12,Math.min(original[2]*5,box[2]*k)),h=w*original[3]/original[2];box=[box[0]+(box[2]-w)*fx,box[1]+(box[3]-h)*fy,w,h];paint();};
   const action=id=>{if(id==='reset'){box=[...original];paint();}else if(id==='in'||id==='out')zoom(id==='in'?.8:1.25);else{const d={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[id];box[0]+=d[0]*box[2]*.12;box[1]+=d[1]*box[3]*.12;paint();}};
-  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';
+  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';if(svg.tabIndex<0)svg.tabIndex=0;
+  svg.setAttribute('aria-label',lang==='en'?'Interactive figure: wheel or pinch to zoom, Shift-drag to pan, + or - to zoom, 0 to reset':'Figure interactive : molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue, + ou - pour zoomer, 0 pour réinitialiser');
   const observer=new MutationObserver(()=>{if(svg.getAttribute('viewBox')!==box.join(' '))paint();});observer.observe(svg,{attributes:true,attributeFilter:['viewBox']});
-  const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
-  const down=e=>{if(!(e.altKey||e.shiftKey||e.button===1))return;e.preventDefault();e.stopImmediatePropagation();drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture(e.pointerId);};
-  const move=e=>{if(!drag)return;const r=svg.getBoundingClientRect();box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();e.stopImmediatePropagation();};const end=()=>{drag=null;};
-  svg.addEventListener('wheel',wheel,{passive:false});svg.addEventListener('pointerdown',down,true);svg.addEventListener('pointermove',move,true);svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
+  const wheel=e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
+  const down=e=>{
+    if(e.pointerType==='touch')touches.set(e.pointerId,[e.clientX,e.clientY]);
+    if(touches.size===2){const a=[...touches.values()];pinch={d:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};drag=null;svg.dispatchEvent(new CustomEvent('view-gesture'));}
+    if(!pinch&&!(e.altKey||e.shiftKey||e.button===1)&&!canPan(e))return;
+    e.preventDefault();e.stopImmediatePropagation();if(!pinch)drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture?.(e.pointerId);
+  };
+  const move=e=>{
+    if(touches.has(e.pointerId))touches.set(e.pointerId,[e.clientX,e.clientY]);
+    const r=svg.getBoundingClientRect();
+    if(pinch&&touches.size===2){const a=[...touches.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);zoom(pinch.d/Math.max(1,d),(pinch.mid[0]-r.left)/r.width,(pinch.mid[1]-r.top)/r.height);box[0]-=(mid[0]-pinch.mid[0])/r.width*box[2];box[1]-=(mid[1]-pinch.mid[1])/r.height*box[3];pinch={d,mid};paint();}
+    else if(drag){box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();}
+    else return;e.preventDefault();e.stopImmediatePropagation();
+  };
+  const end=e=>{touches.delete(e.pointerId);drag=null;if(touches.size<2)pinch=null;};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};const id=e.key==='0'?'reset':e.key==='-'?'out':['+','='].includes(e.key)?'in':e.shiftKey?arrows[e.key]:null;if(!id||e.target.closest('[data-handle],[data-drag]'))return;e.preventDefault();e.stopPropagation();action(id);};
+  const reset=()=>action('reset');
+  const events=[['wheel',wheel],['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['lostpointercapture',end],['keydown',key],['dblclick',reset]];
+  for(const [name,fn]of events)svg.addEventListener(name,fn,{capture:true,passive:false});
   paint();
-  const stop=()=>{observer.disconnect();bar.remove();svg.removeEventListener('wheel',wheel);svg.removeEventListener('pointerdown',down,true);svg.removeEventListener('pointermove',move,true);svg.removeEventListener('pointerup',end);svg.removeEventListener('pointercancel',end);};stop.bar=bar;return stop;
+  const stop=()=>{observer.disconnect();bar.remove();for(const [name,fn]of events)svg.removeEventListener(name,fn,true);};stop.bar=bar;return stop;
 }
 
 export function observeSvgNavigation(root,selector,lang) {

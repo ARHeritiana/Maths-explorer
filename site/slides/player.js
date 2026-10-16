@@ -8,7 +8,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const EXPORT = typeof window !== "undefined" && window.__MX_EXPORT__ ? window.__MX_EXPORT__ : null;
 const params = new URLSearchParams(location.search);
 const deckId = EXPORT ? EXPORT.deck.id : params.get("deck") || "premiere-01";
-const stored = () => { try { return localStorage.getItem("me-slides-lang") === "en" ? 1 : 0; } catch { return 0; } };
+const stored = () => { try { return JSON.parse(localStorage.getItem("maths-explorer-v1") || "{}").lang === "en" ? 1 : 0; } catch { return 0; } };
 let lang = params.get("lang") === "en" ? 1 : params.get("lang") === "fr" ? 0 : stored();
 let deck, index = 0, revealed = false, live = null, step = 1, generation = 0, toastTimer = 0;
 
@@ -24,7 +24,7 @@ const UI = {
   lang: ["English", "Français"], list: ["Plan", "Outline"], full: ["Plein écran", "Full screen"],
   download: ["Télécharger HTML", "Download HTML"], downloadTip: ["Télécharger ce diaporama en un seul fichier HTML", "Download this deck as a single HTML file"],
   home: ["Toutes les séries", "All decks"], loadErr: ["Série introuvable.", "Deck not found."],
-  hint: ["Flèches : étapes et diapositives · R réponse · G plan · L langue · F plein écran", "Arrows: steps and slides · R answer · G outline · L language · F full screen"],
+  hint: ["Flèches : étapes et diapositives · R réponse · G plan · F plein écran", "Arrows: steps and slides · R answer · G outline · F full screen"],
   slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
   explore: ["Explorer le chapitre", "Explore the chapter"], figure: ["Figure", "Figure"],
   free: ["La figure est réglable librement ; ses valeurs peuvent différer de celles de l’exemple.", "The figure is freely adjustable; its values may differ from the worked example."],
@@ -52,7 +52,7 @@ function shell() {
   $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
 <div id="rt"></div>
 <div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
-<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lng"></button><button class="b" id="lst" aria-pressed="false"></button>${EXPORT ? "" : `<a class="b" id="dl" download></a>`}<button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
 <div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
 }
 
@@ -60,7 +60,7 @@ async function load() {
   if (EXPORT) deck = EXPORT.deck;
   else {
     try {
-      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`);
+      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`, {cache:"no-store"});
       if (!r.ok) throw new Error(r.status);
       deck = await r.json();
     } catch {
@@ -68,6 +68,7 @@ async function load() {
       return;
     }
   }
+  if (deck.language) lang = deck.language === "en" ? 1 : 0;
   shell(); bind();
   const h = parseInt(location.hash.slice(1), 10);
   index = Number.isFinite(h) ? Math.min(Math.max(h, 0), deck.slides.length - 1) : 0;
@@ -159,7 +160,7 @@ function companion(spec, showDelta) {
   live = mount({ ...spec, showDelta }, { host: $("#wcanvas"), controls: $("#wctl"), readout: $("#readout"), hint: $("#whint"), lang });
 }
 
-function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}`; }
+function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}?v=${deck.figureVersion || ""}`; }
 
 async function render() {
   const renderId = ++generation;
@@ -177,7 +178,7 @@ async function render() {
   $("#live").hidden = true; $("#readout").innerHTML = "";
 
   if (k === "title") {
-    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
+    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(deck.courseTitle?.[lang] || COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
   } else if (k === "code") {
     flow.innerHTML = `<div class="hd">${esc(label)}</div><h2 class="tt">${title}</h2><pre>${s.b[lang]}</pre>`;
   } else {
@@ -187,7 +188,7 @@ async function render() {
 
   if (mode === "fig") rt.innerHTML = `<div class="figcol">${figs}</div>`;
   else if (mode === "widget" || mode === "explore") {
-    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label><p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
+    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `${widgets.length > 1 ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label>` : ""}<p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
   } else rt.innerHTML = "";
 
   chrome();
@@ -204,7 +205,7 @@ async function render() {
   if (mode === "widget") companion(s.w, true);
   else if (mode === "explore") {
     companion(shared.w, defined < 0 || index >= defined);
-    $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
+    if ($("#explore-choice")) $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
   }
   paintSteps(); flow.scrollTop = 0;
   if (ready) {
@@ -248,8 +249,8 @@ function chrome() {
   $("#step-prev").setAttribute("aria-label", t("stepPrev")); $("#step-next").setAttribute("aria-label", t("stepNext"));
   $("#all-steps").textContent = t("all");
   const rev = $("#rev"); rev.hidden = !s.a; rev.textContent = revealed ? t("hide") : t("answer"); rev.setAttribute("aria-pressed", revealed);
-  $("#lng").textContent = t("lang"); $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
-  const dl = $("#dl"); if (dl) { dl.href = `./export/${encodeURIComponent(deckId)}.html`; dl.setAttribute("download", `${deckId}.html`); dl.textContent = "⬇ HTML"; dl.title = t("downloadTip"); dl.setAttribute("aria-label", t("downloadTip")); }
+  $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
+
   $("#prog i").style.width = `${((index + 1) / n) * 100}%`;
   document.querySelectorAll("#drawer button").forEach((b, i) => b.toggleAttribute("aria-current", i === index));
 }
@@ -272,13 +273,12 @@ function toggleAnswer() {
   const b = $("#rev"); b.setAttribute("aria-pressed", revealed); b.textContent = revealed ? t("hide") : t("answer");
   if (revealed) $("#ans").scrollIntoView({ block: "nearest", behavior: "instant" });
 }
-function setLang(v) { lang = v; try { localStorage.setItem("me-slides-lang", lang ? "en" : "fr"); } catch {} buildDrawer(); render(); }
+
 
 function bind() {
   $("#nx").onclick = () => go(index + 1); $("#pv").onclick = () => go(index - 1);
   $("#step-next").onclick = () => advance(1); $("#step-prev").onclick = () => advance(-1);
   $("#all-steps").onclick = () => { step = blocks().length; paintSteps(); };
-  $("#lng").onclick = () => setLang(lang ? 0 : 1);
   $("#lst").onclick = () => setDrawer($("#drawer").hidden);
   $("#rev").onclick = toggleAnswer;
   $("#tg").onclick = () => { figHidden = !figHidden; layout("explore"); fitMath(); };
@@ -298,7 +298,6 @@ addEventListener("keydown", e => {
   else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); advance(-1); }
   else if (k === "Home") go(0); else if (k === "End") go(deck.slides.length - 1);
   else if (k === "r" || k === "R" || k === "ArrowDown") { e.preventDefault(); toggleAnswer(); }
-  else if (k === "l" || k === "L") setLang(lang ? 0 : 1);
   else if (k === "g" || k === "G") setDrawer($("#drawer").hidden);
   else if (k === "f" || k === "F") $("#fs").click();
   else if (k === "Escape" && !$("#drawer").hidden) setDrawer(false);

@@ -178,12 +178,17 @@ def main():
             with zipfile.ZipFile(OUT/edition['source'])as archive:
                 assert archive.read('main.tex').decode()==expected,key
                 for f in re.findall(r'\\includegraphics\[[^]]*\]\{([^}]+)\}',expected):assert f in archive.namelist(),(key,f)
-        print('Lecture check: 94 matching sources, PDFs, aspect ratios and source archives.');return
+        print(f'Lecture check: {len(jobs)} matching sources, PDFs, aspect ratios and source archives.');return
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs)as pool:
         for result in pool.map(build_one,jobs):results.append(result);print(result['pdf'],result['pages'],'pages',len(result['warnings']),'layout warnings',flush=True)
     report=BUILD/'report.json';report.write_text(json.dumps(results,ensure_ascii=False,indent=2))
     if not args.deck and not args.lang:
         (OUT/'index.json').write_text(json.dumps([{**d,'editions':{r['lang']:{k:v for k,v in r.items()if k not in ('id','lang','warnings')}for r in results if r['id']==d['id']}}for d in index],ensure_ascii=False,indent=1)+'\n')
+        keep={'index.json'}|{f"{d['id']}-{lang}{suffix}" for d in index for lang in ('fr','en') for suffix in ('.pdf','.tex','-source.zip')}
+        for folder in (OUT,SOURCE):
+            for old in folder.iterdir():
+                if old.is_file() and old.name not in keep and old.suffix in ('.pdf','.tex','.zip'):old.unlink()
+
     print('Lecture editions:',len(results),'PDFs; layout warnings:',sum(len(r['warnings'])for r in results))
     if any(r['warnings']for r in results):raise SystemExit('Fix lecture layout warnings before publication.')
 

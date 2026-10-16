@@ -42,7 +42,7 @@ with sync_playwright() as p:
                     const wide = [...flow.querySelectorAll('mjx-container[display="true"]')].find(m => m.scrollWidth > m.clientWidth + 2);
                     if (wide) out.push('equation wider than the column ' + (wide.scrollWidth - wide.clientWidth)); }
                   if (st.scrollWidth > st.clientWidth + 2 || st.scrollHeight > st.clientHeight + 2) out.push('stage overflow');
-                  const dl = st.querySelector('#dl'); if (!dl || !dl.getAttribute('href').endsWith('/' + new URLSearchParams(location.search).get('deck') + '.html')) out.push('download link missing');
+                  if (st.querySelector('#dl,#lng')) out.push('redundant player action');
                   return out; }'''
                 bad = pg.evaluate(CHECK)
                 for x in bad: errors.append(f'{d["id"]} {lang} #{i}: {x}')

@@ -61,7 +61,7 @@ Rules:
 | Command | Does |
 |---|---|
 | `make tex [COURSE=x] [FORCE=1]` | Build native-framed courses (skipped when inputs are unchanged), assemble excerpts, regenerate the catalogue, republish sources. |
-| `make site` | Copy `site/` into `dist/`. |
+| `make site` | Rebuild products whose source dependencies changed, regenerate catalogues/cache versions, and copy `site/` into `dist/`. |
 | `make catalog` | Regenerate the catalogue files from the manifest. |
 | `make slides` | Rebuild slide decks and figures, then the single-file HTML export of every deck. |
 | `make inventory` | Regenerate `docs/TEX_INVENTORY.md`. |
@@ -70,3 +70,36 @@ Rules:
 Container setup (per session): `apt-get install texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
 texlive-science texlive-lang-french texlive-pictures texlive-latex-recommended texlive-pstricks texlive-xetex latexmk`,
 `pip install pymupdf playwright==1.56.0`; Chromium at `/opt/pw-browsers`.
+
+## Linked content and interface policy (16 October 2026)
+
+`make site` is the publication preparation command. `mxbuild.refresh` compares tracked input fingerprints in
+`content/data/build-state.json`, runs affected producers in dependency order, then measures products and regenerates
+shared metadata. PDF/TeX, university packaging, slide data, HTML exports, lecture PDFs and source downloads have
+separate dependencies. A change to a shared player invalidates all its HTML exports; an unchanged lecture stays cached.
+The receipt is generated state, never an editorial source. Its initial migration was adopted only after rebuilding
+and validating retained products. Missing receipts, missing assets, unknown references and unexpected product drift
+fail explicitly. Removing a whole producer needs an explicit asset migration.
+
+Course identities, titles, language policy and chapter identities come from `manifest.json`. Companion records retain
+layout annotations and pedagogical guide mappings; those topic mappings can differ from the catalogue taxonomy.
+University collections, documents and sequences generate `site/js/catalogue-data.js`, the measured university index,
+pathway summaries, navigation and catalogue links. Counts come from arrays. Foundation sequences carry stable
+`sourceDeck` and `pdfChapter` bindings, so display order cannot silently swap lesson content. Removed indexed
+university assets and removed slide exports/lecture products are pruned. New primary chapters require reviewed file
+and companion layout records; the build refuses incomplete entries instead of silently hiding them.
+
+Every linked resource uses a content version. The main page and separate player document version their JS dependencies;
+slide figures, exports, sources, PDF links and JSON reads have matching freshness rules. CI checks both input/output
+receipts and regenerated metadata. Mutation tests cover changed engine/course metadata, sequence addition, rename,
+reorder, removal and stable source bindings.
+
+Neutral pages use the saved language preference, or the browser language on first visit. Curriculum pages and their
+PDF/player links use `contentLanguage`; university sequences use their collection language. Language controls are
+omitted on fixed-language pages. Downloads sit beside the links opening their resources. A shared policy hides
+selectors with zero or one enabled choice and restores them when choices grow.
+
+Canvas cameras remain independent of mathematical state. Wheel/pinch zoom, direct dragging and keyboard shortcuts
+replace view and point button toolbars. H selects a point and arrows move it; Shift+arrows pan, +/- zoom, and 0 resets.
+SVG editors retain their own pointer gestures and support Shift-drag/pinch camera interaction. Double-click resets
+camera views. Mathematical mode choices, reveal/navigation controls and fullscreen remain available.

@@ -12,14 +12,13 @@
         "Mathematical foundations"
       ],
       "intro": [
-        "Six séquences pour aborder les premiers outils du supérieur. Les supports sont en français et ne constituent pas un programme universitaire complet.",
-        "Six sequences introducing foundational tools for higher education. Materials are in French and do not form a complete university curriculum."
+        "Des séquences pour aborder les premiers outils du supérieur. Les supports sont en français et ne constituent pas un programme universitaire complet.",
+        "Sequences introducing foundational tools for higher education. Materials are in French and do not form a complete university curriculum."
       ],
       "language": "fr",
       "sequences": [
         {
           "id": "calculs-algebriques",
-          "number": 1,
           "title": [
             "Calculs algébriques",
             "Algebraic calculations"
@@ -33,12 +32,14 @@
             "Algebra, sequences and induction."
           ],
           "slide": "seq1-calculs-algebriques.html",
+          "sourceDeck": "deck1.js",
+          "pdfChapter": 1,
+          "number": 1,
           "studentPage": 2,
           "teacherPage": 2
         },
         {
           "id": "logique",
-          "number": 2,
           "title": [
             "Logique",
             "Logic"
@@ -52,12 +53,14 @@
             "Reading mathematical statements and algebra."
           ],
           "slide": "seq2-logique.html",
+          "sourceDeck": "deck2.js",
+          "pdfChapter": 2,
+          "number": 2,
           "studentPage": 3,
           "teacherPage": 4
         },
         {
           "id": "ensembles",
-          "number": 3,
           "title": [
             "Ensembles",
             "Sets"
@@ -71,12 +74,14 @@
             "Logic and quantifiers."
           ],
           "slide": "seq3-ensembles.html",
+          "sourceDeck": "deck3.js",
+          "pdfChapter": 3,
+          "number": 3,
           "studentPage": 4,
           "teacherPage": 5
         },
         {
           "id": "complexes",
-          "number": 4,
           "title": [
             "Opérations sur les nombres complexes",
             "Operations on complex numbers"
@@ -90,12 +95,14 @@
             "Algebra and trigonometry."
           ],
           "slide": "seq4-complexes.html",
+          "sourceDeck": "deck4.js",
+          "pdfChapter": 4,
+          "number": 4,
           "studentPage": 5,
           "teacherPage": 6
         },
         {
           "id": "second-degre-complexe",
-          "number": 5,
           "title": [
             "Équations du second degré dans ℂ",
             "Quadratic equations over ℂ"
@@ -109,12 +116,14 @@
             "Operations on complex numbers."
           ],
           "slide": "seq5-second-degre-complexe.html",
+          "sourceDeck": "deck5.js",
+          "pdfChapter": 5,
+          "number": 5,
           "studentPage": 6,
           "teacherPage": 7
         },
         {
           "id": "applications",
-          "number": 6,
           "title": [
             "Image directe et image réciproque",
             "Direct and inverse images"
@@ -128,9 +137,68 @@
             "Logic, sets and elementary functions."
           ],
           "slide": "seq6-applications.html",
+          "sourceDeck": "deck6.js",
+          "pdfChapter": 6,
+          "number": 6,
           "studentPage": 7,
           "teacherPage": 8
         }
+      ],
+      "documents": [
+        {
+          "key": "student",
+          "label": [
+            "Notes de cours étudiant",
+            "Student course notes"
+          ],
+          "path": "resources/university/foundations/notes-etudiant.pdf"
+        },
+        {
+          "key": "teacher",
+          "label": [
+            "Guide enseignant et solutions des ateliers",
+            "Teacher guide and workshop solutions"
+          ],
+          "path": "resources/university/foundations/guide-enseignant.pdf"
+        },
+        {
+          "key": "tex",
+          "label": [
+            "Sources LaTeX des éditions",
+            "LaTeX edition sources"
+          ],
+          "path": "resources/university/foundations/sources-latex.zip"
+        },
+        {
+          "key": "slidesSource",
+          "label": [
+            "Sources des diaporamas",
+            "Slide deck sources"
+          ],
+          "path": "resources/university/foundations/sources-slides.zip"
+        }
+      ],
+      "studyDocuments": [
+        {
+          "key": "student",
+          "label": [
+            "Lire les notes de cette séquence",
+            "Read this sequence’s notes"
+          ],
+          "pageField": "studentPage"
+        },
+        {
+          "key": "teacher",
+          "label": [
+            "Préparer cette séquence",
+            "Prepare this sequence"
+          ],
+          "pageField": "teacherPage"
+        }
+      ],
+      "audience": [
+        "Transition vers le supérieur et cycle préparatoire.",
+        "Transition to higher education and preparatory study."
       ]
     },
     {
@@ -140,129 +208,129 @@
         "Applied mathematics · Year 1"
       ],
       "intro": [
-        "Un parcours en sept semaines pour une première année scientifique, avec cahier de travail autonome et guides de séquence. Supports en français.",
-        "A seven-week introductory science pathway with a self-study workbook and sequence guides. Materials in French."
+        "Un parcours pour une première année scientifique, avec cahier de travail autonome et guides de séquence. Supports en français.",
+        "An introductory science pathway with a self-study workbook and sequence guides. Materials in French."
       ],
       "language": "fr",
       "sequences": [
         {
           "id": "module-semaine-1",
-          "number": 1,
           "title": [
             "Fonctions usuelles, trigonométrie et complexes",
             "Elementary functions, trigonometry and complex numbers"
           ],
           "summary": [
-            "Semaine 1 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 1: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine1.html"
+          "slide": "semaine1.html",
+          "number": 1
         },
         {
           "id": "module-semaine-2",
-          "number": 2,
           "title": [
             "Proportions, polynômes et limites",
             "Proportions, polynomials and limits"
           ],
           "summary": [
-            "Semaine 2 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 2: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine2.html"
+          "slide": "semaine2.html",
+          "number": 2
         },
         {
           "id": "module-semaine-3",
-          "number": 3,
           "title": [
             "Dérivation et optimisation",
             "Differentiation and optimisation"
           ],
           "summary": [
-            "Semaine 3 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 3: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine3.html"
+          "slide": "semaine3.html",
+          "number": 3
         },
         {
           "id": "module-semaine-4",
-          "number": 4,
           "title": [
             "Intégration",
             "Integration"
           ],
           "summary": [
-            "Semaine 4 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 4: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine4.html"
+          "slide": "semaine4.html",
+          "number": 4
         },
         {
           "id": "module-semaine-5",
-          "number": 5,
           "title": [
             "Géométrie du plan et de l’espace",
             "Plane and space geometry"
           ],
           "summary": [
-            "Semaine 5 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 5: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine5.html"
+          "slide": "semaine5.html",
+          "number": 5
         },
         {
           "id": "module-semaine-6",
-          "number": 6,
           "title": [
             "Calcul matriciel",
             "Matrix calculations"
           ],
           "summary": [
-            "Semaine 6 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 6: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine6.html"
+          "slide": "semaine6.html",
+          "number": 6
         },
         {
           "id": "module-semaine-7",
-          "number": 7,
           "title": [
             "Plusieurs variables et équations différentielles",
             "Multivariable functions and differential equations"
           ],
           "summary": [
-            "Semaine 7 : exploration interactive, cours et exercices dans le cahier.",
-            "Week 7: interactive exploration, notes and workbook exercises."
+            "Exploration interactive, cours et exercices dans le cahier.",
+            "Interactive exploration, notes and workbook exercises."
           ],
           "prerequisites": [
             "Notions de lycée ; semaines précédentes du module.",
             "Secondary-school mathematics; preceding weeks of the module."
           ],
-          "slide": "semaine7.html"
+          "slide": "semaine7.html",
+          "number": 7
         }
       ],
       "documents": [
@@ -271,129 +339,132 @@
           "label": [
             "Cahier avec corrigés",
             "Workbook with solutions"
-          ]
+          ],
+          "path": "resources/university/module-maths/cahier-de-travail-autonome.pdf"
         },
         {
           "key": "module-statements",
           "label": [
             "Cahier : énoncés seuls",
             "Workbook: exercises only"
-          ]
+          ],
+          "path": "resources/university/module-maths/cahier-de-travail-autonome-ENONCES.pdf"
         },
         {
           "key": "module-student-guide",
           "label": [
             "Guide étudiant",
             "Student guide"
-          ]
+          ],
+          "path": "resources/university/module-maths/Guide-etudiant.pdf"
         },
         {
           "key": "module-teacher-guide",
           "label": [
             "Guide professeur",
             "Teacher guide"
-          ]
+          ],
+          "path": "resources/university/module-maths/Guide-professeur.pdf"
         },
         {
           "key": "module-tex",
           "label": [
             "Sources LaTeX",
             "LaTeX sources"
-          ]
+          ],
+          "path": "resources/university/module-maths/sources-latex.zip"
         },
         {
           "key": "module-slides",
           "label": [
-            "Les sept diaporamas HTML",
-            "Seven HTML slide decks"
-          ]
+            "Diaporamas HTML",
+            "HTML slide decks"
+          ],
+          "path": "resources/university/module-maths/diaporamas-html.zip"
         },
         {
           "key": "module-all",
           "label": [
             "Télécharger le module complet",
             "Download the complete module"
+          ],
+          "path": "resources/university/module-maths/module-complet.zip"
+        }
+      ],
+      "studyDocuments": [
+        {
+          "key": "module-statements",
+          "label": [
+            "Travailler dans le cahier",
+            "Practise in the workbook"
+          ]
+        },
+        {
+          "key": "module-workbook",
+          "label": [
+            "Consulter le cahier corrigé",
+            "Read the worked solutions"
           ]
         }
+      ],
+      "audience": [
+        "Première année scientifique : cahier autonome, corrigés et guides.",
+        "First-year science: self-study workbook, solutions and guides."
       ]
     }
   ],
   "files": {
-    "student": {
-      "path": "resources/university/foundations/notes-etudiant.pdf",
-      "pages": 7,
-      "bytes": 88776,
-      "sha256": "7cfce39de2bbe41ebf42d16f1da24b7584ce9ddf831c6de0513c7d69c9948f03"
-    },
-    "teacher": {
-      "path": "resources/university/foundations/guide-enseignant.pdf",
-      "pages": 8,
-      "bytes": 105679,
-      "sha256": "23b56d38f3d82616c6cb56b1b52542ef5f26d835a3a3420d87b9201c36c2d6f0"
-    },
     "calculs-algebriques": {
       "path": "resources/university/foundations/slides/seq1-calculs-algebriques.html",
-      "bytes": 34279,
-      "sha256": "37b81af30c140f3a9feaa98da8ba17db5e4e1b238eb96af1bc7ce0a74fd6012a"
+      "bytes": 34700,
+      "sha256": "98bafc3420f861988ee245a0861d3a3e47d50deb8d32579677863af35e9355f8"
     },
     "logique": {
       "path": "resources/university/foundations/slides/seq2-logique.html",
-      "bytes": 35115,
-      "sha256": "cdfa6e4ef2c679dfb4c3bd44f231fc74f574e46034d975423025b4d9d06f897f"
+      "bytes": 35532,
+      "sha256": "7b9e26b45353cb6e4e5bc85cee476534f56f44e39d0e91ddceff49148da3c0c4"
     },
     "ensembles": {
       "path": "resources/university/foundations/slides/seq3-ensembles.html",
-      "bytes": 44127,
-      "sha256": "7496f2a600dd8a4d5b64f2475d4205ba88f508076c2875e59772ce51cb6ef596"
+      "bytes": 44544,
+      "sha256": "e5f2cad846b26a46910ebd47a2127a815a039c3fc0ba930bfb5696ca4a737719"
     },
     "complexes": {
       "path": "resources/university/foundations/slides/seq4-complexes.html",
-      "bytes": 32738,
-      "sha256": "95b40f960d4534710338edd4ea4cf0423a59e93834ebe4fa8b7563e1775f31f6"
+      "bytes": 33155,
+      "sha256": "37eec497ab05b0e346af898b53e5f86889e319579e14cac07bd90058e703225c"
     },
     "second-degre-complexe": {
       "path": "resources/university/foundations/slides/seq5-second-degre-complexe.html",
-      "bytes": 30760,
-      "sha256": "ed635f3cf01977cf90b3421ef9753554be585da2b86631e718ddb5e9eb735203"
+      "bytes": 31177,
+      "sha256": "a1e0dd842ce96ca049a83de68e7e650d8c4a5e3c27bf9e1ee7ac8115559b2dee"
     },
     "applications": {
       "path": "resources/university/foundations/slides/seq6-applications.html",
-      "bytes": 34371,
-      "sha256": "dabfbe054592aa44bcf6315137bc973e66dc72727fed9b28e80d3675fba21d2f"
+      "bytes": 34788,
+      "sha256": "bd7699420925b3f64f096b4db6e6d48db5b41a7be5fc9098bd8b28b3a7f5c8e5"
+    },
+    "student": {
+      "path": "resources/university/foundations/notes-etudiant.pdf",
+      "bytes": 88776,
+      "sha256": "7cfce39de2bbe41ebf42d16f1da24b7584ce9ddf831c6de0513c7d69c9948f03",
+      "pages": 7
+    },
+    "teacher": {
+      "path": "resources/university/foundations/guide-enseignant.pdf",
+      "bytes": 105679,
+      "sha256": "23b56d38f3d82616c6cb56b1b52542ef5f26d835a3a3420d87b9201c36c2d6f0",
+      "pages": 8
     },
     "tex": {
       "path": "resources/university/foundations/sources-latex.zip",
-      "bytes": 17147,
-      "sha256": "38ec6675574932b846c43fceede2d42636cf800eb5e1a84766bbd3b4a65552e9"
+      "bytes": 17142,
+      "sha256": "5b6a87539f9cc2275c34eef3da89d3abb1ce443e51ad87cbbab292c92d09c1e6"
     },
     "slidesSource": {
       "path": "resources/university/foundations/sources-slides.zip",
-      "bytes": 37673,
-      "sha256": "1edcba06693dda5ee1098bc707b0bee916e8d75a883a6449da4b2cbae1536c99"
-    },
-    "module-workbook": {
-      "path": "resources/university/module-maths/cahier-de-travail-autonome.pdf",
-      "bytes": 397545,
-      "sha256": "c683947fc3abf2ccff3172f921f4f2130013bed0500a1ee827e1cfc76c00b2c3",
-      "pages": 29
-    },
-    "module-statements": {
-      "path": "resources/university/module-maths/cahier-de-travail-autonome-ENONCES.pdf",
-      "bytes": 341466,
-      "sha256": "4482b1d0e4b2769a61fa385ed71b3765cf988db34830eef69f2041fcb4c2feba",
-      "pages": 26
-    },
-    "module-student-guide": {
-      "path": "resources/university/module-maths/Guide-etudiant.pdf",
-      "bytes": 190549,
-      "sha256": "8277eb66e257d0012b08f752f2c216ab2b2e543d3b56b22ad21d2255099f1b8f",
-      "pages": 16
-    },
-    "module-teacher-guide": {
-      "path": "resources/university/module-maths/Guide-professeur.pdf",
-      "bytes": 215273,
-      "sha256": "63ddf6efe06ecc71e017baf5008a90fda3532f8e3efd320d78e2dab78135a098",
-      "pages": 22
+      "bytes": 37879,
+      "sha256": "ef0f1e46a42b7003bf9d7ff4d160508c0fae2e5aa41210a5baeeca5de0221ca8"
     },
     "module-semaine-1": {
       "path": "resources/university/module-maths/slides/semaine1.html",
@@ -430,6 +501,30 @@
       "bytes": 42696,
       "sha256": "d3bc11eac2d8a78bd2fb0f282ee52ab3a31203cada05a484a806cec822eeb950"
     },
+    "module-workbook": {
+      "path": "resources/university/module-maths/cahier-de-travail-autonome.pdf",
+      "bytes": 397545,
+      "sha256": "c683947fc3abf2ccff3172f921f4f2130013bed0500a1ee827e1cfc76c00b2c3",
+      "pages": 29
+    },
+    "module-statements": {
+      "path": "resources/university/module-maths/cahier-de-travail-autonome-ENONCES.pdf",
+      "bytes": 341466,
+      "sha256": "4482b1d0e4b2769a61fa385ed71b3765cf988db34830eef69f2041fcb4c2feba",
+      "pages": 26
+    },
+    "module-student-guide": {
+      "path": "resources/university/module-maths/Guide-etudiant.pdf",
+      "bytes": 190549,
+      "sha256": "8277eb66e257d0012b08f752f2c216ab2b2e543d3b56b22ad21d2255099f1b8f",
+      "pages": 16
+    },
+    "module-teacher-guide": {
+      "path": "resources/university/module-maths/Guide-professeur.pdf",
+      "bytes": 215273,
+      "sha256": "63ddf6efe06ecc71e017baf5008a90fda3532f8e3efd320d78e2dab78135a098",
+      "pages": 22
+    },
     "module-tex": {
       "path": "resources/university/module-maths/sources-latex.zip",
       "bytes": 61075,
@@ -446,6 +541,6 @@
       "sha256": "73eef7151efb8e508b74d19efe2edde32882ddb357b9a1dd3ab1283f784191aa"
     }
   },
-  "sourceDigest": "b176bae9c2c00cd57323b3eb17caeead736c2f47110bc35b08cba02b57818f5b",
+  "sourceDigest": "d7d832400b5440ac03478b08289f855ab21df2d7ef7aebc0470948f3536d400e",
   "moduleDigest": "e70a11fba7238ffde7ee64da5bb855d236753c18cb5784990a7f5ee8cf3905ef"
 }

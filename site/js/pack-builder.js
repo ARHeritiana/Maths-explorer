@@ -1,3 +1,6 @@
+import {courseLanguage} from "./content-language.js";
+import { courses, university } from './catalogue-data.js';
+import { assetHref, fetchJSON } from './data-loader.js';
 // Custom pack builder and LaTeX sources browser.
 // PDFs are merged in the browser from the files the site already serves; nothing is uploaded.
 import { resourceCatalog } from './resources-data.js';
@@ -5,14 +8,7 @@ import { resourceCatalog } from './resources-data.js';
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-const COURSES = {
-  seconde: P('Seconde', 'Seconde'),
-  premiere: P('Première spécialité', 'Première specialty'),
-  terminale: P('Terminale spécialité', 'Terminale specialty'),
-  stmg: P('Terminale STMG', 'Terminale STMG'),
-  shared: P('Concepts partagés', 'Shared concepts'),
-  explorations: P('Ateliers d’enrichissement', 'Enrichment workshops'),
-};
+const COURSES = Object.fromEntries(courses.map(c=>[c.id,c.title]));
 // Order and labels of the parts a visitor can include. Keys are the resource-id suffixes in catalog.json.
 const PARTS = [
   ['chapter', P('Chapitre complet', 'Complete chapter'), 'student'],
@@ -44,9 +40,7 @@ const load = src => libs[src] ||= new Promise((ok, fail) => {
 });
 async function loadCatalog() {
   if (catalog) return;
-  const r = await fetch('./resources/catalog.json');
-  if (!r.ok) throw new Error('catalog');
-  catalog = await r.json();
+  catalog = await fetchJSON('./resources/catalog.json');
 }
 const fmtBytes = b => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' kB';
 
@@ -101,6 +95,7 @@ export async function bindPack(t) {
 }
 
 function paint(root, t) {
+  state.lang=courseLanguage(state.course,t(P("fr","en")));
   const chapters = chaptersOf(state.course);
   const available = new Set(catalog.resources.filter(r => chapters.some(c => c.id === r.chapter)).map(partKey));
   const items = pick();
@@ -130,8 +125,7 @@ function paint(root, t) {
     </section>
     <section class="pack-step pack-output" aria-labelledby="pack-h-out">
       <h2 id="pack-h-out">${t(P('4. Ton dossier', '4. Your pack'))}</h2>
-      <div class="pack-langs" role="radiogroup" aria-label="${t(P('Langue', 'Language'))}">${[['fr', 'Français'], ['en', 'English'], ['both', 'FR + EN']].map(([v, l]) =>
-        `<label class="pack-pill"><input type="radio" name="lang" value="${v}" ${state.lang === v ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div>
+
       <label class="pack-check"><input type="checkbox" name="cover" ${state.cover ? 'checked' : ''}> <span>${t(P('Ajouter une page de sommaire', 'Add a contents page'))}</span></label>
       <p class="pack-summary" role="status">${items.length ? `${items.length} ${t(P('documents', 'documents'))} · ${pages} ${t(P('pages', 'pages'))} · ${fmtBytes(size)}${state.lang === 'both' ? ' ×2' : ''}` : t(P('Aucun document sélectionné. Coche au moins un chapitre et une partie.', 'Nothing selected yet. Tick at least one chapter and one part.'))}</p>
       <div class="pack-actions"><button type="button" class="pack-primary" data-act="merge" ${items.length ? '' : 'disabled'}>${t(P('Télécharger le PDF', 'Download the PDF'))}</button>
@@ -156,7 +150,7 @@ function saveBlob(bytes, name, type) {
   document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
-const fetchBytes = async url => { const r = await fetch(url); if (!r.ok) throw new Error(url); return new Uint8Array(await r.arrayBuffer()); };
+const fetchBytes = async url => { const r = await fetch(assetHref(url)); if (!r.ok) throw new Error(url); return new Uint8Array(await r.arrayBuffer()); };
 
 async function mergeOne(items, lang, t, say) {
   const { PDFDocument, StandardFonts, rgb } = PDFLib;
@@ -224,13 +218,13 @@ let manifest = null;
 export function sourcesPage(t) {
   return `<main id="main" tabindex="-1" class="page pack-page sources-page">
   <div class="pack-heading"><h1>${t(P('Sources LaTeX', 'LaTeX sources'))}</h1>
-  <p>${t(P('Chaque PDF du site est compilé à partir de ces fichiers, en français et en anglais. Télécharge un cours entier ou un fichier, modifie-le et recompile avec pdfLaTeX, sans option particulière.', 'Every PDF on this site is compiled from these files, in French and English. Download a whole course or a single file, edit it and recompile with pdfLaTeX, no special options needed.'))}</p></div>
+  <p>${t(P('Télécharge les sources modifiables de chaque collection. Suis son guide de compilation : le moteur et les langues disponibles dépendent de la collection.', 'Download the editable sources for each collection. Follow its compilation guide; the engine and available languages depend on the collection.'))}</p></div>
   <div id="sources-app"><p role="status">${t(P('Chargement…', 'Loading…'))}</p></div></main>`;
 }
 export async function bindSources(t) {
   const root = document.querySelector('#sources-app');
   if (!root) return;
-  try { manifest ||= await (await fetch('./sources/manifest.json')).json(); } catch {
+  try { manifest ||= await fetchJSON('./sources/manifest.json'); } catch {
     root.innerHTML = `<p class="pack-error" role="alert">${t(P('La liste des sources est introuvable.', 'The source list could not be loaded.'))}</p>`; return;
   }
   const kinds = { tex: P('Fichiers TeX', 'TeX files'), style: P('Classes et styles', 'Classes and styles'), figure: P('Figures', 'Figures') };
@@ -243,9 +237,9 @@ export async function bindSources(t) {
       ${entries.length ? `<p class="source-entries">${t(P('Points d’entrée : ', 'Entry points: '))}${entries.map(f => `<code>${E(f.path.split('/').pop())}</code> (${f.entry.lang.toUpperCase()}, ${E(f.entry.edition)})`).join(', ')}</p>` : ''}
       ${Object.entries(kinds).map(([k, label]) => {
         const files = c.files.filter(f => f.kind === k);
-        return files.length ? `<details><summary>${t(label)} (${files.length})</summary><ul class="source-files">${files.map(f => `<li><a href="./sources/${E(f.path)}" download>${E(f.path.split('/').slice(1).join('/'))}</a> <span>${fmtBytes(f.bytes)}</span></li>`).join('')}</ul></details>` : '';
+        return files.length ? `<details><summary>${t(label)} (${files.length})</summary><ul class="source-files">${files.map(f => `<li><a href="${E(assetHref('./sources/'+f.path))}" download>${E(f.path.split('/').slice(1).join('/'))}</a> <span>${fmtBytes(f.bytes)}</span></li>`).join('')}</ul></details>` : '';
       }).join('')}</section>`;
-  }).join('') + `<p class="source-note">${t(P('Guide de compilation : ', 'Compilation guide: '))}<a href="./sources/README.md">README</a></p><p class="pack-progress" id="src-progress" role="status" aria-live="polite"></p>`;
+  }).join('') + university.sections.map(section=>`<section class="source-course"><h2>${E(t(section.title))}</h2><ul>${section.documents.filter(d=>d.path.endsWith('.zip')).map(d=>`<li><a href="${E(assetHref('./'+d.path))}" download>${E(t(d.label))}</a></li>`).join('')}</ul></section>`).join('') + `<p class="source-note">${t(P('Guide de compilation : ', 'Compilation guide: '))}<a href="./sources/README.md">README</a></p><p class="pack-progress" id="src-progress" role="status" aria-live="polite"></p>`;
   root.querySelectorAll('[data-zip]').forEach(b => b.addEventListener('click', async () => {
     const say = s => { root.querySelector('#src-progress').textContent = s; };
     const course = manifest.courses.find(c => c.id === b.dataset.zip);

@@ -1,3 +1,5 @@
+import {installControlPolicy} from "./control-policy.js";
+import {preferredLanguage,routeLanguage} from "./content-language.js";
 import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
@@ -49,7 +51,9 @@ try {
   saved = JSON.parse(localStorage.getItem("maths-explorer-v1") || "{}") || {};
 } catch { storageWorks = false; }
 if (!saved || typeof saved !== "object" || Array.isArray(saved)) saved = {};
-let lang = saved.lang === "en" ? "en" : "fr";
+let preferredLang = preferredLanguage(saved.lang);
+let lang = preferredLang;
+installControlPolicy(document.getElementById("app"));
 const completed = new Set(
   Array.isArray(saved.completed)
     ? saved.completed.filter((id) =>
@@ -91,7 +95,7 @@ function save() {
   try {
     localStorage.setItem(
       "maths-explorer-v1",
-      JSON.stringify({ lang, completed: [...completed], seen: [...seen], last }),
+      JSON.stringify({ lang:preferredLang, completed: [...completed], seen: [...seen], last }),
     );
   } catch {
     storageWorks = false;
@@ -137,7 +141,7 @@ function header(page) {
       ([id, fr, en, ic]) =>
         `<a href="#${id}" ${page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources") ? 'aria-current="page"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`,
     )
-    .join("")}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
+    .join("")}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
 }
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -156,6 +160,7 @@ function render() {
   plotBounds = null;
   labMotion.reset();
   let r = route();
+  lang=routeLanguage(r,resourceCatalog.chapters,preferredLang);
   // the curiosities live in the gallery, whatever link points at them
   if (r.page === "lab" && labs.some((l) => l.id === r.id && l.custom)) { history.replaceState(null, "", link("gallery", r.id)); r = route(); }
   document.documentElement.lang = lang;
@@ -224,10 +229,11 @@ function bindCommon() {
   });
   document.querySelectorAll("[data-lang]").forEach((b) =>
     b.addEventListener("click", () => {
-      lang = b.dataset.lang;
+      preferredLang = b.dataset.lang;
+      lang = preferredLang;
       save();
       render();
-      $(`[data-lang="${lang}"]`).focus();
+      $(`[data-lang="${lang}"]`)?.focus();
     }),
   );
 }
@@ -769,14 +775,14 @@ function bindPlot(lab, s) {
     };
     const action=id=>{if(id==='in'||id==='out'){zoom(id==='in'?.8:1.25);return;}if(id==='reset')s.view={...s.homeView};else{const b=s.view,d={left:[-1,0],right:[1,0],up:[0,1],down:[0,-1]}[id],dx=d[0]*(b.xmax-b.xmin)*.15,dy=d[1]*(b.ymax-b.ymin)*.15;s.view={xmin:b.xmin+dx,xmax:b.xmax+dx,ymin:b.ymin+dy,ymax:b.ymax+dy};}updateLab();bar.update((s.homeView.xmax-s.homeView.xmin)/(s.view.xmax-s.view.xmin));};
     const bar=navigationButtons($("#plot-navigation"),action,lang);
-    const fit=document.createElement('button');fit.type='button';fit.textContent=pair('Cadrer les objets','Fit objects');fit.className='text-button';fit.addEventListener('click',()=>{s.homeView=null;s.view=null;updateLab();bar.update(1);});$('#plot-navigation').append(fit);
+    plot.addEventListener('dblclick',()=>{s.homeView=null;s.view=null;updateLab();bar.update(1);});
 
-    plot.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;const p=svgPosition(e);if(!p)return;e.preventDefault();zoom(Math.exp(e.deltaY*.004),graphPosition(p,s.view));},{passive:false});
+    plot.addEventListener('wheel',e=>{const p=svgPosition(e);if(!p)return;e.preventDefault();zoom(Math.exp(e.deltaY*.004),graphPosition(p,s.view));},{passive:false});
     const touches=new Map();let pinch=null,pan=null;
     plot.addEventListener('pointerdown',e=>{
       if(e.pointerType==='touch')touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
       if(touches.size===2){const a=[...touches.values()];pinch={distance:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)};activeDrag=null;plot.classList.remove('dragging');}
-      if(pinch||e.altKey||e.shiftKey||e.button===1){if(!pinch)pan={point:svgPosition(e),bounds:{...s.view}};plot.setPointerCapture(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}
+      if(pinch||e.altKey||e.shiftKey||e.button===1||!e.target.closest('[data-handle]')){if(!pinch)pan={point:svgPosition(e),bounds:{...s.view}};plot.setPointerCapture(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}
     },true);
     plot.addEventListener('pointermove',e=>{
       if(touches.has(e.pointerId))touches.set(e.pointerId,{x:e.clientX,y:e.clientY});

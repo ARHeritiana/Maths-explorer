@@ -24,7 +24,7 @@ test('all university scenes and selector modes render finite canvas values; zoom
     const b=[...w.document.querySelectorAll('#sel [data-v]')].find(b=>b.getAttribute('data-v')===String(value)&&E.S()[i].sel[+b.getAttribute('data-g')].k===selector.k);b?.click();a.draw();
    }
   }
-  const before=E.state().P;w.document.querySelector('#zoom button').click();assert.equal(E.camera().k,1.25);assert.equal(E.state().P,before);
+  const before=E.state().P;w.document.querySelector('canvas').dispatchEvent(new w.WheelEvent('wheel',{deltaY:-Math.log(1.25)/.005,cancelable:true}));assert.equal(E.camera().k,1.25);assert.equal(E.state().P,before);
   const [x,y]=E.point({clientX:920+E.camera().x+80*E.camera().k,clientY:280+E.camera().y+40*E.camera().k});assert.ok(Math.abs(x-1000)<1e-9&&Math.abs(y-320)<1e-9);
   a.dom.window.close();
  }
@@ -61,4 +61,10 @@ test('replacement examples agree with independent calculations',async()=>{
   c.E.state().P.x=x;text=c.E.S()[3].steps[1].f()[1].t;assert.ok(text.endsWith('='+String(y).replace('.','{,}')),text);
  }
  c.dom.window.close();
+});
+
+test('foundation keyboard movement accumulates across snapped handle positions',async()=>{
+ const a=await load(1),{E,w}=a;E.load(4);a.draw();const canvas=w.document.querySelector('canvas'),before=E.state().P.n;
+ for(let i=0;i<10;i++){canvas.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));a.draw();}
+ assert.notEqual(E.state().P.n,before);a.dom.window.close();
 });

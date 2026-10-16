@@ -1,3 +1,4 @@
+import {assetHref} from "../dist/js/data-loader.js";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
@@ -22,7 +23,7 @@ test('all chapter extracts match the provenance manifest and have valid page poi
 });
 test('all chapter sections render in both languages and resolve their experiment links',()=>{
  for(const c of resourceCatalog.chapters){const g=guides[c.topic];assert.ok(scenes[g.scene]);if(g.lab)assert.ok(labs.some(l=>l.id===g.lab));
- for(const lang of [0,1])for(const tab of ['understand','experiment','practice','documents']){const html=chapterPage(c.id,tab,p=>{assert.equal(p.length,2);assert.ok(p.every(x=>typeof x==='string'&&x));return p[lang]},labs);assert.ok(!/NaN|[="'>]undefined["<]|\.\/undefined/.test(html),c.id+' '+tab);assert.ok(html.includes(`chapter/${c.id}/documents`));if(tab==='documents')for(const f of c.files)assert.ok(html.includes('./'+(lang?f.englishPath:f.path)+'#page='));}
+ for(const lang of [0,1])for(const tab of ['understand','experiment','practice','documents']){const html=chapterPage(c.id,tab,p=>{assert.equal(p.length,2);assert.ok(p.every(x=>typeof x==='string'&&x));return p[lang]},labs);assert.ok(!/NaN|[="'>]undefined["<]|\.\/undefined/.test(html),c.id+' '+tab);assert.ok(html.includes(`chapter/${c.id}/documents`));if(tab==='documents')for(const f of c.files)assert.ok(html.includes('./'+assetHref(lang?f.englishPath:f.path)+'#page='));}
  }
  assert.equal(matchingChapters('all','arithmetique').length,1);assert.equal(matchingChapters('stmg','logarithme').length,1);assert.equal(matchingChapters('all','never_a_chapter').length,0);assert.equal(matchingSupplements('terminale','algorithms').length,1);assert.ok(libraryPage(t).includes('47'));
 });

@@ -61,7 +61,8 @@
           "Seconde",
           "Seconde · French curriculum"
         ],
-        "curriculum": "fr"
+        "curriculum": "fr",
+        "contentLanguage": "fr"
       },
       {
         "id": "premiere",
@@ -69,7 +70,8 @@
           "Première spécialité",
           "Première · Mathematics specialism"
         ],
-        "curriculum": "fr"
+        "curriculum": "fr",
+        "contentLanguage": "fr"
       },
       {
         "id": "terminale",
@@ -77,7 +79,8 @@
           "Terminale spécialité",
           "Terminale · Mathematics specialism"
         ],
-        "curriculum": "fr"
+        "curriculum": "fr",
+        "contentLanguage": "fr"
       },
       {
         "id": "stmg",
@@ -85,7 +88,8 @@
           "Terminale STMG",
           "Terminale STMG"
         ],
-        "curriculum": "fr"
+        "curriculum": "fr",
+        "contentLanguage": "fr"
       },
       {
         "id": "shared",
@@ -13693,14 +13697,13 @@
           "Mathematical foundations"
         ],
         "intro": [
-          "Six séquences pour aborder les premiers outils du supérieur. Les supports sont en français et ne constituent pas un programme universitaire complet.",
-          "Six sequences introducing foundational tools for higher education. Materials are in French and do not form a complete university curriculum."
+          "Des séquences pour aborder les premiers outils du supérieur. Les supports sont en français et ne constituent pas un programme universitaire complet.",
+          "Sequences introducing foundational tools for higher education. Materials are in French and do not form a complete university curriculum."
         ],
         "language": "fr",
         "sequences": [
           {
             "id": "calculs-algebriques",
-            "number": 1,
             "title": [
               "Calculs algébriques",
               "Algebraic calculations"
@@ -13713,11 +13716,12 @@
               "Calcul littéral, suites et récurrence.",
               "Algebra, sequences and induction."
             ],
-            "slide": "seq1-calculs-algebriques.html"
+            "slide": "seq1-calculs-algebriques.html",
+            "sourceDeck": "deck1.js",
+            "pdfChapter": 1
           },
           {
             "id": "logique",
-            "number": 2,
             "title": [
               "Logique",
               "Logic"
@@ -13730,11 +13734,12 @@
               "Lecture d’énoncés et calcul algébrique.",
               "Reading mathematical statements and algebra."
             ],
-            "slide": "seq2-logique.html"
+            "slide": "seq2-logique.html",
+            "sourceDeck": "deck2.js",
+            "pdfChapter": 2
           },
           {
             "id": "ensembles",
-            "number": 3,
             "title": [
               "Ensembles",
               "Sets"
@@ -13747,11 +13752,12 @@
               "Logique et quantificateurs.",
               "Logic and quantifiers."
             ],
-            "slide": "seq3-ensembles.html"
+            "slide": "seq3-ensembles.html",
+            "sourceDeck": "deck3.js",
+            "pdfChapter": 3
           },
           {
             "id": "complexes",
-            "number": 4,
             "title": [
               "Opérations sur les nombres complexes",
               "Operations on complex numbers"
@@ -13764,11 +13770,12 @@
               "Calcul algébrique et trigonométrie.",
               "Algebra and trigonometry."
             ],
-            "slide": "seq4-complexes.html"
+            "slide": "seq4-complexes.html",
+            "sourceDeck": "deck4.js",
+            "pdfChapter": 4
           },
           {
             "id": "second-degre-complexe",
-            "number": 5,
             "title": [
               "Équations du second degré dans ℂ",
               "Quadratic equations over ℂ"
@@ -13781,11 +13788,12 @@
               "Opérations sur les nombres complexes.",
               "Operations on complex numbers."
             ],
-            "slide": "seq5-second-degre-complexe.html"
+            "slide": "seq5-second-degre-complexe.html",
+            "sourceDeck": "deck5.js",
+            "pdfChapter": 5
           },
           {
             "id": "applications",
-            "number": 6,
             "title": [
               "Image directe et image réciproque",
               "Direct and inverse images"
@@ -13798,8 +13806,66 @@
               "Logique, ensembles et fonctions usuelles.",
               "Logic, sets and elementary functions."
             ],
-            "slide": "seq6-applications.html"
+            "slide": "seq6-applications.html",
+            "sourceDeck": "deck6.js",
+            "pdfChapter": 6
           }
+        ],
+        "documents": [
+          {
+            "key": "student",
+            "label": [
+              "Notes de cours étudiant",
+              "Student course notes"
+            ],
+            "path": "resources/university/foundations/notes-etudiant.pdf"
+          },
+          {
+            "key": "teacher",
+            "label": [
+              "Guide enseignant et solutions des ateliers",
+              "Teacher guide and workshop solutions"
+            ],
+            "path": "resources/university/foundations/guide-enseignant.pdf"
+          },
+          {
+            "key": "tex",
+            "label": [
+              "Sources LaTeX des éditions",
+              "LaTeX edition sources"
+            ],
+            "path": "resources/university/foundations/sources-latex.zip"
+          },
+          {
+            "key": "slidesSource",
+            "label": [
+              "Sources des diaporamas",
+              "Slide deck sources"
+            ],
+            "path": "resources/university/foundations/sources-slides.zip"
+          }
+        ],
+        "studyDocuments": [
+          {
+            "key": "student",
+            "label": [
+              "Lire les notes de cette séquence",
+              "Read this sequence’s notes"
+            ],
+            "pageField": "studentPage"
+          },
+          {
+            "key": "teacher",
+            "label": [
+              "Préparer cette séquence",
+              "Prepare this sequence"
+            ],
+            "pageField": "teacherPage"
+          }
+        ],
+        "audience": [
+          "Transition vers le supérieur et cycle préparatoire.",
+          "Transition to higher education and preparatory study."
         ]
       },
       {
@@ -13809,21 +13875,20 @@
           "Applied mathematics · Year 1"
         ],
         "intro": [
-          "Un parcours en sept semaines pour une première année scientifique, avec cahier de travail autonome et guides de séquence. Supports en français.",
-          "A seven-week introductory science pathway with a self-study workbook and sequence guides. Materials in French."
+          "Un parcours pour une première année scientifique, avec cahier de travail autonome et guides de séquence. Supports en français.",
+          "An introductory science pathway with a self-study workbook and sequence guides. Materials in French."
         ],
         "language": "fr",
         "sequences": [
           {
             "id": "module-semaine-1",
-            "number": 1,
             "title": [
               "Fonctions usuelles, trigonométrie et complexes",
               "Elementary functions, trigonometry and complex numbers"
             ],
             "summary": [
-              "Semaine 1 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 1: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13833,14 +13898,13 @@
           },
           {
             "id": "module-semaine-2",
-            "number": 2,
             "title": [
               "Proportions, polynômes et limites",
               "Proportions, polynomials and limits"
             ],
             "summary": [
-              "Semaine 2 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 2: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13850,14 +13914,13 @@
           },
           {
             "id": "module-semaine-3",
-            "number": 3,
             "title": [
               "Dérivation et optimisation",
               "Differentiation and optimisation"
             ],
             "summary": [
-              "Semaine 3 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 3: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13867,14 +13930,13 @@
           },
           {
             "id": "module-semaine-4",
-            "number": 4,
             "title": [
               "Intégration",
               "Integration"
             ],
             "summary": [
-              "Semaine 4 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 4: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13884,14 +13946,13 @@
           },
           {
             "id": "module-semaine-5",
-            "number": 5,
             "title": [
               "Géométrie du plan et de l’espace",
               "Plane and space geometry"
             ],
             "summary": [
-              "Semaine 5 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 5: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13901,14 +13962,13 @@
           },
           {
             "id": "module-semaine-6",
-            "number": 6,
             "title": [
               "Calcul matriciel",
               "Matrix calculations"
             ],
             "summary": [
-              "Semaine 6 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 6: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13918,14 +13978,13 @@
           },
           {
             "id": "module-semaine-7",
-            "number": 7,
             "title": [
               "Plusieurs variables et équations différentielles",
               "Multivariable functions and differential equations"
             ],
             "summary": [
-              "Semaine 7 : exploration interactive, cours et exercices dans le cahier.",
-              "Week 7: interactive exploration, notes and workbook exercises."
+              "Exploration interactive, cours et exercices dans le cahier.",
+              "Interactive exploration, notes and workbook exercises."
             ],
             "prerequisites": [
               "Notions de lycée ; semaines précédentes du module.",
@@ -13940,50 +13999,77 @@
             "label": [
               "Cahier avec corrigés",
               "Workbook with solutions"
-            ]
+            ],
+            "path": "resources/university/module-maths/cahier-de-travail-autonome.pdf"
           },
           {
             "key": "module-statements",
             "label": [
               "Cahier : énoncés seuls",
               "Workbook: exercises only"
-            ]
+            ],
+            "path": "resources/university/module-maths/cahier-de-travail-autonome-ENONCES.pdf"
           },
           {
             "key": "module-student-guide",
             "label": [
               "Guide étudiant",
               "Student guide"
-            ]
+            ],
+            "path": "resources/university/module-maths/Guide-etudiant.pdf"
           },
           {
             "key": "module-teacher-guide",
             "label": [
               "Guide professeur",
               "Teacher guide"
-            ]
+            ],
+            "path": "resources/university/module-maths/Guide-professeur.pdf"
           },
           {
             "key": "module-tex",
             "label": [
               "Sources LaTeX",
               "LaTeX sources"
-            ]
+            ],
+            "path": "resources/university/module-maths/sources-latex.zip"
           },
           {
             "key": "module-slides",
             "label": [
-              "Les sept diaporamas HTML",
-              "Seven HTML slide decks"
-            ]
+              "Diaporamas HTML",
+              "HTML slide decks"
+            ],
+            "path": "resources/university/module-maths/diaporamas-html.zip"
           },
           {
             "key": "module-all",
             "label": [
               "Télécharger le module complet",
               "Download the complete module"
+            ],
+            "path": "resources/university/module-maths/module-complet.zip"
+          }
+        ],
+        "studyDocuments": [
+          {
+            "key": "module-statements",
+            "label": [
+              "Travailler dans le cahier",
+              "Practise in the workbook"
+            ]
+          },
+          {
+            "key": "module-workbook",
+            "label": [
+              "Consulter le cahier corrigé",
+              "Read the worked solutions"
             ]
           }
+        ],
+        "audience": [
+          "Première année scientifique : cahier autonome, corrigés et guides.",
+          "First-year science: self-study workbook, solutions and guides."
         ]
       }
     ]

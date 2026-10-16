@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <title>Maths Explorer slides</title>
-<link rel="stylesheet" href="./player.css">
+<link rel="stylesheet" href="./player.css?v=f67579cb74">
 <style>mjx-assistive-mml{display:none!important}</style>
 </head>
 <body>
@@ -15,6 +15,9 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],pack
 svg:{fontCache:'none'},options:{enableAssistiveMml:false},startup:{typeset:false}};
 </script>
 <script src="../vendor/mathjax-tex-svg.js"></script>
-<script type="module" src="./player.js"></script>
+<!-- importmap:start -->
+<script type="importmap">{"imports": {"./player.js": "./player.js?v=b1ec3d26f3", "./widgets-2d.js": "./widgets-2d.js?v=de603d7541", "./widgets-3d.js": "./widgets-3d.js?v=ad4ae14095", "./widgets.js": "./widgets.js?v=9e57c7bd92", "../js/canvas-navigation.js": "../js/canvas-navigation.js?v=fac40e7299"}}</script>
+<script type="module" src="./player.js?v=b1ec3d26f3"></script>
+<!-- importmap:end -->
 </body>
 </html>

@@ -41,6 +41,11 @@ COURSES = {
 }
 
 
+# Reuse canonical course titles; entry names remain format-specific build adapters.
+_names={c['id']:c['title'] for c in books.catalog.load()['catalog']['courses']}
+for _id,(_title,_entries) in list(COURSES.items()):
+    COURSES[_id]=(_names.get({'enrichment':'explorations'}.get(_id,_id),_title),_entries)
+
 def main():
     problems = []
     if OUT.exists():
@@ -59,7 +64,7 @@ def main():
             files.append({'path': f'{course}/{name}.tex', 'bytes': p.stat().st_size, 'kind': 'tex', 'lang': 'en' if name.endswith('-en') else 'fr',
                           **({'entry': {'lang': entry[0], 'edition': entry[1]}} if entry else {})})
         for p in sorted(base.rglob('*')):
-            if not p.is_file() or p.suffix.lower() not in KEEP:
+            if not p.is_file() or p.suffix.lower() not in KEEP or p.name.startswith('_fig'):
                 continue
             rel = p.relative_to(SRC)
             if SKIP.search(rel.as_posix()): continue

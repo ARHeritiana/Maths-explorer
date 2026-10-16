@@ -117,7 +117,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 </head>
 <body>
 <div id="wrap"><main id="stage"></main></div>
-<script>window.__MX_EXPORT__={"deck":{"id":"terminale-13","course":"terminale","number":13,"title":["Représentations paramétriques et équations cartésiennes","Parametric representations and Cartesian equations"],"slides":[{"k":"title","t":["Représentations paramétriques et équations cartésiennes","Parametric representations and Cartesian equations"],"b":["",""]},{"k":"goals","t":["Objectifs","Objectives"],"b":["Décrire une droite et un plan ; déterminer des intersections ; choisir une méthode pour une projection.","Describe a line and a plane; determine intersections; choose a method for a projection."]},{"k":"concept","t":["Notes de cours","Course notes"],"b":["Dans tout ce chapitre, les coordonnées sont données dans un repère orthonormé de l'espace. Cette hypothèse est nécessaire pour identifier un vecteur normal à partir des coefficients d'une équation et pour calculer les distances.","Throughout this chapter, coordinates are given in an orthonormal frame of space. This assumption is necessary to identify a normal vector from the coefficients of an equation and to compute distances."]},{"k":"concept","t":["Droites paramétrées","Parametric lines"],"b":["La droite passant par \\(A(x_A;y_A;z_A)\\) de vecteur directeur non nul \\((a;b;c)\\) admet la représentation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nUn point appartient à la droite s'il existe <i>un même<\/i> réel \\(t\\) satisfaisant les trois égalités. Une droite admet de nombreuses représentations : changement du point de départ ou multiplication du directeur par un réel non nul.","The line through \\(A(x_A,y_A,z_A)\\) with non-zero direction vector \\((a,b,c)\\) has the representation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nA point belongs to the line if there exists <i>one and the same<\/i> real number \\(t\\) satisfying the three equalities. A line has many representations: change the starting point or multiply the direction vector by a non-zero real number."]},{"k":"example","t":["Droites paramétrées","Parametric lines"],"b":["\\((x;y;z)=(1;2;0)+t(2;-1;3)\\) décrit la même droite que \\((3;1;3)+s(4;-2;6)\\) ; le lien est \\(t=1+2s\\).","\\((x,y,z)=(1,2,0)+t(2,-1,3)\\) describes the same line as \\((3,1,3)+s(4,-2,6)\\); the link is \\(t=1+2s\\)."]},{"k":"widget","t":["Droite de l’espace","A line in space"],"b":["Déplacez A et B ; réglez t : équations paramétriques.","Drag A and B; set t: parametric equations."],"w":{"type":"line3d"}},{"k":"concept","t":["Plans cartésiens","Cartesian planes"],"b":["Si \\((a;b;c)\\ne(0;0;0)\\), l'ensemble \\(ax+by+cz+d=0\\) est un plan de vecteur normal \\((a;b;c)\\). Le plan de normal \\(\\vec n\\) passant par \\(A\\) se construit en écrivant \\(\\vect{AM}\\cdot\\vec n=0\\).","If \\((a,b,c)\\ne(0,0,0)\\), the set \\(ax+by+cz+d=0\\) is a plane with normal vector \\((a,b,c)\\). The plane with normal \\(\\vec n\\) through \\(A\\) is constructed by writing \\(\\vect{AM}\\cdot\\vec n=0\\)."],"h":["Équation d'un plan","Equation of a plane"]},{"k":"proof","t":["Plans cartésiens","Cartesian planes"],"b":["La condition \\(\\vect{AM}\\cdot\\vec n=0\\) s'écrit \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). En développant, \\(d=-ax_A-by_A-cz_A\\). Réciproquement, tout point satisfaisant cette équation vérifie la condition d'orthogonalité, donc appartient au plan.","The condition \\(\\vect{AM}\\cdot\\vec n=0\\) is written \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). Expanding, \\(d=-ax_A-by_A-cz_A\\). Conversely, any point satisfying this equation satisfies the orthogonality condition, and therefore belongs to the plane."]},{"k":"example","t":["Plans cartésiens","Cartesian planes"],"b":["Le plan de normal \\((2;-1;3)\\) passant par \\(A(1;2;0)\\) est \\(2(x-1)-(y-2)+3z=0\\), soit \\(2x-y+3z=0\\).","The plane with normal \\((2,-1,3)\\) through \\(A(1,2,0)\\) is \\(2(x-1)-(y-2)+3z=0\\), that is \\(2x-y+3z=0\\)."]},{"k":"concept","t":["Intersections","Intersections"],"b":["Pour une droite et un plan, remplacer \\(x,y,z\\) dans l'équation du plan par leurs expressions paramétriques. Une solution en \\(t\\) donne une intersection ponctuelle ; une identité donne une droite incluse ; une contradiction donne une droite parallèle disjointe.\nPour deux plans, des normales non colinéaires donnent une intersection suivant une droite ; résoudre le système à deux équations en choisissant une variable comme paramètre. Si les normales sont colinéaires, les plans sont parallèles : distinguer confondus et disjoints.\nPour deux droites, utiliser des paramètres \\(s,t\\) indépendants et résoudre les trois équations. Sans solution et avec directeurs non colinéaires, les droites sont non coplanaires.","For a line and a plane, substitute the parametric expressions for \\(x,y,z\\) into the equation of the plane. A single solution in \\(t\\) gives a single intersection point; an identity gives a line contained in the plane; a contradiction gives a parallel, disjoint line.\nFor two planes, non-collinear normals give an intersection along a line; solve the system of two equations by choosing one variable as a parameter. If the normals are collinear, the planes are parallel: distinguish coincident from disjoint.\nFor two lines, use independent parameters \\(s,t\\) and solve the three equations. With no solution and non-collinear direction vectors, the lines are non-coplanar."]},{"k":"widget","t":["Droite et plan : intersection","A line and a plane: intersection"],"b":["Déplacez A, B et le plan : un point d’intersection, ou une droite parallèle au plan.","Move A, B and the plane: one intersection point, or a line parallel to the plane."],"w":{"type":"lineplane","normal":[1,1,2]}},{"k":"concept","t":["Projection sur un plan","Projection onto a plane"],"b":["Si \\(\\mathcal P:ax+by+cz+d=0\\), chercher le projeté de \\(M\\) sur la droite normale passant par \\(M\\) : \\(H=M+t(a;b;c)\\). Remplacer dans l'équation du plan pour déterminer \\(t\\), puis calculer \\(MH\\).\nOn en déduit, sans en faire une formule à apprendre isolément,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]","If \\(\\mathcal P:ax+by+cz+d=0\\), find the projection of \\(M\\) on the normal line through \\(M\\): \\(H=M+t(a,b,c)\\). Substitute into the equation of the plane to determine \\(t\\), then compute \\(MH\\).\nWe deduce, without making it a formula to be learned in isolation,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]"]},{"k":"concept","t":["Projection sur un plan","Projection onto a plane"],"b":["Après le calcul d'un projeté, contrôler simultanément \\(H\\in\\mathcal P\\) et la colinéarité de \\(\\vect{MH}\\) avec le normal.<br><br>","After computing a projection, check simultaneously that \\(H\\in\\mathcal P\\) and that \\(\\vect{MH}\\) is collinear with the normal vector.<br><br>"],"h":["Vérification indispensable.","Essential check."]},{"k":"activity","t":["Activité de recherche","Research activity"],"b":["<b>Trois droites face à un plan — 30 min.<\/b><br><br> Dans un repère orthonormé de l'espace, on considère le plan \\(\\mathcal P\\) d'équation \\(x+y+z=3\\). Dans chaque question, le paramètre \\(t\\) parcourt \\(\\R\\).\n<ol><li>La droite \\(d_1\\) admet la représentation \\((x;y;z)=(t;t;t)\\). Déterminer \\(d_1\\cap\\mathcal P\\).\n<li>La droite \\(d_2\\) admet la représentation \\((x;y;z)=(3+t;-t;0)\\). Déterminer \\(d_2\\cap\\mathcal P\\).\n<li>La droite \\(d_3\\) admet la représentation \\((x;y;z)=(t;-t;0)\\). Déterminer \\(d_3\\cap\\mathcal P\\).\n<li>Pour chaque droite, préciser si l'équation obtenue après substitution dans celle du plan a une solution unique, aucune solution ou tout réel pour solution. Relier ces cas aux positions géométriques trouvées.<\/ol><br><br>","<b>Three lines facing a plane — 30 min.<\/b><br><br> In an orthonormal frame of space, consider the plane \\(\\mathcal P\\) with equation \\(x+y+z=3\\). In each question, the parameter \\(t\\) ranges over \\(\\R\\).\n<ol><li>The line \\(d_1\\) has the representation \\((x;y;z)=(t;t;t)\\). Determine \\(d_1\\cap\\mathcal P\\).\n<li>The line \\(d_2\\) has the representation \\((x;y;z)=(3+t;-t;0)\\). Determine \\(d_2\\cap\\mathcal P\\).\n<li>The line \\(d_3\\) has the representation \\((x;y;z)=(t;-t;0)\\). Determine \\(d_3\\cap\\mathcal P\\).\n<li>For each line, state whether the equation obtained after substituting into that of the plane has a unique solution, no solution, or every real number as a solution. Relate these cases to the geometric positions found.<\/ol><br><br>"]}]},"figs":{}};</script>
+<script>window.__MX_EXPORT__={"deck":{"language":"fr","courseTitle":["Terminale spécialité","Terminale · Mathematics specialism"],"id":"terminale-13","course":"terminale","number":13,"title":["Représentations paramétriques et équations cartésiennes","Parametric representations and Cartesian equations"],"slides":[{"k":"title","t":["Représentations paramétriques et équations cartésiennes","Parametric representations and Cartesian equations"],"b":["",""]},{"k":"goals","t":["Objectifs","Objectives"],"b":["Décrire une droite et un plan ; déterminer des intersections ; choisir une méthode pour une projection.","Describe a line and a plane; determine intersections; choose a method for a projection."]},{"k":"concept","t":["Notes de cours","Course notes"],"b":["Dans tout ce chapitre, les coordonnées sont données dans un repère orthonormé de l'espace. Cette hypothèse est nécessaire pour identifier un vecteur normal à partir des coefficients d'une équation et pour calculer les distances.","Throughout this chapter, coordinates are given in an orthonormal frame of space. This assumption is necessary to identify a normal vector from the coefficients of an equation and to compute distances."]},{"k":"concept","t":["Droites paramétrées","Parametric lines"],"b":["La droite passant par \\(A(x_A;y_A;z_A)\\) de vecteur directeur non nul \\((a;b;c)\\) admet la représentation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nUn point appartient à la droite s'il existe <i>un même<\/i> réel \\(t\\) satisfaisant les trois égalités. Une droite admet de nombreuses représentations : changement du point de départ ou multiplication du directeur par un réel non nul.","The line through \\(A(x_A,y_A,z_A)\\) with non-zero direction vector \\((a,b,c)\\) has the representation\n\\[d:\\quad\\begin{cases}x=x_A+at\\\\y=y_A+bt\\\\z=z_A+ct\\end{cases}\\quad(t\\in\\R).\\]\nA point belongs to the line if there exists <i>one and the same<\/i> real number \\(t\\) satisfying the three equalities. A line has many representations: change the starting point or multiply the direction vector by a non-zero real number."]},{"k":"example","t":["Droites paramétrées","Parametric lines"],"b":["\\((x;y;z)=(1;2;0)+t(2;-1;3)\\) décrit la même droite que \\((3;1;3)+s(4;-2;6)\\) ; le lien est \\(t=1+2s\\).","\\((x,y,z)=(1,2,0)+t(2,-1,3)\\) describes the same line as \\((3,1,3)+s(4,-2,6)\\); the link is \\(t=1+2s\\)."]},{"k":"widget","t":["Droite de l’espace","A line in space"],"b":["Déplacez A et B ; réglez t : équations paramétriques.","Drag A and B; set t: parametric equations."],"w":{"type":"line3d"}},{"k":"concept","t":["Plans cartésiens","Cartesian planes"],"b":["Si \\((a;b;c)\\ne(0;0;0)\\), l'ensemble \\(ax+by+cz+d=0\\) est un plan de vecteur normal \\((a;b;c)\\). Le plan de normal \\(\\vec n\\) passant par \\(A\\) se construit en écrivant \\(\\vect{AM}\\cdot\\vec n=0\\).","If \\((a,b,c)\\ne(0,0,0)\\), the set \\(ax+by+cz+d=0\\) is a plane with normal vector \\((a,b,c)\\). The plane with normal \\(\\vec n\\) through \\(A\\) is constructed by writing \\(\\vect{AM}\\cdot\\vec n=0\\)."],"h":["Équation d'un plan","Equation of a plane"]},{"k":"proof","t":["Plans cartésiens","Cartesian planes"],"b":["La condition \\(\\vect{AM}\\cdot\\vec n=0\\) s'écrit \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). En développant, \\(d=-ax_A-by_A-cz_A\\). Réciproquement, tout point satisfaisant cette équation vérifie la condition d'orthogonalité, donc appartient au plan.","The condition \\(\\vect{AM}\\cdot\\vec n=0\\) is written \\(a(x-x_A)+b(y-y_A)+c(z-z_A)=0\\). Expanding, \\(d=-ax_A-by_A-cz_A\\). Conversely, any point satisfying this equation satisfies the orthogonality condition, and therefore belongs to the plane."]},{"k":"example","t":["Plans cartésiens","Cartesian planes"],"b":["Le plan de normal \\((2;-1;3)\\) passant par \\(A(1;2;0)\\) est \\(2(x-1)-(y-2)+3z=0\\), soit \\(2x-y+3z=0\\).","The plane with normal \\((2,-1,3)\\) through \\(A(1,2,0)\\) is \\(2(x-1)-(y-2)+3z=0\\), that is \\(2x-y+3z=0\\)."]},{"k":"concept","t":["Intersections","Intersections"],"b":["Pour une droite et un plan, remplacer \\(x,y,z\\) dans l'équation du plan par leurs expressions paramétriques. Une solution en \\(t\\) donne une intersection ponctuelle ; une identité donne une droite incluse ; une contradiction donne une droite parallèle disjointe.\nPour deux plans, des normales non colinéaires donnent une intersection suivant une droite ; résoudre le système à deux équations en choisissant une variable comme paramètre. Si les normales sont colinéaires, les plans sont parallèles : distinguer confondus et disjoints.\nPour deux droites, utiliser des paramètres \\(s,t\\) indépendants et résoudre les trois équations. Sans solution et avec directeurs non colinéaires, les droites sont non coplanaires.","For a line and a plane, substitute the parametric expressions for \\(x,y,z\\) into the equation of the plane. A single solution in \\(t\\) gives a single intersection point; an identity gives a line contained in the plane; a contradiction gives a parallel, disjoint line.\nFor two planes, non-collinear normals give an intersection along a line; solve the system of two equations by choosing one variable as a parameter. If the normals are collinear, the planes are parallel: distinguish coincident from disjoint.\nFor two lines, use independent parameters \\(s,t\\) and solve the three equations. With no solution and non-collinear direction vectors, the lines are non-coplanar."]},{"k":"widget","t":["Droite et plan : intersection","A line and a plane: intersection"],"b":["Déplacez A, B et le plan : un point d’intersection, ou une droite parallèle au plan.","Move A, B and the plane: one intersection point, or a line parallel to the plane."],"w":{"type":"lineplane","normal":[1,1,2]}},{"k":"concept","t":["Projection sur un plan","Projection onto a plane"],"b":["Si \\(\\mathcal P:ax+by+cz+d=0\\), chercher le projeté de \\(M\\) sur la droite normale passant par \\(M\\) : \\(H=M+t(a;b;c)\\). Remplacer dans l'équation du plan pour déterminer \\(t\\), puis calculer \\(MH\\).\nOn en déduit, sans en faire une formule à apprendre isolément,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]","If \\(\\mathcal P:ax+by+cz+d=0\\), find the projection of \\(M\\) on the normal line through \\(M\\): \\(H=M+t(a,b,c)\\). Substitute into the equation of the plane to determine \\(t\\), then compute \\(MH\\).\nWe deduce, without making it a formula to be learned in isolation,\n\\[d(M,\\mathcal P)=\\frac{|ax_M+by_M+cz_M+d|}{\\sqrt{a^2+b^2+c^2}}.\\]"]},{"k":"concept","t":["Projection sur un plan","Projection onto a plane"],"b":["Après le calcul d'un projeté, contrôler simultanément \\(H\\in\\mathcal P\\) et la colinéarité de \\(\\vect{MH}\\) avec le normal.<br><br>","After computing a projection, check simultaneously that \\(H\\in\\mathcal P\\) and that \\(\\vect{MH}\\) is collinear with the normal vector.<br><br>"],"h":["Vérification indispensable.","Essential check."]},{"k":"activity","t":["Activité de recherche","Research activity"],"b":["<b>Trois droites face à un plan — 30 min.<\/b><br><br> Dans un repère orthonormé de l'espace, on considère le plan \\(\\mathcal P\\) d'équation \\(x+y+z=3\\). Dans chaque question, le paramètre \\(t\\) parcourt \\(\\R\\).\n<ol><li>La droite \\(d_1\\) admet la représentation \\((x;y;z)=(t;t;t)\\). Déterminer \\(d_1\\cap\\mathcal P\\).\n<li>La droite \\(d_2\\) admet la représentation \\((x;y;z)=(3+t;-t;0)\\). Déterminer \\(d_2\\cap\\mathcal P\\).\n<li>La droite \\(d_3\\) admet la représentation \\((x;y;z)=(t;-t;0)\\). Déterminer \\(d_3\\cap\\mathcal P\\).\n<li>Pour chaque droite, préciser si l'équation obtenue après substitution dans celle du plan a une solution unique, aucune solution ou tout réel pour solution. Relier ces cas aux positions géométriques trouvées.<\/ol><br><br>","<b>Three lines facing a plane — 30 min.<\/b><br><br> In an orthonormal frame of space, consider the plane \\(\\mathcal P\\) with equation \\(x+y+z=3\\). In each question, the parameter \\(t\\) ranges over \\(\\R\\).\n<ol><li>The line \\(d_1\\) has the representation \\((x;y;z)=(t;t;t)\\). Determine \\(d_1\\cap\\mathcal P\\).\n<li>The line \\(d_2\\) has the representation \\((x;y;z)=(3+t;-t;0)\\). Determine \\(d_2\\cap\\mathcal P\\).\n<li>The line \\(d_3\\) has the representation \\((x;y;z)=(t;-t;0)\\). Determine \\(d_3\\cap\\mathcal P\\).\n<li>For each line, state whether the equation obtained after substituting into that of the plane has a unique solution, no solution, or every real number as a solution. Relate these cases to the geometric positions found.<\/ol><br><br>"]}],"figureVersion":"e3b0c44298fc1c14"},"figs":{}};</script>
 <script>
 (function(){
 "use strict";
@@ -131,13 +131,11 @@ function camera2D() {
   c.reset=()=>{c.scale=1;c.x=c.y=0;};return c;
 }
 function navigationButtons(host,action,lang='fr') {
-  const en=lang==='en',bar=document.createElement('div');bar.className='canvas-navigation';bar.setAttribute('role','group');bar.setAttribute('aria-label',en?'View controls':'Commandes de la vue');
-  for(const [id,text,fr,english] of [['in','+','Agrandir','Zoom in'],['out','−','Réduire','Zoom out'],['reset','↺','Vue initiale','Reset view'],['left','←','Vue vers la gauche','Pan left'],['right','→','Vue vers la droite','Pan right'],['up','↑','Vue vers le haut','Pan up'],['down','↓','Vue vers le bas','Pan down']]) {
-    const b=document.createElement('button');b.type='button';b.textContent=text;b.dataset.view=id;b.title=en?english:fr;b.setAttribute('aria-label',b.title);b.addEventListener('click',()=>action(id));bar.append(b);
-  }
-  const label=document.createElement('output');label.setAttribute('aria-live','polite');bar.append(label);host.append(bar);bar.update=scale=>{label.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
+  const bar=document.createElement('output');bar.className='canvas-navigation';bar.hidden=true;
+  bar.setAttribute('aria-live','polite');host.append(bar);
+  bar.update=scale=>{bar.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
 }
-function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang}={}) {
+function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang,canPan=()=>false}={}) {
   const camera=camera2D(),rawClear=g.clearRect.bind(g);let last=null,gesture=null;
   const pointers=new Map(),point=e=>{const r=c.getBoundingClientRect(),[w,h]=size();return [(e.clientX-r.left)/r.width*w,(e.clientY-r.top)/r.height*h];};
   const apply=()=>{const [w]=size(),d=c.width/w;g.setTransform(d*camera.scale,0,0,d*camera.scale,d*camera.x,d*camera.y);};
@@ -145,29 +143,45 @@ function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.do
   const refresh=()=>{apply();bar.update(camera.scale);redraw();};
   const action=id=>{const [w,h]=size();if(id==='reset')camera.reset();else if(id==='in'||id==='out')camera.zoomAt(id==='in'?1.25:.8,[w/2,h/2]);else{const d={left:[40,0],right:[-40,0],up:[0,40],down:[0,-40]}[id];camera.x+=d[0];camera.y+=d[1];}refresh();};
   const bar=navigationButtons(host,action,lang);c.style.touchAction='none';if(c.tabIndex<0)c.tabIndex=0;
-  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
+  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey||canPan(camera.unproject(point(e)))){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
   const move=e=>{if(pointers.has(e.pointerId))pointers.set(e.pointerId,point(e));if(gesture&&pointers.size===2){const a=[...pointers.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);camera.zoomAt(d/Math.max(1,gesture.distance),gesture.mid);camera.x+=mid[0]-gesture.mid[0];camera.y+=mid[1]-gesture.mid[1];gesture={distance:d,mid};refresh();e.preventDefault();e.stopImmediatePropagation();}else if(last){const q=point(e);camera.x+=q[0]-last[0];camera.y+=q[1]-last[1];last=q;refresh();e.preventDefault();e.stopImmediatePropagation();}};
   const end=e=>{const handled=!!last||!!gesture;pointers.delete(e.pointerId);last=null;if(pointers.size<2)gesture=null;if(handled){e.preventDefault();e.stopImmediatePropagation();}};
-  const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
-  const key=e=>{if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
-  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['keydown',key]];
+  const wheel=e=>{e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};if(e.shiftKey&&arrows[e.key]){e.preventDefault();e.stopImmediatePropagation();action(arrows[e.key]);return;}if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
+  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['dblclick',()=>action('reset')],['keydown',key]];
   for(const [name,fn] of events)c.addEventListener(name,fn,{capture:true,passive:false});
   return {camera,point:e=>camera.unproject(point(e)),apply,destroy(){bar.remove();g.clearRect=rawClear;for(const[n,f]of events)c.removeEventListener(n,f,true);}};
 }
 // Changing viewBox preserves the inverse screen transform used by the SVG editors for picking.
-function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={}}={}) {
-  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null;
+function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={},canPan=()=>false}={}) {
+  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null,pinch=null;const touches=new Map();
   const paint=()=>{state.box=[...box];svg.setAttribute('viewBox',box.join(' '));bar.update(original[2]/box[2]);};
   const zoom=(k,fx=.5,fy=.5)=>{const w=Math.max(original[2]/12,Math.min(original[2]*5,box[2]*k)),h=w*original[3]/original[2];box=[box[0]+(box[2]-w)*fx,box[1]+(box[3]-h)*fy,w,h];paint();};
   const action=id=>{if(id==='reset'){box=[...original];paint();}else if(id==='in'||id==='out')zoom(id==='in'?.8:1.25);else{const d={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[id];box[0]+=d[0]*box[2]*.12;box[1]+=d[1]*box[3]*.12;paint();}};
-  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';
+  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';if(svg.tabIndex<0)svg.tabIndex=0;
+  svg.setAttribute('aria-label',lang==='en'?'Interactive figure: wheel or pinch to zoom, Shift-drag to pan, + or - to zoom, 0 to reset':'Figure interactive : molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue, + ou - pour zoomer, 0 pour réinitialiser');
   const observer=new MutationObserver(()=>{if(svg.getAttribute('viewBox')!==box.join(' '))paint();});observer.observe(svg,{attributes:true,attributeFilter:['viewBox']});
-  const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
-  const down=e=>{if(!(e.altKey||e.shiftKey||e.button===1))return;e.preventDefault();e.stopImmediatePropagation();drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture(e.pointerId);};
-  const move=e=>{if(!drag)return;const r=svg.getBoundingClientRect();box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();e.stopImmediatePropagation();};const end=()=>{drag=null;};
-  svg.addEventListener('wheel',wheel,{passive:false});svg.addEventListener('pointerdown',down,true);svg.addEventListener('pointermove',move,true);svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
+  const wheel=e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
+  const down=e=>{
+    if(e.pointerType==='touch')touches.set(e.pointerId,[e.clientX,e.clientY]);
+    if(touches.size===2){const a=[...touches.values()];pinch={d:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};drag=null;svg.dispatchEvent(new CustomEvent('view-gesture'));}
+    if(!pinch&&!(e.altKey||e.shiftKey||e.button===1)&&!canPan(e))return;
+    e.preventDefault();e.stopImmediatePropagation();if(!pinch)drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture?.(e.pointerId);
+  };
+  const move=e=>{
+    if(touches.has(e.pointerId))touches.set(e.pointerId,[e.clientX,e.clientY]);
+    const r=svg.getBoundingClientRect();
+    if(pinch&&touches.size===2){const a=[...touches.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);zoom(pinch.d/Math.max(1,d),(pinch.mid[0]-r.left)/r.width,(pinch.mid[1]-r.top)/r.height);box[0]-=(mid[0]-pinch.mid[0])/r.width*box[2];box[1]-=(mid[1]-pinch.mid[1])/r.height*box[3];pinch={d,mid};paint();}
+    else if(drag){box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();}
+    else return;e.preventDefault();e.stopImmediatePropagation();
+  };
+  const end=e=>{touches.delete(e.pointerId);drag=null;if(touches.size<2)pinch=null;};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};const id=e.key==='0'?'reset':e.key==='-'?'out':['+','='].includes(e.key)?'in':e.shiftKey?arrows[e.key]:null;if(!id||e.target.closest('[data-handle],[data-drag]'))return;e.preventDefault();e.stopPropagation();action(id);};
+  const reset=()=>action('reset');
+  const events=[['wheel',wheel],['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['lostpointercapture',end],['keydown',key],['dblclick',reset]];
+  for(const [name,fn]of events)svg.addEventListener(name,fn,{capture:true,passive:false});
   paint();
-  const stop=()=>{observer.disconnect();bar.remove();svg.removeEventListener('wheel',wheel);svg.removeEventListener('pointerdown',down,true);svg.removeEventListener('pointermove',move,true);svg.removeEventListener('pointerup',end);svg.removeEventListener('pointercancel',end);};stop.bar=bar;return stop;
+  const stop=()=>{observer.disconnect();bar.remove();for(const [name,fn]of events)svg.removeEventListener(name,fn,true);};stop.bar=bar;return stop;
 }
 
 function observeSvgNavigation(root,selector,lang) {
@@ -275,17 +289,12 @@ function mount(spec, ctx) {
   cv.start(inst);
   const handles=()=>cv.handles();
   if(handles().length){
-    const group=document.createElement('div');group.className='canvas-keyboard';
-    const pick=document.createElement('select');pick.setAttribute('aria-label',api.pair('Point à déplacer','Point to move'));
-    handles().forEach((h,i)=>{const option=document.createElement('option');option.value=i;option.textContent=api.pair('Point ','Point ')+(i+1);pick.append(option);});group.append(pick);
-    let selected=0;pick.onchange=()=>{selected=+pick.value;};
-    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;h.move(h.x+dx,h.y+dy);cv.redraw();};
-    for(const [label,dx,dy,fr,en] of [['←',-14,0,'Déplacer vers la gauche','Move left'],['→',14,0,'Déplacer vers la droite','Move right'],['↑',0,-14,'Déplacer vers le haut','Move up'],['↓',0,14,'Déplacer vers le bas','Move down']]){
-      const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',api.pair(fr,en));button.onclick=()=>move(dx,dy);group.append(button);
-    }
-    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : flèches pour déplacer le point choisi','Interactive figure: arrow keys move the selected point'));
-    cv.c.onkeydown=e=>{const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
-    ctx.controls.append(group);
+    let selected=0,cursor=null;
+    cv.c.addEventListener("pointerdown",()=>{cursor=null;});
+    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;if(!cursor)cursor=[h.x,h.y];cursor[0]+=dx;cursor[1]+=dy;h.move(...cursor);cv.redraw();};
+    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : H pour choisir un point, flèches pour le déplacer ; molette pour zoomer, glisser le fond pour déplacer la vue, 0 pour réinitialiser','Interactive figure: H selects a point, arrows move it; wheel to zoom, drag background to pan, 0 to reset'));
+    cv.c.onkeydown=e=>{if(e.key.toLowerCase()==='h'){selected=(selected+1)%handles().length;cursor=null;e.preventDefault();e.stopPropagation();cv.c.setAttribute('aria-label',api.pair('Point ','Point ')+(selected+1));return;}const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
+
   }
   return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
 }
@@ -316,7 +325,7 @@ function canvas(host,ctx) {
     c.width = Math.round(o.W * d); c.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw();
   };
   o.redraw = () => { g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.bg; g.fillRect(0, 0, o.W, o.H); o.draw(g); };
-  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr'});
+  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr',canPan:([x,y])=>!o.rotate&&!o.handles().some(h=>Math.hypot(h.x-x,h.y-y)<(h.r||22))});
   const pt=navigation.point;
   c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
   const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };
@@ -917,7 +926,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const EXPORT = typeof window !== "undefined" && window.__MX_EXPORT__ ? window.__MX_EXPORT__ : null;
 const params = new URLSearchParams(location.search);
 const deckId = EXPORT ? EXPORT.deck.id : params.get("deck") || "premiere-01";
-const stored = () => { try { return localStorage.getItem("me-slides-lang") === "en" ? 1 : 0; } catch { return 0; } };
+const stored = () => { try { return JSON.parse(localStorage.getItem("maths-explorer-v1") || "{}").lang === "en" ? 1 : 0; } catch { return 0; } };
 let lang = params.get("lang") === "en" ? 1 : params.get("lang") === "fr" ? 0 : stored();
 let deck, index = 0, revealed = false, live = null, step = 1, generation = 0, toastTimer = 0;
 
@@ -933,7 +942,7 @@ const UI = {
   lang: ["English", "Français"], list: ["Plan", "Outline"], full: ["Plein écran", "Full screen"],
   download: ["Télécharger HTML", "Download HTML"], downloadTip: ["Télécharger ce diaporama en un seul fichier HTML", "Download this deck as a single HTML file"],
   home: ["Toutes les séries", "All decks"], loadErr: ["Série introuvable.", "Deck not found."],
-  hint: ["Flèches : étapes et diapositives · R réponse · G plan · L langue · F plein écran", "Arrows: steps and slides · R answer · G outline · L language · F full screen"],
+  hint: ["Flèches : étapes et diapositives · R réponse · G plan · F plein écran", "Arrows: steps and slides · R answer · G outline · F full screen"],
   slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
   explore: ["Explorer le chapitre", "Explore the chapter"], figure: ["Figure", "Figure"],
   free: ["La figure est réglable librement ; ses valeurs peuvent différer de celles de l’exemple.", "The figure is freely adjustable; its values may differ from the worked example."],
@@ -961,7 +970,7 @@ function shell() {
   $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
 <div id="rt"></div>
 <div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
-<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lng"></button><button class="b" id="lst" aria-pressed="false"></button>${EXPORT ? "" : `<a class="b" id="dl" download></a>`}<button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
 <div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
 }
 
@@ -969,7 +978,7 @@ async function load() {
   if (EXPORT) deck = EXPORT.deck;
   else {
     try {
-      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`);
+      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`, {cache:"no-store"});
       if (!r.ok) throw new Error(r.status);
       deck = await r.json();
     } catch {
@@ -977,6 +986,7 @@ async function load() {
       return;
     }
   }
+  if (deck.language) lang = deck.language === "en" ? 1 : 0;
   shell(); bind();
   const h = parseInt(location.hash.slice(1), 10);
   index = Number.isFinite(h) ? Math.min(Math.max(h, 0), deck.slides.length - 1) : 0;
@@ -1068,7 +1078,7 @@ function companion(spec, showDelta) {
   live = mount({ ...spec, showDelta }, { host: $("#wcanvas"), controls: $("#wctl"), readout: $("#readout"), hint: $("#whint"), lang });
 }
 
-function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}`; }
+function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}?v=${deck.figureVersion || ""}`; }
 
 async function render() {
   const renderId = ++generation;
@@ -1086,7 +1096,7 @@ async function render() {
   $("#live").hidden = true; $("#readout").innerHTML = "";
 
   if (k === "title") {
-    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
+    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(deck.courseTitle?.[lang] || COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
   } else if (k === "code") {
     flow.innerHTML = `<div class="hd">${esc(label)}</div><h2 class="tt">${title}</h2><pre>${s.b[lang]}</pre>`;
   } else {
@@ -1096,7 +1106,7 @@ async function render() {
 
   if (mode === "fig") rt.innerHTML = `<div class="figcol">${figs}</div>`;
   else if (mode === "widget" || mode === "explore") {
-    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label><p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
+    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `${widgets.length > 1 ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label>` : ""}<p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
   } else rt.innerHTML = "";
 
   chrome();
@@ -1113,7 +1123,7 @@ async function render() {
   if (mode === "widget") companion(s.w, true);
   else if (mode === "explore") {
     companion(shared.w, defined < 0 || index >= defined);
-    $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
+    if ($("#explore-choice")) $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
   }
   paintSteps(); flow.scrollTop = 0;
   if (ready) {
@@ -1157,8 +1167,8 @@ function chrome() {
   $("#step-prev").setAttribute("aria-label", t("stepPrev")); $("#step-next").setAttribute("aria-label", t("stepNext"));
   $("#all-steps").textContent = t("all");
   const rev = $("#rev"); rev.hidden = !s.a; rev.textContent = revealed ? t("hide") : t("answer"); rev.setAttribute("aria-pressed", revealed);
-  $("#lng").textContent = t("lang"); $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
-  const dl = $("#dl"); if (dl) { dl.href = `./export/${encodeURIComponent(deckId)}.html`; dl.setAttribute("download", `${deckId}.html`); dl.textContent = "⬇ HTML"; dl.title = t("downloadTip"); dl.setAttribute("aria-label", t("downloadTip")); }
+  $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
+
   $("#prog i").style.width = `${((index + 1) / n) * 100}%`;
   document.querySelectorAll("#drawer button").forEach((b, i) => b.toggleAttribute("aria-current", i === index));
 }
@@ -1181,13 +1191,12 @@ function toggleAnswer() {
   const b = $("#rev"); b.setAttribute("aria-pressed", revealed); b.textContent = revealed ? t("hide") : t("answer");
   if (revealed) $("#ans").scrollIntoView({ block: "nearest", behavior: "instant" });
 }
-function setLang(v) { lang = v; try { localStorage.setItem("me-slides-lang", lang ? "en" : "fr"); } catch {} buildDrawer(); render(); }
+
 
 function bind() {
   $("#nx").onclick = () => go(index + 1); $("#pv").onclick = () => go(index - 1);
   $("#step-next").onclick = () => advance(1); $("#step-prev").onclick = () => advance(-1);
   $("#all-steps").onclick = () => { step = blocks().length; paintSteps(); };
-  $("#lng").onclick = () => setLang(lang ? 0 : 1);
   $("#lst").onclick = () => setDrawer($("#drawer").hidden);
   $("#rev").onclick = toggleAnswer;
   $("#tg").onclick = () => { figHidden = !figHidden; layout("explore"); fitMath(); };
@@ -1207,7 +1216,6 @@ addEventListener("keydown", e => {
   else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); advance(-1); }
   else if (k === "Home") go(0); else if (k === "End") go(deck.slides.length - 1);
   else if (k === "r" || k === "R" || k === "ArrowDown") { e.preventDefault(); toggleAnswer(); }
-  else if (k === "l" || k === "L") setLang(lang ? 0 : 1);
   else if (k === "g" || k === "G") setDrawer($("#drawer").hidden);
   else if (k === "f" || k === "F") $("#fs").click();
   else if (k === "Escape" && !$("#drawer").hidden) setDrawer(false);

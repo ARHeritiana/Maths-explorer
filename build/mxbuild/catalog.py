@@ -65,6 +65,30 @@ def generate(manifest=None):
     pages = {}
     cat = copy.deepcopy(m['catalog'])
     comp = copy.deepcopy(m['companion'])
+    # A chapter's identity and heading are authored once in the catalogue.
+    chapters = {c['id']: c for c in cat['chapters']}
+    if len(chapters) != len(cat['chapters']): raise ValueError('Duplicate chapter IDs')
+    course_ids = [c['id'] for c in cat['courses']]
+    if len(set(course_ids)) != len(course_ids): raise ValueError('Duplicate course IDs')
+    for chapter in cat['chapters']:
+        if chapter['course'] not in course_ids: raise ValueError('Unknown chapter course: '+chapter['id'])
+    resource_ids=[r['id']for r in cat['resources']]
+    if len(set(resource_ids))!=len(resource_ids):raise ValueError('Duplicate resource IDs')
+    for resource in cat['resources']:
+        if resource['chapter'] not in chapters:raise ValueError('Resource refers to removed/unknown chapter: '+resource['id'])
+        for url in resource['url'] if isinstance(resource['url'],list) else [resource['url']]:
+            if not (DIST/url.removeprefix('./')).is_file():raise FileNotFoundError('Missing catalogue resource: '+url)
+    layouts = {c['id']: c for c in comp['chapters']}
+    primary = {c['course'] for c in comp['chapters']}
+    canonical = [c for c in cat['chapters'] if c['course'] in primary and c.get('number',0)>0]
+    missing = [c['id'] for c in canonical if c['id'] not in layouts]
+    if missing: raise ValueError('Add companion file/layout records for new chapters: '+', '.join(missing))
+    comp['chapters'] = [layouts[c['id']] for c in canonical]
+
+    for c in comp['chapters'] + comp['supplements']:
+        if c['id'] in chapters:
+            for key in ('title', 'course', 'number'):
+                if key in chapters[c['id']]: c[key] = copy.deepcopy(chapters[c['id']][key])
     # Source records describe owner-supplied files: their URLs and storage ids must never reach the client.
     comp.pop('folder', None)
     for source in cat['sources'] + comp['sources']: source.pop('url', None); source.pop('id', None)

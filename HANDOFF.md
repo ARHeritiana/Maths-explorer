@@ -180,3 +180,21 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - Independent reviews and code checks are recorded in private/audits/module-maths-audit-*.md and the private ledger. Browser visual QA unavailable because managed preview cannot mount proc.
 
 - GitHub synchronization completed on 16 October 2026 after explicit authorization. The university pathway card now lists both collections and links to the seven-week module; its test checks all collection IDs against the generated catalogue.
+
+
+## Linked content and controls, 16 October 2026
+
+- `make site` now prepares dependent products and generates shared catalogue metadata. The checked build receipt
+  catches source/output drift. See docs/ARCHITECTURE.md; never hand-edit generated catalogue views or the receipt.
+- University summaries/counts/links derive from collection records. Stable source bindings protect reordered sequences;
+  deleted indexed assets are pruned. Slide catalogue and source pages derive course metadata and use content versions.
+- Canvas view/point toolbars were removed across shared laboratory, SVG and slide engines. Gestures and keyboard
+  interaction remain; mathematical choices, reveal/navigation and fullscreen stay. Downloads sit beside opening links.
+- Singleton selectors collapse to their value and expand when choices grow. Neutral pages use saved/browser language;
+  curriculum content uses its declared language, including player, documents and custom packs.
+- Shared controls and dependency changes passed two independent audits, recorded in private/audits/content-controls-audit-*.md.
+  Visual browser/device QA is unavailable in this environment. DOM, mathematical, source, PDF and export checks apply.
+- Validation: `npm test` (124 tests), `npm run check`, dependency mutation tests and `make check FAST=1` pass.
+  Rebuilt 47 HTML decks and 94 lecture editions, with no reported layout warnings. Repeated `make site` and the
+  freshness check pass. Forty-seven rebuilt decks retain their mathematical expressions. Eighty-four PDFs and 78
+  source archives were kept byte-for-byte after matching text, page geometry and rendered pages/source entries.

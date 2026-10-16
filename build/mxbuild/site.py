@@ -58,6 +58,10 @@ def versioned_index():
 
 def write(check=False):
     stale = []
+    player=SITE/'slides/player.html'
+    player_text=versioned_player()
+    if not check: player.write_text(player_text)
+    elif player.read_text()!=player_text: stale.append(player.relative_to(ROOT))
     if not check: (SITE / 'index.html').write_text(versioned_index(), encoding='utf-8')
     elif versioned_index() != (SITE / 'index.html').read_text(encoding='utf-8'): stale.append((SITE / 'index.html').relative_to(ROOT))
     for src, dst in pairs():
@@ -69,3 +73,15 @@ def write(check=False):
         stale.append(o.relative_to(ROOT))
         if not check: o.unlink()
     return stale
+
+
+def versioned_player():
+    import json
+    player=SITE/'slides/player.html'
+    text=player.read_text()
+    paths=['./'+p.name for p in sorted((SITE/'slides').glob('*.js'))]+['../js/canvas-navigation.js']
+    imports={path:path+'?v='+_hash(player.parent/path) for path in paths}
+    block=MAP_START+'\n<script type="importmap">'+json.dumps({'imports':imports})+'</script>\n<script type="module" src="'+imports['./player.js']+'"></script>\n'+MAP_END
+    if MAP_START in text:text=re.sub(re.escape(MAP_START)+r'.*?'+re.escape(MAP_END),lambda m:block,text,flags=re.S)
+    else:text=text.replace('<script type="module" src="./player.js"></script>',block)
+    return re.sub(r'href="\./player.css(?:\?v=\w+)?"',lambda m:'href="./player.css?v='+_hash(SITE/'slides/player.css')+'"',text)

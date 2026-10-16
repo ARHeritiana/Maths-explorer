@@ -97,17 +97,12 @@ export function mount(spec, ctx) {
   cv.start(inst);
   const handles=()=>cv.handles();
   if(handles().length){
-    const group=document.createElement('div');group.className='canvas-keyboard';
-    const pick=document.createElement('select');pick.setAttribute('aria-label',api.pair('Point à déplacer','Point to move'));
-    handles().forEach((h,i)=>{const option=document.createElement('option');option.value=i;option.textContent=api.pair('Point ','Point ')+(i+1);pick.append(option);});group.append(pick);
-    let selected=0;pick.onchange=()=>{selected=+pick.value;};
-    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;h.move(h.x+dx,h.y+dy);cv.redraw();};
-    for(const [label,dx,dy,fr,en] of [['←',-14,0,'Déplacer vers la gauche','Move left'],['→',14,0,'Déplacer vers la droite','Move right'],['↑',0,-14,'Déplacer vers le haut','Move up'],['↓',0,14,'Déplacer vers le bas','Move down']]){
-      const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',api.pair(fr,en));button.onclick=()=>move(dx,dy);group.append(button);
-    }
-    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : flèches pour déplacer le point choisi','Interactive figure: arrow keys move the selected point'));
-    cv.c.onkeydown=e=>{const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
-    ctx.controls.append(group);
+    let selected=0,cursor=null;
+    cv.c.addEventListener("pointerdown",()=>{cursor=null;});
+    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;if(!cursor)cursor=[h.x,h.y];cursor[0]+=dx;cursor[1]+=dy;h.move(...cursor);cv.redraw();};
+    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : H pour choisir un point, flèches pour le déplacer ; molette pour zoomer, glisser le fond pour déplacer la vue, 0 pour réinitialiser','Interactive figure: H selects a point, arrows move it; wheel to zoom, drag background to pan, 0 to reset'));
+    cv.c.onkeydown=e=>{if(e.key.toLowerCase()==='h'){selected=(selected+1)%handles().length;cursor=null;e.preventDefault();e.stopPropagation();cv.c.setAttribute('aria-label',api.pair('Point ','Point ')+(selected+1));return;}const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
+
   }
   return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
 }
@@ -138,7 +133,7 @@ function canvas(host,ctx) {
     c.width = Math.round(o.W * d); c.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw();
   };
   o.redraw = () => { g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.bg; g.fillRect(0, 0, o.W, o.H); o.draw(g); };
-  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr'});
+  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr',canPan:([x,y])=>!o.rotate&&!o.handles().some(h=>Math.hypot(h.x-x,h.y-y)<(h.r||22))});
   const pt=navigation.point;
   c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
   const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };

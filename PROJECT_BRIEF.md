@@ -162,3 +162,13 @@ Notes:
 ## 11. Suggested first milestone
 
 Pilot chapter: quadratic trinôme (Première spécialité), since the slide exists. Produce the full sequence, compile it, test it, have it audited and reviewed. Use the result as the gold standard for the template in section 4, then scale in the order of section 3.
+
+
+## Interaction policy, owner instruction of 16 October 2026
+
+Direct canvas interaction replaces view and point button toolbars throughout the site. Preserve keyboard operation,
+mathematical mode choices and independent camera state. Load the chosen language automatically on neutral content;
+use each curriculum's language for curriculum content. Omit language switches there. Put download links beside the
+links opening each resource, outside the slide player toolbar. A menu with only one enabled choice becomes a label;
+restore the menu when multiple choices exist. Content updates must propagate through linked views and exports by
+shared data and build dependencies, with stale products rejected before publication.

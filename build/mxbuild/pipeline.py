@@ -6,6 +6,11 @@ and republish the sources. `check`: every pre-push check from the brief, in one 
 import re, subprocess, sys, time
 from pathlib import Path
 from . import ROOT, tex
+from . import catalog
+
+def chapter_numbers(course):
+    return sorted(c['number'] for c in catalog.load()['catalog']['chapters'] if c['course'] == course and c['number'] > 0)
+
 
 PY = sys.executable
 # Extra inputs per course beyond its TeX tree and the core (paths relative to the repository root).
@@ -17,9 +22,9 @@ COMMON_INPUTS = ['content/data/manifest.json', 'build/mxbuild/pdf.py']
 COURSES = {
     'automatismes': ['scripts/build-automatismes.py'],
     'stmg': ['scripts/build-stmg.py'],
-    'seconde': ['scripts/build-tex-resources.py', 'seconde', '--chapters', *map(str, range(1, 16))],
-    'premiere': ['scripts/build-tex-resources.py', 'premiere', '--chapters', *map(str, range(1, 11)), '--appendices'],
-    'terminale': ['scripts/build-tex-resources.py', 'terminale', '--chapters', *map(str, range(1, 15)), '--appendices'],
+    'seconde': ['scripts/build-tex-resources.py', 'seconde', '--chapters', *map(str, chapter_numbers('seconde'))],
+    'premiere': ['scripts/build-tex-resources.py', 'premiere', '--chapters', *map(str, chapter_numbers('premiere')), '--appendices'],
+    'terminale': ['scripts/build-tex-resources.py', 'terminale', '--chapters', *map(str, chapter_numbers('terminale')), '--appendices'],
     'enrichment': ['scripts/build-enrichment.py'],
 }
 
@@ -77,6 +82,8 @@ def build_tex(courses, force=False):
 
 
 CHECKS = [
+    ('content dependencies and linked views', [PY, '-m', 'mxbuild.refresh', '--check']),
+    ('content propagation tests', [PY, 'tests/test_content_dependencies.py']),
     ('npm test', ['npm', 'test']),
     ('npm run check', ['npm', 'run', 'check']),
     ('catalogue up to date', [PY, '-m', 'mxbuild', 'catalog', '--check']),

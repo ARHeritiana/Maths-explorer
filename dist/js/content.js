@@ -1,3 +1,5 @@
+import { university } from './catalogue-data.js';
+import { universityPathway } from './university-model.js';
 // Bilingual content: every pair is [French, English]. Topic placements are indicative.
 import { VARIANTS, defaults } from "./challenge-variants.js";
 export const labs = [
@@ -1026,19 +1028,7 @@ export const pathways = [
     sourceName:["College Board · SAT, section Mathématiques (consulté le 13 octobre 2026)","College Board · SAT Math section (consulted 13 October 2026)"]
   }]
   },
-  {
-    id:"university",label:"UNI",name:["Université","University"],
-    intro:["Deux collections pour les études supérieures : six séquences de fondements mathématiques et un module de mathématiques appliquées en sept semaines. Cours, exercices, corrigés et diaporamas interactifs en français.","Two collections for higher education: six mathematical foundations sequences and a seven-week applied mathematics module. Course notes, exercises, solutions and interactive slides in French."],
-    programmes:[{id:"foundations",name:["Fondements mathématiques","Mathematical foundations"],
-      intro:["Calculs algébriques, logique, ensembles, nombres complexes et applications. Six séquences, des notes de cours, un guide enseignant et des diaporamas interactifs en français.","Algebraic calculations, logic, sets, complex numbers and maps. Six sequences, course notes, a teacher guide and interactive slides in French."],
-      stages:[{name:["Transition vers le supérieur","Transition to higher education"],ids:[],note:["Supports de cycle préparatoire, à adapter à la formation ; aucun alignement sur un programme universitaire complet n’est revendiqué.","Preparatory-level materials to adapt to the course; no claim of alignment with a complete university curriculum."]}],
-      resources:[{title:["Explorer les ressources universitaires","Explore university resources"],href:"#university"}]
-    },{id:"module-maths",name:["Mathématiques appliquées · L1","Applied mathematics · Year 1"],
-      intro:["Sept semaines : fonctions usuelles et complexes, limites, dérivation, intégration, géométrie, matrices, plusieurs variables et équations différentielles.","Seven weeks: elementary functions and complex numbers, limits, differentiation, integration, geometry, matrices, multivariable functions and differential equations."],
-      stages:[{name:["Première année scientifique","First-year science"],ids:[],note:["Cahier de travail autonome avec ou sans corrigés, guides étudiant et professeur, sept diaporamas HTML et sources LaTeX.","Self-study workbook with or without solutions, student and teacher guides, seven HTML slide decks and LaTeX sources."]}],
-      resources:[{title:["Commencer le module","Start the module"],href:"#university/module-semaine-1"},{title:["Voir toutes les ressources","View all resources"],href:"#university"}]
-    }]
-  }
+  universityPathway(university)
 ];
 
 // Stages of a pathway, whether it lists them directly or through programmes.
