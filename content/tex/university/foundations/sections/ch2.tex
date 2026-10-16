@@ -1,0 +1,34 @@
+\clearpage
+\section{Logique}
+\begin{objectif}
+Repérer l'hypothèse d'une implication, construire sa négation et distinguer un témoin choisi pour chaque objet d'un témoin commun à tous.
+\end{objectif}
+\subsection{Explorer : un contrôle de fabrication}
+Un capteur produit trois informations : $P$ signifie « pression conforme », $Q$ « température conforme », $R$ « contrôle manuel effectué ». Une pièce est acceptée si $(P\wedge Q)\vee R$. Dans le cube du diaporama, examiner les huit états possibles. Proposer un état où la pièce est acceptée malgré une pression non conforme. Décrire ensuite exactement les états refusés.
+\subsection{Connecteurs et preuve}
+\begin{definition}[valeur logique]
+Une assertion mathématique possède une valeur vraie ou fausse. $\neg P$ inverse celle de $P$. $P\wedge Q$ exige les deux valeurs vraies ; $P\vee Q$ en exige au moins une. L'implication $P\Rightarrow Q$ est fausse précisément lorsque $P$ est vraie et $Q$ fausse. Une équivalence exige que les deux valeurs coïncident.
+\end{definition}
+\begin{propriete}[négation et contraposée]
+On a $\neg(P\Rightarrow Q)\iff P\wedge\neg Q$ et $(P\Rightarrow Q)\iff(\neg Q\Rightarrow\neg P)$.
+\end{propriete}
+\begin{demonstration}
+La seule situation qui contredit l'implication est $(P,Q)=(\text{vrai},\text{faux})$. C'est exactement la situation décrite par $P\wedge\neg Q$, et aussi la seule qui contredit $\neg Q\Rightarrow\neg P$.
+\end{demonstration}
+Une réciproque échange l'hypothèse et la conclusion. Elle nécessite une preuve séparée. Un contre-exemple doit satisfaire l'hypothèse et contredire la conclusion.
+\subsection{Quantifier sans ambiguïté}
+\begin{definition}[témoins]
+$\forall x\in E,\ P(x)$ exige $P$ pour chaque élément de $E$. $\exists x\in E,\ P(x)$ demande au moins un témoin. La négation du premier énoncé est $\exists x\in E,\ \neg P(x)$ ; celle du second est $\forall x\in E,\ \neg P(x)$.
+\end{definition}
+Dans $\forall x\,\exists y$, le choix de $y$ peut dépendre de $x$. Dans $\exists y\,\forall x$, le même $y$ doit fonctionner partout. Pour réfuter cette dernière assertion, expliquer comment mettre en défaut chaque candidat $y$.
+\subsection{Ateliers autonomes}
+\begin{enumerate}
+\item \textbf{Diagnostic.} Énumérer les états acceptés du contrôle de fabrication. Le responsable affirme : « toute pièce acceptée satisfait $P$ ». Décider si cette règle est correcte et écrire un état qui tranche la question.
+\item \textbf{Un budget commun ?} Pour $x,y\in[2,6]$, comparer $\forall x\,\exists y,\ x+y=8$ et $\exists y\,\forall x,\ x+y=8$. Donner une preuve ou une réfutation, puis écrire les deux négations.
+\item \textbf{Une preuve par les restes.} Un entier est divisible par 3 lorsqu'il s'écrit $3k$ avec $k\in\Z$. Montrer que si $m^2$ est divisible par 3, alors $m$ l'est aussi, en étudiant les trois restes possibles de $m$ dans une division par 3.
+\end{enumerate}
+\ifprof
+\subsection{Préparer et discuter}
+Faire distinguer une panne réelle d'une hypothèse fausse dans l'implication. Au deuxième atelier, deux étudiants jouent respectivement les rôles de celui qui choisit $x$ et de celui qui choisit $y$ ; inverser l'ordre des choix. Pour le dernier, nommer la contraposée avant de commencer le calcul.
+\input{answers/ch2}
+\fi

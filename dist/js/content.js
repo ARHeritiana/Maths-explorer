@@ -1025,6 +1025,15 @@ export const pathways = [
     source:"https://satsuite.collegeboard.org/sat/whats-on-the-test/math/overview",
     sourceName:["College Board · SAT, section Mathématiques (consulté le 13 octobre 2026)","College Board · SAT Math section (consulted 13 October 2026)"]
   }]
+  },
+  {
+    id:"university",label:"UNI",name:["Université","University"],
+    intro:["Un espace pour les études supérieures. Une première collection de fondements est disponible ; d’autres sections pourront la compléter.","An area for higher education. A first foundations collection is available, with room for further sections."],
+    programmes:[{id:"foundations",name:["Fondements mathématiques","Mathematical foundations"],
+      intro:["Calculs algébriques, logique, ensembles, nombres complexes et applications. Six séquences, des notes de cours, un guide enseignant et des diaporamas interactifs en français.","Algebraic calculations, logic, sets, complex numbers and maps. Six sequences, course notes, a teacher guide and interactive slides in French."],
+      stages:[{name:["Transition vers le supérieur","Transition to higher education"],ids:[],note:["Supports de cycle préparatoire, à adapter à la formation ; aucun alignement sur un programme universitaire complet n’est revendiqué.","Preparatory-level materials to adapt to the course; no claim of alignment with a complete university curriculum."]}],
+      resources:[{title:["Ouvrir les six séquences","Open the six sequences"],href:"#university"}]
+    }]
   }
 ];
 

@@ -1,0 +1,32 @@
+\clearpage
+\section{Applications et ensembles transportés}
+\begin{objectif}
+Suivre une donnée dans une composition, calculer des images d'ensembles et interpréter une image réciproque sans supposer une fonction inverse.
+\end{objectif}
+\subsection{Explorer : une chaîne de traitement}
+Une première opération ajoute 2 à une mesure, une seconde remplace une mesure par son carré diminué de 1. Prédire si inverser les deux machines donne le même résultat. Dans le diaporama, déplacer l'entrée et chercher les points où les deux chaînes donnent la même sortie.
+\subsection{Applications et composition}
+\begin{definition}[application]
+Une application $f:E\to F$ associe à chaque élément $x$ de E une unique valeur $f(x)$ dans F. Plusieurs éléments peuvent avoir la même image. Pour composer $g$ puis $f$, toute valeur produite par $g$ doit appartenir au domaine de $f$ ; on écrit $(f\circ g)(x)=f(g(x))$.
+\end{definition}
+\begin{definition}[ensembles transportés]
+L'image directe $f(A)$ d'une partie A de E rassemble les sorties effectivement obtenues depuis A. L'image réciproque $f^{-1}(B)$ d'une partie B de F rassemble les entrées dont la sortie appartient à B. Cette dernière notation décrit un ensemble même lorsque f n'a pas de fonction inverse.
+\end{definition}
+\begin{propriete}[tester une intersection à l'arrivée]
+Pour $B,C\subseteq F$, on a $f^{-1}(B\cap C)=f^{-1}(B)\cap f^{-1}(C)$.
+\end{propriete}
+\begin{demonstration}
+Une entrée x appartient au membre de gauche exactement lorsque $f(x)$ est à la fois dans B et dans C. Cela revient à demander que x appartienne aux deux images réciproques, ce qui caractérise le membre de droite.
+\end{demonstration}
+Une application est \textbf{injective} lorsque deux entrées distinctes donnent des sorties distinctes. Pour l'image directe d'une intersection, seule l'inclusion $f(A\cap C)\subseteq f(A)\cap f(C)$ est toujours garantie : les deux sorties égales peuvent provenir d'entrées différentes. L'injectivité force ces entrées à coïncider et donne alors l'égalité.
+\subsection{Ateliers autonomes}
+\begin{enumerate}
+\item \textbf{Deux machines.} Avec $f(x)=x^2-1$ et $g(x)=x+2$ sur $\R$, expliciter les deux chaînes, puis déterminer toutes les entrées où leurs sorties sont égales.
+\item \textbf{Une fenêtre de sorties.} Pour $h(x)=(x-1)^2+2$, trouver $h([-2,2])$, puis toutes les entrées dont la sortie appartient à $[3,6]$. On prend ensuite $A=\{-1\}$ et $C=\{3\}$ : comparer $h(A\cap C)$ et $h(A)\cap h(C)$.
+\item \textbf{Facture progressive.} Un service facture une durée $x\in[0,4]$ au tarif $c(x)=x+2$ jusqu'à deux heures incluses et $c(x)=2x$ ensuite. Sur une facture brute y, la réduction conserve y jusqu'à 5 unités et ne facture que la moitié de la part au-delà de 5 : $d(y)=5+(y-5)/2$ pour $y>5$. Écrire la facture finale $q(x)=d(c(x))$ sur chaque intervalle pertinent. Une facture finale de 6 unités correspond à quelle durée ? Contrôler les raccords du tarif.
+\end{enumerate}
+\ifprof
+\subsection{Préparer et discuter}
+Faire représenter les machines par deux boîtes et suivre une entrée commune. Pour les images réciproques, remplacer provisoirement le symbole par la phrase « chercher les entrées telles que ». Pour les morceaux, distinguer les coupures déjà présentes de leurs préimages par le premier traitement ; vérifier les valeurs aux bornes.
+\input{answers/ch6}
+\fi

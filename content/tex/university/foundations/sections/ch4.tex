@@ -1,0 +1,34 @@
+\clearpage
+\section{Opérations sur les nombres complexes}
+\begin{objectif}
+Relier les opérations à des mouvements du plan, calculer un quotient et lire une distance à partir d'une affixe.
+\end{objectif}
+\subsection{Explorer : déplacer une balise}
+Une balise est représentée par $z=x+\ii y$. On lui applique $T(z)=(1+\ii)z-2\ii$. Tester l'origine, le point d'affixe 1 et celui d'affixe $\ii$. Déplacer ensuite un sommet d'un triangle dans le laboratoire des complexes : prédire l'image avant de l'afficher. Observer des points suggère une transformation ; justifier sa nature demande un calcul général.
+\subsection{Coordonnées, symétrie, longueur}
+\begin{definition}[affixe]
+Le nombre $x+\ii y$, avec $x,y\in\R$ et $\ii^2=-1$, représente le point de coordonnées $(x,y)$. Ses parties réelle et imaginaire sont $x$ et $y$. Le conjugué $\bar z=x-\ii y$ reflète ce point dans l'axe horizontal. Le module $|z|=\sqrt{x^2+y^2}$ mesure sa distance à l'origine.
+\end{definition}
+L'addition suit celle des vecteurs. Développer le produit donne
+\[(x+\ii y)(u+\ii v)=(xu-yv)+\ii(xv+yu).\]
+Multiplier par $\ii$ envoie $(x,y)$ sur $(-y,x)$ : c'est un quart de tour direct. Multiplier par $1+\ii$ associe une rotation d'angle $\pi/4$ à un agrandissement de rapport $\sqrt2$ ; la matrice des coordonnées, ou le produit des modules et l'addition des arguments, le confirme.
+\begin{propriete}[quotient]
+Si $w\ne0$, alors $z/w=z\bar w/|w|^2$.
+\end{propriete}
+\begin{demonstration}
+Le développement donne $w\bar w=|w|^2>0$. Multiplier le numérateur et le dénominateur par $\bar w$ ne change donc pas le quotient et rend son dénominateur réel.
+\end{demonstration}
+\begin{methode}[lieux géométriques]
+Pour une affixe fixe $a$, $|z-a|$ est la distance au point d'affixe $a$. Une condition de modules peut donc décrire un cercle ou une médiatrice. Pour une condition de partie réelle, écrire d'abord $z=x+\ii y$, puis isoler la condition sur $x,y$.
+\end{methode}
+\subsection{Ateliers autonomes}
+\begin{enumerate}
+\item \textbf{Balise transformée.} Calculer les images de $0,1,\ii$ par T. Vérifier sur ces points le rapport des distances, puis prouver que $|T(z)-T(w)|=\sqrt2|z-w|$ pour tout couple $z,w$.
+\item \textbf{Revenir au départ.} À partir d'une image $u$, retrouver sa préimage par T. Appliquer la méthode à $u=3+\ii$ et vérifier en réappliquant T. Pourquoi cette préimage est-elle unique ?
+\item \textbf{Deux antennes.} Décrire l'ensemble des points tels que $|z+2|=|z-2\ii|$. Donner son équation cartésienne et vérifier que le milieu des deux antennes lui appartient.
+\end{enumerate}
+\ifprof
+\subsection{Préparer et discuter}
+Séparer les effets du facteur multiplicatif et de la translation. Demander de contrôler un quotient par une multiplication. Pour le lieu, faire proposer la médiatrice avant le développement, puis confronter l'équation obtenue au dessin. Le contrôle de quelques points ne remplace pas l'équivalence algébrique.
+\input{answers/ch4}
+\fi

@@ -8,7 +8,9 @@ PY := PYTHONPATH=build python3
 COURSE ?=
 FORCE ?=
 
-.PHONY: tex site catalog check all inventory slides lectures
+.PHONY: tex site catalog check all inventory slides lectures university
+university:
+	python3 scripts/build-university.py
 tex:
 	$(PY) -m mxbuild tex $(COURSE) $(if $(FORCE),--force)
 site:

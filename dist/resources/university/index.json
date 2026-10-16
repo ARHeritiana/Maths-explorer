@@ -1,0 +1,192 @@
+{
+  "id": "university",
+  "title": [
+    "Université",
+    "University"
+  ],
+  "sections": [
+    {
+      "id": "foundations",
+      "title": [
+        "Fondements mathématiques",
+        "Mathematical foundations"
+      ],
+      "intro": [
+        "Six séquences pour aborder les premiers outils du supérieur. Les supports sont en français et ne constituent pas un programme universitaire complet.",
+        "Six sequences introducing foundational tools for higher education. Materials are in French and do not form a complete university curriculum."
+      ],
+      "language": "fr",
+      "sequences": [
+        {
+          "id": "calculs-algebriques",
+          "number": 1,
+          "title": [
+            "Calculs algébriques",
+            "Algebraic calculations"
+          ],
+          "summary": [
+            "Sommes, produits, changements d’indice, coefficients binomiaux et binôme.",
+            "Sums, products, index changes, binomial coefficients and expansion."
+          ],
+          "prerequisites": [
+            "Calcul littéral, suites et récurrence.",
+            "Algebra, sequences and induction."
+          ],
+          "slide": "seq1-calculs-algebriques.html",
+          "studentPage": 2,
+          "teacherPage": 2
+        },
+        {
+          "id": "logique",
+          "number": 2,
+          "title": [
+            "Logique",
+            "Logic"
+          ],
+          "summary": [
+            "Propositions, quantificateurs, négations et méthodes de raisonnement.",
+            "Propositions, quantifiers, negations and proof methods."
+          ],
+          "prerequisites": [
+            "Lecture d’énoncés et calcul algébrique.",
+            "Reading mathematical statements and algebra."
+          ],
+          "slide": "seq2-logique.html",
+          "studentPage": 3,
+          "teacherPage": 4
+        },
+        {
+          "id": "ensembles",
+          "number": 3,
+          "title": [
+            "Ensembles",
+            "Sets"
+          ],
+          "summary": [
+            "Inclusion, opérations ensemblistes, produits cartésiens et ensembles de parties.",
+            "Inclusion, set operations, Cartesian products and power sets."
+          ],
+          "prerequisites": [
+            "Logique et quantificateurs.",
+            "Logic and quantifiers."
+          ],
+          "slide": "seq3-ensembles.html",
+          "studentPage": 4,
+          "teacherPage": 5
+        },
+        {
+          "id": "complexes",
+          "number": 4,
+          "title": [
+            "Opérations sur les nombres complexes",
+            "Operations on complex numbers"
+          ],
+          "summary": [
+            "Formes algébrique et trigonométrique, module, argument et opérations.",
+            "Algebraic and polar forms, modulus, argument and operations."
+          ],
+          "prerequisites": [
+            "Calcul algébrique et trigonométrie.",
+            "Algebra and trigonometry."
+          ],
+          "slide": "seq4-complexes.html",
+          "studentPage": 5,
+          "teacherPage": 6
+        },
+        {
+          "id": "second-degre-complexe",
+          "number": 5,
+          "title": [
+            "Équations du second degré dans ℂ",
+            "Quadratic equations over ℂ"
+          ],
+          "summary": [
+            "Racines carrées complexes et résolution des équations du second degré.",
+            "Complex square roots and quadratic equations."
+          ],
+          "prerequisites": [
+            "Opérations sur les nombres complexes.",
+            "Operations on complex numbers."
+          ],
+          "slide": "seq5-second-degre-complexe.html",
+          "studentPage": 6,
+          "teacherPage": 7
+        },
+        {
+          "id": "applications",
+          "number": 6,
+          "title": [
+            "Image directe et image réciproque",
+            "Direct and inverse images"
+          ],
+          "summary": [
+            "Applications, composition, images d’ensembles et antécédents.",
+            "Maps, composition, images of sets and preimages."
+          ],
+          "prerequisites": [
+            "Logique, ensembles et fonctions usuelles.",
+            "Logic, sets and elementary functions."
+          ],
+          "slide": "seq6-applications.html",
+          "studentPage": 7,
+          "teacherPage": 8
+        }
+      ]
+    }
+  ],
+  "files": {
+    "student": {
+      "path": "resources/university/foundations/notes-etudiant.pdf",
+      "pages": 7,
+      "bytes": 88776,
+      "sha256": "7cfce39de2bbe41ebf42d16f1da24b7584ce9ddf831c6de0513c7d69c9948f03"
+    },
+    "teacher": {
+      "path": "resources/university/foundations/guide-enseignant.pdf",
+      "pages": 8,
+      "bytes": 105679,
+      "sha256": "23b56d38f3d82616c6cb56b1b52542ef5f26d835a3a3420d87b9201c36c2d6f0"
+    },
+    "calculs-algebriques": {
+      "path": "resources/university/foundations/slides/seq1-calculs-algebriques.html",
+      "bytes": 34279,
+      "sha256": "37b81af30c140f3a9feaa98da8ba17db5e4e1b238eb96af1bc7ce0a74fd6012a"
+    },
+    "logique": {
+      "path": "resources/university/foundations/slides/seq2-logique.html",
+      "bytes": 35115,
+      "sha256": "cdfa6e4ef2c679dfb4c3bd44f231fc74f574e46034d975423025b4d9d06f897f"
+    },
+    "ensembles": {
+      "path": "resources/university/foundations/slides/seq3-ensembles.html",
+      "bytes": 44127,
+      "sha256": "7496f2a600dd8a4d5b64f2475d4205ba88f508076c2875e59772ce51cb6ef596"
+    },
+    "complexes": {
+      "path": "resources/university/foundations/slides/seq4-complexes.html",
+      "bytes": 32738,
+      "sha256": "95b40f960d4534710338edd4ea4cf0423a59e93834ebe4fa8b7563e1775f31f6"
+    },
+    "second-degre-complexe": {
+      "path": "resources/university/foundations/slides/seq5-second-degre-complexe.html",
+      "bytes": 30760,
+      "sha256": "ed635f3cf01977cf90b3421ef9753554be585da2b86631e718ddb5e9eb735203"
+    },
+    "applications": {
+      "path": "resources/university/foundations/slides/seq6-applications.html",
+      "bytes": 34371,
+      "sha256": "dabfbe054592aa44bcf6315137bc973e66dc72727fed9b28e80d3675fba21d2f"
+    },
+    "tex": {
+      "path": "resources/university/foundations/sources-latex.zip",
+      "bytes": 17147,
+      "sha256": "38ec6675574932b846c43fceede2d42636cf800eb5e1a84766bbd3b4a65552e9"
+    },
+    "slidesSource": {
+      "path": "resources/university/foundations/sources-slides.zip",
+      "bytes": 37673,
+      "sha256": "1edcba06693dda5ee1098bc707b0bee916e8d75a883a6449da4b2cbae1536c99"
+    }
+  },
+  "sourceDigest": "a66a4f6bae49087a761b05c6d80d4e4ae9444e3329a3b5533156831fcd1527aa"
+}

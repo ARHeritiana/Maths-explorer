@@ -2,6 +2,7 @@ import {workshopMarkup,bindWorkshop} from './quadratic-workshop.js';
 import { libraryPage, bindLibrary, chapterPage, bindChapter, relatedChapters, resourceCatalog } from "./resource-library.js";
 import { packPage, bindPack, sourcesPage, bindSources } from "./pack-builder.js";
 import { slidesPage, bindSlides } from "./slides-page.js";
+import { universityPage, bindUniversity } from "./university.js";
 import { navigationButtons, observeSvgNavigation } from "./canvas-navigation.js";
 import { manipulate, snapParameter, graphPosition } from "./interaction.js";
 import { labs, challenges, pathways } from "./content.js";
@@ -165,12 +166,13 @@ function render() {
   const valid = (r.page === "lab" && (!r.id || labs.some(l => l.id === r.id && !l.custom))) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
     (r.page === "home" && !r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
-    (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
+    r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
-    header(page) +
+    header(page === "university" ? "pathways" : page) +
     (page === "home" ? homePage({ pair, t, link, labs }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+      : page === "university" ? universityPage(lang)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? labPage(r.id)
@@ -195,6 +197,7 @@ function render() {
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
   if (page === "slides") bindSlides(t);
+  if (page === "university") bindUniversity(r.id, lang);
   if (page === "chapter") {
     stopChapter = bindChapter(r.id, t, fmt);
     if (last !== r.id || !seen.has(r.id)) {
@@ -1167,7 +1170,8 @@ function pathwayBlock(x, heading) {
           .join("")}</ul>` : ""}</div>`,
     )
     .join("");
-  return `${stages}<a class="source-link" href="${x.source}" target="_blank" rel="noopener noreferrer">${t(x.sourceName)} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a>`;
+  const resources = (x.resources || []).map(r => `<a class="btn btn-secondary" href="${r.href}">${t(r.title)}</a>`).join('');
+  return `${stages}${resources}${x.source ? `<a class="source-link" href="${x.source}" target="_blank" rel="noopener noreferrer">${t(x.sourceName)} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a>` : ''}`;
 }
 function pathwayPage() {
   return `<main id="main" class="page" tabindex="-1"><h1>${pair("Les mêmes idées, plusieurs parcours.", "Shared ideas, different pathways.")}</h1><p class="page-intro">${pair("Pars de ton programme ou suis simplement ta curiosité. Chaque expérience précise ses prérequis.", "Start with your curriculum or simply follow your curiosity. Each experiment lists its prerequisites.")}</p><div class="pathway-grid">${pathways.map((p) => `<section class="pathway-card${p.programmes ? " has-programmes" : ""}"><div class="pathway-label">${p.icon ? icon(p.icon, 28) : p.label}</div><h2>${t(p.name)}</h2><p>${t(p.intro)}</p>${p.programmes ? `<div class="programmes">${p.programmes.map((x) => `<div class="programme"><h3 class="programme-title">${t(x.name)}</h3><p>${t(x.intro)}</p>${pathwayBlock(x, "h4")}</div>`).join("")}</div>` : pathwayBlock(p, "h3")}</section>`).join("")}</div><section class="curriculum-note"><h2>${pair("À propos de ces repères", "About these pathways")}</h2><p>${pair("Ce laboratoire est une sélection d’explorations, pas un programme exhaustif ni une certification d’alignement. Les placements sont pédagogiques et indicatifs ; vérifie la série, l’option et l’année avec ton enseignant. Les références ont été consultées en octobre 2026.", "This laboratory is a selection of explorations, not a complete syllabus or a certification of alignment. Placements are pedagogical suggestions; check your stream, option and year with your teacher. References were consulted in October 2026.")}</p><p>${pair("France : nouveaux programmes de seconde et première en 2026–2027, de terminale en 2027–2028. IB : première mise en œuvre en août 2027, première évaluation en mai 2029. Madagascar : références S/OSE/L datées de 2024–2025 ; l’application actuelle reste à confirmer.", "France: new seconde and première programmes in 2026–2027, terminale in 2027–2028. IB: first teaching August 2027, first assessment May 2029. Madagascar: S/OSE/L references date from 2024–2025; current applicability needs confirmation.")}</p><p>${pair("Les repères historiques renvoient aux notices du MacTutor History of Mathematics Archive de l’université de St Andrews. Le laboratoire conserve la langue et les réponses réussies dans ce navigateur ; les notes restent en mémoire pendant la session. Il n’envoie ni réponses ni notes et n’intègre aucun outil d’analyse. Ouvrir une source externe te conduit sur un autre site ; l’hébergeur gère l’accès privé.", "History boxes link to the University of St Andrews MacTutor History of Mathematics Archive. The laboratory keeps language and completed answers in this browser; notes stay in session memory. It sends no answers or notes and includes no analytics. Opening an external source takes you to another website; the host manages private access.")}</p></section></main>`;

@@ -1,0 +1,33 @@
+\clearpage
+\section{Ensembles}
+\begin{objectif}
+Construire des ensembles à partir d'un critère, distinguer un élément d'une partie et raisonner sur des couples ordonnés.
+\end{objectif}
+\subsection{Explorer : classer des tickets}
+Neuf tickets portent les numéros de $0$ à $8$. Dans le diaporama, placer dans A les multiples de 3, dans B les numéros au moins égaux à 5, et dans C les numéros impairs. Déplacer ensuite un ticket et décrire exactement quels ensembles changent. Les cercles représentent des critères d'appartenance ; leur aire n'est pas un effectif.
+\subsection{Les opérations se lisent élément par élément}
+\begin{definition}[parties et opérations]
+$A\subseteq E$ signifie que tout élément de $A$ appartient à $E$. La réunion $A\cup B$ accepte un élément présent dans au moins un des deux ensembles ; l'intersection $A\cap B$ exige sa présence dans chacun. $A\setminus B$ garde les éléments de $A$ absents de $B$. Le complémentaire $E\setminus A$ dépend de l'ensemble de référence $E$.
+\end{definition}
+Pour prouver une égalité de deux ensembles, prendre un élément arbitraire et montrer qu'il satisfait exactement les mêmes conditions des deux côtés. Par exemple,
+\[x\in(A\setminus B)\cap C\iff x\in A,\ x\notin B,\ x\in C\iff x\in(A\cap C)\setminus B.\]
+Cette chaîne prouve l'égalité sans s'appuyer sur un dessin particulier.
+\subsection{Ensembles d'ensembles et couples}
+\begin{definition}[ensemble des parties]
+$\PP(E)$ rassemble tous les sous-ensembles de $E$, y compris $\vide$ et $E$ lui-même. Ainsi $X\in\PP(E)$ signifie $X\subseteq E$. Un élément de $E$ peut lui-même être un ensemble ; cela ne supprime aucun niveau d'accolades.
+\end{definition}
+Si $E$ a $n$ éléments distincts, une partie se décrit par $n$ choix indépendants, « garder » ou « écarter ». Donc $\card\PP(E)=2^n$.
+\begin{definition}[produit cartésien]
+$A\times B$ est l'ensemble des couples ordonnés $(a,b)$ obtenus avec $a\in A$ et $b\in B$. Pour deux ensembles finis de tailles $p$ et $q$, il contient $pq$ couples : chaque premier choix laisse exactement $q$ seconds choix.
+\end{definition}
+\subsection{Ateliers autonomes}
+\begin{enumerate}
+\item \textbf{Tickets à double critère.} Avec les trois ensembles de l'exploration, déterminer $(A\cup B)\setminus C$. Classer chaque ticket une seule fois dans les quatre catégories définies par l'appartenance ou non à A et à B.
+\item \textbf{Boîtes emboîtées.} Poser $H=\{\{r\},\{r,s\},t\}$, où $r,s,t$ sont trois symboles distincts. Décider si $r\in H$, $\{r\}\in H$, $\{\{r\}\}\subseteq H$ et $\{t\}\in\PP(H)$. Donner la taille de $\PP(H)$.
+\item \textbf{Options d'un robot.} Un robot choisit une couleur dans $K=\{\text{ocre},\text{bleu},\text{vert}\}$ et une vitesse dans $V=\{1,3\}$. Décrire $K\times V$. Une règle interdit la vitesse 3 avec la couleur ocre : écrire l'ensemble autorisé et compter ses éléments. Représenter ensuite $[1,4[\times]-1,2]$ dans le plan.
+\end{enumerate}
+\ifprof
+\subsection{Préparer et discuter}
+Matérialiser les accolades par des boîtes avant d'utiliser les symboles. Exiger un ensemble de référence lorsqu'un complémentaire apparaît. Pour le robot, demander pourquoi (couleur, vitesse) et (vitesse, couleur) ne décrivent pas le même type de donnée. La démonstration par appartenance constitue le passage du dessin à l'argument général.
+\input{answers/ch3}
+\fi

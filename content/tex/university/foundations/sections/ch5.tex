@@ -1,0 +1,30 @@
+\clearpage
+\section{Équations du second degré dans \texorpdfstring{$\C$}{C}}
+\begin{objectif}
+Construire un polynôme à partir de ses racines, résoudre une équation quadratique et distinguer racines distinctes et multiplicité.
+\end{objectif}
+\subsection{Explorer : fabriquer une équation}
+Placer deux poignées dans le plan du diaporama et observer le polynôme qui s'annule en ces deux points. Rapprocher les poignées jusqu'à les confondre. Que devient le discriminant ? La figure représente les racines ; elle ne montre pas un graphe réel de l'équation.
+\subsection{Extraire une racine carrée}
+Si $\delta=a+\ii b$ et $w=u+\ii v$, l'égalité $\delta^2=w$ impose $a^2-b^2=u$ et $2ab=v$. En outre $a^2+b^2=|w|$. On en déduit
+\[a^2=(|w|+u)/2,\qquad b^2=(|w|-u)/2.\]
+Ces deux valeurs sont positives ou nulles. Lorsque $v\ne0$, choisir les signes pour que $2ab=v$ ; lorsque $v=0$, examiner séparément le réel positif, négatif et nul. Cela construit une racine. Si $\delta^2=w$, l'autre est $-\delta$, car $z^2-\delta^2=(z-\delta)(z+\delta)$. Pour $w=0$, il n'y a qu'une racine distincte.
+\subsection{Compléter le carré}
+\begin{theoreme}[résolution quadratique]
+Soient $a,b,c\in\C$ avec $a\ne0$. Poser $\Delta=b^2-4ac$ et choisir $\delta$ tel que $\delta^2=\Delta$. Les solutions de $az^2+bz+c=0$ sont $(-b+\delta)/(2a)$ et $(-b-\delta)/(2a)$. Elles coïncident exactement lorsque $\Delta=0$.
+\end{theoreme}
+\begin{demonstration}
+Multiplier l'équation par $4a$ et regrouper donne $(2az+b)^2=\Delta$. La différence de deux carrés se factorise : $2az+b$ vaut $\delta$ ou $-\delta$. La division par $2a$ est autorisée, puisque $a\ne0$.
+\end{demonstration}
+Si les racines sont $r,s$, développer $a(z-r)(z-s)$ donne $r+s=-b/a$ et $rs=c/a$. Ces égalités fournissent un contrôle rapide des calculs. Une équation en $z^2$ se traite d'abord avec une nouvelle inconnue $Z=z^2$, puis avec les racines carrées de chaque valeur de Z ; retirer les doublons à la fin.
+\subsection{Ateliers autonomes}
+\begin{enumerate}
+\item \textbf{Carré à reconstruire.} Trouver tous les nombres dont le carré vaut $5+12\ii$. Contrôler chaque réponse par un développement.
+\item \textbf{Polynôme construit.} On souhaite les racines $2+\ii$ et $-1+2\ii$. Déterminer l'unique polynôme unitaire de degré deux correspondant, puis retrouver ses racines par le discriminant.
+\item \textbf{Quatre balises symétriques.} Résoudre $z^4-(3-2\ii)z^2+8+6\ii=0$. Présenter la substitution, les valeurs de Z et toutes les valeurs de z. Expliquer comment contrôler qu'aucune racine n'a été oubliée.
+\end{enumerate}
+\ifprof
+\subsection{Préparer et discuter}
+Commencer par développer un polynôme construit, puis inverser le travail. Exiger la vérification des signes de $ab$ pour une racine carrée ; choisir indépendamment deux signes crée des réponses fausses. Dans le paysage 3D, la hauteur est une transformation logarithmique du module, pas la partie réelle du polynôme. Les creux suggèrent des zéros qui sont ensuite vérifiés algébriquement.
+\input{answers/ch5}
+\fi

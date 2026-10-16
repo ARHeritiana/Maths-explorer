@@ -163,3 +163,12 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - `npm ci` installs the jsdom development dependency; `npm run test:dom` verifies DOM behavior using a recording canvas. This is not browser/pixel QA. Independent audits are recorded under `private/audits`, with resource hashes in the private ledger. Human review remains false.
 
 
+
+## 16 October 2026: university foundations
+
+- Added University after existing pathways, with Foundations as the first collection and six sequence routes under `#university`. The section array allows later expansion.
+- Six French courses contain eighteen self-contained workshops, student notes, teacher solutions and six exploratory HTML decks. Editable sources live under `content/tex/university/foundations` and `content/slides/university/foundations`. `make university` builds both PDFs, exports, page anchors and source bundles.
+- `content/data/manifest.json` owns collection metadata; `dist/resources/university/index.json` is generated. French-only language is explicit; existing paired-course checks remain in force. PDFs are reading documents, not lecture slide decks.
+- Exact answer checks and generation: `python3 private/verification/university-results.py --check` (SymPy). Two independent content/integration reviews are under `private/audits/university-foundations-audit-*.md`. Human review remains false.
+- Slide checks cover all 24 scenes, presets, finite drawing, interval images, roots, disk coverage and inverse camera picking. The binomial view keeps its scale while coefficients move; an explicit fit button changes the range.
+- PDF layout inspected after XeLaTeX builds. Browser/device QA remains unverified: the managed preview could not mount its sandbox process filesystem. No accessibility conformance claim is made.

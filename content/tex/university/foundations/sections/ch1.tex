@@ -1,0 +1,40 @@
+\clearpage
+\section{Calculs algébriques}
+\begin{objectif}
+Organiser un calcul long en blocs, expliquer les bornes d'une somme et choisir entre une simplification algébrique et un calcul numérique.
+\end{objectif}
+\subsection{Explorer : un atelier de mosaïque}
+Une mosaïque comporte $n$ couronnes. La couronne de rang $j$, à partir de $j=0$, contient $4j+6$ carreaux. Dessiner les trois premières couronnes comme des rangées de points. Prédire le total pour huit couronnes, puis comparer une addition directe et un regroupement par paires.
+Dans le diaporama, déplacer les bornes de la somme : quel terme entre ou sort ? Une expérience numérique aide à trouver une formule ; elle ne la démontre pas.
+\subsection{Écrire et transformer}
+\begin{definition}[indices]
+Pour des entiers $p\leq q$, l'écriture $\sum_{j=p}^{q}a_j$ désigne l'addition des termes dont les indices parcourent les entiers de $p$ à $q$, bornes comprises. Le symbole $\prod$ remplace l'addition par une multiplication. Avec un intervalle d'indices vide, on convient que ces valeurs sont respectivement $0$ et $1$.
+\end{definition}
+Le nom de l'indice est local au calcul. Pour décaler les indices, on transporte à la fois les deux bornes et le terme : poser $r=j+h$ donne $j=r-h$. Écrire les correspondances aux deux extrémités avant de transformer la somme évite les termes perdus.
+\begin{propriete}[progression arithmétique]
+Une liste de $n\geq1$ termes, de premier terme $a$ et de pas $d$, a pour somme $na+d\,n(n-1)/2$.
+\end{propriete}
+\begin{demonstration}
+Écrire la liste dans l'ordre direct puis dans l'ordre inverse. Chaque colonne donne $2a+(n-1)d$. Les $n$ colonnes constituent deux fois la somme cherchée ; diviser par deux donne la formule.
+\end{demonstration}
+\begin{methode}[annulations]
+Dans une somme de différences $v_{j+1}-v_j$, écrire les premiers et derniers termes avant d'annuler les termes intérieurs. Dans un produit de quotients, vérifier d'abord que tous les dénominateurs sont non nuls.
+\end{methode}
+\subsection{Choisir des objets}
+\begin{definition}[coefficient binomial]
+Pour $0\leq k\leq n$, $\binom nk$ compte les choix de $k$ objets parmi $n$ objets distincts, sans ordre et sans répétition. Sa valeur est $n!/(k!(n-k)!)$, avec $0!=1$.
+\end{definition}
+En ordonnant les $k$ objets choisis, chaque choix est compté $k!$ fois ; les listes ordonnées sont au nombre de $n(n-1)\cdots(n-k+1)$. Cela justifie la formule. Dans $(a+b)^n$, choisir les $k$ facteurs qui fournissent $b$ donne
+\[ (a+b)^n=\sum_{k=0}^n\binom nk a^{n-k}b^k. \]
+Cette preuve explique les coefficients plutôt que de les faire mémoriser.
+\subsection{Ateliers autonomes}
+\begin{enumerate}
+\item \textbf{Budget de carreaux.} Retrouver le total $M_n=\sum_{j=0}^{n-1}(4j+6)$ de la mosaïque. Calculer $M_8$, puis déterminer combien de couronnes complètes on peut construire avec 260 carreaux.
+\item \textbf{Deux modes d'annulation.} Pour $n\geq1$, étudier $U_n=\sum_{j=1}^n1/((j+2)(j+3))$ et $V_n=\prod_{j=1}^n(j+3)/(j+2)$. Trouver une relation entre $U_n$ et $V_n$ sans effectuer les opérations une par une.
+\item \textbf{Inventaire pondéré.} Un appareil possède cinq emplacements, chacun recevant soit une pièce de type A (trois modèles), soit une pièce de type B (deux modèles). Compter les configurations par le nombre de pièces B, puis vérifier le total sans utiliser de somme.
+\end{enumerate}
+\ifprof
+\subsection{Préparer et discuter}
+Commencer par les dessins de couronnes, puis faire défendre deux méthodes de comptage. Demander à un groupe de suivre les indices et à un autre de contrôler les unités. Pour l'inventaire, distinguer le choix des positions et le choix des modèles. Faire expliquer pourquoi une vérification pour huit couronnes ne suffit pas pour tout $n$.
+\input{answers/ch1}
+\fi

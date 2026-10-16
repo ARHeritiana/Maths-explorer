@@ -13678,5 +13678,130 @@
         "bisection-solutions"
       ]
     }
+  },
+  "university": {
+    "id": "university",
+    "title": [
+      "Université",
+      "University"
+    ],
+    "sections": [
+      {
+        "id": "foundations",
+        "title": [
+          "Fondements mathématiques",
+          "Mathematical foundations"
+        ],
+        "intro": [
+          "Six séquences pour aborder les premiers outils du supérieur. Les supports sont en français et ne constituent pas un programme universitaire complet.",
+          "Six sequences introducing foundational tools for higher education. Materials are in French and do not form a complete university curriculum."
+        ],
+        "language": "fr",
+        "sequences": [
+          {
+            "id": "calculs-algebriques",
+            "number": 1,
+            "title": [
+              "Calculs algébriques",
+              "Algebraic calculations"
+            ],
+            "summary": [
+              "Sommes, produits, changements d’indice, coefficients binomiaux et binôme.",
+              "Sums, products, index changes, binomial coefficients and expansion."
+            ],
+            "prerequisites": [
+              "Calcul littéral, suites et récurrence.",
+              "Algebra, sequences and induction."
+            ],
+            "slide": "seq1-calculs-algebriques.html"
+          },
+          {
+            "id": "logique",
+            "number": 2,
+            "title": [
+              "Logique",
+              "Logic"
+            ],
+            "summary": [
+              "Propositions, quantificateurs, négations et méthodes de raisonnement.",
+              "Propositions, quantifiers, negations and proof methods."
+            ],
+            "prerequisites": [
+              "Lecture d’énoncés et calcul algébrique.",
+              "Reading mathematical statements and algebra."
+            ],
+            "slide": "seq2-logique.html"
+          },
+          {
+            "id": "ensembles",
+            "number": 3,
+            "title": [
+              "Ensembles",
+              "Sets"
+            ],
+            "summary": [
+              "Inclusion, opérations ensemblistes, produits cartésiens et ensembles de parties.",
+              "Inclusion, set operations, Cartesian products and power sets."
+            ],
+            "prerequisites": [
+              "Logique et quantificateurs.",
+              "Logic and quantifiers."
+            ],
+            "slide": "seq3-ensembles.html"
+          },
+          {
+            "id": "complexes",
+            "number": 4,
+            "title": [
+              "Opérations sur les nombres complexes",
+              "Operations on complex numbers"
+            ],
+            "summary": [
+              "Formes algébrique et trigonométrique, module, argument et opérations.",
+              "Algebraic and polar forms, modulus, argument and operations."
+            ],
+            "prerequisites": [
+              "Calcul algébrique et trigonométrie.",
+              "Algebra and trigonometry."
+            ],
+            "slide": "seq4-complexes.html"
+          },
+          {
+            "id": "second-degre-complexe",
+            "number": 5,
+            "title": [
+              "Équations du second degré dans ℂ",
+              "Quadratic equations over ℂ"
+            ],
+            "summary": [
+              "Racines carrées complexes et résolution des équations du second degré.",
+              "Complex square roots and quadratic equations."
+            ],
+            "prerequisites": [
+              "Opérations sur les nombres complexes.",
+              "Operations on complex numbers."
+            ],
+            "slide": "seq5-second-degre-complexe.html"
+          },
+          {
+            "id": "applications",
+            "number": 6,
+            "title": [
+              "Image directe et image réciproque",
+              "Direct and inverse images"
+            ],
+            "summary": [
+              "Applications, composition, images d’ensembles et antécédents.",
+              "Maps, composition, images of sets and preimages."
+            ],
+            "prerequisites": [
+              "Logique, ensembles et fonctions usuelles.",
+              "Logic, sets and elementary functions."
+            ],
+            "slide": "seq6-applications.html"
+          }
+        ]
+      }
+    ]
   }
 }

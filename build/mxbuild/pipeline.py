@@ -83,7 +83,7 @@ CHECKS = [
     ('dist/ matches site/', [PY, '-m', 'mxbuild', 'site', '--check']),
     ('banned content', [PY, 'tests/banned.py']),
     ('FR/EN twin parity (maths and figures)', [PY, 'tests/twin_parity.py']),
-    ('FR/EN PDFs: parity, local frames and safe links', [PY, 'tests/pdf_parity.py']),
+    ('PDF editions: language policy, parity and safe links', [PY, 'tests/pdf_parity.py']),
     ('stated counts match the content', [PY, 'tests/count_claims.py']),
     ('twin tool unit tests', [PY, 'tests/test_twin.py']),
     ('English units up to date', [PY, '-m', 'mxbuild', 'twin', 'check']),
@@ -96,6 +96,7 @@ CHECKS = [
     ('slide HTML exports: up to date, skill lint', [PY, 'tests/slides_export_check.py']),
     ('lecture Beamer sources and PDFs', [PY, 'scripts/build-lecture-slides.py', '--check']),
     ('DOM interaction smoke', ['npm', 'run', 'test:dom']),
+    ('university collection: sources and downloadable files', [PY, 'scripts/build-university.py', '--check']),
     ('browser', [PY, 'tests/run_browser.py']),
     ('slides smoke', [PY, 'tests/slides_smoke.py']),
 ]

@@ -1,0 +1,6 @@
+\subsection{Solutions des ateliers}
+\begin{enumerate}
+\item En codant faux par 0 et vrai par 1, les états acceptés sont $(0, 0, 1), (0, 1, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1)$. L'état $(0,0,1)$ réfute la règle : le contrôle manuel suffit à accepter, même lorsque P est fausse. Les états refusés satisfont $\neg R\wedge(\neg P\vee\neg Q)$.
+\item La première assertion est vraie : choisir $y=8-x$, qui reste dans $[2,6]$. La seconde est fausse : $x=2$ imposerait $y=6$, tandis que $x=6$ imposerait $y=2$. Leurs négations sont respectivement $\exists x\in[2,6],\ \forall y\in[2,6],\ x+y\ne8$ et $\forall y\in[2,6],\ \exists x\in[2,6],\ x+y\ne8$.
+\item Écrire $m=3q+r$ avec $r\in\{0,1,2\}$. Alors $m^2=9q^2+6qr+r^2$ a le même reste que $r^2$, soit 0, 1, 1 pour les trois cas. Si le reste du carré est nul, r doit être nul. C'est la contraposée : un entier non divisible par 3 a un carré non divisible par 3.
+\end{enumerate}
