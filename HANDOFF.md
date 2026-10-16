@@ -198,3 +198,20 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
   Rebuilt 47 HTML decks and 94 lecture editions, with no reported layout warnings. Repeated `make site` and the
   freshness check pass. Forty-seven rebuilt decks retain their mathematical expressions. Eighty-four PDFs and 78
   source archives were kept byte-for-byte after matching text, page geometry and rendered pages/source entries.
+
+## Controls completion verification, 16 October 2026
+
+- Confirmed the published Site source and GitHub main at 7f07dc7 matched file-for-file before this follow-up.
+- Repaired browser download assertions for version query strings and data-derived deck counts. Added real-browser
+  coverage for the simplified player, adjacent resource links, automatic language restoration and all university routes.
+- Completed missed custom cases: removed Mandelbrot view buttons, enabled direct Julia wheel zoom, independent
+  keyboard/double-click resets, and fixed camera drift at the zoom limit. Single-mode function buttons are now labels;
+  disabled/hidden option groups do not inflate a menu's choice count. Replaced obsolete zoom-button guidance.
+- Two independent source reviews are recorded in private/audits/controls-completion-audit-*.md. Mathematical
+  computation is unchanged. All 127 JavaScript tests, syntax/DOM checks and content freshness checks pass locally.
+- The broader local fast check passed except the unchanged notation compilation test: this runtime lacks
+  stmaryrd and French Babel support. Managed preview still cannot mount proc, so local browser/device QA is unavailable.
+- The first follow-up CI browser run verified the versioned downloads, then exposed a mistake in the new test's
+  chosen slide index. It now derives the actual widget index. Final GitHub browser execution is pending this commit.
+- GitHub Pages remains unconfigured (configure-pages reports Not Found); do not change repository visibility or
+  the existing ChatGPT Site sharing policy to address it. Native Sites publication is a separate deployment.

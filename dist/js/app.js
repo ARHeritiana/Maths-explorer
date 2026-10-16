@@ -457,8 +457,8 @@ function updateLab(animatedValues, moving = false) {
         q.vertex ? `(${fmt(q.vertex[0])} ; ${fmt(q.vertex[1])})` : "—",
       );
     caption = pair(
-      "x ∈ [−6 ; 6]. L’échelle reste fixe. Utilise les boutons de zoom et les flèches pour cadrer la courbe. Certaines racines ou le sommet peuvent être hors champ.",
-      "x ∈ [−6, 6]. The scale stays fixed. Use zoom and pan controls to frame the curve. Some roots or the vertex may be outside the view.",
+      "x ∈ [−6 ; 6]. L’échelle reste fixe. Molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue. Certaines racines ou le sommet peuvent être hors champ.",
+      "x ∈ [−6, 6]. The scale stays fixed. Wheel or pinch to zoom, Shift-drag to pan. Some roots or the vertex may be outside the view.",
     );
   } else if (lab.id === "trig") {
     const figure = trigDiagram(v[0],s,t,fmt,handleAt);

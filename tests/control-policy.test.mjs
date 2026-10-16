@@ -4,12 +4,28 @@ import {JSDOM} from 'jsdom';
 import {installControlPolicy} from '../site/js/control-policy.js';
 import {svgNavigation,canvasNavigation} from '../site/js/canvas-navigation.js';
 import {preferredLanguage,routeLanguage} from '../site/js/content-language.js';
+import {choice} from '../site/slides/widgets.js';
 const setup=html=>{const dom=new JSDOM(html,{pretendToBeVisual:true});for(const k of ['document','MutationObserver','Event','CustomEvent'])globalThis[k]=dom.window[k];return dom;};
 const tick=()=>new Promise(r=>setTimeout(r,0));
+test('widget modes become a label for one choice and retain real multiple choices',()=>{
+ const dom=setup('<main></main>'),controls=document.querySelector('main');let mode='exp';
+ choice({controls,L:0},[['log','Logarithme','Logarithm']],'exp',id=>mode=id);
+ assert.equal(mode,'log');assert.equal(controls.querySelector('button'),null);assert.equal(controls.textContent,'Logarithme');
+ controls.replaceChildren();choice({controls,L:1},[['exp','Exponentielle','Exponential'],['log','Logarithme','Logarithm']],'exp',id=>mode=id);
+ assert.equal(controls.querySelectorAll('button').length,2);controls.querySelectorAll('button')[1].click();assert.equal(mode,'log');assert.equal(controls.querySelector('[aria-pressed="true"]').textContent,'Logarithm');dom.window.close();
+});
 test('singleton menus choose their sole value and reappear when choices grow',async()=>{
  const dom=setup('<main><select><option disabled selected value="">Choose</option><option value="one">One</option></select></main>'),root=document.querySelector('main'),select=document.querySelector('select');let changes=0;select.onchange=()=>changes++;
  const stop=installControlPolicy(root);await tick();assert.equal(select.value,'one');assert.equal(changes,1);assert.equal(select.hidden,true);assert.equal(root.querySelector('.select-value').textContent,'One');
  select.insertAdjacentHTML('beforeend','<option value="two">Two</option>');await tick();assert.equal(select.hidden,false);assert.equal(root.querySelector('.select-value'),null);stop();dom.window.close();
+});
+test('singleton policy counts usable options and follows group availability and option labels',async()=>{
+ const dom=setup('<main><select><option value="a" label="First">A</option><optgroup disabled label="More"><option value="b">B</option></optgroup></select></main>'),root=document.querySelector('main'),select=root.querySelector('select'),group=root.querySelector('optgroup');
+ const stop=installControlPolicy(root);await tick();assert.equal(select.hidden,true);assert.equal(root.querySelector('.select-value').textContent,'First');
+ group.disabled=false;await tick();assert.equal(select.hidden,false);
+ group.hidden=true;await tick();assert.equal(select.hidden,true);
+ select.options[0].label='Renamed';await tick();assert.equal(root.querySelector('.select-value').textContent,'Renamed');
+ stop();dom.window.close();
 });
 test('SVG camera keeps editor pointer events and supports direct zoom, pinch, keys and reset',()=>{
  const dom=setup('<main><svg viewBox="0 0 640 400"><circle data-id="point"/></svg></main>'),svg=document.querySelector('svg');svg.getBoundingClientRect=()=>({left:0,top:0,width:640,height:400});let picked=0;svg.addEventListener('pointerdown',()=>picked++);const stop=svgNavigation(svg);
