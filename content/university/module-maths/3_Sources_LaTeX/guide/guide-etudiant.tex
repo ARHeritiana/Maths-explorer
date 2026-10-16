@@ -1,0 +1,595 @@
+% Guide de séquence : module de mathématiques (7 semaines). Entièrement autonome : ne renvoie qu'au cahier et aux diapositives fournis.
+% \proftrue : version professeur ; \proffalse : version étudiante (masque points de vigilance, causes, évaluation, différenciation).
+\documentclass[10.5pt,a4paper]{article}
+\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{mathpazo}
+\IfFileExists{french.ldf}{\usepackage[french]{babel}}{\usepackage[english]{babel}}
+\usepackage[margin=1.9cm]{geometry}\usepackage{amsmath,amssymb}\usepackage[table]{xcolor}
+\usepackage{enumitem}\usepackage{array,longtable,booktabs}\usepackage{needspace}
+\usepackage[framemethod=default]{mdframed}\usepackage{fancyhdr}
+\newif\ifprof
+\proffalse
+\definecolor{marine}{HTML}{1F3A5F}\definecolor{acier}{HTML}{4A6FA5}\definecolor{ardoise}{HTML}{5B6770}\definecolor{fondpale}{HTML}{F6F8FA}
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=*,itemsep=1pt,topsep=2pt}
+\setlist[itemize]{leftmargin=*,itemsep=1pt,topsep=2pt}
+\sloppy\emergencystretch=3em\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{4pt}
+\newcounter{seance}[section]
+\mdfdefinestyle{filet}{linecolor=acier,linewidth=2.5pt,topline=false,bottomline=false,rightline=false,leftmargin=0pt,rightmargin=0pt,innerleftmargin=9pt,innerrightmargin=6pt,innertopmargin=3pt,innerbottommargin=3pt,backgroundcolor=fondpale}
+\newmdenv[style=filet,linecolor=marine]{objectif}
+\providecommand{\og}{\guillemotleft\,}\providecommand{\fg}{\,\guillemotright}
+\newcommand{\R}{\mathbb{R}}\newcommand{\C}{\mathbb{C}}\newcommand{\e}{\mathrm{e}}
+\newcommand{\horsprog}{\textsf{\textcolor{ardoise}{[HORS PROGRAMME]}}}
+\newcommand{\verif}{\textsf{\textcolor{ardoise}{(convention)}}}
+\newcommand{\synth}{\textsf{\textcolor{ardoise}{(synthèse)}}}
+\newcommand{\profonly}[1]{\ifprof #1\fi}
+\newcommand{\titrecourant}{Guide de séquence}
+\pagestyle{fancy}\fancyhf{}\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\textcolor{ardoise}{Guide de séquence -- Version étudiante}}\fancyhead[R]{\small\textcolor{ardoise}{\titrecourant}}\fancyfoot[C]{\small\thepage}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+\begin{center}{\LARGE\bfseries\textcolor{marine}{Mathématiques : guide de séquence}}\\[3pt]
+{\large\textcolor{ardoise}{Version étudiante\ -- sept semaines, quatre à cinq séances de 1\,h\,30}}\end{center}
+\section*{Comment utiliser ce guide}
+\begin{objectif}
+Ce guide accompagne le \textbf{cahier de travail autonome} et les \textbf{diapositives interactives} (\texttt{semaine1.html} à \texttt{semaine7.html}) fournis avec lui. Il n'a besoin d'aucune autre ressource : toute référence « Exercice $n.k$ » ou « \S$n.2$ » désigne le cahier (chapitre $n$, exercice ou section $k$).\\
+\textbf{Hypothèses retenues} : niveau licence première année, séances de 1\,h\,30, sept semaines, calculatrice autorisée seulement pour les contrôles numériques. Les durées sont indicatives et à adapter à votre calendrier. Le contenu du module est celui du cahier ; confrontez-le à votre propre syllabus.\\
+\textbf{Déroulé type d'une séance} : rituel (10 min) -- manipulation (25 min) -- trace écrite (25 min) -- entraînement (25 min) -- clôture par un billet de sortie (5 min).
+\end{objectif}
+\clearpage
+\section{Trigonométrie, fonctions usuelles, nombres complexes}
+\renewcommand{\titrecourant}{Semaine 1}
+\begin{objectif}\textbf{Objectif de la semaine} : Maîtriser le cercle trigonométrique, les identités de $\ln$, $\exp$, $\cosh$, $\sinh$, les factorielles et le calcul dans $\C$ (forme algébrique, exponentielle, racines).\\\textbf{Prérequis} : Trigonométrie du triangle rectangle ; puissances ; résolution d'équations du premier et du second degré.\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Triangles, puissances, factorielles & résoudre un problème d'échelle avec $\sin,\cos,\tan$ et simplifier une expression à factorielles & \ifprof Modéliser, Calculer\else 1\,h\,30\fi & 1.2, 1.3\\
+2 & Cercle trigonométrique & lire valeurs et signes d'un angle sur le cercle et réduire une expression & \ifprof Représenter, Calculer\else 1\,h\,30\fi & 1.1, 1.4, 1.5\\
+3 & $\ln$, $\exp$, $\cosh$, $\sinh$ & établir et appliquer les identités usuelles, résoudre une équation hyperbolique & \ifprof Raisonner, Calculer\else 1\,h\,30\fi & 1.8\\
+4 & Nombres complexes : forme et plan & passer de la forme algébrique à l'exponentielle, multiplier, diviser, extraire des racines & \ifprof Calculer, Représenter\else 1\,h\,30\fi & 1.6, 1.7, 1.9, 1.10\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 1.1 -- Triangles, puissances, factorielles}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : résoudre un problème d'échelle avec $\sin,\cos,\tan$ et simplifier une expression à factorielles.\\\textbf{Critère de réussite} : l'étudiant simplifie $\frac{(n+2)!}{(n-1)!}$ et donne la hauteur atteinte par l'échelle.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Valeurs exactes de $\sin,\cos$ aux angles usuels (questions flash)\\
+25 min & Manipulation & Problème de l'échelle contre un mur : faire varier la longueur et le pied (diapositives \texttt{semaine1.html}, scène « Échelle »)\\
+25 min & Trace écrite & \S1.2 (factorielles), exemples 1.4, 1.5, 1.13 et 1.14 (échelle, seuils de $n!$)\\
+25 min & Entraînement & Exercices 1.2, 1.3 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 1.3.\profonly{ \textbf{Point de vigilance} : Distinguer $\frac{(n+2)!}{(n-1)!}$ de $(n+2)!/(n-1)$ : insister sur la factorisation du plus petit factoriel.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 1.2 -- Cercle trigonométrique}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : lire valeurs et signes d'un angle sur le cercle et réduire une expression.\\\textbf{Critère de réussite} : l'étudiant résout $\sin x=\cos2x$ sur $[0;2\pi[$ sans oublier de solution.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Placer $\frac{5\pi}6$, $-\frac\pi3$, $\frac{7\pi}4$ sur le cercle\\
+25 min & Manipulation & Faire glisser un point sur le cercle et lire $\cos,\sin$ (diapositives \texttt{semaine1.html}, scène « Cercle trigo »)\\
+25 min & Trace écrite & \S1.2 (cercle), exemples 1.1 à 1.3\\
+25 min & Entraînement & Exercices 1.1, 1.4, 1.5 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 1.5.\profonly{ \textbf{Point de vigilance} : Un seul angle trouvé sur deux : vérifier le nombre de solutions attendues avant de conclure.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 1.3 -- $\ln$, $\exp$, $\cosh$, $\sinh$}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : établir et appliquer les identités usuelles, résoudre une équation hyperbolique.\\\textbf{Critère de réussite} : l'étudiant résout $3\cosh x-\sinh x=3$ et conclut sur le nombre de solutions.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Dérivées de $\ln$, $\exp$ ; $\ln(ab)$ et $\ln(a/b)$\\
+25 min & Manipulation & Superposer $\cosh$, $\sinh$ et $\e^{x}/2$ (diapositives \texttt{semaine1.html}, scène « ln · exp » et « ch · sh »)\\
+25 min & Trace écrite & \S1.2 (fonctions hyperboliques), exemples 1.11 et 1.12 ($3\cosh x-\sinh x=3$, nombre de solutions)\\
+25 min & Entraînement & Exercices 1.8 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 1.8.\profonly{ \textbf{Point de vigilance} : Cas $\cosh x=c<1$ sans solution réelle : à faire énoncer par un étudiant.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 1.4 -- Nombres complexes : forme et plan}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : passer de la forme algébrique à l'exponentielle, multiplier, diviser, extraire des racines.\\\textbf{Critère de réussite} : l'étudiant calcule $\frac{(1+i)^8}{(1-i\sqrt3)^3}$ et résout $z^4=-16$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Module et argument de $1+i$, $-i$, $-4$\\
+25 min & Manipulation & Placer $z$, $z^2$ et les racines $n$-ièmes dans le plan (diapositives \texttt{semaine1.html}, scène « Plan $\C$ »)\\
+25 min & Trace écrite & \S1.2 (complexes), exemples 1.6 à 1.10 (arguments, racines, linéarisation)\\
+25 min & Entraînement & Exercices 1.6, 1.7, 1.9, 1.10 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 1.7.\profonly{ \textbf{Point de vigilance} : Argument de $0$ indéfini ; $z^n=0\Rightarrow z=0$ : source d'erreurs récurrente.}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Réduire $\frac{(n+2)!}{(n-1)!}$ en $\frac{n+2}{n-1}$ & Confusion factorielle et quotient & Écrire $(n+2)!=(n+2)(n+1)n(n-1)!$ & 1.2\\
+Oublier une solution de $\sin x=\cos2x$ & Résolution par une seule branche & Compter les solutions sur le cercle & 1.5\\
+Donner $\arctan\frac yx$ comme argument sans tenir compte du quadrant & Formule apprise sans contexte & Toujours placer le point avant de donner $\theta$ & 1.6\\
+Écrire $\cosh x=\frac12$ comme possible & Analogie avec $\cos$ & Rappeler $\cosh x\ge1$ & 1.8\\
+$z^4=-16$ : ne donner que deux racines & Confusion avec le second degré & Dessiner les quatre racines sur un cercle & 1.7\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Réduire $\frac{(n+2)!}{(n-1)!}$ en $\frac{n+2}{n-1}$ & Écrire $(n+2)!=(n+2)(n+1)n(n-1)!$ & 1.2\\
+Oublier une solution de $\sin x=\cos2x$ & Compter les solutions sur le cercle & 1.5\\
+Donner $\arctan\frac yx$ comme argument sans tenir compte du quadrant & Toujours placer le point avant de donner $\theta$ & 1.6\\
+Écrire $\cosh x=\frac12$ comme possible & Rappeler $\cosh x\ge1$ & 1.8\\
+$z^4=-16$ : ne donner que deux racines & Dessiner les quatre racines sur un cercle & 1.7\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : tableau des valeurs exactes préimprimé. Niveaux : 1.1 (socle), 1.6 (intermédiaire), 1.9 (approfondissement). Extension : racines $n$-ièmes de l'unité (1.9). FLE/FLS : lexique cercle/circle, argument/argument, module/modulus, racine/root.
+\subsection{Évaluation}
+Contrôle du cahier \S1.6 (20 points, trois questions, barème et corrigé fournis). Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\clearpage
+\section{Proportions, polynômes, fractions rationnelles, limites}
+\renewcommand{\titrecourant}{Semaine 2}
+\begin{objectif}\textbf{Objectif de la semaine} : Traduire une proportion en équation, discuter le nombre de solutions d'un trinôme à paramètre, décomposer en éléments simples et prouver une limite par $\varepsilon$--$\delta$.\\\textbf{Prérequis} : Pourcentages, équations du second degré (vue en première partie), fractions.\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Proportions, pourcentages, interpolation & poser une variation en facteur multiplicatif et interpoler entre deux mesures & \ifprof Modéliser, Calculer\else 1\,h\,30\fi & 2.1, 2.2\\
+2 & Second degré et équations bicarrées & résoudre $ax^2+bx+c=0$ et $aX^2+bX+c=0$ avec $X=x^2$, discuter selon un paramètre & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 2.3, 2.4, 2.5\\
+3 & Éléments simples & décomposer une fraction rationnelle avec deux pôles simples, avec division euclidienne ou pôle double si nécessaire & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 2.6, 2.7\\
+4 & Limites par $\varepsilon$--$\delta$ & écrire la définition et exhiber $\delta(\varepsilon)$ pour une fonction affine et pour $x^2$ & \ifprof Raisonner, Communiquer\else 1\,h\,30\fi & 2.8, 2.9\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 2.1 -- Proportions, pourcentages, interpolation}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : poser une variation en facteur multiplicatif et interpoler entre deux mesures.\\\textbf{Critère de réussite} : l'étudiant retrouve un prix initial après une baisse et estime une température par interpolation.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Facteur de $+20\,\%$, de $-15\,\%$\\
+25 min & Manipulation & Faire glisser deux mesures et lire la droite d'interpolation (diapositives \texttt{semaine2.html}, scène « Interpolation »)\\
+25 min & Trace écrite & \S2.2, exemples de pourcentages et d'interpolation\\
+25 min & Entraînement & Exercices 2.1, 2.2 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 2.1.\profonly{ \textbf{Point de vigilance} : Hausse de $20\,\%$ puis baisse de $20\,\%$ n'est pas neutre : à faire constater par le calcul.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 2.2 -- Second degré et équations bicarrées}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : résoudre $ax^2+bx+c=0$ et $aX^2+bX+c=0$ avec $X=x^2$, discuter selon un paramètre.\\\textbf{Critère de réussite} : l'étudiant traite le cas $a=0$ avant le discriminant et rejette $X<0$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Signe du discriminant et nombre de racines\\
+25 min & Manipulation & Déplacer le paramètre $m$ et voir le nombre de racines (diapositives \texttt{semaine2.html}, scène « Trinôme » et « Biquadratique »)\\
+25 min & Trace écrite & \S2.2 (discriminant, bicarrée), exemples à paramètre\\
+25 min & Entraînement & Exercices 2.3, 2.4, 2.5 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 2.4.\profonly{ \textbf{Point de vigilance} : Le cas dégénéré $m=1$ est souvent oublié.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 2.3 -- Éléments simples}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : décomposer une fraction rationnelle avec deux pôles simples, avec division euclidienne ou pôle double si nécessaire.\\\textbf{Critère de réussite} : l'étudiant vérifie sa décomposition en un point numérique.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Réduire $\frac1x+\frac1{x+1}$\\
+25 min & Manipulation & Faire varier les pôles et lire les coefficients (diapositives \texttt{semaine2.html}, scène « Éléments simples »)\\
+25 min & Trace écrite & \S2.2 (éléments simples), exemples avec degré trop grand et pôle double\\
+25 min & Entraînement & Exercices 2.6, 2.7 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 2.7.\profonly{ \textbf{Point de vigilance} : Exiger le contrôle numérique à chaque décomposition.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 2.4 -- Limites par $\varepsilon$--$\delta$}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : écrire la définition et exhiber $\delta(\varepsilon)$ pour une fonction affine et pour $x^2$.\\\textbf{Critère de réussite} : l'étudiant choisit $\delta=\min(1,\varepsilon/7)$ pour $x^2$ en $3$ et justifie.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Énoncer la définition en quantificateurs\\
+25 min & Manipulation & Voir la bande $[\ell-\varepsilon;\ell+\varepsilon]$ et le $\delta$ associé (diapositives \texttt{semaine2.html}, scène « Limites »)\\
+25 min & Trace écrite & \S2.2 (limites), exemples $\varepsilon$--$\delta$ et $|x|/x$\\
+25 min & Entraînement & Exercices 2.8, 2.9 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 2.8.\profonly{ \textbf{Point de vigilance} : Séance exigeante : prévoir un étayage par étapes (majorer $|x+3|$ d'abord).}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Compter $+20\,\%$ puis $-20\,\%$ comme variation nulle & Additivité supposée des taux & Multiplier les facteurs $1{,}2\times0{,}8$ & 2.1\\
+Appliquer le discriminant quand $a=0$ & Réflexe sans test & Tester d'abord le coefficient dominant & 2.4\\
+Garder une racine $X<0$ en bicarrée & Oubli de $X=x^2\ge0$ & Rappeler $x^2\ge0$ avant de revenir à $x$ & 2.5\\
+Omettre la division euclidienne quand $\deg P\ge2$ & Méthode apprise pour $\deg P\le1$ & Comparer les degrés en premier & 2.6\\
+Inverser $\varepsilon$ et $\delta$ & Ordre des quantificateurs & Écrire la phrase en français avant les symboles & 2.8\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Compter $+20\,\%$ puis $-20\,\%$ comme variation nulle & Multiplier les facteurs $1{,}2\times0{,}8$ & 2.1\\
+Appliquer le discriminant quand $a=0$ & Tester d'abord le coefficient dominant & 2.4\\
+Garder une racine $X<0$ en bicarrée & Rappeler $x^2\ge0$ avant de revenir à $x$ & 2.5\\
+Omettre la division euclidienne quand $\deg P\ge2$ & Comparer les degrés en premier & 2.6\\
+Inverser $\varepsilon$ et $\delta$ & Écrire la phrase en français avant les symboles & 2.8\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : fiche des quatre cas du discriminant ; coups de pouce progressifs sur 2.8. Niveaux : 2.1 (socle), 2.6 (intermédiaire), 2.8 (approfondissement). FLE/FLS : lexique proportion/ratio, racine double/double root, pôle/pole.
+\subsection{Évaluation}
+Contrôle du cahier \S2.6 (20 points, trois questions). Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\clearpage
+\section{Dérivation, développements limités, optimisation}
+\renewcommand{\titrecourant}{Semaine 3}
+\begin{objectif}\textbf{Objectif de la semaine} : Dériver, interpréter $f'$, approcher par un polynôme près d'un point et résoudre un problème d'optimisation avec justification de l'extremum.\\\textbf{Prérequis} : Dérivées usuelles, signe d'un trinôme, croissances comparées.\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Dérivée et tangente & calculer $f'$ et écrire la tangente ; reconnaître un point de non-dérivabilité & \ifprof Calculer, Représenter\else 1\,h\,30\fi & 3.1, 3.2, 3.6, 3.9\\
+2 & Développements limités & écrire le développement de Taylor--Young d'ordre 2 et l'utiliser pour une valeur approchée ou une limite & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 3.4, 3.5\\
+3 & Variations et points critiques & dresser un tableau de variations et classer les points critiques & \ifprof Raisonner, Représenter\else 1\,h\,30\fi & 3.3, 3.8\\
+4 & Optimisation & poser le problème, trouver le domaine, étudier la fonction, conclure par une phrase & \ifprof Modéliser, Calculer\else 1\,h\,30\fi & 3.7\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 3.1 -- Dérivée et tangente}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer $f'$ et écrire la tangente ; reconnaître un point de non-dérivabilité.\\\textbf{Critère de réussite} : l'étudiant donne la tangente de $x\e^x$ en $1$ et justifie la non-dérivabilité de $|x|$ en $0$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Dérivées de $x^3$, $\e^{2x}$, $\ln x$, $\sin x$\\
+25 min & Manipulation & Faire glisser le point de tangence et lire la pente (diapositives \texttt{semaine3.html}, scène « Tangente »)\\
+25 min & Trace écrite & \S3.2 (dérivée, règles, démonstration du produit), exemples de tangente et de non-dérivabilité\\
+25 min & Entraînement & Exercices 3.1, 3.2, 3.6, 3.9 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 3.1.\profonly{ \textbf{Point de vigilance} : $x^2\sin\frac1x$ : dérivable en $0$ mais dérivée non continue, à présenter en fin de séance.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 3.2 -- Développements limités}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : écrire le développement de Taylor--Young d'ordre 2 et l'utiliser pour une valeur approchée ou une limite.\\\textbf{Critère de réussite} : l'étudiant approche $\sqrt{1{,}02}$ et calcule $\lim\frac{\e^x-1-x}{x^2}$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Dérivée seconde de $\e^x$, $\ln(1+x)$\\
+25 min & Manipulation & Comparer une fonction et son polynôme de Taylor (diapositives \texttt{semaine3.html}, scène « Dév. limités »)\\
+25 min & Trace écrite & \S3.2 (Taylor--Young), exemples de $\sqrt{1+x}$ et de limite de validité\\
+25 min & Entraînement & Exercices 3.4, 3.5 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 3.4.\profonly{ \textbf{Point de vigilance} : Insister : le DL n'est valable que près du point ($\sqrt{1+3}$ à l'ordre 2 est faux de $0{,}6$).}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 3.3 -- Variations et points critiques}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : dresser un tableau de variations et classer les points critiques.\\\textbf{Critère de réussite} : l'étudiant traite $x^3$, $x^4$ et $|x|$ en $0$ en citant le critère du changement de signe de $f'$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Signe de $3(x-1)(x+1)$\\
+25 min & Manipulation & Déplacer un point critique et lire le changement de signe (diapositives \texttt{semaine3.html}, scène « Variations »)\\
+25 min & Trace écrite & \S3.2 (variations, Fermat), exemples $x^3-3x+1$ et cas $f'(a)=0$\\
+25 min & Entraînement & Exercices 3.3, 3.8 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 3.8.\profonly{ \textbf{Point de vigilance} : Ne pas conclure d'un seul $f'(a)=0$ ; citer la réciproque fausse de Fermat.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 3.4 -- Optimisation}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : poser le problème, trouver le domaine, étudier la fonction, conclure par une phrase.\\\textbf{Critère de réussite} : l'étudiant résout le problème de la boîte et teste le cas $x\le3$ où l'extremum est sur la borne.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Volume $x(30-2x)^2$ : domaine ?\\
+25 min & Manipulation & Faire varier $x$ et lire $V(x)$ (diapositives \texttt{semaine3.html}, scène « Optimisation »)\\
+25 min & Trace écrite & \S3.2 (méthode d'optimisation), exemples de boîte et de contrainte\\
+25 min & Entraînement & Exercices 3.7 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 3.7.\profonly{ \textbf{Point de vigilance} : Vérifier que le point critique est dans le domaine ; comparer aux bornes.}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Dériver $x^2\e^{-x}$ en oubliant la règle du produit & Dérivation terme à terme & Écrire $u'v+uv'$ avant de calculer & 3.1\\
+Confondre $f'(a)=0$ et extremum & Réciproque de Fermat supposée & $x^3$ en $0$ & 3.3\\
+Appliquer un DL loin de $0$ & Valeur approchée prise pour exacte & Comparer avec le calcul exact & 3.4\\
+Oublier le domaine en optimisation & Fonction étudiée sur $\R$ & Écrire $0<x<15$ dès la mise en équation & 3.7\\
+Conclure sans phrase ni unité & Résultat symbolique seul & Exiger la phrase de conclusion & 3.7\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Dériver $x^2\e^{-x}$ en oubliant la règle du produit & Écrire $u'v+uv'$ avant de calculer & 3.1\\
+Confondre $f'(a)=0$ et extremum & $x^3$ en $0$ & 3.3\\
+Appliquer un DL loin de $0$ & Comparer avec le calcul exact & 3.4\\
+Oublier le domaine en optimisation & Écrire $0<x<15$ dès la mise en équation & 3.7\\
+Conclure sans phrase ni unité & Exiger la phrase de conclusion & 3.7\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : fiche en cinq étapes pour l'optimisation. Niveaux : 3.1 (socle), 3.4 (intermédiaire), 3.7 (approfondissement). Extension : 3.8 (discussion de racines selon $m$). FLE/FLS : lexique tangente/tangent line, point critique/critical point, minimum/minimum.
+\subsection{Évaluation}
+Contrôle du cahier \S3.6 (20 points). Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\clearpage
+\section{Intégration}
+\renewcommand{\titrecourant}{Semaine 4}
+\begin{objectif}\textbf{Objectif de la semaine} : Calculer une intégrale par primitive, par parties ou par changement de variable ; reconnaître une intégrale impropre convergente ; calculer aires, valeur moyenne et centre de gravité.\\\textbf{Prérequis} : Primitives usuelles, dérivation, croissances comparées.\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Riemann et primitives & relier somme de Riemann, intégrale et primitive & \ifprof Calculer, Représenter\else 1\,h\,30\fi & 4.1, 4.6\\
+2 & Intégration par parties & choisir $u$ et $v'$, appliquer la formule, traiter les cas cycliques & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 4.3, 4.4, 4.9\\
+3 & Changement de variable et impropres & changer de variable avec les bornes ; décider de la convergence & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 4.2, 4.7\\
+4 & Aires, valeur moyenne, centre de gravité & calculer une aire entre courbes (avec croisements), une valeur moyenne et un centre de gravité & \ifprof Modéliser, Calculer\else 1\,h\,30\fi & 4.5, 4.8\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 4.1 -- Riemann et primitives}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : relier somme de Riemann, intégrale et primitive.\\\textbf{Critère de réussite} : l'étudiant calcule $\int_0^1x^2$ par la limite de $S_n$ puis par une primitive.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Primitives de $x^2$, $\frac1x$, $\e^{2x}$\\
+25 min & Manipulation & Raffiner la subdivision et observer la convergence de $S_n$ (diapositives \texttt{semaine4.html}, scène « Riemann »)\\
+25 min & Trace écrite & \S4.2 (Riemann, théorème fondamental), exemple de somme de Riemann\\
+25 min & Entraînement & Exercices 4.1, 4.6 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 4.1.\profonly{ \textbf{Point de vigilance} : Contrôler $S_4=\frac7{32}$ à la main avant d'écrire la formule.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 4.2 -- Intégration par parties}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : choisir $u$ et $v'$, appliquer la formule, traiter les cas cycliques.\\\textbf{Critère de réussite} : l'étudiant calcule $\int_0^\pi\e^x\sin x$ en résolvant l'équation en $J$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Dériver $x\ln x-x$\\
+25 min & Manipulation & Choisir $u$ et $v'$ et voir le calcul s'adapter (diapositives \texttt{semaine4.html}, scène « Par parties »)\\
+25 min & Trace écrite & \S4.2 (parties), exemples $x\e^x$, $\ln x$, parties cycliques\\
+25 min & Entraînement & Exercices 4.3, 4.4, 4.9 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 4.3.\profonly{ \textbf{Point de vigilance} : Le polynôme joue $u$ ; $\ln x$ seul s'intègre avec $v'=1$.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 4.3 -- Changement de variable et impropres}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : changer de variable avec les bornes ; décider de la convergence.\\\textbf{Critère de réussite} : l'étudiant traite $\int_0^1\frac{2x}{1+x^2}$ et explique pourquoi $\int_{-1}^1\frac{dx}{x^2}$ diverge.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Dérivée de $1+x^2$\\
+25 min & Manipulation & Faire varier les bornes d'une intégrale impropre (diapositives \texttt{semaine4.html}, scène « Changement de variable »)\\
+25 min & Trace écrite & \S4.2 (changement de variable, intégrales impropres)\\
+25 min & Entraînement & Exercices 4.2, 4.7 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 4.2.\profonly{ \textbf{Point de vigilance} : Ne pas appliquer le théorème fondamental à travers un pôle.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 4.4 -- Aires, valeur moyenne, centre de gravité}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer une aire entre courbes (avec croisements), une valeur moyenne et un centre de gravité.\\\textbf{Critère de réussite} : l'étudiant distingue intégrale signée et aire sur $x^2-2x$, $[0;3]$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Signe de $x^2-2x$\\
+25 min & Manipulation & Colorer l'aire signée et l'aire géométrique (diapositives \texttt{semaine4.html}, scène « Applications »)\\
+25 min & Trace écrite & \S4.2 (valeur moyenne, centre de gravité), exemples d'aire et de $4-x^2$\\
+25 min & Entraînement & Exercices 4.5, 4.8 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 4.5.\profonly{ \textbf{Point de vigilance} : Découper aux changements de signe avant d'intégrer.}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Oublier de changer les bornes & Retour à $x$ implicite & Écrire $u(a)$ et $u(b)$ explicitement & 4.2\\
+Confondre aire et intégrale signée & Pas d'étude de signe & Tracer la courbe d'abord & 4.5\\
+Appliquer le théorème fondamental à $\frac1{x^2}$ sur $[-1;1]$ & Continuité non vérifiée & Chercher les pôles dans l'intervalle & 4.7\\
+Boucler indéfiniment en parties cycliques & Pas de repère de bouclage & Reconnaître $J$ au second membre & 4.4\\
+$\int_1^{+\infty}\frac{dx}{x}$ déclarée convergente & Analogie avec $\frac1{x^2}$ & Comparer $p=1$ et $p>1$ & 4.7\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Oublier de changer les bornes & Écrire $u(a)$ et $u(b)$ explicitement & 4.2\\
+Confondre aire et intégrale signée & Tracer la courbe d'abord & 4.5\\
+Appliquer le théorème fondamental à $\frac1{x^2}$ sur $[-1;1]$ & Chercher les pôles dans l'intervalle & 4.7\\
+Boucler indéfiniment en parties cycliques & Reconnaître $J$ au second membre & 4.4\\
+$\int_1^{+\infty}\frac{dx}{x}$ déclarée convergente & Comparer $p=1$ et $p>1$ & 4.7\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : arbre de décision de la technique à choisir. Niveaux : 4.1 (socle), 4.4 (intermédiaire), 4.7 (approfondissement). FLE/FLS : lexique primitive/antiderivative, intégration par parties/integration by parts, impropre/improper.
+\subsection{Évaluation}
+Contrôle du cahier \S4.6 (20 points). Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\clearpage
+\section{Coordonnées, produit scalaire, plans et volumes}
+\renewcommand{\titrecourant}{Semaine 5}
+\begin{objectif}\textbf{Objectif de la semaine} : Convertir entre systèmes de coordonnées, utiliser le produit scalaire et l'équation d'un plan, calculer volumes et masses.\\\textbf{Prérequis} : Trigonométrie (semaine 1), intégration (semaine 4).\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Coordonnées polaires & convertir un point et passer d'une courbe polaire à son équation cartésienne & \ifprof Représenter, Calculer\else 1\,h\,30\fi & 5.1, 5.4\\
+2 & Cylindriques et sphériques & convertir un point entre les trois repères & \ifprof Représenter, Calculer\else 1\,h\,30\fi & 5.2\\
+3 & Produit scalaire, projection, plans & calculer un angle, une projection et une distance à un plan, écrire l'équation d'un plan & \ifprof Raisonner, Calculer\else 1\,h\,30\fi & 5.3, 5.5, 5.8\\
+4 & Volumes et masses & calculer un volume ou une masse avec l'élément de volume adapté & \ifprof Modéliser, Calculer\else 1\,h\,30\fi & 5.6, 5.7, 5.9\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 5.1 -- Coordonnées polaires}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : convertir un point et passer d'une courbe polaire à son équation cartésienne.\\\textbf{Critère de réussite} : l'étudiant donne $\theta$ de $(-1,-1)$ avec le bon quadrant et identifie $r=2\cos\theta$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Quadrant de $(-1,-1)$\\
+25 min & Manipulation & Déplacer un point et lire $r,\theta$ (diapositives \texttt{semaine5.html}, scène « Polaire »)\\
+25 min & Trace écrite & \S5.2 (coordonnées), exemples de quadrant et de cercle polaire\\
+25 min & Entraînement & Exercices 5.1, 5.4 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 5.1.\profonly{ \textbf{Point de vigilance} : Origine et axes : $\theta$ indéterminé ou obtenu sans $\arctan$.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 5.2 -- Cylindriques et sphériques}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : convertir un point entre les trois repères.\\\textbf{Critère de réussite} : l'étudiant convertit $(1,1,\sqrt2)$ en sphériques et contrôle en reconvertissant.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & $x=r\cos\theta$, $y=r\sin\theta$\\
+25 min & Manipulation & Faire tourner la scène 3D et lire $\rho,\varphi,\theta$ (diapositives \texttt{semaine5.html}, scène « Cylindriques · sphériques »)\\
+25 min & Trace écrite & \S5.2, convention $\varphi$ angle avec $Oz$\\
+25 min & Entraînement & Exercices 5.2 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 5.2.\profonly{ \textbf{Point de vigilance} : Annoncer la convention sur $\theta$ et $\varphi$ dès le début.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 5.3 -- Produit scalaire, projection, plans}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer un angle, une projection et une distance à un plan, écrire l'équation d'un plan.\\\textbf{Critère de réussite} : l'étudiant écrit le plan par $A,B,C$ et sa distance à l'origine.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Norme de $(1,2,2)$\\
+25 min & Manipulation & Déplacer un plan et lire la distance d'un point (diapositives \texttt{semaine5.html}, scène « Produit scalaire »)\\
+25 min & Trace écrite & \S5.2 (produit scalaire, Cauchy--Schwarz, plans), exemples de projection\\
+25 min & Entraînement & Exercices 5.3, 5.5, 5.8 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 5.5.\profonly{ \textbf{Point de vigilance} : Vérifier $u\ne0$ avant de projeter ; écrire le plan sous la forme $ax+by+cz=d$.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 5.4 -- Volumes et masses}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer un volume ou une masse avec l'élément de volume adapté.\\\textbf{Critère de réussite} : l'étudiant calcule la masse d'une boule de densité $r$ et le volume d'un cornet.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Volume du cylindre, du cône, de la boule\\
+25 min & Manipulation & Faire varier les bornes d'une cellule sphérique (diapositives \texttt{semaine5.html}, scène « Volumes élémentaires »)\\
+25 min & Trace écrite & \S5.2 (volumes), exemple de masse à densité variable\\
+25 min & Entraînement & Exercices 5.6, 5.7, 5.9 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 5.9.\profonly{ \textbf{Point de vigilance} : Facteur $r$ ou $\rho^2\sin\varphi$ souvent oublié.}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Donner $\arctan\frac yx$ comme $\theta$ dans tous les cas & Formule sans quadrant & Placer le point puis lire le quadrant & 5.1\\
+Confondre les rôles de $\theta$ et $\varphi$ & Conventions différentes selon les cours & Rappeler la convention en tête de feuille & 5.2\\
+Oublier $\rho^2\sin\varphi$ & Élément de volume non mémorisé & Calculer le volume d'une boule pour contrôler & 5.7\\
+Distance à un plan sans écrire $ax+by+cz=d$ & Formule appliquée à une équation non normalisée & Mettre toujours le second membre à droite & 5.5\\
+Projeter sur $u=0$ & Pas de test préalable & Tester $u\cdot u\ne0$ & 5.3\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Donner $\arctan\frac yx$ comme $\theta$ dans tous les cas & Placer le point puis lire le quadrant & 5.1\\
+Confondre les rôles de $\theta$ et $\varphi$ & Rappeler la convention en tête de feuille & 5.2\\
+Oublier $\rho^2\sin\varphi$ & Calculer le volume d'une boule pour contrôler & 5.7\\
+Distance à un plan sans écrire $ax+by+cz=d$ & Mettre toujours le second membre à droite & 5.5\\
+Projeter sur $u=0$ & Tester $u\cdot u\ne0$ & 5.3\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : fiche de conversion des trois repères. Niveaux : 5.1 (socle), 5.5 (intermédiaire), 5.7 (approfondissement). FLE/FLS : lexique produit scalaire/dot product, plan tangent/tangent plane, boule/ball.
+\subsection{Évaluation}
+Contrôle du cahier \S5.6 (20 points). Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\clearpage
+\section{Calcul matriciel}
+\renewcommand{\titrecourant}{Semaine 6}
+\begin{objectif}\textbf{Objectif de la semaine} : Multiplier des matrices, calculer déterminant et inverse, résoudre un système linéaire en distinguant les trois situations.\\\textbf{Prérequis} : Résolution de systèmes $2\times2$, produit scalaire.\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Matrices et produit & calculer $A+B$, $AB$, $BA$ et constater la non-commutativité & \ifprof Calculer, Représenter\else 1\,h\,30\fi & 6.1\\
+2 & Déterminant & calculer $\det$ en $2\times2$ et $3\times3$, interpréter aire et volume & \ifprof Calculer, Représenter\else 1\,h\,30\fi & 6.3, 6.6\\
+3 & Inverse et inversibilité & décider de l'inversibilité et calculer l'inverse & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 6.2, 6.4, 6.8, 6.9\\
+4 & Systèmes linéaires & résoudre $AX=b$ et reconnaître les trois situations & \ifprof Modéliser, Raisonner\else 1\,h\,30\fi & 6.5, 6.7\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 6.1 -- Matrices et produit}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer $A+B$, $AB$, $BA$ et constater la non-commutativité.\\\textbf{Critère de réussite} : l'étudiant calcule $CD$ et $DC$ et vérifie la compatibilité des tailles.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Produit scalaire de deux vecteurs\\
+25 min & Manipulation & Faire glisser les colonnes d'une matrice et lire l'image du carré unité (diapositives \texttt{semaine6.html}, scène « Matrices 2×2 »)\\
+25 min & Trace écrite & \S6.2 (produit, règles), exemples de non-commutativité et de produit nul\\
+25 min & Entraînement & Exercices 6.1 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 6.1.\profonly{ \textbf{Point de vigilance} : Surveiller le produit terme à terme, fréquent.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 6.2 -- Déterminant}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer $\det$ en $2\times2$ et $3\times3$, interpréter aire et volume.\\\textbf{Critère de réussite} : l'étudiant calcule $\det$ de la matrice de rang $2$ et conclut sur la coplanarité.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Aire d'un parallélogramme\\
+25 min & Manipulation & Observer le signe et le module du déterminant (diapositives \texttt{semaine6.html}, scène « Déterminant 3×3 »)\\
+25 min & Trace écrite & \S6.2 (déterminant, interprétation), exemples $3\times3$ et déterminant nul\\
+25 min & Entraînement & Exercices 6.3, 6.6 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 6.3.\profonly{ \textbf{Point de vigilance} : Damier des signes rappelé avant le premier développement.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 6.3 -- Inverse et inversibilité}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : décider de l'inversibilité et calculer l'inverse.\\\textbf{Critère de réussite} : l'étudiant inverse $\begin{pmatrix}3&1\\5&2\end{pmatrix}$ et vérifie $AA^{-1}=I$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Matrice identité\\
+25 min & Manipulation & Faire varier un coefficient jusqu'à $\det=0$ (diapositives \texttt{semaine6.html}, scène « Matrices 2×2 »)\\
+25 min & Trace écrite & \S6.2 (inverse, démonstration $2\times2$), exemples d'inverse et de matrice singulière\\
+25 min & Entraînement & Exercices 6.2, 6.4, 6.8, 6.9 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 6.4.\profonly{ \textbf{Point de vigilance} : Inverser $AB$ : ordre des facteurs inversé.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 6.4 -- Systèmes linéaires}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : résoudre $AX=b$ et reconnaître les trois situations.\\\textbf{Critère de réussite} : l'étudiant explique pourquoi $\det A=0$ ne suffit pas à conclure entre aucune solution et une infinité.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Équation d'un plan\\
+25 min & Manipulation & Trois plans, un paramètre : lire le nombre de solutions (diapositives \texttt{semaine6.html}, scène « Systèmes linéaires »)\\
+25 min & Trace écrite & \S6.2 (système carré), exemples des trois situations ; annexe \horsprog\\
+25 min & Entraînement & Exercices 6.5, 6.7 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 6.7.\profonly{ \textbf{Point de vigilance} : L'annexe sur les valeurs propres est hors programme : ne pas l'évaluer.}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Supposer $AB=BA$ & Analogie avec les nombres & Contre-exemple explicite & 6.1\\
+Multiplier terme à terme & Notation similaire & Schéma ligne $\times$ colonne & 6.1\\
+Oublier un signe du damier & Règle mal mémorisée & Écrire le damier avant de développer & 6.3\\
+$(AB)^{-1}=A^{-1}B^{-1}$ & Ordre ignoré & Tester sur l'exemple $2\times2$ & 6.8\\
+Conclure \og solution unique \fg{} sans $\det$ & Système vu comme équation scalaire & Calculer $\det A$ avant toute conclusion & 6.7\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Supposer $AB=BA$ & Contre-exemple explicite & 6.1\\
+Multiplier terme à terme & Schéma ligne $\times$ colonne & 6.1\\
+Oublier un signe du damier & Écrire le damier avant de développer & 6.3\\
+$(AB)^{-1}=A^{-1}B^{-1}$ & Tester sur l'exemple $2\times2$ & 6.8\\
+Conclure \og solution unique \fg{} sans $\det$ & Calculer $\det A$ avant toute conclusion & 6.7\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : grille ligne $\times$ colonne préimprimée. Niveaux : 6.1 (socle), 6.4 (intermédiaire), 6.7 (approfondissement). Extension : valeurs propres (annexe, \horsprog). FLE/FLS : lexique déterminant/determinant, comatrice/cofactor matrix, système dégénéré/degenerate system.
+\subsection{Évaluation}
+Contrôle du cahier \S6.6 (20 points). Aucune question sur la diagonalisation. Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\clearpage
+\section{Fonctions de deux variables, intégrales multiples, équations différentielles}
+\renewcommand{\titrecourant}{Semaine 7}
+\begin{objectif}\textbf{Objectif de la semaine} : Dériver partiellement, estimer une incertitude, calculer des intégrales doubles et résoudre des équations différentielles linéaires d'ordre 1 et 2 à coefficients constants.\\\textbf{Prérequis} : Dérivation (semaine 3), intégration (semaine 4), coordonnées polaires (semaine 5).\end{objectif}
+\subsection{Plan de séquence}
+\begin{longtable}{@{}p{0.5cm}p{3.3cm}p{5.6cm}p{2.6cm}p{3.5cm}@{}}
+\toprule \textbf{N°} & \textbf{Titre} & \textbf{Objectif mesurable} & \ifprof\textbf{Compétences}\else\textbf{Durée}\fi & \textbf{Exercices du cahier}\\ \midrule\endhead
+1 & Dérivées partielles et incertitudes & calculer $f_x,f_y$, écrire le plan tangent et estimer une erreur au premier ordre & \ifprof Calculer, Modéliser\else 1\,h\,30\fi & 7.1, 7.2\\
+2 & Intégrales doubles & choisir l'ordre d'intégration, redessiner le domaine & \ifprof Calculer, Représenter\else 1\,h\,30\fi & 7.3, 7.4, 7.5\\
+3 & Changement de variables et jacobien & utiliser le jacobien en polaires et pour une application linéaire & \ifprof Calculer, Raisonner\else 1\,h\,30\fi & 7.9\\
+4 & Équations différentielles d'ordre 1 & résoudre $y'+ay=b$ avec condition initiale ; reconnaître $a=0$ et l'explosion & \ifprof Modéliser, Calculer\else 1\,h\,30\fi & 7.6, 7.7\\
+5 & Équations différentielles d'ordre 2 & classer selon le discriminant et résoudre avec $y(0),y'(0)$ & \ifprof Raisonner, Calculer\else 1\,h\,30\fi & 7.8\\
+\bottomrule\end{longtable}
+\subsection{Fiches de séance}
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 7.1 -- Dérivées partielles et incertitudes}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : calculer $f_x,f_y$, écrire le plan tangent et estimer une erreur au premier ordre.\\\textbf{Critère de réussite} : l'étudiant écrit le plan tangent à $x^2+y^2$ en $(1,2)$ et majore l'erreur sur $V=\pi r^2h$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Dérivée de $x^2\e^{3x}$\\
+25 min & Manipulation & Faire glisser le point de tangence sur une surface (diapositives \texttt{semaine7.html}, scène « Dérivées partielles »)\\
+25 min & Trace écrite & \S7.2 (dérivées partielles, incertitudes), exemples de pointe et de $\frac{xy}{x^2+y^2}$\\
+25 min & Entraînement & Exercices 7.1, 7.2 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 7.1.\profonly{ \textbf{Point de vigilance} : $f_x,f_y$ existantes ne garantissent ni continuité ni plan tangent.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 7.2 -- Intégrales doubles}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : choisir l'ordre d'intégration, redessiner le domaine.\\\textbf{Critère de réussite} : l'étudiant calcule l'intégrale sur le triangle et change l'ordre quand $\e^{x^2}$ ou $\sin(x^2)$ l'exige.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & $\int_0^1\int_0^2xy$\\
+25 min & Manipulation & Choisir l'ordre et voir les bornes se réécrire (diapositives \texttt{semaine7.html}, scène « Intégrale double »)\\
+25 min & Trace écrite & \S7.2 (Fubini), exemples sur le triangle et l'ordre indispensable\\
+25 min & Entraînement & Exercices 7.3, 7.4, 7.5 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 7.5.\profonly{ \textbf{Point de vigilance} : Tracer le domaine avant tout calcul.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 7.3 -- Changement de variables et jacobien}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : utiliser le jacobien en polaires et pour une application linéaire.\\\textbf{Critère de réussite} : l'étudiant calcule $\iint\e^{-(x^2+y^2)}=\pi$ et déduit $\int_{\R}\e^{-x^2}=\sqrt\pi$.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & $x^2+y^2$ en polaires\\
+25 min & Manipulation & Déformer un carré par $(u+v,u-v)$ (diapositives \texttt{semaine7.html}, scène « Jacobienne »)\\
+25 min & Trace écrite & \S7.2 (changement de variables), exemples du disque et du jacobien nul\\
+25 min & Entraînement & Exercices 7.9 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 7.9.\profonly{ \textbf{Point de vigilance} : Oublier le facteur $r$ dans l'élément d'aire.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 7.4 -- Équations différentielles d'ordre 1}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : résoudre $y'+ay=b$ avec condition initiale ; reconnaître $a=0$ et l'explosion.\\\textbf{Critère de réussite} : l'étudiant résout $y'+2y=6$ et la loi de refroidissement du café.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Primitive de $\e^{-2t}$\\
+25 min & Manipulation & Faire varier $a$ et $b$ et voir la solution (diapositives \texttt{semaine7.html}, scène « EDO d'ordre 1 »)\\
+25 min & Trace écrite & \S7.2 (ordre 1), exemples $a=0$ et $y'=y^2$\\
+25 min & Entraînement & Exercices 7.6, 7.7 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 7.7.\profonly{ \textbf{Point de vigilance} : $a=0$ : la formule $b/a$ n'existe pas.}\par
+\Needspace{12\baselineskip}\subsubsection*{\textcolor{marine}{Séance 7.5 -- Équations différentielles d'ordre 2}\hfill\normalfont\small\textcolor{ardoise}{1\,h\,30}}
+\begin{objectif}\textbf{Objectif} : classer selon le discriminant et résoudre avec $y(0),y'(0)$.\\\textbf{Critère de réussite} : l'étudiant traite les trois cas et vérifie en reportant dans l'équation.\end{objectif}\nopagebreak
+\begin{longtable}{@{}p{1.1cm}p{2.4cm}p{12.4cm}@{}}
+\toprule \textbf{Durée} & \textbf{Phase} & \textbf{Contenu}\\ \midrule\endhead
+10 min & Rituel & Racines de $r^2+3r+2$\\
+25 min & Manipulation & Faire varier le discriminant (diapositives \texttt{semaine7.html}, scène « EDO d'ordre 2 »)\\
+25 min & Trace écrite & \S7.2 (ordre 2), exemples des trois cas, $y''+4y=0$ et $y''-4y=0$\\
+25 min & Entraînement & Exercices 7.8 du cahier (en binômes, corrigés fermés)\\
+5 min & Clôture & Billet de sortie : une phrase résumant le cas limite du jour\\ \bottomrule\end{longtable}\nopagebreak
+\textbf{Devoir} : exercice 7.8.\profonly{ \textbf{Point de vigilance} : Racine double : ne pas oublier le facteur $(A+Bt)$.}\par
+\ifprof
+\begin{longtable}{@{}p{4.8cm}p{3.6cm}p{4.9cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur} & \textbf{Cause probable \synth} & \textbf{Remédiation} & \textbf{Exercice}\\ \midrule\endhead
+Dériver en $x$ sans geler $y$ & Variable muette confondue & Écrire \og $y$ constant \fg{} & 7.1\\
+Écrire les bornes de l'ordre échangé sans redessiner $D$ & Bornes recopiées & Tracer $D$ d'abord & 7.5\\
+Oublier le jacobien $r$ & Élément d'aire non mémorisé & Calculer l'aire du disque pour contrôler & 7.9\\
+Racine double traitée comme racines distinctes & Forme générale non reliée au discriminant & Écrire le tableau des trois cas & 7.8\\
+Appliquer $b/a$ avec $a=0$ & Formule apprise sans condition & Tester $a$ en premier & 7.6\\
+\bottomrule\end{longtable}
+\else
+\begin{longtable}{@{}p{7.2cm}p{7.2cm}p{1.6cm}@{}}
+\toprule \textbf{Erreur à éviter} & \textbf{Réflexe} & \textbf{Exercice}\\ \midrule\endhead
+Dériver en $x$ sans geler $y$ & Écrire \og $y$ constant \fg{} & 7.1\\
+Écrire les bornes de l'ordre échangé sans redessiner $D$ & Tracer $D$ d'abord & 7.5\\
+Oublier le jacobien $r$ & Calculer l'aire du disque pour contrôler & 7.9\\
+Racine double traitée comme racines distinctes & Écrire le tableau des trois cas & 7.8\\
+Appliquer $b/a$ avec $a=0$ & Tester $a$ en premier & 7.6\\
+\bottomrule\end{longtable}
+\fi
+\profonly{\subsection{Différenciation et variante FLE/FLS}
+Étayage : tableau des trois cas de l'ordre 2. Niveaux : 7.1 (socle), 7.5 (intermédiaire), 7.8 (approfondissement). FLE/FLS : lexique dérivée partielle/partial derivative, jacobien/Jacobian, équation différentielle/differential equation.
+\subsection{Évaluation}
+Contrôle du cahier \S7.6 (20 points). Barème et corrigé : voir le cahier. Les causes d'erreur ci-dessus sont des hypothèses didactiques, non des constats \synth.}
+\subsection{Bilan}
+\ifprof À renseigner après la semaine : notions mal acquises, temps réel, réajustements.\else Ce que j'ai compris, ce que je dois retravailler, l'exercice du cahier à refaire.\fi
+\end{document}

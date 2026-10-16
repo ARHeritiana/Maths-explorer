@@ -1,0 +1,170 @@
+\clearpage
+\section{Fonctions de deux variables, intégrales multiples, équations différentielles}
+\renewcommand{\titrecourant}{Semaine 7}
+
+\begin{boussole}
+\textbf{Objectif de la semaine.} Dériver une fonction de deux variables par rapport à chacune, en déduire un plan tangent et une propagation d'incertitude ; calculer une intégrale double (ordre, changement de variables) ; résoudre une équation différentielle linéaire d'ordre 1 et d'ordre 2 à coefficients constants.\\
+\textbf{À la fin, je sais :}
+\begin{enumerate}
+ \item calculer $f_x$, $f_y$ et écrire le plan tangent ;
+ \item estimer une erreur sur $f(x,y)$ à partir d'erreurs sur $x$ et $y$ ;
+ \item calculer $\iint_D f$ en choisissant le bon ordre ou le bon système de coordonnées (jacobien) ;
+ \item résoudre $y'+ay=b$ et $y''+by'+cy=0$ avec conditions initiales, en distinguant les trois cas du discriminant.
+\end{enumerate}
+\textbf{Temps estimé} : 6 heures.
+\end{boussole}
+
+\subsection{Test d'entrée (5 minutes)}
+\begin{enumerate}
+ \item Dériver $x^2\e^{3x}$ par rapport à $x$.
+ \item Calculer $\int_0^1\int_0^2 xy\,\dd y\,\dd x$ en intégrant d'abord en $y$.
+ \item Racines de $r^2+3r+2=0$ ?
+ \item Primitive de $\e^{-2t}$ ?
+ \item Écrire $x^2+y^2$ en coordonnées polaires.
+\end{enumerate}
+\textit{Réponses : $(2x+3x^2)\e^{3x}$ ; $1$ ; $-1$ et $-2$ ; $-\frac12\e^{-2t}$ ; $r^2$.}
+
+\subsection{Cours}
+\subsubsection*{Dérivées partielles}
+\begin{definition}[Dérivées partielles]
+$f_x(a,b)=\lim_{h\to0}\frac{f(a+h,b)-f(a,b)}h$ : on dérive en $x$ en gelant $y$ ; de même $f_y$. Le plan tangent à la surface $z=f(x,y)$ au point $(a,b)$ est $z=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)$, lorsque $f$ est différentiable en ce point.
+\end{definition}
+\begin{propriete}[Schwarz et incertitudes]
+Si $f_{xy}$ et $f_{yx}$ existent et sont continues, elles sont égales. Pour de petites variations : $\Delta f\approx f_x\Delta x+f_y\Delta y$ ; l'estimation au premier ordre de l'erreur absolue est $|f_x||\Delta x|+|f_y||\Delta y|$. Ce n'est pas une borne rigoureuse de l'erreur exacte sans contrôle du reste.
+\end{propriete}
+\subsubsection*{Intégrales doubles}
+\begin{propriete}[Fubini]
+Si $f$ est continue sur un domaine $D=\{a\le x\le b,\ g_1(x)\le y\le g_2(x)\}$, alors $\iint_Df=\int_a^b\Big(\int_{g_1(x)}^{g_2(x)}f(x,y)\,\dd y\Big)\dd x$. On peut échanger l'ordre en réécrivant les bornes de $D$ \emph{avec l'autre variable extérieure}.
+\end{propriete}
+\begin{propriete}[Changement de variables]
+Si $(x,y)=\Phi(u,v)$ est un difféomorphisme $C^1$ entre les intérieurs de $D'$ et $D$ (jacobien non nul), à des frontières de mesure nulle près, alors $\iint_Df\,\dd x\,\dd y=\iint_{D'}f(\Phi(u,v))\,|J|\,\dd u\,\dd v$ où $J=\det\frac{\partial(x,y)}{\partial(u,v)}$. En polaires, $J=r$ ; pour $(x,y)=(u+v,u-v)$, $J=-2$.
+\end{propriete}
+\subsubsection*{Équations différentielles}
+\begin{propriete}[Ordre 1]
+Les solutions de $y'+ay=b$ ($a\ne0$) sont $y(t)=\frac ba+C\e^{-at}$, avec $C=y(0)-\frac ba$. Si $a=0$ : $y(t)=y(0)+bt$.
+\end{propriete}
+\begin{propriete}[Ordre 2 homogène]
+Pour $y''+by'+cy=0$, soit $r^2+br+c=0$ de discriminant $\Delta=b^2-4c$. Si $\Delta>0$ (racines $r_1,r_2$) : $y=A\e^{r_1t}+B\e^{r_2t}$. Si $\Delta=0$ (racine double $r$) : $y=(A+Bt)\e^{rt}$. Si $\Delta<0$ ($r=\alpha\pm i\omega$) : $y=\e^{\alpha t}(A\cos\omega t+B\sin\omega t)$. Les deux constantes sont fixées par $y(0)$ et $y'(0)$.
+\end{propriete}
+\begin{demonstration}[cas $\Delta>0$ : ces fonctions sont solutions]
+Si $r_i^2+br_i+c=0$, alors $(\e^{r_it})''+b(\e^{r_it})'+c\,\e^{r_it}=(r_i^2+br_i+c)\e^{r_it}=0$ ; l'équation est linéaire, donc toute combinaison $A\e^{r_1t}+B\e^{r_2t}$ est solution. Le fait que ce soient \emph{toutes} les solutions est admis dans ce cahier.
+\end{demonstration}
+\begin{piege}
+(i) Dériver $f$ en $x$ sans geler $y$. (ii) Écrire les bornes de l'ordre échangé sans redessiner $D$. (iii) Oublier le jacobien $r$. (iv) Écrire $\e^{rt}$ pour une racine double sans le facteur $(A+Bt)$. (v) Croire que l'existence de $f_x,f_y$ garantit la continuité.
+\end{piege}
+
+\subsection{Exemples travaillés et cas limites}
+\begin{exemple}[dérivées partielles]
+$f(x,y)=x^2y+\e^{xy}$.\\
+\emph{Solution.} $f_x=2xy+y\e^{xy}$ ; $f_y=x^2+x\e^{xy}$. Contrôle de Schwarz : $f_{xy}=2x+\e^{xy}+xy\e^{xy}=f_{yx}$. $\checkmark$
+\end{exemple}
+\begin{cas}[existence des dérivées partielles sans régularité]
+(a) $f=\sqrt{x^2+y^2}$ en $(0,0)$ : $f(x,0)=|x|$ n'est pas dérivable en $0$, donc $f_x(0,0)$ n'existe pas (cône à pointe, sans plan tangent). (b) $f(x,y)=\frac{xy}{x^2+y^2}$, $f(0,0)=0$ : $f(x,0)=0$ et $f(0,y)=0$, donc $f_x(0,0)=f_y(0,0)=0$. Pourtant $f(x,x)=\frac12$ pour $x\ne0$ : $f$ n'est même pas continue en $0$. Les dérivées partielles ne suffisent pas à garantir un plan tangent.
+\end{cas}
+\begin{exemple}[plan tangent]
+$f=x^2+y^2$ en $(1,2)$ : $f=5$, $f_x=2$, $f_y=4$. Plan : $z=5+2(x-1)+4(y-2)$. Estimation de $f(1{,}1;1{,}9)$ : $5+0{,}2-0{,}4=4{,}8$ ; valeur exacte $1{,}21+3{,}61=4{,}82$.
+\end{exemple}
+\begin{exemple}[propagation d'incertitude]
+Le volume d'un cylindre $V=\pi r^2h$ est connu avec $r$ à $2\,\%$ et $h$ à $1\,\%$. Estimation au premier ordre de l'erreur relative maximale : $2\cdot2\,\%+1\,\%=5\,\%$. Ce n'est pas une borne exacte : pour des variations positives maximales, $(1{,}02)^2(1{,}01)-1=0{,}050804$, soit $5{,}0804\,\%$.
+\end{exemple}
+\begin{cas}[estimation au premier ordre et erreur réelle]
+Pour $Q=\frac rh$, avec les mêmes incertitudes, l'estimation au premier ordre est $2\,\%+1\,\%=3\,\%$ : on additionne les valeurs absolues des contributions. La hausse exacte maximale est $1{,}02/0{,}99-1\approx3{,}0303\,\%$. L'erreur \emph{effective} peut être plus petite si les erreurs se compensent (par exemple $r$ trop grand et $h$ trop grand en même temps) ; l'estimation maximale au premier ordre ne donne pas l'erreur effective.
+\end{cas}
+\begin{exemple}[intégrale double sur un triangle]
+$D=\{0\le y\le x\le1\}$ ; calculer $\iint_D(x+y)$.\\
+\emph{Solution.} $\int_0^1\int_0^x(x+y)\,\dd y\,\dd x=\int_0^1\big(x^2+\frac{x^2}2\big)\dd x=\int_0^1\frac{3x^2}2\dd x=\frac12$.
+\end{exemple}
+\begin{cas}[l'ordre d'intégration décide de la faisabilité]
+Le même domaine $D=\{0\le y\le x\le1\}$ donne deux écritures. Dans l'ordre $\dd y$ puis $\dd x$ : $\int_0^1\int_0^x\e^{x^2}\,\dd y\,\dd x=\int_0^1x\e^{x^2}\,\dd x=\frac{\e-1}2$, calcul immédiat. Dans l'ordre $\dd x$ puis $\dd y$ : $\int_0^1\int_y^1\e^{x^2}\,\dd x\,\dd y$, où $\e^{x^2}$ n'a pas de primitive élémentaire : le calcul est bloqué. Les deux écritures valent la même chose ; il faut choisir celle qu'on sait intégrer.
+\end{cas}
+\begin{exemple}[coordonnées polaires]
+$\iint_{x^2+y^2\le R^2}(x^2+y^2)\,\dd x\,\dd y=\int_0^{2\pi}\int_0^Rr^2\cdot r\,\dd r\,\dd\theta=\frac{\pi R^4}2$. Et $\iint_{\R^2}\e^{-(x^2+y^2)}=2\pi\int_0^\infty r\e^{-r^2}\dd r=\pi$.
+\end{exemple}
+\begin{cas}[jacobien nul]
+Pour $(x,y)=(u+v,u-v)$, $|J|=2$ : le carré unité du plan $(u,v)$ devient un losange d'aire $2$. Pour $(x,y)=(u,2u)$ (non bijective sur un domaine d'aire non nulle), $J=0$ : l'image est une droite, d'aire nulle ; en polaires $r=0$ est le seul point où $J$ s'annule, de mesure nulle.
+\end{cas}
+\begin{exemple}[ordre 1]
+$y'+2y=6$, $y(0)=0$ : solution particulière $3$ ; $y=3+C\e^{-2t}$, $C=-3$ : $y(t)=3-3\e^{-2t}$.
+\end{exemple}
+\begin{cas}[$a=0$ et blow-up]
+$y'=6$ ($a=0$) : $y=y(0)+6t$, la formule $\frac ba$ n'existe pas. L'équation non linéaire $y'=y^2$, $y(0)=1$, a pour solution $y=\frac1{1-t}$, qui tend vers l'infini en $t=1$ : la solution n'existe pas pour tout $t$ (explosion en temps fini).
+\end{cas}
+\begin{exemple}[ordre 2, trois cas]
+Avec $y(0)=1$, $y'(0)=0$. (a) $y''+3y'+2y=0$ : $r=-1,-2$, $y=2\e^{-t}-\e^{-2t}$. (b) $y''+2y'+y=0$ : $r=-1$ double, $y=(1+t)\e^{-t}$. (c) $y''+2y'+5y=0$ : $r=-1\pm2i$, $y=\e^{-t}\big(\cos2t+\frac12\sin2t\big)$. Contrôle de (a) : $y(0)=2-1=1$, $y'(0)=-2+2=0$. $\checkmark$
+\end{exemple}
+\begin{cas}[sans amortissement]
+$y''+4y=0$ : $r=\pm2i$, $\alpha=0$, $y=\cos2t$ avec les mêmes conditions : oscillation pure, sans décroissance. $y''-4y=0$ : $r=\pm2$ et $y=\cosh2t=\frac{\e^{2t}+\e^{-2t}}2$, qui croît sans borne.
+\end{cas}
+
+\subsection{Exercices}
+\begin{exo}[A]\label{c7e1}
+Calculer $f_x$ et $f_y$ pour $f(x,y)=x^3y-\e^{y}$, puis leurs valeurs en $(1,0)$.
+\end{exo}
+\begin{exo}[A]\label{c7e2}
+Écrire le plan tangent à $z=xy$ au point $(2,3)$ et estimer $f(2{,}1;2{,}9)$.
+\end{exo}
+\begin{exo}[A]\label{c7e3}
+Calculer $\iint_{[0,1]\times[0,2]}xy\,\dd x\,\dd y$.
+\end{exo}
+\begin{exo}[B]\label{c7e4}
+Calculer $\iint_Dxy$ sur le triangle $D=\{x\ge0,\ y\ge0,\ x+y\le1\}$.
+\end{exo}
+\begin{exo}[B]\label{c7e5}
+Calculer $\int_0^1\int_y^1\sin(x^2)\,\dd x\,\dd y$ en échangeant l'ordre.
+\end{exo}
+\begin{exo}[B]\label{c7e6}
+Résoudre $y'+y=2$, $y(0)=5$.
+\end{exo}
+\begin{exo}[C]\label{c7e7}
+Un café est à $90^\circ$C dans une pièce à $20^\circ$C. Après $10$ minutes il est à $60^\circ$C. Avec la loi $T'=-k(T-20)$, déterminer $k$ puis le temps pour atteindre $30^\circ$C.
+\end{exo}
+\begin{exo}[C]\label{c7e8}
+Résoudre $y''+4y'+4y=0$, $y(0)=0$, $y'(0)=1$.
+\end{exo}
+\begin{exo}[C]\label{c7e9}
+Déduire de $\iint_{\R^2}\e^{-(x^2+y^2)}=\pi$ la valeur de $\int_{-\infty}^{+\infty}\e^{-x^2}\,\dd x$.
+\end{exo}
+
+\ifcorr
+\subsection{Corrigés détaillés}
+\begin{corrige}{\ref{c7e1}}
+$f_x=3x^2y$, $f_y=x^3-\e^y$. En $(1,0)$ : $f_x=0$, $f_y=1-1=0$ : le point $(1,0)$ est critique.
+\end{corrige}
+\begin{corrige}{\ref{c7e2}}
+$f(2,3)=6$, $f_x=y=3$, $f_y=x=2$ : $z=6+3(x-2)+2(y-3)$. En $(2{,}1;2{,}9)$ : $6+0{,}3-0{,}2=6{,}1$ ; exact : $6{,}09$.
+\end{corrige}
+\begin{corrige}{\ref{c7e3}}
+Les bornes sont constantes : $\int_0^1x\,\dd x\cdot\int_0^2y\,\dd y=\frac12\cdot2=1$.
+\end{corrige}
+\begin{corrige}{\ref{c7e4}}
+$\int_0^1x\int_0^{1-x}y\,\dd y\,\dd x=\int_0^1\frac{x(1-x)^2}2\dd x=\frac12\int_0^1(x-2x^2+x^3)\dd x=\frac12\big(\frac12-\frac23+\frac14\big)=\frac1{24}$.
+\end{corrige}
+\begin{corrige}{\ref{c7e5}}
+Le domaine est $0\le y\le x\le1$. En échangeant : $\int_0^1\int_0^x\sin(x^2)\,\dd y\,\dd x=\int_0^1x\sin(x^2)\,\dd x=\big[-\frac{\cos(x^2)}2\big]_0^1=\frac{1-\cos1}2\approx0{,}2298$.
+\end{corrige}
+\begin{corrige}{\ref{c7e6}}
+Solution constante $2$ ; $y=2+C\e^{-t}$, $C=5-2=3$ : $y=2+3\e^{-t}$. Vérification : $y'=-3\e^{-t}$ et $y'+y=2$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c7e7}}
+$T=20+70\e^{-kt}$. À $t=10$ : $70\e^{-10k}=40$, $\e^{-10k}=\frac47$, $k=\frac{\ln(7/4)}{10}\approx0{,}0560\ \mathrm{min}^{-1}$. $T=30$ : $\e^{-kt}=\frac17$, $t=\frac{\ln7}k=\frac{10\ln7}{\ln(7/4)}\approx34{,}8$ minutes.
+\end{corrige}
+\begin{corrige}{\ref{c7e8}}
+$r^2+4r+4=(r+2)^2$ : racine double $-2$, $y=(A+Bt)\e^{-2t}$. $y(0)=A=0$ ; $y'(0)=B-2A=B=1$. Donc $y=t\e^{-2t}$. Vérification : $y''+4y'+4y=(-4+4t)+4(1-2t)+4t=0$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c7e9}}
+Par Fubini sur le produit : $\iint\e^{-x^2}\e^{-y^2}=\big(\int\e^{-x^2}\big)^2=\pi$, et l'intégrale est positive : $\int_{-\infty}^{+\infty}\e^{-x^2}\,\dd x=\sqrt\pi$.
+\end{corrige}
+\else\stepcounter{subsection}\fi
+
+\subsection{Contrôle de fin de semaine (30 minutes, 20 points)}
+\begin{enumerate}
+ \item \bareme{6} Pour $f(x,y)=x^2\e^y$, calculer $f_x$, $f_y$ et vérifier $f_{xy}=f_{yx}$.
+ \item \bareme{7} Calculer $\iint_{0\le y\le x\le1}2xy\,\dd y\,\dd x$.
+ \item \bareme{7} Résoudre $y''+2y'+y=0$, $y(0)=1$, $y'(0)=0$.
+\end{enumerate}
+\ifcorr
+\textbf{Corrigé et barème.} \textbf{1.} $f_x=2x\e^y$, $f_y=x^2\e^y$ \bareme{4} ; $f_{xy}=2x\e^y=f_{yx}$ \bareme{2}. \textbf{2.} Intérieure : $\int_0^x2xy\,\dd y=x^3$ \bareme{4} ; $\int_0^1x^3=\frac14$ \bareme{3}. \textbf{3.} Racine double $-1$ \bareme{2} ; $y=(A+Bt)\e^{-t}$, $A=1$ \bareme{2} ; $y'(0)=B-A=0$, $B=1$, $y=(1+t)\e^{-t}$ \bareme{3}. Seuil conseillé : $14/20$.
+\fi
+
+\subsection{Grille d'auto-évaluation}
+$\square$ je gèle l'autre variable en dérivant ; $\square$ je dessine le domaine avant d'écrire les bornes ; $\square$ je pense au jacobien en polaires ; $\square$ j'écris l'équation caractéristique et son discriminant ; $\square$ je vérifie la solution en la reportant dans l'équation.

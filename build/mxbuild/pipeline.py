@@ -96,6 +96,7 @@ CHECKS = [
     ('slide HTML exports: up to date, skill lint', [PY, 'tests/slides_export_check.py']),
     ('lecture Beamer sources and PDFs', [PY, 'scripts/build-lecture-slides.py', '--check']),
     ('DOM interaction smoke', ['npm', 'run', 'test:dom']),
+    ('applied mathematics: sources and downloads', [PY, 'scripts/build-module-maths.py', '--check']),
     ('university collection: sources and downloadable files', [PY, 'scripts/build-university.py', '--check']),
     ('browser', [PY, 'tests/run_browser.py']),
     ('slides smoke', [PY, 'tests/slides_smoke.py']),

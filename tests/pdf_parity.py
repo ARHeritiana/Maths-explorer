@@ -12,7 +12,7 @@ if 'university' in manifest:
     index = json.loads((ROOT / 'dist/resources/university/index.json').read_text())
     if all(s['language'] == 'fr' for s in manifest['university']['sections']):
         single_language = {ROOT / 'dist' / f['path'] for f in index['files'].values()
-                           if f['path'].endswith('.pdf') and f['path'].startswith('resources/university/foundations/')}
+                           if f['path'].endswith('.pdf') and f['path'].startswith('resources/university/')}
 for fr in sorted((ROOT / 'dist/resources').rglob('*.pdf')):
     if fr.stem.endswith('-en'): continue
     if fr in single_language:

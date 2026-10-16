@@ -1,0 +1,159 @@
+\clearpage
+\section{Dérivation, développements limités, optimisation}
+\renewcommand{\titrecourant}{Semaine 3}
+
+\begin{boussole}
+\textbf{Objectif de la semaine.} Dériver sans hésiter, interpréter $f'$ (tangente, variations), approcher une fonction près d'un point par un polynôme, et résoudre un problème d'optimisation en justifiant que l'extremum trouvé est bien le bon.\\
+\textbf{À la fin, je sais :}
+\begin{enumerate}
+ \item écrire l'équation de la tangente et reconnaître un point de non-dérivabilité ;
+ \item établir le tableau de variations et classer les points critiques, y compris quand $f''=0$ ;
+ \item écrire un développement de Taylor--Young d'ordre 2 et l'utiliser pour un calcul approché ou une limite ;
+ \item modéliser un problème d'optimisation : variable, domaine, fonction, étude, conclusion ;
+ \item démontrer le théorème de Fermat et la dérivée d'un produit.
+\end{enumerate}
+\textbf{Temps estimé} : 5 à 6 heures.
+\end{boussole}
+
+\subsection{Test d'entrée (5 minutes)}
+\begin{enumerate}
+ \item Dériver $x^3$, $\e^{2x}$, $\ln x$, $\sin x$.
+ \item Quelle est la pente de la droite $y=3x-2$ ?
+ \item Résoudre $x^2-4x+3\ge0$.
+ \item Que vaut $\e^0$ ? $\ln 1$ ?
+ \item Si $f'>0$ sur un intervalle, que dire de $f$ ?
+\end{enumerate}
+\textit{Réponses : $3x^2$, $2\e^{2x}$, $\frac1x$, $\cos x$ ; $3$ ; $]-\infty;1]\cup[3;+\infty[$ ; $1$ et $0$ ; $f$ est croissante.}
+
+\subsection{Cours}
+\begin{definition}[Dérivée]
+$f$ est dérivable en $a$ si $\displaystyle\lim_{h\to0}\frac{f(a+h)-f(a)}h$ existe et est finie ; cette limite est $f'(a)$. La tangente en $a$ a pour équation $y=f(a)+f'(a)(x-a)$.
+\end{definition}
+\begin{propriete}[Règles]
+Si $f,g$ sont dérivables : $(fg)'=f'g+fg'$ ; $\big(\frac fg\big)'=\frac{f'g-fg'}{g^2}$ (où $g\ne0$) ; $(f\circ g)'=(f'\circ g)\,g'$. Une fonction dérivable en $a$ est continue en $a$ ; la réciproque est fausse.
+\end{propriete}
+\begin{demonstration}[produit]
+$f(x+h)g(x+h)-f(x)g(x)=f(x+h)\,[g(x+h)-g(x)]+g(x)\,[f(x+h)-f(x)]$. Divisons par $h$ et faisons $h\to0$ ; $f(x+h)\to f(x)$ car $f$ est continue (étant dérivable), d'où $f(x)g'(x)+g(x)f'(x)$.
+\end{demonstration}
+\begin{propriete}[Théorème de Fermat]
+Si $f$ est dérivable en un point $a$ \emph{intérieur} à son intervalle de définition et admet en $a$ un extremum local, alors $f'(a)=0$.
+\end{propriete}
+\begin{demonstration}
+Supposons un maximum local. Pour $h>0$ petit, $\frac{f(a+h)-f(a)}h\le0$, donc $f'(a)\le0$ par passage à la limite. Pour $h<0$ petit, le quotient est $\ge0$, donc $f'(a)\ge0$. Ainsi $f'(a)=0$. Le minimum se traite avec $-f$.
+\end{demonstration}
+\begin{piege}
+La réciproque de Fermat est fausse (voir $x^3$) ; et le théorème ne dit rien aux \emph{bornes} du domaine ni aux points de non-dérivabilité.
+\end{piege}
+\begin{propriete}[Signe de $f'$ et variations]
+Sur un intervalle, $f'\ge0$ implique $f$ croissante ; $f'\le0$ implique décroissante. Si $f'$ change de signe en $a$ (de $-$ à $+$), $f$ a un minimum local en $a$ ; de $+$ à $-$, un maximum local.
+\end{propriete}
+\begin{propriete}[Taylor--Young, ordre 2]
+Si $f$ est deux fois dérivable en $a$, alors, quand $h\to0$ : $f(a+h)=f(a)+f'(a)h+\dfrac{f''(a)}2h^2+o(h^2)$.
+\end{propriete}
+Développements usuels en $0$ à l'ordre 2 : $\e^x=1+x+\frac{x^2}2+o(x^2)$ ; $\ln(1+x)=x-\frac{x^2}2+o(x^2)$ ; $\sqrt{1+x}=1+\frac x2-\frac{x^2}8+o(x^2)$ ; $\cos x=1-\frac{x^2}2+o(x^2)$ ; $\sin x=x+o(x^2)$.
+\begin{methode}
+\textbf{Optimisation.} (1) Choisir la variable et écrire son \emph{domaine} réaliste. (2) Exprimer la grandeur à optimiser en fonction d'elle seule. (3) Dériver, trouver les points critiques \emph{dans le domaine}. (4) Étudier le signe de $f'$ (ou comparer aux bornes). (5) Conclure par une phrase, avec unité, et contrôler par une valeur voisine.
+\end{methode}
+
+\subsection{Exemples travaillés et cas limites}
+\begin{exemple}[tangente]
+Tangente à $f(x)=x\e^x$ en $a=1$.\\
+\emph{Solution.} $f'(x)=(1+x)\e^x$, donc $f(1)=\e$ et $f'(1)=2\e$ : $y=\e+2\e(x-1)=2\e x-\e$.
+\end{exemple}
+\begin{cas}[non-dérivabilité]
+(a) $f(x)=|x|$ en $0$ : le quotient vaut $\pm1$ selon le signe de $h$, donc pas de limite ; $f$ est continue sans être dérivable. (b) $f(x)=x^{1/3}$ en $0$ : le quotient $h^{-2/3}\to+\infty$, la tangente est verticale, $f$ n'est pas dérivable. (c) $f(x)=x^2\sin\frac1x$, $f(0)=0$ : le quotient vaut $h\sin\frac1h\to0$, donc $f'(0)=0$ ; pourtant $f'(x)=2x\sin\frac1x-\cos\frac1x$ n'a pas de limite en $0$ : $f'$ n'est pas continue.
+\end{cas}
+\begin{exemple}[variations]
+Étudier $f(x)=x^3-3x+1$.\\
+\emph{Solution.} $f'(x)=3(x-1)(x+1)$. $f$ croît sur $]-\infty;-1]$, décroît sur $[-1;1]$, croît sur $[1;+\infty[$. Maximum local $f(-1)=3$, minimum local $f(1)=-1$. Comme $f(-1)>0>f(1)$, la courbe coupe l'axe des abscisses trois fois (trois racines réelles).
+\end{exemple}
+\begin{cas}[$f'(a)=0$ sans conclusion immédiate]
+$x^3$ : $f'(0)=0$ mais $f'\ge0$ des deux côtés, pas d'extremum. $x^4$ : $f'(0)=f''(0)=0$, et pourtant minimum en $0$ (car $f'$ passe de $-$ à $+$). $|x|$ : minimum en $0$ sans que $f'(0)$ existe. Le critère fiable est le \emph{changement de signe de $f'$}, non la seule annulation.
+\end{cas}
+\begin{exemple}[Taylor--Young]
+Valeur approchée de $\sqrt{1{,}02}$.\\
+\emph{Solution.} Avec $x=0{,}02$ : $1+0{,}01-\frac{0{,}0004}8=1{,}00995$. Valeur exacte (calculée) : $1{,}00995049\ldots$ ; erreur $\approx5\times10^{-7}$.
+\end{exemple}
+\begin{cas}[limite de validité]
+Un développement n'est valable que \emph{près} de $a$ : pour $\sqrt{1+x}$ avec $x=3$, l'ordre 2 donne $1+1{,}5-1{,}125=1{,}375$ au lieu de $2$. Et le terme $o(x^2)$ ne dit pas \og petit \fg{} en valeur absolue, seulement négligeable devant $x^2$ quand $x\to0$.
+\end{cas}
+\begin{exemple}[optimisation : boîte ouverte]
+Dans une feuille carrée de $30$ cm de côté, on découpe aux quatre coins des carrés de côté $x$ pour former une boîte ouverte. Quel $x$ maximise le volume ?\\
+\emph{Solution.} Domaine : $0<x<15$. $V(x)=x(30-2x)^2$, $V'(x)=(30-2x)(30-6x)=12(15-x)(5-x)$. $V'>0$ sur $]0;5[$, $V'<0$ sur $]5;15[$. Maximum en $x=5$ cm : $V=5\times400=2000$ cm$^3$.
+\end{exemple}
+\begin{cas}[contrainte sur le domaine]
+Si l'on impose $x\le3$ (matériau disponible), le point critique $x=5$ est \emph{hors domaine}. $V$ étant croissante sur $]0;3]$, le maximum est atteint à la \emph{borne} $x=3$ : $V=3\times24^2=1728$ cm$^3$, et $V'(3)\ne0$. Ici le maximum n'est pas un point critique.
+\end{cas}
+
+\subsection{Exercices}
+\begin{exo}[A]\label{c3e1}
+Dériver : $f(x)=x^2\e^{-x}$ ; $g(x)=\ln(1+x^2)$ ; $h(x)=\dfrac{\sin x}x$ sur $\R^*$.
+\end{exo}
+\begin{exo}[A]\label{c3e2}
+Donner l'équation de la tangente à $\ln$ en $a=\e$, puis vérifier que cette tangente passe par l'origine.
+\end{exo}
+\begin{exo}[A]\label{c3e3}
+Dresser le tableau de variations de $f(x)=x^3-6x^2+9x$ et donner ses extremums locaux.
+\end{exo}
+\begin{exo}[B]\label{c3e4}
+Donner le développement de $\ln(1+x)$ à l'ordre 2 en $0$ et approcher $\ln(1{,}05)$. Comparer à la valeur exacte arrondie.
+\end{exo}
+\begin{exo}[B]\label{c3e5}
+Calculer $\lim_{x\to0}\dfrac{\e^x-1-x}{x^2}$ et $\lim_{x\to0}\dfrac{\cos x-1}{x^2}$ à l'aide de développements.
+\end{exo}
+\begin{exo}[B]\label{c3e6}
+Étudier la dérivabilité en $0$ de $f(x)=x|x|$ et calculer $f'$. $f'$ est-elle dérivable en $0$ ?
+\end{exo}
+\begin{exo}[C]\label{c3e7}
+Une boîte cylindrique fermée doit contenir $1000$ cm$^3$. Quel rayon minimise la surface de métal ? Donner la hauteur correspondante et conclure sur la forme.
+\end{exo}
+\begin{exo}[C]\label{c3e8}
+Discuter, selon $m$, le nombre de racines réelles de $x^3-3x+m=0$.
+\end{exo}
+\begin{exo}[C]\label{c3e9}
+Montrer qu'une fonction dérivable en $a$ est continue en $a$, et donner un exemple prouvant que la réciproque est fausse.
+\end{exo}
+
+\ifcorr
+\subsection{Corrigés détaillés}
+\begin{corrige}{\ref{c3e1}}
+$f'(x)=2x\e^{-x}-x^2\e^{-x}=x(2-x)\e^{-x}$. $g'(x)=\frac{2x}{1+x^2}$ (dérivée de $\ln u$ : $\frac{u'}u$). $h'(x)=\frac{x\cos x-\sin x}{x^2}$. Contrôle de $f'$ en $x=2$ : $0$, cohérent avec le maximum local de $x^2\e^{-x}$ en $2$.
+\end{corrige}
+\begin{corrige}{\ref{c3e2}}
+$f(\e)=1$, $f'(\e)=\frac1\e$ : $y=1+\frac{x-\e}\e=\frac x\e$. En $x=0$ : $y=0$, donc la tangente passe par l'origine.
+\end{corrige}
+\begin{corrige}{\ref{c3e3}}
+$f'(x)=3x^2-12x+9=3(x-1)(x-3)$. $f$ croît sur $]-\infty;1]$, décroît sur $[1;3]$, croît sur $[3;+\infty[$. Maximum local $f(1)=4$, minimum local $f(3)=0$. Cohérence : $f(x)=x(x-3)^2$ s'annule en $3$ (racine double) et en $0$.
+\end{corrige}
+\begin{corrige}{\ref{c3e4}}
+$\ln(1+x)=x-\frac{x^2}2+o(x^2)$. Avec $x=0{,}05$ : $0{,}05-0{,}00125=0{,}04875$. Valeur exacte arrondie : $0{,}04879$. Écart $\approx4\times10^{-5}$, du bon ordre de grandeur pour un terme d'ordre 3 ($\frac{x^3}3\approx4{,}2\times10^{-5}$).
+\end{corrige}
+\begin{corrige}{\ref{c3e5}}
+$\e^x-1-x=\frac{x^2}2+o(x^2)$, donc la limite vaut $\frac12$. $\cos x-1=-\frac{x^2}2+o(x^2)$, donc la limite vaut $-\frac12$.
+\end{corrige}
+\begin{corrige}{\ref{c3e6}}
+Le quotient en $0$ vaut $\frac{h|h|}h=|h|\to0$, donc $f'(0)=0$. Pour $x\ne0$ : $f'(x)=2|x|$ (pour $x>0$, $f=x^2$ ; pour $x<0$, $f=-x^2$). Ainsi $f'(x)=2|x|$ sur $\R$. Mais $f'=2|x|$ n'est pas dérivable en $0$ : $f$ est dérivable une fois, pas deux (pas de $f''(0)$).
+\end{corrige}
+\begin{corrige}{\ref{c3e7}}
+Variable $r>0$, hauteur $h=\frac{1000}{\pi r^2}$. Surface $S(r)=2\pi r^2+2\pi rh=2\pi r^2+\frac{2000}r$. $S'(r)=4\pi r-\frac{2000}{r^2}=0\iff r^3=\frac{500}\pi$, $r\approx5{,}42$ cm. $S'<0$ avant, $>0$ après : minimum. $h\approx10{,}84\approx2r$, $S\approx553{,}6$ cm$^2$. Conclusion : la boîte optimale a une hauteur égale à son diamètre. Contrôle : avec $r=5$, $S=157{,}1+400=557{,}1>553{,}6$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c3e8}}
+$f(x)=x^3-3x+m$, $f'=3(x^2-1)$ : maximum local $f(-1)=m+2$, minimum local $f(1)=m-2$. Si $-2<m<2$ : $f(-1)>0>f(1)$, trois racines. Si $m=2$ : $f(-1)=4$, $f(1)=0$ : racine double en $1$ et racine simple (factorisation $(x-1)^2(x+2)$), donc deux racines distinctes ; de même $m=-2$ (symétrie $x\to-x$). Si $|m|>2$ : une seule racine.
+\end{corrige}
+\begin{corrige}{\ref{c3e9}}
+Si $f$ est dérivable en $a$, $f(a+h)-f(a)=h\cdot\frac{f(a+h)-f(a)}h\to0\cdot f'(a)=0$, donc $f$ est continue en $a$. Réciproque fausse : $|x|$ en $0$ (continue, non dérivable).
+\end{corrige}
+\else\stepcounter{subsection}\fi
+
+\subsection{Contrôle de fin de semaine (30 minutes, 20 points)}
+\begin{enumerate}
+ \item \bareme{6} Dériver $f(x)=x\e^{2x}$ et donner la tangente en $0$.
+ \item \bareme{7} Étudier les variations de $f(x)=x^3-12x+1$ ; donner les extremums locaux.
+ \item \bareme{7} Écrire le développement de $\sqrt{1+x}$ à l'ordre 2 et approcher $\sqrt{1{,}04}$.
+\end{enumerate}
+\ifcorr
+\textbf{Corrigé et barème.} \textbf{1.} $f'(x)=(1+2x)\e^{2x}$ \bareme{3} ; $f(0)=0$, $f'(0)=1$, tangente $y=x$ \bareme{3}. \textbf{2.} $f'=3(x-2)(x+2)$ \bareme{3} ; croissante, décroissante, croissante \bareme{2} ; maximum $f(-2)=17$, minimum $f(2)=-15$ \bareme{2}. \textbf{3.} $\sqrt{1+x}=1+\frac x2-\frac{x^2}8+o(x^2)$ \bareme{4} ; $1+0{,}02-0{,}0002=1{,}0198$ (exact $1{,}0198039$) \bareme{3}. Seuil conseillé : $14/20$.
+\fi
+
+\subsection{Grille d'auto-évaluation}
+$\square$ je donne la tangente sans me tromper de point ; $\square$ je cherche le changement de signe de $f'$ et pas seulement $f'=0$ ; $\square$ je vérifie que le point critique est dans le domaine ; $\square$ je compare aux bornes quand le domaine est fermé ; $\square$ je n'utilise Taylor--Young que près du point.

@@ -1,0 +1,161 @@
+\clearpage
+\section{Coordonnées, produit scalaire, plans et volumes}
+\renewcommand{\titrecourant}{Semaine 5}
+
+\begin{boussole}
+\textbf{Objectif de la semaine.} Passer d'un système de coordonnées à un autre sans se tromper d'angle, utiliser le produit scalaire (angle, projection, distance à un plan), écrire l'équation d'un plan, et calculer volumes et masses de solides usuels.\\
+\textbf{Convention de ce cahier} \verif : en coordonnées sphériques, $\rho$ est la distance à l'origine, $\varphi\in[0;\pi]$ l'angle avec l'axe $Oz$ et $\theta$ l'angle d'azimut ; d'autres cours échangent les noms $\theta$ et $\varphi$.\\
+\textbf{À la fin, je sais :}
+\begin{enumerate}
+ \item convertir polaires, cylindriques et sphériques en cartésiennes, et inversement, avec le bon quadrant ;
+ \item calculer un angle, une projection orthogonale, une distance point--plan ;
+ \item écrire l'équation d'un plan et reconnaître les cas dégénérés ;
+ \item donner le volume d'un cylindre, d'un cône, d'une boule ; calculer une masse à densité variable.
+\end{enumerate}
+\textbf{Temps estimé} : 5 à 6 heures.
+\end{boussole}
+
+\subsection{Test d'entrée (5 minutes)}
+\begin{enumerate}
+ \item Théorème de Pythagore dans $\R^3$ : norme de $(1,2,2)$ ?
+ \item Valeurs de $\cos\frac\pi3$, $\sin\frac\pi6$, $\cos\frac{2\pi}3$.
+ \item Dans quel quadrant est le point $(-1,-1)$ ?
+ \item Aire du disque de rayon $R$ ? Volume d'un cylindre ?
+ \item Que vaut $\int_0^R r^2\,\dd r$ ?
+\end{enumerate}
+\textit{Réponses : $3$ ; $\frac12$, $\frac12$, $-\frac12$ ; troisième quadrant ; $\pi R^2$, $\pi R^2h$ ; $\frac{R^3}3$.}
+
+\subsection{Cours}
+\begin{definition}[Coordonnées]
+\emph{Polaires} $(r,\theta)$ : $x=r\cos\theta$, $y=r\sin\theta$, $r\ge0$. \emph{Cylindriques} $(r,\theta,z)$ : polaires pour $(x,y)$ plus $z$. \emph{Sphériques} $(\rho,\varphi,\theta)$ : $x=\rho\sin\varphi\cos\theta$, $y=\rho\sin\varphi\sin\theta$, $z=\rho\cos\varphi$.
+\end{definition}
+\begin{propriete}[Passage inverse]
+$r=\sqrt{x^2+y^2}$ ; $\rho=\sqrt{x^2+y^2+z^2}$ ; $\cos\varphi=\frac z\rho$ ($\rho\ne0$) ; $\theta$ est l'angle de $(x,y)$ avec l'axe $Ox$, déterminé par \emph{les signes de $x$ et de $y$} (jamais par $\arctan\frac yx$ seul).
+\end{propriete}
+\begin{definition}[Produit scalaire]
+$u\cdot v=u_1v_1+u_2v_2+u_3v_3=\|u\|\|v\|\cos\gamma$ où $\gamma$ est l'angle géométrique entre $u$ et $v$ non nuls. Deux vecteurs sont orthogonaux si et seulement si $u\cdot v=0$.
+\end{definition}
+\begin{propriete}[Cauchy--Schwarz]
+$|u\cdot v|\le\|u\|\|v\|$, avec égalité si et seulement si $u$ et $v$ sont colinéaires.
+\end{propriete}
+\begin{demonstration}
+Si $v=0$ c'est clair. Sinon, pour tout $\lambda$, $0\le\|u-\lambda v\|^2=\|u\|^2-2\lambda\,u\cdot v+\lambda^2\|v\|^2$. Ce trinôme en $\lambda$ reste positif ou nul, donc son discriminant est $\le0$ : $4(u\cdot v)^2-4\|u\|^2\|v\|^2\le0$. L'égalité correspond à un discriminant nul, c'est-à-dire à un $\lambda$ avec $u=\lambda v$.
+\end{demonstration}
+\begin{propriete}[Projection et distance]
+La projection orthogonale de $v$ sur la droite dirigée par $u\ne0$ est $\dfrac{u\cdot v}{u\cdot u}\,u$. La distance du point $M(x_0,y_0,z_0)$ au plan $ax+by+cz=d$ est $\dfrac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}$.
+\end{propriete}
+\begin{propriete}[Équation d'un plan]
+Le plan passant par $A$ de vecteur normal $n\ne0$ est $n\cdot(X-A)=0$. Si $n=(a,b,c)$, c'est $ax+by+cz=d$ avec $d=n\cdot A$.
+\end{propriete}
+\begin{propriete}[Volumes usuels]
+Cylindre : $\pi R^2h$. Cône : $\frac13\pi R^2H$. Boule : $\frac43\pi R^3$. Élément de volume : $r\,\dd r\,\dd\theta\,\dd z$ (cylindriques), $\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta$ (sphériques).
+\end{propriete}
+\begin{methode}
+\textbf{Convertir un angle.} (1) Calculer $r$. (2) Repérer le quadrant par les signes de $x$ et $y$. (3) Donner $\theta$ dans $[0;2\pi[$ (ou $]-\pi;\pi]$, en l'indiquant). (4) Contrôler en reconvertissant.
+\end{methode}
+\begin{piege}
+(i) $\theta=\arctan\frac yx$ donne un angle dans $]-\frac\pi2;\frac\pi2[$ : faux dans deux quadrants sur quatre. (ii) Confondre les rôles de $\theta$ et $\varphi$ selon le cours. (iii) Oublier le facteur $r$ ou $\rho^2\sin\varphi$ dans l'élément de volume. (iv) Utiliser la formule de distance sans écrire le plan sous forme $ax+by+cz=d$.
+\end{piege}
+
+\subsection{Exemples travaillés et cas limites}
+\begin{exemple}[quadrant]
+Coordonnées polaires de $(-1,-1)$.\\
+\emph{Solution.} $r=\sqrt2$ ; $x<0$, $y<0$ : troisième quadrant, $\theta=\frac{5\pi}4$ (et non $\arctan1=\frac\pi4$, qui désigne $(1,1)$).
+\end{exemple}
+\begin{cas}[points sur les axes, origine]
+$(0,-2)$ : $r=2$, $\theta=\frac{3\pi}2$ (ou $-\frac\pi2$) ; le quotient $\frac yx$ est indéfini, la méthode \og arctan \fg{} échoue. L'origine : $r=0$ et $\theta$ est \emph{indéterminé} (tout angle convient) ; en sphériques, $\rho=0$ rend $\varphi$ et $\theta$ indéterminés. Sur l'axe $Oz$ ($x=y=0$, $z\ne0$) : $\theta$ est indéterminé, et $\varphi=0$ si $z>0$, $\varphi=\pi$ si $z<0$.
+\end{cas}
+\begin{exemple}[cartésiennes $\to$ sphériques]
+$M(1,1,\sqrt2)$.\\
+\emph{Solution.} $\rho=\sqrt{1+1+2}=2$ ; $r=\sqrt2$ ; $\cos\varphi=\frac{\sqrt2}2$, $\varphi=\frac\pi4$ ; $x,y>0$ : $\theta=\frac\pi4$. Contrôle : $x=2\sin\frac\pi4\cos\frac\pi4=1$, $z=2\cos\frac\pi4=\sqrt2$. $\checkmark$
+\end{exemple}
+\begin{cas}[courbe en polaires]
+$r=2\cos\theta$ : en multipliant par $r$, $x^2+y^2=2x$, soit $(x-1)^2+y^2=1$ : le cercle de centre $(1,0)$, rayon $1$. Pour $\theta\in]\frac\pi2;\frac{3\pi}2[$, $r$ est négatif : avec la convention $r\ge0$ ces angles ne donnent rien, et le cercle est parcouru une seule fois pour $\theta\in[-\frac\pi2;\frac\pi2]$.
+\end{cas}
+\begin{exemple}[produit scalaire, projection, distance]
+$u=(1,2,2)$, $v=(3,0,4)$.\\
+\emph{Solution.} $u\cdot v=11$, $\|u\|=3$, $\|v\|=5$, $\cos\gamma=\frac{11}{15}$. Projection de $v$ sur $u$ : $\frac{11}9u=\big(\frac{11}9,\frac{22}9,\frac{22}9\big)$. Distance de $v$ au plan $x+2y+2z=0$ : $\frac{|3+0+8|}3=\frac{11}3$. Contrôle : $\|v\|\cos\gamma=\frac{11}3$, c'est la longueur algébrique de la projection. $\checkmark$
+\end{exemple}
+\begin{cas}[vecteurs nuls ou orthogonaux]
+Si $u=0$, l'angle n'est pas défini et la formule de projection divise par $u\cdot u=0$. Si $u\cdot v=0$ avec $u,v\ne0$, les vecteurs sont orthogonaux : $\gamma=\frac\pi2$ et la projection est le vecteur nul. Si $u=\lambda v$ avec $\lambda<0$, on a $\gamma=\pi$ et Cauchy--Schwarz est une égalité, avec $u\cdot v=-\|u\|\|v\|<0$.
+\end{cas}
+\begin{exemple}[distance à un plan]
+Plan $2x-y+2z=6$. Distance de l'origine : $\frac{|-6|}3=2$. Distance de $(1,1,1)$ : $\frac{|2-1+2-6|}3=1$.
+\end{exemple}
+\begin{exemple}[masse à densité variable]
+Une boule de rayon $R$ a une densité $\rho_0\big(1-\frac rR\big)$ à la distance $r$ du centre. Masse ?\\
+\emph{Solution.} En coquilles de volume $4\pi r^2\,\dd r$ : $M=4\pi\rho_0\int_0^R\big(r^2-\frac{r^3}R\big)\dd r=4\pi\rho_0\big(\frac{R^3}3-\frac{R^3}4\big)=\frac{\pi\rho_0R^3}3$. Contrôle : c'est le quart de la masse $\frac43\pi\rho_0R^3$ d'une boule homogène de densité $\rho_0$, ce qui est cohérent avec une densité qui décroît de $\rho_0$ à $0$.
+\end{exemple}
+
+\subsection{Exercices}
+\begin{exo}[A]\label{c5e1}
+Donner les coordonnées polaires de $(-\sqrt3,1)$ et les cartésiennes du point $(r=3,\theta=\frac{2\pi}3)$.
+\end{exo}
+\begin{exo}[A]\label{c5e2}
+Un point a pour coordonnées sphériques $\rho=2$, $\varphi=\frac\pi6$, $\theta=\frac\pi3$. Donner ses coordonnées cartésiennes et contrôler $\rho$.
+\end{exo}
+\begin{exo}[A]\label{c5e3}
+Pour $u=(2,-1,2)$ et $v=(1,2,2)$, calculer $u\cdot v$, les normes et $\cos\gamma$.
+\end{exo}
+\begin{exo}[B]\label{c5e4}
+Quelle est la courbe d'équation polaire $r=4\sin\theta$ ? Donner son équation cartésienne.
+\end{exo}
+\begin{exo}[B]\label{c5e5}
+Déterminer l'équation du plan passant par $A(1,0,0)$, $B(0,2,0)$, $C(0,0,3)$, puis sa distance à l'origine.
+\end{exo}
+\begin{exo}[B]\label{c5e6}
+Calculer les volumes : cylindre $R=2$, $h=3$ ; cône $R=3$, $H=4$ ; boule $R=2$.
+\end{exo}
+\begin{exo}[C]\label{c5e7}
+Volume du solide $\{\rho\le1,\ \varphi\le\frac\pi4\}$ (cône sphérique \og cornet de glace \fg{}).
+\end{exo}
+\begin{exo}[C]\label{c5e8}
+Montrer l'inégalité triangulaire $\|u+v\|\le\|u\|+\|v\|$ à partir de Cauchy--Schwarz.
+\end{exo}
+\begin{exo}[C]\label{c5e9}
+Masse de la boule de rayon $1$ de densité $\rho(r)=r$.
+\end{exo}
+
+\ifcorr
+\subsection{Corrigés détaillés}
+\begin{corrige}{\ref{c5e1}}
+$(-\sqrt3,1)$ : $r=2$, $x<0$, $y>0$ (deuxième quadrant), $\cos\theta=-\frac{\sqrt3}2$, $\sin\theta=\frac12$ : $\theta=\frac{5\pi}6$. Pour le second : $x=3\cos\frac{2\pi}3=-\frac32$, $y=3\sin\frac{2\pi}3=\frac{3\sqrt3}2$.
+\end{corrige}
+\begin{corrige}{\ref{c5e2}}
+$x=2\cdot\frac12\cdot\frac12=\frac12$ ; $y=2\cdot\frac12\cdot\frac{\sqrt3}2=\frac{\sqrt3}2$ ; $z=2\cos\frac\pi6=\sqrt3$. Contrôle : $\frac14+\frac34+3=4=\rho^2$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c5e3}}
+$u\cdot v=2-2+4=4$ ; $\|u\|=\|v\|=3$ ; $\cos\gamma=\frac49$, $\gamma\approx63{,}6^\circ$.
+\end{corrige}
+\begin{corrige}{\ref{c5e4}}
+$r^2=4r\sin\theta$ donne $x^2+y^2=4y$, soit $x^2+(y-2)^2=4$ : cercle de centre $(0,2)$ et de rayon $2$, parcouru pour $\theta\in[0;\pi]$ (là où $r\ge0$).
+\end{corrige}
+\begin{corrige}{\ref{c5e5}}
+$\overrightarrow{AB}=(-1,2,0)$, $\overrightarrow{AC}=(-1,0,3)$, normal $\overrightarrow{AB}\times\overrightarrow{AC}=(6,3,2)$. Plan : $6x+3y+2z=6$ (vérifié en $A$, $B$, $C$ : $6=6$). Distance à l'origine : $\frac{6}{\sqrt{36+9+4}}=\frac67$.
+\end{corrige}
+\begin{corrige}{\ref{c5e6}}
+Cylindre : $\pi\cdot4\cdot3=12\pi$. Cône : $\frac13\pi\cdot9\cdot4=12\pi$. Boule : $\frac43\pi\cdot8=\frac{32\pi}3$.
+\end{corrige}
+\begin{corrige}{\ref{c5e7}}
+$V=\int_0^{2\pi}\!\!\int_0^{\pi/4}\!\!\int_0^1\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta=2\pi\cdot\frac13\cdot\big(1-\cos\frac\pi4\big)=\frac{\pi(2-\sqrt2)}3\approx0{,}613$. Contrôle : fraction $\frac{1-\cos(\pi/4)}2\approx0{,}146$ de la boule unité $\frac{4\pi}3\approx4{,}19$, soit $0{,}613$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c5e8}}
+$\|u+v\|^2=\|u\|^2+2u\cdot v+\|v\|^2\le\|u\|^2+2\|u\|\|v\|+\|v\|^2=(\|u\|+\|v\|)^2$ car $u\cdot v\le|u\cdot v|\le\|u\|\|v\|$. On conclut par croissance de la racine carrée.
+\end{corrige}
+\begin{corrige}{\ref{c5e9}}
+$M=\int_0^1r\cdot4\pi r^2\,\dd r=4\pi\cdot\frac14=\pi$.
+\end{corrige}
+\else\stepcounter{subsection}\fi
+
+\subsection{Contrôle de fin de semaine (30 minutes, 20 points)}
+\begin{enumerate}
+ \item \bareme{6} Donner les coordonnées polaires de $(\sqrt3,-1)$ ($\theta\in]-\pi;\pi]$).
+ \item \bareme{7} Pour $u=(1,-1,2)$ et $v=(2,0,1)$, calculer $u\cdot v$, $\cos\gamma$ et dire si $\gamma$ est aigu.
+ \item \bareme{7} Distance de l'origine et du point $(1,1,1)$ au plan $x+2y+2z=9$.
+\end{enumerate}
+\ifcorr
+\textbf{Corrigé et barème.} \textbf{1.} $r=2$ \bareme{2} ; $\cos\theta=\frac{\sqrt3}2$, $\sin\theta=-\frac12$, $\theta=-\frac\pi6$ \bareme{4}. \textbf{2.} $u\cdot v=4$ \bareme{3} ; $\|u\|=\sqrt6$, $\|v\|=\sqrt5$, $\cos\gamma=\frac4{\sqrt{30}}$ \bareme{3} ; positif, donc aigu \bareme{1}. \textbf{3.} $\sqrt{1+4+4}=3$ ; origine : $\frac93=3$ \bareme{3} ; $(1,1,1)$ : $\frac{|1+2+2-9|}3=\frac43$ \bareme{4}. Seuil conseillé : $14/20$.
+\fi
+
+\subsection{Grille d'auto-évaluation}
+$\square$ je détermine le quadrant avant de donner $\theta$ ; $\square$ je sais quel angle est $\varphi$ dans mon cours ; $\square$ j'écris le plan sous la forme $ax+by+cz=d$ avant la distance ; $\square$ je vérifie $u\ne0$ avant de projeter ; $\square$ je n'oublie pas $r$ ou $\rho^2\sin\varphi$ dans les volumes.

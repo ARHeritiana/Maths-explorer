@@ -1,0 +1,171 @@
+\clearpage
+\section{Intégration}
+\renewcommand{\titrecourant}{Semaine 4}
+
+\begin{boussole}
+\textbf{Objectif de la semaine.} Calculer une intégrale par primitive, par parties ou par changement de variable, en gérant les bornes ; décider si une intégrale impropre converge ; calculer une aire (avec croisements de courbes) et un centre de gravité.\\
+\textbf{À la fin, je sais :}
+\begin{enumerate}
+ \item interpréter $\int_a^bf$ comme limite de sommes de Riemann ;
+ \item appliquer le théorème fondamental et l'intégration par parties ;
+ \item changer de variable \emph{avec les bornes} ;
+ \item reconnaître une intégrale impropre convergente ou divergente ;
+ \item calculer une aire entre deux courbes sans me tromper de signe ;
+ \item calculer une valeur moyenne et un centre de gravité plan.
+\end{enumerate}
+\textbf{Temps estimé} : 5 à 6 heures.
+\end{boussole}
+
+\subsection{Test d'entrée (5 minutes)}
+\begin{enumerate}
+ \item Une primitive de $x^2$ ? de $\frac1x$ ? de $\e^{2x}$ ?
+ \item Dériver $x\ln x-x$.
+ \item Calculer $\int_0^1(2x+1)\,\dd x$.
+ \item Quel est le signe de $\int_a^bf$ si $f\le0$ et $a<b$ ?
+ \item Que vaut $\int_a^af$ ?
+\end{enumerate}
+\textit{Réponses : $\frac{x^3}3$, $\ln|x|$, $\frac{\e^{2x}}2$ ; $\ln x$ ; $2$ ; négatif ou nul ; $0$.}
+
+\subsection{Cours}
+\begin{definition}[Intégrale de Riemann]
+Pour $f$ continue sur $[a;b]$, en subdivisant en $n$ pas égaux $\Delta x=\frac{b-a}n$, la somme $S_n=\sum_{k=0}^{n-1}f(a+k\Delta x)\Delta x$ converge quand $n\to\infty$ vers $\int_a^bf(x)\,\dd x$ (aire algébrique entre la courbe et l'axe).
+\end{definition}
+\begin{propriete}[Théorème fondamental]
+Si $f$ est continue sur $[a;b]$ et $F$ est une primitive de $f$, alors $\int_a^bf=F(b)-F(a)$. De plus $x\mapsto\int_a^xf$ est dérivable de dérivée $f$.
+\end{propriete}
+\begin{propriete}[Intégration par parties]
+Si $u,v$ sont de classe $C^1$ : $\displaystyle\int_a^bu\,v'=\big[uv\big]_a^b-\int_a^bu'\,v$.
+\end{propriete}
+\begin{demonstration}
+Intégrer $(uv)'=u'v+uv'$ sur $[a;b]$ et appliquer le théorème fondamental.
+\end{demonstration}
+\begin{propriete}[Changement de variable]
+Si $\varphi$ est $C^1$ et $f$ continue : $\displaystyle\int_a^bf(\varphi(t))\varphi'(t)\,\dd t=\int_{\varphi(a)}^{\varphi(b)}f(u)\,\dd u$. Les bornes \emph{changent avec la variable}.
+\end{propriete}
+\begin{propriete}[Valeur moyenne]
+Si $f$ est continue sur $[a;b]$, $\mu=\frac1{b-a}\int_a^bf$ vérifie $\mu=f(c)$ pour au moins un $c\in[a;b]$.
+\end{propriete}
+\begin{definition}[Intégrale impropre]
+$\int_a^{+\infty}f=\lim_{X\to+\infty}\int_a^Xf$ si cette limite est finie (convergence). Pour $f$ non bornée en $a$ : $\int_a^bf=\lim_{\eta\to0^+}\int_{a+\eta}^bf$.
+\end{definition}
+\begin{propriete}[Référence de Riemann]
+$\int_1^{+\infty}x^{-p}\,\dd x$ converge si et seulement si $p>1$ ; $\int_0^1x^{-p}\,\dd x$ converge si et seulement si $p<1$.
+\end{propriete}
+\begin{definition}[Centre de gravité plan]
+Pour la région $0\le y\le f(x)$, $a\le x\le b$, d'aire $A=\int_a^bf$ : $x_G=\frac1A\int_a^bxf(x)\,\dd x$ et $y_G=\frac1{2A}\int_a^bf(x)^2\,\dd x$.
+\end{definition}
+\begin{methode}
+\textbf{Choisir la technique.} Primitive visible $\to$ théorème fondamental. Produit polynôme $\times$ $\e^x$, $\sin$, $\cos$ $\to$ parties (le polynôme joue $u$). $\ln x$ seul $\to$ parties avec $v'=1$. Un facteur est la dérivée d'une expression qui apparaît ailleurs ($\frac{2x}{1+x^2}$) $\to$ changement de variable.
+\end{methode}
+\begin{piege}
+(i) Oublier de changer les bornes ou de revenir à $x$. (ii) Calculer une \og aire \fg{} avec une intégrale signée sans découper aux croisements. (iii) Appliquer le théorème fondamental à une fonction non continue sur $[a;b]$ (pôle à l'intérieur).
+\end{piege}
+
+\subsection{Exemples travaillés et cas limites}
+\begin{exemple}[somme de Riemann]
+Calculer $\int_0^1x^2\,\dd x$ par la définition.\\
+\emph{Solution.} $S_n=\sum_{k=0}^{n-1}\frac{k^2}{n^2}\cdot\frac1n=\frac{(n-1)n(2n-1)}{6n^3}=\frac{(n-1)(2n-1)}{6n^2}\to\frac13$. Contrôle $n=4$ : $\frac{0+1+4+9}{64}=\frac7{32}$ ; formule : $\frac{3\cdot7}{96}=\frac7{32}$. $\checkmark$
+\end{exemple}
+\begin{exemple}[intégration par parties]
+Calculer $\int_0^1x\e^x\,\dd x$.\\
+\emph{Solution.} $u=x$, $v'=\e^x$ : $[x\e^x]_0^1-\int_0^1\e^x=\e-(\e-1)=1$. Contrôle : $(x-1)\e^x$ est une primitive, valeurs $0$ en $1$ et $-1$ en $0$. $\checkmark$
+\end{exemple}
+\begin{cas}[parties cycliques et $\ln$]
+(a) $\int\ln x\,\dd x$ : $u=\ln x$, $v'=1$ donne $x\ln x-x$ (une primitive de $\ln$, par parties alors qu'il n'y a pas de produit apparent). (b) $J=\int_0^\pi\e^x\sin x\,\dd x$ : deux parties successives redonnent $J$ au second membre : $J=\e^\pi+1-J$, donc $2J=\e^\pi+1$ et $J=\frac{\e^\pi+1}2$. On résout une équation en $J$ au lieu de continuer indéfiniment.
+\end{cas}
+\begin{exemple}[changement de variable]
+Calculer $\int_0^1\frac{2x}{1+x^2}\,\dd x$.\\
+\emph{Solution.} $u=1+x^2$, $\dd u=2x\,\dd x$ ; bornes $u:1\to2$ : $\int_1^2\frac{\dd u}u=\ln2$.
+\end{exemple}
+\begin{cas}[symétrie et pièges de bornes]
+$\int_{-1}^1x\e^{x^2}\,\dd x=0$ : l'intégrande est impaire sur un intervalle symétrique (on le confirme avec $u=x^2$, bornes $1\to1$, intégrale nulle). Ne pas écrire les bornes $-1$ et $1$ dans $u$ puis oublier que $u(-1)=u(1)$.
+\end{cas}
+\begin{exemple}[impropre convergente]
+$\int_0^1x^{-1/2}\,\dd x=\lim_{\eta\to0^+}[2\sqrt x]_\eta^1=2$ : l'aire sous une courbe non bornée peut être finie.
+\end{exemple}
+\begin{cas}[impropres divergentes]
+$\int_0^1\frac{\dd x}x=\lim[\ln x]_\eta^1=+\infty$ : divergente. Plus insidieux : $\int_{-1}^1\frac{\dd x}{x^2}$ ne vaut \emph{pas} $[-\frac1x]_{-1}^1=-2$ : l'intégrande est positive, l'intégrale vaut $+\infty$ car $\frac1{x^2}$ n'est pas continue en $0\in[-1;1]$. Le théorème fondamental ne s'applique pas à travers le pôle. Enfin $\int_1^{+\infty}\frac{\dd x}x$ diverge alors que $\int_1^{+\infty}\frac{\dd x}{x^2}=1$.
+\end{cas}
+\begin{exemple}[aire entre deux courbes]
+Aire comprise entre $y=x$ et $y=x^2$ sur $[0;1]$ : $\int_0^1(x-x^2)\,\dd x=\frac12-\frac13=\frac16$ (la courbe du dessus est $y=x$).
+\end{exemple}
+\begin{cas}[croisement : l'intégrale n'est pas l'aire]
+Aire entre $y=x^2-2x$ et l'axe des abscisses sur $[0;3]$. L'expression change de signe en $x=2$. L'intégrale signée $\int_0^3(x^2-2x)\,\dd x=0$, alors que l'aire vaut $\int_0^2(2x-x^2)+\int_2^3(x^2-2x)=\frac43+\frac43=\frac83$. Toujours chercher les changements de signe avant d'intégrer.
+\end{cas}
+\begin{exemple}[centre de gravité]
+Région sous $y=4-x^2$ sur $[0;2]$.\\
+\emph{Solution.} $A=\int_0^2(4-x^2)=\frac{16}3$ ; $x_G=\frac1A\int_0^2(4x-x^3)=\frac{4}{16/3}=\frac34$ ; $y_G=\frac1{2A}\int_0^2(4-x^2)^2=\frac{3}{32}\cdot\frac{256}{15}=\frac85$. Contrôle : $y_G<4$ et $x_G<1$ (région plus massive près de l'axe $Oy$). $\checkmark$
+\end{exemple}
+
+\subsection{Exercices}
+\begin{exo}[A]\label{c4e1}
+Calculer $\int_0^2(3x^2-2x+1)\,\dd x$ et $\int_0^{\pi/2}\sin x\cos x\,\dd x$.
+\end{exo}
+\begin{exo}[A]\label{c4e2}
+Calculer $\int_0^1x\sqrt{1+x^2}\,\dd x$ par changement de variable.
+\end{exo}
+\begin{exo}[A]\label{c4e3}
+Calculer $\int_1^{\e}\ln x\,\dd x$.
+\end{exo}
+\begin{exo}[B]\label{c4e4}
+Calculer $\int_0^\pi\e^x\sin x\,\dd x$.
+\end{exo}
+\begin{exo}[B]\label{c4e5}
+Calculer l'aire comprise entre la courbe de $f(x)=x^3-x$ et l'axe des abscisses sur $[-1;1]$. Comparer à $\int_{-1}^1f$.
+\end{exo}
+\begin{exo}[B]\label{c4e6}
+Déterminer la valeur moyenne de $f(x)=x^2$ sur $[0;1]$ et le point $c$ prévu par la propriété de valeur moyenne.
+\end{exo}
+\begin{exo}[C]\label{c4e7}
+Pour quels $p>0$ l'intégrale $\int_1^{+\infty}x^{-p}\,\dd x$ converge-t-elle ? Même question pour $\int_0^1x^{-p}\,\dd x$.
+\end{exo}
+\begin{exo}[C]\label{c4e8}
+Déterminer le centre de gravité de la région sous $y=x^2$ sur $[0;1]$.
+\end{exo}
+\begin{exo}[C]\label{c4e9}
+Montrer que $\int_0^{+\infty}x\e^{-x}\,\dd x$ converge et calculer sa valeur.
+\end{exo}
+
+\ifcorr
+\subsection{Corrigés détaillés}
+\begin{corrige}{\ref{c4e1}}
+$[x^3-x^2+x]_0^2=8-4+2=6$. Pour la seconde, $\sin x\cos x=\frac12\sin2x$ : $\big[-\frac14\cos2x\big]_0^{\pi/2}=\frac14+\frac14=\frac12$ (ou $u=\sin x$ : $\int_0^1u\,\dd u=\frac12$).
+\end{corrige}
+\begin{corrige}{\ref{c4e2}}
+$u=1+x^2$, $\dd u=2x\,\dd x$, bornes $1\to2$ : $\frac12\int_1^2\sqrt u\,\dd u=\frac12\cdot\frac23[u^{3/2}]_1^2=\frac13(2\sqrt2-1)\approx0{,}609$. Contrôle : intégrande comprise entre $0$ et $\sqrt2$, intégrale plausible. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c4e3}}
+$[x\ln x-x]_1^{\e}=(\e-\e)-(0-1)=1$.
+\end{corrige}
+\begin{corrige}{\ref{c4e4}}
+$J=[\e^x\sin x]_0^\pi-\int_0^\pi\e^x\cos x=-\int_0^\pi\e^x\cos x$ ; seconde parties : $\int_0^\pi\e^x\cos x=[\e^x\cos x]_0^\pi+J=-\e^\pi-1+J$. Donc $J=\e^\pi+1-J$, soit $J=\frac{\e^\pi+1}2\approx12{,}07$. Contrôle par primitive $\frac{\e^x(\sin x-\cos x)}2$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c4e5}}
+$f(x)=x(x-1)(x+1)$ : positive sur $]-1;0[$, négative sur $]0;1[$. $\int_{-1}^1f=0$ (impaire). Aire : $2\int_0^1(x-x^3)\,\dd x=2\big(\frac12-\frac14\big)=\frac12$.
+\end{corrige}
+\begin{corrige}{\ref{c4e6}}
+$\mu=\int_0^1x^2=\frac13$. $c^2=\frac13\Rightarrow c=\frac1{\sqrt3}\approx0{,}577\in[0;1]$.
+\end{corrige}
+\begin{corrige}{\ref{c4e7}}
+$p\ne1$ : $\int_1^X x^{-p}=\frac{X^{1-p}-1}{1-p}$, limite finie si et seulement si $1-p<0$, c'est-à-dire $p>1$ ; $p=1$ : $\ln X\to\infty$. En $0$ : $\int_\eta^1x^{-p}=\frac{1-\eta^{1-p}}{1-p}$, finie si et seulement si $1-p>0$, soit $p<1$ ; $p=1$ : diverge. Conclusion : la valeur $p=1$ diverge dans les deux cas.
+\end{corrige}
+\begin{corrige}{\ref{c4e8}}
+$A=\frac13$ ; $x_G=3\int_0^1x^3=\frac34$ ; $y_G=\frac{1}{2A}\int_0^1x^4=\frac32\cdot\frac15=\frac3{10}$. Contrôle : $x_G>\frac12$ car la région est plus large vers $x=1$, et $y_G<\frac12$ car la courbe est basse sur la majeure partie de l'intervalle. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c4e9}}
+Parties : $\int_0^Xx\e^{-x}=[-x\e^{-x}]_0^X+\int_0^X\e^{-x}=-X\e^{-X}+1-\e^{-X}\to1$ (croissances comparées). Convergente de valeur $1$.
+\end{corrige}
+\else\stepcounter{subsection}\fi
+
+\subsection{Contrôle de fin de semaine (30 minutes, 20 points)}
+\begin{enumerate}
+ \item \bareme{7} Calculer $\int_1^{\e}x\ln x\,\dd x$.
+ \item \bareme{6} Calculer $\int_0^1\frac x{1+x^2}\,\dd x$ par changement de variable.
+ \item \bareme{7} Étudier la convergence de $\int_0^1\frac{\dd x}{\sqrt x}$ et de $\int_0^1\frac{\dd x}x$, avec la valeur quand elle existe.
+\end{enumerate}
+\ifcorr
+\textbf{Corrigé et barème.} \textbf{1.} $u=\ln x$, $v'=x$ : $\big[\frac{x^2}2\ln x\big]_1^{\e}-\int_1^{\e}\frac x2=\frac{\e^2}2-\frac{\e^2-1}4=\frac{\e^2+1}4$ \bareme{3 pour la méthode, 4 pour le résultat}. \textbf{2.} $u=1+x^2$, $\frac12\int_1^2\frac{\dd u}u=\frac{\ln2}2$ \bareme{3+3}. \textbf{3.} Première : $2$, convergente \bareme{4} ; seconde : divergente ($\ln$ tend vers $-\infty$ en $0$) \bareme{3}. Seuil conseillé : $14/20$.
+\fi
+
+\subsection{Grille d'auto-évaluation}
+$\square$ je change les bornes avec la variable ; $\square$ je découpe l'aire aux changements de signe ; $\square$ je vérifie la continuité avant d'appliquer le théorème fondamental ; $\square$ je mets une limite sur toute borne impropre ; $\square$ je contrôle par un ordre de grandeur.

@@ -32,7 +32,7 @@ def main():
         index = json.loads(index_path.read_text()); assert index['sourceDigest'] == digest(collection), 'University sources changed: rebuild the collection'
         for r in index['files'].values():
             p = ROOT / 'dist' / r['path']; assert p.stat().st_size == r['bytes']; assert hashlib.sha256(p.read_bytes()).hexdigest() == r['sha256']
-        for section in index['sections']:
+        for section in index['sections'][:1]:
             for seq in section['sequences']:
                 for edition in ['student', 'teacher']:
                     assert 1 <= seq[edition + 'Page'] <= index['files'][edition]['pages']
@@ -72,6 +72,8 @@ def main():
     clean = json.loads((ROOT / 'content/data/manifest.json').read_text())['university']
     collection.update(files=files, sourceDigest=digest(clean))
     index_path.write_text(json.dumps(collection, ensure_ascii=False, indent=2) + '\n')
+    if any(s['id'] == 'module-maths' for s in collection['sections']):
+        subprocess.run(['python3', str(ROOT / 'scripts/build-module-maths.py')], check=True)
     print('University collection: two PDF editions, six HTML decks, two editable source bundles.')
 
 if __name__ == '__main__': main()

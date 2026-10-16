@@ -172,3 +172,11 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - Exact answer checks and generation: `python3 private/verification/university-results.py --check` (SymPy). Two independent content/integration reviews are under `private/audits/university-foundations-audit-*.md`. Human review remains false.
 - Slide checks cover all 24 scenes, presets, finite drawing, interval images, roots, disk coverage and inverse camera picking. The binomial view keeps its scale while coefficients move; an explicit fit button changes the range.
 - PDF layout inspected after XeLaTeX builds. Browser/device QA remains unverified: the managed preview could not mount its sandbox process filesystem. No accessibility conformance claim is made.
+
+## 16 October 2026: applied mathematics module
+
+- University now shows two separate collections; applied mathematics has seven ordered weeks, four PDF editions, seven interactive HTML decks, LaTeX and HTML bundles, and a complete download. Sources: content/university/module-maths; package with scripts/build-module-maths.py (also called by make university).
+- Corrected local-maximum wording, eigenvalue criterion, first-order uncertainty estimates and substitution hypotheses. Rebuilt all four PDFs. Mobile slides use readable stacked layout, named sliders, keyboard handles, and reduced motion.
+- Independent reviews and code checks are recorded in private/audits/module-maths-audit-*.md and the private ledger. Browser visual QA unavailable because managed preview cannot mount proc.
+
+- GitHub synchronization remains blocked by automatic approval review despite verified private-repository access; Site source publication is handled separately.

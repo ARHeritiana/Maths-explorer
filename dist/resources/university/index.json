@@ -132,6 +132,190 @@
           "teacherPage": 8
         }
       ]
+    },
+    {
+      "id": "module-maths",
+      "title": [
+        "Mathématiques appliquées · L1",
+        "Applied mathematics · Year 1"
+      ],
+      "intro": [
+        "Un parcours en sept semaines pour une première année scientifique, avec cahier de travail autonome et guides de séquence. Supports en français.",
+        "A seven-week introductory science pathway with a self-study workbook and sequence guides. Materials in French."
+      ],
+      "language": "fr",
+      "sequences": [
+        {
+          "id": "module-semaine-1",
+          "number": 1,
+          "title": [
+            "Fonctions usuelles, trigonométrie et complexes",
+            "Elementary functions, trigonometry and complex numbers"
+          ],
+          "summary": [
+            "Semaine 1 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 1: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine1.html"
+        },
+        {
+          "id": "module-semaine-2",
+          "number": 2,
+          "title": [
+            "Proportions, polynômes et limites",
+            "Proportions, polynomials and limits"
+          ],
+          "summary": [
+            "Semaine 2 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 2: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine2.html"
+        },
+        {
+          "id": "module-semaine-3",
+          "number": 3,
+          "title": [
+            "Dérivation et optimisation",
+            "Differentiation and optimisation"
+          ],
+          "summary": [
+            "Semaine 3 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 3: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine3.html"
+        },
+        {
+          "id": "module-semaine-4",
+          "number": 4,
+          "title": [
+            "Intégration",
+            "Integration"
+          ],
+          "summary": [
+            "Semaine 4 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 4: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine4.html"
+        },
+        {
+          "id": "module-semaine-5",
+          "number": 5,
+          "title": [
+            "Géométrie du plan et de l’espace",
+            "Plane and space geometry"
+          ],
+          "summary": [
+            "Semaine 5 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 5: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine5.html"
+        },
+        {
+          "id": "module-semaine-6",
+          "number": 6,
+          "title": [
+            "Calcul matriciel",
+            "Matrix calculations"
+          ],
+          "summary": [
+            "Semaine 6 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 6: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine6.html"
+        },
+        {
+          "id": "module-semaine-7",
+          "number": 7,
+          "title": [
+            "Plusieurs variables et équations différentielles",
+            "Multivariable functions and differential equations"
+          ],
+          "summary": [
+            "Semaine 7 : exploration interactive, cours et exercices dans le cahier.",
+            "Week 7: interactive exploration, notes and workbook exercises."
+          ],
+          "prerequisites": [
+            "Notions de lycée ; semaines précédentes du module.",
+            "Secondary-school mathematics; preceding weeks of the module."
+          ],
+          "slide": "semaine7.html"
+        }
+      ],
+      "documents": [
+        {
+          "key": "module-workbook",
+          "label": [
+            "Cahier avec corrigés",
+            "Workbook with solutions"
+          ]
+        },
+        {
+          "key": "module-statements",
+          "label": [
+            "Cahier : énoncés seuls",
+            "Workbook: exercises only"
+          ]
+        },
+        {
+          "key": "module-student-guide",
+          "label": [
+            "Guide étudiant",
+            "Student guide"
+          ]
+        },
+        {
+          "key": "module-teacher-guide",
+          "label": [
+            "Guide professeur",
+            "Teacher guide"
+          ]
+        },
+        {
+          "key": "module-tex",
+          "label": [
+            "Sources LaTeX",
+            "LaTeX sources"
+          ]
+        },
+        {
+          "key": "module-slides",
+          "label": [
+            "Les sept diaporamas HTML",
+            "Seven HTML slide decks"
+          ]
+        },
+        {
+          "key": "module-all",
+          "label": [
+            "Télécharger le module complet",
+            "Download the complete module"
+          ]
+        }
+      ]
     }
   ],
   "files": {
@@ -186,7 +370,82 @@
       "path": "resources/university/foundations/sources-slides.zip",
       "bytes": 37673,
       "sha256": "1edcba06693dda5ee1098bc707b0bee916e8d75a883a6449da4b2cbae1536c99"
+    },
+    "module-workbook": {
+      "path": "resources/university/module-maths/cahier-de-travail-autonome.pdf",
+      "bytes": 397545,
+      "sha256": "c683947fc3abf2ccff3172f921f4f2130013bed0500a1ee827e1cfc76c00b2c3",
+      "pages": 29
+    },
+    "module-statements": {
+      "path": "resources/university/module-maths/cahier-de-travail-autonome-ENONCES.pdf",
+      "bytes": 341466,
+      "sha256": "4482b1d0e4b2769a61fa385ed71b3765cf988db34830eef69f2041fcb4c2feba",
+      "pages": 26
+    },
+    "module-student-guide": {
+      "path": "resources/university/module-maths/Guide-etudiant.pdf",
+      "bytes": 190549,
+      "sha256": "8277eb66e257d0012b08f752f2c216ab2b2e543d3b56b22ad21d2255099f1b8f",
+      "pages": 16
+    },
+    "module-teacher-guide": {
+      "path": "resources/university/module-maths/Guide-professeur.pdf",
+      "bytes": 215273,
+      "sha256": "63ddf6efe06ecc71e017baf5008a90fda3532f8e3efd320d78e2dab78135a098",
+      "pages": 22
+    },
+    "module-semaine-1": {
+      "path": "resources/university/module-maths/slides/semaine1.html",
+      "bytes": 47050,
+      "sha256": "1790cf5e873d1f3ad4c8ff49612641be3bb52f1ca53a56b7ace74a88e079fb21"
+    },
+    "module-semaine-2": {
+      "path": "resources/university/module-maths/slides/semaine2.html",
+      "bytes": 40792,
+      "sha256": "a8467c7948b09976dad2600cc3813a53096da798ee6545d025e3739a9265b5d9"
+    },
+    "module-semaine-3": {
+      "path": "resources/university/module-maths/slides/semaine3.html",
+      "bytes": 37984,
+      "sha256": "fd4059591beceab6f511bbc7caa61d514f257026fb16117edcc63fe0bad9cc63"
+    },
+    "module-semaine-4": {
+      "path": "resources/university/module-maths/slides/semaine4.html",
+      "bytes": 35104,
+      "sha256": "c027daf69f70857253f1d5f5fb9cbe53e32467065e31f827c96444d205dc2181"
+    },
+    "module-semaine-5": {
+      "path": "resources/university/module-maths/slides/semaine5.html",
+      "bytes": 42436,
+      "sha256": "c9ef2c1ba1d12eae364643e6f9a1620172ccd6b54c07d498f1c020a03aca66d5"
+    },
+    "module-semaine-6": {
+      "path": "resources/university/module-maths/slides/semaine6.html",
+      "bytes": 39979,
+      "sha256": "6f705af74a362ea340f7cebf731e7193d0f9c8f7eb80e57bc9114ad15f4a3cbd"
+    },
+    "module-semaine-7": {
+      "path": "resources/university/module-maths/slides/semaine7.html",
+      "bytes": 42696,
+      "sha256": "d3bc11eac2d8a78bd2fb0f282ee52ab3a31203cada05a484a806cec822eeb950"
+    },
+    "module-tex": {
+      "path": "resources/university/module-maths/sources-latex.zip",
+      "bytes": 61075,
+      "sha256": "2d46e704f375e3023f943185d309969932740906b8bdabae5ae7259bc3719fd4"
+    },
+    "module-slides": {
+      "path": "resources/university/module-maths/diaporamas-html.zip",
+      "bytes": 106590,
+      "sha256": "6fc59271e2d3e5652f08c3824257f55852a2b6217afe45998f1a2dac2f235291"
+    },
+    "module-all": {
+      "path": "resources/university/module-maths/module-complet.zip",
+      "bytes": 1071363,
+      "sha256": "73eef7151efb8e508b74d19efe2edde32882ddb357b9a1dd3ab1283f784191aa"
     }
   },
-  "sourceDigest": "a66a4f6bae49087a761b05c6d80d4e4ae9444e3329a3b5533156831fcd1527aa"
+  "sourceDigest": "b176bae9c2c00cd57323b3eb17caeead736c2f47110bc35b08cba02b57818f5b",
+  "moduleDigest": "e70a11fba7238ffde7ee64da5bb855d236753c18cb5784990a7f5ee8cf3905ef"
 }

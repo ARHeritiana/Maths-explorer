@@ -1,0 +1,199 @@
+\clearpage
+\section{Proportions, polynômes, fractions rationnelles, limites}
+\renewcommand{\titrecourant}{Semaine 2}
+
+\begin{boussole}
+\textbf{Objectif de la semaine.} Traduire un énoncé de proportion en équation, résoudre sans erreur les équations du second degré et bicarrées (en sachant combien de solutions attendre), décomposer une fraction rationnelle en éléments simples, et écrire une limite avec la définition $\varepsilon$--$\delta$.\\
+\textbf{À la fin, je sais :}
+\begin{enumerate}
+ \item enchaîner des pourcentages par des facteurs multiplicatifs et inverser une variation ;
+ \item interpoler linéairement entre deux mesures, et dire quand ne pas extrapoler ;
+ \item discuter le nombre de solutions d'une équation du second degré dépendant d'un paramètre ;
+ \item décomposer $\frac{P}{(x-a)(x-b)}$ (avec division euclidienne si le degré l'exige) et traiter un pôle double ;
+ \item prouver $\lim_{x\to a}f(x)=\ell$ en exhibant $\delta(\varepsilon)$.
+\end{enumerate}
+\textbf{Temps estimé} : 5 à 6 heures.
+\end{boussole}
+
+\subsection{Test d'entrée (5 minutes)}
+\begin{enumerate}
+ \item Quel nombre multiplie un prix lors d'une hausse de $20\,\%$ ?
+ \item Développer $(x-3)^2$ et factoriser $x^2-9$.
+ \item Résoudre $3x-7=2x+5$.
+ \item Que vaut le discriminant de $x^2-4x+4$ ?
+ \item Réduire au même dénominateur $\frac1x+\frac1{x+1}$.
+\end{enumerate}
+\textit{Réponses : $1{,}2$ ; $x^2-6x+9$ et $(x-3)(x+3)$ ; $x=12$ ; $0$ ; $\frac{2x+1}{x(x+1)}$.}
+
+\subsection{Cours}
+\subsubsection*{Pourcentages et interpolation}
+\begin{definition}[Facteur multiplicatif]
+Une variation de $t\,\%$ multiplie la valeur par $1+\frac t{100}$ (hausse si $t>0$, baisse si $t<0$). Des variations successives multiplient leurs facteurs ; la variation réciproque est le facteur inverse, \emph{pas} l'opposé du taux.
+\end{definition}
+\begin{propriete}[Interpolation linéaire]
+Si une grandeur $y$ est affine en $x$ et connue en $x_0\ne x_1$ ($y_0$, $y_1$), alors $y(x)=y_0+\dfrac{y_1-y_0}{x_1-x_0}(x-x_0)$. Si $x\in[x_0;x_1]$ on interpole ; sinon on \emph{extrapole}, ce qui suppose que le modèle affine reste valable.
+\end{propriete}
+\begin{demonstration}
+Une fonction affine s'écrit $mx+p$ ; sa pente vaut $m=\frac{y_1-y_0}{x_1-x_0}$ et $y(x)-y(x_0)=m(x-x_0)$.
+\end{demonstration}
+
+\subsubsection*{Second degré et équations bicarrées}
+\begin{propriete}[Discriminant]
+Soit $a\ne0$ et $\Delta=b^2-4ac$. Si $\Delta>0$ : deux racines réelles $\frac{-b\pm\sqrt\Delta}{2a}$. Si $\Delta=0$ : une racine double $-\frac b{2a}$. Si $\Delta<0$ : aucune racine réelle, deux racines complexes conjuguées $\frac{-b\pm i\sqrt{-\Delta}}{2a}$.
+\end{propriete}
+\begin{demonstration}
+Forme canonique : $ax^2+bx+c=a\Big[\big(x+\frac b{2a}\big)^2-\frac\Delta{4a^2}\Big]$. L'équation équivaut à $\big(x+\frac b{2a}\big)^2=\frac\Delta{4a^2}$, d'où les trois cas selon le signe de $\Delta$.
+\end{demonstration}
+\begin{propriete}[Somme et produit des racines]
+Si $x_1,x_2$ sont les racines : $x_1+x_2=-\frac ba$ et $x_1x_2=\frac ca$ ; et $ax^2+bx+c=a(x-x_1)(x-x_2)$.
+\end{propriete}
+\begin{demonstration}
+Développer $a(x-x_1)(x-x_2)=a[x^2-(x_1+x_2)x+x_1x_2]$ et identifier avec $ax^2+bx+c$.
+\end{demonstration}
+\begin{methode}
+\textbf{Bicarrée $ax^4+bx^2+c=0$.} Poser $X=x^2$ ; résoudre $aX^2+bX+c=0$ ; \emph{garder $X\ge0$ seulement} ; chaque $X>0$ donne $x=\pm\sqrt X$, $X=0$ donne $x=0$. Une racine $X<0$ ne donne aucune solution réelle (deux solutions imaginaires pures).
+\end{methode}
+
+\subsubsection*{Éléments simples}
+\begin{propriete}[Deux pôles simples]
+Pour $a\ne b$ et $\deg P\le1$ : $\dfrac{P(x)}{(x-a)(x-b)}=\dfrac A{x-a}+\dfrac B{x-b}$ avec $A=\dfrac{P(a)}{a-b}$ et $B=\dfrac{P(b)}{b-a}$.
+\end{propriete}
+\begin{demonstration}
+En multipliant par $(x-a)(x-b)$ : $P(x)=A(x-b)+B(x-a)$. En $x=a$ : $P(a)=A(a-b)$ ; en $x=b$ : $P(b)=B(b-a)$. Les deux membres sont des polynômes de degré $\le1$ égaux en deux points distincts, donc égaux.
+\end{demonstration}
+\begin{methode}
+(1) Si $\deg P\ge\deg(\text{dénominateur})$, faire d'abord la division euclidienne : le quotient est un polynôme. (2) Pôle double $\frac1{(x-a)^2}$ : on cherche $\frac A{x-a}+\frac B{(x-a)^2}$ ; $B$ s'obtient en évaluant la fraction multipliée par $(x-a)^2$ en $x=a$. (3) \emph{Toujours vérifier} en une valeur numérique de $x$ non pôle.
+\end{methode}
+
+\subsubsection*{Limites}
+\begin{definition}[Limite en un point]
+$\displaystyle\lim_{x\to a}f(x)=\ell$ si $\forall\varepsilon>0,\ \exists\delta>0,\ \forall x,\ 0<|x-a|<\delta\Rightarrow|f(x)-\ell|<\varepsilon$. L'ordre des quantificateurs est essentiel : $\delta$ dépend de $\varepsilon$ (et de $a$), jamais l'inverse. La condition $0<|x-a|$ exclut $x=a$ : la valeur de $f$ en $a$ n'intervient pas.
+\end{definition}
+\begin{propriete}
+Une limite, si elle existe, est unique. Si $f$ a une limite finie en $a$, ses limites à gauche et à droite existent et sont égales ; la réciproque est vraie.
+\end{propriete}
+\begin{piege}
+\textbf{Pièges.} (i) $\varepsilon$ et $\delta$ inversés. (ii) Croire qu'une limite est la valeur $f(a)$. (iii) $\frac00$ n'est pas un nombre : une fraction qui s'annule en haut et en bas se simplifie ou se factorise d'abord. (iv) Multiplier deux pourcentages \og comme on les additionne \fg{}.
+\end{piege}
+
+\subsection{Exemples travaillés et cas limites}
+\begin{exemple}[pourcentages successifs]
+Un prix augmente de $20\,\%$ puis baisse de $20\,\%$. Variation globale ?\\
+\emph{Solution.} Facteur $1{,}2\times0{,}8=0{,}96$ : baisse globale de $4\,\%$ (et non $0\,\%$).
+\end{exemple}
+\begin{cas}[variation réciproque]
+Après une baisse de $25\,\%$, un objet coûte $90$. Prix initial : $\frac{90}{0{,}75}=120$ (et non $90\times1{,}25=112{,}5$, qui serait $+25\,\%$ \emph{du prix déjà réduit}). Pour revenir au prix initial il faut une hausse de $\frac1{0{,}75}-1\approx+33{,}3\,\%$.
+\end{cas}
+\begin{exemple}[interpolation]
+Une boisson est à $80^\circ$C à $t=10$ min et à $50^\circ$C à $t=30$ min. Estimer la température à $t=25$.\\
+\emph{Solution.} Pente $\frac{50-80}{30-10}=-1{,}5$ ; $T(25)=80-1{,}5\cdot15=57{,}5^\circ$C.
+\end{exemple}
+\begin{cas}[extrapolation et impossibilité]
+Le même modèle donnerait $T(70)=-10^\circ$C, température absurde pour une boisson dans une pièce chaude : le refroidissement réel n'est pas affine. Et si $x_0=x_1$, la formule divise par $0$ : deux mesures au même instant ne déterminent pas de droite.
+\end{cas}
+\begin{exemple}[discriminant]
+Résoudre $2x^2+x-6=0$.\\
+\emph{Solution.} $\Delta=1+48=49$, $x=\frac{-1\pm7}4$, soit $x=\frac32$ ou $x=-2$. Contrôle : somme $-\frac12=-\frac ba$ ; produit $-3=\frac ca$. $\checkmark$
+\end{exemple}
+\begin{cas}[équation à paramètre]
+Discuter le nombre de solutions réelles de $(m-1)x^2-2x+1=0$.\\
+\emph{Solution.} Si $m=1$, l'équation n'est plus du second degré : $-2x+1=0$, $x=\frac12$ (une solution). Si $m\ne1$ : $\Delta=4-4(m-1)=8-4m$. Donc $m<2$ ($m\ne1$) : deux solutions ; $m=2$ : une solution double $x=1$ ; $m>2$ : aucune. \emph{Contrôle} $m=2$ : $x^2-2x+1=(x-1)^2$. $\checkmark$ Oublier le cas $m=1$ est l'erreur typique.
+\end{cas}
+\begin{exemple}[bicarrée]
+Résoudre $x^4-5x^2+4=0$.\\
+\emph{Solution.} $X^2-5X+4=0$ donne $X=1$ ou $X=4$, tous deux positifs : $x\in\{-2,-1,1,2\}$.
+\end{exemple}
+\begin{cas}[racine $X$ négative]
+$x^4+x^2-6=0$ : $X\in\{2,-3\}$. $X=2$ donne $x=\pm\sqrt2$ ; $X=-3$ est rejetée dans $\R$ (dans $\C$ : $x=\pm i\sqrt3$). Enfin $x^4+2x^2+1=(x^2+1)^2$ n'a aucune racine réelle.
+\end{cas}
+\begin{exemple}[éléments simples]
+Décomposer $\dfrac{3x+5}{(x-1)(x+2)}$.\\
+\emph{Solution.} $A=\frac{3+5}{1+2}=\frac83$, $B=\frac{-6+5}{-2-1}=\frac13$. \emph{Contrôle} en $x=0$ : membre de gauche $\frac5{-2}=-\frac52$ ; membre de droite $-\frac83+\frac16=-\frac{15}6=-\frac52$. $\checkmark$
+\end{exemple}
+\begin{cas}[degré trop grand, pôle double]
+(a) $\frac{x^2+1}{(x-1)(x+1)}=1+\frac2{(x-1)(x+1)}=1+\frac1{x-1}-\frac1{x+1}$ : sans division euclidienne, la méthode directe donnerait un faux résultat. (b) $\frac x{(x-1)^2}=\frac{(x-1)+1}{(x-1)^2}=\frac1{x-1}+\frac1{(x-1)^2}$. (c) La formule de $A$ et $B$ exige $a\ne b$ : avec $a=b$ elle divise par $0$.
+\end{cas}
+\begin{exemple}[limite $\varepsilon$--$\delta$ affine]
+Montrer $\lim_{x\to2}(3x-1)=5$.\\
+\emph{Solution.} $|3x-1-5|=3|x-2|$. Pour $\varepsilon>0$ on prend $\delta=\frac\varepsilon3$ : $|x-2|<\delta\Rightarrow|f(x)-5|<\varepsilon$.
+\end{exemple}
+\begin{exemple}[limite d'un carré]
+Montrer $\lim_{x\to2}x^2=4$.\\
+\emph{Solution.} $|x^2-4|=|x-2||x+2|$. Si $|x-2|<1$ alors $x\in]1;3[$ et $|x+2|<5$. Avec $\delta=\min(1,\frac\varepsilon5)$ : $|x^2-4|<5\cdot\frac\varepsilon5=\varepsilon$.
+\end{exemple}
+\begin{cas}[limite sans valeur, limite inexistante]
+$\frac{x^2-1}{x-1}=x+1$ pour $x\ne1$, donc la limite en $1$ vaut $2$ alors que la fonction n'est pas définie en $1$. À l'inverse, $f(x)=\frac{|x|}x$ vaut $-1$ à gauche de $0$ et $1$ à droite : les limites latérales diffèrent, la limite en $0$ n'existe pas.
+\end{cas}
+
+\subsection{Exercices}
+\begin{exo}[A]\label{c2e1}
+Un article à $80$ \texteuro{} augmente de $15\,\%$ puis baisse de $15\,\%$. Prix final et variation globale ? Un autre article coûte $56$ \texteuro{} après une remise de $20\,\%$ : prix initial ?
+\end{exo}
+\begin{exo}[A]\label{c2e2}
+Un capteur indique $12^\circ$C à $t=0$ min et $4^\circ$C à $t=40$ min. En supposant l'évolution affine, estimer la température à $t=25$ min, puis l'instant où elle atteint $0^\circ$C. Commenter.
+\end{exo}
+\begin{exo}[A]\label{c2e3}
+Résoudre $2x^2-5x-3=0$ et factoriser le trinôme.
+\end{exo}
+\begin{exo}[B]\label{c2e4}
+Discuter selon $m$ le nombre de solutions réelles de $x^2-2mx+m+2=0$.
+\end{exo}
+\begin{exo}[B]\label{c2e5}
+Résoudre dans $\R$ : (a) $x^4-13x^2+36=0$ ; (b) $x^4+3x^2-4=0$ ; (c) $x^4+x^2+1=0$.
+\end{exo}
+\begin{exo}[B]\label{c2e6}
+Décomposer en éléments simples $\dfrac{2x-1}{(x-1)(x+3)}$ et $\dfrac{x^2+3x}{(x-1)(x+2)}$.
+\end{exo}
+\begin{exo}[C]\label{c2e7}
+Décomposer $\dfrac1{(x-1)^2(x+1)}$ sous la forme $\frac A{x+1}+\frac B{x-1}+\frac C{(x-1)^2}$.
+\end{exo}
+\begin{exo}[C]\label{c2e8}
+Montrer par $\varepsilon$--$\delta$ que $\lim_{x\to3}x^2=9$.
+\end{exo}
+\begin{exo}[C]\label{c2e9}
+Montrer que $\lim_{x\to0}\frac{|x|}x$ n'existe pas (on raisonnera avec $\varepsilon=1$).
+\end{exo}
+
+\ifcorr
+\subsection{Corrigés détaillés}
+\begin{corrige}{\ref{c2e1}}
+$80\times1{,}15\times0{,}85=78{,}2$ \texteuro{} ; facteur global $0{,}9775$, soit $-2{,}25\,\%$ (jamais $0\,\%$). Prix initial : $\frac{56}{0{,}8}=70$ \texteuro{}.
+\end{corrige}
+\begin{corrige}{\ref{c2e2}}
+Pente $\frac{4-12}{40}=-0{,}2$ ; $T(t)=12-0{,}2t$ ; $T(25)=7^\circ$C ; $T=0$ pour $t=60$ min. Le résultat à $t=60$ est une \emph{extrapolation} hors de $[0;40]$ : elle vaut sous l'hypothèse d'un refroidissement affine, peu réaliste (une loi de refroidissement réelle est exponentielle).
+\end{corrige}
+\begin{corrige}{\ref{c2e3}}
+$\Delta=25+24=49$, $x=\frac{5\pm7}4$ : $x=3$ ou $x=-\frac12$. Factorisation : $2(x-3)(x+\frac12)=(x-3)(2x+1)$. Contrôle : somme $\frac52=-\frac ba$, produit $-\frac32=\frac ca$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c2e4}}
+Le coefficient de $x^2$ est $1\ne0$ pour tout $m$ : pas de cas dégénéré. $\Delta=4m^2-4(m+2)=4(m^2-m-2)=4(m-2)(m+1)$. Donc : $m<-1$ ou $m>2$ : deux solutions ; $m=-1$ ou $m=2$ : une solution double ($x=m$) ; $-1<m<2$ : aucune. Contrôle $m=2$ : $x^2-4x+4=(x-2)^2$. $\checkmark$ ; $m=0$ : $x^2+2=0$ sans solution réelle. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c2e5}}
+(a) $X^2-13X+36=0$, $X\in\{4,9\}$ : $x\in\{-3,-2,2,3\}$. (b) $X^2+3X-4=(X+4)(X-1)$, $X\in\{1,-4\}$ : seule $X=1$ est admissible, $x=\pm1$. (c) $X^2+X+1=0$, $\Delta=-3<0$ : aucune racine $X$ réelle, donc aucune solution réelle.
+\end{corrige}
+\begin{corrige}{\ref{c2e6}}
+Première fraction : $A=\frac{2-1}{1+3}=\frac14$, $B=\frac{-6-1}{-3-1}=\frac74$ ; contrôle en $x=0$ : $\frac{-1}{-3}=\frac13$ et $-\frac14+\frac7{12}=\frac13$. Seconde : $\deg$ égaux, donc $\frac{x^2+3x}{x^2+x-2}=1+\frac{2x+2}{(x-1)(x+2)}$ ; $A=\frac{4}{3}$, $B=\frac{-2}{-3}=\frac23$ ; résultat $1+\frac4{3(x-1)}+\frac2{3(x+2)}$ ; contrôle en $x=0$ : $0$ et $1-\frac43+\frac13=0$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c2e7}}
+$C=\frac1{x+1}\big|_{x=1}=\frac12$ ; $A=\frac1{(x-1)^2}\big|_{x=-1}=\frac14$ ; en multipliant par $x$ et en faisant $x\to\infty$ : $0=A+B$, donc $B=-\frac14$. Résultat : $\frac1{4(x+1)}-\frac1{4(x-1)}+\frac1{2(x-1)^2}$. Contrôle en $x=0$ : $\frac1{(1)(1)}=1$ et $\frac14+\frac14+\frac12=1$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c2e8}}
+$|x^2-9|=|x-3||x+3|$. Si $|x-3|<1$ alors $x\in]2;4[$ et $|x+3|<7$. Avec $\delta=\min(1,\frac\varepsilon7)$ : $|x^2-9|<7\cdot\frac\varepsilon7=\varepsilon$.
+\end{corrige}
+\begin{corrige}{\ref{c2e9}}
+Par l'absurde, supposons $\lim=L$. Pour $\varepsilon=1$ il existe $\delta>0$ tel que $0<|x|<\delta\Rightarrow\big|\frac{|x|}x-L\big|<1$. Avec $x=\frac\delta2$ : $|1-L|<1$ ; avec $x=-\frac\delta2$ : $|-1-L|<1$. L'inégalité triangulaire donne $2=|1-(-1)|\le|1-L|+|L+1|<2$, contradiction.
+\end{corrige}
+\else\stepcounter{subsection}\fi
+
+\subsection{Contrôle de fin de semaine (30 minutes, 20 points)}
+\begin{enumerate}
+ \item \bareme{6} Un prix subit une hausse de $20\,\%$ puis une baisse de $10\,\%$. Donner la variation globale, puis le prix initial sachant que le prix final est $108$ \texteuro.
+ \item \bareme{7} Résoudre dans $\R$ : $x^4-13x^2+36=0$.
+ \item \bareme{7} Décomposer $\dfrac{5x+1}{(x-2)(x+1)}$ et vérifier le résultat en $x=0$.
+\end{enumerate}
+\ifcorr
+\textbf{Corrigé et barème.} \textbf{1.} Facteur $1{,}2\times0{,}9=1{,}08$ : $+8\,\%$ \bareme{3} ; prix initial $\frac{108}{1{,}08}=100$ \texteuro{} \bareme{3}. \textbf{2.} $X=4$ ou $9$ \bareme{3} ; $x\in\{-3,-2,2,3\}$ \bareme{4}. \textbf{3.} $A=\frac{11}3$, $B=\frac43$ \bareme{4} ; contrôle en $0$ : $-\frac12$ et $-\frac{11}6+\frac43=-\frac12$ \bareme{3}. Seuil conseillé : $14/20$.
+\fi
+
+\subsection{Grille d'auto-évaluation}
+$\square$ je chaîne des pourcentages par des facteurs ; $\square$ je teste le cas $a=0$ avant le discriminant ; $\square$ je rejette $X<0$ en bicarrée ; $\square$ je fais la division euclidienne quand $\deg P\ge$ degré du dénominateur ; $\square$ je choisis $\delta$ en fonction de $\varepsilon$ et jamais l'inverse.

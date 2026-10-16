@@ -1,0 +1,98 @@
+% =====================================================================
+% Cahier de travail autonome -- module de mathématiques (niveau licence 1, filières pharma/ingénieur)
+% pdfLaTeX + mathpazo, deux passes. Numérotation entièrement automatique.
+% Tout le contenu (cours, exemples, exercices, corrigés) est original.
+% =====================================================================
+\documentclass[10.5pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\IfFileExists{french.ldf}{\usepackage[french]{babel}}{\usepackage[english]{babel}}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{array,longtable,booktabs}
+\usepackage{needspace}
+\usepackage[framemethod=default]{mdframed}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\newif\ifcorr
+\corrtrue % \corrfalse : énoncés seuls (sans les corrigés détaillés)
+
+\definecolor{marine}{HTML}{1F3A5F}
+\definecolor{acier}{HTML}{4A6FA5}
+\definecolor{ardoise}{HTML}{5B6770}
+\definecolor{fondpale}{HTML}{F6F8FA}
+\definecolor{fondcas}{HTML}{F3F1EE}
+
+\setlist[enumerate,1]{label=\arabic*.,leftmargin=*,itemsep=1pt,topsep=2pt}
+\setlist[enumerate,2]{label=\alph*.,leftmargin=*,itemsep=1pt,topsep=1pt}
+\setlist[itemize]{leftmargin=*,itemsep=1pt,topsep=2pt}
+\sloppy\emergencystretch=3em\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.15}\setlength{\tabcolsep}{5pt}
+
+% --- Compteurs (jamais de numéro saisi à la main) --------------------
+\newcounter{defn}[section]\newcounter{prop}[section]\newcounter{demo}[section]
+\newcounter{exemple}[section]\newcounter{exo}[section]
+
+\mdfdefinestyle{filet}{linecolor=acier,linewidth=2.5pt,topline=false,bottomline=false,rightline=false,
+  leftmargin=0pt,rightmargin=0pt,innerleftmargin=9pt,innerrightmargin=6pt,innertopmargin=3pt,innerbottommargin=3pt,backgroundcolor=fondpale}
+\newmdenv[style=filet,linecolor=marine]{boussole}
+\newmdenv[style=filet]{methode}
+\newmdenv[style=filet,linecolor=ardoise,backgroundcolor=fondcas]{piege}
+\newmdenv[style=filet,linecolor=ardoise,backgroundcolor=fondcas]{cadrecas}
+
+\newenvironment{definition}[1][]{\refstepcounter{defn}\par\smallskip\noindent
+ \textbf{\textcolor{marine}{Définition \thesection.\thedefn}}\if\relax\detokenize{#1}\relax\else\ (#1)\fi\,\textbf{.}\ }{\par\smallskip}
+\newenvironment{propriete}[1][]{\refstepcounter{prop}\par\smallskip\noindent
+ \textbf{\textcolor{marine}{Propriété \thesection.\theprop}}\if\relax\detokenize{#1}\relax\else\ (#1)\fi\,\textbf{.}\ \itshape}{\par\smallskip}
+\newenvironment{demonstration}[1][]{\par\smallskip\noindent\textbf{\textcolor{ardoise}{Démonstration}}%
+ \if\relax\detokenize{#1}\relax\else\ (#1)\fi\,\textbf{.}\ }{\hfill$\square$\par\smallskip}
+% Exemple travaillé et cas limite partagent le compteur (ordre de lecture = ordre de difficulté)
+\newenvironment{exemple}[1][]{\refstepcounter{exemple}\par\medskip\noindent
+ \textbf{\textcolor{marine}{Exemple \thesection.\theexemple}}\if\relax\detokenize{#1}\relax\else\ -- #1\fi\,\textbf{.}\ }{\par\smallskip}
+\newenvironment{cas}[1][]{\refstepcounter{exemple}\par\medskip\begin{cadrecas}\noindent
+ \textbf{\textcolor{ardoise}{Cas limite \thesection.\theexemple}}\if\relax\detokenize{#1}\relax\else\ -- #1\fi\,\textbf{.}\ }{\end{cadrecas}}
+\newenvironment{exo}[1][A]{\refstepcounter{exo}\par\medskip\noindent
+ \textbf{\textcolor{marine}{Exercice \thesection.\theexo}}\ \textsf{\small[niveau #1]}\,\textbf{.}\ }{\par}
+\newenvironment{corrige}[1]{\par\smallskip\noindent\textbf{\textcolor{acier}{Corrigé de l'exercice #1.}}\ }{\par\smallskip}
+
+\providecommand{\og}{\guillemotleft\,}\providecommand{\fg}{\,\guillemotright}
+\newcommand{\R}{\mathbb{R}}\newcommand{\C}{\mathbb{C}}\newcommand{\N}{\mathbb{N}}
+\newcommand{\dd}{\mathrm{d}}\newcommand{\e}{\mathrm{e}}
+\newcommand{\bareme}[1]{\textsf{\small[#1\,pts]}}
+\newcommand{\verif}{\textsf{\textcolor{ardoise}{(convention)}}}
+\newcommand{\horsprog}{\textsf{\textcolor{ardoise}{[HORS PROGRAMME]}}}
+\newcommand{\titrecourant}{Cahier de travail}
+\pagestyle{fancy}\fancyhf{}\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\textcolor{ardoise}{Cahier de travail autonome}}\fancyhead[R]{\small\textcolor{ardoise}{\titrecourant}}
+\fancyfoot[C]{\small\thepage}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+\begin{center}
+ {\LARGE\bfseries\textcolor{marine}{Mathématiques : cahier de travail autonome}}\\[3pt]
+ {\large\textcolor{ardoise}{Sept semaines : cours, exemples travaillés, cas limites, exercices corrigés}}
+\end{center}
+
+\section*{Mode d'emploi}\addcontentsline{toc}{section}{Mode d'emploi}
+\begin{boussole}
+\textbf{Ce que contient ce cahier.} Sept chapitres indépendants de toute autre ressource. Chacun suit le même parcours, en six temps :
+\begin{enumerate}
+ \item \textbf{Boussole} : l'objectif de la semaine en une phrase, les compétences vérifiables, le temps estimé.
+ \item \textbf{Test d'entrée} : cinq questions pour savoir si les prérequis sont solides (réponses en fin de chapitre).
+ \item \textbf{Cours} : définitions, propriétés, démonstrations, méthodes encadrées et pièges.
+ \item \textbf{Exemples et cas limites} : par difficulté croissante ; les cas limites (cadre grisé) montrent où une règle cesse de s'appliquer.
+ \item \textbf{Exercices} : niveaux A (application directe), B (entraînement), C (approfondissement), tous corrigés en détail.
+ \item \textbf{Contrôle de fin de semaine} : trente minutes, vingt points, barème et corrigé.
+\end{enumerate}
+\textbf{Conseil de travail.} Cherchez chaque exercice sur papier avant d'ouvrir le corrigé ; vérifiez ensuite votre résultat par un test numérique (point particulier, cas limite, ordre de grandeur), comme le font les corrigés.
+\end{boussole}
+\textbf{Conventions.} Réels $\R$, complexes $\C$, virgule décimale. Une démonstration se termine par $\square$. Les mentions \verif\ signalent un point dont la convention peut varier selon votre cours. Tous les exercices et les valeurs numériques sont originaux ; chaque résultat chiffré a été recalculé par un logiciel de calcul formel avant d'être imprimé.
+
+\renewcommand{\contentsname}{Sommaire}\tableofcontents
+
+\input{c1}\input{c2}\input{c3}\input{c4}\input{c5}\input{c6}\input{c7}
+\end{document}

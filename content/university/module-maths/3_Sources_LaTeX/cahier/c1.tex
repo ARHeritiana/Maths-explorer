@@ -1,0 +1,235 @@
+\clearpage
+\section{Trigonométrie, fonctions usuelles, nombres complexes}
+\renewcommand{\titrecourant}{Semaine 1}
+
+\begin{boussole}
+\textbf{Objectif de la semaine.} Savoir simplifier une expression trigonométrique ou hyperbolique, convertir un complexe entre forme algébrique et forme exponentielle, résoudre $z^n=a$ et linéariser un produit de $\cos$ et $\sin$, en contrôlant chaque résultat par un test.\\
+\textbf{À la fin, je sais :}
+\begin{enumerate}
+ \item lire sur le cercle valeurs, signes et symétries, sans calculatrice ;
+ \item démontrer et employer $\cos(a+b)$, $\cos^2+\sin^2=1$, $\cosh^2-\sinh^2=1$ ;
+ \item donner module et argument d'un complexe, quadrant compris ;
+ \item résoudre $z^n=a$ et placer les solutions sur le plan complexe ;
+ \item compter les zéros terminaux de $n!$ et simplifier des quotients de factorielles.
+\end{enumerate}
+\textbf{Temps estimé} : 5 à 6 heures (cours 1\,h\,30, exemples 1\,h, exercices 3\,h, contrôle 30\,min).
+\end{boussole}
+
+\subsection{Test d'entrée (5 minutes)}
+\begin{enumerate}
+ \item Convertir $\tfrac{3\pi}{4}$ radians en degrés.
+ \item Développer $(a+b)^3$.
+ \item Que valent $i^2$ et $i^3$ ?
+ \item Simplifier $\ln(\e^{5})$ et $\e^{\ln 7}$.
+ \item Donner $\sin\tfrac\pi6$ et $\cos\tfrac\pi3$.
+\end{enumerate}
+\textit{Réponses : $135^\circ$ ; $a^3+3a^2b+3ab^2+b^3$ ; $-1$ et $-i$ ; $5$ et $7$ ; $\tfrac12$ et $\tfrac12$. Deux erreurs ou plus : refaire le rappel correspondant avant le cours.}
+
+\subsection{Cours}
+\subsubsection*{Cercle trigonométrique}
+\begin{definition}[Cosinus, sinus, tangente]
+Pour un réel $\theta$ (en radians), le point du cercle de centre $O$ et de rayon $1$ repéré par l'angle $\theta$ a pour coordonnées $(\cos\theta,\sin\theta)$. On pose $\tan\theta=\dfrac{\sin\theta}{\cos\theta}$, \emph{définie seulement si $\cos\theta\ne0$}, c'est-à-dire $\theta\not\equiv\frac\pi2\ [\pi]$.
+\end{definition}
+\begin{propriete}[Relation fondamentale et symétries]
+$\cos^2\theta+\sin^2\theta=1$ ; $\cos(-\theta)=\cos\theta$, $\sin(-\theta)=-\sin\theta$ ; $\cos(\pi-\theta)=-\cos\theta$, $\sin(\pi-\theta)=\sin\theta$ ; $\cos(\theta+2\pi)=\cos\theta$ ; $\cos(\tfrac\pi2-\theta)=\sin\theta$.
+\end{propriete}
+\begin{center}\begin{tabular}{c|ccccc}
+$\theta$ & $0$ & $\frac\pi6$ & $\frac\pi4$ & $\frac\pi3$ & $\frac\pi2$\\ \hline
+$\cos\theta$ & $1$ & $\frac{\sqrt3}2$ & $\frac{\sqrt2}2$ & $\frac12$ & $0$\\
+$\sin\theta$ & $0$ & $\frac12$ & $\frac{\sqrt2}2$ & $\frac{\sqrt3}2$ & $1$\\
+$\tan\theta$ & $0$ & $\frac{\sqrt3}3$ & $1$ & $\sqrt3$ & \textit{non définie}
+\end{tabular}\end{center}
+\begin{definition}[Exponentielle complexe]
+Pour $\theta\in\R$, $\e^{i\theta}=\cos\theta+i\sin\theta$. On admet que $\e^{i(a+b)}=\e^{ia}\e^{ib}$.
+\end{definition}
+\begin{propriete}[Formules d'addition et de duplication]
+$\cos(a+b)=\cos a\cos b-\sin a\sin b$ ; $\sin(a+b)=\sin a\cos b+\cos a\sin b$ ; $\cos2a=\cos^2a-\sin^2a=2\cos^2a-1=1-2\sin^2a$ ; $\sin2a=2\sin a\cos a$.
+\end{propriete}
+\begin{demonstration}
+$\e^{i(a+b)}=(\cos a+i\sin a)(\cos b+i\sin b)=(\cos a\cos b-\sin a\sin b)+i(\sin a\cos b+\cos a\sin b)$. Le premier membre vaut $\cos(a+b)+i\sin(a+b)$ ; on identifie parties réelle et imaginaire (les quatre nombres $\cos,\sin$ sont réels). On pose ensuite $b=a$, puis on remplace $\sin^2=1-\cos^2$ ou $\cos^2=1-\sin^2$.
+\end{demonstration}
+
+\subsubsection*{Logarithme, exponentielle, fonctions hyperboliques}
+\begin{propriete}[Logarithme]
+Pour $a,b>0$ : $\ln(ab)=\ln a+\ln b$, $\ln\frac ab=\ln a-\ln b$, $\ln(a^p)=p\ln a$. En revanche $\ln(a+b)$ ne se simplifie pas. Le domaine de $\ln$ est $]0;+\infty[$.
+\end{propriete}
+\begin{definition}[Cosinus et sinus hyperboliques]
+$\cosh x=\dfrac{\e^x+\e^{-x}}2$ et $\sinh x=\dfrac{\e^x-\e^{-x}}2$, pour tout réel $x$.
+\end{definition}
+\begin{propriete}
+$\cosh^2x-\sinh^2x=1$ ; $\cosh$ est paire, $\sinh$ est impaire ; $\cosh x\ge1$ ; $\sinh$ est strictement croissante et bijective de $\R$ sur $\R$.
+\end{propriete}
+\begin{demonstration}
+$\cosh^2x-\sinh^2x=\frac14\big[(\e^{2x}+2+\e^{-2x})-(\e^{2x}-2+\e^{-2x})\big]=1$. Pour $\cosh x\ge1$ : $\cosh x-1=\frac{(\e^{x/2}-\e^{-x/2})^2}2\ge0$.
+\end{demonstration}
+\begin{methode}
+\textbf{Méthode (équation hyperbolique).} Poser $t=\e^x>0$, multiplier par $t$, résoudre l'équation du second degré en $t$, \emph{rejeter} toute racine $t\le0$, puis revenir à $x=\ln t$.
+\end{methode}
+
+\subsubsection*{Factorielles}
+\begin{definition}
+$0!=1$ et $n!=n\,(n-1)!=1\cdot2\cdots n$ pour $n\in\N^*$. Ainsi $\dfrac{(n+k)!}{n!}=(n+1)(n+2)\cdots(n+k)$.
+\end{definition}
+\begin{propriete}[Zéros terminaux]
+Le nombre de zéros par lesquels se termine l'écriture décimale de $n!$ est $\displaystyle\sum_{k\ge1}\Big\lfloor\frac n{5^k}\Big\rfloor$.
+\end{propriete}
+\begin{demonstration}
+Un zéro final provient d'un facteur $10=2\cdot5$ ; dans $n!$ les facteurs $2$ sont plus nombreux que les facteurs $5$, donc seul le nombre de facteurs $5$ compte. Il y a $\lfloor n/5\rfloor$ multiples de $5$ entre $1$ et $n$ ; $\lfloor n/25\rfloor$ d'entre eux apportent un deuxième facteur $5$, $\lfloor n/125\rfloor$ un troisième, etc.
+\end{demonstration}
+
+\subsubsection*{Nombres complexes}
+\begin{definition}[Module, argument]
+Pour $z=a+ib\neq0$, $|z|=\sqrt{a^2+b^2}$ et un argument $\theta$ est un réel tel que $\cos\theta=\frac a{|z|}$ et $\sin\theta=\frac b{|z|}$ ; il est défini modulo $2\pi$. On écrit $z=|z|\,\e^{i\theta}$. Le nombre $0$ n'a pas d'argument.
+\end{definition}
+\begin{propriete}
+$|z_1z_2|=|z_1||z_2|$ et $\arg(z_1z_2)=\arg z_1+\arg z_2\ [2\pi]$ ; $\arg\bar z=-\arg z$ ; formule de Moivre : $(\e^{i\theta})^n=\e^{in\theta}$ ; formules d'Euler : $\cos\theta=\frac{\e^{i\theta}+\e^{-i\theta}}2$, $\sin\theta=\frac{\e^{i\theta}-\e^{-i\theta}}{2i}$.
+\end{propriete}
+\begin{propriete}[Racines $n$-ièmes]
+Soit $a=r\e^{i\theta}\ne0$ et $n\ge1$. L'équation $z^n=a$ possède exactement $n$ solutions : $z_k=r^{1/n}\,\e^{i(\theta+2k\pi)/n}$, $k=0,\dots,n-1$. Elles sont les sommets d'un polygone régulier de centre $O$. Pour $a=0$, l'unique solution est $z=0$.
+\end{propriete}
+\begin{demonstration}
+Si $z=\rho\e^{i\varphi}$, alors $z^n=a$ équivaut à $\rho^n=r$ et $n\varphi\equiv\theta\ [2\pi]$, c'est-à-dire $\varphi=\frac{\theta+2k\pi}n$ ; $k$ et $k+n$ donnent la même solution, d'où $n$ solutions distinctes.
+\end{demonstration}
+\begin{propriete}[Somme des racines de l'unité]
+Pour $n\ge2$ et $\omega=\e^{2i\pi/n}$ : $\sum_{k=0}^{n-1}\omega^k=0$. Pour $n=1$, la somme vaut $1$.
+\end{propriete}
+\begin{demonstration}
+$\omega\ne1$ si $n\ge2$, donc $\sum_{k=0}^{n-1}\omega^k=\dfrac{1-\omega^n}{1-\omega}=0$ car $\omega^n=1$.
+\end{demonstration}
+\begin{methode}
+\textbf{M1 -- Argument.} Calculer $|z|$, écrire $\cos\theta=a/|z|$ et $\sin\theta=b/|z|$, reconnaître l'angle dans le tableau des valeurs remarquables, \emph{contrôler le quadrant}. \textbf{M2 -- Linéarisation.} Remplacer $\cos x,\sin x$ par les formules d'Euler, développer par le binôme, regrouper $\e^{ikx}+\e^{-ikx}=2\cos kx$. \textbf{M3 -- $z^n=a$.} Écrire $a$ sous forme exponentielle, appliquer la propriété des racines, vérifier une racine en l'élevant à la puissance $n$.
+\end{methode}
+\begin{piege}
+\textbf{Pièges fréquents.} (i) $\arg(a+ib)=\arctan\frac ba$ est faux dès que $a<0$ : l'arc tangente est dans $]-\frac\pi2;\frac\pi2[$. (ii) $\ln(a+b)\ne\ln a+\ln b$. (iii) $\sqrt{x^2}=|x|$. (iv) $\cosh$ n'est pas périodique. (v) $\tan$ n'est pas définie en $\frac\pi2+k\pi$.
+\end{piege}
+
+\subsection{Exemples travaillés et cas limites}
+\begin{exemple}[valeurs remarquables]
+Calculer $\cos\frac{7\pi}6$, $\sin(-\frac\pi3)$, $\tan\frac{3\pi}4$.\\
+\emph{Solution.} $\frac{7\pi}6=\pi+\frac\pi6$ : le point est opposé à celui d'angle $\frac\pi6$, donc $\cos\frac{7\pi}6=-\frac{\sqrt3}2$. Par imparité, $\sin(-\frac\pi3)=-\frac{\sqrt3}2$. Enfin $\tan\frac{3\pi}4=\frac{\sin(\pi/4)}{-\cos(\pi/4)}=-1$.
+\end{exemple}
+\begin{exemple}[identité sur un domaine]
+Exprimer $\tan^2x$ en fonction de $\cos x$.\\
+\emph{Solution.} $\tan^2x=\dfrac{\sin^2x}{\cos^2x}=\dfrac{1-\cos^2x}{\cos^2x}=\dfrac1{\cos^2x}-1$.
+\end{exemple}
+\begin{cas}[domaine de validité]
+L'identité précédente n'a de sens que si $\cos x\ne0$, soit $x\ne\frac\pi2+k\pi$. Tester : $x=\frac\pi4$ donne $\tan^2=1$ et $\frac1{1/2}-1=1$. Pour $x=\frac\pi2$ les deux membres sont non définis : on ne doit pas \og vérifier \fg{} en ce point.
+\end{cas}
+\begin{exemple}[échelle contre un mur]
+Une échelle de $5\,\mathrm m$ a son pied à $1{,}4\,\mathrm m$ du mur. Quelle hauteur atteint-elle, et quel angle fait-elle avec le sol ?\\
+\emph{Solution.} Théorème de Pythagore : $h=\sqrt{5^2-1{,}4^2}=\sqrt{23{,}04}=4{,}8\,\mathrm m$. L'angle $\alpha$ avec le sol vérifie $\cos\alpha=\frac{1{,}4}5=0{,}28$, donc $\alpha=\arccos0{,}28\approx73{,}74^\circ$. \emph{Contrôle} : $\sin\alpha=\frac{4{,}8}5=0{,}96$ et $0{,}28^2+0{,}96^2=1$.
+\end{exemple}
+\begin{cas}[bornes physiques]
+Le pied $d$ est dans $[0\,;5]$. Si $d=0$ l'échelle est verticale ($h=5$, $\alpha=90^\circ$) ; si $d=5$ elle est couchée ($h=0$). Si le sommet descend de $0{,}4\,\mathrm m$ ($h=4{,}4$), le pied recule à $\sqrt{25-19{,}36}=\sqrt{5{,}64}\approx2{,}37\,\mathrm m$ : un petit glissement vertical près du sommet vertical déplace beaucoup le pied.
+\end{cas}
+\begin{exemple}[argument d'un complexe]
+Forme exponentielle de $z=-1+i\sqrt3$.\\
+\emph{Solution.} $|z|=\sqrt{1+3}=2$, $\cos\theta=-\frac12$, $\sin\theta=\frac{\sqrt3}2$ donc $\theta=\frac{2\pi}3$ et $z=2\e^{2i\pi/3}$. La formule naïve $\arctan(\sqrt3/(-1))=-\frac\pi3$ donne un angle faux (décalé de $\pi$).
+\end{exemple}
+\begin{cas}[arguments extrêmes]
+$z=-i$ : $|z|=1$, $\cos\theta=0$, $\sin\theta=-1$, donc $\theta=-\frac\pi2$ (et non \og $\arctan(-1/0)$ \fg{}). $z=-4$ : $\theta=\pi$. $z=0$ : aucun argument. Un réel positif a pour argument $0$ modulo $2\pi$.
+\end{cas}
+\begin{exemple}[racines cubiques]
+Résoudre $z^3=8i$.\\
+\emph{Solution.} $8i=8\e^{i\pi/2}$, donc $z_k=2\e^{i(\pi/6+2k\pi/3)}$ : $z_0=2\e^{i\pi/6}=\sqrt3+i$, $z_1=2\e^{i5\pi/6}=-\sqrt3+i$, $z_2=2\e^{i3\pi/2}=-2i$. \emph{Contrôle} : $(-2i)^3=-8i^3=8i$. $\checkmark$
+\end{exemple}
+\begin{cas}[second membre nul ou réel]
+$z^4=0$ n'a que $z=0$. $z^3=8$ a une racine réelle ($2$) et deux complexes conjuguées $-1\pm i\sqrt3$. $z^2=-9$ donne $z=\pm3i$ : la \og racine carrée d'un nombre négatif \fg{} n'est pas un réel.
+\end{cas}
+\begin{exemple}[linéarisation et intégrale]
+Linéariser $\cos^3x$ puis calculer $\int_0^{\pi/2}\cos^3x\,\dd x$.\\
+\emph{Solution.} $\cos^3x=\frac18(\e^{ix}+\e^{-ix})^3=\frac18(\e^{3ix}+3\e^{ix}+3\e^{-ix}+\e^{-3ix})=\frac{\cos3x+3\cos x}4$. Alors $\int_0^{\pi/2}\cos^3x\,\dd x=\Big[\frac{\sin3x}{12}+\frac{3\sin x}4\Big]_0^{\pi/2}=-\frac1{12}+\frac34=\frac23$.
+\end{exemple}
+\begin{exemple}[équation hyperbolique]
+Résoudre $\cosh x=2$.\\
+\emph{Solution.} Avec $t=\e^x$ : $t+\frac1t=4$, soit $t^2-4t+1=0$, $t=2\pm\sqrt3$, tous deux positifs. Donc $x=\pm\ln(2+\sqrt3)$ (car $(2+\sqrt3)(2-\sqrt3)=1$).
+\end{exemple}
+\begin{cas}[nombre de solutions]
+$\cosh x=1$ n'a que $x=0$ ; $\cosh x=\frac12$ n'a aucune solution (car $\cosh\ge1$) ; en revanche $\sinh x=c$ a toujours exactement une solution $x=\ln(c+\sqrt{c^2+1})$.
+\end{cas}
+\begin{exemple}[zéros de $n!$]
+Combien de zéros terminent $50!$ ?\quad $\lfloor\frac{50}5\rfloor+\lfloor\frac{50}{25}\rfloor=10+2=12$.
+\end{exemple}
+\begin{cas}[seuils]
+$n<5$ : aucun zéro. $n=25$ : $5+1=6$ (le facteur $25$ compte deux fois). $n=124$ : $24+4=28$ ; $n=125$ : $25+5+1=31$ : le nombre de zéros \emph{saute} de trois en passant de $124$ à $125$.
+\end{cas}
+
+\subsection{Exercices}
+\begin{exo}[A]\label{c1e1}
+Calculer sans calculatrice $\cos\frac{5\pi}6$, $\sin\frac{7\pi}4$ et $\tan(-\frac\pi6)$.
+\end{exo}
+\begin{exo}[A]\label{c1e2}
+Simplifier $\dfrac{(n+2)!}{(n-1)!}$ pour $n\ge1$, puis $\dfrac{(2n)!}{(2n-2)!}$ pour $n\ge1$.
+\end{exo}
+\begin{exo}[A]\label{c1e3}
+Une échelle de $6{,}5\,\mathrm m$ a son pied à $2{,}5\,\mathrm m$ du mur. (a) Quelle hauteur atteint-elle ? (b) Quel angle fait-elle avec le sol ? (c) À quelle distance placer le pied pour atteindre exactement $6{,}4\,\mathrm m$ ?
+\end{exo}
+\begin{exo}[B]\label{c1e4}
+Démontrer que $\cos3x=4\cos^3x-3\cos x$. En déduire que $\cos\frac\pi9$ est solution de $8u^3-6u-1=0$.
+\end{exo}
+\begin{exo}[B]\label{c1e5}
+Résoudre dans $[0;2\pi[$ l'équation $\sin x=\cos2x$.
+\end{exo}
+\begin{exo}[B]\label{c1e6}
+Mettre sous forme algébrique $z=\dfrac{(1+i)^8}{(1-i\sqrt3)^3}$.
+\end{exo}
+\begin{exo}[B]\label{c1e7}
+Résoudre dans $\C$ : (a) $z^2+2z+5=0$ ; (b) $z^4=-16$.
+\end{exo}
+\begin{exo}[C]\label{c1e8}
+Résoudre dans $\R$ : $3\cosh x-\sinh x=3$.
+\end{exo}
+\begin{exo}[C]\label{c1e9}
+Soit $n\ge2$ et $\omega_k=\e^{2ik\pi/n}$. (a) Montrer que $\sum_{k=0}^{n-1}\cos\frac{2k\pi}n=0$. (b) Montrer que le produit des $\omega_k$ vaut $(-1)^{n+1}$. (c) Que se passe-t-il pour $n=1$ ?
+\end{exo}
+\begin{exo}[C]\label{c1e10}
+Linéariser $\sin^2x\cos^2x$ puis calculer $\int_0^\pi\sin^2x\cos^2x\,\dd x$.
+\end{exo}
+
+\ifcorr
+\subsection{Corrigés détaillés}
+\begin{corrige}{\ref{c1e1}}
+$\frac{5\pi}6=\pi-\frac\pi6$ donc $\cos\frac{5\pi}6=-\cos\frac\pi6=-\frac{\sqrt3}2$. $\frac{7\pi}4=2\pi-\frac\pi4$ donc $\sin\frac{7\pi}4=-\sin\frac\pi4=-\frac{\sqrt2}2$. $\tan(-\frac\pi6)=-\tan\frac\pi6=-\frac{\sqrt3}3$.
+\end{corrige}
+\begin{corrige}{\ref{c1e2}}
+$\frac{(n+2)!}{(n-1)!}=(n+2)(n+1)n$ (trois facteurs, de $n$ à $n+2$). Pour $\frac{(2n)!}{(2n-2)!}$, il reste les facteurs $2n$ et $2n-1$ : $2n(2n-1)$. \emph{Test} : $n=1$ donne $\frac{3!}{0!}=6=3\cdot2\cdot1$ et $\frac{2!}{0!}=2=2\cdot1$. Le cas $n=1$ montre pourquoi $0!=1$ est nécessaire.
+\end{corrige}
+\begin{corrige}{\ref{c1e3}}
+(a) $h=\sqrt{6{,}5^2-2{,}5^2}=\sqrt{42{,}25-6{,}25}=\sqrt{36}=6\,\mathrm m$. (b) $\cos\alpha=\frac{2{,}5}{6{,}5}=\frac5{13}$, donc $\alpha\approx67{,}38^\circ$ ; contrôle : $\sin\alpha=\frac6{6{,}5}=\frac{12}{13}$ et $\frac{25+144}{169}=1$. (c) $d=\sqrt{42{,}25-6{,}4^2}=\sqrt{42{,}25-40{,}96}=\sqrt{1{,}29}\approx1{,}14\,\mathrm m$. Cas limite : $6{,}5$ m serait la hauteur maximale (échelle verticale) ; viser $6{,}6\,\mathrm m$ est impossible, ce que révèle un radicande négatif.
+\end{corrige}
+\begin{corrige}{\ref{c1e4}}
+$\cos3x=\cos(2x+x)=\cos2x\cos x-\sin2x\sin x=(2\cos^2x-1)\cos x-2\sin^2x\cos x=(2\cos^2x-1)\cos x-2(1-\cos^2x)\cos x=4\cos^3x-3\cos x$. Avec $x=\frac\pi9$ : $\cos\frac\pi3=\frac12=4u^3-3u$ où $u=\cos\frac\pi9$, soit $8u^3-6u-1=0$. \emph{Test} : $u\approx0{,}9397$ donne $8\cdot0{,}8298-5{,}638-1\approx0$.
+\end{corrige}
+\begin{corrige}{\ref{c1e5}}
+$\cos2x=1-2\sin^2x$, donc l'équation devient $2s^2+s-1=0$ avec $s=\sin x$, soit $(2s-1)(s+1)=0$, $s=\frac12$ ou $s=-1$. Dans $[0;2\pi[$ : $s=\frac12$ donne $x=\frac\pi6$ ou $\frac{5\pi}6$ ; $s=-1$ donne $x=\frac{3\pi}2$. Solutions : $\{\frac\pi6,\frac{5\pi}6,\frac{3\pi}2\}$. \emph{Contrôle} en $\frac{3\pi}2$ : $\sin=-1$ et $\cos3\pi=-1$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c1e6}}
+$1+i=\sqrt2\,\e^{i\pi/4}$, donc $(1+i)^8=(\sqrt2)^8\e^{2i\pi}=16$. $1-i\sqrt3=2\e^{-i\pi/3}$, donc $(1-i\sqrt3)^3=8\e^{-i\pi}=-8$. Donc $z=\frac{16}{-8}=-2$. \emph{Contrôle} : $(1+i)^2=2i$, $(2i)^4=16$ ; $(1-i\sqrt3)^2=-2-2i\sqrt3$, puis $(-2-2i\sqrt3)(1-i\sqrt3)=-2+2i\sqrt3-2i\sqrt3-6=-8$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c1e7}}
+(a) $\Delta=4-20=-16=(4i)^2$, donc $z=\frac{-2\pm4i}2=-1\pm2i$. (b) $-16=16\e^{i\pi}$, donc $z_k=2\e^{i(\pi/4+k\pi/2)}$, $k=0,\dots,3$ : $\sqrt2(1+i)$, $\sqrt2(-1+i)$, $\sqrt2(-1-i)$, $\sqrt2(1-i)$, c'est-à-dire $\pm\sqrt2\pm i\sqrt2$. Contrôle : $(\sqrt2(1+i))^4=4(1+i)^4=4(2i)^2=-16$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c1e8}}
+Avec $t=\e^x>0$ : $\frac32(t+\frac1t)-\frac12(t-\frac1t)=3$, soit $t+\frac2t=3$, $t^2-3t+2=0$, $t\in\{1,2\}$, tous deux positifs. Donc $x=0$ ou $x=\ln2$. Contrôle en $\ln2$ : $\cosh=\frac{2+1/2}2=1{,}25$, $\sinh=\frac{2-1/2}2=0{,}75$ ; $3\cdot1{,}25-0{,}75=3$. $\checkmark$
+\end{corrige}
+\begin{corrige}{\ref{c1e9}}
+(a) $\sum\omega_k$ a une partie réelle $\sum\cos\frac{2k\pi}n$ ; or $\sum\omega_k=0$ (propriété du cours), donc cette partie réelle est nulle. (b) $\prod_{k=0}^{n-1}\omega_k=\e^{\frac{2i\pi}n\sum k}=\e^{\frac{2i\pi}n\cdot\frac{n(n-1)}2}=\e^{i\pi(n-1)}=(-1)^{n-1}=(-1)^{n+1}$. Contrôle : $n=2$, racines $1,-1$, produit $-1$ ; $n=3$, produit $1$. (c) Pour $n=1$ la seule racine est $1$ : la somme vaut $1\ne0$ et le produit vaut $1=(-1)^2$ ; la formule du produit reste vraie, celle de la somme exige $n\ge2$.
+\end{corrige}
+\begin{corrige}{\ref{c1e10}}
+$\sin x\cos x=\frac12\sin2x$, donc $\sin^2x\cos^2x=\frac14\sin^22x=\frac14\cdot\frac{1-\cos4x}2=\frac{1-\cos4x}8$. Alors $\int_0^\pi\frac{1-\cos4x}8\dd x=\frac18\big[x-\frac{\sin4x}4\big]_0^\pi=\frac\pi8$. Contrôle numérique : la valeur moyenne de $\sin^2\cos^2$ sur une période est $\frac18$, et $\frac18\cdot\pi=\frac\pi8$. $\checkmark$
+\end{corrige}
+\else\stepcounter{subsection}\fi
+
+\subsection{Contrôle de fin de semaine (30 minutes, 20 points)}
+\begin{enumerate}
+ \item \bareme{6} Donner la forme exponentielle de $z=-\sqrt3+i$, puis calculer $z^6$.
+ \item \bareme{7} Résoudre dans $[0;2\pi[$ : $2\cos^2x+\cos x-1=0$.
+ \item \bareme{7} Résoudre dans $\R$ : $\cosh x=\frac32$ et montrer que les solutions sont $\pm2\ln\varphi$, où $\varphi=\frac{1+\sqrt5}2$.
+\end{enumerate}
+\ifcorr
+\textbf{Corrigé et barème.}
+\textbf{1.} $|z|=2$, $\cos\theta=-\frac{\sqrt3}2$, $\sin\theta=\frac12$, donc $\theta=\frac{5\pi}6$ : $z=2\e^{5i\pi/6}$ \bareme{3 : module et argument avec le quadrant}. $z^6=64\e^{5i\pi}=-64$ \bareme{3 : Moivre et résultat}. \textbf{2.} $2c^2+c-1=(2c-1)(c+1)$ avec $c=\cos x$ \bareme{3} ; $c=\frac12$ donne $\frac\pi3,\frac{5\pi}3$ ; $c=-1$ donne $\pi$ \bareme{4 : trois solutions, aucune oubliée}. \textbf{3.} $t=\e^x$ : $t^2-3t+1=0$, $t=\frac{3\pm\sqrt5}2>0$ \bareme{3} ; $x=\ln\frac{3+\sqrt5}2$ ou $\ln\frac{3-\sqrt5}2=-\ln\frac{3+\sqrt5}2$ ; comme $\varphi^2=\frac{6+2\sqrt5}4=\frac{3+\sqrt5}2$, on a $x=\pm2\ln\varphi$ \bareme{4}. Seuil de réussite conseillé : $14/20$.
+\fi
+
+\subsection{Corrigé du test d'entrée et grille d'auto-évaluation}
+Cochez : $\square$ je lis cercle et symétries ; $\square$ je trouve un argument sans me tromper de quadrant ; $\square$ je résous $z^n=a$ et je vérifie une racine ; $\square$ je linéarise avec Euler ; $\square$ je rejette les racines $t\le0$ d'une équation hyperbolique. Moins de trois cases cochées : reprendre les exemples correspondants avant la Semaine~2.

@@ -13801,6 +13801,190 @@
             "slide": "seq6-applications.html"
           }
         ]
+      },
+      {
+        "id": "module-maths",
+        "title": [
+          "Mathématiques appliquées · L1",
+          "Applied mathematics · Year 1"
+        ],
+        "intro": [
+          "Un parcours en sept semaines pour une première année scientifique, avec cahier de travail autonome et guides de séquence. Supports en français.",
+          "A seven-week introductory science pathway with a self-study workbook and sequence guides. Materials in French."
+        ],
+        "language": "fr",
+        "sequences": [
+          {
+            "id": "module-semaine-1",
+            "number": 1,
+            "title": [
+              "Fonctions usuelles, trigonométrie et complexes",
+              "Elementary functions, trigonometry and complex numbers"
+            ],
+            "summary": [
+              "Semaine 1 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 1: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine1.html"
+          },
+          {
+            "id": "module-semaine-2",
+            "number": 2,
+            "title": [
+              "Proportions, polynômes et limites",
+              "Proportions, polynomials and limits"
+            ],
+            "summary": [
+              "Semaine 2 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 2: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine2.html"
+          },
+          {
+            "id": "module-semaine-3",
+            "number": 3,
+            "title": [
+              "Dérivation et optimisation",
+              "Differentiation and optimisation"
+            ],
+            "summary": [
+              "Semaine 3 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 3: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine3.html"
+          },
+          {
+            "id": "module-semaine-4",
+            "number": 4,
+            "title": [
+              "Intégration",
+              "Integration"
+            ],
+            "summary": [
+              "Semaine 4 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 4: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine4.html"
+          },
+          {
+            "id": "module-semaine-5",
+            "number": 5,
+            "title": [
+              "Géométrie du plan et de l’espace",
+              "Plane and space geometry"
+            ],
+            "summary": [
+              "Semaine 5 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 5: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine5.html"
+          },
+          {
+            "id": "module-semaine-6",
+            "number": 6,
+            "title": [
+              "Calcul matriciel",
+              "Matrix calculations"
+            ],
+            "summary": [
+              "Semaine 6 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 6: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine6.html"
+          },
+          {
+            "id": "module-semaine-7",
+            "number": 7,
+            "title": [
+              "Plusieurs variables et équations différentielles",
+              "Multivariable functions and differential equations"
+            ],
+            "summary": [
+              "Semaine 7 : exploration interactive, cours et exercices dans le cahier.",
+              "Week 7: interactive exploration, notes and workbook exercises."
+            ],
+            "prerequisites": [
+              "Notions de lycée ; semaines précédentes du module.",
+              "Secondary-school mathematics; preceding weeks of the module."
+            ],
+            "slide": "semaine7.html"
+          }
+        ],
+        "documents": [
+          {
+            "key": "module-workbook",
+            "label": [
+              "Cahier avec corrigés",
+              "Workbook with solutions"
+            ]
+          },
+          {
+            "key": "module-statements",
+            "label": [
+              "Cahier : énoncés seuls",
+              "Workbook: exercises only"
+            ]
+          },
+          {
+            "key": "module-student-guide",
+            "label": [
+              "Guide étudiant",
+              "Student guide"
+            ]
+          },
+          {
+            "key": "module-teacher-guide",
+            "label": [
+              "Guide professeur",
+              "Teacher guide"
+            ]
+          },
+          {
+            "key": "module-tex",
+            "label": [
+              "Sources LaTeX",
+              "LaTeX sources"
+            ]
+          },
+          {
+            "key": "module-slides",
+            "label": [
+              "Les sept diaporamas HTML",
+              "Seven HTML slide decks"
+            ]
+          },
+          {
+            "key": "module-all",
+            "label": [
+              "Télécharger le module complet",
+              "Download the complete module"
+            ]
+          }
+        ]
       }
     ]
   }
