@@ -2,6 +2,7 @@
 PLAYWRIGHT_CHROMIUM_PATH optionally selects a system browser.
 """
 import os
+from urllib.parse import urljoin, urlparse
 from playwright.sync_api import sync_playwright
 
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
@@ -37,6 +38,7 @@ with sync_playwright() as p:
             page.goto(BASE+'/#lab/'+lab)
             page.locator('#cx-input canvas' if lab == 'complex' else '#plot svg').first.wait_for()
             assert page.locator('html').get_attribute('lang') == language
+            assert page.locator('.canvas-navigation button:visible').count() == 0
             if lab == 'complex':
                 assert page.locator('#cx-output canvas').count() == 1
             else:
@@ -385,10 +387,77 @@ with sync_playwright() as p:
     page.locator('#pl-fold').fill('100'); assert page.locator('#pl-fold-out').inner_text() == '100 %'
     page.locator('#pl-p').fill('4'); page.locator('#pl-q').fill('4')
     assert page.locator('#pl-build-case').is_disabled()
-    page.goto(BASE+'/#slides'); page.locator('[data-slide-type=lecture]').click()
-    assert page.locator('.deck-download[href$=".pdf"]').count() == 47
-    page.locator('[data-slide-type=explore]').click()
-    assert page.locator('.deck-download[href$=".html"]').count() == 47
+    # Versions belong in query strings; check resource paths rather than the end of the URL.
+    decks = page.request.get(BASE+'/slides/data/index.json').json()
+    page.goto(BASE+'/#slides')
+    page.wait_for_function('n => document.querySelectorAll(".deck-download").length === n', arg=len(decks))
+    for mode, extension, signature in [('lecture', '.pdf', b'%PDF-'), ('explore', '.html', b'<!doctype html>')]:
+        page.locator('[data-slide-type='+mode+']').click()
+        links = page.locator('.deck-download').evaluate_all('(links) => links.map(a => a.href)')
+        assert len(links) == len(decks), (mode, len(links), len(decks))
+        assert all(urlparse(href).path.endswith(extension) for href in links), (mode, links)
+        assert all('v=' in urlparse(href).query for href in links), 'downloads must retain cache versions'
+        response = page.request.get(links[0])
+        assert response.ok and response.body().lstrip().lower().startswith(signature.lower()), links[0]
+        assert page.locator('.deck-list li').evaluate_all('(rows) => rows.every(row => row.querySelector("a:not([download])") && row.querySelector("a[download]"))')
+
+    # The screenshot's single-figure case: curriculum language, direct manipulation, quiet toolbar.
+    os.makedirs('test-results', exist_ok=True)
+    player = browser.new_page(viewport={'width':1280,'height':720})
+    player.on('pageerror', lambda e: errors.append(str(e)))
+    player.goto(BASE+'/slides/player.html?deck=premiere-02&lang=en#1')
+    player.wait_for_selector('#wcanvas canvas')
+    assert player.locator('html').get_attribute('lang') == 'fr'
+    assert player.locator('#lng,#dl,#explore-choice,.canvas-navigation button').count() == 0
+    assert player.locator('#wctl select').count() == 0, 'point selection must stay on the canvas'
+    figure = player.locator('#wcanvas canvas')
+    before = player.locator('#readout').inner_text()
+    figure.focus(); figure.press('ArrowRight')
+    player.wait_for_function('before => document.querySelector("#readout").innerText !== before', arg=before)
+    assert player.locator('#count').inner_text().startswith('2 /'), 'moving a point must not advance the slide'
+    player.screenshot(path='test-results/'+engine+'-quiet-player.png', full_page=True)
+    player.close()
+
+    # First visit uses the browser language; curriculum pages must not overwrite that preference.
+    automatic = browser.new_context(locale='en-GB')
+    neutral = automatic.new_page()
+    neutral.on('pageerror', lambda e: errors.append(str(e)))
+    neutral.goto(BASE+'/#gallery'); neutral.wait_for_selector('.wonder')
+    assert neutral.locator('html').get_attribute('lang') == 'en'
+    neutral.goto(BASE+'/#university/module-semaine-1'); neutral.wait_for_selector('.sequence-forward')
+    assert neutral.locator('html').get_attribute('lang') == 'fr'
+    neutral.goto(BASE+'/#gallery'); neutral.wait_for_selector('.wonder')
+    assert neutral.locator('html').get_attribute('lang') == 'en'
+    automatic.close()
+
+    # Exercise every generated university route and scoped navigation in the real browser.
+    university = page.request.get(BASE+'/resources/university/index.json').json()
+    page.goto(BASE+'/#university')
+    page.wait_for_selector('.university-sequence')
+    assert page.locator('.university-sequence').count() == sum(len(s['sequences']) for s in university['sections'])
+    for section in university['sections']:
+        for at, sequence in enumerate(section['sequences']):
+            page.goto(BASE+'/#university/'+sequence['id'])
+            page.wait_for_selector('.sequence-forward')
+            assert page.locator('html').get_attribute('lang') == section['language']
+            assert page.locator('[data-lang]:visible').count() == 0
+            expected = [section['sequences'][n]['id'] for n in [at-1,at+1] if 0 <= n < len(section['sequences'])]
+            actual = page.locator('.sequence-forward a').evaluate_all('(links) => links.map(a => a.hash.split("/").pop())')
+            assert actual == expected, (sequence['id'], actual, expected)
+            assert page.locator('a.university-file[download]').count() == 1
+    for width in [320,390,1280]:
+        page.set_viewport_size({'width':width,'height':900})
+        page.goto(BASE+'/#university'); page.wait_for_selector('.university-sequence')
+        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('university',width)
+    for route in ['courses','slides','pack','library','lab/quadratic','gallery/platonic']:
+        page.goto(BASE+'/#'+route)
+        page.wait_for_selector('main')
+        assert page.locator('select:visible').evaluate_all('(selects) => selects.every(s => [...s.options].filter(o => !o.disabled && !o.closest("optgroup[disabled]")).length > 1)'), route
+    page.goto(BASE+'/#university/module-semaine-1')
+    for key in ['module-workbook','module-statements','module-tex','module-all']:
+        response = page.request.get(urljoin(BASE+'/', university['files'][key]['path']))
+        assert response.ok, key
+        assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')
