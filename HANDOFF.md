@@ -179,4 +179,4 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - Corrected local-maximum wording, eigenvalue criterion, first-order uncertainty estimates and substitution hypotheses. Rebuilt all four PDFs. Mobile slides use readable stacked layout, named sliders, keyboard handles, and reduced motion.
 - Independent reviews and code checks are recorded in private/audits/module-maths-audit-*.md and the private ledger. Browser visual QA unavailable because managed preview cannot mount proc.
 
-- GitHub synchronization remains blocked by automatic approval review despite verified private-repository access; Site source publication is handled separately.
+- GitHub synchronization completed on 16 October 2026 after explicit authorization. The university pathway card now lists both collections and links to the seven-week module; its test checks all collection IDs against the generated catalogue.
