@@ -33,7 +33,7 @@ Hash routes, relative paths (the site also works under a sub-path such as `/Math
 
 ## Publishing (GitHub Pages)
 
-`.github/workflows/pages.yml` uploads `dist/` and deploys it on every push to `main`. One-time setup: repository Settings, Pages, Source: "GitHub Actions". Run `make site` before pushing so `dist/` is current. The site is then public at `https://<owner>.github.io/Maths-explorer/`.
+The active deployment uses native ChatGPT Sites with its existing access policy. GitHub Pages is an optional public host. Configure repository Settings, Pages, Source: "GitHub Actions" before running `.github/workflows/pages.yml` manually. To enable automatic publication on pushes to `main`, explicitly set the repository variable `PUBLISH_GITHUB_PAGES=true`. Without that opt-in, pushes skip the Pages job instead of failing against an unconfigured public host. Run `make site` before publishing so `dist/` is current. Enabling Pages can make the published files publicly accessible; the private repository itself must remain private.
 
 ## Layout
 

@@ -211,7 +211,11 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
   computation is unchanged. All 127 JavaScript tests, syntax/DOM checks and content freshness checks pass locally.
 - The broader local fast check passed except the unchanged notation compilation test: this runtime lacks
   stmaryrd and French Babel support. Managed preview still cannot mount proc, so local browser/device QA is unavailable.
-- The first follow-up CI browser run verified the versioned downloads, then exposed a mistake in the new test's
-  chosen slide index. It now derives the actual widget index. Final GitHub browser execution is pending this commit.
-- GitHub Pages remains unconfigured (configure-pages reports Not Found); do not change repository visibility or
-  the existing ChatGPT Site sharing policy to address it. Native Sites publication is a separate deployment.
+- GitHub Website checks run 38955597802 passed both source and Chromium jobs at commit 932efa06. Browser checks
+  cover the simplified player with rendered MathJax, versioned HTML/PDF downloads, automatic language restoration,
+  all thirteen university routes, fractal keyboard controls, bilingual labs/challenges and responsive layouts.
+  Screenshots are retained in its browser-screenshots artifact. Physical devices and full visual/accessibility QA
+  remain unverified. The final formula assertion compares SVG markup because plain innerText omits MathJax numbers.
+- GitHub Pages is an optional public host and remains unconfigured. Automatic publication now requires the explicit
+  repository variable PUBLISH_GITHUB_PAGES=true; manual publication remains available after setup. Native Sites is
+  the active host. Preserve repository visibility and the existing ChatGPT Site sharing policy.
