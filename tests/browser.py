@@ -56,9 +56,10 @@ with sync_playwright() as p:
     assert player.locator('#lng,#dl,#explore-choice,.canvas-navigation button').count() == 0
     assert player.locator('#wctl select').count() == 0, 'point selection must stay on the canvas'
     figure = player.locator('#wcanvas canvas')
-    before = player.locator('#readout').inner_text()
+    player.wait_for_selector('#readout mjx-container')
+    before = player.locator('#readout').inner_html()
     figure.focus(); figure.press('ArrowRight')
-    player.wait_for_function('before => document.querySelector("#readout").innerText !== before', arg=before)
+    player.wait_for_function('before => document.querySelector("#readout").innerHTML !== before', arg=before)
     assert player.locator('#count').inner_text().startswith(str(widget_at+1)+' /'), 'moving a point must not advance the slide'
     player.screenshot(path='test-results/'+engine+'-quiet-player.png', full_page=True)
     player.close()
