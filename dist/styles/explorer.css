@@ -56,6 +56,8 @@ h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; text-wrap: balance; }
 p { text-wrap: pretty; }
 svg { display: block; max-width: 100%; }
+/* MathJax typesets each formula as an SVG: it must stay in the line of text (the rule above would stack every formula). */
+mjx-container > svg { display: inline; }
 .icon { flex: none; }
 i { font-family: var(--math); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

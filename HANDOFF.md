@@ -247,5 +247,5 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
   `draft` with no audit: the two independent audits are owed. [VERIFY] the programme items against the official annex
   (the BO annex PDF could not be fetched from the sandbox).
 - Checks: `npm test` (128 pass), `npm run check`, `make check FAST=1` (24 ok), browser suite and slide smoke on the new decks.
-- Seen, not changed: on chapter pages ("Construire le cours"), inline formulas render on their own lines in headless
-  Chromium for every course (STMG too); worth a look in a real browser.
+- Fixed the same day: inline formulas on chapter pages each sat on their own line (every course), because the global rule
+  `svg { display: block }` in `site/styles/explorer.css` also caught MathJax's SVGs; `mjx-container > svg` is now inline.
