@@ -11,7 +11,7 @@ import pymupdf
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'build'))
-from mxbuild.notation import mathjax
+from mxbuild.notation import mathjax, BRACKETS
 DATA=ROOT/'dist/slides/data'; OUT=ROOT/'dist/slides/lectures'; SOURCE=ROOT/'content/tex/lectures'; BUILD=ROOT/'build/out/lectures'
 PUNCT={'−':'-','–':'-','—':'-','…':r'\ldots{}','→':r'\ensuremath{\to}','↦':r'\ensuremath{\mapsto}','⇒':r'\ensuremath{\Rightarrow}','⇔':r'\ensuremath{\iff}','≤':r'\ensuremath{\leq}','≥':r'\ensuremath{\geq}','≠':r'\ensuremath{\ne}','≈':r'\ensuremath{\approx}','∞':r'\ensuremath{\infty}','ℝ':r'\ensuremath{\mathbb{R}}','ℕ':r'\ensuremath{\mathbb{N}}','ℤ':r'\ensuremath{\mathbb{Z}}','ℚ':r'\ensuremath{\mathbb{Q}}','ℂ':r'\ensuremath{\mathbb{C}}','∈':r'\ensuremath{\in}','∉':r'\ensuremath{\notin}','∩':r'\ensuremath{\cap}','∪':r'\ensuremath{\cup}','∅':r'\ensuremath{\varnothing}','×':r'\ensuremath{\times}','·':r'\ensuremath{\cdot}','²':r'\textsuperscript{2}','³':r'\textsuperscript{3}','°':r'\textdegree{}','α':r'\ensuremath{\alpha}','β':r'\ensuremath{\beta}','Δ':r'\ensuremath{\Delta}','θ':r'\ensuremath{\theta}','π':r'\ensuremath{\pi}','σ':r'\ensuremath{\sigma}','μ':r'\ensuremath{\mu}','√':r'\ensuremath{\sqrt{\phantom{x}}}','′':"'",'″':"''",'₀':r'\textsubscript{0}','₁':r'\textsubscript{1}','₂':r'\textsubscript{2}','₃':r'\textsubscript{3}','₄':r'\textsubscript{4}'}
 
@@ -134,7 +134,10 @@ def tex_for(deck,lang,work):
             for i,chunk in enumerate(chunks(answer)):
                 label=('Correction : ' if lang=='fr' else 'Worked answer: ')+title
                 parts.append('\\begin{frame}{'+convert(label)+'}\n'+convert(chunk)+'\n\\end{frame}\n')
-    parts.append('\\end{document}\n');return ''.join(parts)
+    parts.append('\\end{document}\n');tex=''.join(parts)
+    if '\\llbracket' in tex or '\\rrbracket' in tex:   # French integer intervals: Beamer has no stmaryrd here
+        tex=tex.replace('\n\\title{','\n'+''.join('\\providecommand{\\'+k+'}{'+v+'}\n' for k,v in BRACKETS.items())+'\\title{',1)
+    return tex
 
 def build_one(item):
     deck,lang=item;key=f'{deck["id"]}-{lang}';work=BUILD/key;work.mkdir(parents=True,exist_ok=True)

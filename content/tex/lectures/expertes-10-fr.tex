@@ -1,0 +1,120 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Graphes}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Graphes}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Modéliser une situation par un graphe ; utiliser le vocabulaire des graphes (ordre, degré, chaîne, cycle, connexité, graphe complet, graphe orienté) ; écrire la matrice d'adjacence d'un graphe ; dénombrer les chaînes de longueur donnée à l'aide des puissances de cette matrice.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+Cinq villes \(A\), \(B\), \(C\), \(D\), \(E\) sont reliées par des lignes directes de taxi-brousse, dans les deux sens : \(A\)-\(B\), \(A\)-\(C\), \(A\)-\(D\), \(B\)-\(C\), \(C\)-\(D\) et \(D\)-\(E\).
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Représenter le réseau par un schéma : un point par ville, un trait par ligne.
+
+\item Pour chaque ville, compter le nombre de lignes qui en partent. Calculer la somme de ces nombres et la comparer au nombre de lignes. Expliquer.
+
+\item Énumérer les trajets de \(A\) à \(C\) qui utilisent exactement deux lignes (on peut repasser par une ville). Combien y en a-t-il ?
+
+\item Même question pour les trajets de \(A\) à \(E\) en exactement trois lignes.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item On range les informations dans un tableau \(M\) à \(5\) lignes et \(5\) colonnes : le coefficient de ligne \(X\) et de colonne \(Y\) vaut \(1\) s'il existe une ligne directe entre \(X\) et \(Y\), \(0\) sinon. Écrire \(M\), puis calculer \(M^2\) et \(M^3\) à la calculatrice. Comparer certains coefficients avec les questions 3 et 4.
+
+\item Formuler une conjecture.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Vocabulaire}
+Un \emph{graphe} (non orienté) est formé d'un ensemble fini de \emph{sommets} et d'un ensemble d'\emph{arêtes}, chaque arête reliant deux sommets distincts ; deux sommets reliés sont \emph{adjacents}. On considère des graphes sans arête multiple. L'\emph{ordre} du graphe est son nombre de sommets. Le \emph{degré} d'un sommet est le nombre d'arêtes dont il est une extrémité. Un graphe est \emph{complet} si deux sommets distincts quelconques sont adjacents.
+\end{frame}
+\begin{frame}{Vocabulaire}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Une \emph{chaîne} est une suite de sommets dans laquelle deux sommets consécutifs sont adjacents ; sa \emph{longueur} est son nombre d'arêtes (on peut repasser par un sommet ou une arête). Une chaîne est \emph{fermée} si ses extrémités sont égales. Un \emph{cycle} est une chaîne fermée de longueur au moins \(3\) dont les arêtes sont distinctes. Un graphe est \emph{connexe} si deux sommets quelconques sont reliés par une chaîne.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/expertes-10-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Vocabulaire}
+Dans un graphe, la somme des degrés des sommets est égale au double du nombre d'arêtes. Par conséquent, le nombre de sommets de degré impair est pair.
+\end{frame}
+\begin{frame}{Vocabulaire}
+Chaque arête a deux extrémités : elle est comptée deux fois dans la somme des degrés. La somme des degrés est paire ; or une somme d'entiers est paire si et seulement si elle contient un nombre pair de termes impairs.
+\end{frame}
+\begin{frame}{Vocabulaire}
+Le graphe complet d'ordre \(n\) a \(\binom n2=\dfrac{n(n-1)}2\) arêtes.
+\end{frame}
+\begin{frame}{Vocabulaire}
+Dans un graphe \emph{orienté}, les liaisons, appelées \emph{arcs}, ont un sens : l'arc \((X,Y)\) va de \(X\) vers \(Y\). Un \emph{chemin} est une suite de sommets dans laquelle chacun est relié au suivant par un arc. Un graphe est \emph{pondéré} lorsque chaque arête ou arc porte un nombre, appelé poids.
+\end{frame}
+\begin{frame}{Matrice d'adjacence}
+Les sommets d'un graphe d'ordre \(n\) étant numérotés de \(1\) à \(n\), sa \emph{matrice d'adjacence} est la matrice carrée \(M\) d'ordre \(n\) dont le coefficient \(m_{ij}\) vaut \(1\) si les sommets \(i\) et \(j\) sont reliés (par une arête, ou par un arc de \(i\) vers \(j\) pour un graphe orienté), et \(0\) sinon. Pour un graphe non orienté, \(M\) est symétrique : \(m_{ij}=m_{ji}\).
+\end{frame}
+\begin{frame}{Matrice d'adjacence}
+Soit \(M\) la matrice d'adjacence d'un graphe et \(n\ge1\) un entier. Le coefficient de ligne \(i\) et de colonne \(j\) de \(M^n\) est égal au nombre de chaînes (de chemins, pour un graphe orienté) de longueur \(n\) allant du sommet \(i\) au sommet \(j\).
+\end{frame}
+\begin{frame}{Matrice d'adjacence}
+Notons \(m^{(n)}_{ij}\) les coefficients de \(M^n\) et \(c^{(n)}_{ij}\) le nombre de chaînes de longueur \(n\) de \(i\) à \(j\). Pour \(n=1\), une chaîne de longueur \(1\) de \(i\) à \(j\) est une arête : \(c^{(1)}_{ij}=m_{ij}\).
+\end{frame}
+\begin{frame}{Matrice d'adjacence (2)}
+Supposons \(m^{(n)}_{ij}=c^{(n)}_{ij}\) pour tous \(i\), \(j\). Une chaîne de longueur \(n+1\) de \(i\) à \(j\) est formée d'une chaîne de longueur \(n\) de \(i\) à un sommet \(k\), suivie d'une arête de \(k\) à \(j\). En classant ces chaînes selon l'avant-dernier sommet \(k\), on obtient
+\[c^{(n+1)}_{ij}=\sum_{k=1}^{p}c^{(n)}_{ik}\,m_{kj}=\sum_{k=1}^{p}m^{(n)}_{ik}\,m_{kj}=m^{(n+1)}_{ij},\]
+où \(p\) est l'ordre du graphe, car \(M^{n+1}=M^nM\). La propriété est vraie au rang \(n+1\).
+\end{frame}
+\begin{frame}{Matrice d'adjacence}
+Le coefficient diagonal \(\left(M^2\right)_{ii}\) est le degré du sommet \(i\) (graphe non orienté). Un graphe d'ordre \(p\ge2\) est connexe si et seulement si tous les coefficients hors diagonale de \(M+M^2+\dots+M^{p-1}\) sont strictement positifs : une chaîne entre deux sommets distincts peut toujours être raccourcie en une chaîne sans sommet répété, de longueur au plus \(p-1\).
+\end{frame}
+\end{document}

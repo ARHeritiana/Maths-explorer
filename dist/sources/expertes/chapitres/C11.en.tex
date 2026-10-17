@@ -1,0 +1,252 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c11}{Matrix sequences and Markov chains}
+\mxsubtitle{Sequences $U_{n+1}=AU_n+B$, probabilistic graphs, invariant distributions}
+
+\begin{objectives}
+Study a sequence of column matrices defined by $U_{n+1}=AU_n+B$; model a random evolution with two or three states by a probabilistic graph and a transition matrix; compute the distribution after $n$ steps; find an invariant distribution; study convergence in the two-state case.
+\end{objectives}
+\begin{prerequisites}
+Chapters 9 and 10; conditional probability and the law of total probability; arithmetico-geometric sequences; limit of a geometric sequence.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Let $u_{n+1}=\num{0,5}u_n+2$. Find the real number $\ell$ such that $\ell=\num{0,5}\ell+2$.
+\item Give the limit of $\num{0,8}^n$ as $n$ tends to $+\infty$.
+\item In a tree, $P(A)=\num{0,3}$, $P_A(B)=\num{0,6}$, $P_{\overline A}(B)=\num{0,2}$. Compute $P(B)$.
+\item Solve the system $\num{0,2}a=\num{0,4}b$ and $a+b=1$.
+\item Compute $\begin{pmatrix}1&0\end{pmatrix}\begin{pmatrix}\num{0,8}&\num{0,2}\\\num{0,4}&\num{0,6}\end{pmatrix}$.
+\item What is the sum of the entries of each row of the matrix in question 5?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $\ell=4$.
+\item $0$.
+\item $\num{0,3}\times\num{0,6}+\num{0,7}\times\num{0,2}=\num{0,32}$.
+\item $a=2b$, so $3b=1$: $a=\frac23$ and $b=\frac13$.
+\item $\begin{pmatrix}\num{0,8}&\num{0,2}\end{pmatrix}$.
+\item $1$ for each row.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[Fine weather, rain \mxchip{40 min}]
+In a simplified model (fictitious data), the weather on a given day is either fine ($S$) or rainy ($P$), and depends only on the weather the day before: after a fine day, it is fine with probability $\num{0,8}$; after a rainy day, it is fine with probability $\num{0,4}$. Day $0$ is fine. Let $s_n$ and $p_n$ be the probabilities that day $n$ is fine or rainy.
+\begin{enumerate}
+\item Represent the situation by a diagram: two vertices $S$ and $P$, an arrow for each possible change, carrying its probability.
+\item Using a tree, compute $s_1$, $p_1$, then $s_2$, $p_2$.
+\item Justify that $s_{n+1}=\num{0,8}s_n+\num{0,4}p_n$ and $p_{n+1}=\num{0,2}s_n+\num{0,6}p_n$.
+\item Let $\pi_n=\begin{pmatrix}s_n&p_n\end{pmatrix}$ and $T=\begin{pmatrix}\num{0,8}&\num{0,2}\\\num{0,4}&\num{0,6}\end{pmatrix}$. Check that $\pi_{n+1}=\pi_nT$. Compute $\pi_{10}$ with a calculator. Start again with a rainy day $0$. What do you notice?
+\item Find the distribution $\pi=\begin{pmatrix}a&b\end{pmatrix}$, with $a+b=1$, that satisfies $\pi T=\pi$. Compare it with the observations of question 4.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item Arrows $S\to S$ ($\num{0,8}$), $S\to P$ ($\num{0,2}$), $P\to S$ ($\num{0,4}$), $P\to P$ ($\num{0,6}$).
+\item $s_1=\num{0,8}$, $p_1=\num{0,2}$; $s_2=\num{0,8}\times\num{0,8}+\num{0,2}\times\num{0,4}=\num{0,72}$ and $p_2=\num{0,28}$.
+\item Law of total probability with the partition ``fine on day $n$'', ``rain on day $n$''.
+\item $\pi_nT=\begin{pmatrix}\num{0,8}s_n+\num{0,4}p_n&\num{0,2}s_n+\num{0,6}p_n\end{pmatrix}=\pi_{n+1}$. We find $\pi_{10}\simeq\begin{pmatrix}\num{0,6667}&\num{0,3333}\end{pmatrix}$, and $\pi_{10}\simeq\begin{pmatrix}\num{0,6666}&\num{0,3334}\end{pmatrix}$ starting from a rainy day. The distribution seems to settle at $\begin{pmatrix}\frac23&\frac13\end{pmatrix}$, whatever the start.
+\item $\num{0,8}a+\num{0,4}b=a$ is equivalent to $\num{0,2}a=\num{0,4}b$, that is $a=2b$; with $a+b=1$: $\pi=\begin{pmatrix}\frac23&\frac13\end{pmatrix}$, the limit observed.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+The numerical computations of question 4 suggest convergence; the proof, in the two-state case, uses an arithmetico-geometric sequence (course). Draw attention to writing $\pi_n$ as a row and to the order of the product $\pi_nT$.
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Matrix sequences}
+\begin{theorem}[Sequence $U_{n+1}=AU_n+B$]
+Let $A$ be a square matrix of order $p$, $B$ a column matrix and $(U_n)$ a sequence of column matrices such that $U_{n+1}=AU_n+B$ for every $n$. If $I_p-A$ is invertible, the matrix $C=(I_p-A)^{-1}B$ satisfies $C=AC+B$, and for every natural number $n$:
+\[U_n=A^n\left(U_0-C\right)+C.\]
+\end{theorem}
+\begin{proof}
+$(I_p-A)C=B$ can be written $C=AC+B$. Subtracting: $U_{n+1}-C=A(U_n-C)$. The sequence $V_n=U_n-C$ satisfies $V_{n+1}=AV_n$, so $V_n=A^nV_0$ (induction), and $U_n=A^n(U_0-C)+C$.
+\end{proof}
+\begin{keypoint}[Behaviour at infinity]
+If all the entries of $A^n$ tend to $0$, then $U_n$ converges to $C$ (entry by entry). This behaviour can be observed with a calculator; it is taken for granted when the statement says so.
+\end{keypoint}
+
+\subsection{Markov chains}
+\begin{definition}[Markov chain with two or three states]
+A system is observed at times $0,1,2,\dots$; at each time, it is in one of the states $1,\dots,k$ ($k=2$ or $3$). Let $X_n$ be the state at time $n$. We say that $(X_n)$ is a (homogeneous) \emph{Markov chain} if the probability of moving from state $i$ to state $j$ depends neither on $n$ nor on the earlier states: for all $i$, $j$ and $n$ such that $P(X_n=i)\neq0$,
+\[P_{(X_n=i)}(X_{n+1}=j)=t_{ij}.\]
+The numbers $t_{ij}$ are the \emph{transition probabilities}.
+\end{definition}
+\begin{definition}[Probabilistic graph, transition matrix]
+The chain is represented by a \emph{probabilistic graph}: a weighted directed graph whose vertices are the states, with an arc from $i$ to $j$, of weight $t_{ij}$, when $t_{ij}>0$. The \emph{transition matrix} is the square matrix $T=(t_{ij})$. Its entries are nonnegative and the sum of each row is $1$.
+\end{definition}
+\begin{definition}[Distribution]
+The \emph{distribution} at time $n$ is the row matrix $\pi_n=\begin{pmatrix}P(X_n=1)&\cdots&P(X_n=k)\end{pmatrix}$; $\pi_0$ is the initial distribution.
+\end{definition}
+\begin{theorem}[Evolution of the distribution]
+For every natural number $n$: $\pi_{n+1}=\pi_nT$ and $\pi_n=\pi_0T^n$.
+\end{theorem}
+\begin{proof}
+By the law of total probability, with the partition $\left(X_n=1\right),\dots,\left(X_n=k\right)$ (events of probability zero are left out, as they contribute $0$):
+\[P(X_{n+1}=j)=\sum_{i=1}^{k}P(X_n=i)\,t_{ij},\]
+which is entry $j$ of $\pi_nT$. The second formula follows by induction.
+\end{proof}
+\begin{theorem}[Transition in $n$ steps]
+If $P(X_0=i)=1$, then for every state $j$, $P(X_n=j)$ is the entry in row $i$ and column $j$ of $T^n$. In other words, the probability of moving from state $i$ to state $j$ in $n$ transitions is $\left(T^n\right)_{ij}$.
+\end{theorem}
+\begin{proof}
+The initial distribution is the row $\pi_0$ with a $1$ in position $i$ and $0$s elsewhere. Then $\pi_n=\pi_0T^n$ is row $i$ of $T^n$.
+\end{proof}
+\begin{definition}[Invariant distribution]
+A distribution $\pi$ (a row of nonnegative entries with sum $1$) is \emph{invariant} if $\pi T=\pi$. If $\pi_0=\pi$, then $\pi_n=\pi$ for every $n$.
+\end{definition}
+\begin{theorem}[Two-state case]
+Let $T=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix}$ with $0\le a\le1$, $0\le b\le1$ and $0<a+b<2$. The chain has a unique invariant distribution $\pi=\begin{pmatrix}\frac b{a+b}&\frac a{a+b}\end{pmatrix}$, and whatever the initial distribution, $\pi_n$ converges to $\pi$.
+\end{theorem}
+\begin{proof}
+Write $\pi_n=\begin{pmatrix}x_n&1-x_n\end{pmatrix}$. Then $x_{n+1}=(1-a)x_n+b(1-x_n)=(1-a-b)x_n+b$. This arithmetico-geometric sequence has fixed point $\ell=\frac b{a+b}$, and $x_n-\ell=(1-a-b)^n(x_0-\ell)$. Since $-1<1-a-b<1$, $(1-a-b)^n\to0$ and $x_n\to\ell$. An invariant distribution satisfies $x=(1-a-b)x+b$, so $x=\ell$: it is unique.
+\end{proof}
+\begin{method}[Three states: invariant distribution]
+Solve the system formed by $\pi T=\pi$ and the condition $a+b+c=1$; one of the three equations of $\pi T=\pi$ follows from the other two. Possible convergence of $\pi_n$ is observed with a calculator.
+\end{method}
+\begin{pitfall}
+The distribution is a row and we multiply on the right by $T$: $\pi_{n+1}=\pi_nT$, not $T\pi_n$. It is the rows of $T$, not its columns, that add up to $1$.
+\end{pitfall}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[From the graph to the matrix]
+A probabilistic graph has three vertices $1$, $2$, $3$ and the following arcs: $1\to1$ ($\frac12$), $1\to2$ ($\frac14$), $1\to3$ ($\frac14$), $2\to1$ ($\frac12$), $2\to3$ ($\frac12$), $3\to1$ ($\frac14$), $3\to2$ ($\frac14$), $3\to3$ ($\frac12$).
+\begin{enumerate}
+\item Write the transition matrix $T$ and check the row sums.
+\item Starting from state $1$, compute the distribution after two transitions.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Each row adds up to $1$: \[T=\begin{pmatrix}\frac12&\frac14&\frac14\\\frac12&0&\frac12\\\frac14&\frac14&\frac12\end{pmatrix}.\]
+\item $\pi_1=\begin{pmatrix}\frac12&\frac14&\frac14\end{pmatrix}$, then $\pi_2=\pi_1T=\begin{pmatrix}\frac14+\frac18+\frac1{16}&\frac18+0+\frac1{16}&\frac18+\frac18+\frac18\end{pmatrix}=\begin{pmatrix}\frac7{16}&\frac3{16}&\frac38\end{pmatrix}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Two network operators]
+Each month, $\pc{10}$ of the customers of operator $A$ move to $B$ and $\pc{20}$ of the customers of $B$ move to $A$; the others stay. At the start, each operator has half of the customers. Let $x_n$ be the share of $A$ after $n$ months.
+\begin{enumerate}
+\item Write the transition matrix and find the invariant distribution.
+\item Prove that $x_{n+1}=\num{0,7}x_n+\num{0,2}$, then that $x_n=\frac23-\frac16\times\num{0,7}^n$.
+\item Find the smallest $n$ such that $x_n>\num{0,66}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $T=\begin{pmatrix}\num{0,9}&\num{0,1}\\\num{0,2}&\num{0,8}\end{pmatrix}$. With $a=\num{0,1}$ and $b=\num{0,2}$, the course gives $\pi=\begin{pmatrix}\frac23&\frac13\end{pmatrix}$.
+\item $x_{n+1}=\num{0,9}x_n+\num{0,2}(1-x_n)=\num{0,7}x_n+\num{0,2}$. The fixed point is $\frac23$ and $x_n-\frac23=\num{0,7}^n\left(\frac12-\frac23\right)=-\frac16\times\num{0,7}^n$.
+\item $x_n>\num{0,66}$ is equivalent to $\frac16\times\num{0,7}^n<\frac23-\num{0,66}=\frac1{150}$, that is $\num{0,7}^n<\num{0,04}$, that is $n>\frac{\ln\num{0,04}}{\ln\num{0,7}}\simeq\num{9,02}$. The smallest integer is $n=10$ ($\num{0,7}^9\simeq\num{0,0404}$ and $\num{0,7}^{10}\simeq\num{0,0282}$).
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A three-state walk]
+A particle moves on three squares in a row, $1$, $2$, $3$. From square $2$, it goes to $1$ or to $3$ with probability $\frac14$ each and stays on $2$ with probability $\frac12$. From an end square, it stays where it is or goes to $2$, with probability $\frac12$ each.
+\begin{enumerate}
+\item Write the transition matrix $T$.
+\item Check that $\begin{pmatrix}\frac14&\frac12&\frac14\end{pmatrix}$ is an invariant distribution.
+\item Prove that it is the only one.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item In the order of the squares $1$, $2$, $3$: \[T=\begin{pmatrix}\frac12&\frac12&0\\\frac14&\frac12&\frac14\\0&\frac12&\frac12\end{pmatrix}.\]
+\item $\frac14\times\frac12+\frac12\times\frac14=\frac14$ ; $\frac14\times\frac12+\frac12\times\frac12+\frac14\times\frac12=\frac12$ ; $\frac12\times\frac14+\frac14\times\frac12=\frac14$.
+\item With $\pi=\begin{pmatrix}a&b&c\end{pmatrix}$, the first equation gives $\frac a2+\frac b4=a$, that is $b=2a$; the third gives likewise $b=2c$. With $a+b+c=1$: $a+2a+a=1$, hence $a=c=\frac14$ and $b=\frac12$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Two tanks]
+The amount of water (in thousands of litres) in two connected tanks is modelled by $U_n=\vc{x_n}{y_n}$ with
+\[U_{n+1}=AU_n+B,\qquad A=\begin{pmatrix}\num{0,6}&\num{0,2}\\\num{0,1}&\num{0,7}\end{pmatrix},\qquad B=\vc{10}{5}.\]
+\begin{enumerate}
+\item Find the column $C$ such that $C=AC+B$.
+\item Express $U_n$ in terms of $A^n$, $U_0$ and $C$.
+\item We take for granted that the entries of $A^n$ tend to $0$. Find the limit of $U_n$. Does it depend on $U_0$?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $(I_2-A)C=B$ with $I_2-A=\begin{pmatrix}\num{0,4}&-\num{0,2}\\-\num{0,1}&\num{0,3}\end{pmatrix}$, whose determinant is $\num{0,12}-\num{0,02}=\num{0,1}$. So $C=\frac1{\num{0,1}}\begin{pmatrix}\num{0,3}&\num{0,2}\\\num{0,1}&\num{0,4}\end{pmatrix}\vc{10}{5}=\vc{40}{30}$. Check: $\num{0,6}\times40+\num{0,2}\times30+10=40$ and $\num{0,1}\times40+\num{0,7}\times30+5=30$.
+\item $U_n=A^n(U_0-C)+C$.
+\item $U_n\to C=\vc{40}{30}$, whatever the value of $U_0$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Transitions in three steps]
+Each day, a user of an app is active ($1$) or inactive ($2$), with transition matrix $T=\begin{pmatrix}\num{0,7}&\num{0,3}\\\num{0,5}&\num{0,5}\end{pmatrix}$.
+\begin{enumerate}
+\item Compute $T^2$ and $T^3$.
+\item A user is active on day $0$. What is the probability that they are inactive on day $3$?
+\item Find the invariant distribution.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $T^2=\begin{pmatrix}\num{0,64}&\num{0,36}\\\num{0,6}&\num{0,4}\end{pmatrix}$ and $T^3=\begin{pmatrix}\num{0,628}&\num{0,372}\\\num{0,62}&\num{0,38}\end{pmatrix}$.
+\item It is the entry $(1,2)$ of $T^3$: $\num{0,372}$.
+\item $a=\num{0,3}$ and $b=\num{0,5}$: $\pi=\begin{pmatrix}\frac{\num{0,5}}{\num{0,8}}&\frac{\num{0,3}}{\num{0,8}}\end{pmatrix}=\begin{pmatrix}\frac58&\frac38\end{pmatrix}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A no-claims bonus system]
+Each year an insurer classes its customers in three levels: bonus ($1$), standard ($2$), penalty ($3$). The annual transition matrix is
+\[T=\begin{pmatrix}\num{0,8}&\num{0,2}&0\\\num{0,6}&\num{0,2}&\num{0,2}\\0&\num{0,6}&\num{0,4}\end{pmatrix}.\]
+\begin{enumerate}
+\item Draw the probabilistic graph.
+\item Find the invariant distribution.
+\item A customer is at the standard level. What is the probability of being at the bonus level two years later?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Arcs $1\to1$ ($\num{0,8}$), $1\to2$ ($\num{0,2}$), $2\to1$ ($\num{0,6}$), $2\to2$ ($\num{0,2}$), $2\to3$ ($\num{0,2}$), $3\to2$ ($\num{0,6}$), $3\to3$ ($\num{0,4}$).
+\item With $\pi=\begin{pmatrix}a&b&c\end{pmatrix}$: $\num{0,8}a+\num{0,6}b=a$ gives $b=\frac a3$; $\num{0,2}b+\num{0,4}c=c$ gives $c=\frac b3=\frac a9$. Then $a+\frac a3+\frac a9=1$, that is $a=\frac9{13}$, $b=\frac3{13}$, $c=\frac1{13}$.
+\item Entry $(2,1)$ of $T^2$: $\num{0,6}\times\num{0,8}+\num{0,2}\times\num{0,6}+\num{0,2}\times0=\num{0,6}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Powers of the two-state transition matrix]
+Let $T=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix}$ with $a+b\neq0$. Let $\lambda=1-a-b$, $Q=\frac1{a+b}\begin{pmatrix}b&a\\b&a\end{pmatrix}$ and $R=\frac1{a+b}\begin{pmatrix}a&-a\\-b&b\end{pmatrix}$.
+\begin{enumerate}
+\item Check that $Q+\lambda R=T$, $Q^2=Q$, $R^2=R$ and $QR=RQ=0$.
+\item Deduce by induction that $T^n=Q+\lambda^nR$ for every $n\ge1$.
+\item Assume $0<a+b<2$. Find the limit of $T^n$ and interpret its rows.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item The entry $(1,1)$ of $Q+\lambda R$ is $\frac{b+(1-a-b)a}{a+b}=\frac{(a+b)-a(a+b)}{a+b}=1-a$; the others are checked in the same way. For $Q^2$: the entry $(1,1)$ is $\frac{b^2+ab}{(a+b)^2}=\frac b{a+b}$, and so on. $QR$ has entry $(1,1)$ equal to $\frac{ba-ab}{(a+b)^2}=0$; all the entries of $QR$ and $RQ$ are zero.
+\item True for $n=1$. If $T^n=Q+\lambda^nR$, then $T^{n+1}=(Q+\lambda^nR)(Q+\lambda R)=Q^2+\lambda QR+\lambda^nRQ+\lambda^{n+1}R^2=Q+\lambda^{n+1}R$.
+\item $\abs\lambda<1$, so $\lambda^n\to0$ and $T^n\to Q$. Both rows of $Q$ equal the invariant distribution: in the long run, the starting state is ``forgotten''.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[Ehrenfest's urn model]
+Two urns $U$ and $V$ contain two balls in total. At each step, one of the two balls is chosen at random (with equal probability) and moved to the other urn. Let $X_n$ be the number of balls in $U$ after $n$ steps; the states are $0$, $1$, $2$. At the start, $U$ contains both balls.
+\begin{enumerate}
+\item Justify that $(X_n)$ is a Markov chain, draw its probabilistic graph and write its transition matrix $T$ (states in the order $0$, $1$, $2$).
+\item Find the unique invariant distribution $\pi$. Compare it with the distribution of the number of balls in $U$ when each ball is placed at random in one of the two urns, independently.
+\item Compute $\pi_1$, $\pi_2$, $\pi_3$, $\pi_4$. Does the sequence $(\pi_n)$ converge?
+\item Prove that for every $k\ge1$, $\pi_{2k}=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$ and $\pi_{2k+1}=\begin{pmatrix}0&1&0\end{pmatrix}$, then that $\frac12\left(\pi_{2k}+\pi_{2k+1}\right)=\pi$.
+\item Explain, without computation, why $X_n$ has the same parity as $n$.
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item The next step depends only on the current number of balls in $U$. From state $0$ or $2$, the chain moves to $1$ for certain; from state $1$, it moves to $0$ or to $2$ with probability $\frac12$ each. \[T=\begin{pmatrix}0&1&0\\\frac12&0&\frac12\\0&1&0\end{pmatrix}.\]
+\item $\pi T=\pi$ with $\pi=\begin{pmatrix}a&b&c\end{pmatrix}$ gives $\frac b2=a$, $a+c=b$, $\frac b2=c$. With $a+b+c=1$: $\pi=\begin{pmatrix}\frac14&\frac12&\frac14\end{pmatrix}$. This is the binomial distribution with parameters $2$ and $\frac12$.
+\item $\pi_0=\begin{pmatrix}0&0&1\end{pmatrix}$, $\pi_1=\begin{pmatrix}0&1&0\end{pmatrix}$, $\pi_2=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$, $\pi_3=\begin{pmatrix}0&1&0\end{pmatrix}$, $\pi_4=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$. The sequence alternates between two values: it does not converge.
+\item $\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}T=\begin{pmatrix}0&1&0\end{pmatrix}$ and $\begin{pmatrix}0&1&0\end{pmatrix}T=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$; an induction on $k$ concludes. The half-sum is $\begin{pmatrix}\frac14&\frac12&\frac14\end{pmatrix}=\pi$.
+\item Each step changes the number of balls in $U$ by $1$, so it changes its parity. At the start $X_0=2$ is even.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+The Ehrenfest model is a ``possible problem'' of the syllabus. It shows that an invariant distribution can exist without $\pi_n$ converging: the condition $0<a+b<2$ of the two-state case has an analogue for three states, beyond the syllabus (aperiodic chain). Extension: simulate the chain in Python with $N$ balls and observe the frequencies of the states over a long run.
+\end{teachernote}

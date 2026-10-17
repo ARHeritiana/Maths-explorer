@@ -50,6 +50,16 @@ export const resourceCatalog = {
       "name": "automatismes-prof.pdf",
       "title": "Fiches_automatismes_2G_professeur.pdf",
       "modified": "2026-10-06T18:34:15.099Z"
+    },
+    {
+      "name": "expertes-eleve.pdf",
+      "title": "expertes-eleve.pdf",
+      "modified": "2026-10-17T06:35:18.000Z"
+    },
+    {
+      "name": "expertes-prof.pdf",
+      "title": "expertes-prof.pdf",
+      "modified": "2026-10-17T06:35:18.000Z"
     }
   ],
   "chapters": [
@@ -1965,6 +1975,435 @@ export const resourceCatalog = {
           "englishPath": "resources/terminale-14/teacher-en.pdf",
           "bytes": 200629,
           "englishBytes": 196721
+        }
+      ]
+    },
+    {
+      "id": "expertes-01",
+      "course": "expertes",
+      "number": 1,
+      "title": [
+        "Nombres complexes : point de vue algébrique",
+        "Complex numbers: the algebraic point of view"
+      ],
+      "topic": "complex-algebra",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 5,
+          "path": "resources/expertes-01/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 6,
+            "problem": 8
+          },
+          "pages": 8,
+          "end": 12,
+          "englishPath": "resources/expertes-01/chapter-en.pdf",
+          "bytes": 199217,
+          "englishBytes": 180241
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 7,
+          "path": "resources/expertes-01/teacher.pdf",
+          "pages": 9,
+          "end": 15,
+          "englishPath": "resources/expertes-01/teacher-en.pdf",
+          "bytes": 213376,
+          "englishBytes": 194405
+        }
+      ]
+    },
+    {
+      "id": "expertes-02",
+      "course": "expertes",
+      "number": 2,
+      "title": [
+        "Nombres complexes : point de vue géométrique",
+        "Complex numbers: the geometric point of view"
+      ],
+      "topic": "complex-plane",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 13,
+          "path": "resources/expertes-02/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 6,
+            "problem": 7
+          },
+          "pages": 7,
+          "end": 19,
+          "englishPath": "resources/expertes-02/chapter-en.pdf",
+          "bytes": 183511,
+          "englishBytes": 180045
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 16,
+          "path": "resources/expertes-02/teacher.pdf",
+          "pages": 8,
+          "end": 23,
+          "englishPath": "resources/expertes-02/teacher-en.pdf",
+          "bytes": 198378,
+          "englishBytes": 195107
+        }
+      ]
+    },
+    {
+      "id": "expertes-03",
+      "course": "expertes",
+      "number": 3,
+      "title": [
+        "Nombres complexes et trigonométrie",
+        "Complex numbers and trigonometry"
+      ],
+      "topic": "complex-exponential",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 20,
+          "path": "resources/expertes-03/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 25,
+          "englishPath": "resources/expertes-03/chapter-en.pdf",
+          "bytes": 184803,
+          "englishBytes": 181749
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 24,
+          "path": "resources/expertes-03/teacher.pdf",
+          "pages": 8,
+          "end": 31,
+          "englishPath": "resources/expertes-03/teacher-en.pdf",
+          "bytes": 202360,
+          "englishBytes": 199179
+        }
+      ]
+    },
+    {
+      "id": "expertes-04",
+      "course": "expertes",
+      "number": 4,
+      "title": [
+        "Équations polynomiales",
+        "Polynomial equations"
+      ],
+      "topic": "polynomials",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 26,
+          "path": "resources/expertes-04/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 31,
+          "englishPath": "resources/expertes-04/chapter-en.pdf",
+          "bytes": 183288,
+          "englishBytes": 179518
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 32,
+          "path": "resources/expertes-04/teacher.pdf",
+          "pages": 7,
+          "end": 38,
+          "englishPath": "resources/expertes-04/teacher-en.pdf",
+          "bytes": 196227,
+          "englishBytes": 192386
+        }
+      ]
+    },
+    {
+      "id": "expertes-05",
+      "course": "expertes",
+      "number": 5,
+      "title": [
+        "Nombres complexes et géométrie",
+        "Complex numbers and geometry"
+      ],
+      "topic": "roots-of-unity",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 32,
+          "path": "resources/expertes-05/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 37,
+          "englishPath": "resources/expertes-05/chapter-en.pdf",
+          "bytes": 176945,
+          "englishBytes": 170630
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 39,
+          "path": "resources/expertes-05/teacher.pdf",
+          "pages": 7,
+          "end": 45,
+          "englishPath": "resources/expertes-05/teacher-en.pdf",
+          "bytes": 199321,
+          "englishBytes": 192737
+        }
+      ]
+    },
+    {
+      "id": "expertes-06",
+      "course": "expertes",
+      "number": 6,
+      "title": [
+        "Divisibilité et congruences",
+        "Divisibility and congruences"
+      ],
+      "topic": "congruences",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 38,
+          "path": "resources/expertes-06/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 43,
+          "englishPath": "resources/expertes-06/chapter-en.pdf",
+          "bytes": 176545,
+          "englishBytes": 170297
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 46,
+          "path": "resources/expertes-06/teacher.pdf",
+          "pages": 7,
+          "end": 52,
+          "englishPath": "resources/expertes-06/teacher-en.pdf",
+          "bytes": 186997,
+          "englishBytes": 180833
+        }
+      ]
+    },
+    {
+      "id": "expertes-07",
+      "course": "expertes",
+      "number": 7,
+      "title": [
+        "PGCD, théorèmes de Bézout et de Gauss",
+        "GCD, Bézout's and Gauss's theorems"
+      ],
+      "topic": "bezout",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 44,
+          "path": "resources/expertes-07/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 49,
+          "englishPath": "resources/expertes-07/chapter-en.pdf",
+          "bytes": 184344,
+          "englishBytes": 177931
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 53,
+          "path": "resources/expertes-07/teacher.pdf",
+          "pages": 7,
+          "end": 59,
+          "englishPath": "resources/expertes-07/teacher-en.pdf",
+          "bytes": 196641,
+          "englishBytes": 190175
+        }
+      ]
+    },
+    {
+      "id": "expertes-08",
+      "course": "expertes",
+      "number": 8,
+      "title": [
+        "Nombres premiers et petit théorème de Fermat",
+        "Prime numbers and Fermat's little theorem"
+      ],
+      "topic": "primes",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 50,
+          "path": "resources/expertes-08/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 55,
+          "englishPath": "resources/expertes-08/chapter-en.pdf",
+          "bytes": 206459,
+          "englishBytes": 200118
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 60,
+          "path": "resources/expertes-08/teacher.pdf",
+          "pages": 7,
+          "end": 66,
+          "englishPath": "resources/expertes-08/teacher-en.pdf",
+          "bytes": 218935,
+          "englishBytes": 212280
+        }
+      ]
+    },
+    {
+      "id": "expertes-09",
+      "course": "expertes",
+      "number": 9,
+      "title": [
+        "Matrices",
+        "Matrices"
+      ],
+      "topic": "matrices",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 56,
+          "path": "resources/expertes-09/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 6
+          },
+          "pages": 6,
+          "end": 61,
+          "englishPath": "resources/expertes-09/chapter-en.pdf",
+          "bytes": 168088,
+          "englishBytes": 164591
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 67,
+          "path": "resources/expertes-09/teacher.pdf",
+          "pages": 8,
+          "end": 74,
+          "englishPath": "resources/expertes-09/teacher-en.pdf",
+          "bytes": 182527,
+          "englishBytes": 178782
+        }
+      ]
+    },
+    {
+      "id": "expertes-10",
+      "course": "expertes",
+      "number": 10,
+      "title": [
+        "Graphes",
+        "Graphs"
+      ],
+      "topic": "graphs",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 62,
+          "path": "resources/expertes-10/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 7
+          },
+          "pages": 7,
+          "end": 68,
+          "englishPath": "resources/expertes-10/chapter-en.pdf",
+          "bytes": 160979,
+          "englishBytes": 157411
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 75,
+          "path": "resources/expertes-10/teacher.pdf",
+          "pages": 8,
+          "end": 82,
+          "englishPath": "resources/expertes-10/teacher-en.pdf",
+          "bytes": 171685,
+          "englishBytes": 168202
+        }
+      ]
+    },
+    {
+      "id": "expertes-11",
+      "course": "expertes",
+      "number": 11,
+      "title": [
+        "Suites de matrices et chaînes de Markov",
+        "Matrix sequences and Markov chains"
+      ],
+      "topic": "markov",
+      "files": [
+        {
+          "kind": "chapter",
+          "source": "expertes-eleve.pdf",
+          "start": 69,
+          "path": "resources/expertes-11/chapter.pdf",
+          "sections": {
+            "lesson": 1,
+            "practice": 5,
+            "problem": 7
+          },
+          "pages": 7,
+          "end": 75,
+          "englishPath": "resources/expertes-11/chapter-en.pdf",
+          "bytes": 181494,
+          "englishBytes": 178097
+        },
+        {
+          "kind": "teacher",
+          "source": "expertes-prof.pdf",
+          "start": 83,
+          "path": "resources/expertes-11/teacher.pdf",
+          "pages": 8,
+          "end": 90,
+          "englishPath": "resources/expertes-11/teacher-en.pdf",
+          "bytes": 196085,
+          "englishBytes": 192231
         }
       ]
     },

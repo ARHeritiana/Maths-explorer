@@ -1,0 +1,251 @@
+\mxunit{expertes-c11}{Suites de matrices et chaînes de Markov}
+\mxsubtitle{Suites $U_{n+1}=AU_n+B$, graphes probabilistes, distributions invariantes}
+
+\begin{objectives}
+Étudier une suite de matrices colonnes définie par $U_{n+1}=AU_n+B$ ; modéliser une évolution aléatoire à deux ou trois états par un graphe probabiliste et une matrice de transition ; calculer la distribution après $n$ étapes ; déterminer une distribution invariante ; étudier la convergence dans le cas de deux états.
+\end{objectives}
+\begin{prerequisites}
+Chapitres 9 et 10 ; probabilités conditionnelles et formule des probabilités totales ; suites arithmético-géométriques ; limite d'une suite géométrique.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item On pose $u_{n+1}=\num{0,5}u_n+2$. Déterminer le réel $\ell$ tel que $\ell=\num{0,5}\ell+2$.
+\item Donner la limite de $\num{0,8}^n$ quand $n$ tend vers $+\infty$.
+\item Dans un arbre, $P(A)=\num{0,3}$, $P_A(B)=\num{0,6}$, $P_{\overline A}(B)=\num{0,2}$. Calculer $P(B)$.
+\item Résoudre le système $\num{0,2}a=\num{0,4}b$ et $a+b=1$.
+\item Calculer $\begin{pmatrix}1&0\end{pmatrix}\begin{pmatrix}\num{0,8}&\num{0,2}\\\num{0,4}&\num{0,6}\end{pmatrix}$.
+\item Quelle est la somme des coefficients de chaque ligne de la matrice de la question 5 ?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $\ell=4$.
+\item $0$.
+\item $\num{0,3}\times\num{0,6}+\num{0,7}\times\num{0,2}=\num{0,32}$.
+\item $a=2b$, donc $3b=1$ : $a=\frac23$ et $b=\frac13$.
+\item $\begin{pmatrix}\num{0,8}&\num{0,2}\end{pmatrix}$.
+\item $1$ pour chaque ligne.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Beau temps, pluie \mxchip{40 min}]
+Dans un modèle simplifié (données fictives), le temps d'une journée est soit beau ($S$), soit pluvieux ($P$), et ne dépend que du temps de la veille : après un beau jour, il fait beau avec la probabilité $\num{0,8}$ ; après un jour de pluie, il fait beau avec la probabilité $\num{0,4}$. Le jour $0$ est beau. On note $s_n$ et $p_n$ les probabilités que le jour $n$ soit beau ou pluvieux.
+\begin{enumerate}
+\item Représenter la situation par un schéma : deux sommets $S$ et $P$, une flèche pour chaque passage possible, portant sa probabilité.
+\item À l'aide d'un arbre, calculer $s_1$, $p_1$, puis $s_2$, $p_2$.
+\item Justifier que $s_{n+1}=\num{0,8}s_n+\num{0,4}p_n$ et $p_{n+1}=\num{0,2}s_n+\num{0,6}p_n$.
+\item On pose $\pi_n=\begin{pmatrix}s_n&p_n\end{pmatrix}$ et $T=\begin{pmatrix}\num{0,8}&\num{0,2}\\\num{0,4}&\num{0,6}\end{pmatrix}$. Vérifier que $\pi_{n+1}=\pi_nT$. Calculer $\pi_{10}$ à la calculatrice. Recommencer en partant d'un jour $0$ pluvieux. Que constate-t-on ?
+\item Déterminer la répartition $\pi=\begin{pmatrix}a&b\end{pmatrix}$, avec $a+b=1$, qui vérifie $\pi T=\pi$. La comparer aux observations de la question 4.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item Flèches $S\to S$ ($\num{0,8}$), $S\to P$ ($\num{0,2}$), $P\to S$ ($\num{0,4}$), $P\to P$ ($\num{0,6}$).
+\item $s_1=\num{0,8}$, $p_1=\num{0,2}$ ; $s_2=\num{0,8}\times\num{0,8}+\num{0,2}\times\num{0,4}=\num{0,72}$ et $p_2=\num{0,28}$.
+\item Formule des probabilités totales avec la partition « beau le jour $n$ », « pluie le jour $n$ ».
+\item $\pi_nT=\begin{pmatrix}\num{0,8}s_n+\num{0,4}p_n&\num{0,2}s_n+\num{0,6}p_n\end{pmatrix}=\pi_{n+1}$. On trouve $\pi_{10}\simeq\begin{pmatrix}\num{0,6667}&\num{0,3333}\end{pmatrix}$, et $\pi_{10}\simeq\begin{pmatrix}\num{0,6666}&\num{0,3334}\end{pmatrix}$ en partant d'un jour pluvieux. La répartition semble se stabiliser vers $\begin{pmatrix}\frac23&\frac13\end{pmatrix}$, quel que soit le départ.
+\item $\num{0,8}a+\num{0,4}b=a$ équivaut à $\num{0,2}a=\num{0,4}b$, soit $a=2b$ ; avec $a+b=1$ : $\pi=\begin{pmatrix}\frac23&\frac13\end{pmatrix}$, la limite observée.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+Les calculs numériques de la question 4 suggèrent la convergence ; la preuve, dans le cas de deux états, se fait avec une suite arithmético-géométrique (cours). Attirer l'attention sur l'écriture en ligne de $\pi_n$ et sur l'ordre du produit $\pi_nT$.
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{Suites de matrices}
+\begin{theorem}[Suite $U_{n+1}=AU_n+B$]
+Soit $A$ une matrice carrée d'ordre $p$, $B$ une matrice colonne et $(U_n)$ une suite de matrices colonnes telle que $U_{n+1}=AU_n+B$ pour tout $n$. Si $I_p-A$ est inversible, la matrice $C=(I_p-A)^{-1}B$ vérifie $C=AC+B$, et pour tout entier naturel $n$ :
+\[U_n=A^n\left(U_0-C\right)+C.\]
+\end{theorem}
+\begin{proof}
+$(I_p-A)C=B$ s'écrit $C=AC+B$. En soustrayant : $U_{n+1}-C=A(U_n-C)$. La suite $V_n=U_n-C$ vérifie $V_{n+1}=AV_n$, donc $V_n=A^nV_0$ (récurrence), et $U_n=A^n(U_0-C)+C$.
+\end{proof}
+\begin{keypoint}[Comportement à l'infini]
+Si tous les coefficients de $A^n$ tendent vers $0$, alors $U_n$ converge vers $C$ (coefficient par coefficient). Ce comportement s'observe à la calculatrice ; on l'admet lorsque l'énoncé le précise.
+\end{keypoint}
+
+\subsection{Chaînes de Markov}
+\begin{definition}[Chaîne de Markov à deux ou trois états]
+On observe un système à des instants $0,1,2,\dots$ ; à chaque instant, il se trouve dans un des états $1,\dots,k$ ($k=2$ ou $3$). On note $X_n$ l'état à l'instant $n$. On dit que $(X_n)$ est une \emph{chaîne de Markov} (homogène) si la probabilité de passer de l'état $i$ à l'état $j$ ne dépend ni de $n$ ni des états antérieurs : pour tous $i$, $j$ et $n$ tels que $P(X_n=i)\neq0$,
+\[P_{(X_n=i)}(X_{n+1}=j)=t_{ij}.\]
+Les nombres $t_{ij}$ sont les \emph{probabilités de transition}.
+\end{definition}
+\begin{definition}[Graphe probabiliste, matrice de transition]
+La chaîne est représentée par un \emph{graphe probabiliste} : un graphe orienté pondéré dont les sommets sont les états, avec un arc de $i$ vers $j$, de poids $t_{ij}$, lorsque $t_{ij}>0$. La \emph{matrice de transition} est la matrice carrée $T=(t_{ij})$. Ses coefficients sont positifs et la somme de chaque ligne vaut $1$.
+\end{definition}
+\begin{definition}[Distribution]
+La \emph{distribution} à l'instant $n$ est la matrice ligne $\pi_n=\begin{pmatrix}P(X_n=1)&\cdots&P(X_n=k)\end{pmatrix}$ ; $\pi_0$ est la distribution initiale.
+\end{definition}
+\begin{theorem}[Évolution de la distribution]
+Pour tout entier naturel $n$ : $\pi_{n+1}=\pi_nT$ et $\pi_n=\pi_0T^n$.
+\end{theorem}
+\begin{proof}
+Par la formule des probabilités totales, avec la partition $\left(X_n=1\right),\dots,\left(X_n=k\right)$ (on omet les événements de probabilité nulle, qui contribuent $0$) :
+\[P(X_{n+1}=j)=\sum_{i=1}^{k}P(X_n=i)\,t_{ij},\]
+qui est le coefficient $j$ de $\pi_nT$. La seconde formule s'obtient par récurrence.
+\end{proof}
+\begin{theorem}[Transition en $n$ étapes]
+Si $P(X_0=i)=1$, alors pour tout état $j$, $P(X_n=j)$ est le coefficient de ligne $i$ et de colonne $j$ de $T^n$. Autrement dit, la probabilité de passer de l'état $i$ à l'état $j$ en $n$ transitions est $\left(T^n\right)_{ij}$.
+\end{theorem}
+\begin{proof}
+La distribution initiale est la ligne $\pi_0$ qui a un $1$ en position $i$ et des $0$ ailleurs. Alors $\pi_n=\pi_0T^n$ est la ligne $i$ de $T^n$.
+\end{proof}
+\begin{definition}[Distribution invariante]
+Une distribution $\pi$ (ligne de coefficients positifs de somme $1$) est \emph{invariante} si $\pi T=\pi$. Si $\pi_0=\pi$, alors $\pi_n=\pi$ pour tout $n$.
+\end{definition}
+\begin{theorem}[Cas de deux états]
+Soit $T=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix}$ avec $0\le a\le1$, $0\le b\le1$ et $0<a+b<2$. La chaîne admet une unique distribution invariante $\pi=\begin{pmatrix}\frac b{a+b}&\frac a{a+b}\end{pmatrix}$, et quelle que soit la distribution initiale, $\pi_n$ converge vers $\pi$.
+\end{theorem}
+\begin{proof}
+Écrivons $\pi_n=\begin{pmatrix}x_n&1-x_n\end{pmatrix}$. Alors $x_{n+1}=(1-a)x_n+b(1-x_n)=(1-a-b)x_n+b$. Cette suite arithmético-géométrique a pour point fixe $\ell=\frac b{a+b}$, et $x_n-\ell=(1-a-b)^n(x_0-\ell)$. Comme $-1<1-a-b<1$, $(1-a-b)^n\to0$ et $x_n\to\ell$. Une distribution invariante vérifie $x=(1-a-b)x+b$, donc $x=\ell$ : elle est unique.
+\end{proof}
+\begin{method}[Trois états : distribution invariante]
+On résout le système formé par $\pi T=\pi$ et la condition $a+b+c=1$ ; l'une des trois équations de $\pi T=\pi$ est conséquence des deux autres. La convergence éventuelle de $\pi_n$ s'observe à la calculatrice.
+\end{method}
+\begin{pitfall}
+La distribution est une ligne et l'on multiplie à droite par $T$ : $\pi_{n+1}=\pi_nT$, et non $T\pi_n$. Ce sont les lignes de $T$, et non ses colonnes, qui ont pour somme $1$.
+\end{pitfall}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Du graphe à la matrice]
+Un graphe probabiliste a trois sommets $1$, $2$, $3$ et les arcs suivants : $1\to1$ ($\frac12$), $1\to2$ ($\frac14$), $1\to3$ ($\frac14$), $2\to1$ ($\frac12$), $2\to3$ ($\frac12$), $3\to1$ ($\frac14$), $3\to2$ ($\frac14$), $3\to3$ ($\frac12$).
+\begin{enumerate}
+\item Écrire la matrice de transition $T$ et vérifier la somme des lignes.
+\item Partant de l'état $1$, calculer la distribution après deux transitions.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Chaque ligne a pour somme $1$ : \[T=\begin{pmatrix}\frac12&\frac14&\frac14\\\frac12&0&\frac12\\\frac14&\frac14&\frac12\end{pmatrix}.\]
+\item $\pi_1=\begin{pmatrix}\frac12&\frac14&\frac14\end{pmatrix}$, puis $\pi_2=\pi_1T=\begin{pmatrix}\frac14+\frac18+\frac1{16}&\frac18+0+\frac1{16}&\frac18+\frac18+\frac18\end{pmatrix}=\begin{pmatrix}\frac7{16}&\frac3{16}&\frac38\end{pmatrix}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Deux opérateurs]
+Chaque mois, $\pc{10}$ des clients de l'opérateur $A$ passent chez $B$ et $\pc{20}$ des clients de $B$ passent chez $A$ ; les autres restent. Au départ, chaque opérateur a la moitié des clients. On note $x_n$ la part de $A$ après $n$ mois.
+\begin{enumerate}
+\item Écrire la matrice de transition et déterminer la distribution invariante.
+\item Démontrer que $x_{n+1}=\num{0,7}x_n+\num{0,2}$, puis que $x_n=\frac23-\frac16\times\num{0,7}^n$.
+\item Déterminer le plus petit $n$ tel que $x_n>\num{0,66}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $T=\begin{pmatrix}\num{0,9}&\num{0,1}\\\num{0,2}&\num{0,8}\end{pmatrix}$. Avec $a=\num{0,1}$ et $b=\num{0,2}$, le cours donne $\pi=\begin{pmatrix}\frac23&\frac13\end{pmatrix}$.
+\item $x_{n+1}=\num{0,9}x_n+\num{0,2}(1-x_n)=\num{0,7}x_n+\num{0,2}$. Le point fixe est $\frac23$ et $x_n-\frac23=\num{0,7}^n\left(\frac12-\frac23\right)=-\frac16\times\num{0,7}^n$.
+\item $x_n>\num{0,66}$ équivaut à $\frac16\times\num{0,7}^n<\frac23-\num{0,66}=\frac1{150}$, soit $\num{0,7}^n<\num{0,04}$, soit $n>\frac{\ln\num{0,04}}{\ln\num{0,7}}\simeq\num{9,02}$. Le plus petit entier est $n=10$ ($\num{0,7}^9\simeq\num{0,0404}$ et $\num{0,7}^{10}\simeq\num{0,0282}$).
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Une marche à trois états]
+Une particule se déplace sur trois cases alignées $1$, $2$, $3$. De la case $2$, elle va en $1$ ou en $3$ avec la probabilité $\frac14$ chacune et reste en $2$ avec la probabilité $\frac12$. D'une case extrême, elle reste sur place ou va en $2$, avec la probabilité $\frac12$ chacune.
+\begin{enumerate}
+\item Écrire la matrice de transition $T$.
+\item Vérifier que $\begin{pmatrix}\frac14&\frac12&\frac14\end{pmatrix}$ est une distribution invariante.
+\item Démontrer que c'est la seule.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Dans l'ordre des cases $1$, $2$, $3$ : \[T=\begin{pmatrix}\frac12&\frac12&0\\\frac14&\frac12&\frac14\\0&\frac12&\frac12\end{pmatrix}.\]
+\item $\frac14\times\frac12+\frac12\times\frac14=\frac14$ ; $\frac14\times\frac12+\frac12\times\frac12+\frac14\times\frac12=\frac12$ ; $\frac12\times\frac14+\frac14\times\frac12=\frac14$.
+\item Avec $\pi=\begin{pmatrix}a&b&c\end{pmatrix}$, la première équation donne $\frac a2+\frac b4=a$, soit $b=2a$ ; la troisième donne de même $b=2c$. Avec $a+b+c=1$ : $a+2a+a=1$, d'où $a=c=\frac14$ et $b=\frac12$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Deux bassins]
+On modélise la quantité d'eau (en milliers de litres) de deux bassins reliés par $U_n=\vc{x_n}{y_n}$ avec
+\[U_{n+1}=AU_n+B,\qquad A=\begin{pmatrix}\num{0,6}&\num{0,2}\\\num{0,1}&\num{0,7}\end{pmatrix},\qquad B=\vc{10}{5}.\]
+\begin{enumerate}
+\item Déterminer la colonne $C$ telle que $C=AC+B$.
+\item Exprimer $U_n$ en fonction de $A^n$, $U_0$ et $C$.
+\item On admet que les coefficients de $A^n$ tendent vers $0$. Déterminer la limite de $U_n$. Dépend-elle de $U_0$ ?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $(I_2-A)C=B$ avec $I_2-A=\begin{pmatrix}\num{0,4}&-\num{0,2}\\-\num{0,1}&\num{0,3}\end{pmatrix}$, de déterminant $\num{0,12}-\num{0,02}=\num{0,1}$. Donc $C=\frac1{\num{0,1}}\begin{pmatrix}\num{0,3}&\num{0,2}\\\num{0,1}&\num{0,4}\end{pmatrix}\vc{10}{5}=\vc{40}{30}$. Vérification : $\num{0,6}\times40+\num{0,2}\times30+10=40$ et $\num{0,1}\times40+\num{0,7}\times30+5=30$.
+\item $U_n=A^n(U_0-C)+C$.
+\item $U_n\to C=\vc{40}{30}$, quelle que soit la valeur de $U_0$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Transitions en trois étapes]
+Un utilisateur d'une application est, chaque jour, actif ($1$) ou inactif ($2$), avec la matrice de transition $T=\begin{pmatrix}\num{0,7}&\num{0,3}\\\num{0,5}&\num{0,5}\end{pmatrix}$.
+\begin{enumerate}
+\item Calculer $T^2$ et $T^3$.
+\item Un utilisateur est actif le jour $0$. Quelle est la probabilité qu'il soit inactif le jour $3$ ?
+\item Déterminer la distribution invariante.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $T^2=\begin{pmatrix}\num{0,64}&\num{0,36}\\\num{0,6}&\num{0,4}\end{pmatrix}$ et $T^3=\begin{pmatrix}\num{0,628}&\num{0,372}\\\num{0,62}&\num{0,38}\end{pmatrix}$.
+\item C'est le coefficient $(1,2)$ de $T^3$ : $\num{0,372}$.
+\item $a=\num{0,3}$ et $b=\num{0,5}$ : $\pi=\begin{pmatrix}\frac{\num{0,5}}{\num{0,8}}&\frac{\num{0,3}}{\num{0,8}}\end{pmatrix}=\begin{pmatrix}\frac58&\frac38\end{pmatrix}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Un système de bonus-malus]
+Un assureur classe chaque année ses clients en trois niveaux : bonus ($1$), base ($2$), malus ($3$). La matrice de transition annuelle est
+\[T=\begin{pmatrix}\num{0,8}&\num{0,2}&0\\\num{0,6}&\num{0,2}&\num{0,2}\\0&\num{0,6}&\num{0,4}\end{pmatrix}.\]
+\begin{enumerate}
+\item Dessiner le graphe probabiliste.
+\item Déterminer la distribution invariante.
+\item Un client est au niveau de base. Quelle est la probabilité qu'il soit au niveau bonus deux ans plus tard ?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Arcs $1\to1$ ($\num{0,8}$), $1\to2$ ($\num{0,2}$), $2\to1$ ($\num{0,6}$), $2\to2$ ($\num{0,2}$), $2\to3$ ($\num{0,2}$), $3\to2$ ($\num{0,6}$), $3\to3$ ($\num{0,4}$).
+\item Avec $\pi=\begin{pmatrix}a&b&c\end{pmatrix}$ : $\num{0,8}a+\num{0,6}b=a$ donne $b=\frac a3$ ; $\num{0,2}b+\num{0,4}c=c$ donne $c=\frac b3=\frac a9$. Puis $a+\frac a3+\frac a9=1$, soit $a=\frac9{13}$, $b=\frac3{13}$, $c=\frac1{13}$.
+\item Coefficient $(2,1)$ de $T^2$ : $\num{0,6}\times\num{0,8}+\num{0,2}\times\num{0,6}+\num{0,2}\times0=\num{0,6}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Puissances de la matrice de transition à deux états]
+Soit $T=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix}$ avec $a+b\neq0$. On pose $\lambda=1-a-b$, $Q=\frac1{a+b}\begin{pmatrix}b&a\\b&a\end{pmatrix}$ et $R=\frac1{a+b}\begin{pmatrix}a&-a\\-b&b\end{pmatrix}$.
+\begin{enumerate}
+\item Vérifier que $Q+\lambda R=T$, $Q^2=Q$, $R^2=R$ et $QR=RQ=0$.
+\item En déduire par récurrence que $T^n=Q+\lambda^nR$ pour tout $n\ge1$.
+\item On suppose $0<a+b<2$. Déterminer la limite de $T^n$ et interpréter ses lignes.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Le coefficient $(1,1)$ de $Q+\lambda R$ vaut $\frac{b+(1-a-b)a}{a+b}=\frac{(a+b)-a(a+b)}{a+b}=1-a$ ; les autres se vérifient de même. Pour $Q^2$ : le coefficient $(1,1)$ vaut $\frac{b^2+ab}{(a+b)^2}=\frac b{a+b}$, et ainsi de suite. $QR$ a pour coefficient $(1,1)$ $\frac{ba-ab}{(a+b)^2}=0$ ; tous les coefficients de $QR$ et $RQ$ sont nuls.
+\item Vrai pour $n=1$. Si $T^n=Q+\lambda^nR$, alors $T^{n+1}=(Q+\lambda^nR)(Q+\lambda R)=Q^2+\lambda QR+\lambda^nRQ+\lambda^{n+1}R^2=Q+\lambda^{n+1}R$.
+\item $\abs\lambda<1$, donc $\lambda^n\to0$ et $T^n\to Q$. Les deux lignes de $Q$ sont égales à la distribution invariante : à long terme, l'état de départ est « oublié ».
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[Le modèle des urnes d'Ehrenfest]
+Deux urnes $U$ et $V$ contiennent au total deux boules. À chaque étape, on choisit l'une des deux boules au hasard (de façon équiprobable) et on la change d'urne. On note $X_n$ le nombre de boules dans $U$ après $n$ étapes ; les états sont $0$, $1$, $2$. Au départ, $U$ contient les deux boules.
+\begin{enumerate}
+\item Justifier que $(X_n)$ est une chaîne de Markov, dessiner son graphe probabiliste et écrire sa matrice de transition $T$ (états dans l'ordre $0$, $1$, $2$).
+\item Déterminer l'unique distribution invariante $\pi$. Comparer avec la loi du nombre de boules dans $U$ si chaque boule est placée au hasard dans l'une des deux urnes, indépendamment.
+\item Calculer $\pi_1$, $\pi_2$, $\pi_3$, $\pi_4$. La suite $(\pi_n)$ converge-t-elle ?
+\item Démontrer que pour tout $k\ge1$, $\pi_{2k}=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$ et $\pi_{2k+1}=\begin{pmatrix}0&1&0\end{pmatrix}$, puis que $\frac12\left(\pi_{2k}+\pi_{2k+1}\right)=\pi$.
+\item Expliquer, sans calcul, pourquoi $X_n$ a la même parité que $n$.
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item L'étape suivante ne dépend que du nombre actuel de boules dans $U$. De l'état $0$ ou $2$, on passe à coup sûr en $1$ ; de l'état $1$, on passe en $0$ ou en $2$ avec la probabilité $\frac12$ chacun. \[T=\begin{pmatrix}0&1&0\\\frac12&0&\frac12\\0&1&0\end{pmatrix}.\]
+\item $\pi T=\pi$ avec $\pi=\begin{pmatrix}a&b&c\end{pmatrix}$ donne $\frac b2=a$, $a+c=b$, $\frac b2=c$. Avec $a+b+c=1$ : $\pi=\begin{pmatrix}\frac14&\frac12&\frac14\end{pmatrix}$. C'est la loi binomiale de paramètres $2$ et $\frac12$.
+\item $\pi_0=\begin{pmatrix}0&0&1\end{pmatrix}$, $\pi_1=\begin{pmatrix}0&1&0\end{pmatrix}$, $\pi_2=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$, $\pi_3=\begin{pmatrix}0&1&0\end{pmatrix}$, $\pi_4=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$. La suite alterne entre deux valeurs : elle ne converge pas.
+\item $\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}T=\begin{pmatrix}0&1&0\end{pmatrix}$ et $\begin{pmatrix}0&1&0\end{pmatrix}T=\begin{pmatrix}\frac12&0&\frac12\end{pmatrix}$ ; une récurrence sur $k$ conclut. La demi-somme vaut $\begin{pmatrix}\frac14&\frac12&\frac14\end{pmatrix}=\pi$.
+\item Chaque étape modifie de $1$ le nombre de boules dans $U$, donc change sa parité. Au départ $X_0=2$ est pair.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Le modèle d'Ehrenfest est un « problème possible » du programme. Il montre qu'une distribution invariante peut exister sans que $\pi_n$ converge : la condition $0<a+b<2$ du cas à deux états a un analogue pour trois états, hors programme (chaîne apériodique). Prolongement : simuler la chaîne en Python avec $N$ boules et observer les fréquences des états sur une longue durée.
+\end{teachernote}

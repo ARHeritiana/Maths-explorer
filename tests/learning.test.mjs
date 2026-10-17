@@ -11,8 +11,8 @@ const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
 const fmt=(n,d=4)=>n.toFixed(d),t=p=>p[0];
 test('all chapter extracts match the provenance manifest and have valid page pointers',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../content/data/RESOURCE_PROVENANCE.json',import.meta.url)));
- assert.equal(resourceCatalog.chapters.length,47);assert.equal(manifest.length,142);
- assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,47);
+ assert.equal(resourceCatalog.chapters.length,58);assert.equal(manifest.length,164);
+ assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,58);
  for(const c of [...resourceCatalog.chapters,...resourceCatalog.supplements]){if(c.topic)assert.ok(guides[c.topic]);for(const f of c.files){
  const p=manifest.find(p=>p.path===f.path);assert.ok(p);assert.deepEqual(p.pages,[f.start,f.end]);assert.equal(f.pages,f.end-f.start+1);
  for(const page of Object.values(f.sections||{}))assert.ok(Number.isInteger(page)&&page>=1&&page<=f.pages);
@@ -25,7 +25,7 @@ test('all chapter sections render in both languages and resolve their experiment
  for(const c of resourceCatalog.chapters){const g=guides[c.topic];assert.ok(scenes[g.scene]);if(g.lab)assert.ok(labs.some(l=>l.id===g.lab));
  for(const lang of [0,1])for(const tab of ['understand','experiment','practice','documents']){const html=chapterPage(c.id,tab,p=>{assert.equal(p.length,2);assert.ok(p.every(x=>typeof x==='string'&&x));return p[lang]},labs);assert.ok(!/NaN|[="'>]undefined["<]|\.\/undefined/.test(html),c.id+' '+tab);assert.ok(html.includes(`chapter/${c.id}/documents`));if(tab==='documents')for(const f of c.files)assert.ok(html.includes('./'+assetHref(lang?f.englishPath:f.path)+'#page='));}
  }
- assert.equal(matchingChapters('all','arithmetique').length,1);assert.equal(matchingChapters('stmg','logarithme').length,1);assert.equal(matchingChapters('all','never_a_chapter').length,0);assert.equal(matchingSupplements('terminale','algorithms').length,1);assert.ok(libraryPage(t).includes('47'));
+ assert.equal(matchingChapters('all','arithmetique').length,1);assert.equal(matchingChapters('stmg','logarithme').length,1);assert.equal(matchingChapters('all','never_a_chapter').length,0);assert.equal(matchingSupplements('terminale','algorithms').length,1);assert.ok(libraryPage(t).includes('58'));
 });
 test('every visual model stays finite across its declared parameter domain and produces an accessible diagram',()=>{
  function finite(o){for(const x of Object.values(o))if(Array.isArray(x))x.forEach(v=>assert.ok(Number.isFinite(v)));else if(typeof x==='number')assert.ok(Number.isFinite(x));}

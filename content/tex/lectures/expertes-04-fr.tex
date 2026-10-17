@@ -1,0 +1,138 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Équations polynomiales}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Équations polynomiales}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Résoudre dans \(\C\) une équation du second degré à coefficients réels ; factoriser un polynôme par \(z-a\) lorsque \(a\) est racine ; résoudre une équation du troisième degré dont une racine est connue ; savoir qu'un polynôme de degré \(n\) a au plus \(n\) racines.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+On considère \(P(z)=z^3-2z^2+4z-8\).
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Tracer à la calculatrice la courbe de \(x\mapsto x^3-2x^2+4x-8\) sur \([-3;4]\). Combien l'équation \(P(x)=0\) semble-t-elle avoir de solutions réelles ? En repérer une.
+
+\item Vérifier que \(P(2)=0\).
+
+\item Déterminer des réels \(a\), \(b\), \(c\) tels que, pour tout \(z\), \(P(z)=(z-2)\left(az^2+bz+c\right)\). On développera le membre de droite et on identifiera les coefficients.
+
+\item En déduire toutes les solutions complexes de \(P(z)=0\).
+
+\item Calculer la somme et le produit des trois solutions. Comparer avec les coefficients de \(P\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{5}\item Combien de solutions complexes un polynôme de degré \(3\) peut-il avoir au maximum ? Formuler une conjecture pour le degré \(n\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Second degré à coefficients réels}
+Soit \(a\), \(b\), \(c\) trois réels avec \(a\neq0\), et \(\Delta=b^2-4ac\). L'équation \(az^2+bz+c=0\) a :
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item si \(\Delta>0\), deux solutions réelles \(\dfrac{-b-\sqrt\Delta}{2a}\) et \(\dfrac{-b+\sqrt\Delta}{2a}\) ;
+
+\item si \(\Delta=0\), une solution réelle \(-\dfrac b{2a}\) ;
+
+\item si \(\Delta<0\), deux solutions complexes conjuguées \(z_1=\dfrac{-b-i\sqrt{-\Delta}}{2a}\) et \(z_2=\dfrac{-b+i\sqrt{-\Delta}}{2a}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Second degré à coefficients réels (2)}
+Dans tous les cas, \(az^2+bz+c=a(z-z_1)(z-z_2)\), \(z_1+z_2=-\dfrac ba\) et \(z_1z_2=\dfrac ca\) (avec \(z_1=z_2\) si \(\Delta=0\)).
+\end{frame}
+\begin{frame}{Second degré à coefficients réels}
+La forme canonique \(az^2+bz+c=a\left[\left(z+\dfrac b{2a}\right)^2-\dfrac\Delta{4a^2}\right]\) reste valable dans \(\C\). Si \(\Delta<0\), on écrit \(\dfrac{\Delta}{4a^2}=\left(\dfrac{i\sqrt{-\Delta}}{2a}\right)^2\), puis on factorise la différence de deux carrés. Un produit de complexes est nul si et seulement si l'un des facteurs l'est (car tout complexe non nul est inversible). Somme et produit s'obtiennent en développant \(a(z-z_1)(z-z_2)\) et en identifiant.
+\end{frame}
+\begin{frame}{Second degré à coefficients réels}
+\(\Delta=4-20=-16=(4i)^2\), donc \(z=\dfrac{2\pm4i}2\) : les solutions sont \(1-2i\) et \(1+2i\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Une \emph{fonction polynôme} de degré \(n\) est une fonction \(P:z\mapsto a_nz^n+\dots+a_1z+a_0\) définie sur \(\C\), où \(a_0,\dots,a_n\) sont des complexes et \(a_n\neq0\). Un complexe \(\alpha\) tel que \(P(\alpha)=0\) est une \emph{racine} de \(P\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Si une fonction polynôme est nulle pour tout complexe \(z\), alors tous ses coefficients sont nuls. Par conséquent, deux fonctions polynômes égales ont les mêmes coefficients : on peut \emph{identifier} les coefficients.
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Pour tous complexes \(z\), \(a\) et tout entier \(n\ge1\) :
+\[z^n-a^n=(z-a)\left(z^{n-1}+az^{n-2}+\dots+a^{n-2}z+a^{n-1}\right)=(z-a)\sum_{k=0}^{n-1}a^kz^{n-1-k}.\]
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+On développe : \((z-a)\sum_{k=0}^{n-1}a^kz^{n-1-k}=\sum_{k=0}^{n-1}a^kz^{n-k}-\sum_{k=0}^{n-1}a^{k+1}z^{n-1-k}\). En posant \(j=k+1\) dans la seconde somme, elle devient \(\sum_{j=1}^{n}a^jz^{n-j}\). Les termes d'indice \(1\) à \(n-1\) se compensent ; il reste le terme \(k=0\) de la première somme, \(z^n\), et le terme \(j=n\) de la seconde, \(a^n\). On obtient \(z^n-a^n\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Soit \(P\) une fonction polynôme de degré \(n\ge1\) et \(\alpha\) une racine de \(P\). Il existe une fonction polynôme \(Q\) de degré \(n-1\) telle que, pour tout complexe \(z\), \(P(z)=(z-\alpha)Q(z)\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Écrivons \(P(z)=\sum_{k=0}^{n}a_kz^k\). Comme \(P(\alpha)=0\),
+\[P(z)=P(z)-P(\alpha)=\sum_{k=1}^{n}a_k\left(z^k-\alpha^k\right).\]
+Par le théorème précédent, chaque \(z^k-\alpha^k\) s'écrit \((z-\alpha)Q_k(z)\) avec \(Q_k\) polynôme de degré \(k-1\) de coefficient dominant \(1\). Donc \(P(z)=(z-\alpha)Q(z)\) avec \(Q=\sum_{k=1}^na_kQ_k\), de degré \(n-1\) et de coefficient dominant \(a_n\neq0\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Une fonction polynôme de degré \(n\ge1\) a au plus \(n\) racines.
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Par récurrence sur \(n\). Une fonction polynôme de degré \(1\), \(a_1z+a_0\) avec \(a_1\neq0\), a exactement une racine, \(-\dfrac{a_0}{a_1}\). Supposons la propriété vraie au degré \(n\), et soit \(P\) de degré \(n+1\). Si \(P\) n'a pas de racine, c'est terminé. Sinon, soit \(\alpha\) une racine : \(P(z)=(z-\alpha)Q(z)\) avec \(Q\) de degré \(n\). Si \(P(\beta)=0\), alors \(\beta=\alpha\) ou \(Q(\beta)=0\). Comme \(Q\) a au plus \(n\) racines, \(P\) en a au plus \(n+1\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Si \(P\) est à coefficients réels et si \(\alpha\) est une racine de \(P\), alors \(\overline\alpha\) est aussi une racine de \(P\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Les coefficients étant réels, \(P\left(\overline\alpha\right)=\sum a_k\overline\alpha^{\,k}=\overline{\sum a_k\alpha^k}=\overline{P(\alpha)}=0\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+On factorise par \(z-\alpha\) en identifiant les coefficients de \(Q(z)=az^2+bz+c\), puis on résout \(Q(z)=0\). Exemple : \(z^3+8=0\) admet \(-2\) pour racine et \(z^3+8=(z+2)\left(z^2-2z+4\right)\). Le trinôme a pour discriminant \(-12=\left(2i\sqrt3\right)^2\), d'où les solutions \(-2\), \(1-i\sqrt3\), \(1+i\sqrt3\).
+\end{frame}
+\begin{frame}{Factorisation par \(z-a\)}
+Le discriminant d'un trinôme à coefficients réels ne dit plus si l'équation a des solutions dans \(\C\) : elle en a toujours. Il indique si elles sont réelles ou complexes conjuguées.
+\end{frame}
+\end{document}

@@ -1,0 +1,141 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Complex numbers and trigonometry}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Complex numbers and trigonometry}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Establish the addition and double-angle formulas; write a complex number in exponential form and choose the form suited to a computation; compute powers; use de Moivre's and Euler's formulas to transform trigonometric expressions.
+\end{frame}
+\begin{frame}{Introductory activity}
+For every real number \(\theta\), let \(f(\theta)=\cos\theta+i\sin\theta\).
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Compute \(f(0)\), \(f\left(\dfrac\pi2\right)\), \(f(\pi)\). What is the modulus of \(f(\theta)\)? Where does the image of \(f(\theta)\) lie?
+
+\item Write \(f\left(\dfrac\pi3\right)\) and \(f\left(\dfrac\pi6\right)\) in algebraic form, then compute the product \(f\left(\dfrac\pi3\right)f\left(\dfrac\pi6\right)\). Compare it with \(f\left(\dfrac\pi2\right)\).
+
+\item Compute likewise \(f\left(\dfrac\pi4\right)^2\) and compare it with \(f\left(\dfrac\pi2\right)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item With a calculator or a spreadsheet, compare \(f(a)f(b)\) and \(f(a+b)\) for three pairs \((a,b)\) chosen at random.
+
+\item Which known function satisfies a relation of the same kind, \(g(a)g(b)=g(a+b)\) and \(g(0)=1\)?
+
+\item Expand \(f(a)f(b)\). Which trigonometric formulas would one need to know to prove the conjecture?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Addition and double-angle formulas}
+For all real numbers \(a\) and \(b\):
+\[\cos(a-b)=\cos a\cos b+\sin a\sin b,\qquad\cos(a+b)=\cos a\cos b-\sin a\sin b,\]
+\[\sin(a-b)=\sin a\cos b-\cos a\sin b,\qquad\sin(a+b)=\sin a\cos b+\cos a\sin b.\]
+\end{frame}
+\begin{frame}{Addition and double-angle formulas}
+In a direct orthonormal frame, let \(\vect p\vc{\cos a}{\sin a}\) and \(\vect q\vc{\cos b}{\sin b}\): these vectors are unit vectors and \(\left(\vect u,\vect p\right)\equiv a\), \(\left(\vect u,\vect q\right)\equiv b\pmod{2\pi}\). By Chasles' relation, \(\left(\vect q,\vect p\right)\equiv a-b\pmod{2\pi}\). We compute \(\vect q\cdot\vect p\) in two ways:
+\[\vect q\cdot\vect p=\norm{\vect q}\norm{\vect p}\cos(a-b)=\cos(a-b)\quad\text{and}\quad\vect q\cdot\vect p=\cos b\cos a+\sin b\sin a.\]
+This proves the first formula. Replacing \(b\) by \(-b\) and using \(\cos(-b)=\cos b\), \(\sin(-b)=-\sin b\), we obtain \(\cos(a+b)\). Finally \(\sin(a+b)=\cos\left(\dfrac\pi2-a-b\right)=\cos\left(\left(\dfrac\pi2-a\right)-b\right)\), which the first formula expands into \(\sin a\cos b+\cos a\sin b\); we deduce \(\sin(a-b)\) by replacing \(b\) by \(-b\).
+\end{frame}
+\begin{frame}{Addition and double-angle formulas}
+For every real number \(a\): \(\sin2a=2\sin a\cos a\) and \(\cos2a=\cos^2a-\sin^2a=2\cos^2a-1=1-2\sin^2a\).
+\end{frame}
+\begin{frame}{Addition and double-angle formulas}
+\(\cos\dfrac{\pi}{12}=\cos\left(\dfrac\pi3-\dfrac\pi4\right)=\dfrac12\times\dfrac{\sqrt2}2+\dfrac{\sqrt3}2\times\dfrac{\sqrt2}2=\dfrac{\sqrt6+\sqrt2}4\).
+\end{frame}
+\begin{frame}{Product and arguments}
+For all real numbers \(\theta\) and \(\theta'\): \((\cos\theta+i\sin\theta)(\cos\theta'+i\sin\theta')=\cos(\theta+\theta')+i\sin(\theta+\theta')\).
+
+Consequently, for all nonzero complex numbers \(z\), \(z'\) and every integer \(n\):
+\[\arg(zz')\equiv\arg z+\arg z',\qquad\arg\dfrac1z\equiv-\arg z,\]
+\[\arg\dfrac z{z'}\equiv\arg z-\arg z',\qquad\arg\left(z^n\right)\equiv n\arg z\pmod{2\pi}.\]
+\end{frame}
+\begin{frame}{Product and arguments}
+Expanding gives \((\cos\theta\cos\theta'-\sin\theta\sin\theta')+i(\sin\theta\cos\theta'+\cos\theta\sin\theta')\), which the addition formulas simplify. If \(z=r(\cos\theta+i\sin\theta)\) and \(z'=r'(\cos\theta'+i\sin\theta')\), then \(zz'=rr'(\cos(\theta+\theta')+i\sin(\theta+\theta'))\) with \(rr'>0\): this is a trigonometric form of \(zz'\). The other relations follow: \(z\times\dfrac1z=1\) has argument \(0\), then \(\dfrac z{z'}=z\times\dfrac1{z'}\), and an induction for \(n\ge0\), extended to \(n<0\) through the inverse.
+\end{frame}
+\begin{frame}{Product and arguments}
+Multiplying by \(\cos\theta+i\sin\theta\) turns through an angle \(\theta\) about \(O\). The conjecture of the activity of chapter 2 is proved: multiplying by \(i\) is a direct quarter turn, multiplying by \(1+i=\sqrt2\left(\cos\dfrac\pi4+i\sin\dfrac\pi4\right)\) is an eighth of a turn followed by an enlargement with ratio \(\sqrt2\).
+\end{frame}
+\begin{frame}{Exponential form}
+For every real number \(\theta\), we write \(\e^{i\theta}=\cos\theta+i\sin\theta\). Every nonzero complex number can be written \(z=r\e^{i\theta}\) with \(r=\abs z\) and \(\theta\equiv\arg z\pmod{2\pi}\): this is its \emph{exponential form}.
+\end{frame}
+\begin{frame}{Exponential form}
+For all real numbers \(\theta\), \(\theta'\) and every integer \(n\):
+\[\e^{i\theta}\e^{i\theta'}=\e^{i(\theta+\theta')},\qquad\dfrac1{\e^{i\theta}}=\e^{-i\theta}=\overline{\e^{i\theta}},\qquad\dfrac{\e^{i\theta}}{\e^{i\theta'}}=\e^{i(\theta-\theta')},\qquad\left(\e^{i\theta}\right)^n=\e^{in\theta}.\]
+Values to know: \(\e^{i0}=1\), \(\e^{i\pi/2}=i\), \(\e^{i\pi}=-1\), \(\e^{-i\pi/2}=-i\), \(\abs{\e^{i\theta}}=1\).
+\end{frame}
+\begin{frame}{Exponential form}
+For every real number \(\theta\) and every integer \(n\): \((\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta)\).
+\end{frame}
+\begin{frame}{Exponential form}
+For every real number \(\theta\): \(\cos\theta=\dfrac{\e^{i\theta}+\e^{-i\theta}}2\) and \(\sin\theta=\dfrac{\e^{i\theta}-\e^{-i\theta}}{2i}\).
+\end{frame}
+\begin{frame}{Exponential form}
+\(\e^{i\theta}+\e^{-i\theta}=\e^{i\theta}+\overline{\e^{i\theta}}=2\operatorname{Re}\left(\e^{i\theta}\right)=2\cos\theta\), and \(\e^{i\theta}-\e^{-i\theta}=2i\operatorname{Im}\left(\e^{i\theta}\right)=2i\sin\theta\).
+\end{frame}
+\begin{frame}{Exponential form}
+For a sum, the algebraic form; for a product, a quotient or a power, the exponential form. Example: \(1+i\sqrt3=2\e^{i\pi/3}\), so
+\[\left(1+i\sqrt3\right)^{10}=2^{10}\e^{10i\pi/3}=1{,}024\,\e^{-2i\pi/3}=-512-512\sqrt3\,i,\]
+since \(\dfrac{10\pi}3-4\pi=-\dfrac{2\pi}3\).
+\end{frame}
+\begin{frame}{Exponential form}
+Expand \((\cos\theta+i\sin\theta)^3\) with the binomial formula and identify the real part:
+\(\cos3\theta=\cos^3\theta-3\cos\theta\sin^2\theta=4\cos^3\theta-3\cos\theta\).
+\end{frame}
+\begin{frame}{Exponential form}
+\(\cos^3\theta=\dfrac{\left(\e^{i\theta}+\e^{-i\theta}\right)^3}{8}=\dfrac{\e^{3i\theta}+3\e^{i\theta}+3\e^{-i\theta}+\e^{-3i\theta}}8=\dfrac{\cos3\theta+3\cos\theta}4\).
+\end{frame}
+\begin{frame}{Exponential form}
+To factorise a sum of exponentials, take out the exponential of the mean angle: \(\e^{ia}+\e^{ib}=\e^{i\dfrac{a+b}2}\left(\e^{i\dfrac{a-b}2}+\e^{-i\dfrac{a-b}2}\right)=2\cos\dfrac{a-b}2\,\e^{i\dfrac{a+b}2}\).
+\end{frame}
+\begin{frame}{Exponential form}
+\(\e^{i\theta}\) is not a positive real number: its modulus is \(1\), but it can be negative (\(\e^{i\pi}=-1\)) or non-real. An expression \(r\e^{i\theta}\) is an exponential form only if \(r>0\).
+\end{frame}
+\end{document}

@@ -1,0 +1,229 @@
+\mxunit{expertes-c05}{Nombres complexes et géométrie}
+\mxsubtitle{Angles et rapports de longueurs, racines $n$-ièmes de l'unité}
+
+\begin{objectives}
+Interpréter le module et un argument de $\frac{c-a}{b-a}$ ; démontrer un alignement, une orthogonalité, la nature d'un triangle ; déterminer des ensembles de points ; déterminer les racines $n$-ièmes de l'unité et les utiliser pour les polygones réguliers.
+\end{objectives}
+\begin{prerequisites}
+Chapitres 2, 3 et 4 ; angles orientés de vecteurs ; triangles particuliers.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item Donner un argument de $-1+i$ et de $-3i$.
+\item Écrire $\e^{2i\pi/3}$ sous forme algébrique.
+\item Si $A$ et $B$ ont pour affixes $a$ et $b$, quelle est l'affixe de $\vect{AB}$ ?
+\item Calculer $\dfrac{1+i}{1-i}$.
+\item Combien de solutions l'équation $z^5=1$ a-t-elle au plus dans $\C$ ?
+\item Quel est l'effet géométrique de la multiplication par $\e^{i\pi/3}$ ?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $\frac{3\pi}4$ et $-\frac\pi2$.
+\item $-\frac12+\frac{\sqrt3}2i$.
+\item $b-a$.
+\item $\frac{(1+i)^2}{2}=i$.
+\item Au plus cinq (chapitre 4).
+\item Une rotation de centre $O$ et d'angle $\frac\pi3$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Les solutions de $z^n=1$ \mxchip{40 min}]
+\begin{enumerate}
+\item Factoriser $z^3-1$ par $z-1$, puis résoudre $z^3=1$ dans $\C$. On note $j$ la solution de partie imaginaire positive.
+\item Placer les trois solutions dans le plan complexe. Calculer les distances entre elles. Quelle figure obtient-on ?
+\item Écrire $j$ sous forme exponentielle. Vérifier que $j^2=\overline j$ et que $1+j+j^2=0$. Interpréter cette dernière égalité à l'aide du centre de gravité.
+\item Résoudre $z^4=1$ et placer les solutions. Même question pour $z^6=1$, en utilisant $z^6-1=\left(z^3-1\right)\left(z^3+1\right)$.
+\item Formuler une conjecture sur les solutions de $z^n=1$ : leur nombre, leur module, leurs arguments, la figure qu'elles forment.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item $z^3-1=(z-1)\left(z^2+z+1\right)$ ; le trinôme a pour discriminant $-3$. Solutions : $1$, $j=-\frac12+\frac{\sqrt3}2i$ et $\overline j=-\frac12-\frac{\sqrt3}2i$.
+\item Les trois distances valent $\sqrt3$ : triangle équilatéral inscrit dans le cercle unité.
+\item $j=\e^{2i\pi/3}$, $j^2=\e^{4i\pi/3}=\e^{-2i\pi/3}=\overline j$, et $1+j+j^2=1-\frac12-\frac12+i\left(\frac{\sqrt3}2-\frac{\sqrt3}2\right)=0$. L'affixe du centre de gravité, $\frac{1+j+j^2}3$, est nulle : c'est $O$.
+\item $z^4=1$ : $1$, $i$, $-1$, $-i$, sommets d'un carré. $z^6=1$ : les solutions de $z^3=1$ et celles de $z^3=-1$, c'est-à-dire $-1$, $\frac12\pm\frac{\sqrt3}2i$ ; on obtient un hexagone régulier.
+\item Conjecture : $n$ solutions, toutes de module $1$, d'arguments $\frac{2k\pi}n$ ; elles sont les sommets d'un polygone régulier à $n$ côtés inscrit dans le cercle unité, dont $1$ est un sommet.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{Angles et longueurs}
+\begin{theorem}[Interprétation de $\frac{c-a}{b-a}$]
+Soit $A$, $B$, $C$ trois points d'affixes $a$, $b$, $c$, avec $A\neq B$ et $A\neq C$. Alors
+\[\abs{\frac{c-a}{b-a}}=\frac{AC}{AB}\qquad\text{et}\qquad\arg\left(\frac{c-a}{b-a}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}.\]
+\end{theorem}
+\begin{proof}
+Le module d'un quotient est le quotient des modules : $\abs{c-a}=AC$ et $\abs{b-a}=AB$. Pour l'argument, $\arg(b-a)\equiv\left(\vect u,\vect{AB}\right)$ et $\arg(c-a)\equiv\left(\vect u,\vect{AC}\right)$, donc par la relation de Chasles $\arg\frac{c-a}{b-a}\equiv\left(\vect u,\vect{AC}\right)-\left(\vect u,\vect{AB}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}$.
+\end{proof}
+\begin{theorem}[Alignement, orthogonalité]
+Avec les mêmes notations, posons $q=\frac{c-a}{b-a}$.
+\begin{enumerate}
+\item $A$, $B$, $C$ sont alignés si et seulement si $q$ est réel.
+\item Les droites $(AB)$ et $(AC)$ sont perpendiculaires si et seulement si $q$ est imaginaire pur.
+\item Le triangle $ABC$ est rectangle isocèle en $A$ si et seulement si $q=i$ ou $q=-i$ ; il est équilatéral si et seulement si $q=\e^{i\pi/3}$ ou $q=\e^{-i\pi/3}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$q$ est réel si et seulement si son argument est $0$ ou $\pi$ modulo $2\pi$, c'est-à-dire si $\vect{AB}$ et $\vect{AC}$ sont colinéaires. $q$ est imaginaire pur (non nul) si et seulement si son argument est $\pm\frac\pi2$. Pour 3, un triangle rectangle isocèle en $A$ correspond à $AC=AB$ et $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi2$ ; un triangle équilatéral à $AC=AB$ et $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi3$.
+\end{proof}
+\begin{example}[Construire un carré]
+Soit $A$ et $B$ d'affixes $a$ et $b$. Le carré direct $ABCD$ a pour sommets $c=b+i(b-a)$ et $d=a+i(b-a)$ : on passe de $\vect{AB}$ à $\vect{BC}$ par un quart de tour direct. Avec $a=0$ et $b=1$ : $c=1+i$ et $d=i$.
+\end{example}
+
+\subsection{Racines $n$-ièmes de l'unité}
+\begin{definition}[Racine $n$-ième de l'unité]
+Soit $n\ge1$ un entier. On appelle \emph{racine $n$-ième de l'unité} tout complexe $z$ tel que $z^n=1$. Leur ensemble est noté $\mathbb U_n$.
+\end{definition}
+\begin{theorem}[Détermination de $\mathbb U_n$]
+Pour tout entier $n\ge1$, $\mathbb U_n$ a exactement $n$ éléments :
+\[\mathbb U_n=\left\{\e^{2ik\pi/n}\;:\;k\in\ent{0}{n-1}\right\}.\]
+\end{theorem}
+\begin{proof}
+Soit $z\in\mathbb U_n$. Alors $\abs z^n=\abs{z^n}=1$ avec $\abs z\ge0$, donc $\abs z=1$ et $z=\e^{i\theta}$ pour un réel $\theta$. L'égalité $\e^{in\theta}=1$ équivaut à $n\theta\equiv0\pmod{2\pi}$, c'est-à-dire $\theta=\frac{2k\pi}n$ avec $k$ entier. Réciproquement, $\left(\e^{2ik\pi/n}\right)^n=\e^{2ik\pi}=1$.\par
+Deux entiers $k$ et $k'$ donnent le même nombre si et seulement si $\frac{2(k-k')\pi}{n}$ est un multiple de $2\pi$, soit $k\equiv k'\pmod n$. Tout entier $k$ a même reste qu'un entier de $\ent{0}{n-1}$, et ces $n$ entiers ont des restes distincts : $\mathbb U_n$ a exactement $n$ éléments.
+\end{proof}
+\begin{keypoint}[Interprétation géométrique]
+Pour $n\ge3$, les images des éléments de $\mathbb U_n$ sont les sommets d'un polygone régulier à $n$ côtés inscrit dans le cercle unité, dont un sommet est le point d'affixe $1$. Avec $\omega=\e^{2i\pi/n}$, on a $\mathbb U_n=\ens{1;\omega;\omega^2;\dots;\omega^{n-1}}$. Cas à connaître : $\mathbb U_2=\ens{1;-1}$, $\mathbb U_3=\ens{1;j;j^2}$ avec $j=\e^{2i\pi/3}$, $\mathbb U_4=\ens{1;i;-1;-i}$.
+\end{keypoint}
+\begin{theorem}[Somme des racines $n$-ièmes]
+Pour tout entier $n\ge2$, la somme des racines $n$-ièmes de l'unité est nulle.
+\end{theorem}
+\begin{proof}
+Avec $\omega=\e^{2i\pi/n}\neq1$ (car $n\ge2$) : $1+\omega+\dots+\omega^{n-1}=\frac{1-\omega^n}{1-\omega}=0$.
+\end{proof}
+\begin{figurebox}[Les racines sixièmes de l'unité forment un hexagone régulier.]
+\begin{tikzpicture}[scale=1.5]
+\draw[mxaux,->] (-1.4,0) -- (1.5,0);
+\draw[mxaux,->] (0,-1.3) -- (0,1.4);
+\draw[mxaux] (0,0) circle (1);
+\draw[mxcurve] (0:1) -- (60:1) -- (120:1) -- (180:1) -- (240:1) -- (300:1) -- cycle;
+\foreach \k in {0,...,5} \fill (\k*60:1) circle (1.4pt);
+\node[below right] at (0:1) {$1$};
+\node[above right] at (60:1) {$\omega$};
+\node[above left] at (120:1) {$\omega^2$};
+\node[below left] at (180:1) {$-1$};
+\node[below left] at (240:1) {$\omega^4$};
+\node[below right] at (300:1) {$\omega^5$};
+\end{tikzpicture}
+\end{figurebox}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Alignement et orthogonalité]
+On considère les points $A$, $B$, $C$, $D$ d'affixes $a=1+i$, $b=3+2i$, $c=-1$ et $d=2-i$.
+\begin{enumerate}
+\item Calculer $\dfrac{c-a}{b-a}$. Que peut-on en déduire ?
+\item Calculer $\dfrac{d-a}{b-a}$. Que peut-on en déduire pour le triangle $ABD$ ?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\dfrac{-2-i}{2+i}=-1$, réel : $A$, $B$, $C$ sont alignés ($A$ est même le milieu de $[BC]$).
+\item $\dfrac{1-2i}{2+i}=\dfrac{(1-2i)(2-i)}5=\dfrac{-5i}5=-i$ : $AD=AB$ et $(AB)\perp(AD)$. Le triangle $ABD$ est rectangle isocèle en $A$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Nature de triangles]
+Déterminer la nature du triangle $ABC$ dans chaque cas :
+\begin{enumerate}
+\item $a=0$, $b=2$, $c=1+i\sqrt3$ ;
+\item $a=1$, $b=2+i$, $c=i$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\dfrac{c-a}{b-a}=\dfrac{1+i\sqrt3}2=\e^{i\pi/3}$ : triangle équilatéral.
+\item $\dfrac{c-a}{b-a}=\dfrac{-1+i}{1+i}=\dfrac{(-1+i)(1-i)}2=\dfrac{2i}{2}=i$ : triangle rectangle isocèle en $A$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Racines sixièmes]
+Déterminer les éléments de $\mathbb U_6$ sous forme exponentielle puis algébrique. Vérifier que leur somme est nulle.
+\end{exercise}
+\begin{solution}
+$\e^{ik\pi/3}$ pour $k\in\ent05$ : $1$, $\frac12+\frac{\sqrt3}2i$, $-\frac12+\frac{\sqrt3}2i$, $-1$, $-\frac12-\frac{\sqrt3}2i$, $\frac12-\frac{\sqrt3}2i$. Les parties réelles ont pour somme $1+\frac12-\frac12-1-\frac12+\frac12=0$, et les parties imaginaires se compensent deux à deux.
+\end{solution}
+
+\begin{exercise}[Racines cubiques d'un nombre complexe]
+Résoudre dans $\C$ l'équation $z^3=8i$. On écrira $z=r\e^{i\theta}$ et on donnera les solutions sous forme algébrique.
+\end{exercise}
+\begin{solution}
+$8i=8\e^{i\pi/2}$. L'équation équivaut à $r^3=8$ et $3\theta\equiv\frac\pi2\pmod{2\pi}$, soit $r=2$ et $\theta=\frac\pi6+\frac{2k\pi}3$. Les solutions sont $2\e^{i\pi/6}=\sqrt3+i$, $2\e^{5i\pi/6}=-\sqrt3+i$ et $2\e^{3i\pi/2}=-2i$. Vérification : $(-2i)^3=-8i^3=8i$.
+\end{solution}
+
+\begin{exercise}[Compléter un carré]
+On donne $A(1+2i)$ et $B(4+3i)$. Déterminer les affixes des points $C$ et $D$ tels que $ABCD$ soit un carré direct. Vérifier que les diagonales ont le même milieu.
+\end{exercise}
+\begin{solution}
+$b-a=3+i$ et $i(b-a)=-1+3i$. Donc $c=b+i(b-a)=3+6i$ et $d=a+i(b-a)=5i$. Le milieu de $[AC]$ a pour affixe $\frac{4+8i}2=2+4i$, comme celui de $[BD]$.
+\end{solution}
+
+\begin{exercise}[Ensembles de points]
+Soit $A$ et $B$ les points d'affixes $2i$ et $-1$. À tout point $M$ d'affixe $z\neq-1$, on associe $Z=\dfrac{z-2i}{z+1}$.
+\begin{enumerate}
+\item Interpréter géométriquement le module et un argument de $Z$ lorsque $z\neq2i$.
+\item Déterminer l'ensemble des points $M$ tels que $Z$ soit réel.
+\item Déterminer l'ensemble des points $M$ tels que $Z$ soit imaginaire pur et non nul.
+\item Déterminer l'ensemble des points $M$ tels que $\abs Z=1$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\abs Z=\frac{MA}{MB}$ et $\arg Z\equiv\left(\vect{MB},\vect{MA}\right)\pmod{2\pi}$.
+\item $Z=0$ pour $M=A$. Sinon, $Z$ réel non nul équivaut à $\vect{MB}$ et $\vect{MA}$ colinéaires, c'est-à-dire $M\in(AB)$. L'ensemble est la droite $(AB)$ privée de $B$.
+\item $Z$ imaginaire pur non nul équivaut à $M\neq A$, $M\neq B$ et $(MA)\perp(MB)$ : c'est le cercle de diamètre $[AB]$ privé de $A$ et $B$. Son centre a pour affixe $\frac{-1+2i}2$ et son rayon vaut $\frac{\sqrt5}2$.
+\item $MA=MB$ : la médiatrice de $[AB]$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Une somme de cosinus]
+\begin{enumerate}
+\item Soit $n\ge2$. Déduire du cours que $\displaystyle\sum_{k=0}^{n-1}\cos\frac{2k\pi}n=0$.
+\item Écrire cette égalité pour $n=5$ et démontrer que $1+2\cos\frac{2\pi}5+2\cos\frac{4\pi}5=0$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item La somme des éléments de $\mathbb U_n$ est nulle ; sa partie réelle aussi.
+\item $\cos\frac{6\pi}5=\cos\left(2\pi-\frac{4\pi}5\right)=\cos\frac{4\pi}5$ et $\cos\frac{8\pi}5=\cos\frac{2\pi}5$. La somme $\cos0+\cos\frac{2\pi}5+\cos\frac{4\pi}5+\cos\frac{6\pi}5+\cos\frac{8\pi}5$ vaut donc $1+2\cos\frac{2\pi}5+2\cos\frac{4\pi}5=0$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[Construire un pentagone régulier à la règle et au compas]
+On note $\omega=\e^{2i\pi/5}$ et $u=\omega+\frac1\omega$.
+\begin{enumerate}
+\item Démontrer que $u=2\cos\frac{2\pi}5$.
+\item Démontrer que $1+\omega+\omega^2+\omega^3+\omega^4=0$, puis, en divisant par $\omega^2$, que $u^2+u-1=0$.
+\item En déduire que $\cos\frac{2\pi}5=\dfrac{\sqrt5-1}4$.
+\item Dans un repère orthonormé, on trace le cercle unité, on place $I\pt{-\frac12;0}$ et $J\pt{0;1}$.
+\begin{enumerate}
+\item Calculer $IJ$.
+\item Le cercle de centre $I$ passant par $J$ coupe le demi-axe des abscisses positives en $K$. Démontrer que l'abscisse de $K$ est $2\cos\frac{2\pi}5$.
+\item En déduire une construction à la règle et au compas des sommets d'un pentagone régulier inscrit dans le cercle unité.
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item $\abs\omega=1$, donc $\frac1\omega=\overline\omega$ et $u=\omega+\overline\omega=2\operatorname{Re}(\omega)=2\cos\frac{2\pi}5$.
+\item C'est la somme des racines cinquièmes de l'unité. En divisant par $\omega^2\neq0$ : $\omega^{-2}+\omega^{-1}+1+\omega+\omega^2=0$. Or $u^2=\omega^2+2+\omega^{-2}$, donc $u^2+u-1=\left(\omega^2+\omega^{-2}\right)+\left(\omega+\omega^{-1}\right)+1=0$.
+\item Les racines de $X^2+X-1$ sont $\frac{-1\pm\sqrt5}2$. Comme $0<\frac{2\pi}5<\frac\pi2$, $u>0$ : $u=\frac{\sqrt5-1}2$ et $\cos\frac{2\pi}5=\frac{\sqrt5-1}4$.
+\item
+\begin{enumerate}
+\item $IJ=\sqrt{\frac14+1}=\frac{\sqrt5}2$.
+\item $K$ a pour abscisse $-\frac12+\frac{\sqrt5}2=\frac{\sqrt5-1}2=u$.
+\item On construit $K$, puis le milieu $H$ de $[OK]$, d'abscisse $\cos\frac{2\pi}5$. La perpendiculaire à l'axe en $H$ coupe le cercle unité en $\omega$ et $\overline\omega=\omega^4$. En reportant au compas la longueur $\abs{\omega-1}$ à partir de ces points, on obtient $\omega^2$ et $\omega^3$.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Lignes trigonométriques de $\frac{2\pi}5$ et construction du pentagone sont un « problème possible » du programme. Faire réaliser la construction avec un logiciel de géométrie dynamique, puis vérifier que les cinq côtés ont la même longueur ($\abs{\omega-1}=2\sin\frac\pi5$).
+\end{teachernote}

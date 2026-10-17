@@ -1,0 +1,170 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Nombres premiers et petit théorème de Fermat}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\providecommand{\llbracket}{\mathopen{[\mkern-3mu[}}
+\providecommand{\rrbracket}{\mathclose{]\mkern-3mu]}}
+\title{Nombres premiers et petit théorème de Fermat}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Reconnaître un nombre premier ; démontrer qu'il existe une infinité de nombres premiers ; décomposer un entier en produit de facteurs premiers et l'utiliser (diviseurs, PGCD) ; utiliser le petit théorème de Fermat pour calculer des restes.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+Pour un entier \(n\ge2\) et un entier \(a\), on note \(r_n(a)\) le reste de \(a^{n-1}\) dans la division par \(n\).
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item Calculer \(r_5(2)\), \(r_5(3)\), \(r_7(2)\), \(r_7(3)\) à la main, en utilisant des congruences.
+
+\item À l'aide de la fonction \texttt{pow(a, n - 1, n)} de Python, qui renvoie ce reste, compléter le tableau suivant.
+  
+\begin{center}\begin{tabular}{llllllll}
+\(n\) & \(5\) & \(6\) & \(7\) & \(8\) & \(9\) & \(10\) & \(11\) \\ 
+\(r_n(2)\) &  &  &  &  &  &  &  \\ 
+\(r_n(3)\) &  &  &  &  &  &  &  \\ 
+\end{tabular}\end{center}
+
+\item Pour quelles valeurs de \(n\) obtient-on \(1\) sur les deux lignes ? Quelle particularité ont-elles ?
+
+\item Formuler une conjecture. La tester pour \(n=13\) et \(a=5\).
+
+\item Pour \(n=7\), calculer \(r_7(7)\) et \(r_7(14)\). Comment préciser la conjecture ?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Nombres premiers}
+Un entier naturel \(p\) est \emph{premier} s'il a exactement deux diviseurs positifs, \(1\) et \(p\). Ainsi \(1\) n'est pas premier.
+\end{frame}
+\begin{frame}{Nombres premiers}
+Tout entier \(n\ge2\) admet un diviseur premier : son plus petit diviseur supérieur ou égal à \(2\). Si \(n\) n'est pas premier, ce diviseur \(p\) vérifie \(p^2\le n\).
+\end{frame}
+\begin{frame}{Nombres premiers}
+Soit \(p\) le plus petit diviseur de \(n\) supérieur ou égal à \(2\) (il existe, car \(n\) en est un). Si \(p\) n'était pas premier, il aurait un diviseur \(d\) avec \(2\le d<p\), qui diviserait aussi \(n\) : contradiction. Si \(n\) n'est pas premier, \(n=pq\) avec \(q\ge2\) diviseur de \(n\), donc \(q\ge p\) et \(n=pq\ge p^2\).
+\end{frame}
+\begin{frame}{Nombres premiers}
+Pour savoir si \(n\ge2\) est premier, il suffit de vérifier qu'aucun nombre premier \(p\) tel que \(p^2\le n\) ne divise \(n\). Exemple : \(211\) n'est divisible ni par \(2\), \(3\), \(5\), \(7\), \(11\), ni par \(13\), et \(17^2=289>211\) : \(211\) est premier.
+\end{frame}
+\begin{frame}{Nombres premiers}
+Il existe une infinité de nombres premiers.
+\end{frame}
+\begin{frame}{Nombres premiers}
+Supposons qu'il n'y en ait qu'un nombre fini : \(p_1,\dots,p_k\). Posons \(N=p_1p_2\cdots p_k+1\ge2\). Par le théorème précédent, \(N\) a un diviseur premier, qui est l'un des \(p_i\). Ce \(p_i\) divise \(N\) et le produit \(p_1\cdots p_k\), donc il divise leur différence \(1\) : c'est impossible. L'hypothèse est fausse.
+\end{frame}
+\begin{frame}{Nombres premiers}
+On raye les multiples de chaque nombre premier à partir de son carré ; les nombres non rayés sont premiers.
+lstlisting
+def crible(n):
+    premier = [True] * (n + 1)
+    premier[0] = premier[1] = False
+    p = 2
+    while p * p <= n:
+        if premier[p]:
+            for m in range(p * p, n + 1, p):
+                premier[m] = False
+        p = p + 1
+    return [k for k in range(n + 1) if premier[k]]
+lstlisting
+Il y a \(25\) nombres premiers inférieurs à \(100\).
+\end{frame}
+\begin{frame}{Nombres premiers}
+Soit \(p\) un nombre premier. Si \(p\mid ab\), alors \(p\mid a\) ou \(p\mid b\). Plus généralement, si \(p\) divise un produit, il divise l'un des facteurs.
+\end{frame}
+\begin{frame}{Nombres premiers}
+Si \(p\nmid a\), alors \(\operatorname{PGCD}(p,a)=1\), car les seuls diviseurs positifs de \(p\) sont \(1\) et \(p\). Le théorème de Gauss donne \(p\mid b\). Le cas d'un produit de plusieurs facteurs s'obtient par récurrence sur leur nombre.
+\end{frame}
+\begin{frame}{Décomposition en facteurs premiers}
+Tout entier \(n\ge2\) s'écrit comme produit de nombres premiers, \(n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}\), avec \(p_1<p_2<\dots<p_k\) premiers et \(\alpha_i\ge1\). Cette écriture est unique.
+\end{frame}
+\begin{frame}{Décomposition en facteurs premiers}
+\emph{Existence}, par récurrence forte. L'entier \(2\) est premier. Supposons que tout entier de \(\llbracket 2;n\rrbracket\) se décompose. Si \(n+1\) est premier, c'est fini ; sinon \(n+1=ab\) avec \(2\le a,b\le n\), et l'on juxtapose les décompositions de \(a\) et \(b\).
+
+\emph{Unicité.} Si \(p_1\cdots p_r=q_1\cdots q_s\) (facteurs premiers répétés), \(p_1\) divise le produit des \(q_j\), donc l'un d'eux, qui est premier : \(p_1=q_j\). On simplifie et on recommence ; les deux listes de facteurs coïncident.
+\end{frame}
+\begin{frame}{Décomposition en facteurs premiers}
+On divise par le plus petit diviseur \(p\ge2\) tant que c'est possible ; il est premier. Quand \(p^2>n\), le quotient restant, s'il dépasse \(1\), est premier.
+lstlisting
+def decomposition(n):
+    facteurs = []
+    p = 2
+    while p * p <= n:
+        while n \% p == 0:
+            facteurs.append(p)
+            n = n // p
+        p = p + 1
+    if n > 1:
+        facteurs.append(n)
+    return facteurs
+lstlisting
+Par exemple, \texttt{decomposition(360)} renvoie \texttt{[2, 2, 2, 3, 3, 5]}.
+\end{frame}
+\begin{frame}{Décomposition en facteurs premiers}
+Si \(n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}\), les diviseurs positifs de \(n\) sont les entiers \(p_1^{\beta_1}\cdots p_k^{\beta_k}\) avec \(0\le\beta_i\le\alpha_i\). Il y en a \((\alpha_1+1)(\alpha_2+1)\cdots(\alpha_k+1)\).
+\end{frame}
+\begin{frame}{Décomposition en facteurs premiers}
+Le PGCD de deux entiers est le produit des facteurs premiers communs, chacun affecté du plus petit des deux exposants. Exemple : \(360=2^3\times3^2\times5\) et \(84=2^2\times3\times7\) donnent \(\operatorname{PGCD}(360,84)=2^2\times3=12\).
+\end{frame}
+\begin{frame}{Petit théorème de Fermat}
+Soit \(p\) un nombre premier et \(a\) un entier. Alors \(a^p\equiv a\pmod p\). Si de plus \(p\) ne divise pas \(a\), alors \(a^{p-1}\equiv1\pmod p\).
+\end{frame}
+\begin{frame}{Petit théorème de Fermat}
+\emph{Étape 1.} Pour \(1\le k\le p-1\), \(p\) divise \(\binom pk\). En effet \(k\binom pk=p\binom{p-1}{k-1}\), donc \(p\mid k\binom pk\) ; comme \(1\le k<p\), \(p\) ne divise pas \(k\) et \(\operatorname{PGCD}(p,k)=1\) ; Gauss donne \(p\mid\binom pk\).
+
+\emph{Étape 2.} Par la formule du binôme, pour tout entier \(a\), \((a+1)^p=a^p+\sum_{k=1}^{p-1}\binom pk a^k+1\equiv a^p+1\pmod p\).
+\end{frame}
+\begin{frame}{Petit théorème de Fermat (2)}
+\emph{Étape 3.} Récurrence sur \(a\ge0\) : \(0^p\equiv0\), et si \(a^p\equiv a\), alors \((a+1)^p\equiv a^p+1\equiv a+1\pmod p\). Pour \(a<0\), on choisit un entier \(b\ge0\) tel que \(b\equiv a\pmod p\) ; alors \(a^p\equiv b^p\equiv b\equiv a\).
+
+\emph{Étape 4.} Si \(p\nmid a\), alors \(p\mid a^p-a=a\left(a^{p-1}-1\right)\) et \(\operatorname{PGCD}(p,a)=1\) ; Gauss donne \(p\mid a^{p-1}-1\).
+\end{frame}
+\begin{frame}{Petit théorème de Fermat}
+Reste de \(3^{2026}\) dans la division par \(11\) : \(11\) est premier et ne divise pas \(3\), donc \(3^{10}\equiv1\pmod{11}\). Comme \(2\,026=10\times202+6\), \(3^{2026}\equiv3^6=729\equiv3\pmod{11}\) (car \(729=66\times11+3\)).
+\end{frame}
+\begin{frame}{Petit théorème de Fermat}
+La réciproque est fausse : \(2^{340}\equiv1\pmod{341}\), alors que \(341=11\times31\).
+\end{frame}
+\end{document}

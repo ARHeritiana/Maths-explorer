@@ -5,7 +5,7 @@ import { mount } from '../slides/widgets.js';
 const P=(fr,en)=>[fr,en], E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const steps=[['prepare',P('Se préparer','Prepare')],['experiment',P('Chercher','Investigate')],['understand',P('Construire le cours','Build the lesson')],['practice',P('S’entraîner','Practise')],['review',P('Faire le bilan','Review')],['documents',P('Supports','Resources')]];
 const kinds={chapter:P('Livret élève','Student booklet'),teacher:P('Corrigés et guide professeur','Solutions and teacher guide'),fluency:P('Automatismes','Fluency'),'fluency-solutions':P('Corrigés des automatismes','Fluency solutions')};
-const courseNames={seconde:'Seconde',premiere:'Première spécialité',terminale:'Terminale spécialité',stmg:'Terminale STMG'};
+const courseNames={seconde:'Seconde',premiere:'Première spécialité',terminale:'Terminale spécialité',expertes:'Mathématiques expertes',stmg:'Terminale STMG'};
 export function chapterSequencePage(c,tab,t,chapters){
  tab=steps.some(([k])=>k===tab)?tab:'prepare';
  const prev=chapters.find(x=>x.course===c.course&&x.number===c.number-1),next=chapters.find(x=>x.course===c.course&&x.number===c.number+1);
@@ -15,7 +15,7 @@ let mathPromise;
 async function math(root){
  if(!mathPromise){mathPromise=(async()=>{
   if(!window.MathJax?.startup?.promise){
-   window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableAssistiveMml:false},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{pgcd:'\\operatorname{PGCD}',ppcm:'\\operatorname{PPCM}',N:'\\mathbb{N}',Z:'\\mathbb{Z}',Q:'\\mathbb{Q}',R:'\\mathbb{R}',C:'\\mathbb{C}',vect:['\\overrightarrow{#1}',1],norm:['\\left\\lVert #1\\right\\rVert',1],abs:['\\left\\lvert #1\\right\\rvert',1],dd:'\\,\\mathrm{d}',e:'\\mathrm{e}',E:'\\operatorname{E}',V:'\\operatorname{V}',Card:'\\operatorname{Card}',vi:'\\vec{\\imath}',vj:'\\vec{\\jmath}',vk:'\\vec{k}',vc:['\\begin{pmatrix}#1\\\\#2\\end{pmatrix}',2],deter:['\\det\\left(#1,#2\\right)',2],degre:'^{\\circ}',un:['\\,\\mathrm{#1}',1],sci:['#1\\times10^{#2}',2]}}};
+   window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableAssistiveMml:false},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{pgcd:'\\operatorname{PGCD}',ppcm:'\\operatorname{PPCM}',N:'\\mathbb{N}',Z:'\\mathbb{Z}',Q:'\\mathbb{Q}',R:'\\mathbb{R}',C:'\\mathbb{C}',vect:['\\overrightarrow{#1}',1],norm:['\\left\\lVert #1\\right\\rVert',1],abs:['\\left\\lvert #1\\right\\rvert',1],dd:'\\,\\mathrm{d}',e:'\\mathrm{e}',E:'\\operatorname{E}',V:'\\operatorname{V}',Card:'\\operatorname{Card}',vi:'\\vec{\\imath}',vj:'\\vec{\\jmath}',vk:'\\vec{k}',vc:['\\begin{pmatrix}#1\\\\#2\\end{pmatrix}',2],deter:['\\det\\left(#1,#2\\right)',2],degre:'^{\\circ}',un:['\\,\\mathrm{#1}',1],sci:['#1\\times10^{#2}',2],llbracket:'\\mathopen{[\\mkern-3mu[}',rrbracket:'\\mathclose{]\\mkern-3mu]}'}}};
    await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='./vendor/mathjax-tex-svg.js';s.onload=resolve;s.onerror=reject;document.head.append(s);});
   }
   await window.MathJax.startup.promise;

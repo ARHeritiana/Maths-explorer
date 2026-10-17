@@ -1,0 +1,153 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Nombres complexes : point de vue géométrique}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Nombres complexes : point de vue géométrique}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Représenter un nombre complexe par un point ou un vecteur ; déterminer un module et un argument ; passer de la forme algébrique à la forme trigonométrique et inversement ; interpréter un module comme une distance.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+Le plan est muni d'un repère orthonormé \((O;\vect u,\vect v)\). À un nombre complexe \(x+iy\) on associe le point de coordonnées \((x;y)\).
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Placer les points \(A\), \(B\), \(C\) associés à \(a=2+i\), \(b=i\,a\) et \(c=(1+i)\,a\). Donner \(b\) et \(c\) sous forme algébrique.
+
+\item Calculer les distances \(OA\), \(OB\) et \(OC\).
+
+\item Calculer le produit scalaire \(\vect{OA}\cdot\vect{OB}\). Que peut-on dire des droites \((OA)\) et \((OB)\) ?
+
+\item Calculer \(\cos\left(\vect{OA},\vect{OC}\right)\) à l'aide du produit scalaire, puis le signe du déterminant \(\deter{\vect{OA}}{\vect{OC}}\). En déduire une mesure de l'angle orienté \(\left(\vect{OA},\vect{OC}\right)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Recommencer avec \(a=-1+3i\) (ou un point de votre choix). Formuler une conjecture sur l'effet géométrique d'une multiplication par \(i\), puis par \(1+i\).
+
+\item Quelles grandeurs associées à un nombre complexe faudrait-il définir pour énoncer cette conjecture en général ?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Plan complexe}
+Le plan est muni d'un repère orthonormé direct \((O;\vect u,\vect v)\). Au nombre complexe \(z=a+ib\) (\(a\), \(b\) réels) on associe le point \(M(a;b)\), appelé \emph{image} de \(z\), et le vecteur \(\vect w\vc ab\). On dit que \(z\) est l'\emph{affixe} de \(M\) et de \(\vect w\). Le plan muni de cette correspondance est appelé \emph{plan complexe}.
+\end{frame}
+\begin{frame}{Plan complexe}
+Si \(A\) et \(B\) ont pour affixes \(z_A\) et \(z_B\), le vecteur \(\vect{AB}\) a pour affixe \(z_B-z_A\) et le milieu de \([AB]\) a pour affixe \(\dfrac{z_A+z_B}2\). L'affixe de \(\vect w+\vect{w'}\) est la somme des affixes, celle de \(k\vect w\) (\(k\) réel) est \(k\) fois l'affixe de \(\vect w\).
+
+L'image de \(\overline z\) est la symétrique de l'image de \(z\) par rapport à l'axe des abscisses ; l'image de \(-z\) est sa symétrique par rapport à \(O\).
+\end{frame}
+\begin{frame}{Module}
+Le \emph{module} de \(z=a+ib\) est le réel positif \(\abs z=\sqrt{a^2+b^2}\). Si \(M\) est l'image de \(z\), \(\abs z=OM\). Pour un réel, le module coïncide avec la valeur absolue.
+\end{frame}
+\begin{frame}{Module}
+Pour tout complexe \(z\), \(\abs z^2=z\overline z\), et \(\abs{\overline z}=\abs{-z}=\abs z\). Si \(A\) et \(B\) ont pour affixes \(z_A\) et \(z_B\), alors \(AB=\abs{z_B-z_A}\).
+\end{frame}
+\begin{frame}{Module}
+Avec \(z=a+ib\), \(z\overline z=a^2+b^2=\abs z^2\) (chapitre 1). La distance \(AB\) est la norme du vecteur \(\vect{AB}\), d'affixe \(z_B-z_A\).
+\end{frame}
+\begin{frame}{Module}
+Pour tous complexes \(z\), \(z'\) et tout entier naturel \(n\) :
+\[\abs{zz'}=\abs z\abs{z'},\qquad\abs{z^n}=\abs z^n,\qquad\text{et, si }z'\neq0,\quad\abs{\dfrac1{z'}}=\dfrac1{\abs{z'}},\quad\abs{\dfrac z{z'}}=\dfrac{\abs z}{\abs{z'}}.\]
+\end{frame}
+\begin{frame}{Module}
+\emph{Produit.} \(\abs{zz'}^2=zz'\,\overline{zz'}=z\overline z\,z'\overline{z'}=\abs z^2\abs{z'}^2\). Les modules sont positifs, donc \(\abs{zz'}=\abs z\abs{z'}\).
+
+\emph{Puissance.} Par récurrence : \(\abs{z^0}=1=\abs z^0\), et si \(\abs{z^n}=\abs z^n\), alors \(\abs{z^{n+1}}=\abs{z^n}\abs z=\abs z^{n+1}\).
+
+\emph{Inverse et quotient.} \(\abs{z'}\times\abs{\dfrac1{z'}}=\abs{z'\times\dfrac1{z'}}=1\), puis \(\abs{\dfrac z{z'}}=\abs z\abs{\dfrac1{z'}}\).
+\end{frame}
+\begin{frame}{Module}
+Pour tous complexes \(z\) et \(z'\), \(\abs{z+z'}\le\abs z+\abs{z'}\). Le problème du chapitre en donne une démonstration et le cas d'égalité.
+\end{frame}
+\begin{frame}{Module}
+On note \(\mathbb U\) l'ensemble des nombres complexes de module \(1\). Leurs images forment le cercle de centre \(O\) et de rayon \(1\).
+\end{frame}
+\begin{frame}{Module}
+Si \(z\) et \(z'\) appartiennent à \(\mathbb U\), alors \(zz'\in\mathbb U\) et \(\dfrac1z\in\mathbb U\) ; de plus \(\dfrac1z=\overline z\).
+\end{frame}
+\begin{frame}{Module}
+\(\abs{zz'}=1\times1=1\) et \(\abs{\dfrac1z}=\dfrac11=1\). Enfin \(z\overline z=\abs z^2=1\), donc \(\overline z=\dfrac1z\).
+\end{frame}
+\begin{frame}{Module}
+Soit \(A\) et \(B\) d'affixes \(a\) et \(b\), et \(M\) d'affixe \(z\). L'égalité \(\abs{z-a}=r\) (\(r>0\)) signifie \(AM=r\) : \(M\) décrit le cercle de centre \(A\) et de rayon \(r\). L'égalité \(\abs{z-a}=\abs{z-b}\) (\(a\neq b\)) signifie \(AM=BM\) : \(M\) décrit la médiatrice de \([AB]\).
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+Soit \(z\) un complexe non nul d'image \(M\). On appelle \emph{argument} de \(z\) toute mesure, en radians, de l'angle orienté \(\left(\vect u,\vect{OM}\right)\). On note \(\arg z\) l'une d'elles ; les autres en diffèrent d'un multiple de \(2\pi\), ce que l'on écrit \(\arg z\equiv\theta\pmod{2\pi}\). Le nombre \(0\) n'a pas d'argument.
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+Tout complexe non nul \(z=a+ib\) s'écrit \(z=r(\cos\theta+i\sin\theta)\) avec \(r=\abs z>0\) et \(\theta\equiv\arg z\pmod{2\pi}\) ; on a alors
+\[\cos\theta=\dfrac ar,\qquad\sin\theta=\dfrac br.\]
+Réciproquement, si \(z=r(\cos\theta+i\sin\theta)\) avec \(r>0\), alors \(\abs z=r\) et \(\theta\) est un argument de \(z\). Deux formes trigonométriques \(r(\cos\theta+i\sin\theta)\) et \(r'(\cos\theta'+i\sin\theta')\) sont égales si et seulement si \(r=r'\) et \(\theta\equiv\theta'\pmod{2\pi}\).
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+Pour \(z\neq0\) : \(\arg\overline z\equiv-\arg z\) et \(\arg(-z)\equiv\arg z+\pi\pmod{2\pi}\). Un réel strictement positif a pour argument \(0\), un réel strictement négatif \(\pi\) ; \(i\) a pour argument \(\dfrac\pi2\).
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+Calculer \(r=\abs z\), puis \(\dfrac ar\) et \(\dfrac br\), et reconnaître le cosinus et le sinus d'un angle remarquable.
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+\(1+i\sqrt3\) : \(r=2\), \(\cos\theta=\dfrac12\), \(\sin\theta=\dfrac{\sqrt3}2\), donc \(1+i\sqrt3=2\left(\cos\dfrac\pi3+i\sin\dfrac\pi3\right)\).
+
+\(-1+i=\sqrt2\left(\cos\dfrac{3\pi}4+i\sin\dfrac{3\pi}4\right)\) ; \(-3=3(\cos\pi+i\sin\pi)\) ; \(-2i=2\left(\cos\left(-\dfrac\pi2\right)+i\sin\left(-\dfrac\pi2\right)\right)\).
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(-2\left(\cos\dfrac\pi5+i\sin\dfrac\pi5\right)\) n'est pas une forme trigonométrique, car \(-2<0\). On écrit \(-2\left(\cos\dfrac\pi5+i\sin\dfrac\pi5\right)=2\left(\cos\dfrac{6\pi}5+i\sin\dfrac{6\pi}5\right)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/expertes-02-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Argument et forme trigonométrique}
+\(\abs z=OM\), \(\abs{z_B-z_A}=AB\), \(\abs z^2=z\overline z\) ; le module d'un produit est le produit des modules ; \(z=r(\cos\theta+i\sin\theta)\) avec \(r>0\) ; un argument n'est défini qu'à \(2\pi\) près.
+\end{frame}
+\end{document}

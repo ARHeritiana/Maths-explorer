@@ -1,0 +1,233 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c10}{Graphs}
+\mxsubtitle{Vocabulary, degrees, adjacency matrix, counting walks}
+
+\begin{objectives}
+Model a situation with a graph; use the vocabulary of graphs (order, degree, walk, cycle, connectedness, complete graph, directed graph); write the adjacency matrix of a graph; count the walks of given length with the powers of this matrix.
+\end{objectives}
+\begin{prerequisites}
+Chapter 9 (product and powers of matrices); proof by induction; counting.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Compute $\binom 42$ and $\binom{8}{2}$.
+\item Compute $1+2+\dots+7$.
+\item Compute $\begin{pmatrix}0&1\\1&1\end{pmatrix}^2$.
+\item In a group of $5$ people, each shakes hands with all the others. How many handshakes are there?
+\item A sum of numbers is odd. What can be said about the number of odd terms?
+\item Write the entry in row $i$ and column $j$ of $M^2$ in terms of the entries of $M$, for $M$ of order $n$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $6$ and $28$.
+\item $28$.
+\item $\begin{pmatrix}1&1\\1&2\end{pmatrix}$.
+\item $\binom52=10$.
+\item It is odd.
+\item $\sum_{k=1}^{n}m_{ik}m_{kj}$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[A network of bush taxis \mxchip{40 min}]
+Five towns $A$, $B$, $C$, $D$, $E$ are linked by direct bush-taxi routes, in both directions: $A$-$B$, $A$-$C$, $A$-$D$, $B$-$C$, $C$-$D$ and $D$-$E$.
+\begin{enumerate}
+\item Represent the network by a diagram: one point per town, one line per route.
+\item For each town, count the number of routes leaving it. Compute the sum of these numbers and compare it with the number of routes. Explain.
+\item List the journeys from $A$ to $C$ that use exactly two routes (a town may be visited again). How many are there?
+\item Same question for the journeys from $A$ to $E$ using exactly three routes.
+\item We store the information in a table $M$ with $5$ rows and $5$ columns: the entry in row $X$ and column $Y$ is $1$ if there is a direct route between $X$ and $Y$, $0$ otherwise. Write $M$, then compute $M^2$ and $M^3$ with a calculator. Compare some entries with questions 3 and 4.
+\item State a conjecture.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item See the figure in the course.
+\item $A$: $3$, $B$: $2$, $C$: $3$, $D$: $3$, $E$: $1$. The sum is $12$, twice the $6$ routes: each route is counted once at each of its ends.
+\item $A$-$B$-$C$ and $A$-$D$-$C$: two journeys.
+\item The last route must be $D$-$E$; we must go from $A$ to $D$ using two routes: only $A$-$C$-$D$. A single journey: $A$-$C$-$D$-$E$.
+\item In the order $A$, $B$, $C$, $D$, $E$:
+\[M=\begin{pmatrix}0&1&1&1&0\\1&0&1&0&0\\1&1&0&1&0\\1&0&1&0&1\\0&0&0&1&0\end{pmatrix},\qquad M^2=\begin{pmatrix}3&1&2&1&1\\1&2&1&2&0\\2&1&3&1&1\\1&2&1&3&0\\1&0&1&0&1\end{pmatrix}.\]
+The entry $(A,C)$ of $M^2$ is $2$ and the entry $(A,E)$ of $M^3$ is $1$.
+\item The entry $(X,Y)$ of $M^n$ seems to equal the number of journeys from $X$ to $Y$ using exactly $n$ routes. We also notice that the diagonal of $M^2$ contains the numbers of question 2.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+The routes are fictitious. Have the journeys listed before any matrix computation: the conjecture only makes sense if the students have counted by hand. The proof of the conjecture is a required proof of the syllabus.
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Vocabulary}
+\begin{definition}[Graph]
+A (undirected) \emph{graph} consists of a finite set of \emph{vertices} and a set of \emph{edges}, each edge joining two distinct vertices; two joined vertices are \emph{adjacent}. We consider graphs without multiple edges. The \emph{order} of the graph is its number of vertices. The \emph{degree} of a vertex is the number of edges of which it is an end. A graph is \emph{complete} if any two distinct vertices are adjacent.
+\end{definition}
+\begin{definition}[Walk, cycle, connectedness]
+A \emph{walk} is a sequence of vertices in which any two consecutive vertices are adjacent; its \emph{length} is its number of edges (a vertex or an edge may be used again). A walk is \emph{closed} if its ends are equal. A \emph{cycle} is a closed walk of length at least $3$ whose edges are distinct. A graph is \emph{connected} if any two vertices are joined by a walk.
+\end{definition}
+\begin{figurebox}[The network of the activity: a graph of order $5$ with $6$ edges.]
+\begin{tikzpicture}[scale=1.3]
+\coordinate (A) at (0,0); \coordinate (B) at (1.2,1.1); \coordinate (C) at (2.4,0);
+\coordinate (D) at (1.2,-1.1); \coordinate (E) at (3.2,-1.6);
+\draw[mxcurve] (A) -- (B) -- (C) -- (D) -- (A) -- (C); \draw[mxcurve] (D) -- (E);
+\foreach \p in {A,B,C,D,E} \fill (\p) circle (2pt);
+\node[left] at (A) {$A$}; \node[above] at (B) {$B$}; \node[right] at (C) {$C$};
+\node[below left] at (D) {$D$}; \node[right] at (E) {$E$};
+\end{tikzpicture}
+\end{figurebox}
+\begin{theorem}[Sum of the degrees]
+In a graph, the sum of the degrees of the vertices is twice the number of edges. Consequently, the number of vertices of odd degree is even.
+\end{theorem}
+\begin{proof}
+Each edge has two ends: it is counted twice in the sum of the degrees. The sum of the degrees is even; now a sum of integers is even if and only if it contains an even number of odd terms.
+\end{proof}
+\begin{theorem}[Complete graph]
+The complete graph of order $n$ has $\binom n2=\frac{n(n-1)}2$ edges.
+\end{theorem}
+\begin{definition}[Directed graph, weighted graph]
+In a \emph{directed} graph, the links, called \emph{arcs}, have a direction: the arc $(X,Y)$ goes from $X$ to $Y$. A \emph{path} is a sequence of vertices in which each is joined to the next by an arc. A graph is \emph{weighted} when each edge or arc carries a number, called its weight.
+\end{definition}
+
+\subsection{Adjacency matrix}
+\begin{definition}[Adjacency matrix]
+The vertices of a graph of order $n$ being numbered from $1$ to $n$, its \emph{adjacency matrix} is the square matrix $M$ of order $n$ whose entry $m_{ij}$ is $1$ if the vertices $i$ and $j$ are joined (by an edge, or by an arc from $i$ to $j$ for a directed graph), and $0$ otherwise. For an undirected graph, $M$ is symmetric: $m_{ij}=m_{ji}$.
+\end{definition}
+\begin{theorem}[Number of walks of length $n$]
+Let $M$ be the adjacency matrix of a graph and $n\ge1$ an integer. The entry in row $i$ and column $j$ of $M^n$ equals the number of walks (of paths, for a directed graph) of length $n$ from vertex $i$ to vertex $j$.
+\end{theorem}
+\begin{proof}
+Let $m^{(n)}_{ij}$ be the entries of $M^n$ and $c^{(n)}_{ij}$ the number of walks of length $n$ from $i$ to $j$. For $n=1$, a walk of length $1$ from $i$ to $j$ is an edge: $c^{(1)}_{ij}=m_{ij}$.\par
+Assume $m^{(n)}_{ij}=c^{(n)}_{ij}$ for all $i$, $j$. A walk of length $n+1$ from $i$ to $j$ consists of a walk of length $n$ from $i$ to a vertex $k$, followed by an edge from $k$ to $j$. Sorting these walks by the second-to-last vertex $k$, we obtain
+\[c^{(n+1)}_{ij}=\sum_{k=1}^{p}c^{(n)}_{ik}\,m_{kj}=\sum_{k=1}^{p}m^{(n)}_{ik}\,m_{kj}=m^{(n+1)}_{ij},\]
+where $p$ is the order of the graph, since $M^{n+1}=M^nM$. The property holds for $n+1$.
+\end{proof}
+\begin{keypoint}[Consequences]
+The diagonal entry $\left(M^2\right)_{ii}$ is the degree of vertex $i$ (undirected graph). A graph of order $p\ge2$ is connected if and only if all the off-diagonal entries of $M+M^2+\dots+M^{p-1}$ are positive: a walk between two distinct vertices can always be shortened into a walk with no repeated vertex, of length at most $p-1$.
+\end{keypoint}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Vocabulary]
+A graph $G$ has vertices $1$, $2$, $3$, $4$, $5$, $6$ and edges $1$-$2$, $1$-$3$, $2$-$3$, $3$-$4$, $4$-$5$, $4$-$6$, $5$-$6$.
+\begin{enumerate}
+\item Give the order of $G$ and the degree of each vertex, and check the property of the sum of the degrees.
+\item Is $G$ complete? connected?
+\item Give a walk of length $3$ from $1$ to $6$ and a cycle through $5$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Order $6$. Degrees: $2$, $2$, $3$, $3$, $2$, $2$, with sum $14=2\times7$.
+\item Not complete ($1$ and $4$ are not adjacent). Connected: every vertex is joined to $3$ or to $4$, and $3$-$4$ is an edge.
+\item $1$-$3$-$4$-$6$; the cycle $4$-$5$-$6$-$4$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Handshakes]
+\begin{enumerate}
+\item Can one build a graph of order $7$ all of whose vertices have degree $3$?
+\item Can six people each shake hands with exactly three others? If so, how many handshakes are there?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item No: the sum of the degrees would be $21$, an odd number.
+\item Yes, for example by placing the people at the vertices of a hexagon and joining each to its two neighbours and to the opposite person. The sum of the degrees is $18$: there are $9$ handshakes.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A directed graph]
+A directed graph has vertices $A$, $B$, $C$ and arcs $A\to B$, $A\to C$, $B\to C$ and $C\to A$.
+\begin{enumerate}
+\item Write its adjacency matrix $M$ (order $A$, $B$, $C$). Is it symmetric?
+\item Compute $M^2$ and $M^3$.
+\item How many paths of length $3$ are there from $A$ to $A$? Write them out.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item The matrix is not symmetric: \[M=\begin{pmatrix}0&1&1\\0&0&1\\1&0&0\end{pmatrix}.\]
+\item We obtain \[M^2=\begin{pmatrix}1&0&1\\1&0&0\\0&1&1\end{pmatrix}\qquad\text{and}\qquad M^3=\begin{pmatrix}1&1&1\\0&1&1\\1&0&1\end{pmatrix}.\]
+\item The entry $(A,A)$ of $M^3$ is $1$: the path $A\to B\to C\to A$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A tournament]
+Eight teams play a tournament: each meets each of the others once. Model with a graph and determine the number of matches.
+\end{exercise}
+\begin{solution}
+Complete graph of order $8$ (vertices: teams; edges: matches). There are $\binom82=28$ matches.
+\end{solution}
+
+\begin{exercise}[Degrees and the square of the matrix]
+\mxlabel{degres}
+A graph has adjacency matrix \[M=\begin{pmatrix}0&1&1&0\\1&0&1&1\\1&1&0&1\\0&1&1&0\end{pmatrix}.\]
+\begin{enumerate}
+\item Draw it.
+\item Compute $M^2$ and compare its diagonal with the degrees of the vertices.
+\item Prove that for every undirected graph, $\left(M^2\right)_{ii}$ is the degree of vertex $i$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Edges: $1$-$2$, $1$-$3$, $2$-$3$, $2$-$4$, $3$-$4$.
+\item The diagonal of $M^2$, namely $2$, $3$, $3$, $2$, gives the degrees: \[M^2=\begin{pmatrix}2&1&1&2\\1&3&2&1\\1&2&3&1\\2&1&1&2\end{pmatrix}.\]
+\item $\left(M^2\right)_{ii}=\sum_km_{ik}m_{ki}=\sum_km_{ik}^2=\sum_km_{ik}$, since $m_{ki}=m_{ik}$ and $m_{ik}\in\ens{0;1}$. This is the number of neighbours of $i$. Another reading: a closed walk of length $2$ starting from $i$ is a there-and-back trip along an edge leaving $i$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Testing connectedness]
+A graph has vertices $1$ to $5$ and edges $1$-$2$, $2$-$3$, $3$-$1$, $4$-$5$. Let $M$ be its adjacency matrix.
+\begin{enumerate}
+\item Compute, with a calculator, $S=M+M^2+M^3+M^4$.
+\item Is the graph connected? Justify using $S$, then directly.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item We obtain \[S=\begin{pmatrix}10&10&10&0&0\\10&10&10&0&0\\10&10&10&0&0\\0&0&0&2&2\\0&0&0&2&2\end{pmatrix}.\]
+\item No: the entry $(1,4)$ is zero, so no walk of length at most $4$ joins $1$ to $4$, and by the course no walk at all. Directly: the vertices $1$, $2$, $3$ are only joined to one another.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Counting triangles]
+A triangle of a graph is a set of three pairwise adjacent vertices.
+\begin{enumerate}
+\item Prove that the number of triangles is $\frac16$ of the sum of the diagonal entries of $M^3$.
+\item Apply this to the complete graph of order $4$ and to the graph of exercise \ref{expertes-c10:degres}.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\left(M^3\right)_{ii}$ counts the closed walks of length $3$ starting from $i$. Such a walk $i$-$j$-$k$-$i$ has three distinct vertices (there is no edge from a vertex to itself), which form a triangle. Each triangle gives $6$ closed walks of length $3$: $3$ choices of the starting vertex and $2$ directions.
+\item For the complete graph of order $4$, the diagonal of $M^3$ is $6$, $6$, $6$, $6$: $\frac{24}6=4$ triangles, that is $\binom43$. For the graph of exercise \ref{expertes-c10:degres}: $2$ triangles, $\ens{1;2;3}$ and $\ens{2;3;4}$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[Drawing without lifting the pencil]
+An \emph{Eulerian trail} is a walk that uses every edge of the graph exactly once.
+\begin{enumerate}
+\item Assume that a graph has an Eulerian trail whose ends are distinct. Prove that its two ends have odd degree and that all the other vertices have even degree. What can be said if the trail is closed?
+\item We take the converse for granted (Euler's theorem): a connected graph all of whose vertices have even degree, except zero or two, has an Eulerian trail; if there are two vertices of odd degree, it starts at one and ends at the other.\par
+Consider the ``house'': a square $abdc$ ($a$ and $b$ at the bottom, $c$ and $d$ at the top) with its two diagonals, topped by a roof $c$-$e$-$d$. List the edges and the degrees.
+\item Can the house be drawn without lifting the pencil or going over a line twice? If so, where must one start? Give such a trail.
+\item Can it be done returning to the starting point?
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item Each passage through an intermediate vertex uses one edge to arrive and another to leave: it contributes $2$ to the degree. Since every edge is used once, a vertex that is not an end has even degree. An end has in addition one unpaired edge of departure (or arrival): its degree is odd. If the trail is closed, all the degrees are even.
+\item Edges: $a$-$b$, $a$-$c$, $b$-$d$, $c$-$d$, $a$-$d$, $b$-$c$, $c$-$e$, $d$-$e$ (eight edges). Degrees: $a$: $3$, $b$: $3$, $c$: $4$, $d$: $4$, $e$: $2$.
+\item The graph is connected with exactly two vertices of odd degree, $a$ and $b$: yes, starting from $a$ (or from $b$). For example $a$-$b$-$c$-$a$-$d$-$c$-$e$-$d$-$b$, which uses each of the eight edges once.
+\item No: all the degrees would have to be even.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+Eulerian graphs are a ``possible problem'' of the syllabus. Euler's theorem is taken for granted in its sufficient part. Extension: the problem of the bridges of Königsberg; the site's workshop on drawing without lifting the pencil covers the same theme.
+\end{teachernote}

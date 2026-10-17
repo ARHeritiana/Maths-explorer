@@ -1,0 +1,153 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Complex numbers: the geometric point of view}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Complex numbers: the geometric point of view}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Represent a complex number by a point or a vector; determine a modulus and an argument; move from the algebraic form to the trigonometric form and back; interpret a modulus as a distance.
+\end{frame}
+\begin{frame}{Introductory activity}
+The plane has an orthonormal frame \((O,\vect u,\vect v)\). To a complex number \(x+iy\) we associate the point with coordinates \((x,y)\).
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Plot the points \(A\), \(B\), \(C\) associated with \(a=2+i\), \(b=i\,a\) and \(c=(1+i)\,a\). Give \(b\) and \(c\) in algebraic form.
+
+\item Compute the distances \(OA\), \(OB\) and \(OC\).
+
+\item Compute the scalar product \(\vect{OA}\cdot\vect{OB}\). What can be said about the lines \((OA)\) and \((OB)\)?
+
+\item Compute \(\cos\left(\vect{OA},\vect{OC}\right)\) with the scalar product, then the sign of the determinant \(\deter{\vect{OA}}{\vect{OC}}\). Deduce a measure of the oriented angle \(\left(\vect{OA},\vect{OC}\right)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Start again with \(a=-1+3i\) (or a point of your choice). State a conjecture about the geometric effect of a multiplication by \(i\), then by \(1+i\).
+
+\item Which quantities attached to a complex number would have to be defined to state this conjecture in general?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Complex plane}
+The plane has a direct orthonormal frame \((O,\vect u,\vect v)\). To the complex number \(z=a+ib\) (\(a\), \(b\) real) we associate the point \(M(a,b)\), called the \emph{image} of \(z\), and the vector \(\vect w\vc ab\). We say that \(z\) is the \emph{affix} of \(M\) and of \(\vect w\). The plane with this correspondence is called the \emph{complex plane}.
+\end{frame}
+\begin{frame}{Complex plane}
+If \(A\) and \(B\) have affixes \(z_A\) and \(z_B\), the vector \(\vect{AB}\) has affix \(z_B-z_A\) and the midpoint of \([AB]\) has affix \(\dfrac{z_A+z_B}2\). The affix of \(\vect w+\vect{w'}\) is the sum of the affixes, that of \(k\vect w\) (\(k\) real) is \(k\) times the affix of \(\vect w\).
+
+The image of \(\overline z\) is the reflection of the image of \(z\) in the horizontal axis; the image of \(-z\) is its reflection in \(O\).
+\end{frame}
+\begin{frame}{Modulus}
+The \emph{modulus} of \(z=a+ib\) is the nonnegative real number \(\abs z=\sqrt{a^2+b^2}\). If \(M\) is the image of \(z\), \(\abs z=OM\). For a real number, the modulus is the absolute value.
+\end{frame}
+\begin{frame}{Modulus}
+For every complex number \(z\), \(\abs z^2=z\overline z\), and \(\abs{\overline z}=\abs{-z}=\abs z\). If \(A\) and \(B\) have affixes \(z_A\) and \(z_B\), then \(AB=\abs{z_B-z_A}\).
+\end{frame}
+\begin{frame}{Modulus}
+With \(z=a+ib\), \(z\overline z=a^2+b^2=\abs z^2\) (chapter 1). The distance \(AB\) is the norm of the vector \(\vect{AB}\), whose affix is \(z_B-z_A\).
+\end{frame}
+\begin{frame}{Modulus}
+For all complex numbers \(z\), \(z'\) and every natural number \(n\):
+\[\abs{zz'}=\abs z\abs{z'},\qquad\abs{z^n}=\abs z^n,\qquad\text{and, if }z'\neq0,\quad\abs{\dfrac1{z'}}=\dfrac1{\abs{z'}},\quad\abs{\dfrac z{z'}}=\dfrac{\abs z}{\abs{z'}}.\]
+\end{frame}
+\begin{frame}{Modulus}
+\emph{Product.} \(\abs{zz'}^2=zz'\,\overline{zz'}=z\overline z\,z'\overline{z'}=\abs z^2\abs{z'}^2\). Moduli are nonnegative, so \(\abs{zz'}=\abs z\abs{z'}\).
+
+\emph{Power.} By induction: \(\abs{z^0}=1=\abs z^0\), and if \(\abs{z^n}=\abs z^n\), then \(\abs{z^{n+1}}=\abs{z^n}\abs z=\abs z^{n+1}\).
+
+\emph{Inverse and quotient.} \(\abs{z'}\times\abs{\dfrac1{z'}}=\abs{z'\times\dfrac1{z'}}=1\), then \(\abs{\dfrac z{z'}}=\abs z\abs{\dfrac1{z'}}\).
+\end{frame}
+\begin{frame}{Modulus}
+For all complex numbers \(z\) and \(z'\), \(\abs{z+z'}\le\abs z+\abs{z'}\). The problem of the chapter gives a proof and the case of equality.
+\end{frame}
+\begin{frame}{Modulus}
+We write \(\mathbb U\) for the set of complex numbers of modulus \(1\). Their images form the circle with centre \(O\) and radius \(1\).
+\end{frame}
+\begin{frame}{Modulus}
+If \(z\) and \(z'\) belong to \(\mathbb U\), then \(zz'\in\mathbb U\) and \(\dfrac1z\in\mathbb U\); moreover \(\dfrac1z=\overline z\).
+\end{frame}
+\begin{frame}{Modulus}
+\(\abs{zz'}=1\times1=1\) and \(\abs{\dfrac1z}=\dfrac11=1\). Finally \(z\overline z=\abs z^2=1\), so \(\overline z=\dfrac1z\).
+\end{frame}
+\begin{frame}{Modulus}
+Let \(A\) and \(B\) have affixes \(a\) and \(b\), and \(M\) have affix \(z\). The equality \(\abs{z-a}=r\) (\(r>0\)) means \(AM=r\): \(M\) describes the circle with centre \(A\) and radius \(r\). The equality \(\abs{z-a}=\abs{z-b}\) (\(a\neq b\)) means \(AM=BM\): \(M\) describes the perpendicular bisector of \([AB]\).
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+Let \(z\) be a nonzero complex number with image \(M\). An \emph{argument} of \(z\) is any measure, in radians, of the oriented angle \(\left(\vect u,\vect{OM}\right)\). We write \(\arg z\) for one of them; the others differ from it by a multiple of \(2\pi\), which we write \(\arg z\equiv\theta\pmod{2\pi}\). The number \(0\) has no argument.
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+Every nonzero complex number \(z=a+ib\) can be written \(z=r(\cos\theta+i\sin\theta)\) with \(r=\abs z>0\) and \(\theta\equiv\arg z\pmod{2\pi}\); then
+\[\cos\theta=\dfrac ar,\qquad\sin\theta=\dfrac br.\]
+Conversely, if \(z=r(\cos\theta+i\sin\theta)\) with \(r>0\), then \(\abs z=r\) and \(\theta\) is an argument of \(z\). Two trigonometric forms \(r(\cos\theta+i\sin\theta)\) and \(r'(\cos\theta'+i\sin\theta')\) are equal if and only if \(r=r'\) and \(\theta\equiv\theta'\pmod{2\pi}\).
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+For \(z\neq0\): \(\arg\overline z\equiv-\arg z\) and \(\arg(-z)\equiv\arg z+\pi\pmod{2\pi}\). A positive real number has argument \(0\), a negative real number \(\pi\); \(i\) has argument \(\dfrac\pi2\).
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+Compute \(r=\abs z\), then \(\dfrac ar\) and \(\dfrac br\), and recognise the cosine and sine of a standard angle.
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+\(1+i\sqrt3\): \(r=2\), \(\cos\theta=\dfrac12\), \(\sin\theta=\dfrac{\sqrt3}2\), so \(1+i\sqrt3=2\left(\cos\dfrac\pi3+i\sin\dfrac\pi3\right)\).
+
+\(-1+i=\sqrt2\left(\cos\dfrac{3\pi}4+i\sin\dfrac{3\pi}4\right)\) ; \(-3=3(\cos\pi+i\sin\pi)\) ; \(-2i=2\left(\cos\left(-\dfrac\pi2\right)+i\sin\left(-\dfrac\pi2\right)\right)\).
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+\(-2\left(\cos\dfrac\pi5+i\sin\dfrac\pi5\right)\) is not a trigonometric form, because \(-2<0\). We write \(-2\left(\cos\dfrac\pi5+i\sin\dfrac\pi5\right)=2\left(\cos\dfrac{6\pi}5+i\sin\dfrac{6\pi}5\right)\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/expertes-02-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Argument and trigonometric form}
+\(\abs z=OM\), \(\abs{z_B-z_A}=AB\), \(\abs z^2=z\overline z\); the modulus of a product is the product of the moduli; \(z=r(\cos\theta+i\sin\theta)\) with \(r>0\); an argument is only defined up to a multiple of \(2\pi\).
+\end{frame}
+\end{document}

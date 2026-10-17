@@ -1,0 +1,253 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c06}{Divisibility and congruences}
+\mxsubtitle{Divisibility in $\Z$, Euclidean division, congruences}
+
+\begin{objectives}
+Use divisibility in $\Z$ and its properties; carry out a Euclidean division; compute with congruences; establish a divisibility test; study remainders of powers.
+\end{objectives}
+\begin{prerequisites}
+Multiples, divisors, prime numbers (Seconde); proof by induction; integer part of a real number.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item List the positive divisors of $36$.
+\item Is the number $n(n+1)$ always even? Justify.
+\item What is the units digit of $7^4$?
+\item Simplify the fraction $\frac{84}{126}$.
+\item Is the number $\num{2026}$ divisible by $3$? by $2$?
+\item Compute $17\times23$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $1$, $2$, $3$, $4$, $6$, $9$, $12$, $18$, $36$.
+\item Yes: one of two consecutive integers is even.
+\item $7^2=49$, $7^4=\num{2401}$: the units digit is $1$.
+\item $\frac{84}{126}=\frac{2\times42}{3\times42}=\frac23$.
+\item The sum of the digits is $10$, not a multiple of $3$: no. It is even: yes.
+\item $391$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[What day will it be? \mxchip{35 min}]
+17 October 2026 is a Saturday. The days of the week are numbered from $0$ (Saturday) to $6$ (Friday): Sunday has number $1$, Monday number $2$, and so on.
+\begin{enumerate}
+\item What day of the week will it be $7$ days later? $14$ days? $700$ days?
+\item What day will it be $100$ days later? Explain how to get the answer without counting the days one by one.
+\item Same question for $\num{1000}$ days.
+\item The year 2027 is not a leap year. What day of the week will 17 October 2027 be?
+\item 1 January 2027 comes $76$ days after 17 October 2026. What day will it be?
+\item Two durations $a$ and $b$, in days, lead to the same day of the week. What can be said about $a-b$? State a general condition.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item Saturday in all three cases, because $7$, $14$ and $700$ are multiples of $7$.
+\item $100=7\times14+2$: we move forward $2$ days, it is a Monday. Only the remainder of the division by $7$ matters.
+\item $\num{1000}=7\times142+6$: Friday.
+\item $365=7\times52+1$: Sunday.
+\item $76=7\times10+6$: Friday.
+\item $a$ and $b$ have the same remainder in the division by $7$, that is $a-b$ is a multiple of $7$. We shall say that $a$ and $b$ are congruent modulo $7$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+Have the answer to question 4 checked with a calendar or a spreadsheet, pointing out that checking an example does not replace the reasoning. Extension: explain why 17 October 2030 is a Thursday ($\num{1461}$ days, including one 29 February, and $\num{1461}=7\times208+5$).
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Divisibility in $\Z$}
+\begin{definition}[Divisor, multiple]
+Let $a$ and $b$ be two integers. We say that $a$ \emph{divides} $b$, written $a\mid b$, if there is an integer $k$ such that $b=ka$. We also say that $a$ is a \emph{divisor} of $b$, or that $b$ is a \emph{multiple} of $a$.
+\end{definition}
+\begin{theorem}[Properties of divisibility]
+Let $a$, $b$, $c$ be integers.
+\begin{enumerate}
+\item If $a\mid b$ and $b\mid c$, then $a\mid c$.
+\item If $a\mid b$ and $a\mid c$, then $a\mid bu+cv$ for all integers $u$ and $v$.
+\item If $a\mid b$ and $b\neq0$, then $\abs a\le\abs b$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1. $b=ka$ and $c=k'b$ give $c=(k'k)a$. 2. $b=ka$ and $c=k'a$ give $bu+cv=(ku+k'v)a$. 3. $b=ka$ with $k\neq0$, so $\abs k\ge1$ and $\abs b=\abs k\abs a\ge\abs a$.
+\end{proof}
+\begin{theorem}[Euclidean division]
+Let $a\in\Z$ and $b\in\N$, $b\ge1$. There is a unique pair of integers $\pt{q;r}$ such that $a=bq+r$ and $0\le r<b$. We call $q$ the \emph{quotient} and $r$ the \emph{remainder}.
+\end{theorem}
+\begin{proof}
+\emph{Existence.} Let $q=\left\lfloor\frac ab\right\rfloor$, the largest integer less than or equal to $\frac ab$. Then $q\le\frac ab<q+1$, so $bq\le a<bq+b$, and $r=a-bq$ satisfies $0\le r<b$.\par
+\emph{Uniqueness.} If $a=bq+r=bq'+r'$ with $0\le r,r'<b$, then $b(q-q')=r'-r$ and $-b<r'-r<b$. The only multiple of $b$ strictly between $-b$ and $b$ is $0$, so $r=r'$ and then $q=q'$.
+\end{proof}
+\begin{pitfall}
+The remainder is always nonnegative: $-47=5\times(-10)+3$, so the division of $-47$ by $5$ has quotient $-10$ and remainder $3$, not $-9$ and $-2$.
+\end{pitfall}
+
+\subsection{Congruences}
+\begin{definition}[Congruence modulo $n$]
+Let $n\ge2$ be an integer. Two integers $a$ and $b$ are \emph{congruent modulo $n$}, written $a\equiv b\pmod n$, if $n\mid a-b$.
+\end{definition}
+\begin{theorem}[Congruence and remainder]
+$a\equiv b\pmod n$ if and only if $a$ and $b$ have the same remainder in the Euclidean division by $n$. In particular, every integer is congruent modulo $n$ to its remainder, which belongs to $\ent{0}{n-1}$.
+\end{theorem}
+\begin{proof}
+Write $a=nq+r$ and $b=nq'+r'$ with $0\le r,r'<n$. Then $a-b=n(q-q')+(r-r')$ and $-n<r-r'<n$. So $n\mid a-b$ if and only if $n\mid r-r'$, if and only if $r=r'$.
+\end{proof}
+\begin{theorem}[Compatibility with the operations]
+If $a\equiv b\pmod n$ and $c\equiv d\pmod n$, then
+\[a+c\equiv b+d,\qquad a-c\equiv b-d,\qquad ac\equiv bd,\qquad a^k\equiv b^k\pmod n\]
+for every natural number $k$. The relation is also transitive: if $a\equiv b$ and $b\equiv c\pmod n$, then $a\equiv c\pmod n$.
+\end{theorem}
+\begin{proof}
+Sum: $(a+c)-(b+d)=(a-b)+(c-d)$ is a sum of two multiples of $n$. Product: $ac-bd=a(c-d)+d(a-b)$, a multiple of $n$. Power: induction on $k$ from the product. Transitivity: $a-c=(a-b)+(b-c)$.
+\end{proof}
+\begin{pitfall}
+A congruence is not simplified like an equality: $2\times3\equiv2\times1\pmod4$, but $3\not\equiv1\pmod4$. Division is possible only in specific cases (chapter 7).
+\end{pitfall}
+\begin{method}[Remainder of a large power]
+Look for a power congruent to $1$ (or to $-1$), then use the Euclidean division of the exponent. Example: $2^3=8\equiv1\pmod7$ and $\num{2026}=3\times675+1$, so $2^{2026}=\left(2^3\right)^{675}\times2\equiv1^{675}\times2=2\pmod7$.
+\end{method}
+\begin{method}[Table of congruences]
+To study an expression modulo $n$, draw up a table giving its value modulo $n$ for each possible remainder of $x$. Example: modulo $4$, $x\equiv0,1,2,3$ gives $x^2\equiv0,1,0,1$. A square is therefore congruent to $0$ or $1$ modulo $4$.
+\end{method}
+\begin{method}[Divisibility test for $9$]
+If $N=\sum_{k=0}^{p}a_k10^k$ is written with the digits $a_0,\dots,a_p$, since $10\equiv1\pmod9$, we have $10^k\equiv1$ and $N\equiv a_0+a_1+\dots+a_p\pmod9$. An integer is divisible by $9$ if and only if the sum of its digits is.
+\end{method}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Euclidean divisions]
+\begin{enumerate}
+\item Carry out the Euclidean division of $\num{2026}$ by $17$.
+\item Carry out the Euclidean division of $-47$ by $5$, then of $-35$ by $4$.
+\item Determine the natural numbers $n$ whose quotient in the division by $6$ equals the remainder.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\num{2026}=17\times119+3$: quotient $119$, remainder $3$.
+\item $-47=5\times(-10)+3$ and $-35=4\times(-9)+1$.
+\item $n=6q+q=7q$ with $0\le q<6$: $n\in\ens{0;7;14;21;28;35}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Remainders of powers]
+\begin{enumerate}
+\item Determine the remainder of $3^{100}$ in the division by $5$.
+\item Determine the remainder of $5^{2026}+2^{2026}$ in the division by $3$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $3^4=81\equiv1\pmod5$, so $3^{100}=\left(3^4\right)^{25}\equiv1\pmod5$: the remainder is $1$.
+\item $5\equiv2\equiv-1\pmod3$, so $5^{2026}+2^{2026}\equiv2\times(-1)^{2026}=2\pmod3$: the remainder is $2$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Sums of two squares]
+\begin{enumerate}
+\item Prove that for every integer $x$, $x^2\equiv0$ or $x^2\equiv1\pmod4$.
+\item Deduce that an integer congruent to $3$ modulo $4$ is not the sum of two squares of integers.
+\item Can the integer $\num{2027}$ be written $x^2+y^2$ with $x$, $y$ integers?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Table: $x\equiv0,1,2,3\pmod4$ gives $x^2\equiv0,1,4,9$, that is $0,1,0,1\pmod4$.
+\item $x^2+y^2$ is congruent to $0+0$, $0+1$ or $1+1$, hence to $0$, $1$ or $2$ modulo $4$, never to $3$.
+\item $\num{2027}=4\times506+3$: no.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Divisibility test for $11$]
+\begin{enumerate}
+\item Prove that $10\equiv-1\pmod{11}$, then that $10^k\equiv(-1)^k\pmod{11}$.
+\item Deduce that an integer is divisible by $11$ if and only if the alternating sum of its digits, starting from the units, $a_0-a_1+a_2-\dots$, is.
+\item Is the integer $\num{918082}$ divisible by $11$?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $10-(-1)=11$. Compatibility with powers gives $10^k\equiv(-1)^k$.
+\item $N=\sum a_k10^k\equiv\sum a_k(-1)^k\pmod{11}$; $N$ and the alternating sum have the same remainder.
+\item $2-8+0-8+1-9=-22$, a multiple of $11$: yes ($\num{918082}=11\times\num{83462}$).
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Divisibility for every integer]
+Prove that for every natural number $n$:
+\begin{enumerate}
+\item $4^n-1$ is divisible by $3$;
+\item $n^3-n$ is divisible by $6$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $4\equiv1\pmod3$, so $4^n\equiv1$ and $3\mid4^n-1$.
+\item Table modulo $6$: for $n\equiv0,1,2,3,4,5$, $n^3-n\equiv0,0,6,24,60,120$, all multiples of $6$. So $n^3-n\equiv0\pmod6$ for every $n$. Remark: $n^3-n=(n-1)n(n+1)$ is a product of three consecutive integers; chapter 7 will show why being divisible by $2$ and by $3$ is enough.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Congruence equations]
+\begin{enumerate}
+\item Solve $3x\equiv5\pmod7$. First look for an integer $u$ such that $3u\equiv1\pmod7$.
+\item Solve $x^2\equiv2\pmod7$ with a table.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $3\times5=15\equiv1\pmod7$. Multiplying by $5$: $3x\equiv5$ implies $x\equiv25\equiv4\pmod7$; conversely $3\times4=12\equiv5$. The solutions are the integers $x=4+7k$, $k\in\Z$.
+\item For $x\equiv0,1,\dots,6\pmod7$: $x^2\equiv0,1,4,2,2,4,1$. The solutions are the integers congruent to $3$ or $4$ modulo $7$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[The last two digits]
+Determine the last two digits of the decimal expansion of $7^{2026}$.
+\end{exercise}
+\begin{solution}
+We work modulo $100$. $7^2=49$ and $7^4=\num{2401}\equiv1\pmod{100}$. Since $\num{2026}=4\times506+2$, $7^{2026}\equiv7^2=49\pmod{100}$: the expansion ends in $49$.
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[The check digit of an ISBN-13 code]
+An ISBN-13 code is a sequence of thirteen digits $a_1a_2\dots a_{13}$. Let
+\[S=a_1+3a_2+a_3+3a_4+\dots+3a_{12}+a_{13},\]
+with the weights $1$ and $3$ alternating. The code is valid if and only if $S\equiv0\pmod{10}$; the last digit $a_{13}$, called the check digit, is chosen to make it so.
+\begin{enumerate}
+\item Consider the fictitious number 978-2-0601-2345-$a_{13}$. Compute the check digit $a_{13}$.
+\item Assume that a single digit $a$ is replaced by a digit $a'\neq a$.
+\begin{enumerate}
+\item Prove that $S$ changes by $w(a'-a)$, with $w\in\ens{1;3}$.
+\item Check that $7\times3\equiv1\pmod{10}$ and deduce that $3(a'-a)\equiv0\pmod{10}$ implies $a'-a\equiv0\pmod{10}$.
+\item Conclude: an error in a single digit is always detected.
+\end{enumerate}
+\item Assume that two distinct adjacent digits $a$ and $b$ are swapped.
+\begin{enumerate}
+\item Prove that $S$ changes by $2(b-a)$ or by $2(a-b)$.
+\item Determine under which condition on $a$ and $b$ the error is not detected. Give an example.
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item The first twelve digits $9,7,8,2,0,6,0,1,2,3,4,5$ give $9+21+8+6+0+18+0+3+2+9+4+15=95$. We need $95+a_{13}\equiv0\pmod{10}$ with $0\le a_{13}\le9$: $a_{13}=5$.
+\item
+\begin{enumerate}
+\item The term $wa$ becomes $wa'$, the other terms do not change.
+\item $21\equiv1\pmod{10}$. If $3(a'-a)\equiv0$, multiplying by $7$: $a'-a\equiv21(a'-a)\equiv0\pmod{10}$. The case $w=1$ is immediate.
+\item $a'-a$ is a multiple of $10$ between $-9$ and $9$, hence zero: a contradiction with $a'\neq a$. The new sum is no longer a multiple of $10$, so the error is detected.
+\end{enumerate}
+\item
+\begin{enumerate}
+\item The two digits have weights $1$ and $3$. The contribution $a+3b$ becomes $b+3a$ (or the reverse), a change of $2(a-b)$ or of $2(b-a)$.
+\item The error is not detected if and only if $10\mid2(a-b)$, that is $5\mid a-b$: $\abs{a-b}=5$. Example: swapping the adjacent digits $1$ and $6$ does not change $S$ modulo $10$.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+Check codes (ISBN, bank account keys, barcodes) are a ``possible problem'' of the syllabus. Question 2b uses an inverse modulo $10$: the notion is formalised in chapter 7. The number in question 1 is given as an example, for the computation.
+\end{teachernote}

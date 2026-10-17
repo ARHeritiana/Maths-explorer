@@ -1,0 +1,241 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c03}{Complex numbers and trigonometry}
+\mxsubtitle{Addition formulas, exponential form, de Moivre's and Euler's formulas}
+
+\begin{objectives}
+Establish the addition and double-angle formulas; write a complex number in exponential form and choose the form suited to a computation; compute powers; use de Moivre's and Euler's formulas to transform trigonometric expressions.
+\end{objectives}
+\begin{prerequisites}
+Chapter 2; scalar product (Première); algebraic properties of the exponential function; unit circle and associated angles.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Give $\cos\frac\pi6$ and $\sin\frac{5\pi}6$.
+\item Express $\cos(\pi-x)$ and $\sin\left(\frac\pi2-x\right)$ in terms of $\cos x$ or $\sin x$.
+\item Recall two expressions of the scalar product $\vect a\cdot\vect b$.
+\item Simplify $\e^{a}\times\e^{b}$ and $\left(\e^{a}\right)^n$.
+\item Solve in $\intof{-\pi}{\pi}$ the equation $\cos x=\frac12$.
+\item Give the modulus and an argument of $-1-i$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $\frac{\sqrt3}2$ and $\frac12$.
+\item $\cos(\pi-x)=-\cos x$ and $\sin\left(\frac\pi2-x\right)=\cos x$.
+\item $\vect a\cdot\vect b=\norm{\vect a}\norm{\vect b}\cos\left(\vect a,\vect b\right)$, and in an orthonormal frame $xx'+yy'$.
+\item $\e^{a+b}$ and $\e^{na}$.
+\item $x=-\frac\pi3$ or $x=\frac\pi3$.
+\item $\sqrt2$ and $-\frac{3\pi}4$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[A function that turns sums into products \mxchip{35 min}]
+For every real number $\theta$, let $f(\theta)=\cos\theta+i\sin\theta$.
+\begin{enumerate}
+\item Compute $f(0)$, $f\left(\frac\pi2\right)$, $f(\pi)$. What is the modulus of $f(\theta)$? Where does the image of $f(\theta)$ lie?
+\item Write $f\left(\frac\pi3\right)$ and $f\left(\frac\pi6\right)$ in algebraic form, then compute the product $f\left(\frac\pi3\right)f\left(\frac\pi6\right)$. Compare it with $f\left(\frac\pi2\right)$.
+\item Compute likewise $f\left(\frac\pi4\right)^2$ and compare it with $f\left(\frac\pi2\right)$.
+\item With a calculator or a spreadsheet, compare $f(a)f(b)$ and $f(a+b)$ for three pairs $\pt{a;b}$ chosen at random.
+\item Which known function satisfies a relation of the same kind, $g(a)g(b)=g(a+b)$ and $g(0)=1$?
+\item Expand $f(a)f(b)$. Which trigonometric formulas would one need to know to prove the conjecture?
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item $f(0)=1$, $f\left(\frac\pi2\right)=i$, $f(\pi)=-1$. $\abs{f(\theta)}^2=\cos^2\theta+\sin^2\theta=1$: the image lies on the circle with centre $O$ and radius $1$.
+\item $f\left(\frac\pi3\right)=\frac12+\frac{\sqrt3}2i$ and $f\left(\frac\pi6\right)=\frac{\sqrt3}2+\frac12i$. The product is $\frac{\sqrt3}4-\frac{\sqrt3}4+i\left(\frac14+\frac34\right)=i=f\left(\frac\pi2\right)$.
+\item $f\left(\frac\pi4\right)^2=\left(\frac{\sqrt2}2(1+i)\right)^2=\frac12\times2i=i=f\left(\frac\pi2\right)$.
+\item The two numbers agree up to rounding errors. Conjecture: $f(a)f(b)=f(a+b)$.
+\item The exponential function: $\e^a\e^b=\e^{a+b}$ and $\e^0=1$.
+\item $f(a)f(b)=(\cos a\cos b-\sin a\sin b)+i(\sin a\cos b+\cos a\sin b)$. One needs to know that $\cos(a+b)=\cos a\cos b-\sin a\sin b$ and $\sin(a+b)=\sin a\cos b+\cos a\sin b$: these are the addition formulas, proved in the course.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+Question 4 only brings numerical evidence; insist that it proves nothing. For quick students, one may add a remark beyond the syllabus: the ``derivative'' of $f$ is $-\sin\theta+i\cos\theta=if(\theta)$, just as $\left(\e^{k\theta}\right)'=k\e^{k\theta}$ with $k=i$. This motivates the notation $\e^{i\theta}$.
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Addition and double-angle formulas}
+\begin{theorem}[Addition formulas]
+For all real numbers $a$ and $b$:
+\[\cos(a-b)=\cos a\cos b+\sin a\sin b,\qquad\cos(a+b)=\cos a\cos b-\sin a\sin b,\]
+\[\sin(a-b)=\sin a\cos b-\cos a\sin b,\qquad\sin(a+b)=\sin a\cos b+\cos a\sin b.\]
+\end{theorem}
+\begin{proof}
+In a direct orthonormal frame, let $\vect p\vc{\cos a}{\sin a}$ and $\vect q\vc{\cos b}{\sin b}$: these vectors are unit vectors and $\left(\vect u,\vect p\right)\equiv a$, $\left(\vect u,\vect q\right)\equiv b\pmod{2\pi}$. By Chasles' relation, $\left(\vect q,\vect p\right)\equiv a-b\pmod{2\pi}$. We compute $\vect q\cdot\vect p$ in two ways:
+\[\vect q\cdot\vect p=\norm{\vect q}\norm{\vect p}\cos(a-b)=\cos(a-b)\quad\text{and}\quad\vect q\cdot\vect p=\cos b\cos a+\sin b\sin a.\]
+This proves the first formula. Replacing $b$ by $-b$ and using $\cos(-b)=\cos b$, $\sin(-b)=-\sin b$, we obtain $\cos(a+b)$. Finally $\sin(a+b)=\cos\left(\frac\pi2-a-b\right)=\cos\left(\left(\frac\pi2-a\right)-b\right)$, which the first formula expands into $\sin a\cos b+\cos a\sin b$; we deduce $\sin(a-b)$ by replacing $b$ by $-b$.
+\end{proof}
+\begin{theorem}[Double-angle formulas]
+For every real number $a$: $\sin2a=2\sin a\cos a$ and $\cos2a=\cos^2a-\sin^2a=2\cos^2a-1=1-2\sin^2a$.
+\end{theorem}
+\begin{example}[An exact value]
+$\cos\frac{\pi}{12}=\cos\left(\frac\pi3-\frac\pi4\right)=\frac12\times\frac{\sqrt2}2+\frac{\sqrt3}2\times\frac{\sqrt2}2=\frac{\sqrt6+\sqrt2}4$.
+\end{example}
+
+\subsection{Product and arguments}
+\begin{theorem}[Product of two trigonometric forms]
+For all real numbers $\theta$ and $\theta'$: $(\cos\theta+i\sin\theta)(\cos\theta'+i\sin\theta')=\cos(\theta+\theta')+i\sin(\theta+\theta')$.\par
+Consequently, for all nonzero complex numbers $z$, $z'$ and every integer $n$:
+\[\arg(zz')\equiv\arg z+\arg z',\qquad\arg\frac1z\equiv-\arg z,\]
+\[\arg\frac z{z'}\equiv\arg z-\arg z',\qquad\arg\left(z^n\right)\equiv n\arg z\pmod{2\pi}.\]
+\end{theorem}
+\begin{proof}
+Expanding gives $(\cos\theta\cos\theta'-\sin\theta\sin\theta')+i(\sin\theta\cos\theta'+\cos\theta\sin\theta')$, which the addition formulas simplify. If $z=r(\cos\theta+i\sin\theta)$ and $z'=r'(\cos\theta'+i\sin\theta')$, then $zz'=rr'(\cos(\theta+\theta')+i\sin(\theta+\theta'))$ with $rr'>0$: this is a trigonometric form of $zz'$. The other relations follow: $z\times\frac1z=1$ has argument $0$, then $\frac z{z'}=z\times\frac1{z'}$, and an induction for $n\ge0$, extended to $n<0$ through the inverse.
+\end{proof}
+\begin{keypoint}[Interpretation]
+Multiplying by $\cos\theta+i\sin\theta$ turns through an angle $\theta$ about $O$. The conjecture of the activity of chapter 2 is proved: multiplying by $i$ is a direct quarter turn, multiplying by $1+i=\sqrt2\left(\cos\frac\pi4+i\sin\frac\pi4\right)$ is an eighth of a turn followed by an enlargement with ratio $\sqrt2$.
+\end{keypoint}
+
+\subsection{Exponential form}
+\begin{definition}[Imaginary exponential]
+For every real number $\theta$, we write $\e^{i\theta}=\cos\theta+i\sin\theta$. Every nonzero complex number can be written $z=r\e^{i\theta}$ with $r=\abs z$ and $\theta\equiv\arg z\pmod{2\pi}$: this is its \emph{exponential form}.
+\end{definition}
+\begin{theorem}[Rules of computation]
+For all real numbers $\theta$, $\theta'$ and every integer $n$:
+\[\e^{i\theta}\e^{i\theta'}=\e^{i(\theta+\theta')},\qquad\frac1{\e^{i\theta}}=\e^{-i\theta}=\overline{\e^{i\theta}},\qquad\frac{\e^{i\theta}}{\e^{i\theta'}}=\e^{i(\theta-\theta')},\qquad\left(\e^{i\theta}\right)^n=\e^{in\theta}.\]
+Values to know: $\e^{i0}=1$, $\e^{i\pi/2}=i$, $\e^{i\pi}=-1$, $\e^{-i\pi/2}=-i$, $\abs{\e^{i\theta}}=1$.
+\end{theorem}
+\begin{theorem}[De Moivre's formula]
+For every real number $\theta$ and every integer $n$: $(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta)$.
+\end{theorem}
+\begin{theorem}[Euler's formulas]
+For every real number $\theta$: $\cos\theta=\dfrac{\e^{i\theta}+\e^{-i\theta}}2$ and $\sin\theta=\dfrac{\e^{i\theta}-\e^{-i\theta}}{2i}$.
+\end{theorem}
+\begin{proof}
+$\e^{i\theta}+\e^{-i\theta}=\e^{i\theta}+\overline{\e^{i\theta}}=2\operatorname{Re}\left(\e^{i\theta}\right)=2\cos\theta$, and $\e^{i\theta}-\e^{-i\theta}=2i\operatorname{Im}\left(\e^{i\theta}\right)=2i\sin\theta$.
+\end{proof}
+\begin{method}[Choosing the suitable form]
+For a sum, the algebraic form; for a product, a quotient or a power, the exponential form. Example: $1+i\sqrt3=2\e^{i\pi/3}$, so
+\[\left(1+i\sqrt3\right)^{10}=2^{10}\e^{10i\pi/3}=\num{1024}\,\e^{-2i\pi/3}=-512-512\sqrt3\,i,\]
+since $\frac{10\pi}3-4\pi=-\frac{2\pi}3$.
+\end{method}
+\begin{method}[Expressing $\cos3\theta$ in terms of $\cos\theta$: de Moivre]
+Expand $(\cos\theta+i\sin\theta)^3$ with the binomial formula and identify the real part:
+$\cos3\theta=\cos^3\theta-3\cos\theta\sin^2\theta=4\cos^3\theta-3\cos\theta$.
+\end{method}
+\begin{method}[Linearising $\cos^3\theta$: Euler]
+$\cos^3\theta=\dfrac{\left(\e^{i\theta}+\e^{-i\theta}\right)^3}{8}=\dfrac{\e^{3i\theta}+3\e^{i\theta}+3\e^{-i\theta}+\e^{-3i\theta}}8=\dfrac{\cos3\theta+3\cos\theta}4$.
+\end{method}
+\begin{method}[Half angle]
+To factorise a sum of exponentials, take out the exponential of the mean angle: $\e^{ia}+\e^{ib}=\e^{i\frac{a+b}2}\left(\e^{i\frac{a-b}2}+\e^{-i\frac{a-b}2}\right)=2\cos\frac{a-b}2\,\e^{i\frac{a+b}2}$.
+\end{method}
+\begin{pitfall}
+$\e^{i\theta}$ is not a positive real number: its modulus is $1$, but it can be negative ($\e^{i\pi}=-1$) or non-real. An expression $r\e^{i\theta}$ is an exponential form only if $r>0$.
+\end{pitfall}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Exponential forms]
+Write in exponential form: $-2+2i$; $-1-i\sqrt3$; $5i$; $\dfrac{1+i}{1-i}$.
+\end{exercise}
+\begin{solution}
+$-2+2i=2\sqrt2\,\e^{3i\pi/4}$ ; $-1-i\sqrt3=2\e^{-2i\pi/3}$ ; $5i=5\e^{i\pi/2}$ ; $\frac{1+i}{1-i}=\frac{\sqrt2\e^{i\pi/4}}{\sqrt2\e^{-i\pi/4}}=\e^{i\pi/2}$.
+\end{solution}
+
+\begin{exercise}[Two ways of writing the same product]
+Let $z_1=\sqrt3+i$ and $z_2=1-i$.
+\begin{enumerate}
+\item Write $z_1$, $z_2$ and then $z_1z_2$ in exponential form.
+\item Write $z_1z_2$ in algebraic form.
+\item Deduce the exact values of $\cos\frac\pi{12}$ and $\sin\frac\pi{12}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $z_1=2\e^{i\pi/6}$, $z_2=\sqrt2\e^{-i\pi/4}$, $z_1z_2=2\sqrt2\e^{-i\pi/12}$.
+\item $z_1z_2=\sqrt3-\sqrt3i+i+1=\left(\sqrt3+1\right)+\left(1-\sqrt3\right)i$.
+\item Identifying: $2\sqrt2\cos\left(-\frac\pi{12}\right)=\sqrt3+1$ and $2\sqrt2\sin\left(-\frac\pi{12}\right)=1-\sqrt3$. So $\cos\frac\pi{12}=\frac{\sqrt3+1}{2\sqrt2}=\frac{\sqrt6+\sqrt2}4$ and $\sin\frac\pi{12}=\frac{\sqrt3-1}{2\sqrt2}=\frac{\sqrt6-\sqrt2}4$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Powers]
+\begin{enumerate}
+\item Compute $(1-i)^8$ and $\left(\sqrt3+i\right)^{12}$.
+\item Determine the natural numbers $n\ge1$ for which $\left(\sqrt3+i\right)^n$ is real; positive real; purely imaginary. Give the smallest in each case.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $(1-i)^8=\left(\sqrt2\right)^8\e^{-2i\pi}=16$ and $\left(\sqrt3+i\right)^{12}=2^{12}\e^{2i\pi}=\num{4096}$.
+\item $\left(\sqrt3+i\right)^n=2^n\e^{in\pi/6}$. It is real if and only if $\frac{n\pi}6\equiv0\pmod\pi$, that is $n$ a multiple of $6$; the smallest is $6$. It is a positive real number if and only if $n$ is a multiple of $12$; the smallest is $12$. It is purely imaginary if and only if $\frac{n\pi}6\equiv\frac\pi2\pmod\pi$, that is $n=3+6k$; the smallest is $3$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[De Moivre's formula]
+Using de Moivre's formula and the binomial formula, express $\cos4\theta$ in terms of $\cos\theta$ only, and $\sin4\theta$ in terms of $\cos\theta$ and $\sin\theta$.
+\end{exercise}
+\begin{solution}
+With $c=\cos\theta$ and $s=\sin\theta$: $(c+is)^4=c^4+4ic^3s-6c^2s^2-4ics^3+s^4$. The real part gives $\cos4\theta=c^4-6c^2s^2+s^4$; with $s^2=1-c^2$, $\cos4\theta=8c^4-8c^2+1$. The imaginary part gives $\sin4\theta=4c^3s-4cs^3$.
+\end{solution}
+
+\begin{exercise}[Linearising in order to integrate]
+\begin{enumerate}
+\item Using Euler's formulas, prove that $\sin^3x=\dfrac{3\sin x-\sin3x}4$.
+\item Deduce the value of $\displaystyle\int_0^\pi\sin^3x\dd x$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\sin^3x=\dfrac{\left(\e^{ix}-\e^{-ix}\right)^3}{(2i)^3}=\dfrac{\e^{3ix}-3\e^{ix}+3\e^{-ix}-\e^{-3ix}}{-8i}=\dfrac{2i\sin3x-6i\sin x}{-8i}=\dfrac{3\sin x-\sin3x}4$.
+\item An antiderivative is $-\frac34\cos x+\frac1{12}\cos3x$. So the integral equals $\left(\frac34-\frac1{12}\right)-\left(-\frac34+\frac1{12}\right)=\frac43$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Modulus and argument of $1+\e^{i\theta}$]
+\begin{enumerate}
+\item Prove that for every real number $\theta$, $1+\e^{i\theta}=2\cos\frac\theta2\,\e^{i\theta/2}$.
+\item Deduce the modulus and an argument of $1+\e^{i\theta}$ when $\theta\in\intoo{-\pi}{\pi}$.
+\item Application: modulus and argument of $1+\e^{2i\pi/3}$, then a check with the algebraic form.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $1+\e^{i\theta}=\e^{i\theta/2}\left(\e^{-i\theta/2}+\e^{i\theta/2}\right)=2\cos\frac\theta2\,\e^{i\theta/2}$ by Euler's formula.
+\item For $\theta\in\intoo{-\pi}{\pi}$, $\frac\theta2\in\intoo{-\frac\pi2}{\frac\pi2}$, so $\cos\frac\theta2>0$. The expression is an exponential form: modulus $2\cos\frac\theta2$, argument $\frac\theta2$.
+\item Modulus $2\cos\frac\pi3=1$ and argument $\frac\pi3$. Indeed $1+\e^{2i\pi/3}=1-\frac12+\frac{\sqrt3}2i=\frac12+\frac{\sqrt3}2i=\e^{i\pi/3}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A sum of cosines]
+Let $\theta$ be a real number that is not a multiple of $2\pi$, and $n$ a natural number.
+\begin{enumerate}
+\item Prove that $\displaystyle\sum_{k=0}^{n}\e^{ik\theta}=\frac{\e^{i(n+1)\theta}-1}{\e^{i\theta}-1}$.
+\item Using the half-angle method, prove that this sum equals $\e^{in\theta/2}\dfrac{\sin\frac{(n+1)\theta}2}{\sin\frac\theta2}$.
+\item Deduce $\displaystyle\sum_{k=0}^{n}\cos(k\theta)=\frac{\cos\frac{n\theta}2\,\sin\frac{(n+1)\theta}2}{\sin\frac\theta2}$, then check the formula for $n=2$ and $\theta=\frac\pi2$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item It is a geometric sum with common ratio $q=\e^{i\theta}\neq1$ (since $\theta\not\equiv0\pmod{2\pi}$): $\sum_{k=0}^nq^k=\frac{q^{n+1}-1}{q-1}$, and $q^k=\e^{ik\theta}$.
+\item For every real number $t$, $\e^{it}-1=\e^{it/2}\left(\e^{it/2}-\e^{-it/2}\right)=2i\sin\frac t2\,\e^{it/2}$. The quotient is therefore $\dfrac{2i\sin\frac{(n+1)\theta}2\e^{i(n+1)\theta/2}}{2i\sin\frac\theta2\e^{i\theta/2}}=\e^{in\theta/2}\dfrac{\sin\frac{(n+1)\theta}2}{\sin\frac\theta2}$; the denominator is not zero because $\frac\theta2$ is not a multiple of $\pi$.
+\item Take the real part of both sides. For $n=2$ and $\theta=\frac\pi2$: $\cos0+\cos\frac\pi2+\cos\pi=0$, and the formula gives $\frac{\cos\frac\pi2\sin\frac{3\pi}4}{\sin\frac\pi4}=0$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[Superposing two oscillations]
+In physics, a simple voltage or sound can be written $t\mapsto A\cos(\omega t+\varphi)$. We show here that a sum $a\cos x+b\sin x$ can be put in this form. We study $g(x)=\sqrt3\cos x+\sin x$.
+\begin{enumerate}
+\item Write $\sqrt3-i$ in exponential form.
+\item Prove that $g(x)=\operatorname{Re}\left(\left(\sqrt3-i\right)\e^{ix}\right)$, then that $g(x)=2\cos\left(x-\frac\pi6\right)$.
+\item Deduce the maximum and the minimum of $g$ on $\R$, and the real numbers in $\intfo{0}{2\pi}$ where they are reached.
+\item Solve in $\intfo{0}{2\pi}$ the equation $g(x)=\sqrt2$.
+\item Generalise: let $a$ and $b$ be two real numbers, not both zero. Prove that there exist $R>0$ and a real number $\varphi$ such that, for every real number $x$, $a\cos x+b\sin x=R\cos(x-\varphi)$. Express $R$ in terms of $a$ and $b$.
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item $\abs{\sqrt3-i}=2$, $\cos\theta=\frac{\sqrt3}2$, $\sin\theta=-\frac12$ : $\sqrt3-i=2\e^{-i\pi/6}$.
+\item $\left(\sqrt3-i\right)(\cos x+i\sin x)=\sqrt3\cos x+\sin x+i\left(\sqrt3\sin x-\cos x\right)$, whose real part is $g(x)$. Moreover $\left(\sqrt3-i\right)\e^{ix}=2\e^{i(x-\pi/6)}$, whose real part is $2\cos\left(x-\frac\pi6\right)$.
+\item The maximum is $2$, reached for $x-\frac\pi6\equiv0\pmod{2\pi}$, that is $x=\frac\pi6$; the minimum is $-2$, reached for $x=\frac{7\pi}6$.
+\item $\cos\left(x-\frac\pi6\right)=\frac{\sqrt2}2$ is equivalent to $x-\frac\pi6\equiv\frac\pi4$ or $x-\frac\pi6\equiv-\frac\pi4\pmod{2\pi}$, that is $x\equiv\frac{5\pi}{12}$ or $x\equiv-\frac\pi{12}\pmod{2\pi}$. In $\intfo{0}{2\pi}$: $x=\frac{5\pi}{12}$ or $x=\frac{23\pi}{12}$.
+\item The complex number $a-ib$ is nonzero; write it $R\e^{-i\varphi}$ with $R=\sqrt{a^2+b^2}>0$. Then $a\cos x+b\sin x=\operatorname{Re}\left((a-ib)\e^{ix}\right)=\operatorname{Re}\left(R\e^{i(x-\varphi)}\right)=R\cos(x-\varphi)$.
+\end{enumerate}
+\end{solution}

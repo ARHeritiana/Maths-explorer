@@ -25,6 +25,7 @@ COURSES = {
     'seconde': ['scripts/build-tex-resources.py', 'seconde', '--chapters', *map(str, chapter_numbers('seconde'))],
     'premiere': ['scripts/build-tex-resources.py', 'premiere', '--chapters', *map(str, chapter_numbers('premiere')), '--appendices'],
     'terminale': ['scripts/build-tex-resources.py', 'terminale', '--chapters', *map(str, chapter_numbers('terminale')), '--appendices'],
+    'expertes': ['scripts/build-expertes.py'],
     'enrichment': ['scripts/build-enrichment.py'],
 }
 

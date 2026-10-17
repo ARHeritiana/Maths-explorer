@@ -8,12 +8,16 @@ keyboard navigation (arrows, R answer, G outline, L language, F full screen), Ma
 | Course | Source | Build |
 |---|---|---|
 | Seconde, Première, STMG | bilingual LaTeX under `content/latex` (course boxes, examples, errors, activities) | `python3 scripts/build-slides.py` |
+| Maths expertes | units `content/tex/courses/expertes/chapitres/C??.{fr,en}.tex` (shared TeX system; subsection titles head the slides; automatismes, exercises and problem are left out) | `python3 scripts/build-slides.py` |
 | Terminale | French drafts `content/slides/draft/terminale-NN.fr.json` (from `content/latex/terminale/chapitres/C??.tex`, via `scripts/extract-terminale-slides.py`; the drafts also carry the figure code `figs`/`figs_en`) and English authored decks `content/slides/terminale-NN.json` | same script merges them |
 
 Teacher-only material (solutions boxes, teacher notes, fluency drills) is never included. Seconde answers are revealed
 on demand (R). Interactive canvases (`dist/slides/widgets*.js`) are inserted after the matching unit by the `WIDGETS`
 table in `scripts/build-slides.py`: every canvas has draggable handles; space scenes (plane and projection, line,
 surface) rotate when the background is dragged.
+Maths expertes widgets: `complex` (z and its conjugate; modulus and argument; product zw), `cquad` (roots of a real
+quadratic), `roots` (n-th roots of a), `modclock` (powers and inverses modulo n), `matrix2` (a 2 by 2 matrix acting on
+the unit square), `walks` (walks counted by powers of the adjacency matrix), `markov` (two-state chain).
 
 ## Checks
 `python3 tests/slides_smoke.py` opens every deck in Chromium in both languages (console errors, MathJax errors, undefined macros shown as red text, raw TeX,

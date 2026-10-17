@@ -1,6 +1,7 @@
 """Extract classroom slide decks (French + English) from the bilingual LaTeX sources.
 
-Premiere (C01-C10), Seconde (S01-S15) and STMG (c01-c08, shared TeX system) are parsed from content/tex/courses;
+Premiere (C01-C10), Seconde (S01-S15), STMG (c01-c08) and Maths expertes (C01-C11, shared TeX system) are parsed
+from content/tex/courses;
 decks are written to dist/slides/data/<chapter id>.json and indexed in dist/slides/data/index.json.
 Teacher-only material (solutions boxes, \\enseignant, \\prof, fluency drills) is never included.
 Hand-authored decks (content/slides/*.json) are merged into the index unchanged.
@@ -373,29 +374,32 @@ def box_slides(kind, unit, body, h):
     return out
 
 
-def canonical(src, number, attach_figures=False, extra=None, skip_sections=None, goals_first=False):
+def canonical(src, number, attach_figures=False, extra=None, skip_sections=None, goals_first=False, subsections=False):
     """Units of the shared TeX system (docs/TEX_STYLE_GUIDE.md): the same vocabulary in every migrated course.
     An example followed by \\mxanswerspace gets that answer (revealed on demand); a proof to write becomes a proof slide.
     attach_figures: a figure outside a box joins the previous slide (worksheet courses); otherwise it is ignored.
     extra: more environment -> slide kinds (Première: application -> try, proof -> proof); skip_sections: regex of section
     titles whose content gives no slides; goals_first: a key point before the first section is the goals slide, and
-    examples, pitfalls and extra kinds only count inside a section."""
+    examples, pitfalls and extra kinds only count inside a section. subsections: a subsection title, when there is one,
+    heads the slides that follow it (instead of the section title)."""
     ev = walk(src, {'mxunit': 2, 'section': 1, 'mxsection': 1, 'mxsession': 5, 'objectives': 0, 'activity': 0, 'summary': 0,
                     'keypoint': 0, 'definition': 0, 'theorem': 0, 'method': 0, 'example': 0, 'pitfall': 0,
-                    'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1})
+                    'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1, **({'subsection': 1} if subsections else {})})
     kinds = {'objectives': 'goals', 'activity': 'activity', 'summary': 'concept', 'keypoint': 'concept', 'definition': 'concept',
              'theorem': 'concept', 'method': 'method', 'example': 'example', 'pitfall': 'error', **(extra or {})}
     if extra: ev = walk(src, {**{k: 0 for k in extra}, 'mxunit': 2, 'section': 1, 'mxsection': 1, 'mxsession': 5,
-                              **{k: 0 for k in kinds}, 'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1})
+                              **{k: 0 for k in kinds}, 'mxanswerspace': 1, 'mxwriteproof': 1, 'figtok': 1,
+                              **({'subsection': 1} if subsections else {})})
     out = []; unit = ''; pending = None; skipping = False
     for kind, name, a, o in ev:
         if name == 'figtok':
-            if attach_figures: attach(out, a[0])
+            if attach_figures and not skipping: attach(out, a[0])   # a figure in a skipped section stays out
             continue
         if name == 'mxunit': out.append(slide('title', clean_title(a[1]), '')); pending = None; unit = ''; skipping = False
         elif name in ('section', 'mxsection'):
             unit = clean_title(a[0]); skipping = bool(skip_sections and re.match(skip_sections, unit))
         elif skipping: continue
+        elif name == 'subsection': unit = clean_title(a[0])
         elif goals_first and kind == 'env' and name == 'keypoint' and not unit:
             out.append(slide('goals', clean_title(o) if o else '', text2html(a)))
         elif goals_first and not unit and kind == 'env' and name in ('example', 'pitfall', *(extra or {})): continue
@@ -435,6 +439,13 @@ WTEXT = {
     'limit': (['Limite d’une suite', 'Limit of a sequence'], ['Réglez ε, ℓ et u₀ : à partir du rang N, tous les termes restent dans la bande.', 'Set ε, ℓ and u₀: from rank N on, every term stays inside the band.']),
     'convex': (['Convexité : tangente et corde', 'Convexity: tangent and chord'], ['Déplacez M (tangente), A et B (corde) : comparez la courbe avec ses tangentes et ses cordes.', 'Drag M (tangent), A and B (chord): compare the curve with its tangents and chords.']),
     'lineplane': (['Droite et plan : intersection', 'A line and a plane: intersection'], ['Déplacez A, B et le plan : un point d’intersection, ou une droite parallèle au plan.', 'Move A, B and the plane: one intersection point, or a line parallel to the plane.']),
+    'complex': (['Plan complexe', 'The complex plane'], ['Déplacez z (et w) : formes algébrique, trigonométrique et exponentielle se mettent à jour.', 'Drag z (and w): algebraic, trigonometric and exponential forms update.']),
+    'cquad': (['Racines d’une équation du second degré', 'Roots of a quadratic equation'], ['Déplacez z₁ : hors de l’axe réel, son conjugué est l’autre racine ; sur l’axe, une seconde racine z₂ apparaît.', 'Drag z₁: off the real axis its conjugate is the other root; on the axis a second root z₂ appears.']),
+    'roots': (['Racines n-ièmes', 'n-th roots'], ['Déplacez a et choisissez n : les racines n-ièmes de a forment un polygone régulier.', 'Drag a and choose n: the n-th roots of a form a regular polygon.']),
+    'modclock': (['Horloge modulo n', 'A clock modulo n'], ['Déplacez a sur l’horloge et réglez n : restes, puissances et inverses modulo n.', 'Drag a around the clock and set n: remainders, powers and inverses modulo n.']),
+    'matrix2': (['Une matrice carrée d’ordre 2 transforme le plan', 'A square matrix of order 2 transforms the plane'], ['Déplacez les images des vecteurs de base : déterminant, aire et inverse.', 'Drag the images of the basis vectors: determinant, area and inverse.']),
+    'walks': (['Compter les chaînes', 'Counting walks'], ['Déplacez les marques de départ et d’arrivée, choisissez la longueur k : un coefficient de la puissance k de M compte les chaînes.', 'Drag the start and end markers, choose the length k: an entry of the k-th power of M counts the walks.']),
+    'markov': (['Chaîne de Markov à deux états', 'A two-state Markov chain'], ['Réglez a₀, p et q : la probabilité d’être dans l’état 1 tend vers q/(p+q).', 'Set a₀, p and q: the probability of being in state 1 tends to q/(p+q).']),
     'surface3d': (['Surface z = f(x ; y)', 'Surface z = f(x, y)'], ['Déplacez le point au sol ; faites tourner la surface.', 'Drag the floor point; rotate the surface.']),
 }
 # (deck id) -> [(regex on the unit title, widget spec)]: the widget slide is inserted after that unit
@@ -458,6 +469,14 @@ WIDGETS = {
     'terminale-07': [(r'^Reminders', {'type': 'tree'})], 'terminale-09': [(r'^Line, plane and normal', {'type': 'plane3d', 'normal': [1, 1, 2]})],
     'terminale-12': [(r'^Sums and transformations', {'type': 'rv'})], 'terminale-13': [(r'^Parametric lines', {'type': 'line3d'}), (r'^Intersections', {'type': 'lineplane', 'normal': [1, 1, 2]})],
     'terminale-14': [(r'^Circle and functions', {'type': 'circle'})], 'terminale-11': [(r'^Area and antiderivative', {'type': 'integral'})],
+    'expertes-01': [(r'^Conjugate', {'type': 'complex', 'mode': 'alg'})], 'expertes-02': [(r'^Argument and trigonometric', {'type': 'complex', 'mode': 'polar'})],
+    'expertes-03': [(r'^Product and arguments', {'type': 'complex', 'mode': 'product'}), (r'^Exponential form', {'type': 'circle'})],
+    'expertes-04': [(r'^Quadratics with real', {'type': 'cquad'})], 'expertes-05': [(r'roots of unity', {'type': 'roots', 'n': 6})],
+    'expertes-06': [(r'^Congruences', {'type': 'modclock', 'mode': 'powers', 'n': 9, 'a': 2})],
+    'expertes-07': [(r'^Gauss', {'type': 'modclock', 'mode': 'inverse', 'n': 26, 'a': 7})],
+    'expertes-08': [(r'^Fermat', {'type': 'modclock', 'mode': 'powers', 'n': 13, 'a': 2})],
+    'expertes-09': [(r'^Inverse and systems', {'type': 'matrix2'})], 'expertes-10': [(r'^Adjacency matrix', {'type': 'walks'})],
+    'expertes-11': [(r'^Markov chains', {'type': 'markov'})],
 }
 
 
@@ -479,6 +498,7 @@ def files():
         'premiere': ('chapitres/C{n:02d}', lambda src,n: canonical(src,n,attach_figures=True,extra={'application':'try','proof':'proof'},skip_sections=r'(MCQ|QCM|Diagnostic)',goals_first=True)),
         'seconde': ('s{n:02d}', lambda src,n: canonical(src,n,attach_figures=True)),
         'stmg': ('c{n:02d}', canonical),
+        'expertes': ('chapitres/C{n:02d}', lambda src,n: canonical(src,n,attach_figures=True,extra={'proof':'proof'},subsections=True,skip_sections=r'(Automatismes|Fluency|Exercices|Exercises|Problème|Problem)$')),
     }
     for chapter in CATALOG['chapters']:
         course,n=chapter['course'],chapter['number']
@@ -506,6 +526,8 @@ def main():
             sl = {'k': x['k'], 't': [x['t'], y['t']], 'b': [x['b'], y['b']], **({'a': [x['a'], y['a']]} if x['a'] else {}), **({'h': [x['h'], y['h']]} if x['h'] else {})}
             if nf: sl['f'] = [[p_, q_] for p_, q_ in zip(nf, ne)]
             slides.append(sl)
+        for sl in slides:
+            if sl['k'] == 'goals' and not any(sl['t']): sl['t'] = ['Objectifs', 'Objectives']
         slides = add_widgets(cid, slides)
         decks[cid] = {'course': course, 'number': n, 'slides': slides, 'kind': 'extracted'}
         for lang, figs in (('fr', figs_f), ('en', figs_e)):

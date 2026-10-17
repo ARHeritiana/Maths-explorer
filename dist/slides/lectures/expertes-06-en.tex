@@ -1,0 +1,133 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Divisibility and congruences}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Divisibility and congruences}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Use divisibility in \(\Z\) and its properties; carry out a Euclidean division; compute with congruences; establish a divisibility test; study remainders of powers.
+\end{frame}
+\begin{frame}{Introductory activity}
+17 October 2026 is a Saturday. The days of the week are numbered from \(0\) (Saturday) to \(6\) (Friday): Sunday has number \(1\), Monday number \(2\), and so on.
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item What day of the week will it be \(7\) days later? \(14\) days? \(700\) days?
+
+\item What day will it be \(100\) days later? Explain how to get the answer without counting the days one by one.
+
+\item Same question for \(1{,}000\) days.
+
+\item The year 2027 is not a leap year. What day of the week will 17 October 2027 be?
+
+\item 1 January 2027 comes \(76\) days after 17 October 2026. What day will it be?
+
+\item Two durations \(a\) and \(b\), in days, lead to the same day of the week. What can be said about \(a-b\)? State a general condition.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Divisibility in \(\Z\)}
+Let \(a\) and \(b\) be two integers. We say that \(a\) \emph{divides} \(b\), written \(a\mid b\), if there is an integer \(k\) such that \(b=ka\). We also say that \(a\) is a \emph{divisor} of \(b\), or that \(b\) is a \emph{multiple} of \(a\).
+\end{frame}
+\begin{frame}{Divisibility in \(\Z\)}
+Let \(a\), \(b\), \(c\) be integers.
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item If \(a\mid b\) and \(b\mid c\), then \(a\mid c\).
+
+\item If \(a\mid b\) and \(a\mid c\), then \(a\mid bu+cv\) for all integers \(u\) and \(v\).
+
+\item If \(a\mid b\) and \(b\neq0\), then \(\abs a\le\abs b\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Divisibility in \(\Z\)}
+1. \(b=ka\) and \(c=k'b\) give \(c=(k'k)a\). 2. \(b=ka\) and \(c=k'a\) give \(bu+cv=(ku+k'v)a\). 3. \(b=ka\) with \(k\neq0\), so \(\abs k\ge1\) and \(\abs b=\abs k\abs a\ge\abs a\).
+\end{frame}
+\begin{frame}{Divisibility in \(\Z\)}
+Let \(a\in\Z\) and \(b\in\N\), \(b\ge1\). There is a unique pair of integers \((q,r)\) such that \(a=bq+r\) and \(0\le r<b\). We call \(q\) the \emph{quotient} and \(r\) the \emph{remainder}.
+\end{frame}
+\begin{frame}{Divisibility in \(\Z\)}
+\emph{Existence.} Let \(q=\left\lfloor\dfrac ab\right\rfloor\), the largest integer less than or equal to \(\dfrac ab\). Then \(q\le\dfrac ab<q+1\), so \(bq\le a<bq+b\), and \(r=a-bq\) satisfies \(0\le r<b\).
+
+\emph{Uniqueness.} If \(a=bq+r=bq'+r'\) with \(0\le r,r'<b\), then \(b(q-q')=r'-r\) and \(-b<r'-r<b\). The only multiple of \(b\) strictly between \(-b\) and \(b\) is \(0\), so \(r=r'\) and then \(q=q'\).
+\end{frame}
+\begin{frame}{Divisibility in \(\Z\)}
+The remainder is always nonnegative: \(-47=5\times(-10)+3\), so the division of \(-47\) by \(5\) has quotient \(-10\) and remainder \(3\), not \(-9\) and \(-2\).
+\end{frame}
+\begin{frame}{Congruences}
+Let \(n\ge2\) be an integer. Two integers \(a\) and \(b\) are congruent modulo \(n\), written \(a\equiv b\pmod n\), if \(n\mid a-b\).
+\end{frame}
+\begin{frame}{Congruences}
+\(a\equiv b\pmod n\) if and only if \(a\) and \(b\) have the same remainder in the Euclidean division by \(n\). In particular, every integer is congruent modulo \(n\) to its remainder, which belongs to \(\{0,\ldots,n-1\}\).
+\end{frame}
+\begin{frame}{Congruences}
+Write \(a=nq+r\) and \(b=nq'+r'\) with \(0\le r,r'<n\). Then \(a-b=n(q-q')+(r-r')\) and \(-n<r-r'<n\). So \(n\mid a-b\) if and only if \(n\mid r-r'\), if and only if \(r=r'\).
+\end{frame}
+\begin{frame}{Congruences}
+If \(a\equiv b\pmod n\) and \(c\equiv d\pmod n\), then
+\[a+c\equiv b+d,\qquad a-c\equiv b-d,\qquad ac\equiv bd,\qquad a^k\equiv b^k\pmod n\]
+for every natural number \(k\). The relation is also transitive: if \(a\equiv b\) and \(b\equiv c\pmod n\), then \(a\equiv c\pmod n\).
+\end{frame}
+\begin{frame}{Congruences}
+Sum: \((a+c)-(b+d)=(a-b)+(c-d)\) is a sum of two multiples of \(n\). Product: \(ac-bd=a(c-d)+d(a-b)\), a multiple of \(n\). Power: induction on \(k\) from the product. Transitivity: \(a-c=(a-b)+(b-c)\).
+\end{frame}
+\begin{frame}{Congruences}
+A congruence is not simplified like an equality: \(2\times3\equiv2\times1\pmod4\), but \(3\not\equiv1\pmod4\). Division is possible only in specific cases (chapter 7).
+\end{frame}
+\begin{frame}{Congruences}
+Look for a power congruent to \(1\) (or to \(-1\)), then use the Euclidean division of the exponent. Example: \(2^3=8\equiv1\pmod7\) and \(2{,}026=3\times675+1\), so \(2^{2026}=\left(2^3\right)^{675}\times2\equiv1^{675}\times2=2\pmod7\).
+\end{frame}
+\begin{frame}{Congruences}
+To study an expression modulo \(n\), draw up a table giving its value modulo \(n\) for each possible remainder of \(x\). Example: modulo \(4\), \(x\equiv0,1,2,3\) gives \(x^2\equiv0,1,0,1\). A square is therefore congruent to \(0\) or \(1\) modulo \(4\).
+\end{frame}
+\begin{frame}{Congruences}
+If \(N=\sum_{k=0}^{p}a_k10^k\) is written with the digits \(a_0,\dots,a_p\), since \(10\equiv1\pmod9\), we have \(10^k\equiv1\) and \(N\equiv a_0+a_1+\dots+a_p\pmod9\). An integer is divisible by \(9\) if and only if the sum of its digits is.
+\end{frame}
+\end{document}

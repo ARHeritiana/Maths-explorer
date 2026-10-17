@@ -1,0 +1,154 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={PGCD, théorèmes de Bézout et de Gauss}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{PGCD, théorèmes de Bézout et de Gauss}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Déterminer un PGCD par l'algorithme d'Euclide ; obtenir un couple de Bézout ; utiliser les théorèmes de Bézout et de Gauss ; déterminer un inverse modulo \(n\) ; résoudre une équation \(ax+by=c\) en nombres entiers.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+On dispose d'un bidon de \(9\) litres, d'un bidon de \(7\) litres, sans graduation, et d'une source d'eau. On peut remplir un bidon, le vider, ou verser l'un dans l'autre jusqu'à ce que l'un soit vide ou l'autre plein.
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Montrer qu'on peut obtenir exactement \(2\) litres dans le grand bidon.
+
+\item Si l'on verse au total \(u\) fois \(9\) litres et que l'on jette \(v\) fois \(7\) litres, la quantité restante est \(9u-7v\). Trouver des entiers naturels \(u\) et \(v\) tels que \(9u-7v=1\). En déduire comment obtenir \(1\) litre.
+
+\item On remplace les bidons par des bidons de \(6\) et \(9\) litres. Montrer que toute quantité de la forme \(6u+9v\), avec \(u\) et \(v\) entiers relatifs, est un multiple de \(3\). Peut-on obtenir \(1\) litre ?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Avec des bidons de \(a\) et \(b\) litres, quelles quantités entières semble-t-on pouvoir obtenir ? Formuler une conjecture faisant intervenir le plus grand diviseur commun de \(a\) et \(b\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{PGCD et algorithme d'Euclide}
+Soit \(a\) et \(b\) deux entiers relatifs non tous deux nuls. L'ensemble de leurs diviseurs communs positifs est fini et contient \(1\) ; son plus grand élément est appelé \emph{plus grand commun diviseur} de \(a\) et \(b\), noté \(\operatorname{PGCD}(a,b)\). On dit que \(a\) et \(b\) sont \emph{premiers entre eux} si \(\operatorname{PGCD}(a,b)=1\).
+\end{frame}
+\begin{frame}{PGCD et algorithme d'Euclide}
+Soit \(a\) et \(b\) deux entiers avec \(b\neq0\). Pour tout entier \(k\), les diviseurs communs de \(a\) et \(b\) sont ceux de \(b\) et \(a-kb\). En particulier, si \(r\) est le reste de la division de \(a\) par \(b\ge1\), alors \(\operatorname{PGCD}(a,b)=\operatorname{PGCD}(b,r)\).
+\end{frame}
+\begin{frame}{PGCD et algorithme d'Euclide}
+Si \(d\mid a\) et \(d\mid b\), alors \(d\mid a-kb\). Réciproquement, si \(d\mid b\) et \(d\mid a-kb\), alors \(d\mid(a-kb)+kb=a\). Les deux ensembles de diviseurs communs sont égaux, donc leurs plus grands éléments aussi.
+\end{frame}
+\begin{frame}{PGCD et algorithme d'Euclide}
+On remplace \((a;b)\) par \((b;r)\) tant que le reste \(r\) n'est pas nul. Les restes forment une suite d'entiers naturels strictement décroissante, donc l'algorithme s'arrête. Le PGCD est le dernier reste non nul. Exemple :
+\[1\,053=3\times325+78,\qquad325=4\times78+13,\qquad78=6\times13+0,\]
+donc \(\operatorname{PGCD}(1\,053,325)=13\).
+\end{frame}
+\begin{frame}{Théorème de Bézout}
+Soit \(a\) et \(b\) deux entiers non tous deux nuls. Il existe des entiers relatifs \(u\) et \(v\) tels que \(au+bv=\operatorname{PGCD}(a,b)\). De plus, tout diviseur commun de \(a\) et \(b\) divise \(\operatorname{PGCD}(a,b)\).
+\end{frame}
+\begin{frame}{Théorème de Bézout}
+Soit \(E\) l'ensemble des entiers strictement positifs de la forme \(au+bv\), avec \(u\), \(v\) entiers. \(E\) n'est pas vide (il contient \(a^2+b^2\)). Soit \(d=au_0+bv_0\) son plus petit élément.
+
+Divisons \(a\) par \(d\) : \(a=dq+r\) avec \(0\le r<d\). Alors \(r=a-q(au_0+bv_0)=a(1-qu_0)+b(-qv_0)\) est de la forme \(au+bv\). S'il était strictement positif, il appartiendrait à \(E\) en étant plus petit que \(d\) : impossible. Donc \(r=0\) et \(d\mid a\). De même \(d\mid b\).
+\end{frame}
+\begin{frame}{Théorème de Bézout (2)}
+Enfin tout diviseur commun \(c\) de \(a\) et \(b\) divise \(au_0+bv_0=d\), donc \(c\le d\). Ainsi \(d\) est le plus grand diviseur commun : \(d=\operatorname{PGCD}(a,b)\).
+\end{frame}
+\begin{frame}{Théorème de Bézout}
+Deux entiers \(a\) et \(b\) sont premiers entre eux si et seulement si il existe des entiers relatifs \(u\) et \(v\) tels que \(au+bv=1\).
+\end{frame}
+\begin{frame}{Théorème de Bézout}
+Si \(\operatorname{PGCD}(a,b)=1\), le théorème précédent fournit \(u\) et \(v\). Réciproquement, si \(au+bv=1\), tout diviseur commun positif de \(a\) et \(b\) divise \(1\), donc vaut \(1\).
+\end{frame}
+\begin{frame}{Théorème de Bézout}
+Avec l'exemple précédent : \(13=325-4\times78=325-4(1\,053-3\times325)=13\times325-4\times1\,053\). Un couple convenable pour \((1\,053;325)\) est \((-4;13)\).
+\end{frame}
+\begin{frame}{Théorème de Bézout}
+La fonction suivante renvoie \((d;u;v)\) avec \(d=\operatorname{PGCD}(a,b)=au+bv\), pour \(a\) et \(b\) entiers naturels non tous deux nuls.
+lstlisting
+def euclide\_etendu(a, b):
+    u0, v0, u1, v1 = 1, 0, 0, 1
+    while b != 0:
+        q, r = a // b, a \% b
+        a, b = b, r
+        u0, u1 = u1, u0 - q * u1
+        v0, v1 = v1, v0 - q * v1
+    return a, u0, v0
+lstlisting
+À chaque étape, les deux restes en cours s'écrivent \(au_0+bv_0\) et \(au_1+bv_1\) en fonction des valeurs initiales de \(a\) et \(b\).
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+Soit \(a\), \(b\), \(c\) trois entiers. Si \(a\mid bc\) et si \(a\) et \(b\) sont premiers entre eux, alors \(a\mid c\).
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+Par le théorème de Bézout, il existe \(u\) et \(v\) tels que \(au+bv=1\). En multipliant par \(c\) : \(c=acu+bcv\). Or \(a\mid acu\) et \(a\mid bc\), donc \(a\) divise \(acu+bcv=c\).
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+Si \(a\) et \(b\) sont premiers entre eux et divisent tous deux \(n\), alors \(ab\) divise \(n\).
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+\(n=ak\). Comme \(b\mid ak\) et \(\operatorname{PGCD}(a,b)=1\), Gauss donne \(b\mid k\) : \(k=bk'\) et \(n=abk'\).
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+Soit \(n\ge2\) et \(a\) un entier. Il existe un entier \(u\) tel que \(au\equiv1\pmod n\) si et seulement si \(\operatorname{PGCD}(a,n)=1\). Un tel \(u\) est un inverse de \(a\) modulo \(n\) ; il permet de résoudre \(ax\equiv b\pmod n\) : \(x\equiv ub\pmod n\).
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+\(au\equiv1\pmod n\) équivaut à l'existence d'un entier \(v\) tel que \(au+nv=1\) : c'est le théorème de Bézout.
+\end{frame}
+\begin{frame}{Théorème de Gauss}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item Elle a des solutions si et seulement si \(\operatorname{PGCD}(a,b)\) divise \(c\) ; on divise alors par ce PGCD.
+
+\item On trouve une solution particulière \((x_0;y_0)\).
+
+\item Par différence, \(a(x-x_0)=-b(y-y_0)\) ; avec \(a\) et \(b\) premiers entre eux, Gauss donne \(x-x_0=bk\), puis \(y-y_0=-ak\).
+
+\item On vérifie que les couples \((x_0+bk;y_0-ak)\), \(k\in\Z\), sont bien solutions.
+
+\end{enumerate}
+
+Exemple : \(7x+5y=1\) a la solution particulière \((-2;3)\) ; ses solutions sont les couples \((-2+5k;3-7k)\), \(k\in\Z\).
+\end{frame}
+\end{document}

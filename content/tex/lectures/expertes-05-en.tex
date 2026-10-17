@@ -1,0 +1,128 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Complex numbers and geometry}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Complex numbers and geometry}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Interpret the modulus and an argument of \(\dfrac{c-a}{b-a}\); prove that points are collinear, that lines are perpendicular, the nature of a triangle; determine sets of points; determine the \(n\)-th roots of unity and use them for regular polygons.
+\end{frame}
+\begin{frame}{Introductory activity}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Factorise \(z^3-1\) by \(z-1\), then solve \(z^3=1\) in \(\C\). Let \(j\) be the solution with positive imaginary part.
+
+\item Plot the three solutions in the complex plane. Compute the distances between them. Which figure do you obtain?
+
+\item Write \(j\) in exponential form. Check that \(j^2=\overline j\) and that \(1+j+j^2=0\). Interpret the last equality with the centroid.
+
+\item Solve \(z^4=1\) and plot the solutions. Same question for \(z^6=1\), using \(z^6-1=\left(z^3-1\right)\left(z^3+1\right)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item State a conjecture about the solutions of \(z^n=1\): their number, their modulus, their arguments, the figure they form.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Angles and lengths}
+Let \(A\), \(B\), \(C\) be three points with affixes \(a\), \(b\), \(c\), with \(A\neq B\) and \(A\neq C\). Then
+\[\abs{\dfrac{c-a}{b-a}}=\dfrac{AC}{AB}\qquad\text{and}\qquad\arg\left(\dfrac{c-a}{b-a}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}.\]
+\end{frame}
+\begin{frame}{Angles and lengths}
+The modulus of a quotient is the quotient of the moduli: \(\abs{c-a}=AC\) and \(\abs{b-a}=AB\). For the argument, \(\arg(b-a)\equiv\left(\vect u,\vect{AB}\right)\) and \(\arg(c-a)\equiv\left(\vect u,\vect{AC}\right)\), so by Chasles' relation \(\arg\dfrac{c-a}{b-a}\equiv\left(\vect u,\vect{AC}\right)-\left(\vect u,\vect{AB}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}\).
+\end{frame}
+\begin{frame}{Angles and lengths}
+With the same notation, let \(q=\dfrac{c-a}{b-a}\).
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item \(A\), \(B\), \(C\) are collinear if and only if \(q\) is real.
+
+\item The lines \((AB)\) and \((AC)\) are perpendicular if and only if \(q\) is purely imaginary.
+
+\item The triangle \(ABC\) is right-angled and isosceles at \(A\) if and only if \(q=i\) or \(q=-i\); it is equilateral if and only if \(q=\e^{i\pi/3}\) or \(q=\e^{-i\pi/3}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Angles and lengths}
+\(q\) is real if and only if its argument is \(0\) or \(\pi\) modulo \(2\pi\), that is if \(\vect{AB}\) and \(\vect{AC}\) are collinear. \(q\) is purely imaginary (nonzero) if and only if its argument is \(\pm\dfrac\pi2\). For 3, a triangle that is right-angled and isosceles at \(A\) corresponds to \(AC=AB\) and \(\left(\vect{AB},\vect{AC}\right)\equiv\pm\dfrac\pi2\); an equilateral triangle to \(AC=AB\) and \(\left(\vect{AB},\vect{AC}\right)\equiv\pm\dfrac\pi3\).
+\end{frame}
+\begin{frame}{Angles and lengths}
+Let \(A\) and \(B\) have affixes \(a\) and \(b\). The direct square \(ABCD\) has vertices \(c=b+i(b-a)\) and \(d=a+i(b-a)\): we go from \(\vect{AB}\) to \(\vect{BC}\) by a direct quarter turn. With \(a=0\) and \(b=1\): \(c=1+i\) and \(d=i\).
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity}
+Let \(n\ge1\) be an integer. An \(n\)-th root of unity is any complex number \(z\) such that \(z^n=1\). Their set is written \(\mathbb U_n\).
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity}
+For every integer \(n\ge1\), \(\mathbb U_n\) has exactly \(n\) elements:
+\[\mathbb U_n=\left\{\e^{2ik\pi/n}\;:\;k\in\{0,\ldots,n-1\}\right\}.\]
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity}
+Let \(z\in\mathbb U_n\). Then \(\abs z^n=\abs{z^n}=1\) with \(\abs z\ge0\), so \(\abs z=1\) and \(z=\e^{i\theta}\) for some real number \(\theta\). The equality \(\e^{in\theta}=1\) is equivalent to \(n\theta\equiv0\pmod{2\pi}\), that is \(\theta=\dfrac{2k\pi}n\) with \(k\) an integer. Conversely, \(\left(\e^{2ik\pi/n}\right)^n=\e^{2ik\pi}=1\).
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity (2)}
+Two integers \(k\) and \(k'\) give the same number if and only if \(\dfrac{2(k-k')\pi}{n}\) is a multiple of \(2\pi\), that is \(k\equiv k'\pmod n\). Every integer \(k\) has the same remainder as an integer of \(\{0,\ldots,n-1\}\), and these \(n\) integers have distinct remainders: \(\mathbb U_n\) has exactly \(n\) elements.
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity}
+For \(n\ge3\), the images of the elements of \(\mathbb U_n\) are the vertices of a regular polygon with \(n\) sides inscribed in the unit circle, one of whose vertices is the point with affix \(1\). With \(\omega=\e^{2i\pi/n}\), we have \(\mathbb U_n=\{1,\omega,\omega^2,\dots,\omega^{n-1}\}\). Cases to know: \(\mathbb U_2=\{1,-1\}\), \(\mathbb U_3=\{1,j,j^2\}\) with \(j=\e^{2i\pi/3}\), \(\mathbb U_4=\{1,i,-1,-i\}\).
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity}
+For every integer \(n\ge2\), the sum of the \(n\)-th roots of unity is zero.
+\end{frame}
+\begin{frame}{\(n\)-th roots of unity}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+With \(\omega=\e^{2i\pi/n}\neq1\) (since \(n\ge2\)): \(1+\omega+\dots+\omega^{n-1}=\dfrac{1-\omega^n}{1-\omega}=0\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/expertes-05-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

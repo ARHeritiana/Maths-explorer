@@ -1,0 +1,256 @@
+\mxunit{expertes-c08}{Nombres premiers et petit théorème de Fermat}
+\mxsubtitle{Infinité des nombres premiers, décomposition, petit théorème de Fermat}
+
+\begin{objectives}
+Reconnaître un nombre premier ; démontrer qu'il existe une infinité de nombres premiers ; décomposer un entier en produit de facteurs premiers et l'utiliser (diviseurs, PGCD) ; utiliser le petit théorème de Fermat pour calculer des restes.
+\end{objectives}
+\begin{prerequisites}
+Chapitres 6 et 7 ; coefficients binomiaux ; formule du binôme (chapitre 1).
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item L'entier $91$ est-il premier ?
+\item Donner les nombres premiers inférieurs à $30$.
+\item Décomposer $360$ en produit de facteurs premiers.
+\item Décomposer $\num{2026}$ en produit de facteurs premiers, sachant que $\num{1013}$ est premier.
+\item Calculer $2^{10}$ et donner son reste dans la division par $11$.
+\item Les entiers $35$ et $72$ sont-ils premiers entre eux ?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item Non : $91=7\times13$.
+\item $2$, $3$, $5$, $7$, $11$, $13$, $17$, $19$, $23$, $29$.
+\item $360=2^3\times3^2\times5$.
+\item $\num{2026}=2\times\num{1013}$.
+\item $2^{10}=\num{1024}=11\times93+1$ : le reste est $1$.
+\item Oui : $35=5\times7$ et $72=2^3\times3^2$ n'ont aucun facteur premier commun.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Une régularité des puissances \mxchip{35 min}]
+Pour un entier $n\ge2$ et un entier $a$, on note $r_n(a)$ le reste de $a^{n-1}$ dans la division par $n$.
+\begin{enumerate}
+\item Calculer $r_5(2)$, $r_5(3)$, $r_7(2)$, $r_7(3)$ à la main, en utilisant des congruences.
+\item À l'aide de la fonction \texttt{pow(a, n - 1, n)} de Python, qui renvoie ce reste, compléter le tableau suivant.
+\begin{center}\mxarraystretch{1.8}
+\begin{tabular}{c|*{7}{p{9mm}}}
+$n$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$\\\hline
+$r_n(2)$ & & & & & & & \\
+$r_n(3)$ & & & & & & &
+\end{tabular}
+\end{center}
+\item Pour quelles valeurs de $n$ obtient-on $1$ sur les deux lignes ? Quelle particularité ont-elles ?
+\item Formuler une conjecture. La tester pour $n=13$ et $a=5$.
+\item Pour $n=7$, calculer $r_7(7)$ et $r_7(14)$. Comment préciser la conjecture ?
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item $2^4=16\equiv1\pmod5$ ; $3^4=81\equiv1\pmod5$ ; $2^6=64\equiv1\pmod7$ ; $3^6=729=7\times104+1\equiv1\pmod7$.
+\item Ligne $r_n(2)$ : $1$, $2$, $1$, $0$, $4$, $2$, $1$. Ligne $r_n(3)$ : $1$, $3$, $1$, $3$, $0$, $3$, $1$.
+\item Pour $n=5$, $7$ et $11$ : ce sont les nombres premiers du tableau.
+\item Conjecture : si $p$ est premier, alors $a^{p-1}\equiv1\pmod p$. Pour $p=13$ et $a=5$ : $5^2=25\equiv-1$, donc $5^{12}=\left(5^2\right)^6\equiv1\pmod{13}$.
+\item $r_7(7)=r_7(14)=0$ : il faut supposer que $a$ n'est pas multiple de $p$. C'est le petit théorème de Fermat.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+Insister : la réciproque est fausse. Le nombre $341=11\times31$ n'est pas premier, et pourtant $2^{340}\equiv1\pmod{341}$ (à faire vérifier avec \texttt{pow}). Les tests de primalité et les nombres de Carmichaël sont des « problèmes possibles » du programme.
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{Nombres premiers}
+\begin{definition}[Nombre premier]
+Un entier naturel $p$ est \emph{premier} s'il a exactement deux diviseurs positifs, $1$ et $p$. Ainsi $1$ n'est pas premier.
+\end{definition}
+\begin{theorem}[Plus petit diviseur]
+Tout entier $n\ge2$ admet un diviseur premier : son plus petit diviseur supérieur ou égal à $2$. Si $n$ n'est pas premier, ce diviseur $p$ vérifie $p^2\le n$.
+\end{theorem}
+\begin{proof}
+Soit $p$ le plus petit diviseur de $n$ supérieur ou égal à $2$ (il existe, car $n$ en est un). Si $p$ n'était pas premier, il aurait un diviseur $d$ avec $2\le d<p$, qui diviserait aussi $n$ : contradiction. Si $n$ n'est pas premier, $n=pq$ avec $q\ge2$ diviseur de $n$, donc $q\ge p$ et $n=pq\ge p^2$.
+\end{proof}
+\begin{method}[Tester si un entier est premier]
+Pour savoir si $n\ge2$ est premier, il suffit de vérifier qu'aucun nombre premier $p$ tel que $p^2\le n$ ne divise $n$. Exemple : $211$ n'est divisible ni par $2$, $3$, $5$, $7$, $11$, ni par $13$, et $17^2=289>211$ : $211$ est premier.
+\end{method}
+\begin{theorem}[Infinité des nombres premiers]
+Il existe une infinité de nombres premiers.
+\end{theorem}
+\begin{proof}
+Supposons qu'il n'y en ait qu'un nombre fini : $p_1,\dots,p_k$. Posons $N=p_1p_2\cdots p_k+1\ge2$. Par le théorème précédent, $N$ a un diviseur premier, qui est l'un des $p_i$. Ce $p_i$ divise $N$ et le produit $p_1\cdots p_k$, donc il divise leur différence $1$ : c'est impossible. L'hypothèse est fausse.
+\end{proof}
+\begin{keypoint}[Crible d'Ératosthène en Python]
+On raye les multiples de chaque nombre premier à partir de son carré ; les nombres non rayés sont premiers.
+\begin{lstlisting}
+def crible(n):
+    premier = [True] * (n + 1)
+    premier[0] = premier[1] = False
+    p = 2
+    while p * p <= n:
+        if premier[p]:
+            for m in range(p * p, n + 1, p):
+                premier[m] = False
+        p = p + 1
+    return [k for k in range(n + 1) if premier[k]]
+\end{lstlisting}
+Il y a $25$ nombres premiers inférieurs à $100$.
+\end{keypoint}
+\begin{theorem}[Nombre premier et produit]
+Soit $p$ un nombre premier. Si $p\mid ab$, alors $p\mid a$ ou $p\mid b$. Plus généralement, si $p$ divise un produit, il divise l'un des facteurs.
+\end{theorem}
+\begin{proof}
+Si $p\nmid a$, alors $\pgcd(p,a)=1$, car les seuls diviseurs positifs de $p$ sont $1$ et $p$. Le théorème de Gauss donne $p\mid b$. Le cas d'un produit de plusieurs facteurs s'obtient par récurrence sur leur nombre.
+\end{proof}
+
+\subsection{Décomposition en facteurs premiers}
+\begin{theorem}[Décomposition]
+Tout entier $n\ge2$ s'écrit comme produit de nombres premiers, $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$, avec $p_1<p_2<\dots<p_k$ premiers et $\alpha_i\ge1$. Cette écriture est unique.
+\end{theorem}
+\begin{proof}
+\emph{Existence}, par récurrence forte. L'entier $2$ est premier. Supposons que tout entier de $\ent{2}{n}$ se décompose. Si $n+1$ est premier, c'est fini ; sinon $n+1=ab$ avec $2\le a,b\le n$, et l'on juxtapose les décompositions de $a$ et $b$.\par
+\emph{Unicité.} Si $p_1\cdots p_r=q_1\cdots q_s$ (facteurs premiers répétés), $p_1$ divise le produit des $q_j$, donc l'un d'eux, qui est premier : $p_1=q_j$. On simplifie et on recommence ; les deux listes de facteurs coïncident.
+\end{proof}
+\begin{keypoint}[Décomposer en Python]
+On divise par le plus petit diviseur $p\ge2$ tant que c'est possible ; il est premier. Quand $p^2>n$, le quotient restant, s'il dépasse $1$, est premier.
+\begin{lstlisting}
+def decomposition(n):
+    facteurs = []
+    p = 2
+    while p * p <= n:
+        while n % p == 0:
+            facteurs.append(p)
+            n = n // p
+        p = p + 1
+    if n > 1:
+        facteurs.append(n)
+    return facteurs
+\end{lstlisting}
+Par exemple, \texttt{decomposition(360)} renvoie \texttt{[2, 2, 2, 3, 3, 5]}.
+\end{keypoint}
+\begin{theorem}[Diviseurs]
+Si $n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}$, les diviseurs positifs de $n$ sont les entiers $p_1^{\beta_1}\cdots p_k^{\beta_k}$ avec $0\le\beta_i\le\alpha_i$. Il y en a $(\alpha_1+1)(\alpha_2+1)\cdots(\alpha_k+1)$.
+\end{theorem}
+\begin{method}[PGCD par décomposition]
+Le PGCD de deux entiers est le produit des facteurs premiers communs, chacun affecté du plus petit des deux exposants. Exemple : $360=2^3\times3^2\times5$ et $84=2^2\times3\times7$ donnent $\pgcd(360,84)=2^2\times3=12$.
+\end{method}
+
+\subsection{Petit théorème de Fermat}
+\begin{theorem}[Petit théorème de Fermat]
+Soit $p$ un nombre premier et $a$ un entier. Alors $a^p\equiv a\pmod p$. Si de plus $p$ ne divise pas $a$, alors $a^{p-1}\equiv1\pmod p$.
+\end{theorem}
+\begin{proof}
+\emph{Étape 1.} Pour $1\le k\le p-1$, $p$ divise $\binom pk$. En effet $k\binom pk=p\binom{p-1}{k-1}$, donc $p\mid k\binom pk$ ; comme $1\le k<p$, $p$ ne divise pas $k$ et $\pgcd(p,k)=1$ ; Gauss donne $p\mid\binom pk$.\par
+\emph{Étape 2.} Par la formule du binôme, pour tout entier $a$, $(a+1)^p=a^p+\sum_{k=1}^{p-1}\binom pk a^k+1\equiv a^p+1\pmod p$.\par
+\emph{Étape 3.} Récurrence sur $a\ge0$ : $0^p\equiv0$, et si $a^p\equiv a$, alors $(a+1)^p\equiv a^p+1\equiv a+1\pmod p$. Pour $a<0$, on choisit un entier $b\ge0$ tel que $b\equiv a\pmod p$ ; alors $a^p\equiv b^p\equiv b\equiv a$.\par
+\emph{Étape 4.} Si $p\nmid a$, alors $p\mid a^p-a=a\left(a^{p-1}-1\right)$ et $\pgcd(p,a)=1$ ; Gauss donne $p\mid a^{p-1}-1$.
+\end{proof}
+\begin{example}[Un reste]
+Reste de $3^{2026}$ dans la division par $11$ : $11$ est premier et ne divise pas $3$, donc $3^{10}\equiv1\pmod{11}$. Comme $\num{2026}=10\times202+6$, $3^{2026}\equiv3^6=729\equiv3\pmod{11}$ (car $729=66\times11+3$).
+\end{example}
+\begin{pitfall}
+La réciproque est fausse : $2^{340}\equiv1\pmod{341}$, alors que $341=11\times31$.
+\end{pitfall}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Premier ou non ?]
+Les entiers suivants sont-ils premiers ? $211$ ; $221$ ; $\num{1001}$ ; $257$.
+\end{exercise}
+\begin{solution}
+$211$ est premier (cours). $221=13\times17$. $\num{1001}=7\times11\times13$. Pour $257$ : ni $2$, $3$, $5$, $7$, $11$, $13$ ne le divisent et $17^2=289>257$ : il est premier.
+\end{solution}
+
+\begin{exercise}[Décomposition et diviseurs]
+Décomposer $720$ en produit de facteurs premiers. Combien a-t-il de diviseurs positifs ? Les diviseurs de $720$ qui sont des carrés parfaits sont-ils nombreux ?
+\end{exercise}
+\begin{solution}
+$720=2^4\times3^2\times5$. Nombre de diviseurs : $(4+1)(2+1)(1+1)=30$. Un diviseur carré a des exposants pairs : $2^{\beta_1}3^{\beta_2}5^{\beta_3}$ avec $\beta_1\in\ens{0;2;4}$, $\beta_2\in\ens{0;2}$, $\beta_3=0$ ; il y en a $6$ : $1$, $4$, $16$, $9$, $36$, $144$.
+\end{solution}
+
+\begin{exercise}[PGCD et PPCM par décomposition]
+Décomposer $\num{1260}$ et $\num{1050}$, puis en déduire leur PGCD et leur plus petit commun multiple. Vérifier que le produit du PGCD et du PPCM est égal au produit des deux nombres.
+\end{exercise}
+\begin{solution}
+$\num{1260}=2^2\times3^2\times5\times7$ et $\num{1050}=2\times3\times5^2\times7$. PGCD : $2\times3\times5\times7=210$ ; PPCM : $2^2\times3^2\times5^2\times7=\num{6300}$. Et $210\times\num{6300}=\num{1323000}=\num{1260}\times\num{1050}$.
+\end{solution}
+
+\begin{exercise}[Fermat et restes]
+\begin{enumerate}
+\item Déterminer le reste de $2^{2026}$ dans la division par $13$.
+\item Démontrer que pour tout entier $n$, $n^{13}-n$ est divisible par $13$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $13$ est premier et ne divise pas $2$ : $2^{12}\equiv1\pmod{13}$. $\num{2026}=12\times168+10$, donc $2^{2026}\equiv2^{10}=\num{1024}\pmod{13}$. Or $\num{1024}=13\times78+10$ : le reste est $10$.
+\item C'est la première forme du petit théorème de Fermat, $n^{13}\equiv n\pmod{13}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Divisible par $42$]
+Démontrer que pour tout entier $n$, $n^7-n$ est divisible par $42$.
+\end{exercise}
+\begin{solution}
+$42=2\times3\times7$. Par Fermat, $n^7\equiv n\pmod7$. Modulo $2$ : $n^2\equiv n$, donc $n^7\equiv n$. Modulo $3$ : $n^3\equiv n$, donc $n^7=n^3\times n^3\times n\equiv n\times n\times n=n^3\equiv n$. Ainsi $2$, $3$ et $7$ divisent $n^7-n$ ; ils sont premiers entre eux deux à deux, donc (corollaire du théorème de Gauss, appliqué deux fois) $42\mid n^7-n$.
+\end{solution}
+
+\begin{exercise}[Carré d'un nombre premier]
+Soit $p$ un nombre premier supérieur ou égal à $5$. Démontrer que $24$ divise $p^2-1$.
+\end{exercise}
+\begin{solution}
+$p^2-1=(p-1)(p+1)$. Comme $p$ est impair, $p-1$ et $p+1$ sont deux entiers pairs consécutifs : l'un est multiple de $4$, donc $8\mid p^2-1$. Comme $p$ n'est pas multiple de $3$, $p\equiv1$ ou $2\pmod3$, donc $3\mid p-1$ ou $3\mid p+1$. $8$ et $3$ sont premiers entre eux : $24\mid p^2-1$.
+\end{solution}
+
+\begin{exercise}[Nombres de Mersenne]
+\begin{enumerate}
+\item À l'aide de la factorisation de $z^m-1$ (chapitre 4), démontrer que si $n=ab$ avec $a\ge2$ et $b\ge2$, alors $2^a-1$ divise $2^n-1$.
+\item En déduire que si $2^n-1$ est premier, alors $n$ est premier.
+\item La réciproque est-elle vraie ? On calculera $2^{11}-1$ et on vérifiera que $23$ le divise.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Avec $z=2^a$ : $2^n-1=z^b-1=(z-1)\left(z^{b-1}+\dots+z+1\right)$, donc $2^a-1\mid2^n-1$.
+\item Si $n\ge2$ n'est pas premier, $n=ab$ comme en 1, et $1<2^a-1<2^n-1$ est un diviseur de $2^n-1$, qui n'est donc pas premier. Enfin $2^1-1=1$ n'est pas premier. Par contraposée, si $2^n-1$ est premier, $n$ est premier.
+\item Non : $11$ est premier, mais $2^{11}-1=\num{2047}=23\times89$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[Un chiffrement RSA en miniature]
+On choisit deux nombres premiers $p=5$ et $q=11$, on pose $n=pq=55$ et $\varphi=(p-1)(q-1)=40$.
+\begin{enumerate}
+\item On choisit $e=3$. Justifier que $e$ et $\varphi$ sont premiers entre eux, puis déterminer un entier $d\in\ent{1}{39}$ tel que $ed\equiv1\pmod{40}$.
+\item Chiffrement : un message est un entier $m\in\ent{0}{54}$ ; il est chiffré par le reste $c$ de $m^e$ modulo $n$. Chiffrer $m=8$.
+\item Déchiffrement : on admet pour l'instant que $c^d\equiv m\pmod n$. Vérifier avec une calculatrice ou Python que $17^{27}\equiv8\pmod{55}$.
+\item On démontre que $m^{ed}\equiv m\pmod{55}$ pour tout entier $m$.
+\begin{enumerate}
+\item Écrire $ed=1+40k$ avec $k$ entier naturel.
+\item Si $5\nmid m$, démontrer que $m^{40k}\equiv1\pmod5$ ; en déduire $m^{ed}\equiv m\pmod5$. Que se passe-t-il si $5\mid m$ ?
+\item Établir de même $m^{ed}\equiv m\pmod{11}$, puis conclure.
+\end{enumerate}
+\item Pourquoi la sécurité de ce chiffrement repose-t-elle sur la difficulté de décomposer $n$ quand $p$ et $q$ sont très grands ?
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item $40=2^3\times5$ et $3$ ne divise pas $40$ : ils sont premiers entre eux. $3\times27=81=2\times40+1$ : $d=27$.
+\item $8^3=512=9\times55+17$ : $c=17$.
+\item On obtient bien $8$ (par exemple \texttt{pow(17, 27, 55)}).
+\item
+\begin{enumerate}
+\item $ed=81=1+40\times2$ : $k=2$.
+\item Par Fermat, $m^4\equiv1\pmod5$, donc $m^{40k}=\left(m^4\right)^{10k}\equiv1$ et $m^{ed}=m\times m^{40k}\equiv m\pmod5$. Si $5\mid m$, les deux membres sont congrus à $0$.
+\item Modulo $11$ : si $11\nmid m$, $m^{10}\equiv1$, donc $m^{40k}=\left(m^{10}\right)^{4k}\equiv1$ ; si $11\mid m$, les deux membres sont nuls modulo $11$. Ainsi $5$ et $11$ divisent $m^{ed}-m$ et sont premiers entre eux : $55\mid m^{ed}-m$.
+\end{enumerate}
+\item Calculer $d$ demande $\varphi=(p-1)(q-1)$, donc $p$ et $q$. Connaissant seulement $n$ et $e$, il faudrait factoriser $n$ ; pour des nombres premiers de plusieurs centaines de chiffres, aucune méthode connue ne le fait en un temps raisonnable.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+RSA est un « problème possible » du programme. Faire écrire en Python les fonctions de chiffrement et de déchiffrement et les tester sur les $55$ messages possibles. La question 5 donne une idée de la sécurité ; elle n'appelle pas de démonstration.
+\end{teachernote}

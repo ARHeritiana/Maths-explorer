@@ -33,7 +33,7 @@ const UI = {
 };
 const t = k => UI[k][lang];
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
-const COURSE = { stmg: "Terminale STMG", premiere: "Première", seconde: "Seconde", terminale: "Terminale" };
+const COURSE = { stmg: "Terminale STMG", premiere: "Première", seconde: "Seconde", terminale: "Terminale", expertes: "Maths expertes" };
 const SIZE_NARROW = 1500;
 
 function fit() {

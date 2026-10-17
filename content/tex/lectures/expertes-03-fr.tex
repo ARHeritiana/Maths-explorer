@@ -1,0 +1,141 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Nombres complexes et trigonométrie}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Nombres complexes et trigonométrie}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Établir les formules d'addition et de duplication ; écrire un nombre complexe sous forme exponentielle et choisir la forme adaptée à un calcul ; calculer des puissances ; utiliser les formules de Moivre et d'Euler pour transformer des expressions trigonométriques.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+Pour tout réel \(\theta\), on pose \(f(\theta)=\cos\theta+i\sin\theta\).
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Calculer \(f(0)\), \(f\left(\dfrac\pi2\right)\), \(f(\pi)\). Quel est le module de \(f(\theta)\) ? Où se trouve l'image de \(f(\theta)\) ?
+
+\item Écrire \(f\left(\dfrac\pi3\right)\) et \(f\left(\dfrac\pi6\right)\) sous forme algébrique, puis calculer le produit \(f\left(\dfrac\pi3\right)f\left(\dfrac\pi6\right)\). Le comparer à \(f\left(\dfrac\pi2\right)\).
+
+\item Calculer de même \(f\left(\dfrac\pi4\right)^2\) et le comparer à \(f\left(\dfrac\pi2\right)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item À l'aide d'une calculatrice ou d'un tableur, comparer \(f(a)f(b)\) et \(f(a+b)\) pour trois couples \((a;b)\) choisis au hasard.
+
+\item Quelle fonction connue vérifie une relation du même type, \(g(a)g(b)=g(a+b)\) et \(g(0)=1\) ?
+
+\item Développer \(f(a)f(b)\). Quelles formules de trigonométrie faudrait-il connaître pour démontrer la conjecture ?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Formules d'addition et de duplication}
+Pour tous réels \(a\) et \(b\) :
+\[\cos(a-b)=\cos a\cos b+\sin a\sin b,\qquad\cos(a+b)=\cos a\cos b-\sin a\sin b,\]
+\[\sin(a-b)=\sin a\cos b-\cos a\sin b,\qquad\sin(a+b)=\sin a\cos b+\cos a\sin b.\]
+\end{frame}
+\begin{frame}{Formules d'addition et de duplication}
+Dans un repère orthonormé direct, soit \(\vect p\vc{\cos a}{\sin a}\) et \(\vect q\vc{\cos b}{\sin b}\) : ces vecteurs sont unitaires et \(\left(\vect u,\vect p\right)\equiv a\), \(\left(\vect u,\vect q\right)\equiv b\pmod{2\pi}\). Par la relation de Chasles, \(\left(\vect q,\vect p\right)\equiv a-b\pmod{2\pi}\). On calcule \(\vect q\cdot\vect p\) de deux façons :
+\[\vect q\cdot\vect p=\norm{\vect q}\norm{\vect p}\cos(a-b)=\cos(a-b)\quad\text{et}\quad\vect q\cdot\vect p=\cos b\cos a+\sin b\sin a.\]
+Cela démontre la première formule. En remplaçant \(b\) par \(-b\) et en utilisant \(\cos(-b)=\cos b\), \(\sin(-b)=-\sin b\), on obtient \(\cos(a+b)\). Enfin \(\sin(a+b)=\cos\left(\dfrac\pi2-a-b\right)=\cos\left(\left(\dfrac\pi2-a\right)-b\right)\), que la première formule développe en \(\sin a\cos b+\cos a\sin b\) ; on en déduit \(\sin(a-b)\) en remplaçant \(b\) par \(-b\).
+\end{frame}
+\begin{frame}{Formules d'addition et de duplication}
+Pour tout réel \(a\) : \(\sin2a=2\sin a\cos a\) et \(\cos2a=\cos^2a-\sin^2a=2\cos^2a-1=1-2\sin^2a\).
+\end{frame}
+\begin{frame}{Formules d'addition et de duplication}
+\(\cos\dfrac{\pi}{12}=\cos\left(\dfrac\pi3-\dfrac\pi4\right)=\dfrac12\times\dfrac{\sqrt2}2+\dfrac{\sqrt3}2\times\dfrac{\sqrt2}2=\dfrac{\sqrt6+\sqrt2}4\).
+\end{frame}
+\begin{frame}{Produit et arguments}
+Pour tous réels \(\theta\) et \(\theta'\) : \((\cos\theta+i\sin\theta)(\cos\theta'+i\sin\theta')=\cos(\theta+\theta')+i\sin(\theta+\theta')\).
+
+Par conséquent, pour tous complexes non nuls \(z\), \(z'\) et tout entier \(n\) :
+\[\arg(zz')\equiv\arg z+\arg z',\qquad\arg\dfrac1z\equiv-\arg z,\]
+\[\arg\dfrac z{z'}\equiv\arg z-\arg z',\qquad\arg\left(z^n\right)\equiv n\arg z\pmod{2\pi}.\]
+\end{frame}
+\begin{frame}{Produit et arguments}
+Le développement donne \((\cos\theta\cos\theta'-\sin\theta\sin\theta')+i(\sin\theta\cos\theta'+\cos\theta\sin\theta')\), que les formules d'addition simplifient. Si \(z=r(\cos\theta+i\sin\theta)\) et \(z'=r'(\cos\theta'+i\sin\theta')\), alors \(zz'=rr'(\cos(\theta+\theta')+i\sin(\theta+\theta'))\) avec \(rr'>0\) : c'est une forme trigonométrique de \(zz'\). Les autres relations s'en déduisent : \(z\times\dfrac1z=1\) d'argument \(0\), puis \(\dfrac z{z'}=z\times\dfrac1{z'}\), et une récurrence pour \(n\ge0\), étendue à \(n<0\) par l'inverse.
+\end{frame}
+\begin{frame}{Produit et arguments}
+Multiplier par \(\cos\theta+i\sin\theta\) fait tourner d'un angle \(\theta\) autour de \(O\). La conjecture de l'activité du chapitre 2 est démontrée : multiplier par \(i\) est un quart de tour direct, multiplier par \(1+i=\sqrt2\left(\cos\dfrac\pi4+i\sin\dfrac\pi4\right)\) est un huitième de tour suivi d'un agrandissement de rapport \(\sqrt2\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+Pour tout réel \(\theta\), on note \(\e^{i\theta}=\cos\theta+i\sin\theta\). Tout complexe non nul s'écrit \(z=r\e^{i\theta}\) avec \(r=\abs z\) et \(\theta\equiv\arg z\pmod{2\pi}\) : c'est sa \emph{forme exponentielle}.
+\end{frame}
+\begin{frame}{Forme exponentielle}
+Pour tous réels \(\theta\), \(\theta'\) et tout entier \(n\) :
+\[\e^{i\theta}\e^{i\theta'}=\e^{i(\theta+\theta')},\qquad\dfrac1{\e^{i\theta}}=\e^{-i\theta}=\overline{\e^{i\theta}},\qquad\dfrac{\e^{i\theta}}{\e^{i\theta'}}=\e^{i(\theta-\theta')},\qquad\left(\e^{i\theta}\right)^n=\e^{in\theta}.\]
+Valeurs à connaître : \(\e^{i0}=1\), \(\e^{i\pi/2}=i\), \(\e^{i\pi}=-1\), \(\e^{-i\pi/2}=-i\), \(\abs{\e^{i\theta}}=1\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+Pour tout réel \(\theta\) et tout entier \(n\) : \((\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta)\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+Pour tout réel \(\theta\) : \(\cos\theta=\dfrac{\e^{i\theta}+\e^{-i\theta}}2\) et \(\sin\theta=\dfrac{\e^{i\theta}-\e^{-i\theta}}{2i}\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+\(\e^{i\theta}+\e^{-i\theta}=\e^{i\theta}+\overline{\e^{i\theta}}=2\operatorname{Re}\left(\e^{i\theta}\right)=2\cos\theta\), et \(\e^{i\theta}-\e^{-i\theta}=2i\operatorname{Im}\left(\e^{i\theta}\right)=2i\sin\theta\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+Pour une somme, la forme algébrique ; pour un produit, un quotient ou une puissance, la forme exponentielle. Exemple : \(1+i\sqrt3=2\e^{i\pi/3}\), donc
+\[\left(1+i\sqrt3\right)^{10}=2^{10}\e^{10i\pi/3}=1\,024\,\e^{-2i\pi/3}=-512-512\sqrt3\,i,\]
+car \(\dfrac{10\pi}3-4\pi=-\dfrac{2\pi}3\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+On développe \((\cos\theta+i\sin\theta)^3\) par la formule du binôme et on identifie la partie réelle :
+\(\cos3\theta=\cos^3\theta-3\cos\theta\sin^2\theta=4\cos^3\theta-3\cos\theta\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+\(\cos^3\theta=\dfrac{\left(\e^{i\theta}+\e^{-i\theta}\right)^3}{8}=\dfrac{\e^{3i\theta}+3\e^{i\theta}+3\e^{-i\theta}+\e^{-3i\theta}}8=\dfrac{\cos3\theta+3\cos\theta}4\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+Pour factoriser une somme d'exponentielles, on met en facteur l'exponentielle de l'angle moyen : \(\e^{ia}+\e^{ib}=\e^{i\dfrac{a+b}2}\left(\e^{i\dfrac{a-b}2}+\e^{-i\dfrac{a-b}2}\right)=2\cos\dfrac{a-b}2\,\e^{i\dfrac{a+b}2}\).
+\end{frame}
+\begin{frame}{Forme exponentielle}
+\(\e^{i\theta}\) n'est pas un réel positif : son module vaut \(1\), mais il peut être négatif (\(\e^{i\pi}=-1\)) ou non réel. Une écriture \(r\e^{i\theta}\) n'est une forme exponentielle que si \(r>0\).
+\end{frame}
+\end{document}

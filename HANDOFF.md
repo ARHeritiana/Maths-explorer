@@ -12,11 +12,11 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 |---|---|
 | Governing brief | `PROJECT_BRIEF.md` v0.5. Decisions settled, only the items in "Open for the owner" below remain. |
 | Design | Design v3 "Cahier" (reasoning and tokens in `docs/DESIGN_V3.md`). Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
-| Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (six courses migrated, 47 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
+| Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (seven courses migrated, 58 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
 | Tests | `npm test` (node tests), `npm run check` (syntax of every served script, `scripts/check-syntax.mjs`), `make check` (pipeline; the notation test needs TeX Live) and the browser suite (`npm run test:browser`) are the pre-push checks. Current results are in the latest Log entry. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script. |
 | Private area | `private/`: `ledger.json`, `audits/`, `verification/` and `course-quality/` (see `private/README.md`). Human review remains false for every resource. |
-| Publication gate | No chapter has been through the two-agent audit recorded in `private/ledger.json` yet. The TeX migration was verified by the pipeline checks, not by the gate. |
+| Publication gate | No chapter has been through the two-agent audit recorded in `private/ledger.json` yet. The TeX migration was verified by the pipeline checks, not by the gate. Maths expertes was published on 17 October 2026 on the owner's explicit instruction before its two audits (ledger record `expertes-course`). |
 | Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`; when the pip Playwright expects another browser build, set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (adjust to the folder present). |
 
 ## Conventions added on 15 October 2026
@@ -221,15 +221,31 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
   repository variable PUBLISH_GITHUB_PAGES=true; manual publication remains available after setup. Native Sites is
   the active host. Preserve repository visibility and the existing ChatGPT Site sharing policy.
 
-### 17 October 2026: Maths expertes course (TeX)
+### 17 October 2026: Maths expertes course (TeX, then full integration)
 
-- The option had no lessons. A complete course is in `content/tex/courses/expertes/`: front unit and 11 chapters
-  (complex numbers C01 to C05, arithmetic C06 to C08, graphs and matrices C09 to C11), each with automatismes, an introductory
-  activity, course notes including the exigible proofs of MENE1921264A, graded exercises, a problem and teacher-only solutions.
-  French units are the source; English twins are generated from aligned tables (`twin check` passes). The four entry files
-  (`eleve.tex`, `professeur.tex`, `-en`) compile from that folder: 75 and 90 pages per language, no errors or overfull boxes.
-- Every computed result is checked by `python3 private/verification/expertes-results.py` (SymPy, exits 0). Ledger record
-  `expertes-course`: status draft, no audit, not published.
-- Not yet in the catalogue: no `books` entry, no PDF builder, not listed by `scripts/publish-sources.py`, so nothing reaches
-  `dist/`. After two audits, add those three and delete the hand-written entry files (steps in the ledger notes). [VERIFY] the
-  programme items against the official annex: the BO annex PDF could not be fetched from the sandbox.
+- The option had no lessons. The course is in `content/tex/courses/expertes/`: front unit and 11 chapters (complex numbers
+  C01 to C05, arithmetic C06 to C08, matrices and graphs C09 to C11), each with automatismes, an introductory activity,
+  course notes with the exigible proofs of MENE1921264A, graded exercises, a problem and teacher-only solutions. French
+  units are the source; English twins are generated (`twin check` passes). Books: 75 (student) and 90 (teacher) pages
+  per language, no errors or overfull boxes.
+- Integrated like the other courses on the owner's instruction ("make them match the format of existing lessons, with
+  slides and all"): `books.expertes` in the manifest (the hand entry files were removed; mains are generated), builder
+  `scripts/build-expertes.py` (registered in `pipeline.COURSES`; it writes the resource records, the companion layout and
+  the two source-book records), catalogue course `expertes` with chapters `expertes-01` to `expertes-11`, eight excerpts
+  per chapter (chapter, teacher, fluency, activities, notes, exercises, problems, corrections), Sources page entry
+  (`publish-sources.py`). Library tab "Mathématiques expertes".
+- Slides: extracted from the units by `build-slides.py` (parser `expertes`, subsection titles, figures attached); 11 decks,
+  HTML exports and 22 Beamer lectures. Seven new draggable widgets in `site/slides/widgets-2d.js`: `complex` (modes
+  alg, polar, product), `cquad`, `roots`, `modclock` (powers, inverse), `matrix2`, `walks`, `markov`. French integer
+  intervals (`\ent`) print `\llbracket`: the player, the chapter pages and the lectures define it (`notation.BRACKETS`),
+  since MathJax and Beamer have no stmaryrd.
+- Guides: 11 study sheets (`site/js/study-guides.js`, rebuilt by `scripts/build-study-guides.mjs`), 11 companion lessons
+  (`site/js/learning-content.js`) and 9 visual scenes (`site/js/visual-lessons.js`: cplane, rotation, croots, unity,
+  powers, sieve, fibonacci, walks, markov; Bézout reuses euclid).
+- Every computed result, including the sheets, lessons, scenes and widget examples, is checked by
+  `python3 private/verification/expertes-results.py` (SymPy, exits 0). Ledger record `expertes-course`: published, still
+  `draft` with no audit: the two independent audits are owed. [VERIFY] the programme items against the official annex
+  (the BO annex PDF could not be fetched from the sandbox).
+- Checks: `npm test` (128 pass), `npm run check`, `make check FAST=1` (24 ok), browser suite and slide smoke on the new decks.
+- Seen, not changed: on chapter pages ("Construire le cours"), inline formulas render on their own lines in headless
+  Chromium for every course (STMG too); worth a look in a real browser.

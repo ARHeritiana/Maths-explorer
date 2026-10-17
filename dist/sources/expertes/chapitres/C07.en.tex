@@ -1,0 +1,222 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c07}{GCD, Bézout's and Gauss's theorems}
+\mxsubtitle{Euclid's algorithm, coprime integers, Diophantine equations}
+
+\begin{objectives}
+Find a gcd with Euclid's algorithm; obtain a Bézout pair; use Bézout's and Gauss's theorems; find an inverse modulo $n$; solve an equation $ax+by=c$ in integers.
+\end{objectives}
+\begin{prerequisites}
+Chapter 6 (divisibility, Euclidean division, congruences); programming a loop in Python.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Carry out the Euclidean division of $\num{1053}$ by $325$.
+\item Give the greatest common divisor of $84$ and $126$.
+\item Do the numbers $15$ and $28$ have a common divisor other than $1$?
+\item Find two integers $u$ and $v$ such that $5u+3v=1$.
+\item Solve $4x\equiv0\pmod{6}$ for $x\in\ent{0}{5}$.
+\item If $7$ divides $5k$, what can be conjectured about $k$?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $\num{1053}=3\times325+78$.
+\item $42$.
+\item No: $15=3\times5$ and $28=2^2\times7$.
+\item For example $u=2$ and $v=-3$.
+\item $x=0$ or $x=3$: $4\times3=12\equiv0\pmod6$. One cannot ``divide by $4$''.
+\item That $7$ divides $k$: Gauss's theorem will prove it.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[Measuring one litre with two cans \mxchip{35 min}]
+We have a $9$-litre can, a $7$-litre can, both without markings, and a water supply. We may fill a can, empty it, or pour one into the other until one is empty or the other is full.
+\begin{enumerate}
+\item Show that one can get exactly $2$ litres in the large can.
+\item If we pour in $u$ times $9$ litres altogether and throw away $v$ times $7$ litres, the quantity left is $9u-7v$. Find natural numbers $u$ and $v$ such that $9u-7v=1$. Deduce how to get $1$ litre.
+\item The cans are replaced by cans of $6$ and $9$ litres. Show that every quantity of the form $6u+9v$, with $u$ and $v$ integers, is a multiple of $3$. Can one get $1$ litre?
+\item With cans of $a$ and $b$ litres, which whole quantities does it seem possible to get? State a conjecture involving the greatest common divisor of $a$ and $b$.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item Fill the $9$-litre can and pour it into the $7$-litre can: $2$ litres are left.
+\item $9\times4-7\times5=36-35=1$. Fill the large can four times, pouring it each time into the small one, which is emptied whenever it is full (five times in all): $1$ litre is left in the large can.
+\item $6u+9v=3(2u+3v)$. Every quantity obtained is a multiple of $3$: it is impossible to get $1$ litre.
+\item Conjecture: one obtains exactly the multiples of $\pgcd(a,b)$ (within the capacity of the cans). The key tool is the equality $au+bv=\pgcd(a,b)$, proved in the course.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+Have the students handle the cans (or simulate on paper) before looking for $u$ and $v$. Question 2 is solved by trial; the extended Euclidean algorithm of the course makes it systematic. Do not try to prove in class that the conjecture is sufficient for the cans: only Bézout's equality is in the syllabus.
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{GCD and Euclid's algorithm}
+\begin{definition}[GCD]
+Let $a$ and $b$ be two integers, not both zero. The set of their positive common divisors is finite and contains $1$; its largest element is called the \emph{greatest common divisor} of $a$ and $b$, written $\pgcd(a,b)$. We say that $a$ and $b$ are \emph{coprime} if $\pgcd(a,b)=1$.
+\end{definition}
+\begin{theorem}[Euclid's lemma]
+Let $a$ and $b$ be two integers with $b\neq0$. For every integer $k$, the common divisors of $a$ and $b$ are those of $b$ and $a-kb$. In particular, if $r$ is the remainder of the division of $a$ by $b\ge1$, then $\pgcd(a,b)=\pgcd(b,r)$.
+\end{theorem}
+\begin{proof}
+If $d\mid a$ and $d\mid b$, then $d\mid a-kb$. Conversely, if $d\mid b$ and $d\mid a-kb$, then $d\mid(a-kb)+kb=a$. The two sets of common divisors are equal, so their largest elements are too.
+\end{proof}
+\begin{method}[Euclid's algorithm]
+Replace $\pt{a;b}$ by $\pt{b;r}$ as long as the remainder $r$ is not zero. The remainders form a strictly decreasing sequence of natural numbers, so the algorithm stops. The gcd is the last nonzero remainder. Example:
+\[\num{1053}=3\times325+78,\qquad325=4\times78+13,\qquad78=6\times13+0,\]
+so $\pgcd(\num{1053},325)=13$.
+\end{method}
+
+\subsection{Bézout's theorem}
+\begin{theorem}[Writing the gcd]
+Let $a$ and $b$ be two integers, not both zero. There are integers $u$ and $v$ such that $au+bv=\pgcd(a,b)$. Moreover, every common divisor of $a$ and $b$ divides $\pgcd(a,b)$.
+\end{theorem}
+\begin{proof}
+Let $E$ be the set of positive integers of the form $au+bv$, with $u$, $v$ integers. $E$ is not empty (it contains $a^2+b^2$). Let $d=au_0+bv_0$ be its smallest element.\par
+Divide $a$ by $d$: $a=dq+r$ with $0\le r<d$. Then $r=a-q(au_0+bv_0)=a(1-qu_0)+b(-qv_0)$ is of the form $au+bv$. If it were positive, it would belong to $E$ while being smaller than $d$: impossible. So $r=0$ and $d\mid a$. Likewise $d\mid b$.\par
+Finally every common divisor $c$ of $a$ and $b$ divides $au_0+bv_0=d$, so $c\le d$. Hence $d$ is the greatest common divisor: $d=\pgcd(a,b)$.
+\end{proof}
+\begin{theorem}[Bézout's theorem]
+Two integers $a$ and $b$ are coprime if and only if there are integers $u$ and $v$ such that $au+bv=1$.
+\end{theorem}
+\begin{proof}
+If $\pgcd(a,b)=1$, the previous theorem provides $u$ and $v$. Conversely, if $au+bv=1$, every positive common divisor of $a$ and $b$ divides $1$, hence equals $1$.
+\end{proof}
+\begin{method}[Bézout pair: working back through Euclid's algorithm]
+With the previous example: $13=325-4\times78=325-4(\num{1053}-3\times325)=13\times325-4\times\num{1053}$. A suitable pair for $\pt{\num{1053};325}$ is $\pt{-4;13}$.
+\end{method}
+\begin{keypoint}[Extended Euclidean algorithm in Python]
+The following function returns $\pt{d;u;v}$ with $d=\pgcd(a,b)=au+bv$, for natural numbers $a$ and $b$ not both zero.
+\begin{lstlisting}
+def euclide_etendu(a, b):
+    u0, v0, u1, v1 = 1, 0, 0, 1
+    while b != 0:
+        q, r = a // b, a % b
+        a, b = b, r
+        u0, u1 = u1, u0 - q * u1
+        v0, v1 = v1, v0 - q * v1
+    return a, u0, v0
+\end{lstlisting}
+At every step, the two current remainders can be written $au_0+bv_0$ and $au_1+bv_1$ in terms of the initial values of $a$ and $b$.
+\end{keypoint}
+
+\subsection{Gauss's theorem}
+\begin{theorem}[Gauss's theorem]
+Let $a$, $b$, $c$ be three integers. If $a\mid bc$ and $a$ and $b$ are coprime, then $a\mid c$.
+\end{theorem}
+\begin{proof}
+By Bézout's theorem, there are $u$ and $v$ such that $au+bv=1$. Multiplying by $c$: $c=acu+bcv$. Now $a\mid acu$ and $a\mid bc$, so $a$ divides $acu+bcv=c$.
+\end{proof}
+\begin{theorem}[Corollary]
+If $a$ and $b$ are coprime and both divide $n$, then $ab$ divides $n$.
+\end{theorem}
+\begin{proof}
+$n=ak$. Since $b\mid ak$ and $\pgcd(a,b)=1$, Gauss gives $b\mid k$: $k=bk'$ and $n=abk'$.
+\end{proof}
+\begin{theorem}[Inverse modulo $n$]
+Let $n\ge2$ and $a$ an integer. There is an integer $u$ such that $au\equiv1\pmod n$ if and only if $\pgcd(a,n)=1$. Such a $u$ is an \emph{inverse of $a$ modulo $n$}; it allows us to solve $ax\equiv b\pmod n$: $x\equiv ub\pmod n$.
+\end{theorem}
+\begin{proof}
+$au\equiv1\pmod n$ is equivalent to the existence of an integer $v$ such that $au+nv=1$: this is Bézout's theorem.
+\end{proof}
+\begin{method}[Equation $ax+by=c$ in integers]
+\begin{enumerate}
+\item It has solutions if and only if $\pgcd(a,b)$ divides $c$; we then divide by this gcd.
+\item Find a particular solution $\pt{x_0;y_0}$.
+\item By subtraction, $a(x-x_0)=-b(y-y_0)$; with $a$ and $b$ coprime, Gauss gives $x-x_0=bk$, then $y-y_0=-ak$.
+\item Check that the pairs $\pt{x_0+bk;y_0-ak}$, $k\in\Z$, are indeed solutions.
+\end{enumerate}
+Example: $7x+5y=1$ has the particular solution $\pt{-2;3}$; its solutions are the pairs $\pt{-2+5k;3-7k}$, $k\in\Z$.
+\end{method}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Euclid's algorithm]
+Find $\pgcd(\num{1071},462)$ with Euclid's algorithm, then simplify the fraction $\dfrac{462}{\num{1071}}$.
+\end{exercise}
+\begin{solution}
+$\num{1071}=2\times462+147$, $462=3\times147+21$, $147=7\times21$. The gcd is $21$ and $\dfrac{462}{\num{1071}}=\dfrac{22}{51}$.
+\end{solution}
+
+\begin{exercise}[Bézout pair]
+Find a pair of integers $\pt{u;v}$ such that $17u+12v=1$.
+\end{exercise}
+\begin{solution}
+$17=12+5$, $12=2\times5+2$, $5=2\times2+1$. Working back: $1=5-2\times2=5-2(12-2\times5)=5\times5-2\times12=5(17-12)-2\times12=5\times17-7\times12$. The pair $\pt{5;-7}$ works: $85-84=1$.
+\end{solution}
+
+\begin{exercise}[Coprime integers]
+Let $n$ be a natural number. Prove that $n$ and $n+1$ are coprime, then that $2n+1$ and $3n+1$ are coprime too.
+\end{exercise}
+\begin{solution}
+$(n+1)\times1+n\times(-1)=1$. Next $3(2n+1)-2(3n+1)=1$. Bézout's theorem concludes in both cases.
+\end{solution}
+
+\begin{exercise}[A homogeneous equation]
+Find all pairs of integers $\pt{x;y}$ such that $15x=21y$.
+\end{exercise}
+\begin{solution}
+Dividing by $3$: $5x=7y$. So $7\mid5x$ and $\pgcd(7,5)=1$: Gauss gives $x=7k$, $k\in\Z$. Then $5\times7k=7y$, that is $y=5k$. Conversely $15\times7k=105k=21\times5k$. The solutions are the pairs $\pt{7k;5k}$, $k\in\Z$.
+\end{solution}
+
+\begin{exercise}[Exercise books and pens]
+A bookshop sells exercise books at $\num{1100}$ ariary and pens at $700$ ariary. A customer spends exactly $\num{10000}$ ariary. How many exercise books and pens did they buy?
+\end{exercise}
+\begin{solution}
+We look for natural numbers $x$ and $y$ such that $\num{1100}x+700y=\num{10000}$, that is $11x+7y=100$. Modulo $7$: $4x\equiv2\pmod7$; since $4\times2=8\equiv1$, $x\equiv4\pmod7$. The particular solution $\pt{4;8}$ works ($44+56=100$). The integer solutions are $\pt{4+7k;8-11k}$, $k\in\Z$. For $x\ge0$ and $y\ge0$, we need $k\ge-\frac47$ and $k\le\frac8{11}$, so $k=0$: $4$ exercise books and $8$ pens.
+\end{solution}
+
+\begin{exercise}[Inverse modulo $26$]
+\begin{enumerate}
+\item Explain why $7$ has an inverse modulo $26$ and check that $15$ is one.
+\item Solve $7x+3\equiv10\pmod{26}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\pgcd(7,26)=1$ ; $7\times15=105=4\times26+1$.
+\item $7x\equiv7\pmod{26}$; multiplying by $15$: $x\equiv105\equiv1\pmod{26}$. The solutions are the integers $1+26k$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A gcd that depends on $n$]
+Let $n$ be a natural number and $d=\pgcd(n+5,2n+3)$.
+\begin{enumerate}
+\item Prove that $d$ divides $7$.
+\item Find the integers $n$ for which $d=7$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $d$ divides $2(n+5)-(2n+3)=7$.
+\item $d\in\ens{1;7}$. If $d=7$, then $7\mid n+5$, that is $n\equiv2\pmod7$. Conversely, if $n\equiv2\pmod7$, then $n+5\equiv0$ and $2n+3\equiv7\equiv0\pmod7$, so $d=7$. Example: $n=2$ gives $\pgcd(7,7)=7$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[The affine cipher]
+The letters A to Z are numbered from $0$ to $25$. To encrypt a letter with number $x$, compute the remainder $y$ of $7x+3$ in the division by $26$, and replace the letter by the letter with number $y$.
+\begin{enumerate}
+\item Encrypt the word EXPERT.
+\item Prove that $y\equiv7x+3\pmod{26}$ is equivalent to $x\equiv15y+7\pmod{26}$.
+\item Decrypt the message TDNZZ.
+\item Replace $7$ by $a$ in the key. Prove that if $\pgcd(a,26)\neq1$, two different letters may be encrypted as the same letter. How many values of $a\in\ent{1}{25}$ give a cipher that can be decrypted?
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item E$=4\mapsto31\equiv5$ (F); X$=23\mapsto164\equiv8$ (I); P$=15\mapsto108\equiv4$ (E); E $\mapsto$ F; R$=17\mapsto122\equiv18$ (S); T$=19\mapsto136\equiv6$ (G). The encrypted word is FIEFSG.
+\item If $y\equiv7x+3$, multiplying $y-3\equiv7x$ by $15$: $x\equiv15y-45\equiv15y+7\pmod{26}$. Conversely, if $x\equiv15y+7$, then $7x+3\equiv105y+52\equiv y\pmod{26}$, since $105\equiv1$ and $52\equiv0$.
+\item T$=19\mapsto15\times19+7=292\equiv6$ (G); D$=3\mapsto52\equiv0$ (A); N$=13\mapsto202\equiv20$ (U); Z$=25\mapsto382\equiv18$ (S). The message is GAUSS.
+\item If $d=\pgcd(a,26)>1$, let $x'=x+\frac{26}d$. Then $ax'=ax+26\times\frac ad\equiv ax\pmod{26}$: the letters $x$ and $x'\neq x$ (for $x$ and $x'$ in $\ent{0}{25}$, for example $x=0$) have the same encryption. If $\pgcd(a,26)=1$, the inverse of $a$ modulo $26$ allows decryption as in 2. The $a\in\ent{1}{25}$ coprime with $26=2\times13$ are the odd numbers other than $13$: there are $12$ of them.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+Ciphers (affine, Vigenère, Hill, RSA) are ``possible problems'' of the syllabus. The Hill cipher is taken up in chapter 9 (matrices), RSA in chapter 8. Have the cipher programmed in Python.
+\end{teachernote}

@@ -1,0 +1,221 @@
+\mxunit{expertes-c07}{PGCD, théorèmes de Bézout et de Gauss}
+\mxsubtitle{Algorithme d'Euclide, entiers premiers entre eux, équations diophantiennes}
+
+\begin{objectives}
+Déterminer un PGCD par l'algorithme d'Euclide ; obtenir un couple de Bézout ; utiliser les théorèmes de Bézout et de Gauss ; déterminer un inverse modulo $n$ ; résoudre une équation $ax+by=c$ en nombres entiers.
+\end{objectives}
+\begin{prerequisites}
+Chapitre 6 (divisibilité, division euclidienne, congruences) ; programmation d'une boucle en Python.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item Effectuer la division euclidienne de $\num{1053}$ par $325$.
+\item Donner le plus grand diviseur commun de $84$ et $126$.
+\item Les nombres $15$ et $28$ ont-ils un diviseur commun autre que $1$ ?
+\item Trouver deux entiers $u$ et $v$ tels que $5u+3v=1$.
+\item Résoudre $4x\equiv0\pmod{6}$ pour $x\in\ent{0}{5}$.
+\item Si $7$ divise $5k$, que peut-on conjecturer sur $k$ ?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $\num{1053}=3\times325+78$.
+\item $42$.
+\item Non : $15=3\times5$ et $28=2^2\times7$.
+\item Par exemple $u=2$ et $v=-3$.
+\item $x=0$ ou $x=3$ : $4\times3=12\equiv0\pmod6$. On ne peut pas « diviser par $4$ ».
+\item Que $7$ divise $k$ : le théorème de Gauss le démontrera.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Mesurer un litre avec deux bidons \mxchip{35 min}]
+On dispose d'un bidon de $9$ litres, d'un bidon de $7$ litres, sans graduation, et d'une source d'eau. On peut remplir un bidon, le vider, ou verser l'un dans l'autre jusqu'à ce que l'un soit vide ou l'autre plein.
+\begin{enumerate}
+\item Montrer qu'on peut obtenir exactement $2$ litres dans le grand bidon.
+\item Si l'on verse au total $u$ fois $9$ litres et que l'on jette $v$ fois $7$ litres, la quantité restante est $9u-7v$. Trouver des entiers naturels $u$ et $v$ tels que $9u-7v=1$. En déduire comment obtenir $1$ litre.
+\item On remplace les bidons par des bidons de $6$ et $9$ litres. Montrer que toute quantité de la forme $6u+9v$, avec $u$ et $v$ entiers relatifs, est un multiple de $3$. Peut-on obtenir $1$ litre ?
+\item Avec des bidons de $a$ et $b$ litres, quelles quantités entières semble-t-on pouvoir obtenir ? Formuler une conjecture faisant intervenir le plus grand diviseur commun de $a$ et $b$.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item Remplir le $9$ litres, le verser dans le $7$ litres : il reste $2$ litres.
+\item $9\times4-7\times5=36-35=1$. On remplit quatre fois le grand bidon, on le transvase chaque fois dans le petit, que l'on vide dès qu'il est plein (cinq fois au total) : il reste $1$ litre dans le grand bidon.
+\item $6u+9v=3(2u+3v)$. Toute quantité obtenue est multiple de $3$ : impossible d'obtenir $1$ litre.
+\item Conjecture : on obtient exactement les multiples de $\pgcd(a,b)$ (dans la limite de la capacité des bidons). L'outil clé est l'égalité $au+bv=\pgcd(a,b)$, démontrée dans le cours.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+Faire manipuler (ou simuler sur papier) avant de chercher $u$ et $v$. La question 2 se résout par essais ; l'algorithme d'Euclide étendu du cours la systématise. Ne pas chercher à démontrer en classe le caractère suffisant de la conjecture pour les bidons : seule l'égalité de Bézout est au programme.
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{PGCD et algorithme d'Euclide}
+\begin{definition}[PGCD]
+Soit $a$ et $b$ deux entiers relatifs non tous deux nuls. L'ensemble de leurs diviseurs communs positifs est fini et contient $1$ ; son plus grand élément est appelé \emph{plus grand commun diviseur} de $a$ et $b$, noté $\pgcd(a,b)$. On dit que $a$ et $b$ sont \emph{premiers entre eux} si $\pgcd(a,b)=1$.
+\end{definition}
+\begin{theorem}[Lemme d'Euclide]
+Soit $a$ et $b$ deux entiers avec $b\neq0$. Pour tout entier $k$, les diviseurs communs de $a$ et $b$ sont ceux de $b$ et $a-kb$. En particulier, si $r$ est le reste de la division de $a$ par $b\ge1$, alors $\pgcd(a,b)=\pgcd(b,r)$.
+\end{theorem}
+\begin{proof}
+Si $d\mid a$ et $d\mid b$, alors $d\mid a-kb$. Réciproquement, si $d\mid b$ et $d\mid a-kb$, alors $d\mid(a-kb)+kb=a$. Les deux ensembles de diviseurs communs sont égaux, donc leurs plus grands éléments aussi.
+\end{proof}
+\begin{method}[Algorithme d'Euclide]
+On remplace $\pt{a;b}$ par $\pt{b;r}$ tant que le reste $r$ n'est pas nul. Les restes forment une suite d'entiers naturels strictement décroissante, donc l'algorithme s'arrête. Le PGCD est le dernier reste non nul. Exemple :
+\[\num{1053}=3\times325+78,\qquad325=4\times78+13,\qquad78=6\times13+0,\]
+donc $\pgcd(\num{1053},325)=13$.
+\end{method}
+
+\subsection{Théorème de Bézout}
+\begin{theorem}[Écriture du PGCD]
+Soit $a$ et $b$ deux entiers non tous deux nuls. Il existe des entiers relatifs $u$ et $v$ tels que $au+bv=\pgcd(a,b)$. De plus, tout diviseur commun de $a$ et $b$ divise $\pgcd(a,b)$.
+\end{theorem}
+\begin{proof}
+Soit $E$ l'ensemble des entiers strictement positifs de la forme $au+bv$, avec $u$, $v$ entiers. $E$ n'est pas vide (il contient $a^2+b^2$). Soit $d=au_0+bv_0$ son plus petit élément.\par
+Divisons $a$ par $d$ : $a=dq+r$ avec $0\le r<d$. Alors $r=a-q(au_0+bv_0)=a(1-qu_0)+b(-qv_0)$ est de la forme $au+bv$. S'il était strictement positif, il appartiendrait à $E$ en étant plus petit que $d$ : impossible. Donc $r=0$ et $d\mid a$. De même $d\mid b$.\par
+Enfin tout diviseur commun $c$ de $a$ et $b$ divise $au_0+bv_0=d$, donc $c\le d$. Ainsi $d$ est le plus grand diviseur commun : $d=\pgcd(a,b)$.
+\end{proof}
+\begin{theorem}[Théorème de Bézout]
+Deux entiers $a$ et $b$ sont premiers entre eux si et seulement si il existe des entiers relatifs $u$ et $v$ tels que $au+bv=1$.
+\end{theorem}
+\begin{proof}
+Si $\pgcd(a,b)=1$, le théorème précédent fournit $u$ et $v$. Réciproquement, si $au+bv=1$, tout diviseur commun positif de $a$ et $b$ divise $1$, donc vaut $1$.
+\end{proof}
+\begin{method}[Couple de Bézout : remonter l'algorithme d'Euclide]
+Avec l'exemple précédent : $13=325-4\times78=325-4(\num{1053}-3\times325)=13\times325-4\times\num{1053}$. Un couple convenable pour $\pt{\num{1053};325}$ est $\pt{-4;13}$.
+\end{method}
+\begin{keypoint}[Algorithme d'Euclide étendu en Python]
+La fonction suivante renvoie $\pt{d;u;v}$ avec $d=\pgcd(a,b)=au+bv$, pour $a$ et $b$ entiers naturels non tous deux nuls.
+\begin{lstlisting}
+def euclide_etendu(a, b):
+    u0, v0, u1, v1 = 1, 0, 0, 1
+    while b != 0:
+        q, r = a // b, a % b
+        a, b = b, r
+        u0, u1 = u1, u0 - q * u1
+        v0, v1 = v1, v0 - q * v1
+    return a, u0, v0
+\end{lstlisting}
+À chaque étape, les deux restes en cours s'écrivent $au_0+bv_0$ et $au_1+bv_1$ en fonction des valeurs initiales de $a$ et $b$.
+\end{keypoint}
+
+\subsection{Théorème de Gauss}
+\begin{theorem}[Théorème de Gauss]
+Soit $a$, $b$, $c$ trois entiers. Si $a\mid bc$ et si $a$ et $b$ sont premiers entre eux, alors $a\mid c$.
+\end{theorem}
+\begin{proof}
+Par le théorème de Bézout, il existe $u$ et $v$ tels que $au+bv=1$. En multipliant par $c$ : $c=acu+bcv$. Or $a\mid acu$ et $a\mid bc$, donc $a$ divise $acu+bcv=c$.
+\end{proof}
+\begin{theorem}[Corollaire]
+Si $a$ et $b$ sont premiers entre eux et divisent tous deux $n$, alors $ab$ divise $n$.
+\end{theorem}
+\begin{proof}
+$n=ak$. Comme $b\mid ak$ et $\pgcd(a,b)=1$, Gauss donne $b\mid k$ : $k=bk'$ et $n=abk'$.
+\end{proof}
+\begin{theorem}[Inverse modulo $n$]
+Soit $n\ge2$ et $a$ un entier. Il existe un entier $u$ tel que $au\equiv1\pmod n$ si et seulement si $\pgcd(a,n)=1$. Un tel $u$ est un \emph{inverse de $a$ modulo $n$} ; il permet de résoudre $ax\equiv b\pmod n$ : $x\equiv ub\pmod n$.
+\end{theorem}
+\begin{proof}
+$au\equiv1\pmod n$ équivaut à l'existence d'un entier $v$ tel que $au+nv=1$ : c'est le théorème de Bézout.
+\end{proof}
+\begin{method}[Équation $ax+by=c$ en nombres entiers]
+\begin{enumerate}
+\item Elle a des solutions si et seulement si $\pgcd(a,b)$ divise $c$ ; on divise alors par ce PGCD.
+\item On trouve une solution particulière $\pt{x_0;y_0}$.
+\item Par différence, $a(x-x_0)=-b(y-y_0)$ ; avec $a$ et $b$ premiers entre eux, Gauss donne $x-x_0=bk$, puis $y-y_0=-ak$.
+\item On vérifie que les couples $\pt{x_0+bk;y_0-ak}$, $k\in\Z$, sont bien solutions.
+\end{enumerate}
+Exemple : $7x+5y=1$ a la solution particulière $\pt{-2;3}$ ; ses solutions sont les couples $\pt{-2+5k;3-7k}$, $k\in\Z$.
+\end{method}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Algorithme d'Euclide]
+Déterminer $\pgcd(\num{1071},462)$ par l'algorithme d'Euclide, puis simplifier la fraction $\dfrac{462}{\num{1071}}$.
+\end{exercise}
+\begin{solution}
+$\num{1071}=2\times462+147$, $462=3\times147+21$, $147=7\times21$. Le PGCD vaut $21$ et $\dfrac{462}{\num{1071}}=\dfrac{22}{51}$.
+\end{solution}
+
+\begin{exercise}[Couple de Bézout]
+Déterminer un couple d'entiers $\pt{u;v}$ tel que $17u+12v=1$.
+\end{exercise}
+\begin{solution}
+$17=12+5$, $12=2\times5+2$, $5=2\times2+1$. En remontant : $1=5-2\times2=5-2(12-2\times5)=5\times5-2\times12=5(17-12)-2\times12=5\times17-7\times12$. Le couple $\pt{5;-7}$ convient : $85-84=1$.
+\end{solution}
+
+\begin{exercise}[Entiers premiers entre eux]
+Soit $n$ un entier naturel. Démontrer que $n$ et $n+1$ sont premiers entre eux, puis que $2n+1$ et $3n+1$ le sont aussi.
+\end{exercise}
+\begin{solution}
+$(n+1)\times1+n\times(-1)=1$. Ensuite $3(2n+1)-2(3n+1)=1$. Le théorème de Bézout conclut dans les deux cas.
+\end{solution}
+
+\begin{exercise}[Une équation homogène]
+Déterminer tous les couples d'entiers $\pt{x;y}$ tels que $15x=21y$.
+\end{exercise}
+\begin{solution}
+En divisant par $3$ : $5x=7y$. Donc $7\mid5x$ et $\pgcd(7,5)=1$ : Gauss donne $x=7k$, $k\in\Z$. Alors $5\times7k=7y$, soit $y=5k$. Réciproquement $15\times7k=105k=21\times5k$. Les solutions sont les couples $\pt{7k;5k}$, $k\in\Z$.
+\end{solution}
+
+\begin{exercise}[Cahiers et stylos]
+Une librairie vend des cahiers à $\num{1100}$ ariary et des stylos à $700$ ariary. Un client dépense exactement $\num{10000}$ ariary. Combien a-t-il acheté de cahiers et de stylos ?
+\end{exercise}
+\begin{solution}
+On cherche des entiers naturels $x$ et $y$ tels que $\num{1100}x+700y=\num{10000}$, soit $11x+7y=100$. Modulo $7$ : $4x\equiv2\pmod7$ ; comme $4\times2=8\equiv1$, $x\equiv4\pmod7$. La solution particulière $\pt{4;8}$ convient ($44+56=100$). Les solutions entières sont $\pt{4+7k;8-11k}$, $k\in\Z$. Pour avoir $x\ge0$ et $y\ge0$, il faut $k\ge-\frac47$ et $k\le\frac8{11}$, donc $k=0$ : $4$ cahiers et $8$ stylos.
+\end{solution}
+
+\begin{exercise}[Inverse modulo $26$]
+\begin{enumerate}
+\item Justifier que $7$ a un inverse modulo $26$ et vérifier que $15$ convient.
+\item Résoudre $7x+3\equiv10\pmod{26}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\pgcd(7,26)=1$ ; $7\times15=105=4\times26+1$.
+\item $7x\equiv7\pmod{26}$ ; en multipliant par $15$ : $x\equiv105\equiv1\pmod{26}$. Les solutions sont les entiers $1+26k$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Un PGCD qui dépend de $n$]
+Soit $n$ un entier naturel et $d=\pgcd(n+5,2n+3)$.
+\begin{enumerate}
+\item Démontrer que $d$ divise $7$.
+\item Déterminer les entiers $n$ pour lesquels $d=7$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $d$ divise $2(n+5)-(2n+3)=7$.
+\item $d\in\ens{1;7}$. Si $d=7$, alors $7\mid n+5$, soit $n\equiv2\pmod7$. Réciproquement, si $n\equiv2\pmod7$, alors $n+5\equiv0$ et $2n+3\equiv7\equiv0\pmod7$, donc $d=7$. Exemple : $n=2$ donne $\pgcd(7,7)=7$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[Le chiffrement affine]
+On numérote les lettres de A à Z de $0$ à $25$. Pour chiffrer une lettre de numéro $x$, on calcule le reste $y$ de $7x+3$ dans la division par $26$, et on la remplace par la lettre de numéro $y$.
+\begin{enumerate}
+\item Chiffrer le mot EXPERT.
+\item Démontrer que $y\equiv7x+3\pmod{26}$ équivaut à $x\equiv15y+7\pmod{26}$.
+\item Déchiffrer le message TDNZZ.
+\item On remplace $7$ par $a$ dans la clé. Démontrer que si $\pgcd(a,26)\neq1$, deux lettres différentes peuvent être chiffrées par la même lettre. Combien de valeurs de $a\in\ent{1}{25}$ donnent un chiffrement que l'on peut déchiffrer ?
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item E$=4\mapsto31\equiv5$ (F) ; X$=23\mapsto164\equiv8$ (I) ; P$=15\mapsto108\equiv4$ (E) ; E $\mapsto$ F ; R$=17\mapsto122\equiv18$ (S) ; T$=19\mapsto136\equiv6$ (G). Le mot chiffré est FIEFSG.
+\item Si $y\equiv7x+3$, en multipliant $y-3\equiv7x$ par $15$ : $x\equiv15y-45\equiv15y+7\pmod{26}$. Réciproquement, si $x\equiv15y+7$, alors $7x+3\equiv105y+52\equiv y\pmod{26}$, car $105\equiv1$ et $52\equiv0$.
+\item T$=19\mapsto15\times19+7=292\equiv6$ (G) ; D$=3\mapsto52\equiv0$ (A) ; N$=13\mapsto202\equiv20$ (U) ; Z$=25\mapsto382\equiv18$ (S). Le message est GAUSS.
+\item Si $d=\pgcd(a,26)>1$, posons $x'=x+\frac{26}d$. Alors $ax'=ax+26\times\frac ad\equiv ax\pmod{26}$ : les lettres $x$ et $x'\neq x$ (pour $x$ et $x'$ dans $\ent{0}{25}$, par exemple $x=0$) ont le même chiffré. Si $\pgcd(a,26)=1$, l'inverse de $a$ modulo $26$ permet de déchiffrer comme en 2. Les $a\in\ent{1}{25}$ premiers avec $26=2\times13$ sont les impairs différents de $13$ : il y en a $12$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Les chiffrements (affine, Vigenère, Hill, RSA) sont des « problèmes possibles » du programme. Le chiffrement de Hill est repris au chapitre 9 (matrices), RSA au chapitre 8. Faire programmer le chiffrement en Python.
+\end{teachernote}

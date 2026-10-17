@@ -1,0 +1,252 @@
+\mxunit{expertes-c06}{Divisibilité et congruences}
+\mxsubtitle{Divisibilité dans $\Z$, division euclidienne, congruences}
+
+\begin{objectives}
+Utiliser la divisibilité dans $\Z$ et ses propriétés ; effectuer une division euclidienne ; calculer avec des congruences ; établir un critère de divisibilité ; étudier des restes de puissances.
+\end{objectives}
+\begin{prerequisites}
+Multiples, diviseurs, nombres premiers (seconde) ; raisonnement par récurrence ; partie entière d'un réel.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item Donner la liste des diviseurs positifs de $36$.
+\item Le nombre $n(n+1)$ est-il toujours pair ? Justifier.
+\item Quel est le chiffre des unités de $7^4$ ?
+\item Simplifier la fraction $\frac{84}{126}$.
+\item Le nombre $\num{2026}$ est-il divisible par $3$ ? par $2$ ?
+\item Calculer $17\times23$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $1$, $2$, $3$, $4$, $6$, $9$, $12$, $18$, $36$.
+\item Oui : l'un des deux entiers consécutifs est pair.
+\item $7^2=49$, $7^4=\num{2401}$ : le chiffre des unités est $1$.
+\item $\frac{84}{126}=\frac{2\times42}{3\times42}=\frac23$.
+\item La somme des chiffres vaut $10$, non multiple de $3$ : non. Il est pair : oui.
+\item $391$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Quel jour sera-t-il ? \mxchip{35 min}]
+Le 17 octobre 2026 est un samedi. On numérote les jours de la semaine de $0$ (samedi) à $6$ (vendredi) : dimanche porte le numéro $1$, lundi le numéro $2$, etc.
+\begin{enumerate}
+\item Quel jour de la semaine sera-t-il $7$ jours plus tard ? $14$ jours ? $700$ jours ?
+\item Quel jour sera-t-il $100$ jours plus tard ? Expliquer comment obtenir la réponse sans compter les jours un à un.
+\item Même question pour $\num{1000}$ jours.
+\item L'année 2027 n'est pas bissextile. Quel jour de la semaine sera le 17 octobre 2027 ?
+\item Le 1\textsuperscript{er} janvier 2027 arrive $76$ jours après le 17 octobre 2026. Quel jour sera-t-il ?
+\item Deux durées $a$ et $b$, en jours, mènent au même jour de la semaine. Que peut-on dire de $a-b$ ? Formuler une condition générale.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item Samedi dans les trois cas, car $7$, $14$ et $700$ sont des multiples de $7$.
+\item $100=7\times14+2$ : on avance de $2$ jours, c'est un lundi. Seul compte le reste de la division par $7$.
+\item $\num{1000}=7\times142+6$ : vendredi.
+\item $365=7\times52+1$ : dimanche.
+\item $76=7\times10+6$ : vendredi.
+\item $a$ et $b$ ont le même reste dans la division par $7$, c'est-à-dire que $a-b$ est un multiple de $7$. On dira que $a$ et $b$ sont congrus modulo $7$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+Faire vérifier les réponses à l'aide d'un calendrier ou d'un tableur pour la question 4, en signalant que la vérification sur un exemple ne remplace pas le raisonnement. Prolongement : expliquer pourquoi le 17 octobre 2030 est un jeudi ($\num{1461}$ jours, dont un 29 février, et $\num{1461}=7\times208+5$).
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{Divisibilité dans $\Z$}
+\begin{definition}[Diviseur, multiple]
+Soit $a$ et $b$ deux entiers relatifs. On dit que $a$ \emph{divise} $b$, et on note $a\mid b$, s'il existe un entier relatif $k$ tel que $b=ka$. On dit aussi que $a$ est un \emph{diviseur} de $b$, ou que $b$ est un \emph{multiple} de $a$.
+\end{definition}
+\begin{theorem}[Propriétés de la divisibilité]
+Soit $a$, $b$, $c$ des entiers relatifs.
+\begin{enumerate}
+\item Si $a\mid b$ et $b\mid c$, alors $a\mid c$.
+\item Si $a\mid b$ et $a\mid c$, alors $a\mid bu+cv$ pour tous entiers relatifs $u$ et $v$.
+\item Si $a\mid b$ et $b\neq0$, alors $\abs a\le\abs b$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1. $b=ka$ et $c=k'b$ donnent $c=(k'k)a$. 2. $b=ka$ et $c=k'a$ donnent $bu+cv=(ku+k'v)a$. 3. $b=ka$ avec $k\neq0$, donc $\abs k\ge1$ et $\abs b=\abs k\abs a\ge\abs a$.
+\end{proof}
+\begin{theorem}[Division euclidienne]
+Soit $a\in\Z$ et $b\in\N$, $b\ge1$. Il existe un unique couple d'entiers $\pt{q;r}$ tel que $a=bq+r$ et $0\le r<b$. On appelle $q$ le \emph{quotient} et $r$ le \emph{reste}.
+\end{theorem}
+\begin{proof}
+\emph{Existence.} Posons $q=\left\lfloor\frac ab\right\rfloor$, le plus grand entier inférieur ou égal à $\frac ab$. Alors $q\le\frac ab<q+1$, donc $bq\le a<bq+b$, et $r=a-bq$ vérifie $0\le r<b$.\par
+\emph{Unicité.} Si $a=bq+r=bq'+r'$ avec $0\le r,r'<b$, alors $b(q-q')=r'-r$ et $-b<r'-r<b$. Le seul multiple de $b$ strictement compris entre $-b$ et $b$ est $0$, donc $r=r'$ puis $q=q'$.
+\end{proof}
+\begin{pitfall}
+Le reste est toujours positif : $-47=5\times(-10)+3$, donc la division de $-47$ par $5$ a pour quotient $-10$ et pour reste $3$, et non $-9$ et $-2$.
+\end{pitfall}
+
+\subsection{Congruences}
+\begin{definition}[Congruence modulo $n$]
+Soit $n\ge2$ un entier. Deux entiers relatifs $a$ et $b$ sont \emph{congrus modulo $n$}, ce que l'on note $a\equiv b\pmod n$, si $n\mid a-b$.
+\end{definition}
+\begin{theorem}[Congruence et reste]
+$a\equiv b\pmod n$ si et seulement si $a$ et $b$ ont le même reste dans la division euclidienne par $n$. En particulier, tout entier est congru modulo $n$ à son reste, qui appartient à $\ent{0}{n-1}$.
+\end{theorem}
+\begin{proof}
+Écrivons $a=nq+r$ et $b=nq'+r'$ avec $0\le r,r'<n$. Alors $a-b=n(q-q')+(r-r')$ et $-n<r-r'<n$. Donc $n\mid a-b$ si et seulement si $n\mid r-r'$, si et seulement si $r=r'$.
+\end{proof}
+\begin{theorem}[Compatibilité avec les opérations]
+Si $a\equiv b\pmod n$ et $c\equiv d\pmod n$, alors
+\[a+c\equiv b+d,\qquad a-c\equiv b-d,\qquad ac\equiv bd,\qquad a^k\equiv b^k\pmod n\]
+pour tout entier naturel $k$. La relation est aussi transitive : si $a\equiv b$ et $b\equiv c\pmod n$, alors $a\equiv c\pmod n$.
+\end{theorem}
+\begin{proof}
+Somme : $(a+c)-(b+d)=(a-b)+(c-d)$ est somme de deux multiples de $n$. Produit : $ac-bd=a(c-d)+d(a-b)$, multiple de $n$. Puissance : récurrence sur $k$ à partir du produit. Transitivité : $a-c=(a-b)+(b-c)$.
+\end{proof}
+\begin{pitfall}
+On ne simplifie pas une congruence comme une égalité : $2\times3\equiv2\times1\pmod4$, mais $3\not\equiv1\pmod4$. La division n'est possible que dans des cas précis (chapitre 7).
+\end{pitfall}
+\begin{method}[Reste d'une grande puissance]
+On cherche une puissance congrue à $1$ (ou à $-1$), puis on utilise la division euclidienne de l'exposant. Exemple : $2^3=8\equiv1\pmod7$ et $\num{2026}=3\times675+1$, donc $2^{2026}=\left(2^3\right)^{675}\times2\equiv1^{675}\times2=2\pmod7$.
+\end{method}
+\begin{method}[Tableau de congruences]
+Pour étudier une expression modulo $n$, on dresse un tableau donnant sa valeur modulo $n$ pour chaque reste possible de $x$. Exemple : modulo $4$, $x\equiv0,1,2,3$ donne $x^2\equiv0,1,0,1$. Un carré est donc congru à $0$ ou $1$ modulo $4$.
+\end{method}
+\begin{method}[Critère de divisibilité par $9$]
+Si $N=\sum_{k=0}^{p}a_k10^k$ s'écrit avec les chiffres $a_0,\dots,a_p$, comme $10\equiv1\pmod9$, on a $10^k\equiv1$ et $N\equiv a_0+a_1+\dots+a_p\pmod9$. Un entier est divisible par $9$ si et seulement si la somme de ses chiffres l'est.
+\end{method}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Divisions euclidiennes]
+\begin{enumerate}
+\item Effectuer la division euclidienne de $\num{2026}$ par $17$.
+\item Effectuer la division euclidienne de $-47$ par $5$, puis de $-35$ par $4$.
+\item Déterminer les entiers naturels $n$ dont le quotient dans la division par $6$ est égal au reste.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\num{2026}=17\times119+3$ : quotient $119$, reste $3$.
+\item $-47=5\times(-10)+3$ et $-35=4\times(-9)+1$.
+\item $n=6q+q=7q$ avec $0\le q<6$ : $n\in\ens{0;7;14;21;28;35}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Restes de puissances]
+\begin{enumerate}
+\item Déterminer le reste de $3^{100}$ dans la division par $5$.
+\item Déterminer le reste de $5^{2026}+2^{2026}$ dans la division par $3$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $3^4=81\equiv1\pmod5$, donc $3^{100}=\left(3^4\right)^{25}\equiv1\pmod5$ : le reste est $1$.
+\item $5\equiv2\equiv-1\pmod3$, donc $5^{2026}+2^{2026}\equiv2\times(-1)^{2026}=2\pmod3$ : le reste est $2$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Sommes de deux carrés]
+\begin{enumerate}
+\item Démontrer que pour tout entier $x$, $x^2\equiv0$ ou $x^2\equiv1\pmod4$.
+\item En déduire qu'un entier congru à $3$ modulo $4$ n'est pas la somme de deux carrés d'entiers.
+\item L'entier $\num{2027}$ peut-il s'écrire $x^2+y^2$ avec $x$, $y$ entiers ?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Tableau : $x\equiv0,1,2,3\pmod4$ donne $x^2\equiv0,1,4,9$, c'est-à-dire $0,1,0,1\pmod4$.
+\item $x^2+y^2$ est congru à $0+0$, $0+1$ ou $1+1$, donc à $0$, $1$ ou $2$ modulo $4$, jamais à $3$.
+\item $\num{2027}=4\times506+3$ : non.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Critère de divisibilité par $11$]
+\begin{enumerate}
+\item Démontrer que $10\equiv-1\pmod{11}$, puis que $10^k\equiv(-1)^k\pmod{11}$.
+\item En déduire qu'un entier est divisible par $11$ si et seulement si la somme alternée de ses chiffres, en partant des unités, $a_0-a_1+a_2-\dots$, l'est.
+\item L'entier $\num{918082}$ est-il divisible par $11$ ?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $10-(-1)=11$. La compatibilité avec les puissances donne $10^k\equiv(-1)^k$.
+\item $N=\sum a_k10^k\equiv\sum a_k(-1)^k\pmod{11}$ ; $N$ et la somme alternée ont le même reste.
+\item $2-8+0-8+1-9=-22$, multiple de $11$ : oui ($\num{918082}=11\times\num{83462}$).
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Divisibilités pour tout entier]
+Démontrer que pour tout entier naturel $n$ :
+\begin{enumerate}
+\item $4^n-1$ est divisible par $3$ ;
+\item $n^3-n$ est divisible par $6$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $4\equiv1\pmod3$, donc $4^n\equiv1$ et $3\mid4^n-1$.
+\item Tableau modulo $6$ : pour $n\equiv0,1,2,3,4,5$, $n^3-n\equiv0,0,6,24,60,120$, tous multiples de $6$. Donc $n^3-n\equiv0\pmod6$ pour tout $n$. Remarque : $n^3-n=(n-1)n(n+1)$ est un produit de trois entiers consécutifs ; on verra au chapitre 7 pourquoi être divisible par $2$ et par $3$ suffit.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Équations de congruence]
+\begin{enumerate}
+\item Résoudre $3x\equiv5\pmod7$. On cherchera d'abord un entier $u$ tel que $3u\equiv1\pmod7$.
+\item Résoudre $x^2\equiv2\pmod7$ à l'aide d'un tableau.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $3\times5=15\equiv1\pmod7$. En multipliant par $5$ : $3x\equiv5$ implique $x\equiv25\equiv4\pmod7$ ; réciproquement $3\times4=12\equiv5$. Les solutions sont les entiers $x=4+7k$, $k\in\Z$.
+\item Pour $x\equiv0,1,\dots,6\pmod7$ : $x^2\equiv0,1,4,2,2,4,1$. Les solutions sont les entiers congrus à $3$ ou $4$ modulo $7$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Les deux derniers chiffres]
+Déterminer les deux derniers chiffres de l'écriture décimale de $7^{2026}$.
+\end{exercise}
+\begin{solution}
+On travaille modulo $100$. $7^2=49$ et $7^4=\num{2401}\equiv1\pmod{100}$. Comme $\num{2026}=4\times506+2$, $7^{2026}\equiv7^2=49\pmod{100}$ : l'écriture se termine par $49$.
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[La clé de contrôle d'un code ISBN-13]
+Un code ISBN-13 est une suite de treize chiffres $a_1a_2\dots a_{13}$. On pose
+\[S=a_1+3a_2+a_3+3a_4+\dots+3a_{12}+a_{13},\]
+les poids $1$ et $3$ alternant. Le code est valide si et seulement si $S\equiv0\pmod{10}$ ; le dernier chiffre $a_{13}$, appelé clé, est choisi pour cela.
+\begin{enumerate}
+\item On considère le numéro fictif 978-2-0601-2345-$a_{13}$. Calculer la clé $a_{13}$.
+\item On suppose qu'un seul chiffre $a$ est remplacé par un chiffre $a'\neq a$.
+\begin{enumerate}
+\item Démontrer que $S$ est modifié de $w(a'-a)$, avec $w\in\ens{1;3}$.
+\item Vérifier que $7\times3\equiv1\pmod{10}$ et en déduire que $3(a'-a)\equiv0\pmod{10}$ implique $a'-a\equiv0\pmod{10}$.
+\item Conclure : une erreur sur un seul chiffre est toujours détectée.
+\end{enumerate}
+\item On suppose que deux chiffres voisins distincts $a$ et $b$ sont échangés.
+\begin{enumerate}
+\item Démontrer que $S$ est modifié de $2(b-a)$ ou de $2(a-b)$.
+\item Déterminer à quelle condition sur $a$ et $b$ l'erreur n'est pas détectée. Donner un exemple.
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item Les douze premiers chiffres $9,7,8,2,0,6,0,1,2,3,4,5$ donnent $9+21+8+6+0+18+0+3+2+9+4+15=95$. Il faut $95+a_{13}\equiv0\pmod{10}$ avec $0\le a_{13}\le9$ : $a_{13}=5$.
+\item
+\begin{enumerate}
+\item Le terme $wa$ devient $wa'$, les autres termes ne changent pas.
+\item $21\equiv1\pmod{10}$. Si $3(a'-a)\equiv0$, en multipliant par $7$ : $a'-a\equiv21(a'-a)\equiv0\pmod{10}$. Le cas $w=1$ est immédiat.
+\item $a'-a$ est un multiple de $10$ compris entre $-9$ et $9$, donc nul : contradiction avec $a'\neq a$. La nouvelle somme n'est plus multiple de $10$, l'erreur est détectée.
+\end{enumerate}
+\item
+\begin{enumerate}
+\item Les deux chiffres ont des poids $1$ et $3$. La contribution $a+3b$ devient $b+3a$ (ou l'inverse), soit une variation de $2(a-b)$ ou de $2(b-a)$.
+\item L'erreur n'est pas détectée si et seulement si $10\mid2(a-b)$, c'est-à-dire $5\mid a-b$ : $\abs{a-b}=5$. Exemple : échanger les chiffres voisins $1$ et $6$ ne modifie pas $S$ modulo $10$.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Les codes de contrôle (ISBN, RIB, codes-barres) sont un « problème possible » du programme. La question 2b utilise un inverse modulo $10$ : la notion sera formalisée au chapitre 7. Le numéro de la question 1 est donné à titre d'exemple, pour le calcul.
+\end{teachernote}

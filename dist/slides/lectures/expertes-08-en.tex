@@ -1,0 +1,168 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Prime numbers and Fermat's little theorem}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Prime numbers and Fermat's little theorem}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Recognise a prime number; prove that there are infinitely many primes; factorise an integer into primes and use the factorisation (divisors, gcd); use Fermat's little theorem to compute remainders.
+\end{frame}
+\begin{frame}{Introductory activity}
+For an integer \(n\ge2\) and an integer \(a\), let \(r_n(a)\) be the remainder of \(a^{n-1}\) in the division by \(n\).
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item Compute \(r_5(2)\), \(r_5(3)\), \(r_7(2)\), \(r_7(3)\) by hand, using congruences.
+
+\item Using the Python function \texttt{pow(a, n - 1, n)}, which returns this remainder, complete the following table.
+  
+\begin{center}\begin{tabular}{llllllll}
+\(n\) & \(5\) & \(6\) & \(7\) & \(8\) & \(9\) & \(10\) & \(11\) \\ 
+\(r_n(2)\) &  &  &  &  &  &  &  \\ 
+\(r_n(3)\) &  &  &  &  &  &  &  \\ 
+\end{tabular}\end{center}
+
+\item For which values of \(n\) do we get \(1\) on both rows? What do they have in common?
+
+\item State a conjecture. Test it for \(n=13\) and \(a=5\).
+
+\item For \(n=7\), compute \(r_7(7)\) and \(r_7(14)\). How should the conjecture be made more precise?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Prime numbers}
+A natural number \(p\) is \emph{prime} if it has exactly two positive divisors, \(1\) and \(p\). Thus \(1\) is not prime.
+\end{frame}
+\begin{frame}{Prime numbers}
+Every integer \(n\ge2\) has a prime divisor: its smallest divisor greater than or equal to \(2\). If \(n\) is not prime, this divisor \(p\) satisfies \(p^2\le n\).
+\end{frame}
+\begin{frame}{Prime numbers}
+Let \(p\) be the smallest divisor of \(n\) greater than or equal to \(2\) (it exists, since \(n\) is one). If \(p\) were not prime, it would have a divisor \(d\) with \(2\le d<p\), which would also divide \(n\): a contradiction. If \(n\) is not prime, \(n=pq\) with \(q\ge2\) a divisor of \(n\), so \(q\ge p\) and \(n=pq\ge p^2\).
+\end{frame}
+\begin{frame}{Prime numbers}
+To know whether \(n\ge2\) is prime, it is enough to check that no prime \(p\) with \(p^2\le n\) divides \(n\). Example: \(211\) is divisible neither by \(2\), \(3\), \(5\), \(7\), \(11\), nor by \(13\), and \(17^2=289>211\): \(211\) is prime.
+\end{frame}
+\begin{frame}{Prime numbers}
+There are infinitely many prime numbers.
+\end{frame}
+\begin{frame}{Prime numbers}
+Assume there are only finitely many: \(p_1,\dots,p_k\). Let \(N=p_1p_2\cdots p_k+1\ge2\). By the previous theorem, \(N\) has a prime divisor, which is one of the \(p_i\). This \(p_i\) divides \(N\) and the product \(p_1\cdots p_k\), so it divides their difference \(1\): this is impossible. The assumption is false.
+\end{frame}
+\begin{frame}{Prime numbers}
+Cross out the multiples of each prime starting from its square; the numbers not crossed out are prime.
+lstlisting
+def crible(n):
+    premier = [True] * (n + 1)
+    premier[0] = premier[1] = False
+    p = 2
+    while p * p <= n:
+        if premier[p]:
+            for m in range(p * p, n + 1, p):
+                premier[m] = False
+        p = p + 1
+    return [k for k in range(n + 1) if premier[k]]
+lstlisting
+There are \(25\) prime numbers less than \(100\).
+\end{frame}
+\begin{frame}{Prime numbers}
+Let \(p\) be a prime number. If \(p\mid ab\), then \(p\mid a\) or \(p\mid b\). More generally, if \(p\) divides a product, it divides one of the factors.
+\end{frame}
+\begin{frame}{Prime numbers}
+If \(p\nmid a\), then \(\operatorname{gcd}(p,a)=1\), because the only positive divisors of \(p\) are \(1\) and \(p\). Gauss's theorem gives \(p\mid b\). The case of a product of several factors follows by induction on their number.
+\end{frame}
+\begin{frame}{Prime factorisation}
+Every integer \(n\ge2\) can be written as a product of primes, \(n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}\), with \(p_1<p_2<\dots<p_k\) prime and \(\alpha_i\ge1\). This expression is unique.
+\end{frame}
+\begin{frame}{Prime factorisation}
+\emph{Existence}, by strong induction. The integer \(2\) is prime. Assume every integer in \(\{2,\ldots,n\}\) can be factorised. If \(n+1\) is prime, we are done; otherwise \(n+1=ab\) with \(2\le a,b\le n\), and we put the factorisations of \(a\) and \(b\) together.
+
+\emph{Uniqueness.} If \(p_1\cdots p_r=q_1\cdots q_s\) (repeated prime factors), \(p_1\) divides the product of the \(q_j\), hence one of them, which is prime: \(p_1=q_j\). We cancel and start again; the two lists of factors coincide.
+\end{frame}
+\begin{frame}{Prime factorisation}
+Divide by the smallest divisor \(p\ge2\) as long as possible; it is prime. When \(p^2>n\), the remaining quotient, if it exceeds \(1\), is prime.
+lstlisting
+def decomposition(n):
+    facteurs = []
+    p = 2
+    while p * p <= n:
+        while n \% p == 0:
+            facteurs.append(p)
+            n = n // p
+        p = p + 1
+    if n > 1:
+        facteurs.append(n)
+    return facteurs
+lstlisting
+For example, \texttt{decomposition(360)} returns \texttt{[2, 2, 2, 3, 3, 5]}.
+\end{frame}
+\begin{frame}{Prime factorisation}
+If \(n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}\), the positive divisors of \(n\) are the integers \(p_1^{\beta_1}\cdots p_k^{\beta_k}\) with \(0\le\beta_i\le\alpha_i\). There are \((\alpha_1+1)(\alpha_2+1)\cdots(\alpha_k+1)\) of them.
+\end{frame}
+\begin{frame}{Prime factorisation}
+The gcd of two integers is the product of the common prime factors, each raised to the smaller of the two exponents. Example: \(360=2^3\times3^2\times5\) and \(84=2^2\times3\times7\) give \(\operatorname{gcd}(360,84)=2^2\times3=12\).
+\end{frame}
+\begin{frame}{Fermat's little theorem}
+Let \(p\) be a prime number and \(a\) an integer. Then \(a^p\equiv a\pmod p\). If moreover \(p\) does not divide \(a\), then \(a^{p-1}\equiv1\pmod p\).
+\end{frame}
+\begin{frame}{Fermat's little theorem}
+\emph{Step 1.} For \(1\le k\le p-1\), \(p\) divides \(\binom pk\). Indeed \(k\binom pk=p\binom{p-1}{k-1}\), so \(p\mid k\binom pk\); since \(1\le k<p\), \(p\) does not divide \(k\) and \(\operatorname{gcd}(p,k)=1\); Gauss gives \(p\mid\binom pk\).
+
+\emph{Step 2.} By the binomial formula, for every integer \(a\), \((a+1)^p=a^p+\sum_{k=1}^{p-1}\binom pk a^k+1\equiv a^p+1\pmod p\).
+\end{frame}
+\begin{frame}{Fermat's little theorem (2)}
+\emph{Step 3.} Induction on \(a\ge0\): \(0^p\equiv0\), and if \(a^p\equiv a\), then \((a+1)^p\equiv a^p+1\equiv a+1\pmod p\). For \(a<0\), choose an integer \(b\ge0\) such that \(b\equiv a\pmod p\); then \(a^p\equiv b^p\equiv b\equiv a\).
+
+\emph{Step 4.} If \(p\nmid a\), then \(p\mid a^p-a=a\left(a^{p-1}-1\right)\) and \(\operatorname{gcd}(p,a)=1\); Gauss gives \(p\mid a^{p-1}-1\).
+\end{frame}
+\begin{frame}{Fermat's little theorem}
+Remainder of \(3^{2026}\) in the division by \(11\): \(11\) is prime and does not divide \(3\), so \(3^{10}\equiv1\pmod{11}\). Since \(2{,}026=10\times202+6\), \(3^{2026}\equiv3^6=729\equiv3\pmod{11}\) (because \(729=66\times11+3\)).
+\end{frame}
+\begin{frame}{Fermat's little theorem}
+The converse is false: \(2^{340}\equiv1\pmod{341}\), whereas \(341=11\times31\).
+\end{frame}
+\end{document}

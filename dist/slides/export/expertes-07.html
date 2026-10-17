@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>PGCD, théorèmes de Bézout et de Gauss</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],packages:{'[+]':['ams']},macros:{/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/}},
+svg:{fontCache:'none'},options:{enableAssistiveMml:false},startup:{typeset:false}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+/* Classroom slide player, modelled on the interactive maths slide skill: fixed 1280x720 stage scaled to the window,
+   flow column of step blocks on the left (x 40-560), live figure and controls on the right (x 600-1240),
+   step buttons bottom left. Colour carries meaning: amber = focus, green = true / valid, red = warning, blue-grey = secondary. */
+
+:root{--bg:#0f1b2d;--panel:#13243b;--panel-2:#24364f;--line:#5d7699;--ink:#f4f1ea;--muted:#8fa6c4;--amber:#e8a33d;--green:#5fd0a0;--red:#ff7a7a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink)}
+body{display:flex;align-items:center;justify-content:center;overflow:hidden}
+#wrap{position:relative}
+#stage{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;background:var(--bg);overflow:hidden;color:var(--ink);font-family:"STIX Two Text","Latin Modern Roman",Georgia,serif}
+mjx-assistive-mml{display:none!important}
+[hidden]{display:none!important}
+
+/* left: flow column */
+#col{position:absolute;left:40px;top:24px;width:520px;height:636px;display:flex;flex-direction:column;gap:10px;min-height:0}
+#col.wide{width:1200px}
+#col.wide #flow{font-size:28px}
+#col.wide .steps,#col.wide .answer{max-width:1180px}
+#flow{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:12px;font-size:25px;scrollbar-width:none;outline:0}
+#flow::-webkit-scrollbar{display:none}
+.hd{display:flex;gap:12px;align-items:baseline;color:var(--amber);font-weight:600;font-size:21px}
+.hd.red{color:var(--red)}.hd.green{color:var(--green);margin-bottom:3px}
+.hd .deckname{color:var(--muted);font-weight:400;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+h1,h2{margin:0;font-weight:700;line-height:1.2}
+h2.tt{font-size:32px}
+.sub{color:var(--muted);font-size:20px;margin-top:-6px}
+.text{line-height:1.45;overflow-wrap:anywhere}
+.text.s3{line-height:1.4}.text.s4{font-size:23px}
+.text ul,.text ol{padding-left:1.2em;margin:.3em 0}.text li{margin:.2em 0}
+.text code,pre{font-family:ui-monospace,Consolas,monospace}
+.reveal-block{margin-bottom:12px;animation:fd .6s}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.reveal-block mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden;margin:.5em 0!important}
+.answer{border-left:4px solid var(--green);padding:6px 0 6px 16px;background:linear-gradient(90deg,#13243b,transparent)}
+pre{background:var(--panel);border:1px solid var(--panel-2);border-radius:12px;padding:18px 22px;font-size:22px;line-height:1.45;overflow:auto;max-height:520px;margin:0}
+.title-slide{display:grid;align-content:center;justify-items:start;gap:18px;min-height:560px}
+.title-slide h1{font-size:68px;max-width:16ch}
+.chip{font:600 16px system-ui,sans-serif;color:var(--bg);background:var(--amber);padding:6px 14px;border-radius:999px}
+.title-slide .meta{color:var(--muted);font-size:24px}
+.title-slide .hint{color:var(--muted);font-size:18px;margin-top:30px}
+#live{flex:none;max-height:340px;overflow:auto;border-top:2px solid var(--panel-2);padding-top:8px;font-size:21px;line-height:1.4}
+#live .hd{font-size:17px;margin-bottom:2px}
+#readout{overflow-wrap:anywhere}
+
+.sg{border-collapse:collapse;margin:8px 0;max-width:100%}
+.sg td{padding:4px 14px;min-width:28px;height:40px;text-align:center;vertical-align:middle}
+.sg tr.rule td{border-top:2px solid var(--muted)}
+.sg td.l{border-left:2px solid var(--muted)}.sg td.r{border-right:2px solid var(--muted)}
+mjx-container[jax="SVG"]{max-width:none}
+
+/* right: live figure, controls */
+#rt{position:absolute;left:600px;top:24px;width:640px;height:636px;display:flex;flex-direction:column;gap:8px;min-height:0}
+.hint-line{font:600 16px system-ui,sans-serif;color:var(--amber);height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.canvas-wrap{position:relative;flex:none;height:400px;background:var(--panel);border:1px solid var(--panel-2);border-radius:12px;overflow:hidden}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+.explore-label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:16px;color:var(--muted)}
+.explore-label select,.canvas-keyboard select{font:600 17px system-ui,sans-serif;max-width:70%;height:38px;border-radius:9px;padding:0 8px;background:var(--panel-2);color:var(--ink);border:1px solid var(--line)}
+.note{font-size:14px;color:var(--muted);margin:0}
+.wctl{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:18px;color:var(--ink);overflow:auto;min-height:0}
+.wctl label{display:flex;gap:8px;align-items:center}
+.wctl input[type=range]{width:150px;height:30px;accent-color:var(--amber);touch-action:pan-y}
+.canvas-keyboard{display:flex;gap:6px;align-items:center;flex-wrap:wrap;width:100%}
+.wctl button,.canvas-keyboard button{font:600 18px system-ui,sans-serif;height:38px;min-width:40px;padding:0 10px;border:0;border-radius:9px;background:#e6edf3;color:#0d1117;cursor:pointer}
+.wctl button[aria-pressed=true]{background:var(--amber)}
+.wctl>div{display:flex;flex-wrap:wrap;gap:8px}
+.canvas-wrap:focus-within,.canvas-keyboard:focus-within{outline:3px solid var(--amber);outline-offset:2px}
+.figcol{display:grid;gap:14px;align-content:start;overflow:auto;max-height:100%}
+.fig{margin:0;background:#f4f7f6;border-radius:12px;padding:14px;display:grid;place-items:center}
+.fig img{width:100%;max-height:420px;height:auto;display:block}
+
+/* bottom rows, skill buttons */
+.b{font:600 19px system-ui,sans-serif;height:40px;min-width:40px;padding:0 14px;border-radius:9px;border:0;background:#e6edf3;color:#0d1117;cursor:pointer;touch-action:manipulation;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
+.b.on,.b[aria-pressed=true]{background:var(--amber)}
+.b:disabled{opacity:.4;cursor:default}
+.b:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,canvas:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+#r1{position:absolute;left:40px;top:672px;display:flex;gap:8px;align-items:center}
+#r1 .gap{width:14px}
+#step-count{font:600 18px system-ui,sans-serif;min-width:96px;text-align:center}
+.count{font:600 18px system-ui,sans-serif;min-width:64px;text-align:center;color:var(--muted)}
+#r2{position:absolute;left:600px;top:672px;width:640px;display:flex;gap:8px;align-items:center;justify-content:flex-end}
+#prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--panel-2)}
+#prog i{display:block;height:100%;background:var(--amber);transition:width .25s}
+#drawer{position:absolute;left:600px;top:24px;width:640px;height:636px;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;z-index:5}
+#drawer button{display:block;width:100%;text-align:left;margin:3px 0;padding:8px 12px;font:600 17px system-ui,sans-serif;color:var(--ink);background:transparent;border:1px solid var(--panel-2);border-radius:8px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#drawer button[aria-current]{border-color:var(--amber);color:var(--amber)}
+#toast{position:absolute;left:600px;top:4px;width:640px;text-align:center;font:600 16px system-ui,sans-serif;color:#0d1117;background:var(--amber);border-radius:8px;padding:6px 10px;z-index:8}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* phones in portrait: the stage becomes a normal scrolling page (the slide is designed for landscape) */
+@media (max-width:760px) and (orientation:portrait){
+  html,body{height:auto;min-height:100%}body{display:block;overflow:auto}
+  #wrap{width:auto!important;height:auto!important}
+  #stage{position:relative;width:100%;height:auto;transform:none!important;overflow:visible;display:flex;flex-direction:column;gap:14px;padding:16px}
+  #col,#col.wide,#rt,#r1,#r2,#drawer{position:static;width:auto;height:auto}
+  #col{display:block}#flow{overflow:visible;font-size:20px}
+  #col.wide #flow{min-height:0}
+  h2.tt{font-size:26px}.title-slide h1{font-size:38px}.title-slide{min-height:0}
+  #rt{order:-1}.canvas-wrap{height:280px}
+  #r1,#r2{flex-wrap:wrap;justify-content:flex-start}
+  #drawer{position:fixed;inset:0;z-index:10;border-radius:0}
+  #prog{position:fixed}
+  #live{max-height:none}
+}
+.canvas-navigation{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:6px;font:16px system-ui}.canvas-navigation button{min-width:44px;min-height:44px;padding:4px 8px;font-size:20px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:var(--panel);cursor:pointer}.canvas-navigation output{color:var(--muted);margin-left:6px}
+</style>
+</head>
+<body>
+<div id="wrap"><main id="stage"></main></div>
+<script>window.__MX_EXPORT__={"deck":{"language":"fr","courseTitle":["Mathématiques expertes","Terminale · Further mathematics"],"id":"expertes-07","course":"expertes","number":7,"title":["PGCD, théorèmes de Bézout et de Gauss","GCD, Bézout's and Gauss's theorems"],"slides":[{"k":"title","t":["PGCD, théorèmes de Bézout et de Gauss","GCD, Bézout's and Gauss's theorems"],"b":["",""]},{"k":"goals","t":["Objectifs","Objectives"],"b":["Déterminer un PGCD par l'algorithme d'Euclide ; obtenir un couple de Bézout ; utiliser les théorèmes de Bézout et de Gauss ; déterminer un inverse modulo \\(n\\) ; résoudre une équation \\(ax+by=c\\) en nombres entiers.","Find a gcd with Euclid's algorithm; obtain a Bézout pair; use Bézout's and Gauss's theorems; find an inverse modulo \\(n\\); solve an equation \\(ax+by=c\\) in integers."]},{"k":"activity","t":["Activité d'introduction","Introductory activity"],"b":["On dispose d'un bidon de \\(9\\) litres, d'un bidon de \\(7\\) litres, sans graduation, et d'une source d'eau. On peut remplir un bidon, le vider, ou verser l'un dans l'autre jusqu'à ce que l'un soit vide ou l'autre plein.\n<ol>\n<li>Montrer qu'on peut obtenir exactement \\(2\\) litres dans le grand bidon.\n<li>Si l'on verse au total \\(u\\) fois \\(9\\) litres et que l'on jette \\(v\\) fois \\(7\\) litres, la quantité restante est \\(9u-7v\\). Trouver des entiers naturels \\(u\\) et \\(v\\) tels que \\(9u-7v=1\\). En déduire comment obtenir \\(1\\) litre.\n<li>On remplace les bidons par des bidons de \\(6\\) et \\(9\\) litres. Montrer que toute quantité de la forme \\(6u+9v\\), avec \\(u\\) et \\(v\\) entiers relatifs, est un multiple de \\(3\\). Peut-on obtenir \\(1\\) litre ?\n<li>Avec des bidons de \\(a\\) et \\(b\\) litres, quelles quantités entières semble-t-on pouvoir obtenir ? Formuler une conjecture faisant intervenir le plus grand diviseur commun de \\(a\\) et \\(b\\).\n<\/ol>","We have a \\(9\\)-litre can, a \\(7\\)-litre can, both without markings, and a water supply. We may fill a can, empty it, or pour one into the other until one is empty or the other is full.\n<ol>\n<li>Show that one can get exactly \\(2\\) litres in the large can.\n<li>If we pour in \\(u\\) times \\(9\\) litres altogether and throw away \\(v\\) times \\(7\\) litres, the quantity left is \\(9u-7v\\). Find natural numbers \\(u\\) and \\(v\\) such that \\(9u-7v=1\\). Deduce how to get \\(1\\) litre.\n<li>The cans are replaced by cans of \\(6\\) and \\(9\\) litres. Show that every quantity of the form \\(6u+9v\\), with \\(u\\) and \\(v\\) integers, is a multiple of \\(3\\). Can one get \\(1\\) litre?\n<li>With cans of \\(a\\) and \\(b\\) litres, which whole quantities does it seem possible to get? State a conjecture involving the greatest common divisor of \\(a\\) and \\(b\\).\n<\/ol>"],"h":["Mesurer un litre avec deux bidons","Measuring one litre with two cans"]},{"k":"concept","t":["PGCD et algorithme d'Euclide","GCD and Euclid's algorithm"],"b":["Soit \\(a\\) et \\(b\\) deux entiers relatifs non tous deux nuls. L'ensemble de leurs diviseurs communs positifs est fini et contient \\(1\\) ; son plus grand élément est appelé <i>plus grand commun diviseur<\/i> de \\(a\\) et \\(b\\), noté \\(\\operatorname{PGCD}(a,b)\\). On dit que \\(a\\) et \\(b\\) sont <i>premiers entre eux<\/i> si \\(\\operatorname{PGCD}(a,b)=1\\).","Let \\(a\\) and \\(b\\) be two integers, not both zero. The set of their positive common divisors is finite and contains \\(1\\); its largest element is called the <i>greatest common divisor<\/i> of \\(a\\) and \\(b\\), written \\(\\operatorname{gcd}(a,b)\\). We say that \\(a\\) and \\(b\\) are <i>coprime<\/i> if \\(\\operatorname{gcd}(a,b)=1\\)."],"h":["PGCD","GCD"]},{"k":"concept","t":["PGCD et algorithme d'Euclide","GCD and Euclid's algorithm"],"b":["Soit \\(a\\) et \\(b\\) deux entiers avec \\(b\\neq0\\). Pour tout entier \\(k\\), les diviseurs communs de \\(a\\) et \\(b\\) sont ceux de \\(b\\) et \\(a-kb\\). En particulier, si \\(r\\) est le reste de la division de \\(a\\) par \\(b\\ge1\\), alors \\(\\operatorname{PGCD}(a,b)=\\operatorname{PGCD}(b,r)\\).","Let \\(a\\) and \\(b\\) be two integers with \\(b\\neq0\\). For every integer \\(k\\), the common divisors of \\(a\\) and \\(b\\) are those of \\(b\\) and \\(a-kb\\). In particular, if \\(r\\) is the remainder of the division of \\(a\\) by \\(b\\ge1\\), then \\(\\operatorname{gcd}(a,b)=\\operatorname{gcd}(b,r)\\)."],"h":["Lemme d'Euclide","Euclid's lemma"]},{"k":"proof","t":["PGCD et algorithme d'Euclide","GCD and Euclid's algorithm"],"b":["Si \\(d\\mid a\\) et \\(d\\mid b\\), alors \\(d\\mid a-kb\\). Réciproquement, si \\(d\\mid b\\) et \\(d\\mid a-kb\\), alors \\(d\\mid(a-kb)+kb=a\\). Les deux ensembles de diviseurs communs sont égaux, donc leurs plus grands éléments aussi.","If \\(d\\mid a\\) and \\(d\\mid b\\), then \\(d\\mid a-kb\\). Conversely, if \\(d\\mid b\\) and \\(d\\mid a-kb\\), then \\(d\\mid(a-kb)+kb=a\\). The two sets of common divisors are equal, so their largest elements are too."]},{"k":"method","t":["PGCD et algorithme d'Euclide","GCD and Euclid's algorithm"],"b":["On remplace \\((a;b)\\) par \\((b;r)\\) tant que le reste \\(r\\) n'est pas nul. Les restes forment une suite d'entiers naturels strictement décroissante, donc l'algorithme s'arrête. Le PGCD est le dernier reste non nul. Exemple :\n\\[1\\,053=3\\times325+78,\\qquad325=4\\times78+13,\\qquad78=6\\times13+0,\\]\ndonc \\(\\operatorname{PGCD}(1\\,053,325)=13\\).","Replace \\((a,b)\\) by \\((b,r)\\) as long as the remainder \\(r\\) is not zero. The remainders form a strictly decreasing sequence of natural numbers, so the algorithm stops. The gcd is the last nonzero remainder. Example:\n\\[1{,}053=3\\times325+78,\\qquad325=4\\times78+13,\\qquad78=6\\times13+0,\\]\nso \\(\\operatorname{gcd}(1{,}053,325)=13\\)."],"h":["Algorithme d'Euclide","Euclid's algorithm"]},{"k":"concept","t":["Théorème de Bézout","Bézout's theorem"],"b":["Soit \\(a\\) et \\(b\\) deux entiers non tous deux nuls. Il existe des entiers relatifs \\(u\\) et \\(v\\) tels que \\(au+bv=\\operatorname{PGCD}(a,b)\\). De plus, tout diviseur commun de \\(a\\) et \\(b\\) divise \\(\\operatorname{PGCD}(a,b)\\).","Let \\(a\\) and \\(b\\) be two integers, not both zero. There are integers \\(u\\) and \\(v\\) such that \\(au+bv=\\operatorname{gcd}(a,b)\\). Moreover, every common divisor of \\(a\\) and \\(b\\) divides \\(\\operatorname{gcd}(a,b)\\)."],"h":["Écriture du PGCD","Writing the gcd"]},{"k":"proof","t":["Théorème de Bézout","Bézout's theorem"],"b":["Soit \\(E\\) l'ensemble des entiers strictement positifs de la forme \\(au+bv\\), avec \\(u\\), \\(v\\) entiers. \\(E\\) n'est pas vide (il contient \\(a^2+b^2\\)). Soit \\(d=au_0+bv_0\\) son plus petit élément.<br><br>\nDivisons \\(a\\) par \\(d\\) : \\(a=dq+r\\) avec \\(0\\le r&lt;d\\). Alors \\(r=a-q(au_0+bv_0)=a(1-qu_0)+b(-qv_0)\\) est de la forme \\(au+bv\\). S'il était strictement positif, il appartiendrait à \\(E\\) en étant plus petit que \\(d\\) : impossible. Donc \\(r=0\\) et \\(d\\mid a\\). De même \\(d\\mid b\\).<br><br>\nEnfin tout diviseur commun \\(c\\) de \\(a\\) et \\(b\\) divise \\(au_0+bv_0=d\\), donc \\(c\\le d\\). Ainsi \\(d\\) est le plus grand diviseur commun : \\(d=\\operatorname{PGCD}(a,b)\\).","Let \\(E\\) be the set of positive integers of the form \\(au+bv\\), with \\(u\\), \\(v\\) integers. \\(E\\) is not empty (it contains \\(a^2+b^2\\)). Let \\(d=au_0+bv_0\\) be its smallest element.<br><br>\nDivide \\(a\\) by \\(d\\): \\(a=dq+r\\) with \\(0\\le r&lt;d\\). Then \\(r=a-q(au_0+bv_0)=a(1-qu_0)+b(-qv_0)\\) is of the form \\(au+bv\\). If it were positive, it would belong to \\(E\\) while being smaller than \\(d\\): impossible. So \\(r=0\\) and \\(d\\mid a\\). Likewise \\(d\\mid b\\).<br><br>\nFinally every common divisor \\(c\\) of \\(a\\) and \\(b\\) divides \\(au_0+bv_0=d\\), so \\(c\\le d\\). Hence \\(d\\) is the greatest common divisor: \\(d=\\operatorname{gcd}(a,b)\\)."]},{"k":"concept","t":["Théorème de Bézout","Bézout's theorem"],"b":["Deux entiers \\(a\\) et \\(b\\) sont premiers entre eux si et seulement si il existe des entiers relatifs \\(u\\) et \\(v\\) tels que \\(au+bv=1\\).","Two integers \\(a\\) and \\(b\\) are coprime if and only if there are integers \\(u\\) and \\(v\\) such that \\(au+bv=1\\)."],"h":["Théorème de Bézout","Bézout's theorem"]},{"k":"proof","t":["Théorème de Bézout","Bézout's theorem"],"b":["Si \\(\\operatorname{PGCD}(a,b)=1\\), le théorème précédent fournit \\(u\\) et \\(v\\). Réciproquement, si \\(au+bv=1\\), tout diviseur commun positif de \\(a\\) et \\(b\\) divise \\(1\\), donc vaut \\(1\\).","If \\(\\operatorname{gcd}(a,b)=1\\), the previous theorem provides \\(u\\) and \\(v\\). Conversely, if \\(au+bv=1\\), every positive common divisor of \\(a\\) and \\(b\\) divides \\(1\\), hence equals \\(1\\)."]},{"k":"method","t":["Théorème de Bézout","Bézout's theorem"],"b":["Avec l'exemple précédent : \\(13=325-4\\times78=325-4(1\\,053-3\\times325)=13\\times325-4\\times1\\,053\\). Un couple convenable pour \\((1\\,053;325)\\) est \\((-4;13)\\).","With the previous example: \\(13=325-4\\times78=325-4(1{,}053-3\\times325)=13\\times325-4\\times1{,}053\\). A suitable pair for \\((1{,}053,325)\\) is \\((-4,13)\\)."],"h":["Couple de Bézout : remonter l'algorithme d'Euclide","Bézout pair: working back through Euclid's algorithm"]},{"k":"concept","t":["Théorème de Bézout","Bézout's theorem"],"b":["La fonction suivante renvoie \\((d;u;v)\\) avec \\(d=\\operatorname{PGCD}(a,b)=au+bv\\), pour \\(a\\) et \\(b\\) entiers naturels non tous deux nuls.\nlstlisting\ndef euclide_etendu(a, b):\n    u0, v0, u1, v1 = 1, 0, 0, 1\n    while b != 0:\n        q, r = a // b, a % b\n        a, b = b, r\n        u0, u1 = u1, u0 - q * u1\n        v0, v1 = v1, v0 - q * v1\n    return a, u0, v0\nlstlisting\nÀ chaque étape, les deux restes en cours s'écrivent \\(au_0+bv_0\\) et \\(au_1+bv_1\\) en fonction des valeurs initiales de \\(a\\) et \\(b\\).","The following function returns \\((d,u,v)\\) with \\(d=\\operatorname{gcd}(a,b)=au+bv\\), for natural numbers \\(a\\) and \\(b\\) not both zero.\nlstlisting\ndef euclide_etendu(a, b):\n    u0, v0, u1, v1 = 1, 0, 0, 1\n    while b != 0:\n        q, r = a // b, a % b\n        a, b = b, r\n        u0, u1 = u1, u0 - q * u1\n        v0, v1 = v1, v0 - q * v1\n    return a, u0, v0\nlstlisting\nAt every step, the two current remainders can be written \\(au_0+bv_0\\) and \\(au_1+bv_1\\) in terms of the initial values of \\(a\\) and \\(b\\)."],"h":["Algorithme d'Euclide étendu en Python","Extended Euclidean algorithm in Python"]},{"k":"concept","t":["Théorème de Gauss","Gauss's theorem"],"b":["Soit \\(a\\), \\(b\\), \\(c\\) trois entiers. Si \\(a\\mid bc\\) et si \\(a\\) et \\(b\\) sont premiers entre eux, alors \\(a\\mid c\\).","Let \\(a\\), \\(b\\), \\(c\\) be three integers. If \\(a\\mid bc\\) and \\(a\\) and \\(b\\) are coprime, then \\(a\\mid c\\)."],"h":["Théorème de Gauss","Gauss's theorem"]},{"k":"proof","t":["Théorème de Gauss","Gauss's theorem"],"b":["Par le théorème de Bézout, il existe \\(u\\) et \\(v\\) tels que \\(au+bv=1\\). En multipliant par \\(c\\) : \\(c=acu+bcv\\). Or \\(a\\mid acu\\) et \\(a\\mid bc\\), donc \\(a\\) divise \\(acu+bcv=c\\).","By Bézout's theorem, there are \\(u\\) and \\(v\\) such that \\(au+bv=1\\). Multiplying by \\(c\\): \\(c=acu+bcv\\). Now \\(a\\mid acu\\) and \\(a\\mid bc\\), so \\(a\\) divides \\(acu+bcv=c\\)."]},{"k":"concept","t":["Théorème de Gauss","Gauss's theorem"],"b":["Si \\(a\\) et \\(b\\) sont premiers entre eux et divisent tous deux \\(n\\), alors \\(ab\\) divise \\(n\\).","If \\(a\\) and \\(b\\) are coprime and both divide \\(n\\), then \\(ab\\) divides \\(n\\)."],"h":["Corollaire","Corollary"]},{"k":"proof","t":["Théorème de Gauss","Gauss's theorem"],"b":["\\(n=ak\\). Comme \\(b\\mid ak\\) et \\(\\operatorname{PGCD}(a,b)=1\\), Gauss donne \\(b\\mid k\\) : \\(k=bk'\\) et \\(n=abk'\\).","\\(n=ak\\). Since \\(b\\mid ak\\) and \\(\\operatorname{gcd}(a,b)=1\\), Gauss gives \\(b\\mid k\\): \\(k=bk'\\) and \\(n=abk'\\)."]},{"k":"concept","t":["Théorème de Gauss","Gauss's theorem"],"b":["Soit \\(n\\ge2\\) et \\(a\\) un entier. Il existe un entier \\(u\\) tel que \\(au\\equiv1\\pmod n\\) si et seulement si \\(\\operatorname{PGCD}(a,n)=1\\). Un tel \\(u\\) est un inverse de \\(a\\) modulo \\(n\\) ; il permet de résoudre \\(ax\\equiv b\\pmod n\\) : \\(x\\equiv ub\\pmod n\\).","Let \\(n\\ge2\\) and \\(a\\) an integer. There is an integer \\(u\\) such that \\(au\\equiv1\\pmod n\\) if and only if \\(\\operatorname{gcd}(a,n)=1\\). Such a \\(u\\) is an inverse of \\(a\\) modulo \\(n\\); it allows us to solve \\(ax\\equiv b\\pmod n\\): \\(x\\equiv ub\\pmod n\\)."],"h":["Inverse modulo \\(n\\)","Inverse modulo \\(n\\)"]},{"k":"proof","t":["Théorème de Gauss","Gauss's theorem"],"b":["\\(au\\equiv1\\pmod n\\) équivaut à l'existence d'un entier \\(v\\) tel que \\(au+nv=1\\) : c'est le théorème de Bézout.","\\(au\\equiv1\\pmod n\\) is equivalent to the existence of an integer \\(v\\) such that \\(au+nv=1\\): this is Bézout's theorem."]},{"k":"method","t":["Théorème de Gauss","Gauss's theorem"],"b":["<ol>\n<li>Elle a des solutions si et seulement si \\(\\operatorname{PGCD}(a,b)\\) divise \\(c\\) ; on divise alors par ce PGCD.\n<li>On trouve une solution particulière \\((x_0;y_0)\\).\n<li>Par différence, \\(a(x-x_0)=-b(y-y_0)\\) ; avec \\(a\\) et \\(b\\) premiers entre eux, Gauss donne \\(x-x_0=bk\\), puis \\(y-y_0=-ak\\).\n<li>On vérifie que les couples \\((x_0+bk;y_0-ak)\\), \\(k\\in\\Z\\), sont bien solutions.\n<\/ol>\nExemple : \\(7x+5y=1\\) a la solution particulière \\((-2;3)\\) ; ses solutions sont les couples \\((-2+5k;3-7k)\\), \\(k\\in\\Z\\).","<ol>\n<li>It has solutions if and only if \\(\\operatorname{gcd}(a,b)\\) divides \\(c\\); we then divide by this gcd.\n<li>Find a particular solution \\((x_0,y_0)\\).\n<li>By subtraction, \\(a(x-x_0)=-b(y-y_0)\\); with \\(a\\) and \\(b\\) coprime, Gauss gives \\(x-x_0=bk\\), then \\(y-y_0=-ak\\).\n<li>Check that the pairs \\((x_0+bk,y_0-ak)\\), \\(k\\in\\Z\\), are indeed solutions.\n<\/ol>\nExample: \\(7x+5y=1\\) has the particular solution \\((-2,3)\\); its solutions are the pairs \\((-2+5k,3-7k)\\), \\(k\\in\\Z\\)."],"h":["Équation \\(ax+by=c\\) en nombres entiers","Equation \\(ax+by=c\\) in integers"]},{"k":"widget","t":["Horloge modulo n","A clock modulo n"],"b":["Déplacez a sur l’horloge et réglez n : restes, puissances et inverses modulo n.","Drag a around the clock and set n: remainders, powers and inverses modulo n."],"w":{"type":"modclock","mode":"inverse","n":26,"a":7}}],"figureVersion":"e3b0c44298fc1c14"},"figs":{}};</script>
+<script>
+(function(){
+"use strict";
+/* ---- ../js/canvas-navigation.js ---- */
+// A camera is independent of the mathematical parameters. Moving an object never changes it.
+function camera2D() {
+  const c = { scale: 1, x: 0, y: 0 };
+  c.project = ([x,y]) => [c.x+c.scale*x,c.y+c.scale*y];
+  c.unproject = ([x,y]) => [(x-c.x)/c.scale,(y-c.y)/c.scale];
+  c.zoomAt = (factor,[x,y]) => { const p=c.unproject([x,y]); c.scale=Math.max(.2,Math.min(12,c.scale*factor)); c.x=x-p[0]*c.scale;c.y=y-p[1]*c.scale; };
+  c.reset=()=>{c.scale=1;c.x=c.y=0;};return c;
+}
+function navigationButtons(host,action,lang='fr') {
+  const bar=document.createElement('output');bar.className='canvas-navigation';bar.hidden=true;
+  bar.setAttribute('aria-live','polite');host.append(bar);
+  bar.update=scale=>{bar.textContent=`${Math.round(scale*100)} %`;};bar.update(1);return bar;
+}
+function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.documentElement.lang,canPan=()=>false}={}) {
+  const camera=camera2D(),rawClear=g.clearRect.bind(g);let last=null,gesture=null;
+  const pointers=new Map(),point=e=>{const r=c.getBoundingClientRect(),[w,h]=size();return [(e.clientX-r.left)/r.width*w,(e.clientY-r.top)/r.height*h];};
+  const apply=()=>{const [w]=size(),d=c.width/w;g.setTransform(d*camera.scale,0,0,d*camera.scale,d*camera.x,d*camera.y);};
+  g.clearRect=()=>{g.save();g.setTransform(1,0,0,1,0,0);rawClear(0,0,c.width,c.height);g.restore();apply();};
+  const refresh=()=>{apply();bar.update(camera.scale);redraw();};
+  const action=id=>{const [w,h]=size();if(id==='reset')camera.reset();else if(id==='in'||id==='out')camera.zoomAt(id==='in'?1.25:.8,[w/2,h/2]);else{const d={left:[40,0],right:[-40,0],up:[0,40],down:[0,-40]}[id];camera.x+=d[0];camera.y+=d[1];}refresh();};
+  const bar=navigationButtons(host,action,lang);c.style.touchAction='none';if(c.tabIndex<0)c.tabIndex=0;
+  const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey||canPan(camera.unproject(point(e)))){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
+  const move=e=>{if(pointers.has(e.pointerId))pointers.set(e.pointerId,point(e));if(gesture&&pointers.size===2){const a=[...pointers.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);camera.zoomAt(d/Math.max(1,gesture.distance),gesture.mid);camera.x+=mid[0]-gesture.mid[0];camera.y+=mid[1]-gesture.mid[1];gesture={distance:d,mid};refresh();e.preventDefault();e.stopImmediatePropagation();}else if(last){const q=point(e);camera.x+=q[0]-last[0];camera.y+=q[1]-last[1];last=q;refresh();e.preventDefault();e.stopImmediatePropagation();}};
+  const end=e=>{const handled=!!last||!!gesture;pointers.delete(e.pointerId);last=null;if(pointers.size<2)gesture=null;if(handled){e.preventDefault();e.stopImmediatePropagation();}};
+  const wheel=e=>{e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};if(e.shiftKey&&arrows[e.key]){e.preventDefault();e.stopImmediatePropagation();action(arrows[e.key]);return;}if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
+  const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['dblclick',()=>action('reset')],['keydown',key]];
+  for(const [name,fn] of events)c.addEventListener(name,fn,{capture:true,passive:false});
+  return {camera,point:e=>camera.unproject(point(e)),apply,destroy(){bar.remove();g.clearRect=rawClear;for(const[n,f]of events)c.removeEventListener(n,f,true);}};
+}
+// Changing viewBox preserves the inverse screen transform used by the SVG editors for picking.
+function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={},canPan=()=>false}={}) {
+  const original=state.original??=(svg.getAttribute('viewBox')||'0 0 640 400').split(/[ ,]+/).map(Number);let box=[...(state.box||original)],drag=null,pinch=null;const touches=new Map();
+  const paint=()=>{state.box=[...box];svg.setAttribute('viewBox',box.join(' '));bar.update(original[2]/box[2]);};
+  const zoom=(k,fx=.5,fy=.5)=>{const w=Math.max(original[2]/12,Math.min(original[2]*5,box[2]*k)),h=w*original[3]/original[2];box=[box[0]+(box[2]-w)*fx,box[1]+(box[3]-h)*fy,w,h];paint();};
+  const action=id=>{if(id==='reset'){box=[...original];paint();}else if(id==='in'||id==='out')zoom(id==='in'?.8:1.25);else{const d={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[id];box[0]+=d[0]*box[2]*.12;box[1]+=d[1]*box[3]*.12;paint();}};
+  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';if(svg.tabIndex<0)svg.tabIndex=0;
+  svg.setAttribute('aria-label',lang==='en'?'Interactive figure: wheel or pinch to zoom, Shift-drag to pan, + or - to zoom, 0 to reset':'Figure interactive : molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue, + ou - pour zoomer, 0 pour réinitialiser');
+  const observer=new MutationObserver(()=>{if(svg.getAttribute('viewBox')!==box.join(' '))paint();});observer.observe(svg,{attributes:true,attributeFilter:['viewBox']});
+  const wheel=e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
+  const down=e=>{
+    if(e.pointerType==='touch')touches.set(e.pointerId,[e.clientX,e.clientY]);
+    if(touches.size===2){const a=[...touches.values()];pinch={d:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};drag=null;svg.dispatchEvent(new CustomEvent('view-gesture'));}
+    if(!pinch&&!(e.altKey||e.shiftKey||e.button===1)&&!canPan(e))return;
+    e.preventDefault();e.stopImmediatePropagation();if(!pinch)drag={x:e.clientX,y:e.clientY,box:[...box]};svg.setPointerCapture?.(e.pointerId);
+  };
+  const move=e=>{
+    if(touches.has(e.pointerId))touches.set(e.pointerId,[e.clientX,e.clientY]);
+    const r=svg.getBoundingClientRect();
+    if(pinch&&touches.size===2){const a=[...touches.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);zoom(pinch.d/Math.max(1,d),(pinch.mid[0]-r.left)/r.width,(pinch.mid[1]-r.top)/r.height);box[0]-=(mid[0]-pinch.mid[0])/r.width*box[2];box[1]-=(mid[1]-pinch.mid[1])/r.height*box[3];pinch={d,mid};paint();}
+    else if(drag){box[0]=drag.box[0]-(e.clientX-drag.x)/r.width*box[2];box[1]=drag.box[1]-(e.clientY-drag.y)/r.height*box[3];paint();}
+    else return;e.preventDefault();e.stopImmediatePropagation();
+  };
+  const end=e=>{touches.delete(e.pointerId);drag=null;if(touches.size<2)pinch=null;};
+  const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};const id=e.key==='0'?'reset':e.key==='-'?'out':['+','='].includes(e.key)?'in':e.shiftKey?arrows[e.key]:null;if(!id||e.target.closest('[data-handle],[data-drag]'))return;e.preventDefault();e.stopPropagation();action(id);};
+  const reset=()=>action('reset');
+  const events=[['wheel',wheel],['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['lostpointercapture',end],['keydown',key],['dblclick',reset]];
+  for(const [name,fn]of events)svg.addEventListener(name,fn,{capture:true,passive:false});
+  paint();
+  const stop=()=>{observer.disconnect();bar.remove();for(const [name,fn]of events)svg.removeEventListener(name,fn,true);};stop.bar=bar;return stop;
+}
+
+function observeSvgNavigation(root,selector,lang) {
+  const mounted=new Map(),states=new Map();let alive=true;
+  const scan=()=>{if(!alive)return;for(const [svg,stop]of mounted)if(!svg.isConnected||!stop.bar.isConnected){stop();mounted.delete(svg);}
+    [...root.querySelectorAll(selector)].forEach((svg,i)=>{if(mounted.has(svg))return;const key=`${svg.closest('[id]')?.id||'figure'}-${i}`;if(!states.has(key))states.set(key,{});mounted.set(svg,svgNavigation(svg,{lang,state:states.get(key)}));});};
+  const observer=new MutationObserver(scan);observer.observe(root,{childList:true,subtree:true});scan();
+  return()=>{alive=false;observer.disconnect();for(const stop of mounted.values())stop();mounted.clear();};
+}
+
+/* ---- widgets.js ---- */
+// Interactive canvases for the slide player. Every canvas has draggable handles, keyboard movement and explicit controls.
+// The same quantities are mirrored by the readout; space scenes use true 3D.
+
+const C = { bg: "#13243b", grid: "#24364f", axis: "#8fa6c4", ink: "#f4f1ea", muted: "#8fa6c4", acc: "#e8a33d", warn: "#ff7a7a", blue: "#8fb7ff" };
+const SERIF = '"STIX Two Text","Latin Modern Roman",Georgia,serif';
+
+// ---- mathematics: every formula is TeX, typeset by MathJax (tex-svg), never Unicode look-alikes.
+// Readouts are HTML strings whose formulas sit between \( and \); canvas labels may be a whole \( ... \) string.
+const inl = t => "\\(" + t + "\\)";
+const mj = () => (typeof MathJax !== "undefined" && MathJax.tex2svg && MathJax.startup && MathJax.startup.document ? MathJax : null);
+const svgCache = new Map();
+function mathSvg(tex) {
+  let n = svgCache.get(tex);
+  if (!n) {
+    n = mj().tex2svg(tex, { display: false });
+    n.querySelectorAll("mjx-assistive-mml").forEach(e => e.remove());
+    if (svgCache.size > 600) svgCache.clear();
+    svgCache.set(tex, n);
+  }
+  return n;
+}
+const MATH_RE = /\\\((.*?)\\\)/g;
+const stripTeX = h => h.replace(MATH_RE, (_, t) => t);
+function paint(el, html) {
+  if (!mj()) { el.innerHTML = stripTeX(html); return; }
+  const tpl = document.createElement("template"); tpl.innerHTML = html;
+  const w = document.createTreeWalker(tpl.content, NodeFilter.SHOW_TEXT), texts = [];
+  while (w.nextNode()) texts.push(w.currentNode);
+  for (const t of texts) {
+    if (!t.nodeValue.includes("\\(")) continue;
+    const frag = document.createDocumentFragment(); let last = 0, m; MATH_RE.lastIndex = 0;
+    while ((m = MATH_RE.exec(t.nodeValue))) {
+      if (m.index > last) frag.append(t.nodeValue.slice(last, m.index));
+      frag.append(mathSvg(m[1]).cloneNode(true)); last = m.index + m[0].length;
+    }
+    if (last < t.nodeValue.length) frag.append(t.nodeValue.slice(last));
+    t.replaceWith(frag);
+  }
+  el.replaceChildren(...tpl.content.childNodes);
+}
+// Cached by string, and throttled while a handle is dragged: the formulas are rebuilt only when the text changes.
+function rich(el, html) {
+  if (el._html === html) return;
+  el._html = html;
+  const now = performance.now();
+  if (!el._t0 || now - el._t0 > 110) { el._t0 = now; paint(el, html); return; }
+  if (!el._timer) el._timer = setTimeout(() => { el._timer = 0; el._t0 = performance.now(); paint(el, el._html); }, 110);
+}
+// Formula as an image for canvas labels: TeX -> MathJax SVG -> Image, colour and size fixed at creation.
+const EX = .431;   // MathJax ex-height in em
+const imgs = new Map();
+let repaint = () => {};
+function mathImage(tex, color, size) {
+  const key = tex + "|" + color + "|" + size; let e = imgs.get(key);
+  if (e) return e.ok ? e : null;
+  if (!mj()) return null;
+  const svg = mathSvg(tex).querySelector("svg").cloneNode(true);
+  const ex = a => parseFloat(svg.getAttribute(a)), va = parseFloat((svg.getAttribute("style") || "").replace(/.*vertical-align:\s*([-\d.]+)ex.*/, "$1")) || 0;
+  e = { w: ex("width") * EX * size, h: ex("height") * EX * size, va: va * EX * size, ok: false, img: new Image() };
+  svg.setAttribute("width", e.w + "px"); svg.setAttribute("height", e.h + "px"); svg.removeAttribute("style"); svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  const xml = new XMLSerializer().serializeToString(svg).replace(/currentColor/g, color);
+  e.img.onload = () => { e.ok = true; repaint(); };
+  e.img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
+  imgs.set(key, e); return null;
+}
+const isMath = s => /^\\\(.*\\\)$/.test(s);
+function drawMath(g, s, x, y, color, size, align) {
+  const e = mathImage(s.slice(2, -2), color, size);
+  if (!e) return;
+  const left = align === "right" ? x - e.w : align === "center" ? x - e.w / 2 : x;
+  g.drawImage(e.img, left, y - e.h - e.va, e.w, e.h);
+}
+// ---- TeX builders for the numbers and objects the readouts show
+const tnum = (n, lang, d = 2) => { if (!Number.isFinite(n)) return "?"; const s = fmt(n, lang, d); return lang ? s : s.replace(",", "{,}"); };
+const tpar = (N, x) => (x < 0 ? `(${N(x)})` : N(x));
+const tpt = (o, ...c) => "(" + c.map(v => (typeof v === "number" ? o.tn(v) : v)).join(o.L ? "," : "\\,;") + ")";
+const tiv = (o, a, b, closedA = true, closedB = true) => {
+  const f = v => (typeof v === "number" ? o.tn(v) : v);
+  return o.L ? `${closedA ? "[" : "("}${f(a)},${f(b)}${closedB ? "]" : ")"}` : `${closedA ? "[" : "]"}${f(a)}\\,;${f(b)}${closedB ? "]" : "["}`;
+};
+// "x^2-2x-1": coefficients 1 and -1 are implicit, zero terms are dropped, signs are written as operators.
+const tpoly = (parts, N) => { let s = ""; for (const [c, v] of parts) { if (Math.abs(c) < 1e-9) continue; const ab = Math.abs(c), body = ab === 1 && v ? v : N(ab) + v; s += s ? (c < 0 ? "-" : "+") + body : (c < 0 ? "-" : "") + body; } return s || "0"; };
+const tshift = (x, al, N) => (Math.abs(al) < 1e-9 ? x : `(${x}${al < 0 ? "+" : "-"}${N(Math.abs(al))})`);
+const tlin = (n, N) => { let s = ""; n.forEach((c, i) => { if (!c) return; const v = "xyz"[i], body = (Math.abs(c) === 1 ? "" : N(Math.abs(c))) + v; s += s ? (c < 0 ? "-" : "+") + body : (c < 0 ? "-" : "") + body; }); return s || "0"; };
+const sgn = c => (c < 0 ? "-" : "+");
+
+function mount(spec, ctx) {
+  const f = W2[spec.type] || W3[spec.type];
+  if (!f) { ctx.host.textContent = "?"; return { destroy() {} }; }
+  const cv = canvas(ctx.host,ctx); repaint = () => cv.redraw();
+  const api = Object.assign(cv, { ...ctx, spec, L: ctx.lang, num: n => fmt(n, ctx.lang), tn: (n, d) => tnum(n, ctx.lang, d), pair: (fr, en) => (ctx.lang ? en : fr) });
+  ctx.hint.textContent = api.pair(spec.hintFr || "Interactif : glissez les points.", spec.hintEn || "Interactive: drag the points.");
+  const inst = f(api) || {};
+  cv.start(inst);
+  const handles=()=>cv.handles();
+  if(handles().length){
+    let selected=0,cursor=null;
+    cv.c.addEventListener("pointerdown",()=>{cursor=null;});
+    const move=(dx,dy)=>{const h=handles()[selected];if(!h)return;if(!cursor)cursor=[h.x,h.y];cursor[0]+=dx;cursor[1]+=dy;h.move(...cursor);cv.redraw();};
+    cv.c.tabIndex=0;cv.c.setAttribute('role','group');cv.c.setAttribute('aria-label',api.pair('Figure interactive : H pour choisir un point, flèches pour le déplacer ; molette pour zoomer, glisser le fond pour déplacer la vue, 0 pour réinitialiser','Interactive figure: H selects a point, arrows move it; wheel to zoom, drag background to pan, 0 to reset'));
+    cv.c.onkeydown=e=>{if(e.key.toLowerCase()==='h'){selected=(selected+1)%handles().length;cursor=null;e.preventDefault();e.stopPropagation();cv.c.setAttribute('aria-label',api.pair('Point ','Point ')+(selected+1));return;}const deltas={ArrowLeft:[-14,0],ArrowRight:[14,0],ArrowUp:[0,-14],ArrowDown:[0,14]};if(deltas[e.key]){e.preventDefault();e.stopPropagation();const d=deltas[e.key],k=e.shiftKey?3:1;move(d[0]*k,d[1]*k);}};
+
+  }
+  return { destroy() { cv.stop(); ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
+}
+
+// Coordinates and intervals follow the language convention, as the TeX class does: (x ; y) and [a ; b[ in French,
+// (x, y) and [a, b) in English. Values are already formatted strings or numbers formatted with o.num.
+function pt(o, ...c) { return "(" + c.map(v => (typeof v === "number" ? o.num(v) : v)).join(o.L ? ", " : " ; ") + ")"; }
+function iv(o, a, b, closedA = true, closedB = true) {
+  const f = v => (typeof v === "number" ? o.num(v) : v);
+  return o.L ? `${closedA ? "[" : "("}${f(a)}, ${f(b)}${closedB ? "]" : ")"}` : `${closedA ? "[" : "]"}${f(a)} ; ${f(b)}${closedB ? "]" : "["}`;
+}
+
+function fmt(n, lang, d = 2) {
+  if (!Number.isFinite(n)) return "∞";
+  let s = (Math.round(n * 10 ** d) / 10 ** d).toFixed(d).replace(/\.?0+$/, "");
+  if (s === "-0") s = "0";
+  return lang ? s : s.replace(".", ",");
+}
+
+function canvas(host,ctx) {
+  const c = document.createElement("canvas"); host.appendChild(c);
+  const g = c.getContext("2d");
+  const o = { c, g, W: 0, H: 0, handles: () => [], draw() {}, drag: null };
+  const resize = () => {
+    const r = host.getBoundingClientRect(), d = devicePixelRatio || 1;
+    // The stage is scaled by CSS transform: use layout size (offsetWidth), not the scaled rect.
+    o.W = host.clientWidth || r.width; o.H = host.clientHeight || r.height;
+    c.width = Math.round(o.W * d); c.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw();
+  };
+  o.redraw = () => { g.clearRect(0, 0, o.W, o.H); g.fillStyle = C.bg; g.fillRect(0, 0, o.W, o.H); o.draw(g); };
+  const navigation=canvasNavigation(c,g,()=>[o.W||640,o.H||420],()=>o.redraw(),{host:ctx.controls,lang:ctx.lang?'en':'fr',canPan:([x,y])=>!o.rotate&&!o.handles().some(h=>Math.hypot(h.x-x,h.y-y)<(h.r||22))});
+  const pt=navigation.point;
+  c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
+  const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };
+  let t0 = 0, raf = 0;
+  const pulse = () => { o.t = performance.now() / 1000; if (!matchMedia("(prefers-reduced-motion: reduce)").matches) o.redraw(); raf = requestAnimationFrame(pulse); };
+  c.addEventListener("pointerdown", e => { const [x, y] = pt(e), h = hit(x, y); if (!h) { if(o.rotate){c.setPointerCapture(e.pointerId);o.rotate.start(e, pt);} return; } o.drag = h; c.setPointerCapture(e.pointerId); c.style.cursor = "grabbing"; e.preventDefault(); h.move(x, y); o.redraw(); });
+  c.addEventListener("pointermove", e => { const [x, y] = pt(e); if (o.drag) { o.drag.move(x, y); o.redraw(); } else if (o.rotate?.active) o.rotate.move(e, pt); else c.style.cursor = hit(x, y)?.cur || "default"; });
+  const end = () => { o.drag = null; o.rotate?.end(); c.style.cursor = "default"; o.redraw(); };
+  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
+  const ro = new ResizeObserver(resize);
+  o.start = inst => { Object.assign(o, inst); ro.observe(host); resize(); if (matchMedia("(prefers-reduced-motion: no-preference)").matches) raf = requestAnimationFrame(pulse); };
+  o.stop = () => { navigation.destroy();ro.disconnect(); cancelAnimationFrame(raf); };
+  return o;
+}
+
+// ---- drawing helpers shared by widgets
+function view(o, x0, x1, y0, y1, pad = 36) {
+  const w = o.W - 2 * pad, h = o.H - 2 * pad;
+  const v = { x0, x1, y0, y1, X: x => pad + (x - x0) / (x1 - x0) * w, Y: y => o.H - pad - (y - y0) / (y1 - y0) * h, iX: X => x0 + (X - pad) / w * (x1 - x0), iY: Y => y0 + (o.H - pad - Y) / h * (y1 - y0), pad };
+  return v;
+}
+function axes(g, v, o = {}) {
+  const sx = o.sx || 1, sy = o.sy || 1;
+  g.save(); g.lineWidth = 1; g.strokeStyle = C.grid; g.fillStyle = C.muted; g.font = `400 16px ${SERIF}`; g.textAlign = "center";
+  for (let x = Math.ceil(v.x0 / sx) * sx; x <= v.x1 + 1e-9; x += sx) { g.beginPath(); g.moveTo(v.X(x), v.Y(v.y0)); g.lineTo(v.X(x), v.Y(v.y1)); g.stroke(); if (!o.noLabels && Math.abs(x) > 1e-9) g.fillText(lab(x, o.lang), v.X(x), Math.min(v.Y(0), v.Y(v.y0)) + 16 > v.Y(v.y0) ? v.Y(v.y0) - 6 : v.Y(0) + 16); }
+  g.textAlign = "right";
+  for (let y = Math.ceil(v.y0 / sy) * sy; y <= v.y1 + 1e-9; y += sy) { g.beginPath(); g.moveTo(v.X(v.x0), v.Y(y)); g.lineTo(v.X(v.x1), v.Y(y)); g.stroke(); if (!o.noLabels && Math.abs(y) > 1e-9) g.fillText(lab(y, o.lang), v.X(0) - 6 < v.X(v.x0) + 24 ? v.X(v.x0) + 24 : v.X(0) - 6, v.Y(y) + 5); }
+  g.strokeStyle = C.axis; g.lineWidth = 1.6;
+  if (v.y0 <= 0 && v.y1 >= 0) { g.beginPath(); g.moveTo(v.X(v.x0), v.Y(0)); g.lineTo(v.X(v.x1), v.Y(0)); g.stroke(); }
+  if (v.x0 <= 0 && v.x1 >= 0) { g.beginPath(); g.moveTo(v.X(0), v.Y(v.y0)); g.lineTo(v.X(0), v.Y(v.y1)); g.stroke(); }
+  g.restore();
+}
+const lab = (x, lang) => fmt(x, lang, 2).replace("-", "\u2212");
+function curve(g, v, f, a, b, color = C.acc, w = 3) {
+  g.save(); g.strokeStyle = color; g.lineWidth = w; g.lineJoin = "round"; g.beginPath(); let pen = false;
+  const n = 400;
+  for (let i = 0; i <= n; i++) {
+    const x = a + (b - a) * i / n, y = f(x);
+    if (!Number.isFinite(y) || y > v.y1 * 4 || y < v.y0 * 4 && v.y0 < 0 || y < -1e6) { pen = false; continue; }
+    const X = v.X(x), Y = v.Y(y);
+    if (!pen) { g.moveTo(X, Y); pen = true; } else g.lineTo(X, Y);
+  }
+  g.stroke(); g.restore();
+}
+function dot(o, x, y, color = C.acc, label = "", cur = "grab", draggable = true, side = 1) {
+  const g = o.g; g.save();
+  if (draggable) { g.strokeStyle = color; g.lineWidth = 1.5; g.setLineDash([4, 4]); g.lineDashOffset = -(o.t || 0) * 8; g.beginPath(); g.arc(x, y, 15 + 2 * Math.sin((o.t || 0) * 3), 0, 7); g.stroke(); g.setLineDash([]); }
+  g.fillStyle = color; g.beginPath(); g.arc(x, y, 7, 0, 7); g.fill();
+  // side = -1 writes the label to the left, so two nearby points keep readable labels.
+  if (label) { const x0 = x + 14 * side, al = side < 0 ? "right" : "left"; if (isMath(label)) drawMath(g, label, x0, y - 12, C.ink, 20, al); else { g.fillStyle = C.ink; g.font = `italic 600 20px ${SERIF}`; g.textAlign = al; g.fillText(label, x0, y - 12); } }
+  g.restore();
+}
+function text(g, s, x, y, color = C.ink, size = 18, align = "left") { if (isMath(s)) { drawMath(g, s, x, y, color, size + 2, align); return; } g.save(); g.fillStyle = color; g.font = `${size + 2}px ${SERIF}`; g.textAlign = align; g.fillText(s, x, y); g.restore(); }
+function slider(ctx, label, min, max, step, val, on, fmtv) {
+  const l = document.createElement("label"), i = document.createElement("input"), s = document.createElement("span");
+  i.type = "range"; i.min = min; i.max = max; i.step = step; i.value = val; s.textContent = fmtv ? fmtv(+val) : val;
+  i.addEventListener("input", () => { s.textContent = fmtv ? fmtv(+i.value) : i.value; on(+i.value); });
+  const lb = document.createElement("span"); rich(lb, label); lb._t0 = 0; l.append(lb, " ", i, s); ctx.controls.appendChild(l); return i;
+}
+function choice(ctx, options, cur, on) {
+  if (!options.length) return;
+  if (options.length === 1) {
+    const [id, fr, en] = options[0], label = document.createElement('span');
+    label.className = 'select-value'; rich(label, ctx.L ? en : fr); ctx.controls.appendChild(label);
+    if (cur !== id) on(id);
+    return;
+  }
+  const wrap = document.createElement("div"); wrap.style.display = "flex"; wrap.style.gap = "8px";
+  options.forEach(([id, fr, en]) => {
+    const b = document.createElement("button"); rich(b, ctx.L ? en : fr); b.setAttribute("aria-pressed", id === cur);
+    b.onclick = () => { wrap.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false")); b.setAttribute("aria-pressed", "true"); on(id); };
+    wrap.appendChild(b);
+  });
+  ctx.controls.appendChild(wrap);
+}
+const snap = (v, s = .5) => Math.round(v / s) * s;
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+/* ---- widgets-2d.js ---- */
+{
+
+const set = (o, html) => rich(o.readout, html);
+const lines = (...a) => a.filter(Boolean).join("<br>");
+// Complex plane with the same scale on both axes: half-height r, width from the canvas aspect.
+const iso = (o, r) => { const w = o.W - 72, h = o.H - 72, k = w / Math.max(h, 1); return view(o, -r * k, r * k, -r, r); };
+// An angle in TeX: an exact multiple of pi/12 as a fraction of pi, otherwise a decimal. Normalised to ]-pi ; pi].
+const angTeX = (t, N) => {
+  t = Math.atan2(Math.sin(t), Math.cos(t)); const k = Math.round(t / (Math.PI / 12));
+  if (Math.abs(t - k * Math.PI / 12) > 1e-9) return N(t);
+  if (k === 0) return "0";
+  const gcd = (a, b) => (b ? gcd(b, a % b) : a), d = gcd(Math.abs(k), 12), p = Math.abs(k) / d, q = 12 / d, body = (p === 1 ? "" : p) + "\\pi";
+  return (k < 0 ? "-" : "") + (q === 1 ? body : `\\dfrac{${body}}{${q}}`);
+};
+const cTeX = (a, b, N) => tpoly([[a, ""], [b, "i"]], N);   // a+ib with implicit 1 and dropped zeros
+const modTeX = (a, b, N) => { const s = a * a + b * b, r = Math.sqrt(s); return Math.abs(r - Math.round(r * 4) / 4) < 1e-9 ? N(r) : `\\sqrt{${N(s)}}\\approx${N(r)}`; };
+// Polar handle: modulus snapped to a quarter, argument to pi/12, so that the readouts stay exact.
+const polarSnap = (x, y, rmin, rmax) => { const r = clamp(snap(Math.hypot(x, y), .25), rmin, rmax), t = snap(Math.atan2(y, x), Math.PI / 12); return [r * Math.cos(t), r * Math.sin(t)]; };
+const arrowTo = (g, V, P, Q, col, w = 3) => { g.save(); g.strokeStyle = g.fillStyle = col; g.lineWidth = w; const a = [V.X(P[0]), V.Y(P[1])], b = [V.X(Q[0]), V.Y(Q[1])]; g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); const t = Math.atan2(b[1] - a[1], b[0] - a[0]); if (Math.hypot(b[0] - a[0], b[1] - a[1]) > 12) { g.beginPath(); g.moveTo(...b); g.lineTo(b[0] - 13 * Math.cos(t - .4), b[1] - 13 * Math.sin(t - .4)); g.lineTo(b[0] - 13 * Math.cos(t + .4), b[1] - 13 * Math.sin(t + .4)); g.fill(); } g.restore(); };
+const ring = (g, V, r, col, dash = true) => { g.save(); g.strokeStyle = col; g.lineWidth = 1.5; if (dash) g.setLineDash([5, 5]); g.beginPath(); g.arc(V.X(0), V.Y(0), r * (V.X(1) - V.X(0)), 0, 7); g.stroke(); g.restore(); };
+const powmod = (a, k, n) => { let r = 1 % n, b = ((a % n) + n) % n; while (k > 0) { if (k & 1) r = r * b % n; b = b * b % n; k >>= 1; } return r; };
+const igcd = (a, b) => (b ? igcd(b, a % b) : Math.abs(a));
+// Readouts are prose with TeX formulas between \( and \): inl() wraps one formula, tpoly/tshift/tpt/tiv build TeX.
+
+
+
+var W2 = {
+  // Two draggable points define a line: slope, direction vector, equations (Seconde droites, Premiere geometrie).
+  line(o) {
+    let A = [-2, 1], B = [3, 3]; const v = () => view(o, -6, 6, -5, 5);
+    return {
+      handles() { const V = v(); return [A, B].map(p => ({ x: V.X(p[0]), y: V.Y(p[1]), cur: "grab", move(X, Y) { p[0] = clamp(snap(V.iX(X)), -6, 6); p[1] = clamp(snap(V.iY(Y)), -5, 5); } })); },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L });
+        const dx = B[0] - A[0], dy = B[1] - A[1];
+        if (dx === 0 && dy === 0) { dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A=B"); set(o, o.pair(`${inl("A")} et ${inl("B")} sont confondus : pas de droite.`, `${inl("A")} and ${inl("B")} coincide: no line.`)); return; }
+        g.save(); g.strokeStyle = C.acc; g.lineWidth = 3; g.beginPath();
+        const t = 40; g.moveTo(V.X(A[0] - t * dx), V.Y(A[1] - t * dy)); g.lineTo(V.X(A[0] + t * dx), V.Y(A[1] + t * dy)); g.stroke(); g.restore();
+        g.save(); g.strokeStyle = C.warn; g.lineWidth = 2.5; g.beginPath(); g.moveTo(V.X(A[0]), V.Y(A[1])); g.lineTo(V.X(B[0]), V.Y(B[1])); g.stroke(); g.restore();
+        dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.acc, "B");
+        const a = dy, b = -dx, c = -(a * A[0] + b * A[1]), N = o.tn;
+        const red = dx === 0 ? `x=${N(A[0])}` : `y=${tpoly([[dy / dx, "x"], [A[1] - dy / dx * A[0], ""]], N)}`;
+        set(o, lines(inl(`\\overrightarrow{AB}=${tpt(o, dx, dy)}`), o.pair(`Équation cartésienne : ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`, `Cartesian equation: ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`), dx === 0 ? o.pair("Droite verticale.", "Vertical line.") : o.pair(`Équation réduite : ${inl(red)}`, `Slope-intercept form: ${inl(red)}`), dx === 0 ? "" : o.pair(`Pente ${inl(`m=${N(dy / dx)}`)}`, `Slope ${inl(`m=${N(dy / dx)}`)}`)));
+      },
+    };
+  },
+
+  // Quadratic in canonical form: draggable vertex and a point fixing the coefficient a.
+  quad(o) {
+    let al = 1, be = -2, a = 1; const v = () => view(o, -6, 6, -6, 8);
+    return {
+      handles() { const V = v(); return [{ x: V.X(al), y: V.Y(be), cur: "move", move(X, Y) { al = clamp(snap(V.iX(X)), -5, 5); be = clamp(snap(V.iY(Y)), -5, 7); } }, { x: V.X(al + 1), y: V.Y(a + be), cur: "ns-resize", move(X, Y) { const t = snap(V.iY(Y) - be, .25); a = t === 0 ? a : clamp(t, -4, 4); } }]; },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L }); curve(g, V, x => a * (x - al) ** 2 + be, -6, 6);
+        dot(o, V.X(al), V.Y(be), C.acc, "S"); dot(o, V.X(al + 1), V.Y(a + be), C.warn);
+        const N = o.tn, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
+        const canon = (a === 1 ? "" : a === -1 ? "-" : N(a)) + tshift("x", al, N) + "^2" + (Math.abs(be) < 1e-9 ? "" : (be < 0 ? "-" : "+") + N(Math.abs(be)));
+        const ordered = d > 1e-9 ? [(-b-Math.sqrt(d))/(2*a),(-b+Math.sqrt(d))/(2*a)].sort((x,y)=>x-y) : [al];
+        const roots = d < -1e-9 ? o.pair("aucune racine réelle", "no real root") : d < 1e-9 ? inl(`x=${N(al)}`) : inl(`x_1=${N(ordered[0])},\\ x_2=${N(ordered[1])}`);
+        set(o, lines(o.pair(`Forme canonique : ${inl(`f(x)=${canon}`)}`, `Canonical form: ${inl(`f(x)=${canon}`)}`), inl(`f(x)=${tpoly([[a, "x^2"], [b, "x"], [c, ""]], N)}`), o.spec.showDelta === false ? "" : inl(`\\Delta=${N(d)}`), o.pair("Zéros (intersections) : ", "Zeros (intersections): ") + roots, a > 0 ? o.pair(`Minimum en ${inl("\\alpha")}.`, `Minimum at ${inl("\\alpha")}.`) : o.pair(`Maximum en ${inl("\\alpha")}.`, `Maximum at ${inl("\\alpha")}.`)));
+      },
+    };
+  },
+
+  // Exponential C*b^x, common logarithm and reciprocal function share one canvas with a mode switch.
+  fn(o) {
+    let mode = o.spec.mode || "exp", C0 = 1, b = 1.5, k = 2, tx = 1, tx2 = 2; const v = () => (mode === "exp" ? view(o, -4, 4, -1, 8) : mode === "log" ? view(o, -1, 12, -3, 3) : view(o, -6, 6, -6, 6));
+    choice(o, [["exp", "Exponentielle", "Exponential"], ["log", "Logarithme décimal", "Common logarithm"], ["inv", "Inverse", "Reciprocal"]].filter(m => !o.spec.modes || o.spec.modes.includes(m[0])), mode, m => { mode = m; o.redraw(); });
+    return {
+      handles() {
+        const V = v();
+        if (mode === "exp") return [{ x: V.X(0), y: V.Y(C0), cur: "ns-resize", move(X, Y) { C0 = clamp(snap(V.iY(Y), .25), .25, 6); } }, { x: V.X(1), y: V.Y(C0 * b), cur: "ns-resize", move(X, Y) { b = clamp(snap(V.iY(Y) / C0, .05), .1, 3); } }];
+        if (mode === "log") return [{ x: V.X(10 ** tx), y: V.Y(tx), cur: "ew-resize", move(X) { tx = clamp(Math.log10(Math.max(.1, V.iX(X))), -1, 1.08); } }];
+        return [{ x: V.X(1), y: V.Y(k), cur: "ns-resize", move(X, Y) { k = clamp(snap(V.iY(Y), .5), -5, 5) || .5; } }, { x: V.X(tx2), y: V.Y(k / tx2), cur: "ew-resize", move(X) { tx2 = clamp(snap(V.iX(X), .25), -5.5, 5.5) || .25; } }];
+      },
+      draw(g) {
+        const V = v(), N = o.tn; axes(g, V, { lang: o.L, sx: mode === "log" ? 2 : 1 });
+        if (mode === "exp") {
+          curve(g, V, x => C0 * b ** x, -4, 4); dot(o, V.X(0), V.Y(C0), C.acc, "A", "grab", true, -1); dot(o, V.X(1), V.Y(C0 * b), C.warn, "B");
+          set(o, lines(inl(`f(x)=${N(C0)}\\times ${tpar(N, b)}^x`), `${inl(`A${tpt(o, 0, C0)}`)} · ${inl(`B${tpt(o, 1, C0 * b)}`)}`, o.pair(`Raison ${inl(`b=${N(b)}`)} : ${b > 1 ? "croissante" : b < 1 ? "décroissante" : "constante"}`, `Base ${inl(`b=${N(b)}`)}: ${b > 1 ? "increasing" : b < 1 ? "decreasing" : "constant"}`), o.pair(`Taux d’évolution par unité : ${inl(`${N((b - 1) * 100)}\\,\\%`)}`, `Rate of change per unit: ${inl(`${N((b - 1) * 100)}\\,\\%`)}`)));
+        } else if (mode === "log") {
+          curve(g, V, x => Math.log10(x), .001, 12); const x = 10 ** tx;
+          g.save(); g.strokeStyle = C.warn; g.setLineDash([6, 5]); g.beginPath(); g.moveTo(V.X(x), V.Y(0)); g.lineTo(V.X(x), V.Y(tx)); g.lineTo(V.X(0), V.Y(tx)); g.stroke(); g.restore();
+          dot(o, V.X(x), V.Y(tx), C.acc, "M");
+          set(o, lines(inl(`x=${N(x)}`), inl(`\\log(x)=${N(tx)}`), inl(`10^{${N(tx)}}=${N(x)}`), o.pair(`${inl("\\log 10=1")}, ${inl("\\log 1=0")} : le logarithme croît lentement.`, `${inl("\\log 10=1")}, ${inl("\\log 1=0")}: the logarithm grows slowly.`)));
+        } else {
+          curve(g, V, x => (x < -.12 || x > .12 ? k / x : NaN), -6, -.12); curve(g, V, x => k / x, .12, 6);
+          dot(o, V.X(1), V.Y(k), C.warn, "k"); const y = k / tx2; dot(o, V.X(tx2), V.Y(y), C.acc, "M");
+          set(o, lines(inl(`f(x)=\\dfrac{${N(k)}}{x}`), `${inl(`M${tpt(o, tx2, y)}`)} : ${inl(`x\\times y=${N(tx2 * y)}`)}`, k > 0 ? o.pair(`Décroissante sur ${inl(tiv(o, "-\\infty", 0, false, false))} et sur ${inl(tiv(o, 0, "+\\infty", false, false))}.`, `Decreasing on ${inl(tiv(o, "-\\infty", 0, false, false))} and on ${inl(tiv(o, 0, "+\\infty", false, false))}.`) : o.pair("Croissante sur chaque intervalle.", "Increasing on each interval."), o.pair(`Asymptotes : ${inl("x=0")} et ${inl("y=0")}.`, `Asymptotes: ${inl("x=0")} and ${inl("y=0")}.`)));
+        }
+      },
+    };
+  },
+
+  // Arithmetic or geometric sequence: draggable first two terms.
+  seq(o) {
+    let geo = o.spec.geo ?? false, u0 = 2, u1 = 3; const N = 12; const v = () => view(o, -.5, N + .5, geo ? -1 : -4, geo ? 30 : 16);
+    choice(o, [["a", "Arithmétique", "Arithmetic"], ["g", "Géométrique", "Geometric"]], geo ? "g" : "a", m => { geo = m === "g"; u0 = 2; u1 = geo ? 3 : 3; o.redraw(); });
+    return {
+      handles() { const V = v(); return [{ x: V.X(0), y: V.Y(u0), cur: "ns-resize", move(X, Y) { u0 = clamp(snap(V.iY(Y), .5), geo ? .5 : -3, geo ? 8 : 14); } }, { x: V.X(1), y: V.Y(u1), cur: "ns-resize", move(X, Y) { u1 = clamp(snap(V.iY(Y), .5), geo ? .5 : -3, geo ? 20 : 15); } }]; },
+      draw(g) {
+        const V = v(), q = u1 / u0, r = u1 - u0, f = n => geo ? u0 * q ** n : u0 + r * n; axes(g, V, { lang: o.L });
+        for (let n = 0; n <= N; n++) { const y = f(n); if (y > V.y1 + 2 || y < V.y0 - 2) continue; dot(o, V.X(n), V.Y(y), n < 2 ? C.acc : C.muted, n === 0 ? inl("u_0") : n === 1 ? inl("u_1") : "", "grab", n < 2); }
+        const Nn = o.tn;
+        set(o, geo ? lines(o.pair(`Raison ${inl(`q=\\dfrac{u_1}{u_0}=${Nn(q)}`)}`, `Common ratio ${inl(`q=\\dfrac{u_1}{u_0}=${Nn(q)}`)}`), inl(`u_n=${u0 === 1 ? "" : Nn(u0) + "\\times "}${tpar(Nn, q)}^n`), inl(`u_{10}=${Nn(f(10))}`)) : lines(o.pair(`Raison ${inl(`r=u_1-u_0=${Nn(r)}`)}`, `Common difference ${inl(`r=u_1-u_0=${Nn(r)}`)}`), inl(`u_n=${tpoly([[u0, ""], [r, "n"]], Nn)}`), inl(`u_{10}=${Nn(f(10))}`), o.pair("Les points sont alignés.", "The points are collinear.")));
+      },
+    };
+  },
+
+  // Vectors from three draggable points: components, norms, dot product, angle, determinant.
+  vec(o) {
+    let A = [-3, -1], B = [2, 1], Cc = [0, 4]; const v = () => view(o, -6, 6, -4, 6);
+    return {
+      handles() { const V = v(); return [A, B, Cc].map(p => ({ x: V.X(p[0]), y: V.Y(p[1]), cur: "grab", move(X, Y) { p[0] = clamp(snap(V.iX(X)), -6, 6); p[1] = clamp(snap(V.iY(Y)), -4, 6); } })); },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L });
+        const arrow = (P, Q, col) => { g.save(); g.strokeStyle = g.fillStyle = col; g.lineWidth = 3; const a = [V.X(P[0]), V.Y(P[1])], b = [V.X(Q[0]), V.Y(Q[1])]; g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); const t = Math.atan2(b[1] - a[1], b[0] - a[0]); g.beginPath(); g.moveTo(...b); g.lineTo(b[0] - 14 * Math.cos(t - .4), b[1] - 14 * Math.sin(t - .4)); g.lineTo(b[0] - 14 * Math.cos(t + .4), b[1] - 14 * Math.sin(t + .4)); g.fill(); g.restore(); };
+        arrow(A, B, C.acc); arrow(A, Cc, C.warn);
+        dot(o, V.X(A[0]), V.Y(A[1]), C.ink, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.acc, "B"); dot(o, V.X(Cc[0]), V.Y(Cc[1]), C.warn, "C");
+        const u = [B[0] - A[0], B[1] - A[1]], w = [Cc[0] - A[0], Cc[1] - A[1]], N = o.tn;
+        const dp = u[0] * w[0] + u[1] * w[1], det = u[0] * w[1] - u[1] * w[0], nu = Math.hypot(...u), nw = Math.hypot(...w);
+        const ang = nu && nw ? Math.acos(clamp(dp / (nu * nw), -1, 1)) * 180 / Math.PI : NaN;
+        const nd = o.spec.noDot;
+        const AB = "\\overrightarrow{AB}", AC = "\\overrightarrow{AC}";
+        set(o, lines(inl(`${AB}=${tpt(o, u[0], u[1])},\\ ${AC}=${tpt(o, w[0], w[1])}`), nd ? "" : o.pair(`${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonaux` : ""}`, `${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonal` : ""}`), o.pair(`Déterminant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} colinéaires` : ""}`, `Determinant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} collinear` : ""}`), inl(`\\lVert ${AB}\\rVert=${N(nu)},\\ \\lVert ${AC}\\rVert=${N(nw)}`), nd ? "" : o.pair(`Angle ${inl("\\widehat{BAC}")} : ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`, `Angle ${inl("\\widehat{BAC}")}: ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`)));
+      },
+    };
+  },
+
+  // Recurrence u(n+1) = a u(n) + b drawn as a cobweb: drag u0 on the x-axis, B = (0 ; b) and S on the line to change a.
+  cobweb(o) {
+    let a = .5, b = 2, u0 = 0; const xs = 7; const v = () => view(o, -2.5, 10, -2.5, 10);
+    return {
+      handles() {
+        const V = v();
+        return [{ x: V.X(u0), y: V.Y(0), cur: "ew-resize", move(X) { u0 = clamp(snap(V.iX(X), .25), -2, 9.5); } },
+          { x: V.X(0), y: V.Y(b), cur: "ns-resize", move(X, Y) { b = clamp(snap(V.iY(Y), .25), -2, 6); } },
+          { x: V.X(xs), y: V.Y(a * xs + b), cur: "ns-resize", move(X, Y) { a = clamp(snap((V.iY(Y) - b) / xs, .05), -1.5, 1.5); } }];
+      },
+      draw(g) {
+        const V = v(), N = o.tn, f = x => a * x + b; axes(g, V, { lang: o.L, sx: 2, sy: 2 });
+        g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
+        curve(g, V, x => x, -2.5, 10, C.muted, 1.5); curve(g, V, f, -2.5, 10, C.acc, 3);
+        const u = [u0]; for (let n = 0; n < 40; n++) u.push(f(u[n]));
+        g.strokeStyle = C.warn; g.lineWidth = 1.8; g.beginPath(); g.moveTo(V.X(u0), V.Y(0));
+        for (let n = 0; n < 14 && Math.abs(u[n]) < 60; n++) { g.lineTo(V.X(u[n]), V.Y(u[n + 1])); g.lineTo(V.X(u[n + 1]), V.Y(u[n + 1])); }
+        g.stroke(); g.restore();
+        for (let n = 1; n < 4; n++) if (u[n] > -2.5 && u[n] < 10) { dot(o, V.X(u[n]), V.Y(0), C.muted, "", "default", false); text(g, inl(`u_${n}`), V.X(u[n]), V.Y(0) + 30, C.muted, 15, "center"); }
+        dot(o, V.X(u0), V.Y(0), C.warn, inl("u_0")); dot(o, V.X(0), V.Y(b), C.acc, "B", "grab", true, -1); dot(o, V.X(xs), V.Y(f(xs)), C.acc, "S");
+        const out = [inl(`u_{n+1}=f(u_n),\\ f(x)=${tpoly([[a, "x"], [b, ""]], N)}`), [0, 1, 2, 3].map(n => inl(`u_${n}=${N(u[n])}`)).join(" , ")];
+        if (Math.abs(a - 1) < 1e-9) out.push(o.pair(`${inl("a=1")} : suite arithmétique de raison ${inl(N(b))}.`, `${inl("a=1")}: arithmetic sequence with common difference ${inl(N(b))}.`));
+        else {
+          const l = b / (1 - a); out.push(o.pair(`Point fixe ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)} : ${inl("f(\\ell)=\\ell")}.`, `Fixed point ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)}: ${inl("f(\\ell)=\\ell")}.`));
+          out.push(inl(`u_n-\\ell=${tpar(N, a)}^n\\times(u_0-\\ell)`));
+          if (Math.abs(u0 - l) < 1e-9) out.push(o.pair(`${inl("u_0=\\ell")} : la suite est constante.`, `${inl("u_0=\\ell")}: the sequence is constant.`));
+          else if (Math.abs(a) < 1) out.push(o.pair(`${inl("|a|<1")} : ${inl(`u_n\\to\\ell=${N(l)}`)}.`, `${inl("|a|<1")}: ${inl(`u_n\\to\\ell=${N(l)}`)}.`));
+          else if (Math.abs(a + 1) < 1e-9) out.push(o.pair(`${inl("a=-1")} : les termes alternent entre deux valeurs.`, `${inl("a=-1")}: the terms alternate between two values.`));
+          else out.push(o.pair(`${inl("|a|>1")} : ${inl("|u_n-\\ell|")} tend vers ${inl("+\\infty")}.`, `${inl("|a|>1")}: ${inl("|u_n-\\ell|")} tends to ${inl("+\\infty")}.`));
+        }
+        if (a > 0 && Math.abs(u[1] - u0) > 1e-9) { const up = u[1] > u0, le = inl(`u_n${up ? "\\leqslant " : "\\geqslant "}u_{n+1}`), fl = inl(`f(u_n)${up ? "\\leqslant " : "\\geqslant "}f(u_{n+1})`); out.push(o.pair(`${inl("f")} est croissante : si ${le} alors ${fl}. Par récurrence, la suite est ${up ? "croissante" : "décroissante"}.`, `${inl("f")} is increasing: if ${le} then ${fl}. By induction, the sequence is ${up ? "increasing" : "decreasing"}.`)); }
+        else if (a < 0) out.push(o.pair(`${inl("f")} est décroissante : les termes se placent alternativement de part et d’autre de ${inl("\\ell")}.`, `${inl("f")} is decreasing: the terms fall alternately on either side of ${inl("\\ell")}.`));
+        set(o, lines(...out));
+      },
+    };
+  },
+
+  // Limit of a sequence: drag the band half-width ε, the limit ℓ and u0; the threshold rank N is read off the plot.
+  limit(o) {
+    let mode = "harm", l = 2, c = 4, eps = .5, A = 40; const M = 30;
+    const v = () => (mode === "inf" ? view(o, -.5, M + .5, -6, 100) : view(o, -.5, M + .5, -4, 8));
+    const u = n => (mode === "harm" ? l + c / (n + 1) : mode === "geo" ? l + c * (-.8) ** n : n * n / 10);
+    choice(o, [["harm", inl("\\ell+\\tfrac{c}{n+1}"), inl("\\ell+\\tfrac{c}{n+1}")], ["geo", inl("\\ell+c(-0{,}8)^n"), inl("\\ell+c(-0.8)^n")], ["inf", inl("\\tfrac{n^2}{10}"), inl("\\tfrac{n^2}{10}")]], mode, m => { mode = m; o.redraw(); });
+    // |u(n) − ℓ| decreases and n²/10 increases, so the first rank that works is valid for every later rank.
+    const rank = () => { for (let n = 0; n <= 400; n++) if (mode === "inf" ? u(n) > A : Math.abs(u(n) - l) < eps) return n; return null; };
+    return {
+      handles() {
+        const V = v();
+        if (mode === "inf") return [{ x: V.X(M - 1), y: V.Y(A), cur: "ns-resize", move(X, Y) { A = clamp(snap(V.iY(Y), 1), 0, 90); } }];
+        return [{ x: V.X(0), y: V.Y(l + c), cur: "ns-resize", move(X, Y) { c = clamp(snap(V.iY(Y) - l, .25), -5, 5); } },
+          { x: V.X(M - 1), y: V.Y(l), cur: "ns-resize", move(X, Y) { l = clamp(snap(V.iY(Y), .25), -2, 5); } },
+          { x: V.X(M - 4), y: V.Y(l + eps), cur: "ns-resize", move(X, Y) { eps = clamp(snap(V.iY(Y) - l, .05), .05, 3); } }];
+      },
+      draw(g) {
+        const V = v(), N = o.tn, r = rank(); axes(g, V, { lang: o.L, sx: 5, sy: mode === "inf" ? 20 : 2 }); const rk = r === null ? "?" : r;
+        g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
+        if (mode === "inf") { g.fillStyle = "rgba(111,211,176,.12)"; g.fillRect(V.X(-.5), V.Y(100), V.X(M + .5) - V.X(-.5), V.Y(A) - V.Y(100)); curve(g, V, () => A, -.5, M + .5, C.acc, 2); }
+        else { g.fillStyle = "rgba(111,211,176,.14)"; g.fillRect(V.X(-.5), V.Y(l + eps), V.X(M + .5) - V.X(-.5), V.Y(l - eps) - V.Y(l + eps)); curve(g, V, () => l, -.5, M + .5, C.acc, 2); }
+        if (r !== null && r <= M) { g.strokeStyle = C.blue; g.setLineDash([6, 5]); g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(r), V.Y(V.y0)); g.lineTo(V.X(r), V.Y(V.y1)); g.stroke(); g.setLineDash([]); text(g, inl("N"), V.X(r) + 6, V.pad + 18, C.blue, 16); }
+        for (let n = 0; n <= M; n++) { const y = u(n), inside = mode === "inf" ? y > A : Math.abs(y - l) < eps; g.fillStyle = inside ? C.acc : C.warn; g.beginPath(); g.arc(V.X(n), V.Y(y), 4.5, 0, 7); g.fill(); }
+        g.restore();
+        if (mode === "inf") { dot(o, V.X(M - 1), V.Y(A), C.acc, "A", "grab", true, -1); set(o, lines(inl("u_n=\\dfrac{n^2}{10}"), inl(`A=${N(A)}`), o.pair(`${inl("u_n>A")} pour tout ${inl(`n\\geqslant N=${rk}`)}.`, `${inl("u_n>A")} for every ${inl(`n\\geq N=${rk}`)}.`), o.pair(`Tout seuil ${inl("A")} est dépassé à partir d’un certain rang : ${inl("u_n\\to+\\infty")}.`, `Every threshold ${inl("A")} is exceeded from some rank on: ${inl("u_n\\to+\\infty")}.`))); return; }
+        dot(o, V.X(0), V.Y(l + c), C.warn, inl("u_0")); dot(o, V.X(M - 1), V.Y(l), C.acc, inl("\\ell"), "grab", true, -1); dot(o, V.X(M - 4), V.Y(l + eps), C.blue, inl("\\varepsilon"), "grab", true, -1);
+        set(o, lines(inl(mode === "harm" ? `u_n=${N(l)}${sgn(c)}\\dfrac{${N(Math.abs(c))}}{n+1}` : `u_n=${N(l)}${sgn(c)}${N(Math.abs(c))}\\times(${N(-.8)})^n`), inl(`\\varepsilon=${N(eps)}`),
+          o.pair(`Tous les termes sont dans ${inl(tiv(o, l - eps, l + eps, false, false))} dès ${inl(`n\\geqslant N=${rk}`)}.`, `All terms lie in ${inl(tiv(o, l - eps, l + eps, false, false))} for ${inl(`n\\geq N=${rk}`)}.`),
+          o.pair(`Réduisez ${inl("\\varepsilon")} : ${inl("N")} augmente, mais il existe toujours. C’est la définition de ${inl("u_n\\to\\ell")}.`, `Shrink ${inl("\\varepsilon")}: ${inl("N")} grows, but it always exists. This is the definition of ${inl("u_n\\to\\ell")}.`)));
+      },
+    };
+  },
+
+  // Convexity: tangent at M and chord AB on three model functions; the strip under the plot shows the sign of f″.
+  convex(o) {
+    let mode = "cubic", m = -1.5, xa = -3, xb = -.5;
+    const F = { cubic: [x => x ** 3 / 4 - x, x => 3 * x * x / 4 - 1, x => 1.5 * x, [-4, 4, -4, 4], "f(x)=\\dfrac{x^3}{4}-x"], exp: [Math.exp, Math.exp, Math.exp, [-3, 2.5, -1, 8], "f(x)=\\mathrm{e}^x"], ln: [Math.log, x => 1 / x, x => -1 / (x * x), [-.5, 8, -3, 3], "f(x)=\\ln x"] };
+    const reset = () => { [m, xa, xb] = mode === "cubic" ? [-1.5, -3, -.5] : mode === "exp" ? [0, -2, 1.5] : [2, .5, 6]; };
+    choice(o, [["cubic", inl("\\tfrac{x^3}{4}-x"), inl("\\tfrac{x^3}{4}-x")], ["exp", inl("\\exp"), inl("\\exp")], ["ln", inl("\\ln"), inl("\\ln")]], mode, k => { mode = k; reset(); o.redraw(); });
+    const lo = () => (mode === "ln" ? .2 : F[mode][3][0] + .25), hi = () => F[mode][3][1] - .25;
+    return {
+      handles() {
+        const [f] = F[mode], V = view(o, ...F[mode][3]), x = X => clamp(snap(V.iX(X), .1), lo(), hi());
+        return [{ x: V.X(m), y: V.Y(f(m)), cur: "ew-resize", move(X) { m = x(X); } }, { x: V.X(xa), y: V.Y(f(xa)), cur: "ew-resize", move(X) { xa = Math.min(x(X), xb - .2); } }, { x: V.X(xb), y: V.Y(f(xb)), cur: "ew-resize", move(X) { xb = Math.max(x(X), xa + .2); } }];
+      },
+      draw(g) {
+        const [f, df, d2f, box, name] = F[mode], V = view(o, ...box), N = o.tn; axes(g, V, { lang: o.L });
+        const a0 = mode === "ln" ? .02 : box[0];
+        for (let i = 0; i < 200; i++) { const x = a0 + (box[1] - a0) * (i + .5) / 200; g.fillStyle = d2f(x) > 1e-9 ? C.acc : d2f(x) < -1e-9 ? C.warn : C.muted; g.fillRect(V.X(x), o.H - V.pad + 8, (V.X(box[1]) - V.X(a0)) / 200 + .5, 6); }
+        g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
+        curve(g, V, x => (mode === "ln" && x <= 0 ? NaN : f(x)), a0, box[1]);
+        curve(g, V, x => f(m) + df(m) * (x - m), box[0], box[1], C.blue, 2);
+        const slope = (f(xb) - f(xa)) / (xb - xa), chord = x => f(xa) + slope * (x - xa); curve(g, V, chord, xa, xb, C.warn, 2.5); g.restore();
+        if (mode === "cubic") { dot(o, V.X(0), V.Y(0), C.muted, "I", "default", false); }
+        dot(o, V.X(m), V.Y(f(m)), C.blue, "M"); dot(o, V.X(xa), V.Y(f(xa)), C.warn, "A", "grab", true, -1); dot(o, V.X(xb), V.Y(f(xb)), C.warn, "B");
+        let above = 0, below = 0; for (let i = 1; i < 100; i++) { const x = xa + (xb - xa) * i / 100, d = f(x) - chord(x); if (d > 1e-9) above++; else if (d < -1e-9) below++; }
+        const k = d2f(m);
+        const kk = inl(`f''(${N(m)})=${N(k)}`), MM = inl("M"), AA = inl("A"), BB = inl("B"), iv_ = inl(tiv(o, "x_A", "x_B")), ff = inl("f");
+        set(o, lines(inl(name), o.pair(`${kk} : ${k > 1e-9 ? `convexe près de ${MM}, courbe au-dessus de la tangente` : k < -1e-9 ? `concave près de ${MM}, courbe au-dessous de la tangente` : `${inl("f''")} s’annule en ${MM}`}.`, `${kk}: ${k > 1e-9 ? `convex near ${MM}, curve above the tangent` : k < -1e-9 ? `concave near ${MM}, curve below the tangent` : `${inl("f''")} vanishes at ${MM}`}.`),
+          above && below ? o.pair(`Entre ${AA} et ${BB}, la courbe traverse la corde : ${ff} change de convexité sur ${iv_}.`, `Between ${AA} and ${BB} the curve crosses the chord: the convexity of ${ff} changes on ${iv_}.`) : below ? o.pair(`Entre ${AA} et ${BB}, la courbe est au-dessous de la corde (convexe sur cet intervalle).`, `Between ${AA} and ${BB} the curve lies below the chord (convex on this interval).`) : o.pair(`Entre ${AA} et ${BB}, la courbe est au-dessus de la corde (concave sur cet intervalle).`, `Between ${AA} and ${BB} the curve lies above the chord (concave on this interval).`),
+          mode === "cubic" ? o.pair(`${inl(`I${tpt(o, 0, 0)}`)} : ${inl("f''")} s’annule en changeant de signe (point d’inflexion).`, `${inl(`I${tpt(o, 0, 0)}`)}: ${inl("f''")} vanishes and changes sign (inflection point).`) : "",
+          o.pair(`Bande : vert ${inl("f''>0")}, orange ${inl("f''<0")}.`, `Strip: green ${inl("f''>0")}, orange ${inl("f''<0")}.`)));
+      },
+    };
+  },
+
+  // Secant sliding to the tangent: two draggable points on y = f(x) = x^3/4 - x.
+  tangent(o) {
+    const f = x => x ** 3 / 4 - x, df = x => 3 * x * x / 4 - 1; let a = -1, h = 1.5; const v = () => view(o, -4, 4, -4, 4);
+    return {
+      handles() { const V = v(); return [{ x: V.X(a), y: V.Y(f(a)), cur: "ew-resize", move(X) { a = clamp(snap(V.iX(X), .1), -3, 3); } }, { x: V.X(a + h), y: V.Y(f(a + h)), cur: "ew-resize", move(X) { const t = snap(V.iX(X) - a, .1); h = t === 0 ? .1 : clamp(t, -3, 3); } }]; },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L }); curve(g, V, f, -4, 4);
+        const m = (f(a + h) - f(a)) / h, line = (s, col, w) => { g.save(); g.strokeStyle = col; g.lineWidth = w; g.beginPath(); g.moveTo(V.X(-4), V.Y(f(a) + s * (-4 - a))); g.lineTo(V.X(4), V.Y(f(a) + s * (4 - a))); g.stroke(); g.restore(); };
+        line(df(a), C.acc, 2.5); line(m, C.warn, 2.5); dot(o, V.X(a), V.Y(f(a)), C.acc, "M"); dot(o, V.X(a + h), V.Y(f(a + h)), C.warn, "N"); const N = o.tn;
+        set(o, lines(o.pair(`Taux d’accroissement : ${inl(`\\dfrac{f(a+h)-f(a)}{h}=${N(m)}`)}`, `Rate of change: ${inl(`\\dfrac{f(a+h)-f(a)}{h}=${N(m)}`)}`), inl(`f'(${N(a)})=${N(df(a))}`), o.pair(`Rapprochez ${inl("N")} de ${inl("M")} : la sécante tend vers la tangente.`, `Move ${inl("N")} towards ${inl("M")}: the secant tends to the tangent.`), inl("f(x)=\\dfrac{x^3}{4}-x")));
+      },
+    };
+  },
+
+  // Unit circle: draggable angle gives cos, sin, tan, radians.
+  circle(o) {
+    let th = Math.PI / 3; const v = () => view(o, -1.6, 1.6, -1.35, 1.35, 20);
+    return {
+      handles() { const V = v(); return [{ x: V.X(Math.cos(th)), y: V.Y(Math.sin(th)), r: 28, cur: "grab", move(X, Y) { let t = Math.atan2(-(Y - V.Y(0)), X - V.X(0)); t = Math.round(t / (Math.PI / 12)) * (Math.PI / 12); th = (t + 2 * Math.PI) % (2 * Math.PI); } }]; },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L, sx: .5, sy: .5, noLabels: true }); const R = V.X(1) - V.X(0);
+        g.save(); g.strokeStyle = C.muted; g.lineWidth = 2; g.beginPath(); g.arc(V.X(0), V.Y(0), R, 0, 7); g.stroke(); g.strokeStyle = C.acc; g.lineWidth = 4; g.beginPath(); g.arc(V.X(0), V.Y(0), R * .22, 0, -th, true); g.stroke();
+        const x = Math.cos(th), y = Math.sin(th); g.strokeStyle = C.warn; g.lineWidth = 3; g.beginPath(); g.moveTo(V.X(0), V.Y(0)); g.lineTo(V.X(x), V.Y(y)); g.stroke();
+        g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(0)); g.stroke(); g.strokeStyle = C.acc; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(0), V.Y(y)); g.stroke(); g.restore();
+        dot(o, V.X(x), V.Y(y), C.warn, "M");
+        const N = o.tn, deg = th * 180 / Math.PI, k = Math.round(deg / 15), fr = (a, b) => { const g_ = (p, q) => q ? g_(q, p % q) : p, d = g_(a, b); a /= d; b /= d; return b === 1 ? (a === 1 ? "\\pi" : `${a}\\pi`) : `\\dfrac{${a === 1 ? "" : a}\\pi}{${b}}`; };
+        const rad = k === 0 ? "0" : fr(k, 12);
+        set(o, lines(o.pair(`Angle ${inl("\\theta")} : ${inl(`${N(deg, 0)}^\\circ=${rad}\\ \\mathrm{rad}`)}`, `Angle ${inl("\\theta")}: ${inl(`${N(deg, 0)}^\\circ=${rad}\\ \\mathrm{rad}`)}`), inl(`\\cos\\theta=${N(x)}`), inl(`\\sin\\theta=${N(y)}`), inl(`\\cos^2\\theta+\\sin^2\\theta=${N(x * x + y * y)}`), Math.abs(x) < 1e-9 ? o.pair(`${inl("\\tan\\theta")} : non définie`, `${inl("\\tan\\theta")}: undefined`) : inl(`\\tan\\theta=${N(y / x)}`)));
+      },
+    };
+  },
+
+  // Scatter plot with draggable points: least-squares line and correlation (STMG, Seconde stats).
+  scatter(o) {
+    const P = [[1, 2], [2, 3], [3, 3.5], [4, 5], [5, 5.5], [6, 7]]; const v = () => view(o, 0, 8, 0, 10);
+    return {
+      handles() { const V = v(); return P.map(p => ({ x: V.X(p[0]), y: V.Y(p[1]), cur: "move", move(X, Y) { p[0] = clamp(snap(V.iX(X), .25), .25, 7.75); p[1] = clamp(snap(V.iY(Y), .25), .25, 9.75); } })); },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L }); const n = P.length, mx = P.reduce((s, p) => s + p[0], 0) / n, my = P.reduce((s, p) => s + p[1], 0) / n;
+        const sxx = P.reduce((s, p) => s + (p[0] - mx) ** 2, 0), sxy = P.reduce((s, p) => s + (p[0] - mx) * (p[1] - my), 0), syy = P.reduce((s, p) => s + (p[1] - my) ** 2, 0);
+        const N = o.tn; let txt;
+        if (sxx > 1e-9) { const a = sxy / sxx, b = my - a * mx; curve(g, V, x => a * x + b, 0, 8, C.warn, 2.5); const r = syy > 1e-9 ? sxy / Math.sqrt(sxx * syy) : NaN; txt = lines(o.pair(`Droite de régression : ${inl(`y=${tpoly([[a, "x"], [b, ""]], N)}`)}`, `Regression line: ${inl(`y=${tpoly([[a, "x"], [b, ""]], N)}`)}`), o.pair(`Coefficient de corrélation ${inl(`r=${N(r, 3)}`)}`, `Correlation coefficient ${inl(`r=${N(r, 3)}`)}`), o.pair(`Point moyen ${inl(`G${tpt(o, mx, my)}`)}`, `Mean point ${inl(`G${tpt(o, mx, my)}`)}`)); }
+        else txt = o.pair("Tous les x sont égaux : pas de droite de régression.", "All x are equal: no regression line.");
+        P.forEach((p, i) => dot(o, V.X(p[0]), V.Y(p[1]), C.acc, "")); dot(o, V.X(mx), V.Y(my), C.ink, "G", "default", false); set(o, txt);
+      },
+    };
+  },
+
+  // Probability tree: draggable bars set P(A), P_A(B), P_notA(B).
+  tree(o) {
+    let pa = .6, pb1 = .7, pb2 = .2; const rows = () => [[60, "P(A)"], [200, "P_A(B)"], [340, "P_{\\overline{A}}(B)"]];
+    const bx = 60, bw = o.W - 120;
+    return {
+      handles() { const bw_ = o.W - 120; return rows().map(([y], i) => ({ x: bx + [pa, pb1, pb2][i] * bw_, y: y + 18, cur: "ew-resize", move(X) { const val = clamp(snap((X - bx) / bw_, .05), 0, 1); if (i === 0) pa = val; else if (i === 1) pb1 = val; else pb2 = val; } })); },
+      draw(g) {
+        const bw_ = o.W - 120, N = o.tn;
+        rows().forEach(([y, l], i) => { const val = [pa, pb1, pb2][i]; text(g, inl(`${l}=${N(val)}`), bx, y - 8, C.ink, 20); g.fillStyle = C.grid; g.fillRect(bx, y, bw_, 36); g.fillStyle = C.acc; g.fillRect(bx, y, val * bw_, 36); dot(o, bx + val * bw_, y + 18, C.warn); });
+        const p = [pa * pb1, pa * (1 - pb1), (1 - pa) * pb2, (1 - pa) * (1 - pb2)], y0 = 400;
+        p.forEach((q, i) => { const w = q * bw_; const x = bx + p.slice(0, i).reduce((s, z) => s + z, 0) * bw_; g.fillStyle = i % 2 ? C.warn : C.acc; g.globalAlpha = .55 + .1 * (i % 2); g.fillRect(x, y0, w, 30); g.globalAlpha = 1; });
+        text(g, o.pair("Aire = probabilité du chemin", "Area = probability of the path"), bx, y0 + 52, C.muted, 16);
+        const pB = p[0] + p[2];
+        set(o, lines(inl(`P(A\\cap B)=${N(p[0], 3)}`), inl(`P(A\\cap\\overline{B})=${N(p[1], 3)}`), inl(`P(\\overline{A}\\cap B)=${N(p[2], 3)}`), inl(`P(\\overline{A}\\cap\\overline{B})=${N(p[3], 3)}`), o.pair(`Probabilités totales : ${inl(`P(B)=${N(pB, 3)}`)}`, `Total probability: ${inl(`P(B)=${N(pB, 3)}`)}`), pB > 0 ? inl(`P_B(A)=${N(p[0] / pB, 3)}`) : ""));
+      },
+    };
+  },
+
+  // Binomial distribution: draggable p, n slider (terminale / STMG only).
+  binom(o) {
+    let n = 10, p = .3; slider(o, inl("n"), 2, 30, 1, n, v => { n = v; o.redraw(); });
+    const ch = k => { let r = 1; for (let i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; };
+    const v = () => view(o, -.5, n + .5, 0, 1, 40);
+    return {
+      handles() { const bw = o.W - 80; return [{ x: 40 + p * bw, y: o.H - 12, r: 26, cur: "ew-resize", move(X) { p = clamp(snap((X - 40) / bw, .01), .01, .99); } }]; },
+      draw(g) {
+        const pr = Array.from({ length: n + 1 }, (_, k) => ch(k) * p ** k * (1 - p) ** (n - k)), V = v();
+        axes(g, V, { lang: o.L, sx: Math.max(1, Math.round(n / 10)), sy: 1e9, noLabels: false });
+        pr.forEach((q, k) => { const x = V.X(k), w = Math.max(3, (V.X(1) - V.X(0)) * .7); g.fillStyle = C.acc; g.fillRect(x - w / 2, V.Y(q), w, V.Y(0) - V.Y(q)); });
+        g.fillStyle = C.grid; g.fillRect(40, o.H - 18, o.W - 80, 6); g.fillStyle = C.acc; g.fillRect(40, o.H - 18, p * (o.W - 80), 6); dot(o, 40 + p * (o.W - 80), o.H - 15, C.warn, "p");
+        const N = o.tn; set(o, lines(inl(`X\\sim\\mathcal{B}${tpt(o, n, p)}`), o.pair(`Espérance ${inl(`E(X)=np=${N(n * p)}`)}`, `Expected value ${inl(`E(X)=np=${N(n * p)}`)}`), o.pair(`Variance ${inl(`V(X)=np(1-p)=${N(n * p * (1 - p))}`)}`, `Variance ${inl(`V(X)=np(1-p)=${N(n * p * (1 - p))}`)}`)));
+      },
+    };
+  },
+
+  // Distribution of a discrete random variable with four values: draggable bar tops, normalised.
+  rv(o) {
+    const xs = [0, 1, 2, 3]; const w = [1, 2, 2, 1]; const v = () => view(o, -.7, 3.7, 0, 1, 44);
+    return {
+      handles() { const V = v(), s = w.reduce((a, b) => a + b, 0); return w.map((q, i) => ({ x: V.X(xs[i]), y: V.Y(q / s), cur: "ns-resize", move(X, Y) { const others = s - q, t = clamp(V.iY(Y), .02, .9); w[i] = Math.max(.1, (t * others) / (1 - t)); } })); },
+      draw(g) {
+        const V = v(), s = w.reduce((a, b) => a + b, 0); axes(g, V, { lang: o.L, sx: 1, sy: .25 });
+        const p = w.map(q => q / s), E = p.reduce((a, q, i) => a + q * xs[i], 0), Vr = p.reduce((a, q, i) => a + q * (xs[i] - E) ** 2, 0);
+        p.forEach((q, i) => { g.fillStyle = C.acc; const bw = (V.X(1) - V.X(0)) * .5; g.fillRect(V.X(xs[i]) - bw / 2, V.Y(q), bw, V.Y(0) - V.Y(q)); dot(o, V.X(xs[i]), V.Y(q), C.warn); });
+        g.save(); g.strokeStyle = C.ink; g.setLineDash([6, 5]); g.beginPath(); g.moveTo(V.X(E), V.Y(0)); g.lineTo(V.X(E), V.Y(1)); g.stroke(); g.restore(); text(g, inl("E(X)"), V.X(E) + 6, V.Y(.95), C.ink, 16);
+        const N = o.tn; set(o, lines(p.map((q, i) => inl(`P(X=${xs[i]})=${N(q, 3)}`)).join("<br>"), inl(`E(X)=${N(E, 3)}`), inl(`V(X)=${N(Vr, 3)}`), inl(`\\sigma(X)=${N(Math.sqrt(Vr), 3)}`)));
+      },
+    };
+  },
+
+  // Data on a number line: draggable values, mean, median, quartiles, box plot (Seconde).
+  stats(o) {
+    const D = [3, 5, 6, 8, 9, 12, 14]; const v = () => view(o, 0, 16, 0, 1, 40);
+    return {
+      handles() { const V = v(); return D.map((d, i) => ({ x: V.X(d), y: V.Y(.62), cur: "ew-resize", move(X) { D[i] = clamp(snap(V.iX(X), .5), 0, 16); } })); },
+      draw(g) {
+        const V = v(); const s = [...D].sort((a, b) => a - b), n = s.length, q = p => s[Math.ceil(p * n) - 1], med = n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+        const mean = s.reduce((a, b) => a + b, 0) / n, sd = Math.sqrt(s.reduce((a, b) => a + (b - mean) ** 2, 0) / n), q1 = q(.25), q3 = q(.75);
+        axes(g, { ...V }, { lang: o.L, sx: 2, sy: 1e9, noLabels: false });
+        const y = V.Y(.25); g.save(); g.strokeStyle = C.acc; g.lineWidth = 3; g.strokeRect(V.X(q1), y - 22, V.X(q3) - V.X(q1), 44); g.beginPath(); g.moveTo(V.X(s[0]), y); g.lineTo(V.X(q1), y); g.moveTo(V.X(q3), y); g.lineTo(V.X(s[n - 1]), y); g.moveTo(V.X(med), y - 22); g.lineTo(V.X(med), y + 22); g.stroke(); g.restore();
+        g.save(); g.strokeStyle = C.warn; g.lineWidth = 2; g.setLineDash([5, 5]); g.beginPath(); g.moveTo(V.X(mean), V.Y(.1)); g.lineTo(V.X(mean), V.Y(.75)); g.stroke(); g.restore();
+        D.forEach(d => dot(o, V.X(d), V.Y(.62), C.acc)); const N = o.tn;
+        set(o, lines(o.pair(`Moyenne ${inl(`\\bar{x}=${N(mean)}`)} (pointillés orange)`, `Mean ${inl(`\\bar{x}=${N(mean)}`)} (orange dashes)`), o.pair(`Médiane : ${inl(N(med))}`, `Median: ${inl(N(med))}`), inl(`Q_1=${N(q1)},\\ Q_3=${N(q3)}`), o.pair(`Écart interquartile : ${inl(N(q3 - q1))}`, `Interquartile range: ${inl(N(q3 - q1))}`), o.pair(`Écart type ${inl(`\\sigma=${N(sd)}`)}`, `Standard deviation ${inl(`\\sigma=${N(sd)}`)}`)));
+      },
+    };
+  },
+
+  // Percentage change: draggable rate handles on two successive changes.
+  pct(o) {
+    let t1 = .2, t2 = -.2; const bx = 60; const Y1 = () => o.H * .17, Y2 = () => o.H * .38;
+    return {
+      handles() { const s = (o.W - 120) / 1.0; return [{ x: bx + (t1 + .5) * s, y: Y1(), cur: "ew-resize", move(X) { t1 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }, { x: bx + (t2 + .5) * s, y: Y2(), cur: "ew-resize", move(X) { t2 = clamp(snap((X - bx) / s - .5, .01), -.5, .5); } }]; },
+      draw(g) {
+        const s = o.W - 120, N = o.tn; [[t1, Y1(), "t_1"], [t2, Y2(), "t_2"]].forEach(([t, y, l]) => { g.fillStyle = C.grid; g.fillRect(bx, y - 4, s, 8); g.fillStyle = C.axis; g.fillRect(bx + s / 2 - 1, y - 14, 2, 28); dot(o, bx + (t + .5) * s, y, C.acc); text(g, inl(`${l}=${N(t * 100, 0)}\\,\\%`), bx, y - 26, C.ink, 20); });
+        const cm = (1 + t1) * (1 + t2); const y0 = o.H * .56, step = o.H * .1, bh = o.H * .07; [["100", 100], [o.num(100 * (1 + t1), 1), 100 * (1 + t1)], [o.num(100 * cm, 1), 100 * cm]].forEach(([l, v], i) => { const w = v / 150 * s; g.fillStyle = i === 2 ? C.warn : C.acc; g.globalAlpha = .8; g.fillRect(bx, y0 + i * step, w, bh); g.globalAlpha = 1; text(g, l, bx + w + 10, y0 + i * step + bh * .75, C.ink, 18); });
+        set(o, lines(inl(`CM_1=1${sgn(t1)}${N(Math.abs(t1), 2)}=${N(1 + t1, 3)}`), inl(`CM_2=1${sgn(t2)}${N(Math.abs(t2), 2)}=${N(1 + t2, 3)}`), o.pair(`Coefficient global : ${inl(N(cm, 4))}`, `Overall multiplier: ${inl(N(cm, 4))}`), o.pair(`Évolution globale : ${inl(`${N((cm - 1) * 100, 2)}\\,\\%`)}`, `Overall change: ${inl(`${N((cm - 1) * 100, 2)}\\,\\%`)}`), Math.abs(cm - 1) > 1e-9 ? o.pair(`Taux réciproque : ${inl(`${N((1 / cm - 1) * 100, 2)}\\,\\%`)}`, `Reverse rate: ${inl(`${N((1 / cm - 1) * 100, 2)}\\,\\%`)}`) : ""));
+      },
+    };
+  },
+
+  // Reference functions: draggable point on the curve; image, preimages.
+  ref(o) {
+    let kind = "square", x0 = 1.5; const F = { square: x => x * x, inverse: x => 1 / x, sqrt: x => Math.sqrt(x), cube: x => x ** 3, abs: x => Math.abs(x), affine: x => 0.5 * x + 1 }; const v = () => view(o, -5, 5, -5, 5);
+    choice(o, [["square", inl("x^2"), inl("x^2")], ["inverse", inl("\\tfrac{1}{x}"), inl("\\tfrac{1}{x}")], ["sqrt", inl("\\sqrt{x}"), inl("\\sqrt{x}")], ["cube", inl("x^3"), inl("x^3")], ["abs", inl("|x|"), inl("|x|")], ["affine", inl("ax+b"), inl("ax+b")]], kind, k => { kind = k; x0 = k === "sqrt" ? 2 : 1.5; o.redraw(); });
+    return {
+      handles() { const V = v(), y = F[kind](x0); return Number.isFinite(y) ? [{ x: V.X(x0), y: V.Y(clamp(y, -5, 5)), cur: "ew-resize", move(X) { let t = snap(V.iX(X), .25); if (kind === "inverse" && Math.abs(t) < .25) t = t < 0 ? -.25 : .25; if (kind === "sqrt") t = Math.max(0, t); x0 = clamp(t, -4.75, 4.75); } }] : []; },
+      draw(g) {
+        const V = v(), f = F[kind], N = o.tn; axes(g, V, { lang: o.L });
+        if (kind === "inverse") { curve(g, V, f, -5, -.1); curve(g, V, f, .1, 5); } else curve(g, V, f, kind === "sqrt" ? 0 : -5, 5);
+        const y = f(x0); g.save(); g.strokeStyle = C.warn; g.setLineDash([6, 5]); g.lineWidth = 2; g.beginPath(); g.moveTo(V.X(x0), V.Y(0)); g.lineTo(V.X(x0), V.Y(clamp(y, -5, 5))); g.lineTo(V.X(0), V.Y(clamp(y, -5, 5))); g.stroke(); g.restore(); dot(o, V.X(x0), V.Y(clamp(y, -5, 5)), C.acc, "M");
+        let pre; if (kind === "square") pre = y > 0 ? [-Math.sqrt(y), Math.sqrt(y)] : [0]; else if (kind === "abs") pre = y > 0 ? [-y, y] : [0]; else if (kind === "inverse") pre = [1 / y]; else if (kind === "sqrt") pre = [y * y]; else if (kind === "cube") pre = [Math.cbrt(y)]; else pre = [(y - 1) / .5];
+        set(o, lines(o.pair(`Image de ${inl(N(x0))} : ${inl(`f(${N(x0)})=${N(y, 3)}`)}`, `Image of ${inl(N(x0))}: ${inl(`f(${N(x0)})=${N(y, 3)}`)}`), o.pair(`Antécédent(s) de ${inl(N(y, 3))} : ${pre.map(q => inl(N(q, 3))).join(" ; ")}`, `Preimage(s) of ${inl(N(y, 3))}: ${pre.map(q => inl(N(q, 3))).join(", ")}`), kind === "square" ? o.pair(`Décroissante sur ${inl(tiv(o, "-\\infty", 0, false, true))}, croissante sur ${inl(tiv(o, 0, "+\\infty", true, false))}.`, `Decreasing on ${inl(tiv(o, "-\\infty", 0, false, true))}, increasing on ${inl(tiv(o, 0, "+\\infty", true, false))}.`) : kind === "inverse" ? o.pair(`Décroissante sur chaque intervalle, définie sur ${inl("\\mathbb{R}^*")}.`, `Decreasing on each interval, defined on ${inl("\\mathbb{R}\\setminus\\{0\\}")}.`) : ""));
+      },
+    };
+  },
+
+  // Intervals: two draggable intervals on a number line, with intersection and union.
+  interval(o) {
+    const I = [-3, 2], J = [0, 5]; const incl = [true, true, false, true]; const v = () => view(o, -8, 8, 0, 1, 40);
+    return {
+      handles() { const V = v(); return [[I, 0, .7], [I, 1, .7], [J, 0, .4], [J, 1, .4]].map(([a, k, y]) => ({ x: V.X(a[k]), y: V.Y(y), cur: "ew-resize", move(X) { a[k] = clamp(snap(V.iX(X), .5), -7.5, 7.5); } })); },
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L, sx: 1, sy: 1e9 });
+        const [a, b] = [Math.min(...I), Math.max(...I)], [c, d] = [Math.min(...J), Math.max(...J)];
+        const seg = (x0, x1, y, col) => { g.save(); g.strokeStyle = col; g.lineWidth = 6; g.beginPath(); g.moveTo(V.X(x0), V.Y(y)); g.lineTo(V.X(x1), V.Y(y)); g.stroke(); g.restore(); };
+        seg(a, b, .7, C.acc); seg(c, d, .4, C.warn); const lo = Math.max(a, c), hi = Math.min(b, d); if (lo <= hi) seg(lo, hi, .15, C.ink);
+        [[I, .7, C.acc], [J, .4, C.warn]].forEach(([arr, y, col]) => arr.forEach(e => dot(o, V.X(e), V.Y(y), col)));
+        const N = o.tn, br = tiv(o, a, b), br2 = tiv(o, c, d), cx = (a + b) / 2, xc = Math.abs(cx) < 1e-9 ? "x" : `x${cx < 0 ? "+" : "-"}${N(Math.abs(cx))}`;
+        set(o, lines(inl(`I=${br}`), inl(`J=${br2}`), inl(`I\\cap J=${lo <= hi ? tiv(o, lo, hi) : "\\varnothing"}`), inl(lo <= hi ? `I\\cup J=${tiv(o, Math.min(a, c), Math.max(b, d))}` : `I\\cup J=${br}\\cup ${br2}`), o.pair(`${inl(`|${xc}|\\leqslant ${N((b - a) / 2)}`)} décrit ${inl("I")}`, `${inl(`|${xc}|\\leq ${N((b - a) / 2)}`)} describes ${inl("I")}`)));
+      },
+    };
+  },
+  // Riemann sums for f(x) = 0.25x^2 - x + 2 with draggable bounds and a slider for the number of rectangles.
+  integral(o) {
+    const f = x => x * x / 4 - x + 2, F = x => x ** 3 / 12 - x * x / 2 + 2 * x; let a = 0.5, b = 4.5, n = 6; const v = () => view(o, -1, 7, -1, 6);
+    slider(o, inl("n"), 1, 40, 1, n, q => { n = q; o.redraw(); });
+    return {
+      handles() { const V = v(); return [{ x: V.X(a), y: V.Y(0), cur: "ew-resize", move(X) { a = clamp(snap(V.iX(X), .25), -.75, b - .5); } }, { x: V.X(b), y: V.Y(0), cur: "ew-resize", move(X) { b = clamp(snap(V.iX(X), .25), a + .5, 6.75); } }];},
+      draw(g) {
+        const V = v(); axes(g, V, { lang: o.L }); const w = (b - a) / n; let S = 0;
+        for (let i = 0; i < n; i++) { const x = a + i * w, y = f(x + w / 2); S += y * w; g.fillStyle = "rgba(111,211,176,.28)"; g.strokeStyle = C.acc; g.lineWidth = 1; g.fillRect(V.X(x), V.Y(y), V.X(x + w) - V.X(x), V.Y(0) - V.Y(y)); g.strokeRect(V.X(x), V.Y(y), V.X(x + w) - V.X(x), V.Y(0) - V.Y(y)); }
+        curve(g, V, f, -1, 7); dot(o, V.X(a), V.Y(0), C.warn, "a"); dot(o, V.X(b), V.Y(0), C.warn, "b"); const N = o.tn, I = F(b) - F(a);
+        set(o, lines(inl("f(x)=\\dfrac{x^2}{4}-x+2"), o.pair(`Somme de Riemann (milieux) : ${inl(N(S, 4))}`, `Riemann sum (midpoints): ${inl(N(S, 4))}`), inl(`\\int_a^b f(x)\\,\\mathrm{d}x=F(b)-F(a)=${N(I, 4)}`), o.pair(`Écart : ${inl(N(Math.abs(S - I), 4))}`, `Gap: ${inl(N(Math.abs(S - I), 4))}`)));
+      },
+    };
+  },
+
+  // Complex plane, same scale on both axes. Modes: alg (drag z: parts, conjugate, z times its conjugate), polar (drag z:
+  // modulus, argument, trigonometric and exponential forms), product (drag z and w: moduli multiply, arguments add).
+  complex(o) {
+    const mode = o.spec.mode || "alg", R = 4.5, v = () => iso(o, R);
+    let z = mode === "alg" ? [2, 1.5] : mode === "polar" ? [1, Math.sqrt(3)] : [1.5 * Math.cos(Math.PI / 6), 1.5 * Math.sin(Math.PI / 6)];
+    let w = [Math.SQRT2, Math.SQRT2];
+    const place = (p, X, Y, rmax) => { const V = v(), x = V.iX(X), y = V.iY(Y); if (mode === "alg") { p[0] = clamp(snap(x), -4, 4); p[1] = clamp(snap(y), -4, 4); } else { const q = polarSnap(x, y, .5, rmax); p[0] = q[0]; p[1] = q[1]; } };
+    const rmax = mode === "product" ? 2 : 4;
+    return {
+      handles() { const V = v(), h = [{ x: V.X(z[0]), y: V.Y(z[1]), cur: "grab", move(X, Y) { place(z, X, Y, rmax); } }]; if (mode === "product") h.push({ x: V.X(w[0]), y: V.Y(w[1]), cur: "grab", move(X, Y) { place(w, X, Y, rmax); } }); return h; },
+      draw(g) {
+        const V = v(), N = o.tn, O = [0, 0], [a, b] = z, r = Math.hypot(a, b), t = Math.atan2(b, a); axes(g, V, { lang: o.L });
+        const exact = x => Math.abs(x * 4 - Math.round(x * 4)) < 1e-9, eq = (x, y) => (exact(x) && exact(y) ? "=" : "\\approx");
+        const arc = (th, rad, col) => { g.save(); g.strokeStyle = col; g.lineWidth = 2.5; g.beginPath(); g.arc(V.X(0), V.Y(0), rad, 0, -th, th > 0); g.stroke(); g.restore(); };
+        const expo = (rr, th) => { const s = angTeX(th, N).replace(/\\dfrac/g, "\\tfrac"), k = Math.abs(rr - 1) < 1e-9 ? "" : N(rr) + "\\,"; return s === "0" ? N(rr) : `${k}\\mathrm{e}^{${s[0] === "-" ? "-i" + s.slice(1) : "i" + s}}`; };
+        if (mode === "alg") {
+          g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.muted; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(a), V.Y(b)); g.lineTo(V.X(a), V.Y(-b)); g.moveTo(V.X(a), V.Y(b)); g.lineTo(V.X(0), V.Y(b)); g.stroke(); g.restore();
+          arrowTo(g, V, O, z, C.acc); dot(o, V.X(a), V.Y(-b), C.blue, inl("\\overline{z}"), "default", false); dot(o, V.X(a), V.Y(b), C.acc, inl("z"));
+          const kind = b === 0 ? o.pair(`${inl("z")} est réel : ${inl("z=\\overline{z}")}.`, `${inl("z")} is real: ${inl("z=\\overline{z}")}.`) : a === 0 ? o.pair(`${inl("z")} est imaginaire pur : ${inl("\\overline{z}=-z")}.`, `${inl("z")} is purely imaginary: ${inl("\\overline{z}=-z")}.`) : "";
+          set(o, lines(inl(`z=${cTeX(a, b, N)}`), o.pair(`Partie réelle ${inl(`\\operatorname{Re}(z)=${N(a)}`)}, partie imaginaire ${inl(`\\operatorname{Im}(z)=${N(b)}`)}`, `Real part ${inl(`\\operatorname{Re}(z)=${N(a)}`)}, imaginary part ${inl(`\\operatorname{Im}(z)=${N(b)}`)}`),
+            o.pair(`Conjugué ${inl(`\\overline{z}=${cTeX(a, -b, N)}`)}`, `Conjugate ${inl(`\\overline{z}=${cTeX(a, -b, N)}`)}`), inl(`z\\overline{z}=${tpar(N, a)}^2+${tpar(N, b)}^2=${N(a * a + b * b)}`), kind));
+        } else if (mode === "polar") {
+          ring(g, V, r, C.muted); arc(t, 34, C.warn); arrowTo(g, V, O, z, C.acc); dot(o, V.X(a), V.Y(b), C.acc, inl("z"));
+          const s = angTeX(t, N), par = s[0] === "-" ? `\\left(${s}\\right)` : s;
+          set(o, lines(inl(`z${eq(a, b)}${cTeX(a, b, N)}`), o.pair(`Module ${inl(`|z|=${modTeX(a, b, N)}`)}`, `Modulus ${inl(`|z|=${modTeX(a, b, N)}`)}`), o.pair(`Argument ${inl(`\\arg z\\equiv${s}\\pmod{2\\pi}`)}`, `Argument ${inl(`\\arg z\\equiv${s}\\pmod{2\\pi}`)}`),
+            inl(`z=${Math.abs(r - 1) < 1e-9 ? "" : N(r)}\\left(\\cos${par}+i\\sin${par}\\right)=${expo(r, t)}`)));
+        } else {
+          const p = [a * w[0] - b * w[1], a * w[1] + b * w[0]], rw = Math.hypot(...w), tw = Math.atan2(w[1], w[0]);
+          ring(g, V, 1, C.grid, false); arc(t, 30, C.acc); arc(tw, 44, C.blue); arc(Math.atan2(p[1], p[0]), 58, C.warn);
+          arrowTo(g, V, O, z, C.acc); arrowTo(g, V, O, w, C.blue); arrowTo(g, V, O, p, C.warn, 3.5);
+          dot(o, V.X(a), V.Y(b), C.acc, inl("z")); dot(o, V.X(w[0]), V.Y(w[1]), C.blue, inl("w")); dot(o, V.X(p[0]), V.Y(p[1]), C.warn, inl("zw"), "default", false);
+          const sz = angTeX(t, N), sw = angTeX(tw, N), add = sw[0] === "-" ? `\\left(${sw}\\right)` : sw;
+          set(o, lines(inl(`z=${expo(r, t)},\\ w=${expo(rw, tw)}`), inl(`|zw|=|z|\\times|w|=${N(r)}\\times${N(rw)}=${N(r * rw)}`),
+            inl(`\\arg(zw)\\equiv${sz}+${add}\\equiv${angTeX(t + tw, N)}\\pmod{2\\pi}`), inl(`zw=${expo(r * rw, t + tw)}${eq(p[0], p[1])}${cTeX(p[0], p[1], N)}`)));
+        }
+      },
+    };
+  },
+
+  // Quadratic equation with real coefficients, built from its roots: drag z1; off the real axis its conjugate is the
+  // other root, on the axis a second real root z2 appears. Readout: equation, discriminant, roots, sum and product.
+  cquad(o) {
+    const z1 = [1, 2]; let x2 = -1; const v = () => iso(o, 4);
+    return {
+      handles() {
+        const V = v(), h = [{ x: V.X(z1[0]), y: V.Y(z1[1]), cur: "grab", move(X, Y) { z1[0] = clamp(snap(V.iX(X), .25), -3.5, 3.5); const y = clamp(snap(V.iY(Y), .25), -3.5, 3.5); z1[1] = Math.abs(y) < .15 ? 0 : y; } }];
+        if (z1[1] === 0) h.push({ x: V.X(x2), y: V.Y(0), cur: "ew-resize", move(X) { x2 = clamp(snap(V.iX(X), .25), -3.5, 3.5); } });
+        return h;
+      },
+      draw(g) {
+        const V = v(), N = o.tn, [x, y] = z1; axes(g, V, { lang: o.L });
+        const S = y ? 2 * x : x + x2, P = y ? x * x + y * y : x * x2, D = S * S - 4 * P, eqn = inl(`z^2${tpoly([[-S, "z"], [P, ""]], N).replace(/^(?!-)/, "+").replace(/^\+0$/, "")}=0`);
+        if (y) { ring(g, V, Math.sqrt(P), C.muted); g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(-y)); g.stroke(); g.restore(); dot(o, V.X(x), V.Y(-y), C.blue, inl("z_2=\\overline{z_1}"), "default", false); }
+        else dot(o, V.X(x2), V.Y(0), C.blue, inl("z_2"), "ew-resize", true, x2 < x ? -1 : 1);
+        dot(o, V.X(x), V.Y(y), C.acc, inl("z_1"), "grab", true, y || x2 >= x ? 1 : -1);
+        const roots = D < 0 ? o.pair(`${inl("\\Delta<0")} : deux racines complexes conjuguées ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}=${cTeX(x, y, N)}\\ \\text{ou}\\ ${cTeX(x, -y, N)}`)}`, `${inl("\\Delta<0")}: two conjugate complex roots ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}=${cTeX(x, y, N)}\\ \\text{or}\\ ${cTeX(x, -y, N)}`)}`)
+          : D === 0 ? o.pair(`${inl("\\Delta=0")} : une racine réelle double ${inl(`z_0=${N(S / 2)}`)}`, `${inl("\\Delta=0")}: one double real root ${inl(`z_0=${N(S / 2)}`)}`)
+          : o.pair(`${inl("\\Delta>0")} : deux racines réelles ${inl(`${N(Math.min(x, x2))}`)} et ${inl(`${N(Math.max(x, x2))}`)}`, `${inl("\\Delta>0")}: two real roots ${inl(`${N(Math.min(x, x2))}`)} and ${inl(`${N(Math.max(x, x2))}`)}`);
+        set(o, lines(eqn, o.pair(`Discriminant ${inl(`\\Delta=${tpar(N, -S)}^2-4\\times${tpar(N, P)}=${N(D)}`)}`, `Discriminant ${inl(`\\Delta=${tpar(N, -S)}^2-4\\times${tpar(N, P)}=${N(D)}`)}`), roots,
+          o.pair(`Somme ${inl(`z_1+z_2=${N(S)}`)}, produit ${inl(`z_1z_2=${N(P)}`)}`, `Sum ${inl(`z_1+z_2=${N(S)}`)}, product ${inl(`z_1z_2=${N(P)}`)}`)));
+      },
+    };
+  },
+
+  // n-th roots of a complex number a: drag a (modulus and argument snap), choose n. The roots form a regular polygon
+  // on the circle of radius |a|^(1/n); their sum is zero.
+  roots(o) {
+    const a = [1, 0]; let n = o.spec.n || 6; const v = () => iso(o, 4.4);
+    slider(o, inl("n"), 2, 12, 1, n, q => { n = q; o.redraw(); });
+    return {
+      handles() { const V = v(); return [{ x: V.X(a[0]), y: V.Y(a[1]), cur: "grab", move(X, Y) { const q = polarSnap(V.iX(X), V.iY(Y), .25, 4); a[0] = q[0]; a[1] = q[1]; } }]; },
+      draw(g) {
+        const V = v(), N = o.tn, r = Math.hypot(...a), t = Math.atan2(a[1], a[0]), rho = r ** (1 / n); axes(g, V, { lang: o.L });
+        const z = Array.from({ length: n }, (_, k) => [rho * Math.cos((t + 2 * k * Math.PI) / n), rho * Math.sin((t + 2 * k * Math.PI) / n)]);
+        ring(g, V, rho, C.muted); g.save(); g.strokeStyle = C.blue; g.fillStyle = "rgba(143,183,255,.14)"; g.lineWidth = 2; g.beginPath(); z.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore();
+        z.forEach((p, k) => dot(o, V.X(p[0]), V.Y(p[1]), C.blue, k ? "" : inl("z_0"), "default", false));
+        arrowTo(g, V, [0, 0], a, C.acc); dot(o, V.X(a[0]), V.Y(a[1]), C.acc, inl("a"));
+        const s = angTeX(t, N), ks = o.L ? `k\\in\\{0,\\ldots,${n - 1}\\}` : `k\\in\\llbracket 0\\,;${n - 1}\\rrbracket`;
+        set(o, lines(o.pair(`${inl(`a=${Math.abs(r - 1) < 1e-9 ? "" : N(r) + "\\,"}\\mathrm{e}^{i\\theta}`)} avec ${inl(`\\theta=${s}`)}`, `${inl(`a=${Math.abs(r - 1) < 1e-9 ? "" : N(r) + "\\,"}\\mathrm{e}^{i\\theta}`)} with ${inl(`\\theta=${s}`)}`),
+          o.pair(`Solutions de ${inl(`z^{${n}}=a`)} : ${inl(`z_k=\\sqrt[${n}]{${N(r)}}\\,\\mathrm{e}^{i\\frac{\\theta+2k\\pi}{${n}}}`)}, ${inl(ks)}`, `Solutions of ${inl(`z^{${n}}=a`)}: ${inl(`z_k=\\sqrt[${n}]{${N(r)}}\\,\\mathrm{e}^{i\\frac{\\theta+2k\\pi}{${n}}}`)}, ${inl(ks)}`),
+          o.pair(`Module commun ${inl(`|z_k|\\approx${N(rho, 3)}`)} ; polygone régulier à ${inl(String(n))} sommets`, `Common modulus ${inl(`|z_k|\\approx${N(rho, 3)}`)}; regular polygon with ${inl(String(n))} vertices`),
+          inl(`z_0+z_1+\\cdots+z_{${n - 1}}=0`)));
+      },
+    };
+  },
+
+  // Residues modulo n on a clock: drag a around the clock, set n. Mode powers: the successive powers of a (period, and
+  // Fermat's little theorem when n is prime). Mode inverse: multiplication by a, inverse of a when gcd(a, n) = 1.
+  modclock(o) {
+    const mode = o.spec.mode || "powers"; let n = o.spec.n || 7, a = o.spec.a || 3;
+    slider(o, inl("n"), 2, 30, 1, n, q => { n = q; a = Math.min(a, n - 1); o.redraw(); });
+    const geo = () => { const cx = o.W / 2, cy = o.H / 2 + 6, R = Math.min(o.W, o.H) / 2 - 46; return { cx, cy, R, at: k => [cx + R * Math.sin(2 * Math.PI * k / n), cy - R * Math.cos(2 * Math.PI * k / n)] }; };
+    return {
+      handles() { const G = geo(), [x, y] = G.at(a); return [{ x, y, cur: "grab", move(X, Y) { const t = Math.atan2(X - G.cx, -(Y - G.cy)); a = ((Math.round(t / (2 * Math.PI / n)) % n) + n) % n; } }]; },
+      draw(g) {
+        const G = geo(), N = o.tn, d = igcd(a, n), name = o.L ? "\\gcd" : "\\operatorname{PGCD}";
+        g.save(); g.strokeStyle = C.grid; g.lineWidth = 2; g.beginPath(); g.arc(G.cx, G.cy, G.R, 0, 7); g.stroke(); g.restore();
+        for (let k = 0; k < n; k++) { const [x, y] = G.at(k), [lx, ly] = [G.cx + (G.R + 24) * Math.sin(2 * Math.PI * k / n), G.cy - (G.R + 24) * Math.cos(2 * Math.PI * k / n)]; g.save(); g.fillStyle = C.muted; g.beginPath(); g.arc(x, y, 4, 0, 7); g.fill(); g.restore(); text(g, String(k), lx, ly + 6, C.muted, 14, "center"); }
+        const chord = (i, j, col) => { const P = G.at(i), Q = G.at(j); arrowTo(g, { X: s => s, Y: s => s }, P, Q, col, 2.5); };
+        if (mode === "powers") {
+          const seen = new Map(), seq = []; let x = 1 % n; while (!seen.has(x)) { seen.set(x, seq.length); seq.push(x); x = x * a % n; }
+          for (let k = 0; k + 1 < seq.length; k++) chord(seq[k], seq[k + 1], C.acc); if (seq.length > 1 || x !== seq[0]) chord(seq[seq.length - 1], x, C.acc);
+          seq.forEach(k => { const [px, py] = G.at(k); g.save(); g.fillStyle = C.acc; g.beginPath(); g.arc(px, py, 6, 0, 7); g.fill(); g.restore(); });
+          dot(o, ...G.at(a), C.warn, inl("a"));
+          const shown = seq.slice(0, 8).map((r, k) => `${a}^{${k}}\\equiv${r}`).join(",\\ ") + (seq.length > 8 ? ",\\ \\ldots" : "");
+          const isPrime = n > 1 && Array.from({ length: n - 2 }, (_, i) => i + 2).every(p => n % p);
+          const period = d === 1 ? o.pair(`Retour à 1 : plus petit ${inl("m\\geqslant1")} tel que ${inl(`${a}^m\\equiv1\\pmod{${n}}`)} : ${inl(`m=${seq.length}`)}`, `Back to 1: least ${inl("m\\geqslant1")} with ${inl(`${a}^m\\equiv1\\pmod{${n}}`)}: ${inl(`m=${seq.length}`)}`)
+            : o.pair(`${inl(`${name}(${a},${n})=${d}`)} : aucune puissance ${inl(`${a}^m`)}, ${inl("m\\geqslant1")}, n'est congrue à 1`, `${inl(`${name}(${a},${n})=${d}`)}: no power ${inl(`${a}^m`)}, ${inl("m\\geqslant1")}, is congruent to 1`);
+          const fermat = isPrime && a % n ? o.pair(`${inl(String(n))} est premier : ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (petit théorème de Fermat)`, `${inl(String(n))} is prime: ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (Fermat's little theorem)`) : "";
+          set(o, lines(o.pair(`Puissances de ${inl(String(a))} modulo ${inl(String(n))} :`, `Powers of ${inl(String(a))} modulo ${inl(String(n))}:`), inl(shown), period, fermat));
+        } else {
+          for (let k = 1; k < n; k++) if (k * a % n !== k) chord(k, k * a % n, d === 1 ? "rgba(232,163,61,.55)" : "rgba(255,122,122,.55)");
+          dot(o, ...G.at(a), C.warn, inl("a"));
+          let r0 = n, r1 = a, u0 = 0, u1 = 1; while (r1) { const q = Math.floor(r0 / r1); [r0, r1] = [r1, r0 - q * r1]; [u0, u1] = [u1, u0 - q * u1]; }
+          const u = ((u0 % n) + n) % n, vco = (1 - a * u) / n;
+          const inv = d === 1 ? lines(o.pair(`Bézout : ${inl(`${a}\\times${tpar(N, u)}${vco < 0 ? "-" : "+"}${n}\\times${Math.abs(vco)}=1`)}`, `Bézout: ${inl(`${a}\\times${tpar(N, u)}${vco < 0 ? "-" : "+"}${n}\\times${Math.abs(vco)}=1`)}`),
+            o.pair(`Inverse de ${inl(String(a))} modulo ${inl(String(n))} : ${inl(`${u}`)}, car ${inl(`${a}\\times${u}=${a * u}\\equiv1\\pmod{${n}}`)}`, `Inverse of ${inl(String(a))} modulo ${inl(String(n))}: ${inl(`${u}`)}, since ${inl(`${a}\\times${u}=${a * u}\\equiv1\\pmod{${n}}`)}`),
+            o.pair("La multiplication par a permute les restes.", "Multiplication by a permutes the remainders."))
+            : o.pair(`Pas d'inverse : ${inl(`${a}x\\equiv1\\pmod{${n}}`)} n'a pas de solution, ${inl(`${a}x`)} reste multiple de ${inl(String(d))}.`, `No inverse: ${inl(`${a}x\\equiv1\\pmod{${n}}`)} has no solution, since ${inl(`${a}x`)} stays a multiple of ${inl(String(d))}.`);
+          set(o, lines(inl(`${name}(${a},${n})=${d}`), inv));
+        }
+      },
+    };
+  },
+
+  // A 2 by 2 matrix as a map of the plane: drag the images of the two basis vectors (its columns). The unit square
+  // becomes a parallelogram of area |det M|; M is invertible exactly when det M is not zero.
+  matrix2(o) {
+    const c1 = [2, 1], c2 = [-1, 1.5]; const v = () => iso(o, 4.5);
+    const mv = p => function (X, Y) { const V = v(); p[0] = clamp(snap(V.iX(X)), -4, 4); p[1] = clamp(snap(V.iY(Y)), -4, 4); };
+    return {
+      handles() { const V = v(); return [{ x: V.X(c1[0]), y: V.Y(c1[1]), cur: "grab", move: mv(c1) }, { x: V.X(c2[0]), y: V.Y(c2[1]), cur: "grab", move: mv(c2) }]; },
+      draw(g) {
+        const V = v(), N = o.tn, [a, c] = c1, [b, d] = c2, det = a * d - b * c; axes(g, V, { lang: o.L });
+        const poly = (pts, fill, stroke) => { g.save(); g.fillStyle = fill; g.strokeStyle = stroke; g.lineWidth = 2; g.beginPath(); pts.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore(); };
+        poly([[0, 0], [1, 0], [1, 1], [0, 1]], "rgba(143,166,196,.18)", C.muted);
+        poly([[0, 0], c1, [a + b, c + d], c2], det ? "rgba(232,163,61,.22)" : "rgba(255,122,122,.25)", det ? C.acc : C.warn);
+        arrowTo(g, V, [0, 0], c1, C.acc); arrowTo(g, V, [0, 0], c2, C.blue);
+        dot(o, V.X(a), V.Y(c), C.acc, inl("M\\vec{\\imath}")); dot(o, V.X(b), V.Y(d), C.blue, inl("M\\vec{\\jmath}"), "grab", true, -1);
+        const M = `\\begin{pmatrix}${N(a)}&${N(b)}\\\\${N(c)}&${N(d)}\\end{pmatrix}`;
+        const inv = det ? lines(inl(`M^{-1}=\\dfrac{1}{${N(det)}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
+          : o.pair(`${inl("\\det M=0")} : ${inl("M")} n'est pas inversible, le carré est aplati sur une droite.`, `${inl("\\det M=0")}: ${inl("M")} is not invertible; the square is flattened onto a line.`);
+        set(o, lines(inl(`M=${M}`), inl(`\\det M=${tpar(N, a)}\\times${tpar(N, d)}-${tpar(N, b)}\\times${tpar(N, c)}=${N(det)}`), inv));
+      },
+    };
+  },
+
+  // Walks in the bush-taxi graph of the activity (A-B, A-C, A-D, B-C, C-D, D-E): drag the start and end markers onto
+  // vertices and choose the length k; the entry of M^k counts the walks, as the adjacency-matrix theorem states.
+  walks(o) {
+    const names = ["A", "B", "C", "D", "E"], pos = [[.22, .3], [.5, .12], [.5, .55], [.22, .78], [.82, .78]], E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]];
+    let i = 0, j = 2, k = 2; slider(o, inl("k"), 1, 6, 1, k, q => { k = q; o.redraw(); });
+    const M = names.map((_, r) => names.map((_, c) => (E.some(([p, q]) => (p === r && q === c) || (p === c && q === r)) ? 1 : 0)));
+    const mul = (A, B) => A.map(row => B[0].map((_, c) => row.reduce((s, x, t) => s + x * B[t][c], 0)));
+    const at = q => [40 + pos[q][0] * (o.W - 80), 30 + pos[q][1] * (o.H - 60)];
+    const near = (X, Y) => pos.map((_, q) => [Math.hypot(at(q)[0] - X, at(q)[1] - Y), q]).sort((u, w) => u[0] - w[0])[0][1];
+    return {
+      handles() { const [xi, yi] = at(i), [xj, yj] = at(j); return [{ x: xi - 18, y: yi - 18, r: 24, cur: "grab", move(X, Y) { i = near(X + 18, Y + 18); } }, { x: xj + 18, y: yj + 18, r: 24, cur: "grab", move(X, Y) { j = near(X - 18, Y - 18); } }]; },
+      draw(g) {
+        let P = M; for (let t = 1; t < k; t++) P = mul(P, M);
+        g.save(); g.strokeStyle = C.axis; g.lineWidth = 3; E.forEach(([p, q]) => { g.beginPath(); g.moveTo(...at(p)); g.lineTo(...at(q)); g.stroke(); }); g.restore();
+        names.forEach((s, q) => { const [x, y] = at(q); g.save(); g.fillStyle = q === i || q === j ? C.ink : C.grid; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(x, y, 17, 0, 7); g.fill(); g.stroke(); g.restore(); text(g, inl(s), x, y + 8, q === i || q === j ? C.bg : C.ink, 18, "center"); });
+        const [xi, yi] = at(i), [xj, yj] = at(j); dot(o, xi - 18, yi - 18, C.acc, o.pair("départ", "start"), "grab", true, -1); dot(o, xj + 18, yj + 18, C.warn, o.pair("arrivée", "end"));
+        const row = P[i].map(x => String(x)).join("&"), I = names[i], J = names[j], n = P[i][j];
+        set(o, lines(o.pair(`Chaînes de longueur ${inl(String(k))} de ${inl(I)} à ${inl(J)} : ${inl(String(n))}`, `Walks of length ${inl(String(k))} from ${inl(I)} to ${inl(J)}: ${inl(String(n))}`),
+          o.pair(`C'est le coefficient ${inl(`\\left(M^{${k}}\\right)_{${I}${J}}=${n}`)} de la matrice d'adjacence.`, `It is the entry ${inl(`\\left(M^{${k}}\\right)_{${I}${J}}=${n}`)} of the adjacency matrix.`),
+          o.pair(`Ligne ${inl(I)} de ${inl(`M^{${k}}`)} : ${inl(`\\begin{pmatrix}${row}\\end{pmatrix}`)}`, `Row ${inl(I)} of ${inl(`M^{${k}}`)}: ${inl(`\\begin{pmatrix}${row}\\end{pmatrix}`)}`)));
+      },
+    };
+  },
+
+  // Two-state Markov chain: drag the initial probability a0 = P(X0 = 1) and the transition probabilities p (1 to 2) and
+  // q (2 to 1). The plot shows a_n = P(Xn = 1), which tends to q/(p+q) since a_n - l = (1-p-q)^n (a_0 - l).
+  markov(o) {
+    let a0 = .9, p = .3, q = .2; const bx = 70, rows = [[34, "a_0"], [86, "p"], [138, "q"]];
+    const vplot = () => ({ x0: 70, x1: o.W - 30, y0: 190, y1: o.H - 34 }), bw = () => o.W - 100;
+    return {
+      handles() { return rows.map(([y], k) => ({ x: bx + [a0, p, q][k] * bw(), y: y + 13, cur: "ew-resize", move(X) { const val = clamp(snap((X - bx) / bw(), .05), k ? .05 : 0, 1); if (k === 0) a0 = val; else if (k === 1) p = val; else q = val; } })); },
+      draw(g) {
+        const N = o.tn, l = q / (p + q), B = bw(), F = vplot(), n = 15, X = t => F.x0 + t / n * (F.x1 - F.x0), Y = y => F.y1 - y * (F.y1 - F.y0);
+        rows.forEach(([y, s], k) => { const val = [a0, p, q][k]; g.fillStyle = C.grid; g.fillRect(bx, y, B, 26); g.fillStyle = C.acc; g.fillRect(bx, y, val * B, 26); text(g, inl(`${s}=${N(val)}`), 12, y + 20, C.ink, 16); dot(o, bx + val * B, y + 13, C.warn); });
+        g.save(); g.strokeStyle = C.axis; g.lineWidth = 1.5; g.beginPath(); g.moveTo(F.x0, F.y0); g.lineTo(F.x0, F.y1); g.lineTo(F.x1, F.y1); g.stroke(); g.setLineDash([6, 5]); g.strokeStyle = C.blue; g.beginPath(); g.moveTo(F.x0, Y(l)); g.lineTo(F.x1, Y(l)); g.stroke(); g.restore();
+        text(g, "1", F.x0 - 8, Y(1) + 6, C.muted, 14, "right"); text(g, "0", F.x0 - 8, Y(0) + 6, C.muted, 14, "right"); text(g, inl("\\ell"), F.x1 - 4, Y(l) - 8, C.blue, 16, "right"); text(g, inl("n"), F.x1, F.y1 + 24, C.muted, 16, "right");
+        let a = a0; g.save(); g.fillStyle = C.acc; for (let t = 0; t <= n; t++) { g.beginPath(); g.arc(X(t), Y(a), 5, 0, 7); g.fill(); a = a * (1 - p) + (1 - a) * q; } g.restore();
+        const an = l + (1 - p - q) ** n * (a0 - l);
+        set(o, lines(inl(`T=\\begin{pmatrix}${N(1 - p)}&${N(p)}\\\\${N(q)}&${N(1 - q)}\\end{pmatrix},\\quad \\pi_{n+1}=\\pi_nT`),
+          o.pair(`Avec ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")} : ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`, `With ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")}: ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`),
+          o.pair(`Limite ${inl(`\\ell=\\dfrac{q}{p+q}=${N(l, 3)}`)} ; état stable ${inl(`\\pi=\\begin{pmatrix}${N(l, 3)}&${N(1 - l, 3)}\\end{pmatrix}`)}`, `Limit ${inl(`\\ell=\\dfrac{q}{p+q}=${N(l, 3)}`)}; stable state ${inl(`\\pi=\\begin{pmatrix}${N(l, 3)}&${N(1 - l, 3)}\\end{pmatrix}`)}`),
+          inl(`a_{${n}}=\\ell+(${N(1 - p - q)})^{${n}}(a_0-\\ell)\\approx${N(an, 4)}`)));
+      },
+    };
+  },
+};
+}
+
+/* ---- widgets-3d.js ---- */
+{
+// True 3D with the 2D canvas: orthographic camera, z up, painter's algorithm. Dragging empty space rotates (pitch clamped).
+
+const pj = (yw, pt, x, y, z) => { const cy = Math.cos(yw), sy = Math.sin(yw), cp = Math.cos(pt), sp = Math.sin(pt), x1 = cy * x - sy * y, y1 = sy * x + cy * y; return { u: x1, v: z * cp + y1 * sp, d: y1 * cp - z * sp }; };
+const upj = (yw, pt, u, v, z) => { const cy = Math.cos(yw), sy = Math.sin(yw), cp = Math.cos(pt), sp = Math.sin(pt), y1 = (v - z * cp) / sp; return { x: cy * u + sy * y1, y: -sy * u + cy * y1 }; };
+const set = (o, html) => rich(o.readout, html);
+const lines = (...a) => a.filter(Boolean).join("<br>");
+
+function cam(o, s = 38, c = [0, 0, 1]) {
+  const k = { yaw: -.7, pitch: .55 };
+  o.rotate = {
+    active: false, last: null,
+    start(e, pt) { this.active = true; this.last = pt(e); },
+    move(e, pt) { const p = pt(e); k.yaw += (p[0] - this.last[0]) * .008; k.pitch = clamp(k.pitch + (p[1] - this.last[1]) * .006, .12, 1.45); this.last = p; o.redraw(); },
+    end() { this.active = false; },
+  };
+  const P = (x, y, z) => { const q = pj(k.yaw, k.pitch, x - c[0], y - c[1], z - c[2]); return { X: o.W / 2 + s * q.u, Y: o.H / 2 - s * q.v, d: q.d }; };
+  const un = (X, Y, zf) => { const q = upj(k.yaw, k.pitch, (X - o.W / 2) / s, -(Y - o.H / 2) / s, zf - c[2]); return { x: q.x + c[0], y: q.y + c[1] }; };
+  return { k, P, un };
+}
+function poly(g, pts, fill, alpha, stroke) { g.save(); g.globalAlpha = alpha; g.fillStyle = fill; g.beginPath(); pts.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath(); g.fill(); g.globalAlpha = 1; if (stroke) { g.strokeStyle = stroke; g.lineWidth = 1; g.stroke(); } g.restore(); }
+function seg(g, a, b, col, w = 2.5, dash) { g.save(); g.strokeStyle = col; g.lineWidth = w; if (dash) g.setLineDash(dash); g.beginPath(); g.moveTo(a.X, a.Y); g.lineTo(b.X, b.Y); g.stroke(); g.restore(); }
+function floor(g, V, half = 4) { const f = []; for (let i = -half; i <= half; i++) { seg(g, V(i, -half, 0), V(i, half, 0), C.grid, 1); seg(g, V(-half, i, 0), V(half, i, 0), C.grid, 1); } }
+function axes3(g, V, L = 4.5) { [["x", [L, 0, 0]], ["y", [0, L, 0]], ["z", [0, 0, L]]].forEach(([n, p]) => { const a = V(0, 0, 0), b = V(...p); seg(g, a, b, C.axis, 1.6); text(g, inl(n), b.X + 6, b.Y - 6, C.muted, 16); }); }
+
+// "x+y+2z=2" as TeX: tlin() from widgets.js.
+
+const inside = (q, poly) => { let w = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const a = poly[i], b = poly[j]; if ((a.Y > q.Y) !== (b.Y > q.Y) && q.X < (b.X - a.X) * (q.Y - a.Y) / (b.Y - a.Y) + a.X) w = !w; } return w; };
+// "=" when the value is exact at two decimals, "\approx" otherwise (TeX).
+const exact = v => Math.abs(v - Math.round(v * 100) / 100) < 1e-9;
+const rel = (vs, N, o) => (vs.every(exact) ? "=" : "\\approx ") + (vs.length > 1 ? tpt(o, ...vs) : N(vs[0]));
+
+var W3 = {
+  // Point M in space with its orthogonal projection on a plane: distance and formula.
+  plane3d(o) {
+    const n = o.spec.normal || [1, 1, 2]; let M = [2, -1, 3], d = 2; const { k, P, un } = cam(o, 38, [0, 0, 1.5]);
+    const nn = Math.hypot(...n);
+    slider(o, inl("d"), -3, 6, 1, d, v => { d = v; o.redraw(); });
+    const planePt = (x, y) => [x, y, (d - n[0] * x - n[1] * y) / n[2]];
+    return {
+      handles() { const sh = P(M[0], M[1], 0), tp = P(...M); return [{ x: sh.X, y: sh.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); M[0] = clamp(snap(q.x), -4, 4); M[1] = clamp(snap(q.y), -4, 4); } }, { x: tp.X, y: tp.Y, cur: "ns-resize", move(X, Y) { const base = P(M[0], M[1], 0); M[2] = clamp(snap((base.Y - Y) / (38 * Math.cos(k.pitch))), -1, 6); } }]; },
+      draw(g) {
+        floor(g, P); axes3(g, P);
+        const h = 4, q = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => P(...planePt(x, y))); poly(g, q, C.acc, .18, C.acc);
+        const t = (n[0] * M[0] + n[1] * M[1] + n[2] * M[2] - d) / (nn * nn), H = [M[0] - t * n[0], M[1] - t * n[1], M[2] - t * n[2]];
+        const Mp = P(...M), Hp = P(...H), sh = P(M[0], M[1], 0);
+        seg(g, sh, Mp, C.muted, 1.5, [4, 4]); seg(g, Mp, Hp, C.warn, 3); dot(o, Hp.X, Hp.Y, C.acc, "H", "default", false); dot(o, Mp.X, Mp.Y, C.warn, "M"); dot(o, sh.X, sh.Y, C.muted, "", "move");
+        const N = o.tn, val = n[0] * M[0] + n[1] * M[1] + n[2] * M[2] - d;
+        set(o, lines(o.pair(`Plan ${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`, `Plane ${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`), inl(`\\vec{n}=${tpt(o, ...n)}`), inl(`M${tpt(o, ...M)}`), o.pair(`Distance ${inl(`MH=\\dfrac{|${N(val)}|}{${N(nn, 3)}}=${N(Math.abs(val) / nn, 3)}`)}`, `Distance ${inl(`MH=\\dfrac{|${N(val)}|}{${N(nn, 3)}}=${N(Math.abs(val) / nn, 3)}`)}`), o.pair(`${inl(`H${tpt(o, ...H)}`)}, ${inl("(MH)\\perp\\mathcal{P}")}`, `${inl(`H${tpt(o, ...H)}`)}, ${inl("(MH)\\perp\\mathcal{P}")}`), o.pair("Glissez le fond pour tourner.", "Drag the background to rotate.")));
+      },
+    };
+  },
+
+  // Line given by a point and a direction vector: parametric equations, parameter t.
+  line3d(o) {
+    let A = [-2, -1, 0], B = [1, 2, 3], t = 1; const { k, P, un } = cam(o, 38, [0, 0, 1.5]);
+    slider(o, inl("t"), -1.5, 2, .25, t, v => { t = v; o.redraw(); }, v => o.num(v));
+    return {
+      handles() { const a = P(...A), b = P(...B); return [{ x: a.X, y: a.Y, cur: "move", move(X, Y) { const q = un(X, Y, A[2]); A[0] = clamp(snap(q.x), -4, 4); A[1] = clamp(snap(q.y), -4, 4); } }, { x: b.X, y: b.Y, cur: "move", move(X, Y) { const q = un(X, Y, B[2]); B[0] = clamp(snap(q.x), -4, 4); B[1] = clamp(snap(q.y), -4, 4); } }]; },
+      draw(g) {
+        floor(g, P); axes3(g, P); const u = [B[0] - A[0], B[1] - A[1], B[2] - A[2]];
+        const far = s => P(A[0] + s * u[0], A[1] + s * u[1], A[2] + s * u[2]); seg(g, far(-3), far(3), C.acc, 2.5);
+        const Mt = [A[0] + t * u[0], A[1] + t * u[1], A[2] + t * u[2]], m = P(...Mt), a = P(...A), b = P(...B);
+        seg(g, a, b, C.warn, 3); dot(o, a.X, a.Y, C.ink, "A"); dot(o, b.X, b.Y, C.warn, "B"); dot(o, m.X, m.Y, C.acc, "M(t)", "default", false);
+        const N = o.tn; set(o, lines(inl(`\\vec{u}=\\overrightarrow{AB}=${tpt(o, ...u)}`), inl(`x=${N(A[0])}${sgn(u[0])}${N(Math.abs(u[0]))}t`), inl(`y=${N(A[1])}${sgn(u[1])}${N(Math.abs(u[1]))}t`), inl(`z=${N(A[2])}${sgn(u[2])}${N(Math.abs(u[2]))}t`), inl(`M${tpt(o, ...Mt)}`)));
+      },
+    };
+  },
+
+  // Line D = (AB) and plane P: n·M = d. Drag A and B (floor shadows), the plane's z-intercept, and B's height.
+  // The part of D hidden by the plane is dashed: orthographic view, the side of P facing away from the viewer.
+  lineplane(o) {
+    const n = o.spec.normal || [1, 1, 2]; let A = [-3, -2, 0], B = [1, 1, 3], d = 2; const { k, P, un } = cam(o, 36, [0, 0, 1.5]);
+    const zb = slider(o, o.pair("hauteur de B", "height of B"), -1, 5, .5, B[2], v => { B[2] = v; o.redraw(); }, v => o.num(v));
+    const dotn = q => n[0] * q[0] + n[1] * q[1] + n[2] * q[2];
+    return {
+      handles() {
+        const a = P(A[0], A[1], 0), b = P(B[0], B[1], 0), c = P(0, 0, d / n[2]);
+        return [{ x: a.X, y: a.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); A[0] = clamp(snap(q.x), -4, 4); A[1] = clamp(snap(q.y), -4, 4); } },
+          { x: b.X, y: b.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); B[0] = clamp(snap(q.x), -4, 4); B[1] = clamp(snap(q.y), -4, 4); } },
+          { x: c.X, y: c.Y, cur: "ns-resize", move(X, Y) { const base = P(0, 0, 0); d = clamp(snap((base.Y - Y) / (36 * Math.cos(k.pitch)) * n[2], 1), -4, 10); } }];
+      },
+      draw(g) {
+        floor(g, P); axes3(g, P);
+        const h = 4, sq = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => P(x, y, (d - n[0] * x - n[1] * y) / n[2])); poly(g, sq, C.acc, .2, C.acc);
+        const u = [B[0] - A[0], B[1] - A[1], B[2] - A[2]], at = t => [A[0] + t * u[0], A[1] + t * u[1], A[2] + t * u[2]];
+        const cy = Math.cos(k.yaw), sy = Math.sin(k.yaw), cp = Math.cos(k.pitch), sp = Math.sin(k.pitch), toViewer = dotn([-sy * cp, -cy * cp, sp]);
+        // Hidden: on the far side of P from the viewer and covered by the drawn piece of the plane.
+        const hidden = q => (dotn(q) - d) * toViewer < -1e-9 && inside(P(...q), sq);
+        for (let i = 0; i < 60; i++) { const t0 = -2 + 5 * i / 60, t1 = -2 + 5 * (i + 1) / 60, mid = at((t0 + t1) / 2); seg(g, P(...at(t0)), P(...at(t1)), C.warn, 2.5, hidden(mid) ? [5, 5] : null); }
+        [A, B].forEach(q => seg(g, P(q[0], q[1], 0), P(...q), C.muted, 1.2, [3, 4]));
+        const nu = dotn(u), N = o.tn, PP = inl("\\mathcal{P}"), rows = [o.pair(`${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`, `${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`), `${inl(`\\vec{n}=${tpt(o, ...n)}`)} ${inl(`\\vec{u}=\\overrightarrow{AB}=${tpt(o, ...u)}`)}`, inl(`\\vec{n}\\cdot\\vec{u}=${N(nu)}`)];
+        if (Math.abs(nu) > 1e-9) {
+          const t = (d - dotn(A)) / nu, I = at(t), ip = P(...I); dot(o, ip.X, ip.Y, C.blue, "I", "default", false);
+          rows.push(o.pair(`${inl("\\vec{n}\\cdot\\vec{u}\\neq0")} : ${inl("D")} coupe ${PP} en un seul point, ${inl(`t${rel([t], N)}`)}.`, `${inl("\\vec{n}\\cdot\\vec{u}\\neq0")}: ${inl("D")} meets ${PP} at exactly one point, ${inl(`t${rel([t], N)}`)}.`), inl(`I${rel(I, N, o)}`));
+        } else rows.push(Math.abs(dotn(A) - d) < 1e-9 ? o.pair(`${inl("\\vec{n}\\cdot\\vec{u}=0")} et ${inl("A\\in\\mathcal{P}")} : ${inl("D")} est contenue dans ${PP}.`, `${inl("\\vec{n}\\cdot\\vec{u}=0")} and ${inl("A\\in\\mathcal{P}")}: ${inl("D")} lies in ${PP}.`) : o.pair(`${inl("\\vec{n}\\cdot\\vec{u}=0")} et ${inl("A\\notin\\mathcal{P}")} : ${inl("D")} est strictement parallèle à ${PP}.`, `${inl("\\vec{n}\\cdot\\vec{u}=0")} and ${inl("A\\notin\\mathcal{P}")}: ${inl("D")} is strictly parallel to ${PP}.`));
+        const a = P(...A), b = P(...B), sa = P(A[0], A[1], 0), sb = P(B[0], B[1], 0), c = P(0, 0, d / n[2]);
+        dot(o, a.X, a.Y, C.ink, "A", "default", false); dot(o, b.X, b.Y, C.warn, "B", "default", false);
+        dot(o, sa.X, sa.Y, C.muted, "", "move"); dot(o, sb.X, sb.Y, C.muted, "", "move"); dot(o, c.X, c.Y, C.acc, "d");
+        rows.push(o.pair("Glissez les ombres de A et B, le point d du plan ; tournez avec le fond.", "Drag the shadows of A and B and the plane point d; rotate with the background."));
+        set(o, lines(...rows)); zb.value = B[2];
+      },
+    };
+  },
+
+  // Surface z = f(x, y) patch with a draggable point on the floor (integration / level curves): painter's algorithm.
+  surface3d(o) {
+    let px = 1, py = 1; const f = (x, y) => 3 - (x * x + y * y) / 3; const { k, P, un } = cam(o, 36, [0, 0, 1.5]); const n = 18, h = 3;
+    return {
+      handles() { const s = P(px, py, 0); return [{ x: s.X, y: s.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); px = clamp(snap(q.x, .25), -h, h); py = clamp(snap(q.y, .25), -h, h); } }]; },
+      draw(g) {
+        floor(g, P, 3); axes3(g, P, 3.5); const facets = [];
+        for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+          const x0 = -h + 2 * h * i / n, x1 = -h + 2 * h * (i + 1) / n, y0 = -h + 2 * h * j / n, y1 = -h + 2 * h * (j + 1) / n;
+          const pts = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]].map(([x, y]) => P(x, y, f(x, y))), z = f((x0 + x1) / 2, (y0 + y1) / 2);
+          facets.push({ pts, d: pts.reduce((s, p) => s + p.d, 0) / 4, z });
+        }
+        facets.sort((a, b) => b.d - a.d).forEach(F => { const sh = .45 + .1 * Math.min(1, F.z / 3); poly(g, F.pts, `rgb(${Math.round(60 + 60 * sh)},${Math.round(150 + 80 * sh)},${Math.round(130 + 60 * sh)})`, .95, "rgba(20,32,36,.6)"); });
+        const s = P(px, py, 0), t = P(px, py, f(px, py)); seg(g, s, t, C.warn, 2, [4, 4]); dot(o, t.X, t.Y, C.warn, "", "default", false); dot(o, s.X, s.Y, C.acc, o.L ? "(x, y)" : "(x ; y)");
+        set(o, lines(inl("z=3-\\dfrac{x^2+y^2}{3}"), inl(`f${tpt(o, px, py)}=${o.tn(f(px, py), 3)}`), o.pair("Glissez le fond pour tourner.", "Drag the background to rotate.")));
+      },
+    };
+  },
+};
+}
+
+/* ---- player.js ---- */
+// Classroom slide player, modelled on the interactive maths slide skill (Presenter + Explore):
+// fixed 1280x720 stage, flow column of step blocks on the left, live figure with controls on the right,
+// ◀ ▶ steps and "Tout" at the bottom left. The same file is bundled by scripts/export-slides.py into a
+// self-contained HTML export of each deck (window.__MX_EXPORT__ then carries the deck and its figures).
+
+const $ = (s, r = document) => r.querySelector(s);
+const EXPORT = typeof window !== "undefined" && window.__MX_EXPORT__ ? window.__MX_EXPORT__ : null;
+const params = new URLSearchParams(location.search);
+const deckId = EXPORT ? EXPORT.deck.id : params.get("deck") || "premiere-01";
+const stored = () => { try { return JSON.parse(localStorage.getItem("maths-explorer-v1") || "{}").lang === "en" ? 1 : 0; } catch { return 0; } };
+let lang = params.get("lang") === "en" ? 1 : params.get("lang") === "fr" ? 0 : stored();
+let deck, index = 0, revealed = false, live = null, step = 1, generation = 0, toastTimer = 0;
+
+const KIND = {
+  title: ["Titre", "Title"], goals: ["Objectifs", "Goals"], concept: ["À retenir", "Key idea"], method: ["Méthode", "Method"],
+  example: ["Exemple", "Example"], error: ["Attention", "Watch out"], try: ["À vous", "Your turn"], proof: ["Démonstration", "Proof"],
+  activity: ["Activité", "Activity"], code: ["Python", "Python"], widget: ["Explorer", "Explore"],
+};
+const UI = {
+  stepPrev: ["Étape précédente", "Previous step"], stepNext: ["Étape suivante", "Next step"], all: ["Tout", "All"],
+  step: ["Étape", "Step"], prev: ["Diapositive précédente", "Previous slide"], next: ["Diapositive suivante", "Next slide"],
+  answer: ["Voir la réponse", "Show the answer"], hide: ["Masquer la réponse", "Hide the answer"], answerLab: ["Réponse", "Answer"],
+  lang: ["English", "Français"], list: ["Plan", "Outline"], full: ["Plein écran", "Full screen"],
+  download: ["Télécharger HTML", "Download HTML"], downloadTip: ["Télécharger ce diaporama en un seul fichier HTML", "Download this deck as a single HTML file"],
+  home: ["Toutes les séries", "All decks"], loadErr: ["Série introuvable.", "Deck not found."],
+  hint: ["Flèches : étapes et diapositives · R réponse · G plan · F plein écran", "Arrows: steps and slides · R answer · G outline · F full screen"],
+  slides: ["diapositives", "slides"], liveLab: ["Valeurs en direct", "Live values"],
+  explore: ["Explorer le chapitre", "Explore the chapter"], figure: ["Figure", "Figure"],
+  free: ["La figure est réglable librement ; ses valeurs peuvent différer de celles de l’exemple.", "The figure is freely adjustable; its values may differ from the worked example."],
+  blocked: ["Plein écran bloqué par l’application. Ouvrez le lien dans le navigateur, puis touchez ⛶.", "Full screen is blocked here. Open the page in the browser, then tap ⛶."],
+  noMath: ["Les formules n’ont pas pu se charger : une connexion internet est nécessaire.", "Formulas could not load: an internet connection is required."],
+};
+const t = k => UI[k][lang];
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const COURSE = { stmg: "Terminale STMG", premiere: "Première", seconde: "Seconde", terminale: "Terminale", expertes: "Maths expertes" };
+const SIZE_NARROW = 1500;
+
+function fit() {
+  const wrap = $("#wrap"), stage = $("#stage");
+  if (matchMedia("(max-width:760px) and (orientation:portrait)").matches) { wrap.style.width = ""; wrap.style.height = ""; stage.style.transform = ""; return; }
+  const k = Math.min(innerWidth / 1280, innerHeight / 720);
+  wrap.style.width = 1280 * k + "px"; wrap.style.height = 720 * k + "px"; stage.style.transform = `scale(${k})`;
+}
+
+function toast(message) {
+  const el = $("#toast"); el.textContent = message; el.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.hidden = true; }, 5000);
+}
+
+function shell() {
+  $("#stage").innerHTML = `<div id="col"><div id="flow" tabindex="-1"></div><div id="live" hidden><div class="hd" id="live-lab"></div><div id="readout"></div></div></div>
+<div id="rt"></div>
+<div id="r1"><button class="b" id="step-prev">◀</button><span id="step-count"></span><button class="b" id="step-next">▶</button><button class="b" id="all-steps">Tout</button><span class="gap"></span><button class="b" id="pv">‹</button><span class="count" id="count"></span><button class="b" id="nx">›</button></div>
+<div id="r2"><button class="b" id="tg" hidden></button><button class="b" id="rev" hidden></button><button class="b" id="lst" aria-pressed="false"></button><button class="b" id="fs" title="Plein écran">⛶</button></div>
+<div id="prog"><i></i></div><nav id="drawer" hidden></nav><div id="toast" hidden></div>`;
+}
+
+async function load() {
+  if (EXPORT) deck = EXPORT.deck;
+  else {
+    try {
+      const r = await fetch(`./data/${encodeURIComponent(deckId)}.json`, {cache:"no-store"});
+      if (!r.ok) throw new Error(r.status);
+      deck = await r.json();
+    } catch {
+      $("#stage").innerHTML = `<div id="col" class="wide"><h2 class="tt">${t("loadErr")}</h2><p><a class="b" href="../index.html#slides">${t("home")}</a></p></div>`;
+      return;
+    }
+  }
+  if (deck.language) lang = deck.language === "en" ? 1 : 0;
+  shell(); bind();
+  const h = parseInt(location.hash.slice(1), 10);
+  index = Number.isFinite(h) ? Math.min(Math.max(h, 0), deck.slides.length - 1) : 0;
+  buildDrawer(); render();
+}
+
+function sizeClass(html) {
+  const n = html.replace(/<[^>]+>/g, "").length + (html.match(/\\[(\[]/g) || []).length * 25 + (html.match(/<li>/g) || []).length * 70 + (html.match(/\\\\/g) || []).length * 45;
+  return n > SIZE_NARROW ? "s4" : n > 1100 ? "s3" : n > 750 ? "s2" : n > 420 ? "s1" : "";
+}
+// ---- mathematics: normalise the deck TeX to the skill's rules before MathJax sees it
+const SUB = "₀₁₂₃₄₅₆₇₈₉", SUP = { "²": "2", "³": "3" };
+const MATH_ANY = /\\\((.*?)\\\)|\\\[(.*?)\\\]/gs;
+// Fractions are always \dfrac; French intervals and lists take a thin space before ";" (entities such as &lt; are left alone).
+const fixTeX = t => {
+  t = t.replace(/\\frac(?![A-Za-z])/g, "\\dfrac");
+  if (!lang) t = t.replace(/(\\[,;]|\\text\{[^}]*\}|&[a-z]+;)|;/g, (m, keep) => keep || "\\,;");
+  return t;
+};
+// Unicode sub/superscripts in prose become TeX: x₁ -> \(x_1\).
+const uniMath = h => h.replace(/([A-Za-z])([₀-₉]+|[²³])/g, (_, v, u) => `\\(${v}${SUP[u] ? "^" + SUP[u] : "_{" + [...u].map(c => SUB.indexOf(c)).join("") + "}"}\\)`);
+// \begin{array}{c|c} ... \hline ... \end{array} is an HTML <table> with CSS rules (MathJax array rules do not render reliably).
+const arrayTable = (spec, body) => {
+  const cols = []; let rule = false;
+  for (const c of spec) { if (c === "|") { if (cols.length) cols[cols.length - 1].r = true; else rule = true; } else cols.push({ l: rule, r: false }), rule = false; }
+  const rows = []; let top = false;
+  for (let row of body.split(/\\\\/)) {
+    let line = false; row = row.replace(/\\hline/g, () => { line = true; return ""; });
+    if (!row.trim()) { if (line) top = true; continue; }
+    rows.push({ cells: row.split("&amp;").map(c => c.trim()), top: top || line }); top = false;
+  }
+  const tr = rows.map((r, i) => `<tr${r.top && i ? ' class="rule"' : ""}>${r.cells.map((c, j) => `<td${cols[j]?.l ? ' class="l"' : ""}${cols[j]?.r ? ' class="r"' : ""}>${c ? `\\(${c}\\)` : ""}</td>`).join("")}</tr>`).join("");
+  return `<table class="sg">${tr}</table>`;
+};
+const tex = s => {
+  s = s.replace(/\\\[\s*\\begin\{array\}\{([^}]*)\}([\s\S]*?)\\end\{array\}\s*\\\]/g, (_, spec, body) => arrayTable(spec, fixTeX(body)));
+  s = s.replace(MATH_ANY, (m, a, b) => (a !== undefined ? `\\(${fixTeX(a)}\\)` : `\\[${fixTeX(b)}\\]`));
+  s = s.split(/(\\\(.*?\\\)|\\\[.*?\\\]|<table[\s\S]*?<\/table>)/gs).map((part, i) => (i % 2 ? part : uniMath(part))).join("");
+  return lang ? s.replace(/\\pgcd/g, "\\gcd").replace(/\\ppcm/g, "\\operatorname{lcm}") : s;
+};
+const plain = s => String(s).replace(/\\\((.*?)\\\)/g, (_, t) => t.replace(/\\[a-zA-Z]+\s?/g, "").replace(/[{}]/g, ""));
+
+// Text nodes come back from the DOM decoded ("<" for &lt;): escape them again before they are re-parsed.
+const escText = x => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// Cumulative reveal: one block per sentence, list item, paragraph or table, shown step by step.
+function revealMarkup(html) {
+  const template = document.createElement("template"); template.innerHTML = html;
+  const parts = []; let pending = "";
+  const flush = () => { if (pending.trim()) parts.push(pending); pending = ""; };
+  for (const node of template.content.childNodes) {
+    if (node.nodeType === 1 && ["UL", "OL"].includes(node.tagName)) {
+      flush(); [...node.children].forEach((li, i) => parts.push(`<${node.tagName.toLowerCase()} ${node.tagName === "OL" ? `start="${i + 1}"` : ""}>${li.outerHTML}</${node.tagName.toLowerCase()}>`));
+    } else if (node.nodeType === 3) {
+      const text = node.textContent; let start = 0, math = false;
+      for (let i = 0; i < text.length; i++) {
+        if (text.slice(i, i + 2) === "\\(" || text.slice(i, i + 2) === "\\[") math = true;
+        if (text.slice(i, i + 2) === "\\)" || text.slice(i, i + 2) === "\\]") math = false;
+        if (!math && text[i] === "." && /^\s+[A-ZÀ-Ý]/.test(text.slice(i + 1))) { pending += escText(text.slice(start, i + 1)); flush(); start = i + 1; }
+      }
+      pending += escText(text.slice(start));
+    } else if (node.nodeType === 1) {
+      if (node.tagName === "BR") flush(); else if (["P", "DIV", "TABLE", "PRE"].includes(node.tagName)) { flush(); parts.push(node.outerHTML); } else pending += node.outerHTML;
+    }
+  }
+  flush(); return (parts.length ? parts : [html]).map((part, i) => `<div class="reveal-block" data-reveal="${i + 1}">${part}</div>`).join("");
+}
+
+const blocks = () => [...document.querySelectorAll("#flow [data-reveal]")];
+function paintSteps() {
+  const all = blocks();
+  all.forEach((b, i) => { b.hidden = i >= step; });
+  const n = Math.max(all.length, 1);
+  $("#step-count").textContent = all.length ? `${t("step")} ${Math.min(step, n)} / ${n}` : "";
+  $("#step-prev").disabled = step <= 1 && index === 0; $("#step-next").disabled = step >= n && index === deck.slides.length - 1;
+  $("#all-steps").classList.toggle("on", all.length > 0 && step >= all.length && all.length > 1);
+  $("#all-steps").hidden = all.length < 2;
+  if (typeof MathJax !== "undefined" && $("#flow").querySelector("mjx-container")) fitMath();
+}
+function advance(direction) {
+  const n = blocks().length;
+  if (direction > 0 && step < n) { step++; paintSteps(); const b = blocks()[step - 1]; b?.scrollIntoView({ block: "nearest", behavior: "instant" }); }
+  else if (direction < 0 && step > 1) { step--; paintSteps(); }
+  else go(index + direction, direction < 0);
+}
+
+function companion(spec, showDelta) {
+  if (live) { live.destroy?.(); live = null; }
+  $("#live").hidden = false; $("#live-lab").textContent = t("liveLab");
+  live = mount({ ...spec, showDelta }, { host: $("#wcanvas"), controls: $("#wctl"), readout: $("#readout"), hint: $("#whint"), lang });
+}
+
+function figSrc(deckKey, name) { const file = `${deckKey}-${name}${lang ? "-en" : ""}.svg`; return EXPORT ? EXPORT.figs[file] || "" : `./fig/${encodeURIComponent(file)}?v=${deck.figureVersion || ""}`; }
+
+async function render() {
+  const renderId = ++generation;
+  if (live) { live.destroy?.(); live = null; }
+  const s = deck.slides[index], k = s.k, label = KIND[k]?.[lang] || k;
+  document.documentElement.lang = lang ? "en" : "fr";
+  document.title = `${plain(deck.title[lang])} · Maths Explorer`;
+  const title = esc(s.t[lang]), rawBody = tex(s.b[lang] || "");
+  const widgets = deck.slides.filter(x => x.k === "widget"), shared = widgets[0];
+  const ans = s.a ? tex(s.a[lang]) : "";
+  const figs = (s.f || []).map(p => `<figure class="fig"><img src="${figSrc(deckId, p[lang])}" alt="${esc(plain(s.t[lang]))}"></figure>`).join("");
+  const mode = k === "title" || k === "code" ? "none" : k === "widget" ? "widget" : figs ? "fig" : shared && k !== "goals" ? "explore" : "none";
+  const col = $("#col"), flow = $("#flow"), rt = $("#rt");
+  col.dataset.kind = k;
+  $("#live").hidden = true; $("#readout").innerHTML = "";
+
+  if (k === "title") {
+    flow.innerHTML = `<div class="title-slide"><span class="chip">${esc(deck.courseTitle?.[lang] || COURSE[deck.course] || "")}</span><h1>${title}</h1><div class="meta">${deck.slides.length} ${t("slides")}</div><div class="hint">${t("hint")}</div></div>`;
+  } else if (k === "code") {
+    flow.innerHTML = `<div class="hd">${esc(label)}</div><h2 class="tt">${title}</h2><pre>${s.b[lang]}</pre>`;
+  } else {
+    const cls = sizeClass(rawBody + ans);
+    flow.innerHTML = `<div class="hd ${k === "error" ? "red" : ""}"><span>${esc(label)}</span><span class="deckname">${esc(deck.title[lang])}</span></div><h2 class="tt">${title}</h2>${s.h?.[lang] ? `<div class="sub">${esc(s.h[lang])}</div>` : ""}<div class="steps text ${cls}">${revealMarkup(rawBody)}</div>${ans ? `<div class="answer text ${cls}" id="ans" ${revealed ? "" : "hidden"}><div class="hd green">${t("answerLab")}</div>${ans}</div>` : ""}`;
+  }
+
+  if (mode === "fig") rt.innerHTML = `<div class="figcol">${figs}</div>`;
+  else if (mode === "widget" || mode === "explore") {
+    rt.innerHTML = `<div class="hint-line" id="whint"></div><div class="canvas-wrap" id="wcanvas"></div>${mode === "explore" ? `${widgets.length > 1 ? `<label class="explore-label">${t("explore")}<select id="explore-choice">${widgets.map((w, i) => `<option value="${i}">${esc(plain(w.t[lang]))}</option>`).join("")}</select></label>` : ""}<p class="note">${t("free")}</p>` : ""}<div class="wctl" id="wctl"></div>`;
+  } else rt.innerHTML = "";
+
+  chrome();
+  figHidden = false; layout(mode);
+  try { history.replaceState(null, "", EXPORT ? `#${index}` : `?deck=${encodeURIComponent(deckId)}&lang=${lang ? "en" : "fr"}#${index}`); } catch {}
+  // Formulas first: the widget readouts are typeset as they are written, so MathJax must be ready before they mount.
+  let ready = true;
+  try {
+    if (typeof MathJax === "undefined") throw new Error("MathJax");
+    await MathJax.startup.promise; await document.fonts.load('400 25px "STIX Two Text"');
+  } catch (e) { ready = false; console.warn(e); if (renderId === generation) toast(t("noMath")); }
+  if (renderId !== generation) return;
+  const defined = deck.slides.findIndex(x => x.k === "concept" && /Discriminant/.test(x.t[0]));
+  if (mode === "widget") companion(s.w, true);
+  else if (mode === "explore") {
+    companion(shared.w, defined < 0 || index >= defined);
+    if ($("#explore-choice")) $("#explore-choice").onchange = e => companion(widgets[+e.target.value].w, true);
+  }
+  paintSteps(); flow.scrollTop = 0;
+  if (ready) {
+    try { await MathJax.typesetPromise([$("#stage")]); $("#stage").querySelectorAll("mjx-assistive-mml").forEach(x => x.remove()); } catch (e) { console.warn(e); }
+    if (renderId !== generation) return;
+    fitMath();
+    // A figure that is only an exploration aid gives way when an equation needs the whole width.
+    if (mode === "explore" && needsWidth()) { figHidden = true; layout(mode); fitMath(); }
+  }
+}
+
+// ---- layout: the flow column is 520 px wide beside a figure, 1200 px without one
+let figHidden = false;
+function layout(mode) {
+  const wide = mode === "none" || (mode === "explore" && figHidden);
+  $("#col").className = wide ? "wide" : ""; $("#rt").hidden = wide;
+  const tg = $("#tg"); tg.hidden = mode !== "explore"; tg.setAttribute("aria-pressed", String(!figHidden)); tg.textContent = t("figure");
+}
+// Shrink any formula wider than the column so that nothing is cut off or needs sideways scrolling (never below MIN_SCALE).
+const MIN_SCALE = .5;
+function fitMath() {
+  const flow = $("#flow"), avail = flow.clientWidth - 4;
+  flow.querySelectorAll("mjx-container").forEach(m => { m.style.fontSize = ""; });
+  flow.querySelectorAll("mjx-container").forEach(m => {
+    if (!m.offsetParent) return;
+    const svg = m.querySelector("svg"); if (!svg) return;
+    const room = m.getAttribute("display") === "true" ? Math.min(avail, m.parentElement.clientWidth || avail) : avail;
+    const w = svg.getBoundingClientRect().width / (flow.getBoundingClientRect().width / flow.offsetWidth);
+    if (w > room) m.style.fontSize = Math.max(MIN_SCALE, room / w) * 100 + "%";
+  });
+}
+function needsWidth() {
+  return [...$("#flow").querySelectorAll("mjx-container")].some(m => m.offsetParent && m.querySelector("svg") && m.scrollWidth > m.clientWidth + 2 || m.offsetParent && m.style.fontSize && parseFloat(m.style.fontSize) <= MIN_SCALE * 100 + 1);
+}
+
+function chrome() {
+  const s = deck.slides[index], n = deck.slides.length;
+  $("#count").textContent = `${index + 1} / ${n}`;
+  $("#pv").disabled = index === 0; $("#nx").disabled = index === n - 1;
+  $("#pv").setAttribute("aria-label", t("prev")); $("#nx").setAttribute("aria-label", t("next"));
+  $("#step-prev").setAttribute("aria-label", t("stepPrev")); $("#step-next").setAttribute("aria-label", t("stepNext"));
+  $("#all-steps").textContent = t("all");
+  const rev = $("#rev"); rev.hidden = !s.a; rev.textContent = revealed ? t("hide") : t("answer"); rev.setAttribute("aria-pressed", revealed);
+  $("#lst").textContent = t("list"); $("#fs").setAttribute("aria-label", t("full"));
+
+  $("#prog i").style.width = `${((index + 1) / n) * 100}%`;
+  document.querySelectorAll("#drawer button").forEach((b, i) => b.toggleAttribute("aria-current", i === index));
+}
+
+function buildDrawer() {
+  const d = $("#drawer");
+  d.innerHTML = deck.slides.map((x, i) => `<button data-i="${i}">${i + 1}. ${esc(KIND[x.k]?.[lang] || x.k)} · ${esc(x.t[lang])}</button>`).join("");
+  d.querySelectorAll("button").forEach(b => { b.onclick = () => { setDrawer(false); go(+b.dataset.i); }; });
+  if (typeof MathJax !== "undefined" && MathJax.typesetPromise) MathJax.startup.promise.then(() => MathJax.typesetPromise([d])).then(() => d.querySelectorAll("mjx-assistive-mml").forEach(x => x.remove())).catch(() => {});
+}
+function setDrawer(on) { $("#drawer").hidden = !on; $("#lst").setAttribute("aria-pressed", on); }
+
+function go(i, toEnd = false) {
+  index = Math.min(Math.max(i, 0), deck.slides.length - 1); revealed = false; step = 1;
+  render().then(() => { if (toEnd) { step = Math.max(blocks().length, 1); paintSteps(); } });
+}
+function toggleAnswer() {
+  if (!deck.slides[index].a) return;
+  revealed = !revealed; $("#ans").hidden = !revealed;
+  const b = $("#rev"); b.setAttribute("aria-pressed", revealed); b.textContent = revealed ? t("hide") : t("answer");
+  if (revealed) $("#ans").scrollIntoView({ block: "nearest", behavior: "instant" });
+}
+
+
+function bind() {
+  $("#nx").onclick = () => go(index + 1); $("#pv").onclick = () => go(index - 1);
+  $("#step-next").onclick = () => advance(1); $("#step-prev").onclick = () => advance(-1);
+  $("#all-steps").onclick = () => { step = blocks().length; paintSteps(); };
+  $("#lst").onclick = () => setDrawer($("#drawer").hidden);
+  $("#rev").onclick = toggleAnswer;
+  $("#tg").onclick = () => { figHidden = !figHidden; layout("explore"); fitMath(); };
+  $("#fs").onclick = () => {
+    const de = document.documentElement;
+    if (document.fullscreenElement || document.webkitFullscreenElement) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+    const rq = de.requestFullscreen || de.webkitRequestFullscreen;
+    if (!rq) { toast(t("blocked")); return; }
+    let r; try { r = rq.call(de); } catch (e) { toast(t("blocked")); return; }
+    Promise.resolve(r).then(() => { try { screen.orientation.lock("landscape").catch(() => {}); } catch (e) {} }).catch(() => toast(t("blocked")));
+  };
+}
+addEventListener("keydown", e => {
+  if (!deck || e.target.closest?.("input,select,textarea,canvas,button,a")) return;
+  const k = e.key;
+  if (k === "ArrowRight" || k === "PageDown" || k === " ") { e.preventDefault(); advance(1); }
+  else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); advance(-1); }
+  else if (k === "Home") go(0); else if (k === "End") go(deck.slides.length - 1);
+  else if (k === "r" || k === "R" || k === "ArrowDown") { e.preventDefault(); toggleAnswer(); }
+  else if (k === "g" || k === "G") setDrawer($("#drawer").hidden);
+  else if (k === "f" || k === "F") $("#fs").click();
+  else if (k === "Escape" && !$("#drawer").hidden) setDrawer(false);
+});
+addEventListener("hashchange", () => { const h = parseInt(location.hash.slice(1), 10); if (deck && Number.isFinite(h) && h !== index) go(h); });
+document.addEventListener("fullscreenchange", () => setTimeout(fit, 100));
+addEventListener("resize", fit); fit();
+load();
+
+})();
+</script>
+</body>
+</html>

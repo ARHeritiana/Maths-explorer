@@ -216,10 +216,15 @@ def mathjax():
     return out
 
 
+# stmaryrd brackets (French integer intervals, \\ent) have no MathJax command: drawn as two close square brackets.
+# Renderers without stmaryrd (slide player, chapter pages, Beamer lectures) add these definitions.
+BRACKETS = {'llbracket': r'\mathopen{[\mkern-3mu[}', 'rrbracket': r'\mathclose{]\mkern-3mu]}'}
+
+
 def player_text():
     html = PLAYER.read_text()
     a, b = html.index(MJ_BEGIN) + len(MJ_BEGIN), html.index(MJ_END)
-    js = json.dumps(mathjax(), ensure_ascii=False, separators=(',', ':'))[1:-1]
+    js = json.dumps({**mathjax(), **BRACKETS}, ensure_ascii=False, separators=(',', ':'))[1:-1]
     return html[:a] + js + html[b:]
 
 

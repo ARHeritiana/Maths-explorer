@@ -1,0 +1,138 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Polynomial equations}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Polynomial equations}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Solve in \(\C\) a quadratic equation with real coefficients; factorise a polynomial by \(z-a\) when \(a\) is a root; solve a cubic equation when one root is known; know that a polynomial of degree \(n\) has at most \(n\) roots.
+\end{frame}
+\begin{frame}{Introductory activity}
+Consider \(P(z)=z^3-2z^2+4z-8\).
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Plot on a calculator the curve of \(x\mapsto x^3-2x^2+4x-8\) on \([-3,4]\). How many real solutions does the equation \(P(x)=0\) seem to have? Locate one.
+
+\item Check that \(P(2)=0\).
+
+\item Find real numbers \(a\), \(b\), \(c\) such that, for every \(z\), \(P(z)=(z-2)\left(az^2+bz+c\right)\). Expand the right-hand side and identify the coefficients.
+
+\item Deduce all the complex solutions of \(P(z)=0\).
+
+\item Compute the sum and the product of the three solutions. Compare with the coefficients of \(P\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{5}\item How many complex solutions can a polynomial of degree \(3\) have at most? State a conjecture for degree \(n\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Quadratics with real coefficients}
+Let \(a\), \(b\), \(c\) be three real numbers with \(a\neq0\), and \(\Delta=b^2-4ac\). The equation \(az^2+bz+c=0\) has:
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item if \(\Delta>0\), two real solutions \(\dfrac{-b-\sqrt\Delta}{2a}\) and \(\dfrac{-b+\sqrt\Delta}{2a}\);
+
+\item if \(\Delta=0\), one real solution \(-\dfrac b{2a}\);
+
+\item if \(\Delta<0\), two conjugate complex solutions \(z_1=\dfrac{-b-i\sqrt{-\Delta}}{2a}\) and \(z_2=\dfrac{-b+i\sqrt{-\Delta}}{2a}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Quadratics with real coefficients (2)}
+In every case, \(az^2+bz+c=a(z-z_1)(z-z_2)\), \(z_1+z_2=-\dfrac ba\) and \(z_1z_2=\dfrac ca\) (with \(z_1=z_2\) if \(\Delta=0\)).
+\end{frame}
+\begin{frame}{Quadratics with real coefficients}
+The completed square form \(az^2+bz+c=a\left[\left(z+\dfrac b{2a}\right)^2-\dfrac\Delta{4a^2}\right]\) still holds in \(\C\). If \(\Delta<0\), write \(\dfrac{\Delta}{4a^2}=\left(\dfrac{i\sqrt{-\Delta}}{2a}\right)^2\), then factorise the difference of two squares. A product of complex numbers is zero if and only if one of the factors is zero (since every nonzero complex number is invertible). Sum and product are obtained by expanding \(a(z-z_1)(z-z_2)\) and identifying.
+\end{frame}
+\begin{frame}{Quadratics with real coefficients}
+\(\Delta=4-20=-16=(4i)^2\), so \(z=\dfrac{2\pm4i}2\): the solutions are \(1-2i\) and \(1+2i\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+A \emph{polynomial function} of degree \(n\) is a function \(P:z\mapsto a_nz^n+\dots+a_1z+a_0\) defined on \(\C\), where \(a_0,\dots,a_n\) are complex numbers and \(a_n\neq0\). A complex number \(\alpha\) such that \(P(\alpha)=0\) is a \emph{root} of \(P\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+If a polynomial function is zero for every complex number \(z\), then all its coefficients are zero. Consequently, two equal polynomial functions have the same coefficients: we may \emph{identify} the coefficients.
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+For all complex numbers \(z\), \(a\) and every integer \(n\ge1\):
+\[z^n-a^n=(z-a)\left(z^{n-1}+az^{n-2}+\dots+a^{n-2}z+a^{n-1}\right)=(z-a)\sum_{k=0}^{n-1}a^kz^{n-1-k}.\]
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+Expand: \((z-a)\sum_{k=0}^{n-1}a^kz^{n-1-k}=\sum_{k=0}^{n-1}a^kz^{n-k}-\sum_{k=0}^{n-1}a^{k+1}z^{n-1-k}\). Setting \(j=k+1\) in the second sum, it becomes \(\sum_{j=1}^{n}a^jz^{n-j}\). The terms with index \(1\) to \(n-1\) cancel; what remains is the term \(k=0\) of the first sum, \(z^n\), and the term \(j=n\) of the second, \(a^n\). We obtain \(z^n-a^n\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+Let \(P\) be a polynomial function of degree \(n\ge1\) and \(\alpha\) a root of \(P\). There is a polynomial function \(Q\) of degree \(n-1\) such that, for every complex number \(z\), \(P(z)=(z-\alpha)Q(z)\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+Write \(P(z)=\sum_{k=0}^{n}a_kz^k\). Since \(P(\alpha)=0\),
+\[P(z)=P(z)-P(\alpha)=\sum_{k=1}^{n}a_k\left(z^k-\alpha^k\right).\]
+By the previous theorem, each \(z^k-\alpha^k\) can be written \((z-\alpha)Q_k(z)\) with \(Q_k\) a polynomial of degree \(k-1\) with leading coefficient \(1\). So \(P(z)=(z-\alpha)Q(z)\) with \(Q=\sum_{k=1}^na_kQ_k\), of degree \(n-1\) with leading coefficient \(a_n\neq0\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+A polynomial function of degree \(n\ge1\) has at most \(n\) roots.
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+By induction on \(n\). A polynomial function of degree \(1\), \(a_1z+a_0\) with \(a_1\neq0\), has exactly one root, \(-\dfrac{a_0}{a_1}\). Assume the property holds in degree \(n\), and let \(P\) have degree \(n+1\). If \(P\) has no root, we are done. Otherwise, let \(\alpha\) be a root: \(P(z)=(z-\alpha)Q(z)\) with \(Q\) of degree \(n\). If \(P(\beta)=0\), then \(\beta=\alpha\) or \(Q(\beta)=0\). Since \(Q\) has at most \(n\) roots, \(P\) has at most \(n+1\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+If \(P\) has real coefficients and \(\alpha\) is a root of \(P\), then \(\overline\alpha\) is also a root of \(P\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+Since the coefficients are real, \(P\left(\overline\alpha\right)=\sum a_k\overline\alpha^{\,k}=\overline{\sum a_k\alpha^k}=\overline{P(\alpha)}=0\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+Factorise by \(z-\alpha\) by identifying the coefficients of \(Q(z)=az^2+bz+c\), then solve \(Q(z)=0\). Example: \(z^3+8=0\) has the root \(-2\) and \(z^3+8=(z+2)\left(z^2-2z+4\right)\). The quadratic has discriminant \(-12=\left(2i\sqrt3\right)^2\), hence the solutions \(-2\), \(1-i\sqrt3\), \(1+i\sqrt3\).
+\end{frame}
+\begin{frame}{Factorisation by \(z-a\)}
+The discriminant of a quadratic with real coefficients no longer tells whether the equation has solutions in \(\C\): it always has. It tells whether they are real or conjugate complex numbers.
+\end{frame}
+\end{document}

@@ -1,0 +1,165 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Complex numbers: the algebraic point of view}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Complex numbers: the algebraic point of view}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Compute with the algebraic form; use the conjugate to obtain an inverse or a quotient; solve a linear equation, or a simple equation involving \(z\) and \(\overline{z}\); expand a power with the binomial formula.
+\end{frame}
+\begin{frame}{Introductory activity}
+In the sixteenth century, a formula was known for solving equations of the form \(x^3=px+q\). It is given here and taken for granted:
+\[x=\sqrt[3]{\dfrac q2+\sqrt{\dfrac{q^2}{4}-\dfrac{p^3}{27}}}+\sqrt[3]{\dfrac q2-\sqrt{\dfrac{q^2}{4}-\dfrac{p^3}{27}}}.\]
+We study the equation \(x^3=15x+4\).
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Check that \(4\) is a solution of the equation.
+
+\item Compute \(\dfrac{q^2}{4}-\dfrac{p^3}{27}\) for \(p=15\) and \(q=4\). What becomes of the formula? Can it be applied in \(\R\)?
+
+\item A calculator of the time decides to carry on as if a number written \(\sqrt{-1}\) existed, with the single rule \(\sqrt{-1}\times\sqrt{-1}=-1\) and the usual rules of computation for everything else. Expand \(\left(2+\sqrt{-1}\right)^3\) with these rules.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Assume that \(\sqrt{-121}\) can be written \(11\sqrt{-1}\). Show that the first term of the formula can be taken equal to \(2+\sqrt{-1}\), then find in the same way a value for the second term.
+
+\item What does the formula then give? Compare with question 1.
+
+\item Is this computation a proof? Which rules would have to be fixed for it to become one?
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{The set of complex numbers}
+We take for granted the existence of a set written \(\C\), called the set of \emph{complex numbers}, such that:
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item \(\C\) contains \(\R\);
+
+\item \(\C\) contains a number written \(i\) such that \(i^2=-1\);
+
+\item \(\C\) has an addition and a multiplication that extend those of \(\R\) and follow the same rules of computation (commutativity, associativity, distributivity);
+
+\item every complex number \(z\) can be written in a unique way as \(z=a+ib\) with \(a\) and \(b\) real.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{The set of complex numbers (2)}
+The expression \(z=a+ib\) is the \emph{algebraic form} of \(z\). The real number \(a\) is the \emph{real part} of \(z\), written \(\operatorname{Re}(z)\); the real number \(b\) is the \emph{imaginary part} of \(z\), written \(\operatorname{Im}(z)\). If \(b=0\), \(z\) is real; if \(a=0\), \(z\) is \emph{purely imaginary}.
+\end{frame}
+\begin{frame}{The set of complex numbers}
+Two complex numbers are equal if and only if they have the same real part and the same imaginary part. In particular, \(a+ib=0\) with \(a,b\) real is equivalent to \(a=b=0\).
+\end{frame}
+\begin{frame}{The set of complex numbers}
+The imaginary part of \(3-5i\) is \(-5\), not \(-5i\): it is a real number. There is no order compatible with the operations on \(\C\): we never write \(z<z'\) for non-real complex numbers.
+\end{frame}
+\begin{frame}{The set of complex numbers}
+\((2+3i)+(1-i)=3+2i\) and \((2+3i)(1-i)=2-2i+3i-3i^2=5+i\).
+
+The powers of \(i\) repeat every four: \(i^2=-1\), \(i^3=-i\), \(i^4=1\). Hence \(i^{4k+r}=i^r\) for every integer \(k\ge0\).
+\end{frame}
+\begin{frame}{Conjugate}
+The \emph{conjugate} of \(z=a+ib\) (\(a\), \(b\) real) is \(\overline{z}=a-ib\).
+\end{frame}
+\begin{frame}{Conjugate}
+For every \(z=a+ib\):
+\[z+\overline z=2\operatorname{Re}(z),\qquad z-\overline z=2i\operatorname{Im}(z),\qquad z\overline z=a^2+b^2.\]
+Hence \(z\) is real if and only if \(\overline z=z\), and purely imaginary if and only if \(\overline z=-z\). The product \(z\overline z\) is a nonnegative real number, zero only for \(z=0\).
+\end{frame}
+\begin{frame}{Conjugate}
+\(z\overline z=(a+ib)(a-ib)=a^2-(ib)^2=a^2+b^2\). The first two equalities are obtained by adding or subtracting \(a+ib\) and \(a-ib\).
+\end{frame}
+\begin{frame}{Conjugate}
+Every nonzero complex number \(z=a+ib\) has an inverse:
+\[\dfrac1z=\dfrac{\overline z}{z\overline z}=\dfrac{a-ib}{a^2+b^2}.\]
+\end{frame}
+\begin{frame}{Conjugate}
+Multiply the numerator and the denominator by the conjugate of the denominator. Example: \(\dfrac{1}{3+4i}=\dfrac{3-4i}{9+16}=\dfrac{3}{25}-\dfrac{4}{25}i\).
+\end{frame}
+\begin{frame}{Conjugate}
+For all complex numbers \(z\), \(z'\) and every natural number \(n\):
+\[\overline{z+z'}=\overline z+\overline{z'},\qquad\overline{zz'}=\overline z\,\overline{z'},\qquad\overline{z^n}=\overline z^{\,n},\]
+and if \(z'\neq0\): \(\overline{\left(\dfrac1{z'}\right)}=\dfrac1{\overline{z'}}\) and \(\overline{\left(\dfrac z{z'}\right)}=\dfrac{\overline z}{\overline{z'}}\).
+\end{frame}
+\begin{frame}{Conjugate}
+\emph{Product.} Let \(z=a+ib\) and \(z'=a'+ib'\). Then \(zz'=(aa'-bb')+i(ab'+a'b)\), so \(\overline{zz'}=(aa'-bb')-i(ab'+a'b)\). On the other hand, \(\overline z\,\overline{z'}=(a-ib)(a'-ib')=(aa'-bb')-i(ab'+a'b)\). The two results are equal.
+
+\emph{Inverse.} If \(z'\neq0\), \(z'\times\dfrac1{z'}=1\). By the property of the product, \(\overline{z'}\times\overline{\left(\dfrac1{z'}\right)}=\overline1=1\), so \(\overline{\left(\dfrac1{z'}\right)}\) is the inverse of \(\overline{z'}\). The quotient follows by writing \(\dfrac z{z'}=z\times\dfrac1{z'}\).
+\end{frame}
+\begin{frame}{Conjugate (2)}
+\emph{Power.} By induction on \(n\). For \(n=0\): \(\overline{z^0}=\overline1=1=\overline z^{\,0}\). If \(\overline{z^n}=\overline z^{\,n}\) for some integer \(n\), then \(\overline{z^{n+1}}=\overline{z^n\times z}=\overline{z^n}\times\overline z=\overline z^{\,n}\times\overline z=\overline z^{\,n+1}\).
+\end{frame}
+\begin{frame}{Equations}
+If \(a\neq0\), the equation \(az=b\) has a unique solution \(z=\dfrac ba\), which we write in algebraic form. Example: \((1+i)z=3-i\) gives \(z=\dfrac{(3-i)(1-i)}{2}=\dfrac{2-4i}{2}=1-2i\).
+\end{frame}
+\begin{frame}{Equations}
+Let \(z=x+iy\) with \(x\), \(y\) real, write each side in algebraic form, then identify real parts and imaginary parts. This gives a system of two real equations.
+\end{frame}
+\begin{frame}{Equations}
+With \(z=x+iy\): \(2x+2iy+i(x-iy)=(2x+y)+i(x+2y)\). Identification gives \(2x+y=3\) and \(x+2y=-3\), hence \(x=3\) and \(y=-3\). The solution is \(z=3-3i\). Check: \(2(3-3i)+i(3+3i)=6-6i+3i-3=3-3i\).
+\end{frame}
+\begin{frame}{Binomial formula}
+For all complex numbers \(a\), \(b\) and every natural number \(n\):
+\[(a+b)^n=\sum_{k=0}^{n}\binom nk a^kb^{n-k}.\]
+\end{frame}
+\begin{frame}{Binomial formula}
+By induction on \(n\). For \(n=0\), both sides equal \(1\). Assume the formula holds for some integer \(n\). Then
+\[(a+b)^{n+1}=(a+b)\sum_{k=0}^{n}\binom nk a^kb^{n-k}=\sum_{k=0}^{n}\binom nk a^{k+1}b^{n-k}+\sum_{k=0}^{n}\binom nk a^kb^{n+1-k}.\]
+In the first sum, set \(j=k+1\): it becomes \(\sum_{j=1}^{n+1}\binom n{j-1}a^jb^{n+1-j}\). Grouping the terms with the same exponent of \(a\) and using Pascal's rule \(\binom n{j-1}+\binom nj=\binom{n+1}j\) for \(1\le j\le n\), we obtain
+\[(a+b)^{n+1}=b^{n+1}+\sum_{j=1}^{n}\binom{n+1}j a^jb^{n+1-j}+a^{n+1}=\sum_{j=0}^{n+1}\binom{n+1}j a^jb^{n+1-j}.\]
+The formula holds for \(n+1\), hence for every natural number \(n\).
+\end{frame}
+\begin{frame}{Binomial formula}
+\((1+i)^4=1+4i+6i^2+4i^3+i^4=1+4i-6-4i+1=-4\). One can also write \((1+i)^2=2i\), then \((1+i)^4=(2i)^2=-4\).
+\end{frame}
+\begin{frame}{Binomial formula}
+Unique algebraic form; \(i^2=-1\); \(z\overline z=a^2+b^2\); for a quotient, multiply by the conjugate of the denominator; for an equation in \(z\) and \(\overline z\), set \(z=x+iy\) and identify.
+\end{frame}
+\end{document}

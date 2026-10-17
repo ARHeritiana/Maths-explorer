@@ -1,0 +1,130 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Nombres complexes et géométrie}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\providecommand{\llbracket}{\mathopen{[\mkern-3mu[}}
+\providecommand{\rrbracket}{\mathclose{]\mkern-3mu]}}
+\title{Nombres complexes et géométrie}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Interpréter le module et un argument de \(\dfrac{c-a}{b-a}\) ; démontrer un alignement, une orthogonalité, la nature d'un triangle ; déterminer des ensembles de points ; déterminer les racines \(n\)-ièmes de l'unité et les utiliser pour les polygones réguliers.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Factoriser \(z^3-1\) par \(z-1\), puis résoudre \(z^3=1\) dans \(\C\). On note \(j\) la solution de partie imaginaire positive.
+
+\item Placer les trois solutions dans le plan complexe. Calculer les distances entre elles. Quelle figure obtient-on ?
+
+\item Écrire \(j\) sous forme exponentielle. Vérifier que \(j^2=\overline j\) et que \(1+j+j^2=0\). Interpréter cette dernière égalité à l'aide du centre de gravité.
+
+\item Résoudre \(z^4=1\) et placer les solutions. Même question pour \(z^6=1\), en utilisant \(z^6-1=\left(z^3-1\right)\left(z^3+1\right)\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Formuler une conjecture sur les solutions de \(z^n=1\) : leur nombre, leur module, leurs arguments, la figure qu'elles forment.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Angles et longueurs}
+Soit \(A\), \(B\), \(C\) trois points d'affixes \(a\), \(b\), \(c\), avec \(A\neq B\) et \(A\neq C\). Alors
+\[\abs{\dfrac{c-a}{b-a}}=\dfrac{AC}{AB}\qquad\text{et}\qquad\arg\left(\dfrac{c-a}{b-a}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}.\]
+\end{frame}
+\begin{frame}{Angles et longueurs}
+Le module d'un quotient est le quotient des modules : \(\abs{c-a}=AC\) et \(\abs{b-a}=AB\). Pour l'argument, \(\arg(b-a)\equiv\left(\vect u,\vect{AB}\right)\) et \(\arg(c-a)\equiv\left(\vect u,\vect{AC}\right)\), donc par la relation de Chasles \(\arg\dfrac{c-a}{b-a}\equiv\left(\vect u,\vect{AC}\right)-\left(\vect u,\vect{AB}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}\).
+\end{frame}
+\begin{frame}{Angles et longueurs}
+Avec les mêmes notations, posons \(q=\dfrac{c-a}{b-a}\).
+
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item \(A\), \(B\), \(C\) sont alignés si et seulement si \(q\) est réel.
+
+\item Les droites \((AB)\) et \((AC)\) sont perpendiculaires si et seulement si \(q\) est imaginaire pur.
+
+\item Le triangle \(ABC\) est rectangle isocèle en \(A\) si et seulement si \(q=i\) ou \(q=-i\) ; il est équilatéral si et seulement si \(q=\e^{i\pi/3}\) ou \(q=\e^{-i\pi/3}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Angles et longueurs}
+\(q\) est réel si et seulement si son argument est \(0\) ou \(\pi\) modulo \(2\pi\), c'est-à-dire si \(\vect{AB}\) et \(\vect{AC}\) sont colinéaires. \(q\) est imaginaire pur (non nul) si et seulement si son argument est \(\pm\dfrac\pi2\). Pour 3, un triangle rectangle isocèle en \(A\) correspond à \(AC=AB\) et \(\left(\vect{AB},\vect{AC}\right)\equiv\pm\dfrac\pi2\) ; un triangle équilatéral à \(AC=AB\) et \(\left(\vect{AB},\vect{AC}\right)\equiv\pm\dfrac\pi3\).
+\end{frame}
+\begin{frame}{Angles et longueurs}
+Soit \(A\) et \(B\) d'affixes \(a\) et \(b\). Le carré direct \(ABCD\) a pour sommets \(c=b+i(b-a)\) et \(d=a+i(b-a)\) : on passe de \(\vect{AB}\) à \(\vect{BC}\) par un quart de tour direct. Avec \(a=0\) et \(b=1\) : \(c=1+i\) et \(d=i\).
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité}
+Soit \(n\ge1\) un entier. On appelle racine \(n\)-ième de l'unité tout complexe \(z\) tel que \(z^n=1\). Leur ensemble est noté \(\mathbb U_n\).
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité}
+Pour tout entier \(n\ge1\), \(\mathbb U_n\) a exactement \(n\) éléments :
+\[\mathbb U_n=\left\{\e^{2ik\pi/n}\;:\;k\in\llbracket 0;n-1\rrbracket\right\}.\]
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité}
+Soit \(z\in\mathbb U_n\). Alors \(\abs z^n=\abs{z^n}=1\) avec \(\abs z\ge0\), donc \(\abs z=1\) et \(z=\e^{i\theta}\) pour un réel \(\theta\). L'égalité \(\e^{in\theta}=1\) équivaut à \(n\theta\equiv0\pmod{2\pi}\), c'est-à-dire \(\theta=\dfrac{2k\pi}n\) avec \(k\) entier. Réciproquement, \(\left(\e^{2ik\pi/n}\right)^n=\e^{2ik\pi}=1\).
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité (2)}
+Deux entiers \(k\) et \(k'\) donnent le même nombre si et seulement si \(\dfrac{2(k-k')\pi}{n}\) est un multiple de \(2\pi\), soit \(k\equiv k'\pmod n\). Tout entier \(k\) a même reste qu'un entier de \(\llbracket 0;n-1\rrbracket\), et ces \(n\) entiers ont des restes distincts : \(\mathbb U_n\) a exactement \(n\) éléments.
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité}
+Pour \(n\ge3\), les images des éléments de \(\mathbb U_n\) sont les sommets d'un polygone régulier à \(n\) côtés inscrit dans le cercle unité, dont un sommet est le point d'affixe \(1\). Avec \(\omega=\e^{2i\pi/n}\), on a \(\mathbb U_n=\{1;\omega;\omega^2;\dots;\omega^{n-1}\}\). Cas à connaître : \(\mathbb U_2=\{1;-1\}\), \(\mathbb U_3=\{1;j;j^2\}\) avec \(j=\e^{2i\pi/3}\), \(\mathbb U_4=\{1;i;-1;-i\}\).
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité}
+Pour tout entier \(n\ge2\), la somme des racines \(n\)-ièmes de l'unité est nulle.
+\end{frame}
+\begin{frame}{Racines \(n\)-ièmes de l'unité}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+Avec \(\omega=\e^{2i\pi/n}\neq1\) (car \(n\ge2\)) : \(1+\omega+\dots+\omega^{n-1}=\dfrac{1-\omega^n}{1-\omega}=0\).
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/expertes-05-1.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

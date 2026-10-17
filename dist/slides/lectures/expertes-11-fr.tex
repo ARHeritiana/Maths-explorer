@@ -1,0 +1,125 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Suites de matrices et chaînes de Markov}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Suites de matrices et chaînes de Markov}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Étudier une suite de matrices colonnes définie par \(U_{n+1}=AU_n+B\) ; modéliser une évolution aléatoire à deux ou trois états par un graphe probabiliste et une matrice de transition ; calculer la distribution après \(n\) étapes ; déterminer une distribution invariante ; étudier la convergence dans le cas de deux états.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+Dans un modèle simplifié (données fictives), le temps d'une journée est soit beau (\(S\)), soit pluvieux (\(P\)), et ne dépend que du temps de la veille : après un beau jour, il fait beau avec la probabilité \(0{,}8\) ; après un jour de pluie, il fait beau avec la probabilité \(0{,}4\). Le jour \(0\) est beau. On note \(s_n\) et \(p_n\) les probabilités que le jour \(n\) soit beau ou pluvieux.
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Représenter la situation par un schéma : deux sommets \(S\) et \(P\), une flèche pour chaque passage possible, portant sa probabilité.
+
+\item À l'aide d'un arbre, calculer \(s_1\), \(p_1\), puis \(s_2\), \(p_2\).
+
+\item Justifier que \(s_{n+1}=0{,}8s_n+0{,}4p_n\) et \(p_{n+1}=0{,}2s_n+0{,}6p_n\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item On pose \(\pi_n=\begin{pmatrix}s_n&p_n\end{pmatrix}\) et \(T=\begin{pmatrix}0{,}8&0{,}2\\0{,}4&0{,}6\end{pmatrix}\). Vérifier que \(\pi_{n+1}=\pi_nT\). Calculer \(\pi_{10}\) à la calculatrice. Recommencer en partant d'un jour \(0\) pluvieux. Que constate-t-on ?
+
+\item Déterminer la répartition \(\pi=\begin{pmatrix}a&b\end{pmatrix}\), avec \(a+b=1\), qui vérifie \(\pi T=\pi\). La comparer aux observations de la question 4.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Suites de matrices}
+Soit \(A\) une matrice carrée d'ordre \(p\), \(B\) une matrice colonne et \((U_n)\) une suite de matrices colonnes telle que \(U_{n+1}=AU_n+B\) pour tout \(n\). Si \(I_p-A\) est inversible, la matrice \(C=(I_p-A)^{-1}B\) vérifie \(C=AC+B\), et pour tout entier naturel \(n\) :
+\[U_n=A^n\left(U_0-C\right)+C.\]
+\end{frame}
+\begin{frame}{Suites de matrices}
+\((I_p-A)C=B\) s'écrit \(C=AC+B\). En soustrayant : \(U_{n+1}-C=A(U_n-C)\). La suite \(V_n=U_n-C\) vérifie \(V_{n+1}=AV_n\), donc \(V_n=A^nV_0\) (récurrence), et \(U_n=A^n(U_0-C)+C\).
+\end{frame}
+\begin{frame}{Suites de matrices}
+Si tous les coefficients de \(A^n\) tendent vers \(0\), alors \(U_n\) converge vers \(C\) (coefficient par coefficient). Ce comportement s'observe à la calculatrice ; on l'admet lorsque l'énoncé le précise.
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+On observe un système à des instants \(0,1,2,\dots\) ; à chaque instant, il se trouve dans un des états \(1,\dots,k\) (\(k=2\) ou \(3\)). On note \(X_n\) l'état à l'instant \(n\). On dit que \((X_n)\) est une \emph{chaîne de Markov} (homogène) si la probabilité de passer de l'état \(i\) à l'état \(j\) ne dépend ni de \(n\) ni des états antérieurs : pour tous \(i\), \(j\) et \(n\) tels que \(P(X_n=i)\neq0\),
+\[P_{(X_n=i)}(X_{n+1}=j)=t_{ij}.\]
+Les nombres \(t_{ij}\) sont les \emph{probabilités de transition}.
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+La chaîne est représentée par un \emph{graphe probabiliste} : un graphe orienté pondéré dont les sommets sont les états, avec un arc de \(i\) vers \(j\), de poids \(t_{ij}\), lorsque \(t_{ij}>0\). La \emph{matrice de transition} est la matrice carrée \(T=(t_{ij})\). Ses coefficients sont positifs et la somme de chaque ligne vaut \(1\).
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+La \emph{distribution} à l'instant \(n\) est la matrice ligne \(\pi_n=\begin{pmatrix}P(X_n=1)&\cdots&P(X_n=k)\end{pmatrix}\) ; \(\pi_0\) est la distribution initiale.
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+Pour tout entier naturel \(n\) : \(\pi_{n+1}=\pi_nT\) et \(\pi_n=\pi_0T^n\).
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+Par la formule des probabilités totales, avec la partition \(\left(X_n=1\right),\dots,\left(X_n=k\right)\) (on omet les événements de probabilité nulle, qui contribuent \(0\)) :
+\[P(X_{n+1}=j)=\sum_{i=1}^{k}P(X_n=i)\,t_{ij},\]
+qui est le coefficient \(j\) de \(\pi_nT\). La seconde formule s'obtient par récurrence.
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+Si \(P(X_0=i)=1\), alors pour tout état \(j\), \(P(X_n=j)\) est le coefficient de ligne \(i\) et de colonne \(j\) de \(T^n\). Autrement dit, la probabilité de passer de l'état \(i\) à l'état \(j\) en \(n\) transitions est \(\left(T^n\right)_{ij}\).
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+La distribution initiale est la ligne \(\pi_0\) qui a un \(1\) en position \(i\) et des \(0\) ailleurs. Alors \(\pi_n=\pi_0T^n\) est la ligne \(i\) de \(T^n\).
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+Une distribution \(\pi\) (ligne de coefficients positifs de somme \(1\)) est \emph{invariante} si \(\pi T=\pi\). Si \(\pi_0=\pi\), alors \(\pi_n=\pi\) pour tout \(n\).
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+Soit \(T=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix}\) avec \(0\le a\le1\), \(0\le b\le1\) et \(0<a+b<2\). La chaîne admet une unique distribution invariante \(\pi=\begin{pmatrix}\dfrac b{a+b}&\dfrac a{a+b}\end{pmatrix}\), et quelle que soit la distribution initiale, \(\pi_n\) converge vers \(\pi\).
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+Écrivons \(\pi_n=\begin{pmatrix}x_n&1-x_n\end{pmatrix}\). Alors \(x_{n+1}=(1-a)x_n+b(1-x_n)=(1-a-b)x_n+b\). Cette suite arithmético-géométrique a pour point fixe \(\ell=\dfrac b{a+b}\), et \(x_n-\ell=(1-a-b)^n(x_0-\ell)\). Comme \(-1<1-a-b<1\), \((1-a-b)^n\to0\) et \(x_n\to\ell\). Une distribution invariante vérifie \(x=(1-a-b)x+b\), donc \(x=\ell\) : elle est unique.
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+On résout le système formé par \(\pi T=\pi\) et la condition \(a+b+c=1\) ; l'une des trois équations de \(\pi T=\pi\) est conséquence des deux autres. La convergence éventuelle de \(\pi_n\) s'observe à la calculatrice.
+\end{frame}
+\begin{frame}{Chaînes de Markov}
+La distribution est une ligne et l'on multiplie à droite par \(T\) : \(\pi_{n+1}=\pi_nT\), et non \(T\pi_n\). Ce sont les lignes de \(T\), et non ses colonnes, qui ont pour somme \(1\).
+\end{frame}
+\end{document}

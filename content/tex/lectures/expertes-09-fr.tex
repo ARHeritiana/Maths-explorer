@@ -1,0 +1,140 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Matrices}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Matrices}
+\subtitle{Cours et exemples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectifs}
+Calculer avec des matrices (somme, produit par un réel, produit) ; déterminer l'inverse d'une matrice d'ordre \(2\), et d'ordre \(3\) à la calculatrice ; calculer une puissance, notamment par récurrence ; résoudre un système linéaire sous forme matricielle ; représenter une transformation du plan par une matrice.
+\end{frame}
+\begin{frame}{Activité d'introduction}
+On représente un point \(M(x;y)\) par la colonne \(X=\vc xy\). Pour une matrice \(A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\), on définit le produit \(AX=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}\) : c'est la colonne d'un nouveau point.
+\end{frame}
+\begin{frame}{Activité d'introduction (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item On pose \(R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}\). Calculer les images par \(R\) des sommets du triangle \(O(0;0)\), \(P(2;0)\), \(Q(2;1)\). Tracer les deux triangles. Quelle transformation reconnaît-on ?
+
+\item On pose \(E=\begin{pmatrix}2&0\\0&1\end{pmatrix}\). Même question.
+
+\item Calculer \(R(EX)\) pour \(X=\vc xy\) quelconque. Trouver une matrice \(C\) telle que \(R(EX)=CX\) pour tout \(X\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Activité d'introduction (3)}
+\begin{enumerate}
+\setcounter{enumi}{3}\item Calculer de même \(E(RX)\) et la matrice correspondante. Les deux transformations composées sont-elles les mêmes ? Le vérifier sur le point \(Q\).
+
+\item Proposer une règle pour calculer directement \(C\) à partir de \(R\) et \(E\) : c'est le produit matriciel \(RE\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Vocabulaire et opérations}
+Une \emph{matrice} de taille \(n\times p\) est un tableau de nombres réels à \(n\) lignes et \(p\) colonnes. Le coefficient de ligne \(i\) et de colonne \(j\) de \(A\) est noté \(a_{ij}\). Une matrice \(n\times1\) est une matrice \emph{colonne}, une matrice \(1\times p\) une matrice \emph{ligne}, une matrice \(n\times n\) une matrice \emph{carrée} d'ordre \(n\). La matrice \emph{identité} \(I_n\) a des \(1\) sur la diagonale et des \(0\) ailleurs ; la matrice \emph{nulle} n'a que des \(0\). Une matrice carrée est \emph{diagonale} si ses coefficients hors de la diagonale sont nuls.
+\end{frame}
+\begin{frame}{Vocabulaire et opérations}
+Pour \(A\) et \(B\) de même taille et \(k\) réel, \(A+B\) et \(kA\) se calculent coefficient par coefficient.
+
+Si \(A\) est de taille \(n\times p\) et \(B\) de taille \(p\times q\), le produit \(AB\) est la matrice \(n\times q\) de coefficients
+\[c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\dots+a_{ip}b_{pj}.\]
+\end{frame}
+\begin{frame}{Vocabulaire et opérations}
+\(\begin{pmatrix}1&2\\-1&3\end{pmatrix}\begin{pmatrix}0&1\\4&-2\end{pmatrix}=\begin{pmatrix}1\times0+2\times4&1\times1+2\times(-2)\\-1\times0+3\times4&-1\times1+3\times(-2)\end{pmatrix}=\begin{pmatrix}8&-3\\12&-7\end{pmatrix}\).
+\end{frame}
+\begin{frame}{Vocabulaire et opérations}
+Lorsque les produits sont définis : \((AB)C=A(BC)\), \(A(B+C)=AB+AC\), \((A+B)C=AC+BC\), \((kA)B=k(AB)\), et \(AI_n=I_nA=A\) pour \(A\) carrée d'ordre \(n\).
+\end{frame}
+\begin{frame}{Vocabulaire et opérations}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item En général \(AB\neq BA\) ; par suite \((A+B)^2=A^2+AB+BA+B^2\), et non \(A^2+2AB+B^2\).
+
+\item Un produit peut être nul sans qu'aucun facteur le soit : \(\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}0&0\\0&1\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Puissances}
+Pour \(A\) carrée d'ordre \(n\), on pose \(A^0=I_n\) et \(A^{k+1}=A^kA\) pour tout entier naturel \(k\).
+\end{frame}
+\begin{frame}{Puissances}
+Pour \(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\), on calcule \(A^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}\), \(A^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}\) et l'on conjecture \(A^k=\begin{pmatrix}1&k\\0&1\end{pmatrix}\). C'est vrai pour \(k=0\) ; si c'est vrai au rang \(k\), alors \(A^{k+1}=\begin{pmatrix}1&k\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}=\begin{pmatrix}1&k+1\\0&1\end{pmatrix}\).
+\end{frame}
+\begin{frame}{Puissances}
+Si \(D\) est diagonale de coefficients diagonaux \(d_1,\dots,d_n\), alors \(D^k\) est diagonale de coefficients \(d_1^k,\dots,d_n^k\).
+\end{frame}
+\begin{frame}{Inverse et systèmes}
+Une matrice carrée \(A\) d'ordre \(n\) est \emph{inversible} s'il existe une matrice \(B\) telle que \(AB=BA=I_n\). Cette matrice est unique ; on la note \(A^{-1}\).
+\end{frame}
+\begin{frame}{Inverse et systèmes}
+Soit \(A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\). La matrice \(A\) est inversible si et seulement si \(ad-bc\neq0\), et alors
+\[A^{-1}=\dfrac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.\]
+Le nombre \(ad-bc\) est le \emph{déterminant} de \(A\), noté \(\det A\).
+\end{frame}
+\begin{frame}{Inverse et systèmes}
+Posons \(M=\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\). Le calcul donne \(AM=MA=(ad-bc)I_2\). Si \(ad-bc\neq0\), la matrice \(\dfrac1{ad-bc}M\) est donc l'inverse de \(A\).
+
+Si \(ad-bc=0\), alors \(AM=0\). Supposons \(A\) inversible : en multipliant à gauche par \(A^{-1}\), on obtient \(M=0\), donc \(a=b=c=d=0\) et \(A\) est nulle. Mais la matrice nulle n'est pas inversible (\(0\times B=0\neq I_2\)) : contradiction.
+\end{frame}
+\begin{frame}{Inverse et systèmes}
+Un système linéaire de \(n\) équations à \(n\) inconnues s'écrit \(AX=B\), où \(A\) est la matrice des coefficients, \(X\) la colonne des inconnues et \(B\) la colonne des seconds membres. Si \(A\) est inversible, le système a une unique solution : \(X=A^{-1}B\).
+\end{frame}
+\begin{frame}{Inverse et systèmes}
+Si \(AX=B\), alors \(A^{-1}AX=A^{-1}B\), soit \(X=A^{-1}B\). Réciproquement, \(A\left(A^{-1}B\right)=B\).
+\end{frame}
+\begin{frame}{Inverse et systèmes}
+Pour une matrice d'ordre \(3\), on obtient \(A^{-1}\) à la calculatrice ou avec un logiciel, puis on contrôle à la main un ou deux coefficients de \(AA^{-1}\).
+\end{frame}
+\begin{frame}{Transformations du plan et suites}
+La rotation de centre \(O\) et d'angle \(\theta\) transforme le point de colonne \(X\) en le point de colonne \(R_\theta X\), avec
+\[R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.\]
+\end{frame}
+\begin{frame}{Transformations du plan et suites}
+Le point \(M(x;y)\) a pour affixe \(z=x+iy\), et son image a pour affixe \(\e^{i\theta}z=(\cos\theta+i\sin\theta)(x+iy)=(x\cos\theta-y\sin\theta)+i(x\sin\theta+y\cos\theta)\) (chapitre 3) : ce sont les coefficients de \(R_\theta X\).
+\end{frame}
+\begin{frame}{Transformations du plan et suites}
+Si \(X_{k+1}=AX_k\) pour tout \(k\), alors \(X_k=A^kX_0\) (récurrence immédiate). Une suite définie par \(u_{k+2}=au_{k+1}+bu_k\) s'y ramène avec \(X_k=\vc{u_{k+1}}{u_k}\) et \(A=\begin{pmatrix}a&b\\1&0\end{pmatrix}\).
+\end{frame}
+\end{document}

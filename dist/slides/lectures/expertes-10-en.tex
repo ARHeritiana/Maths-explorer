@@ -1,0 +1,120 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Graphs}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Graphs}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Model a situation with a graph; use the vocabulary of graphs (order, degree, walk, cycle, connectedness, complete graph, directed graph); write the adjacency matrix of a graph; count the walks of given length with the powers of this matrix.
+\end{frame}
+\begin{frame}{Introductory activity}
+Five towns \(A\), \(B\), \(C\), \(D\), \(E\) are linked by direct bush-taxi routes, in both directions: \(A\)-\(B\), \(A\)-\(C\), \(A\)-\(D\), \(B\)-\(C\), \(C\)-\(D\) and \(D\)-\(E\).
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Represent the network by a diagram: one point per town, one line per route.
+
+\item For each town, count the number of routes leaving it. Compute the sum of these numbers and compare it with the number of routes. Explain.
+
+\item List the journeys from \(A\) to \(C\) that use exactly two routes (a town may be visited again). How many are there?
+
+\item Same question for the journeys from \(A\) to \(E\) using exactly three routes.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item We store the information in a table \(M\) with \(5\) rows and \(5\) columns: the entry in row \(X\) and column \(Y\) is \(1\) if there is a direct route between \(X\) and \(Y\), \(0\) otherwise. Write \(M\), then compute \(M^2\) and \(M^3\) with a calculator. Compare some entries with questions 3 and 4.
+
+\item State a conjecture.
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Vocabulary}
+A (undirected) \emph{graph} consists of a finite set of \emph{vertices} and a set of \emph{edges}, each edge joining two distinct vertices; two joined vertices are \emph{adjacent}. We consider graphs without multiple edges. The \emph{order} of the graph is its number of vertices. The \emph{degree} of a vertex is the number of edges of which it is an end. A graph is \emph{complete} if any two distinct vertices are adjacent.
+\end{frame}
+\begin{frame}{Vocabulary}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.57\textwidth}
+A \emph{walk} is a sequence of vertices in which any two consecutive vertices are adjacent; its \emph{length} is its number of edges (a vertex or an edge may be used again). A walk is \emph{closed} if its ends are equal. A \emph{cycle} is a closed walk of length at least \(3\) whose edges are distinct. A graph is \emph{connected} if any two vertices are joined by a walk.
+\end{column}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=4.5cm,keepaspectratio]{figures/expertes-10-1-en.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{Vocabulary}
+In a graph, the sum of the degrees of the vertices is twice the number of edges. Consequently, the number of vertices of odd degree is even.
+\end{frame}
+\begin{frame}{Vocabulary}
+Each edge has two ends: it is counted twice in the sum of the degrees. The sum of the degrees is even; now a sum of integers is even if and only if it contains an even number of odd terms.
+\end{frame}
+\begin{frame}{Vocabulary}
+The complete graph of order \(n\) has \(\binom n2=\dfrac{n(n-1)}2\) edges.
+\end{frame}
+\begin{frame}{Vocabulary}
+In a \emph{directed} graph, the links, called \emph{arcs}, have a direction: the arc \((X,Y)\) goes from \(X\) to \(Y\). A \emph{path} is a sequence of vertices in which each is joined to the next by an arc. A graph is \emph{weighted} when each edge or arc carries a number, called its weight.
+\end{frame}
+\begin{frame}{Adjacency matrix}
+The vertices of a graph of order \(n\) being numbered from \(1\) to \(n\), its \emph{adjacency matrix} is the square matrix \(M\) of order \(n\) whose entry \(m_{ij}\) is \(1\) if the vertices \(i\) and \(j\) are joined (by an edge, or by an arc from \(i\) to \(j\) for a directed graph), and \(0\) otherwise. For an undirected graph, \(M\) is symmetric: \(m_{ij}=m_{ji}\).
+\end{frame}
+\begin{frame}{Adjacency matrix}
+Let \(M\) be the adjacency matrix of a graph and \(n\ge1\) an integer. The entry in row \(i\) and column \(j\) of \(M^n\) equals the number of walks (of paths, for a directed graph) of length \(n\) from vertex \(i\) to vertex \(j\).
+\end{frame}
+\begin{frame}{Adjacency matrix}
+Let \(m^{(n)}_{ij}\) be the entries of \(M^n\) and \(c^{(n)}_{ij}\) the number of walks of length \(n\) from \(i\) to \(j\). For \(n=1\), a walk of length \(1\) from \(i\) to \(j\) is an edge: \(c^{(1)}_{ij}=m_{ij}\).
+\end{frame}
+\begin{frame}{Adjacency matrix (2)}
+Assume \(m^{(n)}_{ij}=c^{(n)}_{ij}\) for all \(i\), \(j\). A walk of length \(n+1\) from \(i\) to \(j\) consists of a walk of length \(n\) from \(i\) to a vertex \(k\), followed by an edge from \(k\) to \(j\). Sorting these walks by the second-to-last vertex \(k\), we obtain
+\[c^{(n+1)}_{ij}=\sum_{k=1}^{p}c^{(n)}_{ik}\,m_{kj}=\sum_{k=1}^{p}m^{(n)}_{ik}\,m_{kj}=m^{(n+1)}_{ij},\]
+where \(p\) is the order of the graph, since \(M^{n+1}=M^nM\). The property holds for \(n+1\).
+\end{frame}
+\begin{frame}{Adjacency matrix}
+The diagonal entry \(\left(M^2\right)_{ii}\) is the degree of vertex \(i\) (undirected graph). A graph of order \(p\ge2\) is connected if and only if all the off-diagonal entries of \(M+M^2+\dots+M^{p-1}\) are positive: a walk between two distinct vertices can always be shortened into a walk with no repeated vertex, of length at most \(p-1\).
+\end{frame}
+\end{document}

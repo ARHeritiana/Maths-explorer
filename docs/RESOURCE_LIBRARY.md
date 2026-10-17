@@ -51,8 +51,9 @@ Imported on 7 October 2026 from the owner-supplied course booklets. No source li
 - Première spécialité: 10 chapters, student and teacher editions, reasoning, fluency and assessment banks.
 - Terminale spécialité: 14 chapters, student and teacher editions, fluency, reasoning and assessment banks.
 - Terminale STMG: 8 chapters, student and teacher editions, assessment and formula banks.
+- Mathématiques expertes (added 17 October 2026, written for the site, not imported): 11 chapters, student and teacher editions, eight excerpts per chapter.
 
-Unrelated software projects and the primary-school Raising Mathematicians project were not imported into this high-school library. The Maths expertes progression is planning material, not a student lesson collection. No native Malagasy or IB course booklets were found in the owner-supplied material. Prior conversation retrieval informed the distinction between notes, progressive exercises, problems and worked solutions, and the separation of examples, conjectures and proofs; it was not treated as a replacement for unavailable source documents.
+Unrelated software projects and the primary-school Raising Mathematicians project were not imported into this high-school library. The imported Maths expertes progression was planning material, not a student lesson collection; the course listed above was written on 17 October 2026. No native Malagasy or IB course booklets were found in the owner-supplied material. Prior conversation retrieval informed the distinction between notes, progressive exercises, problems and worked solutions, and the separation of examples, conjectures and proofs; it was not treated as a replacement for unavailable source documents.
 
 There are **47 original course chapters**, three cross-chapter banks, **258 extracted PDFs**, and **39 bilingual starting sheets**. Each starting sheet has separate notes, exercise, problem and worked-solution files in both languages: **312 printable HTML files**. There are 414 catalog resource records; one bilingual record represents two language files.
 

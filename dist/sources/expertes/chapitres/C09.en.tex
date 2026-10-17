@@ -1,0 +1,239 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c09}{Matrices}
+\mxsubtitle{Operations, inverse, powers, systems and transformations of the plane}
+
+\begin{objectives}
+Compute with matrices (sum, product by a real number, product); find the inverse of a matrix of order $2$, and of order $3$ with a calculator; compute a power, in particular by induction; solve a linear system in matrix form; represent a transformation of the plane by a matrix.
+\end{objectives}
+\begin{prerequisites}
+Linear systems of two equations; coordinates of vectors; addition formulas (chapter 3); proof by induction; sequences.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Solve the system $3x+5y=4$ and $x+2y=1$.
+\item Compute the determinant of the vectors $\vect a\vc31$ and $\vect b\vc52$.
+\item Give $\cos\frac\pi3$ and $\sin\frac\pi3$.
+\item What are the coordinates of the image of the point $\pt{x;y}$ under the reflection in the axis $(Ox)$?
+\item Expand $(a+b)^2$. Do we use $ab=ba$?
+\item Let $u_{n+1}=2u_n$ and $u_0=3$. Express $u_n$ in terms of $n$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $x=3$ and $y=-1$.
+\item $3\times2-1\times5=1$.
+\item $\frac12$ and $\frac{\sqrt3}2$.
+\item $\pt{x;-y}$.
+\item $a^2+2ab+b^2$: we group $ab+ba$ into $2ab$, which uses $ab=ba$. This will no longer be possible with matrices.
+\item $u_n=3\times2^n$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[Turning and stretching a figure \mxchip{40 min}]
+We represent a point $M\pt{x;y}$ by the column $X=\vc xy$. For a matrix $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, we define the product $AX=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}$: it is the column of a new point.
+\begin{enumerate}
+\item Let $R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$. Compute the images under $R$ of the vertices of the triangle $O\pt{0;0}$, $P\pt{2;0}$, $Q\pt{2;1}$. Draw both triangles. Which transformation do you recognise?
+\item Let $E=\begin{pmatrix}2&0\\0&1\end{pmatrix}$. Same question.
+\item Compute $R(EX)$ for any $X=\vc xy$. Find a matrix $C$ such that $R(EX)=CX$ for every $X$.
+\item Compute likewise $E(RX)$ and the corresponding matrix. Are the two composite transformations the same? Check on the point $Q$.
+\item Suggest a rule for computing $C$ directly from $R$ and $E$: it is the matrix product $RE$.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item $O\mapsto O$, $P\mapsto\pt{0;2}$, $Q\mapsto\pt{-1;2}$: rotation with centre $O$ and angle $\frac\pi2$.
+\item $O\mapsto O$, $P\mapsto\pt{4;0}$, $Q\mapsto\pt{4;1}$: stretch with factor $2$ parallel to the horizontal axis.
+\item $EX=\vc{2x}{y}$ then $R(EX)=\vc{-y}{2x}$, so $C=\begin{pmatrix}0&-1\\2&0\end{pmatrix}$.
+\item $RX=\vc{-y}{x}$ then $E(RX)=\vc{-2y}{x}$, with matrix $\begin{pmatrix}0&-2\\1&0\end{pmatrix}$. The transformations differ: $Q$ has image $\pt{-1;4}$ in the first case and $\pt{-2;2}$ in the second.
+\item The entry in row $i$ and column $j$ of $C$ is obtained by multiplying row $i$ of $R$ by column $j$ of $E$, term by term, and adding. The order matters: $RE\neq ER$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+Have the figures drawn on squared paper or with software. Non-commutativity should appear as a geometric observation (stretch then turn, or turn then stretch) before it becomes a rule of computation.
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Vocabulary and operations}
+\begin{definition}[Matrix]
+A \emph{matrix} of size $n\times p$ is an array of real numbers with $n$ rows and $p$ columns. The entry in row $i$ and column $j$ of $A$ is written $a_{ij}$. An $n\times1$ matrix is a \emph{column} matrix, a $1\times p$ matrix a \emph{row} matrix, an $n\times n$ matrix a \emph{square} matrix of order $n$. The \emph{identity} matrix $I_n$ has $1$s on the diagonal and $0$s elsewhere; the \emph{zero} matrix has only $0$s. A square matrix is \emph{diagonal} if its entries off the diagonal are zero.
+\end{definition}
+\begin{definition}[Sum, product by a real number, product]
+For $A$ and $B$ of the same size and $k$ real, $A+B$ and $kA$ are computed entry by entry.\par
+If $A$ has size $n\times p$ and $B$ has size $p\times q$, the product $AB$ is the $n\times q$ matrix with entries
+\[c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\dots+a_{ip}b_{pj}.\]
+\end{definition}
+\begin{example}[A product]
+$\begin{pmatrix}1&2\\-1&3\end{pmatrix}\begin{pmatrix}0&1\\4&-2\end{pmatrix}=\begin{pmatrix}1\times0+2\times4&1\times1+2\times(-2)\\-1\times0+3\times4&-1\times1+3\times(-2)\end{pmatrix}=\begin{pmatrix}8&-3\\12&-7\end{pmatrix}$.
+\end{example}
+\begin{theorem}[Rules of computation]
+When the products are defined: $(AB)C=A(BC)$, $A(B+C)=AB+AC$, $(A+B)C=AC+BC$, $(kA)B=k(AB)$, and $AI_n=I_nA=A$ for $A$ square of order $n$.
+\end{theorem}
+\begin{pitfall}
+\begin{enumerate}
+\item In general $AB\neq BA$; consequently $(A+B)^2=A^2+AB+BA+B^2$, and not $A^2+2AB+B^2$.
+\item A product can be zero without either factor being zero: $\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}0&0\\0&1\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}$.
+\end{enumerate}
+\end{pitfall}
+
+\subsection{Powers}
+\begin{definition}[Powers of a square matrix]
+For $A$ square of order $n$, let $A^0=I_n$ and $A^{k+1}=A^kA$ for every natural number $k$.
+\end{definition}
+\begin{method}[Conjecture, then prove by induction]
+For $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$, we compute $A^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}$, $A^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}$ and conjecture $A^k=\begin{pmatrix}1&k\\0&1\end{pmatrix}$. This is true for $k=0$; if it is true for $k$, then $A^{k+1}=\begin{pmatrix}1&k\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}=\begin{pmatrix}1&k+1\\0&1\end{pmatrix}$.
+\end{method}
+\begin{keypoint}[Diagonal matrix]
+If $D$ is diagonal with diagonal entries $d_1,\dots,d_n$, then $D^k$ is diagonal with entries $d_1^k,\dots,d_n^k$.
+\end{keypoint}
+
+\subsection{Inverse and systems}
+\begin{definition}[Invertible matrix]
+A square matrix $A$ of order $n$ is \emph{invertible} if there is a matrix $B$ such that $AB=BA=I_n$. This matrix is unique; it is written $A^{-1}$.
+\end{definition}
+\begin{theorem}[Inverse of a matrix of order 2]
+Let $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$. The matrix $A$ is invertible if and only if $ad-bc\neq0$, and then
+\[A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.\]
+The number $ad-bc$ is the \emph{determinant} of $A$, written $\det A$.
+\end{theorem}
+\begin{proof}
+Let $M=\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$. Computation gives $AM=MA=(ad-bc)I_2$. If $ad-bc\neq0$, the matrix $\frac1{ad-bc}M$ is therefore the inverse of $A$.\par
+If $ad-bc=0$, then $AM=0$. Suppose $A$ is invertible: multiplying on the left by $A^{-1}$ gives $M=0$, so $a=b=c=d=0$ and $A$ is zero. But the zero matrix is not invertible ($0\times B=0\neq I_2$): a contradiction.
+\end{proof}
+\begin{theorem}[Linear systems]
+A linear system of $n$ equations in $n$ unknowns can be written $AX=B$, where $A$ is the matrix of coefficients, $X$ the column of unknowns and $B$ the column of right-hand sides. If $A$ is invertible, the system has a unique solution: $X=A^{-1}B$.
+\end{theorem}
+\begin{proof}
+If $AX=B$, then $A^{-1}AX=A^{-1}B$, that is $X=A^{-1}B$. Conversely, $A\left(A^{-1}B\right)=B$.
+\end{proof}
+\begin{method}[Order 3: calculator and check]
+For a matrix of order $3$, obtain $A^{-1}$ with a calculator or software, then check one or two entries of $AA^{-1}$ by hand.
+\end{method}
+
+\subsection{Transformations of the plane and sequences}
+\begin{theorem}[Matrix of a rotation]
+The rotation with centre $O$ and angle $\theta$ maps the point with column $X$ to the point with column $R_\theta X$, where
+\[R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.\]
+\end{theorem}
+\begin{proof}
+The point $M\pt{x;y}$ has affix $z=x+iy$, and its image has affix $\e^{i\theta}z=(\cos\theta+i\sin\theta)(x+iy)=(x\cos\theta-y\sin\theta)+i(x\sin\theta+y\cos\theta)$ (chapter 3): these are the entries of $R_\theta X$.
+\end{proof}
+\begin{method}[Sequence defined by a matrix]
+If $X_{k+1}=AX_k$ for every $k$, then $X_k=A^kX_0$ (immediate induction). A sequence defined by $u_{k+2}=au_{k+1}+bu_k$ reduces to this with $X_k=\vc{u_{k+1}}{u_k}$ and $A=\begin{pmatrix}a&b\\1&0\end{pmatrix}$.
+\end{method}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Computations]
+Let $A=\begin{pmatrix}1&2\\-1&3\end{pmatrix}$ and $B=\begin{pmatrix}0&1\\4&-2\end{pmatrix}$. Compute $A+B$, $2A-B$, $AB$ and $BA$.
+\end{exercise}
+\begin{solution}
+$A+B=\begin{pmatrix}1&3\\3&1\end{pmatrix}$, $2A-B=\begin{pmatrix}2&3\\-6&8\end{pmatrix}$, $AB=\begin{pmatrix}8&-3\\12&-7\end{pmatrix}$, $BA=\begin{pmatrix}-1&3\\6&2\end{pmatrix}$. We see that $AB\neq BA$.
+\end{solution}
+
+\begin{exercise}[Inverse and system of order 2]
+Let $A=\begin{pmatrix}3&5\\1&2\end{pmatrix}$.
+\begin{enumerate}
+\item Explain why $A$ is invertible and find $A^{-1}$.
+\item Deduce the solution of the system $3x+5y=4$, $x+2y=1$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\det A=6-5=1\neq0$ and $A^{-1}=\begin{pmatrix}2&-5\\-1&3\end{pmatrix}$.
+\item $X=A^{-1}\vc41=\vc{8-5}{-4+3}=\vc3{-1}$ : $x=3$, $y=-1$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[System of order 3]
+Consider the system $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$.
+\begin{enumerate}
+\item Write it in the form $AX=B$.
+\item With a calculator, find $A^{-1}$, then the solution of the system.
+\item Check the solution by hand.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item The system can be written $AX=B$ with \[A=\begin{pmatrix}1&1&1\\2&-1&1\\1&2&-1\end{pmatrix},\qquad X=\begin{pmatrix}x\\y\\z\end{pmatrix},\qquad B=\begin{pmatrix}6\\3\\2\end{pmatrix}.\]
+\item The calculator gives \[A^{-1}=\frac17\begin{pmatrix}-1&3&2\\3&-2&1\\5&-1&-3\end{pmatrix}\qquad\text{and}\qquad X=A^{-1}B=\begin{pmatrix}1\\2\\3\end{pmatrix}.\]
+\item $1+2+3=6$, $2-2+3=3$, $1+4-3=2$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Powers by induction]
+Let $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}$. Compute $A^2$ and $A^3$, conjecture an expression of $A^n$ for $n\ge1$, then prove it by induction.
+\end{exercise}
+\begin{solution}
+$A^2=\begin{pmatrix}4&4\\0&4\end{pmatrix}$, $A^3=\begin{pmatrix}8&12\\0&8\end{pmatrix}$. Conjecture: $A^n=\begin{pmatrix}2^n&n2^{n-1}\\0&2^n\end{pmatrix}$. True for $n=1$. If it holds for $n$:
+\[A^{n+1}=\begin{pmatrix}2^n&n2^{n-1}\\0&2^n\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}2^{n+1}&2^n+n2^n\\0&2^{n+1}\end{pmatrix},\]
+and $2^n+n2^n=(n+1)2^n$: the formula holds for $n+1$.
+\end{solution}
+
+\begin{exercise}[A polynomial relation]
+Let $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$.
+\begin{enumerate}
+\item Check that $A^2=2A+3I_2$.
+\item Deduce that $A$ is invertible and express $A^{-1}$ in terms of $A$ and $I_2$. Check with the formula of the course.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $A^2=\begin{pmatrix}5&4\\4&5\end{pmatrix}$ and $2A+3I_2=\begin{pmatrix}5&4\\4&5\end{pmatrix}$.
+\item $A^2-2A=3I_2$ can be written $A\times\frac13(A-2I_2)=I_2$, and likewise $\frac13(A-2I_2)A=I_2$. So $A^{-1}=\frac13(A-2I_2)=\begin{pmatrix}-\frac13&\frac23\\\frac23&-\frac13\end{pmatrix}$. With the course: $\det A=-3$ and $A^{-1}=-\frac13\begin{pmatrix}1&-2\\-2&1\end{pmatrix}$, the same result.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Rotations]
+\begin{enumerate}
+\item Using the addition formulas, prove that $R_\theta R_{\theta'}=R_{\theta+\theta'}$.
+\item Deduce $\left(R_{\pi/6}\right)^{12}$.
+\item Find the image of the point $\pt{2;0}$ under the rotation with centre $O$ and angle $\frac\pi3$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item The entry in row $1$ and column $1$ of the product is $\cos\theta\cos\theta'-\sin\theta\sin\theta'=\cos(\theta+\theta')$; the entry in row $2$ and column $1$ is $\sin\theta\cos\theta'+\cos\theta\sin\theta'=\sin(\theta+\theta')$. The other two are obtained in the same way.
+\item By induction, $\left(R_{\pi/6}\right)^{12}=R_{2\pi}=I_2$.
+\item $R_{\pi/3}\vc20=\vc{2\cos\frac\pi3}{2\sin\frac\pi3}=\vc1{\sqrt3}$: the point $\pt{1;\sqrt3}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A parabola through three points]
+Find the real numbers $a$, $b$, $c$ such that the parabola with equation $y=ax^2+bx+c$ passes through the points $\pt{1;2}$, $\pt{2;3}$ and $\pt{3;6}$. Write the system in matrix form.
+\end{exercise}
+\begin{solution}
+The system is \[\begin{pmatrix}1&1&1\\4&2&1\\9&3&1\end{pmatrix}\begin{pmatrix}a\\b\\c\end{pmatrix}=\begin{pmatrix}2\\3\\6\end{pmatrix}.\] Subtracting consecutive equations: $3a+b=1$ and $5a+b=3$, so $a=1$, $b=-2$, then $c=3$. Check: $1-2+3=2$, $4-4+3=3$, $9-6+3=6$.
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[The Fibonacci sequence and Cassini's identity]
+The Fibonacci sequence is defined by $F_0=0$, $F_1=1$ and $F_{n+2}=F_{n+1}+F_n$ for every $n\ge0$. Let $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$.
+\begin{enumerate}
+\item Compute $F_2,\dots,F_6$ and $A^2$, $A^3$.
+\item Prove by induction that, for every $n\ge1$, $A^n=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}$.
+\item Prove that for all matrices $M$ and $N$ of order $2$, $\det(MN)=\det M\times\det N$. Let $M=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ and $N=\begin{pmatrix}a'&b'\\c'&d'\end{pmatrix}$.
+\item Deduce that $\det\left(A^n\right)=(-1)^n$, then Cassini's identity: $F_{n+1}F_{n-1}-F_n^2=(-1)^n$ for $n\ge1$.
+\item Check the identity for $n=5$.
+\item Using $A^{2n}=A^n\times A^n$, prove that $F_{2n}=F_n\left(F_{n+1}+F_{n-1}\right)$ for $n\ge1$.
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item $F_2=1$, $F_3=2$, $F_4=3$, $F_5=5$, $F_6=8$. $A^2=\begin{pmatrix}2&1\\1&1\end{pmatrix}$, $A^3=\begin{pmatrix}3&2\\2&1\end{pmatrix}$.
+\item For $n=1$: $\begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}=\begin{pmatrix}1&1\\1&0\end{pmatrix}=A$. If the formula holds for $n$, then
+\[A^{n+1}=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}\begin{pmatrix}1&1\\1&0\end{pmatrix}=\begin{pmatrix}F_{n+1}+F_n&F_{n+1}\\F_n+F_{n-1}&F_n\end{pmatrix}=\begin{pmatrix}F_{n+2}&F_{n+1}\\F_{n+1}&F_n\end{pmatrix}.\]
+\item $MN=\begin{pmatrix}aa'+bc'&ab'+bd'\\ca'+dc'&cb'+dd'\end{pmatrix}$. Its determinant is $(aa'+bc')(cb'+dd')-(ab'+bd')(ca'+dc')$. After expanding, the terms $aa'cb'$ and $bc'dd'$ cancel with their opposites, and what remains is $ada'd'+bcb'c'-adb'c'-bca'd'=(ad-bc)(a'd'-b'c')$.
+\item By induction, $\det\left(A^n\right)=(\det A)^n=(-1)^n$. With question 2, $\det\left(A^n\right)=F_{n+1}F_{n-1}-F_n^2$.
+\item $F_6F_4-F_5^2=24-25=-1=(-1)^5$.
+\item The entry in row $1$ and column $2$ of $A^{2n}$ is $F_{2n}$; that of $A^nA^n$ is $F_{n+1}F_n+F_nF_{n-1}=F_n\left(F_{n+1}+F_{n-1}\right)$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+The determinant of order $2$ is used for the inverse; its multiplicativity is not in the syllabus and is proved here by computation. Possible extension: the Hill cipher, which encrypts pairs of letters with a matrix of order $2$ invertible modulo $26$, listed among the possible problems of the syllabus.
+\end{teachernote}

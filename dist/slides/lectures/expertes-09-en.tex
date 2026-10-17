@@ -1,0 +1,140 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\usepackage{fontspec}
+\setsansfont{Latin Modern Sans}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\parskip}{.45em}
+\hypersetup{pdfauthor={},pdfsubject={Lecture slides},pdfkeywords={},pdftitle={Matrices}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\D}{\mathbb{D}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\vect}[1]{\overrightarrow{#1}}
+\providecommand{\vi}{\vec{\imath}}
+\providecommand{\vj}{\vec{\jmath}}
+\providecommand{\vk}{\vec{k}}
+\providecommand{\norm}[1]{\left\lVert #1\right\rVert}
+\providecommand{\vc}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\providecommand{\deter}[2]{\det\left(#1,#2\right)}
+\providecommand{\abs}[1]{\left\lvert #1\right\rvert}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\Card}{\operatorname{Card}}
+\providecommand{\E}{\operatorname{E}}
+\providecommand{\V}{\operatorname{V}}
+\providecommand{\degre}{^{\circ}}
+\providecommand{\un}[1]{\,\mathrm{#1}}
+\providecommand{\sci}[2]{#1\times10^{#2}}
+\providecommand{\pgcd}{\operatorname{PGCD}}
+\providecommand{\ppcm}{\operatorname{PPCM}}
+\title{Matrices}
+\subtitle{Lecture and worked examples}
+\date{}
+\author{}
+\begin{document}
+\begin{frame}[plain]
+\vfill
+{\usebeamerfont{title}\inserttitle\par}
+\medskip
+{\usebeamerfont{subtitle}\insertsubtitle\par}
+\medskip
+{\usebeamercolor[fg]{progress bar}\rule{\textwidth}{.5pt}}
+\vfill
+\end{frame}
+\begin{frame}{Objectives}
+Compute with matrices (sum, product by a real number, product); find the inverse of a matrix of order \(2\), and of order \(3\) with a calculator; compute a power, in particular by induction; solve a linear system in matrix form; represent a transformation of the plane by a matrix.
+\end{frame}
+\begin{frame}{Introductory activity}
+We represent a point \(M(x,y)\) by the column \(X=\vc xy\). For a matrix \(A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\), we define the product \(AX=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}\): it is the column of a new point.
+\end{frame}
+\begin{frame}{Introductory activity (2)}
+\begin{enumerate}
+\setcounter{enumi}{0}\item Let \(R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}\). Compute the images under \(R\) of the vertices of the triangle \(O(0,0)\), \(P(2,0)\), \(Q(2,1)\). Draw both triangles. Which transformation do you recognise?
+
+\item Let \(E=\begin{pmatrix}2&0\\0&1\end{pmatrix}\). Same question.
+
+\item Compute \(R(EX)\) for any \(X=\vc xy\). Find a matrix \(C\) such that \(R(EX)=CX\) for every \(X\).
+
+\item Compute likewise \(E(RX)\) and the corresponding matrix. Are the two composite transformations the same? Check on the point \(Q\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Introductory activity (3)}
+\begin{enumerate}
+\setcounter{enumi}{4}\item Suggest a rule for computing \(C\) directly from \(R\) and \(E\): it is the matrix product \(RE\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Vocabulary and operations}
+A \emph{matrix} of size \(n\times p\) is an array of real numbers with \(n\) rows and \(p\) columns. The entry in row \(i\) and column \(j\) of \(A\) is written \(a_{ij}\). An \(n\times1\) matrix is a \emph{column} matrix, a \(1\times p\) matrix a \emph{row} matrix, an \(n\times n\) matrix a \emph{square} matrix of order \(n\). The \emph{identity} matrix \(I_n\) has \(1\)s on the diagonal and \(0\)s elsewhere; the \emph{zero} matrix has only \(0\)s. A square matrix is \emph{diagonal} if its entries off the diagonal are zero.
+\end{frame}
+\begin{frame}{Vocabulary and operations}
+For \(A\) and \(B\) of the same size and \(k\) real, \(A+B\) and \(kA\) are computed entry by entry.
+
+If \(A\) has size \(n\times p\) and \(B\) has size \(p\times q\), the product \(AB\) is the \(n\times q\) matrix with entries
+\[c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\dots+a_{ip}b_{pj}.\]
+\end{frame}
+\begin{frame}{Vocabulary and operations}
+\(\begin{pmatrix}1&2\\-1&3\end{pmatrix}\begin{pmatrix}0&1\\4&-2\end{pmatrix}=\begin{pmatrix}1\times0+2\times4&1\times1+2\times(-2)\\-1\times0+3\times4&-1\times1+3\times(-2)\end{pmatrix}=\begin{pmatrix}8&-3\\12&-7\end{pmatrix}\).
+\end{frame}
+\begin{frame}{Vocabulary and operations}
+When the products are defined: \((AB)C=A(BC)\), \(A(B+C)=AB+AC\), \((A+B)C=AC+BC\), \((kA)B=k(AB)\), and \(AI_n=I_nA=A\) for \(A\) square of order \(n\).
+\end{frame}
+\begin{frame}{Vocabulary and operations}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\item In general \(AB\neq BA\); consequently \((A+B)^2=A^2+AB+BA+B^2\), and not \(A^2+2AB+B^2\).
+
+\item A product can be zero without either factor being zero: \(\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}0&0\\0&1\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}\).
+
+\end{enumerate}
+\end{frame}
+\begin{frame}{Powers}
+For \(A\) square of order \(n\), let \(A^0=I_n\) and \(A^{k+1}=A^kA\) for every natural number \(k\).
+\end{frame}
+\begin{frame}{Powers}
+For \(A=\begin{pmatrix}1&1\\0&1\end{pmatrix}\), we compute \(A^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}\), \(A^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}\) and conjecture \(A^k=\begin{pmatrix}1&k\\0&1\end{pmatrix}\). This is true for \(k=0\); if it is true for \(k\), then \(A^{k+1}=\begin{pmatrix}1&k\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}=\begin{pmatrix}1&k+1\\0&1\end{pmatrix}\).
+\end{frame}
+\begin{frame}{Powers}
+If \(D\) is diagonal with diagonal entries \(d_1,\dots,d_n\), then \(D^k\) is diagonal with entries \(d_1^k,\dots,d_n^k\).
+\end{frame}
+\begin{frame}{Inverse and systems}
+A square matrix \(A\) of order \(n\) is \emph{invertible} if there is a matrix \(B\) such that \(AB=BA=I_n\). This matrix is unique; it is written \(A^{-1}\).
+\end{frame}
+\begin{frame}{Inverse and systems}
+Let \(A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\). The matrix \(A\) is invertible if and only if \(ad-bc\neq0\), and then
+\[A^{-1}=\dfrac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.\]
+The number \(ad-bc\) is the \emph{determinant} of \(A\), written \(\det A\).
+\end{frame}
+\begin{frame}{Inverse and systems}
+Let \(M=\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\). Computation gives \(AM=MA=(ad-bc)I_2\). If \(ad-bc\neq0\), the matrix \(\dfrac1{ad-bc}M\) is therefore the inverse of \(A\).
+
+If \(ad-bc=0\), then \(AM=0\). Suppose \(A\) is invertible: multiplying on the left by \(A^{-1}\) gives \(M=0\), so \(a=b=c=d=0\) and \(A\) is zero. But the zero matrix is not invertible (\(0\times B=0\neq I_2\)): a contradiction.
+\end{frame}
+\begin{frame}{Inverse and systems}
+A linear system of \(n\) equations in \(n\) unknowns can be written \(AX=B\), where \(A\) is the matrix of coefficients, \(X\) the column of unknowns and \(B\) the column of right-hand sides. If \(A\) is invertible, the system has a unique solution: \(X=A^{-1}B\).
+\end{frame}
+\begin{frame}{Inverse and systems}
+If \(AX=B\), then \(A^{-1}AX=A^{-1}B\), that is \(X=A^{-1}B\). Conversely, \(A\left(A^{-1}B\right)=B\).
+\end{frame}
+\begin{frame}{Inverse and systems}
+For a matrix of order \(3\), obtain \(A^{-1}\) with a calculator or software, then check one or two entries of \(AA^{-1}\) by hand.
+\end{frame}
+\begin{frame}{Transformations of the plane and sequences}
+The rotation with centre \(O\) and angle \(\theta\) maps the point with column \(X\) to the point with column \(R_\theta X\), where
+\[R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.\]
+\end{frame}
+\begin{frame}{Transformations of the plane and sequences}
+The point \(M(x,y)\) has affix \(z=x+iy\), and its image has affix \(\e^{i\theta}z=(\cos\theta+i\sin\theta)(x+iy)=(x\cos\theta-y\sin\theta)+i(x\sin\theta+y\cos\theta)\) (chapter 3): these are the entries of \(R_\theta X\).
+\end{frame}
+\begin{frame}{Transformations of the plane and sequences}
+If \(X_{k+1}=AX_k\) for every \(k\), then \(X_k=A^kX_0\) (immediate induction). A sequence defined by \(u_{k+2}=au_{k+1}+bu_k\) reduces to this with \(X_k=\vc{u_{k+1}}{u_k}\) and \(A=\begin{pmatrix}a&b\\1&0\end{pmatrix}\).
+\end{frame}
+\end{document}

@@ -5,7 +5,7 @@
 <title>Primitives et équations différentielles</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],packages:{'[+]':['ams']},macros:{/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2]/*end mx-math*/}},
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],packages:{'[+]':['ams']},macros:{/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/}},
 svg:{fontCache:'none'},options:{enableAssistiveMml:false},startup:{typeset:false}};</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
 <style>
@@ -409,6 +409,24 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
 const set = (o, html) => rich(o.readout, html);
 const lines = (...a) => a.filter(Boolean).join("<br>");
+// Complex plane with the same scale on both axes: half-height r, width from the canvas aspect.
+const iso = (o, r) => { const w = o.W - 72, h = o.H - 72, k = w / Math.max(h, 1); return view(o, -r * k, r * k, -r, r); };
+// An angle in TeX: an exact multiple of pi/12 as a fraction of pi, otherwise a decimal. Normalised to ]-pi ; pi].
+const angTeX = (t, N) => {
+  t = Math.atan2(Math.sin(t), Math.cos(t)); const k = Math.round(t / (Math.PI / 12));
+  if (Math.abs(t - k * Math.PI / 12) > 1e-9) return N(t);
+  if (k === 0) return "0";
+  const gcd = (a, b) => (b ? gcd(b, a % b) : a), d = gcd(Math.abs(k), 12), p = Math.abs(k) / d, q = 12 / d, body = (p === 1 ? "" : p) + "\\pi";
+  return (k < 0 ? "-" : "") + (q === 1 ? body : `\\dfrac{${body}}{${q}}`);
+};
+const cTeX = (a, b, N) => tpoly([[a, ""], [b, "i"]], N);   // a+ib with implicit 1 and dropped zeros
+const modTeX = (a, b, N) => { const s = a * a + b * b, r = Math.sqrt(s); return Math.abs(r - Math.round(r * 4) / 4) < 1e-9 ? N(r) : `\\sqrt{${N(s)}}\\approx${N(r)}`; };
+// Polar handle: modulus snapped to a quarter, argument to pi/12, so that the readouts stay exact.
+const polarSnap = (x, y, rmin, rmax) => { const r = clamp(snap(Math.hypot(x, y), .25), rmin, rmax), t = snap(Math.atan2(y, x), Math.PI / 12); return [r * Math.cos(t), r * Math.sin(t)]; };
+const arrowTo = (g, V, P, Q, col, w = 3) => { g.save(); g.strokeStyle = g.fillStyle = col; g.lineWidth = w; const a = [V.X(P[0]), V.Y(P[1])], b = [V.X(Q[0]), V.Y(Q[1])]; g.beginPath(); g.moveTo(...a); g.lineTo(...b); g.stroke(); const t = Math.atan2(b[1] - a[1], b[0] - a[0]); if (Math.hypot(b[0] - a[0], b[1] - a[1]) > 12) { g.beginPath(); g.moveTo(...b); g.lineTo(b[0] - 13 * Math.cos(t - .4), b[1] - 13 * Math.sin(t - .4)); g.lineTo(b[0] - 13 * Math.cos(t + .4), b[1] - 13 * Math.sin(t + .4)); g.fill(); } g.restore(); };
+const ring = (g, V, r, col, dash = true) => { g.save(); g.strokeStyle = col; g.lineWidth = 1.5; if (dash) g.setLineDash([5, 5]); g.beginPath(); g.arc(V.X(0), V.Y(0), r * (V.X(1) - V.X(0)), 0, 7); g.stroke(); g.restore(); };
+const powmod = (a, k, n) => { let r = 1 % n, b = ((a % n) + n) % n; while (k > 0) { if (k & 1) r = r * b % n; b = b * b % n; k >>= 1; } return r; };
+const igcd = (a, b) => (b ? igcd(b, a % b) : Math.abs(a));
 // Readouts are prose with TeX formulas between \( and \): inl() wraps one formula, tpoly/tshift/tpt/tiv build TeX.
 
 
@@ -793,6 +811,199 @@ var W2 = {
       },
     };
   },
+
+  // Complex plane, same scale on both axes. Modes: alg (drag z: parts, conjugate, z times its conjugate), polar (drag z:
+  // modulus, argument, trigonometric and exponential forms), product (drag z and w: moduli multiply, arguments add).
+  complex(o) {
+    const mode = o.spec.mode || "alg", R = 4.5, v = () => iso(o, R);
+    let z = mode === "alg" ? [2, 1.5] : mode === "polar" ? [1, Math.sqrt(3)] : [1.5 * Math.cos(Math.PI / 6), 1.5 * Math.sin(Math.PI / 6)];
+    let w = [Math.SQRT2, Math.SQRT2];
+    const place = (p, X, Y, rmax) => { const V = v(), x = V.iX(X), y = V.iY(Y); if (mode === "alg") { p[0] = clamp(snap(x), -4, 4); p[1] = clamp(snap(y), -4, 4); } else { const q = polarSnap(x, y, .5, rmax); p[0] = q[0]; p[1] = q[1]; } };
+    const rmax = mode === "product" ? 2 : 4;
+    return {
+      handles() { const V = v(), h = [{ x: V.X(z[0]), y: V.Y(z[1]), cur: "grab", move(X, Y) { place(z, X, Y, rmax); } }]; if (mode === "product") h.push({ x: V.X(w[0]), y: V.Y(w[1]), cur: "grab", move(X, Y) { place(w, X, Y, rmax); } }); return h; },
+      draw(g) {
+        const V = v(), N = o.tn, O = [0, 0], [a, b] = z, r = Math.hypot(a, b), t = Math.atan2(b, a); axes(g, V, { lang: o.L });
+        const exact = x => Math.abs(x * 4 - Math.round(x * 4)) < 1e-9, eq = (x, y) => (exact(x) && exact(y) ? "=" : "\\approx");
+        const arc = (th, rad, col) => { g.save(); g.strokeStyle = col; g.lineWidth = 2.5; g.beginPath(); g.arc(V.X(0), V.Y(0), rad, 0, -th, th > 0); g.stroke(); g.restore(); };
+        const expo = (rr, th) => { const s = angTeX(th, N).replace(/\\dfrac/g, "\\tfrac"), k = Math.abs(rr - 1) < 1e-9 ? "" : N(rr) + "\\,"; return s === "0" ? N(rr) : `${k}\\mathrm{e}^{${s[0] === "-" ? "-i" + s.slice(1) : "i" + s}}`; };
+        if (mode === "alg") {
+          g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.muted; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(a), V.Y(b)); g.lineTo(V.X(a), V.Y(-b)); g.moveTo(V.X(a), V.Y(b)); g.lineTo(V.X(0), V.Y(b)); g.stroke(); g.restore();
+          arrowTo(g, V, O, z, C.acc); dot(o, V.X(a), V.Y(-b), C.blue, inl("\\overline{z}"), "default", false); dot(o, V.X(a), V.Y(b), C.acc, inl("z"));
+          const kind = b === 0 ? o.pair(`${inl("z")} est réel : ${inl("z=\\overline{z}")}.`, `${inl("z")} is real: ${inl("z=\\overline{z}")}.`) : a === 0 ? o.pair(`${inl("z")} est imaginaire pur : ${inl("\\overline{z}=-z")}.`, `${inl("z")} is purely imaginary: ${inl("\\overline{z}=-z")}.`) : "";
+          set(o, lines(inl(`z=${cTeX(a, b, N)}`), o.pair(`Partie réelle ${inl(`\\operatorname{Re}(z)=${N(a)}`)}, partie imaginaire ${inl(`\\operatorname{Im}(z)=${N(b)}`)}`, `Real part ${inl(`\\operatorname{Re}(z)=${N(a)}`)}, imaginary part ${inl(`\\operatorname{Im}(z)=${N(b)}`)}`),
+            o.pair(`Conjugué ${inl(`\\overline{z}=${cTeX(a, -b, N)}`)}`, `Conjugate ${inl(`\\overline{z}=${cTeX(a, -b, N)}`)}`), inl(`z\\overline{z}=${tpar(N, a)}^2+${tpar(N, b)}^2=${N(a * a + b * b)}`), kind));
+        } else if (mode === "polar") {
+          ring(g, V, r, C.muted); arc(t, 34, C.warn); arrowTo(g, V, O, z, C.acc); dot(o, V.X(a), V.Y(b), C.acc, inl("z"));
+          const s = angTeX(t, N), par = s[0] === "-" ? `\\left(${s}\\right)` : s;
+          set(o, lines(inl(`z${eq(a, b)}${cTeX(a, b, N)}`), o.pair(`Module ${inl(`|z|=${modTeX(a, b, N)}`)}`, `Modulus ${inl(`|z|=${modTeX(a, b, N)}`)}`), o.pair(`Argument ${inl(`\\arg z\\equiv${s}\\pmod{2\\pi}`)}`, `Argument ${inl(`\\arg z\\equiv${s}\\pmod{2\\pi}`)}`),
+            inl(`z=${Math.abs(r - 1) < 1e-9 ? "" : N(r)}\\left(\\cos${par}+i\\sin${par}\\right)=${expo(r, t)}`)));
+        } else {
+          const p = [a * w[0] - b * w[1], a * w[1] + b * w[0]], rw = Math.hypot(...w), tw = Math.atan2(w[1], w[0]);
+          ring(g, V, 1, C.grid, false); arc(t, 30, C.acc); arc(tw, 44, C.blue); arc(Math.atan2(p[1], p[0]), 58, C.warn);
+          arrowTo(g, V, O, z, C.acc); arrowTo(g, V, O, w, C.blue); arrowTo(g, V, O, p, C.warn, 3.5);
+          dot(o, V.X(a), V.Y(b), C.acc, inl("z")); dot(o, V.X(w[0]), V.Y(w[1]), C.blue, inl("w")); dot(o, V.X(p[0]), V.Y(p[1]), C.warn, inl("zw"), "default", false);
+          const sz = angTeX(t, N), sw = angTeX(tw, N), add = sw[0] === "-" ? `\\left(${sw}\\right)` : sw;
+          set(o, lines(inl(`z=${expo(r, t)},\\ w=${expo(rw, tw)}`), inl(`|zw|=|z|\\times|w|=${N(r)}\\times${N(rw)}=${N(r * rw)}`),
+            inl(`\\arg(zw)\\equiv${sz}+${add}\\equiv${angTeX(t + tw, N)}\\pmod{2\\pi}`), inl(`zw=${expo(r * rw, t + tw)}${eq(p[0], p[1])}${cTeX(p[0], p[1], N)}`)));
+        }
+      },
+    };
+  },
+
+  // Quadratic equation with real coefficients, built from its roots: drag z1; off the real axis its conjugate is the
+  // other root, on the axis a second real root z2 appears. Readout: equation, discriminant, roots, sum and product.
+  cquad(o) {
+    const z1 = [1, 2]; let x2 = -1; const v = () => iso(o, 4);
+    return {
+      handles() {
+        const V = v(), h = [{ x: V.X(z1[0]), y: V.Y(z1[1]), cur: "grab", move(X, Y) { z1[0] = clamp(snap(V.iX(X), .25), -3.5, 3.5); const y = clamp(snap(V.iY(Y), .25), -3.5, 3.5); z1[1] = Math.abs(y) < .15 ? 0 : y; } }];
+        if (z1[1] === 0) h.push({ x: V.X(x2), y: V.Y(0), cur: "ew-resize", move(X) { x2 = clamp(snap(V.iX(X), .25), -3.5, 3.5); } });
+        return h;
+      },
+      draw(g) {
+        const V = v(), N = o.tn, [x, y] = z1; axes(g, V, { lang: o.L });
+        const S = y ? 2 * x : x + x2, P = y ? x * x + y * y : x * x2, D = S * S - 4 * P, eqn = inl(`z^2${tpoly([[-S, "z"], [P, ""]], N).replace(/^(?!-)/, "+").replace(/^\+0$/, "")}=0`);
+        if (y) { ring(g, V, Math.sqrt(P), C.muted); g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(-y)); g.stroke(); g.restore(); dot(o, V.X(x), V.Y(-y), C.blue, inl("z_2=\\overline{z_1}"), "default", false); }
+        else dot(o, V.X(x2), V.Y(0), C.blue, inl("z_2"), "ew-resize", true, x2 < x ? -1 : 1);
+        dot(o, V.X(x), V.Y(y), C.acc, inl("z_1"), "grab", true, y || x2 >= x ? 1 : -1);
+        const roots = D < 0 ? o.pair(`${inl("\\Delta<0")} : deux racines complexes conjuguées ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}=${cTeX(x, y, N)}\\ \\text{ou}\\ ${cTeX(x, -y, N)}`)}`, `${inl("\\Delta<0")}: two conjugate complex roots ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}=${cTeX(x, y, N)}\\ \\text{or}\\ ${cTeX(x, -y, N)}`)}`)
+          : D === 0 ? o.pair(`${inl("\\Delta=0")} : une racine réelle double ${inl(`z_0=${N(S / 2)}`)}`, `${inl("\\Delta=0")}: one double real root ${inl(`z_0=${N(S / 2)}`)}`)
+          : o.pair(`${inl("\\Delta>0")} : deux racines réelles ${inl(`${N(Math.min(x, x2))}`)} et ${inl(`${N(Math.max(x, x2))}`)}`, `${inl("\\Delta>0")}: two real roots ${inl(`${N(Math.min(x, x2))}`)} and ${inl(`${N(Math.max(x, x2))}`)}`);
+        set(o, lines(eqn, o.pair(`Discriminant ${inl(`\\Delta=${tpar(N, -S)}^2-4\\times${tpar(N, P)}=${N(D)}`)}`, `Discriminant ${inl(`\\Delta=${tpar(N, -S)}^2-4\\times${tpar(N, P)}=${N(D)}`)}`), roots,
+          o.pair(`Somme ${inl(`z_1+z_2=${N(S)}`)}, produit ${inl(`z_1z_2=${N(P)}`)}`, `Sum ${inl(`z_1+z_2=${N(S)}`)}, product ${inl(`z_1z_2=${N(P)}`)}`)));
+      },
+    };
+  },
+
+  // n-th roots of a complex number a: drag a (modulus and argument snap), choose n. The roots form a regular polygon
+  // on the circle of radius |a|^(1/n); their sum is zero.
+  roots(o) {
+    const a = [1, 0]; let n = o.spec.n || 6; const v = () => iso(o, 4.4);
+    slider(o, inl("n"), 2, 12, 1, n, q => { n = q; o.redraw(); });
+    return {
+      handles() { const V = v(); return [{ x: V.X(a[0]), y: V.Y(a[1]), cur: "grab", move(X, Y) { const q = polarSnap(V.iX(X), V.iY(Y), .25, 4); a[0] = q[0]; a[1] = q[1]; } }]; },
+      draw(g) {
+        const V = v(), N = o.tn, r = Math.hypot(...a), t = Math.atan2(a[1], a[0]), rho = r ** (1 / n); axes(g, V, { lang: o.L });
+        const z = Array.from({ length: n }, (_, k) => [rho * Math.cos((t + 2 * k * Math.PI) / n), rho * Math.sin((t + 2 * k * Math.PI) / n)]);
+        ring(g, V, rho, C.muted); g.save(); g.strokeStyle = C.blue; g.fillStyle = "rgba(143,183,255,.14)"; g.lineWidth = 2; g.beginPath(); z.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore();
+        z.forEach((p, k) => dot(o, V.X(p[0]), V.Y(p[1]), C.blue, k ? "" : inl("z_0"), "default", false));
+        arrowTo(g, V, [0, 0], a, C.acc); dot(o, V.X(a[0]), V.Y(a[1]), C.acc, inl("a"));
+        const s = angTeX(t, N), ks = o.L ? `k\\in\\{0,\\ldots,${n - 1}\\}` : `k\\in\\llbracket 0\\,;${n - 1}\\rrbracket`;
+        set(o, lines(o.pair(`${inl(`a=${Math.abs(r - 1) < 1e-9 ? "" : N(r) + "\\,"}\\mathrm{e}^{i\\theta}`)} avec ${inl(`\\theta=${s}`)}`, `${inl(`a=${Math.abs(r - 1) < 1e-9 ? "" : N(r) + "\\,"}\\mathrm{e}^{i\\theta}`)} with ${inl(`\\theta=${s}`)}`),
+          o.pair(`Solutions de ${inl(`z^{${n}}=a`)} : ${inl(`z_k=\\sqrt[${n}]{${N(r)}}\\,\\mathrm{e}^{i\\frac{\\theta+2k\\pi}{${n}}}`)}, ${inl(ks)}`, `Solutions of ${inl(`z^{${n}}=a`)}: ${inl(`z_k=\\sqrt[${n}]{${N(r)}}\\,\\mathrm{e}^{i\\frac{\\theta+2k\\pi}{${n}}}`)}, ${inl(ks)}`),
+          o.pair(`Module commun ${inl(`|z_k|\\approx${N(rho, 3)}`)} ; polygone régulier à ${inl(String(n))} sommets`, `Common modulus ${inl(`|z_k|\\approx${N(rho, 3)}`)}; regular polygon with ${inl(String(n))} vertices`),
+          inl(`z_0+z_1+\\cdots+z_{${n - 1}}=0`)));
+      },
+    };
+  },
+
+  // Residues modulo n on a clock: drag a around the clock, set n. Mode powers: the successive powers of a (period, and
+  // Fermat's little theorem when n is prime). Mode inverse: multiplication by a, inverse of a when gcd(a, n) = 1.
+  modclock(o) {
+    const mode = o.spec.mode || "powers"; let n = o.spec.n || 7, a = o.spec.a || 3;
+    slider(o, inl("n"), 2, 30, 1, n, q => { n = q; a = Math.min(a, n - 1); o.redraw(); });
+    const geo = () => { const cx = o.W / 2, cy = o.H / 2 + 6, R = Math.min(o.W, o.H) / 2 - 46; return { cx, cy, R, at: k => [cx + R * Math.sin(2 * Math.PI * k / n), cy - R * Math.cos(2 * Math.PI * k / n)] }; };
+    return {
+      handles() { const G = geo(), [x, y] = G.at(a); return [{ x, y, cur: "grab", move(X, Y) { const t = Math.atan2(X - G.cx, -(Y - G.cy)); a = ((Math.round(t / (2 * Math.PI / n)) % n) + n) % n; } }]; },
+      draw(g) {
+        const G = geo(), N = o.tn, d = igcd(a, n), name = o.L ? "\\gcd" : "\\operatorname{PGCD}";
+        g.save(); g.strokeStyle = C.grid; g.lineWidth = 2; g.beginPath(); g.arc(G.cx, G.cy, G.R, 0, 7); g.stroke(); g.restore();
+        for (let k = 0; k < n; k++) { const [x, y] = G.at(k), [lx, ly] = [G.cx + (G.R + 24) * Math.sin(2 * Math.PI * k / n), G.cy - (G.R + 24) * Math.cos(2 * Math.PI * k / n)]; g.save(); g.fillStyle = C.muted; g.beginPath(); g.arc(x, y, 4, 0, 7); g.fill(); g.restore(); text(g, String(k), lx, ly + 6, C.muted, 14, "center"); }
+        const chord = (i, j, col) => { const P = G.at(i), Q = G.at(j); arrowTo(g, { X: s => s, Y: s => s }, P, Q, col, 2.5); };
+        if (mode === "powers") {
+          const seen = new Map(), seq = []; let x = 1 % n; while (!seen.has(x)) { seen.set(x, seq.length); seq.push(x); x = x * a % n; }
+          for (let k = 0; k + 1 < seq.length; k++) chord(seq[k], seq[k + 1], C.acc); if (seq.length > 1 || x !== seq[0]) chord(seq[seq.length - 1], x, C.acc);
+          seq.forEach(k => { const [px, py] = G.at(k); g.save(); g.fillStyle = C.acc; g.beginPath(); g.arc(px, py, 6, 0, 7); g.fill(); g.restore(); });
+          dot(o, ...G.at(a), C.warn, inl("a"));
+          const shown = seq.slice(0, 8).map((r, k) => `${a}^{${k}}\\equiv${r}`).join(",\\ ") + (seq.length > 8 ? ",\\ \\ldots" : "");
+          const isPrime = n > 1 && Array.from({ length: n - 2 }, (_, i) => i + 2).every(p => n % p);
+          const period = d === 1 ? o.pair(`Retour à 1 : plus petit ${inl("m\\geqslant1")} tel que ${inl(`${a}^m\\equiv1\\pmod{${n}}`)} : ${inl(`m=${seq.length}`)}`, `Back to 1: least ${inl("m\\geqslant1")} with ${inl(`${a}^m\\equiv1\\pmod{${n}}`)}: ${inl(`m=${seq.length}`)}`)
+            : o.pair(`${inl(`${name}(${a},${n})=${d}`)} : aucune puissance ${inl(`${a}^m`)}, ${inl("m\\geqslant1")}, n'est congrue à 1`, `${inl(`${name}(${a},${n})=${d}`)}: no power ${inl(`${a}^m`)}, ${inl("m\\geqslant1")}, is congruent to 1`);
+          const fermat = isPrime && a % n ? o.pair(`${inl(String(n))} est premier : ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (petit théorème de Fermat)`, `${inl(String(n))} is prime: ${inl(`${a}^{${n - 1}}\\equiv${powmod(a, n - 1, n)}\\pmod{${n}}`)} (Fermat's little theorem)`) : "";
+          set(o, lines(o.pair(`Puissances de ${inl(String(a))} modulo ${inl(String(n))} :`, `Powers of ${inl(String(a))} modulo ${inl(String(n))}:`), inl(shown), period, fermat));
+        } else {
+          for (let k = 1; k < n; k++) if (k * a % n !== k) chord(k, k * a % n, d === 1 ? "rgba(232,163,61,.55)" : "rgba(255,122,122,.55)");
+          dot(o, ...G.at(a), C.warn, inl("a"));
+          let r0 = n, r1 = a, u0 = 0, u1 = 1; while (r1) { const q = Math.floor(r0 / r1); [r0, r1] = [r1, r0 - q * r1]; [u0, u1] = [u1, u0 - q * u1]; }
+          const u = ((u0 % n) + n) % n, vco = (1 - a * u) / n;
+          const inv = d === 1 ? lines(o.pair(`Bézout : ${inl(`${a}\\times${tpar(N, u)}${vco < 0 ? "-" : "+"}${n}\\times${Math.abs(vco)}=1`)}`, `Bézout: ${inl(`${a}\\times${tpar(N, u)}${vco < 0 ? "-" : "+"}${n}\\times${Math.abs(vco)}=1`)}`),
+            o.pair(`Inverse de ${inl(String(a))} modulo ${inl(String(n))} : ${inl(`${u}`)}, car ${inl(`${a}\\times${u}=${a * u}\\equiv1\\pmod{${n}}`)}`, `Inverse of ${inl(String(a))} modulo ${inl(String(n))}: ${inl(`${u}`)}, since ${inl(`${a}\\times${u}=${a * u}\\equiv1\\pmod{${n}}`)}`),
+            o.pair("La multiplication par a permute les restes.", "Multiplication by a permutes the remainders."))
+            : o.pair(`Pas d'inverse : ${inl(`${a}x\\equiv1\\pmod{${n}}`)} n'a pas de solution, ${inl(`${a}x`)} reste multiple de ${inl(String(d))}.`, `No inverse: ${inl(`${a}x\\equiv1\\pmod{${n}}`)} has no solution, since ${inl(`${a}x`)} stays a multiple of ${inl(String(d))}.`);
+          set(o, lines(inl(`${name}(${a},${n})=${d}`), inv));
+        }
+      },
+    };
+  },
+
+  // A 2 by 2 matrix as a map of the plane: drag the images of the two basis vectors (its columns). The unit square
+  // becomes a parallelogram of area |det M|; M is invertible exactly when det M is not zero.
+  matrix2(o) {
+    const c1 = [2, 1], c2 = [-1, 1.5]; const v = () => iso(o, 4.5);
+    const mv = p => function (X, Y) { const V = v(); p[0] = clamp(snap(V.iX(X)), -4, 4); p[1] = clamp(snap(V.iY(Y)), -4, 4); };
+    return {
+      handles() { const V = v(); return [{ x: V.X(c1[0]), y: V.Y(c1[1]), cur: "grab", move: mv(c1) }, { x: V.X(c2[0]), y: V.Y(c2[1]), cur: "grab", move: mv(c2) }]; },
+      draw(g) {
+        const V = v(), N = o.tn, [a, c] = c1, [b, d] = c2, det = a * d - b * c; axes(g, V, { lang: o.L });
+        const poly = (pts, fill, stroke) => { g.save(); g.fillStyle = fill; g.strokeStyle = stroke; g.lineWidth = 2; g.beginPath(); pts.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore(); };
+        poly([[0, 0], [1, 0], [1, 1], [0, 1]], "rgba(143,166,196,.18)", C.muted);
+        poly([[0, 0], c1, [a + b, c + d], c2], det ? "rgba(232,163,61,.22)" : "rgba(255,122,122,.25)", det ? C.acc : C.warn);
+        arrowTo(g, V, [0, 0], c1, C.acc); arrowTo(g, V, [0, 0], c2, C.blue);
+        dot(o, V.X(a), V.Y(c), C.acc, inl("M\\vec{\\imath}")); dot(o, V.X(b), V.Y(d), C.blue, inl("M\\vec{\\jmath}"), "grab", true, -1);
+        const M = `\\begin{pmatrix}${N(a)}&${N(b)}\\\\${N(c)}&${N(d)}\\end{pmatrix}`;
+        const inv = det ? lines(inl(`M^{-1}=\\dfrac{1}{${N(det)}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
+          : o.pair(`${inl("\\det M=0")} : ${inl("M")} n'est pas inversible, le carré est aplati sur une droite.`, `${inl("\\det M=0")}: ${inl("M")} is not invertible; the square is flattened onto a line.`);
+        set(o, lines(inl(`M=${M}`), inl(`\\det M=${tpar(N, a)}\\times${tpar(N, d)}-${tpar(N, b)}\\times${tpar(N, c)}=${N(det)}`), inv));
+      },
+    };
+  },
+
+  // Walks in the bush-taxi graph of the activity (A-B, A-C, A-D, B-C, C-D, D-E): drag the start and end markers onto
+  // vertices and choose the length k; the entry of M^k counts the walks, as the adjacency-matrix theorem states.
+  walks(o) {
+    const names = ["A", "B", "C", "D", "E"], pos = [[.22, .3], [.5, .12], [.5, .55], [.22, .78], [.82, .78]], E = [[0, 1], [0, 2], [0, 3], [1, 2], [2, 3], [3, 4]];
+    let i = 0, j = 2, k = 2; slider(o, inl("k"), 1, 6, 1, k, q => { k = q; o.redraw(); });
+    const M = names.map((_, r) => names.map((_, c) => (E.some(([p, q]) => (p === r && q === c) || (p === c && q === r)) ? 1 : 0)));
+    const mul = (A, B) => A.map(row => B[0].map((_, c) => row.reduce((s, x, t) => s + x * B[t][c], 0)));
+    const at = q => [40 + pos[q][0] * (o.W - 80), 30 + pos[q][1] * (o.H - 60)];
+    const near = (X, Y) => pos.map((_, q) => [Math.hypot(at(q)[0] - X, at(q)[1] - Y), q]).sort((u, w) => u[0] - w[0])[0][1];
+    return {
+      handles() { const [xi, yi] = at(i), [xj, yj] = at(j); return [{ x: xi - 18, y: yi - 18, r: 24, cur: "grab", move(X, Y) { i = near(X + 18, Y + 18); } }, { x: xj + 18, y: yj + 18, r: 24, cur: "grab", move(X, Y) { j = near(X - 18, Y - 18); } }]; },
+      draw(g) {
+        let P = M; for (let t = 1; t < k; t++) P = mul(P, M);
+        g.save(); g.strokeStyle = C.axis; g.lineWidth = 3; E.forEach(([p, q]) => { g.beginPath(); g.moveTo(...at(p)); g.lineTo(...at(q)); g.stroke(); }); g.restore();
+        names.forEach((s, q) => { const [x, y] = at(q); g.save(); g.fillStyle = q === i || q === j ? C.ink : C.grid; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(x, y, 17, 0, 7); g.fill(); g.stroke(); g.restore(); text(g, inl(s), x, y + 8, q === i || q === j ? C.bg : C.ink, 18, "center"); });
+        const [xi, yi] = at(i), [xj, yj] = at(j); dot(o, xi - 18, yi - 18, C.acc, o.pair("départ", "start"), "grab", true, -1); dot(o, xj + 18, yj + 18, C.warn, o.pair("arrivée", "end"));
+        const row = P[i].map(x => String(x)).join("&"), I = names[i], J = names[j], n = P[i][j];
+        set(o, lines(o.pair(`Chaînes de longueur ${inl(String(k))} de ${inl(I)} à ${inl(J)} : ${inl(String(n))}`, `Walks of length ${inl(String(k))} from ${inl(I)} to ${inl(J)}: ${inl(String(n))}`),
+          o.pair(`C'est le coefficient ${inl(`\\left(M^{${k}}\\right)_{${I}${J}}=${n}`)} de la matrice d'adjacence.`, `It is the entry ${inl(`\\left(M^{${k}}\\right)_{${I}${J}}=${n}`)} of the adjacency matrix.`),
+          o.pair(`Ligne ${inl(I)} de ${inl(`M^{${k}}`)} : ${inl(`\\begin{pmatrix}${row}\\end{pmatrix}`)}`, `Row ${inl(I)} of ${inl(`M^{${k}}`)}: ${inl(`\\begin{pmatrix}${row}\\end{pmatrix}`)}`)));
+      },
+    };
+  },
+
+  // Two-state Markov chain: drag the initial probability a0 = P(X0 = 1) and the transition probabilities p (1 to 2) and
+  // q (2 to 1). The plot shows a_n = P(Xn = 1), which tends to q/(p+q) since a_n - l = (1-p-q)^n (a_0 - l).
+  markov(o) {
+    let a0 = .9, p = .3, q = .2; const bx = 70, rows = [[34, "a_0"], [86, "p"], [138, "q"]];
+    const vplot = () => ({ x0: 70, x1: o.W - 30, y0: 190, y1: o.H - 34 }), bw = () => o.W - 100;
+    return {
+      handles() { return rows.map(([y], k) => ({ x: bx + [a0, p, q][k] * bw(), y: y + 13, cur: "ew-resize", move(X) { const val = clamp(snap((X - bx) / bw(), .05), k ? .05 : 0, 1); if (k === 0) a0 = val; else if (k === 1) p = val; else q = val; } })); },
+      draw(g) {
+        const N = o.tn, l = q / (p + q), B = bw(), F = vplot(), n = 15, X = t => F.x0 + t / n * (F.x1 - F.x0), Y = y => F.y1 - y * (F.y1 - F.y0);
+        rows.forEach(([y, s], k) => { const val = [a0, p, q][k]; g.fillStyle = C.grid; g.fillRect(bx, y, B, 26); g.fillStyle = C.acc; g.fillRect(bx, y, val * B, 26); text(g, inl(`${s}=${N(val)}`), 12, y + 20, C.ink, 16); dot(o, bx + val * B, y + 13, C.warn); });
+        g.save(); g.strokeStyle = C.axis; g.lineWidth = 1.5; g.beginPath(); g.moveTo(F.x0, F.y0); g.lineTo(F.x0, F.y1); g.lineTo(F.x1, F.y1); g.stroke(); g.setLineDash([6, 5]); g.strokeStyle = C.blue; g.beginPath(); g.moveTo(F.x0, Y(l)); g.lineTo(F.x1, Y(l)); g.stroke(); g.restore();
+        text(g, "1", F.x0 - 8, Y(1) + 6, C.muted, 14, "right"); text(g, "0", F.x0 - 8, Y(0) + 6, C.muted, 14, "right"); text(g, inl("\\ell"), F.x1 - 4, Y(l) - 8, C.blue, 16, "right"); text(g, inl("n"), F.x1, F.y1 + 24, C.muted, 16, "right");
+        let a = a0; g.save(); g.fillStyle = C.acc; for (let t = 0; t <= n; t++) { g.beginPath(); g.arc(X(t), Y(a), 5, 0, 7); g.fill(); a = a * (1 - p) + (1 - a) * q; } g.restore();
+        const an = l + (1 - p - q) ** n * (a0 - l);
+        set(o, lines(inl(`T=\\begin{pmatrix}${N(1 - p)}&${N(p)}\\\\${N(q)}&${N(1 - q)}\\end{pmatrix},\\quad \\pi_{n+1}=\\pi_nT`),
+          o.pair(`Avec ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")} : ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`, `With ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")}: ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`),
+          o.pair(`Limite ${inl(`\\ell=\\dfrac{q}{p+q}=${N(l, 3)}`)} ; état stable ${inl(`\\pi=\\begin{pmatrix}${N(l, 3)}&${N(1 - l, 3)}\\end{pmatrix}`)}`, `Limit ${inl(`\\ell=\\dfrac{q}{p+q}=${N(l, 3)}`)}; stable state ${inl(`\\pi=\\begin{pmatrix}${N(l, 3)}&${N(1 - l, 3)}\\end{pmatrix}`)}`),
+          inl(`a_{${n}}=\\ell+(${N(1 - p - q)})^{${n}}(a_0-\\ell)\\approx${N(an, 4)}`)));
+      },
+    };
+  },
 };
 }
 
@@ -958,7 +1169,7 @@ const UI = {
 };
 const t = k => UI[k][lang];
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
-const COURSE = { stmg: "Terminale STMG", premiere: "Première", seconde: "Seconde", terminale: "Terminale" };
+const COURSE = { stmg: "Terminale STMG", premiere: "Première", seconde: "Seconde", terminale: "Terminale", expertes: "Maths expertes" };
 const SIZE_NARROW = 1500;
 
 function fit() {

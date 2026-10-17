@@ -28,7 +28,7 @@ test('resource catalog resolves every downloadable file and provenance record',(
   for(const s of c.sources)assert.match(s.sha256,/^[a-f0-9]{64}$/);
 });
 test('every imported course chapter has a complete student and teacher edition',()=>{
-  assert.equal(c.chapters.filter(ch=>!['shared','explorations'].includes(ch.course)&&ch.number>0).length,47);
+  assert.equal(c.chapters.filter(ch=>!['shared','explorations'].includes(ch.course)&&ch.number>0).length,58);
   for(const ch of c.chapters.filter(ch=>!['shared','explorations'].includes(ch.course)&&ch.number>0)){
     const rs=c.resources.filter(r=>r.chapter===ch.id);
     assert.ok(rs.some(r=>r.type==='booklet'&&r.audience==='student'));
