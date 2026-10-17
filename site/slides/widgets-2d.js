@@ -460,7 +460,9 @@ export const W2 = {
         if (y) { ring(g, V, Math.sqrt(P), C.muted); g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(-y)); g.stroke(); g.restore(); dot(o, V.X(x), V.Y(-y), C.blue, inl("z_2=\\overline{z_1}"), "default", false); }
         else dot(o, V.X(x2), V.Y(0), C.blue, inl("z_2"), "ew-resize", true, x2 < x ? -1 : 1);
         dot(o, V.X(x), V.Y(y), C.acc, inl("z_1"), "grab", true, y || x2 >= x ? 1 : -1);
-        const roots = D < 0 ? o.pair(`${inl("\\Delta<0")} : deux racines complexes conjuguées ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}=${cTeX(x, y, N)}\\ \\text{ou}\\ ${cTeX(x, -y, N)}`)}`, `${inl("\\Delta<0")}: two conjugate complex roots ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}=${cTeX(x, y, N)}\\ \\text{or}\\ ${cTeX(x, -y, N)}`)}`)
+        // -D = 4y^2, so sqrt(-D) = 2|y| is exact: show the simplified step (sqrt(16) -> 4i) as a class would write it.
+        const k = 2 * Math.abs(y), sq = D < 0 ? `=\\dfrac{${N(S)}\\pm ${k === 1 ? "" : N(k)}i}{2}` : "";
+        const roots = D < 0 ? o.pair(`${inl("\\Delta<0")} : deux racines complexes conjuguées ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}${sq}=${cTeX(x, y, N)}\\ \\text{ou}\\ ${cTeX(x, -y, N)}`)}`, `${inl("\\Delta<0")}: two conjugate complex roots ${inl(`z_{1,2}=\\dfrac{${N(S)}\\pm i\\sqrt{${N(-D)}}}{2}${sq}=${cTeX(x, y, N)}\\ \\text{or}\\ ${cTeX(x, -y, N)}`)}`)
           : D === 0 ? o.pair(`${inl("\\Delta=0")} : une racine réelle double ${inl(`z_0=${N(S / 2)}`)}`, `${inl("\\Delta=0")}: one double real root ${inl(`z_0=${N(S / 2)}`)}`)
           : o.pair(`${inl("\\Delta>0")} : deux racines réelles ${inl(`${N(Math.min(x, x2))}`)} et ${inl(`${N(Math.max(x, x2))}`)}`, `${inl("\\Delta>0")}: two real roots ${inl(`${N(Math.min(x, x2))}`)} and ${inl(`${N(Math.max(x, x2))}`)}`);
         set(o, lines(eqn, o.pair(`Discriminant ${inl(`\\Delta=${tpar(N, -S)}^2-4\\times${tpar(N, P)}=${N(D)}`)}`, `Discriminant ${inl(`\\Delta=${tpar(N, -S)}^2-4\\times${tpar(N, P)}=${N(D)}`)}`), roots,
@@ -545,7 +547,7 @@ export const W2 = {
         arrowTo(g, V, [0, 0], c1, C.acc); arrowTo(g, V, [0, 0], c2, C.blue);
         dot(o, V.X(a), V.Y(c), C.acc, inl("M\\vec{\\imath}")); dot(o, V.X(b), V.Y(d), C.blue, inl("M\\vec{\\jmath}"), "grab", true, -1);
         const M = `\\begin{pmatrix}${N(a)}&${N(b)}\\\\${N(c)}&${N(d)}\\end{pmatrix}`;
-        const inv = det ? lines(inl(`M^{-1}=\\dfrac{1}{${N(det)}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
+        const inv = det ? lines(inl(`M^{-1}=${det < 0 ? "-" : ""}\\dfrac{1}{${N(Math.abs(det))}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
           : o.pair(`${inl("\\det M=0")} : ${inl("M")} n'est pas inversible, le carré est aplati sur une droite.`, `${inl("\\det M=0")}: ${inl("M")} is not invertible; the square is flattened onto a line.`);
         set(o, lines(inl(`M=${M}`), inl(`\\det M=${tpar(N, a)}\\times${tpar(N, d)}-${tpar(N, b)}\\times${tpar(N, c)}=${N(det)}`), inv));
       },

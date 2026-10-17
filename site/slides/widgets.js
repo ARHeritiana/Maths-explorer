@@ -117,7 +117,8 @@ export function iv(o, a, b, closedA = true, closedB = true) {
 
 export function fmt(n, lang, d = 2) {
   if (!Number.isFinite(n)) return "∞";
-  let s = (Math.round(n * 10 ** d) / 10 ** d).toFixed(d).replace(/\.?0+$/, "");
+  let s = (Math.round(n * 10 ** d) / 10 ** d).toFixed(d);
+  if (s.includes(".")) s = s.replace(/\.?0+$/, ""); // strip only decimal zeros: with d = 0, "60" must stay "60"
   if (s === "-0") s = "0";
   return lang ? s : s.replace(".", ",");
 }
