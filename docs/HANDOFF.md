@@ -11,7 +11,7 @@ LaTeX and HTML slide decks. Require precision, no filler, no hallucination, and 
 2 April 2026 (no binomial distribution); Terminale STMG BO spécial n°8 of 25 July 2019.
 
 Read first: `AGENTS.md` (rules), `docs/ARCHITECTURE.md` (layout, data flow, commands), `docs/TEX_STYLE_GUIDE.md`
-(the TeX system), `docs/ADR-0001-tex-i18n.md` (French/English decision), `docs/REDESIGN_PLAN.md` (phases).
+(the TeX system), `docs/ADR-0001-tex-i18n.md` (French/English decision), `docs/history/REDESIGN_PLAN.md` (phases).
 
 ## Hard constraints (owner)
 - Never write Google Drive URLs or IDs, owner details, e-mails, or school, teacher or city names anywhere (code, data,
@@ -69,7 +69,7 @@ Chromium at `/opt/pw-browsers`.
 3. Phase D: curriculum map `content/data/curriculum.json` (chapter to BO entries, Première BO n°14 of 2 April 2026,
    Terminale STMG BO spécial n°8 of 25 July 2019) and a check that flags content outside it (`beyond` boxes excepted).
 4. Final report to the owner: what changed, how it was verified (viewed vs scripted), what was not done, before/after
-   numbers (baseline in `docs/REPO_AUDIT.md`).
+   numbers (baseline in `docs/history/REPO_AUDIT.md`).
 Done on 12 October: B4/B5 native frames; `/code-review` of the session's range (7d48634..HEAD), all findings fixed.
 Optional later: precompiled format, figure externalisation (measure first).
 

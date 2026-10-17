@@ -156,13 +156,12 @@ Un lot contient \(10000\) composants, dont \(100\) défectueux. Un test est posi
 \end{enumerate}
 \end{frame}
 \begin{frame}{Correction : Inversion des conditionnements et faux positifs}
-center tabularc|rr|r\&\(D\)\&\(\overline D\)\&Total
-
- \(T\)\&99\&495\&594
-
-\(\overline T\)\&1\&9405\&9406
-
- Total\&100\&9900\&10000tabularcenter
+\begin{center}\begin{tabular}{llll}
+ & \(D\) & \(\overline D\) & Total \\ 
+\(T\) & 99 & 495 & 594 \\ 
+\(\overline T\) & 1 & 9405 & 9406 \\ 
+Total & 100 & 9900 & 10000 \\ 
+\end{tabular}\end{center} 
 \(P_D(T)=99/100=99\,\%\). En revanche \(P_T(D)=99/594=1/6\approx16{,}67\,\%\). Un test positif n'implique donc pas ici une probabilité de défaut de \(99\,\%\).
 Les \(495\) faux positifs sont les composants sains testés positifs ; le faux négatif est le composant défectueux testé négatif. La sensibilité vaut \(99\,\%\) ; la spécificité \(9405/9900=95\,\%\).
 La faible proportion initiale de composants défectueux explique pourquoi les faux positifs sont plus nombreux que les vrais positifs malgré la bonne sensibilité.

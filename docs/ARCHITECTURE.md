@@ -2,7 +2,7 @@
 
 Static bilingual site (French and English) with downloadable PDFs compiled from LaTeX. The host serves `dist/` as
 static files and runs no build, so `dist/` is committed. Decisions: `docs/ADR-0001-tex-i18n.md`. Plan and phase status:
-`docs/REDESIGN_PLAN.md`, `docs/HANDOFF.md`.
+`docs/history/REDESIGN_PLAN.md`, `docs/HANDOFF.md`.
 
 ## Layout
 
@@ -30,7 +30,7 @@ content/tex/courses ──(make tex: scripts/build-*.py via mxbuild.tex.compile)
         └─(publish-sources.py)──► dist/sources/ + manifest.json
 content/data/manifest.json ──(make catalog: mxbuild.catalog)──► dist/resources/catalog.json (measured PDFs)
                                                                dist/js/resources-data.js
-                                                               docs/RESOURCE_PROVENANCE.json
+                                                               content/data/RESOURCE_PROVENANCE.json
 content/data/enrichment.json ──(build-enrichment.py: mxbuild.enrichment)──► enrichment units (FR, table, EN), PDFs, HTML,
                                                                         dist/js/enrichment-data.js
 site/js/study-guides.js ──(build-study-guides.mjs)──► dist/resources/shared/*.html + manifest entries

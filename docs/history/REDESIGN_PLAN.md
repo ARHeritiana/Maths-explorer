@@ -1,6 +1,6 @@
 # Redesign plan
 
-Inputs: `docs/history/REDESIGN_PROMPT.md` (brief), `docs/REPO_AUDIT.md` (findings and baseline), `docs/TEX_INVENTORY.md`
+Inputs: `docs/history/REDESIGN_PROMPT.md` (brief), `docs/history/REPO_AUDIT.md` (findings and baseline), `docs/TEX_INVENTORY.md`
 (generated inventory), `docs/ADR-0001-tex-i18n.md` (decided i18n model). Order: A structure, B TeX, C site, D content.
 After every phase: all resources build, all pre-push checks pass, `dist/` keeps serving the same URLs.
 
@@ -108,4 +108,4 @@ and the precompiled format (B1, B4).
 ## 5. Baseline (before)
 
 Files 2,288; text lines 182,186; `.git` 167.6 MiB; `dist/` 171 MB; TeX 439 files, 42,845 lines; full compile 622 s;
-page counts per book in `docs/REPO_AUDIT.md` section 8 (all FR = EN). All pre-push checks green.
+page counts per book in `docs/history/REPO_AUDIT.md` section 8 (all FR = EN). All pre-push checks green.

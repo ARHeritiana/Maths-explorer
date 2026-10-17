@@ -24,3 +24,16 @@ assert len(ns['add_widgets']('test',slides))==2
  const result=spawnSync('python3',['-I','-c',code],{cwd:new URL('..',import.meta.url),encoding:'utf8'});
  assert.equal(result.status,0,result.stderr);
 });
+test('slide decks carry no TeX layout residue: tables become HTML tables and centring wrappers are dropped',async()=>{
+ const {readFile,readdir}=await import('node:fs/promises');
+ const dir=new URL('../dist/slides/data/',import.meta.url),found=[];
+ for(const name of (await readdir(dir)).filter(f=>f.endsWith('.json')&&f!=='index.json')){
+  const deck=JSON.parse(await readFile(new URL(name,dir),'utf8'));
+  for(const [i,s] of deck.slides.entries())for(const key of ['t','b','a','h'])for(const text of [].concat(s[key]||[])){
+   if(typeof text!=='string'||s.k==='code')continue;
+   const prose=text.replace(/\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g,'').replace(/<table class="sg">[\s\S]*?<\/table>/g,'');
+   if(/tabular|\bcenter\b|\\hline|&amp;|@@/.test(prose))found.push(`${name} slide ${i} ${key}`);
+  }
+ }
+ assert.deepEqual(found,[]);
+});

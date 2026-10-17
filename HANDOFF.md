@@ -1,23 +1,23 @@
 # Handoff
 
-Last updated: 13 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict). If you only have time for one thing, read brief section 2 (rules) and the task queue below.
+Last updated: 17 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict). If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
 ## What this project is
 
 Static maths resource site, experiment-first (manipulate, conjecture, prove), for lycée and basic early-university. Per chapter: automatismes, activité d'introduction, notes de cours, exercices et problèmes, interactive slide. The owner is a maths teacher; he reviews slowly and always before class use. AI agents write and audit.
 
-## State of the repository (verified 12 October 2026)
+## State of the repository (verified 17 October 2026)
 
 | Area | State |
 |---|---|
 | Governing brief | `PROJECT_BRIEF.md` v0.5. Decisions settled, only the items in "Open for the owner" below remain. |
 | Design | Design v3 "Cahier" (reasoning and tokens in `docs/DESIGN_V3.md`). Source in `site/styles/explorer.css` and `pages.css`, `site/js/ui.js`, `site/js/icons.js`, fonts in `site/fonts/`; `dist/` holds the assembled copies. |
 | Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (six courses migrated, 47 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
-| Tests | `npm test`: 53 pass. `npm run check` passes. `make check` (pipeline): all checks pass except the notation test, which needs `pdflatex` (not installed in the 13 October sandbox). Browser suite (`tests/browser.py`) passes; `tests/slides_smoke.py` was started but not confirmed. |
+| Tests | `npm test` (node tests), `npm run check` (syntax of every served script, `scripts/check-syntax.mjs`), `make check` (pipeline; the notation test needs TeX Live) and the browser suite (`npm run test:browser`) are the pre-push checks. Current results are in the latest Log entry. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script. |
-| Private area | `private/` created with an empty `ledger.json`. No chapter has been through the pipeline yet. |
+| Private area | `private/`: `ledger.json`, `audits/`, `verification/` and `course-quality/` (see `private/README.md`). Human review remains false for every resource. |
 | Publication gate | No chapter has been through the two-agent audit recorded in `private/ledger.json` yet. The TeX migration was verified by the pipeline checks, not by the gate. |
-| Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`. |
+| Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`; when the pip Playwright expects another browser build, set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (adjust to the folder present). |
 
 ## Conventions added on 15 October 2026
 
@@ -95,10 +95,17 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 3. Whether maths expertes keeps the 2019 text beyond this year.
 4. Owner review of the Cahier design.
 5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
-7. Policy conflicts left by the merge of the TeX branch: its documents (`docs/HANDOFF.md`, `docs/ARCHITECTURE.md`) still say one AI notice in the footer, one mint accent, and an English twin with equal page count for every resource. The brief withdrew the notice and replaced the language rule; the site follows the brief. Decide whether English twins stay mandatory for every resource.
-8. English proof-reading of the generated English units (16 of about 10,800 segments reviewed).
-9. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
-6. Later: access control (codes or paywall) needs a server or paid platform.
+6. Policy conflicts left by the merge of the TeX branch: its documents (`docs/HANDOFF.md`, `docs/ARCHITECTURE.md`) still say one AI notice in the footer, one mint accent, and an English twin with equal page count for every resource. The brief withdrew the notice and replaced the language rule; the site follows the brief. Decide whether English twins stay mandatory for every resource.
+7. English proof-reading of the generated English units (16 of about 10,800 segments reviewed).
+8. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
+9. Later: access control (codes or paywall) needs a server or paid platform.
+
+## Before the site is made public (owner checklist)
+
+1. Run the two-agent audit and ledger record for what is published (publication gate), and proof-read the English (open point 7). The owner said he will do this before launch.
+2. Licence: content is CC BY-NC-SA 4.0 (`LICENSE.md`, footer link); code is MIT (`LICENSE-CODE`).
+3. Settings, Pages, Source: GitHub Actions (or another static host), then run the "Deploy to GitHub Pages" workflow.
+4. The `.tex` sources, including correction files with marking schemes, are published by design (`dist/sources/`); the owner accepted this on 15 October.
 
 ## How to verify your work
 
@@ -141,19 +148,16 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - 2026-10-15 (third pass): Madagascar outline replaced by the traced one (hero and lab now need about 60 circles for the bays and 150 for an almost exact match). Touch checks added for the gallery (finger-drawn shape, Mandelbrot drag) and the phone layout of the home page and gallery (no horizontal overflow at 390 px). The exploring canvases of the light eggs (eggs, smiling when ruled out) and the chameleons (coloured chameleons) now use the cartoon kit, like the snail and the bridge. Not done: horses, balance and coins keep plain tokens (the horse arena cells are too small for a sprite); English copy of the new pages read once by me only, not by the owner.
 - 2026-10-15 (fourth pass): the home page is now only an animation, a greeting ("Tonga soa", Bienvenue) and one button: a dark full-screen stage with a slowly morphing Julia set behind the Fourier circles redrawing Madagascar. No cards, explanations or school links (the owner asked for that); the curiosity cards live on the gallery page, the curriculum under Cours and Parcours.
 - 2026-10-15 (fifth pass): the owner saw a mix of old and new files on the deployed site (Galton with bars, empty Madagascar and Mandelbrot stages): the host served a cached old `lab-objects.js` beside a new `app.js`. `make site` now writes an import map into `index.html` (block between `importmap:start` and `importmap:end`) giving every script a `?v=<content hash>` URL, and versions the style sheets the same way, so a changed file is fetched again. Always run `make site` before pushing; `mxbuild site --check` fails when the block is out of date. The Madagascar drawing now traces the curve with the tip as it goes, the old trace fades slowly, and a circle batch is added only after each full turn (`COUNT_SCHEDULE`, `REVOLUTION` in `gallery-math.js`); the target shape is hidden unless asked for. The notes block (observation, conjecture) is removed on gallery pages and optional (closed `details`) in the laboratory.
-- 2026-10-15: GitHub Pages deployment added (`.github/workflows/pages.yml`, publishes `dist/` on push to `main`). Needs Settings, Pages, Source: GitHub Actions, once; the workflow token cannot enable it. Pages publishes `dist/` only; the repository stays private and must never be made public (history holds names, open point 9).
+- 2026-10-15: GitHub Pages deployment added (`.github/workflows/pages.yml`, publishes `dist/` on push to `main`). Needs Settings, Pages, Source: GitHub Actions, once; the workflow token cannot enable it. Pages publishes `dist/` only; the repository stays private and must never be made public (history holds names, open point 8).
 - 2026-10-15: pre-launch scan of `dist/`: no personal-storage links, no e-mail addresses, banned-phrase check passes, all 652 PDFs have author "Maths Explorer" and no personal metadata (task 1 PDF scan: done for metadata fields and PDF text; not done: names inside the text of every PDF beyond `tests/banned.py`). The visible AI notice that 408 generated HTML pages (FR and EN, `dist/resources/shared` and `enrichment`) still carried is removed, and the generators (`scripts/build-enrichment.py`, `scripts/build-study-guides.mjs`) no longer write it. The owner settled the Madagascar outline question (no credit or licence issue; the credit-line note is removed).
-
-## Before the site is made public (owner checklist)
-
-1. Run the two-agent audit and ledger record for what is published (publication gate), and proof-read the English (open point 8). The owner said he will do this before launch.
-2. Licence: content is CC BY-NC-SA 4.0 (`LICENSE.md`, footer link); code is MIT (`LICENSE-CODE`).
-3. Settings, Pages, Source: GitHub Actions (or another static host), then run the "Deploy to GitHub Pages" workflow.
-4. The `.tex` sources, including correction files with marking schemes, are published by design (`dist/sources/`); the owner accepted this on 15 October.
 - 2026-10-15: content licence set to CC BY-NC-SA 4.0 (owner's choice from the suggestions): `LICENSE.md`, footer link in `site/js/app.js`, README. The legal text itself is not copied into the repository (not reachable from the sandbox); `LICENSE.md` points to the official legal code. Program code left without a licence for now.
 - 2026-10-15: program code licensed MIT (`LICENSE-CODE`, holder named "Maths Explorer", no personal name); `LICENSE.md` and README updated. The root `LICENSE` file name is deliberately not used, so GitHub does not badge the whole repo as MIT.
 
-## 15 October 2026: canvas interaction and two slide editions
+- 2026-10-17: site audit (headless Chromium crawl of 694 route, language and width combinations, every deck in the player, the 408 static resource pages, file links). Fixed: TeX `tabular` and `center` environments leaked into 12 slide decks as raw text ("center center", "tabularc|rr|r 36&42..."), which also overflowed `#chapter/seconde-07` on phones; `scripts/build-slides.py` now emits HTML tables (player and lecture converter already render them) and a test rejects such residue. The idea index links (`#notion-N`) opened "Page introuvable" when opened directly; they are now `#chapter/<id>/understand/<n>` and scroll to the idea, as do the progression links. `npm run check` skipped 8 served modules; it now checks every script (`scripts/check-syntax.mjs`). `make site` rewrote all 94 lecture source ZIPs on every run (timestamps), changing cache versions; identical archives are now kept. Local server MIME types for fonts, ZIP and TeX. Structure: superseded plans (`DESIGN_PLAN`, `REDESIGN_PLAN`, `REPO_AUDIT`) moved to `docs/history/`, a duplicate of the 8 October follow-up removed, generated `RESOURCE_PROVENANCE.json` moved from `docs/` to `content/data/`, a stray verification script moved to `private/verification/`, README layout corrected, this file's log and open points put in order. Rebuilt the 12 decks, their HTML exports and 24 lecture PDFs (0 layout warnings); the other 35 decks' PDFs and archives are unchanged. Not verified: physical devices, screen readers.
+
+### Dated session notes
+
+### 15 October 2026: canvas interaction and two slide editions
 
 - Home and gallery Fourier traces break when the circle count changes or a frame gap exceeds 0.15 s. Old traces still fade; no segment bridges the changed endpoint.
 - Laboratory SVG bounds persist across parameter changes. Explicit zoom/pan/reset and Fit objects control the view. SVG navigators survive redraws in the trigonometry and quadratic workshop and cover challenge editors. Canvas navigation unprojects pointer coordinates and cancels object dragging for a pinch; galleries and slide widgets have matching controls.
@@ -162,9 +166,7 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - 47 exploratory HTML decks remain under `dist/slides/export`. 94 Metropolis Beamer lecture PDFs (FR and EN), matching TeX and source ZIPs are under `dist/slides/lectures`; generated source lives in `content/tex/lectures`. `make lectures` builds with XeLaTeX; `make slides` builds both editions. `build-lecture-slides.py --check` checks identity, sources, PDFs and bundles without recompiling.
 - `npm ci` installs the jsdom development dependency; `npm run test:dom` verifies DOM behavior using a recording canvas. This is not browser/pixel QA. Independent audits are recorded under `private/audits`, with resource hashes in the private ledger. Human review remains false.
 
-
-
-## 16 October 2026: university foundations
+### 16 October 2026: university foundations
 
 - Added University after existing pathways, with Foundations as the first collection and six sequence routes under `#university`. The section array allows later expansion.
 - Six French courses contain eighteen self-contained workshops, student notes, teacher solutions and six exploratory HTML decks. Editable sources live under `content/tex/university/foundations` and `content/slides/university/foundations`. `make university` builds both PDFs, exports, page anchors and source bundles.
@@ -173,7 +175,7 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - Slide checks cover all 24 scenes, presets, finite drawing, interval images, roots, disk coverage and inverse camera picking. The binomial view keeps its scale while coefficients move; an explicit fit button changes the range.
 - PDF layout inspected after XeLaTeX builds. Browser/device QA remains unverified: the managed preview could not mount its sandbox process filesystem. No accessibility conformance claim is made.
 
-## 16 October 2026: applied mathematics module
+### 16 October 2026: applied mathematics module
 
 - University now shows two separate collections; applied mathematics has seven ordered weeks, four PDF editions, seven interactive HTML decks, LaTeX and HTML bundles, and a complete download. Sources: content/university/module-maths; package with scripts/build-module-maths.py (also called by make university).
 - Corrected local-maximum wording, eigenvalue criterion, first-order uncertainty estimates and substitution hypotheses. Rebuilt all four PDFs. Mobile slides use readable stacked layout, named sliders, keyboard handles, and reduced motion.
@@ -181,8 +183,7 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 
 - GitHub synchronization completed on 16 October 2026 after explicit authorization. The university pathway card now lists both collections and links to the seven-week module; its test checks all collection IDs against the generated catalogue.
 
-
-## Linked content and controls, 16 October 2026
+### Linked content and controls, 16 October 2026
 
 - `make site` now prepares dependent products and generates shared catalogue metadata. The checked build receipt
   catches source/output drift. See docs/ARCHITECTURE.md; never hand-edit generated catalogue views or the receipt.
@@ -199,7 +200,7 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
   freshness check pass. Forty-seven rebuilt decks retain their mathematical expressions. Eighty-four PDFs and 78
   source archives were kept byte-for-byte after matching text, page geometry and rendered pages/source entries.
 
-## Controls completion verification, 16 October 2026
+### Controls completion verification, 16 October 2026
 
 - Confirmed the published Site source and GitHub main at 7f07dc7 matched file-for-file before this follow-up.
 - Repaired browser download assertions for version query strings and data-derived deck counts. Added real-browser

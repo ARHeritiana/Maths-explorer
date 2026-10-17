@@ -80,9 +80,65 @@ MATH = re.compile(r'\$\$.*?\$\$|\\\[.*?\\\]|\$[^$]*\$|\\begin\{(?:align\*?|equat
 def esc(t): return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
 
+def tabular_spec(spec):
+    """Column spec -> [(left rule, right rule)] per column; *{n}{x}, p{..}, @{..}, >{..} and <{..} are understood."""
+    for _ in range(5):
+        spec = re.sub(r'\*\{(\d+)\}\{((?:[^{}]|\{[^{}]*\})*)\}', lambda m: m[2] * int(m[1]), spec)
+    spec = re.sub(r'[@!><]\{[^{}]*\}', '', spec)
+    spec = re.sub(r'[pmbX]\{[^{}]*\}|X', 'l', spec)
+    cols, rule = [], False
+    for ch in spec:
+        if ch == '|':
+            if cols: cols[-1][1] = True
+            else: rule = True
+        elif ch in 'lcr':
+            cols.append([rule, False]); rule = False
+    return cols
+
+
+def tabulars(t):
+    """tabular environments -> sentinel table markup (@@TB@@ ...), turned into <table class="sg"> once the cells, which
+    may hold maths, have been through the prose and maths passes. Rules follow the player's arrayTable convention."""
+    out, i = [], 0
+    for m in re.finditer(r'\\begin\{(tabular\*?)\}', t):
+        if m.start() < i: continue
+        name, k = m.group(1), m.end()
+        try:
+            if name == 'tabular*': _, k = group(t, skip_ws(t, k))
+            k = skip_ws(t, k)
+            if t[k] == '[': k = t.index(']', k) + 1
+            spec, k = group(t, skip_ws(t, k))
+            e0, e1 = env_end(t, k, name)
+        except (AssertionError, ValueError, IndexError):
+            continue
+        cols, rows, top = tabular_spec(spec), [], False
+        for row in re.split(r'\\\\(?:\[[^\]]*\])?', t[k:e0]):
+            line = bool(re.search(r'\\(?:hline|toprule|midrule|bottomrule|cline\{[^{}]*\})', row))
+            row = re.sub(r'\\(?:hline|toprule|midrule|bottomrule|cline\{[^{}]*\})', '', row)
+            if not row.strip():
+                top = top or line; continue
+            cells, j = [], 0
+            for c in re.split(r'(?<!\\)&', row):
+                span = re.match(r'\s*\\multicolumn\{(\d+)\}\{[^{}]*\}\{(.*)\}\s*$', c, re.S)
+                n, c = (int(span[1]), span[2]) if span else (1, c)
+                l, r = (cols[j] if j < len(cols) else (False, False))
+                cls = ' '.join(x for x, on in (('l', l), ('r', r)) if on)
+                cells.append(f'@@TD{n}:{cls}@@{c.strip()}@@/TD@@'); j += n
+            rows.append(f'@@TR{"R" if (top or line) and rows else ""}@@' + ''.join(cells) + '@@/TR@@'); top = False
+        out.append(t[i:m.start()] + '@@TB@@' + ''.join(rows) + '@@/TB@@'); i = e1
+    return ''.join(out) + t[i:]
+
+
+def table_markup(h):
+    h = h.replace('@@TB@@', '<table class="sg">').replace('@@/TB@@', '</table>')
+    h = h.replace('@@TRR@@', '<tr class="rule">').replace('@@TR@@', '<tr>').replace('@@/TR@@', '</tr>').replace('@@/TD@@', '</td>')
+    return re.sub(r'@@TD(\d+):([a-z ]*)@@', lambda m: '<td' + (f' colspan="{m[1]}"' if m[1] != '1' else '') + (f' class="{m[2]}"' if m[2] else '') + '>', h)
+
+
 def text2html(t):
     """LaTeX fragment -> small HTML subset; maths is passed to MathJax as \\( \\) / \\[ \\]."""
     t = re.sub(r'\\figtok\{(\d+)\}', r'@@FIG\1@@', strip_comments(t))
+    t = tabulars(t)
     parts = []; last = 0
     for m in MATH.finditer(t):
         parts.append(('t', t[last:m.start()])); m_ = m.group(0)
@@ -97,11 +153,12 @@ def text2html(t):
     out = []
     for kind, s in parts:
         out.append(esc(s) if kind == 'm' else prose(s))
-    h = ''.join(out)
+    h = table_markup(''.join(out))
     return re.sub(r'(<br>\s*){3,}', '<br><br>', h).strip()
 
 
 def prose(s):
+    s = re.sub(r'\\(?:begin|end)\{(?:center|flushleft|flushright)\}', ' ', s)   # layout wrappers, not content
     s = re.sub(r'\\begin\{(itemize|enumerate)\}(\[[^\]]*\])?', lambda m: '<ul>' if m[1] == 'itemize' else '<ol>', s)
     s = re.sub(r'\\end\{(itemize|enumerate)\}', lambda m: '</ul>' if m[1] == 'itemize' else '</ol>', s)
     s = re.sub(r'\\item(\[[^\]]*\])?\s*', '<li>', s)

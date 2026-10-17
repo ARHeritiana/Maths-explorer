@@ -40,16 +40,16 @@ The active deployment uses native ChatGPT Sites with its existing access policy.
 ```text
 site/                 hand-written web source: index.html, js/, styles/, fonts/, slides player and widgets, vendor/
 dist/                 the served folder, committed (the host has no build step): copies of site/ plus generated PDFs, catalogue and slide data
-content/tex/          TeX core (mxbook class and packages) and course units; English units are generated from translation tables
-content/data/         manifest.json (catalogue source of truth), enrichment.json, glossary.json
-content/slides/       slide decks sources
+content/tex/          TeX core (mxbook class and packages), course units (English units generated from translation tables), lecture sources, university foundations
+content/data/         manifest.json (catalogue source of truth), enrichment.json, glossary.json, generated provenance and build receipt
+content/slides/       slide deck sources (authored decks, drafts, university foundations)
+content/university/   applied mathematics module (packaged by scripts/build-module-maths.py)
 build/mxbuild/        the pipeline (make tex, site, catalog, slides, check)
-design/               superseded design prototype (kept for reference only)
 private/              ledger, audits, verification scripts, drafts (never deployed)
 .claude/skills/       slide skills and lint script
-scripts/              course builders, local server
+scripts/              course, slide and university builders, syntax check, local server
 tests/                node tests, browser tests, slide, twin, notation, lint, parity and banned-phrase checks
-docs/                 architecture, TeX style guide, design, history (the brief wins where they conflict)
+docs/                 architecture, TeX style guide, design, curriculum notes; superseded plans in docs/history/ (the brief wins where they conflict)
 ```
 
 Edit `site/`, never the copies in `dist/`: `python -m mxbuild site` (or `make site`) copies `site/` into `dist/`, and `python -m mxbuild site --check` fails when a copy differs.

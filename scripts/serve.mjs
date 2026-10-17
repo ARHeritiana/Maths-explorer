@@ -10,6 +10,13 @@ const types = {
   ".svg": "image/svg+xml",
   ".json": "application/json; charset=utf-8",
   ".pdf": "application/pdf",
+  ".woff2": "font/woff2",
+  ".zip": "application/zip",
+  ".tex": "text/plain; charset=utf-8",
+  ".sty": "text/plain; charset=utf-8",
+  ".cls": "text/plain; charset=utf-8",
+  ".md": "text/plain; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8",
 };
 const server = http.createServer(async (req, res) => {
   try {

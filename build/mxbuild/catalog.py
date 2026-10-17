@@ -7,7 +7,7 @@ hashes) is computed here, never stored by hand. Generated, committed outputs:
 
   dist/resources/catalog.json     site catalogue (library, pack builder, slides index)
   dist/js/resources-data.js       chapter companion (chapter pages)
-  docs/RESOURCE_PROVENANCE.json   per-file provenance: source page range and SHA-256 of both editions
+  content/data/RESOURCE_PROVENANCE.json   per-file provenance: source page range and SHA-256 of both editions
 
 Builders change records through load()/save(); `python -m mxbuild catalog` regenerates the outputs and
 `python -m mxbuild catalog --check` fails when a committed output is stale.
@@ -18,7 +18,7 @@ from . import ROOT, DIST, DATA
 MANIFEST = DATA / 'manifest.json'
 CATALOG = DIST / 'resources/catalog.json'
 COMPANION = DIST / 'js/resources-data.js'
-PROVENANCE = ROOT / 'docs/RESOURCE_PROVENANCE.json'
+PROVENANCE = ROOT / 'content/data/RESOURCE_PROVENANCE.json'
 COMPANION_HEADER = 'export const resourceCatalog = '
 # Fields computed from the files; they never appear in the manifest.
 MEASURED_RESOURCE = ('pages', 'bytes', 'englishBytes', 'englishPages', 'language', 'translation')

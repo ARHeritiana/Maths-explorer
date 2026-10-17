@@ -150,9 +150,14 @@ def build_one(item):
         shutil.copyfile(work/'main.pdf',out);cache.write_text(digest)
     shutil.copyfile(source,OUT/(key+'.tex'))
     zpath=OUT/(key+'-source.zip')
-    with zipfile.ZipFile(zpath,'w',zipfile.ZIP_DEFLATED)as archive:
-        archive.write(source,'main.tex')
-        for f in sorted((work/'figures').glob('*.pdf')):archive.write(f,'figures/'+f.name)
+    # An archive with the same entries is kept: rewriting it would only change timestamps and the site's cache versions.
+    entries={'main.tex':source.read_bytes(),**{'figures/'+f.name:f.read_bytes() for f in sorted((work/'figures').glob('*.pdf'))}}
+    same=False
+    if zpath.exists():
+        with zipfile.ZipFile(zpath)as archive:same=sorted(archive.namelist())==sorted(entries) and all(archive.read(n)==b for n,b in entries.items())
+    if not same:
+        with zipfile.ZipFile(zpath,'w',zipfile.ZIP_DEFLATED)as archive:
+            for name,data in entries.items():archive.writestr(zipfile.ZipInfo(name,date_time=(1980,1,1,0,0,0)),data,zipfile.ZIP_DEFLATED)
     with pymupdf.open(out)as doc:
         dims=doc[0].rect;assert abs(dims.width/dims.height-16/9)<.005
         pages=len(doc)

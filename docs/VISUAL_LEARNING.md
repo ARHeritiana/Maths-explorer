@@ -10,7 +10,7 @@ The existing `#library` remains the detailed file catalogue, including its 39 bi
 
 The complete resource catalogue from source `99ffeeaf4afe2883bbc8f35ef31b8dd7908575cd` was preserved. Of 144 companion PDF references, 120 reuse existing assets and 24 are additional extracts. Extra preparation collections separate annual assessments, fluency banks, reasoning, algorithms, oral workshops, proof indexes and formula references from the final chapters. Administrative appendices and the Seconde class diagnostic appendix are excluded from the new extracts. Corrections are teaching aids within the owner's private site, not a separate access boundary.
 
-`dist/js/resources-data.js` stores source modification dates, physical PDF ranges and file sizes. `docs/RESOURCE_PROVENANCE.json` hashes every companion extract. The source PDFs form a snapshot from 7 October 2026; there is no automatic synchronisation. Première student and teacher editions have different modification dates, surfaced in the interface before comparing solutions.
+`dist/js/resources-data.js` stores source modification dates, physical PDF ranges and file sizes. `content/data/RESOURCE_PROVENANCE.json` hashes every companion extract. The source PDFs form a snapshot from 7 October 2026; there is no automatic synchronisation. Première student and teacher editions have different modification dates, surfaced in the interface before comparing solutions.
 
 The companion catalogue (`dist/js/resources-data.js`) is generated from `content/data/manifest.json` by `make catalog` (11 October 2026; the former `build-companion-resources.py` needed the original intake PDFs and was retired).
 

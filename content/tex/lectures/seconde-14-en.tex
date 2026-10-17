@@ -156,13 +156,12 @@ A batch contains \(10000\) components, of which \(100\) are defective. A test is
 \end{enumerate}
 \end{frame}
 \begin{frame}{Worked answer: Inverting conditioning and false positives}
-center tabularc|rr|r\&\(D\)\&\(\overline D\)\&Total
-
- \(T\)\&99\&495\&594
-
-\(\overline T\)\&1\&9405\&9406
-
- Total\&100\&9900\&10000tabularcenter
+\begin{center}\begin{tabular}{llll}
+ & \(D\) & \(\overline D\) & Total \\ 
+\(T\) & 99 & 495 & 594 \\ 
+\(\overline T\) & 1 & 9405 & 9406 \\ 
+Total & 100 & 9900 & 10000 \\ 
+\end{tabular}\end{center} 
 \(P_D(T)=99/100=99\%\). On the other hand \(P_T(D)=99/594=1/6\approx16.67\%\). A positive test therefore does not imply here a \(99\%\) probability of defect.
 The \(495\) false positives are the sound components that tested positive; the false negative is the defective component that tested negative. The sensitivity is \(99\%\); the specificity \(9405/9900=95\%\).
 The low initial proportion of defective components explains why false positives outnumber true positives despite the good sensitivity.
