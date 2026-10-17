@@ -1,0 +1,671 @@
+{
+ "unit": "C04.fr.tex",
+ "segments": {
+  "5b4336aa97bd": {
+   "fr": "Équations polynomiales",
+   "en": "Polynomial equations",
+   "status": "aligned",
+   "order": 0
+  },
+  "420cbe1d36b9": {
+   "fr": "Second degré dans [[m1]], factorisation, nombre de racines",
+   "en": "Quadratics in [[m1]], factorisation, number of roots",
+   "status": "aligned",
+   "order": 1
+  },
+  "8d4712d4103e": {
+   "fr": "Résoudre dans [[m1]] une équation du second degré à coefficients réels ; factoriser un polynôme par [[m2]] lorsque [[m3]] est racine ; résoudre une équation du troisième degré dont une racine est connue ; savoir qu'un polynôme de degré [[m4]] a au plus [[m5]] racines.",
+   "en": "Solve in [[m1]] a quadratic equation with real coefficients; factorise a polynomial by [[m2]] when [[m3]] is a root; solve a cubic equation when one root is known; know that a polynomial of degree [[m4]] has at most [[m5]] roots.",
+   "status": "aligned",
+   "order": 2
+  },
+  "bee9468bd6b0": {
+   "fr": "Second degré dans [[m1]] (forme canonique, discriminant, somme et produit des racines) ; chapitres 1 et 2 ; somme des termes d'une suite géométrique.",
+   "en": "Quadratics in [[m1]] (completed square form, discriminant, sum and product of the roots); chapters 1 and 2; sum of the terms of a geometric sequence.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "8909f67e2279": {
+   "fr": "Calculer le discriminant de [[m1]].",
+   "en": "Compute the discriminant of [[m1]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "838706f8879e": {
+   "fr": "Factoriser [[m1]].",
+   "en": "Factorise [[m1]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "e4c26f7751e1": {
+   "fr": "Développer [[m1]].",
+   "en": "Expand [[m1]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "ed91bde6db86": {
+   "fr": "Calculer [[m1]] pour [[m2]].",
+   "en": "Compute [[m1]] for [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "13a4d2870d4c": {
+   "fr": "Écrire [[m1]] sous forme d'un quotient, pour [[m2]].",
+   "en": "Write [[m1]] as a quotient, for [[m2]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "68b20cf6bf39": {
+   "fr": "Donner la somme et le produit des racines de [[m1]].",
+   "en": "Give the sum and the product of the roots of [[m1]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "d40352ec3495": {
+   "fr": "Somme [[m1]], produit [[m2]] (racines [[m3]] et [[m4]]).",
+   "en": "Sum [[m1]], product [[m2]] (roots [[m3]] and [[m4]]).",
+   "status": "aligned",
+   "order": 13
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 14
+  },
+  "e1587d868ba6": {
+   "fr": "Une racine en cache deux autres",
+   "en": "One root hides two others",
+   "status": "aligned",
+   "order": 15
+  },
+  "a12a2174c266": {
+   "fr": "35 min",
+   "en": "35 min",
+   "status": "aligned",
+   "order": 16
+  },
+  "ba8d75a4938e": {
+   "fr": "On considère [[m1]].",
+   "en": "Consider [[m1]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "5b39378a1ab8": {
+   "fr": "Tracer à la calculatrice la courbe de [[m1]] sur [[m2]]. Combien l'équation [[m3]] semble-t-elle avoir de solutions réelles ? En repérer une.",
+   "en": "Plot on a calculator the curve of [[m1]] on [[m2]]. How many real solutions does the equation [[m3]] seem to have? Locate one.",
+   "status": "aligned",
+   "order": 18
+  },
+  "393b89144f97": {
+   "fr": "Vérifier que [[m1]].",
+   "en": "Check that [[m1]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "fed48491ff55": {
+   "fr": "Déterminer des réels [[m1]], [[m2]], [[m3]] tels que, pour tout [[m4]], [[m5]]. On développera le membre de droite et on identifiera les coefficients.",
+   "en": "Find real numbers [[m1]], [[m2]], [[m3]] such that, for every [[m4]], [[m5]]. Expand the right-hand side and identify the coefficients.",
+   "status": "aligned",
+   "order": 20
+  },
+  "950839ad6ea0": {
+   "fr": "En déduire toutes les solutions complexes de [[m1]].",
+   "en": "Deduce all the complex solutions of [[m1]].",
+   "status": "aligned",
+   "order": 21
+  },
+  "978a9f611817": {
+   "fr": "Calculer la somme et le produit des trois solutions. Comparer avec les coefficients de [[m1]].",
+   "en": "Compute the sum and the product of the three solutions. Compare with the coefficients of [[m1]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "289b6bbe7766": {
+   "fr": "Combien de solutions complexes un polynôme de degré [[m1]] peut-il avoir au maximum ? Formuler une conjecture pour le degré [[m2]].",
+   "en": "How many complex solutions can a polynomial of degree [[m1]] have at most? State a conjecture for degree [[m2]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 24
+  },
+  "08ef62443405": {
+   "fr": "La courbe ne coupe l'axe des abscisses qu'une fois, en [[m1]] : une seule solution réelle.",
+   "en": "The curve crosses the horizontal axis only once, at [[m1]]: a single real solution.",
+   "status": "aligned",
+   "order": 25
+  },
+  "7bcee264fee8": {
+   "fr": "[[m1]]. L'identification donne [[m2]], [[m3]], [[m4]], [[m5]], soit [[m6]], [[m7]], [[m8]] (la dernière équation est cohérente). Donc [[m9]].",
+   "en": "[[m1]]. Identification gives [[m2]], [[m3]], [[m4]], [[m5]], that is [[m6]], [[m7]], [[m8]] (the last equation is consistent). So [[m9]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "961172240d56": {
+   "fr": "[[m1]] : les solutions sont [[m2]], [[m3]] et [[m4]].",
+   "en": "[[m1]]: the solutions are [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "e7fae83f89bb": {
+   "fr": "Somme : [[m1]] ; produit : [[m2]]. Pour [[m3]], on observe somme [[m4]] et produit [[m5]].",
+   "en": "Sum: [[m1]]; product: [[m2]]. For [[m3]], we observe sum [[m4]] and product [[m5]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "3f0b98f26656": {
+   "fr": "Au plus trois. Conjecture : au plus [[m1]] pour le degré [[m2]].",
+   "en": "At most three. Conjecture: at most [[m1]] for degree [[m2]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 30
+  },
+  "c0863bfb3514": {
+   "fr": "L'identification des coefficients repose sur une propriété admise par le programme : une fonction polynôme nulle a tous ses coefficients nuls. La signaler explicitement. La question 5 prépare le problème (relations entre coefficients et racines).",
+   "en": "Identifying coefficients relies on a property that the syllabus takes for granted: a zero polynomial function has all its coefficients equal to zero. Point it out explicitly. Question 5 prepares the problem (relations between coefficients and roots).",
+   "status": "aligned",
+   "order": 31
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 32
+  },
+  "5ae0a1721d88": {
+   "fr": "Second degré à coefficients réels",
+   "en": "Quadratics with real coefficients",
+   "status": "aligned",
+   "order": 33
+  },
+  "7461a28658e2": {
+   "fr": "Résolution dans [[m1]]",
+   "en": "Solving in [[m1]]",
+   "status": "aligned",
+   "order": 34
+  },
+  "46489245a02e": {
+   "fr": "Soit [[m1]], [[m2]], [[m3]] trois réels avec [[m4]], et [[m5]]. L'équation [[m6]] a :",
+   "en": "Let [[m1]], [[m2]], [[m3]] be three real numbers with [[m4]], and [[m5]]. The equation [[m6]] has:",
+   "status": "aligned",
+   "order": 35
+  },
+  "9b3d216481ac": {
+   "fr": "si [[m1]], deux solutions réelles [[m2]] et [[m3]] ;",
+   "en": "if [[m1]], two real solutions [[m2]] and [[m3]];",
+   "status": "aligned",
+   "order": 36
+  },
+  "590f4ecc9737": {
+   "fr": "si [[m1]], une solution réelle [[m2]] ;",
+   "en": "if [[m1]], one real solution [[m2]];",
+   "status": "aligned",
+   "order": 37
+  },
+  "141df5175433": {
+   "fr": "si [[m1]], deux solutions complexes conjuguées [[m2]] et [[m3]].",
+   "en": "if [[m1]], two conjugate complex solutions [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "9cf1e995ae73": {
+   "fr": "Dans tous les cas, [[m1]], [[m2]] et [[m3]] (avec [[m4]] si [[m5]]).",
+   "en": "In every case, [[m1]], [[m2]] and [[m3]] (with [[m4]] if [[m5]]).",
+   "status": "aligned",
+   "order": 39
+  },
+  "5d93431f32a5": {
+   "fr": "La forme canonique [[m1]] reste valable dans [[m2]]. Si [[m3]], on écrit [[m4]], puis on factorise la différence de deux carrés. Un produit de complexes est nul si et seulement si l'un des facteurs l'est (car tout complexe non nul est inversible). Somme et produit s'obtiennent en développant [[m5]] et en identifiant.",
+   "en": "The completed square form [[m1]] still holds in [[m2]]. If [[m3]], write [[m4]], then factorise the difference of two squares. A product of complex numbers is zero if and only if one of the factors is zero (since every nonzero complex number is invertible). Sum and product are obtained by expanding [[m5]] and identifying.",
+   "status": "aligned",
+   "order": 40
+  },
+  "01ccb9e67d24": {
+   "fr": "Résoudre [[m1]]",
+   "en": "Solving [[m1]]",
+   "status": "aligned",
+   "order": 41
+  },
+  "c4d175089fec": {
+   "fr": "[[m1]], donc [[m2]] : les solutions sont [[m3]] et [[m4]].",
+   "en": "[[m1]], so [[m2]]: the solutions are [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "73279027ea73": {
+   "fr": "Fonction polynôme, racine",
+   "en": "Polynomial function, root",
+   "status": "aligned",
+   "order": 44
+  },
+  "94e62b031cc1": {
+   "fr": "Une \\emph{fonction polynôme} de degré [[m1]] est une fonction [[m2]] définie sur [[m3]], où [[m4]] sont des complexes et [[m5]]. Un complexe [[m6]] tel que [[m7]] est une \\emph{racine} de [[m8]].",
+   "en": "A \\emph{polynomial function} of degree [[m1]] is a function [[m2]] defined on [[m3]], where [[m4]] are complex numbers and [[m5]]. A complex number [[m6]] such that [[m7]] is a \\emph{root} of [[m8]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "5c3eb6a6e281": {
+   "fr": "Propriété admise",
+   "en": "Property taken for granted",
+   "status": "aligned",
+   "order": 46
+  },
+  "aa23fdaa6e24": {
+   "fr": "Si une fonction polynôme est nulle pour tout complexe [[m1]], alors tous ses coefficients sont nuls. Par conséquent, deux fonctions polynômes égales ont les mêmes coefficients : on peut \\emph{identifier} les coefficients.",
+   "en": "If a polynomial function is zero for every complex number [[m1]], then all its coefficients are zero. Consequently, two equal polynomial functions have the same coefficients: we may \\emph{identify} the coefficients.",
+   "status": "aligned",
+   "order": 47
+  },
+  "6fa442f2c43f": {
+   "fr": "Factorisation de [[m1]]",
+   "en": "Factorisation of [[m1]]",
+   "status": "aligned",
+   "order": 48
+  },
+  "8edcc6c431a3": {
+   "fr": "Pour tous complexes [[m1]], [[m2]] et tout entier [[m3]] :",
+   "en": "For all complex numbers [[m1]], [[m2]] and every integer [[m3]]:",
+   "status": "aligned",
+   "order": 49
+  },
+  "360b1ff65e95": {
+   "fr": "On développe : [[m1]]. En posant [[m2]] dans la seconde somme, elle devient [[m3]]. Les termes d'indice [[m4]] à [[m5]] se compensent ; il reste le terme [[m6]] de la première somme, [[m7]], et le terme [[m8]] de la seconde, [[m9]]. On obtient [[m10]].",
+   "en": "Expand: [[m1]]. Setting [[m2]] in the second sum, it becomes [[m3]]. The terms with index [[m4]] to [[m5]] cancel; what remains is the term [[m6]] of the first sum, [[m7]], and the term [[m8]] of the second, [[m9]]. We obtain [[m10]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "5c0b1d8ab907": {
+   "fr": "Factorisation par [[m1]]",
+   "en": "Factorisation by [[m1]]",
+   "status": "aligned",
+   "order": 51
+  },
+  "b2bfa3a14c03": {
+   "fr": "Soit [[m1]] une fonction polynôme de degré [[m2]] et [[m3]] une racine de [[m4]]. Il existe une fonction polynôme [[m5]] de degré [[m6]] telle que, pour tout complexe [[m7]], [[m8]].",
+   "en": "Let [[m1]] be a polynomial function of degree [[m2]] and [[m3]] a root of [[m4]]. There is a polynomial function [[m5]] of degree [[m6]] such that, for every complex number [[m7]], [[m8]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "f62c6542c754": {
+   "fr": "Écrivons [[m1]]. Comme [[m2]],",
+   "en": "Write [[m1]]. Since [[m2]],",
+   "status": "aligned",
+   "order": 53
+  },
+  "a63869577aab": {
+   "fr": "Par le théorème précédent, chaque [[m1]] s'écrit [[m2]] avec [[m3]] polynôme de degré [[m4]] de coefficient dominant [[m5]]. Donc [[m6]] avec [[m7]], de degré [[m8]] et de coefficient dominant [[m9]].",
+   "en": "By the previous theorem, each [[m1]] can be written [[m2]] with [[m3]] a polynomial of degree [[m4]] with leading coefficient [[m5]]. So [[m6]] with [[m7]], of degree [[m8]] with leading coefficient [[m9]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "caed1885b613": {
+   "fr": "Nombre de racines",
+   "en": "Number of roots",
+   "status": "aligned",
+   "order": 55
+  },
+  "6424f4180540": {
+   "fr": "Une fonction polynôme de degré [[m1]] a au plus [[m2]] racines.",
+   "en": "A polynomial function of degree [[m1]] has at most [[m2]] roots.",
+   "status": "aligned",
+   "order": 56
+  },
+  "8cf4e2b14039": {
+   "fr": "Par récurrence sur [[m1]]. Une fonction polynôme de degré [[m2]], [[m3]] avec [[m4]], a exactement une racine, [[m5]]. Supposons la propriété vraie au degré [[m6]], et soit [[m7]] de degré [[m8]]. Si [[m9]] n'a pas de racine, c'est terminé. Sinon, soit [[m10]] une racine : [[m11]] avec [[m12]] de degré [[m13]]. Si [[m14]], alors [[m15]] ou [[m16]]. Comme [[m17]] a au plus [[m18]] racines, [[m19]] en a au plus [[m20]].",
+   "en": "By induction on [[m1]]. A polynomial function of degree [[m2]], [[m3]] with [[m4]], has exactly one root, [[m5]]. Assume the property holds in degree [[m6]], and let [[m7]] have degree [[m8]]. If [[m9]] has no root, we are done. Otherwise, let [[m10]] be a root: [[m11]] with [[m12]] of degree [[m13]]. If [[m14]], then [[m15]] or [[m16]]. Since [[m17]] has at most [[m18]] roots, [[m19]] has at most [[m20]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "3b2e84f43a70": {
+   "fr": "Racines conjuguées",
+   "en": "Conjugate roots",
+   "status": "aligned",
+   "order": 58
+  },
+  "5379b44d9e15": {
+   "fr": "Si [[m1]] est à coefficients réels et si [[m2]] est une racine de [[m3]], alors [[m4]] est aussi une racine de [[m5]].",
+   "en": "If [[m1]] has real coefficients and [[m2]] is a root of [[m3]], then [[m4]] is also a root of [[m5]].",
+   "status": "aligned",
+   "order": 59
+  },
+  "5bb63d2994a9": {
+   "fr": "Les coefficients étant réels, [[m1]].",
+   "en": "Since the coefficients are real, [[m1]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "6a6dfa0ef0d3": {
+   "fr": "Équation du troisième degré dont une racine est connue",
+   "en": "Cubic equation with a known root",
+   "status": "aligned",
+   "order": 61
+  },
+  "6c67a02b35d5": {
+   "fr": "On factorise par [[m1]] en identifiant les coefficients de [[m2]], puis on résout [[m3]]. Exemple : [[m4]] admet [[m5]] pour racine et [[m6]]. Le trinôme a pour discriminant [[m7]], d'où les solutions [[m8]], [[m9]], [[m10]].",
+   "en": "Factorise by [[m1]] by identifying the coefficients of [[m2]], then solve [[m3]]. Example: [[m4]] has the root [[m5]] and [[m6]]. The quadratic has discriminant [[m7]], hence the solutions [[m8]], [[m9]], [[m10]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "9a901369b3eb": {
+   "fr": "Le discriminant d'un trinôme à coefficients réels ne dit plus si l'équation a des solutions dans [[m1]] : elle en a toujours. Il indique si elles sont réelles ou complexes conjuguées.",
+   "en": "The discriminant of a quadratic with real coefficients no longer tells whether the equation has solutions in [[m1]]: it always has. It tells whether they are real or conjugate complex numbers.",
+   "status": "aligned",
+   "order": 63
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 64
+  },
+  "ed1ad90b20d4": {
+   "fr": "Second degré",
+   "en": "Quadratics",
+   "status": "aligned",
+   "order": 65
+  },
+  "9f5aca5e8a45": {
+   "fr": "Résoudre dans [[m1]] : [[m2]] ; [[m3]] ; [[m4]] ; [[m5]].",
+   "en": "Solve in [[m1]]: [[m2]]; [[m3]]; [[m4]]; [[m5]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "0f4ee59e774b": {
+   "fr": "[[m1]] : [[m2]]. Ensuite [[m3]] : [[m4]] et [[m5]]. Puis [[m6]] : [[m7]], soit [[m8]] et [[m9]]. Enfin [[m10]] : [[m11]].",
+   "en": "[[m1]]: [[m2]]. Next [[m3]]: [[m4]] and [[m5]]. Then [[m6]]: [[m7]], that is [[m8]] and [[m9]]. Finally [[m10]]: [[m11]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "657a09b8ac26": {
+   "fr": "Se ramener au second degré",
+   "en": "Reducing to a quadratic",
+   "status": "aligned",
+   "order": 68
+  },
+  "56e4c9347d13": {
+   "fr": "Résoudre dans [[m1]] l'équation [[m2]] en posant [[m3]].",
+   "en": "Solve in [[m1]] the equation [[m2]] by setting [[m3]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "13b7de312ed3": {
+   "fr": "Résoudre dans [[m1]] l'équation [[m2]], pour [[m3]].",
+   "en": "Solve in [[m1]] the equation [[m2]], for [[m3]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "e3f104de2965": {
+   "fr": "[[m1]]. Donc [[m2]] ou [[m3]] : [[m4]].",
+   "en": "[[m1]]. So [[m2]] or [[m3]]: [[m4]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "7f7784d7a652": {
+   "fr": "Pour [[m1]], l'équation équivaut à [[m2]], de discriminant [[m3]] : [[m4]] ou [[m5]], tous deux non nuls.",
+   "en": "For [[m1]], the equation is equivalent to [[m2]], with discriminant [[m3]]: [[m4]] or [[m5]], both nonzero.",
+   "status": "aligned",
+   "order": 72
+  },
+  "d6ab5e375f40": {
+   "fr": "Une racine évidente",
+   "en": "An obvious root",
+   "status": "aligned",
+   "order": 73
+  },
+  "5c38c4b58fe1": {
+   "fr": "Vérifier que [[m1]] est racine de [[m2]].",
+   "en": "Check that [[m1]] is a root of [[m2]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "a58a43ba20d9": {
+   "fr": "Déterminer le polynôme [[m1]] tel que [[m2]].",
+   "en": "Determine the polynomial [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 76
+  },
+  "e229832a995e": {
+   "fr": "Résoudre [[m1]] dans [[m2]].",
+   "en": "Solve [[m1]] in [[m2]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "b0c4e00e1ba6": {
+   "fr": "[[m1]], d'où [[m2]] et [[m3]] : [[m4]].",
+   "en": "[[m1]], hence [[m2]] and [[m3]]: [[m4]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "f63863385063": {
+   "fr": "[[m1]] a pour discriminant [[m2]] : racines [[m3]] et [[m4]]. Les solutions sont [[m5]], [[m6]], [[m7]].",
+   "en": "[[m1]] has discriminant [[m2]]: roots [[m3]] and [[m4]]. The solutions are [[m5]], [[m6]], [[m7]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "c8b12f8fc295": {
+   "fr": "Une racine non réelle",
+   "en": "A non-real root",
+   "status": "aligned",
+   "order": 80
+  },
+  "05d22cc11e34": {
+   "fr": "On pose [[m1]].",
+   "en": "Let [[m1]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "a9511f133589": {
+   "fr": "Vérifier que [[m1]] est racine de [[m2]]. En déduire une autre racine sans calcul.",
+   "en": "Check that [[m1]] is a root of [[m2]]. Deduce another root without computation.",
+   "status": "aligned",
+   "order": 82
+  },
+  "b203d8006412": {
+   "fr": "Développer [[m1]], puis factoriser [[m2]] et résoudre [[m3]].",
+   "en": "Expand [[m1]], then factorise [[m2]] and solve [[m3]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "607d8c3c8344": {
+   "fr": "[[m1]]. Les coefficients sont réels, donc [[m2]] est aussi racine.",
+   "en": "[[m1]]. The coefficients are real, so [[m2]] is also a root.",
+   "status": "aligned",
+   "order": 84
+  },
+  "24e2f3ffdc4a": {
+   "fr": "[[m1]] et [[m2]]. Les solutions sont [[m3]], [[m4]], [[m5]].",
+   "en": "[[m1]] and [[m2]]. The solutions are [[m3]], [[m4]], [[m5]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "ba6bec27b23a": {
+   "fr": "Factoriser [[m1]]",
+   "en": "Factorising [[m1]]",
+   "status": "aligned",
+   "order": 86
+  },
+  "3e19aeab6af0": {
+   "fr": "Factoriser [[m1]] par [[m2]] à l'aide du cours.",
+   "en": "Factorise [[m1]] by [[m2]] using the course.",
+   "status": "aligned",
+   "order": 87
+  },
+  "b416c8a01b42": {
+   "fr": "Résoudre dans [[m1]] l'équation [[m2]] et placer les solutions dans le plan complexe. Que remarque-t-on ?",
+   "en": "Solve in [[m1]] the equation [[m2]] and plot the solutions in the complex plane. What do you notice?",
+   "status": "aligned",
+   "order": 88
+  },
+  "a7af805c1099": {
+   "fr": "Le trinôme a pour discriminant [[m1]] : [[m2]]. Les trois solutions [[m3]], [[m4]], [[m5]] ont pour module [[m6]] et forment un triangle équilatéral inscrit dans le cercle de centre [[m7]] et de rayon [[m8]] (chapitre 5).",
+   "en": "The quadratic has discriminant [[m1]]: [[m2]]. The three solutions [[m3]], [[m4]], [[m5]] have modulus [[m6]] and form an equilateral triangle inscribed in the circle with centre [[m7]] and radius [[m8]] (chapter 5).",
+   "status": "aligned",
+   "order": 89
+  },
+  "74025811965a": {
+   "fr": "Un paramètre",
+   "en": "A parameter",
+   "status": "aligned",
+   "order": 90
+  },
+  "e7f4abd4d7ba": {
+   "fr": "Soit [[m1]] un réel. On considère l'équation [[m2]] : [[m3]].",
+   "en": "Let [[m1]] be a real number. Consider the equation [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "02811a46cd91": {
+   "fr": "Selon les valeurs de [[m1]], préciser le nombre et la nature des solutions de [[m2]].",
+   "en": "Depending on the value of [[m1]], give the number and the nature of the solutions of [[m2]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "e8823a68386a": {
+   "fr": "On suppose [[m1]]. On note [[m2]] et [[m3]] les images des solutions. Déterminer [[m4]] pour que le triangle [[m5]] soit équilatéral.",
+   "en": "Assume [[m1]]. Let [[m2]] and [[m3]] be the images of the solutions. Determine [[m4]] so that the triangle [[m5]] is equilateral.",
+   "status": "aligned",
+   "order": 93
+  },
+  "601846976bb6": {
+   "fr": "[[m1]]. Si [[m2]] : deux solutions réelles [[m3]] ; si [[m4]] : une solution, [[m5]] ; si [[m6]] : deux solutions conjuguées [[m7]].",
+   "en": "[[m1]]. If [[m2]]: two real solutions [[m3]]; if [[m4]]: one solution, [[m5]]; if [[m6]]: two conjugate solutions [[m7]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "2ee6acd5bdf3": {
+   "fr": "[[m1]] et [[m2]]. Le triangle est équilatéral si et seulement si [[m3]], soit [[m4]] (qui vérifie [[m5]]).",
+   "en": "[[m1]] and [[m2]]. The triangle is equilateral if and only if [[m3]], that is [[m4]] (which satisfies [[m5]]).",
+   "status": "aligned",
+   "order": 95
+  },
+  "ebb51a268aa9": {
+   "fr": "Retrouver un polynôme",
+   "en": "Recovering a polynomial",
+   "status": "aligned",
+   "order": 96
+  },
+  "a76381385aef": {
+   "fr": "Déterminer le polynôme [[m1]] de degré [[m2]], à coefficients réels et de coefficient dominant [[m3]], tel que [[m4]] soit racine de [[m5]] et [[m6]].",
+   "en": "Determine the polynomial [[m1]] of degree [[m2]], with real coefficients and leading coefficient [[m3]], such that [[m4]] is a root of [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "ed2018e07118": {
+   "fr": "Les coefficients étant réels, [[m1]] est aussi racine. On factorise [[m2]] par [[m3]] ; le quotient, de degré [[m4]], s'annule en [[m5]] (car [[m6]]), donc on peut encore le factoriser par [[m7]]. Il reste un facteur de degré [[m8]] et de coefficient dominant [[m9]] : [[m10]] pour un complexe [[m11]]. [[m12]], donc [[m13]] et [[m14]]. Vérification : [[m15]] et [[m16]].",
+   "en": "Since the coefficients are real, [[m1]] is also a root. Factorise [[m2]] by [[m3]]; the quotient, of degree [[m4]], vanishes at [[m5]] (because [[m6]]), so it can in turn be factorised by [[m7]]. What remains is a factor of degree [[m8]] with leading coefficient [[m9]]: [[m10]] for some complex number [[m11]]. [[m12]], so [[m13]] and [[m14]]. Check: [[m15]] and [[m16]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "8a1e65655aa3": {
+   "fr": "Coefficients et racines d'un polynôme de degré 3",
+   "en": "Coefficients and roots of a cubic polynomial",
+   "status": "aligned",
+   "order": 100
+  },
+  "9a7599d1363c": {
+   "fr": "Soit [[m1]] un polynôme à coefficients complexes, admettant trois racines [[m2]], [[m3]], [[m4]] (non nécessairement distinctes), de sorte que [[m5]] pour tout complexe [[m6]].",
+   "en": "Let [[m1]] be a polynomial with complex coefficients, with three roots [[m2]], [[m3]], [[m4]] (not necessarily distinct), so that [[m5]] for every complex number [[m6]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "b8bf0c0e60ec": {
+   "fr": "En développant, démontrer que",
+   "en": "By expanding, prove that",
+   "status": "aligned",
+   "order": 102
+  },
+  "45318215fc99": {
+   "fr": "Vérifier ces relations sur le polynôme de l'activité, [[m1]].",
+   "en": "Check these relations on the polynomial of the activity, [[m1]].",
+   "status": "aligned",
+   "order": 103
+  },
+  "fe37100a7797": {
+   "fr": "Démontrer que [[m1]].",
+   "en": "Prove that [[m1]].",
+   "status": "aligned",
+   "order": 104
+  },
+  "2d9577e28320": {
+   "fr": "On considère [[m1]], dont on admet qu'il s'écrit [[m2]]. Calculer [[m3]] sans résoudre l'équation.",
+   "en": "Consider [[m1]], which we take for granted can be written [[m2]]. Compute [[m3]] without solving the equation.",
+   "status": "aligned",
+   "order": 105
+  },
+  "5c297ffd09bf": {
+   "fr": "En déduire que les racines de [[m1]] ne sont pas toutes réelles.",
+   "en": "Deduce that the roots of [[m1]] are not all real.",
+   "status": "aligned",
+   "order": 106
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 107
+  },
+  "65da5c715280": {
+   "fr": "[[m1]]. Par identification des coefficients (propriété admise), on obtient les trois relations.",
+   "en": "[[m1]]. Identifying the coefficients (property taken for granted) gives the three relations.",
+   "status": "aligned",
+   "order": 108
+  },
+  "1119e8f99396": {
+   "fr": "Les racines sont [[m1]], [[m2]], [[m3]] : somme [[m4]] ; somme des produits deux à deux [[m5]] ; produit [[m6]].",
+   "en": "The roots are [[m1]], [[m2]], [[m3]]: sum [[m4]]; sum of the pairwise products [[m5]]; product [[m6]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "0eefd4339d37": {
+   "fr": "[[m1]], donc [[m2]].",
+   "en": "[[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "a52a7e660253": {
+   "fr": "[[m1]] et [[m2]] : [[m3]].",
+   "en": "[[m1]] and [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 111
+  },
+  "3b6abc68cd19": {
+   "fr": "Si les trois racines étaient réelles, la somme de leurs carrés serait positive. Elle vaut [[m1]] : au moins une racine n'est pas réelle.",
+   "en": "If the three roots were real, the sum of their squares would be nonnegative. It equals [[m1]]: at least one root is not real.",
+   "status": "aligned",
+   "order": 112
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 113
+  },
+  "22ce1a151ad1": {
+   "fr": "Les formules de Viète sont un « problème possible » du programme. Le fait que tout polynôme de degré [[m1]] se factorise ainsi dans [[m2]] (théorème de d'Alembert-Gauss) est hors programme : il est admis dans l'énoncé. Pour [[m3]], la fonction réelle associée est strictement croissante (sa dérivée [[m4]] a un discriminant négatif) : une seule racine réelle, deux racines conjuguées non réelles.",
+   "en": "Vieta's formulas are a ``possible problem'' of the syllabus. The fact that every polynomial of degree [[m1]] factorises in this way over [[m2]] (the d'Alembert-Gauss theorem) is beyond the syllabus: it is taken for granted in the statement. For [[m3]], the associated real function is strictly increasing (its derivative [[m4]] has a negative discriminant): one real root, two non-real conjugate roots.",
+   "status": "aligned",
+   "order": 114
+  }
+ }
+}

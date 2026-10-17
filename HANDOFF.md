@@ -221,14 +221,15 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
   repository variable PUBLISH_GITHUB_PAGES=true; manual publication remains available after setup. Native Sites is
   the active host. Preserve repository visibility and the existing ChatGPT Site sharing policy.
 
-### 17 October 2026: Maths expertes draft
+### 17 October 2026: Maths expertes course (TeX)
 
-- The option had no lessons. A complete French course is drafted in TeX in `private/drafts/expertes/`: front unit, 11 chapters
+- The option had no lessons. A complete course is in `content/tex/courses/expertes/`: front unit and 11 chapters
   (complex numbers C01 to C05, arithmetic C06 to C08, graphs and matrices C09 to C11), each with automatismes, an introductory
   activity, course notes including the exigible proofs of MENE1921264A, graded exercises, a problem and teacher-only solutions.
-  `eleve.tex` and `professeur.tex` compile from that folder with the shared class (75 and 90 pages, no errors or overfull boxes).
-- Every computed result is checked by `python3 private/verification/expertes-results.py` (SymPy, exits 0). The units pass
-  `tests/tex_lint.py`. Ledger record `expertes-course`: status draft, no audit, not published.
-- It stays out of `content/tex/courses/` until audited, because `make site` publishes that folder to `dist/sources/` and the
-  twin check requires English units there (open point 6). Promotion steps are in the ledger notes. [VERIFY] the programme
-  items against the official annex: the BO annex PDF could not be fetched from the sandbox.
+  French units are the source; English twins are generated from aligned tables (`twin check` passes). The four entry files
+  (`eleve.tex`, `professeur.tex`, `-en`) compile from that folder: 75 and 90 pages per language, no errors or overfull boxes.
+- Every computed result is checked by `python3 private/verification/expertes-results.py` (SymPy, exits 0). Ledger record
+  `expertes-course`: status draft, no audit, not published.
+- Not yet in the catalogue: no `books` entry, no PDF builder, not listed by `scripts/publish-sources.py`, so nothing reaches
+  `dist/`. After two audits, add those three and delete the hand-written entry files (steps in the ledger notes). [VERIFY] the
+  programme items against the official annex: the BO annex PDF could not be fetched from the sandbox.

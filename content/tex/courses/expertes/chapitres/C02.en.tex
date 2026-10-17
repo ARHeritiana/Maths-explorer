@@ -1,0 +1,253 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c02}{Complex numbers: the geometric point of view}
+\mxsubtitle{Complex plane, modulus, argument, trigonometric form}
+
+\begin{objectives}
+Represent a complex number by a point or a vector; determine a modulus and an argument; move from the algebraic form to the trigonometric form and back; interpret a modulus as a distance.
+\end{objectives}
+\begin{prerequisites}
+Chapter 1; coordinates in the plane, distance between two points; unit circle, radians, standard values; scalar product and determinant of two vectors.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Compute the distance between $A\pt{1;-2}$ and $B\pt{4;2}$.
+\item Give $\cos\frac{3\pi}{4}$ and $\sin\frac{3\pi}{4}$.
+\item Determine the real number $\theta\in\intof{-\pi}{\pi}$ such that $\cos\theta=-\frac12$ and $\sin\theta=\frac{\sqrt3}2$.
+\item Give the principal measure of the angle $\frac{17\pi}{6}$.
+\item Are the vectors $\vect u\vc{2}{1}$ and $\vect v\vc{-1}{2}$ orthogonal?
+\item Write $(2+i)(1+i)$ in algebraic form.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $AB=\sqrt{3^2+4^2}=5$.
+\item $\cos\frac{3\pi}{4}=-\frac{\sqrt2}2$ and $\sin\frac{3\pi}{4}=\frac{\sqrt2}2$.
+\item $\theta=\frac{2\pi}{3}$.
+\item $\frac{17\pi}{6}-2\pi=\frac{5\pi}{6}$, which lies in $\intof{-\pi}{\pi}$.
+\item $\vect u\cdot\vect v=-2+2=0$: yes.
+\item $2+2i+i-1=1+3i$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[Is multiplying the same as turning? \mxchip{35 min}]
+The plane has an orthonormal frame $\pt{O;\vect u,\vect v}$. To a complex number $x+iy$ we associate the point with coordinates $\pt{x;y}$.
+\begin{enumerate}
+\item Plot the points $A$, $B$, $C$ associated with $a=2+i$, $b=i\,a$ and $c=(1+i)\,a$. Give $b$ and $c$ in algebraic form.
+\item Compute the distances $OA$, $OB$ and $OC$.
+\item Compute the scalar product $\vect{OA}\cdot\vect{OB}$. What can be said about the lines $(OA)$ and $(OB)$?
+\item Compute $\cos\left(\vect{OA},\vect{OC}\right)$ with the scalar product, then the sign of the determinant $\deter{\vect{OA}}{\vect{OC}}$. Deduce a measure of the oriented angle $\left(\vect{OA},\vect{OC}\right)$.
+\item Start again with $a=-1+3i$ (or a point of your choice). State a conjecture about the geometric effect of a multiplication by $i$, then by $1+i$.
+\item Which quantities attached to a complex number would have to be defined to state this conjecture in general?
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item $b=i(2+i)=-1+2i$ and $c=(1+i)(2+i)=1+3i$.
+\item $OA=\sqrt5$, $OB=\sqrt5$, $OC=\sqrt{10}$.
+\item $\vect{OA}\cdot\vect{OB}=2\times(-1)+1\times2=0$: the lines are perpendicular, and $OB=OA$.
+\item $\cos\left(\vect{OA},\vect{OC}\right)=\frac{2\times1+1\times3}{\sqrt5\sqrt{10}}=\frac{5}{5\sqrt2}=\frac{\sqrt2}2$ and $\deter{\vect{OA}}{\vect{OC}}=2\times3-1\times1=5>0$. A measure is $\frac\pi4$.
+\item With $a=-1+3i$: $ia=-3-i$ and $(1+i)a=-4+2i$. Again we observe $OB=OA$ with a direct quarter turn, and $OC=\sqrt2\,OA$ with a direct eighth of a turn. Conjecture: multiplying by $i$ turns through an angle $\frac\pi2$ about $O$; multiplying by $1+i$ turns through $\frac\pi4$ and multiplies the distances to $O$ by $\sqrt2$.
+\item A length (the distance to $O$) and an angle (measured from $\vect u$): these are the modulus and the argument. The conjecture will be proved in chapter 3.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+Let the students choose their second point and compare the results. Clearly separate the observation on examples from the proof, which will come with the formula $\arg(zz')=\arg z+\arg z'$ (chapter 3). Dynamic geometry software lets one move $A$ and follow $B$ and $C$.
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Complex plane}
+\begin{definition}[Image, affix]
+The plane has a direct orthonormal frame $\pt{O;\vect u,\vect v}$. To the complex number $z=a+ib$ ($a$, $b$ real) we associate the point $M\pt{a;b}$, called the \emph{image} of $z$, and the vector $\vect w\vc ab$. We say that $z$ is the \emph{affix} of $M$ and of $\vect w$. The plane with this correspondence is called the \emph{complex plane}.
+\end{definition}
+\begin{theorem}[Affixes and operations]
+If $A$ and $B$ have affixes $z_A$ and $z_B$, the vector $\vect{AB}$ has affix $z_B-z_A$ and the midpoint of $[AB]$ has affix $\frac{z_A+z_B}2$. The affix of $\vect w+\vect{w'}$ is the sum of the affixes, that of $k\vect w$ ($k$ real) is $k$ times the affix of $\vect w$.\par
+The image of $\overline z$ is the reflection of the image of $z$ in the horizontal axis; the image of $-z$ is its reflection in $O$.
+\end{theorem}
+
+\subsection{Modulus}
+\begin{definition}[Modulus]
+The \emph{modulus} of $z=a+ib$ is the nonnegative real number $\abs z=\sqrt{a^2+b^2}$. If $M$ is the image of $z$, $\abs z=OM$. For a real number, the modulus is the absolute value.
+\end{definition}
+\begin{theorem}[Modulus and conjugate]
+For every complex number $z$, $\abs z^2=z\overline z$, and $\abs{\overline z}=\abs{-z}=\abs z$. If $A$ and $B$ have affixes $z_A$ and $z_B$, then $AB=\abs{z_B-z_A}$.
+\end{theorem}
+\begin{proof}
+With $z=a+ib$, $z\overline z=a^2+b^2=\abs z^2$ (chapter 1). The distance $AB$ is the norm of the vector $\vect{AB}$, whose affix is $z_B-z_A$.
+\end{proof}
+\begin{theorem}[Modulus of a product, of a power, of a quotient]
+For all complex numbers $z$, $z'$ and every natural number $n$:
+\[\abs{zz'}=\abs z\abs{z'},\qquad\abs{z^n}=\abs z^n,\qquad\text{and, if }z'\neq0,\quad\abs{\frac1{z'}}=\frac1{\abs{z'}},\quad\abs{\frac z{z'}}=\frac{\abs z}{\abs{z'}}.\]
+\end{theorem}
+\begin{proof}
+\emph{Product.} $\abs{zz'}^2=zz'\,\overline{zz'}=z\overline z\,z'\overline{z'}=\abs z^2\abs{z'}^2$. Moduli are nonnegative, so $\abs{zz'}=\abs z\abs{z'}$.\par
+\emph{Power.} By induction: $\abs{z^0}=1=\abs z^0$, and if $\abs{z^n}=\abs z^n$, then $\abs{z^{n+1}}=\abs{z^n}\abs z=\abs z^{n+1}$.\par
+\emph{Inverse and quotient.} $\abs{z'}\times\abs{\frac1{z'}}=\abs{z'\times\frac1{z'}}=1$, then $\abs{\frac z{z'}}=\abs z\abs{\frac1{z'}}$.
+\end{proof}
+\begin{theorem}[Triangle inequality, taken for granted here]
+For all complex numbers $z$ and $z'$, $\abs{z+z'}\le\abs z+\abs{z'}$. The problem of the chapter gives a proof and the case of equality.
+\end{theorem}
+\begin{definition}[The set $\mathbb U$]
+We write $\mathbb U$ for the set of complex numbers of modulus $1$. Their images form the circle with centre $O$ and radius $1$.
+\end{definition}
+\begin{theorem}[Stability of $\mathbb U$]
+If $z$ and $z'$ belong to $\mathbb U$, then $zz'\in\mathbb U$ and $\frac1z\in\mathbb U$; moreover $\frac1z=\overline z$.
+\end{theorem}
+\begin{proof}
+$\abs{zz'}=1\times1=1$ and $\abs{\frac1z}=\frac11=1$. Finally $z\overline z=\abs z^2=1$, so $\overline z=\frac1z$.
+\end{proof}
+\begin{method}[Reading a set of points]
+Let $A$ and $B$ have affixes $a$ and $b$, and $M$ have affix $z$. The equality $\abs{z-a}=r$ ($r>0$) means $AM=r$: $M$ describes the circle with centre $A$ and radius $r$. The equality $\abs{z-a}=\abs{z-b}$ ($a\neq b$) means $AM=BM$: $M$ describes the perpendicular bisector of $[AB]$.
+\end{method}
+
+\subsection{Argument and trigonometric form}
+\begin{definition}[Argument]
+Let $z$ be a nonzero complex number with image $M$. An \emph{argument} of $z$ is any measure, in radians, of the oriented angle $\left(\vect u,\vect{OM}\right)$. We write $\arg z$ for one of them; the others differ from it by a multiple of $2\pi$, which we write $\arg z\equiv\theta\pmod{2\pi}$. The number $0$ has no argument.
+\end{definition}
+\begin{theorem}[Trigonometric form]
+Every nonzero complex number $z=a+ib$ can be written $z=r(\cos\theta+i\sin\theta)$ with $r=\abs z>0$ and $\theta\equiv\arg z\pmod{2\pi}$; then
+\[\cos\theta=\frac ar,\qquad\sin\theta=\frac br.\]
+Conversely, if $z=r(\cos\theta+i\sin\theta)$ with $r>0$, then $\abs z=r$ and $\theta$ is an argument of $z$. Two trigonometric forms $r(\cos\theta+i\sin\theta)$ and $r'(\cos\theta'+i\sin\theta')$ are equal if and only if $r=r'$ and $\theta\equiv\theta'\pmod{2\pi}$.
+\end{theorem}
+\begin{theorem}[First arguments]
+For $z\neq0$: $\arg\overline z\equiv-\arg z$ and $\arg(-z)\equiv\arg z+\pi\pmod{2\pi}$. A positive real number has argument $0$, a negative real number $\pi$; $i$ has argument $\frac\pi2$.
+\end{theorem}
+\begin{method}[Finding a trigonometric form]
+Compute $r=\abs z$, then $\frac ar$ and $\frac br$, and recognise the cosine and sine of a standard angle.
+\end{method}
+\begin{example}[Four trigonometric forms]
+$1+i\sqrt3$: $r=2$, $\cos\theta=\frac12$, $\sin\theta=\frac{\sqrt3}2$, so $1+i\sqrt3=2\left(\cos\frac\pi3+i\sin\frac\pi3\right)$.\par
+$-1+i=\sqrt2\left(\cos\frac{3\pi}4+i\sin\frac{3\pi}4\right)$ ; $-3=3(\cos\pi+i\sin\pi)$ ; $-2i=2\left(\cos\left(-\frac\pi2\right)+i\sin\left(-\frac\pi2\right)\right)$.
+\end{example}
+\begin{pitfall}
+$-2\left(\cos\frac\pi5+i\sin\frac\pi5\right)$ is not a trigonometric form, because $-2<0$. We write $-2\left(\cos\frac\pi5+i\sin\frac\pi5\right)=2\left(\cos\frac{6\pi}5+i\sin\frac{6\pi}5\right)$.
+\end{pitfall}
+\begin{figurebox}[Modulus and argument of $z=a+ib$.]
+\begin{tikzpicture}[scale=1.1]
+\draw[mxaux,->] (-0.5,0) -- (3.2,0) node[below] {$x$};
+\draw[mxaux,->] (0,-0.5) -- (0,2.4) node[left] {$y$};
+\draw[mxcurve,->] (0,0) -- (2.4,1.6);
+\fill (2.4,1.6) circle (1.5pt) node[above right] {$M(z)$};
+\draw[mxaux,dashed] (2.4,0) -- (2.4,1.6) (0,1.6) -- (2.4,1.6);
+\node[below] at (2.4,0) {$a$}; \node[left] at (0,1.6) {$b$};
+\draw[->] (0.8,0) arc (0:33.7:0.8); \node at (1.05,0.3) {$\theta$};
+\node[above left] at (1.2,0.8) {$r$};
+\node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{figurebox}
+\begin{keypoint}[Key points]
+$\abs z=OM$, $\abs{z_B-z_A}=AB$, $\abs z^2=z\overline z$; the modulus of a product is the product of the moduli; $z=r(\cos\theta+i\sin\theta)$ with $r>0$; an argument is only defined up to a multiple of $2\pi$.
+\end{keypoint}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Modulus and argument]
+Determine the modulus and an argument of: $1-i$; $-\sqrt3+i$; $-5$; $4i$.
+\end{exercise}
+\begin{solution}
+$1-i$: $\sqrt2$, $-\frac\pi4$. $-\sqrt3+i$: $2$, $\frac{5\pi}6$ (cosine $-\frac{\sqrt3}2$, sine $\frac12$). $-5$: $5$, $\pi$. $4i$: $4$, $\frac\pi2$.
+\end{solution}
+
+\begin{exercise}[From the trigonometric form to the algebraic form]
+Write in algebraic form: $2\left(\cos\frac{2\pi}3+i\sin\frac{2\pi}3\right)$; $\sqrt2\left(\cos\left(-\frac\pi4\right)+i\sin\left(-\frac\pi4\right)\right)$; $6\left(\cos\frac{5\pi}6+i\sin\frac{5\pi}6\right)$.
+\end{exercise}
+\begin{solution}
+$2\left(-\frac12+i\frac{\sqrt3}2\right)=-1+i\sqrt3$ ; $\sqrt2\left(\frac{\sqrt2}2-i\frac{\sqrt2}2\right)=1-i$ ; $6\left(-\frac{\sqrt3}2+\frac i2\right)=-3\sqrt3+3i$.
+\end{solution}
+
+\begin{exercise}[Computing a modulus without expanding]
+Compute the modulus of $(1+i)^6\left(\sqrt3-i\right)$, then that of $\dfrac{3+4i}{1-2i}$.
+\end{exercise}
+\begin{solution}
+$\abs{(1+i)^6(\sqrt3-i)}=\left(\sqrt2\right)^6\times2=8\times2=16$. Next $\abs{\dfrac{3+4i}{1-2i}}=\dfrac{5}{\sqrt5}=\sqrt5$.
+\end{solution}
+
+\begin{exercise}[Sets of points]
+Determine and draw the set of points $M$ with affix $z$ such that:
+\begin{enumerate}
+\item $\abs{z-2+i}=3$ ;
+\item $\abs{z-1}=\abs{z+i}$ ;
+\item $\abs{\overline z+2i}=1$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\abs{z-(2-i)}=3$: circle with centre the point of affix $2-i$ and radius $3$.
+\item With $A(1)$ and $B(-i)$, $AM=BM$: perpendicular bisector of $[AB]$. Setting $z=x+iy$: $(x-1)^2+y^2=x^2+(y+1)^2$, that is $y=-x$.
+\item $\overline z+2i=\overline{z-2i}$, so $\abs{\overline z+2i}=\abs{z-2i}$: circle with centre the point of affix $2i$ and radius $1$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Nature of a triangle]
+Consider the points $A$, $B$, $C$ with affixes $a=1+i$, $b=3+2i$ and $c=2+4i$. Compute $AB$, $BC$ and $AC$, then determine the nature of the triangle $ABC$.
+\end{exercise}
+\begin{solution}
+$AB=\abs{2+i}=\sqrt5$, $BC=\abs{-1+2i}=\sqrt5$, $AC=\abs{1+3i}=\sqrt{10}$. Since $AB=BC$ and $AB^2+BC^2=10=AC^2$, the triangle is right-angled and isosceles at $B$ (converse of Pythagoras' theorem).
+\end{solution}
+
+\begin{exercise}[Numbers of modulus 1]
+\begin{enumerate}
+\item Prove that if $\abs z=1$, then $z+\dfrac1z$ is real.
+\item Let $z$ and $z'$ be two elements of $\mathbb U$ such that $zz'\neq-1$. Prove that $\dfrac{z+z'}{1+zz'}$ is real.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\frac1z=\overline z$, so $z+\frac1z=z+\overline z=2\operatorname{Re}(z)$, which is real.
+\item The conjugate is $\dfrac{\overline z+\overline{z'}}{1+\overline z\,\overline{z'}}=\dfrac{\frac1z+\frac1{z'}}{1+\frac1{zz'}}$. Multiplying numerator and denominator by $zz'$ gives $\dfrac{z'+z}{zz'+1}$: the number equals its conjugate, so it is real.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A sequence of complex numbers]
+Let $z_0=4$ and, for every natural number $n$, $z_{n+1}=\dfrac{1+i}2\,z_n$.
+\begin{enumerate}
+\item Compute $z_1$, $z_2$ and plot the corresponding points.
+\item Prove that $\left(\abs{z_n}\right)$ is a geometric sequence; give its common ratio and its general term.
+\item Determine the limit of $\abs{z_n}$. Interpret geometrically.
+\item Determine the smallest integer $n$ such that $\abs{z_n}<\num{0,01}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $z_1=2+2i$ and $z_2=\frac{(1+i)(2+2i)}2=(1+i)^2=2i$.
+\item $\abs{z_{n+1}}=\abs{\frac{1+i}2}\abs{z_n}=\frac{\sqrt2}2\abs{z_n}$: a geometric sequence with common ratio $\frac{\sqrt2}2$ and first term $4$, so $\abs{z_n}=4\left(\frac{\sqrt2}2\right)^n$.
+\item $0<\frac{\sqrt2}2<1$, so $\abs{z_n}\to0$: the points get closer to $O$ while turning (by an eighth of a turn at each step, as chapter 3 will justify).
+\item $4\left(\frac{\sqrt2}2\right)^n<\num{0,01}$ is equivalent to $n\ln\frac{\sqrt2}2<\ln\num{0,0025}$, that is $n>\frac{\ln \num{0,0025}}{\ln(\sqrt2/2)}\simeq\num{17,29}$. The smallest integer is $18$: $\abs{z_{17}}\simeq\num{0,0110}$ and $\abs{z_{18}}=\frac{4}{512}\simeq\num{0,0078}$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[Triangle inequality and the case of equality]
+\begin{enumerate}
+\item Let $z$ be a complex number. Prove that $\operatorname{Re}(z)\le\abs z$, with equality if and only if $z$ is a nonnegative real number.
+\item Let $z$ and $z'$ be two complex numbers. Prove that $\abs{z+z'}^2=\abs z^2+\abs{z'}^2+2\operatorname{Re}\left(z\overline{z'}\right)$.
+\item Deduce the triangle inequality $\abs{z+z'}\le\abs z+\abs{z'}$.
+\item Assume $z'\neq0$. Prove that equality $\abs{z+z'}=\abs z+\abs{z'}$ holds if and only if there is a real number $\lambda\ge0$ such that $z=\lambda z'$. Interpret with the images $M$ and $M'$ of $z$ and $z'$.
+\item Application. Consider the points $M$ with affix $z$ such that $\abs{z-3-4i}\le2$.
+\begin{enumerate}
+\item Prove that for these points, $3\le\abs z\le7$.
+\item Determine the affixes of the points for which $\abs z=7$, then $\abs z=3$.
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item With $z=a+ib$: $\operatorname{Re}(z)=a\le\abs a=\sqrt{a^2}\le\sqrt{a^2+b^2}=\abs z$. Equality forces $b=0$ and $a=\abs a$, so $z$ is a nonnegative real number; the converse is immediate.
+\item $\abs{z+z'}^2=(z+z')\left(\overline z+\overline{z'}\right)=z\overline z+z'\overline{z'}+z\overline{z'}+\overline z z'$. Now $\overline z z'=\overline{z\overline{z'}}$, so $z\overline{z'}+\overline z z'=2\operatorname{Re}\left(z\overline{z'}\right)$.
+\item By 1, $\operatorname{Re}\left(z\overline{z'}\right)\le\abs{z\overline{z'}}=\abs z\abs{z'}$. So $\abs{z+z'}^2\le\left(\abs z+\abs{z'}\right)^2$, and both numbers compared are nonnegative.
+\item Equality is equivalent to $\operatorname{Re}\left(z\overline{z'}\right)=\abs{z\overline{z'}}$, that is, by 1, to $z\overline{z'}=\mu$, a nonnegative real number. In that case, $z=\frac{\mu}{\abs{z'}^2}z'$ with $\lambda=\frac{\mu}{\abs{z'}^2}\ge0$. Conversely, if $z=\lambda z'$ with $\lambda\ge0$, $z\overline{z'}=\lambda\abs{z'}^2\ge0$. Geometrically: $M$ lies on the ray $[OM')$.
+\item
+\begin{enumerate}
+\item Let $w=3+4i$, whose modulus is $5$. On the one hand $\abs z=\abs{(z-w)+w}\le2+5=7$. On the other hand $5=\abs w=\abs{(w-z)+z}\le\abs{z-w}+\abs z\le2+\abs z$, so $\abs z\ge3$.
+\item $\abs z=7$ requires equality in $\abs{(z-w)+w}\le\abs{z-w}+\abs w$ and $\abs{z-w}=2$: $z-w=\lambda w$ with $\lambda\ge0$ and $\abs{\lambda w}=2$, that is $\lambda=\frac25$ and $z=\frac75w=\frac{21}5+\frac{28}5i$. Likewise, $\abs z=3$ gives $w-z=\frac25w$, that is $z=\frac35w=\frac95+\frac{12}5i$. Both points do satisfy $\abs{z-w}=2$.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+The triangle inequality and its case of equality are a ``possible problem'' of the syllabus. Question 5 is easy to visualise: the disc with centre $\pt{3;4}$ and radius $2$ lies between the circles with centre $O$ and radii $3$ and $7$, which it touches on the line joining $O$ to the centre of the disc.
+\end{teachernote}

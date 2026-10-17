@@ -1,0 +1,282 @@
+\mxunit{expertes-c01}{Nombres complexes : point de vue algébrique}
+\mxsubtitle{Calcul dans $\C$, conjugaison, formule du binôme}
+
+\begin{objectives}
+Calculer avec la forme algébrique ; utiliser le conjugué pour obtenir un inverse ou un quotient ; résoudre une équation du premier degré, ou une équation simple faisant intervenir $z$ et $\overline{z}$ ; développer une puissance par la formule du binôme.
+\end{objectives}
+\begin{prerequisites}
+Calcul littéral et identités remarquables ; second degré ; coefficients binomiaux et relation de Pascal (spécialité) ; raisonnement par récurrence.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item Développer $(2-3x)^2$.
+\item Résoudre dans $\R$ l'équation $x^2-4x+13=0$.
+\item Développer $(a+b)^3$.
+\item Donner la valeur de $\binom{5}{2}$.
+\item Écrire $\frac{1}{\sqrt2-1}$ sans racine carrée au dénominateur.
+\item Résoudre dans $\R$ l'équation $3x-5=2x+7$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $4-12x+9x^2$.
+\item $\Delta=16-52=-36<0$ : l'équation n'a pas de solution réelle. Ce chapitre lui en donnera deux.
+\item $a^3+3a^2b+3ab^2+b^3$.
+\item $\binom{5}{2}=10$.
+\item On multiplie par la quantité conjuguée : $\frac{\sqrt2+1}{(\sqrt2-1)(\sqrt2+1)}=\frac{\sqrt2+1}{2-1}=\sqrt2+1$.
+\item $x=12$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Un calcul « impossible » qui donne la bonne réponse \mxchip{40 min}]
+Au \textsc{xvi}\textsuperscript{e} siècle, on dispose d'une formule pour résoudre les équations du type $x^3=px+q$. Elle est donnée ici et admise :
+\[x=\sqrt[3]{\frac q2+\sqrt{\frac{q^2}{4}-\frac{p^3}{27}}}+\sqrt[3]{\frac q2-\sqrt{\frac{q^2}{4}-\frac{p^3}{27}}}.\]
+On étudie l'équation $x^3=15x+4$.
+\begin{enumerate}
+\item Vérifier que $4$ est solution de l'équation.
+\item Calculer $\frac{q^2}{4}-\frac{p^3}{27}$ pour $p=15$ et $q=4$. Que devient la formule ? Peut-on l'appliquer dans $\R$ ?
+\item Un calculateur de l'époque décide de continuer comme si un nombre noté $\sqrt{-1}$ existait, avec la seule règle $\sqrt{-1}\times\sqrt{-1}=-1$, et les règles de calcul habituelles pour le reste. Développer $\left(2+\sqrt{-1}\right)^3$ avec ces règles.
+\item Admettons que $\sqrt{-121}$ s'écrive $11\sqrt{-1}$. Montrer que le premier terme de la formule peut être pris égal à $2+\sqrt{-1}$, puis trouver de même une valeur du second terme.
+\item Que donne alors la formule ? Comparer avec la question 1.
+\item Ce calcul est-il une démonstration ? Quelles règles faudrait-il fixer pour qu'il le devienne ?
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item $4^3=64$ et $15\times4+4=64$.
+\item $\frac{16}{4}-\frac{\num{3375}}{27}=4-125=-121$. La formule demande $\sqrt{-121}$, qui n'existe pas dans $\R$ : elle semble inutilisable alors que l'équation a une solution réelle.
+\item $\left(2+\sqrt{-1}\right)^3=8+3\times4\sqrt{-1}+3\times2\times(-1)+(-1)\sqrt{-1}=2+11\sqrt{-1}$.
+\item Le premier terme est une racine cubique de $2+\sqrt{-121}=2+11\sqrt{-1}$ ; la question 3 montre que $2+\sqrt{-1}$ convient. De même $\left(2-\sqrt{-1}\right)^3=2-11\sqrt{-1}$, donc le second terme peut être pris égal à $2-\sqrt{-1}$.
+\item La somme vaut $\left(2+\sqrt{-1}\right)+\left(2-\sqrt{-1}\right)=4$ : on retrouve la solution de la question 1.
+\item Non. Le symbole $\sqrt{-1}$ n'a pas été défini, et les racines cubiques ont été choisies. Le cours construit un ensemble de nombres, $\C$, avec un nombre $i$ tel que $i^2=-1$ et des règles de calcul fixées ; on y évite l'écriture $\sqrt{-1}$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+La formule de Cardan est donnée et admise : elle n'est pas au programme. L'enjeu est historique et méthodologique : un calcul formel donne une réponse vérifiable, ce qui motive la construction de $\C$. Faire remarquer que les racines cubiques ne sont pas uniques dans $\C$ ; ce point sera repris au chapitre 5. L'épisode est attribué à Bombelli (vers 1572).
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{L'ensemble des nombres complexes}
+\begin{definition}[Ensemble $\C$]
+On admet l'existence d'un ensemble noté $\C$, appelé ensemble des \emph{nombres complexes}, tel que :
+\begin{enumerate}
+\item $\C$ contient $\R$ ;
+\item $\C$ contient un nombre noté $i$ tel que $i^2=-1$ ;
+\item $\C$ est muni d'une addition et d'une multiplication qui prolongent celles de $\R$ et suivent les mêmes règles de calcul (commutativité, associativité, distributivité) ;
+\item tout nombre complexe $z$ s'écrit de manière unique $z=a+ib$ avec $a$ et $b$ réels.
+\end{enumerate}
+L'écriture $z=a+ib$ est la \emph{forme algébrique} de $z$. Le réel $a$ est la \emph{partie réelle} de $z$, notée $\operatorname{Re}(z)$ ; le réel $b$ est la \emph{partie imaginaire} de $z$, notée $\operatorname{Im}(z)$. Si $b=0$, $z$ est réel ; si $a=0$, $z$ est \emph{imaginaire pur}.
+\end{definition}
+\begin{theorem}[Égalité de deux nombres complexes]
+Deux nombres complexes sont égaux si et seulement s'ils ont la même partie réelle et la même partie imaginaire. En particulier, $a+ib=0$ avec $a,b$ réels équivaut à $a=b=0$.
+\end{theorem}
+\begin{pitfall}
+La partie imaginaire de $3-5i$ est $-5$, et non $-5i$ : c'est un réel. Il n'y a pas d'ordre compatible avec les opérations sur $\C$ : on n'écrit jamais $z<z'$ pour des complexes non réels.
+\end{pitfall}
+\begin{example}[Calculs en forme algébrique]
+$(2+3i)+(1-i)=3+2i$ et $(2+3i)(1-i)=2-2i+3i-3i^2=5+i$.\par
+Les puissances de $i$ se répètent de quatre en quatre : $i^2=-1$, $i^3=-i$, $i^4=1$. Ainsi $i^{4k+r}=i^r$ pour tout entier $k\ge0$.
+\end{example}
+
+\subsection{Conjugué}
+\begin{definition}[Conjugué]
+Le \emph{conjugué} de $z=a+ib$ ($a$, $b$ réels) est $\overline{z}=a-ib$.
+\end{definition}
+\begin{theorem}[Premières propriétés]
+Pour tout $z=a+ib$ :
+\[z+\overline z=2\operatorname{Re}(z),\qquad z-\overline z=2i\operatorname{Im}(z),\qquad z\overline z=a^2+b^2.\]
+Ainsi $z$ est réel si et seulement si $\overline z=z$, et imaginaire pur si et seulement si $\overline z=-z$. Le produit $z\overline z$ est un réel positif, nul seulement pour $z=0$.
+\end{theorem}
+\begin{proof}
+$z\overline z=(a+ib)(a-ib)=a^2-(ib)^2=a^2+b^2$. Les deux premières égalités s'obtiennent en ajoutant ou en soustrayant $a+ib$ et $a-ib$.
+\end{proof}
+\begin{theorem}[Inverse d'un nombre complexe non nul]
+Tout nombre complexe $z=a+ib$ non nul admet un inverse :
+\[\frac1z=\frac{\overline z}{z\overline z}=\frac{a-ib}{a^2+b^2}.\]
+\end{theorem}
+\begin{method}[Écrire un quotient sous forme algébrique]
+On multiplie le numérateur et le dénominateur par le conjugué du dénominateur. Exemple : $\dfrac{1}{3+4i}=\dfrac{3-4i}{9+16}=\dfrac{3}{25}-\dfrac{4}{25}i$.
+\end{method}
+\begin{theorem}[Conjugué et opérations]
+Pour tous complexes $z$, $z'$ et tout entier naturel $n$ :
+\[\overline{z+z'}=\overline z+\overline{z'},\qquad\overline{zz'}=\overline z\,\overline{z'},\qquad\overline{z^n}=\overline z^{\,n},\]
+et si $z'\neq0$ : $\overline{\left(\frac1{z'}\right)}=\frac1{\overline{z'}}$ et $\overline{\left(\frac z{z'}\right)}=\frac{\overline z}{\overline{z'}}$.
+\end{theorem}
+\begin{proof}
+\emph{Produit.} Posons $z=a+ib$ et $z'=a'+ib'$. Alors $zz'=(aa'-bb')+i(ab'+a'b)$, donc $\overline{zz'}=(aa'-bb')-i(ab'+a'b)$. D'autre part, $\overline z\,\overline{z'}=(a-ib)(a'-ib')=(aa'-bb')-i(ab'+a'b)$. Les deux résultats sont égaux.\par
+\emph{Inverse.} Si $z'\neq0$, $z'\times\frac1{z'}=1$. Par la propriété du produit, $\overline{z'}\times\overline{\left(\frac1{z'}\right)}=\overline1=1$, donc $\overline{\left(\frac1{z'}\right)}$ est l'inverse de $\overline{z'}$. Le quotient s'en déduit en écrivant $\frac z{z'}=z\times\frac1{z'}$.\par
+\emph{Puissance.} Par récurrence sur $n$. Pour $n=0$ : $\overline{z^0}=\overline1=1=\overline z^{\,0}$. Si $\overline{z^n}=\overline z^{\,n}$ pour un entier $n$, alors $\overline{z^{n+1}}=\overline{z^n\times z}=\overline{z^n}\times\overline z=\overline z^{\,n}\times\overline z=\overline z^{\,n+1}$.
+\end{proof}
+
+\subsection{Équations}
+\begin{method}[Équation du premier degré]
+Si $a\neq0$, l'équation $az=b$ a une unique solution $z=\frac ba$, que l'on écrit sous forme algébrique. Exemple : $(1+i)z=3-i$ donne $z=\frac{(3-i)(1-i)}{2}=\frac{2-4i}{2}=1-2i$.
+\end{method}
+\begin{method}[Équation faisant intervenir $z$ et $\overline z$]
+On pose $z=x+iy$ avec $x$, $y$ réels, on écrit chaque membre sous forme algébrique, puis on identifie parties réelles et parties imaginaires. On obtient un système de deux équations réelles.
+\end{method}
+\begin{example}[Résoudre $2z+i\overline z=3-3i$]
+Avec $z=x+iy$ : $2x+2iy+i(x-iy)=(2x+y)+i(x+2y)$. L'identification donne $2x+y=3$ et $x+2y=-3$, d'où $x=3$ et $y=-3$. La solution est $z=3-3i$. Vérification : $2(3-3i)+i(3+3i)=6-6i+3i-3=3-3i$.
+\end{example}
+
+\subsection{Formule du binôme}
+\begin{theorem}[Formule du binôme]
+Pour tous complexes $a$, $b$ et tout entier naturel $n$ :
+\[(a+b)^n=\sum_{k=0}^{n}\binom nk a^kb^{n-k}.\]
+\end{theorem}
+\begin{proof}
+Par récurrence sur $n$. Pour $n=0$, les deux membres valent $1$. Supposons la formule vraie pour un entier $n$. Alors
+\[(a+b)^{n+1}=(a+b)\sum_{k=0}^{n}\binom nk a^kb^{n-k}=\sum_{k=0}^{n}\binom nk a^{k+1}b^{n-k}+\sum_{k=0}^{n}\binom nk a^kb^{n+1-k}.\]
+Dans la première somme, on pose $j=k+1$ : elle devient $\sum_{j=1}^{n+1}\binom n{j-1}a^jb^{n+1-j}$. En regroupant les termes de même exposant de $a$ et en utilisant la relation de Pascal $\binom n{j-1}+\binom nj=\binom{n+1}j$ pour $1\le j\le n$, on obtient
+\[(a+b)^{n+1}=b^{n+1}+\sum_{j=1}^{n}\binom{n+1}j a^jb^{n+1-j}+a^{n+1}=\sum_{j=0}^{n+1}\binom{n+1}j a^jb^{n+1-j}.\]
+La formule est vraie au rang $n+1$, donc pour tout entier naturel $n$.
+\end{proof}
+\begin{example}[Une puissance de $1+i$]
+$(1+i)^4=1+4i+6i^2+4i^3+i^4=1+4i-6-4i+1=-4$. On peut aussi écrire $(1+i)^2=2i$, puis $(1+i)^4=(2i)^2=-4$.
+\end{example}
+\begin{keypoint}[À retenir]
+Forme algébrique unique ; $i^2=-1$ ; $z\overline z=a^2+b^2$ ; pour un quotient, multiplier par le conjugué du dénominateur ; pour une équation en $z$ et $\overline z$, poser $z=x+iy$ et identifier.
+\end{keypoint}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Forme algébrique]
+Écrire sous forme algébrique :
+\begin{enumerate}
+\item $(3-2i)+(-1+5i)$ ;
+\item $(3-2i)(-1+5i)$ ;
+\item $(1-2i)^2$ ;
+\item $i^{2026}$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $2+3i$.
+\item $-3+15i+2i-10i^2=-3+17i+10=7+17i$.
+\item $1-4i+4i^2=-3-4i$.
+\item $\num{2026}=4\times506+2$, donc $i^{2026}=i^2=-1$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Inverses et quotients]
+Écrire sous forme algébrique : $\dfrac1{1+i}$ ; $\dfrac{2+i}{1-2i}$ ; $\dfrac{3+i}{2-i}$.
+\end{exercise}
+\begin{solution}
+$\dfrac1{1+i}=\dfrac{1-i}{2}=\dfrac12-\dfrac12i$. Ensuite $\dfrac{(2+i)(1+2i)}{5}=\dfrac{2+4i+i-2}{5}=i$. Enfin $\dfrac{(3+i)(2+i)}{5}=\dfrac{6+3i+2i-1}{5}=1+i$.
+\end{solution}
+
+\begin{exercise}[Équations]
+Résoudre dans $\C$ :
+\begin{enumerate}
+\item $(1+i)z=3-i$ ;
+\item $2z-3\overline z=1+10i$ ;
+\item $z+2\overline z=6-i$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $z=\dfrac{3-i}{1+i}=\dfrac{(3-i)(1-i)}{2}=\dfrac{2-4i}{2}=1-2i$.
+\item Avec $z=x+iy$ : $2x+2iy-3x+3iy=-x+5iy$. L'identification donne $-x=1$ et $5y=10$, soit $z=-1+2i$.
+\item $x+iy+2x-2iy=3x-iy$, donc $3x=6$ et $-y=-1$ : $z=2+i$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Partie réelle et partie imaginaire d'une expression]
+Pour $z=x+iy$ ($x$, $y$ réels), on pose $Z=z^2-2\overline z$.
+\begin{enumerate}
+\item Exprimer $\operatorname{Re}(Z)$ et $\operatorname{Im}(Z)$ en fonction de $x$ et $y$.
+\item Déterminer les nombres complexes $z$ pour lesquels $Z$ est réel.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $z^2=x^2-y^2+2ixy$ et $-2\overline z=-2x+2iy$. Donc $\operatorname{Re}(Z)=x^2-y^2-2x$ et $\operatorname{Im}(Z)=2xy+2y=2y(x+1)$.
+\item $Z$ est réel si et seulement si $2y(x+1)=0$, c'est-à-dire $y=0$ ou $x=-1$ : $z$ est réel, ou $z$ a pour partie réelle $-1$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Formule du binôme]
+\begin{enumerate}
+\item À l'aide de la formule du binôme, écrire $(1+i)^5$ sous forme algébrique.
+\item En déduire $(1+i)^{10}$.
+\item Retrouver ces deux résultats à partir de $(1+i)^2$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $(1+i)^5=1+5i+10i^2+10i^3+5i^4+i^5=1+5i-10-10i+5+i=-4-4i$.
+\item $(1+i)^{10}=(-4-4i)^2=16(1+i)^2=16\times2i=32i$.
+\item $(1+i)^2=2i$, donc $(1+i)^4=-4$, $(1+i)^5=-4(1+i)=-4-4i$ et $(1+i)^{10}=(2i)^5=32i^5=32i$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Un quotient imaginaire pur]
+Soit $z$ un nombre complexe tel que $z\overline z=1$ et $z\neq1$. On pose $w=\dfrac{1+z}{1-z}$.
+\begin{enumerate}
+\item Justifier que $\overline z=\dfrac1z$.
+\item Calculer $\overline w$ et démontrer que $w$ est imaginaire pur.
+\item Vérifier le résultat pour $z=i$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $z\overline z=1$ impose $z\neq0$, et $\overline z=\frac1z$.
+\item Par les propriétés du conjugué, $\overline w=\dfrac{1+\overline z}{1-\overline z}=\dfrac{1+\frac1z}{1-\frac1z}=\dfrac{z+1}{z-1}=-w$. Donc $w$ est imaginaire pur.
+\item $w=\dfrac{1+i}{1-i}=\dfrac{(1+i)^2}{2}=i$, qui est bien imaginaire pur.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Somme des puissances de $i$]
+\begin{enumerate}
+\item Démontrer que, pour tout complexe $q\neq1$ et tout entier naturel $n$, $1+q+\dots+q^n=\dfrac{1-q^{n+1}}{1-q}$.
+\item En déduire $S=1+i+i^2+\dots+i^{2026}$.
+\item Retrouver ce résultat en groupant les termes par paquets de quatre.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Si $S_n=1+q+\dots+q^n$, alors $S_n-qS_n=1-q^{n+1}$ (les autres termes se compensent). Comme $1-q\neq0$, on divise. La preuve n'utilise que les règles de calcul, valables dans $\C$.
+\item $\num{2027}=4\times506+3$, donc $i^{2027}=i^3=-i$ et $S=\dfrac{1+i}{1-i}=\dfrac{(1+i)^2}{2}=i$.
+\item Quatre puissances consécutives ont pour somme $i^{4k}(1+i-1-i)=0$. Les $\num{2027}$ termes forment $506$ paquets nuls et il reste $i^{2024}+i^{2025}+i^{2026}=1+i-1=i$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[Racines carrées d'un nombre complexe]
+On cherche les nombres complexes $z$ tels que $z^2=3+4i$. On pose $z=x+iy$, avec $x$ et $y$ réels.
+\begin{enumerate}
+\item Démontrer que $z^2=3+4i$ équivaut au système $x^2-y^2=3$ et $2xy=4$.
+\item Démontrer que si $z^2=3+4i$, alors $\left(x^2+y^2\right)^2=\left(x^2-y^2\right)^2+(2xy)^2$, et en déduire $x^2+y^2=5$.
+\item En déduire les deux solutions de l'équation, puis les vérifier.
+\item Par la même méthode, déterminer les nombres complexes dont le carré est $-5+12i$.
+\item On considère l'équation $z^2-3z+3-i=0$.
+\begin{enumerate}
+\item Démontrer qu'elle s'écrit $\left(z-\frac32\right)^2=\frac{-3+4i}{4}$.
+\item Déterminer les nombres complexes $w$ tels que $w^2=-3+4i$.
+\item En déduire les solutions de l'équation et vérifier leur somme et leur produit.
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item $z^2=x^2-y^2+2ixy$. Par unicité de la forme algébrique, $z^2=3+4i$ équivaut à $x^2-y^2=3$ et $2xy=4$.
+\item L'identité $\left(x^2+y^2\right)^2=\left(x^2-y^2\right)^2+4x^2y^2$ se vérifie en développant. Elle donne $\left(x^2+y^2\right)^2=9+16=25$, et comme $x^2+y^2\ge0$, $x^2+y^2=5$.
+\item En ajoutant puis en soustrayant $x^2-y^2=3$ : $x^2=4$ et $y^2=1$. Comme $xy=2>0$, $x$ et $y$ ont le même signe : $z=2+i$ ou $z=-2-i$. Vérification : $(2+i)^2=4+4i-1=3+4i$, et $(-2-i)^2=(2+i)^2$.
+\item $x^2-y^2=-5$, $xy=6$ et $x^2+y^2=\sqrt{25+144}=13$. Donc $x^2=4$, $y^2=9$, $x$ et $y$ de même signe : $z=2+3i$ ou $z=-2-3i$. Vérification : $(2+3i)^2=4+12i-9=-5+12i$.
+\item
+\begin{enumerate}
+\item $\left(z-\frac32\right)^2=z^2-3z+\frac94$, donc l'équation s'écrit $\left(z-\frac32\right)^2=\frac94-3+i=\frac{-3+4i}{4}$.
+\item $x^2-y^2=-3$, $xy=2$, $x^2+y^2=5$ : $x^2=1$, $y^2=4$, d'où $w=1+2i$ ou $w=-1-2i$.
+\item $z-\frac32=\pm\frac{1+2i}{2}$, d'où $z_1=2+i$ et $z_2=1-i$. Leur somme vaut $3$ et leur produit $(2+i)(1-i)=2-2i+i+1=3-i$, comme le prévoient les coefficients de l'équation.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Racines carrées complexes et équations du second degré à coefficients complexes sont des « problèmes possibles » du programme, non exigibles. La question 2 évite le module, introduit au chapitre suivant : on pourra y revenir en remarquant que $x^2+y^2=\abs z^2=\abs{z^2}$.
+\end{teachernote}

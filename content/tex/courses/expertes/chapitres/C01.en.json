@@ -1,0 +1,797 @@
+{
+ "unit": "C01.fr.tex",
+ "segments": {
+  "3767556dd0dc": {
+   "fr": "Nombres complexes : point de vue algébrique",
+   "en": "Complex numbers: the algebraic point of view",
+   "status": "aligned",
+   "order": 0
+  },
+  "2f2410fe2f55": {
+   "fr": "Calcul dans [[m1]], conjugaison, formule du binôme",
+   "en": "Computing in [[m1]], conjugation, binomial formula",
+   "status": "aligned",
+   "order": 1
+  },
+  "c2a83ed39802": {
+   "fr": "Calculer avec la forme algébrique ; utiliser le conjugué pour obtenir un inverse ou un quotient ; résoudre une équation du premier degré, ou une équation simple faisant intervenir [[m1]] et [[m2]] ; développer une puissance par la formule du binôme.",
+   "en": "Compute with the algebraic form; use the conjugate to obtain an inverse or a quotient; solve a linear equation, or a simple equation involving [[m1]] and [[m2]]; expand a power with the binomial formula.",
+   "status": "aligned",
+   "order": 2
+  },
+  "c53f66db0b03": {
+   "fr": "Calcul littéral et identités remarquables ; second degré ; coefficients binomiaux et relation de Pascal (spécialité) ; raisonnement par récurrence.",
+   "en": "Algebraic manipulation and standard identities; quadratics; binomial coefficients and Pascal's rule (specialty course); proof by induction.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "e4c26f7751e1": {
+   "fr": "Développer [[m1]].",
+   "en": "Expand [[m1]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "a488247d0868": {
+   "fr": "Donner la valeur de [[m1]].",
+   "en": "Give the value of [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "6d1cd15bdce4": {
+   "fr": "Écrire [[m1]] sans racine carrée au dénominateur.",
+   "en": "Write [[m1]] without a square root in the denominator.",
+   "status": "aligned",
+   "order": 10
+  },
+  "d53d9bd5bf43": {
+   "fr": "Résoudre dans [[m1]] l'équation [[m2]].",
+   "en": "Solve in [[m1]] the equation [[m2]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "1b22c66baeaf": {
+   "fr": "[[m1]] : l'équation n'a pas de solution réelle. Ce chapitre lui en donnera deux.",
+   "en": "[[m1]]: the equation has no real solution. This chapter will give it two.",
+   "status": "aligned",
+   "order": 13
+  },
+  "844703c198fb": {
+   "fr": "On multiplie par la quantité conjuguée : [[m1]].",
+   "en": "Multiply by the conjugate expression: [[m1]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 15
+  },
+  "aae6e17611fe": {
+   "fr": "Un calcul « impossible » qui donne la bonne réponse",
+   "en": "An ``impossible'' computation that gives the right answer",
+   "status": "aligned",
+   "order": 16
+  },
+  "15b750412480": {
+   "fr": "40 min",
+   "en": "40 min",
+   "status": "aligned",
+   "order": 17
+  },
+  "818366d1d2a4": {
+   "fr": "Au \\textsc{xvi}\\textsuperscript{e} siècle, on dispose d'une formule pour résoudre les équations du type [[m1]]. Elle est donnée ici et admise :",
+   "en": "In the sixteenth century, a formula was known for solving equations of the form [[m1]]. It is given here and taken for granted:",
+   "status": "aligned",
+   "order": 18
+  },
+  "ada42200561e": {
+   "fr": "On étudie l'équation [[m1]].",
+   "en": "We study the equation [[m1]].",
+   "status": "aligned",
+   "order": 19
+  },
+  "d6bd4c6c4ff0": {
+   "fr": "Vérifier que [[m1]] est solution de l'équation.",
+   "en": "Check that [[m1]] is a solution of the equation.",
+   "status": "aligned",
+   "order": 20
+  },
+  "0cfd1ba22de2": {
+   "fr": "Calculer [[m1]] pour [[m2]] et [[m3]]. Que devient la formule ? Peut-on l'appliquer dans [[m4]] ?",
+   "en": "Compute [[m1]] for [[m2]] and [[m3]]. What becomes of the formula? Can it be applied in [[m4]]?",
+   "status": "aligned",
+   "order": 21
+  },
+  "9ece9e4eacbc": {
+   "fr": "Un calculateur de l'époque décide de continuer comme si un nombre noté [[m1]] existait, avec la seule règle [[m2]], et les règles de calcul habituelles pour le reste. Développer [[m3]] avec ces règles.",
+   "en": "A calculator of the time decides to carry on as if a number written [[m1]] existed, with the single rule [[m2]] and the usual rules of computation for everything else. Expand [[m3]] with these rules.",
+   "status": "aligned",
+   "order": 22
+  },
+  "cd6341db79c9": {
+   "fr": "Admettons que [[m1]] s'écrive [[m2]]. Montrer que le premier terme de la formule peut être pris égal à [[m3]], puis trouver de même une valeur du second terme.",
+   "en": "Assume that [[m1]] can be written [[m2]]. Show that the first term of the formula can be taken equal to [[m3]], then find in the same way a value for the second term.",
+   "status": "aligned",
+   "order": 23
+  },
+  "7959628c7732": {
+   "fr": "Que donne alors la formule ? Comparer avec la question 1.",
+   "en": "What does the formula then give? Compare with question 1.",
+   "status": "aligned",
+   "order": 24
+  },
+  "d7a807853b3f": {
+   "fr": "Ce calcul est-il une démonstration ? Quelles règles faudrait-il fixer pour qu'il le devienne ?",
+   "en": "Is this computation a proof? Which rules would have to be fixed for it to become one?",
+   "status": "aligned",
+   "order": 25
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 26
+  },
+  "68b479049126": {
+   "fr": "[[m1]]. La formule demande [[m2]], qui n'existe pas dans [[m3]] : elle semble inutilisable alors que l'équation a une solution réelle.",
+   "en": "[[m1]]. The formula calls for [[m2]], which does not exist in [[m3]]: it seems useless although the equation has a real solution.",
+   "status": "aligned",
+   "order": 28
+  },
+  "155c1f672864": {
+   "fr": "Le premier terme est une racine cubique de [[m1]] ; la question 3 montre que [[m2]] convient. De même [[m3]], donc le second terme peut être pris égal à [[m4]].",
+   "en": "The first term is a cube root of [[m1]]; question 3 shows that [[m2]] works. Likewise [[m3]], so the second term can be taken equal to [[m4]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "18142319e010": {
+   "fr": "La somme vaut [[m1]] : on retrouve la solution de la question 1.",
+   "en": "The sum is [[m1]]: we recover the solution of question 1.",
+   "status": "aligned",
+   "order": 30
+  },
+  "e04b68215268": {
+   "fr": "Non. Le symbole [[m1]] n'a pas été défini, et les racines cubiques ont été choisies. Le cours construit un ensemble de nombres, [[m2]], avec un nombre [[m3]] tel que [[m4]] et des règles de calcul fixées ; on y évite l'écriture [[m5]].",
+   "en": "No. The symbol [[m1]] has not been defined, and the cube roots were chosen. The course builds a set of numbers, [[m2]], with a number [[m3]] such that [[m4]] and fixed rules of computation; the notation [[m5]] is avoided there.",
+   "status": "aligned",
+   "order": 31
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 32
+  },
+  "ccfe4d38e1a6": {
+   "fr": "La formule de Cardan est donnée et admise : elle n'est pas au programme. L'enjeu est historique et méthodologique : un calcul formel donne une réponse vérifiable, ce qui motive la construction de [[m1]]. Faire remarquer que les racines cubiques ne sont pas uniques dans [[m2]] ; ce point sera repris au chapitre 5. L'épisode est attribué à Bombelli (vers 1572).",
+   "en": "Cardano's formula is given and taken for granted: it is not in the syllabus. The point is historical and methodological: a formal computation gives an answer that can be checked, which motivates the construction of [[m1]]. Point out that cube roots are not unique in [[m2]]; this is taken up again in chapter 5. The episode is attributed to Bombelli (around 1572).",
+   "status": "aligned",
+   "order": 33
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 34
+  },
+  "0e4f629b9afd": {
+   "fr": "L'ensemble des nombres complexes",
+   "en": "The set of complex numbers",
+   "status": "aligned",
+   "order": 35
+  },
+  "26d5f011a695": {
+   "fr": "Ensemble [[m1]]",
+   "en": "The set [[m1]]",
+   "status": "aligned",
+   "order": 36
+  },
+  "f4419121c16a": {
+   "fr": "On admet l'existence d'un ensemble noté [[m1]], appelé ensemble des \\emph{nombres complexes}, tel que :",
+   "en": "We take for granted the existence of a set written [[m1]], called the set of \\emph{complex numbers}, such that:",
+   "status": "aligned",
+   "order": 37
+  },
+  "650786f86c4e": {
+   "fr": "[[m1]] contient [[m2]] ;",
+   "en": "[[m1]] contains [[m2]];",
+   "status": "aligned",
+   "order": 38
+  },
+  "90893da2c6ba": {
+   "fr": "[[m1]] contient un nombre noté [[m2]] tel que [[m3]] ;",
+   "en": "[[m1]] contains a number written [[m2]] such that [[m3]];",
+   "status": "aligned",
+   "order": 39
+  },
+  "741d95184b82": {
+   "fr": "[[m1]] est muni d'une addition et d'une multiplication qui prolongent celles de [[m2]] et suivent les mêmes règles de calcul (commutativité, associativité, distributivité) ;",
+   "en": "[[m1]] has an addition and a multiplication that extend those of [[m2]] and follow the same rules of computation (commutativity, associativity, distributivity);",
+   "status": "aligned",
+   "order": 40
+  },
+  "ccce7fd86bf9": {
+   "fr": "tout nombre complexe [[m1]] s'écrit de manière unique [[m2]] avec [[m3]] et [[m4]] réels.",
+   "en": "every complex number [[m1]] can be written in a unique way as [[m2]] with [[m3]] and [[m4]] real.",
+   "status": "aligned",
+   "order": 41
+  },
+  "355020739b3d": {
+   "fr": "L'écriture [[m1]] est la \\emph{forme algébrique} de [[m2]]. Le réel [[m3]] est la \\emph{partie réelle} de [[m4]], notée [[m5]] ; le réel [[m6]] est la \\emph{partie imaginaire} de [[m7]], notée [[m8]]. Si [[m9]], [[m10]] est réel ; si [[m11]], [[m12]] est \\emph{imaginaire pur}.",
+   "en": "The expression [[m1]] is the \\emph{algebraic form} of [[m2]]. The real number [[m3]] is the \\emph{real part} of [[m4]], written [[m5]]; the real number [[m6]] is the \\emph{imaginary part} of [[m7]], written [[m8]]. If [[m9]], [[m10]] is real; if [[m11]], [[m12]] is \\emph{purely imaginary}.",
+   "status": "aligned",
+   "order": 42
+  },
+  "9cc8c771e8f1": {
+   "fr": "Égalité de deux nombres complexes",
+   "en": "Equality of two complex numbers",
+   "status": "aligned",
+   "order": 45
+  },
+  "a94ecacc366a": {
+   "fr": "Deux nombres complexes sont égaux si et seulement s'ils ont la même partie réelle et la même partie imaginaire. En particulier, [[m1]] avec [[m2]] réels équivaut à [[m3]].",
+   "en": "Two complex numbers are equal if and only if they have the same real part and the same imaginary part. In particular, [[m1]] with [[m2]] real is equivalent to [[m3]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "81fed1bbd040": {
+   "fr": "La partie imaginaire de [[m1]] est [[m2]], et non [[m3]] : c'est un réel. Il n'y a pas d'ordre compatible avec les opérations sur [[m4]] : on n'écrit jamais [[m5]] pour des complexes non réels.",
+   "en": "The imaginary part of [[m1]] is [[m2]], not [[m3]]: it is a real number. There is no order compatible with the operations on [[m4]]: we never write [[m5]] for non-real complex numbers.",
+   "status": "aligned",
+   "order": 47
+  },
+  "8fa3375b4f9b": {
+   "fr": "Calculs en forme algébrique",
+   "en": "Computations in algebraic form",
+   "status": "aligned",
+   "order": 48
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "e61d88ecdd49": {
+   "fr": "Les puissances de [[m1]] se répètent de quatre en quatre : [[m2]], [[m3]], [[m4]]. Ainsi [[m5]] pour tout entier [[m6]].",
+   "en": "The powers of [[m1]] repeat every four: [[m2]], [[m3]], [[m4]]. Hence [[m5]] for every integer [[m6]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "0258ac8ea667": {
+   "fr": "Conjugué",
+   "en": "Conjugate",
+   "status": "aligned",
+   "order": 52
+  },
+  "e4e4436436c8": {
+   "fr": "Le \\emph{conjugué} de [[m1]] ([[m2]], [[m3]] réels) est [[m4]].",
+   "en": "The \\emph{conjugate} of [[m1]] ([[m2]], [[m3]] real) is [[m4]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "c9c88458e43d": {
+   "fr": "Premières propriétés",
+   "en": "First properties",
+   "status": "aligned",
+   "order": 54
+  },
+  "6dc50c61facf": {
+   "fr": "Pour tout [[m1]] :",
+   "en": "For every [[m1]]:",
+   "status": "aligned",
+   "order": 55
+  },
+  "76aefd16a66b": {
+   "fr": "Ainsi [[m1]] est réel si et seulement si [[m2]], et imaginaire pur si et seulement si [[m3]]. Le produit [[m4]] est un réel positif, nul seulement pour [[m5]].",
+   "en": "Hence [[m1]] is real if and only if [[m2]], and purely imaginary if and only if [[m3]]. The product [[m4]] is a nonnegative real number, zero only for [[m5]].",
+   "status": "aligned",
+   "order": 56
+  },
+  "40db336e37ef": {
+   "fr": "[[m1]]. Les deux premières égalités s'obtiennent en ajoutant ou en soustrayant [[m2]] et [[m3]].",
+   "en": "[[m1]]. The first two equalities are obtained by adding or subtracting [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "d9c7297a49a2": {
+   "fr": "Inverse d'un nombre complexe non nul",
+   "en": "Inverse of a nonzero complex number",
+   "status": "aligned",
+   "order": 58
+  },
+  "11bdceffdff1": {
+   "fr": "Tout nombre complexe [[m1]] non nul admet un inverse :",
+   "en": "Every nonzero complex number [[m1]] has an inverse:",
+   "status": "aligned",
+   "order": 59
+  },
+  "b63aa35b64a7": {
+   "fr": "Écrire un quotient sous forme algébrique",
+   "en": "Writing a quotient in algebraic form",
+   "status": "aligned",
+   "order": 60
+  },
+  "12e92978d7b9": {
+   "fr": "On multiplie le numérateur et le dénominateur par le conjugué du dénominateur. Exemple : [[m1]].",
+   "en": "Multiply the numerator and the denominator by the conjugate of the denominator. Example: [[m1]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "7bb257772129": {
+   "fr": "Conjugué et opérations",
+   "en": "Conjugate and operations",
+   "status": "aligned",
+   "order": 62
+  },
+  "639772e55b18": {
+   "fr": "et si [[m1]] : [[m2]] et [[m3]].",
+   "en": "and if [[m1]]: [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "8833dd50ddd2": {
+   "fr": "\\emph{Produit.} Posons [[m1]] et [[m2]]. Alors [[m3]], donc [[m4]]. D'autre part, [[m5]]. Les deux résultats sont égaux.",
+   "en": "\\emph{Product.} Let [[m1]] and [[m2]]. Then [[m3]], so [[m4]]. On the other hand, [[m5]]. The two results are equal.",
+   "status": "aligned",
+   "order": 65
+  },
+  "6837280b08a2": {
+   "fr": "\\emph{Inverse.} Si [[m1]], [[m2]]. Par la propriété du produit, [[m3]], donc [[m4]] est l'inverse de [[m5]]. Le quotient s'en déduit en écrivant [[m6]].",
+   "en": "\\emph{Inverse.} If [[m1]], [[m2]]. By the property of the product, [[m3]], so [[m4]] is the inverse of [[m5]]. The quotient follows by writing [[m6]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "0b99f1eb4512": {
+   "fr": "\\emph{Puissance.} Par récurrence sur [[m1]]. Pour [[m2]] : [[m3]]. Si [[m4]] pour un entier [[m5]], alors [[m6]].",
+   "en": "\\emph{Power.} By induction on [[m1]]. For [[m2]]: [[m3]]. If [[m4]] for some integer [[m5]], then [[m6]].",
+   "status": "aligned",
+   "order": 67
+  },
+  "b69d13ec725c": {
+   "fr": "Équation du premier degré",
+   "en": "Linear equation",
+   "status": "aligned",
+   "order": 69
+  },
+  "0d30513a0fe4": {
+   "fr": "Si [[m1]], l'équation [[m2]] a une unique solution [[m3]], que l'on écrit sous forme algébrique. Exemple : [[m4]] donne [[m5]].",
+   "en": "If [[m1]], the equation [[m2]] has a unique solution [[m3]], which we write in algebraic form. Example: [[m4]] gives [[m5]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "a764daac7531": {
+   "fr": "Équation faisant intervenir [[m1]] et [[m2]]",
+   "en": "Equation involving [[m1]] and [[m2]]",
+   "status": "aligned",
+   "order": 71
+  },
+  "5f3a5ee0788e": {
+   "fr": "On pose [[m1]] avec [[m2]], [[m3]] réels, on écrit chaque membre sous forme algébrique, puis on identifie parties réelles et parties imaginaires. On obtient un système de deux équations réelles.",
+   "en": "Let [[m1]] with [[m2]], [[m3]] real, write each side in algebraic form, then identify real parts and imaginary parts. This gives a system of two real equations.",
+   "status": "aligned",
+   "order": 72
+  },
+  "01ccb9e67d24": {
+   "fr": "Résoudre [[m1]]",
+   "en": "Solving [[m1]]",
+   "status": "aligned",
+   "order": 73
+  },
+  "255927b1d9c2": {
+   "fr": "Avec [[m1]] : [[m2]]. L'identification donne [[m3]] et [[m4]], d'où [[m5]] et [[m6]]. La solution est [[m7]]. Vérification : [[m8]].",
+   "en": "With [[m1]]: [[m2]]. Identification gives [[m3]] and [[m4]], hence [[m5]] and [[m6]]. The solution is [[m7]]. Check: [[m8]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "0537d3e1263d": {
+   "fr": "Pour tous complexes [[m1]], [[m2]] et tout entier naturel [[m3]] :",
+   "en": "For all complex numbers [[m1]], [[m2]] and every natural number [[m3]]:",
+   "status": "aligned",
+   "order": 77
+  },
+  "6a104be77bb0": {
+   "fr": "Par récurrence sur [[m1]]. Pour [[m2]], les deux membres valent [[m3]]. Supposons la formule vraie pour un entier [[m4]]. Alors",
+   "en": "By induction on [[m1]]. For [[m2]], both sides equal [[m3]]. Assume the formula holds for some integer [[m4]]. Then",
+   "status": "aligned",
+   "order": 78
+  },
+  "c702d73191a9": {
+   "fr": "Dans la première somme, on pose [[m1]] : elle devient [[m2]]. En regroupant les termes de même exposant de [[m3]] et en utilisant la relation de Pascal [[m4]] pour [[m5]], on obtient",
+   "en": "In the first sum, set [[m1]]: it becomes [[m2]]. Grouping the terms with the same exponent of [[m3]] and using Pascal's rule [[m4]] for [[m5]], we obtain",
+   "status": "aligned",
+   "order": 79
+  },
+  "5b1a92467526": {
+   "fr": "La formule est vraie au rang [[m1]], donc pour tout entier naturel [[m2]].",
+   "en": "The formula holds for [[m1]], hence for every natural number [[m2]].",
+   "status": "aligned",
+   "order": 80
+  },
+  "20eeded53d47": {
+   "fr": "Une puissance de [[m1]]",
+   "en": "A power of [[m1]]",
+   "status": "aligned",
+   "order": 81
+  },
+  "9ab1bdf03051": {
+   "fr": "[[m1]]. On peut aussi écrire [[m2]], puis [[m3]].",
+   "en": "[[m1]]. One can also write [[m2]], then [[m3]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "2fcd85f23c56": {
+   "fr": "À retenir",
+   "en": "Key points",
+   "status": "aligned",
+   "order": 83
+  },
+  "9e00eeaf7c41": {
+   "fr": "Forme algébrique unique ; [[m1]] ; [[m2]] ; pour un quotient, multiplier par le conjugué du dénominateur ; pour une équation en [[m3]] et [[m4]], poser [[m5]] et identifier.",
+   "en": "Unique algebraic form; [[m1]]; [[m2]]; for a quotient, multiply by the conjugate of the denominator; for an equation in [[m3]] and [[m4]], set [[m5]] and identify.",
+   "status": "aligned",
+   "order": 84
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 85
+  },
+  "5082b2266d0d": {
+   "fr": "Forme algébrique",
+   "en": "Algebraic form",
+   "status": "aligned",
+   "order": 86
+  },
+  "833e566748ec": {
+   "fr": "Écrire sous forme algébrique :",
+   "en": "Write in algebraic form:",
+   "status": "aligned",
+   "order": 87
+  },
+  "0eefd4339d37": {
+   "fr": "[[m1]], donc [[m2]].",
+   "en": "[[m1]], so [[m2]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "c15f6d2923a7": {
+   "fr": "Inverses et quotients",
+   "en": "Inverses and quotients",
+   "status": "aligned",
+   "order": 89
+  },
+  "bb82d224b353": {
+   "fr": "Écrire sous forme algébrique : [[m1]] ; [[m2]] ; [[m3]].",
+   "en": "Write in algebraic form: [[m1]]; [[m2]]; [[m3]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "ed01d0aee3d4": {
+   "fr": "[[m1]]. Ensuite [[m2]]. Enfin [[m3]].",
+   "en": "[[m1]]. Next [[m2]]. Finally [[m3]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "0041ecb3d887": {
+   "fr": "Équations",
+   "en": "Equations",
+   "status": "aligned",
+   "order": 92
+  },
+  "c0f9a58f62ae": {
+   "fr": "Résoudre dans [[m1]] :",
+   "en": "Solve in [[m1]]:",
+   "status": "aligned",
+   "order": 93
+  },
+  "5495cf5a8707": {
+   "fr": "Avec [[m1]] : [[m2]]. L'identification donne [[m3]] et [[m4]], soit [[m5]].",
+   "en": "With [[m1]]: [[m2]]. Identification gives [[m3]] and [[m4]], that is [[m5]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "c5e540971b68": {
+   "fr": "[[m1]], donc [[m2]] et [[m3]] : [[m4]].",
+   "en": "[[m1]], so [[m2]] and [[m3]]: [[m4]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "274394796ef8": {
+   "fr": "Partie réelle et partie imaginaire d'une expression",
+   "en": "Real part and imaginary part of an expression",
+   "status": "aligned",
+   "order": 96
+  },
+  "d677790c53b8": {
+   "fr": "Pour [[m1]] ([[m2]], [[m3]] réels), on pose [[m4]].",
+   "en": "For [[m1]] ([[m2]], [[m3]] real), let [[m4]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "028a6c3fddca": {
+   "fr": "Exprimer [[m1]] et [[m2]] en fonction de [[m3]] et [[m4]].",
+   "en": "Express [[m1]] and [[m2]] in terms of [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "d25cf3b43b7e": {
+   "fr": "Déterminer les nombres complexes [[m1]] pour lesquels [[m2]] est réel.",
+   "en": "Determine the complex numbers [[m1]] for which [[m2]] is real.",
+   "status": "aligned",
+   "order": 101
+  },
+  "1067d4dc0246": {
+   "fr": "[[m1]] et [[m2]]. Donc [[m3]] et [[m4]].",
+   "en": "[[m1]] and [[m2]]. So [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "70c04a6cc598": {
+   "fr": "[[m1]] est réel si et seulement si [[m2]], c'est-à-dire [[m3]] ou [[m4]] : [[m5]] est réel, ou [[m6]] a pour partie réelle [[m7]].",
+   "en": "[[m1]] is real if and only if [[m2]], that is [[m3]] or [[m4]]: [[m5]] is real, or [[m6]] has real part [[m7]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "65242508caa3": {
+   "fr": "Formule du binôme",
+   "en": "Binomial formula",
+   "status": "aligned",
+   "order": 106
+  },
+  "9370876e688b": {
+   "fr": "À l'aide de la formule du binôme, écrire [[m1]] sous forme algébrique.",
+   "en": "Using the binomial formula, write [[m1]] in algebraic form.",
+   "status": "aligned",
+   "order": 107
+  },
+  "837900e68eb5": {
+   "fr": "Retrouver ces deux résultats à partir de [[m1]].",
+   "en": "Recover these two results from [[m1]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "8154bfe23fdd": {
+   "fr": "[[m1]], donc [[m2]], [[m3]] et [[m4]].",
+   "en": "[[m1]], so [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "c64ff83a370b": {
+   "fr": "Un quotient imaginaire pur",
+   "en": "A purely imaginary quotient",
+   "status": "aligned",
+   "order": 111
+  },
+  "929bbc51106d": {
+   "fr": "Soit [[m1]] un nombre complexe tel que [[m2]] et [[m3]]. On pose [[m4]].",
+   "en": "Let [[m1]] be a complex number such that [[m2]] and [[m3]]. Let [[m4]].",
+   "status": "aligned",
+   "order": 112
+  },
+  "9af58fb65b91": {
+   "fr": "Justifier que [[m1]].",
+   "en": "Explain why [[m1]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "1a11fef53dcf": {
+   "fr": "Calculer [[m1]] et démontrer que [[m2]] est imaginaire pur.",
+   "en": "Compute [[m1]] and prove that [[m2]] is purely imaginary.",
+   "status": "aligned",
+   "order": 114
+  },
+  "11b1fbf5d65b": {
+   "fr": "Vérifier le résultat pour [[m1]].",
+   "en": "Check the result for [[m1]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "f05b918695b6": {
+   "fr": "[[m1]] impose [[m2]], et [[m3]].",
+   "en": "[[m1]] forces [[m2]], and [[m3]].",
+   "status": "aligned",
+   "order": 116
+  },
+  "d68718b29623": {
+   "fr": "Par les propriétés du conjugué, [[m1]]. Donc [[m2]] est imaginaire pur.",
+   "en": "By the properties of the conjugate, [[m1]]. So [[m2]] is purely imaginary.",
+   "status": "aligned",
+   "order": 117
+  },
+  "aca0d0f08fac": {
+   "fr": "[[m1]], qui est bien imaginaire pur.",
+   "en": "[[m1]], which is indeed purely imaginary.",
+   "status": "aligned",
+   "order": 118
+  },
+  "2aca00154abe": {
+   "fr": "Somme des puissances de [[m1]]",
+   "en": "Sum of the powers of [[m1]]",
+   "status": "aligned",
+   "order": 119
+  },
+  "a2af5fd2c8b9": {
+   "fr": "Démontrer que, pour tout complexe [[m1]] et tout entier naturel [[m2]], [[m3]].",
+   "en": "Prove that, for every complex number [[m1]] and every natural number [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 120
+  },
+  "20929b4a8c12": {
+   "fr": "En déduire [[m1]].",
+   "en": "Deduce [[m1]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "8267a1bf9283": {
+   "fr": "Retrouver ce résultat en groupant les termes par paquets de quatre.",
+   "en": "Recover this result by grouping the terms in blocks of four.",
+   "status": "aligned",
+   "order": 122
+  },
+  "839d6c836ffa": {
+   "fr": "Si [[m1]], alors [[m2]] (les autres termes se compensent). Comme [[m3]], on divise. La preuve n'utilise que les règles de calcul, valables dans [[m4]].",
+   "en": "If [[m1]], then [[m2]] (the other terms cancel). Since [[m3]], we divide. The proof only uses the rules of computation, which hold in [[m4]].",
+   "status": "aligned",
+   "order": 123
+  },
+  "f6745ae66c1d": {
+   "fr": "[[m1]], donc [[m2]] et [[m3]].",
+   "en": "[[m1]], so [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 124
+  },
+  "010c6b692f28": {
+   "fr": "Quatre puissances consécutives ont pour somme [[m1]]. Les [[m2]] termes forment [[m3]] paquets nuls et il reste [[m4]].",
+   "en": "Four consecutive powers add up to [[m1]]. The [[m2]] terms form [[m3]] blocks with zero sum, and what remains is [[m4]].",
+   "status": "aligned",
+   "order": 125
+  },
+  "91a3fe80ee44": {
+   "fr": "Racines carrées d'un nombre complexe",
+   "en": "Square roots of a complex number",
+   "status": "aligned",
+   "order": 127
+  },
+  "7d72650817dc": {
+   "fr": "On cherche les nombres complexes [[m1]] tels que [[m2]]. On pose [[m3]], avec [[m4]] et [[m5]] réels.",
+   "en": "We look for the complex numbers [[m1]] such that [[m2]]. Let [[m3]], with [[m4]] and [[m5]] real.",
+   "status": "aligned",
+   "order": 128
+  },
+  "f161d820892a": {
+   "fr": "Démontrer que [[m1]] équivaut au système [[m2]] et [[m3]].",
+   "en": "Prove that [[m1]] is equivalent to the system [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 129
+  },
+  "d7499b4aae77": {
+   "fr": "Démontrer que si [[m1]], alors [[m2]], et en déduire [[m3]].",
+   "en": "Prove that if [[m1]], then [[m2]], and deduce that [[m3]].",
+   "status": "aligned",
+   "order": 130
+  },
+  "dac0145761ca": {
+   "fr": "En déduire les deux solutions de l'équation, puis les vérifier.",
+   "en": "Deduce the two solutions of the equation, then check them.",
+   "status": "aligned",
+   "order": 131
+  },
+  "7e463bf06397": {
+   "fr": "Par la même méthode, déterminer les nombres complexes dont le carré est [[m1]].",
+   "en": "By the same method, determine the complex numbers whose square is [[m1]].",
+   "status": "aligned",
+   "order": 132
+  },
+  "9a8ad7d308ee": {
+   "fr": "On considère l'équation [[m1]].",
+   "en": "Consider the equation [[m1]].",
+   "status": "aligned",
+   "order": 133
+  },
+  "bd2e14d5ef9a": {
+   "fr": "Démontrer qu'elle s'écrit [[m1]].",
+   "en": "Prove that it can be written [[m1]].",
+   "status": "aligned",
+   "order": 134
+  },
+  "83d670d5296a": {
+   "fr": "Déterminer les nombres complexes [[m1]] tels que [[m2]].",
+   "en": "Determine the complex numbers [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 135
+  },
+  "775ebefaca41": {
+   "fr": "En déduire les solutions de l'équation et vérifier leur somme et leur produit.",
+   "en": "Deduce the solutions of the equation and check their sum and their product.",
+   "status": "aligned",
+   "order": 136
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 137
+  },
+  "916bb7e855ca": {
+   "fr": "[[m1]]. Par unicité de la forme algébrique, [[m2]] équivaut à [[m3]] et [[m4]].",
+   "en": "[[m1]]. By uniqueness of the algebraic form, [[m2]] is equivalent to [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 138
+  },
+  "5de386fa7741": {
+   "fr": "L'identité [[m1]] se vérifie en développant. Elle donne [[m2]], et comme [[m3]], [[m4]].",
+   "en": "The identity [[m1]] is checked by expanding. It gives [[m2]], and since [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 139
+  },
+  "178db6a97688": {
+   "fr": "En ajoutant puis en soustrayant [[m1]] : [[m2]] et [[m3]]. Comme [[m4]], [[m5]] et [[m6]] ont le même signe : [[m7]] ou [[m8]]. Vérification : [[m9]], et [[m10]].",
+   "en": "Adding and then subtracting [[m1]]: [[m2]] and [[m3]]. Since [[m4]], [[m5]] and [[m6]] have the same sign: [[m7]] or [[m8]]. Check: [[m9]], and [[m10]].",
+   "status": "aligned",
+   "order": 140
+  },
+  "60d155944478": {
+   "fr": "[[m1]], [[m2]] et [[m3]]. Donc [[m4]], [[m5]], [[m6]] et [[m7]] de même signe : [[m8]] ou [[m9]]. Vérification : [[m10]].",
+   "en": "[[m1]], [[m2]] and [[m3]]. So [[m4]], [[m5]], with [[m6]] and [[m7]] of the same sign: [[m8]] or [[m9]]. Check: [[m10]].",
+   "status": "aligned",
+   "order": 141
+  },
+  "2c0e1795968b": {
+   "fr": "[[m1]], donc l'équation s'écrit [[m2]].",
+   "en": "[[m1]], so the equation can be written [[m2]].",
+   "status": "aligned",
+   "order": 142
+  },
+  "d0918bafa647": {
+   "fr": "[[m1]], [[m2]], [[m3]] : [[m4]], [[m5]], d'où [[m6]] ou [[m7]].",
+   "en": "[[m1]], [[m2]], [[m3]]: [[m4]], [[m5]], hence [[m6]] or [[m7]].",
+   "status": "aligned",
+   "order": 143
+  },
+  "7c289f80475d": {
+   "fr": "[[m1]], d'où [[m2]] et [[m3]]. Leur somme vaut [[m4]] et leur produit [[m5]], comme le prévoient les coefficients de l'équation.",
+   "en": "[[m1]], hence [[m2]] and [[m3]]. Their sum is [[m4]] and their product is [[m5]], as the coefficients of the equation predict.",
+   "status": "aligned",
+   "order": 144
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 145
+  },
+  "8ec2ba3d3078": {
+   "fr": "Racines carrées complexes et équations du second degré à coefficients complexes sont des « problèmes possibles » du programme, non exigibles. La question 2 évite le module, introduit au chapitre suivant : on pourra y revenir en remarquant que [[m1]].",
+   "en": "Complex square roots and quadratic equations with complex coefficients are ``possible problems'' of the syllabus, not required. Question 2 avoids the modulus, introduced in the next chapter: one can come back to it by noting that [[m1]].",
+   "status": "aligned",
+   "order": 146
+  },
+  "e39422d2f459": {
+   "fr": "Re",
+   "en": "Re",
+   "status": "aligned",
+   "order": 147
+  },
+  "04ee41167eac": {
+   "fr": "Im",
+   "en": "Im",
+   "status": "aligned",
+   "order": 148
+  }
+ }
+}

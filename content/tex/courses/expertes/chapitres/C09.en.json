@@ -1,0 +1,719 @@
+{
+ "unit": "C09.fr.tex",
+ "segments": {
+  "cff7d0ab91ae": {
+   "fr": "Matrices",
+   "en": "Matrices",
+   "status": "aligned",
+   "order": 0
+  },
+  "5ca899f43872": {
+   "fr": "Opérations, inverse, puissances, systèmes et transformations du plan",
+   "en": "Operations, inverse, powers, systems and transformations of the plane",
+   "status": "aligned",
+   "order": 1
+  },
+  "b333696e58cd": {
+   "fr": "Calculer avec des matrices (somme, produit par un réel, produit) ; déterminer l'inverse d'une matrice d'ordre [[m1]], et d'ordre [[m2]] à la calculatrice ; calculer une puissance, notamment par récurrence ; résoudre un système linéaire sous forme matricielle ; représenter une transformation du plan par une matrice.",
+   "en": "Compute with matrices (sum, product by a real number, product); find the inverse of a matrix of order [[m1]], and of order [[m2]] with a calculator; compute a power, in particular by induction; solve a linear system in matrix form; represent a transformation of the plane by a matrix.",
+   "status": "aligned",
+   "order": 2
+  },
+  "2a12133e841e": {
+   "fr": "Systèmes linéaires de deux équations ; coordonnées de vecteurs ; formules d'addition (chapitre 3) ; raisonnement par récurrence ; suites.",
+   "en": "Linear systems of two equations; coordinates of vectors; addition formulas (chapter 3); proof by induction; sequences.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "fff7fc294d13": {
+   "fr": "Résoudre le système [[m1]] et [[m2]].",
+   "en": "Solve the system [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "697cb16a4592": {
+   "fr": "Calculer le déterminant des vecteurs [[m1]] et [[m2]].",
+   "en": "Compute the determinant of the vectors [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "e9db1238d65b": {
+   "fr": "Donner [[m1]] et [[m2]].",
+   "en": "Give [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "dfa55ceb1d6d": {
+   "fr": "L'image du point [[m1]] par la symétrie d'axe [[m2]] a pour coordonnées ?",
+   "en": "What are the coordinates of the image of the point [[m1]] under the reflection in the axis [[m2]]?",
+   "status": "aligned",
+   "order": 9
+  },
+  "5d7d1f328e49": {
+   "fr": "Développer [[m1]]. Utilise-t-on [[m2]] ?",
+   "en": "Expand [[m1]]. Do we use [[m2]]?",
+   "status": "aligned",
+   "order": 10
+  },
+  "89d88d9a5ae7": {
+   "fr": "On pose [[m1]] et [[m2]]. Exprimer [[m3]] en fonction de [[m4]].",
+   "en": "Let [[m1]] and [[m2]]. Express [[m3]] in terms of [[m4]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "54c03d5513a8": {
+   "fr": "[[m1]] : on regroupe [[m2]] en [[m3]], ce qui utilise [[m4]]. Ce ne sera plus possible avec des matrices.",
+   "en": "[[m1]]: we group [[m2]] into [[m3]], which uses [[m4]]. This will no longer be possible with matrices.",
+   "status": "aligned",
+   "order": 15
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 16
+  },
+  "673787535ccd": {
+   "fr": "Faire tourner et étirer une figure",
+   "en": "Turning and stretching a figure",
+   "status": "aligned",
+   "order": 17
+  },
+  "15b750412480": {
+   "fr": "40 min",
+   "en": "40 min",
+   "status": "aligned",
+   "order": 18
+  },
+  "c1ca5da2dbd2": {
+   "fr": "On représente un point [[m1]] par la colonne [[m2]]. Pour une matrice [[m3]], on définit le produit [[m4]] : c'est la colonne d'un nouveau point.",
+   "en": "We represent a point [[m1]] by the column [[m2]]. For a matrix [[m3]], we define the product [[m4]]: it is the column of a new point.",
+   "status": "aligned",
+   "order": 19
+  },
+  "6134527e4e7d": {
+   "fr": "On pose [[m1]]. Calculer les images par [[m2]] des sommets du triangle [[m3]], [[m4]], [[m5]]. Tracer les deux triangles. Quelle transformation reconnaît-on ?",
+   "en": "Let [[m1]]. Compute the images under [[m2]] of the vertices of the triangle [[m3]], [[m4]], [[m5]]. Draw both triangles. Which transformation do you recognise?",
+   "status": "aligned",
+   "order": 20
+  },
+  "7509787502ef": {
+   "fr": "On pose [[m1]]. Même question.",
+   "en": "Let [[m1]]. Same question.",
+   "status": "aligned",
+   "order": 21
+  },
+  "34acc58d54f6": {
+   "fr": "Calculer [[m1]] pour [[m2]] quelconque. Trouver une matrice [[m3]] telle que [[m4]] pour tout [[m5]].",
+   "en": "Compute [[m1]] for any [[m2]]. Find a matrix [[m3]] such that [[m4]] for every [[m5]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "caf5219ad6a7": {
+   "fr": "Calculer de même [[m1]] et la matrice correspondante. Les deux transformations composées sont-elles les mêmes ? Le vérifier sur le point [[m2]].",
+   "en": "Compute likewise [[m1]] and the corresponding matrix. Are the two composite transformations the same? Check on the point [[m2]].",
+   "status": "aligned",
+   "order": 23
+  },
+  "36dccde09fbd": {
+   "fr": "Proposer une règle pour calculer directement [[m1]] à partir de [[m2]] et [[m3]] : c'est le produit matriciel [[m4]].",
+   "en": "Suggest a rule for computing [[m1]] directly from [[m2]] and [[m3]]: it is the matrix product [[m4]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 25
+  },
+  "75170d32ac80": {
+   "fr": "[[m1]], [[m2]], [[m3]] : rotation de centre [[m4]] et d'angle [[m5]].",
+   "en": "[[m1]], [[m2]], [[m3]]: rotation with centre [[m4]] and angle [[m5]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "c05c4224a970": {
+   "fr": "[[m1]], [[m2]], [[m3]] : étirement de rapport [[m4]] parallèlement à l'axe des abscisses.",
+   "en": "[[m1]], [[m2]], [[m3]]: stretch with factor [[m4]] parallel to the horizontal axis.",
+   "status": "aligned",
+   "order": 27
+  },
+  "ef0c2b8663d0": {
+   "fr": "[[m1]] puis [[m2]], donc [[m3]].",
+   "en": "[[m1]] then [[m2]], so [[m3]].",
+   "status": "aligned",
+   "order": 28
+  },
+  "3b662c511ae9": {
+   "fr": "[[m1]] puis [[m2]], de matrice [[m3]]. Les transformations diffèrent : [[m4]] a pour image [[m5]] dans le premier cas et [[m6]] dans le second.",
+   "en": "[[m1]] then [[m2]], with matrix [[m3]]. The transformations differ: [[m4]] has image [[m5]] in the first case and [[m6]] in the second.",
+   "status": "aligned",
+   "order": 29
+  },
+  "e90befb785b4": {
+   "fr": "Le coefficient de ligne [[m1]] et de colonne [[m2]] de [[m3]] s'obtient en multipliant la ligne [[m4]] de [[m5]] par la colonne [[m6]] de [[m7]], terme à terme, puis en additionnant. L'ordre compte : [[m8]].",
+   "en": "The entry in row [[m1]] and column [[m2]] of [[m3]] is obtained by multiplying row [[m4]] of [[m5]] by column [[m6]] of [[m7]], term by term, and adding. The order matters: [[m8]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 31
+  },
+  "c85de79934c4": {
+   "fr": "Faire tracer les figures sur papier quadrillé ou avec un logiciel. La non-commutativité doit apparaître comme une constatation géométrique (étirer puis tourner, ou tourner puis étirer) avant d'être une règle de calcul.",
+   "en": "Have the figures drawn on squared paper or with software. Non-commutativity should appear as a geometric observation (stretch then turn, or turn then stretch) before it becomes a rule of computation.",
+   "status": "aligned",
+   "order": 32
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 33
+  },
+  "f14e5b7ed7eb": {
+   "fr": "Vocabulaire et opérations",
+   "en": "Vocabulary and operations",
+   "status": "aligned",
+   "order": 34
+  },
+  "84e05cfecda4": {
+   "fr": "Matrice",
+   "en": "Matrix",
+   "status": "aligned",
+   "order": 35
+  },
+  "d8defd15d16c": {
+   "fr": "Une \\emph{matrice} de taille [[m1]] est un tableau de nombres réels à [[m2]] lignes et [[m3]] colonnes. Le coefficient de ligne [[m4]] et de colonne [[m5]] de [[m6]] est noté [[m7]]. Une matrice [[m8]] est une matrice \\emph{colonne}, une matrice [[m9]] une matrice \\emph{ligne}, une matrice [[m10]] une matrice \\emph{carrée} d'ordre [[m11]]. La matrice \\emph{identité} [[m12]] a des [[m13]] sur la diagonale et des [[m14]] ailleurs ; la matrice \\emph{nulle} n'a que des [[m15]]. Une matrice carrée est \\emph{diagonale} si ses coefficients hors de la diagonale sont nuls.",
+   "en": "A \\emph{matrix} of size [[m1]] is an array of real numbers with [[m2]] rows and [[m3]] columns. The entry in row [[m4]] and column [[m5]] of [[m6]] is written [[m7]]. An [[m8]] matrix is a \\emph{column} matrix, a [[m9]] matrix a \\emph{row} matrix, an [[m10]] matrix a \\emph{square} matrix of order [[m11]]. The \\emph{identity} matrix [[m12]] has [[m13]]s on the diagonal and [[m14]]s elsewhere; the \\emph{zero} matrix has only [[m15]]s. A square matrix is \\emph{diagonal} if its entries off the diagonal are zero.",
+   "status": "aligned",
+   "order": 36
+  },
+  "59a53d51a27a": {
+   "fr": "Somme, produit par un réel, produit",
+   "en": "Sum, product by a real number, product",
+   "status": "aligned",
+   "order": 37
+  },
+  "00b19ae0f076": {
+   "fr": "Pour [[m1]] et [[m2]] de même taille et [[m3]] réel, [[m4]] et [[m5]] se calculent coefficient par coefficient.",
+   "en": "For [[m1]] and [[m2]] of the same size and [[m3]] real, [[m4]] and [[m5]] are computed entry by entry.",
+   "status": "aligned",
+   "order": 38
+  },
+  "43b207dd8cc7": {
+   "fr": "Si [[m1]] est de taille [[m2]] et [[m3]] de taille [[m4]], le produit [[m5]] est la matrice [[m6]] de coefficients",
+   "en": "If [[m1]] has size [[m2]] and [[m3]] has size [[m4]], the product [[m5]] is the [[m6]] matrix with entries",
+   "status": "aligned",
+   "order": 39
+  },
+  "02b2d626cf13": {
+   "fr": "Un produit",
+   "en": "A product",
+   "status": "aligned",
+   "order": 40
+  },
+  "a923caa84593": {
+   "fr": "Règles de calcul",
+   "en": "Rules of computation",
+   "status": "aligned",
+   "order": 41
+  },
+  "ea9b9db7300b": {
+   "fr": "Lorsque les produits sont définis : [[m1]], [[m2]], [[m3]], [[m4]], et [[m5]] pour [[m6]] carrée d'ordre [[m7]].",
+   "en": "When the products are defined: [[m1]], [[m2]], [[m3]], [[m4]], and [[m5]] for [[m6]] square of order [[m7]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "4aa4a26096cc": {
+   "fr": "En général [[m1]] ; par suite [[m2]], et non [[m3]].",
+   "en": "In general [[m1]]; consequently [[m2]], and not [[m3]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "66390a5abe39": {
+   "fr": "Un produit peut être nul sans qu'aucun facteur le soit : [[m1]].",
+   "en": "A product can be zero without either factor being zero: [[m1]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "09141baec3c0": {
+   "fr": "Puissances",
+   "en": "Powers",
+   "status": "aligned",
+   "order": 45
+  },
+  "0e16b4d7723e": {
+   "fr": "Puissances d'une matrice carrée",
+   "en": "Powers of a square matrix",
+   "status": "aligned",
+   "order": 46
+  },
+  "50175a298cb0": {
+   "fr": "Pour [[m1]] carrée d'ordre [[m2]], on pose [[m3]] et [[m4]] pour tout entier naturel [[m5]].",
+   "en": "For [[m1]] square of order [[m2]], let [[m3]] and [[m4]] for every natural number [[m5]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "4c24e445cd69": {
+   "fr": "Conjecturer puis démontrer par récurrence",
+   "en": "Conjecture, then prove by induction",
+   "status": "aligned",
+   "order": 48
+  },
+  "9b4d1d4de45a": {
+   "fr": "Pour [[m1]], on calcule [[m2]], [[m3]] et l'on conjecture [[m4]]. C'est vrai pour [[m5]] ; si c'est vrai au rang [[m6]], alors [[m7]].",
+   "en": "For [[m1]], we compute [[m2]], [[m3]] and conjecture [[m4]]. This is true for [[m5]]; if it is true for [[m6]], then [[m7]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "b5389914b08f": {
+   "fr": "Matrice diagonale",
+   "en": "Diagonal matrix",
+   "status": "aligned",
+   "order": 50
+  },
+  "f70b3bceec35": {
+   "fr": "Si [[m1]] est diagonale de coefficients diagonaux [[m2]], alors [[m3]] est diagonale de coefficients [[m4]].",
+   "en": "If [[m1]] is diagonal with diagonal entries [[m2]], then [[m3]] is diagonal with entries [[m4]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "28466ff8d9ac": {
+   "fr": "Inverse et systèmes",
+   "en": "Inverse and systems",
+   "status": "aligned",
+   "order": 52
+  },
+  "8b6b8171fbab": {
+   "fr": "Matrice inversible",
+   "en": "Invertible matrix",
+   "status": "aligned",
+   "order": 53
+  },
+  "d12920e30dd1": {
+   "fr": "Une matrice carrée [[m1]] d'ordre [[m2]] est \\emph{inversible} s'il existe une matrice [[m3]] telle que [[m4]]. Cette matrice est unique ; on la note [[m5]].",
+   "en": "A square matrix [[m1]] of order [[m2]] is \\emph{invertible} if there is a matrix [[m3]] such that [[m4]]. This matrix is unique; it is written [[m5]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "58c05e2b99fd": {
+   "fr": "Inverse d'une matrice d'ordre 2",
+   "en": "Inverse of a matrix of order 2",
+   "status": "aligned",
+   "order": 55
+  },
+  "abae95d58d9a": {
+   "fr": "Soit [[m1]]. La matrice [[m2]] est inversible si et seulement si [[m3]], et alors",
+   "en": "Let [[m1]]. The matrix [[m2]] is invertible if and only if [[m3]], and then",
+   "status": "aligned",
+   "order": 56
+  },
+  "5520d1ff6765": {
+   "fr": "Le nombre [[m1]] est le \\emph{déterminant} de [[m2]], noté [[m3]].",
+   "en": "The number [[m1]] is the \\emph{determinant} of [[m2]], written [[m3]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "9e3d3449b4da": {
+   "fr": "Posons [[m1]]. Le calcul donne [[m2]]. Si [[m3]], la matrice [[m4]] est donc l'inverse de [[m5]].",
+   "en": "Let [[m1]]. Computation gives [[m2]]. If [[m3]], the matrix [[m4]] is therefore the inverse of [[m5]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "72f75fb0dad5": {
+   "fr": "Si [[m1]], alors [[m2]]. Supposons [[m3]] inversible : en multipliant à gauche par [[m4]], on obtient [[m5]], donc [[m6]] et [[m7]] est nulle. Mais la matrice nulle n'est pas inversible ([[m8]]) : contradiction.",
+   "en": "If [[m1]], then [[m2]]. Suppose [[m3]] is invertible: multiplying on the left by [[m4]] gives [[m5]], so [[m6]] and [[m7]] is zero. But the zero matrix is not invertible ([[m8]]): a contradiction.",
+   "status": "aligned",
+   "order": 59
+  },
+  "666a370913e5": {
+   "fr": "Systèmes linéaires",
+   "en": "Linear systems",
+   "status": "aligned",
+   "order": 60
+  },
+  "83755ef9a590": {
+   "fr": "Un système linéaire de [[m1]] équations à [[m2]] inconnues s'écrit [[m3]], où [[m4]] est la matrice des coefficients, [[m5]] la colonne des inconnues et [[m6]] la colonne des seconds membres. Si [[m7]] est inversible, le système a une unique solution : [[m8]].",
+   "en": "A linear system of [[m1]] equations in [[m2]] unknowns can be written [[m3]], where [[m4]] is the matrix of coefficients, [[m5]] the column of unknowns and [[m6]] the column of right-hand sides. If [[m7]] is invertible, the system has a unique solution: [[m8]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "883d47b25cb1": {
+   "fr": "Si [[m1]], alors [[m2]], soit [[m3]]. Réciproquement, [[m4]].",
+   "en": "If [[m1]], then [[m2]], that is [[m3]]. Conversely, [[m4]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "a050431896e3": {
+   "fr": "Ordre 3 : calculatrice et vérification",
+   "en": "Order 3: calculator and check",
+   "status": "aligned",
+   "order": 63
+  },
+  "e3aa30e8b490": {
+   "fr": "Pour une matrice d'ordre [[m1]], on obtient [[m2]] à la calculatrice ou avec un logiciel, puis on contrôle à la main un ou deux coefficients de [[m3]].",
+   "en": "For a matrix of order [[m1]], obtain [[m2]] with a calculator or software, then check one or two entries of [[m3]] by hand.",
+   "status": "aligned",
+   "order": 64
+  },
+  "13ec383ac68d": {
+   "fr": "Transformations du plan et suites",
+   "en": "Transformations of the plane and sequences",
+   "status": "aligned",
+   "order": 65
+  },
+  "7cd584526874": {
+   "fr": "Matrice d'une rotation",
+   "en": "Matrix of a rotation",
+   "status": "aligned",
+   "order": 66
+  },
+  "04b08b2878c1": {
+   "fr": "La rotation de centre [[m1]] et d'angle [[m2]] transforme le point de colonne [[m3]] en le point de colonne [[m4]], avec",
+   "en": "The rotation with centre [[m1]] and angle [[m2]] maps the point with column [[m3]] to the point with column [[m4]], where",
+   "status": "aligned",
+   "order": 67
+  },
+  "7b0513579221": {
+   "fr": "Le point [[m1]] a pour affixe [[m2]], et son image a pour affixe [[m3]] (chapitre 3) : ce sont les coefficients de [[m4]].",
+   "en": "The point [[m1]] has affix [[m2]], and its image has affix [[m3]] (chapter 3): these are the entries of [[m4]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "ae31854b5652": {
+   "fr": "Suite définie par une matrice",
+   "en": "Sequence defined by a matrix",
+   "status": "aligned",
+   "order": 69
+  },
+  "e1eb7f14be5d": {
+   "fr": "Si [[m1]] pour tout [[m2]], alors [[m3]] (récurrence immédiate). Une suite définie par [[m4]] s'y ramène avec [[m5]] et [[m6]].",
+   "en": "If [[m1]] for every [[m2]], then [[m3]] (immediate induction). A sequence defined by [[m4]] reduces to this with [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 71
+  },
+  "009b0e4febd1": {
+   "fr": "Calculs",
+   "en": "Computations",
+   "status": "aligned",
+   "order": 72
+  },
+  "38972b93ffca": {
+   "fr": "On pose [[m1]] et [[m2]]. Calculer [[m3]], [[m4]], [[m5]] et [[m6]].",
+   "en": "Let [[m1]] and [[m2]]. Compute [[m3]], [[m4]], [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "3faf70043531": {
+   "fr": "[[m1]], [[m2]], [[m3]], [[m4]]. On constate que [[m5]].",
+   "en": "[[m1]], [[m2]], [[m3]], [[m4]]. We see that [[m5]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "e348ae925086": {
+   "fr": "Inverse et système d'ordre 2",
+   "en": "Inverse and system of order 2",
+   "status": "aligned",
+   "order": 75
+  },
+  "8730ffb49230": {
+   "fr": "Justifier que [[m1]] est inversible et déterminer [[m2]].",
+   "en": "Explain why [[m1]] is invertible and find [[m2]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "6285458c8d31": {
+   "fr": "En déduire la solution du système [[m1]], [[m2]].",
+   "en": "Deduce the solution of the system [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "76a0371b1aa5": {
+   "fr": "Système d'ordre 3",
+   "en": "System of order 3",
+   "status": "aligned",
+   "order": 80
+  },
+  "6e69791ec9e3": {
+   "fr": "On considère le système [[m1]], [[m2]], [[m3]].",
+   "en": "Consider the system [[m1]], [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "0f58234c5545": {
+   "fr": "L'écrire sous la forme [[m1]].",
+   "en": "Write it in the form [[m1]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "465fad4c7f5d": {
+   "fr": "À la calculatrice, déterminer [[m1]], puis la solution du système.",
+   "en": "With a calculator, find [[m1]], then the solution of the system.",
+   "status": "aligned",
+   "order": 83
+  },
+  "7ec1baf76315": {
+   "fr": "Vérifier la solution à la main.",
+   "en": "Check the solution by hand.",
+   "status": "aligned",
+   "order": 84
+  },
+  "57d2282e8d6b": {
+   "fr": "Le système s'écrit [[m1]] avec",
+   "en": "The system can be written [[m1]] with",
+   "status": "aligned",
+   "order": 85
+  },
+  "a4f5e6b21013": {
+   "fr": "La calculatrice donne",
+   "en": "The calculator gives",
+   "status": "aligned",
+   "order": 86
+  },
+  "e8edcd638daa": {
+   "fr": "Puissances par récurrence",
+   "en": "Powers by induction",
+   "status": "aligned",
+   "order": 87
+  },
+  "c92897f74dc0": {
+   "fr": "On pose [[m1]]. Calculer [[m2]] et [[m3]], conjecturer l'expression de [[m4]] pour [[m5]], puis la démontrer par récurrence.",
+   "en": "Let [[m1]]. Compute [[m2]] and [[m3]], conjecture an expression of [[m4]] for [[m5]], then prove it by induction.",
+   "status": "aligned",
+   "order": 88
+  },
+  "6455afd6366a": {
+   "fr": "[[m1]], [[m2]]. Conjecture : [[m3]]. Vraie pour [[m4]]. Si elle l'est au rang [[m5]] :",
+   "en": "[[m1]], [[m2]]. Conjecture: [[m3]]. True for [[m4]]. If it holds for [[m5]]:",
+   "status": "aligned",
+   "order": 89
+  },
+  "4da15ac61b26": {
+   "fr": "et [[m1]] : la formule est vraie au rang [[m2]].",
+   "en": "and [[m1]]: the formula holds for [[m2]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "e58355eb3e30": {
+   "fr": "Une relation polynomiale",
+   "en": "A polynomial relation",
+   "status": "aligned",
+   "order": 91
+  },
+  "05d22cc11e34": {
+   "fr": "On pose [[m1]].",
+   "en": "Let [[m1]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "393b89144f97": {
+   "fr": "Vérifier que [[m1]].",
+   "en": "Check that [[m1]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "c9aa1a6c3a4c": {
+   "fr": "En déduire que [[m1]] est inversible et exprimer [[m2]] en fonction de [[m3]] et [[m4]]. Contrôler avec la formule du cours.",
+   "en": "Deduce that [[m1]] is invertible and express [[m2]] in terms of [[m3]] and [[m4]]. Check with the formula of the course.",
+   "status": "aligned",
+   "order": 94
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "cc9324da5327": {
+   "fr": "[[m1]] s'écrit [[m2]], et de même [[m3]]. Donc [[m4]]. Avec le cours : [[m5]] et [[m6]], le même résultat.",
+   "en": "[[m1]] can be written [[m2]], and likewise [[m3]]. So [[m4]]. With the course: [[m5]] and [[m6]], the same result.",
+   "status": "aligned",
+   "order": 96
+  },
+  "57e9da1f6d15": {
+   "fr": "Rotations",
+   "en": "Rotations",
+   "status": "aligned",
+   "order": 97
+  },
+  "4fe1d54669fb": {
+   "fr": "À l'aide des formules d'addition, démontrer que [[m1]].",
+   "en": "Using the addition formulas, prove that [[m1]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "20929b4a8c12": {
+   "fr": "En déduire [[m1]].",
+   "en": "Deduce [[m1]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "b1fffb17346e": {
+   "fr": "Déterminer l'image du point [[m1]] par la rotation de centre [[m2]] et d'angle [[m3]].",
+   "en": "Find the image of the point [[m1]] under the rotation with centre [[m2]] and angle [[m3]].",
+   "status": "aligned",
+   "order": 100
+  },
+  "05beda5cf0ef": {
+   "fr": "Le coefficient de ligne [[m1]] et colonne [[m2]] du produit vaut [[m3]] ; celui de ligne [[m4]] et colonne [[m5]] vaut [[m6]]. Les deux autres s'obtiennent de même.",
+   "en": "The entry in row [[m1]] and column [[m2]] of the product is [[m3]]; the entry in row [[m4]] and column [[m5]] is [[m6]]. The other two are obtained in the same way.",
+   "status": "aligned",
+   "order": 101
+  },
+  "f57ce4e970bf": {
+   "fr": "Par récurrence, [[m1]].",
+   "en": "By induction, [[m1]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "30f5993df535": {
+   "fr": "[[m1]] : le point [[m2]].",
+   "en": "[[m1]]: the point [[m2]].",
+   "status": "aligned",
+   "order": 103
+  },
+  "1d0aa2147f44": {
+   "fr": "Une parabole par trois points",
+   "en": "A parabola through three points",
+   "status": "aligned",
+   "order": 104
+  },
+  "e821cc862422": {
+   "fr": "Déterminer les réels [[m1]], [[m2]], [[m3]] tels que la parabole d'équation [[m4]] passe par les points [[m5]], [[m6]] et [[m7]]. On écrira le système sous forme matricielle.",
+   "en": "Find the real numbers [[m1]], [[m2]], [[m3]] such that the parabola with equation [[m4]] passes through the points [[m5]], [[m6]] and [[m7]]. Write the system in matrix form.",
+   "status": "aligned",
+   "order": 105
+  },
+  "cccc24babdbf": {
+   "fr": "Le système est",
+   "en": "The system is",
+   "status": "aligned",
+   "order": 106
+  },
+  "16d289652a74": {
+   "fr": "En soustrayant les équations consécutives : [[m1]] et [[m2]], donc [[m3]], [[m4]], puis [[m5]]. Vérification : [[m6]], [[m7]], [[m8]].",
+   "en": "Subtracting consecutive equations: [[m1]] and [[m2]], so [[m3]], [[m4]], then [[m5]]. Check: [[m6]], [[m7]], [[m8]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "83ea735a88b2": {
+   "fr": "La suite de Fibonacci et l'identité de Cassini",
+   "en": "The Fibonacci sequence and Cassini's identity",
+   "status": "aligned",
+   "order": 109
+  },
+  "e9f61207f70c": {
+   "fr": "La suite de Fibonacci est définie par [[m1]], [[m2]] et [[m3]] pour tout [[m4]]. On pose [[m5]].",
+   "en": "The Fibonacci sequence is defined by [[m1]], [[m2]] and [[m3]] for every [[m4]]. Let [[m5]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "9d38de42809d": {
+   "fr": "Calculer [[m1]] et [[m2]], [[m3]].",
+   "en": "Compute [[m1]] and [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 111
+  },
+  "26b9c5c89904": {
+   "fr": "Démontrer par récurrence que, pour tout [[m1]], [[m2]].",
+   "en": "Prove by induction that, for every [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 112
+  },
+  "4f6130db74a6": {
+   "fr": "Démontrer que pour toutes matrices [[m1]] et [[m2]] d'ordre [[m3]], [[m4]]. On posera [[m5]] et [[m6]].",
+   "en": "Prove that for all matrices [[m1]] and [[m2]] of order [[m3]], [[m4]]. Let [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "28a8f4f382ac": {
+   "fr": "En déduire que [[m1]], puis l'identité de Cassini : [[m2]] pour [[m3]].",
+   "en": "Deduce that [[m1]], then Cassini's identity: [[m2]] for [[m3]].",
+   "status": "aligned",
+   "order": 114
+  },
+  "450658a8abc2": {
+   "fr": "Vérifier l'identité pour [[m1]].",
+   "en": "Check the identity for [[m1]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "40801681f828": {
+   "fr": "En utilisant [[m1]], démontrer que [[m2]] pour [[m3]].",
+   "en": "Using [[m1]], prove that [[m2]] for [[m3]].",
+   "status": "aligned",
+   "order": 116
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 117
+  },
+  "dc10f0fbc010": {
+   "fr": "Pour [[m1]] : [[m2]]. Si la formule est vraie au rang [[m3]], alors",
+   "en": "For [[m1]]: [[m2]]. If the formula holds for [[m3]], then",
+   "status": "aligned",
+   "order": 118
+  },
+  "93e7106db957": {
+   "fr": "[[m1]]. Son déterminant vaut [[m2]]. Après développement, les termes [[m3]] et [[m4]] se simplifient avec leurs opposés, et il reste [[m5]].",
+   "en": "[[m1]]. Its determinant is [[m2]]. After expanding, the terms [[m3]] and [[m4]] cancel with their opposites, and what remains is [[m5]].",
+   "status": "aligned",
+   "order": 119
+  },
+  "6c64fa3e5bf9": {
+   "fr": "Par récurrence, [[m1]]. Avec la question 2, [[m2]].",
+   "en": "By induction, [[m1]]. With question 2, [[m2]].",
+   "status": "aligned",
+   "order": 120
+  },
+  "1f9c8880cb02": {
+   "fr": "Le coefficient de ligne [[m1]] et colonne [[m2]] de [[m3]] est [[m4]] ; celui de [[m5]] est [[m6]].",
+   "en": "The entry in row [[m1]] and column [[m2]] of [[m3]] is [[m4]]; that of [[m5]] is [[m6]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 122
+  },
+  "c51967cff663": {
+   "fr": "Le déterminant d'ordre [[m1]] est utilisé pour l'inverse ; sa multiplicativité n'est pas au programme et elle est démontrée ici par calcul. Prolongement possible : le chiffrement de Hill, qui chiffre des paires de lettres avec une matrice d'ordre [[m2]] inversible modulo [[m3]], cité parmi les problèmes possibles du programme.",
+   "en": "The determinant of order [[m1]] is used for the inverse; its multiplicativity is not in the syllabus and is proved here by computation. Possible extension: the Hill cipher, which encrypts pairs of letters with a matrix of order [[m2]] invertible modulo [[m3]], listed among the possible problems of the syllabus.",
+   "status": "aligned",
+   "order": 123
+  },
+  "a5bc1d9b2ae7": {
+   "fr": "et",
+   "en": "and",
+   "status": "aligned",
+   "order": 124
+  }
+ }
+}

@@ -1,0 +1,701 @@
+{
+ "unit": "C03.fr.tex",
+ "segments": {
+  "526f56e483b8": {
+   "fr": "Nombres complexes et trigonométrie",
+   "en": "Complex numbers and trigonometry",
+   "status": "aligned",
+   "order": 0
+  },
+  "ef2213d644d7": {
+   "fr": "Formules d'addition, forme exponentielle, formules de Moivre et d'Euler",
+   "en": "Addition formulas, exponential form, de Moivre's and Euler's formulas",
+   "status": "aligned",
+   "order": 1
+  },
+  "c291c46c939d": {
+   "fr": "Établir les formules d'addition et de duplication ; écrire un nombre complexe sous forme exponentielle et choisir la forme adaptée à un calcul ; calculer des puissances ; utiliser les formules de Moivre et d'Euler pour transformer des expressions trigonométriques.",
+   "en": "Establish the addition and double-angle formulas; write a complex number in exponential form and choose the form suited to a computation; compute powers; use de Moivre's and Euler's formulas to transform trigonometric expressions.",
+   "status": "aligned",
+   "order": 2
+  },
+  "745b2e9571a7": {
+   "fr": "Chapitre 2 ; produit scalaire (première) ; propriétés algébriques de la fonction exponentielle ; cercle trigonométrique et angles associés.",
+   "en": "Chapter 2; scalar product (Première); algebraic properties of the exponential function; unit circle and associated angles.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "e9db1238d65b": {
+   "fr": "Donner [[m1]] et [[m2]].",
+   "en": "Give [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "34e112ac8a0e": {
+   "fr": "Exprimer [[m1]] et [[m2]] à l'aide de [[m3]] ou [[m4]].",
+   "en": "Express [[m1]] and [[m2]] in terms of [[m3]] or [[m4]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "915b890e1685": {
+   "fr": "Rappeler deux expressions du produit scalaire [[m1]].",
+   "en": "Recall two expressions of the scalar product [[m1]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "72cc18db1159": {
+   "fr": "Simplifier [[m1]] et [[m2]].",
+   "en": "Simplify [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "1859fb9327ba": {
+   "fr": "Donner le module et un argument de [[m1]].",
+   "en": "Give the modulus and an argument of [[m1]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "e99f037aa14b": {
+   "fr": "[[m1]], et en repère orthonormé [[m2]].",
+   "en": "[[m1]], and in an orthonormal frame [[m2]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "b60ca9b01288": {
+   "fr": "[[m1]] ou [[m2]].",
+   "en": "[[m1]] or [[m2]].",
+   "status": "aligned",
+   "order": 17
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 19
+  },
+  "0327b7ca299d": {
+   "fr": "Une fonction qui transforme les sommes en produits",
+   "en": "A function that turns sums into products",
+   "status": "aligned",
+   "order": 20
+  },
+  "a12a2174c266": {
+   "fr": "35 min",
+   "en": "35 min",
+   "status": "aligned",
+   "order": 21
+  },
+  "dcff94781629": {
+   "fr": "Pour tout réel [[m1]], on pose [[m2]].",
+   "en": "For every real number [[m1]], let [[m2]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "7e1600b9f851": {
+   "fr": "Calculer [[m1]], [[m2]], [[m3]]. Quel est le module de [[m4]] ? Où se trouve l'image de [[m5]] ?",
+   "en": "Compute [[m1]], [[m2]], [[m3]]. What is the modulus of [[m4]]? Where does the image of [[m5]] lie?",
+   "status": "aligned",
+   "order": 23
+  },
+  "1ff0f75b017d": {
+   "fr": "Écrire [[m1]] et [[m2]] sous forme algébrique, puis calculer le produit [[m3]]. Le comparer à [[m4]].",
+   "en": "Write [[m1]] and [[m2]] in algebraic form, then compute the product [[m3]]. Compare it with [[m4]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "906b9a660e39": {
+   "fr": "Calculer de même [[m1]] et le comparer à [[m2]].",
+   "en": "Compute likewise [[m1]] and compare it with [[m2]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "41a5fdf28041": {
+   "fr": "À l'aide d'une calculatrice ou d'un tableur, comparer [[m1]] et [[m2]] pour trois couples [[m3]] choisis au hasard.",
+   "en": "With a calculator or a spreadsheet, compare [[m1]] and [[m2]] for three pairs [[m3]] chosen at random.",
+   "status": "aligned",
+   "order": 26
+  },
+  "e4ecdbecff95": {
+   "fr": "Quelle fonction connue vérifie une relation du même type, [[m1]] et [[m2]] ?",
+   "en": "Which known function satisfies a relation of the same kind, [[m1]] and [[m2]]?",
+   "status": "aligned",
+   "order": 27
+  },
+  "38248f801585": {
+   "fr": "Développer [[m1]]. Quelles formules de trigonométrie faudrait-il connaître pour démontrer la conjecture ?",
+   "en": "Expand [[m1]]. Which trigonometric formulas would one need to know to prove the conjecture?",
+   "status": "aligned",
+   "order": 28
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 29
+  },
+  "bf86ce9cbf81": {
+   "fr": "[[m1]], [[m2]], [[m3]]. [[m4]] : l'image est sur le cercle de centre [[m5]] et de rayon [[m6]].",
+   "en": "[[m1]], [[m2]], [[m3]]. [[m4]]: the image lies on the circle with centre [[m5]] and radius [[m6]].",
+   "status": "aligned",
+   "order": 30
+  },
+  "f22bfb2024da": {
+   "fr": "[[m1]] et [[m2]]. Le produit vaut [[m3]].",
+   "en": "[[m1]] and [[m2]]. The product is [[m3]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "45bb61c1c915": {
+   "fr": "Les deux nombres coïncident aux erreurs d'arrondi près. Conjecture : [[m1]].",
+   "en": "The two numbers agree up to rounding errors. Conjecture: [[m1]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "fe10b547b1c7": {
+   "fr": "La fonction exponentielle : [[m1]] et [[m2]].",
+   "en": "The exponential function: [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 33
+  },
+  "fb93a6f7e756": {
+   "fr": "[[m1]]. Il faut savoir que [[m2]] et [[m3]] : ce sont les formules d'addition, démontrées dans le cours.",
+   "en": "[[m1]]. One needs to know that [[m2]] and [[m3]]: these are the addition formulas, proved in the course.",
+   "status": "aligned",
+   "order": 34
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 35
+  },
+  "604c059a3936": {
+   "fr": "La question 4 n'apporte que des indices numériques ; insister sur le fait qu'elle ne démontre rien. On peut ajouter, pour les élèves rapides, une remarque hors programme : la « dérivée » de [[m1]] vaut [[m2]], comme [[m3]] avec [[m4]]. Cela motive la notation [[m5]].",
+   "en": "Question 4 only brings numerical evidence; insist that it proves nothing. For quick students, one may add a remark beyond the syllabus: the ``derivative'' of [[m1]] is [[m2]], just as [[m3]] with [[m4]]. This motivates the notation [[m5]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 37
+  },
+  "703cabe1b503": {
+   "fr": "Formules d'addition et de duplication",
+   "en": "Addition and double-angle formulas",
+   "status": "aligned",
+   "order": 38
+  },
+  "30b01717fa63": {
+   "fr": "Formules d'addition",
+   "en": "Addition formulas",
+   "status": "aligned",
+   "order": 39
+  },
+  "fe8b8ba239ee": {
+   "fr": "Pour tous réels [[m1]] et [[m2]] :",
+   "en": "For all real numbers [[m1]] and [[m2]]:",
+   "status": "aligned",
+   "order": 40
+  },
+  "a3a9f2c8345b": {
+   "fr": "Dans un repère orthonormé direct, soit [[m1]] et [[m2]] : ces vecteurs sont unitaires et [[m3]], [[m4]]. Par la relation de Chasles, [[m5]]. On calcule [[m6]] de deux façons :",
+   "en": "In a direct orthonormal frame, let [[m1]] and [[m2]]: these vectors are unit vectors and [[m3]], [[m4]]. By Chasles' relation, [[m5]]. We compute [[m6]] in two ways:",
+   "status": "aligned",
+   "order": 41
+  },
+  "3dd0233a7748": {
+   "fr": "Cela démontre la première formule. En remplaçant [[m1]] par [[m2]] et en utilisant [[m3]], [[m4]], on obtient [[m5]]. Enfin [[m6]], que la première formule développe en [[m7]] ; on en déduit [[m8]] en remplaçant [[m9]] par [[m10]].",
+   "en": "This proves the first formula. Replacing [[m1]] by [[m2]] and using [[m3]], [[m4]], we obtain [[m5]]. Finally [[m6]], which the first formula expands into [[m7]]; we deduce [[m8]] by replacing [[m9]] by [[m10]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "af7eaf988f2d": {
+   "fr": "Formules de duplication",
+   "en": "Double-angle formulas",
+   "status": "aligned",
+   "order": 43
+  },
+  "bf43b3326b40": {
+   "fr": "Une valeur exacte",
+   "en": "An exact value",
+   "status": "aligned",
+   "order": 45
+  },
+  "ca5568a18dfa": {
+   "fr": "Produit et arguments",
+   "en": "Product and arguments",
+   "status": "aligned",
+   "order": 46
+  },
+  "aafdd4668966": {
+   "fr": "Produit de deux formes trigonométriques",
+   "en": "Product of two trigonometric forms",
+   "status": "aligned",
+   "order": 47
+  },
+  "fce54cf915e9": {
+   "fr": "Pour tous réels [[m1]] et [[m2]] : [[m3]].",
+   "en": "For all real numbers [[m1]] and [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "6964540abe18": {
+   "fr": "Par conséquent, pour tous complexes non nuls [[m1]], [[m2]] et tout entier [[m3]] :",
+   "en": "Consequently, for all nonzero complex numbers [[m1]], [[m2]] and every integer [[m3]]:",
+   "status": "aligned",
+   "order": 49
+  },
+  "4eed990ef0b9": {
+   "fr": "Le développement donne [[m1]], que les formules d'addition simplifient. Si [[m2]] et [[m3]], alors [[m4]] avec [[m5]] : c'est une forme trigonométrique de [[m6]]. Les autres relations s'en déduisent : [[m7]] d'argument [[m8]], puis [[m9]], et une récurrence pour [[m10]], étendue à [[m11]] par l'inverse.",
+   "en": "Expanding gives [[m1]], which the addition formulas simplify. If [[m2]] and [[m3]], then [[m4]] with [[m5]]: this is a trigonometric form of [[m6]]. The other relations follow: [[m7]] has argument [[m8]], then [[m9]], and an induction for [[m10]], extended to [[m11]] through the inverse.",
+   "status": "aligned",
+   "order": 50
+  },
+  "63fc279d5073": {
+   "fr": "Interprétation",
+   "en": "Interpretation",
+   "status": "aligned",
+   "order": 51
+  },
+  "faae12e76e61": {
+   "fr": "Multiplier par [[m1]] fait tourner d'un angle [[m2]] autour de [[m3]]. La conjecture de l'activité du chapitre 2 est démontrée : multiplier par [[m4]] est un quart de tour direct, multiplier par [[m5]] est un huitième de tour suivi d'un agrandissement de rapport [[m6]].",
+   "en": "Multiplying by [[m1]] turns through an angle [[m2]] about [[m3]]. The conjecture of the activity of chapter 2 is proved: multiplying by [[m4]] is a direct quarter turn, multiplying by [[m5]] is an eighth of a turn followed by an enlargement with ratio [[m6]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "64cb11b2992b": {
+   "fr": "Forme exponentielle",
+   "en": "Exponential form",
+   "status": "aligned",
+   "order": 53
+  },
+  "2be6c424512a": {
+   "fr": "Exponentielle imaginaire",
+   "en": "Imaginary exponential",
+   "status": "aligned",
+   "order": 54
+  },
+  "d85f215c4bb1": {
+   "fr": "Pour tout réel [[m1]], on note [[m2]]. Tout complexe non nul s'écrit [[m3]] avec [[m4]] et [[m5]] : c'est sa \\emph{forme exponentielle}.",
+   "en": "For every real number [[m1]], we write [[m2]]. Every nonzero complex number can be written [[m3]] with [[m4]] and [[m5]]: this is its \\emph{exponential form}.",
+   "status": "aligned",
+   "order": 55
+  },
+  "a923caa84593": {
+   "fr": "Règles de calcul",
+   "en": "Rules of computation",
+   "status": "aligned",
+   "order": 56
+  },
+  "d4911678a3b3": {
+   "fr": "Pour tous réels [[m1]], [[m2]] et tout entier [[m3]] :",
+   "en": "For all real numbers [[m1]], [[m2]] and every integer [[m3]]:",
+   "status": "aligned",
+   "order": 57
+  },
+  "e294fb5abaf4": {
+   "fr": "Valeurs à connaître : [[m1]], [[m2]], [[m3]], [[m4]], [[m5]].",
+   "en": "Values to know: [[m1]], [[m2]], [[m3]], [[m4]], [[m5]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "c01b1eb52ad5": {
+   "fr": "Pour tout réel [[m1]] et tout entier [[m2]] : [[m3]].",
+   "en": "For every real number [[m1]] and every integer [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 60
+  },
+  "cf78927cd21a": {
+   "fr": "Formules d'Euler",
+   "en": "Euler's formulas",
+   "status": "aligned",
+   "order": 61
+  },
+  "d4862fd2572e": {
+   "fr": "Pour tout réel [[m1]] : [[m2]] et [[m3]].",
+   "en": "For every real number [[m1]]: [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "6bb7c17ed881": {
+   "fr": "[[m1]], et [[m2]].",
+   "en": "[[m1]], and [[m2]].",
+   "status": "aligned",
+   "order": 63
+  },
+  "04ee41167eac": {
+   "fr": "Im",
+   "en": "Im",
+   "status": "aligned",
+   "order": 65
+  },
+  "6c3b75e35e68": {
+   "fr": "Choisir la forme adaptée",
+   "en": "Choosing the suitable form",
+   "status": "aligned",
+   "order": 66
+  },
+  "189c94911860": {
+   "fr": "Pour une somme, la forme algébrique ; pour un produit, un quotient ou une puissance, la forme exponentielle. Exemple : [[m1]], donc",
+   "en": "For a sum, the algebraic form; for a product, a quotient or a power, the exponential form. Example: [[m1]], so",
+   "status": "aligned",
+   "order": 67
+  },
+  "d74ccd5b18cd": {
+   "fr": "car [[m1]].",
+   "en": "since [[m1]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "484fd5441c8f": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]] : Moivre",
+   "en": "Expressing [[m1]] in terms of [[m2]]: de Moivre",
+   "status": "aligned",
+   "order": 69
+  },
+  "e5ec14792426": {
+   "fr": "On développe [[m1]] par la formule du binôme et on identifie la partie réelle :\n[[m2]].",
+   "en": "Expand [[m1]] with the binomial formula and identify the real part:\n[[m2]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "f39160df7eca": {
+   "fr": "Linéariser [[m1]] : Euler",
+   "en": "Linearising [[m1]]: Euler",
+   "status": "aligned",
+   "order": 71
+  },
+  "9cd11b5bd2d0": {
+   "fr": "Angle moitié",
+   "en": "Half angle",
+   "status": "aligned",
+   "order": 72
+  },
+  "681ed1dd47fe": {
+   "fr": "Pour factoriser une somme d'exponentielles, on met en facteur l'exponentielle de l'angle moyen : [[m1]].",
+   "en": "To factorise a sum of exponentials, take out the exponential of the mean angle: [[m1]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "e67306a0297f": {
+   "fr": "[[m1]] n'est pas un réel positif : son module vaut [[m2]], mais il peut être négatif ([[m3]]) ou non réel. Une écriture [[m4]] n'est une forme exponentielle que si [[m5]].",
+   "en": "[[m1]] is not a positive real number: its modulus is [[m2]], but it can be negative ([[m3]]) or non-real. An expression [[m4]] is an exponential form only if [[m5]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 75
+  },
+  "39e960ce0d79": {
+   "fr": "Formes exponentielles",
+   "en": "Exponential forms",
+   "status": "aligned",
+   "order": 76
+  },
+  "64274fca03a0": {
+   "fr": "Écrire sous forme exponentielle : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]].",
+   "en": "Write in exponential form: [[m1]]; [[m2]]; [[m3]]; [[m4]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "0c5674671b35": {
+   "fr": "Deux écritures d'un même produit",
+   "en": "Two ways of writing the same product",
+   "status": "aligned",
+   "order": 78
+  },
+  "bfcaca70dbfc": {
+   "fr": "On pose [[m1]] et [[m2]].",
+   "en": "Let [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "26335a60368e": {
+   "fr": "Écrire [[m1]], [[m2]] puis [[m3]] sous forme exponentielle.",
+   "en": "Write [[m1]], [[m2]] and then [[m3]] in exponential form.",
+   "status": "aligned",
+   "order": 80
+  },
+  "8d9e7a14d2a4": {
+   "fr": "Écrire [[m1]] sous forme algébrique.",
+   "en": "Write [[m1]] in algebraic form.",
+   "status": "aligned",
+   "order": 81
+  },
+  "6a663ea77f6d": {
+   "fr": "En déduire les valeurs exactes de [[m1]] et [[m2]].",
+   "en": "Deduce the exact values of [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "9eb47f088ad7": {
+   "fr": "En identifiant : [[m1]] et [[m2]]. Donc [[m3]] et [[m4]].",
+   "en": "Identifying: [[m1]] and [[m2]]. So [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "09141baec3c0": {
+   "fr": "Puissances",
+   "en": "Powers",
+   "status": "aligned",
+   "order": 84
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Compute [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "90e4b0f8f1a9": {
+   "fr": "Déterminer les entiers naturels [[m1]] pour lesquels [[m2]] est réel ; réel strictement positif ; imaginaire pur. Donner à chaque fois le plus petit.",
+   "en": "Determine the natural numbers [[m1]] for which [[m2]] is real; positive real; purely imaginary. Give the smallest in each case.",
+   "status": "aligned",
+   "order": 86
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "f7c3b0b90e7e": {
+   "fr": "[[m1]]. Il est réel si et seulement si [[m2]], c'est-à-dire [[m3]] multiple de [[m4]] ; le plus petit est [[m5]]. Il est réel strictement positif si et seulement si [[m6]] est multiple de [[m7]] ; le plus petit est [[m8]]. Il est imaginaire pur si et seulement si [[m9]], soit [[m10]] ; le plus petit est [[m11]].",
+   "en": "[[m1]]. It is real if and only if [[m2]], that is [[m3]] a multiple of [[m4]]; the smallest is [[m5]]. It is a positive real number if and only if [[m6]] is a multiple of [[m7]]; the smallest is [[m8]]. It is purely imaginary if and only if [[m9]], that is [[m10]]; the smallest is [[m11]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "b1e3e1699f6b": {
+   "fr": "Formule de Moivre",
+   "en": "De Moivre's formula",
+   "status": "aligned",
+   "order": 89
+  },
+  "4261f6ea907d": {
+   "fr": "À l'aide de la formule de Moivre et de la formule du binôme, exprimer [[m1]] en fonction de [[m2]] seulement, et [[m3]] en fonction de [[m4]] et [[m5]].",
+   "en": "Using de Moivre's formula and the binomial formula, express [[m1]] in terms of [[m2]] only, and [[m3]] in terms of [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "57e98d33929b": {
+   "fr": "Avec [[m1]] et [[m2]] : [[m3]]. La partie réelle donne [[m4]] ; avec [[m5]], [[m6]]. La partie imaginaire donne [[m7]].",
+   "en": "With [[m1]] and [[m2]]: [[m3]]. The real part gives [[m4]]; with [[m5]], [[m6]]. The imaginary part gives [[m7]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "833d17cb3779": {
+   "fr": "Linéariser pour intégrer",
+   "en": "Linearising in order to integrate",
+   "status": "aligned",
+   "order": 92
+  },
+  "2bb7023130b5": {
+   "fr": "À l'aide des formules d'Euler, démontrer que [[m1]].",
+   "en": "Using Euler's formulas, prove that [[m1]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "20069d5ba191": {
+   "fr": "En déduire la valeur de [[m1]].",
+   "en": "Deduce the value of [[m1]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "766d3d7be26b": {
+   "fr": "Une primitive est [[m1]]. Donc l'intégrale vaut [[m2]].",
+   "en": "An antiderivative is [[m1]]. So the integral equals [[m2]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "c8890cab2d4b": {
+   "fr": "Module et argument de [[m1]]",
+   "en": "Modulus and argument of [[m1]]",
+   "status": "aligned",
+   "order": 96
+  },
+  "8f5b28dadd58": {
+   "fr": "Démontrer que pour tout réel [[m1]], [[m2]].",
+   "en": "Prove that for every real number [[m1]], [[m2]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "6f8ffa3cc1b6": {
+   "fr": "En déduire le module et un argument de [[m1]] lorsque [[m2]].",
+   "en": "Deduce the modulus and an argument of [[m1]] when [[m2]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "4025fddc4b7b": {
+   "fr": "Application : module et argument de [[m1]], puis vérification par la forme algébrique.",
+   "en": "Application: modulus and argument of [[m1]], then a check with the algebraic form.",
+   "status": "aligned",
+   "order": 99
+  },
+  "a3a9a5b6a1eb": {
+   "fr": "[[m1]] par la formule d'Euler.",
+   "en": "[[m1]] by Euler's formula.",
+   "status": "aligned",
+   "order": 100
+  },
+  "ab315407ec2f": {
+   "fr": "Pour [[m1]], [[m2]], donc [[m3]]. L'écriture est une forme exponentielle : module [[m4]], argument [[m5]].",
+   "en": "For [[m1]], [[m2]], so [[m3]]. The expression is an exponential form: modulus [[m4]], argument [[m5]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "4cb2f79e4a92": {
+   "fr": "Module [[m1]] et argument [[m2]]. En effet [[m3]].",
+   "en": "Modulus [[m1]] and argument [[m2]]. Indeed [[m3]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "2153e670d795": {
+   "fr": "Somme de cosinus",
+   "en": "A sum of cosines",
+   "status": "aligned",
+   "order": 103
+  },
+  "e16af8889da0": {
+   "fr": "Soit [[m1]] un réel qui n'est pas un multiple de [[m2]], et [[m3]] un entier naturel.",
+   "en": "Let [[m1]] be a real number that is not a multiple of [[m2]], and [[m3]] a natural number.",
+   "status": "aligned",
+   "order": 104
+  },
+  "fe37100a7797": {
+   "fr": "Démontrer que [[m1]].",
+   "en": "Prove that [[m1]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "b18f00983466": {
+   "fr": "À l'aide de la méthode de l'angle moitié, démontrer que cette somme vaut [[m1]].",
+   "en": "Using the half-angle method, prove that this sum equals [[m1]].",
+   "status": "aligned",
+   "order": 106
+  },
+  "7df71a784cea": {
+   "fr": "En déduire [[m1]], puis vérifier la formule pour [[m2]] et [[m3]].",
+   "en": "Deduce [[m1]], then check the formula for [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "2caeb5d451ac": {
+   "fr": "C'est une somme géométrique de raison [[m1]] (car [[m2]]) : [[m3]], et [[m4]].",
+   "en": "It is a geometric sum with common ratio [[m1]] (since [[m2]]): [[m3]], and [[m4]].",
+   "status": "aligned",
+   "order": 108
+  },
+  "25646163ce16": {
+   "fr": "Pour tout réel [[m1]], [[m2]]. Le quotient vaut donc [[m3]] ; le dénominateur n'est pas nul car [[m4]] n'est pas un multiple de [[m5]].",
+   "en": "For every real number [[m1]], [[m2]]. The quotient is therefore [[m3]]; the denominator is not zero because [[m4]] is not a multiple of [[m5]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "d459f2119db4": {
+   "fr": "On prend la partie réelle des deux membres. Pour [[m1]] et [[m2]] : [[m3]], et la formule donne [[m4]].",
+   "en": "Take the real part of both sides. For [[m1]] and [[m2]]: [[m3]], and the formula gives [[m4]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "334e3d0af38d": {
+   "fr": "Superposer deux oscillations",
+   "en": "Superposing two oscillations",
+   "status": "aligned",
+   "order": 112
+  },
+  "9aec353a5f4d": {
+   "fr": "En physique, une tension ou un son simple s'écrit [[m1]]. On montre ici qu'une somme [[m2]] se met sous cette forme. On étudie [[m3]].",
+   "en": "In physics, a simple voltage or sound can be written [[m1]]. We show here that a sum [[m2]] can be put in this form. We study [[m3]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "f1cc47fe483c": {
+   "fr": "Écrire [[m1]] sous forme exponentielle.",
+   "en": "Write [[m1]] in exponential form.",
+   "status": "aligned",
+   "order": 114
+  },
+  "364626fad4c7": {
+   "fr": "Démontrer que [[m1]], puis que [[m2]].",
+   "en": "Prove that [[m1]], then that [[m2]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "55498f3bd12e": {
+   "fr": "En déduire le maximum et le minimum de [[m1]] sur [[m2]], et les réels où ils sont atteints dans [[m3]].",
+   "en": "Deduce the maximum and the minimum of [[m1]] on [[m2]], and the real numbers in [[m3]] where they are reached.",
+   "status": "aligned",
+   "order": 117
+  },
+  "d53d9bd5bf43": {
+   "fr": "Résoudre dans [[m1]] l'équation [[m2]].",
+   "en": "Solve in [[m1]] the equation [[m2]].",
+   "status": "aligned",
+   "order": 118
+  },
+  "7de051d79237": {
+   "fr": "Généraliser : soit [[m1]] et [[m2]] deux réels non tous deux nuls. Démontrer qu'il existe [[m3]] et un réel [[m4]] tels que, pour tout réel [[m5]], [[m6]]. Exprimer [[m7]] en fonction de [[m8]] et [[m9]].",
+   "en": "Generalise: let [[m1]] and [[m2]] be two real numbers, not both zero. Prove that there exist [[m3]] and a real number [[m4]] such that, for every real number [[m5]], [[m6]]. Express [[m7]] in terms of [[m8]] and [[m9]].",
+   "status": "aligned",
+   "order": 119
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 120
+  },
+  "93ea5244f6b0": {
+   "fr": "[[m1]], dont la partie réelle est [[m2]]. Par ailleurs [[m3]], de partie réelle [[m4]].",
+   "en": "[[m1]], whose real part is [[m2]]. Moreover [[m3]], whose real part is [[m4]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "a762b15e7975": {
+   "fr": "Le maximum vaut [[m1]], atteint pour [[m2]], soit [[m3]] ; le minimum vaut [[m4]], atteint pour [[m5]].",
+   "en": "The maximum is [[m1]], reached for [[m2]], that is [[m3]]; the minimum is [[m4]], reached for [[m5]].",
+   "status": "aligned",
+   "order": 122
+  },
+  "e479c670c2d6": {
+   "fr": "[[m1]] équivaut à [[m2]] ou [[m3]], soit [[m4]] ou [[m5]]. Dans [[m6]] : [[m7]] ou [[m8]].",
+   "en": "[[m1]] is equivalent to [[m2]] or [[m3]], that is [[m4]] or [[m5]]. In [[m6]]: [[m7]] or [[m8]].",
+   "status": "aligned",
+   "order": 123
+  },
+  "ee929de61db3": {
+   "fr": "Le complexe [[m1]] est non nul ; écrivons-le [[m2]] avec [[m3]]. Alors [[m4]].",
+   "en": "The complex number [[m1]] is nonzero; write it [[m2]] with [[m3]]. Then [[m4]].",
+   "status": "aligned",
+   "order": 124
+  },
+  "e39422d2f459": {
+   "fr": "Re",
+   "en": "Re",
+   "status": "aligned",
+   "order": 126
+  },
+  "a5bc1d9b2ae7": {
+   "fr": "et",
+   "en": "and",
+   "status": "aligned",
+   "order": 127
+  }
+ }
+}

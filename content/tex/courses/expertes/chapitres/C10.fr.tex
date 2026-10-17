@@ -1,0 +1,232 @@
+\mxunit{expertes-c10}{Graphes}
+\mxsubtitle{Vocabulaire, degrés, matrice d'adjacence, dénombrement de chaînes}
+
+\begin{objectives}
+Modéliser une situation par un graphe ; utiliser le vocabulaire des graphes (ordre, degré, chaîne, cycle, connexité, graphe complet, graphe orienté) ; écrire la matrice d'adjacence d'un graphe ; dénombrer les chaînes de longueur donnée à l'aide des puissances de cette matrice.
+\end{objectives}
+\begin{prerequisites}
+Chapitre 9 (produit et puissances de matrices) ; raisonnement par récurrence ; dénombrement.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item Calculer $\binom 42$ et $\binom{8}{2}$.
+\item Calculer $1+2+\dots+7$.
+\item Calculer $\begin{pmatrix}0&1\\1&1\end{pmatrix}^2$.
+\item Dans un groupe de $5$ personnes, chacune serre la main de toutes les autres. Combien de poignées de main ?
+\item Une somme de nombres est impaire. Que peut-on dire du nombre de termes impairs ?
+\item Écrire le coefficient de ligne $i$ et de colonne $j$ de $M^2$ en fonction des coefficients de $M$, pour $M$ d'ordre $n$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $6$ et $28$.
+\item $28$.
+\item $\begin{pmatrix}1&1\\1&2\end{pmatrix}$.
+\item $\binom52=10$.
+\item Il est impair.
+\item $\sum_{k=1}^{n}m_{ik}m_{kj}$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Un réseau de taxis-brousse \mxchip{40 min}]
+Cinq villes $A$, $B$, $C$, $D$, $E$ sont reliées par des lignes directes de taxi-brousse, dans les deux sens : $A$-$B$, $A$-$C$, $A$-$D$, $B$-$C$, $C$-$D$ et $D$-$E$.
+\begin{enumerate}
+\item Représenter le réseau par un schéma : un point par ville, un trait par ligne.
+\item Pour chaque ville, compter le nombre de lignes qui en partent. Calculer la somme de ces nombres et la comparer au nombre de lignes. Expliquer.
+\item Énumérer les trajets de $A$ à $C$ qui utilisent exactement deux lignes (on peut repasser par une ville). Combien y en a-t-il ?
+\item Même question pour les trajets de $A$ à $E$ en exactement trois lignes.
+\item On range les informations dans un tableau $M$ à $5$ lignes et $5$ colonnes : le coefficient de ligne $X$ et de colonne $Y$ vaut $1$ s'il existe une ligne directe entre $X$ et $Y$, $0$ sinon. Écrire $M$, puis calculer $M^2$ et $M^3$ à la calculatrice. Comparer certains coefficients avec les questions 3 et 4.
+\item Formuler une conjecture.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item Voir la figure du cours.
+\item $A$ : $3$, $B$ : $2$, $C$ : $3$, $D$ : $3$, $E$ : $1$. La somme vaut $12$, le double des $6$ lignes : chaque ligne est comptée une fois à chacune de ses extrémités.
+\item $A$-$B$-$C$ et $A$-$D$-$C$ : deux trajets.
+\item La dernière ligne est forcément $D$-$E$ ; il faut aller de $A$ à $D$ en deux lignes : seulement $A$-$C$-$D$. Un seul trajet : $A$-$C$-$D$-$E$.
+\item Dans l'ordre $A$, $B$, $C$, $D$, $E$ :
+\[M=\begin{pmatrix}0&1&1&1&0\\1&0&1&0&0\\1&1&0&1&0\\1&0&1&0&1\\0&0&0&1&0\end{pmatrix},\qquad M^2=\begin{pmatrix}3&1&2&1&1\\1&2&1&2&0\\2&1&3&1&1\\1&2&1&3&0\\1&0&1&0&1\end{pmatrix}.\]
+Le coefficient $(A,C)$ de $M^2$ vaut $2$ et le coefficient $(A,E)$ de $M^3$ vaut $1$.
+\item Le coefficient $(X,Y)$ de $M^n$ semble égal au nombre de trajets de $X$ à $Y$ utilisant exactement $n$ lignes. On remarque aussi que la diagonale de $M^2$ contient les nombres de la question 2.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+Les liaisons sont fictives. Faire énumérer les trajets avant tout calcul matriciel : la conjecture n'a de sens que si les élèves ont compté à la main. La preuve de la conjecture est une démonstration exigible du programme.
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{Vocabulaire}
+\begin{definition}[Graphe]
+Un \emph{graphe} (non orienté) est formé d'un ensemble fini de \emph{sommets} et d'un ensemble d'\emph{arêtes}, chaque arête reliant deux sommets distincts ; deux sommets reliés sont \emph{adjacents}. On considère des graphes sans arête multiple. L'\emph{ordre} du graphe est son nombre de sommets. Le \emph{degré} d'un sommet est le nombre d'arêtes dont il est une extrémité. Un graphe est \emph{complet} si deux sommets distincts quelconques sont adjacents.
+\end{definition}
+\begin{definition}[Chaîne, cycle, connexité]
+Une \emph{chaîne} est une suite de sommets dans laquelle deux sommets consécutifs sont adjacents ; sa \emph{longueur} est son nombre d'arêtes (on peut repasser par un sommet ou une arête). Une chaîne est \emph{fermée} si ses extrémités sont égales. Un \emph{cycle} est une chaîne fermée de longueur au moins $3$ dont les arêtes sont distinctes. Un graphe est \emph{connexe} si deux sommets quelconques sont reliés par une chaîne.
+\end{definition}
+\begin{figurebox}[Le réseau de l'activité : un graphe d'ordre $5$ à $6$ arêtes.]
+\begin{tikzpicture}[scale=1.3]
+\coordinate (A) at (0,0); \coordinate (B) at (1.2,1.1); \coordinate (C) at (2.4,0);
+\coordinate (D) at (1.2,-1.1); \coordinate (E) at (3.2,-1.6);
+\draw[mxcurve] (A) -- (B) -- (C) -- (D) -- (A) -- (C); \draw[mxcurve] (D) -- (E);
+\foreach \p in {A,B,C,D,E} \fill (\p) circle (2pt);
+\node[left] at (A) {$A$}; \node[above] at (B) {$B$}; \node[right] at (C) {$C$};
+\node[below left] at (D) {$D$}; \node[right] at (E) {$E$};
+\end{tikzpicture}
+\end{figurebox}
+\begin{theorem}[Somme des degrés]
+Dans un graphe, la somme des degrés des sommets est égale au double du nombre d'arêtes. Par conséquent, le nombre de sommets de degré impair est pair.
+\end{theorem}
+\begin{proof}
+Chaque arête a deux extrémités : elle est comptée deux fois dans la somme des degrés. La somme des degrés est paire ; or une somme d'entiers est paire si et seulement si elle contient un nombre pair de termes impairs.
+\end{proof}
+\begin{theorem}[Graphe complet]
+Le graphe complet d'ordre $n$ a $\binom n2=\frac{n(n-1)}2$ arêtes.
+\end{theorem}
+\begin{definition}[Graphe orienté, graphe pondéré]
+Dans un graphe \emph{orienté}, les liaisons, appelées \emph{arcs}, ont un sens : l'arc $(X,Y)$ va de $X$ vers $Y$. Un \emph{chemin} est une suite de sommets dans laquelle chacun est relié au suivant par un arc. Un graphe est \emph{pondéré} lorsque chaque arête ou arc porte un nombre, appelé poids.
+\end{definition}
+
+\subsection{Matrice d'adjacence}
+\begin{definition}[Matrice d'adjacence]
+Les sommets d'un graphe d'ordre $n$ étant numérotés de $1$ à $n$, sa \emph{matrice d'adjacence} est la matrice carrée $M$ d'ordre $n$ dont le coefficient $m_{ij}$ vaut $1$ si les sommets $i$ et $j$ sont reliés (par une arête, ou par un arc de $i$ vers $j$ pour un graphe orienté), et $0$ sinon. Pour un graphe non orienté, $M$ est symétrique : $m_{ij}=m_{ji}$.
+\end{definition}
+\begin{theorem}[Nombre de chaînes de longueur $n$]
+Soit $M$ la matrice d'adjacence d'un graphe et $n\ge1$ un entier. Le coefficient de ligne $i$ et de colonne $j$ de $M^n$ est égal au nombre de chaînes (de chemins, pour un graphe orienté) de longueur $n$ allant du sommet $i$ au sommet $j$.
+\end{theorem}
+\begin{proof}
+Notons $m^{(n)}_{ij}$ les coefficients de $M^n$ et $c^{(n)}_{ij}$ le nombre de chaînes de longueur $n$ de $i$ à $j$. Pour $n=1$, une chaîne de longueur $1$ de $i$ à $j$ est une arête : $c^{(1)}_{ij}=m_{ij}$.\par
+Supposons $m^{(n)}_{ij}=c^{(n)}_{ij}$ pour tous $i$, $j$. Une chaîne de longueur $n+1$ de $i$ à $j$ est formée d'une chaîne de longueur $n$ de $i$ à un sommet $k$, suivie d'une arête de $k$ à $j$. En classant ces chaînes selon l'avant-dernier sommet $k$, on obtient
+\[c^{(n+1)}_{ij}=\sum_{k=1}^{p}c^{(n)}_{ik}\,m_{kj}=\sum_{k=1}^{p}m^{(n)}_{ik}\,m_{kj}=m^{(n+1)}_{ij},\]
+où $p$ est l'ordre du graphe, car $M^{n+1}=M^nM$. La propriété est vraie au rang $n+1$.
+\end{proof}
+\begin{keypoint}[Conséquences]
+Le coefficient diagonal $\left(M^2\right)_{ii}$ est le degré du sommet $i$ (graphe non orienté). Un graphe d'ordre $p\ge2$ est connexe si et seulement si tous les coefficients hors diagonale de $M+M^2+\dots+M^{p-1}$ sont strictement positifs : une chaîne entre deux sommets distincts peut toujours être raccourcie en une chaîne sans sommet répété, de longueur au plus $p-1$.
+\end{keypoint}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Vocabulaire]
+Un graphe $G$ a pour sommets $1$, $2$, $3$, $4$, $5$, $6$ et pour arêtes $1$-$2$, $1$-$3$, $2$-$3$, $3$-$4$, $4$-$5$, $4$-$6$, $5$-$6$.
+\begin{enumerate}
+\item Donner l'ordre de $G$, le degré de chaque sommet et vérifier la propriété de la somme des degrés.
+\item $G$ est-il complet ? connexe ?
+\item Donner une chaîne de longueur $3$ de $1$ à $6$ et un cycle passant par $5$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Ordre $6$. Degrés : $2$, $2$, $3$, $3$, $2$, $2$, de somme $14=2\times7$.
+\item Non complet ($1$ et $4$ ne sont pas adjacents). Connexe : tous les sommets sont reliés à $3$ ou à $4$, et $3$-$4$ est une arête.
+\item $1$-$3$-$4$-$6$ ; le cycle $4$-$5$-$6$-$4$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Poignées de main]
+\begin{enumerate}
+\item Peut-on construire un graphe d'ordre $7$ dont tous les sommets sont de degré $3$ ?
+\item Six personnes peuvent-elles serrer chacune la main d'exactement trois autres ? Si oui, combien de poignées de main y a-t-il ?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Non : la somme des degrés vaudrait $21$, nombre impair.
+\item Oui, par exemple en plaçant les personnes aux sommets d'un hexagone et en reliant chacune à ses deux voisines et à la personne opposée. La somme des degrés vaut $18$ : il y a $9$ poignées de main.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Un graphe orienté]
+Un graphe orienté a pour sommets $A$, $B$, $C$ et pour arcs $A\to B$, $A\to C$, $B\to C$ et $C\to A$.
+\begin{enumerate}
+\item Écrire sa matrice d'adjacence $M$ (ordre $A$, $B$, $C$). Est-elle symétrique ?
+\item Calculer $M^2$ et $M^3$.
+\item Combien y a-t-il de chemins de longueur $3$ de $A$ à $A$ ? Les écrire.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item La matrice n'est pas symétrique : \[M=\begin{pmatrix}0&1&1\\0&0&1\\1&0&0\end{pmatrix}.\]
+\item On obtient \[M^2=\begin{pmatrix}1&0&1\\1&0&0\\0&1&1\end{pmatrix}\qquad\text{et}\qquad M^3=\begin{pmatrix}1&1&1\\0&1&1\\1&0&1\end{pmatrix}.\]
+\item Le coefficient $(A,A)$ de $M^3$ vaut $1$ : le chemin $A\to B\to C\to A$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Un tournoi]
+Huit équipes disputent un tournoi : chacune rencontre une fois chacune des autres. Modéliser par un graphe et déterminer le nombre de matchs.
+\end{exercise}
+\begin{solution}
+Graphe complet d'ordre $8$ (sommets : équipes ; arêtes : matchs). Il y a $\binom82=28$ matchs.
+\end{solution}
+
+\begin{exercise}[Degrés et carré de la matrice]
+\mxlabel{degres}
+Un graphe a pour matrice d'adjacence \[M=\begin{pmatrix}0&1&1&0\\1&0&1&1\\1&1&0&1\\0&1&1&0\end{pmatrix}.\]
+\begin{enumerate}
+\item Le représenter.
+\item Calculer $M^2$ et comparer sa diagonale aux degrés des sommets.
+\item Démontrer que pour tout graphe non orienté, $\left(M^2\right)_{ii}$ est le degré du sommet $i$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Arêtes : $1$-$2$, $1$-$3$, $2$-$3$, $2$-$4$, $3$-$4$.
+\item La diagonale de $M^2$, soit $2$, $3$, $3$, $2$, donne les degrés : \[M^2=\begin{pmatrix}2&1&1&2\\1&3&2&1\\1&2&3&1\\2&1&1&2\end{pmatrix}.\]
+\item $\left(M^2\right)_{ii}=\sum_km_{ik}m_{ki}=\sum_km_{ik}^2=\sum_km_{ik}$, car $m_{ki}=m_{ik}$ et $m_{ik}\in\ens{0;1}$. C'est le nombre de voisins de $i$. Autre lecture : une chaîne fermée de longueur $2$ partant de $i$ est un aller-retour sur une arête issue de $i$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Tester la connexité]
+Un graphe a pour sommets $1$ à $5$ et pour arêtes $1$-$2$, $2$-$3$, $3$-$1$, $4$-$5$. On note $M$ sa matrice d'adjacence.
+\begin{enumerate}
+\item Calculer, à la calculatrice, $S=M+M^2+M^3+M^4$.
+\item Le graphe est-il connexe ? Justifier à l'aide de $S$, puis directement.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item On obtient \[S=\begin{pmatrix}10&10&10&0&0\\10&10&10&0&0\\10&10&10&0&0\\0&0&0&2&2\\0&0&0&2&2\end{pmatrix}.\]
+\item Non : le coefficient $(1,4)$ est nul, donc aucune chaîne de longueur au plus $4$ ne relie $1$ à $4$, et par le cours aucune chaîne du tout. Directement : les sommets $1$, $2$, $3$ ne sont reliés qu'entre eux.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Compter les triangles]
+On appelle triangle d'un graphe un ensemble de trois sommets deux à deux adjacents.
+\begin{enumerate}
+\item Démontrer que le nombre de triangles est $\frac16$ de la somme des coefficients diagonaux de $M^3$.
+\item Appliquer au graphe complet d'ordre $4$ et au graphe de l'exercice \ref{expertes-c10:degres}.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\left(M^3\right)_{ii}$ compte les chaînes fermées de longueur $3$ issues de $i$. Une telle chaîne $i$-$j$-$k$-$i$ a trois sommets distincts (il n'y a pas d'arête d'un sommet à lui-même) qui forment un triangle. Chaque triangle donne $6$ chaînes fermées de longueur $3$ : $3$ choix du sommet de départ et $2$ sens de parcours.
+\item Pour le graphe complet d'ordre $4$, la diagonale de $M^3$ vaut $6$, $6$, $6$, $6$ : $\frac{24}6=4$ triangles, soit $\binom43$. Pour le graphe de l'exercice \ref{expertes-c10:degres} : $2$ triangles, $\ens{1;2;3}$ et $\ens{2;3;4}$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[Dessiner sans lever le crayon]
+Une \emph{chaîne eulérienne} est une chaîne qui emprunte chaque arête du graphe exactement une fois.
+\begin{enumerate}
+\item On suppose qu'un graphe possède une chaîne eulérienne dont les extrémités sont distinctes. Démontrer que ses deux extrémités sont de degré impair et que tous les autres sommets sont de degré pair. Que dire si la chaîne est fermée ?
+\item On admet la réciproque (théorème d'Euler) : un graphe connexe dont tous les sommets sont de degré pair, sauf zéro ou deux, possède une chaîne eulérienne ; s'il y a deux sommets de degré impair, elle commence en l'un et finit en l'autre.\par
+On considère la « maison » : un carré $abdc$ ($a$ et $b$ en bas, $c$ et $d$ en haut) avec ses deux diagonales, surmonté d'un toit $c$-$e$-$d$. Dresser la liste des arêtes et des degrés.
+\item Peut-on dessiner la maison sans lever le crayon ni repasser sur un trait ? Si oui, d'où faut-il partir ? Donner une telle chaîne.
+\item Peut-on le faire en revenant au point de départ ?
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item Chaque passage par un sommet intermédiaire utilise une arête pour arriver et une autre pour repartir : il contribue $2$ au degré. Toutes les arêtes étant utilisées une fois, un sommet qui n'est pas une extrémité a un degré pair. Une extrémité a en plus une arête de départ (ou d'arrivée) non appariée : son degré est impair. Si la chaîne est fermée, tous les degrés sont pairs.
+\item Arêtes : $a$-$b$, $a$-$c$, $b$-$d$, $c$-$d$, $a$-$d$, $b$-$c$, $c$-$e$, $d$-$e$ (huit arêtes). Degrés : $a$ : $3$, $b$ : $3$, $c$ : $4$, $d$ : $4$, $e$ : $2$.
+\item Le graphe est connexe avec exactement deux sommets de degré impair, $a$ et $b$ : oui, en partant de $a$ (ou de $b$). Par exemple $a$-$b$-$c$-$a$-$d$-$c$-$e$-$d$-$b$, qui utilise les huit arêtes une fois.
+\item Non : il faudrait que tous les degrés soient pairs.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Les graphes eulériens sont un « problème possible » du programme. Le théorème d'Euler est admis dans sa partie suffisante. Prolongement : le problème des ponts de Königsberg ; l'atelier « Parcours sans lever le crayon » du site traite le même thème.
+\end{teachernote}

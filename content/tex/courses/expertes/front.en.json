@@ -1,0 +1,161 @@
+{
+ "unit": "front.fr.tex",
+ "segments": {
+  "6ece186c9ad3": {
+   "fr": "MATHÉMATIQUES EXPERTES",
+   "en": "FURTHER MATHEMATICS",
+   "status": "aligned",
+   "order": 0
+  },
+  "9646fea814c2": {
+   "fr": "Terminale générale · option",
+   "en": "Terminale, general track · option",
+   "status": "aligned",
+   "order": 1
+  },
+  "7b124e89ba8b": {
+   "fr": "Livret de cours et d'entraînement",
+   "en": "Course and practice booklet",
+   "status": "aligned",
+   "order": 2
+  },
+  "a9b8ce48d57e": {
+   "fr": "Nombres complexes · Arithmétique · Graphes et matrices",
+   "en": "Complex numbers · Arithmetic · Graphs and matrices",
+   "status": "aligned",
+   "order": 3
+  },
+  "c8ecf0dd95ce": {
+   "fr": "Utiliser ce livret",
+   "en": "Using this booklet",
+   "status": "aligned",
+   "order": 5
+  },
+  "32e31ab34f24": {
+   "fr": "Ce livret couvre l'option mathématiques expertes de terminale générale. Il est construit pour être travaillé en parallèle de l'enseignement de spécialité. Chaque chapitre suit le même ordre.",
+   "en": "This booklet covers the further mathematics option (mathématiques expertes) of the general Terminale. It is designed to be studied alongside the mathematics specialty course. Every chapter follows the same order.",
+   "status": "aligned",
+   "order": 6
+  },
+  "b1613b67ad7c": {
+   "fr": "\\textbf{Automatismes} : quelques questions courtes pour réactiver les prérequis, à traiter sans calculatrice en début de séance.",
+   "en": "\\textbf{Fluency}: a few short questions that bring back the prerequisites, done without a calculator at the start of a lesson.",
+   "status": "aligned",
+   "order": 7
+  },
+  "13224e64bd26": {
+   "fr": "\\textbf{Activité d'introduction} : une recherche à mener avant le cours. On calcule, on observe, on formule une conjecture ; la preuve vient ensuite.",
+   "en": "\\textbf{Introductory activity}: an investigation carried out before the lesson. We compute, observe and state a conjecture; the proof comes afterwards.",
+   "status": "aligned",
+   "order": 8
+  },
+  "575d50c1d3d8": {
+   "fr": "\\textbf{Notes de cours} : définitions, propriétés, démonstrations et exemples. C'est la trace écrite à apprendre.",
+   "en": "\\textbf{Course notes}: definitions, properties, proofs and examples. This is the written record to learn.",
+   "status": "aligned",
+   "order": 9
+  },
+  "2b003f62aef9": {
+   "fr": "\\textbf{Exercices} : classés par difficulté croissante. Les premiers vérifient une technique, les derniers demandent une rédaction complète.",
+   "en": "\\textbf{Exercises}: in increasing order of difficulty. The first ones check a technique, the last ones require a complete written argument.",
+   "status": "aligned",
+   "order": 10
+  },
+  "b9c4d56ae6e1": {
+   "fr": "\\textbf{Problème} : une étude plus longue qui prolonge le chapitre.",
+   "en": "\\textbf{Problem}: a longer study that extends the chapter.",
+   "status": "aligned",
+   "order": 11
+  },
+  "175d64554b1e": {
+   "fr": "Expérimenter n'est pas démontrer",
+   "en": "Experimenting is not proving",
+   "status": "aligned",
+   "order": 12
+  },
+  "df1efb19143e": {
+   "fr": "Un calcul sur quelques exemples, une figure ou un tableau de valeurs donnent une conjecture. Seule une démonstration établit qu'elle est vraie dans tous les cas. Les activités le rappellent à chaque fois.",
+   "en": "A computation on a few examples, a figure or a table of values gives a conjecture. Only a proof establishes that it holds in every case. The activities recall this each time.",
+   "status": "aligned",
+   "order": 13
+  },
+  "8929709bdc4f": {
+   "fr": "\\textbf{Programme suivi.} Programme de l'enseignement optionnel de mathématiques expertes de terminale générale, arrêté du 19 juillet 2019, BO spécial n\\textsuperscript{o} 8 du 25 juillet 2019 (NOR MENE1921264A). Les démonstrations signalées comme exigibles par ce programme sont toutes rédigées dans les notes de cours. Ce qui dépasse le programme est placé dans un cadre « Hors programme ».",
+   "en": "\\textbf{Syllabus followed.} Syllabus of the optional further mathematics course of the general Terminale, order of 19 July 2019, special BO n\\textsuperscript{o} 8 of 25 July 2019 (NOR MENE1921264A). Every proof that this syllabus lists as required is written out in the course notes. Anything beyond the syllabus is placed in a ``Beyond the syllabus'' box.",
+   "status": "aligned",
+   "order": 14
+  },
+  "f5e5f5ee765d": {
+   "fr": "\\textbf{Organisation.} Les chapitres sont regroupés par thème : nombres complexes (chapitres 1 à 5), arithmétique (chapitres 6 à 8), graphes et matrices (chapitres 9 à 11). En classe, il est conseillé d'alterner les thèmes, par exemple un chapitre de nombres complexes puis un chapitre d'arithmétique.",
+   "en": "\\textbf{Organisation.} The chapters are grouped by theme: complex numbers (chapters 1 to 5), arithmetic (chapters 6 to 8), graphs and matrices (chapters 9 to 11). In class, it is advisable to alternate the themes, for example a chapter on complex numbers followed by a chapter on arithmetic.",
+   "status": "aligned",
+   "order": 15
+  },
+  "db6752f1fc97": {
+   "fr": "Guide de préparation",
+   "en": "Preparation guide",
+   "status": "aligned",
+   "order": 17
+  },
+  "f4b4e4be1a6b": {
+   "fr": "Contenu et éditions",
+   "en": "Content and editions",
+   "status": "aligned",
+   "order": 18
+  },
+  "9ac0f5d4364f": {
+   "fr": "L'option de classe \\texttt{edition=teacher} produit l'édition professeur, avec les corrigés des automatismes, de l'activité, des exercices et du problème, ainsi que des repères de conduite. L'option \\texttt{edition=student} produit l'édition élève, sans corrigés. Les sources contiennent les deux éditions.",
+   "en": "The class option \\texttt{edition=teacher} produces the teacher edition, with the solutions of the fluency questions, the activity, the exercises and the problem, together with teaching notes. The option \\texttt{edition=student} produces the student edition, without solutions. The sources contain both editions.",
+   "status": "aligned",
+   "order": 19
+  },
+  "563f88ea416d": {
+   "fr": "Progression proposée.",
+   "en": "Suggested progression.",
+   "status": "aligned",
+   "order": 20
+  },
+  "e4bc9db92b42": {
+   "fr": "Pour trois heures hebdomadaires, une alternance possible est : C1, C6, C2, C7, C3, C8, C4, C5, puis C9, C10, C11. Les chapitres de graphes et matrices utilisent les probabilités conditionnelles de spécialité ; les placer après leur étude en spécialité. Le chapitre 3 utilise le produit scalaire de première ; l'exercice de linéarisation intégrée du chapitre 3 suppose le calcul intégral de spécialité, il peut être reporté.",
+   "en": "With three hours a week, one possible alternation is: C1, C6, C2, C7, C3, C8, C4, C5, then C9, C10, C11. The chapters on graphs and matrices use the conditional probability of the specialty course; place them after it has been studied there. Chapter 3 uses the scalar product of Première; the linearisation and integration exercise of chapter 3 assumes the integral calculus of the specialty course and can be postponed.",
+   "status": "aligned",
+   "order": 21
+  },
+  "8bd8167733b3": {
+   "fr": "Durées.",
+   "en": "Durations.",
+   "status": "aligned",
+   "order": 22
+  },
+  "c788935925b6": {
+   "fr": "Les durées des activités sont des estimations de travail effectif, non mesurées auprès d'élèves. Prévoir une lecture individuelle, une recherche par binômes, puis une mise en commun avant la trace écrite.",
+   "en": "The durations of the activities are estimates of actual working time, not measured with students. Plan individual reading, research in pairs, then a class discussion before the written record.",
+   "status": "aligned",
+   "order": 23
+  },
+  "4f9e1c7cd01e": {
+   "fr": "Démonstrations exigibles.",
+   "en": "Required proofs.",
+   "status": "aligned",
+   "order": 24
+  },
+  "a8f9dcb58f98": {
+   "fr": "Conjugué d'un produit, d'un inverse, d'une puissance ; formule du binôme ; [[m1]] ; module d'un produit et d'une puissance ; une formule d'addition ; factorisations de [[m2]] et de [[m3]] par [[m4]] ; nombre de racines au plus égal au degré ; détermination de [[m5]] ; écriture du PGCD sous la forme [[m6]] ; théorème de Gauss ; infinité des nombres premiers ; nombre de chemins de longueur [[m7]] et probabilité de transition en [[m8]] étapes. Elles figurent dans les notes de cours des chapitres correspondants.",
+   "en": "Conjugate of a product, of an inverse, of a power; binomial formula; [[m1]]; modulus of a product and of a power; one addition formula; factorisations of [[m2]] and of [[m3]] by [[m4]]; number of roots at most equal to the degree; determination of [[m5]]; writing the gcd in the form [[m6]]; Gauss's theorem; infinitude of the primes; number of walks of length [[m7]] and probability of transition in [[m8]] steps. They appear in the course notes of the corresponding chapters.",
+   "status": "aligned",
+   "order": 25
+  },
+  "4c9bcf4d8cb0": {
+   "fr": "Problèmes.",
+   "en": "Problems.",
+   "status": "aligned",
+   "order": 26
+  },
+  "f23e010aae34": {
+   "fr": "Les problèmes de fin de chapitre reprennent des « problèmes possibles » cités par le programme. Ils ne sont pas exigibles : ils servent au travail en autonomie, au devoir à la maison ou à l'approfondissement.",
+   "en": "The end-of-chapter problems take up ``possible problems'' cited by the syllabus. They are not required: they serve for independent work, homework or extension.",
+   "status": "aligned",
+   "order": 27
+  }
+ }
+}

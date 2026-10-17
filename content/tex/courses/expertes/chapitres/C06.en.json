@@ -1,0 +1,737 @@
+{
+ "unit": "C06.fr.tex",
+ "segments": {
+  "3a7fa669ac9f": {
+   "fr": "Divisibilité et congruences",
+   "en": "Divisibility and congruences",
+   "status": "aligned",
+   "order": 0
+  },
+  "ef3ef1287dcc": {
+   "fr": "Divisibilité dans [[m1]], division euclidienne, congruences",
+   "en": "Divisibility in [[m1]], Euclidean division, congruences",
+   "status": "aligned",
+   "order": 1
+  },
+  "dab2398ca581": {
+   "fr": "Utiliser la divisibilité dans [[m1]] et ses propriétés ; effectuer une division euclidienne ; calculer avec des congruences ; établir un critère de divisibilité ; étudier des restes de puissances.",
+   "en": "Use divisibility in [[m1]] and its properties; carry out a Euclidean division; compute with congruences; establish a divisibility test; study remainders of powers.",
+   "status": "aligned",
+   "order": 2
+  },
+  "6f4d544ee13a": {
+   "fr": "Multiples, diviseurs, nombres premiers (seconde) ; raisonnement par récurrence ; partie entière d'un réel.",
+   "en": "Multiples, divisors, prime numbers (Seconde); proof by induction; integer part of a real number.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "1b6a63b1aca2": {
+   "fr": "Donner la liste des diviseurs positifs de [[m1]].",
+   "en": "List the positive divisors of [[m1]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "98c4b263a4c0": {
+   "fr": "Le nombre [[m1]] est-il toujours pair ? Justifier.",
+   "en": "Is the number [[m1]] always even? Justify.",
+   "status": "aligned",
+   "order": 7
+  },
+  "5ba78e089a6c": {
+   "fr": "Quel est le chiffre des unités de [[m1]] ?",
+   "en": "What is the units digit of [[m1]]?",
+   "status": "aligned",
+   "order": 8
+  },
+  "d6d32f05f73d": {
+   "fr": "Simplifier la fraction [[m1]].",
+   "en": "Simplify the fraction [[m1]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "314584749b71": {
+   "fr": "Le nombre [[m1]] est-il divisible par [[m2]] ? par [[m3]] ?",
+   "en": "Is the number [[m1]] divisible by [[m2]]? by [[m3]]?",
+   "status": "aligned",
+   "order": 10
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Compute [[m1]].",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "e904bd9e3593": {
+   "fr": "Oui : l'un des deux entiers consécutifs est pair.",
+   "en": "Yes: one of two consecutive integers is even.",
+   "status": "aligned",
+   "order": 13
+  },
+  "062927af50c5": {
+   "fr": "[[m1]], [[m2]] : le chiffre des unités est [[m3]].",
+   "en": "[[m1]], [[m2]]: the units digit is [[m3]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "ad953db1d720": {
+   "fr": "La somme des chiffres vaut [[m1]], non multiple de [[m2]] : non. Il est pair : oui.",
+   "en": "The sum of the digits is [[m1]], not a multiple of [[m2]]: no. It is even: yes.",
+   "status": "aligned",
+   "order": 15
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 16
+  },
+  "4e77b9285980": {
+   "fr": "Quel jour sera-t-il ?",
+   "en": "What day will it be?",
+   "status": "aligned",
+   "order": 17
+  },
+  "a12a2174c266": {
+   "fr": "35 min",
+   "en": "35 min",
+   "status": "aligned",
+   "order": 18
+  },
+  "7bf0c5891d38": {
+   "fr": "Le 17 octobre 2026 est un samedi. On numérote les jours de la semaine de [[m1]] (samedi) à [[m2]] (vendredi) : dimanche porte le numéro [[m3]], lundi le numéro [[m4]], etc.",
+   "en": "17 October 2026 is a Saturday. The days of the week are numbered from [[m1]] (Saturday) to [[m2]] (Friday): Sunday has number [[m3]], Monday number [[m4]], and so on.",
+   "status": "aligned",
+   "order": 19
+  },
+  "13135e114e58": {
+   "fr": "Quel jour de la semaine sera-t-il [[m1]] jours plus tard ? [[m2]] jours ? [[m3]] jours ?",
+   "en": "What day of the week will it be [[m1]] days later? [[m2]] days? [[m3]] days?",
+   "status": "aligned",
+   "order": 20
+  },
+  "0b8e737885ba": {
+   "fr": "Quel jour sera-t-il [[m1]] jours plus tard ? Expliquer comment obtenir la réponse sans compter les jours un à un.",
+   "en": "What day will it be [[m1]] days later? Explain how to get the answer without counting the days one by one.",
+   "status": "aligned",
+   "order": 21
+  },
+  "47480f9b3207": {
+   "fr": "Même question pour [[m1]] jours.",
+   "en": "Same question for [[m1]] days.",
+   "status": "aligned",
+   "order": 22
+  },
+  "8aac6cb311fd": {
+   "fr": "L'année 2027 n'est pas bissextile. Quel jour de la semaine sera le 17 octobre 2027 ?",
+   "en": "The year 2027 is not a leap year. What day of the week will 17 October 2027 be?",
+   "status": "aligned",
+   "order": 23
+  },
+  "4d672022fcbb": {
+   "fr": "Le 1\\textsuperscript{er} janvier 2027 arrive [[m1]] jours après le 17 octobre 2026. Quel jour sera-t-il ?",
+   "en": "1 January 2027 comes [[m1]] days after 17 October 2026. What day will it be?",
+   "status": "aligned",
+   "order": 24
+  },
+  "99005453ac71": {
+   "fr": "Deux durées [[m1]] et [[m2]], en jours, mènent au même jour de la semaine. Que peut-on dire de [[m3]] ? Formuler une condition générale.",
+   "en": "Two durations [[m1]] and [[m2]], in days, lead to the same day of the week. What can be said about [[m3]]? State a general condition.",
+   "status": "aligned",
+   "order": 25
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 26
+  },
+  "631a21e98458": {
+   "fr": "Samedi dans les trois cas, car [[m1]], [[m2]] et [[m3]] sont des multiples de [[m4]].",
+   "en": "Saturday in all three cases, because [[m1]], [[m2]] and [[m3]] are multiples of [[m4]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "db29d88c5de9": {
+   "fr": "[[m1]] : on avance de [[m2]] jours, c'est un lundi. Seul compte le reste de la division par [[m3]].",
+   "en": "[[m1]]: we move forward [[m2]] days, it is a Monday. Only the remainder of the division by [[m3]] matters.",
+   "status": "aligned",
+   "order": 28
+  },
+  "d3565919f618": {
+   "fr": "[[m1]] : dimanche.",
+   "en": "[[m1]]: Sunday.",
+   "status": "aligned",
+   "order": 30
+  },
+  "b5fdec311bce": {
+   "fr": "[[m1]] : vendredi.",
+   "en": "[[m1]]: Friday.",
+   "status": "aligned",
+   "order": 31
+  },
+  "aaf8df67555a": {
+   "fr": "[[m1]] et [[m2]] ont le même reste dans la division par [[m3]], c'est-à-dire que [[m4]] est un multiple de [[m5]]. On dira que [[m6]] et [[m7]] sont congrus modulo [[m8]].",
+   "en": "[[m1]] and [[m2]] have the same remainder in the division by [[m3]], that is [[m4]] is a multiple of [[m5]]. We shall say that [[m6]] and [[m7]] are congruent modulo [[m8]].",
+   "status": "aligned",
+   "order": 32
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 33
+  },
+  "50de265fcafe": {
+   "fr": "Faire vérifier les réponses à l'aide d'un calendrier ou d'un tableur pour la question 4, en signalant que la vérification sur un exemple ne remplace pas le raisonnement. Prolongement : expliquer pourquoi le 17 octobre 2030 est un jeudi ([[m1]] jours, dont un 29 février, et [[m2]]).",
+   "en": "Have the answer to question 4 checked with a calendar or a spreadsheet, pointing out that checking an example does not replace the reasoning. Extension: explain why 17 October 2030 is a Thursday ([[m1]] days, including one 29 February, and [[m2]]).",
+   "status": "aligned",
+   "order": 34
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 35
+  },
+  "c3f19390e952": {
+   "fr": "Divisibilité dans [[m1]]",
+   "en": "Divisibility in [[m1]]",
+   "status": "aligned",
+   "order": 36
+  },
+  "cbb7bb9e671e": {
+   "fr": "Diviseur, multiple",
+   "en": "Divisor, multiple",
+   "status": "aligned",
+   "order": 37
+  },
+  "52f588d0be81": {
+   "fr": "Soit [[m1]] et [[m2]] deux entiers relatifs. On dit que [[m3]] \\emph{divise} [[m4]], et on note [[m5]], s'il existe un entier relatif [[m6]] tel que [[m7]]. On dit aussi que [[m8]] est un \\emph{diviseur} de [[m9]], ou que [[m10]] est un \\emph{multiple} de [[m11]].",
+   "en": "Let [[m1]] and [[m2]] be two integers. We say that [[m3]] \\emph{divides} [[m4]], written [[m5]], if there is an integer [[m6]] such that [[m7]]. We also say that [[m8]] is a \\emph{divisor} of [[m9]], or that [[m10]] is a \\emph{multiple} of [[m11]].",
+   "status": "aligned",
+   "order": 38
+  },
+  "9b395539e7f4": {
+   "fr": "Propriétés de la divisibilité",
+   "en": "Properties of divisibility",
+   "status": "aligned",
+   "order": 39
+  },
+  "f873ddf7fe88": {
+   "fr": "Soit [[m1]], [[m2]], [[m3]] des entiers relatifs.",
+   "en": "Let [[m1]], [[m2]], [[m3]] be integers.",
+   "status": "aligned",
+   "order": 40
+  },
+  "9ae99ad31232": {
+   "fr": "Si [[m1]] et [[m2]], alors [[m3]] pour tous entiers relatifs [[m4]] et [[m5]].",
+   "en": "If [[m1]] and [[m2]], then [[m3]] for all integers [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "1ce11ab0241f": {
+   "fr": "Si [[m1]] et [[m2]], alors [[m3]].",
+   "en": "If [[m1]] and [[m2]], then [[m3]].",
+   "status": "aligned",
+   "order": 43
+  },
+  "baa7b00b16e5": {
+   "fr": "1. [[m1]] et [[m2]] donnent [[m3]]. 2. [[m4]] et [[m5]] donnent [[m6]]. 3. [[m7]] avec [[m8]], donc [[m9]] et [[m10]].",
+   "en": "1. [[m1]] and [[m2]] give [[m3]]. 2. [[m4]] and [[m5]] give [[m6]]. 3. [[m7]] with [[m8]], so [[m9]] and [[m10]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "693f562a0165": {
+   "fr": "Division euclidienne",
+   "en": "Euclidean division",
+   "status": "aligned",
+   "order": 45
+  },
+  "4fe4333b1309": {
+   "fr": "Soit [[m1]] et [[m2]], [[m3]]. Il existe un unique couple d'entiers [[m4]] tel que [[m5]] et [[m6]]. On appelle [[m7]] le \\emph{quotient} et [[m8]] le \\emph{reste}.",
+   "en": "Let [[m1]] and [[m2]], [[m3]]. There is a unique pair of integers [[m4]] such that [[m5]] and [[m6]]. We call [[m7]] the \\emph{quotient} and [[m8]] the \\emph{remainder}.",
+   "status": "aligned",
+   "order": 46
+  },
+  "aba1caa560df": {
+   "fr": "\\emph{Existence.} Posons [[m1]], le plus grand entier inférieur ou égal à [[m2]]. Alors [[m3]], donc [[m4]], et [[m5]] vérifie [[m6]].",
+   "en": "\\emph{Existence.} Let [[m1]], the largest integer less than or equal to [[m2]]. Then [[m3]], so [[m4]], and [[m5]] satisfies [[m6]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "01c587379e15": {
+   "fr": "\\emph{Unicité.} Si [[m1]] avec [[m2]], alors [[m3]] et [[m4]]. Le seul multiple de [[m5]] strictement compris entre [[m6]] et [[m7]] est [[m8]], donc [[m9]] puis [[m10]].",
+   "en": "\\emph{Uniqueness.} If [[m1]] with [[m2]], then [[m3]] and [[m4]]. The only multiple of [[m5]] strictly between [[m6]] and [[m7]] is [[m8]], so [[m9]] and then [[m10]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "9ddf44f65f2e": {
+   "fr": "Le reste est toujours positif : [[m1]], donc la division de [[m2]] par [[m3]] a pour quotient [[m4]] et pour reste [[m5]], et non [[m6]] et [[m7]].",
+   "en": "The remainder is always nonnegative: [[m1]], so the division of [[m2]] by [[m3]] has quotient [[m4]] and remainder [[m5]], not [[m6]] and [[m7]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "3f2059846d6b": {
+   "fr": "Congruences",
+   "en": "Congruences",
+   "status": "aligned",
+   "order": 50
+  },
+  "8a8cbce6f8df": {
+   "fr": "Congruence modulo [[m1]]",
+   "en": "Congruence modulo [[m1]]",
+   "status": "aligned",
+   "order": 51
+  },
+  "65617c8190e6": {
+   "fr": "Soit [[m1]] un entier. Deux entiers relatifs [[m2]] et [[m3]] sont \\emph{congrus modulo $n$}, ce que l'on note [[m4]], si [[m5]].",
+   "en": "Let [[m1]] be an integer. Two integers [[m2]] and [[m3]] are \\emph{congruent modulo $n$}, written [[m4]], if [[m5]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "75bbdd79c505": {
+   "fr": "Congruence et reste",
+   "en": "Congruence and remainder",
+   "status": "aligned",
+   "order": 53
+  },
+  "1cced288e3ee": {
+   "fr": "[[m1]] si et seulement si [[m2]] et [[m3]] ont le même reste dans la division euclidienne par [[m4]]. En particulier, tout entier est congru modulo [[m5]] à son reste, qui appartient à [[m6]].",
+   "en": "[[m1]] if and only if [[m2]] and [[m3]] have the same remainder in the Euclidean division by [[m4]]. In particular, every integer is congruent modulo [[m5]] to its remainder, which belongs to [[m6]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "548dea107796": {
+   "fr": "Écrivons [[m1]] et [[m2]] avec [[m3]]. Alors [[m4]] et [[m5]]. Donc [[m6]] si et seulement si [[m7]], si et seulement si [[m8]].",
+   "en": "Write [[m1]] and [[m2]] with [[m3]]. Then [[m4]] and [[m5]]. So [[m6]] if and only if [[m7]], if and only if [[m8]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "7ce9e7953735": {
+   "fr": "Compatibilité avec les opérations",
+   "en": "Compatibility with the operations",
+   "status": "aligned",
+   "order": 56
+  },
+  "734d700a48fa": {
+   "fr": "Si [[m1]] et [[m2]], alors",
+   "en": "If [[m1]] and [[m2]], then",
+   "status": "aligned",
+   "order": 57
+  },
+  "8a232efb415f": {
+   "fr": "pour tout entier naturel [[m1]]. La relation est aussi transitive : si [[m2]] et [[m3]], alors [[m4]].",
+   "en": "for every natural number [[m1]]. The relation is also transitive: if [[m2]] and [[m3]], then [[m4]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "58f23e5be59e": {
+   "fr": "Somme : [[m1]] est somme de deux multiples de [[m2]]. Produit : [[m3]], multiple de [[m4]]. Puissance : récurrence sur [[m5]] à partir du produit. Transitivité : [[m6]].",
+   "en": "Sum: [[m1]] is a sum of two multiples of [[m2]]. Product: [[m3]], a multiple of [[m4]]. Power: induction on [[m5]] from the product. Transitivity: [[m6]].",
+   "status": "aligned",
+   "order": 59
+  },
+  "1400355933bb": {
+   "fr": "On ne simplifie pas une congruence comme une égalité : [[m1]], mais [[m2]]. La division n'est possible que dans des cas précis (chapitre 7).",
+   "en": "A congruence is not simplified like an equality: [[m1]], but [[m2]]. Division is possible only in specific cases (chapter 7).",
+   "status": "aligned",
+   "order": 60
+  },
+  "e9c724f73589": {
+   "fr": "Reste d'une grande puissance",
+   "en": "Remainder of a large power",
+   "status": "aligned",
+   "order": 61
+  },
+  "fc71ba222f1b": {
+   "fr": "On cherche une puissance congrue à [[m1]] (ou à [[m2]]), puis on utilise la division euclidienne de l'exposant. Exemple : [[m3]] et [[m4]], donc [[m5]].",
+   "en": "Look for a power congruent to [[m1]] (or to [[m2]]), then use the Euclidean division of the exponent. Example: [[m3]] and [[m4]], so [[m5]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "d02042ab25ef": {
+   "fr": "Tableau de congruences",
+   "en": "Table of congruences",
+   "status": "aligned",
+   "order": 63
+  },
+  "60aaee693e09": {
+   "fr": "Pour étudier une expression modulo [[m1]], on dresse un tableau donnant sa valeur modulo [[m2]] pour chaque reste possible de [[m3]]. Exemple : modulo [[m4]], [[m5]] donne [[m6]]. Un carré est donc congru à [[m7]] ou [[m8]] modulo [[m9]].",
+   "en": "To study an expression modulo [[m1]], draw up a table giving its value modulo [[m2]] for each possible remainder of [[m3]]. Example: modulo [[m4]], [[m5]] gives [[m6]]. A square is therefore congruent to [[m7]] or [[m8]] modulo [[m9]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "cf8f886410c1": {
+   "fr": "Si [[m1]] s'écrit avec les chiffres [[m2]], comme [[m3]], on a [[m4]] et [[m5]]. Un entier est divisible par [[m6]] si et seulement si la somme de ses chiffres l'est.",
+   "en": "If [[m1]] is written with the digits [[m2]], since [[m3]], we have [[m4]] and [[m5]]. An integer is divisible by [[m6]] if and only if the sum of its digits is.",
+   "status": "aligned",
+   "order": 66
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 67
+  },
+  "ae3e3650395d": {
+   "fr": "Divisions euclidiennes",
+   "en": "Euclidean divisions",
+   "status": "aligned",
+   "order": 68
+  },
+  "ce1f57f7c5bb": {
+   "fr": "Effectuer la division euclidienne de [[m1]] par [[m2]].",
+   "en": "Carry out the Euclidean division of [[m1]] by [[m2]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "47da292b321c": {
+   "fr": "Effectuer la division euclidienne de [[m1]] par [[m2]], puis de [[m3]] par [[m4]].",
+   "en": "Carry out the Euclidean division of [[m1]] by [[m2]], then of [[m3]] by [[m4]].",
+   "status": "aligned",
+   "order": 70
+  },
+  "78aa0cc97c31": {
+   "fr": "Déterminer les entiers naturels [[m1]] dont le quotient dans la division par [[m2]] est égal au reste.",
+   "en": "Determine the natural numbers [[m1]] whose quotient in the division by [[m2]] equals the remainder.",
+   "status": "aligned",
+   "order": 71
+  },
+  "821ac20c7a15": {
+   "fr": "[[m1]] : quotient [[m2]], reste [[m3]].",
+   "en": "[[m1]]: quotient [[m2]], remainder [[m3]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "0e6669e21566": {
+   "fr": "[[m1]] avec [[m2]] : [[m3]].",
+   "en": "[[m1]] with [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "3ea96b27b3ce": {
+   "fr": "Restes de puissances",
+   "en": "Remainders of powers",
+   "status": "aligned",
+   "order": 75
+  },
+  "4e1a17d40330": {
+   "fr": "Déterminer le reste de [[m1]] dans la division par [[m2]].",
+   "en": "Determine the remainder of [[m1]] in the division by [[m2]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "369e78f7c14d": {
+   "fr": "[[m1]], donc [[m2]] : le reste est [[m3]].",
+   "en": "[[m1]], so [[m2]]: the remainder is [[m3]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "9790a05fb771": {
+   "fr": "Sommes de deux carrés",
+   "en": "Sums of two squares",
+   "status": "aligned",
+   "order": 80
+  },
+  "d147f7db6ecc": {
+   "fr": "Démontrer que pour tout entier [[m1]], [[m2]] ou [[m3]].",
+   "en": "Prove that for every integer [[m1]], [[m2]] or [[m3]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "dea14a401005": {
+   "fr": "En déduire qu'un entier congru à [[m1]] modulo [[m2]] n'est pas la somme de deux carrés d'entiers.",
+   "en": "Deduce that an integer congruent to [[m1]] modulo [[m2]] is not the sum of two squares of integers.",
+   "status": "aligned",
+   "order": 82
+  },
+  "03b78eded180": {
+   "fr": "L'entier [[m1]] peut-il s'écrire [[m2]] avec [[m3]], [[m4]] entiers ?",
+   "en": "Can the integer [[m1]] be written [[m2]] with [[m3]], [[m4]] integers?",
+   "status": "aligned",
+   "order": 83
+  },
+  "9e46e5859d7e": {
+   "fr": "Tableau : [[m1]] donne [[m2]], c'est-à-dire [[m3]].",
+   "en": "Table: [[m1]] gives [[m2]], that is [[m3]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "1fe1f9827f78": {
+   "fr": "[[m1]] est congru à [[m2]], [[m3]] ou [[m4]], donc à [[m5]], [[m6]] ou [[m7]] modulo [[m8]], jamais à [[m9]].",
+   "en": "[[m1]] is congruent to [[m2]], [[m3]] or [[m4]], hence to [[m5]], [[m6]] or [[m7]] modulo [[m8]], never to [[m9]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "2b8cc4dfb5a8": {
+   "fr": "[[m1]] : non.",
+   "en": "[[m1]]: no.",
+   "status": "aligned",
+   "order": 86
+  },
+  "b4d7c3e9329a": {
+   "fr": "Critère de divisibilité par [[m1]]",
+   "en": "Divisibility test for [[m1]]",
+   "status": "aligned",
+   "order": 87
+  },
+  "364626fad4c7": {
+   "fr": "Démontrer que [[m1]], puis que [[m2]].",
+   "en": "Prove that [[m1]], then that [[m2]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "586b634e4d6f": {
+   "fr": "En déduire qu'un entier est divisible par [[m1]] si et seulement si la somme alternée de ses chiffres, en partant des unités, [[m2]], l'est.",
+   "en": "Deduce that an integer is divisible by [[m1]] if and only if the alternating sum of its digits, starting from the units, [[m2]], is.",
+   "status": "aligned",
+   "order": 89
+  },
+  "e7af413251fc": {
+   "fr": "L'entier [[m1]] est-il divisible par [[m2]] ?",
+   "en": "Is the integer [[m1]] divisible by [[m2]]?",
+   "status": "aligned",
+   "order": 90
+  },
+  "7309de3055ca": {
+   "fr": "[[m1]]. La compatibilité avec les puissances donne [[m2]].",
+   "en": "[[m1]]. Compatibility with powers gives [[m2]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "066c13604745": {
+   "fr": "[[m1]] ; [[m2]] et la somme alternée ont le même reste.",
+   "en": "[[m1]]; [[m2]] and the alternating sum have the same remainder.",
+   "status": "aligned",
+   "order": 92
+  },
+  "c27d1f99f452": {
+   "fr": "[[m1]], multiple de [[m2]] : oui ([[m3]]).",
+   "en": "[[m1]], a multiple of [[m2]]: yes ([[m3]]).",
+   "status": "aligned",
+   "order": 93
+  },
+  "743f247fd31a": {
+   "fr": "Divisibilités pour tout entier",
+   "en": "Divisibility for every integer",
+   "status": "aligned",
+   "order": 94
+  },
+  "2718fef3ae5d": {
+   "fr": "Démontrer que pour tout entier naturel [[m1]] :",
+   "en": "Prove that for every natural number [[m1]]:",
+   "status": "aligned",
+   "order": 95
+  },
+  "724687da5808": {
+   "fr": "[[m1]] est divisible par [[m2]] ;",
+   "en": "[[m1]] is divisible by [[m2]];",
+   "status": "aligned",
+   "order": 96
+  },
+  "dfc269490c36": {
+   "fr": "[[m1]] est divisible par [[m2]].",
+   "en": "[[m1]] is divisible by [[m2]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "f6745ae66c1d": {
+   "fr": "[[m1]], donc [[m2]] et [[m3]].",
+   "en": "[[m1]], so [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "3698188fa0d3": {
+   "fr": "Tableau modulo [[m1]] : pour [[m2]], [[m3]], tous multiples de [[m4]]. Donc [[m5]] pour tout [[m6]]. Remarque : [[m7]] est un produit de trois entiers consécutifs ; on verra au chapitre 7 pourquoi être divisible par [[m8]] et par [[m9]] suffit.",
+   "en": "Table modulo [[m1]]: for [[m2]], [[m3]], all multiples of [[m4]]. So [[m5]] for every [[m6]]. Remark: [[m7]] is a product of three consecutive integers; chapter 7 will show why being divisible by [[m8]] and by [[m9]] is enough.",
+   "status": "aligned",
+   "order": 99
+  },
+  "f47c596fed1e": {
+   "fr": "Équations de congruence",
+   "en": "Congruence equations",
+   "status": "aligned",
+   "order": 100
+  },
+  "2c8c989cc0cd": {
+   "fr": "Résoudre [[m1]]. On cherchera d'abord un entier [[m2]] tel que [[m3]].",
+   "en": "Solve [[m1]]. First look for an integer [[m2]] such that [[m3]].",
+   "status": "aligned",
+   "order": 101
+  },
+  "db3b926f0837": {
+   "fr": "Résoudre [[m1]] à l'aide d'un tableau.",
+   "en": "Solve [[m1]] with a table.",
+   "status": "aligned",
+   "order": 102
+  },
+  "ab2a36219f6c": {
+   "fr": "[[m1]]. En multipliant par [[m2]] : [[m3]] implique [[m4]] ; réciproquement [[m5]]. Les solutions sont les entiers [[m6]], [[m7]].",
+   "en": "[[m1]]. Multiplying by [[m2]]: [[m3]] implies [[m4]]; conversely [[m5]]. The solutions are the integers [[m6]], [[m7]].",
+   "status": "aligned",
+   "order": 103
+  },
+  "783fd05dba50": {
+   "fr": "Pour [[m1]] : [[m2]]. Les solutions sont les entiers congrus à [[m3]] ou [[m4]] modulo [[m5]].",
+   "en": "For [[m1]]: [[m2]]. The solutions are the integers congruent to [[m3]] or [[m4]] modulo [[m5]].",
+   "status": "aligned",
+   "order": 104
+  },
+  "f9361295dac6": {
+   "fr": "Les deux derniers chiffres",
+   "en": "The last two digits",
+   "status": "aligned",
+   "order": 105
+  },
+  "79d8b7c969ad": {
+   "fr": "Déterminer les deux derniers chiffres de l'écriture décimale de [[m1]].",
+   "en": "Determine the last two digits of the decimal expansion of [[m1]].",
+   "status": "aligned",
+   "order": 106
+  },
+  "79cab3a556bc": {
+   "fr": "On travaille modulo [[m1]]. [[m2]] et [[m3]]. Comme [[m4]], [[m5]] : l'écriture se termine par [[m6]].",
+   "en": "We work modulo [[m1]]. [[m2]] and [[m3]]. Since [[m4]], [[m5]]: the expansion ends in [[m6]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "d8458c856e16": {
+   "fr": "La clé de contrôle d'un code ISBN-13",
+   "en": "The check digit of an ISBN-13 code",
+   "status": "aligned",
+   "order": 109
+  },
+  "6ecf2786af02": {
+   "fr": "Un code ISBN-13 est une suite de treize chiffres [[m1]]. On pose",
+   "en": "An ISBN-13 code is a sequence of thirteen digits [[m1]]. Let",
+   "status": "aligned",
+   "order": 110
+  },
+  "d65500efe1f5": {
+   "fr": "les poids [[m1]] et [[m2]] alternant. Le code est valide si et seulement si [[m3]] ; le dernier chiffre [[m4]], appelé clé, est choisi pour cela.",
+   "en": "with the weights [[m1]] and [[m2]] alternating. The code is valid if and only if [[m3]]; the last digit [[m4]], called the check digit, is chosen to make it so.",
+   "status": "aligned",
+   "order": 111
+  },
+  "0d8216d4e067": {
+   "fr": "On considère le numéro fictif 978-2-0601-2345-[[m1]]. Calculer la clé [[m2]].",
+   "en": "Consider the fictitious number 978-2-0601-2345-[[m1]]. Compute the check digit [[m2]].",
+   "status": "aligned",
+   "order": 112
+  },
+  "36fd86f07161": {
+   "fr": "On suppose qu'un seul chiffre [[m1]] est remplacé par un chiffre [[m2]].",
+   "en": "Assume that a single digit [[m1]] is replaced by a digit [[m2]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "5e6d2f585931": {
+   "fr": "Démontrer que [[m1]] est modifié de [[m2]], avec [[m3]].",
+   "en": "Prove that [[m1]] changes by [[m2]], with [[m3]].",
+   "status": "aligned",
+   "order": 114
+  },
+  "dc1d0ef1ab8d": {
+   "fr": "Vérifier que [[m1]] et en déduire que [[m2]] implique [[m3]].",
+   "en": "Check that [[m1]] and deduce that [[m2]] implies [[m3]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "d8471770f2f2": {
+   "fr": "Conclure : une erreur sur un seul chiffre est toujours détectée.",
+   "en": "Conclude: an error in a single digit is always detected.",
+   "status": "aligned",
+   "order": 116
+  },
+  "7ac3c282a378": {
+   "fr": "On suppose que deux chiffres voisins distincts [[m1]] et [[m2]] sont échangés.",
+   "en": "Assume that two distinct adjacent digits [[m1]] and [[m2]] are swapped.",
+   "status": "aligned",
+   "order": 117
+  },
+  "52292321867d": {
+   "fr": "Démontrer que [[m1]] est modifié de [[m2]] ou de [[m3]].",
+   "en": "Prove that [[m1]] changes by [[m2]] or by [[m3]].",
+   "status": "aligned",
+   "order": 118
+  },
+  "43899beaf038": {
+   "fr": "Déterminer à quelle condition sur [[m1]] et [[m2]] l'erreur n'est pas détectée. Donner un exemple.",
+   "en": "Determine under which condition on [[m1]] and [[m2]] the error is not detected. Give an example.",
+   "status": "aligned",
+   "order": 119
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 120
+  },
+  "14419245d466": {
+   "fr": "Les douze premiers chiffres [[m1]] donnent [[m2]]. Il faut [[m3]] avec [[m4]] : [[m5]].",
+   "en": "The first twelve digits [[m1]] give [[m2]]. We need [[m3]] with [[m4]]: [[m5]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "689b10c05621": {
+   "fr": "Le terme [[m1]] devient [[m2]], les autres termes ne changent pas.",
+   "en": "The term [[m1]] becomes [[m2]], the other terms do not change.",
+   "status": "aligned",
+   "order": 122
+  },
+  "1a1852ea1a19": {
+   "fr": "[[m1]]. Si [[m2]], en multipliant par [[m3]] : [[m4]]. Le cas [[m5]] est immédiat.",
+   "en": "[[m1]]. If [[m2]], multiplying by [[m3]]: [[m4]]. The case [[m5]] is immediate.",
+   "status": "aligned",
+   "order": 123
+  },
+  "b37a212a7c1d": {
+   "fr": "[[m1]] est un multiple de [[m2]] compris entre [[m3]] et [[m4]], donc nul : contradiction avec [[m5]]. La nouvelle somme n'est plus multiple de [[m6]], l'erreur est détectée.",
+   "en": "[[m1]] is a multiple of [[m2]] between [[m3]] and [[m4]], hence zero: a contradiction with [[m5]]. The new sum is no longer a multiple of [[m6]], so the error is detected.",
+   "status": "aligned",
+   "order": 124
+  },
+  "32533062b2ec": {
+   "fr": "Les deux chiffres ont des poids [[m1]] et [[m2]]. La contribution [[m3]] devient [[m4]] (ou l'inverse), soit une variation de [[m5]] ou de [[m6]].",
+   "en": "The two digits have weights [[m1]] and [[m2]]. The contribution [[m3]] becomes [[m4]] (or the reverse), a change of [[m5]] or of [[m6]].",
+   "status": "aligned",
+   "order": 125
+  },
+  "4aa3348d4c3a": {
+   "fr": "L'erreur n'est pas détectée si et seulement si [[m1]], c'est-à-dire [[m2]] : [[m3]]. Exemple : échanger les chiffres voisins [[m4]] et [[m5]] ne modifie pas [[m6]] modulo [[m7]].",
+   "en": "The error is not detected if and only if [[m1]], that is [[m2]]: [[m3]]. Example: swapping the adjacent digits [[m4]] and [[m5]] does not change [[m6]] modulo [[m7]].",
+   "status": "aligned",
+   "order": 126
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 127
+  },
+  "c6d975d42e56": {
+   "fr": "Les codes de contrôle (ISBN, RIB, codes-barres) sont un « problème possible » du programme. La question 2b utilise un inverse modulo [[m1]] : la notion sera formalisée au chapitre 7. Le numéro de la question 1 est donné à titre d'exemple, pour le calcul.",
+   "en": "Check codes (ISBN, bank account keys, barcodes) are a ``possible problem'' of the syllabus. Question 2b uses an inverse modulo [[m1]]: the notion is formalised in chapter 7. The number in question 1 is given as an example, for the computation.",
+   "status": "aligned",
+   "order": 128
+  }
+ }
+}

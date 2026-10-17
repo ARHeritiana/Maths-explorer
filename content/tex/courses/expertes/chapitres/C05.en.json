@@ -1,0 +1,647 @@
+{
+ "unit": "C05.fr.tex",
+ "segments": {
+  "8dfec03e87f1": {
+   "fr": "Nombres complexes et géométrie",
+   "en": "Complex numbers and geometry",
+   "status": "aligned",
+   "order": 0
+  },
+  "4f3cf9e36798": {
+   "fr": "Angles et rapports de longueurs, racines [[m1]]-ièmes de l'unité",
+   "en": "Angles and ratios of lengths, [[m1]]-th roots of unity",
+   "status": "aligned",
+   "order": 1
+  },
+  "d219cc1c46a4": {
+   "fr": "Interpréter le module et un argument de [[m1]] ; démontrer un alignement, une orthogonalité, la nature d'un triangle ; déterminer des ensembles de points ; déterminer les racines [[m2]]-ièmes de l'unité et les utiliser pour les polygones réguliers.",
+   "en": "Interpret the modulus and an argument of [[m1]]; prove that points are collinear, that lines are perpendicular, the nature of a triangle; determine sets of points; determine the [[m2]]-th roots of unity and use them for regular polygons.",
+   "status": "aligned",
+   "order": 2
+  },
+  "dbd6a03f30aa": {
+   "fr": "Chapitres 2, 3 et 4 ; angles orientés de vecteurs ; triangles particuliers.",
+   "en": "Chapters 2, 3 and 4; oriented angles of vectors; special triangles.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "5208ca1ecaa1": {
+   "fr": "Donner un argument de [[m1]] et de [[m2]].",
+   "en": "Give an argument of [[m1]] and of [[m2]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "8d9e7a14d2a4": {
+   "fr": "Écrire [[m1]] sous forme algébrique.",
+   "en": "Write [[m1]] in algebraic form.",
+   "status": "aligned",
+   "order": 7
+  },
+  "ecbe5d98d335": {
+   "fr": "Si [[m1]] et [[m2]] ont pour affixes [[m3]] et [[m4]], quelle est l'affixe de [[m5]] ?",
+   "en": "If [[m1]] and [[m2]] have affixes [[m3]] and [[m4]], what is the affix of [[m5]]?",
+   "status": "aligned",
+   "order": 8
+  },
+  "867a79c877d1": {
+   "fr": "Combien de solutions l'équation [[m1]] a-t-elle au plus dans [[m2]] ?",
+   "en": "At most how many solutions does the equation [[m1]] have in [[m2]]?",
+   "status": "aligned",
+   "order": 10
+  },
+  "b755a6743ae2": {
+   "fr": "Quel est l'effet géométrique de la multiplication par [[m1]] ?",
+   "en": "What is the geometric effect of multiplication by [[m1]]?",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "f0d1d8b8834c": {
+   "fr": "Au plus cinq (chapitre 4).",
+   "en": "At most five (chapter 4).",
+   "status": "aligned",
+   "order": 14
+  },
+  "a52c6eb29bb4": {
+   "fr": "Une rotation de centre [[m1]] et d'angle [[m2]].",
+   "en": "A rotation with centre [[m1]] and angle [[m2]].",
+   "status": "aligned",
+   "order": 15
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 16
+  },
+  "0faf6feeed7f": {
+   "fr": "Les solutions de [[m1]]",
+   "en": "The solutions of [[m1]]",
+   "status": "aligned",
+   "order": 17
+  },
+  "15b750412480": {
+   "fr": "40 min",
+   "en": "40 min",
+   "status": "aligned",
+   "order": 18
+  },
+  "a57de78f3bac": {
+   "fr": "Factoriser [[m1]] par [[m2]], puis résoudre [[m3]] dans [[m4]]. On note [[m5]] la solution de partie imaginaire positive.",
+   "en": "Factorise [[m1]] by [[m2]], then solve [[m3]] in [[m4]]. Let [[m5]] be the solution with positive imaginary part.",
+   "status": "aligned",
+   "order": 19
+  },
+  "4a0be401760d": {
+   "fr": "Placer les trois solutions dans le plan complexe. Calculer les distances entre elles. Quelle figure obtient-on ?",
+   "en": "Plot the three solutions in the complex plane. Compute the distances between them. Which figure do you obtain?",
+   "status": "aligned",
+   "order": 20
+  },
+  "cd0a428c936a": {
+   "fr": "Écrire [[m1]] sous forme exponentielle. Vérifier que [[m2]] et que [[m3]]. Interpréter cette dernière égalité à l'aide du centre de gravité.",
+   "en": "Write [[m1]] in exponential form. Check that [[m2]] and that [[m3]]. Interpret the last equality with the centroid.",
+   "status": "aligned",
+   "order": 21
+  },
+  "153bd9ebba56": {
+   "fr": "Résoudre [[m1]] et placer les solutions. Même question pour [[m2]], en utilisant [[m3]].",
+   "en": "Solve [[m1]] and plot the solutions. Same question for [[m2]], using [[m3]].",
+   "status": "aligned",
+   "order": 22
+  },
+  "9bcbee62eb19": {
+   "fr": "Formuler une conjecture sur les solutions de [[m1]] : leur nombre, leur module, leurs arguments, la figure qu'elles forment.",
+   "en": "State a conjecture about the solutions of [[m1]]: their number, their modulus, their arguments, the figure they form.",
+   "status": "aligned",
+   "order": 23
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 24
+  },
+  "d75ad7d62396": {
+   "fr": "[[m1]] ; le trinôme a pour discriminant [[m2]]. Solutions : [[m3]], [[m4]] et [[m5]].",
+   "en": "[[m1]]; the quadratic has discriminant [[m2]]. Solutions: [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 25
+  },
+  "234f46e3c687": {
+   "fr": "Les trois distances valent [[m1]] : triangle équilatéral inscrit dans le cercle unité.",
+   "en": "The three distances equal [[m1]]: an equilateral triangle inscribed in the unit circle.",
+   "status": "aligned",
+   "order": 26
+  },
+  "e11d54696849": {
+   "fr": "[[m1]], [[m2]], et [[m3]]. L'affixe du centre de gravité, [[m4]], est nulle : c'est [[m5]].",
+   "en": "[[m1]], [[m2]], and [[m3]]. The affix of the centroid, [[m4]], is zero: it is [[m5]].",
+   "status": "aligned",
+   "order": 27
+  },
+  "1d5e608cbf0c": {
+   "fr": "[[m1]] : [[m2]], [[m3]], [[m4]], [[m5]], sommets d'un carré. [[m6]] : les solutions de [[m7]] et celles de [[m8]], c'est-à-dire [[m9]], [[m10]] ; on obtient un hexagone régulier.",
+   "en": "[[m1]]: [[m2]], [[m3]], [[m4]], [[m5]], vertices of a square. [[m6]]: the solutions of [[m7]] and those of [[m8]], that is [[m9]], [[m10]]; we obtain a regular hexagon.",
+   "status": "aligned",
+   "order": 28
+  },
+  "b08196ee45f9": {
+   "fr": "Conjecture : [[m1]] solutions, toutes de module [[m2]], d'arguments [[m3]] ; elles sont les sommets d'un polygone régulier à [[m4]] côtés inscrit dans le cercle unité, dont [[m5]] est un sommet.",
+   "en": "Conjecture: [[m1]] solutions, all of modulus [[m2]], with arguments [[m3]]; they are the vertices of a regular polygon with [[m4]] sides inscribed in the unit circle, one of whose vertices is [[m5]].",
+   "status": "aligned",
+   "order": 29
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 30
+  },
+  "bba0f6258b0b": {
+   "fr": "Angles et longueurs",
+   "en": "Angles and lengths",
+   "status": "aligned",
+   "order": 31
+  },
+  "01c651c61083": {
+   "fr": "Interprétation de [[m1]]",
+   "en": "Interpretation of [[m1]]",
+   "status": "aligned",
+   "order": 32
+  },
+  "e573068081a9": {
+   "fr": "Soit [[m1]], [[m2]], [[m3]] trois points d'affixes [[m4]], [[m5]], [[m6]], avec [[m7]] et [[m8]]. Alors",
+   "en": "Let [[m1]], [[m2]], [[m3]] be three points with affixes [[m4]], [[m5]], [[m6]], with [[m7]] and [[m8]]. Then",
+   "status": "aligned",
+   "order": 33
+  },
+  "d072b405c174": {
+   "fr": "Le module d'un quotient est le quotient des modules : [[m1]] et [[m2]]. Pour l'argument, [[m3]] et [[m4]], donc par la relation de Chasles [[m5]].",
+   "en": "The modulus of a quotient is the quotient of the moduli: [[m1]] and [[m2]]. For the argument, [[m3]] and [[m4]], so by Chasles' relation [[m5]].",
+   "status": "aligned",
+   "order": 34
+  },
+  "de2a88b9f7d4": {
+   "fr": "Alignement, orthogonalité",
+   "en": "Collinearity, orthogonality",
+   "status": "aligned",
+   "order": 35
+  },
+  "a74e6176ab83": {
+   "fr": "Avec les mêmes notations, posons [[m1]].",
+   "en": "With the same notation, let [[m1]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "ae4025d710f2": {
+   "fr": "[[m1]], [[m2]], [[m3]] sont alignés si et seulement si [[m4]] est réel.",
+   "en": "[[m1]], [[m2]], [[m3]] are collinear if and only if [[m4]] is real.",
+   "status": "aligned",
+   "order": 37
+  },
+  "364484f37281": {
+   "fr": "Les droites [[m1]] et [[m2]] sont perpendiculaires si et seulement si [[m3]] est imaginaire pur.",
+   "en": "The lines [[m1]] and [[m2]] are perpendicular if and only if [[m3]] is purely imaginary.",
+   "status": "aligned",
+   "order": 38
+  },
+  "6267cb656f90": {
+   "fr": "Le triangle [[m1]] est rectangle isocèle en [[m2]] si et seulement si [[m3]] ou [[m4]] ; il est équilatéral si et seulement si [[m5]] ou [[m6]].",
+   "en": "The triangle [[m1]] is right-angled and isosceles at [[m2]] if and only if [[m3]] or [[m4]]; it is equilateral if and only if [[m5]] or [[m6]].",
+   "status": "aligned",
+   "order": 39
+  },
+  "6e8b5f33400e": {
+   "fr": "[[m1]] est réel si et seulement si son argument est [[m2]] ou [[m3]] modulo [[m4]], c'est-à-dire si [[m5]] et [[m6]] sont colinéaires. [[m7]] est imaginaire pur (non nul) si et seulement si son argument est [[m8]]. Pour 3, un triangle rectangle isocèle en [[m9]] correspond à [[m10]] et [[m11]] ; un triangle équilatéral à [[m12]] et [[m13]].",
+   "en": "[[m1]] is real if and only if its argument is [[m2]] or [[m3]] modulo [[m4]], that is if [[m5]] and [[m6]] are collinear. [[m7]] is purely imaginary (nonzero) if and only if its argument is [[m8]]. For 3, a triangle that is right-angled and isosceles at [[m9]] corresponds to [[m10]] and [[m11]]; an equilateral triangle to [[m12]] and [[m13]].",
+   "status": "aligned",
+   "order": 40
+  },
+  "1d4f012d3e1c": {
+   "fr": "Construire un carré",
+   "en": "Constructing a square",
+   "status": "aligned",
+   "order": 41
+  },
+  "ea759b20438d": {
+   "fr": "Soit [[m1]] et [[m2]] d'affixes [[m3]] et [[m4]]. Le carré direct [[m5]] a pour sommets [[m6]] et [[m7]] : on passe de [[m8]] à [[m9]] par un quart de tour direct. Avec [[m10]] et [[m11]] : [[m12]] et [[m13]].",
+   "en": "Let [[m1]] and [[m2]] have affixes [[m3]] and [[m4]]. The direct square [[m5]] has vertices [[m6]] and [[m7]]: we go from [[m8]] to [[m9]] by a direct quarter turn. With [[m10]] and [[m11]]: [[m12]] and [[m13]].",
+   "status": "aligned",
+   "order": 42
+  },
+  "5cad94b189bf": {
+   "fr": "Racines [[m1]]-ièmes de l'unité",
+   "en": "[[m1]]-th roots of unity",
+   "status": "aligned",
+   "order": 43
+  },
+  "3d06ab950a61": {
+   "fr": "Racine [[m1]]-ième de l'unité",
+   "en": "[[m1]]-th root of unity",
+   "status": "aligned",
+   "order": 44
+  },
+  "55a55b979df3": {
+   "fr": "Soit [[m1]] un entier. On appelle \\emph{racine $n$-ième de l'unité} tout complexe [[m2]] tel que [[m3]]. Leur ensemble est noté [[m4]].",
+   "en": "Let [[m1]] be an integer. An \\emph{$n$-th root of unity} is any complex number [[m2]] such that [[m3]]. Their set is written [[m4]].",
+   "status": "aligned",
+   "order": 45
+  },
+  "90da7fd594eb": {
+   "fr": "Détermination de [[m1]]",
+   "en": "Determination of [[m1]]",
+   "status": "aligned",
+   "order": 46
+  },
+  "a0737f5d1c6c": {
+   "fr": "Pour tout entier [[m1]], [[m2]] a exactement [[m3]] éléments :",
+   "en": "For every integer [[m1]], [[m2]] has exactly [[m3]] elements:",
+   "status": "aligned",
+   "order": 47
+  },
+  "eeefb7dd1a0b": {
+   "fr": "Soit [[m1]]. Alors [[m2]] avec [[m3]], donc [[m4]] et [[m5]] pour un réel [[m6]]. L'égalité [[m7]] équivaut à [[m8]], c'est-à-dire [[m9]] avec [[m10]] entier. Réciproquement, [[m11]].",
+   "en": "Let [[m1]]. Then [[m2]] with [[m3]], so [[m4]] and [[m5]] for some real number [[m6]]. The equality [[m7]] is equivalent to [[m8]], that is [[m9]] with [[m10]] an integer. Conversely, [[m11]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "c1e7ed46ce85": {
+   "fr": "Deux entiers [[m1]] et [[m2]] donnent le même nombre si et seulement si [[m3]] est un multiple de [[m4]], soit [[m5]]. Tout entier [[m6]] a même reste qu'un entier de [[m7]], et ces [[m8]] entiers ont des restes distincts : [[m9]] a exactement [[m10]] éléments.",
+   "en": "Two integers [[m1]] and [[m2]] give the same number if and only if [[m3]] is a multiple of [[m4]], that is [[m5]]. Every integer [[m6]] has the same remainder as an integer of [[m7]], and these [[m8]] integers have distinct remainders: [[m9]] has exactly [[m10]] elements.",
+   "status": "aligned",
+   "order": 49
+  },
+  "5db7531544d4": {
+   "fr": "Interprétation géométrique",
+   "en": "Geometric interpretation",
+   "status": "aligned",
+   "order": 50
+  },
+  "a90810030567": {
+   "fr": "Pour [[m1]], les images des éléments de [[m2]] sont les sommets d'un polygone régulier à [[m3]] côtés inscrit dans le cercle unité, dont un sommet est le point d'affixe [[m4]]. Avec [[m5]], on a [[m6]]. Cas à connaître : [[m7]], [[m8]] avec [[m9]], [[m10]].",
+   "en": "For [[m1]], the images of the elements of [[m2]] are the vertices of a regular polygon with [[m3]] sides inscribed in the unit circle, one of whose vertices is the point with affix [[m4]]. With [[m5]], we have [[m6]]. Cases to know: [[m7]], [[m8]] with [[m9]], [[m10]].",
+   "status": "aligned",
+   "order": 51
+  },
+  "8ffa1be09260": {
+   "fr": "Somme des racines [[m1]]-ièmes",
+   "en": "Sum of the [[m1]]-th roots",
+   "status": "aligned",
+   "order": 52
+  },
+  "ed4c873f8457": {
+   "fr": "Pour tout entier [[m1]], la somme des racines [[m2]]-ièmes de l'unité est nulle.",
+   "en": "For every integer [[m1]], the sum of the [[m2]]-th roots of unity is zero.",
+   "status": "aligned",
+   "order": 53
+  },
+  "ba15ec980809": {
+   "fr": "Avec [[m1]] (car [[m2]]) : [[m3]].",
+   "en": "With [[m1]] (since [[m2]]): [[m3]].",
+   "status": "aligned",
+   "order": 54
+  },
+  "3b06f3de3d27": {
+   "fr": "Les racines sixièmes de l'unité forment un hexagone régulier.",
+   "en": "The sixth roots of unity form a regular hexagon.",
+   "status": "aligned",
+   "order": 55
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 56
+  },
+  "7e6abbf451c6": {
+   "fr": "Alignement et orthogonalité",
+   "en": "Collinearity and orthogonality",
+   "status": "aligned",
+   "order": 57
+  },
+  "539afbadd0c7": {
+   "fr": "On considère les points [[m1]], [[m2]], [[m3]], [[m4]] d'affixes [[m5]], [[m6]], [[m7]] et [[m8]].",
+   "en": "Consider the points [[m1]], [[m2]], [[m3]], [[m4]] with affixes [[m5]], [[m6]], [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "d2867e8bf857": {
+   "fr": "Calculer [[m1]]. Que peut-on en déduire ?",
+   "en": "Compute [[m1]]. What can be deduced?",
+   "status": "aligned",
+   "order": 59
+  },
+  "a25d1e453e75": {
+   "fr": "Calculer [[m1]]. Que peut-on en déduire pour le triangle [[m2]] ?",
+   "en": "Compute [[m1]]. What can be deduced about the triangle [[m2]]?",
+   "status": "aligned",
+   "order": 60
+  },
+  "09ef96c8f4cf": {
+   "fr": "[[m1]], réel : [[m2]], [[m3]], [[m4]] sont alignés ([[m5]] est même le milieu de [[m6]]).",
+   "en": "[[m1]], real: [[m2]], [[m3]], [[m4]] are collinear ([[m5]] is even the midpoint of [[m6]]).",
+   "status": "aligned",
+   "order": 61
+  },
+  "ad2e16052474": {
+   "fr": "[[m1]] : [[m2]] et [[m3]]. Le triangle [[m4]] est rectangle isocèle en [[m5]].",
+   "en": "[[m1]]: [[m2]] and [[m3]]. The triangle [[m4]] is right-angled and isosceles at [[m5]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "d18e98fbebad": {
+   "fr": "Nature de triangles",
+   "en": "Nature of triangles",
+   "status": "aligned",
+   "order": 63
+  },
+  "84a33737c3cd": {
+   "fr": "Déterminer la nature du triangle [[m1]] dans chaque cas :",
+   "en": "Determine the nature of the triangle [[m1]] in each case:",
+   "status": "aligned",
+   "order": 64
+  },
+  "cee4c56e6f1f": {
+   "fr": "[[m1]] : triangle équilatéral.",
+   "en": "[[m1]]: equilateral triangle.",
+   "status": "aligned",
+   "order": 65
+  },
+  "566c623b86ff": {
+   "fr": "[[m1]] : triangle rectangle isocèle en [[m2]].",
+   "en": "[[m1]]: triangle right-angled and isosceles at [[m2]].",
+   "status": "aligned",
+   "order": 66
+  },
+  "ecd6e02f071e": {
+   "fr": "Racines sixièmes",
+   "en": "Sixth roots",
+   "status": "aligned",
+   "order": 67
+  },
+  "f6a440400087": {
+   "fr": "Déterminer les éléments de [[m1]] sous forme exponentielle puis algébrique. Vérifier que leur somme est nulle.",
+   "en": "Determine the elements of [[m1]] in exponential form, then in algebraic form. Check that their sum is zero.",
+   "status": "aligned",
+   "order": 68
+  },
+  "e7d09ec54aef": {
+   "fr": "[[m1]] pour [[m2]] : [[m3]], [[m4]], [[m5]], [[m6]], [[m7]], [[m8]]. Les parties réelles ont pour somme [[m9]], et les parties imaginaires se compensent deux à deux.",
+   "en": "[[m1]] for [[m2]]: [[m3]], [[m4]], [[m5]], [[m6]], [[m7]], [[m8]]. The real parts add up to [[m9]], and the imaginary parts cancel in pairs.",
+   "status": "aligned",
+   "order": 69
+  },
+  "8b2c345b2150": {
+   "fr": "Racines cubiques d'un nombre complexe",
+   "en": "Cube roots of a complex number",
+   "status": "aligned",
+   "order": 70
+  },
+  "01e941373653": {
+   "fr": "Résoudre dans [[m1]] l'équation [[m2]]. On écrira [[m3]] et on donnera les solutions sous forme algébrique.",
+   "en": "Solve in [[m1]] the equation [[m2]]. Write [[m3]] and give the solutions in algebraic form.",
+   "status": "aligned",
+   "order": 71
+  },
+  "b0c7988c2d4a": {
+   "fr": "[[m1]]. L'équation équivaut à [[m2]] et [[m3]], soit [[m4]] et [[m5]]. Les solutions sont [[m6]], [[m7]] et [[m8]]. Vérification : [[m9]].",
+   "en": "[[m1]]. The equation is equivalent to [[m2]] and [[m3]], that is [[m4]] and [[m5]]. The solutions are [[m6]], [[m7]] and [[m8]]. Check: [[m9]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "a8d2733f47f2": {
+   "fr": "Compléter un carré",
+   "en": "Completing a square",
+   "status": "aligned",
+   "order": 73
+  },
+  "85cdfd6d0fe3": {
+   "fr": "On donne [[m1]] et [[m2]]. Déterminer les affixes des points [[m3]] et [[m4]] tels que [[m5]] soit un carré direct. Vérifier que les diagonales ont le même milieu.",
+   "en": "Let [[m1]] and [[m2]]. Determine the affixes of the points [[m3]] and [[m4]] such that [[m5]] is a direct square. Check that the diagonals have the same midpoint.",
+   "status": "aligned",
+   "order": 74
+  },
+  "e497a13657a0": {
+   "fr": "[[m1]] et [[m2]]. Donc [[m3]] et [[m4]]. Le milieu de [[m5]] a pour affixe [[m6]], comme celui de [[m7]].",
+   "en": "[[m1]] and [[m2]]. So [[m3]] and [[m4]]. The midpoint of [[m5]] has affix [[m6]], as does that of [[m7]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "842dad3c5bbc": {
+   "fr": "Ensembles de points",
+   "en": "Sets of points",
+   "status": "aligned",
+   "order": 76
+  },
+  "d1fd122f0f54": {
+   "fr": "Soit [[m1]] et [[m2]] les points d'affixes [[m3]] et [[m4]]. À tout point [[m5]] d'affixe [[m6]], on associe [[m7]].",
+   "en": "Let [[m1]] and [[m2]] be the points with affixes [[m3]] and [[m4]]. To every point [[m5]] with affix [[m6]], we associate [[m7]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "dff6cb76d42c": {
+   "fr": "Interpréter géométriquement le module et un argument de [[m1]] lorsque [[m2]].",
+   "en": "Interpret geometrically the modulus and an argument of [[m1]] when [[m2]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "90b616544cb2": {
+   "fr": "Déterminer l'ensemble des points [[m1]] tels que [[m2]] soit réel.",
+   "en": "Determine the set of points [[m1]] such that [[m2]] is real.",
+   "status": "aligned",
+   "order": 79
+  },
+  "c4ad2ea131c0": {
+   "fr": "Déterminer l'ensemble des points [[m1]] tels que [[m2]] soit imaginaire pur et non nul.",
+   "en": "Determine the set of points [[m1]] such that [[m2]] is purely imaginary and nonzero.",
+   "status": "aligned",
+   "order": 80
+  },
+  "6c50f4ca5c1d": {
+   "fr": "Déterminer l'ensemble des points [[m1]] tels que [[m2]].",
+   "en": "Determine the set of points [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 81
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 82
+  },
+  "780a02b0ebfb": {
+   "fr": "[[m1]] pour [[m2]]. Sinon, [[m3]] réel non nul équivaut à [[m4]] et [[m5]] colinéaires, c'est-à-dire [[m6]]. L'ensemble est la droite [[m7]] privée de [[m8]].",
+   "en": "[[m1]] for [[m2]]. Otherwise, [[m3]] real and nonzero is equivalent to [[m4]] and [[m5]] collinear, that is [[m6]]. The set is the line [[m7]] without [[m8]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "c62c5447fd93": {
+   "fr": "[[m1]] imaginaire pur non nul équivaut à [[m2]], [[m3]] et [[m4]] : c'est le cercle de diamètre [[m5]] privé de [[m6]] et [[m7]]. Son centre a pour affixe [[m8]] et son rayon vaut [[m9]].",
+   "en": "[[m1]] purely imaginary and nonzero is equivalent to [[m2]], [[m3]] and [[m4]]: it is the circle with diameter [[m5]] without [[m6]] and [[m7]]. Its centre has affix [[m8]] and its radius is [[m9]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "e44ae505c1f4": {
+   "fr": "[[m1]] : la médiatrice de [[m2]].",
+   "en": "[[m1]]: the perpendicular bisector of [[m2]].",
+   "status": "aligned",
+   "order": 85
+  },
+  "5892d38de5ec": {
+   "fr": "Une somme de cosinus",
+   "en": "A sum of cosines",
+   "status": "aligned",
+   "order": 86
+  },
+  "4a5681df22b5": {
+   "fr": "Soit [[m1]]. Déduire du cours que [[m2]].",
+   "en": "Let [[m1]]. Deduce from the course that [[m2]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "4733cb43de94": {
+   "fr": "Écrire cette égalité pour [[m1]] et démontrer que [[m2]].",
+   "en": "Write this equality for [[m1]] and prove that [[m2]].",
+   "status": "aligned",
+   "order": 88
+  },
+  "2a84cf205b0c": {
+   "fr": "La somme des éléments de [[m1]] est nulle ; sa partie réelle aussi.",
+   "en": "The sum of the elements of [[m1]] is zero; so is its real part.",
+   "status": "aligned",
+   "order": 89
+  },
+  "7a20d10bf8db": {
+   "fr": "[[m1]] et [[m2]]. La somme [[m3]] vaut donc [[m4]].",
+   "en": "[[m1]] and [[m2]]. The sum [[m3]] therefore equals [[m4]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "3aa6a8c39795": {
+   "fr": "Construire un pentagone régulier à la règle et au compas",
+   "en": "Constructing a regular pentagon with ruler and compass",
+   "status": "aligned",
+   "order": 92
+  },
+  "eab945e62d6b": {
+   "fr": "On note [[m1]] et [[m2]].",
+   "en": "Let [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "fe37100a7797": {
+   "fr": "Démontrer que [[m1]].",
+   "en": "Prove that [[m1]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "57de6fbf1cf3": {
+   "fr": "Démontrer que [[m1]], puis, en divisant par [[m2]], que [[m3]].",
+   "en": "Prove that [[m1]], then, dividing by [[m2]], that [[m3]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "2f14aa4d77de": {
+   "fr": "En déduire que [[m1]].",
+   "en": "Deduce that [[m1]].",
+   "status": "aligned",
+   "order": 96
+  },
+  "ba939d979897": {
+   "fr": "Dans un repère orthonormé, on trace le cercle unité, on place [[m1]] et [[m2]].",
+   "en": "In an orthonormal frame, draw the unit circle and place [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Compute [[m1]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "cb1cefb2dd22": {
+   "fr": "Le cercle de centre [[m1]] passant par [[m2]] coupe le demi-axe des abscisses positives en [[m3]]. Démontrer que l'abscisse de [[m4]] est [[m5]].",
+   "en": "The circle with centre [[m1]] through [[m2]] meets the positive half of the horizontal axis at [[m3]]. Prove that the abscissa of [[m4]] is [[m5]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "bc64b9ee80dd": {
+   "fr": "En déduire une construction à la règle et au compas des sommets d'un pentagone régulier inscrit dans le cercle unité.",
+   "en": "Deduce a ruler-and-compass construction of the vertices of a regular pentagon inscribed in the unit circle.",
+   "status": "aligned",
+   "order": 100
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 101
+  },
+  "f6745ae66c1d": {
+   "fr": "[[m1]], donc [[m2]] et [[m3]].",
+   "en": "[[m1]], so [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "e39422d2f459": {
+   "fr": "Re",
+   "en": "Re",
+   "status": "aligned",
+   "order": 103
+  },
+  "fb6cf108bd18": {
+   "fr": "C'est la somme des racines cinquièmes de l'unité. En divisant par [[m1]] : [[m2]]. Or [[m3]], donc [[m4]].",
+   "en": "It is the sum of the fifth roots of unity. Dividing by [[m1]]: [[m2]]. Now [[m3]], so [[m4]].",
+   "status": "aligned",
+   "order": 104
+  },
+  "e632db7a26b8": {
+   "fr": "Les racines de [[m1]] sont [[m2]]. Comme [[m3]], [[m4]] : [[m5]] et [[m6]].",
+   "en": "The roots of [[m1]] are [[m2]]. Since [[m3]], [[m4]]: [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "ed861134d55f": {
+   "fr": "[[m1]] a pour abscisse [[m2]].",
+   "en": "[[m1]] has abscissa [[m2]].",
+   "status": "aligned",
+   "order": 106
+  },
+  "232809c860e9": {
+   "fr": "On construit [[m1]], puis le milieu [[m2]] de [[m3]], d'abscisse [[m4]]. La perpendiculaire à l'axe en [[m5]] coupe le cercle unité en [[m6]] et [[m7]]. En reportant au compas la longueur [[m8]] à partir de ces points, on obtient [[m9]] et [[m10]].",
+   "en": "Construct [[m1]], then the midpoint [[m2]] of [[m3]], whose abscissa is [[m4]]. The perpendicular to the axis at [[m5]] meets the unit circle at [[m6]] and [[m7]]. Marking off the length [[m8]] with the compass from these points gives [[m9]] and [[m10]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 108
+  },
+  "8949b6da3bbb": {
+   "fr": "Lignes trigonométriques de [[m1]] et construction du pentagone sont un « problème possible » du programme. Faire réaliser la construction avec un logiciel de géométrie dynamique, puis vérifier que les cinq côtés ont la même longueur ([[m2]]).",
+   "en": "The trigonometric values of [[m1]] and the construction of the pentagon are a ``possible problem'' of the syllabus. Have the construction carried out with dynamic geometry software, then check that the five sides have the same length ([[m2]]).",
+   "status": "aligned",
+   "order": 109
+  },
+  "a5bc1d9b2ae7": {
+   "fr": "et",
+   "en": "and",
+   "status": "aligned",
+   "order": 110
+  }
+ }
+}

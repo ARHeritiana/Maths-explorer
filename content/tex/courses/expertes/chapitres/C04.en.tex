@@ -1,0 +1,231 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c04}{Polynomial equations}
+\mxsubtitle{Quadratics in $\C$, factorisation, number of roots}
+
+\begin{objectives}
+Solve in $\C$ a quadratic equation with real coefficients; factorise a polynomial by $z-a$ when $a$ is a root; solve a cubic equation when one root is known; know that a polynomial of degree $n$ has at most $n$ roots.
+\end{objectives}
+\begin{prerequisites}
+Quadratics in $\R$ (completed square form, discriminant, sum and product of the roots); chapters 1 and 2; sum of the terms of a geometric sequence.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Compute the discriminant of $2x^2-3x+5$.
+\item Factorise $x^2-5x+6$.
+\item Expand $(x-2)\left(x^2+2x+4\right)$.
+\item Compute $P(2)$ for $P(x)=x^3-3x^2+4$.
+\item Write $1+q+q^2+\dots+q^{n}$ as a quotient, for $q\neq1$.
+\item Give the sum and the product of the roots of $x^2-7x+10$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $\Delta=9-40=-31$.
+\item $(x-2)(x-3)$.
+\item $x^3+2x^2+4x-2x^2-4x-8=x^3-8$.
+\item $P(2)=8-12+4=0$.
+\item $\dfrac{1-q^{n+1}}{1-q}$.
+\item Sum $7$, product $10$ (roots $2$ and $5$).
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[One root hides two others \mxchip{35 min}]
+Consider $P(z)=z^3-2z^2+4z-8$.
+\begin{enumerate}
+\item Plot on a calculator the curve of $x\mapsto x^3-2x^2+4x-8$ on $\intff{-3}{4}$. How many real solutions does the equation $P(x)=0$ seem to have? Locate one.
+\item Check that $P(2)=0$.
+\item Find real numbers $a$, $b$, $c$ such that, for every $z$, $P(z)=(z-2)\left(az^2+bz+c\right)$. Expand the right-hand side and identify the coefficients.
+\item Deduce all the complex solutions of $P(z)=0$.
+\item Compute the sum and the product of the three solutions. Compare with the coefficients of $P$.
+\item How many complex solutions can a polynomial of degree $3$ have at most? State a conjecture for degree $n$.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item The curve crosses the horizontal axis only once, at $x=2$: a single real solution.
+\item $8-8+8-8=0$.
+\item $(z-2)\left(az^2+bz+c\right)=az^3+(b-2a)z^2+(c-2b)z-2c$. Identification gives $a=1$, $b-2a=-2$, $c-2b=4$, $-2c=-8$, that is $a=1$, $b=0$, $c=4$ (the last equation is consistent). So $P(z)=(z-2)\left(z^2+4\right)$.
+\item $z^2+4=(z-2i)(z+2i)$: the solutions are $2$, $2i$ and $-2i$.
+\item Sum: $2$; product: $2\times2i\times(-2i)=8$. For $z^3+az^2+bz+c$, we observe sum $=-a$ and product $=-c$.
+\item At most three. Conjecture: at most $n$ for degree $n$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Running the activity]
+Identifying coefficients relies on a property that the syllabus takes for granted: a zero polynomial function has all its coefficients equal to zero. Point it out explicitly. Question 5 prepares the problem (relations between coefficients and roots).
+\end{teachernote}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Quadratics with real coefficients}
+\begin{theorem}[Solving in $\C$]
+Let $a$, $b$, $c$ be three real numbers with $a\neq0$, and $\Delta=b^2-4ac$. The equation $az^2+bz+c=0$ has:
+\begin{enumerate}
+\item if $\Delta>0$, two real solutions $\dfrac{-b-\sqrt\Delta}{2a}$ and $\dfrac{-b+\sqrt\Delta}{2a}$;
+\item if $\Delta=0$, one real solution $-\dfrac b{2a}$;
+\item if $\Delta<0$, two conjugate complex solutions $z_1=\dfrac{-b-i\sqrt{-\Delta}}{2a}$ and $z_2=\dfrac{-b+i\sqrt{-\Delta}}{2a}$.
+\end{enumerate}
+In every case, $az^2+bz+c=a(z-z_1)(z-z_2)$, $z_1+z_2=-\dfrac ba$ and $z_1z_2=\dfrac ca$ (with $z_1=z_2$ if $\Delta=0$).
+\end{theorem}
+\begin{proof}
+The completed square form $az^2+bz+c=a\left[\left(z+\frac b{2a}\right)^2-\frac\Delta{4a^2}\right]$ still holds in $\C$. If $\Delta<0$, write $\frac{\Delta}{4a^2}=\left(\frac{i\sqrt{-\Delta}}{2a}\right)^2$, then factorise the difference of two squares. A product of complex numbers is zero if and only if one of the factors is zero (since every nonzero complex number is invertible). Sum and product are obtained by expanding $a(z-z_1)(z-z_2)$ and identifying.
+\end{proof}
+\begin{example}[Solving $z^2-2z+5=0$]
+$\Delta=4-20=-16=(4i)^2$, so $z=\frac{2\pm4i}2$: the solutions are $1-2i$ and $1+2i$.
+\end{example}
+
+\subsection{Factorisation by $z-a$}
+\begin{definition}[Polynomial function, root]
+A \emph{polynomial function} of degree $n$ is a function $P:z\mapsto a_nz^n+\dots+a_1z+a_0$ defined on $\C$, where $a_0,\dots,a_n$ are complex numbers and $a_n\neq0$. A complex number $\alpha$ such that $P(\alpha)=0$ is a \emph{root} of $P$.
+\end{definition}
+\begin{keypoint}[Property taken for granted]
+If a polynomial function is zero for every complex number $z$, then all its coefficients are zero. Consequently, two equal polynomial functions have the same coefficients: we may \emph{identify} the coefficients.
+\end{keypoint}
+\begin{theorem}[Factorisation of $z^n-a^n$]
+For all complex numbers $z$, $a$ and every integer $n\ge1$:
+\[z^n-a^n=(z-a)\left(z^{n-1}+az^{n-2}+\dots+a^{n-2}z+a^{n-1}\right)=(z-a)\sum_{k=0}^{n-1}a^kz^{n-1-k}.\]
+\end{theorem}
+\begin{proof}
+Expand: $(z-a)\sum_{k=0}^{n-1}a^kz^{n-1-k}=\sum_{k=0}^{n-1}a^kz^{n-k}-\sum_{k=0}^{n-1}a^{k+1}z^{n-1-k}$. Setting $j=k+1$ in the second sum, it becomes $\sum_{j=1}^{n}a^jz^{n-j}$. The terms with index $1$ to $n-1$ cancel; what remains is the term $k=0$ of the first sum, $z^n$, and the term $j=n$ of the second, $a^n$. We obtain $z^n-a^n$.
+\end{proof}
+\begin{theorem}[Factorisation by $z-\alpha$]
+Let $P$ be a polynomial function of degree $n\ge1$ and $\alpha$ a root of $P$. There is a polynomial function $Q$ of degree $n-1$ such that, for every complex number $z$, $P(z)=(z-\alpha)Q(z)$.
+\end{theorem}
+\begin{proof}
+Write $P(z)=\sum_{k=0}^{n}a_kz^k$. Since $P(\alpha)=0$,
+\[P(z)=P(z)-P(\alpha)=\sum_{k=1}^{n}a_k\left(z^k-\alpha^k\right).\]
+By the previous theorem, each $z^k-\alpha^k$ can be written $(z-\alpha)Q_k(z)$ with $Q_k$ a polynomial of degree $k-1$ with leading coefficient $1$. So $P(z)=(z-\alpha)Q(z)$ with $Q=\sum_{k=1}^na_kQ_k$, of degree $n-1$ with leading coefficient $a_n\neq0$.
+\end{proof}
+\begin{theorem}[Number of roots]
+A polynomial function of degree $n\ge1$ has at most $n$ roots.
+\end{theorem}
+\begin{proof}
+By induction on $n$. A polynomial function of degree $1$, $a_1z+a_0$ with $a_1\neq0$, has exactly one root, $-\frac{a_0}{a_1}$. Assume the property holds in degree $n$, and let $P$ have degree $n+1$. If $P$ has no root, we are done. Otherwise, let $\alpha$ be a root: $P(z)=(z-\alpha)Q(z)$ with $Q$ of degree $n$. If $P(\beta)=0$, then $\beta=\alpha$ or $Q(\beta)=0$. Since $Q$ has at most $n$ roots, $P$ has at most $n+1$.
+\end{proof}
+\begin{theorem}[Conjugate roots]
+If $P$ has real coefficients and $\alpha$ is a root of $P$, then $\overline\alpha$ is also a root of $P$.
+\end{theorem}
+\begin{proof}
+Since the coefficients are real, $P\left(\overline\alpha\right)=\sum a_k\overline\alpha^{\,k}=\overline{\sum a_k\alpha^k}=\overline{P(\alpha)}=0$.
+\end{proof}
+\begin{method}[Cubic equation with a known root]
+Factorise by $z-\alpha$ by identifying the coefficients of $Q(z)=az^2+bz+c$, then solve $Q(z)=0$. Example: $z^3+8=0$ has the root $-2$ and $z^3+8=(z+2)\left(z^2-2z+4\right)$. The quadratic has discriminant $-12=\left(2i\sqrt3\right)^2$, hence the solutions $-2$, $1-i\sqrt3$, $1+i\sqrt3$.
+\end{method}
+\begin{pitfall}
+The discriminant of a quadratic with real coefficients no longer tells whether the equation has solutions in $\C$: it always has. It tells whether they are real or conjugate complex numbers.
+\end{pitfall}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Quadratics]
+Solve in $\C$: $z^2+9=0$; $z^2-4z+13=0$; $2z^2+2z+1=0$; $z^4-1=0$.
+\end{exercise}
+\begin{solution}
+$z^2+9=(z-3i)(z+3i)$: $\ens{-3i;3i}$. Next $\Delta=-36$: $2-3i$ and $2+3i$. Then $\Delta=-4$: $\frac{-2\pm2i}{4}$, that is $-\frac12-\frac12i$ and $-\frac12+\frac12i$. Finally $z^4-1=\left(z^2-1\right)\left(z^2+1\right)$: $\ens{1;-1;i;-i}$.
+\end{solution}
+
+\begin{exercise}[Reducing to a quadratic]
+\begin{enumerate}
+\item Solve in $\C$ the equation $z^4+4z^2-5=0$ by setting $Z=z^2$.
+\item Solve in $\C$ the equation $z+\dfrac1z=1$, for $z\neq0$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $Z^2+4Z-5=(Z-1)(Z+5)$. So $z^2=1$ or $z^2=-5$: $\ens{1;-1;i\sqrt5;-i\sqrt5}$.
+\item For $z\neq0$, the equation is equivalent to $z^2-z+1=0$, with discriminant $-3$: $z=\frac{1-i\sqrt3}2$ or $z=\frac{1+i\sqrt3}2$, both nonzero.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[An obvious root]
+Let $P(z)=z^3-3z^2+4z-2$.
+\begin{enumerate}
+\item Check that $1$ is a root of $P$.
+\item Determine the polynomial $Q$ such that $P(z)=(z-1)Q(z)$.
+\item Solve $P(z)=0$ in $\C$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $1-3+4-2=0$.
+\item $(z-1)\left(z^2+bz+c\right)=z^3+(b-1)z^2+(c-b)z-c$, hence $b=-2$ and $c=2$: $Q(z)=z^2-2z+2$.
+\item $Q$ has discriminant $-4$: roots $1-i$ and $1+i$. The solutions are $1$, $1-i$, $1+i$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A non-real root]
+Let $P(z)=z^3+z^2+4z+4$.
+\begin{enumerate}
+\item Check that $2i$ is a root of $P$. Deduce another root without computation.
+\item Expand $(z-2i)(z+2i)$, then factorise $P(z)$ and solve $P(z)=0$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $P(2i)=-8i-4+8i+4=0$. The coefficients are real, so $-2i=\overline{2i}$ is also a root.
+\item $(z-2i)(z+2i)=z^2+4$ and $P(z)=z^2(z+1)+4(z+1)=(z+1)\left(z^2+4\right)$. The solutions are $-1$, $2i$, $-2i$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Factorising $z^3-27$]
+\begin{enumerate}
+\item Factorise $z^3-27$ by $z-3$ using the course.
+\item Solve in $\C$ the equation $z^3=27$ and plot the solutions in the complex plane. What do you notice?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $z^3-3^3=(z-3)\left(z^2+3z+9\right)$.
+\item The quadratic has discriminant $9-36=-27=\left(3i\sqrt3\right)^2$: $z=\frac{-3\pm3i\sqrt3}2$. The three solutions $3$, $\frac{-3-3i\sqrt3}2$, $\frac{-3+3i\sqrt3}2$ have modulus $3$ and form an equilateral triangle inscribed in the circle with centre $O$ and radius $3$ (chapter 5).
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A parameter]
+Let $m$ be a real number. Consider the equation $(E_m)$: $z^2-2z+m=0$.
+\begin{enumerate}
+\item Depending on the value of $m$, give the number and the nature of the solutions of $(E_m)$.
+\item Assume $m>1$. Let $A$ and $B$ be the images of the solutions. Determine $m$ so that the triangle $OAB$ is equilateral.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\Delta=4-4m$. If $m<1$: two real solutions $1\pm\sqrt{1-m}$; if $m=1$: one solution, $1$; if $m>1$: two conjugate solutions $1\pm i\sqrt{m-1}$.
+\item $OA=OB=\sqrt{1+(m-1)}=\sqrt m$ and $AB=2\sqrt{m-1}$. The triangle is equilateral if and only if $m=4(m-1)$, that is $m=\frac43$ (which satisfies $m>1$).
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Recovering a polynomial]
+Determine the polynomial $P$ of degree $3$, with real coefficients and leading coefficient $1$, such that $1+i$ is a root of $P$ and $P(0)=4$.
+\end{exercise}
+\begin{solution}
+Since the coefficients are real, $1-i$ is also a root. Factorise $P$ by $z-(1+i)$; the quotient, of degree $2$, vanishes at $1-i$ (because $1-i\neq1+i$), so it can in turn be factorised by $z-(1-i)$. What remains is a factor of degree $1$ with leading coefficient $1$: $P(z)=(z-1-i)(z-1+i)(z-r)=\left(z^2-2z+2\right)(z-r)$ for some complex number $r$. $P(0)=-2r=4$, so $r=-2$ and $P(z)=\left(z^2-2z+2\right)(z+2)=z^3-2z+4$. Check: $P(0)=4$ and $P(1+i)=(-2+2i)-2-2i+4=0$.
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[Coefficients and roots of a cubic polynomial]
+Let $P(z)=z^3+az^2+bz+c$ be a polynomial with complex coefficients, with three roots $z_1$, $z_2$, $z_3$ (not necessarily distinct), so that $P(z)=(z-z_1)(z-z_2)(z-z_3)$ for every complex number $z$.
+\begin{enumerate}
+\item By expanding, prove that
+\[z_1+z_2+z_3=-a,\qquad z_1z_2+z_1z_3+z_2z_3=b,\qquad z_1z_2z_3=-c.\]
+\item Check these relations on the polynomial of the activity, $z^3-2z^2+4z-8$.
+\item Prove that $z_1^2+z_2^2+z_3^2=a^2-2b$.
+\item Consider $R(z)=z^3-2z^2+3z-5$, which we take for granted can be written $(z-z_1)(z-z_2)(z-z_3)$. Compute $z_1^2+z_2^2+z_3^2$ without solving the equation.
+\item Deduce that the roots of $R$ are not all real.
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item $(z-z_1)(z-z_2)(z-z_3)=z^3-(z_1+z_2+z_3)z^2+(z_1z_2+z_1z_3+z_2z_3)z-z_1z_2z_3$. Identifying the coefficients (property taken for granted) gives the three relations.
+\item The roots are $2$, $2i$, $-2i$: sum $2=-(-2)$; sum of the pairwise products $4i-4i+4=4$; product $8=-(-8)$.
+\item $(z_1+z_2+z_3)^2=z_1^2+z_2^2+z_3^2+2(z_1z_2+z_1z_3+z_2z_3)$, so $z_1^2+z_2^2+z_3^2=a^2-2b$.
+\item $a=-2$ and $b=3$: $z_1^2+z_2^2+z_3^2=4-6=-2$.
+\item If the three roots were real, the sum of their squares would be nonnegative. It equals $-2$: at least one root is not real.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+Vieta's formulas are a ``possible problem'' of the syllabus. The fact that every polynomial of degree $3$ factorises in this way over $\C$ (the d'Alembert-Gauss theorem) is beyond the syllabus: it is taken for granted in the statement. For $R$, the associated real function is strictly increasing (its derivative $3x^2-4x+3$ has a negative discriminant): one real root, two non-real conjugate roots.
+\end{teachernote}

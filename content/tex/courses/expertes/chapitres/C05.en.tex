@@ -1,0 +1,230 @@
+% GENERATED, edit the French unit or the translation table
+\mxunit{expertes-c05}{Complex numbers and geometry}
+\mxsubtitle{Angles and ratios of lengths, $n$-th roots of unity}
+
+\begin{objectives}
+Interpret the modulus and an argument of $\frac{c-a}{b-a}$; prove that points are collinear, that lines are perpendicular, the nature of a triangle; determine sets of points; determine the $n$-th roots of unity and use them for regular polygons.
+\end{objectives}
+\begin{prerequisites}
+Chapters 2, 3 and 4; oriented angles of vectors; special triangles.
+\end{prerequisites}
+
+\section{Fluency}
+\begin{fluency}[No calculator, five minutes]
+\begin{enumerate}
+\item Give an argument of $-1+i$ and of $-3i$.
+\item Write $\e^{2i\pi/3}$ in algebraic form.
+\item If $A$ and $B$ have affixes $a$ and $b$, what is the affix of $\vect{AB}$?
+\item Compute $\dfrac{1+i}{1-i}$.
+\item At most how many solutions does the equation $z^5=1$ have in $\C$?
+\item What is the geometric effect of multiplication by $\e^{i\pi/3}$?
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Fluency]
+\begin{enumerate}
+\item $\frac{3\pi}4$ and $-\frac\pi2$.
+\item $-\frac12+\frac{\sqrt3}2i$.
+\item $b-a$.
+\item $\frac{(1+i)^2}{2}=i$.
+\item At most five (chapter 4).
+\item A rotation with centre $O$ and angle $\frac\pi3$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Introductory activity}
+\begin{activity}[The solutions of $z^n=1$ \mxchip{40 min}]
+\begin{enumerate}
+\item Factorise $z^3-1$ by $z-1$, then solve $z^3=1$ in $\C$. Let $j$ be the solution with positive imaginary part.
+\item Plot the three solutions in the complex plane. Compute the distances between them. Which figure do you obtain?
+\item Write $j$ in exponential form. Check that $j^2=\overline j$ and that $1+j+j^2=0$. Interpret the last equality with the centroid.
+\item Solve $z^4=1$ and plot the solutions. Same question for $z^6=1$, using $z^6-1=\left(z^3-1\right)\left(z^3+1\right)$.
+\item State a conjecture about the solutions of $z^n=1$: their number, their modulus, their arguments, the figure they form.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activity]
+\begin{enumerate}
+\item $z^3-1=(z-1)\left(z^2+z+1\right)$; the quadratic has discriminant $-3$. Solutions: $1$, $j=-\frac12+\frac{\sqrt3}2i$ and $\overline j=-\frac12-\frac{\sqrt3}2i$.
+\item The three distances equal $\sqrt3$: an equilateral triangle inscribed in the unit circle.
+\item $j=\e^{2i\pi/3}$, $j^2=\e^{4i\pi/3}=\e^{-2i\pi/3}=\overline j$, and $1+j+j^2=1-\frac12-\frac12+i\left(\frac{\sqrt3}2-\frac{\sqrt3}2\right)=0$. The affix of the centroid, $\frac{1+j+j^2}3$, is zero: it is $O$.
+\item $z^4=1$: $1$, $i$, $-1$, $-i$, vertices of a square. $z^6=1$: the solutions of $z^3=1$ and those of $z^3=-1$, that is $-1$, $\frac12\pm\frac{\sqrt3}2i$; we obtain a regular hexagon.
+\item Conjecture: $n$ solutions, all of modulus $1$, with arguments $\frac{2k\pi}n$; they are the vertices of a regular polygon with $n$ sides inscribed in the unit circle, one of whose vertices is $1$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Course notes}
+\subsection{Angles and lengths}
+\begin{theorem}[Interpretation of $\frac{c-a}{b-a}$]
+Let $A$, $B$, $C$ be three points with affixes $a$, $b$, $c$, with $A\neq B$ and $A\neq C$. Then
+\[\abs{\frac{c-a}{b-a}}=\frac{AC}{AB}\qquad\text{and}\qquad\arg\left(\frac{c-a}{b-a}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}.\]
+\end{theorem}
+\begin{proof}
+The modulus of a quotient is the quotient of the moduli: $\abs{c-a}=AC$ and $\abs{b-a}=AB$. For the argument, $\arg(b-a)\equiv\left(\vect u,\vect{AB}\right)$ and $\arg(c-a)\equiv\left(\vect u,\vect{AC}\right)$, so by Chasles' relation $\arg\frac{c-a}{b-a}\equiv\left(\vect u,\vect{AC}\right)-\left(\vect u,\vect{AB}\right)\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}$.
+\end{proof}
+\begin{theorem}[Collinearity, orthogonality]
+With the same notation, let $q=\frac{c-a}{b-a}$.
+\begin{enumerate}
+\item $A$, $B$, $C$ are collinear if and only if $q$ is real.
+\item The lines $(AB)$ and $(AC)$ are perpendicular if and only if $q$ is purely imaginary.
+\item The triangle $ABC$ is right-angled and isosceles at $A$ if and only if $q=i$ or $q=-i$; it is equilateral if and only if $q=\e^{i\pi/3}$ or $q=\e^{-i\pi/3}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$q$ is real if and only if its argument is $0$ or $\pi$ modulo $2\pi$, that is if $\vect{AB}$ and $\vect{AC}$ are collinear. $q$ is purely imaginary (nonzero) if and only if its argument is $\pm\frac\pi2$. For 3, a triangle that is right-angled and isosceles at $A$ corresponds to $AC=AB$ and $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi2$; an equilateral triangle to $AC=AB$ and $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi3$.
+\end{proof}
+\begin{example}[Constructing a square]
+Let $A$ and $B$ have affixes $a$ and $b$. The direct square $ABCD$ has vertices $c=b+i(b-a)$ and $d=a+i(b-a)$: we go from $\vect{AB}$ to $\vect{BC}$ by a direct quarter turn. With $a=0$ and $b=1$: $c=1+i$ and $d=i$.
+\end{example}
+
+\subsection{$n$-th roots of unity}
+\begin{definition}[$n$-th root of unity]
+Let $n\ge1$ be an integer. An \emph{$n$-th root of unity} is any complex number $z$ such that $z^n=1$. Their set is written $\mathbb U_n$.
+\end{definition}
+\begin{theorem}[Determination of $\mathbb U_n$]
+For every integer $n\ge1$, $\mathbb U_n$ has exactly $n$ elements:
+\[\mathbb U_n=\left\{\e^{2ik\pi/n}\;:\;k\in\ent{0}{n-1}\right\}.\]
+\end{theorem}
+\begin{proof}
+Let $z\in\mathbb U_n$. Then $\abs z^n=\abs{z^n}=1$ with $\abs z\ge0$, so $\abs z=1$ and $z=\e^{i\theta}$ for some real number $\theta$. The equality $\e^{in\theta}=1$ is equivalent to $n\theta\equiv0\pmod{2\pi}$, that is $\theta=\frac{2k\pi}n$ with $k$ an integer. Conversely, $\left(\e^{2ik\pi/n}\right)^n=\e^{2ik\pi}=1$.\par
+Two integers $k$ and $k'$ give the same number if and only if $\frac{2(k-k')\pi}{n}$ is a multiple of $2\pi$, that is $k\equiv k'\pmod n$. Every integer $k$ has the same remainder as an integer of $\ent{0}{n-1}$, and these $n$ integers have distinct remainders: $\mathbb U_n$ has exactly $n$ elements.
+\end{proof}
+\begin{keypoint}[Geometric interpretation]
+For $n\ge3$, the images of the elements of $\mathbb U_n$ are the vertices of a regular polygon with $n$ sides inscribed in the unit circle, one of whose vertices is the point with affix $1$. With $\omega=\e^{2i\pi/n}$, we have $\mathbb U_n=\ens{1;\omega;\omega^2;\dots;\omega^{n-1}}$. Cases to know: $\mathbb U_2=\ens{1;-1}$, $\mathbb U_3=\ens{1;j;j^2}$ with $j=\e^{2i\pi/3}$, $\mathbb U_4=\ens{1;i;-1;-i}$.
+\end{keypoint}
+\begin{theorem}[Sum of the $n$-th roots]
+For every integer $n\ge2$, the sum of the $n$-th roots of unity is zero.
+\end{theorem}
+\begin{proof}
+With $\omega=\e^{2i\pi/n}\neq1$ (since $n\ge2$): $1+\omega+\dots+\omega^{n-1}=\frac{1-\omega^n}{1-\omega}=0$.
+\end{proof}
+\begin{figurebox}[The sixth roots of unity form a regular hexagon.]
+\begin{tikzpicture}[scale=1.5]
+\draw[mxaux,->] (-1.4,0) -- (1.5,0);
+\draw[mxaux,->] (0,-1.3) -- (0,1.4);
+\draw[mxaux] (0,0) circle (1);
+\draw[mxcurve] (0:1) -- (60:1) -- (120:1) -- (180:1) -- (240:1) -- (300:1) -- cycle;
+\foreach \k in {0,...,5} \fill (\k*60:1) circle (1.4pt);
+\node[below right] at (0:1) {$1$};
+\node[above right] at (60:1) {$\omega$};
+\node[above left] at (120:1) {$\omega^2$};
+\node[below left] at (180:1) {$-1$};
+\node[below left] at (240:1) {$\omega^4$};
+\node[below right] at (300:1) {$\omega^5$};
+\end{tikzpicture}
+\end{figurebox}
+
+\mxnewpage
+\section{Exercises}
+\begin{exercise}[Collinearity and orthogonality]
+Consider the points $A$, $B$, $C$, $D$ with affixes $a=1+i$, $b=3+2i$, $c=-1$ and $d=2-i$.
+\begin{enumerate}
+\item Compute $\dfrac{c-a}{b-a}$. What can be deduced?
+\item Compute $\dfrac{d-a}{b-a}$. What can be deduced about the triangle $ABD$?
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\dfrac{-2-i}{2+i}=-1$, real: $A$, $B$, $C$ are collinear ($A$ is even the midpoint of $[BC]$).
+\item $\dfrac{1-2i}{2+i}=\dfrac{(1-2i)(2-i)}5=\dfrac{-5i}5=-i$: $AD=AB$ and $(AB)\perp(AD)$. The triangle $ABD$ is right-angled and isosceles at $A$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Nature of triangles]
+Determine the nature of the triangle $ABC$ in each case:
+\begin{enumerate}
+\item $a=0$, $b=2$, $c=1+i\sqrt3$ ;
+\item $a=1$, $b=2+i$, $c=i$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\dfrac{c-a}{b-a}=\dfrac{1+i\sqrt3}2=\e^{i\pi/3}$: equilateral triangle.
+\item $\dfrac{c-a}{b-a}=\dfrac{-1+i}{1+i}=\dfrac{(-1+i)(1-i)}2=\dfrac{2i}{2}=i$: triangle right-angled and isosceles at $A$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Sixth roots]
+Determine the elements of $\mathbb U_6$ in exponential form, then in algebraic form. Check that their sum is zero.
+\end{exercise}
+\begin{solution}
+$\e^{ik\pi/3}$ for $k\in\ent05$: $1$, $\frac12+\frac{\sqrt3}2i$, $-\frac12+\frac{\sqrt3}2i$, $-1$, $-\frac12-\frac{\sqrt3}2i$, $\frac12-\frac{\sqrt3}2i$. The real parts add up to $1+\frac12-\frac12-1-\frac12+\frac12=0$, and the imaginary parts cancel in pairs.
+\end{solution}
+
+\begin{exercise}[Cube roots of a complex number]
+Solve in $\C$ the equation $z^3=8i$. Write $z=r\e^{i\theta}$ and give the solutions in algebraic form.
+\end{exercise}
+\begin{solution}
+$8i=8\e^{i\pi/2}$. The equation is equivalent to $r^3=8$ and $3\theta\equiv\frac\pi2\pmod{2\pi}$, that is $r=2$ and $\theta=\frac\pi6+\frac{2k\pi}3$. The solutions are $2\e^{i\pi/6}=\sqrt3+i$, $2\e^{5i\pi/6}=-\sqrt3+i$ and $2\e^{3i\pi/2}=-2i$. Check: $(-2i)^3=-8i^3=8i$.
+\end{solution}
+
+\begin{exercise}[Completing a square]
+Let $A(1+2i)$ and $B(4+3i)$. Determine the affixes of the points $C$ and $D$ such that $ABCD$ is a direct square. Check that the diagonals have the same midpoint.
+\end{exercise}
+\begin{solution}
+$b-a=3+i$ and $i(b-a)=-1+3i$. So $c=b+i(b-a)=3+6i$ and $d=a+i(b-a)=5i$. The midpoint of $[AC]$ has affix $\frac{4+8i}2=2+4i$, as does that of $[BD]$.
+\end{solution}
+
+\begin{exercise}[Sets of points]
+Let $A$ and $B$ be the points with affixes $2i$ and $-1$. To every point $M$ with affix $z\neq-1$, we associate $Z=\dfrac{z-2i}{z+1}$.
+\begin{enumerate}
+\item Interpret geometrically the modulus and an argument of $Z$ when $z\neq2i$.
+\item Determine the set of points $M$ such that $Z$ is real.
+\item Determine the set of points $M$ such that $Z$ is purely imaginary and nonzero.
+\item Determine the set of points $M$ such that $\abs Z=1$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\abs Z=\frac{MA}{MB}$ and $\arg Z\equiv\left(\vect{MB},\vect{MA}\right)\pmod{2\pi}$.
+\item $Z=0$ for $M=A$. Otherwise, $Z$ real and nonzero is equivalent to $\vect{MB}$ and $\vect{MA}$ collinear, that is $M\in(AB)$. The set is the line $(AB)$ without $B$.
+\item $Z$ purely imaginary and nonzero is equivalent to $M\neq A$, $M\neq B$ and $(MA)\perp(MB)$: it is the circle with diameter $[AB]$ without $A$ and $B$. Its centre has affix $\frac{-1+2i}2$ and its radius is $\frac{\sqrt5}2$.
+\item $MA=MB$: the perpendicular bisector of $[AB]$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[A sum of cosines]
+\begin{enumerate}
+\item Let $n\ge2$. Deduce from the course that $\displaystyle\sum_{k=0}^{n-1}\cos\frac{2k\pi}n=0$.
+\item Write this equality for $n=5$ and prove that $1+2\cos\frac{2\pi}5+2\cos\frac{4\pi}5=0$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item The sum of the elements of $\mathbb U_n$ is zero; so is its real part.
+\item $\cos\frac{6\pi}5=\cos\left(2\pi-\frac{4\pi}5\right)=\cos\frac{4\pi}5$ and $\cos\frac{8\pi}5=\cos\frac{2\pi}5$. The sum $\cos0+\cos\frac{2\pi}5+\cos\frac{4\pi}5+\cos\frac{6\pi}5+\cos\frac{8\pi}5$ therefore equals $1+2\cos\frac{2\pi}5+2\cos\frac{4\pi}5=0$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Problem}
+\begin{problem}[Constructing a regular pentagon with ruler and compass]
+Let $\omega=\e^{2i\pi/5}$ and $u=\omega+\frac1\omega$.
+\begin{enumerate}
+\item Prove that $u=2\cos\frac{2\pi}5$.
+\item Prove that $1+\omega+\omega^2+\omega^3+\omega^4=0$, then, dividing by $\omega^2$, that $u^2+u-1=0$.
+\item Deduce that $\cos\frac{2\pi}5=\dfrac{\sqrt5-1}4$.
+\item In an orthonormal frame, draw the unit circle and place $I\pt{-\frac12;0}$ and $J\pt{0;1}$.
+\begin{enumerate}
+\item Compute $IJ$.
+\item The circle with centre $I$ through $J$ meets the positive half of the horizontal axis at $K$. Prove that the abscissa of $K$ is $2\cos\frac{2\pi}5$.
+\item Deduce a ruler-and-compass construction of the vertices of a regular pentagon inscribed in the unit circle.
+\end{enumerate}
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problem]
+\begin{enumerate}
+\item $\abs\omega=1$, so $\frac1\omega=\overline\omega$ and $u=\omega+\overline\omega=2\operatorname{Re}(\omega)=2\cos\frac{2\pi}5$.
+\item It is the sum of the fifth roots of unity. Dividing by $\omega^2\neq0$: $\omega^{-2}+\omega^{-1}+1+\omega+\omega^2=0$. Now $u^2=\omega^2+2+\omega^{-2}$, so $u^2+u-1=\left(\omega^2+\omega^{-2}\right)+\left(\omega+\omega^{-1}\right)+1=0$.
+\item The roots of $X^2+X-1$ are $\frac{-1\pm\sqrt5}2$. Since $0<\frac{2\pi}5<\frac\pi2$, $u>0$: $u=\frac{\sqrt5-1}2$ and $\cos\frac{2\pi}5=\frac{\sqrt5-1}4$.
+\item
+\begin{enumerate}
+\item $IJ=\sqrt{\frac14+1}=\frac{\sqrt5}2$.
+\item $K$ has abscissa $-\frac12+\frac{\sqrt5}2=\frac{\sqrt5-1}2=u$.
+\item Construct $K$, then the midpoint $H$ of $[OK]$, whose abscissa is $\cos\frac{2\pi}5$. The perpendicular to the axis at $H$ meets the unit circle at $\omega$ and $\overline\omega=\omega^4$. Marking off the length $\abs{\omega-1}$ with the compass from these points gives $\omega^2$ and $\omega^3$.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Status of the problem]
+The trigonometric values of $\frac{2\pi}5$ and the construction of the pentagon are a ``possible problem'' of the syllabus. Have the construction carried out with dynamic geometry software, then check that the five sides have the same length ($\abs{\omega-1}=2\sin\frac\pi5$).
+\end{teachernote}

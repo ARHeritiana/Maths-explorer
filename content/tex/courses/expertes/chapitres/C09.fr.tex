@@ -1,0 +1,238 @@
+\mxunit{expertes-c09}{Matrices}
+\mxsubtitle{Opérations, inverse, puissances, systèmes et transformations du plan}
+
+\begin{objectives}
+Calculer avec des matrices (somme, produit par un réel, produit) ; déterminer l'inverse d'une matrice d'ordre $2$, et d'ordre $3$ à la calculatrice ; calculer une puissance, notamment par récurrence ; résoudre un système linéaire sous forme matricielle ; représenter une transformation du plan par une matrice.
+\end{objectives}
+\begin{prerequisites}
+Systèmes linéaires de deux équations ; coordonnées de vecteurs ; formules d'addition (chapitre 3) ; raisonnement par récurrence ; suites.
+\end{prerequisites}
+
+\section{Automatismes}
+\begin{fluency}[Sans calculatrice, cinq minutes]
+\begin{enumerate}
+\item Résoudre le système $3x+5y=4$ et $x+2y=1$.
+\item Calculer le déterminant des vecteurs $\vect a\vc31$ et $\vect b\vc52$.
+\item Donner $\cos\frac\pi3$ et $\sin\frac\pi3$.
+\item L'image du point $\pt{x;y}$ par la symétrie d'axe $(Ox)$ a pour coordonnées ?
+\item Développer $(a+b)^2$. Utilise-t-on $ab=ba$ ?
+\item On pose $u_{n+1}=2u_n$ et $u_0=3$. Exprimer $u_n$ en fonction de $n$.
+\end{enumerate}
+\end{fluency}
+\begin{solution}[Automatismes]
+\begin{enumerate}
+\item $x=3$ et $y=-1$.
+\item $3\times2-1\times5=1$.
+\item $\frac12$ et $\frac{\sqrt3}2$.
+\item $\pt{x;-y}$.
+\item $a^2+2ab+b^2$ : on regroupe $ab+ba$ en $2ab$, ce qui utilise $ab=ba$. Ce ne sera plus possible avec des matrices.
+\item $u_n=3\times2^n$.
+\end{enumerate}
+\end{solution}
+
+\mxnewpage
+\section{Activité d'introduction}
+\begin{activity}[Faire tourner et étirer une figure \mxchip{40 min}]
+On représente un point $M\pt{x;y}$ par la colonne $X=\vc xy$. Pour une matrice $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, on définit le produit $AX=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}$ : c'est la colonne d'un nouveau point.
+\begin{enumerate}
+\item On pose $R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$. Calculer les images par $R$ des sommets du triangle $O\pt{0;0}$, $P\pt{2;0}$, $Q\pt{2;1}$. Tracer les deux triangles. Quelle transformation reconnaît-on ?
+\item On pose $E=\begin{pmatrix}2&0\\0&1\end{pmatrix}$. Même question.
+\item Calculer $R(EX)$ pour $X=\vc xy$ quelconque. Trouver une matrice $C$ telle que $R(EX)=CX$ pour tout $X$.
+\item Calculer de même $E(RX)$ et la matrice correspondante. Les deux transformations composées sont-elles les mêmes ? Le vérifier sur le point $Q$.
+\item Proposer une règle pour calculer directement $C$ à partir de $R$ et $E$ : c'est le produit matriciel $RE$.
+\end{enumerate}
+\end{activity}
+\begin{solution}[Activité]
+\begin{enumerate}
+\item $O\mapsto O$, $P\mapsto\pt{0;2}$, $Q\mapsto\pt{-1;2}$ : rotation de centre $O$ et d'angle $\frac\pi2$.
+\item $O\mapsto O$, $P\mapsto\pt{4;0}$, $Q\mapsto\pt{4;1}$ : étirement de rapport $2$ parallèlement à l'axe des abscisses.
+\item $EX=\vc{2x}{y}$ puis $R(EX)=\vc{-y}{2x}$, donc $C=\begin{pmatrix}0&-1\\2&0\end{pmatrix}$.
+\item $RX=\vc{-y}{x}$ puis $E(RX)=\vc{-2y}{x}$, de matrice $\begin{pmatrix}0&-2\\1&0\end{pmatrix}$. Les transformations diffèrent : $Q$ a pour image $\pt{-1;4}$ dans le premier cas et $\pt{-2;2}$ dans le second.
+\item Le coefficient de ligne $i$ et de colonne $j$ de $C$ s'obtient en multipliant la ligne $i$ de $R$ par la colonne $j$ de $E$, terme à terme, puis en additionnant. L'ordre compte : $RE\neq ER$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Conduite de l'activité]
+Faire tracer les figures sur papier quadrillé ou avec un logiciel. La non-commutativité doit apparaître comme une constatation géométrique (étirer puis tourner, ou tourner puis étirer) avant d'être une règle de calcul.
+\end{teachernote}
+
+\mxnewpage
+\section{Notes de cours}
+\subsection{Vocabulaire et opérations}
+\begin{definition}[Matrice]
+Une \emph{matrice} de taille $n\times p$ est un tableau de nombres réels à $n$ lignes et $p$ colonnes. Le coefficient de ligne $i$ et de colonne $j$ de $A$ est noté $a_{ij}$. Une matrice $n\times1$ est une matrice \emph{colonne}, une matrice $1\times p$ une matrice \emph{ligne}, une matrice $n\times n$ une matrice \emph{carrée} d'ordre $n$. La matrice \emph{identité} $I_n$ a des $1$ sur la diagonale et des $0$ ailleurs ; la matrice \emph{nulle} n'a que des $0$. Une matrice carrée est \emph{diagonale} si ses coefficients hors de la diagonale sont nuls.
+\end{definition}
+\begin{definition}[Somme, produit par un réel, produit]
+Pour $A$ et $B$ de même taille et $k$ réel, $A+B$ et $kA$ se calculent coefficient par coefficient.\par
+Si $A$ est de taille $n\times p$ et $B$ de taille $p\times q$, le produit $AB$ est la matrice $n\times q$ de coefficients
+\[c_{ij}=\sum_{k=1}^{p}a_{ik}b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\dots+a_{ip}b_{pj}.\]
+\end{definition}
+\begin{example}[Un produit]
+$\begin{pmatrix}1&2\\-1&3\end{pmatrix}\begin{pmatrix}0&1\\4&-2\end{pmatrix}=\begin{pmatrix}1\times0+2\times4&1\times1+2\times(-2)\\-1\times0+3\times4&-1\times1+3\times(-2)\end{pmatrix}=\begin{pmatrix}8&-3\\12&-7\end{pmatrix}$.
+\end{example}
+\begin{theorem}[Règles de calcul]
+Lorsque les produits sont définis : $(AB)C=A(BC)$, $A(B+C)=AB+AC$, $(A+B)C=AC+BC$, $(kA)B=k(AB)$, et $AI_n=I_nA=A$ pour $A$ carrée d'ordre $n$.
+\end{theorem}
+\begin{pitfall}
+\begin{enumerate}
+\item En général $AB\neq BA$ ; par suite $(A+B)^2=A^2+AB+BA+B^2$, et non $A^2+2AB+B^2$.
+\item Un produit peut être nul sans qu'aucun facteur le soit : $\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}0&0\\0&1\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}$.
+\end{enumerate}
+\end{pitfall}
+
+\subsection{Puissances}
+\begin{definition}[Puissances d'une matrice carrée]
+Pour $A$ carrée d'ordre $n$, on pose $A^0=I_n$ et $A^{k+1}=A^kA$ pour tout entier naturel $k$.
+\end{definition}
+\begin{method}[Conjecturer puis démontrer par récurrence]
+Pour $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$, on calcule $A^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}$, $A^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}$ et l'on conjecture $A^k=\begin{pmatrix}1&k\\0&1\end{pmatrix}$. C'est vrai pour $k=0$ ; si c'est vrai au rang $k$, alors $A^{k+1}=\begin{pmatrix}1&k\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}=\begin{pmatrix}1&k+1\\0&1\end{pmatrix}$.
+\end{method}
+\begin{keypoint}[Matrice diagonale]
+Si $D$ est diagonale de coefficients diagonaux $d_1,\dots,d_n$, alors $D^k$ est diagonale de coefficients $d_1^k,\dots,d_n^k$.
+\end{keypoint}
+
+\subsection{Inverse et systèmes}
+\begin{definition}[Matrice inversible]
+Une matrice carrée $A$ d'ordre $n$ est \emph{inversible} s'il existe une matrice $B$ telle que $AB=BA=I_n$. Cette matrice est unique ; on la note $A^{-1}$.
+\end{definition}
+\begin{theorem}[Inverse d'une matrice d'ordre 2]
+Soit $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$. La matrice $A$ est inversible si et seulement si $ad-bc\neq0$, et alors
+\[A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.\]
+Le nombre $ad-bc$ est le \emph{déterminant} de $A$, noté $\det A$.
+\end{theorem}
+\begin{proof}
+Posons $M=\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$. Le calcul donne $AM=MA=(ad-bc)I_2$. Si $ad-bc\neq0$, la matrice $\frac1{ad-bc}M$ est donc l'inverse de $A$.\par
+Si $ad-bc=0$, alors $AM=0$. Supposons $A$ inversible : en multipliant à gauche par $A^{-1}$, on obtient $M=0$, donc $a=b=c=d=0$ et $A$ est nulle. Mais la matrice nulle n'est pas inversible ($0\times B=0\neq I_2$) : contradiction.
+\end{proof}
+\begin{theorem}[Systèmes linéaires]
+Un système linéaire de $n$ équations à $n$ inconnues s'écrit $AX=B$, où $A$ est la matrice des coefficients, $X$ la colonne des inconnues et $B$ la colonne des seconds membres. Si $A$ est inversible, le système a une unique solution : $X=A^{-1}B$.
+\end{theorem}
+\begin{proof}
+Si $AX=B$, alors $A^{-1}AX=A^{-1}B$, soit $X=A^{-1}B$. Réciproquement, $A\left(A^{-1}B\right)=B$.
+\end{proof}
+\begin{method}[Ordre 3 : calculatrice et vérification]
+Pour une matrice d'ordre $3$, on obtient $A^{-1}$ à la calculatrice ou avec un logiciel, puis on contrôle à la main un ou deux coefficients de $AA^{-1}$.
+\end{method}
+
+\subsection{Transformations du plan et suites}
+\begin{theorem}[Matrice d'une rotation]
+La rotation de centre $O$ et d'angle $\theta$ transforme le point de colonne $X$ en le point de colonne $R_\theta X$, avec
+\[R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}.\]
+\end{theorem}
+\begin{proof}
+Le point $M\pt{x;y}$ a pour affixe $z=x+iy$, et son image a pour affixe $\e^{i\theta}z=(\cos\theta+i\sin\theta)(x+iy)=(x\cos\theta-y\sin\theta)+i(x\sin\theta+y\cos\theta)$ (chapitre 3) : ce sont les coefficients de $R_\theta X$.
+\end{proof}
+\begin{method}[Suite définie par une matrice]
+Si $X_{k+1}=AX_k$ pour tout $k$, alors $X_k=A^kX_0$ (récurrence immédiate). Une suite définie par $u_{k+2}=au_{k+1}+bu_k$ s'y ramène avec $X_k=\vc{u_{k+1}}{u_k}$ et $A=\begin{pmatrix}a&b\\1&0\end{pmatrix}$.
+\end{method}
+
+\mxnewpage
+\section{Exercices}
+\begin{exercise}[Calculs]
+On pose $A=\begin{pmatrix}1&2\\-1&3\end{pmatrix}$ et $B=\begin{pmatrix}0&1\\4&-2\end{pmatrix}$. Calculer $A+B$, $2A-B$, $AB$ et $BA$.
+\end{exercise}
+\begin{solution}
+$A+B=\begin{pmatrix}1&3\\3&1\end{pmatrix}$, $2A-B=\begin{pmatrix}2&3\\-6&8\end{pmatrix}$, $AB=\begin{pmatrix}8&-3\\12&-7\end{pmatrix}$, $BA=\begin{pmatrix}-1&3\\6&2\end{pmatrix}$. On constate que $AB\neq BA$.
+\end{solution}
+
+\begin{exercise}[Inverse et système d'ordre 2]
+On pose $A=\begin{pmatrix}3&5\\1&2\end{pmatrix}$.
+\begin{enumerate}
+\item Justifier que $A$ est inversible et déterminer $A^{-1}$.
+\item En déduire la solution du système $3x+5y=4$, $x+2y=1$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $\det A=6-5=1\neq0$ et $A^{-1}=\begin{pmatrix}2&-5\\-1&3\end{pmatrix}$.
+\item $X=A^{-1}\vc41=\vc{8-5}{-4+3}=\vc3{-1}$ : $x=3$, $y=-1$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Système d'ordre 3]
+On considère le système $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$.
+\begin{enumerate}
+\item L'écrire sous la forme $AX=B$.
+\item À la calculatrice, déterminer $A^{-1}$, puis la solution du système.
+\item Vérifier la solution à la main.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Le système s'écrit $AX=B$ avec \[A=\begin{pmatrix}1&1&1\\2&-1&1\\1&2&-1\end{pmatrix},\qquad X=\begin{pmatrix}x\\y\\z\end{pmatrix},\qquad B=\begin{pmatrix}6\\3\\2\end{pmatrix}.\]
+\item La calculatrice donne \[A^{-1}=\frac17\begin{pmatrix}-1&3&2\\3&-2&1\\5&-1&-3\end{pmatrix}\qquad\text{et}\qquad X=A^{-1}B=\begin{pmatrix}1\\2\\3\end{pmatrix}.\]
+\item $1+2+3=6$, $2-2+3=3$, $1+4-3=2$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Puissances par récurrence]
+On pose $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}$. Calculer $A^2$ et $A^3$, conjecturer l'expression de $A^n$ pour $n\ge1$, puis la démontrer par récurrence.
+\end{exercise}
+\begin{solution}
+$A^2=\begin{pmatrix}4&4\\0&4\end{pmatrix}$, $A^3=\begin{pmatrix}8&12\\0&8\end{pmatrix}$. Conjecture : $A^n=\begin{pmatrix}2^n&n2^{n-1}\\0&2^n\end{pmatrix}$. Vraie pour $n=1$. Si elle l'est au rang $n$ :
+\[A^{n+1}=\begin{pmatrix}2^n&n2^{n-1}\\0&2^n\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}2^{n+1}&2^n+n2^n\\0&2^{n+1}\end{pmatrix},\]
+et $2^n+n2^n=(n+1)2^n$ : la formule est vraie au rang $n+1$.
+\end{solution}
+
+\begin{exercise}[Une relation polynomiale]
+On pose $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$.
+\begin{enumerate}
+\item Vérifier que $A^2=2A+3I_2$.
+\item En déduire que $A$ est inversible et exprimer $A^{-1}$ en fonction de $A$ et $I_2$. Contrôler avec la formule du cours.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item $A^2=\begin{pmatrix}5&4\\4&5\end{pmatrix}$ et $2A+3I_2=\begin{pmatrix}5&4\\4&5\end{pmatrix}$.
+\item $A^2-2A=3I_2$ s'écrit $A\times\frac13(A-2I_2)=I_2$, et de même $\frac13(A-2I_2)A=I_2$. Donc $A^{-1}=\frac13(A-2I_2)=\begin{pmatrix}-\frac13&\frac23\\\frac23&-\frac13\end{pmatrix}$. Avec le cours : $\det A=-3$ et $A^{-1}=-\frac13\begin{pmatrix}1&-2\\-2&1\end{pmatrix}$, le même résultat.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Rotations]
+\begin{enumerate}
+\item À l'aide des formules d'addition, démontrer que $R_\theta R_{\theta'}=R_{\theta+\theta'}$.
+\item En déduire $\left(R_{\pi/6}\right)^{12}$.
+\item Déterminer l'image du point $\pt{2;0}$ par la rotation de centre $O$ et d'angle $\frac\pi3$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}
+\item Le coefficient de ligne $1$ et colonne $1$ du produit vaut $\cos\theta\cos\theta'-\sin\theta\sin\theta'=\cos(\theta+\theta')$ ; celui de ligne $2$ et colonne $1$ vaut $\sin\theta\cos\theta'+\cos\theta\sin\theta'=\sin(\theta+\theta')$. Les deux autres s'obtiennent de même.
+\item Par récurrence, $\left(R_{\pi/6}\right)^{12}=R_{2\pi}=I_2$.
+\item $R_{\pi/3}\vc20=\vc{2\cos\frac\pi3}{2\sin\frac\pi3}=\vc1{\sqrt3}$ : le point $\pt{1;\sqrt3}$.
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}[Une parabole par trois points]
+Déterminer les réels $a$, $b$, $c$ tels que la parabole d'équation $y=ax^2+bx+c$ passe par les points $\pt{1;2}$, $\pt{2;3}$ et $\pt{3;6}$. On écrira le système sous forme matricielle.
+\end{exercise}
+\begin{solution}
+Le système est \[\begin{pmatrix}1&1&1\\4&2&1\\9&3&1\end{pmatrix}\begin{pmatrix}a\\b\\c\end{pmatrix}=\begin{pmatrix}2\\3\\6\end{pmatrix}.\] En soustrayant les équations consécutives : $3a+b=1$ et $5a+b=3$, donc $a=1$, $b=-2$, puis $c=3$. Vérification : $1-2+3=2$, $4-4+3=3$, $9-6+3=6$.
+\end{solution}
+
+\mxnewpage
+\section{Problème}
+\begin{problem}[La suite de Fibonacci et l'identité de Cassini]
+La suite de Fibonacci est définie par $F_0=0$, $F_1=1$ et $F_{n+2}=F_{n+1}+F_n$ pour tout $n\ge0$. On pose $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$.
+\begin{enumerate}
+\item Calculer $F_2,\dots,F_6$ et $A^2$, $A^3$.
+\item Démontrer par récurrence que, pour tout $n\ge1$, $A^n=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}$.
+\item Démontrer que pour toutes matrices $M$ et $N$ d'ordre $2$, $\det(MN)=\det M\times\det N$. On posera $M=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ et $N=\begin{pmatrix}a'&b'\\c'&d'\end{pmatrix}$.
+\item En déduire que $\det\left(A^n\right)=(-1)^n$, puis l'identité de Cassini : $F_{n+1}F_{n-1}-F_n^2=(-1)^n$ pour $n\ge1$.
+\item Vérifier l'identité pour $n=5$.
+\item En utilisant $A^{2n}=A^n\times A^n$, démontrer que $F_{2n}=F_n\left(F_{n+1}+F_{n-1}\right)$ pour $n\ge1$.
+\end{enumerate}
+\end{problem}
+\begin{solution}[Problème]
+\begin{enumerate}
+\item $F_2=1$, $F_3=2$, $F_4=3$, $F_5=5$, $F_6=8$. $A^2=\begin{pmatrix}2&1\\1&1\end{pmatrix}$, $A^3=\begin{pmatrix}3&2\\2&1\end{pmatrix}$.
+\item Pour $n=1$ : $\begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}=\begin{pmatrix}1&1\\1&0\end{pmatrix}=A$. Si la formule est vraie au rang $n$, alors
+\[A^{n+1}=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}\begin{pmatrix}1&1\\1&0\end{pmatrix}=\begin{pmatrix}F_{n+1}+F_n&F_{n+1}\\F_n+F_{n-1}&F_n\end{pmatrix}=\begin{pmatrix}F_{n+2}&F_{n+1}\\F_{n+1}&F_n\end{pmatrix}.\]
+\item $MN=\begin{pmatrix}aa'+bc'&ab'+bd'\\ca'+dc'&cb'+dd'\end{pmatrix}$. Son déterminant vaut $(aa'+bc')(cb'+dd')-(ab'+bd')(ca'+dc')$. Après développement, les termes $aa'cb'$ et $bc'dd'$ se simplifient avec leurs opposés, et il reste $ada'd'+bcb'c'-adb'c'-bca'd'=(ad-bc)(a'd'-b'c')$.
+\item Par récurrence, $\det\left(A^n\right)=(\det A)^n=(-1)^n$. Avec la question 2, $\det\left(A^n\right)=F_{n+1}F_{n-1}-F_n^2$.
+\item $F_6F_4-F_5^2=24-25=-1=(-1)^5$.
+\item Le coefficient de ligne $1$ et colonne $2$ de $A^{2n}$ est $F_{2n}$ ; celui de $A^nA^n$ est $F_{n+1}F_n+F_nF_{n-1}=F_n\left(F_{n+1}+F_{n-1}\right)$.
+\end{enumerate}
+\end{solution}
+\begin{teachernote}[Statut du problème]
+Le déterminant d'ordre $2$ est utilisé pour l'inverse ; sa multiplicativité n'est pas au programme et elle est démontrée ici par calcul. Prolongement possible : le chiffrement de Hill, qui chiffre des paires de lettres avec une matrice d'ordre $2$ inversible modulo $26$, cité parmi les problèmes possibles du programme.
+\end{teachernote}

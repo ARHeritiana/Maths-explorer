@@ -1,0 +1,641 @@
+{
+ "unit": "C07.fr.tex",
+ "segments": {
+  "575ee9d9879b": {
+   "fr": "PGCD, théorèmes de Bézout et de Gauss",
+   "en": "GCD, Bézout's and Gauss's theorems",
+   "status": "aligned",
+   "order": 0
+  },
+  "0aa8b5fe63f5": {
+   "fr": "Algorithme d'Euclide, entiers premiers entre eux, équations diophantiennes",
+   "en": "Euclid's algorithm, coprime integers, Diophantine equations",
+   "status": "aligned",
+   "order": 1
+  },
+  "5bac8c6605c2": {
+   "fr": "Déterminer un PGCD par l'algorithme d'Euclide ; obtenir un couple de Bézout ; utiliser les théorèmes de Bézout et de Gauss ; déterminer un inverse modulo [[m1]] ; résoudre une équation [[m2]] en nombres entiers.",
+   "en": "Find a gcd with Euclid's algorithm; obtain a Bézout pair; use Bézout's and Gauss's theorems; find an inverse modulo [[m1]]; solve an equation [[m2]] in integers.",
+   "status": "aligned",
+   "order": 2
+  },
+  "53d298542c2e": {
+   "fr": "Chapitre 6 (divisibilité, division euclidienne, congruences) ; programmation d'une boucle en Python.",
+   "en": "Chapter 6 (divisibility, Euclidean division, congruences); programming a loop in Python.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "ce1f57f7c5bb": {
+   "fr": "Effectuer la division euclidienne de [[m1]] par [[m2]].",
+   "en": "Carry out the Euclidean division of [[m1]] by [[m2]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "c9fa6a5e5a6b": {
+   "fr": "Donner le plus grand diviseur commun de [[m1]] et [[m2]].",
+   "en": "Give the greatest common divisor of [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "a50edc882a73": {
+   "fr": "Les nombres [[m1]] et [[m2]] ont-ils un diviseur commun autre que [[m3]] ?",
+   "en": "Do the numbers [[m1]] and [[m2]] have a common divisor other than [[m3]]?",
+   "status": "aligned",
+   "order": 8
+  },
+  "e090a3dcb960": {
+   "fr": "Trouver deux entiers [[m1]] et [[m2]] tels que [[m3]].",
+   "en": "Find two integers [[m1]] and [[m2]] such that [[m3]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "a5d52aab6ec7": {
+   "fr": "Résoudre [[m1]] pour [[m2]].",
+   "en": "Solve [[m1]] for [[m2]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "a752f2899679": {
+   "fr": "Si [[m1]] divise [[m2]], que peut-on conjecturer sur [[m3]] ?",
+   "en": "If [[m1]] divides [[m2]], what can be conjectured about [[m3]]?",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "97d11bf8e5ba": {
+   "fr": "Non : [[m1]] et [[m2]].",
+   "en": "No: [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 13
+  },
+  "ba680fc97046": {
+   "fr": "Par exemple [[m1]] et [[m2]].",
+   "en": "For example [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 14
+  },
+  "73a190c18758": {
+   "fr": "[[m1]] ou [[m2]] : [[m3]]. On ne peut pas « diviser par [[m4]] ».",
+   "en": "[[m1]] or [[m2]]: [[m3]]. One cannot ``divide by [[m4]]''.",
+   "status": "aligned",
+   "order": 15
+  },
+  "a77c888d8359": {
+   "fr": "Que [[m1]] divise [[m2]] : le théorème de Gauss le démontrera.",
+   "en": "That [[m1]] divides [[m2]]: Gauss's theorem will prove it.",
+   "status": "aligned",
+   "order": 16
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 17
+  },
+  "89c2d0333028": {
+   "fr": "Mesurer un litre avec deux bidons",
+   "en": "Measuring one litre with two cans",
+   "status": "aligned",
+   "order": 18
+  },
+  "a12a2174c266": {
+   "fr": "35 min",
+   "en": "35 min",
+   "status": "aligned",
+   "order": 19
+  },
+  "a58d6194b3a3": {
+   "fr": "On dispose d'un bidon de [[m1]] litres, d'un bidon de [[m2]] litres, sans graduation, et d'une source d'eau. On peut remplir un bidon, le vider, ou verser l'un dans l'autre jusqu'à ce que l'un soit vide ou l'autre plein.",
+   "en": "We have a [[m1]]-litre can, a [[m2]]-litre can, both without markings, and a water supply. We may fill a can, empty it, or pour one into the other until one is empty or the other is full.",
+   "status": "aligned",
+   "order": 20
+  },
+  "c139084b7b4e": {
+   "fr": "Montrer qu'on peut obtenir exactement [[m1]] litres dans le grand bidon.",
+   "en": "Show that one can get exactly [[m1]] litres in the large can.",
+   "status": "aligned",
+   "order": 21
+  },
+  "491d397cf707": {
+   "fr": "Si l'on verse au total [[m1]] fois [[m2]] litres et que l'on jette [[m3]] fois [[m4]] litres, la quantité restante est [[m5]]. Trouver des entiers naturels [[m6]] et [[m7]] tels que [[m8]]. En déduire comment obtenir [[m9]] litre.",
+   "en": "If we pour in [[m1]] times [[m2]] litres altogether and throw away [[m3]] times [[m4]] litres, the quantity left is [[m5]]. Find natural numbers [[m6]] and [[m7]] such that [[m8]]. Deduce how to get [[m9]] litre.",
+   "status": "aligned",
+   "order": 22
+  },
+  "1950804eb4ee": {
+   "fr": "On remplace les bidons par des bidons de [[m1]] et [[m2]] litres. Montrer que toute quantité de la forme [[m3]], avec [[m4]] et [[m5]] entiers relatifs, est un multiple de [[m6]]. Peut-on obtenir [[m7]] litre ?",
+   "en": "The cans are replaced by cans of [[m1]] and [[m2]] litres. Show that every quantity of the form [[m3]], with [[m4]] and [[m5]] integers, is a multiple of [[m6]]. Can one get [[m7]] litre?",
+   "status": "aligned",
+   "order": 23
+  },
+  "387ca5a236cc": {
+   "fr": "Avec des bidons de [[m1]] et [[m2]] litres, quelles quantités entières semble-t-on pouvoir obtenir ? Formuler une conjecture faisant intervenir le plus grand diviseur commun de [[m3]] et [[m4]].",
+   "en": "With cans of [[m1]] and [[m2]] litres, which whole quantities does it seem possible to get? State a conjecture involving the greatest common divisor of [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 24
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 25
+  },
+  "790d4589f574": {
+   "fr": "Remplir le [[m1]] litres, le verser dans le [[m2]] litres : il reste [[m3]] litres.",
+   "en": "Fill the [[m1]]-litre can and pour it into the [[m2]]-litre can: [[m3]] litres are left.",
+   "status": "aligned",
+   "order": 26
+  },
+  "abba5d3ee792": {
+   "fr": "[[m1]]. On remplit quatre fois le grand bidon, on le transvase chaque fois dans le petit, que l'on vide dès qu'il est plein (cinq fois au total) : il reste [[m2]] litre dans le grand bidon.",
+   "en": "[[m1]]. Fill the large can four times, pouring it each time into the small one, which is emptied whenever it is full (five times in all): [[m2]] litre is left in the large can.",
+   "status": "aligned",
+   "order": 27
+  },
+  "45b080c814c1": {
+   "fr": "[[m1]]. Toute quantité obtenue est multiple de [[m2]] : impossible d'obtenir [[m3]] litre.",
+   "en": "[[m1]]. Every quantity obtained is a multiple of [[m2]]: it is impossible to get [[m3]] litre.",
+   "status": "aligned",
+   "order": 28
+  },
+  "756711346992": {
+   "fr": "Conjecture : on obtient exactement les multiples de [[m1]] (dans la limite de la capacité des bidons). L'outil clé est l'égalité [[m2]], démontrée dans le cours.",
+   "en": "Conjecture: one obtains exactly the multiples of [[m1]] (within the capacity of the cans). The key tool is the equality [[m2]], proved in the course.",
+   "status": "aligned",
+   "order": 29
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 30
+  },
+  "f757ce208486": {
+   "fr": "Faire manipuler (ou simuler sur papier) avant de chercher [[m1]] et [[m2]]. La question 2 se résout par essais ; l'algorithme d'Euclide étendu du cours la systématise. Ne pas chercher à démontrer en classe le caractère suffisant de la conjecture pour les bidons : seule l'égalité de Bézout est au programme.",
+   "en": "Have the students handle the cans (or simulate on paper) before looking for [[m1]] and [[m2]]. Question 2 is solved by trial; the extended Euclidean algorithm of the course makes it systematic. Do not try to prove in class that the conjecture is sufficient for the cans: only Bézout's equality is in the syllabus.",
+   "status": "aligned",
+   "order": 31
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 32
+  },
+  "df2da0760ab9": {
+   "fr": "PGCD et algorithme d'Euclide",
+   "en": "GCD and Euclid's algorithm",
+   "status": "aligned",
+   "order": 33
+  },
+  "62061d587aab": {
+   "fr": "PGCD",
+   "en": "GCD",
+   "status": "aligned",
+   "order": 34
+  },
+  "bacc58e9f1b4": {
+   "fr": "Soit [[m1]] et [[m2]] deux entiers relatifs non tous deux nuls. L'ensemble de leurs diviseurs communs positifs est fini et contient [[m3]] ; son plus grand élément est appelé \\emph{plus grand commun diviseur} de [[m4]] et [[m5]], noté [[m6]]. On dit que [[m7]] et [[m8]] sont \\emph{premiers entre eux} si [[m9]].",
+   "en": "Let [[m1]] and [[m2]] be two integers, not both zero. The set of their positive common divisors is finite and contains [[m3]]; its largest element is called the \\emph{greatest common divisor} of [[m4]] and [[m5]], written [[m6]]. We say that [[m7]] and [[m8]] are \\emph{coprime} if [[m9]].",
+   "status": "aligned",
+   "order": 35
+  },
+  "d2a0ed45dd8f": {
+   "fr": "Lemme d'Euclide",
+   "en": "Euclid's lemma",
+   "status": "aligned",
+   "order": 36
+  },
+  "5f2a1c249dff": {
+   "fr": "Soit [[m1]] et [[m2]] deux entiers avec [[m3]]. Pour tout entier [[m4]], les diviseurs communs de [[m5]] et [[m6]] sont ceux de [[m7]] et [[m8]]. En particulier, si [[m9]] est le reste de la division de [[m10]] par [[m11]], alors [[m12]].",
+   "en": "Let [[m1]] and [[m2]] be two integers with [[m3]]. For every integer [[m4]], the common divisors of [[m5]] and [[m6]] are those of [[m7]] and [[m8]]. In particular, if [[m9]] is the remainder of the division of [[m10]] by [[m11]], then [[m12]].",
+   "status": "aligned",
+   "order": 37
+  },
+  "5569e93cdb30": {
+   "fr": "Si [[m1]] et [[m2]], alors [[m3]]. Réciproquement, si [[m4]] et [[m5]], alors [[m6]]. Les deux ensembles de diviseurs communs sont égaux, donc leurs plus grands éléments aussi.",
+   "en": "If [[m1]] and [[m2]], then [[m3]]. Conversely, if [[m4]] and [[m5]], then [[m6]]. The two sets of common divisors are equal, so their largest elements are too.",
+   "status": "aligned",
+   "order": 38
+  },
+  "12bd4c65e1e4": {
+   "fr": "On remplace [[m1]] par [[m2]] tant que le reste [[m3]] n'est pas nul. Les restes forment une suite d'entiers naturels strictement décroissante, donc l'algorithme s'arrête. Le PGCD est le dernier reste non nul. Exemple :",
+   "en": "Replace [[m1]] by [[m2]] as long as the remainder [[m3]] is not zero. The remainders form a strictly decreasing sequence of natural numbers, so the algorithm stops. The gcd is the last nonzero remainder. Example:",
+   "status": "aligned",
+   "order": 40
+  },
+  "e5bf3cbe27ec": {
+   "fr": "donc [[m1]].",
+   "en": "so [[m1]].",
+   "status": "aligned",
+   "order": 41
+  },
+  "f5b3a679bc21": {
+   "fr": "Écriture du PGCD",
+   "en": "Writing the gcd",
+   "status": "aligned",
+   "order": 43
+  },
+  "13d39aec5a2c": {
+   "fr": "Soit [[m1]] et [[m2]] deux entiers non tous deux nuls. Il existe des entiers relatifs [[m3]] et [[m4]] tels que [[m5]]. De plus, tout diviseur commun de [[m6]] et [[m7]] divise [[m8]].",
+   "en": "Let [[m1]] and [[m2]] be two integers, not both zero. There are integers [[m3]] and [[m4]] such that [[m5]]. Moreover, every common divisor of [[m6]] and [[m7]] divides [[m8]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "d030ef00c57f": {
+   "fr": "Soit [[m1]] l'ensemble des entiers strictement positifs de la forme [[m2]], avec [[m3]], [[m4]] entiers. [[m5]] n'est pas vide (il contient [[m6]]). Soit [[m7]] son plus petit élément.",
+   "en": "Let [[m1]] be the set of positive integers of the form [[m2]], with [[m3]], [[m4]] integers. [[m5]] is not empty (it contains [[m6]]). Let [[m7]] be its smallest element.",
+   "status": "aligned",
+   "order": 45
+  },
+  "43d94890a554": {
+   "fr": "Divisons [[m1]] par [[m2]] : [[m3]] avec [[m4]]. Alors [[m5]] est de la forme [[m6]]. S'il était strictement positif, il appartiendrait à [[m7]] en étant plus petit que [[m8]] : impossible. Donc [[m9]] et [[m10]]. De même [[m11]].",
+   "en": "Divide [[m1]] by [[m2]]: [[m3]] with [[m4]]. Then [[m5]] is of the form [[m6]]. If it were positive, it would belong to [[m7]] while being smaller than [[m8]]: impossible. So [[m9]] and [[m10]]. Likewise [[m11]].",
+   "status": "aligned",
+   "order": 46
+  },
+  "815803bcf1ea": {
+   "fr": "Enfin tout diviseur commun [[m1]] de [[m2]] et [[m3]] divise [[m4]], donc [[m5]]. Ainsi [[m6]] est le plus grand diviseur commun : [[m7]].",
+   "en": "Finally every common divisor [[m1]] of [[m2]] and [[m3]] divides [[m4]], so [[m5]]. Hence [[m6]] is the greatest common divisor: [[m7]].",
+   "status": "aligned",
+   "order": 47
+  },
+  "35a64d298f02": {
+   "fr": "Théorème de Bézout",
+   "en": "Bézout's theorem",
+   "status": "aligned",
+   "order": 48
+  },
+  "397926fa8996": {
+   "fr": "Deux entiers [[m1]] et [[m2]] sont premiers entre eux si et seulement si il existe des entiers relatifs [[m3]] et [[m4]] tels que [[m5]].",
+   "en": "Two integers [[m1]] and [[m2]] are coprime if and only if there are integers [[m3]] and [[m4]] such that [[m5]].",
+   "status": "aligned",
+   "order": 49
+  },
+  "82d1dc24d231": {
+   "fr": "Si [[m1]], le théorème précédent fournit [[m2]] et [[m3]]. Réciproquement, si [[m4]], tout diviseur commun positif de [[m5]] et [[m6]] divise [[m7]], donc vaut [[m8]].",
+   "en": "If [[m1]], the previous theorem provides [[m2]] and [[m3]]. Conversely, if [[m4]], every positive common divisor of [[m5]] and [[m6]] divides [[m7]], hence equals [[m8]].",
+   "status": "aligned",
+   "order": 50
+  },
+  "79ecae004fee": {
+   "fr": "Couple de Bézout : remonter l'algorithme d'Euclide",
+   "en": "Bézout pair: working back through Euclid's algorithm",
+   "status": "aligned",
+   "order": 51
+  },
+  "8130e375f586": {
+   "fr": "Avec l'exemple précédent : [[m1]]. Un couple convenable pour [[m2]] est [[m3]].",
+   "en": "With the previous example: [[m1]]. A suitable pair for [[m2]] is [[m3]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "3fa5478ec0ab": {
+   "fr": "Algorithme d'Euclide étendu en Python",
+   "en": "Extended Euclidean algorithm in Python",
+   "status": "aligned",
+   "order": 53
+  },
+  "2d76b7874c67": {
+   "fr": "La fonction suivante renvoie [[m1]] avec [[m2]], pour [[m3]] et [[m4]] entiers naturels non tous deux nuls.",
+   "en": "The following function returns [[m1]] with [[m2]], for natural numbers [[m3]] and [[m4]] not both zero.",
+   "status": "aligned",
+   "order": 54
+  },
+  "e678e150eeef": {
+   "fr": "À chaque étape, les deux restes en cours s'écrivent [[m1]] et [[m2]] en fonction des valeurs initiales de [[m3]] et [[m4]].",
+   "en": "At every step, the two current remainders can be written [[m1]] and [[m2]] in terms of the initial values of [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "bbe8cbd4054e": {
+   "fr": "Théorème de Gauss",
+   "en": "Gauss's theorem",
+   "status": "aligned",
+   "order": 57
+  },
+  "4d48e7827c81": {
+   "fr": "Soit [[m1]], [[m2]], [[m3]] trois entiers. Si [[m4]] et si [[m5]] et [[m6]] sont premiers entre eux, alors [[m7]].",
+   "en": "Let [[m1]], [[m2]], [[m3]] be three integers. If [[m4]] and [[m5]] and [[m6]] are coprime, then [[m7]].",
+   "status": "aligned",
+   "order": 58
+  },
+  "37d4805d7ec8": {
+   "fr": "Par le théorème de Bézout, il existe [[m1]] et [[m2]] tels que [[m3]]. En multipliant par [[m4]] : [[m5]]. Or [[m6]] et [[m7]], donc [[m8]] divise [[m9]].",
+   "en": "By Bézout's theorem, there are [[m1]] and [[m2]] such that [[m3]]. Multiplying by [[m4]]: [[m5]]. Now [[m6]] and [[m7]], so [[m8]] divides [[m9]].",
+   "status": "aligned",
+   "order": 59
+  },
+  "3ffe7eccca4c": {
+   "fr": "Corollaire",
+   "en": "Corollary",
+   "status": "aligned",
+   "order": 60
+  },
+  "ceb941358c7e": {
+   "fr": "Si [[m1]] et [[m2]] sont premiers entre eux et divisent tous deux [[m3]], alors [[m4]] divise [[m5]].",
+   "en": "If [[m1]] and [[m2]] are coprime and both divide [[m3]], then [[m4]] divides [[m5]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "a46ebf9733e7": {
+   "fr": "[[m1]]. Comme [[m2]] et [[m3]], Gauss donne [[m4]] : [[m5]] et [[m6]].",
+   "en": "[[m1]]. Since [[m2]] and [[m3]], Gauss gives [[m4]]: [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 62
+  },
+  "1f65d59e5975": {
+   "fr": "Soit [[m1]] et [[m2]] un entier. Il existe un entier [[m3]] tel que [[m4]] si et seulement si [[m5]]. Un tel [[m6]] est un \\emph{inverse de $a$ modulo $n$} ; il permet de résoudre [[m7]] : [[m8]].",
+   "en": "Let [[m1]] and [[m2]] an integer. There is an integer [[m3]] such that [[m4]] if and only if [[m5]]. Such a [[m6]] is an \\emph{inverse of $a$ modulo $n$}; it allows us to solve [[m7]]: [[m8]].",
+   "status": "aligned",
+   "order": 64
+  },
+  "be555deb6b32": {
+   "fr": "[[m1]] équivaut à l'existence d'un entier [[m2]] tel que [[m3]] : c'est le théorème de Bézout.",
+   "en": "[[m1]] is equivalent to the existence of an integer [[m2]] such that [[m3]]: this is Bézout's theorem.",
+   "status": "aligned",
+   "order": 65
+  },
+  "06db14e7bccf": {
+   "fr": "Équation [[m1]] en nombres entiers",
+   "en": "Equation [[m1]] in integers",
+   "status": "aligned",
+   "order": 66
+  },
+  "b5a0a264c568": {
+   "fr": "Elle a des solutions si et seulement si [[m1]] divise [[m2]] ; on divise alors par ce PGCD.",
+   "en": "It has solutions if and only if [[m1]] divides [[m2]]; we then divide by this gcd.",
+   "status": "aligned",
+   "order": 67
+  },
+  "5e556650d866": {
+   "fr": "On trouve une solution particulière [[m1]].",
+   "en": "Find a particular solution [[m1]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "c698f910473f": {
+   "fr": "Par différence, [[m1]] ; avec [[m2]] et [[m3]] premiers entre eux, Gauss donne [[m4]], puis [[m5]].",
+   "en": "By subtraction, [[m1]]; with [[m2]] and [[m3]] coprime, Gauss gives [[m4]], then [[m5]].",
+   "status": "aligned",
+   "order": 69
+  },
+  "be715a0d9b84": {
+   "fr": "On vérifie que les couples [[m1]], [[m2]], sont bien solutions.",
+   "en": "Check that the pairs [[m1]], [[m2]], are indeed solutions.",
+   "status": "aligned",
+   "order": 70
+  },
+  "3906c5cf347c": {
+   "fr": "Exemple : [[m1]] a la solution particulière [[m2]] ; ses solutions sont les couples [[m3]], [[m4]].",
+   "en": "Example: [[m1]] has the particular solution [[m2]]; its solutions are the pairs [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 71
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 72
+  },
+  "8bc46fff0e60": {
+   "fr": "Algorithme d'Euclide",
+   "en": "Euclid's algorithm",
+   "status": "aligned",
+   "order": 73
+  },
+  "9c46f0589bfc": {
+   "fr": "Déterminer [[m1]] par l'algorithme d'Euclide, puis simplifier la fraction [[m2]].",
+   "en": "Find [[m1]] with Euclid's algorithm, then simplify the fraction [[m2]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "2e9605be5025": {
+   "fr": "[[m1]], [[m2]], [[m3]]. Le PGCD vaut [[m4]] et [[m5]].",
+   "en": "[[m1]], [[m2]], [[m3]]. The gcd is [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "0426bec1b170": {
+   "fr": "Couple de Bézout",
+   "en": "Bézout pair",
+   "status": "aligned",
+   "order": 76
+  },
+  "5ab16a296c22": {
+   "fr": "Déterminer un couple d'entiers [[m1]] tel que [[m2]].",
+   "en": "Find a pair of integers [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 77
+  },
+  "237f6004a37c": {
+   "fr": "[[m1]], [[m2]], [[m3]]. En remontant : [[m4]]. Le couple [[m5]] convient : [[m6]].",
+   "en": "[[m1]], [[m2]], [[m3]]. Working back: [[m4]]. The pair [[m5]] works: [[m6]].",
+   "status": "aligned",
+   "order": 78
+  },
+  "96198e37f79c": {
+   "fr": "Entiers premiers entre eux",
+   "en": "Coprime integers",
+   "status": "aligned",
+   "order": 79
+  },
+  "565cb5f8c3d1": {
+   "fr": "Soit [[m1]] un entier naturel. Démontrer que [[m2]] et [[m3]] sont premiers entre eux, puis que [[m4]] et [[m5]] le sont aussi.",
+   "en": "Let [[m1]] be a natural number. Prove that [[m2]] and [[m3]] are coprime, then that [[m4]] and [[m5]] are coprime too.",
+   "status": "aligned",
+   "order": 80
+  },
+  "cd2c7418671b": {
+   "fr": "[[m1]]. Ensuite [[m2]]. Le théorème de Bézout conclut dans les deux cas.",
+   "en": "[[m1]]. Next [[m2]]. Bézout's theorem concludes in both cases.",
+   "status": "aligned",
+   "order": 81
+  },
+  "69ff62ddbce8": {
+   "fr": "Une équation homogène",
+   "en": "A homogeneous equation",
+   "status": "aligned",
+   "order": 82
+  },
+  "d8403f970be6": {
+   "fr": "Déterminer tous les couples d'entiers [[m1]] tels que [[m2]].",
+   "en": "Find all pairs of integers [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "666f9b04ee52": {
+   "fr": "En divisant par [[m1]] : [[m2]]. Donc [[m3]] et [[m4]] : Gauss donne [[m5]], [[m6]]. Alors [[m7]], soit [[m8]]. Réciproquement [[m9]]. Les solutions sont les couples [[m10]], [[m11]].",
+   "en": "Dividing by [[m1]]: [[m2]]. So [[m3]] and [[m4]]: Gauss gives [[m5]], [[m6]]. Then [[m7]], that is [[m8]]. Conversely [[m9]]. The solutions are the pairs [[m10]], [[m11]].",
+   "status": "aligned",
+   "order": 84
+  },
+  "eebd02c1b4ee": {
+   "fr": "Cahiers et stylos",
+   "en": "Exercise books and pens",
+   "status": "aligned",
+   "order": 85
+  },
+  "b582c7ca83ae": {
+   "fr": "Une librairie vend des cahiers à [[m1]] ariary et des stylos à [[m2]] ariary. Un client dépense exactement [[m3]] ariary. Combien a-t-il acheté de cahiers et de stylos ?",
+   "en": "A bookshop sells exercise books at [[m1]] ariary and pens at [[m2]] ariary. A customer spends exactly [[m3]] ariary. How many exercise books and pens did they buy?",
+   "status": "aligned",
+   "order": 86
+  },
+  "ef7fa129842e": {
+   "fr": "On cherche des entiers naturels [[m1]] et [[m2]] tels que [[m3]], soit [[m4]]. Modulo [[m5]] : [[m6]] ; comme [[m7]], [[m8]]. La solution particulière [[m9]] convient ([[m10]]). Les solutions entières sont [[m11]], [[m12]]. Pour avoir [[m13]] et [[m14]], il faut [[m15]] et [[m16]], donc [[m17]] : [[m18]] cahiers et [[m19]] stylos.",
+   "en": "We look for natural numbers [[m1]] and [[m2]] such that [[m3]], that is [[m4]]. Modulo [[m5]]: [[m6]]; since [[m7]], [[m8]]. The particular solution [[m9]] works ([[m10]]). The integer solutions are [[m11]], [[m12]]. For [[m13]] and [[m14]], we need [[m15]] and [[m16]], so [[m17]]: [[m18]] exercise books and [[m19]] pens.",
+   "status": "aligned",
+   "order": 87
+  },
+  "5e06b4ca95ae": {
+   "fr": "Inverse modulo [[m1]]",
+   "en": "Inverse modulo [[m1]]",
+   "status": "aligned",
+   "order": 88
+  },
+  "e9c4b19f4da0": {
+   "fr": "Justifier que [[m1]] a un inverse modulo [[m2]] et vérifier que [[m3]] convient.",
+   "en": "Explain why [[m1]] has an inverse modulo [[m2]] and check that [[m3]] is one.",
+   "status": "aligned",
+   "order": 89
+  },
+  "e3bc0dc0e302": {
+   "fr": "Résoudre [[m1]].",
+   "en": "Solve [[m1]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "ed2afe8fd80e": {
+   "fr": "[[m1]] ; en multipliant par [[m2]] : [[m3]]. Les solutions sont les entiers [[m4]].",
+   "en": "[[m1]]; multiplying by [[m2]]: [[m3]]. The solutions are the integers [[m4]].",
+   "status": "aligned",
+   "order": 91
+  },
+  "f8292d34feb1": {
+   "fr": "Un PGCD qui dépend de [[m1]]",
+   "en": "A gcd that depends on [[m1]]",
+   "status": "aligned",
+   "order": 92
+  },
+  "225d877a19a3": {
+   "fr": "Soit [[m1]] un entier naturel et [[m2]].",
+   "en": "Let [[m1]] be a natural number and [[m2]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "67d209311c5c": {
+   "fr": "Démontrer que [[m1]] divise [[m2]].",
+   "en": "Prove that [[m1]] divides [[m2]].",
+   "status": "aligned",
+   "order": 94
+  },
+  "169bde4709d9": {
+   "fr": "Déterminer les entiers [[m1]] pour lesquels [[m2]].",
+   "en": "Find the integers [[m1]] for which [[m2]].",
+   "status": "aligned",
+   "order": 95
+  },
+  "8bf07f8aa7f7": {
+   "fr": "[[m1]] divise [[m2]].",
+   "en": "[[m1]] divides [[m2]].",
+   "status": "aligned",
+   "order": 96
+  },
+  "a6d17b1a7dad": {
+   "fr": "[[m1]]. Si [[m2]], alors [[m3]], soit [[m4]]. Réciproquement, si [[m5]], alors [[m6]] et [[m7]], donc [[m8]]. Exemple : [[m9]] donne [[m10]].",
+   "en": "[[m1]]. If [[m2]], then [[m3]], that is [[m4]]. Conversely, if [[m5]], then [[m6]] and [[m7]], so [[m8]]. Example: [[m9]] gives [[m10]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "9124cdca9ec7": {
+   "fr": "Le chiffrement affine",
+   "en": "The affine cipher",
+   "status": "aligned",
+   "order": 99
+  },
+  "3640f3ee5086": {
+   "fr": "On numérote les lettres de A à Z de [[m1]] à [[m2]]. Pour chiffrer une lettre de numéro [[m3]], on calcule le reste [[m4]] de [[m5]] dans la division par [[m6]], et on la remplace par la lettre de numéro [[m7]].",
+   "en": "The letters A to Z are numbered from [[m1]] to [[m2]]. To encrypt a letter with number [[m3]], compute the remainder [[m4]] of [[m5]] in the division by [[m6]], and replace the letter by the letter with number [[m7]].",
+   "status": "aligned",
+   "order": 100
+  },
+  "3fda6176a919": {
+   "fr": "Chiffrer le mot EXPERT.",
+   "en": "Encrypt the word EXPERT.",
+   "status": "aligned",
+   "order": 101
+  },
+  "7e963a3cbf00": {
+   "fr": "Démontrer que [[m1]] équivaut à [[m2]].",
+   "en": "Prove that [[m1]] is equivalent to [[m2]].",
+   "status": "aligned",
+   "order": 102
+  },
+  "12f6ec4df885": {
+   "fr": "Déchiffrer le message TDNZZ.",
+   "en": "Decrypt the message TDNZZ.",
+   "status": "aligned",
+   "order": 103
+  },
+  "f4f9734a40f9": {
+   "fr": "On remplace [[m1]] par [[m2]] dans la clé. Démontrer que si [[m3]], deux lettres différentes peuvent être chiffrées par la même lettre. Combien de valeurs de [[m4]] donnent un chiffrement que l'on peut déchiffrer ?",
+   "en": "Replace [[m1]] by [[m2]] in the key. Prove that if [[m3]], two different letters may be encrypted as the same letter. How many values of [[m4]] give a cipher that can be decrypted?",
+   "status": "aligned",
+   "order": 104
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 105
+  },
+  "bde0b5fd9328": {
+   "fr": "E[[m1]] (F) ; X[[m2]] (I) ; P[[m3]] (E) ; E [[m4]] F ; R[[m5]] (S) ; T[[m6]] (G). Le mot chiffré est FIEFSG.",
+   "en": "E[[m1]] (F); X[[m2]] (I); P[[m3]] (E); E [[m4]] F; R[[m5]] (S); T[[m6]] (G). The encrypted word is FIEFSG.",
+   "status": "aligned",
+   "order": 106
+  },
+  "87d34d093bfe": {
+   "fr": "Si [[m1]], en multipliant [[m2]] par [[m3]] : [[m4]]. Réciproquement, si [[m5]], alors [[m6]], car [[m7]] et [[m8]].",
+   "en": "If [[m1]], multiplying [[m2]] by [[m3]]: [[m4]]. Conversely, if [[m5]], then [[m6]], since [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 107
+  },
+  "efadb1a97a01": {
+   "fr": "T[[m1]] (G) ; D[[m2]] (A) ; N[[m3]] (U) ; Z[[m4]] (S). Le message est GAUSS.",
+   "en": "T[[m1]] (G); D[[m2]] (A); N[[m3]] (U); Z[[m4]] (S). The message is GAUSS.",
+   "status": "aligned",
+   "order": 108
+  },
+  "2ed0a75f8928": {
+   "fr": "Si [[m1]], posons [[m2]]. Alors [[m3]] : les lettres [[m4]] et [[m5]] (pour [[m6]] et [[m7]] dans [[m8]], par exemple [[m9]]) ont le même chiffré. Si [[m10]], l'inverse de [[m11]] modulo [[m12]] permet de déchiffrer comme en 2. Les [[m13]] premiers avec [[m14]] sont les impairs différents de [[m15]] : il y en a [[m16]].",
+   "en": "If [[m1]], let [[m2]]. Then [[m3]]: the letters [[m4]] and [[m5]] (for [[m6]] and [[m7]] in [[m8]], for example [[m9]]) have the same encryption. If [[m10]], the inverse of [[m11]] modulo [[m12]] allows decryption as in 2. The [[m13]] coprime with [[m14]] are the odd numbers other than [[m15]]: there are [[m16]] of them.",
+   "status": "aligned",
+   "order": 109
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 110
+  },
+  "8c799c2775cd": {
+   "fr": "Les chiffrements (affine, Vigenère, Hill, RSA) sont des « problèmes possibles » du programme. Le chiffrement de Hill est repris au chapitre 9 (matrices), RSA au chapitre 8. Faire programmer le chiffrement en Python.",
+   "en": "Ciphers (affine, Vigenère, Hill, RSA) are ``possible problems'' of the syllabus. The Hill cipher is taken up in chapter 9 (matrices), RSA in chapter 8. Have the cipher programmed in Python.",
+   "status": "aligned",
+   "order": 111
+  }
+ }
+}

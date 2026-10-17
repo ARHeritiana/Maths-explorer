@@ -1,0 +1,773 @@
+{
+ "unit": "C11.fr.tex",
+ "segments": {
+  "84749792a47d": {
+   "fr": "Suites de matrices et chaînes de Markov",
+   "en": "Matrix sequences and Markov chains",
+   "status": "aligned",
+   "order": 0
+  },
+  "71c2f8c80031": {
+   "fr": "Suites [[m1]], graphes probabilistes, distributions invariantes",
+   "en": "Sequences [[m1]], probabilistic graphs, invariant distributions",
+   "status": "aligned",
+   "order": 1
+  },
+  "bbd60ed8843b": {
+   "fr": "Étudier une suite de matrices colonnes définie par [[m1]] ; modéliser une évolution aléatoire à deux ou trois états par un graphe probabiliste et une matrice de transition ; calculer la distribution après [[m2]] étapes ; déterminer une distribution invariante ; étudier la convergence dans le cas de deux états.",
+   "en": "Study a sequence of column matrices defined by [[m1]]; model a random evolution with two or three states by a probabilistic graph and a transition matrix; compute the distribution after [[m2]] steps; find an invariant distribution; study convergence in the two-state case.",
+   "status": "aligned",
+   "order": 2
+  },
+  "65a7f6d4efbe": {
+   "fr": "Chapitres 9 et 10 ; probabilités conditionnelles et formule des probabilités totales ; suites arithmético-géométriques ; limite d'une suite géométrique.",
+   "en": "Chapters 9 and 10; conditional probability and the law of total probability; arithmetico-geometric sequences; limit of a geometric sequence.",
+   "status": "aligned",
+   "order": 3
+  },
+  "897da8c800a1": {
+   "fr": "Sans calculatrice, cinq minutes",
+   "en": "No calculator, five minutes",
+   "status": "aligned",
+   "order": 5
+  },
+  "d2d27cb6aa9f": {
+   "fr": "On pose [[m1]]. Déterminer le réel [[m2]] tel que [[m3]].",
+   "en": "Let [[m1]]. Find the real number [[m2]] such that [[m3]].",
+   "status": "aligned",
+   "order": 6
+  },
+  "8e2441ba2e27": {
+   "fr": "Donner la limite de [[m1]] quand [[m2]] tend vers [[m3]].",
+   "en": "Give the limit of [[m1]] as [[m2]] tends to [[m3]].",
+   "status": "aligned",
+   "order": 7
+  },
+  "792ccdf62bc3": {
+   "fr": "Dans un arbre, [[m1]], [[m2]], [[m3]]. Calculer [[m4]].",
+   "en": "In a tree, [[m1]], [[m2]], [[m3]]. Compute [[m4]].",
+   "status": "aligned",
+   "order": 8
+  },
+  "fff7fc294d13": {
+   "fr": "Résoudre le système [[m1]] et [[m2]].",
+   "en": "Solve the system [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 9
+  },
+  "edb66e001ece": {
+   "fr": "Calculer [[m1]].",
+   "en": "Compute [[m1]].",
+   "status": "aligned",
+   "order": 10
+  },
+  "636dbe1bd45a": {
+   "fr": "Quelle est la somme des coefficients de chaque ligne de la matrice de la question 5 ?",
+   "en": "What is the sum of the entries of each row of the matrix in question 5?",
+   "status": "aligned",
+   "order": 11
+  },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 12
+  },
+  "16aa4ad34d17": {
+   "fr": "[[m1]], donc [[m2]] : [[m3]] et [[m4]].",
+   "en": "[[m1]], so [[m2]]: [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 13
+  },
+  "23014d5f8da1": {
+   "fr": "[[m1]] pour chaque ligne.",
+   "en": "[[m1]] for each row.",
+   "status": "aligned",
+   "order": 14
+  },
+  "0dd443f30c7b": {
+   "fr": "Activité d'introduction",
+   "en": "Introductory activity",
+   "status": "aligned",
+   "order": 15
+  },
+  "fdbcfa7d9a5a": {
+   "fr": "Beau temps, pluie",
+   "en": "Fine weather, rain",
+   "status": "aligned",
+   "order": 16
+  },
+  "15b750412480": {
+   "fr": "40 min",
+   "en": "40 min",
+   "status": "aligned",
+   "order": 17
+  },
+  "b42bfd324d0f": {
+   "fr": "Dans un modèle simplifié (données fictives), le temps d'une journée est soit beau ([[m1]]), soit pluvieux ([[m2]]), et ne dépend que du temps de la veille : après un beau jour, il fait beau avec la probabilité [[m3]] ; après un jour de pluie, il fait beau avec la probabilité [[m4]]. Le jour [[m5]] est beau. On note [[m6]] et [[m7]] les probabilités que le jour [[m8]] soit beau ou pluvieux.",
+   "en": "In a simplified model (fictitious data), the weather on a given day is either fine ([[m1]]) or rainy ([[m2]]), and depends only on the weather the day before: after a fine day, it is fine with probability [[m3]]; after a rainy day, it is fine with probability [[m4]]. Day [[m5]] is fine. Let [[m6]] and [[m7]] be the probabilities that day [[m8]] is fine or rainy.",
+   "status": "aligned",
+   "order": 18
+  },
+  "2aa052a2b600": {
+   "fr": "Représenter la situation par un schéma : deux sommets [[m1]] et [[m2]], une flèche pour chaque passage possible, portant sa probabilité.",
+   "en": "Represent the situation by a diagram: two vertices [[m1]] and [[m2]], an arrow for each possible change, carrying its probability.",
+   "status": "aligned",
+   "order": 19
+  },
+  "7f7326d753c4": {
+   "fr": "À l'aide d'un arbre, calculer [[m1]], [[m2]], puis [[m3]], [[m4]].",
+   "en": "Using a tree, compute [[m1]], [[m2]], then [[m3]], [[m4]].",
+   "status": "aligned",
+   "order": 20
+  },
+  "ea58c79e6fc6": {
+   "fr": "Justifier que [[m1]] et [[m2]].",
+   "en": "Justify that [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 21
+  },
+  "aeeeab73b983": {
+   "fr": "On pose [[m1]] et [[m2]]. Vérifier que [[m3]]. Calculer [[m4]] à la calculatrice. Recommencer en partant d'un jour [[m5]] pluvieux. Que constate-t-on ?",
+   "en": "Let [[m1]] and [[m2]]. Check that [[m3]]. Compute [[m4]] with a calculator. Start again with a rainy day [[m5]]. What do you notice?",
+   "status": "aligned",
+   "order": 22
+  },
+  "1d4a82a81cb4": {
+   "fr": "Déterminer la répartition [[m1]], avec [[m2]], qui vérifie [[m3]]. La comparer aux observations de la question 4.",
+   "en": "Find the distribution [[m1]], with [[m2]], that satisfies [[m3]]. Compare it with the observations of question 4.",
+   "status": "aligned",
+   "order": 23
+  },
+  "8fe12048b8d6": {
+   "fr": "Activité",
+   "en": "Activity",
+   "status": "aligned",
+   "order": 24
+  },
+  "0dba7bffd4c5": {
+   "fr": "Flèches [[m1]] ([[m2]]), [[m3]] ([[m4]]), [[m5]] ([[m6]]), [[m7]] ([[m8]]).",
+   "en": "Arrows [[m1]] ([[m2]]), [[m3]] ([[m4]]), [[m5]] ([[m6]]), [[m7]] ([[m8]]).",
+   "status": "aligned",
+   "order": 25
+  },
+  "e9d433e89090": {
+   "fr": "[[m1]], [[m2]] ; [[m3]] et [[m4]].",
+   "en": "[[m1]], [[m2]]; [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 26
+  },
+  "e15e82a176e6": {
+   "fr": "Formule des probabilités totales avec la partition « beau le jour [[m1]] », « pluie le jour [[m2]] ».",
+   "en": "Law of total probability with the partition ``fine on day [[m1]]'', ``rain on day [[m2]]''.",
+   "status": "aligned",
+   "order": 27
+  },
+  "d339e32ac105": {
+   "fr": "[[m1]]. On trouve [[m2]], et [[m3]] en partant d'un jour pluvieux. La répartition semble se stabiliser vers [[m4]], quel que soit le départ.",
+   "en": "[[m1]]. We find [[m2]], and [[m3]] starting from a rainy day. The distribution seems to settle at [[m4]], whatever the start.",
+   "status": "aligned",
+   "order": 28
+  },
+  "8f4ce9944b0b": {
+   "fr": "[[m1]] équivaut à [[m2]], soit [[m3]] ; avec [[m4]] : [[m5]], la limite observée.",
+   "en": "[[m1]] is equivalent to [[m2]], that is [[m3]]; with [[m4]]: [[m5]], the limit observed.",
+   "status": "aligned",
+   "order": 29
+  },
+  "b7102338c5e3": {
+   "fr": "Conduite de l'activité",
+   "en": "Running the activity",
+   "status": "aligned",
+   "order": 30
+  },
+  "8ac7524febb7": {
+   "fr": "Les calculs numériques de la question 4 suggèrent la convergence ; la preuve, dans le cas de deux états, se fait avec une suite arithmético-géométrique (cours). Attirer l'attention sur l'écriture en ligne de [[m1]] et sur l'ordre du produit [[m2]].",
+   "en": "The numerical computations of question 4 suggest convergence; the proof, in the two-state case, uses an arithmetico-geometric sequence (course). Draw attention to writing [[m1]] as a row and to the order of the product [[m2]].",
+   "status": "aligned",
+   "order": 31
+  },
+  "6634c69a2ef6": {
+   "fr": "Notes de cours",
+   "en": "Course notes",
+   "status": "aligned",
+   "order": 32
+  },
+  "83dbda7d1c23": {
+   "fr": "Suites de matrices",
+   "en": "Matrix sequences",
+   "status": "aligned",
+   "order": 33
+  },
+  "10df228df5fb": {
+   "fr": "Suite [[m1]]",
+   "en": "Sequence [[m1]]",
+   "status": "aligned",
+   "order": 34
+  },
+  "e91126b61885": {
+   "fr": "Soit [[m1]] une matrice carrée d'ordre [[m2]], [[m3]] une matrice colonne et [[m4]] une suite de matrices colonnes telle que [[m5]] pour tout [[m6]]. Si [[m7]] est inversible, la matrice [[m8]] vérifie [[m9]], et pour tout entier naturel [[m10]] :",
+   "en": "Let [[m1]] be a square matrix of order [[m2]], [[m3]] a column matrix and [[m4]] a sequence of column matrices such that [[m5]] for every [[m6]]. If [[m7]] is invertible, the matrix [[m8]] satisfies [[m9]], and for every natural number [[m10]]:",
+   "status": "aligned",
+   "order": 35
+  },
+  "858d6d23530d": {
+   "fr": "[[m1]] s'écrit [[m2]]. En soustrayant : [[m3]]. La suite [[m4]] vérifie [[m5]], donc [[m6]] (récurrence), et [[m7]].",
+   "en": "[[m1]] can be written [[m2]]. Subtracting: [[m3]]. The sequence [[m4]] satisfies [[m5]], so [[m6]] (induction), and [[m7]].",
+   "status": "aligned",
+   "order": 36
+  },
+  "854d27f20771": {
+   "fr": "Comportement à l'infini",
+   "en": "Behaviour at infinity",
+   "status": "aligned",
+   "order": 37
+  },
+  "ae96bcb26818": {
+   "fr": "Si tous les coefficients de [[m1]] tendent vers [[m2]], alors [[m3]] converge vers [[m4]] (coefficient par coefficient). Ce comportement s'observe à la calculatrice ; on l'admet lorsque l'énoncé le précise.",
+   "en": "If all the entries of [[m1]] tend to [[m2]], then [[m3]] converges to [[m4]] (entry by entry). This behaviour can be observed with a calculator; it is taken for granted when the statement says so.",
+   "status": "aligned",
+   "order": 38
+  },
+  "f90de8159c2f": {
+   "fr": "Chaînes de Markov",
+   "en": "Markov chains",
+   "status": "aligned",
+   "order": 39
+  },
+  "bd550b01c09f": {
+   "fr": "Chaîne de Markov à deux ou trois états",
+   "en": "Markov chain with two or three states",
+   "status": "aligned",
+   "order": 40
+  },
+  "fe7ebd09e557": {
+   "fr": "On observe un système à des instants [[m1]] ; à chaque instant, il se trouve dans un des états [[m2]] ([[m3]] ou [[m4]]). On note [[m5]] l'état à l'instant [[m6]]. On dit que [[m7]] est une \\emph{chaîne de Markov} (homogène) si la probabilité de passer de l'état [[m8]] à l'état [[m9]] ne dépend ni de [[m10]] ni des états antérieurs : pour tous [[m11]], [[m12]] et [[m13]] tels que [[m14]],",
+   "en": "A system is observed at times [[m1]]; at each time, it is in one of the states [[m2]] ([[m3]] or [[m4]]). Let [[m5]] be the state at time [[m6]]. We say that [[m7]] is a (homogeneous) \\emph{Markov chain} if the probability of moving from state [[m8]] to state [[m9]] depends neither on [[m10]] nor on the earlier states: for all [[m11]], [[m12]] and [[m13]] such that [[m14]],",
+   "status": "aligned",
+   "order": 41
+  },
+  "4aee87d0dc52": {
+   "fr": "Les nombres [[m1]] sont les \\emph{probabilités de transition}.",
+   "en": "The numbers [[m1]] are the \\emph{transition probabilities}.",
+   "status": "aligned",
+   "order": 42
+  },
+  "a39c333452dd": {
+   "fr": "Graphe probabiliste, matrice de transition",
+   "en": "Probabilistic graph, transition matrix",
+   "status": "aligned",
+   "order": 43
+  },
+  "2be7f61cdfe2": {
+   "fr": "La chaîne est représentée par un \\emph{graphe probabiliste} : un graphe orienté pondéré dont les sommets sont les états, avec un arc de [[m1]] vers [[m2]], de poids [[m3]], lorsque [[m4]]. La \\emph{matrice de transition} est la matrice carrée [[m5]]. Ses coefficients sont positifs et la somme de chaque ligne vaut [[m6]].",
+   "en": "The chain is represented by a \\emph{probabilistic graph}: a weighted directed graph whose vertices are the states, with an arc from [[m1]] to [[m2]], of weight [[m3]], when [[m4]]. The \\emph{transition matrix} is the square matrix [[m5]]. Its entries are nonnegative and the sum of each row is [[m6]].",
+   "status": "aligned",
+   "order": 44
+  },
+  "1d3c457cbe3e": {
+   "fr": "Distribution",
+   "en": "Distribution",
+   "status": "aligned",
+   "order": 45
+  },
+  "d801747415c2": {
+   "fr": "La \\emph{distribution} à l'instant [[m1]] est la matrice ligne [[m2]] ; [[m3]] est la distribution initiale.",
+   "en": "The \\emph{distribution} at time [[m1]] is the row matrix [[m2]]; [[m3]] is the initial distribution.",
+   "status": "aligned",
+   "order": 46
+  },
+  "546e51fe24b4": {
+   "fr": "Évolution de la distribution",
+   "en": "Evolution of the distribution",
+   "status": "aligned",
+   "order": 47
+  },
+  "05bf6ed5497d": {
+   "fr": "Pour tout entier naturel [[m1]] : [[m2]] et [[m3]].",
+   "en": "For every natural number [[m1]]: [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 48
+  },
+  "9de537a834d4": {
+   "fr": "Par la formule des probabilités totales, avec la partition [[m1]] (on omet les événements de probabilité nulle, qui contribuent [[m2]]) :",
+   "en": "By the law of total probability, with the partition [[m1]] (events of probability zero are left out, as they contribute [[m2]]):",
+   "status": "aligned",
+   "order": 49
+  },
+  "f3b3a24d96a0": {
+   "fr": "qui est le coefficient [[m1]] de [[m2]]. La seconde formule s'obtient par récurrence.",
+   "en": "which is entry [[m1]] of [[m2]]. The second formula follows by induction.",
+   "status": "aligned",
+   "order": 50
+  },
+  "f92b9d91c623": {
+   "fr": "Transition en [[m1]] étapes",
+   "en": "Transition in [[m1]] steps",
+   "status": "aligned",
+   "order": 51
+  },
+  "ee78926f41cb": {
+   "fr": "Si [[m1]], alors pour tout état [[m2]], [[m3]] est le coefficient de ligne [[m4]] et de colonne [[m5]] de [[m6]]. Autrement dit, la probabilité de passer de l'état [[m7]] à l'état [[m8]] en [[m9]] transitions est [[m10]].",
+   "en": "If [[m1]], then for every state [[m2]], [[m3]] is the entry in row [[m4]] and column [[m5]] of [[m6]]. In other words, the probability of moving from state [[m7]] to state [[m8]] in [[m9]] transitions is [[m10]].",
+   "status": "aligned",
+   "order": 52
+  },
+  "7c593b4f757d": {
+   "fr": "La distribution initiale est la ligne [[m1]] qui a un [[m2]] en position [[m3]] et des [[m4]] ailleurs. Alors [[m5]] est la ligne [[m6]] de [[m7]].",
+   "en": "The initial distribution is the row [[m1]] with a [[m2]] in position [[m3]] and [[m4]]s elsewhere. Then [[m5]] is row [[m6]] of [[m7]].",
+   "status": "aligned",
+   "order": 53
+  },
+  "0f6118d19b36": {
+   "fr": "Distribution invariante",
+   "en": "Invariant distribution",
+   "status": "aligned",
+   "order": 54
+  },
+  "860b812aecdb": {
+   "fr": "Une distribution [[m1]] (ligne de coefficients positifs de somme [[m2]]) est \\emph{invariante} si [[m3]]. Si [[m4]], alors [[m5]] pour tout [[m6]].",
+   "en": "A distribution [[m1]] (a row of nonnegative entries with sum [[m2]]) is \\emph{invariant} if [[m3]]. If [[m4]], then [[m5]] for every [[m6]].",
+   "status": "aligned",
+   "order": 55
+  },
+  "cae88e2762b3": {
+   "fr": "Cas de deux états",
+   "en": "Two-state case",
+   "status": "aligned",
+   "order": 56
+  },
+  "5b0f90da5a87": {
+   "fr": "Soit [[m1]] avec [[m2]], [[m3]] et [[m4]]. La chaîne admet une unique distribution invariante [[m5]], et quelle que soit la distribution initiale, [[m6]] converge vers [[m7]].",
+   "en": "Let [[m1]] with [[m2]], [[m3]] and [[m4]]. The chain has a unique invariant distribution [[m5]], and whatever the initial distribution, [[m6]] converges to [[m7]].",
+   "status": "aligned",
+   "order": 57
+  },
+  "0ac7c263a36d": {
+   "fr": "Écrivons [[m1]]. Alors [[m2]]. Cette suite arithmético-géométrique a pour point fixe [[m3]], et [[m4]]. Comme [[m5]], [[m6]] et [[m7]]. Une distribution invariante vérifie [[m8]], donc [[m9]] : elle est unique.",
+   "en": "Write [[m1]]. Then [[m2]]. This arithmetico-geometric sequence has fixed point [[m3]], and [[m4]]. Since [[m5]], [[m6]] and [[m7]]. An invariant distribution satisfies [[m8]], so [[m9]]: it is unique.",
+   "status": "aligned",
+   "order": 58
+  },
+  "eced03c8fc0e": {
+   "fr": "Trois états : distribution invariante",
+   "en": "Three states: invariant distribution",
+   "status": "aligned",
+   "order": 59
+  },
+  "28bd4a54b025": {
+   "fr": "On résout le système formé par [[m1]] et la condition [[m2]] ; l'une des trois équations de [[m3]] est conséquence des deux autres. La convergence éventuelle de [[m4]] s'observe à la calculatrice.",
+   "en": "Solve the system formed by [[m1]] and the condition [[m2]]; one of the three equations of [[m3]] follows from the other two. Possible convergence of [[m4]] is observed with a calculator.",
+   "status": "aligned",
+   "order": 60
+  },
+  "b595dd1d1e4a": {
+   "fr": "La distribution est une ligne et l'on multiplie à droite par [[m1]] : [[m2]], et non [[m3]]. Ce sont les lignes de [[m4]], et non ses colonnes, qui ont pour somme [[m5]].",
+   "en": "The distribution is a row and we multiply on the right by [[m1]]: [[m2]], not [[m3]]. It is the rows of [[m4]], not its columns, that add up to [[m5]].",
+   "status": "aligned",
+   "order": 61
+  },
+  "5589e74bbd59": {
+   "fr": "Exercices",
+   "en": "Exercises",
+   "status": "aligned",
+   "order": 62
+  },
+  "0d8862345132": {
+   "fr": "Du graphe à la matrice",
+   "en": "From the graph to the matrix",
+   "status": "aligned",
+   "order": 63
+  },
+  "eeb36bd5021f": {
+   "fr": "Un graphe probabiliste a trois sommets [[m1]], [[m2]], [[m3]] et les arcs suivants : [[m4]] ([[m5]]), [[m6]] ([[m7]]), [[m8]] ([[m9]]), [[m10]] ([[m11]]), [[m12]] ([[m13]]), [[m14]] ([[m15]]), [[m16]] ([[m17]]), [[m18]] ([[m19]]).",
+   "en": "A probabilistic graph has three vertices [[m1]], [[m2]], [[m3]] and the following arcs: [[m4]] ([[m5]]), [[m6]] ([[m7]]), [[m8]] ([[m9]]), [[m10]] ([[m11]]), [[m12]] ([[m13]]), [[m14]] ([[m15]]), [[m16]] ([[m17]]), [[m18]] ([[m19]]).",
+   "status": "aligned",
+   "order": 64
+  },
+  "985e1f19a66c": {
+   "fr": "Écrire la matrice de transition [[m1]] et vérifier la somme des lignes.",
+   "en": "Write the transition matrix [[m1]] and check the row sums.",
+   "status": "aligned",
+   "order": 65
+  },
+  "1c3f901fb900": {
+   "fr": "Partant de l'état [[m1]], calculer la distribution après deux transitions.",
+   "en": "Starting from state [[m1]], compute the distribution after two transitions.",
+   "status": "aligned",
+   "order": 66
+  },
+  "52db7f41bfc6": {
+   "fr": "Chaque ligne a pour somme [[m1]] :",
+   "en": "Each row adds up to [[m1]]:",
+   "status": "aligned",
+   "order": 67
+  },
+  "c2f5f73aec4f": {
+   "fr": "[[m1]], puis [[m2]].",
+   "en": "[[m1]], then [[m2]].",
+   "status": "aligned",
+   "order": 68
+  },
+  "5cf838740e4a": {
+   "fr": "Deux opérateurs",
+   "en": "Two network operators",
+   "status": "aligned",
+   "order": 69
+  },
+  "d3384dd23a98": {
+   "fr": "Chaque mois, [[m1]] des clients de l'opérateur [[m2]] passent chez [[m3]] et [[m4]] des clients de [[m5]] passent chez [[m6]] ; les autres restent. Au départ, chaque opérateur a la moitié des clients. On note [[m7]] la part de [[m8]] après [[m9]] mois.",
+   "en": "Each month, [[m1]] of the customers of operator [[m2]] move to [[m3]] and [[m4]] of the customers of [[m5]] move to [[m6]]; the others stay. At the start, each operator has half of the customers. Let [[m7]] be the share of [[m8]] after [[m9]] months.",
+   "status": "aligned",
+   "order": 70
+  },
+  "ddc232d97a19": {
+   "fr": "Écrire la matrice de transition et déterminer la distribution invariante.",
+   "en": "Write the transition matrix and find the invariant distribution.",
+   "status": "aligned",
+   "order": 71
+  },
+  "364626fad4c7": {
+   "fr": "Démontrer que [[m1]], puis que [[m2]].",
+   "en": "Prove that [[m1]], then that [[m2]].",
+   "status": "aligned",
+   "order": 72
+  },
+  "8355117a60bc": {
+   "fr": "Déterminer le plus petit [[m1]] tel que [[m2]].",
+   "en": "Find the smallest [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 73
+  },
+  "26c8f24e110c": {
+   "fr": "[[m1]]. Avec [[m2]] et [[m3]], le cours donne [[m4]].",
+   "en": "[[m1]]. With [[m2]] and [[m3]], the course gives [[m4]].",
+   "status": "aligned",
+   "order": 74
+  },
+  "748b9eb685f7": {
+   "fr": "[[m1]]. Le point fixe est [[m2]] et [[m3]].",
+   "en": "[[m1]]. The fixed point is [[m2]] and [[m3]].",
+   "status": "aligned",
+   "order": 75
+  },
+  "334737477968": {
+   "fr": "[[m1]] équivaut à [[m2]], soit [[m3]], soit [[m4]]. Le plus petit entier est [[m5]] ([[m6]] et [[m7]]).",
+   "en": "[[m1]] is equivalent to [[m2]], that is [[m3]], that is [[m4]]. The smallest integer is [[m5]] ([[m6]] and [[m7]]).",
+   "status": "aligned",
+   "order": 76
+  },
+  "436039b01058": {
+   "fr": "Une marche à trois états",
+   "en": "A three-state walk",
+   "status": "aligned",
+   "order": 77
+  },
+  "6214422aca4e": {
+   "fr": "Une particule se déplace sur trois cases alignées [[m1]], [[m2]], [[m3]]. De la case [[m4]], elle va en [[m5]] ou en [[m6]] avec la probabilité [[m7]] chacune et reste en [[m8]] avec la probabilité [[m9]]. D'une case extrême, elle reste sur place ou va en [[m10]], avec la probabilité [[m11]] chacune.",
+   "en": "A particle moves on three squares in a row, [[m1]], [[m2]], [[m3]]. From square [[m4]], it goes to [[m5]] or to [[m6]] with probability [[m7]] each and stays on [[m8]] with probability [[m9]]. From an end square, it stays where it is or goes to [[m10]], with probability [[m11]] each.",
+   "status": "aligned",
+   "order": 78
+  },
+  "8ef4693fbaa9": {
+   "fr": "Écrire la matrice de transition [[m1]].",
+   "en": "Write the transition matrix [[m1]].",
+   "status": "aligned",
+   "order": 79
+  },
+  "0dbcdd4623eb": {
+   "fr": "Vérifier que [[m1]] est une distribution invariante.",
+   "en": "Check that [[m1]] is an invariant distribution.",
+   "status": "aligned",
+   "order": 80
+  },
+  "7a7abf749166": {
+   "fr": "Démontrer que c'est la seule.",
+   "en": "Prove that it is the only one.",
+   "status": "aligned",
+   "order": 81
+  },
+  "b4937bd1f860": {
+   "fr": "Dans l'ordre des cases [[m1]], [[m2]], [[m3]] :",
+   "en": "In the order of the squares [[m1]], [[m2]], [[m3]]:",
+   "status": "aligned",
+   "order": 82
+  },
+  "2078ba721296": {
+   "fr": "Avec [[m1]], la première équation donne [[m2]], soit [[m3]] ; la troisième donne de même [[m4]]. Avec [[m5]] : [[m6]], d'où [[m7]] et [[m8]].",
+   "en": "With [[m1]], the first equation gives [[m2]], that is [[m3]]; the third gives likewise [[m4]]. With [[m5]]: [[m6]], hence [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 83
+  },
+  "ad590ccd285d": {
+   "fr": "Deux bassins",
+   "en": "Two tanks",
+   "status": "aligned",
+   "order": 84
+  },
+  "629e5c7d149a": {
+   "fr": "On modélise la quantité d'eau (en milliers de litres) de deux bassins reliés par [[m1]] avec",
+   "en": "The amount of water (in thousands of litres) in two connected tanks is modelled by [[m1]] with",
+   "status": "aligned",
+   "order": 85
+  },
+  "cba2ccdf8eb8": {
+   "fr": "Déterminer la colonne [[m1]] telle que [[m2]].",
+   "en": "Find the column [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 86
+  },
+  "6a6464e4c81c": {
+   "fr": "Exprimer [[m1]] en fonction de [[m2]], [[m3]] et [[m4]].",
+   "en": "Express [[m1]] in terms of [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 87
+  },
+  "59a34f434e20": {
+   "fr": "On admet que les coefficients de [[m1]] tendent vers [[m2]]. Déterminer la limite de [[m3]]. Dépend-elle de [[m4]] ?",
+   "en": "We take for granted that the entries of [[m1]] tend to [[m2]]. Find the limit of [[m3]]. Does it depend on [[m4]]?",
+   "status": "aligned",
+   "order": 88
+  },
+  "ac081a477cc9": {
+   "fr": "[[m1]] avec [[m2]], de déterminant [[m3]]. Donc [[m4]]. Vérification : [[m5]] et [[m6]].",
+   "en": "[[m1]] with [[m2]], whose determinant is [[m3]]. So [[m4]]. Check: [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 89
+  },
+  "4c0000e317c2": {
+   "fr": "[[m1]], quelle que soit la valeur de [[m2]].",
+   "en": "[[m1]], whatever the value of [[m2]].",
+   "status": "aligned",
+   "order": 90
+  },
+  "f81a62c9ea9f": {
+   "fr": "Transitions en trois étapes",
+   "en": "Transitions in three steps",
+   "status": "aligned",
+   "order": 91
+  },
+  "0905918bffcf": {
+   "fr": "Un utilisateur d'une application est, chaque jour, actif ([[m1]]) ou inactif ([[m2]]), avec la matrice de transition [[m3]].",
+   "en": "Each day, a user of an app is active ([[m1]]) or inactive ([[m2]]), with transition matrix [[m3]].",
+   "status": "aligned",
+   "order": 92
+  },
+  "cc0de7072879": {
+   "fr": "Calculer [[m1]] et [[m2]].",
+   "en": "Compute [[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 93
+  },
+  "512d7a3c6bc8": {
+   "fr": "Un utilisateur est actif le jour [[m1]]. Quelle est la probabilité qu'il soit inactif le jour [[m2]] ?",
+   "en": "A user is active on day [[m1]]. What is the probability that they are inactive on day [[m2]]?",
+   "status": "aligned",
+   "order": 94
+  },
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
+   "status": "aligned",
+   "order": 96
+  },
+  "05452a2edc9d": {
+   "fr": "C'est le coefficient [[m1]] de [[m2]] : [[m3]].",
+   "en": "It is the entry [[m1]] of [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 97
+  },
+  "a52a7e660253": {
+   "fr": "[[m1]] et [[m2]] : [[m3]].",
+   "en": "[[m1]] and [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 98
+  },
+  "95efe9d4e2c7": {
+   "fr": "Un système de bonus-malus",
+   "en": "A no-claims bonus system",
+   "status": "aligned",
+   "order": 99
+  },
+  "ab8fc5784b86": {
+   "fr": "Un assureur classe chaque année ses clients en trois niveaux : bonus ([[m1]]), base ([[m2]]), malus ([[m3]]). La matrice de transition annuelle est",
+   "en": "Each year an insurer classes its customers in three levels: bonus ([[m1]]), standard ([[m2]]), penalty ([[m3]]). The annual transition matrix is",
+   "status": "aligned",
+   "order": 100
+  },
+  "79e3d31aa2cb": {
+   "fr": "Dessiner le graphe probabiliste.",
+   "en": "Draw the probabilistic graph.",
+   "status": "aligned",
+   "order": 101
+  },
+  "670797ce56ce": {
+   "fr": "Déterminer la distribution invariante.",
+   "en": "Find the invariant distribution.",
+   "status": "aligned",
+   "order": 102
+  },
+  "874e9d5e8600": {
+   "fr": "Un client est au niveau de base. Quelle est la probabilité qu'il soit au niveau bonus deux ans plus tard ?",
+   "en": "A customer is at the standard level. What is the probability of being at the bonus level two years later?",
+   "status": "aligned",
+   "order": 103
+  },
+  "614984054ac0": {
+   "fr": "Arcs [[m1]] ([[m2]]), [[m3]] ([[m4]]), [[m5]] ([[m6]]), [[m7]] ([[m8]]), [[m9]] ([[m10]]), [[m11]] ([[m12]]), [[m13]] ([[m14]]).",
+   "en": "Arcs [[m1]] ([[m2]]), [[m3]] ([[m4]]), [[m5]] ([[m6]]), [[m7]] ([[m8]]), [[m9]] ([[m10]]), [[m11]] ([[m12]]), [[m13]] ([[m14]]).",
+   "status": "aligned",
+   "order": 104
+  },
+  "c5c93d4d2cac": {
+   "fr": "Avec [[m1]] : [[m2]] donne [[m3]] ; [[m4]] donne [[m5]]. Puis [[m6]], soit [[m7]], [[m8]], [[m9]].",
+   "en": "With [[m1]]: [[m2]] gives [[m3]]; [[m4]] gives [[m5]]. Then [[m6]], that is [[m7]], [[m8]], [[m9]].",
+   "status": "aligned",
+   "order": 105
+  },
+  "a1ce5e0b9a5b": {
+   "fr": "Coefficient [[m1]] de [[m2]] : [[m3]].",
+   "en": "Entry [[m1]] of [[m2]]: [[m3]].",
+   "status": "aligned",
+   "order": 106
+  },
+  "3320fae4f722": {
+   "fr": "Puissances de la matrice de transition à deux états",
+   "en": "Powers of the two-state transition matrix",
+   "status": "aligned",
+   "order": 107
+  },
+  "59c6f0cf546f": {
+   "fr": "Soit [[m1]] avec [[m2]]. On pose [[m3]], [[m4]] et [[m5]].",
+   "en": "Let [[m1]] with [[m2]]. Let [[m3]], [[m4]] and [[m5]].",
+   "status": "aligned",
+   "order": 108
+  },
+  "5ace06364f88": {
+   "fr": "Vérifier que [[m1]], [[m2]], [[m3]] et [[m4]].",
+   "en": "Check that [[m1]], [[m2]], [[m3]] and [[m4]].",
+   "status": "aligned",
+   "order": 109
+  },
+  "52f1c218852e": {
+   "fr": "En déduire par récurrence que [[m1]] pour tout [[m2]].",
+   "en": "Deduce by induction that [[m1]] for every [[m2]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "060caa9ff097": {
+   "fr": "On suppose [[m1]]. Déterminer la limite de [[m2]] et interpréter ses lignes.",
+   "en": "Assume [[m1]]. Find the limit of [[m2]] and interpret its rows.",
+   "status": "aligned",
+   "order": 111
+  },
+  "925928f00853": {
+   "fr": "Le coefficient [[m1]] de [[m2]] vaut [[m3]] ; les autres se vérifient de même. Pour [[m4]] : le coefficient [[m5]] vaut [[m6]], et ainsi de suite. [[m7]] a pour coefficient [[m8]] [[m9]] ; tous les coefficients de [[m10]] et [[m11]] sont nuls.",
+   "en": "The entry [[m1]] of [[m2]] is [[m3]]; the others are checked in the same way. For [[m4]]: the entry [[m5]] is [[m6]], and so on. [[m7]] has entry [[m8]] equal to [[m9]]; all the entries of [[m10]] and [[m11]] are zero.",
+   "status": "aligned",
+   "order": 112
+  },
+  "e25b6beea7aa": {
+   "fr": "Vrai pour [[m1]]. Si [[m2]], alors [[m3]].",
+   "en": "True for [[m1]]. If [[m2]], then [[m3]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "075593133832": {
+   "fr": "[[m1]], donc [[m2]] et [[m3]]. Les deux lignes de [[m4]] sont égales à la distribution invariante : à long terme, l'état de départ est « oublié ».",
+   "en": "[[m1]], so [[m2]] and [[m3]]. Both rows of [[m4]] equal the invariant distribution: in the long run, the starting state is ``forgotten''.",
+   "status": "aligned",
+   "order": 114
+  },
+  "a55cf04fd6da": {
+   "fr": "Le modèle des urnes d'Ehrenfest",
+   "en": "Ehrenfest's urn model",
+   "status": "aligned",
+   "order": 116
+  },
+  "6cb6a892035f": {
+   "fr": "Deux urnes [[m1]] et [[m2]] contiennent au total deux boules. À chaque étape, on choisit l'une des deux boules au hasard (de façon équiprobable) et on la change d'urne. On note [[m3]] le nombre de boules dans [[m4]] après [[m5]] étapes ; les états sont [[m6]], [[m7]], [[m8]]. Au départ, [[m9]] contient les deux boules.",
+   "en": "Two urns [[m1]] and [[m2]] contain two balls in total. At each step, one of the two balls is chosen at random (with equal probability) and moved to the other urn. Let [[m3]] be the number of balls in [[m4]] after [[m5]] steps; the states are [[m6]], [[m7]], [[m8]]. At the start, [[m9]] contains both balls.",
+   "status": "aligned",
+   "order": 117
+  },
+  "fdbcb806b9cc": {
+   "fr": "Justifier que [[m1]] est une chaîne de Markov, dessiner son graphe probabiliste et écrire sa matrice de transition [[m2]] (états dans l'ordre [[m3]], [[m4]], [[m5]]).",
+   "en": "Justify that [[m1]] is a Markov chain, draw its probabilistic graph and write its transition matrix [[m2]] (states in the order [[m3]], [[m4]], [[m5]]).",
+   "status": "aligned",
+   "order": 118
+  },
+  "8ff1f511ee2b": {
+   "fr": "Déterminer l'unique distribution invariante [[m1]]. Comparer avec la loi du nombre de boules dans [[m2]] si chaque boule est placée au hasard dans l'une des deux urnes, indépendamment.",
+   "en": "Find the unique invariant distribution [[m1]]. Compare it with the distribution of the number of balls in [[m2]] when each ball is placed at random in one of the two urns, independently.",
+   "status": "aligned",
+   "order": 119
+  },
+  "50ee6ce5636c": {
+   "fr": "Calculer [[m1]], [[m2]], [[m3]], [[m4]]. La suite [[m5]] converge-t-elle ?",
+   "en": "Compute [[m1]], [[m2]], [[m3]], [[m4]]. Does the sequence [[m5]] converge?",
+   "status": "aligned",
+   "order": 120
+  },
+  "61aa4c514537": {
+   "fr": "Démontrer que pour tout [[m1]], [[m2]] et [[m3]], puis que [[m4]].",
+   "en": "Prove that for every [[m1]], [[m2]] and [[m3]], then that [[m4]].",
+   "status": "aligned",
+   "order": 121
+  },
+  "d2034b23c782": {
+   "fr": "Expliquer, sans calcul, pourquoi [[m1]] a la même parité que [[m2]].",
+   "en": "Explain, without computation, why [[m1]] has the same parity as [[m2]].",
+   "status": "aligned",
+   "order": 122
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 123
+  },
+  "c05ce404aedf": {
+   "fr": "L'étape suivante ne dépend que du nombre actuel de boules dans [[m1]]. De l'état [[m2]] ou [[m3]], on passe à coup sûr en [[m4]] ; de l'état [[m5]], on passe en [[m6]] ou en [[m7]] avec la probabilité [[m8]] chacun.",
+   "en": "The next step depends only on the current number of balls in [[m1]]. From state [[m2]] or [[m3]], the chain moves to [[m4]] for certain; from state [[m5]], it moves to [[m6]] or to [[m7]] with probability [[m8]] each.",
+   "status": "aligned",
+   "order": 124
+  },
+  "a4344a932109": {
+   "fr": "[[m1]] avec [[m2]] donne [[m3]], [[m4]], [[m5]]. Avec [[m6]] : [[m7]]. C'est la loi binomiale de paramètres [[m8]] et [[m9]].",
+   "en": "[[m1]] with [[m2]] gives [[m3]], [[m4]], [[m5]]. With [[m6]]: [[m7]]. This is the binomial distribution with parameters [[m8]] and [[m9]].",
+   "status": "aligned",
+   "order": 125
+  },
+  "ab8e539b9445": {
+   "fr": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]]. La suite alterne entre deux valeurs : elle ne converge pas.",
+   "en": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]]. The sequence alternates between two values: it does not converge.",
+   "status": "aligned",
+   "order": 126
+  },
+  "1926ca247cc1": {
+   "fr": "[[m1]] et [[m2]] ; une récurrence sur [[m3]] conclut. La demi-somme vaut [[m4]].",
+   "en": "[[m1]] and [[m2]]; an induction on [[m3]] concludes. The half-sum is [[m4]].",
+   "status": "aligned",
+   "order": 127
+  },
+  "b43571654baa": {
+   "fr": "Chaque étape modifie de [[m1]] le nombre de boules dans [[m2]], donc change sa parité. Au départ [[m3]] est pair.",
+   "en": "Each step changes the number of balls in [[m2]] by [[m1]], so it changes its parity. At the start [[m3]] is even.",
+   "status": "aligned",
+   "order": 128
+  },
+  "0c3e30231e86": {
+   "fr": "Statut du problème",
+   "en": "Status of the problem",
+   "status": "aligned",
+   "order": 129
+  },
+  "0066d8d08a8f": {
+   "fr": "Le modèle d'Ehrenfest est un « problème possible » du programme. Il montre qu'une distribution invariante peut exister sans que [[m1]] converge : la condition [[m2]] du cas à deux états a un analogue pour trois états, hors programme (chaîne apériodique). Prolongement : simuler la chaîne en Python avec [[m3]] boules et observer les fréquences des états sur une longue durée.",
+   "en": "The Ehrenfest model is a ``possible problem'' of the syllabus. It shows that an invariant distribution can exist without [[m1]] converging: the condition [[m2]] of the two-state case has an analogue for three states, beyond the syllabus (aperiodic chain). Extension: simulate the chain in Python with [[m3]] balls and observe the frequencies of the states over a long run.",
+   "status": "aligned",
+   "order": 130
+  }
+ }
+}
