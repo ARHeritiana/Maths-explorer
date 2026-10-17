@@ -42,6 +42,7 @@ Cinq villes $A$, $B$, $C$, $D$, $E$ sont reliées par des lignes directes de tax
 \item On range les informations dans un tableau $M$ à $5$ lignes et $5$ colonnes : le coefficient de ligne $X$ et de colonne $Y$ vaut $1$ s'il existe une ligne directe entre $X$ et $Y$, $0$ sinon. Écrire $M$, puis calculer $M^2$ et $M^3$ à la calculatrice. Comparer certains coefficients avec les questions 3 et 4.
 \item Formuler une conjecture.
 \end{enumerate}
+\par\emph{Observer n'est pas démontrer : les propriétés conjecturées ici sont établies dans le cours.}
 \end{activity}
 \begin{solution}[Activité]
 \begin{enumerate}
@@ -105,8 +106,9 @@ Supposons $m^{(n)}_{ij}=c^{(n)}_{ij}$ pour tous $i$, $j$. Une chaîne de longueu
 où $p$ est l'ordre du graphe, car $M^{n+1}=M^nM$. La propriété est vraie au rang $n+1$.
 \end{proof}
 \begin{keypoint}[Conséquences]
-Le coefficient diagonal $\left(M^2\right)_{ii}$ est le degré du sommet $i$ (graphe non orienté). Un graphe d'ordre $p\ge2$ est connexe si et seulement si tous les coefficients hors diagonale de $M+M^2+\dots+M^{p-1}$ sont strictement positifs : une chaîne entre deux sommets distincts peut toujours être raccourcie en une chaîne sans sommet répété, de longueur au plus $p-1$.
+Le coefficient diagonal $\left(M^2\right)_{ii}$ est le degré du sommet $i$ (graphe non orienté).
 \end{keypoint}
+\begin{beyond}[Connexité et puissances de la matrice d'adjacence]Un graphe d'ordre $p\ge2$ est connexe si et seulement si tous les coefficients hors diagonale de $M+M^2+\dots+M^{p-1}$ sont strictement positifs. En effet, d'après le théorème, ce coefficient d'indices $i\neq j$ compte les chaînes de $i$ à $j$ de longueur $1$ à $p-1$. S'il est strictement positif, $i$ et $j$ sont reliés. Réciproquement, si $i$ et $j$ sont reliés, choisissons une chaîne de $i$ à $j$ de longueur minimale. Elle ne passe pas deux fois par un même sommet : sinon, en supprimant la boucle entre les deux passages, on obtiendrait une chaîne plus courte. Elle visite donc au plus $p$ sommets distincts et sa longueur est au plus $p-1$. Ce critère ne figure pas au programme et n'est pas évalué.\end{beyond}
 
 \mxnewpage
 \section{Exercices}
@@ -219,6 +221,7 @@ On considère la « maison » : un carré $abdc$ ($a$ et $b$ en bas, $c$ et $d$ 
 \item Peut-on le faire en revenant au point de départ ?
 \end{enumerate}
 \end{problem}
+\begin{beyond}[Théorème d'Euler]La réciproque énoncée à la question 2 (théorème d'Euler) ne figure pas au programme : elle est admise et n'est pas évaluée.\end{beyond}
 \begin{solution}[Problème]
 \begin{enumerate}
 \item Chaque passage par un sommet intermédiaire utilise une arête pour arriver et une autre pour repartir : il contribue $2$ au degré. Toutes les arêtes étant utilisées une fois, un sommet qui n'est pas une extrémité a un degré pair. Une extrémité a en plus une arête de départ (ou d'arrivée) non appariée : son degré est impair. Si la chaîne est fermée, tous les degrés sont pairs.

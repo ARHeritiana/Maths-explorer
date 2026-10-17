@@ -440,12 +440,16 @@ WTEXT = {
     'convex': (['Convexité : tangente et corde', 'Convexity: tangent and chord'], ['Déplacez M (tangente), A et B (corde) : comparez la courbe avec ses tangentes et ses cordes.', 'Drag M (tangent), A and B (chord): compare the curve with its tangents and chords.']),
     'lineplane': (['Droite et plan : intersection', 'A line and a plane: intersection'], ['Déplacez A, B et le plan : un point d’intersection, ou une droite parallèle au plan.', 'Move A, B and the plane: one intersection point, or a line parallel to the plane.']),
     'complex': (['Plan complexe', 'The complex plane'], ['Déplacez z (et w) : formes algébrique, trigonométrique et exponentielle se mettent à jour.', 'Drag z (and w): algebraic, trigonometric and exponential forms update.']),
+    # one caption per mode of the complex widget (audit 2026-10-17): each names only what that mode shows
+    'complex:alg': (['Plan complexe', 'The complex plane'], ['Déplacez z : partie réelle, partie imaginaire, conjugué et produit z z̄.', 'Drag z: real part, imaginary part, conjugate and the product z z̄.']),
+    'complex:polar': (['Plan complexe', 'The complex plane'], ['Déplacez z : module, argument, formes trigonométrique et exponentielle.', 'Drag z: modulus, argument, trigonometric and exponential forms.']),
+    'complex:product': (['Plan complexe', 'The complex plane'], ['Déplacez z et w : les modules se multiplient, les arguments s’ajoutent.', 'Drag z and w: the moduli multiply, the arguments add.']),
     'cquad': (['Racines d’une équation du second degré', 'Roots of a quadratic equation'], ['Déplacez z₁ : hors de l’axe réel, son conjugué est l’autre racine ; sur l’axe, une seconde racine z₂ apparaît.', 'Drag z₁: off the real axis its conjugate is the other root; on the axis a second root z₂ appears.']),
     'roots': (['Racines n-ièmes', 'n-th roots'], ['Déplacez a et choisissez n : les racines n-ièmes de a forment un polygone régulier.', 'Drag a and choose n: the n-th roots of a form a regular polygon.']),
     'modclock': (['Horloge modulo n', 'A clock modulo n'], ['Déplacez a sur l’horloge et réglez n : restes, puissances et inverses modulo n.', 'Drag a around the clock and set n: remainders, powers and inverses modulo n.']),
     'matrix2': (['Une matrice carrée d’ordre 2 transforme le plan', 'A square matrix of order 2 transforms the plane'], ['Déplacez les images des vecteurs de base : déterminant, aire et inverse.', 'Drag the images of the basis vectors: determinant, area and inverse.']),
     'walks': (['Compter les chaînes', 'Counting walks'], ['Déplacez les marques de départ et d’arrivée, choisissez la longueur k : un coefficient de la puissance k de M compte les chaînes.', 'Drag the start and end markers, choose the length k: an entry of the k-th power of M counts the walks.']),
-    'markov': (['Chaîne de Markov à deux états', 'A two-state Markov chain'], ['Réglez a₀, p et q : la probabilité d’être dans l’état 1 tend vers q/(p+q).', 'Set a₀, p and q: the probability of being in state 1 tends to q/(p+q).']),
+    'markov': (['Chaîne de Markov à deux états', 'A two-state Markov chain'], ['Réglez a₀, p et q : lorsque p + q < 2, la probabilité d’être dans l’état 1 tend vers q/(p+q).', 'Set a₀, p and q: when p + q < 2, the probability of being in state 1 tends to q/(p+q).']),
     'surface3d': (['Surface z = f(x ; y)', 'Surface z = f(x, y)'], ['Déplacez le point au sol ; faites tourner la surface.', 'Drag the floor point; rotate the surface.']),
 }
 # (deck id) -> [(regex on the unit title, widget spec)]: the widget slide is inserted after that unit
@@ -488,7 +492,9 @@ def add_widgets(cid, slides):
         if not idx: print('  no unit for widget', cid, rx); continue
         j = idx[0]
         while j + 1 < len(slides) and slides[j + 1]['t'] == slides[idx[0]]['t']: j += 1
-        t, b = WTEXT[spec['type']]
+        t, b = WTEXT.get(f"{spec['type']}:{spec.get('mode')}", WTEXT[spec['type']])
+        if cid.startswith('expertes-'):   # brief: experiments give evidence, not proof (audit 2026-10-17)
+            b = [b[0] + ' Observer n’est pas démontrer : la preuve est dans le cours.', b[1] + ' Observing is not proving: the proof is in the course.']
         slides.insert(j + 1, {'k': 'widget', 't': t, 'b': b, 'w': spec})
     return slides
 

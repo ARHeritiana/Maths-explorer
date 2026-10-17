@@ -220,8 +220,9 @@ def english_math(t):
 
 
 def english_locked(t):
-    """Language rule for text outside maths: no French thin space before ; : ! ?"""
-    return re.sub(r'\\,(?=[;:!?])|~(?=[;:!?])', '', t)
+    """Language rule for text outside maths: no French space before ; : ! ? (thin space, tie, or a plain space after
+    maths, a group or a parenthesis; locked text is processed in chunks between maths, so a chunk may start with it)."""
+    return re.sub(r'\\,(?=[;:!?])|~(?=[;:!?])|(?:(?<=[$}\)])|^) (?=[;:!?](?:\s|$))', '', t)
 
 
 def _mask_words(t):

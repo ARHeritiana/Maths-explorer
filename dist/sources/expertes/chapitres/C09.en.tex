@@ -42,6 +42,7 @@ We represent a point $M\pt{x;y}$ by the column $X=\vc xy$. For a matrix $A=\begi
 \item Compute likewise $E(RX)$ and the corresponding matrix. Are the two composite transformations the same? Check on the point $Q$.
 \item Suggest a rule for computing $C$ directly from $R$ and $E$: it is the matrix product $RE$.
 \end{enumerate}
+\par\emph{Observing is not proving: the properties conjectured here are established in the course.}
 \end{activity}
 \begin{solution}[Activity]
 \begin{enumerate}
@@ -145,7 +146,7 @@ Let $A=\begin{pmatrix}3&5\\1&2\end{pmatrix}$.
 \begin{solution}
 \begin{enumerate}
 \item $\det A=6-5=1\neq0$ and $A^{-1}=\begin{pmatrix}2&-5\\-1&3\end{pmatrix}$.
-\item $X=A^{-1}\vc41=\vc{8-5}{-4+3}=\vc3{-1}$ : $x=3$, $y=-1$.
+\item $X=A^{-1}\vc41=\vc{8-5}{-4+3}=\vc3{-1}$: $x=3$, $y=-1$.
 \end{enumerate}
 \end{solution}
 
@@ -223,6 +224,7 @@ The Fibonacci sequence is defined by $F_0=0$, $F_1=1$ and $F_{n+2}=F_{n+1}+F_n$ 
 \item Using $A^{2n}=A^n\times A^n$, prove that $F_{2n}=F_n\left(F_{n+1}+F_{n-1}\right)$ for $n\ge1$.
 \end{enumerate}
 \end{problem}
+\begin{beyond}[Determinant of a product]The relation $\det(MN)=\det M\times\det N$ of question 3 is not part of the syllabus. It is proved here by computation for matrices of order $2$ and is not assessed.\end{beyond}
 \begin{solution}[Problem]
 \begin{enumerate}
 \item $F_2=1$, $F_3=2$, $F_4=3$, $F_5=5$, $F_6=8$. $A^2=\begin{pmatrix}2&1\\1&1\end{pmatrix}$, $A^3=\begin{pmatrix}3&2\\2&1\end{pmatrix}$.

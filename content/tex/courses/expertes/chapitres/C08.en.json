@@ -25,6 +25,12 @@
    "status": "aligned",
    "order": 3
   },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 4
+  },
   "897da8c800a1": {
    "fr": "Sans calculatrice, cinq minutes",
    "en": "No calculator, five minutes",
@@ -67,81 +73,81 @@
    "status": "aligned",
    "order": 11
   },
-  "1938aac70452": {
-   "fr": "Automatismes",
-   "en": "Fluency",
-   "status": "aligned",
-   "order": 12
-  },
   "16ddd1831b89": {
    "fr": "Non : [[m1]].",
    "en": "No: [[m1]].",
    "status": "aligned",
-   "order": 13
+   "order": 12
   },
   "62250138bdfb": {
    "fr": "[[m1]] : le reste est [[m2]].",
    "en": "[[m1]]: the remainder is [[m2]].",
    "status": "aligned",
-   "order": 14
+   "order": 13
   },
   "108c8d11ed6d": {
    "fr": "Oui : [[m1]] et [[m2]] n'ont aucun facteur premier commun.",
    "en": "Yes: [[m1]] and [[m2]] have no prime factor in common.",
    "status": "aligned",
-   "order": 15
+   "order": 14
   },
   "0dd443f30c7b": {
    "fr": "Activité d'introduction",
    "en": "Introductory activity",
    "status": "aligned",
-   "order": 16
+   "order": 15
   },
   "d7942f75a395": {
    "fr": "Une régularité des puissances",
    "en": "A pattern in powers",
    "status": "aligned",
-   "order": 17
+   "order": 16
   },
   "a12a2174c266": {
    "fr": "35 min",
    "en": "35 min",
    "status": "aligned",
-   "order": 18
+   "order": 17
   },
   "18c64495cd17": {
    "fr": "Pour un entier [[m1]] et un entier [[m2]], on note [[m3]] le reste de [[m4]] dans la division par [[m5]].",
    "en": "For an integer [[m1]] and an integer [[m2]], let [[m3]] be the remainder of [[m4]] in the division by [[m5]].",
    "status": "aligned",
-   "order": 19
+   "order": 18
   },
   "dfc253705a58": {
    "fr": "Calculer [[m1]], [[m2]], [[m3]], [[m4]] à la main, en utilisant des congruences.",
    "en": "Compute [[m1]], [[m2]], [[m3]], [[m4]] by hand, using congruences.",
    "status": "aligned",
-   "order": 20
+   "order": 19
   },
   "f7952f1ea9e8": {
    "fr": "À l'aide de la fonction \\texttt{pow(a, n - 1, n)} de Python, qui renvoie ce reste, compléter le tableau suivant.",
    "en": "Using the Python function \\texttt{pow(a, n - 1, n)}, which returns this remainder, complete the following table.",
    "status": "aligned",
-   "order": 21
+   "order": 20
   },
   "7dc57371710f": {
    "fr": "Pour quelles valeurs de [[m1]] obtient-on [[m2]] sur les deux lignes ? Quelle particularité ont-elles ?",
    "en": "For which values of [[m1]] do we get [[m2]] on both rows? What do they have in common?",
    "status": "aligned",
-   "order": 22
+   "order": 21
   },
   "5fb79106aa2a": {
    "fr": "Formuler une conjecture. La tester pour [[m1]] et [[m2]].",
    "en": "State a conjecture. Test it for [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 23
+   "order": 22
   },
   "a42f305990b9": {
    "fr": "Pour [[m1]], calculer [[m2]] et [[m3]]. Comment préciser la conjecture ?",
    "en": "For [[m1]], compute [[m2]] and [[m3]]. How should the conjecture be made more precise?",
+   "status": "aligned",
+   "order": 23
+  },
+  "363a6f6e1054": {
+   "fr": "\\emph{Observer n'est pas démontrer : les propriétés conjecturées ici sont établies dans le cours.}",
+   "en": "\\emph{Observing is not proving: the properties conjectured here are established in the course.}",
    "status": "aligned",
    "order": 24
   },
@@ -371,149 +377,161 @@
    "fr": "Petit théorème de Fermat",
    "en": "Fermat's little theorem",
    "status": "aligned",
-   "order": 63
+   "order": 62
   },
   "e6cd475739b8": {
    "fr": "Soit [[m1]] un nombre premier et [[m2]] un entier. Alors [[m3]]. Si de plus [[m4]] ne divise pas [[m5]], alors [[m6]].",
    "en": "Let [[m1]] be a prime number and [[m2]] an integer. Then [[m3]]. If moreover [[m4]] does not divide [[m5]], then [[m6]].",
    "status": "aligned",
-   "order": 64
+   "order": 63
   },
   "5c8eb68b6f46": {
    "fr": "\\emph{Étape 1.} Pour [[m1]], [[m2]] divise [[m3]]. En effet [[m4]], donc [[m5]] ; comme [[m6]], [[m7]] ne divise pas [[m8]] et [[m9]] ; Gauss donne [[m10]].",
    "en": "\\emph{Step 1.} For [[m1]], [[m2]] divides [[m3]]. Indeed [[m4]], so [[m5]]; since [[m6]], [[m7]] does not divide [[m8]] and [[m9]]; Gauss gives [[m10]].",
    "status": "aligned",
-   "order": 65
+   "order": 64
   },
   "861ca20696b3": {
    "fr": "\\emph{Étape 2.} Par la formule du binôme, pour tout entier [[m1]], [[m2]].",
    "en": "\\emph{Step 2.} By the binomial formula, for every integer [[m1]], [[m2]].",
    "status": "aligned",
-   "order": 66
+   "order": 65
   },
   "67c7535a5e24": {
    "fr": "\\emph{Étape 3.} Récurrence sur [[m1]] : [[m2]], et si [[m3]], alors [[m4]]. Pour [[m5]], on choisit un entier [[m6]] tel que [[m7]] ; alors [[m8]].",
    "en": "\\emph{Step 3.} Induction on [[m1]]: [[m2]], and if [[m3]], then [[m4]]. For [[m5]], choose an integer [[m6]] such that [[m7]]; then [[m8]].",
    "status": "aligned",
-   "order": 67
+   "order": 66
   },
   "b9a0cfff6300": {
    "fr": "\\emph{Étape 4.} Si [[m1]], alors [[m2]] et [[m3]] ; Gauss donne [[m4]].",
    "en": "\\emph{Step 4.} If [[m1]], then [[m2]] and [[m3]]; Gauss gives [[m4]].",
    "status": "aligned",
-   "order": 68
+   "order": 67
   },
   "851062b7c0fd": {
    "fr": "Un reste",
    "en": "A remainder",
    "status": "aligned",
-   "order": 69
+   "order": 68
   },
   "64dbf267ef69": {
    "fr": "Reste de [[m1]] dans la division par [[m2]] : [[m3]] est premier et ne divise pas [[m4]], donc [[m5]]. Comme [[m6]], [[m7]] (car [[m8]]).",
    "en": "Remainder of [[m1]] in the division by [[m2]]: [[m3]] is prime and does not divide [[m4]], so [[m5]]. Since [[m6]], [[m7]] (because [[m8]]).",
    "status": "aligned",
-   "order": 70
+   "order": 69
   },
   "d1b4a7f5e638": {
    "fr": "La réciproque est fausse : [[m1]], alors que [[m2]].",
    "en": "The converse is false: [[m1]], whereas [[m2]].",
    "status": "aligned",
-   "order": 71
+   "order": 70
   },
   "5589e74bbd59": {
    "fr": "Exercices",
    "en": "Exercises",
    "status": "aligned",
-   "order": 72
+   "order": 71
   },
   "ab4df425dc6b": {
    "fr": "Premier ou non ?",
    "en": "Prime or not?",
    "status": "aligned",
-   "order": 73
+   "order": 72
   },
   "41cf8292f1da": {
    "fr": "Les entiers suivants sont-ils premiers ? [[m1]] ; [[m2]] ; [[m3]] ; [[m4]].",
    "en": "Are the following integers prime? [[m1]]; [[m2]]; [[m3]]; [[m4]].",
    "status": "aligned",
-   "order": 74
+   "order": 73
   },
   "ddc8996dfd05": {
    "fr": "[[m1]] est premier (cours). [[m2]]. [[m3]]. Pour [[m4]] : ni [[m5]], [[m6]], [[m7]], [[m8]], [[m9]], [[m10]] ne le divisent et [[m11]] : il est premier.",
    "en": "[[m1]] is prime (course). [[m2]]. [[m3]]. For [[m4]]: none of [[m5]], [[m6]], [[m7]], [[m8]], [[m9]], [[m10]] divides it and [[m11]]: it is prime.",
    "status": "aligned",
-   "order": 75
+   "order": 74
   },
   "4862a3045fde": {
    "fr": "Décomposition et diviseurs",
    "en": "Factorisation and divisors",
    "status": "aligned",
-   "order": 76
+   "order": 75
   },
   "a33d69ac2fa7": {
    "fr": "Décomposer [[m1]] en produit de facteurs premiers. Combien a-t-il de diviseurs positifs ? Les diviseurs de [[m2]] qui sont des carrés parfaits sont-ils nombreux ?",
    "en": "Factorise [[m1]] into primes. How many positive divisors does it have? Are there many divisors of [[m2]] that are perfect squares?",
    "status": "aligned",
-   "order": 77
+   "order": 76
   },
   "d804dfbfabe5": {
    "fr": "[[m1]]. Nombre de diviseurs : [[m2]]. Un diviseur carré a des exposants pairs : [[m3]] avec [[m4]], [[m5]], [[m6]] ; il y en a [[m7]] : [[m8]], [[m9]], [[m10]], [[m11]], [[m12]], [[m13]].",
    "en": "[[m1]]. Number of divisors: [[m2]]. A square divisor has even exponents: [[m3]] with [[m4]], [[m5]], [[m6]]; there are [[m7]] of them: [[m8]], [[m9]], [[m10]], [[m11]], [[m12]], [[m13]].",
    "status": "aligned",
+   "order": 77
+  },
+  "a6b64dbb47e7": {
+   "fr": "Plus petit commun multiple",
+   "en": "Least common multiple",
+   "status": "aligned",
    "order": 78
+  },
+  "d8b2792090e1": {
+   "fr": "Le plus petit commun multiple strictement positif de deux entiers non nuls, noté PPCM, ne figure pas au programme. Il est utilisé dans l'exercice suivant, qui n'est pas évalué.",
+   "en": "The least positive common multiple of two nonzero integers, written lcm, is not part of the syllabus. It is used in the next exercise, which is not assessed.",
+   "status": "aligned",
+   "order": 79
   },
   "dd58be0ccc3b": {
    "fr": "PGCD et PPCM par décomposition",
    "en": "GCD and LCM by factorisation",
    "status": "aligned",
-   "order": 79
+   "order": 80
   },
   "b580c48af23e": {
    "fr": "Décomposer [[m1]] et [[m2]], puis en déduire leur PGCD et leur plus petit commun multiple. Vérifier que le produit du PGCD et du PPCM est égal au produit des deux nombres.",
    "en": "Factorise [[m1]] and [[m2]], then deduce their gcd and their least common multiple. Check that the product of the gcd and the lcm equals the product of the two numbers.",
    "status": "aligned",
-   "order": 80
+   "order": 81
   },
   "521280c5da22": {
    "fr": "[[m1]] et [[m2]]. PGCD : [[m3]] ; PPCM : [[m4]]. Et [[m5]].",
    "en": "[[m1]] and [[m2]]. GCD: [[m3]]; LCM: [[m4]]. And [[m5]].",
    "status": "aligned",
-   "order": 81
+   "order": 82
   },
   "3abf42ecb19d": {
    "fr": "Fermat et restes",
    "en": "Fermat and remainders",
    "status": "aligned",
-   "order": 82
+   "order": 83
   },
   "4e1a17d40330": {
    "fr": "Déterminer le reste de [[m1]] dans la division par [[m2]].",
    "en": "Determine the remainder of [[m1]] in the division by [[m2]].",
    "status": "aligned",
-   "order": 83
+   "order": 84
+  },
+  "32baef738c00": {
+   "fr": "Démontrer que pour tout entier [[m1]], [[m2]] est divisible par [[m3]].",
+   "en": "Prove that for every integer [[m1]], [[m2]] is divisible by [[m3]].",
+   "status": "aligned",
+   "order": 85
   },
   "cf0d1bfd8fe1": {
    "fr": "[[m1]] est premier et ne divise pas [[m2]] : [[m3]]. [[m4]], donc [[m5]]. Or [[m6]] : le reste est [[m7]].",
    "en": "[[m1]] is prime and does not divide [[m2]]: [[m3]]. [[m4]], so [[m5]]. Now [[m6]]: the remainder is [[m7]].",
    "status": "aligned",
-   "order": 85
+   "order": 86
   },
   "9d45591abe18": {
    "fr": "C'est la première forme du petit théorème de Fermat, [[m1]].",
    "en": "This is the first form of Fermat's little theorem, [[m1]].",
    "status": "aligned",
-   "order": 86
+   "order": 87
   },
   "ef503d21b547": {
    "fr": "Divisible par [[m1]]",
    "en": "Divisible by [[m1]]",
-   "status": "aligned",
-   "order": 87
-  },
-  "32baef738c00": {
-   "fr": "Démontrer que pour tout entier [[m1]], [[m2]] est divisible par [[m3]].",
-   "en": "Prove that for every integer [[m1]], [[m2]] is divisible by [[m3]].",
    "status": "aligned",
    "order": 88
   },
@@ -583,6 +601,12 @@
    "status": "aligned",
    "order": 99
   },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 100
+  },
   "b5a878be9711": {
    "fr": "Un chiffrement RSA en miniature",
    "en": "A miniature RSA cipher",
@@ -643,53 +667,47 @@
    "status": "aligned",
    "order": 110
   },
-  "cdd42041b4be": {
-   "fr": "Problème",
-   "en": "Problem",
-   "status": "aligned",
-   "order": 111
-  },
   "0fcc2d3dde9f": {
    "fr": "[[m1]] et [[m2]] ne divise pas [[m3]] : ils sont premiers entre eux. [[m4]] : [[m5]].",
    "en": "[[m1]] and [[m2]] does not divide [[m3]]: they are coprime. [[m4]]: [[m5]].",
    "status": "aligned",
-   "order": 112
+   "order": 111
   },
   "3526b40137a2": {
    "fr": "On obtient bien [[m1]] (par exemple \\texttt{pow(17, 27, 55)}).",
    "en": "We do get [[m1]] (for example \\texttt{pow(17, 27, 55)}).",
    "status": "aligned",
-   "order": 113
+   "order": 112
   },
   "d476a3c25b20": {
    "fr": "Par Fermat, [[m1]], donc [[m2]] et [[m3]]. Si [[m4]], les deux membres sont congrus à [[m5]].",
    "en": "By Fermat, [[m1]], so [[m2]] and [[m3]]. If [[m4]], both sides are congruent to [[m5]].",
    "status": "aligned",
-   "order": 114
+   "order": 113
   },
   "4275eda310de": {
    "fr": "Modulo [[m1]] : si [[m2]], [[m3]], donc [[m4]] ; si [[m5]], les deux membres sont nuls modulo [[m6]]. Ainsi [[m7]] et [[m8]] divisent [[m9]] et sont premiers entre eux : [[m10]].",
    "en": "Modulo [[m1]]: if [[m2]], [[m3]], so [[m4]]; if [[m5]], both sides are zero modulo [[m6]]. Thus [[m7]] and [[m8]] divide [[m9]] and are coprime: [[m10]].",
    "status": "aligned",
-   "order": 115
+   "order": 114
   },
   "9a1ad69d613d": {
    "fr": "Calculer [[m1]] demande [[m2]], donc [[m3]] et [[m4]]. Connaissant seulement [[m5]] et [[m6]], il faudrait factoriser [[m7]] ; pour des nombres premiers de plusieurs centaines de chiffres, aucune méthode connue ne le fait en un temps raisonnable.",
    "en": "Computing [[m1]] requires [[m2]], hence [[m3]] and [[m4]]. Knowing only [[m5]] and [[m6]], one would have to factorise [[m7]]; for primes with several hundred digits, no known method does it in a reasonable time.",
    "status": "aligned",
-   "order": 116
+   "order": 115
   },
   "0c3e30231e86": {
    "fr": "Statut du problème",
    "en": "Status of the problem",
    "status": "aligned",
-   "order": 117
+   "order": 116
   },
   "bf7c5895b60a": {
    "fr": "RSA est un « problème possible » du programme. Faire écrire en Python les fonctions de chiffrement et de déchiffrement et les tester sur les [[m1]] messages possibles. La question 5 donne une idée de la sécurité ; elle n'appelle pas de démonstration.",
    "en": "RSA is a ``possible problem'' of the syllabus. Have the encryption and decryption functions written in Python and tested on the [[m1]] possible messages. Question 5 gives an idea of security; it does not call for a proof.",
    "status": "aligned",
-   "order": 118
+   "order": 117
   }
  }
 }

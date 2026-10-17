@@ -43,6 +43,13 @@ class Twin(unittest.TestCase):
         en = twin.generate(fr, table([(r'[[m1]]\,; [[m2]] et [[m3]]', '[[m1]]; [[m2]] and [[m3]]')]))
         self.assertEqual(body(en), r'\item $\num{0,5}$; $\intoo{0}{1}$ and \num{1,25}' + '\n')
 
+    def test_plain_space_before_punctuation_after_maths_is_dropped(self):
+        # locked list items such as "\\item $a$ ;" (audit 2026-10-17): the chunk after the maths starts with the space
+        fr = '\\begin{enumerate}\n\\item $(3-2i)$ ;\n\\item $\\pt{2;-1}$ ?\n\\item $x$.\n\\end{enumerate}\n'
+        en = body(twin.generate(fr, table([])))
+        self.assertIn('$(3-2i)$;', en); self.assertIn('$\\pt{2;-1}$?', en)
+        self.assertIn('\\pt{2;-1}', en)   # semicolons inside maths are untouched
+
     def test_words_inside_display_maths(self):
         fr = r'\[|x|=\begin{cases}x&\text{si }x\geq0\\-x&\text{sinon}\end{cases}\]' + '\n'
         en = twin.generate(fr, table([('si ', 'if '), ('sinon', 'otherwise')]))

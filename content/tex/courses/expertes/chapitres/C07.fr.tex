@@ -40,6 +40,7 @@ On dispose d'un bidon de $9$ litres, d'un bidon de $7$ litres, sans graduation, 
 \item On remplace les bidons par des bidons de $6$ et $9$ litres. Montrer que toute quantité de la forme $6u+9v$, avec $u$ et $v$ entiers relatifs, est un multiple de $3$. Peut-on obtenir $1$ litre ?
 \item Avec des bidons de $a$ et $b$ litres, quelles quantités entières semble-t-on pouvoir obtenir ? Formuler une conjecture faisant intervenir le plus grand diviseur commun de $a$ et $b$.
 \end{enumerate}
+\par\emph{Observer n'est pas démontrer : les propriétés conjecturées ici sont établies dans le cours.}
 \end{activity}
 \begin{solution}[Activité]
 \begin{enumerate}
@@ -59,7 +60,7 @@ Faire manipuler (ou simuler sur papier) avant de chercher $u$ et $v$. La questio
 \begin{definition}[PGCD]
 Soit $a$ et $b$ deux entiers relatifs non tous deux nuls. L'ensemble de leurs diviseurs communs positifs est fini et contient $1$ ; son plus grand élément est appelé \emph{plus grand commun diviseur} de $a$ et $b$, noté $\pgcd(a,b)$. On dit que $a$ et $b$ sont \emph{premiers entre eux} si $\pgcd(a,b)=1$.
 \end{definition}
-\begin{theorem}[Lemme d'Euclide]
+\begin{theorem}[PGCD et division euclidienne]
 Soit $a$ et $b$ deux entiers avec $b\neq0$. Pour tout entier $k$, les diviseurs communs de $a$ et $b$ sont ceux de $b$ et $a-kb$. En particulier, si $r$ est le reste de la division de $a$ par $b\ge1$, alors $\pgcd(a,b)=\pgcd(b,r)$.
 \end{theorem}
 \begin{proof}

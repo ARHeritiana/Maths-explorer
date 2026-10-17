@@ -41,6 +41,7 @@ Chapters 2, 3 and 4; oriented angles of vectors; special triangles.
 \item Solve $z^4=1$ and plot the solutions. Same question for $z^6=1$, using $z^6-1=\left(z^3-1\right)\left(z^3+1\right)$.
 \item State a conjecture about the solutions of $z^n=1$: their number, their modulus, their arguments, the figure they form.
 \end{enumerate}
+\par\emph{Observing is not proving: the properties conjectured here are established in the course.}
 \end{activity}
 \begin{solution}[Activity]
 \begin{enumerate}
@@ -71,7 +72,7 @@ With the same notation, let $q=\frac{c-a}{b-a}$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-$q$ is real if and only if its argument is $0$ or $\pi$ modulo $2\pi$, that is if $\vect{AB}$ and $\vect{AC}$ are collinear. $q$ is purely imaginary (nonzero) if and only if its argument is $\pm\frac\pi2$. For 3, a triangle that is right-angled and isosceles at $A$ corresponds to $AC=AB$ and $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi2$; an equilateral triangle to $AC=AB$ and $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi3$.
+$q$ is real if and only if its argument is $0$ or $\pi$ modulo $2\pi$, that is if $\vect{AB}$ and $\vect{AC}$ are collinear. $q$ is purely imaginary (nonzero) if and only if its argument is $\pm\frac\pi2$. For 3, the previous theorem gives $\abs q=\frac{AC}{AB}$ and $\arg q\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}$. Hence $q=\pm i$ if and only if $AC=AB$ and $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi2$, which characterises a triangle that is right-angled and isosceles at $A$. Likewise, $q=\e^{\pm i\pi/3}$ if and only if $AC=AB$ and $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi3$. A triangle that is isosceles at $A$ with angle $A$ measuring $\frac\pi3$ has two other equal angles, each measuring $\frac12\left(\pi-\frac\pi3\right)=\frac\pi3$: its three angles are equal, so it is equilateral. Conversely, an equilateral triangle satisfies $AC=AB$ and its angle at $A$ measures $\frac\pi3$.
 \end{proof}
 \begin{example}[Constructing a square]
 Let $A$ and $B$ have affixes $a$ and $b$. The direct square $ABCD$ has vertices $c=b+i(b-a)$ and $d=a+i(b-a)$: we go from $\vect{AB}$ to $\vect{BC}$ by a direct quarter turn. With $a=0$ and $b=1$: $c=1+i$ and $d=i$.
@@ -133,7 +134,7 @@ Consider the points $A$, $B$, $C$, $D$ with affixes $a=1+i$, $b=3+2i$, $c=-1$ an
 \begin{exercise}[Nature of triangles]
 Determine the nature of the triangle $ABC$ in each case:
 \begin{enumerate}
-\item $a=0$, $b=2$, $c=1+i\sqrt3$ ;
+\item $a=0$, $b=2$, $c=1+i\sqrt3$;
 \item $a=1$, $b=2+i$, $c=i$.
 \end{enumerate}
 \end{exercise}

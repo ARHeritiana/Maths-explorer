@@ -25,6 +25,12 @@
    "status": "aligned",
    "order": 3
   },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 4
+  },
   "897da8c800a1": {
    "fr": "Sans calculatrice, cinq minutes",
    "en": "No calculator, five minutes",
@@ -67,75 +73,75 @@
    "status": "aligned",
    "order": 11
   },
-  "1938aac70452": {
-   "fr": "Automatismes",
-   "en": "Fluency",
-   "status": "aligned",
-   "order": 12
-  },
   "16aa4ad34d17": {
    "fr": "[[m1]], donc [[m2]] : [[m3]] et [[m4]].",
    "en": "[[m1]], so [[m2]]: [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 13
+   "order": 12
   },
   "23014d5f8da1": {
    "fr": "[[m1]] pour chaque ligne.",
    "en": "[[m1]] for each row.",
    "status": "aligned",
-   "order": 14
+   "order": 13
   },
   "0dd443f30c7b": {
    "fr": "Activité d'introduction",
    "en": "Introductory activity",
    "status": "aligned",
-   "order": 15
+   "order": 14
   },
   "fdbcfa7d9a5a": {
    "fr": "Beau temps, pluie",
    "en": "Fine weather, rain",
    "status": "aligned",
-   "order": 16
+   "order": 15
   },
   "15b750412480": {
    "fr": "40 min",
    "en": "40 min",
    "status": "aligned",
-   "order": 17
+   "order": 16
   },
   "b42bfd324d0f": {
    "fr": "Dans un modèle simplifié (données fictives), le temps d'une journée est soit beau ([[m1]]), soit pluvieux ([[m2]]), et ne dépend que du temps de la veille : après un beau jour, il fait beau avec la probabilité [[m3]] ; après un jour de pluie, il fait beau avec la probabilité [[m4]]. Le jour [[m5]] est beau. On note [[m6]] et [[m7]] les probabilités que le jour [[m8]] soit beau ou pluvieux.",
    "en": "In a simplified model (fictitious data), the weather on a given day is either fine ([[m1]]) or rainy ([[m2]]), and depends only on the weather the day before: after a fine day, it is fine with probability [[m3]]; after a rainy day, it is fine with probability [[m4]]. Day [[m5]] is fine. Let [[m6]] and [[m7]] be the probabilities that day [[m8]] is fine or rainy.",
    "status": "aligned",
-   "order": 18
+   "order": 17
   },
   "2aa052a2b600": {
    "fr": "Représenter la situation par un schéma : deux sommets [[m1]] et [[m2]], une flèche pour chaque passage possible, portant sa probabilité.",
    "en": "Represent the situation by a diagram: two vertices [[m1]] and [[m2]], an arrow for each possible change, carrying its probability.",
    "status": "aligned",
-   "order": 19
+   "order": 18
   },
   "7f7326d753c4": {
    "fr": "À l'aide d'un arbre, calculer [[m1]], [[m2]], puis [[m3]], [[m4]].",
    "en": "Using a tree, compute [[m1]], [[m2]], then [[m3]], [[m4]].",
    "status": "aligned",
-   "order": 20
+   "order": 19
   },
   "ea58c79e6fc6": {
    "fr": "Justifier que [[m1]] et [[m2]].",
    "en": "Justify that [[m1]] and [[m2]].",
    "status": "aligned",
-   "order": 21
+   "order": 20
   },
   "aeeeab73b983": {
    "fr": "On pose [[m1]] et [[m2]]. Vérifier que [[m3]]. Calculer [[m4]] à la calculatrice. Recommencer en partant d'un jour [[m5]] pluvieux. Que constate-t-on ?",
    "en": "Let [[m1]] and [[m2]]. Check that [[m3]]. Compute [[m4]] with a calculator. Start again with a rainy day [[m5]]. What do you notice?",
    "status": "aligned",
-   "order": 22
+   "order": 21
   },
   "1d4a82a81cb4": {
    "fr": "Déterminer la répartition [[m1]], avec [[m2]], qui vérifie [[m3]]. La comparer aux observations de la question 4.",
    "en": "Find the distribution [[m1]], with [[m2]], that satisfies [[m3]]. Compare it with the observations of question 4.",
+   "status": "aligned",
+   "order": 22
+  },
+  "363a6f6e1054": {
+   "fr": "\\emph{Observer n'est pas démontrer : les propriétés conjecturées ici sont établies dans le cours.}",
+   "en": "\\emph{Observing is not proving: the properties conjectured here are established in the course.}",
    "status": "aligned",
    "order": 23
   },
@@ -565,6 +571,12 @@
    "status": "aligned",
    "order": 94
   },
+  "670797ce56ce": {
+   "fr": "Déterminer la distribution invariante.",
+   "en": "Find the invariant distribution.",
+   "status": "aligned",
+   "order": 95
+  },
   "7b8c0189e799": {
    "fr": "[[m1]] et [[m2]].",
    "en": "[[m1]] and [[m2]].",
@@ -601,81 +613,81 @@
    "status": "aligned",
    "order": 101
   },
-  "670797ce56ce": {
-   "fr": "Déterminer la distribution invariante.",
-   "en": "Find the invariant distribution.",
-   "status": "aligned",
-   "order": 102
-  },
   "874e9d5e8600": {
    "fr": "Un client est au niveau de base. Quelle est la probabilité qu'il soit au niveau bonus deux ans plus tard ?",
    "en": "A customer is at the standard level. What is the probability of being at the bonus level two years later?",
    "status": "aligned",
-   "order": 103
+   "order": 102
   },
   "614984054ac0": {
    "fr": "Arcs [[m1]] ([[m2]]), [[m3]] ([[m4]]), [[m5]] ([[m6]]), [[m7]] ([[m8]]), [[m9]] ([[m10]]), [[m11]] ([[m12]]), [[m13]] ([[m14]]).",
    "en": "Arcs [[m1]] ([[m2]]), [[m3]] ([[m4]]), [[m5]] ([[m6]]), [[m7]] ([[m8]]), [[m9]] ([[m10]]), [[m11]] ([[m12]]), [[m13]] ([[m14]]).",
    "status": "aligned",
-   "order": 104
+   "order": 103
   },
   "c5c93d4d2cac": {
    "fr": "Avec [[m1]] : [[m2]] donne [[m3]] ; [[m4]] donne [[m5]]. Puis [[m6]], soit [[m7]], [[m8]], [[m9]].",
    "en": "With [[m1]]: [[m2]] gives [[m3]]; [[m4]] gives [[m5]]. Then [[m6]], that is [[m7]], [[m8]], [[m9]].",
    "status": "aligned",
-   "order": 105
+   "order": 104
   },
   "a1ce5e0b9a5b": {
    "fr": "Coefficient [[m1]] de [[m2]] : [[m3]].",
    "en": "Entry [[m1]] of [[m2]]: [[m3]].",
    "status": "aligned",
-   "order": 106
+   "order": 105
   },
   "3320fae4f722": {
    "fr": "Puissances de la matrice de transition à deux états",
    "en": "Powers of the two-state transition matrix",
    "status": "aligned",
-   "order": 107
+   "order": 106
   },
   "59c6f0cf546f": {
    "fr": "Soit [[m1]] avec [[m2]]. On pose [[m3]], [[m4]] et [[m5]].",
    "en": "Let [[m1]] with [[m2]]. Let [[m3]], [[m4]] and [[m5]].",
    "status": "aligned",
-   "order": 108
+   "order": 107
   },
   "5ace06364f88": {
    "fr": "Vérifier que [[m1]], [[m2]], [[m3]] et [[m4]].",
    "en": "Check that [[m1]], [[m2]], [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 109
+   "order": 108
   },
   "52f1c218852e": {
    "fr": "En déduire par récurrence que [[m1]] pour tout [[m2]].",
    "en": "Deduce by induction that [[m1]] for every [[m2]].",
    "status": "aligned",
-   "order": 110
+   "order": 109
   },
   "060caa9ff097": {
    "fr": "On suppose [[m1]]. Déterminer la limite de [[m2]] et interpréter ses lignes.",
    "en": "Assume [[m1]]. Find the limit of [[m2]] and interpret its rows.",
    "status": "aligned",
-   "order": 111
+   "order": 110
   },
   "925928f00853": {
    "fr": "Le coefficient [[m1]] de [[m2]] vaut [[m3]] ; les autres se vérifient de même. Pour [[m4]] : le coefficient [[m5]] vaut [[m6]], et ainsi de suite. [[m7]] a pour coefficient [[m8]] [[m9]] ; tous les coefficients de [[m10]] et [[m11]] sont nuls.",
    "en": "The entry [[m1]] of [[m2]] is [[m3]]; the others are checked in the same way. For [[m4]]: the entry [[m5]] is [[m6]], and so on. [[m7]] has entry [[m8]] equal to [[m9]]; all the entries of [[m10]] and [[m11]] are zero.",
    "status": "aligned",
-   "order": 112
+   "order": 111
   },
   "e25b6beea7aa": {
    "fr": "Vrai pour [[m1]]. Si [[m2]], alors [[m3]].",
    "en": "True for [[m1]]. If [[m2]], then [[m3]].",
    "status": "aligned",
-   "order": 113
+   "order": 112
   },
   "075593133832": {
    "fr": "[[m1]], donc [[m2]] et [[m3]]. Les deux lignes de [[m4]] sont égales à la distribution invariante : à long terme, l'état de départ est « oublié ».",
    "en": "[[m1]], so [[m2]] and [[m3]]. Both rows of [[m4]] equal the invariant distribution: in the long run, the starting state is ``forgotten''.",
+   "status": "aligned",
+   "order": 113
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
    "status": "aligned",
    "order": 114
   },
@@ -683,91 +695,85 @@
    "fr": "Le modèle des urnes d'Ehrenfest",
    "en": "Ehrenfest's urn model",
    "status": "aligned",
-   "order": 116
+   "order": 115
   },
   "6cb6a892035f": {
    "fr": "Deux urnes [[m1]] et [[m2]] contiennent au total deux boules. À chaque étape, on choisit l'une des deux boules au hasard (de façon équiprobable) et on la change d'urne. On note [[m3]] le nombre de boules dans [[m4]] après [[m5]] étapes ; les états sont [[m6]], [[m7]], [[m8]]. Au départ, [[m9]] contient les deux boules.",
    "en": "Two urns [[m1]] and [[m2]] contain two balls in total. At each step, one of the two balls is chosen at random (with equal probability) and moved to the other urn. Let [[m3]] be the number of balls in [[m4]] after [[m5]] steps; the states are [[m6]], [[m7]], [[m8]]. At the start, [[m9]] contains both balls.",
    "status": "aligned",
-   "order": 117
+   "order": 116
   },
   "fdbcb806b9cc": {
    "fr": "Justifier que [[m1]] est une chaîne de Markov, dessiner son graphe probabiliste et écrire sa matrice de transition [[m2]] (états dans l'ordre [[m3]], [[m4]], [[m5]]).",
    "en": "Justify that [[m1]] is a Markov chain, draw its probabilistic graph and write its transition matrix [[m2]] (states in the order [[m3]], [[m4]], [[m5]]).",
    "status": "aligned",
-   "order": 118
+   "order": 117
   },
   "8ff1f511ee2b": {
    "fr": "Déterminer l'unique distribution invariante [[m1]]. Comparer avec la loi du nombre de boules dans [[m2]] si chaque boule est placée au hasard dans l'une des deux urnes, indépendamment.",
    "en": "Find the unique invariant distribution [[m1]]. Compare it with the distribution of the number of balls in [[m2]] when each ball is placed at random in one of the two urns, independently.",
    "status": "aligned",
-   "order": 119
+   "order": 118
   },
   "50ee6ce5636c": {
    "fr": "Calculer [[m1]], [[m2]], [[m3]], [[m4]]. La suite [[m5]] converge-t-elle ?",
    "en": "Compute [[m1]], [[m2]], [[m3]], [[m4]]. Does the sequence [[m5]] converge?",
    "status": "aligned",
-   "order": 120
+   "order": 119
   },
   "61aa4c514537": {
    "fr": "Démontrer que pour tout [[m1]], [[m2]] et [[m3]], puis que [[m4]].",
    "en": "Prove that for every [[m1]], [[m2]] and [[m3]], then that [[m4]].",
    "status": "aligned",
-   "order": 121
+   "order": 120
   },
   "d2034b23c782": {
    "fr": "Expliquer, sans calcul, pourquoi [[m1]] a la même parité que [[m2]].",
    "en": "Explain, without computation, why [[m1]] has the same parity as [[m2]].",
    "status": "aligned",
-   "order": 122
-  },
-  "cdd42041b4be": {
-   "fr": "Problème",
-   "en": "Problem",
-   "status": "aligned",
-   "order": 123
+   "order": 121
   },
   "c05ce404aedf": {
    "fr": "L'étape suivante ne dépend que du nombre actuel de boules dans [[m1]]. De l'état [[m2]] ou [[m3]], on passe à coup sûr en [[m4]] ; de l'état [[m5]], on passe en [[m6]] ou en [[m7]] avec la probabilité [[m8]] chacun.",
    "en": "The next step depends only on the current number of balls in [[m1]]. From state [[m2]] or [[m3]], the chain moves to [[m4]] for certain; from state [[m5]], it moves to [[m6]] or to [[m7]] with probability [[m8]] each.",
    "status": "aligned",
-   "order": 124
+   "order": 122
   },
   "a4344a932109": {
    "fr": "[[m1]] avec [[m2]] donne [[m3]], [[m4]], [[m5]]. Avec [[m6]] : [[m7]]. C'est la loi binomiale de paramètres [[m8]] et [[m9]].",
    "en": "[[m1]] with [[m2]] gives [[m3]], [[m4]], [[m5]]. With [[m6]]: [[m7]]. This is the binomial distribution with parameters [[m8]] and [[m9]].",
    "status": "aligned",
-   "order": 125
+   "order": 123
   },
   "ab8e539b9445": {
    "fr": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]]. La suite alterne entre deux valeurs : elle ne converge pas.",
    "en": "[[m1]], [[m2]], [[m3]], [[m4]], [[m5]]. The sequence alternates between two values: it does not converge.",
    "status": "aligned",
-   "order": 126
+   "order": 124
   },
   "1926ca247cc1": {
    "fr": "[[m1]] et [[m2]] ; une récurrence sur [[m3]] conclut. La demi-somme vaut [[m4]].",
    "en": "[[m1]] and [[m2]]; an induction on [[m3]] concludes. The half-sum is [[m4]].",
    "status": "aligned",
-   "order": 127
+   "order": 125
   },
   "b43571654baa": {
    "fr": "Chaque étape modifie de [[m1]] le nombre de boules dans [[m2]], donc change sa parité. Au départ [[m3]] est pair.",
    "en": "Each step changes the number of balls in [[m2]] by [[m1]], so it changes its parity. At the start [[m3]] is even.",
    "status": "aligned",
-   "order": 128
+   "order": 126
   },
   "0c3e30231e86": {
    "fr": "Statut du problème",
    "en": "Status of the problem",
    "status": "aligned",
-   "order": 129
+   "order": 127
   },
   "0066d8d08a8f": {
    "fr": "Le modèle d'Ehrenfest est un « problème possible » du programme. Il montre qu'une distribution invariante peut exister sans que [[m1]] converge : la condition [[m2]] du cas à deux états a un analogue pour trois états, hors programme (chaîne apériodique). Prolongement : simuler la chaîne en Python avec [[m3]] boules et observer les fréquences des états sur une longue durée.",
    "en": "The Ehrenfest model is a ``possible problem'' of the syllabus. It shows that an invariant distribution can exist without [[m1]] converging: the condition [[m2]] of the two-state case has an analogue for three states, beyond the syllabus (aperiodic chain). Extension: simulate the chain in Python with [[m3]] balls and observe the frequencies of the states over a long run.",
    "status": "aligned",
-   "order": 130
+   "order": 128
   }
  }
 }

@@ -41,6 +41,7 @@ We have a $9$-litre can, a $7$-litre can, both without markings, and a water sup
 \item The cans are replaced by cans of $6$ and $9$ litres. Show that every quantity of the form $6u+9v$, with $u$ and $v$ integers, is a multiple of $3$. Can one get $1$ litre?
 \item With cans of $a$ and $b$ litres, which whole quantities does it seem possible to get? State a conjecture involving the greatest common divisor of $a$ and $b$.
 \end{enumerate}
+\par\emph{Observing is not proving: the properties conjectured here are established in the course.}
 \end{activity}
 \begin{solution}[Activity]
 \begin{enumerate}
@@ -60,7 +61,7 @@ Have the students handle the cans (or simulate on paper) before looking for $u$ 
 \begin{definition}[GCD]
 Let $a$ and $b$ be two integers, not both zero. The set of their positive common divisors is finite and contains $1$; its largest element is called the \emph{greatest common divisor} of $a$ and $b$, written $\pgcd(a,b)$. We say that $a$ and $b$ are \emph{coprime} if $\pgcd(a,b)=1$.
 \end{definition}
-\begin{theorem}[Euclid's lemma]
+\begin{theorem}[Gcd and Euclidean division]
 Let $a$ and $b$ be two integers with $b\neq0$. For every integer $k$, the common divisors of $a$ and $b$ are those of $b$ and $a-kb$. In particular, if $r$ is the remainder of the division of $a$ by $b\ge1$, then $\pgcd(a,b)=\pgcd(b,r)$.
 \end{theorem}
 \begin{proof}
@@ -179,7 +180,7 @@ We look for natural numbers $x$ and $y$ such that $\num{1100}x+700y=\num{10000}$
 \end{exercise}
 \begin{solution}
 \begin{enumerate}
-\item $\pgcd(7,26)=1$ ; $7\times15=105=4\times26+1$.
+\item $\pgcd(7,26)=1$; $7\times15=105=4\times26+1$.
 \item $7x\equiv7\pmod{26}$; multiplying by $15$: $x\equiv105\equiv1\pmod{26}$. The solutions are the integers $1+26k$.
 \end{enumerate}
 \end{solution}

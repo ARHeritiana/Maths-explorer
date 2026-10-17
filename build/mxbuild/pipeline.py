@@ -3,7 +3,7 @@
 `tex`: run a course builder (cached on a hash of its inputs), regenerate the catalogue
 and republish the sources. `check`: every pre-push check from the brief, in one command.
 """
-import re, subprocess, sys, time
+import os, re, subprocess, sys, time
 from pathlib import Path
 from . import ROOT, tex
 from . import catalog
@@ -32,7 +32,8 @@ COURSES = {
 
 def run(cmd, **kw):
     print('$', ' '.join(cmd), flush=True)
-    return subprocess.run(cmd, cwd=ROOT, **kw)
+    # MX_PIPELINE tells builders they run under the pipeline (cache, /ID restore), so they skip their direct-run note
+    return subprocess.run(cmd, cwd=ROOT, env={**os.environ, 'MX_PIPELINE': '1', **kw.pop('env', {})}, **kw)
 
 
 def changed_pdfs():

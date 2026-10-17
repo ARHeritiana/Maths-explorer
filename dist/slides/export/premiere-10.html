@@ -825,7 +825,7 @@ var W2 = {
       handles() { const V = v(), h = [{ x: V.X(z[0]), y: V.Y(z[1]), cur: "grab", move(X, Y) { place(z, X, Y, rmax); } }]; if (mode === "product") h.push({ x: V.X(w[0]), y: V.Y(w[1]), cur: "grab", move(X, Y) { place(w, X, Y, rmax); } }); return h; },
       draw(g) {
         const V = v(), N = o.tn, O = [0, 0], [a, b] = z, r = Math.hypot(a, b), t = Math.atan2(b, a); axes(g, V, { lang: o.L });
-        const exact = x => Math.abs(x * 4 - Math.round(x * 4)) < 1e-9, eq = (x, y) => (exact(x) && exact(y) ? "=" : "\\approx");
+        const exact = x => Math.abs(x * 4 - Math.round(x * 4)) < 1e-9, eq4 = x => (Math.abs(x * 1e4 - Math.round(x * 1e4)) < 1e-6 ? "=" : "\\approx"), eq = (x, y) => (exact(x) && exact(y) ? "=" : "\\approx");
         const arc = (th, rad, col) => { g.save(); g.strokeStyle = col; g.lineWidth = 2.5; g.beginPath(); g.arc(V.X(0), V.Y(0), rad, 0, -th, th > 0); g.stroke(); g.restore(); };
         const expo = (rr, th) => { const s = angTeX(th, N).replace(/\\dfrac/g, "\\tfrac"), k = Math.abs(rr - 1) < 1e-9 ? "" : N(rr) + "\\,"; return s === "0" ? N(rr) : `${k}\\mathrm{e}^{${s[0] === "-" ? "-i" + s.slice(1) : "i" + s}}`; };
         if (mode === "alg") {
@@ -845,7 +845,7 @@ var W2 = {
           arrowTo(g, V, O, z, C.acc); arrowTo(g, V, O, w, C.blue); arrowTo(g, V, O, p, C.warn, 3.5);
           dot(o, V.X(a), V.Y(b), C.acc, inl("z")); dot(o, V.X(w[0]), V.Y(w[1]), C.blue, inl("w")); dot(o, V.X(p[0]), V.Y(p[1]), C.warn, inl("zw"), "default", false);
           const sz = angTeX(t, N), sw = angTeX(tw, N), add = sw[0] === "-" ? `\\left(${sw}\\right)` : sw;
-          set(o, lines(inl(`z=${expo(r, t)},\\ w=${expo(rw, tw)}`), inl(`|zw|=|z|\\times|w|=${N(r)}\\times${N(rw)}=${N(r * rw)}`),
+          set(o, lines(inl(`z=${expo(r, t)},\\ w=${expo(rw, tw)}`), inl(`|zw|=|z|\\times|w|=${N(r, 4)}\\times${N(rw, 4)}${eq4(r * rw)}${N(r * rw, 4)}`),
             inl(`\\arg(zw)\\equiv${sz}+${add}\\equiv${angTeX(t + tw, N)}\\pmod{2\\pi}`), inl(`zw=${expo(r * rw, t + tw)}${eq(p[0], p[1])}${cTeX(p[0], p[1], N)}`)));
         }
       },
@@ -863,7 +863,8 @@ var W2 = {
         return h;
       },
       draw(g) {
-        const V = v(), N = o.tn, [x, y] = z1; axes(g, V, { lang: o.L });
+        // coordinates snap to 0.25, so P = x^2 + y^2 (or x*x2) needs 4 decimals to be printed exactly
+        const V = v(), N = (t, d = 4) => o.tn(t, d), [x, y] = z1; axes(g, V, { lang: o.L });
         const S = y ? 2 * x : x + x2, P = y ? x * x + y * y : x * x2, D = S * S - 4 * P, eqn = inl(`z^2${tpoly([[-S, "z"], [P, ""]], N).replace(/^(?!-)/, "+").replace(/^\+0$/, "")}=0`);
         if (y) { ring(g, V, Math.sqrt(P), C.muted); g.save(); g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.lineWidth = 1.5; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(-y)); g.stroke(); g.restore(); dot(o, V.X(x), V.Y(-y), C.blue, inl("z_2=\\overline{z_1}"), "default", false); }
         else dot(o, V.X(x2), V.Y(0), C.blue, inl("z_2"), "ew-resize", true, x2 < x ? -1 : 1);
@@ -999,9 +1000,10 @@ var W2 = {
         g.save(); g.strokeStyle = C.axis; g.lineWidth = 1.5; g.beginPath(); g.moveTo(F.x0, F.y0); g.lineTo(F.x0, F.y1); g.lineTo(F.x1, F.y1); g.stroke(); g.setLineDash([6, 5]); g.strokeStyle = C.blue; g.beginPath(); g.moveTo(F.x0, Y(l)); g.lineTo(F.x1, Y(l)); g.stroke(); g.restore();
         text(g, "1", F.x0 - 8, Y(1) + 6, C.muted, 14, "right"); text(g, "0", F.x0 - 8, Y(0) + 6, C.muted, 14, "right"); text(g, inl("\\ell"), F.x1 - 4, Y(l) - 8, C.blue, 16, "right"); text(g, inl("n"), F.x1, F.y1 + 24, C.muted, 16, "right");
         let a = a0; g.save(); g.fillStyle = C.acc; for (let t = 0; t <= n; t++) { g.beginPath(); g.arc(X(t), Y(a), 5, 0, 7); g.fill(); a = a * (1 - p) + (1 - a) * q; } g.restore();
-        const an = l + (1 - p - q) ** n * (a0 - l);
+        const an = l + (1 - p - q) ** n * (a0 - l), osc = Math.abs(p + q - 2) < 1e-9; // p = q = 1: T swaps the states, no limit
         set(o, lines(inl(`T=\\begin{pmatrix}${N(1 - p)}&${N(p)}\\\\${N(q)}&${N(1 - q)}\\end{pmatrix},\\quad \\pi_{n+1}=\\pi_nT`),
           o.pair(`Avec ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")} : ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`, `With ${inl("\\pi_n=\\begin{pmatrix}a_n&1-a_n\\end{pmatrix}")}: ${inl(`a_{n+1}=${N(1 - p - q)}\\,a_n+${N(q)}`)}`),
+          osc ? o.pair(`${inl("p+q=2")} : ${inl("(a_n)")} alterne entre ${inl(N(a0))} et ${inl(N(1 - a0))}, elle n'a pas de limite (sauf si ${inl("a_0=0{,}5")}). La loi ${inl("\\pi=\\begin{pmatrix}0{,}5&0{,}5\\end{pmatrix}")} reste invariante.`, `${inl("p+q=2")}: ${inl("(a_n)")} alternates between ${inl(N(a0))} and ${inl(N(1 - a0))}; it has no limit (unless ${inl("a_0=0.5")}). The distribution ${inl("\\pi=\\begin{pmatrix}0.5&0.5\\end{pmatrix}")} stays invariant.`) :
           o.pair(`Limite ${inl(`\\ell=\\dfrac{q}{p+q}=${N(l, 3)}`)} ; état stable ${inl(`\\pi=\\begin{pmatrix}${N(l, 3)}&${N(1 - l, 3)}\\end{pmatrix}`)}`, `Limit ${inl(`\\ell=\\dfrac{q}{p+q}=${N(l, 3)}`)}; stable state ${inl(`\\pi=\\begin{pmatrix}${N(l, 3)}&${N(1 - l, 3)}\\end{pmatrix}`)}`),
           inl(`a_{${n}}=\\ell+(${N(1 - p - q)})^{${n}}(a_0-\\ell)\\approx${N(an, 4)}`)));
       },

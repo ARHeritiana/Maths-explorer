@@ -6,6 +6,11 @@ every section after the fluency drill starts a page (\\mxnewpage), so the excerp
 section headings: goals and fluency, introductory activity, course notes, exercises, problem; the teacher excerpt
 "corrections" runs from the exercises to the end of the chapter. The builder also writes the resource records, the
 chapter companion layout and the two source-book records. Run scripts/finalize-resources.py afterwards.
+
+Entry point: `make tex COURSE=expertes`. The pipeline skips the build when no input changed (cache), puts back every
+rebuilt PDF that differs from the committed copy only in its random /ID, then finalises and republishes the sources.
+Running this script directly rebuilds every excerpt and rewrites the source-book records (hash, date) even when nothing
+changed, leaving a dirty tree; use it directly only while debugging the builder.
 """
 import datetime, hashlib, re, sys
 from pathlib import Path
@@ -82,6 +87,8 @@ def chapter_starts(doc):
 
 
 def main():
+    if 'MX_PIPELINE' not in __import__('os').environ:
+        print('note: run `make tex COURSE=expertes`; a direct run rewrites every PDF and the source records (see the docstring)', file=sys.stderr)
     manifest = manifest_io.load(); catalog = manifest['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == COURSE and c['number'] > 0}
     if sorted(chapters) != list(range(1, CHAPTERS + 1)): sys.exit('The manifest must list the eleven Maths expertes chapters')

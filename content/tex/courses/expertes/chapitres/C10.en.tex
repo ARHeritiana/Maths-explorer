@@ -43,6 +43,7 @@ Five towns $A$, $B$, $C$, $D$, $E$ are linked by direct bush-taxi routes, in bot
 \item We store the information in a table $M$ with $5$ rows and $5$ columns: the entry in row $X$ and column $Y$ is $1$ if there is a direct route between $X$ and $Y$, $0$ otherwise. Write $M$, then compute $M^2$ and $M^3$ with a calculator. Compare some entries with questions 3 and 4.
 \item State a conjecture.
 \end{enumerate}
+\par\emph{Observing is not proving: the properties conjectured here are established in the course.}
 \end{activity}
 \begin{solution}[Activity]
 \begin{enumerate}
@@ -106,8 +107,9 @@ Assume $m^{(n)}_{ij}=c^{(n)}_{ij}$ for all $i$, $j$. A walk of length $n+1$ from
 where $p$ is the order of the graph, since $M^{n+1}=M^nM$. The property holds for $n+1$.
 \end{proof}
 \begin{keypoint}[Consequences]
-The diagonal entry $\left(M^2\right)_{ii}$ is the degree of vertex $i$ (undirected graph). A graph of order $p\ge2$ is connected if and only if all the off-diagonal entries of $M+M^2+\dots+M^{p-1}$ are positive: a walk between two distinct vertices can always be shortened into a walk with no repeated vertex, of length at most $p-1$.
+The diagonal entry $\left(M^2\right)_{ii}$ is the degree of vertex $i$ (undirected graph).
 \end{keypoint}
+\begin{beyond}[Connectedness and powers of the adjacency matrix]A graph of order $p\ge2$ is connected if and only if every off-diagonal entry of $M+M^2+\dots+M^{p-1}$ is strictly positive. Indeed, by the theorem, the entry with indices $i\neq j$ counts the walks from $i$ to $j$ of length $1$ to $p-1$. If it is strictly positive, $i$ and $j$ are linked. Conversely, if $i$ and $j$ are linked, choose a walk from $i$ to $j$ of minimal length. It never passes twice through the same vertex: otherwise, removing the loop between the two visits would give a shorter walk. So it visits at most $p$ distinct vertices and its length is at most $p-1$. This criterion is not part of the syllabus and is not assessed.\end{beyond}
 
 \mxnewpage
 \section{Exercises}
@@ -220,6 +222,7 @@ Consider the ``house'': a square $abdc$ ($a$ and $b$ at the bottom, $c$ and $d$ 
 \item Can it be done returning to the starting point?
 \end{enumerate}
 \end{problem}
+\begin{beyond}[Euler's theorem]The converse stated in question 2 (Euler's theorem) is not part of the syllabus: it is admitted and is not assessed.\end{beyond}
 \begin{solution}[Problem]
 \begin{enumerate}
 \item Each passage through an intermediate vertex uses one edge to arrive and another to leave: it contributes $2$ to the degree. Since every edge is used once, a vertex that is not an end has even degree. An end has in addition one unpaired edge of departure (or arrival): its degree is odd. If the trail is closed, all the degrees are even.

@@ -25,6 +25,12 @@
    "status": "aligned",
    "order": 3
   },
+  "1938aac70452": {
+   "fr": "Automatismes",
+   "en": "Fluency",
+   "status": "aligned",
+   "order": 4
+  },
   "897da8c800a1": {
    "fr": "Sans calculatrice, cinq minutes",
    "en": "No calculator, five minutes",
@@ -67,9 +73,9 @@
    "status": "aligned",
    "order": 11
   },
-  "1938aac70452": {
-   "fr": "Automatismes",
-   "en": "Fluency",
+  "7b8c0189e799": {
+   "fr": "[[m1]] et [[m2]].",
+   "en": "[[m1]] and [[m2]].",
    "status": "aligned",
    "order": 12
   },
@@ -77,71 +83,77 @@
    "fr": "[[m1]], qui appartient à [[m2]].",
    "en": "[[m1]], which lies in [[m2]].",
    "status": "aligned",
-   "order": 14
+   "order": 13
   },
   "79ce6c46ca27": {
    "fr": "[[m1]] : oui.",
    "en": "[[m1]]: yes.",
    "status": "aligned",
-   "order": 15
+   "order": 14
   },
   "0dd443f30c7b": {
    "fr": "Activité d'introduction",
    "en": "Introductory activity",
    "status": "aligned",
-   "order": 16
+   "order": 15
   },
   "236278fcb1b7": {
    "fr": "Multiplier, est-ce tourner ?",
    "en": "Is multiplying the same as turning?",
    "status": "aligned",
-   "order": 17
+   "order": 16
   },
   "a12a2174c266": {
    "fr": "35 min",
    "en": "35 min",
    "status": "aligned",
-   "order": 18
+   "order": 17
   },
   "5db7c3e41415": {
    "fr": "Le plan est muni d'un repère orthonormé [[m1]]. À un nombre complexe [[m2]] on associe le point de coordonnées [[m3]].",
    "en": "The plane has an orthonormal frame [[m1]]. To a complex number [[m2]] we associate the point with coordinates [[m3]].",
    "status": "aligned",
-   "order": 19
+   "order": 18
   },
   "e69f310ca6dc": {
    "fr": "Placer les points [[m1]], [[m2]], [[m3]] associés à [[m4]], [[m5]] et [[m6]]. Donner [[m7]] et [[m8]] sous forme algébrique.",
    "en": "Plot the points [[m1]], [[m2]], [[m3]] associated with [[m4]], [[m5]] and [[m6]]. Give [[m7]] and [[m8]] in algebraic form.",
    "status": "aligned",
-   "order": 20
+   "order": 19
   },
   "85d4ae4bf2ba": {
    "fr": "Calculer les distances [[m1]], [[m2]] et [[m3]].",
    "en": "Compute the distances [[m1]], [[m2]] and [[m3]].",
    "status": "aligned",
-   "order": 21
+   "order": 20
   },
   "9008cfbbd3a4": {
    "fr": "Calculer le produit scalaire [[m1]]. Que peut-on dire des droites [[m2]] et [[m3]] ?",
    "en": "Compute the scalar product [[m1]]. What can be said about the lines [[m2]] and [[m3]]?",
    "status": "aligned",
-   "order": 22
+   "order": 21
   },
   "49feee24a6c9": {
    "fr": "Calculer [[m1]] à l'aide du produit scalaire, puis le signe du déterminant [[m2]]. En déduire une mesure de l'angle orienté [[m3]].",
    "en": "Compute [[m1]] with the scalar product, then the sign of the determinant [[m2]]. Deduce a measure of the oriented angle [[m3]].",
    "status": "aligned",
-   "order": 23
+   "order": 22
   },
   "a9105e7176c8": {
    "fr": "Recommencer avec [[m1]] (ou un point de votre choix). Formuler une conjecture sur l'effet géométrique d'une multiplication par [[m2]], puis par [[m3]].",
    "en": "Start again with [[m1]] (or a point of your choice). State a conjecture about the geometric effect of a multiplication by [[m2]], then by [[m3]].",
    "status": "aligned",
-   "order": 24
+   "order": 23
   },
   "09c64b7efaed": {
    "fr": "Quelles grandeurs associées à un nombre complexe faudrait-il définir pour énoncer cette conjecture en général ?",
    "en": "Which quantities attached to a complex number would have to be defined to state this conjecture in general?",
+   "status": "aligned",
+   "order": 24
+  },
+  "363a6f6e1054": {
+   "fr": "\\emph{Observer n'est pas démontrer : les propriétés conjecturées ici sont établies dans le cours.}",
+   "en": "\\emph{Observing is not proving: the properties conjectured here are established in the course.}",
    "status": "aligned",
    "order": 25
   },
@@ -155,595 +167,589 @@
    "fr": "[[m1]] : les droites sont perpendiculaires, et [[m2]].",
    "en": "[[m1]]: the lines are perpendicular, and [[m2]].",
    "status": "aligned",
-   "order": 28
+   "order": 27
   },
   "605edfcc6b03": {
    "fr": "[[m1]] et [[m2]]. Une mesure est [[m3]].",
    "en": "[[m1]] and [[m2]]. A measure is [[m3]].",
    "status": "aligned",
-   "order": 29
+   "order": 28
   },
   "a5252c9bfea3": {
    "fr": "Avec [[m1]] : [[m2]] et [[m3]]. On observe à nouveau [[m4]] avec un quart de tour direct, et [[m5]] avec un huitième de tour direct. Conjecture : multiplier par [[m6]] fait tourner d'un angle [[m7]] autour de [[m8]] ; multiplier par [[m9]] fait tourner de [[m10]] et multiplie les distances à [[m11]] par [[m12]].",
    "en": "With [[m1]]: [[m2]] and [[m3]]. Again we observe [[m4]] with a direct quarter turn, and [[m5]] with a direct eighth of a turn. Conjecture: multiplying by [[m6]] turns through an angle [[m7]] about [[m8]]; multiplying by [[m9]] turns through [[m10]] and multiplies the distances to [[m11]] by [[m12]].",
    "status": "aligned",
-   "order": 30
+   "order": 29
   },
   "1733193091f2": {
    "fr": "Une longueur (la distance à [[m1]]) et un angle (repéré à partir de [[m2]]) : ce sont le module et l'argument. La conjecture sera démontrée au chapitre 3.",
    "en": "A length (the distance to [[m1]]) and an angle (measured from [[m2]]): these are the modulus and the argument. The conjecture will be proved in chapter 3.",
    "status": "aligned",
-   "order": 31
+   "order": 30
   },
   "b7102338c5e3": {
    "fr": "Conduite de l'activité",
    "en": "Running the activity",
    "status": "aligned",
-   "order": 32
+   "order": 31
   },
   "c6b7a542119a": {
    "fr": "Laisser les élèves choisir leur second point et confronter les résultats. Bien distinguer l'observation sur des exemples et la preuve, qui viendra avec la formule [[m1]] (chapitre 3). Un logiciel de géométrie dynamique permet de déplacer [[m2]] et de suivre [[m3]] et [[m4]].",
    "en": "Let the students choose their second point and compare the results. Clearly separate the observation on examples from the proof, which will come with the formula [[m1]] (chapter 3). Dynamic geometry software lets one move [[m2]] and follow [[m3]] and [[m4]].",
    "status": "aligned",
-   "order": 33
+   "order": 32
   },
   "6634c69a2ef6": {
    "fr": "Notes de cours",
    "en": "Course notes",
    "status": "aligned",
-   "order": 34
+   "order": 33
   },
   "fcf92161ffb4": {
    "fr": "Plan complexe",
    "en": "Complex plane",
    "status": "aligned",
-   "order": 35
+   "order": 34
   },
   "c73daabd773f": {
    "fr": "Image, affixe",
    "en": "Image, affix",
    "status": "aligned",
-   "order": 36
+   "order": 35
   },
   "3a1f46d7796f": {
    "fr": "Le plan est muni d'un repère orthonormé direct [[m1]]. Au nombre complexe [[m2]] ([[m3]], [[m4]] réels) on associe le point [[m5]], appelé \\emph{image} de [[m6]], et le vecteur [[m7]]. On dit que [[m8]] est l'\\emph{affixe} de [[m9]] et de [[m10]]. Le plan muni de cette correspondance est appelé \\emph{plan complexe}.",
    "en": "The plane has a direct orthonormal frame [[m1]]. To the complex number [[m2]] ([[m3]], [[m4]] real) we associate the point [[m5]], called the \\emph{image} of [[m6]], and the vector [[m7]]. We say that [[m8]] is the \\emph{affix} of [[m9]] and of [[m10]]. The plane with this correspondence is called the \\emph{complex plane}.",
    "status": "aligned",
-   "order": 37
+   "order": 36
   },
   "9e3aa6b627df": {
    "fr": "Affixes et opérations",
    "en": "Affixes and operations",
    "status": "aligned",
-   "order": 38
+   "order": 37
   },
   "cf6f885a961e": {
    "fr": "Si [[m1]] et [[m2]] ont pour affixes [[m3]] et [[m4]], le vecteur [[m5]] a pour affixe [[m6]] et le milieu de [[m7]] a pour affixe [[m8]]. L'affixe de [[m9]] est la somme des affixes, celle de [[m10]] ([[m11]] réel) est [[m12]] fois l'affixe de [[m13]].",
    "en": "If [[m1]] and [[m2]] have affixes [[m3]] and [[m4]], the vector [[m5]] has affix [[m6]] and the midpoint of [[m7]] has affix [[m8]]. The affix of [[m9]] is the sum of the affixes, that of [[m10]] ([[m11]] real) is [[m12]] times the affix of [[m13]].",
    "status": "aligned",
-   "order": 39
+   "order": 38
   },
   "fbbeeabac6e6": {
    "fr": "L'image de [[m1]] est la symétrique de l'image de [[m2]] par rapport à l'axe des abscisses ; l'image de [[m3]] est sa symétrique par rapport à [[m4]].",
    "en": "The image of [[m1]] is the reflection of the image of [[m2]] in the horizontal axis; the image of [[m3]] is its reflection in [[m4]].",
    "status": "aligned",
-   "order": 40
+   "order": 39
   },
   "b8ff02892916": {
    "fr": "Module",
    "en": "Modulus",
    "status": "aligned",
-   "order": 42
+   "order": 40
   },
   "06b9352e12d2": {
    "fr": "Le \\emph{module} de [[m1]] est le réel positif [[m2]]. Si [[m3]] est l'image de [[m4]], [[m5]]. Pour un réel, le module coïncide avec la valeur absolue.",
    "en": "The \\emph{modulus} of [[m1]] is the nonnegative real number [[m2]]. If [[m3]] is the image of [[m4]], [[m5]]. For a real number, the modulus is the absolute value.",
    "status": "aligned",
-   "order": 43
+   "order": 41
   },
   "7d950c18f90e": {
    "fr": "Module et conjugué",
    "en": "Modulus and conjugate",
    "status": "aligned",
-   "order": 44
+   "order": 42
   },
   "0a271e9124c6": {
    "fr": "Pour tout complexe [[m1]], [[m2]], et [[m3]]. Si [[m4]] et [[m5]] ont pour affixes [[m6]] et [[m7]], alors [[m8]].",
    "en": "For every complex number [[m1]], [[m2]], and [[m3]]. If [[m4]] and [[m5]] have affixes [[m6]] and [[m7]], then [[m8]].",
    "status": "aligned",
-   "order": 45
+   "order": 43
   },
   "c23e55291197": {
    "fr": "Avec [[m1]], [[m2]] (chapitre 1). La distance [[m3]] est la norme du vecteur [[m4]], d'affixe [[m5]].",
    "en": "With [[m1]], [[m2]] (chapter 1). The distance [[m3]] is the norm of the vector [[m4]], whose affix is [[m5]].",
    "status": "aligned",
-   "order": 46
+   "order": 44
   },
   "6249ff95cb1a": {
    "fr": "Module d'un produit, d'une puissance, d'un quotient",
    "en": "Modulus of a product, of a power, of a quotient",
    "status": "aligned",
-   "order": 47
+   "order": 45
   },
   "0537d3e1263d": {
    "fr": "Pour tous complexes [[m1]], [[m2]] et tout entier naturel [[m3]] :",
    "en": "For all complex numbers [[m1]], [[m2]] and every natural number [[m3]]:",
    "status": "aligned",
-   "order": 48
+   "order": 46
   },
   "76c5d03b6a42": {
    "fr": "\\emph{Produit.} [[m1]]. Les modules sont positifs, donc [[m2]].",
    "en": "\\emph{Product.} [[m1]]. Moduli are nonnegative, so [[m2]].",
    "status": "aligned",
-   "order": 49
+   "order": 47
   },
   "47f2b87f9188": {
    "fr": "\\emph{Puissance.} Par récurrence : [[m1]], et si [[m2]], alors [[m3]].",
    "en": "\\emph{Power.} By induction: [[m1]], and if [[m2]], then [[m3]].",
    "status": "aligned",
-   "order": 50
+   "order": 48
   },
   "b99ccff77f5a": {
    "fr": "\\emph{Inverse et quotient.} [[m1]], puis [[m2]].",
    "en": "\\emph{Inverse and quotient.} [[m1]], then [[m2]].",
    "status": "aligned",
-   "order": 51
+   "order": 49
   },
   "81acaeb5632e": {
    "fr": "Inégalité triangulaire, admise ici",
    "en": "Triangle inequality, taken for granted here",
    "status": "aligned",
-   "order": 52
+   "order": 50
   },
   "009a98399a27": {
    "fr": "Pour tous complexes [[m1]] et [[m2]], [[m3]]. Le problème du chapitre en donne une démonstration et le cas d'égalité.",
    "en": "For all complex numbers [[m1]] and [[m2]], [[m3]]. The problem of the chapter gives a proof and the case of equality.",
    "status": "aligned",
-   "order": 53
+   "order": 51
   },
   "1e0af626839f": {
    "fr": "L'ensemble [[m1]]",
    "en": "The set [[m1]]",
    "status": "aligned",
-   "order": 54
+   "order": 52
   },
   "feca1cd12460": {
    "fr": "On note [[m1]] l'ensemble des nombres complexes de module [[m2]]. Leurs images forment le cercle de centre [[m3]] et de rayon [[m4]].",
    "en": "We write [[m1]] for the set of complex numbers of modulus [[m2]]. Their images form the circle with centre [[m3]] and radius [[m4]].",
    "status": "aligned",
-   "order": 55
+   "order": 53
   },
   "8037d15d88ca": {
    "fr": "Stabilité de [[m1]]",
    "en": "Stability of [[m1]]",
    "status": "aligned",
-   "order": 56
+   "order": 54
   },
   "93c91505c1a1": {
    "fr": "Si [[m1]] et [[m2]] appartiennent à [[m3]], alors [[m4]] et [[m5]] ; de plus [[m6]].",
    "en": "If [[m1]] and [[m2]] belong to [[m3]], then [[m4]] and [[m5]]; moreover [[m6]].",
    "status": "aligned",
-   "order": 57
+   "order": 55
   },
   "f9bae2d720a2": {
    "fr": "[[m1]] et [[m2]]. Enfin [[m3]], donc [[m4]].",
    "en": "[[m1]] and [[m2]]. Finally [[m3]], so [[m4]].",
    "status": "aligned",
-   "order": 58
+   "order": 56
   },
   "cdfed778bfa9": {
    "fr": "Lire un ensemble de points",
    "en": "Reading a set of points",
    "status": "aligned",
-   "order": 59
+   "order": 57
   },
   "31db0aff82ea": {
    "fr": "Soit [[m1]] et [[m2]] d'affixes [[m3]] et [[m4]], et [[m5]] d'affixe [[m6]]. L'égalité [[m7]] ([[m8]]) signifie [[m9]] : [[m10]] décrit le cercle de centre [[m11]] et de rayon [[m12]]. L'égalité [[m13]] ([[m14]]) signifie [[m15]] : [[m16]] décrit la médiatrice de [[m17]].",
    "en": "Let [[m1]] and [[m2]] have affixes [[m3]] and [[m4]], and [[m5]] have affix [[m6]]. The equality [[m7]] ([[m8]]) means [[m9]]: [[m10]] describes the circle with centre [[m11]] and radius [[m12]]. The equality [[m13]] ([[m14]]) means [[m15]]: [[m16]] describes the perpendicular bisector of [[m17]].",
    "status": "aligned",
-   "order": 60
+   "order": 58
   },
   "67e5dc39dd33": {
    "fr": "Argument et forme trigonométrique",
    "en": "Argument and trigonometric form",
    "status": "aligned",
-   "order": 61
+   "order": 59
   },
   "ce5e5792e97f": {
    "fr": "Argument",
    "en": "Argument",
    "status": "aligned",
-   "order": 62
+   "order": 60
   },
   "b8d7a125b280": {
    "fr": "Soit [[m1]] un complexe non nul d'image [[m2]]. On appelle \\emph{argument} de [[m3]] toute mesure, en radians, de l'angle orienté [[m4]]. On note [[m5]] l'une d'elles ; les autres en diffèrent d'un multiple de [[m6]], ce que l'on écrit [[m7]]. Le nombre [[m8]] n'a pas d'argument.",
    "en": "Let [[m1]] be a nonzero complex number with image [[m2]]. An \\emph{argument} of [[m3]] is any measure, in radians, of the oriented angle [[m4]]. We write [[m5]] for one of them; the others differ from it by a multiple of [[m6]], which we write [[m7]]. The number [[m8]] has no argument.",
    "status": "aligned",
-   "order": 63
+   "order": 61
   },
   "ae04bfe9a9de": {
    "fr": "Forme trigonométrique",
    "en": "Trigonometric form",
    "status": "aligned",
-   "order": 64
+   "order": 62
   },
   "d48a4dd5fe80": {
    "fr": "Tout complexe non nul [[m1]] s'écrit [[m2]] avec [[m3]] et [[m4]] ; on a alors",
    "en": "Every nonzero complex number [[m1]] can be written [[m2]] with [[m3]] and [[m4]]; then",
    "status": "aligned",
-   "order": 65
+   "order": 63
   },
   "01c8b758fd20": {
    "fr": "Réciproquement, si [[m1]] avec [[m2]], alors [[m3]] et [[m4]] est un argument de [[m5]]. Deux formes trigonométriques [[m6]] et [[m7]] sont égales si et seulement si [[m8]] et [[m9]].",
    "en": "Conversely, if [[m1]] with [[m2]], then [[m3]] and [[m4]] is an argument of [[m5]]. Two trigonometric forms [[m6]] and [[m7]] are equal if and only if [[m8]] and [[m9]].",
    "status": "aligned",
-   "order": 66
+   "order": 64
   },
   "57311b929da1": {
    "fr": "Premiers arguments",
    "en": "First arguments",
    "status": "aligned",
-   "order": 67
+   "order": 65
   },
   "a5a84c22de08": {
    "fr": "Pour [[m1]] : [[m2]] et [[m3]]. Un réel strictement positif a pour argument [[m4]], un réel strictement négatif [[m5]] ; [[m6]] a pour argument [[m7]].",
    "en": "For [[m1]]: [[m2]] and [[m3]]. A positive real number has argument [[m4]], a negative real number [[m5]]; [[m6]] has argument [[m7]].",
    "status": "aligned",
-   "order": 68
+   "order": 66
   },
   "5e35315b4fd4": {
    "fr": "Déterminer une forme trigonométrique",
    "en": "Finding a trigonometric form",
    "status": "aligned",
-   "order": 69
+   "order": 67
   },
   "8e0b3fcbc321": {
    "fr": "Calculer [[m1]], puis [[m2]] et [[m3]], et reconnaître le cosinus et le sinus d'un angle remarquable.",
    "en": "Compute [[m1]], then [[m2]] and [[m3]], and recognise the cosine and sine of a standard angle.",
    "status": "aligned",
-   "order": 70
+   "order": 68
   },
   "b0cfe7978ce2": {
    "fr": "Quatre formes trigonométriques",
    "en": "Four trigonometric forms",
    "status": "aligned",
-   "order": 71
+   "order": 69
   },
   "919384ea5106": {
    "fr": "[[m1]] : [[m2]], [[m3]], [[m4]], donc [[m5]].",
    "en": "[[m1]]: [[m2]], [[m3]], [[m4]], so [[m5]].",
    "status": "aligned",
-   "order": 72
+   "order": 70
   },
   "a90a76f45bb4": {
    "fr": "[[m1]] n'est pas une forme trigonométrique, car [[m2]]. On écrit [[m3]].",
    "en": "[[m1]] is not a trigonometric form, because [[m2]]. We write [[m3]].",
    "status": "aligned",
-   "order": 73
+   "order": 71
   },
   "eb9a5fae8d9e": {
    "fr": "Module et argument de [[m1]].",
    "en": "Modulus and argument of [[m1]].",
    "status": "aligned",
-   "order": 74
+   "order": 72
   },
   "2fcd85f23c56": {
    "fr": "À retenir",
    "en": "Key points",
    "status": "aligned",
-   "order": 75
+   "order": 73
   },
   "e3ba3b2aa451": {
    "fr": "[[m1]], [[m2]], [[m3]] ; le module d'un produit est le produit des modules ; [[m4]] avec [[m5]] ; un argument n'est défini qu'à [[m6]] près.",
    "en": "[[m1]], [[m2]], [[m3]]; the modulus of a product is the product of the moduli; [[m4]] with [[m5]]; an argument is only defined up to a multiple of [[m6]].",
    "status": "aligned",
-   "order": 76
+   "order": 74
   },
   "5589e74bbd59": {
    "fr": "Exercices",
    "en": "Exercises",
    "status": "aligned",
-   "order": 77
+   "order": 75
   },
   "6b4c77fd4a5c": {
    "fr": "Module et argument",
    "en": "Modulus and argument",
    "status": "aligned",
-   "order": 78
+   "order": 76
   },
   "a756bd3ada78": {
    "fr": "Déterminer le module et un argument de : [[m1]] ; [[m2]] ; [[m3]] ; [[m4]].",
    "en": "Determine the modulus and an argument of: [[m1]]; [[m2]]; [[m3]]; [[m4]].",
    "status": "aligned",
-   "order": 79
+   "order": 77
   },
   "465807226e65": {
    "fr": "[[m1]] : [[m2]], [[m3]]. [[m4]] : [[m5]], [[m6]] (cosinus [[m7]], sinus [[m8]]). [[m9]] : [[m10]], [[m11]]. [[m12]] : [[m13]], [[m14]].",
    "en": "[[m1]]: [[m2]], [[m3]]. [[m4]]: [[m5]], [[m6]] (cosine [[m7]], sine [[m8]]). [[m9]]: [[m10]], [[m11]]. [[m12]]: [[m13]], [[m14]].",
    "status": "aligned",
-   "order": 80
+   "order": 78
   },
   "3f0323b243a2": {
    "fr": "De la forme trigonométrique à la forme algébrique",
    "en": "From the trigonometric form to the algebraic form",
    "status": "aligned",
-   "order": 81
+   "order": 79
   },
   "bb82d224b353": {
    "fr": "Écrire sous forme algébrique : [[m1]] ; [[m2]] ; [[m3]].",
    "en": "Write in algebraic form: [[m1]]; [[m2]]; [[m3]].",
    "status": "aligned",
-   "order": 82
+   "order": 80
   },
   "4d5e87aca214": {
    "fr": "Calculer un module sans développer",
    "en": "Computing a modulus without expanding",
    "status": "aligned",
-   "order": 83
+   "order": 81
   },
   "ad48f07f79dd": {
    "fr": "Calculer le module de [[m1]], puis celui de [[m2]].",
    "en": "Compute the modulus of [[m1]], then that of [[m2]].",
    "status": "aligned",
-   "order": 84
+   "order": 82
   },
   "cf8141963c65": {
    "fr": "[[m1]]. Ensuite [[m2]].",
    "en": "[[m1]]. Next [[m2]].",
    "status": "aligned",
-   "order": 85
+   "order": 83
   },
   "842dad3c5bbc": {
    "fr": "Ensembles de points",
    "en": "Sets of points",
    "status": "aligned",
-   "order": 86
+   "order": 84
   },
   "fba43b75e694": {
    "fr": "Déterminer et représenter l'ensemble des points [[m1]] d'affixe [[m2]] tels que :",
    "en": "Determine and draw the set of points [[m1]] with affix [[m2]] such that:",
    "status": "aligned",
-   "order": 87
+   "order": 85
   },
   "688afa9724b1": {
    "fr": "[[m1]] : cercle de centre le point d'affixe [[m2]] et de rayon [[m3]].",
    "en": "[[m1]]: circle with centre the point of affix [[m2]] and radius [[m3]].",
    "status": "aligned",
-   "order": 88
+   "order": 86
   },
   "fdd7eb19e9b8": {
    "fr": "Avec [[m1]] et [[m2]], [[m3]] : médiatrice de [[m4]]. En posant [[m5]] : [[m6]], soit [[m7]].",
    "en": "With [[m1]] and [[m2]], [[m3]]: perpendicular bisector of [[m4]]. Setting [[m5]]: [[m6]], that is [[m7]].",
    "status": "aligned",
-   "order": 89
+   "order": 87
   },
   "dbd89762f581": {
    "fr": "[[m1]], donc [[m2]] : cercle de centre le point d'affixe [[m3]] et de rayon [[m4]].",
    "en": "[[m1]], so [[m2]]: circle with centre the point of affix [[m3]] and radius [[m4]].",
    "status": "aligned",
-   "order": 90
+   "order": 88
   },
   "6a1e1a51351c": {
    "fr": "Nature d'un triangle",
    "en": "Nature of a triangle",
    "status": "aligned",
-   "order": 91
+   "order": 89
   },
   "ace93222bbae": {
    "fr": "On considère les points [[m1]], [[m2]], [[m3]] d'affixes [[m4]], [[m5]] et [[m6]]. Calculer [[m7]], [[m8]] et [[m9]], puis déterminer la nature du triangle [[m10]].",
    "en": "Consider the points [[m1]], [[m2]], [[m3]] with affixes [[m4]], [[m5]] and [[m6]]. Compute [[m7]], [[m8]] and [[m9]], then determine the nature of the triangle [[m10]].",
    "status": "aligned",
-   "order": 92
+   "order": 90
   },
   "bfb7032dfb50": {
    "fr": "[[m1]], [[m2]], [[m3]]. Comme [[m4]] et [[m5]], le triangle est rectangle isocèle en [[m6]] (réciproque du théorème de Pythagore).",
    "en": "[[m1]], [[m2]], [[m3]]. Since [[m4]] and [[m5]], the triangle is right-angled and isosceles at [[m6]] (converse of Pythagoras' theorem).",
    "status": "aligned",
-   "order": 93
+   "order": 91
   },
   "031bc87f5767": {
    "fr": "Nombres de module 1",
    "en": "Numbers of modulus 1",
    "status": "aligned",
-   "order": 94
+   "order": 92
   },
   "484d20f19e7b": {
    "fr": "Démontrer que si [[m1]], alors [[m2]] est réel.",
    "en": "Prove that if [[m1]], then [[m2]] is real.",
    "status": "aligned",
-   "order": 95
+   "order": 93
   },
   "76f82fd5773d": {
    "fr": "Soit [[m1]] et [[m2]] deux éléments de [[m3]] tels que [[m4]]. Démontrer que [[m5]] est réel.",
    "en": "Let [[m1]] and [[m2]] be two elements of [[m3]] such that [[m4]]. Prove that [[m5]] is real.",
    "status": "aligned",
-   "order": 96
+   "order": 94
   },
   "421c10225d29": {
    "fr": "[[m1]], donc [[m2]], réel.",
    "en": "[[m1]], so [[m2]], which is real.",
    "status": "aligned",
-   "order": 97
-  },
-  "cad387d2ad0e": {
-   "fr": "Le conjugué vaut [[m1]]. En multipliant numérateur et dénominateur par [[m2]], on obtient [[m3]] : le nombre est égal à son conjugué, il est réel.",
-   "en": "The conjugate is [[m1]]. Multiplying numerator and denominator by [[m2]] gives [[m3]]: the number equals its conjugate, so it is real.",
-   "status": "aligned",
-   "order": 99
-  },
-  "aceda194c7ee": {
-   "fr": "Une suite de nombres complexes",
-   "en": "A sequence of complex numbers",
-   "status": "aligned",
-   "order": 100
-  },
-  "b930950731ce": {
-   "fr": "On définit [[m1]] et, pour tout entier naturel [[m2]], [[m3]].",
-   "en": "Let [[m1]] and, for every natural number [[m2]], [[m3]].",
-   "status": "aligned",
-   "order": 101
-  },
-  "3a8cdea59875": {
-   "fr": "Calculer [[m1]], [[m2]] et placer les points correspondants.",
-   "en": "Compute [[m1]], [[m2]] and plot the corresponding points.",
-   "status": "aligned",
-   "order": 102
-  },
-  "fffd780a5391": {
-   "fr": "Démontrer que [[m1]] est une suite géométrique ; en donner la raison et le terme général.",
-   "en": "Prove that [[m1]] is a geometric sequence; give its common ratio and its general term.",
-   "status": "aligned",
-   "order": 103
-  },
-  "6c235b3eb54d": {
-   "fr": "Déterminer la limite de [[m1]]. Interpréter géométriquement.",
-   "en": "Determine the limit of [[m1]]. Interpret geometrically.",
-   "status": "aligned",
-   "order": 104
-  },
-  "983c2dc212d2": {
-   "fr": "Déterminer le plus petit entier [[m1]] tel que [[m2]].",
-   "en": "Determine the smallest integer [[m1]] such that [[m2]].",
-   "status": "aligned",
-   "order": 105
-  },
-  "7b8c0189e799": {
-   "fr": "[[m1]] et [[m2]].",
-   "en": "[[m1]] and [[m2]].",
-   "status": "aligned",
-   "order": 106
-  },
-  "0081104b9357": {
-   "fr": "[[m1]] : suite géométrique de raison [[m2]] et de premier terme [[m3]], donc [[m4]].",
-   "en": "[[m1]]: a geometric sequence with common ratio [[m2]] and first term [[m3]], so [[m4]].",
-   "status": "aligned",
-   "order": 107
-  },
-  "28c63495d87b": {
-   "fr": "[[m1]], donc [[m2]] : les points se rapprochent de [[m3]] en tournant (d'un huitième de tour à chaque étape, ce que le chapitre 3 justifiera).",
-   "en": "[[m1]], so [[m2]]: the points get closer to [[m3]] while turning (by an eighth of a turn at each step, as chapter 3 will justify).",
-   "status": "aligned",
-   "order": 108
-  },
-  "de7ed2f814d8": {
-   "fr": "[[m1]] équivaut à [[m2]], soit [[m3]]. Le plus petit entier est [[m4]] : [[m5]] et [[m6]].",
-   "en": "[[m1]] is equivalent to [[m2]], that is [[m3]]. The smallest integer is [[m4]]: [[m5]] and [[m6]].",
-   "status": "aligned",
-   "order": 109
-  },
-  "6523a80c056b": {
-   "fr": "Inégalité triangulaire et cas d'égalité",
-   "en": "Triangle inequality and the case of equality",
-   "status": "aligned",
-   "order": 111
-  },
-  "3b74deb74097": {
-   "fr": "Soit [[m1]] un nombre complexe. Démontrer que [[m2]], avec égalité si et seulement si [[m3]] est un réel positif.",
-   "en": "Let [[m1]] be a complex number. Prove that [[m2]], with equality if and only if [[m3]] is a nonnegative real number.",
-   "status": "aligned",
-   "order": 112
-  },
-  "3fb0013d6217": {
-   "fr": "Soit [[m1]] et [[m2]] deux complexes. Démontrer que [[m3]].",
-   "en": "Let [[m1]] and [[m2]] be two complex numbers. Prove that [[m3]].",
-   "status": "aligned",
-   "order": 114
-  },
-  "5cb6ca635740": {
-   "fr": "En déduire l'inégalité triangulaire [[m1]].",
-   "en": "Deduce the triangle inequality [[m1]].",
-   "status": "aligned",
-   "order": 116
-  },
-  "b07be982dfe8": {
-   "fr": "On suppose [[m1]]. Démontrer que l'égalité [[m2]] a lieu si et seulement si il existe un réel [[m3]] tel que [[m4]]. Interpréter avec les images [[m5]] et [[m6]] de [[m7]] et [[m8]].",
-   "en": "Assume [[m1]]. Prove that equality [[m2]] holds if and only if there is a real number [[m3]] such that [[m4]]. Interpret with the images [[m5]] and [[m6]] of [[m7]] and [[m8]].",
-   "status": "aligned",
-   "order": 117
-  },
-  "d7357050a2dd": {
-   "fr": "Application. On considère les points [[m1]] d'affixe [[m2]] tels que [[m3]].",
-   "en": "Application. Consider the points [[m1]] with affix [[m2]] such that [[m3]].",
-   "status": "aligned",
-   "order": 118
-  },
-  "c2949fd20cd4": {
-   "fr": "Démontrer que pour ces points, [[m1]].",
-   "en": "Prove that for these points, [[m1]].",
-   "status": "aligned",
-   "order": 119
-  },
-  "5ac7835869f9": {
-   "fr": "Déterminer les affixes des points pour lesquels [[m1]], puis [[m2]].",
-   "en": "Determine the affixes of the points for which [[m1]], then [[m2]].",
-   "status": "aligned",
-   "order": 120
-  },
-  "cdd42041b4be": {
-   "fr": "Problème",
-   "en": "Problem",
-   "status": "aligned",
-   "order": 121
-  },
-  "5006829682fd": {
-   "fr": "Avec [[m1]] : [[m2]]. L'égalité impose [[m3]] et [[m4]], donc [[m5]] réel positif ; la réciproque est immédiate.",
-   "en": "With [[m1]]: [[m2]]. Equality forces [[m3]] and [[m4]], so [[m5]] is a nonnegative real number; the converse is immediate.",
-   "status": "aligned",
-   "order": 122
-  },
-  "efb589231602": {
-   "fr": "[[m1]]. Or [[m2]], donc [[m3]].",
-   "en": "[[m1]]. Now [[m2]], so [[m3]].",
-   "status": "aligned",
-   "order": 124
-  },
-  "bca12849355b": {
-   "fr": "Par 1, [[m1]]. Donc [[m2]], et les deux nombres comparés sont positifs.",
-   "en": "By 1, [[m1]]. So [[m2]], and both numbers compared are nonnegative.",
-   "status": "aligned",
-   "order": 126
-  },
-  "6a149a2dc696": {
-   "fr": "L'égalité équivaut à [[m1]], c'est-à-dire, par 1, à [[m2]] réel positif. Si c'est le cas, [[m3]] avec [[m4]]. Réciproquement, si [[m5]] avec [[m6]], [[m7]]. Géométriquement : [[m8]] est sur la demi-droite [[m9]].",
-   "en": "Equality is equivalent to [[m1]], that is, by 1, to [[m2]], a nonnegative real number. In that case, [[m3]] with [[m4]]. Conversely, if [[m5]] with [[m6]], [[m7]]. Geometrically: [[m8]] lies on the ray [[m9]].",
-   "status": "aligned",
-   "order": 128
+   "order": 95
   },
   "e39422d2f459": {
    "fr": "Re",
    "en": "Re",
    "status": "aligned",
-   "order": 129
+   "order": 96
+  },
+  "cad387d2ad0e": {
+   "fr": "Le conjugué vaut [[m1]]. En multipliant numérateur et dénominateur par [[m2]], on obtient [[m3]] : le nombre est égal à son conjugué, il est réel.",
+   "en": "The conjugate is [[m1]]. Multiplying numerator and denominator by [[m2]] gives [[m3]]: the number equals its conjugate, so it is real.",
+   "status": "aligned",
+   "order": 97
+  },
+  "aceda194c7ee": {
+   "fr": "Une suite de nombres complexes",
+   "en": "A sequence of complex numbers",
+   "status": "aligned",
+   "order": 98
+  },
+  "b930950731ce": {
+   "fr": "On définit [[m1]] et, pour tout entier naturel [[m2]], [[m3]].",
+   "en": "Let [[m1]] and, for every natural number [[m2]], [[m3]].",
+   "status": "aligned",
+   "order": 99
+  },
+  "3a8cdea59875": {
+   "fr": "Calculer [[m1]], [[m2]] et placer les points correspondants.",
+   "en": "Compute [[m1]], [[m2]] and plot the corresponding points.",
+   "status": "aligned",
+   "order": 100
+  },
+  "fffd780a5391": {
+   "fr": "Démontrer que [[m1]] est une suite géométrique ; en donner la raison et le terme général.",
+   "en": "Prove that [[m1]] is a geometric sequence; give its common ratio and its general term.",
+   "status": "aligned",
+   "order": 101
+  },
+  "6c235b3eb54d": {
+   "fr": "Déterminer la limite de [[m1]]. Interpréter géométriquement.",
+   "en": "Determine the limit of [[m1]]. Interpret geometrically.",
+   "status": "aligned",
+   "order": 102
+  },
+  "983c2dc212d2": {
+   "fr": "Déterminer le plus petit entier [[m1]] tel que [[m2]].",
+   "en": "Determine the smallest integer [[m1]] such that [[m2]].",
+   "status": "aligned",
+   "order": 103
+  },
+  "0081104b9357": {
+   "fr": "[[m1]] : suite géométrique de raison [[m2]] et de premier terme [[m3]], donc [[m4]].",
+   "en": "[[m1]]: a geometric sequence with common ratio [[m2]] and first term [[m3]], so [[m4]].",
+   "status": "aligned",
+   "order": 104
+  },
+  "28c63495d87b": {
+   "fr": "[[m1]], donc [[m2]] : les points se rapprochent de [[m3]] en tournant (d'un huitième de tour à chaque étape, ce que le chapitre 3 justifiera).",
+   "en": "[[m1]], so [[m2]]: the points get closer to [[m3]] while turning (by an eighth of a turn at each step, as chapter 3 will justify).",
+   "status": "aligned",
+   "order": 105
+  },
+  "de7ed2f814d8": {
+   "fr": "[[m1]] équivaut à [[m2]], soit [[m3]]. Le plus petit entier est [[m4]] : [[m5]] et [[m6]].",
+   "en": "[[m1]] is equivalent to [[m2]], that is [[m3]]. The smallest integer is [[m4]]: [[m5]] and [[m6]].",
+   "status": "aligned",
+   "order": 106
+  },
+  "cdd42041b4be": {
+   "fr": "Problème",
+   "en": "Problem",
+   "status": "aligned",
+   "order": 107
+  },
+  "6523a80c056b": {
+   "fr": "Inégalité triangulaire et cas d'égalité",
+   "en": "Triangle inequality and the case of equality",
+   "status": "aligned",
+   "order": 108
+  },
+  "3b74deb74097": {
+   "fr": "Soit [[m1]] un nombre complexe. Démontrer que [[m2]], avec égalité si et seulement si [[m3]] est un réel positif.",
+   "en": "Let [[m1]] be a complex number. Prove that [[m2]], with equality if and only if [[m3]] is a nonnegative real number.",
+   "status": "aligned",
+   "order": 109
+  },
+  "3fb0013d6217": {
+   "fr": "Soit [[m1]] et [[m2]] deux complexes. Démontrer que [[m3]].",
+   "en": "Let [[m1]] and [[m2]] be two complex numbers. Prove that [[m3]].",
+   "status": "aligned",
+   "order": 110
+  },
+  "5cb6ca635740": {
+   "fr": "En déduire l'inégalité triangulaire [[m1]].",
+   "en": "Deduce the triangle inequality [[m1]].",
+   "status": "aligned",
+   "order": 111
+  },
+  "b07be982dfe8": {
+   "fr": "On suppose [[m1]]. Démontrer que l'égalité [[m2]] a lieu si et seulement si il existe un réel [[m3]] tel que [[m4]]. Interpréter avec les images [[m5]] et [[m6]] de [[m7]] et [[m8]].",
+   "en": "Assume [[m1]]. Prove that equality [[m2]] holds if and only if there is a real number [[m3]] such that [[m4]]. Interpret with the images [[m5]] and [[m6]] of [[m7]] and [[m8]].",
+   "status": "aligned",
+   "order": 112
+  },
+  "d7357050a2dd": {
+   "fr": "Application. On considère les points [[m1]] d'affixe [[m2]] tels que [[m3]].",
+   "en": "Application. Consider the points [[m1]] with affix [[m2]] such that [[m3]].",
+   "status": "aligned",
+   "order": 113
+  },
+  "c2949fd20cd4": {
+   "fr": "Démontrer que pour ces points, [[m1]].",
+   "en": "Prove that for these points, [[m1]].",
+   "status": "aligned",
+   "order": 114
+  },
+  "5ac7835869f9": {
+   "fr": "Déterminer les affixes des points pour lesquels [[m1]], puis [[m2]].",
+   "en": "Determine the affixes of the points for which [[m1]], then [[m2]].",
+   "status": "aligned",
+   "order": 115
+  },
+  "5006829682fd": {
+   "fr": "Avec [[m1]] : [[m2]]. L'égalité impose [[m3]] et [[m4]], donc [[m5]] réel positif ; la réciproque est immédiate.",
+   "en": "With [[m1]]: [[m2]]. Equality forces [[m3]] and [[m4]], so [[m5]] is a nonnegative real number; the converse is immediate.",
+   "status": "aligned",
+   "order": 116
+  },
+  "efb589231602": {
+   "fr": "[[m1]]. Or [[m2]], donc [[m3]].",
+   "en": "[[m1]]. Now [[m2]], so [[m3]].",
+   "status": "aligned",
+   "order": 117
+  },
+  "bca12849355b": {
+   "fr": "Par 1, [[m1]]. Donc [[m2]], et les deux nombres comparés sont positifs.",
+   "en": "By 1, [[m1]]. So [[m2]], and both numbers compared are nonnegative.",
+   "status": "aligned",
+   "order": 118
+  },
+  "6a149a2dc696": {
+   "fr": "L'égalité équivaut à [[m1]], c'est-à-dire, par 1, à [[m2]] réel positif. Si c'est le cas, [[m3]] avec [[m4]]. Réciproquement, si [[m5]] avec [[m6]], [[m7]]. Géométriquement : [[m8]] est sur la demi-droite [[m9]].",
+   "en": "Equality is equivalent to [[m1]], that is, by 1, to [[m2]], a nonnegative real number. In that case, [[m3]] with [[m4]]. Conversely, if [[m5]] with [[m6]], [[m7]]. Geometrically: [[m8]] lies on the ray [[m9]].",
+   "status": "aligned",
+   "order": 119
   },
   "4d4818d6309d": {
    "fr": "Notons [[m1]], de module [[m2]]. D'une part [[m3]]. D'autre part [[m4]], donc [[m5]].",
    "en": "Let [[m1]], whose modulus is [[m2]]. On the one hand [[m3]]. On the other hand [[m4]], so [[m5]].",
    "status": "aligned",
-   "order": 130
+   "order": 120
   },
   "f602dab0ebd1": {
    "fr": "[[m1]] exige l'égalité dans [[m2]] et [[m3]] : [[m4]] avec [[m5]] et [[m6]], soit [[m7]] et [[m8]]. De même, [[m9]] donne [[m10]], soit [[m11]]. Ces deux points vérifient bien [[m12]].",
    "en": "[[m1]] requires equality in [[m2]] and [[m3]]: [[m4]] with [[m5]] and [[m6]], that is [[m7]] and [[m8]]. Likewise, [[m9]] gives [[m10]], that is [[m11]]. Both points do satisfy [[m12]].",
    "status": "aligned",
-   "order": 131
+   "order": 121
   },
   "0c3e30231e86": {
    "fr": "Statut du problème",
    "en": "Status of the problem",
    "status": "aligned",
-   "order": 132
+   "order": 122
   },
   "61f9dbc34f47": {
    "fr": "L'inégalité triangulaire et son cas d'égalité sont un « problème possible » du programme. La question 5 se visualise bien : le disque de centre [[m1]] et de rayon [[m2]] est compris entre les cercles de centre [[m3]] de rayons [[m4]] et [[m5]], qu'il touche sur la droite joignant [[m6]] au centre du disque.",
    "en": "The triangle inequality and its case of equality are a ``possible problem'' of the syllabus. Question 5 is easy to visualise: the disc with centre [[m1]] and radius [[m2]] lies between the circles with centre [[m3]] and radii [[m4]] and [[m5]], which it touches on the line joining [[m6]] to the centre of the disc.",
    "status": "aligned",
-   "order": 133
+   "order": 123
   },
   "e4d7a346b3f7": {
    "fr": "et, si ",
    "en": "and, if ",
    "status": "aligned",
-   "order": 134
+   "order": 124
   }
  }
 }

@@ -40,6 +40,7 @@ Chapitres 2, 3 et 4 ; angles orientés de vecteurs ; triangles particuliers.
 \item Résoudre $z^4=1$ et placer les solutions. Même question pour $z^6=1$, en utilisant $z^6-1=\left(z^3-1\right)\left(z^3+1\right)$.
 \item Formuler une conjecture sur les solutions de $z^n=1$ : leur nombre, leur module, leurs arguments, la figure qu'elles forment.
 \end{enumerate}
+\par\emph{Observer n'est pas démontrer : les propriétés conjecturées ici sont établies dans le cours.}
 \end{activity}
 \begin{solution}[Activité]
 \begin{enumerate}
@@ -70,7 +71,7 @@ Avec les mêmes notations, posons $q=\frac{c-a}{b-a}$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-$q$ est réel si et seulement si son argument est $0$ ou $\pi$ modulo $2\pi$, c'est-à-dire si $\vect{AB}$ et $\vect{AC}$ sont colinéaires. $q$ est imaginaire pur (non nul) si et seulement si son argument est $\pm\frac\pi2$. Pour 3, un triangle rectangle isocèle en $A$ correspond à $AC=AB$ et $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi2$ ; un triangle équilatéral à $AC=AB$ et $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi3$.
+$q$ est réel si et seulement si son argument est $0$ ou $\pi$ modulo $2\pi$, c'est-à-dire si $\vect{AB}$ et $\vect{AC}$ sont colinéaires. $q$ est imaginaire pur (non nul) si et seulement si son argument est $\pm\frac\pi2$. Pour 3, le théorème précédent donne $\abs q=\frac{AC}{AB}$ et $\arg q\equiv\left(\vect{AB},\vect{AC}\right)\pmod{2\pi}$. Ainsi $q=\pm i$ si et seulement si $AC=AB$ et $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi2$, ce qui caractérise un triangle rectangle isocèle en $A$. De même, $q=\e^{\pm i\pi/3}$ si et seulement si $AC=AB$ et $\left(\vect{AB},\vect{AC}\right)\equiv\pm\frac\pi3$. Un triangle isocèle en $A$ dont l'angle en $A$ mesure $\frac\pi3$ a deux autres angles égaux, chacun de mesure $\frac12\left(\pi-\frac\pi3\right)=\frac\pi3$ : ses trois angles sont égaux, il est équilatéral. Réciproquement, un triangle équilatéral vérifie $AC=AB$ et son angle en $A$ mesure $\frac\pi3$.
 \end{proof}
 \begin{example}[Construire un carré]
 Soit $A$ et $B$ d'affixes $a$ et $b$. Le carré direct $ABCD$ a pour sommets $c=b+i(b-a)$ et $d=a+i(b-a)$ : on passe de $\vect{AB}$ à $\vect{BC}$ par un quart de tour direct. Avec $a=0$ et $b=1$ : $c=1+i$ et $d=i$.
