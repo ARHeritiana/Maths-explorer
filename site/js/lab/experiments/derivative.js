@@ -81,22 +81,22 @@ export default {
             { at: [xb, m.yb], color: "obj2", r: 5, label: "B", dx: 10, dy: -12 },
           ],
           texts: wide ? [
-            { at: [s.x + s.h / 2, m.ya], text: `h = ${num(s.h, 2)}`, dy: 20, anchor: "center", color: "muted" },
-            { at: [xb, (m.ya + m.yb) / 2], text: `Δy = ${num(m.yb - m.ya, 2)}`, dx: s.h > 0 ? 8 : -8, anchor: s.h > 0 ? "left" : "right", color: "muted" },
+            { at: [s.x + s.h / 2, m.ya], text: fmt.rel("h", s.h, 2), dy: 20, anchor: "center", color: "muted" },
+            { at: [xb, (m.ya + m.yb) / 2], text: fmt.rel("Δy", m.yb - m.ya, 2), dx: s.h > 0 ? 8 : -8, anchor: s.h > 0 ? "left" : "right", color: "muted" },
           ] : [],
         };
       },
     },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num;
-      return `${fmt.fr ? "Pente de (AB)" : "Slope of (AB)"} = (yB − yA) / (xB − xA) = (${num(m.yb, 3)} − ${num(m.ya, 3)}) / ${num(s.h, 3)} = ${num(m.secant, 3)}`;
+      return `${fmt.fr ? "Pente de (AB)" : "Slope of (AB)"} = (yB − yA) / (xB − xA) = (${fmt.full(m.yb)} − ${fmt.full(m.ya)}) / ${num(s.h, 3)} ${fmt.eq(m.secant, 3)} ${num(m.secant, 3)}`;
     },
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num;
       return [
-        [["Pente de la sécante (AB)", "Slope of the secant (AB)"], num(m.secant, 3)],
-        [["Pente de la tangente en A", "Slope of the tangent at A"], num(m.tangent, 3)],
-        [["Écart entre les deux pentes", "Gap between the two slopes"], num(m.gap, 3)],
+        [["Pente de la sécante (AB)", "Slope of the secant (AB)"], fmt.read(m.secant, 3)],
+        [["Pente de la tangente en A", "Slope of the tangent at A"], fmt.read(m.tangent, 3)],
+        [["Écart entre les deux pentes", "Gap between the two slopes"], fmt.read(m.gap, 3)],
       ];
     },
     table: {
@@ -104,7 +104,7 @@ export default {
       head: [["h", "h"], ["Pente de (AB)", "Slope of (AB)"], ["Écart avec 2x", "Gap to 2x"]],
       data(s, { fmt }) {
         const num = fmt.num, hs = [1, 0.5, 0.1, 0.01, 0.001], sg = sign(s.h);
-        const rows = hs.map((v) => { const sl = slope(s.x, sg * v); return [num(sg * v, 3), num(sl, 4), num(sl - 2 * s.x, 4)]; });
+        const rows = hs.map((v) => { const sl = slope(s.x, sg * v); return [fmt.read(sg * v, 3), fmt.read(sl, 4), fmt.read(sl - 2 * s.x, 4)]; });
         return { rows, highlight: hs.findIndex((v) => Math.abs(Math.abs(s.h) - v) < 1e-9) };
       },
     },

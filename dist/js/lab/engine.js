@@ -3,26 +3,12 @@
 // text writes that touch a node only when the string changed. No element is created or replaced during a drag.
 import { canvasNavigation } from "../canvas-navigation.js";
 import { palette as themePalette } from "../object-kit.js";
+import { makeFormat } from "./format.js";
 
 export const HIT = 22;
-const MINUS = "−";
 
-// ---- number and text formatting: French conventions by default (decimal comma, (x ; y), [a ; b]).
-export function makeFormat(lang = "fr") {
-  const fr = lang !== "en";
-  const num = (n, d = 2) => {
-    if (!Number.isFinite(n)) return n > 0 ? "∞" : n < 0 ? MINUS + "∞" : "?";
-    let s = (Math.round(n * 10 ** d) / 10 ** d).toFixed(d);
-    if (s.includes(".")) s = s.replace(/\.?0+$/, "");
-    if (s === "-0" || s === "") s = "0";
-    s = s.replace("-", MINUS);
-    return fr ? s.replace(".", ",") : s;
-  };
-  const pt = (...c) => "(" + c.map((v) => (typeof v === "number" ? num(v) : v)).join(fr ? " ; " : ", ") + ")";
-  const iv = (a, b) => `[${typeof a === "number" ? num(a) : a}${fr ? " ; " : ", "}${typeof b === "number" ? num(b) : b}]`;
-  const t = (pair) => (Array.isArray(pair) ? pair[fr ? 0 : 1] : pair);
-  return { fr, lang: fr ? "fr" : "en", num, pt, iv, t };
-}
+// ---- number formatting lives in format.js (≈ for a rounded value, = for an exact one)
+export { makeFormat };
 
 // ---- DOM text that is written only when it changed (a Text node is updated in place: no childList mutation).
 export function textNode(el) {
@@ -57,10 +43,11 @@ export function createReadout(host, className = "lab2-readout") {
         slots = items.map(() => {
           const row = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
           row.append(dt, dd); dl.append(row); textNode(dt); textNode(dd);
-          return { dt, dd };
+          return { dt, dd, row };
         });
       }
-      items.forEach(([label, value], i) => { setText(slots[i].dt, label); setText(slots[i].dd, value); });
+      // a long value (a sentence) takes the whole row on a phone, where the cards sit three to a row
+      items.forEach(([label, value], i) => { setText(slots[i].dt, label); setText(slots[i].dd, value); setClass(slots[i].row, "is-long", String(value).length > 24); });
     },
   };
 }

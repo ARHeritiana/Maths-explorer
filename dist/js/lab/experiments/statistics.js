@@ -35,7 +35,7 @@ export default {
     dots: {
       x: [0, MAX], y: [0, 3.6], xTicks: Array.from({ length: MAX + 1 }, (_, k) => k), yTicks: [], noYAxis: true, zeroLabel: true,
       scene(s, { fmt }) {
-        const m = model(s), num = fmt.num;
+        const m = model(s);
         return {
           lines: [
             { a: [m.mean, 0], b: [m.mean, 3.6], color: "obj2", dash: [6, 5], width: 2 },
@@ -43,8 +43,8 @@ export default {
           ],
           points: s.data.map((x, i) => ({ at: [x, 0.4 + 0.5 * m.levels[i]], color: "ink", r: 7 })),
           texts: [
-            { at: [m.mean, 3.3], text: `x̄ = ${num(m.mean)}`, color: "obj2", dx: 7, size: 16 },
-            { at: [m.median, 2.8], text: `${fmt.fr ? "méd." : "med."} = ${num(m.median)}`, color: "obj3", dx: 7, size: 16 },
+            { at: [m.mean, 3.3], text: fmt.rel("x̄", m.mean), color: "obj2", dx: 7, size: 16 },
+            { at: [m.median, 2.8], text: fmt.rel(fmt.fr ? "méd." : "med.", m.median), color: "obj3", dx: 7, size: 16 },
           ],
         };
       },
@@ -65,25 +65,30 @@ export default {
             { a: [m.median, 0.3], b: [m.median, 0.7], color: "obj3", width: 4.5 },
           ],
           points: [{ at: [m.mean, 0.5], color: "obj2", r: 6, hollow: true }],
-          texts: [
-            { at: [m.min, 0.9], text: "min", anchor: "center", color: "muted", size: 14 },
-            { at: [m.q1, 0.9], text: "Q₁", anchor: "center", color: "accent", size: 15 },
-            { at: [m.q3, 0.9], text: "Q₃", anchor: "center", color: "accent", size: 15 },
-            { at: [m.max, 0.9], text: "max", anchor: "center", color: "muted", size: 14 },
-          ],
+          // one row above the box, in order, at the x of each quantity; labels that would touch spread sideways
+          rowLabels: {
+            y: 0.9, to: 0.72, size: 15,
+            items: [
+              { x: m.min, text: "min", color: "muted" },
+              { x: m.q1, text: "Q₁", color: "accent" },
+              { x: m.median, text: fmt.fr ? "méd." : "med.", color: "obj3" },
+              { x: m.q3, text: "Q₃", color: "accent" },
+              { x: m.max, text: "max", color: "muted" },
+            ],
+          },
         };
       },
     },
     formula(s, { fmt }) {
-      const m = model(s);
-      return `x̄ = (${s.data.map((x) => fmt.num(x)).join(" + ")}) / ${m.n} = ${fmt.num(m.mean)}`;
+      const m = model(s), sum = s.data.reduce((a, b) => a + b, 0);
+      return `x̄ = (${s.data.map((x) => fmt.num(x)).join(" + ")}) / ${m.n} = ${fmt.ratio(sum, m.n)}`;
     },
     readout(s, { fmt }) {
-      const m = model(s), num = fmt.num, fr = fmt.fr;
+      const m = model(s), fr = fmt.fr, sum = s.data.reduce((a, b) => a + b, 0);
       return [
-        [["Moyenne x̄", "Mean x̄"], num(m.mean)],
-        [["Médiane", "Median"], num(m.median)],
-        [["Q₁ ; Q₃ (boîte)", "Q₁, Q₃ (box)"], s.hide ? (fr ? "à lire sur la figure" : "read it on the figure") : `${num(m.q1)}${fr ? " ; " : ", "}${num(m.q3)} (${fr ? "écart" : "gap"} ${num(m.iqr)})`],
+        [["Moyenne x̄", "Mean x̄"], fmt.ratio(sum, m.n)],
+        [["Médiane", "Median"], fmt.read(m.median)],
+        [["Q₁ ; Q₃ (boîte)", "Q₁, Q₃ (box)"], s.hide ? (fr ? "à lire sur la figure" : "read it on the figure") : `${fmt.read(m.q1)}${fr ? " ; " : ", "}${fmt.read(m.q3)} (${fr ? "écart" : "gap"} ${fmt.read(m.iqr)})`],
       ];
     },
   },

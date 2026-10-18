@@ -183,7 +183,7 @@ test("the scenes of every panel are finite over the sampled states and stay insi
     statistics: [{ data: [2, 3, 4, 4, 5, 6, 9], hide: 0 }, { data: [0, 0, 0, 0, 0, 0, 0], hide: 0 }],
     complex: [{ r: 1, theta: 0, tx: 1, ty: 2, mode: "multiply", hide: 0 }, { r: 0, theta: 90, tx: 1, ty: 1, mode: "multiply", hide: 0 }, { r: 2, theta: 90, tx: 0, ty: 0, mode: "translate", hide: 0 }],
   };
-  const KINDS_OK = new Set(["curves", "areas", "rects", "polys", "lines", "circles", "arcs", "points", "texts"]);
+  const KINDS_OK = new Set(["curves", "areas", "rects", "polys", "lines", "circles", "arcs", "points", "texts", "rowLabels"]);
   const finite = (x) => (typeof x === "number" ? Number.isFinite(x) : Array.isArray(x) ? x.every(finite) : x && typeof x === "object" ? Object.entries(x).every(([k, v]) => typeof v === "function" || finite(v)) : true);
   for (const [id, list] of Object.entries(samples)) {
     const e = byId[id], fmt = makeFormat("fr");
@@ -466,6 +466,39 @@ test("number formatting follows the French and English conventions", () => {
   assert.equal(fr.iv(0, 1), "[0 ; 1]"); assert.equal(en.iv(0, 1), "[0, 1]");
   assert.equal(fr.t(["a", "b"]), "a"); assert.equal(en.t(["a", "b"]), "b");
   assert.equal(snap(0.3, 0.05), 0.3); assert.equal(snap(7.4, 0.5), 7.5);
+});
+
+test("honest labelling: ≈ for a rounded value, = for an exact one, in every readout and canvas label", () => {
+  const fr = makeFormat("fr"), en = makeFormat("en");
+  assert.equal(fr.isExact(6), true); assert.equal(fr.isExact(33 / 7), false); assert.equal(fr.isExact(0.125), false); assert.equal(fr.isExact(0.125, 3), true);
+  assert.equal(fr.eq(4.5), "="); assert.equal(fr.eq(2 / 3), "≈");
+  assert.equal(fr.rel("x̄", 33 / 7), "x̄ ≈ 4,71"); assert.equal(en.rel("x̄", 33 / 7), "x̄ ≈ 4.71"); assert.equal(fr.rel("x̄", 6), "x̄ = 6");
+  assert.equal(fr.read(33 / 7), "≈ 4,71"); assert.equal(fr.read(6), "6"); assert.equal(fr.read(-0.25), "−0,25");
+  assert.equal(fr.ratio(33, 7), "33/7 ≈ 4,71"); assert.equal(en.ratio(33, 7), "33/7 ≈ 4.71"); assert.equal(fr.ratio(9, 2), "4,5"); assert.equal(fr.ratio(42, 7), "6");
+  assert.equal(fr.ratio(16.5, 3.5), "33/7 ≈ 4,71");   // decimals reduce to lowest terms
+  assert.equal(fr.ratio(1, 3, 4), "1/3 ≈ 0,3333");
+  assert.equal(fr.pt(1, 2), "(1 ; 2)"); assert.equal(fr.pt(0.5, -2.0625), "≈ (0,5 ; −2,06)");
+  assert.equal(fr.eq(Infinity), "≈");
+  // the statistics witness: the mean of 2 3 4 4 5 6 9 is 33/7
+  const stat = byId.statistics, ctx = { fmt: fr, lang: "fr", unlocked: () => true }, s = { data: [2, 3, 4, 4, 5, 6, 9], hide: 0 };
+  assert.match(stat.views.formula(s, ctx), /= 33\/7 ≈ 4,71$/);
+  assert.equal(stat.views.readout(s, ctx)[0][1], "33/7 ≈ 4,71");
+  assert.ok(stat.views.dots.scene(s, ctx).texts.some((t) => t.text === "x̄ ≈ 4,71"));
+  assert.equal(stat.views.readout({ ...s, data: [2, 3, 4, 4, 5, 6, 18] }, ctx)[0][1], "6");
+  assert.ok(stat.views.dots.scene({ ...s, data: [2, 3, 4, 4, 5, 6, 18] }, ctx).texts.some((t) => t.text === "x̄ = 6"));
+  // other witnesses: an irrational root, the square root of a modulus, a sum of rectangles
+  assert.match(byId.quadratic.views.readout({ a: 1, b: 0, c: -2 }, ctx)[2][1], /x₁ ≈ −1,41 ; x₂ ≈ 1,41/);
+  assert.match(byId.quadratic.views.readout({ a: 1, b: 0, c: -4 }, ctx)[2][1], /x₁ = −2 ; x₂ = 2/);
+  assert.match(byId.integral.views.readout({ a: 0, b: 1, n: 4, method: "left" }, ctx)[1][1], /^1\/3 ≈ 0,3333$/);
+  assert.match(byId.integral.views.readout({ a: 0, b: 1, n: 4, method: "left" }, ctx)[0][1], /^≈ 0,21875|^0,21875|^≈ 0,2188/);
+  assert.match(byId.complex.views.readout({ r: 1, theta: 15, tx: 1, ty: 2, mode: "multiply", hide: 0 }, ctx)[0][1], /module = 1 ; argument = 15°/);
+  assert.match(byId.complex.views.formula({ r: 1, theta: 15, tx: 1, ty: 2, mode: "multiply", hide: 0 }, ctx), /^z × t ≈ /);
+  assert.match(byId.complex.views.formula({ r: 2, theta: 0, tx: 1, ty: 2, mode: "multiply", hide: 0 }, ctx), /^z × t = /);
+  assert.match(byId.sequences.views.readout({ mode: "geom", u0: 1, q: 1.5, r: 0, n: 5 }, ctx)[1][1], /^≈ 7,59$/);
+  assert.match(byId.vectors.views.figure.measure({ ux: 3, uy: 1, vx: -1, vy: 3 }, ctx).text, /^det\(u, v\) = 10$/);
+  assert.match(byId.trig.views.readout({ deg: 30, assoc: "none", fn: "sin" }, ctx)[1][1], /√3\/2 ≈ 0,866/);
+  assert.match(byId.trig.views.readout({ deg: 30, assoc: "none", fn: "sin" }, ctx)[2][1], /1\/2 = 0,5/);
+  assert.match(byId.trig.views.readout({ deg: 37, assoc: "none", fn: "sin" }, ctx)[0][1], /^37° = 37π\/180 rad$/);
 });
 
 test("probability: the binomial law is consistent and the seeded simulation is reproducible and statistically sound", () => {

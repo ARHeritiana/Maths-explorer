@@ -72,7 +72,7 @@ export default {
           lines: [{ a: [m.alpha, -6], b: [m.alpha, 8], color: "muted", dash: [6, 5], width: 1.5 }],
           points: [
             // a double root is the vertex itself, which already carries its coordinates
-            ...m.roots.map((r) => ({ at: [r, 0], color: "pos", r: 6, label: m.roots.length === 2 ? num(r) : undefined, dy: -12 })),
+            ...m.roots.map((r) => ({ at: [r, 0], color: "pos", r: 6, label: m.roots.length === 2 ? fmt.read(r) : undefined, dy: -12 })),
             { at: [0, s.c], color: "obj3", r: 5 },
             { at: [m.alpha, m.beta], color: "accent", r: 5, label: fmt.pt(m.alpha, m.beta), dx: 16, dy: 32 },
           ],
@@ -80,7 +80,7 @@ export default {
       },
     },
     formula(s, { fmt }) {
-      const m = model(s), num = fmt.num;
+      const m = model(s), num = (v) => fmt.num(v, 4);   // four decimals: a, α, β and c are multiples of 1/16, so nothing is rounded
       // each distinct writing once: the two forms coincide when the vertex is on the y-axis and b = 0
       const forms = [expanded(s, num), canonical(m, num)].filter((f, i, all) => all.indexOf(f) === i);
       return `f(x) = ${forms.join(" = ")}`;
@@ -88,12 +88,12 @@ export default {
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num, fr = fmt.fr;
       const roots = m.roots.length === 0 ? (fr ? "aucune racine réelle" : "no real root")
-        : m.roots.length === 1 ? (fr ? `racine double ${num(m.roots[0])}` : `double root ${num(m.roots[0])}`)
-        : (fr ? `racines ${num(m.roots[0])} et ${num(m.roots[1])}` : `roots ${num(m.roots[0])} and ${num(m.roots[1])}`);
+        : m.roots.length === 1 ? (fr ? `racine double ${fmt.rel("x₀", m.roots[0])}` : `double root ${fmt.rel("x₀", m.roots[0])}`)
+        : `${fmt.rel("x₁", m.roots[0])}${fr ? " ; " : ", "}${fmt.rel("x₂", m.roots[1])}`;
       return [
         [["a ; b ; c", "a, b, c"], fr ? `${num(s.a)} ; ${num(s.b)} ; ${num(s.c)}` : `${num(s.a)}, ${num(s.b)}, ${num(s.c)}`],
         [["Sommet (α ; β)", "Vertex (α, β)"], fmt.pt(m.alpha, m.beta)],
-        [["Δ et racines", "Δ and roots"], `Δ = ${num(m.discriminant)} ; ${roots}`],
+        [["Δ et racines", "Δ and roots"], `${fmt.rel("Δ", m.discriminant, 4)} ; ${roots}`],
       ];
     },
   },

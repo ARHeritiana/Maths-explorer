@@ -39,7 +39,7 @@ export default {
   views: {
     panels: ["figure"],
     figure: {
-      x: [-5, 5], y: [-4.5, 4.5], equal: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
+      x: [-5, 5], y: [-4.5, 4.5], equal: true, widen: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, tone = m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "muted";
         const [sx, sy] = m.sum, flat = m.collinear;
@@ -53,27 +53,27 @@ export default {
             ...(flat && (m.normU > 0 || m.normV > 0) ? [{ a: [-s.ux * 9, -s.uy * 9], b: [s.ux * 9, s.uy * 9], color: "pos", width: 2, dash: [3, 5] }] : []),
           ],
           points: [
-            { at: [s.ux, s.uy], color: "accent", r: 5, label: `u ${fmt.pt(s.ux, s.uy)}`, dx: 14, dy: 22 },
-            { at: [s.vx, s.vy], color: "obj2", r: 5, label: `v ${fmt.pt(s.vx, s.vy)}`, dx: -14, dy: -12, anchor: "right" },
+            { at: [s.ux, s.uy], color: "accent", r: 5, label: `u = ${fmt.pt(s.ux, s.uy)}`, dx: 14, dy: 22 },
+            { at: [s.vx, s.vy], color: "obj2", r: 5, label: `v = ${fmt.pt(s.vx, s.vy)}`, dx: -14, dy: -12, anchor: "right" },
             { at: [sx, sy], color: tone, r: 3.5, hollow: true },
           ],
-          texts: flat ? [] : [{ at: [sx / 2, sy / 2], text: `${fmt.fr ? "aire" : "area"} ${num(m.area)}`, color: tone, anchor: "center", size: 17 }],
+          texts: flat ? [] : [{ at: [sx / 2, sy / 2], text: fmt.rel(fmt.fr ? "aire" : "area", m.area), color: tone, anchor: "center", size: 17 }],
         };
       },
       measure(s, { fmt }) {
         const m = model(s);
-        return { text: `det(u, v) = ${fmt.num(m.det)}`, color: m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "ink" };
+        return { text: fmt.rel("det(u, v)", m.det), color: m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "ink" };
       },
     },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num;
-      return `det(u, v) = ${num(s.ux)} × ${wrap(num, s.vy)} − ${wrap(num, s.uy)} × ${wrap(num, s.vx)} = ${num(m.det)}`;
+      return `det(u, v) = ${num(s.ux)} × ${wrap(num, s.vy)} − ${wrap(num, s.uy)} × ${wrap(num, s.vx)} ${fmt.eq(m.det)} ${num(m.det)}`;
     },
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num, fr = fmt.fr;
       return [
-        [["Déterminant", "Determinant"], num(m.det)],
-        [["Aire du parallélogramme", "Area of the parallelogram"], num(m.area)],
+        [["Déterminant", "Determinant"], fmt.read(m.det)],
+        [["Aire du parallélogramme", "Area of the parallelogram"], fmt.read(m.area)],
         [["Sens de (u, v)", "Orientation of (u, v)"], m.orientation > 0 ? (fr ? "direct (aire positive)" : "counterclockwise (positive)") : m.orientation < 0 ? (fr ? "indirect (aire négative)" : "clockwise (negative)") : fr ? "aplati : colinéaires" : "flat: collinear"],
       ];
     },

@@ -984,7 +984,13 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .lab2-full .lab2-card { position: static; margin-top: 12px; }
 }
 @media (max-width: 460px) {
-  .lab2-readout { grid-template-columns: 1fr; }
+  /* compact cards, two or three to a row (never one per row: they would push the mission card down); a long value takes the row */
+  .lab2-readout { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 6px; }
+  .lab2-readout > div { padding: 5px 7px; }
+  .lab2-readout > div.is-long { grid-column: 1 / -1; }
+  .lab2-readout dt { font-size: 0.75rem; line-height: 1.2; }
+  .lab2-readout dd { font-size: 0.95rem; line-height: 1.25; }
   .lab2-figure { padding: 8px; }
+  .lab2-formula { font-size: 1rem; margin: 8px 2px 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .lab2-card-link, .lab2-segment { transition: none; } }

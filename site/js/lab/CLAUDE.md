@@ -11,11 +11,12 @@ The contract is `docs/LAB_DESIGN.md` (read sections 3 to 7 before changing anyth
 | File | Holds |
 |---|---|
 | `engine.js` | `createStage`: DPR canvas, one rAF scheduler (draws only when dirty), handle hit-test (22 px radius), pointer capture, focusable twins of the handles (Tab, arrows), shared camera, palette and theme watch; `makeFormat` (decimal comma, `(x ; y)`), `setText`/`setAttr`/`setClass` (write only when changed), `createReadout`, `createTable` |
+| `format.js` | `makeFormat`: numbers with honest labelling (`num`, `isExact`, `eq`, `rel`, `read`, `ratio`, `full`, `pt`, `iv`, `t`): ≈ for a rounded value, = for an exact one; decimal comma in French; re-exported by `engine.js` |
 | `shell.js` | `createShell`: builds the figure and the mission card, runs the five mission kinds (`KINDS`), state, goals, answers, previous/next, `N`/`P`, argument section; `root.__lab` is the hook the browser tests use |
 | `mount.js` | `mountExperiment` (modes `full`, `inline`, `slide` (stub, Phase 3)); loads the template of the experiment |
 | `registry.js` | `EXPERIMENTS` (catalogue order, nine), `TEMPLATES` (lazy, six), `TEMPLATE_INFO` (group titles of the index), `resolveRef`, `catalogue()` (lines for `content.js` `labs`) |
 | `page.js` | markup of `#lab` (index grouped by type of activity) and of one experiment page |
-| `plot.js` | panels and views (fixed ranges), axes, the data-driven scene (curves, areas, rects, polys, lines, circles, arcs, points, texts; point labels never collide), handle marks, `buildHandles` (the engine handles of a template) |
+| `plot.js` | panels and views (fixed ranges), axes, the data-driven scene (curves, areas, rects, polys, lines, circles, arcs, points, texts, `rowLabels`; point labels never collide); `widen` spreads an equal-scale panel over the whole width, handle marks, `buildHandles` (the engine handles of a template) |
 | `templates/family.js` | template `family`: one or two panels, handles from the experiment's `controls`, links between panels |
 | `templates/process.js` | template `process`: `family` + play for scrubbers (reduced motion: one step per press) |
 | `templates/chance.js` | template `chance`: histogram of observed frequencies (theory outline only when the state says so) above a tray of the last experiments drawn on the canvas; run buttons are an `action` control |

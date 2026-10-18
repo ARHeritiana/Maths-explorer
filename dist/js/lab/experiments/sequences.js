@@ -59,7 +59,7 @@ export default {
           curves: guide,
           lines: [{ a: [s.n, -8], b: [s.n, 16], color: "muted", dash: [3, 5], width: 1.2 }],
           points: pts,
-          texts: [{ at: [s.n, list[s.n]], text: `u${sup(s.n)} = ${fmt.num(list[s.n])}`, dx: 10, dy: -14, color: "accent" }],
+          texts: [{ at: [s.n, list[s.n]], text: fmt.rel(`u${sup(s.n)}`, list[s.n]), dx: 10, dy: -14, color: "accent" }],
         };
       },
     },
@@ -71,8 +71,8 @@ export default {
       const m = S.model(s), num = fmt.num;
       return [
         [["Premier terme u₀", "First term u₀"], num(s.u0)],
-        [[`Terme u${sup(s.n)}`, `Term u${sup(s.n)}`], num(m.last)],
-        [[`Somme u₀ + … + u${sup(s.n)}`, `Sum u₀ + … + u${sup(s.n)}`], num(m.total)],
+        [[`Terme u${sup(s.n)}`, `Term u${sup(s.n)}`], fmt.read(m.last)],
+        [[`Somme u₀ + … + u${sup(s.n)}`, `Sum u₀ + … + u${sup(s.n)}`], fmt.read(m.total)],
       ];
     },
     table: {
@@ -83,8 +83,8 @@ export default {
         const first = Math.max(0, s.n - 7), list = S.terms(s, first + 8), num = fmt.num;
         const rows = Array.from({ length: 8 }, (_, i) => {
           const k = first + i, u = list[k];
-          const rel = k === 0 ? "·" : isGeom(s) ? (list[k - 1] === 0 ? "·" : num(u / list[k - 1])) : num(u - list[k - 1]);
-          return [String(k), num(u), rel];
+          const rel = k === 0 ? "·" : isGeom(s) ? (list[k - 1] === 0 ? "·" : fmt.read(u / list[k - 1])) : fmt.read(u - list[k - 1]);
+          return [String(k), fmt.read(u), rel];
         });
         return { rows, highlight: s.n - first };
       },

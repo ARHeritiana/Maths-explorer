@@ -13,7 +13,7 @@ const AXIS_COLOUR = { cos: "obj2", sin: "obj3" };
 function valueText(exact, v, num, i) {
   if (!exact) return `≈ ${num(v, 3)}`;
   const e = exact[i];
-  return /√|\//.test(e) ? `${e} ≈ ${num(v, 3)}` : e;
+  return /√|\//.test(e) ? `${e} ${Math.abs(Math.round(v * 1e3) / 1e3 - v) < 1e-9 ? "=" : "≈"} ${num(v, 3)}` : e;
 }
 const pair = (fmt, a, b) => (fmt.fr ? `(${a} ; ${b})` : `(${a}, ${b})`);
 
@@ -117,7 +117,7 @@ export default {
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num, p = m.p;
       return [
-        [["Angle x", "Angle x"], `${num(s.deg)}° = ${p.radians ? p.radians : "≈ " + num(m.rad, 3)} rad`],
+        [["Angle x", "Angle x"], `${num(s.deg)}° ${p.radians ? "= " + p.radians : "≈ " + num(m.rad, 3)} rad`],
         [["cos x (abscisse de P)", "cos x (x-coordinate of P)"], valueText(p.exact, p.cos, num, 0)],
         [["sin x (ordonnée de P)", "sin x (y-coordinate of P)"], valueText(p.exact, p.sin, num, 1)],
       ];

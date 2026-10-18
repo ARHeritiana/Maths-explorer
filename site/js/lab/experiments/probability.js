@@ -52,7 +52,7 @@ export default {
         }
         if (show || unlocked("expectation")) {
           lines.push({ a: [m.mean, 0], b: [m.mean, 0.5], color: "accent", dash: [6, 5], width: 1.8 });
-          texts.push({ at: [m.mean, 0.42], text: `E = ${fmt.num(m.mean)}`, color: "accent", dx: 6, size: 15 });
+          texts.push({ at: [m.mean, 0.42], text: fmt.rel("E", m.mean), color: "accent", dx: 6, size: 15 });
         }
         if (m.runs && (show || unlocked("expectation"))) points.push({ at: [m.observedMean, 0.015], color: "obj2", hollow: true, r: 6 });
         texts.push({ at: [-0.6, 0.485], text: fmt.t(show ? ["fréquence (plein), probabilité (contour)", "frequency (filled), probability (outline)"] : ["fréquence observée", "observed frequency"]), color: "muted", size: 15 });
@@ -72,8 +72,8 @@ export default {
       const known = s.theory || unlocked("expectation");
       return [
         [["Expériences lancées", "Experiments run"], `${m.runs}`],
-        [["Moyenne observée de X", "Observed mean of X"], m.runs ? num(m.observedMean, 3) : fr ? "pas encore" : "not yet"],
-        [["E(X) = np", "E(X) = np"], known ? `${num(s.n)} × ${num(s.p)} = ${num(m.mean)}` : fr ? "à découvrir" : "to discover"],
+        [["Moyenne observée de X", "Observed mean of X"], m.runs ? fmt.read(m.observedMean, 3) : fr ? "pas encore" : "not yet"],
+        [["E(X) = np", "E(X) = np"], known ? `${num(s.n)} × ${num(s.p)} ${fmt.eq(m.mean)} ${num(m.mean)}` : fr ? "à découvrir" : "to discover"],
       ];
     },
   },

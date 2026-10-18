@@ -99,11 +99,13 @@ export default {
     links: (s) => { const m = model(s); return [{ from: { panel: "before", at: m.t }, to: { panel: "after", at: m.w }, color: "obj3" }]; },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num, z = alg(num, m.z), t = alg(num, m.t), w = alg(num, m.w);
-      return s.mode === "multiply" ? `z × t = ${paren(z)} × ${paren(t)} = ${w}` : `z + t = ${paren(z)} + ${paren(t)} = ${w}`;
+      // z and t are given by a modulus and an argument: their coordinates are often rounded, and then so is everything after
+      const e = [...m.z, ...m.t, ...m.w].every((v) => fmt.isExact(v)) ? "=" : "≈";
+      return s.mode === "multiply" ? `z × t ${e} ${paren(z)} × ${paren(t)} ${e} ${w}` : `z + t ${e} ${paren(z)} + ${paren(t)} ${e} ${w}`;
     },
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num, fr = fmt.fr, undef = fr ? "indéfini" : "not defined", sep = fr ? " ; " : ", ";
-      const ma = (mod, arg) => `${fr ? "module" : "modulus"} ${num(mod, 3)}${sep}${fr ? "argument" : "argument"} ${arg === null ? undef : num(arg, 1) + "°"}`;
+      const ma = (mod, arg) => `${fmt.rel(fr ? "module" : "modulus", mod, 3)}${sep}${arg === null ? `argument ${undef}` : fmt.rel("argument", arg, 1) + "°"}`;
       const op = s.mode === "multiply" ? "z × t" : "z + t";
       return [
         [["z : module et argument", "z: modulus and argument"], ma(m.modZ, m.argZ)],

@@ -19,13 +19,23 @@ export function makeView(rect, spec) {
   const pw = Math.max(40, rect.w - pad.l - pad.r), ph = Math.max(40, rect.h - pad.t - pad.b);
   let [x0, x1] = spec.x, [y0, y1] = spec.y;
   let L = rect.x + pad.l, T = rect.y + pad.t, w = pw, h = ph;
+  let xTicks = null, yTicks = null;
+  if (spec.equal && spec.widen) {
+    // Use the whole panel at equal scale: the range of the axis that has room grows (it is never stretched). It depends on the
+    // size of the stage only, never on the state, so the camera stays fixed.
+    const k0 = Math.min(pw / (x1 - x0), ph / (y1 - y0)), dx = pw / k0 - (x1 - x0), dy = ph / k0 - (y1 - y0);
+    if (dx > 0) { x0 -= dx / 2; x1 += dx / 2; }
+    if (dy > 0) { y0 -= dy / 2; y1 += dy / 2; }
+    const every = (ticks, a, b) => { const step = ticks && ticks.length > 1 ? Math.abs(ticks[1] - ticks[0]) : 0; if (!step) return null; const out = []; for (let t = Math.ceil(a / step) * step; t <= b + 1e-9; t += step) out.push(Math.round(t / step) * step); return out; };
+    xTicks = every(spec.xTicks, x0, x1); yTicks = every(spec.yTicks, y0, y1);
+  }
   if (spec.equal) {
     const k = Math.min(pw / (x1 - x0), ph / (y1 - y0));
     w = k * (x1 - x0); h = k * (y1 - y0);
     L += (pw - w) / 2; T += (ph - h) / 2;
   }
   return {
-    x0, x1, y0, y1, left: L, top: T, width: w, height: h, rect,
+    x0, x1, y0, y1, left: L, top: T, width: w, height: h, rect, xTicks, yTicks,
     X: (x) => L + ((x - x0) / (x1 - x0)) * w,
     Y: (y) => T + h - ((y - y0) / (y1 - y0)) * h,
     iX: (X) => x0 + ((X - L) / w) * (x1 - x0),
@@ -40,7 +50,7 @@ export function drawAxes(g, v, spec, st, fmt) {
   g.save();
   g.font = st.font(14);
   g.lineWidth = 1;
-  const xs = spec.xTicks || axisTicks(v.x0, v.x1).values, ys = spec.yTicks || axisTicks(v.y0, v.y1).values;
+  const xs = v.xTicks || spec.xTicks || axisTicks(v.x0, v.x1).values, ys = v.yTicks || spec.yTicks || axisTicks(v.y0, v.y1).values;
   g.strokeStyle = pal.grid; g.fillStyle = pal.muted;
   g.textAlign = "center";
   for (const x of xs) {
@@ -89,6 +99,30 @@ function label(g, st, text, x, y, color, anchor = "left", size = 17, placed = nu
   }
   g.lineWidth = 4; g.strokeStyle = st.pal.surface; g.strokeText(text, x, y);
   g.fillStyle = st.color(color || "ink"); g.fillText(text, x, y);
+  g.restore();
+}
+
+// A row of labels at the x of the quantities they name (the five numbers of a box plot). The order of x is kept, labels that
+// would touch spread sideways inside the panel, and a thin leader joins a displaced label to its true position.
+function rowLabels(g, v, st, spec) {
+  const size = spec.size || 15, gap = 6, y = v.Y(spec.y);
+  g.save(); g.font = st.font(size, 600, true);
+  const items = spec.items.map((it, i) => ({ ...it, i, p: v.X(it.x), home: v.X(it.x), w: g.measureText(it.text).width + 6 }));
+  g.restore();
+  items.sort((a, b) => a.p - b.p || a.i - b.i);
+  const lo = v.left, hi = v.left + v.width;
+  items.forEach((it, k) => { const min = k ? items[k - 1].p + (items[k - 1].w + it.w) / 2 + gap : lo + it.w / 2; if (it.p < min) it.p = min; });
+  for (let k = items.length - 1; k >= 0; k--) {
+    const max = k < items.length - 1 ? items[k + 1].p - (items[k + 1].w + items[k].w) / 2 - gap : hi - items[k].w / 2;
+    if (items[k].p > max) items[k].p = max;
+  }
+  g.save(); g.setLineDash([]);
+  for (const it of items) {
+    if (Math.abs(it.p - it.home) > 2 && spec.to !== undefined) {
+      g.strokeStyle = st.pal.muted; g.lineWidth = 1; g.beginPath(); g.moveTo(it.p, y + 6); g.lineTo(it.home, v.Y(spec.to)); g.stroke();
+    }
+    label(g, st, it.text, it.p, y, it.color, "center", size);
+  }
   g.restore();
 }
 
@@ -160,6 +194,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
   g.save();
   if (ghost) g.globalAlpha = 0.38;
   g.setLineDash([]);
+  if (scene.rowLabels && !ghost) rowLabels(g, v, st, scene.rowLabels);
   const placed = [];
   for (const p of scene.points || []) {
     const x = v.X(p.at[0]), y = v.Y(p.at[1]);
@@ -167,7 +202,12 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
     g.beginPath(); g.arc(x, y, p.r ?? 6, 0, Math.PI * 2);
     if (p.hollow) { g.lineWidth = 2; g.strokeStyle = st.color(p.color || "ink"); g.fillStyle = st.pal.surface; g.fill(); g.stroke(); }
     else { g.fillStyle = st.color(p.color || "ink"); g.fill(); }
-    if (p.label && !ghost) label(g, st, p.label, x + (p.dx ?? 10), y + (p.dy ?? -10), p.color, p.anchor || "left", 17, placed);
+    if (p.label && !ghost) {
+      // a label that would leave the panel on the right is pulled back inside it
+      let dx = p.dx ?? 10, anchor = p.anchor || "left";
+      if (anchor === "left") { g.save(); g.font = st.font(17, 600, true); const w = g.measureText(p.label).width; g.restore(); if (x + dx + w > v.left + v.width + 8) dx = v.left + v.width + 8 - w - x; }
+      label(g, st, p.label, x + dx, y + (p.dy ?? -10), p.color, anchor, 17, placed);
+    }
   }
   for (const t of scene.texts || []) if (!ghost) label(g, st, t.text, v.X(t.at[0]) + (t.dx || 0), v.Y(t.at[1]) + (t.dy || 0), t.color, t.anchor || "left", t.size || 16, placed);
   g.restore();

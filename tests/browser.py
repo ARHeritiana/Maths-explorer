@@ -191,7 +191,7 @@ with sync_playwright() as p:
     # Statistics: the readout follows the values; a value dragged to the edge of the line stays inside it.
     page.goto(BASE+'/#lab/statistics/mean'); page.locator('.lab2-canvas').wait_for()
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({data: [20, 20, 20, 20, 0, 0, 0]})")
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '11.43'")
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '80/7 ≈ 11.43'")
     assert 'NaN' not in page.locator('.lab2').inner_text() and 'undefined' not in page.locator('.lab2').inner_text()
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'

@@ -5,8 +5,8 @@ import * as I from "../models/integral.js";
 import { clamp } from "../models/num.js";
 
 const { model, exact, sum, f } = I;
-const cube = (v, num) => (v < 0 ? `(${num(v)})³` : `${num(v)}³`);
-const signed = (v, num) => (v > 0 ? "+" : "") + num(v, 4);
+const cube = (v, num) => (v < 0 ? `(${num(v, 3)})³` : `${num(v, 3)}³`);
+const signed = (v, fmt) => (fmt.isExact(v, 4) ? (v > 0 ? "+" : "") + fmt.num(v, 4) : (v > 0 ? "≈ +" : "≈ ") + fmt.num(v, 4));
 
 export default {
   id: "integral", template: "process",
@@ -63,14 +63,14 @@ export default {
     },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num;
-      return `${fmt.fr ? "Aire exacte" : "Exact area"} = (b³ − a³) / 3 = (${cube(s.b, num)} − ${cube(s.a, num)}) / 3 = ${num(m.exact, 4)}`;
+      return `${fmt.fr ? "Aire exacte" : "Exact area"} = (b³ − a³) / 3 = (${cube(s.b, num)} − ${cube(s.a, num)}) / 3 = ${fmt.ratio(s.b ** 3 - s.a ** 3, 3, 4)}`;
     },
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num;
       return [
-        [[`Somme des ${s.n} rectangles`, `Sum of the ${s.n} rectangles`], num(m.sum, 4)],
-        [["Aire exacte", "Exact area"], num(m.exact, 4)],
-        [["Erreur (somme − aire)", "Error (sum − area)"], signed(m.error, num)],
+        [[`Somme des ${s.n} rectangles`, `Sum of the ${s.n} rectangles`], fmt.read(m.sum, 4)],
+        [["Aire exacte", "Exact area"], fmt.ratio(s.b ** 3 - s.a ** 3, 3, 4)],
+        [["Erreur (somme − aire)", "Error (sum − area)"], signed(m.error, fmt)],
       ];
     },
     table: {
@@ -78,7 +78,7 @@ export default {
       head: [["n", "n"], ["À gauche", "Left"], ["À droite", "Right"], ["Au milieu", "Midpoint"]],
       data(s, { fmt }) {
         const ns = [2, 4, 8, 16, 32];
-        return { rows: ns.map((n) => [String(n), ...["left", "right", "mid"].map((mth) => fmt.num(sum(s.a, s.b, n, mth), 4))]), highlight: ns.indexOf(s.n) };
+        return { rows: ns.map((n) => [String(n), ...["left", "right", "mid"].map((mth) => fmt.read(sum(s.a, s.b, n, mth), 4))]), highlight: ns.indexOf(s.n) };
       },
     },
   },
