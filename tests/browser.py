@@ -29,7 +29,10 @@ with sync_playwright() as p:
     assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac']), 'the home page does not assume a curriculum'
     assert page.evaluate("() => { const c = document.querySelector('.stage-fg'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n > 500; }"), 'the hero drawing is not blank'
     assert page.locator('.wonder').count() == 0 and page.locator('.stage-cta').count() == 1, 'the home page is one animation and one door'
-    page.goto(BASE+'/#gallery'); assert page.locator('.wonder').count() == 6
+    page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
+    gallery_ids = page.evaluate("async () => { const {labs} = await import('./js/content.js'); return labs.filter(l => l.custom).map(l => l.id); }")
+    assert page.locator('.wonder').count() == len(gallery_ids), 'gallery cards follow the shared catalogue'
+    assert {urlparse(a).fragment.split('/')[-1] for a in page.locator('.wonder').evaluate_all('(links) => links.map(a => a.href)')} == set(gallery_ids)
     # Versions belong in query strings; check resource paths rather than the end of the URL.
     decks = page.request.get(BASE+'/slides/data/index.json').json()
     page.goto(BASE+'/#slides')
@@ -457,6 +460,38 @@ with sync_playwright() as p:
         assert abs(tp.evaluate('scrollY') - y1) < 5, 'dragging the Mandelbrot set does not scroll the page'
         assert tp.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         touch.close()
+    # New gallery exhibits: real Chromium rendering on desktop and phones, with their actual input events.
+    os.makedirs('test-results', exist_ok=True)
+    discoveries = ['voronoi','fastest-slide','soap-films','knots','einstein']
+    for width in [1280,390]:
+        page.set_viewport_size({'width':width,'height':950})
+        for exhibit in discoveries:
+            page.goto(BASE+'/#gallery/'+exhibit)
+            canvas=page.locator('#object-stage canvas'); canvas.wait_for()
+            assert page.locator('.exhibit-readout').inner_text().strip(), exhibit
+            assert page.locator('#quiz-preset').count() == 0, 'no empty preset action'
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), (width,exhibit)
+            if exhibit == 'voronoi':
+                canvas.focus();canvas.press('Enter')
+                assert page.locator('#vo-seed').get_attribute('max') == '7'
+                canvas.press('ArrowRight')
+            elif exhibit == 'fastest-slide':
+                page.locator('#bs-race').click();page.wait_for_timeout(150)
+                assert float(page.locator('#bs-time-out').inner_text()) > 0
+            elif exhibit == 'soap-films':
+                page.locator('#sf-step').click();page.locator('#sf-c0').evaluate("el => { el.value=1; el.dispatchEvent(new Event('input',{bubbles:true})); }")
+                assert 'NaN' not in page.locator('.exhibit-readout').inner_text()
+            elif exhibit == 'knots':
+                page.locator('#kn-mode').select_option('moves')
+                page.locator('[id="kn-RII+"]').click()
+                page.locator('[id="kn-RII-"]').click()
+                page.locator('#kn-movie').click()
+                page.locator('#kn-frame').evaluate("el => { el.value=16; el.dispatchEvent(new Event('input',{bubbles:true})); }")
+                assert '16/16' in page.locator('.exhibit-readout').inner_text()
+            else:
+                page.locator('#hat-p5000').click()
+                assert 'Exception' in page.locator('.exhibit-readout').inner_text()
+            page.screenshot(path='test-results/gallery-'+exhibit+'-'+str(width)+'.png',full_page=True)
     # Laboratory objects: each scene mounts, draws on a canvas, reacts, stays inside the viewport and its quiz works.
     OBJECTS = {'galton':'0.375','reuleaux':'6','platonic':'30','chaos':'27','fourier':'4','mandelbrot':'3'}
     for width in [1280,390]:
