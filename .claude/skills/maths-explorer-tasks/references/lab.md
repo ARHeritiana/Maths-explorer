@@ -22,8 +22,10 @@ figure, data, transform). The old guided page is gone; `#lab` shows only experim
    scene tests. Add the experiment to `DRAGS` and `EXPERIMENTS` in `tests/lab_browser.py` (a mission that unlocks a handle, so the
    drag is checked for zero element changes) and to `EXPERIMENTS`, `WITNESS`, `CHECKS` in `tests/browser.py` (walked mission by
    mission), and its drag to the list in `tests/dom-smoke.mjs`.
-6. Link from a chapter: `content/data/manifest.json` `catalog.chapters[].labs` holds the experiment id (or
-   `<experiment>/<mission>`); then `make site`.
+6. Link from a chapter: `content/data/manifest.json` `catalog.chapters[].labs` holds lab references (`<experiment>` or
+   `<experiment>/<mission>`, resolved by `resolveRef` in `site/js/lab/registry.js`); the chapter tab "Chercher" mounts the first one inline and
+   links each; then `make site`. In a slide: `lab('<ref>')` in `WIDGETS` of `scripts/build-slides.py`. `tests/lab-links.test.mjs` checks both.
+   Every displayed number goes through `fmt` (`rel`, `read`, `ratio`): ≈ when rounded, = when exact.
 Colours come from CSS tokens through `stage.color(name)` (`accent`, `obj2`, `obj3`, `pos`, `neg`, `c1`..`c8`), never
 literals. Camera, drag and keys come from the engine; do not add listeners of your own.
 

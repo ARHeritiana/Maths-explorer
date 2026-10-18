@@ -100,7 +100,8 @@ export const resourceCatalog = {
           "bytes": 199826,
           "englishBytes": 197976
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "seconde-02",
@@ -168,6 +169,9 @@ export const resourceCatalog = {
           "bytes": 164939,
           "englishBytes": 162474
         }
+      ],
+      "labs": [
+        "vectors/collinear"
       ]
     },
     {
@@ -236,6 +240,9 @@ export const resourceCatalog = {
           "bytes": 192497,
           "englishBytes": 189657
         }
+      ],
+      "labs": [
+        "vectors/collinear"
       ]
     },
     {
@@ -304,7 +311,8 @@ export const resourceCatalog = {
           "bytes": 196592,
           "englishBytes": 193573
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "seconde-05",
@@ -342,7 +350,8 @@ export const resourceCatalog = {
           "bytes": 142245,
           "englishBytes": 140497
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "seconde-06",
@@ -410,6 +419,9 @@ export const resourceCatalog = {
           "bytes": 207654,
           "englishBytes": 204605
         }
+      ],
+      "labs": [
+        "quadratic/sign"
       ]
     },
     {
@@ -478,6 +490,9 @@ export const resourceCatalog = {
           "bytes": 203094,
           "englishBytes": 200420
         }
+      ],
+      "labs": [
+        "statistics/box"
       ]
     },
     {
@@ -545,7 +560,8 @@ export const resourceCatalog = {
           "bytes": 201670,
           "englishBytes": 198809
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "seconde-09",
@@ -613,7 +629,8 @@ export const resourceCatalog = {
           "bytes": 143907,
           "englishBytes": 141216
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "seconde-10",
@@ -681,6 +698,9 @@ export const resourceCatalog = {
           "bytes": 178567,
           "englishBytes": 175770
         }
+      ],
+      "labs": [
+        "derivative/where"
       ]
     },
     {
@@ -749,6 +769,9 @@ export const resourceCatalog = {
           "bytes": 179608,
           "englishBytes": 177278
         }
+      ],
+      "labs": [
+        "statistics"
       ]
     },
     {
@@ -816,6 +839,9 @@ export const resourceCatalog = {
           "bytes": 170947,
           "englishBytes": 167973
         }
+      ],
+      "labs": [
+        "vectors/collinear"
       ]
     },
     {
@@ -883,7 +909,8 @@ export const resourceCatalog = {
           "bytes": 163440,
           "englishBytes": 160745
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "seconde-14",
@@ -950,6 +977,9 @@ export const resourceCatalog = {
           "bytes": 190946,
           "englishBytes": 188040
         }
+      ],
+      "labs": [
+        "probability/run"
       ]
     },
     {
@@ -1047,7 +1077,8 @@ export const resourceCatalog = {
           "bytes": 202985,
           "englishBytes": 200108
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "premiere-01",
@@ -1085,6 +1116,9 @@ export const resourceCatalog = {
           "bytes": 227837,
           "englishBytes": 224312
         }
+      ],
+      "labs": [
+        "sequences/signs"
       ]
     },
     {
@@ -1124,6 +1158,9 @@ export const resourceCatalog = {
           "bytes": 216490,
           "englishBytes": 213354
         }
+      ],
+      "labs": [
+        "quadratic/vertex"
       ]
     },
     {
@@ -1162,6 +1199,9 @@ export const resourceCatalog = {
           "bytes": 216995,
           "englishBytes": 213336
         }
+      ],
+      "labs": [
+        "vectors"
       ]
     },
     {
@@ -1200,6 +1240,9 @@ export const resourceCatalog = {
           "bytes": 206313,
           "englishBytes": 202814
         }
+      ],
+      "labs": [
+        "derivative/approach"
       ]
     },
     {
@@ -1238,6 +1281,9 @@ export const resourceCatalog = {
           "bytes": 212520,
           "englishBytes": 208489
         }
+      ],
+      "labs": [
+        "probability"
       ]
     },
     {
@@ -1276,6 +1322,9 @@ export const resourceCatalog = {
           "bytes": 220606,
           "englishBytes": 217302
         }
+      ],
+      "labs": [
+        "derivative/where"
       ]
     },
     {
@@ -1314,7 +1363,8 @@ export const resourceCatalog = {
           "bytes": 204324,
           "englishBytes": 200957
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "premiere-08",
@@ -1353,6 +1403,9 @@ export const resourceCatalog = {
           "bytes": 236879,
           "englishBytes": 233630
         }
+      ],
+      "labs": [
+        "probability/mean"
       ]
     },
     {
@@ -1391,7 +1444,8 @@ export const resourceCatalog = {
           "bytes": 224774,
           "englishBytes": 221389
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "premiere-10",
@@ -1430,6 +1484,9 @@ export const resourceCatalog = {
           "bytes": 205083,
           "englishBytes": 201610
         }
+      ],
+      "labs": [
+        "trig/quadrants"
       ]
     },
     {
@@ -1469,6 +1526,9 @@ export const resourceCatalog = {
           "bytes": 224319,
           "englishBytes": 220180
         }
+      ],
+      "labs": [
+        "sequences/formula"
       ]
     },
     {
@@ -1508,7 +1568,8 @@ export const resourceCatalog = {
           "bytes": 195671,
           "englishBytes": 191327
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "terminale-03",
@@ -1547,6 +1608,9 @@ export const resourceCatalog = {
           "bytes": 211190,
           "englishBytes": 207202
         }
+      ],
+      "labs": [
+        "sequences/signs"
       ]
     },
     {
@@ -1586,7 +1650,8 @@ export const resourceCatalog = {
           "bytes": 199252,
           "englishBytes": 195042
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "terminale-05",
@@ -1625,6 +1690,9 @@ export const resourceCatalog = {
           "bytes": 189352,
           "englishBytes": 185045
         }
+      ],
+      "labs": [
+        "probability"
       ]
     },
     {
@@ -1664,6 +1732,9 @@ export const resourceCatalog = {
           "bytes": 243446,
           "englishBytes": 238936
         }
+      ],
+      "labs": [
+        "derivative/where"
       ]
     },
     {
@@ -1703,6 +1774,9 @@ export const resourceCatalog = {
           "bytes": 202195,
           "englishBytes": 197810
         }
+      ],
+      "labs": [
+        "probability/run"
       ]
     },
     {
@@ -1742,7 +1816,8 @@ export const resourceCatalog = {
           "bytes": 190777,
           "englishBytes": 186594
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "terminale-09",
@@ -1781,7 +1856,8 @@ export const resourceCatalog = {
           "bytes": 205026,
           "englishBytes": 200431
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "terminale-10",
@@ -1820,6 +1896,9 @@ export const resourceCatalog = {
           "bytes": 215896,
           "englishBytes": 211343
         }
+      ],
+      "labs": [
+        "integral"
       ]
     },
     {
@@ -1859,6 +1938,9 @@ export const resourceCatalog = {
           "bytes": 238791,
           "englishBytes": 234475
         }
+      ],
+      "labs": [
+        "integral/bound"
       ]
     },
     {
@@ -1898,6 +1980,9 @@ export const resourceCatalog = {
           "bytes": 239158,
           "englishBytes": 235052
         }
+      ],
+      "labs": [
+        "probability/few"
       ]
     },
     {
@@ -1937,7 +2022,8 @@ export const resourceCatalog = {
           "bytes": 192708,
           "englishBytes": 188393
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "terminale-14",
@@ -1976,6 +2062,9 @@ export const resourceCatalog = {
           "bytes": 200629,
           "englishBytes": 196721
         }
+      ],
+      "labs": [
+        "trig/quadrants"
       ]
     },
     {
@@ -2015,6 +2104,9 @@ export const resourceCatalog = {
           "bytes": 213427,
           "englishBytes": 194439
         }
+      ],
+      "labs": [
+        "complex/scale"
       ]
     },
     {
@@ -2054,6 +2146,10 @@ export const resourceCatalog = {
           "bytes": 198772,
           "englishBytes": 194998
         }
+      ],
+      "labs": [
+        "complex/angles",
+        "vectors"
       ]
     },
     {
@@ -2093,6 +2189,10 @@ export const resourceCatalog = {
           "bytes": 202440,
           "englishBytes": 199249
         }
+      ],
+      "labs": [
+        "complex/angles",
+        "trig/exact"
       ]
     },
     {
@@ -2132,6 +2232,10 @@ export const resourceCatalog = {
           "bytes": 196785,
           "englishBytes": 192935
         }
+      ],
+      "labs": [
+        "complex",
+        "quadratic/roots"
       ]
     },
     {
@@ -2171,6 +2275,10 @@ export const resourceCatalog = {
           "bytes": 200251,
           "englishBytes": 193701
         }
+      ],
+      "labs": [
+        "complex/compare",
+        "trig/exact"
       ]
     },
     {
@@ -2210,7 +2318,8 @@ export const resourceCatalog = {
           "bytes": 187182,
           "englishBytes": 181001
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "expertes-07",
@@ -2249,7 +2358,8 @@ export const resourceCatalog = {
           "bytes": 197114,
           "englishBytes": 190359
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "expertes-08",
@@ -2288,7 +2398,8 @@ export const resourceCatalog = {
           "bytes": 219451,
           "englishBytes": 212775
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "expertes-09",
@@ -2327,7 +2438,8 @@ export const resourceCatalog = {
           "bytes": 183084,
           "englishBytes": 179258
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "expertes-10",
@@ -2366,7 +2478,8 @@ export const resourceCatalog = {
           "bytes": 172969,
           "englishBytes": 169578
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "expertes-11",
@@ -2405,6 +2518,10 @@ export const resourceCatalog = {
           "bytes": 196316,
           "englishBytes": 192440
         }
+      ],
+      "labs": [
+        "sequences",
+        "probability"
       ]
     },
     {
@@ -2444,6 +2561,9 @@ export const resourceCatalog = {
           "bytes": 244080,
           "englishBytes": 240739
         }
+      ],
+      "labs": [
+        "sequences/versus"
       ]
     },
     {
@@ -2483,7 +2603,8 @@ export const resourceCatalog = {
           "bytes": 286970,
           "englishBytes": 282421
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "stmg-03",
@@ -2522,7 +2643,8 @@ export const resourceCatalog = {
           "bytes": 294019,
           "englishBytes": 289175
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "stmg-04",
@@ -2561,7 +2683,8 @@ export const resourceCatalog = {
           "bytes": 319146,
           "englishBytes": 315154
         }
-      ]
+      ],
+      "labs": []
     },
     {
       "id": "stmg-05",
@@ -2600,6 +2723,9 @@ export const resourceCatalog = {
           "bytes": 267318,
           "englishBytes": 262232
         }
+      ],
+      "labs": [
+        "statistics"
       ]
     },
     {
@@ -2639,6 +2765,9 @@ export const resourceCatalog = {
           "bytes": 255280,
           "englishBytes": 250079
         }
+      ],
+      "labs": [
+        "probability"
       ]
     },
     {
@@ -2678,6 +2807,9 @@ export const resourceCatalog = {
           "bytes": 234237,
           "englishBytes": 229353
         }
+      ],
+      "labs": [
+        "probability/run"
       ]
     },
     {
@@ -2716,7 +2848,8 @@ export const resourceCatalog = {
           "bytes": 223191,
           "englishBytes": 219726
         }
-      ]
+      ],
+      "labs": []
     }
   ],
   "supplements": [

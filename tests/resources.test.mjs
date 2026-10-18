@@ -22,7 +22,7 @@ test('resource catalog resolves every downloadable file and provenance record',(
   }
   for(const ch of c.chapters){
     assert.ok(ch.title.length===2&&ch.title.every(Boolean));
-    for(const lab of ch.labs)assert.ok(labs.some(l=>l.id===lab));
+    for(const lab of ch.labs)assert.ok(labs.some(l=>l.id===lab.split('/')[0]),lab);
     if(ch.guide)assert.ok(c.chapters.some(g=>g.id===ch.guide));
   }
   for(const s of c.sources)assert.match(s.sha256,/^[a-f0-9]{64}$/);

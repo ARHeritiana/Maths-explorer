@@ -452,29 +452,46 @@ WTEXT = {
     'markov': (['Chaîne de Markov à deux états', 'A two-state Markov chain'], ['Réglez a₀, p et q : lorsque p + q < 2, la probabilité d’être dans l’état 1 tend vers q/(p+q).', 'Set a₀, p and q: when p + q < 2, the probability of being in state 1 tends to q/(p+q).']),
     'surface3d': (['Surface z = f(x ; y)', 'Surface z = f(x, y)'], ['Déplacez le point au sol ; faites tourner la surface.', 'Drag the floor point; rotate the surface.']),
 }
+LAB_BODY = ['Une expérience guidée du laboratoire : lisez la mission, manipulez la figure, passez à la suivante avec ◀ ▶ (ou N et P quand la figure a le focus).',
+            'A guided experiment from the laboratory: read the mission, handle the figure, move to the next one with ◀ ▶ (or N and P while the figure has focus).']
+
+
+def lab(ref):
+    """A laboratory experiment as a slide widget: `ref` is a lab reference (docs/LAB_DESIGN.md section 6), the slide takes its
+    title from the experiment file (the one source of the experiment's name)."""
+    return {'type': 'lab', 'ref': ref}
+
+
+def lab_title(ref):
+    src = (ROOT / 'site/js/lab/experiments' / (ref.split('/')[0] + '.js')).read_text(encoding='utf8')
+    m = re.search(r'^\s*title:\s*\[\s*"([^"]+)",\s*"([^"]+)"\s*\]', src, flags=re.M)
+    if not m: raise SystemExit('build-slides: no title in the experiment of ' + ref)
+    return [m.group(1), m.group(2)]
+
+
 # (deck id) -> [(regex on the unit title, widget spec)]: the widget slide is inserted after that unit
 WIDGETS = {
-    'premiere-01': [(r'Geometric sequences', {'type': 'seq'})], 'premiere-02': [(r'Three forms', {'type': 'quad'})],
-    'premiere-03': [(r'Coordinates, norm', {'type': 'vec'})], 'premiere-04': [(r'Tangent and affine', {'type': 'tangent'})],
+    'premiere-01': [(r'Geometric sequences', lab('sequences/signs'))], 'premiere-02': [(r'Three forms', lab('quadratic/vertex'))],
+    'premiere-03': [(r'Coordinates, norm', {'type': 'vec'})], 'premiere-04': [(r'Tangent and affine', lab('derivative/approach'))],
     'premiere-05': [(r'Trees, partitions', {'type': 'tree'})], 'premiere-07': [(r'Normal vector', {'type': 'vec'})],
     'premiere-08': [(r'Variable, event', {'type': 'rv'})], 'premiere-09': [(r'Defining a new function', {'type': 'fn', 'mode': 'exp', 'modes': ['exp']})],
-    'premiere-10': [(r'Wrapping', {'type': 'circle'})],
-    'seconde-02': [(r'Collinearity and determinant', {'type': 'vec', 'noDot': True})], 'seconde-03': [(r'Slope-intercept', {'type': 'line'})],
+    'premiere-10': [(r'Wrapping', lab('trig/quadrants'))],
+    'seconde-02': [(r'Collinearity and determinant', lab('vectors/collinear'))], 'seconde-03': [(r'Slope-intercept', {'type': 'line'})],
     'seconde-04': [(r'Intervals of the real line', {'type': 'interval'})], 'seconde-06': [(r'Square and inverse', {'type': 'ref'})],
-    'seconde-07': [(r'Quartiles and box plot', {'type': 'stats'})], 'seconde-09': [(r'Successive changes', {'type': 'pct'})],
-    'seconde-10': [(r'Variations of the square', {'type': 'ref'})], 'seconde-12': [(r'Comparing a vector', {'type': 'vec', 'noDot': True})],
+    'seconde-07': [(r'Quartiles and box plot', lab('statistics/box'))], 'seconde-09': [(r'Successive changes', {'type': 'pct'})],
+    'seconde-10': [(r'Variations of the square', {'type': 'ref'})], 'seconde-12': [(r'Comparing a vector', lab('vectors/collinear'))],
     'seconde-14': [(r'Weighted trees', {'type': 'tree'})],
-    'stmg-01': [(r'Geometric sequences: recognising', {'type': 'seq'})], 'stmg-02': [(r'Functions .*k a\^x|Definition and direction', {'type': 'fn', 'mode': 'exp', 'modes': ['exp']})],
+    'stmg-01': [(r'Geometric sequences: recognising', lab('sequences/versus'))], 'stmg-02': [(r'Functions .*k a\^x|Definition and direction', {'type': 'fn', 'mode': 'exp', 'modes': ['exp']})],
     'stmg-03': [(r'Variations and graph', {'type': 'fn', 'mode': 'log', 'modes': ['log']})], 'stmg-04': [(r'Definition and graph of the reciprocal', {'type': 'fn', 'mode': 'inv', 'modes': ['inv']})],
     'stmg-05': [(r'Linear regression', {'type': 'scatter'})], 'stmg-06': [(r'Weighted trees', {'type': 'tree'})],
-    'stmg-07': [(r'Binomial distribution: recognising', {'type': 'binom'})],
+    'stmg-07': [(r'Binomial distribution: recognising', lab('probability/run'))],
     'terminale-01': [(r'^Proof by induction', {'type': 'cobweb'})], 'terminale-02': [(r'^Vector calculus', {'type': 'line3d'})],
     'terminale-03': [(r'^Course notes', {'type': 'limit'})], 'terminale-06': [(r'^Convexity', {'type': 'convex'})],
     'terminale-07': [(r'^Reminders', {'type': 'tree'})], 'terminale-09': [(r'^Line, plane and normal', {'type': 'plane3d', 'normal': [1, 1, 2]})],
     'terminale-12': [(r'^Sums and transformations', {'type': 'rv'})], 'terminale-13': [(r'^Parametric lines', {'type': 'line3d'}), (r'^Intersections', {'type': 'lineplane', 'normal': [1, 1, 2]})],
-    'terminale-14': [(r'^Circle and functions', {'type': 'circle'})], 'terminale-11': [(r'^Area and antiderivative', {'type': 'integral'})],
+    'terminale-14': [(r'^Circle and functions', lab('trig/quadrants'))], 'terminale-11': [(r'^Area and antiderivative', lab('integral/bound'))],
     'expertes-01': [(r'^Conjugate', {'type': 'complex', 'mode': 'alg'})], 'expertes-02': [(r'^Argument and trigonometric', {'type': 'complex', 'mode': 'polar'})],
-    'expertes-03': [(r'^Product and arguments', {'type': 'complex', 'mode': 'product'}), (r'^Exponential form', {'type': 'circle'})],
+    'expertes-03': [(r'^Product and arguments', lab('complex/angles')), (r'^Exponential form', lab('trig/exact'))],
     'expertes-04': [(r'^Quadratics with real', {'type': 'cquad'})], 'expertes-05': [(r'roots of unity', {'type': 'roots', 'n': 6})],
     'expertes-06': [(r'^Congruences', {'type': 'modclock', 'mode': 'powers', 'n': 9, 'a': 2})],
     'expertes-07': [(r'^Gauss', {'type': 'modclock', 'mode': 'inverse', 'n': 26, 'a': 7})],
@@ -492,7 +509,8 @@ def add_widgets(cid, slides):
         if not idx: print('  no unit for widget', cid, rx); continue
         j = idx[0]
         while j + 1 < len(slides) and slides[j + 1]['t'] == slides[idx[0]]['t']: j += 1
-        t, b = WTEXT.get(f"{spec['type']}:{spec.get('mode')}", WTEXT[spec['type']])
+        if spec['type'] == 'lab': t, b = lab_title(spec['ref']), LAB_BODY
+        else: t, b = WTEXT.get(f"{spec['type']}:{spec.get('mode')}", WTEXT[spec['type']])
         if cid.startswith('expertes-'):   # brief: experiments give evidence, not proof (audit 2026-10-17)
             b = [b[0] + ' Observer n’est pas démontrer : la preuve est dans le cours.', b[1] + ' Observing is not proving: the proof is in the course.']
         slides.insert(j + 1, {'k': 'widget', 't': t, 'b': b, 'w': spec})

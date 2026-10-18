@@ -105,3 +105,42 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
   #live{max-height:none}
 }
 .canvas-navigation{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:6px;font:16px system-ui}.canvas-navigation button{min-width:44px;min-height:44px;padding:4px 8px;font-size:20px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:var(--panel);cursor:pointer}.canvas-navigation output{color:var(--muted);margin-left:6px}
+
+/* laboratory experiments in a slide ({type:"lab"}, site/js/lab/shell.js mode "slide"): the canvas fills the widget host, the
+   controls, the answer area and the mission stepper sit in #wctl, the formula and the readout in #readout, the prompt in the hint line */
+.canvas-wrap.lab2-canvas-host{height:340px}
+.lab2-stage{position:absolute;inset:0}
+.lab2-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none}
+.lab2-handle{position:absolute;left:0;top:0;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;pointer-events:none}
+.lab2-handle:focus-visible{outline:3px solid var(--amber);outline-offset:-3px}
+.hint-line.lab2-hint{height:auto;min-height:22px;max-height:84px;overflow:auto;white-space:normal;font-size:18px;line-height:1.3;outline:0}
+.lab2-slide{width:100%}
+.lab2-slide .lab2-card{display:flex;flex-direction:column;gap:8px;width:100%}
+.lab2-stepper{display:flex;align-items:center;gap:10px}
+.lab2-step-label{font:600 18px system-ui,sans-serif;color:var(--muted)}
+.lab2-kind{color:var(--amber);margin-left:4px}
+.lab2-controls{display:grid;gap:8px}
+.lab2-ctl{display:grid;gap:4px}
+.lab2-ctl.is-locked{opacity:.45}
+.lab2-ctl-label{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.lab2-ctl input[type=range]{width:100%}
+.lab2-segments,.lab2-variants{display:flex;flex-wrap:wrap;gap:6px}
+.lab2-segment.is-on,.lab2-variant[aria-pressed=true]{background:var(--amber)!important}
+.lab2-options,.lab2-answer{display:grid;gap:6px}
+.wctl .lab2-option,.wctl .lab2-variant{height:auto;min-height:38px;padding:6px 12px;text-align:left;white-space:normal;font-size:17px}
+.lab2-option[aria-pressed=true]{background:var(--amber)!important}
+.lab2-check{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lab2-check input[type=text]{height:38px;width:130px;border-radius:9px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);padding:0 8px;font:600 17px system-ui,sans-serif}
+.lab2-check label{font-size:17px}
+.lab2-feedback{margin:0;font:600 17px/1.3 system-ui,sans-serif}.lab2-feedback:empty{display:none}
+.lab2-feedback[data-tone=good]{color:var(--green)}.lab2-feedback[data-tone=warn]{color:var(--red)}
+.lab2-reveal{border-left:4px solid var(--green);padding:4px 0 4px 12px;font-size:17px;line-height:1.35}
+.lab2-recall,.lab2-note{margin:0;color:var(--muted);font-size:16px}
+.lab2-hintbox summary{cursor:pointer;color:var(--amber);font:600 16px system-ui,sans-serif}.lab2-hintbox p{margin:4px 0 0;font-size:16px}
+.wctl .lab2-restart{height:30px;background:transparent;color:var(--muted);text-decoration:underline;font-size:15px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lab2-formula{margin:0 0 6px;font-size:21px;line-height:1.35;overflow-wrap:anywhere}
+.lab2-readout{display:grid;gap:3px;margin:0}
+.lab2-readout>div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.lab2-readout dt{color:var(--muted);font-size:16px}
+.lab2-readout dd{margin:0;font-size:21px}

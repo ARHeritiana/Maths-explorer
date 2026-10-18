@@ -31,6 +31,8 @@ try:
     result = subprocess.run([sys.executable, 'tests/browser.py'], cwd=root)
     if result.returncode == 0:   # laboratory v2: smoothness, overflow, keyboard, reduced motion
         result = subprocess.run([sys.executable, 'tests/lab_browser.py'], cwd=root)
+    if result.returncode == 0:   # the laboratory in slides and on chapter pages
+        result = subprocess.run([sys.executable, 'tests/slides_lab_browser.py'], cwd=root)
 finally:
     if server:
         server.terminate()

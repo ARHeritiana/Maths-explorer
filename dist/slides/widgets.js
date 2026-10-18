@@ -87,7 +87,46 @@ export const tshift = (x, al, N) => (Math.abs(al) < 1e-9 ? x : `(${x}${al < 0 ? 
 export const tlin = (n, N) => { let s = ""; n.forEach((c, i) => { if (!c) return; const v = "xyz"[i], body = (Math.abs(c) === 1 ? "" : N(Math.abs(c))) + v; s += s ? (c < 0 ? "-" : "+") + body : (c < 0 ? "-" : "") + body; }); return s || "0"; };
 export const sgn = c => (c < 0 ? "-" : "+");
 
+// ---- laboratory experiments in a slide: { type: "lab", ref: "quadratic/vertex" } (docs/LAB_DESIGN.md section 6). The experiment
+// draws in the widget host with the player's dark palette, its unlocked controls and mission stepper go to the controls area,
+// the formula and readout to the readout area and the mission prompt to the hint line. Loaded on demand (an export bundles it
+// only for the decks that use it).
+export const LAB_PALETTE = { bg: C.bg, surface: C.bg, sunken: "#0f1b2d", ink: C.ink, muted: C.muted, line: C.axis, grid: C.grid,
+  accent: C.acc, obj2: C.blue, obj3: "#c9a0ff", pos: "#5fd0a0", neg: C.warn, c: [C.acc, C.blue, "#5fd0a0", "#c9a0ff", C.warn, "#7fd6e8", "#f2c94c", "#ff9ec7"] };
+const loadLab = () => import("../js/lab/mount.js");
+// The laboratory writes its numbers with Unicode (x², uₙ, ≈, √3/2, 35°); the player typesets every formula with MathJax, so the
+// text of an experiment is turned into the same \( ... \) markup before it is shown (words and plain numbers stay text).
+const SUBS = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9", "ₙ": "n", "₊": "+", "₋": "-" };
+const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n" };
+const GREEK = { "Δ": "\\Delta", "α": "\\alpha", "β": "\\beta", "θ": "\\theta", "π": "\\pi" };
+const decimal = n => n.replace(/[−-]/, "-").replace(",", "{,}");
+const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
+export function uniHTML(text) {
+  const esc = String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  return esc.replace(UNI_RE, (m, pn, pd, rc, rn, rd, bar, base, script, deg, neg, plain) => {
+    const g = c => GREEK[c] || (/^\d/.test(c) ? decimal(c) : c);
+    if (m.includes("π") && base === undefined) return inl(pd ? `\\dfrac{${pn || ""}\\pi}{${pd}}` : `${pn || ""}\\pi`);
+    if (rn !== undefined) return inl(rd ? `\\dfrac{${rc || ""}\\sqrt{${rn}}}{${rd}}` : `${rc || ""}\\sqrt{${rn}}`);
+    if (bar) return inl(`\\bar{${bar}}`);
+    if (base) { const sub = SUBS[script[0]] !== undefined; return inl(`${g(base)}${sub ? "_" : "^"}{${[...script].map(c => (sub ? SUBS : SUPS)[c]).join("")}}`); }
+    if (deg !== undefined) return inl(`${decimal(deg)}^{\\circ}`);
+    if (neg !== undefined) return inl(`-${decimal(neg)}`);
+    if (plain !== undefined) return inl(decimal(plain));
+    return inl({ "≈": "\\approx", "≤": "\\leq", "≥": "\\geq", "≠": "\\neq", "×": "\\times", "…": "\\ldots" }[m] || g(m));
+  });
+}
+const renderLab = (el, text) => rich(el, uniHTML(text));
+function mountLab(spec, ctx) {
+  let api = null, dead = false;
+  loadLab().then(m => {
+    if (dead) return;
+    api = m.mountExperiment(ctx.host, spec.ref, { mode: "slide", lang: ctx.lang ? "en" : "fr", palette: LAB_PALETTE, render: renderLab, controls: ctx.controls, readout: ctx.readout, hint: ctx.hint });
+  }).catch(e => { ctx.host.textContent = "?"; console.error(e); });
+  return { destroy() { dead = true; api?.destroy(); api = null; ctx.controls.innerHTML = ""; ctx.readout.innerHTML = ""; } };
+}
+
 export function mount(spec, ctx) {
+  if (spec.type === "lab") return mountLab(spec, ctx);
   const f = W2[spec.type] || W3[spec.type];
   if (!f) { ctx.host.textContent = "?"; return { destroy() {} }; }
   const cv = canvas(ctx.host,ctx); repaint = () => cv.redraw();

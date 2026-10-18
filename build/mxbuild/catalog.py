@@ -87,7 +87,7 @@ def generate(manifest=None):
 
     for c in comp['chapters'] + comp['supplements']:
         if c['id'] in chapters:
-            for key in ('title', 'course', 'number'):
+            for key in ('title', 'course', 'number', 'labs'):   # labs: lab references, authored once in the catalogue
                 if key in chapters[c['id']]: c[key] = copy.deepcopy(chapters[c['id']][key])
     # Source records describe owner-supplied files: their URLs and storage ids must never reach the client.
     comp.pop('folder', None)

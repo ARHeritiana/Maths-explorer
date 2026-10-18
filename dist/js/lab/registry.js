@@ -39,14 +39,17 @@ export function parseRef(ref) {
   const [id, mission] = String(ref || "").split("/");
   return { id, mission: mission || null };
 }
-// The experiment and mission index of a reference, or null when it does not resolve.
+// THE resolver of a lab reference (lab page, chapter pages, slides, tests): { experiment, mission, index, ref } or null when it
+// does not resolve. `mission` is the mission object ("quadratic/vertex") or the first mission when the reference names only the
+// experiment; `ref` is the normal form "<experiment>/<mission>"; `explicit` says whether the reference named a mission.
 export function resolveRef(ref) {
+  if (typeof ref !== "string") return null;
   const { id, mission } = parseRef(ref);
   const experiment = experimentById(id);
-  if (!experiment) return null;
-  if (!mission) return { experiment, index: 0 };
-  const index = experiment.missions.findIndex((m) => m.id === mission);
-  return index < 0 ? null : { experiment, index };
+  if (!experiment || ref.split("/").length > 2) return null;
+  const index = mission ? experiment.missions.findIndex((m) => m.id === mission) : 0;
+  if (index < 0) return null;
+  return { experiment, mission: experiment.missions[index], index, ref: `${experiment.id}/${experiment.missions[index].id}`, explicit: !!mission };
 }
 export const labRef = (id, mission) => (mission ? `${id}/${mission}` : id);
 export const allRefs = () => EXPERIMENTS.flatMap((e) => [e.id, ...e.missions.map((m) => `${e.id}/${m.id}`)]);

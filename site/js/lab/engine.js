@@ -30,7 +30,7 @@ export function setClass(el, name, on) {
 }
 
 // Readout: fixed slots [label, value] built once; later updates change text only.
-export function createReadout(host, className = "lab2-readout") {
+export function createReadout(host, className = "lab2-readout", write = setText) {
   const dl = document.createElement("dl");
   dl.className = className;
   host.append(dl);
@@ -47,7 +47,7 @@ export function createReadout(host, className = "lab2-readout") {
         });
       }
       // a long value (a sentence) takes the whole row on a phone, where the cards sit three to a row
-      items.forEach(([label, value], i) => { setText(slots[i].dt, label); setText(slots[i].dd, value); setClass(slots[i].row, "is-long", String(value).length > 24); });
+      items.forEach(([label, value], i) => { write(slots[i].dt, label); write(slots[i].dd, value); setClass(slots[i].row, "is-long", String(value).length > 24); });
     },
   };
 }
@@ -88,7 +88,7 @@ const reducedQuery = () => (typeof matchMedia === "function" ? matchMedia("(pref
 
 // ---- the stage
 export function createStage(host, options = {}) {
-  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge } = options;
+  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false } = options;
   const wrap = document.createElement("div");
   wrap.className = "lab2-stage";
   const canvas = document.createElement("canvas");
@@ -106,8 +106,9 @@ export function createStage(host, options = {}) {
   stage.reduced = () => !!reducedMq.matches;
   const rootStyle = typeof getComputedStyle === "function" ? getComputedStyle(document.documentElement) : null;
   const family = () => (rootStyle?.getPropertyValue("--math").trim() || '"STIX Two Text", Georgia, serif');
-  stage.font = (size, weight = 400, italic = false) => `${italic ? "italic " : ""}${weight} ${size}px ${family()}`;
-  stage.sans = (size, weight = 400) => `${weight} ${size}px ${rootStyle?.getPropertyValue("--body").trim() || "system-ui, sans-serif"}`;
+  // fontScale > 1 for projection (the slide player): every text of the canvas grows, the handles and lines do not
+  stage.font = (size, weight = 400, italic = false) => `${italic ? "italic " : ""}${weight} ${Math.round(size * fontScale * 10) / 10}px ${family()}`;
+  stage.sans = (size, weight = 400) => `${weight} ${Math.round(size * fontScale * 10) / 10}px ${rootStyle?.getPropertyValue("--body").trim() || "system-ui, sans-serif"}`;
   // A colour name from the palette ("accent", "obj2", "c3" ...) or any CSS colour.
   stage.color = (name) => {
     const p = stage.pal;
@@ -130,7 +131,7 @@ export function createStage(host, options = {}) {
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !hitAt(p) });
+  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !hitAt(p) });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -222,6 +223,18 @@ export function createStage(host, options = {}) {
       onNudge?.();
     }
   });
+
+  // The player's convention (canvasKeys): with the canvas itself focused, H picks the next handle and the arrow keys move it by one grid step.
+  if (canvasKeys) {
+    let picked = 0;
+    canvas.addEventListener("keydown", (e) => {
+      if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey || !stage.handles.length) return;
+      if (e.key === "h" || e.key === "H") { picked = (picked + 1) % stage.handles.length; stage.focusId = stage.handles[picked].id; e.preventDefault(); e.stopPropagation(); invalidate(); return; }
+      const arrows = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
+      if (arrows[e.key]) { e.preventDefault(); e.stopPropagation(); (stage.handles[picked % stage.handles.length]).nudge(...arrows[e.key]); invalidate(); onNudge?.(); }
+    });
+    canvas.addEventListener("blur", () => { stage.focusId = null; invalidate(); });
+  }
 
   let observer = null;
   const resize = () => {

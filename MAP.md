@@ -45,7 +45,9 @@ really need them.
 | companion lesson text or diagrams on chapter pages | `site/js/learning-content.js`, `visual-lessons.js` | |
 | classroom slide content | `content/slides/<deck>.json` or the TeX source (see `docs/SLIDES.md` table) | `make slides` |
 | slide player behaviour or toolbar | `site/slides/player.js`, `player.css`, `player.html` | invalidates every export: `make site` |
-| an interactive slide canvas | `site/slides/widgets.js` (registry and helpers), `widgets-2d.js`, `widgets-3d.js`; placement table `WIDGETS` in `scripts/build-slides.py` | skills `slides-interactive-math`, `-3d-math` |
+| an interactive slide canvas | `site/slides/widgets.js` (registry, helpers, `type: 'lab'`), `widgets-2d.js`, `widgets-3d.js`; placement table `WIDGETS` in `scripts/build-slides.py` (`lab('<ref>')` for a laboratory experiment) | skills `slides-interactive-math`, `-3d-math` |
+| a laboratory experiment in a slide | `scripts/build-slides.py` `WIDGETS` (`lab('<experiment>/<mission>')`), `site/js/lab/shell.js` (mode `slide`), `site/slides/widgets.js` `mountLab` / `uniHTML`, `site/slides/player.css` (`.lab2-*`) | `scripts/export-slides.py` (the export bundles `site/js/lab/`) |
+| the laboratory block of a chapter page, the lab references of a chapter | `content/data/manifest.json` `catalog.chapters[].labs`; `site/js/chapter-sequence.js` `labBlock`, `lazyLab` (tab "Chercher"); `site/js/library.js` (chapter detail links) | `make site` (the companion catalogue gets `labs`) |
 | lecture (Beamer) PDFs | `scripts/build-lecture-slides.py`, `content/tex/lectures/` | |
 | the library / pack builder / LaTeX sources pages | `site/js/library.js`, `pack-builder.js` | |
 | the slides index page | `site/js/slides-page.js` | |
@@ -110,6 +112,8 @@ Root files: `CLAUDE.md` (entry), `AGENTS.md` (other agents), `HANDOFF.md` (state
 | maths notation FR/EN | `content/tex/core/mx-notation.sty` + `build/mxbuild/notation.py` | PDFs and web |
 | camera and drag behaviour | `site/js/canvas-navigation.js` | site canvases, laboratory (`site/js/lab/engine.js`) and slide player |
 | asset URLs and versions | `site/js/data-loader.js` `assetHref` | every link and download |
+| lab references `"<experiment>"` / `"<experiment>/<mission>"` | the experiment files; the one resolver `resolveRef` in `site/js/lab/registry.js` | lab page route, `manifest.json` `catalog.chapters[].labs`, slide `WIDGETS` (`lab('...')`), chapter pages, `tests/lab-links.test.mjs` |
+| how a number is written (≈ rounded, = exact; decimal comma) | `site/js/lab/format.js` `makeFormat` | every readout, formula and canvas label of the laboratory |
 
 Rule: when a change touches several files, the fact belongs in one place. Challenges follow it since 18 October 2026
 (one folder each); propose the same move when you meet another fact written in several files.

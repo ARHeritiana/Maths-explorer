@@ -35,7 +35,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/lab/` | **the laboratory**: engine, shell, mount, registry, templates, models and one file per experiment (nine: quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex); index in `js/lab/CLAUDE.md` |
+| `js/lab/` | **the laboratory**: engine, shell, mount (modes `full`, `inline`, `slide`), registry (`resolveRef`), format, templates, models and one file per experiment (nine: quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex); index in `js/lab/CLAUDE.md`. Also mounted by chapter pages (`chapter-sequence.js`) and by slides (`slides/widgets.js` `type: 'lab'`) |
 | `js/math.js` | pure maths shared by the labs (quadratic, sequences, binomial, statistics, Riemann...) |
 | `js/lab-objects.js` | `mountObject`: the gallery exhibits (Galton, Reuleaux, Platonic, chaos game and more; pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles, Mandelbrot/Julia explorer |
@@ -67,9 +67,9 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | File | Holds |
 |---|---|
 | `js/resource-library.js` | `#resources` course chooser, `chapterPage`, `bindChapter` |
-| `js/chapter-sequence.js`, `js/sequence-model.js` | chapter page tabs and progression built from the chapter deck |
+| `js/chapter-sequence.js`, `js/sequence-model.js` | chapter page tabs and progression built from the chapter deck; the tab "Chercher" shows the chapter's lab references (`labBlock`: first one mounted inline, lazily, destroyed on navigation, a link per reference) |
 | `js/visual-lessons.js` | animated companion diagrams |
-| `js/library.js` | `#library` filterable resource list |
+| `js/library.js` | `#library` filterable resource list; chapter detail with the "Open in the laboratory" links |
 | `js/pack-builder.js` | `#pack` custom pack builder, `#sources` LaTeX sources |
 | `js/slides-page.js` | `#slides` deck index (HTML and lecture PDF editions) |
 | `js/university.js`, `js/university-model.js` | `#university` pages and pathway summaries |
@@ -80,8 +80,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `slides/player.html`, `slides/player.css`, `slides/player.js` | standalone player (1280x720 stage, steps, toolbar) |
-| `slides/widgets.js` | widget registry `mount`, drawing and readout helpers |
+| `slides/player.html`, `slides/player.css`, `slides/player.js` | standalone player (1280x720 stage, steps, toolbar); the import map also lists `../js/lab/**`, `math.js`, `object-kit.js`; `player.css` carries the `.lab2-*` styles of a lab widget |
+| `slides/widgets.js` | widget registry `mount`, drawing and readout helpers; `type: 'lab'` (`mountLab`: loads `js/lab/mount.js` on demand, dark palette `LAB_PALETTE`, `uniHTML` turns the experiment's Unicode into MathJax markup) |
 | `slides/widgets-2d.js`, `slides/widgets-3d.js` | 2D widgets; true 3D widgets |
 
 ## Third party

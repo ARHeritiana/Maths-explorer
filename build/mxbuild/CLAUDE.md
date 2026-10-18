@@ -20,5 +20,12 @@ The pipeline package. Run with `PYTHONPATH=build python3 -m mxbuild <command>` o
 | `enrichment.py` | enrichment TeX units from `content/data/enrichment.json` | |
 | `migrate.py` | one-off migration of a course to the TeX system (historical) | |
 
+Without `pdflatex` (a sandbox) `make site` fails in the `slides` job as soon as `scripts/build-slides.py`, `content/slides/` or a course
+source changed, because the deck builder compiles the figures; the job leaves a stub `_figs_*.tex` and empties `dist/slides/data/`
+(restore with `git checkout dist/slides/data`, delete the stub). The `slide-exports` job (`scripts/export-slides.py`) needs no TeX; its
+fingerprint covers `site/slides/`, `site/js/lab/` and the helpers the bundled laboratory imports. Where TeX is missing, run
+`build-slides.py` with `compile_figs` replaced by "the committed SVG exists", then `export-slides.py`, then
+`PYTHONPATH=build python3 -m mxbuild.refresh --adopt` (the figures are unchanged, so the decks equal a real build); say so in the report.
+
 To add a pre-push check, append to `CHECKS` in `pipeline.py`. To add a dependency for rebuilds, edit `inputs()` in
 `refresh.py`.

@@ -902,6 +902,11 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .lab2-chips a[aria-current] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .lab2-meta { margin: 0 0 14px; color: var(--ink-2); font-size: 0.95rem; }
 .lab2-host { margin-bottom: 20px; min-height: 320px; }
+.chapter-lab { margin: 0 0 28px; }
+.chapter-lab h3 { margin: 0 0 10px; }
+.chapter-lab .lab2-host { margin-bottom: 12px; }
+.chapter-lab-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.chapter-lab-links a { display: inline-flex; align-items: center; min-height: 44px; }
 .lab2-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; align-items: start; }
 .lab2-figure, .lab2-card, .lab2-argument { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); min-width: 0; }
 .lab2-figure { padding: 12px; }
@@ -985,10 +990,10 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 }
 @media (max-width: 460px) {
   /* compact cards, two or three to a row (never one per row: they would push the mission card down); a long value takes the row */
-  .lab2-readout { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 6px; }
+  .lab2-readout { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 6px; }
   .lab2-readout > div { padding: 5px 7px; }
   .lab2-readout > div.is-long { grid-column: 1 / -1; }
-  .lab2-readout dt { font-size: 0.75rem; line-height: 1.2; }
+  .lab2-readout dt { font-size: 0.72rem; line-height: 1.2; overflow-wrap: break-word; }
   .lab2-readout dd { font-size: 0.95rem; line-height: 1.25; }
   .lab2-figure { padding: 8px; }
   .lab2-formula { font-size: 1rem; margin: 8px 2px 6px; }

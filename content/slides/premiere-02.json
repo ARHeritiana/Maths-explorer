@@ -169,15 +169,16 @@
   {
    "k": "widget",
    "t": [
-    "Trinôme : forme canonique",
-    "Quadratic: canonical form"
+    "La fabrique des paraboles",
+    "The parabola workshop"
    ],
    "b": [
-    "Déplace le sommet S et le point orange pour changer l’orientation. Les zéros sont les abscisses des intersections avec l’axe horizontal. Compare ensuite leur existence au signe du discriminant, maintenant défini.",
-    "Drag the vertex S and orange point to change the orientation. Zeros are the x-coordinates of intersections with the horizontal axis. Compare their existence with the sign of the discriminant, now defined."
+    "Déplace le sommet pour lire la forme canonique ; ◀ ▶ changent de mission (orientation, racines). Les zéros sont les abscisses des intersections avec l’axe horizontal. Compare ensuite leur existence au signe du discriminant, maintenant défini.",
+    "Drag the vertex to read the canonical form; ◀ ▶ change mission (orientation, roots). Zeros are the x-coordinates of intersections with the horizontal axis. Compare their existence with the sign of the discriminant, now defined."
    ],
    "w": {
-    "type": "quad"
+    "type": "lab",
+    "ref": "quadratic/vertex"
    }
   },
   {

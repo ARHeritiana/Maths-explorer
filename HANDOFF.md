@@ -93,7 +93,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 Contract: `docs/LAB_DESIGN.md`. One engine, seven templates, missions, lab references shared by lessons and slides.
 - [x] Phase 1 (done 18 October 2026): engine, shell, `family` and `process` templates; quadratic, trig, derivative, integral, sequences. Code in `site/js/lab/` (index in its `CLAUDE.md`), tests `tests/lab-engine.test.mjs`, `tests/lab_browser.py`; deviations from the contract are listed in `docs/LAB_DESIGN.md` section 9. 
 - [x] Phase 2 (done 18 October 2026): `chance`, `figure`, `data`, `transform`; probability, vectors, statistics, complex; old guided lab code removed (`#lab` lists nine experiments in six types of activity); deviations in `docs/LAB_DESIGN.md` section 10.
-- [ ] Phase 3: `type: 'lab'` slide widgets, inline mounts on chapter pages, `tests/lab-links.test.mjs`.
+- [x] Phase 3 (done 18 October 2026): honest labelling (≈ and =) in all nine experiments, `type: 'lab'` slide widgets (player mode `slide`, export bundle), inline mount of the first lab reference on chapter pages, lab references refined to missions in the manifest, `tests/lab-links.test.mjs` and `tests/slides_lab_browser.py`; deviations in `docs/LAB_DESIGN.md` section 11. Slide widget types still on old code (no experiment covers them): `vec` (premiere-03, premiere-07: norm, orthogonality, dot product), `complex` modes alg and polar, `tree`, `rv`, `fn`, `line`, `ref`, `interval`, `pct`, `scatter`, `cobweb`, `limit`, `convex` and the 3D, matrix and Markov ones.
 - [ ] Phase 4: `space` template and new experiments from the remaining slide widget types.
 
 ### 4. Scale in priority order

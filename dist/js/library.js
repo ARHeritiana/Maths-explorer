@@ -1,5 +1,6 @@
 import {courseLanguage} from "./content-language.js";
 import { labs } from './content.js';
+import { resolveRef } from './lab/registry.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 import {enrichment} from './enrichment-data.js';
 import {guides} from './study-guides.js';
@@ -13,7 +14,7 @@ const normalize=s=>s.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase(
 export function selectChapters(catalog,filter=filters) {
   const q=normalize(filter.search);
   return catalog.chapters.filter(c=>{
-    if(filter.lab&&!c.labs.includes(filter.lab))return false;
+    if(filter.lab&&!c.labs.some(ref=>ref.split('/')[0]===filter.lab))return false;
     if(['mg','ib'].includes(filter.curriculum)&&!['shared','explorations'].includes(c.course))return false;
     if(filter.curriculum==='fr'&&['shared','explorations'].includes(c.course))return false;
     if(filter.course!=='all'&&c.course!==filter.course)return false;
@@ -85,7 +86,7 @@ function renderChapter(main,c,ch,t,p,lang) {
   const original=c.resources.filter(r=>r.chapter===ch.id&&r.audience!=='teacher');
   const teacher=c.resources.filter(r=>r.chapter===ch.id&&r.audience==='teacher');
   const guided=ch.course==='shared'?original:c.resources.filter(r=>r.chapter===ch.guide&&r.audience!=='teacher');
-  const links=ch.labs.map(id=>`<a class="secondary" href="#lab/${id}">${p('Expérimenter','Experiment')} · ${esc(labs.find(l=>l.id===id)?.short?.[lang==='fr'?0:1]??id)}</a>`).join('');
+  const links=ch.labs.map(ref=>{const r=resolveRef(ref),l=r&&labs.find(x=>x.id===r.experiment.id);return r?`<a class="secondary" href="#lab/${esc(ref)}">${p('Ouvrir dans le laboratoire','Open in the laboratory')} · ${esc(l?.short?.[lang==='fr'?0:1]??r.experiment.id)}</a>`:'';}).join('');
   main.innerHTML=`${companionCatalog.chapters.some(x=>x.id===ch.id)?`<div class="companion-links"><a class="primary" href="#chapter/${ch.id}/understand">${p('Comprendre en images','Understand visually')}</a><a class="secondary" href="#chapter/${ch.id}/experiment">${p('Expérimenter','Experiment')}</a><a class="secondary" href="#chapter/${ch.id}/practice">${p('S’entraîner','Practise')}</a></div>`:''}<a class="library-back" href="#library">${p('Tous les chapitres','All chapters')}</a><div class="section-kicker">${esc(t(course.title))}${ch.number?' · '+String(ch.number).padStart(2,'0'):''}</div><h1>${esc(t(ch.title))}</h1>${links?`<div class="chapter-labs">${links}</div>`:''}
   ${workshop?`<section class="study-sheet enrichment-preview"><span class="eyebrow">${esc(t(workshop.level))}</span><h2>${p('L’idée à explorer','The idea to explore')}</h2>${workshop.lesson.map(x=>`<p>${esc(t(x))}</p>`).join('')}<details><summary>${p('Voir un exemple expliqué','See a worked example')}</summary><p>${esc(t(workshop.worked))}</p></details><p>${esc(t(workshop.activity))}</p></section>`:''}
   ${topic?`<section class="study-sheet"><div class="sheet-heading"><h2>${p('Pour commencer · FR / EN','Start here · FR / EN')}</h2><span>${p('Fiche courte','Short sheet')}</span></div><p class="resource-note">${p('Une adaptation des notions du chapitre. Elle complète les documents originaux.','An adaptation of the chapter’s concepts to complement the original documents.')}</p><div class="sheet-section"><h3>${p('À retenir','Key ideas')}</h3><p>${t(topic.notes)}</p></div><div class="sheet-section"><h3>${p('Exercice','Exercise')}</h3><p>${t(topic.exercises)}</p></div><div class="sheet-section"><h3>${p('Problème','Problem')}</h3><p>${t(topic.problems)}</p></div><details class="sheet-solution"><summary>${p('Afficher le corrigé détaillé','Reveal the worked solution')}</summary><p>${t(topic.solutions)}</p></details><div class="sheet-downloads">${guided.map(r=>`<a href="${esc(fileURL(r))}" download>${t(resourceTypes[r.type])} · HTML</a>`).join('')}<a href="${esc(fileURL(c.resources.find(r=>r.chapter===(ch.course==='shared'?ch.id:ch.guide)&&r.type==='solutions')))}" download>${p('Corrigé','Solution')} · HTML</a></div></section>`:''}

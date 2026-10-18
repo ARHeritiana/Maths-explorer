@@ -151,7 +151,7 @@
         ],
         "topic": "vectors",
         "labs": [
-          "vectors"
+          "vectors/collinear"
         ],
         "guide": "shared-vectors"
       },
@@ -165,7 +165,7 @@
         ],
         "topic": "lines",
         "labs": [
-          "vectors"
+          "vectors/collinear"
         ],
         "guide": "shared-lines"
       },
@@ -203,7 +203,7 @@
         ],
         "topic": "functions",
         "labs": [
-          "quadratic"
+          "quadratic/sign"
         ],
         "guide": "shared-functions"
       },
@@ -217,7 +217,7 @@
         ],
         "topic": "statistics",
         "labs": [
-          "statistics"
+          "statistics/box"
         ],
         "guide": "shared-statistics"
       },
@@ -255,7 +255,7 @@
         ],
         "topic": "optimisation",
         "labs": [
-          "derivative"
+          "derivative/where"
         ],
         "guide": "shared-optimisation"
       },
@@ -283,7 +283,7 @@
         ],
         "topic": "geometry",
         "labs": [
-          "vectors"
+          "vectors/collinear"
         ],
         "guide": "shared-geometry"
       },
@@ -309,7 +309,7 @@
         ],
         "topic": "conditional",
         "labs": [
-          "probability"
+          "probability/run"
         ],
         "guide": "shared-conditional"
       },
@@ -335,7 +335,7 @@
         ],
         "topic": "sequences",
         "labs": [
-          "sequences"
+          "sequences/signs"
         ],
         "guide": "shared-sequences"
       },
@@ -349,7 +349,7 @@
         ],
         "topic": "quadratic",
         "labs": [
-          "quadratic"
+          "quadratic/vertex"
         ],
         "guide": "shared-quadratic"
       },
@@ -377,7 +377,7 @@
         ],
         "topic": "derivative",
         "labs": [
-          "derivative"
+          "derivative/approach"
         ],
         "guide": "shared-derivative"
       },
@@ -405,7 +405,7 @@
         ],
         "topic": "optimisation",
         "labs": [
-          "derivative"
+          "derivative/where"
         ],
         "guide": "shared-optimisation"
       },
@@ -431,7 +431,7 @@
         ],
         "topic": "random",
         "labs": [
-          "probability"
+          "probability/mean"
         ],
         "guide": "shared-random"
       },
@@ -457,7 +457,7 @@
         ],
         "topic": "trigonometry",
         "labs": [
-          "trig"
+          "trig/quadrants"
         ],
         "guide": "shared-trigonometry"
       },
@@ -471,7 +471,7 @@
         ],
         "topic": "induction",
         "labs": [
-          "sequences"
+          "sequences/formula"
         ],
         "guide": "shared-induction"
       },
@@ -497,7 +497,7 @@
         ],
         "topic": "sequence-limits",
         "labs": [
-          "sequences"
+          "sequences/signs"
         ],
         "guide": "shared-sequence-limits"
       },
@@ -537,7 +537,7 @@
         ],
         "topic": "convexity",
         "labs": [
-          "derivative"
+          "derivative/where"
         ],
         "guide": "shared-convexity"
       },
@@ -551,7 +551,7 @@
         ],
         "topic": "binomial",
         "labs": [
-          "probability"
+          "probability/run"
         ],
         "guide": "shared-binomial"
       },
@@ -603,7 +603,7 @@
         ],
         "topic": "integral",
         "labs": [
-          "integral"
+          "integral/bound"
         ],
         "guide": "shared-integral"
       },
@@ -617,7 +617,7 @@
         ],
         "topic": "concentration",
         "labs": [
-          "probability"
+          "probability/few"
         ],
         "guide": "shared-concentration"
       },
@@ -643,7 +643,7 @@
         ],
         "topic": "trig-functions",
         "labs": [
-          "trig"
+          "trig/quadrants"
         ],
         "guide": "shared-trig-functions"
       },
@@ -657,7 +657,7 @@
         ],
         "topic": "complex-algebra",
         "labs": [
-          "complex"
+          "complex/scale"
         ],
         "guide": "shared-complex-algebra"
       },
@@ -671,7 +671,7 @@
         ],
         "topic": "complex-plane",
         "labs": [
-          "complex",
+          "complex/angles",
           "vectors"
         ],
         "guide": "shared-complex-plane"
@@ -686,8 +686,8 @@
         ],
         "topic": "complex-exponential",
         "labs": [
-          "complex",
-          "trig"
+          "complex/angles",
+          "trig/exact"
         ],
         "guide": "shared-complex-exponential"
       },
@@ -702,7 +702,7 @@
         "topic": "polynomials",
         "labs": [
           "complex",
-          "quadratic"
+          "quadratic/roots"
         ],
         "guide": "shared-polynomials"
       },
@@ -716,8 +716,8 @@
         ],
         "topic": "roots-of-unity",
         "labs": [
-          "complex",
-          "trig"
+          "complex/compare",
+          "trig/exact"
         ],
         "guide": "shared-roots-of-unity"
       },
@@ -806,7 +806,7 @@
         ],
         "topic": "sequences",
         "labs": [
-          "sequences"
+          "sequences/versus"
         ],
         "guide": "shared-sequences"
       },
@@ -884,7 +884,7 @@
         ],
         "topic": "binomial",
         "labs": [
-          "probability"
+          "probability/run"
         ],
         "guide": "shared-binomial"
       },
@@ -960,7 +960,7 @@
         ],
         "topic": "vectors",
         "labs": [
-          "vectors"
+          "vectors/collinear"
         ],
         "relatedChapters": [
           "seconde-02"
@@ -976,7 +976,7 @@
         ],
         "topic": "lines",
         "labs": [
-          "vectors"
+          "vectors/collinear"
         ],
         "relatedChapters": [
           "seconde-03"
@@ -1022,7 +1022,7 @@
         ],
         "topic": "statistics",
         "labs": [
-          "statistics"
+          "statistics/outlier"
         ],
         "relatedChapters": [
           "seconde-07"
@@ -1147,7 +1147,7 @@
         ],
         "topic": "sequences",
         "labs": [
-          "sequences"
+          "sequences/versus"
         ],
         "relatedChapters": [
           "premiere-01",
@@ -1164,7 +1164,7 @@
         ],
         "topic": "quadratic",
         "labs": [
-          "quadratic"
+          "quadratic/vertex"
         ],
         "relatedChapters": [
           "premiere-02"
@@ -1196,7 +1196,7 @@
         ],
         "topic": "derivative",
         "labs": [
-          "derivative"
+          "derivative/approach"
         ],
         "relatedChapters": [
           "premiere-04"
@@ -1226,7 +1226,7 @@
         ],
         "topic": "random",
         "labs": [
-          "probability"
+          "probability/mean"
         ],
         "relatedChapters": [
           "premiere-08"
@@ -1257,7 +1257,7 @@
         ],
         "topic": "trigonometry",
         "labs": [
-          "trig"
+          "trig/quadrants"
         ],
         "relatedChapters": [
           "premiere-10"
@@ -1365,7 +1365,7 @@
         ],
         "topic": "binomial",
         "labs": [
-          "probability"
+          "probability/run"
         ],
         "relatedChapters": [
           "terminale-07",
@@ -1426,7 +1426,7 @@
         ],
         "topic": "integral",
         "labs": [
-          "integral"
+          "integral/finer"
         ],
         "relatedChapters": [
           "terminale-11"
@@ -1442,7 +1442,7 @@
         ],
         "topic": "concentration",
         "labs": [
-          "probability"
+          "probability/few"
         ],
         "relatedChapters": [
           "terminale-12"
@@ -1472,7 +1472,7 @@
         ],
         "topic": "trig-functions",
         "labs": [
-          "trig"
+          "trig/exact"
         ],
         "relatedChapters": [
           "terminale-14"
@@ -1551,7 +1551,7 @@
         ],
         "topic": "complex-algebra",
         "labs": [
-          "complex"
+          "complex/scale"
         ],
         "relatedChapters": [
           "expertes-01"
@@ -1567,7 +1567,7 @@
         ],
         "topic": "complex-plane",
         "labs": [
-          "complex",
+          "complex/angles",
           "vectors"
         ],
         "relatedChapters": [

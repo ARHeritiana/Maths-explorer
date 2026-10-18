@@ -2,8 +2,8 @@
 
 The contract is `docs/LAB_DESIGN.md` (read sections 3 to 7 before changing anything here). One experiment = one maths object
 + one template + 4 to 6 missions. The page, the card and the smoothness rules are the same for every experiment.
-`mount.js` `mountExperiment(host, ref, { mode, lang, palette, onMission, onComplete })` is the only entry point (lab page in
-`app.js`; chapter pages and slides later). A lab reference is `"<experiment>"` or `"<experiment>/<mission>"`; the route is
+`mount.js` `mountExperiment(host, ref, { mode, lang, palette, onMission, onComplete, controls, readout, hint, render })` is the only entry point (lab page in
+`app.js`, chapter pages in `chapter-sequence.js`, slides in `slides/widgets.js`). A lab reference is `"<experiment>"` or `"<experiment>/<mission>"`; the route is
 `#lab/<experiment>[/<mission>]`.
 
 ## Files
@@ -13,8 +13,8 @@ The contract is `docs/LAB_DESIGN.md` (read sections 3 to 7 before changing anyth
 | `engine.js` | `createStage`: DPR canvas, one rAF scheduler (draws only when dirty), handle hit-test (22 px radius), pointer capture, focusable twins of the handles (Tab, arrows), shared camera, palette and theme watch; `makeFormat` (decimal comma, `(x ; y)`), `setText`/`setAttr`/`setClass` (write only when changed), `createReadout`, `createTable` |
 | `format.js` | `makeFormat`: numbers with honest labelling (`num`, `isExact`, `eq`, `rel`, `read`, `ratio`, `full`, `pt`, `iv`, `t`): ≈ for a rounded value, = for an exact one; decimal comma in French; re-exported by `engine.js` |
 | `shell.js` | `createShell`: builds the figure and the mission card, runs the five mission kinds (`KINDS`), state, goals, answers, previous/next, `N`/`P`, argument section; `root.__lab` is the hook the browser tests use |
-| `mount.js` | `mountExperiment` (modes `full`, `inline`, `slide` (stub, Phase 3)); loads the template of the experiment |
-| `registry.js` | `EXPERIMENTS` (catalogue order, nine), `TEMPLATES` (lazy, six), `TEMPLATE_INFO` (group titles of the index), `resolveRef`, `catalogue()` (lines for `content.js` `labs`) |
+| `mount.js` | `mountExperiment` (modes `full` lab page, `inline` chapter page: canvas, one mission, link to the full page, `slide` player: canvas in the widget host, controls, answer area and stepper in `controls`, formula and readout in `readout`, prompt in `hint`, dark `palette`, fonts x1.3, `render` typesets text, N and P only with canvas focus); loads the template of the experiment |
+| `registry.js` | `EXPERIMENTS` (catalogue order, nine), `TEMPLATES` (lazy, six), `TEMPLATE_INFO` (group titles of the index), `resolveRef` (THE resolver: `{experiment, mission, index, ref, explicit}` or null), `catalogue()` (lines for `content.js` `labs`) |
 | `page.js` | markup of `#lab` (index grouped by type of activity) and of one experiment page |
 | `plot.js` | panels and views (fixed ranges), axes, the data-driven scene (curves, areas, rects, polys, lines, circles, arcs, points, texts, `rowLabels`; point labels never collide); `widen` spreads an equal-scale panel over the whole width, handle marks, `buildHandles` (the engine handles of a template) |
 | `templates/family.js` | template `family`: one or two panels, handles from the experiment's `controls`, links between panels |

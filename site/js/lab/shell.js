@@ -49,7 +49,7 @@ const TEXT = {
 };
 const T = (k) => TEXT[k];
 
-const el = (tag, className, text) => {
+const el0 = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text;
@@ -58,7 +58,13 @@ const el = (tag, className, text) => {
 
 export function createShell(host, exp, tpl, opts = {}) {
   const mode = opts.mode || "full";
-  const full = mode === "full";
+  const full = mode === "full", slide = mode === "slide";
+  // In a slide the player typesets every formula (opts.render turns the Unicode of an experiment into MathJax markup); elsewhere
+  // text is written as plain text nodes. `write` sets a node's text, `put` does it only when it changed (a Text node in place).
+  const render = slide ? opts.render : null;
+  const write = (node, value) => { if (render) render(node, String(value)); else node.textContent = value; };
+  const put = (node, value) => { if (render) render(node, String(value)); else setText(node, value); };
+  const el = (tag, className, text) => { const node = el0(tag, className); if (text !== undefined) write(node, text); return node; };
   const fmt = makeFormat(opts.lang || "fr");
   const t = fmt.t;
   const missions = exp.missions;
@@ -82,23 +88,37 @@ export function createShell(host, exp, tpl, opts = {}) {
   const userApply = (partial) => { stopPlay(); apply(partial); };
 
   // ---- DOM skeleton (built once)
+  // In a slide the parts go to the player's own areas: the canvas fills `host`, the controls and the mission stepper go to
+  // `opts.controls`, the formula and the readout to `opts.readout`, the prompt to `opts.hint`.
   host.replaceChildren();
   const root = el("div", `lab2 lab2-${mode}`);
   root.dataset.experiment = exp.id;
   root.dataset.mode = mode;
-  host.append(root);
-  const grid = el("div", "lab2-grid");
-  const figure = el("section", "lab2-figure");
-  figure.setAttribute("aria-label", t(["Figure interactive", "Interactive figure"]));
   const card = el("section", "lab2-card");
   card.setAttribute("aria-label", t(["Mission en cours", "Current mission"]));
-  grid.append(figure, card);
-  root.append(grid);
+  let figure, readoutHost;
+  if (slide) {
+    figure = host; readoutHost = opts.readout || host;
+    host.classList.add("lab2-canvas-host");
+    (opts.controls || host).append(root);
+    root.append(card);
+  } else {
+    host.append(root);
+    const grid = el("div", "lab2-grid");
+    figure = el("section", "lab2-figure");
+    figure.setAttribute("aria-label", t(["Figure interactive", "Interactive figure"]));
+    grid.append(figure, card);
+    root.append(grid);
+    readoutHost = figure;
+  }
 
   let view = null;
   const stage = createStage(figure, {
     lang: fmt.lang,
     palette: opts.palette,
+    fontScale: slide ? 1.3 : 1,
+    canvasKeys: slide,
+    navHost: slide ? opts.controls : undefined,
     label: `${t(exp.title)}. ${t(T("keys"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
     onDragEnd: () => announce(),
@@ -106,9 +126,9 @@ export function createShell(host, exp, tpl, opts = {}) {
   });
   const formulaEl = el("p", "lab2-formula");
   formulaEl.setAttribute("aria-hidden", "true");
-  figure.append(formulaEl);
-  const readout = createReadout(figure);
-  const table = exp.views.table ? createTable(figure, t(exp.views.table.caption)) : null;
+  readoutHost.append(formulaEl);
+  const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
+  const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
   if (full) figure.append(el("p", "lab2-keys", t(T("keys"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
@@ -204,7 +224,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   controlsEl.hidden = !Object.keys(controlNodes).length;
 
   // ---- card
-  const head = el("div", "lab2-card-head");
+  const head = el("div", slide ? "lab2-stepper" : "lab2-card-head");
   const stepEl = el("span", "lab2-step"), kindEl = el("span", "lab2-kind");
   const fold = el("button", "lab2-fold text-button", t(["Réduire", "Fold"]));
   fold.type = "button"; fold.setAttribute("aria-expanded", "true");
@@ -214,24 +234,35 @@ export function createShell(host, exp, tpl, opts = {}) {
     fold.setAttribute("aria-expanded", String(!on));
     setText(fold, on ? t(["Développer", "Unfold"]) : t(["Réduire", "Fold"]));
   });
-  head.append(stepEl, kindEl, fold);
+  const prevBtn = el("button", "secondary", t(T("previous"))), nextBtn = el("button", "primary", t(T("next")));
+  prevBtn.type = nextBtn.type = "button";
+  if (slide) {
+    // a compact stepper for the presenter: previous, "2/5 Explorer", next (no gating by progress)
+    prevBtn.textContent = "◀"; nextBtn.textContent = "▶";
+    prevBtn.className = nextBtn.className = "lab2-step-btn";
+    prevBtn.setAttribute("aria-label", t(["Mission précédente", "Previous mission"]));
+    nextBtn.setAttribute("aria-label", t(["Mission suivante", "Next mission"]));
+    const label = el("span", "lab2-step-label");
+    label.append(stepEl, " ", kindEl);
+    head.append(prevBtn, label, nextBtn);
+  } else head.append(stepEl, kindEl, fold);
   const dots = el("ol", "lab2-progress");
   dots.setAttribute("aria-label", t(["Missions", "Missions"]));
-  const promptEl = el("p", "lab2-prompt");
+  const promptEl = slide && opts.hint ? opts.hint : el("p", "lab2-prompt");
+  if (slide && opts.hint) promptEl.classList.add("lab2-hint");
   promptEl.tabIndex = -1;
   const answerEl = el("div", "lab2-answer");
   const feedbackEl = el("p", "lab2-feedback");
   feedbackEl.setAttribute("role", "status");
   const navEl = el("nav", "lab2-nav");
   navEl.setAttribute("aria-label", t(["Changer de mission", "Change mission"]));
-  const prevBtn = el("button", "secondary", t(T("previous"))), nextBtn = el("button", "primary", t(T("next")));
-  prevBtn.type = nextBtn.type = "button";
-  navEl.append(prevBtn, nextBtn);
+  if (!slide) navEl.append(prevBtn, nextBtn);
   card.append(head);
   if (full) card.append(dots);
-  card.append(promptEl, controlsEl, answerEl, feedbackEl);
+  if (!(slide && opts.hint)) card.append(promptEl);
+  card.append(controlsEl, answerEl, feedbackEl);
   if (full) card.append(navEl);
-  else {
+  else if (!slide) {
     const open = el("a", "lab2-open secondary", t(T("open")));
     open.href = (opts.href || ((ref) => `#lab/${ref}`))(`${exp.id}/${missions[0].id}`);
     card.append(open);
@@ -277,7 +308,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   }
 
   function setFeedback(text, tone) {
-    setText(feedbackEl, text || "");
+    put(feedbackEl, text || "");
     feedbackEl.dataset.tone = tone || "";
   }
 
@@ -293,6 +324,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   }
 
   function paintNav() {
+    if (slide) { prevBtn.disabled = index === 0; nextBtn.disabled = index === missions.length - 1; return; }
     if (!full) return;
     const m = mission(), last = index === missions.length - 1;
     prevBtn.disabled = index === 0;
@@ -380,8 +412,18 @@ export function createShell(host, exp, tpl, opts = {}) {
       const firstPredict = missions.find((x) => x.kind === "predict" && predictions[x.id]);
       if (firstPredict) {
         const p = predictions[firstPredict.id], right = firstPredict.correct === p.index;
-        recall.textContent = `${text(T("youPredicted"))} « ${p.text} » : ${firstPredict.correct === undefined ? "" : right ? text(T("rightGuess")) : text(T("wrongGuess"))}`;
+        write(recall, `${text(T("youPredicted"))} « ${p.text} » : ${firstPredict.correct === undefined ? "" : right ? text(T("rightGuess")) : text(T("wrongGuess"))}`);
         answerEl.append(recall);
+      }
+      if (slide) {
+        // projected: no text box, the presenter reveals the argument
+        const reveal = el("button", "primary", text(T("showArgument"))), arg = el("div", "lab2-reveal");
+        reveal.type = "button"; arg.hidden = !done[m.id];
+        if (done[m.id]) write(arg, text(m.argument));
+        reveal.addEventListener("click", () => { arg.hidden = false; write(arg, text(m.argument)); reveal.hidden = true; markDone(""); });
+        reveal.hidden = !!done[m.id];
+        answerEl.append(reveal, arg);
+        return finishAnswer(m);
       }
       const label = el("label", "", text(T("why")));
       const area = document.createElement("textarea");
@@ -394,13 +436,17 @@ export function createShell(host, exp, tpl, opts = {}) {
       const note = el("p", "lab2-note", text(T("needText")));
       area.addEventListener("input", () => { button.disabled = area.value.trim().length < 10; note.hidden = !button.disabled; });
       button.addEventListener("click", () => {
-        arg.hidden = false; arg.textContent = text(m.argument); note.hidden = true; button.hidden = true; area.readOnly = true;
+        arg.hidden = false; write(arg, text(m.argument)); note.hidden = true; button.hidden = true; area.readOnly = true;
         markDone("");
         arg.tabIndex = -1; arg.focus({ preventScroll: false });
       });
       answerEl.append(label, area, note, button, arg);
-      if (done[m.id]) { arg.hidden = false; arg.textContent = text(m.argument); button.hidden = true; note.hidden = true; }
+      if (done[m.id]) { arg.hidden = false; write(arg, text(m.argument)); button.hidden = true; note.hidden = true; }
     }
+    finishAnswer(m);
+  }
+  function finishAnswer(m) {
+    const text = (pair) => t(pair);
     if (m.hint && (m.kind === "explore" || m.kind === "check" || m.kind === "contrast")) {
       const d = el("details", "lab2-hintbox");
       d.append(el("summary", "", text(T("hint"))), el("p", "", text(m.hint)));
@@ -423,10 +469,10 @@ export function createShell(host, exp, tpl, opts = {}) {
     ghostSet = null; variantSeen = new Set(); currentVariant = null; attempts = 0;
     lockControls(m);
     setClass(card, "is-done", !!done[m.id]);
-    setText(stepEl, `${t(T("mission"))} ${full ? `${i + 1}/${missions.length}` : ""}`.trim());
+    setText(stepEl, (slide ? `${i + 1}/${missions.length}` : `${t(T("mission"))} ${full ? `${i + 1}/${missions.length}` : ""}`).trim());
     setText(kindEl, t(KINDS[m.kind]));
     card.dataset.kind = m.kind;
-    setText(promptEl, t(m.prompt));
+    put(promptEl, t(m.prompt));
     renderAnswer(m);
     setFeedback("");
     if (m.kind === "contrast" && m.variants?.length) answerEl.querySelector(".lab2-variant")?.click();
@@ -442,11 +488,13 @@ export function createShell(host, exp, tpl, opts = {}) {
     if (i < 0 || i >= missions.length || i === index) return;
     if (full && i > maxReached) return;
     enter(i);
-    promptEl.focus({ preventScroll: true });
+    if (!slide) promptEl.focus({ preventScroll: true });   // in a slide the focus stays where the presenter put it (N and P again)
   }
   prevBtn.addEventListener("click", () => go(index - 1));
   nextBtn.addEventListener("click", () => go(index + 1));
-  if (full) root.addEventListener("keydown", (e) => {
+  // N and P change mission; in a slide only when the canvas (or one of its handles) has focus, so the player keeps its own keys
+  (slide ? stage.wrap : root).addEventListener("keydown", (e) => {
+    if (!full && !slide) return;
     if (e.target.closest("input, textarea, select") || e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === "n" || e.key === "N") { e.preventDefault(); go(index + 1); }
     if (e.key === "p" || e.key === "P") { e.preventDefault(); go(index - 1); }
@@ -458,7 +506,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     if (synced === version) return;
     synced = version;
     const s = state;
-    setText(formulaEl, exp.views.formula(s, ctx));
+    put(formulaEl, exp.views.formula(s, ctx));
     readout.update(exp.views.readout(s, ctx).map(([label, value]) => [t(label), value]));
     if (table) {
       const head = exp.views.table.head;
@@ -503,6 +551,10 @@ export function createShell(host, exp, tpl, opts = {}) {
       view.destroy?.();
       stage.destroy();
       root.remove();
+      if (slide) {   // the areas belong to the player: leave them as they were found
+        formulaEl.remove(); readout.el.remove(); host.classList.remove("lab2-canvas-host");
+        if (opts.hint) { opts.hint.classList.remove("lab2-hint"); opts.hint.textContent = ""; }
+      }
     },
   };
   root.__lab = api;   // read by the browser tests (tests/lab_browser.py) to set a state or read the mission

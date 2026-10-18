@@ -1,4 +1,4 @@
-// Runs the Maths expertes widgets (and the shared unit circle) under jsdom with the real number formatter, sweeps
+// Runs the Maths expertes widgets (the unit circle moved to the laboratory) under jsdom with the real number formatter, sweeps
 // every handle and slider, and checks that each calculation printed with "=" is arithmetically true.
 // Added after the two independent audits of 2026-10-17 (findings: cquad and complex rounded with "=", markov limit
 // claimed for p = q = 1, unit-circle degrees "60" printed as "6"); the earlier verification script never ran the widgets.
@@ -35,7 +35,7 @@ const num = s => Number(s.replace(/[(){}\\left\\right]/g, ''));
 const close = (a, b) => Math.abs(a - b) < 1e-9;
 
 test('expertes widgets never print NaN, undefined or a non-finite value', () => {
-  const specs = {complex: [{mode: 'alg'}, {mode: 'polar'}, {mode: 'product'}], cquad: [{}], roots: [{n: 6}], modclock: [{mode: 'powers', n: 9, a: 2}, {mode: 'inverse', n: 26, a: 7}], matrix2: [{}], walks: [{}], markov: [{}], circle: [{}]};
+  const specs = {complex: [{mode: 'alg'}, {mode: 'polar'}, {mode: 'product'}], cquad: [{}], roots: [{n: 6}], modclock: [{mode: 'powers', n: 9, a: 2}, {mode: 'inverse', n: 26, a: 7}], matrix2: [{}], walks: [{}], markov: [{}]};
   for (const [type, list] of Object.entries(specs)) for (const spec of list) {
     const {readouts, bad} = sweep(type, spec);
     assert.deepEqual(bad, [], type);
@@ -72,14 +72,18 @@ test('markov: no limit is claimed when p = q = 1', () => {
   for (const r of readouts.filter(r => !swap.includes(r))) assert.match(r, /Limit/);
 });
 
-test('unit circle: degrees and radians agree', () => {
+// The unit circle widget moved to the laboratory (trig experiment, 18 October 2026): the same check on its readout.
+test('unit circle (laboratory trig experiment): degrees and radians agree', async () => {
+  const {experimentById} = await import('../dist/js/lab/registry.js'), {makeFormat} = await import('../dist/js/lab/format.js');
+  const trig = experimentById('trig'), fmt = makeFormat('en');
   let n = 0;
-  for (const r of sweep('circle').readouts) {
-    const m = r.match(/Angle \\\(\\theta\\\): \\\((-?\d+)\^\\circ=([^\\]*?(?:\\dfrac\{(\d*)\\pi\}\{(\d+)\}|(\d*)\\pi|0))\\ \\mathrm\{rad\}/);
-    if (!m) continue; n++;
-    const deg = +m[1];
-    const rad = m[3] !== undefined ? (m[3] === '' ? 1 : +m[3]) / +m[4] : m[5] !== undefined ? (m[5] === '' ? 1 : +m[5]) : 0;
+  for (let deg = 0; deg <= 360; deg += 5) {
+    const text = trig.views.readout({deg, assoc: 'none', fn: 'sin'}, {fmt, lang: 'en', unlocked: () => true})[0][1];
+    const m = text.match(/^(\d+)° = (?:(\d*)π(?:\/(\d+))?|0) rad$/);
+    assert.ok(m, text); n++;
+    assert.equal(+m[1], deg);
+    const rad = m[2] === undefined && !/π/.test(text) ? 0 : (m[2] === '' ? 1 : +m[2]) / (m[3] ? +m[3] : 1);
     assert.ok(close(((deg % 360) + 360) % 360, ((rad * 180) % 360 + 360) % 360), `${deg} deg vs ${rad} pi rad`);
   }
-  assert.ok(n >= 12, `only ${n} angle readouts parsed`);
+  assert.equal(n, 73);
 });

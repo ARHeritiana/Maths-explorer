@@ -18,7 +18,7 @@ import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { installInterfaceMotion, illuminateFeedback } from "./motion.js";
 import { mountExperiment } from "./lab/mount.js";
-import { experimentById, labRef } from "./lab/registry.js";
+import { resolveRef, labRef } from "./lab/registry.js";
 import { indexPage as labIndexPage, experimentPage } from "./lab/page.js";
 import { isAnswer, formatNumber } from "./math.js";
 
@@ -129,7 +129,7 @@ function render() {
     "Maths Explorer · Laboratoire de mathématiques",
     "Maths Explorer · Mathematics laboratory",
   );
-  const experiment = r.page === "lab" ? experimentById(r.id) : null;
+  const experiment = r.page === "lab" && r.id ? (resolveRef(labRef(r.id, r.tab)) || resolveRef(r.id))?.experiment || null : null;
   const valid = (r.page === "lab" && (!r.id || !!experiment)) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
     (r.page === "home" && !r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||

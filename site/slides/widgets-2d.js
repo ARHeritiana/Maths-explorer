@@ -45,23 +45,6 @@ export const W2 = {
     };
   },
 
-  // Quadratic in canonical form: draggable vertex and a point fixing the coefficient a.
-  quad(o) {
-    let al = 1, be = -2, a = 1; const v = () => view(o, -6, 6, -6, 8);
-    return {
-      handles() { const V = v(); return [{ x: V.X(al), y: V.Y(be), cur: "move", move(X, Y) { al = clamp(snap(V.iX(X)), -5, 5); be = clamp(snap(V.iY(Y)), -5, 7); } }, { x: V.X(al + 1), y: V.Y(a + be), cur: "ns-resize", move(X, Y) { const t = snap(V.iY(Y) - be, .25); a = t === 0 ? a : clamp(t, -4, 4); } }]; },
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L }); curve(g, V, x => a * (x - al) ** 2 + be, -6, 6);
-        dot(o, V.X(al), V.Y(be), C.acc, "S"); dot(o, V.X(al + 1), V.Y(a + be), C.warn);
-        const N = o.tn, b = -2 * a * al, c = a * al * al + be, d = b * b - 4 * a * c;
-        const canon = (a === 1 ? "" : a === -1 ? "-" : N(a)) + tshift("x", al, N) + "^2" + (Math.abs(be) < 1e-9 ? "" : (be < 0 ? "-" : "+") + N(Math.abs(be)));
-        const ordered = d > 1e-9 ? [(-b-Math.sqrt(d))/(2*a),(-b+Math.sqrt(d))/(2*a)].sort((x,y)=>x-y) : [al];
-        const roots = d < -1e-9 ? o.pair("aucune racine réelle", "no real root") : d < 1e-9 ? inl(`x=${N(al)}`) : inl(`x_1=${N(ordered[0])},\\ x_2=${N(ordered[1])}`);
-        set(o, lines(o.pair(`Forme canonique : ${inl(`f(x)=${canon}`)}`, `Canonical form: ${inl(`f(x)=${canon}`)}`), inl(`f(x)=${tpoly([[a, "x^2"], [b, "x"], [c, ""]], N)}`), o.spec.showDelta === false ? "" : inl(`\\Delta=${N(d)}`), o.pair("Zéros (intersections) : ", "Zeros (intersections): ") + roots, a > 0 ? o.pair(`Minimum en ${inl("\\alpha")}.`, `Minimum at ${inl("\\alpha")}.`) : o.pair(`Maximum en ${inl("\\alpha")}.`, `Maximum at ${inl("\\alpha")}.`)));
-      },
-    };
-  },
-
   // Exponential C*b^x, common logarithm and reciprocal function share one canvas with a mode switch.
   fn(o) {
     let mode = o.spec.mode || "exp", C0 = 1, b = 1.5, k = 2, tx = 1, tx2 = 2; const v = () => (mode === "exp" ? view(o, -4, 4, -1, 8) : mode === "log" ? view(o, -1, 12, -3, 3) : view(o, -6, 6, -6, 6));
@@ -88,21 +71,6 @@ export const W2 = {
           dot(o, V.X(1), V.Y(k), C.warn, "k"); const y = k / tx2; dot(o, V.X(tx2), V.Y(y), C.acc, "M");
           set(o, lines(inl(`f(x)=\\dfrac{${N(k)}}{x}`), `${inl(`M${tpt(o, tx2, y)}`)} : ${inl(`x\\times y=${N(tx2 * y)}`)}`, k > 0 ? o.pair(`Décroissante sur ${inl(tiv(o, "-\\infty", 0, false, false))} et sur ${inl(tiv(o, 0, "+\\infty", false, false))}.`, `Decreasing on ${inl(tiv(o, "-\\infty", 0, false, false))} and on ${inl(tiv(o, 0, "+\\infty", false, false))}.`) : o.pair("Croissante sur chaque intervalle.", "Increasing on each interval."), o.pair(`Asymptotes : ${inl("x=0")} et ${inl("y=0")}.`, `Asymptotes: ${inl("x=0")} and ${inl("y=0")}.`)));
         }
-      },
-    };
-  },
-
-  // Arithmetic or geometric sequence: draggable first two terms.
-  seq(o) {
-    let geo = o.spec.geo ?? false, u0 = 2, u1 = 3; const N = 12; const v = () => view(o, -.5, N + .5, geo ? -1 : -4, geo ? 30 : 16);
-    choice(o, [["a", "Arithmétique", "Arithmetic"], ["g", "Géométrique", "Geometric"]], geo ? "g" : "a", m => { geo = m === "g"; u0 = 2; u1 = geo ? 3 : 3; o.redraw(); });
-    return {
-      handles() { const V = v(); return [{ x: V.X(0), y: V.Y(u0), cur: "ns-resize", move(X, Y) { u0 = clamp(snap(V.iY(Y), .5), geo ? .5 : -3, geo ? 8 : 14); } }, { x: V.X(1), y: V.Y(u1), cur: "ns-resize", move(X, Y) { u1 = clamp(snap(V.iY(Y), .5), geo ? .5 : -3, geo ? 20 : 15); } }]; },
-      draw(g) {
-        const V = v(), q = u1 / u0, r = u1 - u0, f = n => geo ? u0 * q ** n : u0 + r * n; axes(g, V, { lang: o.L });
-        for (let n = 0; n <= N; n++) { const y = f(n); if (y > V.y1 + 2 || y < V.y0 - 2) continue; dot(o, V.X(n), V.Y(y), n < 2 ? C.acc : C.muted, n === 0 ? inl("u_0") : n === 1 ? inl("u_1") : "", "grab", n < 2); }
-        const Nn = o.tn;
-        set(o, geo ? lines(o.pair(`Raison ${inl(`q=\\dfrac{u_1}{u_0}=${Nn(q)}`)}`, `Common ratio ${inl(`q=\\dfrac{u_1}{u_0}=${Nn(q)}`)}`), inl(`u_n=${u0 === 1 ? "" : Nn(u0) + "\\times "}${tpar(Nn, q)}^n`), inl(`u_{10}=${Nn(f(10))}`)) : lines(o.pair(`Raison ${inl(`r=u_1-u_0=${Nn(r)}`)}`, `Common difference ${inl(`r=u_1-u_0=${Nn(r)}`)}`), inl(`u_n=${tpoly([[u0, ""], [r, "n"]], Nn)}`), inl(`u_{10}=${Nn(f(10))}`), o.pair("Les points sont alignés.", "The points are collinear.")));
       },
     };
   },
@@ -230,38 +198,6 @@ export const W2 = {
     };
   },
 
-  // Secant sliding to the tangent: two draggable points on y = f(x) = x^3/4 - x.
-  tangent(o) {
-    const f = x => x ** 3 / 4 - x, df = x => 3 * x * x / 4 - 1; let a = -1, h = 1.5; const v = () => view(o, -4, 4, -4, 4);
-    return {
-      handles() { const V = v(); return [{ x: V.X(a), y: V.Y(f(a)), cur: "ew-resize", move(X) { a = clamp(snap(V.iX(X), .1), -3, 3); } }, { x: V.X(a + h), y: V.Y(f(a + h)), cur: "ew-resize", move(X) { const t = snap(V.iX(X) - a, .1); h = t === 0 ? .1 : clamp(t, -3, 3); } }]; },
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L }); curve(g, V, f, -4, 4);
-        const m = (f(a + h) - f(a)) / h, line = (s, col, w) => { g.save(); g.strokeStyle = col; g.lineWidth = w; g.beginPath(); g.moveTo(V.X(-4), V.Y(f(a) + s * (-4 - a))); g.lineTo(V.X(4), V.Y(f(a) + s * (4 - a))); g.stroke(); g.restore(); };
-        line(df(a), C.acc, 2.5); line(m, C.warn, 2.5); dot(o, V.X(a), V.Y(f(a)), C.acc, "M"); dot(o, V.X(a + h), V.Y(f(a + h)), C.warn, "N"); const N = o.tn;
-        set(o, lines(o.pair(`Taux d’accroissement : ${inl(`\\dfrac{f(a+h)-f(a)}{h}=${N(m)}`)}`, `Rate of change: ${inl(`\\dfrac{f(a+h)-f(a)}{h}=${N(m)}`)}`), inl(`f'(${N(a)})=${N(df(a))}`), o.pair(`Rapprochez ${inl("N")} de ${inl("M")} : la sécante tend vers la tangente.`, `Move ${inl("N")} towards ${inl("M")}: the secant tends to the tangent.`), inl("f(x)=\\dfrac{x^3}{4}-x")));
-      },
-    };
-  },
-
-  // Unit circle: draggable angle gives cos, sin, tan, radians.
-  circle(o) {
-    let th = Math.PI / 3; const v = () => view(o, -1.6, 1.6, -1.35, 1.35, 20);
-    return {
-      handles() { const V = v(); return [{ x: V.X(Math.cos(th)), y: V.Y(Math.sin(th)), r: 28, cur: "grab", move(X, Y) { let t = Math.atan2(-(Y - V.Y(0)), X - V.X(0)); t = Math.round(t / (Math.PI / 12)) * (Math.PI / 12); th = (t + 2 * Math.PI) % (2 * Math.PI); } }]; },
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L, sx: .5, sy: .5, noLabels: true }); const R = V.X(1) - V.X(0);
-        g.save(); g.strokeStyle = C.muted; g.lineWidth = 2; g.beginPath(); g.arc(V.X(0), V.Y(0), R, 0, 7); g.stroke(); g.strokeStyle = C.acc; g.lineWidth = 4; g.beginPath(); g.arc(V.X(0), V.Y(0), R * .22, 0, -th, true); g.stroke();
-        const x = Math.cos(th), y = Math.sin(th); g.strokeStyle = C.warn; g.lineWidth = 3; g.beginPath(); g.moveTo(V.X(0), V.Y(0)); g.lineTo(V.X(x), V.Y(y)); g.stroke();
-        g.setLineDash([5, 5]); g.strokeStyle = C.blue; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(x), V.Y(0)); g.stroke(); g.strokeStyle = C.acc; g.beginPath(); g.moveTo(V.X(x), V.Y(y)); g.lineTo(V.X(0), V.Y(y)); g.stroke(); g.restore();
-        dot(o, V.X(x), V.Y(y), C.warn, "M");
-        const N = o.tn, deg = th * 180 / Math.PI, k = Math.round(deg / 15), fr = (a, b) => { const g_ = (p, q) => q ? g_(q, p % q) : p, d = g_(a, b); a /= d; b /= d; return b === 1 ? (a === 1 ? "\\pi" : `${a}\\pi`) : `\\dfrac{${a === 1 ? "" : a}\\pi}{${b}}`; };
-        const rad = k === 0 ? "0" : fr(k, 12);
-        set(o, lines(o.pair(`Angle ${inl("\\theta")} : ${inl(`${N(deg, 0)}^\\circ=${rad}\\ \\mathrm{rad}`)}`, `Angle ${inl("\\theta")}: ${inl(`${N(deg, 0)}^\\circ=${rad}\\ \\mathrm{rad}`)}`), inl(`\\cos\\theta=${N(x)}`), inl(`\\sin\\theta=${N(y)}`), inl(`\\cos^2\\theta+\\sin^2\\theta=${N(x * x + y * y)}`), Math.abs(x) < 1e-9 ? o.pair(`${inl("\\tan\\theta")} : non définie`, `${inl("\\tan\\theta")}: undefined`) : inl(`\\tan\\theta=${N(y / x)}`)));
-      },
-    };
-  },
-
   // Scatter plot with draggable points: least-squares line and correlation (STMG, Seconde stats).
   scatter(o) {
     const P = [[1, 2], [2, 3], [3, 3.5], [4, 5], [5, 5.5], [6, 7]]; const v = () => view(o, 0, 8, 0, 10);
@@ -296,23 +232,6 @@ export const W2 = {
     };
   },
 
-  // Binomial distribution: draggable p, n slider (terminale / STMG only).
-  binom(o) {
-    let n = 10, p = .3; slider(o, inl("n"), 2, 30, 1, n, v => { n = v; o.redraw(); });
-    const ch = k => { let r = 1; for (let i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; };
-    const v = () => view(o, -.5, n + .5, 0, 1, 40);
-    return {
-      handles() { const bw = o.W - 80; return [{ x: 40 + p * bw, y: o.H - 12, r: 26, cur: "ew-resize", move(X) { p = clamp(snap((X - 40) / bw, .01), .01, .99); } }]; },
-      draw(g) {
-        const pr = Array.from({ length: n + 1 }, (_, k) => ch(k) * p ** k * (1 - p) ** (n - k)), V = v();
-        axes(g, V, { lang: o.L, sx: Math.max(1, Math.round(n / 10)), sy: 1e9, noLabels: false });
-        pr.forEach((q, k) => { const x = V.X(k), w = Math.max(3, (V.X(1) - V.X(0)) * .7); g.fillStyle = C.acc; g.fillRect(x - w / 2, V.Y(q), w, V.Y(0) - V.Y(q)); });
-        g.fillStyle = C.grid; g.fillRect(40, o.H - 18, o.W - 80, 6); g.fillStyle = C.acc; g.fillRect(40, o.H - 18, p * (o.W - 80), 6); dot(o, 40 + p * (o.W - 80), o.H - 15, C.warn, "p");
-        const N = o.tn; set(o, lines(inl(`X\\sim\\mathcal{B}${tpt(o, n, p)}`), o.pair(`Espérance ${inl(`E(X)=np=${N(n * p)}`)}`, `Expected value ${inl(`E(X)=np=${N(n * p)}`)}`), o.pair(`Variance ${inl(`V(X)=np(1-p)=${N(n * p * (1 - p))}`)}`, `Variance ${inl(`V(X)=np(1-p)=${N(n * p * (1 - p))}`)}`)));
-      },
-    };
-  },
-
   // Distribution of a discrete random variable with four values: draggable bar tops, normalised.
   rv(o) {
     const xs = [0, 1, 2, 3]; const w = [1, 2, 2, 1]; const v = () => view(o, -.7, 3.7, 0, 1, 44);
@@ -324,23 +243,6 @@ export const W2 = {
         p.forEach((q, i) => { g.fillStyle = C.acc; const bw = (V.X(1) - V.X(0)) * .5; g.fillRect(V.X(xs[i]) - bw / 2, V.Y(q), bw, V.Y(0) - V.Y(q)); dot(o, V.X(xs[i]), V.Y(q), C.warn); });
         g.save(); g.strokeStyle = C.ink; g.setLineDash([6, 5]); g.beginPath(); g.moveTo(V.X(E), V.Y(0)); g.lineTo(V.X(E), V.Y(1)); g.stroke(); g.restore(); text(g, inl("E(X)"), V.X(E) + 6, V.Y(.95), C.ink, 16);
         const N = o.tn; set(o, lines(p.map((q, i) => inl(`P(X=${xs[i]})=${N(q, 3)}`)).join("<br>"), inl(`E(X)=${N(E, 3)}`), inl(`V(X)=${N(Vr, 3)}`), inl(`\\sigma(X)=${N(Math.sqrt(Vr), 3)}`)));
-      },
-    };
-  },
-
-  // Data on a number line: draggable values, mean, median, quartiles, box plot (Seconde).
-  stats(o) {
-    const D = [3, 5, 6, 8, 9, 12, 14]; const v = () => view(o, 0, 16, 0, 1, 40);
-    return {
-      handles() { const V = v(); return D.map((d, i) => ({ x: V.X(d), y: V.Y(.62), cur: "ew-resize", move(X) { D[i] = clamp(snap(V.iX(X), .5), 0, 16); } })); },
-      draw(g) {
-        const V = v(); const s = [...D].sort((a, b) => a - b), n = s.length, q = p => s[Math.ceil(p * n) - 1], med = n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
-        const mean = s.reduce((a, b) => a + b, 0) / n, sd = Math.sqrt(s.reduce((a, b) => a + (b - mean) ** 2, 0) / n), q1 = q(.25), q3 = q(.75);
-        axes(g, { ...V }, { lang: o.L, sx: 2, sy: 1e9, noLabels: false });
-        const y = V.Y(.25); g.save(); g.strokeStyle = C.acc; g.lineWidth = 3; g.strokeRect(V.X(q1), y - 22, V.X(q3) - V.X(q1), 44); g.beginPath(); g.moveTo(V.X(s[0]), y); g.lineTo(V.X(q1), y); g.moveTo(V.X(q3), y); g.lineTo(V.X(s[n - 1]), y); g.moveTo(V.X(med), y - 22); g.lineTo(V.X(med), y + 22); g.stroke(); g.restore();
-        g.save(); g.strokeStyle = C.warn; g.lineWidth = 2; g.setLineDash([5, 5]); g.beginPath(); g.moveTo(V.X(mean), V.Y(.1)); g.lineTo(V.X(mean), V.Y(.75)); g.stroke(); g.restore();
-        D.forEach(d => dot(o, V.X(d), V.Y(.62), C.acc)); const N = o.tn;
-        set(o, lines(o.pair(`Moyenne ${inl(`\\bar{x}=${N(mean)}`)} (pointillés orange)`, `Mean ${inl(`\\bar{x}=${N(mean)}`)} (orange dashes)`), o.pair(`Médiane : ${inl(N(med))}`, `Median: ${inl(N(med))}`), inl(`Q_1=${N(q1)},\\ Q_3=${N(q3)}`), o.pair(`Écart interquartile : ${inl(N(q3 - q1))}`, `Interquartile range: ${inl(N(q3 - q1))}`), o.pair(`Écart type ${inl(`\\sigma=${N(sd)}`)}`, `Standard deviation ${inl(`\\sigma=${N(sd)}`)}`)));
       },
     };
   },
@@ -390,21 +292,6 @@ export const W2 = {
       },
     };
   },
-  // Riemann sums for f(x) = 0.25x^2 - x + 2 with draggable bounds and a slider for the number of rectangles.
-  integral(o) {
-    const f = x => x * x / 4 - x + 2, F = x => x ** 3 / 12 - x * x / 2 + 2 * x; let a = 0.5, b = 4.5, n = 6; const v = () => view(o, -1, 7, -1, 6);
-    slider(o, inl("n"), 1, 40, 1, n, q => { n = q; o.redraw(); });
-    return {
-      handles() { const V = v(); return [{ x: V.X(a), y: V.Y(0), cur: "ew-resize", move(X) { a = clamp(snap(V.iX(X), .25), -.75, b - .5); } }, { x: V.X(b), y: V.Y(0), cur: "ew-resize", move(X) { b = clamp(snap(V.iX(X), .25), a + .5, 6.75); } }];},
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L }); const w = (b - a) / n; let S = 0;
-        for (let i = 0; i < n; i++) { const x = a + i * w, y = f(x + w / 2); S += y * w; g.fillStyle = "rgba(111,211,176,.28)"; g.strokeStyle = C.acc; g.lineWidth = 1; g.fillRect(V.X(x), V.Y(y), V.X(x + w) - V.X(x), V.Y(0) - V.Y(y)); g.strokeRect(V.X(x), V.Y(y), V.X(x + w) - V.X(x), V.Y(0) - V.Y(y)); }
-        curve(g, V, f, -1, 7); dot(o, V.X(a), V.Y(0), C.warn, "a"); dot(o, V.X(b), V.Y(0), C.warn, "b"); const N = o.tn, I = F(b) - F(a);
-        set(o, lines(inl("f(x)=\\dfrac{x^2}{4}-x+2"), o.pair(`Somme de Riemann (milieux) : ${inl(N(S, 4))}`, `Riemann sum (midpoints): ${inl(N(S, 4))}`), inl(`\\int_a^b f(x)\\,\\mathrm{d}x=F(b)-F(a)=${N(I, 4)}`), o.pair(`Écart : ${inl(N(Math.abs(S - I), 4))}`, `Gap: ${inl(N(Math.abs(S - I), 4))}`)));
-      },
-    };
-  },
-
   // Complex plane, same scale on both axes. Modes: alg (drag z: parts, conjugate, z times its conjugate), polar (drag z:
   // modulus, argument, trigonometric and exponential forms), product (drag z and w: moduli multiply, arguments add).
   complex(o) {
