@@ -2,9 +2,10 @@ import {findings} from './banned.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {remarkableAngles,trigValues,radiansLabel,relations,trigControls,trigDiagram,graphValues} from '../dist/js/trigonometry.js';
+import {remarkableAngles,trigValues,radiansLabel,relations,model} from '../dist/js/lab/models/trig.js';
+import trig from '../dist/js/lab/experiments/trig.js';
+import {makeFormat} from '../dist/js/lab/engine.js';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} != ${b}`);
-const t=p=>p[0],fmt=n=>n.toFixed(3),handle=(x,y)=>`<g data-handle="angle" data-x="${x}" data-y="${y}"></g>`;
 test('remarkable angles have exact coordinates in every quadrant, including negative and multi-turn angles',()=>{
   assert.deepEqual(trigValues(30).exact,['√3/2','1/2']);
   assert.deepEqual(trigValues(45).exact,['√2/2','√2/2']);
@@ -21,35 +22,34 @@ test('all associated-angle identities agree with independent trigonometric calcu
   const expected={plusPi:[q=>-q.cos,q=>-q.sin],minusPi:[q=>-q.cos,q=>-q.sin],plusHalfPi:[q=>-q.sin,q=>q.cos],minusHalfPi:[q=>q.sin,q=>-q.cos],opposite:[q=>q.cos,q=>-q.sin],supplementary:[q=>-q.cos,q=>q.sin],complementary:[q=>q.sin,q=>q.cos],fullTurn:[q=>q.cos,q=>q.sin]};
   for(const x of [-410,-90,0,30,45,60,179,225,360,721])for(const [key,r] of Object.entries(relations)){const q=trigValues(x),v=trigValues(r.transform(x));close(v.cos,expected[key][0](q));close(v.sin,expected[key][1](q));}
 });
-test('each view exposes only its own controls and circle/curve coordinates share the same angle',()=>{
-  for(const language of [0,1])for(const view of ['angles','identities','graphs']){
-    const tt=p=>p[language],s={values:[30],trigView:view,trigFunction:'sin',trigRelation:'minusHalfPi'};
-    const controls=trigControls(s,tt),d=trigDiagram(30,s,tt,fmt,handle);
-    assert.ok(!/undefined|NaN|Infinity/.test(d.svg+controls));assert.ok(d.svg.includes('>cos<')&&d.svg.includes('>sin<'));
-    assert.equal(controls.includes('id="remarkable-angle"'),view==='angles');assert.equal(controls.includes('id="trig-relation"'),view==='identities');assert.equal(controls.includes('id="trig-play"'),view==='graphs');
-    close(d.q.sin,.5);close(d.q.cos,Math.sqrt(3)/2);
-    if(view==='graphs')assert.ok(d.svg.includes('cx="415" cy="113.5"'));
-    if(view==='identities')assert.match(d.formula,/sin\(x − π\/2\) = −cos x/);
+test('the circle point, the curve point and the associated point share the same angle',()=>{
+  const fmt=makeFormat('fr'),ctx={fmt,lang:'fr'};
+  for(const fn of ['sin','cos'])for(const assoc of ['none',...Object.keys(relations)])for(const deg of [0,30,90,150,180,270,360]){
+    const s={deg,assoc,fn},rad=deg*Math.PI/180;
+    const circle=trig.views.circle.scene(s,ctx),graph=trig.views.graph.scene(s,ctx);
+    const P=circle.points.find(p=>p.label==='P').at;
+    close(P[0],Math.cos(rad));close(P[1],Math.sin(rad));
+    const G=graph.points[0].at;close(G[0],rad);close(G[1],Math[fn](rad));
+    // the linked segment joins P to the curve point
+    const link=trig.views.links(s)[0];close(link.from.at[0],P[0]);close(link.to.at[1],G[1]);
+    const Q=circle.points.find(p=>p.label==='Q');
+    assert.equal(!!Q,assoc!=='none');
+    if(Q){const a=relations[assoc].transform(deg)*Math.PI/180;close(Q.at[0],Math.cos(a));close(Q.at[1],Math.sin(a));}
+    for(const lang of ['fr','en']){const c={fmt:makeFormat(lang),lang};assert.ok(!/NaN|undefined|Infinity/.test(trig.views.formula(s,c)));}
   }
+  assert.match(trig.views.formula({deg:30,assoc:'minusHalfPi',fn:'sin'},ctx),/sin x/);
+  assert.match(trig.views.formula({deg:30,assoc:'supplementary',fn:'sin'},ctx),/Q = P\(π − x\) = \(−cos x ; sin x\)/);
 });
 test('no client catalogue or rendered chapter exposes personal-space URLs',()=>{
   for(const file of ['dist/js/resource-library.js','dist/js/library.js','dist/js/resources-data.js','dist/resources/catalog.json'])assert.deepEqual(findings(fs.readFileSync(file,'utf8')),[],file);
 });
-test('transformed circle and plotted values agree, including exact negative quarter-turn values',()=>{
-  for(const relation of ['identity',...Object.keys(relations)])for(const x of [0,30,90,180,270,360]){
-    const a=relation==='identity'?x:relations[relation].transform(x);
-    const g=graphValues(x,relation);
-    close(g.sin,Math.sin(a*Math.PI/180));close(g.cos,Math.cos(a*Math.PI/180));
-    for(const fn of ['sin','cos','both']){
-      const d=trigDiagram(x,{trigView:'graphs',trigGraphRelation:relation,trigFunction:fn},t,fmt,handle);
-      assert.ok(!/NaN|undefined|Infinity/.test(d.svg));
-      for(const name of ['sin','cos'])assert.equal(d.svg.includes(`data-curve="${name}"`),fn==='both'||fn===name);
-      for(const m of d.svg.matchAll(/data-curve="(sin|cos)" data-angle="([^"]+)" data-value="([^"]+)"/g)){
-        close(+m[2],x);close(+m[3],Math[m[1]](a*Math.PI/180));
-      }
-    }
+test('associated points and plotted values agree, including exact negative quarter-turn values',()=>{
+  for(const relation of Object.keys(relations))for(const x of [0,30,90,180,270,360]){
+    const a=relations[relation].transform(x),m=model({deg:x,assoc:relation});
+    close(m.q.sin,Math.sin(a*Math.PI/180));close(m.q.cos,Math.cos(a*Math.PI/180));
+    assert.equal(m.qAngle,a);
   }
-  const d=trigDiagram(30,{trigView:'graphs',trigGraphRelation:'minusHalfPi',trigFunction:'sin'},t,fmt,handle);
-  assert.equal(d.formula,'y = sin(x − π/2)');
-  assert.deepEqual(d.rows.at(-1),['y = sin(x − π/2)','−√3/2']);
+  const m=model({deg:30,assoc:'minusHalfPi'});
+  assert.equal(relations.minusHalfPi.angle,'x − π/2');
+  assert.deepEqual(m.q.exact,['1/2','−√3/2']);   // x − π/2 at x = 30°: the angle −60°
 });

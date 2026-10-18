@@ -5,8 +5,47 @@ import os
 from urllib.parse import urljoin, urlparse
 from playwright.sync_api import sync_playwright
 
-LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
-ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
+# Rebuilt as experiments with missions (site/js/lab/): walked mission by mission. The others still have the quiz page.
+EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral']
+LABS = ['probability','vectors','statistics','complex']
+ANSWERS = ['3','0','4','5']
+# A state at which each exploration goal holds, and the answer of each check (lab-engine.test.mjs recomputes them).
+WITNESS = {'quadratic/sign':{'a':-1,'b':0,'c':-2},'quadratic/vertex':{'a':1,'b':-4,'c':3},'trig/quadrants':{'deg':120},'trig/exact':{'deg':60},
+           'sequences/difference':{'r':-2},'sequences/signs':{'mode':'geom','q':-1.5,'n':6},'derivative/approach':{'h':0.01},
+           'derivative/where':{'x':0},'integral/finer':{'n':30},'integral/bound':{'b':2}}
+CHECKS = {'quadratic/read':'-2','trig/read':'1/2','sequences/formula':'96','derivative/slope':'6','integral/area':'7/3'}
+
+def walk_experiment(page, name):
+    """Complete every mission of an experiment through the page: predict, explore, compare, check (wrong then right), explain."""
+    page.goto(BASE+'/#lab/'+name)
+    page.locator('.lab2-canvas').wait_for()
+    count = page.locator('.lab2-dot').count()
+    assert 4 <= count <= 6, name
+    assert page.locator('.lab2-argument').is_hidden(), 'the argument waits for the last mission'
+    for i in range(count):
+        kind = page.locator('.lab2-card').get_attribute('data-kind')
+        mission = page.evaluate("() => document.querySelector('.lab2').__lab.mission.id")
+        assert page.evaluate('location.hash') == '#lab/'+name+'/'+mission
+        assert page.locator('.lab2-nav .primary').is_disabled() or i == count-1, 'Next waits for the mission'
+        if kind == 'predict':
+            assert page.locator('.lab2-ctl:not(.is-locked)').count() == 0, 'controls are locked in the prediction'
+            page.locator('.lab2-option').first.click()
+        elif kind == 'explore':
+            page.evaluate("w => document.querySelector('.lab2').__lab.setState(w)", WITNESS[name+'/'+mission])
+        elif kind == 'contrast':
+            for button in page.locator('.lab2-variant').all(): button.click()
+        elif kind == 'check':
+            page.locator('.lab2-check input').fill('99999'); page.locator('.lab2-check button').click()
+            assert page.locator('.lab2-feedback').inner_text() and not page.locator('.lab2-card.is-done').count(), 'a wrong answer sends back to the figure'
+            page.locator('.lab2-check input').fill(CHECKS[name+'/'+mission]); page.locator('.lab2-check button').click()
+        elif kind == 'explain':
+            assert page.locator('.lab2-reveal').is_hidden()
+            page.locator('.lab2-answer textarea').fill('Parce que la figure le montre pour tous les cas.')
+            page.locator('.lab2-answer button.primary').click()
+            assert page.locator('.lab2-reveal').is_visible(), 'the argument is revealed after an attempt'
+        page.wait_for_function("() => document.querySelector('.lab2-card').classList.contains('is-done')")
+        if i < count-1: page.locator('.lab2-nav .primary').click()
+    assert page.locator('.lab2-argument').is_visible(), 'the argument comes after the last mission'
 CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','inversions','piles']
 CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45','5','24','180','5','719','0','0','13','45']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
@@ -118,10 +157,15 @@ with sync_playwright() as p:
         assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
-    page.goto(BASE+'/#lab'); assert page.locator('.lab-link').count() == 9, 'the laboratory keeps the nine guided experiments'
+    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 9, 'the laboratory index lists the nine guided experiments, grouped by type of activity'
+    assert page.locator('.lab2-group').count() == 3
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
+        for name in EXPERIMENTS:
+            walk_experiment(page, name)
+            assert page.locator('html').get_attribute('lang') == language
+            assert page.locator('.canvas-navigation button:visible').count() == 0
         for lab,answer in zip(LABS,ANSWERS):
             page.goto(BASE+'/#lab/'+lab)
             page.locator('#cx-input canvas' if lab == 'complex' else '#plot svg').first.wait_for()
@@ -161,9 +205,9 @@ with sync_playwright() as p:
     assert page.locator('#results strong').last.inner_text() == '0'
     page.locator('[data-sim="100"]').click()
     assert page.locator('#results strong').first.inner_text() == '0'
-    page.goto(BASE+'/#lab/sequences')
-    page.locator('[value="geometric"]').check()
-    assert '×' in page.locator('#formula').inner_text()
+    page.goto(BASE+'/#lab/sequences/signs')
+    page.locator('.lab2-formula').wait_for()
+    assert '×' in page.locator('.lab2-formula').inner_text() and page.locator('.lab2-readout').inner_text(), 'the geometric formula multiplies'
     page.goto(BASE+'/#lab/statistics')
     page.locator('#data-input').fill('<script>alert(1)</script>')
     assert page.locator('#data-error').inner_text()
@@ -172,23 +216,23 @@ with sync_playwright() as p:
     assert page.locator('#results strong').nth(1).inner_text() == '4'
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'
-    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == len(LABS) + len(CHALLENGES)
+    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == len(EXPERIMENTS) + len(LABS) + len(CHALLENGES)
     page.goto(BASE+'/#challenges')
     for kind,count in [('play',18),('olympiad',10),('all',28)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
     page.goto(BASE+'/#lab/trig')
+    page.locator('.lab2-canvas').wait_for()
     page.locator('.skip').focus()
     page.keyboard.press('Enter')
     assert page.evaluate('document.activeElement.id') == 'main'
-    assert page.evaluate('location.hash') == '#lab/trig'
-    page.locator('#param-0').focus()
-    before = float(page.locator('#param-0').input_value())
+    assert page.evaluate('location.hash') == '#lab/trig/open'
+    page.goto(BASE+'/#lab/trig/quadrants'); page.locator('.lab2-canvas').wait_for()
+    page.locator('.lab2-handle').first.focus()
+    before = page.locator('.lab2-readout dd').first.inner_text()
     page.keyboard.press('ArrowRight')
-    assert float(page.locator('#param-0').input_value()) == before + 1
-    page.locator('#param-0').fill('180')
-    assert page.locator('#results strong').nth(1).inner_text() == '0'
+    page.wait_for_function("b => document.querySelector('.lab2-readout dd').textContent !== b", arg=before)   # the next frame, not the key event
     for route in ['lab/unknown','challenges/unknown','unknown']:
         page.goto(BASE+'/#'+route)
         assert page.locator('#main h1').inner_text() == 'Page not found'
@@ -202,18 +246,21 @@ with sync_playwright() as p:
         assert page.locator('#chart-data table').count() == 1
         assert lab == 'trig' or page.locator('#chart-data th[scope="col"]').count() >= 2
         assert page.locator('#results strong').count() == 3
-    page.goto(BASE+'/#lab/derivative')
-    page.locator('#param-0').fill('1')
-    page.locator('[name="direction"][value="-1"]').check()
-    page.locator('#param-1').fill('0.01')
-    assert page.locator('#results strong').first.inner_text() == '1.99'
-    assert page.locator('#results strong').last.inner_text() == '0.01'
-    page.goto(BASE+'/#lab/integral')
-    page.locator('#param-0').fill('2')
-    page.locator('[name="method"][value="right"]').check()
-    assert page.locator('#results strong').first.inner_text() == '0.625'
-    page.locator('[name="method"][value="midpoint"]').check()
-    assert page.locator('#results strong').first.inner_text() == '0.3125'
+    # Derivative: approach from the left with the scrubber (position 10 of the list of |h| is 0.01).
+    page.goto(BASE+'/#lab/derivative/sides')
+    page.locator('.lab2-variant').nth(1).click()
+    page.locator('#lab2-derivative-h').fill('10')
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '1.99'")
+    assert page.locator('.lab2-readout dd').last.inner_text() == '\u22120.01', 'the gap to 2x is h, here negative'
+    # Integral: n = 2 rectangles on [0 ; 1], right then midpoint heights.
+    page.goto(BASE+'/#lab/integral/heights')
+    page.locator('#lab2-integral-n').fill('2')
+    page.locator('.lab2-variant').nth(1).click()
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '0.625'")
+    page.evaluate("() => document.querySelector('.lab2').__lab.setState({method: 'mid'})")
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '0.3125'")
+    # Notes of the guided labs survive in-session navigation, language changes and a control reset.
+    page.goto(BASE+'/#lab/probability')
     # Notes survive in-session navigation, language changes and a control reset.
     page.locator('.notes summary').click(); page.locator('#observation').fill('N=2, midpoint sum < 1/3 < right sum')
     page.locator('[data-lang="fr"]').click()
@@ -240,8 +287,8 @@ with sync_playwright() as p:
     # The app never sends answers or notes through fetch/XHR.
     submissions = []
     page.on('request', lambda req: submissions.append(req.url) if req.resource_type in ['xhr','fetch'] else None)
-    page.goto(BASE+'/#lab/quadratic')
-    page.locator('#quiz-answer').fill('2')
+    page.goto(BASE+'/#lab/probability')
+    page.locator('#quiz-answer').fill('3')
     page.locator('#lab-quiz button').click()
     assert not submissions, submissions
     # Test malformed storage, read denial and quota/write denial in fresh contexts.
@@ -256,10 +303,10 @@ with sync_playwright() as p:
         extra = context.new_page()
         extra_errors = []
         extra.on('pageerror',lambda e: extra_errors.append(str(e)))
-        extra.goto(BASE+'/#lab/quadratic')
+        extra.goto(BASE+'/#lab/probability')
         extra.locator('#plot svg').first.wait_for()
         extra.locator('[data-lang="en"]').click()
-        extra.locator('#quiz-answer').fill('2')
+        extra.locator('#quiz-answer').fill('3')
         extra.locator('#lab-quiz button').click()
         assert 'success' in extra.locator('#quiz-feedback').get_attribute('class')
         if 'denied' in script or 'quota' in script: assert 'unavailable' in extra.locator('footer').inner_text()
@@ -267,11 +314,11 @@ with sync_playwright() as p:
         context.close()
     for width in [1440,768,390,320]:
         page.set_viewport_size({'width':width,'height':900})
-        for route in ['lab/'+x for x in LABS]+['challenges','challenges/doors','pathways']:
+        for route in ['lab']+['lab/'+x for x in EXPERIMENTS+LABS]+['challenges','challenges/doors','pathways']:
             page.goto(BASE+'/#'+route)
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), (width,route)
     page.set_viewport_size({'width':768,'height':900})
-    for route in ['lab/'+x for x in LABS]+['challenges','challenges/doors','pathways']:
+    for route in ['lab']+['lab/'+x for x in EXPERIMENTS+LABS]+['challenges','challenges/doors','pathways']:
         page.goto(BASE+'/#'+route)
         page.add_style_tag(content='html{font-size:200%}')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('200% text',route)
@@ -523,7 +570,7 @@ with sync_playwright() as p:
     os.makedirs('test-results',exist_ok=True)
     page.set_viewport_size({'width':1440,'height':1100})
     page.goto(BASE+'/#lab/integral')
-    page.wait_for_selector('#plot svg')
+    page.wait_for_selector('.lab2-canvas')
     page.screenshot(path='test-results/'+engine+'-desktop.png',full_page=True,animations='disabled')
     page.set_viewport_size({'width':390,'height':844})
     page.goto(BASE+'/#lab/probability')

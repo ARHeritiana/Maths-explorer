@@ -88,6 +88,12 @@ test("content links resolve and all learning content has two language versions",
     labs.length + challenges.length,
   );
   for (const l of labs) {
+    if (l.experiment) {
+      // lab/experiments/ holds the text of the rebuilt experiments; lab-engine.test.mjs checks every string.
+      for (const key of ["title", "group", "short", "intro", "prereq", "history", "story"])
+        assert.ok(l[key].length === 2 && l[key].every((x) => typeof x === "string" && x.length > 0), l.id + "." + key);
+      continue;
+    }
     for (const key of [
       "title",
       "group",

@@ -29,6 +29,8 @@ if not os.environ.get('MATHS_EXPLORER_URL'):
         raise
 try:
     result = subprocess.run([sys.executable, 'tests/browser.py'], cwd=root)
+    if result.returncode == 0:   # laboratory v2: smoothness, overflow, keyboard, reduced motion
+        result = subprocess.run([sys.executable, 'tests/lab_browser.py'], cwd=root)
 finally:
     if server:
         server.terminate()

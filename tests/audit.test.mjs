@@ -42,6 +42,13 @@ test("small graph values stay nonzero and scale labels stay distinct", () => {
 });
 test("all reasoning, presets and pathway notes are bilingual and valid", () => {
   for (const l of labs) {
+    if (l.experiment) {
+      // Rebuilt experiments keep their text in lab/experiments/ (checked field by field in lab-engine.test.mjs); here only the
+      // shared catalogue line and the history source are verified, like the other labs.
+      for (const key of ["level","prereq","intro","story"]) assert.equal(l[key].length,2);
+      assert.equal(new URL(l.source).hostname,'mathshistory.st-andrews.ac.uk');
+      continue;
+    }
     for (const key of ["conjecture","proof","transfer"]) assert.ok(l.reasoning[key].length===2 && l.reasoning[key].every(x=>typeof x === "string" && x.length>10));
     for (const key of ["level","prereq","intro","explain","story"]) assert.equal(l[key].length,2);
     for (const pair of l.steps) assert.ok(pair.length===2 && pair.every(Boolean));

@@ -14,6 +14,7 @@ const notIndex = (f) => f !== "CLAUDE.md" && f !== "AGENTS.md";
 // Each area: its source files and the index that must name them (MAP.md counts for every area).
 const AREAS = {
   "site/CLAUDE.md": [...files("site", (f) => f.endsWith(".html")), ...files("site/js"), ...files("site/styles"), ...files("site/slides"), ...files("site/resources")],
+  "site/js/lab/CLAUDE.md": [...files("site/js/lab", notIndex), ...files("site/js/lab/templates"), ...files("site/js/lab/models"), ...files("site/js/lab/experiments")],
   "site/js/challenges/CLAUDE.md": [...files("site/js/challenges", notIndex), ...files("site/js/challenges/common")],
   "build/mxbuild/CLAUDE.md": files("build/mxbuild", (f) => f.endsWith(".py")),
   "scripts/CLAUDE.md": files("scripts", notIndex),
