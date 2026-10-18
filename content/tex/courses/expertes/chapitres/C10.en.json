@@ -559,15 +559,15 @@
    "status": "aligned",
    "order": 92
   },
-  "d67bc926b6f0": {
-   "fr": "Le graphe est-il connexe ? Justifier à l'aide de [[m1]], puis directement.",
-   "en": "Is the graph connected? Justify using [[m1]], then directly.",
+  "501965b6e4cf": {
+   "fr": "Le graphe est-il connexe ? Justifier directement, puis vérifier que ce résultat se lit sur les coefficients de [[m1]].",
+   "en": "Is the graph connected? Justify directly, then check that this result can be read from the entries of [[m1]].",
    "status": "aligned",
    "order": 93
   },
-  "382271d7f96d": {
-   "fr": "Non : le coefficient [[m1]] est nul, donc aucune chaîne de longueur au plus [[m2]] ne relie [[m3]] à [[m4]], et par le cours aucune chaîne du tout. Directement : les sommets [[m5]], [[m6]], [[m7]] ne sont reliés qu'entre eux.",
-   "en": "No: the entry [[m1]] is zero, so no walk of length at most [[m2]] joins [[m3]] to [[m4]], and by the course no walk at all. Directly: the vertices [[m5]], [[m6]], [[m7]] are only joined to one another.",
+  "912bbe82cdcf": {
+   "fr": "Non : les sommets [[m1]], [[m2]], [[m3]] ne sont reliés qu'entre eux, et [[m4]], [[m5]] de même ; aucune chaîne ne relie [[m6]] à [[m7]]. Sur [[m8]] : le coefficient [[m9]] est nul, donc aucune chaîne de longueur au plus [[m10]] ne relie [[m11]] à [[m12]], ce qui concorde. Le critère du cadre « Hors programme » permet de conclure à partir de [[m13]] seul ; il n'est pas exigible.",
+   "en": "No: vertices [[m1]], [[m2]], [[m3]] are linked only to one another, and likewise [[m4]], [[m5]]; no walk links [[m6]] to [[m7]]. From [[m8]]: the entry [[m9]] is zero, so no walk of length at most [[m10]] links [[m11]] to [[m12]], which agrees. The criterion in the ``Beyond the syllabus'' frame lets one conclude from [[m13]] alone; it is not required.",
    "status": "aligned",
    "order": 94
   },

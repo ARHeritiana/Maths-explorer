@@ -185,13 +185,13 @@ Un graphe a pour matrice d'adjacence \[M=\begin{pmatrix}0&1&1&0\\1&0&1&1\\1&1&0&
 Un graphe a pour sommets $1$ à $5$ et pour arêtes $1$-$2$, $2$-$3$, $3$-$1$, $4$-$5$. On note $M$ sa matrice d'adjacence.
 \begin{enumerate}
 \item Calculer, à la calculatrice, $S=M+M^2+M^3+M^4$.
-\item Le graphe est-il connexe ? Justifier à l'aide de $S$, puis directement.
+\item Le graphe est-il connexe ? Justifier directement, puis vérifier que ce résultat se lit sur les coefficients de $S$.
 \end{enumerate}
 \end{exercise}
 \begin{solution}
 \begin{enumerate}
 \item On obtient \[S=\begin{pmatrix}10&10&10&0&0\\10&10&10&0&0\\10&10&10&0&0\\0&0&0&2&2\\0&0&0&2&2\end{pmatrix}.\]
-\item Non : le coefficient $(1,4)$ est nul, donc aucune chaîne de longueur au plus $4$ ne relie $1$ à $4$, et par le cours aucune chaîne du tout. Directement : les sommets $1$, $2$, $3$ ne sont reliés qu'entre eux.
+\item Non : les sommets $1$, $2$, $3$ ne sont reliés qu'entre eux, et $4$, $5$ de même ; aucune chaîne ne relie $1$ à $4$. Sur $S$ : le coefficient $(1,4)$ est nul, donc aucune chaîne de longueur au plus $4$ ne relie $1$ à $4$, ce qui concorde. Le critère du cadre « Hors programme » permet de conclure à partir de $S$ seul ; il n'est pas exigible.
 \end{enumerate}
 \end{solution}
 

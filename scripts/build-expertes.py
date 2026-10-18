@@ -9,8 +9,9 @@ chapter companion layout and the two source-book records. Run scripts/finalize-r
 
 Entry point: `make tex COURSE=expertes`. The pipeline skips the build when no input changed (cache), puts back every
 rebuilt PDF that differs from the committed copy only in its random /ID, then finalises and republishes the sources.
-Running this script directly rebuilds every excerpt and rewrites the source-book records (hash, date) even when nothing
-changed, leaving a dirty tree; use it directly only while debugging the builder.
+Running this script directly rewrites every excerpt PDF (each gets a new random /ID), leaving a dirty tree; use it
+directly only while debugging the builder. The source-book records hash each book without its /ID and dates, so an
+unchanged book keeps its record either way.
 """
 import datetime, hashlib, re, sys
 from pathlib import Path
@@ -42,6 +43,9 @@ BOOKS = {'student': ('eleve', 'expertes-eleve.pdf'), 'teacher': ('professeur', '
 
 MAINS = books.write_mains(COURSE, BUILD / 'mains', str(ROOT / 'content/tex/core'))
 _DONE = {}
+
+
+VOLATILE = re.compile(rb'/(?:CreationDate|ModDate)\s*\(D:[^)]*\)|/ID\s*\[\s*<[0-9A-Fa-f]*>\s*<[0-9A-Fa-f]*>\s*\]')
 
 
 def compile_pdf(entry):
@@ -146,11 +150,17 @@ def register(manifest, chapters, placed):
     comp['chapters'] = [c for c in comp['chapters'][:at] if c['course'] != COURSE] + layout + [c for c in comp['chapters'][at:] if c['course'] != COURSE]
     for book, (entry, name) in BOOKS.items():
         path = _DONE[entry].pdf; data = path.read_bytes()
-        rec = {'name': f'{COURSE}-{book}', 'title': name, 'modified': now, 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
-        i = next((i for i, s in enumerate(catalog['sources']) if s['name'] == rec['name']), None)
+        # The hash leaves out what pdfTeX changes on every run (the /ID pair and the creation and modification dates,
+        # written in a cross-reference stream here): an unchanged book keeps its record (hash and date) and a rebuild
+        # leaves the tree clean (audit 2026-10-17, finding 11).
+        digest = hashlib.sha256(VOLATILE.sub(b'', data)).hexdigest()
+        i = next((i for i, s in enumerate(catalog['sources']) if s['name'] == f'{COURSE}-{book}'), None)
+        same = i is not None and catalog['sources'][i].get('sha256') == digest
+        when = catalog['sources'][i]['modified'] if same else now
+        rec = {'name': f'{COURSE}-{book}', 'title': name, 'modified': when, 'sha256': digest, 'bytes': len(data)}
         if i is None: catalog['sources'].append(rec)
         else: catalog['sources'][i] = rec
-        crec = {'name': name, 'title': name, 'modified': now}
+        crec = {'name': name, 'title': name, 'modified': when}
         i = next((i for i, s in enumerate(comp['sources']) if s['name'] == name), None)
         if i is None: comp['sources'].append(crec)
         else: comp['sources'][i] = crec

@@ -54,12 +54,12 @@ export const resourceCatalog = {
     {
       "name": "expertes-eleve.pdf",
       "title": "expertes-eleve.pdf",
-      "modified": "2026-10-17T15:28:48.000Z"
+      "modified": "2026-10-18T06:19:08.000Z"
     },
     {
       "name": "expertes-prof.pdf",
       "title": "expertes-prof.pdf",
-      "modified": "2026-10-17T15:28:48.000Z"
+      "modified": "2026-10-18T06:19:08.000Z"
     }
   ],
   "chapters": [
@@ -2352,8 +2352,8 @@ export const resourceCatalog = {
           "pages": 7,
           "end": 68,
           "englishPath": "resources/expertes-10/chapter-en.pdf",
-          "bytes": 162039,
-          "englishBytes": 158568
+          "bytes": 162109,
+          "englishBytes": 158625
         },
         {
           "kind": "teacher",
@@ -2363,8 +2363,8 @@ export const resourceCatalog = {
           "pages": 8,
           "end": 82,
           "englishPath": "resources/expertes-10/teacher-en.pdf",
-          "bytes": 172683,
-          "englishBytes": 169283
+          "bytes": 172969,
+          "englishBytes": 169578
         }
       ]
     },

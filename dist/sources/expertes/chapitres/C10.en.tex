@@ -186,13 +186,13 @@ A graph has adjacency matrix \[M=\begin{pmatrix}0&1&1&0\\1&0&1&1\\1&1&0&1\\0&1&1
 A graph has vertices $1$ to $5$ and edges $1$-$2$, $2$-$3$, $3$-$1$, $4$-$5$. Let $M$ be its adjacency matrix.
 \begin{enumerate}
 \item Compute, with a calculator, $S=M+M^2+M^3+M^4$.
-\item Is the graph connected? Justify using $S$, then directly.
+\item Is the graph connected? Justify directly, then check that this result can be read from the entries of $S$.
 \end{enumerate}
 \end{exercise}
 \begin{solution}
 \begin{enumerate}
 \item We obtain \[S=\begin{pmatrix}10&10&10&0&0\\10&10&10&0&0\\10&10&10&0&0\\0&0&0&2&2\\0&0&0&2&2\end{pmatrix}.\]
-\item No: the entry $(1,4)$ is zero, so no walk of length at most $4$ joins $1$ to $4$, and by the course no walk at all. Directly: the vertices $1$, $2$, $3$ are only joined to one another.
+\item No: vertices $1$, $2$, $3$ are linked only to one another, and likewise $4$, $5$; no walk links $1$ to $4$. From $S$: the entry $(1,4)$ is zero, so no walk of length at most $4$ links $1$ to $4$, which agrees. The criterion in the ``Beyond the syllabus'' frame lets one conclude from $S$ alone; it is not required.
 \end{enumerate}
 \end{solution}
 
