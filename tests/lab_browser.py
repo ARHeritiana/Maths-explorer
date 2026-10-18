@@ -164,12 +164,32 @@ with sync_playwright() as p:
     assert page.locator('[data-control="fn"] .lab2-segment.is-on').inner_text() in ['cosine', 'cosinus']
     page.context.close()
 
-    # ---- phone: the card folds, the figure keeps at least 55 vh
-    page = new_page(390, 800)
-    ready(page, 'lab/quadratic/vertex')
-    assert page.locator('.lab2-stage').bounding_box()['height'] >= 0.55 * 800 - 2, 'the canvas keeps at least 55 vh on a phone'
-    page.locator('.lab2-fold').click()
-    assert not page.locator('.lab2-controls').is_visible(), 'the folded card shows the prompt only'
+    # ---- phone: the mission card follows the figure in normal flow and never covers the canvas (390 x 844 and 320 x 640)
+    def overlap(a, b):
+        return not (a['x'] + a['width'] <= b['x'] + 0.5 or b['x'] + b['width'] <= a['x'] + 0.5 or a['y'] + a['height'] <= b['y'] + 0.5 or b['y'] + b['height'] <= a['y'] + 0.5)
+    for width, height in [(390, 844), (320, 640)]:
+        page = new_page(width, height)
+        for ref in ['quadratic/vertex', 'derivative/approach', 'derivative/open', 'integral/finer']:
+            ready(page, 'lab/' + ref)
+            page.wait_for_timeout(100)
+            canvas, sheet = page.locator('.lab2-canvas').bounding_box(), page.locator('.lab2-card').bounding_box()
+            assert not overlap(canvas, sheet), ('the mission sheet covers the canvas', ref, width, height, canvas, sheet)
+            assert sheet['y'] >= canvas['y'] + canvas['height'] - 1, ('the sheet is below the canvas', ref, width)
+            if page.locator('.lab2-card').get_attribute('data-kind') == 'predict':
+                assert page.locator('.lab2-ctl:visible').count() == 0, ('locked controls are not shown in a prediction', ref)
+        ready(page, 'lab/quadratic/vertex')
+        assert page.locator('.lab2-stage').bounding_box()['height'] >= 0.55 * height - 2, 'the canvas keeps at least 55 vh on a phone'
+        page.locator('.lab2-fold').click()
+        assert not page.locator('.lab2-controls').is_visible(), 'the folded card shows the prompt only'
+        page.context.close()
+
+    # ---- locked controls: hidden in a prediction, visible but disabled in the other missions
+    page = new_page()
+    ready(page, 'lab/derivative/open')
+    assert page.locator('.lab2-ctl:visible').count() == 0 and not page.locator('.lab2-controls').is_visible(), 'no control is shown before the prediction'
+    ready(page, 'lab/derivative/where')
+    assert page.locator('.lab2-ctl:visible').count() >= 1 and page.locator('.lab2-ctl.is-locked:visible').count() >= 1, 'in other missions locked controls stay visible'
+    assert page.locator('.lab2-ctl.is-locked input:visible').first.is_disabled(), 'and are disabled'
     page.context.close()
 
     # ---- the Gallery redirect and a missing mission keep working

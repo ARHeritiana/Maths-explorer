@@ -162,6 +162,21 @@ test("formula, readout, table and labels stay finite, bilingual and dash-free ov
   }
 });
 
+test("the quadratic readout never prints the same writing twice and keeps conventional forms", () => {
+  const f = (s, lang = "fr") => byId.quadratic.views.formula(s, { fmt: makeFormat(lang), lang });
+  assert.equal(f({ a: 1, b: 0, c: 0 }), "f(x) = x²");
+  assert.equal(f({ a: 1, b: 0, c: -2 }), "f(x) = x² − 2");
+  assert.equal(f({ a: -1, b: 0, c: 0 }), "f(x) = −x²");
+  assert.equal(f({ a: 1, b: -4, c: 3 }), "f(x) = x² − 4x + 3 = (x − 2)² − 1");
+  assert.equal(f({ a: 2, b: 0, c: 0 }), "f(x) = 2x²");
+  assert.equal(f({ a: 0.5, b: 1, c: 0 }), "f(x) = 0,5x² + x = 0,5(x + 1)² − 0,5");
+  for (const a of [-3, -1, -0.25, 0.25, 1, 2]) for (const b of [-4, -1, 0, 2]) for (const c of [-3, 0, 1.5]) {
+    const parts = f({ a, b, c }).replace("f(x) = ", "").split(" = ");
+    assert.equal(new Set(parts).size, parts.length, `${a} ${b} ${c}: ${parts}`);
+    for (const p of parts) assert.ok(!/(^|[^\d])1x|\+ −|− −|\+ \+|(^|[^\d,])0x|[+−] 0(?![,\d])/.test(p), `conventional writing: ${p}`);
+  }
+});
+
 // ---- the answers of the check missions, recomputed by other routes than the model
 const independent = {
   // the parabola's lowest point found by scanning, its sign changes counted on a fine grid

@@ -71,7 +71,8 @@ export default {
           curves: [{ f: m.f, color: "accent", width: 3 }],
           lines: [{ a: [m.alpha, -6], b: [m.alpha, 8], color: "muted", dash: [6, 5], width: 1.5 }],
           points: [
-            ...m.roots.map((r) => ({ at: [r, 0], color: "pos", r: 6, label: num(r), dy: -12 })),
+            // a double root is the vertex itself, which already carries its coordinates
+            ...m.roots.map((r) => ({ at: [r, 0], color: "pos", r: 6, label: m.roots.length === 2 ? num(r) : undefined, dy: -12 })),
             { at: [0, s.c], color: "obj3", r: 5 },
             { at: [m.alpha, m.beta], color: "accent", r: 5, label: fmt.pt(m.alpha, m.beta), dx: 16, dy: 32 },
           ],
@@ -80,7 +81,9 @@ export default {
     },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num;
-      return `f(x) = ${expanded(s, num)} = ${canonical(m, num)}`;
+      // each distinct writing once: the two forms coincide when the vertex is on the y-axis and b = 0
+      const forms = [expanded(s, num), canonical(m, num)].filter((f, i, all) => all.indexOf(f) === i);
+      return `f(x) = ${forms.join(" = ")}`;
     },
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num, fr = fmt.fr;

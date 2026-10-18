@@ -1018,12 +1018,12 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .lab2-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .lab2-stage { aspect-ratio: auto; height: 55vh; max-height: none; }
   .lab2-readout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  /* The mission card is a sheet at the bottom of the screen; the canvas keeps at least 55 vh above it. */
+  /* The mission card follows the figure in normal flow: it never covers a part of the canvas. */
   .lab2-page .breadcrumb, .lab2-page .lab-heading p, .lab2-page .lab2-meta, .lab2-page .level { display: none; }
   .lab2-page .lab-heading h1 { font-size: 1.4rem; }
   .lab2-fold { display: inline-flex; }
   .lab2-card.is-folded > :not(.lab2-card-head):not(.lab2-prompt) { display: none; }
-  .lab2-full .lab2-card { position: sticky; top: auto; bottom: calc(60px + env(safe-area-inset-bottom)); z-index: 5; max-height: 40vh; overflow-y: auto; margin-top: 12px; border-width: 2px 1px 1px; border-color: var(--line-strong) var(--line) var(--line); border-radius: var(--r) var(--r) 0 0; }
+  .lab2-full .lab2-card { position: static; margin-top: 12px; }
 }
 @media (max-width: 460px) {
   .lab2-readout { grid-template-columns: 1fr; }

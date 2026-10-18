@@ -70,9 +70,22 @@ function arrowHead(g, x0, y0, x1, y1) {
   g.closePath(); g.fillStyle = g.strokeStyle; g.fill();
 }
 
-function label(g, st, text, x, y, color, anchor = "left", size = 17) {
+function label(g, st, text, x, y, color, anchor = "left", size = 17, placed = null) {
   g.save();
   g.font = st.font(size, 600, true); g.textAlign = anchor; g.lineJoin = "round";
+  if (placed) {
+    // Labels of nearby points must not collide: try the asked place, then below, then the other side; skip if none is free.
+    const w = g.measureText(text).width, box = (px, py, an) => {
+      const left = an === "right" ? px - w : an === "center" ? px - w / 2 : px;
+      return [left - 2, py - size, left + w + 2, py + 4];
+    };
+    const free = (b) => placed.every((o) => b[2] < o[0] || b[0] > o[2] || b[3] < o[1] || b[1] > o[3]);
+    const tries = [[x, y], [x, y + size + 6], [x, y - size - 6]];
+    const pick = tries.find(([px, py]) => free(box(px, py, anchor)));
+    if (!pick) { g.restore(); return; }
+    [x, y] = pick;
+    placed.push(box(x, y, anchor));
+  }
   g.lineWidth = 4; g.strokeStyle = st.pal.surface; g.strokeText(text, x, y);
   g.fillStyle = st.color(color || "ink"); g.fillText(text, x, y);
   g.restore();
@@ -134,15 +147,16 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
   g.save();
   if (ghost) g.globalAlpha = 0.38;
   g.setLineDash([]);
+  const placed = [];
   for (const p of scene.points || []) {
     const x = v.X(p.at[0]), y = v.Y(p.at[1]);
     if (x < v.left - 2 || x > v.left + v.width + 2 || y < v.top - 2 || y > v.top + v.height + 2) continue;
     g.beginPath(); g.arc(x, y, p.r ?? 6, 0, Math.PI * 2);
     if (p.hollow) { g.lineWidth = 2; g.strokeStyle = st.color(p.color || "ink"); g.fillStyle = st.pal.surface; g.fill(); g.stroke(); }
     else { g.fillStyle = st.color(p.color || "ink"); g.fill(); }
-    if (p.label && !ghost) label(g, st, p.label, x + (p.dx ?? 10), y + (p.dy ?? -10), p.color, p.anchor || "left");
+    if (p.label && !ghost) label(g, st, p.label, x + (p.dx ?? 10), y + (p.dy ?? -10), p.color, p.anchor || "left", 17, placed);
   }
-  for (const t of scene.texts || []) if (!ghost) label(g, st, t.text, v.X(t.at[0]) + (t.dx || 0), v.Y(t.at[1]) + (t.dy || 0), t.color, t.anchor || "left", t.size || 16);
+  for (const t of scene.texts || []) if (!ghost) label(g, st, t.text, v.X(t.at[0]) + (t.dx || 0), v.Y(t.at[1]) + (t.dy || 0), t.color, t.anchor || "left", t.size || 16, placed);
   g.restore();
 }
 

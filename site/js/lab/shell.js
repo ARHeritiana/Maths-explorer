@@ -251,8 +251,10 @@ export function createShell(host, exp, tpl, opts = {}) {
       if (n.input) n.input.disabled = !on;
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
-      n.wrap.hidden = false;
+      // Before the learner has predicted there is nothing to operate: locked controls are not shown at all.
+      n.wrap.hidden = m.kind === "predict";
     }
+    controlsEl.hidden = m.kind === "predict" || !Object.keys(controlNodes).length;
   }
 
   function setFeedback(text, tone) {
