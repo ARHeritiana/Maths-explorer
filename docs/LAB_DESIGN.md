@@ -158,3 +158,22 @@ resolve to an experiment and mission. Old slide widget types that duplicate an e
    duplicated slide widget types where an experiment exists.
 4. Template `space` and new experiments from the remaining widget types (line, exp/log/inverse, cobweb, matrix 2x2,
    plane and line in space), each with missions.
+
+## 9. Implementation notes (Phase 1, 18 October 2026)
+
+What differs from sections 3 to 7, and why. Nothing here changes a rule; it records the smallest choices made.
+
+| Point | Contract | Phase 1 |
+|---|---|---|
+| Registry | experiments imported lazily | the five experiment files are imported statically by `registry.js` (small data modules) because the home page, the library and the pathways need their titles synchronously (`catalogue()` feeds `content.js` `labs`, one source); the templates stay lazy |
+| Extra files | engine, shell, mount, registry, templates, models, experiments | plus `plot.js` (drawing primitives shared by the templates), `page.js` (markup of `#lab` and of an experiment page), `models/num.js` (`clamp`, `snap`) |
+| Mission fields | `set`, `unlock`, `goal`, `prompt`, `answer`, `argument` | plus `quantity` (names the model quantity a `check` asks for, so the test recomputes the answer), `correct` (the true choice of a `predict`, recalled in `explain`), `variants` (the A and B states of a `contrast`; the other one stays as a faded ghost), `choices`, `tolerance`, `hint`, `done`, `because`; the experiment has `conclusion` (the general argument shown after the last mission) |
+| Control kinds | handle, slider | plus `scrubber` (a slider with play, `process` template only) and `choice`; handles take `axis`, `nudge` (keyboard step) and `absolute` (no grab offset); sliders and choices may use `get`/`set` instead of a state key |
+| Count rule | at most 2 handles + 1 slider + 1 choice | the A and B buttons of a `contrast` count as its one choice |
+| Mission start | `set` is a partial state | a mission always starts from `state` overlaid with its `set`, so a deep link and the sequential path give the same figure |
+| Phone | mission card as a bottom sheet | sticky card above the tab bar, 40 vh high at most, with a fold button; the canvas is 55 vh |
+| Formulas | MathJax at rest if present | MathJax is not used: formulas are plain text with Unicode (x², uₙ), written only when the string changes |
+| Quadratic | a may reach 0 | a is never 0 (0.25 is the smallest step): the vertex stays fixed while a changes, and a = 0 is not a quadratic |
+| Camera | `canvas-navigation.js` | reused as is; text on the canvas scales with the zoom, as in the slide player |
+| Test hook | none | `root.__lab` on the experiment's root element (`getState`, `setState`, `setMission`, `mission`) for `tests/lab_browser.py` and `tests/browser.py` |
+

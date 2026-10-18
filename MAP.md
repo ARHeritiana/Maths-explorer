@@ -30,9 +30,12 @@ really need them.
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
 | the top navigation, footer, theme or language buttons | `site/js/app.js` `header()` / `footer()` | |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
-| any text of a lab or pathway | `site/js/content.js` (`labs`, `pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
+| any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | the old guided labs (probability, vectors, statistics, complex): `site/js/content.js` `labs` |
+| any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
 | the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
-| a lab with formula and sliders | `site/js/content.js` (`labs`), `site/js/app.js` `updateLab()` / `bindLab()`, maths in `site/js/math.js` | |
+| a laboratory experiment (new one, new mission, handles, drawing) | `site/js/lab/CLAUDE.md`, then `site/js/lab/experiments/<id>.js`, `models/<id>.js`; contract `docs/LAB_DESIGN.md`; recipe `lab` | `site/js/lab/templates/` only for a template change |
+| the laboratory engine (drag, camera, readouts, rAF), the mission card or the lab page | `site/js/lab/engine.js`, `shell.js`, `page.js` (and `plot.js` for drawing) | |
+| a guided lab not yet rebuilt (probability, vectors, statistics, complex) | `site/js/content.js` (`labs`), `site/js/app.js` `updateLab()` / `bindLab()`, maths in `site/js/math.js` | Phase 2 of `docs/LAB_DESIGN.md` replaces it |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `gallery-objects.js`, maths in `gallery-math.js`; card drawing in `home-art.js` | |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
@@ -73,7 +76,9 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |
 | `#slides` | Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
-| `#lab[/<id>]` | Laboratoire | `app.js` `labPage`, `updateLab`, `bindLab`; data `content.js` `labs` (not `custom`) |
+| `#lab` | Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
+| `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
+| `#lab/<probability, vectors, statistics, complex>` | Laboratoire | `app.js` `labPage`, `updateLab`, `bindLab`; data `content.js` `labs` (not `custom`) |
 | `#gallery[/<id>]` | Galerie | `welcome.js` `galleryPage`; objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` |
 | `#challenges[/<id>]` | Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
 | `#pathways` | Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
@@ -84,6 +89,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | Folder | Index | Holds |
 |---|---|---|
 | `site/` | `site/CLAUDE.md` | hand-written web source: every JS module by feature, styles, slide player |
+| `site/js/lab/` | `site/js/lab/CLAUDE.md` | the laboratory: engine, shell, templates, models, one file per experiment |
 | `content/` | `content/CLAUDE.md` | TeX courses, slide decks, manifest and other data |
 | `build/mxbuild/` | `build/mxbuild/CLAUDE.md` | the pipeline (`make tex`, `site`, `catalog`, `check`) |
 | `scripts/` | `scripts/CLAUDE.md` | course, slide and university builders |
@@ -104,7 +110,7 @@ Root files: `CLAUDE.md` (entry), `AGENTS.md` (other agents), `HANDOFF.md` (state
 | courses, chapters, titles, languages | `content/data/manifest.json` | `catalogue-data.js`, catalogue, slides index, chapter pages |
 | everything about one challenge | `site/js/challenges/<id>/` | card, statement, checker, original, emblem, hints, activity, solution |
 | maths notation FR/EN | `content/tex/core/mx-notation.sty` + `build/mxbuild/notation.py` | PDFs and web |
-| camera and drag behaviour | `site/js/canvas-navigation.js` | site canvases and slide player |
+| camera and drag behaviour | `site/js/canvas-navigation.js` | site canvases, laboratory (`site/js/lab/engine.js`) and slide player |
 | asset URLs and versions | `site/js/data-loader.js` `assetHref` | every link and download |
 
 Rule: when a change touches several files, the fact belongs in one place. Challenges follow it since 18 October 2026

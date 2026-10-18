@@ -53,8 +53,8 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
   cartoon scenes.
 
 - Structure (15 October 2026): the home page (`#home`, default route, `site/js/welcome.js`) is neutral and carries no school
-  level; the curriculum chooser stays under "Cours" (`#resources`) and "Parcours". The laboratory keeps the nine guided
-  experiments (formula and sliders); the curiosities (Galton board, Reuleaux, Platonic solids, chaos game, Fourier circles,
+  level; the curriculum chooser stays under "Cours" (`#resources`) and "Parcours". The laboratory has nine guided
+  experiments (five rebuilt as missions in `site/js/lab/` on 18 October 2026, four still formula and sliders); the curiosities (Galton board, Reuleaux, Platonic solids, chaos game, Fourier circles,
   Mandelbrot) are in the gallery (`#gallery`, every lab with `custom: true`; `#lab/<custom id>` redirects). Live drawings for the
   home page and the gallery cards are in `home-art.js`. The Madagascar outline in `gallery-math.js` is 360 points traced (PIL and numpy, smoothed, resampled) from an outline image supplied by the
   owner; it is a drawing aid, not a survey.
@@ -91,7 +91,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 
 ### 3b. Laboratory v2 (owner request, 18 October 2026)
 Contract: `docs/LAB_DESIGN.md`. One engine, seven templates, missions, lab references shared by lessons and slides.
-- [ ] Phase 1: engine, shell, `family` and `process` templates; quadratic, trig, derivative, integral, sequences.
+- [x] Phase 1 (done 18 October 2026): engine, shell, `family` and `process` templates; quadratic, trig, derivative, integral, sequences. Code in `site/js/lab/` (index in its `CLAUDE.md`), tests `tests/lab-engine.test.mjs`, `tests/lab_browser.py`; deviations from the contract are listed in `docs/LAB_DESIGN.md` section 9. Probability, vectors, statistics and complex are still on the old page (`app.js` `labPage`) until Phase 2.
 - [ ] Phase 2: `chance`, `figure`, `data`, `transform`; probability, vectors, statistics, complex; old lab code removed.
 - [ ] Phase 3: `type: 'lab'` slide widgets, inline mounts on chapter pages, `tests/lab-links.test.mjs`.
 - [ ] Phase 4: `space` template and new experiments from the remaining slide widget types.
