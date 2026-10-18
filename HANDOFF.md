@@ -242,10 +242,17 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 - Guides: 11 study sheets (`site/js/study-guides.js`, rebuilt by `scripts/build-study-guides.mjs`), 11 companion lessons
   (`site/js/learning-content.js`) and 9 visual scenes (`site/js/visual-lessons.js`: cplane, rotation, croots, unity,
   powers, sieve, fibonacci, walks, markov; Bézout reuses euclid).
-- Every computed result, including the sheets, lessons, scenes and widget examples, is checked by
-  `python3 private/verification/expertes-results.py` (SymPy, exits 0). Ledger record `expertes-course`: published, still
-  `draft` with no audit: the two independent audits are owed. [VERIFY] the programme items against the official annex
-  (the BO annex PDF could not be fetched from the sandbox).
+- Every computed result in the TeX, sheets, lessons and scenes is checked by
+  `python3 private/verification/expertes-results.py` (SymPy, exits 0). That script compares hard-coded values and does not
+  run the widgets: the widget readouts are checked by `tests/expertes-widgets.test.mjs` (jsdom, every printed equality).
+  [VERIFY] the programme wording against the verbatim BO annex (only a paraphrase of the Eduscol copy could be read).
 - Checks: `npm test` (128 pass), `npm run check`, `make check FAST=1` (24 ok), browser suite and slide smoke on the new decks.
+- 18 October 2026: publication gate met. Two independent audits, `private/audits/expertes-audit-1.md` (Opus 5.5) and
+  `expertes-audit-2.md` (Sonnet 5.5; Fable 5.1 was unavailable), first on 8e033b1 with 5 blocking and 10 minor findings
+  between them; fixed in 5c7a6d4 (unit-circle degrees: `fmt(n, lang, 0)` stripped integer zeros, also in Première and
+  Terminale), 3051e16 (widget readouts, Hors programme frames, activity reminders, proofs, captions, twin punctuation rule,
+  which also corrected 12 English units of Seconde, Première and STMG) and b43dbdd (stable source-book hash, C10 exercise);
+  each reviewer rechecked and closed its own findings. Ledger `expertes-course`: `audited-twice`, 0 open findings, not
+  human-reviewed. The live ChatGPT Site still needs a redeploy by the owner to show the course.
 - Fixed the same day: inline formulas on chapter pages each sat on their own line (every course), because the global rule
   `svg { display: block }` in `site/styles/explorer.css` also caught MathJax's SVGs; `mjx-container > svg` is now inline.
