@@ -1,0 +1,5 @@
+# Hidden from ripgrep, and so from agent Grep/Glob searches (git is unaffected). See MAP.md section 1.
+# dist/ is the served copy of site/ plus build products; docs/history/ holds superseded records.
+/dist/
+/docs/history/
+/build/out/

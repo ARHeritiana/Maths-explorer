@@ -10,11 +10,12 @@ import hashlib, re, shutil
 from . import ROOT, DIST
 
 SITE = ROOT / 'site'
+AGENT_NOTES = {'CLAUDE.md', 'AGENTS.md'}   # folder indexes for coding agents (MAP.md), never served
 
 
 def pairs():
     for src in sorted(SITE.rglob('*')):
-        if src.is_file() and '__pycache__' not in src.parts:
+        if src.is_file() and '__pycache__' not in src.parts and src.name not in AGENT_NOTES:
             yield src, DIST / src.relative_to(SITE)
 
 

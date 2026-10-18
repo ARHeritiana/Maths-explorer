@@ -10,7 +10,7 @@ Status: work in progress, not launched. The repository is private.
 
 Read, in this order:
 
-1. `HANDOFF.md`: current state, task queue, how to verify your work.
+1. `HANDOFF.md`: current state, task queue, how to verify your work. Then `MAP.md`: which files each task needs (do not read the whole repository).
 2. `PROJECT_BRIEF.md`: the governing document. It overrides this file, `AGENTS.md` and `docs/`.
 3. `docs/HANDOFF.md` and `docs/ARCHITECTURE.md`: the TeX and build pipeline (status of the PDF migration, commands).
 4. `docs/DESIGN_V3.md`: the visual design and its reasons.

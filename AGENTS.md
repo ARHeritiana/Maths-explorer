@@ -10,8 +10,10 @@ Git rule, set by the owner and binding on every agent: commit and push to the `m
 use feature, session or agent branches, and do not open pull requests unless the owner asks. Run `npm test` and
 `npm run check` before each push.
 
-Start with HANDOFF.md (state and task queue), then PROJECT_BRIEF.md. The TeX and
-build pipeline is documented in docs/HANDOFF.md and docs/ARCHITECTURE.md.
+Start with HANDOFF.md (state and task queue), then PROJECT_BRIEF.md, then MAP.md: its task router names the
+files each task needs, and each source folder has a CLAUDE.md index. Open only those files; do not scan the
+repository or read dist/. Recipes for recurring tasks: .claude/skills/maths-explorer-tasks/. The TeX and
+build pipeline is documented in docs/ARCHITECTURE.md (read it only for build work).
 
 PROJECT_BRIEF.md is the governing document and supersedes every earlier
 instruction, including this file. Read it before any task. In particular, the

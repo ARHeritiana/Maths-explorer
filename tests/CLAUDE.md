@@ -1,0 +1,37 @@
+# tests/: index
+
+Gotcha: most Node tests import the `dist/js/` copies, so run `make site` before `npm test` or they test the old code.
+
+Fast loop for a site change: `make site && npm run check && npm test` (then `npm run test:dom`).
+Full pre-push suite: `make check FAST=1` (list in `build/mxbuild/pipeline.py` `CHECKS`); browser suites need Playwright.
+Run only the test of the module you changed: `node --test tests/<name>.test.mjs`.
+
+| Test | Covers |
+|---|---|
+| `math.test.mjs` | `math.js`, lab definitions in `content.js` |
+| `audit.test.mjs` | audited edge cases of `math.js` (roots, secants, Riemann bounds) |
+| `interaction.test.mjs` | `interaction.js` dragging on lab parameters |
+| `motion.test.mjs` | `motion.js` |
+| `trigonometry.test.mjs` | `trigonometry.js` |
+| `lab-objects.test.mjs` | `lab-objects.js` pure maths |
+| `explorer-models.test.mjs` | `canvas-navigation.js`, `complex-explorer.js`, `lab-objects.js`, `platonic-fold.js` |
+| `gallery-math.test.mjs`, `gallery-controls.test.mjs` | `gallery-math.js`, `gallery-objects.js` |
+| `challenge-puzzles.test.mjs`, `challenge-puzzles2.test.mjs` | pure challenge maths, by an independent method |
+| `challenges-variants.test.mjs` | every challenge has variant, original, activity, solution; answers recomputed |
+| `cake-model.test.mjs`, `box-model.test.mjs` | cake and box sandboxes |
+| `control-policy.test.mjs` | `control-policy.js`, `content-language.js`, camera policy, slide widgets |
+| `player-controls.test.mjs`, `slide-format.test.mjs`, `slide-builder.test.mjs`, `expertes-widgets.test.mjs` | slide player, widget formatting, `scripts/build-slides.py`, Maths expertes widgets |
+| `university.test.mjs`, `university-slides.test.mjs` | `university.js`, `university-model.js`, university decks |
+| `learning.test.mjs` | `learning-content.js`, `visual-lessons.js`, chapter pages |
+| `course-content.test.mjs`, `sequence.test.mjs` | revised course decks (tasks, hints, corrections) and `sequence-model.js` |
+| `resources.test.mjs`, `enrichment.test.mjs`, `sources.test.mjs` | library, study guides, enrichment data, published sources |
+| `quadratic-workshop.test.mjs` | `quadratic-workshop.js` |
+| `map.test.mjs` | `MAP.md` and the folder `CLAUDE.md` indexes stay complete and correct |
+| `dom-smoke.mjs` | DOM integration under jsdom (`npm run test:dom`) |
+| `browser.py`, `run_browser.py` | Playwright checks of labs, challenges, pathways (`npm run test:browser`) |
+| `slides_check.py`, `slides_export_check.py`, `slides_smoke.py` | decks vs drafts, HTML exports, every deck in Chromium |
+| `banned.py`, `banned.mjs`, `banned-sha256.json` | banned names (hashed), links, e-mail addresses |
+| `twin_parity.py`, `test_twin.py`, `pdf_parity.py`, `tex_lint.py`, `test_notation.py`, `test_enrichment.py` | TeX system: twins, PDF editions, unit lint, notation, enrichment converter |
+| `test_content_dependencies.py` | dependency invalidation of `mxbuild.refresh` |
+| `count_claims.py` | counts written in prose match the content |
+| `verify-arithmetic.py`, `verify-quadratic.py` | independent maths checks of two courses |
