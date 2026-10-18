@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
 ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
-CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','inversions','piles']
+CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','inversions','piles']
 CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45','5','24','180','5','719','0','13','45']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
@@ -425,6 +425,11 @@ with sync_playwright() as p:
     hint(2, 'invariant')
     assert '720' in page.locator('#mg-read').inner_text().replace('\u202f','').replace('\u00a0','').replace(' ','')
     go('cham'); page.locator('.cm-meet:not([disabled])').first.click(); assert 'Rencontres' in page.locator('#cm-read').inner_text() or 'Meetings' in page.locator('#cm-read').inner_text()
+    go('pegs'); page.locator('.toy-handle[data-i="0"]').click(); page.locator('.toy-handle[data-i="1"]').click(); page.wait_for_timeout(700)
+    assert ('Sauts : 1' in page.locator('#pg-read').inner_text()) or ('Jumps : 1' in page.locator('#pg-read').inner_text())
+    page.locator('.toy-handle[data-i="0"]').click(); page.locator('.toy-handle[data-i="1"]').click(); page.wait_for_timeout(700)   # A jumps back over B to (0, 0)
+    assert ('Sauts : 2' in page.locator('#pg-read').inner_text()) or ('Jumps : 2' in page.locator('#pg-read').inner_text())
+    hint(2, 'classes'); assert page.locator('#pg-read').inner_text() != ''
     go('inversions'); page.locator('#iv-all').click(); assert '13' in page.locator('#iv-read').inner_text()
     go('piles'); page.locator('#pl-rand').click(); assert '45' in page.locator('#pl-read').inner_text()
     if engine == 'chromium':

@@ -7,7 +7,7 @@ import { formatNumber } from "./math.js";
 
 import { svgEl, toLocal, clamp, colour, lockTouch, MINUS, onHintAction } from "./challenge-kit.js";
 import { artgallery, eggs, hanoi, ramsey, konigsberg, josephus } from "./challenge-more.js";
-import { reflect, lunes, star, merge, cham, inversionsAct, piles } from "./challenge-classics2.js";
+import { reflect, lunes, star, merge, cham, pegs, inversionsAct, piles } from "./challenge-classics2.js";
 import { gridpaths, horses, queens, snail, bridge, lighteggs, fakecoins } from "./challenge-classics.js";
 import { boxLab as box } from "./challenge-box.js";
 import { cakeLab as cake } from "./challenge-cake.js";
@@ -574,7 +574,7 @@ function squares(root, { t }) {
   return () => {};
 }
 
-const activities = { doors, chess: dominoes, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, inversions: inversionsAct, piles };
+const activities = { doors, chess: dominoes, nim, pigeonhole, squares, artgallery, eggs, hanoi, ramsey, konigsberg, josephus, gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, inversions: inversionsAct, piles };
 
 export function hasActivity(id) {
   return Object.hasOwn(activities, id);

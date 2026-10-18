@@ -1069,6 +1069,7 @@ const HINT_ACTIONS = {
   fakecoins: { 1: ["fill", "Remplir 1, 2, 3, …", "Fill in 1, 2, 3, …"] },
   merge: { 1: ["invariant", "Afficher le produit des (nombre + 1)", "Show the product of the (number + 1)"] },
   cham: { 0: ["diff", "Afficher r − v, v − b, b − r", "Show r − v, v − b, b − r"], 1: ["mod", "Afficher ces différences modulo 3", "Show these differences modulo 3"] },
+  pegs: { 0: ["parity", "Afficher la parité (x, y) de chaque pion", "Show the parity (x, y) of each peg"], 1: ["classes", "Colorier les points selon la parité de (x, y)", "Colour the points by the parity of (x, y)"] },
   doors: { 0: ["divisors", "Écrire le nombre de diviseurs sur chaque porte", "Write the number of divisors on each door"] },
   pigeonhole: { 0: ["remainders", "Colorier chaque nombre selon son reste", "Colour each number by its remainder"] },
   konigsberg: { 0: ["degrees", "Afficher le nombre de ponts de chaque quartier", "Show the number of bridges at each district"] },

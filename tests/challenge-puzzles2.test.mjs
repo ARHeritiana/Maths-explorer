@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pathLength, shortestVia, bestContact, REFLECT_SETS, reflectSet, luneArea, luneTotal, starK, starTipDegrees, starSumDegrees, measuredTip, boxUnfoldings, boxPath, BOX_SETS, boxSet, mergeFinal, mergeProduct, CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible, permOf, inversions, bubbleSwaps, splitTotal, randomSplitTotal } from "../dist/js/challenge-puzzles2.js";
+import { pathLength, shortestVia, bestContact, REFLECT_SETS, reflectSet, luneArea, luneTotal, starK, starTipDegrees, starSumDegrees, measuredTip, boxUnfoldings, boxPath, BOX_SETS, boxSet, mergeFinal, mergeProduct, CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible, PEGS_START, PEG_TARGETS, pegTarget, pegClass, pegJumps, pegsPossible, pegsSolve, pegsMin, permOf, inversions, bubbleSwaps, splitTotal, randomSplitTotal } from "../dist/js/challenge-puzzles2.js";
 
 test("reflection: a fine scan of the contact point finds the reflected length, at x = ad/(a+b); presets give whole answers", () => {
   for (const id of REFLECT_SETS) {
@@ -64,4 +64,46 @@ test("inversions: bubble sort swaps exactly as many times as there are inversion
 test("split piles: whatever the splits, the total is n(n − 1)/2", () => {
   for (let n = 2; n <= 60; n++) for (let t = 0; t < 10; t++) assert.equal(randomSplitTotal(n), splitTotal(n));
   assert.equal(splitTotal(10), 45);
+});
+
+test("three pegs: every jump keeps each peg's parity class, and (1, 1) is never reached (random walks and exhaustive search)", () => {
+  const start = PEGS_START.map((p) => p.join()), same = (s) => s.every((p, i) => pegClass(p).join() === pegClass(PEGS_START[i]).join());
+  // exhaustive: every position reachable in at most 7 jumps, written independently of pegsSolve
+  let frontier = [PEGS_START.map((p) => [...p])];
+  const seen = new Set([PEGS_START.map((p) => p.join()).join(";")]);
+  for (let d = 0; d < 7; d++) {
+    const next = [];
+    for (const s of frontier) for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+      if (i === j) continue;
+      const to = [2 * s[j][0] - s[i][0], 2 * s[j][1] - s[i][1]];
+      if (s.some((p, k) => k !== i && p[0] === to[0] && p[1] === to[1])) continue;
+      const t = s.map((p) => [...p]); t[i] = to; const key = t.map((p) => p.join()).join(";");
+      if (seen.has(key)) continue;
+      seen.add(key); next.push(t);
+      assert.ok(same(t), `parity class changed: ${key}`);
+      assert.ok(!t.some((p) => p[0] === 1 && p[1] === 1), `(1, 1) reached: ${key}`);
+    }
+    frontier = next;
+  }
+  assert.ok(seen.size > 10000, `searched ${seen.size} positions`);
+  for (let w = 0; w < 200; w++) {   // long random walks, far beyond the exhaustive depth
+    let s = PEGS_START.map((p) => [...p]);
+    for (let k = 0; k < 60; k++) { const js = pegJumps(s); if (!js.length) break; const { peg, to } = js[Math.floor(Math.random() * js.length)]; s[peg] = to; assert.ok(same(s)); }
+  }
+  void start;
+});
+test("three pegs: the answers of the presets are the minimal numbers of jumps found by an independent search, and the impossible ones are exactly those outside the three classes", () => {
+  const expect = { "1,1": 0, "-1,1": 0, "3,1": 0, "2,0": 1, "2,1": 2, "3,0": 2, "2,2": 3, "4,0": 3 };
+  for (const id of PEG_TARGETS) {
+    const T = pegTarget(id);
+    assert.equal(pegsMin(T), expect[id], id); assert.equal(pegsPossible(T), expect[id] > 0, id);
+    // independent: iterative deepening depth-first search for the smallest d that puts a peg on T
+    const dfs = (s, d) => s.some((p) => p[0] === T[0] && p[1] === T[1]) ? true : d === 0 ? false : pegJumps(s).some(({ peg, to }) => { const t = s.map((p) => [...p]); t[peg] = to; return dfs(t, d - 1); });
+    if (expect[id] > 0) { assert.ok(dfs(PEGS_START, expect[id])); assert.ok(!dfs(PEGS_START, expect[id] - 1)); }
+    else assert.ok(!dfs(PEGS_START, 6), `${id} not reached within 6 jumps`);
+    // the returned sequence is legal and ends on the target
+    const steps = pegsSolve(T) || []; let s = PEGS_START.map((p) => [...p]);
+    for (const st of steps) { assert.ok(pegJumps(s).some((j) => j.peg === st.peg && j.over === st.over && j.to.join() === st.to.join())); s[st.peg] = st.to; }
+    if (steps.length) assert.ok(s.some((p) => p[0] === T[0] && p[1] === T[1]));
+  }
 });

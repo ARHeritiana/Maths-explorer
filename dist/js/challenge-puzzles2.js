@@ -96,6 +96,63 @@ export function bubbleSwaps(p) { const a = [...p], log = []; let moved = true; w
 export const splitTotal = (n) => (n * (n - 1)) / 2;
 export function randomSplitTotal(n, rnd = Math.random) { const piles = [n]; let total = 0; while (piles.some((x) => x > 1)) { const i = piles.findIndex((x) => x > 1), s = piles[i], a = 1 + Math.floor(rnd() * (s - 1)); piles.splice(i, 1, a, s - a); total += a * (s - a); } return total; }
 
+/* --------------------------------------------------------- I: three pegs */
+// Pegs a, b, c start at (0, 0), (1, 0), (0, 1). A peg jumps over another peg and lands on the point symmetric to its
+// place about that peg (2B − A), if that point is free. Invariant: 2B − A ≡ A (mod 2) in both coordinates, so every
+// peg keeps its parity class (x mod 2, y mod 2) for ever; a point of the fourth class, (1, 1), can never be reached.
+export const PEGS_START = [[0, 0], [1, 0], [0, 1]];
+export const PEG_TARGETS = ["1,1", "-1,1", "3,1", "2,0", "2,1", "3,0", "2,2", "4,0"];
+export const pegTarget = (id) => String(id).split(",").map(Number);
+const mod2 = (x) => ((x % 2) + 2) % 2;
+export const pegClass = ([x, y]) => [mod2(x), mod2(y)];
+export const pegLanding = (from, over) => [2 * over[0] - from[0], 2 * over[1] - from[1]];
+// Every legal jump from a position: { peg, over, to } (indices into the position).
+export function pegJumps(pos) {
+  const out = [];
+  for (let i = 0; i < pos.length; i++) for (let j = 0; j < pos.length; j++) {
+    if (i === j) continue;
+    const to = pegLanding(pos[i], pos[j]);
+    if (!pos.some((p, k) => k !== i && p[0] === to[0] && p[1] === to[1])) out.push({ peg: i, over: j, to });
+  }
+  return out;
+}
+// Necessary condition from the invariant: the target must lie in the parity class of one of the three pegs.
+export const pegsPossible = (target) => PEGS_START.some((p) => pegClass(p).join() === pegClass(target).join());
+// Shortest sequence of jumps that puts some peg on the target, by breadth-first search (null when the invariant forbids it).
+const pegCache = new Map();
+export function pegsSolve(target, limit = 9) {
+  const id = target.join(",");
+  if (pegCache.has(id)) return pegCache.get(id);
+  let result = null;
+  if (pegsPossible(target)) {
+    const key = (s) => s.map((p) => p.join(",")).join(";"), prev = new Map([[key(PEGS_START), null]]);
+    let frontier = [PEGS_START];
+    const on = (s) => s.some((p) => p[0] === target[0] && p[1] === target[1]);
+    if (on(PEGS_START)) result = [];
+    for (let d = 0; d < limit && !result; d++) {
+      const next = [];
+      for (const s of frontier) {
+        for (const { peg, over, to } of pegJumps(s)) {
+          const t = s.map((p) => [...p]); t[peg] = to;
+          const kk = key(t); if (prev.has(kk)) continue;
+          prev.set(kk, { from: s, peg, over });
+          if (on(t)) {
+            const steps = []; let cur = t;
+            while (prev.get(key(cur))) { const { from, peg: pg, over: ov } = prev.get(key(cur)); steps.unshift({ peg: pg, over: ov, from: from[pg], to: cur[pg], state: cur }); cur = from; }
+            result = steps; break;
+          }
+          next.push(t);
+        }
+        if (result) break;
+      }
+      frontier = next;
+    }
+  }
+  pegCache.set(id, result);
+  return result;
+}
+export const pegsMin = (target) => (pegsSolve(target) || []).length;
+
 /* ------------------------------------------------------------------ nim: a scripted game for the animated solution */
 // A scripted game. With r = n mod (m + 1) > 0 you open with r, then answer each opponent move k with m + 1 − k.
 // With r = 0 you open with 1 and the opponent answers so that a multiple of m + 1 is left to you.

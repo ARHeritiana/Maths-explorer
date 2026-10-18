@@ -949,6 +949,16 @@ const challengeBase = [
     extension: ["Pour quels effectifs (r, v, b) peut-on rendre tous les caméléons bleus ? Énonce une condition simple.", "For which counts (r, g, b) can all the chameleons be made blue? State a simple condition."],
   },
   {
+    id: "pegs",
+    type: "olympiad",
+    title: ["Trois pions qui sautent", "Three jumping pegs"],
+    topic: ["Invariants", "Invariants"],
+    difficulty: 2,
+    minutes: 12,
+    hints: [],
+    extension: ["Change les positions de départ, par exemple (0, 0), (2, 0), (0, 1) : quels points peut-on atteindre ? Que devient l’invariant ?", "Change the starting positions, for example (0, 0), (2, 0), (0, 1): which points can be reached? What becomes of the invariant?"],
+  },
+  {
     id: "inversions",
     type: "play",
     title: ["Ranger une rangée", "Sorting a row"],

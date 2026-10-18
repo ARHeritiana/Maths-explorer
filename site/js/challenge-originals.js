@@ -84,6 +84,9 @@ export const ORIGINALS = {
   cham: (q) => { const [a, b, c] = String(q.set).split(","); return P(
     `Avec ${a}, ${b} et ${c} caméléons de chaque couleur, peut-on arriver à une île où tous ont la même couleur ? Si oui, décris une suite de rencontres. Sinon, démontre que c’est impossible. Pour quels effectifs de départ est-ce possible ?`,
     `With ${a}, ${b} and ${c} chameleons of each colour, can the island reach a state where all have the same colour? If so, describe a sequence of meetings. If not, prove it is impossible. For which starting numbers is it possible?`); },
+  pegs: (q) => { const [x, y] = String(q.target).split(","); return P(
+    `Trois pions sont aux points (0, 0), (1, 0) et (0, 1). Un pion peut sauter par-dessus un autre et atterrir au point symétrique, si ce point est libre. Peut-on amener un pion au point (${x}, ${y}) ? Si oui, décris une suite de sauts. Sinon, démontre que c’est impossible. Quels points du quadrillage un pion peut-il occuper un jour ?`,
+    `Three pegs sit at (0, 0), (1, 0) and (0, 1). A peg may jump over another and land on the symmetric point, if that point is free. Can a peg be brought to the point (${x}, ${y})? If so, describe a sequence of jumps. If not, prove it is impossible. Which points of the grid can a peg ever occupy?`); },
   inversions: () => P(
     "Démontre que le nombre d’échanges effectués ne dépend pas de l’ordre dans lequel on choisit les voisines à échanger. À quoi ce nombre correspond-il pour la rangée de départ ?",
     "Prove that the number of swaps made does not depend on the order in which neighbouring pairs are chosen. What does this number correspond to for the starting row?"),
