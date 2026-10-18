@@ -142,3 +142,11 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - Tile family: valid H7/H8 patch and explicit periodic endpoint/equilateral exceptions; not the curved Spectre.
 - Independent checks: `tests/gallery-discovery.test.mjs`; input/lifecycle checks: `tests/gallery-discovery-dom.test.mjs`.
 - Live visual QA is unavailable in this environment: supervised preview fails before startup with a proc mount error.
+
+## Gallery spatial revision (18 October 2026)
+
+- Slide race has per-track checkboxes; curve handles replace depth sliders.
+- Soap films offer 14 selectable spatial wire frames, full-xyz constrained area relaxation and a distinct tetrahedral junction model.
+- Knot explorer offers 44 entries through eight minimum crossings, shared 3D/projection geometry, projection-based Fox tricolourings and three continuous examples. The Reidemeister workbench is removed.
+- Einstein tiles lazily extend the same nested H7/H8 hierarchy to fill the camera window without repeating a patch or changing its scale.
+- All 11 gallery exhibits have mathematical and historical/practical reading paths. New pure-model regression tests are in `tests/gallery-spatial.test.mjs`.

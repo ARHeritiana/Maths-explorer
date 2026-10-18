@@ -44,7 +44,11 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/gallery-additions.js` | five experiment-first gallery entries and source labels |
 | `js/gallery-models.js`, `js/gallery-kit.js` | Voronoi clipping, descent timing, film area minimisation; shared exhibit lifecycle |
 | `js/gallery-voronoi.js`, `js/gallery-fastest.js`, `js/gallery-soap.js` | draggable territories, bead races, rotatable film |
-| `js/gallery-knot-model.js`, `js/gallery-knots.js` | closed-braid moves, Fox colourings, mirror certificate, interactive knot views |
+| `js/gallery-knot-model.js` | legacy pure braid/invariant helpers and verified mirror certificate, retained for model tests |
+| `js/gallery-knots.js`, `js/gallery-knot-geometry.js`, `js/knot-catalogue.js` | 44 verified spatial curves, shaded tubes, true projections, F3 colours and continuous examples |
+| `js/knotinfo-license.txt` | MIT licence for KnotInfo coordinate assets |
+| `js/gallery-soap-model.js` | 13 fixed-topology spatial meshes and a separate tetrahedral junction solver |
+| `js/gallery-context.js` | mathematical ideas, historical context and applications for all gallery entries |
 | `js/gallery-hat-model.js`, `js/gallery-hat.js` | H7/H8 geometry and continuous hat-family explorer |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/complex-explorer.js` | complex numbers as transformations |

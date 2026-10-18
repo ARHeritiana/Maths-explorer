@@ -19,3 +19,10 @@ descent and film maths; `gallery-kit.js` shares lifecycle and drawing. Their int
 `gallery-fastest.js`, `gallery-soap.js`. Knots use `gallery-knot-model.js` and `gallery-knots.js`;
 the Einstein family uses `gallery-hat-model.js` and `gallery-hat.js`. Verify with
 `tests/gallery-discovery.test.mjs` and `tests/gallery-discovery-dom.test.mjs`.
+
+Spatial gallery revisions: `gallery-knot-geometry.js` computes projections/Fox colour spaces directly from
+`knot-catalogue.js` curves; retain `knotinfo-license.txt`. `gallery-soap-model.js` has full-xyz area descent
+and a separate tetrahedral junction solver. `gallery-context.js` supplies reading paths for every exhibit.
+`makeExpandingFamilyWindow()` in `gallery-hat-model.js` lazily fills the camera window from a nested hierarchy;
+never periodically repeat a patch to simulate an aperiodic tiling. Verify spatial revisions with
+`tests/gallery-spatial.test.mjs` as well as the discovery/DOM/browser suites.

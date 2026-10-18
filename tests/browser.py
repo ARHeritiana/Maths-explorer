@@ -476,18 +476,26 @@ with sync_playwright() as p:
                 assert page.locator('#vo-seed').get_attribute('max') == '7'
                 canvas.press('ArrowRight')
             elif exhibit == 'fastest-slide':
+                page.locator('#bs-show-1').uncheck()
                 page.locator('#bs-race').click();page.wait_for_timeout(150)
                 assert float(page.locator('#bs-time-out').inner_text()) > 0
             elif exhibit == 'soap-films':
-                page.locator('#sf-step').click();page.locator('#sf-c0').evaluate("el => { el.value=1; el.dispatchEvent(new Event('input',{bubbles:true})); }")
-                assert 'NaN' not in page.locator('.exhibit-readout').inner_text()
+                assert page.locator('#sf-frame option').count() == 14
+                for frame in ['helicoid','catenoid','tetrahedron']:
+                    page.locator('#sf-frame').select_option(frame)
+                    page.locator('#sf-step').click()
+                    assert 'NaN' not in page.locator('.exhibit-readout').inner_text()
             elif exhibit == 'knots':
-                page.locator('#kn-mode').select_option('moves')
-                page.locator('[id="kn-RII+"]').click()
-                page.locator('[id="kn-RII-"]').click()
-                page.locator('#kn-movie').click()
-                page.locator('#kn-frame').evaluate("el => { el.value=16; el.dispatchEvent(new Event('input',{bubbles:true})); }")
-                assert '16/16' in page.locator('.exhibit-readout').inner_text()
+                assert page.locator('#kn-knot option').count() == 44
+                assert page.locator('#kn-mode').count() == 0
+                page.locator('#kn-knot').select_option('3_1')
+                page.locator('#kn-projection').click()
+                page.locator('#kn-find').click()
+                assert '9' in page.locator('.exhibit-readout').inner_text()
+                page.locator('#kn-example').select_option('unknot')
+                page.locator('#kn-end').click()
+                assert '100 %' in page.locator('.exhibit-readout').inner_text()
+                page.locator('#kn-space').click()
             else:
                 page.locator('#hat-p5000').click()
                 assert 'Exception' in page.locator('.exhibit-readout').inner_text()

@@ -137,3 +137,6 @@ Append one dated line per finished task at the end of the first list (before "Da
   `svg { display: block }` in `site/styles/explorer.css` also caught MathJax's SVGs; `mjx-container > svg` is now inline.
 
 - 18 October 2026: added five interactive gallery exhibits (Voronoi, brachistochrone race, discretised soap film, knot moves/colourings and continuous hat tiles), with direct manipulation, mathematical animations and independent model/input tests.
+
+- 18 October 2026: revised the gallery controls and spatial models. Added per-track race visibility, 14 soap wire frames, 44 knot embeddings with actual top projections and Fox colourings, continuous projection examples, expandable full-window hat tilings, and explanatory reading paths across all 11 exhibits.
+- Validation: 155 Node tests, syntax checks for 177 scripts and DOM integration passed. Independent mathematical and interaction reviews found no open implementation findings. The full local pipeline still needs the missing TeX package `stmaryrd.sty` for its unrelated notation check; Chromium checks run in CI.

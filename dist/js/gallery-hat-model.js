@@ -81,3 +81,57 @@ export function makeFamilyPatch(depth=3) {
     }));
   };
 }
+
+// A shared hierarchy is traversed only where it meets the visible window.
+// Depth eight describes millions of neighbours without allocating their polygons.
+// A fixed leaf address anchors the family, so shape changes never refit the camera.
+export function makeFamilyWindow(depth=8){
+  const bounds=vertices=>[Math.min(...vertices.map(p=>p[0])),Math.min(...vertices.map(p=>p[1])),Math.max(...vertices.map(p=>p[0])),Math.max(...vertices.map(p=>p[1]))];
+  const corners=b=>[[b[0],b[1]],[b[2],b[1]],[b[2],b[3]],[b[0],b[3]]];
+  const transform=(p,m)=>[m[0]*p[0]-m[1]*p[1]+m[2],m[1]*p[0]+m[0]*p[1]+m[3]];
+  const identity=[1,0,0,0];
+  const compose=(a,b)=>[a[0]*b[0]-a[1]*b[1],a[1]*b[0]+a[0]*b[1],...transform([b[2],b[3]],a)];
+  function tree(t){
+    let clusters=initialClusters(t,1-t);
+    for(const node of Object.values(clusters))node.bounds=bounds(node.tiles.flatMap(x=>x.vertices));
+    for(let d=0;d<depth;d++){
+      const parts=[{node:clusters.H8,m:identity,anchors:clusters.H8.anchors,bounds:clusters.H8.bounds}];
+      for(const [kind,degrees,from,to]of ASSEMBLY){const node=clusters[kind],c=Math.cos(degrees*Math.PI/180),s=Math.sin(degrees*Math.PI/180),p=transform(node.anchors[from],[c,s,0,0]),target=parts.at(-1).anchors[to],m=[c,s,target[0]-p[0],target[1]-p[1]];parts.push({node,m,anchors:node.anchors.map(p=>transform(p,m)),bounds:bounds(corners(node.bounds).map(p=>transform(p,m)))});}
+      const anchors=[parts[1].anchors[3],parts[2].anchors[0],parts[4].anchors[3],parts[6].anchors[0]];
+      const make=ps=>({parts:ps,anchors,bounds:bounds(ps.flatMap(p=>corners(p.bounds)))});
+      clusters={H8:make(parts),H7:make(parts.slice(0,-1))};
+    }return clusters.H8;
+  }
+  // Repeatedly select the second H8 child. Unlike descent towards bounding-box
+  // centres, this nesting stays inside the patch rather than an exterior fjord.
+  // At depth eight its anchor is over 340 units from the outer boundary across
+  // sampled family parameters, covering zoom .2 and pans of +/-100 units.
+  // Keeping the address fixed also preserves tile identity throughout the morph.
+  const address=Array(depth).fill(1);
+  let parameter=null,root=null,anchor=null;
+  return function visible(t,rect){
+    if(t!==parameter){parameter=t;root=tree(t);let n=root,m=identity;for(const i of address){m=compose(m,n.parts[i].m);n=n.parts[i].node;}const v=n.tiles[0].vertices;anchor=transform([v.reduce((s,p)=>s+p[0],0)/v.length,v.reduce((s,p)=>s+p[1],0)/v.length],m);}
+    const output=[];
+    function visit(n,m,id){const b=bounds(corners(n.bounds).map(p=>transform(p,m)));if(b[2]<rect[0]||b[0]>rect[2]||b[3]<rect[1]||b[1]>rect[3])return;
+      if(n.parts)n.parts.forEach((part,i)=>visit(part.node,compose(m,part.m),id+i));
+      else n.tiles.forEach((tile,i)=>{const vertices=tile.vertices.map(p=>transform(p,m)),b=bounds(vertices);if(!(b[2]<rect[0]||b[0]>rect[2]||b[3]<rect[1]||b[1]>rect[3]))output.push({...tile,vertices,id:id+':'+i});});
+    }
+    visit(root,[1,0,-anchor[0],-anchor[1]],'');return output;
+  };
+}
+
+// Expand the same nested patch when a pan exposes distant neighbours. Each
+// added parent contains the old H8 as child 1, rotated by 60 degrees. Undoing
+// that rotation retains every existing tile and the camera's fixed scale.
+export function makeExpandingFamilyWindow(){
+  const windows=new Map();
+  return (t,rect)=>{
+    const radius=Math.max(...rect.map(Math.abs));
+    const extra=Math.max(0,Math.ceil(Math.log(Math.max(1,radius/500))/Math.log(2.5)));
+    const depth=10+extra,angle=extra*Math.PI/3,c=Math.cos(angle),s=Math.sin(angle);
+    if(!windows.has(depth))windows.set(depth,makeFamilyWindow(depth));
+    const corners=[[rect[0],rect[1]],[rect[2],rect[1]],[rect[2],rect[3]],[rect[0],rect[3]]].map(([x,y])=>[c*x-s*y,s*x+c*y]);
+    const box=[Math.min(...corners.map(p=>p[0])),Math.min(...corners.map(p=>p[1])),Math.max(...corners.map(p=>p[0])),Math.max(...corners.map(p=>p[1]))];
+    return windows.get(depth)(t,box).map(tile=>({...tile,id:tile.id.replace(/^1+/,''),vertices:tile.vertices.map(([x,y])=>[c*x+s*y,-s*x+c*y])}));
+  };
+}
