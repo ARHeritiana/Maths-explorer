@@ -723,7 +723,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .iv-bar { flex: 1 1 0; min-width: 28px; max-width: 70px; border: 2px solid var(--ink); border-radius: 6px 6px 0 0; color: var(--ink); font: 700 1rem var(--body); display: flex; align-items: flex-start; justify-content: center; padding-top: 4px; cursor: pointer; transition: height 160ms ease; }
 .iv-bar:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 
-/* ---- challenge emblems (site/js/challenge-icons.js): static by default, looping motion only without reduced-motion */
+/* ---- challenge emblems (site/js/challenges/<id>/index.js icon, frame in challenges/common/icon.js): static by default, looping motion only without reduced-motion */
 .challenge-motif .ci { display: block; width: 64px; height: 64px; overflow: visible; }
 .challenge-motif .ci * { transform-box: fill-box; transform-origin: center; }
 .ci-draw, .ci-trace { stroke-dasharray: 100; stroke-dashoffset: 0; }
@@ -785,7 +785,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 @keyframes ci-swap-a { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(13px); } }
 @keyframes ci-swap-b { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-13px); } }
 
-/* ---- scene kit (site/js/scene-kit.js): ambient motion of the cartoon solutions */
+/* ---- scene kit (site/js/challenges/common/scene-kit.js): ambient motion of the cartoon solutions */
 .sol-svg .sd, .sol-svg .lt { pointer-events: none; }
 @media (prefers-reduced-motion: no-preference) {
   .sc-star { animation: sc-twinkle 3.2s ease-in-out infinite var(--d, 0s); }

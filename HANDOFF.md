@@ -25,28 +25,32 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
   `claude/repository-audit-bsfs8y` and `ccr-80defba8-6udo9f` were compared with `main` on 15 October and judged superseded
   (older KaTeX redesign, and the earlier PDF-patching pipeline replaced by the TeX sources in `content/tex/`); they are
   to be deleted on GitHub together with the branches already merged into `main`.
-- Challenges have two versions: the original question (strategy, algorithm, construction or proof; answered alone or with
-  a teacher; `site/js/challenge-originals.js`, shown under the statement) and the version the site can check (a number;
-  `challenge-variants.js`). Every challenge needs both; a test enforces it. An original never states the answer or method.
+- Challenges (one folder each since 18 October 2026: `site/js/challenges/<id>/`, conventions in
+  `site/js/challenges/CLAUDE.md`) have two versions: the original question (strategy, algorithm, construction or proof;
+  answered alone or with a teacher; `original` in the folder's `index.js`, shown under the statement) and the version the
+  site can check (a number; `variant`). Every challenge needs both; a test enforces it. An original never states the
+  answer or method.
 - Art gallery: the learner explores random, convex and star-shaped galleries and can drag vertices; no preset is a worst
   case. The comb appears only in the animated solution, after the learner has asked for it.
 - 25 horses: horses can be dragged to any free cell of the field (arrow keys too); positions do not affect speeds.
 
-- Animated solutions: every challenge solution is a cartoon scene (`site/js/solution-scenes-1.js` to `-7.js`, `solution-bridge.js`) built
-  from `scene-kit.js` (night bridge, soldier, lantern) and `scene-props.js` (daylight, egg, snail, balance, horse, ant,
-  chameleon, pigeon). Protocol: `mount(c, q)` builds the SVG once, `update(S, step, p, q)` poses it, so a frame is a pure
-  function of (step, p); `dur(step, q)` sets the pace of each step; the captions (`steps`) stay in the older definitions.
-  The player exposes `seek(step, p)` on `#solution-anim.__solution`, used to check frames in the browser.
+- Animated solutions: each challenge's `solution.js` holds a `diagram` (captions `steps`, frames `draw`) and usually a
+  cartoon `scene` built from `challenges/common/scene-kit.js` (soldier), `common/scene-props.js` (daylight, egg,
+  balance) and the challenge's own `art.js` (night bridge and lantern, snail, horse, chameleon, pigeon). Protocol:
+  `mount(c, q)` builds the SVG once, `update(S, step, p, q)` poses it, so a frame is a pure function of (step, p);
+  `dur(step, q)` sets the pace of each step; the captions stay in the `diagram`. The player (`common/player.js`) exposes
+  `seek(step, p)` on `#solution-anim.__solution`, used to check frames in the browser.
 
 - Challenge pages show the statement only. The canvas offers tools, never the method: any control that reveals a method or
   an answer (mirror image, optimal placement, 1, 2, 3 fill, invariant, differences, inversion counter, flattening the box)
-  is a hint button in the hint panel (`HINT_ACTIONS` in `site/js/app.js`; activities listen with `onHintAction` from
-  `challenge-kit.js`). Hint 1 brings the learner closer, hint 2 nearly gives it away. The worked solution is a full-width
+  is a hint button in the hint panel (`hintActions` in the challenge's `index.js`; activities listen with `onHintAction`
+  from `challenges/common/kit.js`). Hint 1 brings the learner closer, hint 2 nearly gives it away. The worked solution is a full-width
   section under the page.
-- Cake and box are open sandboxes: `challenge-cake.js` (3D view, top-view lock, points/segments/midpoint/intersection/circle,
-  grid and snapping, disk split) with `cake-model.js` (pure) and `cake-3d.js` (renderer); `challenge-box.js` with
-  `box-model.js` and `box-3d.js`. When the learner's cuts or route are right, a short show plays; the animated solutions are
-  3D scenes in `solution-scenes-8.js`. Other challenges still use the older flat activities and cartoon scenes.
+- Cake and box are open sandboxes: `challenges/cake/activity.js` (3D view, top-view lock, points/segments/midpoint/
+  intersection/circle, grid and snapping, disk split) with `maths.js` (pure) and `view-3d.js` (renderer; shared camera in
+  `common/view-3d.js`); the same files in `challenges/box/`. When the learner's cuts or route are right, a short show
+  plays; their animated solutions are 3D scenes (`common/scene-3d.js`). Other challenges use flat activities and
+  cartoon scenes.
 
 - Structure (15 October 2026): the home page (`#home`, default route, `site/js/welcome.js`) is neutral and carries no school
   level; the curriculum chooser stays under "Cours" (`#resources`) and "Parcours". The laboratory keeps the nine guided

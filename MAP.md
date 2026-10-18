@@ -30,10 +30,10 @@ really need them.
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
 | the top navigation, footer, theme or language buttons | `site/js/app.js` `header()` / `footer()` | |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
-| any text of a lab, challenge or pathway | `site/js/content.js` (`labs`, `challengeBase`, `pathways`) | |
+| any text of a lab or pathway | `site/js/content.js` (`labs`, `pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
 | a lab with formula and sliders | `site/js/content.js` (`labs`), `site/js/app.js` `updateLab()` / `bindLab()`, maths in `site/js/math.js` | |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `gallery-objects.js`, maths in `gallery-math.js`; card drawing in `home-art.js` | |
-| one challenge | recipe `challenge` in `.claude/skills/maths-explorer-tasks/` (lists the nine files and what each holds) | |
+| one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
 | course catalogue entries, titles, chapters, language of a course | `content/data/manifest.json` | `make site` |
 | a course PDF (text, exercise, figure) | the `.fr.tex` unit under `content/tex/courses/<course>/` (+ `.en.json` table) | `content/CLAUDE.md`, `make tex COURSE=<course>` |
@@ -74,7 +74,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#slides` | Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
 | `#lab[/<id>]` | Laboratoire | `app.js` `labPage`, `updateLab`, `bindLab`; data `content.js` `labs` (not `custom`) |
 | `#gallery[/<id>]` | Galerie | `welcome.js` `galleryPage`; objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` |
-| `#challenges[/<id>]` | Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges` (see recipe `challenge`) |
+| `#challenges[/<id>]` | Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
 | `#pathways` | Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
 | `#university[/<id>]` | (Parcours) | `university.js` |
 
@@ -98,14 +98,13 @@ Root files: `CLAUDE.md` (entry), `AGENTS.md` (other agents), `HANDOFF.md` (state
 
 | Fact | Lives in | Fans out to |
 |---|---|---|
-| colours and fonts of the site | CSS custom properties in `site/styles/explorer.css` | every page; JS canvases read them through `object-kit.js` `palette()`; challenge cards use `--c1..--c8` via `challenge-kit.js` `colour()` |
+| colours and fonts of the site | CSS custom properties in `site/styles/explorer.css` | every page; JS canvases read them through `object-kit.js` `palette()`; challenge cards use `--c1..--c8` via `site/js/challenges/common/kit.js` `colour()` |
 | colours of the PDFs | `content/tex/core/mx-layout.sty` | every PDF on rebuild |
 | courses, chapters, titles, languages | `content/data/manifest.json` | `catalogue-data.js`, catalogue, slides index, chapter pages |
-| a challenge's numbers and answers | `site/js/challenge-variants.js` | statement, checker, solution text |
+| everything about one challenge | `site/js/challenges/<id>/` | card, statement, checker, original, emblem, hints, activity, solution |
 | maths notation FR/EN | `content/tex/core/mx-notation.sty` + `build/mxbuild/notation.py` | PDFs and web |
 | camera and drag behaviour | `site/js/canvas-navigation.js` | site canvases and slide player |
 | asset URLs and versions | `site/js/data-loader.js` `assetHref` | every link and download |
 
-Coupling still spread over several files (known, see `docs/LOG.md` 2026-10-18 entry): a challenge is split by layer
-(text, variant, original, icon, hint actions, activity, maths, solution), so one new challenge touches about nine
-files. The recipe lists them; a per-challenge folder is the proposed fix and needs the owner's approval.
+Rule: when a change touches several files, the fact belongs in one place. Challenges follow it since 18 October 2026
+(one folder each); propose the same move when you meet another fact written in several files.

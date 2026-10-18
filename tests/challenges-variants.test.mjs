@@ -3,8 +3,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { challenges } from "../dist/js/content.js";
-import { VARIANTS, defaults, randomParams, normalise, josephusOrder, graphFor, minRemoval, walkable, degrees, trailOf, comb, eggDrops, eggPlan, eggCover } from "../dist/js/challenge-variants.js";
-import { triangulate, threeColour, visibility, pointInPolygon, area2 } from "../dist/js/challenge-geometry.js";
+import { VARIANTS, defaults, randomParams, normalise, hasActivity, hasSolution, ORIGINALS, SOLUTIONS } from "../dist/js/challenges/registry.js";
+import { josephusOrder } from "../dist/js/challenges/josephus/maths.js";
+import { graphFor, minRemoval, walkable, degrees, trailOf } from "../dist/js/challenges/konigsberg/maths.js";
+import { comb, triangulate, threeColour, visibility, pointInPolygon, area2 } from "../dist/js/challenges/artgallery/maths.js";
+import { eggDrops, eggPlan, eggCover } from "../dist/js/challenges/eggs/maths.js";
 
 const range = (a, b, s = 1) => { const out = []; for (let v = a; v <= b; v += s) out.push(v); return out; };
 const param = (id, pid) => VARIANTS[id].params.find((p) => p.id === pid);
@@ -127,14 +130,11 @@ test("art gallery: every comb is a simple polygon needing exactly k guards", () 
   }
 });
 
-import { hasActivity } from "../dist/js/challenge-activities.js";
-import { hasSolution } from "../dist/js/challenge-solutions.js";
 test("every challenge has a hands-on activity and an animated solution", () => {
   for (const c of challenges) { assert.ok(hasActivity(c.id), `activity ${c.id}`); assert.ok(hasSolution(c.id), `solution ${c.id}`); }
 });
 
-import { randomGallery, isSimple } from "../dist/js/challenge-more.js";
-import { ORIGINALS } from "../dist/js/challenge-originals.js";
+import { randomGallery, isSimple } from "../dist/js/challenges/artgallery/activity.js";
 
 test("art gallery: random galleries are simple polygons with the requested number of sides, and none is a preset worst case", () => {
   for (const n of [6, 9, 12, 15, 18]) for (let i = 0; i < 25; i++) {
@@ -151,7 +151,6 @@ test("every challenge has an original question in both languages, with no em or 
   }
 });
 
-import { SOLUTIONS } from "../dist/js/challenge-solutions.js";
 
 test("every challenge has an animated solution with captions in both languages and a finite pace for each step", () => {
   for (const id of Object.keys(VARIANTS)) {

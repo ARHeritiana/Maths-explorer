@@ -1,7 +1,7 @@
 // The cake sandbox: geometry of cuts drawn as segments, fairness, and the grid size offered by hint 2.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { perimeterParam, rayToOutline, cutsOfSegments, piecePolygons, isFair, niceSide, pieceDirections } from "../dist/js/cake-model.js";
+import { perimeterParam, rayToOutline, cutsOfSegments, piecePolygons, isFair, niceSide, pieceDirections } from "../dist/js/challenges/cake/maths.js";
 
 const area = (poly) => { let a = 0; for (let i = 0; i < poly.length; i++) { const [x1, y1] = poly[i], [x2, y2] = poly[(i + 1) % poly.length]; a += x1 * y2 - x2 * y1; } return a / 2; };
 

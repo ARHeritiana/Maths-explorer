@@ -20,7 +20,7 @@ def pairs():
 
 
 # dist/ paths that are copies of site/ (anything else in them is an orphan); generated files are listed apart.
-MANAGED = ['index.html', 'styles/*', 'fonts/*', 'vendor/*', 'js/*', 'slides/*.html', 'slides/*.css', 'slides/*.js',
+MANAGED = ['index.html', 'styles/*', 'fonts/*', 'vendor/*', 'js/**/*', 'slides/*.html', 'slides/*.css', 'slides/*.js',
            'resources/document-theme.css']
 GENERATED = {'js/resources-data.js', 'js/enrichment-data.js'}
 
@@ -46,7 +46,7 @@ def versioned_index():
     text = (SITE / 'index.html').read_text(encoding='utf-8')
     def current(rel):   # the dist copy once written, else the source: they are byte-identical after `make site`
         return DIST / rel if (DIST / rel).exists() and not (SITE / rel).exists() else SITE / rel
-    files = sorted({p.relative_to(SITE).as_posix() for p in (SITE / 'js').glob('*.js')} | {p.relative_to(DIST).as_posix() for p in (DIST / 'js').glob('*.js')})
+    files = sorted({p.relative_to(SITE).as_posix() for p in (SITE / 'js').rglob('*.js')} | {p.relative_to(DIST).as_posix() for p in (DIST / 'js').glob('*.js')})
     imports = {f'./{f}': f'./{f}?v={_hash(current(f))}' for f in files}
     import json
     block = (MAP_START + '\n    <script type="importmap">\n' + json.dumps({'imports': imports}, indent=2).replace('\n', '\n    ') + '\n    </script>\n    '

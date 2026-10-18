@@ -13,11 +13,7 @@ import { homePage, galleryPage as galleryIndex } from "./welcome.js";
 import { mountArt } from "./home-art.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
-import { mountActivity, hasActivity } from "./challenge-activities.js";
-import { challengeIcon } from "./challenge-icons.js";
-import { originalOf } from "./challenge-originals.js";
-import { mountSolution, hasSolution } from "./challenge-solutions.js";
-import { VARIANTS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant } from "./challenge-variants.js";
+import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
 import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { createLabMotion, installInterfaceMotion, illuminateFeedback } from "./motion.js";
@@ -1058,25 +1054,8 @@ function challengePage(id) {
 // Parameters of the variation currently shown, per challenge (kept while the visitor browses; not stored).
 const variantState = {};
 const paramsOf = (id) => (variantState[id] ??= hasVariants(id) ? variantDefaults(id) : {});
-// Hints that carry a button acting on the experiment: { challenge id: { hint index: [action, French label, English label] } }.
+// Hints that carry a button acting on the experiment (hintActions in each challenge folder): { hint index: [action, French label, English label] }.
 // The activity listens for the "challenge-action" event, so the button can sit in the hint panel, away from the board.
-const HINT_ACTIONS = {
-  chess: { 0: ["colour", "Colorier les cases", "Colour the squares", true] },
-  box: { 0: ["net", "Mettre deux faces à plat", "Lay two faces flat"], 1: ["line", "Tracer le segment droit", "Draw the straight segment"] },
-  cake: { 0: ["top", "Voir le gâteau de dessus, avec le centre", "Show the top view, with the centre"], 1: ["grid", "Poser la grille", "Place the grid"] },
-  reflect: { 1: ["mirror", "Montrer B′, le symétrique de B", "Show B′, the mirror image of B", true] },
-  queens: { 1: ["peek", "Poser une dame d’un bon placement", "Place one queen of a good placement"] },
-  fakecoins: { 1: ["fill", "Remplir 1, 2, 3, …", "Fill in 1, 2, 3, …"] },
-  merge: { 1: ["invariant", "Afficher le produit des (nombre + 1)", "Show the product of the (number + 1)"] },
-  cham: { 0: ["diff", "Afficher r − v, v − b, b − r", "Show r − v, v − b, b − r"], 1: ["mod", "Afficher ces différences modulo 3", "Show these differences modulo 3"] },
-  pegs: { 0: ["parity", "Afficher la parité (x, y) de chaque pion", "Show the parity (x, y) of each peg"], 1: ["classes", "Colorier les points selon la parité de (x, y)", "Colour the points by the parity of (x, y)"] },
-  doors: { 0: ["divisors", "Écrire le nombre de diviseurs sur chaque porte", "Write the number of divisors on each door"] },
-  pigeonhole: { 0: ["remainders", "Colorier chaque nombre selon son reste", "Colour each number by its remainder"] },
-  konigsberg: { 0: ["degrees", "Afficher le nombre de ponts de chaque quartier", "Show the number of bridges at each district"] },
-  gridpaths: { 1: ["counts", "Afficher le nombre de chemins en chaque point", "Show the number of paths at every point"] },
-  artgallery: { 0: ["triangulate", "Découper la galerie en triangles", "Cut the gallery into triangles"], 1: ["colour", "Colorier les sommets avec trois couleurs", "Colour the vertices with three colours"] },
-  inversions: { 0: ["counter", "Afficher le compteur d’inversions", "Show the inversion counter"] },
-};
 const hintAction = (id, i) => { const a = HINT_ACTIONS[id]?.[i]; return a ? `<button class="btn btn-secondary hint-action" type="button" data-hint-act="${a[0]}"${a[3] ? ' aria-pressed="false"' : ""}>${pair(a[1], a[2])}</button>` : ""; };
 const variantText = (c, q) => {
   const v = VARIANTS[c.id];

@@ -1,6 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pathLength, shortestVia, bestContact, REFLECT_SETS, reflectSet, luneArea, luneTotal, starK, starTipDegrees, starSumDegrees, measuredTip, boxUnfoldings, boxPath, BOX_SETS, boxSet, mergeFinal, mergeProduct, CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible, PEGS_START, PEG_TARGETS, pegTarget, pegClass, pegJumps, pegsPossible, pegsSolve, pegsMin, pegsRun, PEGS_SHIFTS, pegsWithin, pegLanding, permOf, inversions, bubbleSwaps, splitTotal, randomSplitTotal } from "../dist/js/challenge-puzzles2.js";
+import { pathLength, shortestVia, bestContact, REFLECT_SETS, reflectSet } from "../dist/js/challenges/reflect/maths.js";
+import { luneArea, luneTotal } from "../dist/js/challenges/lunes/maths.js";
+import { starK, starTipDegrees, starSumDegrees, measuredTip } from "../dist/js/challenges/star/maths.js";
+import { boxUnfoldings, boxPath, BOX_SETS, boxSet } from "../dist/js/challenges/box/maths.js";
+import { mergeFinal, mergeProduct } from "../dist/js/challenges/merge/maths.js";
+import { CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible } from "../dist/js/challenges/cham/maths.js";
+import { PEGS_START, PEG_TARGETS, pegTarget, pegClass, pegJumps, pegsPossible, pegsSolve, pegsMin, pegsRun, PEGS_SHIFTS, pegsWithin, pegLanding } from "../dist/js/challenges/pegs/maths.js";
+import { permOf, inversions, bubbleSwaps } from "../dist/js/challenges/inversions/maths.js";
+import { splitTotal, randomSplitTotal } from "../dist/js/challenges/piles/maths.js";
 
 test("reflection: a fine scan of the contact point finds the reflected length, at x = ad/(a+b); presets give whole answers", () => {
   for (const id of REFLECT_SETS) {

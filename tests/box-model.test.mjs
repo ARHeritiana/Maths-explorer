@@ -1,8 +1,7 @@
 // Independent check of the box geometry: the unfolded routes agree with a numerical search over surface paths.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { nets, shortest, netRoute, crossEdge, facesOf, polyLength, hingePosition, faceCorners, FACE_AXIS, faceValue } from "../dist/js/box-model.js";
-import { BOX_SETS, boxSet, boxPath } from "../dist/js/challenge-puzzles2.js";
+import { nets, shortest, netRoute, crossEdge, facesOf, polyLength, hingePosition, faceCorners, FACE_AXIS, faceValue, BOX_SETS, boxSet, boxPath } from "../dist/js/challenges/box/maths.js";
 
 test("box: the three nets agree with boxPath and netRoute folds back to the same length", () => {
   for (const id of BOX_SETS) {

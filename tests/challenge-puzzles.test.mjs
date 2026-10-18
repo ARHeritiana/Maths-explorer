@@ -1,7 +1,14 @@
 // Independent verification of the classic puzzles (grid paths, horses, cake, queens, snail, bridge, light egg, fake coins).
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pascalGrid, gridPaths, horsesTop3, horsesTop1, horseRaces, squarePoint, cakeShares, unattacked, QUEENS, queensBest, snailDays, snailTrace, bridgePlans, bridgeBest, BRIDGE_SETS, bridgeTimes, eggWeighings, splitThree, minSample, classicSample, identifies } from "../dist/js/challenge-puzzles.js";
+import { pascalGrid, gridPaths } from "../dist/js/challenges/gridpaths/maths.js";
+import { horsesTop3, horsesTop1, horseRaces } from "../dist/js/challenges/horses/maths.js";
+import { squarePoint, cakeShares } from "../dist/js/challenges/cake/maths.js";
+import { unattacked, QUEENS, queensBest } from "../dist/js/challenges/queens/maths.js";
+import { snailDays, snailTrace } from "../dist/js/challenges/snail/maths.js";
+import { bridgePlans, bridgeBest, BRIDGE_SETS, bridgeTimes } from "../dist/js/challenges/bridge/maths.js";
+import { eggWeighings, splitThree } from "../dist/js/challenges/lighteggs/maths.js";
+import { minSample, classicSample, identifies } from "../dist/js/challenges/fakecoins/maths.js";
 
 const rng = (seed) => () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
 const shuffle = (a, r) => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };

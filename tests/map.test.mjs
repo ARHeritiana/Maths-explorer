@@ -14,6 +14,7 @@ const notIndex = (f) => f !== "CLAUDE.md" && f !== "AGENTS.md";
 // Each area: its source files and the index that must name them (MAP.md counts for every area).
 const AREAS = {
   "site/CLAUDE.md": [...files("site", (f) => f.endsWith(".html")), ...files("site/js"), ...files("site/styles"), ...files("site/slides"), ...files("site/resources")],
+  "site/js/challenges/CLAUDE.md": [...files("site/js/challenges", notIndex), ...files("site/js/challenges/common")],
   "build/mxbuild/CLAUDE.md": files("build/mxbuild", (f) => f.endsWith(".py")),
   "scripts/CLAUDE.md": files("scripts", notIndex),
   "tests/CLAUDE.md": files("tests", notIndex),
@@ -52,4 +53,19 @@ test("every path named in the map, the indexes and the task recipes exists", () 
 
 test("the folder indexes are never published", () => {
   assert.ok(!existsSync(join(ROOT, "dist", "CLAUDE.md")), relative(ROOT, join(ROOT, "dist", "CLAUDE.md")));
+});
+
+// One folder per challenge: the folder holds only the files of the convention, and registry.js lists every folder.
+const ROLE_FILES = new Set(["index.js", "maths.js", "activity.js", "solution.js", "view-3d.js", "art.js"]);
+test("every challenge folder follows the convention and is listed in registry.js", () => {
+  const dir = join(ROOT, "site/js/challenges"), registry = read("site/js/challenges/registry.js");
+  const folders = readdirSync(dir).filter((f) => f !== "common" && statSync(join(dir, f)).isDirectory());
+  assert.ok(folders.length > 0);
+  for (const id of folders) {
+    const own = readdirSync(join(dir, id));
+    assert.ok(own.includes("index.js"), `${id}/index.js`);
+    assert.deepEqual(own.filter((f) => !ROLE_FILES.has(f)), [], `${id}/ holds files outside the convention (site/js/challenges/CLAUDE.md)`);
+    assert.match(read(`site/js/challenges/${id}/index.js`), new RegExp(`id: "${id}"`), `${id}/index.js card id matches its folder`);
+    assert.ok(registry.includes(`from "./${id}/index.js"`), `registry.js imports ${id}`);
+  }
 });

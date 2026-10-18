@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 LABS = ['quadratic','trig','sequences','probability','derivative','integral','vectors','statistics','complex']
 ANSWERS = ['2','-1','48','3','6','1/3','0','4','5']
 CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','inversions','piles']
-CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45','5','24','180','5','719','0','13','45']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45','5','24','180','5','719','0','0','13','45']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -169,9 +169,9 @@ with sync_playwright() as p:
     assert page.locator('#results strong').nth(1).inner_text() == '4'
     page.reload()
     assert page.locator('html').get_attribute('lang') == 'en'
-    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == 36
+    assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == len(LABS) + len(CHALLENGES)
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',18),('olympiad',9),('all',27)]:
+    for kind,count in [('play',18),('olympiad',10),('all',28)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.

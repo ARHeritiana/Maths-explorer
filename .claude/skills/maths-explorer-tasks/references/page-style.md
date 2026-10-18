@@ -2,7 +2,7 @@
 
 - Colour, font, radius, spacing: change the token in `site/styles/explorer.css` (top of file, light then dark theme).
   Never write a literal colour in a page style or a canvas: canvases read tokens with `object-kit.js` `palette()`,
-  challenge cards with `challenge-kit.js` `colour(i)` (`--c1..--c8`). The PDF palette is separate
+  challenge cards with `site/js/challenges/common/kit.js` `colour(i)` (`--c1..--c8`). The PDF palette is separate
   (`content/tex/core/mx-layout.sty`).
 - One page's styling: `site/styles/pages.css`, search the page's root class.
 - Navigation and footer: `site/js/app.js` `header()` (array `nav`), `footer()`.
