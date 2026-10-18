@@ -89,6 +89,13 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 - [x] Applied (13 October 2026) as design v3 "Cahier": chapter chooser with live preview, resume, two themes, full-screen figures, tab bar on phones. Hash routes kept.
 - [ ] Still to do: screen-reader pass with a real device, 200% zoom check on the home page and chapter pages (`tests/browser.py` covers labs, challenges and pathways only), and owner review.
 
+### 3b. Laboratory v2 (owner request, 18 October 2026)
+Contract: `docs/LAB_DESIGN.md`. One engine, seven templates, missions, lab references shared by lessons and slides.
+- [ ] Phase 1: engine, shell, `family` and `process` templates; quadratic, trig, derivative, integral, sequences.
+- [ ] Phase 2: `chance`, `figure`, `data`, `transform`; probability, vectors, statistics, complex; old lab code removed.
+- [ ] Phase 3: `type: 'lab'` slide widgets, inline mounts on chapter pages, `tests/lab-links.test.mjs`.
+- [ ] Phase 4: `space` template and new experiments from the remaining slide widget types.
+
 ### 4. Scale in priority order
 Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympiad, rest of Malagasy, IB, university basics last. Each chapter goes through the same pipeline.
 

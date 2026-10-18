@@ -10,6 +10,7 @@ Read one only when the task router in `MAP.md` sends you here.
 | `TEX_INVENTORY.md` | generated inventory of environments and macros (`make inventory`) |
 | `SLIDES.md` | where each deck comes from, slide checks |
 | `DESIGN_V3.md`, `DESIGN_V4.md` | design reasoning (v4 amends v3) |
+| `LAB_DESIGN.md` | laboratory v2: research basis, templates, mission model, lab references for lessons and slides |
 | `CURRICULUM.md` | programme references (verify before citing) |
 | `RESOURCE_LIBRARY.md` | history and provenance of the resource library |
 | `HANDOFF.md` | TeX pipeline hand-off: open owner questions, TeX status (older than root `HANDOFF.md`) |

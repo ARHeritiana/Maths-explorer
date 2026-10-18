@@ -31,6 +31,7 @@ really need them.
 | the top navigation, footer, theme or language buttons | `site/js/app.js` `header()` / `footer()` | |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a lab or pathway | `site/js/content.js` (`labs`, `pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
+| the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
 | a lab with formula and sliders | `site/js/content.js` (`labs`), `site/js/app.js` `updateLab()` / `bindLab()`, maths in `site/js/math.js` | |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `gallery-objects.js`, maths in `gallery-math.js`; card drawing in `home-art.js` | |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
