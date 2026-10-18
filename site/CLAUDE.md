@@ -11,16 +11,16 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | File | Holds |
 |---|---|
 | `index.html` | page skeleton, theme bootstrap, generated import map (do not edit the map) |
-| `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; lab pages (`labPage`, `updateLab`, `updatePlot`, `bindPlot`, `bindTrigonometry`, `bindLab`); challenge pages (`challengePage`, `challengeDetail`, `bindChallenges`); pathways (`pathwayPage`); saved state (`save`, `state`) |
+| `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); pages of the guided labs not yet rebuilt (`labPage`, `updateLab`, `updatePlot`, `bindPlot`, `bindLab`); challenge pages (`challengePage`, `challengeDetail`, `bindChallenges`); pathways (`pathwayPage`); saved state (`save`, `state`) |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
-| `js/motion.js` | lab parameter animation, interface motion |
+| `js/motion.js` | slider animation of the guided labs not yet rebuilt, interface motion |
 | `js/control-policy.js` | selectors with one choice become labels |
 | `js/content-language.js` | language of each route (neutral pages vs curriculum pages) |
 | `js/data-loader.js` | `assetHref` (versioned URLs), `fetchJSON` |
 | `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, university, asset versions |
 | `js/canvas-navigation.js` | camera (zoom, pan, reset) shared with the slide player |
-| `js/interaction.js` | dragging snapped to the slider grid |
+| `js/interaction.js` | dragging snapped to the slider grid (guided labs not yet rebuilt) |
 | `styles/explorer.css` | design tokens (both themes), base elements, layout |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
 
@@ -28,7 +28,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/content.js` | `labs` (guided labs; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
+| `js/content.js` | `labs` (guided labs: the rebuilt ones are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
 | `js/learning-content.js` | companion lessons on chapter pages (`guides`) |
 | `js/study-guides.js` | short starting sheets (built into HTML by `scripts/build-study-guides.mjs`) |
 
@@ -36,8 +36,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/math.js` | pure maths of the guided labs (quadratic, sequences, binomial, statistics, Riemann...) |
-| `js/trigonometry.js` | unit circle model, remarkable angles, trig lab controls |
+| `js/lab/` | **the laboratory**: engine, shell, mount, registry, templates, models and one file per experiment (quadratic, trig, sequences, derivative, integral); index in `js/lab/CLAUDE.md` |
+| `js/math.js` | pure maths shared by the labs (quadratic, sequences, binomial, statistics, Riemann...) |
 | `js/lab-objects.js` | `mountObject`: Galton, Reuleaux, Platonic, chaos game (pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles, Mandelbrot/Julia explorer |
 | `js/gallery-math.js` | pure maths of the gallery (escape times, DFT, Madagascar outline) |

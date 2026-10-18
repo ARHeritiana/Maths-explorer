@@ -18,17 +18,15 @@ import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, rando
 import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
 import { createLabMotion, installInterfaceMotion, illuminateFeedback } from "./motion.js";
-import { trigControls, trigDiagram } from "./trigonometry.js";
+import { mountExperiment } from "./lab/mount.js";
+import { experimentById, labRef } from "./lab/registry.js";
+import { indexPage as labIndexPage, experimentPage } from "./lab/page.js";
 import {
-  quadratic,
-  sequence,
   binomial,
   sampleBinomial,
   statistics,
   parseData,
-  riemann,
   isAnswer,
-  squareSecant,
   formatNumber,
   axisTicks,
 } from "./math.js";
@@ -67,7 +65,7 @@ let currentLab = "quadratic";
 let stopChapter = () => {};
 let stopObject = () => {};
 let stopArt = [];
-let stopTrig = () => {};
+let stopLab = () => {};
 let stopViews = [];
 let plotBounds = null;
 let activeDrag = null;
@@ -102,9 +100,6 @@ function save() {
 function state(lab) {
   return (states[lab.id] ??= {
     values: lab.params.map((p) => p[4]),
-    mode: "arithmetic",
-    direction: 1,
-    method: "left",
     observation: "",
     conjecture: "",
     bins: null,
@@ -145,8 +140,8 @@ function footer() {
 }
 function render() {
   stopViews.forEach(stop=>stop()); stopViews=[];
-  stopTrig();
-  stopTrig = () => {};
+  stopLab();
+  stopLab = () => {};
   stopChapter();
   stopChapter = () => {};
   stopObject();
@@ -165,6 +160,7 @@ function render() {
     "Maths Explorer · Laboratoire de mathématiques",
     "Maths Explorer · Mathematics laboratory",
   );
+  const experiment = r.page === "lab" ? experimentById(r.id) : null;
   const valid = (r.page === "lab" && (!r.id || labs.some(l => l.id === r.id && !l.custom))) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
     (r.page === "home" && !r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
@@ -177,7 +173,7 @@ function render() {
       : page === "university" ? universityPage(lang)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
-      ? labPage(r.id)
+      ? (experiment ? experimentPage(experiment, { t, pair, link, completed, mission: r.tab || "" }) : r.id ? labPage(r.id) : labIndexPage({ t, pair, link, completed, rest: labs.filter((l) => !l.custom && !l.experiment) }))
       : page === "gallery"
       ? (r.id ? labPage(r.id, "gallery") : galleryIndex({ pair, t, link, labs }))
       : page === "challenges"
@@ -189,11 +185,19 @@ function render() {
           : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#lab">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></main>`) +
     footer();
   if (page === "lab" && $("#plot")) updateLab();
+  if (experiment) {
+    // The mission is part of the address (#lab/<experiment>/<mission>); replaceState keeps the history clean.
+    stopLab = mountExperiment($("#lab2-host"), labRef(experiment.id, r.tab), {
+      mode: "full", lang,
+      onMission: (id, mission) => { const hash = link("lab", id) + "/" + mission; if (location.hash !== hash) history.replaceState(null, "", hash); },
+      onComplete: (id) => { completed.add(id); save(); },
+    }).destroy;
+  }
   if (page === "home" || (page === "gallery" && !r.id)) stopArt = [...document.querySelectorAll("canvas[data-art]")].map((cv) => mountArt(cv, cv.dataset.art, { reduced: reducedMotion }));
   if ((page === "lab" || page === "gallery") && $("#object-stage")) stopObject = mountObject($("#object-stage").dataset.object, $("#object-stage"), { lang, reduced: reducedMotion, initialValues: state(labs.find(x=>x.id===currentLab)).values, onChange: values => { state(labs.find(x=>x.id===currentLab)).values = values; } });
   $(".skip").textContent = pair("Aller au contenu", "Skip to content");
   bindCommon();
-  if (page === "lab" || (page === "gallery" && r.id)) bindLab();
+  if ((page === "lab" && !experiment && r.id) || (page === "gallery" && r.id)) bindLab();
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pack") bindPack(t);
@@ -209,7 +213,7 @@ function render() {
     }
   }
   if (page === "workshop") stopChapter = bindWorkshop($("#main"),t,lang);
-  stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg, #plot.trig-plot svg",lang));
+  stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg",lang));
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   installInterfaceMotion($("#app"), reducedMotion);
   installPresenting();
@@ -238,44 +242,24 @@ const groupRank = (l) => ["Algèbre", "Géométrie", "Données & hasard", "Analy
 // The combining arrow in the vector symbol is missing from the maths font: show a plain arrow.
 const glyph = (symbol) => (symbol.includes("\u20d7") ? "→" : symbol);
 function labPage(id, mode = "lab") {
-  const pool = labs.filter((x) => (mode === "gallery") === !!x.custom), navLabs = mode === "gallery" ? pool : [...pool].sort((p, q) => groupRank(p) - groupRank(q));
+  const pool = labs.filter((x) => (mode === "gallery") === !!x.custom && !x.experiment), navLabs = mode === "gallery" ? pool : [...pool].sort((p, q) => groupRank(p) - groupRank(q));
   const lab = pool.find((x) => x.id === id) || pool[0];
   currentLab = lab.id;
   const s = state(lab);
-  return `<div class="lab-layout"><aside class="sidebar" aria-label="${mode === "gallery" ? pair("Galerie", "Gallery") : pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${mode === "gallery" ? pair("Choisir une merveille", "Choose a wonder") : pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label><div class="side-title">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Explorer", "Explore")} <span>${String(navLabs.length).padStart(2, "0")}</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link(mode, x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
+  return `<div class="lab-layout"><aside class="sidebar" aria-label="${mode === "gallery" ? pair("Galerie", "Gallery") : pair("Expériences", "Experiments")}"><label class="mobile-lab-picker" for="lab-picker">${mode === "gallery" ? pair("Choisir une merveille", "Choose a wonder") : pair("Choisir une expérience", "Choose an experiment")}<select id="lab-picker">${navLabs.map(x => `<option value="${x.id}" ${x.id === lab.id ? "selected" : ""}>${t(x.short)}</option>`).join("")}</select></label>${mode === "gallery" ? "" : `<a class="lab-link" href="${link("lab")}"><span class="lab-symbol" aria-hidden="true">←</span><span>${pair("Tout le laboratoire", "The whole laboratory")}</span></a>`}<div class="side-title">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Explorer", "Explore")} <span>${String(navLabs.length).padStart(2, "0")}</span></div><div class="lab-links">${navLabs.map((x, i) => `${i === 0 || t(x.group) !== t(navLabs[i - 1].group) ? `<p class="group-label">${t(x.group)}</p>` : ""}<a href="${link(mode, x.id)}" class="lab-link ${x.id === lab.id ? "selected" : ""}" ${x.id === lab.id ? 'aria-current="page"' : ""}><span class="lab-symbol" aria-hidden="true">${glyph(x.symbol)}</span><span>${t(x.short)}</span>${completed.has(x.id) ? '<span class="check" aria-label="' + pair("Question réussie", "Check completed") + '">✓</span>' : ""}</a>`).join("")}</div><div class="side-note"><span aria-hidden="true">✧</span><p>${pair("Une question est un bon point de départ.", "A question is a good place to start.")}</p></div></aside>
  <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${mode === "gallery" ? pair("La galerie", "The gallery") : pair("Le laboratoire", "The laboratory")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
- <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}${lab.id === "quadratic" ? `<a class="secondary quadratic-workshop-link" href="#workshop/quadratic">${pair("Présenter et explorer · 5 étapes", "Present and explore · 5 stages")}</a>` : ""}${lab.id === "trig" ? trigControls(s,t) : ""}${lab.custom || lab.id === "complex" ? `<div id="object-stage" class="object-stage" data-object="${lab.id}"></div>` : `<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot ${lab.id === "trig" ? "trig-plot" : ""}" aria-describedby="interaction-guide"></div><div id="plot-navigation"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
- ${
-   lab.id === "sequences"
-     ? `<fieldset class="mode"><legend>${pair("Type de suite", "Sequence type")}</legend>${[
-         ["arithmetic", "Arithmétique", "Arithmetic"],
-         ["geometric", "Géométrique", "Geometric"],
-       ]
-         .map(
-           ([v, fr, en]) =>
-             `<label><input type="radio" name="mode" value="${v}" ${s.mode === v ? "checked" : ""}>${pair(fr, en)}</label>`,
-         )
-         .join("")}</fieldset>`
-     : ""
- }
- ${lab.id === "derivative" ? `<fieldset class="mode"><legend>${pair("Approcher par", "Approach from")}</legend>${[[1,"La droite (h > 0)","The right (h > 0)"],[-1,"La gauche (h < 0)","The left (h < 0)"]].map(([v,fr,en]) => `<label><input type="radio" name="direction" value="${v}" ${s.direction === v ? "checked" : ""}>${pair(fr,en)}</label>`).join("")}</fieldset>` : ""}
- ${lab.id === "integral" ? `<fieldset class="mode"><legend>${pair("Hauteur des rectangles", "Rectangle heights")}</legend>${[["left","À gauche","Left endpoint"],["right","À droite","Right endpoint"],["midpoint","Au milieu","Midpoint"]].map(([v,fr,en]) => `<label><input type="radio" name="method" value="${v}" ${s.method === v ? "checked" : ""}>${pair(fr,en)}</label>`).join("")}</fieldset>` : ""}
- ${lab.params.map(([name, min, max, step], i) => `<label class="slider-control" for="param-${i}"><span>${parameterLabel(lab.id, i, name)}<output id="value-${i}">${fmt(s.values[i])}${name === "θ" ? "°" : ""}</output></span><input id="param-${i}" data-param="${i}" type="range" min="${min}" max="${max}" step="${step}" value="${s.values[i]}"><span class="range-limits"><span>${fmt(min)}</span><span>${fmt(max)}</span></span></label>`).join("")}
+ <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}${lab.custom || lab.id === "complex" ? `<div id="object-stage" class="object-stage" data-object="${lab.id}"></div>` : `<div class="formula" id="formula">${lab.formula}</div><p class="interaction-guide" id="interaction-guide">${interactionGuide(lab.id)}</p><div id="plot" class="plot" aria-describedby="interaction-guide"></div><div id="plot-navigation"></div><div class="plot-caption" id="plot-caption"></div><details class="chart-data"><summary>${pair("Lire les valeurs du graphique", "Read the chart values")}</summary><div id="chart-data"></div></details><div class="controls">
+ ${lab.params.map(([name, min, max, step], i) => `<label class="slider-control" for="param-${i}"><span>${parameterLabel(lab.id, i, name)}<output id="value-${i}">${fmt(s.values[i])}</output></span><input id="param-${i}" data-param="${i}" type="range" min="${min}" max="${max}" step="${step}" value="${s.values[i]}"><span class="range-limits"><span>${fmt(min)}</span><span>${fmt(max)}</span></span></label>`).join("")}
  ${lab.id === "statistics" ? `<label class="data-label" for="data-input">${pair("Tes données", "Your data")}</label><textarea id="data-input" rows="2" aria-describedby="data-help data-error">${esc(s.data)}</textarea><p id="data-help" class="muted">${pair("1 à 100 valeurs séparées par des espaces ou des points-virgules. Décimales : 2,5 ou 2.5. Valeurs entre −10 000 et 10 000.", "1–100 values separated by spaces or semicolons. Decimals: 2.5 or 2,5. Values between −10,000 and 10,000.")}</p><p id="data-error" class="error" role="alert"></p>` : ""}
  ${lab.id === "probability" ? `<div class="simulation"><button class="primary" data-sim="100">${pair("Simuler 100 expériences", "Simulate 100 experiments")}</button><button class="secondary" data-sim="1000">${pair("En ajouter 1 000", "Add 1,000")}</button><p id="sim-status" class="muted" aria-live="polite"></p><div id="sim-tray" class="sim-tray" aria-label="${pair("Les dernières expériences : pièce pleine = succès", "The latest experiments: filled coin = success")}" role="img"></div></div>` : ""}</div><div id="results" class="results" aria-live="polite" aria-atomic="true"></div>`}</section>
- <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${lab.id === "trig" ? pair("Les valeurs sont exactes aux angles remarquables ; sinon, le signe ≈ indique une approximation. Les essais aident à conjecturer ; un argument général établit une preuve.", "Values are exact at remarkable angles; otherwise, ≈ indicates an approximation. Examples suggest a conjecture; a general argument establishes a proof.") : pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning">${mode === "gallery" ? "" : `<details class="notes"><summary>${pair("Garder des notes (facultatif)", "Keep some notes (optional)")}</summary><label for="observation">${pair("Mon observation (avec les paramètres)", "My observation (including parameters)")}</label><textarea id="observation" data-note="observation" rows="2" maxlength="2000">${esc(s.observation)}</textarea><label for="conjecture">${pair("Ma conjecture et ses conditions", "My conjecture and its conditions")}</label><textarea id="conjecture" data-note="conjecture" rows="2" maxlength="2000">${esc(s.conjecture)}</textarea><p class="muted">${pair("Notes conservées pendant cette session seulement. Elles ne sont pas corrigées automatiquement.", "Notes stay in this session only. They are not marked automatically.")}</p></details>`}<details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span>${Object.keys(lab.quizState || {}).length ? `<button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button>` : ""}<form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
+ <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning">${mode === "gallery" ? "" : `<details class="notes"><summary>${pair("Garder des notes (facultatif)", "Keep some notes (optional)")}</summary><label for="observation">${pair("Mon observation (avec les paramètres)", "My observation (including parameters)")}</label><textarea id="observation" data-note="observation" rows="2" maxlength="2000">${esc(s.observation)}</textarea><label for="conjecture">${pair("Ma conjecture et ses conditions", "My conjecture and its conditions")}</label><textarea id="conjecture" data-note="conjecture" rows="2" maxlength="2000">${esc(s.conjecture)}</textarea><p class="muted">${pair("Notes conservées pendant cette session seulement. Elles ne sont pas corrigées automatiquement.", "Notes stay in this session only. They are not marked automatically.")}</p></details>`}<details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span>${Object.keys(lab.quizState || {}).length ? `<button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button>` : ""}<form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
  ${mode === "gallery" ? "" : `<section class="lab-resources"><h2>${pair("Poursuivre ce chapitre", "Continue this topic")}</h2><p>${pair("Passer de l’expérience aux notes, aux exercices et aux problèmes.", "Move from the experiment to notes, exercises and problems.")}</p><a class="secondary" href="#library/@${lab.id}">${pair("Ressources liées à cette expérience", "Resources linked to this experiment")}</a></section>`}
  <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${mode === "gallery" ? galleryContext(lab.id,pair) : ""}</main></div>`;
 }
 
 function interactionGuide(id) {
   const guides = {
-    quadratic: ["Déplace C verticalement pour changer c ; déplace A pour changer l’ouverture. Les curseurs règlent aussi b.", "Drag C vertically to change c; drag A to change the opening. Use the sliders to adjust b too."],
-    trig: ["Fais glisser P autour du cercle pour changer l’angle.", "Drag P around the circle to change the angle."],
-    sequences: ["Déplace u₀ et u₁ verticalement pour changer le terme initial et la raison.", "Drag u₀ and u₁ vertically to change the initial term and the difference or ratio."],
     probability: ["Déplace E horizontalement pour changer p. Lance une simulation pour comparer les barres.", "Drag E horizontally to change p. Run a simulation to compare the bars."],
-    derivative: ["Déplace A le long de la parabole ; rapproche B de A pour observer la tangente.", "Drag A along the parabola; bring B closer to A to observe the tangent."],
-    integral: ["Déplace la séparation S : vers la gauche, les rectangles deviennent plus nombreux.", "Drag boundary S: move left to increase the number of rectangles."],
     vectors: ["Déplace les extrémités u et v. Le vecteur bleu montre leur somme.", "Drag endpoints u and v. The blue vector shows their sum."],
     statistics: ["Déplace un point horizontalement pour changer une donnée et observer la moyenne.", "Drag a dot horizontally to change a data value and observe the mean."],
     complex: ["Déplace z dans le plan. Le point orange iz suit la rotation de 90°.", "Drag z in the plane. The orange point iz follows the 90° rotation."],
@@ -284,12 +268,7 @@ function interactionGuide(id) {
 }
 function parameterLabel(id, i, name) {
   const labels = {
-    quadratic: [["a · ouverture", "a · opening"], ["b · terme linéaire", "b · linear term"], ["c · ordonnée à l’origine", "c · y-intercept"]],
-    trig: [["x · angle", "x · angle"]],
-    sequences: [["u₀ · premier terme", "u₀ · first term"], ["r / q · raison", "r / q · difference / ratio"], ["N · nombre de termes", "N · number of terms"]],
     probability: [["n · nombre d’essais", "n · number of trials"], ["p · probabilité de succès", "p · success probability"]],
-    derivative: [["x · point A", "x · point A"], ["|h| · distance entre A et B", "|h| · distance between A and B"]],
-    integral: [["N · nombre de rectangles", "N · number of rectangles"]],
     complex: [["a · partie réelle", "a · real part"], ["b · partie imaginaire", "b · imaginary part"]],
   };
   return labels[id]?.[i] ? t(labels[id][i]) : name;
@@ -395,112 +374,15 @@ function updateLab(animatedValues, moving = false) {
   if (!animatedValues) labMotion.remember(v);
   // Slider readouts keep the chosen values; graph results follow the animation.
   s.values.forEach((x, i) => {
-    $(`#value-${i}`).textContent =
-      fmt(x) + (lab.params[i][0] === "θ" ? "°" : "");
-    $(`#param-${i}`).setAttribute(
-      "aria-valuetext",
-      fmt(x) + (lab.params[i][0] === "θ" ? "°" : ""),
-    );
+    $(`#value-${i}`).textContent = fmt(x);
+    $(`#param-${i}`).setAttribute("aria-valuetext", fmt(x));
   });
   let data = "";
   let plot = "",
     results = "",
     caption = "",
     formula = lab.formula;
-  if (lab.id === "quadratic") {
-    const [a, b, c] = v,
-      q = quadratic(a, b, c);
-    // Conventional writing: omit zero terms and unit coefficients.
-    const terms = [[a, "x²"], [b, "x"], [c, ""]].filter(([k]) => k !== 0)
-      .map(([k, x], i) => `${k < 0 ? (i ? " − " : "−") : i ? " + " : ""}${Math.abs(k) === 1 && x ? "" : fmt(Math.abs(k))}${x}`);
-    formula = `f(x) = ${terms.join("") || "0"}`;
-    plot = chart({
-      ymin: Math.min(-5, c, 4*a + 2*b + c) - 1,
-      ymax: Math.max(7, c, 4*a + 2*b + c) + 1,
-      label: pair(
-        "Courbe de la fonction et racines réelles",
-        "Function graph and real roots",
-      ),
-      draw: ({ path, point }) =>
-        path((x) => a * x * x + b * x + c) +
-        q.roots.map((x) => point(x, 0, "orange")).join("") +
-        (q.vertex ? point(...q.vertex) : ""),
-      handles: ({ handle }) => handle(0, c, "intercept", "C") + handle(2, 4*a + 2*b + c, "bend", "A"),
-    });
-    data = dataTable([pair("Objet", "Object"),"x","y"], [
-      ...q.roots.map((x,i) => [pair("Racine", "Root") + " " + (i+1),fmt(x,6),"0"]),
-      ...(q.vertex ? [[pair("Sommet", "Vertex"),fmt(q.vertex[0],6),fmt(q.vertex[1],6)]] : []),
-      [pair("Ordonnée à l’origine", "Y-intercept"),"0",fmt(c)]
-    ]);
-    results =
-      metric(
-        pair("Racines réelles", "Real roots"),
-        q.allReal
-          ? "ℝ"
-          : q.roots.length
-            ? q.roots.map((x) => fmt(x)).join(" ; ")
-            : pair("Aucune", "None"),
-      ) +
-      metric(
-        q.kind === "quadratic" ? "Δ" : pair("Type", "Type"),
-        q.kind === "quadratic"
-          ? fmt(q.discriminant)
-          : q.kind === "linear"
-            ? pair("Affine", "Linear")
-            : pair("Constante", "Constant"),
-      ) +
-      metric(
-        pair("Sommet", "Vertex"),
-        q.vertex ? `(${fmt(q.vertex[0])} ; ${fmt(q.vertex[1])})` : "—",
-      );
-    caption = pair(
-      "x ∈ [−6 ; 6]. L’échelle reste fixe. Molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue. Certaines racines ou le sommet peuvent être hors champ.",
-      "x ∈ [−6, 6]. The scale stays fixed. Wheel or pinch to zoom, Shift-drag to pan. Some roots or the vertex may be outside the view.",
-    );
-  } else if (lab.id === "trig") {
-    const figure = trigDiagram(v[0],s,t,fmt,handleAt);
-    plotBounds = null;
-    plot = figure.svg;
-    formula = figure.formula;
-    caption = figure.caption;
-    data = `<table><caption>${pair("Valeurs exactes aux angles remarquables ; sinon valeurs approchées", "Exact values at remarkable angles; otherwise approximate values")}</caption><thead><tr><th scope="col">${pair("Grandeur", "Quantity")}</th><th scope="col">${pair("Valeur", "Value")}</th></tr></thead><tbody>${figure.rows.map(([k,val])=>`<tr><th scope="row">${esc(k)}</th><td>${esc(val)}</td></tr>`).join("")}</tbody></table>`;
-    results = metric("cos x",figure.cos)+metric("sin x",figure.sin)+metric(pair("Angle en radians","Angle in radians"),figure.q.radians || "≈ "+fmt(v[0]*Math.PI/180));
-    if ($("#remarkable-angle")) $("#remarkable-angle").value = [...$("#remarkable-angle").options].some(o=>o.value===String(v[0])) ? String(v[0]) : "";
-  } else if (lab.id === "sequences") {
-    const [first, step, n] = v,
-      values = sequence(first, step, n, s.mode === "geometric"),
-      lo = Math.min(0, ...values),
-      hi = Math.max(1, ...values),
-      pad = (hi - lo) * 0.12;
-    plot = chart({
-      xmin: -0.5,
-      xmax: n - 0.5,
-      ymin: lo - pad,
-      ymax: hi + pad,
-      label: pair(
-        "Termes de la suite, indices de 0 à N − 1",
-        "Sequence terms, indices 0 to N − 1",
-      ),
-      draw: ({ point }) => values.map((y, i) => point(i, y)).join(""),
-      handles: ({ handle }) => handle(0, values[0], "first", "u₀") + handle(1, values[1], "second", "u₁", "orange"),
-    });
-    formula =
-      s.mode === "geometric"
-        ? step === 0 ? `u₀ = ${fmt(first)} ; uₙ = 0 (n ≥ 1)` : `uₙ = ${fmt(first)} × (${fmt(step)})ⁿ`
-        : `uₙ = ${fmt(first)} + n × (${fmt(step)})`;
-    data = dataTable(["n", "uₙ"], values.map((y,i) => [i,fmt(y)]));
-    results =
-      metric("u₀", fmt(first)) +
-      metric("u" + String(n - 1).replace(/\d/g, d => "₀₁₂₃₄₅₆₇₈₉"[d]), fmt(values.at(-1))) +
-      metric(
-        pair("Somme des N termes", "Sum of N terms"),
-        fmt(values.reduce((a, b) => a + b, 0)),
-      );
-    caption = pair(
-      "N termes, à partir de u₀. Les points sont discrets ; l’échelle reste fixe ; les boutons permettent de cadrer la suite.",
-      "N terms, starting at u₀. Points are discrete; the scale stays fixed; use the view controls to frame the sequence.",
-    );
-  } else if (lab.id === "probability") {
+  if (lab.id === "probability") {
     const [n, p] = v,
       probs = binomial(n, p),
       freq = s.bins ? s.bins.map((x) => x / s.trials) : [],
@@ -548,64 +430,6 @@ function updateLab(animatedValues, moving = false) {
           "Lance la simulation pour comparer.",
           "Run the simulation to compare.",
         );
-  } else if (lab.id === "derivative") {
-    const [x, magnitude] = v,
-      h = magnitude * s.direction,
-      m = squareSecant(x, h);
-    plot = chart({
-      xmin: -6,
-      xmax: 5,
-      ymin: -3,
-      ymax: Math.max(12, (x + h) ** 2 + 2),
-      label: pair(
-        "Parabole, sécante et tangente",
-        "Parabola, secant and tangent",
-      ),
-      draw: ({ path, point }) =>
-        path((t) => t * t) +
-        path((t) => x * x + m * (t - x), "orange") +
-        path((t) => x * x + 2 * x * (t - x), "blue") +
-        point(x, x * x) +
-        point(x + h, (x + h) ** 2, "orange"),
-      handles: ({ handle }) => handle(x, x*x, "base", "A") + handle(x+h, (x+h)**2, "nearby", "B", "orange"),
-    });
-    data = dataTable([pair("Point", "Point"),"x","y"], [["A",fmt(x),fmt(x*x)],["B",fmt(x+h),fmt((x+h)**2)]]);
-    results =
-      metric(pair("Pente de la sécante", "Secant slope"), fmt(m)) +
-      metric(pair("Pente de la tangente", "Tangent slope"), fmt(2 * x)) +
-      metric(pair("Écart des pentes", "Slope difference"), fmt(Math.abs(h)));
-    caption = pair(
-      "Trait plein : f(x) = x². Tirets orange : sécante. Pointillés bleus : tangente. Change le côté d’approche : h = " + fmt(h) + ". La dérivée en un point intérieur exige une limite des deux côtés.",
-      "Solid: f(x) = x². Orange dashes: secant. Blue dots: tangent. Switch approach sides: h = " + fmt(h) + ". At an interior point, differentiability requires a two-sided limit.",
-    );
-  } else if (lab.id === "integral") {
-    const n = v[0],
-      area = riemann(n, s.method),
-      offset = s.method === "right" ? 1 : s.method === "midpoint" ? 0.5 : 0;
-    plot = chart({
-      xmin: 0,
-      xmax: 1.05,
-      ymin: 0,
-      ymax: 1.15,
-      label: pair(
-        "Rectangles d’approximation pour x² entre 0 et 1",
-        "Approximation rectangles for x² between 0 and 1",
-      ),
-      draw: ({ rect, path }) =>
-        Array.from({ length: n }, (_, i) =>
-          rect(i / n, 0, 1 / n, ((i + offset) / n) ** 2),
-        ).join("") + path((x) => x * x, "orange"),
-      handles: ({ handle, line }) => line(1/n, 0, 1/n, 0.12, "blue", true) + handle(1/n, 0.12, "partition", "S", "blue"),
-    });
-    results =
-      metric(pair("Somme des rectangles", "Rectangle sum"), fmt(area, 5)) +
-      metric(pair("Aire exacte", "Exact area"), "1/3 ≈ " + fmt(1 / 3, 5)) +
-      metric(pair("Erreur absolue", "Absolute error"), fmt(Math.abs(1 / 3 - area), 5));
-    caption = pair(
-      "x² est croissante : somme à gauche ≤ aire ≤ somme à droite. Le milieu donne ici une approximation par défaut plus précise. L’encadrement gauche/droite a une largeur 1/N.",
-      "x² is increasing: left sum ≤ area ≤ right sum. Midpoints give a more accurate lower estimate here. The left/right bound has width 1/N.",
-    );
-    data = dataTable([pair("Méthode", "Method"),pair("Somme", "Sum")], [[pair("Gauche", "Left"),fmt(riemann(n),6)],[pair("Droite", "Right"),fmt(riemann(n,"right"),6)],[pair("Milieu", "Midpoint"),fmt(riemann(n,"midpoint"),6)],[pair("Aire exacte", "Exact area"),"1/3"]]);
   } else if (lab.id === "vectors") {
     const [a, b, c, d] = v,
       norms = Math.hypot(a, b) * Math.hypot(c, d),
@@ -764,7 +588,7 @@ function bindPlot(lab, s) {
     if (!matrix) return null;
     return new DOMPoint(e.clientX, e.clientY).matrixTransform(matrix.inverse());
   };
-  if (lab.id !== "trig") {
+  {
     const zoom = (factor, anchor) => {
       labMotion.settle(); const b=s.view, c=anchor || {x:(b.xmin+b.xmax)/2,y:(b.ymin+b.ymax)/2};
       const xspan=b.xmax-b.xmin, k=Math.max(1e-4,Math.min(1e7,xspan*factor))/xspan;
@@ -789,15 +613,10 @@ function bindPlot(lab, s) {
     const endView=e=>{touches.delete(e.pointerId);if(touches.size<2)pinch=null;pan=null;};for(const ev of ['pointerup','pointercancel','lostpointercapture'])plot.addEventListener(ev,endView,true);
     plot.addEventListener('keydown',e=>{if(e.target.closest('[data-handle]'))return;if(['+','=','-','0'].includes(e.key)){e.preventDefault();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}});plot.tabIndex=0;
   }
-  const modelPosition = (point, bounds) => lab.id === "trig"
-    ? { x: (point.x - 185) / 115, y: (171 - point.y) / 115 }
-    : graphPosition(point, bounds);
+  const modelPosition = (point, bounds) => graphPosition(point, bounds);
   const anchorPosition = handle => {
     const v = s.values;
-    if (lab.id === "quadratic") return { x: handle === "bend" ? 2 : 0, y: handle === "bend" ? 4*v[0]+2*v[1]+v[2] : v[2] };
-    if (lab.id === "sequences") return { x: handle === "first" ? 0 : 1, y: handle === "first" ? v[0] : s.mode === "geometric" ? v[0]*v[1] : v[0]+v[1] };
     if (lab.id === "probability") return { x: v[0]*v[1], y: 0 };
-    if (lab.id === "derivative") { const x = handle === "base" ? v[0] : v[0]+v[1]*s.direction; return { x, y: x*x }; }
     if (lab.id === "vectors") { const i = handle === "u" ? 0 : 2; return { x: v[i], y: v[i+1] }; }
     if (lab.id === "complex") return { x: v[0], y: v[1] };
     if (lab.id === "statistics") return { x: parseData(s.data)[+handle.slice(5)], y: 0 };
@@ -811,12 +630,10 @@ function bindPlot(lab, s) {
       s.data = values.join(" ");
       $("#data-input").value = s.data;
     } else {
-      const result = manipulate(lab.id, handle, s.values, position, s.mode, s.direction);
+      const result = manipulate(lab.id, handle, s.values, position);
       const next = result.values.map((value, i) => snapParameter(value, lab.params[i]) ?? s.values[i]);
       if (next.some((value, i) => value !== s.values[i])) { s.bins = null; s.trials = 0; }
       s.values = next;
-      s.direction = result.direction;
-      document.querySelectorAll('[name="direction"]').forEach(input => { input.checked = +input.value === s.direction; });
       s.values.forEach((value, i) => { $(`#param-${i}`).value = value; });
     }
     updateLab();
@@ -846,7 +663,7 @@ function bindPlot(lab, s) {
     const position = modelPosition(pendingPoint, activeDrag.bounds);
     pendingPoint = null;
     // An angle is absolute around the circle; other handles retain grab offset.
-    if (lab.id !== "trig") { position.x += activeDrag.offset.x; position.y += activeDrag.offset.y; }
+    position.x += activeDrag.offset.x; position.y += activeDrag.offset.y;
     apply(activeDrag.handle, position);
   };
   plot.addEventListener("pointermove", e => {
@@ -872,97 +689,21 @@ function bindPlot(lab, s) {
     const id = handle.dataset.handle;
     const sign = ["ArrowRight", "ArrowUp"].includes(e.key) ? 1 : -1;
     const speed = e.shiftKey ? 10 : 1;
-    if (lab.id === "trig") {
-      const angle = (s.values[0] + sign*speed + 360) % 360;
-      apply(id, { x: Math.cos(angle*Math.PI/180), y: Math.sin(angle*Math.PI/180) });
-      return;
-    }
-    if (lab.id === "integral") {
-      const change = e.key === "ArrowLeft" ? 1 : e.key === "ArrowRight" ? -1 : sign;
-      const n = snapParameter(s.values[0] + change*speed, lab.params[0]);
-      apply(id, { x: 1/n, y: 0 });
-      return;
-    }
     let position = anchorPosition(id) || graphPosition({ x: +handle.dataset.x, y: +handle.dataset.y }, plotBounds);
     const horizontal = ["ArrowLeft", "ArrowRight"].includes(e.key);
     let step = .25;
-    if (lab.id === "quadratic") {
-      position.y = id === "bend" ? 4*s.values[0] + 2*s.values[1] + s.values[2] : s.values[2];
-      step = id === "bend" ? 1 : .5;
-    } else if (lab.id === "sequences") step = id === "first" ? 1 : s.mode === "geometric" ? .25*s.values[0] : .25;
-    else if (lab.id === "probability") step = .05*s.values[0];
-    else if (lab.id === "derivative") step = id === "base" ? .25 : .01;
+    if (lab.id === "probability") step = .05*s.values[0];
     else if (lab.id === "vectors") step = .5;
     else if (lab.id === "statistics") step = (plotBounds.xmax-plotBounds.xmin)/100;
-    const verticalOnly = ["quadratic", "sequences"].includes(lab.id);
-    const horizontalOnly = ["probability", "derivative", "statistics"].includes(lab.id);
-    position[verticalOnly ? "y" : horizontalOnly || horizontal ? "x" : "y"] += sign*step*speed;
-    // Skip the undefined B = A position when taking the smallest keyboard step.
-    if (lab.id === "derivative" && id === "nearby" && Math.abs(position.x-s.values[0]) < 1e-9)
-      position.x += sign*step;
+    const horizontalOnly = ["probability", "statistics"].includes(lab.id);
+    position[horizontalOnly || horizontal ? "x" : "y"] += sign*step*speed;
     apply(id, position);
   });
-}
-function bindTrigonometry(s) {
-  document.querySelectorAll('[data-trig-view]').forEach(button=>button.addEventListener('click',()=>{
-    s.trigView=button.dataset.trigView;
-    render();
-    $(`[data-trig-view="${s.trigView}"]`).focus();
-  }));
-  $('#remarkable-angle')?.addEventListener('change',e=>{
-    if(e.target.value==='')return;
-    labMotion.reset();
-    s.values[0]=+e.target.value;
-    $('#param-0').value=s.values[0];
-    updateLab();
-  });
-  $('#trig-relation')?.addEventListener('change',e=>{s.trigRelation=e.target.value;updateLab();});
-  $('#trig-graph-relation')?.addEventListener('change',e=>{s.trigGraphRelation=e.target.value;updateLab();});
-  $('#trig-function')?.addEventListener('change',e=>{s.trigFunction=e.target.value;updateLab();});
-  const play=$('#trig-play');
-  if(!play)return;
-  let frame=null,last=null,angle=s.values[0];
-  const pause=()=>{
-    if(frame!==null)cancelAnimationFrame(frame);
-    frame=null;last=null;
-    play.textContent=pair('Lire le mouvement','Play the motion');
-    play.setAttribute('aria-pressed','false');
-    $('#results')?.setAttribute('aria-live','polite');
-  };
-  const tick=now=>{
-    if(document.hidden||reducedMotion()){pause();return;}
-    if(last!==null)angle=(angle+Math.min(now-last,100)*.03)%360;
-    last=now;
-    s.values[0]=Math.round(angle);
-    $('#param-0').value=s.values[0];
-    updateLab([angle],true);
-    frame=requestAnimationFrame(tick);
-  };
-  play.addEventListener('click',()=>{
-    if(frame!==null){pause();updateLab();return;}
-    if(reducedMotion()){
-      s.values[0]=(s.values[0]+30)%360;
-      $('#param-0').value=s.values[0];
-      updateLab();return;
-    }
-    labMotion.reset();angle=s.values[0];
-    play.textContent=pair('Pause','Pause');play.setAttribute('aria-pressed','true');
-    $('#results').setAttribute('aria-live','off');
-    frame=requestAnimationFrame(tick);
-  });
-  $('#param-0').addEventListener('input',pause);
-  $('#plot').addEventListener('pointerdown',pause);
-  $('#plot').addEventListener('keydown',pause);
-  const visibility=()=>{if(document.hidden)pause();};
-  document.addEventListener('visibilitychange',visibility);
-  motionPreference.addEventListener?.('change',pause);
-  stopTrig=()=>{pause();document.removeEventListener('visibilitychange',visibility);motionPreference.removeEventListener?.('change',pause);};
 }
 function bindLab() {
   const lab = labs.find((x) => x.id === currentLab),
     s = state(lab);
   if ($("#plot")) bindPlot(lab, s);
-  if (lab.id === "trig") bindTrigonometry(s);
   $("#lab-picker")?.addEventListener("change", e => { location.hash = link(route().page === "gallery" ? "gallery" : "lab", e.target.value); });
   document.querySelectorAll("[data-param]").forEach((input) =>
     input.addEventListener("input", () => {
@@ -974,7 +715,6 @@ function bindLab() {
   );
   document.querySelectorAll("[data-param]").forEach(input => input.addEventListener("change", () => labMotion.settle()));
   document.querySelectorAll("[data-note]").forEach(input => input.addEventListener("input", () => { s[input.dataset.note] = input.value; }));
-  for (const name of ["direction", "method"]) document.querySelectorAll(`[name="${name}"]`).forEach(input => input.addEventListener("change", () => { s[name] = name === "direction" ? +input.value : input.value; updateLab(); }));
   $("#quiz-preset")?.addEventListener("click", () => {
     Object.assign(s, lab.quizState, { bins: null, trials: 0 });
     if (lab.quizState.values) s.values = [...lab.quizState.values];
@@ -988,12 +728,6 @@ function bindLab() {
     render();
     $("#reset").focus();
   });
-  document.querySelectorAll('[name="mode"]').forEach((input) =>
-    input.addEventListener("change", () => {
-      s.mode = input.value;
-      updateLab();
-    }),
-  );
   $("#data-input")?.addEventListener("input", (e) => {
     s.data = e.target.value;
     updateLab();

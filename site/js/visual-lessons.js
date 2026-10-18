@@ -1,5 +1,5 @@
 // Exact models behind the animated companion diagrams; no expression evaluation.
-import {trigValues, remarkableAngles, radiansLabel} from './trigonometry.js';
+import {trigValues, remarkableAngles, radiansLabel} from './lab/models/trig.js';
 const P=(fr,en)=>[fr,en];
 export const scenes={
 euclid:{range:[1,12,1,6],label:P('Unité commune','Common unit'),steps:[P('Deux quantités à partager','Two quantities to divide'),P('Découper avec une même unité','Divide into the same unit'),P('Lire le plus grand diviseur commun','Read the greatest common divisor')]},
