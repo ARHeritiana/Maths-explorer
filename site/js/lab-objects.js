@@ -91,7 +91,6 @@ export const sierpinskiArea = (level) => 0.75 ** level;
 
 /* ================================================================= UI */
 import { NS, css, palette, canvasIn, field, bind, loopFor } from "./object-kit.js";
-import { mountComplex } from "./complex-explorer.js";
 import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery-objects.js";
 import { voronoiWorld } from './gallery-voronoi.js';
@@ -323,7 +322,7 @@ function chaos(root, { t, reduced, lang }) {
   return loopFor(() => draw(), reduced);
 }
 
-export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, complex: mountComplex, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles };
+export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles };
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

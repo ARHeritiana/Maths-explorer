@@ -1,9 +1,6 @@
 // Template `family`: a function family whose parameters are the points of the graph. One or two panels (graph and unit
 // circle), handles on the figure, fixed ranges. No experiment-specific code: the experiment returns a scene (see plot.js).
-import { layoutPanels, makeView, drawAxes, drawScene, drawHandle } from "../plot.js";
-import { snap, clamp } from "../models/num.js";
-
-const asGrid = (g) => (Array.isArray(g) ? g : [g || 0, g || 0]);
+import { layoutPanels, makeView, drawAxes, drawScene, drawHandle, buildHandles } from "../plot.js";
 
 export function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -19,34 +16,7 @@ export function mount(env) {
   }
   layout();
 
-  // Handles: one engine handle per `handle` control, locked or not (locked ones are only drawn).
-  const handles = [];
-  for (const [id, c] of Object.entries(exp.controls)) {
-    if (c.kind !== "handle") continue;
-    const panel = c.panel || ids[0], axis = c.axis || "xy", [gx, gy] = asGrid(c.grid);
-    const view = () => views[panel];
-    handles.push({
-      id, control: c, panel,
-      label: fmt.t(c.label), color: c.color || "accent", absolute: !!c.absolute,
-      pos() {
-        const v = view(), [wx, wy] = c.at(getState());
-        return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];
-      },
-      drag(sx, sy) {
-        const v = view(), s = getState();
-        const next = c.drag(s, snap(v.iX(sx), gx), snap(v.iY(sy), gy));
-        if (next) setState(next);
-      },
-      nudge(dx, dy) {
-        const s = getState();
-        if (c.nudge) { const next = c.nudge(s, dx, dy); if (next) setState(next); return; }
-        if (axis === "x") { dx = dx || dy; dy = 0; } else if (axis === "y") { dy = dy || dx; dx = 0; }
-        const [wx, wy] = c.at(s), next = c.drag(s, snap(wx + dx * gx, gx), snap(wy + dy * gy, gy));
-        if (next) setState(next);
-      },
-      valuetext: () => c.valuetext?.(getState(), fmt) || "",
-    });
-  }
+  const handles = buildHandles({ exp, fmt, getState, setState, views: () => views, panels: ids });
 
   function draw(g) {
     layout();

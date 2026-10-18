@@ -9,13 +9,12 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | Test | Covers |
 |---|---|
 | `math.test.mjs` | `math.js`, lab definitions in `content.js` |
-| `lab-engine.test.mjs` | laboratory v2: registry, mission rules (control count, `set` keys, predict first, explain last), strings (pairs, no dashes, decimal comma), every `check` answer recomputed independently, goals reachable, handles, pure models |
+| `lab-engine.test.mjs` | laboratory v2: registry (nine experiments, six templates), mission rules (control count, `set` keys, predict first, explain last), strings (pairs, no dashes, decimal comma), finite scenes, every `check` answer recomputed independently, goals reachable, handles, pure models including the seeded simulation statistics, every `#lab/` link in the site, pathways and manifest resolves |
 | `audit.test.mjs` | audited edge cases of `math.js` (roots, secants, Riemann bounds) |
-| `interaction.test.mjs` | `interaction.js` (guided labs not yet rebuilt) and the handles of every experiment |
-| `motion.test.mjs` | `motion.js` |
+| `lab-handles.test.mjs` | the handles of every experiment: grid snapping, clamping, one named quantity changes, far drags stay finite |
 | `trigonometry.test.mjs` | `site/js/lab/models/trig.js` and the circle and curve of the trig experiment |
 | `lab-objects.test.mjs` | `lab-objects.js` pure maths |
-| `explorer-models.test.mjs` | `canvas-navigation.js`, `complex-explorer.js`, `lab-objects.js`, `platonic-fold.js` |
+| `explorer-models.test.mjs` | `canvas-navigation.js`, `lab-objects.js`, `platonic-fold.js` |
 | `gallery-math.test.mjs`, `gallery-controls.test.mjs` | `gallery-math.js`, `gallery-objects.js` |
 | `challenge-puzzles.test.mjs`, `challenge-puzzles2.test.mjs` | pure challenge maths, by an independent method |
 | `challenges-variants.test.mjs` | every challenge has variant, original, activity, solution; answers recomputed |
@@ -28,9 +27,9 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `resources.test.mjs`, `enrichment.test.mjs`, `sources.test.mjs` | library, study guides, enrichment data, published sources |
 | `quadratic-workshop.test.mjs` | `quadratic-workshop.js` |
 | `map.test.mjs` | `MAP.md` and the folder `CLAUDE.md` indexes stay complete and correct |
-| `dom-smoke.mjs` | DOM integration under jsdom (`npm run test:dom`): complex explorer, Platonic folds, a mounted experiment (no element added during a drag, fixed camera, missions), gallery routes |
-| `browser.py`, `run_browser.py` | Playwright checks of labs, challenges, pathways (`npm run test:browser`); `run_browser.py` also runs `lab_browser.py` |
-| `lab_browser.py` | Playwright checks of the five experiments: a handle drag adds or removes no element (MutationObserver), no horizontal overflow at 320 px, both themes, missions, keyboard |
+| `dom-smoke.mjs` | DOM integration under jsdom (`npm run test:dom`): Platonic folds, every experiment mounted (no element added during a drag or a run, fixed camera, missions, keyboard, predictions hide controls), the old guided page gone, gallery routes |
+| `browser.py`, `run_browser.py` | Playwright checks of the nine experiments walked mission by mission, gallery, challenges, pathways (`npm run test:browser`); `run_browser.py` also runs `lab_browser.py` |
+| `lab_browser.py` | Playwright checks of the nine experiments: a handle drag or a run adds or removes no element (MutationObserver), no horizontal overflow at 320 px, canvas and mission sheet never overlap at 390 x 844 and 320 x 640, locked controls hidden in predictions, both themes, missions, keyboard |
 | `slides_check.py`, `slides_export_check.py`, `slides_smoke.py` | decks vs drafts, HTML exports, every deck in Chromium |
 | `banned.py`, `banned.mjs`, `banned-sha256.json` | banned names (hashed), links, e-mail addresses |
 | `twin_parity.py`, `test_twin.py`, `pdf_parity.py`, `tex_lint.py`, `test_notation.py`, `test_enrichment.py` | TeX system: twins, PDF editions, unit lint, notation, enrichment converter |

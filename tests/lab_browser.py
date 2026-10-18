@@ -9,8 +9,9 @@ from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
 # One mission per experiment that unlocks a handle, and the text the formula must stop showing once the handle moved.
-DRAGS = ['quadratic/vertex', 'trig/quadrants', 'sequences/difference', 'derivative/where', 'integral/bound']
-EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral']
+DRAGS = ['quadratic/vertex', 'trig/quadrants', 'sequences/difference', 'derivative/where', 'integral/bound',
+         'probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles']
+EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral', 'probability', 'vectors', 'statistics', 'complex']
 
 WATCH = """() => {
   window.__rec = {added: 0, removed: 0, text: 0};
@@ -114,6 +115,34 @@ with sync_playwright() as p:
     assert page.locator('.lab2-step').inner_text().startswith('Mission 5') or '5/6' in page.locator('.lab2-step').inner_text(), 'a deep link opens that mission'
     page.context.close()
 
+    # ---- keyboard in the four new experiments: Tab reaches a handle, an arrow changes the state by one step, nothing becomes NaN
+    for ref in ['probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles']:
+        page = new_page()
+        ready(page, 'lab/' + ref)
+        page.locator('.lab2-canvas').focus()
+        page.keyboard.press('Tab')
+        assert page.evaluate("document.activeElement.classList.contains('lab2-handle')"), ('Tab reaches a handle', ref)
+        before = page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())")
+        page.keyboard.press('ArrowRight')
+        page.wait_for_function("b => JSON.stringify(document.querySelector('.lab2').__lab.getState()) !== b", arg=before)
+        text = page.locator('.lab2').inner_text()
+        assert 'NaN' not in text and 'undefined' not in text, ('finite readout', ref)
+        page.context.close()
+
+    # ---- chance: the run buttons need no element creation either, and the series is bounded
+    page = new_page()
+    ready(page, 'lab/probability/run')
+    page.evaluate(WATCH)
+    for i in [0, 1, 2, 3, 3, 3]:
+        page.locator('[data-control="run"] button').nth(i).click()
+    page.wait_for_timeout(450)
+    rec = page.evaluate("() => window.__rec")
+    assert rec == {'added': 0, 'removed': 0, 'text': 0} or (rec['added'] == 0 and rec['removed'] == 0), ('running experiments adds no element', rec)
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '3111'")   # 1 + 10 + 100 + 1000 + 1000 + 1000
+    page.locator('[data-control="run"] button').nth(3).click(); page.locator('[data-control="run"] button').nth(3).click()
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '5000'")   # the series is capped
+    page.context.close()
+
     # ---- the camera is independent of the state: zoom, then change the state, the zoom stays
     page = new_page()
     ready(page, 'lab/quadratic/vertex')
@@ -169,7 +198,8 @@ with sync_playwright() as p:
         return not (a['x'] + a['width'] <= b['x'] + 0.5 or b['x'] + b['width'] <= a['x'] + 0.5 or a['y'] + a['height'] <= b['y'] + 0.5 or b['y'] + b['height'] <= a['y'] + 0.5)
     for width, height in [(390, 844), (320, 640)]:
         page = new_page(width, height)
-        for ref in ['quadratic/vertex', 'derivative/approach', 'derivative/open', 'integral/finer']:
+        for ref in ['quadratic/vertex', 'derivative/approach', 'derivative/open', 'integral/finer', 'probability/run', 'probability/open',
+                    'vectors/collinear', 'statistics/box', 'complex/angles', 'complex/compare']:
             ready(page, 'lab/' + ref)
             page.wait_for_timeout(100)
             canvas, sheet = page.locator('.lab2-canvas').bounding_box(), page.locator('.lab2-card').bounding_box()

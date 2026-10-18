@@ -2,6 +2,7 @@
 // that an experiment returns (curves, areas, rectangles, lines, circles, points, texts). Colours are palette names.
 // The ranges never depend on the state: only the camera zooms (brief section 5).
 import { axisTicks } from "../math.js";
+import { snap, clamp } from "./models/num.js";
 
 // Panels share the stage: side by side on a wide stage, stacked on a narrow one.
 export function layoutPanels(W, H, specs) {
@@ -53,7 +54,7 @@ export function drawAxes(g, v, spec, st, fmt) {
   }
   g.strokeStyle = pal.line; g.lineWidth = 1.6;
   if (v.y0 <= 0 && v.y1 >= 0) { g.beginPath(); g.moveTo(v.left, v.Y(0)); g.lineTo(v.left + v.width, v.Y(0)); g.stroke(); }
-  if (v.x0 <= 0 && v.x1 >= 0) { g.beginPath(); g.moveTo(v.X(0), v.top); g.lineTo(v.X(0), v.top + v.height); g.stroke(); }
+  if (!spec.noYAxis && v.x0 <= 0 && v.x1 >= 0) { g.beginPath(); g.moveTo(v.X(0), v.top); g.lineTo(v.X(0), v.top + v.height); g.stroke(); }
   g.restore();
 }
 
@@ -107,10 +108,20 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
   }
   for (const r of scene.rects || []) {
     const x = v.X(r.x), x2 = v.X(r.x + r.w), y = v.Y(Math.max(0, r.h)), y2 = v.Y(Math.min(0, r.h));
-    g.globalAlpha = (ghost ? 0.38 : 1) * (r.alpha ?? 0.3);
-    g.fillStyle = st.color(r.color || "obj2"); g.fillRect(x, y, x2 - x, y2 - y);
-    g.globalAlpha = ghost ? 0.38 : 1;
-    g.strokeStyle = st.color(r.color || "obj2"); g.lineWidth = 1.2; g.setLineDash([]); g.strokeRect(x, y, x2 - x, y2 - y);
+    if (!r.hollow) {
+      g.globalAlpha = (ghost ? 0.38 : 1) * (r.alpha ?? 0.3);
+      g.fillStyle = st.color(r.color || "obj2"); g.fillRect(x, y, x2 - x, y2 - y);
+      g.globalAlpha = ghost ? 0.38 : 1;
+    }
+    g.strokeStyle = st.color(r.color || "obj2"); g.lineWidth = r.hollow ? 2.2 : 1.2; g.setLineDash(r.dash || []); g.strokeRect(x, y, x2 - x, y2 - y);
+  }
+  for (const p of scene.polys || []) {
+    // a closed or open polyline in world coordinates; `fill` shades it
+    g.beginPath();
+    p.pts.forEach(([x, y], i) => (i ? g.lineTo(v.X(x), v.Y(y)) : g.moveTo(v.X(x), v.Y(y))));
+    if (p.close !== false && p.fill) g.closePath();
+    if (p.fill) { g.globalAlpha = (ghost ? 0.38 : 1) * (p.alpha ?? 0.2); g.fillStyle = st.color(p.fill); g.fill(); g.globalAlpha = ghost ? 0.38 : 1; }
+    if (p.width !== 0) { stroke(g, st, p, { color: "ink", width: 2 }); g.lineJoin = "round"; g.stroke(); }
   }
   for (const c of scene.curves || []) {
     stroke(g, st, c, { color: "accent", width: 3 });
@@ -125,6 +136,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
     g.stroke();
   }
   for (const l of scene.lines || []) {
+    g.globalAlpha = (ghost ? 0.38 : 1) * (l.alpha ?? 1);
     stroke(g, st, l, { color: "muted", width: 2 });
     let [ax, ay] = l.a, [bx, by] = l.b;
     if (l.extend) {
@@ -133,6 +145,7 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
     }
     g.beginPath(); g.moveTo(v.X(ax), v.Y(ay)); g.lineTo(v.X(bx), v.Y(by)); g.stroke();
     if (l.arrow) { g.setLineDash([]); arrowHead(g, v.X(ax), v.Y(ay), v.X(bx), v.Y(by)); }
+    g.globalAlpha = ghost ? 0.38 : 1;
   }
   for (const c of scene.circles || []) {
     stroke(g, st, c, { color: "line", width: 2 });
@@ -178,3 +191,36 @@ export function drawHandle(g, st, x, y, { color = "accent", locked = false, focu
 }
 
 export { label as drawLabel };
+
+// The engine handles of a template: one per `handle` control of the experiment, locked or not (locked ones are only drawn).
+// `views` maps a panel id to its current view; a control names its panel (default: the first one).
+export function buildHandles({ exp, fmt, getState, setState, views, panels }) {
+  const handles = [];
+  for (const [id, c] of Object.entries(exp.controls)) {
+    if (c.kind !== "handle") continue;
+    const panel = c.panel || panels[0], axis = c.axis || "xy";
+    const [gx, gy] = Array.isArray(c.grid) ? c.grid : [c.grid || 0, c.grid || 0];
+    const view = () => views()[panel];
+    handles.push({
+      id, control: c, panel,
+      label: fmt.t(c.label), color: c.color || "accent", absolute: !!c.absolute,
+      pos() {
+        const v = view(), [wx, wy] = c.at(getState());
+        return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];
+      },
+      drag(sx, sy) {
+        const v = view(), next = c.drag(getState(), snap(v.iX(sx), gx), snap(v.iY(sy), gy));
+        if (next) setState(next);
+      },
+      nudge(dx, dy) {
+        const s = getState();
+        if (c.nudge) { const next = c.nudge(s, dx, dy); if (next) setState(next); return; }
+        if (axis === "x") { dx = dx || dy; dy = 0; } else if (axis === "y") { dy = dy || dx; dx = 0; }
+        const [wx, wy] = c.at(s), next = c.drag(s, snap(wx + dx * gx, gx), snap(wy + dy * gy, gy));
+        if (next) setState(next);
+      },
+      valuetext: () => c.valuetext?.(getState(), fmt) || "",
+    });
+  }
+  return handles;
+}

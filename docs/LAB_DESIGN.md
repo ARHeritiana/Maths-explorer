@@ -177,3 +177,24 @@ What differs from sections 3 to 7, and why. Nothing here changes a rule; it reco
 | Camera | `canvas-navigation.js` | reused as is; text on the canvas scales with the zoom, as in the slide player |
 | Test hook | none | `root.__lab` on the experiment's root element (`getState`, `setState`, `setMission`, `mission`) for `tests/lab_browser.py` and `tests/browser.py` |
 
+
+## 10. Implementation notes (Phase 2, 18 October 2026)
+
+Phase 1 (section 9) conventions still hold. What Phase 2 added or decided, and why.
+
+| Point | Contract | Phase 2 |
+|---|---|---|
+| Templates | `chance`, `figure`, `data`, `transform` | one file each in `templates/`; `plot.js` gained `buildHandles` (shared by all templates, `family` uses it too), the `polys` scene object, hollow rectangles, line alpha and collision-free point labels |
+| Control kinds | handle, slider, choice | plus `action`: buttons that each do something once (run 1, 10, 100, 1 000 experiments, new series). It counts as the mission's one choice, like the A and B buttons of a contrast |
+| Locked controls | locked, not hidden | hidden in a `predict` mission (nothing to operate before the learner has predicted); in other missions locked controls stay visible and disabled |
+| Phone | bottom sheet over the canvas (Phase 1: sticky card, 40 vh) | the mission card follows the figure in normal flow and never covers it; `tests/lab_browser.py` checks that the two boxes do not intersect at 390 x 844 and 320 x 640; the fold button collapses the card |
+| Fixed ranges | the camera never depends on the state | `chance` draws one bar per k, so the horizontal range of the histogram follows n; this is the only state-dependent range, it changes only when n changes (no mission lets the learner change n) |
+| Randomness | seedable generator in the model | `models/probability.js`: mulberry32 `rng(seed)`; a series is a pure function of (seed, n, p, runs), so the same draws are reused when p changes and the first N experiments do not depend on how the buttons were pressed; the missions pin their seeds, the button "Nouvelle série" picks another |
+| Theory overlay | revealed only in `explain` | the state flag `theory` (set by the last mission's `set`); the marker E = np appears only when its handle is unlocked or the theory is shown |
+| Mission-dependent figures | not covered | state flags (`theory`, `hide`) rather than shell code, so a figure stays a pure function of the state |
+| Handles | at most 2 per mission | `statistics` has one handle per value (seven controls, `d0` to `d6`); each mission unlocks one or two of them; the `complex` handle z moves on a polar grid (modulus 0,25, argument 15 degrees) and declares a `lattice` so that tests only round-trip lattice states |
+| Statistics text entry | the text data entry may stay | dropped: a free text box unlocks every value at once, against the focused-constraint rule R6 |
+| Complex maps | multiplication by z | the maps square, inverse and conjugate of the old explorer are not kept; `translate` stays as the contrast with `multiply`; the tests of the old explorer's pure maps moved to `tests/lab-engine.test.mjs` (modulus and argument rules, linear local factor, division undoes the product) |
+| Vectors | determinant, collinearity | the dot product of the old lab is not in the experiment (it is a different invariant); the pathway notes that named it were reworded |
+| Quartiles | not specified | Q1 (Q3) is the smallest value with at least 25 % (75 %) of the series at or below it; stated in `models/statistics.js` and in the check mission |
+| Removed | old guided code | `app.js` `labPage`, `updateLab`, `bindLab`, `chart`, `bindPlot`, `interactionGuide`; `content.js` guided entries; `interaction.js`, `createLabMotion` in `motion.js`, `complex-explorer.js` and the "Autres expériences guidées" section; the gallery keeps `galleryDetail` and `bindGallery` (quiz, reset, history, reading paths) |

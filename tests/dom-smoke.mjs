@@ -22,24 +22,11 @@ let segments=0;const allArgs=[];
 window.HTMLCanvasElement.prototype.getContext=function(){return new Proxy({canvas:this,measureText:s=>({width:String(s).length*8}),createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),getImageData:()=>({data:new Uint8ClampedArray(16)})},{get(target,key){if(key in target)return target[key];return(...args)=>{for(const n of args)if(typeof n==='number')assert.ok(Number.isFinite(n),`${String(key)} received ${n}`);if(key==='lineTo')segments++;allArgs.push([key,args]);};},set(target,key,value){target[key]=value;return true;}});};
 globalThis.fetch=async url=>{const rel=String(url).replace(/^\.\//,'').split('?')[0];try{return {ok:true,json:async()=>JSON.parse(await readFile(new URL('../dist/'+rel,import.meta.url),'utf8'))};}catch{return{ok:false,status:404};}};
 const pair=(fr,en)=>fr,t=(fr,en)=>fr;
-const {mountComplex}=await import('../site/js/complex-explorer.js');
-let changed;const root=document.createElement('div');document.body.append(root);
-let stop=mountComplex(root,{t,lang:'fr',initialValues:[3,4],onChange:z=>changed=z});
-assert.equal(root.querySelectorAll('canvas').length,2);assert.ok(segments>=60,'base axes and grid must draw');assert.match(root.querySelector('#cx-read').textContent,/\|z\| = 5/);
-for(const mode of ['translate','multiply','square','inverse','conjugate']){root.querySelector('#cx-mode').value=mode;root.querySelector('#cx-mode').dispatchEvent(new Event('change'));root.querySelector('[data-cx-step="3"]').click();assert.ok(!/NaN|Infinity|undefined/.test(root.textContent));}
-root.querySelector('#cx-mode').value='inverse';root.querySelector('#cx-mode').dispatchEvent(new Event('change'));
-for(const id of ['zr','zi']){const el=root.querySelector('#cx-'+id);el.value=0;el.dispatchEvent(new Event('input'));}
-assert.deepEqual(changed,[0,0]);assert.match(root.querySelector('#cx-read').textContent,/non défini/);root.querySelector('canvas').dispatchEvent(new window.WheelEvent('wheel',{deltaY:-50,clientX:320,clientY:200,cancelable:true}));assert.deepEqual(changed,[0,0]);assert.equal(root.querySelector('[data-view]'),null);stop();root.remove();
+let stop;
 const {mountObject}=await import('../site/js/lab-objects.js');const solidRoot=document.createElement('div');document.body.append(solidRoot);stop=mountObject('platonic',solidRoot,{lang:'fr',reduced:true});
 for(const id of ['tetrahedron','cube','octahedron','dodecahedron','icosahedron']){solidRoot.querySelector(`[data-solid="${id}"]`).click();solidRoot.querySelector('#pl-open').click();assert.equal(solidRoot.querySelector('#pl-fold').value,'0');solidRoot.querySelector('#pl-play').click();assert.equal(solidRoot.querySelector('#pl-fold').value,'100');}
 solidRoot.querySelector('#pl-p').value=6;solidRoot.querySelector('#pl-p').dispatchEvent(new Event('input'));solidRoot.querySelector('#pl-q').value=3;solidRoot.querySelector('#pl-q').dispatchEvent(new Event('input'));assert.equal(solidRoot.querySelector('#pl-build-case').disabled,true);stop();solidRoot.remove();
 await import('../dist/js/app.js');
-// Guided labs not yet rebuilt (vectors): the SVG chart keeps its axes while a parameter moves, and zoom is explicit.
-const old=document.querySelector('#plot svg').innerHTML.match(/class="gridline"/g).length;
-const first=document.querySelector('#plot svg').querySelector('.gridline').getAttribute('d');
-const slider=document.querySelector('#param-2');slider.value='4';slider.dispatchEvent(new Event('input'));slider.dispatchEvent(new Event('change'));
-assert.equal(document.querySelector('#plot svg').querySelector('.gridline').getAttribute('d'),first,'moving a parameter must keep the axes fixed');assert.equal(document.querySelector('#plot svg').innerHTML.match(/class="gridline"/g).length,old);
-document.querySelector('#plot').dispatchEvent(new window.WheelEvent('wheel',{deltaY:-50,clientX:320,clientY:200,cancelable:true}));assert.equal(document.querySelector('[data-view]'),null);assert.notEqual(document.querySelector('#plot svg').querySelector('.gridline').getAttribute('d'),first,'explicit zoom changes the view');
 // Laboratory v2: a mounted experiment. Frames are run by hand; a drag must add or remove no element, the camera is
 // independent of the state, missions change the address, keyboard handles move by one grid step.
 const flush=()=>{for(let i=0;i<8&&frames.size;i++)for(const [id,fn] of [...frames]){frames.delete(id);fn(performance.now());}};
@@ -76,6 +63,29 @@ lab=document.querySelector('.lab2');let next=lab.querySelector('.lab2-nav .prima
 assert.ok(lab.querySelectorAll('.lab2-ctl:not(.is-locked)').length===0,'controls are locked in the prediction');
 lab.querySelector('.lab2-option').click();flush();assert.ok(!next.disabled);next.click();flush();
 assert.equal(window.location.hash,'#lab/quadratic/sign');assert.match(lab.querySelector('.lab2-step').textContent,/2\/6/);
+// every experiment: a handle drag adds or removes no element and changes the state; the camera stays; keys move one step
+for(const ref of ['quadratic/vertex','trig/quadrants','sequences/difference','derivative/where','integral/bound','probability/mean','vectors/collinear','statistics/box','complex/angles']){
+  await go('#lab/'+ref);const L=document.querySelector('.lab2'),A=L.__lab,cv=L.querySelector('canvas'),hs=[...L.querySelectorAll('.lab2-handle')];
+  assert.ok(hs.length>=1&&hs.length<=2,ref+': one or two handles are unlocked');
+  const centreOf=h=>{const m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(h.style.transform);return [+m[1]+22,+m[2]+22];};
+  const rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});obs.observe(L,{childList:true,subtree:true});
+  const before=JSON.stringify(A.getState()),[x0,y0]=centreOf(hs[0]);press(cv,'pointerdown',x0,y0);
+  for(let i=1;i<=14;i++){press(cv,'pointermove',x0+i*11,y0-i*(i%2?6:-3));flush();}
+  press(cv,'pointerup',x0+154,y0-30);flush();await new Promise(r=>setTimeout(r,400));flush();obs.disconnect();
+  assert.deepEqual(rec,[],ref+': a drag adds or removes no element and replaces no text node');
+  assert.notEqual(JSON.stringify(A.getState()),before,ref+': the handle moved the state');assert.equal(A.stage.nav.camera.scale,1,ref+': the camera does not depend on the state');
+  const kb=JSON.stringify(A.getState());hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true,cancelable:true}));flush();
+  assert.ok(!/NaN|undefined|Infinity/.test(L.textContent),ref+': finite text');
+}
+// the run buttons of the chance experiment: a click adds experiments and draws without creating an element
+await go('#lab/probability/run');{const L=document.querySelector('.lab2'),A=L.__lab,rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});
+  assert.equal(A.getState().runs,0);const buttons=[...L.querySelectorAll('[data-control="run"] button')];assert.equal(buttons.length,5);assert.ok(buttons.every(b=>!b.disabled),'the run buttons are unlocked in this mission');
+  obs.observe(L,{childList:true,subtree:true});for(const b of buttons.slice(0,4)){b.click();flush();}obs.disconnect();
+  assert.equal(A.getState().runs,1111);assert.deepEqual(rec,[],'running experiments adds no element');assert.match(L.querySelector('.lab2-readout').textContent,/1111|1 111/);
+  buttons[4].click();flush();assert.equal(A.getState().runs,0,'a new series starts again');}
+// a prediction hides the controls instead of showing them locked
+await go('#lab/probability/open');{const L=document.querySelector('.lab2');assert.equal(L.querySelectorAll('.lab2-ctl:not([hidden])').length,0,'no control is shown before the prediction');assert.ok(L.querySelector('.lab2-controls').hidden);}
+await go('#lab/probability/mean');{const L=document.querySelector('.lab2');assert.ok(!L.querySelector('.lab2-controls').hidden);assert.ok(L.querySelector('[data-control="run"].is-locked:not([hidden])'),'in other missions locked controls stay, disabled');}
 // every experiment mounts in both languages, draws finite numbers, and cleans up
 const {mountExperiment}=await import('../dist/js/lab/mount.js');const {EXPERIMENTS}=await import('../dist/js/lab/registry.js');
 for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['full','inline'])for(const mission of [null,...e.missions.map(m=>m.id)]){
@@ -86,7 +96,13 @@ for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['ful
   m.destroy();flush();assert.equal(host.children.length,0,'destroy removes the experiment');host.remove();
 }
 const missing=document.createElement('div');document.body.append(missing);mountExperiment(missing,'nope',{lang:'fr'});assert.match(missing.textContent,/n’existe pas/);
-await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,9,'the index lists five experiments and the four guided labs');
+await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,9,'the index lists the nine experiments');
+assert.equal(document.querySelectorAll('.lab2-group').length,6,'grouped by template: six types of activity');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,9);
+// the old guided page is gone: no chart, no sliders of the previous design, whatever the route
+for(const id of ['probability','vectors','statistics','complex']){await go('#lab/'+id);assert.ok(document.querySelector('.lab2'),id+' is an experiment');assert.equal(document.querySelector('#plot'),null);assert.equal(document.querySelector('[data-param]'),null);}
+await go('#lab/nope');assert.ok(/introuvable|not found/i.test(document.querySelector('#main').textContent),'an unknown experiment is a missing page');
+// the gallery redirect keeps working
+await go('#lab/galton');assert.equal(window.location.hash,'#gallery/galton');assert.ok(document.querySelector('#object-stage canvas'),'a curiosity opens in the gallery');
 for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein']){
  window.location.hash='#gallery/'+id;window.dispatchEvent(new window.Event('hashchange'));
  assert.equal(document.querySelector('#object-stage')?.dataset.object,id,'gallery route mounts selected exhibit');
@@ -94,5 +110,5 @@ for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein']){
  assert.ok(document.querySelector('#object-stage canvas'));
  assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
 }
-console.log('DOM smoke passed: complex maps, singularities, base grid, five folding controls, fixed axes, explicit zoom, experiment drags with no element change, missions and keyboard handles; canvas arguments finite.');
+console.log('DOM smoke passed: five folding controls, nine experiments (drags with no element change, fixed camera, missions, keyboard handles, run buttons, hidden controls in predictions), old guided page gone, gallery redirects; canvas arguments finite.');
 dom.window.close();

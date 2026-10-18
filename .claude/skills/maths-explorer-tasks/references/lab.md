@@ -1,31 +1,31 @@
 # Recipe: laboratory experiment or gallery curiosity
 
-The laboratory is rebuilt (docs/LAB_DESIGN.md, 18 October 2026). Five experiments are done (quadratic, trig, sequences,
-derivative, integral); probability, vectors, statistics and complex are still on the old page until Phase 2.
+The laboratory is rebuilt (docs/LAB_DESIGN.md, 18 October 2026): nine experiments in six templates (family, process, chance,
+figure, data, transform). The old guided page is gone; `#lab` shows only experiments and `#gallery` only curiosities.
 
 ## New experiment, new mission, changed handle (rebuilt laboratory)
 1. Read `docs/LAB_DESIGN.md` sections 2 to 5 (research rules R1-R10, templates, contract) and `site/js/lab/CLAUDE.md`.
 2. Pure maths: `site/js/lab/models/<id>.js` (`model(state)`, `quantities`, `quantity`). Reuse `math.js` where it exists.
-3. `site/js/lab/experiments/<id>.js`: copy the nearest experiment (same template). Fill `state`, `controls`, `views`
+3. `site/js/lab/experiments/<id>.js`: copy the nearest experiment (same template: chance `probability`, figure `vectors`,
+   data `statistics`, transform `complex`, family `quadratic`, process `derivative`). Fill `state`, `controls`, `views`
    (`scene`, `formula`, `readout`, optional `table`), 4 to 6 `missions` with the fixed kinds: `predict` first with controls
    locked, one varied thing per mission (`set` is the whole start state), at most 2 handles + 1 slider + 1 choice
    unlocked, at least one `check` that translates between views, `explain` last with a "Pourquoi ?" and an `argument`.
-   Strings are `[fr, en]` pairs, no em or en dashes, decimal comma in French (use `fmt.num`, `fmt.pt`).
+   Strings are `[fr, en]` pairs, no em or en dashes, decimal comma in French (use `fmt.num`, `fmt.pt`). Randomness only through the
+   seeded generator of the model (`site/js/lab/models/probability.js` `rng`), never `Math.random` in a model; a figure that must differ between
+   missions (theory shown, a number hidden) takes a flag in the state, set by the mission's `set`. Quartiles use the lycée
+   convention written in `site/js/lab/models/statistics.js`.
 4. Add the experiment to `EXPERIMENTS` in `site/js/lab/registry.js`; its line in the shared catalogue (`content.js`
    `labs`, home, library, pathways) comes from `catalogue()`: do not write it twice.
 5. Tests: `tests/lab-engine.test.mjs` fails until the experiment has, for every `check`, an independent recomputation
-   in `independent`, for every `explore`, a `witness` state, and a `truth` for its prediction. Add the experiment to
-   `tests/lab_browser.py` (a mission that unlocks a handle) so the drag is checked for zero element changes.
+   in `independent`, for every `explore`, a `witness` state, a `truth` for its prediction, and a sample state in the formula and
+   scene tests. Add the experiment to `DRAGS` and `EXPERIMENTS` in `tests/lab_browser.py` (a mission that unlocks a handle, so the
+   drag is checked for zero element changes) and to `EXPERIMENTS`, `WITNESS`, `CHECKS` in `tests/browser.py` (walked mission by
+   mission), and its drag to the list in `tests/dom-smoke.mjs`.
 6. Link from a chapter: `content/data/manifest.json` `catalog.chapters[].labs` holds the experiment id (or
    `<experiment>/<mission>`); then `make site`.
 Colours come from CSS tokens through `stage.color(name)` (`accent`, `obj2`, `obj3`, `pos`, `neg`, `c1`..`c8`), never
 literals. Camera, drag and keys come from the engine; do not add listeners of your own.
-
-## Guided lab not yet rebuilt (probability, vectors, statistics, complex)
-1. `site/js/content.js` `labs`: edit the entry (id, title, parameters `[name, min, max, step]`, text).
-2. `site/js/math.js`: pure computation, with a test in `tests/math.test.mjs`.
-3. `site/js/app.js` `updateLab()`: search `lab.id === "` for the branch of the lab; controls in `bindLab()`.
-Phase 2 moves these to `site/js/lab/` (templates `chance`, `figure`, `data`, `transform`).
 
 ## Gallery curiosity or lab object (not a formula with sliders)
 Entry in `labs` with `custom: true` and the object id; code in `site/js/lab-objects.js` (`OBJECTS` registry used by

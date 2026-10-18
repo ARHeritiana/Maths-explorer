@@ -192,7 +192,6 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .is-presenting .topbar, .is-presenting .mainnav { display: none; }
 [data-fs-target]:fullscreen .formula, .presenting .formula { font-size: clamp(2rem, 4vw, 3rem); }
 [data-fs-target]:fullscreen .results strong, .presenting .results strong { font-size: clamp(1.6rem, 3vw, 2.4rem); }
-[data-fs-target]:fullscreen .plot svg, .presenting .plot svg { max-height: 68vh; }
 [data-fs-target]:fullscreen .lesson-diagram svg, .presenting .lesson-diagram svg { max-height: 68vh; }
 
 /* Range inputs share one look everywhere. */

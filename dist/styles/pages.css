@@ -59,28 +59,13 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .experiment-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 12px 0 20px; }
 .experiment-actions { display: flex; align-items: center; gap: 2px; }
 .formula { padding: 4px 20px 0; min-height: 3rem; font: 400 clamp(1.5rem, 2.4vw, 2rem)/1.3 var(--math); }
-.interaction-guide { margin: 4px 20px 8px; color: var(--muted); font-size: 0.95rem; }
-.plot { margin: 0 8px; }
-.plot svg { width: 100%; height: auto; max-height: 560px; }
-.plot-caption { padding: 0 20px 12px; min-height: 2.5rem; color: var(--muted); font-size: 0.95rem; }
-.plot-empty { min-height: 260px; display: grid; place-items: center; text-align: center; padding: 40px; color: var(--muted); }
-.chart-data { margin: 0 20px 16px; font-size: 0.95rem; }
-.chart-data > div { overflow-x: auto; max-height: 22rem; }
-.chart-data table { width: 100%; }
 .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px 28px; padding: 18px 20px; border-top: 1px solid var(--line); background: var(--sunken); }
-.slider-control { display: block; min-width: 0; }
-.slider-control > span:first-child { display: flex; justify-content: space-between; align-items: center; gap: 10px; font: 400 1.15rem var(--math); }
-.slider-control output { min-width: 56px; padding: 2px 10px; border-radius: var(--r-sm); text-align: center; background: var(--surface); border: 1px solid var(--line); font: 600 1rem var(--math); font-variant-numeric: tabular-nums; }
-.range-limits { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.88rem; }
-.mode, .simulation, .data-label, .controls textarea, #data-help, #data-error { grid-column: 1 / -1; }
+.mode, .controls textarea { grid-column: 1 / -1; }
 .mode { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
 .mode legend { width: 100%; margin-bottom: 6px; font-weight: 700; }
 .mode label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); cursor: pointer; transition: border-color var(--t), background-color var(--t); }
 .mode label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
 .mode input { accent-color: var(--accent); width: 18px; height: 18px; }
-.simulation { display: flex; flex-wrap: wrap; gap: 8px; }
-.simulation p { flex-basis: 100%; margin: 0; }
-.data-label { font-weight: 700; }
 .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 14px 20px 20px; border-top: 1px solid var(--line); }
 .results > div { padding: 10px 14px; border-radius: var(--r-sm); background: var(--sunken); min-width: 0; }
 .results span { display: block; margin-bottom: 4px; color: var(--muted); font-size: 0.9rem; line-height: 1.35; }
@@ -114,33 +99,16 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .quadratic-workshop-link { margin: 12px 20px; }
 
 /* Figures (SVG). Accent = studied object. Second and third objects keep distinct dashes too. */
-.plot svg text, .lesson-diagram text, .quadratic-panel svg text { font: 13px var(--math); fill: var(--muted); }
+.lesson-diagram text, .quadratic-panel svg text { font: 13px var(--math); fill: var(--muted); }
 .gridline, .q-grid { stroke: var(--grid); stroke-width: 1; }
 .axis, .q-axis { stroke: var(--line-strong); stroke-width: 1.4; }
 .curve { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .teal { stroke: var(--accent); } .orange { stroke: var(--obj2); } .blue { stroke: var(--obj3); }
-.plot svg .curve.orange { stroke-dasharray: 8 4; } .plot svg .curve.blue { stroke-dasharray: 2 5; }
-.plot svg marker .curve { stroke-dasharray: none; }
 .point { stroke: var(--surface); stroke-width: 2.5; }
 .point.teal { fill: var(--accent); } .point.orange { fill: var(--obj2); } .point.blue { fill: var(--obj3); }
 .bar { stroke-width: 1; stroke: var(--surface); }
 .bar.teal { fill: color-mix(in srgb, var(--accent) 65%, transparent); } .bar.orange { fill: color-mix(in srgb, var(--obj2) 65%, transparent); }
 .circle-grid { fill: color-mix(in srgb, var(--accent) 6%, transparent); stroke: var(--line-strong); stroke-width: 1.6; }
-.plot svg .svg-heading { font: 700 17px var(--body); fill: var(--ink); }
-.plot svg .svg-value { font: italic 400 28px var(--math); fill: var(--accent); }
-.drag-handle { cursor: grab; touch-action: none; }
-.plot.dragging, .plot.dragging .drag-handle { cursor: grabbing; }
-.handle-hit { fill: transparent; stroke: none; pointer-events: all; }
-.handle-ring { fill: var(--surface); stroke: var(--accent); stroke-width: 3; }
-.handle-core { fill: var(--accent); }
-.drag-handle.orange .handle-ring { stroke: var(--obj2); } .drag-handle.orange .handle-core { fill: var(--obj2); }
-.drag-handle.blue .handle-ring { stroke: var(--obj3); } .drag-handle.blue .handle-core { fill: var(--obj3); }
-.plot .handle-label { font: 700 16px var(--body); fill: var(--ink); pointer-events: none; }
-.drag-handle:hover .handle-ring, .drag-handle:focus .handle-ring { stroke-width: 6; }
-.drag-handle:focus { outline: none; }
-.drag-handle:focus .handle-ring { stroke: var(--ink); stroke-dasharray: 3 2; }
-.plot [data-handle^="data-"] .handle-label { opacity: 0; }
-.plot [data-handle^="data-"]:hover .handle-label, .plot [data-handle^="data-"]:focus .handle-label { opacity: 1; }
 .trig-tools { padding: 0 20px; margin: 10px 0; }
 .trig-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .trig-tabs button { min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); font-weight: 700; color: var(--ink-2); }
@@ -362,8 +330,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .results > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .controls { padding: 16px; }
   .experiment-top { padding-left: 16px; }
-  .formula, .plot-caption, .chart-data, .interaction-guide, .trig-tools { padding-left: 16px; padding-right: 16px; margin-left: 0; margin-right: 0; }
-  .plot { margin: 0 2px; }
+  .formula, .trig-tools { padding-left: 16px; padding-right: 16px; margin-left: 0; margin-right: 0; }
   .trig-diagram { grid-template-columns: 1fr; }
   .trig-diagram svg { max-width: 365px; justify-self: center; }
   .document-grid { grid-template-columns: 1fr; }
@@ -383,12 +350,9 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 @media (max-width: 400px) { .challenge-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .animate-diagram .scene-build, .animate-diagram .reveal-stroke { animation: none; } }
 @media (forced-colors: active) {
-  .handle-ring { fill: Canvas; stroke: Highlight !important; } .handle-core { fill: Highlight !important; }
-  .plot .curve { stroke: CanvasText; } .plot text, .plot .handle-label { fill: CanvasText; }
-  .plot .gridline, .plot .axis, .plot .circle-grid { stroke: GrayText; } .plot .bar { fill: Highlight; stroke: CanvasText; }
 }
 @media print {
-  .sidebar, .controls, .answer-row, .backlink, .filter-row, .resource-filters, .chapter-tabs, .story-controls, .scene-parameter, .interaction-guide, .mobile-lab-picker, .handle-layer, .btn-quiet { display: none !important; }
+  .sidebar, .controls, .answer-row, .backlink, .filter-row, .resource-filters, .chapter-tabs, .story-controls, .scene-parameter, .mobile-lab-picker, .btn-quiet { display: none !important; }
   .lab-layout, .workbench, .challenge-columns, .learning, .chapter-workbench { display: block; }
   .experiment, .learning, .history, .visual-lesson, .pathway-card, .study-sheet, .resource-card { break-inside: avoid; background: #fff; border-color: #aaa; }
   .sheet-solution:not([open]), .teacher-files:not([open]) { display: none; }
@@ -827,11 +791,6 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .pick[data-rem]::after { content: attr(data-rem); display: block; font-size: 0.65em; opacity: 0.75; }
 
 /* the latest simulated experiments, as rows of coins */
-.sim-tray { display: grid; gap: 4px; margin-top: 10px; }
-.sim-row { display: flex; align-items: center; gap: 4px; }
-.sim-row .coin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; box-sizing: border-box; }
-.sim-row .coin.on { background: var(--accent); }
-.sim-row b { margin-left: 6px; font: 700 0.95rem var(--math); color: var(--ink-2); }
 
 /* ------------------------------------------------------------ welcome page and gallery */
 .welcome { max-width: 1240px; width: 100%; margin: 0 auto; padding: clamp(16px, 3vw, 40px) clamp(16px, 3vw, 32px) 8px; }
@@ -891,8 +850,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .canvas-navigation{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:8px;background:var(--surface);border-top:1px solid var(--line);font:500 13px system-ui,sans-serif}
 .canvas-navigation button{min-width:44px;min-height:44px;padding:6px 10px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink);cursor:pointer;font-size:20px}
 .canvas-navigation button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.canvas-navigation output{padding:0 8px;color:var(--muted)}
-.obj-canvas{background:var(--sunken);touch-action:none}.complex-planes{display:grid;grid-template-columns:1fr 1fr;gap:16px}.complex-planes section{min-width:0}.complex-planes h3{font-size:16px;margin:10px 0}.complex-mode{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.complex-mode select{min-height:44px;max-width:100%;font:inherit}.complex-steps{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.complex-steps [aria-pressed=true]{background:var(--accent);color:var(--surface)}.platonic-proof{margin-top:20px}.fold-reason{padding-left:24px}.fold-reason li{margin:12px 0}.platonic-proof summary{font-size:18px;font-weight:600;cursor:pointer}.pl-table caption{font-weight:600;text-align:left;padding-bottom:8px}
-@media(max-width:900px){.complex-planes{grid-template-columns:1fr}}
+.obj-canvas{background:var(--sunken);touch-action:none}.platonic-proof{margin-top:20px}.fold-reason{padding-left:24px}.fold-reason li{margin:12px 0}.platonic-proof summary{font-size:18px;font-weight:600;cursor:pointer}.pl-table caption{font-weight:600;text-align:left;padding-bottom:8px}
 .slide-type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 16px;max-width:780px}.slide-type-toggle button{text-align:left;padding:16px 20px;min-height:80px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit}.slide-type-toggle strong,.slide-type-toggle span{display:block}.slide-type-toggle span{margin-top:6px;font-size:14px;color:var(--muted)}.slide-type-toggle [aria-pressed=true]{border:2px solid var(--accent);padding:15px 19px;background:var(--sunken)}.deck-source{font-size:13px;margin-left:8px}.deck-list li{flex-wrap:wrap;gap:10px} @media(max-width:480px){.slide-type-toggle{grid-template-columns:1fr}}
 .university-page{max-width:1120px;margin-inline:auto}.university-page .breadcrumb{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem}.university-sequences{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.university-sequence{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:inherit;height:100%;box-sizing:border-box}.university-sequence h3{margin-top:0}.university-sequence p{margin:.6rem 0}.university-sequence>div{min-width:0}.university-sequence .sequence-number{flex:none}.university-sequence:hover{border-color:var(--accent)}.university-files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:1rem 0}.university-file{display:flex;flex-direction:column;gap:.5rem;justify-content:center;min-height:64px;padding:1rem;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere;text-decoration:none}.university-file span{font-size:.85em;color:var(--muted)}.university-documents{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.5rem}.university-page section{margin-bottom:2rem}@media(max-width:650px){.university-sequences,.university-files{grid-template-columns:1fr}.university-page{padding-inline:1rem}.university-sequence{padding:1rem}}
 

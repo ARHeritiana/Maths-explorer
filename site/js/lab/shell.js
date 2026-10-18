@@ -173,6 +173,25 @@ export function createShell(host, exp, tpl, opts = {}) {
       wrap.append(name, group);
       controlsEl.append(wrap);
       controlNodes[id] = { wrap, buttons, c };
+    } else if (c.kind === "action") {
+      // buttons that each do something once (run 10 experiments, start a new series): they do not stay "on"
+      const wrap = el("div", "lab2-ctl lab2-action");
+      wrap.dataset.control = id;
+      wrap.setAttribute("role", "group");
+      const name = el("span", "lab2-ctl-label", t(c.label));
+      name.id = `lab2-${exp.id}-${id}`;
+      wrap.setAttribute("aria-labelledby", name.id);
+      const group = el("div", "lab2-segments");
+      const buttons = c.options.map((o) => {
+        const b = el("button", "lab2-segment", t(o.label));
+        b.type = "button";
+        b.addEventListener("click", () => userApply(c.act(state, o.value)));
+        group.append(b);
+        return b;
+      });
+      wrap.append(name, group);
+      controlsEl.append(wrap);
+      controlNodes[id] = { wrap, buttons, c };
     }
   }
   function paintPlay(btn, on) {
@@ -434,7 +453,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   });
 
   // ---- derived DOM (formula, readout, table, control values, goal) written in the frame, only when the state changed
-  const ctx = { fmt, lang: fmt.lang };
+  const ctx = { fmt, lang: fmt.lang, unlocked: (id) => unlocked.has(id) };
   function sync() {
     if (synced === version) return;
     synced = version;
@@ -453,7 +472,7 @@ export function createShell(host, exp, tpl, opts = {}) {
         if (document.activeElement !== n.input && n.input._v !== v) { n.input._v = v; n.input.value = v; }
         setText(n.out, c.format ? c.format(v, ctx) : fmt.num(v, c.digits ?? 2));
         setAttr(n.input, "aria-valuetext", n.out._v);
-      } else if (n.buttons) {
+      } else if (n.buttons && !c.act) {
         const cur = c.get ? c.get(s) : s[c.key];
         n.buttons.forEach((b, i) => { const on = c.options[i].value === cur; setAttr(b, "aria-checked", String(on)); setClass(b, "is-on", on); });
       }

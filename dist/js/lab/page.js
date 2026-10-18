@@ -7,16 +7,12 @@ const esc = (x) => String(x).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&
 
 const card = (e, { t, pair, link, completed }) => `<a class="lab2-card-link" href="${link("lab", e.id)}"><span class="lab2-card-symbol" aria-hidden="true">${esc(e.symbol)}</span><span class="lab2-card-body"><strong>${esc(t(e.title))}</strong><span>${esc(t(e.short))}</span><span class="lab2-card-meta">${esc(t(e.level))} · ${e.duration} min · ${e.missions.length} ${pair("missions", "missions")}</span></span>${completed.has(e.id) ? `<span class="check" aria-label="${pair("Expérience terminée", "Experiment completed")}">✓</span>` : ""}</a>`;
 
-// `rest` are the guided labs still on the previous page design (probability, vectors, statistics, complex).
-export function indexPage({ t, pair, link, completed, rest = [] }) {
+export function indexPage({ t, pair, link, completed }) {
   const groups = Object.entries(TEMPLATE_INFO).map(([id, info]) => {
     const list = EXPERIMENTS.filter((e) => e.template === id);
     return list.length ? `<section class="lab2-group"><h2>${esc(t(info.title))}</h2><p>${esc(t(info.blurb))}</p><div class="lab2-cards">${list.map((e) => card(e, { t, pair, link, completed })).join("")}</div></section>` : "";
   }).join("");
-  const others = rest.length
-    ? `<section class="lab2-group"><h2>${pair("Autres expériences guidées", "Other guided experiments")}</h2><p>${pair("Ces expériences passent bientôt au même format de missions.", "These experiments will soon move to the same mission format.")}</p><div class="lab2-cards">${rest.map((l) => `<a class="lab2-card-link" href="${link("lab", l.id)}"><span class="lab2-card-symbol" aria-hidden="true">${esc(l.symbol.includes("⃗") ? "→" : l.symbol)}</span><span class="lab2-card-body"><strong>${esc(t(l.title))}</strong><span>${esc(t(l.short))}</span><span class="lab2-card-meta">${esc(t(l.level))} · ${l.duration} min</span></span>${completed.has(l.id) ? `<span class="check" aria-label="${pair("Expérience terminée", "Experiment completed")}">✓</span>` : ""}</a>`).join("")}</div></section>`
-    : "";
-  return `<main id="main" class="page lab2-index" tabindex="-1"><div class="breadcrumb">${pair("Le laboratoire", "The laboratory")}</div><h1>${pair("Le laboratoire", "The laboratory")}</h1><p class="page-intro">${pair("Chaque expérience est une suite de missions courtes : prédire, explorer, comparer, vérifier, expliquer. Les commandes se déverrouillent mission après mission, et l’argument arrive à la fin.", "Each experiment is a short sequence of missions: predict, explore, compare, check, explain. Controls unlock mission by mission, and the argument comes at the end.")}</p>${groups}${others}</main>`;
+  return `<main id="main" class="page lab2-index" tabindex="-1"><div class="breadcrumb">${pair("Le laboratoire", "The laboratory")}</div><h1>${pair("Le laboratoire", "The laboratory")}</h1><p class="page-intro">${pair("Chaque expérience est une suite de missions courtes : prédire, explorer, comparer, vérifier, expliquer. Les commandes se déverrouillent mission après mission, et l’argument arrive à la fin.", "Each experiment is a short sequence of missions: predict, explore, compare, check, explain. Controls unlock mission by mission, and the argument comes at the end.")}</p>${groups}</main>`;
 }
 
 export function experimentPage(exp, { t, pair, link, completed, mission = "" }) {

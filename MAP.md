@@ -30,12 +30,11 @@ really need them.
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
 | the top navigation, footer, theme or language buttons | `site/js/app.js` `header()` / `footer()` | |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
-| any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | the old guided labs (probability, vectors, statistics, complex): `site/js/content.js` `labs` |
+| any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
 | any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
 | the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
 | a laboratory experiment (new one, new mission, handles, drawing) | `site/js/lab/CLAUDE.md`, then `site/js/lab/experiments/<id>.js`, `models/<id>.js`; contract `docs/LAB_DESIGN.md`; recipe `lab` | `site/js/lab/templates/` only for a template change |
 | the laboratory engine (drag, camera, readouts, rAF), the mission card or the lab page | `site/js/lab/engine.js`, `shell.js`, `page.js` (and `plot.js` for drawing) | |
-| a guided lab not yet rebuilt (probability, vectors, statistics, complex) | `site/js/content.js` (`labs`), `site/js/app.js` `updateLab()` / `bindLab()`, maths in `site/js/math.js` | Phase 2 of `docs/LAB_DESIGN.md` replaces it |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `gallery-objects.js`, maths in `gallery-math.js`; card drawing in `home-art.js` | |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
@@ -55,7 +54,7 @@ really need them.
 | terminology FR/EN | `content/data/glossary.json` | |
 | the quadratic workshop (`#workshop/quadratic`) | `site/js/quadratic-workshop.js` | |
 | cache busting, versioned URLs | `site/js/data-loader.js` (`assetHref`), `build/mxbuild/site.py` | |
-| canvas zoom, pan, drag, keyboard | `site/js/canvas-navigation.js`, `interaction.js` | one camera policy for the site and the player |
+| canvas zoom, pan, drag, keyboard | `site/js/canvas-navigation.js` (lab handles: `site/js/lab/engine.js`) | one camera policy for the site and the player |
 | how selectors collapse to labels | `site/js/control-policy.js` | |
 | which language a page uses | `site/js/content-language.js` | |
 | the build or a check | `build/mxbuild/CLAUDE.md` | |
@@ -78,8 +77,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#slides` | Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
 | `#lab` | Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
-| `#lab/<probability, vectors, statistics, complex>` | Laboratoire | `app.js` `labPage`, `updateLab`, `bindLab`; data `content.js` `labs` (not `custom`) |
-| `#gallery[/<id>]` | Galerie | `welcome.js` `galleryPage`; objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` |
+| `#gallery[/<id>]` | Galerie | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
 | `#challenges[/<id>]` | Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
 | `#pathways` | Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
 | `#university[/<id>]` | (Parcours) | `university.js` |

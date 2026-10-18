@@ -11,16 +11,15 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | File | Holds |
 |---|---|
 | `index.html` | page skeleton, theme bootstrap, generated import map (do not edit the map) |
-| `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); pages of the guided labs not yet rebuilt (`labPage`, `updateLab`, `updatePlot`, `bindPlot`, `bindLab`); challenge pages (`challengePage`, `challengeDetail`, `bindChallenges`); pathways (`pathwayPage`); saved state (`save`, `state`) |
+| `js/app.js` | router and page shell: `route()`, `link()`, `header()` (nav), `footer()`, `render()` (route validity and dispatch), `bindCommon()`; experiment pages mount `js/lab/` (`render()` dispatch, `mountExperiment`); the gallery page of one exhibit (`galleryDetail`, `bindGallery`), challenge and pathway pages |
 | `js/ui.js` | theme choice, full-screen presenting |
 | `js/icons.js` | Phosphor icon paths, `icon(name, size)` |
-| `js/motion.js` | slider animation of the guided labs not yet rebuilt, interface motion |
+| `js/motion.js` | interface motion (`installInterfaceMotion`, `celebrate`, `illuminateFeedback`) |
 | `js/control-policy.js` | selectors with one choice become labels |
 | `js/content-language.js` | language of each route (neutral pages vs curriculum pages) |
 | `js/data-loader.js` | `assetHref` (versioned URLs), `fetchJSON` |
 | `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, university, asset versions |
 | `js/canvas-navigation.js` | camera (zoom, pan, reset) shared with the slide player |
-| `js/interaction.js` | dragging snapped to the slider grid (guided labs not yet rebuilt) |
 | `styles/explorer.css` | design tokens (both themes), base elements, layout |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
 
@@ -28,7 +27,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/content.js` | `labs` (guided labs: the rebuilt ones are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
+| `js/content.js` | `labs` (the nine experiments are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
 | `js/learning-content.js` | companion lessons on chapter pages (`guides`) |
 | `js/study-guides.js` | short starting sheets (built into HTML by `scripts/build-study-guides.mjs`) |
 
@@ -36,9 +35,9 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/lab/` | **the laboratory**: engine, shell, mount, registry, templates, models and one file per experiment (quadratic, trig, sequences, derivative, integral); index in `js/lab/CLAUDE.md` |
+| `js/lab/` | **the laboratory**: engine, shell, mount, registry, templates, models and one file per experiment (nine: quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex); index in `js/lab/CLAUDE.md` |
 | `js/math.js` | pure maths shared by the labs (quadratic, sequences, binomial, statistics, Riemann...) |
-| `js/lab-objects.js` | `mountObject`: Galton, Reuleaux, Platonic, chaos game (pure maths first, then DOM) |
+| `js/lab-objects.js` | `mountObject`: the gallery exhibits (Galton, Reuleaux, Platonic, chaos game and more; pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles, Mandelbrot/Julia explorer |
 | `js/gallery-math.js` | pure maths of the gallery (escape times, DFT, Madagascar outline) |
 | `js/gallery-additions.js` | five experiment-first gallery entries and source labels |
@@ -51,7 +50,6 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/gallery-context.js` | mathematical ideas, historical context and applications for all gallery entries |
 | `js/gallery-hat-model.js`, `js/gallery-hat.js` | H7/H8 geometry and continuous hat-family explorer |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
-| `js/complex-explorer.js` | complex numbers as transformations |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
 | `js/welcome.js` | home page and gallery index |

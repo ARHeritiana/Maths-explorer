@@ -4,208 +4,10 @@ import { universityPathway } from './university-model.js';
 // Bilingual content: every pair is [French, English]. Topic placements are indicative.
 import { challengeBase, VARIANTS, defaults } from "./challenges/registry.js";
 import { catalogue as experimentCatalogue } from "./lab/registry.js";
-// `labs` lists every laboratory entry. The experiments rebuilt as missions (quadratic, trig, sequences, derivative,
-// integral) live in lab/experiments/: only their catalogue line is here, so that titles stay in one place. The other guided
-// labs (probability, vectors, statistics, complex) and the gallery objects (`custom: true`) are written out below.
+// `labs` lists every laboratory entry. The nine experiments (lab/experiments/) appear here only as their catalogue line, so
+// that titles stay in one place; the gallery objects (`custom: true`) are written out below.
 export const labs = [
   ...experimentCatalogue(),
-  {
-    id: "probability",
-    symbol: "P",
-    group: ["Données & hasard", "Data & chance"],
-    title: ["Le hasard a ses habitudes", "Chance has its patterns"],
-    short: ["Loi binomiale", "Binomial probability"],
-    intro: [
-      "Lance une série d’expériences virtuelles et compare les fréquences au modèle.",
-      "Run virtual experiments and compare observed frequencies with the model.",
-    ],
-    duration: 10,
-    level: ["Première · Terminale", "Intermediate · Advanced"],
-    prereq: [
-      "Probabilités, indépendance, fréquences",
-      "Probability, independence, relative frequency",
-    ],
-    formula: "X ∼ B(n, p) · E(X) = np",
-    params: [
-      ["n", 1, 12, 1, 6],
-      ["p", 0, 1, 0.05, 0.5],
-    ],
-    steps: [
-      [
-        "Chaque expérience contient n essais indépendants, avec une probabilité p de succès à chaque essai. Prédis le nombre moyen de succès.",
-        "Each experiment contains n independent trials, with success probability p per trial. Predict the average number of successes.",
-      ],
-      [
-        "Lance 100 expériences, puis 1 000. Compare les fréquences observées aux probabilités théoriques.",
-        "Run 100 experiments, then 1,000. Compare observed frequencies with theoretical probabilities.",
-      ],
-      [
-        "Essaie p = 0 et p = 1. Pourquoi le résultat devient-il certain ? Une simulation ne prouve pas une loi.",
-        "Try p = 0 and p = 1. Why does the result become certain? A simulation does not prove a law.",
-      ],
-    ],
-    quiz: [
-      "Avec n = 10 et p = 0,3, quelle est l’espérance du nombre de succès ?",
-      "With n = 10 and p = 0.3, what is the expected number of successes?",
-    ],
-    answer: 3,
-    explain: [
-      "E(X) = np = 10 × 0,3 = 3. Une expérience isolée peut donner un autre résultat.",
-      "E(X) = np = 10 × 0.3 = 3. A single experiment may give a different result.",
-    ],
-    history: ["Pascal et Fermat · 1654", "Pascal and Fermat · 1654"],
-    story: [
-      "Leur correspondance sur le partage équitable d’une mise lors d’un jeu interrompu a contribué au développement de la théorie des probabilités.",
-      "Their correspondence about fairly dividing stakes in an interrupted game contributed to the development of probability theory.",
-    ],
-    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Pascal/",
-  },
-  {
-    id: "vectors",
-    symbol: "↗",
-    group: ["Géométrie", "Geometry"],
-    title: ["Deux vecteurs font un chemin", "Two vectors make a path"],
-    short: ["Vecteurs et produit scalaire", "Vectors and dot products"],
-    intro: [
-      "Construis un parallélogramme et explore la somme et le produit scalaire.",
-      "Build a parallelogram and explore vector addition and the dot product.",
-    ],
-    duration: 7,
-    level: ["Seconde · Première", "Foundation · Intermediate"],
-    prereq: ["Coordonnées, Pythagore", "Coordinates, Pythagoras"],
-    formula: "u · v = uₓvₓ + uᵧvᵧ",
-    params: [
-      ["uₓ", -4, 4, 0.5, 3],
-      ["uᵧ", -4, 4, 0.5, 1],
-      ["vₓ", -4, 4, 0.5, -1],
-      ["vᵧ", -4, 4, 0.5, 3],
-    ],
-    steps: [
-      [
-        "Lis les coordonnées de u + v. Vérifie-les par addition composante par composante.",
-        "Read the coordinates of u + v. Check them by adding components.",
-      ],
-      [
-        "Cherche deux vecteurs non nuls dont le produit scalaire vaut zéro.",
-        "Find two nonzero vectors whose dot product is zero.",
-      ],
-      [
-        "Explique pourquoi ces vecteurs sont perpendiculaires avec u · v = ‖u‖ ‖v‖ cos θ.",
-        "Explain why these vectors are perpendicular using u · v = ‖u‖ ‖v‖ cos θ.",
-      ],
-    ],
-    quiz: [
-      "Quel est le produit scalaire de (2, 1) et (−1, 2) ?",
-      "What is the dot product of (2, 1) and (−1, 2)?",
-    ],
-    answer: 0,
-    explain: [
-      "2 × (−1) + 1 × 2 = 0. Les deux vecteurs non nuls sont donc perpendiculaires.",
-      "2 × (−1) + 1 × 2 = 0. The two nonzero vectors are therefore perpendicular.",
-    ],
-    history: ["Grassmann · 1844", "Grassmann · 1844"],
-    story: [
-      "Hermann Grassmann développa une algèbre des grandeurs géométriques. Ses travaux ont contribué aux idées modernes d’espace vectoriel.",
-      "Hermann Grassmann developed an algebra of geometric quantities. His work contributed to modern ideas about vector spaces.",
-    ],
-    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Grassmann/",
-  },
-  {
-    id: "statistics",
-    symbol: "x̄",
-    group: ["Données & hasard", "Data & chance"],
-    title: ["Que raconte une moyenne ?", "What does an average tell us?"],
-    short: ["Statistiques descriptives", "Descriptive statistics"],
-    intro: [
-      "Modifie une série de données. Observe la moyenne, la médiane et la dispersion.",
-      "Edit a data set. Observe its mean, median and spread.",
-    ],
-    duration: 6,
-    level: ["Seconde", "Foundation"],
-    prereq: ["Calculs, nombres décimaux", "Arithmetic, decimal numbers"],
-    formula: "x̄ = (x₁ + … + xₙ) / n",
-    params: [],
-    steps: [
-      [
-        "Observe la série proposée. Compare la moyenne et la médiane.",
-        "Observe the initial data. Compare the mean and median.",
-      ],
-      [
-        "Remplace 9 par 90. Quelle mesure varie le plus ?",
-        "Replace 9 with 90. Which measure changes the most?",
-      ],
-      [
-        "Explique pourquoi une valeur extrême peut déplacer fortement la moyenne.",
-        "Explain why an extreme value can move the mean substantially.",
-      ],
-    ],
-    quiz: [
-      "Quelle est la médiane de 2 ; 3 ; 4 ; 5 ; 100 ?",
-      "What is the median of 2; 3; 4; 5; 100?",
-    ],
-    answer: 4,
-    explain: [
-      "La valeur centrale de cette liste ordonnée est 4. La moyenne vaut 22,8 : elle est très sensible à 100.",
-      "The middle value of this sorted list is 4. The mean is 22.8: it is strongly affected by 100.",
-    ],
-    history: [
-      "Florence Nightingale · XIXe siècle",
-      "Florence Nightingale · 19th century",
-    ],
-    story: [
-      "Florence Nightingale a utilisé les statistiques et des diagrammes pour défendre des réformes sanitaires. Les représentations de données peuvent rendre un argument plus clair, mais leur construction compte.",
-      "Florence Nightingale used statistics and diagrams to advocate for sanitary reform. Data visualizations can clarify an argument, but their construction matters.",
-    ],
-    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Nightingale/",
-  },
-  {
-    id: "complex",
-    symbol: "ℂ",
-    group: ["Algèbre", "Algebra"],
-    title: ["Les nombres prennent le plan", "Numbers take the plane"],
-    short: ["Nombres complexes", "Complex numbers"],
-    intro: [
-      "Transforme un point, une figure et un quadrillage. Ajouter déplace ; multiplier tourne et agrandit.",
-      "Transform a point, a shape and a grid. Addition translates; multiplication rotates and scales.",
-    ],
-    duration: 8,
-    level: ["Approfondissement", "Extension"],
-    prereq: [
-      "Coordonnées, Pythagore, trigonométrie",
-      "Coordinates, Pythagoras, trigonometry",
-    ],
-    formula: "z = a + ib · i² = −1",
-    params: [
-      ["a", -4, 4, 0.25, 2],
-      ["b", -4, 4, 0.25, 1],
-    ],
-    steps: [
-      [
-        "Observe le module |z|. Retrouve-le avec Pythagore.",
-        "Observe the modulus |z|. Recover it using Pythagoras.",
-      ],
-      [
-        "Choisis a = i, puis a = 2. Compare la rotation et le changement de module. Active le quadrillage transformé.",
-        "Choose a = i, then a = 2. Compare the rotation and the change in modulus. Show the transformed grid.",
-      ],
-      [
-        "Compare le carré et la conjugaison. Où vont z et −z ? Quel effet conserve l’orientation ?",
-        "Compare squaring and conjugation. Where do z and −z go? Which operation preserves orientation?",
-      ],
-    ],
-    quiz: ["Quel est le module de 3 + 4i ?", "What is the modulus of 3 + 4i?"],
-    answer: 5,
-    explain: [
-      "|3 + 4i| = √(3² + 4²) = 5. Multiplier par i conserve ce module et tourne de 90° dans le sens direct.",
-      "|3 + 4i| = √(3² + 4²) = 5. Multiplying by i preserves the modulus and rotates 90° counterclockwise.",
-    ],
-    history: ["Bombelli · 1572", "Bombelli · 1572"],
-    story: [
-      "Dans son ouvrage L’Algebra, Rafael Bombelli a établi des règles de calcul avec des racines carrées de nombres négatifs, contribuant à donner un sens aux nombres complexes.",
-      "In L’Algebra, Rafael Bombelli established calculation rules for square roots of negative numbers, helping give meaning to complex numbers.",
-    ],
-    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Bombelli/",
-  },
   {
     id: "galton",
     custom: true,
@@ -361,21 +163,6 @@ export const labs = [
 labs.push(...GALLERY_ADDITIONS);
 // Activities give examples, conditions and a general argument separately.
 const reasoning = {
-  probability: {
-    conjecture: ["Sur beaucoup d’expériences, les fréquences tendent à se rapprocher du modèle binomial. L’erreur ne diminue pas forcément à chaque nouveau lot.", "Over many experiments, frequencies tend to approach the binomial model. The error need not decrease after every new batch."],
-    proof: ["Pour k succès parmi n essais indépendants de probabilité p, chaque arrangement a une probabilité pᵏ(1 − p)ⁿ⁻ᵏ. Il y en a C(n,k), d’où P(X = k) = C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ. En écrivant X comme somme de n indicatrices d’espérance p, on obtient E(X) = np. La simulation illustre ces résultats ; elle ne les démontre pas.", "For k successes in n independent trials with probability p, each arrangement has probability pᵏ(1 − p)ⁿ⁻ᵏ. There are C(n,k) arrangements, giving P(X = k) = C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ. Writing X as the sum of n indicators with expectation p gives E(X) = np. Simulation illustrates these results; it does not prove them."],
-    transfer: ["À tester : p = 0,5 puis p = 0,2, avec n fixé. Compare symétrie et dispersion dans le tableau. Sans indépendance ou avec p variable, ce modèle peut être inadapté.", "Try p = 0.5, then p = 0.2, keeping n fixed. Compare symmetry and spread in the table. Without independence or with varying p, this model may be unsuitable."]
-  },
-  vectors: {
-    conjecture: ["Pour deux vecteurs non nuls, un produit scalaire nul correspond à un angle droit.", "For two nonzero vectors, a zero dot product corresponds to a right angle."],
-    proof: ["u · v = ‖u‖‖v‖ cos θ. Si les deux normes sont non nulles, u · v = 0 équivaut à cos θ = 0, donc θ = 90° pour l’angle entre vecteurs dans [0° ; 180°]. Avec un vecteur nul, le produit vaut 0 mais l’angle est indéfini.", "u · v = ‖u‖‖v‖ cos θ. If both norms are nonzero, u · v = 0 is equivalent to cos θ = 0, hence θ = 90° for the angle between vectors in [0°, 180°]. With a zero vector, the dot product is zero but the angle is undefined."],
-    transfer: ["À tester : rends u nul. Puis prends v = −u avec u non nul. Que valent la somme et l’angle ?", "Make u zero. Then try v = −u with u nonzero. What are the sum and angle?"]
-  },
-  statistics: {
-    conjecture: ["Remplacer une valeur x par x + d change la moyenne de d/n. La médiane dépend de l’ordre, pas de la grandeur de toutes les valeurs.", "Replacing one value x by x + d changes the mean by d/n. The median depends on order, not the magnitude of every value."],
-    proof: ["La somme augmente de d et l’effectif n reste fixe : la moyenne augmente donc de d/n. La médiane est la valeur centrale de la liste ordonnée (ici, la moyenne des deux valeurs centrales si n est pair). Si une valeur extrême reste du même côté des positions centrales, la médiane ne change pas. L’écart-type affiché décrit toute la série et utilise le diviseur n, pas n − 1.", "The sum increases by d while n stays fixed, so the mean increases by d/n. The median is the central ordered value (here the average of the two central values for even n). If an extreme value stays on the same side of the central positions, the median stays unchanged. The displayed standard deviation describes the whole data set and divides by n, not n − 1."],
-    transfer: ["À tester : 2 ; 3 ; 4 ; 5 ; 100 puis 2 ; 3 ; 4 ; 5 ; 1000. La médiane ne change pas ici ; elle peut changer si une valeur traverse la position centrale.", "Try 2; 3; 4; 5; 100, then 2; 3; 4; 5; 1000. The median stays fixed here; it can change when a value crosses the central position."]
-  },
   galton: {
     conjecture: ["Avec p = 1/2, la répartition est symétrique et se concentre autour du centre quand le nombre de billes augmente.", "With p = 1/2 the distribution is symmetric and concentrates around the centre as the number of balls grows."],
     proof: ["Une bille fait n choix indépendants gauche/droite. La probabilité d’aboutir dans la case k est C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ : il y a C(n,k) trajets à k virages à droite, chacun de probabilité pᵏ(1 − p)ⁿ⁻ᵏ. L’espérance est np. La simulation illustre ce résultat, elle ne le démontre pas.", "A ball makes n independent left/right choices. The probability of bin k is C(n,k)pᵏ(1 − p)ⁿ⁻ᵏ: there are C(n,k) paths with k right turns, each of probability pᵏ(1 − p)ⁿ⁻ᵏ. The mean is np. The simulation illustrates this result; it does not prove it."],
@@ -396,11 +183,6 @@ const reasoning = {
     proof: ["Chaque saut est l’homothétie de rapport 1/2 et de centre un sommet. Les trois homothéties envoient le triangle sur trois copies réduites ; l’ensemble limite K vérifie K = h₁(K) ∪ h₂(K) ∪ h₃(K). Le point de départ est « oublié » car chaque saut divise la distance à K par 2. La simulation illustre ; la preuve repose sur cette contraction.", "Each jump is the homothety of ratio 1/2 centred at a vertex. The three homotheties send the triangle to three reduced copies; the limit set K satisfies K = h₁(K) ∪ h₂(K) ∪ h₃(K). The starting point is “forgotten” because each jump halves the distance to K. The simulation illustrates; the proof rests on this contraction."],
     transfer: ["À tester : 4 sommets avec le rapport 1/2. Que remarques-tu ? Essaie ensuite le bouton « Valeur qui donne un joli motif ».", "Try 4 vertices with ratio 1/2. What do you notice? Then try the “Value that gives a clean pattern” button."]
   },
-  complex: {
-    conjecture: ["Multiplier par i conserve le module et fait tourner de 90° dans le sens direct. L’origine reste fixe.", "Multiplication by i preserves modulus and rotates 90° counterclockwise. The origin stays fixed."],
-    proof: ["i(a + ib) = −b + ia, donc (a,b) devient (−b,a). Le module au carré reste a² + b². Pour z ≠ 0, les vecteurs (a,b) et (−b,a) ont un produit scalaire nul et leur déterminant vaut a² + b² > 0 : l’angle orienté vaut +90°. Pour z = 0, l’argument est indéfini.", "i(a + ib) = −b + ia, so (a,b) becomes (−b,a). Squared modulus remains a² + b². For z ≠ 0, vectors (a,b) and (−b,a) have zero dot product and determinant a² + b² > 0: the directed angle is +90°. For z = 0, the argument is undefined."],
-    transfer: ["À tester : applique mentalement quatre multiplications par i. Pourquoi retrouves-tu z ? Utilise i⁴ = 1.", "Mentally multiply by i four times. Why do you recover z? Use i⁴ = 1."]
-  },
   fourier: {
     conjecture: ["Plus on ajoute de cercles, plus la courbe tracée se rapproche de la forme, et les premiers cercles, les plus grands, suffisent à reconnaître l’île.", "The more circles are added, the closer the traced curve gets to the shape, and the first, largest circles are enough to recognise the island."],
     proof: ["Une courbe fermée z(t), périodique de période 1, se développe en série de Fourier z(t) = Σ cₖ e^(2iπkt). Chaque terme est un mouvement circulaire uniforme de rayon |cₖ| et de fréquence k. Pour des points échantillonnés, la transformée de Fourier discrète donne les cₖ et la somme complète redonne exactement les points. L’erreur quadratique moyenne de la somme partielle vaut la somme des |cₖ|² des termes omis (égalité de Parseval), donc ranger les cercles par rayon décroissant la fait diminuer le plus vite.", "A closed curve z(t) of period 1 expands as a Fourier series z(t) = Σ cₖ e^(2iπkt). Each term is a uniform circular motion of radius |cₖ| and frequency k. For sampled points, the discrete Fourier transform gives the cₖ and the full sum returns the points exactly. The mean squared error of a partial sum equals the sum of |cₖ|² over the omitted terms (Parseval), so ordering the circles by decreasing radius makes it fall fastest."],
@@ -412,11 +194,7 @@ const reasoning = {
     transfer: ["À tester : c = −1 donne la suite 0, −1, 0, −1… Pourquoi ce point est-il dans l’ensemble ? Trouve un autre point du même genre.", "Try c = −1: the sequence is 0, −1, 0, −1… Why is that point in the set? Find another point of the same kind."]
   }
 };
-const quizStates = {
-  probability:{values:[10,0.3]},
-  vectors:{values:[2,1,-1,2]}, statistics:{data:"2 3 4 5 100"}, complex:{values:[3,4]},
-  galton:{}, reuleaux:{}, platonic:{}, chaos:{}, fourier:{}, mandelbrot:{}
-};
+const quizStates = { galton: {}, reuleaux: {}, platonic: {}, chaos: {}, fourier: {}, mandelbrot: {} };
 for (const lab of labs) {
   if (lab.experiment) continue;
   lab.reasoning ??= reasoning[lab.id];
@@ -435,7 +213,7 @@ export const pathways = [
     id:"mg", label:"MG", name:["Programme malagasy","Malagasy curriculum"],
     intro:["Repères tirés des répartitions ministérielles 2024–2025 pour T10 et les séries S, OSE, L. Leur validité pour 2026–2027 reste à confirmer avec ton enseignant. Les anciens documents A/C/D ne sont pas interchangeables.", "Guides based on ministry distributions for 2024–2025: T10 and streams S, OSE, L. Their applicability to 2026–2027 still needs confirmation with your teacher. Older A/C/D documents are not interchangeable."],
     stages:[
-      {name:["T10 · Algèbre et vecteurs","T10 · Algebra and vectors"],ids:["quadratic","vectors"],note:["Le produit scalaire est un approfondissement ici.","The dot product is an extension here."]},
+      {name:["T10 · Algèbre et vecteurs","T10 · Algebra and vectors"],ids:["quadratic","vectors"],note:["Le laboratoire des vecteurs travaille le déterminant et la colinéarité.","The vectors lab works on the determinant and collinearity."]},
       {name:["T11 S · Analyse et géométrie","T11 S · Calculus and geometry"],ids:["quadratic","trig","sequences","derivative","vectors"]},
       {name:["T11 OSE & L · Algèbre et analyse","T11 OSE & L · Algebra and calculus"],ids:["quadratic","sequences","derivative"]},
       {name:["T11 OSE · Statistiques","T11 OSE · Statistics"],ids:["statistics"]},
@@ -448,7 +226,7 @@ export const pathways = [
     id:"fr",label:"FR",name:["Programme français","French curriculum"],
     intro:["Voie générale : seconde et première, programmes 2026–2027 ; terminale spécialité, programme 2019 encore applicable en 2026–2027. Le nouveau programme de terminale s’applique en 2027–2028. Les voies technologiques et les maths complémentaires ne sont pas cartographiées ici.","General pathway: seconde and première use the 2026–2027 programmes; terminale specialty still uses the 2019 programme in 2026–2027. Its new programme starts in 2027–2028. Technological pathways and maths complémentaires are not mapped here."],
     stages:[
-      {name:["Seconde · Explorer","Seconde · Explore"],ids:["statistics","vectors","quadratic"],note:["Vecteurs : addition et coordonnées. Produit scalaire et discriminant général : prolongements, pas des attendus de seconde.","Vectors: addition and coordinates. Dot products and the general discriminant are extensions, not seconde requirements."]},
+      {name:["Seconde · Explorer","Seconde · Explore"],ids:["statistics","vectors","quadratic"],note:["Vecteurs : coordonnées, déterminant et colinéarité dans le laboratoire. Le discriminant général : prolongement, pas un attendu de seconde.","Vectors: coordinates, determinant and collinearity in the lab. The general discriminant is an extension, not a seconde requirement."]},
       {name:["Première · Spécialité","Première · Specialty"],ids:["quadratic","trig","sequences","derivative","vectors","probability"],note:["Probabilités (BO n° 14 du 2 avril 2026) : indépendance, probabilités totales, arbre de n ⩽ 4 épreuves de Bernoulli, espérance et variance. Le labo de probabilités s’utilise avec n ⩽ 4 et un arbre ; la loi binomiale B(n, p) relève de la terminale.","Probability (BO no. 14, 2 April 2026): independence, total probability, trees for n ⩽ 4 Bernoulli trials, expectation and variance. Use the probability lab with n ⩽ 4 and a tree; the binomial distribution B(n, p) belongs to terminale."]},
       {name:["Terminale · Spécialité (2026–2027)","Terminale · Specialty (2026–2027)"],ids:["probability","integral"]},
       {name:["Terminale · Option maths expertes","Terminale · Maths expertes option"],ids:["complex"]}
