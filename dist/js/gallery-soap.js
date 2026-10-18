@@ -1,0 +1,24 @@
+// A freely rotatable triangulated film with fixed wire boundary and verified area-decreasing relaxation.
+import {filmMesh,filmArea,relaxFilm,clamp} from './gallery-models.js';
+import {exhibit,background,path,dot,button,field,bind,orbitProject,dragOrbit} from './gallery-kit.js';
+export function soapFilm(root,opts){
+  const {t}=opts;let corners=[.7,-.7,.7,-.7],mesh=filmMesh(corners),running=!opts.reduced(),iterations=0,residual=0,history=[filmArea(mesh)];const view={yaw:-.55,pitch:.65};
+  const o=exhibit(root,opts,t('Soulève un coin du cadre, puis laisse le film se détendre. Glisse dans l’espace vide pour tourner autour de la surface ; les flèches tournent aussi la vue. Les quatre curseurs règlent les coins au clavier.','Lift a corner of the wire frame, then let the film relax. Drag empty space to orbit the surface; arrow keys also orbit the view. The four sliders adjust the corners with the keyboard.'),button('sf-relax',running?t('Suspendre la détente','Pause relaxation'):t('Détendre le film','Relax the film'),true)+button('sf-bulge',t('Gonfler puis relâcher','Bulge and release'))+button('sf-step',t('Un pas de détente','One relaxation step'))+corners.map((v,i)=>field(`sf-c${i}`,t('Hauteur du coin','Corner height')+` ${i+1}`, -1.5,1.5,.01,v)).join(''),
+    `<p>${t('La tension superficielle tend à réduire l’aire. Ici, on minimise l’aire d’un maillage triangulaire dont le bord reste fixé. Les x et y des sommets restent fixes : on cherche une surface qui est le graphe d’une hauteur.','Surface tension tends to reduce area. Here we minimise a triangular mesh area with a fixed boundary. Vertex x and y coordinates stay fixed: we seek a surface represented by a height graph.')}</p><p>${t('Chaque pas vérifie que l’aire diminue. Ce calcul est une approximation numérique de surface minimale, pas une simulation complète du savon : ni bulles sous pression, ni déchirures, ni changement de topologie.','Every step verifies that area decreases. This is a numerical minimal-surface approximation, not a complete soap simulation: it does not model pressurised bubbles, rupture or topology changes.')}</p><p><a href="https://web.mit.edu/nnf/education/wettability/minimal.html" target="_blank" rel="noopener noreferrer">${t('Films et surfaces minimales · MIT','Films and minimal surfaces · MIT')}</a></p>`);
+  const g=o.g,project=p=>orbitProject(p,view.yaw,view.pitch,128),ids=[0,mesh.n,mesh.pts.length-1,mesh.n*(mesh.n+1)],toggle=root.querySelector('#sf-relax');
+  function label(){toggle.textContent=running?t('Suspendre la détente','Pause relaxation'):t('Détendre le film','Relax the film');}
+  function reset(bulge=.6){mesh=filmMesh(corners,16,bulge);history=[filmArea(mesh)];iterations=0;residual=0;running=!opts.reduced();label();o.redraw();}
+  function step(count=1){for(let i=0;i<count;i++){const r=relaxFilm(mesh);residual=r.residual;iterations++;history.push(r.area);if(history.length>240)history.shift();if(r.drop<1e-10){running=false;label();break;}}}
+  corners.forEach((_,i)=>bind(root,`sf-c${i}`,v=>{corners[i]=v;reset();},v=>v.toFixed(2)));
+  o.on(toggle,'click',()=>{if(opts.reduced()){step(40);o.redraw();}else{running=!running;label();}});
+  o.on(root.querySelector('#sf-bulge'),'click',()=>reset(1.25));o.on(root.querySelector('#sf-step'),'click',()=>{running=false;label();step();o.redraw();});
+  dragOrbit(o,view,p=>{const k=ids.findIndex(id=>Math.hypot(project(mesh.pts[id])[0]-p[0],project(mesh.pts[id])[1]-p[1])<24);return k<0?null:k;},(i,d)=>{corners[i]=clamp(corners[i]-d[1]/100,-1.5,1.5);root.querySelector(`#sf-c${i}`).value=corners[i];root.querySelector(`#sf-c${i}-out`).textContent=corners[i].toFixed(2);reset(.25);});
+  let frame=0;
+  o.animate(dt=>{if(running&&dt)step(4);const C=background(o),P=mesh.pts.map(project),faces=mesh.faces.map(f=>({f,z:f.reduce((s,i)=>s+P[i][2],0)})).sort((a,b)=>a.z-b.z);
+    for(const {f}of faces){path(g,f.map(i=>P[i]),{close:true,fill:mesh.pts[f[0]][2]>0?C.accent:C.obj3,alpha:.25});path(g,f.map(i=>P[i]),{close:true,stroke:C.line,width:.45,alpha:.6});}
+    for(let j=0;j<4;j++){const a=project(mesh.pts[ids[j]]),b=project(mesh.pts[ids[(j+1)%4]]);path(g,[a,b],{stroke:C.ink,width:4});dot(g,a,C.obj2,9,String(j+1));}
+    if(history.length>1){const max=history[0],min=Math.min(...history),span=Math.max(.02,max-min);path(g,history.map((v,i)=>[22+i/(history.length-1)*130,410-(v-min)/span*45]),{stroke:C.pos,width:2});}
+    g.fillStyle=C.muted;g.font='13px system-ui';g.textAlign='left';g.fillText(t('Aire au fil des pas','Area over iterations'),22,435);
+    if(++frame%12===0||!dt)o.read(`${t('Aire du maillage','Mesh area')}: ${filmArea(mesh).toFixed(5)} · ${t('pas','steps')}: ${iterations} · ${t('gradient maximal intérieur','maximum interior gradient')}: ${residual.toExponential(1)}. ${t('Le bord reste fixé pendant la détente.','The boundary stays fixed during relaxation.')}`);
+  });return o.stop;
+}

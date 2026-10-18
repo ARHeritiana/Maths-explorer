@@ -41,6 +41,11 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/lab-objects.js` | `mountObject`: Galton, Reuleaux, Platonic, chaos game (pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles, Mandelbrot/Julia explorer |
 | `js/gallery-math.js` | pure maths of the gallery (escape times, DFT, Madagascar outline) |
+| `js/gallery-additions.js` | five experiment-first gallery entries and source labels |
+| `js/gallery-models.js`, `js/gallery-kit.js` | Voronoi clipping, descent timing, film area minimisation; shared exhibit lifecycle |
+| `js/gallery-voronoi.js`, `js/gallery-fastest.js`, `js/gallery-soap.js` | draggable territories, bead races, rotatable film |
+| `js/gallery-knot-model.js`, `js/gallery-knots.js` | closed-braid moves, Fox colourings, mirror certificate, interactive knot views |
+| `js/gallery-hat-model.js`, `js/gallery-hat.js` | H7/H8 geometry and continuous hat-family explorer |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/complex-explorer.js` | complex numbers as transformations |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |

@@ -1,4 +1,5 @@
 import { university } from './catalogue-data.js';
+import { GALLERY_ADDITIONS } from './gallery-additions.js';
 import { universityPathway } from './university-model.js';
 // Bilingual content: every pair is [French, English]. Topic placements are indicative.
 import { challengeBase, VARIANTS, defaults } from "./challenges/registry.js";
@@ -605,6 +606,7 @@ export const labs = [
   },
 ];
 
+labs.push(...GALLERY_ADDITIONS);
 // Activities give examples, conditions and a general argument separately.
 const reasoning = {
   quadratic: {
@@ -691,8 +693,8 @@ const quizStates = {
   galton:{}, reuleaux:{}, platonic:{}, chaos:{}, fourier:{}, mandelbrot:{}
 };
 for (const lab of labs) {
-  lab.reasoning = reasoning[lab.id];
-  lab.quizState = quizStates[lab.id];
+  lab.reasoning ??= reasoning[lab.id];
+  lab.quizState ??= quizStates[lab.id];
 }
 
 // Each challenge lives in challenges/<id>/ (registry.js lists them). Its statement, expected answer, hints and worked

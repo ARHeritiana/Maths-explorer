@@ -2,6 +2,9 @@
 // tab is hidden, and draws one still frame under prefers-reduced-motion. Mathematics comes from gallery-math.js and lab-objects.js.
 import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 import { platonic, reuleaux, binomial } from "./lab-objects.js";
+import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery-models.js';
+import {spaceKnot} from './gallery-knot-model.js';
+import {makeFamilyPatch} from './gallery-hat-model.js';
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
@@ -141,5 +144,27 @@ function platonicArt(cv, opts) {
   }, { reduced: opts.reduced, still: 3 });
 }
 
-export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt };
+function newGalleryArt(kind,cv,opts){
+  const family=kind==='einstein'?makeFamilyPatch(2):null,slide=kind==='fastest-slide'?cycloid([4,2],100):null,track=slide?descentTrack(slide.points):null;
+  return runner(cv,(g,W,H,time,C)=>{
+    const draw=(pts,color,fill=false,width=2)=>{g.beginPath();pts.forEach((p,i)=>i?g.lineTo(...p):g.moveTo(...p));if(fill){g.closePath();g.fillStyle=color;g.globalAlpha=.23;g.fill();g.globalAlpha=1;}g.strokeStyle=color;g.lineWidth=width;g.stroke();};
+    if(kind==='voronoi'){
+      const seeds=Array.from({length:8},(_,i)=>[W*(.15+.7*(.5+.5*Math.sin(i*3.7+time*.14))),H*(.15+.7*(.5+.5*Math.cos(i*2.4+time*.12)))]);
+      voronoiCells(seeds,[0,0,W,H]).forEach((p,i)=>draw(p,C.c[i%8],true,1.4));seeds.forEach(p=>{g.fillStyle=C.ink;g.beginPath();g.arc(...p,3,0,TAU);g.fill();});
+    }else if(kind==='fastest-slide'){
+      const map=p=>[W*.1+p[0]*W*.2,H*.17+p[1]*H*.25];draw([[0,0],[4,2]].map(map),C.c[1],false,2);draw(slide.points.map(map),C.accent,false,3);const p=map(pointAtTime(track,time%track.total));g.fillStyle=C.accent;g.beginPath();g.arc(...p,6,0,TAU);g.fill();
+    }else if(kind==='soap-films'){
+      const proj=(x,y,z)=>[W/2+(x*.8-y*.45)*W*.24,H/2+(x*.18+y*.32-z*.55)*H*.4];
+      for(let i=0;i<=12;i++){const u=-1+i/6;for(let k=0;k<2;k++)draw(Array.from({length:41},(_,j)=>{const v=-1+j/20,x=k?u:v,y=k?v:u;return proj(x,y,.75*x*y+.35*Math.sin(Math.PI*(x+1)/2)*Math.sin(Math.PI*(y+1)/2)*Math.exp(-time%5));}),C.accent,false,1.4);}
+    }else if(kind==='knots'){
+      const a=time*.22,points=Array.from({length:301},(_,i)=>{const[x,y,z]=spaceKnot('figure8',i/300),v=x*Math.sin(a)+z*Math.cos(a);return [W/2+(x*Math.cos(a)-z*Math.sin(a))*W*.22,H/2+(y*.75-v*.35)*H*.23,v];});
+      points.slice(1).map((p,i)=>({a:points[i],b:p,z:p[2]})).sort((a,b)=>a.z-b.z).forEach(s=>{draw([s.a.slice(0,2),s.b.slice(0,2)],C.surface,false,9);draw([s.a.slice(0,2),s.b.slice(0,2)],C.accent,false,5);});
+    }else{
+      const tiles=family(.5+.23*Math.sin(time*.22)),pts=tiles.flatMap(x=>x.vertices),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2,s=Math.min(W,H)*.09;
+      tiles.forEach(tile=>draw(tile.vertices.map(([x,y])=>[W/2+(x-cx)*s,H/2+(y-cy)*s]),tile.reflected?C.c[2]:C.accent,true,1));
+    }
+  },{reduced:opts.reduced});
+}
+export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+  ...Object.fromEntries(['voronoi','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

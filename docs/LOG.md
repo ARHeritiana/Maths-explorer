@@ -135,3 +135,5 @@ Append one dated line per finished task at the end of the first list (before "Da
   human-reviewed. The live ChatGPT Site still needs a redeploy by the owner to show the course.
 - Fixed the same day: inline formulas on chapter pages each sat on their own line (every course), because the global rule
   `svg { display: block }` in `site/styles/explorer.css` also caught MathJax's SVGs; `mjx-container > svg` is now inline.
+
+- 18 October 2026: added five interactive gallery exhibits (Voronoi, brachistochrone race, discretised soap film, knot moves/colourings and continuous hat tiles), with direct manipulation, mathematical animations and independent model/input tests.

@@ -94,6 +94,11 @@ import { NS, css, palette, canvasIn, field, bind, loopFor } from "./object-kit.j
 import { mountComplex } from "./complex-explorer.js";
 import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery-objects.js";
+import { voronoiWorld } from './gallery-voronoi.js';
+import { fastestSlide } from './gallery-fastest.js';
+import { soapFilm } from './gallery-soap.js';
+import { knotsInSpace } from './gallery-knots.js';
+import { einsteinTiles } from './gallery-hat.js';
 
 /* ---------------------------------------------------------------- Galton */
 function galton(root, { t, reduced, lang }) {
@@ -318,7 +323,7 @@ function chaos(root, { t, reduced, lang }) {
   return loopFor(() => draw(), reduced);
 }
 
-export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, complex: mountComplex, ...GALLERY_OBJECTS };
+export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, complex: mountComplex, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles };
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

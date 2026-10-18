@@ -897,3 +897,17 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .university-page{max-width:1120px;margin-inline:auto}.university-page .breadcrumb{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem}.university-sequences{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.university-sequence{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:inherit;height:100%;box-sizing:border-box}.university-sequence h3{margin-top:0}.university-sequence p{margin:.6rem 0}.university-sequence>div{min-width:0}.university-sequence .sequence-number{flex:none}.university-sequence:hover{border-color:var(--accent)}.university-files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:1rem 0}.university-file{display:flex;flex-direction:column;gap:.5rem;justify-content:center;min-height:64px;padding:1rem;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere;text-decoration:none}.university-file span{font-size:.85em;color:var(--muted)}.university-documents{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.5rem}.university-page section{margin-bottom:2rem}@media(max-width:650px){.university-sequences,.university-files{grid-template-columns:1fr}.university-page{padding-inline:1rem}.university-sequence{padding:1rem}}
 
 [hidden],.canvas-navigation[hidden]{display:none!important}
+/* Gallery exhibits: figures stay primary; mathematical actions wrap without a view-button toolbar. */
+.exhibit-stage { position:relative; min-width:0; }
+.exhibit-controls { align-items:start; gap:12px; }
+.exhibit-controls .act-field { flex:1 1 180px; min-width:0; }
+.exhibit-controls select { max-width:100%; min-height:44px; width:100%; }
+.exhibit-subcontrols { flex:1 1 100%; min-width:0; border-top:1px solid var(--line); padding-top:12px; }
+.exhibit-subcontrols[hidden] { display:none; }
+.exhibit-presets { display:flex; flex-wrap:wrap; gap:8px; flex:1 1 100%; }
+.exhibit-presets .btn { white-space:normal; min-height:44px; }
+.exhibit-readout { min-height:3em; font-variant-numeric:tabular-nums; }
+.exhibit-notes { margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
+.exhibit-notes p { overflow-wrap:anywhere; }
+.kn-swatch { border-width:3px; min-width:64px; font-weight:700; }
+@media(max-width:540px) { .exhibit-controls .btn { flex:1 1 140px; } .exhibit-controls .act-field { flex-basis:100%; } }

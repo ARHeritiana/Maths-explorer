@@ -133,3 +133,12 @@ For visual work: serve, screenshot desktop (1440) and phone (390) in all three t
 ## Log
 
 Moved to `docs/LOG.md` (read it only when you need the history of a feature).
+
+## Gallery additions, 18 October 2026
+
+- [x] Voronoi worlds, fastest slide, soap films, knots and continuous Einstein-tile family added to the gallery.
+- Knots: closed-braid RI/II/III workbench, exact 16-step mirror certificate, Fox tricolouring and knot-table links.
+- Physics: frictionless sliding with conservation of energy; soap film is explicitly a discretised height graph.
+- Tile family: valid H7/H8 patch and explicit periodic endpoint/equilateral exceptions; not the curved Spectre.
+- Independent checks: `tests/gallery-discovery.test.mjs`; input/lifecycle checks: `tests/gallery-discovery-dom.test.mjs`.
+- Live visual QA is unavailable in this environment: supervised preview fails before startup with a proc mount error.

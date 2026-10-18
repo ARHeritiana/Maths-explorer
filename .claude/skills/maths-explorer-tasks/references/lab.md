@@ -13,3 +13,9 @@ in `home-art.js`. Colours come from `object-kit.js` `palette()`, never literals.
 
 Canvas behaviour (zoom, pan, drag, keys) comes from `canvas-navigation.js` and `interaction.js`; do not reimplement it.
 Then follow `release.md`.
+
+New discovery exhibits: `gallery-additions.js` holds their catalogue data. `gallery-models.js` holds Voronoi,
+descent and film maths; `gallery-kit.js` shares lifecycle and drawing. Their interfaces are `gallery-voronoi.js`,
+`gallery-fastest.js`, `gallery-soap.js`. Knots use `gallery-knot-model.js` and `gallery-knots.js`;
+the Einstein family uses `gallery-hat-model.js` and `gallery-hat.js`. Verify with
+`tests/gallery-discovery.test.mjs` and `tests/gallery-discovery-dom.test.mjs`.

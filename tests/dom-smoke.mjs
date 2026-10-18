@@ -15,7 +15,7 @@ globalThis.IntersectionObserver=class{observe(){}disconnect(){}};
 window.HTMLElement.prototype.getBoundingClientRect=function(){return{left:0,top:0,right:640,bottom:480,width:640,height:480};};
 window.SVGElement.prototype.getBoundingClientRect=window.HTMLElement.prototype.getBoundingClientRect;
 window.HTMLElement.prototype.setPointerCapture=function(){};window.HTMLElement.prototype.releasePointerCapture=function(){};window.HTMLElement.prototype.hasPointerCapture=()=>false;
-window.HTMLElement.prototype.scrollIntoView=function(){};
+window.HTMLElement.prototype.scrollIntoView=function(){};window.scrollTo=function(){};
 globalThis.DOMPoint=class{constructor(x,y){this.x=x;this.y=y;}matrixTransform(){return this;}};
 window.SVGElement.prototype.getScreenCTM=()=>({inverse(){return this;}});
 let segments=0;const allArgs=[];
@@ -39,5 +39,12 @@ const first=document.querySelector('#plot svg').querySelector('.gridline').getAt
 const slider=document.querySelector('#param-2');slider.value='4';slider.dispatchEvent(new Event('input'));slider.dispatchEvent(new Event('change'));
 assert.equal(document.querySelector('#plot svg').querySelector('.gridline').getAttribute('d'),first,'moving a parameter must keep the axes fixed');assert.equal(document.querySelector('#plot svg').innerHTML.match(/class="gridline"/g).length,old);
 document.querySelector('#plot').dispatchEvent(new window.WheelEvent('wheel',{deltaY:-50,clientX:320,clientY:200,cancelable:true}));assert.equal(document.querySelector('[data-view]'),null);assert.notEqual(document.querySelector('#plot svg').querySelector('.gridline').getAttribute('d'),first,'explicit zoom changes the view');
+for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein']){
+ window.location.hash='#gallery/'+id;window.dispatchEvent(new window.Event('hashchange'));
+ assert.equal(document.querySelector('#object-stage')?.dataset.object,id,'gallery route mounts selected exhibit');
+ assert.equal(document.querySelector('#quiz-preset'),null,'empty experiment presets are omitted');
+ assert.ok(document.querySelector('#object-stage canvas'));
+ assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
+}
 console.log('DOM smoke passed: complex maps, singularities, base grid, five folding controls, fixed axes, explicit zoom; canvas arguments finite.');
 dom.window.close();

@@ -35,3 +35,6 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `test_content_dependencies.py` | dependency invalidation of `mxbuild.refresh` |
 | `count_claims.py` | counts written in prose match the content |
 | `verify-arithmetic.py`, `verify-quadratic.py` | independent maths checks of two courses |
+
+| `gallery-discovery.test.mjs` | independent Voronoi, cycloid, film-area, hat and knot-invariant checks |
+| `gallery-discovery-dom.test.mjs` | five exhibits, live inputs, bilingual readouts and lifecycle cleanup |
