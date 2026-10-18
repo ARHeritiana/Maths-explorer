@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pathLength, shortestVia, bestContact, REFLECT_SETS, reflectSet, luneArea, luneTotal, starK, starTipDegrees, starSumDegrees, measuredTip, boxUnfoldings, boxPath, BOX_SETS, boxSet, mergeFinal, mergeProduct, CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible, PEGS_START, PEG_TARGETS, pegTarget, pegClass, pegJumps, pegsPossible, pegsSolve, pegsMin, permOf, inversions, bubbleSwaps, splitTotal, randomSplitTotal } from "../dist/js/challenge-puzzles2.js";
+import { pathLength, shortestVia, bestContact, REFLECT_SETS, reflectSet, luneArea, luneTotal, starK, starTipDegrees, starSumDegrees, measuredTip, boxUnfoldings, boxPath, BOX_SETS, boxSet, mergeFinal, mergeProduct, CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible, PEGS_START, PEG_TARGETS, pegTarget, pegClass, pegJumps, pegsPossible, pegsSolve, pegsMin, pegsRun, PEGS_SHIFTS, pegsWithin, pegLanding, permOf, inversions, bubbleSwaps, splitTotal, randomSplitTotal } from "../dist/js/challenge-puzzles2.js";
 
 test("reflection: a fine scan of the contact point finds the reflected length, at x = ad/(a+b); presets give whole answers", () => {
   for (const id of REFLECT_SETS) {
@@ -105,5 +105,26 @@ test("three pegs: the answers of the presets are the minimal numbers of jumps fo
     const steps = pegsSolve(T) || []; let s = PEGS_START.map((p) => [...p]);
     for (const st of steps) { assert.ok(pegJumps(s).some((j) => j.peg === st.peg && j.over === st.over && j.to.join() === st.to.join())); s[st.peg] = st.to; }
     if (steps.length) assert.ok(s.some((p) => p[0] === T[0] && p[1] === T[1]));
+  }
+});
+
+test("three pegs: the two four-jump shifts slide the whole triple by (2, 0) and (0, 2); undoing and repeating them reaches every point of each peg's class, never blocked", () => {
+  const eq = (s, t) => s.every((p, i) => p[0] === t[i][0] && p[1] === t[i][1]), add = (s, dx, dy) => s.map((p) => [p[0] + dx, p[1] + dy]);
+  const sx = pegsRun(PEGS_SHIFTS.x), sy = pegsRun(PEGS_SHIFTS.y);
+  assert.ok(eq(sx.at(-1).state, add(PEGS_START, 2, 0))); assert.ok(eq(sy.at(-1).state, add(PEGS_START, 0, 2)));
+  // apply a macro, or its reverse (the same jumps in the opposite order), checking that each jump is legal
+  const apply = (s, moves) => { for (const [peg, over] of moves) { const to = pegLanding(s[peg], s[over]); assert.ok(!s.some((p, k) => k !== peg && p[0] === to[0] && p[1] === to[1]), "blocked"); s = s.map((p, k) => (k === peg ? to : p)); } return s; };
+  for (let m = -5; m <= 5; m++) for (let n = -5; n <= 5; n++) {
+    let s = PEGS_START.map((p) => [...p]);
+    for (let i = 0; i < Math.abs(m); i++) s = apply(s, m > 0 ? PEGS_SHIFTS.x : [...PEGS_SHIFTS.x].reverse());
+    for (let i = 0; i < Math.abs(n); i++) s = apply(s, n > 0 ? PEGS_SHIFTS.y : [...PEGS_SHIFTS.y].reverse());
+    assert.ok(eq(s, add(PEGS_START, 2 * m, 2 * n)), `${m},${n}`);
+  }
+});
+test("three pegs: points occupied after at most 1, 2 and 3 jumps match an independent enumeration (lower bounds quoted in the solution)", () => {
+  for (const k of [1, 2, 3]) {
+    const pts = new Set(PEGS_START.map((p) => p.join())); let level = [PEGS_START.map((p) => [...p])];
+    for (let d = 0; d < k; d++) { const next = []; for (const s of level) for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) if (i !== j) { const to = [2 * s[j][0] - s[i][0], 2 * s[j][1] - s[i][1]]; if (s.some((p, q) => q !== i && p[0] === to[0] && p[1] === to[1])) continue; const t = s.map((p) => [...p]); t[i] = to; pts.add(to.join()); next.push(t); } level = next; }
+    assert.deepEqual([...pegsWithin(k)].sort(), [...pts].sort(), `k=${k}`);
   }
 });

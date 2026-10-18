@@ -152,6 +152,27 @@ export function pegsSolve(target, limit = 9) {
   return result;
 }
 export const pegsMin = (target) => (pegsSolve(target) || []).length;
+// Play a list of [peg, over] jumps from a position; each step records the peg's move and the position after it.
+export function pegsRun(moves, start = PEGS_START) {
+  let s = start.map((p) => [...p]); const steps = [];
+  for (const [peg, over] of moves) { const from = s[peg], to = pegLanding(s[peg], s[over]); s = s.map((p, k) => (k === peg ? to : p)); steps.push({ peg, over, from, to, state: s }); }
+  return steps;
+}
+// Four jumps that slide the whole triple by (2, 0), and four that slide it by (0, 2). Undoing a jump is the same jump again,
+// so the reversed lists slide it back; a landing point never meets another peg (it has its mover's parity class), so every
+// jump is always legal. Hence peg X reaches every point X0 + 2(m, n): exactly the points of its own parity class.
+export const PEGS_SHIFTS = { x: [[0, 1], [1, 0], [2, 0], [2, 1]], y: [[0, 2], [1, 0], [2, 0], [1, 2]] };
+// The points a peg occupies after at most k jumps (start included), breadth-first.
+export function pegsWithin(k) {
+  const key = (s) => s.map((p) => p.join(",")).join(";"), seen = new Set([key(PEGS_START)]), pts = new Set(PEGS_START.map((p) => p.join(",")));
+  let frontier = [PEGS_START];
+  for (let d = 0; d < k; d++) {
+    const next = [];
+    for (const s of frontier) for (const { peg, to } of pegJumps(s)) { const t = s.map((p) => [...p]); t[peg] = to; const kk = key(t); if (!seen.has(kk)) { seen.add(kk); next.push(t); pts.add(to.join(",")); } }
+    frontier = next;
+  }
+  return pts;
+}
 
 /* ------------------------------------------------------------------ nim: a scripted game for the animated solution */
 // A scripted game. With r = n mod (m + 1) > 0 you open with r, then answer each opponent move k with m + 1 − k.
