@@ -4511,6 +4511,7 @@ __e.default = {
   },
   views: {
     panels: ["circle", "graph"],
+    row: true,   // side by side at every width: the link from P to the curve is a horizontal line
     circle: {
       x: [-1.4, 1.4], y: [-1.4, 1.4], equal: true, pad: [26, 8, 8, 24], share: 0.42,
       xTicks: [-1, 1], yTicks: [-1, 1],
@@ -4527,6 +4528,14 @@ __e.default = {
           ],
           points: [...marks, { at: [p.cos, p.sin], color: "accent", r: 5, label: "P", dx: 10, dy: -10 }],
         };
+        if (s.fn === "cos") {
+          // cos x is read horizontally on the circle; a quarter turn about O lays it on the vertical axis, from where it is
+          // carried horizontally to the height of the cosine curve
+          const c = p.cos, n = 24;
+          scene.polys = [{ pts: Array.from({ length: n + 1 }, (_, i) => [c * Math.cos((i * PI) / (2 * n)), c * Math.sin((i * PI) / (2 * n))]), color: "obj2", width: 1.5, dash: [4, 4] }];
+          scene.lines.push({ a: [0, 0], b: [0, c], color: "obj2", width: 5, alpha: 0.55 });
+          scene.points.push({ at: [0, c], color: "obj2", r: 3.5 });
+        }
         if (m.q) {
           scene.lines.push({ a: [0, 0], b: [m.q.cos, m.q.sin], color: "c4", width: 2, dash: [6, 4] });
           scene.points.push({ at: [m.q.cos, m.q.sin], color: "c4", r: 5, label: "Q", dx: 10, dy: -10 });
@@ -4535,7 +4544,7 @@ __e.default = {
       },
     },
     graph: {
-      x: [0, 2 * PI + 0.2], y: [-1.45, 1.45], pad: [30, 12, 12, 24], zeroLabel: true,
+      x: [0, 2 * PI + 0.2], y: [-1.45, 1.45], alignY: "circle", pad: [30, 8, 12, 24], zeroLabel: true,
       xTicks: [0, PI / 2, PI, (3 * PI) / 2, 2 * PI], xLabel: (v) => T.radiansLabel((v * 180) / PI), yTicks: [-1, 0, 1],
       scene(s) {
         const f = fnOf(s), rad = (s.deg * PI) / 180, colour = AXIS_COLOUR[s.fn === "cos" ? "cos" : "sin"], y = f(rad);
@@ -4551,8 +4560,11 @@ __e.default = {
     },
     links(s) {
       const f = fnOf(s), rad = (s.deg * PI) / 180, p = T.trigValues(s.deg);
-      // P is joined to the curve point that copies one of its coordinates (same colour as that coordinate's segment).
-      return [{ from: { panel: "circle", at: [p.cos, p.sin] }, to: { panel: "graph", at: [rad, f(rad)] }, color: AXIS_COLOUR[s.fn === "cos" ? "cos" : "sin"] }];
+      // The two panels share their vertical scale, so the link is horizontal: the height of the curve point is the height it starts
+      // from. Sine: from P itself (its y-coordinate). Cosine: from (0 ; cos x), the x-coordinate of P turned a quarter turn onto the
+      // vertical axis (drawn on the circle).
+      const from = s.fn === "cos" ? [0, p.cos] : [p.cos, p.sin];
+      return [{ from: { panel: "circle", at: from }, to: { panel: "graph", at: [rad, f(rad)] }, color: AXIS_COLOUR[s.fn === "cos" ? "cos" : "sin"] }];
     },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num, p = m.p;
@@ -5561,9 +5573,9 @@ const { axisTicks } = __r("math.js");
 const { snap, clamp } = __r("lab/models/num.js");
 
 // Panels share the stage: side by side on a wide stage, stacked on a narrow one.
-function layoutPanels(W, H, specs) {
+function layoutPanels(W, H, specs, forceRow = false) {
   if (specs.length === 1) return [{ x: 0, y: 0, w: W, h: H }];
-  const row = W >= H * 1.25, share = specs[0].share ?? (row ? 0.42 : 0.5);
+  const row = forceRow || W >= H * 1.25, share = specs[0].share ?? (row ? 0.42 : 0.5);
   if (row) { const w0 = Math.round(W * share); return [{ x: 0, y: 0, w: w0, h: H }, { x: w0, y: 0, w: W - w0, h: H }]; }
   const h0 = Math.round(H * share);
   return [{ x: 0, y: 0, w: W, h: h0 }, { x: 0, y: h0, w: W, h: H - h0 }];
@@ -6559,6 +6571,7 @@ function createShell(host, exp, tpl, opts = {}) {
 
   const api = {
     root, stage, get index() { return index; },
+    get view() { return view; },   // the template's view (tests read its panels)
     get mission() { return mission(); },
     getState: () => state,
     setState: (partial) => userApply(partial),
@@ -6699,10 +6712,23 @@ function mount(env) {
   let views = {};
   const ctx = { fmt, lang: fmt.lang, stage };
 
+  // `views.row` keeps the panels side by side at every width. A panel with `alignY: "<other panel>"` takes the vertical scale
+  // of that panel (same height in pixels for the same value, so a horizontal line joins equal values); its own camera then zooms
+  // and pans horizontally only, the vertical follows the other panel.
   function layout() {
-    const rects = layoutPanels(stage.W, stage.H, specs);
+    let rects;
+    if (exp.views.row && stage.W < stage.H * 1.25) {
+      // a tall stage (a phone) kept in a row: half the width each, in a centred band (the full height would only add empty grid)
+      const h = Math.min(stage.H, Math.round(stage.W * 0.8)), top = Math.round((stage.H - h) / 2);
+      rects = layoutPanels(stage.W, h, [{ ...specs[0], share: 0.5 }, ...specs.slice(1)], true).map((r) => ({ ...r, y: r.y + top }));
+    } else rects = layoutPanels(stage.W, stage.H, specs, !!exp.views.row);
     views = {};
-    ids.forEach((id, i) => { views[id] = panelView(stage, id, rects[i], specs[i]); });
+    ids.forEach((id, i) => {
+      const spec = specs[i], o = spec.alignY && views[spec.alignY];
+      if (!o) { views[id] = panelView(stage, id, rects[i], spec); return; }
+      const first = panelView(stage, id, rects[i], spec, { axis: "x" });
+      views[id] = panelView(stage, id, rects[i], { ...spec, y: [o.iY(first.top + first.height), o.iY(first.top)] }, { axis: "x" });
+    });
   }
   layout();
 

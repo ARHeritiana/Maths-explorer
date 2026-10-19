@@ -260,3 +260,10 @@ of section 2 for the laboratory as published; the blocking behaviour is kept, of
 | Background drag | panned at once | moves nothing at the default view; once the view is zoomed or moved it pans (Shift, Alt or middle drag always pans); a 3D view still turns |
 | Zoom | a transform of the whole bitmap: text, handles and lines grew or shrank, and the grid, drawn for the fixed range only, ended at the old panel edge | the camera acts on the world ranges (`plot.js` `makeView(rect, spec, cam)`, `panelView`): X = c + k (X₀ − c) + o around the centre c of the panel's frame. The grid (`gridTicks`) is recomputed for the visible range from the experiment's anchor and step (π/2 steps survive), doubling or halving the step to stay readable, so it always fills the panel; text and handles keep their size. Panels that must stay aligned share a camera (`transform`: before and after; `data`: dots and box, horizontal only). Buttons +, − and a reset button (shown only when the view has moved) sit in the corner of the stage; `+ − 0`, Shift + arrows and a double click on the background still work. A handle out of sight after a zoom is neither drawn nor grabbed |
 | Equal-scale panels | the designed range was centred in the panel, leaving blank bands without grid (unit circle) | the range of the axis that has room grows to fill the panel (formerly the `widen` option, now always on and removed) |
+
+Trig correspondence (owner request, 19 October 2026): the circle and the graph share one vertical scale (`alignY: "circle"` on
+the graph panel; `family.js` gives it the circle's vertical mapping, its own camera zooms horizontally only) and stay side by
+side at every width (`views.row`; on a tall stage both get half the width in a centred band). The link to the curve is therefore
+horizontal: from P for the sine; for the cosine, the x-coordinate of P is turned a quarter turn about O onto the vertical axis
+(dashed arc, ghost segment) and carried horizontally from (0 ; cos x). Checked in `tests/trigonometry.test.mjs` and
+`tests/dom-smoke.mjs` (same height in both panels, at rest and zoomed).

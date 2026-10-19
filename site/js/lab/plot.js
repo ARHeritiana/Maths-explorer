@@ -5,9 +5,9 @@ import { axisTicks } from "../math.js";
 import { snap, clamp } from "./models/num.js";
 
 // Panels share the stage: side by side on a wide stage, stacked on a narrow one.
-export function layoutPanels(W, H, specs) {
+export function layoutPanels(W, H, specs, forceRow = false) {
   if (specs.length === 1) return [{ x: 0, y: 0, w: W, h: H }];
-  const row = W >= H * 1.25, share = specs[0].share ?? (row ? 0.42 : 0.5);
+  const row = forceRow || W >= H * 1.25, share = specs[0].share ?? (row ? 0.42 : 0.5);
   if (row) { const w0 = Math.round(W * share); return [{ x: 0, y: 0, w: w0, h: H }, { x: w0, y: 0, w: W - w0, h: H }]; }
   const h0 = Math.round(H * share);
   return [{ x: 0, y: 0, w: W, h: h0 }, { x: 0, y: h0, w: W, h: H - h0 }];

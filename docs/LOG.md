@@ -149,3 +149,4 @@ Append one dated line per finished task at the end of the first list (before "Da
 
 - 2026-10-19: Completed Fourier learning triangle: signal approximation, coefficients, Fejér comparison, DFT contour tracing, six university lessons and four PDF editions; independent mathematical and DOM audits, build freshness checks, keyboard contour creation.
 - 2026-10-19: Laboratory interaction rework (owner request): free exploration (every control in every mission, nothing waits; `gated` kept for future tests), forgiving grab radius, plain wheel scrolls the page, zoom and pan act on world ranges so the grid always fills the panel, zoom buttons; tests updated (`docs/LAB_DESIGN.md` section 13).
+- 2026-10-19: Trig experiment: circle and graph share one vertical scale, so the link to the curve is horizontal (sine from P, cosine from the x-coordinate turned onto the vertical axis by a quarter-turn arc); panels stay side by side on phones.

@@ -569,6 +569,7 @@ export function createShell(host, exp, tpl, opts = {}) {
 
   const api = {
     root, stage, get index() { return index; },
+    get view() { return view; },   // the template's view (tests read its panels)
     get mission() { return mission(); },
     getState: () => state,
     setState: (partial) => userApply(partial),

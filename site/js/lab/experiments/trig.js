@@ -62,6 +62,7 @@ export default {
   },
   views: {
     panels: ["circle", "graph"],
+    row: true,   // side by side at every width: the link from P to the curve is a horizontal line
     circle: {
       x: [-1.4, 1.4], y: [-1.4, 1.4], equal: true, pad: [26, 8, 8, 24], share: 0.42,
       xTicks: [-1, 1], yTicks: [-1, 1],
@@ -78,6 +79,14 @@ export default {
           ],
           points: [...marks, { at: [p.cos, p.sin], color: "accent", r: 5, label: "P", dx: 10, dy: -10 }],
         };
+        if (s.fn === "cos") {
+          // cos x is read horizontally on the circle; a quarter turn about O lays it on the vertical axis, from where it is
+          // carried horizontally to the height of the cosine curve
+          const c = p.cos, n = 24;
+          scene.polys = [{ pts: Array.from({ length: n + 1 }, (_, i) => [c * Math.cos((i * PI) / (2 * n)), c * Math.sin((i * PI) / (2 * n))]), color: "obj2", width: 1.5, dash: [4, 4] }];
+          scene.lines.push({ a: [0, 0], b: [0, c], color: "obj2", width: 5, alpha: 0.55 });
+          scene.points.push({ at: [0, c], color: "obj2", r: 3.5 });
+        }
         if (m.q) {
           scene.lines.push({ a: [0, 0], b: [m.q.cos, m.q.sin], color: "c4", width: 2, dash: [6, 4] });
           scene.points.push({ at: [m.q.cos, m.q.sin], color: "c4", r: 5, label: "Q", dx: 10, dy: -10 });
@@ -86,7 +95,7 @@ export default {
       },
     },
     graph: {
-      x: [0, 2 * PI + 0.2], y: [-1.45, 1.45], pad: [30, 12, 12, 24], zeroLabel: true,
+      x: [0, 2 * PI + 0.2], y: [-1.45, 1.45], alignY: "circle", pad: [30, 8, 12, 24], zeroLabel: true,
       xTicks: [0, PI / 2, PI, (3 * PI) / 2, 2 * PI], xLabel: (v) => T.radiansLabel((v * 180) / PI), yTicks: [-1, 0, 1],
       scene(s) {
         const f = fnOf(s), rad = (s.deg * PI) / 180, colour = AXIS_COLOUR[s.fn === "cos" ? "cos" : "sin"], y = f(rad);
@@ -102,8 +111,11 @@ export default {
     },
     links(s) {
       const f = fnOf(s), rad = (s.deg * PI) / 180, p = T.trigValues(s.deg);
-      // P is joined to the curve point that copies one of its coordinates (same colour as that coordinate's segment).
-      return [{ from: { panel: "circle", at: [p.cos, p.sin] }, to: { panel: "graph", at: [rad, f(rad)] }, color: AXIS_COLOUR[s.fn === "cos" ? "cos" : "sin"] }];
+      // The two panels share their vertical scale, so the link is horizontal: the height of the curve point is the height it starts
+      // from. Sine: from P itself (its y-coordinate). Cosine: from (0 ; cos x), the x-coordinate of P turned a quarter turn onto the
+      // vertical axis (drawn on the circle).
+      const from = s.fn === "cos" ? [0, p.cos] : [p.cos, p.sin];
+      return [{ from: { panel: "circle", at: from }, to: { panel: "graph", at: [rad, f(rad)] }, color: AXIS_COLOUR[s.fn === "cos" ? "cos" : "sin"] }];
     },
     formula(s, { fmt }) {
       const m = model(s), num = fmt.num, p = m.p;

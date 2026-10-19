@@ -96,6 +96,13 @@ for(const ref of ['quadratic/vertex','trig/quadrants','sequences/difference','de
   const kb=JSON.stringify(A.getState());hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true,cancelable:true}));flush();
   assert.ok(!/NaN|undefined|Infinity/.test(L.textContent),ref+': finite text');
 }
+// trig: the circle and the graph share their vertical scale, so the link from the circle to the curve is horizontal: from P for the
+// sine, from (0 ; cos x) (the x-coordinate turned onto the vertical axis) for the cosine; it stays horizontal after a zoom
+await go('#lab/trig/quadrants');{const A=document.querySelector('.lab2').__lab;
+  for(const zoom of [1,1.25])for(const fn of ['sin','cos'])for(const deg of [30,130,250]){
+    if(zoom!==1)A.stage.view.zoom(zoom);A.setState({deg,fn});flush();const v=A.view.views(),r=deg*Math.PI/180,val=fn==='sin'?Math.sin(r):Math.cos(r);
+    assert.ok(Math.abs(v.circle.Y(val)-v.graph.Y(val))<1e-6,`trig ${fn} ${deg}°: the same value is at the same height in both panels`);}
+  A.stage.view.reset();flush();}
 // the 3D template: a drag on the empty background turns the view (no element added, state and 2D camera untouched), arrows turn it
 // with the canvas focused, 0 brings it back; a wheel zooms; the angles never depend on the state
 await go('#lab/space-lines/parallel');{const L=document.querySelector('.lab2'),A=L.__lab,cv=L.querySelector('canvas'),cam=A.stage.camera3,rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});

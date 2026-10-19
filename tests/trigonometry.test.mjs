@@ -30,8 +30,10 @@ test('the circle point, the curve point and the associated point share the same 
     const P=circle.points.find(p=>p.label==='P').at;
     close(P[0],Math.cos(rad));close(P[1],Math.sin(rad));
     const G=graph.points[0].at;close(G[0],rad);close(G[1],Math[fn](rad));
-    // the linked segment joins P to the curve point
-    const link=trig.views.links(s)[0];close(link.from.at[0],P[0]);close(link.to.at[1],G[1]);
+    // the link is horizontal: it leaves the circle at the height of the plotted value (P for the sine; for the cosine, the point
+    // (0 ; cos x) where the quarter turn lays the x-coordinate of P) and reaches the curve point
+    const link=trig.views.links(s)[0];close(link.from.at[1],link.to.at[1]);close(link.to.at[1],G[1]);
+    if(fn==='sin'){close(link.from.at[0],P[0]);}else{close(link.from.at[0],0);const arc=circle.polys[0].pts;close(arc[0][0],P[0]);close(arc.at(-1)[1],P[0]);}
     const Q=circle.points.find(p=>p.label==='Q');
     assert.equal(!!Q,assoc!=='none');
     if(Q){const a=relations[assoc].transform(deg)*Math.PI/180;close(Q.at[0],Math.cos(a));close(Q.at[1],Math.sin(a));}

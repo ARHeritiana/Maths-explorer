@@ -9,10 +9,23 @@ export function mount(env) {
   let views = {};
   const ctx = { fmt, lang: fmt.lang, stage };
 
+  // `views.row` keeps the panels side by side at every width. A panel with `alignY: "<other panel>"` takes the vertical scale
+  // of that panel (same height in pixels for the same value, so a horizontal line joins equal values); its own camera then zooms
+  // and pans horizontally only, the vertical follows the other panel.
   function layout() {
-    const rects = layoutPanels(stage.W, stage.H, specs);
+    let rects;
+    if (exp.views.row && stage.W < stage.H * 1.25) {
+      // a tall stage (a phone) kept in a row: half the width each, in a centred band (the full height would only add empty grid)
+      const h = Math.min(stage.H, Math.round(stage.W * 0.8)), top = Math.round((stage.H - h) / 2);
+      rects = layoutPanels(stage.W, h, [{ ...specs[0], share: 0.5 }, ...specs.slice(1)], true).map((r) => ({ ...r, y: r.y + top }));
+    } else rects = layoutPanels(stage.W, stage.H, specs, !!exp.views.row);
     views = {};
-    ids.forEach((id, i) => { views[id] = panelView(stage, id, rects[i], specs[i]); });
+    ids.forEach((id, i) => {
+      const spec = specs[i], o = spec.alignY && views[spec.alignY];
+      if (!o) { views[id] = panelView(stage, id, rects[i], spec); return; }
+      const first = panelView(stage, id, rects[i], spec, { axis: "x" });
+      views[id] = panelView(stage, id, rects[i], { ...spec, y: [o.iY(first.top + first.height), o.iY(first.top)] }, { axis: "x" });
+    });
   }
   layout();
 
