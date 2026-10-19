@@ -3,7 +3,7 @@
 // twice; `show` shades the gap (or the overlap) that the eye misses. Pure maths: models/tiles.js.
 import * as M from "../models/tiles.js";
 
-const { model, PAIRS, CURRY, pieces } = M;
+const { model, PAIRS, CURRY, CURRY_CHEAT, pieces, cheatRect } = M;
 const COLORS = { I: "c1", II: "c2", III: "c3", IV: "c4" };
 const ROMAN = ["I", "II", "III", "IV"];
 const BOX = [11.4, 5.4];   // the figure is scaled to fit this box, whatever the size of the pieces
@@ -37,8 +37,9 @@ function squareScene(s, fmt, stage) {
   const m = model(s), P = pieces(s.a, s.b), { S, W } = P, L = arrange([[S, S], [W, s.a]], stage, 1.2), k = L.k;
   const [[x0, y0], [xr, yr]] = L.at;
   const polys = [], texts = [], lines = [...grid(S, S, x0, y0, k), ...grid(W, s.a, xr, yr, k)];
+  const rect = s.show ? P.rect : cheatRect(s.a, s.b);   // the presentation drawing bends the pieces to hide the gap
   ROMAN.forEach((r) => {
-    for (const [pts, ox, oy] of [[P.square[r], x0, y0], [P.rect[r], xr, yr]]) {
+    for (const [pts, ox, oy] of [[P.square[r], x0, y0], [rect[r], xr, yr]]) {
       const q = place(pts, ox, oy, k);
       polys.push({ pts: q, fill: COLORS[r], alpha: 0.32, color: COLORS[r], width: 1.6 });
       texts.push({ at: centroid(q), text: r, color: COLORS[r], anchor: "center", size: 15 });
@@ -59,7 +60,7 @@ function curryScene(s, fmt, stage) {
   const polys = [], texts = [], lines = [];
   const tone = { red: "neg", blue: "c1", l7: "c3", l8: "c7" };
   ["A", "B"].forEach((key, i) => {
-    const [ox, y0] = L.at[i], arr = CURRY[key];
+    const [ox, y0] = L.at[i], arr = (s.show ? CURRY : CURRY_CHEAT)[key];
     lines.push(...grid(13, 5, ox, y0, k));
     for (const name of ["red", "blue", "l7", "l8"]) polys.push({ pts: place(arr[name], ox, y0, k), fill: tone[name], alpha: 0.4, color: tone[name], width: 1.6 });
     if (arr.hole) polys.push({ pts: place(arr.hole, ox, y0, k), fill: "surface", alpha: 1, color: "ink", width: 2 });
@@ -100,8 +101,8 @@ export default {
       options: [{ value: "square", label: ["Carré et rectangle", "Square and rectangle"] }, { value: "curry", label: ["Triangle de Curry", "Curry’s triangle"] }],
     },
     show: {
-      kind: "choice", key: "show", label: ["Écart caché", "Hidden gap"],
-      options: [{ value: 0, label: ["Masqué", "Hidden"] }, { value: 1, label: ["Montré", "Shown"] }],
+      kind: "choice", key: "show", label: ["Dessin", "Drawing"],
+      options: [{ value: 0, label: ["Présentation habituelle", "Usual presentation"] }, { value: 1, label: ["Vraies pièces", "True pieces"] }],
     },
   },
   views: {
@@ -116,11 +117,20 @@ export default {
       },
     },
     formula(s, { fmt }) {
+      if (s.variant === "curry" && !s.show) return fmt.fr ? "Deux triangles 13 × 5, les mêmes quatre pièces, et pourtant un trou" : "Two 13 × 5 triangles, the same four pieces, and yet a hole";
       if (s.variant === "curry") return fmt.fr ? "Pentes : rouge 3/8, bleu 2/5, hypoténuse 5/13 : trois pentes différentes" : "Slopes: red 3/8, blue 2/5, hypotenuse 5/13: three different slopes";
       const m = model(s);
       return `${s.a} × ${m.W} − ${m.S}² = ${m.rectArea} − ${m.squareArea} = ${m.excess > 0 ? m.excess : "−" + -m.excess}`;
     },
     readout(s, { fmt }) {
+      const later = fmt.fr ? "à découvrir" : "to discover";
+      if (s.variant === "curry" && !s.show) {
+        return [
+          [["Triangle 13 × 5", "Triangle 13 × 5"], fmt.fr ? "32,5 carreaux" : "32.5 cells"],
+          [["Trou du second triangle", "Hole of the second triangle"], fmt.fr ? "1 carreau" : "1 cell"],
+          [["D’où vient le trou ?", "Where does the hole come from?"], later],
+        ];
+      }
       if (s.variant === "curry") {
         return [
           [["Pièces (dans A et dans B)", "Pieces (in A and in B)"], fmt.fr ? "32 carreaux" : "32 cells"],
@@ -132,7 +142,7 @@ export default {
       return [
         [["Aire du carré", "Area of the square"], `${m.squareArea}`],
         [["Aire du rectangle", "Area of the rectangle"], `${m.rectArea}`],
-        [["Pentes triangle, trapèze", "Slopes triangle, trapezoid"], `${frac(s.b, m.S)}${fmt.fr ? " ; " : ", "}${frac(s.a - s.b, s.a)}`],
+        [["Pentes triangle, trapèze", "Slopes triangle, trapezoid"], s.show ? `${frac(s.b, m.S)}${fmt.fr ? " ; " : ", "}${frac(s.a - s.b, s.a)}` : later],
       ];
     },
   },
@@ -152,14 +162,14 @@ export default {
     {
       id: "zoom", kind: "explore", set: { a: 5, b: 3, variant: "square", show: 0 }, unlock: ["show"],
       prompt: [
-        "Les pièces sont dessinées avec leurs vraies coordonnées. Agrandis la figure autour de la diagonale du rectangle (boutons + et −), puis montre l’écart caché. Que vois-tu ?",
-        "The pieces are drawn with their true coordinates. Zoom on the diagonal of the rectangle (buttons + and −), then show the hidden gap. What do you see?",
+        "Le dessin habituel du paradoxe est truqué : quelques coins y sont déplacés d’une fraction de carreau pour que tout paraisse s’emboîter. Passe aux vraies pièces (mêmes dimensions que dans le carré), puis agrandis la diagonale du rectangle avec les boutons + et −. Que vois-tu ?",
+        "The usual drawing of the paradox is a cheat: a few corners are moved by a fraction of a cell so that everything seems to fit. Switch to the true pieces (the same sizes as in the square), then zoom on the diagonal of the rectangle with the + and − buttons. What do you see?",
       ],
-      hint: ["Le choix « Écart caché : Montré » colore la région que les pièces ne couvrent pas.", "The choice “Hidden gap: Shown” colours the region the pieces do not cover."],
+      hint: ["Le choix « Dessin : Vraies pièces » dessine les pièces exactes et colore la région qu’elles ne couvrent pas.", "The choice “Drawing: True pieces” draws the exact pieces and colours the region they do not cover."],
       goal: (s) => s.show === 1,
       done: [
-        "Le long de la « diagonale », les bords des pièces ne sont pas alignés : ils laissent un parallélogramme très aplati d’aire 1. C’est le carreau « en plus ».",
-        "Along the “diagonal” the edges of the pieces are not aligned: they leave a very flat parallelogram of area 1. That is the “extra” cell.",
+        "Avec les vraies pièces, les bords ne sont pas alignés le long de la « diagonale » : ils laissent un parallélogramme très aplati d’aire 1. C’est le carreau « en plus », que le dessin habituel cachait en déformant les pièces.",
+        "With the true pieces the edges are not aligned along the “diagonal”: they leave a very flat parallelogram of area 1. That is the “extra” cell, which the usual drawing hid by bending the pieces.",
       ],
     },
     {
@@ -178,16 +188,16 @@ export default {
     {
       id: "curry", kind: "contrast", set: { a: 5, b: 3, variant: "curry", show: 0 },
       variants: [
-        { label: ["Cas A : écart masqué", "Case A: gap hidden"], set: { show: 0 } },
-        { label: ["Cas B : écart montré", "Case B: gap shown"], set: { show: 1 } },
+        { label: ["Cas A : présentation habituelle", "Case A: usual presentation"], set: { show: 0 } },
+        { label: ["Cas B : vraies pièces", "Case B: true pieces"], set: { show: 1 } },
       ],
       prompt: [
-        "Les deux « triangles » 13 × 5 sont faits des mêmes quatre pièces, pourtant B a un trou. Compare les cas A et B : le grand côté est-il vraiment droit ?",
-        "Both 13 × 5 “triangles” are made of the same four pieces, yet B has a hole. Compare cases A and B: is the long side really straight?",
+        "Les deux « triangles » 13 × 5 semblent faits des mêmes quatre pièces, pourtant le second a un trou. Compare la présentation habituelle (cas A) et les vraies pièces (cas B) : le grand côté est-il vraiment droit ?",
+        "Both 13 × 5 “triangles” seem made of the same four pieces, yet the second has a hole. Compare the usual presentation (case A) and the true pieces (case B): is the long side really straight?",
       ],
       done: [
-        "Les pentes 3/8 et 2/5 sont différentes : le grand côté de A est légèrement creusé, celui de B légèrement bombé. La différence des deux aires est exactement le carreau du trou.",
-        "The slopes 3/8 and 2/5 differ: the long side of A bends slightly inwards, that of B slightly outwards. The difference of the two areas is exactly the cell of the hole.",
+        "Avec les vraies pièces, les pentes 3/8 et 2/5 sont différentes : le grand côté du premier triangle est légèrement creusé, celui du second légèrement bombé. La différence des deux aires est exactement le carreau du trou ; la présentation habituelle déforme les pièces pour rendre ce côté droit.",
+        "With the true pieces the slopes 3/8 and 2/5 differ: the long side of the first triangle bends slightly inwards, that of the second slightly outwards. The difference of the two areas is exactly the cell of the hole; the usual presentation bends the pieces to make that side straight.",
       ],
     },
     {
@@ -215,8 +225,8 @@ export default {
     },
   ],
   conclusion: [
-    "Un dessin peut cacher une erreur d’une unité d’aire dans une figure de 65 carreaux. Pour savoir si des pièces s’emboîtent, on compare des pentes, ou on calcule un déterminant : le puzzle du carré et du rectangle n’est exact que si a/b vaut le nombre d’or, qui n’est pas rationnel.",
-    "A drawing can hide an error of one unit of area in a figure of 65 cells. To know whether pieces fit, compare slopes or compute a determinant: the square and rectangle puzzle is exact only if a/b equals the golden ratio, which is not rational.",
+    "Le dessin habituel du paradoxe est truqué, et même le dessin exact cache une erreur d’une unité d’aire dans une figure de 65 carreaux. Pour savoir si des pièces s’emboîtent, on compare des pentes, ou on calcule un déterminant : le puzzle du carré et du rectangle n’est exact que si a/b vaut le nombre d’or, qui n’est pas rationnel.",
+    "The usual drawing of the paradox is a cheat, and even the exact drawing hides an error of one unit of area in a figure of 65 cells. To know whether pieces fit, compare slopes or compute a determinant: the square and rectangle puzzle is exact only if a/b equals the golden ratio, which is not rational.",
   ],
   history: {
     title: ["Cassini · 1680", "Cassini · 1680"],

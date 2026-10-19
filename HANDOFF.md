@@ -98,6 +98,8 @@ Contract: `docs/LAB_DESIGN.md`. One engine, seven templates, missions, lab refer
 
 - [x] Proof and geometric chance (owner request, 19 October 2026): experiments `tiles` (64 = 65 puzzle and Curry's triangle, group "a figure is not a proof"), `euler-primes`, `fermat`, `circle-regions` (group "a pattern is not a proof", one subsection each), `buffon`, `bertrand` (group "geometric probability", one subsection each); groups about an idea live in `SECTION_INFO` of `site/js/lab/registry.js` (an experiment's `section` and `sub`). Gallery: four colour map (`gallery-four-colour*.js`). Challenges: `cookies` (stars and bars), `jugs` (two jugs, Bézout). Lighter pages: lab index and experiment page (previous / next, list folded), two cards per row on phones for challenges and gallery, pathway programmes folded. Owner to check: the MacTutor links of the new history boxes (Cassini, Buffon, Bertrand, the four colour history topic) were written without network access [VERIFY].
 
+- [x] Second batch (owner request, 19 October 2026): challenges `nails` (picture hanging; shortest windings found by exhaustive search, repeated in the tests), `fly` (two trains, animated statement and solution), `cheryl` (Cheryl's birthday, four date lists), `sumproduct` (Freudenthal; (4, 13) for x + y ≤ 65 to 300, none for 62). The tiles experiment now opens on the usual cheated drawing (corners moved onto the diagonal so the pieces seem to fit) and shows the true pieces only with "Drawing: True pieces".
+
 ### 4. Scale in priority order
 Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympiad, rest of Malagasy, IB, university basics last. Each chapter goes through the same pipeline.
 

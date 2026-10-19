@@ -1067,3 +1067,17 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .fc-erase { --fc: var(--surface); }
 .programme > summary p { font-weight: 400; }
 @media (max-width: 560px) { .filter { min-height: 40px; padding: 0 12px; font-size: 0.9rem; } }
+
+/* Challenges cheryl, nails, sumproduct: calendar grid, removal table, map of pairs. */
+.ch-says { margin: 4px 0 10px; padding-left: 1.4em; }
+.ch-grid { display: grid; gap: 4px; align-items: center; margin: 8px 0; overflow-x: auto; }
+.ch-day { text-align: center; color: var(--muted); font-weight: 700; font-size: 0.9rem; }
+.ch-day.is-unique { color: var(--neg); }
+.ch-month { font-weight: 700; padding-right: 6px; }
+.ch-date { min-height: 44px; min-width: 0; padding: 0; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); font-weight: 700; }
+.ch-date.is-unique { border-color: var(--neg); }
+.ch-date.is-crossed { opacity: 0.4; text-decoration: line-through; background: var(--sunken); }
+.nl-table table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.nl-table th, .nl-table td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+.nl-table tr.nl-bad td { color: var(--neg); font-weight: 700; }
+.sp-map { display: block; width: 100%; height: auto; border-radius: var(--r-sm); margin-top: 8px; }

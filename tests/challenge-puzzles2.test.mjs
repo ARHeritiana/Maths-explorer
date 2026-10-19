@@ -12,6 +12,10 @@ import { splitTotal, randomSplitTotal } from "../dist/js/challenges/piles/maths.
 import { sharings, allSharings, code } from "../dist/js/challenges/cookies/maths.js";
 import { JUG_PRESETS, parseJugs, jugsSolve, jugsMin, apply, reachable } from "../dist/js/challenges/jugs/maths.js";
 import { VARIANTS as CV } from "../dist/js/challenges/registry.js";
+import { NAIL_VARIANTS, SHORTEST, parseNails, meets } from "../dist/js/challenges/nails/maths.js";
+import { FLY_PRESETS, parseFly, flyDistance, legs } from "../dist/js/challenges/fly/maths.js";
+import { CHERYL_SETS, cherylAnswer } from "../dist/js/challenges/cheryl/maths.js";
+import { SP_BOUNDS, spSolution } from "../dist/js/challenges/sumproduct/maths.js";
 
 test("reflection: a fine scan of the contact point finds the reflected length, at x = ad/(a+b); presets give whole answers", () => {
   for (const id of REFLECT_SETS) {
@@ -172,4 +176,65 @@ test("jugs: the fewest operations agree with an independent relaxation, every li
     if (path) { let s = [0, 0]; for (const step of path) { s = apply(step.move, s, a, b); assert.deepEqual(s, step.state); } assert.ok(s[0] === t || s[1] === t); }
   }
   assert.equal(jugsMin(3, 5, 4), 6);
+});
+
+test("nails: each stored winding meets its rule, and an exhaustive search finds no shorter word", () => {
+  // independent free reduction and rule check (not the module's), then every word of smaller length (first letter fixed: by
+  // renaming the nails and reversing a nail's direction, any word becomes one that starts with nail 1 clockwise)
+  const red = (w) => { const out = []; for (const c of w) out.at(-1) === -c ? out.pop() : out.push(c); return out; };
+  const good = (w, n, k) => { for (let m = 0; m < 1 << n; m++) { let c = 0; for (let i = 0; i < n; i++) c += (m >> i) & 1; const gone = red(w.filter((x) => !((m >> (Math.abs(x) - 1)) & 1))).length === 0; if (gone !== c >= k) return false; } return true; };
+  for (const v of NAIL_VARIANTS) {
+    const [n, k] = parseNails(v), w = SHORTEST[v];
+    assert.ok(good(w, n, k) && meets(w, n, k), v);
+    assert.equal(CV.nails.answer({ nails: v }), w.length);
+    const letters = []; for (let i = 1; i <= n; i++) letters.push(i, -i);
+    let shorter = false;
+    const rec = (word, L) => { if (shorter) return; if (word.length === L) { if (good(word, n, k)) shorter = true; return; } for (const c of letters) { if (!word.length && c !== 1) continue; if (word.length && word.at(-1) === -c) continue; word.push(c); rec(word, L); word.pop(); } };
+    for (let L = 1; L < w.length && !shorter; L++) rec([], L);
+    assert.ok(!shorter, `${v}: a word shorter than ${w.length} works`);
+  }
+});
+
+test("fly: the distance equals the sum of the legs (geometric series), for every preset", () => {
+  for (const p of FLY_PRESETS) {
+    const [D, v1, v2, w] = parseFly(p), d = flyDistance(D, v1, v2, w), L = legs(D, v1, v2, w, 1e-12, 2000);
+    assert.ok(Number.isInteger(d), p);
+    assert.ok(Math.abs(L.reduce((t, l) => t + l.length, 0) - d) < 1e-6, `${p}: legs add up to ${d}`);
+    // each leg ends where the train it meets is at that time
+    for (const [i, l] of L.slice(0, 6).entries()) { const train = i % 2 === 0 ? D - v2 * l.t1 : v1 * l.t1; assert.ok(Math.abs(l.to - train) < 1e-9); }
+    assert.equal(CV.fly.answer({ trip: p }), d);
+  }
+});
+
+test("Cheryl: an independent reading of the dialogue (knowledge sets) gives a single date for every list", () => {
+  // model the knowledge explicitly: Albert's information set is the dates of his month, Bernard's the dates of his day
+  for (const [id, D] of Object.entries(CHERYL_SETS)) {
+    const same = (a, b) => a[0] === b[0] && a[1] === b[1];
+    const A = (W, d) => W.filter((x) => x[0] === d[0]), B = (W, d) => W.filter((x) => x[1] === d[1]);
+    const knows = (set) => set.length === 1;
+    let W = D.filter((d) => !knows(A(D, d)) && A(D, d).every((e) => !knows(B(D, e))));
+    W = W.filter((d) => !knows(B(D, d)) && knows(B(W, d)));
+    W = W.filter((d) => knows(A(W, d)));
+    assert.equal(W.length, 1, id);
+    assert.ok(same(W[0], cherylAnswer(D)), id);
+    assert.equal(CV.cheryl.answer({ set: id }), W[0][1]);
+  }
+  assert.deepEqual(cherylAnswer(CHERYL_SETS.orig), [7, 16]);
+});
+
+test("sum and product: brute force over the dialogue gives (4, 13) for N >= 65 and nothing for N = 62", () => {
+  const solve = (N) => {
+    const P = []; for (let x = 2; x < N; x++) for (let y = x + 1; x + y <= N; y++) P.push([x, y]);
+    const prodSplits = (p, list) => list.filter(([a, b]) => a * b === p).length, sumPairs = (s, list) => list.filter(([a, b]) => a + b === s);
+    const S1 = P.filter(([x, y]) => sumPairs(x + y, P).every(([a, b]) => prodSplits(a * b, P) > 1));
+    const P2 = S1.filter(([x, y]) => prodSplits(x * y, S1) === 1);
+    return P2.filter(([x, y]) => sumPairs(x + y, P2).length === 1);
+  };
+  for (const N of SP_BOUNDS) {
+    const r = solve(N), mine = spSolution(N);
+    assert.equal(r.length <= 1, true);
+    assert.deepEqual(mine, r[0] || null, `N = ${N}`);
+    assert.equal(CV.sumproduct.answer({ N }), r[0] ? r[0][0] * r[0][1] : 0);
+  }
+  assert.deepEqual(spSolution(100), [4, 13]);
 });

@@ -25,6 +25,20 @@ export const CURRY = {
   },
 };
 
+// The usual presentation of the paradox is a cheat: the drawing moves a few corners by a fraction of a cell so that the pieces
+// seem to fill the shape exactly. In the rectangle the two inner corners go onto the true diagonal; in Curry's triangles the
+// corners on the line y = 3 (A) or y = 2 (B) slide onto the true hypotenuse. The tests check that the cheated pieces tile
+// the shape and differ from the true ones.
+export function cheatRect(a, b) {
+  const S = a + b, W = a + S, P = [a, a * (1 - a / W)], Q = [W - a, (a * a) / W];
+  const move = (pts) => pts.map(([x, y]) => (x === a && y === b ? P : x === W - a && y === a - b ? Q : [x, y]));
+  const r = pieces(a, b).rect;
+  return { I: move(r.I), III: move(r.III), II: move(r.II), IV: move(r.IV) };
+}
+const bendA = ([x, y]) => (y === 3 && x >= 8 && x <= 13 ? [x, 3 + (40 / 13 - 3) * ((13 - x) / 5)] : [x, y]);
+const bendB = ([x, y]) => (y === 2 && x >= 5 && x <= 13 ? [x, 2 - (2 - 25 / 13) * ((13 - x) / 8)] : [x, y]);
+export const CURRY_CHEAT = Object.fromEntries(["A", "B"].map((k) => [k, Object.fromEntries(Object.entries(CURRY[k]).map(([n, p]) => [n, p && p.map(k === "A" ? bendA : bendB)]))]));
+
 // Shoelace formula: signed area of a polygon.
 export function area(pts) {
   let s = 0;

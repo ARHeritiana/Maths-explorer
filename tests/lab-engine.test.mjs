@@ -945,6 +945,14 @@ test("tiles: the excess is a² − ab − b², ±1 for consecutive Fibonacci num
   for (let a = 1; a < 60; a++) for (let b = 1; b <= a; b++) assert.notEqual(a * a - a * b - b * b, 0, "never exact for whole numbers");
   for (const k of ["A", "B"]) near(["red", "blue", "l7", "l8"].reduce((t, p) => t + TI.area(TI.CURRY[k][p]), 0), 32, 1e-12);
   near(TI.area(TI.CURRY.B.hole), 1, 1e-12);
+  // the usual presentation is a cheat: its pieces tile the rectangle (and Curry's triangle A) exactly, unlike the true ones
+  for (const [a, b] of TI.PAIRS) {
+    const c = TI.cheatRect(a, b), t = TI.pieces(a, b).rect;
+    near(["I", "II", "III", "IV"].reduce((s, r) => s + Math.abs(TI.area(c[r])), 0), a * (2 * a + b), 1e-9, "cheated pieces fill the rectangle");
+    assert.ok(Math.abs(Math.abs(TI.area(c.I)) - Math.abs(TI.area(t.I))) > 1e-3, "the cheated pieces are not the true ones");
+  }
+  near(["red", "blue", "l7", "l8"].reduce((s, p) => s + TI.area(TI.CURRY_CHEAT.A[p]), 0), 32.5, 1e-9, "cheated A fills the true triangle");
+  near(["red", "blue", "l7", "l8"].reduce((s, p) => s + TI.area(TI.CURRY_CHEAT.B[p]), 0) + TI.area(TI.CURRY_CHEAT.B.hole), 32.5, 1e-9, "cheated B and its hole fill it");
 });
 
 test("euler-primes: n² + n + c is prime for n ≤ c − 2 and equals c² at n = c − 1, for every lucky c", () => {

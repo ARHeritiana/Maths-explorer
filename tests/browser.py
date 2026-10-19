@@ -56,8 +56,8 @@ def walk_experiment(page, name):
         page.wait_for_function("() => document.querySelector('.lab2-card').classList.contains('is-done')")
         if i < count-1: page.locator('.lab2-nav .primary').click()
     assert page.locator('.lab2-argument').is_visible(), 'the argument comes after the last mission'
-CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','cookies','jugs','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','inversions','piles']
-CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','1001','6','7','900','3','8','17','2','45','5','24','180','5','719','0','0','13','45']
+CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','cookies','jugs','fly','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','nails','inversions','piles','cheryl','sumproduct']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','1001','6','150','7','900','3','8','17','2','45','5','24','180','5','719','0','0','4','13','45','16','52']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -206,7 +206,7 @@ with sync_playwright() as p:
     assert page.locator('html').get_attribute('lang') == 'en'
     assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == len(EXPERIMENTS) + len(CHALLENGES)
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',20),('olympiad',10),('all',30)]:
+    for kind,count in [('play',21),('olympiad',13),('all',34)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
