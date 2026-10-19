@@ -1,15 +1,12 @@
-// Experiment `euler-primes` (template figure, no axes): f(n) = n² + n + 41 gives forty primes in a row, then stops. State
-// {c, n}: one of Euler's lucky numbers c and how far the grid of values n = 0, …, 59 has been revealed. Pure maths:
+// Experiment `euler-primes` (template calculation): f(n) = n² + n + 41 gives forty primes in a row, then stops. State
+// {c, n}: one of Euler's lucky numbers c and the selected value n = 0, …, 59. Pure maths:
 // models/euler-primes.js, primes.js.
 import * as M from "../models/euler-primes.js";
-import { group, writeFactors } from "../models/primes.js";
+import { group, writeFactors, factor } from "../models/primes.js";
 
 const { model, LUCKY, CELLS, f } = M;
-const COLS = 10;
-const cell = (k) => { const x = k % COLS, y = 6 - Math.floor(k / COLS); return [[x + 0.06, y - 0.94], [x + 0.94, y - 0.94], [x + 0.94, y - 0.06], [x + 0.06, y - 0.06]]; };
-
 export default {
-  id: "euler-primes", template: "figure", section: "patterns", sub: ["Le polynôme d’Euler", "Euler’s polynomial"],
+  id: "euler-primes", template: "calculation", section: "patterns", sub: ["Le polynôme d’Euler", "Euler’s polynomial"],
   symbol: "n²", group: ["Arithmétique", "Number theory"],
   title: ["Quarante nombres premiers, et puis ?", "Forty primes, and then?"],
   short: ["Polynôme d’Euler n² + n + 41", "Euler’s polynomial n² + n + 41"],
@@ -27,24 +24,10 @@ export default {
     c: { kind: "choice", key: "c", label: ["Constante c dans n² + n + c", "Constant c in n² + n + c"], options: LUCKY.map((c) => ({ value: c, label: [`${c}`, `${c}`] })) },
   },
   views: {
-    panels: ["figure"],
-    figure: {
-      x: [0, 10], y: [-0.4, 6.9], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s, { fmt }) {
-        const m = model(s), polys = [], texts = [];
-        for (let k = 0; k < CELLS; k++) {
-          const shown = k <= s.n, q = cell(k), tone = !shown ? "line" : m.primes[k] ? "pos" : "neg";
-          polys.push({ pts: q, fill: shown ? tone : "surface", alpha: shown ? (k === s.n ? 0.75 : 0.32) : 1, color: k === s.n ? "ink" : tone, width: k === s.n ? 2.4 : 1 });
-          texts.push({ at: [q[0][0] + 0.44, q[0][1] + 0.34], text: `${k}`, anchor: "center", size: 13, color: shown ? "ink" : "muted" });
-        }
-        const key = fmt.t(["vert : f(n) premier · rouge : f(n) composé", "green: f(n) prime · red: f(n) composite"]);
-        texts.push({ at: [0.05, -0.25], text: key, size: 14, color: "muted" });
-        return { polys, texts };
-      },
-      measure(s, { fmt }) {
-        const m = model(s);
-        return { text: `f(${s.n}) = ${group(m.value, fmt.fr)}${m.prime ? "" : " = " + writeFactors(m.value, fmt.fr)}`, color: m.prime ? "pos" : "neg" };
-      },
+    panels: [],
+    calculation(s) {
+      const m = model(s), mn = x => ["mn", String(x)];
+      return { expression: ["mrow", ["mi", "f"], ["mo", "("], mn(s.n), ["mo", ")"], ["mo", "="], ["msup", mn(s.n), mn(2)], ["mo", "+"], mn(s.n), ["mo", "+"], mn(s.c)], value: m.value, factors: factor(m.value), prime: m.prime };
     },
     formula(s, { fmt }) {
       const m = model(s);
@@ -75,8 +58,8 @@ export default {
     {
       id: "hunt", kind: "explore", set: { c: 41, n: 9 }, unlock: ["n"],
       prompt: [
-        "Augmente n et regarde la grille se remplir. Trouve le premier n pour lequel f(n) n’est pas premier.",
-        "Increase n and watch the grid fill. Find the first n for which f(n) is not prime.",
+        "Fais varier n et observe la valeur et sa décomposition. Trouve le premier n pour lequel f(n) n’est pas premier.",
+        "Change n and inspect the value and its factorisation. Find the first n for which f(n) is not prime.",
       ],
       hint: ["La série dure très longtemps : va au delà de 35.", "The run lasts a long time: go beyond 35."],
       goal: (s, m) => !m.prime,
@@ -104,8 +87,8 @@ export default {
         { label: ["Cas B : n² + n + 17", "Case B: n² + n + 17"], set: { c: 17 } },
       ],
       prompt: [
-        "Euler a remarqué d’autres constantes : n² + n + 17 est premier pour n = 0 à 15. Compare les deux grilles jusqu’à n = 16. Où chaque série s’arrête-t-elle ?",
-        "Euler noticed other constants: n² + n + 17 is prime for n = 0 to 15. Compare the two grids up to n = 16. Where does each run stop?",
+        "Euler a remarqué d’autres constantes : n² + n + 17 est premier pour n = 0 à 15. Compare les valeurs et leurs décompositions jusqu’à n = 16. Où chaque série s’arrête-t-elle ?",
+        "Euler noticed other constants: n² + n + 17 is prime for n = 0 to 15. Compare the values and their factorisations up to n = 16. Where does each run stop?",
       ],
       done: [
         "La série de n² + n + 17 s’arrête à n = 16, où f(16) = 289 = 17². Chaque série s’arrête au plus tard à n = c − 1, où f(c − 1) = c².",

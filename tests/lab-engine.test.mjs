@@ -39,7 +39,7 @@ const isPair = (p) => Array.isArray(p) && p.length === 2 && p.every((x) => typeo
 
 test("the registry lists the registered experiments with consistent ids, templates and references", async () => {
   assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines", "fourier-series", "fourier-drawing", "tiles", "euler-primes", "fermat", "circle-regions", "buffon", "bertrand"]);
-  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space", "fourier"], "eight templates are in use");
+  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space", "fourier", "calculation"], "nine templates are in use");
   assert.equal(new Set(EXPERIMENTS.map((e) => e.id)).size, EXPERIMENTS.length);
   for (const e of EXPERIMENTS) {
     assert.ok(e.template in TEMPLATES && e.template in TEMPLATE_INFO, e.id);

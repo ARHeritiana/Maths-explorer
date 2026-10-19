@@ -188,3 +188,10 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 ## Knot preview rendering, 19 October 2026
 
 - [x] Replaced faceted tubes and local overpass patches with the preview’s simple solid strand and depth-ordered crossing gaps. The card and explorer share `gallery-knot-render.js`; rotation, catalogue, deformations and projection colouring remain available.
+
+## Interaction surfaces, 19 October 2026
+
+- [x] Fermat and Euler use native MathML expressions, values and prime factors without a drawing, canvas controls or touch interception.
+- [x] Identical cookies can be dragged or tapped to distinct children, transferred, or returned to the tray; keyboard allocation and count-only sharing records are retained.
+- [x] Mission text has no nested scrolling viewport, height limit or scroll containment.
+- [x] Buffon and Bertrand have continuous animated drop/draw controls and speed from 1 to 60 samples per second; only finished trials enter the tally. Changing parameters or missions pauses the run; reduced motion uses an explicit one-sample action and stops active motion when enabled. Counts include all trials; only the last samples remain drawn.

@@ -158,3 +158,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 - 2026-10-19: Direct canvas interaction preference: compact folded challenge settings and optional example selects, validated custom fly/jug data, direct jug tap/drag filling/pouring/emptying, fly scene playback/scrubbing with analytic late-time collisions and honest fine-oscillation graph envelopes, view-dependent 3D crossing separation. Two independent audits closed all findings. make check FAST=1 exits successfully, with 215 Node tests and DOM integration; local managed preview cannot mount proc.
 
 - 2026-10-19: Use the card preview’s solid strand and depth-ordered gaps in the rotatable knot explorer; share the renderer, preserving the catalogue, camera and projection colouring.
+
+- 2026-10-19: Formula-only Fermat/Euler experiments, direct identical-cookie sharing among distinct children, document-flow mission text, and speed-adjustable continuous animated Buffon/Bertrand trials. Independent arithmetic and interaction audits; browser preview remains blocked by the managed proc mount.

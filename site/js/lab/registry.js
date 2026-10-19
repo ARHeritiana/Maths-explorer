@@ -27,6 +27,7 @@ import bertrand from "./experiments/bertrand.js";
 export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand];
 
 export const TEMPLATES = {
+  calculation: () => import("./templates/calculation.js"),
   fourier: () => import("./templates/fourier.js"),
   family: () => import("./templates/family.js"),
   process: () => import("./templates/process.js"),
@@ -39,6 +40,7 @@ export const TEMPLATES = {
 
 // Type of activity, shown as the group titles of the #lab index.
 export const TEMPLATE_INFO = {
+  calculation: { title: ["Calculer et décomposer", "Calculate and factor"], blurb: ["Faire varier un nombre et observer son écriture exacte.", "Change a number and inspect its exact expression."] },
   fourier: {title:['Décomposer et reconstruire','Decompose and reconstruct'],blurb:['Des signaux périodiques aux contours tracés par des cercles.','From periodic signals to outlines drawn by circles.']},
   family: { title: ["Faire varier un paramètre", "Change a parameter"], blurb: ["Une famille de fonctions : que change chaque coefficient ?", "A family of functions: what does each coefficient change?"] },
   process: { title: ["Rapprocher jusqu’à la limite", "Approach the limit"], blurb: ["Un procédé indexé par n ou h : vers quoi tend-il ?", "A process indexed by n or h: what does it approach?"] },

@@ -2014,6 +2014,7 @@ __e.default = {
   duration: 10,
   level: ["Première · Terminale", "Intermediate · Advanced"],
   prereq: ["Fréquences, probabilités, aire d’un disque", "Frequencies, probability, area of a disc"],
+  stream: { label: ["Dessiner", "Draw continuously"], unit: ["cordes / seconde", "chords / second"] },
   model: M,
   state: { method: "ends", runs: 0, seed: 6 },
   controls: {
@@ -2038,12 +2039,16 @@ __e.default = {
     panels: ["figure"],
     figure: {
       x: [-1.2, 1.2], y: [-1.2, 1.2], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s) {
+      scene(s, { progress = null } = {}) {
         const m = model(s);
         const lines = m.shown.map((c) => ({ a: c.a, b: c.b, color: c.hit ? "obj2" : "muted", width: c.hit ? 1.8 : 1.2, alpha: c.hit ? 0.95 : 0.55 }));
         const polys = [{ pts: TRI, fill: "pos", alpha: 0.08, color: "pos", width: 2, dash: [6, 4] }];
         const circles = [{ c: [0, 0], r: 1, color: "ink", width: 2 }];
         if (s.method === "midpoint") circles.push({ c: [0, 0], r: 0.5, color: "pos", width: 1.5, dash: [4, 4] });
+        if (progress !== null && s.runs < MAX_RUNS) {
+          const next = model({ ...s, runs: s.runs + 1 }).shown.at(-1), p = progress * progress * (3 - 2 * progress);
+          lines.push({ a: next.a, b: next.a.map((x, i) => x + p * (next.b[i] - x)), color: "accent", width: 3, alpha: 1 });
+        }
         return { circles, polys, lines };
       },
       measure(s, { fmt }) {
@@ -2158,6 +2163,7 @@ __e.default = {
   duration: 10,
   level: ["Terminale · Supérieur", "Advanced · University"],
   prereq: ["Fréquences, probabilités, intégrale de sin (pour la preuve)", "Frequencies, probability, the integral of sin (for the proof)"],
+  stream: { label: ["Laisser tomber", "Drop continuously"], unit: ["aiguilles / seconde", "needles / second"] },
   model: M,
   state: { L: 1, runs: 0, seed: 4 },
   controls: {
@@ -2175,10 +2181,15 @@ __e.default = {
     panels: ["figure"],
     figure: {
       x: [0, FLOOR[0]], y: [-0.3, FLOOR[1] + 0.3], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s) {
+      scene(s, { progress = null } = {}) {
         const m = model(s);
         const lines = Array.from({ length: FLOOR[1] + 1 }, (_, j) => ({ a: [0, j], b: [FLOOR[0], j], color: "line", width: 2 }));
         for (const n of m.shown) lines.push({ a: n.a, b: n.b, color: n.hit ? "obj2" : "muted", width: n.hit ? 2.4 : 1.6, alpha: n.hit ? 1 : 0.7 });
+        if (progress !== null && s.runs < MAX_RUNS) {
+          const next = model({ ...s, runs: s.runs + 1 }).shown.at(-1), p = 1 - (1 - progress) ** 3;
+          const offset = 1.2 * (1 - p);
+          lines.push({ a: [next.a[0], next.a[1] + offset], b: [next.b[0], next.b[1] + offset], color: "accent", width: 3, alpha: .25 + .75 * p });
+        }
         return { lines };
       },
       measure(s, { fmt }) {
@@ -2219,7 +2230,7 @@ __e.default = {
         "Lance au moins 1 000 aiguilles. Une aiguille orange touche une rayure. Vers quelle valeur la fréquence se stabilise-t-elle ?",
         "Drop at least 1,000 needles. An orange needle touches a stripe. Which value does the frequency settle near?",
       ],
-      hint: ["Les boutons s’additionnent ; « Nouvelle série » repart de zéro.", "The buttons add up; “New series” starts again from zero."],
+      hint: ["« Laisser tomber » lance une série continue. Règle la vitesse ; « Nouvelle série » repart de zéro.", "“Drop continuously” starts a continuous series. Adjust the speed; “New series” starts again from zero."],
       goal: (s) => s.runs >= 1000,
       done: [
         "La fréquence se stabilise près de 0,64. Or 2/π ≈ 0,637 : c’est la probabilité qu’une aiguille de longueur 1 touche une rayure. L’estimation 2/f approche alors π, lentement.",
@@ -3034,18 +3045,15 @@ __e.default = {
 
 });
 __d("lab/experiments/euler-primes.js", function (__e, __r) {
-// Experiment `euler-primes` (template figure, no axes): f(n) = n² + n + 41 gives forty primes in a row, then stops. State
-// {c, n}: one of Euler's lucky numbers c and how far the grid of values n = 0, …, 59 has been revealed. Pure maths:
+// Experiment `euler-primes` (template calculation): f(n) = n² + n + 41 gives forty primes in a row, then stops. State
+// {c, n}: one of Euler's lucky numbers c and the selected value n = 0, …, 59. Pure maths:
 // models/euler-primes.js, primes.js.
 const M = __r("lab/models/euler-primes.js");
-const { group, writeFactors } = __r("lab/models/primes.js");
+const { group, writeFactors, factor } = __r("lab/models/primes.js");
 
 const { model, LUCKY, CELLS, f } = M;
-const COLS = 10;
-const cell = (k) => { const x = k % COLS, y = 6 - Math.floor(k / COLS); return [[x + 0.06, y - 0.94], [x + 0.94, y - 0.94], [x + 0.94, y - 0.06], [x + 0.06, y - 0.06]]; };
-
 __e.default = {
-  id: "euler-primes", template: "figure", section: "patterns", sub: ["Le polynôme d’Euler", "Euler’s polynomial"],
+  id: "euler-primes", template: "calculation", section: "patterns", sub: ["Le polynôme d’Euler", "Euler’s polynomial"],
   symbol: "n²", group: ["Arithmétique", "Number theory"],
   title: ["Quarante nombres premiers, et puis ?", "Forty primes, and then?"],
   short: ["Polynôme d’Euler n² + n + 41", "Euler’s polynomial n² + n + 41"],
@@ -3063,24 +3071,10 @@ __e.default = {
     c: { kind: "choice", key: "c", label: ["Constante c dans n² + n + c", "Constant c in n² + n + c"], options: LUCKY.map((c) => ({ value: c, label: [`${c}`, `${c}`] })) },
   },
   views: {
-    panels: ["figure"],
-    figure: {
-      x: [0, 10], y: [-0.4, 6.9], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s, { fmt }) {
-        const m = model(s), polys = [], texts = [];
-        for (let k = 0; k < CELLS; k++) {
-          const shown = k <= s.n, q = cell(k), tone = !shown ? "line" : m.primes[k] ? "pos" : "neg";
-          polys.push({ pts: q, fill: shown ? tone : "surface", alpha: shown ? (k === s.n ? 0.75 : 0.32) : 1, color: k === s.n ? "ink" : tone, width: k === s.n ? 2.4 : 1 });
-          texts.push({ at: [q[0][0] + 0.44, q[0][1] + 0.34], text: `${k}`, anchor: "center", size: 13, color: shown ? "ink" : "muted" });
-        }
-        const key = fmt.t(["vert : f(n) premier · rouge : f(n) composé", "green: f(n) prime · red: f(n) composite"]);
-        texts.push({ at: [0.05, -0.25], text: key, size: 14, color: "muted" });
-        return { polys, texts };
-      },
-      measure(s, { fmt }) {
-        const m = model(s);
-        return { text: `f(${s.n}) = ${group(m.value, fmt.fr)}${m.prime ? "" : " = " + writeFactors(m.value, fmt.fr)}`, color: m.prime ? "pos" : "neg" };
-      },
+    panels: [],
+    calculation(s) {
+      const m = model(s), mn = x => ["mn", String(x)];
+      return { expression: ["mrow", ["mi", "f"], ["mo", "("], mn(s.n), ["mo", ")"], ["mo", "="], ["msup", mn(s.n), mn(2)], ["mo", "+"], mn(s.n), ["mo", "+"], mn(s.c)], value: m.value, factors: factor(m.value), prime: m.prime };
     },
     formula(s, { fmt }) {
       const m = model(s);
@@ -3111,8 +3105,8 @@ __e.default = {
     {
       id: "hunt", kind: "explore", set: { c: 41, n: 9 }, unlock: ["n"],
       prompt: [
-        "Augmente n et regarde la grille se remplir. Trouve le premier n pour lequel f(n) n’est pas premier.",
-        "Increase n and watch the grid fill. Find the first n for which f(n) is not prime.",
+        "Fais varier n et observe la valeur et sa décomposition. Trouve le premier n pour lequel f(n) n’est pas premier.",
+        "Change n and inspect the value and its factorisation. Find the first n for which f(n) is not prime.",
       ],
       hint: ["La série dure très longtemps : va au delà de 35.", "The run lasts a long time: go beyond 35."],
       goal: (s, m) => !m.prime,
@@ -3140,8 +3134,8 @@ __e.default = {
         { label: ["Cas B : n² + n + 17", "Case B: n² + n + 17"], set: { c: 17 } },
       ],
       prompt: [
-        "Euler a remarqué d’autres constantes : n² + n + 17 est premier pour n = 0 à 15. Compare les deux grilles jusqu’à n = 16. Où chaque série s’arrête-t-elle ?",
-        "Euler noticed other constants: n² + n + 17 is prime for n = 0 to 15. Compare the two grids up to n = 16. Where does each run stop?",
+        "Euler a remarqué d’autres constantes : n² + n + 17 est premier pour n = 0 à 15. Compare les valeurs et leurs décompositions jusqu’à n = 16. Où chaque série s’arrête-t-elle ?",
+        "Euler noticed other constants: n² + n + 17 is prime for n = 0 to 15. Compare the values and their factorisations up to n = 16. Where does each run stop?",
       ],
       done: [
         "La série de n² + n + 17 s’arrête à n = 16, où f(16) = 289 = 17². Chaque série s’arrête au plus tard à n = c − 1, où f(c − 1) = c².",
@@ -3345,19 +3339,15 @@ __e.default = {
 
 });
 __d("lab/experiments/fermat.js", function (__e, __r) {
-// Experiment `fermat` (template figure, no axes): the numbers 2^e + 1 for e = 1, …, 32. Fermat believed every 2^(2^n) + 1
-// prime from five cases; Euler factored the sixth. State {e}: the exponent reached in the grid. Pure maths: models/fermat.js,
+// Experiment `fermat` (template calculation): the numbers 2^e + 1 for e = 1, …, 32. Fermat believed every 2^(2^n) + 1
+// prime from five cases; Euler factored the sixth. State {e}: the selected exponent. Pure maths: models/fermat.js,
 // primes.js.
 const M = __r("lab/models/fermat.js");
 const { group, writeFactors, sup } = __r("lab/models/primes.js");
 
-const { model, MAX_E, isPowerOfTwo } = M;
-const COLS = 8;
-const cell = (e) => { const i = e - 1, x = (i % COLS) * 1.25, y = 5.1 - Math.floor(i / COLS) * 1.25; return [[x + 0.08, y - 1.07], [x + 1.17, y - 1.07], [x + 1.17, y - 0.08], [x + 0.08, y - 0.08]]; };
-const power = (e) => `2${sup(e)} + 1`;
-
+const { model, MAX_E } = M;
 __e.default = {
-  id: "fermat", template: "figure", section: "patterns", sub: ["Les nombres de Fermat", "Fermat numbers"],
+  id: "fermat", template: "calculation", section: "patterns", sub: ["Les nombres de Fermat", "Fermat numbers"],
   symbol: "Fₙ", group: ["Arithmétique", "Number theory"],
   title: ["Cinq cas, puis une erreur de Fermat", "Five cases, then Fermat’s mistake"],
   short: ["Nombres de Fermat 2^(2ⁿ) + 1", "Fermat numbers 2^(2ⁿ) + 1"],
@@ -3374,28 +3364,15 @@ __e.default = {
     e: { kind: "slider", key: "e", label: ["Exposant e dans 2^e + 1", "Exponent e in 2^e + 1"], min: 1, max: MAX_E, step: 1, digits: 0 },
   },
   views: {
-    panels: ["figure"],
-    figure: {
-      x: [0, 10], y: [-0.5, 5.9], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s, { fmt }) {
-        const m = model(s), polys = [], texts = [];
-        for (let e = 1; e <= MAX_E; e++) {
-          const shown = e <= s.e, q = cell(e), tone = !shown ? "line" : m.primes[e - 1] ? "pos" : "neg";
-          polys.push({ pts: q, fill: shown ? tone : "surface", alpha: shown ? (e === s.e ? 0.75 : 0.3) : 1, color: isPowerOfTwo(e) ? "obj2" : e === s.e ? "ink" : tone, width: isPowerOfTwo(e) || e === s.e ? 2.6 : 1 });
-          texts.push({ at: [q[0][0] + 0.55, q[0][1] + 0.62], text: `${e}`, anchor: "center", size: 14, color: shown ? "ink" : "muted" });
-          if (isPowerOfTwo(e)) texts.push({ at: [q[0][0] + 0.55, q[0][1] + 0.25], text: `F${Math.log2(e)}`, anchor: "center", size: 12, color: "obj2" });
-        }
-        texts.push({ at: [0.05, -0.3], text: fmt.t(["case e : 2^e + 1 (vert premier, rouge composé) ; cadre orange : nombre de Fermat", "cell e: 2^e + 1 (green prime, red composite); orange frame: Fermat number"]), size: 13, color: "muted" });
-        return { polys, texts };
-      },
-      measure(s, { fmt }) {
-        const m = model(s);
-        return { text: `${power(s.e)} = ${group(m.N, fmt.fr)}${m.prime ? "" : " = " + writeFactors(m.N, fmt.fr)}`, color: m.prime ? "pos" : "neg" };
-      },
+    panels: [],
+    calculation(s) {
+      const m = model(s), mn = x => ["mn", String(x)];
+      const exponent = m.fermat ? ["msup", mn(2), mn(m.index)] : mn(s.e);
+      return { expression: ["mrow", ...(m.fermat ? [["msub", ["mi", "F"], mn(m.index)], ["mo", "="]] : []), ["msup", mn(2), exponent], ["mo", "+"], mn(1)], value: m.N, factors: m.factors, prime: m.prime };
     },
     formula(s, { fmt }) {
       const m = model(s), fr = fmt.fr;
-      return m.fermat ? `F${m.index} = 2^(2${sup(m.index)}) + 1 = ${power(s.e)} = ${group(m.N, fr)}` : `${power(s.e)} = ${group(m.N, fr)}${fr ? " (pas un nombre de Fermat)" : " (not a Fermat number)"}`;
+      return m.fermat ? `F${m.index} = 2^(2${sup(m.index)}) + 1 = 2${sup(s.e)} + 1 = ${group(m.N, fr)}` : `2${sup(s.e)} + 1 = ${group(m.N, fr)}${fr ? " (pas un nombre de Fermat)" : " (not a Fermat number)"}`;
     },
     readout(s, { fmt }) {
       const m = model(s), fr = fmt.fr;
@@ -3422,10 +3399,10 @@ __e.default = {
     {
       id: "f5", kind: "explore", set: { e: 16 }, unlock: ["e"],
       prompt: [
-        "Pousse l’exposant jusqu’à 32 pour atteindre F5. Regarde aussi les cases intermédiaires : quels exposants donnent des nombres premiers ?",
-        "Push the exponent up to 32 to reach F5. Look at the cells in between too: which exponents give primes?",
+        "Pousse l’exposant jusqu’à 32 pour atteindre F5. Teste aussi les exposants intermédiaires : quels exposants donnent des nombres premiers ?",
+        "Push the exponent up to 32 to reach F5. Try the exponents in between too: which exponents give primes?",
       ],
-      hint: ["F5 est la case 32, la dernière.", "F5 is cell 32, the last one."],
+      hint: ["F5 correspond à l’exposant 32.", "F5 corresponds to exponent 32."],
       goal: (s) => s.e === 32,
       done: [
         "2³² + 1 = 641 × 6 700 417 : la régularité observée sur cinq cas était fausse. Entre 1 et 32, seuls les exposants 1, 2, 4, 8 et 16 donnent des nombres premiers.",
@@ -7270,6 +7247,7 @@ const bertrand = __r("lab/experiments/bertrand.js").default;
 const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand];
 
 const TEMPLATES = {
+  calculation: () => Promise.resolve(__r("lab/templates/calculation.js")),
   fourier: () => Promise.resolve(__r("lab/templates/fourier.js")),
   family: () => Promise.resolve(__r("lab/templates/family.js")),
   process: () => Promise.resolve(__r("lab/templates/process.js")),
@@ -7282,6 +7260,7 @@ const TEMPLATES = {
 
 // Type of activity, shown as the group titles of the #lab index.
 const TEMPLATE_INFO = {
+  calculation: { title: ["Calculer et décomposer", "Calculate and factor"], blurb: ["Faire varier un nombre et observer son écriture exacte.", "Change a number and inspect its exact expression."] },
   fourier: {title:['Décomposer et reconstruire','Decompose and reconstruct'],blurb:['Des signaux périodiques aux contours tracés par des cercles.','From periodic signals to outlines drawn by circles.']},
   family: { title: ["Faire varier un paramètre", "Change a parameter"], blurb: ["Une famille de fonctions : que change chaque coefficient ?", "A family of functions: what does each coefficient change?"] },
   process: { title: ["Rapprocher jusqu’à la limite", "Approach the limit"], blurb: ["Un procédé indexé par n ou h : vers quoi tend-il ?", "A process indexed by n or h: what does it approach?"] },
@@ -7474,7 +7453,7 @@ function createShell(host, exp, tpl, opts = {}) {
   }
 
   let view = null;
-  const stage = createStage(figure, {
+  const stage = (tpl.createStage || createStage)(figure, {
     lang: fmt.lang,
     palette: opts.palette,
     fontScale: slide ? 1.3 : 1,
@@ -7489,10 +7468,12 @@ function createShell(host, exp, tpl, opts = {}) {
   });
   const formulaEl = el("p", "lab2-formula");
   formulaEl.setAttribute("aria-hidden", "true");
+  formulaEl.hidden = !!tpl.createStage;
   readoutHost.append(formulaEl);
   const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
+  readout.el.hidden = !!tpl.createStage;
   const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
-  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))));
+  if (full && !tpl.createStage) figure.append(el("p", "lab2-keys", t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
@@ -7575,6 +7556,21 @@ function createShell(host, exp, tpl, opts = {}) {
       wrap.append(name, group);
       controlsEl.append(wrap);
       controlNodes[id] = { wrap, buttons, c };
+      if (id === "run" && view.stream) {
+        const stream = view.stream, streamBtn = el("button", "lab2-stream-toggle secondary"), speed = document.createElement("input"), speedLabel = el("label", "lab2-stream-speed"), speedValue = el("output");
+        streamBtn.type = "button";
+        const paint = () => { setText(streamBtn, stream.playing ? t(T("pause")) : stage.reduced() ? t(["Un tirage", "One sample"]) : t(exp.stream.label)); setAttr(streamBtn, "aria-pressed", String(stream.playing)); };
+        stream.onChange = paint; paint();
+        speed.type = "range"; speed.min = 1; speed.max = 60; speed.step = 1; speed.value = stream.rate; speed.id = `lab2-${exp.id}-speed`;
+        speedLabel.htmlFor = speed.id; speedLabel.append(el("span", "", t(exp.stream.unit)), speedValue, speed);
+        setText(speedValue, stream.rate); setAttr(speed, "aria-valuetext", `${stream.rate} ${t(exp.stream.unit)}`);
+        streamBtn.addEventListener("click", () => { stream.toggle(); paint(); });
+        speed.addEventListener("input", () => { stream.setRate(speed.value); setText(speedValue, stream.rate); setAttr(speed, "aria-valuetext", `${stream.rate} ${t(exp.stream.unit)}`); });
+        wrap.prepend(streamBtn, speedLabel);
+        const note = el("p", "muted", t([`Le total cumule tous les tirages ; seuls les ${exp.model.SHOWN} derniers restent dessinés.`, `The total includes every trial; only the last ${exp.model.SHOWN} remain drawn.`]));wrap.append(note);
+        controlNodes[id].streamBtn = streamBtn; controlNodes[id].speed = speed;
+        players.set("stream", stream);
+      }
     }
   }
   function paintPlay(btn, on) {
@@ -7667,6 +7663,7 @@ function createShell(host, exp, tpl, opts = {}) {
       if (n.input) n.input.disabled = !on;
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
+      if (n.streamBtn) { n.streamBtn.disabled = !on; n.speed.disabled = !on; }
       // Gated: before the learner has predicted there is nothing to operate, so locked controls are not shown at all.
       // Free: every control is shown, except where the experiment shows only the mission's (`onlyUnlocked`: its controls act on
       // different figures) and in a slide, where the player's control area holds only the mission's controls.
@@ -7898,9 +7895,10 @@ function createShell(host, exp, tpl, opts = {}) {
       const head = exp.views.table.head;
       table.update({ ...exp.views.table.data(s, ctx), head: (typeof head === "function" ? head(s, ctx) : head).map((h) => t(h)) });
     }
-    setAttr(stage.canvas, "aria-label", `${t(exp.title)}. ${formulaEl._v}`);
+    setAttr(stage.canvas || stage.wrap, "aria-label", `${t(exp.title)}. ${formulaEl._v}`);
     for (const n of Object.values(controlNodes)) {
       const c = n.c;
+      if (n.streamBtn) n.streamBtn.disabled = !unlocked.has("run") || s.runs >= exp.model.MAX_RUNS;
       if (n.input) {
         const v = sliderValue(c, s);
         if (document.activeElement !== n.input && n.input._v !== v) { n.input._v = v; n.input.value = v; }
@@ -7951,6 +7949,44 @@ function createShell(host, exp, tpl, opts = {}) {
 
 __e.KINDS = KINDS;
 __e.createShell = createShell;
+});
+__d("lab/templates/calculation.js", function (__e, __r) {
+// Formula-only experiment surface: native MathML, exact values and prime factors. No drawing or gesture interception.
+const NS = 'http://www.w3.org/1998/Math/MathML';
+const node = (tree) => {
+  const [tag,...children] = tree, el = document.createElementNS(NS,tag);
+  for(const child of children)el.append(Array.isArray(child)?node(child):document.createTextNode(String(child)));
+  return el;
+};
+function createStage(host,{onFrame,label}){
+  const wrap=document.createElement('div');wrap.className='lab2-calculation';wrap.tabIndex=0;
+  wrap.setAttribute('role','group');wrap.setAttribute('aria-label',label);host.append(wrap);
+  let frame=0,alive=true;
+  return {wrap,canvas:null,setHandles(){},reduced:()=>true,
+    invalidate(){if(alive&&!frame)frame=requestAnimationFrame(()=>{frame=0;if(alive)onFrame();});},
+    destroy(){alive=false;cancelAnimationFrame(frame);wrap.remove();},
+  };
+}
+function mount({exp,stage,fmt,getState}){
+  const expression=document.createElementNS(NS,'math');expression.setAttribute('display','block');
+  const value=document.createElement('p');value.className='lab2-number-value';
+  const factors=document.createElementNS(NS,'math');factors.setAttribute('display','block');
+  const kind=document.createElement('p');kind.className='lab2-number-kind';
+  stage.wrap.append(expression,value,factors,kind);
+  let key='';
+  return {handles:[],draw(){
+    const d=exp.views.calculation(getState(),{fmt}),next=JSON.stringify(d);if(key===next)return;key=next;
+    expression.replaceChildren(node(d.expression));
+    value.textContent='= '+fmt.full(d.value);
+    factors.hidden=d.prime;factors.setAttribute('style',d.prime?'display:none':'display:block');
+    const terms=d.factors.flatMap(([p,k],i)=>[...(i?[["mo","×"]]:[]),k>1?["msup",["mn",fmt.full(p)],["mn",k]]:["mn",fmt.full(p)]]);
+    factors.replaceChildren(node(['mrow',['mn',fmt.full(d.value)],['mo','='],...terms]));
+    kind.dataset.prime=String(d.prime);kind.textContent=fmt.t(d.prime?['Nombre premier','Prime number']:['Nombre composé','Composite number']);
+  },destroy(){}};
+}
+
+__e.createStage = createStage;
+__e.mount = mount;
 });
 __d("lab/templates/chance.js", function (__e, __r) {
 // Template `chance`: a random experiment repeated many times. A histogram of observed frequencies (and, only when the
@@ -8111,11 +8147,13 @@ __e.mount = mount;
 __d("lab/templates/figure.js", function (__e, __r) {
 // Template `figure`: a dynamic geometric figure with an invariant to discover. One equal-scale panel, two to four points as
 // handles (or none), the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
+const { samplingStream } = __r("lab/templates/stream.js");
 const { panelView, drawAxes, drawScene, drawHandles, drawBadge, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
   const spec = exp.views.figure, ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
+  const stream = exp.stream ? samplingStream(env) : null;
   let view = null;
   const layout = () => { view = panelView(stage, "figure", { x: 0, y: 0, w: stage.W, h: stage.H }, spec); return view; };
   layout();
@@ -8123,14 +8161,15 @@ function mount(env) {
 
   function draw(g) {
     const v = layout(), s = getState(), other = ghost();
+    ctx.progress = stream?.progress ?? null;
     if (spec.axes !== false) drawAxes(g, v, spec, stage, fmt);   // a figure that draws its own frame (tiles, a circle, a number grid)
-    if (other) drawScene(g, v, spec.scene(other, ctx), stage, { ghost: true });
+    if (other) drawScene(g, v, spec.scene(other, { ...ctx, progress: null }), stage, { ghost: true });
     drawScene(g, v, spec.scene(s, ctx), stage);
     const m = spec.measure?.(s, ctx);
     if (m) drawBadge(g, stage, m);
     drawHandles(g, stage, handles, isUnlocked);
   }
-  return { draw, handles, destroy() {} };
+  return { draw, handles, stream, destroy() { stream?.stop(); } };
 }
 
 __e.mount = mount;
@@ -8450,6 +8489,37 @@ function mount(env) {
 
 __e.spins = spins;
 __e.mount = mount;
+});
+__d("lab/templates/stream.js", function (__e, __r) {
+// One user-started sampling clock. A trial joins the tally only when its drop/draw finishes.
+function samplingStream({exp,stage,getState,advance}){
+  let cancel=null,last=null,progress=null,rate=5;
+  const api={onChange:null,get progress(){return progress;},get playing(){return !!cancel;},get rate(){return rate;},
+    setRate(value){rate=Math.max(1,Math.min(60,Number(value)||1));},
+    stop(){if(cancel)cancel();cancel=null;last=null;progress=null;api.onChange?.(false);stage.invalidate();},
+    toggle(){
+      if(cancel)return api.stop();
+      if(getState().runs>=exp.model.MAX_RUNS)return;
+      if(stage.reduced()){advance({runs:getState().runs+1});stage.invalidate();return;}
+      progress=0;last=null;
+      cancel=stage.animate(now=>{
+        if(stage.reduced()){api.stop();return false;}
+        if(document.hidden){last=now;return true;}
+        if(last===null)last=now;
+        const elapsed=Math.min(.1,Math.max(0,(now-last)/1000));last=now;
+        const total=progress+elapsed*rate,completed=Math.floor(total);
+        progress=total-completed;
+        if(completed)advance({runs:Math.min(exp.model.MAX_RUNS,getState().runs+completed)});
+        if(getState().runs>=exp.model.MAX_RUNS){api.stop();return false;}
+        return true;
+      });
+      api.onChange?.(true);stage.invalidate();
+    },
+  };
+  return api;
+}
+
+__e.samplingStream = samplingStream;
 });
 __d("lab/templates/transform.js", function (__e, __r) {
 // Template `transform`: a map applied to points, a figure and a grid. Two equal-scale panels, `before` and `after`, side by

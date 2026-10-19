@@ -267,3 +267,11 @@ side at every width (`views.row`; on a tall stage both get half the width in a c
 horizontal: from P for the sine; for the cosine, the x-coordinate of P is turned a quarter turn about O onto the vertical axis
 (dashed arc, ghost segment) and carried horizontally from (0 ; cos x). Checked in `tests/trigonometry.test.mjs` and
 `tests/dom-smoke.mjs` (same height in both panels, at rest and zoomed).
+
+## 14. Arithmetic and page scrolling (owner instruction, 19 October 2026)
+
+A drawing is optional. Fermat numbers and Euler’s polynomial use the `calculation` template: native MathML with properly nested exponents, the exact current value and its prime factorisation. There is no canvas, zoom control, camera or intercepted touch gesture. It uses the shared mission state and controls in full, inline and slide modes. Geometric experiments keep their figures.
+
+Mission text cards use normal document flow and no inner height limit or scroll container. Vertical gestures on their text scroll the page. Only draggable objects reserve touch gestures in the cookie activity; the tray, children and surrounding text remain page-scroll surfaces.
+
+Continuous geometric probability sampling uses the single stage scheduler. The learner starts and pauses it and adjusts 1 to 60 samples per second without changing the random model. A preview needle falls or a chord grows, then the completed trial joins the count. Parameter or mission changes pause sampling; hidden-tab time never produces a catch-up burst. Reduced motion performs one explicit sample, and enabling it while running stops the animation. The finite series cap is 5 000, with all results counted and only the newest needles/chords drawn.

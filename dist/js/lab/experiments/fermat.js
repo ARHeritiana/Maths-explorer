@@ -1,16 +1,12 @@
-// Experiment `fermat` (template figure, no axes): the numbers 2^e + 1 for e = 1, …, 32. Fermat believed every 2^(2^n) + 1
-// prime from five cases; Euler factored the sixth. State {e}: the exponent reached in the grid. Pure maths: models/fermat.js,
+// Experiment `fermat` (template calculation): the numbers 2^e + 1 for e = 1, …, 32. Fermat believed every 2^(2^n) + 1
+// prime from five cases; Euler factored the sixth. State {e}: the selected exponent. Pure maths: models/fermat.js,
 // primes.js.
 import * as M from "../models/fermat.js";
 import { group, writeFactors, sup } from "../models/primes.js";
 
-const { model, MAX_E, isPowerOfTwo } = M;
-const COLS = 8;
-const cell = (e) => { const i = e - 1, x = (i % COLS) * 1.25, y = 5.1 - Math.floor(i / COLS) * 1.25; return [[x + 0.08, y - 1.07], [x + 1.17, y - 1.07], [x + 1.17, y - 0.08], [x + 0.08, y - 0.08]]; };
-const power = (e) => `2${sup(e)} + 1`;
-
+const { model, MAX_E } = M;
 export default {
-  id: "fermat", template: "figure", section: "patterns", sub: ["Les nombres de Fermat", "Fermat numbers"],
+  id: "fermat", template: "calculation", section: "patterns", sub: ["Les nombres de Fermat", "Fermat numbers"],
   symbol: "Fₙ", group: ["Arithmétique", "Number theory"],
   title: ["Cinq cas, puis une erreur de Fermat", "Five cases, then Fermat’s mistake"],
   short: ["Nombres de Fermat 2^(2ⁿ) + 1", "Fermat numbers 2^(2ⁿ) + 1"],
@@ -27,28 +23,15 @@ export default {
     e: { kind: "slider", key: "e", label: ["Exposant e dans 2^e + 1", "Exponent e in 2^e + 1"], min: 1, max: MAX_E, step: 1, digits: 0 },
   },
   views: {
-    panels: ["figure"],
-    figure: {
-      x: [0, 10], y: [-0.5, 5.9], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s, { fmt }) {
-        const m = model(s), polys = [], texts = [];
-        for (let e = 1; e <= MAX_E; e++) {
-          const shown = e <= s.e, q = cell(e), tone = !shown ? "line" : m.primes[e - 1] ? "pos" : "neg";
-          polys.push({ pts: q, fill: shown ? tone : "surface", alpha: shown ? (e === s.e ? 0.75 : 0.3) : 1, color: isPowerOfTwo(e) ? "obj2" : e === s.e ? "ink" : tone, width: isPowerOfTwo(e) || e === s.e ? 2.6 : 1 });
-          texts.push({ at: [q[0][0] + 0.55, q[0][1] + 0.62], text: `${e}`, anchor: "center", size: 14, color: shown ? "ink" : "muted" });
-          if (isPowerOfTwo(e)) texts.push({ at: [q[0][0] + 0.55, q[0][1] + 0.25], text: `F${Math.log2(e)}`, anchor: "center", size: 12, color: "obj2" });
-        }
-        texts.push({ at: [0.05, -0.3], text: fmt.t(["case e : 2^e + 1 (vert premier, rouge composé) ; cadre orange : nombre de Fermat", "cell e: 2^e + 1 (green prime, red composite); orange frame: Fermat number"]), size: 13, color: "muted" });
-        return { polys, texts };
-      },
-      measure(s, { fmt }) {
-        const m = model(s);
-        return { text: `${power(s.e)} = ${group(m.N, fmt.fr)}${m.prime ? "" : " = " + writeFactors(m.N, fmt.fr)}`, color: m.prime ? "pos" : "neg" };
-      },
+    panels: [],
+    calculation(s) {
+      const m = model(s), mn = x => ["mn", String(x)];
+      const exponent = m.fermat ? ["msup", mn(2), mn(m.index)] : mn(s.e);
+      return { expression: ["mrow", ...(m.fermat ? [["msub", ["mi", "F"], mn(m.index)], ["mo", "="]] : []), ["msup", mn(2), exponent], ["mo", "+"], mn(1)], value: m.N, factors: m.factors, prime: m.prime };
     },
     formula(s, { fmt }) {
       const m = model(s), fr = fmt.fr;
-      return m.fermat ? `F${m.index} = 2^(2${sup(m.index)}) + 1 = ${power(s.e)} = ${group(m.N, fr)}` : `${power(s.e)} = ${group(m.N, fr)}${fr ? " (pas un nombre de Fermat)" : " (not a Fermat number)"}`;
+      return m.fermat ? `F${m.index} = 2^(2${sup(m.index)}) + 1 = 2${sup(s.e)} + 1 = ${group(m.N, fr)}` : `2${sup(s.e)} + 1 = ${group(m.N, fr)}${fr ? " (pas un nombre de Fermat)" : " (not a Fermat number)"}`;
     },
     readout(s, { fmt }) {
       const m = model(s), fr = fmt.fr;
@@ -75,10 +58,10 @@ export default {
     {
       id: "f5", kind: "explore", set: { e: 16 }, unlock: ["e"],
       prompt: [
-        "Pousse l’exposant jusqu’à 32 pour atteindre F5. Regarde aussi les cases intermédiaires : quels exposants donnent des nombres premiers ?",
-        "Push the exponent up to 32 to reach F5. Look at the cells in between too: which exponents give primes?",
+        "Pousse l’exposant jusqu’à 32 pour atteindre F5. Teste aussi les exposants intermédiaires : quels exposants donnent des nombres premiers ?",
+        "Push the exponent up to 32 to reach F5. Try the exponents in between too: which exponents give primes?",
       ],
-      hint: ["F5 est la case 32, la dernière.", "F5 is cell 32, the last one."],
+      hint: ["F5 correspond à l’exposant 32.", "F5 corresponds to exponent 32."],
       goal: (s) => s.e === 32,
       done: [
         "2³² + 1 = 641 × 6 700 417 : la régularité observée sur cinq cas était fausse. Entre 1 et 32, seuls les exposants 1, 2, 4, 8 et 16 donnent des nombres premiers.",

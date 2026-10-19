@@ -17,6 +17,7 @@ export default {
   duration: 10,
   level: ["Terminale · Supérieur", "Advanced · University"],
   prereq: ["Fréquences, probabilités, intégrale de sin (pour la preuve)", "Frequencies, probability, the integral of sin (for the proof)"],
+  stream: { label: ["Laisser tomber", "Drop continuously"], unit: ["aiguilles / seconde", "needles / second"] },
   model: M,
   state: { L: 1, runs: 0, seed: 4 },
   controls: {
@@ -34,10 +35,15 @@ export default {
     panels: ["figure"],
     figure: {
       x: [0, FLOOR[0]], y: [-0.3, FLOOR[1] + 0.3], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s) {
+      scene(s, { progress = null } = {}) {
         const m = model(s);
         const lines = Array.from({ length: FLOOR[1] + 1 }, (_, j) => ({ a: [0, j], b: [FLOOR[0], j], color: "line", width: 2 }));
         for (const n of m.shown) lines.push({ a: n.a, b: n.b, color: n.hit ? "obj2" : "muted", width: n.hit ? 2.4 : 1.6, alpha: n.hit ? 1 : 0.7 });
+        if (progress !== null && s.runs < MAX_RUNS) {
+          const next = model({ ...s, runs: s.runs + 1 }).shown.at(-1), p = 1 - (1 - progress) ** 3;
+          const offset = 1.2 * (1 - p);
+          lines.push({ a: [next.a[0], next.a[1] + offset], b: [next.b[0], next.b[1] + offset], color: "accent", width: 3, alpha: .25 + .75 * p });
+        }
         return { lines };
       },
       measure(s, { fmt }) {
@@ -78,7 +84,7 @@ export default {
         "Lance au moins 1 000 aiguilles. Une aiguille orange touche une rayure. Vers quelle valeur la fréquence se stabilise-t-elle ?",
         "Drop at least 1,000 needles. An orange needle touches a stripe. Which value does the frequency settle near?",
       ],
-      hint: ["Les boutons s’additionnent ; « Nouvelle série » repart de zéro.", "The buttons add up; “New series” starts again from zero."],
+      hint: ["« Laisser tomber » lance une série continue. Règle la vitesse ; « Nouvelle série » repart de zéro.", "“Drop continuously” starts a continuous series. Adjust the speed; “New series” starts again from zero."],
       goal: (s) => s.runs >= 1000,
       done: [
         "La fréquence se stabilise près de 0,64. Or 2/π ≈ 0,637 : c’est la probabilité qu’une aiguille de longueur 1 touche une rayure. L’estimation 2/f approche alors π, lentement.",

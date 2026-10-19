@@ -131,7 +131,7 @@ const {mountExperiment}=await import('../dist/js/lab/mount.js');const {EXPERIMEN
 for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['full','inline'])for(const mission of [null,...e.missions.map(m=>m.id)]){
   const host=document.createElement('div');document.body.append(host);
   const m=mountExperiment(host,mission?e.id+'/'+mission:e.id,{mode,lang});await m.ready;flush();
-  assert.ok(host.querySelector('canvas'),e.id+' draws a canvas');assert.ok(host.querySelector('.lab2-prompt').textContent.length>10);assert.ok(!/NaN|undefined|Infinity/.test(host.textContent),e.id+'/'+mission);
+  if(e.template==='calculation'){assert.equal(host.querySelector('canvas'),null,e.id+' uses readable maths');assert.ok(host.querySelector('.lab2-calculation math'));}else assert.ok(host.querySelector('canvas'),e.id+' draws a canvas');assert.ok(host.querySelector('.lab2-prompt').textContent.length>10);assert.ok(!/NaN|undefined|Infinity/.test(host.textContent),e.id+'/'+mission);
   assert.equal(host.querySelector('.lab2-nav')===null,mode==='inline','inline mode has no previous or next');
   m.destroy();flush();assert.equal(host.children.length,0,'destroy removes the experiment');host.remove();
 }

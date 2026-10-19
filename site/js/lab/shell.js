@@ -126,7 +126,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   }
 
   let view = null;
-  const stage = createStage(figure, {
+  const stage = (tpl.createStage || createStage)(figure, {
     lang: fmt.lang,
     palette: opts.palette,
     fontScale: slide ? 1.3 : 1,
@@ -141,10 +141,12 @@ export function createShell(host, exp, tpl, opts = {}) {
   });
   const formulaEl = el("p", "lab2-formula");
   formulaEl.setAttribute("aria-hidden", "true");
+  formulaEl.hidden = !!tpl.createStage;
   readoutHost.append(formulaEl);
   const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
+  readout.el.hidden = !!tpl.createStage;
   const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
-  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))));
+  if (full && !tpl.createStage) figure.append(el("p", "lab2-keys", t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
@@ -227,6 +229,21 @@ export function createShell(host, exp, tpl, opts = {}) {
       wrap.append(name, group);
       controlsEl.append(wrap);
       controlNodes[id] = { wrap, buttons, c };
+      if (id === "run" && view.stream) {
+        const stream = view.stream, streamBtn = el("button", "lab2-stream-toggle secondary"), speed = document.createElement("input"), speedLabel = el("label", "lab2-stream-speed"), speedValue = el("output");
+        streamBtn.type = "button";
+        const paint = () => { setText(streamBtn, stream.playing ? t(T("pause")) : stage.reduced() ? t(["Un tirage", "One sample"]) : t(exp.stream.label)); setAttr(streamBtn, "aria-pressed", String(stream.playing)); };
+        stream.onChange = paint; paint();
+        speed.type = "range"; speed.min = 1; speed.max = 60; speed.step = 1; speed.value = stream.rate; speed.id = `lab2-${exp.id}-speed`;
+        speedLabel.htmlFor = speed.id; speedLabel.append(el("span", "", t(exp.stream.unit)), speedValue, speed);
+        setText(speedValue, stream.rate); setAttr(speed, "aria-valuetext", `${stream.rate} ${t(exp.stream.unit)}`);
+        streamBtn.addEventListener("click", () => { stream.toggle(); paint(); });
+        speed.addEventListener("input", () => { stream.setRate(speed.value); setText(speedValue, stream.rate); setAttr(speed, "aria-valuetext", `${stream.rate} ${t(exp.stream.unit)}`); });
+        wrap.prepend(streamBtn, speedLabel);
+        const note = el("p", "muted", t([`Le total cumule tous les tirages ; seuls les ${exp.model.SHOWN} derniers restent dessinés.`, `The total includes every trial; only the last ${exp.model.SHOWN} remain drawn.`]));wrap.append(note);
+        controlNodes[id].streamBtn = streamBtn; controlNodes[id].speed = speed;
+        players.set("stream", stream);
+      }
     }
   }
   function paintPlay(btn, on) {
@@ -319,6 +336,7 @@ export function createShell(host, exp, tpl, opts = {}) {
       if (n.input) n.input.disabled = !on;
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
+      if (n.streamBtn) { n.streamBtn.disabled = !on; n.speed.disabled = !on; }
       // Gated: before the learner has predicted there is nothing to operate, so locked controls are not shown at all.
       // Free: every control is shown, except where the experiment shows only the mission's (`onlyUnlocked`: its controls act on
       // different figures) and in a slide, where the player's control area holds only the mission's controls.
@@ -550,9 +568,10 @@ export function createShell(host, exp, tpl, opts = {}) {
       const head = exp.views.table.head;
       table.update({ ...exp.views.table.data(s, ctx), head: (typeof head === "function" ? head(s, ctx) : head).map((h) => t(h)) });
     }
-    setAttr(stage.canvas, "aria-label", `${t(exp.title)}. ${formulaEl._v}`);
+    setAttr(stage.canvas || stage.wrap, "aria-label", `${t(exp.title)}. ${formulaEl._v}`);
     for (const n of Object.values(controlNodes)) {
       const c = n.c;
+      if (n.streamBtn) n.streamBtn.disabled = !unlocked.has("run") || s.runs >= exp.model.MAX_RUNS;
       if (n.input) {
         const v = sliderValue(c, s);
         if (document.activeElement !== n.input && n.input._v !== v) { n.input._v = v; n.input.value = v; }

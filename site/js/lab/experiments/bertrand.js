@@ -20,6 +20,7 @@ export default {
   duration: 10,
   level: ["Première · Terminale", "Intermediate · Advanced"],
   prereq: ["Fréquences, probabilités, aire d’un disque", "Frequencies, probability, area of a disc"],
+  stream: { label: ["Dessiner", "Draw continuously"], unit: ["cordes / seconde", "chords / second"] },
   model: M,
   state: { method: "ends", runs: 0, seed: 6 },
   controls: {
@@ -44,12 +45,16 @@ export default {
     panels: ["figure"],
     figure: {
       x: [-1.2, 1.2], y: [-1.2, 1.2], equal: true, axes: false, pad: [6, 6, 6, 6],
-      scene(s) {
+      scene(s, { progress = null } = {}) {
         const m = model(s);
         const lines = m.shown.map((c) => ({ a: c.a, b: c.b, color: c.hit ? "obj2" : "muted", width: c.hit ? 1.8 : 1.2, alpha: c.hit ? 0.95 : 0.55 }));
         const polys = [{ pts: TRI, fill: "pos", alpha: 0.08, color: "pos", width: 2, dash: [6, 4] }];
         const circles = [{ c: [0, 0], r: 1, color: "ink", width: 2 }];
         if (s.method === "midpoint") circles.push({ c: [0, 0], r: 0.5, color: "pos", width: 1.5, dash: [4, 4] });
+        if (progress !== null && s.runs < MAX_RUNS) {
+          const next = model({ ...s, runs: s.runs + 1 }).shown.at(-1), p = progress * progress * (3 - 2 * progress);
+          lines.push({ a: next.a, b: next.a.map((x, i) => x + p * (next.b[i] - x)), color: "accent", width: 3, alpha: 1 });
+        }
         return { circles, polys, lines };
       },
       measure(s, { fmt }) {

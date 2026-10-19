@@ -991,7 +991,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .lab2-table th[scope="col"] { color: var(--muted); font-size: 0.85rem; }
 .lab2-table tr.is-current { background: var(--accent-soft); }
 .lab2-keys { margin: 10px 2px 0; color: var(--muted); font-size: 0.85rem; }
-.lab2-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; position: sticky; top: calc(var(--header) + 12px); max-height: calc(100vh - var(--header) - 24px); overflow-y: auto; overscroll-behavior: contain; }
+.lab2-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; position: static; max-height: none; overflow: visible; touch-action: auto; }
 .lab2-card-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-weight: 700; }
 .lab2-kind { padding: 2px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 0.9rem; }
 .lab2-fold { display: none; min-height: 36px; padding: 0 8px; }
@@ -1038,7 +1038,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .lab2-argument h2 { font-size: 1.2rem; }
 .lab2-evidence { padding: 10px 12px; border-left: 4px solid var(--obj2); background: var(--sunken); border-radius: var(--r-sm); }
 .lab2-inline .lab2-grid { grid-template-columns: minmax(0, 1fr); }
-.lab2-inline .lab2-card, .lab2-slide .lab2-card { position: static; }
+.lab2-inline .lab2-card, .lab2-slide .lab2-card { position: static; max-height: none; overflow: visible; }
 @media (max-width: 1100px) {
   .lab2-grid { grid-template-columns: minmax(0, 1fr) 320px; }
   .lab2-readout { grid-template-columns: 1fr; }
@@ -1052,7 +1052,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .lab2-page .lab-heading h1 { font-size: 1.4rem; }
   .lab2-fold { display: inline-flex; }
   .lab2-card.is-folded > :not(.lab2-card-head):not(.lab2-prompt) { display: none; }
-  .lab2-full .lab2-card { position: static; margin-top: 12px; }
+  .lab2-full .lab2-card { position: static; margin-top: 12px; max-height: none; overflow: visible; }
 }
 @media (max-width: 460px) {
   /* compact cards, two or three to a row (never one per row: they would push the mission card down); a long value takes the row */
@@ -1097,3 +1097,30 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .nl-table th, .nl-table td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; }
 .nl-table tr.nl-bad td { color: var(--neg); font-weight: 700; }
 .sp-map { display: block; width: 100%; height: auto; border-radius: var(--r-sm); margin-top: 8px; }
+
+/* A calculation is readable page content, with no canvas, camera, or nested scroll box. */
+.lab2-calculation { padding: clamp(16px, 4vw, 36px) 8px; min-width: 0; touch-action: auto; }
+.lab2-calculation math { display: block; max-width: 100%; margin: 14px 0; font-size: clamp(1.25rem, 3vw, 2rem); overflow-x: auto; overflow-y: hidden; }
+.lab2-calculation .lab2-number-value { font: 600 clamp(1.7rem, 5vw, 2.8rem)/1.35 var(--math); overflow-wrap: anywhere; margin: 12px 0; }
+.lab2-number-kind { color: var(--ink-2); margin: 8px 0; }
+.lab2-number-kind[data-prime="true"] { color: var(--pos); }
+.lab2-number-kind[data-prime="false"] { color: var(--neg); }
+.lab2-readout[hidden] { display: none; }
+@media (pointer: coarse) { .lab2-full .lab2-card { position: static; max-height: none; overflow: visible; } }
+
+/* Cookie-sharing objects: only the cookie a finger grabs reserves its gesture. */
+.ck-sharing { display: grid; gap: 18px; touch-action: auto; }
+.ck-tray { min-height: 100px; border: 1px solid var(--line-strong); border-radius: var(--r-sm); padding: 8px; background: var(--sunken); }
+.ck-pile { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; min-height: 48px; }
+.ck-children { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px; }
+.ck-recipient { padding: 8px 4px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); min-width: 0; }
+.ck-child { display: grid; justify-items: center; width: 100%; padding: 4px; border: 0; background: transparent; color: var(--ink); }
+.ck-child svg { width: 72px; height: 90px; }
+.ck-child span { font-weight: 700; }
+.ck-cookie { width: 44px; height: 44px; min-height: 44px; padding: 0; border: 0; background: transparent; touch-action: none; cursor: grab; flex: none; }
+.ck-cookie svg { display: block; width: 44px; height: 44px; pointer-events: none; }
+.ck-cookie[aria-pressed="true"] { outline: 3px solid var(--accent); outline-offset: -2px; border-radius: 50%; }
+.ck-cookie-ghost { position: fixed; transform: translate(-50%, -50%); z-index: 1000; pointer-events: none; cursor: grabbing; }
+.lab2-stream-speed { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; align-items: center; }
+.lab2-stream-speed input { grid-column: 1 / -1; width: 100%; min-height: 44px; accent-color: var(--accent); }
+.lab2-stream-toggle { justify-self: start; }

@@ -28,7 +28,7 @@ def walk_experiment(page, name):
     """Complete every mission of an experiment through the page: predict, explore, compare, check (wrong then right), explain.
     Exploration is free (nothing waits), but each mission still recognises its goal, answer or argument."""
     page.goto(BASE+'/#lab/'+name)
-    page.locator('.lab2-canvas').wait_for()
+    page.locator('.lab2-canvas, .lab2-calculation').wait_for()
     count = page.locator('.lab2-dot').count()
     assert 4 <= count <= 6, name
     assert page.locator('.lab2-argument').is_hidden(), 'the argument waits for the last mission'
@@ -572,6 +572,31 @@ with sync_playwright() as p:
     page.goto(BASE+'/#lab/probability/mean')
     page.wait_for_selector('.lab2-canvas')
     page.screenshot(path='test-results/'+engine+'-mobile.png',full_page=True,animations='disabled')
+    # Arithmetic is readable content, and mission text always scrolls with the document.
+    page.set_viewport_size({'width':390,'height':844})
+    for experiment in ['fermat','euler-primes']:
+        page.goto(BASE+'/#lab/'+experiment)
+        page.locator('.lab2-calculation').wait_for()
+        assert page.locator('.lab2-canvas').count() == 0
+        assert page.locator('.lab2-calculation math msup').count() > 0
+        assert page.locator('.lab2-card').evaluate("el => getComputedStyle(el).overflowY") == 'visible'
+        page.screenshot(path='test-results/arithmetic-'+experiment+'.png',full_page=True)
+    page.goto(BASE+'/#challenges/cookies')
+    page.locator('[data-cookie="0"]').click();page.locator('[data-child="0"]').click()
+    assert page.locator('.ck-sharing').get_attribute('data-parts') == '1,0,0,0,0'
+    source=page.locator('[data-cookie="1"]');target=page.locator('[data-child="1"]')
+    source.drag_to(target)
+    assert page.locator('.ck-sharing').get_attribute('data-parts') == '1,1,0,0,0'
+    page.screenshot(path='test-results/cookies-sharing.png',full_page=True)
+    for experiment in ['buffon','bertrand']:
+        page.goto(BASE+'/#lab/'+experiment)
+        page.locator('.lab2-stream-toggle').click()
+        page.wait_for_function("() => document.querySelector('.lab2').__lab.getState().runs >= 3")
+        speed=page.locator('.lab2-stream-speed input');speed.fill('60');speed.dispatch_event('input')
+        page.locator('.lab2-stream-toggle').click()
+        count=page.evaluate("() => document.querySelector('.lab2').__lab.getState().runs")
+        page.wait_for_timeout(250)
+        assert page.evaluate("() => document.querySelector('.lab2').__lab.getState().runs") == count
     assert not errors, errors
     browser.close()
     print('PASS ('+engine+'): bilingual labs and challenges; every experiment walked mission by mission, two-sided secants, quadratures, keyboard/skip focus, routes, storage failures, privacy, 4 viewport widths and all surfaces at 200% text.')

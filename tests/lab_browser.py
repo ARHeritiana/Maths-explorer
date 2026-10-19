@@ -48,7 +48,7 @@ with sync_playwright() as p:
 
     def ready(page, route):
         page.goto(BASE + '/#' + route)
-        page.locator('.lab2-canvas').wait_for()
+        page.locator('.lab2-canvas, .lab2-calculation').wait_for()
         page.wait_for_function("() => document.querySelector('.lab2-formula').textContent.length > 0")
 
     # ---- a drag adds or removes no element, in each experiment, in both themes
@@ -83,7 +83,7 @@ with sync_playwright() as p:
             page.evaluate("t => document.documentElement.dataset.theme = t", theme)
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('lab index', width, theme)
             for e in EXPERIMENTS:
-                page.goto(BASE + '/#lab/' + e); page.locator('.lab2-canvas').wait_for()
+                page.goto(BASE + '/#lab/' + e); page.locator('.lab2-canvas, .lab2-calculation').wait_for()
                 n = page.locator('.lab2-dot').count()
                 for k in range(n):
                     page.evaluate("k => { const l = document.querySelector('.lab2').__lab; l.setMission(k); }", k)
@@ -91,7 +91,7 @@ with sync_playwright() as p:
                     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('overflow', e, k, width, theme)
                     wide = page.evaluate("() => [...document.querySelectorAll('.lab2 *')].filter(el => el.getBoundingClientRect().right > innerWidth + 1).map(el => el.className).slice(0, 3)")
                     assert not wide, ('an element crosses the right edge', e, k, width, wide)
-                    assert page.locator('.lab2-canvas').bounding_box()['height'] >= 0.5 * min(720, 900) - 10 or width > 720, ('the canvas keeps its height', e, width)
+                    if e not in ['fermat','euler-primes']: assert page.locator('.lab2-canvas').bounding_box()['height'] >= 0.5 * min(720, 900) - 10 or width > 720, ('the canvas keeps its height', e, width)
         page.context.close()
 
     # ---- keyboard: Tab reaches the handle, arrows move one grid step, N and P change missions, the address follows
