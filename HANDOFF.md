@@ -170,3 +170,9 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - [x] Two independent audits and numerical verification. Audit records and browser-verification limits are in `private/audits/fourier/`.
 
 - Integration validation: merged Phase 4 without dropping its five experiments or shared camera; `make check FAST=1`, syntax checks, Fourier DOM and symbolic verification pass. Browser preview is blocked by the managed proc mount.
+
+## Four-colour gallery editor, 19 October 2026
+
+- [x] Nine menu choices: random, checkerboard, K4, odd/even wheels, even/odd sectors, disconnected-country K5 and blank custom map.
+- [x] Direct straight-border splits (connected countries, maximum 30), undo, keyboard construction, painting and exact colouring checks.
+- [x] Independent mathematics and UI audits, geometry and bilingual DOM tests; records in `private/audits/four-colour-editor/`. Browser visual verification is unavailable because the managed preview cannot mount proc.

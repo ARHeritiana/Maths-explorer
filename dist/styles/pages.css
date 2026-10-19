@@ -1063,8 +1063,14 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 /* Four colour exhibit (gallery-four-colour.js): the colour palette. */
 .fc-palette { display: flex; flex-wrap: wrap; gap: 6px; flex-basis: 100%; }
 .fc-swatch { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--line-strong); border-radius: 50%; background: color-mix(in srgb, var(--fc, var(--surface)) 62%, var(--surface)); color: var(--ink); font-weight: 700; }
-.fc-swatch[aria-checked="true"] { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }
+.fc-swatch[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }
 .fc-erase { --fc: var(--surface); }
+.fc-example { flex-basis: 100%; display: grid; gap: 6px; min-width: 0; }
+.fc-example select { width: 100%; min-width: 0; max-width: 100%; }
+.fc-description { flex-basis: 100%; margin: 0; max-width: 70ch; color: var(--ink-2); }
+.fc-tools { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; flex-basis: 100%; }
+.fc-tools label { display: grid; gap: 6px; }
+.fc-palette[hidden], .fc-description[hidden], .fc-swatch[hidden] { display: none; }
 .programme > summary p { font-weight: 400; }
 @media (max-width: 560px) { .filter { min-height: 40px; padding: 0 12px; font-size: 0.9rem; } }
 

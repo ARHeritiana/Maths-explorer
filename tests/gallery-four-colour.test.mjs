@@ -41,3 +41,43 @@ test("four colours: two squares meeting at a corner are not neighbours; side by 
   assert.equal(FC.neighbours([sq(0, 0), sq(1, 0.5)]).length, 1, "a partial shared side counts");
   assert.ok(FC.pointIn([0.5, 0.5], sq(0, 0)) && !FC.pointIn([1.5, 0.5], sq(0, 0)));
 });
+
+test('four colours: all named examples have the claimed minimum; disconnected letters form K5', () => {
+  const minima = { grid: 2, triangle: 4, wheel: 4, 'even-wheel': 3, pizza: 2, 'odd-pizza': 3, disconnected: 5, custom: 1 };
+  for (const ex of FC.MAP_EXAMPLES.filter((e) => e.id !== 'random')) {
+    const { map, groups = map.map((_, i) => i) } = ex.make(), n = new Set(groups).size;
+    const edges = FC.countryEdges(map, groups), k = minima[ex.id];
+    assert.equal(FC.chromatic(n, edges), k, ex.id);
+    assert.ok(proper(edges, FC.colourWith(n, edges, k)), ex.id);
+    if (k > 1) assert.equal(FC.colourWith(n, edges, k - 1), null, ex.id);
+    // Independent exhaustive assignment check for the small examples; includes K5's 4^5 assignments.
+    if (n <= 8) assert.equal(bruteChromatic(n, edges), k, ex.id);
+  }
+  const { map, groups } = FC.disconnectedMap(), edges = FC.countryEdges(map, groups);
+  assert.equal(map.length, 11); assert.equal(edges.length, 10);
+  for (let i = 0; i < 5; i++) for (let j = i + 1; j < 5; j++) assert.ok(edges.some(([a, b]) => a === i && b === j));
+  assert.equal(FC.chromatic(map.length, FC.neighbours(map)), 2, 'separate pieces are just a two-colour strip');
+});
+
+test('four colours: drawn borders preserve area, disjoint interiors and valid shared borders', () => {
+  const original = FC.blankMap()[0]; let map = [original];
+  for (let i = 0; i < 24; i++) {
+    // Cut through the centre of the largest piece, changing direction each time.
+    const poly = [...map].sort((a, b) => FC.polygonArea(b) - FC.polygonArea(a))[0];
+    const c = poly.reduce((s, p) => s.map((v, j) => v + p[j] / poly.length), [0, 0]);
+    const a = i * 2.399, parts = FC.splitCountry(poly, c, [c[0] + 100 * Math.cos(a), c[1] + 100 * Math.sin(a)]);
+    assert.ok(parts); assert.equal(FC.countryEdges(parts).length, 1, 'new pieces share a positive-length border');
+    assert.ok(Math.abs(parts.reduce((s, p) => s + FC.polygonArea(p), 0) - FC.polygonArea(poly)) < 1e-6);
+    map = map.flatMap((p) => p === poly ? parts : [p]);
+  }
+  assert.equal(map.length, 25);
+  assert.ok(Math.abs(map.reduce((s, p) => s + FC.polygonArea(p), 0) - 592 * 392) < 1e-6);
+  // An independent point raster sees one and only one country almost everywhere away from borders.
+  for (let x = 24.37; x < 616; x += 13.1) for (let y = 24.73; y < 416; y += 11.3) {
+    assert.equal(map.filter((p) => FC.pointIn([x, y], p)).length, 1);
+  }
+  assert.ok(proper(FC.countryEdges(map), FC.colourWith(map.length, FC.countryEdges(map), 4)));
+  assert.equal(FC.splitCountry(original, [100, 100], [101, 101]), null, 'ignore accidental taps');
+  assert.equal(FC.splitCountry(original, [24, 24], [616, 24]), null, 'existing border does not add a country');
+  assert.equal(FC.splitCountry(original, [24.01, 24], [24.01, 416]), null, 'reject unusably tiny slivers');
+});

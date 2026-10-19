@@ -42,7 +42,8 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `gallery-discovery.test.mjs` | independent Voronoi, cycloid, film-area, hat and knot-invariant checks |
 | `gallery-discovery-dom.test.mjs` | five exhibits, live inputs, bilingual readouts and lifecycle cleanup |
 
-| `gallery-four-colour.test.mjs` | four colour exhibit: neighbours by shared border (a corner is not enough), wheel needs 4 and pizza 2 (brute force), random maps coloured properly with 4 |
+| `gallery-four-colour.test.mjs` | four colour exhibit: shared-border adjacency, exact example minima (including disconnected K5), random-map colourings, repeated splits preserving area and disjoint interiors |
+| `gallery-four-colour-dom.test.mjs` | bilingual example menu, grouped-country colours, border drawing and undo, keyboard editor, conflict detection, cancelled pointer/pinch and frame cleanup |
 | `gallery-spatial.test.mjs` | all 44 curve projections, continuous deformations, 14 film models and full-window hat coverage |
 
 

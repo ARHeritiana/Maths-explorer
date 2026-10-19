@@ -21,16 +21,93 @@ export function randomMap(n, seed) {
 const ring = (cx, cy, r, k, turn = -Math.PI / 2) => Array.from({ length: k }, (_, i) => [cx + r * Math.cos(turn + (2 * Math.PI * i) / k), cy + r * Math.sin(turn + (2 * Math.PI * i) / k)]);
 
 // A centre surrounded by an odd ring of five countries, inside a sea: the ring alone needs three colours, the centre a fourth.
-export function wheelMap() {
-  const inner = ring(320, 220, 70, 5), outer = ring(320, 220, 190, 5);
-  const sectors = inner.map((p, i) => [p, outer[i], outer[(i + 1) % 5], inner[(i + 1) % 5]]);
+export function wheelMap(k = 5) {
+  const inner = ring(320, 220, 70, k), outer = ring(320, 220, 190, k);
+  const sectors = inner.map((p, i) => [p, outer[i], outer[(i + 1) % k], inner[(i + 1) % k]]);
   return [inner, ...sectors];
 }
 
 // Eight slices that all meet at the centre: two colours are enough, because touching at a point does not count.
-export function pizzaMap() {
-  const rim = ring(320, 220, 190, 32, 0);
-  return Array.from({ length: 8 }, (_, i) => [[320, 220], ...[0, 1, 2, 3, 4].map((j) => rim[(i * 4 + j) % 32])]);
+export function pizzaMap(k = 8) {
+  const rim = ring(320, 220, 190, k * 4, 0);
+  return Array.from({ length: k }, (_, i) => [[320, 220], ...[0, 1, 2, 3, 4].map((j) => rim[(i * 4 + j) % rim.length])]);
+}
+
+export const blankMap = () => [[[24, 24], [616, 24], [616, 416], [24, 416]]];
+export function gridMap() {
+  return Array.from({ length: 9 }, (_, i) => {
+    const x = 110 + (i % 3) * 140, y = 40 + Math.floor(i / 3) * 120;
+    return [[x, y], [x + 140, y], [x + 140, y + 120], [x, y + 120]];
+  });
+}
+
+// An Euler circuit of K5: every pair of letters shares exactly one border.
+// Repeated letters are separate pieces of the SAME country, outside the theorem's hypotheses.
+export function disconnectedMap() {
+  const groups = [0, 1, 2, 0, 3, 1, 4, 2, 3, 4, 0];
+  const map = groups.map((_, i) => {
+    const x = 34 + i * 52;
+    return [[x, 80], [x + 52, 80], [x + 52, 360], [x, 360]];
+  });
+  return { map, groups };
+}
+
+// One catalogue supplies the menu, descriptions and the exact displayed maps.
+export const MAP_EXAMPLES = [
+  { id: 'random', label: ['Carte aléatoire', 'Random map'],
+    description: ['Une nouvelle mosaïque de pays. Essaie de la colorier avant de demander une solution.', 'A new mosaic of countries. Try colouring it before asking for a solution.'], make: (n, seed) => ({ map: randomMap(n, seed) }) },
+  { id: 'grid', label: ['Damier : deux couleurs', 'Checkerboard: two colours'],
+    description: ['Deux couleurs alternées suffisent. Les cases en diagonale ne partagent qu’un sommet.', 'Two alternating colours suffice. Diagonal squares only share a corner.'], make: () => ({ map: gridMap() }) },
+  { id: 'triangle', label: ['Quatre pays tous voisins', 'Four mutually neighbouring countries'],
+    description: ['Chaque pays touche les trois autres : il faut quatre couleurs. L’extérieur de la figure n’est pas un pays du jeu.', 'Every country touches the other three: four colours are necessary. The area outside the figure is not a country in this game.'], make: () => ({ map: wheelMap(3) }) },
+  { id: 'wheel', label: ['Roue impaire : quatre couleurs', 'Odd wheel: four colours'],
+    description: ['Les cinq pays de l’anneau demandent trois couleurs. Le pays central, voisin de chacun, en demande une quatrième.', 'The five countries of the ring need three colours. The central country borders all of them and needs a fourth.'], make: () => ({ map: wheelMap(5) }) },
+  { id: 'even-wheel', label: ['Roue paire : trois couleurs', 'Even wheel: three colours'],
+    description: ['Six pays entourent le centre. Deux couleurs alternent sur l’anneau et une troisième suffit au centre.', 'Six countries surround the centre. Two colours alternate around the ring and a third suffices in the centre.'], make: () => ({ map: wheelMap(6) }) },
+  { id: 'pizza', label: ['Faux contre-exemple : huit pays au même point', 'Apparent counterexample: eight countries at one point'],
+    description: ['Ces huit pays se touchent au centre, mais un point ne crée pas de voisinage. Deux couleurs suffisent.', 'These eight countries meet at the centre, but a point does not create adjacency. Two colours suffice.'], make: () => ({ map: pizzaMap(8) }) },
+  { id: 'odd-pizza', label: ['Cinq secteurs : trois couleurs', 'Five sectors: three colours'],
+    description: ['Cinq secteurs forment un cycle impair : deux couleurs échouent, trois suffisent. Aucun pays n’est voisin de tous les autres.', 'Five sectors form an odd cycle: two colours fail, three suffice. No country is adjacent to all the others.'], make: () => ({ map: pizzaMap(5) }) },
+  { id: 'disconnected', label: ['Hors hypothèses : cinq pays morcelés', 'Outside the hypotheses: five disconnected countries'],
+    description: ['Même lettre = même pays, même dans des morceaux séparés. Chaque paire de lettres partage une frontière : cinq couleurs sont nécessaires. Ce n’est pas un contre-exemple au théorème : les pays ne sont pas tous d’un seul tenant. La cinquième couleur est disponible uniquement ici.', 'Same letter = same country, even in separate pieces. Every pair of letters shares a border: five colours are necessary. This is not a counterexample to the theorem: the countries are not all connected. The fifth colour is available only here.'], make: disconnectedMap },
+  { id: 'custom', label: ['Créer ma carte', 'Design my map'],
+    description: ['Pars d’un seul pays, puis trace des frontières pour le partager. Les pays créés restent d’un seul tenant.', 'Start with one country, then draw borders to divide it. The countries you create remain connected.'], make: () => ({ map: blankMap() }) },
+];
+
+// Collapse polygon components into countries, preserving shared-border geometry for conflict highlighting.
+export function countryEdges(map, groups = map.map((_, i) => i)) {
+  const pairs = new Map();
+  for (const [a, b, segments] of neighbours(map)) {
+    const i = Math.min(groups[a], groups[b]), j = Math.max(groups[a], groups[b]);
+    if (i === j) continue;
+    const key = `${i},${j}`;
+    if (!pairs.has(key)) pairs.set(key, [i, j, []]);
+    pairs.get(key)[2].push(...segments);
+  }
+  return [...pairs.values()];
+}
+
+export const polygonArea = (poly) => Math.abs(poly.reduce((s, p, i) => {
+  const q = poly[(i + 1) % poly.length]; return s + p[0] * q[1] - p[1] * q[0];
+}, 0)) / 2;
+
+// Clip a convex country on either side of the drawn line. Extend to its borders; never create overlaps or islands.
+export function splitCountry(poly, a, b) {
+  if (Math.hypot(b[0] - a[0], b[1] - a[1]) < 8) return null;
+  const side = (p) => (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]);
+  const clip = (sign) => {
+    const out = [];
+    for (let i = 0; i < poly.length; i++) {
+      const p = poly[i], q = poly[(i + 1) % poly.length], sp = sign * side(p), sq = sign * side(q);
+      if (sp >= 0) out.push([...p]);
+      if ((sp > 0 && sq < 0) || (sp < 0 && sq > 0)) {
+        const f = sp / (sp - sq); out.push([p[0] + f * (q[0] - p[0]), p[1] + f * (q[1] - p[1])]);
+      }
+    }
+    return out;
+  };
+  const parts = [clip(1), clip(-1)];
+  return parts.every((p) => p.length >= 3 && polygonArea(p) >= 80) ? parts : null;
 }
 
 // Shared border of positive length between two polygons: two collinear edges whose projections overlap.

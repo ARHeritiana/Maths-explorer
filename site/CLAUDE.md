@@ -50,7 +50,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/gallery-soap-model.js` | 13 fixed-topology spatial meshes and a separate tetrahedral junction solver |
 | `js/gallery-context.js` | mathematical ideas, historical context and applications for all gallery entries |
 | `js/gallery-hat-model.js`, `js/gallery-hat.js` | H7/H8 geometry and continuous hat-family explorer |
-| `js/gallery-four-colour-model.js`, `js/gallery-four-colour.js` | four colour exhibit: maps (random, wheel, pizza), neighbours by shared border, backtracking colouring; the colouring canvas |
+| `js/gallery-four-colour-model.js`, `js/gallery-four-colour.js` | four colour exhibit: nine menu choices, point-contact and disconnected-country examples, connected-country border editor with undo, shared-border neighbours and exact backtracking colouring |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
