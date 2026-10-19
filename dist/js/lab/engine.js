@@ -1,9 +1,9 @@
 // Laboratory stage: one canvas, one requestAnimationFrame scheduler that draws only when something changed, handle
-// hit-testing (22 px radius = 44 px target) with pointer capture, keyboard handles, the shared camera, theme colours and
+// grabbing (the nearest handle within a forgiving radius) with pointer capture, keyboard handles, the view camera, theme colours and
 // text writes that touch a node only when the string changed. No element is created or replaced during a drag.
-import { canvasNavigation } from "../canvas-navigation.js";
 import { palette as themePalette } from "../object-kit.js";
 import { makeFormat } from "./format.js";
+import { clamp } from "./models/num.js";
 
 export const HIT = 22;
 
@@ -87,22 +87,34 @@ export function createTable(host, caption) {
 const reducedQuery = () => (typeof matchMedia === "function" ? matchMedia("(prefers-reduced-motion: reduce)") : { matches: false });
 
 // ---- the stage
+// Pointer policy (owner request of 19 October 2026: "difficult to click on points, the canvas moves when it shouldn't"):
+//   a press grabs the nearest handle within GRAB pixels (larger for a finger); a plain wheel scrolls the page, the view zooms
+//   only with Ctrl or Cmd + wheel, a pinch, the + and - buttons or keys; a drag on the empty background moves the view only once
+//   the view has been zoomed or moved (Shift, Alt or middle drag always pans); a double click on the background resets it.
+// The view camera acts on the world ranges of each panel (plot.js makeView), never on the bitmap: the grid is recomputed for
+// what is visible, and text, lines and handles keep their size at every zoom.
+export const GRAB = { mouse: 26, pen: 34, touch: 40 };
+const ZOOM = [0.25, 8];
+
 export function createStage(host, options = {}) {
   // `onSpin(dx, dy)`: a drag on the empty background (or the arrow keys with the canvas focused) turns a 3D view instead of
-  // panning it (template `space`); the 2D camera still zooms, and Shift or Alt drag pans.
-  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false, onSpin } = options;
+  // moving it (template `space`); Shift or Alt drag still pans.
+  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, canvasKeys = false, onSpin, zoomButtons = true } = options;
+  const fr = options.lang !== "en";
   const wrap = document.createElement("div");
   wrap.className = "lab2-stage";
   const canvas = document.createElement("canvas");
   canvas.className = "lab2-canvas";
   canvas.setAttribute("role", "group");
+  canvas.tabIndex = 0;
+  canvas.style.touchAction = "none";
   if (label) canvas.setAttribute("aria-label", label);
   wrap.append(canvas);
   host.append(wrap);
   const g = canvas.getContext("2d");
   const reducedMq = reducedQuery();
 
-  const stage = { canvas, wrap, g, W: 0, H: 0, handles: [], pal: null, focusId: null };
+  const stage = { canvas, wrap, g, W: 0, H: 0, handles: [], pal: null, focusId: null, hoverId: null, dragId: null };
   const resolvePalette = () => (typeof paletteOption === "function" ? paletteOption() : paletteOption) || themePalette();
   stage.pal = resolvePalette();
   stage.reduced = () => !!reducedMq.matches;
@@ -119,21 +131,71 @@ export function createStage(host, options = {}) {
     return p[name] || name;
   };
 
-  let dirty = true, raf = 0, alive = true, pending = null, drag = null, spin = null;
-  const anims = new Set();
-  const size = () => [stage.W || 640, stage.H || 420];
+  // ---- view cameras: one per panel (or shared by panels that must stay aligned). A panel registers its frame every layout.
+  // X_screen = c + k (X_base - c) + o on each axis, where c is the centre of the panel's frame; `axis: "x"` zooms x only.
+  const cams = new Map(), panels = new Map(), resetHooks = new Set();
+  stage.cam = (id, axis = "xy") => {
+    let c = cams.get(id);
+    if (!c) { c = { kx: 1, ky: 1, ox: 0, oy: 0, axis }; cams.set(id, c); }
+    return c;
+  };
+  // frame = {x, y, w, h} (the area where the panel draws), centre = [cx, cy]
+  stage.panel = (id, frame, cam, centre) => { panels.set(id, { frame, cam, c: centre || [frame.x + frame.w / 2, frame.y + frame.h / 2] }); };
+  const panelAt = ([x, y]) => {
+    for (const p of panels.values()) { const f = p.frame; if (x >= f.x && x <= f.x + f.w && y >= f.y && y <= f.y + f.h) return p; }
+    return null;
+  };
+  const isMoved = (c) => c.kx !== 1 || c.ky !== 1 || c.ox !== 0 || c.oy !== 0;
+  const bound = (p) => {
+    // the designed range never leaves the panel completely
+    const c = p.cam, f = p.frame, mx = (c.kx * f.w + f.w) / 2, my = (c.ky * f.h + f.h) / 2;
+    c.ox = clamp(c.ox, -mx, mx); c.oy = clamp(c.oy, -my, my);
+  };
+  function zoomPanel(p, factor, at) {
+    const c = p.cam, [px, py] = at || p.c;
+    const kx = clamp(c.kx * factor, ZOOM[0], ZOOM[1]), ky = c.axis === "x" ? 1 : clamp(c.ky * factor, ZOOM[0], ZOOM[1]);
+    c.ox = px - p.c[0] - (kx / c.kx) * (px - p.c[0] - c.ox);
+    if (c.axis !== "x") c.oy = py - p.c[1] - (ky / c.ky) * (py - p.c[1] - c.oy);
+    c.kx = kx; c.ky = ky;
+    bound(p);
+    viewChanged();
+  }
+  const uniquePanels = () => { const seen = new Set(), out = []; for (const p of panels.values()) if (!seen.has(p.cam)) { seen.add(p.cam); out.push(p); } return out; };
+  function panBy(p, dx, dy) { p.cam.ox += dx; if (p.cam.axis !== "x") p.cam.oy += dy; bound(p); viewChanged(); }
+  function resetView() {
+    for (const c of cams.values()) Object.assign(c, { kx: 1, ky: 1, ox: 0, oy: 0 });
+    for (const f of resetHooks) f();
+    viewChanged();
+  }
+  stage.view = {
+    get scale() { let k = 1; for (const c of cams.values()) if (Math.abs(Math.log(c.kx)) > Math.abs(Math.log(k))) k = c.kx; return k; },
+    get moved() { return [...cams.values()].some(isMoved); },
+    zoom(factor) { for (const p of uniquePanels()) zoomPanel(p, factor); },
+    pan(dx, dy) { for (const p of uniquePanels()) panBy(p, dx, dy); },
+    reset: resetView,
+    onReset(fn) { resetHooks.add(fn); return () => resetHooks.delete(fn); },
+  };
 
-  const hitAt = ([x, y]) => {
-    const k = nav.camera.scale || 1;
+  let dirty = true, raf = 0, alive = true, pending = null, drag = null, spin = null, pan = null, pinch = null;
+  const touches = new Map();
+  const anims = new Set();
+
+  // stage pixels of a pointer event
+  const local = (e) => {
+    const r = canvas.getBoundingClientRect(), kx = r.width ? (stage.W || r.width) / r.width : 1, ky = r.height ? (stage.H || r.height) / r.height : 1;
+    return [(e.clientX - r.left) * kx, (e.clientY - r.top) * ky];
+  };
+  // the nearest handle within the grab radius of this kind of pointer
+  const grab = ([x, y], kind = "mouse") => {
+    const R = GRAB[kind] || GRAB.mouse;
     let best = null, bd = Infinity;
     for (const h of stage.handles) {
-      const [hx, hy] = h.pos();
-      const d = Math.hypot(hx - x, hy - y);
-      if (d < (h.r || HIT) / k && d < bd) { best = h; bd = d; }
+      if (h.hidden?.()) continue;
+      const [hx, hy] = h.pos(), d = Math.hypot(hx - x, hy - y);
+      if (d <= (h.r || R) && d < bd) { best = h; bd = d; }
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) && !options.reservePointer?.() });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -146,17 +208,47 @@ export function createStage(host, options = {}) {
     if (anims.size) schedule();
   }
   function paint() {
+    const d = canvas.width / (stage.W || 1);
+    g.setTransform(d, 0, 0, d, 0, 0);
     g.clearRect(0, 0, stage.W, stage.H);
-    if (stage.pal.bg) { g.save(); g.fillStyle = stage.pal.bg; g.fillRect(-4000, -4000, 9000, 9000); g.restore(); }
+    if (stage.pal.bg) { g.save(); g.fillStyle = stage.pal.bg; g.fillRect(0, 0, stage.W, stage.H); g.restore(); }
     onFrame?.(g, stage);
     placeButtons();
   }
   const flush = () => { if (drag && pending) { const p = pending; pending = null; drag.h.drag(p[0] + drag.ox, p[1] + drag.oy); } invalidate(); };
 
-  // Focusable twins of the handles: Tab reaches them, arrows move by one grid step. Created when the unlocked set changes.
+  // ---- zoom buttons (built once): zoom in, zoom out, reset; the reset button shows only when the view has moved
+  let resetBtn = null, zoomBar = null;
+  if (zoomButtons) {
+    const bar = zoomBar = document.createElement("div");
+    bar.className = "lab2-zoom";
+    bar.setAttribute("role", "group");
+    bar.setAttribute("aria-label", fr ? "Vue" : "View");
+    const button = (text, title, act) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = text; b.title = title; b.setAttribute("aria-label", title);
+      b.addEventListener("click", act);
+      bar.append(b);
+      return b;
+    };
+    button("+", fr ? "Zoomer" : "Zoom in", () => stage.view.zoom(1.25));
+    button("−", fr ? "Dézoomer" : "Zoom out", () => stage.view.zoom(0.8));
+    resetBtn = button("⟲", fr ? "Recentrer la vue" : "Reset the view", () => resetView());
+    resetBtn.className = "lab2-zoom-reset";
+    resetBtn.hidden = true;
+    wrap.append(bar);
+  }
+  function viewChanged() {
+    if (resetBtn) resetBtn.hidden = !stage.view.moved;
+    invalidate();
+  }
+
+  // Focusable twins of the handles: Tab reaches them, arrows move by one grid step. Created when the set of handles changes.
   const buttons = new Map();
   function setHandles(list) {
+    const same = list.length === stage.handles.length && list.every((h, i) => h === stage.handles[i]);
     stage.handles = list;
+    if (same && buttons.size === list.length) { invalidate(); return; }
     for (const b of buttons.keys()) b.remove();
     buttons.clear();
     for (const h of list) {
@@ -165,25 +257,58 @@ export function createStage(host, options = {}) {
       b.setAttribute("aria-label", h.label);
       b.addEventListener("focus", () => { stage.focusId = h.id; invalidate(); });
       b.addEventListener("blur", () => { stage.focusId = null; invalidate(); });
-      wrap.append(b); buttons.set(b, h); h.button = b;
+      wrap.insertBefore(b, zoomBar);   // Tab order: canvas, the handles, then the view buttons
+      buttons.set(b, h); h.button = b;
     }
     invalidate();
   }
   function placeButtons() {
     for (const [b, h] of buttons) {
-      const [x, y] = h.pos(), [px, py] = nav.camera.project([x, y]);
+      const [px, py] = h.pos();
       const tx = `translate(${Math.round(px * 10) / 10 - HIT}px, ${Math.round(py * 10) / 10 - HIT}px)`;
       if (b._tx !== tx) { b._tx = tx; b.style.transform = tx; }
       const text = h.valuetext ? `${h.label}: ${h.valuetext()}` : h.label;
       setAttr(b, "aria-label", text);
     }
   }
+  const setCursor = (c) => { if (canvas._cursor !== c) { canvas._cursor = c; canvas.style.cursor = c; } };
+  const restCursor = () => { canvas.style.cursor = canvas._cursor || ""; };
+
+  function stopAll() { drag = null; pending = null; spin = null; pan = null; stage.dragId = null; }
 
   canvas.addEventListener("pointerdown", (e) => {
-    if ((e.pointerType === "mouse" && e.button !== 0) || e.shiftKey || e.altKey) return;
-    const p = nav.point(e), h = hitAt(p);
-    if (!h) {
-      if (!onSpin) return;
+    const p = local(e);
+    if (e.pointerType === "touch") {
+      touches.set(e.pointerId, p);
+      if (touches.size === 2) {
+        // a second finger: the view owns the gesture (the drag of the first finger stops)
+        const [a, b] = [...touches.values()];
+        stopAll();
+        pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), mid: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], panel: panelAt([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]) };
+        canvas.dispatchEvent(new CustomEvent("view-gesture"));
+        e.preventDefault();
+        invalidate();
+        return;
+      }
+      if (touches.size > 2) return;
+    }
+    if (e.pointerType === "mouse" && e.button !== 0 && e.button !== 1) return;
+    const wantsPan = e.button === 1 || e.shiftKey || e.altKey;
+    const h = wantsPan ? null : grab(p, e.pointerType);
+    if (h) {
+      e.preventDefault();
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+      const [hx, hy] = h.pos();
+      drag = { id: e.pointerId, h, ox: h.absolute ? 0 : hx - p[0], oy: h.absolute ? 0 : hy - p[1] };
+      stage.dragId = h.id;
+      h.button?.focus({ preventScroll: true });
+      canvas.style.cursor = "grabbing";
+      pending = p;
+      schedule();
+      return;
+    }
+    if (options.reservePointer?.()) return;
+    if (onSpin && !wantsPan) {
       e.preventDefault();
       try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
       spin = { id: e.pointerId, x: e.clientX, y: e.clientY };
@@ -191,47 +316,84 @@ export function createStage(host, options = {}) {
       canvas.style.cursor = "grabbing";
       return;
     }
-    e.preventDefault();
-    try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
-    const [hx, hy] = h.pos();
-    drag = { id: e.pointerId, h, ox: h.absolute ? 0 : hx - p[0], oy: h.absolute ? 0 : hy - p[1] };
-    h.button?.focus({ preventScroll: true });
-    canvas.style.cursor = "grabbing";
-    pending = p;
-    schedule();
+    const panel = panelAt(p);
+    if (panel && (wantsPan || isMoved(panel.cam))) {
+      e.preventDefault();
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+      pan = { id: e.pointerId, last: p, panel };
+      canvas.style.cursor = "grabbing";
+    }
   });
   canvas.addEventListener("pointermove", (e) => {
+    const p = local(e);
+    if (touches.has(e.pointerId)) touches.set(e.pointerId, p);
+    if (pinch) {
+      if (touches.size === 2) {
+        const [a, b] = [...touches.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]), mid = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+        const targets = pinch.panel ? [pinch.panel] : uniquePanels();
+        for (const t of targets) { zoomPanel(t, d / Math.max(1, pinch.d), pinch.mid); panBy(t, mid[0] - pinch.mid[0], mid[1] - pinch.mid[1]); }
+        pinch.d = d; pinch.mid = mid;
+        e.preventDefault();
+      }
+      return;
+    }
     if (spin) {
       if (e.pointerId === spin.id) { const dx = e.clientX - spin.x, dy = e.clientY - spin.y; spin.x = e.clientX; spin.y = e.clientY; if (dx || dy) { onSpin(dx, dy); invalidate(); } }
       return;
     }
-    if (drag) { if (e.pointerId === drag.id) { pending = nav.point(e); schedule(); } return; }
+    if (pan) {
+      if (e.pointerId === pan.id) { panBy(pan.panel, p[0] - pan.last[0], p[1] - pan.last[1]); pan.last = p; }
+      return;
+    }
+    if (drag) { if (e.pointerId === drag.id) { pending = p; schedule(); } return; }
     if (e.pointerType !== "mouse") return;
-    const c = hitAt(nav.point(e)) ? "grab" : "";
-    if (canvas._cursor !== c) { canvas._cursor = c; canvas.style.cursor = c; }
+    const h = grab(p, "mouse");
+    if ((h?.id ?? null) !== stage.hoverId) { stage.hoverId = h?.id ?? null; invalidate(); }
+    const panel = h ? null : panelAt(p);
+    setCursor(h ? "grab" : panel && isMoved(panel.cam) ? "move" : "");
   });
   const end = (e) => {
-    if (spin && e.pointerId === spin.id) { spin = null; canvas.style.cursor = canvas._cursor || ""; return; }
+    touches.delete(e.pointerId);
+    if (pinch) { if (touches.size < 2) pinch = null; return; }
+    if (spin && e.pointerId === spin.id) { spin = null; restCursor(); return; }
+    if (pan && e.pointerId === pan.id) { pan = null; restCursor(); return; }
     if (!drag || e.pointerId !== drag.id) return;
     flush();
-    drag = null; pending = null;
-    canvas.style.cursor = canvas._cursor || "";
+    drag = null; pending = null; stage.dragId = null;
+    restCursor();
     onDragEnd?.();
   };
   for (const name of ["pointerup", "pointercancel", "lostpointercapture"]) canvas.addEventListener(name, end);
-  // A second finger starts a pinch: the drag stops (the camera owns the gesture).
-  canvas.addEventListener("view-gesture", () => { drag = null; pending = null; spin = null; });
+  canvas.addEventListener("pointerleave", () => { if (stage.hoverId !== null && !drag) { stage.hoverId = null; invalidate(); } });
+  // A plain wheel scrolls the page; Ctrl or Cmd + wheel (and a trackpad pinch, which the browser reports with ctrlKey) zooms.
+  canvas.addEventListener("wheel", (e) => {
+    if (!(e.ctrlKey || e.metaKey)) return;
+    e.preventDefault();
+    const p = local(e), panel = panelAt(p);
+    const f = Math.exp(-clamp(e.deltaY, -60, 60) * 0.01);
+    if (panel) zoomPanel(panel, f, p); else stage.view.zoom(f);
+  }, { passive: false });
+  canvas.addEventListener("dblclick", (e) => { if (!grab(local(e))) resetView(); });
+
+  // keys of the view, from the canvas or from a focused handle: + and - zoom, 0 resets, Shift + arrows move the view
+  const PAN_KEY = 40;
+  const viewKey = (e) => {
+    const arrows = { ArrowLeft: [PAN_KEY, 0], ArrowRight: [-PAN_KEY, 0], ArrowUp: [0, PAN_KEY], ArrowDown: [0, -PAN_KEY] };
+    if (e.ctrlKey || e.metaKey || e.altKey) return false;
+    if (e.shiftKey && arrows[e.key]) { stage.view.pan(...arrows[e.key]); return true; }
+    if (e.key === "+" || e.key === "=") { stage.view.zoom(1.25); return true; }
+    if (e.key === "-") { stage.view.zoom(0.8); return true; }
+    if (e.key === "0") { resetView(); return true; }
+    return false;
+  };
+  canvas.addEventListener("keydown", (e) => { if (e.target === canvas && viewKey(e)) { e.preventDefault(); e.stopPropagation(); } });
 
   wrap.addEventListener("keydown", (e) => {
     const b = e.target.closest?.(".lab2-handle");
     if (!b) return;
+    if (viewKey(e)) { e.preventDefault(); return; }
     const arrows = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
-    if ((e.shiftKey && arrows[e.key]) || ["+", "=", "-", "0"].includes(e.key)) {
-      e.preventDefault();
-      canvas.dispatchEvent(new KeyboardEvent("keydown", { key: e.key, shiftKey: e.shiftKey, bubbles: true, cancelable: true }));
-      return;
-    }
-    if (arrows[e.key]) {
+    if (arrows[e.key] && !e.shiftKey) {
       e.preventDefault();
       buttons.get(b).nudge(...arrows[e.key]);
       invalidate();
@@ -279,7 +441,6 @@ export function createStage(host, options = {}) {
   themeWatch?.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
   Object.assign(stage, {
-    nav,
     invalidate,
     setHandles,
     // A frame callback for user-started motion (play): returns false to stop. Runs inside the one scheduler.
@@ -289,7 +450,6 @@ export function createStage(host, options = {}) {
     destroy() {
       alive = false;
       cancelAnimationFrame(raf);
-      nav.destroy();
       observer?.disconnect();
       themeWatch?.disconnect();
       wrap.remove();

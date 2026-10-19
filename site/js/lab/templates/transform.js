@@ -1,7 +1,7 @@
 // Template `transform`: a map applied to points, a figure and a grid. Two equal-scale panels, `before` and `after`, side by
 // side (stacked on a narrow stage), with the same fixed range so that sizes can be compared. Handles may sit in either
 // panel (the parameter of the map in `after`, a test point in `before`); a dashed link joins a point to its image.
-import { layoutPanels, makeView, drawAxes, drawScene, drawHandle, buildHandles } from "../plot.js";
+import { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } from "../plot.js";
 
 export function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -9,7 +9,7 @@ export function mount(env) {
   let views = {};
   function layout() {
     const rects = layoutPanels(stage.W, stage.H, [{ share: 0.5 }, {}]);
-    ids.forEach((id, i) => { views[id] = makeView(rects[i], specs[i]); });
+    ids.forEach((id, i) => { views[id] = panelView(stage, id, rects[i], specs[i], { camId: "plane" }); });
     return views;
   }
   layout();
@@ -29,7 +29,7 @@ export function mount(env) {
       g.save(); g.strokeStyle = stage.color(l.color || "muted"); g.lineWidth = 1.5; g.setLineDash([5, 5]);
       g.beginPath(); g.moveTo(a.X(l.from.at[0]), a.Y(l.from.at[1])); g.lineTo(b.X(l.to.at[0]), b.Y(l.to.at[1])); g.stroke(); g.restore();
     }
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
+    drawHandles(g, stage, handles, isUnlocked);
   }
   return { draw, handles, destroy() {} };
 }

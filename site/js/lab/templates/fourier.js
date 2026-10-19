@@ -1,5 +1,5 @@
 // Fourier shares the retained canvas, camera, scheduler, keyboard handles and mission shell of every laboratory.
-import {makeView,drawAxes,drawHandle} from '../plot.js';
+import {panelView,drawAxes,drawHandle} from '../plot.js';
 import * as F from '../../fourier-model.js';
 import {arms} from '../../gallery-math.js';
 export function mount(env){
@@ -13,7 +13,7 @@ export function mount(env){
   let pen=[0,0],strokePointer=null;
 
   const spec=()=>getState().mode==='shape'?{x:[-15,15],y:[-15,15],equal:true,xTicks:[-10,0,10],yTicks:[-10,0,10]}:{x:[0,1],y:[-1.7,1.7],xTicks:[0,.25,.5,.75,1],yTicks:[-1,0,1]};
-  function layout(){const wave=getState().mode==='wave',split=wave?stage.W*.35:0;v=makeView({x:split,y:0,w:stage.W-split,h:stage.H},spec());w=makeView({x:0,y:0,w:split||stage.W,h:stage.H},{x:[-1.7,1.7],y:[-1.7,1.7],equal:true});}
+  function layout(){const wave=getState().mode==='wave',split=wave?stage.W*.35:0;v=panelView(stage,'signal',{x:split,y:0,w:stage.W-split,h:stage.H},spec(),{camId:'signal-'+getState().mode});w=panelView(stage,'phasor',{x:0,y:0,w:split||stage.W,h:stage.H},{x:[-1.7,1.7],y:[-1.7,1.7],equal:true});if(!wave)stage.panel('phasor',{x:0,y:0,w:0,h:0},stage.cam('phasor'));}
   const line=(points,color,width=2,dash=[])=>{g.save();g.strokeStyle=stage.color(color);g.lineWidth=width;g.setLineDash(dash);g.beginPath();points.forEach(([x,y],i)=>i?g.lineTo(v.X(x),v.Y(y)):g.moveTo(v.X(x),v.Y(y)));g.stroke();g.restore();};
   function prepare(s){
     const key=JSON.stringify([s.shape,s.custom,s.count]);if(cache===key)return;cache=key;
@@ -35,7 +35,7 @@ export function mount(env){
     }else if(s.mode==='wave'){
       const wave=Array.from({length:501},(_,i)=>[i/500,s.amplitude*Math.cos(F.TAU*s.frequency*i/500+s.phase)]);line(wave,'accent',3);
       // A small rotating vector is paired with the wave at t = 0. The draggable tip controls A and φ.
-      const x=s.amplitude*Math.sin(s.phase),y=s.amplitude*Math.cos(s.phase);g.restore();g.save();g.strokeStyle=stage.color('muted');g.lineWidth=1;g.beginPath();g.arc(w.X(0),w.Y(0),Math.abs(w.X(s.amplitude)-w.X(0)),0,F.TAU);g.stroke();g.strokeStyle=stage.color('obj2');g.lineWidth=2;g.beginPath();g.moveTo(w.X(0),w.Y(0));g.lineTo(w.X(x),w.Y(y));g.stroke();g.setLineDash([4,5]);g.beginPath();g.moveTo(w.X(x),w.Y(y));g.lineTo(v.X(0),v.Y(y));g.stroke();g.setLineDash([]);drawHandle(g,stage,w.X(x),w.Y(y),{color:'obj2',locked:!isUnlocked('waveTip')});
+      const x=s.amplitude*Math.sin(s.phase),y=s.amplitude*Math.cos(s.phase);g.restore();g.save();g.strokeStyle=stage.color('muted');g.lineWidth=1;g.beginPath();g.arc(w.X(0),w.Y(0),Math.abs(w.X(s.amplitude)-w.X(0)),0,F.TAU);g.stroke();g.strokeStyle=stage.color('obj2');g.lineWidth=2;g.beginPath();g.moveTo(w.X(0),w.Y(0));g.lineTo(w.X(x),w.Y(y));g.stroke();g.setLineDash([4,5]);g.beginPath();g.moveTo(w.X(x),w.Y(y));g.lineTo(v.X(0),v.Y(y));g.stroke();g.setLineDash([]);drawHandle(g,stage,w.X(x),w.Y(y),{color:'obj2',locked:!isUnlocked('waveTip'),id:'waveTip'});
     }else{
       const samples=Array.from({length:801},(_,i)=>i/800);
       // Break at jumps rather than joining opposite limits with a fictitious segment.
@@ -56,7 +56,7 @@ export function mount(env){
     drag(x,y){if(getState().mode!=='wave')return;const a=w.iX(x),b=w.iY(y);setState({amplitude:Math.min(1.5,Math.hypot(a,b)),phase:Math.atan2(a,b)});},
     nudge(dx,dy){const s=getState();setState({amplitude:Math.max(0,Math.min(1.5,s.amplitude+dy*.05)),phase:Math.max(-3.14,Math.min(3.14,s.phase+dx*.05))});},
   }];
-  const point=e=>{const r=cv.getBoundingClientRect(),p=stage.nav.camera.unproject([(e.clientX-r.left)*stage.W/r.width,(e.clientY-r.top)*stage.H/r.height]);return [v.iX(p[0]),v.iY(p[1])];};
+  const point=e=>{const r=cv.getBoundingClientRect(),p=[(e.clientX-r.left)*stage.W/r.width,(e.clientY-r.top)*stage.H/r.height];return [v.iX(p[0]),v.iY(p[1])];};
   const down=e=>{const s=getState();if(s.mode!=='shape'||s.shape!=='custom'||!isUnlocked('shape'))return;e.stopImmediatePropagation();e.preventDefault();stroke=[point(e)];strokePointer=e.pointerId;cv.setPointerCapture(e.pointerId);stage.invalidate();};
   const move=e=>{if(stroke&&e.pointerId===strokePointer){stroke.push(point(e));stage.invalidate();}};
   const end=e=>{if(!stroke||(strokePointer!=null&&e?.pointerId!==strokePointer))return;const p=stroke;stroke=null;strokePointer=null;if(p.length>=3&&p.some(q=>Math.hypot(q[0]-p[0][0],q[1]-p[0][1])>.1))setState({custom:p,time:0});stage.invalidate();};

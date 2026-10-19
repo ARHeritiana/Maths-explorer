@@ -21,7 +21,8 @@ CHECKS = {'quadratic/read':'-2','trig/read':'1/2','sequences/formula':'96','deri
           'line/read':'2.5','exponential/sequence':'48','cobweb/fixed':'6','matrix/read':'5','space-lines/meet':'2'}
 
 def walk_experiment(page, name):
-    """Complete every mission of an experiment through the page: predict, explore, compare, check (wrong then right), explain."""
+    """Complete every mission of an experiment through the page: predict, explore, compare, check (wrong then right), explain.
+    Exploration is free (nothing waits), but each mission still recognises its goal, answer or argument."""
     page.goto(BASE+'/#lab/'+name)
     page.locator('.lab2-canvas').wait_for()
     count = page.locator('.lab2-dot').count()
@@ -31,18 +32,18 @@ def walk_experiment(page, name):
         kind = page.locator('.lab2-card').get_attribute('data-kind')
         mission = page.evaluate("() => document.querySelector('.lab2').__lab.mission.id")
         assert page.evaluate('location.hash') == '#lab/'+name+'/'+mission
-        assert page.locator('.lab2-nav .primary').is_disabled() or i == count-1, 'Next waits for the mission'
+        assert page.locator('.lab2-nav .primary').is_enabled() or i == count-1, 'exploration is free: Next never waits'
+        assert page.locator('.lab2-ctl.is-locked').count() == 0, 'every control works in every mission'
         if kind == 'predict':
-            assert page.locator('.lab2-ctl:not(.is-locked)').count() == 0, 'controls are locked in the prediction'
             page.locator('.lab2-option').first.click()
         elif kind == 'explore':
             page.evaluate("w => document.querySelector('.lab2').__lab.setState(w)", WITNESS[name+'/'+mission])
         elif kind == 'contrast':
             for button in page.locator('.lab2-variant').all(): button.click()
         elif kind == 'check':
-            page.locator('.lab2-check input').fill('99999'); page.locator('.lab2-check button').click()
+            page.locator('.lab2-check input').fill('99999'); page.locator('.lab2-check button[type=submit]').click()
             assert page.locator('.lab2-feedback').inner_text() and not page.locator('.lab2-card.is-done').count(), 'a wrong answer sends back to the figure'
-            page.locator('.lab2-check input').fill(CHECKS[name+'/'+mission]); page.locator('.lab2-check button').click()
+            page.locator('.lab2-check input').fill(CHECKS[name+'/'+mission]); page.locator('.lab2-check button[type=submit]').click()
         elif kind == 'explain':
             assert page.locator('.lab2-reveal').is_hidden()
             page.locator('.lab2-answer textarea').fill('Parce que la figure le montre pour tous les cas.')
@@ -162,8 +163,8 @@ with sync_playwright() as p:
         assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
-    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 14, 'the laboratory index lists the fourteen experiments, grouped by type of activity'
-    assert page.locator('.lab2-group').count() == 7
+    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 16, 'the laboratory index lists the sixteen experiments, grouped by type of activity'
+    assert page.locator('.lab2-group').count() == 8
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
@@ -250,7 +251,7 @@ with sync_playwright() as p:
     submissions = []
     page.on('request', lambda req: submissions.append(req.url) if req.resource_type in ['xhr','fetch'] else None)
     page.goto(BASE+'/#lab/probability/open'); page.locator('.lab2-option').first.click()
-    page.goto(BASE+'/#lab/vectors/read'); page.locator('.lab2-check input').fill('7'); page.locator('.lab2-check button').click()
+    page.goto(BASE+'/#lab/vectors/read'); page.locator('.lab2-check input').fill('7'); page.locator('.lab2-check button[type=submit]').click()
     assert not submissions, submissions
     # Test malformed storage, read denial and quota/write denial in fresh contexts.
     for script in [

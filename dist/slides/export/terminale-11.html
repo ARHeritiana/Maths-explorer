@@ -1517,11 +1517,11 @@ __e.REVOLUTION = REVOLUTION;
 });
 __d("lab/engine.js", function (__e, __r) {
 // Laboratory stage: one canvas, one requestAnimationFrame scheduler that draws only when something changed, handle
-// hit-testing (22 px radius = 44 px target) with pointer capture, keyboard handles, the shared camera, theme colours and
+// grabbing (the nearest handle within a forgiving radius) with pointer capture, keyboard handles, the view camera, theme colours and
 // text writes that touch a node only when the string changed. No element is created or replaced during a drag.
-const { canvasNavigation } = __r("canvas-navigation.js");
 const { palette: themePalette } = __r("object-kit.js");
 const { makeFormat } = __r("lab/format.js");
+const { clamp } = __r("lab/models/num.js");
 
 const HIT = 22;
 
@@ -1605,22 +1605,34 @@ function createTable(host, caption) {
 const reducedQuery = () => (typeof matchMedia === "function" ? matchMedia("(prefers-reduced-motion: reduce)") : { matches: false });
 
 // ---- the stage
+// Pointer policy (owner request of 19 October 2026: "difficult to click on points, the canvas moves when it shouldn't"):
+//   a press grabs the nearest handle within GRAB pixels (larger for a finger); a plain wheel scrolls the page, the view zooms
+//   only with Ctrl or Cmd + wheel, a pinch, the + and - buttons or keys; a drag on the empty background moves the view only once
+//   the view has been zoomed or moved (Shift, Alt or middle drag always pans); a double click on the background resets it.
+// The view camera acts on the world ranges of each panel (plot.js makeView), never on the bitmap: the grid is recomputed for
+// what is visible, and text, lines and handles keep their size at every zoom.
+const GRAB = { mouse: 26, pen: 34, touch: 40 };
+const ZOOM = [0.25, 8];
+
 function createStage(host, options = {}) {
   // `onSpin(dx, dy)`: a drag on the empty background (or the arrow keys with the canvas focused) turns a 3D view instead of
-  // panning it (template `space`); the 2D camera still zooms, and Shift or Alt drag pans.
-  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false, onSpin } = options;
+  // moving it (template `space`); Shift or Alt drag still pans.
+  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, canvasKeys = false, onSpin, zoomButtons = true } = options;
+  const fr = options.lang !== "en";
   const wrap = document.createElement("div");
   wrap.className = "lab2-stage";
   const canvas = document.createElement("canvas");
   canvas.className = "lab2-canvas";
   canvas.setAttribute("role", "group");
+  canvas.tabIndex = 0;
+  canvas.style.touchAction = "none";
   if (label) canvas.setAttribute("aria-label", label);
   wrap.append(canvas);
   host.append(wrap);
   const g = canvas.getContext("2d");
   const reducedMq = reducedQuery();
 
-  const stage = { canvas, wrap, g, W: 0, H: 0, handles: [], pal: null, focusId: null };
+  const stage = { canvas, wrap, g, W: 0, H: 0, handles: [], pal: null, focusId: null, hoverId: null, dragId: null };
   const resolvePalette = () => (typeof paletteOption === "function" ? paletteOption() : paletteOption) || themePalette();
   stage.pal = resolvePalette();
   stage.reduced = () => !!reducedMq.matches;
@@ -1637,21 +1649,71 @@ function createStage(host, options = {}) {
     return p[name] || name;
   };
 
-  let dirty = true, raf = 0, alive = true, pending = null, drag = null, spin = null;
-  const anims = new Set();
-  const size = () => [stage.W || 640, stage.H || 420];
+  // ---- view cameras: one per panel (or shared by panels that must stay aligned). A panel registers its frame every layout.
+  // X_screen = c + k (X_base - c) + o on each axis, where c is the centre of the panel's frame; `axis: "x"` zooms x only.
+  const cams = new Map(), panels = new Map(), resetHooks = new Set();
+  stage.cam = (id, axis = "xy") => {
+    let c = cams.get(id);
+    if (!c) { c = { kx: 1, ky: 1, ox: 0, oy: 0, axis }; cams.set(id, c); }
+    return c;
+  };
+  // frame = {x, y, w, h} (the area where the panel draws), centre = [cx, cy]
+  stage.panel = (id, frame, cam, centre) => { panels.set(id, { frame, cam, c: centre || [frame.x + frame.w / 2, frame.y + frame.h / 2] }); };
+  const panelAt = ([x, y]) => {
+    for (const p of panels.values()) { const f = p.frame; if (x >= f.x && x <= f.x + f.w && y >= f.y && y <= f.y + f.h) return p; }
+    return null;
+  };
+  const isMoved = (c) => c.kx !== 1 || c.ky !== 1 || c.ox !== 0 || c.oy !== 0;
+  const bound = (p) => {
+    // the designed range never leaves the panel completely
+    const c = p.cam, f = p.frame, mx = (c.kx * f.w + f.w) / 2, my = (c.ky * f.h + f.h) / 2;
+    c.ox = clamp(c.ox, -mx, mx); c.oy = clamp(c.oy, -my, my);
+  };
+  function zoomPanel(p, factor, at) {
+    const c = p.cam, [px, py] = at || p.c;
+    const kx = clamp(c.kx * factor, ZOOM[0], ZOOM[1]), ky = c.axis === "x" ? 1 : clamp(c.ky * factor, ZOOM[0], ZOOM[1]);
+    c.ox = px - p.c[0] - (kx / c.kx) * (px - p.c[0] - c.ox);
+    if (c.axis !== "x") c.oy = py - p.c[1] - (ky / c.ky) * (py - p.c[1] - c.oy);
+    c.kx = kx; c.ky = ky;
+    bound(p);
+    viewChanged();
+  }
+  const uniquePanels = () => { const seen = new Set(), out = []; for (const p of panels.values()) if (!seen.has(p.cam)) { seen.add(p.cam); out.push(p); } return out; };
+  function panBy(p, dx, dy) { p.cam.ox += dx; if (p.cam.axis !== "x") p.cam.oy += dy; bound(p); viewChanged(); }
+  function resetView() {
+    for (const c of cams.values()) Object.assign(c, { kx: 1, ky: 1, ox: 0, oy: 0 });
+    for (const f of resetHooks) f();
+    viewChanged();
+  }
+  stage.view = {
+    get scale() { let k = 1; for (const c of cams.values()) if (Math.abs(Math.log(c.kx)) > Math.abs(Math.log(k))) k = c.kx; return k; },
+    get moved() { return [...cams.values()].some(isMoved); },
+    zoom(factor) { for (const p of uniquePanels()) zoomPanel(p, factor); },
+    pan(dx, dy) { for (const p of uniquePanels()) panBy(p, dx, dy); },
+    reset: resetView,
+    onReset(fn) { resetHooks.add(fn); return () => resetHooks.delete(fn); },
+  };
 
-  const hitAt = ([x, y]) => {
-    const k = nav.camera.scale || 1;
+  let dirty = true, raf = 0, alive = true, pending = null, drag = null, spin = null, pan = null, pinch = null;
+  const touches = new Map();
+  const anims = new Set();
+
+  // stage pixels of a pointer event
+  const local = (e) => {
+    const r = canvas.getBoundingClientRect(), kx = r.width ? (stage.W || r.width) / r.width : 1, ky = r.height ? (stage.H || r.height) / r.height : 1;
+    return [(e.clientX - r.left) * kx, (e.clientY - r.top) * ky];
+  };
+  // the nearest handle within the grab radius of this kind of pointer
+  const grab = ([x, y], kind = "mouse") => {
+    const R = GRAB[kind] || GRAB.mouse;
     let best = null, bd = Infinity;
     for (const h of stage.handles) {
-      const [hx, hy] = h.pos();
-      const d = Math.hypot(hx - x, hy - y);
-      if (d < (h.r || HIT) / k && d < bd) { best = h; bd = d; }
+      if (h.hidden?.()) continue;
+      const [hx, hy] = h.pos(), d = Math.hypot(hx - x, hy - y);
+      if (d <= (h.r || R) && d < bd) { best = h; bd = d; }
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) && !options.reservePointer?.() });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -1664,17 +1726,47 @@ function createStage(host, options = {}) {
     if (anims.size) schedule();
   }
   function paint() {
+    const d = canvas.width / (stage.W || 1);
+    g.setTransform(d, 0, 0, d, 0, 0);
     g.clearRect(0, 0, stage.W, stage.H);
-    if (stage.pal.bg) { g.save(); g.fillStyle = stage.pal.bg; g.fillRect(-4000, -4000, 9000, 9000); g.restore(); }
+    if (stage.pal.bg) { g.save(); g.fillStyle = stage.pal.bg; g.fillRect(0, 0, stage.W, stage.H); g.restore(); }
     onFrame?.(g, stage);
     placeButtons();
   }
   const flush = () => { if (drag && pending) { const p = pending; pending = null; drag.h.drag(p[0] + drag.ox, p[1] + drag.oy); } invalidate(); };
 
-  // Focusable twins of the handles: Tab reaches them, arrows move by one grid step. Created when the unlocked set changes.
+  // ---- zoom buttons (built once): zoom in, zoom out, reset; the reset button shows only when the view has moved
+  let resetBtn = null, zoomBar = null;
+  if (zoomButtons) {
+    const bar = zoomBar = document.createElement("div");
+    bar.className = "lab2-zoom";
+    bar.setAttribute("role", "group");
+    bar.setAttribute("aria-label", fr ? "Vue" : "View");
+    const button = (text, title, act) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = text; b.title = title; b.setAttribute("aria-label", title);
+      b.addEventListener("click", act);
+      bar.append(b);
+      return b;
+    };
+    button("+", fr ? "Zoomer" : "Zoom in", () => stage.view.zoom(1.25));
+    button("−", fr ? "Dézoomer" : "Zoom out", () => stage.view.zoom(0.8));
+    resetBtn = button("⟲", fr ? "Recentrer la vue" : "Reset the view", () => resetView());
+    resetBtn.className = "lab2-zoom-reset";
+    resetBtn.hidden = true;
+    wrap.append(bar);
+  }
+  function viewChanged() {
+    if (resetBtn) resetBtn.hidden = !stage.view.moved;
+    invalidate();
+  }
+
+  // Focusable twins of the handles: Tab reaches them, arrows move by one grid step. Created when the set of handles changes.
   const buttons = new Map();
   function setHandles(list) {
+    const same = list.length === stage.handles.length && list.every((h, i) => h === stage.handles[i]);
     stage.handles = list;
+    if (same && buttons.size === list.length) { invalidate(); return; }
     for (const b of buttons.keys()) b.remove();
     buttons.clear();
     for (const h of list) {
@@ -1683,25 +1775,58 @@ function createStage(host, options = {}) {
       b.setAttribute("aria-label", h.label);
       b.addEventListener("focus", () => { stage.focusId = h.id; invalidate(); });
       b.addEventListener("blur", () => { stage.focusId = null; invalidate(); });
-      wrap.append(b); buttons.set(b, h); h.button = b;
+      wrap.insertBefore(b, zoomBar);   // Tab order: canvas, the handles, then the view buttons
+      buttons.set(b, h); h.button = b;
     }
     invalidate();
   }
   function placeButtons() {
     for (const [b, h] of buttons) {
-      const [x, y] = h.pos(), [px, py] = nav.camera.project([x, y]);
+      const [px, py] = h.pos();
       const tx = `translate(${Math.round(px * 10) / 10 - HIT}px, ${Math.round(py * 10) / 10 - HIT}px)`;
       if (b._tx !== tx) { b._tx = tx; b.style.transform = tx; }
       const text = h.valuetext ? `${h.label}: ${h.valuetext()}` : h.label;
       setAttr(b, "aria-label", text);
     }
   }
+  const setCursor = (c) => { if (canvas._cursor !== c) { canvas._cursor = c; canvas.style.cursor = c; } };
+  const restCursor = () => { canvas.style.cursor = canvas._cursor || ""; };
+
+  function stopAll() { drag = null; pending = null; spin = null; pan = null; stage.dragId = null; }
 
   canvas.addEventListener("pointerdown", (e) => {
-    if ((e.pointerType === "mouse" && e.button !== 0) || e.shiftKey || e.altKey) return;
-    const p = nav.point(e), h = hitAt(p);
-    if (!h) {
-      if (!onSpin) return;
+    const p = local(e);
+    if (e.pointerType === "touch") {
+      touches.set(e.pointerId, p);
+      if (touches.size === 2) {
+        // a second finger: the view owns the gesture (the drag of the first finger stops)
+        const [a, b] = [...touches.values()];
+        stopAll();
+        pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), mid: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], panel: panelAt([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]) };
+        canvas.dispatchEvent(new CustomEvent("view-gesture"));
+        e.preventDefault();
+        invalidate();
+        return;
+      }
+      if (touches.size > 2) return;
+    }
+    if (e.pointerType === "mouse" && e.button !== 0 && e.button !== 1) return;
+    const wantsPan = e.button === 1 || e.shiftKey || e.altKey;
+    const h = wantsPan ? null : grab(p, e.pointerType);
+    if (h) {
+      e.preventDefault();
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+      const [hx, hy] = h.pos();
+      drag = { id: e.pointerId, h, ox: h.absolute ? 0 : hx - p[0], oy: h.absolute ? 0 : hy - p[1] };
+      stage.dragId = h.id;
+      h.button?.focus({ preventScroll: true });
+      canvas.style.cursor = "grabbing";
+      pending = p;
+      schedule();
+      return;
+    }
+    if (options.reservePointer?.()) return;
+    if (onSpin && !wantsPan) {
       e.preventDefault();
       try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
       spin = { id: e.pointerId, x: e.clientX, y: e.clientY };
@@ -1709,47 +1834,84 @@ function createStage(host, options = {}) {
       canvas.style.cursor = "grabbing";
       return;
     }
-    e.preventDefault();
-    try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
-    const [hx, hy] = h.pos();
-    drag = { id: e.pointerId, h, ox: h.absolute ? 0 : hx - p[0], oy: h.absolute ? 0 : hy - p[1] };
-    h.button?.focus({ preventScroll: true });
-    canvas.style.cursor = "grabbing";
-    pending = p;
-    schedule();
+    const panel = panelAt(p);
+    if (panel && (wantsPan || isMoved(panel.cam))) {
+      e.preventDefault();
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+      pan = { id: e.pointerId, last: p, panel };
+      canvas.style.cursor = "grabbing";
+    }
   });
   canvas.addEventListener("pointermove", (e) => {
+    const p = local(e);
+    if (touches.has(e.pointerId)) touches.set(e.pointerId, p);
+    if (pinch) {
+      if (touches.size === 2) {
+        const [a, b] = [...touches.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]), mid = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+        const targets = pinch.panel ? [pinch.panel] : uniquePanels();
+        for (const t of targets) { zoomPanel(t, d / Math.max(1, pinch.d), pinch.mid); panBy(t, mid[0] - pinch.mid[0], mid[1] - pinch.mid[1]); }
+        pinch.d = d; pinch.mid = mid;
+        e.preventDefault();
+      }
+      return;
+    }
     if (spin) {
       if (e.pointerId === spin.id) { const dx = e.clientX - spin.x, dy = e.clientY - spin.y; spin.x = e.clientX; spin.y = e.clientY; if (dx || dy) { onSpin(dx, dy); invalidate(); } }
       return;
     }
-    if (drag) { if (e.pointerId === drag.id) { pending = nav.point(e); schedule(); } return; }
+    if (pan) {
+      if (e.pointerId === pan.id) { panBy(pan.panel, p[0] - pan.last[0], p[1] - pan.last[1]); pan.last = p; }
+      return;
+    }
+    if (drag) { if (e.pointerId === drag.id) { pending = p; schedule(); } return; }
     if (e.pointerType !== "mouse") return;
-    const c = hitAt(nav.point(e)) ? "grab" : "";
-    if (canvas._cursor !== c) { canvas._cursor = c; canvas.style.cursor = c; }
+    const h = grab(p, "mouse");
+    if ((h?.id ?? null) !== stage.hoverId) { stage.hoverId = h?.id ?? null; invalidate(); }
+    const panel = h ? null : panelAt(p);
+    setCursor(h ? "grab" : panel && isMoved(panel.cam) ? "move" : "");
   });
   const end = (e) => {
-    if (spin && e.pointerId === spin.id) { spin = null; canvas.style.cursor = canvas._cursor || ""; return; }
+    touches.delete(e.pointerId);
+    if (pinch) { if (touches.size < 2) pinch = null; return; }
+    if (spin && e.pointerId === spin.id) { spin = null; restCursor(); return; }
+    if (pan && e.pointerId === pan.id) { pan = null; restCursor(); return; }
     if (!drag || e.pointerId !== drag.id) return;
     flush();
-    drag = null; pending = null;
-    canvas.style.cursor = canvas._cursor || "";
+    drag = null; pending = null; stage.dragId = null;
+    restCursor();
     onDragEnd?.();
   };
   for (const name of ["pointerup", "pointercancel", "lostpointercapture"]) canvas.addEventListener(name, end);
-  // A second finger starts a pinch: the drag stops (the camera owns the gesture).
-  canvas.addEventListener("view-gesture", () => { drag = null; pending = null; spin = null; });
+  canvas.addEventListener("pointerleave", () => { if (stage.hoverId !== null && !drag) { stage.hoverId = null; invalidate(); } });
+  // A plain wheel scrolls the page; Ctrl or Cmd + wheel (and a trackpad pinch, which the browser reports with ctrlKey) zooms.
+  canvas.addEventListener("wheel", (e) => {
+    if (!(e.ctrlKey || e.metaKey)) return;
+    e.preventDefault();
+    const p = local(e), panel = panelAt(p);
+    const f = Math.exp(-clamp(e.deltaY, -60, 60) * 0.01);
+    if (panel) zoomPanel(panel, f, p); else stage.view.zoom(f);
+  }, { passive: false });
+  canvas.addEventListener("dblclick", (e) => { if (!grab(local(e))) resetView(); });
+
+  // keys of the view, from the canvas or from a focused handle: + and - zoom, 0 resets, Shift + arrows move the view
+  const PAN_KEY = 40;
+  const viewKey = (e) => {
+    const arrows = { ArrowLeft: [PAN_KEY, 0], ArrowRight: [-PAN_KEY, 0], ArrowUp: [0, PAN_KEY], ArrowDown: [0, -PAN_KEY] };
+    if (e.ctrlKey || e.metaKey || e.altKey) return false;
+    if (e.shiftKey && arrows[e.key]) { stage.view.pan(...arrows[e.key]); return true; }
+    if (e.key === "+" || e.key === "=") { stage.view.zoom(1.25); return true; }
+    if (e.key === "-") { stage.view.zoom(0.8); return true; }
+    if (e.key === "0") { resetView(); return true; }
+    return false;
+  };
+  canvas.addEventListener("keydown", (e) => { if (e.target === canvas && viewKey(e)) { e.preventDefault(); e.stopPropagation(); } });
 
   wrap.addEventListener("keydown", (e) => {
     const b = e.target.closest?.(".lab2-handle");
     if (!b) return;
+    if (viewKey(e)) { e.preventDefault(); return; }
     const arrows = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
-    if ((e.shiftKey && arrows[e.key]) || ["+", "=", "-", "0"].includes(e.key)) {
-      e.preventDefault();
-      canvas.dispatchEvent(new KeyboardEvent("keydown", { key: e.key, shiftKey: e.shiftKey, bubbles: true, cancelable: true }));
-      return;
-    }
-    if (arrows[e.key]) {
+    if (arrows[e.key] && !e.shiftKey) {
       e.preventDefault();
       buttons.get(b).nudge(...arrows[e.key]);
       invalidate();
@@ -1797,7 +1959,6 @@ function createStage(host, options = {}) {
   themeWatch?.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
   Object.assign(stage, {
-    nav,
     invalidate,
     setHandles,
     // A frame callback for user-started motion (play): returns false to stop. Runs inside the one scheduler.
@@ -1807,7 +1968,6 @@ function createStage(host, options = {}) {
     destroy() {
       alive = false;
       cancelAnimationFrame(raf);
-      nav.destroy();
       observer?.disconnect();
       themeWatch?.disconnect();
       wrap.remove();
@@ -1827,6 +1987,7 @@ __e.setAttr = setAttr;
 __e.setClass = setClass;
 __e.createReadout = createReadout;
 __e.createTable = createTable;
+__e.GRAB = GRAB;
 __e.createStage = createStage;
 });
 __d("lab/experiments/cobweb.js", function (__e, __r) {
@@ -1885,7 +2046,7 @@ __e.default = {
   views: {
     panels: ["graph"],
     graph: {
-      x: R, y: R, equal: true, widen: true, xTicks: [0, 2, 4, 6, 8], yTicks: [0, 2, 4, 6, 8],
+      x: R, y: R, equal: true, xTicks: [0, 2, 4, 6, 8], yTicks: [0, 2, 4, 6, 8],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, list = m.terms;
         const last = list.length - 1;
@@ -2932,7 +3093,7 @@ __e.default = {
   views: {
     panels: ["figure"],
     figure: {
-      x: [-6, 6], y: [-5.5, 5.5], equal: true, widen: true, xTicks: [-6, -4, -2, 0, 2, 4, 6], yTicks: [-4, -2, 0, 2, 4],
+      x: [-6, 6], y: [-5.5, 5.5], equal: true, xTicks: [-6, -4, -2, 0, 2, 4, 6], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, [ax, ay, bx, by] = [s.ax, s.ay, s.bx, s.by];
         if (m.degenerate) return { points: [{ at: [ax, ay], color: "accent", r: 6, label: `A = B ${fmt.pt(ax, ay)}`, dx: 12, dy: -12 }] };
@@ -4540,7 +4701,7 @@ __e.default = {
   views: {
     panels: ["figure"],
     figure: {
-      x: [-5, 5], y: [-4.5, 4.5], equal: true, widen: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
+      x: [-5, 5], y: [-4.5, 4.5], equal: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, tone = m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "muted";
         const [sx, sy] = m.sum, flat = m.collinear;
@@ -5408,58 +5569,94 @@ function layoutPanels(W, H, specs) {
   return [{ x: 0, y: 0, w: W, h: h0 }, { x: 0, y: h0, w: W, h: H - h0 }];
 }
 
-// World <-> stage pixels for one panel. With `equal` one unit has the same length on both axes.
-function makeView(rect, spec) {
+// Grid values for the visible range [a, b] drawn over `px` pixels. The experiment's ticks give the anchor and the step (so π/2
+// steps or a grid through ±1 survive); the step doubles or halves so that the grid stays readable at every zoom.
+function gridTicks(given, a, b, px, spacing = 40) {
+  if (Array.isArray(given) && !given.length) return [];
+  if (!(b > a)) return [];
+  let anchor = 0, step = 0;
+  if (Array.isArray(given) && given.length) {
+    anchor = given[0];
+    for (let i = 1; i < given.length; i++) { const d = Math.abs(given[i] - given[i - 1]); if (d > 1e-12 && (!step || d < step)) step = d; }
+  }
+  if (!step) {
+    const rough = (b - a) / 6, power = 10 ** Math.floor(Math.log10(rough));
+    step = [1, 2, 5, 10].map((v) => v * power).find((v) => v >= rough);
+  }
+  const most = Math.max(2, Math.floor(px / spacing));
+  while ((b - a) / step > most) step *= 2;
+  while ((b - a) / step < 2 && step > 1e-6) step /= 2;
+  const out = [];
+  for (let m = Math.ceil((a - anchor) / step - 1e-9); out.length < 400; m++) {
+    let t = anchor + m * step;
+    const tidy = Math.round(t * 1e6) / 1e6;   // 0.30000000000000004 -> 0.3, but a multiple of π stays exact
+    if (Math.abs(t - tidy) < 1e-9) t = tidy;
+    if (t > b + step * 1e-9) break;
+    out.push(Math.abs(t) < 1e-12 ? 0 : t);
+  }
+  return out;
+}
+
+// World <-> stage pixels for one panel. With `equal` one unit has the same length on both axes, and the range of the axis that
+// has room grows so that the panel is filled (never stretched). The range depends on the size of the stage only, never on the
+// state. `cam` (the stage's view camera of this panel: zoom k and offset o) maps X to c + k (X - c) + o around the centre c of
+// the frame; x0, x1, y0, y1 and the grid are then those of the visible part, so the grid always covers the whole panel.
+function makeView(rect, spec, cam = null) {
   const pad = { l: spec.pad?.[0] ?? 34, t: spec.pad?.[1] ?? 12, r: spec.pad?.[2] ?? 12, b: spec.pad?.[3] ?? 26 };
   const pw = Math.max(40, rect.w - pad.l - pad.r), ph = Math.max(40, rect.h - pad.t - pad.b);
   let [x0, x1] = spec.x, [y0, y1] = spec.y;
-  let L = rect.x + pad.l, T = rect.y + pad.t, w = pw, h = ph;
-  let xTicks = null, yTicks = null;
-  if (spec.equal && spec.widen) {
-    // Use the whole panel at equal scale: the range of the axis that has room grows (it is never stretched). It depends on the
-    // size of the stage only, never on the state, so the camera stays fixed.
+  const L = rect.x + pad.l, T = rect.y + pad.t, w = pw, h = ph;
+  if (spec.equal) {
     const k0 = Math.min(pw / (x1 - x0), ph / (y1 - y0)), dx = pw / k0 - (x1 - x0), dy = ph / k0 - (y1 - y0);
     if (dx > 0) { x0 -= dx / 2; x1 += dx / 2; }
     if (dy > 0) { y0 -= dy / 2; y1 += dy / 2; }
-    const every = (ticks, a, b) => { const step = ticks && ticks.length > 1 ? Math.abs(ticks[1] - ticks[0]) : 0; if (!step) return null; const out = []; for (let t = Math.ceil(a / step) * step; t <= b + 1e-9; t += step) out.push(Math.round(t / step) * step); return out; };
-    xTicks = every(spec.xTicks, x0, x1); yTicks = every(spec.yTicks, y0, y1);
   }
-  if (spec.equal) {
-    const k = Math.min(pw / (x1 - x0), ph / (y1 - y0));
-    w = k * (x1 - x0); h = k * (y1 - y0);
-    L += (pw - w) / 2; T += (ph - h) / 2;
-  }
+  const kx = cam?.kx ?? 1, ky = cam?.ky ?? 1, ox = cam?.ox ?? 0, oy = cam?.oy ?? 0, cx = L + w / 2, cy = T + h / 2;
+  const X = (x) => cx + kx * (L + ((x - x0) / (x1 - x0)) * w - cx) + ox;
+  const Y = (y) => cy + ky * (T + h - ((y - y0) / (y1 - y0)) * h - cy) + oy;
+  const iX = (S) => x0 + (((S - ox - cx) / kx + cx - L) / w) * (x1 - x0);
+  const iY = (S) => y0 + ((T + h - ((S - oy - cy) / ky + cy)) / h) * (y1 - y0);
+  const vx0 = iX(L), vx1 = iX(L + w), vy0 = iY(T + h), vy1 = iY(T);
   return {
-    x0, x1, y0, y1, left: L, top: T, width: w, height: h, rect, xTicks, yTicks,
-    X: (x) => L + ((x - x0) / (x1 - x0)) * w,
-    Y: (y) => T + h - ((y - y0) / (y1 - y0)) * h,
-    iX: (X) => x0 + ((X - L) / w) * (x1 - x0),
-    iY: (Y) => y0 + ((T + h - Y) / h) * (y1 - y0),
+    x0: vx0, x1: vx1, y0: vy0, y1: vy1, left: L, top: T, width: w, height: h, rect, cx, cy, cam,
+    xTicks: gridTicks(spec.xTicks, vx0, vx1, w, 44), yTicks: gridTicks(spec.yTicks, vy0, vy1, h, 30),
+    X, Y, iX, iY,
   };
+}
+
+// A view registered with the stage: its camera (shared when `camId` names one used by another panel; `axis: "x"` zooms only
+// horizontally) and its frame, so that a wheel, a pinch or a drag acts on the panel under the pointer.
+function panelView(stage, id, rect, spec, { camId = id, axis = "xy" } = {}) {
+  const cam = stage.cam ? stage.cam(camId, axis) : null;
+  const v = makeView(rect, spec, cam);
+  stage.panel?.(id, { x: v.left, y: v.top, w: v.width, h: v.height }, cam, [v.cx, v.cy]);
+  return v;
 }
 
 function clipTo(g, v) { g.save(); g.beginPath(); g.rect(v.left, v.top, v.width, v.height); g.clip(); }
 
+// Grid, axes and tick labels. Lines are clipped to the frame; labels sit in the padding (left and bottom edges), so they stay
+// readable whatever part of the plane the view shows.
 function drawAxes(g, v, spec, st, fmt) {
   const pal = st.pal;
-  g.save();
-  g.font = st.font(14);
-  g.lineWidth = 1;
   const xs = v.xTicks || spec.xTicks || axisTicks(v.x0, v.x1).values, ys = v.yTicks || spec.yTicks || axisTicks(v.y0, v.y1).values;
-  g.strokeStyle = pal.grid; g.fillStyle = pal.muted;
-  g.textAlign = "center";
-  for (const x of xs) {
-    g.beginPath(); g.moveTo(v.X(x), v.top); g.lineTo(v.X(x), v.top + v.height); g.stroke();
-    if (Math.abs(x) > 1e-9 || spec.zeroLabel) g.fillText(spec.xLabel ? spec.xLabel(x) : fmt.num(x), v.X(x), v.top + v.height + 17);
-  }
-  g.textAlign = "right";
-  for (const y of ys) {
-    g.beginPath(); g.moveTo(v.left, v.Y(y)); g.lineTo(v.left + v.width, v.Y(y)); g.stroke();
-    if (Math.abs(y) > 1e-9 || spec.zeroLabel) g.fillText(spec.yLabel ? spec.yLabel(y) : fmt.num(y), v.left - 6, v.Y(y) + 5);
-  }
+  const inX = (x) => v.X(x) >= v.left - 0.5 && v.X(x) <= v.left + v.width + 0.5, inY = (y) => v.Y(y) >= v.top - 0.5 && v.Y(y) <= v.top + v.height + 0.5;
+  clipTo(g, v);
+  g.lineWidth = 1; g.strokeStyle = pal.grid;
+  g.beginPath();
+  for (const x of xs) { const X = Math.round(v.X(x)) + 0.5; g.moveTo(X, v.top); g.lineTo(X, v.top + v.height); }
+  for (const y of ys) { const Y = Math.round(v.Y(y)) + 0.5; g.moveTo(v.left, Y); g.lineTo(v.left + v.width, Y); }
+  g.stroke();
   g.strokeStyle = pal.line; g.lineWidth = 1.6;
   if (v.y0 <= 0 && v.y1 >= 0) { g.beginPath(); g.moveTo(v.left, v.Y(0)); g.lineTo(v.left + v.width, v.Y(0)); g.stroke(); }
   if (!spec.noYAxis && v.x0 <= 0 && v.x1 >= 0) { g.beginPath(); g.moveTo(v.X(0), v.top); g.lineTo(v.X(0), v.top + v.height); g.stroke(); }
+  g.restore();
+  g.save();
+  g.font = st.font(14); g.fillStyle = pal.muted;
+  g.textAlign = "center";
+  for (const x of xs) if (inX(x) && (Math.abs(x) > 1e-9 || spec.zeroLabel)) g.fillText(spec.xLabel ? spec.xLabel(x) : fmt.num(x), v.X(x), v.top + v.height + 17);
+  g.textAlign = "right";
+  for (const y of ys) if (inY(y) && (Math.abs(y) > 1e-9 || spec.zeroLabel)) g.fillText(spec.yLabel ? spec.yLabel(y) : fmt.num(y), v.left - 6, v.Y(y) + 5);
   g.restore();
 }
 
@@ -5608,21 +5805,34 @@ function drawScene(g, v, scene, st, { ghost = false } = {}) {
   g.restore();
 }
 
-// Handle marks: unlocked handles show a ring (static), locked ones a small hollow mark.
-function drawHandle(g, st, x, y, { color = "accent", locked = false, focused = false } = {}) {
+// Handle marks: a free handle is a filled dot in a soft halo; the handle under the pointer, focused or dragged gets a ring.
+// Locked handles (a gated mission) are a small hollow mark.
+function drawHandle(g, st, x, y, { color = "accent", locked = false, focused = false, id = null } = {}) {
   g.save();
   g.setLineDash([]);
   const c = st.color(color);
+  const active = focused || (id !== null && (st.focusId === id || st.hoverId === id || st.dragId === id));
   if (locked) {
     g.globalAlpha = 0.6; g.lineWidth = 1.5; g.strokeStyle = st.pal.muted; g.fillStyle = st.pal.surface;
     g.beginPath(); g.arc(x, y, 5, 0, Math.PI * 2); g.fill(); g.stroke();
   } else {
-    g.lineWidth = focused ? 3 : 1.5; g.strokeStyle = c; g.setLineDash(focused ? [] : [4, 4]);
-    g.beginPath(); g.arc(x, y, 15, 0, Math.PI * 2); g.stroke(); g.setLineDash([]);
+    g.globalAlpha = active ? 0.24 : 0.14; g.fillStyle = c;
+    g.beginPath(); g.arc(x, y, active ? 18 : 14, 0, Math.PI * 2); g.fill();
+    g.globalAlpha = 1;
+    if (active) { g.lineWidth = 2.5; g.strokeStyle = c; g.beginPath(); g.arc(x, y, 18, 0, Math.PI * 2); g.stroke(); }
     g.fillStyle = c; g.beginPath(); g.arc(x, y, 7.5, 0, Math.PI * 2); g.fill();
     g.lineWidth = 2; g.strokeStyle = st.pal.surface; g.stroke();
   }
   g.restore();
+}
+
+// The handles of a template, in the stage's own drawing order (hidden ones skipped).
+function drawHandles(g, st, handles, isUnlocked) {
+  for (const h of handles) {
+    if (h.hidden?.()) continue;
+    const [x, y] = h.pos();
+    drawHandle(g, st, x, y, { color: h.color, locked: !isUnlocked(h.id), id: h.id });
+  }
 }
 
 
@@ -5655,6 +5865,13 @@ function buildHandles({ exp, fmt, getState, setState, views, panels }) {
         const v = view(), [wx, wy] = c.at(getState());
         return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];
       },
+      // At the default view a handle just outside its panel is kept on the edge (reachable); once the learner has zoomed or
+      // moved the view, a handle out of sight is out of sight: not drawn, not grabbed.
+      hidden() {
+        const v = view(), cam = v.cam, [wx, wy] = c.at(getState()), X = v.X(wx), Y = v.Y(wy);
+        if (!cam || (cam.kx === 1 && cam.ky === 1 && !cam.ox && !cam.oy)) return false;
+        return X < v.left - 2 || X > v.left + v.width + 2 || Y < v.top - 2 || Y > v.top + v.height + 2;
+      },
       drag(sx, sy) {
         const v = view(), next = c.drag(getState(), snap(v.iX(sx), gx), snap(v.iY(sy), gy));
         if (next) setState(next);
@@ -5674,10 +5891,13 @@ function buildHandles({ exp, fmt, getState, setState, views, panels }) {
 
 __e.drawLabel = label;
 __e.layoutPanels = layoutPanels;
+__e.gridTicks = gridTicks;
 __e.makeView = makeView;
+__e.panelView = panelView;
 __e.drawAxes = drawAxes;
 __e.drawScene = drawScene;
 __e.drawHandle = drawHandle;
+__e.drawHandles = drawHandles;
 __e.drawBadge = drawBadge;
 __e.buildHandles = buildHandles;
 });
@@ -5771,6 +5991,11 @@ __d("lab/shell.js", function (__e, __r) {
 // Laboratory shell: builds the page of one experiment (figure, readout, mission card), runs the missions (predict, explore,
 // contrast, check, explain), keeps the state, and tells the host when the mission changes. The template draws; this file
 // never draws. Everything the card shows is created once or when the mission changes, never during a drag.
+//
+// Exploration is free (owner decision, 19 October 2026): every handle and control works in every mission, any mission can be
+// opened at any time, and a mission's goal, answer or argument gives feedback without holding the learner back. The missions'
+// `unlock` lists only mark the suggested controls. `opts.gated: true` restores the blocking behaviour (controls locked to the
+// mission, Next after the mission is done, the argument after a written attempt); it is kept for the future tests.
 const { createStage, createReadout, createTable, makeFormat, setText, setAttr, setClass, textNode } = __r("lab/engine.js");
 const { isAnswer } = __r("math.js");
 
@@ -5795,6 +6020,8 @@ const TEXT = {
   needText: ["Écris au moins une phrase pour voir l’argument.", "Write at least a sentence to see the argument."],
   locked: ["verrouillé", "locked"],
   predicted: ["Prédiction notée. Teste-la : les commandes se déverrouillent mission après mission.", "Prediction saved. Now test it: controls unlock mission by mission."],
+  predictedFree: ["Prédiction notée. Teste-la sur la figure, ou passe à la mission suivante.", "Prediction saved. Test it on the figure, or go on to the next mission."],
+  showAnswer: ["Voir la réponse", "Show the answer"],
   goal: ["Objectif atteint.", "Goal reached."],
   exact: ["Exact.", "Correct."],
   notYet: ["Pas encore. Regarde la figure et réessaie.", "Not yet. Look at the figure and try again."],
@@ -5809,8 +6036,8 @@ const TEXT = {
     "What you saw is experimental evidence, not a proof: a few positions do not cover every case. The argument below does cover every case.",
   ],
   keys: [
-    "Poignées : glisse les points, ou Tab puis les flèches. Molette ou pincement : zoom ; 0 : recentrer. N et P : mission suivante, précédente.",
-    "Handles: drag the points, or Tab then the arrow keys. Wheel or pinch: zoom; 0: reset the view. N and P: next and previous mission.",
+    "Points : glisse-les, ou Tab puis les flèches. Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
+    "Points: drag them, or Tab then the arrow keys. Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
   ],
   play: ["Lecture", "Play"],
   pause: ["Pause", "Pause"],
@@ -5829,6 +6056,7 @@ const el0 = (tag, className, text) => {
 function createShell(host, exp, tpl, opts = {}) {
   const mode = opts.mode || "full";
   const full = mode === "full", slide = mode === "slide";
+  const gated = !!opts.gated;
   // In a slide the player typesets every formula (opts.render turns the Unicode of an experiment into MathJax markup); elsewhere
   // text is written as plain text nodes. `write` sets a node's text, `put` does it only when it changed (a Text node in place).
   const render = slide ? opts.render : null;
@@ -5888,7 +6116,7 @@ function createShell(host, exp, tpl, opts = {}) {
     palette: opts.palette,
     fontScale: slide ? 1.3 : 1,
     canvasKeys: slide,
-    navHost: slide ? opts.controls : undefined,
+    zoomButtons: !slide,
     reservePointer: () => exp.pointerMode?.(getState()) === "draw",
     onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
     label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
@@ -6065,18 +6293,24 @@ function createShell(host, exp, tpl, opts = {}) {
   let maxReached = 0;
 
   function lockControls(m) {
-    unlocked = new Set(m.unlock || []);
+    const suggested = new Set(m.unlock || []);
+    unlocked = gated ? suggested : new Set(Object.keys(exp.controls));
     stage.setHandles(allHandles.filter((h) => unlocked.has(h.id)));
+    let shown = 0;
     for (const [id, n] of Object.entries(controlNodes)) {
-      const on = unlocked.has(id) && (m.kind !== "predict");
+      const on = unlocked.has(id) && (!gated || m.kind !== "predict");
       setClass(n.wrap, "is-locked", !on);
+      setClass(n.wrap, "is-suggested", !gated && !slide && suggested.has(id) && m.kind !== "predict");
       if (n.input) n.input.disabled = !on;
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
-      // Before the learner has predicted there is nothing to operate: locked controls are not shown at all.
-      n.wrap.hidden = m.kind === "predict" || (exp.onlyUnlocked && !on);
+      // Gated: before the learner has predicted there is nothing to operate, so locked controls are not shown at all.
+      // Free: every control is shown, except where the experiment shows only the mission's (`onlyUnlocked`: its controls act on
+      // different figures) and in a slide, where the player's control area holds only the mission's controls.
+      n.wrap.hidden = gated ? m.kind === "predict" || (exp.onlyUnlocked && !on) : (exp.onlyUnlocked || slide) && !suggested.has(id);
+      if (!n.wrap.hidden) shown++;
     }
-    controlsEl.hidden = m.kind === "predict" || !Object.keys(controlNodes).length;
+    controlsEl.hidden = !shown;
   }
 
   function setFeedback(text, tone) {
@@ -6101,13 +6335,13 @@ function createShell(host, exp, tpl, opts = {}) {
     const m = mission(), last = index === missions.length - 1;
     prevBtn.disabled = index === 0;
     nextBtn.hidden = last;
-    nextBtn.disabled = !done[m.id];
+    nextBtn.disabled = gated && !done[m.id];
     dotButtons.forEach((b, i) => {
-      b.disabled = i > maxReached;
+      b.disabled = gated && i > maxReached;
       setClass(b, "is-done", !!done[missions[i].id]);
       if (i === index) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
     });
-    if (argumentEl) argumentEl.hidden = !(done[missions.at(-1).id]);
+    if (argumentEl) argumentEl.hidden = gated ? !done[missions.at(-1).id] : !(done[missions.at(-1).id] || index === missions.length - 1);
   }
 
   function renderAnswer(m) {
@@ -6126,7 +6360,7 @@ function createShell(host, exp, tpl, opts = {}) {
           if (m.kind === "predict") {
             predictions[m.id] = { index: i, text: text(c) };
             [...group.children].forEach((o, j) => o.setAttribute("aria-pressed", String(j === i)));
-            markDone(text(T("predicted")));
+            markDone(text(T(gated ? "predicted" : "predictedFree")));
           } else {
             attempts++;
             if (i === m.answer) { [...group.children].forEach((o, j) => o.setAttribute("aria-pressed", String(j === i))); markDone(`${text(T("exact"))}${m.because ? " " + text(m.because) : ""}`); }
@@ -6137,6 +6371,15 @@ function createShell(host, exp, tpl, opts = {}) {
         group.append(b);
       });
       answerEl.append(group);
+      if (m.kind === "check" && !gated) {
+        const show = el("button", "text-button lab2-show", text(T("showAnswer")));
+        show.type = "button";
+        show.addEventListener("click", () => {
+          [...group.children].forEach((o, j) => o.setAttribute("aria-pressed", String(j === m.answer)));
+          markDone(`${text(T("reveal"))} ${text(m.choices[m.answer])}. ${m.because ? text(m.because) : ""}`);
+        });
+        answerEl.append(show);
+      }
     } else if (m.kind === "check") {
       const form = el("form", "lab2-check");
       const label = el("label", "", text(T("yourAnswer")));
@@ -6146,6 +6389,12 @@ function createShell(host, exp, tpl, opts = {}) {
       const submit = el("button", "primary", text(T("verify")));
       submit.type = "submit";
       form.append(label, input, submit);
+      if (!gated) {
+        const show = el("button", "text-button lab2-show", text(T("showAnswer")));
+        show.type = "button";
+        show.addEventListener("click", () => { markDone(`${text(T("reveal"))} ${fmt.num(m.answer, 3)}. ${m.because ? text(m.because) : ""}`); });
+        form.append(show);
+      }
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         const raw = input.value.replace(/−/g, "-");
@@ -6202,11 +6451,13 @@ function createShell(host, exp, tpl, opts = {}) {
       area.rows = 3; area.id = `lab2-why-${m.id}`; area.maxLength = 1500;
       label.htmlFor = area.id;
       const button = el("button", "primary", text(T("showArgument")));
-      button.type = "button"; button.disabled = true;
+      button.type = "button"; button.disabled = gated;
       const arg = el("div", "lab2-reveal");
       arg.hidden = true;
       const note = el("p", "lab2-note", text(T("needText")));
-      area.addEventListener("input", () => { button.disabled = area.value.trim().length < 10; note.hidden = !button.disabled; });
+      note.hidden = !gated;
+      // Gated: the argument waits for a written attempt. Free: writing first is suggested by the order, not required.
+      if (gated) area.addEventListener("input", () => { button.disabled = area.value.trim().length < 10; note.hidden = !button.disabled; });
       button.addEventListener("click", () => {
         arg.hidden = false; write(arg, text(m.argument)); note.hidden = true; button.hidden = true; area.readOnly = true;
         markDone("");
@@ -6258,7 +6509,7 @@ function createShell(host, exp, tpl, opts = {}) {
 
   function go(i) {
     if (i < 0 || i >= missions.length || i === index) return;
-    if (full && i > maxReached) return;
+    if (full && gated && i > maxReached) return;
     enter(i);
     if (!slide) promptEl.focus({ preventScroll: true });   // in a slide the focus stays where the presenter put it (N and P again)
   }
@@ -6342,7 +6593,7 @@ __d("lab/templates/chance.js", function (__e, __r) {
 // experiment's state says so, the theoretical probabilities) above a tray with the last experiments, one row each. The
 // run buttons are an `action` control of the shell; the simulation itself is pure and seeded (the experiment's model), so
 // drawing never creates an element and never calls Math.random.
-const { makeView, drawAxes, drawScene, drawHandle, buildHandles } = __r("lab/plot.js");
+const { panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/plot.js");
 
 const call = (v, s) => (typeof v === "function" ? v(s) : v);
 
@@ -6355,7 +6606,7 @@ function mount(env) {
   function build(s) {
     const W = stage.W, H = stage.H, trayH = Math.round(Math.min(150, Math.max(92, H * 0.3)));
     const resolved = { ...spec, x: call(spec.x, s), xTicks: call(spec.xTicks, s), pad: [40, 12, 12, 26] };
-    return { hist: makeView({ x: 0, y: 0, w: W, h: H - trayH }, resolved), tray: { x: 0, y: H - trayH, w: W, h: trayH }, spec: resolved };
+    return { hist: panelView(stage, "hist", { x: 0, y: 0, w: W, h: H - trayH }, resolved), tray: { x: 0, y: H - trayH, w: W, h: trayH }, spec: resolved };
   }
   const handles = buildHandles({ exp, fmt, getState, setState, views: () => ({ hist: build(getState()).hist }), panels: ["hist"] });
 
@@ -6391,7 +6642,7 @@ function mount(env) {
     drawScene(g, b.hist, spec.scene(s, ctx), stage);
     drawTray(g, b.tray, s);
     g.save(); g.strokeStyle = stage.pal.line; g.lineWidth = 1; g.beginPath(); g.moveTo(0, b.tray.y + 0.5); g.lineTo(stage.W, b.tray.y + 0.5); g.stroke(); g.restore();
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
+    drawHandles(g, stage, handles, isUnlocked);
   }
   return { draw, handles, destroy() {} };
 }
@@ -6402,7 +6653,7 @@ __d("lab/templates/data.js", function (__e, __r) {
 // Template `data`: a data set on a number line. Panel `dots` (one dot per value, equal values stacked, a handle per value)
 // above panel `box` (the summary strip: box plot, mean and median) sharing the same horizontal scale. The experiment's scenes
 // compute everything from the model; the template only lays out, draws and exposes the handles.
-const { makeView, drawAxes, drawScene, drawHandle, buildHandles } = __r("lab/plot.js");
+const { panelView, drawAxes, drawScene, drawHandle, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -6411,8 +6662,8 @@ function mount(env) {
   function layout() {
     const W = stage.W, H = stage.H, h0 = Math.round(H * 0.4);
     views = {
-      dots: makeView({ x: 0, y: 0, w: W, h: h0 }, { ...specs.dots, pad: [16, 10, 16, 6] }),
-      box: makeView({ x: 0, y: h0, w: W, h: H - h0 }, { ...specs.box, pad: [16, 4, 16, 26] }),
+      dots: panelView(stage, "dots", { x: 0, y: 0, w: W, h: h0 }, { ...specs.dots, pad: [16, 10, 16, 6] }, { camId: "line", axis: "x" }),
+      box: panelView(stage, "box", { x: 0, y: h0, w: W, h: H - h0 }, { ...specs.box, pad: [16, 4, 16, 26] }, { camId: "line", axis: "x" }),
     };
     return views;
   }
@@ -6428,8 +6679,8 @@ function mount(env) {
       if (other) drawScene(g, v, spec.scene(other, ctx), stage, { ghost: true });
       drawScene(g, v, spec.scene(s, ctx), stage);
     }
-    // only the handles a mission unlocks are marked: the dots themselves are the figure
-    for (const h of handles) if (isUnlocked(h.id)) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color }); }
+    // the dots themselves are the figure: a handle is marked only under the pointer, focused or dragged
+    for (const h of handles) if (isUnlocked(h.id) && !h.hidden() && [stage.focusId, stage.hoverId, stage.dragId].includes(h.id)) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, focused: true }); }
   }
   return { draw, handles, destroy() {} };
 }
@@ -6439,7 +6690,7 @@ __e.mount = mount;
 __d("lab/templates/family.js", function (__e, __r) {
 // Template `family`: a function family whose parameters are the points of the graph. One or two panels (graph and unit
 // circle), handles on the figure, fixed ranges. No experiment-specific code: the experiment returns a scene (see plot.js).
-const { layoutPanels, makeView, drawAxes, drawScene, drawHandle, buildHandles } = __r("lab/plot.js");
+const { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -6451,7 +6702,7 @@ function mount(env) {
   function layout() {
     const rects = layoutPanels(stage.W, stage.H, specs);
     views = {};
-    ids.forEach((id, i) => { views[id] = makeView(rects[i], specs[i]); });
+    ids.forEach((id, i) => { views[id] = panelView(stage, id, rects[i], specs[i]); });
   }
   layout();
 
@@ -6472,10 +6723,7 @@ function mount(env) {
       g.save(); g.strokeStyle = stage.color(l.color || "muted"); g.lineWidth = 1.5; g.setLineDash([5, 5]);
       g.beginPath(); g.moveTo(a.X(l.from.at[0]), a.Y(l.from.at[1])); g.lineTo(b.X(l.to.at[0]), b.Y(l.to.at[1])); g.stroke(); g.restore();
     }
-    for (const h of handles) {
-      const [x, y] = h.pos();
-      drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) });
-    }
+    drawHandles(g, stage, handles, isUnlocked);
   }
 
   return { draw, handles, views: () => views, destroy() {} };
@@ -6486,13 +6734,13 @@ __e.mount = mount;
 __d("lab/templates/figure.js", function (__e, __r) {
 // Template `figure`: a dynamic geometric figure with an invariant to discover. One equal-scale panel, two to four points as
 // handles, the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
-const { makeView, drawAxes, drawScene, drawHandle, drawBadge, buildHandles } = __r("lab/plot.js");
+const { panelView, drawAxes, drawScene, drawHandles, drawBadge, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
   const spec = exp.views.figure, ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
   let view = null;
-  const layout = () => { view = makeView({ x: 0, y: 0, w: stage.W, h: stage.H }, spec); return view; };
+  const layout = () => { view = panelView(stage, "figure", { x: 0, y: 0, w: stage.W, h: stage.H }, spec); return view; };
   layout();
   const handles = buildHandles({ exp, fmt, getState, setState, views: () => ({ figure: layout() }), panels: ["figure"] });
 
@@ -6503,7 +6751,7 @@ function mount(env) {
     drawScene(g, v, spec.scene(s, ctx), stage);
     const m = spec.measure?.(s, ctx);
     if (m) drawBadge(g, stage, m);
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
+    drawHandles(g, stage, handles, isUnlocked);
   }
   return { draw, handles, destroy() {} };
 }
@@ -6512,7 +6760,7 @@ __e.mount = mount;
 });
 __d("lab/templates/fourier.js", function (__e, __r) {
 // Fourier shares the retained canvas, camera, scheduler, keyboard handles and mission shell of every laboratory.
-const { makeView, drawAxes, drawHandle } = __r("lab/plot.js");
+const { panelView, drawAxes, drawHandle } = __r("lab/plot.js");
 const F = __r("fourier-model.js");
 const { arms } = __r("gallery-math.js");
 function mount(env){
@@ -6526,7 +6774,7 @@ function mount(env){
   let pen=[0,0],strokePointer=null;
 
   const spec=()=>getState().mode==='shape'?{x:[-15,15],y:[-15,15],equal:true,xTicks:[-10,0,10],yTicks:[-10,0,10]}:{x:[0,1],y:[-1.7,1.7],xTicks:[0,.25,.5,.75,1],yTicks:[-1,0,1]};
-  function layout(){const wave=getState().mode==='wave',split=wave?stage.W*.35:0;v=makeView({x:split,y:0,w:stage.W-split,h:stage.H},spec());w=makeView({x:0,y:0,w:split||stage.W,h:stage.H},{x:[-1.7,1.7],y:[-1.7,1.7],equal:true});}
+  function layout(){const wave=getState().mode==='wave',split=wave?stage.W*.35:0;v=panelView(stage,'signal',{x:split,y:0,w:stage.W-split,h:stage.H},spec(),{camId:'signal-'+getState().mode});w=panelView(stage,'phasor',{x:0,y:0,w:split||stage.W,h:stage.H},{x:[-1.7,1.7],y:[-1.7,1.7],equal:true});if(!wave)stage.panel('phasor',{x:0,y:0,w:0,h:0},stage.cam('phasor'));}
   const line=(points,color,width=2,dash=[])=>{g.save();g.strokeStyle=stage.color(color);g.lineWidth=width;g.setLineDash(dash);g.beginPath();points.forEach(([x,y],i)=>i?g.lineTo(v.X(x),v.Y(y)):g.moveTo(v.X(x),v.Y(y)));g.stroke();g.restore();};
   function prepare(s){
     const key=JSON.stringify([s.shape,s.custom,s.count]);if(cache===key)return;cache=key;
@@ -6548,7 +6796,7 @@ function mount(env){
     }else if(s.mode==='wave'){
       const wave=Array.from({length:501},(_,i)=>[i/500,s.amplitude*Math.cos(F.TAU*s.frequency*i/500+s.phase)]);line(wave,'accent',3);
       // A small rotating vector is paired with the wave at t = 0. The draggable tip controls A and φ.
-      const x=s.amplitude*Math.sin(s.phase),y=s.amplitude*Math.cos(s.phase);g.restore();g.save();g.strokeStyle=stage.color('muted');g.lineWidth=1;g.beginPath();g.arc(w.X(0),w.Y(0),Math.abs(w.X(s.amplitude)-w.X(0)),0,F.TAU);g.stroke();g.strokeStyle=stage.color('obj2');g.lineWidth=2;g.beginPath();g.moveTo(w.X(0),w.Y(0));g.lineTo(w.X(x),w.Y(y));g.stroke();g.setLineDash([4,5]);g.beginPath();g.moveTo(w.X(x),w.Y(y));g.lineTo(v.X(0),v.Y(y));g.stroke();g.setLineDash([]);drawHandle(g,stage,w.X(x),w.Y(y),{color:'obj2',locked:!isUnlocked('waveTip')});
+      const x=s.amplitude*Math.sin(s.phase),y=s.amplitude*Math.cos(s.phase);g.restore();g.save();g.strokeStyle=stage.color('muted');g.lineWidth=1;g.beginPath();g.arc(w.X(0),w.Y(0),Math.abs(w.X(s.amplitude)-w.X(0)),0,F.TAU);g.stroke();g.strokeStyle=stage.color('obj2');g.lineWidth=2;g.beginPath();g.moveTo(w.X(0),w.Y(0));g.lineTo(w.X(x),w.Y(y));g.stroke();g.setLineDash([4,5]);g.beginPath();g.moveTo(w.X(x),w.Y(y));g.lineTo(v.X(0),v.Y(y));g.stroke();g.setLineDash([]);drawHandle(g,stage,w.X(x),w.Y(y),{color:'obj2',locked:!isUnlocked('waveTip'),id:'waveTip'});
     }else{
       const samples=Array.from({length:801},(_,i)=>i/800);
       // Break at jumps rather than joining opposite limits with a fictitious segment.
@@ -6569,7 +6817,7 @@ function mount(env){
     drag(x,y){if(getState().mode!=='wave')return;const a=w.iX(x),b=w.iY(y);setState({amplitude:Math.min(1.5,Math.hypot(a,b)),phase:Math.atan2(a,b)});},
     nudge(dx,dy){const s=getState();setState({amplitude:Math.max(0,Math.min(1.5,s.amplitude+dy*.05)),phase:Math.max(-3.14,Math.min(3.14,s.phase+dx*.05))});},
   }];
-  const point=e=>{const r=cv.getBoundingClientRect(),p=stage.nav.camera.unproject([(e.clientX-r.left)*stage.W/r.width,(e.clientY-r.top)*stage.H/r.height]);return [v.iX(p[0]),v.iY(p[1])];};
+  const point=e=>{const r=cv.getBoundingClientRect(),p=[(e.clientX-r.left)*stage.W/r.width,(e.clientY-r.top)*stage.H/r.height];return [v.iX(p[0]),v.iY(p[1])];};
   const down=e=>{const s=getState();if(s.mode!=='shape'||s.shape!=='custom'||!isUnlocked('shape'))return;e.stopImmediatePropagation();e.preventDefault();stroke=[point(e)];strokePointer=e.pointerId;cv.setPointerCapture(e.pointerId);stage.invalidate();};
   const move=e=>{if(stroke&&e.pointerId===strokePointer){stroke.push(point(e));stage.invalidate();}};
   const end=e=>{if(!stroke||(strokePointer!=null&&e?.pointerId!==strokePointer))return;const p=stroke;stroke=null;strokePointer=null;if(p.length>=3&&p.some(q=>Math.hypot(q[0]-p[0][0],q[1]-p[0][1])>.1))setState({custom:p,time:0});stage.invalidate();};
@@ -6640,7 +6888,7 @@ __d("lab/templates/space.js", function (__e, __r) {
 // Template `space`: a 3D object you can turn. One orthographic view (the camera of js/camera3d.js, the same as the slide widgets),
 // a floor grid, the three axes and the experiment's scene made of faces, segments and points. Dragging the empty background turns
 // the view (arrow keys too, with the canvas focused); the camera belongs to the view and never depends on the state, so changing a
-// parameter never turns or rescales it (Shift or Alt drag pans, the wheel zooms, 0 or a double click resets everything).
+// parameter never turns or rescales it (Shift or Alt drag pans, Ctrl + wheel or a pinch zooms, 0 or a double click resets everything).
 // Handles are points constrained to a line, a plane or an axis direction: a control gives `constraint(state)` = { o, e1, e2? }
 // (the point is o + a e1 [+ b e2]), the pointer's view ray is intersected with it, the parameters are snapped to `grid` and the
 // control's `drag(state, point, {a, b})` returns the partial state. A part of a segment that lies behind a face marked `occlude`
@@ -6674,14 +6922,15 @@ function mount(env) {
   const centre = [(bx[0] + bx[1]) / 2, (by[0] + by[1]) / 2, (bz[0] + bz[1]) / 2];
   const radius = Math.hypot(bx[1] - bx[0], by[1] - by[0], bz[1] - bz[0]) / 2;   // the box fits the view whatever the angles
 
-  // world -> stage pixels (before the zoom of the 2D camera)
-  const scale = () => { const h = Math.min(stage.W || 640, stage.H || 420); return ((h < 420 ? 0.66 : 0.54) * h) / radius; };   // a short stage (a slide) uses more of its height
+  // world -> stage pixels; the stage's view camera (zoom and offset) of the panel "space" applies on top
+  const zoom = stage.cam("space");
+  const scale = () => { const h = Math.min(stage.W || 640, stage.H || 420); return (zoom.kx * (h < 420 ? 0.66 : 0.54) * h) / radius; };   // a short stage (a slide) uses more of its height
   const proj = (p) => {
     const q = cam3Project(cam.yaw, cam.pitch, p[0] - centre[0], p[1] - centre[1], p[2] - centre[2]), k = scale();
-    return { X: stage.W / 2 + k * q.u, Y: stage.H / 2 - k * q.v, d: q.d };
+    return { X: stage.W / 2 + zoom.ox + k * q.u, Y: stage.H / 2 + zoom.oy - k * q.v, d: q.d };
   };
   const rayAt = (sx, sy) => {
-    const k = scale(), r = cam3Ray(cam.yaw, cam.pitch, (sx - stage.W / 2) / k, -(sy - stage.H / 2) / k);
+    const k = scale(), r = cam3Ray(cam.yaw, cam.pitch, (sx - stage.W / 2 - zoom.ox) / k, -(sy - stage.H / 2 - zoom.oy) / k);
     return { p: [r.p[0] + centre[0], r.p[1] + centre[1], r.p[2] + centre[2]], w: r.w };
   };
 
@@ -6802,23 +7051,23 @@ function mount(env) {
   }
 
   function draw(g) {
+    stage.panel("space", { x: 0, y: 0, w: stage.W, h: stage.H }, zoom);
     const s = getState(), other = ghost(), placed = [];
     floorAndAxes(g);
     if (other) paint(g, spec.scene(other, ctx), true, placed);
     paint(g, spec.scene(s, ctx), false, placed);
     const m = spec.measure?.(s, ctx);
     if (m) drawBadge(g, stage, m);
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id), focused: stage.focusId === h.id }); }
+    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id), id: h.id }); }
   }
 
-  // The view: turning, and the reset of the 2D camera (key 0, double click) brings the angles back too.
+  // The view: turning, and the reset of the view (key 0, double click, the reset button) brings the angles back too.
   const resetAngles = () => { cam.yaw = CAM3_DEFAULT.yaw; cam.pitch = CAM3_DEFAULT.pitch; };
-  const baseReset = stage.nav.camera.reset;
-  stage.nav.camera.reset = () => { baseReset(); resetAngles(); };
+  const stopReset = stage.view.onReset(resetAngles);
   return {
     draw, handles,
     spin(dx, dy) { cam3Turn(cam, dx * 0.008, dy * 0.006); },
-    destroy() { stage.nav.camera.reset = baseReset; },
+    destroy() { stopReset(); },
   };
 }
 
@@ -6829,7 +7078,7 @@ __d("lab/templates/transform.js", function (__e, __r) {
 // Template `transform`: a map applied to points, a figure and a grid. Two equal-scale panels, `before` and `after`, side by
 // side (stacked on a narrow stage), with the same fixed range so that sizes can be compared. Handles may sit in either
 // panel (the parameter of the map in `after`, a test point in `before`); a dashed link joins a point to its image.
-const { layoutPanels, makeView, drawAxes, drawScene, drawHandle, buildHandles } = __r("lab/plot.js");
+const { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -6837,7 +7086,7 @@ function mount(env) {
   let views = {};
   function layout() {
     const rects = layoutPanels(stage.W, stage.H, [{ share: 0.5 }, {}]);
-    ids.forEach((id, i) => { views[id] = makeView(rects[i], specs[i]); });
+    ids.forEach((id, i) => { views[id] = panelView(stage, id, rects[i], specs[i], { camId: "plane" }); });
     return views;
   }
   layout();
@@ -6857,7 +7106,7 @@ function mount(env) {
       g.save(); g.strokeStyle = stage.color(l.color || "muted"); g.lineWidth = 1.5; g.setLineDash([5, 5]);
       g.beginPath(); g.moveTo(a.X(l.from.at[0]), a.Y(l.from.at[1])); g.lineTo(b.X(l.to.at[0]), b.Y(l.to.at[1])); g.stroke(); g.restore();
     }
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
+    drawHandles(g, stage, handles, isUnlocked);
   }
   return { draw, handles, destroy() {} };
 }

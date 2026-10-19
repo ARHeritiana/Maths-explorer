@@ -2,7 +2,7 @@
 // experiment's state says so, the theoretical probabilities) above a tray with the last experiments, one row each. The
 // run buttons are an `action` control of the shell; the simulation itself is pure and seeded (the experiment's model), so
 // drawing never creates an element and never calls Math.random.
-import { makeView, drawAxes, drawScene, drawHandle, buildHandles } from "../plot.js";
+import { panelView, drawAxes, drawScene, drawHandles, buildHandles } from "../plot.js";
 
 const call = (v, s) => (typeof v === "function" ? v(s) : v);
 
@@ -15,7 +15,7 @@ export function mount(env) {
   function build(s) {
     const W = stage.W, H = stage.H, trayH = Math.round(Math.min(150, Math.max(92, H * 0.3)));
     const resolved = { ...spec, x: call(spec.x, s), xTicks: call(spec.xTicks, s), pad: [40, 12, 12, 26] };
-    return { hist: makeView({ x: 0, y: 0, w: W, h: H - trayH }, resolved), tray: { x: 0, y: H - trayH, w: W, h: trayH }, spec: resolved };
+    return { hist: panelView(stage, "hist", { x: 0, y: 0, w: W, h: H - trayH }, resolved), tray: { x: 0, y: H - trayH, w: W, h: trayH }, spec: resolved };
   }
   const handles = buildHandles({ exp, fmt, getState, setState, views: () => ({ hist: build(getState()).hist }), panels: ["hist"] });
 
@@ -51,7 +51,7 @@ export function mount(env) {
     drawScene(g, b.hist, spec.scene(s, ctx), stage);
     drawTray(g, b.tray, s);
     g.save(); g.strokeStyle = stage.pal.line; g.lineWidth = 1; g.beginPath(); g.moveTo(0, b.tray.y + 0.5); g.lineTo(stage.W, b.tray.y + 0.5); g.stroke(); g.restore();
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
+    drawHandles(g, stage, handles, isUnlocked);
   }
   return { draw, handles, destroy() {} };
 }

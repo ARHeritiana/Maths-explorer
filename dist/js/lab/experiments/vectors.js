@@ -39,7 +39,7 @@ export default {
   views: {
     panels: ["figure"],
     figure: {
-      x: [-5, 5], y: [-4.5, 4.5], equal: true, widen: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
+      x: [-5, 5], y: [-4.5, 4.5], equal: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, tone = m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "muted";
         const [sx, sy] = m.sum, flat = m.collinear;

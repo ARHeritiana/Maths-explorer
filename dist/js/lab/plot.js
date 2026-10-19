@@ -13,58 +13,94 @@ export function layoutPanels(W, H, specs) {
   return [{ x: 0, y: 0, w: W, h: h0 }, { x: 0, y: h0, w: W, h: H - h0 }];
 }
 
-// World <-> stage pixels for one panel. With `equal` one unit has the same length on both axes.
-export function makeView(rect, spec) {
+// Grid values for the visible range [a, b] drawn over `px` pixels. The experiment's ticks give the anchor and the step (so π/2
+// steps or a grid through ±1 survive); the step doubles or halves so that the grid stays readable at every zoom.
+export function gridTicks(given, a, b, px, spacing = 40) {
+  if (Array.isArray(given) && !given.length) return [];
+  if (!(b > a)) return [];
+  let anchor = 0, step = 0;
+  if (Array.isArray(given) && given.length) {
+    anchor = given[0];
+    for (let i = 1; i < given.length; i++) { const d = Math.abs(given[i] - given[i - 1]); if (d > 1e-12 && (!step || d < step)) step = d; }
+  }
+  if (!step) {
+    const rough = (b - a) / 6, power = 10 ** Math.floor(Math.log10(rough));
+    step = [1, 2, 5, 10].map((v) => v * power).find((v) => v >= rough);
+  }
+  const most = Math.max(2, Math.floor(px / spacing));
+  while ((b - a) / step > most) step *= 2;
+  while ((b - a) / step < 2 && step > 1e-6) step /= 2;
+  const out = [];
+  for (let m = Math.ceil((a - anchor) / step - 1e-9); out.length < 400; m++) {
+    let t = anchor + m * step;
+    const tidy = Math.round(t * 1e6) / 1e6;   // 0.30000000000000004 -> 0.3, but a multiple of π stays exact
+    if (Math.abs(t - tidy) < 1e-9) t = tidy;
+    if (t > b + step * 1e-9) break;
+    out.push(Math.abs(t) < 1e-12 ? 0 : t);
+  }
+  return out;
+}
+
+// World <-> stage pixels for one panel. With `equal` one unit has the same length on both axes, and the range of the axis that
+// has room grows so that the panel is filled (never stretched). The range depends on the size of the stage only, never on the
+// state. `cam` (the stage's view camera of this panel: zoom k and offset o) maps X to c + k (X - c) + o around the centre c of
+// the frame; x0, x1, y0, y1 and the grid are then those of the visible part, so the grid always covers the whole panel.
+export function makeView(rect, spec, cam = null) {
   const pad = { l: spec.pad?.[0] ?? 34, t: spec.pad?.[1] ?? 12, r: spec.pad?.[2] ?? 12, b: spec.pad?.[3] ?? 26 };
   const pw = Math.max(40, rect.w - pad.l - pad.r), ph = Math.max(40, rect.h - pad.t - pad.b);
   let [x0, x1] = spec.x, [y0, y1] = spec.y;
-  let L = rect.x + pad.l, T = rect.y + pad.t, w = pw, h = ph;
-  let xTicks = null, yTicks = null;
-  if (spec.equal && spec.widen) {
-    // Use the whole panel at equal scale: the range of the axis that has room grows (it is never stretched). It depends on the
-    // size of the stage only, never on the state, so the camera stays fixed.
+  const L = rect.x + pad.l, T = rect.y + pad.t, w = pw, h = ph;
+  if (spec.equal) {
     const k0 = Math.min(pw / (x1 - x0), ph / (y1 - y0)), dx = pw / k0 - (x1 - x0), dy = ph / k0 - (y1 - y0);
     if (dx > 0) { x0 -= dx / 2; x1 += dx / 2; }
     if (dy > 0) { y0 -= dy / 2; y1 += dy / 2; }
-    const every = (ticks, a, b) => { const step = ticks && ticks.length > 1 ? Math.abs(ticks[1] - ticks[0]) : 0; if (!step) return null; const out = []; for (let t = Math.ceil(a / step) * step; t <= b + 1e-9; t += step) out.push(Math.round(t / step) * step); return out; };
-    xTicks = every(spec.xTicks, x0, x1); yTicks = every(spec.yTicks, y0, y1);
   }
-  if (spec.equal) {
-    const k = Math.min(pw / (x1 - x0), ph / (y1 - y0));
-    w = k * (x1 - x0); h = k * (y1 - y0);
-    L += (pw - w) / 2; T += (ph - h) / 2;
-  }
+  const kx = cam?.kx ?? 1, ky = cam?.ky ?? 1, ox = cam?.ox ?? 0, oy = cam?.oy ?? 0, cx = L + w / 2, cy = T + h / 2;
+  const X = (x) => cx + kx * (L + ((x - x0) / (x1 - x0)) * w - cx) + ox;
+  const Y = (y) => cy + ky * (T + h - ((y - y0) / (y1 - y0)) * h - cy) + oy;
+  const iX = (S) => x0 + (((S - ox - cx) / kx + cx - L) / w) * (x1 - x0);
+  const iY = (S) => y0 + ((T + h - ((S - oy - cy) / ky + cy)) / h) * (y1 - y0);
+  const vx0 = iX(L), vx1 = iX(L + w), vy0 = iY(T + h), vy1 = iY(T);
   return {
-    x0, x1, y0, y1, left: L, top: T, width: w, height: h, rect, xTicks, yTicks,
-    X: (x) => L + ((x - x0) / (x1 - x0)) * w,
-    Y: (y) => T + h - ((y - y0) / (y1 - y0)) * h,
-    iX: (X) => x0 + ((X - L) / w) * (x1 - x0),
-    iY: (Y) => y0 + ((T + h - Y) / h) * (y1 - y0),
+    x0: vx0, x1: vx1, y0: vy0, y1: vy1, left: L, top: T, width: w, height: h, rect, cx, cy, cam,
+    xTicks: gridTicks(spec.xTicks, vx0, vx1, w, 44), yTicks: gridTicks(spec.yTicks, vy0, vy1, h, 30),
+    X, Y, iX, iY,
   };
+}
+
+// A view registered with the stage: its camera (shared when `camId` names one used by another panel; `axis: "x"` zooms only
+// horizontally) and its frame, so that a wheel, a pinch or a drag acts on the panel under the pointer.
+export function panelView(stage, id, rect, spec, { camId = id, axis = "xy" } = {}) {
+  const cam = stage.cam ? stage.cam(camId, axis) : null;
+  const v = makeView(rect, spec, cam);
+  stage.panel?.(id, { x: v.left, y: v.top, w: v.width, h: v.height }, cam, [v.cx, v.cy]);
+  return v;
 }
 
 function clipTo(g, v) { g.save(); g.beginPath(); g.rect(v.left, v.top, v.width, v.height); g.clip(); }
 
+// Grid, axes and tick labels. Lines are clipped to the frame; labels sit in the padding (left and bottom edges), so they stay
+// readable whatever part of the plane the view shows.
 export function drawAxes(g, v, spec, st, fmt) {
   const pal = st.pal;
-  g.save();
-  g.font = st.font(14);
-  g.lineWidth = 1;
   const xs = v.xTicks || spec.xTicks || axisTicks(v.x0, v.x1).values, ys = v.yTicks || spec.yTicks || axisTicks(v.y0, v.y1).values;
-  g.strokeStyle = pal.grid; g.fillStyle = pal.muted;
-  g.textAlign = "center";
-  for (const x of xs) {
-    g.beginPath(); g.moveTo(v.X(x), v.top); g.lineTo(v.X(x), v.top + v.height); g.stroke();
-    if (Math.abs(x) > 1e-9 || spec.zeroLabel) g.fillText(spec.xLabel ? spec.xLabel(x) : fmt.num(x), v.X(x), v.top + v.height + 17);
-  }
-  g.textAlign = "right";
-  for (const y of ys) {
-    g.beginPath(); g.moveTo(v.left, v.Y(y)); g.lineTo(v.left + v.width, v.Y(y)); g.stroke();
-    if (Math.abs(y) > 1e-9 || spec.zeroLabel) g.fillText(spec.yLabel ? spec.yLabel(y) : fmt.num(y), v.left - 6, v.Y(y) + 5);
-  }
+  const inX = (x) => v.X(x) >= v.left - 0.5 && v.X(x) <= v.left + v.width + 0.5, inY = (y) => v.Y(y) >= v.top - 0.5 && v.Y(y) <= v.top + v.height + 0.5;
+  clipTo(g, v);
+  g.lineWidth = 1; g.strokeStyle = pal.grid;
+  g.beginPath();
+  for (const x of xs) { const X = Math.round(v.X(x)) + 0.5; g.moveTo(X, v.top); g.lineTo(X, v.top + v.height); }
+  for (const y of ys) { const Y = Math.round(v.Y(y)) + 0.5; g.moveTo(v.left, Y); g.lineTo(v.left + v.width, Y); }
+  g.stroke();
   g.strokeStyle = pal.line; g.lineWidth = 1.6;
   if (v.y0 <= 0 && v.y1 >= 0) { g.beginPath(); g.moveTo(v.left, v.Y(0)); g.lineTo(v.left + v.width, v.Y(0)); g.stroke(); }
   if (!spec.noYAxis && v.x0 <= 0 && v.x1 >= 0) { g.beginPath(); g.moveTo(v.X(0), v.top); g.lineTo(v.X(0), v.top + v.height); g.stroke(); }
+  g.restore();
+  g.save();
+  g.font = st.font(14); g.fillStyle = pal.muted;
+  g.textAlign = "center";
+  for (const x of xs) if (inX(x) && (Math.abs(x) > 1e-9 || spec.zeroLabel)) g.fillText(spec.xLabel ? spec.xLabel(x) : fmt.num(x), v.X(x), v.top + v.height + 17);
+  g.textAlign = "right";
+  for (const y of ys) if (inY(y) && (Math.abs(y) > 1e-9 || spec.zeroLabel)) g.fillText(spec.yLabel ? spec.yLabel(y) : fmt.num(y), v.left - 6, v.Y(y) + 5);
   g.restore();
 }
 
@@ -213,21 +249,34 @@ export function drawScene(g, v, scene, st, { ghost = false } = {}) {
   g.restore();
 }
 
-// Handle marks: unlocked handles show a ring (static), locked ones a small hollow mark.
-export function drawHandle(g, st, x, y, { color = "accent", locked = false, focused = false } = {}) {
+// Handle marks: a free handle is a filled dot in a soft halo; the handle under the pointer, focused or dragged gets a ring.
+// Locked handles (a gated mission) are a small hollow mark.
+export function drawHandle(g, st, x, y, { color = "accent", locked = false, focused = false, id = null } = {}) {
   g.save();
   g.setLineDash([]);
   const c = st.color(color);
+  const active = focused || (id !== null && (st.focusId === id || st.hoverId === id || st.dragId === id));
   if (locked) {
     g.globalAlpha = 0.6; g.lineWidth = 1.5; g.strokeStyle = st.pal.muted; g.fillStyle = st.pal.surface;
     g.beginPath(); g.arc(x, y, 5, 0, Math.PI * 2); g.fill(); g.stroke();
   } else {
-    g.lineWidth = focused ? 3 : 1.5; g.strokeStyle = c; g.setLineDash(focused ? [] : [4, 4]);
-    g.beginPath(); g.arc(x, y, 15, 0, Math.PI * 2); g.stroke(); g.setLineDash([]);
+    g.globalAlpha = active ? 0.24 : 0.14; g.fillStyle = c;
+    g.beginPath(); g.arc(x, y, active ? 18 : 14, 0, Math.PI * 2); g.fill();
+    g.globalAlpha = 1;
+    if (active) { g.lineWidth = 2.5; g.strokeStyle = c; g.beginPath(); g.arc(x, y, 18, 0, Math.PI * 2); g.stroke(); }
     g.fillStyle = c; g.beginPath(); g.arc(x, y, 7.5, 0, Math.PI * 2); g.fill();
     g.lineWidth = 2; g.strokeStyle = st.pal.surface; g.stroke();
   }
   g.restore();
+}
+
+// The handles of a template, in the stage's own drawing order (hidden ones skipped).
+export function drawHandles(g, st, handles, isUnlocked) {
+  for (const h of handles) {
+    if (h.hidden?.()) continue;
+    const [x, y] = h.pos();
+    drawHandle(g, st, x, y, { color: h.color, locked: !isUnlocked(h.id), id: h.id });
+  }
 }
 
 export { label as drawLabel };
@@ -259,6 +308,13 @@ export function buildHandles({ exp, fmt, getState, setState, views, panels }) {
       pos() {
         const v = view(), [wx, wy] = c.at(getState());
         return [clamp(v.X(wx), v.left + 6, v.left + v.width - 6), clamp(v.Y(wy), v.top + 6, v.top + v.height - 6)];
+      },
+      // At the default view a handle just outside its panel is kept on the edge (reachable); once the learner has zoomed or
+      // moved the view, a handle out of sight is out of sight: not drawn, not grabbed.
+      hidden() {
+        const v = view(), cam = v.cam, [wx, wy] = c.at(getState()), X = v.X(wx), Y = v.Y(wy);
+        if (!cam || (cam.kx === 1 && cam.ky === 1 && !cam.ox && !cam.oy)) return false;
+        return X < v.left - 2 || X > v.left + v.width + 2 || Y < v.top - 2 || Y > v.top + v.height + 2;
       },
       drag(sx, sy) {
         const v = view(), next = c.drag(getState(), snap(v.iX(sx), gx), snap(v.iY(sy), gy));

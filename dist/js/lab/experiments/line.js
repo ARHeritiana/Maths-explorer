@@ -56,7 +56,7 @@ export default {
   views: {
     panels: ["figure"],
     figure: {
-      x: [-6, 6], y: [-5.5, 5.5], equal: true, widen: true, xTicks: [-6, -4, -2, 0, 2, 4, 6], yTicks: [-4, -2, 0, 2, 4],
+      x: [-6, 6], y: [-5.5, 5.5], equal: true, xTicks: [-6, -4, -2, 0, 2, 4, 6], yTicks: [-4, -2, 0, 2, 4],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, [ax, ay, bx, by] = [s.ax, s.ay, s.bx, s.by];
         if (m.degenerate) return { points: [{ at: [ax, ay], color: "accent", r: 6, label: `A = B ${fmt.pt(ax, ay)}`, dx: 12, dy: -12 }] };

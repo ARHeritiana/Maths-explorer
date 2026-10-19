@@ -3,6 +3,8 @@ or alone against a running server: MATHS_EXPLORER_URL=http://localhost:4173 pyth
 
 Smoothness acceptance of docs/LAB_DESIGN.md section 7: a drag adds or removes no element, the readouts follow, the camera
 does not depend on the state, reduced motion plays no animation, 320 px wide has no horizontal scroll, both themes, keyboard.
+Pointer policy (section 13): a press near a point grabs it, a plain wheel scrolls the page, the view moves only on purpose;
+exploration is free (every control in every mission).
 """
 import os
 from playwright.sync_api import sync_playwright
@@ -14,6 +16,10 @@ DRAGS = ['quadratic/vertex', 'trig/quadrants', 'sequences/difference', 'derivati
          'matrix/columns', 'space-lines/parallel', 'space-lines/normal']
 EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral', 'probability', 'vectors', 'statistics', 'complex',
                'line', 'exponential', 'cobweb', 'matrix', 'space-lines']
+
+# index of the first handle the current mission suggests (every handle is free, the mission's one is the meaningful drag)
+MISSION_HANDLE = "() => { const l = document.querySelector('.lab2').__lab, u = l.mission.unlock || []; return Math.max(0, l.stage.handles.findIndex(h => u.includes(h.id))); }"
+SCALE = "() => document.querySelector('.lab2').__lab.stage.view.scale"
 
 WATCH = """() => {
   window.__rec = {added: 0, removed: 0, text: 0};
@@ -52,7 +58,7 @@ with sync_playwright() as p:
             ready(page, 'lab/' + ref)
             page.evaluate("t => document.documentElement.dataset.theme = t", theme)
             assert page.evaluate("() => { const c = document.querySelector('.lab2-canvas'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n; }") > 500, ('the canvas is drawn', ref, theme)
-            handle = page.locator('.lab2-handle').first
+            handle = page.locator('.lab2-handle').nth(page.evaluate(MISSION_HANDLE))
             box = handle.bounding_box()
             before = page.locator('.lab2-formula').inner_text()
             page.evaluate(WATCH)
@@ -101,9 +107,9 @@ with sync_playwright() as p:
     page.keyboard.press('Shift+ArrowRight')   # pans the camera, not the handle
     assert '35°' in page.locator('.lab2-readout dd').first.inner_text()
     page.keyboard.press('+')
-    assert page.locator('.canvas-navigation').text_content() != '100 %', 'plus zooms'
+    assert page.evaluate(SCALE) != 1, 'plus zooms'
     page.keyboard.press('0')
-    assert page.locator('.canvas-navigation').text_content() == '100 %', 'zero resets the view'
+    assert page.evaluate(SCALE) == 1, 'zero resets the view'
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({deg: 120})")
     page.wait_for_function("() => document.querySelector('.lab2-card').classList.contains('is-done')")
     page.locator('.lab2-nav .primary').focus()
@@ -152,7 +158,7 @@ with sync_playwright() as p:
         y1, p1 = page.evaluate(angles)
         assert abs(y1 - y0) > 0.5 and p1 > p0, ('the background drag turns the view', y0, y1, p0, p1)
         assert page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())") == before_state, 'turning never changes the state'
-        assert page.evaluate("() => document.querySelector('.canvas-navigation').textContent") == '100 %', 'turning is not zooming'
+        assert page.evaluate(SCALE) == 1, 'turning is not zooming'
         # arrow keys with the canvas focused, the pitch is clamped, 0 resets
         page.locator('.lab2-canvas').focus()
         page.keyboard.press('ArrowRight')
@@ -164,7 +170,7 @@ with sync_playwright() as p:
         a = page.evaluate(angles)
         assert abs(a[0] + 0.7) < 1e-9 and abs(a[1] - 0.55) < 1e-9, '0 resets the view'
         # a handle drag moves the state, not the view, and the view change does not move the handle off its constraint
-        handle = page.locator('.lab2-handle').first
+        handle = page.locator('.lab2-handle').nth(page.evaluate(MISSION_HANDLE))
         hb = handle.bounding_box(); hx, hy = hb['x'] + hb['width'] / 2, hb['y'] + hb['height'] / 2
         page.mouse.move(hx, hy); page.mouse.down(); page.mouse.move(hx + 50, hy + 10, steps=6); page.mouse.up()
         assert page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())") != before_state, 'the handle moved the state'
@@ -194,16 +200,50 @@ with sync_playwright() as p:
     page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '5000'")   # the series is capped
     page.context.close()
 
-    # ---- the camera is independent of the state: zoom, then change the state, the zoom stays
+    # ---- the camera is independent of the state: zoom (Ctrl + wheel), then change the state, the zoom stays
     page = new_page()
     ready(page, 'lab/quadratic/vertex')
     page.locator('.lab2-canvas').hover()
-    page.mouse.wheel(0, -300)
-    page.wait_for_function("() => document.querySelector('.canvas-navigation').textContent !== '100 %'")
-    zoom = page.locator('.canvas-navigation').text_content()
+    page.keyboard.down('Control'); page.mouse.wheel(0, -300); page.keyboard.up('Control')
+    page.wait_for_function("() => document.querySelector('.lab2').__lab.stage.view.scale !== 1")
+    zoom = page.evaluate(SCALE)
+    assert page.locator('.lab2-zoom-reset').is_visible(), 'the reset button appears once the view has moved'
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({b: -2, c: 1})")
     page.wait_for_timeout(100)
-    assert page.locator('.canvas-navigation').text_content() == zoom, 'changing parameters never rescales'
+    assert page.evaluate(SCALE) == zoom, 'changing parameters never rescales'
+    page.locator('.lab2-zoom-reset').click()
+    assert page.evaluate(SCALE) == 1 and page.locator('.lab2-zoom-reset').is_hidden(), 'the reset button resets the view'
+    page.context.close()
+
+    # ---- the pointer policy: a plain wheel scrolls the page, never the view; a press near a point grabs it; a background drag at
+    #      the default view moves nothing; the + button zooms and the grid stays drawn over the whole panel
+    page = new_page(1280, 700)
+    ready(page, 'lab/quadratic/vertex')
+    box = page.locator('.lab2-canvas').bounding_box()
+    page.mouse.move(box['x'] + box['width'] * 0.8, box['y'] + 40)
+    y0 = page.evaluate('scrollY')
+    page.mouse.wheel(0, 240); page.wait_for_timeout(250)
+    assert page.evaluate('scrollY') > y0, 'a plain wheel over the canvas scrolls the page'
+    assert page.evaluate(SCALE) == 1, 'and does not zoom'
+    page.evaluate('scrollTo(0, 0)'); page.wait_for_timeout(100)
+    hb = page.locator('.lab2-handle').nth(page.evaluate(MISSION_HANDLE)).bounding_box()
+    hx, hy = hb['x'] + hb['width'] / 2, hb['y'] + hb['height'] / 2
+    before = page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())")
+    page.mouse.move(hx + 16, hy + 12); page.mouse.down(); page.mouse.move(hx + 90, hy + 40, steps=8); page.mouse.up()
+    assert page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())") != before, 'a press 20 px from the point grabs it'
+    box = page.locator('.lab2-canvas').bounding_box()
+    st = page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())")
+    page.mouse.move(box['x'] + box['width'] - 60, box['y'] + box['height'] - 60); page.mouse.down()
+    page.mouse.move(box['x'] + box['width'] - 200, box['y'] + box['height'] - 120, steps=8); page.mouse.up()
+    assert not page.evaluate("() => document.querySelector('.lab2').__lab.stage.view.moved"), 'a background drag at the default view moves nothing'
+    assert page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())") == st
+    page.locator('.lab2-zoom button').nth(1).click(); page.locator('.lab2-zoom button').nth(1).click()   # zoom out twice
+    assert page.evaluate(SCALE) < 1
+    # the grid is recomputed for what is visible: grid pixels near every edge of the panel
+    edges = page.evaluate("""() => { const c = document.querySelector('.lab2-canvas'), g = c.getContext('2d'), W = c.width, H = c.height;
+      const ink = (x, y, w, h) => { const d = g.getImageData(x, y, w, h).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n; };
+      return [ink(Math.round(W * 0.1), Math.round(H * 0.05), Math.round(W * 0.8), 6), ink(Math.round(W * 0.1), Math.round(H * 0.85), Math.round(W * 0.8), 6)]; }""")
+    assert all(n > 20 for n in edges), ('the grid fills the panel when zoomed out', edges)
     page.context.close()
 
     # ---- reduced motion: no animation; play advances one step per press. Otherwise play moves and pauses.
@@ -257,21 +297,22 @@ with sync_playwright() as p:
             canvas, sheet = page.locator('.lab2-canvas').bounding_box(), page.locator('.lab2-card').bounding_box()
             assert not overlap(canvas, sheet), ('the mission sheet covers the canvas', ref, width, height, canvas, sheet)
             assert sheet['y'] >= canvas['y'] + canvas['height'] - 1, ('the sheet is below the canvas', ref, width)
-            if page.locator('.lab2-card').get_attribute('data-kind') == 'predict':
-                assert page.locator('.lab2-ctl:visible').count() == 0, ('locked controls are not shown in a prediction', ref)
         ready(page, 'lab/quadratic/vertex')
         assert page.locator('.lab2-stage').bounding_box()['height'] >= 0.55 * height - 2, 'the canvas keeps at least 55 vh on a phone'
         page.locator('.lab2-fold').click()
         assert not page.locator('.lab2-controls').is_visible(), 'the folded card shows the prompt only'
         page.context.close()
 
-    # ---- locked controls: hidden in a prediction, visible but disabled in the other missions
+    # ---- free exploration: every control works in every mission, Next and every mission dot are open, nothing waits
     page = new_page()
     ready(page, 'lab/derivative/open')
-    assert page.locator('.lab2-ctl:visible').count() == 0 and not page.locator('.lab2-controls').is_visible(), 'no control is shown before the prediction'
-    ready(page, 'lab/derivative/where')
-    assert page.locator('.lab2-ctl:visible').count() >= 1 and page.locator('.lab2-ctl.is-locked:visible').count() >= 1, 'in other missions locked controls stay visible'
-    assert page.locator('.lab2-ctl.is-locked input:visible').first.is_disabled(), 'and are disabled'
+    assert page.locator('.lab2-ctl:visible').count() >= 1 and page.locator('.lab2-ctl.is-locked').count() == 0, 'controls work before the prediction'
+    assert page.locator('.lab2-ctl input:visible').first.is_enabled()
+    assert page.locator('.lab2-nav .primary').is_enabled() and page.locator('.lab2-dot:disabled').count() == 0, 'no mission waits for another'
+    page.locator('.lab2-dot').last.click()
+    assert page.locator('.lab2-argument').is_visible(), 'the argument is there on the last mission'
+    ready(page, 'lab/integral/finer')
+    assert page.locator('.lab2-ctl.is-suggested:visible').count() >= 1, 'the mission marks the controls it suggests'
     page.context.close()
 
     # ---- the Gallery redirect and a missing mission keep working

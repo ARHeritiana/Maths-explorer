@@ -915,7 +915,11 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .lab2-canvas:focus-visible { outline-offset: -3px; }
 .lab2-handle { position: absolute; left: 0; top: 0; width: 44px; height: 44px; padding: 0; border-radius: 50%; background: transparent; pointer-events: none; }
 .lab2-handle:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
-.lab2-stage .canvas-navigation { position: absolute; right: 8px; top: 6px; margin: 0; font-size: 0.8rem; color: var(--muted); }
+.lab2-zoom { position: absolute; right: 8px; top: 8px; display: flex; gap: 4px; }
+.lab2-zoom button { display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); color: var(--ink-2); font: 700 1.15rem/1 var(--body); opacity: 0.86; cursor: pointer; }
+.lab2-zoom button:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+.lab2-zoom button:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+@media (pointer: coarse) { .lab2-zoom button { width: 44px; height: 44px; } }
 .lab2-formula { min-height: 1.5em; margin: 10px 2px 8px; font: 1.1rem/1.4 var(--math); overflow-wrap: anywhere; }
 .lab2-readout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
 .lab2-readout > div { min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--sunken); }
@@ -927,7 +931,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .lab2-table th[scope="col"] { color: var(--muted); font-size: 0.85rem; }
 .lab2-table tr.is-current { background: var(--accent-soft); }
 .lab2-keys { margin: 10px 2px 0; color: var(--muted); font-size: 0.85rem; }
-.lab2-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; position: sticky; top: calc(var(--header) + 12px); }
+.lab2-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; position: sticky; top: calc(var(--header) + 12px); max-height: calc(100vh - var(--header) - 24px); overflow-y: auto; overscroll-behavior: contain; }
 .lab2-card-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-weight: 700; }
 .lab2-kind { padding: 2px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 0.9rem; }
 .lab2-fold { display: none; min-height: 36px; padding: 0 8px; }
@@ -941,6 +945,8 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .lab2-controls { display: grid; gap: 10px; }
 .lab2-ctl { display: grid; gap: 4px; }
 .lab2-ctl.is-locked { opacity: 0.45; }
+.lab2-ctl.is-suggested { padding-left: 10px; border-left: 3px solid var(--accent); }
+.lab2-show { justify-self: start; }
 .lab2-ctl-label { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
 .lab2-ctl input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--accent); }
 .lab2-segments { display: flex; flex-wrap: wrap; gap: 6px; }

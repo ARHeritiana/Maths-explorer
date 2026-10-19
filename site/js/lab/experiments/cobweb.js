@@ -53,7 +53,7 @@ export default {
   views: {
     panels: ["graph"],
     graph: {
-      x: R, y: R, equal: true, widen: true, xTicks: [0, 2, 4, 6, 8], yTicks: [0, 2, 4, 6, 8],
+      x: R, y: R, equal: true, xTicks: [0, 2, 4, 6, 8], yTicks: [0, 2, 4, 6, 8],
       scene(s, { fmt }) {
         const m = model(s), num = fmt.num, list = m.terms;
         const last = list.length - 1;

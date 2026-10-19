@@ -1,6 +1,6 @@
 // Template `family`: a function family whose parameters are the points of the graph. One or two panels (graph and unit
 // circle), handles on the figure, fixed ranges. No experiment-specific code: the experiment returns a scene (see plot.js).
-import { layoutPanels, makeView, drawAxes, drawScene, drawHandle, buildHandles } from "../plot.js";
+import { layoutPanels, panelView, drawAxes, drawScene, drawHandles, buildHandles } from "../plot.js";
 
 export function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -12,7 +12,7 @@ export function mount(env) {
   function layout() {
     const rects = layoutPanels(stage.W, stage.H, specs);
     views = {};
-    ids.forEach((id, i) => { views[id] = makeView(rects[i], specs[i]); });
+    ids.forEach((id, i) => { views[id] = panelView(stage, id, rects[i], specs[i]); });
   }
   layout();
 
@@ -33,10 +33,7 @@ export function mount(env) {
       g.save(); g.strokeStyle = stage.color(l.color || "muted"); g.lineWidth = 1.5; g.setLineDash([5, 5]);
       g.beginPath(); g.moveTo(a.X(l.from.at[0]), a.Y(l.from.at[1])); g.lineTo(b.X(l.to.at[0]), b.Y(l.to.at[1])); g.stroke(); g.restore();
     }
-    for (const h of handles) {
-      const [x, y] = h.pos();
-      drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) });
-    }
+    drawHandles(g, stage, handles, isUnlocked);
   }
 
   return { draw, handles, views: () => views, destroy() {} };

@@ -49,3 +49,8 @@ and a separate tetrahedral junction solver. `gallery-context.js` supplies readin
 `makeExpandingFamilyWindow()` in `gallery-hat-model.js` lazily fills the camera window from a nested hierarchy;
 never periodically repeat a patch to simulate an aperiodic tiling. Verify spatial revisions with
 `tests/gallery-spatial.test.mjs` as well as the discovery/DOM/browser suites.
+
+Free exploration (owner decision, 19 October 2026, `docs/LAB_DESIGN.md` section 13): every control works in every mission and
+nothing waits; a mission's `unlock` list only marks the suggested controls. Keep the rules on `unlock` (they feed the future
+tests, mounted with `gated: true`). Zoom and pan come from the stage cameras: build views with `plot.js` `panelView`, never a
+canvas transform of your own.

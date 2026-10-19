@@ -243,3 +243,20 @@ Phases 1 to 3 (sections 9 to 11) still hold. What Phase 4 added or decided, and 
 ## Fourier extension, 19 October 2026
 
 Two experiments share a new Fourier template: continuous periodic signals and discrete contour reconstruction. Both keep the short mission contract and at most one slider plus one choice per mission. The template reuses the stage, camera, scheduler, handles, reduced-motion convention and shell; it changes world ranges only between distinct mathematical views. Freehand drawing reserves pointer input while the custom-contour mode is selected; camera modifiers and pinch retain priority. Locked controls are hidden for these experiments.
+
+## 13. Free exploration and the pointer policy (owner decision, 19 October 2026)
+
+Owner request: "the canvas interactions are not smooth and full of bugs (it is difficult to click on points, the canvas moves
+when it should not, the grids do not show correctly). It is frustrating when one cannot advance and explore freely. Reserve
+blocking advancement for tests (a future feature). For now, exploration should be free." This section amends R1, R3 and R6
+of section 2 for the laboratory as published; the blocking behaviour is kept, off by default, for the future tests.
+
+| Point | Before | Now |
+|---|---|---|
+| Missions | controls locked to the mission's `unlock` list, hidden in a prediction; Next and the mission dots waited for the mission to be done; the argument waited for a written attempt of at least ten characters | every handle and control works in every mission; Next, Previous, N, P and every mission dot are always open; a mission still recognises its goal, answer or argument and says so (feedback, a tick on its dot), it never holds the learner back. `unlock` now marks the suggested controls (`.is-suggested`, a left rule on the card). A check offers "Show the answer"; the argument button works without writing first; the argument section appears on the last mission |
+| Gated mode | the only mode | `mountExperiment(..., { gated: true })` (shell option `gated`) restores the old locks, for the future tests; `tests/dom-smoke.mjs` keeps it covered. Experiments with `onlyUnlocked` (Fourier) and the slide player still show only the mission's controls (their controls act on different figures; the player's control area is small), all enabled; every handle is free everywhere |
+| Grabbing a point | a 22 px radius, and only the mission's handles; a near miss started a pan | the nearest handle within `GRAB` (26 px mouse, 34 px pen, 40 px finger) is grabbed; the handle under the mouse, focused or dragged gets a ring (`drawHandle` with `id`) |
+| Wheel | every wheel event over the canvas zoomed it, so scrolling the page shrank the figure | a plain wheel scrolls the page; Ctrl or Cmd + wheel (and a trackpad pinch) zooms the panel under the pointer |
+| Background drag | panned at once | moves nothing at the default view; once the view is zoomed or moved it pans (Shift, Alt or middle drag always pans); a 3D view still turns |
+| Zoom | a transform of the whole bitmap: text, handles and lines grew or shrank, and the grid, drawn for the fixed range only, ended at the old panel edge | the camera acts on the world ranges (`plot.js` `makeView(rect, spec, cam)`, `panelView`): X = c + k (X₀ − c) + o around the centre c of the panel's frame. The grid (`gridTicks`) is recomputed for the visible range from the experiment's anchor and step (π/2 steps survive), doubling or halving the step to stay readable, so it always fills the panel; text and handles keep their size. Panels that must stay aligned share a camera (`transform`: before and after; `data`: dots and box, horizontal only). Buttons +, − and a reset button (shown only when the view has moved) sit in the corner of the stage; `+ − 0`, Shift + arrows and a double click on the background still work. A handle out of sight after a zoom is neither drawn nor grabbed |
+| Equal-scale panels | the designed range was centred in the panel, leaving blank bands without grid (unit circle) | the range of the axis that has room grows to fill the panel (formerly the `widen` option, now always on and removed) |

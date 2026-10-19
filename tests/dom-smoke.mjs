@@ -28,7 +28,8 @@ for(const id of ['tetrahedron','cube','octahedron','dodecahedron','icosahedron']
 solidRoot.querySelector('#pl-p').value=6;solidRoot.querySelector('#pl-p').dispatchEvent(new Event('input'));solidRoot.querySelector('#pl-q').value=3;solidRoot.querySelector('#pl-q').dispatchEvent(new Event('input'));assert.equal(solidRoot.querySelector('#pl-build-case').disabled,true);stop();solidRoot.remove();
 await import('../dist/js/app.js');
 // Laboratory v2: a mounted experiment. Frames are run by hand; a drag must add or remove no element, the camera is
-// independent of the state, missions change the address, keyboard handles move by one grid step.
+// independent of the state, missions change the address, keyboard handles move by one grid step. Exploration is free: every
+// handle and control works in every mission; `gated: true` (kept for the future tests) locks them to the mission.
 const flush=()=>{for(let i=0;i<8&&frames.size;i++)for(const [id,fn] of [...frames]){frames.delete(id);fn(performance.now());}};
 const settle=async()=>{for(let i=0;i<6;i++){await new Promise(r=>setTimeout(r,15));flush();}};
 const go=async hash=>{window.location.hash=hash;window.dispatchEvent(new window.Event('hashchange'));await settle();};
@@ -37,9 +38,9 @@ await go('#lab/quadratic/vertex');
 let lab=document.querySelector('.lab2');assert.ok(lab,'the experiment page mounts');
 assert.equal(lab.querySelectorAll('canvas').length,1);assert.equal(window.location.hash,'#lab/quadratic/vertex');
 assert.match(lab.querySelector('.lab2-step').textContent,/3\/6/);assert.ok(lab.querySelector('.lab2-formula').textContent.includes('f(x) ='));
-const api=lab.__lab,canvas=lab.querySelector('canvas'),handle=lab.querySelector('.lab2-handle');assert.equal(lab.querySelectorAll('.lab2-handle').length,1,'only the unlocked handle is focusable');
+const api=lab.__lab,canvas=lab.querySelector('canvas'),handle=api.stage.handles.find(h=>h.id==='vertex').button;assert.equal(lab.querySelectorAll('.lab2-handle').length,api.stage.handles.length);assert.ok(api.stage.handles.length>=3,'every handle of the experiment is free');
 const centre=()=>{const m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(handle.style.transform);return [+m[1]+22,+m[2]+22];};
-const camera=api.stage.nav.camera,before=api.getState(),record=[];
+const camera=api.stage.view,before=api.getState(),record=[];
 const watch=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])record.push(n.nodeName);});
 watch.observe(lab,{childList:true,subtree:true});
 let [cx,cy]=centre();press(canvas,'pointerdown',cx,cy);
@@ -52,28 +53,46 @@ assert.equal(camera.scale,1,'the camera does not depend on the state');
 watch.disconnect();
 const formula=lab.querySelector('.lab2-formula').textContent;assert.ok(formula.includes('x²'),formula);assert.ok(!/NaN|undefined/.test(lab.textContent));
 canvas.dispatchEvent(new window.WheelEvent('wheel',{deltaY:-120,clientX:320,clientY:200,cancelable:true}));flush();
-assert.ok(camera.scale>1,'the wheel zooms');
+assert.equal(camera.scale,1,'a plain wheel scrolls the page, it never zooms');
+canvas.dispatchEvent(new window.WheelEvent('wheel',{deltaY:-120,clientX:320,clientY:200,ctrlKey:true,cancelable:true}));flush();
+assert.ok(camera.scale>1,'Ctrl + wheel zooms');
 const keep=api.getState();canvas.dispatchEvent(new window.KeyboardEvent('keydown',{key:'0',bubbles:true,cancelable:true}));flush();assert.equal(camera.scale,1,'0 resets the view');assert.deepEqual(api.getState(),keep,'zoom and reset never change the state');
 // keyboard: one grid step (0.5) per arrow press
 const x0=api.getState();handle.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));flush();
 assert.equal(-api.getState().b/2,-x0.b/2+0.5,'the vertex moved by one grid step');
-// missions: predict first, Next unlocks after an answer, the address follows
+// a background drag at the default view moves nothing; once zoomed it moves the view
+{const st=JSON.stringify(api.getState());press(canvas,'pointerdown',600,40);for(let i=1;i<=6;i++){press(canvas,'pointermove',600-i*10,40+i*6);flush();}press(canvas,'pointerup',540,76);flush();
+  assert.equal(camera.moved,false,'a drag on the empty background does not move the default view');assert.equal(JSON.stringify(api.getState()),st);
+  camera.zoom(1.25);flush();const o0=api.stage.cam('graph').ox;press(canvas,'pointerdown',600,40);for(let i=1;i<=6;i++){press(canvas,'pointermove',600-i*10,40+i*6);flush();}press(canvas,'pointerup',540,76);flush();
+  assert.ok(api.stage.cam('graph').ox<o0,'once zoomed, a background drag moves the view');
+  assert.equal(JSON.stringify(api.getState()),st,'moving the view never changes the state');canvas.dispatchEvent(new window.KeyboardEvent('keydown',{key:'0',bubbles:true,cancelable:true}));flush();assert.equal(camera.moved,false);}
+// missions: free exploration, every mission is open, controls work in a prediction, the address follows
 await go('#lab/quadratic/open');
-lab=document.querySelector('.lab2');let next=lab.querySelector('.lab2-nav .primary');assert.ok(next.disabled,'Next waits for an answer');
-assert.ok(lab.querySelectorAll('.lab2-ctl:not(.is-locked)').length===0,'controls are locked in the prediction');
-lab.querySelector('.lab2-option').click();flush();assert.ok(!next.disabled);next.click();flush();
+lab=document.querySelector('.lab2');let next=lab.querySelector('.lab2-nav .primary');assert.ok(!next.disabled,'Next never waits');
+assert.ok(lab.querySelectorAll('.lab2-ctl.is-locked').length===0&&lab.querySelectorAll('.lab2-dot:disabled').length===0,'nothing is locked');
+lab.querySelector('.lab2-option').click();flush();next.click();flush();
 assert.equal(window.location.hash,'#lab/quadratic/sign');assert.match(lab.querySelector('.lab2-step').textContent,/2\/6/);
+lab.querySelectorAll('.lab2-dot')[5].click();flush();assert.match(lab.querySelector('.lab2-step').textContent,/6\/6/,'any mission can be opened');
+assert.ok(!lab.querySelector('.lab2-argument').hidden,'the argument is there on the last mission');
+{const b=[...lab.querySelectorAll('.lab2-answer button.primary')].at(-1);assert.ok(!b.disabled,'the argument needs no written attempt');}
+// gated (reserved for tests): controls locked to the mission, Next after the answer, a prediction hides the controls
+{const {mountExperiment:mx}=await import('../dist/js/lab/mount.js');const host=document.createElement('div');document.body.append(host);
+  const G=mx(host,'quadratic/open',{mode:'full',lang:'fr',gated:true});await G.ready;flush();const R=host.querySelector('.lab2'),nx=R.querySelector('.lab2-nav .primary');
+  assert.ok(nx.disabled,'gated: Next waits for an answer');assert.equal(R.querySelectorAll('.lab2-ctl:not([hidden])').length,0,'gated: no control before the prediction');assert.equal(R.querySelectorAll('.lab2-handle').length,0);
+  R.querySelector('.lab2-option').click();flush();assert.ok(!nx.disabled);nx.click();flush();G.setMission('vertex');flush();
+  assert.equal(R.querySelectorAll('.lab2-handle').length,1,'gated: only the mission handle is focusable');assert.ok(R.querySelector('.lab2-ctl.is-locked:not([hidden])'),'gated: locked controls stay, disabled');
+  G.destroy();host.remove();}
 // every experiment: a handle drag adds or removes no element and changes the state; the camera stays; keys move one step
 for(const ref of ['quadratic/vertex','trig/quadrants','sequences/difference','derivative/where','integral/bound','probability/mean','vectors/collinear','statistics/box','complex/angles','line/slope','exponential/base','cobweb/slope','matrix/columns','space-lines/parallel','space-lines/normal']){
-  await go('#lab/'+ref);const L=document.querySelector('.lab2'),A=L.__lab,cv=L.querySelector('canvas'),hs=[...L.querySelectorAll('.lab2-handle')];
-  assert.ok(hs.length>=1&&hs.length<=2,ref+': one or two handles are unlocked');
+  await go('#lab/'+ref);const L=document.querySelector('.lab2'),A=L.__lab,cv=L.querySelector('canvas'),wanted=A.mission.unlock||[],hs=A.stage.handles.filter(h=>wanted.includes(h.id)).map(h=>h.button);
+  assert.ok(hs.length>=1&&A.stage.handles.length===L.querySelectorAll('.lab2-handle').length,ref+': the mission handle is there, every handle is free');
   const centreOf=h=>{const m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(h.style.transform);return [+m[1]+22,+m[2]+22];};
   const rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});obs.observe(L,{childList:true,subtree:true});
   const before=JSON.stringify(A.getState()),[x0,y0]=centreOf(hs[0]);press(cv,'pointerdown',x0,y0);
   for(let i=1;i<=14;i++){press(cv,'pointermove',x0+i*11,y0-i*(i%2?6:-3));flush();}
   press(cv,'pointerup',x0+154,y0-30);flush();await new Promise(r=>setTimeout(r,400));flush();obs.disconnect();
   assert.deepEqual(rec,[],ref+': a drag adds or removes no element and replaces no text node');
-  assert.notEqual(JSON.stringify(A.getState()),before,ref+': the handle moved the state');assert.equal(A.stage.nav.camera.scale,1,ref+': the camera does not depend on the state');
+  assert.notEqual(JSON.stringify(A.getState()),before,ref+': the handle moved the state');assert.equal(A.stage.view.scale,1,ref+': the camera does not depend on the state');
   const kb=JSON.stringify(A.getState());hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true,cancelable:true}));flush();
   assert.ok(!/NaN|undefined|Infinity/.test(L.textContent),ref+': finite text');
 }
@@ -83,12 +102,12 @@ await go('#lab/space-lines/parallel');{const L=document.querySelector('.lab2'),A
   assert.ok(cam,'the space stage exposes its view angles');const y0=cam.yaw,p0=cam.pitch,st=JSON.stringify(A.getState());obs.observe(L,{childList:true,subtree:true});
   press(cv,'pointerdown',60,60);for(let i=1;i<=10;i++){press(cv,'pointermove',60+i*12,60+i*5);flush();}press(cv,'pointerup',180,110);flush();await new Promise(r=>setTimeout(r,400));flush();obs.disconnect();
   assert.deepEqual(rec,[],'turning the view adds or removes no element');assert.ok(Math.abs(cam.yaw-y0)>0.3&&cam.pitch>p0,'the background drag turned the view');
-  assert.equal(JSON.stringify(A.getState()),st,'turning never changes the state');assert.equal(A.stage.nav.camera.scale,1);
+  assert.equal(JSON.stringify(A.getState()),st,'turning never changes the state');assert.equal(A.stage.view.scale,1);
   const y1=cam.yaw;cv.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));flush();assert.ok(cam.yaw>y1,'an arrow key turns the view');
   assert.ok(cam.pitch<=1.45&&cam.pitch>=0.12);for(let i=0;i<60;i++)cv.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true,cancelable:true}));assert.ok(cam.pitch<=1.45,'the pitch is clamped');
   cv.dispatchEvent(new window.KeyboardEvent('keydown',{key:'0',bubbles:true,cancelable:true}));flush();assert.ok(Math.abs(cam.yaw+0.7)<1e-9&&Math.abs(cam.pitch-0.55)<1e-9,'0 resets the view');
   // a handle drag still moves the state (not the view)
-  const hs=[...L.querySelectorAll('.lab2-handle')],m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(hs[0].style.transform),hx=+m[1]+22,hy=+m[2]+22,ang=cam.yaw;
+  const hs=A.stage.handles.filter(h=>(A.mission.unlock||[]).includes(h.id)).map(h=>h.button),m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(hs[0].style.transform),hx=+m[1]+22,hy=+m[2]+22,ang=cam.yaw;
   press(cv,'pointerdown',hx,hy);for(let i=1;i<=8;i++){press(cv,'pointermove',hx+i*14,hy);flush();}press(cv,'pointerup',hx+112,hy);flush();
   assert.notEqual(JSON.stringify(A.getState()),st,'the handle moved the state');assert.equal(cam.yaw,ang,'and did not turn the view');}
 // the run buttons of the chance experiment: a click adds experiments and draws without creating an element
@@ -97,9 +116,9 @@ await go('#lab/probability/run');{const L=document.querySelector('.lab2'),A=L.__
   obs.observe(L,{childList:true,subtree:true});for(const b of buttons.slice(0,4)){b.click();flush();}obs.disconnect();
   assert.equal(A.getState().runs,1111);assert.deepEqual(rec,[],'running experiments adds no element');assert.match(L.querySelector('.lab2-readout').textContent,/1111|1 111/);
   buttons[4].click();flush();assert.equal(A.getState().runs,0,'a new series starts again');}
-// a prediction hides the controls instead of showing them locked
-await go('#lab/probability/open');{const L=document.querySelector('.lab2');assert.equal(L.querySelectorAll('.lab2-ctl:not([hidden])').length,0,'no control is shown before the prediction');assert.ok(L.querySelector('.lab2-controls').hidden);}
-await go('#lab/probability/mean');{const L=document.querySelector('.lab2');assert.ok(!L.querySelector('.lab2-controls').hidden);assert.ok(L.querySelector('[data-control="run"].is-locked:not([hidden])'),'in other missions locked controls stay, disabled');}
+// free exploration: the controls are there and working even in a prediction; the mission's own controls are marked
+await go('#lab/probability/open');{const L=document.querySelector('.lab2');assert.ok(!L.querySelector('.lab2-controls').hidden);assert.ok(L.querySelector('[data-control="run"]:not(.is-locked):not([hidden])'),'the run buttons work before the prediction');}
+await go('#lab/probability/run');{const L=document.querySelector('.lab2');assert.ok(L.querySelector('[data-control="run"].is-suggested'),'the mission marks the control it suggests');}
 // every experiment mounts in both languages, draws finite numbers, and cleans up
 const {mountExperiment}=await import('../dist/js/lab/mount.js');const {EXPERIMENTS}=await import('../dist/js/lab/registry.js');
 for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['full','inline'])for(const mission of [null,...e.missions.map(m=>m.id)]){
@@ -124,6 +143,6 @@ for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein']){
  assert.ok(document.querySelector('#object-stage canvas'));
  assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
 }
-console.log('DOM smoke passed: five folding controls, fourteen experiments (drags with no element change, fixed camera, missions, keyboard handles, run buttons, hidden controls in predictions), old guided page gone, gallery redirects; canvas arguments finite.');
+console.log('DOM smoke passed: five folding controls, fourteen experiments (drags with no element change, fixed camera, missions, keyboard handles, run buttons, free and gated missions, zoom only on purpose), old guided page gone, gallery redirects; canvas arguments finite.');
 dom.window.close();
 

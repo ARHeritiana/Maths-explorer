@@ -1,7 +1,7 @@
 // Template `space`: a 3D object you can turn. One orthographic view (the camera of js/camera3d.js, the same as the slide widgets),
 // a floor grid, the three axes and the experiment's scene made of faces, segments and points. Dragging the empty background turns
 // the view (arrow keys too, with the canvas focused); the camera belongs to the view and never depends on the state, so changing a
-// parameter never turns or rescales it (Shift or Alt drag pans, the wheel zooms, 0 or a double click resets everything).
+// parameter never turns or rescales it (Shift or Alt drag pans, Ctrl + wheel or a pinch zooms, 0 or a double click resets everything).
 // Handles are points constrained to a line, a plane or an axis direction: a control gives `constraint(state)` = { o, e1, e2? }
 // (the point is o + a e1 [+ b e2]), the pointer's view ray is intersected with it, the parameters are snapped to `grid` and the
 // control's `drag(state, point, {a, b})` returns the partial state. A part of a segment that lies behind a face marked `occlude`
@@ -35,14 +35,15 @@ export function mount(env) {
   const centre = [(bx[0] + bx[1]) / 2, (by[0] + by[1]) / 2, (bz[0] + bz[1]) / 2];
   const radius = Math.hypot(bx[1] - bx[0], by[1] - by[0], bz[1] - bz[0]) / 2;   // the box fits the view whatever the angles
 
-  // world -> stage pixels (before the zoom of the 2D camera)
-  const scale = () => { const h = Math.min(stage.W || 640, stage.H || 420); return ((h < 420 ? 0.66 : 0.54) * h) / radius; };   // a short stage (a slide) uses more of its height
+  // world -> stage pixels; the stage's view camera (zoom and offset) of the panel "space" applies on top
+  const zoom = stage.cam("space");
+  const scale = () => { const h = Math.min(stage.W || 640, stage.H || 420); return (zoom.kx * (h < 420 ? 0.66 : 0.54) * h) / radius; };   // a short stage (a slide) uses more of its height
   const proj = (p) => {
     const q = cam3Project(cam.yaw, cam.pitch, p[0] - centre[0], p[1] - centre[1], p[2] - centre[2]), k = scale();
-    return { X: stage.W / 2 + k * q.u, Y: stage.H / 2 - k * q.v, d: q.d };
+    return { X: stage.W / 2 + zoom.ox + k * q.u, Y: stage.H / 2 + zoom.oy - k * q.v, d: q.d };
   };
   const rayAt = (sx, sy) => {
-    const k = scale(), r = cam3Ray(cam.yaw, cam.pitch, (sx - stage.W / 2) / k, -(sy - stage.H / 2) / k);
+    const k = scale(), r = cam3Ray(cam.yaw, cam.pitch, (sx - stage.W / 2 - zoom.ox) / k, -(sy - stage.H / 2 - zoom.oy) / k);
     return { p: [r.p[0] + centre[0], r.p[1] + centre[1], r.p[2] + centre[2]], w: r.w };
   };
 
@@ -163,22 +164,22 @@ export function mount(env) {
   }
 
   function draw(g) {
+    stage.panel("space", { x: 0, y: 0, w: stage.W, h: stage.H }, zoom);
     const s = getState(), other = ghost(), placed = [];
     floorAndAxes(g);
     if (other) paint(g, spec.scene(other, ctx), true, placed);
     paint(g, spec.scene(s, ctx), false, placed);
     const m = spec.measure?.(s, ctx);
     if (m) drawBadge(g, stage, m);
-    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id), focused: stage.focusId === h.id }); }
+    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id), id: h.id }); }
   }
 
-  // The view: turning, and the reset of the 2D camera (key 0, double click) brings the angles back too.
+  // The view: turning, and the reset of the view (key 0, double click, the reset button) brings the angles back too.
   const resetAngles = () => { cam.yaw = CAM3_DEFAULT.yaw; cam.pitch = CAM3_DEFAULT.pitch; };
-  const baseReset = stage.nav.camera.reset;
-  stage.nav.camera.reset = () => { baseReset(); resetAngles(); };
+  const stopReset = stage.view.onReset(resetAngles);
   return {
     draw, handles,
     spin(dx, dy) { cam3Turn(cam, dx * 0.008, dy * 0.006); },
-    destroy() { stage.nav.camera.reset = baseReset; },
+    destroy() { stopReset(); },
   };
 }

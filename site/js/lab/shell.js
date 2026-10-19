@@ -1,6 +1,11 @@
 // Laboratory shell: builds the page of one experiment (figure, readout, mission card), runs the missions (predict, explore,
 // contrast, check, explain), keeps the state, and tells the host when the mission changes. The template draws; this file
 // never draws. Everything the card shows is created once or when the mission changes, never during a drag.
+//
+// Exploration is free (owner decision, 19 October 2026): every handle and control works in every mission, any mission can be
+// opened at any time, and a mission's goal, answer or argument gives feedback without holding the learner back. The missions'
+// `unlock` lists only mark the suggested controls. `opts.gated: true` restores the blocking behaviour (controls locked to the
+// mission, Next after the mission is done, the argument after a written attempt); it is kept for the future tests.
 import { createStage, createReadout, createTable, makeFormat, setText, setAttr, setClass, textNode } from "./engine.js";
 import { isAnswer } from "../math.js";
 
@@ -25,6 +30,8 @@ const TEXT = {
   needText: ["Écris au moins une phrase pour voir l’argument.", "Write at least a sentence to see the argument."],
   locked: ["verrouillé", "locked"],
   predicted: ["Prédiction notée. Teste-la : les commandes se déverrouillent mission après mission.", "Prediction saved. Now test it: controls unlock mission by mission."],
+  predictedFree: ["Prédiction notée. Teste-la sur la figure, ou passe à la mission suivante.", "Prediction saved. Test it on the figure, or go on to the next mission."],
+  showAnswer: ["Voir la réponse", "Show the answer"],
   goal: ["Objectif atteint.", "Goal reached."],
   exact: ["Exact.", "Correct."],
   notYet: ["Pas encore. Regarde la figure et réessaie.", "Not yet. Look at the figure and try again."],
@@ -39,8 +46,8 @@ const TEXT = {
     "What you saw is experimental evidence, not a proof: a few positions do not cover every case. The argument below does cover every case.",
   ],
   keys: [
-    "Poignées : glisse les points, ou Tab puis les flèches. Molette ou pincement : zoom ; 0 : recentrer. N et P : mission suivante, précédente.",
-    "Handles: drag the points, or Tab then the arrow keys. Wheel or pinch: zoom; 0: reset the view. N and P: next and previous mission.",
+    "Points : glisse-les, ou Tab puis les flèches. Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
+    "Points: drag them, or Tab then the arrow keys. Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
   ],
   play: ["Lecture", "Play"],
   pause: ["Pause", "Pause"],
@@ -59,6 +66,7 @@ const el0 = (tag, className, text) => {
 export function createShell(host, exp, tpl, opts = {}) {
   const mode = opts.mode || "full";
   const full = mode === "full", slide = mode === "slide";
+  const gated = !!opts.gated;
   // In a slide the player typesets every formula (opts.render turns the Unicode of an experiment into MathJax markup); elsewhere
   // text is written as plain text nodes. `write` sets a node's text, `put` does it only when it changed (a Text node in place).
   const render = slide ? opts.render : null;
@@ -118,7 +126,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     palette: opts.palette,
     fontScale: slide ? 1.3 : 1,
     canvasKeys: slide,
-    navHost: slide ? opts.controls : undefined,
+    zoomButtons: !slide,
     reservePointer: () => exp.pointerMode?.(getState()) === "draw",
     onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
     label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
@@ -295,18 +303,24 @@ export function createShell(host, exp, tpl, opts = {}) {
   let maxReached = 0;
 
   function lockControls(m) {
-    unlocked = new Set(m.unlock || []);
+    const suggested = new Set(m.unlock || []);
+    unlocked = gated ? suggested : new Set(Object.keys(exp.controls));
     stage.setHandles(allHandles.filter((h) => unlocked.has(h.id)));
+    let shown = 0;
     for (const [id, n] of Object.entries(controlNodes)) {
-      const on = unlocked.has(id) && (m.kind !== "predict");
+      const on = unlocked.has(id) && (!gated || m.kind !== "predict");
       setClass(n.wrap, "is-locked", !on);
+      setClass(n.wrap, "is-suggested", !gated && !slide && suggested.has(id) && m.kind !== "predict");
       if (n.input) n.input.disabled = !on;
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
-      // Before the learner has predicted there is nothing to operate: locked controls are not shown at all.
-      n.wrap.hidden = m.kind === "predict" || (exp.onlyUnlocked && !on);
+      // Gated: before the learner has predicted there is nothing to operate, so locked controls are not shown at all.
+      // Free: every control is shown, except where the experiment shows only the mission's (`onlyUnlocked`: its controls act on
+      // different figures) and in a slide, where the player's control area holds only the mission's controls.
+      n.wrap.hidden = gated ? m.kind === "predict" || (exp.onlyUnlocked && !on) : (exp.onlyUnlocked || slide) && !suggested.has(id);
+      if (!n.wrap.hidden) shown++;
     }
-    controlsEl.hidden = m.kind === "predict" || !Object.keys(controlNodes).length;
+    controlsEl.hidden = !shown;
   }
 
   function setFeedback(text, tone) {
@@ -331,13 +345,13 @@ export function createShell(host, exp, tpl, opts = {}) {
     const m = mission(), last = index === missions.length - 1;
     prevBtn.disabled = index === 0;
     nextBtn.hidden = last;
-    nextBtn.disabled = !done[m.id];
+    nextBtn.disabled = gated && !done[m.id];
     dotButtons.forEach((b, i) => {
-      b.disabled = i > maxReached;
+      b.disabled = gated && i > maxReached;
       setClass(b, "is-done", !!done[missions[i].id]);
       if (i === index) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
     });
-    if (argumentEl) argumentEl.hidden = !(done[missions.at(-1).id]);
+    if (argumentEl) argumentEl.hidden = gated ? !done[missions.at(-1).id] : !(done[missions.at(-1).id] || index === missions.length - 1);
   }
 
   function renderAnswer(m) {
@@ -356,7 +370,7 @@ export function createShell(host, exp, tpl, opts = {}) {
           if (m.kind === "predict") {
             predictions[m.id] = { index: i, text: text(c) };
             [...group.children].forEach((o, j) => o.setAttribute("aria-pressed", String(j === i)));
-            markDone(text(T("predicted")));
+            markDone(text(T(gated ? "predicted" : "predictedFree")));
           } else {
             attempts++;
             if (i === m.answer) { [...group.children].forEach((o, j) => o.setAttribute("aria-pressed", String(j === i))); markDone(`${text(T("exact"))}${m.because ? " " + text(m.because) : ""}`); }
@@ -367,6 +381,15 @@ export function createShell(host, exp, tpl, opts = {}) {
         group.append(b);
       });
       answerEl.append(group);
+      if (m.kind === "check" && !gated) {
+        const show = el("button", "text-button lab2-show", text(T("showAnswer")));
+        show.type = "button";
+        show.addEventListener("click", () => {
+          [...group.children].forEach((o, j) => o.setAttribute("aria-pressed", String(j === m.answer)));
+          markDone(`${text(T("reveal"))} ${text(m.choices[m.answer])}. ${m.because ? text(m.because) : ""}`);
+        });
+        answerEl.append(show);
+      }
     } else if (m.kind === "check") {
       const form = el("form", "lab2-check");
       const label = el("label", "", text(T("yourAnswer")));
@@ -376,6 +399,12 @@ export function createShell(host, exp, tpl, opts = {}) {
       const submit = el("button", "primary", text(T("verify")));
       submit.type = "submit";
       form.append(label, input, submit);
+      if (!gated) {
+        const show = el("button", "text-button lab2-show", text(T("showAnswer")));
+        show.type = "button";
+        show.addEventListener("click", () => { markDone(`${text(T("reveal"))} ${fmt.num(m.answer, 3)}. ${m.because ? text(m.because) : ""}`); });
+        form.append(show);
+      }
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         const raw = input.value.replace(/−/g, "-");
@@ -432,11 +461,13 @@ export function createShell(host, exp, tpl, opts = {}) {
       area.rows = 3; area.id = `lab2-why-${m.id}`; area.maxLength = 1500;
       label.htmlFor = area.id;
       const button = el("button", "primary", text(T("showArgument")));
-      button.type = "button"; button.disabled = true;
+      button.type = "button"; button.disabled = gated;
       const arg = el("div", "lab2-reveal");
       arg.hidden = true;
       const note = el("p", "lab2-note", text(T("needText")));
-      area.addEventListener("input", () => { button.disabled = area.value.trim().length < 10; note.hidden = !button.disabled; });
+      note.hidden = !gated;
+      // Gated: the argument waits for a written attempt. Free: writing first is suggested by the order, not required.
+      if (gated) area.addEventListener("input", () => { button.disabled = area.value.trim().length < 10; note.hidden = !button.disabled; });
       button.addEventListener("click", () => {
         arg.hidden = false; write(arg, text(m.argument)); note.hidden = true; button.hidden = true; area.readOnly = true;
         markDone("");
@@ -488,7 +519,7 @@ export function createShell(host, exp, tpl, opts = {}) {
 
   function go(i) {
     if (i < 0 || i >= missions.length || i === index) return;
-    if (full && i > maxReached) return;
+    if (full && gated && i > maxReached) return;
     enter(i);
     if (!slide) promptEl.focus({ preventScroll: true });   // in a slide the focus stays where the presenter put it (N and P again)
   }
