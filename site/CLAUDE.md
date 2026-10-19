@@ -45,7 +45,8 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/gallery-models.js`, `js/gallery-kit.js` | Voronoi clipping, descent timing, film area minimisation; shared exhibit lifecycle |
 | `js/gallery-voronoi.js`, `js/gallery-fastest.js`, `js/gallery-soap.js` | draggable territories, bead races, rotatable film |
 | `js/gallery-knot-model.js` | legacy pure braid/invariant helpers and verified mirror certificate, retained for model tests |
-| `js/gallery-knots.js`, `js/gallery-knot-geometry.js`, `js/knot-catalogue.js` | 44 verified spatial curves, shaded tubes, true projections, F3 colours and continuous examples |
+| `js/gallery-knots.js`, `js/gallery-knot-geometry.js`, `js/knot-catalogue.js` | 44 verified spatial curves, preview-style strands, true projections, F3 colours and continuous examples |
+| `js/gallery-knot-render.js` | shared solid-colour strand drawing with depth-ordered crossing gaps for the card and full explorer |
 | `js/knotinfo-license.txt` | MIT licence for KnotInfo coordinate assets |
 | `js/gallery-soap-model.js` | 13 fixed-topology spatial meshes and a separate tetrahedral junction solver |
 | `js/gallery-context.js` | mathematical ideas, historical context and applications for all gallery entries |

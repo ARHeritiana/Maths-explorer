@@ -4,6 +4,7 @@ import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION
 import { platonic, reuleaux, binomial } from "./lab-objects.js";
 import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery-models.js';
 import {neighbours,colourWith} from './gallery-four-colour-model.js';
+import {drawKnotStrand} from './gallery-knot-render.js';
 import {spaceKnot} from './gallery-knot-model.js';
 import {makeFamilyPatch} from './gallery-hat-model.js';
 
@@ -163,7 +164,7 @@ function newGalleryArt(kind,cv,opts){
       for(let i=0;i<=12;i++){const u=-1+i/6;for(let k=0;k<2;k++)draw(Array.from({length:41},(_,j)=>{const v=-1+j/20,x=k?u:v,y=k?v:u;return proj(x,y,.75*x*y+.35*Math.sin(Math.PI*(x+1)/2)*Math.sin(Math.PI*(y+1)/2)*Math.exp(-time%5));}),C.accent,false,1.4);}
     }else if(kind==='knots'){
       const a=time*.22,points=Array.from({length:301},(_,i)=>{const[x,y,z]=spaceKnot('figure8',i/300),v=x*Math.sin(a)+z*Math.cos(a);return [W/2+(x*Math.cos(a)-z*Math.sin(a))*W*.22,H/2+(y*.75-v*.35)*H*.23,v];});
-      points.slice(1).map((p,i)=>({a:points[i],b:p,z:p[2]})).sort((a,b)=>a.z-b.z).forEach(s=>{draw([s.a.slice(0,2),s.b.slice(0,2)],C.surface,false,9);draw([s.a.slice(0,2),s.b.slice(0,2)],C.accent,false,5);});
+      drawKnotStrand(g,points.slice(0,-1),{ink:C.accent,background:C.surface});
     }else{
       const tiles=family(.5+.23*Math.sin(time*.22)),pts=tiles.flatMap(x=>x.vertices),xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2,s=Math.min(W,H)*.09;
       tiles.forEach(tile=>draw(tile.vertices.map(([x,y])=>[W/2+(x-cx)*s,H/2+(y-cy)*s]),tile.reflected?C.c[2]:C.accent,true,1));

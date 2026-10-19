@@ -8,6 +8,25 @@ import { activity as jugActivity } from '../site/js/challenges/jugs/activity.js'
 import { normalise, defaults } from '../site/js/challenges/registry.js';
 import { normaliseKnot, cameraKnot, projectedKnotCrossings, knotCrossingBridge } from '../site/js/gallery-knot-geometry.js';
 import { KNOT_CATALOGUE } from '../site/js/knot-catalogue.js';
+import { drawKnotStrand } from '../site/js/gallery-knot-render.js';
+
+test('preview-style strands draw near crossings last with a matching background gap', () => {
+  const strokes=[];let a,b;
+  const g={save(){},restore(){},beginPath(){},moveTo(x,y){a=[x,y];},lineTo(x,y){b=[x,y];},stroke(){strokes.push({a,b,ink:this.strokeStyle,width:this.lineWidth});}};
+  // Closed spatial quadrilateral: crossing diagonals at (0,0), with one clearly in front.
+  const P=[[-20,-20,-1],[20,20,-1],[-20,20,1],[20,-20,1]];
+  for(const background of ['#ffffff','#131a28'])for(const mirror of [false,true]){
+    strokes.length=0;
+    const points=P.map(([x,y,z])=>[x,y,mirror?-z:z]);
+    drawKnotStrand(g,points,{ink:'#3366cc',background});
+    assert.equal(strokes.length,8,'every segment, including the closing one, is painted');
+    const last=strokes.slice(-2),expected=mirror?P.slice(0,2):P.slice(2);
+    assert.deepEqual(last[0].a,expected[0].slice(0,2));assert.deepEqual(last[0].b,expected[1].slice(0,2));
+    assert.equal(last[0].ink,background);assert.equal(last[0].width,9);
+    assert.equal(last[1].ink,'#3366cc');assert.equal(last[1].width,5);
+    assert.deepEqual(P,[[-20,-20,-1],[20,20,-1],[-20,20,1],[20,-20,1]],'rendering leaves geometry unchanged');
+  }
+});
 
 test('fly motion agrees with independent collision stepping, including fast custom values and late bounces', () => {
   for (const [D, a, b, w] of [[200,50,50,500],[137,31,47,250],[2000,1,1,3000],[1,299,300,301],[19,3,7,11]]) {

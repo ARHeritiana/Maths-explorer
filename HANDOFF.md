@@ -184,3 +184,7 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - [x] Fly scene supports tap play/pause, horizontal time scrubbing and keyboard; analytic collision positioning handles very fast flies without finite-leg extrapolation. Default fast example and classic example remain editable.
 - [x] Knot overpass cues use camera-depth ordering on the actual spatial curve. Shared SVG navigation no longer remounts detached figures.
 - [x] Independent maths and interaction audits, model/DOM checks and make check FAST=1 pass. Managed local visual preview remains unavailable (proc mount); browser workflow includes real captured taps, parameter edits and desktop/mobile screenshots.
+
+## Knot preview rendering, 19 October 2026
+
+- [x] Replaced faceted tubes and local overpass patches with the preview’s simple solid strand and depth-ordered crossing gaps. The card and explorer share `gallery-knot-render.js`; rotation, catalogue, deformations and projection colouring remain available.
