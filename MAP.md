@@ -57,6 +57,7 @@ really need them.
 | the quadratic workshop (`#workshop/quadratic`) | `site/js/quadratic-workshop.js` | |
 | cache busting, versioned URLs | `site/js/data-loader.js` (`assetHref`), `build/mxbuild/site.py` | |
 | canvas zoom, pan, drag, keyboard | `site/js/canvas-navigation.js` (lab handles: `site/js/lab/engine.js`) | one camera policy for the site and the player |
+| a 3D view (rotation, projection, constrained points) | `site/js/camera3d.js` (the one 3D camera), `site/js/lab/templates/space.js` (laboratory), `site/slides/widgets-3d.js` (slides) | `docs/LAB_DESIGN.md` section 12 |
 | how selectors collapse to labels | `site/js/control-policy.js` | |
 | which language a page uses | `site/js/content-language.js` | |
 | the build or a check | `build/mxbuild/CLAUDE.md` | |
@@ -110,7 +111,7 @@ Root files: `CLAUDE.md` (entry), `AGENTS.md` (other agents), `HANDOFF.md` (state
 | courses, chapters, titles, languages | `content/data/manifest.json` | `catalogue-data.js`, catalogue, slides index, chapter pages |
 | everything about one challenge | `site/js/challenges/<id>/` | card, statement, checker, original, emblem, hints, activity, solution |
 | maths notation FR/EN | `content/tex/core/mx-notation.sty` + `build/mxbuild/notation.py` | PDFs and web |
-| camera and drag behaviour | `site/js/canvas-navigation.js` | site canvases, laboratory (`site/js/lab/engine.js`) and slide player |
+| camera and drag behaviour | `site/js/canvas-navigation.js` (2D), `site/js/camera3d.js` (3D) | site canvases, laboratory (`site/js/lab/engine.js`) and slide player |
 | asset URLs and versions | `site/js/data-loader.js` `assetHref` | every link and download |
 | lab references `"<experiment>"` / `"<experiment>/<mission>"` | the experiment files; the one resolver `resolveRef` in `site/js/lab/registry.js` | lab page route, `manifest.json` `catalog.chapters[].labs`, slide `WIDGETS` (`lab('...')`), chapter pages, `tests/lab-links.test.mjs` |
 | how a number is written (≈ rounded, = exact; decimal comma) | `site/js/lab/format.js` `makeFormat` | every readout, formula and canvas label of the laboratory |

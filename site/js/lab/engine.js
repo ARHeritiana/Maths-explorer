@@ -88,7 +88,9 @@ const reducedQuery = () => (typeof matchMedia === "function" ? matchMedia("(pref
 
 // ---- the stage
 export function createStage(host, options = {}) {
-  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false } = options;
+  // `onSpin(dx, dy)`: a drag on the empty background (or the arrow keys with the canvas focused) turns a 3D view instead of
+  // panning it (template `space`); the 2D camera still zooms, and Shift or Alt drag pans.
+  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false, onSpin } = options;
   const wrap = document.createElement("div");
   wrap.className = "lab2-stage";
   const canvas = document.createElement("canvas");
@@ -117,7 +119,7 @@ export function createStage(host, options = {}) {
     return p[name] || name;
   };
 
-  let dirty = true, raf = 0, alive = true, pending = null, drag = null;
+  let dirty = true, raf = 0, alive = true, pending = null, drag = null, spin = null;
   const anims = new Set();
   const size = () => [stage.W || 640, stage.H || 420];
 
@@ -131,7 +133,7 @@ export function createStage(host, options = {}) {
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !hitAt(p) });
+  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -180,7 +182,15 @@ export function createStage(host, options = {}) {
   canvas.addEventListener("pointerdown", (e) => {
     if ((e.pointerType === "mouse" && e.button !== 0) || e.shiftKey || e.altKey) return;
     const p = nav.point(e), h = hitAt(p);
-    if (!h) return;
+    if (!h) {
+      if (!onSpin) return;
+      e.preventDefault();
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+      spin = { id: e.pointerId, x: e.clientX, y: e.clientY };
+      canvas.focus({ preventScroll: true });   // the arrow keys then turn the view too
+      canvas.style.cursor = "grabbing";
+      return;
+    }
     e.preventDefault();
     try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
     const [hx, hy] = h.pos();
@@ -191,12 +201,17 @@ export function createStage(host, options = {}) {
     schedule();
   });
   canvas.addEventListener("pointermove", (e) => {
+    if (spin) {
+      if (e.pointerId === spin.id) { const dx = e.clientX - spin.x, dy = e.clientY - spin.y; spin.x = e.clientX; spin.y = e.clientY; if (dx || dy) { onSpin(dx, dy); invalidate(); } }
+      return;
+    }
     if (drag) { if (e.pointerId === drag.id) { pending = nav.point(e); schedule(); } return; }
     if (e.pointerType !== "mouse") return;
     const c = hitAt(nav.point(e)) ? "grab" : "";
     if (canvas._cursor !== c) { canvas._cursor = c; canvas.style.cursor = c; }
   });
   const end = (e) => {
+    if (spin && e.pointerId === spin.id) { spin = null; canvas.style.cursor = canvas._cursor || ""; return; }
     if (!drag || e.pointerId !== drag.id) return;
     flush();
     drag = null; pending = null;
@@ -205,7 +220,7 @@ export function createStage(host, options = {}) {
   };
   for (const name of ["pointerup", "pointercancel", "lostpointercapture"]) canvas.addEventListener(name, end);
   // A second finger starts a pinch: the drag stops (the camera owns the gesture).
-  canvas.addEventListener("view-gesture", () => { drag = null; pending = null; });
+  canvas.addEventListener("view-gesture", () => { drag = null; pending = null; spin = null; });
 
   wrap.addEventListener("keydown", (e) => {
     const b = e.target.closest?.(".lab2-handle");
@@ -224,14 +239,25 @@ export function createStage(host, options = {}) {
     }
   });
 
-  // The player's convention (canvasKeys): with the canvas itself focused, H picks the next handle and the arrow keys move it by one grid step.
-  if (canvasKeys) {
-    let picked = 0;
+  // The player's convention (canvasKeys): with the canvas itself focused, H picks the next handle and the arrow keys move it by one
+  // grid step. With a 3D view (onSpin) no handle is picked at first and the arrow keys turn the view; H cycles handle by handle
+  // and back to the view. Outside the player, a 3D view turns with the arrow keys when the canvas has focus.
+  const SPIN_KEY = 12;   // pixels of drag that one key press stands for
+  const arrowsOf = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
+  let picked = onSpin ? -1 : 0;
+  if (canvasKeys || onSpin) {
     canvas.addEventListener("keydown", (e) => {
-      if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey || !stage.handles.length) return;
-      if (e.key === "h" || e.key === "H") { picked = (picked + 1) % stage.handles.length; stage.focusId = stage.handles[picked].id; e.preventDefault(); e.stopPropagation(); invalidate(); return; }
-      const arrows = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
-      if (arrows[e.key]) { e.preventDefault(); e.stopPropagation(); (stage.handles[picked % stage.handles.length]).nudge(...arrows[e.key]); invalidate(); onNudge?.(); }
+      if (e.target !== canvas || e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
+      const list = stage.handles;
+      if (canvasKeys && (e.key === "h" || e.key === "H") && list.length) {
+        picked = onSpin ? (picked + 1 >= list.length ? -1 : picked + 1) : (picked + 1) % list.length;
+        stage.focusId = picked >= 0 ? list[picked].id : null;
+        e.preventDefault(); e.stopPropagation(); invalidate(); return;
+      }
+      const a = arrowsOf[e.key];
+      if (!a) return;
+      if (canvasKeys && picked >= 0 && list.length) { e.preventDefault(); e.stopPropagation(); list[picked % list.length].nudge(...a); invalidate(); onNudge?.(); return; }
+      if (onSpin) { e.preventDefault(); e.stopPropagation(); onSpin(a[0] * SPIN_KEY, -a[1] * SPIN_KEY); invalidate(); }
     });
     canvas.addEventListener("blur", () => { stage.focusId = null; invalidate(); });
   }

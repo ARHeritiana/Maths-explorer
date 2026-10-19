@@ -241,6 +241,59 @@ function observeSvgNavigation(root,selector,lang) {
 
 __d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; });
 
+/* ---- ../js/camera3d.js ---- */
+// The one orthographic 3D camera of the site: z up, a yaw (turn about the vertical) and a pitch (tilt, clamped), pure functions.
+// Used by the laboratory template `space` (js/lab/templates/space.js) and by the slide widgets in slides/widgets-3d.js, so both
+// project, unproject and turn the same way. The camera belongs to the view, never to the mathematical state.
+//
+//   cam3Project(yaw, pitch, x, y, z)       -> { u, v, d }  screen u (right), v (up), depth d (larger = farther from the viewer)
+//   cam3Unproject(yaw, pitch, u, v, z)     -> { x, y }     the point of the horizontal plane z that projects on (u, v)
+//   cam3Dir(yaw, pitch)                    -> [x, y, z]    unit vector along the view ray, pointing away from the viewer
+//   cam3Ray(yaw, pitch, u, v)              -> { p, w }     the view ray through screen (u, v): p + t w
+//   cam3HitPlane(ray, o, n)                -> point | null where the ray meets the plane through o with normal n
+//   cam3HitLine(ray, o, e)                 -> { s, point } | null the point o + s e of a line nearest to the ray
+//   cam3Turn(cam, dYaw, dPitch)            turns a { yaw, pitch } camera in place; the pitch stays in [PITCH_MIN, PITCH_MAX]
+const PITCH_MIN = 0.12, PITCH_MAX = 1.45;
+const CAM3_DEFAULT = { yaw: -0.7, pitch: 0.55 };
+
+function cam3Project(yaw, pitch, x, y, z) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), x1 = cy * x - sy * y, y1 = sy * x + cy * y;
+  return { u: x1, v: z * cp + y1 * sp, d: y1 * cp - z * sp };
+}
+function cam3Unproject(yaw, pitch, u, v, z) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), y1 = (v - z * cp) / sp;
+  return { x: cy * u + sy * y1, y: -sy * u + cy * y1 };
+}
+function cam3Dir(yaw, pitch) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+  return [sy * cp, cy * cp, -sp];
+}
+function cam3Ray(yaw, pitch, u, v) {
+  const p = cam3Unproject(yaw, pitch, u, v, 0);
+  return { p: [p.x, p.y, 0], w: cam3Dir(yaw, pitch) };
+}
+const v3dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const v3sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+function cam3HitPlane(ray, o, n) {
+  const k = v3dot(n, ray.w);
+  if (Math.abs(k) < 1e-9) return null;
+  const t = v3dot(n, v3sub(o, ray.p)) / k;
+  return [ray.p[0] + t * ray.w[0], ray.p[1] + t * ray.w[1], ray.p[2] + t * ray.w[2]];
+}
+function cam3HitLine(ray, o, e) {
+  const a = v3dot(e, e), b = v3dot(e, ray.w), r0 = v3sub(o, ray.p), den = a - b * b;
+  if (a < 1e-12 || Math.abs(den) < 1e-9 * a) return null;
+  const s = (b * v3dot(ray.w, r0) - v3dot(e, r0)) / den;
+  return { s, point: [o[0] + s * e[0], o[1] + s * e[1], o[2] + s * e[2]] };
+}
+function cam3Turn(cam, dYaw, dPitch) {
+  cam.yaw += dYaw;
+  cam.pitch = Math.min(PITCH_MAX, Math.max(PITCH_MIN, cam.pitch + dPitch));
+  return cam;
+}
+
+__d("camera3d.js", function (__e) { __e.PITCH_MIN = PITCH_MIN; __e.PITCH_MAX = PITCH_MAX; __e.CAM3_DEFAULT = CAM3_DEFAULT; __e.cam3Project = cam3Project; __e.cam3Unproject = cam3Unproject; __e.cam3Dir = cam3Dir; __e.cam3Ray = cam3Ray; __e.cam3HitPlane = cam3HitPlane; __e.cam3HitLine = cam3HitLine; __e.cam3Turn = cam3Turn; });
+
 /* ---- widgets.js ---- */
 // Interactive canvases for the slide player. Every canvas has draggable handles, keyboard movement and explicit controls.
 // The same quantities are mirrored by the readout; space scenes use true 3D.
@@ -338,10 +391,10 @@ const loadLab = () => Promise.resolve(__r("lab/mount.js"));
 // The laboratory writes its numbers with Unicode (x², uₙ, ≈, √3/2, 35°); the player typesets every formula with MathJax, so the
 // text of an experiment is turned into the same \( ... \) markup before it is shown (words and plain numbers stay text).
 const SUBS = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9", "ₙ": "n", "₊": "+", "₋": "-" };
-const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n" };
+const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n", "ˣ": "x" };
 const GREEK = { "Δ": "\\Delta", "α": "\\alpha", "β": "\\beta", "θ": "\\theta", "π": "\\pi" };
 const decimal = n => n.replace(/[−-]/, "-").replace(",", "{,}");
-const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
+const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿˣ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
 function uniHTML(text) {
   const esc = String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   return esc.replace(UNI_RE, (m, pn, pd, rc, rn, rd, bar, base, script, deg, neg, plain) => {
@@ -521,26 +574,6 @@ const igcd = (a, b) => (b ? igcd(b, a % b) : Math.abs(a));
 
 
 var W2 = {
-  // Two draggable points define a line: slope, direction vector, equations (Seconde droites, Premiere geometrie).
-  line(o) {
-    let A = [-2, 1], B = [3, 3]; const v = () => view(o, -6, 6, -5, 5);
-    return {
-      handles() { const V = v(); return [A, B].map(p => ({ x: V.X(p[0]), y: V.Y(p[1]), cur: "grab", move(X, Y) { p[0] = clamp(snap(V.iX(X)), -6, 6); p[1] = clamp(snap(V.iY(Y)), -5, 5); } })); },
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L });
-        const dx = B[0] - A[0], dy = B[1] - A[1];
-        if (dx === 0 && dy === 0) { dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A=B"); set(o, o.pair(`${inl("A")} et ${inl("B")} sont confondus : pas de droite.`, `${inl("A")} and ${inl("B")} coincide: no line.`)); return; }
-        g.save(); g.strokeStyle = C.acc; g.lineWidth = 3; g.beginPath();
-        const t = 40; g.moveTo(V.X(A[0] - t * dx), V.Y(A[1] - t * dy)); g.lineTo(V.X(A[0] + t * dx), V.Y(A[1] + t * dy)); g.stroke(); g.restore();
-        g.save(); g.strokeStyle = C.warn; g.lineWidth = 2.5; g.beginPath(); g.moveTo(V.X(A[0]), V.Y(A[1])); g.lineTo(V.X(B[0]), V.Y(B[1])); g.stroke(); g.restore();
-        dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.acc, "B");
-        const a = dy, b = -dx, c = -(a * A[0] + b * A[1]), N = o.tn;
-        const red = dx === 0 ? `x=${N(A[0])}` : `y=${tpoly([[dy / dx, "x"], [A[1] - dy / dx * A[0], ""]], N)}`;
-        set(o, lines(inl(`\\overrightarrow{AB}=${tpt(o, dx, dy)}`), o.pair(`Équation cartésienne : ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`, `Cartesian equation: ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`), dx === 0 ? o.pair("Droite verticale.", "Vertical line.") : o.pair(`Équation réduite : ${inl(red)}`, `Slope-intercept form: ${inl(red)}`), dx === 0 ? "" : o.pair(`Pente ${inl(`m=${N(dy / dx)}`)}`, `Slope ${inl(`m=${N(dy / dx)}`)}`)));
-      },
-    };
-  },
-
   // Exponential C*b^x, common logarithm and reciprocal function share one canvas with a mode switch.
   fn(o) {
     let mode = o.spec.mode || "exp", C0 = 1, b = 1.5, k = 2, tx = 1, tx2 = 2; const v = () => (mode === "exp" ? view(o, -4, 4, -1, 8) : mode === "log" ? view(o, -1, 12, -3, 3) : view(o, -6, 6, -6, 6));
@@ -587,43 +620,6 @@ var W2 = {
         const nd = o.spec.noDot;
         const AB = "\\overrightarrow{AB}", AC = "\\overrightarrow{AC}";
         set(o, lines(inl(`${AB}=${tpt(o, u[0], u[1])},\\ ${AC}=${tpt(o, w[0], w[1])}`), nd ? "" : o.pair(`${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonaux` : ""}`, `${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonal` : ""}`), o.pair(`Déterminant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} colinéaires` : ""}`, `Determinant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} collinear` : ""}`), inl(`\\lVert ${AB}\\rVert=${N(nu)},\\ \\lVert ${AC}\\rVert=${N(nw)}`), nd ? "" : o.pair(`Angle ${inl("\\widehat{BAC}")} : ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`, `Angle ${inl("\\widehat{BAC}")}: ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`)));
-      },
-    };
-  },
-
-  // Recurrence u(n+1) = a u(n) + b drawn as a cobweb: drag u0 on the x-axis, B = (0 ; b) and S on the line to change a.
-  cobweb(o) {
-    let a = .5, b = 2, u0 = 0; const xs = 7; const v = () => view(o, -2.5, 10, -2.5, 10);
-    return {
-      handles() {
-        const V = v();
-        return [{ x: V.X(u0), y: V.Y(0), cur: "ew-resize", move(X) { u0 = clamp(snap(V.iX(X), .25), -2, 9.5); } },
-          { x: V.X(0), y: V.Y(b), cur: "ns-resize", move(X, Y) { b = clamp(snap(V.iY(Y), .25), -2, 6); } },
-          { x: V.X(xs), y: V.Y(a * xs + b), cur: "ns-resize", move(X, Y) { a = clamp(snap((V.iY(Y) - b) / xs, .05), -1.5, 1.5); } }];
-      },
-      draw(g) {
-        const V = v(), N = o.tn, f = x => a * x + b; axes(g, V, { lang: o.L, sx: 2, sy: 2 });
-        g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
-        curve(g, V, x => x, -2.5, 10, C.muted, 1.5); curve(g, V, f, -2.5, 10, C.acc, 3);
-        const u = [u0]; for (let n = 0; n < 40; n++) u.push(f(u[n]));
-        g.strokeStyle = C.warn; g.lineWidth = 1.8; g.beginPath(); g.moveTo(V.X(u0), V.Y(0));
-        for (let n = 0; n < 14 && Math.abs(u[n]) < 60; n++) { g.lineTo(V.X(u[n]), V.Y(u[n + 1])); g.lineTo(V.X(u[n + 1]), V.Y(u[n + 1])); }
-        g.stroke(); g.restore();
-        for (let n = 1; n < 4; n++) if (u[n] > -2.5 && u[n] < 10) { dot(o, V.X(u[n]), V.Y(0), C.muted, "", "default", false); text(g, inl(`u_${n}`), V.X(u[n]), V.Y(0) + 30, C.muted, 15, "center"); }
-        dot(o, V.X(u0), V.Y(0), C.warn, inl("u_0")); dot(o, V.X(0), V.Y(b), C.acc, "B", "grab", true, -1); dot(o, V.X(xs), V.Y(f(xs)), C.acc, "S");
-        const out = [inl(`u_{n+1}=f(u_n),\\ f(x)=${tpoly([[a, "x"], [b, ""]], N)}`), [0, 1, 2, 3].map(n => inl(`u_${n}=${N(u[n])}`)).join(" , ")];
-        if (Math.abs(a - 1) < 1e-9) out.push(o.pair(`${inl("a=1")} : suite arithmétique de raison ${inl(N(b))}.`, `${inl("a=1")}: arithmetic sequence with common difference ${inl(N(b))}.`));
-        else {
-          const l = b / (1 - a); out.push(o.pair(`Point fixe ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)} : ${inl("f(\\ell)=\\ell")}.`, `Fixed point ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)}: ${inl("f(\\ell)=\\ell")}.`));
-          out.push(inl(`u_n-\\ell=${tpar(N, a)}^n\\times(u_0-\\ell)`));
-          if (Math.abs(u0 - l) < 1e-9) out.push(o.pair(`${inl("u_0=\\ell")} : la suite est constante.`, `${inl("u_0=\\ell")}: the sequence is constant.`));
-          else if (Math.abs(a) < 1) out.push(o.pair(`${inl("|a|<1")} : ${inl(`u_n\\to\\ell=${N(l)}`)}.`, `${inl("|a|<1")}: ${inl(`u_n\\to\\ell=${N(l)}`)}.`));
-          else if (Math.abs(a + 1) < 1e-9) out.push(o.pair(`${inl("a=-1")} : les termes alternent entre deux valeurs.`, `${inl("a=-1")}: the terms alternate between two values.`));
-          else out.push(o.pair(`${inl("|a|>1")} : ${inl("|u_n-\\ell|")} tend vers ${inl("+\\infty")}.`, `${inl("|a|>1")}: ${inl("|u_n-\\ell|")} tends to ${inl("+\\infty")}.`));
-        }
-        if (a > 0 && Math.abs(u[1] - u0) > 1e-9) { const up = u[1] > u0, le = inl(`u_n${up ? "\\leqslant " : "\\geqslant "}u_{n+1}`), fl = inl(`f(u_n)${up ? "\\leqslant " : "\\geqslant "}f(u_{n+1})`); out.push(o.pair(`${inl("f")} est croissante : si ${le} alors ${fl}. Par récurrence, la suite est ${up ? "croissante" : "décroissante"}.`, `${inl("f")} is increasing: if ${le} then ${fl}. By induction, the sequence is ${up ? "increasing" : "decreasing"}.`)); }
-        else if (a < 0) out.push(o.pair(`${inl("f")} est décroissante : les termes se placent alternativement de part et d’autre de ${inl("\\ell")}.`, `${inl("f")} is decreasing: the terms fall alternately on either side of ${inl("\\ell")}.`));
-        set(o, lines(...out));
       },
     };
   },
@@ -916,28 +912,6 @@ var W2 = {
     };
   },
 
-  // A 2 by 2 matrix as a map of the plane: drag the images of the two basis vectors (its columns). The unit square
-  // becomes a parallelogram of area |det M|; M is invertible exactly when det M is not zero.
-  matrix2(o) {
-    const c1 = [2, 1], c2 = [-1, 1.5]; const v = () => iso(o, 4.5);
-    const mv = p => function (X, Y) { const V = v(); p[0] = clamp(snap(V.iX(X)), -4, 4); p[1] = clamp(snap(V.iY(Y)), -4, 4); };
-    return {
-      handles() { const V = v(); return [{ x: V.X(c1[0]), y: V.Y(c1[1]), cur: "grab", move: mv(c1) }, { x: V.X(c2[0]), y: V.Y(c2[1]), cur: "grab", move: mv(c2) }]; },
-      draw(g) {
-        const V = v(), N = o.tn, [a, c] = c1, [b, d] = c2, det = a * d - b * c; axes(g, V, { lang: o.L });
-        const poly = (pts, fill, stroke) => { g.save(); g.fillStyle = fill; g.strokeStyle = stroke; g.lineWidth = 2; g.beginPath(); pts.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore(); };
-        poly([[0, 0], [1, 0], [1, 1], [0, 1]], "rgba(143,166,196,.18)", C.muted);
-        poly([[0, 0], c1, [a + b, c + d], c2], det ? "rgba(232,163,61,.22)" : "rgba(255,122,122,.25)", det ? C.acc : C.warn);
-        arrowTo(g, V, [0, 0], c1, C.acc); arrowTo(g, V, [0, 0], c2, C.blue);
-        dot(o, V.X(a), V.Y(c), C.acc, inl("M\\vec{\\imath}")); dot(o, V.X(b), V.Y(d), C.blue, inl("M\\vec{\\jmath}"), "grab", true, -1);
-        const M = `\\begin{pmatrix}${N(a)}&${N(b)}\\\\${N(c)}&${N(d)}\\end{pmatrix}`;
-        const inv = det ? lines(inl(`M^{-1}=${det < 0 ? "-" : ""}\\dfrac{1}{${N(Math.abs(det))}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
-          : o.pair(`${inl("\\det M=0")} : ${inl("M")} n'est pas inversible, le carré est aplati sur une droite.`, `${inl("\\det M=0")}: ${inl("M")} is not invertible; the square is flattened onto a line.`);
-        set(o, lines(inl(`M=${M}`), inl(`\\det M=${tpar(N, a)}\\times${tpar(N, d)}-${tpar(N, b)}\\times${tpar(N, c)}=${N(det)}`), inv));
-      },
-    };
-  },
-
   // Walks in the bush-taxi graph of the activity (A-B, A-C, A-D, B-C, C-D, D-E): drag the start and end markers onto
   // vertices and choose the length k; the entry of M^k counts the walks, as the adjacency-matrix theorem states.
   walks(o) {
@@ -990,9 +964,8 @@ var W2 = {
 /* ---- widgets-3d.js ---- */
 {
 // True 3D with the 2D canvas: orthographic camera, z up, painter's algorithm. Dragging empty space rotates (pitch clamped).
+// the one camera of the site (also the laboratory template `space`)
 
-const pj = (yw, pt, x, y, z) => { const cy = Math.cos(yw), sy = Math.sin(yw), cp = Math.cos(pt), sp = Math.sin(pt), x1 = cy * x - sy * y, y1 = sy * x + cy * y; return { u: x1, v: z * cp + y1 * sp, d: y1 * cp - z * sp }; };
-const upj = (yw, pt, u, v, z) => { const cy = Math.cos(yw), sy = Math.sin(yw), cp = Math.cos(pt), sp = Math.sin(pt), y1 = (v - z * cp) / sp; return { x: cy * u + sy * y1, y: -sy * u + cy * y1 }; };
 const set = (o, html) => rich(o.readout, html);
 const lines = (...a) => a.filter(Boolean).join("<br>");
 
@@ -1001,11 +974,11 @@ function cam(o, s = 38, c = [0, 0, 1]) {
   o.rotate = {
     active: false, last: null,
     start(e, pt) { this.active = true; this.last = pt(e); },
-    move(e, pt) { const p = pt(e); k.yaw += (p[0] - this.last[0]) * .008; k.pitch = clamp(k.pitch + (p[1] - this.last[1]) * .006, .12, 1.45); this.last = p; o.redraw(); },
+    move(e, pt) { const p = pt(e); cam3Turn(k, (p[0] - this.last[0]) * .008, (p[1] - this.last[1]) * .006); this.last = p; o.redraw(); },
     end() { this.active = false; },
   };
-  const P = (x, y, z) => { const q = pj(k.yaw, k.pitch, x - c[0], y - c[1], z - c[2]); return { X: o.W / 2 + s * q.u, Y: o.H / 2 - s * q.v, d: q.d }; };
-  const un = (X, Y, zf) => { const q = upj(k.yaw, k.pitch, (X - o.W / 2) / s, -(Y - o.H / 2) / s, zf - c[2]); return { x: q.x + c[0], y: q.y + c[1] }; };
+  const P = (x, y, z) => { const q = cam3Project(k.yaw, k.pitch, x - c[0], y - c[1], z - c[2]); return { X: o.W / 2 + s * q.u, Y: o.H / 2 - s * q.v, d: q.d }; };
+  const un = (X, Y, zf) => { const q = cam3Unproject(k.yaw, k.pitch, (X - o.W / 2) / s, -(Y - o.H / 2) / s, zf - c[2]); return { x: q.x + c[0], y: q.y + c[1] }; };
   return { k, P, un };
 }
 function poly(g, pts, fill, alpha, stroke) { g.save(); g.globalAlpha = alpha; g.fillStyle = fill; g.beginPath(); pts.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath(); g.fill(); g.globalAlpha = 1; if (stroke) { g.strokeStyle = stroke; g.lineWidth = 1; g.stroke(); } g.restore(); }
@@ -1013,86 +986,9 @@ function seg(g, a, b, col, w = 2.5, dash) { g.save(); g.strokeStyle = col; g.lin
 function floor(g, V, half = 4) { const f = []; for (let i = -half; i <= half; i++) { seg(g, V(i, -half, 0), V(i, half, 0), C.grid, 1); seg(g, V(-half, i, 0), V(half, i, 0), C.grid, 1); } }
 function axes3(g, V, L = 4.5) { [["x", [L, 0, 0]], ["y", [0, L, 0]], ["z", [0, 0, L]]].forEach(([n, p]) => { const a = V(0, 0, 0), b = V(...p); seg(g, a, b, C.axis, 1.6); text(g, inl(n), b.X + 6, b.Y - 6, C.muted, 16); }); }
 
-// "x+y+2z=2" as TeX: tlin() from widgets.js.
 
-const inside = (q, poly) => { let w = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const a = poly[i], b = poly[j]; if ((a.Y > q.Y) !== (b.Y > q.Y) && q.X < (b.X - a.X) * (q.Y - a.Y) / (b.Y - a.Y) + a.X) w = !w; } return w; };
-// "=" when the value is exact at two decimals, "\approx" otherwise (TeX).
-const exact = v => Math.abs(v - Math.round(v * 100) / 100) < 1e-9;
-const rel = (vs, N, o) => (vs.every(exact) ? "=" : "\\approx ") + (vs.length > 1 ? tpt(o, ...vs) : N(vs[0]));
 
 var W3 = {
-  // Point M in space with its orthogonal projection on a plane: distance and formula.
-  plane3d(o) {
-    const n = o.spec.normal || [1, 1, 2]; let M = [2, -1, 3], d = 2; const { k, P, un } = cam(o, 38, [0, 0, 1.5]);
-    const nn = Math.hypot(...n);
-    slider(o, inl("d"), -3, 6, 1, d, v => { d = v; o.redraw(); });
-    const planePt = (x, y) => [x, y, (d - n[0] * x - n[1] * y) / n[2]];
-    return {
-      handles() { const sh = P(M[0], M[1], 0), tp = P(...M); return [{ x: sh.X, y: sh.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); M[0] = clamp(snap(q.x), -4, 4); M[1] = clamp(snap(q.y), -4, 4); } }, { x: tp.X, y: tp.Y, cur: "ns-resize", move(X, Y) { const base = P(M[0], M[1], 0); M[2] = clamp(snap((base.Y - Y) / (38 * Math.cos(k.pitch))), -1, 6); } }]; },
-      draw(g) {
-        floor(g, P); axes3(g, P);
-        const h = 4, q = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => P(...planePt(x, y))); poly(g, q, C.acc, .18, C.acc);
-        const t = (n[0] * M[0] + n[1] * M[1] + n[2] * M[2] - d) / (nn * nn), H = [M[0] - t * n[0], M[1] - t * n[1], M[2] - t * n[2]];
-        const Mp = P(...M), Hp = P(...H), sh = P(M[0], M[1], 0);
-        seg(g, sh, Mp, C.muted, 1.5, [4, 4]); seg(g, Mp, Hp, C.warn, 3); dot(o, Hp.X, Hp.Y, C.acc, "H", "default", false); dot(o, Mp.X, Mp.Y, C.warn, "M"); dot(o, sh.X, sh.Y, C.muted, "", "move");
-        const N = o.tn, val = n[0] * M[0] + n[1] * M[1] + n[2] * M[2] - d;
-        set(o, lines(o.pair(`Plan ${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`, `Plane ${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`), inl(`\\vec{n}=${tpt(o, ...n)}`), inl(`M${tpt(o, ...M)}`), o.pair(`Distance ${inl(`MH=\\dfrac{|${N(val)}|}{${N(nn, 3)}}=${N(Math.abs(val) / nn, 3)}`)}`, `Distance ${inl(`MH=\\dfrac{|${N(val)}|}{${N(nn, 3)}}=${N(Math.abs(val) / nn, 3)}`)}`), o.pair(`${inl(`H${tpt(o, ...H)}`)}, ${inl("(MH)\\perp\\mathcal{P}")}`, `${inl(`H${tpt(o, ...H)}`)}, ${inl("(MH)\\perp\\mathcal{P}")}`), o.pair("Glissez le fond pour tourner.", "Drag the background to rotate.")));
-      },
-    };
-  },
-
-  // Line given by a point and a direction vector: parametric equations, parameter t.
-  line3d(o) {
-    let A = [-2, -1, 0], B = [1, 2, 3], t = 1; const { k, P, un } = cam(o, 38, [0, 0, 1.5]);
-    slider(o, inl("t"), -1.5, 2, .25, t, v => { t = v; o.redraw(); }, v => o.num(v));
-    return {
-      handles() { const a = P(...A), b = P(...B); return [{ x: a.X, y: a.Y, cur: "move", move(X, Y) { const q = un(X, Y, A[2]); A[0] = clamp(snap(q.x), -4, 4); A[1] = clamp(snap(q.y), -4, 4); } }, { x: b.X, y: b.Y, cur: "move", move(X, Y) { const q = un(X, Y, B[2]); B[0] = clamp(snap(q.x), -4, 4); B[1] = clamp(snap(q.y), -4, 4); } }]; },
-      draw(g) {
-        floor(g, P); axes3(g, P); const u = [B[0] - A[0], B[1] - A[1], B[2] - A[2]];
-        const far = s => P(A[0] + s * u[0], A[1] + s * u[1], A[2] + s * u[2]); seg(g, far(-3), far(3), C.acc, 2.5);
-        const Mt = [A[0] + t * u[0], A[1] + t * u[1], A[2] + t * u[2]], m = P(...Mt), a = P(...A), b = P(...B);
-        seg(g, a, b, C.warn, 3); dot(o, a.X, a.Y, C.ink, "A"); dot(o, b.X, b.Y, C.warn, "B"); dot(o, m.X, m.Y, C.acc, "M(t)", "default", false);
-        const N = o.tn; set(o, lines(inl(`\\vec{u}=\\overrightarrow{AB}=${tpt(o, ...u)}`), inl(`x=${N(A[0])}${sgn(u[0])}${N(Math.abs(u[0]))}t`), inl(`y=${N(A[1])}${sgn(u[1])}${N(Math.abs(u[1]))}t`), inl(`z=${N(A[2])}${sgn(u[2])}${N(Math.abs(u[2]))}t`), inl(`M${tpt(o, ...Mt)}`)));
-      },
-    };
-  },
-
-  // Line D = (AB) and plane P: n·M = d. Drag A and B (floor shadows), the plane's z-intercept, and B's height.
-  // The part of D hidden by the plane is dashed: orthographic view, the side of P facing away from the viewer.
-  lineplane(o) {
-    const n = o.spec.normal || [1, 1, 2]; let A = [-3, -2, 0], B = [1, 1, 3], d = 2; const { k, P, un } = cam(o, 36, [0, 0, 1.5]);
-    const zb = slider(o, o.pair("hauteur de B", "height of B"), -1, 5, .5, B[2], v => { B[2] = v; o.redraw(); }, v => o.num(v));
-    const dotn = q => n[0] * q[0] + n[1] * q[1] + n[2] * q[2];
-    return {
-      handles() {
-        const a = P(A[0], A[1], 0), b = P(B[0], B[1], 0), c = P(0, 0, d / n[2]);
-        return [{ x: a.X, y: a.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); A[0] = clamp(snap(q.x), -4, 4); A[1] = clamp(snap(q.y), -4, 4); } },
-          { x: b.X, y: b.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); B[0] = clamp(snap(q.x), -4, 4); B[1] = clamp(snap(q.y), -4, 4); } },
-          { x: c.X, y: c.Y, cur: "ns-resize", move(X, Y) { const base = P(0, 0, 0); d = clamp(snap((base.Y - Y) / (36 * Math.cos(k.pitch)) * n[2], 1), -4, 10); } }];
-      },
-      draw(g) {
-        floor(g, P); axes3(g, P);
-        const h = 4, sq = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => P(x, y, (d - n[0] * x - n[1] * y) / n[2])); poly(g, sq, C.acc, .2, C.acc);
-        const u = [B[0] - A[0], B[1] - A[1], B[2] - A[2]], at = t => [A[0] + t * u[0], A[1] + t * u[1], A[2] + t * u[2]];
-        const cy = Math.cos(k.yaw), sy = Math.sin(k.yaw), cp = Math.cos(k.pitch), sp = Math.sin(k.pitch), toViewer = dotn([-sy * cp, -cy * cp, sp]);
-        // Hidden: on the far side of P from the viewer and covered by the drawn piece of the plane.
-        const hidden = q => (dotn(q) - d) * toViewer < -1e-9 && inside(P(...q), sq);
-        for (let i = 0; i < 60; i++) { const t0 = -2 + 5 * i / 60, t1 = -2 + 5 * (i + 1) / 60, mid = at((t0 + t1) / 2); seg(g, P(...at(t0)), P(...at(t1)), C.warn, 2.5, hidden(mid) ? [5, 5] : null); }
-        [A, B].forEach(q => seg(g, P(q[0], q[1], 0), P(...q), C.muted, 1.2, [3, 4]));
-        const nu = dotn(u), N = o.tn, PP = inl("\\mathcal{P}"), rows = [o.pair(`${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`, `${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`), `${inl(`\\vec{n}=${tpt(o, ...n)}`)} ${inl(`\\vec{u}=\\overrightarrow{AB}=${tpt(o, ...u)}`)}`, inl(`\\vec{n}\\cdot\\vec{u}=${N(nu)}`)];
-        if (Math.abs(nu) > 1e-9) {
-          const t = (d - dotn(A)) / nu, I = at(t), ip = P(...I); dot(o, ip.X, ip.Y, C.blue, "I", "default", false);
-          rows.push(o.pair(`${inl("\\vec{n}\\cdot\\vec{u}\\neq0")} : ${inl("D")} coupe ${PP} en un seul point, ${inl(`t${rel([t], N)}`)}.`, `${inl("\\vec{n}\\cdot\\vec{u}\\neq0")}: ${inl("D")} meets ${PP} at exactly one point, ${inl(`t${rel([t], N)}`)}.`), inl(`I${rel(I, N, o)}`));
-        } else rows.push(Math.abs(dotn(A) - d) < 1e-9 ? o.pair(`${inl("\\vec{n}\\cdot\\vec{u}=0")} et ${inl("A\\in\\mathcal{P}")} : ${inl("D")} est contenue dans ${PP}.`, `${inl("\\vec{n}\\cdot\\vec{u}=0")} and ${inl("A\\in\\mathcal{P}")}: ${inl("D")} lies in ${PP}.`) : o.pair(`${inl("\\vec{n}\\cdot\\vec{u}=0")} et ${inl("A\\notin\\mathcal{P}")} : ${inl("D")} est strictement parallèle à ${PP}.`, `${inl("\\vec{n}\\cdot\\vec{u}=0")} and ${inl("A\\notin\\mathcal{P}")}: ${inl("D")} is strictly parallel to ${PP}.`));
-        const a = P(...A), b = P(...B), sa = P(A[0], A[1], 0), sb = P(B[0], B[1], 0), c = P(0, 0, d / n[2]);
-        dot(o, a.X, a.Y, C.ink, "A", "default", false); dot(o, b.X, b.Y, C.warn, "B", "default", false);
-        dot(o, sa.X, sa.Y, C.muted, "", "move"); dot(o, sb.X, sb.Y, C.muted, "", "move"); dot(o, c.X, c.Y, C.acc, "d");
-        rows.push(o.pair("Glissez les ombres de A et B, le point d du plan ; tournez avec le fond.", "Drag the shadows of A and B and the plane point d; rotate with the background."));
-        set(o, lines(...rows)); zb.value = B[2];
-      },
-    };
-  },
-
   // Surface z = f(x, y) patch with a draggable point on the floor (integration / level curves): painter's algorithm.
   surface3d(o) {
     let px = 1, py = 1; const f = (x, y) => 3 - (x * x + y * y) / 3; const { k, P, un } = cam(o, 36, [0, 0, 1.5]); const n = 18, h = 3;

@@ -9,9 +9,14 @@ import probability from "./experiments/probability.js";
 import vectors from "./experiments/vectors.js";
 import statistics from "./experiments/statistics.js";
 import complex from "./experiments/complex.js";
+import line from "./experiments/line.js";
+import exponential from "./experiments/exponential.js";
+import cobweb from "./experiments/cobweb.js";
+import matrix from "./experiments/matrix.js";
+import spaceLines from "./experiments/space-lines.js";
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex];
+export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines];
 
 export const TEMPLATES = {
   family: () => import("./templates/family.js"),
@@ -20,6 +25,7 @@ export const TEMPLATES = {
   figure: () => import("./templates/figure.js"),
   data: () => import("./templates/data.js"),
   transform: () => import("./templates/transform.js"),
+  space: () => import("./templates/space.js"),
 };
 
 // Type of activity, shown as the group titles of the #lab index.
@@ -30,6 +36,7 @@ export const TEMPLATE_INFO = {
   figure: { title: ["Une figure, un invariant", "A figure, an invariant"], blurb: ["Déplace les points d’une figure et cherche ce qui reste vrai.", "Move the points of a figure and look for what stays true."] },
   data: { title: ["Des données, des résumés", "Data and summaries"], blurb: ["Chaque valeur compte : comment réagissent la moyenne, la médiane et la boîte ?", "Every value counts: how do the mean, the median and the box react?"] },
   transform: { title: ["Transformer le plan", "Transform the plane"], blurb: ["Une opération appliquée à un point, à une figure, à un quadrillage.", "An operation applied to a point, a figure, a grid."] },
+  space: { title: ["Explorer l’espace", "Explore space"], blurb: ["Une figure en trois dimensions que l’on fait tourner, avec des points qui restent sur une droite ou un plan.", "A three-dimensional figure you can turn, with points that stay on a line or a plane."] },
 };
 
 export const experimentById = (id) => EXPERIMENTS.find((e) => e.id === id) || null;

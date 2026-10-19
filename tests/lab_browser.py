@@ -10,8 +10,10 @@ from playwright.sync_api import sync_playwright
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
 # One mission per experiment that unlocks a handle, and the text the formula must stop showing once the handle moved.
 DRAGS = ['quadratic/vertex', 'trig/quadrants', 'sequences/difference', 'derivative/where', 'integral/bound',
-         'probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles']
-EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral', 'probability', 'vectors', 'statistics', 'complex']
+         'probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles', 'line/slope', 'exponential/base', 'cobweb/slope',
+         'matrix/columns', 'space-lines/parallel', 'space-lines/normal']
+EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral', 'probability', 'vectors', 'statistics', 'complex',
+               'line', 'exponential', 'cobweb', 'matrix', 'space-lines']
 
 WATCH = """() => {
   window.__rec = {added: 0, removed: 0, text: 0};
@@ -116,7 +118,7 @@ with sync_playwright() as p:
     page.context.close()
 
     # ---- keyboard in the four new experiments: Tab reaches a handle, an arrow changes the state by one step, nothing becomes NaN
-    for ref in ['probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles']:
+    for ref in ['probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles', 'line/slope', 'exponential/base', 'cobweb/slope', 'matrix/columns', 'space-lines/parallel']:
         page = new_page()
         ready(page, 'lab/' + ref)
         page.locator('.lab2-canvas').focus()
@@ -128,6 +130,55 @@ with sync_playwright() as p:
         text = page.locator('.lab2').inner_text()
         assert 'NaN' not in text and 'undefined' not in text, ('finite readout', ref)
         page.context.close()
+
+    # ---- the 3D template: turning the view (background drag, arrow keys) adds or removes no element and never touches the state;
+    #      handles stay on their constraint; reset with 0; both themes; the pitch stays clamped; the view angles do not depend on the state
+    for theme in ['jour', 'nuit']:
+        page = new_page()
+        ready(page, 'lab/space-lines/parallel')
+        page.evaluate("t => document.documentElement.dataset.theme = t", theme)
+        angles = "() => { const c = document.querySelector('.lab2').__lab.stage.camera3; return [c.yaw, c.pitch]; }"
+        before_state = page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())")
+        y0, p0 = page.evaluate(angles)
+        box = page.locator('.lab2-canvas').bounding_box()
+        x, y = box['x'] + 40, box['y'] + 60   # empty background, away from every handle
+        page.evaluate(WATCH)
+        page.mouse.move(x, y); page.mouse.down()
+        for i in range(1, 31):
+            page.mouse.move(x + i * 6, y + i * 2); page.wait_for_timeout(8)
+        page.mouse.up(); page.wait_for_timeout(450)
+        rec = page.evaluate("() => window.__rec")
+        assert rec == {'added': 0, 'removed': 0, 'text': 0}, ('turning the view changes the tree', theme, rec)
+        y1, p1 = page.evaluate(angles)
+        assert abs(y1 - y0) > 0.5 and p1 > p0, ('the background drag turns the view', y0, y1, p0, p1)
+        assert page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())") == before_state, 'turning never changes the state'
+        assert page.evaluate("() => document.querySelector('.canvas-navigation').textContent") == '100 %', 'turning is not zooming'
+        # arrow keys with the canvas focused, the pitch is clamped, 0 resets
+        page.locator('.lab2-canvas').focus()
+        page.keyboard.press('ArrowRight')
+        assert page.evaluate(angles)[0] > y1, 'an arrow key turns the view'
+        for _ in range(40): page.keyboard.press('ArrowDown')
+        assert page.evaluate(angles)[1] <= 1.45 + 1e-9, 'the pitch is clamped'
+        page.keyboard.press('0')
+        page.wait_for_timeout(150)   # the handles' buttons follow on the next frame
+        a = page.evaluate(angles)
+        assert abs(a[0] + 0.7) < 1e-9 and abs(a[1] - 0.55) < 1e-9, '0 resets the view'
+        # a handle drag moves the state, not the view, and the view change does not move the handle off its constraint
+        handle = page.locator('.lab2-handle').first
+        hb = handle.bounding_box(); hx, hy = hb['x'] + hb['width'] / 2, hb['y'] + hb['height'] / 2
+        page.mouse.move(hx, hy); page.mouse.down(); page.mouse.move(hx + 50, hy + 10, steps=6); page.mouse.up()
+        assert page.evaluate("() => JSON.stringify(document.querySelector('.lab2').__lab.getState())") != before_state, 'the handle moved the state'
+        assert page.evaluate(angles) == a, 'a handle drag does not turn the view'
+        # the canvas is drawn in the chosen theme
+        assert page.evaluate("() => { const c = document.querySelector('.lab2-canvas'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n; }") > 500
+        page.context.close()
+    # reduced motion: nothing animates by itself in the 3D view, rotation is only direct manipulation
+    page = new_page(reduced_motion='reduce')
+    ready(page, 'lab/space-lines/param')
+    a = page.evaluate("() => { const c = document.querySelector('.lab2').__lab.stage.camera3; return [c.yaw, c.pitch]; }")
+    page.wait_for_timeout(600)
+    assert page.evaluate("() => { const c = document.querySelector('.lab2').__lab.stage.camera3; return [c.yaw, c.pitch]; }") == a, 'no idle rotation'
+    page.context.close()
 
     # ---- chance: the run buttons need no element creation either, and the series is bounded
     page = new_page()
@@ -199,7 +250,8 @@ with sync_playwright() as p:
     for width, height in [(390, 844), (320, 640)]:
         page = new_page(width, height)
         for ref in ['quadratic/vertex', 'derivative/approach', 'derivative/open', 'integral/finer', 'probability/run', 'probability/open',
-                    'vectors/collinear', 'statistics/box', 'complex/angles', 'complex/compare']:
+                    'vectors/collinear', 'statistics/box', 'complex/angles', 'complex/compare', 'line/slope', 'exponential/base', 'cobweb/steps', 'matrix/area',
+                    'space-lines/param', 'space-lines/parallel', 'space-lines/open']:
             ready(page, 'lab/' + ref)
             page.wait_for_timeout(100)
             canvas, sheet = page.locator('.lab2-canvas').bounding_box(), page.locator('.lab2-card').bounding_box()

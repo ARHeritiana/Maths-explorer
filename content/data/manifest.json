@@ -165,6 +165,7 @@
         ],
         "topic": "lines",
         "labs": [
+          "line",
           "vectors/collinear"
         ],
         "guide": "shared-lines"
@@ -283,7 +284,8 @@
         ],
         "topic": "geometry",
         "labs": [
-          "vectors/collinear"
+          "vectors/collinear",
+          "line"
         ],
         "guide": "shared-geometry"
       },
@@ -418,7 +420,9 @@
           "Coordinate geometry: lines, projections and circles"
         ],
         "topic": "circle",
-        "labs": [],
+        "labs": [
+          "line"
+        ],
         "guide": "shared-circle"
       },
       {
@@ -471,7 +475,8 @@
         ],
         "topic": "induction",
         "labs": [
-          "sequences/formula"
+          "sequences/formula",
+          "cobweb/steps"
         ],
         "guide": "shared-induction"
       },
@@ -484,7 +489,9 @@
           "Vectors, lines and planes in space"
         ],
         "topic": "space",
-        "labs": [],
+        "labs": [
+          "space-lines/param"
+        ],
         "guide": "shared-space"
       },
       {
@@ -497,7 +504,8 @@
         ],
         "topic": "sequence-limits",
         "labs": [
-          "sequences/signs"
+          "sequences/signs",
+          "cobweb"
         ],
         "guide": "shared-sequence-limits"
       },
@@ -576,7 +584,9 @@
           "Orthogonality and distances"
         ],
         "topic": "orthogonality",
-        "labs": [],
+        "labs": [
+          "space-lines/normal"
+        ],
         "guide": "shared-orthogonality"
       },
       {
@@ -630,7 +640,9 @@
           "Parametric representations and Cartesian equations"
         ],
         "topic": "space-equations",
-        "labs": [],
+        "labs": [
+          "space-lines/param"
+        ],
         "guide": "shared-space-equations"
       },
       {
@@ -766,7 +778,9 @@
           "Matrices"
         ],
         "topic": "matrices",
-        "labs": [],
+        "labs": [
+          "matrix/flat"
+        ],
         "guide": "shared-matrices"
       },
       {
@@ -806,7 +820,8 @@
         ],
         "topic": "sequences",
         "labs": [
-          "sequences/versus"
+          "sequences/versus",
+          "exponential/sequence"
         ],
         "guide": "shared-sequences"
       },
@@ -819,7 +834,9 @@
           "Exponential functions"
         ],
         "topic": "exponential",
-        "labs": [],
+        "labs": [
+          "exponential/base"
+        ],
         "guide": "shared-exponential"
       },
       {
@@ -976,6 +993,7 @@
         ],
         "topic": "lines",
         "labs": [
+          "line",
           "vectors/collinear"
         ],
         "relatedChapters": [
@@ -1147,7 +1165,8 @@
         ],
         "topic": "sequences",
         "labs": [
-          "sequences/versus"
+          "sequences/versus",
+          "exponential/sequence"
         ],
         "relatedChapters": [
           "premiere-01",
@@ -1241,7 +1260,9 @@
           "Exponential models"
         ],
         "topic": "exponential",
-        "labs": [],
+        "labs": [
+          "exponential"
+        ],
         "relatedChapters": [
           "premiere-09",
           "stmg-02"
@@ -1288,7 +1309,9 @@
           "Vectors and planes in space"
         ],
         "topic": "space",
-        "labs": [],
+        "labs": [
+          "space-lines/param"
+        ],
         "relatedChapters": [
           "terminale-02"
         ]
@@ -1303,6 +1326,7 @@
         ],
         "topic": "sequence-limits",
         "labs": [
+          "cobweb",
           "sequences"
         ],
         "relatedChapters": [
@@ -1395,7 +1419,9 @@
           "Distance to a plane"
         ],
         "topic": "orthogonality",
-        "labs": [],
+        "labs": [
+          "space-lines/normal"
+        ],
         "relatedChapters": [
           "terminale-09"
         ]
@@ -1457,7 +1483,9 @@
           "Intersecting a line and a plane"
         ],
         "topic": "space-equations",
-        "labs": [],
+        "labs": [
+          "space-lines/meet"
+        ],
         "relatedChapters": [
           "terminale-13"
         ]
@@ -1676,7 +1704,9 @@
           "Matrix calculus"
         ],
         "topic": "matrices",
-        "labs": [],
+        "labs": [
+          "matrix"
+        ],
         "relatedChapters": [
           "expertes-09"
         ]

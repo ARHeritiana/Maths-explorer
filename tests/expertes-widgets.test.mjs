@@ -35,7 +35,7 @@ const num = s => Number(s.replace(/[(){}\\left\\right]/g, ''));
 const close = (a, b) => Math.abs(a - b) < 1e-9;
 
 test('expertes widgets never print NaN, undefined or a non-finite value', () => {
-  const specs = {complex: [{mode: 'alg'}, {mode: 'polar'}, {mode: 'product'}], cquad: [{}], roots: [{n: 6}], modclock: [{mode: 'powers', n: 9, a: 2}, {mode: 'inverse', n: 26, a: 7}], matrix2: [{}], walks: [{}], markov: [{}]};
+  const specs = {complex: [{mode: 'alg'}, {mode: 'polar'}, {mode: 'product'}], cquad: [{}], roots: [{n: 6}], modclock: [{mode: 'powers', n: 9, a: 2}, {mode: 'inverse', n: 26, a: 7}], walks: [{}], markov: [{}]};
   for (const [type, list] of Object.entries(specs)) for (const spec of list) {
     const {readouts, bad} = sweep(type, spec);
     assert.deepEqual(bad, [], type);

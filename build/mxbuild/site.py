@@ -82,7 +82,7 @@ def versioned_player():
     text=player.read_text()
     # the laboratory modules a `type: 'lab'` widget loads (../js/lab/**, and the two helpers they import), same URLs as index.html
     lab=['../js/'+p.relative_to(SITE/'js').as_posix() for p in sorted((SITE/'js/lab').rglob('*.js'))]+['../js/math.js','../js/object-kit.js']
-    paths=['./'+p.name for p in sorted((SITE/'slides').glob('*.js'))]+['../js/canvas-navigation.js']+lab
+    paths=['./'+p.name for p in sorted((SITE/'slides').glob('*.js'))]+['../js/canvas-navigation.js','../js/camera3d.js']+lab
     imports={path:path+'?v='+_hash(player.parent/path) for path in paths}
     block=MAP_START+'\n<script type="importmap">'+json.dumps({'imports':imports})+'</script>\n<script type="module" src="'+imports['./player.js']+'"></script>\n'+MAP_END
     if MAP_START in text:text=re.sub(re.escape(MAP_START)+r'.*?'+re.escape(MAP_END),lambda m:block,text,flags=re.S)

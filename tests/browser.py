@@ -5,16 +5,20 @@ import os
 from urllib.parse import urljoin, urlparse
 from playwright.sync_api import sync_playwright
 
-# The nine experiments with missions (site/js/lab/), walked mission by mission.
-EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral','probability','vectors','statistics','complex']
+# The fourteen experiments with missions (site/js/lab/), walked mission by mission.
+EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral','probability','vectors','statistics','complex','line','exponential','cobweb','matrix','space-lines']
 # A state at which each exploration goal holds, and the answer of each check (lab-engine.test.mjs recomputes them).
 WITNESS = {'quadratic/sign':{'a':-1,'b':0,'c':-2},'quadratic/vertex':{'a':1,'b':-4,'c':3},'trig/quadrants':{'deg':120},'trig/exact':{'deg':60},
            'sequences/difference':{'r':-2},'sequences/signs':{'mode':'geom','q':-1.5,'n':6},'derivative/approach':{'h':0.01},
            'derivative/where':{'x':0},'integral/finer':{'n':30},'integral/bound':{'b':2},
            'probability/run':{'runs':1000},'probability/mean':{'p':0.5},'vectors/collinear':{'vx':-3,'vy':-1},'vectors/area':{'ux':2,'uy':0},
-           'statistics/box':{'data':[2,4,4,4,5,5,9]},'statistics/mean':{'data':[11,3,4,4,5,6,9]},'complex/scale':{'r':2},'complex/angles':{'tx':1,'ty':1}}
+           'statistics/box':{'data':[2,4,4,4,5,5,9]},'statistics/mean':{'data':[11,3,4,4,5,6,9]},'complex/scale':{'r':2},'complex/angles':{'tx':1,'ty':1},
+           'line/slope':{'bx':1,'by':-1},'line/intercept':{'ax':-2,'ay':1},'exponential/base':{'a':0.5},'exponential/scale':{'k':1.5},'cobweb/steps':{'n':10},
+           'cobweb/slope':{'a':-1.5},'matrix/columns':{'a':2,'c':1},'matrix/area':{'d':1.5},'matrix/flat':{'d':0},'space-lines/param':{'t':2},
+           'space-lines/parallel':{'ux':2,'uy':0,'uz':-1},'space-lines/normal':{'ax':0,'ay':0,'az':1}}
 CHECKS = {'quadratic/read':'-2','trig/read':'1/2','sequences/formula':'96','derivative/slope':'6','integral/area':'7/3',
-          'probability/read':'2','vectors/read':'7','statistics/read':'8','complex/read':'5'}
+          'probability/read':'2','vectors/read':'7','statistics/read':'8','complex/read':'5',
+          'line/read':'2.5','exponential/sequence':'48','cobweb/fixed':'6','matrix/read':'5','space-lines/meet':'2'}
 
 def walk_experiment(page, name):
     """Complete every mission of an experiment through the page: predict, explore, compare, check (wrong then right), explain."""
@@ -158,8 +162,8 @@ with sync_playwright() as p:
         assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
-    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 9, 'the laboratory index lists the nine experiments, grouped by type of activity'
-    assert page.locator('.lab2-group').count() == 6
+    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 14, 'the laboratory index lists the fourteen experiments, grouped by type of activity'
+    assert page.locator('.lab2-group').count() == 7
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()

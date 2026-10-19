@@ -18,9 +18,11 @@ FIG = ROOT / 'dist/slides/fig'
 OUT = ROOT / 'dist/slides/export'
 MATHJAX = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js'
 FONTS = 'https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap'
-MODULES = ['../js/canvas-navigation.js', 'widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js first: it defines what the others import
+MODULES = ['../js/canvas-navigation.js', '../js/camera3d.js', 'widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js first: it defines what the others import
 
 
+CAMERA3D_EXPORTS = ('PITCH_MIN', 'PITCH_MAX', 'CAM3_DEFAULT', 'cam3Project', 'cam3Unproject', 'cam3Dir', 'cam3Ray', 'cam3HitPlane', 'cam3HitLine', 'cam3Turn')
+SHARED = ('canvas-navigation.js', 'camera3d.js')   # modules of site/js that the bundle carries once, outside the laboratory registry
 LAB_ENTRY = 'lab/mount.js'   # what a `type: 'lab'` widget loads (site/slides/widgets.js `loadLab`)
 REGISTRY = '''var __defs = {}, __cache = {};
 function __d(key, fn) { __defs[key] = fn; }
@@ -74,7 +76,7 @@ def lab_modules():
     seen, todo, out = set(), [LAB_ENTRY], []
     while todo:
         key = todo.pop()
-        if key in seen or key == 'canvas-navigation.js': continue
+        if key in seen or key in SHARED: continue
         seen.add(key)
         text = (JS / key).read_text(encoding='utf8')
         base = posixpath.dirname(key)
@@ -107,6 +109,7 @@ def bundle(lab=False):
                 seen[m.group(1)] = name
         parts.append(f'/* ---- {name} ---- */\n{text}')
         if name == '../js/canvas-navigation.js': parts.append('__d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; });\n')
+        if name == '../js/camera3d.js': parts.append('__d("camera3d.js", function (__e) { ' + ' '.join(f'__e.{n} = {n};' for n in CAMERA3D_EXPORTS) + ' });\n')
     if lab: parts.append('/* ---- laboratory ---- */\n' + ''.join(lab_module(k, t) for k, t in lab_modules()))
     return '(function(){\n"use strict";\n' + '\n'.join(parts) + '\n})();\n'
 

@@ -69,9 +69,20 @@ test("vectors, statistics and complex handles move only what they name, and stay
   assert.deepEqual(drag("complex","t",cx,-0.6,9), { ...cx, tx: -0.5, ty: 2.5 });
 });
 test("far drags clamp and stay finite for every handle of every experiment", () => {
-  for (const e of EXPERIMENTS) for (const [id, c] of Object.entries(e.controls).filter(([, x]) => x.kind === "handle"))
-    for (const [x, y] of [[1e6, 1e6], [-1e6, -1e6], [1e6, -1e6]]) {
-      const next = drag(e.id, id, e.state, x, y);
+  for (const e of EXPERIMENTS) for (const [id, c] of Object.entries(e.controls).filter(([, x]) => x.kind === "handle")) {
+    // a 3D handle (template space) receives the constrained point, not a screen position
+    const spots = e.template === "space" ? [[1e6, 1e6, 1e6], [-1e6, -1e6, -1e6], [1e6, -1e6, 0]] : [[1e6, 1e6], [-1e6, -1e6], [1e6, -1e6]];
+    for (const p of spots) {
+      const next = e.template === "space" ? { ...e.state, ...(c.drag(e.state, p, {}) ?? {}) } : drag(e.id, id, e.state, ...p);
       for (const v of Object.values(next).flat()) if (typeof v === "number") assert.ok(Math.abs(v) < 1e3, `${e.id}.${id}`);
     }
+  }
+});
+test("space-lines handles move whole numbers of the point they name", () => {
+  const c = exp("space-lines").controls, s = exp("space-lines").state;   // A = (-2 ; -1 ; 0), u = (2 ; 1 ; 1)
+  assert.deepEqual(c.A.drag(s, [1, 3, 0], {}), { ax: 1, ay: 3 });
+  assert.deepEqual(c.A.drag(s, [9, -9, 0], {}), { ax: 4, ay: -4 }, "A stays in the frame");
+  assert.deepEqual(c.tip.drag(s, [0, 0, 0], {}), { ux: 2, uy: 1 }, "u = B - A, so B at the origin shadow gives u = (2 ; 1)");
+  assert.deepEqual(c.tipz.drag(s, [0, 0, 4], {}), { uz: 4 });
+  assert.deepEqual(c.Az.drag({ ...s, az: 1 }, [-2, -1, 3], {}), { az: 3 });
 });

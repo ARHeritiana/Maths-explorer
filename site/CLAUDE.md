@@ -20,6 +20,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/data-loader.js` | `assetHref` (versioned URLs), `fetchJSON` |
 | `js/catalogue-data.js` | GENERATED from `content/data/manifest.json`: courses, university, asset versions |
 | `js/canvas-navigation.js` | camera (zoom, pan, reset) shared with the slide player |
+| `js/camera3d.js` | the one orthographic 3D camera (project, unproject, view ray, constraints, turn), used by the laboratory template `space` and by `slides/widgets-3d.js` |
 | `styles/explorer.css` | design tokens (both themes), base elements, layout |
 | `styles/pages.css` | page and component styles, challenge card colours and animations |
 
@@ -27,7 +28,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/content.js` | `labs` (the nine experiments are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
+| `js/content.js` | `labs` (the fourteen experiments are catalogue lines from `js/lab/registry.js`; `custom: true` ones are gallery objects), `challengeBase` / `challenges` (text, topic, hints), `pathways` |
 | `js/learning-content.js` | companion lessons on chapter pages (`guides`) |
 | `js/study-guides.js` | short starting sheets (built into HTML by `scripts/build-study-guides.mjs`) |
 
@@ -35,7 +36,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/lab/` | **the laboratory**: engine, shell, mount (modes `full`, `inline`, `slide`), registry (`resolveRef`), format, templates, models and one file per experiment (nine: quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex); index in `js/lab/CLAUDE.md`. Also mounted by chapter pages (`chapter-sequence.js`) and by slides (`slides/widgets.js` `type: 'lab'`) |
+| `js/lab/` | **the laboratory**: engine, shell, mount (modes `full`, `inline`, `slide`), registry (`resolveRef`), format, templates, models and one file per experiment (fourteen: quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, space-lines); index in `js/lab/CLAUDE.md`. Also mounted by chapter pages (`chapter-sequence.js`) and by slides (`slides/widgets.js` `type: 'lab'`) |
 | `js/math.js` | pure maths shared by the labs (quadratic, sequences, binomial, statistics, Riemann...) |
 | `js/lab-objects.js` | `mountObject`: the gallery exhibits (Galton, Reuleaux, Platonic, chaos game and more; pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles, Mandelbrot/Julia explorer |

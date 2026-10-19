@@ -8,6 +8,7 @@ Always read `.claude/skills/slides-interactive-math/SKILL.md` then `.claude/skil
 - A laboratory experiment as a canvas: `lab('<experiment>/<mission>')` in the `WIDGETS` table of `scripts/build-slides.py` (or
   `{"type": "lab", "ref": ...}` in an authored deck). Choose the mission from the slide's section title; the experiment file is the
   one source (do not write a new widget for a maths object an experiment already covers). Details in `docs/SLIDES.md`.
+- A 3D canvas in a slide: first use the laboratory template `space` (`lab('space-lines/...')`); the old `W3` widgets share its camera, `site/js/camera3d.js`, which the player import map and the export (`scripts/export-slides.py` `SHARED`) both carry.
 - A canvas: register and draw in `site/slides/widgets.js` (helpers and registry), `widgets-2d.js` or `widgets-3d.js`;
   place it with the `WIDGETS` table in `scripts/build-slides.py`. Every canvas draggable; true 3D for 3D objects.
 - Player behaviour: `site/slides/player.js`, `player.css`, `player.html` (import map is generated). Changing any of

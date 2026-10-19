@@ -64,7 +64,7 @@ assert.ok(lab.querySelectorAll('.lab2-ctl:not(.is-locked)').length===0,'controls
 lab.querySelector('.lab2-option').click();flush();assert.ok(!next.disabled);next.click();flush();
 assert.equal(window.location.hash,'#lab/quadratic/sign');assert.match(lab.querySelector('.lab2-step').textContent,/2\/6/);
 // every experiment: a handle drag adds or removes no element and changes the state; the camera stays; keys move one step
-for(const ref of ['quadratic/vertex','trig/quadrants','sequences/difference','derivative/where','integral/bound','probability/mean','vectors/collinear','statistics/box','complex/angles']){
+for(const ref of ['quadratic/vertex','trig/quadrants','sequences/difference','derivative/where','integral/bound','probability/mean','vectors/collinear','statistics/box','complex/angles','line/slope','exponential/base','cobweb/slope','matrix/columns','space-lines/parallel','space-lines/normal']){
   await go('#lab/'+ref);const L=document.querySelector('.lab2'),A=L.__lab,cv=L.querySelector('canvas'),hs=[...L.querySelectorAll('.lab2-handle')];
   assert.ok(hs.length>=1&&hs.length<=2,ref+': one or two handles are unlocked');
   const centreOf=h=>{const m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(h.style.transform);return [+m[1]+22,+m[2]+22];};
@@ -77,6 +77,20 @@ for(const ref of ['quadratic/vertex','trig/quadrants','sequences/difference','de
   const kb=JSON.stringify(A.getState());hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));hs[0].dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowUp',bubbles:true,cancelable:true}));flush();
   assert.ok(!/NaN|undefined|Infinity/.test(L.textContent),ref+': finite text');
 }
+// the 3D template: a drag on the empty background turns the view (no element added, state and 2D camera untouched), arrows turn it
+// with the canvas focused, 0 brings it back; a wheel zooms; the angles never depend on the state
+await go('#lab/space-lines/parallel');{const L=document.querySelector('.lab2'),A=L.__lab,cv=L.querySelector('canvas'),cam=A.stage.camera3,rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});
+  assert.ok(cam,'the space stage exposes its view angles');const y0=cam.yaw,p0=cam.pitch,st=JSON.stringify(A.getState());obs.observe(L,{childList:true,subtree:true});
+  press(cv,'pointerdown',60,60);for(let i=1;i<=10;i++){press(cv,'pointermove',60+i*12,60+i*5);flush();}press(cv,'pointerup',180,110);flush();await new Promise(r=>setTimeout(r,400));flush();obs.disconnect();
+  assert.deepEqual(rec,[],'turning the view adds or removes no element');assert.ok(Math.abs(cam.yaw-y0)>0.3&&cam.pitch>p0,'the background drag turned the view');
+  assert.equal(JSON.stringify(A.getState()),st,'turning never changes the state');assert.equal(A.stage.nav.camera.scale,1);
+  const y1=cam.yaw;cv.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));flush();assert.ok(cam.yaw>y1,'an arrow key turns the view');
+  assert.ok(cam.pitch<=1.45&&cam.pitch>=0.12);for(let i=0;i<60;i++)cv.dispatchEvent(new window.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true,cancelable:true}));assert.ok(cam.pitch<=1.45,'the pitch is clamped');
+  cv.dispatchEvent(new window.KeyboardEvent('keydown',{key:'0',bubbles:true,cancelable:true}));flush();assert.ok(Math.abs(cam.yaw+0.7)<1e-9&&Math.abs(cam.pitch-0.55)<1e-9,'0 resets the view');
+  // a handle drag still moves the state (not the view)
+  const hs=[...L.querySelectorAll('.lab2-handle')],m=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(hs[0].style.transform),hx=+m[1]+22,hy=+m[2]+22,ang=cam.yaw;
+  press(cv,'pointerdown',hx,hy);for(let i=1;i<=8;i++){press(cv,'pointermove',hx+i*14,hy);flush();}press(cv,'pointerup',hx+112,hy);flush();
+  assert.notEqual(JSON.stringify(A.getState()),st,'the handle moved the state');assert.equal(cam.yaw,ang,'and did not turn the view');}
 // the run buttons of the chance experiment: a click adds experiments and draws without creating an element
 await go('#lab/probability/run');{const L=document.querySelector('.lab2'),A=L.__lab,rec=[],obs=new window.MutationObserver(rs=>{for(const r of rs)if(r.type==='childList')for(const n of [...r.addedNodes,...r.removedNodes])rec.push(n.nodeName);});
   assert.equal(A.getState().runs,0);const buttons=[...L.querySelectorAll('[data-control="run"] button')];assert.equal(buttons.length,5);assert.ok(buttons.every(b=>!b.disabled),'the run buttons are unlocked in this mission');
@@ -96,8 +110,8 @@ for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['ful
   m.destroy();flush();assert.equal(host.children.length,0,'destroy removes the experiment');host.remove();
 }
 const missing=document.createElement('div');document.body.append(missing);mountExperiment(missing,'nope',{lang:'fr'});assert.match(missing.textContent,/n’existe pas/);
-await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,9,'the index lists the nine experiments');
-assert.equal(document.querySelectorAll('.lab2-group').length,6,'grouped by template: six types of activity');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,9);
+await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,14,'the index lists the fourteen experiments');
+assert.equal(document.querySelectorAll('.lab2-group').length,7,'grouped by template: seven types of activity');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,14);
 // the old guided page is gone: no chart, no sliders of the previous design, whatever the route
 for(const id of ['probability','vectors','statistics','complex']){await go('#lab/'+id);assert.ok(document.querySelector('.lab2'),id+' is an experiment');assert.equal(document.querySelector('#plot'),null);assert.equal(document.querySelector('[data-param]'),null);}
 await go('#lab/nope');assert.ok(/introuvable|not found/i.test(document.querySelector('#main').textContent),'an unknown experiment is a missing page');
@@ -110,5 +124,5 @@ for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein']){
  assert.ok(document.querySelector('#object-stage canvas'));
  assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
 }
-console.log('DOM smoke passed: five folding controls, nine experiments (drags with no element change, fixed camera, missions, keyboard handles, run buttons, hidden controls in predictions), old guided page gone, gallery redirects; canvas arguments finite.');
+console.log('DOM smoke passed: five folding controls, fourteen experiments (drags with no element change, fixed camera, missions, keyboard handles, run buttons, hidden controls in predictions), old guided page gone, gallery redirects; canvas arguments finite.');
 dom.window.close();

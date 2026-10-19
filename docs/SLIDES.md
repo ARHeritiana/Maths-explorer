@@ -23,10 +23,9 @@ the hint line. N and P change mission when the canvas has focus; the arrow keys 
 title (read from `site/js/lab/experiments/<id>.js`). The self-contained HTML export of a deck that uses one carries the laboratory code
 (`scripts/export-slides.py` `lab_modules`); other decks do not. Migrated: `quad` to quadratic, `tangent` to derivative, `integral` to
 integral, `seq` to sequences, `circle` to trig, `vec` (without dot product) to vectors, `complex` mode product to complex, `stats` to
-statistics, `binom` to probability; those widget functions are deleted. `vec` stays for the dot-product decks (premiere-03, premiere-07).
+statistics, `binom` to probability, `line` to line, `fn` mode exp to exponential (stmg-02), `cobweb` to cobweb, `matrix2` to matrix, `line3d`, `plane3d` and `lineplane` to space-lines (true rotatable 3D: drag the background, arrow keys with the figure focused, `H` picks a handle); those widget functions are deleted. `vec` stays for the dot-product decks (premiere-03, premiere-07), `fn` for premiere-09 (the exponential defined by f′ = f), stmg-03 (log) and stmg-04 (inverse).
 Maths expertes widgets: `complex` (z and its conjugate; modulus and argument; product zw), `cquad` (roots of a real
-quadratic), `roots` (n-th roots of a), `modclock` (powers and inverses modulo n), `matrix2` (a 2 by 2 matrix acting on
-the unit square), `walks` (walks counted by powers of the adjacency matrix), `markov` (two-state chain).
+quadratic), `roots` (n-th roots of a), `modclock` (powers and inverses modulo n; the 2 by 2 matrix is the laboratory experiment `matrix`), `walks` (walks counted by powers of the adjacency matrix), `markov` (two-state chain).
 
 ## Checks
 `python3 tests/slides_smoke.py` opens every deck in Chromium in both languages (console errors, MathJax errors, undefined macros shown as red text, raw TeX,

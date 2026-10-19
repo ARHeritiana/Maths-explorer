@@ -242,6 +242,7 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
+        "line",
         "vectors/collinear"
       ]
     },
@@ -841,7 +842,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "vectors/collinear"
+        "vectors/collinear",
+        "line"
       ]
     },
     {
@@ -1364,7 +1366,9 @@ export const resourceCatalog = {
           "englishBytes": 200957
         }
       ],
-      "labs": []
+      "labs": [
+        "line"
+      ]
     },
     {
       "id": "premiere-08",
@@ -1528,7 +1532,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "sequences/formula"
+        "sequences/formula",
+        "cobweb/steps"
       ]
     },
     {
@@ -1569,7 +1574,9 @@ export const resourceCatalog = {
           "englishBytes": 191327
         }
       ],
-      "labs": []
+      "labs": [
+        "space-lines/param"
+      ]
     },
     {
       "id": "terminale-03",
@@ -1610,7 +1617,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "sequences/signs"
+        "sequences/signs",
+        "cobweb"
       ]
     },
     {
@@ -1857,7 +1865,9 @@ export const resourceCatalog = {
           "englishBytes": 200431
         }
       ],
-      "labs": []
+      "labs": [
+        "space-lines/normal"
+      ]
     },
     {
       "id": "terminale-10",
@@ -2023,7 +2033,9 @@ export const resourceCatalog = {
           "englishBytes": 188393
         }
       ],
-      "labs": []
+      "labs": [
+        "space-lines/param"
+      ]
     },
     {
       "id": "terminale-14",
@@ -2439,7 +2451,9 @@ export const resourceCatalog = {
           "englishBytes": 179258
         }
       ],
-      "labs": []
+      "labs": [
+        "matrix/flat"
+      ]
     },
     {
       "id": "expertes-10",
@@ -2563,7 +2577,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "sequences/versus"
+        "sequences/versus",
+        "exponential/sequence"
       ]
     },
     {
@@ -2604,7 +2619,9 @@ export const resourceCatalog = {
           "englishBytes": 282421
         }
       ],
-      "labs": []
+      "labs": [
+        "exponential/base"
+      ]
     },
     {
       "id": "stmg-03",

@@ -1,13 +1,13 @@
 # Recipe: laboratory experiment or gallery curiosity
 
-The laboratory is rebuilt (docs/LAB_DESIGN.md, 18 October 2026): nine experiments in six templates (family, process, chance,
-figure, data, transform). The old guided page is gone; `#lab` shows only experiments and `#gallery` only curiosities.
+The laboratory is rebuilt (docs/LAB_DESIGN.md, 18 October 2026): fourteen experiments in seven templates (family, process, chance,
+figure, data, transform, space). The old guided page is gone; `#lab` shows only experiments and `#gallery` only curiosities.
 
 ## New experiment, new mission, changed handle (rebuilt laboratory)
 1. Read `docs/LAB_DESIGN.md` sections 2 to 5 (research rules R1-R10, templates, contract) and `site/js/lab/CLAUDE.md`.
 2. Pure maths: `site/js/lab/models/<id>.js` (`model(state)`, `quantities`, `quantity`). Reuse `math.js` where it exists.
 3. `site/js/lab/experiments/<id>.js`: copy the nearest experiment (same template: chance `probability`, figure `vectors`,
-   data `statistics`, transform `complex`, family `quadratic`, process `derivative`). Fill `state`, `controls`, `views`
+   data `statistics`, transform `complex` or `matrix`, family `quadratic` or `exponential`, process `derivative` or `cobweb`, space `space-lines`). Fill `state`, `controls`, `views`
    (`scene`, `formula`, `readout`, optional `table`), 4 to 6 `missions` with the fixed kinds: `predict` first with controls
    locked, one varied thing per mission (`set` is the whole start state), at most 2 handles + 1 slider + 1 choice
    unlocked, at least one `check` that translates between views, `explain` last with a "Pourquoi ?" and an `argument`.
@@ -26,6 +26,7 @@ figure, data, transform). The old guided page is gone; `#lab` shows only experim
    `<experiment>/<mission>`, resolved by `resolveRef` in `site/js/lab/registry.js`); the chapter tab "Chercher" mounts the first one inline and
    links each; then `make site`. In a slide: `lab('<ref>')` in `WIDGETS` of `scripts/build-slides.py`. `tests/lab-links.test.mjs` checks both.
    Every displayed number goes through `fmt` (`rel`, `read`, `ratio`): ≈ when rounded, = when exact.
+A `space` experiment (3D, turnable): `views.space = { box, axes, scene, measure }`, a `keys` help line, handles with `at` (3D), `constraint(s)` = `{o, e1, e2?}` and `drag(s, point)`; the camera is `site/js/camera3d.js` (shared with the slide widgets, never write another), see `docs/LAB_DESIGN.md` section 12 and `tests/lab-engine.test.mjs` (the space handle test).
 Colours come from CSS tokens through `stage.color(name)` (`accent`, `obj2`, `obj3`, `pos`, `neg`, `c1`..`c8`), never
 literals. Camera, drag and keys come from the engine; do not add listeners of your own.
 

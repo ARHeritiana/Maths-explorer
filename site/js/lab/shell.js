@@ -119,7 +119,8 @@ export function createShell(host, exp, tpl, opts = {}) {
     fontScale: slide ? 1.3 : 1,
     canvasKeys: slide,
     navHost: slide ? opts.controls : undefined,
-    label: `${t(exp.title)}. ${t(T("keys"))}`,
+    onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
+    label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
     onDragEnd: () => announce(),
     onNudge: () => announce(),
@@ -129,7 +130,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   readoutHost.append(formulaEl);
   const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
   const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
-  if (full) figure.append(el("p", "lab2-keys", t(T("keys"))));
+  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T("keys"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");

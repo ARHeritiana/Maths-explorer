@@ -97,10 +97,10 @@ const loadLab = () => import("../js/lab/mount.js");
 // The laboratory writes its numbers with Unicode (x², uₙ, ≈, √3/2, 35°); the player typesets every formula with MathJax, so the
 // text of an experiment is turned into the same \( ... \) markup before it is shown (words and plain numbers stay text).
 const SUBS = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9", "ₙ": "n", "₊": "+", "₋": "-" };
-const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n" };
+const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n", "ˣ": "x" };
 const GREEK = { "Δ": "\\Delta", "α": "\\alpha", "β": "\\beta", "θ": "\\theta", "π": "\\pi" };
 const decimal = n => n.replace(/[−-]/, "-").replace(",", "{,}");
-const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
+const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿˣ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
 export function uniHTML(text) {
   const esc = String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   return esc.replace(UNI_RE, (m, pn, pd, rc, rn, rd, bar, base, script, deg, neg, plain) => {

@@ -50,7 +50,7 @@ test('every experiment is reachable from at least one chapter (none is lab-only)
 });
 
 test('every slide lab widget (WIDGETS table, built decks, authored decks) resolves', () => {
-  assert.ok(tableRefs.length >= 10, `${tableRefs.length} placements in the table`);
+  assert.ok(tableRefs.length >= 17, `${tableRefs.length} placements in the table`);
   for (const ref of tableRefs) assert.ok(resolveRef(ref)?.explicit, `WIDGETS: ${ref} must name a mission`);
   assert.ok(deckRefs.length >= tableRefs.length, 'every placement of the table is in a built deck');
   for (const { deck, ref } of [...deckRefs, ...authoredRefs]) assert.ok(resolveRef(ref), `${deck}: ${ref}`);
@@ -63,7 +63,7 @@ test('every slide lab widget (WIDGETS table, built decks, authored decks) resolv
 });
 
 test('the old widget types that an experiment replaced are gone from every deck', () => {
-  const gone = new Set(['quad', 'seq', 'tangent', 'integral', 'stats', 'binom', 'circle']);
+  const gone = new Set(['quad', 'seq', 'tangent', 'integral', 'stats', 'binom', 'circle', 'line', 'cobweb', 'matrix2', 'plane3d', 'line3d', 'lineplane']);
   for (const d of decks) for (const s of d.slides) if (s.k === 'widget') assert.ok(!gone.has(s.w.type), `${d.id}: ${s.w.type}`);
 });
 

@@ -25,26 +25,6 @@ const igcd = (a, b) => (b ? igcd(b, a % b) : Math.abs(a));
 
 
 export const W2 = {
-  // Two draggable points define a line: slope, direction vector, equations (Seconde droites, Premiere geometrie).
-  line(o) {
-    let A = [-2, 1], B = [3, 3]; const v = () => view(o, -6, 6, -5, 5);
-    return {
-      handles() { const V = v(); return [A, B].map(p => ({ x: V.X(p[0]), y: V.Y(p[1]), cur: "grab", move(X, Y) { p[0] = clamp(snap(V.iX(X)), -6, 6); p[1] = clamp(snap(V.iY(Y)), -5, 5); } })); },
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L });
-        const dx = B[0] - A[0], dy = B[1] - A[1];
-        if (dx === 0 && dy === 0) { dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A=B"); set(o, o.pair(`${inl("A")} et ${inl("B")} sont confondus : pas de droite.`, `${inl("A")} and ${inl("B")} coincide: no line.`)); return; }
-        g.save(); g.strokeStyle = C.acc; g.lineWidth = 3; g.beginPath();
-        const t = 40; g.moveTo(V.X(A[0] - t * dx), V.Y(A[1] - t * dy)); g.lineTo(V.X(A[0] + t * dx), V.Y(A[1] + t * dy)); g.stroke(); g.restore();
-        g.save(); g.strokeStyle = C.warn; g.lineWidth = 2.5; g.beginPath(); g.moveTo(V.X(A[0]), V.Y(A[1])); g.lineTo(V.X(B[0]), V.Y(B[1])); g.stroke(); g.restore();
-        dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.acc, "B");
-        const a = dy, b = -dx, c = -(a * A[0] + b * A[1]), N = o.tn;
-        const red = dx === 0 ? `x=${N(A[0])}` : `y=${tpoly([[dy / dx, "x"], [A[1] - dy / dx * A[0], ""]], N)}`;
-        set(o, lines(inl(`\\overrightarrow{AB}=${tpt(o, dx, dy)}`), o.pair(`Équation cartésienne : ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`, `Cartesian equation: ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`), dx === 0 ? o.pair("Droite verticale.", "Vertical line.") : o.pair(`Équation réduite : ${inl(red)}`, `Slope-intercept form: ${inl(red)}`), dx === 0 ? "" : o.pair(`Pente ${inl(`m=${N(dy / dx)}`)}`, `Slope ${inl(`m=${N(dy / dx)}`)}`)));
-      },
-    };
-  },
-
   // Exponential C*b^x, common logarithm and reciprocal function share one canvas with a mode switch.
   fn(o) {
     let mode = o.spec.mode || "exp", C0 = 1, b = 1.5, k = 2, tx = 1, tx2 = 2; const v = () => (mode === "exp" ? view(o, -4, 4, -1, 8) : mode === "log" ? view(o, -1, 12, -3, 3) : view(o, -6, 6, -6, 6));
@@ -91,43 +71,6 @@ export const W2 = {
         const nd = o.spec.noDot;
         const AB = "\\overrightarrow{AB}", AC = "\\overrightarrow{AC}";
         set(o, lines(inl(`${AB}=${tpt(o, u[0], u[1])},\\ ${AC}=${tpt(o, w[0], w[1])}`), nd ? "" : o.pair(`${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonaux` : ""}`, `${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonal` : ""}`), o.pair(`Déterminant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} colinéaires` : ""}`, `Determinant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} collinear` : ""}`), inl(`\\lVert ${AB}\\rVert=${N(nu)},\\ \\lVert ${AC}\\rVert=${N(nw)}`), nd ? "" : o.pair(`Angle ${inl("\\widehat{BAC}")} : ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`, `Angle ${inl("\\widehat{BAC}")}: ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`)));
-      },
-    };
-  },
-
-  // Recurrence u(n+1) = a u(n) + b drawn as a cobweb: drag u0 on the x-axis, B = (0 ; b) and S on the line to change a.
-  cobweb(o) {
-    let a = .5, b = 2, u0 = 0; const xs = 7; const v = () => view(o, -2.5, 10, -2.5, 10);
-    return {
-      handles() {
-        const V = v();
-        return [{ x: V.X(u0), y: V.Y(0), cur: "ew-resize", move(X) { u0 = clamp(snap(V.iX(X), .25), -2, 9.5); } },
-          { x: V.X(0), y: V.Y(b), cur: "ns-resize", move(X, Y) { b = clamp(snap(V.iY(Y), .25), -2, 6); } },
-          { x: V.X(xs), y: V.Y(a * xs + b), cur: "ns-resize", move(X, Y) { a = clamp(snap((V.iY(Y) - b) / xs, .05), -1.5, 1.5); } }];
-      },
-      draw(g) {
-        const V = v(), N = o.tn, f = x => a * x + b; axes(g, V, { lang: o.L, sx: 2, sy: 2 });
-        g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
-        curve(g, V, x => x, -2.5, 10, C.muted, 1.5); curve(g, V, f, -2.5, 10, C.acc, 3);
-        const u = [u0]; for (let n = 0; n < 40; n++) u.push(f(u[n]));
-        g.strokeStyle = C.warn; g.lineWidth = 1.8; g.beginPath(); g.moveTo(V.X(u0), V.Y(0));
-        for (let n = 0; n < 14 && Math.abs(u[n]) < 60; n++) { g.lineTo(V.X(u[n]), V.Y(u[n + 1])); g.lineTo(V.X(u[n + 1]), V.Y(u[n + 1])); }
-        g.stroke(); g.restore();
-        for (let n = 1; n < 4; n++) if (u[n] > -2.5 && u[n] < 10) { dot(o, V.X(u[n]), V.Y(0), C.muted, "", "default", false); text(g, inl(`u_${n}`), V.X(u[n]), V.Y(0) + 30, C.muted, 15, "center"); }
-        dot(o, V.X(u0), V.Y(0), C.warn, inl("u_0")); dot(o, V.X(0), V.Y(b), C.acc, "B", "grab", true, -1); dot(o, V.X(xs), V.Y(f(xs)), C.acc, "S");
-        const out = [inl(`u_{n+1}=f(u_n),\\ f(x)=${tpoly([[a, "x"], [b, ""]], N)}`), [0, 1, 2, 3].map(n => inl(`u_${n}=${N(u[n])}`)).join(" , ")];
-        if (Math.abs(a - 1) < 1e-9) out.push(o.pair(`${inl("a=1")} : suite arithmétique de raison ${inl(N(b))}.`, `${inl("a=1")}: arithmetic sequence with common difference ${inl(N(b))}.`));
-        else {
-          const l = b / (1 - a); out.push(o.pair(`Point fixe ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)} : ${inl("f(\\ell)=\\ell")}.`, `Fixed point ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)}: ${inl("f(\\ell)=\\ell")}.`));
-          out.push(inl(`u_n-\\ell=${tpar(N, a)}^n\\times(u_0-\\ell)`));
-          if (Math.abs(u0 - l) < 1e-9) out.push(o.pair(`${inl("u_0=\\ell")} : la suite est constante.`, `${inl("u_0=\\ell")}: the sequence is constant.`));
-          else if (Math.abs(a) < 1) out.push(o.pair(`${inl("|a|<1")} : ${inl(`u_n\\to\\ell=${N(l)}`)}.`, `${inl("|a|<1")}: ${inl(`u_n\\to\\ell=${N(l)}`)}.`));
-          else if (Math.abs(a + 1) < 1e-9) out.push(o.pair(`${inl("a=-1")} : les termes alternent entre deux valeurs.`, `${inl("a=-1")}: the terms alternate between two values.`));
-          else out.push(o.pair(`${inl("|a|>1")} : ${inl("|u_n-\\ell|")} tend vers ${inl("+\\infty")}.`, `${inl("|a|>1")}: ${inl("|u_n-\\ell|")} tends to ${inl("+\\infty")}.`));
-        }
-        if (a > 0 && Math.abs(u[1] - u0) > 1e-9) { const up = u[1] > u0, le = inl(`u_n${up ? "\\leqslant " : "\\geqslant "}u_{n+1}`), fl = inl(`f(u_n)${up ? "\\leqslant " : "\\geqslant "}f(u_{n+1})`); out.push(o.pair(`${inl("f")} est croissante : si ${le} alors ${fl}. Par récurrence, la suite est ${up ? "croissante" : "décroissante"}.`, `${inl("f")} is increasing: if ${le} then ${fl}. By induction, the sequence is ${up ? "increasing" : "decreasing"}.`)); }
-        else if (a < 0) out.push(o.pair(`${inl("f")} est décroissante : les termes se placent alternativement de part et d’autre de ${inl("\\ell")}.`, `${inl("f")} is decreasing: the terms fall alternately on either side of ${inl("\\ell")}.`));
-        set(o, lines(...out));
       },
     };
   },
@@ -416,28 +359,6 @@ export const W2 = {
             : o.pair(`Pas d'inverse : ${inl(`${a}x\\equiv1\\pmod{${n}}`)} n'a pas de solution, ${inl(`${a}x`)} reste multiple de ${inl(String(d))}.`, `No inverse: ${inl(`${a}x\\equiv1\\pmod{${n}}`)} has no solution, since ${inl(`${a}x`)} stays a multiple of ${inl(String(d))}.`);
           set(o, lines(inl(`${name}(${a},${n})=${d}`), inv));
         }
-      },
-    };
-  },
-
-  // A 2 by 2 matrix as a map of the plane: drag the images of the two basis vectors (its columns). The unit square
-  // becomes a parallelogram of area |det M|; M is invertible exactly when det M is not zero.
-  matrix2(o) {
-    const c1 = [2, 1], c2 = [-1, 1.5]; const v = () => iso(o, 4.5);
-    const mv = p => function (X, Y) { const V = v(); p[0] = clamp(snap(V.iX(X)), -4, 4); p[1] = clamp(snap(V.iY(Y)), -4, 4); };
-    return {
-      handles() { const V = v(); return [{ x: V.X(c1[0]), y: V.Y(c1[1]), cur: "grab", move: mv(c1) }, { x: V.X(c2[0]), y: V.Y(c2[1]), cur: "grab", move: mv(c2) }]; },
-      draw(g) {
-        const V = v(), N = o.tn, [a, c] = c1, [b, d] = c2, det = a * d - b * c; axes(g, V, { lang: o.L });
-        const poly = (pts, fill, stroke) => { g.save(); g.fillStyle = fill; g.strokeStyle = stroke; g.lineWidth = 2; g.beginPath(); pts.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore(); };
-        poly([[0, 0], [1, 0], [1, 1], [0, 1]], "rgba(143,166,196,.18)", C.muted);
-        poly([[0, 0], c1, [a + b, c + d], c2], det ? "rgba(232,163,61,.22)" : "rgba(255,122,122,.25)", det ? C.acc : C.warn);
-        arrowTo(g, V, [0, 0], c1, C.acc); arrowTo(g, V, [0, 0], c2, C.blue);
-        dot(o, V.X(a), V.Y(c), C.acc, inl("M\\vec{\\imath}")); dot(o, V.X(b), V.Y(d), C.blue, inl("M\\vec{\\jmath}"), "grab", true, -1);
-        const M = `\\begin{pmatrix}${N(a)}&${N(b)}\\\\${N(c)}&${N(d)}\\end{pmatrix}`;
-        const inv = det ? lines(inl(`M^{-1}=${det < 0 ? "-" : ""}\\dfrac{1}{${N(Math.abs(det))}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
-          : o.pair(`${inl("\\det M=0")} : ${inl("M")} n'est pas inversible, le carré est aplati sur une droite.`, `${inl("\\det M=0")}: ${inl("M")} is not invertible; the square is flattened onto a line.`);
-        set(o, lines(inl(`M=${M}`), inl(`\\det M=${tpar(N, a)}\\times${tpar(N, d)}-${tpar(N, b)}\\times${tpar(N, c)}=${N(det)}`), inv));
       },
     };
   },

@@ -241,6 +241,59 @@ function observeSvgNavigation(root,selector,lang) {
 
 __d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; });
 
+/* ---- ../js/camera3d.js ---- */
+// The one orthographic 3D camera of the site: z up, a yaw (turn about the vertical) and a pitch (tilt, clamped), pure functions.
+// Used by the laboratory template `space` (js/lab/templates/space.js) and by the slide widgets in slides/widgets-3d.js, so both
+// project, unproject and turn the same way. The camera belongs to the view, never to the mathematical state.
+//
+//   cam3Project(yaw, pitch, x, y, z)       -> { u, v, d }  screen u (right), v (up), depth d (larger = farther from the viewer)
+//   cam3Unproject(yaw, pitch, u, v, z)     -> { x, y }     the point of the horizontal plane z that projects on (u, v)
+//   cam3Dir(yaw, pitch)                    -> [x, y, z]    unit vector along the view ray, pointing away from the viewer
+//   cam3Ray(yaw, pitch, u, v)              -> { p, w }     the view ray through screen (u, v): p + t w
+//   cam3HitPlane(ray, o, n)                -> point | null where the ray meets the plane through o with normal n
+//   cam3HitLine(ray, o, e)                 -> { s, point } | null the point o + s e of a line nearest to the ray
+//   cam3Turn(cam, dYaw, dPitch)            turns a { yaw, pitch } camera in place; the pitch stays in [PITCH_MIN, PITCH_MAX]
+const PITCH_MIN = 0.12, PITCH_MAX = 1.45;
+const CAM3_DEFAULT = { yaw: -0.7, pitch: 0.55 };
+
+function cam3Project(yaw, pitch, x, y, z) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), x1 = cy * x - sy * y, y1 = sy * x + cy * y;
+  return { u: x1, v: z * cp + y1 * sp, d: y1 * cp - z * sp };
+}
+function cam3Unproject(yaw, pitch, u, v, z) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), y1 = (v - z * cp) / sp;
+  return { x: cy * u + sy * y1, y: -sy * u + cy * y1 };
+}
+function cam3Dir(yaw, pitch) {
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+  return [sy * cp, cy * cp, -sp];
+}
+function cam3Ray(yaw, pitch, u, v) {
+  const p = cam3Unproject(yaw, pitch, u, v, 0);
+  return { p: [p.x, p.y, 0], w: cam3Dir(yaw, pitch) };
+}
+const v3dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const v3sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+function cam3HitPlane(ray, o, n) {
+  const k = v3dot(n, ray.w);
+  if (Math.abs(k) < 1e-9) return null;
+  const t = v3dot(n, v3sub(o, ray.p)) / k;
+  return [ray.p[0] + t * ray.w[0], ray.p[1] + t * ray.w[1], ray.p[2] + t * ray.w[2]];
+}
+function cam3HitLine(ray, o, e) {
+  const a = v3dot(e, e), b = v3dot(e, ray.w), r0 = v3sub(o, ray.p), den = a - b * b;
+  if (a < 1e-12 || Math.abs(den) < 1e-9 * a) return null;
+  const s = (b * v3dot(ray.w, r0) - v3dot(e, r0)) / den;
+  return { s, point: [o[0] + s * e[0], o[1] + s * e[1], o[2] + s * e[2]] };
+}
+function cam3Turn(cam, dYaw, dPitch) {
+  cam.yaw += dYaw;
+  cam.pitch = Math.min(PITCH_MAX, Math.max(PITCH_MIN, cam.pitch + dPitch));
+  return cam;
+}
+
+__d("camera3d.js", function (__e) { __e.PITCH_MIN = PITCH_MIN; __e.PITCH_MAX = PITCH_MAX; __e.CAM3_DEFAULT = CAM3_DEFAULT; __e.cam3Project = cam3Project; __e.cam3Unproject = cam3Unproject; __e.cam3Dir = cam3Dir; __e.cam3Ray = cam3Ray; __e.cam3HitPlane = cam3HitPlane; __e.cam3HitLine = cam3HitLine; __e.cam3Turn = cam3Turn; });
+
 /* ---- widgets.js ---- */
 // Interactive canvases for the slide player. Every canvas has draggable handles, keyboard movement and explicit controls.
 // The same quantities are mirrored by the readout; space scenes use true 3D.
@@ -338,10 +391,10 @@ const loadLab = () => Promise.resolve(__r("lab/mount.js"));
 // The laboratory writes its numbers with Unicode (x², uₙ, ≈, √3/2, 35°); the player typesets every formula with MathJax, so the
 // text of an experiment is turned into the same \( ... \) markup before it is shown (words and plain numbers stay text).
 const SUBS = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9", "ₙ": "n", "₊": "+", "₋": "-" };
-const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n" };
+const SUPS = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "ⁿ": "n", "ˣ": "x" };
 const GREEK = { "Δ": "\\Delta", "α": "\\alpha", "β": "\\beta", "θ": "\\theta", "π": "\\pi" };
 const decimal = n => n.replace(/[−-]/, "-").replace(",", "{,}");
-const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
+const UNI_RE = /(\d*)π(?:\/(\d+))?|(\d*)√(\d+)(?:\/(\d+))?|([A-Za-z])\u0304|([A-Za-zΔαβθπ)]|\d+(?:[.,]\d+)?)([₀-₉ₙ₊₋]+|[⁰¹²³⁴-⁹ⁿˣ]+)|(\d+(?:[.,]\d+)?)°|−(\d+(?:,\d+)?)|(\d+(?:[.,]\d+)?)|[≈≤≥≠×…Δαβθπ]/g;
 function uniHTML(text) {
   const esc = String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   return esc.replace(UNI_RE, (m, pn, pd, rc, rn, rd, bar, base, script, deg, neg, plain) => {
@@ -521,26 +574,6 @@ const igcd = (a, b) => (b ? igcd(b, a % b) : Math.abs(a));
 
 
 var W2 = {
-  // Two draggable points define a line: slope, direction vector, equations (Seconde droites, Premiere geometrie).
-  line(o) {
-    let A = [-2, 1], B = [3, 3]; const v = () => view(o, -6, 6, -5, 5);
-    return {
-      handles() { const V = v(); return [A, B].map(p => ({ x: V.X(p[0]), y: V.Y(p[1]), cur: "grab", move(X, Y) { p[0] = clamp(snap(V.iX(X)), -6, 6); p[1] = clamp(snap(V.iY(Y)), -5, 5); } })); },
-      draw(g) {
-        const V = v(); axes(g, V, { lang: o.L });
-        const dx = B[0] - A[0], dy = B[1] - A[1];
-        if (dx === 0 && dy === 0) { dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A=B"); set(o, o.pair(`${inl("A")} et ${inl("B")} sont confondus : pas de droite.`, `${inl("A")} and ${inl("B")} coincide: no line.`)); return; }
-        g.save(); g.strokeStyle = C.acc; g.lineWidth = 3; g.beginPath();
-        const t = 40; g.moveTo(V.X(A[0] - t * dx), V.Y(A[1] - t * dy)); g.lineTo(V.X(A[0] + t * dx), V.Y(A[1] + t * dy)); g.stroke(); g.restore();
-        g.save(); g.strokeStyle = C.warn; g.lineWidth = 2.5; g.beginPath(); g.moveTo(V.X(A[0]), V.Y(A[1])); g.lineTo(V.X(B[0]), V.Y(B[1])); g.stroke(); g.restore();
-        dot(o, V.X(A[0]), V.Y(A[1]), C.acc, "A"); dot(o, V.X(B[0]), V.Y(B[1]), C.acc, "B");
-        const a = dy, b = -dx, c = -(a * A[0] + b * A[1]), N = o.tn;
-        const red = dx === 0 ? `x=${N(A[0])}` : `y=${tpoly([[dy / dx, "x"], [A[1] - dy / dx * A[0], ""]], N)}`;
-        set(o, lines(inl(`\\overrightarrow{AB}=${tpt(o, dx, dy)}`), o.pair(`Équation cartésienne : ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`, `Cartesian equation: ${inl(`${tpoly([[a, "x"], [b, "y"], [c, ""]], N)}=0`)}`), dx === 0 ? o.pair("Droite verticale.", "Vertical line.") : o.pair(`Équation réduite : ${inl(red)}`, `Slope-intercept form: ${inl(red)}`), dx === 0 ? "" : o.pair(`Pente ${inl(`m=${N(dy / dx)}`)}`, `Slope ${inl(`m=${N(dy / dx)}`)}`)));
-      },
-    };
-  },
-
   // Exponential C*b^x, common logarithm and reciprocal function share one canvas with a mode switch.
   fn(o) {
     let mode = o.spec.mode || "exp", C0 = 1, b = 1.5, k = 2, tx = 1, tx2 = 2; const v = () => (mode === "exp" ? view(o, -4, 4, -1, 8) : mode === "log" ? view(o, -1, 12, -3, 3) : view(o, -6, 6, -6, 6));
@@ -587,43 +620,6 @@ var W2 = {
         const nd = o.spec.noDot;
         const AB = "\\overrightarrow{AB}", AC = "\\overrightarrow{AC}";
         set(o, lines(inl(`${AB}=${tpt(o, u[0], u[1])},\\ ${AC}=${tpt(o, w[0], w[1])}`), nd ? "" : o.pair(`${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonaux` : ""}`, `${inl(`${AB}\\cdot${AC}=${N(dp)}`)} ${dp === 0 ? `${inl("\\Rightarrow")} orthogonal` : ""}`), o.pair(`Déterminant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} colinéaires` : ""}`, `Determinant ${inl(`\\det(${AB},${AC})=${N(det)}`)} ${det === 0 ? `${inl("\\Rightarrow")} collinear` : ""}`), inl(`\\lVert ${AB}\\rVert=${N(nu)},\\ \\lVert ${AC}\\rVert=${N(nw)}`), nd ? "" : o.pair(`Angle ${inl("\\widehat{BAC}")} : ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`, `Angle ${inl("\\widehat{BAC}")}: ${Number.isNaN(ang) ? "—" : inl(`${N(ang, 1)}^\\circ`)}`)));
-      },
-    };
-  },
-
-  // Recurrence u(n+1) = a u(n) + b drawn as a cobweb: drag u0 on the x-axis, B = (0 ; b) and S on the line to change a.
-  cobweb(o) {
-    let a = .5, b = 2, u0 = 0; const xs = 7; const v = () => view(o, -2.5, 10, -2.5, 10);
-    return {
-      handles() {
-        const V = v();
-        return [{ x: V.X(u0), y: V.Y(0), cur: "ew-resize", move(X) { u0 = clamp(snap(V.iX(X), .25), -2, 9.5); } },
-          { x: V.X(0), y: V.Y(b), cur: "ns-resize", move(X, Y) { b = clamp(snap(V.iY(Y), .25), -2, 6); } },
-          { x: V.X(xs), y: V.Y(a * xs + b), cur: "ns-resize", move(X, Y) { a = clamp(snap((V.iY(Y) - b) / xs, .05), -1.5, 1.5); } }];
-      },
-      draw(g) {
-        const V = v(), N = o.tn, f = x => a * x + b; axes(g, V, { lang: o.L, sx: 2, sy: 2 });
-        g.save(); g.beginPath(); g.rect(V.pad, V.pad, o.W - 2 * V.pad, o.H - 2 * V.pad); g.clip();
-        curve(g, V, x => x, -2.5, 10, C.muted, 1.5); curve(g, V, f, -2.5, 10, C.acc, 3);
-        const u = [u0]; for (let n = 0; n < 40; n++) u.push(f(u[n]));
-        g.strokeStyle = C.warn; g.lineWidth = 1.8; g.beginPath(); g.moveTo(V.X(u0), V.Y(0));
-        for (let n = 0; n < 14 && Math.abs(u[n]) < 60; n++) { g.lineTo(V.X(u[n]), V.Y(u[n + 1])); g.lineTo(V.X(u[n + 1]), V.Y(u[n + 1])); }
-        g.stroke(); g.restore();
-        for (let n = 1; n < 4; n++) if (u[n] > -2.5 && u[n] < 10) { dot(o, V.X(u[n]), V.Y(0), C.muted, "", "default", false); text(g, inl(`u_${n}`), V.X(u[n]), V.Y(0) + 30, C.muted, 15, "center"); }
-        dot(o, V.X(u0), V.Y(0), C.warn, inl("u_0")); dot(o, V.X(0), V.Y(b), C.acc, "B", "grab", true, -1); dot(o, V.X(xs), V.Y(f(xs)), C.acc, "S");
-        const out = [inl(`u_{n+1}=f(u_n),\\ f(x)=${tpoly([[a, "x"], [b, ""]], N)}`), [0, 1, 2, 3].map(n => inl(`u_${n}=${N(u[n])}`)).join(" , ")];
-        if (Math.abs(a - 1) < 1e-9) out.push(o.pair(`${inl("a=1")} : suite arithmétique de raison ${inl(N(b))}.`, `${inl("a=1")}: arithmetic sequence with common difference ${inl(N(b))}.`));
-        else {
-          const l = b / (1 - a); out.push(o.pair(`Point fixe ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)} : ${inl("f(\\ell)=\\ell")}.`, `Fixed point ${inl(`\\ell=\\dfrac{b}{1-a}=${N(l)}`)}: ${inl("f(\\ell)=\\ell")}.`));
-          out.push(inl(`u_n-\\ell=${tpar(N, a)}^n\\times(u_0-\\ell)`));
-          if (Math.abs(u0 - l) < 1e-9) out.push(o.pair(`${inl("u_0=\\ell")} : la suite est constante.`, `${inl("u_0=\\ell")}: the sequence is constant.`));
-          else if (Math.abs(a) < 1) out.push(o.pair(`${inl("|a|<1")} : ${inl(`u_n\\to\\ell=${N(l)}`)}.`, `${inl("|a|<1")}: ${inl(`u_n\\to\\ell=${N(l)}`)}.`));
-          else if (Math.abs(a + 1) < 1e-9) out.push(o.pair(`${inl("a=-1")} : les termes alternent entre deux valeurs.`, `${inl("a=-1")}: the terms alternate between two values.`));
-          else out.push(o.pair(`${inl("|a|>1")} : ${inl("|u_n-\\ell|")} tend vers ${inl("+\\infty")}.`, `${inl("|a|>1")}: ${inl("|u_n-\\ell|")} tends to ${inl("+\\infty")}.`));
-        }
-        if (a > 0 && Math.abs(u[1] - u0) > 1e-9) { const up = u[1] > u0, le = inl(`u_n${up ? "\\leqslant " : "\\geqslant "}u_{n+1}`), fl = inl(`f(u_n)${up ? "\\leqslant " : "\\geqslant "}f(u_{n+1})`); out.push(o.pair(`${inl("f")} est croissante : si ${le} alors ${fl}. Par récurrence, la suite est ${up ? "croissante" : "décroissante"}.`, `${inl("f")} is increasing: if ${le} then ${fl}. By induction, the sequence is ${up ? "increasing" : "decreasing"}.`)); }
-        else if (a < 0) out.push(o.pair(`${inl("f")} est décroissante : les termes se placent alternativement de part et d’autre de ${inl("\\ell")}.`, `${inl("f")} is decreasing: the terms fall alternately on either side of ${inl("\\ell")}.`));
-        set(o, lines(...out));
       },
     };
   },
@@ -916,28 +912,6 @@ var W2 = {
     };
   },
 
-  // A 2 by 2 matrix as a map of the plane: drag the images of the two basis vectors (its columns). The unit square
-  // becomes a parallelogram of area |det M|; M is invertible exactly when det M is not zero.
-  matrix2(o) {
-    const c1 = [2, 1], c2 = [-1, 1.5]; const v = () => iso(o, 4.5);
-    const mv = p => function (X, Y) { const V = v(); p[0] = clamp(snap(V.iX(X)), -4, 4); p[1] = clamp(snap(V.iY(Y)), -4, 4); };
-    return {
-      handles() { const V = v(); return [{ x: V.X(c1[0]), y: V.Y(c1[1]), cur: "grab", move: mv(c1) }, { x: V.X(c2[0]), y: V.Y(c2[1]), cur: "grab", move: mv(c2) }]; },
-      draw(g) {
-        const V = v(), N = o.tn, [a, c] = c1, [b, d] = c2, det = a * d - b * c; axes(g, V, { lang: o.L });
-        const poly = (pts, fill, stroke) => { g.save(); g.fillStyle = fill; g.strokeStyle = stroke; g.lineWidth = 2; g.beginPath(); pts.forEach((p, k) => (k ? g.lineTo(V.X(p[0]), V.Y(p[1])) : g.moveTo(V.X(p[0]), V.Y(p[1])))); g.closePath(); g.fill(); g.stroke(); g.restore(); };
-        poly([[0, 0], [1, 0], [1, 1], [0, 1]], "rgba(143,166,196,.18)", C.muted);
-        poly([[0, 0], c1, [a + b, c + d], c2], det ? "rgba(232,163,61,.22)" : "rgba(255,122,122,.25)", det ? C.acc : C.warn);
-        arrowTo(g, V, [0, 0], c1, C.acc); arrowTo(g, V, [0, 0], c2, C.blue);
-        dot(o, V.X(a), V.Y(c), C.acc, inl("M\\vec{\\imath}")); dot(o, V.X(b), V.Y(d), C.blue, inl("M\\vec{\\jmath}"), "grab", true, -1);
-        const M = `\\begin{pmatrix}${N(a)}&${N(b)}\\\\${N(c)}&${N(d)}\\end{pmatrix}`;
-        const inv = det ? lines(inl(`M^{-1}=${det < 0 ? "-" : ""}\\dfrac{1}{${N(Math.abs(det))}}\\begin{pmatrix}${N(d)}&${N(-b)}\\\\${N(-c)}&${N(a)}\\end{pmatrix}`), o.pair(`Aire du parallélogramme : ${inl(`|\\det M|=${N(Math.abs(det))}`)}`, `Area of the parallelogram: ${inl(`|\\det M|=${N(Math.abs(det))}`)}`))
-          : o.pair(`${inl("\\det M=0")} : ${inl("M")} n'est pas inversible, le carré est aplati sur une droite.`, `${inl("\\det M=0")}: ${inl("M")} is not invertible; the square is flattened onto a line.`);
-        set(o, lines(inl(`M=${M}`), inl(`\\det M=${tpar(N, a)}\\times${tpar(N, d)}-${tpar(N, b)}\\times${tpar(N, c)}=${N(det)}`), inv));
-      },
-    };
-  },
-
   // Walks in the bush-taxi graph of the activity (A-B, A-C, A-D, B-C, C-D, D-E): drag the start and end markers onto
   // vertices and choose the length k; the entry of M^k counts the walks, as the adjacency-matrix theorem states.
   walks(o) {
@@ -990,9 +964,8 @@ var W2 = {
 /* ---- widgets-3d.js ---- */
 {
 // True 3D with the 2D canvas: orthographic camera, z up, painter's algorithm. Dragging empty space rotates (pitch clamped).
+// the one camera of the site (also the laboratory template `space`)
 
-const pj = (yw, pt, x, y, z) => { const cy = Math.cos(yw), sy = Math.sin(yw), cp = Math.cos(pt), sp = Math.sin(pt), x1 = cy * x - sy * y, y1 = sy * x + cy * y; return { u: x1, v: z * cp + y1 * sp, d: y1 * cp - z * sp }; };
-const upj = (yw, pt, u, v, z) => { const cy = Math.cos(yw), sy = Math.sin(yw), cp = Math.cos(pt), sp = Math.sin(pt), y1 = (v - z * cp) / sp; return { x: cy * u + sy * y1, y: -sy * u + cy * y1 }; };
 const set = (o, html) => rich(o.readout, html);
 const lines = (...a) => a.filter(Boolean).join("<br>");
 
@@ -1001,11 +974,11 @@ function cam(o, s = 38, c = [0, 0, 1]) {
   o.rotate = {
     active: false, last: null,
     start(e, pt) { this.active = true; this.last = pt(e); },
-    move(e, pt) { const p = pt(e); k.yaw += (p[0] - this.last[0]) * .008; k.pitch = clamp(k.pitch + (p[1] - this.last[1]) * .006, .12, 1.45); this.last = p; o.redraw(); },
+    move(e, pt) { const p = pt(e); cam3Turn(k, (p[0] - this.last[0]) * .008, (p[1] - this.last[1]) * .006); this.last = p; o.redraw(); },
     end() { this.active = false; },
   };
-  const P = (x, y, z) => { const q = pj(k.yaw, k.pitch, x - c[0], y - c[1], z - c[2]); return { X: o.W / 2 + s * q.u, Y: o.H / 2 - s * q.v, d: q.d }; };
-  const un = (X, Y, zf) => { const q = upj(k.yaw, k.pitch, (X - o.W / 2) / s, -(Y - o.H / 2) / s, zf - c[2]); return { x: q.x + c[0], y: q.y + c[1] }; };
+  const P = (x, y, z) => { const q = cam3Project(k.yaw, k.pitch, x - c[0], y - c[1], z - c[2]); return { X: o.W / 2 + s * q.u, Y: o.H / 2 - s * q.v, d: q.d }; };
+  const un = (X, Y, zf) => { const q = cam3Unproject(k.yaw, k.pitch, (X - o.W / 2) / s, -(Y - o.H / 2) / s, zf - c[2]); return { x: q.x + c[0], y: q.y + c[1] }; };
   return { k, P, un };
 }
 function poly(g, pts, fill, alpha, stroke) { g.save(); g.globalAlpha = alpha; g.fillStyle = fill; g.beginPath(); pts.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath(); g.fill(); g.globalAlpha = 1; if (stroke) { g.strokeStyle = stroke; g.lineWidth = 1; g.stroke(); } g.restore(); }
@@ -1013,86 +986,9 @@ function seg(g, a, b, col, w = 2.5, dash) { g.save(); g.strokeStyle = col; g.lin
 function floor(g, V, half = 4) { const f = []; for (let i = -half; i <= half; i++) { seg(g, V(i, -half, 0), V(i, half, 0), C.grid, 1); seg(g, V(-half, i, 0), V(half, i, 0), C.grid, 1); } }
 function axes3(g, V, L = 4.5) { [["x", [L, 0, 0]], ["y", [0, L, 0]], ["z", [0, 0, L]]].forEach(([n, p]) => { const a = V(0, 0, 0), b = V(...p); seg(g, a, b, C.axis, 1.6); text(g, inl(n), b.X + 6, b.Y - 6, C.muted, 16); }); }
 
-// "x+y+2z=2" as TeX: tlin() from widgets.js.
 
-const inside = (q, poly) => { let w = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const a = poly[i], b = poly[j]; if ((a.Y > q.Y) !== (b.Y > q.Y) && q.X < (b.X - a.X) * (q.Y - a.Y) / (b.Y - a.Y) + a.X) w = !w; } return w; };
-// "=" when the value is exact at two decimals, "\approx" otherwise (TeX).
-const exact = v => Math.abs(v - Math.round(v * 100) / 100) < 1e-9;
-const rel = (vs, N, o) => (vs.every(exact) ? "=" : "\\approx ") + (vs.length > 1 ? tpt(o, ...vs) : N(vs[0]));
 
 var W3 = {
-  // Point M in space with its orthogonal projection on a plane: distance and formula.
-  plane3d(o) {
-    const n = o.spec.normal || [1, 1, 2]; let M = [2, -1, 3], d = 2; const { k, P, un } = cam(o, 38, [0, 0, 1.5]);
-    const nn = Math.hypot(...n);
-    slider(o, inl("d"), -3, 6, 1, d, v => { d = v; o.redraw(); });
-    const planePt = (x, y) => [x, y, (d - n[0] * x - n[1] * y) / n[2]];
-    return {
-      handles() { const sh = P(M[0], M[1], 0), tp = P(...M); return [{ x: sh.X, y: sh.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); M[0] = clamp(snap(q.x), -4, 4); M[1] = clamp(snap(q.y), -4, 4); } }, { x: tp.X, y: tp.Y, cur: "ns-resize", move(X, Y) { const base = P(M[0], M[1], 0); M[2] = clamp(snap((base.Y - Y) / (38 * Math.cos(k.pitch))), -1, 6); } }]; },
-      draw(g) {
-        floor(g, P); axes3(g, P);
-        const h = 4, q = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => P(...planePt(x, y))); poly(g, q, C.acc, .18, C.acc);
-        const t = (n[0] * M[0] + n[1] * M[1] + n[2] * M[2] - d) / (nn * nn), H = [M[0] - t * n[0], M[1] - t * n[1], M[2] - t * n[2]];
-        const Mp = P(...M), Hp = P(...H), sh = P(M[0], M[1], 0);
-        seg(g, sh, Mp, C.muted, 1.5, [4, 4]); seg(g, Mp, Hp, C.warn, 3); dot(o, Hp.X, Hp.Y, C.acc, "H", "default", false); dot(o, Mp.X, Mp.Y, C.warn, "M"); dot(o, sh.X, sh.Y, C.muted, "", "move");
-        const N = o.tn, val = n[0] * M[0] + n[1] * M[1] + n[2] * M[2] - d;
-        set(o, lines(o.pair(`Plan ${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`, `Plane ${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`), inl(`\\vec{n}=${tpt(o, ...n)}`), inl(`M${tpt(o, ...M)}`), o.pair(`Distance ${inl(`MH=\\dfrac{|${N(val)}|}{${N(nn, 3)}}=${N(Math.abs(val) / nn, 3)}`)}`, `Distance ${inl(`MH=\\dfrac{|${N(val)}|}{${N(nn, 3)}}=${N(Math.abs(val) / nn, 3)}`)}`), o.pair(`${inl(`H${tpt(o, ...H)}`)}, ${inl("(MH)\\perp\\mathcal{P}")}`, `${inl(`H${tpt(o, ...H)}`)}, ${inl("(MH)\\perp\\mathcal{P}")}`), o.pair("Glissez le fond pour tourner.", "Drag the background to rotate.")));
-      },
-    };
-  },
-
-  // Line given by a point and a direction vector: parametric equations, parameter t.
-  line3d(o) {
-    let A = [-2, -1, 0], B = [1, 2, 3], t = 1; const { k, P, un } = cam(o, 38, [0, 0, 1.5]);
-    slider(o, inl("t"), -1.5, 2, .25, t, v => { t = v; o.redraw(); }, v => o.num(v));
-    return {
-      handles() { const a = P(...A), b = P(...B); return [{ x: a.X, y: a.Y, cur: "move", move(X, Y) { const q = un(X, Y, A[2]); A[0] = clamp(snap(q.x), -4, 4); A[1] = clamp(snap(q.y), -4, 4); } }, { x: b.X, y: b.Y, cur: "move", move(X, Y) { const q = un(X, Y, B[2]); B[0] = clamp(snap(q.x), -4, 4); B[1] = clamp(snap(q.y), -4, 4); } }]; },
-      draw(g) {
-        floor(g, P); axes3(g, P); const u = [B[0] - A[0], B[1] - A[1], B[2] - A[2]];
-        const far = s => P(A[0] + s * u[0], A[1] + s * u[1], A[2] + s * u[2]); seg(g, far(-3), far(3), C.acc, 2.5);
-        const Mt = [A[0] + t * u[0], A[1] + t * u[1], A[2] + t * u[2]], m = P(...Mt), a = P(...A), b = P(...B);
-        seg(g, a, b, C.warn, 3); dot(o, a.X, a.Y, C.ink, "A"); dot(o, b.X, b.Y, C.warn, "B"); dot(o, m.X, m.Y, C.acc, "M(t)", "default", false);
-        const N = o.tn; set(o, lines(inl(`\\vec{u}=\\overrightarrow{AB}=${tpt(o, ...u)}`), inl(`x=${N(A[0])}${sgn(u[0])}${N(Math.abs(u[0]))}t`), inl(`y=${N(A[1])}${sgn(u[1])}${N(Math.abs(u[1]))}t`), inl(`z=${N(A[2])}${sgn(u[2])}${N(Math.abs(u[2]))}t`), inl(`M${tpt(o, ...Mt)}`)));
-      },
-    };
-  },
-
-  // Line D = (AB) and plane P: n·M = d. Drag A and B (floor shadows), the plane's z-intercept, and B's height.
-  // The part of D hidden by the plane is dashed: orthographic view, the side of P facing away from the viewer.
-  lineplane(o) {
-    const n = o.spec.normal || [1, 1, 2]; let A = [-3, -2, 0], B = [1, 1, 3], d = 2; const { k, P, un } = cam(o, 36, [0, 0, 1.5]);
-    const zb = slider(o, o.pair("hauteur de B", "height of B"), -1, 5, .5, B[2], v => { B[2] = v; o.redraw(); }, v => o.num(v));
-    const dotn = q => n[0] * q[0] + n[1] * q[1] + n[2] * q[2];
-    return {
-      handles() {
-        const a = P(A[0], A[1], 0), b = P(B[0], B[1], 0), c = P(0, 0, d / n[2]);
-        return [{ x: a.X, y: a.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); A[0] = clamp(snap(q.x), -4, 4); A[1] = clamp(snap(q.y), -4, 4); } },
-          { x: b.X, y: b.Y, cur: "move", move(X, Y) { const q = un(X, Y, 0); B[0] = clamp(snap(q.x), -4, 4); B[1] = clamp(snap(q.y), -4, 4); } },
-          { x: c.X, y: c.Y, cur: "ns-resize", move(X, Y) { const base = P(0, 0, 0); d = clamp(snap((base.Y - Y) / (36 * Math.cos(k.pitch)) * n[2], 1), -4, 10); } }];
-      },
-      draw(g) {
-        floor(g, P); axes3(g, P);
-        const h = 4, sq = [[-h, -h], [h, -h], [h, h], [-h, h]].map(([x, y]) => P(x, y, (d - n[0] * x - n[1] * y) / n[2])); poly(g, sq, C.acc, .2, C.acc);
-        const u = [B[0] - A[0], B[1] - A[1], B[2] - A[2]], at = t => [A[0] + t * u[0], A[1] + t * u[1], A[2] + t * u[2]];
-        const cy = Math.cos(k.yaw), sy = Math.sin(k.yaw), cp = Math.cos(k.pitch), sp = Math.sin(k.pitch), toViewer = dotn([-sy * cp, -cy * cp, sp]);
-        // Hidden: on the far side of P from the viewer and covered by the drawn piece of the plane.
-        const hidden = q => (dotn(q) - d) * toViewer < -1e-9 && inside(P(...q), sq);
-        for (let i = 0; i < 60; i++) { const t0 = -2 + 5 * i / 60, t1 = -2 + 5 * (i + 1) / 60, mid = at((t0 + t1) / 2); seg(g, P(...at(t0)), P(...at(t1)), C.warn, 2.5, hidden(mid) ? [5, 5] : null); }
-        [A, B].forEach(q => seg(g, P(q[0], q[1], 0), P(...q), C.muted, 1.2, [3, 4]));
-        const nu = dotn(u), N = o.tn, PP = inl("\\mathcal{P}"), rows = [o.pair(`${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`, `${inl(`\\mathcal{P}:\\ ${tlin(n, N)}=${N(d)}`)}`), `${inl(`\\vec{n}=${tpt(o, ...n)}`)} ${inl(`\\vec{u}=\\overrightarrow{AB}=${tpt(o, ...u)}`)}`, inl(`\\vec{n}\\cdot\\vec{u}=${N(nu)}`)];
-        if (Math.abs(nu) > 1e-9) {
-          const t = (d - dotn(A)) / nu, I = at(t), ip = P(...I); dot(o, ip.X, ip.Y, C.blue, "I", "default", false);
-          rows.push(o.pair(`${inl("\\vec{n}\\cdot\\vec{u}\\neq0")} : ${inl("D")} coupe ${PP} en un seul point, ${inl(`t${rel([t], N)}`)}.`, `${inl("\\vec{n}\\cdot\\vec{u}\\neq0")}: ${inl("D")} meets ${PP} at exactly one point, ${inl(`t${rel([t], N)}`)}.`), inl(`I${rel(I, N, o)}`));
-        } else rows.push(Math.abs(dotn(A) - d) < 1e-9 ? o.pair(`${inl("\\vec{n}\\cdot\\vec{u}=0")} et ${inl("A\\in\\mathcal{P}")} : ${inl("D")} est contenue dans ${PP}.`, `${inl("\\vec{n}\\cdot\\vec{u}=0")} and ${inl("A\\in\\mathcal{P}")}: ${inl("D")} lies in ${PP}.`) : o.pair(`${inl("\\vec{n}\\cdot\\vec{u}=0")} et ${inl("A\\notin\\mathcal{P}")} : ${inl("D")} est strictement parallèle à ${PP}.`, `${inl("\\vec{n}\\cdot\\vec{u}=0")} and ${inl("A\\notin\\mathcal{P}")}: ${inl("D")} is strictly parallel to ${PP}.`));
-        const a = P(...A), b = P(...B), sa = P(A[0], A[1], 0), sb = P(B[0], B[1], 0), c = P(0, 0, d / n[2]);
-        dot(o, a.X, a.Y, C.ink, "A", "default", false); dot(o, b.X, b.Y, C.warn, "B", "default", false);
-        dot(o, sa.X, sa.Y, C.muted, "", "move"); dot(o, sb.X, sb.Y, C.muted, "", "move"); dot(o, c.X, c.Y, C.acc, "d");
-        rows.push(o.pair("Glissez les ombres de A et B, le point d du plan ; tournez avec le fond.", "Drag the shadows of A and B and the plane point d; rotate with the background."));
-        set(o, lines(...rows)); zb.value = B[2];
-      },
-    };
-  },
-
   // Surface z = f(x, y) patch with a draggable point on the floor (integration / level curves): painter's algorithm.
   surface3d(o) {
     let px = 1, py = 1; const f = (x, y) => 3 - (x * x + y * y) / 3; const { k, P, un } = cam(o, 36, [0, 0, 1.5]); const n = 18, h = 3;
@@ -1515,7 +1411,9 @@ const reducedQuery = () => (typeof matchMedia === "function" ? matchMedia("(pref
 
 // ---- the stage
 function createStage(host, options = {}) {
-  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false } = options;
+  // `onSpin(dx, dy)`: a drag on the empty background (or the arrow keys with the canvas focused) turns a 3D view instead of
+  // panning it (template `space`); the 2D camera still zooms, and Shift or Alt drag pans.
+  const { palette: paletteOption, label = "", onFrame, onDragEnd, onNudge, fontScale = 1, navHost, canvasKeys = false, onSpin } = options;
   const wrap = document.createElement("div");
   wrap.className = "lab2-stage";
   const canvas = document.createElement("canvas");
@@ -1544,7 +1442,7 @@ function createStage(host, options = {}) {
     return p[name] || name;
   };
 
-  let dirty = true, raf = 0, alive = true, pending = null, drag = null;
+  let dirty = true, raf = 0, alive = true, pending = null, drag = null, spin = null;
   const anims = new Set();
   const size = () => [stage.W || 640, stage.H || 420];
 
@@ -1558,7 +1456,7 @@ function createStage(host, options = {}) {
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !hitAt(p) });
+  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -1607,7 +1505,15 @@ function createStage(host, options = {}) {
   canvas.addEventListener("pointerdown", (e) => {
     if ((e.pointerType === "mouse" && e.button !== 0) || e.shiftKey || e.altKey) return;
     const p = nav.point(e), h = hitAt(p);
-    if (!h) return;
+    if (!h) {
+      if (!onSpin) return;
+      e.preventDefault();
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
+      spin = { id: e.pointerId, x: e.clientX, y: e.clientY };
+      canvas.focus({ preventScroll: true });   // the arrow keys then turn the view too
+      canvas.style.cursor = "grabbing";
+      return;
+    }
     e.preventDefault();
     try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic pointer */ }
     const [hx, hy] = h.pos();
@@ -1618,12 +1524,17 @@ function createStage(host, options = {}) {
     schedule();
   });
   canvas.addEventListener("pointermove", (e) => {
+    if (spin) {
+      if (e.pointerId === spin.id) { const dx = e.clientX - spin.x, dy = e.clientY - spin.y; spin.x = e.clientX; spin.y = e.clientY; if (dx || dy) { onSpin(dx, dy); invalidate(); } }
+      return;
+    }
     if (drag) { if (e.pointerId === drag.id) { pending = nav.point(e); schedule(); } return; }
     if (e.pointerType !== "mouse") return;
     const c = hitAt(nav.point(e)) ? "grab" : "";
     if (canvas._cursor !== c) { canvas._cursor = c; canvas.style.cursor = c; }
   });
   const end = (e) => {
+    if (spin && e.pointerId === spin.id) { spin = null; canvas.style.cursor = canvas._cursor || ""; return; }
     if (!drag || e.pointerId !== drag.id) return;
     flush();
     drag = null; pending = null;
@@ -1632,7 +1543,7 @@ function createStage(host, options = {}) {
   };
   for (const name of ["pointerup", "pointercancel", "lostpointercapture"]) canvas.addEventListener(name, end);
   // A second finger starts a pinch: the drag stops (the camera owns the gesture).
-  canvas.addEventListener("view-gesture", () => { drag = null; pending = null; });
+  canvas.addEventListener("view-gesture", () => { drag = null; pending = null; spin = null; });
 
   wrap.addEventListener("keydown", (e) => {
     const b = e.target.closest?.(".lab2-handle");
@@ -1651,14 +1562,25 @@ function createStage(host, options = {}) {
     }
   });
 
-  // The player's convention (canvasKeys): with the canvas itself focused, H picks the next handle and the arrow keys move it by one grid step.
-  if (canvasKeys) {
-    let picked = 0;
+  // The player's convention (canvasKeys): with the canvas itself focused, H picks the next handle and the arrow keys move it by one
+  // grid step. With a 3D view (onSpin) no handle is picked at first and the arrow keys turn the view; H cycles handle by handle
+  // and back to the view. Outside the player, a 3D view turns with the arrow keys when the canvas has focus.
+  const SPIN_KEY = 12;   // pixels of drag that one key press stands for
+  const arrowsOf = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
+  let picked = onSpin ? -1 : 0;
+  if (canvasKeys || onSpin) {
     canvas.addEventListener("keydown", (e) => {
-      if (e.shiftKey || e.ctrlKey || e.metaKey || e.altKey || !stage.handles.length) return;
-      if (e.key === "h" || e.key === "H") { picked = (picked + 1) % stage.handles.length; stage.focusId = stage.handles[picked].id; e.preventDefault(); e.stopPropagation(); invalidate(); return; }
-      const arrows = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
-      if (arrows[e.key]) { e.preventDefault(); e.stopPropagation(); (stage.handles[picked % stage.handles.length]).nudge(...arrows[e.key]); invalidate(); onNudge?.(); }
+      if (e.target !== canvas || e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
+      const list = stage.handles;
+      if (canvasKeys && (e.key === "h" || e.key === "H") && list.length) {
+        picked = onSpin ? (picked + 1 >= list.length ? -1 : picked + 1) : (picked + 1) % list.length;
+        stage.focusId = picked >= 0 ? list[picked].id : null;
+        e.preventDefault(); e.stopPropagation(); invalidate(); return;
+      }
+      const a = arrowsOf[e.key];
+      if (!a) return;
+      if (canvasKeys && picked >= 0 && list.length) { e.preventDefault(); e.stopPropagation(); list[picked % list.length].nudge(...a); invalidate(); onNudge?.(); return; }
+      if (onSpin) { e.preventDefault(); e.stopPropagation(); onSpin(a[0] * SPIN_KEY, -a[1] * SPIN_KEY); invalidate(); }
     });
     canvas.addEventListener("blur", () => { stage.focusId = null; invalidate(); });
   }
@@ -1710,6 +1632,204 @@ __e.setClass = setClass;
 __e.createReadout = createReadout;
 __e.createTable = createTable;
 __e.createStage = createStage;
+});
+__d("lab/experiments/cobweb.js", function (__e, __r) {
+// Experiment `cobweb` (template process): the recurrence u_{n+1} = f(u_n) with f(x) = a x + b, drawn as a staircase between the
+// graph of f and the line y = x. State {a, b, u0, n}: the handles are u0 on the x-axis, the point (0 ; b) and the point (2 ; f(2))
+// that sets a, and the scrubber is n, the number of steps drawn. The fixed point l (f(l) = l) is where the two lines cross.
+// Pure maths: models/cobweb.js.
+const W = __r("lab/models/cobweb.js");
+const { clamp } = __r("lab/models/num.js");
+
+const { model } = W;
+const sup = (n) => String(n).replace(/\d/g, (d) => "₀₁₂₃₄₅₆₇₈₉"[d]);
+const R = [-1.5, 9.5];
+const U0MAX = [-1, 9], BMAX = [-2, 5], AMAX = [-2, 1.5];
+const sgn = (v) => (v < 0 ? "−" : "+");
+
+__e.default = {
+  id: "cobweb", template: "process",
+  symbol: "ℓ", group: ["Analyse", "Calculus"],
+  title: ["L’escalier d’une suite récurrente", "The staircase of a recurrence"],
+  short: ["Suite uₙ₊₁ = f(uₙ) et point fixe", "Sequence uₙ₊₁ = f(uₙ) and fixed point"],
+  intro: [
+    "Une suite définie par uₙ₊₁ = f(uₙ) se lit sur le graphique de f et la droite y = x : on monte jusqu’à la courbe, on traverse jusqu’à la droite, on recommence. Où l’escalier mène-t-il ?",
+    "A sequence defined by uₙ₊₁ = f(uₙ) can be read on the graph of f and the line y = x: go up to the curve, across to the line, repeat. Where does the staircase lead?",
+  ],
+  duration: 9,
+  level: ["Terminale", "Upper secondary"],
+  prereq: ["Fonctions affines, suites", "Affine functions, sequences"],
+  model: W,
+  state: { a: 0.5, b: 2, u0: 8, n: 6 },
+  controls: {
+    start: {
+      kind: "handle", color: "accent", axis: "x", grid: [0.5, 1], label: ["Point u₀ sur l’axe des abscisses", "Point u₀ on the x-axis"],
+      at: (s) => [s.u0, 0],
+      drag: (s, x) => ({ u0: clamp(x, U0MAX[0], U0MAX[1]) }),
+      valuetext: (s, f) => `u₀ = ${f.num(s.u0)}`,
+    },
+    intercept: {
+      kind: "handle", color: "obj3", axis: "y", grid: [1, 0.5], label: ["Point (0 ; b) de la droite de f", "Point (0, b) of the line of f"],
+      at: (s) => [0, s.b],
+      drag: (s, x, y) => ({ b: clamp(y, BMAX[0], BMAX[1]) }),
+      valuetext: (s, f) => `b = ${f.num(s.b)}`,
+    },
+    slope: {
+      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (2 ; f(2)) qui règle a", "Point (2, f(2)) that sets a"],
+      at: (s) => [2, 2 * s.a + s.b],
+      drag: (s, x, y) => ({ a: clamp(Math.round((y - s.b) / 2 / 0.25) * 0.25, AMAX[0], AMAX[1]) }),
+      nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), AMAX[0], AMAX[1]) }),
+      valuetext: (s, f) => `a = ${f.num(s.a)}`,
+    },
+    n: {
+      kind: "scrubber", min: 0, max: 12, step: 1, label: ["n (nombre de pas)", "n (number of steps)"],
+      get: (s) => s.n, set: (s, p) => ({ n: Math.round(p) }), play: { seconds: 8, from: 0, to: 12 }, digits: 0,
+    },
+  },
+  views: {
+    panels: ["graph"],
+    graph: {
+      x: R, y: R, equal: true, widen: true, xTicks: [0, 2, 4, 6, 8], yTicks: [0, 2, 4, 6, 8],
+      scene(s, { fmt }) {
+        const m = model(s), num = fmt.num, list = m.terms;
+        const last = list.length - 1;
+        return {
+          lines: [{ a: [R[0], R[0]], b: [R[1], R[1]], color: "muted", dash: [6, 5], width: 1.6 }],
+          curves: [{ f: m.f, color: "accent", width: 3 }],
+          polys: [{ pts: m.path, color: "obj2", width: 2.2, close: false }],
+          points: [
+            ...(m.fixed !== null ? [{ at: [m.fixed, m.fixed], color: "pos", r: 6, hollow: true, label: `ℓ ${fmt.eq(m.fixed)} ${num(m.fixed)}`, dx: 10, dy: 24 }] : []),
+            ...list.map((u, k) => ({ at: [u, 0], color: k === last ? "obj2" : "obj3", r: k === last ? 5.5 : 4, ...(k === 0 || k === last ? { label: `u${sup(k)}`, dx: 0, dy: -12, anchor: "center" } : {}) })),
+          ],
+          texts: [{ at: [R[1] - 0.2, R[1] - 0.2], text: "y = x", color: "muted", anchor: "right", dy: 18, size: 15 }],
+        };
+      },
+    },
+    formula(s, { fmt }) {
+      const num = fmt.num, a = s.a === 1 ? "" : s.a === -1 ? "−" : `${num(s.a)} `;
+      const bpart = s.b === 0 ? "" : ` ${sgn(s.b)} ${num(Math.abs(s.b))}`;
+      return `uₙ₊₁ = f(uₙ) = ${s.a === 0 ? "" : `${a}uₙ`}${s.a === 0 ? num(s.b) : bpart}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), num = fmt.num, fr = fmt.fr, none = fr ? "aucun" : "none";
+      return [
+        [[`Terme u${sup(s.n)}`, `Term u${sup(s.n)}`], fmt.read(m.last)],
+        [["Point fixe ℓ (f(ℓ) = ℓ)", "Fixed point ℓ (f(ℓ) = ℓ)"], m.fixed === null ? none : fmt.read(m.fixed)],
+        [[`Écart |u${sup(s.n)} − ℓ|`, `Gap |u${sup(s.n)} − ℓ|`], m.gap === null ? "·" : fmt.read(m.gap)],
+      ];
+    },
+    table: {
+      caption: ["Les termes autour de n", "The terms around n"],
+      head: [["n", "n"], ["uₙ", "uₙ"], ["|uₙ − ℓ|", "|uₙ − ℓ|"]],
+      data(s, { fmt }) {
+        const first = Math.max(0, s.n - 7), list = W.terms(s, first + 8), fixed = W.fixedPoint(s);
+        const rows = Array.from({ length: 8 }, (_, i) => { const k = first + i; return [String(k), fmt.read(list[k]), fixed === null ? "·" : fmt.read(Math.abs(list[k] - fixed))]; });
+        return { rows, highlight: s.n - first };
+      },
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { a: 0.5, b: 2, u0: 8, n: 3 }, correct: 0,
+      prompt: [
+        "Soit u₀ = 8 et uₙ₊₁ = 0,5 uₙ + 2. On calcule u₁ = 6, u₂ = 5, u₃ = 4,5. Que font les termes ensuite ?",
+        "Let u₀ = 8 and uₙ₊₁ = 0.5 uₙ + 2. We compute u₁ = 6, u₂ = 5, u₃ = 4.5. What do the terms do next?",
+      ],
+      choices: [
+        ["Ils se rapprochent de 4 sans la dépasser.", "They get closer to 4 without passing it."],
+        ["Ils continuent de descendre sans s’arrêter.", "They keep going down without stopping."],
+        ["Ils s’arrêtent à 4,5.", "They stop at 4.5."],
+      ],
+    },
+    {
+      id: "steps", kind: "explore", set: { a: 0.5, b: 2, u0: 8, n: 0 }, unlock: ["n"],
+      prompt: [
+        "Fais défiler n jusqu’à 10. Où l’escalier mène-t-il ? Quel point de la droite y = x semble atteint, et que se passe-t-il pour l’écart |uₙ − ℓ| ?",
+        "Scrub n up to 10. Where does the staircase lead? Which point of the line y = x seems to be reached, and what happens to the gap |uₙ − ℓ|?",
+      ],
+      hint: [
+        "Le point fixe ℓ est l’abscisse du point où la courbe de f coupe la droite y = x.",
+        "The fixed point ℓ is the x-coordinate of the point where the graph of f crosses the line y = x.",
+      ],
+      goal: (s) => s.n >= 10,
+      done: [
+        "L’escalier se resserre vers le point où la courbe coupe la droite y = x, ici (4 ; 4). L’écart |uₙ − ℓ| est divisé par 2 à chaque pas : les termes se rapprochent de ℓ = 4 sans l’atteindre.",
+        "The staircase tightens towards the point where the curve crosses the line y = x, here (4, 4). The gap |uₙ − ℓ| is halved at each step: the terms get closer to ℓ = 4 without reaching it.",
+      ],
+    },
+    {
+      id: "start", kind: "contrast", set: { a: 0.5, b: 2, u0: 8, n: 8 },
+      variants: [
+        { label: ["Départ u₀ = 8", "Start u₀ = 8"], set: { u0: 8 } },
+        { label: ["Départ u₀ = −1", "Start u₀ = −1"], set: { u0: -1 } },
+      ],
+      prompt: [
+        "Compare les deux départs avec la même fonction f. Les termes viennent de côtés opposés : où vont-ils ? Le point fixe dépend-il de u₀ ?",
+        "Compare the two starts with the same function f. The terms come from opposite sides: where do they go? Does the fixed point depend on u₀?",
+      ],
+      done: [
+        "Les deux suites se rapprochent de ℓ = 4, l’une par au-dessus, l’autre par en dessous. Le point fixe ne dépend que de f (c’est la solution de f(ℓ) = ℓ), pas de u₀.",
+        "Both sequences get closer to ℓ = 4, one from above and the other from below. The fixed point depends only on f (it solves f(ℓ) = ℓ), not on u₀.",
+      ],
+    },
+    {
+      id: "slope", kind: "explore", set: { a: 0.5, b: 2, u0: 1, n: 8 }, unlock: ["slope"],
+      prompt: [
+        "Fais glisser le point (2 ; f(2)) pour changer a. Trouve des valeurs de a pour lesquelles les termes ne se rapprochent plus du point fixe. Que vaut alors |a| ?",
+        "Drag the point (2, f(2)) to change a. Find values of a for which the terms no longer get closer to the fixed point. What is |a| then?",
+      ],
+      hint: [
+        "Compare la pente de la droite de f avec celle de la droite y = x, qui vaut 1. Essaie une pente négative aussi.",
+        "Compare the slope of the line of f with that of the line y = x, which is 1. Try a negative slope too.",
+      ],
+      goal: (s) => Math.abs(s.a) > 1,
+      done: [
+        "Pour |a| > 1, l’écart |uₙ − ℓ| est multiplié par |a| > 1 à chaque pas : les termes s’éloignent de ℓ (en spirale si a < 0). Pour |a| < 1 ils s’en rapprochent. Le point fixe existe dans les deux cas, mais il ne suffit pas à ce que la suite le rejoigne.",
+        "For |a| > 1 the gap |uₙ − ℓ| is multiplied by |a| > 1 at each step: the terms move away from ℓ (in a spiral if a < 0). For |a| < 1 they approach it. The fixed point exists in both cases, but that is not enough for the sequence to reach it.",
+      ],
+    },
+    {
+      id: "fixed", kind: "check", set: { a: 0.75, b: 1.5, u0: 0, n: 4 }, quantity: "fixed", answer: 6, tolerance: 0.01,
+      prompt: [
+        "Ici f(x) = 0,75 x + 1,5. Lis sur la figure où la courbe coupe la droite y = x, puis vérifie par le calcul : quelle est la valeur du point fixe ℓ, solution de ℓ = 0,75 ℓ + 1,5 ?",
+        "Here f(x) = 0.75 x + 1.5. Read on the figure where the curve crosses the line y = x, then check by calculation: what is the fixed point ℓ, the solution of ℓ = 0.75 ℓ + 1.5?",
+      ],
+      hint: [
+        "Résous ℓ − 0,75 ℓ = 1,5, c’est-à-dire 0,25 ℓ = 1,5.",
+        "Solve ℓ − 0.75 ℓ = 1.5, that is 0.25 ℓ = 1.5.",
+      ],
+      because: [
+        "0,25 ℓ = 1,5 donne ℓ = 6. Les termes (0, 1,5, 2,625, 3,47…) se rapprochent de 6 car |a| = 0,75 < 1.",
+        "0.25 ℓ = 1.5 gives ℓ = 6. The terms (0, 1.5, 2.625, 3.47…) get closer to 6 because |a| = 0.75 < 1.",
+      ],
+    },
+    {
+      id: "why", kind: "explain",
+      prompt: [
+        "Pourquoi, si la suite (uₙ) se rapproche d’un nombre ℓ, ce nombre vérifie-t-il forcément f(ℓ) = ℓ ? Et la réciproque est-elle vraie ?",
+        "Why, if the sequence (uₙ) gets closer to a number ℓ, must that number satisfy f(ℓ) = ℓ? And is the converse true?",
+      ],
+      argument: [
+        "Si uₙ tend vers ℓ, alors uₙ₊₁ tend aussi vers ℓ. Comme uₙ₊₁ = a uₙ + b et que a uₙ + b tend vers aℓ + b (limite d’une somme et d’un produit par une constante), on obtient ℓ = aℓ + b, c’est-à-dire f(ℓ) = ℓ. La réciproque est fausse : pour a = 2 et b = −2, ℓ = 2 vérifie f(ℓ) = ℓ, mais une suite qui part de u₀ ≠ 2 s’en éloigne. Un point fixe est une condition nécessaire pour avoir une limite, pas une condition suffisante.",
+        "If uₙ tends to ℓ then uₙ₊₁ also tends to ℓ. Since uₙ₊₁ = a uₙ + b and a uₙ + b tends to aℓ + b (limit of a sum and of a constant multiple), we get ℓ = aℓ + b, that is f(ℓ) = ℓ. The converse is false: for a = 2 and b = −2, ℓ = 2 satisfies f(ℓ) = ℓ, but a sequence that starts from u₀ ≠ 2 moves away from it. A fixed point is a necessary condition for a limit, not a sufficient one.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Pour uₙ₊₁ = a uₙ + b avec a ≠ 1, le point fixe est ℓ = b/(1 − a), et uₙ − ℓ = aⁿ (u₀ − ℓ) : si |a| < 1 la suite tend vers ℓ, si |a| > 1 et u₀ ≠ ℓ elle s’en éloigne. Pour a = 1, uₙ₊₁ = uₙ + b est arithmétique. Quelques escaliers illustrent ces cas ; la formule uₙ − ℓ = aⁿ (u₀ − ℓ), démontrée par récurrence, les établit pour tout n.",
+    "For uₙ₊₁ = a uₙ + b with a ≠ 1, the fixed point is ℓ = b/(1 − a), and uₙ − ℓ = aⁿ (u₀ − ℓ): if |a| < 1 the sequence tends to ℓ, if |a| > 1 and u₀ ≠ ℓ it moves away. For a = 1, uₙ₊₁ = uₙ + b is arithmetic. A few staircases illustrate these cases; the formula uₙ − ℓ = aⁿ (u₀ − ℓ), proved by induction, establishes them for every n.",
+  ],
+  history: {
+    title: ["Banach · 1922", "Banach · 1922"],
+    story: [
+      "En 1922, Stefan Banach énonça le principe de contraction : si une application d’un espace complet réduit les distances dans un rapport fixe inférieur à 1, ses itérations convergent vers un unique point fixe. Pour f(x) = a x + b avec |a| < 1, c’est ce que montre l’escalier.",
+      "In 1922 Stefan Banach stated the contraction principle: if a map of a complete space shrinks distances by a fixed ratio below 1, its iterates converge to a unique fixed point. For f(x) = a x + b with |a| < 1, that is what the staircase shows.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Banach/",
+  },
+};
+
+
 });
 __d("lab/experiments/complex.js", function (__e, __r) {
 // Experiment `complex` (template transform): multiplication by z as a rotation and a scaling of the whole plane. State
@@ -2134,6 +2254,174 @@ __e.default = {
 
 
 });
+__d("lab/experiments/exponential.js", function (__e, __r) {
+// Experiment `exponential` (template family): the functions x ↦ k × aˣ with k > 0 and a > 0, and the geometric sequence
+// uₙ = f(n) they carry. State {k, a}; the handles are the points (0 ; k) and (1 ; k a), the slider sets a. Pure maths:
+// models/exponential.js. No logarithm here: no mission needs one (the chapters that link to it do not need ln to read this graph).
+const E = __r("lab/models/exponential.js");
+const { clamp } = __r("lab/models/num.js");
+
+const { model } = E;
+const KMAX = 6, XR = [-3.5, 4.6], YR = [-1, 14];
+
+__e.default = {
+  id: "exponential", template: "family",
+  symbol: "aˣ", group: ["Analyse", "Calculus"],
+  title: ["Multiplier à chaque pas", "Multiply at each step"],
+  short: ["Fonctions k × aˣ et suites géométriques", "Functions k × aˣ and geometric sequences"],
+  intro: [
+    "La fonction x ↦ k × aˣ multiplie par a chaque fois que x augmente de 1. Déplace les deux points et regarde la suite des valeurs en x = 0, 1, 2…",
+    "The function x ↦ k × aˣ multiplies by a each time x increases by 1. Move the two points and watch the sequence of values at x = 0, 1, 2…",
+  ],
+  duration: 8,
+  level: ["Première · Terminale", "Intermediate"],
+  prereq: ["Puissances, suites géométriques", "Powers, geometric sequences"],
+  model: E,
+  state: { k: 1, a: 2 },
+  controls: {
+    start: {
+      kind: "handle", color: "accent", axis: "y", grid: [1, 0.5], label: ["Point (0 ; k)", "Point (0, k)"],
+      at: (s) => [0, s.k],
+      drag: (s, x, y) => ({ k: clamp(y, 0.5, KMAX) }),
+      valuetext: (s, f) => `k = ${f.num(s.k)}`,
+    },
+    unit: {
+      kind: "handle", color: "obj2", axis: "y", grid: [1, 0.5], label: ["Point (1 ; k × a)", "Point (1, k × a)"],
+      nudge: (s, dx, dy) => ({ a: clamp(s.a + 0.25 * (dx || dy), 0.25, 3) }),
+      at: (s) => [1, s.k * s.a],
+      drag: (s, x, y) => ({ a: clamp(Math.round(y / s.k / 0.25) * 0.25, 0.25, 3) }),
+      valuetext: (s, f) => `a = ${f.num(s.a)}`,
+    },
+    a: { kind: "slider", min: 0.25, max: 3, step: 0.25, key: "a", label: ["a (le facteur)", "a (the factor)"] },
+  },
+  views: {
+    panels: ["graph"],
+    graph: {
+      x: XR, y: YR, xTicks: [-3, -2, -1, 0, 1, 2, 3, 4], yTicks: [0, 2, 4, 6, 8, 10, 12, 14],
+      scene(s, { fmt }) {
+        const m = model(s), num = fmt.num, list = E.terms(s, 5);
+        const dots = [-3, -2, -1].map((n) => ({ at: [n, m.f(n)], color: "muted", r: 3.5 }));
+        return {
+          curves: [{ f: m.f, from: XR[0], to: XR[1], color: "accent", width: 3 }],
+          points: [
+            ...dots,
+            { at: [0, s.k], color: "accent", r: 5, label: fmt.pt(0, s.k), dx: 12, dy: 22 },
+            { at: [1, list[1]], color: "obj2", r: 5, label: fmt.pt(1, list[1]), dx: 12, dy: 22 },
+            ...[2, 3, 4].map((n) => ({ at: [n, list[n]], color: "accent", r: 4.5 })),
+          ],
+          texts: [0, 1, 2].map((n) => ({ at: [n + 0.5, m.f(n + 0.5)], text: `× ${num(s.a)}`, color: "obj2", anchor: "center", dy: -16, size: 15 })),
+        };
+      },
+    },
+    formula(s, { fmt }) {
+      const num = fmt.num;
+      return `f(x) = ${s.k === 1 ? "" : `${num(s.k)} × `}${num(s.a)}ˣ`;
+    },
+    readout(s, { fmt }) {
+      const num = fmt.num, fr = fmt.fr;
+      return [
+        [["k = f(0)", "k = f(0)"], num(s.k)],
+        [["a : f(x + 1) = a × f(x)", "a: f(x + 1) = a × f(x)"], num(s.a)],
+        [["Sens de variation", "Direction"], s.a > 1 ? (fr ? "croissante (a > 1)" : "increasing (a > 1)") : s.a < 1 ? (fr ? "décroissante (0 < a < 1)" : "decreasing (0 < a < 1)") : fr ? "constante (a = 1)" : "constant (a = 1)"],
+      ];
+    },
+    table: {
+      caption: ["La suite uₙ = f(n)", "The sequence uₙ = f(n)"],
+      head: [["n", "n"], ["uₙ = k × aⁿ", "uₙ = k × aⁿ"], ["uₙ₊₁ ÷ uₙ", "uₙ₊₁ ÷ uₙ"]],
+      data(s, { fmt }) {
+        const list = E.terms(s, 5);   // the table stops at n = 4: the check mission asks for u₅
+        return { rows: list.map((u, n) => [String(n), fmt.read(u), n < 4 ? fmt.read(s.a) : "·"]), highlight: -1 };
+      },
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { k: 1, a: 2 }, correct: 0,
+      prompt: [
+        "Pour f(x) = 2ˣ, on lit f(0) = 1, f(1) = 2, f(2) = 4. Quand x augmente de 1, que fait f(x), pour n’importe quelle valeur de x (même non entière) ?",
+        "For f(x) = 2ˣ we read f(0) = 1, f(1) = 2, f(2) = 4. When x increases by 1, what does f(x) do, for any value of x (even a non-integer)?",
+      ],
+      choices: [
+        ["Elle est multipliée par 2.", "It is multiplied by 2."],
+        ["Elle augmente de 2.", "It increases by 2."],
+        ["Elle double seulement quand x est un entier.", "It doubles only when x is an integer."],
+      ],
+    },
+    {
+      id: "base", kind: "explore", set: { k: 1, a: 2 }, unlock: ["unit", "a"],
+      prompt: [
+        "Fais glisser le point d’abscisse 1 (ou le curseur a) jusqu’à ce que la courbe descende. Que vaut alors a par rapport à 1 ? Peut-on rendre a négatif ?",
+        "Drag the point with x-coordinate 1 (or the slider a) until the curve goes down. How does a compare with 1 then? Can a be made negative?",
+      ],
+      hint: [
+        "Le point (1 ; k × a) est à la hauteur k × a : il est plus bas que (0 ; k) quand a < 1.",
+        "The point (1, k × a) is at height k × a: it is lower than (0, k) when a < 1.",
+      ],
+      goal: (s) => s.a < 1,
+      done: [
+        "Quand 0 < a < 1, chaque pas multiplie par un nombre plus petit que 1 : la fonction décroît. Quand a > 1, elle croît ; quand a = 1, elle est constante. Ici a reste positif : aˣ n’est pas défini pour tout x si a < 0.",
+        "When 0 < a < 1 each step multiplies by a number below 1: the function decreases. When a > 1 it increases; when a = 1 it is constant. Here a stays positive: aˣ is not defined for every x if a < 0.",
+      ],
+    },
+    {
+      id: "scale", kind: "explore", set: { k: 1, a: 2 }, unlock: ["start"],
+      prompt: [
+        "Le facteur a = 2 reste fixé. Fais glisser le point (0 ; k) pour que la courbe passe par le point (2 ; 6). Quelle valeur de k convient, et que devient le rapport entre deux valeurs voisines ?",
+        "The factor a = 2 stays fixed. Drag the point (0, k) so that the curve passes through the point (2, 6). Which value of k works, and what happens to the ratio between neighbouring values?",
+      ],
+      hint: [
+        "En x = 2, la fonction vaut k × 2² = 4k. Il faut 4k = 6.",
+        "At x = 2 the function equals k × 2² = 4k. We need 4k = 6.",
+      ],
+      goal: (s) => s.k === 1.5,
+      done: [
+        "k × 2² = 6 donne k = 1,5. Changer k étire toute la courbe verticalement : toutes les valeurs sont multipliées par k, mais le rapport f(x + 1)/f(x) reste égal à a = 2.",
+        "k × 2² = 6 gives k = 1.5. Changing k stretches the whole curve vertically: every value is multiplied by k, but the ratio f(x + 1)/f(x) stays equal to a = 2.",
+      ],
+    },
+    {
+      id: "sequence", kind: "check", set: { k: 1.5, a: 2 }, quantity: "u5", answer: 48, tolerance: 0.01,
+      prompt: [
+        "Les points (n ; f(n)) forment la suite uₙ = f(n). Lis u₀ et u₁ sur la figure ou dans le tableau, déduis la raison, puis calcule u₅ (le tableau s’arrête à n = 4 et la courbe sort du cadre).",
+        "The points (n, f(n)) form the sequence uₙ = f(n). Read u₀ and u₁ on the figure or in the table, deduce the ratio, then compute u₅ (the table stops at n = 4 and the curve leaves the frame).",
+      ],
+      hint: [
+        "u₀ = 1,5 et u₁ = 3 : la raison est 3 ÷ 1,5 = 2, donc u₅ = u₀ × 2⁵.",
+        "u₀ = 1.5 and u₁ = 3: the ratio is 3 ÷ 1.5 = 2, so u₅ = u₀ × 2⁵.",
+      ],
+      because: [
+        "uₙ = 1,5 × 2ⁿ, donc u₅ = 1,5 × 32 = 48. C’est une suite géométrique de premier terme 1,5 et de raison 2.",
+        "uₙ = 1.5 × 2ⁿ, so u₅ = 1.5 × 32 = 48. It is a geometric sequence with first term 1.5 and ratio 2.",
+      ],
+    },
+    {
+      id: "why", kind: "explain",
+      prompt: [
+        "Pourquoi le rapport f(x + 1)/f(x) vaut-il a pour tous les x, et que dit-il de la suite uₙ = f(n) ?",
+        "Why is the ratio f(x + 1)/f(x) equal to a for every x, and what does it say about the sequence uₙ = f(n)?",
+      ],
+      argument: [
+        "f(x + 1) = k × aˣ⁺¹ = a × (k × aˣ) = a × f(x), pour tout réel x. En particulier uₙ₊₁ = a uₙ : la suite uₙ = f(n) est géométrique de raison a et de premier terme u₀ = k. Réciproquement, une suite géométrique de premier terme u₀ et de raison q > 0 se prolonge en la fonction x ↦ u₀ × qˣ ; si q < 0, ses termes changent de signe et aucune fonction de cette forme ne passe par tous ses points.",
+        "f(x + 1) = k × aˣ⁺¹ = a × (k × aˣ) = a × f(x), for every real x. In particular uₙ₊₁ = a uₙ: the sequence uₙ = f(n) is geometric with ratio a and first term u₀ = k. Conversely, a geometric sequence with first term u₀ and ratio q > 0 extends to the function x ↦ u₀ × qˣ; if q < 0 its terms change sign and no function of this form passes through all its points.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Pour k > 0 et a > 0, la fonction f(x) = k × aˣ vérifie f(x + 1) = a × f(x) pour tout réel x. Elle est croissante si a > 1, décroissante si 0 < a < 1, constante si a = 1, et ne s’annule jamais. La suite uₙ = f(n) est géométrique de premier terme k et de raison a. Quelques courbes illustrent ces faits ; le calcul de f(x + 1)/f(x) les démontre pour tout x.",
+    "For k > 0 and a > 0, the function f(x) = k × aˣ satisfies f(x + 1) = a × f(x) for every real x. It is increasing if a > 1, decreasing if 0 < a < 1, constant if a = 1, and never zero. The sequence uₙ = f(n) is geometric with first term k and ratio a. A few curves illustrate these facts; computing f(x + 1)/f(x) proves them for every x.",
+  ],
+  history: {
+    title: ["Napier · 1614", "Napier · 1614"],
+    story: [
+      "John Napier publia en 1614 ses tables de logarithmes. Elles rapprochent une progression géométrique, où l’on multiplie, d’une progression arithmétique, où l’on ajoute : le lien entre suites géométriques et fonctions exponentielles.",
+      "John Napier published his tables of logarithms in 1614. They set a geometric progression, where one multiplies, beside an arithmetic progression, where one adds: the link between geometric sequences and exponential functions.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Napier/",
+  },
+};
+
+
+});
 __d("lab/experiments/integral.js", function (__e, __r) {
 // Experiment `integral` (template process): rectangles under y = x^2 between a and b. State {a, b, n, method}. The
 // handles move the bounds, one slider sets the number of rectangles n, one choice sets left, right or midpoint heights.
@@ -2301,6 +2589,410 @@ __e.default = {
       "Long before modern integration, Archimedes used geometric bounds to calculate areas, including the area of a parabolic segment.",
     ],
     source: "https://mathshistory.st-andrews.ac.uk/Biographies/Archimedes/",
+  },
+};
+
+
+});
+__d("lab/experiments/line.js", function (__e, __r) {
+// Experiment `line` (template figure): a line through two points. State {ax, ay, bx, by}; the handles are A and B. The slope
+// is the same quotient for any two points of the line, the reduced equation y = mx + p follows, and AB is a direction vector.
+// Why `figure` and not `family`: the learner moves two points of a figure and looks for what stays true (an invariant), where a
+// family would make the coefficients themselves the handles. Pure maths: models/line.js.
+const L = __r("lab/models/line.js");
+const { clamp } = __r("lab/models/num.js");
+
+const { model } = L;
+const XMAX = 5.5, YMAX = 5.5;
+const wrap = (num, x) => (x < 0 ? `(${num(x)})` : num(x));
+// m or p written exactly: an integer, or a fraction in lowest terms
+const coef = (num, f) => (f.den === 1 ? num(f.num) : `${num(f.num)}/${f.den}`);
+function reduced(m, num) {
+  if (m.vertical) return `x = ${num(m.A[0])}`;
+  const { slope: a, intercept: b } = m;
+  const mx = a.num === 0 ? "" : a.den > 1 ? `(${coef(num, a)})x` : a.num === 1 ? "x" : a.num === -1 ? "−x" : `${num(a.num)}x`;
+  if (!mx) return `y = ${coef(num, b)}`;
+  return b.num === 0 ? `y = ${mx}` : `y = ${mx} ${b.num < 0 ? "−" : "+"} ${coef(num, { num: Math.abs(b.num), den: b.den })}`;
+}
+function cartesian([a, b, c], num) {
+  const term = (k, v, first) => (k === 0 ? "" : `${first ? (k < 0 ? "−" : "") : ` ${k < 0 ? "−" : "+"} `}${Math.abs(k) === 1 ? "" : num(Math.abs(k))}${v}`);
+  const parts = [term(a, "x", true)];
+  parts.push(term(b, "y", !parts[0]));
+  const head = parts.join("");
+  return `${head}${c === 0 ? "" : `${head ? ` ${c < 0 ? "−" : "+"} ` : (c < 0 ? "−" : "")}${num(Math.abs(c))}`} = 0`;
+}
+
+__e.default = {
+  id: "line", template: "figure",
+  symbol: "⟋", group: ["Géométrie", "Geometry"],
+  title: ["Une droite, deux points", "A line, two points"],
+  short: ["Pente et équation réduite", "Slope and equation of a line"],
+  intro: [
+    "Deux points définissent une droite. Déplace-les et regarde ce qui reste vrai : le quotient des variations, la pente, l’équation y = mx + p, le vecteur directeur.",
+    "Two points define a line. Move them and watch what stays true: the quotient of the changes, the slope, the equation y = mx + p, the direction vector.",
+  ],
+  duration: 8,
+  level: ["Seconde", "Foundation"],
+  prereq: ["Coordonnées d’un point, quotient", "Coordinates of a point, quotients"],
+  model: L,
+  state: { ax: 0, ay: 1, bx: 2, by: 5 },
+  controls: {
+    A: {
+      kind: "handle", color: "accent", grid: 0.5, label: ["Point A", "Point A"],
+      at: (s) => [s.ax, s.ay],
+      drag: (s, x, y) => ({ ax: clamp(x, -XMAX, XMAX), ay: clamp(y, -YMAX, YMAX) }),
+      valuetext: (s, f) => f.pt(s.ax, s.ay),
+    },
+    B: {
+      kind: "handle", color: "obj2", grid: 0.5, label: ["Point B", "Point B"],
+      at: (s) => [s.bx, s.by],
+      drag: (s, x, y) => ({ bx: clamp(x, -XMAX, XMAX), by: clamp(y, -YMAX, YMAX) }),
+      valuetext: (s, f) => f.pt(s.bx, s.by),
+    },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [-6, 6], y: [-5.5, 5.5], equal: true, widen: true, xTicks: [-6, -4, -2, 0, 2, 4, 6], yTicks: [-4, -2, 0, 2, 4],
+      scene(s, { fmt }) {
+        const m = model(s), num = fmt.num, [ax, ay, bx, by] = [s.ax, s.ay, s.bx, s.by];
+        if (m.degenerate) return { points: [{ at: [ax, ay], color: "accent", r: 6, label: `A = B ${fmt.pt(ax, ay)}`, dx: 12, dy: -12 }] };
+        const right = bx >= ax, up = by >= ay, tone = m.increasing ? "pos" : m.decreasing ? "neg" : "ink";
+        return {
+          lines: [
+            { a: [ax, ay], b: [bx, by], extend: true, color: "accent", width: 3 },
+            { a: [ax, ay], b: [bx, by], color: "obj2", width: 3.5, arrow: true },
+          ],
+          polys: [{ pts: [[ax, ay], [bx, ay], [bx, by]], fill: tone, alpha: m.vertical || m.dy === 0 ? 0 : 0.09, color: "muted", dash: [5, 5], width: 1.5, close: true }],
+          points: [
+            ...(m.p !== null && Math.abs(m.p) <= YMAX && ax !== 0 && bx !== 0 ? [{ at: [0, m.p], color: "pos", r: 5, hollow: true, label: `p = ${coef(num, m.intercept)}`, dx: 10, dy: -10 }] : []),
+            { at: [ax, ay], color: "accent", r: 6, label: `A ${fmt.pt(ax, ay)}`, anchor: right ? "right" : "left", dx: right ? -12 : 12, dy: ay > 4 ? 24 : ay < -4 ? -12 : up ? 22 : -12 },
+            { at: [bx, by], color: "obj2", r: 6, label: `B ${fmt.pt(bx, by)}`, anchor: right ? "left" : "right", dx: right ? 12 : -12, dy: by > 4 ? 24 : by < -4 ? -12 : up ? -12 : 22 },
+          ],
+          texts: [
+            ...(m.dx !== 0 ? [{ at: [(ax + bx) / 2, ay], text: fmt.rel("Δx", m.dx), color: "muted", anchor: "center", dy: up ? 20 : -10, size: 15 }] : []),
+            ...(m.dy !== 0 ? [{ at: [bx, (ay + by) / 2], text: fmt.rel("Δy", m.dy), color: "muted", anchor: right ? "left" : "right", dx: right ? 10 : -10, dy: 5, size: 15 }] : []),
+          ],
+        };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        if (m.degenerate) return { text: fmt.fr ? "A = B : pas de droite" : "A = B: no line", color: "muted" };
+        if (m.vertical) return { text: fmt.fr ? "droite verticale" : "vertical line", color: "ink" };
+        return { text: `m = ${fmt.ratio(m.dy, m.dx)}`, color: m.increasing ? "pos" : m.decreasing ? "neg" : "ink" };
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s), num = fmt.num, fr = fmt.fr;
+      if (m.degenerate) return fr ? "A et B sont confondus : il n’y a pas de droite." : "A and B coincide: there is no line.";
+      if (m.vertical) return fr ? `Δx = 0 : pas de pente. Droite verticale ${reduced(m, num)}` : `Δx = 0: no slope. Vertical line ${reduced(m, num)}`;
+      const exact = fmt.isExact(m.m, 2);
+      return `m = Δy/Δx = ${num(m.dy)}/${wrap(num, m.dx)} ${exact ? "=" : "≈"} ${num(m.m)} ; ${reduced(m, num)}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), num = fmt.num, fr = fmt.fr;
+      const none = fr ? "aucune (A = B)" : "none (A = B)";
+      return [
+        [["Vecteur directeur AB", "Direction vector AB"], fmt.pt(m.dx, m.dy)],
+        [["Coefficient directeur m", "Slope m"], m.degenerate ? none : m.vertical ? (fr ? "non défini" : "not defined") : fmt.ratio(m.dy, m.dx)],
+        [["Ordonnée à l’origine p", "y-intercept p"], m.degenerate ? none : m.vertical ? (fr ? "aucune" : "none") : fmt.ratio(m.dx * s.ay - m.dy * s.ax, m.dx)],
+        [["Équation cartésienne", "Cartesian equation"], m.degenerate ? none : cartesian(m.cartesian, num)],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { ax: 0, ay: 1, bx: 2, by: 5 }, correct: 0,
+      prompt: [
+        "La droite passe par A(0 ; 1) et B(2 ; 5) : quand x augmente de 2, y augmente de 4, donc le quotient Δy/Δx vaut 2. On remplace B par le point C(4 ; 9), qui est sur la même droite. Que devient le quotient de A à C ?",
+        "The line passes through A(0, 1) and B(2, 5): when x increases by 2, y increases by 4, so the quotient Δy/Δx is 2. We replace B by the point C(4, 9), which is on the same line. What happens to the quotient from A to C?",
+      ],
+      choices: [
+        ["Il ne change pas : il vaut encore 2.", "It does not change: it is still 2."],
+        ["Il double : il vaut 4.", "It doubles: it is 4."],
+        ["On ne peut pas le savoir sans tracer la droite.", "You cannot tell without drawing the line."],
+      ],
+    },
+    {
+      id: "slope", kind: "explore", set: { ax: 0, ay: 1, bx: 2, by: 5 }, unlock: ["B"],
+      prompt: [
+        "Le point A reste fixe. Fais glisser B pour que la droite descende de 2 chaque fois que x augmente de 1. Quel est alors le coefficient directeur m, et que fait la droite ?",
+        "Point A stays fixed. Drag B so that the line goes down by 2 each time x increases by 1. What is the slope m then, and what does the line do?",
+      ],
+      hint: [
+        "Si B = (1 ; −1), x augmente de 1 et y diminue de 2 par rapport à A(0 ; 1). D’autres positions de B donnent la même droite.",
+        "If B = (1, −1), x increases by 1 and y decreases by 2 compared with A(0, 1). Other positions of B give the same line.",
+      ],
+      goal: (s, m) => m.m === -2,
+      done: [
+        "m = −2 : la droite descend. Le signe de m dit si la droite monte (m > 0) ou descend (m < 0), et sa valeur dit de combien y varie quand x augmente de 1. Plusieurs positions de B donnent la même droite.",
+        "m = −2: the line goes down. The sign of m says whether the line rises (m > 0) or falls (m < 0), and its value says by how much y changes when x increases by 1. Several positions of B give the same line.",
+      ],
+    },
+    {
+      id: "intercept", kind: "explore", set: { ax: 0, ay: 1, bx: 2, by: 5 }, unlock: ["A"],
+      prompt: [
+        "Le point B reste fixe en (2 ; 5). Fais glisser A pour que la droite coupe l’axe des ordonnées en (0 ; 3). Quelle est alors son équation réduite ?",
+        "Point B stays fixed at (2, 5). Drag A so that the line cuts the y-axis at (0, 3). What is its slope-intercept equation then?",
+      ],
+      hint: [
+        "La droite doit passer par (0 ; 3) et par B(2 ; 5). Place A sur cette droite : A peut être (0 ; 3) lui-même.",
+        "The line must pass through (0, 3) and B(2, 5). Put A on that line: A can be (0, 3) itself.",
+      ],
+      goal: (s, m) => m.p === 3,
+      done: [
+        "p = 3 : l’ordonnée à l’origine est l’ordonnée du point de la droite d’abscisse 0. Comme B est fixe, la droite est y = x + 3 : m = 1 et p = 3.",
+        "p = 3: the y-intercept is the y-coordinate of the point of the line with x = 0. Since B is fixed, the line is y = x + 3: m = 1 and p = 3.",
+      ],
+    },
+    {
+      id: "direction", kind: "contrast", set: { ax: 0, ay: 1, bx: 2, by: 5 },
+      variants: [
+        { label: ["Cas A : B(2 ; 5)", "Case A: B(2, 5)"], set: { bx: 2, by: 5 } },
+        { label: ["Cas B : B(1 ; 3)", "Case B: B(1, 3)"], set: { bx: 1, by: 3 } },
+      ],
+      prompt: [
+        "Compare les cas A et B : A est le même point. Qu’est-ce qui change, et qu’est-ce qui ne change pas ? Regarde le vecteur directeur AB, la droite et son équation.",
+        "Compare cases A and B: A is the same point. What changes, and what stays the same? Look at the direction vector AB, the line and its equation.",
+      ],
+      done: [
+        "Les vecteurs directeurs AB = (2 ; 4) et AB = (1 ; 2) sont différents, mais colinéaires : c’est la même droite, avec la même pente 2 et la même équation y = 2x + 1. Un vecteur directeur donne la direction, pas la longueur.",
+        "The direction vectors AB = (2, 4) and AB = (1, 2) differ, but are collinear: it is the same line, with the same slope 2 and the same equation y = 2x + 1. A direction vector gives the direction, not the length.",
+      ],
+    },
+    {
+      id: "read", kind: "check", set: { ax: -1, ay: 4, bx: 3, by: -2 }, quantity: "intercept", answer: 2.5, tolerance: 0.01,
+      prompt: [
+        "Lis les coordonnées de A et de B sur la figure. Calcule le coefficient directeur m, puis l’ordonnée à l’origine p de la droite (AB), avec p = yA − m xA. Que vaut p ?",
+        "Read the coordinates of A and B on the figure. Compute the slope m, then the y-intercept p of the line (AB), with p = yA − m xA. What is p?",
+      ],
+      hint: [
+        "Ici m = (−2 − 4)/(3 − (−1)) = −6/4 = −1,5. Puis p = 4 − (−1,5) × (−1).",
+        "Here m = (−2 − 4)/(3 − (−1)) = −6/4 = −1.5. Then p = 4 − (−1.5) × (−1).",
+      ],
+      because: [
+        "m = −1,5 et p = 4 − (−1,5) × (−1) = 4 − 1,5 = 2,5 : la droite a pour équation y = −1,5x + 2,5, et elle coupe l’axe des ordonnées au point (0 ; 2,5) marqué sur la figure.",
+        "m = −1.5 and p = 4 − (−1.5) × (−1) = 4 − 1.5 = 2.5: the line is y = −1.5x + 2.5, and it cuts the y-axis at the point (0, 2.5) marked on the figure.",
+      ],
+    },
+    {
+      id: "why", kind: "explain",
+      prompt: [
+        "Pourquoi le quotient Δy/Δx est-il le même pour deux points quelconques de la droite, et pas seulement pour A et B ?",
+        "Why is the quotient Δy/Δx the same for any two points of the line, and not only for A and B?",
+      ],
+      argument: [
+        "Soit C un troisième point de la droite (AB). Les triangles rectangles construits sur [AB] et sur [AC], avec un côté horizontal et un côté vertical, ont leurs côtés parallèles deux à deux : ils sont semblables (Thalès). Leurs côtés sont donc proportionnels, et Δy/Δx est le même pour [AB] et pour [AC]. Pour une droite d’équation y = mx + p, on le voit aussi par le calcul : (m x₂ + p − m x₁ − p)/(x₂ − x₁) = m.",
+        "Let C be a third point of the line (AB). The right triangles built on [AB] and on [AC], with one horizontal side and one vertical side, have pairwise parallel sides: they are similar (Thales). Their sides are therefore proportional, and Δy/Δx is the same for [AB] and for [AC]. For a line y = mx + p, calculation shows it too: (m x₂ + p − m x₁ − p)/(x₂ − x₁) = m.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Une droite non verticale passant par A(xA ; yA) et B(xB ; yB) a pour coefficient directeur m = (yB − yA)/(xB − xA), le même pour deux points quelconques de la droite, et pour équation réduite y = mx + p avec p = yA − m xA. Le vecteur AB est un vecteur directeur, tout vecteur colinéaire à AB aussi. Une droite verticale n’a pas de coefficient directeur : son équation est x = xA. Quelques positions illustrent ce résultat ; l’argument des triangles semblables le démontre pour tous les points.",
+    "A non-vertical line through A(xA, yA) and B(xB, yB) has slope m = (yB − yA)/(xB − xA), the same for any two points of the line, and slope-intercept equation y = mx + p with p = yA − m xA. The vector AB is a direction vector, and so is any vector collinear to AB. A vertical line has no slope: its equation is x = xA. A few positions illustrate this; the similar-triangles argument proves it for all points.",
+  ],
+  history: {
+    title: ["Descartes · 1637", "Descartes · 1637"],
+    story: [
+      "Dans La Géométrie (1637), René Descartes relie les courbes à des équations en coordonnées. C’est cette idée qui permet de décrire une droite par une équation comme y = mx + p.",
+      "In La Géométrie (1637), René Descartes links curves to equations in coordinates. This idea makes it possible to describe a line by an equation such as y = mx + p.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Descartes/",
+  },
+};
+
+
+});
+__d("lab/experiments/matrix.js", function (__e, __r) {
+// Experiment `matrix` (template transform): a 2 by 2 matrix M = (a b ; c d) acting on a grid and on the unit square. State {a, b, c, d}:
+// the handles are the images of i and j, that is the columns of M (a ; c) and (b ; d), in the plane of arrival. The determinant
+// ad - bc is the factor by which every area is multiplied (with its sign). Pure maths: models/matrix.js.
+const X = __r("lab/models/matrix.js");
+const { clamp } = __r("lab/models/num.js");
+
+const { model } = X;
+const LIM = 2.5, RANGE = 5.5;
+const wrap = (num, x) => (x < 0 ? `(${num(x)})` : num(x));
+
+__e.default = {
+  id: "matrix", template: "transform",
+  symbol: "M", group: ["Algèbre", "Algebra"],
+  title: ["Une matrice transforme le plan", "A matrix transforms the plane"],
+  short: ["Matrices 2 × 2 et déterminant", "2 × 2 matrices and the determinant"],
+  intro: [
+    "Les colonnes d’une matrice 2 × 2 sont les images de i et de j. Déplace-les : le carré unité devient un parallélogramme, et le déterminant dit par combien l’aire est multipliée.",
+    "The columns of a 2 × 2 matrix are the images of i and j. Move them: the unit square becomes a parallelogram, and the determinant says by how much the area is multiplied.",
+  ],
+  duration: 9,
+  level: ["Maths expertes", "Further maths"],
+  prereq: ["Coordonnées, aire d’un parallélogramme, déterminant de deux vecteurs", "Coordinates, area of a parallelogram, determinant of two vectors"],
+  model: X,
+  state: { a: 2, b: 1, c: 0, d: 2 },
+  controls: {
+    i: {
+      kind: "handle", panel: "after", color: "accent", grid: 0.5, label: ["Image de i (première colonne de M)", "Image of i (first column of M)"],
+      at: (s) => [s.a, s.c],
+      drag: (s, x, y) => ({ a: clamp(x, -LIM, LIM), c: clamp(y, -LIM, LIM) }),
+      valuetext: (s, f) => f.pt(s.a, s.c),
+    },
+    j: {
+      kind: "handle", panel: "after", color: "obj2", grid: 0.5, label: ["Image de j (deuxième colonne de M)", "Image of j (second column of M)"],
+      at: (s) => [s.b, s.d],
+      drag: (s, x, y) => ({ b: clamp(x, -LIM, LIM), d: clamp(y, -LIM, LIM) }),
+      valuetext: (s, f) => f.pt(s.b, s.d),
+    },
+  },
+  views: {
+    panels: ["before", "after"],
+    before: {
+      x: [-RANGE, RANGE], y: [-RANGE, RANGE], equal: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
+      scene(s, { fmt }) {
+        return {
+          polys: [{ pts: [[0, 0], [1, 0], [1, 1], [0, 1]], fill: "muted", alpha: 0.2, color: "muted", width: 2 }],
+          lines: [
+            { a: [0, 0], b: [1, 0], color: "accent", width: 3.5, arrow: true },
+            { a: [0, 0], b: [0, 1], color: "obj2", width: 3.5, arrow: true },
+          ],
+          points: [
+            { at: [1, 0], color: "accent", r: 4, label: "i", dx: 4, dy: 20 },
+            { at: [0, 1], color: "obj2", r: 4, label: "j", dx: -14, dy: 6, anchor: "right" },
+          ],
+          texts: [{ at: [-RANGE + 0.2, RANGE - 0.7], text: fmt.t(["Départ : carré unité", "Before: unit square"]), color: "muted", size: 15 }],
+        };
+      },
+    },
+    after: {
+      x: [-RANGE, RANGE], y: [-RANGE, RANGE], equal: true, xTicks: [-4, -2, 0, 2, 4], yTicks: [-4, -2, 0, 2, 4],
+      scene(s, { fmt }) {
+        const m = model(s), tone = m.orientation > 0 ? "pos" : m.orientation < 0 ? "neg" : "muted", grid = [];
+        for (let k = -8; k <= 8; k++) grid.push({ a: m.f([-9, k]), b: m.f([9, k]), color: "accent", alpha: 0.28, width: 1.1 }, { a: m.f([k, -9]), b: m.f([k, 9]), color: "accent", alpha: 0.28, width: 1.1 });
+        const mid = [(s.a + s.b) / 2, (s.c + s.d) / 2];
+        return {
+          lines: [...grid, { a: [0, 0], b: m.i, color: "accent", width: 3.5, arrow: true }, { a: [0, 0], b: m.j, color: "obj2", width: 3.5, arrow: true }],
+          polys: [{ pts: m.polygon, fill: tone, alpha: m.invertible ? 0.22 : 0, color: tone, width: 2.2 }],
+          points: [
+            { at: m.i, color: "accent", r: 4.5, label: "M(i)", dx: 10, dy: 20 },
+            { at: m.j, color: "obj2", r: 4.5, label: "M(j)", dx: 10, dy: -10 },
+          ],
+          texts: [
+            ...(m.invertible ? [{ at: mid, text: fmt.rel(fmt.fr ? "aire" : "area", m.area), color: tone, anchor: "center", size: 17 }] : []),
+            { at: [-RANGE + 0.2, RANGE - 0.7], text: fmt.t(m.invertible ? ["Arrivée : image par M", "After: image by M"] : ["Arrivée : aplati sur une droite", "After: flattened onto a line"]), color: "muted", size: 15 },
+          ],
+        };
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s), num = fmt.num;
+      return `det M = a × d − b × c = ${num(s.a)} × ${wrap(num, s.d)} − ${wrap(num, s.b)} × ${wrap(num, s.c)} ${fmt.eq(m.det)} ${num(m.det)}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), fr = fmt.fr, sep = fr ? " ; " : ", ";
+      return [
+        [["Colonnes de M", "Columns of M"], `i ↦ ${fmt.pt(s.a, s.c)}${sep}j ↦ ${fmt.pt(s.b, s.d)}`],
+        [["Déterminant et aire", "Determinant and area"], `${fmt.rel("det M", m.det)}${sep}${fmt.rel(fr ? "aire" : "area", m.area)}`],
+        [["Inverse de M (images de i et de j)", "Inverse of M (images of i and j)"], m.inverse ? `i ↦ ${fmt.pt(...m.inverse.i)}${sep}j ↦ ${fmt.pt(...m.inverse.j)}` : fr ? "aucun : det M = 0" : "none: det M = 0"],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { a: 2, b: 1, c: 0, d: 2 }, correct: 0,
+      prompt: [
+        "La matrice M = (a b ; c d) a pour colonnes (2 ; 0) et (1 ; 2) : elle envoie i sur (2 ; 0) et j sur (1 ; 2). Le carré unité a une aire de 1. Quelle sera l’aire de son image, le parallélogramme construit sur ces deux colonnes ?",
+        "The matrix M = (a b ; c d) has columns (2, 0) and (1, 2): it sends i to (2, 0) and j to (1, 2). The unit square has area 1. What will be the area of its image, the parallelogram built on these two columns?",
+      ],
+      choices: [
+        ["4", "4"],
+        ["5", "5"],
+        ["3", "3"],
+      ],
+    },
+    {
+      id: "columns", kind: "explore", set: { a: 1, b: 0, c: 0, d: 1 }, unlock: ["i"],
+      prompt: [
+        "On part de la matrice identité : i et j sont envoyés sur eux-mêmes. Fais glisser l’image de i jusqu’au point (2 ; 1). Quelle colonne de M lis-tu ? Et que devient l’image de j ?",
+        "We start from the identity matrix: i and j are sent to themselves. Drag the image of i to the point (2, 1). Which column of M do you read? And what happens to the image of j?",
+      ],
+      hint: [
+        "Les coordonnées de l’image de i sont la première colonne (a ; c) de M.",
+        "The coordinates of the image of i are the first column (a, c) of M.",
+      ],
+      goal: (s) => s.a === 2 && s.c === 1,
+      done: [
+        "La première colonne est (2 ; 1) : a = 2 et c = 1. L’image de j n’a pas bougé : la deuxième colonne (b ; d) = (0 ; 1) ne dépend que de l’image de j.",
+        "The first column is (2, 1): a = 2 and c = 1. The image of j has not moved: the second column (b, d) = (0, 1) depends only on the image of j.",
+      ],
+    },
+    {
+      id: "area", kind: "explore", set: { a: 2, b: 0, c: 0, d: 1 }, unlock: ["j"],
+      prompt: [
+        "L’image de i reste en (2 ; 0). Fais glisser l’image de j pour que l’image du carré unité ait une aire de 3. Quel est le déterminant de M ? Plusieurs positions conviennent : quel signe peut-il avoir ?",
+        "The image of i stays at (2, 0). Drag the image of j so that the image of the unit square has area 3. What is the determinant of M? Several positions work: what sign can it have?",
+      ],
+      hint: [
+        "Avec c = 0, det M = 2 × d. Il faut |2 d| = 3.",
+        "With c = 0, det M = 2 × d. We need |2 d| = 3.",
+      ],
+      goal: (s, m) => m.area === 3,
+      done: [
+        "det M = 2 d = 3 donne d = 1,5, et d = −1,5 donne det M = −3. L’aire de l’image est |det M| = 3 dans les deux cas ; le signe dit si l’orientation est conservée (positif) ou renversée (négatif).",
+        "det M = 2 d = 3 gives d = 1.5, and d = −1.5 gives det M = −3. The area of the image is |det M| = 3 in both cases; the sign says whether the orientation is kept (positive) or reversed (negative).",
+      ],
+    },
+    {
+      id: "flat", kind: "explore", set: { a: 1, b: 0, c: 0, d: 1 }, unlock: ["i", "j"],
+      prompt: [
+        "Trouve une matrice qui n’est pas la matrice nulle et qui écrase le carré unité sur un segment : fais glisser les images de i et de j. Que vaut alors le déterminant ? Que devient l’inverse de M ?",
+        "Find a matrix that is not the zero matrix and flattens the unit square onto a segment: drag the images of i and j. What is the determinant then? What happens to the inverse of M?",
+      ],
+      hint: [
+        "Les deux images doivent être sur une même droite passant par l’origine : les colonnes sont colinéaires.",
+        "Both images must lie on one line through the origin: the columns are collinear.",
+      ],
+      goal: (s, m) => m.det === 0 && (s.a !== 0 || s.b !== 0 || s.c !== 0 || s.d !== 0),
+      done: [
+        "det M = 0 : les deux colonnes sont colinéaires et le plan entier est écrasé sur une droite. M n’a pas d’inverse : des points différents ont la même image, on ne peut pas revenir en arrière.",
+        "det M = 0: the two columns are collinear and the whole plane is flattened onto a line. M has no inverse: different points have the same image, so you cannot go back.",
+      ],
+    },
+    {
+      id: "read", kind: "check", set: { a: 2, b: 1, c: -1, d: 2 }, quantity: "det", answer: 5, tolerance: 0.01,
+      prompt: [
+        "Lis sur la figure les images de i et de j, c’est-à-dire les colonnes (a ; c) et (b ; d) de M. Calcule ensuite le déterminant ad − bc. Que vaut-il ?",
+        "Read on the figure the images of i and j, that is the columns (a, c) and (b, d) of M. Then compute the determinant ad − bc. What is it?",
+      ],
+      hint: [
+        "Ici a = 2, b = 1, c = −1 et d = 2 : 2 × 2 − 1 × (−1).",
+        "Here a = 2, b = 1, c = −1 and d = 2: 2 × 2 − 1 × (−1).",
+      ],
+      because: [
+        "det M = 2 × 2 − 1 × (−1) = 4 + 1 = 5 : le carré unité est envoyé sur un parallélogramme d’aire 5, orienté comme le carré de départ car le déterminant est positif.",
+        "det M = 2 × 2 − 1 × (−1) = 4 + 1 = 5: the unit square is sent to a parallelogram of area 5, oriented like the starting square because the determinant is positive.",
+      ],
+    },
+    {
+      id: "why", kind: "explain",
+      prompt: [
+        "Pourquoi l’aire de l’image du carré unité vaut-elle |ad − bc|, et pourquoi M multiplie-t-elle par ce même nombre l’aire de n’importe quelle figure ?",
+        "Why is the area of the image of the unit square |ad − bc|, and why does M multiply the area of any figure by this same number?",
+      ],
+      argument: [
+        "L’image du carré unité est le parallélogramme construit sur les vecteurs (a ; c) et (b ; d), dont l’aire est la valeur absolue du déterminant |ad − bc| (voir l’expérience sur les vecteurs). Pour une figure quelconque, on la recouvre de petits carrés du quadrillage de côté h : M les envoie sur des parallélogrammes de même forme, d’aire h² |ad − bc|, car M agit de la même façon sur tous les carrés (elle est linéaire). Les aires sont donc toutes multipliées par |ad − bc|. Quelques figures illustrent ce résultat ; le calcul de l’aire du parallélogramme le démontre.",
+        "The image of the unit square is the parallelogram built on the vectors (a, c) and (b, d), whose area is the absolute value of the determinant |ad − bc| (see the vectors experiment). For any figure, cover it with small grid squares of side h: M sends them to parallelograms of the same shape, of area h² |ad − bc|, because M acts the same way on every square (it is linear). So all areas are multiplied by |ad − bc|. A few figures illustrate this; computing the area of the parallelogram proves it.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Une matrice M = (a b ; c d) envoie i sur (a ; c) et j sur (b ; d). Le carré unité devient le parallélogramme construit sur ces deux colonnes, d’aire |ad − bc|, et M multiplie toutes les aires par |ad − bc|. Si ad − bc = 0, le plan est écrasé sur une droite et M n’est pas inversible ; sinon M⁻¹ = (1/(ad − bc)) (d −b ; −c a). Quelques matrices illustrent ces faits ; le calcul de l’aire d’un parallélogramme les démontre.",
+    "A matrix M = (a b ; c d) sends i to (a, c) and j to (b, d). The unit square becomes the parallelogram built on those two columns, of area |ad − bc|, and M multiplies every area by |ad − bc|. If ad − bc = 0 the plane is flattened onto a line and M is not invertible; otherwise M⁻¹ = (1/(ad − bc)) (d −b ; −c a). A few matrices illustrate these facts; computing the area of a parallelogram proves them.",
+  ],
+  history: {
+    title: ["Cayley · 1858", "Cayley · 1858"],
+    story: [
+      "Arthur Cayley publia en 1858 un mémoire sur la théorie des matrices, où les tableaux de nombres sont additionnés, multipliés et inversés comme des objets à part entière.",
+      "Arthur Cayley published a memoir on the theory of matrices in 1858, in which arrays of numbers are added, multiplied and inverted as objects in their own right.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Cayley/",
   },
 };
 
@@ -2869,6 +3561,248 @@ __e.default = {
       "Fibonacci’s Liber abaci helped spread Hindu-Arabic numerals in Europe. His rabbit problem leads to a sequence where each term is the sum of the previous two: another way to build a sequence.",
     ],
     source: "https://mathshistory.st-andrews.ac.uk/Biographies/Fibonacci/",
+  },
+};
+
+
+});
+__d("lab/experiments/space-lines.js", function (__e, __r) {
+// Experiment `space-lines` (template space): a line and a plane in space. State {ax, ay, az, ux, uy, uz, d, t, mode, hide}: the line
+// passes through A with direction vector u (B = A + u, M(t) = A + t u), the plane is P: x + y + 2z + d = 0 with normal n = (1 ; 1 ; 2).
+// `mode` says what the figure shows (0 the line and the plane, 1 the parametric representation alone, 2 the orthogonal projection
+// of A on the plane) and `hide` keeps the common point out of the figure for the check mission. Handles are points constrained to the
+// floor (the shadow of a point) or to a vertical line; every drag snaps to whole numbers. Pure maths: models/space-lines.js.
+const S = __r("lab/models/space-lines.js");
+const { clamp } = __r("lab/models/num.js");
+
+const { model, N } = S;
+const VIEW = [[-4.8, 4.8], [-4.8, 4.8], [-1.2, 6.8]];
+const FLOOR = { o: [0, 0, 0], e1: [1, 0, 0], e2: [0, 1, 0] };
+const XY = 4, ZMIN = 1, ZMAX = 5;
+const sgn = (v) => (v < 0 ? "−" : "+");
+const planeEq = (d, num) => `x + y + 2z${d === 0 ? "" : ` ${sgn(d)} ${num(Math.abs(d))}`} = 0`;
+const param = (a, u, num) => (u === 0 ? num(a) : a === 0 ? (u === 1 ? "t" : u === -1 ? "−t" : `${num(u)}t`) : `${num(a)} ${sgn(u)} ${Math.abs(u) === 1 ? "" : num(Math.abs(u))}t`);
+const nonzero = (s) => s.ux !== 0 || s.uy !== 0 || s.uz !== 0;
+const wrapN = (num, x) => (x < 0 ? `(${num(x)})` : num(x));
+const rnd = Math.round;
+
+__e.default = {
+  id: "space-lines", template: "space",
+  symbol: "⟂", group: ["Géométrie", "Geometry"],
+  title: ["Une droite perce un plan", "A line pierces a plane"],
+  short: ["Droite et plan de l’espace", "Line and plane in space"],
+  intro: [
+    "Fais tourner la figure : une droite et un plan de l’espace peuvent se couper en un point, ne pas se couper, ou se confondre en partie. Le vecteur directeur et le vecteur normal décident.",
+    "Turn the figure: a line and a plane in space can meet in one point, miss each other, or overlap along the whole line. The direction vector and the normal vector decide.",
+  ],
+  keys: [
+    "Fais tourner la figure en glissant le fond, ou clique dans la figure puis utilise les flèches. Poignées : glisse les points (ils restent au sol ou sur une verticale), ou Tab puis les flèches. Molette : zoom ; 0 : recentrer. N et P : mission suivante, précédente.",
+    "Turn the figure by dragging the background, or click in the figure then use the arrow keys. Handles: drag the points (they stay on the floor or on a vertical line), or Tab then the arrow keys. Wheel: zoom; 0: reset the view. N and P: next and previous mission.",
+  ],
+  duration: 10,
+  level: ["Terminale", "Upper secondary"],
+  prereq: ["Vecteurs de l’espace, produit scalaire", "Vectors in space, dot product"],
+  model: S,
+  state: { ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 0, mode: 0, hide: 0 },
+  controls: {
+    A: {
+      kind: "handle", color: "accent", grid: 1, label: ["Ombre de A au sol (déplace A horizontalement)", "Shadow of A on the floor (moves A horizontally)"],
+      at: (s) => [s.ax, s.ay, 0],
+      constraint: () => FLOOR,
+      drag: (s, p) => ({ ax: clamp(rnd(p[0]), -XY, XY), ay: clamp(rnd(p[1]), -XY, XY) }),
+      valuetext: (s, f) => f.pt(s.ax, s.ay, s.az),
+    },
+    Az: {
+      kind: "handle", color: "accent", grid: 1, label: ["Point A (change sa hauteur)", "Point A (changes its height)"],
+      at: (s) => [s.ax, s.ay, s.az],
+      constraint: (s) => ({ o: [s.ax, s.ay, 0], e1: [0, 0, 1] }),
+      drag: (s, p) => ({ az: clamp(rnd(p[2]), ZMIN, ZMAX) }),
+      valuetext: (s, f) => `z = ${f.num(s.az)}`,
+    },
+    tip: {
+      kind: "handle", color: "obj3", grid: 1, label: ["Ombre de B = A + u au sol (change u horizontalement)", "Shadow of B = A + u on the floor (changes u horizontally)"],
+      at: (s) => [s.ax + s.ux, s.ay + s.uy, 0],
+      constraint: () => FLOOR,
+      drag: (s, p) => {
+        const ux = clamp(rnd(p[0]), -XY, XY) - s.ax, uy = clamp(rnd(p[1]), -XY, XY) - s.ay;
+        return ux === 0 && uy === 0 && s.uz === 0 ? null : { ux, uy };
+      },
+      valuetext: (s, f) => f.pt(s.ux, s.uy, s.uz),
+    },
+    tipz: {
+      kind: "handle", color: "obj3", grid: 1, label: ["Point B = A + u (change la hauteur de B)", "Point B = A + u (changes the height of B)"],
+      at: (s) => [s.ax + s.ux, s.ay + s.uy, s.az + s.uz],
+      constraint: (s) => ({ o: [s.ax + s.ux, s.ay + s.uy, 0], e1: [0, 0, 1] }),
+      drag: (s, p) => {
+        const uz = clamp(rnd(p[2]), ZMIN, ZMAX) - s.az;
+        return s.ux === 0 && s.uy === 0 && uz === 0 ? null : { uz };
+      },
+      valuetext: (s, f) => `u = ${f.pt(s.ux, s.uy, s.uz)}`,
+    },
+    t: { kind: "slider", min: -1, max: 3, step: 0.25, key: "t", label: ["t", "t"] },
+  },
+  views: {
+    panels: ["space"],
+    space: {
+      box: VIEW, axes: 5,
+      scene(s, { fmt }) {
+        const m = model(s), pt = fmt.pt, show = s.mode !== 1;
+        const [a, b] = [m.A, m.B], drop = (p) => ({ a: p, b: [p[0], p[1], 0], color: "muted", width: 1.4, dash: [4, 4] });
+        const segs = [], points = [];
+        if (!m.degenerate && m.clip) segs.push({ a: [m.A[0] + m.clip[0] * m.u[0], m.A[1] + m.clip[0] * m.u[1], m.A[2] + m.clip[0] * m.u[2]], b: [m.A[0] + m.clip[1] * m.u[0], m.A[1] + m.clip[1] * m.u[1], m.A[2] + m.clip[1] * m.u[2]], color: "obj2", width: 3 });
+        if (!m.degenerate) segs.push({ a, b, color: "obj3", width: 4, arrow: true });
+        segs.push(drop(a), drop(b));
+        points.push({ at: a, color: "ink", r: 5.5, label: `A ${pt(...a)}`, dx: 12, dy: -10 });
+        points.push({ at: b, color: "obj3", r: 5, hollow: true, label: s.mode === 0 ? "B" : undefined, dx: 10, dy: -8 });
+        if (s.mode === 1) points.push({ at: m.M, color: "accent", r: 6.5, label: `M(t) ${pt(...m.M)}`, dx: 12, dy: 24 });
+        if (s.mode === 0 && !s.hide && m.I) points.push({ at: m.I, color: "pos", r: 6.5, label: `I ${pt(...m.I)}`, dx: 12, dy: 24 });
+        if (s.mode === 2) {
+          segs.push({ a, b: m.H, color: "neg", width: 3.5 });
+          points.push({ at: m.H, color: "pos", r: 6.5, label: "H", dx: 12, dy: 24 });
+        }
+        return {
+          faces: show && m.planePoly ? [{ pts: m.planePoly, color: "accent", alpha: 0.16, occlude: true }] : [],
+          segs, points,
+        };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        if (s.mode === 0) return { text: `n · u = ${fmt.num(m.nu)}`, color: m.nu === 0 ? "pos" : "ink" };
+        if (s.mode === 2) return { text: fmt.rel("AH", m.dist), color: m.dist === 0 ? "pos" : "neg" };
+        return null;
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s), num = fmt.num;
+      if (s.mode === 1) return `M(t) = ${fmt.pt(s.ax, s.ay, s.az)} + t × ${fmt.pt(s.ux, s.uy, s.uz)}`;
+      if (s.mode === 2) return `AH = |n · A + d| / ‖n‖ = |${num(m.sA)}| / √6 ${fmt.eq(m.dist)} ${num(m.dist)}`;
+      return `${planeEq(s.d, num)} ; n · u = 1 × ${wrapN(num, s.ux)} + 1 × ${wrapN(num, s.uy)} + 2 × ${wrapN(num, s.uz)} = ${num(m.nu)}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), num = fmt.num, fr = fmt.fr, sep = fr ? " ; " : ", ";
+      const plane = [["Plan P", "Plane P"], planeEq(s.d, num)];
+      if (s.mode === 1) return [
+        [["Point A", "Point A"], fmt.pt(s.ax, s.ay, s.az)],
+        [["Vecteur directeur u", "Direction vector u"], fmt.pt(s.ux, s.uy, s.uz)],
+        [["Point M(t)", "Point M(t)"], fmt.pt(...m.M)],
+        [["Représentation paramétrique", "Parametric representation"], `x = ${param(s.ax, s.ux, num)}${sep}y = ${param(s.ay, s.uy, num)}${sep}z = ${param(s.az, s.uz, num)}`],
+      ];
+      if (s.mode === 2) return [
+        plane,
+        [["Point A", "Point A"], fmt.pt(s.ax, s.ay, s.az)],
+        [["Projeté orthogonal H", "Orthogonal projection H"], fmt.pt(...m.H)],
+        [["Distance AH", "Distance AH"], m.dist === 0 ? (fr ? "0 : A est dans le plan" : "0: A is in the plane") : fmt.read(m.dist)],
+      ];
+      const common = s.hide ? (fr ? "à déterminer" : "to be found")
+        : m.relation === "secant" ? `${fmt.rel("t", m.tStar)}${sep}I = ${fmt.pt(...m.I)}`
+        : m.relation === "inside" ? (fr ? "toute la droite" : "the whole line") : fr ? "aucun" : "none";
+      return [
+        plane,
+        [["Vecteurs n et u", "Vectors n and u"], `n = ${fmt.pt(...N)}${sep}u = ${fmt.pt(s.ux, s.uy, s.uz)}`],
+        [["Produit scalaire n · u", "Dot product n · u"], num(m.nu)],
+        [["Points communs", "Common points"], common],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { mode: 0, hide: 1 }, correct: 0,
+      prompt: [
+        "Tourne la figure pour bien voir le plan P et la droite. Une droite et un plan de l’espace, en général : combien de points communs peuvent-ils avoir ?",
+        "Turn the figure to see the plane P and the line clearly. A line and a plane in space, in general: how many common points can they have?",
+      ],
+      choices: [
+        ["Aucun, un seul, ou une infinité (toute la droite).", "None, one, or infinitely many (the whole line)."],
+        ["Toujours exactement un.", "Always exactly one."],
+        ["Aucun ou un seul, jamais une infinité.", "None or one, never infinitely many."],
+      ],
+    },
+    {
+      id: "param", kind: "explore", set: { mode: 1, t: 0 }, unlock: ["t"],
+      prompt: [
+        "La droite passe par A(−2 ; −1 ; 0) et a pour vecteur directeur u = (2 ; 1 ; 1) : M(t) = A + t u. Fais varier t jusqu’à ce que M(t) ait pour abscisse 2. Quelles sont alors ses coordonnées ?",
+        "The line passes through A(−2, −1, 0) with direction vector u = (2, 1, 1): M(t) = A + t u. Vary t until M(t) has x-coordinate 2. What are its coordinates then?",
+      ],
+      hint: [
+        "L’abscisse de M(t) est −2 + 2t. Elle vaut 2 pour t = 2, et on calcule y et z avec le même t.",
+        "The x-coordinate of M(t) is −2 + 2t. It equals 2 for t = 2, and y and z are computed with the same t.",
+      ],
+      goal: (s) => s.t === 2,
+      done: [
+        "−2 + 2t = 2 donne t = 2, puis y = −1 + 2 = 1 et z = 0 + 2 = 2 : M(2) = (2 ; 1 ; 2). Un seul réel t donne les trois coordonnées d’un point de la droite.",
+        "−2 + 2t = 2 gives t = 2, then y = −1 + 2 = 1 and z = 0 + 2 = 2: M(2) = (2, 1, 2). A single real number t gives the three coordinates of a point of the line.",
+      ],
+    },
+    {
+      id: "parallel", kind: "explore", set: { mode: 0, hide: 0, ax: -2, ay: -1, az: 2, ux: 2, uy: 1, uz: 1 }, unlock: ["tip", "tipz"],
+      prompt: [
+        "Le point A reste fixe. Fais glisser l’ombre de B et la hauteur de B pour que la droite ne perce plus le plan : n · u = 0. Que vaut alors n · u, et combien de points communs reste-t-il ?",
+        "Point A stays fixed. Drag the shadow of B and the height of B so that the line no longer pierces the plane: n · u = 0. What is n · u then, and how many common points remain?",
+      ],
+      hint: [
+        "Avec n = (1 ; 1 ; 2) et u = (ux ; uy ; uz), n · u = ux + uy + 2 uz. Essaie uz = −1 : il faut alors ux + uy = 2.",
+        "With n = (1, 1, 2) and u = (ux, uy, uz), n · u = ux + uy + 2 uz. Try uz = −1: then ux + uy = 2.",
+      ],
+      goal: (s, m) => m.nu === 0 && !m.degenerate,
+      done: [
+        "n · u = 0 : le vecteur directeur est orthogonal à la normale, donc parallèle au plan. Ici A n’est pas dans le plan (n · A + d ≠ 0), il n’y a aucun point commun ; si A était dans le plan, toute la droite y serait.",
+        "n · u = 0: the direction vector is orthogonal to the normal, so parallel to the plane. Here A is not in the plane (n · A + d ≠ 0), so there is no common point; if A were in the plane, the whole line would be.",
+      ],
+    },
+    {
+      id: "normal", kind: "explore", set: { mode: 2, hide: 0, ax: 2, ay: -1, az: 3, ux: 1, uy: 1, uz: 2, d: -2 }, unlock: ["A", "Az"],
+      prompt: [
+        "Le plan est x + y + 2z − 2 = 0 et la droite passe par A avec le vecteur normal n comme direction : elle perce le plan en H, le projeté orthogonal de A. Déplace A (son ombre, sa hauteur) jusqu’à ce que la distance AH soit nulle. Que vaut alors n · A + d ?",
+        "The plane is x + y + 2z − 2 = 0 and the line passes through A with the normal vector n as direction: it pierces the plane at H, the orthogonal projection of A. Move A (its shadow, its height) until the distance AH is zero. What is n · A + d then?",
+      ],
+      hint: [
+        "A est dans le plan quand ses coordonnées vérifient x + y + 2z − 2 = 0. Par exemple (0 ; 0 ; 1).",
+        "A is in the plane when its coordinates satisfy x + y + 2z − 2 = 0. For example (0, 0, 1).",
+      ],
+      goal: (s, m) => m.dist === 0,
+      done: [
+        "AH = 0 exactement quand n · A + d = 0 : A est alors dans le plan et H = A. Sinon AH = |n · A + d| / ‖n‖, avec ‖n‖ = √6.",
+        "AH = 0 exactly when n · A + d = 0: A is then in the plane and H = A. Otherwise AH = |n · A + d| / ‖n‖, with ‖n‖ = √6.",
+      ],
+    },
+    {
+      id: "meet", kind: "check", set: { mode: 0, hide: 1, d: -7 }, quantity: "tStar", answer: 2, tolerance: 0.01,
+      prompt: [
+        "La droite est M(t) = (−2 + 2t ; −1 + t ; t) et le plan est x + y + 2z − 7 = 0. Remplace x, y, z par leurs expressions en t dans l’équation du plan et résous : pour quelle valeur de t le point M(t) est-il dans le plan ?",
+        "The line is M(t) = (−2 + 2t, −1 + t, t) and the plane is x + y + 2z − 7 = 0. Replace x, y, z by their expressions in t in the plane equation and solve: for which value of t is the point M(t) in the plane?",
+      ],
+      hint: [
+        "(−2 + 2t) + (−1 + t) + 2t − 7 = 5t − 10. Il reste à résoudre 5t − 10 = 0.",
+        "(−2 + 2t) + (−1 + t) + 2t − 7 = 5t − 10. It remains to solve 5t − 10 = 0.",
+      ],
+      because: [
+        "5t − 10 = 0 donne t = 2, donc le point d’intersection est I = M(2) = (2 ; 1 ; 2). On vérifie : 2 + 1 + 2 × 2 − 7 = 0.",
+        "5t − 10 = 0 gives t = 2, so the intersection point is I = M(2) = (2, 1, 2). Check: 2 + 1 + 2 × 2 − 7 = 0.",
+      ],
+    },
+    {
+      id: "why", kind: "explain",
+      prompt: [
+        "Pourquoi, quand n · u ≠ 0, la droite et le plan ont-ils exactement un point commun ? Et que se passe-t-il quand n · u = 0 ?",
+        "Why, when n · u ≠ 0, do the line and the plane have exactly one common point? And what happens when n · u = 0?",
+      ],
+      argument: [
+        "Un point M(t) = A + t u de la droite est dans le plan quand n · M(t) + d = 0, c’est-à-dire t (n · u) + (n · A + d) = 0. C’est une équation du premier degré en t. Si n · u ≠ 0, elle a une unique solution t = −(n · A + d)/(n · u) : un seul point commun. Si n · u = 0, l’équation devient n · A + d = 0 : elle est soit toujours vraie (la droite est dans le plan), soit jamais vraie (aucun point commun).",
+        "A point M(t) = A + t u of the line is in the plane when n · M(t) + d = 0, that is t (n · u) + (n · A + d) = 0. This is a first-degree equation in t. If n · u ≠ 0 it has a single solution t = −(n · A + d)/(n · u): exactly one common point. If n · u = 0 the equation becomes n · A + d = 0: it is either always true (the line lies in the plane) or never true (no common point).",
+      ],
+    },
+  ],
+  conclusion: [
+    "La droite passant par A de vecteur directeur u est l’ensemble des points A + t u, t réel. Elle rencontre le plan n · X + d = 0 là où t (n · u) + (n · A + d) = 0 : en un seul point si n · u ≠ 0, nulle part si n · u = 0 et n · A + d ≠ 0, partout si n · u = 0 et n · A + d = 0. Quelques positions illustrent ces trois cas ; la résolution de cette équation en t les démontre tous.",
+    "The line through A with direction vector u is the set of points A + t u, t real. It meets the plane n · X + d = 0 where t (n · u) + (n · A + d) = 0: at a single point if n · u ≠ 0, nowhere if n · u = 0 and n · A + d ≠ 0, everywhere if n · u = 0 and n · A + d = 0. A few positions illustrate the three cases; solving this equation in t proves them all.",
+  ],
+  history: {
+    title: ["Monge · 1795", "Monge · 1795"],
+    story: [
+      "Gaspard Monge a développé la géométrie descriptive, qui représente les points, les droites et les plans de l’espace par leurs projections sur des plans, pour résoudre des problèmes d’intersection.",
+      "Gaspard Monge developed descriptive geometry, which represents points, lines and planes of space by their projections on planes, in order to solve intersection problems.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Monge/",
   },
 };
 
@@ -3517,6 +4451,42 @@ function makeFormat(lang = "fr") {
 
 __e.makeFormat = makeFormat;
 });
+__d("lab/models/cobweb.js", function (__e, __r) {
+// Pure maths of the cobweb experiment: the recurrence u_{n+1} = f(u_n) with f(x) = a x + b, its terms, its fixed point
+// (f(l) = l, so l = b / (1 - a) when a != 1) and the staircase between the graph of f and the line y = x. No DOM.
+const f = (s, x) => s.a * x + s.b;
+function terms(s, count) {
+  const out = [s.u0];
+  for (let i = 1; i < count; i++) out.push(f(s, out[i - 1]));
+  return out;
+}
+// null when a = 1 (u_{n+1} = u_n + b has no fixed point if b != 0, and every point is fixed if b = 0)
+const fixedPoint = (s) => (s.a === 1 ? null : s.b / (1 - s.a));
+function model(s) {
+  const list = terms(s, s.n + 1), fixed = fixedPoint(s);
+  // the staircase: (u0 ; 0), then up to the graph, across to the line y = x, up again ...
+  const path = [[list[0], 0]];
+  for (let i = 0; i < s.n; i++) path.push([list[i], list[i + 1]], [list[i + 1], list[i + 1]]);
+  return {
+    ...s, f: (x) => f(s, x), terms: list, last: list[s.n], fixed, path,
+    gap: fixed === null ? null : Math.abs(list[s.n] - fixed),
+    contracting: Math.abs(s.a) < 1,
+  };
+}
+const quantities = {
+  fixed: (s) => fixedPoint(s),
+  term: (s) => model(s).last,
+  gap: (s) => model(s).gap,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.f = f;
+__e.terms = terms;
+__e.fixedPoint = fixedPoint;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
 __d("lab/models/complex.js", function (__e, __r) {
 // Pure maths of the complex-number experiment: the map p -> z p (rotation by arg z and scaling by |z|) or p -> p + z, with
 // z given by its modulus r and its argument theta (degrees). Points are [x, y] = x + iy. No DOM.
@@ -3588,6 +4558,38 @@ __e.model = model;
 __e.quantities = quantities;
 __e.quantity = quantity;
 });
+__d("lab/models/exponential.js", function (__e, __r) {
+// Pure maths of the exponential experiment: f(x) = k a^x with k > 0 and a > 0, and the sequence u_n = f(n) it carries, which is
+// geometric with first term k and ratio a. No DOM.
+const value = (s, x) => s.k * s.a ** x;
+// u_0 .. u_{count-1} by repeated multiplication (exact for the dyadic k and a of the handles)
+function terms(s, count) {
+  const out = [];
+  let u = s.k;
+  for (let i = 0; i < count; i++) { out.push(u); u *= s.a; }
+  return out;
+}
+function model(s) {
+  return {
+    k: s.k, a: s.a, f: (x) => value(s, x),
+    direction: s.a > 1 ? "up" : s.a < 1 ? "down" : "flat",
+    terms: terms(s, 6),
+  };
+}
+const quantities = {
+  u4: (s) => terms(s, 5)[4],
+  u5: (s) => terms(s, 6)[5],
+  ratio: (s) => s.a,
+  initial: (s) => s.k,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.value = value;
+__e.terms = terms;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
 __d("lab/models/integral.js", function (__e, __r) {
 // Pure maths of Riemann sums for f(x) = x^2 on [a, b]. The sum uses n equal rectangles.
 const f = (x) => x * x;
@@ -3621,6 +4623,88 @@ __e.antiderivative = antiderivative;
 __e.exact = exact;
 __e.sum = sum;
 __e.rectangles = rectangles;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/line.js", function (__e, __r) {
+// Pure maths of the line experiment: the line through A(ax ; ay) and B(bx ; by), its direction vector AB, its slope m, its
+// reduced equation y = mx + p and a Cartesian equation with integer coefficients. The points sit on a grid of 0,5, so every
+// quotient is a ratio of multiples of 1/4 and can be written exactly as a fraction. No DOM.
+const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
+const clean = (x) => (Object.is(x, -0) || Math.abs(x) < 1e-12 ? 0 : x);
+
+// p / q in lowest terms, p and q being multiples of 1/4 (q != 0): { num, den } with den > 0
+function fraction(p, q) {
+  let a = Math.round(p * 4), b = Math.round(q * 4);
+  const g = gcd(a, b) || 1;
+  a /= g; b /= g;
+  if (b < 0) { a = -a; b = -b; }
+  return { num: clean(a), den: b };
+}
+
+function model(s) {
+  const { ax, ay, bx, by } = s;
+  const dx = clean(bx - ax), dy = clean(by - ay);
+  const degenerate = dx === 0 && dy === 0, vertical = dx === 0 && dy !== 0;
+  const m = degenerate || vertical ? null : dy / dx;
+  const p = m === null ? null : ay - m * ax;
+  // a x + b y + c = 0 through A and B, scaled to integers without a common factor, first coefficient positive
+  let cartesian = null;
+  if (!degenerate) {
+    let A = Math.round(4 * dy), B = Math.round(-4 * dx), C = Math.round(4 * (dx * ay - dy * ax));
+    const g = gcd(gcd(A, B), C) || 1;
+    A /= g; B /= g; C /= g;
+    if (A < 0 || (A === 0 && B < 0)) { A = -A; B = -B; C = -C; }
+    cartesian = [clean(A), clean(B), clean(C)];
+  }
+  return {
+    A: [ax, ay], B: [bx, by], u: [dx, dy], dx, dy, degenerate, vertical, m, p, cartesian,
+    slope: m === null ? null : fraction(dy, dx),
+    intercept: m === null ? null : fraction(dx * ay - dy * ax, dx),
+    increasing: m !== null && m > 0, decreasing: m !== null && m < 0,
+  };
+}
+
+const quantities = {
+  slope: (s) => model(s).m,
+  intercept: (s) => model(s).p,
+  dx: (s) => model(s).dx,
+  dy: (s) => model(s).dy,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.fraction = fraction;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/matrix.js", function (__e, __r) {
+// Pure maths of the matrix experiment: M = (a b ; c d) acts on the plane. Its first column (a ; c) is the image of i = (1 ; 0)
+// and its second column (b ; d) the image of j = (0 ; 1). The unit square becomes the parallelogram on those two columns,
+// whose signed area is det M = ad - bc, the factor by which M multiplies every area. No DOM.
+const clean = (x) => (Object.is(x, -0) || Math.abs(x) < 1e-12 ? 0 : x);
+
+function model(s) {
+  const { a, b, c, d } = s;
+  const det = clean(a * d - b * c);
+  return {
+    a, b, c, d, det, area: Math.abs(det),
+    orientation: det > 0 ? 1 : det < 0 ? -1 : 0,
+    invertible: det !== 0,
+    i: [a, c], j: [b, d],
+    polygon: [[0, 0], [a, c], [a + b, c + d], [b, d]],
+    // M^-1 = 1/det (d -b ; -c a): its columns are the images of i and j by the inverse
+    inverse: det === 0 ? null : { i: [clean(d / det), clean(-c / det)], j: [clean(-b / det), clean(a / det)] },
+    f: ([x, y]) => [a * x + b * y, c * x + d * y],
+  };
+}
+const quantities = {
+  det: (s) => model(s).det,
+  area: (s) => model(s).area,
+};
+const quantity = (name, s) => quantities[name](s);
+
 __e.model = model;
 __e.quantities = quantities;
 __e.quantity = quantity;
@@ -3771,6 +4855,82 @@ __e.isGeom = isGeom;
 __e.step = step;
 __e.term = term;
 __e.terms = terms;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/space-lines.js", function (__e, __r) {
+// Pure maths of the space-lines experiment: the plane P: x + y + 2z + d = 0 (normal vector n = (1 ; 1 ; 2)), the line through
+// A with direction vector u (the points M(t) = A + t u), their common points, the orthogonal projection H of A on P and the
+// distance AH. The plane and the line are cut to a box for drawing. No DOM, in an orthonormal frame.
+const N = [1, 1, 2];
+// What the handles can reach (the clamps of the experiment) and the box the figure is fitted to.
+const BOX = [[-4, 4], [-4, 4], [-1, 6]];
+const clean = (x) => (Object.is(x, -0) || Math.abs(x) < 1e-12 ? 0 : x);
+const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const along = (a, u, t) => [a[0] + t * u[0], a[1] + t * u[1], a[2] + t * u[2]];
+
+// The part of the line A + t u inside the box: [t0, t1], or null.
+function clipLine(A, u, box = BOX) {
+  let lo = -Infinity, hi = Infinity;
+  for (let k = 0; k < 3; k++) {
+    if (u[k] === 0) { if (A[k] < box[k][0] || A[k] > box[k][1]) return null; continue; }
+    const a = (box[k][0] - A[k]) / u[k], b = (box[k][1] - A[k]) / u[k];
+    lo = Math.max(lo, Math.min(a, b)); hi = Math.min(hi, Math.max(a, b));
+  }
+  return lo < hi ? [lo, hi] : null;
+}
+
+// Sutherland-Hodgman against the half-space x_k >= bound (keepAbove) or x_k <= bound.
+function clipHalf(poly, k, bound, keepAbove) {
+  const inside = (p) => (keepAbove ? p[k] >= bound - 1e-12 : p[k] <= bound + 1e-12), out = [];
+  for (let i = 0; i < poly.length; i++) {
+    const p = poly[i], q = poly[(i + 1) % poly.length];
+    if (inside(p)) out.push(p);
+    if (inside(p) !== inside(q)) { const t = (bound - p[k]) / (q[k] - p[k]); out.push(along(p, [q[0] - p[0], q[1] - p[1], q[2] - p[2]], t)); }
+  }
+  return out;
+}
+// The polygon in which the plane n . X + d = 0 cuts the box, in order around its boundary; null if it misses the box.
+function planePolygon(n, d, box = BOX) {
+  const nn = dot(n, n), p0 = [-d * n[0] / nn, -d * n[1] / nn, -d * n[2] / nn];
+  const seed = Math.abs(n[0]) < Math.abs(n[1]) ? [1, 0, 0] : [0, 1, 0];
+  let e1 = [n[1] * seed[2] - n[2] * seed[1], n[2] * seed[0] - n[0] * seed[2], n[0] * seed[1] - n[1] * seed[0]];
+  const l1 = Math.hypot(...e1); e1 = e1.map((v) => (v / l1) * 40);
+  let e2 = [n[1] * e1[2] - n[2] * e1[1], n[2] * e1[0] - n[0] * e1[2], n[0] * e1[1] - n[1] * e1[0]];
+  const l2 = Math.hypot(...e2); e2 = e2.map((v) => (v / l2) * 40);
+  let poly = [along(along(p0, e1, 1), e2, 1), along(along(p0, e1, -1), e2, 1), along(along(p0, e1, -1), e2, -1), along(along(p0, e1, 1), e2, -1)];
+  for (let k = 0; k < 3 && poly.length; k++) { poly = clipHalf(poly, k, box[k][0], true); if (poly.length) poly = clipHalf(poly, k, box[k][1], false); }
+  return poly.length >= 3 ? poly.map((p) => p.map(clean)) : null;
+}
+
+function model(s) {
+  const A = [s.ax, s.ay, s.az], u = [s.ux, s.uy, s.uz], n = N, d = s.d;
+  const nu = clean(dot(n, u)), sA = clean(dot(n, A) + d), degenerate = u.every((v) => v === 0);
+  const relation = degenerate ? null : nu !== 0 ? "secant" : sA === 0 ? "inside" : "parallel";
+  const tStar = relation === "secant" ? clean(-sA / nu) : null;
+  const nn = dot(n, n);
+  return {
+    A, u, n, d, B: along(A, u, 1), M: along(A, u, s.t ?? 0), nu, sA, degenerate, relation, tStar,
+    I: tStar === null ? null : along(A, u, tStar).map(clean),
+    // projection of A on the plane along n, and the distance AH = |n . A + d| / |n|
+    H: along(A, n, -sA / nn).map(clean), dist: Math.abs(sA) / Math.sqrt(nn),
+    clip: degenerate ? null : clipLine(A, u),
+    planePoly: planePolygon(n, d),
+  };
+}
+const quantities = {
+  tStar: (s) => model(s).tStar,
+  nu: (s) => model(s).nu,
+  dist: (s) => model(s).dist,
+  sA: (s) => model(s).sA,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.N = N;
+__e.BOX = BOX;
+__e.clipLine = clipLine;
+__e.planePolygon = planePolygon;
 __e.model = model;
 __e.quantities = quantities;
 __e.quantity = quantity;
@@ -4188,6 +5348,18 @@ function drawHandle(g, st, x, y, { color = "accent", locked = false, focused = f
 
 
 
+// The measured quantity of a figure: a badge in the corner whose colour says what the figure is doing (positive, negative, zero).
+function drawBadge(g, st, m) {
+  g.save();
+  g.font = st.font(20, 700);
+  const w = g.measureText(m.text).width + 24, x = 10, y = 8;   // the corner of the stage, outside the equal-scale frame when there is room
+  g.fillStyle = st.pal.surface; g.globalAlpha = 0.92;
+  g.beginPath(); g.roundRect(x, y, w, 34, 8); g.fill();
+  g.globalAlpha = 1; g.lineWidth = 2; g.strokeStyle = st.color(m.color || "ink"); g.stroke();
+  g.fillStyle = st.color(m.color || "ink"); g.textAlign = "left"; g.fillText(m.text, x + 12, y + 24);
+  g.restore();
+}
+
 // The engine handles of a template: one per `handle` control of the experiment, locked or not (locked ones are only drawn).
 // `views` maps a panel id to its current view; a control names its panel (default: the first one).
 function buildHandles({ exp, fmt, getState, setState, views, panels }) {
@@ -4227,6 +5399,7 @@ __e.makeView = makeView;
 __e.drawAxes = drawAxes;
 __e.drawScene = drawScene;
 __e.drawHandle = drawHandle;
+__e.drawBadge = drawBadge;
 __e.buildHandles = buildHandles;
 });
 __d("lab/registry.js", function (__e, __r) {
@@ -4241,9 +5414,14 @@ const probability = __r("lab/experiments/probability.js").default;
 const vectors = __r("lab/experiments/vectors.js").default;
 const statistics = __r("lab/experiments/statistics.js").default;
 const complex = __r("lab/experiments/complex.js").default;
+const line = __r("lab/experiments/line.js").default;
+const exponential = __r("lab/experiments/exponential.js").default;
+const cobweb = __r("lab/experiments/cobweb.js").default;
+const matrix = __r("lab/experiments/matrix.js").default;
+const spaceLines = __r("lab/experiments/space-lines.js").default;
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex];
+const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines];
 
 const TEMPLATES = {
   family: () => Promise.resolve(__r("lab/templates/family.js")),
@@ -4252,6 +5430,7 @@ const TEMPLATES = {
   figure: () => Promise.resolve(__r("lab/templates/figure.js")),
   data: () => Promise.resolve(__r("lab/templates/data.js")),
   transform: () => Promise.resolve(__r("lab/templates/transform.js")),
+  space: () => Promise.resolve(__r("lab/templates/space.js")),
 };
 
 // Type of activity, shown as the group titles of the #lab index.
@@ -4262,6 +5441,7 @@ const TEMPLATE_INFO = {
   figure: { title: ["Une figure, un invariant", "A figure, an invariant"], blurb: ["Déplace les points d’une figure et cherche ce qui reste vrai.", "Move the points of a figure and look for what stays true."] },
   data: { title: ["Des données, des résumés", "Data and summaries"], blurb: ["Chaque valeur compte : comment réagissent la moyenne, la médiane et la boîte ?", "Every value counts: how do the mean, the median and the box react?"] },
   transform: { title: ["Transformer le plan", "Transform the plane"], blurb: ["Une opération appliquée à un point, à une figure, à un quadrillage.", "An operation applied to a point, a figure, a grid."] },
+  space: { title: ["Explorer l’espace", "Explore space"], blurb: ["Une figure en trois dimensions que l’on fait tourner, avec des points qui restent sur une droite ou un plan.", "A three-dimensional figure you can turn, with points that stay on a line or a plane."] },
 };
 
 const experimentById = (id) => EXPERIMENTS.find((e) => e.id === id) || null;
@@ -4425,7 +5605,8 @@ function createShell(host, exp, tpl, opts = {}) {
     fontScale: slide ? 1.3 : 1,
     canvasKeys: slide,
     navHost: slide ? opts.controls : undefined,
-    label: `${t(exp.title)}. ${t(T("keys"))}`,
+    onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
+    label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
     onDragEnd: () => announce(),
     onNudge: () => announce(),
@@ -4435,7 +5616,7 @@ function createShell(host, exp, tpl, opts = {}) {
   readoutHost.append(formulaEl);
   const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
   const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
-  if (full) figure.append(el("p", "lab2-keys", t(T("keys"))));
+  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T("keys"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
@@ -5019,7 +6200,7 @@ __e.mount = mount;
 __d("lab/templates/figure.js", function (__e, __r) {
 // Template `figure`: a dynamic geometric figure with an invariant to discover. One equal-scale panel, two to four points as
 // handles, the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
-const { makeView, drawAxes, drawScene, drawHandle, buildHandles } = __r("lab/plot.js");
+const { makeView, drawAxes, drawScene, drawHandle, drawBadge, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
   const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
@@ -5029,25 +6210,13 @@ function mount(env) {
   layout();
   const handles = buildHandles({ exp, fmt, getState, setState, views: () => ({ figure: layout() }), panels: ["figure"] });
 
-  // The measured quantity: a badge whose colour says what the figure is doing (positive, negative, zero).
-  function badge(g, m) {
-    g.save();
-    g.font = stage.font(20, 700);
-    const w = g.measureText(m.text).width + 24, x = 10, y = 8;   // the corner of the stage, outside the equal-scale frame when there is room
-    g.fillStyle = stage.pal.surface; g.globalAlpha = 0.92;
-    g.beginPath(); g.roundRect(x, y, w, 34, 8); g.fill();
-    g.globalAlpha = 1; g.lineWidth = 2; g.strokeStyle = stage.color(m.color || "ink"); g.stroke();
-    g.fillStyle = stage.color(m.color || "ink"); g.textAlign = "left"; g.fillText(m.text, x + 12, y + 24);
-    g.restore();
-  }
-
   function draw(g) {
     const v = layout(), s = getState(), other = ghost();
     drawAxes(g, v, spec, stage, fmt);
     if (other) drawScene(g, v, spec.scene(other, ctx), stage, { ghost: true });
     drawScene(g, v, spec.scene(s, ctx), stage);
     const m = spec.measure?.(s, ctx);
-    if (m) badge(g, m);
+    if (m) drawBadge(g, stage, m);
     for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
   }
   return { draw, handles, destroy() {} };
@@ -5097,6 +6266,195 @@ function mount(env) {
   return { ...base, player };
 }
 
+__e.mount = mount;
+});
+__d("lab/templates/space.js", function (__e, __r) {
+// Template `space`: a 3D object you can turn. One orthographic view (the camera of js/camera3d.js, the same as the slide widgets),
+// a floor grid, the three axes and the experiment's scene made of faces, segments and points. Dragging the empty background turns
+// the view (arrow keys too, with the canvas focused); the camera belongs to the view and never depends on the state, so changing a
+// parameter never turns or rescales it (Shift or Alt drag pans, the wheel zooms, 0 or a double click resets everything).
+// Handles are points constrained to a line, a plane or an axis direction: a control gives `constraint(state)` = { o, e1, e2? }
+// (the point is o + a e1 [+ b e2]), the pointer's view ray is intersected with it, the parameters are snapped to `grid` and the
+// control's `drag(state, point, {a, b})` returns the partial state. A part of a segment that lies behind a face marked `occlude`
+// is dashed, so the depth is readable. Nothing here is created during a drag or a rotation: the canvas is repainted, that is all.
+const { cam3Project, cam3Ray, cam3HitPlane, cam3HitLine, cam3Turn, CAM3_DEFAULT } = __r("camera3d.js");
+const { drawHandle, drawLabel, drawBadge } = __r("lab/plot.js");
+const { snap, clamp } = __r("lab/models/num.js");
+
+const spins = true;   // the shell gives the stage an onSpin: a drag on the background calls view.spin(dx, dy)
+
+const dot3 = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const cross3 = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const along = (o, e, a) => [o[0] + a * e[0], o[1] + a * e[1], o[2] + a * e[2]];
+
+// Even-odd test of a screen point against a polygon of {X, Y}.
+function inside(x, y, poly) {
+  let w = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const a = poly[i], b = poly[j];
+    if ((a.Y > y) !== (b.Y > y) && x < ((b.X - a.X) * (y - a.Y)) / (b.Y - a.Y) + a.X) w = !w;
+  }
+  return w;
+}
+
+function mount(env) {
+  const { exp, stage, fmt, getState, setState, ghost, isUnlocked } = env;
+  const spec = exp.views.space, ctx = { fmt, lang: fmt.lang, stage, unlocked: isUnlocked };
+  const cam = { yaw: CAM3_DEFAULT.yaw, pitch: CAM3_DEFAULT.pitch };
+  stage.camera3 = cam;   // read by the tests: the view angles, independent of the state
+  const [bx, by, bz] = spec.box;
+  const centre = [(bx[0] + bx[1]) / 2, (by[0] + by[1]) / 2, (bz[0] + bz[1]) / 2];
+  const radius = Math.hypot(bx[1] - bx[0], by[1] - by[0], bz[1] - bz[0]) / 2;   // the box fits the view whatever the angles
+
+  // world -> stage pixels (before the zoom of the 2D camera)
+  const scale = () => { const h = Math.min(stage.W || 640, stage.H || 420); return ((h < 420 ? 0.66 : 0.54) * h) / radius; };   // a short stage (a slide) uses more of its height
+  const proj = (p) => {
+    const q = cam3Project(cam.yaw, cam.pitch, p[0] - centre[0], p[1] - centre[1], p[2] - centre[2]), k = scale();
+    return { X: stage.W / 2 + k * q.u, Y: stage.H / 2 - k * q.v, d: q.d };
+  };
+  const rayAt = (sx, sy) => {
+    const k = scale(), r = cam3Ray(cam.yaw, cam.pitch, (sx - stage.W / 2) / k, -(sy - stage.H / 2) / k);
+    return { p: [r.p[0] + centre[0], r.p[1] + centre[1], r.p[2] + centre[2]], w: r.w };
+  };
+
+  // ---- handles
+  const handles = Object.entries(exp.controls).filter(([, c]) => c.kind === "handle").map(([id, c]) => {
+    const g = c.grid || 0, params = (s) => {
+      const k = c.constraint(s), p = c.at(s);
+      return { k, a: dot3([p[0] - k.o[0], p[1] - k.o[1], p[2] - k.o[2]], k.e1) / dot3(k.e1, k.e1), b: k.e2 ? dot3([p[0] - k.o[0], p[1] - k.o[1], p[2] - k.o[2]], k.e2) / dot3(k.e2, k.e2) : 0 };
+    };
+    const move = (s, a, b) => {
+      const k = c.constraint(s), p = along(along(k.o, k.e1, a), k.e2 || [0, 0, 0], b);
+      const next = c.drag(s, p, { a, b });
+      if (next) setState(next);
+    };
+    return {
+      id, control: c, label: fmt.t(c.label), color: c.color || "accent", absolute: false,
+      pos() {
+        const q = proj(c.at(getState()));
+        return [clamp(q.X, 6, stage.W - 6), clamp(q.Y, 6, stage.H - 6)];
+      },
+      drag(sx, sy) {
+        const s = getState(), k = c.constraint(s), ray = rayAt(sx, sy);
+        if (k.e2) {
+          const hit = cam3HitPlane(ray, k.o, cross3(k.e1, k.e2));
+          if (!hit) return;
+          const d = [hit[0] - k.o[0], hit[1] - k.o[1], hit[2] - k.o[2]];
+          move(s, snap(dot3(d, k.e1) / dot3(k.e1, k.e1), g), snap(dot3(d, k.e2) / dot3(k.e2, k.e2), g));
+        } else {
+          const hit = cam3HitLine(ray, k.o, k.e1);
+          if (hit) move(s, snap(hit.s, g), 0);
+        }
+      },
+      nudge(dx, dy) {
+        const s = getState(), { k, a, b } = params(s), step = g || 1;
+        if (c.nudge) { const next = c.nudge(s, dx, dy); if (next) setState(next); return; }
+        if (k.e2) move(s, snap(a + dx * step, g), snap(b + dy * step, g)); else move(s, snap(a + (dx || dy) * step, g), 0);
+      },
+      valuetext: () => c.valuetext?.(getState(), fmt) || "",
+    };
+  });
+
+  // ---- drawing
+  function arrow(g, a, b) {
+    const ang = Math.atan2(b.Y - a.Y, b.X - a.X), n = 9;
+    g.beginPath(); g.moveTo(b.X, b.Y);
+    g.lineTo(b.X - n * Math.cos(ang - 0.4), b.Y - n * Math.sin(ang - 0.4)); g.lineTo(b.X - n * Math.cos(ang + 0.4), b.Y - n * Math.sin(ang + 0.4));
+    g.closePath(); g.fillStyle = g.strokeStyle; g.fill();
+  }
+  function line(g, a, b, color, width, dash) {
+    g.save(); g.strokeStyle = stage.color(color); g.lineWidth = width; g.setLineDash(dash || []); g.beginPath(); g.moveTo(a.X, a.Y); g.lineTo(b.X, b.Y); g.stroke(); g.restore();
+  }
+
+  function floorAndAxes(g) {
+    const pal = stage.pal, z0 = spec.floorZ ?? (bz[0] <= 0 && bz[1] >= 0 ? 0 : bz[0]);
+    if (spec.floor !== false) {
+      g.save(); g.strokeStyle = pal.grid; g.lineWidth = 1;
+      for (let x = Math.ceil(bx[0]); x <= bx[1]; x++) { const a = proj([x, by[0], z0]), b = proj([x, by[1], z0]); g.beginPath(); g.moveTo(a.X, a.Y); g.lineTo(b.X, b.Y); g.stroke(); }
+      for (let y = Math.ceil(by[0]); y <= by[1]; y++) { const a = proj([bx[0], y, z0]), b = proj([bx[1], y, z0]); g.beginPath(); g.moveTo(a.X, a.Y); g.lineTo(b.X, b.Y); g.stroke(); }
+      g.restore();
+    }
+    const L = spec.axes ?? Math.max(bx[1], by[1], bz[1]) - 0.2, o = proj([0, 0, 0]);
+    for (const [name, p] of [["x", [L, 0, 0]], ["y", [0, L, 0]], ["z", [0, 0, L]]]) {
+      const e = proj(p);
+      g.save(); g.strokeStyle = pal.line; g.lineWidth = 1.6; g.beginPath(); g.moveTo(o.X, o.Y); g.lineTo(e.X, e.Y); g.stroke(); arrow(g, o, e); g.restore();
+      drawLabel(g, stage, name, e.X + 7, e.Y - 6, "muted", "left", 16);
+    }
+  }
+
+  // One scene (the state's, or the ghost of the other case of a contrast) painted far to near.
+  function paint(g, scene, faint, placed) {
+    const faces = (scene.faces || []).map((f) => {
+      const pts = f.pts.map(proj), n = cross3([f.pts[1][0] - f.pts[0][0], f.pts[1][1] - f.pts[0][1], f.pts[1][2] - f.pts[0][2]], [f.pts[2][0] - f.pts[0][0], f.pts[2][1] - f.pts[0][1], f.pts[2][2] - f.pts[0][2]]);
+      return { ...f, poly: pts, n, k: dot3(n, f.pts[0]), d: pts.reduce((m, p) => m + p.d, 0) / pts.length };
+    }).sort((a, b) => b.d - a.d);
+    const w = cam3Ray(cam.yaw, cam.pitch, 0, 0).w, occluders = faces.filter((f) => f.occlude && Math.abs(dot3(f.n, w)) > 1e-6);
+    const hidden = (p) => {
+      if (!occluders.length) return false;
+      const q = proj(p);
+      return occluders.some((f) => (f.k - dot3(f.n, p)) / dot3(f.n, w) < -1e-6 && inside(q.X, q.Y, f.poly));
+    };
+    g.save();
+    if (faint) g.globalAlpha = 0.38;
+    for (const f of faces) {
+      g.save();
+      g.beginPath(); f.poly.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath();
+      g.globalAlpha *= f.alpha ?? 0.2; g.fillStyle = stage.color(f.color || "accent"); g.fill();
+      g.restore();
+      if (f.line !== false) { g.save(); g.strokeStyle = stage.color(f.color || "accent"); g.lineWidth = 1.5; g.setLineDash(f.dash || []); g.lineJoin = "round"; g.beginPath(); f.poly.forEach((p, i) => (i ? g.lineTo(p.X, p.Y) : g.moveTo(p.X, p.Y))); g.closePath(); g.stroke(); g.restore(); }
+    }
+    for (const sg of scene.segs || []) {
+      const color = stage.color(sg.color || "ink"), width = sg.width ?? 2.5;
+      const n = occluders.length ? 40 : 1, pieces = [];
+      for (let i = 0; i < n; i++) {
+        const t0 = i / n, t1 = (i + 1) / n, mid = along(sg.a, [sg.b[0] - sg.a[0], sg.b[1] - sg.a[1], sg.b[2] - sg.a[2]], (t0 + t1) / 2);
+        pieces.push({ t0, t1, hid: hidden(mid) });
+      }
+      const dir = [sg.b[0] - sg.a[0], sg.b[1] - sg.a[1], sg.b[2] - sg.a[2]];
+      for (let i = 0; i < n;) {
+        let j = i; while (j + 1 < n && pieces[j + 1].hid === pieces[i].hid) j++;
+        const a = proj(along(sg.a, dir, pieces[i].t0)), b = proj(along(sg.a, dir, pieces[j].t1));
+        g.save(); g.strokeStyle = color; g.lineWidth = width; g.lineCap = "round";
+        if (pieces[i].hid) { g.setLineDash([5, 5]); g.globalAlpha *= 0.55; } else g.setLineDash(sg.dash || []);
+        g.beginPath(); g.moveTo(a.X, a.Y); g.lineTo(b.X, b.Y); g.stroke(); g.restore();
+        i = j + 1;
+      }
+      if (sg.arrow) { g.save(); g.strokeStyle = color; arrow(g, proj(sg.a), proj(sg.b)); g.restore(); }
+    }
+    for (const p of scene.points || []) {
+      const q = proj(p.at), hid = hidden(p.at);
+      g.save(); g.beginPath(); g.arc(q.X, q.Y, p.r ?? 5.5, 0, Math.PI * 2);
+      if (p.hollow || hid) { g.lineWidth = 2; g.strokeStyle = stage.color(p.color || "ink"); g.fillStyle = stage.pal.surface; g.fill(); g.stroke(); }
+      else { g.fillStyle = stage.color(p.color || "ink"); g.fill(); }
+      g.restore();
+      if (p.label && !faint) drawLabel(g, stage, p.label, q.X + (p.dx ?? 10), q.Y + (p.dy ?? -10), p.color, p.anchor || "left", 17, placed);
+    }
+    for (const t of scene.texts || []) if (!faint) drawLabel(g, stage, t.text, proj(t.at).X + (t.dx || 0), proj(t.at).Y + (t.dy || 0), t.color, t.anchor || "left", t.size || 16, placed);
+    g.restore();
+  }
+
+  function draw(g) {
+    const s = getState(), other = ghost(), placed = [];
+    floorAndAxes(g);
+    if (other) paint(g, spec.scene(other, ctx), true, placed);
+    paint(g, spec.scene(s, ctx), false, placed);
+    const m = spec.measure?.(s, ctx);
+    if (m) drawBadge(g, stage, m);
+    for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id), focused: stage.focusId === h.id }); }
+  }
+
+  // The view: turning, and the reset of the 2D camera (key 0, double click) brings the angles back too.
+  const resetAngles = () => { cam.yaw = CAM3_DEFAULT.yaw; cam.pitch = CAM3_DEFAULT.pitch; };
+  const baseReset = stage.nav.camera.reset;
+  stage.nav.camera.reset = () => { baseReset(); resetAngles(); };
+  return {
+    draw, handles,
+    spin(dx, dy) { cam3Turn(cam, dx * 0.008, dy * 0.006); },
+    destroy() { stage.nav.camera.reset = baseReset; },
+  };
+}
+
+__e.spins = spins;
 __e.mount = mount;
 });
 __d("lab/templates/transform.js", function (__e, __r) {

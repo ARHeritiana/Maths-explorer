@@ -232,6 +232,18 @@ export function drawHandle(g, st, x, y, { color = "accent", locked = false, focu
 
 export { label as drawLabel };
 
+// The measured quantity of a figure: a badge in the corner whose colour says what the figure is doing (positive, negative, zero).
+export function drawBadge(g, st, m) {
+  g.save();
+  g.font = st.font(20, 700);
+  const w = g.measureText(m.text).width + 24, x = 10, y = 8;   // the corner of the stage, outside the equal-scale frame when there is room
+  g.fillStyle = st.pal.surface; g.globalAlpha = 0.92;
+  g.beginPath(); g.roundRect(x, y, w, 34, 8); g.fill();
+  g.globalAlpha = 1; g.lineWidth = 2; g.strokeStyle = st.color(m.color || "ink"); g.stroke();
+  g.fillStyle = st.color(m.color || "ink"); g.textAlign = "left"; g.fillText(m.text, x + 12, y + 24);
+  g.restore();
+}
+
 // The engine handles of a template: one per `handle` control of the experiment, locked or not (locked ones are only drawn).
 // `views` maps a panel id to its current view; a control names its panel (default: the first one).
 export function buildHandles({ exp, fmt, getState, setState, views, panels }) {

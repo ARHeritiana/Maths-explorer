@@ -17,6 +17,12 @@ import * as P from "../dist/js/lab/models/probability.js";
 import * as V from "../dist/js/lab/models/vectors.js";
 import * as ST from "../dist/js/lab/models/statistics.js";
 import * as C from "../dist/js/lab/models/complex.js";
+import * as LN from "../dist/js/lab/models/line.js";
+import * as EX from "../dist/js/lab/models/exponential.js";
+import * as CW from "../dist/js/lab/models/cobweb.js";
+import * as MX from "../dist/js/lab/models/matrix.js";
+import * as SL from "../dist/js/lab/models/space-lines.js";
+import * as CAM from "../dist/js/camera3d.js";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { labs, pathways, pathwayStages } from "../dist/js/content.js";
 
@@ -25,9 +31,9 @@ const byId = Object.fromEntries(EXPERIMENTS.map((e) => [e.id, e]));
 const DASH = /[–—]/;
 const isPair = (p) => Array.isArray(p) && p.length === 2 && p.every((x) => typeof x === "string" && x.trim().length > 0);
 
-test("the registry lists nine experiments with consistent ids, templates and references", async () => {
-  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex"]);
-  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform"], "six templates are in use");
+test("the registry lists fourteen experiments with consistent ids, templates and references", async () => {
+  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines"]);
+  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space"], "seven templates are in use");
   assert.equal(new Set(EXPERIMENTS.map((e) => e.id)).size, EXPERIMENTS.length);
   for (const e of EXPERIMENTS) {
     assert.ok(e.template in TEMPLATES && e.template in TEMPLATE_INFO, e.id);
@@ -146,6 +152,11 @@ test("formula, readout, table and labels stay finite, bilingual and dash-free ov
     probability: [{ n: 10, p: 0.3, runs: 0, seed: 2, theory: 0 }, { n: 1, p: 1, runs: 1000, seed: 5, theory: 1 }, { n: 12, p: 0, runs: 10, seed: 9, theory: 1 }, { n: 8, p: 0.25, runs: 5000, seed: 21, theory: 0 }],
     vectors: [{ ux: 3, uy: 1, vx: -1, vy: 3 }, { ux: 0, uy: 0, vx: 0, vy: 0 }, { ux: 2, uy: 1, vx: -4, vy: -2 }, { ux: -4, uy: 4, vx: 4, vy: -3.5 }, { ux: 1, uy: 0, vx: 0, vy: -1 }],
     statistics: [{ data: [2, 3, 4, 4, 5, 6, 9], hide: 0 }, { data: [1, 2, 4, 5, 7, 8, 12], hide: 1 }, { data: [0, 0, 0, 0, 0, 0, 0], hide: 0 }, { data: [20, 0.5, 20, 7.5, 7.5, 7.5, 3], hide: 0 }],
+    line: [{ ax: 0, ay: 1, bx: 2, by: 5 }, { ax: 1, ay: 1, bx: 1, by: 3 }, { ax: 2, ay: 2, bx: 2, by: 2 }, { ax: -1, ay: 4, bx: 3, by: -2 }, { ax: 0, ay: 0, bx: 3, by: 1 }, { ax: -5.5, ay: -5.5, bx: 5.5, by: 5.5 }, { ax: 0, ay: 3, bx: 4, by: 3 }],
+    exponential: [{ k: 1, a: 2 }, { k: 6, a: 0.25 }, { k: 0.5, a: 3 }, { k: 3, a: 1 }],
+    cobweb: [{ a: 0.5, b: 2, u0: 8, n: 6 }, { a: 1, b: 1, u0: 0, n: 3 }, { a: -2, b: 5, u0: -1, n: 12 }, { a: 0, b: -2, u0: 9, n: 0 }, { a: 1.25, b: 0, u0: 1, n: 12 }, { a: 1, b: 0, u0: 4, n: 5 }],
+    matrix: [{ a: 2, b: 1, c: 0, d: 2 }, { a: 0, b: 0, c: 0, d: 0 }, { a: -2.5, b: 1, c: 2, d: -0.5 }, { a: 1, b: 2, c: 2, d: 4 }, { a: 1.5, b: 0, c: 0, d: 2 }],
+    "space-lines": [{ ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 0, mode: 0, hide: 0 }, { ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 1.75, mode: 1, hide: 0 }, { ax: 2, ay: -1, az: 3, ux: 1, uy: 1, uz: 2, d: -2, t: 0, mode: 2, hide: 0 }, { ax: 0, ay: 0, az: 1, ux: 1, uy: 1, uz: -1, d: -2, t: 0, mode: 0, hide: 0 }, { ax: -2, ay: -1, az: 2, ux: 2, uy: 0, uz: -1, d: -7, t: 0, mode: 0, hide: 0 }, { ax: 0, ay: 0, az: 1, ux: 1, uy: 1, uz: 2, d: -2, t: 0, mode: 2, hide: 0 }, { ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 0, mode: 0, hide: 1 }, { ax: 1, ay: 2, az: 3, ux: 0, uy: 0, uz: 1, d: 0, t: 0, mode: 0, hide: 0 }],
     complex: [{ r: 1, theta: 0, tx: 1, ty: 2, mode: "multiply", hide: 0 }, { r: 0, theta: 90, tx: -2.5, ty: 0, mode: "multiply", hide: 0 }, { r: Math.SQRT2, theta: 45, tx: 0, ty: 0, mode: "translate", hide: 0 }, { r: 3.5, theta: 180, tx: 2.5, ty: -2.5, mode: "multiply", hide: 1 }, { r: 2.5, theta: -135, tx: 0, ty: 2, mode: "multiply", hide: 0 }],
   };
   for (const e of EXPERIMENTS) {
@@ -182,8 +193,13 @@ test("the scenes of every panel are finite over the sampled states and stay insi
     vectors: [{ ux: 3, uy: 1, vx: -1, vy: 3 }, { ux: 0, uy: 0, vx: 0, vy: 0 }, { ux: 2, uy: 1, vx: -4, vy: -2 }],
     statistics: [{ data: [2, 3, 4, 4, 5, 6, 9], hide: 0 }, { data: [0, 0, 0, 0, 0, 0, 0], hide: 0 }],
     complex: [{ r: 1, theta: 0, tx: 1, ty: 2, mode: "multiply", hide: 0 }, { r: 0, theta: 90, tx: 1, ty: 1, mode: "multiply", hide: 0 }, { r: 2, theta: 90, tx: 0, ty: 0, mode: "translate", hide: 0 }],
+    line: [{ ax: 0, ay: 1, bx: 2, by: 5 }, { ax: 1, ay: 1, bx: 1, by: 3 }, { ax: 2, ay: 2, bx: 2, by: 2 }, { ax: -1, ay: 4, bx: 3, by: -2 }],
+    exponential: [{ k: 1, a: 2 }, { k: 6, a: 3 }, { k: 0.5, a: 0.25 }],
+    cobweb: [{ a: 0.5, b: 2, u0: 8, n: 6 }, { a: -2, b: 5, u0: -1, n: 12 }, { a: 1, b: 0, u0: 4, n: 0 }],
+    matrix: [{ a: 2, b: 1, c: 0, d: 2 }, { a: 0, b: 0, c: 0, d: 0 }, { a: -2.5, b: 1, c: 2, d: -0.5 }],
+    "space-lines": [{ ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 1, mode: 0, hide: 0 }, { ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7, t: 1, mode: 1, hide: 0 }, { ax: 2, ay: -1, az: 3, ux: 1, uy: 1, uz: 2, d: -2, t: 0, mode: 2, hide: 0 }, { ax: 1, ay: 2, az: 3, ux: 0, uy: 0, uz: 1, d: 30, t: 0, mode: 0, hide: 0 }],
   };
-  const KINDS_OK = new Set(["curves", "areas", "rects", "polys", "lines", "circles", "arcs", "points", "texts", "rowLabels"]);
+  const KINDS_OK = new Set(["curves", "areas", "rects", "polys", "lines", "circles", "arcs", "points", "texts", "rowLabels", "faces", "segs"]);
   const finite = (x) => (typeof x === "number" ? Number.isFinite(x) : Array.isArray(x) ? x.every(finite) : x && typeof x === "object" ? Object.entries(x).every(([k, v]) => typeof v === "function" || finite(v)) : true);
   for (const [id, list] of Object.entries(samples)) {
     const e = byId[id], fmt = makeFormat("fr");
@@ -228,6 +244,16 @@ const independent = {
   "statistics/read": ({ data }) => { for (const x of [...data].sort((a, b) => a - b)) if (data.filter((y) => y <= x).length / data.length >= 0.75) return x; },
   // the modulus of a product is the product of the moduli (not the hypotenuse of the product's coordinates)
   "complex/read": ({ r, tx, ty }) => r * Math.hypot(tx, ty),
+  // the line's y-intercept by walking along the segment AB to x = 0 (linear interpolation), not by the formula p = yA - m xA
+  "line/read": ({ ax, ay, bx, by }) => ay + ((0 - ax) / (bx - ax)) * (by - ay),
+  // the fifth term by repeated multiplication
+  "exponential/sequence": ({ k, a }) => { let u = k; for (let i = 0; i < 5; i++) u *= a; return u; },
+  // the fixed point as the limit of the iteration (|a| < 1 here), not by solving l = a l + b
+  "cobweb/fixed": ({ a, b, u0 }) => { let u = u0; for (let i = 0; i < 600; i++) u = a * u + b; return u; },
+  // the determinant as the signed area of the image of the unit square (shoelace), not as ad - bc
+  "matrix/read": ({ a, b, c, d }) => { const P = [[0, 0], [a, c], [a + b, c + d], [b, d]]; let s = 0; for (let i = 0; i < 4; i++) { const [x1, y1] = P[i], [x2, y2] = P[(i + 1) % 4]; s += x1 * y2 - x2 * y1; } return s / 2; },
+  // the value of t where the plane equation, evaluated along the line, changes sign (scan then interpolate)
+  "space-lines/meet": ({ ax, ay, az, ux, uy, uz, d }) => { const g = (t) => (ax + t * ux) + (ay + t * uy) + 2 * (az + t * uz) + d; let prev = -10; for (let t = -9.9999; t <= 10; t += 1e-4) { if (g(prev) * g(t) <= 0) return prev - g(prev) * (t - prev) / (g(t) - g(prev)); prev = t; } return NaN; },
   "integral/area": ({ a, b }) => { const n = 400000, w = (b - a) / n; let s = 0; for (let i = 0; i < n; i++) { const x = a + (i + 0.5) * w; s += x * x * w; } return s; },
 };
 test("every check answer equals the model quantity and an independent computation", () => {
@@ -245,7 +271,7 @@ test("every check answer equals the model quantity and an independent computatio
       checked++;
     }
   }
-  assert.equal(checked, 9);
+  assert.equal(checked, 14);
 });
 
 test("every prediction has the correct answer according to the mathematics", () => {
@@ -268,13 +294,23 @@ test("every prediction has the correct answer according to the mathematics", () 
     statistics: () => { const a = ST.model({ data: [2, 3, 4, 4, 5, 6, 9] }), b = ST.model({ data: [2, 3, 4, 4, 5, 6, 18] }); return b.mean > a.mean && b.median === a.median ? "mean" : "other"; },
     // i times a point: same modulus, argument plus 90 degrees
     complex: () => { const p = [2, 1], w = C.multiply([0, 1], p); return Math.abs(Math.hypot(...w) - Math.hypot(...p)) < 1e-12 && Math.abs(C.arg(w) - C.arg(p) - 90) < 1e-9 ? "quarter" : "other"; },
+    // the quotient from A to B and from A to C (4 ; 9), a third point of the line, are equal
+    line: () => (LN.model({ ax: 0, ay: 1, bx: 2, by: 5 }).m === LN.model({ ax: 0, ay: 1, bx: 4, by: 9 }).m ? "same" : "other"),
+    // f(x + 1) / f(x) = 2 at a non-integer x too
+    exponential: () => (Math.abs(EX.value({ k: 1, a: 2 }, 3.5) / EX.value({ k: 1, a: 2 }, 2.5) - 2) < 1e-12 ? "times" : "other"),
+    // the terms decrease, stay above 4 and the gap to 4 tends to 0
+    cobweb: () => { const t = CW.terms({ a: 0.5, b: 2, u0: 8 }, 40); return t.every((v, i) => v > 4 && (i === 0 || v < t[i - 1])) && Math.abs(t.at(-1) - 4) < 1e-9 ? "closer" : "other"; },
+    // the image of the unit square of (2 ; 0), (1 ; 2) has area 4
+    matrix: () => MX.model({ a: 2, b: 1, c: 0, d: 2 }).area,
+    // the three states: one common point, none, the whole line
+    "space-lines": () => new Set([SL.model({ ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7 }).relation, SL.model({ ax: -2, ay: -1, az: 2, ux: 2, uy: 0, uz: -1, d: -7 }).relation, SL.model({ ax: 0, ay: 0, az: 1, ux: 1, uy: 1, uz: -1, d: -2 }).relation]).size === 3 ? "three" : "other",
   };
-  const expected = { quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter" };
+  const expected = { quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter", line: "same", exponential: "times", cobweb: "closer", matrix: 4, "space-lines": "three" };
   for (const e of EXPERIMENTS) {
     assert.equal(truth[e.id](), expected[e.id], e.id);
     const m = e.missions[0];
     const right = m.choices[m.correct][0];
-    const words = { quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/ }[e.id];
+    const words = { quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id];
     assert.match(right, words, `${e.id}: the marked choice is the true one`);
   }
 });
@@ -299,6 +335,18 @@ const witness = {
   "statistics/mean": { data: [11, 3, 4, 4, 5, 6, 9] },
   "complex/scale": { r: 2 },
   "complex/angles": { tx: 1, ty: 1 },
+  "line/slope": { bx: 1, by: -1 },
+  "line/intercept": { ax: -2, ay: 1 },
+  "exponential/base": { a: 0.5 },
+  "exponential/scale": { k: 1.5 },
+  "cobweb/steps": { n: 10 },
+  "cobweb/slope": { a: -1.5 },
+  "matrix/columns": { a: 2, c: 1 },
+  "matrix/area": { d: 1.5 },
+  "matrix/flat": { d: 0 },
+  "space-lines/param": { t: 2 },
+  "space-lines/parallel": { ux: 2, uy: 0, uz: -1 },
+  "space-lines/normal": { ax: 0, ay: 0, az: 1 },
 };
 test("every exploration goal is false at the start and true at a reachable state", () => {
   let n = 0;
@@ -319,6 +367,7 @@ test("every exploration goal is false at the start and true at a reachable state
 // Handles: dragging to a handle's own position leaves the state, and arrows move by one grid step either way.
 test("handles are consistent with their models: round trip, clamping and keyboard steps", () => {
   for (const e of EXPERIMENTS) {
+    if (e.template === "space") continue;   // constrained 3D handles: next test
     const states = e.missions.map((m) => ({ ...e.state, ...m.set }));
     for (const [id, c] of Object.entries(e.controls).filter(([, x]) => x.kind === "handle")) {
       const g = Array.isArray(c.grid) ? c.grid : [c.grid || 0, c.grid || 0];
@@ -676,4 +725,162 @@ test("every link into #lab/<id>[/<mission>] in the site, the pathways and the ma
   for (const ref of refs) assert.ok(resolveRef(ref), `manifest lab reference ${ref}`);
   // every experiment of the catalogue is reachable from at least one chapter, pathway or the index
   assert.deepEqual(new Set(["probability", "vectors", "statistics", "complex"].filter((id) => refs.includes(id))), new Set(["probability", "vectors", "statistics", "complex"]));
+});
+
+// ---- Phase 4: the shared 3D camera, the template `space` handles and the five new models
+test("camera3d: projection and unprojection are inverse, the view ray and the constraints hit what they should, pitch is clamped", () => {
+  const rnd = (() => { let a = 1; return () => ((a = (a * 16807) % 2147483647) / 2147483647); })();
+  for (let i = 0; i < 200; i++) {
+    const yaw = (rnd() - 0.5) * 8, pitch = 0.12 + rnd() * 1.33, p = [rnd() * 8 - 4, rnd() * 8 - 4, rnd() * 6];
+    const q = CAM.cam3Project(yaw, pitch, ...p), back = CAM.cam3Unproject(yaw, pitch, q.u, q.v, p[2]);
+    near(back.x, p[0], 1e-9, "x"); near(back.y, p[1], 1e-9, "y");
+    // the ray through the screen point of p passes through p, and its direction keeps (u, v) fixed and grows the depth by 1
+    const ray = CAM.cam3Ray(yaw, pitch, q.u, q.v), w = ray.w;
+    near(Math.hypot(...w), 1, 1e-12);
+    const hit = CAM.cam3HitPlane(ray, [0, 0, p[2]], [0, 0, 1]);
+    near(hit[0], p[0], 1e-8); near(hit[1], p[1], 1e-8);
+    const far = CAM.cam3Project(yaw, pitch, p[0] + 2 * w[0], p[1] + 2 * w[1], p[2] + 2 * w[2]);
+    near(far.u, q.u, 1e-9); near(far.v, q.v, 1e-9); near(far.d, q.d + 2, 1e-9);
+    // a vertical line through the point is met at the point's height; a plane through p with a tilted normal is met at p
+    const onLine = CAM.cam3HitLine(ray, [p[0], p[1], 0], [0, 0, 1]);
+    near(onLine.s, p[2], 1e-7); near(onLine.point[2], p[2], 1e-7);
+    const tilted = CAM.cam3HitPlane(ray, p, [1, 2, 3]);
+    near(tilted[0], p[0], 1e-8); near(tilted[1], p[1], 1e-8); near(tilted[2], p[2], 1e-8);
+  }
+  assert.equal(CAM.cam3HitPlane(CAM.cam3Ray(0, 0.5, 0, 0), [0, 0, 0], CAM.cam3Dir(0, 0.5).map((v, i) => [v, 0, 0][i]) && [0, 0, 0]), null);
+  const cam = { yaw: 0, pitch: 0.5 };
+  CAM.cam3Turn(cam, 0.3, 10); near(cam.pitch, CAM.PITCH_MAX); near(cam.yaw, 0.3);
+  CAM.cam3Turn(cam, 0, -10); near(cam.pitch, CAM.PITCH_MIN);
+  assert.equal(CAM.cam3HitLine(CAM.cam3Ray(0.3, 0.9, 1, 1), [0, 0, 0], CAM.cam3Dir(0.3, 0.9)), null, "a line along the view ray has no nearest point");
+});
+
+test("space template handles: the point stays on its constraint, round trips, snaps, stays in range and moves one step per arrow", () => {
+  const e = byId["space-lines"];
+  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  for (const m of e.missions) {
+    const s = { ...e.state, ...m.set };
+    for (const [id, c] of Object.entries(e.controls).filter(([, x]) => x.kind === "handle")) {
+      const k = c.constraint(s), at = c.at(s), rel = [at[0] - k.o[0], at[1] - k.o[1], at[2] - k.o[2]];
+      // the point lies on its line or plane: no component along the plane normal / across the line
+      if (k.e2) { const n = [k.e1[1] * k.e2[2] - k.e1[2] * k.e2[1], k.e1[2] * k.e2[0] - k.e1[0] * k.e2[2], k.e1[0] * k.e2[1] - k.e1[1] * k.e2[0]]; near(dot(rel, n), 0, 1e-9, `${id} on its plane`); }
+      else { const l = Math.hypot(...k.e1), along = dot(rel, k.e1) / l; near(Math.hypot(...rel), Math.abs(along), 1e-9, `${id} on its line`); }
+      // a drag to the handle's own position leaves the state alone (when the state is inside the handle's range)
+      const next = { ...s, ...(c.drag(s, at, {}) ?? {}) };
+      const again = c.at(next);
+      if (Object.keys(s).every((key) => next[key] === s[key])) near(again[0] + again[1] + again[2], at[0] + at[1] + at[2], 1e-9, `${e.id}/${m.id}.${id} round trip`);
+      // far drags clamp and stay finite and whole
+      for (const p of [[100, 100, 100], [-100, -100, -100], [0, 0, 100], [100, -100, 0]]) {
+        const far = c.drag(s, p, {});
+        if (far) for (const v of Object.values(far)) assert.ok(Number.isFinite(v) && Math.abs(v) <= 10 && Number.isInteger(v), `${e.id}.${id} far drag ${v}`);
+      }
+    }
+  }
+  // the clamps: B can never fall on A, the heights stay between 1 and 5
+  const s0 = { ...e.state, ux: 0, uy: 0, uz: 1, az: 0 };
+  assert.equal(e.controls.tip.drag(s0, [s0.ax, s0.ay, 0], {}).ux, 0, "B above A is allowed");
+  assert.equal(e.controls.tipz.drag({ ...s0, az: 1, uz: 2 }, [0, 0, 1], {}), null, "u = 0 is refused");
+  assert.equal(e.controls.Az.drag(e.state, [0, 0, 0], {}).az, 1); assert.equal(e.controls.Az.drag(e.state, [0, 0, 9], {}).az, 5);
+});
+
+test("line: slope, intercept, direction vector and equations agree with the points", () => {
+  for (const ax of [-5.5, -2, 0, 1.5, 4]) for (const ay of [-4.5, -1, 0.5, 3]) for (const bx of [-3, 0, 2, 5.5]) for (const by of [-4, 0, 1.5, 4.5]) {
+    const m = LN.model({ ax, ay, bx, by });
+    assert.deepEqual(m.u, [bx - ax, by - ay]);
+    if (m.degenerate || m.vertical) { assert.equal(m.m, null); continue; }
+    near(m.m, (by - ay) / (bx - ax), 1e-12);
+    // both points are on y = m x + p, and so is any other point of the line
+    near(m.m * ax + m.p, ay, 1e-9); near(m.m * bx + m.p, by, 1e-9);
+    near(m.m * (ax + 3 * (bx - ax)) + m.p, ay + 3 * (by - ay), 1e-9);
+    // the exact fractions equal the decimals
+    near(m.slope.num / m.slope.den, m.m, 1e-12); near(m.intercept.num / m.intercept.den, m.p, 1e-12);
+    // the Cartesian equation vanishes on A and B and is in lowest terms with a positive first coefficient
+    const [a, b, c] = m.cartesian;
+    near(a * ax + b * ay + c, 0, 1e-9); near(a * bx + b * by + c, 0, 1e-9);
+    assert.ok(a > 0 || (a === 0 && b > 0)); assert.ok([a, b, c].every(Number.isInteger));
+  }
+  assert.deepEqual(LN.fraction(1.5, 0.5), { num: 3, den: 1 }); assert.deepEqual(LN.fraction(-0.5, 1.5), { num: -1, den: 3 }); assert.deepEqual(LN.fraction(1, -3), { num: -1, den: 3 });
+  assert.equal(LN.model({ ax: 1, ay: 1, bx: 1, by: 3 }).vertical, true); assert.equal(LN.model({ ax: 1, ay: 1, bx: 1, by: 1 }).degenerate, true);
+  const ex = byId.line, fmt = makeFormat("fr"), f = (s) => ex.views.formula(s, { fmt, lang: "fr" });
+  assert.equal(f({ ax: 0, ay: 1, bx: 2, by: 5 }), "m = Δy/Δx = 4/2 = 2 ; y = 2x + 1");
+  assert.match(f({ ax: 0, ay: 0, bx: 3, by: 1 }), /≈ 0,33 ; y = \(1\/3\)x$/);
+  assert.match(f({ ax: 1, ay: 1, bx: 1, by: 3 }), /Droite verticale x = 1/);
+  assert.equal(ex.views.readout({ ax: 0, ay: 0, bx: 3, by: 1 }, { fmt, lang: "fr" })[1][1], "1/3 ≈ 0,33");
+});
+
+test("exponential: f(x + 1) = a f(x) for every x, the sequence is geometric, the direction follows a", () => {
+  for (const k of [0.5, 1, 1.5, 6]) for (const a of [0.25, 0.5, 1, 2, 3]) {
+    const s = { k, a }, m = EX.model(s);
+    for (const x of [-3, -0.5, 0, 1, 2.5, 4]) near(m.f(x + 1), a * m.f(x), 1e-9 * Math.max(1, m.f(x + 1)), "f(x + 1) = a f(x)");
+    EX.terms(s, 6).forEach((u, n) => near(u, k * a ** n, 1e-9 * Math.max(1, u)));
+    assert.equal(m.direction, a > 1 ? "up" : a < 1 ? "down" : "flat");
+    assert.ok(m.f(-3) > 0 && m.f(4) > 0, "never zero");
+  }
+  const h = byId.exponential.controls.unit, s = { k: 1.5, a: 2 };
+  assert.equal(h.drag(s, 1, 6).a, 3, "capped at 3"); assert.equal(h.drag(s, 1, 0.5).a, 0.25, "a stays positive"); assert.equal(h.nudge(s, 1, 0).a, 2.25);
+  assert.equal(byId.exponential.controls.start.drag(s, 0, 99).k, 6); assert.equal(byId.exponential.controls.start.drag(s, 0, -3).k, 0.5);
+});
+
+test("cobweb: the fixed point solves f(l) = l, the gap shrinks by |a| each step, the staircase follows the terms", () => {
+  for (const a of [-1.75, -0.75, -0.25, 0, 0.5, 0.75, 1.25]) for (const b of [-2, 0, 1.5, 4]) for (const u0 of [-1, 3, 8]) {
+    const s = { a, b, u0, n: 8 }, m = CW.model(s);
+    near(CW.f(s, m.fixed), m.fixed, 1e-9, "f(l) = l");
+    m.terms.forEach((u, k) => { if (k) near(u, a * m.terms[k - 1] + b, 1e-9); near(u - m.fixed, a ** k * (u0 - m.fixed), 1e-9 * Math.max(1, Math.abs(u))); });
+    assert.equal(m.contracting, Math.abs(a) < 1);
+    assert.equal(m.path.length, 1 + 2 * 8);
+    m.path.slice(1).forEach(([x, y], i) => { if (i % 2 === 0) near(y, CW.f(s, x), 1e-9, "up to the graph"); else near(x, y, 1e-12, "across to the line y = x"); });
+  }
+  assert.equal(CW.fixedPoint({ a: 1, b: 1 }), null);
+  const s = { a: 0.5, b: 2, u0: 8, n: 0 };
+  assert.deepEqual(CW.model(s).path, [[8, 0]]); assert.equal(CW.model({ ...s, n: 3 }).last, 4.5);
+  const slope = byId.cobweb.controls.slope;
+  assert.equal(slope.drag(s, 2, 2 * -1.5 + 2).a, -1.5); assert.equal(slope.drag(s, 2, 99).a, 1.5); assert.equal(slope.drag(s, 2, -99).a, -2);
+});
+
+test("matrix: the determinant is the signed area of the image of the unit square and multiplies every area", () => {
+  for (const a of [-2.5, -1, 0, 0.5, 2]) for (const b of [-2, 0, 1, 2.5]) for (const c of [-2.5, 0, 1.5]) for (const d of [-1, 0, 2, 2.5]) {
+    const m = MX.model({ a, b, c, d });
+    near(m.det, a * d - b * c, 1e-12); near(m.area, Math.abs(m.det), 1e-12);
+    // shoelace area of the image of an arbitrary triangle is |det| times the area of the triangle
+    const tri = [[0.5, 0.25], [2, 1], [1, 3]], img = tri.map(m.f);
+    const sh = (P) => Math.abs(P[0][0] * (P[1][1] - P[2][1]) + P[1][0] * (P[2][1] - P[0][1]) + P[2][0] * (P[0][1] - P[1][1])) / 2;
+    near(sh(img), m.area * sh(tri), 1e-9, "areas are multiplied by |det|");
+    assert.equal(m.orientation, Math.sign(m.det)); assert.equal(m.invertible, m.det !== 0);
+    if (m.inverse) {   // M^-1 M = I on the basis vectors
+      const back = (v) => [m.inverse.i[0] * v[0] + m.inverse.j[0] * v[1], m.inverse.i[1] * v[0] + m.inverse.j[1] * v[1]];
+      near(back(m.i)[0], 1, 1e-9); near(back(m.i)[1], 0, 1e-9); near(back(m.j)[0], 0, 1e-9); near(back(m.j)[1], 1, 1e-9);
+    } else assert.ok(m.i[0] * m.j[1] === m.i[1] * m.j[0], "flat means collinear columns");
+  }
+  assert.ok(!Object.is(MX.model({ a: 0, b: 0, c: 0, d: 0 }).det, -0));
+  const i = byId.matrix.controls.i; assert.deepEqual(i.drag(byId.matrix.state, 9, -9), { a: 2.5, c: -2.5 });
+});
+
+test("space-lines: the intersection, the projection and the clipping to the box are right", () => {
+  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  let secants = 0, parallels = 0, inside = 0;
+  for (const A of [[-2, -1, 0], [0, 0, 1], [3, -2, 4], [1, 1, 2]]) for (const u of [[2, 1, 1], [1, 1, -1], [0, 0, 1], [2, 0, -1], [-1, 3, 0], [1, 1, 2]]) for (const d of [-7, -2, 0, 3]) {
+    const m = SL.model({ ax: A[0], ay: A[1], az: A[2], ux: u[0], uy: u[1], uz: u[2], d, t: 0.5 });
+    near(dot(SL.N, m.u), m.nu); near(dot(SL.N, A) + d, m.sA);
+    if (m.relation === "secant") {
+      secants++; near(dot(SL.N, m.I) + d, 0, 1e-9, "I is in the plane");
+      for (let k = 0; k < 3; k++) near(m.I[k], A[k] + m.tStar * u[k], 1e-9, "I is on the line");
+    } else { assert.equal(m.nu, 0); assert.equal(m.tStar, null); if (m.relation === "inside") { inside++; assert.equal(m.sA, 0); } else { parallels++; assert.notEqual(m.sA, 0); } }
+    // the orthogonal projection: in the plane, AH along n, and AH = |n . A + d| / |n|
+    near(dot(SL.N, m.H) + d, 0, 1e-9, "H is in the plane");
+    const ah = [A[0] - m.H[0], A[1] - m.H[1], A[2] - m.H[2]], cr = [ah[1] * 2 - ah[2] * 1, ah[2] * 1 - ah[0] * 2, ah[0] * 1 - ah[1] * 1];
+    near(Math.hypot(...cr), 0, 1e-9, "AH is parallel to n"); near(Math.hypot(...ah), m.dist, 1e-9);
+    // the clipped part of the line is inside the box, and its ends are on the box
+    if (m.clip) for (const t of m.clip) SL.BOX.forEach(([lo, hi], k) => { const v = A[k] + t * u[k]; assert.ok(v >= lo - 1e-9 && v <= hi + 1e-9, "inside the box"); });
+    // the plane polygon: every vertex in the plane and in the box, at least three, convex order (consecutive turns have one sign)
+    const poly = m.planePoly;
+    if (poly) {
+      assert.ok(poly.length >= 3);
+      for (const p of poly) { near(dot(SL.N, p) + d, 0, 1e-9, "polygon in the plane"); SL.BOX.forEach(([lo, hi], k) => assert.ok(p[k] >= lo - 1e-9 && p[k] <= hi + 1e-9)); }
+      const signs = poly.map((p, i) => { const q = poly[(i + 1) % poly.length], r = poly[(i + 2) % poly.length], v1 = q.map((x, k) => x - p[k]), v2 = r.map((x, k) => x - q[k]); return dot([v1[1] * v2[2] - v1[2] * v2[1], v1[2] * v2[0] - v1[0] * v2[2], v1[0] * v2[1] - v1[1] * v2[0]], SL.N); });
+      assert.ok(signs.every((v) => v >= -1e-9) || signs.every((v) => v <= 1e-9), "convex polygon");
+    }
+  }
+  assert.ok(secants > 20 && parallels > 5 && inside > 0, `${secants} ${parallels} ${inside}`);
+  assert.equal(SL.planePolygon([1, 1, 2], -100), null, "a plane that misses the box");
+  assert.equal(SL.clipLine([9, 0, 0], [0, 1, 0]), null); assert.deepEqual(SL.clipLine([0, 0, 0], [1, 0, 0]), [-4, 4]);
+  assert.equal(SL.quantity("tStar", { ...byId["space-lines"].state, d: -7 }), 2);
 });
