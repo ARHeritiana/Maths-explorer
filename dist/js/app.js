@@ -288,8 +288,8 @@ function variationPanel(c) {
   const q = paramsOf(c.id);
   const controls = VARIANTS[c.id].params.map((prm) => prm.kind === "int"
     ? `<label class="var-field"><span class="var-label">${t(prm.label)} <output data-out="${prm.id}">${c.id === "konigsberg" && q[prm.id] === 0 ? pair("0 (Königsberg)", "0 (Königsberg)") : q[prm.id]}</output></span><input type="range" data-var="${prm.id}" min="${prm.min}" max="${prm.max}" step="${prm.step}" value="${q[prm.id]}"></label>`
-    : `<fieldset class="var-choice"><legend>${t(prm.label)}</legend>${prm.options.map(([val, fr, en]) => `<label><input type="radio" name="var-${prm.id}" data-var="${prm.id}" value="${val}" ${String(q[prm.id]) === String(val) ? "checked" : ""}> ${pair(fr, en)}</label>`).join("")}</fieldset>`).join("");
-  return `<section class="variation" aria-labelledby="variation-title"><div class="variation-head"><h2 id="variation-title">${pair("Change les données", "Change the data")}</h2><span class="variation-actions"><button class="secondary" id="var-random" type="button">${pair("Au hasard", "Surprise me")}</button><button class="text-button" id="var-reset" type="button">${pair("Valeurs d’origine", "Original values")}</button></span></div><p class="muted">${pair("Le problème, la solution et l’expérience suivent tes réglages.", "The problem, the solution and the experiment follow your settings.")}</p><div class="var-controls">${controls}</div></section>`;
+    : `<div class="var-field"><label for="var-${prm.id}">${t(prm.label)}${prm.fields ? ' · ' + pair('Exemples facultatifs', 'Optional examples') : ''}</label><select id="var-${prm.id}" data-var="${prm.id}">${prm.fields ? `<option value="custom">${pair('Mes valeurs', 'My values')}</option>` : ''}${prm.options.map(([val, fr, en]) => `<option value="${val}" ${String(q[prm.id]) === String(val) ? 'selected' : ''}>${pair(fr, en)}</option>`).join('')}</select>${prm.fields ? `<div class="var-numbers">${prm.fields.map((field, i) => `<label>${t(field.label)}<input type="number" inputmode="numeric" min="${field.min}" max="${field.max}" step="1" required data-custom="${prm.id}" data-part="${i}" value="${String(q[prm.id]).split(',')[i]}"></label>`).join('')}</div><button class="secondary" type="button" data-apply="${prm.id}">${pair('Appliquer mes valeurs', 'Apply my values')}</button>` : ''}</div>`).join("");
+  return `<details class="variation" aria-labelledby="variation-title"><summary id="variation-title">${pair("Modifier les données", "Change the data")}</summary><p class="muted">${pair("Choisis tes valeurs. Le problème, la solution et l’expérience suivront tes réglages.", "Choose your own values. The problem, solution and experiment will follow your settings.")}</p><div class="var-controls">${controls}</div><div class="variation-actions"><button class="text-button" id="var-random" type="button">${pair("Au hasard", "Surprise me")}</button><button class="text-button" id="var-reset" type="button">${pair("Valeurs d’origine", "Original values")}</button></div></details>`;
 }
 function challengeDetail(c) {
   const v = variantText(c, paramsOf(c.id));
@@ -326,12 +326,29 @@ function bindChallenges() {
     };
     const syncControls = () => {
       const q = paramsOf(cid);
-      document.querySelectorAll("[data-var]").forEach((el) => { if (el.type === "radio") el.checked = String(q[el.dataset.var]) === el.value; else { el.value = q[el.dataset.var]; const o = $(`[data-out="${el.dataset.var}"]`); if (o) o.textContent = q[el.dataset.var]; } });
+      document.querySelectorAll("[data-var]").forEach((el) => {
+        el.value = q[el.dataset.var]; if (el.tagName === 'SELECT' && el.selectedIndex < 0) el.value = 'custom';
+        const o = $(`[data-out="${el.dataset.var}"]`); if (o) o.textContent = q[el.dataset.var];
+      });
+      document.querySelectorAll('[data-custom]').forEach((el) => { el.value = String(q[el.dataset.custom]).split(',')[Number(el.dataset.part)]; el.setCustomValidity(''); });
     };
     const read = () => { const q = {}; document.querySelectorAll("[data-var]").forEach((el) => { if (el.type !== "radio" || el.checked) q[el.dataset.var] = el.value; }); variantState[cid] = normaliseVariant(cid, q); };
     document.querySelectorAll("[data-var]").forEach((el) => {
       el.addEventListener("input", () => { const o = $(`[data-out="${el.dataset.var}"]`); if (o && el.type !== "radio") o.textContent = el.value; });
-      el.addEventListener("change", () => { read(); refresh(); });
+      el.addEventListener("change", () => { if (el.value === 'custom') { document.querySelector(`[data-custom="${el.dataset.var}"]`)?.focus(); return; } read(); syncControls(); refresh(); });
+    });
+    const applyCustom = (id) => {
+      const prm = VARIANTS[cid].params.find((p) => p.id === id), fields = [...document.querySelectorAll(`[data-custom="${id}"]`)];
+      fields.forEach((el) => el.setCustomValidity(''));
+      const invalid = fields.find((el) => !el.checkValidity()); if (invalid) { invalid.reportValidity(); return; }
+      const values = fields.map((el) => Number(el.value));
+      if (prm.validate && !prm.validate(values)) { fields.at(-1).setCustomValidity(t(prm.error)); fields.at(-1).reportValidity(); return; }
+      variantState[cid] = normaliseVariant(cid, { ...paramsOf(cid), [id]: values.join(',') }); syncControls(); refresh();
+    };
+    document.querySelectorAll('[data-apply]').forEach((el) => el.addEventListener('click', () => applyCustom(el.dataset.apply)));
+    document.querySelectorAll('[data-custom]').forEach((el) => {
+      el.addEventListener('input', () => { el.setCustomValidity(''); $(`[data-var="${el.dataset.custom}"]`).value = 'custom'; });
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); applyCustom(el.dataset.custom); } });
     });
     $("#var-random")?.addEventListener("click", () => { variantState[cid] = randomParams(cid); syncControls(); refresh(); $("#var-random").focus(); });
     $("#var-reset")?.addEventListener("click", () => { variantState[cid] = variantDefaults(cid); syncControls(); refresh(); $("#var-reset").focus(); });

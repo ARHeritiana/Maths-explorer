@@ -20,7 +20,7 @@ export function cameraKnot(points,yaw,tilt,mirror=false){
   const cy=Math.cos(yaw),sy=Math.sin(yaw),ct=Math.cos(tilt),st=Math.sin(tilt);
   return points.map(([x,y,z])=>{if(mirror)z=-z;const a=x*cy-y*sy,b=x*sy+y*cy;return [a,b*ct-z*st,b*st+z*ct];});
 }
-export function knotProjection(points){
+export function projectedKnotCrossings(points){
   const n=points.length,crossings=[];let generic=true;
   for(let i=0;i<n;i++)for(let j=i+2;j<n;j++){
     if(i===0&&j===n-1)continue;
@@ -31,8 +31,29 @@ export function knotProjection(points){
     if(s<=0||s>=1||t<=0||t>=1)continue;
     const zi=a[2]+s*(b[2]-a[2]),zj=c[2]+t*(d[2]-c[2]);
     if(Math.min(s,1-s,t,1-t)<1e-6||Math.abs(zi-zj)<1e-7)generic=false;
-    crossings.push({over:zi>zj?i+s:j+t,under:zi>zj?j+t:i+s,p:[a[0]+s*u[0],a[1]+s*u[1]],depth:Math.max(zi,zj)});
+    crossings.push({over:zi>zj?i+s:j+t,under:zi>zj?j+t:i+s,p:[a[0]+s*u[0],a[1]+s*u[1]],depth:Math.max(zi,zj),underDepth:Math.min(zi,zj)});
   }
+  return { crossings, generic };
+}
+// A short piece of the actual OVER strand, in camera space, sampled by projected arc length. Used to restore its tube
+// after a narrow contrast halo at a crossing. This is a visual depth cue, never a modification of the spatial knot.
+export function knotCrossingBridge(points, crossing, reach = 18 / 101) {
+  const at = (u) => { const i = (Math.floor(u) % points.length + points.length) % points.length, f = u - Math.floor(u); return points[i].map((x, d) => x + f * (points[(i + 1) % points.length][d] - x)); };
+  const center = at(crossing.over), parts = [center];
+  for (const direction of [-1, 1]) {
+    const side = []; let length = 0, previous = center, u = crossing.over;
+    for (let k = 1; k < points.length * 8 && length < reach; k++) {
+      u = direction > 0 ? Math.min(u + .125, Math.floor(u + 1e-10) + 1) : Math.max(u - .125, Math.ceil(u - 1e-10) - 1);
+      let p = at(u), distance = Math.hypot(p[0] - previous[0], p[1] - previous[1]);
+      if (length + distance > reach) { const f = (reach - length) / distance; p = previous.map((x, d) => x + f * (p[d] - x)); distance = reach - length; }
+      side.push(p); length += distance; previous = p;
+    }
+    if (direction < 0) parts.unshift(...side.reverse()); else parts.push(...side);
+  }
+  return parts;
+}
+export function knotProjection(points){
+  const { crossings, generic } = projectedKnotCrossings(points);
   const cuts=crossings.map(c=>c.under).sort((a,b)=>a-b),m=Math.max(1,cuts.length);
   const arcAt=t=>{let a=0,b=cuts.length;while(a<b){const c=(a+b)>>1;if(cuts[c]<=t)a=c+1;else b=c;}return a%m;};
   const equations=crossings.map(c=>{const row=Array(m).fill(0);row[arcAt(c.over)]+=2;row[arcAt(c.under-1e-8)]--;row[arcAt(c.under+1e-8)]--;return row.map(mod3);});

@@ -63,6 +63,7 @@ export function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.p
 export function observeSvgNavigation(root,selector,lang) {
   const mounted=new Map(),states=new Map();let alive=true;
   const scan=()=>{if(!alive)return;for(const [svg,stop]of mounted)if(!svg.isConnected||!stop.bar.isConnected){stop();mounted.delete(svg);}
+    if(!root.isConnected)return;
     [...root.querySelectorAll(selector)].forEach((svg,i)=>{if(mounted.has(svg))return;const key=`${svg.closest('[id]')?.id||'figure'}-${i}`;if(!states.has(key))states.set(key,{});mounted.set(svg,svgNavigation(svg,{lang,state:states.get(key)}));});};
   const observer=new MutationObserver(scan);observer.observe(root,{childList:true,subtree:true});scan();
   return()=>{alive=false;observer.disconnect();for(const stop of mounted.values())stop();mounted.clear();};

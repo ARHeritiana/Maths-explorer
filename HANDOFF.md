@@ -176,3 +176,11 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - [x] Nine menu choices: random, checkerboard, K4, odd/even wheels, even/odd sectors, disconnected-country K5 and blank custom map.
 - [x] Direct straight-border splits (connected countries, maximum 30), undo, keyboard construction, painting and exact colouring checks.
 - [x] Independent mathematics and UI audits, geometry and bilingual DOM tests; records in `private/audits/four-colour-editor/`. Browser visual verification is unavailable because the managed preview cannot mount proc.
+
+## Direct canvas interactions, 19 October 2026
+
+- [x] All challenge parameter choice lists use compact selects in folded settings; fly and jugs also accept validated custom values.
+- [x] Jug actions use the objects, tap and sink directly (drag or tap sequence, plus keyboard); undo and restart remain available.
+- [x] Fly scene supports tap play/pause, horizontal time scrubbing and keyboard; analytic collision positioning handles very fast flies without finite-leg extrapolation. Default fast example and classic example remain editable.
+- [x] Knot overpass cues use camera-depth ordering on the actual spatial curve. Shared SVG navigation no longer remounts detached figures.
+- [x] Independent maths and interaction audits, model/DOM checks and make check FAST=1 pass. Managed local visual preview remains unavailable (proc mount); browser workflow includes real captured taps, parameter edits and desktop/mobile screenshots.

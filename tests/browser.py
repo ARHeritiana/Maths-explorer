@@ -57,7 +57,7 @@ def walk_experiment(page, name):
         if i < count-1: page.locator('.lab2-nav .primary').click()
     assert page.locator('.lab2-argument').is_visible(), 'the argument comes after the last mission'
 CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','cookies','jugs','fly','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','nails','inversions','piles','cheryl','sumproduct']
-CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','1001','6','150','7','900','3','8','17','2','45','5','24','180','5','719','0','0','4','13','45','16','52']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','1001','6','1000','7','900','3','8','17','2','45','5','24','180','5','719','0','0','4','13','45','16','52']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -291,6 +291,7 @@ with sync_playwright() as p:
     # Each challenge has a hands-on activity that works without reading the solution.
     page.set_viewport_size({'width':1366,'height':1100})
     page.goto(BASE+'/#challenges/doors')
+    page.locator('.variation > summary').click()
     page.locator('#dr-k').fill('100')
     assert page.locator('.door.open').count() == 10
     page.goto(BASE+'/#challenges/chess')
@@ -357,6 +358,7 @@ with sync_playwright() as p:
     assert page.locator('.door').count() == 100
     for challenge in CHALLENGES:
         page.goto(BASE+'/#challenges/'+challenge)
+        page.locator('.variation > summary').click()
         for _ in range(3):
             page.locator('#var-random').click()
             body = page.locator('main').inner_text()
@@ -473,6 +475,31 @@ with sync_playwright() as p:
         assert abs(tp.evaluate('scrollY') - y1) < 5, 'dragging the Mandelbrot set does not scroll the page'
         assert tp.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         touch.close()
+    # Direct actions and compact settings on desktop and phone widths, including real captured mouse taps/drags.
+    os.makedirs('test-results', exist_ok=True)
+    for width in [1280,390]:
+        page.set_viewport_size({'width':width,'height':950})
+        page.goto(BASE+'/#challenges/jugs')
+        assert page.locator('.variation').evaluate('(el) => !el.open')
+        assert page.locator('.jg-moves').count() == 0
+        page.locator('[data-jug="0"]').click();page.locator('[data-destination="tap"]').click()
+        assert page.locator('.jg-svg').get_attribute('data-state') == '3,0'
+        page.locator('[data-jug="0"]').click();page.locator('[data-jug="1"]').click()
+        assert page.locator('.jg-svg').get_attribute('data-state') == '0,3'
+        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
+        page.screenshot(path='test-results/direct-jugs-'+str(width)+'.png',full_page=True)
+        page.goto(BASE+'/#challenges/fly')
+        race=page.locator('#activity svg').first
+        race.click();page.wait_for_timeout(450);race.click()
+        assert float(race.get_attribute('data-time')) > 0
+        page.locator('.variation > summary').click()
+        for i,value in enumerate(['137','31','47','250']):page.locator('[data-custom="trip"]').nth(i).fill(value)
+        page.locator('[data-apply="trip"]').click()
+        assert '137' in page.locator('#problem').inner_text()
+        assert page.locator('[data-var="trip"]').input_value() == 'custom'
+        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
+        page.locator('.variation > summary').click()
+        page.screenshot(path='test-results/direct-fly-'+str(width)+'.png',full_page=True)
     # New gallery exhibits: real Chromium rendering on desktop and phones, with their actual input events.
     os.makedirs('test-results', exist_ok=True)
     discoveries = ['voronoi','fastest-slide','soap-films','knots','einstein']
@@ -509,6 +536,9 @@ with sync_playwright() as p:
                 page.locator('#kn-end').click()
                 assert '100 %' in page.locator('.exhibit-readout').inner_text()
                 page.locator('#kn-space').click()
+                page.locator('#kn-knot').select_option('3_1')
+                canvas.focus();canvas.press('ArrowRight')
+                assert int(canvas.get_attribute('data-crossings')) > 0
             else:
                 page.locator('#hat-p5000').click()
                 assert 'Exception' in page.locator('.exhibit-readout').inner_text()

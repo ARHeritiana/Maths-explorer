@@ -172,3 +172,7 @@ use each curriculum's language for curriculum content. Omit language switches th
 links opening each resource, outside the slide player toolbar. A menu with only one enabled choice becomes a label;
 restore the menu when multiple choices exist. Content updates must propagate through linked views and exports by
 shared data and build dependencies, with stale products rejected before publication.
+
+Owner instruction, 19 October 2026: canvas interaction is preferred to buttons for actions on the objects themselves,
+not only camera controls. Make direct pointer/touch manipulation primary, with keyboard equivalents. Keep genuine
+mode and parameter choices in compact menus; optional examples must not prevent entering meaningful custom values.

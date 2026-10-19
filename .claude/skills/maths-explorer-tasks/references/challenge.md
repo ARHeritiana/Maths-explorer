@@ -5,6 +5,10 @@ Everything about a challenge is in one folder, `site/js/challenges/<id>/`. Read 
 
 Change an existing challenge: edit the file of the part you change (`index.js` for text, variations, original
 question, emblem and hint buttons; `maths.js`, `activity.js`, `solution.js` for the rest). Nothing outside the folder.
+For shared parameter presentation, edit `site/js/app.js` (`variationPanel`, `bindChallenges`) and
+`site/js/challenges/registry.js` (`normalise`): choices use compact selects inside a folded settings panel;
+optional tuple `fields` allow bounded custom numbers with explicit validation. Integration coverage is in
+`tests/dom-smoke.mjs`, `tests/direct-interactions.test.mjs` and `tests/browser.py`.
 
 Add a challenge:
 1. Copy `site/js/challenges/pegs/` (the latest complete example) to `site/js/challenges/<id>/` and rewrite each file:

@@ -1,6 +1,6 @@
 // The jugs challenge: card text, variations (checked answer, statement, solution text), original question, emblem and hint
 // actions. Everything else about this challenge is in this folder; registry.js lists the folders.
-import { choice, P } from "../common/helpers.js";
+import { choice, int, P } from "../common/helpers.js";
 import { svg, dot } from "../common/icon.js";
 import { JUG_PRESETS, parseJugs, jugsSolve, jugsMin, gcd, moveText } from "./maths.js";
 export { activity } from "./activity.js";
@@ -18,7 +18,8 @@ export const card = {
 };
 
 export const variant = {
-  params: [choice("jugs", "Bidons et quantité visée", "Jugs and target amount", JUG_PRESETS.map((s) => { const [a, b, t] = parseJugs(s); return [s, `${a} L et ${b} L : ${t} L`, `${a} L and ${b} L: ${t} L`]; }), "3,5,4")],
+  params: [{ ...choice("jugs", "Bidons et quantité visée", "Jugs and target amount", JUG_PRESETS.map((s) => { const [a, b, t] = parseJugs(s); return [s, `${a} L et ${b} L : ${t} L`, `${a} L and ${b} L: ${t} L`]; }), "3,5,4"),
+    fields: [int('capacity1', 'Premier bidon (L)', 'First jug (L)', 1, 30, 3), int('capacity2', 'Second bidon (L)', 'Second jug (L)', 1, 30, 5), int('target', 'Quantité visée (L)', 'Target amount (L)', 1, 60, 4)] }],
   answer: (q) => { const [a, b, t] = parseJugs(q.jugs); return jugsMin(a, b, t); },
   prompt: (q) => { const [a, b, t] = parseJugs(q.jugs); return P(
     `On dispose d’un robinet, d’un évier et de deux bidons sans graduation, de ${a} L et de ${b} L. Une opération consiste à remplir un bidon au robinet, à le vider dans l’évier, ou à verser un bidon dans l’autre jusqu’à ce que le premier soit vide ou le second plein. Quel est le plus petit nombre d’opérations pour obtenir exactement ${t} L dans l’un des bidons ? Réponds 0 si c’est impossible.`,

@@ -151,5 +151,24 @@ for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein','four
  assert.ok(!/undefined|NaN/.test(document.querySelector('#main').textContent));
 }
 console.log('DOM smoke passed: five folding controls, every experiment (drags with no element change, fixed camera, missions, keyboard handles, run buttons, free and gated missions, zoom only on purpose), old guided page gone, gallery redirects; canvas arguments finite.');
+// Compact challenge settings and genuinely editable data: statement, solution, checker and activity all follow.
+for(const id of ['fly','jugs']){
+ await go('#challenges/'+id);
+ assert.ok(document.querySelector('details.variation:not([open])'),'settings are folded by default');
+ assert.equal(document.querySelector('.var-choice input[type="radio"]'),null,'no sprawling preset lists');
+ const values=id==='fly'?['137','31','47','250']:['8','13','7'];
+ const fields=[...document.querySelectorAll('[data-custom]')];assert.equal(fields.length,values.length);
+ fields.forEach((f,i)=>{f.value=values[i];f.dispatchEvent(new window.Event('input'));});
+ document.querySelector('[data-apply]').click();flush();assert.ok(document.querySelector('#problem').textContent.includes(values[0]));
+ const selector=document.querySelector('select[data-var]');assert.equal(selector.value,'custom');
+ assert.ok(document.querySelector('#solution-text').textContent.includes(values[0]));
+ if(id==='fly'){
+  assert.equal(document.querySelector('#activity svg').dataset.time,'0');
+  fields[3].value='20';document.querySelector('[data-apply]').click();
+  assert.ok(!fields[3].checkValidity(),'fly slower than a train is rejected');assert.ok(document.querySelector('#problem').textContent.includes('250'));
+ }else assert.equal(document.querySelector('.jg-moves'),null,'jug operations live in the scene');
+ selector.value=id==='fly'?'200,50,50,75':'3,5,4';selector.dispatchEvent(new window.Event('change'));
+ assert.equal(fields[0].value,id==='fly'?'200':'3','choosing an example synchronises editable fields');
+}
 dom.window.close();
 

@@ -635,13 +635,23 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 .variation h2 { font-size: 1.15rem; margin: 0; }
 .variation .muted { margin: 4px 0 0; }
 .variation-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.var-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 10px 24px; margin-top: 8px; }
+.var-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 10px 24px; margin-top: 8px; }
 .var-field { display: grid; gap: 2px; font-weight: 700; }
 .var-label output { color: var(--accent); font: 600 1.1rem var(--math); }
 .var-choice { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
 .var-choice legend { font-weight: 700; float: left; margin-right: 12px; padding: 0; }
 .var-choice label { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 .var-choice input { width: 18px; height: 18px; accent-color: var(--accent); }
+.variation > summary { font-weight: 700; cursor: pointer; min-height: 44px; }
+.variation > .muted { margin-top: 12px; }
+.var-field select { width: 100%; min-width: 0; }
+.var-numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 12px 0; }
+.var-numbers label { display: grid; gap: 4px; min-width: 0; }
+.var-numbers input { width: 100%; min-width: 0; }
+.variation .variation-actions { margin-top: 12px; flex-wrap: wrap; }
+.jg-object { cursor: pointer; }
+.jg-object:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+.jg-svg { max-height: 460px; }
 
 /* Laboratory objects (Galton board, Reuleaux, Platonic solids, chaos game) */
 .object-stage { display: grid; gap: 12px; margin-top: 8px; }

@@ -67,7 +67,11 @@ export function normalise(id, q) {
   const out = {};
   for (const p of VARIANTS[id].params) {
     if (p.kind === "int") { const v = Math.round(Number(q[p.id])); out[p.id] = Number.isFinite(v) ? Math.min(p.max, Math.max(p.min, p.step > 1 ? p.min + Math.round((v - p.min) / p.step) * p.step : v)) : p.value; }
-    else out[p.id] = p.options.some((o) => String(o[0]) === String(q[p.id])) ? (typeof p.options[0][0] === "number" ? Number(q[p.id]) : q[p.id]) : p.value;
+    else {
+      const values = String(q[p.id]).split(',').map(Number);
+      const custom = p.fields && values.length === p.fields.length && values.every((v, i) => Number.isInteger(v) && v >= p.fields[i].min && v <= p.fields[i].max) && (!p.validate || p.validate(values));
+      out[p.id] = custom ? values.join(',') : p.options.some((o) => String(o[0]) === String(q[p.id])) ? (typeof p.options[0][0] === "number" ? Number(q[p.id]) : q[p.id]) : p.value;
+    }
   }
   return out;
 }

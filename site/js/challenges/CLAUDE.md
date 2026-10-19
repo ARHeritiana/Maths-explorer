@@ -19,6 +19,11 @@ A folder has only the files it needs (some challenges have no `maths.js`).
 
 ## Shared (`common/`)
 
+Parameter choices appear in compact selects inside folded settings (`app.js`). A choice may also carry `fields`
+(bounded integer inputs), `validate(values)` and a bilingual `error`, allowing custom tuples alongside optional
+examples; `registry.js` normalises both paths. Fly and jugs use this. Direct object manipulation is primary;
+scene-level tap/drag actions have keyboard equivalents, and camera gestures cancel active object drags.
+
 | File | Holds |
 |---|---|
 | `kit.js` | `svgEl`, `toLocal`, `clamp`, `colour(i)` (card colours `--c1..--c8`), `lockTouch`, `onHintAction`, `makeCtx`, `MINUS` |
