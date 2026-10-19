@@ -119,6 +119,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     fontScale: slide ? 1.3 : 1,
     canvasKeys: slide,
     navHost: slide ? opts.controls : undefined,
+    reservePointer: () => exp.pointerMode?.(getState()) === "draw",
     onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
     label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
@@ -303,7 +304,7 @@ export function createShell(host, exp, tpl, opts = {}) {
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
       // Before the learner has predicted there is nothing to operate: locked controls are not shown at all.
-      n.wrap.hidden = m.kind === "predict";
+      n.wrap.hidden = m.kind === "predict" || (exp.onlyUnlocked && !on);
     }
     controlsEl.hidden = m.kind === "predict" || !Object.keys(controlNodes).length;
   }
@@ -561,3 +562,4 @@ export function createShell(host, exp, tpl, opts = {}) {
   root.__lab = api;   // read by the browser tests (tests/lab_browser.py) to set a state or read the mission
   return api;
 }
+

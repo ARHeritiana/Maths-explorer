@@ -287,12 +287,13 @@ def compile_figs(course, lang, jobs):
         items=[(cid,n,re.sub(r'^(?:\\begin\{center\}\s*)|(?:\s*\\end\{center\})$', '', code.strip())) for cid,n,code in items]
         body = '\n'.join('\\begin{preview}\n%s\n\\end{preview}' % code for _, _, code in items)
         tex = head + '\\usepackage[active,tightpage]{preview}\\setlength\\PreviewBorder{5pt}\\pagestyle{empty}\\begin{document}\n' + body + '\n\\end{document}\n'
-        (base / (job + '.tex')).write_text(tex, encoding='utf8')
-        pdf = build / (job + '.pdf')
+        source = build / (course + '-' + job + '.tex')
+        source.write_text(tex, encoding='utf8')
+        pdf = source.with_suffix('.pdf')
         pdf.unlink(missing_ok=True)
-        result = subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), job + '.tex'], cwd=base, capture_output=True, text=True, errors='replace')
-        (base / (job + '.tex')).unlink()
-        pdf = build / (job + '.pdf')
+        result = subprocess.run(['pdflatex', '-no-shell-escape', '-interaction=nonstopmode', '-output-directory=' + str(build), str(source)], cwd=base, capture_output=True, text=True, errors='replace')
+        source.unlink()
+        pdf = source.with_suffix('.pdf')
         return pdf if result.returncode==0 and pdf.exists() else None
     pdf = run(jobs, f'_figs_{lang}')
     d = pymupdf.open(pdf) if pdf else None

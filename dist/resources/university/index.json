@@ -411,6 +411,196 @@
         "Première année scientifique : cahier autonome, corrigés et guides.",
         "First-year science: self-study workbook, solutions and guides."
       ]
+    },
+    {
+      "id": "fourier",
+      "title": [
+        "Séries de Fourier : des ondes aux contours",
+        "Fourier series: from waves to outlines"
+      ],
+      "intro": [
+        "Six leçons pour relier les cercles de la galerie, l’expérimentation et les mathématiques formelles. Cours en français.",
+        "Six lessons connecting the gallery circles, experimentation and formal mathematics. Lessons in French."
+      ],
+      "language": "fr",
+      "audience": [
+        "Initiation universitaire : trigonométrie, intégrales et nombres complexes.",
+        "University introduction: trigonometry, integrals and complex numbers."
+      ],
+      "sequences": [
+        {
+          "id": "fourier-periodicite",
+          "slide": "fourier-periodicite.html",
+          "edition": "lesson",
+          "labRef": "fourier-series/wave",
+          "title": [
+            "Périodicité, amplitude et phase",
+            "Périodicité, amplitude et phase"
+          ],
+          "summary": [
+            "Lire une fréquence et une période.",
+            "Lire une fréquence et une période."
+          ],
+          "prerequisites": [
+            "Trigonométrie, fonctions et nombres complexes.",
+            "Trigonométrie, fonctions et nombres complexes."
+          ],
+          "number": 1
+        },
+        {
+          "id": "fourier-coefficients",
+          "slide": "fourier-coefficients.html",
+          "edition": "lesson",
+          "labRef": "fourier-series/coefficients",
+          "title": [
+            "Orthogonalité et mesure des coefficients",
+            "Orthogonalité et mesure des coefficients"
+          ],
+          "summary": [
+            "Calculer les coefficients réels et complexes.",
+            "Calculer les coefficients réels et complexes."
+          ],
+          "prerequisites": [
+            "Leçon 1 ; intégrale sur un segment ; produit scalaire.",
+            "Leçon 1 ; intégrale sur un segment ; produit scalaire."
+          ],
+          "number": 2
+        },
+        {
+          "id": "fourier-convergence",
+          "slide": "fourier-convergence.html",
+          "edition": "lesson",
+          "labRef": "fourier-series/convergence",
+          "title": [
+            "Approximation, sauts et moyennes de Fejér",
+            "Approximation, sauts et moyennes de Fejér"
+          ],
+          "summary": [
+            "Distinguer convergence ponctuelle, uniforme et quadratique.",
+            "Distinguer convergence ponctuelle, uniforme et quadratique."
+          ],
+          "prerequisites": [
+            "Leçons 1 et 2 ; limites et continuité.",
+            "Leçons 1 et 2 ; limites et continuité."
+          ],
+          "number": 3
+        },
+        {
+          "id": "fourier-energie",
+          "slide": "fourier-energie.html",
+          "edition": "lesson",
+          "labRef": "fourier-series/approximation",
+          "title": [
+            "Énergie, projection et erreur",
+            "Énergie, projection et erreur"
+          ],
+          "summary": [
+            "Démontrer l’optimalité d’une projection finie.",
+            "Démontrer l’optimalité d’une projection finie."
+          ],
+          "prerequisites": [
+            "Leçons 1 à 3 ; produit scalaire et sommes.",
+            "Leçons 1 à 3 ; produit scalaire et sommes."
+          ],
+          "number": 4
+        },
+        {
+          "id": "fourier-discret",
+          "slide": "fourier-discret.html",
+          "edition": "lesson",
+          "labRef": "fourier-drawing/drawing",
+          "title": [
+            "Échantillonnage et transformée discrète",
+            "Échantillonnage et transformée discrète"
+          ],
+          "summary": [
+            "Démontrer l’inversion de la DFT.",
+            "Démontrer l’inversion de la DFT."
+          ],
+          "prerequisites": [
+            "Leçons 1 à 4 ; sommes géométriques ; complexes.",
+            "Leçons 1 à 4 ; sommes géométriques ; complexes."
+          ],
+          "number": 5
+        },
+        {
+          "id": "fourier-contours",
+          "slide": "fourier-contours.html",
+          "edition": "lesson",
+          "labRef": "fourier-drawing/drawing",
+          "title": [
+            "Du contour aux cercles : Madagascar et au-delà",
+            "Du contour aux cercles : Madagascar et au-delà"
+          ],
+          "summary": [
+            "Construire une chaîne d’épicycles à partir d’un contour.",
+            "Construire une chaîne d’épicycles à partir d’un contour."
+          ],
+          "prerequisites": [
+            "Leçons 1 à 5 ; coordonnées du plan.",
+            "Leçons 1 à 5 ; coordonnées du plan."
+          ],
+          "number": 6
+        }
+      ],
+      "documents": [
+        {
+          "key": "fourier-cours",
+          "label": [
+            "Cours et démonstrations",
+            "Cours et démonstrations"
+          ],
+          "path": "resources/university/fourier/cours.pdf"
+        },
+        {
+          "key": "fourier-exercices",
+          "label": [
+            "Exercices seuls",
+            "Exercices seuls"
+          ],
+          "path": "resources/university/fourier/exercices.pdf"
+        },
+        {
+          "key": "fourier-corriges",
+          "label": [
+            "Exercices corrigés",
+            "Exercices corrigés"
+          ],
+          "path": "resources/university/fourier/corriges.pdf"
+        },
+        {
+          "key": "fourier-guide",
+          "label": [
+            "Guide de travail et corrigés",
+            "Guide de travail et corrigés"
+          ],
+          "path": "resources/university/fourier/guide.pdf"
+        },
+        {
+          "key": "fourier-tex",
+          "label": [
+            "Sources LaTeX",
+            "LaTeX sources"
+          ],
+          "path": "resources/university/fourier/sources-latex.zip"
+        }
+      ],
+      "studyDocuments": [
+        {
+          "key": "fourier-cours",
+          "label": [
+            "Lire le cours complet",
+            "Read the full course"
+          ]
+        },
+        {
+          "key": "fourier-exercices",
+          "label": [
+            "Travailler les exercices",
+            "Practise exercises"
+          ]
+        }
+      ]
     }
   ],
   "files": {
@@ -539,6 +729,65 @@
       "path": "resources/university/module-maths/module-complet.zip",
       "bytes": 1071363,
       "sha256": "73eef7151efb8e508b74d19efe2edde32882ddb357b9a1dd3ab1283f784191aa"
+    },
+    "fourier-periodicite": {
+      "path": "resources/university/fourier/slides/fourier-periodicite.html",
+      "bytes": 6158,
+      "sha256": "5d93133ef1bcadcafe7a3423dfd933ce857367b0e54de7aaaf2bf901ea9c20f4"
+    },
+    "fourier-coefficients": {
+      "path": "resources/university/fourier/slides/fourier-coefficients.html",
+      "bytes": 6947,
+      "sha256": "f52614e24bdf6a126d67e7b7956ad8092fba13e2d2694268a1ab1743991de12c"
+    },
+    "fourier-convergence": {
+      "path": "resources/university/fourier/slides/fourier-convergence.html",
+      "bytes": 7401,
+      "sha256": "9528bd764459f43399947092214aa05e17c8ad3f1c04fbde51438bb862299700"
+    },
+    "fourier-energie": {
+      "path": "resources/university/fourier/slides/fourier-energie.html",
+      "bytes": 6791,
+      "sha256": "eaad4bae5e563e4b304420af75b14a3fa64e4ff54264ce3c83e11925f073af24"
+    },
+    "fourier-discret": {
+      "path": "resources/university/fourier/slides/fourier-discret.html",
+      "bytes": 6703,
+      "sha256": "3879531e6dbf32879b2b23288ea748d3c99734d1c5bb32809c9db2ace3e34dcb"
+    },
+    "fourier-contours": {
+      "path": "resources/university/fourier/slides/fourier-contours.html",
+      "bytes": 7233,
+      "sha256": "cdd8c0341bba690924564432c711d9c0048c7000cc5c3ab696c423f5f1791878"
+    },
+    "fourier-cours": {
+      "path": "resources/university/fourier/cours.pdf",
+      "bytes": 102543,
+      "sha256": "5d0e584e54d8c630664ba97a9778fb5b4e05e8b2c065b1ab6c54b35d62113804",
+      "pages": 14
+    },
+    "fourier-exercices": {
+      "path": "resources/university/fourier/exercices.pdf",
+      "bytes": 48313,
+      "sha256": "653792746a46b2491a23807b64b2645176ad380fe6f4dddefc4fc85668362ba5",
+      "pages": 8
+    },
+    "fourier-corriges": {
+      "path": "resources/university/fourier/corriges.pdf",
+      "bytes": 55549,
+      "sha256": "8ff8bad247cd44218d8e592001f777c2d7d60526f8c33c69809f2a707b55905e",
+      "pages": 8
+    },
+    "fourier-guide": {
+      "path": "resources/university/fourier/guide.pdf",
+      "bytes": 110865,
+      "sha256": "9af4cce4f42b0e2bd2b026bd3e58419a454d60816078a25680372d6a5f0432a6",
+      "pages": 15
+    },
+    "fourier-tex": {
+      "path": "resources/university/fourier/sources-latex.zip",
+      "bytes": 29818,
+      "sha256": "fde39df369bc2258a5ee939759b8cb186abe7118d7cf5a13f57ec1a65697b045"
     }
   },
   "sourceDigest": "d7d832400b5440ac03478b08289f855ab21df2d7ef7aebc0470948f3536d400e",

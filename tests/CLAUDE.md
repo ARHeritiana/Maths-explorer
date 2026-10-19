@@ -43,3 +43,6 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `gallery-discovery-dom.test.mjs` | five exhibits, live inputs, bilingual readouts and lifecycle cleanup |
 
 | `gallery-spatial.test.mjs` | all 44 curve projections, continuous deformations, 14 film models and full-window hat coverage |
+
+
+`fourier.test.mjs`: continuous coefficient quadrature, direct error integrals, finite DFT inversion, sample Parseval, aliasing, Fejér bounds and Fejér bounds. `fourier-links.test.mjs` checks reciprocal entry points and local lesson assets.

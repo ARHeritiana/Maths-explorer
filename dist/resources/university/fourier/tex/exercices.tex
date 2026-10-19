@@ -1,0 +1,60 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}\setmainfont{Latin Modern Roman}
+\usepackage[provide=*,french]{babel}\usepackage{amsmath,amssymb,geometry,xcolor,hyperref,enumitem}
+\geometry{margin=24mm}\hypersetup{colorlinks=true,linkcolor=blue,pdftitle={Séries de Fourier},pdfauthor={}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}\setlist{itemsep=6pt}
+\newcommand{\editiontitle}[1]{\begin{center}{\Large\bfseries Séries de Fourier}\\[8pt]#1\end{center}}
+\begin{document}
+\editiontitle{Exercices seuls}\tableofcontents\clearpage
+\section{Périodicité, amplitude et phase}
+\textbf{Prérequis :} Trigonométrie, fonctions et nombres complexes.
+\subsection*{Exercices}\begin{enumerate}
+\item Déterminer amplitude, période fondamentale et valeur en zéro de $u(t)=2\cos(6\pi t+\pi/3)$.
+\item Pourquoi $e^{2\pi it}+e^{-2\pi it}$ trace-t-il un segment et non un cercle ?
+\item Une somme de fréquences 2 et 4 est-elle nécessairement de période fondamentale 1 ?
+\end{enumerate}
+\clearpage
+\section{Orthogonalité et mesure des coefficients}
+\textbf{Prérequis :} Leçon 1 ; intégrale sur un segment ; produit scalaire.
+\subsection*{Exercices}\begin{enumerate}
+\item Calculer les coefficients non nuls de f(t)=$0{,}6\cos(2\pi t)+0{,}8\sin(4\pi t)$.
+\item Calculer les coefficients sinus de f(t)=2t-1 sur ]0,1[, prolongée périodiquement.
+\item Pourquoi modifier une fonction en un seul point ne change-t-il pas ses coefficients ?
+\end{enumerate}
+\clearpage
+\section{Approximation, sauts et moyennes de Fejér}
+\textbf{Prérequis :} Leçons 1 et 2 ; limites et continuité.
+\subsection*{Exercices}\begin{enumerate}
+\item Le créneau est défini égal à 7 en t=0. Vers quoi $S_N$(0) converge-t-elle ?
+\item Écrire $\sigma_2$ pour $f(t)=\cos(2\pi t)+\sin(4\pi t)$.
+\item Une courbe paraît exacte à l’écran. A-t-on démontré la convergence uniforme ?
+\end{enumerate}
+\clearpage
+\section{Énergie, projection et erreur}
+\textbf{Prérequis :} Leçons 1 à 3 ; produit scalaire et sommes.
+\subsection*{Exercices}\begin{enumerate}
+\item Calculer l’énergie du mélange et la racine de son erreur au rang 1.
+\item Pour le créneau, donner l’erreur au rang 1.
+\item Une moyenne de Fejér minimise-t-elle nécessairement l’erreur dans $V_N$ ?
+\end{enumerate}
+\clearpage
+\section{Échantillonnage et transformée discrète}
+\textbf{Prérequis :} Leçons 1 à 4 ; sommes géométriques ; complexes.
+\subsection*{Exercices}\begin{enumerate}
+\item Calculer la DFT de la liste (1,i,-1,-i) avec M=4.
+\item Avec M=8, pourquoi les fréquences 1 et 9 sont-elles indiscernables ?
+\item Il reste des coefficients de modules 0,3 et 0,4. Quelle est l’erreur RMS sur les points ?
+\end{enumerate}
+\clearpage
+\section{Du contour aux cercles : Madagascar et au-delà}
+\textbf{Prérequis :} Leçons 1 à 5 ; coordonnées du plan.
+\subsection*{Exercices}\begin{enumerate}
+\item Que change une translation de tous les points par un même complexe a ?
+\item Que devient le spectre si tout le dessin est multiplié par $re^{i\theta}$ ?
+\item Concevoir une vérification qui sépare les erreurs d’échantillonnage et de troncature.
+\end{enumerate}
+\clearpage
+\section*{Références pour approfondir}
+\par\href{https://dlmf.nist.gov/1.8}{NIST DLMF, section 1.8 : coefficients, convergence et Parseval}
+\par\href{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/resources/lecture-16-fejers-theorem-and-convergence-of-fourier-series/}{MIT OpenCourseWare, 18.102, leçon 16 : Fejér et convergence dans L$^2$}
+\end{document}

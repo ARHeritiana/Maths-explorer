@@ -48,3 +48,6 @@ The contract is `docs/LAB_DESIGN.md` (read sections 3 to 7 before changing anyth
 - every string is a `[fr, en]` pair; no em or en dashes; French uses a decimal comma (`makeFormat`).
 - a new experiment: copy the nearest one, add it to `registry.js`, add its witnesses and independent check to
   `tests/lab-engine.test.mjs`, and a drag check to `tests/lab_browser.py`.
+
+
+Fourier uses `experiments/fourier.js` (two experiments with 6 and 5 missions) and `templates/fourier.js` (wave, coefficient and DFT drawing views with the shared stage).

@@ -17442,6 +17442,118 @@
           "Première année scientifique : cahier autonome, corrigés et guides.",
           "First-year science: self-study workbook, solutions and guides."
         ]
+      },
+      {
+        "id": "fourier",
+        "title": [
+          "Séries de Fourier : des ondes aux contours",
+          "Fourier series: from waves to outlines"
+        ],
+        "intro": [
+          "Six leçons pour relier les cercles de la galerie, l’expérimentation et les mathématiques formelles. Cours en français.",
+          "Six lessons connecting the gallery circles, experimentation and formal mathematics. Lessons in French."
+        ],
+        "language": "fr",
+        "audience": [
+          "Initiation universitaire : trigonométrie, intégrales et nombres complexes.",
+          "University introduction: trigonometry, integrals and complex numbers."
+        ],
+        "sequences": [
+          {
+            "id": "fourier-periodicite",
+            "slide": "fourier-periodicite.html",
+            "edition": "lesson",
+            "labRef": "fourier-series/wave"
+          },
+          {
+            "id": "fourier-coefficients",
+            "slide": "fourier-coefficients.html",
+            "edition": "lesson",
+            "labRef": "fourier-series/coefficients"
+          },
+          {
+            "id": "fourier-convergence",
+            "slide": "fourier-convergence.html",
+            "edition": "lesson",
+            "labRef": "fourier-series/convergence"
+          },
+          {
+            "id": "fourier-energie",
+            "slide": "fourier-energie.html",
+            "edition": "lesson",
+            "labRef": "fourier-series/approximation"
+          },
+          {
+            "id": "fourier-discret",
+            "slide": "fourier-discret.html",
+            "edition": "lesson",
+            "labRef": "fourier-drawing/drawing"
+          },
+          {
+            "id": "fourier-contours",
+            "slide": "fourier-contours.html",
+            "edition": "lesson",
+            "labRef": "fourier-drawing/drawing"
+          }
+        ],
+        "documents": [
+          {
+            "key": "fourier-cours",
+            "label": [
+              "Cours et démonstrations",
+              "Cours et démonstrations"
+            ],
+            "path": "resources/university/fourier/cours.pdf"
+          },
+          {
+            "key": "fourier-exercices",
+            "label": [
+              "Exercices seuls",
+              "Exercices seuls"
+            ],
+            "path": "resources/university/fourier/exercices.pdf"
+          },
+          {
+            "key": "fourier-corriges",
+            "label": [
+              "Exercices corrigés",
+              "Exercices corrigés"
+            ],
+            "path": "resources/university/fourier/corriges.pdf"
+          },
+          {
+            "key": "fourier-guide",
+            "label": [
+              "Guide de travail et corrigés",
+              "Guide de travail et corrigés"
+            ],
+            "path": "resources/university/fourier/guide.pdf"
+          },
+          {
+            "key": "fourier-tex",
+            "label": [
+              "Sources LaTeX",
+              "LaTeX sources"
+            ],
+            "path": "resources/university/fourier/sources-latex.zip"
+          }
+        ],
+        "studyDocuments": [
+          {
+            "key": "fourier-cours",
+            "label": [
+              "Lire le cours complet",
+              "Read the full course"
+            ]
+          },
+          {
+            "key": "fourier-exercices",
+            "label": [
+              "Travailler les exercices",
+              "Practise exercises"
+            ]
+          }
+        ]
       }
     ]
   }

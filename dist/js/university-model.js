@@ -17,5 +17,5 @@ export function universityPathway(index) {
 
 export function universitySlideLinks(index, lang = 0) {
   const E = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  return index.sections.map(section => `<section class="source-course"><h2>${E(section.title[lang])}</h2><p>${section.sequences.length} ${lang ? 'HTML explorations' : 'explorations HTML'} · ${section.language.toUpperCase()}</p><a href="#university">${lang ? 'Documents and interactive slides' : 'Documents et diaporamas interactifs'} →</a></section>`).join('');
+  return index.sections.map(section => `<section class="source-course"><h2>${E(section.title[lang])}</h2><p>${section.sequences.length} ${section.sequences.every(q=>q.edition==='lesson')?(lang?'web lessons':'leçons web'):(lang ? 'HTML explorations' : 'explorations HTML')} · ${section.language.toUpperCase()}</p><a href="#university">${section.sequences.every(q=>q.edition==='lesson')?(lang?'Notes, exercises and web lessons':'Cours, exercices et leçons web'):(lang ? 'Documents and interactive slides' : 'Documents et diaporamas interactifs')} →</a></section>`).join('');
 }

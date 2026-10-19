@@ -146,3 +146,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 
 - 18 October 2026: laboratory v2, Phase 1 (`docs/LAB_DESIGN.md`). New `site/js/lab/` (engine, shell, mount, registry, templates `family` and `process`, models, five experiments) replaces the old lab page for quadratic, trigonometry, sequences, derivative and integral: six missions each (predict, explore, compare, check, explain), draggable handles on a retained canvas (a drag adds or removes no element), `#lab/<experiment>/<mission>` addresses, index grouped by type of activity. The four other guided labs stay on the old page until Phase 2. Validation: 173 Node tests (18 new in `tests/lab-engine.test.mjs`), syntax checks for 195 scripts, DOM smoke, Chromium suites `tests/browser.py` and `tests/lab_browser.py`; `make check FAST=1` passes except the TeX notation test (no `pdflatex` in this container).
 
+
+- 2026-10-19: Completed Fourier learning triangle: signal approximation, coefficients, Fejér comparison, DFT contour tracing, six university lessons and four PDF editions; independent mathematical and DOM audits, build freshness checks, keyboard contour creation.

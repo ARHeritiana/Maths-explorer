@@ -38,10 +38,18 @@ class Dependencies(unittest.TestCase):
             self.assertIn('slide-exports',refresh.changed_jobs(before,after))
             self.manifest['catalog']['courses'][0]['title'][0]='Renommé'
             newer=refresh.inputs();self.assertIn('slides',refresh.changed_jobs(after,newer))
+    def test_fourier_shared_models_invalidate_slide_exports(self):
+        with tempfile.TemporaryDirectory() as tmp,patch.object(refresh,'ROOT',Path(tmp)),patch.object(catalog,'load',return_value=self.manifest):
+            for name in ['fourier-model.js','gallery-math.js']:
+                p=Path(tmp)/'site/js'/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('before')
+                before=refresh.inputs();p.write_text('after');after=refresh.inputs()
+                self.assertIn('slide-exports',refresh.changed_jobs(before,after))
     def test_player_import_map_versions_shared_engine(self):
         text=site.versioned_player()
         self.assertIn('../js/canvas-navigation.js?v=',text)
         self.assertIn('./player.css?v=',text)
         self.assertIn('./widgets.js?v=',text)
+        self.assertIn('../js/fourier-model.js?v=',text)
+        self.assertIn('../js/gallery-math.js?v=',text)
 
 if __name__=='__main__':unittest.main()

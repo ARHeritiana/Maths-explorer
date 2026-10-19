@@ -999,3 +999,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .lab2-formula { font-size: 1rem; margin: 8px 2px 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .lab2-card-link, .lab2-segment { transition: none; } }
+
+
+/* Fourier entry points share the measured collection catalogue. */
+.fourier-triangle{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.fourier-triangle a{min-height:44px;display:inline-flex;align-items:center;white-space:normal}

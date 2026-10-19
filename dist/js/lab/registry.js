@@ -9,6 +9,8 @@ import probability from "./experiments/probability.js";
 import vectors from "./experiments/vectors.js";
 import statistics from "./experiments/statistics.js";
 import complex from "./experiments/complex.js";
+import fourier from "./experiments/fourier.js";
+import { drawingExperiment } from "./experiments/fourier.js";
 import line from "./experiments/line.js";
 import exponential from "./experiments/exponential.js";
 import cobweb from "./experiments/cobweb.js";
@@ -16,9 +18,10 @@ import matrix from "./experiments/matrix.js";
 import spaceLines from "./experiments/space-lines.js";
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines];
+export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment];
 
 export const TEMPLATES = {
+  fourier: () => import("./templates/fourier.js"),
   family: () => import("./templates/family.js"),
   process: () => import("./templates/process.js"),
   chance: () => import("./templates/chance.js"),
@@ -30,6 +33,7 @@ export const TEMPLATES = {
 
 // Type of activity, shown as the group titles of the #lab index.
 export const TEMPLATE_INFO = {
+  fourier: {title:['Décomposer et reconstruire','Decompose and reconstruct'],blurb:['Des signaux périodiques aux contours tracés par des cercles.','From periodic signals to outlines drawn by circles.']},
   family: { title: ["Faire varier un paramètre", "Change a parameter"], blurb: ["Une famille de fonctions : que change chaque coefficient ?", "A family of functions: what does each coefficient change?"] },
   process: { title: ["Rapprocher jusqu’à la limite", "Approach the limit"], blurb: ["Un procédé indexé par n ou h : vers quoi tend-il ?", "A process indexed by n or h: what does it approach?"] },
   chance: { title: ["Répéter le hasard", "Repeat chance"], blurb: ["Une expérience aléatoire répétée : les fréquences se rapprochent-elles des probabilités ?", "A random experiment repeated: do frequencies come close to probabilities?"] },
@@ -67,3 +71,4 @@ export const catalogue = () => EXPERIMENTS.map((e) => ({
   duration: e.duration, level: e.level, prereq: e.prereq,
   history: e.history.title, story: e.history.story, source: e.history.source,
 }));
+

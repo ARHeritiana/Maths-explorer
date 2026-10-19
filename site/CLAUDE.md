@@ -88,3 +88,6 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 ## Third party
 
 `vendor/` (MathJax, JSZip, pdf-lib; see `vendor/README.md`), `fonts/` (with licences). Do not read.
+
+
+Fourier: `js/fourier-model.js` (pure signals and error), `js/fourier-links.js` (catalogue-derived triangle).

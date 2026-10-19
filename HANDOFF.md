@@ -157,3 +157,12 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - Knot explorer offers 44 entries through eight minimum crossings, shared 3D/projection geometry, projection-based Fox tricolourings and three continuous examples. The Reidemeister workbench is removed.
 - Einstein tiles lazily extend the same nested H7/H8 hierarchy to fill the camera window without repeating a patch or changing its scale.
 - All 11 gallery exhibits have mathematical and historical/practical reading paths. New pure-model regression tests are in `tests/gallery-spatial.test.mjs`.
+
+## Fourier learning triangle, 19 October 2026
+
+- [x] Two guided Fourier experiments (continuous signals and sampled contours), six French university lessons and eighteen corrected exercises.
+- [x] Four XeLaTeX PDF editions, standalone LaTeX sources, web reading editions and dependency-driven asset hashes.
+- [x] Reciprocal links between gallery, laboratory and university, derived from the shared catalogue; exact sample reconstruction and RMS labels corrected in the gallery.
+- [x] Two independent audits and numerical verification. Audit records and browser-verification limits are in `private/audits/fourier/`.
+
+- Integration validation: merged Phase 4 without dropping its five experiments or shared camera; `make check FAST=1`, syntax checks, Fourier DOM and symbolic verification pass. Browser preview is blocked by the managed proc mount.

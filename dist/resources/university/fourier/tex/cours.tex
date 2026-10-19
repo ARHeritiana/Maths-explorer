@@ -1,0 +1,124 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}\setmainfont{Latin Modern Roman}
+\usepackage[provide=*,french]{babel}\usepackage{amsmath,amssymb,geometry,xcolor,hyperref,enumitem}
+\geometry{margin=24mm}\hypersetup{colorlinks=true,linkcolor=blue,pdftitle={Séries de Fourier},pdfauthor={}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}\setlist{itemsep=6pt}
+\newcommand{\editiontitle}[1]{\begin{center}{\Large\bfseries Séries de Fourier}\\[8pt]#1\end{center}}
+\begin{document}
+\editiontitle{Cours et démonstrations}\tableofcontents\clearpage
+\section{Périodicité, amplitude et phase}
+\textbf{Prérequis :} Trigonométrie, fonctions et nombres complexes.
+\subsection*{Explorer avant de formaliser}Dans le laboratoire, déplace le point de l’onde. Prédis ce qui change lorsque la fréquence double, puis compare la hauteur des oscillations et leur nombre.
+\subsection{Une fonction qui recommence}
+Une fonction f est T-périodique si T est strictement positif et si $f(t+T)=f(t)$ pour tout t. Une période n’est pas nécessairement la plus petite. Nous étudions d’abord des fonctions de période 1 ; pour une période T, on remplace t par t/T. Le signal ne change pas de forme : seule l’échelle horizontale change.
+\[\begin{gathered}f(t+T)=f(t),\qquad \omega_0=\frac{2\pi}{T}.\end{gathered}\]
+\subsection{Trois paramètres, trois effets}
+Pour A positif, A mesure l’amplitude ; k est le nombre entier d’oscillations sur une période de référence ; la phase indique la position initiale. Si k est non nul, la période fondamentale de cette onde isolée vaut T/|k|. Un déphasage ne change pas l’amplitude. Pour k=0, le terme est constant : il ne tourne pas.
+\[\begin{gathered}u(t)=A\cos\left(\frac{2\pi k t}{T}+\varphi\right).\end{gathered}\]
+\subsection{Le cercle derrière le sinus}
+Un nombre complexe $z=x+iy$ représente le vecteur de coordonnées (x,y). La formule d’Euler relie le cercle et les fonctions trigonométriques. Le module A est la longueur du vecteur, l’argument est son angle. La partie réelle est sa projection horizontale ; la partie imaginaire est sa projection verticale.
+\[\begin{gathered}Ae^{i(2\pi kt/T+\varphi)}=A\cos(2\pi kt/T+\varphi)+iA\sin(2\pi kt/T+\varphi).\end{gathered}\]
+\textbf{Justification.} En multipliant A(cos $\varphi$+i sin $\varphi$) par cos $\theta$+i sin $\theta$, les formules d’addition donnent A(cos($\theta$+$\varphi$)+i sin($\theta$+$\varphi$)). Multiplier par une exponentielle de module 1 effectue donc une rotation.
+\subsection{Additionner des ondes}
+Une somme finie de sinus et de cosinus de fréquences entières est un polynôme trigonométrique. Elle est T-périodique, même si une période plus petite peut exister. L’addition est point par point : on additionne les hauteurs, pas les fréquences. Dans le plan complexe, on place les vecteurs bout à bout. Le dernier point est leur somme. C’est le principe géométrique des épicycles.
+\[\begin{gathered}p(t)=c_0+\sum_{1\le |k|\le N} c_k e^{2\pi ikt/T}.\end{gathered}\]
+\clearpage
+\section{Orthogonalité et mesure des coefficients}
+\textbf{Prérequis :} Leçon 1 ; intégrale sur un segment ; produit scalaire.
+\subsection*{Explorer avant de formaliser}Choisis le mélange dans le laboratoire. Mesure successivement les fréquences 1, 2 et 3. Compare les produits avec un sinus et repère les compensations d’aires signées.
+\subsection{Mesurer une ressemblance}
+On considère des fonctions complexes de carré intégrable sur [0,1]. Le produit scalaire est linéaire en sa première variable. La conjugaison est indispensable : elle permet que la norme au carré soit réelle et positive. La famille des exponentielles entières est orthonormée.
+\[\begin{gathered}\langle f,g\rangle=\int_0^1 f(t)\overline{g(t)}\,dt,\qquad e_k(t)=e^{2\pi ikt}.\end{gathered}\]
+\textbf{Justification.} Le produit $e_k$ fois le conjugué de $e_l$ vaut $e^{2\pi i(k-l)t}$. Si k=l, son intégrale vaut 1. Sinon, une primitive est $\dfrac{e^{2\pi i(k-l)t}}{2\pi i(k-l)}$, qui prend la même valeur aux deux bornes : l’intégrale vaut zéro.
+\subsection{Pourquoi cette intégrale choisit la bonne fréquence}
+Le coefficient $c_k$ est le produit scalaire de f et $e_k$. Pour un polynôme trigonométrique, multiplie la somme par le conjugué de $e_k$ et intègre. Tous les termes de fréquence différente disparaissent ; il reste le coefficient cherché. Pour une fonction générale intégrable, cette formule définit ses coefficients de Fourier sans affirmer encore que la série converge vers la fonction.
+\[\begin{gathered}c_k=\int_0^1 f(t)e^{-2\pi ikt}\,dt,\qquad S_Nf=\sum_{k=-N}^{N}c_ke^{2\pi ikt}.\end{gathered}\]
+\subsection{Convention réelle}
+Pour une fonction réelle, les coefficients de fréquences opposées sont conjugués. On regroupe les termes k et -k en sinus et cosinus. Le terme constant vaut $a_0$/2, et non $a_0$. Cette convention explique les facteurs 2 dans les intégrales.
+\[\begin{gathered}a_0=2\int_0^1 f\\ a_n=2\int_0^1 f(t)\cos(2\pi nt)\,dt\\ b_n=2\int_0^1 f(t)\sin(2\pi nt)\,dt.\end{gathered}\]
+\textbf{Justification.} Les identités d’Euler écrivent chaque cosinus comme la demi-somme des exponentielles opposées et chaque sinus comme leur différence divisée par 2i. En regroupant les deux coefficients conjugués, on obtient la convention réelle et le facteur un demi du terme constant.
+\subsection{Un calcul complet : le créneau}
+Le créneau vaut 1 sur ]0,1/2[ et -1 sur ]1/2,1[. Ses valeurs aux sauts ne changent aucune intégrale. Sa moyenne et ses coefficients cosinus sont nuls. Pour $b_n$, on sépare les deux demi-périodes et on intègre le sinus.
+\[\begin{gathered}b_n=\frac{2(1-(-1)^n)}{\pi n}=\begin{cases}\dfrac{4}{\pi n}&n\text{ impair},\\0&n\text{ pair}.\end{cases}\end{gathered}\]
+\textbf{Justification.} Une primitive de $\sin(2\pi nt)$ est $-\dfrac{\cos(2\pi nt)}{2\pi n}$. L’intégrale sur la première moitié vaut $\dfrac{1-(-1)^n}{2\pi n}$, celle sur la seconde son opposé. Le facteur 2 de la définition donne le résultat affiché.
+\clearpage
+\section{Approximation, sauts et moyennes de Fejér}
+\textbf{Prérequis :} Leçons 1 et 2 ; limites et continuité.
+\subsection*{Explorer avant de formaliser}Observe le créneau pour N=3, 12 puis 60. Zoome près d’un saut. Compare la somme partielle à la moyenne de Fejér : la zone de dépassement devient plus étroite, mais sa hauteur relative ne disparaît pas pour les sommes partielles.
+\subsection{Trois questions différentes}
+La convergence ponctuelle examine chaque t fixé. La convergence uniforme demande que l’erreur maximale sur toute une période tende vers zéro. La convergence quadratique demande seulement que l’intégrale du carré de l’erreur tende vers zéro. Une erreur concentrée sur un intervalle très court peut être petite au sens quadratique tout en restant grande en certains points.
+\[\begin{gathered}S_N(t)\to f(t),\qquad \sup_t|S_N(t)-f(t)|\to0,\qquad \int_0^1|S_N-f|^2\to0.\end{gathered}\]
+\subsection{Ce qui se passe au bord d’un saut}
+Théorème de Dirichlet, admis ici : si une fonction périodique est de classe $C^1$ par morceaux sur une période, sa série de Fourier converge en chaque point vers la moyenne de ses limites à gauche et à droite. En un point de continuité, cette moyenne est f(t). Au saut du créneau, elle vaut zéro. Il n’est donc pas correct d’affirmer que la série restitue toute valeur arbitrairement assignée au saut.
+\[\begin{gathered}S_N(t)\longrightarrow\frac{f(t^-)+f(t^+)}2.\end{gathered}\]
+\subsection{Pourquoi une convergence uniforme est impossible au saut}
+Chaque somme partielle est continue. Une limite uniforme de fonctions continues est continue. Une fonction discontinue ne peut donc pas être la limite uniforme de ces sommes sur la période entière. Le phénomène de Gibbs désigne un dépassement près du saut, dont la hauteur relative tend vers une constante non nulle alors que sa zone se resserre. Aucun de ces constats ne contredit une convergence en moyenne quadratique.
+\textbf{Justification.} Pour la continuité d’une limite uniforme : choisis une somme à distance uniforme inférieure à $\varepsilon$/3 de la limite ; utilise ensuite sa continuité pour rendre sa variation inférieure à $\varepsilon$/3. L’inégalité triangulaire donne une variation de la limite inférieure à $\varepsilon$.
+\subsection{Moyenner les approximations}
+La moyenne de Fejér est la moyenne arithmétique de $S_0$ à $S_N$. Chaque fréquence est retenue dans $N+1-|k|$ sommes. Son poids est donc $1-\dfrac{|k|}{N+1}$. Cela réduit le rôle des hautes fréquences. Théorème de Fejér, admis : pour une fonction continue et périodique, ces moyennes convergent uniformément vers f.
+\[\begin{gathered}\sigma_N=\frac{S_0+\cdots+S_N}{N+1}=\sum_{|k|\le N}\left(1-\frac{|k|}{N+1}\right)c_ke^{2\pi ikt}.\end{gathered}\]
+\subsection{Pourquoi Fejér ne dépasse pas le créneau}
+La moyenne peut s’écrire comme une moyenne pondérée de valeurs du signal, avec un noyau positif d’intégrale 1. Elle reste donc entre le minimum et le maximum du créneau. Au saut elle converge encore vers la moyenne des limites. Elle ne peut pas converger uniformément vers un créneau discontinu sur toute la période.
+\[\begin{gathered}K_N(u)=\frac1{N+1}\left|\sum_{j=0}^{N}e^{2\pi iju}\right|^2\ge0\\\int_0^1K_N=1.\end{gathered}\]
+\textbf{Justification.} En développant le carré, le coefficient de fréquence k compte $N+1-|k|$ couples d’indices. On retrouve les poids de $\sigma_N$. L’intégrale de $K_N$ ne garde que sa fréquence zéro, égale à 1. Ainsi $\sigma_N$(t)=$\int$ f(t-u)$K_N$(u)du est une moyenne positive.
+\clearpage
+\section{Énergie, projection et erreur}
+\textbf{Prérequis :} Leçons 1 à 3 ; produit scalaire et sommes.
+\subsection*{Explorer avant de formaliser}Choisis le mélange. Compare N=1 et N=2 : le premier rang manque une harmonique, le second retrouve le signal. Puis compare avec le créneau, dont l’erreur ne devient pas nulle à rang fini.
+\subsection{L’énergie d’un signal}
+On appelle ici énergie sur une période la norme $L^2$ au carré. Cette quantité est une moyenne quadratique puisque notre période vaut 1. Pour une période T, la convention moyenne utilise un facteur 1/T. On ne doit pas confondre énergie, erreur quadratique et racine de cette erreur.
+\[\begin{gathered}\|f\|_2^2=\int_0^1|f(t)|^2\,dt\\ \operatorname{RMS}(f)=\sqrt{\int_0^1|f|^2}.\end{gathered}\]
+\subsection{La meilleure approximation dans un espace fini}
+Soit $V_N$ l’espace engendré par les exponentielles de fréquences -N à N. L’erreur f-$S_N$ est orthogonale à chaque élément de $V_N$. Si p appartient à $V_N$, les deux termes f-$S_N$ et $S_N$-p sont orthogonaux. Le théorème de Pythagore donne une identité qui prouve que $S_N$ minimise l’erreur quadratique dans cet espace.
+\[\begin{gathered}\|f-p\|_2^2=\|f-S_N\|_2^2+\|S_N-p\|_2^2\ge\|f-S_N\|_2^2.\end{gathered}\]
+\textbf{Justification.} Pour chaque |k|$\le$N, $\langle f-S_N,e_k\rangle=c_k-c_k=0$ par orthogonalité. Développer le carré de la norme de (f-$S_N$)+($S_N$-p) annule le terme croisé. L’égalité minimale impose p=$S_N$ au sens $L^2$.
+\subsection{Bessel puis Parseval}
+À rang fini, Pythagore donne l’énergie du signal comme la somme de l’énergie captée et de l’énergie résiduelle : c’est l’inégalité de Bessel. Théorème de complétude, admis : les polynômes trigonométriques sont denses dans l’espace $L^2$ périodique. Par optimalité des projections, cela entraîne que l’erreur tend vers zéro et donne Parseval.
+\[\begin{gathered}\|f-S_N\|_2^2=\|f\|_2^2-\sum_{|k|\le N}|c_k|^2\\\|f\|_2^2=\sum_{k\in\mathbb Z}|c_k|^2.\end{gathered}\]
+\subsection{Retour aux coefficients réels}
+Pour un signal réel, les termes de fréquence opposée ont la même énergie. On obtient la forme réelle de Parseval. Dans le mélange, l’énergie totale vaut 0,6$^2$/2+0,8$^2$/2. Au rang 1, toute l’erreur est l’énergie de la seconde harmonique.
+\[\begin{gathered}\|f\|_2^2=\frac{a_0^2}{4}+\frac12\sum_{n\ge1}(a_n^2+b_n^2)\\ \|f-S_1\|_2^2=\frac{0{,}8^2}{2}=0{,}32.\end{gathered}\]
+\subsection{Choisir des composantes pour un dessin}
+Pour un nombre fixé de coefficients d’une DFT, conserver ceux de plus grand module minimise l’erreur quadratique sur les échantillons, car chaque coefficient omis contribue par son module au carré. Ce tri n’est pas la troncature par fréquence |k|$\le$N d’une série classique. Dans la galerie, le tri par amplitude rend rapidement le contour reconnaissable ; dans le laboratoire des signaux, N désigne bien un rang de fréquence.
+\clearpage
+\section{Échantillonnage et transformée discrète}
+\textbf{Prérequis :} Leçons 1 à 4 ; sommes géométriques ; complexes.
+\subsection*{Explorer avant de formaliser}Dans le tracé, compare 8, 40 puis 128 vecteurs. Le calcul utilise 128 points et 128 coefficients. Essaie un contour anguleux : même en conservant tout, que peut-on affirmer entre les points ?
+\subsection{Remplacer une fonction par une liste}
+La DFT s’applique à une liste de M nombres complexes $z_j$. Elle n’utilise pas d’intégrale. Les échantillons portent les paramètres $t_j$=j/M. Dans un contour, $z_j=x_j+iy_j$. Ici on répartit les points à pas de longueur constant le long du contour fermé ; t représente donc une fraction de longueur parcourue.
+\[\begin{gathered}c_k^{(M)}=\frac1M\sum_{j=0}^{M-1}z_j e^{-2\pi ikj/M},\quad 0\le k<M.\end{gathered}\]
+\subsection{Orthogonalité discrète et inversion}
+Pour un entier r, la somme des M racines $e^{2\pi irj/M}$ vaut M si r est divisible par M, et zéro sinon. En remplaçant les coefficients dans la somme de reconstruction, cette identité ne garde que le point voulu. L’inversion est exacte en arithmétique exacte ; le logiciel introduit de petites erreurs d’arrondi.
+\[\begin{gathered}z_j=\sum_{k=0}^{M-1}c_k^{(M)}e^{2\pi ikj/M}.\end{gathered}\]
+\textbf{Justification.} Si q=$e^{2\pi ir/M}$$\ne$1, la somme géométrique vaut $\dfrac{1-q^M}{1-q}$=0. Si q=1, elle vaut M. En substituant $c_k$ dans l’inversion, la somme intérieure en k vaut M lorsque l’indice du point est j et zéro autrement.
+\subsection{Pourquoi les fréquences se replient}
+Sur les points j/M, deux fréquences qui diffèrent d’un multiple de M sont indiscernables. On peut renommer les indices supérieurs à M/2 en fréquences négatives. Pour M pair, la fréquence de Nyquist M/2 et son opposée donnent les mêmes échantillons ; choisir l’une fixe une interpolation entre ces points.
+\[\begin{gathered}e^{2\pi i(k+qM)j/M}=e^{2\pi ikj/M},\qquad q\in\mathbb Z.\end{gathered}\]
+\subsection{Parseval discret et erreur}
+Le même raisonnement d’orthogonalité donne Parseval discret. Si l’on conserve un sous-ensemble I de coefficients, l’erreur moyenne au carré sur les M points est exactement la somme des modules au carré des coefficients omis. La valeur RMS affichée dans le tracé est la racine de cette somme, dans les unités du dessin normalisé.
+\[\begin{gathered}\frac1M\sum_{j=0}^{M-1}|z_j|^2=\sum_{k=0}^{M-1}|c_k^{(M)}|^2\\ \operatorname{RMS}^2=\sum_{k\notin I}|c_k^{(M)}|^2.\end{gathered}\]
+\subsection{Ce qui est exact, ce qui est approximé}
+Les M coefficients reconstruisent les M échantillons. Entre ces échantillons, la somme définit un polynôme trigonométrique ; rien n’oblige un contour arbitraire à le suivre exactement. Augmenter le nombre de coefficients conservés améliore une reconstruction à échantillonnage fixé. Augmenter M améliore une autre étape : la description du contour de départ. Un signal rapide mal échantillonné peut être confondu avec un signal lent.
+\clearpage
+\section{Du contour aux cercles : Madagascar et au-delà}
+\textbf{Prérequis :} Leçons 1 à 5 ; coordonnées du plan.
+\subsection*{Explorer avant de formaliser}Observe Madagascar dans la galerie, puis ouvre le laboratoire. Choisis Dessiner, trace un contour et relâche pour le fermer. Ajoute des vecteurs, parcours la période et explique chaque transformation.
+\subsection{Étape 1 : fermer et paramétrer}
+Un contour fermé est une application périodique $t\mapsto z(t)$ du paramètre vers le plan. Un dessin à main levée donne une ligne brisée ; on joint sa dernière position à la première. Ce segment peut être visible si le geste était ouvert. Les intersections du contour ne posent aucun problème : la méthode décrit un parcours, pas nécessairement une frontière simple.
+\subsection{Étape 2 : répartir les points}
+Les événements de la souris ne surviennent pas à distance constante. On calcule donc les longueurs des segments, puis on interpole sur la ligne brisée aux distances jL/M, où L est sa longueur totale. Cette étape évite qu’une zone dessinée lentement soit surreprésentée. Un autre paramétrage du même contour peut produire d’autres coefficients : la forme géométrique ne détermine pas seule un spectre.
+\subsection{Étape 3 : centrer puis décomposer}
+La moyenne des points est le coefficient $c_0$ de la DFT. Soustraire cette moyenne place le dessin autour de l’origine. Le laboratoire normalise aussi sa taille pour comparer des contours dans un repère fixe ; ce n’est pas un changement d’échelle automatique pendant le déplacement d’un paramètre. Le contour de Madagascar est un dessin simplifié, pas une donnée géographique de précision.
+\[\begin{gathered}\widetilde z_j=z_j-\frac1M\sum_{\ell=0}^{M-1}z_\ell,\qquad \widetilde c_0=0.\end{gathered}\]
+\subsection{Étape 4 : interpréter les coefficients}
+Écris chaque coefficient sous forme polaire. Son module devient le rayon du cercle, son argument la phase initiale et son indice k la vitesse signée de rotation. Un indice négatif fait tourner dans l’autre sens. Le cercle suivant est centré à l’extrémité du vecteur précédent, et non à l’origine. La pointe de la chaîne est la somme.
+\[\begin{gathered}c_k=|c_k|e^{i\varphi_k},\qquad c_ke^{2\pi ikt}=|c_k|e^{i(2\pi kt+\varphi_k)}.\end{gathered}\]
+\subsection{Étape 5 : reconstruire sans inventer une trajectoire}
+À chaque t, on additionne les vecteurs conservés. En avançant t de 0 à 1, la pointe décrit la courbe approximante. Quand on ajoute une composante, la pointe peut changer brusquement : le segment reliant les deux approximations ne fait partie d’aucune des deux courbes et ne doit pas être tracé. Le laboratoire recalcule donc la courbe du nouveau jeu de coefficients ; la galerie sépare les traces de deux nombres de cercles.
+\subsection{Relier beauté, expérience et formalisation}
+La galerie rend le mécanisme visible. Le laboratoire permet de changer un paramètre, mesurer l’erreur et tester une conjecture. Les leçons expliquent l’orthogonalité et les garanties de reconstruction. Chacun éclaire les deux autres : une belle figure pose une question, l’expérience précise cette question, puis une démonstration établit les conditions dans lesquelles l’observation est vraie.
+\clearpage
+\section*{Références pour approfondir}
+\par\href{https://dlmf.nist.gov/1.8}{NIST DLMF, section 1.8 : coefficients, convergence et Parseval}
+\par\href{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/resources/lecture-16-fejers-theorem-and-convergence-of-fourier-series/}{MIT OpenCourseWare, 18.102, leçon 16 : Fejér et convergence dans L$^2$}
+\end{document}

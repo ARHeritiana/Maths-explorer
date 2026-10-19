@@ -31,9 +31,9 @@ const byId = Object.fromEntries(EXPERIMENTS.map((e) => [e.id, e]));
 const DASH = /[–—]/;
 const isPair = (p) => Array.isArray(p) && p.length === 2 && p.every((x) => typeof x === "string" && x.trim().length > 0);
 
-test("the registry lists fourteen experiments with consistent ids, templates and references", async () => {
-  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines"]);
-  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space"], "seven templates are in use");
+test("the registry lists the registered experiments with consistent ids, templates and references", async () => {
+  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines", "fourier-series", "fourier-drawing"]);
+  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space", "fourier"], "eight templates are in use");
   assert.equal(new Set(EXPERIMENTS.map((e) => e.id)).size, EXPERIMENTS.length);
   for (const e of EXPERIMENTS) {
     assert.ok(e.template in TEMPLATES && e.template in TEMPLATE_INFO, e.id);
@@ -93,7 +93,7 @@ test("a mission unlocks at most 2 handles, 1 slider and 1 choice (R6), and only 
       if (c.kind === "choice" || c.kind === "action") for (const o of c.options) assert.ok(isPair(o.label) && "value" in o);
       if (c.kind === "action") assert.equal(typeof c.act, "function", `${e.id}.${id}.act`);
       if (c.play) assert.equal(c.kind, "scrubber", "only scrubbers play");
-      if (c.play) assert.equal(e.template, "process", "play belongs to the process template");
+      if (c.play) assert.ok(["process","fourier"].includes(e.template), "play belongs to a time-indexed template");
     }
   }
 });
@@ -162,7 +162,7 @@ test("formula, readout, table and labels stay finite, bilingual and dash-free ov
   for (const e of EXPERIMENTS) {
     for (const [lang, known] of [["fr", false], ["en", true], ["fr", true]]) {
       const fmt = makeFormat(lang), ctx = { fmt, lang, unlocked: () => known };
-      for (const s of samples[e.id]) {
+      for (const s of (samples[e.id] || e.missions.map(m=>({...e.state,...m.set})))) {
         const texts = [e.views.formula(s, ctx), ...e.views.readout(s, ctx).flat().map((x) => fmt.t(x))];
         if (e.views.table) {
           const head = typeof e.views.table.head === "function" ? e.views.table.head(s, ctx) : e.views.table.head;
@@ -180,7 +180,7 @@ test("formula, readout, table and labels stay finite, bilingual and dash-free ov
           assert.ok(!c.valuetext || !/NaN|undefined/.test(c.valuetext(s, fmt)));
         }
         // the readout has a fixed number of slots for the whole experiment (no element is added while dragging)
-        assert.equal(e.views.readout(s, ctx).length, e.views.readout(samples[e.id][0], ctx).length);
+        assert.equal(e.views.readout(s, ctx).length, e.views.readout(samples[e.id]?.[0] || e.state, ctx).length);
       }
     }
   }
@@ -227,6 +227,8 @@ test("the quadratic readout never prints the same writing twice and keeps conven
 
 // ---- the answers of the check missions, recomputed by other routes than the model
 const independent = {
+  "fourier-series/coefficients":()=>{let sum=0;const M=10000;for(let j=0;j<M;j++){const t=(j+.5)/M;sum+=(.6*Math.cos(2*Math.PI*t)+.8*Math.sin(4*Math.PI*t))*Math.sin(4*Math.PI*t)*2/M;}return sum;},
+  "fourier-drawing/error":()=>Math.sqrt(9/100+16/100),
   // the parabola's lowest point found by scanning, its sign changes counted on a fine grid
   "quadratic/read": ({ a, b, c }) => { let best = Infinity; for (let i = -10000; i <= 10000; i++) { const x = i / 1000; best = Math.min(best, a * x * x + b * x + c); } return best; },
   // sine of 150 degrees from the Taylor series of sine at the reflected angle (pi - x), a different route than Math.sin(x)
@@ -271,11 +273,12 @@ test("every check answer equals the model quantity and an independent computatio
       checked++;
     }
   }
-  assert.equal(checked, 14);
+  assert.equal(checked, 16);
 });
 
 test("every prediction has the correct answer according to the mathematics", () => {
   const truth = {
+    "fourier-series":()=>2, "fourier-drawing":()=>128,
     // a < 0 with the vertex kept in place: the curve eventually falls
     quadratic: () => { const s = { a: -1, ...Q.fromVertex(-1, 0, -2) }, m = Q.model({ ...s, c: s.c }); return m.f(100) < m.f(0) ? "down" : "up"; },
     // cos 180 degrees
@@ -305,18 +308,22 @@ test("every prediction has the correct answer according to the mathematics", () 
     // the three states: one common point, none, the whole line
     "space-lines": () => new Set([SL.model({ ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7 }).relation, SL.model({ ax: -2, ay: -1, az: 2, ux: 2, uy: 0, uz: -1, d: -7 }).relation, SL.model({ ax: 0, ay: 0, az: 1, ux: 1, uy: 1, uz: -1, d: -2 }).relation]).size === 3 ? "three" : "other",
   };
-  const expected = { quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter", line: "same", exponential: "times", cobweb: "closer", matrix: 4, "space-lines": "three" };
+  const expected = { "fourier-series":2, "fourier-drawing":128, quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter", line: "same", exponential: "times", cobweb: "closer", matrix: 4, "space-lines": "three" };
   for (const e of EXPERIMENTS) {
     assert.equal(truth[e.id](), expected[e.id], e.id);
     const m = e.missions[0];
     const right = m.choices[m.correct][0];
-    const words = { quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id];
+    const words = { "fourier-series":/Deux fois plus d’oscillations/, "fourier-drawing":/128 échantillons/, quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id];
     assert.match(right, words, `${e.id}: the marked choice is the true one`);
   }
 });
 
 // A state at which each exploration goal holds, and the start state where it must not.
 const witness = {
+  "fourier-series/frequency":{frequency:2,phase:.5},
+  "fourier-series/approximation":{N:20},
+  "fourier-drawing/drawing":{time:.9},
+  "fourier-drawing/detail":{count:40},
   "quadratic/sign": { a: -1, b: 0, c: -2 },
   "quadratic/vertex": { a: 1, b: -4, c: 3 },
   "trig/quadrants": { deg: 120 },

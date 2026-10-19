@@ -110,8 +110,8 @@ for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['ful
   m.destroy();flush();assert.equal(host.children.length,0,'destroy removes the experiment');host.remove();
 }
 const missing=document.createElement('div');document.body.append(missing);mountExperiment(missing,'nope',{lang:'fr'});assert.match(missing.textContent,/n’existe pas/);
-await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,14,'the index lists the fourteen experiments');
-assert.equal(document.querySelectorAll('.lab2-group').length,7,'grouped by template: seven types of activity');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,14);
+await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,EXPERIMENTS.length,'the index lists all experiments');
+assert.equal(document.querySelectorAll('.lab2-group').length,8,'grouped by template: eight types of activity');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,EXPERIMENTS.length);
 // the old guided page is gone: no chart, no sliders of the previous design, whatever the route
 for(const id of ['probability','vectors','statistics','complex']){await go('#lab/'+id);assert.ok(document.querySelector('.lab2'),id+' is an experiment');assert.equal(document.querySelector('#plot'),null);assert.equal(document.querySelector('[data-param]'),null);}
 await go('#lab/nope');assert.ok(/introuvable|not found/i.test(document.querySelector('#main').textContent),'an unknown experiment is a missing page');
@@ -126,3 +126,4 @@ for(const id of ['voronoi','fastest-slide','soap-films','knots','einstein']){
 }
 console.log('DOM smoke passed: five folding controls, fourteen experiments (drags with no element change, fixed camera, missions, keyboard handles, run buttons, hidden controls in predictions), old guided page gone, gallery redirects; canvas arguments finite.');
 dom.window.close();
+

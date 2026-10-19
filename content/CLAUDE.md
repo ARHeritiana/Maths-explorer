@@ -28,3 +28,7 @@ Workflow for a PDF change: edit the `.fr.tex` (and its `.en.json` segment if pro
 `make tex COURSE=<course>` (TeX Live needed, packages in `docs/ARCHITECTURE.md`), then `make site`.
 Rules: translate prose only (`docs/ADR-0001-tex-i18n.md`); environments and macros in `docs/TEX_STYLE_GUIDE.md`;
 no names of owner, school or city; every computed result verified by code (`private/verification/`).
+
+`university/fourier/lessons.py`: original French Fourier lesson and exercise source shared by the web and PDF editions.
+
+Fourier sequence titles, summaries and prerequisites are derived from the original lesson source by content_index.py. `data/fourier-build.json` is a generated, tracked output receipt.

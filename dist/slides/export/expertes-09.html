@@ -1320,6 +1320,201 @@ addEventListener("resize", fit); fit();
 load();
 
 /* ---- laboratory ---- */
+__d("fourier-model.js", function (__e, __r) {
+const { MADAGASCAR, heart, star, resample, fourier } = __r("gallery-math.js");
+// Pure, period-one Fourier models. Continuous coefficients and sampled DFTs are deliberately distinct.
+const TAU = 2 * Math.PI;
+const SIGNALS = ['square', 'saw', 'triangle', 'mixture'];
+function signal(kind, t) {
+  t = ((t % 1) + 1) % 1;
+  if (kind === 'square') return t === 0 || t === .5 ? 0 : t < .5 ? 1 : -1;
+  if (kind === 'saw') return t === 0 ? 0 : 2 * t - 1;
+  if (kind === 'triangle') return 1 - 4 * Math.abs(t - .5);
+  return .6 * Math.cos(TAU * t) + .8 * Math.sin(2 * TAU * t);
+}
+// f = a0/2 + sum(an cos(2πnt) + bn sin(2πnt)); explicit coefficients avoid quadrature at jumps.
+function coefficient(kind, n) {
+  if (!n) return {a: 0, b: 0};
+  if (kind === 'square') return {a: 0, b: n % 2 ? 4 / (Math.PI * n) : 0};
+  if (kind === 'saw') return {a: 0, b: -2 / (Math.PI * n)};
+  if (kind === 'triangle') return {a: n % 2 ? -8 / (Math.PI ** 2 * n ** 2) : 0, b: 0};
+  return {a: n === 1 ? .6 : 0, b: n === 2 ? .8 : 0};
+}
+function partial(kind, N, t, fejer = false) {
+  let sum = coefficient(kind, 0).a / 2;
+  for (let n = 1; n <= N; n++) {
+    const {a, b} = coefficient(kind, n), weight = fejer ? 1 - n / (N + 1) : 1;
+    sum += weight * (a * Math.cos(TAU * n * t) + b * Math.sin(TAU * n * t));
+  }
+  return sum;
+}
+function energy(kind) { return kind === 'triangle' || kind === 'saw' ? 1 / 3 : kind === 'mixture' ? .5 : 1; }
+function errorEnergy(kind, N, fejer = false) {
+  let captured = 0, adjustment = 0;
+  for (let n = 1; n <= N; n++) {
+    const {a,b} = coefficient(kind,n), e = (a*a+b*b)/2;
+    captured += e;
+    if (fejer) adjustment += e * (n/(N+1)) ** 2;
+  }
+  return Math.max(0, energy(kind) - captured + adjustment);
+}
+// Numerical correlation: 2∫ f(t) cos/sin(2πnt)dt, midpoint quadrature over [0,1].
+function correlate(kind, n, steps = 4096) {
+  let a=0,b=0;
+  for(let j=0;j<steps;j++){const t=(j+.5)/steps,f=signal(kind,t);a+=f*Math.cos(TAU*n*t);b+=f*Math.sin(TAU*n*t);}
+  return {a:2*a/steps,b:2*b/steps};
+}
+function reconstruct(coeffs, t, count = coeffs.length) {
+  let x=0,y=0;
+  for(const c of coeffs.slice(0,count)){const a=TAU*c.k*t; x+=c.re*Math.cos(a)-c.im*Math.sin(a);y+=c.re*Math.sin(a)+c.im*Math.cos(a);}
+  return [x,y];
+}
+function sampleError(coeffs, count) { return coeffs.slice(count).reduce((s,c)=>s+c.amp*c.amp,0); }
+function alias(k, M) { return ((k % M) + M) % M; }
+
+let cachedKey='',cachedOutline=null;
+function outline(s){
+ const key=JSON.stringify([s.shape,s.custom]);if(key===cachedKey&&cachedOutline)return cachedOutline;
+ const raw=s.shape==='custom'?(s.custom||MADAGASCAR):s.shape==='heart'?heart(160):s.shape==='star'?star(160):MADAGASCAR;
+ let points=resample(raw,128);const mx=points.reduce((a,p)=>a+p[0]/128,0),my=points.reduce((a,p)=>a+p[1]/128,0);
+ const size=Math.max(...points.map(p=>Math.abs(p[0]-mx)),...points.map(p=>Math.abs(p[1]-my)),1);
+ points=points.map(p=>[(p[0]-mx)*10/size,(p[1]-my)*10/size]);
+ cachedKey=key;cachedOutline={points,coefficients:fourier(points)};return cachedOutline;
+}
+function outlineRMS(s){return Math.sqrt(sampleError(outline(s).coefficients,s.count));}
+
+__e.TAU = TAU;
+__e.SIGNALS = SIGNALS;
+__e.signal = signal;
+__e.coefficient = coefficient;
+__e.partial = partial;
+__e.energy = energy;
+__e.errorEnergy = errorEnergy;
+__e.correlate = correlate;
+__e.reconstruct = reconstruct;
+__e.sampleError = sampleError;
+__e.alias = alias;
+__e.outline = outline;
+__e.outlineRMS = outlineRMS;
+});
+__d("gallery-math.js", function (__e, __r) {
+// Pure mathematics for the curiosity gallery (no DOM, tested in tests/gallery-math.test.mjs): escape times of the
+// Mandelbrot and Julia sets, the discrete Fourier transform of a closed curve and the epicycles that redraw it.
+const TAU = Math.PI * 2;
+
+// Number of iterations of z -> z^2 + c from z0 before |z| exceeds 2 (max if it never does); smooth gives a continuous value.
+function escape(zr, zi, cr, ci, max = 200, smooth = false) {
+  let x = zr, y = zi, n = 0;
+  while (n < max && x * x + y * y <= 4) { const t = x * x - y * y + cr; y = 2 * x * y + ci; x = t; n++; }
+  if (n >= max) return smooth ? max : max;
+  return smooth ? n + 1 - Math.log2(Math.log(x * x + y * y) / 2) : n;
+}
+const mandelbrot = (cr, ci, max, smooth) => escape(0, 0, cr, ci, max, smooth);
+const julia = (zr, zi, cr, ci, max, smooth) => escape(zr, zi, cr, ci, max, smooth);
+
+// The outline of Madagascar: 360 points traced from an outline of the island supplied by the owner, smoothed and resampled
+// at equal spacing, centred and scaled to a height of 20 (x to the right, y up). It is a drawing aid, not a survey.
+const MADAGASCAR = [
+  [3.54, 10.0], [3.67, 9.93], [3.68, 9.79], [3.55, 9.69], [3.42, 9.61], [3.43, 9.46], [3.56, 9.39], [3.72, 9.39],
+  [3.84, 9.3], [3.88, 9.15], [3.91, 8.99], [3.97, 8.85], [4.08, 8.73], [4.2, 8.63], [4.31, 8.52], [4.4, 8.39],
+  [4.45, 8.24], [4.47, 8.08], [4.49, 7.93], [4.53, 7.77], [4.59, 7.63], [4.63, 7.47], [4.66, 7.32], [4.68, 7.16],
+  [4.69, 7.01], [4.71, 6.85], [4.74, 6.69], [4.78, 6.54], [4.79, 6.38], [4.79, 6.23], [4.8, 6.07], [4.83, 5.91],
+  [4.87, 5.76], [4.91, 5.61], [4.96, 5.46], [5.0, 5.31], [5.04, 5.15], [5.05, 5.0], [5.05, 4.84], [5.02, 4.68],
+  [4.98, 4.53], [4.91, 4.39], [4.81, 4.27], [4.68, 4.2], [4.57, 4.31], [4.54, 4.47], [4.5, 4.62], [4.43, 4.76],
+  [4.31, 4.86], [4.15, 4.84], [4.03, 4.75], [3.96, 4.61], [3.95, 4.45], [3.96, 4.29], [4.0, 4.14], [4.06, 4.0],
+  [4.12, 3.85], [4.18, 3.7], [4.22, 3.55], [4.22, 3.39], [4.2, 3.24], [4.16, 3.09], [4.11, 2.93], [4.06, 2.79],
+  [4.0, 2.64], [3.9, 2.52], [3.78, 2.42], [3.71, 2.28], [3.7, 2.12], [3.7, 1.96], [3.7, 1.81], [3.7, 1.65],
+  [3.69, 1.49], [3.67, 1.33], [3.64, 1.18], [3.57, 1.04], [3.51, 0.89], [3.48, 0.74], [3.46, 0.58], [3.4, 0.44],
+  [3.31, 0.31], [3.25, 0.16], [3.22, 0.0], [3.19, -0.15], [3.14, -0.3], [3.09, -0.45], [3.04, -0.6], [2.98, -0.75],
+  [2.93, -0.89], [2.87, -1.04], [2.82, -1.19], [2.77, -1.34], [2.71, -1.49], [2.66, -1.63], [2.6, -1.78], [2.55, -1.93],
+  [2.49, -2.08], [2.44, -2.23], [2.39, -2.37], [2.34, -2.52], [2.29, -2.67], [2.24, -2.82], [2.19, -2.97], [2.14, -3.12],
+  [2.09, -3.27], [2.05, -3.43], [2.01, -3.58], [1.96, -3.73], [1.92, -3.88], [1.88, -4.03], [1.84, -4.19], [1.79, -4.34],
+  [1.75, -4.49], [1.7, -4.64], [1.65, -4.79], [1.59, -4.94], [1.54, -5.08], [1.49, -5.23], [1.43, -5.38], [1.39, -5.53],
+  [1.34, -5.68], [1.31, -5.84], [1.27, -5.99], [1.25, -6.15], [1.23, -6.3], [1.21, -6.46], [1.15, -6.61], [1.09, -6.75],
+  [1.03, -6.9], [0.98, -7.05], [0.95, -7.2], [0.94, -7.36], [0.92, -7.52], [0.89, -7.67], [0.85, -7.82], [0.79, -7.97],
+  [0.74, -8.12], [0.67, -8.26], [0.61, -8.41], [0.54, -8.55], [0.46, -8.69], [0.38, -8.82], [0.3, -8.96], [0.2, -9.08],
+  [0.06, -9.15], [-0.08, -9.22], [-0.19, -9.33], [-0.31, -9.43], [-0.46, -9.47], [-0.62, -9.49], [-0.77, -9.5], [-0.93, -9.52],
+  [-1.08, -9.56], [-1.23, -9.62], [-1.36, -9.71], [-1.5, -9.79], [-1.63, -9.87], [-1.78, -9.93], [-1.93, -9.98], [-2.08, -10.0],
+  [-2.24, -9.98], [-2.39, -9.93], [-2.52, -9.85], [-2.66, -9.76], [-2.79, -9.68], [-2.93, -9.62], [-3.08, -9.56], [-3.23, -9.51],
+  [-3.38, -9.45], [-3.52, -9.39], [-3.66, -9.3], [-3.77, -9.2], [-3.87, -9.07], [-3.94, -8.93], [-4.0, -8.79], [-4.09, -8.66],
+  [-4.18, -8.53], [-4.28, -8.4], [-4.36, -8.27], [-4.42, -8.12], [-4.45, -7.97], [-4.46, -7.81], [-4.44, -7.66], [-4.43, -7.5],
+  [-4.41, -7.34], [-4.36, -7.19], [-4.33, -7.04], [-4.33, -6.88], [-4.37, -6.73], [-4.43, -6.58], [-4.51, -6.45], [-4.59, -6.31],
+  [-4.68, -6.18], [-4.76, -6.05], [-4.85, -5.92], [-4.92, -5.77], [-4.97, -5.62], [-4.99, -5.47], [-5.0, -5.31], [-5.03, -5.15],
+  [-5.05, -5.0], [-5.05, -4.84], [-5.02, -4.69], [-4.97, -4.54], [-4.91, -4.39], [-4.84, -4.25], [-4.78, -4.11], [-4.71, -3.96],
+  [-4.62, -3.83], [-4.51, -3.73], [-4.38, -3.63], [-4.27, -3.52], [-4.21, -3.37], [-4.16, -3.22], [-4.12, -3.07], [-4.06, -2.93],
+  [-4.0, -2.78], [-3.92, -2.64], [-3.8, -2.54], [-3.72, -2.41], [-3.63, -2.28], [-3.59, -2.13], [-3.56, -1.97], [-3.54, -1.82],
+  [-3.52, -1.66], [-3.5, -1.5], [-3.47, -1.35], [-3.43, -1.2], [-3.4, -1.04], [-3.42, -0.88], [-3.46, -0.73], [-3.53, -0.59],
+  [-3.6, -0.45], [-3.65, -0.3], [-3.65, -0.14], [-3.64, 0.01], [-3.63, 0.17], [-3.62, 0.33], [-3.65, 0.48], [-3.7, 0.63],
+  [-3.75, 0.78], [-3.75, 0.94], [-3.72, 1.09], [-3.7, 1.25], [-3.74, 1.4], [-3.86, 1.47], [-4.0, 1.5], [-4.06, 1.65],
+  [-4.08, 1.8], [-4.06, 1.96], [-4.01, 2.11], [-3.94, 2.25], [-3.87, 2.39], [-3.79, 2.52], [-3.7, 2.65], [-3.62, 2.79],
+  [-3.54, 2.93], [-3.46, 3.06], [-3.37, 3.19], [-3.31, 3.34], [-3.31, 3.49], [-3.32, 3.65], [-3.24, 3.78], [-3.09, 3.85],
+  [-2.94, 3.86], [-2.78, 3.86], [-2.62, 3.87], [-2.47, 3.9], [-2.36, 4.01], [-2.3, 4.14], [-2.16, 4.09], [-2.03, 3.99],
+  [-1.89, 4.04], [-1.76, 3.96], [-1.63, 4.03], [-1.61, 4.18], [-1.68, 4.31], [-1.55, 4.39], [-1.4, 4.37], [-1.24, 4.35],
+  [-1.09, 4.4], [-0.94, 4.44], [-0.88, 4.31], [-0.81, 4.17], [-0.66, 4.15], [-0.6, 4.27], [-0.63, 4.43], [-0.63, 4.58],
+  [-0.53, 4.7], [-0.41, 4.8], [-0.29, 4.91], [-0.17, 5.01], [-0.04, 5.09], [0.12, 5.11], [0.24, 5.02], [0.21, 4.87],
+  [0.31, 4.84], [0.43, 4.94], [0.47, 5.09], [0.36, 5.19], [0.4, 5.33], [0.5, 5.44], [0.59, 5.58], [0.64, 5.73],
+  [0.69, 5.87], [0.83, 5.94], [0.95, 5.86], [0.87, 5.73], [0.77, 5.62], [0.81, 5.47], [0.95, 5.45], [1.06, 5.56],
+  [1.13, 5.7], [1.21, 5.84], [1.32, 5.95], [1.47, 5.98], [1.63, 5.98], [1.71, 6.07], [1.61, 6.19], [1.46, 6.22],
+  [1.31, 6.28], [1.27, 6.42], [1.35, 6.55], [1.48, 6.64], [1.61, 6.61], [1.75, 6.61], [1.75, 6.75], [1.65, 6.88],
+  [1.61, 7.03], [1.59, 7.18], [1.58, 7.34], [1.55, 7.49], [1.67, 7.58], [1.83, 7.57], [1.94, 7.45], [1.95, 7.3],
+  [2.09, 7.3], [2.18, 7.43], [2.23, 7.58], [2.27, 7.73], [2.39, 7.83], [2.54, 7.79], [2.66, 7.89], [2.8, 7.97],
+  [2.83, 8.11], [2.82, 8.27], [2.95, 8.35], [2.99, 8.5], [3.0, 8.66], [2.97, 8.81], [2.91, 8.96], [2.8, 9.07],
+  [2.76, 9.21], [2.87, 9.31], [3.02, 9.26], [3.13, 9.36], [3.25, 9.46], [3.29, 9.62], [3.34, 9.76], [3.42, 9.9],
+];
+
+// Resample a closed polyline into n points equally spaced along its length.
+function resample(poly, n) {
+  const pts = [...poly, poly[0]], seg = [], total = pts.slice(1).reduce((s, p, i) => { const l = Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1]); seg.push(l); return s + l; }, 0);
+  const out = []; let i = 0, acc = 0;
+  for (let k = 0; k < n; k++) {
+    const target = (k / n) * total;
+    while (i < seg.length - 1 && acc + seg[i] < target) { acc += seg[i]; i++; }
+    const f = seg[i] ? (target - acc) / seg[i] : 0;
+    out.push([pts[i][0] + (pts[i + 1][0] - pts[i][0]) * f, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * f]);
+  }
+  return out;
+}
+
+// Discrete Fourier transform of a closed curve (points as complex numbers x + iy): coefficients c_k for the frequencies
+// k = -n/2 ... n/2 - 1, sorted by decreasing amplitude. z(t) = sum c_k e^(2 pi i k t) for t in [0, 1).
+function fourier(points) {
+  const n = points.length, out = [];
+  for (let m = 0; m < n; m++) {
+    const k = m < n / 2 ? m : m - n; let re = 0, im = 0;
+    for (let j = 0; j < n; j++) { const a = (-TAU * k * j) / n, c = Math.cos(a), s = Math.sin(a), [x, y] = points[j]; re += x * c - y * s; im += x * s + y * c; }
+    re /= n; im /= n; out.push({ k, re, im, amp: Math.hypot(re, im) });
+  }
+  return out.sort((a, b) => b.amp - a.amp);
+}
+// The chain of rotating arms at time t in [0, 1) using the first `count` coefficients: the tips of the successive arms.
+function arms(coeffs, t, count) {
+  let x = 0, y = 0; const chain = [[0, 0, 0]];
+  for (let i = 0; i < Math.min(count, coeffs.length); i++) {
+    const { k, re, im, amp } = coeffs[i], a = TAU * k * t, c = Math.cos(a), s = Math.sin(a);
+    x += re * c - im * s; y += re * s + im * c; chain.push([x, y, amp]);
+  }
+  return chain;
+}
+// A closed polyline from a parametric curve, for the other shapes of the lab.
+const heart = (n) => Array.from({ length: n }, (_, i) => { const t = (TAU * i) / n; return [16 * Math.sin(t) ** 3, 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)]; });
+const star = (n, spikes = 5) => Array.from({ length: n }, (_, i) => { const t = (TAU * i) / n, r = 1 + 0.45 * Math.cos(spikes * t); return [r * Math.cos(t) * 10, r * Math.sin(t) * 10]; });
+
+// How the circles are added: one more batch after each full turn of the tip (the number of circles during turn 1, 2, 3, ...).
+const COUNT_SCHEDULE = [1, 2, 3, 4, 6, 9, 13, 19, 28, 40, 56, 80, 110, 150];
+const REVOLUTION = 6.5;   // seconds per full turn
+
+__e.escape = escape;
+__e.mandelbrot = mandelbrot;
+__e.julia = julia;
+__e.MADAGASCAR = MADAGASCAR;
+__e.resample = resample;
+__e.fourier = fourier;
+__e.arms = arms;
+__e.heart = heart;
+__e.star = star;
+__e.COUNT_SCHEDULE = COUNT_SCHEDULE;
+__e.REVOLUTION = REVOLUTION;
+});
 __d("lab/engine.js", function (__e, __r) {
 // Laboratory stage: one canvas, one requestAnimationFrame scheduler that draws only when something changed, handle
 // hit-testing (22 px radius = 44 px target) with pointer capture, keyboard handles, the shared camera, theme colours and
@@ -1456,7 +1651,7 @@ function createStage(host, options = {}) {
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) });
+  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) && !options.reservePointer?.() });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -1622,6 +1817,7 @@ function createStage(host, options = {}) {
 }
 
 __e.snap = __r("lab/models/num.js").snap; __e.clamp = __r("lab/models/num.js").clamp;
+
 
 __e.makeFormat = makeFormat;
 __e.HIT = HIT;
@@ -2421,6 +2617,89 @@ __e.default = {
 };
 
 
+});
+__d("lab/experiments/fourier.js", function (__e, __r) {
+const F = __r("fourier-model.js");
+const labels={'Amplitude A':'Amplitude A','Fréquence entière k':'Integer frequency k','Phase φ (radians)':'Phase φ (radians)','Rang N':'Order N','Fréquence mesurée n':'Measured frequency n','Nombre de vecteurs conservés':'Retained vectors','Vecteurs conservés / Retained vectors':'Retained vectors'};
+const pair = (s) => [s==='Vecteurs conservés / Retained vectors'?'Vecteurs conservés':s,labels[s]||s];
+const slider = (key,min,max,step,label) => ({kind:'slider',key,min,max,step,label:pair(label)});
+const shapes = ['madagascar','heart','star','custom'];
+const full = {
+  id:'fourier',template:'fourier',symbol:'∑',group:['Analyse harmonique','Harmonic analysis'],
+  title:['Des ondes aux dessins de Fourier','From waves to Fourier drawings'],short:['Séries de Fourier','Fourier series'],
+  intro:['Construis une onde, mesure ses fréquences, compare les approximations et transforme un contour en cercles tournants.','Build a wave, measure its frequencies, compare approximations and turn a contour into rotating circles.'],
+  duration:25,level:['Université · initiation','University · introduction'],prereq:['Sinus, cosinus, intégrales et nombres complexes','Sine, cosine, integrals and complex numbers'],
+  state:{mode:'wave',amplitude:1,frequency:1,phase:0,N:3,signal:'square',n:1,method:'partial',shape:'madagascar',count:8,time:0,custom:null},
+  model:{model(s){return {error:F.errorEnergy(s.signal,s.N),a:F.coefficient(s.signal,s.n).a,b:F.coefficient(s.signal,s.n).b};}},
+  controls:{
+    amplitude:slider('amplitude',0,1.5,.05,'Amplitude A'),frequency:slider('frequency',1,6,1,'Fréquence entière k'),phase:slider('phase',-3.14,3.14,.01,'Phase φ (radians)'),
+    N:slider('N',1,60,1,'Rang N'),n:slider('n',1,12,1,'Fréquence mesurée n'),count:slider('count',1,128,1,'Nombre de vecteurs conservés'),
+    signal:{kind:'choice',key:'signal',label:['Signal périodique','Periodic signal'],options:[['square','Créneau','Square'],['saw','Dent de scie','Sawtooth'],['triangle','Triangle','Triangle'],['mixture','Mélange','Mixture']].map(([value,fr,en])=>({value,label:[fr,en]}))},
+    shape:{kind:'choice',key:'shape',label:['Contour','Outline'],options:shapes.map((value,i)=>({value,label:[['Madagascar','Cœur','Étoile','Dessiner'][i],['Madagascar','Heart','Star','Draw'][i]]}))},
+    time:{kind:'scrubber',key:'time',get:s=>s.time,set:(s,v)=>({time:v}),min:0,max:1,step:.001,label:['Parcourir une période','Scrub one period'],play:{seconds:9}},
+    waveTip:{kind:'handle',label:['Amplitude et phase','Amplitude and phase']},
+  },
+  views:{
+    formula(s,{fmt}){if(s.mode==='wave')return `y(t) = A cos(2πkt + φ) ; A ${fmt.read(s.amplitude)}, k = ${s.frequency}, φ ${fmt.read(s.phase)}`;
+      if(s.mode==='shape')return 'z(t) = ∑ cₖ exp(2πikt) ; cₖ = (1/M) ∑ zⱼ exp(−2πikj/M), M = 128';
+      if(s.mode==='coefficient')return 'aₙ = 2∫₀¹ f(t) cos(2πnt) dt ; bₙ = 2∫₀¹ f(t) sin(2πnt) dt';
+      return 'Sₙ(t) = a₀/2 + ∑ₖ₌₁ᴺ (aₖ cos(2πkt) + bₖ sin(2πkt))';},
+    readout(s,{fmt}){if(s.mode==='wave')return [[['Période fondamentale','Fundamental period'],s.amplitude===0?fmt.t(['Signal nul : aucune','Zero signal: none']):fmt.read(1/s.frequency)], [['Amplitude','Amplitude'],fmt.read(s.amplitude)], [['Phase (rad)','Phase (rad)'],fmt.read(s.phase)]];
+      if(s.mode==='shape')return [[['Échantillons M','Samples M'],'128'],[['Vecteurs conservés','Retained vectors'],String(s.count)],[['Erreur RMS sur les échantillons','Sample RMS error'],s.shape==='custom'&&!s.custom?fmt.t(['Trace un contour','Draw an outline']):fmt.read(F.outlineRMS(s),5)]];
+      const c=F.coefficient(s.signal,s.n),num=F.correlate(s.signal,s.n);
+      if(s.mode==='coefficient')return [[['aₙ (quadrature)','aₙ (quadrature)'],fmt.read(num.a,4)],[['bₙ (quadrature)','bₙ (quadrature)'],fmt.read(num.b,4)],[['bₙ (formule)','bₙ (formula)'],fmt.read(c.b,4)]];
+      return [[['Rang N','Order N'],String(s.N)],[['Énergie ∫|f|²','Energy ∫|f|²'],fmt.read(F.energy(s.signal),4)],[['Erreur quadratique ∫|f − Sᴺ|²','Squared error ∫|f − Sᴺ|²'],fmt.read(F.errorEnergy(s.signal,s.N),5)]];},
+  },
+  missions:[
+    {id:'wave',kind:'explore',unlock:['amplitude','waveTip'],set:{mode:'wave'},prompt:['Glisse le point sur le cercle, ou règle A. Sa projection verticale décrit une onde. Atteins une amplitude inférieure à 0,6.','Drag the point on the circle, or change A. Its vertical projection describes a wave. Reach an amplitude below 0.6.'],goal:s=>s.amplitude<.6,done:['A règle la hauteur. Déplacer le point change aussi la phase, donc le départ de l’oscillation.','A sets the height. Moving the point also changes the phase and therefore the starting position.']},
+    {id:'frequency',kind:'explore',unlock:['frequency','phase'],set:{mode:'wave'},prompt:['Double la fréquence, puis modifie la phase. Compare le nombre d’oscillations sur [0 ; 1].','Double the frequency, then change the phase. Compare oscillations on [0, 1].'],goal:s=>s.frequency===2&&Math.abs(s.phase)>.2,done:['Pour une amplitude non nulle, la période fondamentale vaut 1/k. La phase déplace l’onde sans changer sa fréquence ni son amplitude.','For nonzero amplitude, the fundamental period is 1/k. Phase shifts the wave without changing frequency or amplitude.']},
+    {id:'approximation',kind:'explore',unlock:['N','signal'],set:{mode:'sum'},prompt:['Augmente N pour approcher le créneau, puis essaie les autres signaux. Cherche une erreur quadratique inférieure à 0,03. Les pointillés montrent la cible ; le bleu la somme.','Increase N to approximate the square wave, then try other signals. Reach squared error below 0.03. Dashes show the target; blue shows the sum.'],goal:(s,m)=>m.error<.03,done:['L’erreur quadratique diminue. Cela ne garantit pas une petite erreur en tout point : observe les sauts du créneau.','Squared error decreases. This does not guarantee small error at every point: inspect the square wave jumps.']},
+    {id:'coefficients',kind:'explore',unlock:['n','signal'],set:{mode:'coefficient',signal:'mixture'},prompt:['Mesure les fréquences du mélange. La courbe orange est le produit f(t) sin(2πnt). Les aires signées se compensent pour une fréquence absente. Trouve n = 2.','Measure the mixture frequencies. Orange shows f(t) sin(2πnt). Signed areas cancel for an absent frequency. Find n = 2.'],goal:s=>s.n===2&&s.signal==='mixture',done:['La corrélation donne b₂ ≈ 0,8 ; les autres bₙ sont nuls. Le cosinus fournit a₁ = 0,6.','Correlation gives b₂ ≈ 0.8; the other bₙ vanish. Cosine gives a₁ = 0.6.']},
+    {id:'convergence',kind:'contrast',unlock:['N'],set:{mode:'sum',signal:'square',N:12},variants:[{label:['Somme partielle','Partial sum'],set:{method:'partial'}},{label:['Moyenne de Fejér','Fejér mean'],set:{method:'fejer'}}],prompt:['Compare le bleu (somme partielle) et le violet (moyenne de Fejér). Le dépassement près des sauts persiste avec les sommes partielles, mais se resserre.','Compare blue (partial sum) and purple (Fejér mean). Partial-sum overshoot near jumps persists but narrows.'],done:['Au saut, les deux convergent vers la moyenne des limites latérales. Fejér pondère les harmoniques par 1 − n/(N + 1) et évite le dépassement pour ce créneau.','At a jump both converge to the mean of the one-sided limits. Fejér weights harmonics by 1 − n/(N + 1), avoiding overshoot for this square wave.']},
+    {id:'energy',kind:'check',set:{mode:'sum',signal:'mixture',N:1},quantity:'error',answer:.32,tolerance:.000001,prompt:['Pour f(t) = 0,6 cos(2πt) + 0,8 sin(4πt), S₁ oublie la seconde harmonique. Calcule ∫₀¹ |f − S₁|².','For f(t) = 0.6 cos(2πt) + 0.8 sin(4πt), S₁ omits the second harmonic. Compute ∫₀¹ |f − S₁|².'],because:['0,8² × ∫₀¹ sin²(4πt) dt = 0,8²/2 = 0,32.','0.8² × ∫₀¹ sin²(4πt) dt = 0.8²/2 = 0.32.']},
+    {id:'drawing',kind:'explore',unlock:['shape','count','time'],set:{mode:'shape'},prompt:['Retrouve Madagascar : lance la lecture ou parcours t, puis ajoute des vecteurs. Choisis Dessiner pour tracer ton contour avec le doigt. Le contour est fermé par un segment ; les points sont rééchantillonnés à pas de longueur constant.','Rebuild Madagascar: play or scrub t, then add vectors. Choose Draw to trace a contour. A segment closes it; samples are equally spaced along its length.'],goal:s=>s.count>=40,done:['Chaque vecteur a un rayon |cₖ|, une phase arg(cₖ) et une vitesse signée 2πk. À 128 vecteurs, on retrouve les 128 échantillons à l’arrondi près, pas chaque point du contour original.','Each vector has radius |cₖ|, phase arg(cₖ), and signed speed 2πk. With 128 vectors the 128 samples are recovered up to rounding, not every point of the original contour.']},
+    {id:'why',kind:'explain',set:{mode:'shape',count:40},unlock:['shape','count','time'],prompt:['Explique les étapes contour → points → coefficients → vecteurs → dessin. Pourquoi une reconstruction discrète exacte ne prouve-t-elle pas une reproduction exacte de tout contour ?','Explain outline → samples → coefficients → vectors → drawing. Why does exact discrete reconstruction not prove exact reproduction of every contour?'],argument:['On ferme et paramètre le contour, on prélève M points complexes puis on calcule leur DFT. Chaque coefficient devient un vecteur tournant. La somme restitue les échantillons lorsque tous les M coefficients sont utilisés. Entre ces points, elle donne une interpolation trigonométrique. Augmenter M améliore la description du contour ; augmenter le nombre de vecteurs conservés réduit l’erreur sur ces échantillons. Une somme finie ne contient pas toute l’information d’une fonction arbitraire.','Close and parameterise the outline, sample M complex points, and compute the DFT. Each coefficient becomes a rotating vector. Their sum recovers the samples when all M coefficients are used. Between samples it is a trigonometric interpolant. Increasing M improves the outline sampling; retaining more vectors reduces sample error. A finite sum does not contain all the information in an arbitrary function.']},
+  ],
+  conclusion:['Les séries de Fourier utilisent des intégrales pour décomposer une fonction périodique. La DFT utilise une somme finie pour décomposer des échantillons. Les deux s’appuient sur l’orthogonalité, mais leurs garanties ne sont pas interchangeables.','Fourier series use integrals to decompose a periodic function. The DFT uses a finite sum to decompose samples. Both rely on orthogonality, but their guarantees are different.'],
+  history:{title:['Joseph Fourier · décomposer la chaleur','Joseph Fourier · decomposing heat'],story:['Fourier développe la décomposition trigonométrique pour étudier la propagation de la chaleur. Le même langage relie ici des ondes, des signaux et des courbes du plan.','Fourier developed trigonometric decomposition to study heat propagation. The same language connects waves, signals and planar curves here.'],source:'https://mathshistory.st-andrews.ac.uk/Biographies/Fourier/'},
+};
+
+// Two short experiments keep the existing 4-to-6-mission contract while covering the complete Fourier path.
+const original = full.missions;
+full.id = 'fourier-series';
+full.model.quantities = {error:s=>F.errorEnergy(s.signal,s.N),b:s=>F.coefficient(s.signal,s.n).b};
+full.model.quantity = (key,s)=>full.model.quantities[key](s);
+full.pointerMode = s=>s.mode==='shape'&&s.shape==='custom'?'draw':null;
+full.onlyUnlocked = true;
+full.controls.waveTip.at = s=>[s.amplitude*Math.sin(s.phase),s.amplitude*Math.cos(s.phase)];
+full.controls.waveTip.drag = (s,x,y)=>({amplitude:Math.min(1.5,Math.hypot(x,y)),phase:Math.atan2(x,y)});
+full.controls.waveTip.nudge = (s,dx,dy)=>({amplitude:Math.max(0,Math.min(1.5,s.amplitude+dy*.05)),phase:Math.max(-3.14,Math.min(3.14,s.phase+dx*.05))});
+full.missions = [
+ {id:'wave',kind:'predict',set:{mode:'wave'},correct:0,choices:[['Deux fois plus d’oscillations.','Twice as many oscillations.'],['Deux fois plus haut.','Twice as high.']],prompt:['La fréquence double et l’amplitude reste fixe. Que prédis-tu sur une même durée ?','Frequency doubles at fixed amplitude. What do you predict over the same duration?']},
+ {...original[1],id:'frequency',unlock:['frequency','waveTip'],prompt:['Glisse le point pour changer amplitude et phase. Double la fréquence avec le curseur. Atteins k = 2 et une phase non nulle.','Drag the point to change amplitude and phase. Double frequency with the slider. Reach k = 2 and a nonzero phase.']},
+ original[2],
+ {...original[3],kind:'check',quantity:'b',answer:.8,tolerance:.0001,goal:undefined,done:undefined,because:['Pour le mélange, b₂ = 0,8 par orthogonalité. La quadrature en donne une approximation.','For the mixture, b₂ = 0.8 by orthogonality. Quadrature gives an approximation.'],set:{mode:'coefficient',signal:'mixture',n:2},prompt:['Trouve le coefficient b₂ du mélange 0,6 cos(2πt) + 0,8 sin(4πt). Compare ensuite avec n = 1 et n = 3.','Find b₂ of the mixture 0.6 cos(2πt) + 0.8 sin(4πt). Then compare with n = 1 and n = 3.']},
+ original[4],
+ {id:'why',kind:'explain',set:{mode:'sum',signal:'square',N:12},unlock:['N','signal'],prompt:['Pourquoi une erreur quadratique petite ne garantit-elle pas une petite erreur près d’un saut ?','Why does a small squared error not guarantee a small error near a jump?'],argument:['L’erreur quadratique est une intégrale. Une erreur importante sur un intervalle très étroit peut peu contribuer à cette intégrale. Les sommes partielles restent continues : elles ne peuvent pas converger uniformément vers un créneau discontinu sur une période entière.','Squared error is an integral. A large error over a very narrow interval can contribute little. Partial sums stay continuous, so they cannot converge uniformly to a discontinuous square wave over a whole period.']}
+];
+full.controls = Object.fromEntries(['frequency','waveTip','N','n','signal'].map(k=>[k,full.controls[k]]));
+const drawingExperiment = {
+ ...full,id:'fourier-drawing',title:['Du contour aux cercles tournants','From outlines to rotating circles'],short:['Dessiner avec Fourier','Drawing with Fourier'],duration:15,
+ intro:['Échantillonne un contour, calcule sa DFT et reconstruis-le avec des vecteurs tournants.','Sample an outline, compute its DFT and rebuild it with rotating vectors.'],
+ state:{...full.state,mode:'shape'},
+ controls:{shape:{kind:'choice',key:'shape',label:['Contour','Outline'],options:shapes.map((value,i)=>({value,label:[['Madagascar','Cœur','Étoile','Dessiner'][i],['Madagascar','Heart','Star','Draw'][i]]}))},count:slider('count',1,128,1,'Vecteurs conservés / Retained vectors'),time:{kind:'scrubber',key:'time',get:s=>s.time,set:(s,v)=>({time:v}),min:0,max:1,step:.001,label:['Parcourir une période','Scrub one period'],play:{seconds:9}}},
+ model:{model:s=>({omittedRMS:Math.hypot(.3,.4)}),quantities:{omittedRMS:s=>Math.hypot(.3,.4)},quantity:(key,s)=>Math.hypot(.3,.4)},
+ missions:[
+ {id:'samples',kind:'predict',correct:1,choices:[['Tout le contour, entre tous les points.','The entire outline between all points.'],['Les 128 échantillons.','The 128 samples.']],prompt:['Avec les 128 coefficients d’une DFT à 128 points, que récupère-t-on exactement en arithmétique exacte ?','With all 128 coefficients of a 128-point DFT, what is recovered exactly in exact arithmetic?']},
+ {id:'drawing',kind:'explore',unlock:['shape','time'],prompt:original[6].prompt,goal:s=>s.time>.8,done:['La pointe parcourt une période. Le paramètre est une fraction de longueur du contour échantillonné.','The tip traverses a period. The parameter is a fraction of length along the sampled outline.']},
+ {...original[6],id:'detail',unlock:['shape','count'],prompt:['Ajoute des vecteurs et atteins 40 composantes. La courbe change, mais le repère ne change pas d’échelle. Dessine aussi ton propre contour.','Add vectors and reach 40 components. The curve changes without rescaling the view. Also draw your own outline.']},
+ {id:'error',kind:'check',quantity:'omittedRMS',answer:.5,tolerance:.000001,prompt:['Les coefficients omis ont pour modules 0,3 et 0,4 ; tous les autres sont conservés. Quelle est l’erreur RMS sur les échantillons ?','The omitted coefficients have magnitudes 0.3 and 0.4; all others are retained. What is the sample RMS error?'],because:['Parseval discret donne RMS² = 0,3² + 0,4² = 0,25, donc RMS = 0,5.','Discrete Parseval gives RMS² = 0.3² + 0.4² = 0.25, hence RMS = 0.5.']},
+ {...original[7],unlock:['shape','count'],prompt:['Pourquoi une reconstruction exacte des points ne garantit-elle pas celle du contour entre ces points ?','Why does exact reconstruction of the points not guarantee the outline between them?']}
+ ]
+};
+__e.default = full;
+
+__e.drawingExperiment = drawingExperiment;
 });
 __d("lab/experiments/integral.js", function (__e, __r) {
 // Experiment `integral` (template process): rectangles under y = x^2 between a and b. State {a, b, n, method}. The
@@ -5414,6 +5693,8 @@ const probability = __r("lab/experiments/probability.js").default;
 const vectors = __r("lab/experiments/vectors.js").default;
 const statistics = __r("lab/experiments/statistics.js").default;
 const complex = __r("lab/experiments/complex.js").default;
+const fourier = __r("lab/experiments/fourier.js").default;
+const { drawingExperiment } = __r("lab/experiments/fourier.js");
 const line = __r("lab/experiments/line.js").default;
 const exponential = __r("lab/experiments/exponential.js").default;
 const cobweb = __r("lab/experiments/cobweb.js").default;
@@ -5421,9 +5702,10 @@ const matrix = __r("lab/experiments/matrix.js").default;
 const spaceLines = __r("lab/experiments/space-lines.js").default;
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines];
+const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment];
 
 const TEMPLATES = {
+  fourier: () => Promise.resolve(__r("lab/templates/fourier.js")),
   family: () => Promise.resolve(__r("lab/templates/family.js")),
   process: () => Promise.resolve(__r("lab/templates/process.js")),
   chance: () => Promise.resolve(__r("lab/templates/chance.js")),
@@ -5435,6 +5717,7 @@ const TEMPLATES = {
 
 // Type of activity, shown as the group titles of the #lab index.
 const TEMPLATE_INFO = {
+  fourier: {title:['Décomposer et reconstruire','Decompose and reconstruct'],blurb:['Des signaux périodiques aux contours tracés par des cercles.','From periodic signals to outlines drawn by circles.']},
   family: { title: ["Faire varier un paramètre", "Change a parameter"], blurb: ["Une famille de fonctions : que change chaque coefficient ?", "A family of functions: what does each coefficient change?"] },
   process: { title: ["Rapprocher jusqu’à la limite", "Approach the limit"], blurb: ["Un procédé indexé par n ou h : vers quoi tend-il ?", "A process indexed by n or h: what does it approach?"] },
   chance: { title: ["Répéter le hasard", "Repeat chance"], blurb: ["Une expérience aléatoire répétée : les fréquences se rapprochent-elles des probabilités ?", "A random experiment repeated: do frequencies come close to probabilities?"] },
@@ -5472,6 +5755,7 @@ const catalogue = () => EXPERIMENTS.map((e) => ({
   duration: e.duration, level: e.level, prereq: e.prereq,
   history: e.history.title, story: e.history.story, source: e.history.source,
 }));
+
 
 __e.EXPERIMENTS = EXPERIMENTS;
 __e.TEMPLATES = TEMPLATES;
@@ -5605,6 +5889,7 @@ function createShell(host, exp, tpl, opts = {}) {
     fontScale: slide ? 1.3 : 1,
     canvasKeys: slide,
     navHost: slide ? opts.controls : undefined,
+    reservePointer: () => exp.pointerMode?.(getState()) === "draw",
     onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
     label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
@@ -5789,7 +6074,7 @@ function createShell(host, exp, tpl, opts = {}) {
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
       // Before the learner has predicted there is nothing to operate: locked controls are not shown at all.
-      n.wrap.hidden = m.kind === "predict";
+      n.wrap.hidden = m.kind === "predict" || (exp.onlyUnlocked && !on);
     }
     controlsEl.hidden = m.kind === "predict" || !Object.keys(controlNodes).length;
   }
@@ -6048,6 +6333,7 @@ function createShell(host, exp, tpl, opts = {}) {
   return api;
 }
 
+
 __e.KINDS = KINDS;
 __e.createShell = createShell;
 });
@@ -6220,6 +6506,88 @@ function mount(env) {
     for (const h of handles) { const [x, y] = h.pos(); drawHandle(g, stage, x, y, { color: h.color, locked: !isUnlocked(h.id) }); }
   }
   return { draw, handles, destroy() {} };
+}
+
+__e.mount = mount;
+});
+__d("lab/templates/fourier.js", function (__e, __r) {
+// Fourier shares the retained canvas, camera, scheduler, keyboard handles and mission shell of every laboratory.
+const { makeView, drawAxes, drawHandle } = __r("lab/plot.js");
+const F = __r("fourier-model.js");
+const { arms } = __r("gallery-math.js");
+function mount(env){
+  const {stage,getState,setState,advance,isUnlocked,fmt}=env;
+  let v=null,w=null,co=[],pts=[],cache='',curve=[],stroke=null;
+  const cv=stage.canvas,g=stage.g;
+  const help=document.createElement('p');help.className='lab2-keys';help.id='fourier-draw-help-'+env.exp.id;
+  help.textContent=fmt.t(['Contour personnel : glisse pour dessiner. Au clavier : choisis Dessiner, puis sur le canevas utilise les flèches pour déplacer le crayon, Espace pour poser un point, Entrée pour fermer (au moins 3 points), Échap pour annuler.','Custom outline: drag to draw. Keyboard: choose Draw, then focus the canvas; arrows move the pen, Space adds a point, Enter closes (at least 3 points), Escape cancels.']);
+  stage.wrap.after(help);cv.setAttribute('aria-describedby',help.id);
+  const penStatus=document.createElement('p');penStatus.className='sr-only';penStatus.setAttribute('role','status');penStatus.setAttribute('aria-live','polite');help.after(penStatus);
+  let pen=[0,0],strokePointer=null;
+
+  const spec=()=>getState().mode==='shape'?{x:[-15,15],y:[-15,15],equal:true,xTicks:[-10,0,10],yTicks:[-10,0,10]}:{x:[0,1],y:[-1.7,1.7],xTicks:[0,.25,.5,.75,1],yTicks:[-1,0,1]};
+  function layout(){const wave=getState().mode==='wave',split=wave?stage.W*.35:0;v=makeView({x:split,y:0,w:stage.W-split,h:stage.H},spec());w=makeView({x:0,y:0,w:split||stage.W,h:stage.H},{x:[-1.7,1.7],y:[-1.7,1.7],equal:true});}
+  const line=(points,color,width=2,dash=[])=>{g.save();g.strokeStyle=stage.color(color);g.lineWidth=width;g.setLineDash(dash);g.beginPath();points.forEach(([x,y],i)=>i?g.lineTo(v.X(x),v.Y(y)):g.moveTo(v.X(x),v.Y(y)));g.stroke();g.restore();};
+  function prepare(s){
+    const key=JSON.stringify([s.shape,s.custom,s.count]);if(cache===key)return;cache=key;
+    const data=F.outline(s);pts=data.points;co=data.coefficients;
+    curve=Array.from({length:1025},(_,i)=>F.reconstruct(co,i/1024,s.count));
+  }
+  function draw(){
+    layout();const s=getState();help.hidden=!(s.mode==='shape'&&s.shape==='custom'&&isUnlocked('shape'));drawAxes(g,v,spec(),stage,fmt);
+    g.save();g.beginPath();g.rect(v.left,v.top,v.width,v.height);g.clip();
+    if(s.mode==='shape'&&s.shape==='custom'&&!s.custom){if(stroke)line(stroke,'obj3',3);drawHandle(g,stage,v.X(pen[0]),v.Y(pen[1]),{color:'obj3'});g.restore();return;}
+    if(s.mode==='shape'){
+      prepare(s);line([...pts,pts[0]],'muted',1,[4,5]);line(curve.slice(0,Math.max(2,Math.floor(s.time*1024)+1)),'accent',3);
+      const chain=arms(co,s.time,s.count);for(let i=1;i<chain.length;i++){
+        const [x,y]=chain[i-1],[X,Y,r]=chain[i];g.strokeStyle=stage.color('muted');g.lineWidth=1;
+        if(r>1e-8){g.beginPath();g.arc(v.X(x),v.Y(y),Math.abs(v.X(r)-v.X(0)),0,F.TAU);g.stroke();}line([[x,y],[X,Y]],'obj2',1.5);
+      }
+      const tip=chain.at(-1);g.fillStyle=stage.color('neg');g.beginPath();g.arc(v.X(tip[0]),v.Y(tip[1]),4,0,F.TAU);g.fill();
+      if(stroke)line(stroke,'obj3',3);
+    }else if(s.mode==='wave'){
+      const wave=Array.from({length:501},(_,i)=>[i/500,s.amplitude*Math.cos(F.TAU*s.frequency*i/500+s.phase)]);line(wave,'accent',3);
+      // A small rotating vector is paired with the wave at t = 0. The draggable tip controls A and φ.
+      const x=s.amplitude*Math.sin(s.phase),y=s.amplitude*Math.cos(s.phase);g.restore();g.save();g.strokeStyle=stage.color('muted');g.lineWidth=1;g.beginPath();g.arc(w.X(0),w.Y(0),Math.abs(w.X(s.amplitude)-w.X(0)),0,F.TAU);g.stroke();g.strokeStyle=stage.color('obj2');g.lineWidth=2;g.beginPath();g.moveTo(w.X(0),w.Y(0));g.lineTo(w.X(x),w.Y(y));g.stroke();g.setLineDash([4,5]);g.beginPath();g.moveTo(w.X(x),w.Y(y));g.lineTo(v.X(0),v.Y(y));g.stroke();g.setLineDash([]);drawHandle(g,stage,w.X(x),w.Y(y),{color:'obj2',locked:!isUnlocked('waveTip')});
+    }else{
+      const samples=Array.from({length:801},(_,i)=>i/800);
+      // Break at jumps rather than joining opposite limits with a fictitious segment.
+      let segment=[];for(const t of samples){const y=F.signal(s.signal,t);if(segment.length&&Math.abs(y-segment.at(-1)[1])>1){line(segment,'muted',1.8,[5,5]);segment=[];}segment.push([t,y]);}line(segment,'muted',1.8,[5,5]);
+      if(s.mode==='coefficient')line(samples.map(t=>[t,F.signal(s.signal,t)*Math.sin(F.TAU*s.n*t)]),'obj2',2.5);
+      else {line(samples.map(t=>[t,F.partial(s.signal,s.N,t)]),'accent',2.8);if(s.method==='fejer')line(samples.map(t=>[t,F.partial(s.signal,s.N,t,true)]),'obj3',2.8);}
+    }
+    g.restore();
+    if(s.mode==='shape'){
+      const err=Math.sqrt(F.sampleError(co,s.count));g.fillStyle=stage.color('ink');g.font=stage.sans(13);g.textAlign='left';
+      g.fillText((fmt.fr?'Erreur RMS sur les échantillons ≈ ':'Sample RMS error ≈ ')+fmt.num(err,4),v.left,v.top+16);
+      if(s.shape==='custom'){drawHandle(g,stage,v.X(pen[0]),v.Y(pen[1]),{color:'obj3'});}
+    }
+  }
+  layout();
+  const handles=[{id:'waveTip',label:fmt.t(['Amplitude et phase','Amplitude and phase']),color:'obj2',
+    pos(){layout();const s=getState();return [w.X(s.amplitude*Math.sin(s.phase)),w.Y(s.amplitude*Math.cos(s.phase))];},
+    drag(x,y){if(getState().mode!=='wave')return;const a=w.iX(x),b=w.iY(y);setState({amplitude:Math.min(1.5,Math.hypot(a,b)),phase:Math.atan2(a,b)});},
+    nudge(dx,dy){const s=getState();setState({amplitude:Math.max(0,Math.min(1.5,s.amplitude+dy*.05)),phase:Math.max(-3.14,Math.min(3.14,s.phase+dx*.05))});},
+  }];
+  const point=e=>{const r=cv.getBoundingClientRect(),p=stage.nav.camera.unproject([(e.clientX-r.left)*stage.W/r.width,(e.clientY-r.top)*stage.H/r.height]);return [v.iX(p[0]),v.iY(p[1])];};
+  const down=e=>{const s=getState();if(s.mode!=='shape'||s.shape!=='custom'||!isUnlocked('shape'))return;e.stopImmediatePropagation();e.preventDefault();stroke=[point(e)];strokePointer=e.pointerId;cv.setPointerCapture(e.pointerId);stage.invalidate();};
+  const move=e=>{if(stroke&&e.pointerId===strokePointer){stroke.push(point(e));stage.invalidate();}};
+  const end=e=>{if(!stroke||(strokePointer!=null&&e?.pointerId!==strokePointer))return;const p=stroke;stroke=null;strokePointer=null;if(p.length>=3&&p.some(q=>Math.hypot(q[0]-p[0][0],q[1]-p[0][1])>.1))setState({custom:p,time:0});stage.invalidate();};
+  // Capture phase takes drawing priority over the camera; multi-touch remains a view gesture.
+  cv.addEventListener('pointerdown',down,true);cv.addEventListener('pointermove',move,true);cv.addEventListener('pointerup',end,true);cv.addEventListener('pointercancel',end,true);
+  const key=e=>{const s=getState();if(s.mode!=='shape'||s.shape!=='custom'||!isUnlocked('shape')||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey)return;
+    const dirs={ArrowLeft:[-.5,0],ArrowRight:[.5,0],ArrowUp:[0,.5],ArrowDown:[0,-.5]};
+    if(dirs[e.key]){const d=dirs[e.key];pen=[Math.max(-12,Math.min(12,pen[0]+d[0])),Math.max(-12,Math.min(12,pen[1]+d[1]))];}
+    else if(e.key===' '){stroke=[...(stroke||[]),[...pen]];}
+    else if(e.key==='Enter'){end();}
+    else if(e.key==='Escape'){stroke=null;}
+    else return;
+    e.preventDefault();e.stopPropagation();penStatus.textContent=fmt.t(['Crayon','Pen'])+' '+fmt.num(pen[0])+' ; '+fmt.num(pen[1])+' · '+(stroke?.length||0)+' '+fmt.t(['points','points']);stage.invalidate();
+  };
+  cv.addEventListener('keydown',key);
+  const gesture=()=>{stroke=null;strokePointer=null;stage.invalidate();};cv.addEventListener('view-gesture',gesture);cv.removeEventListener('pointercancel',end,true);cv.addEventListener('pointercancel',gesture,true);cv.addEventListener('lostpointercapture',gesture);
+  function player(c,onChange){let stop=null;const api={stop(){stop?.();stop=null;onChange(false);},toggle(){if(stop)return api.stop();if(stage.reduced()){advance({time:(getState().time+.1)%1});return;}let previous=null;stop=stage.animate(now=>{if(previous!==null)advance({time:(getState().time+Math.min(.05,(now-previous)/1000)/9)%1});previous=now;});onChange(true);}};return api;}
+  return {draw,handles,player,destroy(){help.remove();penStatus.remove();cv.removeEventListener('keydown',key);cv.removeEventListener('view-gesture',gesture);cv.removeEventListener('pointercancel',gesture,true);cv.removeEventListener('lostpointercapture',gesture);cv.removeEventListener('pointerdown',down,true);cv.removeEventListener('pointermove',move,true);cv.removeEventListener('pointerup',end,true);cv.removeEventListener('pointercancel',end,true);}};
 }
 
 __e.mount = mount;

@@ -133,7 +133,7 @@ export function createStage(host, options = {}) {
     }
     return best;
   };
-  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) });
+  const nav = canvasNavigation(canvas, g, size, () => invalidate(), { host: navHost || wrap, lang: options.lang === "en" ? "en" : "fr", canPan: (p) => !onSpin && !hitAt(p) && !options.reservePointer?.() });
 
   function schedule() { if (!raf && alive) raf = requestAnimationFrame(frame); }
   function invalidate() { dirty = true; schedule(); }
@@ -299,3 +299,4 @@ export function createStage(host, options = {}) {
 }
 
 export { snap, clamp } from "./models/num.js";
+

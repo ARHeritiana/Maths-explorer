@@ -49,7 +49,7 @@ function fourierLab(root, { t, reduced, lang }) {
     if (reduced()) frame(0);
     if (!co.length) { read.textContent = t("Dessine une forme fermée avec le doigt ou la souris.", "Draw a closed shape with your finger or the mouse."); return; }
     const left = Math.sqrt(co.slice(count).reduce((s, c) => s + c.amp ** 2, 0)), pct = (100 * left) / rms();
-    read.innerHTML = `${count} ${t(count > 1 ? "cercles" : "cercle", count > 1 ? "circles" : "circle")} · ${t("écart moyen avec la forme", "mean gap from the shape")} : <strong>${fmt(pct)} %</strong> ${t("de sa taille", "of its size")}${count < co.length ? "" : ` · ${t("tous les cercles : la forme est exacte", "all the circles: the shape is exact")}`}`;
+    read.innerHTML = `${count} ${t(count > 1 ? "cercles" : "cercle", count > 1 ? "circles" : "circle")} · ${t("erreur RMS relative sur les échantillons", "relative sample RMS error")} : <strong>${fmt(pct)} %</strong> ${t("(normalisée par la RMS du contour centré)", "(normalised by the centred outline RMS)")}${count < co.length ? "" : ` · ${t("tous les échantillons sont reconstruits à l’arrondi près", "all samples recovered up to rounding")}`}`;
   }
   // The tip traces the curve of the first `count` circles as it goes; the old trace fades slowly. A circle is added only
   // when the tip has completed a full turn (COUNT_SCHEDULE), so each turn sharpens the picture a little more.

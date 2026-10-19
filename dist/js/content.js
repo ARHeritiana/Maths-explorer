@@ -115,7 +115,7 @@ export const labs = [
     group: ["Formes & mouvement", "Shapes & motion"],
     title: ["Des cercles qui dessinent Madagascar", "Circles that draw Madagascar"],
     short: ["Cercles de Fourier", "Fourier circles"],
-    intro: ["Des cercles qui tournent, chacun porté par le précédent, suffisent à redessiner n’importe quelle forme fermée. Combien en faut-il pour reconnaître une île ?", "Turning circles, each carried by the previous one, are enough to redraw any closed shape. How many does it take to recognise an island?"],
+    intro: ["Une chaîne de vecteurs tournants approche un contour échantillonné. Combien en faut-il pour reconnaître une île ?", "A chain of rotating vectors approximates a sampled outline. How many does it take to recognise an island?"],
     prereq: ["Aucun : curiosité, ou nombres complexes et trigonométrie pour aller plus loin", "None: curiosity, or complex numbers and trigonometry to go further"],
     formula: "",
     params: [],
@@ -128,7 +128,7 @@ export const labs = [
     answer: 4,
     explain: ["La distance est au plus 3 + 1 = 4, atteinte quand les deux bras sont alignés dans le même sens : à cet instant le bout est à 4 du centre.", "The distance is at most 3 + 1 = 4, reached when both arms point the same way: at that moment the tip is 4 from the centre."],
     history: ["Fourier · 1822", "Fourier · 1822"],
-    story: ["Joseph Fourier a montré, dans sa Théorie analytique de la chaleur (1822), qu’une fonction périodique se décompose en une somme de mouvements circulaires de fréquences entières. Les cercles de cette page sont la même idée appliquée à une courbe du plan. Le contour de Madagascar a été relevé sur un fond de carte puis lissé : c’est une aide au dessin, pas un levé cartographique.", "In his Analytical Theory of Heat (1822), Joseph Fourier showed that a periodic function splits into a sum of circular motions with whole-number frequencies. The circles on this page are the same idea applied to a plane curve. The outline of Madagascar was traced from a map outline and then smoothed: it is a drawing aid, not a survey."],
+    story: ["Dans sa Théorie analytique de la chaleur (1822), Joseph Fourier développe la décomposition trigonométrique pour étudier la propagation de la chaleur. Les théorèmes de convergence précisent les hypothèses nécessaires pour retrouver un signal. Les cercles de cette page sont la même idée appliquée à une courbe du plan. Le contour de Madagascar a été relevé sur un fond de carte puis lissé : c’est une aide au dessin, pas un levé cartographique.", "In his Analytical Theory of Heat (1822), Joseph Fourier developed trigonometric decomposition to study heat propagation. Convergence theorems specify the assumptions needed to recover a signal. The circles on this page are the same idea applied to a plane curve. The outline of Madagascar was traced from a map outline and then smoothed: it is a drawing aid, not a survey."],
     source: "https://mathshistory.st-andrews.ac.uk/Biographies/Fourier/",
     duration: 10,
     level: ["Pour tous", "For everyone"],
@@ -184,8 +184,8 @@ const reasoning = {
     transfer: ["À tester : 4 sommets avec le rapport 1/2. Que remarques-tu ? Essaie ensuite le bouton « Valeur qui donne un joli motif ».", "Try 4 vertices with ratio 1/2. What do you notice? Then try the “Value that gives a clean pattern” button."]
   },
   fourier: {
-    conjecture: ["Plus on ajoute de cercles, plus la courbe tracée se rapproche de la forme, et les premiers cercles, les plus grands, suffisent à reconnaître l’île.", "The more circles are added, the closer the traced curve gets to the shape, and the first, largest circles are enough to recognise the island."],
-    proof: ["Une courbe fermée z(t), périodique de période 1, se développe en série de Fourier z(t) = Σ cₖ e^(2iπkt). Chaque terme est un mouvement circulaire uniforme de rayon |cₖ| et de fréquence k. Pour des points échantillonnés, la transformée de Fourier discrète donne les cₖ et la somme complète redonne exactement les points. L’erreur quadratique moyenne de la somme partielle vaut la somme des |cₖ|² des termes omis (égalité de Parseval), donc ranger les cercles par rayon décroissant la fait diminuer le plus vite.", "A closed curve z(t) of period 1 expands as a Fourier series z(t) = Σ cₖ e^(2iπkt). Each term is a uniform circular motion of radius |cₖ| and frequency k. For sampled points, the discrete Fourier transform gives the cₖ and the full sum returns the points exactly. The mean squared error of a partial sum equals the sum of |cₖ|² over the omitted terms (Parseval), so ordering the circles by decreasing radius makes it fall fastest."],
+    conjecture: ["Ajouter des coefficients diminue l’erreur quadratique sur les échantillons. Les plus grands cercles rendent rapidement l’île reconnaissable.", "Adding coefficients reduces squared error on the samples. The largest circles quickly make the island recognisable."],
+    proof: ["On échantillonne le contour fermé en M points complexes. Leur DFT donne M coefficients. La somme des vecteurs tournants restitue les M points à l’arrondi près quand tous les coefficients sont utilisés ; entre les points, elle définit une interpolation trigonométrique. Parseval discret donne l’erreur quadratique moyenne sur les échantillons comme la somme des modules au carré des coefficients omis. À nombre de coefficients fixé, garder les plus grands modules minimise cette erreur, sans garantir une erreur géométrique minimale en chaque point du contour.", "Sample the closed outline as M complex points. Their DFT gives M coefficients. The rotating-vector sum recovers the M points up to rounding when all coefficients are retained; between samples it defines a trigonometric interpolant. Discrete Parseval makes mean squared sample error the sum of squared magnitudes of omitted coefficients. For a fixed count, keeping the largest magnitudes minimises this error, without guaranteeing minimum geometric error at every point of the outline."],
     transfer: ["À tester : dessine un carré, puis un cercle. Combien de cercles faut-il pour chacun, et pourquoi le cercle n’en demande-t-il qu’un ?", "Try drawing a square, then a circle. How many circles does each need, and why does the circle need only one?"]
   },
   mandelbrot: {
@@ -267,3 +267,4 @@ export const pathways = [
 
 // Stages of a pathway, whether it lists them directly or through programmes.
 export const pathwayStages = (p) => (p.programmes ? p.programmes.flatMap((x) => x.stages) : p.stages);
+

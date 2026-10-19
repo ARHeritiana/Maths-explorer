@@ -36,6 +36,7 @@ def inputs():
              'content/data/glossary.json', COURSES.get(course, ['unsupported'])[0], 'build/mxbuild/tex.py',
              'build/mxbuild/twin.py', 'build/mxbuild/books.py'],
             {'book': book, 'chapters': [c for c in manifest['catalog']['chapters'] if c['course'] == course]})
+    result['fourier'] = fingerprint(['content/university/fourier/**/*','scripts/build-fourier.py'],[s for s in manifest['university']['sections'] if s['id']=='fourier'])
     result['foundations'] = fingerprint(
         ['content/tex/university/foundations/**/*', 'content/slides/university/foundations/*',
          'scripts/build-university.py'],
@@ -46,7 +47,7 @@ def inputs():
     result['slides'] = fingerprint(
         ['content/slides/**/*', 'content/tex/courses/**/*', 'content/tex/core/*',
          'scripts/build-slides.py'], {'chapters':manifest['catalog']['chapters'],'courses':manifest['catalog']['courses']})
-    result['slide-exports']=fingerprint(['scripts/export-slides.py','site/slides/*','site/js/canvas-navigation.js','site/js/camera3d.js','site/js/lab/**/*','site/js/math.js','site/js/object-kit.js','dist/slides/data/*.json','dist/slides/fig/*.svg'])
+    result['slide-exports']=fingerprint(['scripts/export-slides.py','site/slides/*','site/js/canvas-navigation.js','site/js/camera3d.js','site/js/lab/**/*','site/js/math.js','site/js/object-kit.js','site/js/fourier-model.js','site/js/gallery-math.js','dist/slides/data/*.json','dist/slides/fig/*.svg'])
     result['lectures']=fingerprint(['scripts/build-lecture-slides.py','dist/slides/data/*.json','dist/slides/fig/*.svg'])
     result['sources'] = fingerprint(['content/tex/courses/**/*', 'content/tex/core/*',
                                      'scripts/publish-sources.py'],
@@ -70,6 +71,8 @@ def run_job(key):
             raise ValueError(f'No PDF builder configured for {course}; configure it before publication')
         if pipeline.build_tex([course], force=True):
             raise RuntimeError('Course build failed: ' + course)
+    elif key == 'fourier':
+        command(sys.executable, 'scripts/build-fourier.py')
     elif key == 'foundations':
         if any(s['id'] == 'foundations' for s in catalog.load()['university']['sections']):
             command(sys.executable, 'scripts/build-university.py')
@@ -79,6 +82,11 @@ def run_job(key):
         if any(s['id'] == 'module-maths' for s in catalog.load()['university']['sections']):
             command(sys.executable, 'scripts/build-module-maths.py')
     elif key in ('slides','slide-exports','lectures'):
+        # Reuse verified lecture assets when only interactive widgets changed.
+        # The checker compares every generated TeX source, source archive and PDF hash.
+        if key == 'lectures' and subprocess.run([sys.executable,'scripts/build-lecture-slides.py','--check'],cwd=ROOT,capture_output=True).returncode == 0:
+            print('Lecture sources and retained editions already match.',flush=True)
+            return
         script={'slides':'build-slides.py','slide-exports':'export-slides.py','lectures':'build-lecture-slides.py'}[key]
         command(sys.executable,'scripts/'+script)
     elif key == 'sources':
@@ -156,3 +164,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

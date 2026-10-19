@@ -1,0 +1,78 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}\setmainfont{Latin Modern Roman}
+\usepackage[provide=*,french]{babel}\usepackage{amsmath,amssymb,geometry,xcolor,hyperref,enumitem}
+\geometry{margin=24mm}\hypersetup{colorlinks=true,linkcolor=blue,pdftitle={Séries de Fourier},pdfauthor={}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{7pt}\setlist{itemsep=6pt}
+\newcommand{\editiontitle}[1]{\begin{center}{\Large\bfseries Séries de Fourier}\\[8pt]#1\end{center}}
+\begin{document}
+\editiontitle{Exercices corrigés}\tableofcontents\clearpage
+\section{Périodicité, amplitude et phase}
+\textbf{Prérequis :} Trigonométrie, fonctions et nombres complexes.
+\subsection*{Exercices}\begin{enumerate}
+\item Déterminer amplitude, période fondamentale et valeur en zéro de $u(t)=2\cos(6\pi t+\pi/3)$.
+\par\textbf{Correction.} L’amplitude vaut 2 ; la fréquence sur [0,1] vaut 3 ; la période fondamentale est 1/3. La valeur en zéro est 2 cos($\pi$/3)=1.
+\item Pourquoi $e^{2\pi it}+e^{-2\pi it}$ trace-t-il un segment et non un cercle ?
+\par\textbf{Correction.} Les parties imaginaires s’annulent : la somme vaut $2\cos(2\pi t)$, réelle, dans le segment [-2,2]. Les deux vecteurs tournent dans des sens opposés.
+\item Une somme de fréquences 2 et 4 est-elle nécessairement de période fondamentale 1 ?
+\par\textbf{Correction.} Non. Chaque terme est de période 1/2 ; la somme l’est donc aussi. Selon les coefficients, la période fondamentale peut même être plus petite.
+\end{enumerate}
+\clearpage
+\section{Orthogonalité et mesure des coefficients}
+\textbf{Prérequis :} Leçon 1 ; intégrale sur un segment ; produit scalaire.
+\subsection*{Exercices}\begin{enumerate}
+\item Calculer les coefficients non nuls de f(t)=$0{,}6\cos(2\pi t)+0{,}8\sin(4\pi t)$.
+\par\textbf{Correction.} $a_1$=0,6 et $b_2$=0,8 ; les autres $a_n$ et $b_n$ sont nuls. Donc $c_1$=$c_{-1}$=0,3, $c_2$=-0,4i, $c_{-2}$=0,4i.
+\item Calculer les coefficients sinus de f(t)=2t-1 sur ]0,1[, prolongée périodiquement.
+\par\textbf{Correction.} La moyenne et les coefficients cosinus sont nuls. Par intégration par parties, $b_n$=$-\dfrac2{\pi n}$. Le terme de bord est -1/($\pi$n) avant multiplication par 2.
+\item Pourquoi modifier une fonction en un seul point ne change-t-il pas ses coefficients ?
+\par\textbf{Correction.} Une modification en un point ne change aucune intégrale. Les coefficients ne peuvent donc pas détecter la valeur choisie à un saut isolé.
+\end{enumerate}
+\clearpage
+\section{Approximation, sauts et moyennes de Fejér}
+\textbf{Prérequis :} Leçons 1 et 2 ; limites et continuité.
+\subsection*{Exercices}\begin{enumerate}
+\item Le créneau est défini égal à 7 en t=0. Vers quoi $S_N$(0) converge-t-elle ?
+\par\textbf{Correction.} Vers zéro, moyenne des limites 1 et -1. Une valeur isolée ne change aucun coefficient.
+\item Écrire $\sigma_2$ pour $f(t)=\cos(2\pi t)+\sin(4\pi t)$.
+\par\textbf{Correction.} $\sigma_2$(t)=(2/3) cos(2$\pi$t)+(1/3) sin(4$\pi$t). Les poids des fréquences 1 et 2 sont 2/3 et 1/3.
+\item Une courbe paraît exacte à l’écran. A-t-on démontré la convergence uniforme ?
+\par\textbf{Correction.} Non. L’écran examine un nombre fini de pixels et des rangs finis. Une preuve doit contrôler tous les points et tous les rangs suffisamment grands.
+\end{enumerate}
+\clearpage
+\section{Énergie, projection et erreur}
+\textbf{Prérequis :} Leçons 1 à 3 ; produit scalaire et sommes.
+\subsection*{Exercices}\begin{enumerate}
+\item Calculer l’énergie du mélange et la racine de son erreur au rang 1.
+\par\textbf{Correction.} L’énergie vaut 0,5. L’erreur quadratique vaut 0,32 et sa racine vaut $0{,}4\sqrt2$, soit environ 0,5657.
+\item Pour le créneau, donner l’erreur au rang 1.
+\par\textbf{Correction.} L’énergie du créneau est 1. Seul $b_1$=4/$\pi$ est capté : l’erreur vaut $1-\dfrac8{\pi^2}$, soit environ 0,1894.
+\item Une moyenne de Fejér minimise-t-elle nécessairement l’erreur dans $V_N$ ?
+\par\textbf{Correction.} Non. La projection $S_N$ est le minimiseur. Pondérer ses coefficients diminue certaines oscillations mais ajoute une erreur dans $V_N$. Les buts visuels et quadratiques diffèrent.
+\end{enumerate}
+\clearpage
+\section{Échantillonnage et transformée discrète}
+\textbf{Prérequis :} Leçons 1 à 4 ; sommes géométriques ; complexes.
+\subsection*{Exercices}\begin{enumerate}
+\item Calculer la DFT de la liste (1,i,-1,-i) avec M=4.
+\par\textbf{Correction.} La liste vaut $e^{2\pi ij/4}$. L’orthogonalité donne $c_1$=1 et $c_0$=$c_2$=$c_3$=0.
+\item Avec M=8, pourquoi les fréquences 1 et 9 sont-elles indiscernables ?
+\par\textbf{Correction.} Leur différence vaut 8. Au point j/8, le quotient des deux exponentielles vaut $e^{2\pi ij}$=1.
+\item Il reste des coefficients de modules 0,3 et 0,4. Quelle est l’erreur RMS sur les points ?
+\par\textbf{Correction.} Le carré de l’erreur vaut 0,3$^2$+0,4$^2$=0,25 ; la RMS vaut 0,5.
+\end{enumerate}
+\clearpage
+\section{Du contour aux cercles : Madagascar et au-delà}
+\textbf{Prérequis :} Leçons 1 à 5 ; coordonnées du plan.
+\subsection*{Exercices}\begin{enumerate}
+\item Que change une translation de tous les points par un même complexe a ?
+\par\textbf{Correction.} Elle ajoute a au seul coefficient $c_0$. Toutes les fréquences non nulles sont inchangées par orthogonalité discrète.
+\item Que devient le spectre si tout le dessin est multiplié par $re^{i\theta}$ ?
+\par\textbf{Correction.} Par linéarité de la DFT, chaque coefficient est multiplié par $re^{i\theta}$. Les rayons sont multipliés par r et les phases augmentées de $\theta$ pour r positif.
+\item Concevoir une vérification qui sépare les erreurs d’échantillonnage et de troncature.
+\par\textbf{Correction.} À M fixé, augmente le nombre de coefficients et mesure l’erreur sur les M points. Puis conserve tous les coefficients et augmente M en comparant la courbe à un contour de référence plus fin. Les deux expériences portent sur des étapes différentes.
+\end{enumerate}
+\clearpage
+\section*{Références pour approfondir}
+\par\href{https://dlmf.nist.gov/1.8}{NIST DLMF, section 1.8 : coefficients, convergence et Parseval}
+\par\href{https://ocw.mit.edu/courses/18-102-introduction-to-functional-analysis-spring-2021/resources/lecture-16-fejers-theorem-and-convergence-of-fourier-series/}{MIT OpenCourseWare, 18.102, leçon 16 : Fejér et convergence dans L$^2$}
+\end{document}

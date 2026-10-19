@@ -32,6 +32,8 @@ def university_index(manifest, previous, measure=file_record):
     index = copy.deepcopy(manifest['university'])
     files, ids = {}, set()
     old_sequences = {s['id']: s for c in previous.get('sections', []) for s in c['sequences']}
+    from runpy import run_path
+    fourier_lessons = {x['id']: x for x in run_path(str(ROOT / 'content/university/fourier/lessons.py'))['LESSONS']} if any(s['id']=='fourier' for s in index['sections']) else {}
     for section in index['sections']:
         if section['id'] in ids:
             raise ValueError('Duplicate collection ID: ' + section['id'])
@@ -40,6 +42,9 @@ def university_index(manifest, previous, measure=file_record):
             if seq['id'] in ids:
                 raise ValueError('Duplicate sequence ID: ' + seq['id'])
             ids.add(seq['id'])
+            if section['id']=='fourier':
+                lesson=fourier_lessons[seq['id']]
+                seq.update(title=[lesson['title'],lesson['title']],summary=[lesson['objectives'][0],lesson['objectives'][0]],prerequisites=[lesson['prerequisites'],lesson['prerequisites']])
             seq['number'] = position
             for key in ('studentPage', 'teacherPage'):
                 if key in old_sequences.get(seq['id'], {}):

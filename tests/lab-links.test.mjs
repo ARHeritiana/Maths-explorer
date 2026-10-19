@@ -44,7 +44,9 @@ test('every lab reference of the manifest resolves, and a chapter names an exper
 });
 
 test('every experiment is reachable from at least one chapter (none is lab-only)', () => {
-  const reached = new Set(chapters.flatMap((c) => c.labs.map((r) => r.split('/')[0])));
+  const universityRefs=manifest.university.sections.flatMap(s=>s.sequences.map(q=>q.labRef).filter(Boolean));
+  for(const ref of universityRefs)assert.ok(resolveRef(ref), 'university: '+ref);
+  const reached = new Set([...chapters.flatMap((c) => c.labs.map((r) => r.split('/')[0])),...universityRefs.map(r=>r.split('/')[0])]);
   const labOnly = EXPERIMENTS.filter((e) => !reached.has(e.id)).map((e) => e.id);
   assert.deepEqual(labOnly, [], `lab-only experiments: ${labOnly}`);
 });
@@ -91,3 +93,4 @@ test('the player import map reaches the laboratory modules (cache-busted like in
   for (const f of ['mount', 'shell', 'engine', 'format', 'registry', 'plot', 'templates/family', 'experiments/quadratic', 'models/num']) assert.match(html, new RegExp(`"\\.\\./js/lab/${f}\\.js": "\\.\\./js/lab/${f}\\.js\\?v=[0-9a-f]{10}"`), f);
   assert.match(html, /"\.\.\/js\/math\.js": "\.\.\/js\/math\.js\?v=/); assert.match(html, /"\.\.\/js\/object-kit\.js": /);
 });
+

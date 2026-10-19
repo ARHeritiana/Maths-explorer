@@ -84,6 +84,7 @@ def build_tex(courses, force=False):
 
 
 CHECKS = [
+    ('Fourier sources and editions', [PY, 'scripts/build-fourier.py', '--check']),
     ('content dependencies and linked views', [PY, '-m', 'mxbuild.refresh', '--check']),
     ('content propagation tests', [PY, 'tests/test_content_dependencies.py']),
     ('npm test', ['npm', 'test']),
