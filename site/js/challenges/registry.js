@@ -32,9 +32,11 @@ import * as cham from "./cham/index.js";
 import * as pegs from "./pegs/index.js";
 import * as inversions from "./inversions/index.js";
 import * as piles from "./piles/index.js";
+import * as cookies from "./cookies/index.js";
+import * as jugs from "./jugs/index.js";
 
 // Order of the cards on the challenges page.
-export const CHALLENGES = [doors, chess, nim, pigeonhole, squares, hanoi, eggs, konigsberg, josephus, ramsey, artgallery, gridpaths, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, inversions, piles];
+export const CHALLENGES = [doors, chess, nim, pigeonhole, squares, hanoi, eggs, konigsberg, josephus, ramsey, artgallery, gridpaths, cookies, jugs, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, inversions, piles];
 
 const byId = Object.fromEntries(CHALLENGES.map((c) => [c.card.id, c]));
 const table = (field) => Object.fromEntries(CHALLENGES.filter((c) => c[field] !== undefined).map((c) => [c.card.id, c[field]]));

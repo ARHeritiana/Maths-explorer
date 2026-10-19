@@ -15,7 +15,7 @@ DRAGS = ['quadratic/vertex', 'trig/quadrants', 'sequences/difference', 'derivati
          'probability/mean', 'vectors/collinear', 'statistics/box', 'complex/angles', 'line/slope', 'exponential/base', 'cobweb/slope',
          'matrix/columns', 'space-lines/parallel', 'space-lines/normal']
 EXPERIMENTS = ['quadratic', 'trig', 'sequences', 'derivative', 'integral', 'probability', 'vectors', 'statistics', 'complex',
-               'line', 'exponential', 'cobweb', 'matrix', 'space-lines']
+               'line', 'exponential', 'cobweb', 'matrix', 'space-lines', 'tiles', 'euler-primes', 'fermat', 'circle-regions', 'buffon', 'bertrand']
 
 # index of the first handle the current mission suggests (every handle is free, the mission's one is the meaningful drag)
 MISSION_HANDLE = "() => { const l = document.querySelector('.lab2').__lab, u = l.mission.unlock || []; return Math.max(0, l.stage.handles.findIndex(h => u.includes(h.id))); }"

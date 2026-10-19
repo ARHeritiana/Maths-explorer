@@ -16,9 +16,15 @@ import exponential from "./experiments/exponential.js";
 import cobweb from "./experiments/cobweb.js";
 import matrix from "./experiments/matrix.js";
 import spaceLines from "./experiments/space-lines.js";
+import tiles from "./experiments/tiles.js";
+import eulerPrimes from "./experiments/euler-primes.js";
+import fermat from "./experiments/fermat.js";
+import circleRegions from "./experiments/circle-regions.js";
+import buffon from "./experiments/buffon.js";
+import bertrand from "./experiments/bertrand.js";
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment];
+export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand];
 
 export const TEMPLATES = {
   fourier: () => import("./templates/fourier.js"),
@@ -42,6 +48,16 @@ export const TEMPLATE_INFO = {
   transform: { title: ["Transformer le plan", "Transform the plane"], blurb: ["Une opération appliquée à un point, à une figure, à un quadrillage.", "An operation applied to a point, a figure, a grid."] },
   space: { title: ["Explorer l’espace", "Explore space"], blurb: ["Une figure en trois dimensions que l’on fait tourner, avec des points qui restent sur une droite ou un plan.", "A three-dimensional figure you can turn, with points that stay on a line or a plane."] },
 };
+
+// Groups of the #lab index that are about an idea rather than a template: an experiment with `section` is listed there (with its
+// `sub` title as a subsection) instead of under its template. The index shows the groups in this order.
+export const SECTION_INFO = {
+  tiles: { title: ["Une figure n’est pas une preuve", "A figure is not a proof"], blurb: ["Des pièces qui semblent changer d’aire : la démonstration dit où est l’erreur.", "Pieces that seem to change their area: the proof says where the error is."] },
+  patterns: { title: ["Une régularité n’est pas une preuve", "A pattern is not a proof"], blurb: ["Des observations vraies pendant 5 ou 40 cas, puis fausses.", "Observations true for 5 or 40 cases, then false."] },
+  geochance: { title: ["Probabilités géométriques", "Geometric probability"], blurb: ["Le hasard dans le plan : une aiguille, une corde.", "Chance in the plane: a needle, a chord."] },
+};
+export const INDEX_ORDER = ["family", "process", "chance", "geochance", "figure", "tiles", "patterns", "data", "transform", "space", "fourier"];
+export const groupOf = (e) => e.section || e.template;
 
 export const experimentById = (id) => EXPERIMENTS.find((e) => e.id === id) || null;
 
@@ -67,7 +83,7 @@ export const allRefs = () => EXPERIMENTS.flatMap((e) => [e.id, ...e.missions.map
 
 // Entries of the shared catalogue (content.js `labs`): what the home page, the library and the pathways need to name a lab.
 export const catalogue = () => EXPERIMENTS.map((e) => ({
-  id: e.id, experiment: true, template: e.template, symbol: e.symbol, group: e.group, title: e.title, short: e.short, intro: e.intro,
+  id: e.id, experiment: true, template: e.template, section: groupOf(e), symbol: e.symbol, group: e.group, title: e.title, short: e.short, intro: e.intro,
   duration: e.duration, level: e.level, prereq: e.prereq,
   history: e.history.title, story: e.history.story, source: e.history.source,
 }));

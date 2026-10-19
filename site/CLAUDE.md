@@ -36,12 +36,12 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 
 | File | Holds |
 |---|---|
-| `js/lab/` | **the laboratory**: engine, shell, mount (modes `full`, `inline`, `slide`), registry (`resolveRef`), format, templates, models and one file per experiment (fourteen: quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, space-lines); index in `js/lab/CLAUDE.md`. Also mounted by chapter pages (`chapter-sequence.js`) and by slides (`slides/widgets.js` `type: 'lab'`) |
+| `js/lab/` | **the laboratory**: engine, shell, mount (modes `full`, `inline`, `slide`), registry (`resolveRef`), format, templates, models and one file per experiment (quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, space-lines, fourier, tiles, euler-primes, fermat, circle-regions, buffon, bertrand); index in `js/lab/CLAUDE.md`. Also mounted by chapter pages (`chapter-sequence.js`) and by slides (`slides/widgets.js` `type: 'lab'`) |
 | `js/math.js` | pure maths shared by the labs (quadratic, sequences, binomial, statistics, Riemann...) |
 | `js/lab-objects.js` | `mountObject`: the gallery exhibits (Galton, Reuleaux, Platonic, chaos game and more; pure maths first, then DOM) |
 | `js/gallery-objects.js` | Fourier circles, Mandelbrot/Julia explorer |
 | `js/gallery-math.js` | pure maths of the gallery (escape times, DFT, Madagascar outline) |
-| `js/gallery-additions.js` | five experiment-first gallery entries and source labels |
+| `js/gallery-additions.js` | six experiment-first gallery entries (with the four colour map) and source labels |
 | `js/gallery-models.js`, `js/gallery-kit.js` | Voronoi clipping, descent timing, film area minimisation; shared exhibit lifecycle |
 | `js/gallery-voronoi.js`, `js/gallery-fastest.js`, `js/gallery-soap.js` | draggable territories, bead races, rotatable film |
 | `js/gallery-knot-model.js` | legacy pure braid/invariant helpers and verified mirror certificate, retained for model tests |
@@ -50,6 +50,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/gallery-soap-model.js` | 13 fixed-topology spatial meshes and a separate tetrahedral junction solver |
 | `js/gallery-context.js` | mathematical ideas, historical context and applications for all gallery entries |
 | `js/gallery-hat-model.js`, `js/gallery-hat.js` | H7/H8 geometry and continuous hat-family explorer |
+| `js/gallery-four-colour-model.js`, `js/gallery-four-colour.js` | four colour exhibit: maps (random, wheel, pizza), neighbours by shared border, backtracking colouring; the colouring canvas |
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |

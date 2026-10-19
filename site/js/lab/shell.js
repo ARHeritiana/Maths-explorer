@@ -29,7 +29,7 @@ const TEXT = {
   showArgument: ["Voir l’argument", "Show the argument"],
   needText: ["Écris au moins une phrase pour voir l’argument.", "Write at least a sentence to see the argument."],
   locked: ["verrouillé", "locked"],
-  predicted: ["Prédiction notée. Teste-la : les commandes se déverrouillent mission après mission.", "Prediction saved. Now test it: controls unlock mission by mission."],
+  predicted: ["Prédiction notée. Teste-la à la mission suivante.", "Prediction saved. Test it in the next mission."],
   predictedFree: ["Prédiction notée. Teste-la sur la figure, ou passe à la mission suivante.", "Prediction saved. Test it on the figure, or go on to the next mission."],
   showAnswer: ["Voir la réponse", "Show the answer"],
   goal: ["Objectif atteint.", "Goal reached."],
@@ -48,6 +48,11 @@ const TEXT = {
   keys: [
     "Points : glisse-les, ou Tab puis les flèches. Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
     "Points: drag them, or Tab then the arrow keys. Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
+  ],
+  // the same help for a figure without draggable points (number grids, simulations)
+  keysView: [
+    "Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
+    "Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
   ],
   play: ["Lecture", "Play"],
   pause: ["Pause", "Pause"],
@@ -129,7 +134,7 @@ export function createShell(host, exp, tpl, opts = {}) {
     zoomButtons: !slide,
     reservePointer: () => exp.pointerMode?.(getState()) === "draw",
     onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
-    label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
+    label: `${t(exp.title)}. ${t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
     onDragEnd: () => announce(),
     onNudge: () => announce(),
@@ -139,7 +144,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   readoutHost.append(formulaEl);
   const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
   const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
-  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T("keys"))));
+  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");

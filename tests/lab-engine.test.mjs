@@ -23,6 +23,12 @@ import * as CW from "../dist/js/lab/models/cobweb.js";
 import * as MX from "../dist/js/lab/models/matrix.js";
 import * as SL from "../dist/js/lab/models/space-lines.js";
 import * as CAM from "../dist/js/camera3d.js";
+import * as TI from "../dist/js/lab/models/tiles.js";
+import * as EP from "../dist/js/lab/models/euler-primes.js";
+import * as FE from "../dist/js/lab/models/fermat.js";
+import * as CR from "../dist/js/lab/models/circle-regions.js";
+import * as BU from "../dist/js/lab/models/buffon.js";
+import * as BE from "../dist/js/lab/models/bertrand.js";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { labs, pathways, pathwayStages } from "../dist/js/content.js";
 
@@ -32,7 +38,7 @@ const DASH = /[–—]/;
 const isPair = (p) => Array.isArray(p) && p.length === 2 && p.every((x) => typeof x === "string" && x.trim().length > 0);
 
 test("the registry lists the registered experiments with consistent ids, templates and references", async () => {
-  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines", "fourier-series", "fourier-drawing"]);
+  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines", "fourier-series", "fourier-drawing", "tiles", "euler-primes", "fermat", "circle-regions", "buffon", "bertrand"]);
   assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space", "fourier"], "eight templates are in use");
   assert.equal(new Set(EXPERIMENTS.map((e) => e.id)).size, EXPERIMENTS.length);
   for (const e of EXPERIMENTS) {
@@ -256,6 +262,18 @@ const independent = {
   "matrix/read": ({ a, b, c, d }) => { const P = [[0, 0], [a, c], [a + b, c + d], [b, d]]; let s = 0; for (let i = 0; i < 4; i++) { const [x1, y1] = P[i], [x2, y2] = P[(i + 1) % 4]; s += x1 * y2 - x2 * y1; } return s / 2; },
   // the value of t where the plane equation, evaluated along the line, changes sign (scan then interpolate)
   "space-lines/meet": ({ ax, ay, az, ux, uy, uz, d }) => { const g = (t) => (ax + t * ux) + (ay + t * uy) + 2 * (az + t * uz) + d; let prev = -10; for (let t = -9.9999; t <= 10; t += 1e-4) { if (g(prev) * g(t) <= 0) return prev - g(prev) * (t - prev) / (g(t) - g(prev)); prev = t; } return NaN; },
+  // the gap of the 8 × 8 puzzle as the shoelace area of the parallelogram left between the pieces (not as a determinant)
+  "tiles/det": ({ a, b }) => { const W = 2 * a + b, P = [[0, a], [a, b], [W, 0], [W - a, a - b]]; let t = 0; for (let i = 0; i < 4; i++) { const [x1, y1] = P[i], [x2, y2] = P[(i + 1) % 4]; t += x1 * y2 - x2 * y1; } return t / 2; },
+  // the integer square root of f(40) found by counting up
+  "euler-primes/square": ({ c, n }) => { const v = n * n + n + c; let r = 0; while ((r + 1) * (r + 1) <= v) r++; return r * r === v ? r : NaN; },
+  // the smallest prime factor of 2^32 + 1 in BigInt arithmetic, then (p - 1) / 64
+  "fermat/euler": ({ e }) => { const N = 2n ** BigInt(e) + 1n; let p = 3n; while (N % p) p += 2n; return Number((p - 1n) / 64n); },
+  // 1 + C(n, 2) + C(n, 4) from Pascal's triangle
+  "circle-regions/seven": ({ n }) => { const row = [1]; for (let i = 0; i < n; i++) { for (let k = row.length; k > 0; k--) row[k] = (row[k] || 0) + row[k - 1]; } return 1 + row[2] + row[4]; },
+  // 2L / pi by integrating (L/2) sin over [0, pi/2] numerically, divided by (pi d / 4) with d = 1
+  "buffon/theory": ({ L }) => { const n = 100000; let s = 0; for (let i = 0; i < n; i++) s += (L / 2) * Math.sin(((i + 0.5) / n) * Math.PI / 2) * (Math.PI / 2) / n; return s / (Math.PI / 4); },
+  // the midpoint is uniform in the disc: estimate P(r < 1/2) on a fine grid of the square [-1, 1]^2
+  "bertrand/midpoint": () => { const n = 2000; let inDisc = 0, inner = 0; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const x = -1 + (2 * i + 1) / n, y = -1 + (2 * j + 1) / n, r = x * x + y * y; if (r <= 1) { inDisc++; if (r < 0.25) inner++; } } return inner / inDisc; },
   "integral/area": ({ a, b }) => { const n = 400000, w = (b - a) / n; let s = 0; for (let i = 0; i < n; i++) { const x = a + (i + 0.5) * w; s += x * x * w; } return s; },
 };
 test("every check answer equals the model quantity and an independent computation", () => {
@@ -273,7 +291,7 @@ test("every check answer equals the model quantity and an independent computatio
       checked++;
     }
   }
-  assert.equal(checked, 16);
+  assert.equal(checked, 22);
 });
 
 test("every prediction has the correct answer according to the mathematics", () => {
@@ -308,12 +326,26 @@ test("every prediction has the correct answer according to the mathematics", () 
     // the three states: one common point, none, the whole line
     "space-lines": () => new Set([SL.model({ ax: -2, ay: -1, az: 0, ux: 2, uy: 1, uz: 1, d: -7 }).relation, SL.model({ ax: -2, ay: -1, az: 2, ux: 2, uy: 0, uz: -1, d: -7 }).relation, SL.model({ ax: 0, ay: 0, az: 1, ux: 1, uy: 1, uz: -1, d: -2 }).relation]).size === 3 ? "three" : "other",
   };
-  const expected = { "fourier-series":2, "fourier-drawing":128, quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter", line: "same", exponential: "times", cobweb: "closer", matrix: 4, "space-lines": "three" };
+  Object.assign(truth, {
+    // the rectangle of the 8 x 8 puzzle is not filled exactly: its area differs from 64
+    tiles: () => (TI.model({ a: 5, b: 3 }).rectArea !== 64 && TI.area([[0, 0], [8, 0], [8, 8], [0, 8]]) === 64 ? "gap" : "other"),
+    // some n gives a composite value (BigInt-free check: n = 40)
+    "euler-primes": () => (EP.model({ c: 41, n: 40 }).prime ? "always" : "counterexample"),
+    // 2^32 + 1 has a factor below its square root
+    fermat: () => (FE.model({ e: 32 }).prime ? "prime" : "composite"),
+    // the maximum for 6 points
+    "circle-regions": () => CR.formula(6),
+    // 2 / pi lies between 1/2 and 2/3
+    buffon: () => (2 / Math.PI > 0.5 && 2 / Math.PI < 2 / 3 ? "under two thirds" : "other"),
+    // the three methods give three different probabilities
+    bertrand: () => (new Set(Object.values(BE.THEORY)).size === 3 ? "depends" : "other"),
+  });
+  const expected = { tiles: "gap", "euler-primes": "counterexample", fermat: "composite", "circle-regions": 31, buffon: "under two thirds", bertrand: "depends", "fourier-series":2, "fourier-drawing":128, quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter", line: "same", exponential: "times", cobweb: "closer", matrix: 4, "space-lines": "three" };
   for (const e of EXPERIMENTS) {
     assert.equal(truth[e.id](), expected[e.id], e.id);
     const m = e.missions[0];
     const right = m.choices[m.correct][0];
-    const words = { "fourier-series":/Deux fois plus d’oscillations/, "fourier-drawing":/128 échantillons/, quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id];
+    const words = { tiles: /trou très fin/, "euler-primes": /il existe un n/, fermat: /composé/, "circle-regions": /^31$/, buffon: /deux tiers/, bertrand: /dépend/, "fourier-series":/Deux fois plus d’oscillations/, "fourier-drawing":/128 échantillons/, quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id];
     assert.match(right, words, `${e.id}: the marked choice is the true one`);
   }
 });
@@ -354,6 +386,13 @@ const witness = {
   "space-lines/param": { t: 2 },
   "space-lines/parallel": { ux: 2, uy: 0, uz: -1 },
   "space-lines/normal": { ax: 0, ay: 0, az: 1 },
+  "tiles/zoom": { show: 1 },
+  "tiles/size": { a: 8, b: 5 },
+  "euler-primes/hunt": { n: 40 },
+  "fermat/f5": { e: 32 },
+  "circle-regions/six": { n: 6 },
+  "buffon/drop": { runs: 1000 },
+  "bertrand/ends": { runs: 1000 },
 };
 test("every exploration goal is false at the start and true at a reachable state", () => {
   let n = 0;
@@ -890,4 +929,63 @@ test("space-lines: the intersection, the projection and the clipping to the box 
   assert.equal(SL.planePolygon([1, 1, 2], -100), null, "a plane that misses the box");
   assert.equal(SL.clipLine([9, 0, 0], [0, 1, 0]), null); assert.deepEqual(SL.clipLine([0, 0, 0], [1, 0, 0]), [-4, 4]);
   assert.equal(SL.quantity("tStar", { ...byId["space-lines"].state, d: -7 }), 2);
+});
+
+// ---- the experiments about proof (tiles, euler-primes, fermat, circle-regions) and geometric chance (buffon, bertrand)
+test("tiles: the excess is a² − ab − b², ±1 for consecutive Fibonacci numbers, and the pieces keep their areas", () => {
+  for (const [a, b] of TI.PAIRS) {
+    const m = TI.model({ a, b }), P = TI.pieces(a, b);
+    assert.equal(m.excess, a * a - a * b - b * b);
+    assert.equal(Math.abs(m.excess), 1, "Cassini: consecutive Fibonacci numbers");
+    assert.equal(m.det, m.excess);
+    near(TI.area(P.sliver), m.excess, 1e-12, "the sliver is the gap (or the overlap)");
+    for (const r of ["I", "II", "III", "IV"]) near(Math.abs(TI.area(P.square[r])), Math.abs(TI.area(P.rect[r])), 1e-12, `piece ${r} keeps its area`);
+    near(["I", "II", "III", "IV"].reduce((t, r) => t + Math.abs(TI.area(P.square[r])), 0), (a + b) ** 2, 1e-12, "the pieces tile the square");
+  }
+  for (let a = 1; a < 60; a++) for (let b = 1; b <= a; b++) assert.notEqual(a * a - a * b - b * b, 0, "never exact for whole numbers");
+  for (const k of ["A", "B"]) near(["red", "blue", "l7", "l8"].reduce((t, p) => t + TI.area(TI.CURRY[k][p]), 0), 32, 1e-12);
+  near(TI.area(TI.CURRY.B.hole), 1, 1e-12);
+});
+
+test("euler-primes: n² + n + c is prime for n ≤ c − 2 and equals c² at n = c − 1, for every lucky c", () => {
+  const prime = (N) => { if (N < 2) return false; for (let d = 2; d * d <= N; d++) if (N % d === 0) return false; return true; };
+  for (const c of EP.LUCKY) {
+    const m = EP.model({ c, n: 0 });
+    assert.equal(m.firstComposite, c - 1, `c = ${c}`);
+    for (let n = 0; n < EP.CELLS; n++) assert.equal(m.primes[n], prime(n * n + n + c), `c = ${c}, n = ${n}`);
+    assert.equal(EP.f(c, c - 1), c * c);
+  }
+});
+
+test("fermat: 2^e + 1 is factored exactly for e ≤ 32 (BigInt product, prime factors), prime only at e = 1, 2, 4, 8, 16", () => {
+  const isPrimeBig = (n) => { if (n < 2n) return false; for (let d = 2n; d * d <= n; d++) if (n % d === 0n) return false; return true; };
+  for (let e = 1; e <= FE.MAX_E; e++) {
+    const m = FE.model({ e }), N = 2n ** BigInt(e) + 1n;
+    assert.equal(BigInt(m.N), N);
+    assert.equal(m.factors.reduce((t, [p, k]) => t * BigInt(p) ** BigInt(k), 1n), N, `e = ${e}`);
+    for (const [p] of m.factors) if (p < 1e7) assert.ok(isPrimeBig(BigInt(p)), `${p} is prime`);
+    assert.equal(m.prime, [1, 2, 4, 8, 16].includes(e), `e = ${e}`);
+  }
+  assert.deepEqual(FE.model({ e: 32 }).factors, [[641, 1], [6700417, 1]]);
+});
+
+test("circle-regions: no three chords meet for the general points, the count follows 1 + C(n,2) + C(n,4), the regular polygons lose regions", () => {
+  for (let n = 1; n <= CR.MAX_N; n++) {
+    const m = CR.model({ n, mode: "general" });
+    assert.equal(m.concurrent, false, `n = ${n}`);
+    assert.equal(m.hits.length, (n * (n - 1) * (n - 2) * (n - 3)) / 24 + 0, "one crossing per four points");
+    assert.equal(m.regions, CR.formula(n));
+  }
+  // known values for regular polygons (OEIS A006533): 1, 2, 4, 8, 16, 30, 57, 88, 163, 230
+  assert.deepEqual(Array.from({ length: 10 }, (_, i) => CR.model({ n: i + 1, mode: "regular" }).regions), [1, 2, 4, 8, 16, 30, 57, 88, 163, 230]);
+});
+
+test("buffon and bertrand: the seeded simulations agree with 2L/π and 1/3, 1/2, 1/4 within four standard deviations", () => {
+  const within = (f, p, n) => Math.abs(f - p) <= 4 * Math.sqrt((p * (1 - p)) / n);
+  for (const L of [0.25, 0.5, 1]) for (const seed of [1, 7, 42]) { const m = BU.model({ L, runs: 5000, seed }); assert.ok(within(m.freq, (2 * L) / Math.PI, 5000), `L = ${L}: ${m.freq}`); }
+  for (const method of BE.METHODS) for (const seed of [1, 7, 42]) { const m = BE.model({ method, runs: 5000, seed }); assert.ok(within(m.freq, BE.THEORY[method], 5000), `${method}: ${m.freq}`); }
+  // a chord drawn by each method has both ends on the unit circle
+  for (const method of BE.METHODS) for (const u of [0, 0.3, 0.99]) { const [a, b] = BE.chord(method, u, 0.6, 0.2); near(Math.hypot(...a), 1, 1e-9); near(Math.hypot(...b), 1, 1e-9); }
+  // the same series is the same whatever the button presses: the first 100 drops do not change when more are added
+  assert.equal(BU.model({ L: 1, runs: 100, seed: 3 }).hits, BU.simulate(3, 1, 100).hits);
 });

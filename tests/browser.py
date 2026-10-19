@@ -5,8 +5,9 @@ import os
 from urllib.parse import urljoin, urlparse
 from playwright.sync_api import sync_playwright
 
-# The fourteen experiments with missions (site/js/lab/), walked mission by mission.
-EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral','probability','vectors','statistics','complex','line','exponential','cobweb','matrix','space-lines']
+# The experiments with missions (site/js/lab/), walked mission by mission.
+EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral','probability','vectors','statistics','complex','line','exponential','cobweb','matrix','space-lines',
+               'tiles','euler-primes','fermat','circle-regions','buffon','bertrand']
 # A state at which each exploration goal holds, and the answer of each check (lab-engine.test.mjs recomputes them).
 WITNESS = {'quadratic/sign':{'a':-1,'b':0,'c':-2},'quadratic/vertex':{'a':1,'b':-4,'c':3},'trig/quadrants':{'deg':120},'trig/exact':{'deg':60},
            'sequences/difference':{'r':-2},'sequences/signs':{'mode':'geom','q':-1.5,'n':6},'derivative/approach':{'h':0.01},
@@ -15,10 +16,13 @@ WITNESS = {'quadratic/sign':{'a':-1,'b':0,'c':-2},'quadratic/vertex':{'a':1,'b':
            'statistics/box':{'data':[2,4,4,4,5,5,9]},'statistics/mean':{'data':[11,3,4,4,5,6,9]},'complex/scale':{'r':2},'complex/angles':{'tx':1,'ty':1},
            'line/slope':{'bx':1,'by':-1},'line/intercept':{'ax':-2,'ay':1},'exponential/base':{'a':0.5},'exponential/scale':{'k':1.5},'cobweb/steps':{'n':10},
            'cobweb/slope':{'a':-1.5},'matrix/columns':{'a':2,'c':1},'matrix/area':{'d':1.5},'matrix/flat':{'d':0},'space-lines/param':{'t':2},
-           'space-lines/parallel':{'ux':2,'uy':0,'uz':-1},'space-lines/normal':{'ax':0,'ay':0,'az':1}}
+           'space-lines/parallel':{'ux':2,'uy':0,'uz':-1},'space-lines/normal':{'ax':0,'ay':0,'az':1},
+           'tiles/zoom':{'show':1},'tiles/size':{'a':8,'b':5},'euler-primes/hunt':{'n':40},'fermat/f5':{'e':32},'circle-regions/six':{'n':6},
+           'buffon/drop':{'runs':1000},'bertrand/ends':{'runs':1000}}
 CHECKS = {'quadratic/read':'-2','trig/read':'1/2','sequences/formula':'96','derivative/slope':'6','integral/area':'7/3',
           'probability/read':'2','vectors/read':'7','statistics/read':'8','complex/read':'5',
-          'line/read':'2.5','exponential/sequence':'48','cobweb/fixed':'6','matrix/read':'5','space-lines/meet':'2'}
+          'line/read':'2.5','exponential/sequence':'48','cobweb/fixed':'6','matrix/read':'5','space-lines/meet':'2',
+          'tiles/det':'1','euler-primes/square':'41','fermat/euler':'10','circle-regions/seven':'57','buffon/theory':'0.318','bertrand/midpoint':'0.25'}
 
 def walk_experiment(page, name):
     """Complete every mission of an experiment through the page: predict, explore, compare, check (wrong then right), explain.
@@ -52,8 +56,8 @@ def walk_experiment(page, name):
         page.wait_for_function("() => document.querySelector('.lab2-card').classList.contains('is-done')")
         if i < count-1: page.locator('.lab2-nav .primary').click()
     assert page.locator('.lab2-argument').is_visible(), 'the argument comes after the last mission'
-CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','inversions','piles']
-CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','7','900','3','8','17','2','45','5','24','180','5','719','0','0','13','45']
+CHALLENGES = ['doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','cookies','jugs','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','inversions','piles']
+CHALLENGE_ANSWERS = ['10','30','1','8','400','63','14','1','19','6','4','210','1001','6','7','900','3','8','17','2','45','5','24','180','5','719','0','0','13','45']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -163,8 +167,8 @@ with sync_playwright() as p:
         assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
-    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 16, 'the laboratory index lists the sixteen experiments, grouped by type of activity'
-    assert page.locator('.lab2-group').count() == 8
+    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 22, 'the laboratory index lists the twenty-two experiments, grouped by type of activity or idea'
+    assert page.locator('.lab2-group').count() == 11
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
@@ -202,7 +206,7 @@ with sync_playwright() as p:
     assert page.locator('html').get_attribute('lang') == 'en'
     assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == len(EXPERIMENTS) + len(CHALLENGES)
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',18),('olympiad',10),('all',28)]:
+    for kind,count in [('play',20),('olympiad',10),('all',30)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # Regression: skip navigation must focus the content without changing the route.
@@ -244,9 +248,10 @@ with sync_playwright() as p:
     page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[0].textContent.includes('2') && document.querySelectorAll('.lab2-readout dd')[0].textContent.includes('90')")
     page.locator('[data-lang="en"]').click()
     page.goto(BASE+'/#pathways')
-    assert '2027–2028' in page.locator('#main').inner_text()
-    assert 'AI SL' in page.locator('#main').inner_text()
-    assert 'Removed' in page.locator('#main').inner_text()
+    # programmes and the note are folded (details): read the text content, not only what is rendered
+    assert '2027–2028' in page.locator('#main').text_content()
+    assert 'AI SL' in page.locator('#main').text_content()
+    assert 'Removed' in page.locator('#main').text_content()
     # The app never sends answers or notes through fetch/XHR.
     submissions = []
     page.on('request', lambda req: submissions.append(req.url) if req.resource_type in ['xhr','fetch'] else None)
@@ -539,4 +544,4 @@ with sync_playwright() as p:
     page.screenshot(path='test-results/'+engine+'-mobile.png',full_page=True,animations='disabled')
     assert not errors, errors
     browser.close()
-    print('PASS ('+engine+'): bilingual labs and challenges; nine experiments walked mission by mission, two-sided secants, quadratures, keyboard/skip focus, routes, storage failures, privacy, 4 viewport widths and all surfaces at 200% text.')
+    print('PASS ('+engine+'): bilingual labs and challenges; every experiment walked mission by mission, two-sided secants, quadratures, keyboard/skip focus, routes, storage failures, privacy, 4 viewport widths and all surfaces at 200% text.')

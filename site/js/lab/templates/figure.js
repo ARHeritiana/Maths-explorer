@@ -1,5 +1,5 @@
 // Template `figure`: a dynamic geometric figure with an invariant to discover. One equal-scale panel, two to four points as
-// handles, the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
+// handles (or none), the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
 import { panelView, drawAxes, drawScene, drawHandles, drawBadge, buildHandles } from "../plot.js";
 
 export function mount(env) {
@@ -12,7 +12,7 @@ export function mount(env) {
 
   function draw(g) {
     const v = layout(), s = getState(), other = ghost();
-    drawAxes(g, v, spec, stage, fmt);
+    if (spec.axes !== false) drawAxes(g, v, spec, stage, fmt);   // a figure that draws its own frame (tiles, a circle, a number grid)
     if (other) drawScene(g, v, spec.scene(other, ctx), stage, { ghost: true });
     drawScene(g, v, spec.scene(s, ctx), stage);
     const m = spec.measure?.(s, ctx);

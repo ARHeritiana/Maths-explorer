@@ -347,7 +347,21 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .chapter-tabs a { flex: none; padding: 0 14px; }
 }
 @media (max-width: 560px) { .btn-quiet .fs-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
-@media (max-width: 400px) { .challenge-grid { grid-template-columns: 1fr; } }
+/* Phones: two compact cards per row (a single column made the challenge and gallery indexes several screens long). */
+@media (max-width: 560px) {
+  .challenge-grid { gap: 8px; }
+  .challenge-card { padding: 10px 12px; gap: 2px; }
+  .challenge-motif { min-height: 0; padding: 4px 0 0; }
+  .challenge-motif .ci { width: 44px; height: 44px; }
+  .challenge-card h2 { font-size: 1rem; line-height: 1.25; }
+  .card-bottom { padding-top: 6px; font-size: 0.8rem; }
+  .gallery-page .wonder-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .wonder { border-radius: var(--r); }
+  .wonder-body { padding: 8px 10px 10px; gap: 2px; }
+  .wonder-body strong { font-size: 0.98rem; line-height: 1.25; }
+  .wonder-body > span:not(.wonder-go) { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.85rem; }
+  .wonder-body .wonder-go { display: none; }
+}
 @media (prefers-reduced-motion: reduce) { .animate-diagram .scene-build, .animate-diagram .reveal-stroke { animation: none; } }
 @media (forced-colors: active) {
 }
@@ -464,9 +478,15 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .doors, .pick-grid { gap: 3px; }
 }
 
-.programme { margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--line-strong); }
+.programme { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line-strong); }
+.programme > summary { display: block; cursor: pointer; list-style: none; position: relative; padding-right: 28px; }
+.programme > summary::-webkit-details-marker, .curriculum-note > summary::-webkit-details-marker { display: none; }
+.programme > summary::after, .curriculum-note > summary::after { content: "+"; position: absolute; right: 4px; top: 2px; color: var(--accent); font: 700 1.3rem/1 var(--body); }
+.programme[open] > summary::after, .curriculum-note[open] > summary::after { content: "−"; }
+.programme > summary p { margin: 0 0 6px; }
+.curriculum-note > summary { display: block; cursor: pointer; list-style: none; position: relative; padding-right: 28px; }
 .programme-title { font-size: 1.2rem; margin-bottom: 6px; }
-.programme > p { color: var(--ink-2); font-size: 0.98rem; }
+.programme > summary p { color: var(--ink-2); font-size: 0.95rem; }
 .pathway-card.has-programmes { grid-column: 1 / -1; }
 .programmes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 0 32px; }
 
@@ -885,21 +905,51 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
    One page for every experiment: the figure (canvas, formula, readout) and the mission card. Tokens only. */
 .lab2-page, .lab2-index { max-width: 1320px; }
 .lab2 [hidden] { display: none !important; }
-.lab2-index .page-intro { margin-bottom: 24px; }
+.lab2-index .page-intro { margin-bottom: 20px; }
 .lab2-page .lab-heading { margin-bottom: 8px; }
 .lab2-page .lab-heading h1 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin-bottom: 6px; }
-.lab2-group { margin: 0 0 28px; }
-.lab2-group > p { margin: 0 0 12px; color: var(--ink-2); }
-.lab2-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px; }
-.lab2-card-link { display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); color: var(--ink); transition: border-color var(--t); }
+/* The index: a group is a short heading line and a dense grid; on phones the cards are plain rows of a list. */
+.lab2-group { margin: 0 0 22px; }
+.lab2-group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; margin: 0 0 8px; }
+.lab2-group-head h2 { margin: 0; font-size: 1.2rem; }
+.lab2-group-head p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.lab2-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 8px; }
+.lab2-sub { display: grid; gap: 4px; align-content: start; }
+.lab2-sub h3 { margin: 0; color: var(--ink-2); font: 700 0.8rem var(--body); letter-spacing: 0.04em; text-transform: uppercase; }
+.lab2-card-link { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); color: var(--ink); transition: border-color var(--t); }
 .lab2-card-link:hover { border-color: var(--accent); }
-.lab2-card-symbol { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: var(--r-sm); background: var(--accent-soft); color: var(--accent); font: 700 1.5rem var(--math); }
-.lab2-card-body { display: grid; gap: 2px; min-width: 0; }
-.lab2-card-body span { color: var(--ink-2); font-size: 0.95rem; }
-.lab2-card-body .lab2-card-meta { color: var(--muted); font-size: 0.85rem; }
-.lab2-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
-.lab2-chips a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--ink-2); font-weight: 700; font-size: 0.95rem; }
+.lab2-card-symbol { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: var(--r-sm); background: var(--accent-soft); color: var(--accent); font: 700 1.3rem var(--math); }
+.lab2-card-body { display: grid; gap: 1px; min-width: 0; line-height: 1.3; }
+.lab2-card-body span { color: var(--ink-2); font-size: 0.92rem; }
+.lab2-card-body .lab2-card-meta { color: var(--muted); font-size: 0.82rem; }
+@media (max-width: 560px) {
+  .lab2-cards { gap: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+  .lab2-cards > * + * { border-top: 1px solid var(--line); }
+  .lab2-card-link { min-height: 56px; border: 0; border-radius: 0; padding: 8px 12px; }
+  .lab2-card-symbol { width: 34px; height: 34px; font-size: 1.1rem; }
+  .lab2-card-body .lab2-card-meta { display: none; }
+  .lab2-sub { gap: 0; }
+  .lab2-sub h3 { padding: 8px 12px 0; }
+}
+/* One experiment: previous / next, and the full list folded away. */
+.lab2-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 16px; }
+.lab2-step-link { display: grid; gap: 2px; min-height: 56px; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); }
+.lab2-step-link[rel="next"] { text-align: right; }
+.lab2-step-link:hover { border-color: var(--accent); }
+.lab2-step-link > span:last-child { font-weight: 700; overflow-wrap: anywhere; }
+.lab2-step-dir { color: var(--accent); font-size: 0.85rem; font-weight: 700; }
+.lab2-all { grid-column: 1 / -1; }
+.lab2-all summary { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 700; cursor: pointer; }
+.lab2-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; }
+.lab2-chips a { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--ink-2); font-weight: 600; font-size: 0.9rem; }
 .lab2-chips a[aria-current] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.lab2-after { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px; align-items: start; }
+.lab2-after .lab-resources, .lab2-after .history { margin: 0; padding: 16px; }
+.lab2-after h2 { font-size: 1.1rem; margin: 0 0 6px; }
+.lab2-after .history { grid-template-columns: 40px minmax(0, 1fr); }
+.lab2-links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; }
+.lab2-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 720px) { .lab2-after { grid-template-columns: minmax(0, 1fr); } }
 .lab2-meta { margin: 0 0 14px; color: var(--ink-2); font-size: 0.95rem; }
 .lab2-host { margin-bottom: 20px; min-height: 320px; }
 .chapter-lab { margin: 0 0 28px; }
@@ -1009,3 +1059,11 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
 
 /* Fourier entry points share the measured collection catalogue. */
 .fourier-triangle{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.fourier-triangle a{min-height:44px;display:inline-flex;align-items:center;white-space:normal}
+
+/* Four colour exhibit (gallery-four-colour.js): the colour palette. */
+.fc-palette { display: flex; flex-wrap: wrap; gap: 6px; flex-basis: 100%; }
+.fc-swatch { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--line-strong); border-radius: 50%; background: color-mix(in srgb, var(--fc, var(--surface)) 62%, var(--surface)); color: var(--ink); font-weight: 700; }
+.fc-swatch[aria-checked="true"] { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }
+.fc-erase { --fc: var(--surface); }
+.programme > summary p { font-weight: 400; }
+@media (max-width: 560px) { .filter { min-height: 40px; padding: 0 12px; font-size: 0.9rem; } }

@@ -1990,6 +1990,427 @@ __e.createTable = createTable;
 __e.GRAB = GRAB;
 __e.createStage = createStage;
 });
+__d("lab/experiments/bertrand.js", function (__e, __r) {
+// Experiment `bertrand` (template figure, no axes): Bertrand's paradox. "A chord chosen at random" is longer than the side of the
+// inscribed equilateral triangle with probability 1/3, 1/2 or 1/4 depending on how it is chosen. State {method, runs, seed}.
+// Pure maths: models/bertrand.js.
+const M = __r("lab/models/bertrand.js");
+
+const { model, MAX_RUNS } = M;
+const newSeed = () => (Math.floor(Math.random() * 2 ** 31) % 1000000) + 1;
+const TRI = [90, 210, 330].map((d) => [Math.cos((d * Math.PI) / 180), Math.sin((d * Math.PI) / 180)]);
+const FRAC = { ends: "1/3", radius: "1/2", midpoint: "1/4" };
+
+__e.default = {
+  id: "bertrand", template: "figure", section: "geochance", sub: ["Le paradoxe de Bertrand", "Bertrand’s paradox"],
+  symbol: "⌀", group: ["Données & hasard", "Data & chance"],
+  title: ["Une corde au hasard ?", "A chord at random?"],
+  short: ["Paradoxe de Bertrand", "Bertrand’s paradox"],
+  intro: [
+    "Quelle est la probabilité qu’une corde tirée au hasard soit plus longue que le côté du triangle équilatéral inscrit ? Trois façons de tirer, trois réponses.",
+    "What is the probability that a chord drawn at random is longer than the side of the inscribed equilateral triangle? Three ways to draw, three answers.",
+  ],
+  duration: 10,
+  level: ["Première · Terminale", "Intermediate · Advanced"],
+  prereq: ["Fréquences, probabilités, aire d’un disque", "Frequencies, probability, area of a disc"],
+  model: M,
+  state: { method: "ends", runs: 0, seed: 6 },
+  controls: {
+    method: {
+      kind: "choice", key: "method", label: ["Façon de tirer la corde", "Way of drawing the chord"],
+      options: [
+        { value: "ends", label: ["Deux extrémités", "Two endpoints"] },
+        { value: "radius", label: ["Point d’un rayon", "Point on a radius"] },
+        { value: "midpoint", label: ["Milieu dans le disque", "Midpoint in the disc"] },
+      ],
+    },
+    run: {
+      kind: "action", label: ["Tirer des cordes", "Draw chords"],
+      options: [
+        { value: 10, label: ["+ 10", "+ 10"] }, { value: 100, label: ["+ 100", "+ 100"] }, { value: 1000, label: ["+ 1 000", "+ 1,000"] },
+        { value: "new", label: ["Nouvelle série", "New series"] },
+      ],
+      act: (s, v) => (v === "new" ? { runs: 0, seed: newSeed() } : { runs: Math.min(MAX_RUNS, s.runs + v) }),
+    },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [-1.2, 1.2], y: [-1.2, 1.2], equal: true, axes: false, pad: [6, 6, 6, 6],
+      scene(s) {
+        const m = model(s);
+        const lines = m.shown.map((c) => ({ a: c.a, b: c.b, color: c.hit ? "obj2" : "muted", width: c.hit ? 1.8 : 1.2, alpha: c.hit ? 0.95 : 0.55 }));
+        const polys = [{ pts: TRI, fill: "pos", alpha: 0.08, color: "pos", width: 2, dash: [6, 4] }];
+        const circles = [{ c: [0, 0], r: 1, color: "ink", width: 2 }];
+        if (s.method === "midpoint") circles.push({ c: [0, 0], r: 0.5, color: "pos", width: 1.5, dash: [4, 4] });
+        return { circles, polys, lines };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        if (!m.runs) return { text: fmt.t(["aucune corde", "no chord yet"]), color: "muted" };
+        return { text: `${fmt.fr ? "fréquence" : "frequency"} ${fmt.read(m.freq, 3)}`, color: "obj2" };
+      },
+    },
+    formula(s, { fmt }) {
+      return fmt.fr ? `Corde plus longue que le côté √3 du triangle (rayon 1) : orange` : `Chord longer than the side √3 of the triangle (radius 1): orange`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), fr = fmt.fr;
+      return [
+        [["Cordes tirées", "Chords drawn"], `${m.runs}`],
+        [["Plus longues que √3", "Longer than √3"], m.runs ? `${m.long} (${fmt.read(m.freq, 3)})` : fr ? "pas encore" : "not yet"],
+        [["Probabilité pour cette méthode", "Probability for this method"], m.runs >= 1000 ? FRAC[s.method] : fr ? "après 1 000 tirages" : "after 1,000 draws"],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { method: "ends", runs: 0, seed: 6 }, correct: 3,
+      prompt: [
+        "On tire une corde « au hasard » dans un cercle. Quelle est la probabilité qu’elle soit plus longue que le côté du triangle équilatéral inscrit ?",
+        "A chord is drawn “at random” in a circle. What is the probability that it is longer than the side of the inscribed equilateral triangle?",
+      ],
+      choices: [["1/3", "1/3"], ["1/2", "1/2"], ["1/4", "1/4"], ["Cela dépend de la façon de tirer la corde.", "It depends on how the chord is drawn."]],
+    },
+    {
+      id: "ends", kind: "explore", set: { method: "ends", runs: 0, seed: 6 }, unlock: ["run"],
+      prompt: [
+        "Méthode « deux extrémités » : deux points pris au hasard sur le cercle. Tire au moins 1 000 cordes. Vers quelle valeur va la fréquence des cordes orange ?",
+        "Method “two endpoints”: two random points on the circle. Draw at least 1,000 chords. Which value does the frequency of orange chords approach?",
+      ],
+      hint: ["Fixe une extrémité au sommet du triangle : l’autre doit tomber sur l’arc opposé, un tiers du cercle.", "Fix one endpoint at a vertex of the triangle: the other must fall on the opposite arc, a third of the circle."],
+      goal: (s) => s.runs >= 1000,
+      done: [
+        "La fréquence approche 1/3 : la corde est plus longue quand la seconde extrémité tombe sur l’arc opposé à la première, qui mesure un tiers du cercle.",
+        "The frequency approaches 1/3: the chord is longer when the second endpoint falls on the arc opposite the first, which is a third of the circle.",
+      ],
+    },
+    {
+      id: "methods", kind: "contrast", set: { method: "radius", runs: 2000, seed: 6 },
+      variants: [
+        { label: ["Cas A : point d’un rayon", "Case A: point on a radius"], set: { method: "radius" } },
+        { label: ["Cas B : milieu dans le disque", "Case B: midpoint in the disc"], set: { method: "midpoint" } },
+      ],
+      prompt: [
+        "Deux autres façons « naturelles » de tirer une corde, 2 000 tirages chacune. Compare les fréquences et l’aspect des cordes.",
+        "Two other “natural” ways of drawing a chord, 2,000 draws each. Compare the frequencies and the look of the chords.",
+      ],
+      done: [
+        "Le cas A donne environ 1/2, le cas B environ 1/4. Les cordes ne sont pas réparties de la même façon : le cas B produit beaucoup de cordes courtes près du bord.",
+        "Case A gives about 1/2, case B about 1/4. The chords are not spread in the same way: case B produces many short chords near the edge.",
+      ],
+    },
+    {
+      id: "midpoint", kind: "check", set: { method: "midpoint", runs: 0, seed: 6 }, quantity: "prob", answer: 0.25, tolerance: 0.001,
+      prompt: [
+        "Une corde est plus longue que √3 exactement quand son milieu est à moins de 1/2 du centre. Si le milieu est un point au hasard du disque de rayon 1, quelle est la probabilité ? (Écris un nombre décimal.)",
+        "A chord is longer than √3 exactly when its midpoint is within 1/2 of the centre. If the midpoint is a random point of the disc of radius 1, what is the probability? (Write a decimal number.)",
+      ],
+      hint: ["Rapport des aires : π (1/2)² sur π × 1².", "Ratio of the areas: π (1/2)² over π × 1²."],
+      because: ["π (1/2)² / π = 1/4 = 0,25.", "π (1/2)² / π = 1/4 = 0.25."],
+    },
+    {
+      id: "why", kind: "explain", set: { method: "ends", runs: 2000, seed: 6 },
+      prompt: [
+        "Pourquoi trois réponses différentes à la même question ? Laquelle est la bonne ?",
+        "Why three different answers to the same question? Which one is right?",
+      ],
+      argument: [
+        "Une corde est déterminée par son milieu, à distance r du centre ; elle est plus longue que √3 si et seulement si r < 1/2. Méthode du rayon : r suit la loi uniforme sur [0 ; 1], donc P = 1/2. Méthode du milieu : le milieu est uniforme dans le disque, P(r < 1/2) = (1/2)² = 1/4. Méthode des extrémités : une extrémité fixée, l’autre uniforme sur le cercle, la corde est plus longue si elle tombe sur un arc de 120°, donc P = 1/3. Les trois calculs sont justes : ils portent sur trois expériences aléatoires différentes. « Au hasard » n’a de sens qu’une fois la loi précisée. C’est la leçon de Bertrand : une probabilité se calcule pour un modèle, pas pour une phrase.",
+        "A chord is determined by its midpoint, at distance r from the centre; it is longer than √3 if and only if r < 1/2. Radius method: r is uniform on [0, 1], so P = 1/2. Midpoint method: the midpoint is uniform in the disc, P(r < 1/2) = (1/2)² = 1/4. Endpoint method: with one endpoint fixed and the other uniform on the circle, the chord is longer when it lands on an arc of 120°, so P = 1/3. All three calculations are correct: they are about three different random experiments. “At random” means something only once the law is specified. That is Bertrand’s lesson: a probability is computed for a model, not for a sentence.",
+      ],
+    },
+  ],
+  conclusion: [
+    "La probabilité d’un événement dépend de l’expérience aléatoire choisie. Pour une « corde au hasard », trois modèles raisonnables donnent 1/3, 1/2 et 1/4. Avant de calculer, il faut dire comment on tire.",
+    "The probability of an event depends on the random experiment chosen. For a “random chord”, three reasonable models give 1/3, 1/2 and 1/4. Before computing, say how the drawing is done.",
+  ],
+  history: {
+    title: ["Bertrand · 1889", "Bertrand · 1889"],
+    story: [
+      "Joseph Bertrand présenta ce paradoxe dans son Calcul des probabilités (1889) pour montrer qu’une probabilité géométrique reste ambiguë tant que l’expérience n’est pas précisée.",
+      "Joseph Bertrand presented this paradox in his Calcul des probabilités (1889) to show that a geometric probability stays ambiguous until the experiment is specified.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Bertrand/",
+  },
+};
+
+
+});
+__d("lab/experiments/buffon.js", function (__e, __r) {
+// Experiment `buffon` (template figure, no axes): needles dropped on a floor of parallel lines one unit apart. The frequency of
+// crossings approaches 2L/π, which gives an estimate of π. State {L, runs, seed}. Pure maths: models/buffon.js.
+const M = __r("lab/models/buffon.js");
+
+const { model, MAX_RUNS, FLOOR } = M;
+const newSeed = () => (Math.floor(Math.random() * 2 ** 31) % 1000000) + 1;
+
+__e.default = {
+  id: "buffon", template: "figure", section: "geochance", sub: ["L’aiguille de Buffon", "Buffon’s needle"],
+  symbol: "π", group: ["Données & hasard", "Data & chance"],
+  title: ["Des aiguilles pour calculer π", "Needles to compute π"],
+  short: ["Aiguille de Buffon", "Buffon’s needle"],
+  intro: [
+    "Laisse tomber des aiguilles sur un parquet rayé. La proportion d’aiguilles qui touchent une rayure fait apparaître π.",
+    "Drop needles on a striped floor. The proportion of needles touching a stripe brings out π.",
+  ],
+  duration: 10,
+  level: ["Terminale · Supérieur", "Advanced · University"],
+  prereq: ["Fréquences, probabilités, intégrale de sin (pour la preuve)", "Frequencies, probability, the integral of sin (for the proof)"],
+  model: M,
+  state: { L: 1, runs: 0, seed: 4 },
+  controls: {
+    L: { kind: "slider", key: "L", label: ["Longueur L de l’aiguille (écart d = 1)", "Needle length L (spacing d = 1)"], min: 0.25, max: 1, step: 0.25 },
+    run: {
+      kind: "action", label: ["Lancer des aiguilles", "Drop needles"],
+      options: [
+        { value: 10, label: ["+ 10", "+ 10"] }, { value: 100, label: ["+ 100", "+ 100"] }, { value: 1000, label: ["+ 1 000", "+ 1,000"] },
+        { value: "new", label: ["Nouvelle série", "New series"] },
+      ],
+      act: (s, v) => (v === "new" ? { runs: 0, seed: newSeed() } : { runs: Math.min(MAX_RUNS, s.runs + v) }),
+    },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [0, FLOOR[0]], y: [-0.3, FLOOR[1] + 0.3], equal: true, axes: false, pad: [6, 6, 6, 6],
+      scene(s) {
+        const m = model(s);
+        const lines = Array.from({ length: FLOOR[1] + 1 }, (_, j) => ({ a: [0, j], b: [FLOOR[0], j], color: "line", width: 2 }));
+        for (const n of m.shown) lines.push({ a: n.a, b: n.b, color: n.hit ? "obj2" : "muted", width: n.hit ? 2.4 : 1.6, alpha: n.hit ? 1 : 0.7 });
+        return { lines };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        if (!m.runs) return { text: fmt.t(["aucune aiguille", "no needle yet"]), color: "muted" };
+        return { text: `${fmt.fr ? "fréquence" : "frequency"} ${fmt.read(m.freq, 3)}${m.piEstimate ? ` · π ≈ ${fmt.num(m.piEstimate, 3)}` : ""}`, color: "obj2" };
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s);
+      return `P = 2L / (π d) = ${fmt.num(2 * s.L)} / π ${fmt.eq(m.prob, 3)} ${fmt.num(m.prob, 3)}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), fr = fmt.fr;
+      return [
+        [["Aiguilles lancées", "Needles dropped"], `${m.runs}`],
+        [["Touchent une rayure", "Touch a stripe"], m.runs ? `${m.hits} (${fmt.read(m.freq, 3)})` : fr ? "pas encore" : "not yet"],
+        [["Estimation de π = 2L / f", "Estimate of π = 2L / f"], m.piEstimate ? fmt.read(m.piEstimate, 3) : fr ? "pas encore" : "not yet"],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { L: 1, runs: 0, seed: 4 }, correct: 1,
+      prompt: [
+        "Les rayures sont espacées de 1 et les aiguilles mesurent 1. Quelle proportion des aiguilles touchera une rayure ?",
+        "The stripes are 1 apart and the needles are 1 long. What proportion of the needles will touch a stripe?",
+      ],
+      choices: [
+        ["Environ la moitié", "About half"],
+        ["Un peu moins des deux tiers", "A little under two thirds"],
+        ["Environ un tiers", "About a third"],
+      ],
+    },
+    {
+      id: "drop", kind: "explore", set: { L: 1, runs: 0, seed: 4 }, unlock: ["run"],
+      prompt: [
+        "Lance au moins 1 000 aiguilles. Une aiguille orange touche une rayure. Vers quelle valeur la fréquence se stabilise-t-elle ?",
+        "Drop at least 1,000 needles. An orange needle touches a stripe. Which value does the frequency settle near?",
+      ],
+      hint: ["Les boutons s’additionnent ; « Nouvelle série » repart de zéro.", "The buttons add up; “New series” starts again from zero."],
+      goal: (s) => s.runs >= 1000,
+      done: [
+        "La fréquence se stabilise près de 0,64. Or 2/π ≈ 0,637 : c’est la probabilité qu’une aiguille de longueur 1 touche une rayure. L’estimation 2/f approche alors π, lentement.",
+        "The frequency settles near 0.64. Now 2/π ≈ 0.637: it is the probability that a needle of length 1 touches a stripe. The estimate 2/f then approaches π, slowly.",
+      ],
+    },
+    {
+      id: "half", kind: "contrast", set: { L: 1, runs: 2000, seed: 4 },
+      variants: [
+        { label: ["Cas A : L = 1", "Case A: L = 1"], set: { L: 1 } },
+        { label: ["Cas B : L = 0,5", "Case B: L = 0.5"], set: { L: 0.5 } },
+      ],
+      prompt: [
+        "Les mêmes 2 000 centres et angles, avec des aiguilles deux fois plus courtes. Que devient la fréquence ?",
+        "The same 2,000 centres and angles, with needles half as long. What happens to the frequency?",
+      ],
+      done: [
+        "La fréquence est à peu près divisée par 2 : la probabilité est proportionnelle à L (tant que L ≤ d).",
+        "The frequency is roughly halved: the probability is proportional to L (as long as L ≤ d).",
+      ],
+    },
+    {
+      id: "theory", kind: "check", set: { L: 0.5, runs: 0, seed: 4 }, quantity: "prob", answer: 1 / Math.PI, tolerance: 0.005,
+      prompt: [
+        "Avec L = 0,5 et d = 1, calcule la probabilité théorique 2L/(π d) (arrondie au millième).",
+        "With L = 0.5 and d = 1, compute the theoretical probability 2L/(π d) (to the nearest thousandth).",
+      ],
+      hint: ["2 × 0,5 = 1 : il reste 1/π.", "2 × 0.5 = 1: what is left is 1/π."],
+      because: ["2 × 0,5 / π = 1/π ≈ 0,318.", "2 × 0.5 / π = 1/π ≈ 0.318."],
+    },
+    {
+      id: "why", kind: "explain", set: { L: 1, runs: 2000, seed: 4 },
+      prompt: [
+        "Pourquoi la probabilité qu’une aiguille touche une rayure vaut-elle 2L/(π d) ?",
+        "Why is the probability that a needle touches a stripe equal to 2L/(π d)?",
+      ],
+      argument: [
+        "Notons y la distance du milieu de l’aiguille à la rayure la plus proche et θ l’angle entre l’aiguille et les rayures. y suit la loi uniforme sur [0 ; d/2], θ la loi uniforme sur [0 ; π/2], indépendamment. L’aiguille touche une rayure si et seulement si y ≤ (L/2) sin θ (ici L ≤ d). La probabilité est l’aire de cette région divisée par l’aire du rectangle (d/2)(π/2) : (∫₀^{π/2} (L/2) sin θ dθ) / (π d / 4) = (L/2) / (π d / 4) = 2L/(π d). La simulation n’est qu’une illustration : avec N aiguilles, l’écart typique de la fréquence est de l’ordre de 1/√N, si bien que 1 000 aiguilles ne donnent π qu’à quelques centièmes près.",
+        "Let y be the distance from the midpoint of the needle to the nearest stripe and θ the angle between the needle and the stripes. y is uniform on [0, d/2] and θ uniform on [0, π/2], independently. The needle touches a stripe if and only if y ≤ (L/2) sin θ (here L ≤ d). The probability is the area of this region divided by the area of the rectangle (d/2)(π/2): (∫₀^{π/2} (L/2) sin θ dθ) / (π d / 4) = (L/2) / (π d / 4) = 2L/(π d). The simulation is only an illustration: with N needles the typical error of the frequency is of the order of 1/√N, so 1,000 needles give π only to within a few hundredths.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Une aiguille de longueur L ≤ d touche une rayure avec la probabilité 2L/(π d). Le hasard permet ainsi d’estimer π, mais lentement : la preuve, elle, est un calcul d’intégrale.",
+    "A needle of length L ≤ d touches a stripe with probability 2L/(π d). Chance thus gives an estimate of π, but slowly: the proof is an integral calculation.",
+  ],
+  history: {
+    title: ["Buffon · 1777", "Buffon · 1777"],
+    story: [
+      "Georges-Louis Leclerc, comte de Buffon, posa ce problème en 1733 et publia sa solution en 1777 : l’un des premiers calculs de probabilité géométrique.",
+      "Georges-Louis Leclerc, Comte de Buffon, posed this problem in 1733 and published his solution in 1777: one of the first calculations of geometric probability.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Buffon/",
+  },
+};
+
+
+});
+__d("lab/experiments/circle-regions.js", function (__e, __r) {
+// Experiment `circle-regions` (template figure, no axes): n points on a circle joined by all their chords. 1, 2, 4, 8, 16
+// regions suggest doubling; the sixth point gives 31. State {n, mode}: the number of points and their placement (general, or a
+// regular polygon where three diagonals can meet). Pure maths: models/circle-regions.js.
+const M = __r("lab/models/circle-regions.js");
+
+const { model, MAX_N } = M;
+
+__e.default = {
+  id: "circle-regions", template: "figure", section: "patterns", sub: ["Les régions d’un disque", "Regions of a disc"],
+  symbol: "2ⁿ", group: ["Dénombrement", "Counting"],
+  title: ["1, 2, 4, 8, 16… et 31", "1, 2, 4, 8, 16… and 31"],
+  short: ["Cordes d’un cercle et régions", "Chords of a circle and regions"],
+  intro: [
+    "Place des points sur un cercle et trace toutes les cordes. Le nombre de régions double à chaque point… jusqu’au sixième.",
+    "Place points on a circle and draw every chord. The number of regions doubles with each point… until the sixth.",
+  ],
+  duration: 10,
+  level: ["Première · Terminale", "Intermediate · Advanced"],
+  prereq: ["Coefficients binomiaux (pour la preuve)", "Binomial coefficients (for the proof)"],
+  model: M,
+  state: { n: 5, mode: "general" },
+  controls: {
+    n: { kind: "slider", key: "n", label: ["Nombre de points", "Number of points"], min: 1, max: MAX_N, step: 1, digits: 0 },
+    mode: {
+      kind: "choice", key: "mode", label: ["Position des points", "Position of the points"],
+      options: [{ value: "general", label: ["Quelconque", "General"] }, { value: "regular", label: ["Polygone régulier", "Regular polygon"] }],
+    },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [-1.25, 1.25], y: [-1.2, 1.2], equal: true, axes: false, pad: [6, 6, 6, 6],
+      scene(s) {
+        const m = model(s);
+        const lines = m.chords.map(([i, j]) => ({ a: m.pts[i], b: m.pts[j], color: "accent", width: 1.8 }));
+        const points = [
+          ...m.pts.map((p) => ({ at: p, color: "ink", r: 6 })),
+          ...m.hits.filter((h) => h.m > 2).map((h) => ({ at: h.at, color: "neg", r: 7, hollow: true })),
+        ];
+        return { circles: [{ c: [0, 0], r: 1, color: "line", width: 2 }], lines, points };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        return { text: fmt.t([`${m.regions} régions`, `${m.regions} regions`]), color: m.regions === m.doubling ? "pos" : m.regions === m.max ? "obj2" : "neg" };
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s);
+      return fmt.fr ? `n = ${s.n} points : ${m.chords.length} cordes, ${m.regions} régions ; 2ⁿ⁻¹ = ${m.doubling}` : `n = ${s.n} points: ${m.chords.length} chords, ${m.regions} regions; 2ⁿ⁻¹ = ${m.doubling}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), fr = fmt.fr;
+      return [
+        [["Régions comptées", "Regions counted"], `${m.regions}`],
+        [["Doublement 2ⁿ⁻¹", "Doubling 2ⁿ⁻¹"], `${m.doubling}`],
+        [["Points où 3 cordes ou plus se croisent", "Points where 3 or more chords cross"], `${m.hits.filter((h) => h.m > 2).length}${m.concurrent ? (fr ? " (régions perdues)" : " (regions lost)") : ""}`],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { n: 5, mode: "general" }, correct: 1,
+      prompt: [
+        "Avec 1, 2, 3, 4, 5 points, on obtient au plus 1, 2, 4, 8, 16 régions. Avec 6 points, combien de régions au maximum ?",
+        "With 1, 2, 3, 4, 5 points we get at most 1, 2, 4, 8, 16 regions. With 6 points, at most how many regions?",
+      ],
+      choices: [["32", "32"], ["31", "31"], ["30", "30"]],
+    },
+    {
+      id: "six", kind: "explore", set: { n: 5, mode: "general" }, unlock: ["n"],
+      prompt: [
+        "Ajoute un sixième point et lis le nombre de régions. La régularité 1, 2, 4, 8, 16 continue-t-elle ?",
+        "Add a sixth point and read the number of regions. Does the pattern 1, 2, 4, 8, 16 go on?",
+      ],
+      hint: ["Le curseur règle le nombre de points.", "The slider sets the number of points."],
+      goal: (s) => s.n === 6,
+      done: [
+        "Six points donnent 31 régions, pas 32. Cinq cas qui doublent ne prouvaient pas que le doublement continue.",
+        "Six points give 31 regions, not 32. Five cases that double did not prove that the doubling goes on.",
+      ],
+    },
+    {
+      id: "regular", kind: "contrast", set: { n: 6, mode: "general" },
+      variants: [
+        { label: ["Cas A : points quelconques", "Case A: general points"], set: { mode: "general" } },
+        { label: ["Cas B : hexagone régulier", "Case B: regular hexagon"], set: { mode: "regular" } },
+      ],
+      prompt: [
+        "Compare six points quelconques et les six sommets d’un hexagone régulier. Pourquoi l’hexagone donne-t-il une région de moins ?",
+        "Compare six general points and the six vertices of a regular hexagon. Why does the hexagon give one region fewer?",
+      ],
+      done: [
+        "Dans l’hexagone, les trois grandes diagonales passent par le centre : trois croisements se confondent en un seul point, et une région disparaît (30 au lieu de 31). Le maximum n’est atteint que si trois cordes ne sont jamais concourantes.",
+        "In the hexagon the three long diagonals pass through the centre: three crossings merge into one point and a region disappears (30 instead of 31). The maximum is reached only if no three chords are concurrent.",
+      ],
+    },
+    {
+      id: "seven", kind: "check", set: { n: 7, mode: "general" }, quantity: "regions", answer: 57,
+      prompt: [
+        "Avec 7 points quelconques, chaque corde ajoute une région, plus une par croisement. Il y a 21 cordes et 35 croisements (un par choix de 4 points). Combien de régions ?",
+        "With 7 general points, each chord adds one region, plus one per crossing. There are 21 chords and 35 crossings (one per choice of 4 points). How many regions?",
+      ],
+      hint: ["1 (le disque) + 21 + 35.", "1 (the disc) + 21 + 35."],
+      because: ["1 + 21 + 35 = 57, loin de 2⁶ = 64.", "1 + 21 + 35 = 57, far from 2⁶ = 64."],
+    },
+    {
+      id: "why", kind: "explain", set: { n: 7, mode: "general" },
+      prompt: [
+        "Pourquoi le nombre maximal de régions vaut-il 1 + C(n, 2) + C(n, 4), et pourquoi coïncide-t-il avec 2ⁿ⁻¹ seulement jusqu’à n = 5 ?",
+        "Why is the maximum number of regions 1 + C(n, 2) + C(n, 4), and why does it agree with 2ⁿ⁻¹ only up to n = 5?",
+      ],
+      argument: [
+        "Traçons les cordes une à une, sans trois cordes concourantes. Une corde qui en croise k autres est découpée en k + 1 morceaux, et chaque morceau partage une région en deux : elle ajoute k + 1 régions. Au total : 1 (le disque) + le nombre de cordes C(n, 2) + le nombre de croisements. Chaque croisement est celui des deux diagonales d’un quadrilatère formé par 4 des n points, et chaque choix de 4 points donne exactement un croisement : il y en a C(n, 4). D’où R = 1 + C(n, 2) + C(n, 4) = C(n − 1, 0) + C(n − 1, 1) + C(n − 1, 2) + C(n − 1, 3) + C(n − 1, 4), par la formule de Pascal. Or 2ⁿ⁻¹ est la somme de tous les C(n − 1, k) pour k de 0 à n − 1 : les deux nombres sont égaux tant que n − 1 ≤ 4, et R est plus petit ensuite.",
+        "Draw the chords one at a time, with no three concurrent. A chord that crosses k others is cut into k + 1 pieces, and each piece splits a region in two: it adds k + 1 regions. In total: 1 (the disc) + the number of chords C(n, 2) + the number of crossings. Each crossing is that of the two diagonals of a quadrilateral formed by 4 of the n points, and each choice of 4 points gives exactly one crossing: there are C(n, 4). Hence R = 1 + C(n, 2) + C(n, 4) = C(n − 1, 0) + C(n − 1, 1) + C(n − 1, 2) + C(n − 1, 3) + C(n − 1, 4), by Pascal’s rule. Now 2ⁿ⁻¹ is the sum of all the C(n − 1, k) for k from 0 to n − 1: the two numbers agree as long as n − 1 ≤ 4, and R is smaller afterwards.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Le nombre maximal de régions est 1 + C(n, 2) + C(n, 4) : 1, 2, 4, 8, 16, 31, 57, 99… Les cinq premiers termes coïncident avec les puissances de 2, puis plus jamais. Deviner une formule à partir de quelques cas est utile ; seule la démonstration dit si elle est vraie.",
+    "The maximum number of regions is 1 + C(n, 2) + C(n, 4): 1, 2, 4, 8, 16, 31, 57, 99… The first five terms agree with the powers of 2, then never again. Guessing a formula from a few cases is useful; only the proof says whether it is true.",
+  ],
+  history: {
+    title: ["Euler · 1758", "Euler · 1758"],
+    story: [
+      "Le décompte peut aussi se faire avec la relation S − A + F = 2 de Leonhard Euler sur les sommets, arêtes et faces d’une figure plane. Le problème du cercle est souvent attribué à Leo Moser.",
+      "The count can also be done with Leonhard Euler’s relation V − E + F = 2 between the vertices, edges and faces of a plane figure. The circle problem is often attributed to Leo Moser.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Euler/",
+  },
+};
+
+
+});
 __d("lab/experiments/cobweb.js", function (__e, __r) {
 // Experiment `cobweb` (template process): the recurrence u_{n+1} = f(u_n) with f(x) = a x + b, drawn as a staircase between the
 // graph of f and the line y = x. State {a, b, u0, n}: the handles are u0 on the x-axis, the point (0 ; b) and the point (2 ; f(2))
@@ -2611,6 +3032,149 @@ __e.default = {
 
 
 });
+__d("lab/experiments/euler-primes.js", function (__e, __r) {
+// Experiment `euler-primes` (template figure, no axes): f(n) = n² + n + 41 gives forty primes in a row, then stops. State
+// {c, n}: one of Euler's lucky numbers c and how far the grid of values n = 0, …, 59 has been revealed. Pure maths:
+// models/euler-primes.js, primes.js.
+const M = __r("lab/models/euler-primes.js");
+const { group, writeFactors } = __r("lab/models/primes.js");
+
+const { model, LUCKY, CELLS, f } = M;
+const COLS = 10;
+const cell = (k) => { const x = k % COLS, y = 6 - Math.floor(k / COLS); return [[x + 0.06, y - 0.94], [x + 0.94, y - 0.94], [x + 0.94, y - 0.06], [x + 0.06, y - 0.06]]; };
+
+__e.default = {
+  id: "euler-primes", template: "figure", section: "patterns", sub: ["Le polynôme d’Euler", "Euler’s polynomial"],
+  symbol: "n²", group: ["Arithmétique", "Number theory"],
+  title: ["Quarante nombres premiers, et puis ?", "Forty primes, and then?"],
+  short: ["Polynôme d’Euler n² + n + 41", "Euler’s polynomial n² + n + 41"],
+  intro: [
+    "n² + n + 41 est premier pour n = 0, 1, 2, … et ainsi de suite pendant quarante valeurs. Une si longue série de vérifications prouve-t-elle quelque chose ?",
+    "n² + n + 41 is prime for n = 0, 1, 2, … and so on for forty values. Does such a long run of checks prove anything?",
+  ],
+  duration: 10,
+  level: ["Seconde · Première", "Foundation · Intermediate"],
+  prereq: ["Nombres premiers, diviseurs, factorisation", "Prime numbers, divisors, factorisation"],
+  model: M,
+  state: { c: 41, n: 9 },
+  controls: {
+    n: { kind: "slider", key: "n", label: ["Valeur de n", "Value of n"], min: 0, max: CELLS - 1, step: 1, digits: 0 },
+    c: { kind: "choice", key: "c", label: ["Constante c dans n² + n + c", "Constant c in n² + n + c"], options: LUCKY.map((c) => ({ value: c, label: [`${c}`, `${c}`] })) },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [0, 10], y: [-0.4, 6.9], equal: true, axes: false, pad: [6, 6, 6, 6],
+      scene(s, { fmt }) {
+        const m = model(s), polys = [], texts = [];
+        for (let k = 0; k < CELLS; k++) {
+          const shown = k <= s.n, q = cell(k), tone = !shown ? "line" : m.primes[k] ? "pos" : "neg";
+          polys.push({ pts: q, fill: shown ? tone : "surface", alpha: shown ? (k === s.n ? 0.75 : 0.32) : 1, color: k === s.n ? "ink" : tone, width: k === s.n ? 2.4 : 1 });
+          texts.push({ at: [q[0][0] + 0.44, q[0][1] + 0.34], text: `${k}`, anchor: "center", size: 13, color: shown ? "ink" : "muted" });
+        }
+        const key = fmt.t(["vert : f(n) premier · rouge : f(n) composé", "green: f(n) prime · red: f(n) composite"]);
+        texts.push({ at: [0.05, -0.25], text: key, size: 14, color: "muted" });
+        return { polys, texts };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        return { text: `f(${s.n}) = ${group(m.value, fmt.fr)}${m.prime ? "" : " = " + writeFactors(m.value, fmt.fr)}`, color: m.prime ? "pos" : "neg" };
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s);
+      return `f(n) = n² + n + ${s.c} ; f(${s.n}) = ${s.n}² + ${s.n} + ${s.c} = ${group(m.value, fmt.fr)}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), fr = fmt.fr;
+      return [
+        [["f(n) est-il premier ?", "Is f(n) prime?"], m.prime ? (fr ? "oui" : "yes") : fr ? `non : ${writeFactors(m.value, fr)}` : `no: ${writeFactors(m.value, fr)}`],
+        [["Valeurs premières de 0 à n", "Prime values from 0 to n"], `${m.primes.slice(0, s.n + 1).filter(Boolean).length} / ${s.n + 1}`],
+        [["Premier n où f(n) est composé", "First n with f(n) composite"], m.firstComposite <= s.n ? `${m.firstComposite}` : fr ? "pas encore vu" : "not seen yet"],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { c: 41, n: 9 }, correct: 1,
+      prompt: [
+        "f(n) = n² + n + 41 donne 41, 43, 47, 53, 61, 71, 83, 97, 113, 131 pour n = 0 à 9 : dix nombres premiers. f(n) est-il premier pour tout entier naturel n ?",
+        "f(n) = n² + n + 41 gives 41, 43, 47, 53, 61, 71, 83, 97, 113, 131 for n = 0 to 9: ten primes. Is f(n) prime for every natural number n?",
+      ],
+      choices: [
+        ["Oui : dix cas sur dix, la régularité continue.", "Yes: ten cases out of ten, the pattern goes on."],
+        ["Non : il existe un n pour lequel f(n) n’est pas premier.", "No: there is an n for which f(n) is not prime."],
+        ["On ne pourra jamais le savoir.", "We can never know."],
+      ],
+    },
+    {
+      id: "hunt", kind: "explore", set: { c: 41, n: 9 }, unlock: ["n"],
+      prompt: [
+        "Augmente n et regarde la grille se remplir. Trouve le premier n pour lequel f(n) n’est pas premier.",
+        "Increase n and watch the grid fill. Find the first n for which f(n) is not prime.",
+      ],
+      hint: ["La série dure très longtemps : va au delà de 35.", "The run lasts a long time: go beyond 35."],
+      goal: (s, m) => !m.prime,
+      done: [
+        "f(40) = 1 681 = 41² : la série s’arrête après quarante nombres premiers. Quarante vérifications ne prouvaient rien pour la quarante et unième.",
+        "f(40) = 1,681 = 41²: the run stops after forty primes. Forty checks proved nothing about the forty-first.",
+      ],
+    },
+    {
+      id: "square", kind: "check", set: { c: 41, n: 40 }, quantity: "root", answer: 41,
+      prompt: [
+        "f(40) = 40² + 40 + 41 est un carré parfait. De quel entier est-il le carré ?",
+        "f(40) = 40² + 40 + 41 is a perfect square. Of which whole number is it the square?",
+      ],
+      hint: ["Factorise : 40² + 40 = 40 × 41.", "Factorise: 40² + 40 = 40 × 41."],
+      because: [
+        "40² + 40 + 41 = 40 × 41 + 41 = 41 × (40 + 1) = 41². En général, f(c − 1) = (c − 1)c + c = c².",
+        "40² + 40 + 41 = 40 × 41 + 41 = 41 × (40 + 1) = 41². In general f(c − 1) = (c − 1)c + c = c².",
+      ],
+    },
+    {
+      id: "lucky", kind: "contrast", set: { c: 41, n: 16 },
+      variants: [
+        { label: ["Cas A : n² + n + 41", "Case A: n² + n + 41"], set: { c: 41 } },
+        { label: ["Cas B : n² + n + 17", "Case B: n² + n + 17"], set: { c: 17 } },
+      ],
+      prompt: [
+        "Euler a remarqué d’autres constantes : n² + n + 17 est premier pour n = 0 à 15. Compare les deux grilles jusqu’à n = 16. Où chaque série s’arrête-t-elle ?",
+        "Euler noticed other constants: n² + n + 17 is prime for n = 0 to 15. Compare the two grids up to n = 16. Where does each run stop?",
+      ],
+      done: [
+        "La série de n² + n + 17 s’arrête à n = 16, où f(16) = 289 = 17². Chaque série s’arrête au plus tard à n = c − 1, où f(c − 1) = c².",
+        "The run of n² + n + 17 stops at n = 16, where f(16) = 289 = 17². Each run stops at n = c − 1 at the latest, where f(c − 1) = c².",
+      ],
+    },
+    {
+      id: "why", kind: "explain", set: { c: 41, n: 59 },
+      prompt: [
+        "Pourquoi aucun polynôme non constant à coefficients entiers ne peut-il donner que des nombres premiers ?",
+        "Why can no non-constant polynomial with integer coefficients give only primes?",
+      ],
+      argument: [
+        "Soit P un tel polynôme et m un entier avec P(m) = p premier (sinon il n’y a rien à démontrer). Pour tout entier k, P(m + kp) − P(m) est divisible par (m + kp) − m = kp, car a^i − b^i est divisible par a − b. Donc p divise P(m + kp) pour tout k. Or P n’étant pas constant, P(x) ne prend chacune des valeurs p et −p qu’un nombre fini de fois, et |P(x)| tend vers l’infini. Pour k assez grand, P(m + kp) est un multiple de p différent de 0, p et −p : il n’est pas premier. Avec n² + n + 41, on peut aussi prendre n = 40. Une suite de vérifications, aussi longue soit-elle, n’est pas une démonstration.",
+        "Let P be such a polynomial and m an integer with P(m) = p prime (otherwise there is nothing to prove). For every integer k, P(m + kp) − P(m) is divisible by (m + kp) − m = kp, because a^i − b^i is divisible by a − b. So p divides P(m + kp) for every k. Since P is not constant, P(x) takes each of the values p and −p only finitely many times, and |P(x)| tends to infinity. For k large enough, P(m + kp) is a multiple of p other than 0, p and −p: it is not prime. With n² + n + 41 one can also take n = 40. A run of checks, however long, is not a proof.",
+      ],
+    },
+  ],
+  conclusion: [
+    "n² + n + 41 est premier pour n = 0 à 39 et composé pour n = 40. Vérifier des cas donne une conjecture ; seule une démonstration établit un résultat pour tous les entiers. Ici, la démonstration montre au contraire qu’aucun polynôme non constant ne donne que des nombres premiers.",
+    "n² + n + 41 is prime for n = 0 to 39 and composite for n = 40. Checking cases gives a conjecture; only a proof establishes a result for every integer. Here the proof shows instead that no non-constant polynomial gives only primes.",
+  ],
+  history: {
+    title: ["Euler · 1772", "Euler · 1772"],
+    story: [
+      "Leonhard Euler signala en 1772 que n² + n + 41 prend des valeurs premières pour n = 0 à 39. Le phénomène est lié à des propriétés profondes du nombre 163 = 4 × 41 − 1.",
+      "Leonhard Euler pointed out in 1772 that n² + n + 41 takes prime values for n = 0 to 39. The phenomenon is linked to deep properties of the number 163 = 4 × 41 − 1.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Euler/",
+  },
+};
+
+
+});
 __d("lab/experiments/exponential.js", function (__e, __r) {
 // Experiment `exponential` (template family): the functions x ↦ k × aˣ with k > 0 and a > 0, and the geometric sequence
 // uₙ = f(n) they carry. State {k, a}; the handles are the points (0 ; k) and (1 ; k a), the slider sets a. Pure maths:
@@ -2774,6 +3338,146 @@ __e.default = {
       "John Napier published his tables of logarithms in 1614. They set a geometric progression, where one multiplies, beside an arithmetic progression, where one adds: the link between geometric sequences and exponential functions.",
     ],
     source: "https://mathshistory.st-andrews.ac.uk/Biographies/Napier/",
+  },
+};
+
+
+});
+__d("lab/experiments/fermat.js", function (__e, __r) {
+// Experiment `fermat` (template figure, no axes): the numbers 2^e + 1 for e = 1, …, 32. Fermat believed every 2^(2^n) + 1
+// prime from five cases; Euler factored the sixth. State {e}: the exponent reached in the grid. Pure maths: models/fermat.js,
+// primes.js.
+const M = __r("lab/models/fermat.js");
+const { group, writeFactors, sup } = __r("lab/models/primes.js");
+
+const { model, MAX_E, isPowerOfTwo } = M;
+const COLS = 8;
+const cell = (e) => { const i = e - 1, x = (i % COLS) * 1.25, y = 5.1 - Math.floor(i / COLS) * 1.25; return [[x + 0.08, y - 1.07], [x + 1.17, y - 1.07], [x + 1.17, y - 0.08], [x + 0.08, y - 0.08]]; };
+const power = (e) => `2${sup(e)} + 1`;
+
+__e.default = {
+  id: "fermat", template: "figure", section: "patterns", sub: ["Les nombres de Fermat", "Fermat numbers"],
+  symbol: "Fₙ", group: ["Arithmétique", "Number theory"],
+  title: ["Cinq cas, puis une erreur de Fermat", "Five cases, then Fermat’s mistake"],
+  short: ["Nombres de Fermat 2^(2ⁿ) + 1", "Fermat numbers 2^(2ⁿ) + 1"],
+  intro: [
+    "3, 5, 17, 257 et 65 537 sont premiers. Fermat en a conclu que tous les nombres 2^(2ⁿ) + 1 le sont. Le sixième lui donne tort.",
+    "3, 5, 17, 257 and 65,537 are prime. Fermat concluded that every number 2^(2ⁿ) + 1 is. The sixth one proves him wrong.",
+  ],
+  duration: 10,
+  level: ["Première · Terminale", "Intermediate · Advanced"],
+  prereq: ["Puissances, nombres premiers, congruences (pour la preuve)", "Powers, prime numbers, congruences (for the proof)"],
+  model: M,
+  state: { e: 16 },
+  controls: {
+    e: { kind: "slider", key: "e", label: ["Exposant e dans 2^e + 1", "Exponent e in 2^e + 1"], min: 1, max: MAX_E, step: 1, digits: 0 },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [0, 10], y: [-0.5, 5.9], equal: true, axes: false, pad: [6, 6, 6, 6],
+      scene(s, { fmt }) {
+        const m = model(s), polys = [], texts = [];
+        for (let e = 1; e <= MAX_E; e++) {
+          const shown = e <= s.e, q = cell(e), tone = !shown ? "line" : m.primes[e - 1] ? "pos" : "neg";
+          polys.push({ pts: q, fill: shown ? tone : "surface", alpha: shown ? (e === s.e ? 0.75 : 0.3) : 1, color: isPowerOfTwo(e) ? "obj2" : e === s.e ? "ink" : tone, width: isPowerOfTwo(e) || e === s.e ? 2.6 : 1 });
+          texts.push({ at: [q[0][0] + 0.55, q[0][1] + 0.62], text: `${e}`, anchor: "center", size: 14, color: shown ? "ink" : "muted" });
+          if (isPowerOfTwo(e)) texts.push({ at: [q[0][0] + 0.55, q[0][1] + 0.25], text: `F${Math.log2(e)}`, anchor: "center", size: 12, color: "obj2" });
+        }
+        texts.push({ at: [0.05, -0.3], text: fmt.t(["case e : 2^e + 1 (vert premier, rouge composé) ; cadre orange : nombre de Fermat", "cell e: 2^e + 1 (green prime, red composite); orange frame: Fermat number"]), size: 13, color: "muted" });
+        return { polys, texts };
+      },
+      measure(s, { fmt }) {
+        const m = model(s);
+        return { text: `${power(s.e)} = ${group(m.N, fmt.fr)}${m.prime ? "" : " = " + writeFactors(m.N, fmt.fr)}`, color: m.prime ? "pos" : "neg" };
+      },
+    },
+    formula(s, { fmt }) {
+      const m = model(s), fr = fmt.fr;
+      return m.fermat ? `F${m.index} = 2^(2${sup(m.index)}) + 1 = ${power(s.e)} = ${group(m.N, fr)}` : `${power(s.e)} = ${group(m.N, fr)}${fr ? " (pas un nombre de Fermat)" : " (not a Fermat number)"}`;
+    },
+    readout(s, { fmt }) {
+      const m = model(s), fr = fmt.fr;
+      return [
+        [["Premier ?", "Prime?"], m.prime ? (fr ? "oui" : "yes") : fr ? "non" : "no"],
+        [["Factorisation", "Factorisation"], writeFactors(m.N, fr)],
+        [["Plus petit diviseur premier", "Smallest prime divisor"], group(m.smallest, fr)],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { e: 16 }, correct: 1,
+      prompt: [
+        "F0 = 3, F1 = 5, F2 = 17, F3 = 257 et F4 = 65 537 sont premiers. Fermat affirmait que tous les Fn = 2^(2ⁿ) + 1 le sont. Que vaut F5 = 2³² + 1 = 4 294 967 297 ?",
+        "F0 = 3, F1 = 5, F2 = 17, F3 = 257 and F4 = 65,537 are prime. Fermat claimed that every Fn = 2^(2ⁿ) + 1 is. What about F5 = 2³² + 1 = 4,294,967,297?",
+      ],
+      choices: [
+        ["Il est premier, comme les cinq premiers.", "It is prime, like the first five."],
+        ["Il est composé.", "It is composite."],
+        ["Il est trop grand pour qu’on puisse le savoir.", "It is too large for anyone to know."],
+      ],
+    },
+    {
+      id: "f5", kind: "explore", set: { e: 16 }, unlock: ["e"],
+      prompt: [
+        "Pousse l’exposant jusqu’à 32 pour atteindre F5. Regarde aussi les cases intermédiaires : quels exposants donnent des nombres premiers ?",
+        "Push the exponent up to 32 to reach F5. Look at the cells in between too: which exponents give primes?",
+      ],
+      hint: ["F5 est la case 32, la dernière.", "F5 is cell 32, the last one."],
+      goal: (s) => s.e === 32,
+      done: [
+        "2³² + 1 = 641 × 6 700 417 : la régularité observée sur cinq cas était fausse. Entre 1 et 32, seuls les exposants 1, 2, 4, 8 et 16 donnent des nombres premiers.",
+        "2³² + 1 = 641 × 6,700,417: the pattern seen in five cases was false. Between 1 and 32, only the exponents 1, 2, 4, 8 and 16 give primes.",
+      ],
+    },
+    {
+      id: "odd", kind: "contrast", set: { e: 8 },
+      variants: [
+        { label: ["Cas A : 2⁸ + 1", "Case A: 2⁸ + 1"], set: { e: 8 } },
+        { label: ["Cas B : 2¹² + 1", "Case B: 2¹² + 1"], set: { e: 12 } },
+      ],
+      prompt: [
+        "Compare 2⁸ + 1 et 2¹² + 1. Pourquoi Fermat ne regardait-il que des exposants puissances de 2 ?",
+        "Compare 2⁸ + 1 and 2¹² + 1. Why did Fermat only look at exponents that are powers of 2?",
+      ],
+      done: [
+        "2¹² + 1 = 4 097 = 17 × 241. Comme 12 = 4 × 3 a un facteur impair, x³ + 1 = (x + 1)(x² − x + 1) avec x = 2⁴ montre que 2⁴ + 1 = 17 divise 2¹² + 1. Si e a un facteur impair, 2^e + 1 est composé.",
+        "2¹² + 1 = 4,097 = 17 × 241. Since 12 = 4 × 3 has an odd factor, x³ + 1 = (x + 1)(x² − x + 1) with x = 2⁴ shows that 2⁴ + 1 = 17 divides 2¹² + 1. If e has an odd factor, 2^e + 1 is composite.",
+      ],
+    },
+    {
+      id: "euler", kind: "check", set: { e: 32 }, quantity: "k", answer: 10,
+      prompt: [
+        "Euler savait qu’un diviseur premier de F5 s’écrit 64k + 1 : il n’avait que peu de candidats à essayer. 641 = 64k + 1 : trouve k.",
+        "Euler knew that a prime divisor of F5 has the form 64k + 1: he had few candidates to try. 641 = 64k + 1: find k.",
+      ],
+      hint: ["640 = 64 × ?", "640 = 64 × ?"],
+      because: ["641 − 1 = 640 = 64 × 10, donc k = 10. Les candidats 193, 257, 449, 577 ne sont pas des diviseurs ; 641 l’est.", "641 − 1 = 640 = 64 × 10, so k = 10. The candidates 193, 257, 449, 577 are not divisors; 641 is."],
+    },
+    {
+      id: "why", kind: "explain", set: { e: 32 },
+      prompt: [
+        "Pourquoi 641 divise-t-il 2³² + 1 ? (Une preuve sans calculer F5.)",
+        "Why does 641 divide 2³² + 1? (A proof without computing F5.)",
+      ],
+      argument: [
+        "641 = 5 × 2⁷ + 1 et 641 = 5⁴ + 2⁴. Modulo 641, la première égalité donne 5 × 2⁷ ≡ −1, donc en élevant à la puissance 4 : 5⁴ × 2²⁸ ≡ 1. La seconde donne 5⁴ ≡ −2⁴. En remplaçant : −2⁴ × 2²⁸ ≡ 1, c’est-à-dire 2³² ≡ −1, soit 641 divise 2³² + 1. Fermat s’était appuyé sur cinq cas : une observation, même vraie cinq fois, n’est pas une démonstration. On ne connaît aujourd’hui aucun nombre de Fermat premier au delà de F4.",
+        "641 = 5 × 2⁷ + 1 and 641 = 5⁴ + 2⁴. Modulo 641 the first equality gives 5 × 2⁷ ≡ −1, so raising to the power 4: 5⁴ × 2²⁸ ≡ 1. The second gives 5⁴ ≡ −2⁴. Substituting: −2⁴ × 2²⁸ ≡ 1, that is 2³² ≡ −1, so 641 divides 2³² + 1. Fermat relied on five cases: an observation, even one true five times, is not a proof. No prime Fermat number beyond F4 is known today.",
+      ],
+    },
+  ],
+  conclusion: [
+    "2^e + 1 ne peut être premier que si e est une puissance de 2, mais la réciproque est fausse : F5 = 2³² + 1 = 641 × 6 700 417. Cinq cas favorables ont suffi à tromper Fermat ; la preuve d’Euler tient en deux lignes de congruences.",
+    "2^e + 1 can be prime only if e is a power of 2, but the converse is false: F5 = 2³² + 1 = 641 × 6,700,417. Five favourable cases were enough to mislead Fermat; Euler’s proof fits in two lines of congruences.",
+  ],
+  history: {
+    title: ["Fermat · 1640, Euler · 1732", "Fermat · 1640, Euler · 1732"],
+    story: [
+      "Pierre de Fermat écrivit en 1640 qu’il croyait tous ces nombres premiers. Leonhard Euler montra en 1732 que 641 divise F5.",
+      "Pierre de Fermat wrote in 1640 that he believed all these numbers to be prime. Leonhard Euler showed in 1732 that 641 divides F5.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Fermat/",
   },
 };
 
@@ -4446,6 +5150,239 @@ __e.default = {
 
 
 });
+__d("lab/experiments/tiles.js", function (__e, __r) {
+// Experiment `tiles` (template figure, no axes): four pieces that seem to change their area when rearranged. State {a, b,
+// variant, show}: the square of side a + b and the rectangle a × (2a + b) made from the same pieces, or Curry's triangle built
+// twice; `show` shades the gap (or the overlap) that the eye misses. Pure maths: models/tiles.js.
+const M = __r("lab/models/tiles.js");
+
+const { model, PAIRS, CURRY, pieces } = M;
+const COLORS = { I: "c1", II: "c2", III: "c3", IV: "c4" };
+const ROMAN = ["I", "II", "III", "IV"];
+const BOX = [11.4, 5.4];   // the figure is scaled to fit this box, whatever the size of the pieces
+
+const gcd = (x, y) => (y ? gcd(y, x % y) : Math.abs(x));
+const frac = (p, q) => { const g = gcd(p, q) || 1; return q / g === 1 ? `${p / g}` : `${p / g}/${q / g}`; };
+const centroid = (pts) => [pts.reduce((t, p) => t + p[0], 0) / pts.length, pts.reduce((t, p) => t + p[1], 0) / pts.length];
+const place = (pts, ox, oy, k) => pts.map(([x, y]) => [ox + x * k, oy + y * k]);
+
+// Places two figures of sizes [w, h] with one scale: side by side, or one above the other when the canvas is taller than wide
+// (a phone held upright). The panel is equal-scale with x in [0, 12] centred on y = 3, so its visible height is 12 H / W.
+function arrange(sizes, stage, gap) {
+  const tall = stage && stage.H > stage.W * 0.9, [[w1, h1], [w2, h2]] = sizes;
+  if (!tall) {
+    const k = Math.min(BOX[0] / (w1 + gap + w2), BOX[1] / Math.max(h1, h2)), x0 = (12 - (w1 + gap + w2) * k) / 2;
+    return { k, at: [[x0, 0.4], [x0 + (w1 + gap) * k, 0.4]] };
+  }
+  const hh = 12 * (stage.H / stage.W) - 1.6, k = Math.min(11.4 / Math.max(w1, w2), hh / (h1 + h2 + gap + 0.6)), top = 3 + (h1 + h2 + gap) * k / 2;
+  return { k, at: [[(12 - w1 * k) / 2, top - h1 * k], [(12 - w2 * k) / 2, top - (h1 + gap) * k - h2 * k]] };
+}
+
+// Unit grid lines inside a w × h frame placed at (ox, oy) with scale k.
+function grid(w, h, ox, oy, k) {
+  const lines = [];
+  for (let i = 0; i <= w; i++) lines.push({ a: [ox + i * k, oy], b: [ox + i * k, oy + h * k], color: "grid", width: 1 });
+  for (let j = 0; j <= h; j++) lines.push({ a: [ox, oy + j * k], b: [ox + w * k, oy + j * k], color: "grid", width: 1 });
+  return lines;
+}
+
+function squareScene(s, fmt, stage) {
+  const m = model(s), P = pieces(s.a, s.b), { S, W } = P, L = arrange([[S, S], [W, s.a]], stage, 1.2), k = L.k;
+  const [[x0, y0], [xr, yr]] = L.at;
+  const polys = [], texts = [], lines = [...grid(S, S, x0, y0, k), ...grid(W, s.a, xr, yr, k)];
+  ROMAN.forEach((r) => {
+    for (const [pts, ox, oy] of [[P.square[r], x0, y0], [P.rect[r], xr, yr]]) {
+      const q = place(pts, ox, oy, k);
+      polys.push({ pts: q, fill: COLORS[r], alpha: 0.32, color: COLORS[r], width: 1.6 });
+      texts.push({ at: centroid(q), text: r, color: COLORS[r], anchor: "center", size: 15 });
+    }
+  });
+  if (s.show && m.excess) {
+    polys.push({ pts: place(P.sliver, xr, yr, k), fill: "neg", alpha: 0.75, color: "neg", width: 1.5 });
+    texts.push({ at: [xr + (W * k) / 2, yr + s.a * k + 0.35], anchor: "center", size: 15, color: "neg",
+      text: fmt.t(m.excess > 0 ? [`trou d’aire ${m.excess}`, `gap of area ${m.excess}`] : [`chevauchement d’aire ${-m.excess}`, `overlap of area ${-m.excess}`]) });
+  }
+  texts.push({ at: [x0 + (S * k) / 2, y0 - 0.45], text: `${S} × ${S}`, anchor: "center", color: "muted", size: 14 });
+  texts.push({ at: [xr + (W * k) / 2, yr - 0.45], text: `${s.a} × ${W}`, anchor: "center", color: "muted", size: 14 });
+  return { polys, lines, texts };
+}
+
+function curryScene(s, fmt, stage) {
+  const L = arrange([[13, 5], [13, 5]], stage, 1.2), k = L.k;
+  const polys = [], texts = [], lines = [];
+  const tone = { red: "neg", blue: "c1", l7: "c3", l8: "c7" };
+  ["A", "B"].forEach((key, i) => {
+    const [ox, y0] = L.at[i], arr = CURRY[key];
+    lines.push(...grid(13, 5, ox, y0, k));
+    for (const name of ["red", "blue", "l7", "l8"]) polys.push({ pts: place(arr[name], ox, y0, k), fill: tone[name], alpha: 0.4, color: tone[name], width: 1.6 });
+    if (arr.hole) polys.push({ pts: place(arr.hole, ox, y0, k), fill: "surface", alpha: 1, color: "ink", width: 2 });
+    if (s.show) {
+      lines.push({ a: [ox, y0], b: [ox + 13 * k, y0 + 5 * k], color: "ink", width: 1.5, dash: [5, 4] });
+      // the bend of the long side: below the true hypotenuse in A, above it in B
+      const bend = key === "A" ? [[0, 0], [8, 3], [13, 5]] : [[0, 0], [5, 2], [13, 5]];
+      polys.push({ pts: place(bend, ox, y0, k), fill: "obj3", alpha: 0.75, color: "obj3", width: 1 });
+    }
+    texts.push({ at: [ox + 6.5 * k, y0 - 0.45], text: fmt.t(key === "A" ? ["Triangle A", "Triangle A"] : ["Triangle B : un trou", "Triangle B: a hole"]), anchor: "center", color: "muted", size: 14 });
+  });
+  return { polys, lines, texts };
+}
+
+__e.default = {
+  id: "tiles", template: "figure", section: "tiles",
+  symbol: "▱", group: ["Démonstration", "Proof"],
+  title: ["Des pièces qui changent d’aire", "Pieces that change their area"],
+  short: ["Puzzles trompeurs et preuve", "Misleading puzzles and proof"],
+  intro: [
+    "Un carré de 64 carreaux devient un rectangle de 65 carreaux avec les mêmes pièces. La figure semble parfaite : seul un calcul dit où est passé le carreau.",
+    "A square of 64 cells becomes a rectangle of 65 cells with the same pieces. The figure looks perfect: only a calculation says where the cell went.",
+  ],
+  duration: 12,
+  level: ["Seconde · Première", "Foundation · Intermediate"],
+  prereq: ["Aire, pente d’une droite, déterminant de deux vecteurs", "Area, slope of a line, determinant of two vectors"],
+  model: M,
+  state: { a: 5, b: 3, variant: "square", show: 0 },
+  controls: {
+    size: {
+      kind: "slider", label: ["Taille des pièces (a ; b)", "Size of the pieces (a, b)"], min: 0, max: PAIRS.length - 1, step: 1,
+      get: (s) => Math.max(0, PAIRS.findIndex(([a, b]) => a === s.a && b === s.b)),
+      set: (s, i) => { const [a, b] = PAIRS[Math.max(0, Math.min(PAIRS.length - 1, Math.round(i)))]; return { a, b }; },
+      format: (i, { fmt }) => fmt.pt(...PAIRS[i]),
+    },
+    variant: {
+      kind: "choice", key: "variant", label: ["Puzzle", "Puzzle"],
+      options: [{ value: "square", label: ["Carré et rectangle", "Square and rectangle"] }, { value: "curry", label: ["Triangle de Curry", "Curry’s triangle"] }],
+    },
+    show: {
+      kind: "choice", key: "show", label: ["Écart caché", "Hidden gap"],
+      options: [{ value: 0, label: ["Masqué", "Hidden"] }, { value: 1, label: ["Montré", "Shown"] }],
+    },
+  },
+  views: {
+    panels: ["figure"],
+    figure: {
+      x: [0, 12], y: [-0.2, 6.2], equal: true, axes: false, pad: [8, 8, 8, 8],
+      scene: (s, { fmt, stage }) => (s.variant === "curry" ? curryScene(s, fmt, stage) : squareScene(s, fmt, stage)),
+      measure(s, { fmt }) {
+        if (s.variant === "curry") return { text: fmt.t(["mêmes pièces, un trou", "same pieces, one hole"]), color: "neg" };
+        const m = model(s);
+        return { text: `${m.squareArea} → ${m.rectArea}`, color: m.excess > 0 ? "neg" : m.excess < 0 ? "obj2" : "ink" };
+      },
+    },
+    formula(s, { fmt }) {
+      if (s.variant === "curry") return fmt.fr ? "Pentes : rouge 3/8, bleu 2/5, hypoténuse 5/13 : trois pentes différentes" : "Slopes: red 3/8, blue 2/5, hypotenuse 5/13: three different slopes";
+      const m = model(s);
+      return `${s.a} × ${m.W} − ${m.S}² = ${m.rectArea} − ${m.squareArea} = ${m.excess > 0 ? m.excess : "−" + -m.excess}`;
+    },
+    readout(s, { fmt }) {
+      if (s.variant === "curry") {
+        return [
+          [["Pièces (dans A et dans B)", "Pieces (in A and in B)"], fmt.fr ? "32 carreaux" : "32 cells"],
+          [["Vrai triangle 13 × 5", "True triangle 13 × 5"], fmt.fr ? "32,5 carreaux" : "32.5 cells"],
+          [["Pentes rouge, bleu", "Slopes red, blue"], fmt.fr ? "3/8 ≈ 0,375 ; 2/5 = 0,4" : "3/8 ≈ 0.375, 2/5 = 0.4"],
+        ];
+      }
+      const m = model(s);
+      return [
+        [["Aire du carré", "Area of the square"], `${m.squareArea}`],
+        [["Aire du rectangle", "Area of the rectangle"], `${m.rectArea}`],
+        [["Pentes triangle, trapèze", "Slopes triangle, trapezoid"], `${frac(s.b, m.S)}${fmt.fr ? " ; " : ", "}${frac(s.a - s.b, s.a)}`],
+      ];
+    },
+  },
+  missions: [
+    {
+      id: "open", kind: "predict", set: { a: 5, b: 3, variant: "square", show: 0 }, correct: 1,
+      prompt: [
+        "Le carré 8 × 8 (64 carreaux) est découpé en quatre pièces, rangées en un rectangle 5 × 13 (65 carreaux). D’où vient le carreau de plus ?",
+        "The 8 × 8 square (64 cells) is cut into four pieces, arranged into a 5 × 13 rectangle (65 cells). Where does the extra cell come from?",
+      ],
+      choices: [
+        ["Découper puis recoller peut créer de l’aire.", "Cutting and regluing can create area."],
+        ["Les pièces ne remplissent pas exactement le rectangle : un trou très fin longe la diagonale.", "The pieces do not exactly fill the rectangle: a very thin gap runs along the diagonal."],
+        ["Le rectangle mesure en fait 5 × 12,8.", "The rectangle really measures 5 × 12.8."],
+      ],
+    },
+    {
+      id: "zoom", kind: "explore", set: { a: 5, b: 3, variant: "square", show: 0 }, unlock: ["show"],
+      prompt: [
+        "Les pièces sont dessinées avec leurs vraies coordonnées. Agrandis la figure autour de la diagonale du rectangle (boutons + et −), puis montre l’écart caché. Que vois-tu ?",
+        "The pieces are drawn with their true coordinates. Zoom on the diagonal of the rectangle (buttons + and −), then show the hidden gap. What do you see?",
+      ],
+      hint: ["Le choix « Écart caché : Montré » colore la région que les pièces ne couvrent pas.", "The choice “Hidden gap: Shown” colours the region the pieces do not cover."],
+      goal: (s) => s.show === 1,
+      done: [
+        "Le long de la « diagonale », les bords des pièces ne sont pas alignés : ils laissent un parallélogramme très aplati d’aire 1. C’est le carreau « en plus ».",
+        "Along the “diagonal” the edges of the pieces are not aligned: they leave a very flat parallelogram of area 1. That is the “extra” cell.",
+      ],
+    },
+    {
+      id: "size", kind: "explore", set: { a: 5, b: 3, variant: "square", show: 1 }, unlock: ["size"],
+      prompt: [
+        "Change la taille des pièces. Trouve une taille où le rectangle a un carreau de MOINS que le carré.",
+        "Change the size of the pieces. Find a size where the rectangle has one cell LESS than the square.",
+      ],
+      hint: ["Essaie la taille suivante, (8 ; 5) : carré 13 × 13, rectangle 8 × 21.", "Try the next size, (8, 5): square 13 × 13, rectangle 8 × 21."],
+      goal: (s, m) => m.excess === -1,
+      done: [
+        "Avec (8 ; 5), 8 × 21 = 168 et 13² = 169 : les pièces se chevauchent sur une aire 1. Selon la taille, le puzzle gagne ou perd un carreau ; il n’est jamais exact.",
+        "With (8, 5), 8 × 21 = 168 and 13² = 169: the pieces overlap on an area of 1. Depending on the size the puzzle gains or loses a cell; it is never exact.",
+      ],
+    },
+    {
+      id: "curry", kind: "contrast", set: { a: 5, b: 3, variant: "curry", show: 0 },
+      variants: [
+        { label: ["Cas A : écart masqué", "Case A: gap hidden"], set: { show: 0 } },
+        { label: ["Cas B : écart montré", "Case B: gap shown"], set: { show: 1 } },
+      ],
+      prompt: [
+        "Les deux « triangles » 13 × 5 sont faits des mêmes quatre pièces, pourtant B a un trou. Compare les cas A et B : le grand côté est-il vraiment droit ?",
+        "Both 13 × 5 “triangles” are made of the same four pieces, yet B has a hole. Compare cases A and B: is the long side really straight?",
+      ],
+      done: [
+        "Les pentes 3/8 et 2/5 sont différentes : le grand côté de A est légèrement creusé, celui de B légèrement bombé. La différence des deux aires est exactement le carreau du trou.",
+        "The slopes 3/8 and 2/5 differ: the long side of A bends slightly inwards, that of B slightly outwards. The difference of the two areas is exactly the cell of the hole.",
+      ],
+    },
+    {
+      id: "det", kind: "check", set: { a: 5, b: 3, variant: "square", show: 1 }, quantity: "det", answer: 1,
+      prompt: [
+        "Dans le rectangle, le bord du triangle suit u = (8 ; 3) et celui du trapèze suit v = (5 ; 2). Calcule det(u, v) = 8 × 2 − 3 × 5 : c’est l’aire du trou.",
+        "In the rectangle the edge of the triangle follows u = (8, 3) and that of the trapezoid follows v = (5, 2). Compute det(u, v) = 8 × 2 − 3 × 5: it is the area of the gap.",
+      ],
+      hint: ["16 − 15.", "16 − 15."],
+      because: [
+        "det(u, v) = 16 − 15 = 1 : u et v ne sont pas colinéaires, donc les deux bords ne sont pas alignés, et le parallélogramme qu’ils forment a une aire 1.",
+        "det(u, v) = 16 − 15 = 1: u and v are not collinear, so the two edges are not aligned, and the parallelogram they form has area 1.",
+      ],
+    },
+    {
+      id: "why", kind: "explain", set: { a: 5, b: 3, variant: "square", show: 1 },
+      prompt: [
+        "Pourquoi aucun découpage de ce type, avec a et b entiers, ne peut-il être exact ?",
+        "Why can no cut of this kind, with whole numbers a and b, ever be exact?",
+      ],
+      argument: [
+        "Le rectangle est rempli exactement si et seulement si les deux bords sont alignés, c’est-à-dire si les pentes b/(a + b) et (a − b)/a sont égales. Cela équivaut à ab = (a − b)(a + b), soit a² − ab − b² = 0. Supposons a et b entiers, b ≥ 1, et la fraction a/b irréductible. Alors a² = b(a + b), donc b divise a² ; comme b est premier avec a, b = 1. Il resterait a² − a − 1 = 0, soit a(a − 1) = 1 : impossible, car a(a − 1) est pair. Donc a² − ab − b² est un entier non nul, et l’écart vaut au moins 1 carreau. Pour deux nombres de Fibonacci consécutifs il vaut exactement 1 ou −1 (identité de Cassini) : le plus petit écart possible, d’où l’illusion. Une figure, même juste à l’œil, ne remplace pas ce calcul.",
+        "The rectangle is filled exactly if and only if the two edges are aligned, that is if the slopes b/(a + b) and (a − b)/a are equal. This is equivalent to ab = (a − b)(a + b), that is a² − ab − b² = 0. Suppose a and b are whole numbers, b ≥ 1, with a/b in lowest terms. Then a² = b(a + b), so b divides a²; as b is coprime to a, b = 1. We would be left with a² − a − 1 = 0, that is a(a − 1) = 1: impossible, because a(a − 1) is even. So a² − ab − b² is a non-zero integer and the gap is at least one cell. For two consecutive Fibonacci numbers it is exactly 1 or −1 (Cassini’s identity): the smallest possible gap, hence the illusion. A figure, even one that looks right, does not replace this calculation.",
+      ],
+    },
+  ],
+  conclusion: [
+    "Un dessin peut cacher une erreur d’une unité d’aire dans une figure de 65 carreaux. Pour savoir si des pièces s’emboîtent, on compare des pentes, ou on calcule un déterminant : le puzzle du carré et du rectangle n’est exact que si a/b vaut le nombre d’or, qui n’est pas rationnel.",
+    "A drawing can hide an error of one unit of area in a figure of 65 cells. To know whether pieces fit, compare slopes or compute a determinant: the square and rectangle puzzle is exact only if a/b equals the golden ratio, which is not rational.",
+  ],
+  history: {
+    title: ["Cassini · 1680", "Cassini · 1680"],
+    story: [
+      "L’identité F(n − 1) × F(n + 1) − F(n)² = ±1 sur les nombres de Fibonacci porte le nom de Giovanni Domenico Cassini. Elle explique pourquoi ce puzzle perd ou gagne toujours exactement un carreau.",
+      "The identity F(n − 1) × F(n + 1) − F(n)² = ±1 on Fibonacci numbers bears the name of Giovanni Domenico Cassini. It explains why this puzzle always loses or gains exactly one cell.",
+    ],
+    source: "https://mathshistory.st-andrews.ac.uk/Biographies/Cassini/",
+  },
+};
+
+
+});
 __d("lab/experiments/trig.js", function (__e, __r) {
 // Experiment `trig` (template family): the unit circle and the graph of sine or cosine share one angle. State {deg, assoc,
 // fn}. Handles: P on the circle and its image on the graph. Pure maths: models/trig.js.
@@ -4903,6 +5840,179 @@ function makeFormat(lang = "fr") {
 
 __e.makeFormat = makeFormat;
 });
+__d("lab/models/bertrand.js", function (__e, __r) {
+// Pure maths of the experiment `bertrand`: a "random chord" of the unit circle, chosen by three methods. The chord is longer
+// than the side √3 of the inscribed equilateral triangle with probability 1/3 (two random endpoints), 1/2 (random point of a
+// random radius) or 1/4 (random midpoint in the disc). Seeded simulation (rng of probability.js). No DOM.
+const { rng } = __r("lab/models/probability.js");
+
+const MAX_RUNS = 5000;
+const SHOWN = 80;
+const METHODS = ["ends", "radius", "midpoint"];
+const THEORY = { ends: 1 / 3, radius: 1 / 2, midpoint: 1 / 4 };
+const SIDE = Math.sqrt(3);
+
+// One chord from three uniform draws u, v, w in [0, 1): endpoints [a, b].
+function chord(method, u, v, w) {
+  if (method === "ends") {
+    const t1 = 2 * Math.PI * u, t2 = 2 * Math.PI * v;
+    return [[Math.cos(t1), Math.sin(t1)], [Math.cos(t2), Math.sin(t2)]];
+  }
+  // the chord perpendicular to the direction θ at distance d from the centre
+  const th = 2 * Math.PI * u;
+  const d = method === "radius" ? v : Math.sqrt(v);   // midpoint uniform in the disc: P(distance ≤ r) = r²
+  const h = Math.sqrt(Math.max(0, 1 - d * d)), cx = d * Math.cos(th), cy = d * Math.sin(th), ex = -Math.sin(th), ey = Math.cos(th);
+  return [[cx - h * ex, cy - h * ey], [cx + h * ex, cy + h * ey]];
+}
+
+let memo = { key: "", value: null };
+function simulate(seed, method, runs) {
+  const key = `${seed}|${method}|${runs}`;
+  if (memo.key === key) return memo.value;
+  const next = rng(seed), shown = [];
+  let long = 0;
+  for (let i = 0; i < runs; i++) {
+    const [a, b] = chord(method, next(), next(), next());
+    const hit = Math.hypot(b[0] - a[0], b[1] - a[1]) > SIDE ? 1 : 0;
+    long += hit;
+    if (i >= runs - SHOWN) shown.push({ a, b, hit });
+  }
+  memo = { key, value: { long, shown } };
+  return memo.value;
+}
+
+function model(s) {
+  const { method, runs, seed } = s, { long, shown } = simulate(seed, method, runs);
+  return { method, runs, long, shown, freq: runs ? long / runs : null, prob: THEORY[method] };
+}
+
+const quantities = {
+  prob: (s) => model(s).prob,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.MAX_RUNS = MAX_RUNS;
+__e.SHOWN = SHOWN;
+__e.METHODS = METHODS;
+__e.THEORY = THEORY;
+__e.chord = chord;
+__e.simulate = simulate;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/buffon.js", function (__e, __r) {
+// Pure maths of the experiment `buffon`: needles of length L dropped on a floor of parallel lines one unit apart (d = 1, L ≤ 1).
+// A needle crosses a line with probability 2L/(πd). Seeded simulation (rng of probability.js): the first N drops of a series
+// are the same whatever the button presses that led to N, and changing L reuses the same centres and angles. No DOM.
+const { rng } = __r("lab/models/probability.js");
+
+const MAX_RUNS = 5000;
+const SHOWN = 120;          // needles drawn on the floor (the last ones)
+const FLOOR = [8, 5];       // width and height of the floor drawn, lines at y = 0, 1, …, 5
+
+let memo = { key: "", value: null };
+// Centres (x, y) uniform on the floor, angles uniform in [0, π).
+function simulate(seed, L, runs) {
+  const key = `${seed}|${L}|${runs}`;
+  if (memo.key === key) return memo.value;
+  const next = rng(seed), shown = [];
+  let hits = 0;
+  for (let i = 0; i < runs; i++) {
+    const x = next() * FLOOR[0], y = next() * FLOOR[1], t = next() * Math.PI;
+    const dy = (L / 2) * Math.sin(t), dx = (L / 2) * Math.cos(t);
+    const hit = Math.floor(y - dy) !== Math.floor(y + dy) ? 1 : 0;
+    hits += hit;
+    if (i >= runs - SHOWN) shown.push({ a: [x - dx, y - dy], b: [x + dx, y + dy], hit });
+  }
+  memo = { key, value: { hits, shown } };
+  return memo.value;
+}
+
+function model(s) {
+  const { L, runs, seed } = s, { hits, shown } = simulate(seed, L, runs);
+  const freq = runs ? hits / runs : null;
+  return {
+    L, runs, hits, shown, freq,
+    prob: (2 * L) / Math.PI,
+    // estimate of π from the frequency: π ≈ 2L / f
+    piEstimate: hits ? (2 * L * runs) / hits : null,
+  };
+}
+
+const quantities = {
+  prob: (s) => model(s).prob,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.MAX_RUNS = MAX_RUNS;
+__e.SHOWN = SHOWN;
+__e.FLOOR = FLOOR;
+__e.simulate = simulate;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/circle-regions.js", function (__e, __r) {
+// Pure maths of the experiment `circle-regions`: n points on a circle, all the chords between them, and the number of regions
+// they cut the disc into. The regions are counted from the drawing itself: R = 1 + E + Σ (m − 1) over the interior crossing
+// points, m chords through each (every chord adds one region plus one per crossing it meets). No DOM.
+
+const MAX_N = 10;
+// Angles (degrees) chosen so that no three chords meet at one point for n ≤ 10 (checked in tests/lab-engine.test.mjs).
+const GENERAL = [90, 151, 197, 243, 302, 338, 17, 125, 268, 51];
+
+function pointsOf(n, mode) {
+  const deg = mode === "regular" ? Array.from({ length: n }, (_, i) => 90 + (360 * i) / n) : GENERAL.slice(0, n);
+  return deg.map((d) => [Math.cos((d * Math.PI) / 180), Math.sin((d * Math.PI) / 180)]);
+}
+
+function cross(p, q, r, s) {
+  // intersection of the segments pq and rs strictly inside both, or null
+  const d = (q[0] - p[0]) * (s[1] - r[1]) - (q[1] - p[1]) * (s[0] - r[0]);
+  if (Math.abs(d) < 1e-12) return null;
+  const t = ((r[0] - p[0]) * (s[1] - r[1]) - (r[1] - p[1]) * (s[0] - r[0])) / d;
+  const u = ((r[0] - p[0]) * (q[1] - p[1]) - (r[1] - p[1]) * (q[0] - p[0])) / d;
+  return t > 1e-9 && t < 1 - 1e-9 && u > 1e-9 && u < 1 - 1e-9 ? [p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])] : null;
+}
+
+const C = (n, k) => { if (k < 0 || k > n) return 0; let c = 1; for (let i = 1; i <= k; i++) c = (c * (n - k + i)) / i; return c; };
+const formula = (n) => 1 + C(n, 2) + C(n, 4);
+
+function model(s) {
+  const n = s.n, pts = pointsOf(n, s.mode), chords = [];
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) chords.push([i, j]);
+  // crossing points, merged when they coincide (several chords through one point)
+  const hits = [];
+  for (let a = 0; a < chords.length; a++) for (let b = a + 1; b < chords.length; b++) {
+    const [i, j] = chords[a], [k, l] = chords[b];
+    const X = cross(pts[i], pts[j], pts[k], pts[l]);
+    if (!X) continue;
+    let h = hits.find((o) => Math.hypot(o.at[0] - X[0], o.at[1] - X[1]) < 1e-7);
+    if (!h) { h = { at: X, chords: new Set() }; hits.push(h); }
+    h.chords.add(a); h.chords.add(b);
+  }
+  const extra = hits.reduce((t, h) => t + h.chords.size - 1, 0);
+  return {
+    n, pts, chords, hits: hits.map((h) => ({ at: h.at, m: h.chords.size })),
+    regions: 1 + chords.length + extra, max: formula(n), doubling: 2 ** (n - 1),
+    concurrent: hits.some((h) => h.chords.size > 2),
+  };
+}
+
+const quantities = {
+  regions: (s) => model(s).regions,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.MAX_N = MAX_N;
+__e.GENERAL = GENERAL;
+__e.pointsOf = pointsOf;
+__e.formula = formula;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
 __d("lab/models/cobweb.js", function (__e, __r) {
 // Pure maths of the cobweb experiment: the recurrence u_{n+1} = f(u_n) with f(x) = a x + b, its terms, its fixed point
 // (f(l) = l, so l = b / (1 - a) when a != 1) and the staircase between the graph of f and the line y = x. No DOM.
@@ -5010,6 +6120,41 @@ __e.model = model;
 __e.quantities = quantities;
 __e.quantity = quantity;
 });
+__d("lab/models/euler-primes.js", function (__e, __r) {
+// Pure maths of the experiment `euler-primes`: the polynomial f(n) = n² + n + c for Euler's lucky numbers c (2, 3, 5, 11, 17,
+// 41), prime for n = 0, …, c − 2 and composite at n = c − 1, where f(c − 1) = c². No DOM.
+const { isPrime, smallestFactor } = __r("lab/models/primes.js");
+
+const LUCKY = [2, 3, 5, 11, 17, 41];
+const CELLS = 60;   // the grid shows n = 0, …, 59
+
+const f = (c, n) => n * n + n + c;
+
+function model(s) {
+  const { c, n } = s, value = f(c, n);
+  const primes = Array.from({ length: CELLS }, (_, k) => isPrime(f(c, k)));
+  const firstComposite = primes.indexOf(false);
+  return {
+    c, n, value, prime: isPrime(value), factor: smallestFactor(value),
+    primes, firstComposite, root: Math.sqrt(value),
+    // how long the run of primes lasts before n
+    run: primes.slice(0, n + 1).every(Boolean),
+  };
+}
+
+const quantities = {
+  value: (s) => model(s).value,
+  root: (s) => model(s).root,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.LUCKY = LUCKY;
+__e.CELLS = CELLS;
+__e.f = f;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
 __d("lab/models/exponential.js", function (__e, __r) {
 // Pure maths of the exponential experiment: f(x) = k a^x with k > 0 and a > 0, and the sequence u_n = f(n) it carries, which is
 // geometric with first term k and ratio a. No DOM.
@@ -5038,6 +6183,40 @@ const quantity = (name, s) => quantities[name](s);
 
 __e.value = value;
 __e.terms = terms;
+__e.model = model;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/fermat.js", function (__e, __r) {
+// Pure maths of the experiment `fermat`: the numbers 2^e + 1 for e = 1, …, 32. Fermat numbers are those with e a power of 2
+// (F0 = 3 to F5 = 2^32 + 1). Every value is below 2^53, so the arithmetic is exact. No DOM.
+const { isPrime, smallestFactor, factor } = __r("lab/models/primes.js");
+
+const MAX_E = 32;
+const value = (e) => 2 ** e + 1;
+const isPowerOfTwo = (e) => e > 0 && (e & (e - 1)) === 0;
+
+function model(s) {
+  const e = s.e, N = value(e);
+  const p = smallestFactor(N);
+  return {
+    e, N, prime: isPrime(N), smallest: p, factors: factor(N),
+    fermat: isPowerOfTwo(e), index: isPowerOfTwo(e) ? Math.log2(e) : null,
+    primes: Array.from({ length: MAX_E }, (_, i) => isPrime(value(i + 1))),
+    // Euler: a prime factor of F5 is 64k + 1
+    k: (p - 1) / 64,
+  };
+}
+
+const quantities = {
+  N: (s) => model(s).N,
+  k: (s) => model(s).k,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.MAX_E = MAX_E;
+__e.value = value;
+__e.isPowerOfTwo = isPowerOfTwo;
 __e.model = model;
 __e.quantities = quantities;
 __e.quantity = quantity;
@@ -5169,6 +6348,43 @@ const snap = (v, step) => (step ? Number((Math.round(v / step) * step).toFixed(1
 
 __e.clamp = clamp;
 __e.snap = snap;
+});
+__d("lab/models/primes.js", function (__e, __r) {
+// Pure arithmetic shared by the experiments `euler-primes` and `fermat`: primality and factorisation by trial division, exact for
+// every number below 2^53 (the largest one used is 2^32 + 1, whose trial division stops at 641). No DOM.
+
+function smallestFactor(N) {
+  if (N < 2) return null;
+  if (N % 2 === 0) return 2;
+  for (let d = 3; d * d <= N; d += 2) if (N % d === 0) return d;
+  return N;
+}
+const isPrime = (N) => N >= 2 && smallestFactor(N) === N;
+
+// [[p, k], ...] with p increasing.
+function factor(N) {
+  const out = [];
+  while (N > 1) {
+    const p = smallestFactor(N);
+    let k = 0;
+    while (N % p === 0) { N /= p; k++; }
+    out.push([p, k]);
+  }
+  return out;
+}
+
+const SUP = { 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" };
+const sup = (k) => String(k).split("").map((d) => SUP[d]).join("");
+// "3⁴ × 19 × 87 211" (French) or "3⁴ × 19 × 87,211"
+const group = (N, fr) => String(N).replace(/\B(?=(\d{3})+(?!\d))/g, fr ? " " : ",");
+const writeFactors = (N, fr) => factor(N).map(([p, k]) => group(p, fr) + (k > 1 ? sup(k) : "")).join(" × ");
+
+__e.smallestFactor = smallestFactor;
+__e.isPrime = isPrime;
+__e.factor = factor;
+__e.sup = sup;
+__e.group = group;
+__e.writeFactors = writeFactors;
 });
 __d("lab/models/probability.js", function (__e, __r) {
 // Pure maths of the binomial experiment: B(n, p) probabilities and a seeded simulation. No DOM, no Math.random.
@@ -5434,6 +6650,90 @@ __e.median = median;
 __e.quantile = quantile;
 __e.model = model;
 __e.stack = stack;
+__e.quantities = quantities;
+__e.quantity = quantity;
+});
+__d("lab/models/tiles.js", function (__e, __r) {
+// Pure maths of the experiment `tiles`: a square of side a + b cut into two right trapezoids (parallel sides a and b) and two
+// right triangles (legs b and a + b), put back together as a rectangle a × (2a + b); and Curry's triangle (legs 13 and 5) built
+// twice from the same four pieces. The pieces are drawn with their true coordinates: the excess a² − ab − b² is the signed
+// area of the thin parallelogram along the diagonal (gap when positive, overlap when negative). No DOM.
+
+// Consecutive Fibonacci numbers: the sizes the slider offers (a, b) = (F(k+1), F(k)).
+const PAIRS = [[1, 1], [2, 1], [3, 2], [5, 3], [8, 5], [13, 8]];
+
+// Curry's triangle, right angle at (13 ; 0). Arrangement A fills it except for its slightly bent long side; arrangement B
+// swaps the two triangles and leaves a unit hole. Same four pieces, translated only.
+const CURRY = {
+  A: {
+    red: [[0, 0], [8, 0], [8, 3]],
+    blue: [[8, 3], [13, 3], [13, 5]],
+    l7: [[8, 0], [13, 0], [13, 1], [10, 1], [10, 2], [8, 2]],
+    l8: [[10, 1], [13, 1], [13, 3], [8, 3], [8, 2], [10, 2]],
+    hole: null,
+  },
+  B: {
+    blue: [[0, 0], [5, 0], [5, 2]],
+    red: [[5, 2], [13, 2], [13, 5]],
+    l7: [[5, 0], [10, 0], [10, 1], [7, 1], [7, 2], [5, 2]],
+    l8: [[10, 0], [13, 0], [13, 2], [8, 2], [8, 1], [10, 1]],
+    hole: [[7, 1], [8, 1], [8, 2], [7, 2]],
+  },
+};
+
+// Shoelace formula: signed area of a polygon.
+function area(pts) {
+  let s = 0;
+  for (let i = 0; i < pts.length; i++) { const [x1, y1] = pts[i], [x2, y2] = pts[(i + 1) % pts.length]; s += x1 * y2 - x2 * y1; }
+  return s / 2;
+}
+
+// The four pieces in the square (side S = a + b, origin at the bottom left) and in the rectangle (width W = 2a + b, height a).
+function pieces(a, b) {
+  const S = a + b, W = a + S;
+  const square = {
+    I: [[0, 0], [a, 0], [a, b], [0, a]],
+    II: [[0, a], [a, b], [a, S], [0, S]],
+    III: [[a, 0], [S, 0], [S, S]],
+    IV: [[a, 0], [S, S], [a, S]],
+  };
+  const rect = {
+    I: [[0, 0], [a, 0], [a, b], [0, a]],
+    III: [[a, 0], [W, 0], [a, b]],
+    II: [[W, a], [W - a, a], [W - a, a - b], [W, 0]],
+    IV: [[W - a, a], [0, a], [W - a, a - b]],
+  };
+  // the parallelogram between the two slanted edges of each half of the rectangle
+  const sliver = [[0, a], [a, b], [W, 0], [W - a, a - b]];
+  return { S, W, square, rect, sliver };
+}
+
+function model(s) {
+  const a = s.a, b = s.b, S = a + b, W = 2 * a + b;
+  const squareArea = S * S, rectArea = a * W, excess = rectArea - squareArea;
+  // directions of the two slanted edges met along the "diagonal" of the rectangle
+  const u = [S, b], v = [a, a - b];
+  return {
+    a, b, S, W, squareArea, rectArea, excess,
+    det: u[0] * v[1] - u[1] * v[0],
+    slopeTriangle: b / S, slopeTrapezoid: (a - b) / a,
+    pieces: pieces(a, b),
+    // Curry: the four pieces cover 32 unit squares in both arrangements, the true triangle has area 32,5
+    curry: { pieces: Object.entries(CURRY.A).filter(([k, p]) => p && k !== "hole").reduce((t, [, p]) => t + area(p), 0), triangle: (13 * 5) / 2 },
+  };
+}
+
+const quantities = {
+  excess: (s) => model(s).excess,
+  det: (s) => model(s).det,
+};
+const quantity = (name, s) => quantities[name](s);
+
+__e.PAIRS = PAIRS;
+__e.CURRY = CURRY;
+__e.area = area;
+__e.pieces = pieces;
+__e.model = model;
 __e.quantities = quantities;
 __e.quantity = quantity;
 });
@@ -5932,9 +7232,15 @@ const exponential = __r("lab/experiments/exponential.js").default;
 const cobweb = __r("lab/experiments/cobweb.js").default;
 const matrix = __r("lab/experiments/matrix.js").default;
 const spaceLines = __r("lab/experiments/space-lines.js").default;
+const tiles = __r("lab/experiments/tiles.js").default;
+const eulerPrimes = __r("lab/experiments/euler-primes.js").default;
+const fermat = __r("lab/experiments/fermat.js").default;
+const circleRegions = __r("lab/experiments/circle-regions.js").default;
+const buffon = __r("lab/experiments/buffon.js").default;
+const bertrand = __r("lab/experiments/bertrand.js").default;
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment];
+const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand];
 
 const TEMPLATES = {
   fourier: () => Promise.resolve(__r("lab/templates/fourier.js")),
@@ -5958,6 +7264,16 @@ const TEMPLATE_INFO = {
   transform: { title: ["Transformer le plan", "Transform the plane"], blurb: ["Une opération appliquée à un point, à une figure, à un quadrillage.", "An operation applied to a point, a figure, a grid."] },
   space: { title: ["Explorer l’espace", "Explore space"], blurb: ["Une figure en trois dimensions que l’on fait tourner, avec des points qui restent sur une droite ou un plan.", "A three-dimensional figure you can turn, with points that stay on a line or a plane."] },
 };
+
+// Groups of the #lab index that are about an idea rather than a template: an experiment with `section` is listed there (with its
+// `sub` title as a subsection) instead of under its template. The index shows the groups in this order.
+const SECTION_INFO = {
+  tiles: { title: ["Une figure n’est pas une preuve", "A figure is not a proof"], blurb: ["Des pièces qui semblent changer d’aire : la démonstration dit où est l’erreur.", "Pieces that seem to change their area: the proof says where the error is."] },
+  patterns: { title: ["Une régularité n’est pas une preuve", "A pattern is not a proof"], blurb: ["Des observations vraies pendant 5 ou 40 cas, puis fausses.", "Observations true for 5 or 40 cases, then false."] },
+  geochance: { title: ["Probabilités géométriques", "Geometric probability"], blurb: ["Le hasard dans le plan : une aiguille, une corde.", "Chance in the plane: a needle, a chord."] },
+};
+const INDEX_ORDER = ["family", "process", "chance", "geochance", "figure", "tiles", "patterns", "data", "transform", "space", "fourier"];
+const groupOf = (e) => e.section || e.template;
 
 const experimentById = (id) => EXPERIMENTS.find((e) => e.id === id) || null;
 
@@ -5983,7 +7299,7 @@ const allRefs = () => EXPERIMENTS.flatMap((e) => [e.id, ...e.missions.map((m) =>
 
 // Entries of the shared catalogue (content.js `labs`): what the home page, the library and the pathways need to name a lab.
 const catalogue = () => EXPERIMENTS.map((e) => ({
-  id: e.id, experiment: true, template: e.template, symbol: e.symbol, group: e.group, title: e.title, short: e.short, intro: e.intro,
+  id: e.id, experiment: true, template: e.template, section: groupOf(e), symbol: e.symbol, group: e.group, title: e.title, short: e.short, intro: e.intro,
   duration: e.duration, level: e.level, prereq: e.prereq,
   history: e.history.title, story: e.history.story, source: e.history.source,
 }));
@@ -5992,6 +7308,9 @@ const catalogue = () => EXPERIMENTS.map((e) => ({
 __e.EXPERIMENTS = EXPERIMENTS;
 __e.TEMPLATES = TEMPLATES;
 __e.TEMPLATE_INFO = TEMPLATE_INFO;
+__e.SECTION_INFO = SECTION_INFO;
+__e.INDEX_ORDER = INDEX_ORDER;
+__e.groupOf = groupOf;
 __e.experimentById = experimentById;
 __e.parseRef = parseRef;
 __e.resolveRef = resolveRef;
@@ -6031,7 +7350,7 @@ const TEXT = {
   showArgument: ["Voir l’argument", "Show the argument"],
   needText: ["Écris au moins une phrase pour voir l’argument.", "Write at least a sentence to see the argument."],
   locked: ["verrouillé", "locked"],
-  predicted: ["Prédiction notée. Teste-la : les commandes se déverrouillent mission après mission.", "Prediction saved. Now test it: controls unlock mission by mission."],
+  predicted: ["Prédiction notée. Teste-la à la mission suivante.", "Prediction saved. Test it in the next mission."],
   predictedFree: ["Prédiction notée. Teste-la sur la figure, ou passe à la mission suivante.", "Prediction saved. Test it on the figure, or go on to the next mission."],
   showAnswer: ["Voir la réponse", "Show the answer"],
   goal: ["Objectif atteint.", "Goal reached."],
@@ -6050,6 +7369,11 @@ const TEXT = {
   keys: [
     "Points : glisse-les, ou Tab puis les flèches. Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
     "Points: drag them, or Tab then the arrow keys. Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
+  ],
+  // the same help for a figure without draggable points (number grids, simulations)
+  keysView: [
+    "Zoom : boutons + et −, Ctrl + molette ou pincement ; une fois zoomé, glisse le fond pour déplacer la vue ; 0 : recentrer. N et P : mission suivante, précédente.",
+    "Zoom: the + and − buttons, Ctrl + wheel or pinch; once zoomed, drag the background to move the view; 0: reset. N and P: next and previous mission.",
   ],
   play: ["Lecture", "Play"],
   pause: ["Pause", "Pause"],
@@ -6131,7 +7455,7 @@ function createShell(host, exp, tpl, opts = {}) {
     zoomButtons: !slide,
     reservePointer: () => exp.pointerMode?.(getState()) === "draw",
     onSpin: tpl.spins ? (dx, dy) => view?.spin?.(dx, dy) : undefined,   // a 3D template turns its view when the background is dragged
-    label: `${t(exp.title)}. ${t(exp.keys || T("keys"))}`,
+    label: `${t(exp.title)}. ${t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))}`,
     onFrame: (g) => { view?.draw(g); sync(); },
     onDragEnd: () => announce(),
     onNudge: () => announce(),
@@ -6141,7 +7465,7 @@ function createShell(host, exp, tpl, opts = {}) {
   readoutHost.append(formulaEl);
   const readout = createReadout(readoutHost, "lab2-readout", render ? put : undefined);
   const table = exp.views.table && !slide ? createTable(figure, t(exp.views.table.caption)) : null;
-  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T("keys"))));
+  if (full) figure.append(el("p", "lab2-keys", t(exp.keys || T(Object.values(exp.controls).some((c) => c.kind === "handle") ? "keys" : "keysView"))));
   const status = el("p", "sr-only");
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
@@ -6759,7 +8083,7 @@ __e.mount = mount;
 });
 __d("lab/templates/figure.js", function (__e, __r) {
 // Template `figure`: a dynamic geometric figure with an invariant to discover. One equal-scale panel, two to four points as
-// handles, the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
+// handles (or none), the experiment's scene (polygons, vectors, labels) and one measured quantity highlighted as a badge in the corner.
 const { panelView, drawAxes, drawScene, drawHandles, drawBadge, buildHandles } = __r("lab/plot.js");
 
 function mount(env) {
@@ -6772,7 +8096,7 @@ function mount(env) {
 
   function draw(g) {
     const v = layout(), s = getState(), other = ghost();
-    drawAxes(g, v, spec, stage, fmt);
+    if (spec.axes !== false) drawAxes(g, v, spec, stage, fmt);   // a figure that draws its own frame (tiles, a circle, a number grid)
     if (other) drawScene(g, v, spec.scene(other, ctx), stage, { ghost: true });
     drawScene(g, v, spec.scene(s, ctx), stage);
     const m = spec.measure?.(s, ctx);

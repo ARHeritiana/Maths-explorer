@@ -101,7 +101,9 @@ export const resourceCatalog = {
           "englishBytes": 197976
         }
       ],
-      "labs": []
+      "labs": [
+        "euler-primes/hunt"
+      ]
     },
     {
       "id": "seconde-02",
@@ -171,7 +173,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "vectors/collinear"
+        "vectors/collinear",
+        "tiles/det"
       ]
     },
     {
@@ -912,7 +915,10 @@ export const resourceCatalog = {
           "englishBytes": 160745
         }
       ],
-      "labs": []
+      "labs": [
+        "tiles/zoom",
+        "circle-regions/six"
+      ]
     },
     {
       "id": "seconde-14",
@@ -981,7 +987,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "probability/run"
+        "probability/run",
+        "bertrand/ends"
       ]
     },
     {
@@ -1285,7 +1292,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "probability"
+        "probability",
+        "bertrand"
       ]
     },
     {
@@ -1700,7 +1708,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "probability"
+        "probability",
+        "circle-regions/seven"
       ]
     },
     {
@@ -1950,7 +1959,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "integral/bound"
+        "integral/bound",
+        "buffon"
       ]
     },
     {
@@ -1992,7 +2002,8 @@ export const resourceCatalog = {
         }
       ],
       "labs": [
-        "probability/few"
+        "probability/few",
+        "buffon/drop"
       ]
     },
     {
@@ -2411,7 +2422,10 @@ export const resourceCatalog = {
           "englishBytes": 212775
         }
       ],
-      "labs": []
+      "labs": [
+        "fermat/f5",
+        "euler-primes"
+      ]
     },
     {
       "id": "expertes-09",

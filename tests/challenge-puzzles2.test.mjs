@@ -9,6 +9,9 @@ import { CHAM_SETS, chamSet, chamSolve, chamMin, chamPossible } from "../dist/js
 import { PEGS_START, PEG_TARGETS, pegTarget, pegClass, pegJumps, pegsPossible, pegsSolve, pegsMin, pegsRun, PEGS_SHIFTS, pegsWithin, pegLanding } from "../dist/js/challenges/pegs/maths.js";
 import { permOf, inversions, bubbleSwaps } from "../dist/js/challenges/inversions/maths.js";
 import { splitTotal, randomSplitTotal } from "../dist/js/challenges/piles/maths.js";
+import { sharings, allSharings, code } from "../dist/js/challenges/cookies/maths.js";
+import { JUG_PRESETS, parseJugs, jugsSolve, jugsMin, apply, reachable } from "../dist/js/challenges/jugs/maths.js";
+import { VARIANTS as CV } from "../dist/js/challenges/registry.js";
 
 test("reflection: a fine scan of the contact point finds the reflected length, at x = ad/(a+b); presets give whole answers", () => {
   for (const id of REFLECT_SETS) {
@@ -135,4 +138,38 @@ test("three pegs: points occupied after at most 1, 2 and 3 jumps match an indepe
     for (let d = 0; d < k; d++) { const next = []; for (const s of level) for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) if (i !== j) { const to = [2 * s[j][0] - s[i][0], 2 * s[j][1] - s[i][1]]; if (s.some((p, q) => q !== i && p[0] === to[0] && p[1] === to[1])) continue; const t = s.map((p) => [...p]); t[i] = to; pts.add(to.join()); next.push(t); } level = next; }
     assert.deepEqual([...pegsWithin(k)].sort(), [...pts].sort(), `k=${k}`);
   }
+});
+
+test("cookies: the count of sharings equals a direct enumeration (generating function), with and without the rule", () => {
+  // coefficient of x^n in (sum_{j >= min} x^j)^k, by repeated polynomial multiplication: another route than C(n + k - 1, k - 1)
+  const coeff = (n, k, min) => { let poly = [1]; for (let i = 0; i < k; i++) { const next = Array(n + 1).fill(0); poly.forEach((c, d) => { for (let j = min; d + j <= n; j++) next[d + j] += c; }); poly = next; } return poly[n] || 0; };
+  for (let n = 3; n <= 15; n++) for (let k = 2; k <= 6; k++) {
+    assert.equal(sharings(n, k), coeff(n, k, 0), `${n} ${k}`);
+    assert.equal(sharings(n, k, true), coeff(n, k, 1), `${n} ${k} at least one`);
+    assert.equal(CV.cookies.answer({ n, k, rule: "any" }), coeff(n, k, 0));
+    assert.equal(CV.cookies.answer({ n, k, rule: "one" }), coeff(n, k, 1));
+  }
+  assert.equal(sharings(10, 5), 1001);
+  // the coding by a row is one to one on the sharings listed
+  const list = allSharings(6, 4), rows = new Set(list.map(code));
+  assert.equal(list.length, sharings(6, 4)); assert.equal(rows.size, list.length);
+  for (const r of rows) { assert.equal([...r].filter((c) => c === "●").length, 6); assert.equal([...r].filter((c) => c === "|").length, 3); }
+});
+
+test("jugs: the fewest operations agree with an independent relaxation, every listed sequence is legal, and the impossible presets are those outside gcd multiples", () => {
+  // independent: relax distances over the whole (a + 1) x (b + 1) grid of states until nothing changes (no queue)
+  const ids = (a, b, t) => {
+    const dist = Array.from({ length: a + 1 }, () => Array(b + 1).fill(Infinity)); dist[0][0] = 0;
+    const nexts = (x, y) => [[a, y], [x, b], [0, y], [x, 0], [x - Math.min(x, b - y), y + Math.min(x, b - y)], [x + Math.min(y, a - x), y - Math.min(y, a - x)]];
+    for (let changed = true; changed;) { changed = false; for (let x = 0; x <= a; x++) for (let y = 0; y <= b; y++) if (dist[x][y] < Infinity) for (const [u, v] of nexts(x, y)) if (dist[x][y] + 1 < dist[u][v]) { dist[u][v] = dist[x][y] + 1; changed = true; } }
+    let best = Infinity; for (let x = 0; x <= a; x++) for (let y = 0; y <= b; y++) if (x === t || y === t) best = Math.min(best, dist[x][y]);
+    return best === Infinity ? 0 : best;
+  };
+  for (const p of JUG_PRESETS) {
+    const [a, b, t] = parseJugs(p), path = jugsSolve(a, b, t);
+    assert.equal(jugsMin(a, b, t), ids(a, b, t), p);
+    assert.equal(!!path, reachable(a, b, t), p);
+    if (path) { let s = [0, 0]; for (const step of path) { s = apply(step.move, s, a, b); assert.deepEqual(s, step.state); } assert.ok(s[0] === t || s[1] === t); }
+  }
+  assert.equal(jugsMin(3, 5, 4), 6);
 });

@@ -138,7 +138,9 @@
           "Arithmetic"
         ],
         "topic": "arithmetic",
-        "labs": [],
+        "labs": [
+          "euler-primes/hunt"
+        ],
         "guide": "shared-arithmetic"
       },
       {
@@ -151,7 +153,8 @@
         ],
         "topic": "vectors",
         "labs": [
-          "vectors/collinear"
+          "vectors/collinear",
+          "tiles/det"
         ],
         "guide": "shared-vectors"
       },
@@ -298,7 +301,10 @@
           "Synthesis, reasoning and fluency"
         ],
         "topic": "logic",
-        "labs": [],
+        "labs": [
+          "tiles/zoom",
+          "circle-regions/six"
+        ],
         "guide": "shared-logic"
       },
       {
@@ -311,7 +317,8 @@
         ],
         "topic": "conditional",
         "labs": [
-          "probability/run"
+          "probability/run",
+          "bertrand/ends"
         ],
         "guide": "shared-conditional"
       },
@@ -393,7 +400,8 @@
         ],
         "topic": "conditional",
         "labs": [
-          "probability"
+          "probability",
+          "bertrand"
         ],
         "guide": "shared-conditional"
       },
@@ -531,7 +539,8 @@
         ],
         "topic": "counting",
         "labs": [
-          "probability"
+          "probability",
+          "circle-regions/seven"
         ],
         "guide": "shared-counting"
       },
@@ -613,7 +622,8 @@
         ],
         "topic": "integral",
         "labs": [
-          "integral/bound"
+          "integral/bound",
+          "buffon"
         ],
         "guide": "shared-integral"
       },
@@ -627,7 +637,8 @@
         ],
         "topic": "concentration",
         "labs": [
-          "probability/few"
+          "probability/few",
+          "buffon/drop"
         ],
         "guide": "shared-concentration"
       },
@@ -766,7 +777,10 @@
           "Prime numbers and Fermat's little theorem"
         ],
         "topic": "primes",
-        "labs": [],
+        "labs": [
+          "fermat/f5",
+          "euler-primes"
+        ],
         "guide": "shared-primes"
       },
       {
@@ -962,7 +976,9 @@
           "Divisibility and the greatest common divisor"
         ],
         "topic": "arithmetic",
-        "labs": [],
+        "labs": [
+          "euler-primes"
+        ],
         "relatedChapters": [
           "seconde-01"
         ]
@@ -1132,7 +1148,12 @@
           "Implication and counterexamples"
         ],
         "topic": "logic",
-        "labs": [],
+        "labs": [
+          "euler-primes/hunt",
+          "fermat/f5",
+          "circle-regions/six",
+          "tiles/zoom"
+        ],
         "relatedChapters": [
           "seconde-13"
         ]
@@ -1357,7 +1378,8 @@
         ],
         "topic": "counting",
         "labs": [
-          "probability"
+          "probability",
+          "circle-regions"
         ],
         "relatedChapters": [
           "terminale-05"
@@ -1468,7 +1490,8 @@
         ],
         "topic": "concentration",
         "labs": [
-          "probability/few"
+          "probability/few",
+          "buffon"
         ],
         "relatedChapters": [
           "terminale-12"
@@ -1690,7 +1713,10 @@
           "Prime numbers and Fermat’s theorem"
         ],
         "topic": "primes",
-        "labs": [],
+        "labs": [
+          "fermat",
+          "euler-primes"
+        ],
         "relatedChapters": [
           "expertes-08"
         ]

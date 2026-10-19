@@ -3,6 +3,7 @@
 import { escape, MADAGASCAR, resample, fourier, arms, COUNT_SCHEDULE, REVOLUTION } from "./gallery-math.js";
 import { platonic, reuleaux, binomial } from "./lab-objects.js";
 import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery-models.js';
+import {neighbours,colourWith} from './gallery-four-colour-model.js';
 import {spaceKnot} from './gallery-knot-model.js';
 import {makeFamilyPatch} from './gallery-hat-model.js';
 
@@ -151,6 +152,10 @@ function newGalleryArt(kind,cv,opts){
     if(kind==='voronoi'){
       const seeds=Array.from({length:8},(_,i)=>[W*(.15+.7*(.5+.5*Math.sin(i*3.7+time*.14))),H*(.15+.7*(.5+.5*Math.cos(i*2.4+time*.12)))]);
       voronoiCells(seeds,[0,0,W,H]).forEach((p,i)=>draw(p,C.c[i%8],true,1.4));seeds.forEach(p=>{g.fillStyle=C.ink;g.beginPath();g.arc(...p,3,0,TAU);g.fill();});
+    }else if(kind==='four-colours'){
+      // a fixed map coloured with at most four colours by the solver (a moving map would change colours abruptly)
+      const seeds=Array.from({length:11},(_,i)=>[W*(.1+.8*(.5+.5*Math.sin(i*2.9))),H*(.1+.8*(.5+.5*Math.cos(i*1.7)))]),cells=voronoiCells(seeds,[0,0,W,H]),col=colourWith(cells.length,neighbours(cells),4)||[];
+      cells.forEach((p,i)=>draw(p,C.c[col[i]??0],true,1.4));
     }else if(kind==='fastest-slide'){
       const map=p=>[W*.1+p[0]*W*.2,H*.17+p[1]*H*.25];draw([[0,0],[4,2]].map(map),C.c[1],false,2);draw(slide.points.map(map),C.accent,false,3);const p=map(pointAtTime(track,time%track.total));g.fillStyle=C.accent;g.beginPath();g.arc(...p,6,0,TAU);g.fill();
     }else if(kind==='soap-films'){
@@ -166,5 +171,5 @@ function newGalleryArt(kind,cv,opts){
   },{reduced:opts.reduced});
 }
 export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
-  ...Object.fromEntries(['voronoi','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
+  ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }
