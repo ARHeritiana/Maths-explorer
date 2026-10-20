@@ -310,7 +310,9 @@ with sync_playwright() as p:
     page.locator('.pick[data-n="15"]').click()
     assert page.locator('.pick.clash').count() == 2
     page.goto(BASE+'/#challenges/squares')
-    page.locator('#sq-n').fill('12'); assert '144' in page.locator('#sq-read strong').inner_text()
+    # The sum stays folded until the learner asks for it, then follows the slider.
+    page.locator('#sq-n').fill('12'); assert not page.locator('#sq-read').is_visible(), 'the sum is hidden until asked for'
+    page.locator('details:has(#sq-read) > summary').click(); assert '144' in page.locator('#sq-read strong').inner_text()
     # Challenges added in October 2026: activities, animated solutions and the touch fix for the domino board.
     page.goto(BASE+'/#challenges/artgallery')
     page.locator('#ag-convex').click(); page.locator('.ag-svg').scroll_into_view_if_needed(); box = page.locator('.ag-svg').bounding_box()
@@ -349,6 +351,7 @@ with sync_playwright() as p:
         assert page.evaluate("!/NaN|undefined|Infinity/.test(document.querySelector('.sol-svg').innerHTML)"), challenge
     # Variations: the statement, the answer check, the experiment and the animated solution follow the chosen data.
     page.goto(BASE+'/#challenges/doors')
+    page.locator('details.variation > summary').click()   # the settings are folded until asked for
     page.locator('input[data-var="n"]').fill('50')
     page.locator('input[data-var="n"]').dispatch_event('change')
     assert '50' in page.locator('#problem').inner_text() and page.locator('.door').count() == 50
@@ -358,7 +361,7 @@ with sync_playwright() as p:
     assert page.locator('.door').count() == 100
     for challenge in CHALLENGES:
         page.goto(BASE+'/#challenges/'+challenge)
-        page.locator('.variation > summary').click()
+        if not page.evaluate("document.querySelector('.variation').open"): page.locator('.variation > summary').click()   # same hash: no re-render, panel may be open
         for _ in range(3):
             page.locator('#var-random').click()
             body = page.locator('main').inner_text()
@@ -373,7 +376,12 @@ with sync_playwright() as p:
     page.set_viewport_size({'width':1100,'height':1000})
     def go(c):   # the variation panel remembers the last data: start each puzzle from its defaults
         page.goto(BASE+'/#challenges/'+c)
-        if page.locator('#var-reset').count(): page.locator('#var-reset').click()
+        if page.locator('#var-reset').count():   # the reset button sits in the folded settings panel
+            if not page.evaluate("document.querySelector('.variation').open"): page.locator('.variation > summary').click()
+            page.locator('#var-reset').click()
+            if page.evaluate("document.querySelector('.variation')?.open"): page.locator('.variation > summary').click()
+    def reveal(sel):   # measurements and sums are folded until the learner asks for them
+        page.locator(sel).evaluate("e => { const d = e.closest('details'); if (d && !d.open) d.querySelector('summary').click(); }")
     def hint(n, act):   # open hint n in the panel and press its button, which acts on the canvas
         page.locator('.hint-panel details').nth(n - 1).locator('summary').click(); page.locator('[data-hint-act="%s"]' % act).click()
     go('gridpaths')
@@ -429,8 +437,8 @@ with sync_playwright() as p:
     assert 'strong' in page.locator('#fc-read').inner_html(), 'the shortfall names the fake pile'
     # Euclidean geometry and invariants: each activity responds and agrees with the mathematics.
     go('reflect'); hint(2, 'mirror'); assert 'AB′' in page.locator('#rf-read').inner_text() and '5 m' in page.locator('#rf-read').inner_text()
-    go('lunes'); assert '24' in page.locator('#ln-read').inner_text()
-    go('star'); page.locator('#st-rand').click(); assert '180' in page.locator('#st-read').inner_text()
+    go('lunes'); reveal('#ln-read'); assert '24' in page.locator('#ln-read').inner_text()
+    go('star'); reveal('#st-read'); page.locator('#st-rand').click(); assert '180' in page.locator('#st-read').inner_text()
     go('box')
     assert page.locator('input[name="bx"]').count() == 0, 'the box offers no unfolding choice before a hint'
     hint(1, 'net'); page.wait_for_timeout(2300); assert page.locator('#bx-barflat').is_visible() and page.locator('#bx-read strong').count() == 1
@@ -479,13 +487,13 @@ with sync_playwright() as p:
     os.makedirs('test-results', exist_ok=True)
     for width in [1280,390]:
         page.set_viewport_size({'width':width,'height':950})
-        page.goto(BASE+'/#challenges/jugs')
+        go('jugs')   # from the original data: the variation loop above left random values
         assert page.locator('.variation').evaluate('(el) => !el.open')
         assert page.locator('.jg-moves').count() == 0
         page.locator('[data-jug="0"]').click();page.locator('[data-destination="tap"]').click()
-        assert page.locator('.jg-svg').get_attribute('data-state') == '3,0'
+        page.wait_for_function("s => document.querySelector('.jg-svg').dataset.state === s", arg='3,0', timeout=5000)   # pouring is animated
         page.locator('[data-jug="0"]').click();page.locator('[data-jug="1"]').click()
-        assert page.locator('.jg-svg').get_attribute('data-state') == '0,3'
+        page.wait_for_function("s => document.querySelector('.jg-svg').dataset.state === s", arg='0,3', timeout=5000)   # pouring is animated
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         page.screenshot(path='test-results/direct-jugs-'+str(width)+'.png',full_page=True)
         page.goto(BASE+'/#challenges/fly')
@@ -581,7 +589,7 @@ with sync_playwright() as p:
         assert page.locator('.lab2-calculation math msup').count() > 0
         assert page.locator('.lab2-card').evaluate("el => getComputedStyle(el).overflowY") == 'visible'
         page.screenshot(path='test-results/arithmetic-'+experiment+'.png',full_page=True)
-    page.goto(BASE+'/#challenges/cookies')
+    go('cookies')   # from the original data: the variation loop above left random values
     page.locator('[data-cookie="0"]').click();page.locator('[data-child="0"]').click()
     assert page.locator('.ck-sharing').get_attribute('data-parts') == '1,0,0,0,0'
     source=page.locator('[data-cookie="1"]');target=page.locator('[data-child="1"]')
