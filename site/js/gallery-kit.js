@@ -5,11 +5,13 @@ export const TAU=2*Math.PI;
 export function exhibit(root,{t,reduced},help,controls='',notes=''){
   root.innerHTML=`<p class="act-help">${help}</p><div class="obj-stage exhibit-stage"></div><div class="act-controls exhibit-controls">${controls}</div><p class="act-readout exhibit-readout" role="status" aria-live="polite"></p>${notes?`<details class="exhibit-notes"><summary>${t('Observer, puis comprendre','Observe, then understand')}</summary>${notes}</details>`:''}`;
   const o=canvasIn(root.querySelector('.exhibit-stage'),640/440),abort=new root.ownerDocument.defaultView.AbortController(),signal=abort.signal;
-  o.cv.setAttribute('aria-label',t('Figure interactive. Tab pour les réglages. Molette ou pincement pour zoomer ; Maj-glisser pour déplacer la vue ; 0 pour la réinitialiser.','Interactive figure. Tab for controls. Wheel or pinch to zoom; Shift-drag to pan; 0 to reset the view.'));
+  o.cv.setAttribute('aria-label',t('Figure interactive. Tab pour les réglages. Pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer ; Maj-glisser pour déplacer la vue ; 0 pour la réinitialiser.','Interactive figure. Tab for controls. Pinch or Ctrl + wheel to zoom; Shift-drag to pan; 0 to reset the view.'));
   const on=(el,type,fn)=>el.addEventListener(type,fn,{signal});let raf=0,last=0,alive=true,draw=()=>{},lastRead='';
   o.on=on;o.root=root;o.read=text=>{if(text!==lastRead){lastRead=text;root.querySelector('.exhibit-readout').textContent=text;}};
   o.redraw=()=>draw(0);o.animate=fn=>{draw=fn;draw(0);const frame=now=>{if(!alive)return;const dt=Math.min(.04,(now-last)/1000||0);last=now;if(!document.hidden)draw(reduced()?0:dt);raf=requestAnimationFrame(frame);};raf=requestAnimationFrame(frame);};
   o.stop=()=>{alive=false;cancelAnimationFrame(raf);abort.abort();o.navigation?.destroy();};
+  // a press on the figure gives it the keyboard, so Delete and the arrow keys act on what was just touched
+  on(o.cv,'pointerdown',()=>{if(root.ownerDocument.activeElement!==o.cv)o.cv.focus({preventScroll:true});});
   on(o.cv,'view-gesture',()=>o.cancelDrag?.());on(o.cv,'pointercancel',()=>o.cancelDrag?.());on(o.cv,'lostpointercapture',()=>o.cancelDrag?.());
   return o;
 }

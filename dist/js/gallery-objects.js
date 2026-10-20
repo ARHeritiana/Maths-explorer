@@ -126,7 +126,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   let jx=0,jy=0,jw=3.2;
   let cx = -0.5, cy = 0, w = W0, cSel = [-0.4, 0.6], drag = null, flying = null, dirty = true, hq = true, last = "";
   root.innerHTML = `
-    <p class="act-help">${t("Chaque point c du plan est testé : on répète z → z² + c depuis 0. S’il ne s’échappe jamais, c est noir. Déplace le pointeur : l’ensemble de Julia de c change à droite. Glisse pour te déplacer, utilise la molette ou pince pour zoomer. Double-clique pour réinitialiser la vue.", "Every point c of the plane is tested: repeat z → z² + c from 0. If it never escapes, c is black. Move the pointer: the Julia set of c changes on the right. Drag to pan, use the wheel or pinch to zoom. Double-click to reset the view.")}</p>
+    <p class="act-help">${t("Chaque point c du plan est testé : on répète z → z² + c depuis 0. S’il ne s’échappe jamais, c est noir. Déplace le pointeur : l’ensemble de Julia de c change à droite. Glisse pour te déplacer, utilise la pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer. Double-clique pour réinitialiser la vue.", "Every point c of the plane is tested: repeat z → z² + c from 0. If it never escapes, c is black. Move the pointer: the Julia set of c changes on the right. Drag to pan, use the pinch or Ctrl + wheel to zoom. Double-click to reset the view.")}</p>
     <div class="mb-grid"><div class="obj-stage" id="mb-stage"></div><div class="obj-stage mb-julia" id="mb-julia"></div></div>
     <div class="act-controls">
       <button class="btn btn-primary" id="mb-fly" type="button">${t("Voyage vers la vallée des hippocampes", "Fly to the seahorse valley")}</button>
@@ -182,7 +182,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   o.cv.addEventListener("pointerdown", (e) => { flying = null; drag = { x: e.clientX, y: e.clientY, cx, cy, moved: false, id: e.pointerId }; o.cv.setPointerCapture(e.pointerId); });
   o.cv.addEventListener("pointerup", (e) => { if (!drag) return; const moved = Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 5; drag = null; hq = true; if (!moved) setSel(toC(e)); dirty = true; });
   o.cv.addEventListener("pointercancel", () => { drag = null; hq = true; dirty = true; });
-  o.cv.addEventListener("wheel", (e) => { e.preventDefault(); flying = null; const c = toC(e), old = w; w = clamp(w * (e.deltaY < 0 ? 0.7 : 1 / 0.7), 2e-13, 6); const k = w / old; cx = c[0] + (cx - c[0]) * k; cy = c[1] + (cy - c[1]) * k; dirty = true; }, { passive: false });
+  o.cv.addEventListener("wheel", (e) => { if (!(e.ctrlKey || e.metaKey)) return; e.preventDefault(); flying = null; const c = toC(e), old = w; w = clamp(w * (e.deltaY < 0 ? 0.7 : 1 / 0.7), 2e-13, 6); const k = w / old; cx = c[0] + (cx - c[0]) * k; cy = c[1] + (cy - c[1]) * k; dirty = true; }, { passive: false });
   root.querySelector("#mb-fly").addEventListener("click", () => { if (reduced()) { cx = SEAHORSE[0]; cy = SEAHORSE[1]; w = 0.02; hq = true; dirty = true; return; } cx = -0.5; cy = 0; w = W0; flying = { t: 0 }; });
   o.cv.setAttribute("role", "application");
   const fractalView=(panel,get,set,initial)=>{
@@ -194,7 +194,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
     for(const ev of ['pointerup','pointercancel'])panel.cv.addEventListener(ev,e=>{pointers.delete(e.pointerId);if(pointers.size<2)pinch=null;},true);
     panel.cv.addEventListener('keydown',e=>{const arrow={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'}[e.key];if(arrow||['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(arrow||(e.key==='0'?'reset':e.key==='-'?'out':'in'));}},true);
     panel.cv.addEventListener('dblclick',()=>action('reset'));
-    panel.cv.setAttribute('aria-label',t('Figure fractale : glisser pour déplacer, molette ou pincement pour zoomer, double-clic ou 0 pour réinitialiser, flèches pour déplacer la vue.', 'Fractal figure: drag to pan, wheel or pinch to zoom, double-click or 0 to reset, arrow keys to pan.'));
+    panel.cv.setAttribute('aria-label',t('Figure fractale : glisser pour déplacer, pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer, double-clic ou 0 pour réinitialiser, flèches pour déplacer la vue.', 'Fractal figure: drag to pan, pinch or Ctrl + wheel to zoom, double-click or 0 to reset, arrow keys to pan.'));
     return bar;
   };
   fractalView(o,()=>[cx,cy,w],v=>{[cx,cy,w]=v;flying=null;dirty=true;},[-.5,0,W0]);
@@ -203,7 +203,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   j.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;jdrag={x:e.clientX,y:e.clientY,jx,jy};j.cv.setPointerCapture(e.pointerId);});
   j.cv.addEventListener('pointermove',e=>{if(!jdrag)return;const r=j.cv.getBoundingClientRect();jx=jdrag.jx-(e.clientX-jdrag.x)/r.width*jw;jy=jdrag.jy+(e.clientY-jdrag.y)/r.height*jw*j.H/j.W;dirty=true;});
   for(const ev of ['pointerup','pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
-  j.cv.addEventListener('wheel',e=>{e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
+  j.cv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
   return stop;
 }
 

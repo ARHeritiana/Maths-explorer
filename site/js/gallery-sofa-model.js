@@ -50,6 +50,10 @@ function containsStrictly(poly, p, eps) {
   for (let i = 0; i < poly.length; i++) { const a = poly[i], b = poly[(i + 1) % poly.length], d = segmentDistance(p, a, b); if (d <= Math.max(eps, 1e-7)) return false; }
   return true;
 }
+export function nearestOnSegment([px, py], [ax, ay], [bx, by]) {
+  const dx = bx - ax, dy = by - ay, L = dx * dx + dy * dy, t = L ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / L)) : 0;
+  return [ax + t * dx, ay + t * dy];
+}
 export function segmentDistance([px, py], [ax, ay], [bx, by]) {
   const dx = bx - ax, dy = by - ay, L = dx * dx + dy * dy, t = L ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / L)) : 0;
   return Math.hypot(px - ax - t * dx, py - ay - t * dy);
@@ -75,4 +79,68 @@ export function fromStroke(points, n = 90) {
   for (let k = 0, j = 1; k < n; k++) { const d = (total * k) / n; while (lens[j] < d) j++; const f = (d - lens[j - 1]) / (lens[j] - lens[j - 1] || 1); out.push([closed[j - 1][0] + f * (closed[j][0] - closed[j - 1][0]), closed[j - 1][1] + f * (closed[j][1] - closed[j - 1][1])]); }
   const cx = out.reduce((s, p) => s + p[0], 0) / n, cy = out.reduce((s, p) => s + p[1], 0) / n;
   return { poly: out.map(([x, y]) => [x - cx, y - cy]), at: [cx, cy] };
+}
+
+// Centroid of a polygon (the point the sofa turns about when it is handled).
+export function centroid(poly) {
+  let a = 0, cx = 0, cy = 0;
+  for (let i = 0; i < poly.length; i++) { const [x1, y1] = poly[i], [x2, y2] = poly[(i + 1) % poly.length], w = x1 * y2 - x2 * y1; a += w; cx += (x1 + x2) * w; cy += (y1 + y2) * w; }
+  return a ? [cx / (3 * a), cy / (3 * a)] : poly[0];
+}
+// The pose with angle a that keeps the sofa point c (its centroid, in sofa coordinates) where pose puts it.
+export function turnAbout(pose, c, a) {
+  const [wx, wy] = place([c], pose)[0], co = Math.cos(a), si = Math.sin(a);
+  return { x: wx - (co * c[0] - si * c[1]), y: wy - (si * c[0] + co * c[1]), a };
+}
+// How far a placed sofa is into the walls: the sum of the squared distances from its boundary points to the hallway,
+// plus the squared depth of the inner corner inside it. Zero exactly when the sofa fits (up to the sampling).
+export function penetration(poly, pose, step = 0.03) {
+  const placed = place(poly, pose);
+  let f = 0;
+  for (const [x, y] of boundary(placed, step)) {
+    if (inHallway([x, y], 0)) continue;
+    const h = Math.hypot(Math.max(0, x - 1), y < 0 ? -y : Math.max(0, y - 1)), v = Math.hypot(x < 0 ? -x : Math.max(0, x - 1), Math.max(0, y - 1));
+    f += Math.min(h, v) ** 2;
+  }
+  if (contains(placed, [0, 0])) { let bd = Infinity; for (let i = 0; i < placed.length; i++) bd = Math.min(bd, segmentDistance([0, 0], placed[i], placed[(i + 1) % placed.length])); f += bd * bd; }
+  return f;
+}
+// The walls push a sofa out: keep the angle of the pose and look for the nearby shift that brings the penetration to
+// zero (a pattern search with a shrinking step, from the requested position). Returns the pose that fits, or null
+// when no nearby position fits at that angle (the sofa is stuck).
+export function pushOut(poly, pose, { eps = 1e-5, start = 0.04, reach = 0.25 } = {}) {
+  let p = { ...pose }, f = penetration(poly, p);
+  const dirs = Array.from({ length: 8 }, (_, k) => [Math.cos((k * Math.PI) / 4), Math.sin((k * Math.PI) / 4)]);
+  for (let h = start; h > 1e-7 && f > 0; ) {
+    let moved = false;
+    for (const [ux, uy] of dirs) { const q = { ...p, x: p.x + h * ux, y: p.y + h * uy }, g = penetration(poly, q); if (g < f) { p = q; f = g; moved = true; break; } }
+    if (!moved) h /= 2;
+    if (Math.hypot(p.x - pose.x, p.y - pose.y) > reach) return null;
+  }
+  return fits(poly, p, eps) ? p : null;
+}
+// A move that the walls stop: keep the target if it fits; otherwise the guide, or let the walls push the sofa out (it slides along
+// them, and turning in the corner moves it as needed), if that stays close to the target; otherwise keep the largest
+// part of the move that fits.
+// `guide(a)`, when given, is a pose at angle a known to fit (the motion of Hammersley or Gerver): it is used when close.
+export function resolve(poly, pose, target, { eps = 1e-5, reach = 0.25, guide = null } = {}) {
+  if (!fits(poly, pose, eps) || fits(poly, target, eps)) return target;
+  const g = guide?.(target.a);
+  if (g && Math.hypot(g.x - target.x, g.y - target.y) < reach && fits(poly, g, eps)) return g;
+  const pushed = pushOut(poly, target, { eps });
+  if (pushed && Math.hypot(pushed.x - target.x, pushed.y - target.y) < reach) return pushed;
+  let lo = 0, hi = 1;
+  for (let i = 0; i < 12; i++) { const m = (lo + hi) / 2, p = { x: pose.x + (target.x - pose.x) * m, y: pose.y + (target.y - pose.y) * m, a: pose.a + (target.a - pose.a) * m }; if (fits(poly, p, eps)) lo = m; else hi = m; }
+  return { x: pose.x + (target.x - pose.x) * lo, y: pose.y + (target.y - pose.y) * lo, a: pose.a + (target.a - pose.a) * lo };
+}
+
+// Gerver's motion, from the rotation path p(α) of gallery-sofa-gerver.js (one sample every quarter degree, read
+// linearly between samples): slide in, turn (at angle α the sofa point q is at R(−α) q − p(α)), slide out. s ∈ [0, 3].
+export const gerverTurn = (path, a) => (a <= 1e-9 && a >= -Math.PI / 2 - 1e-9 ? gerverPose(path, 1 + -a / (Math.PI / 2)) : null);
+export const hammersleyTurn = (r, a) => (a <= 1e-9 && a >= -Math.PI / 2 - 1e-9 ? hammersleyPose(r, 1 + -a / (Math.PI / 2)) : null);
+export function gerverPose(path, s, run = 1.5) {
+  const at = (alpha) => { const f = Math.max(0, Math.min(path.length - 1, (alpha / (Math.PI / 2)) * (path.length - 1))), i = Math.min(path.length - 2, Math.floor(f)), u = f - i, [, x1, y1] = path[i], [, x2, y2] = path[i + 1]; return [x1 + u * (x2 - x1), y1 + u * (y2 - y1)]; };
+  if (s <= 1) { const [px, py] = at(0); return { x: -px - run * (1 - s), y: -py, a: 0 }; }
+  if (s <= 2) { const al = (s - 1) * (Math.PI / 2), [px, py] = at(al); return { x: -px, y: -py, a: -al }; }
+  const [px, py] = at(Math.PI / 2); return { x: -px, y: -py - run * (s - 2), a: -Math.PI / 2 };
 }

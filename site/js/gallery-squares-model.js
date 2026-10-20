@@ -1,6 +1,7 @@
 // Pure mathematics of the square packing exhibit (no DOM): unit squares given by centre and angle, exact overlap test
 // (separating axes), the smallest axis-parallel square containing them, the records table and the exact packings shown.
-// Checked in tests/gallery-squares.test.mjs.
+// Checked in tests/reading.test.mjs.
+import { PACKINGS } from './gallery-squares-data.js';
 
 export const EPS = 1e-9;   // touching is allowed: overlaps thinner than this are ignored
 
@@ -37,27 +38,13 @@ export function frame(squares) {
   return [x0, y0, Math.max(x1 - x0, y1 - y0)];
 }
 
-// Best known sides s(n), from E. Friedman's survey (Electronic Journal of Combinatorics, dynamic survey DS7) and the
-// papers it cites; `exact` only when a closed form is known. `proved`: the value is known to be the smallest possible. Values not listed here are not shown.
+// Best known sides s(n) for n = 1 to 28 and their packings: gallery-squares-data.js (generated from the squares
+// project, with E. Friedman's credits). `exact` adds the closed form where one is known (checked in the tests);
+// `status` is proved, claimed (announced in 2026, not yet published) or open.
 const R2 = Math.SQRT2;
-export const RECORDS = {
-  1: { side: 1, exact: "1", proved: true },
-  2: { side: 2, exact: "2", proved: true },
-  3: { side: 2, exact: "2", proved: true },
-  4: { side: 2, exact: "2", proved: true },
-  5: { side: 2 + 1 / R2, exact: "2 + 1/√2", proved: true, by: "F. Göbel, 1979" },
-  7: { side: 3, exact: "3", proved: true },
-  8: { side: 3, exact: "3", proved: true },
-  9: { side: 3, exact: "3", proved: true },
-  10: { side: 3 + 1 / R2, exact: "3 + 1/√2", proved: true, by: "W. Stromquist, 2003" },
-  11: { side: 3.8772, proved: false, by: "W. Trump, 1979" },
-  14: { side: 4, exact: "4", proved: true },
-  15: { side: 4, exact: "4", proved: true },
-  16: { side: 4, exact: "4", proved: true },
-  17: { side: 4.6756, proved: false, by: "J. Bidwell, 1998" },
-  18: { side: 3.5 + Math.sqrt(7) / 2, exact: "7/2 + √7/2", proved: false, by: "P. Hämäläinen, 1980" },
-  19: { side: 3 + (4 * R2) / 3, exact: "3 + 4√2/3", proved: false, by: "Wainwright" },
-};
+const EXACT = { 5: "2 + 1/√2", 10: "3 + 1/√2", 18: "7/2 + √7/2", 19: "3 + 4√2/3", 26: "7/2 + 3/√2", 27: "5 + 1/√2" };
+export const MAX_N = 28;
+export const RECORDS = Object.fromEntries(Object.entries(PACKINGS).map(([n, p]) => [n, { side: p.side, exact: EXACT[n] || (Number.isInteger(p.side) ? String(p.side) : null), status: p.status, ref: p.ref, by: p.by }]));
 
 // n squares in rows of k, from the lower left corner.
 export function grid(n, k = Math.ceil(Math.sqrt(n))) {
@@ -73,11 +60,8 @@ export function ten() {
   const s = 3 + 1 / R2;
   return five(1, 0).concat([0.5, 1.5, 2.5].map((y) => ({ x: 0.5, y, a: 0 })), [1.5, 2.5].map((x) => ({ x, y: s - 0.5, a: 0 })));
 }
-// The packings the exhibit can show for n squares: the exact ones above, and grids when s(n) is a whole number.
+// The best known packing of n squares (1 ≤ n ≤ 28), as centres and angles.
 export function bestPacking(n) {
-  if (n === 5) return five();
-  if (n === 10) return ten();
-  const r = RECORDS[n];
-  if (r && Number.isInteger(r.side) && r.side ** 2 >= n) return grid(n, r.side);
-  return null;
+  const p = PACKINGS[n];
+  return p ? p.squares.map(([x, y, a]) => ({ x, y, a })) : null;
 }

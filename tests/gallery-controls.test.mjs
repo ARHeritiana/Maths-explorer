@@ -23,14 +23,15 @@ test('fractal gestures replace view buttons, reset either plane, and stop drifti
     const tick=()=>{const [id,fn]=frames.entries().next().value;frames.delete(id);fn(1000+next*20);};
     const main=root.querySelector('#mb-stage canvas'),julia=root.querySelector('#mb-julia canvas');
     const pixels=c=>createHash('sha256').update(contexts.get(c).pixels).digest('hex');
-    const wheel=(c,deltaY)=>{c.dispatchEvent(new w.WheelEvent('wheel',{clientX:480,clientY:100,deltaY,cancelable:true}));tick();};
+    const wheel=(c,deltaY,ctrlKey=true)=>{c.dispatchEvent(new w.WheelEvent('wheel',{clientX:480,clientY:100,deltaY,ctrlKey,cancelable:true}));tick();};
     const key=(c,key)=>{c.dispatchEvent(new w.KeyboardEvent('keydown',{key,cancelable:true}));tick();};
     const pointer=(c,type,id,x,y,touch=false)=>{const e=new w.MouseEvent(type,{clientX:x,clientY:y,button:0,cancelable:true});Object.defineProperties(e,{pointerId:{value:id},pointerType:{value:touch?'touch':'mouse'}});c.dispatchEvent(e);};
     tick();const original=pixels(main),jOriginal=pixels(julia);
     assert.equal(root.querySelector('#mb-in,#mb-out,#mb-reset'),null);
+    wheel(main,-100,false);assert.equal(pixels(main),original,'a plain wheel scrolls the page, it never zooms');
     wheel(main,-100);assert.notEqual(pixels(main),original);
     key(main,'0');assert.equal(pixels(main),original);
-    wheel(julia,-100);assert.notEqual(pixels(julia),jOriginal,'Julia wheel zoom works without modifier keys');
+    wheel(julia,-100);assert.notEqual(pixels(julia),jOriginal,'Julia zooms with a pinch (Ctrl + wheel)');
     julia.dispatchEvent(new w.MouseEvent('dblclick'));tick();assert.equal(pixels(julia),jOriginal);
     key(julia,'ArrowRight');assert.notEqual(pixels(julia),jOriginal);
     key(julia,'0');assert.equal(pixels(julia),jOriginal);

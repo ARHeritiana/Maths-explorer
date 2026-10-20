@@ -19,5 +19,6 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `check-stmg-twins.py` | kept for an old command; real check is `tests/twin_parity.py` | |
 | `check-syntax.mjs` | syntax of every served script | `npm run check` |
 | `serve.mjs` | local server of `dist/` on port 4173 | `npm start` |
+| `build-gallery-data.py` | Gerver's sofa from Romik's equations (`site/js/gallery-sofa-gerver.js`); best known square packings from a checkout of github.com/jlevy/squares (`site/js/gallery-squares-data.js`); needs numpy, scipy, shapely, pyyaml | by hand |
 
 `build-fourier.py`: six web lessons, four XeLaTeX PDF editions, source bundle and checked build receipt.

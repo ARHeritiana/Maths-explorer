@@ -72,3 +72,21 @@ export const PRESETS = {
   star: { ctrl: Array.from({ length: 10 }, (_, k) => { const a = -Math.PI / 2 + (k * Math.PI) / 5, r = k % 2 ? 1.4 : 3.2; return [5 + r * Math.cos(a), 3.6 + r * Math.sin(a)]; }), corners: true },
   spiral: { ctrl: [[1, 1], [9, 1], [9, 6], [3, 6], [3, 3], [6.5, 3], [6.5, 4.4], [4.4, 4.4], [4.4, 5], [7.6, 5], [7.6, 2], [2, 2], [2, 6.4], [1, 6.4]], corners: true },
 };
+
+// A random closed curve for the 10 × 7 box: m points at increasing angles around the centre, each at a random distance;
+// redrawn until the curve does not cross itself. `rnd` returns numbers in [0, 1) (injected for the tests).
+export function randomCurve(rnd = Math.random, { corners = false } = {}) {
+  for (let attempt = 0; attempt < 50; attempt++) {
+    const m = 6 + Math.floor(rnd() * 9), start = rnd() * 2 * Math.PI, wild = rnd() < 0.5, ctrl = [];
+    for (let k = 0; k < m; k++) { const a = start + ((k + 0.25 + 0.5 * rnd()) * 2 * Math.PI) / m, rr = wild ? 0.25 + 0.75 * rnd() : 0.6 + 0.4 * rnd(); ctrl.push([5 + 4.4 * rr * Math.cos(a), 3.5 + 3 * rr * Math.sin(a)]); }
+    if (!selfCrossing(curve(ctrl, { corners, n: corners ? 40 : 24 }))) return ctrl;
+  }
+  return PRESETS.blob.ctrl.map((p) => [...p]);
+}
+// Index after which a point clicked near the curve should be inserted (the arc of control points i → i + 1 it is on).
+export function insertionIndex(ctrl, p, { corners = false, n = 24 } = {}) {
+  const pts = curve(ctrl, { corners, n: corners ? 40 : n }), per = corners ? 40 : n;
+  let best = 0, bd = Infinity;
+  pts.forEach((q, k) => { const d = Math.hypot(q[0] - p[0], q[1] - p[1]); if (d < bd) { bd = d; best = k; } });
+  return { after: Math.floor(best / per), distance: bd };
+}

@@ -48,7 +48,7 @@ export function activity(root,{t,q}){
   on(stage,'pointerup',e=>{if(!drag||e.pointerId!==drag.pointer)return;const {id,moved}=drag,destination=moved?destinationAt(e.clientX,e.clientY):null;clearDrag();suppressClick=true;if(moved){if(destination!==null){selected=id;give(destination);}else{selected=null;paint();}}else{selected=selected===id?null:id;paint();}e.preventDefault();});
   on(stage,'pointercancel',cancel);on(stage,'lostpointercapture',()=>{if(drag)cancel();});
   on(stage,'click',e=>{const cookie=e.target.closest?.('[data-cookie]');if(cookie){if(suppressClick&&e.detail!==0){suppressClick=false;return;}const id=Number(cookie.dataset.cookie);selected=selected===id?null:id;paint();return;}suppressClick=false;const child=e.target.closest?.('[data-child]');if(child)give(Number(child.dataset.child));else if(e.target.closest?.('.ck-return'))give(-1);});
-  on(stage,'keydown',e=>{if(e.key==='Escape'){e.preventDefault();cancel();}});
+  on(stage,'keydown',e=>{if(e.key==='Escape'){e.preventDefault();cancel();}else if((e.key==='Delete'||e.key==='Backspace')&&selected!==null){e.preventDefault();give(-1);}});
   on(note,'click',()=>{const parts=stage.dataset.parts,key=parts;notice=found.has(key)?t('déjà noté','already noted'):t('partage noté','sharing noted');found.add(key);paint();});
   on(root.querySelector('#ck-reset'),'click',()=>{clearDrag();owners=Array(n).fill(-1);found=new Set();selected=null;notice='';paint();});
   const off=onHintAction('cookies',{code:()=>{level=Math.max(level,1);paint();},places:()=>{level=2;paint();}});

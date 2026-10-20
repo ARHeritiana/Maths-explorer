@@ -57,13 +57,20 @@ test("Game of Life: periods, displacements and lifetimes stated in the exhibit",
 });
 
 test("square packing: the packings shown are valid and reach the stated sides; overlap test against sampling", () => {
-  for (const n of [1, 2, 3, 4, 5, 7, 8, 9, 10, 14, 15, 16]) {
+  assert.equal(S.MAX_N, 28);
+  for (let n = 1; n <= S.MAX_N; n++) {
     const p = S.bestPacking(n); assert.equal(p.length, n);
     assert.deepEqual(S.overlaps(p), [], `n = ${n}`);
     assert.ok(Math.abs(S.frame(p)[2] - S.RECORDS[n].side) < 1e-12, `n = ${n}`);
   }
   assert.ok(Math.abs(S.RECORDS[5].side - (2 + Math.SQRT2 / 2)) < 1e-12 && Math.abs(S.RECORDS[10].side - 3.7071067811865475) < 1e-12);
   assert.ok(Math.abs(S.RECORDS[18].side - 4.8229) < 1e-4 && Math.abs(S.RECORDS[19].side - 4.8856) < 1e-4);
+  // the closed forms shown agree with the recorded sides; the exact constructions of 5 and 10 reach the same sides
+  const forms = { 5: 2 + 1 / Math.SQRT2, 10: 3 + 1 / Math.SQRT2, 18: 3.5 + Math.sqrt(7) / 2, 19: 3 + (4 * Math.SQRT2) / 3, 26: 3.5 + 3 / Math.SQRT2, 27: 5 + 1 / Math.SQRT2 };
+  for (const [n, v] of Object.entries(forms)) assert.ok(Math.abs(S.RECORDS[n].side - v) < 1e-9, n);
+  assert.ok(Math.abs(S.frame(S.five())[2] - forms[5]) < 1e-12 && Math.abs(S.frame(S.ten())[2] - forms[10]) < 1e-12 && !S.overlaps(S.ten()).length);
+  for (const n of [5, 6, 10, 13, 22]) assert.equal(S.RECORDS[n].status, "proved", n);
+  for (const n of [17, 18, 19]) assert.equal(S.RECORDS[n].status, "open", n);
   // every recorded side is at least the area bound √n
   for (const [n, r] of Object.entries(S.RECORDS)) assert.ok(r.side >= Math.sqrt(n) - 1e-12, n);
   // independent check of the separating axis test: a point inside both squares exists exactly when they overlap

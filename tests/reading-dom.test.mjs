@@ -27,9 +27,9 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
       root.querySelector('#lf-play').click();tick(3);root.querySelector('#lf-play').click();
     }
     if(id==='square-packing'){
-      assert.equal(root.querySelectorAll('#sq-n option').length,18);
+      assert.equal(root.querySelectorAll('#sq-n option').length,27);
       root.querySelector('#sq-best').click();tick();assert.match(read(root),lang==='fr'?/2,707.*Aucun chevauchement/:/2\.707.*No overlaps/);
-      const sel=root.querySelector('#sq-n');sel.value='11';sel.dispatchEvent(new w.Event('change'));tick();assert.equal(root.querySelector('#sq-best').disabled,true);assert.match(read(root),/3[.,]8772/);
+      const sel=root.querySelector('#sq-n');sel.value='11';sel.dispatchEvent(new w.Event('change'));tick();root.querySelector('#sq-best').click();tick();assert.match(read(root),lang==='fr'?/3,8771.*Trump.*Aucun chevauchement : tu atteins/:/3\.8771.*Trump.*No overlaps: you reach/);
       cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:']',bubbles:true}));tick();assert.match(read(root),/1[.,]0°/);
     }
     assert.ok(!/NaN|undefined|Infinity/.test(root.textContent),`${id} content is finite`);stop();assert.equal(frames.size,0,`${id}: unmount cancels frames`);root.remove();
@@ -41,18 +41,26 @@ test('Game of Life, square packing, moving sofa, inscribed and opaque squares mo
       assert.match(read(root),/2[.,]207/);root.querySelector('#so-play').click();for(let i=0;i<200;i++){now+=60;tick();}assert.match(read(root),lang==='fr'?/passé le coin/:/round the corner/);
       const k=root.querySelector('#so-kind');k.value='rect';k.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/1[.,]800/);
       cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:']',bubbles:true}));tick();
+      k.value='gerver';k.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/2[.,]2195/);root.querySelector('#so-play').click();for(let i=0;i<200;i++){now+=60;tick();}assert.match(read(root),/90°/);
       k.value='own';k.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',100,120);for(let a=0;a<=40;a++)pointer(cv,'pointermove',100+30*Math.cos(a*Math.PI/20),120+20*Math.sin(a*Math.PI/20));pointer(cv,'pointerup',130,120);tick();assert.match(read(root),/0[.,]6/);
     }
     if(id==='inscribed-square'){
       await new Promise(r=>setTimeout(r,80));tick();assert.match(read(root),/1/);
       const sel=root.querySelector('#is-preset');sel.value='acute';sel.dispatchEvent(new w.Event('change'));await new Promise(r=>setTimeout(r,80));tick();assert.match(read(root),/^3 /);
       root.querySelector('#is-next').click();tick();
+      root.querySelector('#is-random').click();await new Promise(r=>setTimeout(r,120));tick();assert.match(read(root),/\d/);
+      const before=root.querySelector('#is-point').max;pointer(cv,'pointerdown',20+60*5,10+60*3.5);pointer(cv,'pointerup',20+60*5,10+60*3.5);
+      cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Delete',bubbles:true}));tick();assert.equal(Number(root.querySelector('#is-point').max),Number(before)-1,'Delete removes the selected point');
       sel.value='blob';sel.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',20+60*2,10+60*2);pointer(cv,'pointermove',20+60*8,10+60*6.5);pointer(cv,'pointerup',20+60*8,10+60*6.5);tick();
       assert.match(read(root),lang==='fr'?/se croise/:/crosses itself/);
     }
     if(id==='opaque-square'){
       assert.match(read(root),lang==='fr'?/Opaque/:/Opaque/);root.querySelector('#op-delete').click();tick();assert.match(read(root),lang==='fr'?/Pas opaque/:/Not opaque/);
-      root.querySelector('#op-leak').click();tick();const sel=root.querySelector('#op-preset');sel.value='best';sel.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/2[.,]639/);
+      root.querySelector('#op-leak').click();tick();
+      // touch a segment (it gets the keyboard), then the Delete key removes it
+      const len=()=>Number(read(root).match(/(\d[.,]\d{3})/)[1].replace(',','.'));const l0=len();pointer(cv,'pointerdown',195+125,345);pointer(cv,'pointerup',195+125,345);
+      assert.equal(w.document.activeElement,cv,'a press gives the figure the keyboard');cv.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Delete',bubbles:true}));tick();assert.ok(Math.abs(len()-(l0-1))<1e-9,'Delete removes the touched segment');
+      const sel=root.querySelector('#op-preset');sel.value='best';sel.dispatchEvent(new w.Event('change'));tick();assert.match(read(root),/2[.,]639/);
       sel.value='empty';sel.dispatchEvent(new w.Event('change'));pointer(cv,'pointerdown',195,345);pointer(cv,'pointermove',445,95);pointer(cv,'pointerup',445,95);tick();assert.match(read(root),/1[.,]414/);
       root.querySelector('#op-sweep').click();tick(5);
     }
