@@ -9,6 +9,9 @@ import {spaceKnot} from './gallery-knot-model.js';
 import {makeFamilyPatch} from './gallery-hat-model.js';
 import {presetSet,step,coords} from './gallery-life-model.js';
 import {ten,vertices} from './gallery-squares-model.js';
+import {hammersley,hammersleyPose,HAMMERSLEY_R,place} from './gallery-sofa-model.js';
+import {curve,PRESETS as CURVES,inscribed} from './gallery-inscribed-model.js';
+import {BARRIERS,lineAt} from './gallery-opaque-model.js';
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
@@ -193,7 +196,36 @@ function squaresArt(cv, opts) {
       g.globalAlpha = q.a ? 0.45 + 0.35 * Math.sin(t * 2) : 0.3; g.fillStyle = C.c[i % 8]; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.ink; g.lineWidth = 1.2; g.stroke(); });
   }, { reduced: opts.reduced, still: 0.8 });
 }
+// The Hammersley sofa going round the corner, back and forth.
+function sofaArt(cv, opts) {
+  const poly = hammersley(HAMMERSLEY_R, 24);
+  return runner(cv, (g, W, H, t, C) => {
+    const u = Math.min(W / 6.2, H / 4.6), X = (x) => W * 0.64 + u * x, Y = (y) => H * 0.18 + u * (1 - y), s = 1.5 + 1.5 * Math.sin(t * 0.6);
+    g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(0, Y(1)); g.lineTo(X(1), Y(1)); g.lineTo(X(1), H); g.moveTo(0, Y(0)); g.lineTo(X(0), Y(0)); g.lineTo(X(0), H); g.stroke();
+    const pts = place(poly, hammersleyPose(HAMMERSLEY_R, s, 1.5)); g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(X(x), Y(y)) : g.moveTo(X(x), Y(y))); g.closePath();
+    g.globalAlpha = 0.4; g.fillStyle = C.accent; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.accent; g.stroke();
+  }, { reduced: opts.reduced, still: 2.6 });
+}
+// A closed curve and the square found on it (computed once).
+function inscribedArt(cv, opts) {
+  const pts = curve(CURVES.blob.ctrl), sq = inscribed(pts, { samples: 90 })[0];
+  return runner(cv, (g, W, H, t, C) => {
+    const u = Math.min(W / 10.4, H / 7.4), X = ([x, y]) => [(W - 10 * u) / 2 + u * x, (H - 7 * u) / 2 + u * y];
+    g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(...X(p)) : g.moveTo(...X(p))); g.closePath(); g.stroke();
+    if (sq) { g.strokeStyle = C.accent; g.lineWidth = 2.5; g.globalAlpha = 0.55 + 0.45 * Math.sin(t * 2); g.beginPath(); sq.corners.forEach((p, i) => i ? g.lineTo(...X(p)) : g.moveTo(...X(p))); g.closePath(); g.stroke(); g.globalAlpha = 1; sq.corners.forEach((p) => { g.fillStyle = C.accent; g.beginPath(); g.arc(...X(p), 4, 0, 2 * Math.PI); g.fill(); }); }
+  }, { reduced: opts.reduced, still: 0.8 });
+}
+// The shortest known barrier of the square in a turning beam of light.
+function opaqueArt(cv, opts) {
+  const segs = BARRIERS.best.segs;
+  return runner(cv, (g, W, H, t, C) => {
+    const u = Math.min(W, H) * 0.55, X = ([x, y]) => [W / 2 + u * (x - 0.5), H / 2 - u * (y - 0.5)], th = (t * 0.3) % Math.PI, nx = -Math.sin(th), ny = Math.cos(th), cs = [[0, 0], [1, 0], [1, 1], [0, 1]].map(([x, y]) => x * nx + y * ny), lo = Math.min(...cs), hi = Math.max(...cs);
+    for (let k = 0; k <= 24; k++) { const c = lo + (hi - lo) * (k + 0.5) / 25, [a, b] = lineAt(th, c, 2); g.strokeStyle = C.muted; g.globalAlpha = 0.25; g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); }
+    g.globalAlpha = 1; g.strokeStyle = C.line; g.setLineDash([4, 4]); g.strokeRect(...X([0, 1]), u, u); g.setLineDash([]);
+    g.strokeStyle = C.accent; g.lineWidth = 4; g.lineCap = 'round'; segs.forEach(([a, b]) => { g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); });
+  }, { reduced: opts.reduced, still: 1 });
+}
 export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
-  life: lifeArt, 'square-packing': squaresArt,
+  life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt,
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

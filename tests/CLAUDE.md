@@ -47,7 +47,8 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `interaction-surfaces.test.mjs` | formula-only arithmetic, direct cookie transfers and identity-independent counts, mobile text scroll policy, continuous sampling clock and motion |
 | `direct-interactions.test.mjs` | analytic fly motion versus independent collision stepping (including very fast flies), custom tuples, spatial crossing-cue geometry, preview-style front/under strand rendering, direct jug actions and scene playback/scrubbing, callback motion preferences, animated peg frames, train-face contacts, hidden fly totals, ordered nail crossings and reverse-stroke cancellation |
 | `reading.test.mjs` | "Lire": texts bilingual without dashes, every link resolves and is shown both ways; Game of Life periods and lifetimes, square packings and overlap test, gauss-sum formula, the Hanoi legend numbers, by independent methods |
-| `reading-dom.test.mjs` | the two new curiosities and the gauss-sum activity under jsdom: controls, keyboard, finite readouts, frames stopped |
+| `reading-dom.test.mjs` | the five new curiosities (life, square packing, sofa, inscribed square, opaque square) and the gauss-sum activity under jsdom: controls, drawing, keyboard, finite readouts, frames stopped |
+| `gallery-puzzles.test.mjs` | moving sofa (Hammersley area, motion fits, bigger copy fails), inscribed squares (triangles 3 and 1 with side ah/(a + h), ellipse, results are squares on the curve), opaque square (preset lengths, gaps against a line-by-line test, Cauchy means) |
 | `gallery-spatial.test.mjs` | all 44 curve projections, continuous deformations, 14 film models and full-window hat coverage |
 
 

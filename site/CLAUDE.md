@@ -56,7 +56,10 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
 | `js/welcome.js` | home page and gallery index (the "Curiosités" tab of "Lire") |
-| `js/gallery-curiosities.js` | catalogue lines (and `links`) of the Game of Life and square packing curiosities |
+| `js/gallery-curiosities.js` | catalogue lines (and `links`) of the Game of Life, square packing, moving sofa, inscribed square and opaque square curiosities |
+| `js/gallery-sofa-model.js`, `js/gallery-sofa.js` | moving sofa: L-shaped hallway, pose test, Hammersley's family and motion, freehand sofas; push against the walls |
+| `js/gallery-inscribed-model.js`, `js/gallery-inscribed.js` | inscribed square: closed spline through control points, self-crossing test, numerical search for inscribed squares and rectangles; draw or reshape the curve |
+| `js/gallery-opaque-model.js`, `js/gallery-opaque.js` | opaque square: gaps of a barrier in each direction, opacity check, preset barriers; draw segments, turn the light |
 | `js/gallery-life-model.js`, `js/gallery-life.js` | Game of Life: B3/S23 on the unbounded plane, presets (oscillators, ships, Gosper gun, long evolutions); drawing, play, step |
 | `js/gallery-squares-model.js`, `js/gallery-squares.js` | unit squares in a square: separating-axis overlap test, frame, records table, exact packings (n = 5, 10, grids); drag and turn |
 
