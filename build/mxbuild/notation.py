@@ -15,6 +15,7 @@ from . import ROOT, twin
 
 CORE = ROOT / 'content/tex/core'
 PLAYER = ROOT / 'site/slides/player.html'
+CHAPTER = ROOT / 'site/js/chapter-sequence.js'   # chapter pages load MathJax with the same table
 SEP = {'fr': ';', 'en': ','}
 
 
@@ -201,8 +202,8 @@ def rewrite(text, lang, decimals=None):
     return ''.join(out) + prose(pos, len(text))
 
 
-# ---- MathJax macro table for the slide player ---------------------------------------------------------------------
-MJ_BEGIN, MJ_END = 'macros:{/*mx-math*/', '/*end mx-math*/}'
+# ---- MathJax macro table for the slide player and the chapter pages-----------------------------------------------------------------
+MJ_BEGIN, MJ_END = '/*mx-math*/', '/*end mx-math*/'
 
 
 def mathjax():
@@ -221,11 +222,16 @@ def mathjax():
 BRACKETS = {'llbracket': r'\mathopen{[\mkern-3mu[}', 'rrbracket': r'\mathclose{]\mkern-3mu]}'}
 
 
-def player_text():
-    html = PLAYER.read_text()
+def table_text(path):
+    """The file at path with the generated table written between its /*mx-math*/ markers."""
+    html = path.read_text()
     a, b = html.index(MJ_BEGIN) + len(MJ_BEGIN), html.index(MJ_END)
     js = json.dumps({**mathjax(), **BRACKETS}, ensure_ascii=False, separators=(',', ':'))[1:-1]
     return html[:a] + js + html[b:]
+
+
+def player_text():
+    return table_text(PLAYER)
 
 
 HEADER = re.compile(r'\A%[^\n]*GENERATED[^\n]*\n')
@@ -268,8 +274,10 @@ def main(argv):
         problems = migrate(units, write='--write' in argv)
         print('\n'.join(problems)); return 1 if problems else 0
     if '--check' in argv:
-        ok = PLAYER.read_text() == player_text()
-        print('notation: MathJax table up to date' if ok else 'notation: site/slides/player.html MathJax table is stale (run `python -m mxbuild notation`)')
-        return 0 if ok else 1
-    PLAYER.write_text(player_text()); print('notation: MathJax table written to site/slides/player.html')
+        stale = [p.relative_to(ROOT) for p in (PLAYER, CHAPTER) if p.read_text() != table_text(p)]
+        print('notation: MathJax table up to date' if not stale else
+              f'notation: MathJax table is stale in {", ".join(map(str, stale))} (run `python -m mxbuild notation`)')
+        return 1 if stale else 0
+    for p in (PLAYER, CHAPTER):
+        p.write_text(table_text(p)); print(f'notation: MathJax table written to {p.relative_to(ROOT)}')
     return 0
