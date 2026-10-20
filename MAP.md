@@ -62,7 +62,7 @@ really need them.
 | the build or a check | `build/mxbuild/CLAUDE.md` | |
 | a test | `tests/CLAUDE.md` | |
 | programme references, curriculum scope | `PROJECT_BRIEF.md` section 3, `docs/CURRICULUM.md` | |
-| review status, audits, verification scripts | not in this repository: the owner's private area (ledger, audits, verification; kept outside this public repository, git-ignored if copied here) | hand new audit notes and scripts to the owner as files |
+| review status, audits, verification scripts | not in this repository: the private repository ARHeritiana/Maths-explorer-backup (ledger, audits, verification, course quality; the local folder private stays git-ignored here) | commit new audit notes and verification scripts there, on `main` |
 
 ## 3. Site map (hash routes)
 

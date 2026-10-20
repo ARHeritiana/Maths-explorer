@@ -15,7 +15,7 @@ Read, in this order:
 3. `docs/HANDOFF.md` and `docs/ARCHITECTURE.md`: the TeX and build pipeline (status of the PDF migration, commands).
 4. `docs/DESIGN_V3.md`: the visual design and its reasons.
 5. `.claude/skills/slides-interactive-math/SKILL.md`, then `.claude/skills/slides-interactive-3d-math/SKILL.md`, before touching any slide.
-6. Review status and audit notes live in the owner's private area, outside this public repository (`private/` is git-ignored).
+6. Review status and audit notes live in the private repository ARHeritiana/Maths-explorer-backup, outside this public repository (`private/` is git-ignored). Agents commit new audit notes and verification scripts there.
 
 ## Run locally
 
@@ -55,7 +55,7 @@ Edit `site/`, never the copies in `dist/`: `python -m mxbuild site` (or `make si
 
 ## Rules in one paragraph
 
-No identifying information about the author or any employer anywhere published (HTML, PDF text and metadata, file names). No links to personal storage. No visible AI notice or review label. No tracking. Draft, audit and review status stay in the owner's private area, outside this public repository. A resource is publishable after two independent AI audits and code verification of every computed result. Full rules: `PROJECT_BRIEF.md`, section 2.
+No identifying information about the author or any employer anywhere published (HTML, PDF text and metadata, file names). No links to personal storage. No visible AI notice or review label. No tracking. Draft, audit and review status stay in the private repository ARHeritiana/Maths-explorer-backup, outside this public repository. A resource is publishable after two independent AI audits and code verification of every computed result. Full rules: `PROJECT_BRIEF.md`, section 2.
 
 ## Licences
 

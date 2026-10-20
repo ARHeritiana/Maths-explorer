@@ -111,7 +111,7 @@ The owner discarded every earlier design instruction on 13 October 2026 and dele
 
 Update, 13 October 2026: the web source is `site/` and `dist/` is assembled from it (`make site`); the TeX system is in `content/tex/` and the catalogue source is `content/data/manifest.json`. See `docs/ARCHITECTURE.md`. Where the bullets below name `dist/js` or `content/latex`, read `site/js` and `content/tex`.
 
-- Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is the private GitHub repository; the hidden area is `private/` (see its README; ledger schema there); optional static hosting on the ChatGPT sites platform (see `.openai/hosting.json`). Not launched until the owner judges it polished.
+- Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is this GitHub repository; review records (ledger, audits, verification) live in the private repository ARHeritiana/Maths-explorer-backup (see its README; ledger schema there), and `private/` is git-ignored here; optional static hosting on the ChatGPT sites platform (see `.openai/hosting.json`). Not launched until the owner judges it polished.
 - Keep from the current repo: the `[French, English]` content model, route scheme, tests and CI, the 98 LaTeX workshop sources, curriculum research notes (re-verify).
 - Rebuild: the interactive layer around the slide engine; the TeX-less PDFs.
 - Before launch, size and load time need attention (the current `dist/` is about 156 MB, mostly PDFs).

@@ -15,8 +15,8 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Site and content | `site/` is the hand-written web source and `dist/` the committed, assembled folder (`make site`). The catalogue comes from `content/data/manifest.json` (`make catalog`). Bilingual PDFs are compiled from the shared TeX system in `content/tex/` (seven courses migrated, 58 slide decks in `dist/slides/`); details and next steps in `docs/HANDOFF.md`. |
 | Tests | `npm test` (node tests), `npm run check` (syntax of every served script, `scripts/check-syntax.mjs`), `make check` (pipeline; the notation test needs TeX Live) and the browser suite (`npm run test:browser`) are the pre-push checks. Current results are in the latest entry of `docs/LOG.md`. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script; `.claude/skills/maths-explorer-tasks/` (step-by-step recipes for recurring tasks). Navigation: `MAP.md`. |
-| Private area | Since 20 October 2026 the repository is public and `private/` (ledger, audits, verification, course quality) is no longer in it: the owner keeps it (bundle and zip handed over that day), and `private/` is git-ignored. Agents hand new audit notes and verification scripts to the owner as files. Human review remains false for every resource. |
-| Publication gate | No chapter has been through the two-agent audit recorded in `private/ledger.json` yet. The TeX migration was verified by the pipeline checks, not by the gate. Maths expertes was published on 17 October 2026 on the owner's explicit instruction before its two audits (ledger record `expertes-course`). |
+| Private area | Since 20 October 2026 the repository is public and `private/` (ledger, audits, verification, course quality) is no longer in it: it lives in the private repository ARHeritiana/Maths-explorer-backup (imported with its history the same day; paths below are relative to that repository), and `private/` is git-ignored here. Agents commit new audit notes and verification scripts there, on `main`. Human review remains false for every resource. |
+| Publication gate | No chapter has been through the two-agent audit recorded in `ledger.json` of `ARHeritiana/Maths-explorer-backup` yet. The TeX migration was verified by the pipeline checks, not by the gate. Maths expertes was published on 17 October 2026 on the owner's explicit instruction before its two audits (ledger record `expertes-course`). |
 | Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`; when the pip Playwright expects another browser build, set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (adjust to the folder present). |
 
 ## Conventions added on 15 October 2026
@@ -63,7 +63,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 
 1. Anonymity: no name of the owner, employer, school or students in HTML, PDFs (text and XMP/metadata), `\author`, file names, alt text. Do not add any such detail to commit messages or docs either.
 2. No links to Google Drive or any personal storage. Host copies inside the site.
-3. No visible AI notice or review status anywhere published. Status lives only in `private/ledger.json`.
+3. No visible AI notice or review status anywhere published. Status lives only in `ledger.json` of `ARHeritiana/Maths-explorer-backup`.
 4. Every PDF has its TeX source in `content/tex/` (see `docs/TEX_STYLE_GUIDE.md`). English units are generated from translation tables, never edited directly.
 5. No accounts, no analytics.
 6. Publish only after two independent AI audits (different agents) with no open finding, plus code verification of every computed result. Record `human_reviewed` in the ledger.
@@ -76,13 +76,13 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 
 ### 1. Clean-up of v1 (small, do first)
 - [x] Remove the AI notice from the footer (done in the site code, 13 October 2026). Search again for other notices (`content-origin`, "IA", "AI-generated") in `docs/` and the PDFs.
-- [ ] Scan all 672 PDFs and web editions for identifying metadata (`pdfinfo`, `exiftool` or `qpdf`, plus XMP) and for names in text. Report findings in `private/audits/`; strip metadata only if the file is regenerated or with a safe tool, then re-run `npm test`.
+- [ ] Scan all 672 PDFs and web editions for identifying metadata (`pdfinfo`, `exiftool` or `qpdf`, plus XMP) and for names in text. Report findings in `audits/` of `ARHeritiana/Maths-explorer-backup`; strip metadata only if the file is regenerated or with a safe tool, then re-run `npm test`.
 - [ ] Allow French-only and English-only resources in the library model (currently every resource is a FR/EN pair, `[French, English]` fields). Keep tests and CI green.
 
 ### 2. Shared slide engine and pilot chapter
 - [ ] Build the shared engine from `.claude/skills/slides-interactive-math/references/engine-patterns.md` and the reference slide `assets/example_trinome.html` (the owner also supplied a determinant slide; ask for it if needed). Put it where `dist/` can load it; keep each slide a single self-contained HTML file at publish time if the skill requires it; keep the skills in step with the engine.
 - [ ] Pilot chapter: quadratic trinôme, Première spécialité (brief section 11). Sequence: automatismes, activité, notes de cours, exercices et problèmes with corrections, slide. Programme reference: BO n. 14 du 2 avril 2026, NOR MENE2602917A [VERIFY details against the text before citing].
-- [ ] Run the pipeline in brief section 8: LaTeX compile, SymPy verification script in `private/verification/`, browser test of the slide (drag, sliders, steps, fullscreen, themes, 390 px), audit 1, audit 2 by a different agent, ledger record.
+- [ ] Run the pipeline in brief section 8: LaTeX compile, SymPy verification script in `verification/` of `ARHeritiana/Maths-explorer-backup`, browser test of the slide (drag, sliders, steps, fullscreen, themes, 390 px), audit 1, audit 2 by a different agent, ledger record.
 - [ ] Use the result to correct the chapter template (brief section 4) and ask the owner to review.
 
 ### 3. Apply the v2 design to the site
@@ -167,7 +167,7 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - [x] Two guided Fourier experiments (continuous signals and sampled contours), six French university lessons and eighteen corrected exercises.
 - [x] Four XeLaTeX PDF editions, standalone LaTeX sources, web reading editions and dependency-driven asset hashes.
 - [x] Reciprocal links between gallery, laboratory and university, derived from the shared catalogue; exact sample reconstruction and RMS labels corrected in the gallery.
-- [x] Two independent audits and numerical verification. Audit records and browser-verification limits are in `private/audits/fourier/`.
+- [x] Two independent audits and numerical verification. Audit records and browser-verification limits are in `audits/fourier/` of `ARHeritiana/Maths-explorer-backup`.
 
 - Integration validation: merged Phase 4 without dropping its five experiments or shared camera; `make check FAST=1`, syntax checks, Fourier DOM and symbolic verification pass. Browser preview is blocked by the managed proc mount.
 
@@ -175,7 +175,7 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 
 - [x] Nine menu choices: random, checkerboard, K4, odd/even wheels, even/odd sectors, disconnected-country K5 and blank custom map.
 - [x] Direct straight-border splits (connected countries, maximum 30), undo, keyboard construction, painting and exact colouring checks.
-- [x] Independent mathematics and UI audits, geometry and bilingual DOM tests; records in `private/audits/four-colour-editor/`. Browser visual verification is unavailable because the managed preview cannot mount proc.
+- [x] Independent mathematics and UI audits, geometry and bilingual DOM tests; records in `audits/four-colour-editor/` of `ARHeritiana/Maths-explorer-backup`. Browser visual verification is unavailable because the managed preview cannot mount proc.
 
 ## Direct canvas interactions, 19 October 2026
 
