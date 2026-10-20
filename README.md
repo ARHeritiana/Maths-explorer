@@ -33,7 +33,7 @@ Hash routes, relative paths (the site also works under a sub-path such as `/Math
 
 ## Publishing (GitHub Pages)
 
-The active deployment uses native ChatGPT Sites with its existing access policy. GitHub Pages is an optional public host. Configure repository Settings, Pages, Source: "GitHub Actions" before running `.github/workflows/pages.yml` manually. To enable automatic publication on pushes to `main`, explicitly set the repository variable `PUBLISH_GITHUB_PAGES=true`. Without that opt-in, pushes skip the Pages job instead of failing against an unconfigured public host. Run `make site` before publishing so `dist/` is current. Enabling Pages can make the published files publicly accessible; the private repository itself must remain private.
+GitHub Pages publishes `dist/` on every push to `main` (`.github/workflows/pages.yml`), at `https://<owner>.github.io/<repository>/`. One-time setup: repository Settings, Pages, Source: "GitHub Actions". Pages on a private repository needs a paid GitHub plan; on a free plan the repository must be public. Run `make site` before pushing so `dist/` is current. Everything in `dist/` becomes publicly accessible; the native ChatGPT Sites deployment (`.openai/`) can stay as a second host.
 
 ## Layout
 

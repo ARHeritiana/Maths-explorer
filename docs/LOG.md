@@ -160,3 +160,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 - 2026-10-19: Use the card preview’s solid strand and depth-ordered gaps in the rotatable knot explorer; share the renderer, preserving the catalogue, camera and projection colouring.
 
 - 2026-10-19: Formula-only Fermat/Euler experiments, direct identical-cookie sharing among distinct children, document-flow mission text, and speed-adjustable continuous animated Buffon/Bertrand trials. Independent arithmetic and interaction audits; browser preview remains blocked by the managed proc mount.
+
+- 2026-10-20: Navigation in two sections (Apprendre: cours, diaporamas, parcours; Explorer: laboratoire, galerie, défis) with a row of page tabs; the lessons page opens on a neutral curriculum menu instead of a pre-selected French course; slides grouped per course in folded lists with aligned download buttons; GitHub Pages workflow now deploys dist/ on every push to main. Checks: npm run check, npm test (224 pass), test:dom pass; browser.py fails at the squares challenge (line 313) on the previous commit too.

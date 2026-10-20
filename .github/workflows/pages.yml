@@ -1,6 +1,6 @@
-# Optional public host. Native Sites is the active deployment.
-# One-time setup: repository Settings > Pages > Build and deployment > Source: "GitHub Actions".
-# Set the repository variable PUBLISH_GITHUB_PAGES=true to opt into publishing on push.
+# Publishes dist/ to GitHub Pages on every push to main (https://<owner>.github.io/<repository>/).
+# One-time setup by the owner: repository Settings > Pages > Build and deployment > Source: "GitHub Actions".
+# All site URLs are relative, so the site works under the /<repository>/ sub-path.
 name: Deploy to GitHub Pages
 on:
   push:
@@ -15,7 +15,6 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || vars.PUBLISH_GITHUB_PAGES == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -28,4 +27,3 @@ jobs:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@v4
-

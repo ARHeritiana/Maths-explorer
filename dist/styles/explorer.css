@@ -38,13 +38,16 @@
   --display: "STIX Two Text", "Times New Roman", serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --math: "STIX Two Text", "Times New Roman", serif;
-  --r: 12px; --r-sm: 8px; --header: 56px; --t: 120ms ease;
+  --r: 12px; --r-sm: 8px; --header: 56px; --chrome: var(--header); --t: 120ms ease;
   font-size: 100%;
 }
 
+/* --chrome: height of everything sticky at the top (header, plus the section tabs when a page has them). */
+:root:has(.subnav) { --chrome: calc(var(--header) + 47px); }
+
 /* -------------------------------------------------------------------- base */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-padding-top: calc(var(--header) + 16px); -webkit-text-size-adjust: 100%; }
+html { scroll-padding-top: calc(var(--chrome) + 16px); -webkit-text-size-adjust: 100%; }
 body { margin: 0; min-height: 100dvh; background: var(--bg); color: var(--ink); font: 1.125rem/1.6 var(--body); font-synthesis: none; overflow-wrap: break-word; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font: inherit; color: inherit; }
@@ -93,25 +96,35 @@ i { font-family: var(--math); }
 .bm-dot { fill: var(--accent-ink); }
 .mainnav { display: flex; align-items: stretch; gap: 4px; height: 100%; margin-right: auto; }
 .mainnav a { position: relative; display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--muted); font-weight: 700; font-size: 1rem; transition: color var(--t); }
-.mainnav a .icon { display: none; }
+.mainnav a .icon { width: 20px; height: 20px; }
 .mainnav a:hover { color: var(--ink); }
 .mainnav a[aria-current] { color: var(--ink); }
 .mainnav a[aria-current]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 3px; background: var(--accent); border-radius: 3px 3px 0 0; }
 .tools { display: flex; align-items: center; gap: 4px; }
+/* Tabs of the current section, one row under the header (sticky with it). */
+.subnav { position: sticky; top: var(--header); z-index: 49; background: var(--surface); border-bottom: 1px solid var(--line); }
+.subnav-inner { display: flex; gap: 4px; max-width: 1280px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); overflow-x: auto; scrollbar-width: none; }
+.subnav-inner::-webkit-scrollbar { display: none; }
+.subnav a { position: relative; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 14px; color: var(--muted); font-weight: 700; font-size: 0.95rem; white-space: nowrap; transition: color var(--t); }
+.subnav a:hover { color: var(--ink); }
+.subnav a[aria-current] { color: var(--accent); }
+.subnav a[aria-current]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: -1px; height: 3px; background: var(--accent); border-radius: 3px 3px 0 0; }
 .language { display: flex; border: 1px solid var(--line-strong); border-radius: var(--r-sm); overflow: hidden; }
 .language button { min-width: 44px; min-height: 36px; padding: 0 8px; font-weight: 700; font-size: 0.9rem; color: var(--ink-2); transition: background-color var(--t), color var(--t); }
 .language button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 
-/* Phone: the four sections become a tab bar at the bottom of the screen. */
+/* Phone: the two sections become a tab bar at the bottom of the screen; the page tabs stay under the header. */
 @media (max-width: 960px) {
   .topbar { gap: 8px; }
   .tools { margin-left: auto; }
   .mainnav { position: fixed; z-index: 60; left: 0; right: 0; bottom: 0; height: auto; margin: 0; padding-bottom: env(safe-area-inset-bottom); background: var(--surface); border-top: 1px solid var(--line); }
-  .mainnav a { flex: 1; flex-direction: column; justify-content: center; gap: 2px; min-height: 60px; padding: 0 2px; font-size: 0.8rem; }
+  .mainnav a { flex: 1; flex-direction: column; justify-content: center; gap: 2px; min-height: 60px; padding: 0 2px; font-size: 0.85rem; }
   .mainnav a .icon { display: block; width: 24px; height: 24px; }
   .mainnav a[aria-current] { color: var(--accent); }
   .mainnav a[aria-current]::after { left: 20%; right: 20%; top: -1px; bottom: auto; border-radius: 0 0 3px 3px; }
   body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  .subnav-inner { padding: 0 8px; gap: 0; }
+  .subnav a { flex: 1 0 auto; justify-content: center; padding: 0 10px; }
 }
 @media (max-width: 360px) { .brand-name { display: none; } }
 
@@ -129,8 +142,8 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .home-head p { margin: 0; color: var(--ink-2); max-width: 60ch; }
 .finder { display: grid; grid-template-columns: minmax(340px, 5fr) minmax(0, 7fr); gap: 28px; align-items: start; }
 .chooser-tools { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
-.segmented { display: grid; grid-template-columns: repeat(4, 1fr); border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); overflow: hidden; background: var(--surface); }
-.seg { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 52px; padding: 4px 2px; font-weight: 700; font-size: 0.95rem; color: var(--ink-2); transition: background-color var(--t), color var(--t); }
+.segmented { display: flex; overflow-x: auto; scrollbar-width: thin; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); overflow: hidden; background: var(--surface); }
+.seg { flex: 1 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 52px; padding: 4px 14px; white-space: nowrap; font-weight: 700; font-size: 0.95rem; color: var(--ink-2); transition: background-color var(--t), color var(--t); }
 .seg + .seg { border-left: 1px solid var(--line); }
 .seg span { font: 400 0.8rem var(--math); color: var(--muted); font-variant-numeric: tabular-nums; }
 .seg:hover { background: var(--sunken); }
@@ -140,6 +153,23 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .search .icon { position: absolute; left: 14px; color: var(--muted); pointer-events: none; }
 .search input[type="search"] { width: 100%; min-height: 48px; padding: 0 14px 0 44px; background: var(--surface); }
 .resource-count { margin: 0 0 8px; color: var(--muted); font-size: 0.95rem; }
+/* Lessons: the curriculum menu shown before a level is chosen. */
+.finder.is-menu { grid-template-columns: 1fr; }
+.finder.is-menu .preview { display: none; }
+.menu-group { margin-bottom: 28px; }
+.menu-group h2 { margin-bottom: 12px; font-size: 1.3rem; }
+.menu-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.menu-tile { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 72px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); text-align: left; transition: border-color var(--t), background-color var(--t); }
+.menu-tile:hover { border-color: var(--accent); background: var(--accent-soft); }
+.menu-tile > .icon:first-child { flex: none; color: var(--accent); }
+.menu-tile > span { flex: 1; min-width: 0; }
+.menu-tile strong { display: block; font-size: 1.05rem; line-height: 1.3; }
+.menu-tile span span { display: block; color: var(--muted); font-size: 0.9rem; }
+.menu-tile > .icon:last-child { flex: none; color: var(--muted); }
+.menu-back { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; min-height: 40px; padding: 0 12px 0 6px; border-radius: var(--r-sm); color: var(--accent); font-weight: 700; }
+.menu-back:hover { background: var(--accent-soft); }
+.menu-back[hidden], .segmented[hidden] { display: none; }
+.preview-hint { margin: 0; color: var(--muted); }
 .resume { display: flex; align-items: center; gap: 12px; min-height: 52px; margin-bottom: 12px; padding: 8px 14px; border: 1.5px solid var(--accent); border-radius: var(--r); background: var(--accent-soft); color: var(--ink); }
 .resume span { flex: 1; min-width: 0; font-size: 0.98rem; }
 .resume .icon:first-child { color: var(--accent); }
@@ -169,7 +199,7 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .resource-empty button { margin-top: 8px; min-height: 44px; padding: 0 18px; border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink); font-weight: 700; }
 
 /* Preview stage: the chapter's own figure, beside the list. Phones skip it (data and space). */
-.preview { position: sticky; top: calc(var(--header) + 16px); max-height: calc(100dvh - var(--header) - 32px); overflow-y: auto; padding: 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.preview { position: sticky; top: calc(var(--chrome) + 16px); max-height: calc(100dvh - var(--chrome) - 32px); overflow-y: auto; padding: 20px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
 .stage-kicker { margin: 0 0 4px; color: var(--muted); font-size: 0.92rem; }
 .stage-head h2 { margin: 0 0 8px; font-size: clamp(1.5rem, 2.2vw, 1.9rem); }
 .stage-idea { margin: 0 0 14px; color: var(--ink-2); font-size: 1.02rem; line-height: 1.5; }
@@ -189,7 +219,7 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 /* Presenting: a figure fills the screen for the classroom. */
 [data-fs-target].presenting { position: fixed; inset: 0; z-index: 200; overflow: auto; border-radius: 0; padding: 24px; background: var(--bg); }
 [data-fs-target]:fullscreen { overflow: auto; padding: 24px; background: var(--bg); }
-.is-presenting .topbar, .is-presenting .mainnav { display: none; }
+.is-presenting .topbar, .is-presenting .mainnav, .is-presenting .subnav { display: none; }
 [data-fs-target]:fullscreen .formula, .presenting .formula { font-size: clamp(2rem, 4vw, 3rem); }
 [data-fs-target]:fullscreen .results strong, .presenting .results strong { font-size: clamp(1.6rem, 3vw, 2.4rem); }
 [data-fs-target]:fullscreen .lesson-diagram svg, .presenting .lesson-diagram svg { max-height: 68vh; }
@@ -224,7 +254,7 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
   .seg[aria-pressed="true"], .language button[aria-pressed="true"] { background: Highlight; color: HighlightText; }
 }
 @media print {
-  .topbar, .mainnav, .tools, footer, .preview, .chooser-tools, .elsewhere { display: none !important; }
+  .topbar, .mainnav, .subnav, .tools, footer, .preview, .chooser-tools, .elsewhere { display: none !important; }
   body { background: #fff; color: #000; padding: 0; }
 }
 

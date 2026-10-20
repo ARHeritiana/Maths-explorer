@@ -89,23 +89,32 @@ function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
 }
 const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="10" class="bm-bg"/><path d="M9 11Q20 43 31 11" class="bm-curve"/><circle cx="10" cy="20" r="3.2" class="bm-dot"/><circle cx="30" cy="20" r="3.2" class="bm-dot"/></svg>`;
-function header(page) {
-  const nav = [
+// Two sections, three pages each: "Apprendre" (courses, slides, pathways) and "Explorer" (laboratory, gallery, challenges).
+// The main bar names the sections; a row of tabs under it names the pages of the current section.
+const SECTIONS = [
+  ["learn", "Apprendre", "Learn", "books", [
     ["resources", "Cours", "Lessons", "books"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
+    ["pathways", "Parcours", "Pathways", "path"],
+  ]],
+  ["explore", "Explorer", "Explore", "flask", [
     ["lab", "Laboratoire", "Laboratory", "flask"],
     ["gallery", "Galerie", "Gallery", "sparkle"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
-    ["pathways", "Parcours", "Pathways", "path"],
-  ];
+  ]],
+];
+// pages reached from a tab count as that tab
+const TAB_OF = { chapter: "resources", library: "resources", workshop: "resources", pack: "resources", sources: "resources", university: "pathways" };
+function header(page) {
+  const tab = TAB_OF[page] || page;
+  const section = SECTIONS.find(([, , , , tabs]) => tabs.some(([id]) => id === tab));
   const dark = currentTheme() === "nuit";
   const themeLabel = dark ? pair("Passer au thème clair", "Switch to light theme") : pair("Passer au thème sombre", "Switch to dark theme");
-  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${nav
-    .map(
-      ([id, fr, en, ic]) =>
-        `<a href="#${id}" ${page === id || (["chapter", "library", "workshop"].includes(page) && id === "resources") ? 'aria-current="page"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`,
-    )
-    .join("")}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>`;
+  const sectionLinks = SECTIONS.map(([id, fr, en, ic, tabs]) =>
+    `<a href="#${tabs[0][0]}" data-section="${id}" ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
+  const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].map(([id, fr, en, ic]) =>
+    `<a href="#${id}" ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}</div></nav>` : "";
+  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
 }
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -137,7 +146,7 @@ function render() {
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
-    header(page === "university" ? "pathways" : page) +
+    header(page) +
     (page === "home" ? homePage({ pair, t, link, labs }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)

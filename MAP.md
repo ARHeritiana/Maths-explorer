@@ -28,7 +28,7 @@ really need them.
 |---|---|---|
 | a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V3.md` only for a design decision |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
-| the top navigation, footer, theme or language buttons | `site/js/app.js` `header()` / `footer()` | |
+| the top navigation (two sections, "Apprendre" and "Explorer", each with a row of page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
 | any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
@@ -72,17 +72,17 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | Route | Nav label | Page module |
 |---|---|---|
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
-| `#resources` | Cours | `resource-library.js` `libraryPage` / `bindLibrary` (course chooser) |
+| `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (curriculum menu first, then the course list) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
 | `#workshop/quadratic` | (Cours) | `quadratic-workshop.js` |
 | `#pack[/<id>]`, `#sources` | (Cours) | `pack-builder.js` |
-| `#slides` | Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
-| `#lab` | Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
+| `#slides` | Apprendre > Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
+| `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
-| `#gallery[/<id>]` | Galerie | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
-| `#challenges[/<id>]` | Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
-| `#pathways` | Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
+| `#gallery[/<id>]` | Explorer > Galerie | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
+| `#challenges[/<id>]` | Explorer > Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
+| `#pathways` | Apprendre > Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
 | `#university[/<id>]` | (Parcours) | `university.js` |
 
 ## 4. Area indexes (read only the one you work in)
@@ -100,7 +100,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 
 Root files: `CLAUDE.md` (entry), `AGENTS.md` (other agents), `HANDOFF.md` (state and task queue),
 `PROJECT_BRIEF.md` (governing rules), `README.md` (humans), `Makefile`, `package.json`, `.github/workflows/`
-(`checks.yml` CI, `pages.yml` optional Pages deploy), `.openai/` (ChatGPT Sites hosting config).
+(`checks.yml` CI, `pages.yml` GitHub Pages deploy of `dist/` on push), `.openai/` (ChatGPT Sites hosting config).
 
 ## 5. Single sources of truth (change here, nowhere else)
 

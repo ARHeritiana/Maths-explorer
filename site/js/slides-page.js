@@ -1,6 +1,7 @@
 import { courses, university } from './catalogue-data.js';
 import { assetHref, fetchJSON } from './data-loader.js';
 import { universitySlideLinks } from './university-model.js';
+import { icon } from './icons.js';
 // Slides index: classroom decks (French and English) opened in the standalone player.
 const P = (fr, en) => [fr, en];
 const E = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -23,15 +24,25 @@ export async function bindSlides(t) {
     let mode = 'explore';
     const paint = () => {
     if (!host.isConnected) return;
+    // One folded group per course (none opened by default); the groups the reader opened stay open across a mode change.
+    const open = new Set([...host.querySelectorAll('details[open]')].map(d => d.dataset.course));
     host.innerHTML = courses.map(({id, title: name, contentLanguage}) => {
       const decks = index.filter(d => d.course === id).sort((a, b) => a.number - b.number);
       if (!decks.length) return '';
-      return `<section class="source-course"><div class="source-head"><h2>${name[L]}</h2><span>${decks.length} ${P('diaporamas', 'decks')[L]} · ${decks.reduce((s, d) => s + d.slides, 0)} ${P('diapositives', 'slides')[L]}</span></div>
+      const lang = contentLanguage || (L ? 'en' : 'fr');
+      const row = (title, meta, actions = '') => `<li class="deck"><div class="deck-main">${title}<span class="deck-meta">${meta}</span></div>${actions ? `<div class="deck-actions">${actions}</div>` : ''}</li>`;
+      return `<details class="source-course" data-course="${E(id)}" ${open.has(id) ? 'open' : ''}><summary class="source-head"><h2>${E(name[L])}</h2><span>${decks.length} ${P('diaporamas', 'decks')[L]} · ${decks.reduce((s, d) => s + d.slides, 0)} ${P('diapositives', 'slides')[L]}</span></summary>
       <ul class="deck-list">${decks.map(d => {
-        const lang=contentLanguage || (L?'en':'fr');
-        const edition=lectures.get(d.id)?.editions?.[lang];
-        return mode==='lecture' && !edition ? `<li><strong>${E(d.title[L])}</strong><span>${P('Édition PDF indisponible','PDF edition unavailable')[L]}</span></li>` : mode==='lecture' ? `<li><a href="./slides/lectures/${E(edition.pdf)}?v=${E(edition.sha256)}">${E(d.title[L])}</a><span>${edition.pages} ${P('diapositives · cours','slides · lecture')[L]}</span><a class="deck-download" href="./slides/lectures/${E(edition.pdf)}?v=${E(edition.sha256)}" download>${P('Télécharger PDF','Download PDF')[L]}</a><a class="deck-source" href="${E(assetHref('./slides/lectures/'+edition.source))}" download>${P('Source Beamer','Beamer source')[L]}</a></li>` : `<li><a href="${E(assetHref("./slides/player.html"))}&amp;deck=${E(d.id)}">${E(d.title[L])}</a> <span>${d.slides} ${P('diapositives · exploration', 'slides · exploration')[L]}</span> <a class="deck-download" href="${E(assetHref('./slides/export/'+d.id+'.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(d.title[L])}">${P('Télécharger HTML', 'Download HTML')[L]}</a></li>`;
-      }).join('')}</ul></section>`;
+        const edition = lectures.get(d.id)?.editions?.[lang];
+        if (mode === 'lecture' && !edition) return row(`<strong class="deck-title">${E(d.title[L])}</strong>`, P('Édition PDF indisponible', 'PDF edition unavailable')[L]);
+        if (mode === 'lecture') {
+          const pdf = `./slides/lectures/${E(edition.pdf)}?v=${E(edition.sha256)}`;
+          return row(`<a class="deck-title" href="${pdf}">${E(d.title[L])}</a>`, `${edition.pages} ${P('diapositives · cours', 'slides · lecture')[L]}`,
+            `<a class="deck-download" href="${pdf}" download>${icon('download-simple', 16)}PDF</a><a class="deck-source" href="${E(assetHref('./slides/lectures/' + edition.source))}" download>${P('Source', 'Source')[L]}</a>`);
+        }
+        return row(`<a class="deck-title" href="${E(assetHref("./slides/player.html"))}&amp;deck=${E(d.id)}">${E(d.title[L])}</a>`, `${d.slides} ${P('diapositives', 'slides')[L]}`,
+          `<a class="deck-download" href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(d.title[L])}">${icon('download-simple', 16)}HTML</a>`);
+      }).join('')}</ul></details>`;
     }).join('');
     };
     document.querySelectorAll('[data-slide-type]').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.slideType;document.querySelectorAll('[data-slide-type]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));paint();}));

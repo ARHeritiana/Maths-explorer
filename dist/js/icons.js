@@ -4,6 +4,10 @@ const paths = {"globe":"<path d=\"M128,20A108,108,0,1,0,236,128,108.12,108.12,0,
 paths["presentation-chart"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M32 48H224M48 48V176H208V48M128 176V224M96 224H160"/><path d="M80 136V112M128 136V88M176 136V104"/></g>';
 // Four-pointed star for the curiosity gallery.
 paths["sparkle"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M128 32C136 92 164 120 224 128C164 136 136 164 128 224C120 164 92 136 32 128C92 120 120 92 128 32Z"/></g>';
+// Mortarboard for university, stacked sheets for packs, left caret for "back".
+paths["graduation-cap"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 96L128 40L240 96L128 152Z"/><path d="M64 120V184C64 184 88 212 128 212C168 212 192 184 192 184V120M240 96V168"/></g>';
+paths["stack"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M24 88L128 32L232 88L128 144Z"/><path d="M24 136L128 192L232 136M24 184L128 240L232 184"/></g>';
+paths["caret-left"] = '<path fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" d="M160 48L80 128L160 208"/>';
 export function icon(name, size = 20) {
   return `<svg class="icon" viewBox="0 0 256 256" width="${size}" height="${size}" fill="currentColor" aria-hidden="true" focusable="false">${paths[name] || ""}</svg>`;
 }
