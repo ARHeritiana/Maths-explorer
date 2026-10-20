@@ -6,6 +6,7 @@
    when the learner navigates away; every reference has its "Open in the laboratory" link.
 Run through tests/run_browser.py, or alone against a running server: MATHS_EXPLORER_URL=http://localhost:4173 python tests/slides_lab_browser.py
 """
+import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -13,6 +14,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 BASE = os.environ.get('MATHS_EXPLORER_URL', 'http://localhost:4173')
 DECK, SLIDE = 'premiere-02', 10   # the quadratic experiment, mission "vertex"
+CHAPTER_LABS = next(c['labs'] for c in json.loads((ROOT / 'content/data/manifest.json').read_text())['catalog']['chapters'] if c['id'] == 'seconde-02')
 
 with sync_playwright() as p:
     options = {'headless': True}
@@ -103,7 +105,8 @@ with sync_playwright() as p:
     page.wait_for_timeout(500)
     assert page.locator('.chapter-lab-host .lab2-canvas').count() == 0, 'not mounted before it scrolls into view'
     links = page.locator('.chapter-lab-links a')
-    assert links.count() == 1 and links.first.get_attribute('href') == '#lab/vectors/collinear' and 'laboratoire' in links.first.inner_text(), 'one link per reference'
+    assert CHAPTER_LABS[0] == 'vectors/collinear', 'the checks below use the first reference of seconde-02'
+    assert [links.nth(i).get_attribute('href') for i in range(links.count())] == [f'#lab/{r}' for r in CHAPTER_LABS] and 'laboratoire' in links.first.inner_text(), 'one link per reference'
     page.locator('.chapter-lab-host').scroll_into_view_if_needed()
     page.wait_for_selector('.chapter-lab-host .lab2-inline .lab2-canvas')
     page.wait_for_function("() => document.querySelector('.chapter-lab-host .lab2-formula')?.textContent.length > 0")
