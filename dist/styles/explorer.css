@@ -142,7 +142,7 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .home-head p { margin: 0; color: var(--ink-2); max-width: 60ch; }
 .finder { display: grid; grid-template-columns: minmax(340px, 5fr) minmax(0, 7fr); gap: 28px; align-items: start; }
 .chooser-tools { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
-.segmented { display: flex; overflow-x: auto; scrollbar-width: thin; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); overflow: hidden; background: var(--surface); }
+.segmented { display: flex; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); }
 .seg { flex: 1 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 52px; padding: 4px 14px; white-space: nowrap; font-weight: 700; font-size: 0.95rem; color: var(--ink-2); transition: background-color var(--t), color var(--t); }
 .seg + .seg { border-left: 1px solid var(--line); }
 .seg span { font: 400 0.8rem var(--math); color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -154,7 +154,7 @@ footer a { color: var(--ink); text-decoration: underline; text-underline-offset:
 .search input[type="search"] { width: 100%; min-height: 48px; padding: 0 14px 0 44px; background: var(--surface); }
 .resource-count { margin: 0 0 8px; color: var(--muted); font-size: 0.95rem; }
 /* Lessons: the curriculum menu shown before a level is chosen. */
-.finder.is-menu { grid-template-columns: 1fr; }
+.finder.is-menu { grid-template-columns: minmax(0, 1fr); }
 .finder.is-menu .preview { display: none; }
 .menu-group { margin-bottom: 28px; }
 .menu-group h2 { margin-bottom: 12px; font-size: 1.3rem; }
@@ -236,7 +236,8 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
 
 /* ------------------------------------------------------------- responsive */
 @media (max-width: 1000px) {
-  .finder { grid-template-columns: 1fr; }
+  /* minmax(0, ...): a wide child (the level tabs) scrolls instead of widening the page. */
+  .finder { grid-template-columns: minmax(0, 1fr); }
   .preview { display: none; }
   .elsewhere { grid-template-columns: 1fr 1fr; }
   .elsewhere a:nth-child(3) { border-left: 0; }
