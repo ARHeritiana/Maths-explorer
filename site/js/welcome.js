@@ -21,7 +21,7 @@ export function homePage({ pair, link }) {
 export function galleryPage({ pair, t, link, labs }) {
   const items = labs.filter((l) => l.custom);
   return `<main id="main" class="page gallery-page" tabindex="-1">
-  <div class="page-heading"><div><h1>${pair("La galerie de curiosités", "The gallery of curiosities")}</h1><p>${pair("Des idées de mathématiques qui se regardent d’abord. Touche, glisse, change un réglage : chaque pièce se manipule.", "Mathematical ideas that you look at first. Touch, drag, change a setting: every piece can be handled.")}</p></div></div>
+  <div class="page-heading"><div><h1>${pair("Curiosités", "Curiosities")}</h1><p>${pair("Des idées de mathématiques qui se regardent d’abord. Touche, glisse, change un réglage : chaque pièce se manipule.", "Mathematical ideas that you look at first. Touch, drag, change a setting: every piece can be handled.")}</p></div></div>
   <div class="wonder-grid">${items.map((l) => card(l, "gallery", t, pair, link)).join("")}</div>
   <p class="editorial-note">${pair("Pour des expériences guidées autour de formules, de courbes et de données, voir le laboratoire.", "For guided experiments with formulas, curves and data, see the laboratory.")} <a href="${link("lab")}">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></p>
 </main>`;

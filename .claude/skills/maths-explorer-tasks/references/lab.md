@@ -54,3 +54,6 @@ Free exploration (owner decision, 19 October 2026, `docs/LAB_DESIGN.md` section 
 nothing waits; a mission's `unlock` list only marks the suggested controls. Keep the rules on `unlock` (they feed the future
 tests, mounted with `gated: true`). Zoom and pan come from the stage cameras: build views with `plot.js` `panelView`, never a
 canvas transform of your own.
+
+Links to texts of "Lire": give the curiosity's catalogue line a `links` list of site addresses (`#challenges/<id>`,
+`#biographies/<id>`, `#stories/<id>`); `site/js/reading.js` shows them on the exhibit and back on each target page.

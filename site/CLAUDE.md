@@ -55,7 +55,17 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/platonic-explorer.js`, `js/platonic-fold.js` | Platonic solids and their folding nets |
 | `js/object-kit.js` | canvas sizing, `palette()` from CSS tokens, sliders, loop |
 | `js/home-art.js` | live drawings of the home page and the gallery cards |
-| `js/welcome.js` | home page and gallery index |
+| `js/welcome.js` | home page and gallery index (the "Curiosités" tab of "Lire") |
+| `js/gallery-curiosities.js` | catalogue lines (and `links`) of the Game of Life and square packing curiosities |
+| `js/gallery-life-model.js`, `js/gallery-life.js` | Game of Life: B3/S23 on the unbounded plane, presets (oscillators, ships, Gosper gun, long evolutions); drawing, play, step |
+| `js/gallery-squares-model.js`, `js/gallery-squares.js` | unit squares in a square: separating-axis overlap test, frame, records table, exact packings (n = 5, 10, grids); drag and turn |
+
+## Reading ("Lire": biographies, stories; the curiosities are the gallery)
+
+| File | Holds |
+|---|---|
+| `js/reading-content.js` | biographies and stories (bilingual), each with `links` and `sources` |
+| `js/reading.js` | `#biographies`, `#stories` pages; `readAlso(hash, own, t)`: the cross-link box shown on texts, curiosities and challenges (own links plus pages linking here) |
 
 ## Challenges (`js/challenges/`, one folder per challenge; index in `js/challenges/CLAUDE.md`)
 

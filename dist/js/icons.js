@@ -4,6 +4,10 @@ const paths = {"globe":"<path d=\"M128,20A108,108,0,1,0,236,128,108.12,108.12,0,
 paths["presentation-chart"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M32 48H224M48 48V176H208V48M128 176V224M96 224H160"/><path d="M80 136V112M128 136V88M176 136V104"/></g>';
 // Four-pointed star for the curiosity gallery.
 paths["sparkle"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M128 32C136 92 164 120 224 128C164 136 136 164 128 224C120 164 92 136 32 128C92 120 120 92 128 32Z"/></g>';
+// Open book for the "Lire" section, a head and shoulders for biographies, a scroll for stories.
+paths["book-open"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M128 72C104 52 68 44 24 48V200C68 196 104 204 128 224C152 204 188 196 232 200V48C188 44 152 52 128 72Z"/><path d="M128 72V224"/></g>';
+paths["user"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="92" r="52"/><path d="M36 220C52 176 88 152 128 152C168 152 204 176 220 220"/></g>';
+paths["scroll"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M200 176V56C200 42 190 32 176 32H64C50 32 40 42 40 56V64H88"/><path d="M88 56V200C88 214 98 224 112 224H200C214 224 224 214 224 200V176H112V200C112 214 102 224 88 224"/><path d="M120 88H168M120 128H168"/></g>';
 // Mortarboard for university, stacked sheets for packs, left caret for "back".
 paths["graduation-cap"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M16 96L128 40L240 96L128 152Z"/><path d="M64 120V184C64 184 88 212 128 212C168 212 192 184 192 184V120M240 96V168"/></g>';
 paths["stack"] = '<g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M24 88L128 32L232 88L128 144Z"/><path d="M24 136L128 192L232 136M24 184L128 240L232 184"/></g>';

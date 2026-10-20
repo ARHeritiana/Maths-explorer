@@ -99,6 +99,8 @@ import { fastestSlide } from './gallery-fastest.js';
 import { soapFilm } from './gallery-soap.js';
 import { knotsInSpace } from './gallery-knots.js';
 import { einsteinTiles } from './gallery-hat.js';
+import { gameOfLife } from './gallery-life.js';
+import { squarePacking } from './gallery-squares.js';
 
 /* ---------------------------------------------------------------- Galton */
 function galton(root, { t, reduced, lang }) {
@@ -323,7 +325,7 @@ function chaos(root, { t, reduced, lang }) {
   return loopFor(() => draw(), reduced);
 }
 
-export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours };
+export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking };
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

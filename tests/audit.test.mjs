@@ -57,7 +57,7 @@ test("all reasoning, presets and pathway notes are bilingual and valid", () => {
     values.forEach((v,i)=>{const [_,lo,hi,step]=l.params[i];assert.ok(v>=lo && v<=hi);near((v-lo)/step,Math.round((v-lo)/step));});
     const source=new URL(l.source);
     assert.equal(source.protocol,'https:');
-    assert.ok(['mathshistory.st-andrews.ac.uk','www.cs.cmu.edu','web.mit.edu','knotinfo.org','cs.uwaterloo.ca'].includes(source.hostname));
+    assert.ok(['mathshistory.st-andrews.ac.uk','www.cs.cmu.edu','web.mit.edu','knotinfo.org','cs.uwaterloo.ca','www.combinatorics.org'].includes(source.hostname));
     if(source.hostname!=='mathshistory.st-andrews.ac.uk')assert.ok(l.sourceLabel?.length===2&&l.sourceLabel.every(Boolean),'non-MacTutor sources need their own bilingual attribution');
   }
   for (const p of pathways) for (const s of pathwayStages(p)) {

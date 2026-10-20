@@ -1,5 +1,6 @@
 import { university } from './catalogue-data.js';
 import { GALLERY_ADDITIONS } from './gallery-additions.js';
+import { CURIOSITIES } from './gallery-curiosities.js';
 import { universityPathway } from './university-model.js';
 // Bilingual content: every pair is [French, English]. Topic placements are indicative.
 import { challengeBase, VARIANTS, defaults } from "./challenges/registry.js";
@@ -160,7 +161,7 @@ export const labs = [
   },
 ];
 
-labs.push(...GALLERY_ADDITIONS);
+labs.push(...GALLERY_ADDITIONS, ...CURIOSITIES);
 // Activities give examples, conditions and a general argument separately.
 const reasoning = {
   galton: {

@@ -60,6 +60,12 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
   home page and the gallery cards are in `home-art.js`. The Madagascar outline in `gallery-math.js` is 360 points traced (PIL and numpy, smoothed, resampled) from an outline image supplied by the
   owner; it is a drawing aid, not a survey.
 
+- Structure (20 October 2026): three sections. "Apprendre" (cours, diaporamas, parcours), "Explorer" (laboratoire, défis),
+  "Lire" (biographies `#biographies`, histoires `#stories`, curiosités `#gallery`). Texts in `site/js/reading-content.js`;
+  a cross-link is written once in the `links` of a text or curiosity and shown back on the page it points to
+  (`site/js/reading.js` `readAlso`). Square packings: only verified exact packings are drawn (n = 5, 10, grids); the
+  records for 11, 17, 18, 19 are table values from Friedman's survey [VERIFY against the survey before extending].
+
 ## Rules you must not break (short form; brief section 2 is authoritative)
 
 1. Anonymity: no name of the owner, employer, school or students in HTML, PDFs (text and XMP/metadata), `\author`, file names, alt text. Do not add any such detail to commit messages or docs either.

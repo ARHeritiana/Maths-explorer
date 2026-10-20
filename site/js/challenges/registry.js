@@ -38,9 +38,10 @@ import * as fly from "./fly/index.js";
 import * as nails from "./nails/index.js";
 import * as cheryl from "./cheryl/index.js";
 import * as sumproduct from "./sumproduct/index.js";
+import * as gaussSum from "./gauss-sum/index.js";
 
 // Order of the cards on the challenges page.
-export const CHALLENGES = [doors, chess, nim, pigeonhole, squares, hanoi, eggs, konigsberg, josephus, ramsey, artgallery, gridpaths, cookies, jugs, fly, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, nails, inversions, piles, cheryl, sumproduct];
+export const CHALLENGES = [gaussSum, doors, chess, nim, pigeonhole, squares, hanoi, eggs, konigsberg, josephus, ramsey, artgallery, gridpaths, cookies, jugs, fly, horses, cake, queens, snail, bridge, lighteggs, fakecoins, reflect, lunes, star, box, merge, cham, pegs, nails, inversions, piles, cheryl, sumproduct];
 
 const byId = Object.fromEntries(CHALLENGES.map((c) => [c.card.id, c]));
 const table = (field) => Object.fromEntries(CHALLENGES.filter((c) => c[field] !== undefined).map((c) => [c.card.id, c[field]]));

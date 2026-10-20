@@ -10,6 +10,7 @@ import { observeSvgNavigation } from "./canvas-navigation.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountObject } from "./lab-objects.js";
 import { homePage, galleryPage as galleryIndex } from "./welcome.js";
+import { isReading, readingPage, readAlso } from "./reading.js";
 import { mountArt } from "./home-art.js";
 import { mountLibrary } from "./library.js";
 import { icon } from "./icons.js";
@@ -89,7 +90,8 @@ function link(page, id = "") {
   return "#" + page + (id ? "/" + id : "");
 }
 const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" rx="10" class="bm-bg"/><path d="M9 11Q20 43 31 11" class="bm-curve"/><circle cx="10" cy="20" r="3.2" class="bm-dot"/><circle cx="30" cy="20" r="3.2" class="bm-dot"/></svg>`;
-// Two sections, three pages each: "Apprendre" (courses, slides, pathways) and "Explorer" (laboratory, gallery, challenges).
+// Three sections: "Apprendre" (courses, slides, pathways), "Explorer" (laboratory, challenges) and "Lire" (biographies,
+// stories, and the curiosities of the gallery).
 // The main bar names the sections; a row of tabs under it names the pages of the current section.
 const SECTIONS = [
   ["learn", "Apprendre", "Learn", "books", [
@@ -99,8 +101,12 @@ const SECTIONS = [
   ]],
   ["explore", "Explorer", "Explore", "flask", [
     ["lab", "Laboratoire", "Laboratory", "flask"],
-    ["gallery", "Galerie", "Gallery", "sparkle"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
+  ]],
+  ["read", "Lire", "Read", "book-open", [
+    ["biographies", "Biographies", "Biographies", "user"],
+    ["stories", "Histoires", "Stories", "scroll"],
+    ["gallery", "Curiosités", "Curiosities", "sparkle"],
   ]],
 ];
 // pages reached from a tab count as that tab
@@ -141,7 +147,7 @@ function render() {
   const experiment = r.page === "lab" && r.id ? (resolveRef(labRef(r.id, r.tab)) || resolveRef(r.id))?.experiment || null : null;
   const valid = (r.page === "lab" && (!r.id || !!experiment)) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -154,6 +160,8 @@ function render() {
       ? (experiment ? experimentPage(experiment, { t, pair, link, completed, mission: r.tab || "" }) : labIndexPage({ t, pair, link, completed }))
       : page === "gallery"
       ? (r.id ? galleryDetail(r.id) : galleryIndex({ pair, t, link, labs }))
+      : page === "biographies" || page === "stories"
+      ? readingPage(page, r.id, t)
       : page === "challenges"
         ? challengePage(r.id)
         : page === "library"
@@ -225,7 +233,7 @@ function galleryDetail(id) {
  <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("La galerie", "The gallery")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
  <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}<div id="object-stage" class="object-stage" data-object="${lab.id}"></div></section>
  <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning"><details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span>${Object.keys(lab.quizState || {}).length ? `<button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button>` : ""}<form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
- <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${galleryContext(lab.id, pair)}</main></div>`;
+ <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${galleryContext(lab.id, pair)}${readAlso(link("gallery", lab.id), lab.links, t)}</main></div>`;
 }
 // The vector symbol (combining arrow) is missing from the maths font: show a plain arrow.
 const glyph = (symbol) => (symbol.includes("\u20d7") ? "→" : symbol);
@@ -302,7 +310,7 @@ function variationPanel(c) {
 }
 function challengeDetail(c) {
   const v = variantText(c, paramsOf(c.id));
-  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1>${v.original ? `<span class="section-kicker check-kicker">${pair("Énoncé et version vérifiable ici", "Statement and the version checked here")}</span>` : ""}<p class="problem" id="problem">${t(v.prompt)}</p>${v.original ? `<section class="original" aria-labelledby="original-title"><span class="section-kicker" id="original-title">${pair("Question d’origine · à traiter seul ou avec un enseignant, le site ne peut pas la vérifier", "Original question · to work out alone or with a teacher, the site cannot check it")}</span><p class="problem original-q" id="original">${t(v.original)}</p></section>` : ""}${variationPanel(c)}${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${v.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p data-hint="${i}">${t(h)}</p>${hintAction(c.id, i)}</details>`).join("")}</aside></div><section class="solution-wide"><details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<p id="solution-text">${t(v.solution)}</p><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></section></main>`;
+  return `<main id="main" class="page challenge-detail" tabindex="-1"><a class="backlink" href="#challenges">${pair("Tous les défis", "All challenges")}</a><div class="challenge-columns"><article><span class="section-kicker">${t(c.topic)} · ${c.minutes} min</span><h1>${t(c.title)}</h1>${v.original ? `<span class="section-kicker check-kicker">${pair("Énoncé et version vérifiable ici", "Statement and the version checked here")}</span>` : ""}<p class="problem" id="problem">${t(v.prompt)}</p>${v.original ? `<section class="original" aria-labelledby="original-title"><span class="section-kicker" id="original-title">${pair("Question d’origine · à traiter seul ou avec un enseignant, le site ne peut pas la vérifier", "Original question · to work out alone or with a teacher, the site cannot check it")}</span><p class="problem original-q" id="original">${t(v.original)}</p></section>` : ""}${variationPanel(c)}${hasActivity(c.id) ? `<section class="activity" aria-labelledby="activity-title"><h2 id="activity-title">${pair("À toi d’explorer", "Explore it yourself")}</h2><div id="activity" data-activity="${c.id}"></div></section>` : ""}<form id="challenge-form" data-id="${c.id}"><label for="challenge-answer">${pair("Ta réponse numérique", "Your numerical answer")}</label><div class="answer-row"><input type="text" id="challenge-answer" inputmode="text" required autocomplete="off" placeholder="${pair("Nombre ou fraction", "Number or fraction")}"><button class="primary">${pair("Vérifier", "Check")}</button></div><p id="challenge-feedback" class="feedback" role="status">${completed.has(c.id) ? pair("Tu as déjà trouvé cette réponse. Essaie maintenant de rédiger la preuve.", "You have already found this answer. Now try writing the proof.") : ""}</p></form></article><aside class="hint-panel"><h2>${pair("Un coup de pouce ?", "A little nudge?")}</h2>${v.hints.map((h, i) => `<details><summary>${pair("Indice", "Hint")} ${i + 1}</summary><p data-hint="${i}">${t(h)}</p>${hintAction(c.id, i)}</details>`).join("")}</aside></div>${readAlso(link("challenges", c.id), [], t)}<section class="solution-wide"><details class="solution"><summary>${pair("Voir la solution expliquée", "See the worked solution")}</summary>${hasSolution(c.id) ? `<div id="solution-anim" class="sol-host" data-solution="${c.id}"></div>` : ""}<p id="solution-text">${t(v.solution)}</p><div class="extension"><strong>${pair("Pour aller plus loin", "Take it further")}</strong><p>${t(c.extension)}</p></div></details></section></main>`;
 }
 function bindChallenges() {
   const host = $("#activity"), solHost = $("#solution-anim"), form = $("#challenge-form"), cid = form?.dataset.id;

@@ -27,13 +27,14 @@ really need them.
 |---|---|---|
 | a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V3.md` only for a design decision |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
-| the top navigation (two sections, "Apprendre" and "Explorer", each with a row of page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
+| the top navigation (three sections, "Apprendre", "Explorer" and "Lire", each with a row of page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
 | any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
 | the laboratory rebuild (templates, missions, lab references) | `docs/LAB_DESIGN.md` (the contract) | |
 | a laboratory experiment (new one, new mission, handles, drawing) | `site/js/lab/CLAUDE.md`, then `site/js/lab/experiments/<id>.js`, `models/<id>.js`; contract `docs/LAB_DESIGN.md`; recipe `lab` | `site/js/lab/templates/` only for a template change |
 | the laboratory engine (drag, camera, readouts, rAF), the mission card or the lab page | `site/js/lab/engine.js`, `shell.js`, `page.js` (and `plot.js` for drawing) | |
+| a biography or a story ("Lire"), or a cross-link between a text, a curiosity and a challenge | `site/js/reading-content.js` (texts and their `links`), `site/js/reading.js` (pages, `readAlso`); curiosity links: `links` in `site/js/gallery-curiosities.js` | a link is written once; the page it points to shows it back |
 | a gallery curiosity or a lab "object" | `site/js/lab-objects.js` (`mountObject`), `gallery-objects.js`, maths in `gallery-math.js`; card drawing in `home-art.js` | |
 | one challenge | its folder `site/js/challenges/<id>/` (index in `site/js/challenges/CLAUDE.md`) | new challenge: recipe `challenge` |
 | the home page | `site/js/welcome.js`, live drawings `site/js/home-art.js` | |
@@ -79,7 +80,9 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#slides` | Apprendre > Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
 | `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
-| `#gallery[/<id>]` | Explorer > Galerie | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
+| `#biographies[/<id>]` | Lire > Biographies | `reading.js` `readingPage`; texts `reading-content.js` |
+| `#stories[/<id>]` | Lire > Histoires | `reading.js` `readingPage`; texts `reading-content.js` |
+| `#gallery[/<id>]` | Lire > Curiosités | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |
 | `#challenges[/<id>]` | Explorer > Défis | `app.js` `challengePage`, `challengeDetail`, `bindChallenges`; content from `site/js/challenges/registry.js` |
 | `#pathways` | Apprendre > Parcours | `app.js` `pathwayPage`; data `content.js` `pathways` |
 | `#university[/<id>]` | (Parcours) | `university.js` |

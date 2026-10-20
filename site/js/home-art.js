@@ -7,6 +7,8 @@ import {neighbours,colourWith} from './gallery-four-colour-model.js';
 import {drawKnotStrand} from './gallery-knot-render.js';
 import {spaceKnot} from './gallery-knot-model.js';
 import {makeFamilyPatch} from './gallery-hat-model.js';
+import {presetSet,step,coords} from './gallery-life-model.js';
+import {ten,vertices} from './gallery-squares-model.js';
 
 const TAU = Math.PI * 2;
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
@@ -171,6 +173,27 @@ function newGalleryArt(kind,cv,opts){
     }
   },{reduced:opts.reduced});
 }
+/* ------------------------------------------------------- curiosities of the "Lire" section */
+// Game of Life: a glider gun firing, one generation every 0.12 s (the generations are cached, so the frame is a function of time).
+function lifeArt(cv, opts) {
+  const gens = [presetSet('gun')];
+  return runner(cv, (g, W, H, t, C) => {
+    const k = Math.max(0, Math.floor(t / 0.12)) % 240; while (gens.length <= k) gens.push(step(gens.at(-1)));
+    const cell = Math.max(3, Math.min(W / 64, H / 40)), ox = W / 2 - 4 * cell, oy = H * 0.32;
+    g.fillStyle = C.accent; for (const key of gens[k]) { const [x, y] = coords(key); g.fillRect(ox + x * cell, oy + y * cell, cell - 1, cell - 1); }
+  }, { reduced: opts.reduced, still: 6 });
+}
+// Ten unit squares in a square of side 3 + 1/sqrt 2, the turned square slowly glowing.
+function squaresArt(cv, opts) {
+  const sq = ten(), side = 3 + Math.SQRT1_2;
+  return runner(cv, (g, W, H, t, C) => {
+    const u = Math.min(W, H) * 0.8 / side, ox = (W - side * u) / 2, oy = (H - side * u) / 2;
+    g.strokeStyle = C.accent; g.lineWidth = 2; g.setLineDash([6, 4]); g.strokeRect(ox, oy, side * u, side * u); g.setLineDash([]);
+    sq.forEach((q, i) => { const p = vertices(q).map(([x, y]) => [ox + x * u, oy + y * u]); g.beginPath(); p.forEach((v, j) => j ? g.lineTo(...v) : g.moveTo(...v)); g.closePath();
+      g.globalAlpha = q.a ? 0.45 + 0.35 * Math.sin(t * 2) : 0.3; g.fillStyle = C.c[i % 8]; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.ink; g.lineWidth = 1.2; g.stroke(); });
+  }, { reduced: opts.reduced, still: 0.8 });
+}
 export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+  life: lifeArt, 'square-packing': squaresArt,
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

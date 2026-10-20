@@ -1137,3 +1137,46 @@ details.source-course[open] { padding-bottom: 16px; }
 .lab2-stream-speed { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; align-items: center; }
 .lab2-stream-speed input { grid-column: 1 / -1; width: 100%; min-height: 44px; accent-color: var(--accent); }
 .lab2-stream-toggle { justify-self: start; }
+
+/* ------------------------------------------------------- "Lire": biographies, stories, cross-links (reading.js) */
+.read-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+.read-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: start; padding: 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); transition: border-color var(--t); }
+.read-card:hover, .read-card:focus-visible { border-color: var(--accent); }
+.read-card-body { display: grid; gap: 4px; }
+.read-card-body strong { font: 700 1.2rem/1.25 var(--display); }
+.read-card-body > span:not(.read-dates) { color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; }
+.read-dates { color: var(--muted); font-size: 0.92rem; font-weight: 700; }
+.read-plate { display: grid; place-items: center; width: 64px; height: 64px; border: 1.5px solid var(--accent); border-radius: 50%; background: var(--accent-soft); color: var(--accent); font: 700 1.35rem var(--display); letter-spacing: 0.02em; }
+.read-article { max-width: 1080px; }
+.read-header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: center; padding-bottom: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+.read-header h1 { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 2.8rem); }
+.read-header .read-plate { width: 88px; height: 88px; font-size: 1.8rem; }
+.read-header .section-kicker a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.read-dek { margin: 0; color: var(--ink-2); font-size: 1.15rem; max-width: 60ch; }
+.read-columns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: 40px; align-items: start; }
+.read-text { max-width: 68ch; }
+.read-text section + section { margin-top: 28px; }
+.read-text h2 { font-size: 1.45rem; margin-bottom: 10px; }
+.read-text p { line-height: 1.75; }
+.read-timeline { position: sticky; top: calc(var(--chrome) + 16px); padding: 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.read-timeline h2 { font-size: 1.15rem; margin-bottom: 12px; }
+.read-timeline ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.read-timeline li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: 10px; font-size: 0.95rem; line-height: 1.45; }
+.read-year { color: var(--accent); font: 700 1rem var(--math); }
+.read-also, .read-sources { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.read-also h2, .read-sources h2 { font-size: 1.2rem; margin-bottom: 12px; }
+.read-also ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.read-also a { display: grid; gap: 2px; min-height: 44px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); font-weight: 700; transition: border-color var(--t); }
+.read-also a:hover, .read-also a:focus-visible { border-color: var(--accent); }
+.read-kind { color: var(--muted); font-size: 0.85rem; font-weight: 700; }
+.read-sources ul { margin: 0; padding-left: 1.2em; }
+.read-sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.challenge-detail .read-also, .lab-main .read-also { margin-top: 24px; }
+@media (max-width: 860px) { .read-columns { grid-template-columns: 1fr; gap: 24px; } .read-timeline { position: static; } }
+@media (max-width: 560px) { .read-header { grid-template-columns: 1fr; gap: 12px; } .read-header .read-plate { width: 64px; height: 64px; font-size: 1.35rem; } .read-card { grid-template-columns: 1fr; } .read-card .read-plate { width: 48px; height: 48px; font-size: 1.05rem; } }
+@media (prefers-reduced-motion: reduce) { .read-card, .read-also a { transition: none; } }
+/* gauss-sum challenge: the terms as a wrapping row of tiles, a gap for the hidden middle terms */
+.cl-grid.gs-tiles { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.gs-tiles .cl-tok { flex: 0 0 auto; min-width: 52px; width: auto; padding: 0 10px; }
+.gs-tiles .cl-gap { padding: 0 6px; color: var(--muted); font: 700 1.3rem var(--math); }
+.gs-stairs { margin-top: 12px; max-height: 260px; }

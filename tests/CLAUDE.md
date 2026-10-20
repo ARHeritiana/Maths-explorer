@@ -46,6 +46,8 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `gallery-four-colour-dom.test.mjs` | bilingual example menu, grouped-country colours, border drawing and undo, keyboard editor, conflict detection, cancelled pointer/pinch and frame cleanup |
 | `interaction-surfaces.test.mjs` | formula-only arithmetic, direct cookie transfers and identity-independent counts, mobile text scroll policy, continuous sampling clock and motion |
 | `direct-interactions.test.mjs` | analytic fly motion versus independent collision stepping (including very fast flies), custom tuples, spatial crossing-cue geometry, preview-style front/under strand rendering, direct jug actions and scene playback/scrubbing, callback motion preferences, animated peg frames, train-face contacts, hidden fly totals, ordered nail crossings and reverse-stroke cancellation |
+| `reading.test.mjs` | "Lire": texts bilingual without dashes, every link resolves and is shown both ways; Game of Life periods and lifetimes, square packings and overlap test, gauss-sum formula, the Hanoi legend numbers, by independent methods |
+| `reading-dom.test.mjs` | the two new curiosities and the gauss-sum activity under jsdom: controls, keyboard, finite readouts, frames stopped |
 | `gallery-spatial.test.mjs` | all 44 curve projections, continuous deformations, 14 film models and full-window hat coverage |
 
 
