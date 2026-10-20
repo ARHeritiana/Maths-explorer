@@ -24,7 +24,7 @@ export function activity(root, { t, q }) {
     root.querySelector("#pl-split").disabled = s < 2; root.querySelector("#pl-rand").disabled = !ps.some((x) => x > 1);
     logEl.innerHTML = log.map((l) => `<li>${l.a} × ${l.b} = ${l.a * l.b}</li>`).join("");
     const done = !ps.some((x) => x > 1);
-    read.innerHTML = `${t("Total des produits", "Total of the products")} : <strong>${total}</strong>${done ? ` — ${t("tous les tas sont réduits à un caillou. Pour", "every pile is down to one pebble. For")} ${N} ${t("cailloux, c’est", "pebbles it is")} ${N} × ${N - 1} / 2 = <strong>${splitTotal(N)}</strong>.` : ""}`;
+    read.innerHTML = `${t("Total des produits", "Total of the products")} : <strong>${total}</strong>${done ? ` · ${t("Tous les tas sont réduits à un caillou. Essaie un autre découpage et compare.", "Every pile is down to one pebble. Try another splitting order and compare.")}` : ""}`;
   }
   function split(i, a) { const s = ps[i], b = s - a; ps.splice(i, 1, a, b); log.push({ a, b }); total += a * b; }
   box2.addEventListener("click", (e) => { const b = e.target.closest(".cl-tok"); if (b && !b.disabled) { sel = Number(b.dataset.i); draw(); } });

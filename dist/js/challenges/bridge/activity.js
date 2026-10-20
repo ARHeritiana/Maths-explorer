@@ -25,7 +25,7 @@ export function activity(root, { t, q }) {
     root.querySelector("#br-undo").disabled = !hist.length;
     logEl.innerHTML = hist.map((h) => `<li>${h.who.map((i) => NAMES[i]).join(" + ")} ${h.dir === "over" ? "→" : "←"} (${h.cost} min)</li>`).join("");
     const done = side.every((s) => s === 1);
-    read.innerHTML = msg || `${t("Temps écoulé", "Time elapsed")} : <strong>${elapsed} min</strong>${done ? ` — ${elapsed === best ? t(`tout le monde a traversé en ${best} min, le minimum possible !`, `everyone is across in ${best} min, the least possible!`) : t(`tout le monde a traversé, mais on peut faire mieux : le minimum est ${best} min.`, `everyone is across, but it can be done faster: the least is ${best} min.`)}` : ""}`;
+    read.innerHTML = msg || `${t("Temps écoulé", "Time elapsed")} : <strong>${elapsed} min</strong>${done ? ` · ${t("Tout le monde a traversé. Peux-tu faire mieux ?", "Everyone is across. Can you do better?")}` : ""}`;
   }
   root.addEventListener("click", (e) => {
     const m = e.target.closest(".br-man"); if (m) { const i = Number(m.dataset.i); if (sel.has(i)) sel.delete(i); else if (sel.size < 2) sel.add(i); draw(); return; }

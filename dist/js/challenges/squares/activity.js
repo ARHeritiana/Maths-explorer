@@ -11,7 +11,7 @@ export function activity(root, { t }) {
     <p class="act-help">${t("Ajoute des bordures de points une à une et compte les points de chacune. Chaque bordure a sa couleur et son contour.", "Add borders of dots one at a time and count the dots in each. Every border has its own colour and outline.")}</p>
     <div class="sq-layout">
       <svg class="act-svg" id="sq-svg" viewBox="0 0 300 300" role="img" aria-label="${t("Points disposés en carré, une couleur par bordure", "Dots arranged in a square, one colour per border")}"></svg>
-      <ol class="sq-legend" id="sq-legend" aria-label="${t("Bordures et nombre de points", "Borders and dot counts")}"></ol>
+      <details><summary>${t("Afficher les comptages", "Show counts")}</summary><ol class="sq-legend" id="sq-legend" aria-label="${t("Bordures et nombre de points", "Borders and dot counts")}"></ol></details>
     </div>
     <div class="act-controls">
       <label class="act-field" for="sq-n"><span class="act-label">${t("Nombre de bordures", "Number of borders")} <output id="sq-out"></output></span><input id="sq-n" type="range" min="1" max="12" step="1" value="5"></label>
@@ -20,7 +20,7 @@ export function activity(root, { t }) {
         <button class="btn btn-primary" id="sq-plus" type="button">${t("Ajouter une bordure", "Add a border")}</button>
       </div>
     </div>
-    <p class="act-readout" id="sq-read" role="status" aria-live="polite"></p>`;
+    <details><summary>${t("Afficher la somme", "Show the sum")}</summary><p class="act-readout" id="sq-read" role="status" aria-live="polite"></p></details>`;
   const svg = root.querySelector("#sq-svg"), legend = root.querySelector("#sq-legend");
   const SP = 23, R = 8;
   function draw() {

@@ -13,7 +13,7 @@ export function activity(root, { t, q }) {
       <label class="act-field" for="ln-a"><span class="act-label">CA <output id="ln-aout"></output></span><input id="ln-a" type="range" min="2" max="20" step="1" value="${a}"></label>
       <label class="act-field" for="ln-b"><span class="act-label">CB <output id="ln-bout"></output></span><input id="ln-b" type="range" min="2" max="20" step="1" value="${b}"></label>
     </div>
-    <p class="act-readout" id="ln-read" role="status" aria-live="polite"></p>`;
+    <details class="act-measurements"><summary>${t("Afficher les aires", "Show areas")}</summary><p class="act-readout" id="ln-read" role="status" aria-live="polite"></p></details>`;
   const svg = root.querySelector("svg"), read = root.querySelector("#ln-read");
   function draw() {
     svg.replaceChildren();

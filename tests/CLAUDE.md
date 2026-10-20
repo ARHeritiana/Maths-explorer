@@ -45,7 +45,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `gallery-four-colour.test.mjs` | four colour exhibit: shared-border adjacency, exact example minima (including disconnected K5), random-map colourings, repeated splits preserving area and disjoint interiors |
 | `gallery-four-colour-dom.test.mjs` | bilingual example menu, grouped-country colours, border drawing and undo, keyboard editor, conflict detection, cancelled pointer/pinch and frame cleanup |
 | `interaction-surfaces.test.mjs` | formula-only arithmetic, direct cookie transfers and identity-independent counts, mobile text scroll policy, continuous sampling clock and motion |
-| `direct-interactions.test.mjs` | analytic fly motion versus independent collision stepping (including very fast flies), custom tuples, spatial crossing-cue geometry, preview-style front/under strand rendering, direct jug actions and scene playback/scrubbing |
+| `direct-interactions.test.mjs` | analytic fly motion versus independent collision stepping (including very fast flies), custom tuples, spatial crossing-cue geometry, preview-style front/under strand rendering, direct jug actions and scene playback/scrubbing, callback motion preferences, animated peg frames, train-face contacts, hidden fly totals, ordered nail crossings and reverse-stroke cancellation |
 | `gallery-spatial.test.mjs` | all 44 curve projections, continuous deformations, 14 film models and full-window hat coverage |
 
 

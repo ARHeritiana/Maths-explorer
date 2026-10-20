@@ -38,8 +38,8 @@ export const variant = {
 };
 
 export const original = () => P(
-  "Deux trains roulent l’un vers l’autre et une mouche fait l’aller et retour entre eux jusqu’à leur rencontre. Quelle distance parcourt-elle ? Trouve la réponse de deux façons : par le temps, puis en additionnant les trajets. Pourquoi les deux méthodes donnent-elles le même résultat ?",
-  "Two trains drive towards each other and a fly goes back and forth between them until they meet. What distance does it cover? Find the answer in two ways: through the time, then by adding the legs. Why do both methods give the same result?");
+  "Deux trains roulent l’un vers l’autre et une mouche fait l’aller et retour entre eux jusqu’à leur rencontre. Quelle distance parcourt-elle ? Justifie ta réponse. Peux-tu trouver plusieurs raisonnements ?",
+  "Two trains drive towards each other and a fly goes back and forth between them until they meet. What distance does it cover? Justify your answer. Can you find more than one argument?");
 
 export const icon = svg(`<path d="M6 46h52" stroke-opacity=".4"/><path d="M8 34h12v10H8zM44 34h12v10H44z" ${'fill="currentColor" fill-opacity=".22"'}/><path class="ci-draw" d="M20 30l8-10 8 10 6-8"/>${dot(42, 22, 2.6, "ci-blink")}`);
 

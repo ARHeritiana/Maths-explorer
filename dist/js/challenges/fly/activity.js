@@ -1,10 +1,10 @@
 // Hands-on activity of the fly challenge: the statement played as an animation (two trains, the fly going back and forth),
-// with a trip counter and the distance flown so far. Hint actions add a clock and a time and position graph; the activity
-// never states the total.
+// with a trip counter. Hint actions add a clock and a time and position graph; distance belongs in the solution.
 import { colour, onHintAction, svgEl, toLocal } from "../common/kit.js";
 import { parseFly, meetTime, flyMotion, flyTrace, flyNumber } from "./maths.js";
 
-export function activity(root, { t, q, reduced, lang }) {
+export function activity(root, { t, q, reduced: reducedPref, lang }) {
+  const reduced = typeof reducedPref === "function" ? !!reducedPref() : !!reducedPref;
   const [D, v1, v2, w] = parseFly(q.trip), T = meetTime(D, v1, v2), RUN = 6000;
   const fr = lang === "fr", fmt = (x, d = 1) => { if (x !== 0 && Math.abs(x) < 10 ** -d) return flyNumber(x,fr); const s = (Math.round(x * 10 ** d) / 10 ** d).toFixed(d); return fr ? s.replace(".", ",") : s; };
   let time = 0, playing = false, last = 0, raf = 0, level = 0, drag = null, blocked = false;
@@ -34,9 +34,9 @@ export function activity(root, { t, q, reduced, lang }) {
   const gapLabel = svgEl('text', { x: 50, y: 32, 'text-anchor': 'middle', 'font-size': 3.4, fill: 'var(--muted)' }, scene);
   function draw() {
     const motion = flyMotion(D, v1, v2, w, time), [x1, x2, f] = motion.positions;
-    const done = motion.completed, flown = w * Math.min(time, T), met = time >= T;
+    const done = motion.completed, met = time >= T;
     trains[0].setAttribute('transform', `translate(${X(x1)} 0)`); trains[1].setAttribute('transform', `translate(${X(x2)} 0)`);
-    fly.setAttribute('transform', `translate(${X(f)} 10) scale(${motion.direction || 1} 1)`);
+    fly.setAttribute('transform', `translate(${X(f)} 19.5) scale(${motion.direction || 1} 1)`);
     scene.dataset.time = String(time); scene.dataset.fly = String(f); scene.dataset.legs = met ? '∞' : String(done);
     gapLabel.textContent = `${t("écart", "gap")} ≈ ${fmt(Math.max(0, x2 - x1))} km`;
     graph.hidden = level < 2;
@@ -53,7 +53,7 @@ export function activity(root, { t, q, reduced, lang }) {
       svgEl("text", { x: 2, y: 3, "font-size": 2.8, fill: "var(--muted)" }, graph).textContent = t("temps ↓   position →", "time ↓   position →");
     }
     playBtn.textContent = playing ? t("Pause", "Pause") : met ? t("Rejouer", "Replay") : t("Lancer", "Play");
-    read.innerHTML = `${t("Trajets terminés : ", "Legs completed: ")}<strong>${met ? t("une infinité", "infinitely many") : done}</strong> · ${t("distance de la mouche : ", "fly’s distance: ")}<strong>≈ ${fmt(flown)} km</strong>${level >= 1 ? ` · ${t("temps : ", "time: ")}<strong>≈ ${fmt(Math.min(time, T) * 60, 0)} min</strong>` : ""}${met ? ` · <strong>${t("les trains se rencontrent", "the trains meet")}</strong>` : ""}`;
+    read.innerHTML = `${t("Trajets terminés : ", "Legs completed: ")}<strong>${met ? t("une infinité", "infinitely many") : done}</strong>${level >= 1 ? ` · ${t("temps : ", "time: ")}<strong>≈ ${fmt(Math.min(time, T) * 60, 0)} min</strong>` : ""}${met ? ` · <strong>${t("les trains se rencontrent", "the trains meet")}</strong>` : ""}`;
   }
   const tick = (now) => {
     if (!playing) return;

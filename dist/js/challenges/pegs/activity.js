@@ -1,10 +1,11 @@
 // Hands-on activity of the pegs challenge: the learner tries, fails and notices; it never states the answer or the method.
 import { colour, onHintAction, svgEl } from "../common/kit.js";
-import { pegTarget, PEGS_START, pegClass, pegsMin, pegLanding } from "./maths.js";
+import { pegTarget, PEGS_START, pegClass, pegLanding } from "./maths.js";
 
 /* ------------------------------------------------------------ three pegs */
-export function activity(root, { t, q, reduced }) {
-  const T = pegTarget(q.target), NAMES = ["A", "B", "C"], MIN_SPAN = 6.5, PAD = 2.2, HOP = 0.34, DUR = 320;
+export function activity(root, { t, q, reduced: reducedPref }) {
+  const reduced = typeof reducedPref === "function" ? !!reducedPref() : !!reducedPref;
+  const T = pegTarget(q.target), NAMES = ["A", "B", "C"], MIN_SPAN = 6.5, PAD = 2.2, HOP = 0.85, DUR = 650;
   let pos, hist, sel, bounds, level = 0, notice = "", fly = null, raf = 0;   // level 1: parity of each peg (hint 1), 2: points coloured by parity (hint 2)
   const reset = () => { pos = PEGS_START.map((p) => [...p]); hist = []; sel = null; bounds = null; notice = ""; };
   root.innerHTML = `
@@ -50,7 +51,7 @@ export function activity(root, { t, q, reduced }) {
     root.querySelector("#pg-undo").disabled = !hist.length || !!fly;
     const done = pos.findIndex((p) => p[0] === T[0] && p[1] === T[1]);
     const legend = level === 2 ? ` · ${t("couleur d’un point = couleur du pion qui garde cette parité ; cercle vide = parité qu’aucun pion n’a", "colour of a point = colour of the peg that keeps that parity; empty circle = a parity no peg has")}` : "";
-    read.innerHTML = notice ? notice : `${t("Sauts", "Jumps")} : <strong>${hist.length}</strong>${done >= 0 ? ` · <strong>${t(`le pion ${NAMES[done]} est sur le point visé !`, `peg ${NAMES[done]} is on the target!`)}</strong> ${t(`En ${hist.length} saut${hist.length > 1 ? "s" : ""} ; le minimum possible est ${pegsMin(T)}.`, `In ${hist.length} jump${hist.length > 1 ? "s" : ""}; the least possible is ${pegsMin(T)}.`)}` : ""}${legend}`;
+    read.innerHTML = notice ? notice : `${t("Sauts", "Jumps")} : <strong>${hist.length}</strong>${done >= 0 ? ` · <strong>${t(`le pion ${NAMES[done]} est sur le point visé !`, `peg ${NAMES[done]} is on the target!`)}</strong>` : ""}${legend}`;
   }
   function jump(a, b) {
     const to = pegLanding(pos[a], pos[b]);
@@ -58,7 +59,7 @@ export function activity(root, { t, q, reduced }) {
     hist.push(pos.map((p) => [...p])); notice = ""; sel = null;
     const from = [...pos[a]]; pos[a] = to;
     if (reduced) { draw(); return; }
-    fly = { i: a, from, to }; const start = performance.now();
+    fly = { i: a, from, to }; draw(0); const start = performance.now();
     const step = (now) => { const k = Math.min(1, (now - start) / DUR); if (k < 1) { draw(k * k * (3 - 2 * k)); raf = requestAnimationFrame(step); } else { fly = null; raf = 0; draw(); } };
     raf = requestAnimationFrame(step);
   }

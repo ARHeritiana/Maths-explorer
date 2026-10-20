@@ -3,7 +3,8 @@
 import { colour, onHintAction, svgEl, toLocal, lockTouch } from "../common/kit.js";
 import { parseJugs, apply } from "./maths.js";
 
-export function activity(root, { t, q, reduced }) {
+export function activity(root, { t, q, reduced: reducedPref }) {
+  const reduced = typeof reducedPref === "function" ? !!reducedPref() : !!reducedPref;
   const [a, b, target] = parseJugs(q.jugs), cap = Math.max(a, b);
   let st, hist, level = 0, selected = -1, drag = null, status = '';
   const reset = () => { st = [0, 0]; hist = [[0, 0]]; };

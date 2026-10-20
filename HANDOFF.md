@@ -195,3 +195,7 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 - [x] Identical cookies can be dragged or tapped to distinct children, transferred, or returned to the tray; keyboard allocation and count-only sharing records are retained.
 - [x] Mission text has no nested scrolling viewport, height limit or scroll containment.
 - [x] Buffon and Bertrand have continuous animated drop/draw controls and speed from 1 to 60 samples per second; only finished trials enter the tally. Changing parameters or missions pauses the run; reduced motion uses an explicit one-sample action and stops active motion when enabled. Counts include all trials; only the last samples remain drawn.
+
+## Challenge interaction corrections, 20 October 2026
+
+- [x] Fly distance stays in solution; fly touches train fronts. Peg jumps animate with the actual motion preference. Nails accept direct string strokes with ordered ray crossings, common base connectors and collision rejection; buttons are folded. Automatic star/lune/square totals and premature optimal-value disclosures are hidden or removed. Two independent audits and callback-based DOM regressions recorded privately.

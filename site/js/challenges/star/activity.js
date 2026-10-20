@@ -17,7 +17,7 @@ export function activity(root, { t, q }) {
       <label class="act-field" for="st-k"><span class="act-label">${t("Saut k", "Skip k")} <output id="st-kout"></output></span><input id="st-k" type="range" min="1" max="6" step="1" value="${k}"></label>
       <button class="btn btn-secondary" id="st-rand" type="button">${t("Points au hasard", "Random points")}</button><button class="btn-quiet" id="st-reg" type="button">${t("Régulier", "Regular")}</button>
     </div>
-    <p class="act-readout" id="st-read" role="status" aria-live="polite"></p>`;
+    <details class="act-measurements"><summary>${t("Afficher les mesures", "Show measurements")}</summary><p class="act-readout" id="st-read" role="status" aria-live="polite"></p></details>`;
   const svg = root.querySelector("svg"), read = root.querySelector("#st-read");
   function draw() {
     k = starK(n, k); const ang = irregular ? angles : regular(), CX = 260, CY = 160, R = 140, P = (i) => [CX + R * Math.cos(ang[i] - Math.PI / 2), CY + R * Math.sin(ang[i] - Math.PI / 2)];
@@ -29,7 +29,7 @@ export function activity(root, { t, q }) {
       const o = P(i), u = P((i + k) % n), v = P((i - k + n) % n), a1 = [u[0] - o[0], u[1] - o[1]], b1 = [v[0] - o[0], v[1] - o[1]];
       const tip = (Math.acos(clamp((a1[0] * b1[0] + a1[1] * b1[1]) / (Math.hypot(...a1) * Math.hypot(...b1)), -1, 1)) * 180) / Math.PI; sum += tip;
       svgEl("circle", { cx: o[0], cy: o[1], r: 4, fill: colour(0) }, svg);
-      const mx = CX + (R + 16) * Math.cos(ang[i] - Math.PI / 2), my = CY + (R + 16) * Math.sin(ang[i] - Math.PI / 2), tx = svgEl("text", { x: mx, y: my + 4, "text-anchor": "middle", style: "font:600 11px var(--body);fill:var(--ink)" }, svg); tx.textContent = `${Math.round(tip)}°`;
+      const mx = CX + (R + 16) * Math.cos(ang[i] - Math.PI / 2), my = CY + (R + 16) * Math.sin(ang[i] - Math.PI / 2), tx = svgEl("text", { x: mx, y: my + 4, "text-anchor": "middle", style: "font:600 11px var(--body);fill:var(--ink)" }, svg); tx.textContent = root.querySelector(".act-measurements").open ? `${Math.round(tip)}°` : "";
     }
     root.querySelector("#st-nout").textContent = n; root.querySelector("#st-kout").textContent = k;
     root.querySelector("#st-k").value = k;
@@ -39,6 +39,7 @@ export function activity(root, { t, q }) {
   root.querySelector("#st-k").addEventListener("input", (e) => { k = Number(e.target.value); irregular = false; draw(); });
   root.querySelector("#st-rand").addEventListener("click", () => { angles = Array.from({ length: n }, () => Math.random() * TAU).sort((u, v) => u - v); irregular = true; draw(); });
   root.querySelector("#st-reg").addEventListener("click", () => { irregular = false; draw(); });
+  root.querySelector(".act-measurements").addEventListener("toggle", draw);
   void starSumDegrees;
   draw();
   return () => {};

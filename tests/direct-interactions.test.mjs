@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom';
 import { flyMotion, meetTime, flyTrace, flyNumber } from '../site/js/challenges/fly/maths.js';
 import { activity as flyActivity } from '../site/js/challenges/fly/activity.js';
 import { activity as jugActivity } from '../site/js/challenges/jugs/activity.js';
-import { normalise, defaults } from '../site/js/challenges/registry.js';
+import { normalise, defaults, mountActivity } from '../site/js/challenges/registry.js';
 import { normaliseKnot, cameraKnot, projectedKnotCrossings, knotCrossingBridge } from '../site/js/gallery-knot-geometry.js';
 import { KNOT_CATALOGUE } from '../site/js/knot-catalogue.js';
 import { drawKnotStrand } from '../site/js/gallery-knot-render.js';
@@ -125,6 +125,58 @@ test('jug objects support tapping, keyboard, dragging and cancellation; fly scen
     pointer(scene,'pointerdown',20,15,2);pointer(scene,'pointerdown',60,15,3);pointer(scene,'pointermove',90,15,2);pointer(scene,'pointerup',90,15,2);pointer(scene,'pointerup',60,15,3);
     assert.equal(scene.dataset.time,timeBefore,'a second pointer cancels scrubbing instead of owning another finger');assert.equal(frames.size,0);
     stop();assert.equal(frames.size,0);root.remove();
+  }
+  assert.deepEqual(errors,[]);dom.window.close();
+});
+
+
+test('challenge motion callbacks, contact, hidden answers and ordered nail drawing', () => {
+  const dom = new JSDOM('<main></main>', {pretendToBeVisual:true}), w = dom.window;
+  for (const k of ['window','document','CustomEvent','Event']) globalThis[k] = w[k];
+  w.SVGElement.prototype.createSVGPoint = () => ({x:0,y:0,matrixTransform(){return this;}});
+  w.SVGElement.prototype.getScreenCTM = () => ({inverse(){return this;}});
+  w.SVGElement.prototype.setPointerCapture = () => {};
+  const frames = new Map(); let seq = 0;
+  globalThis.requestAnimationFrame = f => {frames.set(++seq, f);return seq;};
+  globalThis.cancelAnimationFrame = i => frames.delete(i);
+  const root = w.document.querySelector('main'), errors = [];
+  w.addEventListener('error', e => errors.push(e.error));
+  const pointer = (el,type,x,y,id=1) => {const e = new w.MouseEvent(type,{clientX:x,clientY:y,button:0,bubbles:true});Object.defineProperty(e,'pointerId',{value:id});el.dispatchEvent(e);};
+  const key = (el,key) => el.dispatchEvent(new w.KeyboardEvent('keydown',{key,bubbles:true}));
+  const runFrame = now => {const fs = [...frames.values()];frames.clear();fs.forEach(f=>f(now));};
+  for (const lang of ['fr','en']) {
+    let stop = mountActivity('pegs',root,{lang,reduced:()=>false,params:defaults('pegs')});
+    root.querySelector('[data-i="0"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
+    root.querySelector('[data-i="1"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
+    assert.equal(frames.size,1,'the real callback-based app mount animates jumps');
+    const start = root.querySelector('[data-i="0"] circle.hit').getAttribute('cx');
+    runFrame(performance.now()+325);
+    assert.notEqual(root.querySelector('[data-i="0"] circle.hit').getAttribute('cx'),start);
+    stop();assert.equal(frames.size,0);
+    stop = mountActivity('pegs',root,{lang,reduced:()=>true,params:defaults('pegs')});
+    root.querySelector('[data-i="0"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));root.querySelector('[data-i="1"]').dispatchEvent(new w.MouseEvent('click',{bubbles:true}));
+    assert.equal(frames.size,0,'reduced motion remains respected');stop();
+    stop = mountActivity('fly',root,{lang,reduced:()=>false,params:defaults('fly')});
+    const scene = root.querySelector('svg');key(scene,'b');
+    const x = Number(root.querySelector('.fl-fly').getAttribute('transform').match(/translate\(([^ ]+)/)[1]);
+    const trains = [...scene.querySelectorAll('g')].filter(g=>g.querySelector('path[d^="M12"]'));
+    const trainX = Number(trains[0].getAttribute('transform').match(/translate\(([^ ]+)/)[1]);
+    assert.ok(Math.abs(x-trainX)<1e-8,'the first bounce touches the second front face');
+    assert.match(root.querySelector('.fl-fly').getAttribute('transform'),/19.5/);
+    key(scene,'End');assert.doesNotMatch(root.querySelector('#fl-read').textContent,/1000|distance/);stop();
+    stop = mountActivity('nails',root,{lang,reduced:()=>true,params:defaults('nails')});
+    const svg = root.querySelector('svg'), tools = root.querySelector('.nl-tools');assert.equal(tools.open,false);
+    const stroke = points => {pointer(svg,'pointerdown',...points[0]);for(const p of points.slice(1))pointer(svg,'pointermove',...p);pointer(svg,'pointerup',...points.at(-1));};
+    const circle = Array.from({length:81},(_,i)=>[50+26*Math.cos(i*Math.PI/40),14+10*Math.sin(i*Math.PI/40)]);
+    stroke(circle);assert.match(root.querySelector('#nl-read').textContent,/2/);
+    stroke([...circle].reverse());
+    w.document.dispatchEvent(new w.CustomEvent('challenge-action',{detail:{id:'nails',act:'word'}}));
+    assert.match(root.querySelector('#nl-read').textContent,lang==='fr'?/tombe/:/falls/,'retracing a two-nail loop cancels it');
+    root.querySelector('#nl-clear').click();
+    pointer(svg,'pointerdown',20,8);pointer(svg,'pointermove',90,8);svg.dispatchEvent(new w.Event('pointercancel'));pointer(svg,'pointerup',90,8);
+    assert.match(root.querySelector('#nl-read').innerHTML,/<strong>0<\/strong>/,'cancelled drawing adds no winding');
+    const nail = root.querySelector('[data-nail="0"]');nail.focus();key(nail,'Enter');assert.equal(w.document.activeElement.dataset.nail,'0');key(w.document.activeElement,'Enter');assert.equal(root.querySelector('[data-nail="0"]').getAttribute('aria-pressed'),'false');
+    stop();root.replaceChildren();
   }
   assert.deepEqual(errors,[]);dom.window.close();
 });
