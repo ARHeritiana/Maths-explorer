@@ -7,7 +7,7 @@ Read `content/CLAUDE.md` first (it is short). Then:
    docstring for the exact commands if this fails).
 3. Environments and macros: `docs/TEX_STYLE_GUIDE.md` sections "Environments" and "Mapping"; do not read the core
    packages unless changing the look.
-4. Verify every computed result with a script in `private/verification/`.
+4. Verify every computed result with a script; hand the script and its output to the owner (the private area is not in this public repository).
 5. Build: `make tex COURSE=<course>` (TeX Live packages listed in `docs/ARCHITECTURE.md` "Commands"), then
    `make site`.
 6. New chapter: add it to `content/data/manifest.json` (`catalog.chapters`, and `books.<course>`), with its companion

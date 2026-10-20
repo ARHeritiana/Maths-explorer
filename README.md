@@ -15,7 +15,7 @@ Read, in this order:
 3. `docs/HANDOFF.md` and `docs/ARCHITECTURE.md`: the TeX and build pipeline (status of the PDF migration, commands).
 4. `docs/DESIGN_V3.md`: the visual design and its reasons.
 5. `.claude/skills/slides-interactive-math/SKILL.md`, then `.claude/skills/slides-interactive-3d-math/SKILL.md`, before touching any slide.
-6. `private/README.md`: where review status and audit notes live (never published).
+6. Review status and audit notes live in the owner's private area, outside this public repository (`private/` is git-ignored).
 
 ## Run locally
 
@@ -45,7 +45,6 @@ content/data/         manifest.json (catalogue source of truth), enrichment.json
 content/slides/       slide deck sources (authored decks, drafts, university foundations)
 content/university/   applied mathematics module (packaged by scripts/build-module-maths.py)
 build/mxbuild/        the pipeline (make tex, site, catalog, slides, check)
-private/              ledger, audits, verification scripts, drafts (never deployed)
 .claude/skills/       slide skills and lint script
 scripts/              course, slide and university builders, syntax check, local server
 tests/                node tests, browser tests, slide, twin, notation, lint, parity and banned-phrase checks
@@ -56,7 +55,7 @@ Edit `site/`, never the copies in `dist/`: `python -m mxbuild site` (or `make si
 
 ## Rules in one paragraph
 
-No identifying information about the author or any employer anywhere published (HTML, PDF text and metadata, file names). No links to personal storage. No visible AI notice or review label. No tracking. Draft, audit and review status stay in `private/`. A resource is publishable after two independent AI audits and code verification of every computed result. Full rules: `PROJECT_BRIEF.md`, section 2.
+No identifying information about the author or any employer anywhere published (HTML, PDF text and metadata, file names). No links to personal storage. No visible AI notice or review label. No tracking. Draft, audit and review status stay in the owner's private area, outside this public repository. A resource is publishable after two independent AI audits and code verification of every computed result. Full rules: `PROJECT_BRIEF.md`, section 2.
 
 ## Licences
 

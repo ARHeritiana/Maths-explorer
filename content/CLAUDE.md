@@ -27,7 +27,7 @@ Courses: `seconde`, `premiere`, `terminale`, `expertes`, `stmg`, `automatismes`,
 Workflow for a PDF change: edit the `.fr.tex` (and its `.en.json` segment if prose changed), run
 `make tex COURSE=<course>` (TeX Live needed, packages in `docs/ARCHITECTURE.md`), then `make site`.
 Rules: translate prose only (`docs/ADR-0001-tex-i18n.md`); environments and macros in `docs/TEX_STYLE_GUIDE.md`;
-no names of owner, school or city; every computed result verified by code (`private/verification/`).
+no names of owner, school or city; every computed result verified by code (scripts kept in the owner's private area, outside this repository).
 
 `university/fourier/lessons.py`: original French Fourier lesson and exercise source shared by the web and PDF editions.
 

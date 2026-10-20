@@ -16,7 +16,6 @@ a file, update the map in the same commit.
 | `site/js/catalogue-data.js`, `dist/js/resources-data.js`, `dist/js/enrichment-data.js`, `dist/resources/catalog.json`, `content/data/RESOURCE_PROVENANCE.json`, `content/data/build-state.json` | generated from the manifest and the inputs | `content/data/manifest.json`, then `make site` |
 | `content/tex/**/*.en.tex` | generated English twins | the `.fr.tex` unit and its `.en.json` table |
 | `docs/history/**`, `docs/LOG.md` | dated records | only when asked about the past |
-| `private/audits/**` | audit reports | only for audit work |
 | `site/vendor/**`, `site/fonts/**`, `site/js/icons.js` body | third-party | `site/vendor/README.md` |
 
 `.ignore` hides `dist/` and `docs/history/` from ripgrep, Grep and Glob. Use `git grep` or a path argument if you
@@ -63,7 +62,7 @@ really need them.
 | the build or a check | `build/mxbuild/CLAUDE.md` | |
 | a test | `tests/CLAUDE.md` | |
 | programme references, curriculum scope | `PROJECT_BRIEF.md` section 3, `docs/CURRICULUM.md` | |
-| review status, audits, verification scripts | `private/README.md` | |
+| review status, audits, verification scripts | not in this repository: the owner's private area (ledger, audits, verification; kept outside this public repository, git-ignored if copied here) | hand new audit notes and scripts to the owner as files |
 
 ## 3. Site map (hash routes)
 
@@ -96,7 +95,6 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `scripts/` | `scripts/CLAUDE.md` | course, slide and university builders |
 | `tests/` | `tests/CLAUDE.md` | which test covers which module |
 | `docs/` | `docs/CLAUDE.md` | which document is current |
-| `private/` | `private/README.md` | ledger, audits, verification (never deployed) |
 
 Root files: `CLAUDE.md` (entry), `AGENTS.md` (other agents), `HANDOFF.md` (state and task queue),
 `PROJECT_BRIEF.md` (governing rules), `README.md` (humans), `Makefile`, `package.json`, `.github/workflows/`
