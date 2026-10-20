@@ -1,6 +1,6 @@
 # Handoff
 
-Last updated: 18 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
+Last updated: 20 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
 ## What this project is
 
@@ -16,6 +16,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Tests | `npm test` (node tests), `npm run check` (syntax of every served script, `scripts/check-syntax.mjs`), `make check` (pipeline; the notation test needs TeX Live) and the browser suite (`npm run test:browser`) are the pre-push checks. Current results are in the latest entry of `docs/LOG.md`. |
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script; `.claude/skills/maths-explorer-tasks/` (step-by-step recipes for recurring tasks). Navigation: `MAP.md`. |
 | Private area | Since 20 October 2026 the repository is public and `private/` (ledger, audits, verification, course quality) is no longer in it: it lives in the private repository ARHeritiana/Maths-explorer-backup (imported with its history the same day; paths below are relative to that repository), and `private/` is git-ignored here. Agents commit new audit notes and verification scripts there, on `main`. Human review remains false for every resource. |
+| Launch | 20 October 2026: the repository was made public and the site launched on GitHub Pages (https://arheritiana.github.io/Maths-explorer/), deployed from `dist/` by `.github/workflows/pages.yml` (run 59, commit `b0bb88b`). Every push to `main` republishes it, so run `make site` before pushing. Launched before checklist item 1 below (two-agent audit, English proof-reading) was done. |
 | Publication gate | No chapter has been through the two-agent audit recorded in `ledger.json` of `ARHeritiana/Maths-explorer-backup` yet. The TeX migration was verified by the pipeline checks, not by the gate. Maths expertes was published on 17 October 2026 on the owner's explicit instruction before its two audits (ledger record `expertes-course`). |
 | Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`; when the pip Playwright expects another browser build, set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (adjust to the folder present). |
 
@@ -115,11 +116,11 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 8. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
 9. Later: access control (codes or paywall) needs a server or paid platform.
 
-## Before the site is made public (owner checklist)
+## Launch checklist (site launched on 20 October 2026)
 
-1. Run the two-agent audit and ledger record for what is published (publication gate), and proof-read the English (open point 7). The owner said he will do this before launch.
+1. Still open after launch: run the two-agent audit and ledger record for what is published (publication gate), and proof-read the English (open point 7). Planned before launch, not yet done.
 2. Licence: content is CC BY-NC-SA 4.0 (`LICENSE.md`, footer link); code is MIT (`LICENSE-CODE`).
-3. Settings, Pages, Source: GitHub Actions (or another static host), then run the "Deploy to GitHub Pages" workflow.
+3. Done on 20 October 2026: Settings, Pages, Source: GitHub Actions, then the "Deploy to GitHub Pages" workflow (run 59) succeeded.
 4. The `.tex` sources, including correction files with marking schemes, are published by design (`dist/sources/`); the owner accepted this on 15 October.
 
 ## How to verify your work

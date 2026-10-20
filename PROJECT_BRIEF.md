@@ -111,10 +111,10 @@ The owner discarded every earlier design instruction on 13 October 2026 and dele
 
 Update, 13 October 2026: the web source is `site/` and `dist/` is assembled from it (`make site`); the TeX system is in `content/tex/` and the catalogue source is `content/data/manifest.json`. See `docs/ARCHITECTURE.md`. Where the bullets below name `dist/js` or `content/latex`, read `site/js` and `content/tex`.
 
-- Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is this GitHub repository; review records (ledger, audits, verification) live in the private repository ARHeritiana/Maths-explorer-backup (see its README; ledger schema there), and `private/` is git-ignored here; optional static hosting on the ChatGPT sites platform (see `.openai/hosting.json`). Not launched until the owner judges it polished.
+- Static site, no accounts, relative paths, hash routes (existing design), deploy folder `dist/`. Source of truth is this GitHub repository; review records (ledger, audits, verification) live in the private repository ARHeritiana/Maths-explorer-backup (see its README; ledger schema there), and `private/` is git-ignored here; launched on 20 October 2026 on GitHub Pages (https://arheritiana.github.io/Maths-explorer/), deployed from `dist/` by `.github/workflows/pages.yml` on every push to `main`; static hosting on the ChatGPT sites platform (see `.openai/hosting.json`) remains optional.
 - Keep from the current repo: the `[French, English]` content model, route scheme, tests and CI, the 98 LaTeX workshop sources, curriculum research notes (re-verify).
 - Rebuild: the interactive layer around the slide engine; the TeX-less PDFs.
-- Before launch, size and load time need attention (the current `dist/` is about 156 MB, mostly PDFs).
+- Size and load time still need attention (the current `dist/` is about 156 MB, mostly PDFs).
 - Pending clean-up tasks from the decisions above: remove the visible AI footer notice from the site and the matching README text; scan all PDFs and web editions for identifying metadata; update the language handling so French-only and English-only resources are allowed; keep tests and CI passing after each change.
 
 ## 8. Production workflow and quality gates

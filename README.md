@@ -4,7 +4,7 @@ A static, experiment-first mathematics resource site for lycée students and tea
 
 Curricula, in priority order: current French lycée classes (Seconde, Première spécialité, Terminale spécialité, maths expertes, Terminale STMG), Malagasy Terminale, Olympiad, rest of the Malagasy curriculum, International (IB, SAT). Language: French for French and Malagasy curricula, English for International, bilingual for Olympiad. French and English PDFs are produced from one set of TeX sources.
 
-Status: work in progress, not launched. The repository is private.
+Status: work in progress, launched on 20 October 2026 at https://arheritiana.github.io/Maths-explorer/. The repository is public.
 
 ## For an AI agent or collaborator
 
