@@ -47,6 +47,8 @@ pre{background:var(--panel);border:1px solid var(--panel-2);border-radius:12px;p
 
 .sg{border-collapse:collapse;margin:8px 0;max-width:100%}
 .sg td{padding:4px 14px;min-width:28px;height:40px;text-align:center;vertical-align:middle}
+/* Dense lists of observations keep each value intact inside the text column. */
+.sg:has(tr > td:nth-child(12)) td{padding-inline:4px;white-space:nowrap}
 .sg tr.rule td{border-top:2px solid var(--muted)}
 .sg td.l{border-left:2px solid var(--muted)}.sg td.r{border-right:2px solid var(--muted)}
 mjx-container[jax="SVG"]{max-width:none}
@@ -96,6 +98,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
   #stage{position:relative;width:100%;height:auto;transform:none!important;overflow:visible;display:flex;flex-direction:column;gap:14px;padding:16px}
   #col,#col.wide,#rt,#r1,#r2,#drawer{position:static;width:auto;height:auto}
   #col{display:block}#flow{overflow:visible;font-size:20px}
+  .sg:has(tr > td:nth-child(12)) td{min-width:0;padding-inline:1px;font-size:16px}
   #col.wide #flow{min-height:0}
   h2.tt{font-size:26px}.title-slide h1{font-size:38px}.title-slide{min-height:0}
   #rt{order:-1}.canvas-wrap{height:280px}
@@ -144,3 +147,11 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 .lab2-readout>div{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 .lab2-readout dt{color:var(--muted);font-size:16px}
 .lab2-readout dd{margin:0;font-size:21px}
+
+/* Keep the complete mission readable while the parameter controls scroll below the fixed figure. */
+.hint-line.lab2-hint{flex:0 0 auto;max-height:none;overflow:visible}
+.lab2-slide[data-experiment="quadratic"] .lab2-controls{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.lab2-slide[data-experiment="quadratic"] [data-control="form"]{grid-column:1 / -1}
+@media(max-width:760px) and (orientation:portrait){
+  .lab2-slide[data-experiment="quadratic"] .lab2-controls{grid-template-columns:1fr}
+}

@@ -68,7 +68,7 @@ def university_index(manifest, previous, measure=file_record):
 
 def asset_versions():
     return {p.relative_to(DIST).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()[:16]
-            for folder in ('resources', 'slides', 'sources')
+            for folder in ('resources', 'slides', 'sources', 'data')
             for p in sorted((DIST / folder).rglob('*')) if p.is_file()}
 
 
@@ -78,7 +78,8 @@ def generate(manifest=None):
     university = university_index(manifest, previous)
     course_ids = {c['course'] for c in manifest['companion']['chapters']}
     courses = manifest['catalog']['courses']
-    model = {'courses': courses, 'primaryCourses': [c for c in courses if c['id'] in course_ids],
+    discovery_chapters = [dict(c, formats=sorted({r['format'] for r in manifest['catalog']['resources'] if r['chapter'] == c['id']}), languages=sorted({lang for r in manifest['catalog']['resources'] if r['chapter'] == c['id'] for lang in r.get('editions', {})})) for c in manifest['catalog']['chapters']]
+    model = {'courses': courses, 'discoveryChapters': discovery_chapters, 'primaryCourses': [c for c in courses if c['id'] in course_ids],
              'university': university, 'assetVersions': asset_versions()}
     # The model embeds this index, so use the new index's hash, not the previous file's.
     uni_text = json.dumps(university, ensure_ascii=False, indent=2) + '\n'

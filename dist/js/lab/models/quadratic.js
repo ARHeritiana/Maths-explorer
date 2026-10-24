@@ -30,3 +30,29 @@ export const quantities = {
   delta: (s) => model(s).discriminant,
 };
 export const quantity = (name, s) => quantities[name](s);
+
+// All three input forms share {a,b,c}; choosing a form never changes the polynomial.
+export function fromRoots(a, first, second) {
+  return { b: clean(-a * (first + second)), c: clean(a * first * second) };
+}
+export function inputForm(s) {
+  return s.form === "abc" ? "abc" : s.form === "roots" && model(s).roots.length ? "roots" : "vertex";
+}
+export function coordinates(s) {
+  const q = model(s), form = inputForm(s);
+  return form === "abc" ? [s.b, s.c] : form === "roots" ? [q.roots[0], q.roots.at(-1)] : [q.alpha, q.beta];
+}
+export function editCoordinate(s, index, value) {
+  const pair = coordinates(s); pair[index] = value;
+  return inputForm(s) === "abc" ? { [index ? "c" : "b"]: value }
+    : inputForm(s) === "roots" ? fromRoots(s.a, ...pair) : fromVertex(s.a, ...pair);
+}
+// Independent case selectors keep the other case dimension and the symmetry axis fixed.
+export function orientation(s, sign) {
+  const q = model(s), a = Math.abs(s.a) * sign;
+  return { a, ...fromVertex(a, q.alpha, -q.beta) };
+}
+export function rootCase(s, sign) {
+  const q = model(s), beta = sign === 0 ? 0 : -Math.sign(s.a) * sign * Math.max(1, Math.abs(q.beta));
+  return fromVertex(s.a, q.alpha, beta);
+}

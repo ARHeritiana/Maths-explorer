@@ -93,6 +93,7 @@ export const sierpinskiArea = (level) => 0.75 ** level;
 import { NS, css, palette, canvasIn, field, bind, loopFor } from "./object-kit.js";
 import { mountPlatonic } from "./platonic-explorer.js";
 import { GALLERY_OBJECTS } from "./gallery-objects.js";
+import { dynamicsGallery } from './gallery-dynamics.js';
 import { voronoiWorld } from './gallery-voronoi.js';
 import { fourColours } from './gallery-four-colour.js';
 import { fastestSlide } from './gallery-fastest.js';
@@ -104,6 +105,11 @@ import { squarePacking } from './gallery-squares.js';
 import { movingSofa } from './gallery-sofa.js';
 import { inscribedSquare } from './gallery-inscribed.js';
 import { opaqueSquare } from './gallery-opaque.js';
+import { inferenceGallery } from './gallery-inference.js';
+import { fairGallery } from './gallery-fair-division.js';
+import { topologyGallery } from './gallery-topology.js';
+import { illuminationGallery } from './illumination-content.js';
+import { gomboc } from './gallery-gomboc.js';
 
 /* ---------------------------------------------------------------- Galton */
 function galton(root, { t, reduced, lang }) {
@@ -328,7 +334,8 @@ function chaos(root, { t, reduced, lang }) {
   return loopFor(() => draw(), reduced);
 }
 
-export const OBJECTS = { galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare };
+export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare };
+Object.assign(OBJECTS, {'fair-division-gallery':fairGallery('fair-division'),'fair-goods-gallery':fairGallery('fair-goods'),'hairy-ball-gallery':topologyGallery('hairy-ball'),'nonorientable-surfaces-gallery':topologyGallery('nonorientable-surfaces'),'banach-tarski-gallery':topologyGallery('banach-tarski-model')});
 export const isObject = (id) => Object.hasOwn(OBJECTS, id);
 export function mountObject(id, root, { lang, reduced, ...options }) {
   const t = (fr, en) => (lang === "fr" ? fr : en);

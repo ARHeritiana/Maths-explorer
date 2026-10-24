@@ -1,181 +1,185 @@
 {
-"id": "terminale-03",
-"course": "terminale",
-"number": 3,
-"title": [
-"Limites de suites",
-"Limits of sequences"
-],
-"slides": [
-{
-"k": "title",
-"t": [
-"Limites de suites",
-"Limits of sequences"
-],
-"b": [
-"",
-""
-]
-},
-{
-"k": "goals",
-"t": [
-"Objectifs",
-"Objectives"
-],
-"b": [
-"Distinguer convergence et divergence ; calculer une limite ; utiliser comparaison, gendarmes et convergence monotone.",
-"Distinguish convergence from divergence; compute a limit; use comparison, the squeeze theorem and monotone convergence."
-]
-},
-{
-"k": "concept",
-"t": [
-"Notes de cours",
-"Course notes"
-],
-"b": [
-"\\(u_n\\to\\ell\\in\\R\\) signifie que tout intervalle ouvert contenant \\(\\ell\\) contient tous les termes à partir d'un certain rang. On dit que \\((u_n)\\) converge vers \\(\\ell\\).\n\\(u_n\\to+\\infty\\) signifie que pour tout réel \\(A\\), il existe un rang \\(N\\) tel que \\(n\\ge N\\Rightarrow u_n\\ge A\\). \\(u_n\\to-\\infty\\) signifie que pour tout réel \\(A\\), il existe \\(N\\) tel que \\(n\\ge N\\Rightarrow u_n\\le A\\).",
-"\\(u_n\\to\\ell\\in\\R\\) means that every open interval containing \\(\\ell\\) contains all the terms from some index onwards. We say that \\((u_n)\\) converges to \\(\\ell\\).\n\\(u_n\\to+\\infty\\) means that for every real number \\(A\\), there is an index \\(N\\) such that \\(n\\ge N\\Rightarrow u_n\\ge A\\). \\(u_n\\to-\\infty\\) means that for every real number \\(A\\), there is \\(N\\) such that \\(n\\ge N\\Rightarrow u_n\\le A\\)."
-],
-"h": [
-"Définitions",
-"Definitions"
-]
-},
-{
-"k": "concept",
-"t": [
-"Notes de cours",
-"Course notes"
-],
-"b": [
-"Une suite peut n'avoir aucune limite, même infinie : \\((-1)^n\\) oscille entre \\(-1\\) et \\(1\\). Toute suite convergente est bornée, mais la réciproque est fausse.",
-"A sequence may have no limit at all, not even an infinite one: \\((-1)^n\\) oscillates between \\(-1\\) and \\(1\\). Every convergent sequence is bounded, but the converse is false."
-]
-},
-{
-"k": "concept",
-"t": [
-"Opérations et comparaisons",
-"Operations and comparisons"
-],
-"b": [
-"Pour deux suites convergentes de limites \\(a,b\\), la somme tend vers \\(a+b\\), le produit vers \\(ab\\) et le quotient vers \\(\\frac{a}{b}\\) si \\(b\\ne0\\). Les règles avec l'infini s'utilisent en contrôlant les signes. Les formes \\(+\\infty-\\infty\\), \\(0\\times\\infty\\), \\(\\frac{\\infty}{\\infty}\\), \\(\\frac{0}{0}\\) ne permettent pas de conclure directement.",
-"For two convergent sequences with limits \\(a,b\\), the sum tends to \\(a+b\\), the product to \\(ab\\) and the quotient to \\(\\frac{a}{b}\\) if \\(b\\ne0\\). The rules involving infinity are used by keeping track of the signs. The forms \\(+\\infty-\\infty\\), \\(0\\times\\infty\\), \\(\\frac{\\infty}{\\infty}\\), \\(\\frac{0}{0}\\) do not allow a direct conclusion."
-]
-},
-{
-"k": "example",
-"t": [
-"Opérations et comparaisons",
-"Operations and comparisons"
-],
-"b": [
-"\\(\\frac{3n^2-n+1}{2n^2+4}=\\frac{3-\\frac{1}{n}+\\frac{1}{n^2}}{2+\\frac{4}{n^2}}\\to\\frac{3}{2}\\). Pour \\(\\sqrt{n^2+n}-n\\), multiplier par la quantité conjuguée donne \\(\\frac{1}{\\sqrt{1+\\frac{1}{n}}+1}\\to\\frac{1}{2}\\).",
-"\\(\\frac{3n^2-n+1}{2n^2+4}=\\frac{3-\\frac{1}{n}+\\frac{1}{n^2}}{2+\\frac{4}{n^2}}\\to\\frac{3}{2}\\). For \\(\\sqrt{n^2+n}-n\\), multiplying by the conjugate expression gives \\(\\frac{1}{\\sqrt{1+\\frac{1}{n}}+1}\\to\\frac{1}{2}\\)."
-]
-},
-{
-"k": "concept",
-"t": [
-"Opérations et comparaisons",
-"Operations and comparisons"
-],
-"b": [
-"Si \\(u_n\\le v_n\\) à partir d'un certain rang et \\(u_n\\to+\\infty\\), alors \\(v_n\\to+\\infty\\). Si \\(a_n\\le u_n\\le b_n\\) à partir d'un certain rang et \\(a_n,b_n\\to\\ell\\), alors \\(u_n\\to\\ell\\) (gendarmes).\nToute suite croissante et majorée converge. Toute suite décroissante et minorée converge. Ce théorème est admis.",
-"If \\(u_n\\le v_n\\) from some index onwards and \\(u_n\\to+\\infty\\), then \\(v_n\\to+\\infty\\). If \\(a_n\\le u_n\\le b_n\\) from some index onwards and \\(a_n,b_n\\to\\ell\\), then \\(u_n\\to\\ell\\) (squeeze theorem).\nEvery increasing sequence that is bounded above converges. Every decreasing sequence that is bounded below converges. This theorem is admitted (taken without proof)."
-],
-"h": [
-"Théorèmes",
-"Theorems"
-]
-},
-{
-"k": "proof",
-"t": [
-"Opérations et comparaisons",
-"Operations and comparisons"
-],
-"b": [
-"Pour tout \\(A\\), les termes de \\(u\\) dépassent \\(A\\) au-delà d'un rang \\(N_1\\). L'inégalité \\(v_n\\ge u_n\\) vaut au-delà d'un rang \\(N_2\\). Pour \\(n\\ge\\max(N_1,N_2)\\), \\(v_n\\ge A\\).",
-"For every \\(A\\), the terms of \\(u\\) exceed \\(A\\) beyond an index \\(N_1\\). The inequality \\(v_n\\ge u_n\\) holds beyond an index \\(N_2\\). For \\(n\\ge\\max(N_1,N_2)\\), \\(v_n\\ge A\\)."
-]
-},
-{
-"k": "proof",
-"t": [
-"Opérations et comparaisons",
-"Operations and comparisons"
-],
-"b": [
-"Pour tout \\(A\\), la non-majoration fournit \\(N\\) tel que \\(u_N&gt;A\\). Par croissance, \\(n\\ge N\\Rightarrow u_n\\ge u_N&gt;A\\), d'où \\(u_n\\to+\\infty\\). La non-majoration seule ne suffit pas.",
-"For every \\(A\\), the fact that the sequence is not bounded above provides \\(N\\) such that \\(u_N&gt;A\\). Since the sequence is increasing, \\(n\\ge N\\Rightarrow u_n\\ge u_N&gt;A\\), hence \\(u_n\\to+\\infty\\). Not being bounded above is not enough on its own."
-]
-},
-{
-"k": "concept",
-"t": [
-"Suites géométriques",
-"Geometric sequences"
-],
-"b": [
-"\\[q^n\\longrightarrow\\begin{cases}0&amp;\\text{si }-1&lt;q&lt;1,\\\\1&amp;\\text{si }q=1,\\\\+\\infty&amp;\\text{si }q&gt;1.\\end{cases}\\]\nSi \\(q\\le-1\\), \\((q^n)\\) n'a pas de limite : alternance pour \\(q=-1\\) ; sous-suites paire et impaire de signes opposés et de modules non bornés pour \\(q&lt;-1\\).",
-"\\[q^n\\longrightarrow\\begin{cases}0&amp;\\text{si }-1&lt;q&lt;1,\\\\1&amp;\\text{si }q=1,\\\\+\\infty&amp;\\text{si }q&gt;1.\\end{cases}\\]\nIf \\(q\\le-1\\), \\((q^n)\\) has no limit: alternation for \\(q=-1\\); for \\(q&lt;-1\\), the even and odd subsequences have opposite signs and unbounded moduli."
-]
-},
-{
-"k": "concept",
-"t": [
-"Suites géométriques",
-"Geometric sequences"
-],
-"b": [
-"Fixons \\(a\\ge0\\). Démontrons \\(P(n)\\) : « \\((1+a)^n\\ge1+na\\) ». Au rang \\(0\\), les deux membres valent \\(1\\).\nFixons \\(n\\ge0\\) et supposons \\(P(n)\\) vraie. Comme \\(1+a&gt;0\\),\n\\[(1+a)^{n+1}\\ge(1+na)(1+a)=1+(n+1)a+na^2\\ge1+(n+1)a.\\]\nC'est \\(P(n+1)\\) car \\(na^2\\ge0\\). Par récurrence, l'inégalité est vraie pour tout \\(n\\ge0\\). Si \\(q&gt;1\\), prendre \\(a=q-1&gt;0\\) et comparer à \\(1+na\\). Si \\(0&lt;q&lt;1\\), appliquer ce résultat à \\(\\frac{1}{q}\\), puis prendre les inverses. Pour \\(-1&lt;q&lt;0\\), \\(|q^n|=|q|^n\\to0\\) et les gendarmes concluent. Le cas \\(q=0\\) se traite à partir du rang \\(1\\).",
-"Fix \\(a\\ge0\\). Let us prove \\(P(n)\\): \"\\((1+a)^n\\ge1+na\\)\". At index \\(0\\), both sides equal \\(1\\).\nFix \\(n\\ge0\\) and assume \\(P(n)\\) is true. Since \\(1+a&gt;0\\),\n\\[(1+a)^{n+1}\\ge(1+na)(1+a)=1+(n+1)a+na^2\\ge1+(n+1)a.\\]\nThis is \\(P(n+1)\\) because \\(na^2\\ge0\\). By induction, the inequality holds for every \\(n\\ge0\\). If \\(q&gt;1\\), take \\(a=q-1&gt;0\\) and compare with \\(1+na\\). If \\(0&lt;q&lt;1\\), apply this result to \\(\\frac{1}{q}\\), then take reciprocals. For \\(-1&lt;q&lt;0\\), \\(|q^n|=|q|^n\\to0\\) and the squeeze theorem concludes. The case \\(q=0\\) is handled from index \\(1\\) onwards."
-],
-"h": [
-"Bernoulli et limite géométrique.",
-"Bernoulli and the limit of a geometric sequence."
-]
-},
-{
-"k": "method",
-"t": [
-"Suites géométriques",
-"Geometric sequences"
-],
-"b": [
-"Pour \\(u_{n+1}=f(u_n)\\), établir une borne et la monotonie pour prouver la convergence. Si \\(f\\) est continue en la limite \\(\\ell\\), le passage à la limite donne \\(\\ell=f(\\ell)\\) (continuité étudiée au chapitre 4). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.",
-"For \\(u_{n+1}=f(u_n)\\), establish a bound and monotonicity to prove convergence. If \\(f\\) is continuous at the limit \\(\\ell\\), passing to the limit gives \\(\\ell=f(\\ell)\\) (continuity is studied in chapter 4). Solving this equation never proves, on its own, that the sequence converges."
-],
-"h": [
-"Suite récurrente",
-"Recursive sequence"
-]
-},
-{
-"k": "concept",
-"t": [
-"Suites géométriques",
-"Geometric sequences"
-],
-"b": [
-"Les points se rapprochent de \\(2\\) sans l'atteindre : \\(u_n=2+\\frac{3}{n+1}\\).",
-"The points get closer to \\(2\\) without reaching it: \\(u_n=2+\\frac{3}{n+1}\\)."
-]
-},
-{
-"k": "activity",
-"t": [
-"Activité de recherche",
-"Research activity"
-],
-"b": [
-"<b>Une limite n'est pas un dernier terme — 30 min.</b><br><br> On considère la suite \\((u_n)\\) définie sur \\(\\N\\) par \\(u_n=2+\\frac3{n+1}\\).\n<ol><li>Calculer \\(u_0\\), \\(u_9\\) et \\(u_{99}\\). Existe-t-il un entier \\(n\\) tel que \\(u_n=2\\) ? Justifier.\n<li>Déterminer le plus petit entier \\(N\\) tel que, pour tout entier \\(n\\ge N\\), \\(|u_n-2|&lt;0{,}01\\).\n<li>Soit \\(\\varepsilon&gt;0\\). Donner, en fonction de \\(\\varepsilon\\), un entier \\(N\\) tel que \\(|u_n-2|&lt;\\varepsilon\\) pour tout \\(n\\ge N\\).\n<li>On définit sur \\(\\N\\) la suite \\((v_n)\\) par \\(v_n=2+\\frac{(-1)^n}{n+1}\\). Démontrer qu'elle converge vers \\(2\\) et qu'elle n'est pas monotone. Que montre cet exemple ?</ol><br><br>",
-"<b>A limit is not a last term — 30 min.</b><br><br> Consider the sequence \\((u_n)\\) defined on \\(\\N\\) by \\(u_n=2+\\frac3{n+1}\\).\n<ol><li>Compute \\(u_0\\), \\(u_9\\) and \\(u_{99}\\). Is there an integer \\(n\\) such that \\(u_n=2\\)? Justify.\n<li>Find the smallest integer \\(N\\) such that, for every integer \\(n\\ge N\\), \\(|u_n-2|&lt;0.01\\).\n<li>Let \\(\\varepsilon&gt;0\\). Give, in terms of \\(\\varepsilon\\), an integer \\(N\\) such that \\(|u_n-2|&lt;\\varepsilon\\) for every \\(n\\ge N\\).\n<li>Define on \\(\\N\\) the sequence \\((v_n)\\) by \\(v_n=2+\\frac{(-1)^n}{n+1}\\). Prove that it converges to \\(2\\) and that it is not monotonic. What does this example show?</ol><br><br>"
-]
-}
-]
+ "id": "terminale-03",
+ "course": "terminale",
+ "number": 3,
+ "title": [
+  "Limites de suites",
+  "Limits of sequences"
+ ],
+ "slides": [
+  {
+   "k": "title",
+   "t": [
+    "Limites de suites",
+    "Limits of sequences"
+   ],
+   "b": [
+    "",
+    ""
+   ]
+  },
+  {
+   "k": "goals",
+   "t": [
+    "Objectifs",
+    "Objectives"
+   ],
+   "b": [
+    "Distinguer convergence et divergence ; calculer une limite ; utiliser comparaison, gendarmes et convergence monotone.",
+    "Distinguish convergence from divergence; compute a limit; use comparison, the squeeze theorem and monotone convergence."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Notes de cours",
+    "Course notes"
+   ],
+   "b": [
+    "\\(u_n\\to\\ell\\in\\R\\) signifie que tout intervalle ouvert contenant \\(\\ell\\) contient tous les termes à partir d'un certain rang. On dit que \\((u_n)\\) converge vers \\(\\ell\\).\n\\(u_n\\to+\\infty\\) signifie que pour tout réel \\(A\\), il existe un rang \\(N\\) tel que \\(n\\ge N\\Rightarrow u_n\\ge A\\). \\(u_n\\to-\\infty\\) signifie que pour tout réel \\(A\\), il existe \\(N\\) tel que \\(n\\ge N\\Rightarrow u_n\\le A\\).",
+    "\\(u_n\\to\\ell\\in\\R\\) means that every open interval containing \\(\\ell\\) contains all the terms from some index onwards. We say that \\((u_n)\\) converges to \\(\\ell\\).\n\\(u_n\\to+\\infty\\) means that for every real number \\(A\\), there is an index \\(N\\) such that \\(n\\ge N\\Rightarrow u_n\\ge A\\). \\(u_n\\to-\\infty\\) means that for every real number \\(A\\), there is \\(N\\) such that \\(n\\ge N\\Rightarrow u_n\\le A\\)."
+   ],
+   "h": [
+    "Définitions",
+    "Definitions"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Notes de cours",
+    "Course notes"
+   ],
+   "b": [
+    "Une suite peut n'avoir aucune limite, même infinie : \\((-1)^n\\) oscille entre \\(-1\\) et \\(1\\). Toute suite convergente est bornée, mais la réciproque est fausse.",
+    "A sequence may have no limit at all, not even an infinite one: \\((-1)^n\\) oscillates between \\(-1\\) and \\(1\\). Every convergent sequence is bounded, but the converse is false."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Opérations et comparaisons",
+    "Operations and comparisons"
+   ],
+   "b": [
+    "Pour deux suites convergentes de limites \\(a,b\\), la somme tend vers \\(a+b\\), le produit vers \\(ab\\) et le quotient vers \\(\\frac{a}{b}\\) si \\(b\\ne0\\). Les règles avec l'infini s'utilisent en contrôlant les signes. Les formes \\(+\\infty-\\infty\\), \\(0\\times\\infty\\), \\(\\frac{\\infty}{\\infty}\\), \\(\\frac{0}{0}\\) ne permettent pas de conclure directement.",
+    "For two convergent sequences with limits \\(a,b\\), the sum tends to \\(a+b\\), the product to \\(ab\\) and the quotient to \\(\\frac{a}{b}\\) if \\(b\\ne0\\). The rules involving infinity are used by keeping track of the signs. The forms \\(+\\infty-\\infty\\), \\(0\\times\\infty\\), \\(\\frac{\\infty}{\\infty}\\), \\(\\frac{0}{0}\\) do not allow a direct conclusion."
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Opérations et comparaisons",
+    "Operations and comparisons"
+   ],
+   "b": [
+    "\\(\\frac{3n^2-n+1}{2n^2+4}=\\frac{3-\\frac{1}{n}+\\frac{1}{n^2}}{2+\\frac{4}{n^2}}\\to\\frac{3}{2}\\). Pour \\(\\sqrt{n^2+n}-n\\), multiplier par la quantité conjuguée donne \\(\\frac{1}{\\sqrt{1+\\frac{1}{n}}+1}\\to\\frac{1}{2}\\).",
+    "\\(\\frac{3n^2-n+1}{2n^2+4}=\\frac{3-\\frac{1}{n}+\\frac{1}{n^2}}{2+\\frac{4}{n^2}}\\to\\frac{3}{2}\\). For \\(\\sqrt{n^2+n}-n\\), multiplying by the conjugate expression gives \\(\\frac{1}{\\sqrt{1+\\frac{1}{n}}+1}\\to\\frac{1}{2}\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Opérations et comparaisons",
+    "Operations and comparisons"
+   ],
+   "b": [
+    "Si \\(u_n\\le v_n\\) à partir d'un certain rang et \\(u_n\\to+\\infty\\), alors \\(v_n\\to+\\infty\\). Si \\(a_n\\le u_n\\le b_n\\) à partir d'un certain rang et \\(a_n,b_n\\to\\ell\\), alors \\(u_n\\to\\ell\\) (gendarmes).\nToute suite croissante et majorée converge. Toute suite décroissante et minorée converge. Ce théorème est admis.",
+    "If \\(u_n\\le v_n\\) from some index onwards and \\(u_n\\to+\\infty\\), then \\(v_n\\to+\\infty\\). If \\(a_n\\le u_n\\le b_n\\) from some index onwards and \\(a_n,b_n\\to\\ell\\), then \\(u_n\\to\\ell\\) (squeeze theorem).\nEvery increasing sequence that is bounded above converges. Every decreasing sequence that is bounded below converges. This theorem is admitted (taken without proof)."
+   ],
+   "h": [
+    "Théorèmes",
+    "Theorems"
+   ]
+  },
+  {
+   "k": "proof",
+   "t": [
+    "Opérations et comparaisons",
+    "Operations and comparisons"
+   ],
+   "b": [
+    "Pour tout \\(A\\), les termes de \\(u\\) dépassent \\(A\\) au-delà d'un rang \\(N_1\\). L'inégalité \\(v_n\\ge u_n\\) vaut au-delà d'un rang \\(N_2\\). Pour \\(n\\ge\\max(N_1,N_2)\\), \\(v_n\\ge A\\).",
+    "For every \\(A\\), the terms of \\(u\\) exceed \\(A\\) beyond an index \\(N_1\\). The inequality \\(v_n\\ge u_n\\) holds beyond an index \\(N_2\\). For \\(n\\ge\\max(N_1,N_2)\\), \\(v_n\\ge A\\)."
+   ]
+  },
+  {
+   "k": "proof",
+   "t": [
+    "Opérations et comparaisons",
+    "Operations and comparisons"
+   ],
+   "b": [
+    "Pour tout \\(A\\), la non-majoration fournit \\(N\\) tel que \\(u_N&gt;A\\). Par croissance, \\(n\\ge N\\Rightarrow u_n\\ge u_N&gt;A\\), d'où \\(u_n\\to+\\infty\\). La non-majoration seule ne suffit pas.",
+    "For every \\(A\\), the fact that the sequence is not bounded above provides \\(N\\) such that \\(u_N&gt;A\\). Since the sequence is increasing, \\(n\\ge N\\Rightarrow u_n\\ge u_N&gt;A\\), hence \\(u_n\\to+\\infty\\). Not being bounded above is not enough on its own."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Suites géométriques",
+    "Geometric sequences"
+   ],
+   "b": [
+    "\\[q^n\\longrightarrow\\begin{cases}0&amp;\\text{si }-1&lt;q&lt;1,\\\\1&amp;\\text{si }q=1,\\\\+\\infty&amp;\\text{si }q&gt;1.\\end{cases}\\]\nSi \\(q\\le-1\\), \\((q^n)\\) n'a pas de limite : alternance pour \\(q=-1\\) ; sous-suites paire et impaire de signes opposés et de modules non bornés pour \\(q&lt;-1\\).",
+    "\\[q^n\\longrightarrow\\begin{cases}0&amp;\\text{si }-1&lt;q&lt;1,\\\\1&amp;\\text{si }q=1,\\\\+\\infty&amp;\\text{si }q&gt;1.\\end{cases}\\]\nIf \\(q\\le-1\\), \\((q^n)\\) has no limit: alternation for \\(q=-1\\); for \\(q&lt;-1\\), the even and odd subsequences have opposite signs and unbounded moduli."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Suites géométriques",
+    "Geometric sequences"
+   ],
+   "b": [
+    "Fixons \\(a\\ge0\\). Démontrons \\(P(n)\\) : « \\((1+a)^n\\ge1+na\\) ». Au rang \\(0\\), les deux membres valent \\(1\\).\nFixons \\(n\\ge0\\) et supposons \\(P(n)\\) vraie. Comme \\(1+a&gt;0\\),\n\\[(1+a)^{n+1}\\ge(1+na)(1+a)=1+(n+1)a+na^2\\ge1+(n+1)a.\\]\nC'est \\(P(n+1)\\) car \\(na^2\\ge0\\). Par récurrence, l'inégalité est vraie pour tout \\(n\\ge0\\). Si \\(q&gt;1\\), prendre \\(a=q-1&gt;0\\) et comparer à \\(1+na\\). Si \\(0&lt;q&lt;1\\), appliquer ce résultat à \\(\\frac{1}{q}\\), puis prendre les inverses. Pour \\(-1&lt;q&lt;0\\), \\(|q^n|=|q|^n\\to0\\) et les gendarmes concluent. Le cas \\(q=0\\) se traite à partir du rang \\(1\\).",
+    "Fix \\(a\\ge0\\). Let us prove \\(P(n)\\): \"\\((1+a)^n\\ge1+na\\)\". At index \\(0\\), both sides equal \\(1\\).\nFix \\(n\\ge0\\) and assume \\(P(n)\\) is true. Since \\(1+a&gt;0\\),\n\\[(1+a)^{n+1}\\ge(1+na)(1+a)=1+(n+1)a+na^2\\ge1+(n+1)a.\\]\nThis is \\(P(n+1)\\) because \\(na^2\\ge0\\). By induction, the inequality holds for every \\(n\\ge0\\). If \\(q&gt;1\\), take \\(a=q-1&gt;0\\) and compare with \\(1+na\\). If \\(0&lt;q&lt;1\\), apply this result to \\(\\frac{1}{q}\\), then take reciprocals. For \\(-1&lt;q&lt;0\\), \\(|q^n|=|q|^n\\to0\\) and the squeeze theorem concludes. The case \\(q=0\\) is handled from index \\(1\\) onwards."
+   ],
+   "h": [
+    "Bernoulli et limite géométrique.",
+    "Bernoulli and the limit of a geometric sequence."
+   ]
+  },
+  {
+   "k": "method",
+   "t": [
+    "Suites géométriques",
+    "Geometric sequences"
+   ],
+   "b": [
+    "Pour \\(u_{n+1}=f(u_n)\\), établir une borne et la monotonie pour prouver la convergence. Si \\(f\\) est continue en la limite \\(\\ell\\), le passage à la limite donne \\(\\ell=f(\\ell)\\) (continuité étudiée au chapitre 4). Résoudre cette équation ne prouve jamais, à lui seul, que la suite converge.",
+    "For \\(u_{n+1}=f(u_n)\\), establish a bound and monotonicity to prove convergence. If \\(f\\) is continuous at the limit \\(\\ell\\), passing to the limit gives \\(\\ell=f(\\ell)\\) (continuity is studied in chapter 4). Solving this equation never proves, on its own, that the sequence converges."
+   ],
+   "h": [
+    "Suite récurrente",
+    "Recursive sequence"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Suites géométriques",
+    "Geometric sequences"
+   ],
+   "b": [
+    "Les points se rapprochent de \\(2\\) sans l'atteindre : \\(u_n=2+\\frac{3}{n+1}\\).",
+    "The points get closer to \\(2\\) without reaching it: \\(u_n=2+\\frac{3}{n+1}\\)."
+   ]
+  },
+  {
+   "k": "activity",
+   "t": [
+    "Activité de recherche",
+    "Research activity"
+   ],
+   "b": [
+    "<b>Une limite n'est pas un dernier terme — 30 min.</b><br><br> On considère la suite \\((u_n)\\) définie sur \\(\\N\\) par \\(u_n=2+\\frac3{n+1}\\).\n<ol><li>Calculer \\(u_0\\), \\(u_9\\) et \\(u_{99}\\). Existe-t-il un entier \\(n\\) tel que \\(u_n=2\\) ? Justifier.\n<li>Déterminer le plus petit entier \\(N\\) tel que, pour tout entier \\(n\\ge N\\), \\(|u_n-2|&lt;0{,}01\\).\n<li>Soit \\(\\varepsilon&gt;0\\). Donner, en fonction de \\(\\varepsilon\\), un entier \\(N\\) tel que \\(|u_n-2|&lt;\\varepsilon\\) pour tout \\(n\\ge N\\).\n<li>On définit sur \\(\\N\\) la suite \\((v_n)\\) par \\(v_n=2+\\frac{(-1)^n}{n+1}\\). Démontrer qu'elle converge vers \\(2\\) et qu'elle n'est pas monotone. Que montre cet exemple ?</ol><br><br>",
+    "<b>A limit is not a last term — 30 min.</b><br><br> Consider the sequence \\((u_n)\\) defined on \\(\\N\\) by \\(u_n=2+\\frac3{n+1}\\).\n<ol><li>Compute \\(u_0\\), \\(u_9\\) and \\(u_{99}\\). Is there an integer \\(n\\) such that \\(u_n=2\\)? Justify.\n<li>Find the smallest integer \\(N\\) such that, for every integer \\(n\\ge N\\), \\(|u_n-2|&lt;0.01\\).\n<li>Let \\(\\varepsilon&gt;0\\). Give, in terms of \\(\\varepsilon\\), an integer \\(N\\) such that \\(|u_n-2|&lt;\\varepsilon\\) for every \\(n\\ge N\\).\n<li>Define on \\(\\N\\) the sequence \\((v_n)\\) by \\(v_n=2+\\frac{(-1)^n}{n+1}\\). Prove that it converges to \\(2\\) and that it is not monotonic. What does this example show?</ol><br><br>"
+   ]
+  }
+ ],
+ "editions": {
+  "fr": {},
+  "en": {}
+ }
 }

@@ -3,6 +3,7 @@
 // ◀ ▶ steps and "Tout" at the bottom left. The same file is bundled by scripts/export-slides.py into a
 // self-contained HTML export of each deck (window.__MX_EXPORT__ then carries the deck and its figures).
 import { mount } from "./widgets.js";
+import { deckLanguages, selectDeckEdition } from "./edition-policy.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const EXPORT = typeof window !== "undefined" && window.__MX_EXPORT__ ? window.__MX_EXPORT__ : null;
@@ -68,7 +69,13 @@ async function load() {
       return;
     }
   }
-  if (deck.language) lang = deck.language === "en" ? 1 : 0;
+  const selected = selectDeckEdition(deck, params.get('lang'), lang ? 'en' : 'fr');
+  if (!selected) {
+    const available = deckLanguages(deck);
+    $("#stage").innerHTML = `<div id="col" class="wide"><h2 class="tt">${lang ? 'This language edition is unavailable.' : 'Cette édition linguistique est indisponible.'}</h2><p>${lang ? 'Available editions' : 'Éditions disponibles'} : ${available.map(code => `<a class="b" href="?${EXPORT ? '' : 'deck=' + encodeURIComponent(deckId) + '&amp;'}lang=${code}">${code.toUpperCase()}</a>`).join(' ')}</p></div>`;
+    return;
+  }
+  deck = selected; lang = selected.selectedLanguage === 'en' ? 1 : 0;
   shell(); bind();
   const h = parseInt(location.hash.slice(1), 10);
   index = Number.isFinite(h) ? Math.min(Math.max(h, 0), deck.slides.length - 1) : 0;

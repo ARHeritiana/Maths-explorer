@@ -195,6 +195,24 @@ export function createShell(host, exp, tpl, opts = {}) {
     } else if (c.kind === "choice") {
       const wrap = el("div", "lab2-ctl lab2-choice");
       wrap.dataset.control = id;
+      if (c.presentation === "select") {
+        const label = el("label", "lab2-ctl-label", t(c.label));
+        const select = document.createElement("select");
+        select.id = `lab2-${exp.id}-${id}`;
+        label.htmlFor = select.id;
+        for (const option of c.options) {
+          const node = document.createElement("option");
+          node.value = String(option.value); node.textContent = t(option.label);
+          select.append(node);
+        }
+        select.addEventListener("change", () => {
+          const option = c.options.find((o) => String(o.value) === select.value);
+          if (option) userApply(c.set ? c.set(state, option.value) : { [c.key]: option.value });
+        });
+        wrap.append(label, select); controlsEl.append(wrap);
+        controlNodes[id] = { wrap, select, c };
+        continue;
+      }
       wrap.setAttribute("role", "radiogroup");
       const name = el("span", "lab2-ctl-label", t(c.label));
       name.id = `lab2-${exp.id}-${id}`;
@@ -325,7 +343,7 @@ export function createShell(host, exp, tpl, opts = {}) {
   let maxReached = 0;
 
   function lockControls(m) {
-    const suggested = new Set(m.unlock || []);
+    const suggested = new Set([...(m.unlock || []), ...(slide ? exp.presentationControls || [] : [])]);
     unlocked = gated ? suggested : new Set(Object.keys(exp.controls));
     stage.setHandles(allHandles.filter((h) => unlocked.has(h.id)));
     let shown = 0;
@@ -334,6 +352,7 @@ export function createShell(host, exp, tpl, opts = {}) {
       setClass(n.wrap, "is-locked", !on);
       setClass(n.wrap, "is-suggested", !gated && !slide && suggested.has(id) && m.kind !== "predict");
       if (n.input) n.input.disabled = !on;
+      if (n.select) n.select.disabled = !on;
       if (n.buttons) n.buttons.forEach((b) => { b.disabled = !on; });
       if (n.playBtn) n.playBtn.disabled = !on;
       if (n.streamBtn) { n.streamBtn.disabled = !on; n.speed.disabled = !on; }
@@ -572,8 +591,12 @@ export function createShell(host, exp, tpl, opts = {}) {
     for (const n of Object.values(controlNodes)) {
       const c = n.c;
       if (n.streamBtn) n.streamBtn.disabled = !unlocked.has("run") || s.runs >= exp.model.MAX_RUNS;
-      if (n.input) {
+      if (n.select) {
+        const value = c.get ? c.get(s) : s[c.key];
+        if (n.select.value !== String(value)) n.select.value = String(value);
+      } else if (n.input) {
         const v = sliderValue(c, s);
+        if (c.range) { const range = c.range(s); n.input.min = Math.min(range[0], v); n.input.max = Math.max(range[1], v); }
         if (document.activeElement !== n.input && n.input._v !== v) { n.input._v = v; n.input.value = v; }
         setText(n.out, c.format ? c.format(v, ctx) : fmt.num(v, c.digits ?? 2));
         setAttr(n.input, "aria-valuetext", n.out._v);

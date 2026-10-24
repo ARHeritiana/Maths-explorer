@@ -1,3 +1,4 @@
+import {editionFor,packEditions} from './resource-editions.js';
 import {courseLanguage} from "./content-language.js";
 import { courses, university } from './catalogue-data.js';
 import { assetHref, fetchJSON } from './data-loader.js';
@@ -67,7 +68,16 @@ function pick() {
   }
   return out;
 }
-const urlFor = (r, lang) => './' + (lang === 'en' ? r.url[1] : r.url[0]).replace(/^\.\//, '');
+function missingParts() {
+  const out = [], chapters = chaptersOf(state.course);
+  for (const chapter of state.chapters) for (const [part, label] of PARTS) {
+    if (state.parts.has(part) && !catalog.resources.some(r => r.chapter === chapter && partKey(r) === part)) {
+      out.push({chapter, title: chapters.find(c => c.id === chapter)?.title || [chapter, chapter], label});
+    }
+  }
+  return out;
+}
+const urlFor = (r, lang) => {const edition=editionFor(r,lang);if(!edition)throw new Error('Unavailable edition');return './'+edition.path.replace(/^\.\//,'');};
 
 export function packPage(t, id) {
   return `<main id="main" tabindex="-1" class="page pack-page">
@@ -99,8 +109,8 @@ function paint(root, t) {
   const chapters = chaptersOf(state.course);
   const available = new Set(catalog.resources.filter(r => chapters.some(c => c.id === r.chapter)).map(partKey));
   const items = pick();
-  const pages = items.reduce((n, r) => n + r.pages, 0);
-  const size = items.reduce((n, r) => n + (state.lang === 'en' ? r.englishBytes : r.bytes), 0);
+  const selection=packEditions(items,state.lang),pages=selection.pages,size=selection.bytes;
+  const missing=missingParts(),ready=items.length>0&&!selection.unavailable.length&&!missing.length;
   const overlap = [...state.parts].filter(k => OVERLAPS[k]?.some(o => state.parts.has(o)));
   const partBox = ([key, label, audience]) => available.has(key) ? `<label class="pack-check"><input type="checkbox" name="part" value="${key}" ${state.parts.has(key) ? 'checked' : ''}> <span>${E(t(label))}</span></label>` : '';
   const groups = ['student', 'teacher'].map(a => {
@@ -128,8 +138,10 @@ function paint(root, t) {
 
       <label class="pack-check"><input type="checkbox" name="cover" ${state.cover ? 'checked' : ''}> <span>${t(P('Ajouter une page de sommaire', 'Add a contents page'))}</span></label>
       <p class="pack-summary" role="status">${items.length ? `${items.length} ${t(P('documents', 'documents'))} · ${pages} ${t(P('pages', 'pages'))} · ${fmtBytes(size)}${state.lang === 'both' ? ' ×2' : ''}` : t(P('Aucun document sélectionné. Coche au moins un chapitre et une partie.', 'Nothing selected yet. Tick at least one chapter and one part.'))}</p>
-      <div class="pack-actions"><button type="button" class="pack-primary" data-act="merge" ${items.length ? '' : 'disabled'}>${t(P('Télécharger le PDF', 'Download the PDF'))}</button>
-      <button type="button" data-act="zip" ${items.length ? '' : 'disabled'}>${t(P('Fichiers séparés (ZIP)', 'Separate files (ZIP)'))}</button></div>
+      ${selection.unavailable.length?`<p class="pack-error" role="alert">${t(P('Éditions indisponibles dans la langue du dossier :','Editions unavailable in the pack language:'))} ${selection.unavailable.map(r=>E(t(r.title))).join(', ')}. ${t(P('Décoche ces documents pour télécharger.','Deselect these documents to download.'))}</p>`:''}
+      ${missing.length?`<p class="pack-error" role="alert">${t(P('Parties indisponibles pour les chapitres sélectionnés :','Parts unavailable for the selected chapters:'))} ${missing.map(r=>`${E(t(r.title))} (${E(t(r.label))})`).join(', ')}. ${t(P('Décoche ces chapitres ou ces parties pour télécharger un dossier complet.','Deselect these chapters or parts to download a complete pack.'))}</p>`:''}
+      <div class="pack-actions"><button type="button" class="pack-primary" data-act="merge" ${ready ? '' : 'disabled'}>${t(P('Télécharger le PDF', 'Download the PDF'))}</button>
+      <button type="button" data-act="zip" ${ready ? '' : 'disabled'}>${t(P('Fichiers séparés (ZIP)', 'Separate files (ZIP)'))}</button></div>
       <p class="pack-progress" id="pack-progress" role="status" aria-live="polite"></p>
     </section>
   </div>`;
@@ -188,7 +200,7 @@ async function mergeOne(items, lang, t, say) {
 async function run(root, t, mode) {
   const say = s => { root.querySelector('#pack-progress').textContent = s; };
   const items = pick();
-  if (!items.length) return;
+  if (!items.length||packEditions(items,state.lang).unavailable.length||missingParts().length) return;
   const buttons = root.querySelectorAll('button'); buttons.forEach(b => b.disabled = true);
   const langs = state.lang === 'both' ? ['fr', 'en'] : [state.lang];
   try {

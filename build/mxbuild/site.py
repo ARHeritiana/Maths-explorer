@@ -21,7 +21,7 @@ def pairs():
 
 # dist/ paths that are copies of site/ (anything else in them is an orphan); generated files are listed apart.
 MANAGED = ['index.html', 'styles/*', 'fonts/*', 'vendor/*', 'js/**/*', 'slides/*.html', 'slides/*.css', 'slides/*.js',
-           'resources/document-theme.css']
+           'resources/document-theme.css', 'data/**/*']
 GENERATED = {'js/resources-data.js', 'js/enrichment-data.js'}
 
 

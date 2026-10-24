@@ -53,3 +53,20 @@ The contract is `docs/LAB_DESIGN.md` (read sections 3 to 7 before changing anyth
 
 
 Fourier uses `experiments/fourier.js` (two experiments with 6 and 5 missions) and `templates/fourier.js` (wave, coefficient and DFT drawing views with the shared stage).
+
+`models/inference.js`: seeded secretary, tank, Benford, baker, birthday and Monty models with exact finite benchmarks separated from simulations.
+
+The quadratic model also supplies vertex/root input conversions and independent opening/discriminant case selectors.
+Optional `presentationControls` adds an experiment's parameter controls to the shared slide widget. A slider's optional
+`range(state)` is applied before its value, and expands to include the current value when another parameter changes it.
+
+| `models/fair-division.js`, `experiments/fair-division.js` | additive cake valuations, draggable cuts and preferences, discrete allocations, proportionality, envy, EF1 and sincere round robin; exports cake and goods experiments |
+
+`experiments/inference.js` registers secretary, tank, Benford, baker, birthday and Monty missions. `templates/inference.js` renders native interactive cards/doors and accessible frequency tables with the shared shell lifecycle; mathematical models remain in `models/inference.js`.
+
+`experiments/illumination.js`, `templates/illumination.js`: guided mirrored rooms and one retained direct editor, shared with gallery; analytic boundaries and finite-ray limitations.
+
+`models/topology.js`: tangent fields on S²/S¹, Möbius and figure-eight Klein parametrizations, quotient-cell computations of components, boundaries, Euler characteristic and orientability, and finite free-word reduction.
+`experiments/topology.js`: `hairy-ball`, `nonorientable-surfaces` and the explicitly finite `banach-tarski-model`, using the shared space/figure templates.
+
+`models/dynamics.js`, `experiments/dynamics.js`, `templates/dynamics.js`: adaptive step-doubling RK4, pendulum and Newtonian three-body experiments, directly draggable positions and velocities, fixed-camera trajectories, nearby comparisons, physical settings and energy/angular diagnostics. `experiments/logistic.js`, `templates/logistic.js` extend the shared `models/cobweb.js` recurrence model to synchronized cobweb/time/bifurcation views and numerical Lyapunov estimates.

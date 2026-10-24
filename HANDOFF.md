@@ -1,6 +1,6 @@
 # Handoff
 
-Last updated: 20 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
+Last updated: 24 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
 ## What this project is
 
@@ -17,7 +17,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 | Skills | `.claude/skills/slides-interactive-math/` and `slides-interactive-3d-math/` with lint script; `.claude/skills/maths-explorer-tasks/` (step-by-step recipes for recurring tasks). Navigation: `MAP.md`. |
 | Private area | Since 20 October 2026 the repository is public and `private/` (ledger, audits, verification, course quality) is no longer in it: it lives in the private repository ARHeritiana/Maths-explorer-backup (imported with its history the same day; paths below are relative to that repository), and `private/` is git-ignored here. Agents commit new audit notes and verification scripts there, on `main`. Human review remains false for every resource. |
 | Launch | 20 October 2026: the repository was made public and the site launched on GitHub Pages (https://arheritiana.github.io/Maths-explorer/), deployed from `dist/` by `.github/workflows/pages.yml` (run 59, commit `b0bb88b`). Every push to `main` republishes it, so run `make site` before pushing. Launched before checklist item 1 below (two-agent audit, English proof-reading) was done. |
-| Publication gate | No chapter has been through the two-agent audit recorded in `ledger.json` of `ARHeritiana/Maths-explorer-backup` yet. The TeX migration was verified by the pipeline checks, not by the gate. Maths expertes was published on 17 October 2026 on the owner's explicit instruction before its two audits (ledger record `expertes-course`). |
+| Publication gate | Current artifact reviews and verification evidence are tracked in the private ledger. Historical conversion audits have a limited scope; a successful build does not establish a full curriculum content review. Rebuilt artifacts require matching review evidence. |
 | Tooling | `node` 22, `python3`, Playwright Chromium at `/opt/pw-browsers`. TeX Live is not installed by default: see `docs/HANDOFF.md` for the apt packages. `pip install pymupdf playwright`; when the pip Playwright expects another browser build, set `PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome` (adjust to the folder present). |
 
 ## Conventions added on 15 October 2026
@@ -83,8 +83,8 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 
 ### 1. Clean-up of v1 (small, do first)
 - [x] Remove the AI notice from the footer (done in the site code, 13 October 2026). Search again for other notices (`content-origin`, "IA", "AI-generated") in `docs/` and the PDFs.
-- [ ] Scan all 672 PDFs and web editions for identifying metadata (`pdfinfo`, `exiftool` or `qpdf`, plus XMP) and for names in text. Report findings in `audits/` of `ARHeritiana/Maths-explorer-backup`; strip metadata only if the file is regenerated or with a safe tool, then re-run `npm test`.
-- [ ] Allow French-only and English-only resources in the library model (currently every resource is a FR/EN pair, `[French, English]` fields). Keep tests and CI green.
+- [x] Scan all current PDFs and web editions for identifying metadata (`pdfinfo`, `exiftool` or `qpdf`, plus XMP) and for names in text. Report findings in `audits/` of `ARHeritiana/Maths-explorer-backup`; strip metadata only if the file is regenerated or with a safe tool, then re-run `npm test`.
+- [x] Allow French-only, English-only and bilingual resources through explicit edition declarations, independent metadata, download filtering and unavailable-edition errors. Existing English resources remain available.
 
 ### 2. Shared slide engine and pilot chapter
 - [ ] Build the shared engine from `.claude/skills/slides-interactive-math/references/engine-patterns.md` and the reference slide `assets/example_trinome.html` (the owner also supplied a determinant slide; ask for it if needed). Put it where `dist/` can load it; keep each slide a single self-contained HTML file at publish time if the skill requires it; keep the skills in step with the engine.
@@ -117,8 +117,8 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 3. Whether maths expertes keeps the 2019 text beyond this year.
 4. Owner review of the Cahier design.
 5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
-6. Policy conflicts left by the merge of the TeX branch: its documents (`docs/HANDOFF.md`, `docs/ARCHITECTURE.md`) still say one AI notice in the footer, one mint accent, and an English twin with equal page count for every resource. The brief withdrew the notice and replaced the language rule; the site follows the brief. Decide whether English twins stay mandatory for every resource.
-7. English proof-reading of the generated English units (16 of about 10,800 segments reviewed).
+6. Language policy is implemented: curriculum language follows the brief, neutral content follows the selected language, and resources declare available editions independently. Paired TeX translation remains a workflow, not a mandatory publication pair.
+7. Continue English proofreading; exact segment coverage and remaining scope are recorded privately. Alignment is not proofreading.
 8. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
 9. Later: access control (codes or paywall) needs a server or paid platform.
 
@@ -206,3 +206,12 @@ Moved to `docs/LOG.md` (read it only when you need the history of a feature).
 ## Challenge interaction corrections, 20 October 2026
 
 - [x] Fly distance stays in solution; fly touches train fronts. Peg jumps animate with the actual motion preference. Nails accept direct string strokes with ordered ray crossings, common base connectors and collision rejection; buttons are folded. Automatic star/lune/square totals and premature optimal-value disclosures are hidden or removed. Two independent audits and callback-based DOM regressions recorded privately.
+
+## Integrated exploration and publication pipeline, 24 October 2026
+
+- The laboratory registers 37 guided experiments, with shared models for their gallery and reading entry points. New topics cover mirrored rooms, dynamical systems, inference, fair division and topology; the gallery also has a certified polyhedral analogue of the Gömböc with disclosed numerical dynamics.
+- The challenge registry contains 38 problems, including knight tours, room-door traversals and exact factorial valuations.
+- Topic discovery uses overlapping topic/subtopic metadata, canonical routes, content-derived counts and filters. The history timelines contain 85 people and 56 dated advances, separating life dates from documentary dates.
+- The quadratic pilot aligns its diagnostics, activity, course, exercises, corrections and shared interactive model. Its chapter template is in `docs/CHAPTER_TEMPLATE.md`; design and classroom acceptance remain with the owner.
+- PDF/privacy checks cover extracted text, document metadata, links and annotations. Text encoded only in pictures or outlined lettering needs separate visual review.
+- Real-device screen-reader testing, owner design/pilot review and the remaining curriculum proofreading/review queue are still open. Preserve those limits in the private evidence.

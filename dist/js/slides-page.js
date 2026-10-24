@@ -31,17 +31,19 @@ export async function bindSlides(t) {
       if (!decks.length) return '';
       const lang = contentLanguage || (L ? 'en' : 'fr');
       const row = (title, meta, actions = '') => `<li class="deck"><div class="deck-main">${title}<span class="deck-meta">${meta}</span></div>${actions ? `<div class="deck-actions">${actions}</div>` : ''}</li>`;
-      return `<details class="source-course" data-course="${E(id)}" ${open.has(id) ? 'open' : ''}><summary class="source-head"><h2>${E(name[L])}</h2><span>${decks.length} ${P('diaporamas', 'decks')[L]} · ${decks.reduce((s, d) => s + d.slides, 0)} ${P('diapositives', 'slides')[L]}</span></summary>
+      return `<details class="source-course" data-course="${E(id)}" ${open.has(id) ? 'open' : ''}><summary class="source-head"><h2>${E(name[L])}</h2><span>${decks.length} ${P('diaporamas', 'decks')[L]} · ${decks.reduce((s, d) => s + (mode==='lecture' ? lectures.get(d.id)?.editions?.[lang]?.pages || 0 : d.editions?.[lang]?.slides || 0), 0)} ${P('diapositives', 'slides')[L]}</span></summary>
       <ul class="deck-list">${decks.map(d => {
         const edition = lectures.get(d.id)?.editions?.[lang];
-        if (mode === 'lecture' && !edition) return row(`<strong class="deck-title">${E(d.title[L])}</strong>`, P('Édition PDF indisponible', 'PDF edition unavailable')[L]);
+        const title=d.title[L] || d.title[lang==='en'?1:0] || d.title.find(Boolean), htmlEdition=d.editions?.[lang];
+        if(mode==='explore'&&!htmlEdition)return row(`<strong class="deck-title">${E(title)}</strong>`,P('Édition HTML indisponible dans cette langue','HTML edition unavailable in this language')[L]+` · ${Object.keys(d.editions||{}).map(code=>code.toUpperCase()).join(' / ')}`);
+        if (mode === 'lecture' && !edition) return row(`<strong class="deck-title">${E(title)}</strong>`, P('Édition PDF indisponible', 'PDF edition unavailable')[L]);
         if (mode === 'lecture') {
           const pdf = `./slides/lectures/${E(edition.pdf)}?v=${E(edition.sha256)}`;
-          return row(`<a class="deck-title" href="${pdf}">${E(d.title[L])}</a>`, `${edition.pages} ${P('diapositives · cours', 'slides · lecture')[L]}`,
+          return row(`<a class="deck-title" href="${pdf}">${E(title)}</a>`, `${edition.pages} ${P('diapositives · cours', 'slides · lecture')[L]}`,
             `<a class="deck-download" href="${pdf}" download>${icon('download-simple', 16)}PDF</a><a class="deck-source" href="${E(assetHref('./slides/lectures/' + edition.source))}" download>${P('Source', 'Source')[L]}</a>`);
         }
-        return row(`<a class="deck-title" href="${E(assetHref("./slides/player.html"))}&amp;deck=${E(d.id)}">${E(d.title[L])}</a>`, `${d.slides} ${P('diapositives', 'slides')[L]}`,
-          `<a class="deck-download" href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(d.title[L])}">${icon('download-simple', 16)}HTML</a>`);
+        return row(`<a class="deck-title" href="${E(assetHref("./slides/player.html"))}&amp;deck=${E(d.id)}&amp;lang=${E(lang)}">${E(title)}</a>`, `${htmlEdition.slides} ${P('diapositives', 'slides')[L]}`,
+          `<a class="deck-download" href="${E(assetHref('./slides/export/' + d.id + '.html'))}" download="${E(d.id)}.html" aria-label="${P('Télécharger en HTML : ', 'Download as HTML: ')[L]}${E(title)}">${icon('download-simple', 16)}HTML</a>`);
       }).join('')}</ul></details>`;
     }).join('');
     };

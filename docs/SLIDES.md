@@ -1,5 +1,15 @@
 # Classroom slides
 
+Authored decks declare language-keyed `editions`, for example `{"editions":{"fr":{},"en":{}}}`.
+The empty records share the existing paired-text sequence; an edition may instead supply its own `slides`
+array (plain strings are accepted there), with an independent number and order of slides. Extracted decks
+declare only languages whose TeX source exists. Deck titles are never evidence that a translation exists.
+The data index measures each declared edition's JSON path, bytes, SHA-256 and slide count; the HTML-export
+index measures its downloadable file. Lecture metadata measures PDFs and source archives independently.
+The player uses the curriculum language by default, honors a supported explicit `?lang=fr|en` request, and
+reports an unavailable requested edition rather than opening another language. Existing JSON and HTML
+routes remain valid. `mxbuild.slide_editions` and `slides/edition-policy.js` share these selection rules.
+
 `dist/slides/player.html?deck=<chapter id>&lang=fr|en` plays one deck: a 1280 by 720 stage scaled to the window,
 keyboard navigation (arrows, R answer, G outline, L language, F full screen), MathJax SVG vendored in `dist/vendor/`
 (nothing is fetched from a third party). `#slides` in the site lists every deck.

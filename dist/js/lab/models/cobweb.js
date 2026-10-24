@@ -1,13 +1,13 @@
 // Pure maths of the cobweb experiment: the recurrence u_{n+1} = f(u_n) with f(x) = a x + b, its terms, its fixed point
 // (f(l) = l, so l = b / (1 - a) when a != 1) and the staircase between the graph of f and the line y = x. No DOM.
-export const f = (s, x) => s.a * x + s.b;
+export const f = (s, x) => s.kind === 'logistic' ? s.r*x*(1-x) : s.a * x + s.b;
 export function terms(s, count) {
   const out = [s.u0];
   for (let i = 1; i < count; i++) out.push(f(s, out[i - 1]));
   return out;
 }
 // null when a = 1 (u_{n+1} = u_n + b has no fixed point if b != 0, and every point is fixed if b = 0)
-export const fixedPoint = (s) => (s.a === 1 ? null : s.b / (1 - s.a));
+export const fixedPoint = (s) => s.kind === 'logistic' ? (s.r>1?1-1/s.r:0) : (s.a === 1 ? null : s.b / (1 - s.a));
 export function model(s) {
   const list = terms(s, s.n + 1), fixed = fixedPoint(s);
   // the staircase: (u0 ; 0), then up to the graph, across to the line y = x, up again ...
@@ -16,7 +16,7 @@ export function model(s) {
   return {
     ...s, f: (x) => f(s, x), terms: list, last: list[s.n], fixed, path,
     gap: fixed === null ? null : Math.abs(list[s.n] - fixed),
-    contracting: Math.abs(s.a) < 1,
+    contracting: s.kind === 'logistic' ? (s.r>1&&s.r<3) : Math.abs(s.a) < 1,
   };
 }
 export const quantities = {
@@ -25,3 +25,19 @@ export const quantities = {
   gap: (s) => model(s).gap,
 };
 export const quantity = (name, s) => quantities[name](s);
+
+export function logistic(s) {
+  if (!(s.r>=0&&s.r<=4&&s.u0>=0&&s.u0<=1) || !Number.isInteger(s.n) || s.n<0 || s.n>1000) throw new RangeError('Logistic domain');
+  const base=model({...s,kind:'logistic'}),near=terms({...s,kind:'logistic',u0:Math.min(1,s.u0+(s.delta??1e-6))},s.n+1);
+  let x=s.u0,sum=0,used=0;
+  for(let i=0;i<1500;i++){x=s.r*x*(1-x);if(i>=500){sum+=Math.log(Math.abs(s.r*(1-2*x)));used++;}}
+  return {...base,near,divergence:Math.abs(base.last-near.at(-1)),lyapunov:sum/used};
+}
+const bifurcationCache=new Map();
+export function bifurcation(lo=2.5,hi=4,columns=360,keep=36,burn=800) {
+  if(!(lo>=0&&hi<=4&&lo<hi)||columns<2||columns>1200||keep<1||keep>200||burn<0||burn>10000)throw new RangeError('Bifurcation domain');
+  const key=[lo,hi,columns,keep,burn].join('|');if(bifurcationCache.has(key))return bifurcationCache.get(key);
+  const points=[];
+  for(let i=0;i<columns;i++){const r=lo+(hi-lo)*i/(columns-1);let x=.413;for(let j=0;j<burn+keep;j++){x=r*x*(1-x);if(j>=burn)points.push([r,x]);}}
+  bifurcationCache.set(key,points);if(bifurcationCache.size>4)bifurcationCache.delete(bifurcationCache.keys().next().value);return points;
+}

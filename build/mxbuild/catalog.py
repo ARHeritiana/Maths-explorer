@@ -2,7 +2,7 @@
 
 content/data/manifest.json holds the facts people decide: courses, chapters, resource records (ids, types, titles,
 audience, French URLs, source page ranges, review status), the chapter companion used by chapter pages, and the list of
-chapters compiled from TeX. Everything measurable from the files (page counts, byte sizes, English paths and sizes,
+chapters compiled from TeX. Everything measurable from the files (page counts, byte sizes,
 hashes) is computed here, never stored by hand. Generated, committed outputs:
 
   dist/resources/catalog.json     site catalogue (library, pack builder, slides index)
@@ -21,7 +21,7 @@ COMPANION = DIST / 'js/resources-data.js'
 PROVENANCE = ROOT / 'content/data/RESOURCE_PROVENANCE.json'
 COMPANION_HEADER = 'export const resourceCatalog = '
 # Fields computed from the files; they never appear in the manifest.
-MEASURED_RESOURCE = ('pages', 'bytes', 'englishBytes', 'englishPages', 'language', 'translation')
+MEASURED_RESOURCE = ('pages', 'bytes', 'englishBytes', 'englishPages', 'language', 'translation', 'languages')
 MEASURED_FILE = ('pages', 'end', 'englishPath', 'bytes', 'englishBytes', 'englishPages')
 
 
@@ -37,12 +37,21 @@ def normalise(manifest):
     """Remove measured fields that builders may have set while editing records (they are regenerated)."""
     for c in manifest['catalog']['courses']: c.pop('language', None)
     for r in manifest['catalog']['resources']:
-        if r['format'] != 'PDF': continue
+        for edition in r.get('editions', {}).values():
+            for key in ('bytes', 'pages', 'sha256'): edition.pop(key, None)
         for k in MEASURED_RESOURCE: r.pop(k, None)
-        if isinstance(r['url'], list): r['url'] = r['url'][0]
+        if 'editions' not in r:
+            urls = r.get('url')
+            if not isinstance(urls, list):
+                raise ValueError('Resource needs explicit editions: '+r['id'])
+            r['editions'] = {lang: {'path': url} for lang, url in zip(('fr', 'en'), urls) if url}
     comp = manifest['companion']
     for ch in comp['chapters'] + comp['supplements']:
         for f in ch['files']:
+            for edition in f.get('editions', {}).values():
+                for key in ('bytes', 'pages', 'sha256'): edition.pop(key, None)
+            if 'editions' not in f:
+                f['editions'] = {lang: {'path': path} for lang, path in (('fr', f.get('path')), ('en', f.get('englishPath'))) if path}
             for k in MEASURED_FILE: f.pop(k, None)
     return manifest
 
@@ -76,8 +85,6 @@ def generate(manifest=None):
     if len(set(resource_ids))!=len(resource_ids):raise ValueError('Duplicate resource IDs')
     for resource in cat['resources']:
         if resource['chapter'] not in chapters:raise ValueError('Resource refers to removed/unknown chapter: '+resource['id'])
-        for url in resource['url'] if isinstance(resource['url'],list) else [resource['url']]:
-            if not (DIST/url.removeprefix('./')).is_file():raise FileNotFoundError('Missing catalogue resource: '+url)
     layouts = {c['id']: c for c in comp['chapters']}
     primary = {c['course'] for c in comp['chapters']}
     canonical = [c for c in cat['chapters'] if c['course'] in primary and c.get('number',0)>0]
@@ -92,31 +99,51 @@ def generate(manifest=None):
     # Source records describe owner-supplied files: their URLs and storage ids must never reach the client.
     comp.pop('folder', None)
     for source in cat['sources'] + comp['sources']: source.pop('url', None); source.pop('id', None)
-    for course in cat['courses']: course['language'] = 'bilingual'
+    def measure_editions(record):
+        editions = record.get('editions')
+        if not editions or any(lang not in ('fr', 'en') for lang in editions):
+            raise ValueError('Explicit French/English editions required')
+        for lang, edition in editions.items():
+            relative = edition['path'].removeprefix('./')
+            path = DIST / relative
+            if not relative.startswith('resources/') or '..' in relative.split('/') or not path.is_file():
+                raise FileNotFoundError('Missing or invalid edition: '+relative)
+            edition.update(bytes=path.stat().st_size, sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+            if path.suffix.lower() == '.pdf': edition['pages'] = _pdf_pages(path, pages)
+            if edition.get('htmlPath') and not (DIST / edition['htmlPath'].removeprefix('./')).is_file():
+                raise FileNotFoundError('Missing web edition: '+edition['htmlPath'])
+        return editions
+
     for r in cat['resources']:
-        if r['format'] != 'PDF': continue
-        fr = r['url']; en = fr[:-4] + '-en.pdf'
-        pf, pe = DIST / fr.removeprefix('./'), DIST / en.removeprefix('./')
-        if not pe.exists(): raise FileNotFoundError(en)
-        r['pages'] = _pdf_pages(pf, pages)
-        ep = _pdf_pages(pe, pages)
-        if ep != r['pages']: r['englishPages'] = ep   # excerpts cut at section starts can differ by a page
-        r.update(url=[fr, en], language='bilingual', bytes=pf.stat().st_size, englishBytes=pe.stat().st_size,
-                 translation='tex-source' if (r['chapter'] in converted or r.get('texBuilt')) else 'authored-bilingual')
-        # key order of the historical files: measured fields after the editorial ones
+        editions = measure_editions(r)
+        r['languages'] = list(editions)
+        r['language'] = 'bilingual' if len(editions) > 1 else next(iter(editions))
+        # Compatibility fields for saved external consumers; the UI uses explicit editions.
+        r['url'] = [editions.get(lang, {}).get('path') for lang in ('fr', 'en')]
+        for lang, prefix in (('fr', ''), ('en', 'english')):
+            edition = editions.get(lang)
+            if not edition: continue
+            for key in ('pages', 'bytes'):
+                if key in edition: r[prefix + key.capitalize() if prefix else key] = edition[key]
+        if r['format'] == 'PDF':
+            r['translation'] = 'tex-source' if (r['chapter'] in converted or r.get('texBuilt')) else 'authored-bilingual'
+    for course in cat['courses']:
+        course['languages'] = sorted({lang for r in cat['resources'] if r['course'] == course['id'] for lang in r['editions']})
+        course['language'] = 'bilingual' if len(course['languages']) > 1 else next(iter(course['languages']), None)
     provenance = []
     for ch in comp['chapters'] + comp['supplements']:
         for f in ch['files']:
-            path = DIST / f['path']; en = path.with_name(path.stem + '-en.pdf')
-            if not en.exists(): raise FileNotFoundError(en)
-            f['pages'] = _pdf_pages(path, pages); f['end'] = f['start'] + f['pages'] - 1   # whole-page extracts
-            f.update(englishPath=str(en.relative_to(DIST)), bytes=path.stat().st_size, englishBytes=en.stat().st_size)
-            ep = _pdf_pages(en, pages)   # an excerpt may drift by one page between languages (books may not)
-            if abs(ep - f['pages']) > 1: raise ValueError(f'English page count differs by more than one page: {en}')
-            if ep != f['pages']: f['englishPages'] = ep
-            provenance.append({'path': f['path'], 'source': f['source'], 'pages': [f['start'], f['end']],
-                               'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'englishPath': f['englishPath'],
-                               'englishSha256': hashlib.sha256(en.read_bytes()).hexdigest()})
+            editions = measure_editions(f)
+            for lang, edition in editions.items():
+                edition['start'] = edition.get('start', f['start'])
+                edition['end'] = edition['start'] + edition['pages'] - 1
+            first = editions.get('fr') or editions.get('en')
+            f.update(path=first['path'], pages=first['pages'], bytes=first['bytes'], end=first['end'])
+            if 'en' in editions:
+                f.update(englishPath=editions['en']['path'], englishPages=editions['en']['pages'], englishBytes=editions['en']['bytes'])
+            legacy={'path':first['path'],'pages':[first['start'],first['end']],'sha256':first['sha256']}
+            if 'en' in editions: legacy.update(englishPath=editions['en']['path'],englishSha256=editions['en']['sha256'])
+            provenance.append({'source': f['source'], 'editions': copy.deepcopy(editions), **legacy})
     return {CATALOG: _dump(cat), COMPANION: COMPANION_HEADER + json.dumps(comp, ensure_ascii=False, indent=2) + ';\n',
             PROVENANCE: _dump(provenance)}
 

@@ -131,13 +131,14 @@ const {mountExperiment}=await import('../dist/js/lab/mount.js');const {EXPERIMEN
 for(const e of EXPERIMENTS)for(const lang of ['fr','en'])for(const mode of ['full','inline'])for(const mission of [null,...e.missions.map(m=>m.id)]){
   const host=document.createElement('div');document.body.append(host);
   const m=mountExperiment(host,mission?e.id+'/'+mission:e.id,{mode,lang});await m.ready;flush();
-  if(e.template==='calculation'){assert.equal(host.querySelector('canvas'),null,e.id+' uses readable maths');assert.ok(host.querySelector('.lab2-calculation math'));}else assert.ok(host.querySelector('canvas'),e.id+' draws a canvas');assert.ok(host.querySelector('.lab2-prompt').textContent.length>10);assert.ok(!/NaN|undefined|Infinity/.test(host.textContent),e.id+'/'+mission);
+  if(e.template==='calculation'){assert.equal(host.querySelector('canvas'),null,e.id+' uses readable maths');assert.ok(host.querySelector('.lab2-calculation math'));}else if(e.template==='inference'){assert.equal(host.querySelector('canvas'),null,e.id+' uses native interactive records');assert.ok(host.querySelector('.inference-stage [role="table"]'));}else assert.ok(host.querySelector('canvas'),e.id+' draws a canvas');assert.ok(host.querySelector('.lab2-prompt').textContent.length>10);assert.ok(!/NaN|undefined|Infinity/.test(host.textContent),e.id+'/'+mission);
   assert.equal(host.querySelector('.lab2-nav')===null,mode==='inline','inline mode has no previous or next');
   m.destroy();flush();assert.equal(host.children.length,0,'destroy removes the experiment');host.remove();
 }
 const missing=document.createElement('div');document.body.append(missing);mountExperiment(missing,'nope',{lang:'fr'});assert.match(missing.textContent,/n’existe pas/);
 await go('#lab');assert.equal(document.querySelectorAll('.lab2-card-link').length,EXPERIMENTS.length,'the index lists all experiments');
-assert.equal(document.querySelectorAll('.lab2-group').length,11,'grouped by type of activity or idea: eleven groups');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,EXPERIMENTS.length);
+const {groupOf}=await import('../dist/js/lab/registry.js');
+assert.equal(document.querySelectorAll('.lab2-group').length,new Set(EXPERIMENTS.map(groupOf)).size,'every registered activity group is shown');assert.equal(document.querySelectorAll('.lab2-card-link[href^="#lab/"]').length,EXPERIMENTS.length);
 // the old guided page is gone: no chart, no sliders of the previous design, whatever the route
 for(const id of ['probability','vectors','statistics','complex']){await go('#lab/'+id);assert.ok(document.querySelector('.lab2'),id+' is an experiment');assert.equal(document.querySelector('#plot'),null);assert.equal(document.querySelector('[data-param]'),null);}
 await go('#lab/nope');assert.ok(/introuvable|not found/i.test(document.querySelector('#main').textContent),'an unknown experiment is a missing page');

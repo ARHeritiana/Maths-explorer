@@ -7,10 +7,12 @@ site, so it can be saved, shared and projected on its own.
 
 Run after build-slides.py (`make slides` does both). `--check` fails if an export is stale.
 """
-import base64, json, posixpath, re, sys
+import base64, hashlib, json, posixpath, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild.slide_editions import languages, for_language
 SRC = ROOT / 'site/slides'
 JS = ROOT / 'site/js'
 DATA = ROOT / 'dist/slides/data'
@@ -18,7 +20,7 @@ FIG = ROOT / 'dist/slides/fig'
 OUT = ROOT / 'dist/slides/export'
 MATHJAX = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js'
 FONTS = 'https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap'
-MODULES = ['../js/canvas-navigation.js', '../js/camera3d.js', 'widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js first: it defines what the others import
+MODULES = ['../js/canvas-navigation.js', '../js/camera3d.js', 'edition-policy.js', 'widgets.js', 'widgets-2d.js', 'widgets-3d.js', 'player.js']   # widgets.js precedes the widgets that use it
 
 
 CAMERA3D_EXPORTS = ('PITCH_MIN', 'PITCH_MAX', 'CAM3_DEFAULT', 'cam3Project', 'cam3Unproject', 'cam3Dir', 'cam3Ray', 'cam3HitPlane', 'cam3HitLine', 'cam3Turn')
@@ -42,8 +44,14 @@ def lab_module(key, text):
     def alias(parts): return ', '.join(p.strip().replace(' as ', ': ') for p in parts.split(',') if p.strip())
     def imp(m):
         kind, spec = m.group(1).strip(), res(m.group(2))
-        if kind.startswith('*'): return f'const {kind.split()[-1]} = __r("{spec}");'
-        if kind.startswith('{'): return f'const {{ {alias(kind[1:-1])} }} = __r("{spec}");'
+        # A default binding can accompany either named bindings or a namespace.
+        # Split only its first comma: commas inside the named list belong together.
+        default = ''
+        if not kind.startswith(('*', '{')) and ',' in kind:
+            default, kind = (part.strip() for part in kind.split(',', 1))
+        prefix = f'const {default} = __r("{spec}").default; ' if default else ''
+        if kind.startswith('*'): return prefix + f'const {kind.split()[-1]} = __r("{spec}");'
+        if kind.startswith('{'): return prefix + f'const {{ {alias(kind[1:-1])} }} = __r("{spec}");'
         return f'const {kind} = __r("{spec}").default;'
     text = re.sub(r'^import\s+(.+?)\s+from\s+["\']([^"\']+)["\'];?[ \t]*$', imp, text, flags=re.M)
     def reexport(m):
@@ -128,12 +136,14 @@ def mathjax_config():
 
 def figures(deck):
     out = {}
-    for s in deck['slides']:
-        for pair in s.get('f', []):
-            for lang, suffix in ((0, ''), (1, '-en')):
+    for language in languages(deck):
+        lang, suffix = (0, '') if language == 'fr' else (1, '-en')
+        for s in for_language(deck, language)['slides']:
+            for pair in s.get('f', []):
                 name = f'{deck["id"]}-{pair[lang]}{suffix}.svg'
                 f = FIG / name
-                if f.exists(): out[name] = 'data:image/svg+xml;base64,' + base64.b64encode(f.read_bytes()).decode()
+                if not f.exists(): raise FileNotFoundError('Missing declared slide figure: ' + name)
+                out[name] = 'data:image/svg+xml;base64,' + base64.b64encode(f.read_bytes()).decode()
     return out
 
 
@@ -143,9 +153,11 @@ def js_json(obj):
 
 
 def page(deck, engine, css, mj):
-    title = deck['title'][0].replace('&', '&amp;').replace('<', '&lt;')
+    available = languages(deck)
+    language = deck.get('language') if deck.get('language') in available else available[0]
+    title = for_language(deck, language)['title'][0 if language == 'fr' else 1].replace('&', '&amp;').replace('<', '&lt;')
     return f'''<!DOCTYPE html>
-<html lang="fr">
+<html lang="{language}">
 <head>
 <meta charset="utf-8">
 <title>{title}</title>
@@ -174,7 +186,7 @@ def build():
     for f in sorted(DATA.glob('*.json')):
         if f.name == 'index.json': continue
         deck = json.loads(f.read_text(encoding='utf8'))
-        uses_lab = any((x.get('w') or {}).get('type') == 'lab' for x in deck['slides'])
+        uses_lab = any((x.get('w') or {}).get('type') == 'lab' for lang in languages(deck) for x in for_language(deck, lang)['slides'])
         files[OUT / f'{deck["id"]}.html'] = page(deck, engines[uses_lab], css, mj)
     return files
 
@@ -187,6 +199,16 @@ def main():
         if path.exists() and path.read_text(encoding='utf8') == html: continue
         stale.append(path.name)
         if not check: path.write_text(html, encoding='utf8')
+    metadata = []
+    for path, html in files.items():
+        deck = json.loads((DATA / (path.stem + '.json')).read_text(encoding='utf8'))
+        data = html.encode('utf8')
+        metadata.append({'id': deck['id'], 'editions': {lang: {'path': 'slides/export/' + path.name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(), 'slides': len(for_language(deck, lang)['slides'])} for lang in languages(deck)}})
+    index_path = OUT / 'index.json'
+    index_text = json.dumps(metadata, ensure_ascii=False, indent=1) + '\n'
+    if not index_path.exists() or index_path.read_text(encoding='utf8') != index_text:
+        stale.append(index_path.name)
+        if not check: index_path.write_text(index_text, encoding='utf8')
     for old in OUT.glob('*.html'):
         if old not in files:
             stale.append(old.name)

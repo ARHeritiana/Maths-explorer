@@ -10,15 +10,15 @@ test('resource catalog resolves every downloadable file and provenance record',(
   for(const key of ['chapters','resources','sources','courses'])assert.equal(new Set(c[key].map(x=>x.id??x.name)).size,c[key].length);
   for(const r of c.resources){
     assert.ok(c.chapters.some(ch=>ch.id===r.chapter));assert.ok(resourceTypes[r.type]);
-    for(const url of Array.isArray(r.url)?r.url:[r.url]){
+    for(const {path:url} of Object.values(r.editions)){
       assert.match(url,/^\.\/resources\/[a-z0-9/-]+\.(pdf|html)$/);
       const file=new URL('../dist/'+url.slice(2),import.meta.url);assert.ok(fs.statSync(file).size>100);
       if(r.format==='PDF')assert.equal(fs.readFileSync(file).subarray(0,4).toString(),'%PDF');
     }
     if(r.source){assert.ok(c.sources.some(s=>s.name===r.source));assert.ok(r.sourcePages[0]>=1&&r.sourcePages[1]>=r.sourcePages[0]);}
     if(r.type==='solutions')assert.equal(r.audience,'teacher');
-    assert.equal(r.language,'bilingual');assert.ok(Array.isArray(r.url)&&r.url.length===2);
-    if(r.format==='PDF'){assert.ok(r.url[1].endsWith('-en.pdf'));assert.ok(['local-machine','authored-bilingual','tex-source'].includes(r.translation));}
+    assert.ok(Object.keys(r.editions).length);
+    for(const [language,edition] of Object.entries(r.editions)){assert.ok(['fr','en'].includes(language));assert.ok(edition.bytes>0);assert.match(edition.sha256,/^[a-f0-9]{64}$/);if(r.format==='PDF')assert.ok(edition.pages>0);}
   }
   for(const ch of c.chapters){
     assert.ok(ch.title.length===2&&ch.title.every(Boolean));

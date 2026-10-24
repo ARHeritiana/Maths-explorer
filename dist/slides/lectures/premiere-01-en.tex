@@ -49,7 +49,7 @@
 \vfill
 \end{frame}
 \begin{frame}{Chapter path}
-\textbf{Objectives.} Turn a story into a sequence; distinguish increment from rate; compute terms and sums; justify a variation; investigate a threshold.
+\textbf{Objectives.} Turn a story into a sequence; distinguish increment from rate; compute terms and sums; justify monotonicity; investigate a threshold.
 
 \textbf{Prerequisites.} Algebraic manipulation, integer powers, percentages, affine function, Python loop.
 
@@ -88,7 +88,7 @@ Adding a constant percentage does not generally give an arithmetic sequence.
 We know \(u_3=17\) and \(u_8=37\) for an arithmetic sequence. Determine \(r\) and \(u_0\).
 \end{frame}
 \begin{frame}{Geometric sequences}
-A sequence is geometric with common ratio \(q\) if \(u_{n+1}=qu_n\). For \(n\geq p\), \(u_n=u_pq^{n-p}\), with the convention that an empty product equals 1. A constant rate \(t\) gives \(q=1+t\). The variation is decided with \(u_{n+1}-u_n=(q-1)u_n\). For \(q<0\), the signs may alternate.
+A sequence is geometric with common ratio \(q\) if \(u_{n+1}=qu_n\). For \(n\geq p\), \(u_n=u_pq^{n-p}\), with the convention that an empty product equals 1. A constant rate \(t\) gives \(q=1+t\). Monotonicity is determined using \(u_{n+1}-u_n=(q-1)u_n\). For \(q<0\), the signs may alternate.
 \end{frame}
 \begin{frame}{Geometric sequences}
 A quantity of 160 mg loses 25\% at each step: \(u_n=160(\dfrac{3}{4})^n\). The terms are positive and \(u_{n+1}-u_n=-\dfrac{u_n}{4}<0\). We obtain \(u_2=90\) mg, without confusing a 25\% decrease with removing 25 mg.
@@ -97,7 +97,7 @@ A quantity of 160 mg loses 25\% at each step: \(u_n=160(\dfrac{3}{4})^n\). The t
 \(q>1\) is not enough to conclude that every geometric sequence is increasing: the sign of the first term matters.
 \end{frame}
 \begin{frame}{Geometric sequences}
-Study the variation of \(u_n=-2\times3^n\), then of \(v_n=2(-1)^n\).
+Study the monotonicity of \(u_n=-2\times3^n\), then of \(v_n=2(-1)^n\).
 \end{frame}
 \begin{frame}{Sums, indices and proofs}
 For \(n\geq1\), \(1+2+\cdots +n=\dfrac{n(n+1)}{2}\). For \(q\ne1\) and \(n\geq0\), \(1+q+\cdots +q^n=\dfrac{1-q^{n+1}}{1-q}\). For \(q=1\), the sum equals \(n+1\). Hence, from \(u_p\) to \(u_n\), an arithmetic sum equals \(\dfrac{(n-p+1)(u_p+u_n)}{2}\); a geometric sum equals \(\dfrac{u_p(1-q^{n-p+1})}{1-q}\) if \(q\ne1\).

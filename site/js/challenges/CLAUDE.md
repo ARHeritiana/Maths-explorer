@@ -17,6 +17,10 @@ from `registry.js` only.
 
 A folder has only the files it needs (some challenges have no `maths.js`).
 
+Backlog additions: `knights/` has a legal-move board and cancellable cooperative tour search; `rooms/` has an editable
+five-room door multigraph and Eulerian traversal; `factorials/` has exact BigInt valuations and arbitrary-base zeros.
+Each folder contains `index.js`, `maths.js`, `activity.js` and `solution.js`.
+
 ## Shared (`common/`)
 
 Parameter choices appear in compact selects inside folded settings (`app.js`). A choice may also carry `fields`

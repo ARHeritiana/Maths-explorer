@@ -1,6 +1,6 @@
 """Open every slide deck in Chromium, step through all slides in both languages, and fail on console errors,
 MathJax errors, empty slides, text overflowing the stage, or widgets that do not mount / respond to a drag."""
-import json, sys, threading, http.server, socketserver, functools
+import json, os, sys, threading, http.server, socketserver, functools
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -15,16 +15,19 @@ index = json.loads((ROOT / 'slides/data/index.json').read_text())
 only = sys.argv[1:] 
 errors = []
 with sync_playwright() as p:
-    b = p.chromium.launch(executable_path='/opt/pw-browsers/chromium') if Path('/opt/pw-browsers/chromium').exists() else p.chromium.launch()
+    executable = os.environ.get('PLAYWRIGHT_CHROMIUM_PATH')
+    if not executable and Path('/opt/pw-browsers/chromium').exists():
+        executable = '/opt/pw-browsers/chromium'
+    b = p.chromium.launch(**({'executable_path': executable} if executable else {}))
     pg = b.new_page(viewport={'width': 1280, 'height': 720})
     logs = []
     pg.on('console', lambda m: logs.append(m.text) if m.type in ('error',) else None)
     pg.on('pageerror', lambda e: logs.append('PAGEERROR ' + str(e)))
     for d in index:
         if only and d['id'] not in only: continue
-        for lang in ('fr', 'en'):
+        for lang, edition in d['editions'].items():
             pg.goto(f'http://127.0.0.1:{port}/slides/player.html?deck={d["id"]}&lang={lang}#0'); pg.wait_for_selector('#r1')
-            for i in range(d['slides']):
+            for i in range(edition['slides']):
                 pg.evaluate(f'location.hash="#{i}"'); pg.wait_for_function(f'document.querySelector(".count")?.textContent.startsWith("{i+1} /")')
                 pg.wait_for_timeout(60)
                 pg.evaluate('document.querySelector("#all-steps")?.click()')   # reveal every step so the whole slide is checked

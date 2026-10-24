@@ -3,6 +3,7 @@
 // reachable, the handles consistent with their models, and the pure models. Drawing and dragging are in dom-smoke.mjs and
 // lab_browser.py.
 import test from "node:test";
+import {BACKLOG_CHECKS,BACKLOG_WITNESSES,BACKLOG_PREDICTIONS} from "./backlog-lab-fixtures.mjs";
 import assert from "node:assert/strict";
 import { EXPERIMENTS, TEMPLATES, TEMPLATE_INFO, resolveRef, allRefs, parseRef, catalogue } from "../dist/js/lab/registry.js";
 import { KINDS } from "../dist/js/lab/shell.js";
@@ -38,8 +39,10 @@ const DASH = /[–—]/;
 const isPair = (p) => Array.isArray(p) && p.length === 2 && p.every((x) => typeof x === "string" && x.trim().length > 0);
 
 test("the registry lists the registered experiments with consistent ids, templates and references", async () => {
-  assert.deepEqual(EXPERIMENTS.map((e) => e.id), ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines", "fourier-series", "fourier-drawing", "tiles", "euler-primes", "fermat", "circle-regions", "buffon", "bertrand"]);
-  assert.deepEqual([...new Set(EXPERIMENTS.map((e) => e.template))], ["family", "process", "chance", "figure", "data", "transform", "space", "fourier", "calculation"], "nine templates are in use");
+  const retainedIds = ["quadratic", "trig", "sequences", "derivative", "integral", "probability", "vectors", "statistics", "complex", "line", "exponential", "cobweb", "matrix", "space-lines", "fourier-series", "fourier-drawing", "tiles", "euler-primes", "fermat", "circle-regions", "buffon", "bertrand"];
+  assert.deepEqual(EXPERIMENTS.slice(0,retainedIds.length).map(e=>e.id),retainedIds);
+  assert.deepEqual(EXPERIMENTS.slice(retainedIds.length).map(e=>e.id).sort(),Object.keys(BACKLOG_PREDICTIONS).sort());
+  assert.ok(["family","process","chance","figure","data","transform","space","fourier","calculation"].every(k=>EXPERIMENTS.some(e=>e.template===k)), "retained templates stay in use");
   assert.equal(new Set(EXPERIMENTS.map((e) => e.id)).size, EXPERIMENTS.length);
   for (const e of EXPERIMENTS) {
     assert.ok(e.template in TEMPLATES && e.template in TEMPLATE_INFO, e.id);
@@ -99,7 +102,7 @@ test("a mission unlocks at most 2 handles, 1 slider and 1 choice (R6), and only 
       if (c.kind === "choice" || c.kind === "action") for (const o of c.options) assert.ok(isPair(o.label) && "value" in o);
       if (c.kind === "action") assert.equal(typeof c.act, "function", `${e.id}.${id}.act`);
       if (c.play) assert.equal(c.kind, "scrubber", "only scrubbers play");
-      if (c.play) assert.ok(["process","fourier"].includes(e.template), "play belongs to a time-indexed template");
+      if (c.play) assert.ok(["process","fourier","dynamics","logistic"].includes(e.template), "play belongs to a time-indexed template");
     }
   }
 });
@@ -143,7 +146,7 @@ test("every string is a [fr, en] pair without em or en dashes, with decimal comm
       for (const s of p) assert.ok(!DASH.test(s), `${where}: dash in "${s}"`);
       assert.ok(!/\d\.\d/.test(p[0]), `${where}: French uses a decimal comma: ${p[0]}`);
     }
-    assert.match(e.history.source, /^https:\/\/mathshistory\.st-andrews\.ac\.uk\//);
+    assert.equal(new URL(e.history.source).protocol,"https:",`${e.id}: an absolute HTTPS reference`);
   }
 });
 
@@ -276,6 +279,7 @@ const independent = {
   "bertrand/midpoint": () => { const n = 2000; let inDisc = 0, inner = 0; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const x = -1 + (2 * i + 1) / n, y = -1 + (2 * j + 1) / n, r = x * x + y * y; if (r <= 1) { inDisc++; if (r < 0.25) inner++; } } return inner / inDisc; },
   "integral/area": ({ a, b }) => { const n = 400000, w = (b - a) / n; let s = 0; for (let i = 0; i < n; i++) { const x = a + (i + 0.5) * w; s += x * x * w; } return s; },
 };
+Object.assign(independent,BACKLOG_CHECKS);
 test("every check answer equals the model quantity and an independent computation", () => {
   let checked = 0;
   for (const e of EXPERIMENTS) {
@@ -291,7 +295,7 @@ test("every check answer equals the model quantity and an independent computatio
       checked++;
     }
   }
-  assert.equal(checked, 22);
+  assert.equal(checked, Object.keys(independent).length);
 });
 
 test("every prediction has the correct answer according to the mathematics", () => {
@@ -341,11 +345,12 @@ test("every prediction has the correct answer according to the mathematics", () 
     bertrand: () => (new Set(Object.values(BE.THEORY)).size === 3 ? "depends" : "other"),
   });
   const expected = { tiles: "gap", "euler-primes": "counterexample", fermat: "composite", "circle-regions": 31, buffon: "under two thirds", bertrand: "depends", "fourier-series":2, "fourier-drawing":128, quadratic: "down", trig: -1, sequences: "line", derivative: "settles", integral: "smaller", probability: 3, vectors: "zero", statistics: "mean", complex: "quarter", line: "same", exponential: "times", cobweb: "closer", matrix: 4, "space-lines": "three" };
+  for(const [id,p] of Object.entries(BACKLOG_PREDICTIONS)){truth[id]=p.truth;expected[id]=p.expected;}
   for (const e of EXPERIMENTS) {
     assert.equal(truth[e.id](), expected[e.id], e.id);
     const m = e.missions[0];
     const right = m.choices[m.correct][0];
-    const words = { tiles: /trou très fin/, "euler-primes": /il existe un n/, fermat: /composé/, "circle-regions": /^31$/, buffon: /deux tiers/, bertrand: /dépend/, "fourier-series":/Deux fois plus d’oscillations/, "fourier-drawing":/128 échantillons/, quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id];
+    const words = { tiles: /trou très fin/, "euler-primes": /il existe un n/, fermat: /composé/, "circle-regions": /^31$/, buffon: /deux tiers/, bertrand: /dépend/, "fourier-series":/Deux fois plus d’oscillations/, "fourier-drawing":/128 échantillons/, quadratic: /bas/, trig: /^−1$/, sequences: /droite/, derivative: /stabilise/, integral: /petite/, probability: /Autour de 3/, vectors: /nulle/, statistics: /moyenne augmente/, complex: /quart de tour/, line: /Il ne change pas/, exponential: /multipliée par 2/, cobweb: /rapprochent de 4/, matrix: /^4$/, "space-lines": /Aucun, un seul, ou une infinité/ }[e.id] || BACKLOG_PREDICTIONS[e.id]?.words;
     assert.match(right, words, `${e.id}: the marked choice is the true one`);
   }
 });
@@ -394,6 +399,7 @@ const witness = {
   "buffon/drop": { runs: 1000 },
   "bertrand/ends": { runs: 1000 },
 };
+Object.assign(witness,BACKLOG_WITNESSES);
 test("every exploration goal is false at the start and true at a reachable state", () => {
   let n = 0;
   for (const e of EXPERIMENTS) {
@@ -431,7 +437,7 @@ test("handles are consistent with their models: round trip, clamping and keyboar
         // far away drags clamp and never produce NaN
         for (const [fx, fy] of [[100, 100], [-100, -100], [0, 100], [100, 0]]) {
           const far = c.drag(s, fx, fy);
-          if (far) for (const v of Object.values(far).flat()) assert.ok(Number.isFinite(v), `${e.id}.${id} far drag`);
+          if (far) for (const v of Object.values(far).flat(Infinity)) assert.ok(typeof v !== "number" || Number.isFinite(v), `${e.id}.${id} far drag`);
         }
         // arrows: a step in one direction then back returns to the start (or the step is blocked at a limit)
         const stepOf = (st, dx, dy) => {
@@ -443,7 +449,8 @@ test("handles are consistent with their models: round trip, clamping and keyboar
         };
         const up = { ...s, ...(stepOf(s, 1, 1) ?? {}) }, back = { ...up, ...(stepOf(up, -1, -1) ?? {}) };
         if (Object.keys(s).every((k) => up[k] === s[k])) continue;   // blocked at a limit of the range
-        for (const k of Object.keys(s)) if (typeof s[k] === "number") near(back[k], s[k], 1e-9, `${e.id}.${id} step back ${k}`);
+        for (const k of Object.keys(s)) if (typeof s[k] === "number" && !(c.resetKeys||[]).includes(k)) near(back[k], s[k], 1e-9, `${e.id}.${id} step back ${k}`);
+        for (const k of c.resetKeys||[]) {assert.ok(k in e.state,`${e.id}.${id} declares a real reset field`);near(back[k],e.state[k],1e-9,`${e.id}.${id} resets ${k}`);}
       }
     }
   }

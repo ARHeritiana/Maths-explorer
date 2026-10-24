@@ -100,3 +100,22 @@ Write the file to `/mnt/user-data/outputs/`, publish with the Artifact tool, and
 - `assets/example_trinome.html`: complete reference implementation (second-degree trinomial, 5 steps, three slider modes, 3×2 case selectors, sign table).
 - `assets/template.html`: minimal skeleton to adapt for a new topic.
 - `scripts/lint_slide.py`: automatic checks.
+
+## Repository integration (shared player)
+
+Inside this repository, the governing project brief selects the shared player in `site/slides/player.js` and the
+laboratory widget protocol. A separate single-file engine is not required. `scripts/export-slides.py` bundles the same
+player and required laboratory modules for portable downloads; do not copy the reference engine into a chapter.
+MathJax and STIX are vendored here, so the external-host restrictions above apply only to independent artifact pages.
+The repository's portrait layout and direct canvas controls take precedence over the legacy fixed landscape layout.
+
+The quadratic pilot uses `quadratic/vertex`. Its shared model keeps one `{a,b,c}` state and derives vertex and root
+coordinates. The parameter selector offers coefficients, vertex and real roots; unavailable real-root input falls back
+to vertex input with an explanation. Independent opening and discriminant selectors cover six cases and keep their
+highlights derived from the actual state. Parameter edits leave the camera unchanged. Rounded expressions use ≈.
+Presentation controls are declared by the experiment's `presentationControls`; mission controls and handles retain the
+laboratory's guided suggestions and free navigation. A slider may supply `range(state)`; update its range before its value.
+
+Read `docs/CHAPTER_TEMPLATE.md` and `docs/SLIDES.md` for chapter source bindings. Verify all six cases, parameter
+conversions, mouse/touch/keyboard edits, reveal, blocked fullscreen and navigation cleanup against the shared player.
+Run the repository slide checks and the standalone export lint. Do not claim visual inspection from lint alone.

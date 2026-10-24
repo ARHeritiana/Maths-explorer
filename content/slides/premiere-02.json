@@ -36,14 +36,14 @@
     "Before quadratics"
    ],
    "b": [
-    "Développer \\((x-2)^2\\). Résoudre \\((x-3)(x+1)=0\\). Pourquoi \\(u^2\\) est-il positif ou nul pour tout réel \\(u\\) ?",
-    "Expand \\((x-2)^2\\), solve \\((x-3)(x+1)=0\\), and explain why a real square is nonnegative."
+    "Développer \\((x-3)^2\\). Factoriser \\(x^2-16\\). Résoudre \\((x-2)(x+5)=0\\) puis \\(x^2=9\\) dans \\(\\R\\). Donner le signe de \\(2x-6\\). Déterminer le minimum de \\((x-1)^2+4\\).",
+    "Expand \\((x-3)^2\\). Factorise \\(x^2-16\\). Solve \\((x-2)(x+5)=0\\), then \\(x^2=9\\) over \\(\\R\\). Give the sign of \\(2x-6\\). Find the minimum of \\((x-1)^2+4\\)."
    ],
    "stage": "diagnostic",
    "difficulty": 1,
    "a": [
-    "\\((x-2)^2=x^2-4x+4\\) : le terme en \\(x\\) ne doit pas être oublié. Un produit est nul si et seulement si un facteur est nul : \\(x=3\\) ou \\(x=-1\\). Le produit de deux réels de même signe est positif, et \\(0^2=0\\).",
-    "\\((x-2)^2=x^2-4x+4\\). A product is zero exactly when one factor is zero: \\(x=3\\) or \\(x=-1\\). Two real numbers with the same sign have positive product, and \\(0^2=0\\)."
+    "\\((x-3)^2=x^2-6x+9\\). \\(x^2-16=(x-4)(x+4)\\). Le produit nul donne \\(x=2\\) ou \\(x=-5\\). Un réel de carré 9 vaut \\(-3\\) ou \\(3\\). Le signe de \\(2x-6=2(x-3)\\) est négatif avant 3, nul en 3 et positif après 3. Le carré est positif ou nul, donc le minimum vaut 4, atteint seulement en 1.",
+    "\\((x-3)^2=x^2-6x+9\\). \\(x^2-16=(x-4)(x+4)\\). The zero-product property gives \\(x=2\\) or \\(x=-5\\). A real number with square 9 is \\(-3\\) or \\(3\\). The sign of \\(2(x-3)\\) is negative before 3, zero at 3 and positive after 3. The minimum is 4, attained only at 1, because a square is nonnegative."
    ]
   },
   {
@@ -53,8 +53,8 @@
     "Explore a rectangle"
    ],
    "b": [
-    "On construit un rectangle de périmètre 24 unités. Choisis plusieurs largeurs strictement positives donnant un rectangle. Calcule la longueur et l’aire correspondantes. Quelle largeur semble donner la plus grande aire ? Formule une conjecture, puis cherche une justification valable pour toutes les largeurs.",
-    "Build a rectangle of perimeter 24 units. Choose several positive widths that give a rectangle. Calculate the matching length and area. Which width seems to give the largest area? State a conjecture, then seek a justification valid for every width."
+    "On construit un rectangle de périmètre 24 unités. Choisis plusieurs largeurs strictement positives donnant un rectangle, notamment 2, 4, 6, 8 et 10. Calcule la longueur et l’aire correspondantes. Quelle largeur semble donner la plus grande aire ? Formule une conjecture, puis cherche une justification valable pour toutes les largeurs.",
+    "Build a rectangle of perimeter 24 units. Choose several positive widths that give a rectangle, including 2, 4, 6, 8 and 10. Calculate the matching length and area. Which width seems to give the largest area? State a conjecture, then seek a justification valid for every width."
    ],
    "hints": [
     [
@@ -400,5 +400,9 @@
     "1. Factor to get roots \\(-3\\) and \\(3\\). 2. Since a square is nonnegative, \\(h(x)\\le8\\), attained at \\(1\\). Its zeros satisfy \\((x-1)^2=4\\), giving \\(-1\\) and \\(3\\). 3. There is no real solution because a square cannot be negative."
    ]
   }
- ]
+ ],
+ "editions": {
+  "fr": {},
+  "en": {}
+ }
 }

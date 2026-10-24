@@ -275,3 +275,13 @@ A drawing is optional. Fermat numbers and Euler’s polynomial use the `calculat
 Mission text cards use normal document flow and no inner height limit or scroll container. Vertical gestures on their text scroll the page. Only draggable objects reserve touch gestures in the cookie activity; the tray, children and surrounding text remain page-scroll surfaces.
 
 Continuous geometric probability sampling uses the single stage scheduler. The learner starts and pauses it and adjusts 1 to 60 samples per second without changing the random model. A preview needle falls or a chord grows, then the completed trial joins the count. Parameter or mission changes pause sampling; hidden-tab time never produces a catch-up burst. Reduced motion performs one explicit sample, and enabling it while running stops the animation. The finite series cap is 5 000, with all results counted and only the newest needles/chords drawn.
+
+## Inference surface, 23 October 2026
+
+The `inference` template uses native interactive cards, doors, data input and labelled frequency tables. It follows the existing `calculation` template's DOM stage contract and shared shell scheduler; tabular observations are not drawn as geometric handles. Gallery entry points mount the same experiments, and reading pages share the assumptions and arguments. Continuous sample growth is user-started, stops on navigation or reduced-motion changes, and has a single-step alternative. Finite Monte Carlo frequencies are separated from exact benchmarks and accompanied by approximate Wilson intervals where appropriate.
+
+## Dynamics additions, 23 October 2026
+
+The `dynamics` template retains `family` cameras/handles and the one stage scheduler. A folded physical-settings panel avoids a permanent toolbar of parameter sliders. Playback uses cached trajectories sampled every 0.04 time unit; the actual calculated sample time is displayed. Local RK4 error is controlled by step doubling and a user-selected tolerance. Close gravitational encounters stop explicitly instead of applying an unannounced softened force. Pendulum energy change with viscous torque is physical dissipation, distinguished from undamped numerical drift.
+
+The `logistic` template uses the same stage and camera policy with three synchronized panels. It extends the pure cobweb recurrence model while preserving the existing affine experiment and its route. The bifurcation sample is recalculated within the visible parameter interval after explicit camera zoom; finite transients and sample counts are stated on the figure.

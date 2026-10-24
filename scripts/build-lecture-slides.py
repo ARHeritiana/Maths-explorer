@@ -12,6 +12,7 @@ import pymupdf
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'build'))
 from mxbuild.notation import mathjax, BRACKETS
+from mxbuild.slide_editions import languages, for_language
 DATA=ROOT/'dist/slides/data'; OUT=ROOT/'dist/slides/lectures'; SOURCE=ROOT/'content/tex/lectures'; BUILD=ROOT/'build/out/lectures'
 PUNCT={'−':'-','–':'-','—':'-','…':r'\ldots{}','→':r'\ensuremath{\to}','↦':r'\ensuremath{\mapsto}','⇒':r'\ensuremath{\Rightarrow}','⇔':r'\ensuremath{\iff}','≤':r'\ensuremath{\leq}','≥':r'\ensuremath{\geq}','≠':r'\ensuremath{\ne}','≈':r'\ensuremath{\approx}','∞':r'\ensuremath{\infty}','ℝ':r'\ensuremath{\mathbb{R}}','ℕ':r'\ensuremath{\mathbb{N}}','ℤ':r'\ensuremath{\mathbb{Z}}','ℚ':r'\ensuremath{\mathbb{Q}}','ℂ':r'\ensuremath{\mathbb{C}}','∈':r'\ensuremath{\in}','∉':r'\ensuremath{\notin}','∩':r'\ensuremath{\cap}','∪':r'\ensuremath{\cup}','∅':r'\ensuremath{\varnothing}','×':r'\ensuremath{\times}','·':r'\ensuremath{\cdot}','²':r'\textsuperscript{2}','³':r'\textsuperscript{3}','°':r'\textdegree{}','α':r'\ensuremath{\alpha}','β':r'\ensuremath{\beta}','Δ':r'\ensuremath{\Delta}','θ':r'\ensuremath{\theta}','π':r'\ensuremath{\pi}','σ':r'\ensuremath{\sigma}','μ':r'\ensuremath{\mu}','√':r'\ensuremath{\sqrt{\phantom{x}}}','′':"'",'″':"''",'₀':r'\textsubscript{0}','₁':r'\textsubscript{1}','₂':r'\textsubscript{2}','₃':r'\textsubscript{3}','₄':r'\textsubscript{4}'}
 
@@ -110,6 +111,7 @@ def figure(deck,slide,lang,work):
     return figures
 
 def tex_for(deck,lang,work):
+    deck=for_language(deck,lang)
     L=0 if lang=='fr' else 1;parts=[preamble(deck['title'][L],lang)]
     for slide in deck['slides']:
         if slide['k'] in ('title','widget'):continue
@@ -165,20 +167,27 @@ def build_one(item):
         dims=doc[0].rect;assert abs(dims.width/dims.height-16/9)<.005
         pages=len(doc)
     log=(work/'main.log').read_text(errors='replace');overflow=[x for x in log.splitlines()if 'Overfull' in x or 'Missing character' in x]
-    return {'id':deck['id'],'lang':lang,'pages':pages,'pdf':out.name,'source':zpath.name,'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'warnings':overflow}
+    return {'id':deck['id'],'lang':lang,'pages':pages,'pdf':out.name,'bytes':out.stat().st_size,'source':zpath.name,'sourceBytes':zpath.stat().st_size,'sourceSha256':hashlib.sha256(zpath.read_bytes()).hexdigest(),'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'warnings':overflow}
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--deck');parser.add_argument('--lang',choices=['fr','en']);parser.add_argument('--jobs',type=int,default=4);parser.add_argument('--check',action='store_true');args=parser.parse_args()
     index=json.loads((DATA/'index.json').read_text());decks=[json.loads((DATA/(d['id']+'.json')).read_text())for d in index if not args.deck or d['id']==args.deck]
-    jobs=[(d,lang)for d in decks for lang in ([args.lang]if args.lang else ['fr','en'])];results=[]
+    if args.lang and any(args.lang not in languages(d) for d in decks):
+        raise SystemExit('Requested lecture language is unavailable for a selected deck')
+    jobs=[(d,lang)for d in decks for lang in ([args.lang]if args.lang else languages(d))];results=[]
     if args.check:
         metadata={d['id']:d for d in json.loads((OUT/'index.json').read_text())}
+        if not args.lang:
+            for deck in decks: assert set(metadata[deck['id']]['editions']) == set(languages(deck)), 'stale lecture language availability: '+deck['id']
         for deck,lang in jobs:
             key=f'{deck["id"]}-{lang}';expected=tex_for(deck,lang,BUILD/key)
             assert (SOURCE/(key+'.tex')).read_text()==expected, 'stale lecture source: '+key
             assert (OUT/(key+'.tex')).read_text()==expected, 'stale downloadable source: '+key
             edition=metadata[deck['id']]['editions'][lang];pdf=OUT/edition['pdf']
             assert hashlib.sha256(pdf.read_bytes()).hexdigest()==edition['sha256'], 'PDF hash: '+key
+            assert pdf.stat().st_size==edition['bytes'], 'PDF size: '+key
+            assert (OUT/edition['source']).stat().st_size==edition['sourceBytes'], 'archive size: '+key
+            assert hashlib.sha256((OUT/edition['source']).read_bytes()).hexdigest()==edition['sourceSha256'], 'archive hash: '+key
             with pymupdf.open(pdf) as doc:
                 assert len(doc)==edition['pages'],key
                 assert not doc.metadata.get('author'),key
@@ -192,10 +201,19 @@ def main():
     report=BUILD/'report.json';report.write_text(json.dumps(results,ensure_ascii=False,indent=2))
     if not args.deck and not args.lang:
         (OUT/'index.json').write_text(json.dumps([{**d,'editions':{r['lang']:{k:v for k,v in r.items()if k not in ('id','lang','warnings')}for r in results if r['id']==d['id']}}for d in index],ensure_ascii=False,indent=1)+'\n')
-        keep={'index.json'}|{f"{d['id']}-{lang}{suffix}" for d in index for lang in ('fr','en') for suffix in ('.pdf','.tex','-source.zip')}
+        keep={'index.json'}|{f"{r['id']}-{r['lang']}{suffix}" for r in results for suffix in ('.pdf','.tex','-source.zip')}
         for folder in (OUT,SOURCE):
             for old in folder.iterdir():
                 if old.is_file() and old.name not in keep and old.suffix in ('.pdf','.tex','.zip'):old.unlink()
+    else:
+        previous={d['id']:d for d in json.loads((OUT/'index.json').read_text())} if (OUT/'index.json').exists() else {}
+        for d in index:
+            mine=[r for r in results if r['id']==d['id']]
+            if not mine: continue
+            editions=previous.get(d['id'],{}).get('editions',{}) if args.lang else {}
+            editions.update({r['lang']:{k:v for k,v in r.items()if k not in ('id','lang','warnings')}for r in mine})
+            previous[d['id']]={**d,'editions':editions}
+        (OUT/'index.json').write_text(json.dumps(list(previous.values()),ensure_ascii=False,indent=1)+'\n')
 
     print('Lecture editions:',len(results),'PDFs; layout warnings:',sum(len(r['warnings'])for r in results))
     if any(r['warnings']for r in results):raise SystemExit('Fix lecture layout warnings before publication.')

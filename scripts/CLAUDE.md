@@ -22,3 +22,5 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 | `build-gallery-data.py` | Gerver's sofa from Romik's equations (`site/js/gallery-sofa-gerver.js`); best known square packings from a checkout of github.com/jlevy/squares (`site/js/gallery-squares-data.js`); needs numpy, scipy, shapely, pyyaml | by hand |
 
 `build-fourier.py`: six web lessons, four XeLaTeX PDF editions, source bundle and checked build receipt.
+
+`build-gomboc.py`: package the MIT certified Gömböc analogue from a source checkout and completed exact-certificate reproduction; integrate full-volume inertia and retain all contact vertices, with explicitly separate display and preview hulls.

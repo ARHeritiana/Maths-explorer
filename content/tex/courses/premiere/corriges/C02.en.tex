@@ -11,7 +11,7 @@
 \item 4, reached only at 1. \textit{Action:} Start from the fact that a square is non-negative.
 \end{enumerate}
 \subsection*{Investigation activity}
-The positive lengths x and y satisfy $x+y=10$ and $xy=24$. They are the roots of $t^2-10t+24=(t-4)(t-6)$. Dimensions 4 m and 6 m; check the area and the perimeter.
+For width $x$, the length is $12-x$; the geometric domain is $\intoo{0}{12}$. The requested areas are respectively 20, 32, 36, 32 and 20 square units. For every admissible width, $A(x)=x(12-x)=36-(x-6)^2\leq36$, with equality only at $x=6$. Thus the maximum-area rectangle is a square of side 6. Trials suggest the result; the nonnegative square supplies the proof.
 \subsection*{Immediate applications}
 \begin{enumerate}
 \item $g(x)=(x+1)^2-4=(x-1)(x+3)$. Roots 1 and $-3$, minimum $-4$ at $-1$.
@@ -20,14 +20,14 @@ The positive lengths x and y satisfy $x+y=10$ and $xy=24$. They are the roots of
 \item $(x-5)(x+1)<0$ gives $\intoo{-1}{5}$. The vertex of $x(8-x)$ is at 4, outside the domain; on $\intff{0}{3}$ the function is increasing and its maximum is 15 at 3.
 \end{enumerate}
 \subsection*{Exercises: method and results}
-\paragraph{Exercise 2.1 -- Completing the square.} $x^2-8x+7=(x-4)^2-9=(x-1)(x-7)$. The leading coefficient is positive; the quadratic is negative or zero between the roots: $\intff{1}{7}$.
-\paragraph{Exercise 2.2 -- Discussing without heavy calculation.} $x^2+4>0$ always, no root. $(x+2)^2\geq0$, double root $-2$. For the last one, roots $-4$ and 1; positive on $\intoo{-4}{1}$, negative outside, zero at the endpoints.
-\paragraph{Exercise 2.3 -- Choosing a strategy.} Special product: $x=\pm3$. Sum and product: 4 and 5. For the third, no obvious integer root: $\Delta=17$ and $x=\dfrac{3\pm\sqrt{17}}{4}$. The discriminant works in every case, but is not always the most efficient.
-\paragraph{Exercise 2.4 -- Recovering a parabola.} $f(x)=a(x+2)(x-3)$. At 1: $-6a=12$, so $a=-2$; $f(x)=-2x^2+2x+12$, hence $f(0)=12$.
-\paragraph{Exercise 2.5 -- A vegetable garden against a wall.} The two widths use $2x$ metres; length $20-2x$. Domain $\intff{0}{10}$ for the function, $\intoo{0}{10}$ for a non-degenerate rectangle. $A(x)=20x-2x^2=50-2(x-5)^2$. Maximum 50 m$^2$, dimensions 5 m and 10 m.
-\paragraph{Exercise 2.6 -- A parameter.} $\Delta=4-4m$. Two roots if $m<1$; double root 1 if $m=1$; none if $m>1$. The parameter m stays fixed when we solve for x.
-\paragraph{Exercise 2.7 -- Link with sequences.} $u_n=(n-1)(n-4)$; negative for $1<n<4$. Since n is an integer, the only indices are 2 and 3. The set of indices is not the whole real interval.
-\paragraph{Exercise 2.8 -- Delayed review.} The minimum is $-5$ at $-3$. The inequality gives $(x+3)^2\leq1$, that is $-1\leq x+3\leq1$, so $\intff{-4}{-2}$.
+\paragraph{Exercise 2.1: Completing the square.} $x^2-8x+7=(x-4)^2-9=(x-1)(x-7)$. The leading coefficient is positive; the quadratic is negative or zero between the roots: $\intff{1}{7}$.
+\paragraph{Exercise 2.2: Discussing without heavy calculation.} $x^2+4>0$ always, no root. $(x+2)^2\geq0$, double root $-2$. For the last one, roots $-4$ and 1; positive on $\intoo{-4}{1}$, negative outside, zero at the endpoints.
+\paragraph{Exercise 2.3: Choosing a strategy.} Special product: $x=\pm3$. Sum and product: 4 and 5. For the third, no obvious integer root: $\Delta=17$ and $x=\dfrac{3\pm\sqrt{17}}{4}$. The discriminant works in every case, but is not always the most efficient.
+\paragraph{Exercise 2.4: Recovering a parabola.} $f(x)=a(x+2)(x-3)$. At 1: $-6a=12$, so $a=-2$; $f(x)=-2x^2+2x+12$, hence $f(0)=12$.
+\paragraph{Exercise 2.5: A vegetable garden against a wall.} The two widths use $2x$ metres; length $20-2x$. Domain $\intff{0}{10}$ for the function, $\intoo{0}{10}$ for a non-degenerate rectangle. $A(x)=20x-2x^2=50-2(x-5)^2$. Maximum 50 m$^2$, dimensions 5 m and 10 m.
+\paragraph{Exercise 2.6: A parameter.} $\Delta=4-4m$. Two roots if $m<1$; double root 1 if $m=1$; none if $m>1$. The parameter m stays fixed when we solve for x.
+\paragraph{Exercise 2.7: Link with sequences.} $u_n=(n-1)(n-4)$; negative for $1<n<4$. Since n is an integer, the only indices are 2 and 3. The set of indices is not the whole real interval.
+\paragraph{Exercise 2.8: Delayed review.} The minimum is $-5$ at $-3$. The inequality gives $(x+3)^2\leq1$, that is $-1\leq x+3\leq1$, so $\intff{-4}{-2}$.
 \paragraph{CQFD, exercise 43 p.~99, questions a and c.} a: obvious root 1, product $-30$, so the second root is $-30$. c: write $4x^2+9x+5$; root $-1$, product $\dfrac54$, so the second root is $-\dfrac54$. Check the sums, $-29$ and $-\dfrac94$ respectively.
 \paragraph{CQFD, exercise 49 p.~99, questions a and b.} The numbers are the roots of $t^2-st+p$. a: $t^2-t+1$, discriminant $-3$: no real pair. b: $t^2+60t+756$, discriminant $576=24^2$: $-18$ and $-42$. Their sum is $-60$ and their product 756.
 \subsection*{MCQ: answers and reasons}

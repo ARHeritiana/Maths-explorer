@@ -1,6 +1,26 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
+test('portable lab modules preserve combined default, named and namespace imports',()=>{
+ const code=String.raw`
+import ast, posixpath, re, subprocess
+from pathlib import Path
+p=Path('scripts/export-slides.py'); tree=ast.parse(p.read_text())
+ns={'posixpath':posixpath,'re':re}
+exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='lab_module'],type_ignores=[]),str(p),'exec'),ns)
+source='''import main, {value as renamed, other} from "./dep.js";
+import defaultAgain, * as namespace from "./dep.js";
+export const answer = [main(), renamed, other, defaultAgain(), namespace.value];'''
+module=ns['lab_module']('lab/test.js',source)
+script='''const modules={"lab/dep.js":{default:()=>7,value:11,other:13}};
+function __r(k){return modules[k]}
+function __d(k,f){const e={};f(e,__r);modules[k]=e}
+'''+module+'''if(JSON.stringify(__r("lab/test.js").answer)!=="[7,11,13,7,11]")throw Error("bindings changed");'''
+subprocess.run(['node','-e',script],check=True)
+`;
+ const result=spawnSync('python3',['-I','-c',code],{cwd:new URL('..',import.meta.url),encoding:'utf8'});
+ assert.equal(result.status,0,result.stderr);
+});
 test('slide extraction preserves Python modulo and authored widgets are not duplicated',()=>{
  const code=String.raw`
 import ast,re

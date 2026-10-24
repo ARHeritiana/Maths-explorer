@@ -33,7 +33,7 @@ for(const [topic,g] of Object.entries(guides)) {
       const html=`<!doctype html><html lang="${lang}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(g.title[j])} · ${esc(title[j])}</title><style>${documentTheme}</style><header><p>Maths Explorer · ${j?'Starting sheet':'Fiche de départ'} · ${lang.toUpperCase()}</p><h1>${esc(g.title[j])}</h1><p>${esc(title[j])}</p></header><main>${body}</main><footer><p>${j?'Source chapters':'Chapitres sources'} : ${sourceChapters.map(c=>esc(c.title[j])).join(' · ')}.</p><div class="actions"><button id="print">${j?'Print / save as PDF':'Imprimer / enregistrer en PDF'}</button> <a href="../../index.html#library/${chapter.id}">${j?'Open the resource library':'Ouvrir la bibliothèque'}</a> · <a href="${topic+'-'+type+'-'+(j?'fr':'en')+'.html'}">${j?'Français':'English'}</a></div></footer><script>document.querySelector('#print').addEventListener('click',()=>window.print());</script></html>`;
       const file=path.join(dir,filename);fs.writeFileSync(file,html);urls.push('./resources/shared/'+filename);
     }
-    fresh.resources.push({id:chapter.id+'-'+type,chapter:chapter.id,course:'shared',type,title,language:'bilingual',audience:type==='solutions'?'teacher':'student',format:'HTML',url:urls,sources,review:'adapted',contentKey:topic});
+    fresh.resources.push({id:chapter.id+'-'+type,chapter:chapter.id,course:'shared',type,title,language:'bilingual',audience:type==='solutions'?'teacher':'student',format:'HTML',url:urls,editions:Object.fromEntries(['fr','en'].map((lang,i)=>[lang,{path:urls[i]}])),sources,review:'adapted',contentKey:topic});
   }
 }
 for(const k of ['courses','chapters','resources'])catalog[k].splice(slot[k],0,...fresh[k]);

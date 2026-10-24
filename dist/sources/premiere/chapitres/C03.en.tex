@@ -1,5 +1,5 @@
 % GENERATED, edit the French unit or the translation table
-\mxunit{premiere-c03}{Vector calculus and the scalar product}\label{C03}
+\mxunit{premiere-c03}{Vectors and the scalar product}\label{C03}
 \begin{keypoint}[Chapter path]
 \textbf{Objectives.} Choose between projection, coordinates and angle; calculate a length; characterise orthogonality and a locus.
 
@@ -18,7 +18,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \mxcounted{diag}
 \end{enumerate}
 \paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
-\paragraph{Speaking and logic.} Compare, on the same problem, coordinates and vector calculus without a frame. Justify why your method uses the data most directly.
+\paragraph{Speaking and logic.} Compare, on the same problem, the coordinate method and vector operations without a coordinate system. Justify why your method uses the data most directly.
 \mxnewpage
 \section*{Investigate before formalising}\label{C03-RECH}
 Construct three points M such that $\vect{MA}\cdot\vect{MB}=0$ for a segment AB of 6 cm. Conjecture the locus, then produce a proof that includes A and B.
@@ -28,7 +28,7 @@ Construct three points M such that $\vect{MA}\cdot\vect{MB}=0$ for a segment AB 
 \begin{keypoint}[Definition and results]
 For two nonzero vectors $\vec u,\vec v$, their scalar product is the real number $\vec u\cdot\vec v=\norm{\vec u}\norm{\vec v}\cos\theta$, where $\theta\in\intff{0}{\pi}$ is their unoriented angle. With a zero vector, the product is 0. If $H$ is the projection of B onto $(OA)$, $\vect{OA}\cdot\vect{OB}$ equals $OA\times OH$ when H is on the ray $[OA)$, and its opposite otherwise.
 \end{keypoint}
-\paragraph{Status and justification.} Definition; the equivalence with the projection follows from the cosine in right triangles, with a negative algebraic projection for an obtuse angle.
+\paragraph{Status and justification.} Definition; the equivalence with the projection follows from the cosine in right triangles, with a negative signed projection for an obtuse angle.
 \begin{example}For two vectors of norms 3 and 4 forming $60^\circ$, the product is $\dfrac{3\times 4\times 1}{2}=6$. With $120^\circ$, it is $-6$. If $A\pt{3;0}$ and $B\pt{-2;4}$, the projection is $H\pt{-2;0}$ and the product is $-6$.\end{example}\label{C03-EX1}
 \mxinclude{figures/C03-U1}
 \begin{pitfall}The result is a number, not a vector. A right angle corresponds to 0, not to 1.\end{pitfall}
@@ -41,7 +41,7 @@ In an orthonormal basis, for $\vec u=\pt{x;y}$ and $\vec v=\pt{x\prime;y\prime}$
 \begin{example}$\vec u=\pt{2;3}$, $\vec v=\pt{3;-2}$: product $6-6=0$. The two vectors are orthogonal. Their norm is $\sqrt{13}$. The product of $\pt{2;3}$ with $\pt{1;0}$ is 2: we recover the x-coordinate.\end{example}\label{C03-EX2}
 \begin{pitfall}The usual formula assumes an orthonormal basis. Collinearity and orthogonality are different properties.\end{pitfall}
 \begin{application}For which real number t are the vectors $\pt{t;2}$ and $\pt{3;-6}$ orthogonal?\end{application}\label{C03-AP2}
-\section{Vector calculus and identities}\label{C03-U3}
+\section{Vector operations and identities}\label{C03-U3}
 \begin{keypoint}[Definition and results]
 The scalar product is symmetric and bilinear: $\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w$ and $(\lambda\vec u)\cdot\vec v=\lambda(\vec u\cdot\vec v)$. Hence $\norm{\vec u\pm\vec v}^2=\norm{\vec u}^2\pm2\vec u\cdot\vec v+\norm{\vec v}^2$. It follows that $\vec u\cdot \vec v=\dfrac{\norm{\vec u+\vec v}^2-\norm{\vec u}^2-\norm{\vec v}^2}{2}$.
 \end{keypoint}
@@ -109,7 +109,7 @@ An object moves in a straight line from $A$ to $B$ over a distance of 4 m. It is
 \begin{enumerate}[label=\arabic*.]
 \item Calculate $W$ when the angle between $\vec F$ and $\vect{AB}$ is $60^\circ$.
 \item Repeat the calculation for an angle of $120^\circ$.
-\item Compare the signs of the two works and explain, in each situation, whether the force helps the displacement or opposes it.
+\item Compare the signs of the two values of work and explain, in each situation, whether the force helps the displacement or opposes it.
 \end{enumerate}
 \mxexercisehead{C03-E7}{Contrapositive}
 We wish to prove the following statement, valid for two vectors of the plane:\[\norm{\vec u+\vec v}^2\ne\norm{\vec u}^2+\norm{\vec v}^2\quad\Longrightarrow\quad \vec u\text{ and }\vec v\text{ are not orthogonal}.\]

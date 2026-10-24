@@ -1,163 +1,167 @@
 {
-"id": "terminale-14",
-"course": "terminale",
-"number": 14,
-"title": [
-"Fonctions trigonométriques",
-"Trigonometric functions"
-],
-"slides": [
-{
-"k": "title",
-"t": [
-"Fonctions trigonométriques",
-"Trigonometric functions"
-],
-"b": [
-"",
-""
-]
-},
-{
-"k": "goals",
-"t": [
-"Objectifs",
-"Objectives"
-],
-"b": [
-"Utiliser parité et périodicité ; dériver sinus et cosinus ; résoudre équations et inéquations ; étudier une fonction périodique.",
-"Use parity and periodicity; differentiate sine and cosine; solve equations and inequalities; study a periodic function."
-]
-},
-{
-"k": "concept",
-"t": [
-"Cercle et fonctions",
-"Circle and functions"
-],
-"b": [
-"Sur le cercle trigonométrique, le point repéré par un angle \\(x\\) en radians a pour coordonnées \\(\\pt{\\cos x;\\sin x}\\). Pour tout réel \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosinus est paire : \\(\\cos(-x)=\\cos x\\). Sinus est impaire : \\(\\sin(-x)=-\\sin x\\). Les deux fonctions sont \\(2\\pi\\)-périodiques.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]",
-"On the unit circle, the point located by an angle \\(x\\) in radians has coordinates \\(\\pt{\\cos x;\\sin x}\\). For every real number \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosine is even: \\(\\cos(-x)=\\cos x\\). Sine is odd: \\(\\sin(-x)=-\\sin x\\). Both functions are \\(2\\pi\\)-periodic.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]"
-]
-},
-{
-"k": "concept",
-"t": [
-"Dérivées et variations",
-"Derivatives and variations"
-],
-"b": [
-"\\[(\\sin x)'=\\cos x,\\qquad(\\cos x)'=-\\sin x.\\]\\[\n(\\sin(ax+b))'=a\\cos(ax+b),\\quad(\\cos(ax+b))'=-a\\sin(ax+b).\\]\nSur \\([-\\pi,\\pi]\\), cosinus croît sur \\([-\\pi,0]\\) de \\(-1\\) à \\(1\\), puis décroît sur \\([0,\\pi]\\) de \\(1\\) à \\(-1\\). Sinus décroît sur \\([-\\pi,-\\frac{\\pi}{2}]\\), croît sur \\([-\\frac{\\pi}{2},\\frac{\\pi}{2}]\\), puis décroît sur \\([\\frac{\\pi}{2},\\pi]\\).",
-"\\[(\\sin x)'=\\cos x,\\qquad(\\cos x)'=-\\sin x.\\]\\[\n(\\sin(ax+b))'=a\\cos(ax+b),\\quad(\\cos(ax+b))'=-a\\sin(ax+b).\\]\nOn \\([-\\pi,\\pi]\\), cosine increases on \\([-\\pi,0]\\) from \\(-1\\) to \\(1\\), then decreases on \\([0,\\pi]\\) from \\(1\\) to \\(-1\\). Sine decreases on \\([-\\pi,-\\frac{\\pi}{2}]\\), increases on \\([-\\frac{\\pi}{2},\\frac{\\pi}{2}]\\), then decreases on \\([\\frac{\\pi}{2},\\pi]\\)."
-]
-},
-{
-"k": "concept",
-"t": [
-"Dérivées et variations",
-"Derivatives and variations"
-],
-"b": [
-"Lire le signe de sinus et cosinus sur le cercle puis appliquer le lien dérivée–variations. La périodicité prolonge les courbes ; elle ne dispense pas d'étudier un intervalle de longueur suffisante.",
-"Read the sign of sine and cosine on the circle, then apply the link between derivative and variations. Periodicity extends the curves; it does not remove the need to study an interval of sufficient length."
-],
-"h": [
-"Justification.",
-"Justification."
-]
-},
-{
-"k": "concept",
-"t": [
-"Équations et inéquations",
-"Equations and inequalities"
-],
-"b": [
-"Si \\(|a|&gt;1\\), \\(\\cos x=a\\) et \\(\\sin x=a\\) n'ont aucune solution réelle. Pour un angle connu \\(\\theta\\),\n\\[\\cos x=\\cos\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{ou}\\ x=-\\theta+2k\\pi,\\]\n\\[\\sin x=\\sin\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{ou}\\ x=\\pi-\\theta+2k\\pi,\\quad k\\in\\Z.\\]\nOn restreint ensuite les solutions à l'intervalle demandé et on élimine les doublons.",
-"If \\(|a|&gt;1\\), \\(\\cos x=a\\) and \\(\\sin x=a\\) have no real solution. For a known angle \\(\\theta\\),\n\\[\\cos x=\\cos\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{or}\\ x=-\\theta+2k\\pi,\\]\n\\[\\sin x=\\sin\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{or}\\ x=\\pi-\\theta+2k\\pi,\\quad k\\in\\Z.\\]\nThen restrict the solutions to the required interval and eliminate duplicates."
-]
-},
-{
-"k": "example",
-"t": [
-"Équations et inéquations",
-"Equations and inequalities"
-],
-"b": [
-"\\(\\cos x=\\frac{1}{2}\\) donne \\(x=\\pm\\frac{\\pi}{3}\\) ; \\(\\sin x=\\frac{1}{2}\\) donne \\(x=\\frac{\\pi}{6}\\) ou \\(\\frac{5\\pi}{6}\\). \\(\\cos x\\le\\frac{1}{2}\\) donne \\([-\\pi,-\\frac{\\pi}{3}]\\cup[\\frac{\\pi}{3},\\pi]\\) ; \\(\\sin x\\ge\\frac{1}{2}\\) donne \\([\\frac{\\pi}{6},\\frac{5\\pi}{6}]\\).",
-"\\(\\cos x=\\frac{1}{2}\\) gives \\(x=\\pm\\frac{\\pi}{3}\\); \\(\\sin x=\\frac{1}{2}\\) gives \\(x=\\frac{\\pi}{6}\\) or \\(\\frac{5\\pi}{6}\\). \\(\\cos x\\le\\frac{1}{2}\\) gives \\([-\\pi,-\\frac{\\pi}{3}]\\cup[\\frac{\\pi}{3},\\pi]\\); \\(\\sin x\\ge\\frac{1}{2}\\) gives \\([\\frac{\\pi}{6},\\frac{5\\pi}{6}]\\)."
-]
-},
-{
-"k": "method",
-"t": [
-"Équations et inéquations",
-"Equations and inequalities"
-],
-"b": [
-"Pour résoudre \\(\\cos (2x)=\\frac{1}{2}\\) sur \\([-\\pi,\\pi]\\), poser \\(t=2x\\in[-2\\pi,2\\pi]\\), résoudre pour \\(t\\), puis diviser par \\(2\\). On obtient \\(x\\in\\{-\\frac{5\\pi}{6},-\\frac{\\pi}{6},\\frac{\\pi}{6},\\frac{5\\pi}{6}\\}\\).",
-"To solve \\(\\cos (2x)=\\frac{1}{2}\\) on \\([-\\pi,\\pi]\\), set \\(t=2x\\in[-2\\pi,2\\pi]\\), solve for \\(t\\), then divide by \\(2\\). We obtain \\(x\\in\\{-\\frac{5\\pi}{6},-\\frac{\\pi}{6},\\frac{\\pi}{6},\\frac{5\\pi}{6}\\}\\)."
-],
-"h": [
-"Une composée trigonométrique",
-"A trigonometric composite"
-]
-},
-{
-"k": "concept",
-"t": [
-"Équations et inéquations",
-"Equations and inequalities"
-],
-"b": [
-"Pour \\(f(x)=\\sin x+\\frac12\\sin(2x)\\) sur \\([0,\\pi]\\), \\(f'=\\cos x+\\cos(2x)=2\\cos^2x+\\cos x-1=(2\\cos x-1)(\\cos x+1)\\). La fonction croît jusqu'à \\(\\frac{\\pi}{3}\\) puis décroît ; maximum \\(\\frac{3\\sqrt{3}}{4}\\).",
-"For \\(f(x)=\\sin x+\\frac12\\sin(2x)\\) on \\([0,\\pi]\\), \\(f'=\\cos x+\\cos(2x)=2\\cos^2x+\\cos x-1=(2\\cos x-1)(\\cos x+1)\\). The function increases up to \\(\\frac{\\pi}{3}\\) then decreases; maximum \\(\\frac{3\\sqrt{3}}{4}\\)."
-],
-"h": [
-"Optimisation.",
-"Optimisation."
-]
-},
-{
-"k": "concept",
-"t": [
-"Équations et inéquations",
-"Equations and inequalities"
-],
-"b": [
-"Pour tout réel \\(x\\), \\(\\sin(2x)=2\\sin x\\cos x\\) et \\(\\cos(2x)=\\cos^2x-\\sin^2x=2\\cos^2x-1\\). Ces identités sont rappelées ici pour que leur emploi dans les problèmes ne soit pas implicite.",
-"For every real number \\(x\\), \\(\\sin(2x)=2\\sin x\\cos x\\) and \\(\\cos(2x)=\\cos^2x-\\sin^2x=2\\cos^2x-1\\). These identities are recalled here so that their use in the problems is not left implicit."
-],
-"h": [
-"Identités de duplication utilisées dans les exercices.",
-"Double-angle identities used in the exercises."
-]
-},
-{
-"k": "concept",
-"t": [
-"Équations et inéquations",
-"Equations and inequalities"
-],
-"b": [
-"La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \\(\\pt{2\\pi;0}\\).   Les coordonnées du point du cercle sont \\(\\pt{\\cos x;\\sin x}\\).",
-"The evenness of cosine corresponds to a symmetry about the y-axis; the oddness of sine to a point symmetry about the origin. Periodicity extends each curve by translation of vector \\(\\pt{2\\pi;0}\\).   The coordinates of the point on the circle are \\(\\pt{\\cos x;\\sin x}\\)."
-],
-"h": [
-"Symétries des courbes.",
-"Symmetries of the curves."
-]
-},
-{
-"k": "activity",
-"t": [
-"Activité de recherche",
-"Research activity"
-],
-"b": [
-"<b>Hauteur d'un point sur une roue — 35 min.</b><br><br> Une roue tourne à vitesse constante dans un plan vertical. Son rayon est de \\(2\\) m et son centre se trouve à \\(3\\) m du sol. Un point de la roue est à sa position la plus basse à l'instant \\(t=0\\). La roue effectue un tour en \\(8\\) s. Sa hauteur est modélisée par \\(h(t)=3-2\\cos\\left(\\frac{\\pi t}{4}\\right)\\), où \\(t\\) est exprimé en secondes et \\(h(t)\\) en mètres.\n<ol><li>Vérifier que le modèle donne la hauteur initiale annoncée, une période de \\(8\\) s et les hauteurs minimale et maximale attendues.\n<li>Calculer \\(h' (t)\\), puis étudier les variations de \\(h\\) sur \\([0;8]\\).\n<li>Déterminer tous les instants \\(t\\in[0;8]\\) pour lesquels la hauteur vaut \\(4\\) m.\n<li>Déterminer la durée totale, au cours de ce tour, pendant laquelle le point se trouve à au moins \\(4\\) m du sol.</ol><br><br>",
-"<b>Height of a point on a wheel — 35 min.</b><br><br> A wheel turns at constant speed in a vertical plane. Its radius is \\(2\\) m and its centre is \\(3\\) m above the ground. A point on the wheel is at its lowest position at time \\(t=0\\). The wheel makes one revolution in \\(8\\) s. Its height is modelled by \\(h(t)=3-2\\cos\\left(\\frac{\\pi t}{4}\\right)\\), where \\(t\\) is in seconds and \\(h(t)\\) in metres.\n<ol><li>Check that the model gives the stated initial height, a period of \\(8\\) s and the expected minimum and maximum heights.\n<li>Compute \\(h' (t)\\), then study the variations of \\(h\\) on \\([0;8]\\).\n<li>Determine all the times \\(t\\in[0;8]\\) at which the height is \\(4\\) m.\n<li>Determine the total time, during this revolution, for which the point is at least \\(4\\) m above the ground.</ol><br><br>"
-]
-}
-]
+ "id": "terminale-14",
+ "course": "terminale",
+ "number": 14,
+ "title": [
+  "Fonctions trigonométriques",
+  "Trigonometric functions"
+ ],
+ "slides": [
+  {
+   "k": "title",
+   "t": [
+    "Fonctions trigonométriques",
+    "Trigonometric functions"
+   ],
+   "b": [
+    "",
+    ""
+   ]
+  },
+  {
+   "k": "goals",
+   "t": [
+    "Objectifs",
+    "Objectives"
+   ],
+   "b": [
+    "Utiliser parité et périodicité ; dériver sinus et cosinus ; résoudre équations et inéquations ; étudier une fonction périodique.",
+    "Use parity and periodicity; differentiate sine and cosine; solve equations and inequalities; study a periodic function."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Cercle et fonctions",
+    "Circle and functions"
+   ],
+   "b": [
+    "Sur le cercle trigonométrique, le point repéré par un angle \\(x\\) en radians a pour coordonnées \\(\\pt{\\cos x;\\sin x}\\). Pour tout réel \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosinus est paire : \\(\\cos(-x)=\\cos x\\). Sinus est impaire : \\(\\sin(-x)=-\\sin x\\). Les deux fonctions sont \\(2\\pi\\)-périodiques.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]",
+    "On the unit circle, the point located by an angle \\(x\\) in radians has coordinates \\(\\pt{\\cos x;\\sin x}\\). For every real number \\(x\\),\n\\[\\cos^2x+\\sin^2x=1,\\quad -1\\le\\cos x,\\sin x\\le1.\\]\nCosine is even: \\(\\cos(-x)=\\cos x\\). Sine is odd: \\(\\sin(-x)=-\\sin x\\). Both functions are \\(2\\pi\\)-periodic.\n\\[\\begin{array}{c|ccccc}x&amp;0&amp;\\frac{\\pi}{6}&amp;\\frac{\\pi}{4}&amp;\\frac{\\pi}{3}&amp;\\frac{\\pi}{2}\\\\\\hline\n\\cos x&amp;1&amp;\\frac{\\sqrt{3}}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{1}{2}&amp;0\\\\\n\\sin x&amp;0&amp;\\frac{1}{2}&amp;\\frac{\\sqrt{2}}{2}&amp;\\frac{\\sqrt{3}}{2}&amp;1\n\\end{array}\\]"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Dérivées et variations",
+    "Derivatives and variations"
+   ],
+   "b": [
+    "\\[(\\sin x)'=\\cos x,\\qquad(\\cos x)'=-\\sin x.\\]\\[\n(\\sin(ax+b))'=a\\cos(ax+b),\\quad(\\cos(ax+b))'=-a\\sin(ax+b).\\]\nSur \\([-\\pi,\\pi]\\), cosinus croît sur \\([-\\pi,0]\\) de \\(-1\\) à \\(1\\), puis décroît sur \\([0,\\pi]\\) de \\(1\\) à \\(-1\\). Sinus décroît sur \\([-\\pi,-\\frac{\\pi}{2}]\\), croît sur \\([-\\frac{\\pi}{2},\\frac{\\pi}{2}]\\), puis décroît sur \\([\\frac{\\pi}{2},\\pi]\\).",
+    "\\[(\\sin x)'=\\cos x,\\qquad(\\cos x)'=-\\sin x.\\]\\[\n(\\sin(ax+b))'=a\\cos(ax+b),\\quad(\\cos(ax+b))'=-a\\sin(ax+b).\\]\nOn \\([-\\pi,\\pi]\\), cosine increases on \\([-\\pi,0]\\) from \\(-1\\) to \\(1\\), then decreases on \\([0,\\pi]\\) from \\(1\\) to \\(-1\\). Sine decreases on \\([-\\pi,-\\frac{\\pi}{2}]\\), increases on \\([-\\frac{\\pi}{2},\\frac{\\pi}{2}]\\), then decreases on \\([\\frac{\\pi}{2},\\pi]\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Dérivées et variations",
+    "Derivatives and variations"
+   ],
+   "b": [
+    "Lire le signe de sinus et cosinus sur le cercle puis appliquer le lien dérivée–variations. La périodicité prolonge les courbes ; elle ne dispense pas d'étudier un intervalle de longueur suffisante.",
+    "Read the sign of sine and cosine on the circle, then apply the link between derivative and variations. Periodicity extends the curves; it does not remove the need to study an interval of sufficient length."
+   ],
+   "h": [
+    "Justification.",
+    "Justification."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Équations et inéquations",
+    "Equations and inequalities"
+   ],
+   "b": [
+    "Si \\(|a|&gt;1\\), \\(\\cos x=a\\) et \\(\\sin x=a\\) n'ont aucune solution réelle. Pour un angle connu \\(\\theta\\),\n\\[\\cos x=\\cos\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{ou}\\ x=-\\theta+2k\\pi,\\]\n\\[\\sin x=\\sin\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{ou}\\ x=\\pi-\\theta+2k\\pi,\\quad k\\in\\Z.\\]\nOn restreint ensuite les solutions à l'intervalle demandé et on élimine les doublons.",
+    "If \\(|a|&gt;1\\), \\(\\cos x=a\\) and \\(\\sin x=a\\) have no real solution. For a known angle \\(\\theta\\),\n\\[\\cos x=\\cos\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{or}\\ x=-\\theta+2k\\pi,\\]\n\\[\\sin x=\\sin\\theta\\Longleftrightarrow x=\\theta+2k\\pi\\ \\text{or}\\ x=\\pi-\\theta+2k\\pi,\\quad k\\in\\Z.\\]\nThen restrict the solutions to the required interval and eliminate duplicates."
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Équations et inéquations",
+    "Equations and inequalities"
+   ],
+   "b": [
+    "\\(\\cos x=\\frac{1}{2}\\) donne \\(x=\\pm\\frac{\\pi}{3}\\) ; \\(\\sin x=\\frac{1}{2}\\) donne \\(x=\\frac{\\pi}{6}\\) ou \\(\\frac{5\\pi}{6}\\). \\(\\cos x\\le\\frac{1}{2}\\) donne \\([-\\pi,-\\frac{\\pi}{3}]\\cup[\\frac{\\pi}{3},\\pi]\\) ; \\(\\sin x\\ge\\frac{1}{2}\\) donne \\([\\frac{\\pi}{6},\\frac{5\\pi}{6}]\\).",
+    "\\(\\cos x=\\frac{1}{2}\\) gives \\(x=\\pm\\frac{\\pi}{3}\\); \\(\\sin x=\\frac{1}{2}\\) gives \\(x=\\frac{\\pi}{6}\\) or \\(\\frac{5\\pi}{6}\\). \\(\\cos x\\le\\frac{1}{2}\\) gives \\([-\\pi,-\\frac{\\pi}{3}]\\cup[\\frac{\\pi}{3},\\pi]\\); \\(\\sin x\\ge\\frac{1}{2}\\) gives \\([\\frac{\\pi}{6},\\frac{5\\pi}{6}]\\)."
+   ]
+  },
+  {
+   "k": "method",
+   "t": [
+    "Équations et inéquations",
+    "Equations and inequalities"
+   ],
+   "b": [
+    "Pour résoudre \\(\\cos (2x)=\\frac{1}{2}\\) sur \\([-\\pi,\\pi]\\), poser \\(t=2x\\in[-2\\pi,2\\pi]\\), résoudre pour \\(t\\), puis diviser par \\(2\\). On obtient \\(x\\in\\{-\\frac{5\\pi}{6},-\\frac{\\pi}{6},\\frac{\\pi}{6},\\frac{5\\pi}{6}\\}\\).",
+    "To solve \\(\\cos (2x)=\\frac{1}{2}\\) on \\([-\\pi,\\pi]\\), set \\(t=2x\\in[-2\\pi,2\\pi]\\), solve for \\(t\\), then divide by \\(2\\). We obtain \\(x\\in\\{-\\frac{5\\pi}{6},-\\frac{\\pi}{6},\\frac{\\pi}{6},\\frac{5\\pi}{6}\\}\\)."
+   ],
+   "h": [
+    "Une composée trigonométrique",
+    "A trigonometric composite"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Équations et inéquations",
+    "Equations and inequalities"
+   ],
+   "b": [
+    "Pour \\(f(x)=\\sin x+\\frac12\\sin(2x)\\) sur \\([0,\\pi]\\), \\(f'=\\cos x+\\cos(2x)=2\\cos^2x+\\cos x-1=(2\\cos x-1)(\\cos x+1)\\). La fonction croît jusqu'à \\(\\frac{\\pi}{3}\\) puis décroît ; maximum \\(\\frac{3\\sqrt{3}}{4}\\).",
+    "For \\(f(x)=\\sin x+\\frac12\\sin(2x)\\) on \\([0,\\pi]\\), \\(f'=\\cos x+\\cos(2x)=2\\cos^2x+\\cos x-1=(2\\cos x-1)(\\cos x+1)\\). The function increases up to \\(\\frac{\\pi}{3}\\) then decreases; maximum \\(\\frac{3\\sqrt{3}}{4}\\)."
+   ],
+   "h": [
+    "Optimisation.",
+    "Optimisation."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Équations et inéquations",
+    "Equations and inequalities"
+   ],
+   "b": [
+    "Pour tout réel \\(x\\), \\(\\sin(2x)=2\\sin x\\cos x\\) et \\(\\cos(2x)=\\cos^2x-\\sin^2x=2\\cos^2x-1\\). Ces identités sont rappelées ici pour que leur emploi dans les problèmes ne soit pas implicite.",
+    "For every real number \\(x\\), \\(\\sin(2x)=2\\sin x\\cos x\\) and \\(\\cos(2x)=\\cos^2x-\\sin^2x=2\\cos^2x-1\\). These identities are recalled here so that their use in the problems is not left implicit."
+   ],
+   "h": [
+    "Identités de duplication utilisées dans les exercices.",
+    "Double-angle identities used in the exercises."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Équations et inéquations",
+    "Equations and inequalities"
+   ],
+   "b": [
+    "La parité de cosinus correspond à une symétrie par rapport à l'axe des ordonnées ; l'imparité de sinus à une symétrie centrale de centre l'origine. La périodicité prolonge chaque courbe par translation de vecteur \\(\\pt{2\\pi;0}\\).   Les coordonnées du point du cercle sont \\(\\pt{\\cos x;\\sin x}\\).",
+    "The evenness of cosine corresponds to a symmetry about the y-axis; the oddness of sine to a point symmetry about the origin. Periodicity extends each curve by translation of vector \\(\\pt{2\\pi;0}\\).   The coordinates of the point on the circle are \\(\\pt{\\cos x;\\sin x}\\)."
+   ],
+   "h": [
+    "Symétries des courbes.",
+    "Symmetries of the curves."
+   ]
+  },
+  {
+   "k": "activity",
+   "t": [
+    "Activité de recherche",
+    "Research activity"
+   ],
+   "b": [
+    "<b>Hauteur d'un point sur une roue — 35 min.</b><br><br> Une roue tourne à vitesse constante dans un plan vertical. Son rayon est de \\(2\\) m et son centre se trouve à \\(3\\) m du sol. Un point de la roue est à sa position la plus basse à l'instant \\(t=0\\). La roue effectue un tour en \\(8\\) s. Sa hauteur est modélisée par \\(h(t)=3-2\\cos\\left(\\frac{\\pi t}{4}\\right)\\), où \\(t\\) est exprimé en secondes et \\(h(t)\\) en mètres.\n<ol><li>Vérifier que le modèle donne la hauteur initiale annoncée, une période de \\(8\\) s et les hauteurs minimale et maximale attendues.\n<li>Calculer \\(h' (t)\\), puis étudier les variations de \\(h\\) sur \\([0;8]\\).\n<li>Déterminer tous les instants \\(t\\in[0;8]\\) pour lesquels la hauteur vaut \\(4\\) m.\n<li>Déterminer la durée totale, au cours de ce tour, pendant laquelle le point se trouve à au moins \\(4\\) m du sol.</ol><br><br>",
+    "<b>Height of a point on a wheel — 35 min.</b><br><br> A wheel turns at constant speed in a vertical plane. Its radius is \\(2\\) m and its centre is \\(3\\) m above the ground. A point on the wheel is at its lowest position at time \\(t=0\\). The wheel makes one revolution in \\(8\\) s. Its height is modelled by \\(h(t)=3-2\\cos\\left(\\frac{\\pi t}{4}\\right)\\), where \\(t\\) is in seconds and \\(h(t)\\) in metres.\n<ol><li>Check that the model gives the stated initial height, a period of \\(8\\) s and the expected minimum and maximum heights.\n<li>Compute \\(h' (t)\\), then study the variations of \\(h\\) on \\([0;8]\\).\n<li>Determine all the times \\(t\\in[0;8]\\) at which the height is \\(4\\) m.\n<li>Determine the total time, during this revolution, for which the point is at least \\(4\\) m above the ground.</ol><br><br>"
+   ]
+  }
+ ],
+ "editions": {
+  "fr": {},
+  "en": {}
+ }
 }

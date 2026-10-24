@@ -20,7 +20,7 @@ test("texts: bilingual, no em or en dash, sources over https, every link names a
     for (const h of entry.links || []) assert.ok(describe(h), `${entry.id} links to ${h}`);
     for (const [url] of entry.sources || []) assert.equal(new URL(url).protocol, "https:");
   }
-  for (const s of STORIES) assert.ok(BIOGRAPHIES.some((b) => b.id === s.who) || s.figure, s.id);
+  for (const s of STORIES) assert.ok(s.kind==='lesson' || BIOGRAPHIES.some((b) => b.id === s.who) || s.figure, s.id);
 });
 
 test("cross-links are written once and shown on both pages", () => {

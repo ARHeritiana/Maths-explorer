@@ -189,3 +189,22 @@ export const STORIES = [
     sources: [["https://mathshistory.st-andrews.ac.uk/Extras/Hanoi/", P("Les tours de Hanoï · MacTutor (anglais)", "The Towers of Hanoi · MacTutor")]],
   },
 ];
+
+// History additions keep their source evidence beside the text.
+import {GALOIS_BIOGRAPHY} from './reading-history-content.js';
+BIOGRAPHIES.push(GALOIS_BIOGRAPHY);
+
+// The same assumptions and arguments feed laboratory and reading editions.
+import { INFERENCE_STORIES } from "./inference-content.js";
+STORIES.push(...INFERENCE_STORIES);
+
+import {FAIR_STORIES} from './fair-division-content.js';
+import {TOPOLOGY_STORIES} from './topology-content.js';
+STORIES.push(...FAIR_STORIES,...TOPOLOGY_STORIES);
+import { DYNAMICS_STORIES } from './dynamics-content.js';
+STORIES.push(...DYNAMICS_STORIES);
+import { GOMBOC_STORY } from './gomboc-content.js';
+STORIES.push(GOMBOC_STORY);
+
+import { ILLUMINATION_STORY } from "./illumination-content.js";
+STORIES.push(ILLUMINATION_STORY);

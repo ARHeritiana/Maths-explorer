@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'content/tex/courses'
 sys.path.insert(0, str(ROOT / "build"))
 from mxbuild import notation   # per-language rendering of the notation commands (mirror of mx-notation.sty)
+from mxbuild.slide_editions import languages, normalise_deck, combine_sequences, for_language
 OUT = ROOT / 'dist/slides/data'
 CATALOG = json.loads((ROOT / 'content/data/manifest.json').read_text())['catalog']
 CH = {c['id']: c for c in CATALOG['chapters']}
@@ -500,7 +501,10 @@ def add_widgets(cid, slides):
     for rx, spec in WIDGETS.get(cid, []):
         if any(sl.get('k') == 'widget' and sl.get('w') == spec for sl in slides):
             continue
-        idx = [i for i, s in enumerate(slides) if re.search(rx, s['t'][1])]
+        idx = [i for i, s in enumerate(slides) if re.search(rx, s['t'][1] or '')]
+        # A French-only source has no English heading to match. The existing shared
+        # exploration then follows its notes rather than inventing a translation.
+        if not idx and slides and not any(s['t'][1] for s in slides): idx = [len(slides) - 1]
         if not idx: print('  no unit for widget', cid, rx); continue
         j = idx[0]
         while j + 1 < len(slides) and slides[j + 1]['t'] == slides[idx[0]]['t']: j += 1
@@ -531,45 +535,47 @@ def main():
     for old in OUT.glob('*.json'): old.unlink()
     index = []; problems = []; decks = {}; jobs = {}
     for cid, course, n, fr, en, fn in files():
-        if not fr.exists() or not en.exists(): problems.append('missing ' + cid); continue
-        # notation commands (\num, intervals, \pt ...) are rendered per language, as the class prints them (mxbuild.notation)
-        sf, figs_f = extract_figs(notation.expand(resolve_counts(inline_includes(fr.read_text(encoding='utf8'), SRC / course, 'fr'), 'fr'), 'fr'))
-        se, figs_e = extract_figs(notation.expand(resolve_counts(inline_includes(en.read_text(encoding='utf8'), SRC / course, 'en'), 'en'), 'en'))
-        a = fn(sf, n); b = fn(se, n)
-        if [x['k'] for x in a] != [x['k'] for x in b]: problems.append(f'{cid}: slide structure differs ({len(a)} vs {len(b)})'); continue
-        slides = []
-        for x, y in zip(a, b):
-            bf, nf = fig_tokens(x['b']); be, ne = fig_tokens(y['b'])
-            if len(nf) != len(ne): problems.append(f'{cid}: figure count differs on a slide'); nf = ne = []
-            x['b'], y['b'] = bf, be
-            sl = {'k': x['k'], 't': [x['t'], y['t']], 'b': [x['b'], y['b']], **({'a': [x['a'], y['a']]} if x['a'] else {}), **({'h': [x['h'], y['h']]} if x['h'] else {})}
-            if nf: sl['f'] = [[p_, q_] for p_, q_ in zip(nf, ne)]
-            slides.append(sl)
-        for sl in slides:
-            if sl['k'] == 'goals' and not any(sl['t']): sl['t'] = ['Objectifs', 'Objectives']
-        slides = add_widgets(cid, slides)
-        decks[cid] = {'course': course, 'number': n, 'slides': slides, 'kind': 'extracted'}
-        for lang, figs in (('fr', figs_f), ('en', figs_e)):
-            for sl in slides:
-                for pf, pe in sl.get('f', []):
-                    k = pf if lang == 'fr' else pe; jobs.setdefault((course, lang), []).append((cid, k, figs[k - 1]))
+        sequences = {}
+        for lang, source in (('fr', fr), ('en', en)):
+            if not source.exists(): continue
+            body, figures = extract_figs(notation.expand(resolve_counts(inline_includes(source.read_text(encoding='utf8'), SRC / course, lang), lang), lang))
+            parsed = fn(body, n)
+            for slide in parsed:
+                slide['b'], refs = fig_tokens(slide['b'])
+                if refs: slide['f'] = refs
+                if slide['k'] == 'goals' and not slide['t']: slide['t'] = 'Objectifs' if lang == 'fr' else 'Objectives'
+                for key in ('a', 'h'):
+                    if not slide.get(key): slide.pop(key, None)
+                for ref in refs: jobs.setdefault((course, lang), []).append((cid, ref, figures[ref - 1]))
+            sequences[lang] = parsed
+        if not sequences: problems.append('missing ' + cid); continue
+        combined = combine_sequences(sequences)
+        combined['slides'] = add_widgets(cid, combined['slides'])
+        for edition in combined['editions'].values():
+            if 'slides' in edition: edition['slides'] = add_widgets(cid, edition['slides'])
+        decks[cid] = {'course': course, 'number': n, **combined, 'kind': 'extracted'}
     for p in sorted((ROOT / 'content/slides').glob('*.json')) if (ROOT / 'content/slides').exists() else []:
-        d = json.loads(p.read_text(encoding='utf8'))
+        d = normalise_deck(json.loads(p.read_text(encoding='utf8')))
         if d['id'] not in CH: continue
         d['course']=CH[d['id']]['course'];d['number']=CH[d['id']]['number']
         d['slides'] = add_widgets(d['id'], d['slides']); d['kind'] = 'authored'; decks[d['id']] = d
+        for edition in d['editions'].values():
+            if 'slides' in edition: edition['slides'] = add_widgets(d['id'], edition['slides'])
         # Authored decks use the notation commands too (\pt{1;2}): print them per language, as for decks built from TeX.
-        for sl in d['slides']:
-            for key in ('t', 'b', 'a', 'h'):
-                if isinstance(sl.get(key), list): sl[key] = [notation.expand(x, lang) if x else x for x, lang in zip(sl[key], ('fr', 'en'))]
+        groups = [d['slides']] + [e['slides'] for e in d['editions'].values() if 'slides' in e]
+        for slides in groups:
+            for sl in slides:
+                for key in ('t', 'b', 'a', 'h'):
+                    if isinstance(sl.get(key), list): sl[key] = [notation.expand(x, lang) if x else x for x, lang in zip(sl[key], ('fr', 'en'))]
         # figures of authored decks come from the French draft, aligned by slide index
         dr = ROOT / 'content/slides/draft' / (d['id'] + '.fr.json')
         if dr.exists():
             draft = json.loads(dr.read_text(encoding='utf8'))
             for sl, ds in zip([s for s in d['slides'] if s['k'] != 'widget'], draft['slides']):
                 if ds.get('f'): sl['f'] = ds['f']
-            for lang in ('fr', 'en'):
-                for sl in d['slides']:
+            for lang in languages(d):
+                L = 0 if lang == 'fr' else 1
+                for sl in d['editions'][lang].get('slides', d['slides']):
                     for pf, pe in sl.get('f', []):
                         k = pf if lang == 'fr' else pe; jobs.setdefault((d['course'], lang), []).append((d['id'], k, draft['figs' if lang == 'fr' else 'figs_en'][k - 1]))
     rendered = {}
@@ -577,18 +583,22 @@ def main():
         print(f'figures {course} {lang}: {len(js)}'); rendered[(course, lang)] = compile_figs(course, lang, js)
     for cid, d in decks.items():
         course = d['course']
-        for sl in d['slides']:
-            if 'f' in sl:
-                sl['f'] = [[pf, pe] for pf, pe in sl['f'] if (cid, pf) in rendered.get((course, 'fr'), set()) and (cid, pe) in rendered.get((course, 'en'), set())]
-                if not sl['f']: del sl['f']
+        for lang in languages(d):
+            L = 0 if lang == 'fr' else 1
+            for sl in d['editions'][lang].get('slides', d['slides']):
+                for pair in sl.get('f', []):
+                    if (cid, pair[L]) not in rendered.get((course, lang), set()):
+                        problems.append(f'{cid}: missing {lang} figure {pair[L]}')
         title = CH[cid]['title'] if cid in CH else d['title']
         for slide in d['slides']:
             if slide['k']=='title': slide['t']=title
         course_meta = next(c for c in CATALOG['courses'] if c['id']==course)
-        deck = {'language': course_meta.get('contentLanguage'), 'courseTitle':course_meta['title'], 'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': d['slides']}
+        deck = normalise_deck({'language': course_meta.get('contentLanguage'), 'courseTitle':course_meta['title'], 'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': d['slides'], 'editions': d['editions']})
         deck['figureVersion']=hashlib.sha256(b''.join(p.read_bytes() for p in sorted((OUT.parent/'fig').glob(cid+'-*.svg')))).hexdigest()[:16]
-        (OUT / (cid + '.json')).write_text(json.dumps(deck, ensure_ascii=False, separators=(',', ':')))
-        index.append({'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': len(d['slides']), 'kind': d['kind']})
+        data = json.dumps(deck, ensure_ascii=False, separators=(',', ':')).encode('utf8')
+        (OUT / (cid + '.json')).write_bytes(data)
+        editions = {lang: {'path': f'slides/data/{cid}.json', 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(), 'slides': len(for_language(deck, lang)['slides'])} for lang in languages(deck)}
+        index.append({'id': cid, 'course': course, 'number': d['number'], 'title': title, 'slides': len(d['slides']), 'kind': d['kind'], 'languages': languages(deck), 'editions': editions})
     (OUT / 'index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1))
     print(f'{len(index)} decks, {sum(i["slides"] for i in index)} slides, {sum(1 for d in decks.values() for s in d["slides"] if "f" in s)} slides with figures')
     if problems: print('PROBLEMS:\n' + '\n'.join(problems)); sys.exit(1)

@@ -95,7 +95,11 @@ with sync_playwright() as p:
     mathjax = (ROOT / 'dist/vendor/mathjax-tex-svg.js').read_bytes()
     page.route('**/cdn.jsdelivr.net/**', lambda r: r.fulfill(status=200, body=mathjax, content_type='application/javascript'))
     page.route('**/fonts.googleapis.com/**', lambda r: r.fulfill(status=200, body='', content_type='text/css'))
-    page.goto((ROOT / f'dist/slides/export/{DECK}.html').as_uri() + f'#{SLIDE}')
+    # An isolated document origin also works in managed browsers that prohibit
+    # file:// navigation. No site modules are available at this origin.
+    export_html = (ROOT / f'dist/slides/export/{DECK}.html').read_text()
+    page.route('https://portable.example/lesson.html', lambda r: r.fulfill(status=200, body=export_html, content_type='text/html'))
+    page.goto(f'https://portable.example/lesson.html#{SLIDE}')
     check_player(page, 'export')
 
     # ---- a chapter page: the first lab reference is mounted inline, lazily, and destroyed on navigation

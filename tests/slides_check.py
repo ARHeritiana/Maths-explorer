@@ -4,6 +4,8 @@ import json, re, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tests'))
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild.slide_editions import languages, normalise_deck, for_language
 import banned
 def norm(m): return re.sub(r'(\d),(\d)', r'\1.\2', m.replace('{,}', '.')).replace('\\,', '').replace('\\;', '').replace('~', '').replace(' ', '').replace('\n', '')
 def strip_text(m): return re.sub(r'\\(?:text|mathrm|mbox|textrm)\{[^{}]*\}', '', m)
@@ -14,7 +16,17 @@ for n in [int(a) for a in sys.argv[1:]] or range(1, 15):
     fr = json.loads((ROOT / f'content/slides/draft/terminale-{n:02d}.fr.json').read_text(encoding='utf8'))['slides']
     p = ROOT / f'content/slides/terminale-{n:02d}.json'
     if not p.exists(): print('missing', p.name); bad += 1; continue
-    d = json.loads(p.read_text(encoding='utf8')); en = d['slides']
+    d = normalise_deck(json.loads(p.read_text(encoding='utf8')))
+    # Independently authored edition sequences need no bilingual count or structure parity.
+    if 'fr' not in languages(d) or 'en' not in languages(d) or any('slides' in e for e in d['editions'].values()):
+        for lang in languages(d):
+            for i, slide in enumerate(for_language(d, lang)['slides']):
+                for key in ('b', 'a'):
+                    text=(slide.get(key) or ['', ''])[0 if lang=='fr' else 1]
+                    if banned.findings(text): print(n, lang, i, 'identifier'); bad += 1
+        continue
+    # Retained paired translations still preserve the mathematics of their source.
+    en = d['slides']
     if len(fr) != len(en): print(n, 'slide count', len(fr), len(en)); bad += 1; continue
     for i, (a, b) in enumerate(zip(fr, en)):
         if a['k'] != b['k']: print(n, i, 'kind differs'); bad += 1

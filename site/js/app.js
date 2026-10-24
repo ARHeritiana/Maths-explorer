@@ -22,6 +22,8 @@ import { mountExperiment } from "./lab/mount.js";
 import { resolveRef, labRef } from "./lab/registry.js";
 import { indexPage as labIndexPage, experimentPage } from "./lab/page.js";
 import { isAnswer, formatNumber } from "./math.js";
+import {discoveryIndex,discoveryPage,bindDiscovery,discoveryContext,isTopicRoute} from './discovery.js';
+import {historyPage,bindHistory,isHistoryRoute} from './history.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const esc = (x) =>
@@ -100,10 +102,12 @@ const SECTIONS = [
     ["pathways", "Parcours", "Pathways", "path"],
   ]],
   ["explore", "Explorer", "Explore", "flask", [
+    ["topics", "Domaines", "Topics", "magnifying-glass"],
     ["lab", "Laboratoire", "Laboratory", "flask"],
     ["challenges", "Défis", "Challenges", "puzzle-piece"],
   ]],
   ["read", "Lire", "Read", "book-open", [
+    ["history", "Chronologies", "Timelines", "scroll"],
     ["biographies", "Biographies", "Biographies", "user"],
     ["stories", "Histoires", "Stories", "scroll"],
     ["gallery", "Curiosités", "Curiosities", "sparkle"],
@@ -145,7 +149,10 @@ function render() {
     "Maths Explorer · Mathematics laboratory",
   );
   const experiment = r.page === "lab" && r.id ? (resolveRef(labRef(r.id, r.tab)) || resolveRef(r.id))?.experiment || null : null;
+  const discovery=discoveryIndex({labs,challenges,chapters:resourceCatalog.chapters});
   const valid = (r.page === "lab" && (!r.id || !!experiment)) || (r.page === "gallery" && (!r.id || labs.some(l => l.id === r.id && l.custom))) ||
+    (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
+    (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
     (r.page === "home" && !r.id) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
@@ -155,6 +162,8 @@ function render() {
     header(page) +
     (page === "home" ? homePage({ pair, t, link, labs }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
+      : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
+      : page === "history" ? historyPage(r.id,r.tab,t,discovery)
       : page === "chapter" ? chapterPage(r.id, r.tab, t, labs)
       : page === "lab"
       ? (experiment ? experimentPage(experiment, { t, pair, link, completed, mission: r.tab || "" }) : labIndexPage({ t, pair, link, completed }))
@@ -170,6 +179,10 @@ function render() {
           ? pathwayPage()
           : `<main id="main" tabindex="-1" class="page"><h1>${pair("Page introuvable", "Page not found")}</h1><a href="#lab">${pair("Ouvrir le laboratoire", "Open the laboratory")}</a></main>`) +
     footer();
+  if(r.id && page!=='topics') {
+    const context=discoveryContext(discovery,`#${page}/${r.id}${page==='history'&&r.tab?'/'+r.tab:''}`,t);
+    if(context) $('#main')?.insertAdjacentHTML('beforeend',context);
+  }
   if (experiment) {
     // The mission is part of the address (#lab/<experiment>/<mission>); replaceState keeps the history clean.
     stopLab = mountExperiment($("#lab2-host"), labRef(experiment.id, r.tab), {
@@ -198,6 +211,8 @@ function render() {
     }
   }
   if (page === "workshop") stopChapter = bindWorkshop($("#main"),t,lang);
+  if (page === 'topics') stopChapter = bindDiscovery($('#main'),discovery,r.id,r.tab,t);
+  if (page === 'history') stopChapter = bindHistory($('#main'),r.id,t,discovery);
   stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg",lang));
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
   installInterfaceMotion($("#app"), reducedMotion);
@@ -233,7 +248,7 @@ function galleryDetail(id) {
  <main id="main" class="lab-main" tabindex="-1"><div class="breadcrumb">${pair("La galerie", "The gallery")}<span>/</span>${t(lab.group)}</div><div class="lab-heading"><div><h1>${t(lab.title)}</h1><p>${t(lab.intro)}</p></div><span class="level">${t(lab.level)}</span></div>
  <div class="workbench"><section class="experiment" data-fs-target aria-label="${pair("Expérience interactive", "Interactive experiment")}"><div class="experiment-top"><span class="eyebrow">${pair("À toi d’expérimenter", "Your turn to experiment")}</span><span class="experiment-actions">${fullscreenButton(pair)}<button id="reset" class="text-button">${pair("Réinitialiser", "Reset")}</button></span></div>${relatedChapters(lab.id, t)}<div id="object-stage" class="object-stage" data-object="${lab.id}"></div></section>
  <aside class="learning"><div class="learning-label"><span aria-hidden="true">◷</span> ${pair("Temps d’apprentissage", "Learning time")} <span>${lab.duration} min</span></div><h2>${pair("De l’intuition à l’idée", "From intuition to insight")}</h2><p class="prereq"><strong>${pair("Avant de commencer", "Before you begin")}</strong><br>${t(lab.prereq)}</p><p class="muted">${pair("Les mesures affichées sont arrondies. Des essais suggèrent une conjecture ; un argument général établit une preuve.", "Displayed measurements are rounded. Examples suggest a conjecture; a general argument establishes a proof.")}</p><ol class="steps">${lab.steps.map((x) => `<li>${t(x)}</li>`).join("")}</ol><div class="reasoning"><details><summary>${pair("Comparer avec un argument", "Compare with an argument")}</summary><p><strong>${pair("Conjecture", "Conjecture")}</strong> ${t(lab.reasoning.conjecture)}</p><p><strong>${pair("Justification", "Justification")}</strong> ${t(lab.reasoning.proof)}</p><p>${t(lab.reasoning.transfer)}</p></details></div><div class="checkpoint"><span class="eyebrow">${pair("Le petit déclic", "Check your understanding")}</span>${Object.keys(lab.quizState || {}).length ? `<button id="quiz-preset" class="secondary">${pair("Régler l’expérience pour cette question", "Set the experiment for this question")}</button>` : ""}<form id="lab-quiz"><label for="quiz-answer">${t(lab.quiz)}</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" inputmode="text" autocomplete="off" placeholder="${pair("Ta réponse", "Your answer")}" required value="${esc(s.answer)}"><button class="primary" type="submit">${pair("Vérifier", "Check")}</button></div></form><p id="quiz-feedback" class="feedback ${s.result === true ? "success" : ""}" role="status">${s.result === true ? pair("Bien vu ! ", "That’s right! ") + t(lab.explain) : s.result === false ? pair("Pas encore. Reprends l’expérience et essaie à nouveau.", "Not yet. Revisit the experiment and try again.") : ""}</p><details><summary>${pair("Comprendre la réponse", "Understand the answer")}</summary><p>${t(lab.explain)}</p></details></div></aside></div>
- <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${galleryContext(lab.id, pair)}${readAlso(link("gallery", lab.id), lab.links, t)}</main></div>`;
+ <section class="history"><div class="history-icon" aria-hidden="true">H</div><div class="history-title"><span class="eyebrow">${pair("Repère historique", "History box")}</span><h2>${t(lab.history)}</h2></div><div><p>${t(lab.story)}</p><a href="${lab.source}" target="_blank" rel="noopener noreferrer">${lab.sourceLabel ? t(lab.sourceLabel) : lab.source.includes("mathshistory.st-andrews.ac.uk") ? pair("En savoir plus · MacTutor (anglais)", "Read more · MacTutor") : pair("Source et explications", "Source and explanation")} <span class="sr-only">${pair("(nouvel onglet)", "(new tab)")}</span></a></div></section>${galleryContext(lab.id, pair)}${readAlso(link("gallery", lab.id), lab.links, t)}</main></div>`;
 }
 // The vector symbol (combining arrow) is missing from the maths font: show a plain arrow.
 const glyph = (symbol) => (symbol.includes("\u20d7") ? "→" : symbol);

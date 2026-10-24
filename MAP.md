@@ -72,6 +72,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 
 | Route | Nav label | Page module |
 |---|---|---|
+| `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` |
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
 | `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (curriculum menu first, then the course list) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |

@@ -6,6 +6,8 @@ import {voronoiCells,cycloid,descentTrack,pointAtTime} from './gallery-models.js
 import {neighbours,colourWith} from './gallery-four-colour-model.js';
 import {drawKnotStrand} from './gallery-knot-render.js';
 import {spaceKnot} from './gallery-knot-model.js';
+import {GOMBOC_PREVIEW} from './gomboc-preview.js';
+import {cam3Project} from './camera3d.js';
 import {makeFamilyPatch} from './gallery-hat-model.js';
 import {presetSet,step,coords} from './gallery-life-model.js';
 import {ten,vertices} from './gallery-squares-model.js';
@@ -225,7 +227,8 @@ function opaqueArt(cv, opts) {
     g.strokeStyle = C.accent; g.lineWidth = 4; g.lineCap = 'round'; segs.forEach(([a, b]) => { g.beginPath(); g.moveTo(...X(a)); g.lineTo(...X(b)); g.stroke(); });
   }, { reduced: opts.reduced, still: 1 });
 }
-export const ART = { fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+function gombocArt(cv,opts){return runner(cv,(g,W,H,time,C)=>{const points=GOMBOC_PREVIEW.vertices.map(p=>{const q=cam3Project(-.7+time*.15,.55,...p);return [W/2+q.u*Math.min(W,H)*.36,H/2-q.v*Math.min(W,H)*.36,q.d];});const faces=GOMBOC_PREVIEW.triangles.map(ids=>ids.map(i=>points[i])).sort((a,b)=>b.reduce((s,p)=>s+p[2],0)-a.reduce((s,p)=>s+p[2],0));for(const p of faces){g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.closePath();g.globalAlpha=.65;g.fillStyle=C.accent;g.fill();g.strokeStyle=C.line;g.lineWidth=.6;g.stroke();}g.globalAlpha=1;},{reduced:opts.reduced,still:0});}
+export const ART = { gomboc:gombocArt, fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt,
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

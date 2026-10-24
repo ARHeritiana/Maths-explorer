@@ -1,5 +1,7 @@
 // The experiments of the laboratory: id -> experiment module, the templates (loaded when an experiment is mounted) and the
 // lab reference "<experiment>" or "<experiment>/<mission>" that the lab page, chapter pages and slides share.
+import fairDivision, {discreteExperiment as fairGoods} from "./experiments/fair-division.js";
+import {hairyExperiment, surfacesExperiment, banachExperiment} from "./experiments/topology.js";
 import quadratic from "./experiments/quadratic.js";
 import trig from "./experiments/trig.js";
 import sequences from "./experiments/sequences.js";
@@ -14,6 +16,8 @@ import { drawingExperiment } from "./experiments/fourier.js";
 import line from "./experiments/line.js";
 import exponential from "./experiments/exponential.js";
 import cobweb from "./experiments/cobweb.js";
+import doublePendulum, { threeBody } from "./experiments/dynamics.js";
+import logistic from "./experiments/logistic.js";
 import matrix from "./experiments/matrix.js";
 import spaceLines from "./experiments/space-lines.js";
 import tiles from "./experiments/tiles.js";
@@ -22,11 +26,19 @@ import fermat from "./experiments/fermat.js";
 import circleRegions from "./experiments/circle-regions.js";
 import buffon from "./experiments/buffon.js";
 import bertrand from "./experiments/bertrand.js";
+import { inferenceExperiments } from "./experiments/inference.js";
+import illumination from "./experiments/illumination.js";
 
 // Order of the catalogue. The experiments are plain data and small; the heavy part (templates) is imported on demand.
-export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand];
+export const EXPERIMENTS = [quadratic, trig, sequences, derivative, integral, probability, vectors, statistics, complex, line, exponential, cobweb, matrix, spaceLines, fourier, drawingExperiment, tiles, eulerPrimes, fermat, circleRegions, buffon, bertrand, fairDivision, fairGoods, ...inferenceExperiments, doublePendulum, threeBody, logistic, illumination];
+
+EXPERIMENTS.push(hairyExperiment, surfacesExperiment, banachExperiment);
 
 export const TEMPLATES = {
+  illumination: () => import("./templates/illumination.js"),
+  dynamics: () => import("./templates/dynamics.js"),
+  logistic: () => import("./templates/logistic.js"),
+  inference: () => import("./templates/inference.js"),
   calculation: () => import("./templates/calculation.js"),
   fourier: () => import("./templates/fourier.js"),
   family: () => import("./templates/family.js"),
@@ -40,6 +52,10 @@ export const TEMPLATES = {
 
 // Type of activity, shown as the group titles of the #lab index.
 export const TEMPLATE_INFO = {
+  illumination: { title: ["Réfléchir des rayons", "Reflect rays"], blurb: ["Explorer et construire des pièces de miroirs.", "Explore and construct mirrored rooms."] },
+  dynamics: {title:["Simuler un mouvement","Simulate motion"],blurb:["Conditions initiales, lois physiques et erreurs numériques.","Initial conditions, physical laws and numerical errors."]},
+  logistic: {title:["Itérer une population","Iterate a population"],blurb:["Points fixes, cycles et fenêtres périodiques.","Fixed points, cycles and periodic windows."]},
+  inference: { title: ["Inférer et décider", "Infer and decide"], blurb: ["Préciser les hypothèses, expérimenter et comparer aux calculs.", "Specify assumptions, experiment and compare with calculations."] },
   calculation: { title: ["Calculer et décomposer", "Calculate and factor"], blurb: ["Faire varier un nombre et observer son écriture exacte.", "Change a number and inspect its exact expression."] },
   fourier: {title:['Décomposer et reconstruire','Decompose and reconstruct'],blurb:['Des signaux périodiques aux contours tracés par des cercles.','From periodic signals to outlines drawn by circles.']},
   family: { title: ["Faire varier un paramètre", "Change a parameter"], blurb: ["Une famille de fonctions : que change chaque coefficient ?", "A family of functions: what does each coefficient change?"] },
@@ -54,11 +70,13 @@ export const TEMPLATE_INFO = {
 // Groups of the #lab index that are about an idea rather than a template: an experiment with `section` is listed there (with its
 // `sub` title as a subsection) instead of under its template. The index shows the groups in this order.
 export const SECTION_INFO = {
+  dynamics: {title:["Systèmes dynamiques","Dynamical systems"],blurb:["Comparer les futurs d’un même modèle et contrôler le calcul.","Compare futures of the same model and monitor computation."]},
+  inference: { title: ["Inférer et décider", "Infer and decide"], blurb: ["Du tirage au hasard à une décision : hypothèses, incertitude et preuves.", "From random sampling to decisions: assumptions, uncertainty and proof."] },
   tiles: { title: ["Une figure n’est pas une preuve", "A figure is not a proof"], blurb: ["Des pièces qui semblent changer d’aire : la démonstration dit où est l’erreur.", "Pieces that seem to change their area: the proof says where the error is."] },
   patterns: { title: ["Une régularité n’est pas une preuve", "A pattern is not a proof"], blurb: ["Des observations vraies pendant 5 ou 40 cas, puis fausses.", "Observations true for 5 or 40 cases, then false."] },
   geochance: { title: ["Probabilités géométriques", "Geometric probability"], blurb: ["Le hasard dans le plan : une aiguille, une corde.", "Chance in the plane: a needle, a chord."] },
 };
-export const INDEX_ORDER = ["family", "process", "chance", "geochance", "figure", "tiles", "patterns", "data", "transform", "space", "fourier"];
+export const INDEX_ORDER = ["family", "process", "dynamics", "logistic", "chance", "inference", "geochance", "illumination", "figure", "tiles", "patterns", "data", "transform", "space", "fourier"];
 export const groupOf = (e) => e.section || e.template;
 
 export const experimentById = (id) => EXPERIMENTS.find((e) => e.id === id) || null;
@@ -87,6 +105,6 @@ export const allRefs = () => EXPERIMENTS.flatMap((e) => [e.id, ...e.missions.map
 export const catalogue = () => EXPERIMENTS.map((e) => ({
   id: e.id, experiment: true, template: e.template, section: groupOf(e), symbol: e.symbol, group: e.group, title: e.title, short: e.short, intro: e.intro,
   duration: e.duration, level: e.level, prereq: e.prereq,
-  history: e.history.title, story: e.history.story, source: e.history.source,
+  history: e.history.title, story: e.history.story, source: e.history.source, sourceLabel: e.history.sourceLabel || ["Source du modèle", "Model reference"],
 }));
 

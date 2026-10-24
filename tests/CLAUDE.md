@@ -8,6 +8,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 
 | Test | Covers |
 |---|---|
+| `challenge-backlog.test.mjs` | Knight graph/tour validation and bounded search; exhaustive Eulerian multigraph trails; BigInt factorial valuations and arbitrary-base zeros independently checked against direct factorials |
 | `math.test.mjs` | `math.js`, lab definitions in `content.js` |
 | `lab-engine.test.mjs` | laboratory v2: registry (fourteen experiments, seven templates), mission rules (control count, `set` keys, predict first, explain last), strings (pairs, no dashes, decimal comma), finite scenes, every `check` answer recomputed independently (fourteen), the shared 3D camera (`camera3d.js`: round trips, view ray, constraints, pitch clamp), constrained 3D handles, the pure models of `line`, `exponential`, `cobweb`, `matrix` and `space-lines` (plane polygon, clipping, intersection, projection), goals reachable, handles, pure models including the seeded simulation statistics, every `#lab/` link in the site, pathways and manifest resolves, honest labelling (≈ for a rounded value, = for an exact one: `format.js`) |
 | `lab-links.test.mjs` | lab references (Phase 3): the one resolver `resolveRef`, every manifest `labs` reference and every slide `type: 'lab'` widget (WIDGETS table, built decks, authored decks) resolves, every experiment is reachable from a chapter, the old widget types are gone from the decks, the self-contained export carries the laboratory code and it runs, the player import map reaches `js/lab/` |
@@ -29,6 +30,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `quadratic-workshop.test.mjs` | `quadratic-workshop.js` |
 | `map.test.mjs` | `MAP.md` and the folder `CLAUDE.md` indexes stay complete and correct |
 | `dom-smoke.mjs` | DOM integration under jsdom (`npm run test:dom`): Platonic folds, every experiment mounted (no element added during a drag or a run, fixed camera, plain wheel never zooms, background drag pans only once zoomed, free missions and the `gated` mode, keyboard), the old guided page gone, gallery routes |
+| `accessibility_browser.py` | home and every pilot chapter step at 320, 390, 768 and 1440 px with normal and doubled text, both theme contrast, keyboard/skip navigation, inline lab handles, asynchronous load announcements and semantic MathML (`browser.py` calls it; also runnable alone) |
 | `browser.py`, `run_browser.py` | Playwright checks of the fourteen experiments walked mission by mission, gallery, challenges, pathways (`npm run test:browser`); `run_browser.py` also runs `lab_browser.py` |
 | `lab_browser.py` | Playwright checks of the fourteen experiments: a handle drag, a run or a rotation of the 3D view adds or removes no element (MutationObserver), no horizontal overflow at 320 px, canvas and mission sheet never overlap at 390 x 844 and 320 x 640, pointer policy (plain wheel scrolls the page, a near miss grabs the point, Ctrl + wheel and the zoom buttons, grid fills the panel when zoomed out), free exploration, both themes, missions, keyboard |
 | `slides_lab_browser.py` | Playwright: a deck with a lab widget in the player and in the self-contained export (mount in the widget host, controls, stepper, readout and prompt in the player's areas, MathJax-typeset text, handle drag adds no element, N and P only with canvas focus, arrow keys stay the player's, destroyed when leaving); a chapter page mounts its first lab reference inline, lazily, with one link per reference, destroyed on navigation (run by `run_browser.py` after `lab_browser.py`) |
@@ -54,3 +56,34 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 
 
 `fourier.test.mjs`: continuous coefficient quadrature, direct error integrals, finite DFT inversion, sample Parseval, aliasing, Fejér bounds and Fejér bounds. `fourier-links.test.mjs` checks reciprocal entry points and local lesson assets.
+
+| `resource-editions.test.mjs`, `test_resource_editions.py` | French-only, English-only and bilingual fixtures: measured metadata, filtering, chapter downloads, unavailable pack items and no language substitution |
+
+`inference.test.mjs`: independent exact enumeration of secretary stopping, tank estimator moments and confidence coverage, Benford digits, iid Gaussian inference calibration, birthday collision distributions and explicit Monty host rules.
+
+`discovery.test.mjs`: overlapping taxonomy, canonical deduplication, exact counts, accent-insensitive combined filters, reciprocal recommendations, content addition/removal invariants, named preview and gallery-alias coverage, honest unknown-model fallbacks, static SVG bounds and independent plotted-geometry benchmarks.
+
+`pilot.test.mjs`: exact polynomial equivalence across quadratic input forms, independent six-case selectors,
+honest rounding, shared-slide control visibility, root-mode fallback, slider range updates, camera independence and cleanup.
+
+| `fair-division.test.mjs` | independent quadrature, full enumeration of discrete allocations, cut-and-choose guarantees, EF1 and editable lab controls |
+
+`inference-dom.test.mjs`: six inference surfaces in both languages, hidden information, choices and reveals, input validation, seeded populations, sample growth with reduced motion, reciprocal content paths and navigation cleanup through the shared laboratory mount.
+
+`illumination.test.mjs`: independent reflection invariants, exact curve intersections, ellipse focal property, boundary validation, unfolding collinearity and original preset geometry.
+
+`challenge-backlog-dom.test.mjs`: actual knight pointer/keyboard/touch events with drag-click suppression and undo; room traversal/editing with fixed-size hit strokes; factorial hint gating and large exact integer form validation.
+
+`test_slide_editions.py`: actual slide source extraction, measured available editions, independent sequence lengths and figure selection for French-only, English-only and bilingual fixtures, plus lecture source selection. `slide-editions.test.mjs`: actual player rendering and unavailable-language behavior with independent edition counts.
+
+`gomboc.test.mjs`: full graph/hash/volume invariants, support against independent all-vertex searches, local equilibrium potential, analytic freeflight and time-step convergence, collision nonpenetration/dissipation and honest linked explanations.
+
+`dynamics.test.mjs`: independently differentiated pendulum energy, viscous dissipation, harmonic-solver benchmark, tolerance convergence, force balance, conserved gravitational moments, figure-eight return, explicit near-collision halt, logistic cycles/windows and invariant domain.
+
+`backlog-lab-fixtures.mjs`: independent benchmark answers, prediction evidence and reachable-state witnesses for the new guided labs; consumed by the complete lab-engine contract suite.
+
+`topology-audit.test.mjs`: independent tangent/zero checks, seam and normal identifications, quotient cutting invariants at several resolutions and exhaustive finite-atom conservation audit.
+
+`pack-missing-parts.test.mjs`: actual pack-form selection with an absent chapter/part combination, explicit warning and blocked downloads until the selection becomes complete.
+
+`history.test.mjs`: sourced chronological records, documentary dates, filtering, detail links and reciprocal timeline navigation.

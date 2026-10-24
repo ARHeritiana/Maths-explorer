@@ -1,0 +1,16 @@
+/* Chronology is a wrapping document list, with no drag-only or scrolling viewport. */
+.history-tabs,.history-links{display:flex;flex-wrap:wrap;gap:.5rem}
+.history-tabs{margin:1rem 0}
+.history-tabs a{min-height:44px;display:inline-flex;align-items:center;padding:.5rem .75rem;border:1px solid var(--line);border-radius:var(--r-sm)}
+.history-tabs a[aria-current]{border-color:var(--accent);background:var(--accent-soft);font-weight:700}
+.history-list{list-style:none;padding:0;margin:1rem 0;max-width:76ch}
+.history-list>li{border-inline-start:2px solid var(--line-strong);padding:0 0 1.5rem 1rem;position:relative}
+.history-list>li::before{content:"";width:.6rem;height:.6rem;border-radius:50%;background:var(--accent);position:absolute;inset-inline-start:-.36rem;top:.5rem}
+.history-list article{padding:0 0 1rem;overflow-wrap:anywhere;border-bottom:1px solid var(--line)}
+.history-list h2{font-size:1.3rem;margin:.3rem 0}
+.history-list p{margin:.35rem 0;line-height:1.6}
+.history-date{font-weight:700;color:var(--accent)}
+.history-context,.history-source{font-size:.9rem;color:var(--ink-2)}
+.history-links a,.history-source a{min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:3px}
+.history-links a{padding:.25rem .4rem;background:var(--sunken);border-radius:var(--r-sm)}
+.history-page input[type=number]{min-width:0}

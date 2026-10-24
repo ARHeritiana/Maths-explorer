@@ -1,162 +1,166 @@
 {
-"id": "terminale-10",
-"course": "terminale",
-"number": 10,
-"title": [
-"Primitives et équations différentielles",
-"Antiderivatives and differential equations"
-],
-"slides": [
-{
-"k": "title",
-"t": [
-"Primitives et équations différentielles",
-"Antiderivatives and differential equations"
-],
-"b": [
-"",
-""
-]
-},
-{
-"k": "goals",
-"t": [
-"Objectifs",
-"Objectives"
-],
-"b": [
-"Calculer des primitives ; résoudre une équation différentielle avec condition initiale ; interpréter une approximation d'Euler.",
-"Calculate antiderivatives; solve a differential equation with an initial condition; interpret an Euler approximation."
-]
-},
-{
-"k": "concept",
-"t": [
-"Primitives sur un intervalle",
-"Antiderivatives on an interval"
-],
-"b": [
-"On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.\nUne primitive de \\(f\\) sur un intervalle \\(I\\) est une fonction dérivable \\(F\\) telle que \\(F'=f\\) sur \\(I\\). Si \\(F\\) est une primitive, toutes les primitives sur \\(I\\) sont \\(F+C\\), \\(C\\in\\R\\).",
-"At this stage we accept that every continuous function on an interval has antiderivatives; the link with area will be established in chapter 8.\nAn antiderivative of \\(f\\) on an interval \\(I\\) is a differentiable function \\(F\\) such that \\(F'=f\\) on \\(I\\). If \\(F\\) is an antiderivative, all the antiderivatives on \\(I\\) are \\(F+C\\), \\(C\\in\\R\\)."
-]
-},
-{
-"k": "proof",
-"t": [
-"Primitives sur un intervalle",
-"Antiderivatives on an interval"
-],
-"b": [
-"Si \\(F'=G'=f\\), alors \\((F-G)'=0\\) sur l'intervalle ; \\(F-G\\) est donc constante. Réciproquement, \\((F+C)'=f\\). L'hypothèse d'intervalle est essentielle : sur une réunion d'intervalles disjoints, comme \\(\\mathbb{R}\\setminus\\{0\\}\\), réunion de deux intervalles, la constante peut différer d'un intervalle à l'autre.",
-"If \\(F'=G'=f\\), then \\((F-G)'=0\\) on the interval; \\(F-G\\) is therefore constant. Conversely, \\((F+C)'=f\\). The interval hypothesis is essential: on a union of disjoint intervals, such as \\(\\mathbb{R}\\setminus\\{0\\}\\), a union of two intervals, the constant may differ from one interval to the other."
-]
-},
-{
-"k": "concept",
-"t": [
-"Primitives sur un intervalle",
-"Antiderivatives on an interval"
-],
-"b": [
-"\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nLa constante additive peut toujours être ajoutée. Les deux dernières lignes seront réinvesties après l'étude de la trigonométrie.",
-"\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nThe additive constant can always be added. The last two lines will be revisited after the study of trigonometry."
-],
-"h": [
-"Table de primitives — à lire en sens inverse des dérivées",
-"Table of antiderivatives — read in reverse from derivatives"
-]
-},
-{
-"k": "concept",
-"t": [
-"Reconnaître une composition",
-"Recognising a composition"
-],
-"b": [
-"Pour une fonction \\(u\\) dérivable, les primitives de \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) sont respectivement \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), sur les intervalles où les expressions ont un sens. La linéarité permet de traiter les sommes.",
-"For a differentiable function \\(u\\), the antiderivatives of \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) are respectively \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), on the intervals where the expressions make sense. Linearity allows us to handle sums."
-]
-},
-{
-"k": "example",
-"t": [
-"Reconnaître une composition",
-"Recognising a composition"
-],
-"b": [
-"Une primitive de \\(6x(x^2+1)^2\\) est \\((x^2+1)^3\\) ; une primitive de \\(e^{3x}\\) est \\(\\frac{e^{3x}}{3}\\). Pour imposer \\(F(0)=2\\) dans ce dernier cas, prendre \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\).",
-"An antiderivative of \\(6x(x^2+1)^2\\) is \\((x^2+1)^3\\); an antiderivative of \\(e^{3x}\\) is \\(\\frac{e^{3x}}{3}\\). To impose \\(F(0)=2\\) in the latter case, take \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\)."
-]
-},
-{
-"k": "concept",
-"t": [
-"Équations différentielles",
-"Differential equations"
-],
-"b": [
-"Une équation différentielle relie une fonction inconnue à ses dérivées. Une solution doit être vérifiée sur un intervalle précisé.",
-"A differential equation relates an unknown function to its derivatives. A solution must be verified on a specified interval."
-]
-},
-{
-"k": "concept",
-"t": [
-"Équations différentielles",
-"Differential equations"
-],
-"b": [
-"\\(y'=ay\\) a pour solutions \\(y(x)=Ce^{ax}\\). Pour \\(a\\ne0\\), \\(y'=ay+b\\) a pour solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nSi \\(a=0\\), l'équation devient \\(y'=b\\) et \\(y(x)=bx+C\\).\nSi \\(g\\) est une solution particulière connue de \\(y'=ay+f(x)\\), les solutions sont \\(y=g+Ce^{ax}\\).",
-"\\(y'=ay\\) has solutions \\(y(x)=Ce^{ax}\\). For \\(a\\ne0\\), \\(y'=ay+b\\) has solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nIf \\(a=0\\), the equation becomes \\(y'=b\\) and \\(y(x)=bx+C\\).\nIf \\(g\\) is a known particular solution of \\(y'=ay+f(x)\\), the solutions are \\(y=g+Ce^{ax}\\)."
-],
-"h": [
-"Solutions usuelles",
-"Standard solutions"
-]
-},
-{
-"k": "proof",
-"t": [
-"Équations différentielles",
-"Differential equations"
-],
-"b": [
-"Si \\(y\\) est solution, \\(z(x)=e^{-ax}y(x)\\) vérifie \\(z'=e^{-ax}(y'-ay)=0\\) ; \\(z=C\\). Réciproquement, la dérivée de \\(Ce^{ax}\\) est \\(aCe^{ax}\\). Pour \\(y'=ay+b\\), soustraire la solution constante \\(-\\frac{b}{a}\\) ramène à l'équation homogène. Pour un second membre variable, faire de même avec \\(g\\).",
-"If \\(y\\) is a solution, \\(z(x)=e^{-ax}y(x)\\) satisfies \\(z'=e^{-ax}(y'-ay)=0\\); \\(z=C\\). Conversely, the derivative of \\(Ce^{ax}\\) is \\(aCe^{ax}\\). For \\(y'=ay+b\\), subtracting the constant solution \\(-\\frac{b}{a}\\) reduces it to the homogeneous equation. For a variable right-hand side, do the same with \\(g\\)."
-]
-},
-{
-"k": "example",
-"t": [
-"Équations différentielles",
-"Differential equations"
-],
-"b": [
-"\\(y'=-2y+6\\) et \\(y(0)=1\\) donnent \\(y=3+Ce^{-2x}\\), puis \\(C=-2\\). La solution \\(3-2e^{-2x}\\) croît vers l'équilibre \\(3\\) lorsque \\(x\\to+\\infty\\).",
-"\\(y'=-2y+6\\) and \\(y(0)=1\\) give \\(y=3+Ce^{-2x}\\), then \\(C=-2\\). The solution \\(3-2e^{-2x}\\) increases towards the equilibrium \\(3\\) as \\(x\\to+\\infty\\)."
-]
-},
-{
-"k": "concept",
-"t": [
-"Méthode d'Euler",
-"Euler's method"
-],
-"b": [
-"Pour \\(y'=ay+b\\), avec un pas \\(h&gt;0\\), on approche \\(y(t_k)\\) par \\(Y_k\\) selon \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.",
-"For \\(y'=ay+b\\), with step \\(h&gt;0\\), we approximate \\(y(t_k)\\) by \\(Y_k\\) according to \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). This is an approximation using the tangent, not an equality for the exact solution. A smaller step may improve the approximation; check the error numerically on a known solution."
-]
-},
-{
-"k": "activity",
-"t": [
-"Activité de recherche",
-"Research activity"
-],
-"b": [
-"<b>Refroidissement d'une boisson — 40 min.</b><br><br> Une boisson initialement à \\(80\\,^{\\circ}\\mathrm C\\) est placée dans une pièce maintenue à \\(20\\,^{\\circ}\\mathrm C\\). Pour \\(t\\ge0\\), on note \\(T(t)\\) sa température en degrés Celsius, \\(t\\) désignant le temps écoulé en minutes. On admet le modèle \\(T' (t)=-0{,}1(T(t)-20)\\) et \\(T(0)=80\\).\n<ol><li>Résoudre ce problème initial et donner l'expression de \\(T(t)\\).\n<li>Étudier le sens de variation de \\(T\\) et déterminer sa limite en \\(+\\infty\\). Interpréter les résultats.\n<li>Déterminer le premier instant où la température vaut \\(40\\,^{\\circ}\\mathrm C\\). Donner la valeur exacte, puis une valeur approchée en minutes.\n<li>Appliquer deux étapes de la méthode d'Euler avec un pas de \\(1\\) minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte \\(T(2)\\).\n<li>Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.</ol><br><br>",
-"<b>Cooling of a drink — 40 min.</b><br><br> A drink initially at \\(80\\,^{\\circ}\\mathrm C\\) is placed in a room kept at \\(20\\,^{\\circ}\\mathrm C\\). For \\(t\\ge0\\), let \\(T(t)\\) denote its temperature in degrees Celsius, where \\(t\\) is the time elapsed in minutes. We accept the model \\(T' (t)=-0.1(T(t)-20)\\) and \\(T(0)=80\\).\n<ol><li>Solve this initial value problem and give the expression of \\(T(t)\\).\n<li>Study the direction of variation of \\(T\\) and find its limit at \\(+\\infty\\). Interpret the results.\n<li>Find the first time at which the temperature equals \\(40\\,^{\\circ}\\mathrm C\\). Give the exact value, then an approximate value in minutes.\n<li>Apply two steps of Euler's method with a step of \\(1\\) minute. Compare the approximation obtained after two minutes with the exact value \\(T(2)\\).\n<li>Give a concrete situation in which the assumption of a constant room temperature would no longer be appropriate.</ol><br><br>"
-]
-}
-]
+ "id": "terminale-10",
+ "course": "terminale",
+ "number": 10,
+ "title": [
+  "Primitives et équations différentielles",
+  "Antiderivatives and differential equations"
+ ],
+ "slides": [
+  {
+   "k": "title",
+   "t": [
+    "Primitives et équations différentielles",
+    "Antiderivatives and differential equations"
+   ],
+   "b": [
+    "",
+    ""
+   ]
+  },
+  {
+   "k": "goals",
+   "t": [
+    "Objectifs",
+    "Objectives"
+   ],
+   "b": [
+    "Calculer des primitives ; résoudre une équation différentielle avec condition initiale ; interpréter une approximation d'Euler.",
+    "Calculate antiderivatives; solve a differential equation with an initial condition; interpret an Euler approximation."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Primitives sur un intervalle",
+    "Antiderivatives on an interval"
+   ],
+   "b": [
+    "On admet à ce stade que toute fonction continue sur un intervalle admet des primitives ; le lien avec l'aire sera établi au chapitre 8.\nUne primitive de \\(f\\) sur un intervalle \\(I\\) est une fonction dérivable \\(F\\) telle que \\(F'=f\\) sur \\(I\\). Si \\(F\\) est une primitive, toutes les primitives sur \\(I\\) sont \\(F+C\\), \\(C\\in\\R\\).",
+    "At this stage we accept that every continuous function on an interval has antiderivatives; the link with area will be established in chapter 8.\nAn antiderivative of \\(f\\) on an interval \\(I\\) is a differentiable function \\(F\\) such that \\(F'=f\\) on \\(I\\). If \\(F\\) is an antiderivative, all the antiderivatives on \\(I\\) are \\(F+C\\), \\(C\\in\\R\\)."
+   ]
+  },
+  {
+   "k": "proof",
+   "t": [
+    "Primitives sur un intervalle",
+    "Antiderivatives on an interval"
+   ],
+   "b": [
+    "Si \\(F'=G'=f\\), alors \\((F-G)'=0\\) sur l'intervalle ; \\(F-G\\) est donc constante. Réciproquement, \\((F+C)'=f\\). L'hypothèse d'intervalle est essentielle : sur une réunion d'intervalles disjoints, comme \\(\\mathbb{R}\\setminus\\{0\\}\\), réunion de deux intervalles, la constante peut différer d'un intervalle à l'autre.",
+    "If \\(F'=G'=f\\), then \\((F-G)'=0\\) on the interval; \\(F-G\\) is therefore constant. Conversely, \\((F+C)'=f\\). The interval hypothesis is essential: on a union of disjoint intervals, such as \\(\\mathbb{R}\\setminus\\{0\\}\\), a union of two intervals, the constant may differ from one interval to the other."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Primitives sur un intervalle",
+    "Antiderivatives on an interval"
+   ],
+   "b": [
+    "\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nLa constante additive peut toujours être ajoutée. Les deux dernières lignes seront réinvesties après l'étude de la trigonométrie.",
+    "\\[\\begin{array}{c|c}\nf(x)&amp;F(x)\\\\\\hline\nx^n\\ (n\\in\\Z,\\ n\\ne-1)&amp;\\frac{x^{n+1}}{n+1}\\\\\n\\frac{1}{x}&amp;\\ln|x|\\quad\\text{sur un intervalle évitant }0\\\\\n\\frac{1}{\\sqrt{x}}&amp;2\\sqrt{x}\\quad(x&gt;0)\\\\\ne^x&amp;e^x\\\\\n\\cos x&amp;\\sin x\\\\\n\\sin x&amp;-\\cos x\n\\end{array}\\]\nThe additive constant can always be added. The last two lines will be revisited after the study of trigonometry."
+   ],
+   "h": [
+    "Table de primitives — à lire en sens inverse des dérivées",
+    "Table of antiderivatives — read in reverse from derivatives"
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Reconnaître une composition",
+    "Recognising a composition"
+   ],
+   "b": [
+    "Pour une fonction \\(u\\) dérivable, les primitives de \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) sont respectivement \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), sur les intervalles où les expressions ont un sens. La linéarité permet de traiter les sommes.",
+    "For a differentiable function \\(u\\), the antiderivatives of \\(u'u^n\\), \\(u'e^u\\), \\(\\frac{u'}{u}\\) are respectively \\(\\frac{u^{n+1}}{n+1}\\) (\\(n\\ne-1\\)), \\(e^u\\), \\(\\ln|u|\\), on the intervals where the expressions make sense. Linearity allows us to handle sums."
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Reconnaître une composition",
+    "Recognising a composition"
+   ],
+   "b": [
+    "Une primitive de \\(6x(x^2+1)^2\\) est \\((x^2+1)^3\\) ; une primitive de \\(e^{3x}\\) est \\(\\frac{e^{3x}}{3}\\). Pour imposer \\(F(0)=2\\) dans ce dernier cas, prendre \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\).",
+    "An antiderivative of \\(6x(x^2+1)^2\\) is \\((x^2+1)^3\\); an antiderivative of \\(e^{3x}\\) is \\(\\frac{e^{3x}}{3}\\). To impose \\(F(0)=2\\) in the latter case, take \\(F(x)=\\frac{e^{3x}}{3}+\\frac{5}{3}\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Équations différentielles",
+    "Differential equations"
+   ],
+   "b": [
+    "Une équation différentielle relie une fonction inconnue à ses dérivées. Une solution doit être vérifiée sur un intervalle précisé.",
+    "A differential equation relates an unknown function to its derivatives. A solution must be verified on a specified interval."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Équations différentielles",
+    "Differential equations"
+   ],
+   "b": [
+    "\\(y'=ay\\) a pour solutions \\(y(x)=Ce^{ax}\\). Pour \\(a\\ne0\\), \\(y'=ay+b\\) a pour solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nSi \\(a=0\\), l'équation devient \\(y'=b\\) et \\(y(x)=bx+C\\).\nSi \\(g\\) est une solution particulière connue de \\(y'=ay+f(x)\\), les solutions sont \\(y=g+Ce^{ax}\\).",
+    "\\(y'=ay\\) has solutions \\(y(x)=Ce^{ax}\\). For \\(a\\ne0\\), \\(y'=ay+b\\) has solutions\n\\[y(x)=Ce^{ax}-\\frac ba.\\]\nIf \\(a=0\\), the equation becomes \\(y'=b\\) and \\(y(x)=bx+C\\).\nIf \\(g\\) is a known particular solution of \\(y'=ay+f(x)\\), the solutions are \\(y=g+Ce^{ax}\\)."
+   ],
+   "h": [
+    "Solutions usuelles",
+    "Standard solutions"
+   ]
+  },
+  {
+   "k": "proof",
+   "t": [
+    "Équations différentielles",
+    "Differential equations"
+   ],
+   "b": [
+    "Si \\(y\\) est solution, \\(z(x)=e^{-ax}y(x)\\) vérifie \\(z'=e^{-ax}(y'-ay)=0\\) ; \\(z=C\\). Réciproquement, la dérivée de \\(Ce^{ax}\\) est \\(aCe^{ax}\\). Pour \\(y'=ay+b\\), soustraire la solution constante \\(-\\frac{b}{a}\\) ramène à l'équation homogène. Pour un second membre variable, faire de même avec \\(g\\).",
+    "If \\(y\\) is a solution, \\(z(x)=e^{-ax}y(x)\\) satisfies \\(z'=e^{-ax}(y'-ay)=0\\); \\(z=C\\). Conversely, the derivative of \\(Ce^{ax}\\) is \\(aCe^{ax}\\). For \\(y'=ay+b\\), subtracting the constant solution \\(-\\frac{b}{a}\\) reduces it to the homogeneous equation. For a variable right-hand side, do the same with \\(g\\)."
+   ]
+  },
+  {
+   "k": "example",
+   "t": [
+    "Équations différentielles",
+    "Differential equations"
+   ],
+   "b": [
+    "\\(y'=-2y+6\\) et \\(y(0)=1\\) donnent \\(y=3+Ce^{-2x}\\), puis \\(C=-2\\). La solution \\(3-2e^{-2x}\\) croît vers l'équilibre \\(3\\) lorsque \\(x\\to+\\infty\\).",
+    "\\(y'=-2y+6\\) and \\(y(0)=1\\) give \\(y=3+Ce^{-2x}\\), then \\(C=-2\\). The solution \\(3-2e^{-2x}\\) increases towards the equilibrium \\(3\\) as \\(x\\to+\\infty\\)."
+   ]
+  },
+  {
+   "k": "concept",
+   "t": [
+    "Méthode d'Euler",
+    "Euler's method"
+   ],
+   "b": [
+    "Pour \\(y'=ay+b\\), avec un pas \\(h&gt;0\\), on approche \\(y(t_k)\\) par \\(Y_k\\) selon \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). C'est une approximation utilisant la tangente, pas une égalité sur la solution exacte. Un pas plus petit peut améliorer l'approximation ; contrôler numériquement l'erreur sur une solution connue.",
+    "For \\(y'=ay+b\\), with step \\(h&gt;0\\), we approximate \\(y(t_k)\\) by \\(Y_k\\) according to \\(t_{k+1}=t_k+h\\), \\(Y_{k+1}=Y_k+h(aY_k+b)\\). This is an approximation using the tangent, not an equality for the exact solution. A smaller step may improve the approximation; check the error numerically on a known solution."
+   ]
+  },
+  {
+   "k": "activity",
+   "t": [
+    "Activité de recherche",
+    "Research activity"
+   ],
+   "b": [
+    "<b>Refroidissement d'une boisson — 40 min.</b><br><br> Une boisson initialement à \\(80\\,^{\\circ}\\mathrm C\\) est placée dans une pièce maintenue à \\(20\\,^{\\circ}\\mathrm C\\). Pour \\(t\\ge0\\), on note \\(T(t)\\) sa température en degrés Celsius, \\(t\\) désignant le temps écoulé en minutes. On admet le modèle \\(T' (t)=-0{,}1(T(t)-20)\\) et \\(T(0)=80\\).\n<ol><li>Résoudre ce problème initial et donner l'expression de \\(T(t)\\).\n<li>Étudier le sens de variation de \\(T\\) et déterminer sa limite en \\(+\\infty\\). Interpréter les résultats.\n<li>Déterminer le premier instant où la température vaut \\(40\\,^{\\circ}\\mathrm C\\). Donner la valeur exacte, puis une valeur approchée en minutes.\n<li>Appliquer deux étapes de la méthode d'Euler avec un pas de \\(1\\) minute. Comparer l'approximation obtenue au bout de deux minutes à la valeur exacte \\(T(2)\\).\n<li>Indiquer une situation concrète dans laquelle l'hypothèse d'une température ambiante constante ne serait plus adaptée.</ol><br><br>",
+    "<b>Cooling of a drink — 40 min.</b><br><br> A drink initially at \\(80\\,^{\\circ}\\mathrm C\\) is placed in a room kept at \\(20\\,^{\\circ}\\mathrm C\\). For \\(t\\ge0\\), let \\(T(t)\\) denote its temperature in degrees Celsius, where \\(t\\) is the time elapsed in minutes. We accept the model \\(T' (t)=-0.1(T(t)-20)\\) and \\(T(0)=80\\).\n<ol><li>Solve this initial value problem and give the expression of \\(T(t)\\).\n<li>Study the direction of variation of \\(T\\) and find its limit at \\(+\\infty\\). Interpret the results.\n<li>Find the first time at which the temperature equals \\(40\\,^{\\circ}\\mathrm C\\). Give the exact value, then an approximate value in minutes.\n<li>Apply two steps of Euler's method with a step of \\(1\\) minute. Compare the approximation obtained after two minutes with the exact value \\(T(2)\\).\n<li>Give a concrete situation in which the assumption of a constant room temperature would no longer be appropriate.</ol><br><br>"
+   ]
+  }
+ ],
+ "editions": {
+  "fr": {},
+  "en": {}
+ }
 }

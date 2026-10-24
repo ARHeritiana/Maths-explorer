@@ -78,3 +78,9 @@ function P3(x0,y0,w,h,s,c,cam){return{x0:x0,y0:y0,w:w,h:h,s:s,c:c,cam:cam,
 ## 5. Report
 
 List which canvases are now draggable and what each handle controls, which scenes are in 3D, what was tested (projection round trip, pointer smoke), and that the render itself was not seen unless it was.
+## Repository integration
+
+Use the shared laboratory engine for handles and the repository's `camera3d.js` for genuinely spatial objects. The
+quadratic pilot is planar and uses the family template; its parameter selectors complement its draggable vertex,
+opening and intercept. The base skill's repository integration section governs shared-player and portable-export work.
+Do not replace shared camera or handle code with a copy of the legacy pointer protocol.

@@ -16,7 +16,7 @@ Read first: `AGENTS.md` (rules), `docs/ARCHITECTURE.md` (layout, data flow, comm
 ## Hard constraints (owner)
 - Never write Google Drive URLs or IDs, owner details, e-mails, or school, teacher or city names anywhere (code, data,
   docs, PDFs, commit messages). The site never links to a personal space. `tests/banned.py` checks hashed phrases.
-- Every resource exists in French and English with equal page counts (`tests/pdf_parity.py`).
+- Resource availability is explicit per language. French-only, English-only and bilingual editions are supported; page counts and file metadata are measured independently (`tests/pdf_parity.py`). The governing brief determines curriculum language.
 - (Withdrawn by the owner's brief: the site shows no AI notice.) Translate prose only: never maths, TikZ or listings.
 - No textbook statements reproduced. No em-dashes in new visible text. Visual design: `docs/DESIGN_V3.md` (the brief governs).
 - `make check` must pass before every push. Ask the owner before launching expensive multi-agent batches.
@@ -61,8 +61,7 @@ Chromium at `/opt/pw-browsers`.
   differ only in their random /ID keep the committed copy (no binary churn).
 
 ## Next steps (in order)
-1. English proof-read (largest quality gap): 16 of about 10,800 segments have status `reviewed`. Work course by course,
-   starting with the owner's course; edit `<id>.en.json`, then `twin gen`. Ask the owner before any multi-agent batch.
+1. Continue English proofreading course by course; edit `<id>.en.json`, then `twin gen`. Exact reviewed segments and remaining scope are recorded privately. Translation alignment alone does not establish proofreading.
 2. Phase C (site): merge the six stylesheets onto `site/styles/tokens.css`, split `site/js/app.js` into route modules,
    write `docs/DESIGN_SYSTEM.md`, catalogue view from the manifest, teacher mode. Re-view every route at 360/768/1280 px
    in FR and EN after each step (`scratchpad` screenshot script pattern: Playwright, full page).

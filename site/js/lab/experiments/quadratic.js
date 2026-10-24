@@ -37,7 +37,33 @@ export default {
   prereq: ["Coordonnées, carrés, équations", "Coordinates, squares, equations"],
   model: Q,
   state: { a: 1, b: 0, c: -2 },
+  presentationControls: ["a", "form", "coordinate1", "coordinate2", "orientation", "rootCase"],
   controls: {
+    form: {
+      kind: "choice", label: ["Paramètres", "Parameters"], get: Q.inputForm,
+      options: [{value:"abc",label:["a, b, c","a, b, c"]},{value:"vertex",label:["a, α, β","a, α, β"]},{value:"roots",label:["a, x₁, x₂","a, x₁, x₂"]}],
+      set: (s, form) => form === "roots" && !model(s).roots.length ? {form:"vertex", modeWarning:true} : {form, modeWarning:false},
+    },
+    coordinate1: {
+      kind:"slider", min:-96, max:96, step:0.25, label:["b / α / x₁", "b / α / x₁"],
+      range:s=>Q.inputForm(s)==="abc"?[-96,96]:[-6,6],
+      get:s=>Q.coordinates(s)[0], set:(s,v)=>Q.editCoordinate(s,0,v),
+    },
+    coordinate2: {
+      kind:"slider", min:-96, max:96, step:0.25, label:["c / β / x₂", "c / β / x₂"],
+      range:s=>Q.inputForm(s)==="abc"?[-96,96]:Q.inputForm(s)==="roots"?[-6,6]:[-6,8],
+      get:s=>Q.coordinates(s)[1], set:(s,v)=>Q.editCoordinate(s,1,v),
+    },
+    orientation: {
+      kind:"choice", label:["Ouverture", "Opening"], get:s=>Math.sign(s.a),
+      options:[{value:1,label:["a > 0","a > 0"]},{value:-1,label:["a < 0","a < 0"]}],
+      set:(s,sign)=>Math.sign(s.a)===sign?null:Q.orientation(s,sign),
+    },
+    rootCase: {
+      kind:"choice", label:["Discriminant", "Discriminant"], get:s=>Math.sign(model(s).discriminant),
+      options:[{value:1,label:["Δ > 0","Δ > 0"]},{value:0,label:["Δ = 0","Δ = 0"]},{value:-1,label:["Δ < 0","Δ < 0"]}],
+      set:Q.rootCase,
+    },
     vertex: {
       kind: "handle", color: "accent", label: ["Sommet S", "Vertex S"], grid: 0.5,
       at: (s) => { const m = model(s); return [m.alpha, m.beta]; },
@@ -58,7 +84,10 @@ export default {
     },
     a: {
       kind: "slider", min: -3, max: 3, step: 0.25, label: ["a (ouverture)", "a (opening)"],
-      get: (s) => s.a, set: (s, v) => setA(s, v),
+      get: (s) => s.a, set: (s, v) => {
+        const a = v === 0 ? (s.a < 0 ? -0.25 : 0.25) : v;
+        return Q.inputForm(s) === "abc" ? {a} : Q.inputForm(s) === "roots" ? {a, ...Q.fromRoots(a,...Q.coordinates(s))} : setA(s,a);
+      },
     },
   },
   views: {
@@ -80,10 +109,11 @@ export default {
       },
     },
     formula(s, { fmt }) {
-      const m = model(s), num = (v) => fmt.num(v, 4);   // four decimals: a, α, β and c are multiples of 1/16, so nothing is rounded
-      // each distinct writing once: the two forms coincide when the vertex is on the y-axis and b = 0
-      const forms = [expanded(s, num), canonical(m, num)].filter((f, i, all) => all.indexOf(f) === i);
-      return `f(x) = ${forms.join(" = ")}`;
+      const m = model(s), num = (v) => fmt.num(v, 6);
+      const first = expanded(s, num), second = canonical(m, num);
+      const exactFirst = [s.a,s.b,s.c].every(v=>fmt.isExact(v,6));
+      const exactSecond = [m.a,m.alpha,m.beta].every(v=>fmt.isExact(v,6));
+      return `f(x) ${exactFirst ? "=" : "≈"} ${first}${first === second ? "" : ` ${exactSecond ? "=" : "≈"} ${second}`}`;
     },
     readout(s, { fmt }) {
       const m = model(s), num = fmt.num, fr = fmt.fr;
@@ -91,9 +121,12 @@ export default {
         : m.roots.length === 1 ? (fr ? `racine double ${fmt.rel("x₀", m.roots[0])}` : `double root ${fmt.rel("x₀", m.roots[0])}`)
         : `${fmt.rel("x₁", m.roots[0])}${fr ? " ; " : ", "}${fmt.rel("x₂", m.roots[1])}`;
       return [
-        [["a ; b ; c", "a, b, c"], fr ? `${num(s.a)} ; ${num(s.b)} ; ${num(s.c)}` : `${num(s.a)}, ${num(s.b)}, ${num(s.c)}`],
+        [["a ; b ; c", "a, b, c"], fr ? `${fmt.read(s.a)} ; ${fmt.read(s.b)} ; ${fmt.read(s.c)}` : `${fmt.read(s.a)}, ${fmt.read(s.b)}, ${fmt.read(s.c)}`],
         [["Sommet (α ; β)", "Vertex (α, β)"], fmt.pt(m.alpha, m.beta)],
         [["Δ et racines", "Δ and roots"], `${fmt.rel("Δ", m.discriminant, 4)} ; ${roots}`],
+        [["Paramètres actifs", "Active parameters"], s.modeWarning || s.form === "roots" && !m.roots.length
+          ? (fr ? "Pas de racine réelle : utiliser a, α, β." : "No real roots: use a, α, β.")
+          : Q.inputForm(s) === "abc" ? "a, b, c" : Q.inputForm(s) === "roots" ? "a, x₁, x₂" : "a, α, β"],
       ];
     },
   },

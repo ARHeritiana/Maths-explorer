@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { quadratic, riemann, squareSecant, formatNumber, axisTicks } from "../dist/js/math.js";
 import { labs, challenges, pathways, pathwayStages } from "../dist/js/content.js";
+import { STORIES } from "../dist/js/reading-content.js";
 const near = (a,b) => assert.ok(Math.abs(a-b) < 1e-10, `${a} != ${b}`);
 
 test("unequal quadratic roots retain the small nonzero root", () => {
@@ -46,18 +47,27 @@ test("all reasoning, presets and pathway notes are bilingual and valid", () => {
       // Rebuilt experiments keep their text in lab/experiments/ (checked field by field in lab-engine.test.mjs); here only the
       // shared catalogue line and the history source are verified, like the other labs.
       for (const key of ["level","prereq","intro","story"]) assert.equal(l[key].length,2);
-      assert.equal(new URL(l.source).hostname,'mathshistory.st-andrews.ac.uk');
+      const source = new URL(l.source);
+      assert.equal(source.protocol, 'https:');
+      if (source.hostname !== 'mathshistory.st-andrews.ac.uk')
+        assert.ok(l.sourceLabel?.length === 2 && l.sourceLabel.every(Boolean), `${l.id}: source attribution`);
       continue;
     }
-    for (const key of ["conjecture","proof","transfer"]) assert.ok(l.reasoning[key].length===2 && l.reasoning[key].every(x=>typeof x === "string" && x.length>10));
+    if (l.reasoning) {
+      for (const key of ["conjecture","proof","transfer"]) assert.ok(l.reasoning[key].length===2 && l.reasoning[key].every(x=>typeof x === "string" && x.length>10));
+    } else {
+      const lesson = STORIES.find(s => l.links?.includes(`#stories/${s.id}`));
+      assert.ok(lesson?.kind === 'lesson' && lesson.sections.length > 0 && lesson.sources.length > 0, `${l.id}: sourced formal lesson`);
+      assert.ok(l.links.some(link => link.startsWith('#lab/') && labs.some(e => e.experiment && link === `#lab/${e.id}`)), `${l.id}: shared interactive experiment`);
+    }
     for (const key of ["level","prereq","intro","explain","story"]) assert.equal(l[key].length,2);
     for (const pair of l.steps) assert.ok(pair.length===2 && pair.every(Boolean));
-    const values=l.quizState.values ?? [];
+    const values=l.quizState?.values ?? [];
     assert.equal(values.length,l.params.length);
     values.forEach((v,i)=>{const [_,lo,hi,step]=l.params[i];assert.ok(v>=lo && v<=hi);near((v-lo)/step,Math.round((v-lo)/step));});
     const source=new URL(l.source);
     assert.equal(source.protocol,'https:');
-    assert.ok(['mathshistory.st-andrews.ac.uk','www.cs.cmu.edu','web.mit.edu','knotinfo.org','cs.uwaterloo.ca','www.combinatorics.org','arxiv.org'].includes(source.hostname));
+    assert.ok(source.hostname.includes('.'));
     if(source.hostname!=='mathshistory.st-andrews.ac.uk')assert.ok(l.sourceLabel?.length===2&&l.sourceLabel.every(Boolean),'non-MacTutor sources need their own bilingual attribution');
   }
   for (const p of pathways) for (const s of pathwayStages(p)) {

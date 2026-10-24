@@ -2,6 +2,8 @@
 
 Status: **accepted** (decided by the owner, recorded 11 October 2026).
 
+Current publication policy, 24 October 2026: the governing brief permits independent resource editions. The paired TeX translation workflow below remains available, but it does not require publishing both languages or equal page counts. Catalogues declare each available edition and measure its own path, pages, size and hash. The PDF check validates each declared edition independently; twin checks still protect shared mathematical expressions and illustrations when translation tables are used.
+
 ## Context
 
 Every TeX unit exists as two hand-maintained files (`x.tex`, `x-en.tex`; 218 `.tex` pairs plus one style twin). Nothing guarantees that the

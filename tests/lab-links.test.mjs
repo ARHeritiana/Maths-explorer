@@ -8,6 +8,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { EXPERIMENTS, resolveRef, parseRef, allRefs } from '../dist/js/lab/registry.js';
+import {STORIES} from '../dist/js/reading-content.js';
 
 const read = (p) => fs.readFileSync(new URL('../' + p, import.meta.url), 'utf8');
 const manifest = JSON.parse(read('content/data/manifest.json'));
@@ -43,10 +44,11 @@ test('every lab reference of the manifest resolves, and a chapter names an exper
   assert.ok(n > 60, `${n} references`);
 });
 
-test('every experiment is reachable from at least one chapter (none is lab-only)', () => {
+test('every experiment is reachable from a chapter or its sourced mathematical reading', () => {
   const universityRefs=manifest.university.sections.flatMap(s=>s.sequences.map(q=>q.labRef).filter(Boolean));
   for(const ref of universityRefs)assert.ok(resolveRef(ref), 'university: '+ref);
-  const reached = new Set([...chapters.flatMap((c) => c.labs.map((r) => r.split('/')[0])),...universityRefs.map(r=>r.split('/')[0])]);
+  const readingRefs=STORIES.filter(s=>s.sources?.length&&s.sections?.length).flatMap(s=>(s.links||[]).filter(r=>r.startsWith('#lab/')).map(r=>r.split('/')[1]));
+  const reached = new Set([...chapters.flatMap((c) => c.labs.map((r) => r.split('/')[0])),...universityRefs.map(r=>r.split('/')[0]),...readingRefs]);
   const labOnly = EXPERIMENTS.filter((e) => !reached.has(e.id)).map((e) => e.id);
   assert.deepEqual(labOnly, [], `lab-only experiments: ${labOnly}`);
 });

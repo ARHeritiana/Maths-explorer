@@ -94,6 +94,8 @@ CHECKS = [
     ('banned content', [PY, 'tests/banned.py']),
     ('publication privacy surfaces', [PY, 'tests/privacy_scan.py']),
     ('publication privacy fixtures', [PY, 'tests/test_privacy_scan.py']),
+    ('independent language editions', [PY, 'tests/test_resource_editions.py']),
+    ('independent slide editions', [PY, 'tests/test_slide_editions.py']),
     ('FR/EN twin parity (maths and figures)', [PY, 'tests/twin_parity.py']),
     ('PDF editions: language policy, parity and safe links', [PY, 'tests/pdf_parity.py']),
     ('stated counts match the content', [PY, 'tests/count_claims.py']),

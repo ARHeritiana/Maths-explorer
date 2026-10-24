@@ -1,3 +1,4 @@
+import {editionFor} from './resource-editions.js';
 import {assetHref} from "./data-loader.js";
 import {courses} from "./catalogue-data.js";
 import { sequenceModel, goalFields } from './sequence-model.js';
@@ -18,14 +19,15 @@ let mathPromise;
 async function math(root){
  if(!mathPromise){mathPromise=(async()=>{
   if(!window.MathJax?.startup?.promise){
-   window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableAssistiveMml:false},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{pgcd:'\\operatorname{PGCD}',ppcm:'\\operatorname{PPCM}',/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/}}};
+   window.MathJax={startup:{typeset:false},svg:{fontCache:'none'},options:{enableAssistiveMml:true},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{pgcd:'\\operatorname{PGCD}',ppcm:'\\operatorname{PPCM}',/*mx-math*/"N":"\\mathbb{N}","Z":"\\mathbb{Z}","D":"\\mathbb{D}","Q":"\\mathbb{Q}","R":"\\mathbb{R}","C":"\\mathbb{C}","vect":["\\overrightarrow{#1}",1],"vi":"\\vec{\\imath}","vj":"\\vec{\\jmath}","vk":"\\vec{k}","norm":["\\left\\lVert #1\\right\\rVert",1],"vc":["\\begin{pmatrix}#1\\\\#2\\end{pmatrix}",2],"deter":["\\det\\left(#1,#2\\right)",2],"abs":["\\left\\lvert #1\\right\\rvert",1],"dd":"\\,\\mathrm{d}","e":"\\mathrm{e}","Card":"\\operatorname{Card}","E":"\\operatorname{E}","V":"\\operatorname{V}","degre":"^{\\circ}","un":["\\,\\mathrm{#1}",1],"sci":["#1\\times10^{#2}",2],"llbracket":"\\mathopen{[\\mkern-3mu[}","rrbracket":"\\mathclose{]\\mkern-3mu]}"/*end mx-math*/}}};
    await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='./vendor/mathjax-tex-svg.js';s.onload=resolve;s.onerror=reject;document.head.append(s);});
   }
   await window.MathJax.startup.promise;
  })();}
- try {await mathPromise;if(root.isConnected){await window.MathJax.typesetPromise([root]);root.querySelectorAll('mjx-assistive-mml').forEach(x=>x.remove());}}catch{mathPromise=null;}
+ try {await mathPromise;if(root.isConnected){await window.MathJax.typesetPromise([root]);}}catch{mathPromise=null;}
 }
-function fileLink(f,L,label,page=1){if(!f)return '';const path=L?f.englishPath:f.path;if(!path)return '';const bytes=L?f.englishBytes:f.bytes;return `<a class="document-link" href="./${E(assetHref(path))}#page=${page}" target="_blank" rel="noopener">${E(label)}<span>PDF · ${f.pages} p.${bytes?' · '+Math.round(bytes/1024)+(L?' KB':' Ko'):''}</span></a>`;}
+function fileLink(f,L,label,page=1){if(!f)return '';const edition=editionFor(f,L?'en':'fr');if(!edition)return `<p class="resource-note">${E(label)} · ${P('Édition française indisponible','English edition unavailable')[L]}</p>`;const {path,bytes,pages}=edition;return `<a class="document-link" href="./${E(assetHref(path.replace(/^\.\//,'')))}#page=${page}" target="_blank" rel="noopener">${E(label)}<span>PDF · ${pages} p.${bytes?' · '+Math.round(bytes/1024)+(L?' KB':' Ko'):''}</span></a>`;}
+
 function slideBody(s,id,L){if(s.k==='code')return `<pre class="sequence-code"><code>${E((s.b[L]||'').replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&amp;','&'))}</code></pre>`;const figs=(s.f||[]).map(p=>`<figure class="sequence-figure"><img loading="lazy" src="./slides/fig/${id}-${p[L]}${L?'-en':''}.svg" alt="${E(s.t[L])}"></figure>`).join('');return `<div class="sequence-maths">${s.b[L]||''}</div>${figs}`;}
 function taskHelp(s,L){return (s.hints||[]).map((hint,i)=>`<details><summary>${P('Aide','Hint')[L]} ${i+1}</summary><div class="sequence-maths">${hint[L]}</div></details>`).join('');}
 function questionCards(items,c,L){return items.map(s=>`<article class="sequence-card"><h3>${E(s.t[L])}</h3>${slideBody(s,c.id,L)}${taskHelp(s,L)}${s.a?`<details><summary>${P('Correction : après une réponse rédigée','Solution: after writing your answer')[L]}</summary><div class="sequence-maths">${s.a[L]}</div></details>`:''}</article>`).join('');}
@@ -67,6 +69,7 @@ export function mountChapterSequence(c,t){
    if(step==='documents')html=chapterDocuments(c,L);
    const pos=steps.findIndex(([k])=>k===step);html+=`<nav class="sequence-forward" aria-label="${P('Étape suivante','Next step')[L]}">${pos>0?`<a href="#chapter/${c.id}/${steps[pos-1][0]}">← ${steps[pos-1][1][L]}</a>`:'<span></span>'}${pos<steps.length-1?`<a class="btn btn-primary" href="#chapter/${c.id}/${steps[pos+1][0]}">${steps[pos+1][1][L]} →</a>`:''}</nav>`;
    root.innerHTML=html;root.setAttribute('aria-busy','false');
+   const announcement=document.createElement('p');announcement.className='sr-only';announcement.setAttribute('role','status');root.append(announcement);queueMicrotask(()=>{if(!cancelled)announcement.textContent=P('Chapitre chargé','Chapter loaded')[L]+': '+c.title[L];});
    root.querySelectorAll('[data-scroll]').forEach(a=>a.onclick=e=>{e.preventDefault();root.querySelector('#'+a.dataset.scroll)?.scrollIntoView({behavior:'instant',block:'start'});});
    root.querySelectorAll('.chapter-lab-host').forEach(el=>live.push(lazyLab(el,L)));
    root.querySelectorAll('[data-widget]').forEach(el=>{const s=model.activities[+el.dataset.widget];live.push(mount({...s.w,showDelta:false},{host:el.querySelector('.canvas-wrap'),controls:el.querySelector('.wctl'),readout:el.querySelector('.readout'),hint:el.querySelector('.hint-line'),lang:L}));});

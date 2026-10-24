@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
 \mxunit{premiere-c01}{Sequences and discrete models}\label{C01}
 \begin{keypoint}[Chapter path]
-\textbf{Objectives.} Turn a story into a sequence; distinguish increment from rate; compute terms and sums; justify a variation; investigate a threshold.
+\textbf{Objectives.} Turn a story into a sequence; distinguish increment from rate; compute terms and sums; justify monotonicity; investigate a threshold.
 
 \textbf{Prerequisites.} Algebraic manipulation, integer powers, percentages, affine function, Python loop.
 
@@ -37,18 +37,18 @@ A real sequence is a function whose variable is an integer: to each allowed inde
 \begin{keypoint}[Definition and results]
 A sequence is arithmetic with common difference $r$ if $u_{n+1}=u_n+r$ for every allowed index. Then $u_n=u_p+(n-p)r$ for $n\geq p$. If $r>0$ it is strictly increasing; if $r<0$, strictly decreasing; if $r=0$, constant. The points lie on a straight line.
 \end{keypoint}
-\paragraph{Status and justification.} For fixed $p$, the sequence $v_n=u_p+(n-p)r$ satisfies $v_p=u_p$ and $v_{n+1}=v_n+r$. By uniqueness of the successive terms, $u_n=v_n$. The variation follows from the sign of $u_{n+1}-u_n=r$.
+\paragraph{Status and justification.} For fixed $p$, the sequence $v_n=u_p+(n-p)r$ satisfies $v_p=u_p$ and $v_{n+1}=v_n+r$. By uniqueness of the successive terms, $u_n=v_n$. Monotonicity follows from the sign of $u_{n+1}-u_n=r$.
 \begin{example}A tank holds 140 L and receives 12 L per minute. After $n$ minutes, $u_n=140+12n$. At 5 min: 200 L. If we start the indexing at 1 with 140 L, we write $u_n=140+12(n-1)$.\end{example}\label{C01-EX2}
 \begin{pitfall}Adding a constant percentage does not generally give an arithmetic sequence.\end{pitfall}
 \begin{application}We know $u_3=17$ and $u_8=37$ for an arithmetic sequence. Determine $r$ and $u_0$.\end{application}\label{C01-AP2}
 \section{Geometric sequences}\label{C01-U3}
 \begin{keypoint}[Definition and results]
-A sequence is geometric with common ratio $q$ if $u_{n+1}=qu_n$. For $n\geq p$, $u_n=u_pq^{n-p}$, with the convention that an empty product equals 1. A constant rate $t$ gives $q=1+t$. The variation is decided with $u_{n+1}-u_n=(q-1)u_n$. For $q<0$, the signs may alternate.
+A sequence is geometric with common ratio $q$ if $u_{n+1}=qu_n$. For $n\geq p$, $u_n=u_pq^{n-p}$, with the convention that an empty product equals 1. A constant rate $t$ gives $q=1+t$. Monotonicity is determined using $u_{n+1}-u_n=(q-1)u_n$. For $q<0$, the signs may alternate.
 \end{keypoint}
 \paragraph{Status and justification.} The formula gives the first term, and multiplying it by $q$ gives the next term. The uniqueness of the generation justifies the formula. For $q=0$, all terms after the first are zero; treat this case directly.
 \begin{example}A quantity of 160 mg loses \pc{25} at each step: $u_n=160(\dfrac{3}{4})^n$. The terms are positive and $u_{n+1}-u_n=-\dfrac{u_n}{4}<0$. We obtain $u_2=90$ mg, without confusing a \pc{25} decrease with removing 25 mg.\end{example}\label{C01-EX3}
 \begin{pitfall}$q>1$ is not enough to conclude that every geometric sequence is increasing: the sign of the first term matters.\end{pitfall}
-\begin{application}Study the variation of $u_n=-2\times3^n$, then of $v_n=2(-1)^n$.\end{application}\label{C01-AP3}
+\begin{application}Study the monotonicity of $u_n=-2\times3^n$, then of $v_n=2(-1)^n$.\end{application}\label{C01-AP3}
 \section{Sums, indices and proofs}\label{C01-U4}
 \begin{keypoint}[Definition and results]
 For $n\geq1$, $1+2+\cdots +n=\dfrac{n(n+1)}{2}$. For $q\ne1$ and $n\geq0$, $1+q+\cdots +q^n=\dfrac{1-q^{n+1}}{1-q}$. For $q=1$, the sum equals $n+1$. Hence, from $u_p$ to $u_n$, an arithmetic sum equals $\dfrac{(n-p+1)(u_p+u_n)}{2}$; a geometric sum equals $\dfrac{u_p(1-q^{n-p+1})}{1-q}$ if $q\ne1$.
@@ -74,7 +74,7 @@ Consider the sequence $(u_n)$ defined for every natural number $n$ by $u_n=2n^2-
 \begin{enumerate}[label=\arabic*.]
 \item Calculate $u_0$, $u_1$ and $u_4$ separately, showing the substitution of $n$.
 \item Express $u_{n+1}$ in terms of $n$, then expand and simplify this expression.
-\item Calculate $u_{n+1}-u_n$. By studying its sign for integer indices, describe the variations of the sequence.
+\item Calculate $u_{n+1}-u_n$. By studying its sign for integer indices, describe the monotonicity of the sequence.
 \end{enumerate}
 \mxexercisehead{C01-E2}{Choosing the right model}
 A nursery currently has 100 young plants. It is considering two models to forecast its stock: in model A, the stock increases by 15 plants per month; in model B, it increases by 10 percent per month. Let $a_n$ and $b_n$ be the forecast stocks after $n$ months, with $a_0=b_0=100$. The two models are studied separately.
@@ -88,7 +88,7 @@ The sequence $(u_n)$ is geometric, defined from index 0. Its common ratio $q$ is
 \begin{enumerate}[label=\arabic*.]
 \item Determine $q$ by relating the two known terms. Present all the steps that lead to choosing its value.
 \item Deduce $u_0$, then $u_5$.
-\item What would change if the hypothesis $q>0$ were removed? Give all the possible reasons and explain whether the value of $u_5$ would be affected.
+\item What would change if the hypothesis $q>0$ were removed? Give all the possible common ratios in that case and explain whether the value of $u_5$ would be affected.
 \end{enumerate}
 \mxexercisehead{C01-E4}{Rows of seats}
 A theatre has 12 rows. The first row has 18 seats; each following row has two more seats than the previous one. Let $u_n$ be the number of seats in row $n$, for $1\leq n\leq12$.

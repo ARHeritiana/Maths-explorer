@@ -4,6 +4,7 @@ PLAYWRIGHT_CHROMIUM_PATH optionally selects a system browser.
 import os
 from urllib.parse import urljoin, urlparse
 from playwright.sync_api import sync_playwright
+from accessibility_browser import check_home_chapter
 
 # The experiments with missions (site/js/lab/), walked mission by mission.
 EXPERIMENTS = ['quadratic','trig','sequences','derivative','integral','probability','vectors','statistics','complex','line','exponential','cobweb','matrix','space-lines',
@@ -58,6 +59,8 @@ def walk_experiment(page, name):
     assert page.locator('.lab2-argument').is_visible(), 'the argument comes after the last mission'
 CHALLENGES = ['gauss-sum','doors','chess','nim','pigeonhole','squares','hanoi','eggs','konigsberg','josephus','ramsey','artgallery','gridpaths','cookies','jugs','fly','horses','cake','queens','snail','bridge','lighteggs','fakecoins','reflect','lunes','star','box','merge','cham','pegs','nails','inversions','piles','cheryl','sumproduct']
 CHALLENGE_ANSWERS = ['5050','10','30','1','8','400','63','14','1','19','6','4','210','1001','6','1000','7','900','3','8','17','2','45','5','24','180','5','719','0','0','4','13','45','16','52']
+CHALLENGES += ['rooms', 'knights', 'factorials']
+CHALLENGE_ANSWERS += ['1', '63', '12']
 BASE = os.environ.get('MATHS_EXPLORER_URL','http://localhost:4173')
 
 with sync_playwright() as p:
@@ -72,6 +75,8 @@ with sync_playwright() as p:
     errors = []
     page.on('pageerror', lambda e: errors.append(e.stack or str(e)))
     assert page.goto(BASE).status == 200
+    check_home_chapter(page, BASE, 'test-results')
+    page.goto(BASE)
     # The welcome page is neutral (no school level in its text), draws live art, and the gallery holds the curiosities.
     page.wait_for_selector('.stage-fg'); page.wait_for_timeout(1200)
     home = page.locator('.welcome').inner_text()
@@ -102,9 +107,12 @@ with sync_playwright() as p:
     player.on('pageerror', lambda e: errors.append(str(e)))
     player_deck = page.request.get(BASE+'/slides/data/premiere-02.json').json()
     widget_at = next(i for i,s in enumerate(player_deck['slides']) if s['k'] == 'widget')
-    player.goto(BASE+'/slides/player.html?deck=premiere-02&lang=en#'+str(widget_at))
+    player.goto(BASE+'/slides/player.html?deck=premiere-02#'+str(widget_at))
     player.wait_for_selector('#wcanvas canvas')
     assert player.locator('html').get_attribute('lang') == 'fr'
+    player.goto(BASE+'/slides/player.html?deck=premiere-02&lang=en#'+str(widget_at))
+    player.wait_for_selector('#wcanvas canvas')
+    assert player.locator('html').get_attribute('lang') == 'en', 'a requested available edition is honored'
     assert player.locator('#lng,#dl,#explore-choice,.canvas-navigation button').count() == 0
     assert player.locator('#wctl select').count() == 0, 'point selection must stay on the canvas'
     figure = player.locator('#wcanvas canvas')
@@ -167,8 +175,8 @@ with sync_playwright() as p:
         assert response.body().startswith(b'%PDF-' if key in ['module-workbook','module-statements'] else b'PK'), key
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
-    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 22, 'the laboratory index lists the twenty-two experiments, grouped by type of activity or idea'
-    assert page.locator('.lab2-group').count() == 11
+    page.goto(BASE+'/#lab'); assert page.locator('.lab2-card-link').count() == 37, 'the laboratory index includes all registered experiments'
+    assert page.locator('.lab2-group').count() == 15
     page.goto(BASE+'/#lab/galton'); page.wait_for_selector('#object-stage canvas'); assert page.evaluate('location.hash') == '#gallery/galton', 'curiosities redirect to the gallery'
     for language in ['fr','en']:
         page.locator('[data-lang="'+language+'"]').click()
@@ -206,11 +214,11 @@ with sync_playwright() as p:
     assert page.locator('html').get_attribute('lang') == 'en'
     assert page.evaluate("JSON.parse(localStorage.getItem('maths-explorer-v1')).completed.length") == len(EXPERIMENTS) + len(CHALLENGES)
     page.goto(BASE+'/#challenges')
-    for kind,count in [('play',22),('olympiad',13),('all',35)]:
+    for kind,count in [('play',24),('olympiad',14),('all',38)]:
         page.locator('[data-filter="'+kind+'"]').click()
         assert page.locator('.challenge-card').count() == count
     # "Lire": three tabs, texts and curiosities, and the cross-links shown both ways (Hanoi challenge and its legend).
-    page.goto(BASE+'/#biographies'); assert page.locator('.subnav a').count() == 3 and page.locator('.read-card').count() == 3
+    page.goto(BASE+'/#biographies'); assert page.locator('.subnav a[href="#history"]').count() == 1 and page.locator('.read-card').count() == 4
     page.goto(BASE+'/#stories/gauss-sum'); page.locator('.read-also a[href="#challenges/gauss-sum"]').click(); page.wait_for_url('**/#challenges/gauss-sum')
     page.goto(BASE+'/#challenges/hanoi'); page.locator('.read-also a[href="#stories/hanoi-legend"]').click(); page.locator('.read-article h1').wait_for()
     assert page.locator('.read-also a[href="#challenges/hanoi"]').count() == 1

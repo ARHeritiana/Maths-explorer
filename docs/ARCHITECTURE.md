@@ -103,3 +103,5 @@ Canvas cameras remain independent of mathematical state. Wheel/pinch zoom, direc
 replace view and point button toolbars. H selects a point and arrows move it; Shift+arrows pan, +/- zoom, and 0 resets.
 SVG editors retain their own pointer gestures and support Shift-drag/pinch camera interaction. Double-click resets
 camera views. Mathematical mode choices, reveal/navigation controls and fullscreen remain available.
+
+Catalogue and companion file records declare `editions` keyed by `fr` and/or `en`. Each edition has its own authored `path`; the catalogue build measures `bytes`, `pages` and `sha256` from that file. An optional `htmlPath` names the matching web edition. An absent language stays absent: neither paths nor page counts imply a translation. Browsing and downloads use the curriculum language, report unavailable editions, and packs remain disabled until every selected item has that language. Existing generated URL/English fields remain compatibility aliases.
