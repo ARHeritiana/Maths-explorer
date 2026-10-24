@@ -34,6 +34,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `slides_lab_browser.py` | Playwright: a deck with a lab widget in the player and in the self-contained export (mount in the widget host, controls, stepper, readout and prompt in the player's areas, MathJax-typeset text, handle drag adds no element, N and P only with canvas focus, arrow keys stay the player's, destroyed when leaving); a chapter page mounts its first lab reference inline, lazily, with one link per reference, destroyed on navigation (run by `run_browser.py` after `lab_browser.py`) |
 | `slides_check.py`, `slides_export_check.py`, `slides_smoke.py` | decks vs drafts, HTML exports, every deck in Chromium |
 | `banned.py`, `banned.mjs`, `banned-sha256.json` | banned names (hashed), links, e-mail addresses |
+| `privacy_scan.py`, `test_privacy_scan.py` | complete published PDF/text inventory; filenames, PDF text, Info metadata, XMP, outlines, links, annotations, form fields, attachment review and visible notices; adversarial PDF fixtures and private-report handling |
 | `twin_parity.py`, `test_twin.py`, `pdf_parity.py`, `tex_lint.py`, `test_notation.py`, `test_enrichment.py` | TeX system: twins, PDF editions, unit lint, notation, enrichment converter |
 | `test_content_dependencies.py` | dependency invalidation of `mxbuild.refresh` |
 | `count_claims.py` | counts written in prose match the content |
