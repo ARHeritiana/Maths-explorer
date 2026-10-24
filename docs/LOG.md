@@ -171,3 +171,5 @@ Append one dated line per finished task at the end of the first list (before "Da
 24 October 2026: Added complete publication privacy inventories for PDF text, metadata, links, annotations and first-party text assets, with adversarial fixtures and a private-report option.
 
 24 October 2026: Integrated independent language editions and portable slides, the quadratic pilot, mirrored-room and dynamics experiments, inference, fair division, topology, certified-polyhedron motion, three exact challenges, history timelines and model-based topic discovery. Expanded mathematical, interaction, privacy, accessibility and propagation checks; remaining curriculum review and device acceptance stay separately tracked.
+
+24 October 2026: Guard the asynchronous statistics readout in the browser suite; verify the exact mean after a temporarily empty result container so slower runners wait for the same result.
