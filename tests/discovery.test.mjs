@@ -83,15 +83,18 @@ test('search is accent-insensitive and composes with format, level and membershi
   assert.deepEqual(filterDiscovery(index,{query:'equations courbes',format:'lab',level:'Advanced',topic:'algebra'}).map(x=>x.route),['#lab/new']);
   assert.equal(filterDiscovery(index,{query:'equations courbes',format:'challenge'}).length,0);
 });
-test('the rendered format selector offers PDF and filters actual chapter resources',()=>{
-  const index=buildDiscoveryIndex({...data,chapters:[{...data.chapters[0],files:[{kind:'notes'}]}]});
+test('the rendered format selector labels PDF and HTML editions and filters actual chapter resources',()=>{
+  const index=buildDiscoveryIndex({...data,chapters:[{...data.chapters[0],formats:['PDF','HTML'],files:[{kind:'notes'}]}]});
   const t=pair=>pair[1],dom=new JSDOM(discoveryPage(index,'','',t)),root=dom.window.document;
   const cleanup=bindDiscovery(root,index,'','',t),select=root.querySelector('select[name="format"]');
   assert.ok(select.querySelector('option[value="pdf"]'));
+  assert.equal(select.querySelector('option[value="html"]').textContent,'HTML');
   select.value='pdf';select.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
   const links=[...root.querySelectorAll('#discovery-results h2 a')].map(a=>a.getAttribute('href'));
   assert.deepEqual(links,['#chapter/premiere-02']);
   assert.equal(root.querySelector('#discovery-count').textContent,'1 resources');
+  select.value='html';select.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
+  assert.deepEqual([...root.querySelectorAll('#discovery-results h2 a')].map(a=>a.getAttribute('href')),['#chapter/premiere-02']);
   cleanup();dom.window.close();
 });
 const item=(id,format='lab',extra={})=>({route:`#${format==='gallery'?'gallery':'lab'}/${id}`,format,title:P(id),...extra});

@@ -1,6 +1,6 @@
 // Pure assembly and queries: rebuilding from the current registries removes stale routes and counts.
 import {TOPICS, membershipsFor} from './topic-registry.js';
-export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF']};
+export const FORMAT_LABELS = {lab:['Laboratoire','Laboratory'], gallery:['Curiosité','Curiosity'], challenge:['Défi','Challenge'], biography:['Biographie','Biography'], story:['Histoire','Story'], timeline:['Chronologie','Timeline'], chapter:['Chapitre','Chapter'], lesson:['Leçon','Lesson'], workshop:['Atelier','Workshop'], pdf:['PDF','PDF'], html:['HTML','HTML']};
 const pair = value => Array.isArray(value)?value:[String(value || ''),String(value || '')];
 export const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 export function buildDiscoveryIndex({labs=[],challenges=[],chapters=[],libraryChapters=[],biographies=[],stories=[],people=[],advances=[],university={sections:[]},enrichment=[],courses=[]}={}) {
