@@ -49,7 +49,7 @@ with sync_playwright() as p:
     def ready(page, route):
         page.goto(BASE + '/#' + route)
         page.locator('.lab2-canvas, .lab2-calculation').wait_for()
-        page.wait_for_function("() => document.querySelector('.lab2-formula').textContent.length > 0")
+        page.wait_for_function("() => document.querySelector('.lab2-formula')?.textContent.length > 0")
 
     # ---- a drag adds or removes no element, in each experiment, in both themes
     for theme in ['jour', 'nuit']:
@@ -102,7 +102,7 @@ with sync_playwright() as p:
     assert page.evaluate("document.activeElement.classList.contains('lab2-handle')"), 'Tab reaches the first handle'
     first = page.locator('.lab2-readout dd').first.inner_text()
     page.keyboard.press('ArrowRight')
-    page.wait_for_function("f => document.querySelector('.lab2-readout dd').textContent !== f", arg=first)
+    page.wait_for_function("f => { const value = document.querySelector('.lab2-readout dd')?.textContent; return typeof value === 'string' && value !== f; }", arg=first)
     assert '35°' in page.locator('.lab2-readout dd').first.inner_text(), 'one grid step is 5 degrees'
     page.keyboard.press('Shift+ArrowRight')   # pans the camera, not the handle
     assert '35°' in page.locator('.lab2-readout dd').first.inner_text()
@@ -195,9 +195,9 @@ with sync_playwright() as p:
     page.wait_for_timeout(450)
     rec = page.evaluate("() => window.__rec")
     assert rec == {'added': 0, 'removed': 0, 'text': 0} or (rec['added'] == 0 and rec['removed'] == 0), ('running experiments adds no element', rec)
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '3111'")   # 1 + 10 + 100 + 1000 + 1000 + 1000
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '3111'")   # 1 + 10 + 100 + 1000 + 1000 + 1000
     page.locator('[data-control="run"] button').nth(3).click(); page.locator('[data-control="run"] button').nth(3).click()
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '5000'")   # the series is capped
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '5000'")   # the series is capped
     page.context.close()
 
     # ---- the camera is independent of the state: zoom (Ctrl + wheel), then change the state, the zoom stays

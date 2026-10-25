@@ -70,7 +70,7 @@ with sync_playwright() as p:
         # the player's convention on the canvas: an arrow key moves the selected handle (H selects the next one)
         before = page.locator('#readout .lab2-formula').inner_text()
         page.keyboard.press('ArrowRight')
-        page.wait_for_function("b => document.querySelector('#readout .lab2-formula').textContent !== b", arg=before)
+        page.wait_for_function("b => { const value = document.querySelector('#readout .lab2-formula')?.textContent; return typeof value === 'string' && value !== b; }", arg=before)
         step = page.locator('#step-count').inner_text()
         page.keyboard.press('ArrowRight')
         assert page.locator('#step-count').inner_text() == step, (where, 'an arrow key on the canvas is not the player step key')

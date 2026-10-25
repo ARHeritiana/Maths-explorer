@@ -119,7 +119,7 @@ with sync_playwright() as p:
     player.wait_for_selector('#readout mjx-container')
     before = player.locator('#readout').inner_html()
     figure.focus(); figure.press('ArrowRight')
-    player.wait_for_function('before => document.querySelector("#readout").innerHTML !== before', arg=before)
+    player.wait_for_function('before => { const value = document.querySelector("#readout")?.innerHTML; return typeof value === "string" && value !== before; }', arg=before)
     assert player.locator('#count').inner_text().startswith(str(widget_at+1)+' /'), 'moving a point must not advance the slide'
     player.screenshot(path='test-results/'+engine+'-quiet-player.png', full_page=True)
     player.close()
@@ -197,11 +197,11 @@ with sync_playwright() as p:
     run = page.locator('[data-control="run"] button')
     assert run.count() == 5
     run.nth(2).click(); run.nth(3).click()
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '1100'")
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '1100'")
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({p: 0})")
-    page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[1].textContent === '0'")   # p = 0: no success in any experiment
+    page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[1]?.textContent === '0'")   # p = 0: no success in any experiment
     run.nth(4).click()
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '0'")        # a new series starts at zero
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '0'")        # a new series starts at zero
     page.goto(BASE+'/#lab/sequences/signs')
     page.locator('.lab2-formula').wait_for()
     assert '×' in page.locator('.lab2-formula').inner_text() and page.locator('.lab2-readout').inner_text(), 'the geometric formula multiplies'
@@ -234,7 +234,7 @@ with sync_playwright() as p:
     page.locator('.lab2-handle').first.focus()
     before = page.locator('.lab2-readout dd').first.inner_text()
     page.keyboard.press('ArrowRight')
-    page.wait_for_function("b => document.querySelector('.lab2-readout dd').textContent !== b", arg=before)   # the next frame, not the key event
+    page.wait_for_function("b => { const value = document.querySelector('.lab2-readout dd')?.textContent; return typeof value === 'string' && value !== b; }", arg=before)   # the next frame, not the key event
     for route in ['lab/unknown','challenges/unknown','unknown']:
         page.goto(BASE+'/#'+route)
         assert page.locator('#main h1').inner_text() == 'Page not found'
@@ -242,24 +242,24 @@ with sync_playwright() as p:
     page.goto(BASE+'/#lab/derivative/sides')
     page.locator('.lab2-variant').nth(1).click()
     page.locator('#lab2-derivative-h').fill('10')
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '1.99'")
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '1.99'")
     assert page.locator('.lab2-readout dd').last.inner_text() == '\u22120.01', 'the gap to 2x is h, here negative'
     # Integral: n = 2 rectangles on [0 ; 1], right then midpoint heights.
     page.goto(BASE+'/#lab/integral/heights')
     page.locator('#lab2-integral-n').fill('2')
     page.locator('.lab2-variant').nth(1).click()
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '0.625'")
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '0.625'")
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({method: 'mid'})")
-    page.wait_for_function("() => document.querySelector('.lab2-readout dd').textContent === '0.3125'")
+    page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '0.3125'")
     # Vectors: u and v reduced to the zero vector give a flat parallelogram, collinear and without area.
     page.goto(BASE+'/#lab/vectors/collinear'); page.locator('.lab2-canvas').wait_for()
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({ux: 0, uy: 0, vx: 0, vy: 0})")
-    page.wait_for_function("() => /flat|aplati/.test(document.querySelectorAll('.lab2-readout dd')[2].textContent)")
+    page.wait_for_function("() => /flat|aplati/.test(document.querySelectorAll('.lab2-readout dd')[2]?.textContent ?? '')")
     assert page.locator('.lab2-readout dd').first.inner_text() == '0', 'the determinant of two zero vectors is 0, not -0'
     # Complex: the multiplier z is dragged on a polar grid; the readout gives modulus and argument.
     page.goto(BASE+'/#lab/complex/scale'); page.locator('.lab2-canvas').wait_for()
     page.evaluate("() => document.querySelector('.lab2').__lab.setState({r: 2, theta: 90})")
-    page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[0].textContent.includes('2') && document.querySelectorAll('.lab2-readout dd')[0].textContent.includes('90')")
+    page.wait_for_function("() => document.querySelectorAll('.lab2-readout dd')[0]?.textContent.includes('2') && document.querySelectorAll('.lab2-readout dd')[0]?.textContent.includes('90')")
     page.locator('[data-lang="en"]').click()
     page.goto(BASE+'/#pathways')
     # programmes and the note are folded (details): read the text content, not only what is rendered
