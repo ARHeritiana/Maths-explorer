@@ -46,7 +46,7 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \mxnewpage
 \section{Exercices progressifs}
 
-\mxexerciseitem{1}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$ et $\vec v$ ont pour coordonnées respectives $\pt{1;2;-1}$ et $\pt{3;6;-3}$. Sont-ils colinéaires ? Justifier.
+\mxexerciseitem{1}{Entraînement}$ABCDEFGH$ est un pavé droit avec $AB=4$, $AD=3$ et $AE=2$. Dans le repère $\pt{A;\vect{AB},\vect{AD},\vect{AE}}$, déterminer les coordonnées de $G$, puis celles du centre $O$ du pavé. Ce repère est-il orthonormé ?
 
 \mxexerciseitem{2}{Entraînement}Dans un repère orthonormé de l'espace, on considère $A\pt{0;1;2}$ et $B\pt{4;-1;0}$. Déterminer les coordonnées du milieu de $[AB]$, puis calculer la distance $AB$.
 
@@ -55,6 +55,7 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \mxexerciseitem{4}{Entraînement}Dans une base de l'espace, les vecteurs $\vec u$, $\vec v$ et $\vec w$ ont pour coordonnées $\pt{1;0;1}$, $\pt{0;1;1}$ et $\pt{1;1;0}$. Le triplet $\pt{\vec u;\vec v;\vec w}$ est-il une base de l'espace ? Justifier.
 
 \mxexerciseitem{5}{Entraînement}Dans un repère de l'espace, on considère $A\pt{1;0;2}$, $B\pt{3;-1;4}$ et $C\pt{5;-2;6}$. Déterminer si $C$ appartient à la droite $(AB)$. Justifier par un calcul vectoriel.
+
 
 \section{Travail dans le manuel ou une annale}\textbf{Barbazo, p. 328, exercice 21.} En classe après S15 : traiter les trois questions. Pour chaque intersection, commencer par identifier chacun des plans à partir des sommets du cube et des milieux indiqués. Distinguer deux plans sécants, confondus et strictement parallèles.
 
@@ -76,7 +77,7 @@ Les deux dernières imposent $s=t=1$, alors que la première demanderait $s+t=0$
 \item La perspective cavalière est une projection sur une feuille : des points distincts peuvent avoir la même image. Elle aide à conjecturer, mais une superposition apparente ne prouve pas l'appartenance à un plan.
 \end{enumerate}
 
-\paragraph{E1.}Les trois coordonnées de $\vec v$ valent trois fois celles de $\vec u$ : $\vec v=3\vec u$. Les deux vecteurs sont donc colinéaires.
+\paragraph{E1.}Dans le pavé droit, $\vect{BC}=\vect{AD}$ et $\vect{CG}=\vect{AE}$, donc $\vect{AG}=\vect{AB}+\vect{AD}+\vect{AE}$ et $G\pt{1;1;1}$. Le centre $O$ est le milieu de $[AG]$ : $O\pt{\frac12;\frac12;\frac12}$. Le repère n'est pas orthonormé : ses vecteurs de base sont orthogonaux, mais de normes $4$, $3$ et $2$. Les longueurs ne se lisent donc pas directement sur les coordonnées.
 
 \paragraph{E2.}Le milieu a pour coordonnées $\pt{\frac{0+4}{2};\frac{1-1}{2};\frac{2+0}{2}}=\pt{2;0;1}$. La différence de coordonnées donne $\vect{AB}=\pt{4;-2;-2}$ ; dans le repère orthonormé, $AB=\sqrt{16+4+4}=2\sqrt6$.
 
@@ -85,6 +86,7 @@ Les deux dernières imposent $s=t=1$, alors que la première demanderait $s+t=0$
 \paragraph{E4.}Les deux premiers vecteurs sont non colinéaires. Si le troisième était leur combinaison $\lambda(1,0,1)+\mu(0,1,1)$, les deux premières coordonnées imposeraient $\lambda=\mu=1$, mais la troisième vaudrait $2\ne0$. Les trois vecteurs sont non coplanaires ; ils forment donc une base de l'espace.
 
 \paragraph{E5.}$\vect{AB}=\pt{2;-1;2}$ et $\vect{AC}=\pt{4;-2;4}=2\vect{AB}$. Comme $A\ne B$, la droite $(AB)$ est définie et cette colinéarité prouve $C\in(AB)$.
+
 
 \subsection{Corrigé du DM10}\begin{enumerate}
 \item Par Chasles et les définitions des milieux,

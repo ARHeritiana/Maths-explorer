@@ -66,7 +66,8 @@ Language policy, owner decision of 25 October 2026 (binding on all future work u
 - French and Malagasy curricula: French only.
 - International curriculum (IB, SAT): English only.
 - University: the language the resource was started in.
-- Olympiad: not named in this decision; the earlier rule (bilingual) stands until the owner decides [OPEN].
+- Olympiad (owner, 25 October 2026): a category in its own right, separate from the curricula, bilingual (French and English) by default.
+- Work on standby is not started or continued (for example unread English proofreading entries) until the owner lifts the standby.
 - Existing English editions stay published as they are; they are neither removed nor extended.
 - Standby is unfinished work, not a closed decision: every site map or progress report for the owner must remind them that the bilingual goal is on standby.
 
@@ -82,7 +83,7 @@ No gold-standard chapter exists yet, so this is a proposal. Each chapter deliver
 
 Formats: PDF (from LaTeX, source included) and an interactive web edition. Corrections are separate files. Increase example complexity gradually. Student instructions: academic yet accessible, lycée level.
 
-LaTeX conventions: build with XeLaTeX (owner decision), using the repository's shared style `content/latex/enrichment/explorer.sty` and its build script. The owner's usual pdfLaTeX and mathpazo default does not apply to this project unless the owner says otherwise. Other conventions stay: automatic numbering with `\newcounter`; simple enumerations (1., 2., 3. or a., b., c.); `mdframed` for boxes where compatible with the shared style; ask before adding a barème; student and teacher versions.
+LaTeX conventions (reconciled with the working build on 25 October 2026, owner instruction "do what makes it work"): courses, enrichment workshops, slide figures and the applied mathematics module compile with pdfLaTeX and mathpazo through the shared class `content/tex/core/mxbook.cls` and its `mx-*.sty` packages (`build/mxbuild/tex.py`); Beamer lecture editions, the Fourier sequence and the university foundations compile with XeLaTeX (`scripts/build-lecture-slides.py`, `build-fourier.py`, `build-university.py`). The earlier XeLaTeX rule named a style file that no longer exists. Install the TeX Live packages listed in `docs/ARCHITECTURE.md`; the French hyphenation they provide changes line breaks, not content. Other conventions stay: automatic numbering with `\newcounter`; simple enumerations (1., 2., 3. or a., b., c.); `mdframed` for boxes where compatible with the shared style; ask before adding a barème; student and teacher versions.
 
 ## 5. Interactive slide specification
 

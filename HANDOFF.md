@@ -87,7 +87,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 5. No accounts, no analytics.
 6. Publish only after two independent AI audits (different agents) with no open finding, plus code verification of every computed result. Record `human_reviewed` in the ledger.
 7. Never invent a source, bulletin number or programme requirement. Tag [VERIFY] or say you do not know.
-8. Language (owner, 25 October 2026; brief section 3): French for French and Malagasy curricula, English for the international curriculum, the original language for university, Olympiad unchanged (bilingual) until decided. The bilingual goal for lessons is on standby; remind the owner of it in every site map or report.
+8. Language (owner, 25 October 2026; brief section 3): French for French and Malagasy curricula, English for the international curriculum, the original language for university, Olympiad a category of its own, bilingual by default. The bilingual goal for lessons is on standby; remind the owner of it in every site map or report.
 9. Slides: read both skills first; every canvas draggable; true 3D where the object is 3D; lint before committing.
 10. Copy: no em or en dashes in site copy.
 

@@ -16,7 +16,7 @@ repository or read dist/. Recipes for recurring tasks: .claude/skills/maths-expl
 build pipeline is documented in docs/ARCHITECTURE.md (read it only for build work).
 
 Language rule (owner, 25 October 2026, until the owner says otherwise): French and Malagasy curricula in French only,
-the international curriculum in English only, university resources in the language they were started in; the bilingual
+the international curriculum in English only, university resources in the language they were started in, Olympiad as its own category, bilingual by default; the bilingual
 goal for lessons is on standby (PROJECT_BRIEF.md section 3). In every site map or report for the owner, remind them that
 the bilingual goal is on standby, as unfinished work.
 

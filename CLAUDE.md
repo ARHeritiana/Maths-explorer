@@ -6,7 +6,7 @@ asks. If the session starts on another branch, switch to `main` (`git fetch orig
 committing. Obsolete branches are removed once their content is in `main` or judged superseded.
 
 **Language rule (owner, 25 October 2026, until the owner says otherwise):** French and Malagasy curricula in French only,
-the international curriculum in English only, university resources in the language they were started in. The bilingual
+the international curriculum in English only, university resources in the language they were started in, Olympiad as its own category, bilingual by default. The bilingual
 goal for lessons is on standby (details: `PROJECT_BRIEF.md` section 3). Whenever the owner asks for a map of the site or a
 report, remind them that the bilingual goal is on standby, as unfinished work.
 
