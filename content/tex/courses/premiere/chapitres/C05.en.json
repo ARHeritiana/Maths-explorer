@@ -181,10 +181,10 @@
    "status": "reviewed",
    "order": 29
   },
-  "cf0063bcce60": {
-   "fr": "Une partition [[m1]] est une famille d’événements disjoints dont la réunion est l’univers. Si leurs probabilités sont positives, [[m2]]. Sur un arbre, les probabilités issues d’un même nœud ont une somme de 1 ; les probabilités d’un chemin se multiplient ; les chemins disjoints se réunissent en additionnant.",
-   "en": "A partition [[m1]] is a family of disjoint events whose union is the sample space. If their probabilities are positive, [[m2]]. On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.",
-   "status": "reviewed",
+  "4558143391ba": {
+   "fr": "Une partition [[m1]] est une famille d’événements deux à deux disjoints dont la réunion est l’univers. Si leurs probabilités sont positives, [[m2]]. Sur un arbre, les probabilités issues d’un même nœud ont une somme de 1 ; les probabilités d’un chemin se multiplient ; les chemins disjoints se réunissent en additionnant.",
+   "en": "A partition [[m1]] is a family of pairwise disjoint events whose union is the sample space. If their probabilities are positive, [[m2]]. On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.",
+   "status": "aligned",
    "order": 30
   },
   "fda0434f8f2c": {
@@ -757,10 +757,10 @@
    "status": "reviewed",
    "order": 125
   },
-  "ac5b0bb4147f": {
-   "fr": "Au tirage sans remise, après une rouge parmi 3 rouges et 2 bleues, probabilité de rouge :",
-   "en": "Drawing without replacement, after a red ball from 3 red and 2 blue, the probability of red is:",
-   "status": "reviewed",
+  "b79e5595082d": {
+   "fr": "Urne de 3 rouges et 2 bleues, tirage sans remise : sachant que la première boule tirée est rouge, probabilité que la seconde soit rouge :",
+   "en": "Urn with 3 red and 2 blue balls, drawing without replacement: given that the first ball drawn is red, the probability that the second is red is:",
+   "status": "aligned",
    "order": 126
   },
   "d5fc4ef9b48b": {

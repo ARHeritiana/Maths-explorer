@@ -49,9 +49,9 @@
    "status": "aligned",
    "order": 7
   },
-  "5929065bb3fb": {
-   "fr": "[[m1]], [[m2]], [[m3]]. Alors [[m4]] et [[m5]].",
-   "en": "[[m1]], [[m2]], [[m3]]. Then [[m4]] and [[m5]].",
+  "ab13a5375e61": {
+   "fr": "[[m1]], [[m2]], [[m3]]. Alors [[m4]] et [[m5]], différent de [[m6]].",
+   "en": "[[m1]], [[m2]], [[m3]]. Then [[m4]] and [[m5]], which differs from [[m6]].",
    "status": "aligned",
    "order": 8
   },
@@ -115,9 +115,9 @@
    "status": "aligned",
    "order": 18
   },
-  "f1cbf367d496": {
-   "fr": "Pour chercher le plus petit [[m1]] tel que [[m2]], une boucle sur [[m3]] suffit. Après le logarithme, on peut résoudre [[m4]] puis arrondir dans le bon sens.\nPour trouver le plus petit entier [[m5]] tel que [[m6]], augmenter [[m7]] jusqu'à obtenir [[m8]], puis vérifier le rang précédent. On peut également chercher un intervalle [[m9]] contenant au moins une probabilité prescrite, sans supposer qu'il soit unique.",
-   "en": "To find the smallest [[m1]] such that [[m2]], a loop on [[m3]] is enough. After taking logarithms, one can solve [[m4]] then round in the right direction.\nTo find the smallest integer [[m5]] such that [[m6]], increase [[m7]] until [[m8]] is obtained, then check the previous value. One can also look for an interval [[m9]] containing at least a prescribed probability, without assuming that it is unique.",
+  "4ce6519561b6": {
+   "fr": "Pour chercher le plus petit [[m1]] tel que [[m2]], une boucle sur [[m3]] suffit. Après le logarithme, on peut résoudre [[m4]] puis arrondir dans le bon sens.\nPour trouver le plus petit entier [[m5]] tel que [[m6]], augmenter [[m7]] jusqu'à obtenir [[m8]], puis vérifier le rang précédent. On peut également chercher un intervalle [[m9]] tel que [[m10]] soit au moins égale à une valeur prescrite, sans supposer qu'il soit unique.",
+   "en": "To find the smallest [[m1]] such that [[m2]], a loop on [[m3]] is enough. After taking logarithms, one can solve [[m4]] then round in the right direction.\nTo find the smallest integer [[m5]] such that [[m6]], increase [[m7]] until [[m8]] is obtained, then check the previous value. One can also look for an interval [[m9]] such that [[m10]] is at least a prescribed value, without assuming that it is unique.",
    "status": "aligned",
    "order": 19
   },
@@ -349,9 +349,9 @@
    "status": "aligned",
    "order": 57
   },
-  "22f687a6cfb1": {
-   "fr": "Enfin [[m1]]. Cette espérance n'implique pas qu'un prélèvement présente un nombre fractionnaire de défauts.",
-   "en": "Finally [[m1]]. This expected value does not imply that a selection has a fractional number of defects.",
+  "0c00121c83a2": {
+   "fr": "Enfin [[m1]]. Cette espérance est une valeur moyenne sur de nombreux lots de vingt composants ; [[m2]] ne prend que des valeurs entières.",
+   "en": "Finally [[m1]]. This expected value is an average over many batches of twenty components; [[m2]] only takes integer values.",
    "status": "aligned",
    "order": 58
   },
@@ -403,9 +403,9 @@
    "status": "aligned",
    "order": 66
   },
-  "e6cab70e298a": {
-   "fr": "Non, dans un jeu usuel contenant quatre as. Sans remise, obtenir un as au premier tirage change la probabilité d'en obtenir un au second : les essais ne sont pas indépendants. En outre, le nombre d'as ne peut jamais valoir [[m1]], alors qu'une binomiale de paramètres [[m2]] et [[m3]] donne une probabilité positive à cette valeur.",
-   "en": "No, in a standard pack containing four aces. Without replacement, obtaining an ace on the first draw changes the probability of obtaining one on the second: the trials are not independent. Moreover, the number of aces can never equal [[m1]], whereas a binomial distribution with parameters [[m2]] and [[m3]] gives this value a positive probability.",
+  "87c7b6f1b019": {
+   "fr": "Non : le jeu contient quatre as et le tirage est sans remise. Sans remise, obtenir un as au premier tirage change la probabilité d'en obtenir un au second : les essais ne sont pas indépendants. En outre, le nombre d'as ne peut jamais valoir [[m1]], alors qu'une binomiale de paramètres [[m2]] et [[m3]] donne une probabilité positive à cette valeur.",
+   "en": "No: the pack contains four aces and the draws are without replacement. Without replacement, obtaining an ace on the first draw changes the probability of obtaining one on the second: the trials are not independent. Moreover, the number of aces can never equal [[m1]], whereas a binomial distribution with parameters [[m2]] and [[m3]] gives this value a positive probability.",
    "status": "aligned",
    "order": 67
   },

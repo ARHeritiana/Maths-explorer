@@ -14,7 +14,7 @@ The number of elements of the Cartesian product $A\times B$ is $|A||B|$. For a s
 In a set of $n$ elements, there are $n^k$ ordered lists of length $k$ with repetition; $n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!}$ lists of $k$ distinct elements, if $0\le k\le n$; $n!$ permutations of all the elements. We set $0!=1$.
 \begin{keypoint}[Combinations]
 A combination of $k$ elements from $n$ is a subset with $k$ elements; order does not matter.
-\[\binom nk=\frac{n!}{k!(n-k)!},\quad\binom n0=\binom nn=1,\quad\binom n1=n,\quad\binom n2=\frac{n(n-1)}2.\]
+\[\binom nk=\frac{n!}{k!(n-k)!}\ (n,k\in\mathbb N,\ 0\le k\le n),\quad\binom n0=\binom nn=1,\quad\binom n1=n,\quad\binom n2=\frac{n(n-1)}2.\]
 \end{keypoint}
 \paragraph{Why divide by $k!$?} Each subset of size $k$ gives exactly $k!$ distinct lists according to the order of its elements. The number of lists without repetition is therefore $k!\binom nk$.
 \subsection{Identities and proofs}
@@ -68,7 +68,7 @@ The boundary cases are dealt with directly.
 \item A pair is a subset of two students from six: $\binom{6}{2}=\frac{6\times5}{2}=15$.
 \item The chair can be chosen in six ways, then the secretary from the other five students: $6\times5=30$ assignments.
 \item Each speech can be given to any of the six students, including one already chosen. The three successive choices give $6^3=216$ sequences.
-\item With four cards, the pairs are $AB,AC,AD,BC,BD,CD$: six choices. The twelve pairs of roles are:\[\begin{array}{lll}\pt{A;B}&\pt{A;C}&\pt{A;D}\\(B,A)&\pt{B;C}&\pt{B;D}\\(C,A)&\pt{C;B}&\pt{C;D}\\(D,A)&\pt{D;B}&\pt{D;C}\end{array}\] There are $4^3=64$ sequences of three speeches, since each position has four choices.
+\item With four students, the pairs are $AB,AC,AD,BC,BD,CD$: six choices. The twelve ordered pairs of roles (chair, secretary) are:\[\begin{array}{lll}(A,B)&(A,C)&(A,D)\\(B,A)&(B,C)&(B,D)\\(C,A)&(C,B)&(C,D)\\(D,A)&(D,B)&(D,C)\end{array}\] There are $4^3=64$ sequences of three speeches, since each position has four choices.
 \item For a pair, order does not matter and a student is not repeated. For the roles, order matters, with no repetition. For the speeches, order matters and repetition is allowed.
 \end{enumerate}
 

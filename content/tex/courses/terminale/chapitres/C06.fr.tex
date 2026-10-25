@@ -7,8 +7,8 @@
 \section{Notes de cours}
 \subsection{Dériver une composée}
 Si $u$ est dérivable sur $I$ et $v$ dérivable sur un intervalle contenant $u(I)$, alors $(v\circ u)'=(v'\circ u)u'$. Les domaines doivent être vérifiés avant le calcul.
-\[ (u^n)'=nu'u^{n-1},\quad(e^u)'=u'e^u,\quad
-(\frac{1}{u})'=-\frac{u'}{u^2},\quad(\sqrt u)'=\frac{u'}{2\sqrt u}\quad(u>0).\]
+\[ (u^n)'=nu'u^{n-1}\ (n\in\mathbb N^*),\quad(e^u)'=u'e^u,\quad
+(\frac{1}{u})'=-\frac{u'}{u^2}\ (u\ne0),\quad(\sqrt u)'=\frac{u'}{2\sqrt u}\quad(u>0).\]
 Par exemple, $f(x)=\sqrt{3x+1}$ est dérivable pour $x>-\frac{1}{3}$ et $f'(x)=\frac{3}{2\sqrt{3x+1}}$. Le signe de $f'$ détermine les variations de $f$ ; le signe de $f$ ne les détermine pas.
 \subsection{Convexité}
 Une fonction $f$ est convexe sur un intervalle $I$ si sa courbe est sous ses cordes : pour $x,y\in I$ et $t\in[0,1]$,
@@ -23,7 +23,7 @@ Si $f$ est continue sur $[a,b]$, tout réel compris entre $f(a)$ et $f(b)$ poss�
 \end{keypoint}
 \paragraph{Exemple rédigé.} $f(x)=x^3+x-1$ est continue sur $[0,1]$. Comme $f(0)=-1$ et $f(1)=1$, le TVI donne un zéro dans $]0,1[$. Puisque $f'(x)=3x^2+1>0$, il est unique. $f(\num{0,68})<0<f(\num{0,69})$ fournit un encadrement, sans remplacer les justifications d'existence et d'unicité.
 \paragraph{Une fonction définie par morceaux.} Pour $x\ne1$, poser $g(x)=\frac{x^2-1}{x-1}$, et poser $g(1)=a$. Comme $g(x)=x+1$ lorsque $x\ne1$, $\lim_{x\to1}g(x)=2$. La fonction est continue en $1$ si et seulement si $a=2$. La valeur au point doit donc être comparée à la limite, et non remplacée par celle-ci sans justification.
-\paragraph{Suites et continuité.} Si $u_n\to\ell$ et $f$ est continue en $\ell$, alors $f(u_n)\to f(\ell)$. Pour une suite récurrente convergente $u_{n+1}=f(u_n)$, on obtient $\ell=f(\ell)$.
+\paragraph{Suites et continuité.} Si $u_n\to\ell$ et $f$ est continue en $\ell$, alors $f(u_n)\to f(\ell)$. Pour une suite récurrente convergente $u_{n+1}=f(u_n)$ de limite $\ell$, avec $f$ continue en $\ell$, on obtient $\ell=f(\ell)$.
 \subsection{Dichotomie}
 Pour $f$ continue et $f(a)f(b)<0$, calculer $m=\frac{a+b}{2}$. Si $f(m)=0$, arrêter ; sinon garder la moitié dont les extrémités ont des images de signes contraires. Après $n$ étapes, la longueur vaut $\frac{b-a}{2^n}$. Le milieu donne une erreur au plus la demi-longueur. La méthode ne garantit pas l'unicité ; celle-ci se prouve séparément.
 

@@ -13,7 +13,7 @@ Le nombre d'éléments du produit cartésien $A\times B$ est $|A||B|$. Pour une 
 Dans un ensemble de $n$ éléments, il y a $n^k$ listes ordonnées de longueur $k$ avec répétition ; $n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!}$ listes de $k$ éléments distincts, si $0\le k\le n$ ; $n!$ permutations de tous les éléments. On pose $0!=1$.
 \begin{keypoint}[Combinaisons]
 Une combinaison de $k$ éléments parmi $n$ est une partie à $k$ éléments ; l'ordre n'intervient pas.
-\[\binom nk=\frac{n!}{k!(n-k)!},\quad\binom n0=\binom nn=1,\quad\binom n1=n,\quad\binom n2=\frac{n(n-1)}2.\]
+\[\binom nk=\frac{n!}{k!(n-k)!}\ (n,k\in\mathbb N,\ 0\le k\le n),\quad\binom n0=\binom nn=1,\quad\binom n1=n,\quad\binom n2=\frac{n(n-1)}2.\]
 \end{keypoint}
 \paragraph{Pourquoi diviser par $k!$ ?} Chaque partie de taille $k$ donne exactement $k!$ listes distinctes selon l'ordre de ses éléments. Le nombre de listes sans répétition est donc $k!\binom nk$.
 \subsection{Identités et démonstrations}
@@ -67,7 +67,7 @@ Les cas au bord se traitent directement.
 \item Un binôme est une partie de deux élèves parmi six : $\binom{6}{2}=\frac{6\times5}{2}=15$.
 \item Le président peut être choisi de six façons, puis le secrétaire parmi les cinq autres élèves : $6\times5=30$ répartitions.
 \item Chaque intervention peut être confiée à l'un des six élèves, y compris à un élève déjà choisi. Les trois choix successifs donnent $6^3=216$ suites.
-\item Avec quatre cartes, les binômes sont $AB,AC,AD,BC,BD,CD$ : six choix. Les douze couples de rôles sont :\[\begin{array}{lll}\pt{A;B}&\pt{A;C}&\pt{A;D}\\(B,A)&\pt{B;C}&\pt{B;D}\\(C,A)&\pt{C;B}&\pt{C;D}\\(D,A)&\pt{D;B}&\pt{D;C}\end{array}\] Les suites de trois interventions sont au nombre de $4^3=64$, car chaque position possède quatre choix.
+\item Avec quatre élèves, les binômes sont $AB,AC,AD,BC,BD,CD$ : six choix. Les douze couples de rôles (président, secrétaire) sont :\[\begin{array}{lll}(A,B)&(A,C)&(A,D)\\(B,A)&(B,C)&(B,D)\\(C,A)&(C,B)&(C,D)\\(D,A)&(D,B)&(D,C)\end{array}\] Les suites de trois interventions sont au nombre de $4^3=64$, car chaque position possède quatre choix.
 \item Pour un binôme, l'ordre ne compte pas et on ne répète pas un élève. Pour les rôles, l'ordre compte, sans répétition. Pour les interventions, l'ordre compte et la répétition est autorisée.
 \end{enumerate}
 

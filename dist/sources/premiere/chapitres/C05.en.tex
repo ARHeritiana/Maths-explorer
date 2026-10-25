@@ -34,7 +34,7 @@ For $P(A)>0$, the probability of B given A is $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$.
 \begin{application}Out of 60 objects, 20 are red; among the red ones, 5 are damaged. Calculate $P(R\cap D)$ and $P_R(D)$.\end{application}\label{C05-AP1}
 \section{Trees, partitions and total probability}\label{C05-U2}
 \begin{keypoint}[Definition and results]
-A partition $A_1,\ldots,A_k$ is a family of disjoint events whose union is the sample space. If their probabilities are positive, $P(B)=\sum_iP(A_i)P_{A_i}(B)$. On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.
+A partition $A_1,\ldots,A_k$ is a family of pairwise disjoint events whose union is the sample space. If their probabilities are positive, $P(B)=\sum_iP(A_i)P_{A_i}(B)$. On a tree, the probabilities leaving the same node sum to 1; the probabilities along a path are multiplied; disjoint paths are combined by adding.
 \end{keypoint}
 \paragraph{Status and justification.} $B$ is the disjoint union of the sets $B\cap A_i$. By additivity and by the definition of conditional probability, $P(B)=\sum_iP(B\cap A_i)=\sum_iP(A_i)P_{A_i}(B)$.
 \begin{example}Two machines supply \pc{60} and \pc{40} of a production; their defect rates are \pc{2} and \pc{5}. $P(D)=\num{0,6}\times\num{0,02}+\num{0,4}\times\num{0,05}=\num{0,032}$. Among the defective items, the first machine accounts for $\dfrac{\num{0,012}}{\num{0,032}}=\dfrac{3}{8}$.\end{example}\label{C05-EX2}
@@ -205,7 +205,7 @@ These exercises are done in your textbook. The progression indicates the session
 \item proves $p=\dfrac{1}{2}$
 \item refutes $p=\dfrac{1}{2}$
 \end{enumerate}
-\item Drawing without replacement, after a red ball from 3 red and 2 blue, the probability of red is:
+\item Urn with 3 red and 2 blue balls, drawing without replacement: given that the first ball drawn is red, the probability that the second is red is:
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $\dfrac{3}{5}$
 \item $\dfrac{3}{4}$

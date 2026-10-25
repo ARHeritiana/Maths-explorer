@@ -21,7 +21,8 @@ A line and a plane: line contained in the plane, parallel and disjoint, or meeti
 \subsection{Basis and coordinates}
 A basis of space is a family of three non-coplanar vectors. Every vector can be written uniquely in it as $x\vi +y\vj +z\vec k$. A frame of reference consists of an origin $O$ and a basis.
 \[\vect{AB}=\pt{x_B-x_A;y_B-y_A;z_B-z_A},\qquad
-I=\left(\frac{x_A+x_B}2,\frac{y_A+y_B}2,\frac{z_A+z_B}2\right).\]
+I\pt{\frac{x_A+x_B}2;\frac{y_A+y_B}2;\frac{z_A+z_B}2},\]
+where $I$ is the midpoint of $[AB]$.
 In an orthonormal frame, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ and $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.
 \paragraph{Example.} In an orthonormal frame, for $A\pt{1;0;2}$, $B\pt{3;-1;4}$, $\vect{AB}=\pt{2;-1;2}$, $AB=3$ and the midpoint is $\pt{2;-\frac{1}{2};3}$.
 \begin{method}[Testing a linear combination]
@@ -38,7 +39,7 @@ Write the three coordinate equalities. Determine the coefficients from two equat
 \draw[mxink,dashed](A)--(D)--(C) (D)--(H);
 \draw[mxmint,thick,dash pattern=on 5pt off 2pt](A)--(G);
 \foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
-\end{tikzpicture}\par\small $[AG]$ is a space diagonal, drawn dotted in green.\\The hidden edges are dashed in blue; $D$ and $F$ are not on $(AG)$.\end{center}
+\end{tikzpicture}\par\small $[AG]$ is a space diagonal, drawn dotted in green.\\The hidden edges are thin dashed lines; $D$ and $F$ are not on $(AG)$.\end{center}
 \begin{enumerate}\item Express $\vect{IJ}$ and $\vect{IK}$ in the basis $\pt{\vi;\vj;\vec k}$.
 \item Prove that the points $I$, $J$ and $K$ are not collinear.
 \item Determine whether $O$ belongs to the plane $(IJK)$. Justify the answer by investigating whether $\vect{IO}$ is a linear combination of $\vect{IJ}$ and $\vect{IK}$.

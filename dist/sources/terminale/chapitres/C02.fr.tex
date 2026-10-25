@@ -20,7 +20,8 @@ Une droite et un plan : droite incluse dans le plan, parallèle et disjointe, ou
 \subsection{Base et coordonnées}
 Une base de l'espace est une famille de trois vecteurs non coplanaires. Tout vecteur s'y écrit de manière unique $x\vi +y\vj +z\vec k$. Un repère est constitué d'une origine $O$ et d'une base.
 \[\vect{AB}=\pt{x_B-x_A;y_B-y_A;z_B-z_A},\qquad
-I=\left(\frac{x_A+x_B}2,\frac{y_A+y_B}2,\frac{z_A+z_B}2\right).\]
+I\pt{\frac{x_A+x_B}2;\frac{y_A+y_B}2;\frac{z_A+z_B}2},\]
+où $I$ est le milieu de $[AB]$.
 Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.
 \paragraph{Exemple.} Dans un repère orthonormé, pour $A\pt{1;0;2}$, $B\pt{3;-1;4}$, $\vect{AB}=\pt{2;-1;2}$, $AB=3$ et le milieu est $\pt{2;-\frac{1}{2};3}$.
 \begin{method}[Tester une combinaison linéaire]
@@ -37,7 +38,7 @@ Dans un repère orthonormé, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ et $AB=\sqrt{(x_B-x
 \draw[mxink,dashed](A)--(D)--(C) (D)--(H);
 \draw[mxmint,thick,dash pattern=on 5pt off 2pt](A)--(G);
 \foreach \p/\pos in {A/below left,B/below,C/right,D/left,E/left,F/right,G/right,H/above}{\node[\pos]at(\p){$\p$};}
-\end{tikzpicture}\par\small $[AG]$ est une diagonale de l'espace, tracée en pointillés verts.\\Les arêtes cachées sont en pointillés bleus ; $D$ et $F$ ne sont pas sur $(AG)$.\end{center}
+\end{tikzpicture}\par\small $[AG]$ est une diagonale de l'espace, tracée en pointillés verts.\\Les arêtes cachées sont en pointillés fins ; $D$ et $F$ ne sont pas sur $(AG)$.\end{center}
 \begin{enumerate}\item Exprimer $\vect{IJ}$ et $\vect{IK}$ dans la base $\pt{\vi;\vj;\vec k}$.
 \item Démontrer que les points $I$, $J$ et $K$ ne sont pas alignés.
 \item Déterminer si $O$ appartient au plan $(IJK)$. On justifiera la réponse en cherchant si $\vect{IO}$ est une combinaison linéaire de $\vect{IJ}$ et $\vect{IK}$.

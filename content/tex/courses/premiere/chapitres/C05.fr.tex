@@ -33,7 +33,7 @@ Pour $P(A)>0$, la probabilité de B sachant A est $P_A(B)=\dfrac{P(A\cap B)}{P(A
 \begin{application}Sur 60 objets, 20 sont rouges ; parmi les rouges, 5 sont abîmés. Calculer $P(R\cap D)$ et $P_R(D)$.\end{application}\label{C05-AP1}
 \section{Arbres, partitions et probabilités totales}\label{C05-U2}
 \begin{keypoint}[Définition et résultats]
-Une partition $A_1,\ldots,A_k$ est une famille d’événements disjoints dont la réunion est l’univers. Si leurs probabilités sont positives, $P(B)=\sum_iP(A_i)P_{A_i}(B)$. Sur un arbre, les probabilités issues d’un même nœud ont une somme de 1 ; les probabilités d’un chemin se multiplient ; les chemins disjoints se réunissent en additionnant.
+Une partition $A_1,\ldots,A_k$ est une famille d’événements deux à deux disjoints dont la réunion est l’univers. Si leurs probabilités sont positives, $P(B)=\sum_iP(A_i)P_{A_i}(B)$. Sur un arbre, les probabilités issues d’un même nœud ont une somme de 1 ; les probabilités d’un chemin se multiplient ; les chemins disjoints se réunissent en additionnant.
 \end{keypoint}
 \paragraph{Statut et justification.} $B$ est la réunion disjointe des $B\cap A_i$. Par additivité et par définition des probabilités conditionnelles, $P(B)=\sum_iP(B\cap A_i)=\sum_iP(A_i)P_{A_i}(B)$.
 \begin{example}Deux machines fournissent \pc{60} et \pc{40} d’une production ; leurs taux de défaut sont \pc{2} et \pc{5}. $P(D)=\num{0,6}\times\num{0,02}+\num{0,4}\times\num{0,05}=\num{0,032}$. Parmi les défauts, la première machine représente $\dfrac{\num{0,012}}{\num{0,032}}=\dfrac{3}{8}$.\end{example}\label{C05-EX2}
@@ -204,7 +204,7 @@ Ces exercices se traitent dans votre manuel. La progression indique la séance ;
 \item prouve $p=\dfrac{1}{2}$
 \item réfute $p=\dfrac{1}{2}$
 \end{enumerate}
-\item Au tirage sans remise, après une rouge parmi 3 rouges et 2 bleues, probabilité de rouge :
+\item Urne de 3 rouges et 2 bleues, tirage sans remise : sachant que la première boule tirée est rouge, probabilité que la seconde soit rouge :
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $\dfrac{3}{5}$
 \item $\dfrac{3}{4}$

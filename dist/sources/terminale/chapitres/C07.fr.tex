@@ -8,7 +8,7 @@
 \subsection{Rappels : conditionnement et indépendance}
 Si $P(A)>0$, $P_A(B)=\frac{P(A\cap B)}{P(A)}$. Une branche d'arbre porte une probabilité conditionnelle ; la probabilité d'un chemin est le produit de ses branches. Pour une partition $A_1,\ldots,A_r$, $P(B)=\sum_iP(A_i\cap B)$ ; si tous les $P(A_i)>0$, elle s'écrit $\sum_iP(A_i)P_{A_i}(B)$.
 Deux événements sont indépendants lorsque $P(A\cap B)=P(A)P(B)$. Pour $P(A)>0$, cela équivaut à $P_A(B)=P(B)$. Ne pas confondre $P_A(B)$ et $P_B(A)$.
-\paragraph{Exemple.} $P(A)=\num{0,4}$, $P_A(B)=\num{0,7}$, $P_{\overline A}(B)=\num{0,2}$. Alors $P(B)=\num{0,4}\times\num{0,7}+\num{0,6}\times\num{0,2}=\num{0,4}$ et $P_B(A)=\frac{\num{0,28}}{\num{0,4}}=\num{0,7}$.
+\paragraph{Exemple.} $P(A)=\num{0,4}$, $P_A(B)=\num{0,7}$, $P_{\overline A}(B)=\num{0,3}$. Alors $P(B)=\num{0,4}\times\num{0,7}+\num{0,6}\times\num{0,3}=\num{0,46}$ et $P_B(A)=\frac{\num{0,28}}{\num{0,46}}=\frac{14}{23}\approx\num{0,609}$, différent de $P_A(B)=\num{0,7}$.
 \subsection{Bernoulli et binomiale}
 Une épreuve de Bernoulli a deux issues, succès de probabilité $p$ et échec de probabilité $1-p$. La variable indicatrice $B$ vaut $1$ en cas de succès et $0$ sinon : $E(B)=p$, $V(B)=p(1-p)$.
 Un schéma de Bernoulli est une répétition de $n$ épreuves identiques et indépendantes. Le nombre $X$ de succès suit la loi binomiale $\mathcal B\pt{n;p}$.
@@ -23,7 +23,7 @@ Pour au moins un succès, $P(X\ge1)=1-(1-p)^n$. Le complément de « au moins $k
 \paragraph{Exemple.} Pour $X\sim\mathcal B\pt{10;\num{0,2}}$, $E(X)=2$ et $V(X)=\num{1,6}$. $P(X=2)=45(\num{0,2})^2(\num{0,8})^8\simeq\num{0,3020}$ et $P(X\ge1)=1-\num{0,8}^{10}\simeq\num{0,8926}$. L'espérance n'est ni un résultat certain ni nécessairement le plus probable.
 \subsection{Seuil et intervalle}
 Pour chercher le plus petit $n$ tel que $1-(1-p)^n\ge q$, une boucle sur $n$ suffit. Après le logarithme, on peut résoudre $(1-p)^n\le1-q$ puis arrondir dans le bon sens.
-Pour trouver le plus petit entier $k$ tel que $P(X>k)\le\alpha$, augmenter $k$ jusqu'à obtenir $P(X\le k)\ge1-\alpha$, puis vérifier le rang précédent. On peut également chercher un intervalle $[a,b]$ contenant au moins une probabilité prescrite, sans supposer qu'il soit unique.
+Pour trouver le plus petit entier $k$ tel que $P(X>k)\le\alpha$, augmenter $k$ jusqu'à obtenir $P(X\le k)\ge1-\alpha$, puis vérifier le rang précédent. On peut également chercher un intervalle $[a,b]$ tel que $P(a\le X\le b)$ soit au moins égale à une valeur prescrite, sans supposer qu'il soit unique.
 \subsection{Épreuves indépendantes, au-delà de deux issues}
 Pour des expériences indépendantes, la probabilité d'une liste de résultats est le produit des probabilités de ses composantes. L'univers est le produit cartésien des univers de chaque expérience. Par exemple, pour deux lancers indépendants d'un dé équilibré, l'univers contient les $36$ couples $\pt{i;j}$, $1\le i,j\le6$, chacun de probabilité $\frac{1}{36}$. La probabilité que la somme soit $5$ vaut $\frac{4}{36}=\frac{1}{9}$, car les couples favorables sont $\pt{1;4},\pt{2;3},\pt{3;2},\pt{4;1}$.
 Dans un schéma de Bernoulli, on code le succès par $1$ et l'échec par $0$ : l'univers est $\{0,1\}^n$. L'indépendance concerne toute la succession ; une simple égalité entre deux probabilités observées ne suffit pas à la prouver.
@@ -72,7 +72,7 @@ Par probabilités totales, $P(D)=P(A)P_A(D)+P(B)P_B(D)=\num{0,012}+\num{0,020}=\
 \item Chaque prélèvement est une épreuve à deux issues, « défectueux » ou « non défectueux », avec la même probabilité $\num{0,032}$ de défaut. Les vingt prélèvements étant indépendants, $X\sim\mathcal B\pt{20;\num{0,032}}$.
 \item $P(X=0)=\num{0,968}^{20}\simeq\num{0,5218}$. Par complément,
 \[P(X\ge2)=1-P(X=0)-P(X=1)=1-\num{0,968}^{20}-20(\num{0,032})\num{0,968}^{19}\simeq\num{0,1332}.\]
-Enfin $E(X)=20\times\num{0,032}=\num{0,64}$. Cette espérance n'implique pas qu'un prélèvement présente un nombre fractionnaire de défauts.
+Enfin $E(X)=20\times\num{0,032}=\num{0,64}$. Cette espérance est une valeur moyenne sur de nombreux lots de vingt composants ; $X$ ne prend que des valeurs entières.
 \item Une cause commune liée au lot pourrait rendre les défauts dépendants. La loi binomiale et ses calculs reposent sur l'indépendance donnée dans le modèle ; il faudrait réexaminer cette hypothèse pour un autre protocole.
 \end{enumerate}
 
@@ -82,7 +82,7 @@ Enfin $E(X)=20\times\num{0,032}=\num{0,64}$. Cette espérance n'implique pas qu'
 
 \paragraph{E3.}Le complément de $X\ge4$ est $X\le3$, donc $P(X\ge4)=1-F(3)$. Pour l'intervalle, on enlève à $X\le5$ les valeurs $X\le1$, donc $P(2\le X\le5)=F(5)-F(1)$.
 
-\paragraph{E4.}Non, dans un jeu usuel contenant quatre as. Sans remise, obtenir un as au premier tirage change la probabilité d'en obtenir un au second : les essais ne sont pas indépendants. En outre, le nombre d'as ne peut jamais valoir $5$, alors qu'une binomiale de paramètres $5$ et $0<p<1$ donne une probabilité positive à cette valeur.
+\paragraph{E4.}Non : le jeu contient quatre as et le tirage est sans remise. Sans remise, obtenir un as au premier tirage change la probabilité d'en obtenir un au second : les essais ne sont pas indépendants. En outre, le nombre d'as ne peut jamais valoir $5$, alors qu'une binomiale de paramètres $5$ et $0<p<1$ donne une probabilité positive à cette valeur.
 
 \paragraph{E5.}La probabilité d'au moins un succès vaut $1-(\frac{1}{2})^n$. La condition est équivalente à $2^n\ge100$. Comme $2^6=64<100\le128=2^7$, le premier entier est $7$. La probabilité vaut alors $\frac{127}{128}\simeq\num{0,99219}$.
 
