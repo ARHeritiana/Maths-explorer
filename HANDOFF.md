@@ -129,10 +129,10 @@ content planned for the first trimester only (up to the December holidays, 18 De
   18 December, diagnostic unit. Second review done 25 October 2026 (2 blocking and minor findings fixed; notes kept
   privately for the owner).
 - [x] Terminale: C01 to C07, E1 to E4 (DS1, DS2, devoir commun, DS3). Second review done 25 October 2026.
-- [ ] Seconde: sequences 1 to 7 (s01 to s07) and automatismes sheets ch01 to ch04.
-- [ ] STMG and Maths expertes: no dated plan in the sources; trimester scope to be confirmed by the owner.
-- [ ] Re-check of the 157 slide and lecture records whose files changed since their audits (110 lecture PDFs, 47 HTML
-  exports). In progress.
+- [ ] Seconde: sequences 1 to 7 (s01 to s07) and automatismes sheets ch01 to ch04. In progress.
+- [ ] STMG c01 to c03 and Maths expertes C1, C6, C2, C7 (first-trimester scope confirmed by the owner, 25 October 2026).
+- [x] Re-check of the 157 slide and lecture records: 110 unchanged in content and re-bound, 47 changes reviewed
+  independently with no finding (25 October 2026).
 - [ ] Later trimesters: the remaining units of every course.
 
 ### 4. Scale in priority order
