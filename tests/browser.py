@@ -203,7 +203,7 @@ with sync_playwright() as p:
     run.nth(4).click()
     page.wait_for_function("() => document.querySelector('.lab2-readout dd')?.textContent === '0'")        # a new series starts at zero
     page.goto(BASE+'/#lab/sequences/signs')
-    page.locator('.lab2-formula').wait_for()
+    page.wait_for_function("() => document.querySelector('.lab2-formula')?.textContent.includes('×') && document.querySelector('.lab2-readout')?.textContent.length > 0")
     assert '×' in page.locator('.lab2-formula').inner_text() and page.locator('.lab2-readout').inner_text(), 'the geometric formula multiplies'
     # Statistics: the readout follows the values; a value dragged to the edge of the line stays inside it.
     page.goto(BASE+'/#lab/statistics/mean'); page.locator('.lab2-canvas').wait_for()
@@ -600,6 +600,7 @@ with sync_playwright() as p:
         page.goto(BASE+'/#lab/'+experiment)
         page.locator('.lab2-calculation').wait_for()
         assert page.locator('.lab2-canvas').count() == 0
+        page.locator('.lab2-calculation math msup').first.wait_for(state='attached')
         assert page.locator('.lab2-calculation math msup').count() > 0
         assert page.locator('.lab2-card').evaluate("el => getComputedStyle(el).overflowY") == 'visible'
         page.screenshot(path='test-results/arithmetic-'+experiment+'.png',full_page=True)
