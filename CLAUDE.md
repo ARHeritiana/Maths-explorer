@@ -10,6 +10,11 @@ the international curriculum in English only, university resources in the langua
 goal for lessons is on standby (details: `PROJECT_BRIEF.md` section 3). Whenever the owner asks for a map of the site or a
 report, remind them that the bilingual goal is on standby, as unfinished work.
 
+**Long agent work (owner, 25 October 2026):** review and audit work runs from the committed queue
+`course-quality/queue/` of the private repository (`QUEUE.json`, `README.md`, `REVIEW-BRIEF.md`): one result file per
+finished unit, at most two agents at once, outputs committed after each batch, and a scheduled resume at the reset time
+when a usage limit stops agents. Any session continues from the queue, never from memory.
+
 ## How to work efficiently here (owner instruction, 18 October 2026)
 
 Do not read the whole repository. For every task:
