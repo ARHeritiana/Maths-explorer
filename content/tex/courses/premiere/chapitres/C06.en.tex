@@ -1,7 +1,7 @@
 % GENERATED, edit the French unit or the translation table
-\mxunit{premiere-c06}{Differentiation, variation and optimisation}\label{C06}
+\mxunit{premiere-c06}{Differentiation, monotonicity and optimisation}\label{C06}
 \begin{keypoint}[Chapter path]
-\textbf{Objectives.} Calculate a derivative on its domain; study variation and extrema; compare curves; optimise; use symmetries.
+\textbf{Objectives.} Calculate a derivative on its domain; study monotonicity and extrema; compare curves; optimise; use symmetries.
 
 \textbf{Prerequisites.} Derivative at a point, algebraic calculation, sign of a quadratic, intervals.
 
@@ -18,7 +18,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \mxcounted{diag}
 \end{enumerate}
 \paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
-\paragraph{Speaking and logic.} Present a variation table, distinguishing the sign of f from the sign of its derivative. Explain why the endpoints of an optimisation problem must be examined.
+\paragraph{Speaking and logic.} Present a monotonicity table, distinguishing the sign of f from the sign of its derivative. Explain why the endpoints of an optimisation problem must be examined.
 \mxnewpage
 \section*{Investigate before formalising}\label{C06-RECH}
 Can an increasing function have a horizontal tangent? Look for an example; can it have a strictly negative derivative at an interior point?
@@ -44,7 +44,7 @@ For differentiable u and v, $(u+v)\prime=u\prime+v\prime$, $(\lambda u)\prime=\l
 \begin{keypoint}[Definition and results]
 On an interval I, if $f\prime\geq0$, f is increasing; if $f\prime\leq0$, it is decreasing; if $f\prime=0$ everywhere, it is constant. A strictly positive derivative implies strict increase. If f has a local extremum at an interior point where it is differentiable, its derivative is zero there. The converse is false.
 \end{keypoint}
-\paragraph{Status and justification.} Variation theorems accepted. For an interior minimum at a, the rates on the right are positive or zero, those on the left negative or zero; if they converge to the same real number, it is 0. Same argument for a maximum.
+\paragraph{Status and justification.} Monotonicity theorems are accepted. For an interior minimum at a, the difference quotients on the right are nonnegative and those on the left are nonpositive; if they converge to the same real number, it is 0. The same argument applies to a maximum.
 \begin{example}$f(x)=x^3-3x$: $f\prime(x)=3(x-1)(x+1)$. f increases on $\intof{-\infty}{-1}$, decreases on $\intff{-1}{1}$, increases on $\intfo{1}{+\infty}$; local maximum $f(-1)=2$, local minimum $f(1)=-2$. Neither of these extrema is global on $\R$.\end{example}\label{C06-EX3}
 \mxinclude{figures/C06-U3}
 \begin{pitfall}The theorem applies on an interval. A function can decrease on two separate intervals without decreasing on their union.\end{pitfall}
@@ -53,15 +53,15 @@ On an interval I, if $f\prime\geq0$, f is increasing; if $f\prime\leq0$, it is d
 \begin{keypoint}[Definition and results]
 On a domain symmetric about 0, f is even if $f(-x)=f(x)$ and odd if $f(-x)=-f(x)$. The curve of an even function is symmetric about the y-axis; that of an odd function about the origin. To compare f and g, we study the sign of $f-g$, possibly with its derivative.
 \end{keypoint}
-\paragraph{Status and justification.} The symmetries follow from the coordinates of the image points. For an inequality, a study of variation may give a minimum of the difference, then its sign; the derivative does not directly replace this difference.
+\paragraph{Status and justification.} The symmetries follow from the coordinates of the corresponding points on the graph. To prove an inequality, studying monotonicity may give a minimum of the difference and hence its sign; the derivative does not directly replace this difference.
 \begin{example}For $x>0$, $h(x)=x+\dfrac{1}{x}-2$ has derivative $\dfrac{x^2-1}{x^2}$. It decreases up to 1 then increases; $h(1)=0$, so $x+\dfrac{1}{x}\geq 2$. Equality is obtained only at 1.\end{example}\label{C06-EX4}
-\begin{pitfall}Check the domain before parity. The sign of $f\prime-g\prime$ tells us about the variation of $f-g$, not directly about its sign.\end{pitfall}
+\begin{pitfall}Check the domain before studying parity. The sign of $f\prime-g\prime$ tells us about the monotonicity of $f-g$, not directly about its sign.\end{pitfall}
 \begin{application}Study the parity of $x^4+x^2$ and $x^3-x$; prove $x^2+1\geq2x$.\end{application}\label{C06-AP4}
 \section{Optimisation}\label{C06-U5}
 \begin{keypoint}[Definition and results]
 Optimising means defining the variable and its domain, expressing the quantity to optimise, then comparing all the candidate values, including the endpoints.
 \end{keypoint}
-\paragraph{Status and justification.} On a closed interval, an extremum is reached at an endpoint or at a point where the derivative vanishes and changes sign: the table of variations lets us compare these candidates.
+\paragraph{Status and justification.} For a function continuous on a closed, bounded interval and differentiable in its interior, the minimum and maximum occur at endpoints or at stationary points. Compare the function values at these candidates.
 \begin{example}An open box has a square base of side x and height $6-x$, with $0\le x\le6$. Its volume $V(x)=x^2(6-x)$ has derivative $V\prime(x)=12x-3x^2=3x(4-x)$, positive on $\intff{0}{4}$ and negative on $\intff{4}{6}$. The maximum volume is $V(4)=32$.\end{example}\label{C06-EX5}
 \begin{beyond}[Newton's method]The tangent at $x_n$ meets the x-axis at $x_{n+1}=x_n-\dfrac{f(x_n)}{f\prime(x_n)}$ when $f\prime(x_n)\ne0$. For $f(x)=x^2-2$ and $x_0=1$, we obtain $x_1=\dfrac{3}{2}$ then $x_2=\dfrac{17}{12}$, whose squares are \num{2,25} then about \num{2,00694}: we approach $\sqrt2$. Convergence is not guaranteed in general. This method is not part of the première syllabus and is not assessed.\end{beyond}
 \begin{pitfall}A numerical value produced by an algorithm is not a proof of a minimum or of convergence.\end{pitfall}
@@ -81,13 +81,13 @@ Consider the functions\[f(x)=3x^4-2x+7,\quad g(x)=(x^2+2)(x-1),\quad h(x)=\dfrac
 The function $f$ is defined on $\intff{0}{4}$ by $f(x)=x^3-6x^2+9x+1$. We look for its minimum and maximum values on this interval.
 \begin{enumerate}[label=\arabic*.]
 \item Calculate and factorise $f\prime(x)$, then study its sign on $\intff{0}{4}$.
-\item Draw the variation table of $f$, giving the values at the endpoints and at the points where the derivative vanishes.
+\item Draw the monotonicity table of $f$, giving the values at the endpoints and at the points where the derivative vanishes.
 \item Give the minimum and the maximum of $f$ on the interval, as well as all the x-coordinates where they are reached.
 \end{enumerate}
 \mxexercisehead{C06-E3}{A quotient}
 For every strictly positive real number $x$, let $f(x)=x+\dfrac4x$.
 \begin{enumerate}[label=\arabic*.]
-\item Study the variation of $f$ on $\intoo{0}{+\infty}$. Present the factors that determine the sign of the derivative.
+\item Study the monotonicity of $f$ on $\intoo{0}{+\infty}$. Present the factors that determine the sign of the derivative.
 \item Deduce the smallest value of $x+\dfrac4x$, then write an inequality valid for all $x>0$. State exactly its equality case.
 \end{enumerate}
 \mxexercisehead{C06-E4}{Comparing two curves}
@@ -114,14 +114,14 @@ A student claims: ``If the derivative vanishes at a point, the function necessar
 \mxexercisehead{C06-E7}{Comparing strategies}
 We wish to prove that, for every real number $x$, $x^2-6x+12\geq3$.
 \begin{enumerate}[label=\arabic*.]
-\item Give a proof by making a square appear.
-\item Give a second proof by studying the variation of a function.
+\item Give a proof by rewriting the expression using a square.
+\item Give a second proof by studying the monotonicity of a function.
 \item State the equality case. Compare the two methods: which requires the least calculation here?
 \end{enumerate}
 \mxexercisehead{C06-E8}{Delayed review}
 The reciprocal function $f(x)=\dfrac1x$ has domain $D=\R\setminus\{0\}$. A student calculates $f\prime(x)=-\dfrac1{x^2}<0$ and concludes that $f$ is decreasing on all of $D$.
 \begin{enumerate}[label=\arabic*.]
-\item Identify the missing hypothesis in the application of the theorem linking the sign of the derivative and variation.
+\item Identify the missing hypothesis when applying the theorem that links the sign of the derivative to monotonicity.
 \item State the two intervals on which the conclusion is correct.
 \item Using the numbers $-1$ and 1, construct a counterexample to the conclusion on all of $D$.
 \end{enumerate}

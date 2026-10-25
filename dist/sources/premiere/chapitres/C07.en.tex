@@ -18,7 +18,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \mxcounted{diag}
 \end{enumerate}
 \paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
-\paragraph{Speaking and logic.} Present the two conditions that characterise a projection. Give a geometric proof and an algebraic proof of a perpendicular bisector.
+\paragraph{Speaking and logic.} Present the two conditions that characterise an orthogonal projection. Give a geometric proof and an algebraic proof of the perpendicular-bisector property.
 \mxnewpage
 \section*{Investigate before formalising}\label{C07-RECH}
 Starting from $P\pt{4;3}$ and $d:y=2x$, compare the distances to three points of d, then find and prove which is the shortest.
@@ -29,17 +29,17 @@ Starting from $P\pt{4;3}$ and $d:y=2x$, compare the distances to three points of
 A nonzero normal vector to a line is orthogonal to every direction vector of that line. If $\vec n=\pt{a;b}\ne\pt{0;0}$ is normal and $A\pt{x_A;y_A}$ belongs to d, then $d$ has equation $a(x-x_A)+b(y-y_A)=0$, that is $ax+by+c=0$. A possible direction vector is $\pt{-b;a}$.
 \end{keypoint}
 \paragraph{Status and justification.} $M\in d$ is equivalent to $\vect{AM}\cdot\vec n=0$. In an orthonormal frame, expanding this product gives the equation. Conversely, the set so defined is the line through A orthogonal to n.
-\begin{example}Through $A\pt{1;2}$ with normal $\pt{2;-3}$: $2(x-1)-3(y-2)=0$, so $2x-3y+4=0$. The vector $\pt{3;2}$ directs the line: product $6-6=0$.\end{example}\label{C07-EX1}
+\begin{example}Through $A\pt{1;2}$ with normal $\pt{2;-3}$: $2(x-1)-3(y-2)=0$, so $2x-3y+4=0$. The vector $\pt{3;2}$ is a direction vector of the line: scalar product $6-6=0$.\end{example}\label{C07-EX1}
 \begin{pitfall}$\pt{a;b}$ is normal, not a direction vector in general. $\pt{a;b}$ must not be zero.\end{pitfall}
 \begin{application}Equation of the line through $\pt{2;-1}$ with normal $\pt{3;4}$.\end{application}\label{C07-AP1}
 \section{Orthogonal projection and distance}\label{C07-U2}
 \begin{keypoint}[Definition and results]
-The projection H of P onto d is characterised by $H\in d$ and $\vect{PH}$ collinear with a normal vector of d. For $d:ax+by+c=0$, write $H=P-\lambda\pt{a;b}$, with $\lambda =\dfrac{ax_P+by_P+c}{a^2+b^2}$. The distance is $PH=\dfrac{|ax_P+by_P+c|}{\sqrt {a^2+b^2}}$. The distance formula is a deduced supplement, not an isolated routine.
+The projection H of P onto d is characterised by $H\in d$ and $\vect{PH}$ collinear with a normal vector of d. For $d:ax+by+c=0$, write $H=P-\lambda\pt{a;b}$, with $\lambda =\dfrac{ax_P+by_P+c}{a^2+b^2}$. The distance is $PH=\dfrac{|ax_P+by_P+c|}{\sqrt {a^2+b^2}}$. The distance formula is a derived extension rather than a standalone routine.
 \end{keypoint}
 \paragraph{Status and justification.} Substitute $x_H=x_P-\lambda a$, $y_H=y_P-\lambda b$ in the equation: $ax_P+by_P+c-\lambda(a^2+b^2)=0$. The denominator is positive; we obtain H, then $PH=|\lambda|\sqrt{a^2+b^2}$.
 \begin{example}For $P\pt{3;4}$ and $d:x+y-2=0$, $\lambda =\dfrac{3+4-2}{2}=\dfrac{5}{2}$, so $H\pt{\dfrac{1}{2};\dfrac{3}{2}}$ and $PH=\dfrac{5}{\sqrt 2}=\dfrac{5\sqrt 2}{2}$. Check $x_H+y_H=2$.\end{example}\label{C07-EX2}
 \mxinclude{figures/C07-U2}
-\begin{pitfall}The distance is positive or zero: keep the absolute value. Two checks, membership and perpendicularity, secure the projection.\end{pitfall}
+\begin{pitfall}The distance is nonnegative: keep the absolute value. Two checks, membership and perpendicularity, verify the projection.\end{pitfall}
 \begin{application}Project $P\pt{4;1}$ onto $d:x=2$.\end{application}\label{C07-AP2}
 \section{Equation of a circle}\label{C07-U3}
 \begin{keypoint}[Definition and results]
@@ -76,7 +76,7 @@ In an orthonormal frame, given the point $P\pt{4;3}$ and the line $d$ with equat
 \item Calculate the distance from $P$ to the line $d$ in exact form.
 \end{enumerate}
 \mxexercisehead{C07-E3}{Recognising a circle}
-Consider the set of points $M\pt{x;y}$ of the orthonormal plane whose coordinates satisfy\[x^2+y^2-6x+4y-12=0.\]
+Consider the set of points $M\pt{x;y}$ in the plane with an orthonormal coordinate system whose coordinates satisfy\[x^2+y^2-6x+4y-12=0.\]
 \begin{enumerate}[label=\arabic*.]
 \item Show that this set is a circle and state its centre and radius.
 \item Determine all its points of intersection with the line with equation $y=-2$.
@@ -91,7 +91,7 @@ In an orthonormal frame, given $A\pt{-1;1}$ and $B\pt{3;3}$. We look for an equa
 \mxexercisehead{C07-E5}{The best access}
 A straight road is represented by the line $d$ with equation $y=2x$ in an orthonormal frame whose unit of length is 1 km. A building is located at the point $P\pt{4;3}$. We want to build a straight access path joining the building to a point on the road.
 \begin{enumerate}[label=\arabic*.]
-\item Determine the point of the road that makes this access as short as possible. Calculate the exact length of the access.
+\item Determine the point on the road that makes this access path as short as possible. Calculate the exact length of the path.
 \item Justify that your choice is optimal among all the points of the road, by comparing the distances using a right triangle. A single observation on a drawing is not enough.
 \end{enumerate}
 \mxexercisehead{C07-E6}{Parameter and set}

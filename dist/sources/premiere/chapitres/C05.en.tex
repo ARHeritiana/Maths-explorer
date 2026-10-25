@@ -21,12 +21,12 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \paragraph{Speaking and logic.} Explain aloud what ``given'', ``and'' and ``at least'' mean. On a tree, justify an addition and a multiplication.
 \mxnewpage
 \section*{Investigate before formalising}\label{C05-RECH}
-Build a table of 100 people in which A and B are independent, with 40 in A and 30 in B. Change two cells, keeping these totals, so as to destroy the independence.
+Build a table of 100 people in which A and B are independent, with 40 in A and 30 in B. Change the four interior cells, keeping these margins, so as to destroy independence.
 \paragraph{Organisation.} Individual investigation 5 min, comparison in pairs 5 min, class discussion 5 min. Keep a record of one attempt, even an unfinished one. A conjecture must then be justified.
 \mxnewpage
 \section{Conditioning: changing the denominator}\label{C05-U1}
 \begin{keypoint}[Definition and results]
-For $P(A)>0$, the probability of B given A is $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$. In a table of equally likely counts, it is the quotient of the count of $A\cap B$ by the count of A. In general $P_A(B)\ne P_B(A)$.
+For $P(A)>0$, the probability of B given A is $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$. In a table of counts based on equally likely outcomes, it is the count of $A\cap B$ divided by the count of A. In general $P_A(B)\ne P_B(A)$.
 \end{keypoint}
 \paragraph{Status and justification.} Definition. Multiplying by $P(A)$ gives the rule $P(A\cap B)=P(A)P_A(B)$. The condition $P(A)>0$ is essential.
 \begin{example}Out of 100 people, 40 belong to A, 30 to B and 12 to both. $P_A(B)=\dfrac{12}{40}=\num{0,3}$, whereas $P_B(A)=\dfrac{12}{30}=\num{0,4}$. $P(A\cap B)=\num{0,12}$.\end{example}\label{C05-EX1}
@@ -63,7 +63,7 @@ A pseudo-random simulation produces frequencies that fluctuate around a probabil
 \end{keypoint}
 \paragraph{Status and justification.} Simulation principle accepted and explored experimentally. The equality of probability and area is an interpretation of the uniform draw; integration is not a prerequisite. A simulation does not prove an exact value.
 \begin{example}Among 10000 points, if 7840 lie in the quarter disc, the estimate of $\pi$ is $\dfrac{4\times 7840}{10000}=\num{3,136}$. Two trials of the same size generally give different values.\end{example}\label{C05-EX5}
-\begin{pitfall}Fixing a seed makes a trial reproducible; it neither removes the randomness of the model nor guarantees any accuracy.\end{pitfall}
+\begin{pitfall}Fixing a seed makes a trial reproducible; it neither removes the randomness of the model nor guarantees a specified accuracy.\end{pitfall}
 \begin{application}A simulation of 2000 points gives 675 points below $y=x^2$. What area does it estimate?\end{application}\label{C05-AP5}
 \mxnewpage
 \section*{Exercise path}\label{C05-PARC}
@@ -108,15 +108,15 @@ An experiment has a success of probability $\dfrac13$ and a failure. It is repea
 A device checks objects of which 2 percent are defective. It raises an alarm for 90 percent of the defective objects and, wrongly, for 5 percent of the objects without a defect. An inspected object is chosen at random. Let $D$ be the event ``the object is defective'' and $S$ the event ``the device raises an alarm''.
 \begin{enumerate}[label=\arabic*.]
 \item Determine the proportion of truly defective objects among those flagged. Choose a representation and detail the reasoning.
-\item Give an exact value, then a percentage rounded to the nearest tenth.
+\item Give an exact value, then a percentage rounded to one decimal place.
 \item Someone proposes 90 percent directly as the answer. Explain precisely which confusion of probabilities they are making.
 \end{enumerate}
 \mxexercisehead{C05-E7}{Sets and cardinality}
 We work in the set $E=\ens{1;2;3;4}$. Consider its subsets $A=\ens{1;2}$ and $B=\ens{2;4}$.
 \begin{enumerate}[label=\arabic*.]
 \item Write $A\cap B$, $A\cup B$ and the complement of $A$ in $E$. Give the cardinality of each.
-\item Write all the pairs of $A\times B$, then give its cardinality.
-\item Explain why the pairs $\pt{1;2}$ and $\pt{2;1}$ cannot be confused. Does the second belong to $A\times B$?
+\item Write all the ordered pairs in $A\times B$, then give its cardinality.
+\item Explain why the ordered pairs $\pt{1;2}$ and $\pt{2;1}$ are different. Does the second belong to $A\times B$?
 \end{enumerate}
 \mxexercisehead{C05-E8}{Delayed review}
 In a random experiment, two events $A$ and $B$ satisfy\[P(A)=\dfrac12,\qquad P_A(B)=\dfrac14,\qquad P_{\overline A}(B)=\dfrac34.\]
@@ -191,7 +191,7 @@ These exercises are done in your textbook. The progression indicates the session
 \item $\dfrac{1}{3}$
 \item $\dfrac{4}{9}$
 \end{enumerate}
-\item The branches leaving the same node sum to
+\item The probabilities on the branches leaving the same node sum to
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item $0$
 \item $2$

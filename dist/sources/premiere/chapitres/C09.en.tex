@@ -13,12 +13,12 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \item Express $3^{-2}$.
 \item Solve $2x+1=5$.
 \item Differentiate $x^2+2x$.
-\item A \pc{20} decrease gives which coefficient?
+\item What multiplicative factor corresponds to a \pc{20} decrease?
 \item For a geometric sequence $u_0=5,q=2$, calculate $u_n$.
 \mxcounted{diag}
 \end{enumerate}
 \paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
-\paragraph{Speaking and logic.} Explain the difference between a continuous rate and a discrete multiplying coefficient; present an inequality proved through the minimum of a difference.
+\paragraph{Speaking and logic.} Explain the difference between a continuous rate and a discrete multiplicative factor; present an inequality proved by finding the minimum of a difference.
 \mxnewpage
 \section*{Investigate before formalising}\label{C09-RECH}
 Compare the increments of $e^x$ and the values of the function around 0, with several positive steps. Conjecture a relation between $\dfrac{e^{h}-1}{h}$ and 1 when h becomes small.
@@ -39,7 +39,7 @@ For all real x,y, $e^{x+y}=e^xe^y$, $e^{-x}=\dfrac{1}{e^x}$, $e^{x-y}=\dfrac{e^x
 \end{keypoint}
 \paragraph{Status and justification.} The addition relation is accepted in the common pathway; it can be explored further via uniqueness. Positivity and $\exp\prime=\exp>0$ give strict increase. This justifies the equivalences for equations and inequalities.
 \begin{example}$e^{2x}e^{1-x}=e^{x+1}$. $e^{3x-2}=e^{x+4}$ is equivalent to $3x-2=x+4$, so x=3. $e^{2x}\leq1=e^0$ is equivalent to $x\leq0$.\end{example}\label{C09-EX2}
-\begin{pitfall}$e^{x+y}$ is a product, in general never $e^x+e^y$. We do not solve $e^x=2$ with a logarithm, which is not studied in Première.\end{pitfall}
+\begin{pitfall}$e^{x+y}$ is a product, not in general $e^x+e^y$. We do not solve $e^x=2$ using a logarithm, which is not studied in Première.\end{pitfall}
 \begin{application}Simplify $\dfrac{e^{3x}}{e^{x-1}}$; solve $e^{x+2}>e^{2x}$.\end{application}\label{C09-AP2}
 \section{Differentiating and studying}\label{C09-U3}
 \begin{keypoint}[Definition and results]
@@ -48,12 +48,12 @@ For real a, $t\mapsto e^{at}$ is differentiable and its derivative is $ae^{at}$.
 \paragraph{Status and justification.} The formula for differentiating $e^{at}$ is accepted; the case with b follows by taking out the constant factor $e^b$. The general chain rule is not needed here.
 \begin{example}For $f(x)=(x+1)e^{-x}$, $f\prime(x)=e^{-x}-(x+1)e^{-x}=-xe^{-x}$. Since $e^{-x}>0$, the derivative has the sign of $-x$: global maximum 1 at 0.\end{example}\label{C09-EX3}
 \begin{pitfall}Do not forget the factor a or the negative sign in $e^{-x}$. The exponential factor is positive, not necessarily increasing.\end{pitfall}
-\begin{application}Differentiate $g(t)=3e^{-2t}$ and study its direction of variation.\end{application}\label{C09-AP3}
+\begin{application}Differentiate $g(t)=3e^{-2t}$ and study its monotonicity.\end{application}\label{C09-AP3}
 \section{From discrete to continuous}\label{C09-U4}
 \begin{keypoint}[Definition and results]
 A model $Q(t)=Q_0e^{kt}$, with $Q_0>0$, represents growth if $k>0$, decay if $k<0$, constancy if $k=0$. For a fixed step h, $\dfrac{Q(t+h)}{Q(t)}=e^{kh}$. The values at integer times form a geometric sequence with common ratio $e^k$. The unit of k is the inverse of the unit of time.
 \end{keypoint}
-\paragraph{Status and justification.} The ratio follows from $e^{k(t+h)}=e^{kt}e^{kh}$. The direction of variation is deduced from $Q\prime(t)=kQ_0e^{kt}$ and the positivity of the remaining factor.
+\paragraph{Status and justification.} The ratio follows from $e^{k(t+h)}=e^{kt}e^{kh}$. Monotonicity follows from $Q\prime(t)=kQ_0e^{kt}$ and the positivity of the remaining factor.
 \begin{example}$Q(t)=100e^{-\num{0,2}t}$, t in hours: $Q(0)=100$, $\dfrac{Q(t+1)}{Q(t)}=e^{-\num{0,2}}$. A simulation can look for the first whole number of hours at which Q falls below 50; the exact equation is not solved with a logarithm in this chapter.\end{example}\label{C09-EX4}
 \mxinclude{figures/C09-U4}
 \begin{pitfall}The relative rate per discrete unit of time is $e^k-1$, not exactly k; they are close only for small k.\end{pitfall}
@@ -87,15 +87,15 @@ Consider an equation and an inequality in the real unknown $x$:\[e^{2x-1}=e^{x+3
 The function $f$ is defined on $\intff{0}{4}$ by $f(x)=xe^{-x}$.
 \begin{enumerate}[label=\arabic*.]
 \item Calculate $f\prime(x)$, then study its sign on the interval.
-\item Draw the variation table of $f$. Deduce its maximum and the x-coordinate where it is reached.
+\item Draw the monotonicity table of $f$. Deduce its maximum and the x-coordinate where it is reached.
 \item Check that the values at the endpoints do not give a larger maximum. Keep the exact values.
 \end{enumerate}
 \mxexercisehead{C09-E4}{A modelled population}
 The following two parts are independent.\par\textbf{Part A: A population.} A population is modelled by $P(t)=200e^{\num{0,1}t}$, where $t\geq0$ is the time elapsed in years. $P(t)$ is a theoretical count, which is not necessarily an integer.
 \begin{enumerate}[label=\arabic*.]
-\item Determine the initial count, then the multiplying coefficient between times $t$ and $t+1$. Deduce the exact annual rate and its percentage rounded to the nearest hundredth.
+\item Determine the initial count, then the multiplicative factor between times $t$ and $t+1$. Deduce the exact annual rate and express it as a percentage rounded to two decimal places.
 \item Explain why this model cannot necessarily describe a real population indefinitely.
-\item \textbf{Part B: Two curves.} In the same frame, sketch the curves of $t\mapsto e^{\dfrac{t}{2}}$ and $t\mapsto e^{-\dfrac{t}{2}}$. State their variation, their common point and their symmetry. Identify each curve clearly.
+\item \textbf{Part B: Two curves.} In the same coordinate system, sketch the curves of $t\mapsto e^{\dfrac{t}{2}}$ and $t\mapsto e^{-\dfrac{t}{2}}$. State where they increase or decrease, their common point and their symmetry. Identify each curve clearly.
 \end{enumerate}
 \mxexercisehead{C09-E5}{Searching for a threshold}
 The quantity of a substance, in milligrams, is modelled at time $t\geq0$ by $Q(t)=80e^{-\dfrac{t}{2}}$, where $t$ is expressed in hours. Checks take place at integer times $n=0,1,2,\ldots$. We look for the first check at which the quantity is strictly less than 10 mg.
@@ -109,7 +109,7 @@ Consider the function $f$ defined on $\R$ by $f(x)=e^x+e^{-x}$.
 \begin{enumerate}[label=\arabic*.]
 \item Study the parity of $f$ and interpret the result for its curve.
 \item Prove that $f(x)\geq2$ for every real number $x$, choosing a method. State the equality case.
-\item Suggest a check of the result by a second method, from a square or a study of variation.
+\item Suggest a check of the result using a second method, based on a square or a study of monotonicity.
 \end{enumerate}
 \mxexercisehead{C09-E7}{Uniqueness under a hypothesis}
 \textbf{Extension.} Assume that the exponential function has already been constructed. Let $f$ be a function differentiable on $\R$ that satisfies $f\prime(x)=f(x)$ for every real number $x$ and $f(0)=1$. Let $g(x)=f(x)e^{-x}$.
@@ -204,7 +204,7 @@ These exercises are done in your textbook. The progression indicates the session
 \item $xe^x$
 \item $xe^{x-1}$
 \end{enumerate}
-\item $e^x\geq1+x$ has equality
+\item $e^x\geq1+x$ holds with equality
 \begin{enumerate}[label=\Alph*.,itemsep=2pt]
 \item for all x
 \item at 1 only

@@ -39,11 +39,11 @@ The expectation is $E(X)=\sum_i x_ip_i$. It describes the long-term theoretical 
 \end{keypoint}
 \paragraph{Status and justification.} Summing over the outcomes $\omega$, $E(X+Y)=\sum_\omega(X(\omega)+Y(\omega))P(\omega)$; distributing the sum gives the result. The constant b has expectation b because the probabilities sum to 1.
 \begin{example}For the previous distribution $P(X=2)=\dfrac{1}{3}$, $P(X=-1)=\dfrac{2}{3}$, $E(X)=0$: the game is fair if X is the net gain. For $Y=3X-2$, $E(Y)=3\times0-2=-2$.\end{example}\label{C08-EX2}
-\begin{pitfall}An expectation is not an individual guarantee; a game can be losing at every observed horizon despite a positive expectation.\end{pitfall}
+\begin{pitfall}An expectation is not a guarantee for an individual: the accumulated outcome can be a loss at every observed stage even when the expectation is positive.\end{pitfall}
 \begin{application}A gross gain is 10 with probability $\dfrac{1}{5}$ and 0 otherwise. What stake makes the game fair?\end{application}\label{C08-AP2}
-\section{Variance, standard deviation and König--Huygens}\label{C08-U3}
+\section{Variance, standard deviation and the König-Huygens formula}\label{C08-U3}
 \begin{keypoint}[Definition and results]
-Writing $\mu=E(X)$, $V(X)=E((X-\mu)^2)=\sum_i(x_i-\mu)^2p_i$. The standard deviation is $\sigma(X)=\sqrt{V(X)}$. The König--Huygens formula gives $V(X)=E(X^2)-E(X)^2$. A variance is always positive or zero; the standard deviation has the same unit as X, the variance a squared unit.
+Writing $\mu=E(X)$, $V(X)=E((X-\mu)^2)=\sum_i(x_i-\mu)^2p_i$. The standard deviation is $\sigma(X)=\sqrt{V(X)}$. The König-Huygens formula gives $V(X)=E(X^2)-E(X)^2$. A variance is always nonnegative; the standard deviation has the same unit as X, while the variance has the square of that unit.
 \end{keypoint}
 \paragraph{Status and justification.} Expand $(X-\mu)^2=X^2-2\mu X+\mu^2$, apply linearity and $E(X)=\mu$: $E(X^2)-2\mu^2+\mu^2$. We obtain the formula.
 \begin{example}For X with values 0 and 4 with probabilities $\dfrac{3}{4}$ and $\dfrac{1}{4}$, $E(X)=1$, $E(X^2)=4$, $V(X)=3$ and $\sigma=\sqrt3$. Direct calculation: $(0-1)^2(\dfrac{3}{4})+(4-1)^2(\dfrac{1}{4})=3$.\end{example}\label{C08-EX3}
@@ -61,7 +61,7 @@ For real a,b, $V(aX+b)=a^2V(X)$ and $\sigma(aX+b)=|a|\sigma(X)$. A translation m
 \begin{keypoint}[Definition and results]
 A sample of size n is here a list of n independent realisations of the same variable X. Its observed mean m varies from one sample to another; we compare it with $\mu=E(X)$.
 \end{keypoint}
-\paragraph{Status and justification.} Experimentation: neither a convergence theorem nor the normal distribution is proved here. We check the size of the lists, the calculation of the mean and the distinction between n and the number N of samples.
+\paragraph{Status and justification.} Experimentation: we prove neither a convergence theorem nor any normal-distribution result here. We check the size of the lists, the calculation of the mean and the distinction between n and the number N of samples.
 \begin{example}For X taking the values 0 and 2 with equal probability, $\mu=1$. The sample 2, 0, 2, 2, 0, 0, 2, 2, 0, 2 has observed mean \num{1,2}; another sample of the same size will usually give another mean. A simulation compares several observed means with $\mu$ without proving anything.\end{example}\label{C08-EX5}
 \begin{pitfall}Do not copy a single draw n times; do not confuse the observed mean of a sample with the expectation $\mu$.\end{pitfall}
 \begin{beyond}[Fluctuation threshold]By repeating the simulation, we can count the proportion of samples satisfying $|m-\mu|\leq \dfrac{2\sigma}{\sqrt n}$; it is often close to \pc{95} without necessarily being equal to it. This threshold is not part of the première syllabus and is not assessed.\end{beyond}
@@ -81,7 +81,7 @@ A fair six-sided die, with faces numbered 1 to 6, is rolled. The random variable
 The random variable $X$ takes the values $-2$, 0 and 4 with respective probabilities $\dfrac14$, $\dfrac12$ and $\dfrac14$.
 \begin{enumerate}[label=\arabic*.]
 \item Calculate its expectation $\mu=E(X)$ and the second moment $E(X^2)$.
-\item Calculate $V(X)$ using the König--Huygens formula, then deduce the exact standard deviation.
+\item Calculate $V(X)$ using the König-Huygens formula, then deduce the exact standard deviation.
 \item Recover the variance from the definition $V(X)=E((X-\mu)^2)$. Present the three contributions to the calculation.
 \end{enumerate}
 \mxexercisehead{C08-E3}{A fair game}
@@ -128,7 +128,7 @@ An experiment whose probability of success is $\dfrac12$ is repeated twice, inde
 \mxneed{12}\section*{To do in the CQFD textbook}
 These exercises are done in your textbook. The progression indicates the session; they replace the homework planned for that day (10 to 20 minutes in total).
 \paragraph{CQFD, exercise 28 p.~306, all questions.}\label{C08-M1} Calculate the expectation from the distribution table; keep the probabilities associated with each value.
-\paragraph{CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.}\label{C08-M2} Calculate the variance then the standard deviation, respecting the rounding to the nearest tenth asked for by the textbook.
+\paragraph{CQFD, exercise 31 p.~306, all questions; use the distribution of exercise 28.}\label{C08-M2} Calculate the variance and then the standard deviation, rounding to one decimal place as requested in the textbook.
 \begingroup\small
 \mxnewpage\section*{MCQ 1: understand and choose}\label{C08-Q1}
 \mxCount{qcm1} single-answer questions for practice. Choose one answer per question; then explain one distractor. This chapter format does not reproduce the official EAM format.

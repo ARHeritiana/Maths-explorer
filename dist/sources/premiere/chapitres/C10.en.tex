@@ -9,7 +9,7 @@
 \section*{Diagnostic: \mxcount{diag} questions, 10 minutes}\label{C10-D}
 Answer without consulting the lesson. Mark the questions for which help is needed. This diagnostic is not graded.
 \begin{enumerate}
-\item Perimeter of a circle of radius 1?
+\item Circumference of a circle of radius 1?
 \item How many degrees is a quarter turn?
 \item Calculate $\sqrt {\dfrac{1}{2}}$.
 \item What are the x- and y-coordinates of the reflection of $\pt{a;b}$ in the x-axis?
@@ -18,7 +18,7 @@ Answer without consulting the lesson. Mark the questions for which help is neede
 \mxcounted{diag}
 \end{enumerate}
 \paragraph{After the diagnostic.} Revisit the flagged topics with the teacher; redo a similar question, then explain the rule used.
-\paragraph{Speaking and logic.} Present an equality of related angles, naming the symmetry that justifies it; explain what a radian measures.
+\paragraph{Speaking and logic.} Present a trigonometric identity involving related angles, naming the symmetry that justifies it; explain what a radian measures.
 \mxnewpage
 \section*{Investigate before formalising}\label{C10-RECH}
 Construct, without a protractor, a point at angle $\dfrac{\pi}{3}$ then a point at angle $\dfrac{\pi}{4}$. Justify the exact values of their coordinates from the figures.
@@ -31,7 +31,7 @@ The unit circle is the circle with centre O and radius 1, oriented anticlockwise
 \paragraph{Status and justification.} Definitions and proportionality between central angle and arc length. The conversion is $180^\circ=\pi$ radians; we multiply degrees by $\dfrac{\pi}{180}$.
 \begin{example}$60^\circ =\dfrac{\pi}{3}$; $\dfrac{3\pi}{2}=270^\circ $. An angle of $\dfrac{\pi}{3}$ on a circle of radius 6 cm gives an arc of $2\pi$ cm.\end{example}\label{C10-EX1}
 \begin{pitfall}The length of an arc is not that of the chord. In trigonometric calculations, check the degree or radian mode of the tool.\end{pitfall}
-\begin{application}Convert $45^\circ$, $120^\circ$; give the arc for radius 2 m and angle $\dfrac{3\pi}{4}$.\end{application}\label{C10-AP1}
+\begin{application}Convert $45^\circ$, $120^\circ$; calculate the arc length for radius 2 m and angle $\dfrac{3\pi}{4}$.\end{application}\label{C10-AP1}
 \section{Wrapping and the image of a real number}\label{C10-U2}
 \begin{keypoint}[Definition and results]
 To each real number x corresponds a point M of the circle, obtained by an oriented path of length x starting from I(1;0). Two real numbers have the same image if their difference is an integer multiple of $2\pi$. A negative number indicates a path in the clockwise direction.
@@ -61,7 +61,7 @@ The symmetries of the circle give $\cos(-x)=\cos x$, $\sin(-x)=-\sin x$; $\cos(\
 \begin{keypoint}[Definition and results]
 A regular inscribed polygon with n sides in the unit circle has half-perimeter $n\sin (\dfrac{\pi}{n})$; a circumscribed polygon has half-perimeter $n\tan (\dfrac{\pi}{n})$, with $\tan \theta =\dfrac{\sin \theta}{\cos}\theta $ here. Archimedes' method doubles the number of sides and calculates the new lengths by Pythagoras, without knowing pi in advance.
 \end{keypoint}
-\paragraph{Status and justification.} The inscribed perimeter is less than that of the circle and the circumscribed one greater: geometric bounds accepted. If c is the chord of one side, let $h=\sqrt {1-\dfrac{c^2}{4}}$; the chord of the half-angle is $\dfrac{c}{\sqrt {2(1+h)}}$. This formula comes from Pythagoras and avoids a subtraction of nearby real numbers.
+\paragraph{Status and justification.} The inscribed perimeter is less than that of the circle and the circumscribed one greater: these geometric bounds are accepted. If c is the chord of one side, let $h=\sqrt {1-\dfrac{c^2}{4}}$; the chord of the half-angle is $\dfrac{c}{\sqrt {2(1+h)}}$. This formula follows from Pythagoras and avoids subtracting nearly equal numbers.
 \begin{example}For the inscribed hexagon, c=1 and half-perimeter 3. The circumscribed one gives $2\sqrt3\approx\num{3,4641}$. By doubling the sides, we tighten the bounds. The supplied program starts from n=6 and c=1.\end{example}\label{C10-EX5}
 \begin{pitfall}Using a sine function directly with pi already known would check a calculation, but would not construct an approximation independent of pi.\end{pitfall}
 \begin{application}For n=6 and c=1, calculate the new chord after doubling.\end{application}\label{C10-AP5}
