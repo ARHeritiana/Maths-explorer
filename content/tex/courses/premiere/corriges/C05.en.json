@@ -127,9 +127,9 @@
    "status": "aligned",
    "order": 20
   },
-  "11f85af492cd": {
-   "fr": "[[m1]] ; intersection [[m2]] de probabilité [[m3]] : non indépendants. Le fait qu’un autre choix de seuil donnait l’indépendance ne se transfère pas automatiquement.",
-   "en": "[[m1]]; the intersection [[m2]] has probability [[m3]]: not independent. The fact that another choice of threshold gave independence does not transfer automatically.",
+  "e6ed99bef2db": {
+   "fr": "[[m1]] ; intersection [[m2]] de probabilité [[m3]] : non indépendants. Contrairement à l’exemple du cours (résultat au moins 5), ici le seuil 4 ne donne pas l’indépendance.",
+   "en": "[[m1]]; the intersection [[m2]] has probability [[m3]]: not independent. Unlike the example in the course (result at least 5), here the threshold 4 does not give independence.",
    "status": "aligned",
    "order": 21
   },
@@ -211,9 +211,9 @@
    "status": "aligned",
    "order": 34
   },
-  "f218f5c2f56e": {
-   "fr": "[[m1]], [[m2]] et [[m3]]. Ainsi [[m4]], puis [[m5]]. La formule des probabilités totales comporte les poids [[m6]] et [[m7]] ; le complément porte sur B lorsque l’on fixe la même condition.",
-   "en": "[[m1]], [[m2]] and [[m3]]. Hence [[m4]], then [[m5]]. The law of total probability involves the weights [[m6]] and [[m7]]; the complement applies to B when the same condition is held fixed.",
+  "518bd7259125": {
+   "fr": "[[m1]], [[m2]] et [[m3]]. Ainsi [[m4]], puis [[m5]]. La formule des probabilités totales comporte les poids [[m6]] et [[m7]] ; le complément s’applique à l’événement [[m8]] sous une même condition : [[m9]], et non [[m10]].",
+   "en": "[[m1]], [[m2]] and [[m3]]. Hence [[m4]], then [[m5]]. The law of total probability involves the weights [[m6]] and [[m7]]; the complement applies to the event [[m8]] under the same condition: [[m9]], and not [[m10]].",
    "status": "aligned",
    "order": 35
   },

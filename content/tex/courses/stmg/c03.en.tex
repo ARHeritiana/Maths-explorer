@@ -83,9 +83,16 @@ Revisit the data from the investigation and write up the solution in order: defi
 
 \begin{activity}
 Plot $y=10^x$ and the line $y=x$, then obtain the curve of the logarithm by symmetry. Deduce its domain, its direction of variation and its asymptote.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-1,xmax=10,ymin=-2.5,ymax=2,grid=major]\addplot[mxteacher,very thick,samples=100,domain=.03:10]{ln(x)/ln(10)};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=7cm,axis lines=middle,xmin=-2,xmax=10,ymin=-2,ymax=10,grid=major]
+\addplot[mxwarn,very thick,samples=100,domain=-2:1]{10^x};
+\addplot[dashed,thick,domain=-2:10]{x};
+\addplot[mxteacher,very thick,samples=100,domain=.01:10]{ln(x)/ln(10)};
+\node[anchor=west,mxwarn]at(axis cs:.9,8.6){$y=10^x$};
+\node[anchor=north west]at(axis cs:5.5,5.5){$y=x$};
+\node[anchor=south,mxteacher]at(axis cs:8,1){$y=\log x$};
+\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}The logarithm is the inverse function of $10^x$: domain $]0,+\infty[$, strictly increasing, asymptote $x=0$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}The graphs of $10^x$ and $\log$ are symmetric with respect to the line $y=x$: if $\pt{a;b}$ is on the first, then $\pt{b;a}$ is on the second (the logarithm is the inverse function of $10^x$). One reads: domain $]0,+\infty[$ (the set of values taken by $10^x$), strict increase, asymptote $x=0$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}The function $\log$ is defined on $]0,+\infty[$, is strictly increasing, and its curve has $x=0$ as a vertical asymptote.\end{summary}
 
@@ -122,14 +129,14 @@ Revisit the data from the investigation and write up the solution in order: defi
 Starting from $10^2\times10^3=10^5$, conjecture $\log(ab)=\log a+\log b$. Test numerically with $a=2,b=5$, then explain why $a,b$ must be positive.
 
 \end{activity}
-\begin{solution}$\log(2)+\log(5)=\log(10)=1$. The logarithm is only defined for a strictly positive argument. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}$\log(2)\approx\num{0,30103}$, $\log(5)\approx\num{0,69897}$ and their sum is $1=\log(10)=\log(2\times5)$: the conjecture is consistent. The logarithm is only defined for a strictly positive argument. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}For $a,b>0$, $\log(ab)=\log a+\log b$ and $\log\!\left(\dfrac ab\right)=\log a-\log b$. Moreover $\log(a^n)=n\log a$.\end{summary}
 
 \begin{example}
 Revisit the data from the investigation and write up the solution in order: definition of the objects, property used, exact or approximate calculation, then a concluding sentence. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}$\log(2)+\log(5)=\log(10)=1$. The logarithm is only defined for a strictly positive argument.\end{solution}
+\begin{solution}$\log(2)\approx\num{0,30103}$, $\log(5)\approx\num{0,69897}$ and their sum is $1=\log(10)=\log(2\times5)$. The logarithm is only defined for a strictly positive argument.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item Calculate $\log(10^4)$ and $\log(10^{-4})$.\item Expand $\log\!\left(\dfrac{100a^2}{b}\right)$ for $a,b>0$.\item Solve $4^x=24$ and give an approximate value to the nearest hundredth.\end{enumerate}
@@ -230,7 +237,7 @@ Revisit the data from the investigation and write up the solution in order: defi
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have students rephrase the key words: solve equations where the variable is the base and deal with an inequality.\end{prerequisites}
 
 \begin{activity}
-Solve on $[0,+\infty[$: $x^3=40$, then $x^4=16$. Then solve $\num{1,08}^x<\num{1,5}$ and explain the role of the function being increasing.
+Solve on $[0,+\infty[$: $x^3=40$, then $x^4=16$. Then, for a real $x$, solve $\num{1,08}^x<\num{1,5}$ and explain the role of the increase.
 
 \end{activity}
 \begin{solution}$x=\sqrt[3]{40}\approx\num{3,42}$; $x=2$ on the requested interval; $x<\dfrac{\log\num{1,5}}{\log\num{1,08}}\approx\num{5,27}$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
@@ -307,7 +314,7 @@ Revisit the data from the investigation and write up the solution in order: defi
 Make a map of methods: domain; properties; equations $10^x=b$; equations $a^x=b$; inequalities. Attach a condition and an example to each branch.
 
 \end{activity}
-\begin{solution}The map should in particular show that arguments must be positive and the distinction between a base greater than $1$ and one between $0$ and $1$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}Model card. \emph{Domain}: $\log$ is defined on $]0,+\infty[$; example: $\log(x-2)$ exists if $x>2$. \emph{Properties} ($a,b>0$): $\log(ab)=\log a+\log b$, $\log\frac ab=\log a-\log b$, $\log(a^n)=n\log a$; example: $\log(100a^2)=2+2\log a$. \emph{Equation $10^x=b$} ($b>0$): $x=\log b$; example: $10^x=250$ gives $x=\log(250)\approx\num{2,40}$. \emph{Equation $a^x=b$} ($a>0$, $a\neq1$, $b>0$): $x=\dfrac{\log b}{\log a}$; example: $2^x=22$ gives $x\approx\num{4,46}$. \emph{Inequalities}: if $a>1$, the function $x\mapsto a^x$ is increasing and the inequality keeps its direction; if $0<a<1$, it is decreasing and the direction changes; examples: $\num{1,08}^x<\num{1,5}$ gives $x<\num{5,27}$ approximately, and $\num{0,8}^x<\num{0,5}$ gives $x>\num{3,11}$ approximately. The card must in particular show the positivity of the arguments and the distinction between a base greater than $1$ and a base lying between $0$ and $1$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}Before calculating a logarithm: check positivity. Before a comparison: identify the direction of variation. Before a conclusion: check that the result is plausible.\end{summary}
 

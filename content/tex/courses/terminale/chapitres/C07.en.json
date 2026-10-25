@@ -115,9 +115,9 @@
    "status": "aligned",
    "order": 18
   },
-  "4ce6519561b6": {
-   "fr": "Pour chercher le plus petit [[m1]] tel que [[m2]], une boucle sur [[m3]] suffit. Après le logarithme, on peut résoudre [[m4]] puis arrondir dans le bon sens.\nPour trouver le plus petit entier [[m5]] tel que [[m6]], augmenter [[m7]] jusqu'à obtenir [[m8]], puis vérifier le rang précédent. On peut également chercher un intervalle [[m9]] tel que [[m10]] soit au moins égale à une valeur prescrite, sans supposer qu'il soit unique.",
-   "en": "To find the smallest [[m1]] such that [[m2]], a loop on [[m3]] is enough. After taking logarithms, one can solve [[m4]] then round in the right direction.\nTo find the smallest integer [[m5]] such that [[m6]], increase [[m7]] until [[m8]] is obtained, then check the previous value. One can also look for an interval [[m9]] such that [[m10]] is at least a prescribed value, without assuming that it is unique.",
+  "7075799114ca": {
+   "fr": "Pour chercher le plus petit [[m1]] tel que [[m2]], une boucle sur [[m3]] suffit : c'est la méthode à utiliser pour l'instant. Avec la fonction logarithme, étudiée plus tard, on résoudra directement [[m4]] puis on arrondira dans le bon sens.\nPour trouver le plus petit entier [[m5]] tel que [[m6]], augmenter [[m7]] jusqu'à obtenir [[m8]], puis vérifier le rang précédent. On peut également chercher un intervalle [[m9]] tel que [[m10]] soit au moins égale à une valeur prescrite, sans supposer qu'il soit unique.",
+   "en": "To find the smallest [[m1]] such that [[m2]], a loop on [[m3]] is enough: this is the method to use for now. Once the logarithm function has been studied, one will solve [[m4]] directly and then round in the right direction.\nTo find the smallest integer [[m5]] such that [[m6]], increase [[m7]] until [[m8]] is obtained, then check the previous index. One can also look for an interval [[m9]] on which [[m10]] is at least equal to a prescribed value, without assuming that it is unique.",
    "status": "aligned",
    "order": 19
   },
@@ -355,9 +355,9 @@
    "status": "aligned",
    "order": 58
   },
-  "2d344b1c7a05": {
-   "fr": "Une cause commune liée au lot pourrait rendre les défauts dépendants. La loi binomiale et ses calculs reposent sur l'indépendance donnée dans le modèle ; il faudrait réexaminer cette hypothèse pour un autre protocole.",
-   "en": "A common cause linked to the batch could make the defects dependent. The binomial distribution and its calculations rely on the independence given in the model; this assumption would need to be re-examined for a different protocol.",
+  "878541f2f34f": {
+   "fr": "Une cause commune liée au lot pourrait rendre les défauts dépendants. La loi binomiale et ses calculs reposent sur l'indépendance donnée dans le modèle ; dans un même lot, les prélèvements se font sans remise : ils ne sont plus rigoureusement indépendants, ce qui remet en cause la loi binomiale.",
+   "en": "A common cause linked to the batch could make the defects dependent. The binomial distribution and its calculations rely on the independence assumed in the model; within the same batch, the draws are made without replacement: they are then no longer strictly independent, which calls the binomial distribution into question.",
    "status": "aligned",
    "order": 59
   },

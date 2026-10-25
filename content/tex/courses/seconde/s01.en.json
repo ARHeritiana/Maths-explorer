@@ -301,9 +301,9 @@
    "status": "aligned",
    "order": 49
   },
-  "a35a2f793cd1": {
-   "fr": "\\texttt{a \\% b} est le reste de la division euclidienne pour des entiers et [[m1]]. Un test renvoie un booléen : \\texttt{True} ou \\texttt{False}. L'égalité se teste par \\texttt{==} ; l'affectation utilise \\texttt{=}.",
-   "en": "\\texttt{a \\% b} is the remainder of the Euclidean division for integers and [[m1]]. A test returns a Boolean: \\texttt{True} or \\texttt{False}. Equality is tested with \\texttt{==}; assignment uses \\texttt{=}.",
+  "eb90c63ac897": {
+   "fr": "\\texttt{a \\% b} est le reste de la division euclidienne de \\texttt{a} par \\texttt{b} pour tout entier \\texttt{a} lorsque [[m1]], cas utilisé ici (si [[m2]], Python renvoie un résultat du signe de [[m3]], qui n'est pas le reste euclidien). Un test renvoie un booléen : \\texttt{True} ou \\texttt{False}. L'égalité se teste par \\texttt{==} ; l'affectation utilise \\texttt{=}.",
+   "en": "\\texttt{a \\% b} is the remainder of the Euclidean division of \\texttt{a} by \\texttt{b} for every integer \\texttt{a} when [[m1]], the case used here (if [[m2]], Python returns a result with the sign of [[m3]], which is not the Euclidean remainder). A test returns a Boolean: \\texttt{True} or \\texttt{False}. Equality is tested with \\texttt{==}; assignment uses \\texttt{=}.",
    "status": "aligned",
    "order": 50
   },

@@ -24,7 +24,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 \end{tikzpicture}\par Read off $f(1)$ and the preimages of $0$.}{$f(1)=3$; preimages of $0$: $-2$ and $2$.}{Expression used for the plot: $f(x)=-x^2+4$.}
 \mxfq{Core + · Thinking}{IMG}{For this function, does the equation $f(x)=5$ have any solutions?}{No: $f(x)=4-x^2\leqslant4<5$ for all $x$; the curve does not rise as far as $y=5$.}{}
 \mxfq{Review · Quick}{PRB}{Urn: $5$ red balls, $3$ blue, $2$ green. Probability of drawing a blue one? A non-red one?}{$\dfrac{3}{10}$; $\dfrac{5}{10}=\dfrac12$.}{}
-\mxfq{Thread · Method}{EQ}{Solve in $\R$: $4-3x=10$.}{$x=-2$}{Pitfall: dividing by $-3$ without changing the sign of the result.}
+\mxfq{Thread · Method}{EQ}{Solve in $\R$: $4-3x=10$.}{$x=-2$}{Pitfall: from $-3x=6$, writing $x=2$ instead of $x=\dfrac{6}{-3}=-2$.}
 \end{fluencysheet}
 
 \begin{fluencysheet}{Tue~8~Dec.~2026}{Reference functions: absolute value, square, inverse}
@@ -68,7 +68,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 \draw[thick,mxink,domain=-1:2,samples=60,smooth] plot (\x,{\x});
 \draw[thick,mxink,domain=-1:2,samples=60,smooth] plot (\x,{\x*\x});
 
-\end{tikzpicture}\par Solve $f(x)=g(x)$ then $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$: $x=0$ or $x=1$; $f(x)<g(x)$: the parabola is above the line for $x<0$ or $x>1$.}{Intervals: $\intoo{-\infty}{0}\cup\intoo{1}{+\infty}$.}
+\end{tikzpicture}\par Solve $f(x)=g(x)$ then $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$: $x=0$ or $x=1$; $f(x)<g(x)$ on $\R$: $x(x-1)>0$ (product of two factors of the same sign), so the parabola is above the line for $x<0$ or $x>1$ (on the figure, drawn on $\intff{-1}{2}$, one reads only $\intfo{-1}{0}$ and $\intof{1}{2}$).}{Intervals: $\intoo{-\infty}{0}\cup\intoo{1}{+\infty}$.}
 \mxfq{Core + · Code reading}{ALG}{What does \code{f(-1) == g(-1)} return? And \code{f(0) == g(0)}?\mxpseudo{def f(x):\\ \mxtab return x*x\\ def g(x):\\ \mxtab return 2*x + 3}}{\code{True} ($1=-2+3$) then \code{False} ($0\neq3$): $-1$ is a solution of $f(x)=g(x)$, $0$ is not.}{}
 \mxfq{Review · Problem}{MOD}{Plan A: $\num{15000}$ Ar fixed + $\num{1000}$ Ar per session. Plan B: $\num{2500}$ Ar per session. From how many sessions is A cheaper?}{$\num{15000}+\num{1000}x<\num{2500}x\Leftrightarrow x>10$: from $11$ sessions ($10$: equal at $\num{25000}$ Ar).}{}
 \mxfq{Thread · Quick}{REP}{Calculate the coordinates of the midpoint of $[AB]$ with $A\pt{-2;5}$ and $B\pt{6;1}$.}{$\left(\dfrac{-2+6}{2};\dfrac{5+1}{2}\right)=\pt{2;3}$.}{}

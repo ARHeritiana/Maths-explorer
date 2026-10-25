@@ -709,9 +709,9 @@
    "status": "aligned",
    "order": 117
   },
-  "b37a212a7c1d": {
-   "fr": "[[m1]] est un multiple de [[m2]] compris entre [[m3]] et [[m4]], donc nul : contradiction avec [[m5]]. La nouvelle somme n'est plus multiple de [[m6]], l'erreur est détectée.",
-   "en": "[[m1]] is a multiple of [[m2]] between [[m3]] and [[m4]], hence zero: a contradiction with [[m5]]. The new sum is no longer a multiple of [[m6]], so the error is detected.",
+  "360422dc754f": {
+   "fr": "[[m1]] est un multiple de [[m2]] compris entre [[m3]] et [[m4]], donc nul : contradiction avec [[m5]]. La variation [[m6]] de la somme n'est pas multiple de [[m7]] ; le code d'origine étant valide (somme multiple de [[m8]]), la nouvelle somme n'est plus multiple de [[m9]] et l'erreur est détectée.",
+   "en": "[[m1]] is a multiple of [[m2]] between [[m3]] and [[m4]], hence zero: a contradiction with [[m5]]. The change [[m6]] in the sum is not a multiple of [[m7]]; since the original code was valid (sum a multiple of [[m8]]), the new sum is no longer a multiple of [[m9]], and the error is detected.",
    "status": "aligned",
    "order": 118
   },

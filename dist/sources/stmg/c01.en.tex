@@ -70,13 +70,13 @@ u_0+u_1+\cdots+u_n=u_0\frac{1-q^{n+1}}{1-q}.
 
 \subsection{Algorithms: computing a sum}
 \begin{lstlisting}[style=python]
-def somme_carres(n):
+def somme_geometrique(n):
     s = 0
-    for k in range(1, n + 1):
-        s = s + k**2
+    for k in range(n + 1):
+        s = s + 5 * 2**k
     return s
 \end{lstlisting}
-The accumulator \texttt{s} holds the partial sum; the counter \texttt{k} runs through the integers from $1$ to $n$.
+The accumulator \texttt{s} holds the partial sum; the counter \texttt{k} runs through the integers from $0$ to $n$. Here \texttt{somme\_geometrique(4)} computes $5+10+20+40+80=155$, a value that is also obtained with $u_0\frac{1-q^{n+1}}{1-q}=5\times\frac{1-2^5}{1-2}$ for the geometric sequence with first term $5$ and common ratio $2$.
 
 \mxsession{1}{\mxdate*{2026-09-15}}{B: 2 h -- C: 1 h}{Arithmetic sequences: recognising and modelling}{Number Sequences}
     \begin{objectives}\begin{itemize}\item Recognise an additive change.\item Find the common difference.\item Define a sequence in context.\end{itemize}\end{objectives}
@@ -106,7 +106,7 @@ The accumulator \texttt{s} holds the partial sum; the counter \texttt{k} runs th
 
 \mxexuse{1}
 
-    \begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $125$ and the rate or common difference/ratio by $3$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{homework}Rework question 2 of the essential exercise of the session with the following data: replace the initial value by $125$ and the rate or ratio by $3$. Write up in four lines: data, formula, calculation, conclusion.\end{homework}
     \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
 
     \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
@@ -120,7 +120,7 @@ The accumulator \texttt{s} holds the partial sum; the counter \texttt{k} runs th
     \fi
 \mxsession{2}{\mxdate*{2026-09-17}}{B: 1 h -- C: 2 h}{Arithmetic sequences: the general term}{Number Sequences}
 \begin{objectives}\begin{itemize}\item Move from the recurrence relation to the general term.\item Calculate a distant term.\item Interpret the index.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+5-x+2$. \mxblank{$2x+7$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $\pc{8}$ decrease. \mxblank{$\num{0,92}$}\item Give the common difference of $12\ ;\ 12+5\ ;\ 12+2\times5\ ;\ \ldots$. \mxblank{$r=5$}\item Calculate $u_4$ if $u_0=15$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+5-x+2$. \mxblank{$2x+7$}\item How many terms from $u_{2}$ to $u_{10}$? \mxblank{$10-2+1=9$}\item Give the multiplier for a $\pc{12}$ decrease. \mxblank{$\num{0,88}$}\item Give the common difference of $12\ ;\ 12+5\ ;\ 12+2\times5\ ;\ \ldots$. \mxblank{$r=5$}\item Calculate $u_4$ if $u_0=15$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: move from the recurrence relation to the general term and calculate a distant term.\end{prerequisites}
 
 \begin{activity}
@@ -143,7 +143,7 @@ Take the data from the investigation and write up the solution in this order: de
 
 \mxexuse{2}
 
-\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $130$ and the rate or common difference/ratio by $4$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{homework}Rework question 2 of the essential exercise of the session with the following data: replace the initial value by $130$ and the rate or ratio by $4$. Write up in four lines: data, formula, calculation, conclusion.\end{homework}
 \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
 
 \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
@@ -157,7 +157,7 @@ Take the data from the investigation and write up the solution in this order: de
 \fi
 \mxsession{3}{\mxdate*{2026-09-22}}{B: 2 h -- C: 1 h}{Sum of the terms of an arithmetic sequence}{Number Sequences}
 \begin{objectives}\begin{itemize}\item Count the terms of a sum.\item Apply the formula.\item Check the order of magnitude.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $120$. \mxblank{$24$}\item Give the multiplier for a $\pc{8}$ decrease. \mxblank{$\num{0,92}$}\item Give the common difference of $12\ ;\ 12+6\ ;\ 12+2\times6\ ;\ \ldots$. \mxblank{$r=6$}\item Calculate $u_4$ if $u_0=16$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{20}$ of $120$. \mxblank{$24$}\item Give the multiplier for a $\pc{15}$ decrease. \mxblank{$\num{0,85}$}\item Give the common difference of $12\ ;\ 12+6\ ;\ 12+2\times6\ ;\ \ldots$. \mxblank{$r=6$}\item Calculate $u_4$ if $u_0=16$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item How many terms from $u_{5}$ to $u_{20}$? \mxblank{$20-5+1=16$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: count the terms of a sum and apply the formula.\end{prerequisites}
 
 \begin{activity}
@@ -180,7 +180,7 @@ Take the data from the investigation and write up the solution in this order: de
 
 \mxexuse{3}
 
-\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $135$ and the rate or common difference/ratio by $5$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{homework}Rework question 2 of the essential exercise of the session with the following data: replace the initial value by $135$ and the rate or ratio by $5$. Write up in four lines: data, formula, calculation, conclusion.\end{homework}
 \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
 
 \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
@@ -194,7 +194,7 @@ Take the data from the investigation and write up the solution in this order: de
 \fi
 \mxsession{4}{\mxdate*{2026-09-24}}{B: 1 h -- C: 2 h}{Geometric sequences: recognising and modelling}{Number Sequences}
     \begin{objectives}\begin{itemize}\item Recognise a multiplicative change.\item Convert a rate into a multiplier.\item Compare arithmetic and geometric sequences.\end{itemize}\end{objectives}
-    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Give the common difference of $12\ ;\ 12+7\ ;\ 12+2\times7\ ;\ \ldots$. \mxblank{$r=7$}\item Calculate $u_4$ if $u_0=17$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $\pc{8}$ decrease. \mxblank{$\num{0,92}$}\end{enumerate}\end{fluency}
+    \begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Write the multiplier for a $\pc{25}$ increase. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Give the common difference of $12\ ;\ 12+7\ ;\ 12+2\times7\ ;\ \ldots$. \mxblank{$r=7$}\item Calculate $u_4$ if $u_0=17$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item How many terms from $u_{0}$ to $u_{9}$? \mxblank{$9-0+1=10$}\item Give the multiplier for a $\pc{5}$ decrease. \mxblank{$\num{0,95}$}\end{enumerate}\end{fluency}
     \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: recognise a multiplicative change and convert a rate into a multiplier.\end{prerequisites}
 
     \begin{activity}
@@ -220,7 +220,7 @@ Take the data from the investigation and write up the solution in this order: de
 
 \mxexuse{4}
 
-    \begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $140$ and the rate or common difference/ratio by $6$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+    \begin{homework}Rework question 2 of the essential exercise of the session with the following data: replace the initial value by $140$ and the rate or ratio by $6$. Write up in four lines: data, formula, calculation, conclusion.\end{homework}
     \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
 
     \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}
@@ -234,7 +234,7 @@ Take the data from the investigation and write up the solution in this order: de
     \fi
 \mxsession{5}{\mxdate*{2026-09-29}}{B: 2 h -- C: 1 h}{Geometric sequences: general term and sum}{Number Sequences}
 \begin{objectives}\begin{itemize}\item Write the general term.\item Calculate a geometric sum.\item Interpret a cumulative change.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+8-x+2$. \mxblank{$2x+10$}\item Calculate $u_4$ if $u_0=18$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $\pc{8}$ decrease. \mxblank{$\num{0,92}$}\item Give the common difference of $12\ ;\ 12+8\ ;\ 12+2\times8\ ;\ \ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Simplify $3x+8-x+2$. \mxblank{$2x+10$}\item Calculate $u_4$ if $u_0=18$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item How many terms from $u_{4}$ to $u_{11}$? \mxblank{$11-4+1=8$}\item Give the multiplier for a $\pc{30}$ decrease. \mxblank{$\num{0,70}$}\item Give the common difference of $12\ ;\ 12+8\ ;\ 12+2\times8\ ;\ \ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: write the general term and calculate a geometric sum.\end{prerequisites}
 
 \begin{activity}
@@ -257,7 +257,7 @@ Take the data from the investigation and write up the solution in this order: de
 
 \mxexuse{5}
 
-\begin{homework}Redo practice exercise 2 with the following data: replace the initial value by $145$ and the rate or common difference/ratio by $7$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{homework}Rework question 2 of the essential exercise of the session with the following data: replace the initial value by $145$ and the rate or ratio by $7$. Write up in four lines: data, formula, calculation, conclusion.\end{homework}
 \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
 
 \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1, 2 and 3.\end{exitticket}
@@ -271,7 +271,7 @@ Take the data from the investigation and write up the solution in this order: de
 \fi
 \mxsession{6}{\mxdate*{2026-10-01}}{B: 1 h -- C: 2 h}{Review and formative assessment}{Number Sequences}
 \begin{objectives}\begin{itemize}\item Choose the right model.\item Use the formulas.\item Analyse one's own mistakes.\end{itemize}\end{objectives}
-\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $180$. \mxblank{$9$}\item How many terms from $u_3$ to $u_{15}$? \mxblank{$15-3+1=13$}\item Give the multiplier for a $\pc{8}$ decrease. \mxblank{$\num{0,92}$}\item Give the common difference of $12\ ;\ 12+9\ ;\ 12+2\times9\ ;\ \ldots$. \mxblank{$r=9$}\item Calculate $u_4$ if $u_0=19$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 to 8 minutes, no calculator]\begin{enumerate}\item Calculate $\pc{5}$ of $180$. \mxblank{$9$}\item How many terms from $u_{7}$ to $u_{18}$? \mxblank{$18-7+1=12$}\item Give the multiplier for a $\pc{20}$ decrease. \mxblank{$\num{0,80}$}\item Give the common difference of $12\ ;\ 12+9\ ;\ 12+2\times9\ ;\ \ldots$. \mxblank{$r=9$}\item Calculate $u_4$ if $u_0=19$ and $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: choose the right model and use the formulas.\end{prerequisites}
 
 \begin{activity}
@@ -304,7 +304,7 @@ Take the data from the investigation and write up the solution in this order: de
 
 \mxexuse{6}
 
-\begin{homework}Redo practice exercise 3 with the following data: replace the initial value by $150$ and the rate or common difference/ratio by $2$. Write it up in four lines: data, formula, calculation, conclusion.\end{homework}
+\begin{homework}Rework question 2 of the essential exercise of the session with the following data: replace the initial value by $150$ and the rate or ratio by $2$. Write up in four lines: data, formula, calculation, conclusion.\end{homework}
 \begin{solution}The correction depends on the exercise redone. Check above all the consistency of the model, the number of iterations, the rounding and the concluding sentence.\end{solution}
 
 \begin{exitticket}[3 minutes]On a half-sheet: write the main rule of the session, work through a very short example and give your confidence level from 1 to 4. Key question(s) of the day: 1 and 2.\end{exitticket}

@@ -65,7 +65,7 @@ Un couple $\pt{a;b}$ est ordonné : en général $\pt{a;b}\ne\pt{b;a}$. Le produ
 
 \mxsection{Algorithmique et réinvestissement}
 \begin{method}[Python : entier, booléen et condition]
-\texttt{a \% b} est le reste de la division euclidienne pour des entiers et $b\ne0$. Un test renvoie un booléen : \texttt{True} ou \texttt{False}. L'égalité se teste par \texttt{==} ; l'affectation utilise \texttt{=}.
+\texttt{a \% b} est le reste de la division euclidienne de \texttt{a} par \texttt{b} pour tout entier \texttt{a} lorsque $b>0$, cas utilisé ici (si $b<0$, Python renvoie un résultat du signe de $b$, qui n'est pas le reste euclidien). Un test renvoie un booléen : \texttt{True} ou \texttt{False}. L'égalité se teste par \texttt{==} ; l'affectation utilise \texttt{=}.
 \end{method}
 \begin{lstlisting}
 def est_multiple(a, b):

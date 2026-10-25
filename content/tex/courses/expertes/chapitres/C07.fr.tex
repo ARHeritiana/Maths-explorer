@@ -102,7 +102,7 @@ def euclide_etendu(a, b):
         v0, v1 = v1, v0 - q * v1
     return a, u0, v0
 \end{lstlisting}
-À chaque étape, les deux restes en cours s'écrivent $au_0+bv_0$ et $au_1+bv_1$ en fonction des valeurs initiales de $a$ et $b$.
+Notons $a_0$ et $b_0$ les valeurs initiales. À chaque étape, les variables \texttt{a} et \texttt{b} valent $a_0u_0+b_0v_0$ et $a_0u_1+b_0v_1$.
 \end{keypoint}
 
 \subsection{Théorème de Gauss}
@@ -128,7 +128,7 @@ $au\equiv1\pmod n$ équivaut à l'existence d'un entier $v$ tel que $au+nv=1$ : 
 \begin{enumerate}
 \item Elle a des solutions si et seulement si $\pgcd(a,b)$ divise $c$ ; on divise alors par ce PGCD.
 \item On trouve une solution particulière $\pt{x_0;y_0}$.
-\item Par différence, $a(x-x_0)=-b(y-y_0)$ ; avec $a$ et $b$ premiers entre eux, Gauss donne $x-x_0=bk$, puis $y-y_0=-ak$.
+\item Par différence, $a(x-x_0)=-b(y-y_0)$ ; avec $a$ et $b$ premiers entre eux et non nuls, Gauss donne $x-x_0=bk$, puis $y-y_0=-ak$.
 \item On vérifie que les couples $\pt{x_0+bk;y_0-ak}$, $k\in\Z$, sont bien solutions.
 \end{enumerate}
 Exemple : $7x+5y=1$ a la solution particulière $\pt{-2;3}$ ; ses solutions sont les couples $\pt{-2+5k;3-7k}$, $k\in\Z$.

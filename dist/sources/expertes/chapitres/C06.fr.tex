@@ -239,7 +239,7 @@ les poids $1$ et $3$ alternant. Le code est valide si et seulement si $S\equiv0\
 \begin{enumerate}
 \item Le terme $wa$ devient $wa'$, les autres termes ne changent pas.
 \item $21\equiv1\pmod{10}$. Si $3(a'-a)\equiv0$, en multipliant par $7$ : $a'-a\equiv21(a'-a)\equiv0\pmod{10}$. Le cas $w=1$ est immédiat.
-\item $a'-a$ est un multiple de $10$ compris entre $-9$ et $9$, donc nul : contradiction avec $a'\neq a$. La nouvelle somme n'est plus multiple de $10$, l'erreur est détectée.
+\item $a'-a$ est un multiple de $10$ compris entre $-9$ et $9$, donc nul : contradiction avec $a'\neq a$. La variation $w(a'-a)$ de la somme n'est pas multiple de $10$ ; le code d'origine étant valide (somme multiple de $10$), la nouvelle somme n'est plus multiple de $10$ et l'erreur est détectée.
 \end{enumerate}
 \item
 \begin{enumerate}

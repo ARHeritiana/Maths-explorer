@@ -240,7 +240,7 @@ with the weights $1$ and $3$ alternating. The code is valid if and only if $S\eq
 \begin{enumerate}
 \item The term $wa$ becomes $wa'$, the other terms do not change.
 \item $21\equiv1\pmod{10}$. If $3(a'-a)\equiv0$, multiplying by $7$: $a'-a\equiv21(a'-a)\equiv0\pmod{10}$. The case $w=1$ is immediate.
-\item $a'-a$ is a multiple of $10$ between $-9$ and $9$, hence zero: a contradiction with $a'\neq a$. The new sum is no longer a multiple of $10$, so the error is detected.
+\item $a'-a$ is a multiple of $10$ between $-9$ and $9$, hence zero: a contradiction with $a'\neq a$. The change $w(a'-a)$ in the sum is not a multiple of $10$; since the original code was valid (sum a multiple of $10$), the new sum is no longer a multiple of $10$, and the error is detected.
 \end{enumerate}
 \item
 \begin{enumerate}

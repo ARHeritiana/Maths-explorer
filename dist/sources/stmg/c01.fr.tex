@@ -69,13 +69,13 @@ u_0+u_1+\cdots+u_n=u_0\frac{1-q^{n+1}}{1-q}.
 
 \subsection{Algorithmique : calculer une somme}
 \begin{lstlisting}[style=python]
-def somme_carres(n):
+def somme_geometrique(n):
     s = 0
-    for k in range(1, n + 1):
-        s = s + k**2
+    for k in range(n + 1):
+        s = s + 5 * 2**k
     return s
 \end{lstlisting}
-L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} parcourt les entiers de $1$ à $n$.
+L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} parcourt les entiers de $0$ à $n$. Ici \texttt{somme\_geometrique(4)} calcule $5+10+20+40+80=155$, valeur que l'on retrouve avec $u_0\frac{1-q^{n+1}}{1-q}=5\times\frac{1-2^5}{1-2}$ pour la suite géométrique de premier terme $5$ et de raison $2$.
 
 \mxsession{1}{\mxdate*{2026-09-15}}{B : 2 h -- C : 1 h}{Suite arithmétique : reconnaître et modéliser}{Suites numériques}
     \begin{objectives}\begin{itemize}\item Reconnaître une évolution additive.\item Déterminer la raison.\item Définir une suite dans un contexte.\end{itemize}\end{objectives}
@@ -105,7 +105,7 @@ L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} p
 
 \mxexuse{1}
 
-    \begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $125$ et le taux ou la raison par $3$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+    \begin{homework}Reprendre la question 2 de l'exercice essentiel de la séance avec les données suivantes : remplacer la donnée initiale par $125$ et le taux ou la raison par $3$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
     \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
 
     \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
@@ -119,7 +119,7 @@ L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} p
     \fi
 \mxsession{2}{\mxdate*{2026-09-17}}{B : 1 h -- C : 2 h}{Suite arithmétique : terme général}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Passer de la récurrence au terme général.\item Calculer un terme éloigné.\item Interpréter le rang.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+5-x+2$. \mxblank{$2x+7$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+5\ ;\ 12+2\times5\ ;\ \ldots$. \mxblank{$r=5$}\item Calculer $u_4$ si $u_0=15$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+5-x+2$. \mxblank{$2x+7$}\item Combien de termes de $u_{2}$ à $u_{10}$ ? \mxblank{$10-2+1=9$}\item Donner le coefficient d'une baisse de $\pc{12}$. \mxblank{$\num{0,88}$}\item Donner la raison de $12\ ;\ 12+5\ ;\ 12+2\times5\ ;\ \ldots$. \mxblank{$r=5$}\item Calculer $u_4$ si $u_0=15$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : passer de la récurrence au terme général et calculer un terme éloigné.\end{prerequisites}
 
 \begin{activity}
@@ -142,7 +142,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \mxexuse{2}
 
-\begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $130$ et le taux ou la raison par $4$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{homework}Reprendre la question 2 de l'exercice essentiel de la séance avec les données suivantes : remplacer la donnée initiale par $130$ et le taux ou la raison par $4$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
 \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
 
 \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}
@@ -156,7 +156,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{3}{\mxdate*{2026-09-22}}{B : 2 h -- C : 1 h}{Somme des termes d'une suite arithmétique}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Compter les termes d'une somme.\item Appliquer la formule.\item Contrôler l'ordre de grandeur.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $120$. \mxblank{$24$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+6\ ;\ 12+2\times6\ ;\ \ldots$. \mxblank{$r=6$}\item Calculer $u_4$ si $u_0=16$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $120$. \mxblank{$24$}\item Donner le coefficient d'une baisse de $\pc{15}$. \mxblank{$\num{0,85}$}\item Donner la raison de $12\ ;\ 12+6\ ;\ 12+2\times6\ ;\ \ldots$. \mxblank{$r=6$}\item Calculer $u_4$ si $u_0=16$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item Combien de termes de $u_{5}$ à $u_{20}$ ? \mxblank{$20-5+1=16$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : compter les termes d'une somme et appliquer la formule.\end{prerequisites}
 
 \begin{activity}
@@ -179,7 +179,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \mxexuse{3}
 
-\begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $135$ et le taux ou la raison par $5$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{homework}Reprendre la question 2 de l'exercice essentiel de la séance avec les données suivantes : remplacer la donnée initiale par $135$ et le taux ou la raison par $5$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
 \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
 
 \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
@@ -193,7 +193,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{4}{\mxdate*{2026-09-24}}{B : 1 h -- C : 2 h}{Suite géométrique : reconnaître et modéliser}{Suites numériques}
     \begin{objectives}\begin{itemize}\item Reconnaître une évolution multiplicative.\item Passer d'un taux à un coefficient.\item Comparer arithmétique et géométrique.\end{itemize}\end{objectives}
-    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Donner la raison de $12\ ;\ 12+7\ ;\ 12+2\times7\ ;\ \ldots$. \mxblank{$r=7$}\item Calculer $u_4$ si $u_0=17$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\end{enumerate}\end{fluency}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Donner la raison de $12\ ;\ 12+7\ ;\ 12+2\times7\ ;\ \ldots$. \mxblank{$r=7$}\item Calculer $u_4$ si $u_0=17$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item Combien de termes de $u_{0}$ à $u_{9}$ ? \mxblank{$9-0+1=10$}\item Donner le coefficient d'une baisse de $\pc{5}$. \mxblank{$\num{0,95}$}\end{enumerate}\end{fluency}
     \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : reconnaître une évolution multiplicative et passer d'un taux à un coefficient.\end{prerequisites}
 
     \begin{activity}
@@ -219,7 +219,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \mxexuse{4}
 
-    \begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $140$ et le taux ou la raison par $6$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+    \begin{homework}Reprendre la question 2 de l'exercice essentiel de la séance avec les données suivantes : remplacer la donnée initiale par $140$ et le taux ou la raison par $6$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
     \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
 
     \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}
@@ -233,7 +233,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
     \fi
 \mxsession{5}{\mxdate*{2026-09-29}}{B : 2 h -- C : 1 h}{Suite géométrique : terme général et somme}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Écrire le terme général.\item Calculer une somme géométrique.\item Interpréter une évolution cumulée.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+8-x+2$. \mxblank{$2x+10$}\item Calculer $u_4$ si $u_0=18$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+8\ ;\ 12+2\times8\ ;\ \ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+8-x+2$. \mxblank{$2x+10$}\item Calculer $u_4$ si $u_0=18$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item Combien de termes de $u_{4}$ à $u_{11}$ ? \mxblank{$11-4+1=8$}\item Donner le coefficient d'une baisse de $\pc{30}$. \mxblank{$\num{0,70}$}\item Donner la raison de $12\ ;\ 12+8\ ;\ 12+2\times8\ ;\ \ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : écrire le terme général et calculer une somme géométrique.\end{prerequisites}
 
 \begin{activity}
@@ -256,7 +256,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \mxexuse{5}
 
-\begin{homework}Reprendre l'exercice d'entraînement 2 avec les données suivantes : remplacer la donnée initiale par $145$ et le taux ou la raison par $7$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{homework}Reprendre la question 2 de l'exercice essentiel de la séance avec les données suivantes : remplacer la donnée initiale par $145$ et le taux ou la raison par $7$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
 \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
 
 \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1, 2 et 3.\end{exitticket}
@@ -270,7 +270,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \fi
 \mxsession{6}{\mxdate*{2026-10-01}}{B : 1 h -- C : 2 h}{Bilan et évaluation formative}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Choisir le bon modèle.\item Mobiliser les formules.\item Analyser ses erreurs.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $180$. \mxblank{$9$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+9\ ;\ 12+2\times9\ ;\ \ldots$. \mxblank{$r=9$}\item Calculer $u_4$ si $u_0=19$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $180$. \mxblank{$9$}\item Combien de termes de $u_{7}$ à $u_{18}$ ? \mxblank{$18-7+1=12$}\item Donner le coefficient d'une baisse de $\pc{20}$. \mxblank{$\num{0,80}$}\item Donner la raison de $12\ ;\ 12+9\ ;\ 12+2\times9\ ;\ \ldots$. \mxblank{$r=9$}\item Calculer $u_4$ si $u_0=19$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : choisir le bon modèle et mobiliser les formules.\end{prerequisites}
 
 \begin{activity}
@@ -303,7 +303,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \mxexuse{6}
 
-\begin{homework}Reprendre l'exercice d'entraînement 3 avec les données suivantes : remplacer la donnée initiale par $150$ et le taux ou la raison par $2$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
+\begin{homework}Reprendre la question 2 de l'exercice essentiel de la séance avec les données suivantes : remplacer la donnée initiale par $150$ et le taux ou la raison par $2$. Rédiger en quatre lignes : données, formule, calcul, conclusion.\end{homework}
 \begin{solution}La correction dépend de l'exercice repris. Vérifier surtout la cohérence du modèle, le nombre d'itérations, l'arrondi et la phrase de conclusion.\end{solution}
 
 \begin{exitticket}[3 minutes]Sur une demi-feuille : écrire la règle principale de la séance, traiter un exemple très court et indiquer son degré de confiance de 1 à 4. Question(s) essentielle(s) du jour : 1 et 2.\end{exitticket}

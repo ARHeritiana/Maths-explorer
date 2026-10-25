@@ -103,7 +103,7 @@ def euclide_etendu(a, b):
         v0, v1 = v1, v0 - q * v1
     return a, u0, v0
 \end{lstlisting}
-At every step, the two current remainders can be written $au_0+bv_0$ and $au_1+bv_1$ in terms of the initial values of $a$ and $b$.
+Let $a_0$ and $b_0$ be the initial values. At each step, the variables \texttt{a} and \texttt{b} are equal to $a_0u_0+b_0v_0$ and $a_0u_1+b_0v_1$.
 \end{keypoint}
 
 \subsection{Gauss's theorem}
@@ -129,7 +129,7 @@ $au\equiv1\pmod n$ is equivalent to the existence of an integer $v$ such that $a
 \begin{enumerate}
 \item It has solutions if and only if $\pgcd(a,b)$ divides $c$; we then divide by this gcd.
 \item Find a particular solution $\pt{x_0;y_0}$.
-\item By subtraction, $a(x-x_0)=-b(y-y_0)$; with $a$ and $b$ coprime, Gauss gives $x-x_0=bk$, then $y-y_0=-ak$.
+\item By subtraction, $a(x-x_0)=-b(y-y_0)$; with $a$ and $b$ coprime and non-zero, Gauss gives $x-x_0=bk$, then $y-y_0=-ak$.
 \item Check that the pairs $\pt{x_0+bk;y_0-ak}$, $k\in\Z$, are indeed solutions.
 \end{enumerate}
 Example: $7x+5y=1$ has the particular solution $\pt{-2;3}$; its solutions are the pairs $\pt{-2+5k;3-7k}$, $k\in\Z$.

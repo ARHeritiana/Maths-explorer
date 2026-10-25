@@ -23,7 +23,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 \end{tikzpicture}\par Lire $f(1)$ et les antécédents de $0$.}{$f(1)=3$\,; antécédents de $0$~: $-2$ et $2$.}{Expression utilisée pour le tracé~: $f(x)=-x^2+4$.}
 \mxfq{Cœur + · Réflexion}{IMG}{Pour cette fonction, l'équation $f(x)=5$ a-t-elle des solutions\,?}{Non~: $f(x)=4-x^2\leqslant4<5$ pour tout $x$\,; la courbe ne monte pas jusqu'à $y=5$.}{}
 \mxfq{Retour · Flash}{PRB}{Urne~: $5$ boules rouges, $3$ bleues, $2$ vertes. Probabilité de tirer une bleue\,? Une non rouge\,?}{$\dfrac{3}{10}$\,; $\dfrac{5}{10}=\dfrac12$.}{}
-\mxfq{Fil rouge · Méthode}{EQ}{Résoudre dans $\R$~: $4-3x=10$.}{$x=-2$}{Piège~: diviser par $-3$ sans changer le signe du résultat.}
+\mxfq{Fil rouge · Méthode}{EQ}{Résoudre dans $\R$~: $4-3x=10$.}{$x=-2$}{Piège~: de $-3x=6$, écrire $x=2$ au lieu de $x=\dfrac{6}{-3}=-2$.}
 \end{fluencysheet}
 
 \begin{fluencysheet}{mar.~8~déc.~2026}{Fonctions de référence~: valeur absolue, carré, inverse}
@@ -67,7 +67,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 \draw[thick,mxink,domain=-1:2,samples=60,smooth] plot (\x,{\x});
 \draw[thick,mxink,domain=-1:2,samples=60,smooth] plot (\x,{\x*\x});
 
-\end{tikzpicture}\par Résoudre $f(x)=g(x)$ puis $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$~: $x=0$ ou $x=1$\,; $f(x)<g(x)$~: la parabole est au-dessus de la droite pour $x<0$ ou $x>1$.}{Intervalles~: $\intoo{-\infty}{0}\cup\intoo{1}{+\infty}$.}
+\end{tikzpicture}\par Résoudre $f(x)=g(x)$ puis $f(x)<g(x)$.}{$x=x^2\Leftrightarrow x(x-1)=0$~: $x=0$ ou $x=1$\,; $f(x)<g(x)$ sur $\R$~: $x(x-1)>0$ (produit de deux facteurs de même signe), donc la parabole est au-dessus de la droite pour $x<0$ ou $x>1$ (sur la figure, tracée sur $\intff{-1}{2}$, on lit seulement $\intfo{-1}{0}$ et $\intof{1}{2}$).}{Intervalles~: $\intoo{-\infty}{0}\cup\intoo{1}{+\infty}$.}
 \mxfq{Cœur + · Lecture de code}{ALG}{Que renvoie \code{f(-1) == g(-1)}\,? Et \code{f(0) == g(0)}\,?\mxpseudo{def f(x):\\ \mxtab return x*x\\ def g(x):\\ \mxtab return 2*x + 3}}{\code{True} ($1=-2+3$) puis \code{False} ($0\neq3$)~: $-1$ est solution de $f(x)=g(x)$, pas $0$.}{}
 \mxfq{Retour · Problème}{MOD}{Forfait A~: $\num{15000}$ Ar fixes + $\num{1000}$ Ar par séance. Forfait B~: $\num{2500}$ Ar par séance. À partir de combien de séances A est-il moins cher\,?}{$\num{15000}+\num{1000}x<\num{2500}x\Leftrightarrow x>10$~: à partir de $11$ séances ($10$~: égalité à $\num{25000}$ Ar).}{}
 \mxfq{Fil rouge · Flash}{REP}{Calculer les coordonnées du milieu de $[AB]$ avec $A\pt{-2;5}$ et $B\pt{6;1}$.}{$\left(\dfrac{-2+6}{2};\dfrac{5+1}{2}\right)=\pt{2;3}$.}{}
