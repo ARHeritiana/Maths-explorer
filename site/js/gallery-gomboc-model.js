@@ -47,29 +47,44 @@ function contactManifold(body,R,hit,tolerance=2e-7){
   for(const axis of [[1,1,0],[1,-1,0],[-1,1,0],[-1,-1,0]]){let best=0;for(let i=1;i<points.length;i++)if(dot(points[i],axis)>dot(points[best],axis))best=i;chosen.add(best);}
   return [...chosen].map(i=>points[i]);
 }
-export function advance(body,input,dt,{gravity=9.81,friction=.35,restitution=.15,rolling=.025,iterations=8,ground=true}={}){
+export function advance(body,input,dt,{gravity=9.81,friction=.35,restitution=.15,rolling=.1,iterations=8,ground=true}={}){
   if(!(dt>0&&dt<=.02&&Number.isFinite(dt)))throw new RangeError('Use a substep between zero and 0.02');
   const s={...input,p:[...input.p],v:[...input.v],L:[...input.L],q:[...input.q],time:input.time+dt,penetration:0};
-  s.v[2]-=gravity*dt;s.p=add(s.p,scale(s.v,dt));
+  s.v[2]-=gravity*dt;
+  // Contact is solved on velocities before the pose moves (speculative contact): a contact point may close its gap
+  // within the step but not cross the floor. This removes the systematic positional push that used to add potential
+  // energy every step; a small residue remains (see the end of this function).
+  if(ground){
+    const R=rotation(s.q),hit=support(body,matvec(transpose(R),[0,0,-1]),s.support);s.support=hit.index;
+    const gap=Math.max(0,s.p[2]-hit.value),omega0=angularVelocity(body,s),fall=-Math.min(0,add(s.v,cross(omega0,matvec(R,vertex(body,hit.index))))[2]);
+    if(gap<=fall*dt+2e-7){
+      const contacts=contactManifold(body,R,hit),n=[0,0,1];
+      const apply=(r,J)=>{s.v=add(s.v,J);s.L=add(s.L,cross(r,J));};
+      const denominator=(r,d)=>1+dot(d,cross(inertiaApply(body,R,cross(r,d),true),r));
+      let normal=0;
+      for(let it=0;it<iterations;it++)for(const r of contacts){
+        const w=inertiaApply(body,R,s.L,true),vn=add(s.v,cross(w,r))[2],free=-Math.max(0,s.p[2]+r[2])/dt;
+        const target=it===0&&vn<-.3&&vn*dt<free*dt?Math.max(free,-restitution*vn):free;
+        if(vn>=target)continue;
+        const j=(target-vn)/denominator(r,n);apply(r,[0,0,j]);s.impulses++;normal+=j;
+        const after=add(s.v,cross(inertiaApply(body,R,s.L,true),r)),tangent=[after[0],after[1],0],v=norm(tangent);
+        if(v>1e-12){const t=scale(tangent,1/v),jt=Math.min(friction*j,v/denominator(r,t));apply(r,scale(t,-jt));}
+      }
+      // Viscous rolling resistance: a couple -c N ω during contact (N the normal force, c = rolling). Unlike a
+      // threshold law it cannot hold the body still away from an equilibrium. It never reverses the rotation; the slip it
+      // creates is removed by Coulomb friction at the next step.
+      const w=angularVelocity(body,s),spin=norm(w);
+      if(spin>1e-12&&normal>0){const u=scale(w,1/spin),cap=spin/dot(u,inertiaApply(body,R,u,true));s.L=add(s.L,scale(u,-Math.min(Math.max(0,rolling)*normal*spin,cap)));}
+    }
+  }
+  s.p=add(s.p,scale(s.v,dt));
   const omega=angularVelocity(body,s),speed=norm(omega);
   if(speed){s.q=qmul(qaxis(omega,speed*dt),s.q);const n=Math.hypot(...s.q);s.q=s.q.map(x=>x/n);}
   if(!ground)return s;
-  const R=rotation(s.q),hit=support(body,matvec(transpose(R),[0,0,-1]),s.support);s.support=hit.index;
-  const gap=s.p[2]-hit.value;
-  if(gap>2e-7)return s;
-  s.penetration=Math.max(0,-gap);s.p[2]+=s.penetration;
-  const contacts=contactManifold(body,R,hit),n=[0,0,1];
-  const apply=(r,J)=>{s.v=add(s.v,J);s.L=add(s.L,cross(r,J));};
-  const denominator=(r,d)=>1+dot(d,cross(inertiaApply(body,R,cross(r,d),true),r));
-  for(let it=0;it<iterations;it++)for(const r of contacts){
-    const w=inertiaApply(body,R,s.L,true),velocity=add(s.v,cross(w,r)),vn=velocity[2];
-    if(vn>=0)continue;
-    const e=it===0&&vn<-.3?restitution:0,j=-(1+e)*vn/denominator(r,n);apply(r,[0,0,j]);s.impulses++;
-    const after=add(s.v,cross(inertiaApply(body,R,s.L,true),r)),tangent=[after[0],after[1],0],v=norm(tangent);
-    if(v>1e-12){const t=scale(tangent,1/v),jt=Math.min(friction*j,v/denominator(r,t));apply(r,scale(t,-jt));}
-  }
-  // A simple rolling-loss torque, distinct from the Coulomb sliding contact law.
-  s.L=scale(s.L,Math.exp(-Math.max(0,rolling)*dt));
+  // Rotation, or the rolling couple, can bring a vertex slightly below the floor; that residue is lifted out and reported
+  // in s.penetration. The lift adds a little potential energy (about 1e-3 at most over seconds at rest), not a drift.
+  const after=support(body,matvec(transpose(rotation(s.q)),[0,0,-1]),s.support);s.support=after.index;
+  s.penetration=Math.max(0,after.value-s.p[2]);s.p[2]+=s.penetration;
   return s;
 }
 export function simulate(body,s,seconds,options={},dt=1/240){let out=s;const count=Math.ceil(seconds/dt),h=seconds/count;for(let i=0;i<count;i++)out=advance(body,out,h,options);return out;}

@@ -48,3 +48,18 @@ test('entry points distinguish the original smooth body, certified polyhedron an
  assert.ok(GOMBOC_GALLERY.links.includes('#stories/'+GOMBOC_STORY.id));assert.ok(GOMBOC_STORY.links.includes('#gallery/gomboc'));
  const text=JSON.stringify([GOMBOC_GALLERY,GOMBOC_STORY]);assert.match(text,/prépublication/);assert.match(text,/double précision|rounded coordinates/);assert.match(text,/analogue polyédrique/);assert.doesNotMatch(text,/[—–]/);
 });
+test('a tipped body rights itself onto the stable face; energy rises only by a bounded contact residue',()=>{
+ const start=G.state(body,'tip');let s=start,worst=0,previous=G.energy(body,s);
+ for(let k=0;k<14;k++){s=G.simulate(body,s,1);worst=Math.max(worst,s.penetration);const e=G.energy(body,s);assert.ok(e<=previous+1e-3,'energy rose');previous=e;}
+ const n=G.matvec(G.rotation(s.q),metadata.stableNormal);assert.ok(Math.acos(Math.min(1,-n[2]))<.02,'stable face down');
+ near(s.p[2],metadata.stableOffset,5e-4);assert.ok(worst<1e-3);
+ const rest=G.simulate(body,G.state(body,'stable'),2);assert.ok(G.energy(body,rest)<=G.energy(body,G.state(body,'stable'))+1e-3);
+});
+test('rolling resistance only adds dissipation, and thrown or unstable starts stay finite and bounded in energy',()=>{
+ const run=(c,preset,seconds)=>G.simulate(body,G.state(body,preset),seconds,{rolling:c});
+ const start=G.energy(body,G.state(body,'tip'));
+ const e0=G.energy(body,run(0,'tip',4)),e1=G.energy(body,run(.1,'tip',4)),e3=G.energy(body,run(.3,'tip',4));
+ assert.ok(e1<e0&&e3<e1,`${e0} ${e1} ${e3}`);assert.ok(e0<start+.01);
+ for(const preset of ['throw','unstable']){const a=G.state(body,preset),b=G.simulate(body,a,6);
+  assert.ok([...b.p,...b.v,...b.L,...b.q].every(Number.isFinite));assert.ok(G.energy(body,b)<G.energy(body,a)+.01,preset);}
+});
