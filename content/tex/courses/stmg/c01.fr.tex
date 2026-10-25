@@ -60,7 +60,7 @@ Une suite $(u_n)$ est \textbf{géométrique} lorsqu'il existe un réel $q$ tel q
 \end{tikzpicture}
 \end{center}
 
-Une hausse de $t\,\%$ correspond à $q=1+\dfrac{t}{100}$ ; une baisse de $t\,\%$ à $q=1-\dfrac{t}{100}$. Trois termes positifs $x,y,z$ sont consécutifs dans une suite géométrique si $y^2=xz$ ; $y=\sqrt{xz}$ est leur moyenne géométrique.
+Une hausse de $t\,\%$ correspond à $q=1+\dfrac{t}{100}$ ; une baisse de $t\,\%$ à $q=1-\dfrac{t}{100}$. Trois termes strictement positifs $x,y,z$ sont consécutifs dans une suite géométrique si $y^2=xz$ ; $y=\sqrt{xz}$ est leur moyenne géométrique.
 
 Pour $q\neq1$,
 \[
@@ -79,7 +79,7 @@ L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} p
 
 \mxsession{1}{\mxdate*{2026-09-15}}{B : 2 h -- C : 1 h}{Suite arithmétique : reconnaître et modéliser}{Suites numériques}
     \begin{objectives}\begin{itemize}\item Reconnaître une évolution additive.\item Déterminer la raison.\item Définir une suite dans un contexte.\end{itemize}\end{objectives}
-    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Calculer $u_4$ si $u_0=14$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=26$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12,12+4,12+2\times4,\ldots$. \mxblank{$r=4$}\end{enumerate}\end{fluency}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{10}$. \mxblank{$1+\dfrac{10}{100}=\num{1,10}$}\item Calculer $u_4$ si $u_0=14$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=26$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+4\ ;\ 12+2\times4\ ;\ \ldots$. \mxblank{$r=4$}\end{enumerate}\end{fluency}
     \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : reconnaître une évolution additive et déterminer la raison.\end{prerequisites}
 
     \begin{activity}
@@ -99,9 +99,9 @@ L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} p
     \begin{solution}$u_0=320$, $u_1=338$, $u_2=356$ ; on ajoute $18$. Donc $u_{n+1}=u_n+18$ et $u_5=410$.\end{solution}
 
     \begin{exercise}[essentiel]
-    \begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=110$ et $u_{n+1}=u_n+3$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $420$ et baisse de $\pc{3}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
+    \begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=110$ et $u_{n+1}=u_n+3$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $420$ et baisse de $\pc{3}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chacune des suites $(u_n)$ et $(v_n)$ ci-dessus, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
     \end{exercise}
-    \begin{solution}$u_n=110+3n$ et $u_{12}=146$, Pour la seconde, $q=\num{0,97}$ et $v_n=420\times q^n$ ; le troisième item se justifie par la constance de la différence ou du quotient,\end{solution}
+    \begin{solution}$u_n=110+3n$ et $u_{12}=146$. Pour la seconde, $q=\num{0,97}$, $v_n=420\times\num{0,97}^n$ et $v_5\approx\num{360,67}$. La suite $(u_n)$ est arithmétique (différence constante $3$) et $(v_n)$ est géométrique (quotient constant $\num{0,97}$).\end{solution}
 
 \mxexuse{1}
 
@@ -112,14 +112,14 @@ L'accumulateur \texttt{s} contient la somme partielle ; le compteur \texttt{k} p
 
     \ifmxteacher
     \begin{method}
-    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
     \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
     \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
     \end{method}
     \fi
 \mxsession{2}{\mxdate*{2026-09-17}}{B : 1 h -- C : 2 h}{Suite arithmétique : terme général}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Passer de la récurrence au terme général.\item Calculer un terme éloigné.\item Interpréter le rang.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+5-x+2$. \mxblank{$2x+7$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12,12+5,12+2\times5,\ldots$. \mxblank{$r=5$}\item Calculer $u_4$ si $u_0=15$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+5-x+2$. \mxblank{$2x+7$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+5\ ;\ 12+2\times5\ ;\ \ldots$. \mxblank{$r=5$}\item Calculer $u_4$ si $u_0=15$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=27$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : passer de la récurrence au terme général et calculer un terme éloigné.\end{prerequisites}
 
 \begin{activity}
@@ -136,9 +136,9 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{solution}$u_n=\num{1250}+75n$, donc $u_{18}=\num{2600}$. Le nombre $18$ compte les augmentations depuis le rang $0$.\end{solution}
 
 \begin{exercise}[essentiel]
-\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=120$ et $u_{n+1}=u_n+4$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $440$ et baisse de $\pc{4}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
+\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=120$ et $u_{n+1}=u_n+4$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $440$ et baisse de $\pc{4}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chacune des suites $(u_n)$ et $(v_n)$ ci-dessus, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
 \end{exercise}
-\begin{solution}$u_n=120+4n$ et $u_{12}=168$, Pour la seconde, $q=\num{0,96}$ et $v_n=440\times q^n$ ; le troisième item se justifie par la constance de la différence ou du quotient,\end{solution}
+\begin{solution}$u_n=120+4n$ et $u_{12}=168$. Pour la seconde, $q=\num{0,96}$, $v_n=440\times\num{0,96}^n$ et $v_5\approx\num{358,76}$. La suite $(u_n)$ est arithmétique (différence constante $4$) et $(v_n)$ est géométrique (quotient constant $\num{0,96}$).\end{solution}
 
 \mxexuse{2}
 
@@ -149,14 +149,14 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
 \fi
 \mxsession{3}{\mxdate*{2026-09-22}}{B : 2 h -- C : 1 h}{Somme des termes d'une suite arithmétique}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Compter les termes d'une somme.\item Appliquer la formule.\item Contrôler l'ordre de grandeur.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $120$. \mxblank{$24$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12,12+6,12+2\times6,\ldots$. \mxblank{$r=6$}\item Calculer $u_4$ si $u_0=16$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{20}$ de $120$. \mxblank{$24$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+6\ ;\ 12+2\times6\ ;\ \ldots$. \mxblank{$r=6$}\item Calculer $u_4$ si $u_0=16$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=28$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : compter les termes d'une somme et appliquer la formule.\end{prerequisites}
 
 \begin{activity}
@@ -173,9 +173,9 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{solution}$u_{12}=45+11\times5=100$. Le total vaut $12\times\dfrac{45+100}{2}=870$ euros.\end{solution}
 
 \begin{exercise}[essentiel]
-\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=130$ et $u_{n+1}=u_n+5$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $460$ et baisse de $\pc{5}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
+\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=130$ et $u_{n+1}=u_n+5$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $460$ et baisse de $\pc{5}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chacune des suites $(u_n)$ et $(v_n)$ ci-dessus, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
 \end{exercise}
-\begin{solution}$u_n=130+5n$ et $u_{12}=190$, Pour la seconde, $q=\num{0,95}$ et $v_n=460\times q^n$ ; le troisième item se justifie par la constance de la différence ou du quotient,\end{solution}
+\begin{solution}$u_n=130+5n$ et $u_{12}=190$. Pour la seconde, $q=\num{0,95}$, $v_n=460\times\num{0,95}^n$ et $v_5\approx\num{355,94}$. La suite $(u_n)$ est arithmétique (différence constante $5$) et $(v_n)$ est géométrique (quotient constant $\num{0,95}$).\end{solution}
 
 \mxexuse{3}
 
@@ -186,14 +186,14 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
 \fi
 \mxsession{4}{\mxdate*{2026-09-24}}{B : 1 h -- C : 2 h}{Suite géométrique : reconnaître et modéliser}{Suites numériques}
     \begin{objectives}\begin{itemize}\item Reconnaître une évolution multiplicative.\item Passer d'un taux à un coefficient.\item Comparer arithmétique et géométrique.\end{itemize}\end{objectives}
-    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Donner la raison de $12,12+7,12+2\times7,\ldots$. \mxblank{$r=7$}\item Calculer $u_4$ si $u_0=17$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\end{enumerate}\end{fluency}
+    \begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Écrire le coefficient multiplicateur d'une hausse de $\pc{25}$. \mxblank{$1+\dfrac{25}{100}=\num{1,25}$}\item Donner la raison de $12\ ;\ 12+7\ ;\ 12+2\times7\ ;\ \ldots$. \mxblank{$r=7$}\item Calculer $u_4$ si $u_0=17$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=29$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\end{enumerate}\end{fluency}
     \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : reconnaître une évolution multiplicative et passer d'un taux à un coefficient.\end{prerequisites}
 
     \begin{activity}
@@ -213,9 +213,9 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
     \begin{solution}Le coefficient est $\num{1,06}$ : $\num{8000}$, $\num{8480}$, $\num{8988,8}$. Les quotients valent $\num{1,06}$ ; la suite est géométrique.\end{solution}
 
     \begin{exercise}[essentiel]
-    \begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=140$ et $u_{n+1}=u_n+6$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $480$ et baisse de $\pc{6}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
+    \begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=140$ et $u_{n+1}=u_n+6$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $480$ et baisse de $\pc{6}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chacune des suites $(u_n)$ et $(v_n)$ ci-dessus, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
     \end{exercise}
-    \begin{solution}$u_n=140+6n$ et $u_{12}=212$, Pour la seconde, $q=\num{0,94}$ et $v_n=480\times q^n$ ; le troisième item se justifie par la constance de la différence ou du quotient,\end{solution}
+    \begin{solution}$u_n=140+6n$ et $u_{12}=212$. Pour la seconde, $q=\num{0,94}$, $v_n=480\times\num{0,94}^n$ et $v_5\approx\num{352,27}$. La suite $(u_n)$ est arithmétique (différence constante $6$) et $(v_n)$ est géométrique (quotient constant $\num{0,94}$).\end{solution}
 
 \mxexuse{4}
 
@@ -226,33 +226,33 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
     \ifmxteacher
     \begin{method}
-    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+    \textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
     \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
     \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
     \end{method}
     \fi
 \mxsession{5}{\mxdate*{2026-09-29}}{B : 2 h -- C : 1 h}{Suite géométrique : terme général et somme}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Écrire le terme général.\item Calculer une somme géométrique.\item Interpréter une évolution cumulée.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+8-x+2$. \mxblank{$2x+10$}\item Calculer $u_4$ si $u_0=18$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12,12+8,12+2\times8,\ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Réduire $3x+8-x+2$. \mxblank{$2x+10$}\item Calculer $u_4$ si $u_0=18$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=30$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+8\ ;\ 12+2\times8\ ;\ \ldots$. \mxblank{$r=8$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : écrire le terme général et calculer une somme géométrique.\end{prerequisites}
 
 \begin{activity}
 Un capital de $\num{250000}$ Ar est placé à $\pc{4}$ par an, intérêts composés. Écrire le capital $C_n$ après $n$ années. Calculer $C_6$, puis la somme $C_0+\cdots+C_6$ et expliquer ce que cette dernière somme représente mathématiquement et pourquoi elle n'est pas le capital final.
 
 \end{activity}
-\begin{solution}$C_n=\num{250000}\times\num{1,04}^n$ et $C_6\approx\num{316330}$ Ar. La somme est la somme de sept états successifs, pas une accumulation réelle du placement. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}$C_n=\num{250000}\times\num{1,04}^n$ et $C_6\approx\num{316330}$ Ar. La somme $C_0+\cdots+C_6=\num{250000}\times\dfrac{1-\num{1,04}^7}{1-\num{1,04}}\approx\num{1974574}$ Ar est la somme de sept états successifs du capital, pas une accumulation réelle du placement. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Si $(u_n)$ est géométrique de raison $q$, $u_n=u_0q^n$ ou $u_n=u_1q^{n-1}$. Pour $q\neq1$, $u_0+\cdots+u_n=u_0\dfrac{1-q^{n+1}}{1-q}$.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}$C_n=\num{250000}\times\num{1,04}^n$ et $C_6\approx\num{316330}$ Ar. La somme est la somme de sept états successifs, pas une accumulation réelle du placement.\end{solution}
+\begin{solution}$C_n=\num{250000}\times\num{1,04}^n$ et $C_6\approx\num{316330}$ Ar. La somme $C_0+\cdots+C_6=\num{250000}\times\dfrac{1-\num{1,04}^7}{1-\num{1,04}}\approx\num{1974574}$ Ar est la somme de sept états successifs du capital, pas une accumulation réelle du placement.\end{solution}
 
 \begin{exercise}[essentiel]
-\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=150$ et $u_{n+1}=u_n+2$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $500$ et baisse de $\pc{2}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
+\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=150$ et $u_{n+1}=u_n+2$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $500$ et baisse de $\pc{2}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chacune des suites $(u_n)$ et $(v_n)$ ci-dessus, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
 \end{exercise}
-\begin{solution}$u_n=150+2n$ et $u_{12}=174$, Pour la seconde, $q=\num{0,98}$ et $v_n=500\times q^n$ ; le troisième item se justifie par la constance de la différence ou du quotient,\end{solution}
+\begin{solution}$u_n=150+2n$ et $u_{12}=174$. Pour la seconde, $q=\num{0,98}$, $v_n=500\times\num{0,98}^n$ et $v_5\approx\num{451,96}$. La suite $(u_n)$ est arithmétique (différence constante $2$) et $(v_n)$ est géométrique (quotient constant $\num{0,98}$).\end{solution}
 
 \mxexuse{5}
 
@@ -263,33 +263,43 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
 \fi
 \mxsession{6}{\mxdate*{2026-10-01}}{B : 1 h -- C : 2 h}{Bilan et évaluation formative}{Suites numériques}
 \begin{objectives}\begin{itemize}\item Choisir le bon modèle.\item Mobiliser les formules.\item Analyser ses erreurs.\end{itemize}\end{objectives}
-\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $180$. \mxblank{$9$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12,12+9,12+2\times9,\ldots$. \mxblank{$r=9$}\item Calculer $u_4$ si $u_0=19$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
+\begin{fluency}[6 à 8 minutes, sans calculatrice]\begin{enumerate}\item Calculer $\pc{5}$ de $180$. \mxblank{$9$}\item Combien de termes de $u_3$ à $u_{15}$ ? \mxblank{$15-3+1=13$}\item Donner le coefficient d'une baisse de $\pc{8}$. \mxblank{$\num{0,92}$}\item Donner la raison de $12\ ;\ 12+9\ ;\ 12+2\times9\ ;\ \ldots$. \mxblank{$r=9$}\item Calculer $u_4$ si $u_0=19$ et $u_{n+1}=u_n+3$. \mxblank{$u_4=31$}\end{enumerate}\end{fluency}
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : choisir le bon modèle et mobiliser les formules.\end{prerequisites}
 
 \begin{activity}
 Classer huit situations selon trois catégories : arithmétique, géométrique, ni l'une ni l'autre. Pour chaque situation, souligner le mot ou la donnée qui justifie le choix, puis choisir la formule adaptée.
+\begin{enumerate}[label=\alph*)]
+\item Un loyer de $\num{600000}$ Ar augmente de $\num{20000}$ Ar chaque année.
+\item Une ville de $\num{5000}$ habitants voit sa population augmenter de $\pc{3}$ par an.
+\item Un abonnement coûte $15$ euros à l'inscription, puis $2$ euros par séance : on note $u_n$ le coût total après $n$ séances.
+\item Un véhicule perd $\pc{12}$ de sa valeur chaque année.
+\item Les températures relevées à midi quatre jours de suite sont $21$, $23$, $22$ et $25$ degrés.
+\item Un stock de $900$ articles diminue de $45$ articles par semaine.
+\item Les effectifs d'un club, d'année en année, sont $40$, $44$, $49$ et $55$ adhérents.
+\item Un capital de $\num{2000}$ euros est placé à $\pc{2,5}$ par an, intérêts composés.
+\end{enumerate}
 
 \end{activity}
-\begin{solution}Une variation absolue constante indique le modèle arithmétique ; un pourcentage ou coefficient constant indique le modèle géométrique ; sinon aucun des deux n'est garanti. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}Une variation absolue constante indique le modèle arithmétique ; un pourcentage ou coefficient constant indique le modèle géométrique ; sinon aucun des deux n'est garanti. Classement attendu. Arithmétique : a) $r=\num{20000}$, $u_n=\num{600000}+\num{20000}n$ ; c) $r=2$, $u_n=15+2n$ ; f) $r=-45$, $u_n=900-45n$. Géométrique : b) $q=\num{1,03}$, $u_n=\num{5000}\times\num{1,03}^n$ ; d) $q=\num{0,88}$, $u_n=u_0\times\num{0,88}^n$ ; h) $q=\num{1,025}$, $u_n=\num{2000}\times\num{1,025}^n$. Ni l'une ni l'autre : e) les différences successives valent $2$, $-1$, $3$ et ne sont pas constantes, les quotients ne le sont pas non plus ; g) les différences valent $4$, $5$, $6$ et les quotients $\dfrac{44}{40}=\num{1,1}$, $\dfrac{49}{44}\approx\num{1,1136}$, $\dfrac{55}{49}\approx\num{1,1224}$ : aucun n'est constant. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Avant de calculer, identifier : type de suite, premier rang, raison, terme ou somme demandé. La conclusion précise l'unité et le rang.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}Une variation absolue constante indique le modèle arithmétique ; un pourcentage ou coefficient constant indique le modèle géométrique ; sinon aucun des deux n'est garanti.\end{solution}
+\begin{solution}Une variation absolue constante indique le modèle arithmétique ; un pourcentage ou coefficient constant indique le modèle géométrique ; sinon aucun des deux n'est garanti. Classement attendu. Arithmétique : a) $r=\num{20000}$, $u_n=\num{600000}+\num{20000}n$ ; c) $r=2$, $u_n=15+2n$ ; f) $r=-45$, $u_n=900-45n$. Géométrique : b) $q=\num{1,03}$, $u_n=\num{5000}\times\num{1,03}^n$ ; d) $q=\num{0,88}$, $u_n=u_0\times\num{0,88}^n$ ; h) $q=\num{1,025}$, $u_n=\num{2000}\times\num{1,025}^n$. Ni l'une ni l'autre : e) les différences successives valent $2$, $-1$, $3$ et ne sont pas constantes, les quotients ne le sont pas non plus ; g) les différences valent $4$, $5$, $6$ et les quotients $\dfrac{44}{40}=\num{1,1}$, $\dfrac{49}{44}\approx\num{1,1136}$, $\dfrac{55}{49}\approx\num{1,1224}$ : aucun n'est constant.\end{solution}
 
 \begin{exercise}[essentiel]
-\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=160$ et $u_{n+1}=u_n+3$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $520$ et baisse de $\pc{3}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chaque suite, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
+\begin{enumerate}\item La suite $(u_n)$ vérifie $u_0=160$ et $u_{n+1}=u_n+3$. Écrire $u_n$ puis calculer $u_{12}$.\item Une quantité vaut $520$ et baisse de $\pc{3}$ par période. Écrire $v_n$ et calculer $v_5$.\item Pour chacune des suites $(u_n)$ et $(v_n)$ ci-dessus, préciser si le modèle est arithmétique ou géométrique et justifier par une différence ou un quotient.\end{enumerate}
 \end{exercise}
-\begin{solution}$u_n=160+3n$ et $u_{12}=196$, Pour la seconde, $q=\num{0,97}$ et $v_n=520\times q^n$ ; le troisième item se justifie par la constance de la différence ou du quotient,\end{solution}
+\begin{solution}$u_n=160+3n$ et $u_{12}=196$. Pour la seconde, $q=\num{0,97}$, $v_n=520\times\num{0,97}^n$ et $v_5\approx\num{446,54}$. La suite $(u_n)$ est arithmétique (différence constante $3$) et $(v_n)$ est géométrique (quotient constant $\num{0,97}$).\end{solution}
 
 \mxexuse{6}
 
@@ -300,7 +310,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}

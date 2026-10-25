@@ -29,10 +29,10 @@ In general, $a^x+a^y\neq a^{x+y}$. The rules apply to products and quotients, no
 \end{pitfall}
 
 \subsection{Changes and average rate}
-A quantity with initial value $V_0$ undergoing a constant relative change with multiplier $q$ is modelled by $V(t)=V_0q^t$. If an overall multiplier $Q$ results from $n$ identical changes, the average multiplier is $q=Q^{\frac1n}$ and the average rate is $t=q-1$.
+A quantity with initial value $V_0$ undergoing a constant relative change with multiplier $q>0$ is modelled by $V(t)=V_0q^t$. If an overall multiplier $Q>0$ results from $n$ identical changes, the average multiplier is $q=Q^{\frac1n}$ and the average rate is $\tau=q-1$.
 
 \begin{example}
-A company's turnover goes from $\num{80000}$ to $\num{95000}$ euros in four years. The overall multiplier is $Q=\dfrac{\num{95000}}{\num{80000}}=\num{1,1875}$. The average annual multiplier is $q=\num{1,1875}^{\frac14}\approx\num{1,0440}$: the average annual rate is therefore about $\pc{4,40}$.
+A company's turnover goes from $\num{80000}$ to $\num{95000}$ euros in four years. The overall multiplier is $Q=\dfrac{\num{95000}}{\num{80000}}=\num{1,1875}$. The average annual multiplier is $q=\num{1,1875}^{\frac14}\approx\num{1,0439}$: the average annual rate is therefore about $\pc{4,39}$.
 \end{example}
 
 \subsection{Solving and interpreting}
@@ -45,7 +45,7 @@ When both sides can be written with the same base, we use injectivity: for $a>0$
 
 \begin{activity}
 Using a calculator, complete a table of values of $\num{1,5}^x$ and $\num{0,7}^x$ for $x=-2,-1,0,1,2,3$. Plot the points, conjecture the variations and identify the point common to both curves.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.5^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\node[mxteacher,anchor=south east] at (axis cs:3.2,3.9) {$\mathcal C_1$};\node[mxwarn,anchor=south west] at (axis cs:-2.9,3.3) {$\mathcal C_2$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}$a^0=1$, so the curves pass through $\pt{0;1}$. The first increases and the second decreases. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
@@ -59,7 +59,7 @@ Take the data from the investigation and write up the solution in this order: de
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+4}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=4\times\num{1,04}^x$ and $g(x)=-4\times\num{0,8}^x$.\item An initial value of $1350$ increases by $\pc{4}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^4$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1350\times\left(1+\dfrac{4}{100}\right)^t$.\end{solution}
+\begin{solution}$3^4$ and $2^{3x}$. $f$ is increasing because $\num{1,04}>1$ and $4>0$; $\num{0,8}^x$ is decreasing and the coefficient $-4$ is negative, so $g$ is increasing. The model is $V(t)=1350\times\left(1+\dfrac{4}{100}\right)^t$. After $6$ years, $V(6)=1350\times\num{1,04}^6\approx\num{1708,18}$.\end{solution}
 
 \mxexuse{7}
 
@@ -70,8 +70,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -84,19 +84,19 @@ Take the data from the investigation and write up the solution in this order: de
 Simplify $2^3\times2^{-5}$, $5^{x+2}\div5^x$ and $(3^x)^2$. Then invent a numerical counterexample to $a^x+a^y=a^{x+y}$.
 
 \end{activity}
-\begin{solution}We get $2^{-2}=\dfrac14$, $5^2=25$ and $3^{2x}$. With $a=2,x=y=1$, $2+2\neq4$? Here the equality holds by accident; choose $a=3$: $3+3\neq9$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}We obtain $2^{-2}=\dfrac14$, $5^2=25$ and $3^{2x}$. With $a=2$ and $x=y=1$ we have $2+2=4$: this is an accidental equality, which proves nothing. With $a=3$ and $x=y=1$: $3+3=6\neq9=3^{2}$, which is a counterexample. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}$a^{x+y}=a^xa^y$, $a^{x-y}=\dfrac{a^x}{a^y}$ and $(a^x)^y=a^{xy}$. These rules require the same positive base.\end{summary}
 
 \begin{example}
 Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}We get $2^{-2}=\dfrac14$, $5^2=25$ and $3^{2x}$. With $a=2,x=y=1$, $2+2\neq4$? Here the equality holds by accident; choose $a=3$: $3+3\neq9$.\end{solution}
+\begin{solution}We obtain $2^{-2}=\dfrac14$, $5^2=25$ and $3^{2x}$. With $a=2$ and $x=y=1$ we have $2+2=4$: this is an accidental equality, which proves nothing. With $a=3$ and $x=y=1$: $3+3=6\neq9=3^{2}$, which is a counterexample.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+5}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=5\times\num{1,05}^x$ and $g(x)=-5\times\num{0,8}^x$.\item An initial value of $1400$ increases by $\pc{5}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^5$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1400\times\left(1+\dfrac{5}{100}\right)^t$.\end{solution}
+\begin{solution}$3^5$ and $2^{3x}$. $f$ is increasing because $\num{1,05}>1$ and $5>0$; $\num{0,8}^x$ is decreasing and the coefficient $-5$ is negative, so $g$ is increasing. The model is $V(t)=1400\times\left(1+\dfrac{5}{100}\right)^t$. After $6$ years, $V(6)=1400\times\num{1,05}^6\approx\num{1876,13}$.\end{solution}
 
 \mxexuse{8}
 
@@ -107,8 +107,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -118,22 +118,22 @@ Take the data from the investigation and write up the solution in this order: de
 \begin{prerequisites}Reread the last written record and be able to carry out the basic calculations needed today. Before the investigation, have the key words rephrased: study $ka^x$ and combine sign and variation.\end{prerequisites}
 
 \begin{activity}
-Match the four functions $2^x$, $\num{0,6}^x$, $-2^x$ and $-\num{0,6}^x$ to four curves. Justify each choice using the sign, the \textit{y}-intercept and the direction of variation.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+The four curves $\mathcal C_1$, $\mathcal C_2$, $\mathcal C_3$ and $\mathcal C_4$ below represent, in an unknown order, the functions $2^x$, $\num{0,6}^x$, $-2^x$ and $-\num{0,6}^x$. Match each function to its curve. Justify each choice by the sign, the y-intercept and the direction of variation.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=6.5cm,axis lines=middle,xmin=-3,xmax=3,ymin=-6,ymax=6,grid=major,xlabel={$x$},ylabel={$y$}]\addplot[mxteacher,very thick,samples=100,domain=-2.5:2.5]{2^x};\addplot[mxteacher,very thick,dashed,samples=100,domain=-2.5:2.5]{-2^x};\addplot[mxwarn,very thick,samples=100,domain=-2.5:2.5]{0.6^x};\addplot[mxwarn,very thick,dashed,samples=100,domain=-2.5:2.5]{-(0.6^x)};\node[mxwarn,anchor=south west] at (axis cs:-2.4,3.6) {$\mathcal C_1$};\node[mxteacher,anchor=north east] at (axis cs:1.5,-3.6) {$\mathcal C_2$};\node[mxteacher,anchor=south east] at (axis cs:2.3,4.9) {$\mathcal C_3$};\node[mxwarn,anchor=north west] at (axis cs:-2.4,-3.6) {$\mathcal C_4$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}All have absolute value $1$ at $0$. The sign distinguishes the two pairs; the base and the sign of the coefficient determine the variation. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}All of them have an absolute value equal to $1$ at $0$. The sign distinguishes the two pairs; the base and the sign of the coefficient determine the variation. Matching: $\mathcal C_3$ is $2^x$ (positive, increasing, passes through $\pt{0;1}$); $\mathcal C_1$ is $\num{0,6}^x$ (positive, decreasing, passes through $\pt{0;1}$); $\mathcal C_2$ is $-2^x$ (negative, decreasing, passes through $\pt{0;-1}$); $\mathcal C_4$ is $-\num{0,6}^x$ (negative, increasing, passes through $\pt{0;-1}$). Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}For $f(x)=ka^x$, the sign is that of $k$. If $k<0$, multiplying by $k$ reverses the direction of variation of $a^x$.\end{summary}
 
 \begin{example}
 Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}All have absolute value $1$ at $0$. The sign distinguishes the two pairs; the base and the sign of the coefficient determine the variation.\end{solution}
+\begin{solution}All of them have an absolute value equal to $1$ at $0$. The sign distinguishes the two pairs; the base and the sign of the coefficient determine the variation. Matching: $\mathcal C_3$ is $2^x$ (positive, increasing, passes through $\pt{0;1}$); $\mathcal C_1$ is $\num{0,6}^x$ (positive, decreasing, passes through $\pt{0;1}$); $\mathcal C_2$ is $-2^x$ (negative, decreasing, passes through $\pt{0;-1}$); $\mathcal C_4$ is $-\num{0,6}^x$ (negative, increasing, passes through $\pt{0;-1}$).\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+6}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=6\times\num{1,06}^x$ and $g(x)=-6\times\num{0,8}^x$.\item An initial value of $1450$ increases by $\pc{6}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^6$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1450\times\left(1+\dfrac{6}{100}\right)^t$.\end{solution}
+\begin{solution}$3^6$ and $2^{3x}$. $f$ is increasing because $\num{1,06}>1$ and $6>0$; $\num{0,8}^x$ is decreasing and the coefficient $-6$ is negative, so $g$ is increasing. The model is $V(t)=1450\times\left(1+\dfrac{6}{100}\right)^t$. After $6$ years, $V(6)=1450\times\num{1,06}^6\approx\num{2056,85}$.\end{solution}
 
 \mxexuse{9}
 
@@ -144,8 +144,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -170,7 +170,7 @@ Take the data from the investigation and write up the solution in this order: de
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+2}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=2\times\num{1,02}^x$ and $g(x)=-2\times\num{0,8}^x$.\item An initial value of $1500$ increases by $\pc{2}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^2$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1500\times\left(1+\dfrac{2}{100}\right)^t$.\end{solution}
+\begin{solution}$3^2$ and $2^{3x}$. $f$ is increasing because $\num{1,02}>1$ and $2>0$; $\num{0,8}^x$ is decreasing and the coefficient $-2$ is negative, so $g$ is increasing. The model is $V(t)=1500\times\left(1+\dfrac{2}{100}\right)^t$. After $6$ years, $V(6)=1500\times\num{1,02}^6\approx\num{1689,24}$.\end{solution}
 
 \mxexuse{10}
 
@@ -181,8 +181,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -193,21 +193,21 @@ Take the data from the investigation and write up the solution in this order: de
 
 \begin{activity}
 Two commercial offers are modelled by $f(x)=120\times\num{1,08}^x$ and $g(x)=180\times\num{0,96}^x$. Draw the curves on $[0,12]$, read off their point of intersection and interpret the regions where each value is the greater.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.72\textwidth,height=5.5cm,axis lines=middle,xmin=0,xmax=12,ymin=0,ymax=320,grid=major,xtick distance=2,ytick distance=50,xlabel={$x$},ylabel={$y$}]\addplot[mxteacher,very thick,samples=100,domain=0:12]{120*1.08^x};\addplot[mxwarn,very thick,samples=100,domain=0:12]{180*0.96^x};\node[mxteacher,anchor=south] at (axis cs:9.5,270) {$\mathcal C_f$};\node[mxwarn,anchor=south] at (axis cs:9,125) {$\mathcal C_g$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}The graph places the intersection near $x\approx\num{3,5}$. Before that point $g$ is greater; after it, $f$ is greater. An approximate value is expected. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}Reading the graph places the intersection near $x\approx\num{3,4}$ (calculated value: $\dfrac{\log\num{1,5}}{\log\num{1,125}}\approx\num{3,44}$), for an ordinate close to $\num{180}\times\num{0,96}^{3,44}\approx\num{156}$. Before this point, $g$ is greater than $f$; after it, $f$ is greater than $g$. An approximate value is expected. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}Reading $f(x)$ means going from $x$ to the curve and then to the \textit{y}-axis. Finding an input for a given $y$ means going from $y$ to the curve and then to the \textit{x}-axis.\end{summary}
 
 \begin{example}
 Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}The graph places the intersection near $x\approx\num{3,5}$. Before that point $g$ is greater; after it, $f$ is greater. An approximate value is expected.\end{solution}
+\begin{solution}Reading the graph places the intersection near $x\approx\num{3,4}$ (calculated value: $\dfrac{\log\num{1,5}}{\log\num{1,125}}\approx\num{3,44}$), for an ordinate close to $\num{180}\times\num{0,96}^{3,44}\approx\num{156}$. Before this point, $g$ is greater than $f$; after it, $f$ is greater than $g$. An approximate value is expected.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+3}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=3\times\num{1,03}^x$ and $g(x)=-3\times\num{0,8}^x$.\item An initial value of $1550$ increases by $\pc{3}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^3$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1550\times\left(1+\dfrac{3}{100}\right)^t$.\end{solution}
+\begin{solution}$3^3$ and $2^{3x}$. $f$ is increasing because $\num{1,03}>1$ and $3>0$; $\num{0,8}^x$ is decreasing and the coefficient $-3$ is negative, so $g$ is increasing. The model is $V(t)=1550\times\left(1+\dfrac{3}{100}\right)^t$. After $6$ years, $V(6)=1550\times\num{1,03}^6\approx\num{1850,78}$.\end{solution}
 
 \mxexuse{11}
 
@@ -218,8 +218,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -234,7 +234,7 @@ Solve $4^x=64$, $9^x=\dfrac13$ and $\num{1,12}^x=2$: first using a common base w
 \end{activity}
 \begin{solution}$x=3$; $9^x=3^{-1}$ so $2x=-1$ and $x=-\dfrac12$; finally $x\approx\num{6,12}$, between $6$ and $7$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
-\begin{summary}To solve $a^x=b$: use a common base when possible; otherwise bracket the solution or use a numerical tool. Check that $b>0$.\end{summary}
+\begin{summary}For $a>0$ and $a\neq1$, to solve $a^x=b$: use a common base when possible; otherwise bracket the solution or use a numerical tool. Check that $b>0$.\end{summary}
 
 \begin{example}
 Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
@@ -244,7 +244,7 @@ Take the data from the investigation and write up the solution in this order: de
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+4}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=4\times\num{1,04}^x$ and $g(x)=-4\times\num{0,8}^x$.\item An initial value of $1600$ increases by $\pc{4}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^4$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1600\times\left(1+\dfrac{4}{100}\right)^t$.\end{solution}
+\begin{solution}$3^4$ and $2^{3x}$. $f$ is increasing because $\num{1,04}>1$ and $4>0$; $\num{0,8}^x$ is decreasing and the coefficient $-4$ is negative, so $g$ is increasing. The model is $V(t)=1600\times\left(1+\dfrac{4}{100}\right)^t$. After $6$ years, $V(6)=1600\times\num{1,04}^6\approx\num{2024,51}$.\end{solution}
 
 \mxexuse{12}
 
@@ -255,8 +255,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -267,21 +267,21 @@ Take the data from the investigation and write up the solution in this order: de
 
 \begin{activity}
 An app has $\num{12000}$ users at launch and its usage grows by $\pc{9}$ per month. Build $f(t)$, calculate $f(6)$, then determine numerically when it will exceed $\num{25000}$ users.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.72\textwidth,height=5.5cm,axis lines=middle,xmin=0,xmax=12,ymin=0,ymax=36000,grid=major,xtick distance=2,ytick distance=5000,scaled y ticks=false,xlabel={$t$ (months)},ylabel={users},ylabel style={at={(axis description cs:.02,.98)},anchor=south west}]\addplot[mxteacher,very thick,samples=100,domain=0:12]{12000*1.09^x};\addplot[mxwarn,dashed,thick,domain=0:12]{25000};\node[mxteacher,anchor=south] at (axis cs:9.2,31500) {$f$};\node[mxwarn,anchor=south west] at (axis cs:0.3,25500) {threshold $\num{25000}$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20126}$. The threshold is exceeded from the ninth month onwards. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20125}$. The threshold is exceeded as soon as $t=9$, that is, $9$ months after the launch, because $f(8)\approx\num{23911}<\num{25000}<f(9)\approx\num{26063}$. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}A constant relative change with multiplier $q$ is modelled by $f(t)=V_0q^t$. $V_0$ is the initial value and $q$ the multiplier per unit of time.\end{summary}
 
 \begin{example}
 Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20126}$. The threshold is exceeded from the ninth month onwards.\end{solution}
+\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20125}$. The threshold is exceeded as soon as $t=9$, that is, $9$ months after the launch, because $f(8)\approx\num{23911}<\num{25000}<f(9)\approx\num{26063}$.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+5}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=5\times\num{1,05}^x$ and $g(x)=-5\times\num{0,8}^x$.\item An initial value of $1650$ increases by $\pc{5}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^5$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1650\times\left(1+\dfrac{5}{100}\right)^t$.\end{solution}
+\begin{solution}$3^5$ and $2^{3x}$. $f$ is increasing because $\num{1,05}>1$ and $5>0$; $\num{0,8}^x$ is decreasing and the coefficient $-5$ is negative, so $g$ is increasing. The model is $V(t)=1650\times\left(1+\dfrac{5}{100}\right)^t$. After $6$ years, $V(6)=1650\times\num{1,05}^6\approx\num{2211,16}$.\end{solution}
 
 \mxexuse{13}
 
@@ -292,8 +292,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi
@@ -304,21 +304,27 @@ Take the data from the investigation and write up the solution in this order: de
 
 \begin{activity}
 Using four pieces of student work, spot and correct: rate/multiplier confusion, a false power rule, an error in the direction of variation and a conclusion without a unit.
+\begin{enumerate}[label=\textbf{Production \arabic*.},leftmargin=*]
+\item A population of $\num{2000}$ inhabitants increases by $\pc{3}$ per year. Léa writes: ``$P(n)=\num{2000}\times3^n$.''
+\item Karim writes: ``$2^x+2^3=2^{x+3}$.''
+\item Awa writes: ``$f(x)=-3\times\num{0,5}^x$ is decreasing, because $\num{0,5}<1$.''
+\item A machine bought for $\num{12000}$ euros loses $\pc{8}$ of its value per year. Tojo writes: ``$V(n)=\num{12000}\times\num{0,92}^n$, so $V(5)\approx\num{7909}$. Answer: $\num{7909}$.''
+\end{enumerate}
 
 \end{activity}
-\begin{solution}The correction must name the mistake, state the correct rule, redo the calculation and conclude in context. Have students say aloud which piece of data triggers the choice of method.\end{solution}
+\begin{solution}The correction must name the error, write the correct rule, redo the calculation and conclude in context. Student work 1: confusion between rate and multiplier; an increase of $\pc{3}$ corresponds to $q=\num{1,03}$, so $P(n)=\num{2000}\times\num{1,03}^n$. Student work 2: false power property; the rule concerns products, $2^x\times2^3=2^{x+3}$, but the sum $2^x+2^3$ does not simplify (with $x=1$: $2+8=10\neq16=2^4$). Student work 3: error in the direction of variation; $\num{0,5}^x$ is decreasing, but the coefficient $-3$ is negative and reverses the direction of variation, so $f$ is increasing (for example $f(0)=-3<f(1)=-\num{1,5}$). Student work 4: conclusion without unit; the model and the calculation are correct, but the conclusion must be given in context: after $5$ years, the machine is worth about $\num{7909}$ euros. Have students say aloud which piece of data triggers the choice of method.\end{solution}
 
 \begin{summary}To validate an exponential model: identify $V_0$ and $q$, calculate with the units, check the order of magnitude and interpret the result.\end{summary}
 
 \begin{example}
 Take the data from the investigation and write up the solution in this order: definition of the objects, property used, exact or approximate calculation, then a sentence giving the answer. The model answer appears in the teacher edition.
 \end{example}
-\begin{solution}The correction must name the mistake, state the correct rule, redo the calculation and conclude in context.\end{solution}
+\begin{solution}The correction must name the error, write the correct rule, redo the calculation and conclude in context. Student work 1: confusion between rate and multiplier; an increase of $\pc{3}$ corresponds to $q=\num{1,03}$, so $P(n)=\num{2000}\times\num{1,03}^n$. Student work 2: false power property; the rule concerns products, $2^x\times2^3=2^{x+3}$, but the sum $2^x+2^3$ does not simplify (with $x=1$: $2+8=10\neq16=2^4$). Student work 3: error in the direction of variation; $\num{0,5}^x$ is decreasing, but the coefficient $-3$ is negative and reverses the direction of variation, so $f$ is increasing (for example $f(0)=-3<f(1)=-\num{1,5}$). Student work 4: conclusion without unit; the model and the calculation are correct, but the conclusion must be given in context: after $5$ years, the machine is worth about $\num{7909}$ euros.\end{solution}
 
 \begin{exercise}[essential]
 \begin{enumerate}\item Simplify $3^{x+6}\div3^x$ and $(2^x)^3$.\item Study the direction of variation of $f(x)=6\times\num{1,06}^x$ and $g(x)=-6\times\num{0,8}^x$.\item An initial value of $1700$ increases by $\pc{6}$ per year. Give the model and calculate the value after $6$ years.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^6$ and $2^{3x}$. $f$ is increasing; $\num{0,8}^x$ is decreasing and the negative coefficient makes $g$ increasing. The model is $V(t)=1700\times\left(1+\dfrac{6}{100}\right)^t$.\end{solution}
+\begin{solution}$3^6$ and $2^{3x}$. $f$ is increasing because $\num{1,06}>1$ and $6>0$; $\num{0,8}^x$ is decreasing and the coefficient $-6$ is negative, so $g$ is increasing. The model is $V(t)=1700\times\left(1+\dfrac{6}{100}\right)^t$. After $6$ years, $V(6)=1700\times\num{1,06}^6\approx\num{2411,48}$.\end{solution}
 
 \mxexuse{14}
 
@@ -329,8 +335,8 @@ Take the data from the investigation and write up the solution in this order: de
 
 \ifmxteacher
 \begin{method}
-\textbf{Running a 1-hour session:} 7 min of fluency; 10 min of sharing and written record; 28 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
-\textbf{Running a 2-hour session:} add 20 min of investigation, 20 min of formalising the rule, a second independent exercise and 10 min of comparative correction.\\
+\textbf{1 h session:} 7 min of fluency; 10 min of pooling and written record; 35 min of essential exercises; 5 min of correction; 3 min of exit ticket.\\
+\textbf{2 h session:} add 20 min of investigation, 20 min of formalisation, a second independent exercise and 10 min of comparative correction.\\
 \textbf{Differentiation:} give struggling students a four-box sheet (data, model, calculation, conclusion). Ask fast finishers to produce a counterexample, a justification or a second method.
 \end{method}
 \fi

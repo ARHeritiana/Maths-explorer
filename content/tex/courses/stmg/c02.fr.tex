@@ -28,10 +28,10 @@ En général, $a^x+a^y\neq a^{x+y}$. Les propriétés portent sur les produits e
 \end{pitfall}
 
 \subsection{Évolutions et taux moyen}
-Une quantité de valeur initiale $V_0$ soumise à une évolution relative constante de coefficient $q$ se modélise par $V(t)=V_0q^t$. Si un coefficient global $Q$ résulte de $n$ évolutions identiques, le coefficient moyen est $q=Q^{\frac1n}$ et le taux moyen est $t=q-1$.
+Une quantité de valeur initiale $V_0$ soumise à une évolution relative constante de coefficient $q>0$ se modélise par $V(t)=V_0q^t$. Si un coefficient global $Q>0$ résulte de $n$ évolutions identiques, le coefficient moyen est $q=Q^{\frac1n}$ et le taux moyen est $\tau=q-1$.
 
 \begin{example}
-Un chiffre d'affaires passe de $\num{80000}$ à $\num{95000}$ euros en quatre ans. Le coefficient global vaut $Q=\dfrac{\num{95000}}{\num{80000}}=\num{1,1875}$. Le coefficient annuel moyen est $q=\num{1,1875}^{\frac14}\approx\num{1,0440}$ : le taux annuel moyen est donc environ $\pc{4,40}$.
+Un chiffre d'affaires passe de $\num{80000}$ à $\num{95000}$ euros en quatre ans. Le coefficient global vaut $Q=\dfrac{\num{95000}}{\num{80000}}=\num{1,1875}$. Le coefficient annuel moyen est $q=\num{1,1875}^{\frac14}\approx\num{1,0439}$ : le taux annuel moyen est donc environ $\pc{4,39}$.
 \end{example}
 
 \subsection{Résoudre et interpréter}
@@ -44,7 +44,7 @@ Lorsque les deux membres peuvent être écrits avec la même base, on utilise l'
 
 \begin{activity}
 À l'aide d'une calculatrice, compléter un tableau de valeurs de $\num{1,5}^x$ et $\num{0,7}^x$ pour $x=-2,-1,0,1,2,3$. Tracer les points, conjecturer les variations et identifier le point commun aux deux courbes.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.5^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\node[mxteacher,anchor=south east] at (axis cs:3.2,3.9) {$\mathcal C_1$};\node[mxwarn,anchor=south west] at (axis cs:-2.9,3.3) {$\mathcal C_2$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
 \begin{solution}$a^0=1$, donc les courbes passent par $\pt{0;1}$. La première croît et la seconde décroît. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
@@ -58,7 +58,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+4}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=4\times\num{1,04}^x$ et $g(x)=-4\times\num{0,8}^x$.\item Une valeur initiale de $1350$ augmente de $\pc{4}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^4$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1350\times\left(1+\dfrac{4}{100}\right)^t$.\end{solution}
+\begin{solution}$3^4$ et $2^{3x}$. $f$ est croissante car $\num{1,04}>1$ et $4>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-4$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1350\times\left(1+\dfrac{4}{100}\right)^t$. Après $6$ ans, $V(6)=1350\times\num{1,04}^6\approx\num{1708,18}$.\end{solution}
 
 \mxexuse{7}
 
@@ -69,7 +69,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -83,19 +83,19 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 Simplifier $2^3\times2^{-5}$, $5^{x+2}\div5^x$ et $(3^x)^2$. Inventer ensuite un contre-exemple numérique à $a^x+a^y=a^{x+y}$.
 
 \end{activity}
-\begin{solution}On obtient $2^{-2}=\dfrac14$, $5^2=25$ et $3^{2x}$. Avec $a=2,x=y=1$, $2+2\neq4$ ? Ici égalité accidentelle ; choisir $a=3$ : $3+3\neq9$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}On obtient $2^{-2}=\dfrac14$, $5^2=25$ et $3^{2x}$. Avec $a=2$ et $x=y=1$ on a $2+2=4$ : c'est une égalité accidentelle, qui ne prouve rien. Avec $a=3$ et $x=y=1$ : $3+3=6\neq9=3^{2}$, ce qui est un contre-exemple. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}$a^{x+y}=a^xa^y$, $a^{x-y}=\dfrac{a^x}{a^y}$ et $(a^x)^y=a^{xy}$. Ces règles exigent une même base positive.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}On obtient $2^{-2}=\dfrac14$, $5^2=25$ et $3^{2x}$. Avec $a=2,x=y=1$, $2+2\neq4$ ? Ici égalité accidentelle ; choisir $a=3$ : $3+3\neq9$.\end{solution}
+\begin{solution}On obtient $2^{-2}=\dfrac14$, $5^2=25$ et $3^{2x}$. Avec $a=2$ et $x=y=1$ on a $2+2=4$ : c'est une égalité accidentelle, qui ne prouve rien. Avec $a=3$ et $x=y=1$ : $3+3=6\neq9=3^{2}$, ce qui est un contre-exemple.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+5}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=5\times\num{1,05}^x$ et $g(x)=-5\times\num{0,8}^x$.\item Une valeur initiale de $1400$ augmente de $\pc{5}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^5$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1400\times\left(1+\dfrac{5}{100}\right)^t$.\end{solution}
+\begin{solution}$3^5$ et $2^{3x}$. $f$ est croissante car $\num{1,05}>1$ et $5>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-5$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1400\times\left(1+\dfrac{5}{100}\right)^t$. Après $6$ ans, $V(6)=1400\times\num{1,05}^6\approx\num{1876,13}$.\end{solution}
 
 \mxexuse{8}
 
@@ -106,7 +106,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -117,22 +117,22 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{prerequisites}Relire la dernière trace écrite et savoir effectuer les calculs élémentaires mobilisés aujourd'hui. Avant l'activité, faire reformuler les mots-clés : étudier $ka^x$ et combiner signe et variation.\end{prerequisites}
 
 \begin{activity}
-Associer les quatre fonctions $2^x$, $\num{0,6}^x$, $-2^x$ et $-\num{0,6}^x$ à quatre courbes. Justifier chaque choix par le signe, le point d'ordonnée à l'origine et le sens de variation.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+Les quatre courbes $\mathcal C_1$, $\mathcal C_2$, $\mathcal C_3$ et $\mathcal C_4$ ci-dessous représentent, dans un ordre inconnu, les fonctions $2^x$, $\num{0,6}^x$, $-2^x$ et $-\num{0,6}^x$. Associer chaque fonction à sa courbe. Justifier chaque choix par le signe, le point d'ordonnée à l'origine et le sens de variation.
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=6.5cm,axis lines=middle,xmin=-3,xmax=3,ymin=-6,ymax=6,grid=major,xlabel={$x$},ylabel={$y$}]\addplot[mxteacher,very thick,samples=100,domain=-2.5:2.5]{2^x};\addplot[mxteacher,very thick,dashed,samples=100,domain=-2.5:2.5]{-2^x};\addplot[mxwarn,very thick,samples=100,domain=-2.5:2.5]{0.6^x};\addplot[mxwarn,very thick,dashed,samples=100,domain=-2.5:2.5]{-(0.6^x)};\node[mxwarn,anchor=south west] at (axis cs:-2.4,3.6) {$\mathcal C_1$};\node[mxteacher,anchor=north east] at (axis cs:1.5,-3.6) {$\mathcal C_2$};\node[mxteacher,anchor=south east] at (axis cs:2.3,4.9) {$\mathcal C_3$};\node[mxwarn,anchor=north west] at (axis cs:-2.4,-3.6) {$\mathcal C_4$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}Toutes ont une valeur absolue égale à $1$ en $0$. Le signe distingue les deux paires ; la base et le signe du coefficient déterminent la variation. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}Toutes ont une valeur absolue égale à $1$ en $0$. Le signe distingue les deux paires ; la base et le signe du coefficient déterminent la variation. Association : $\mathcal C_3$ est $2^x$ (positive, croissante, passe par $\pt{0;1}$) ; $\mathcal C_1$ est $\num{0,6}^x$ (positive, décroissante, passe par $\pt{0;1}$) ; $\mathcal C_2$ est $-2^x$ (négative, décroissante, passe par $\pt{0;-1}$) ; $\mathcal C_4$ est $-\num{0,6}^x$ (négative, croissante, passe par $\pt{0;-1}$). Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Pour $f(x)=ka^x$, le signe est celui de $k$. Si $k<0$, la multiplication par $k$ inverse le sens de variation de $a^x$.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}Toutes ont une valeur absolue égale à $1$ en $0$. Le signe distingue les deux paires ; la base et le signe du coefficient déterminent la variation.\end{solution}
+\begin{solution}Toutes ont une valeur absolue égale à $1$ en $0$. Le signe distingue les deux paires ; la base et le signe du coefficient déterminent la variation. Association : $\mathcal C_3$ est $2^x$ (positive, croissante, passe par $\pt{0;1}$) ; $\mathcal C_1$ est $\num{0,6}^x$ (positive, décroissante, passe par $\pt{0;1}$) ; $\mathcal C_2$ est $-2^x$ (négative, décroissante, passe par $\pt{0;-1}$) ; $\mathcal C_4$ est $-\num{0,6}^x$ (négative, croissante, passe par $\pt{0;-1}$).\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+6}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=6\times\num{1,06}^x$ et $g(x)=-6\times\num{0,8}^x$.\item Une valeur initiale de $1450$ augmente de $\pc{6}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^6$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1450\times\left(1+\dfrac{6}{100}\right)^t$.\end{solution}
+\begin{solution}$3^6$ et $2^{3x}$. $f$ est croissante car $\num{1,06}>1$ et $6>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-6$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1450\times\left(1+\dfrac{6}{100}\right)^t$. Après $6$ ans, $V(6)=1450\times\num{1,06}^6\approx\num{2056,85}$.\end{solution}
 
 \mxexuse{9}
 
@@ -143,7 +143,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -169,7 +169,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+2}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=2\times\num{1,02}^x$ et $g(x)=-2\times\num{0,8}^x$.\item Une valeur initiale de $1500$ augmente de $\pc{2}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^2$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1500\times\left(1+\dfrac{2}{100}\right)^t$.\end{solution}
+\begin{solution}$3^2$ et $2^{3x}$. $f$ est croissante car $\num{1,02}>1$ et $2>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-2$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1500\times\left(1+\dfrac{2}{100}\right)^t$. Après $6$ ans, $V(6)=1500\times\num{1,02}^6\approx\num{1689,24}$.\end{solution}
 
 \mxexuse{10}
 
@@ -180,7 +180,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -192,21 +192,21 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \begin{activity}
 Deux offres commerciales sont modélisées par $f(x)=120\times\num{1,08}^x$ et $g(x)=180\times\num{0,96}^x$. Tracer les courbes sur $[0,12]$, lire leur point d'intersection et interpréter les zones où chaque valeur est la plus grande.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.72\textwidth,height=5.5cm,axis lines=middle,xmin=0,xmax=12,ymin=0,ymax=320,grid=major,xtick distance=2,ytick distance=50,xlabel={$x$},ylabel={$y$}]\addplot[mxteacher,very thick,samples=100,domain=0:12]{120*1.08^x};\addplot[mxwarn,very thick,samples=100,domain=0:12]{180*0.96^x};\node[mxteacher,anchor=south] at (axis cs:9.5,270) {$\mathcal C_f$};\node[mxwarn,anchor=south] at (axis cs:9,125) {$\mathcal C_g$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}La lecture graphique situe l'intersection vers $x\approx\num{3,5}$. Avant ce rang $g$ domine ; après, $f$ domine. Une valeur approchée est attendue. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}La lecture graphique situe l'intersection vers $x\approx\num{3,4}$ (valeur calculée : $\dfrac{\log\num{1,5}}{\log\num{1,125}}\approx\num{3,44}$), pour une ordonnée voisine de $\num{180}\times\num{0,96}^{3,44}\approx\num{156}$. Avant ce rang $g$ est plus grande que $f$ ; après, $f$ est plus grande que $g$. Une valeur approchée est attendue. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Lire $f(x)$ consiste à partir de $x$ vers la courbe puis vers l'axe des ordonnées. Chercher un antécédent de $y$ consiste à partir de $y$ vers la courbe puis vers l'axe des abscisses.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}La lecture graphique situe l'intersection vers $x\approx\num{3,5}$. Avant ce rang $g$ domine ; après, $f$ domine. Une valeur approchée est attendue.\end{solution}
+\begin{solution}La lecture graphique situe l'intersection vers $x\approx\num{3,4}$ (valeur calculée : $\dfrac{\log\num{1,5}}{\log\num{1,125}}\approx\num{3,44}$), pour une ordonnée voisine de $\num{180}\times\num{0,96}^{3,44}\approx\num{156}$. Avant ce rang $g$ est plus grande que $f$ ; après, $f$ est plus grande que $g$. Une valeur approchée est attendue.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+3}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=3\times\num{1,03}^x$ et $g(x)=-3\times\num{0,8}^x$.\item Une valeur initiale de $1550$ augmente de $\pc{3}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^3$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1550\times\left(1+\dfrac{3}{100}\right)^t$.\end{solution}
+\begin{solution}$3^3$ et $2^{3x}$. $f$ est croissante car $\num{1,03}>1$ et $3>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-3$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1550\times\left(1+\dfrac{3}{100}\right)^t$. Après $6$ ans, $V(6)=1550\times\num{1,03}^6\approx\num{1850,78}$.\end{solution}
 
 \mxexuse{11}
 
@@ -217,7 +217,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -233,7 +233,7 @@ Résoudre $4^x=64$, $9^x=\dfrac13$ et $\num{1,12}^x=2$ : d'abord par même base 
 \end{activity}
 \begin{solution}$x=3$ ; $9^x=3^{-1}$ donc $2x=-1$ et $x=-\dfrac12$ ; enfin $x\approx\num{6,12}$, entre $6$ et $7$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
-\begin{summary}Pour résoudre $a^x=b$ : utiliser une même base quand c'est possible ; sinon encadrer ou utiliser un outil numérique. Vérifier que $b>0$.\end{summary}
+\begin{summary}Pour $a>0$ et $a\neq1$, pour résoudre $a^x=b$ : utiliser une même base quand c'est possible ; sinon encadrer ou utiliser un outil numérique. Vérifier que $b>0$.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
@@ -243,7 +243,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+4}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=4\times\num{1,04}^x$ et $g(x)=-4\times\num{0,8}^x$.\item Une valeur initiale de $1600$ augmente de $\pc{4}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^4$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1600\times\left(1+\dfrac{4}{100}\right)^t$.\end{solution}
+\begin{solution}$3^4$ et $2^{3x}$. $f$ est croissante car $\num{1,04}>1$ et $4>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-4$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1600\times\left(1+\dfrac{4}{100}\right)^t$. Après $6$ ans, $V(6)=1600\times\num{1,04}^6\approx\num{2024,51}$.\end{solution}
 
 \mxexuse{12}
 
@@ -254,7 +254,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -266,21 +266,21 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \begin{activity}
 Une application compte $\num{12000}$ utilisateurs au lancement et sa fréquentation augmente de $\pc{9}$ par mois. Construire $f(t)$, calculer $f(6)$, puis déterminer numériquement quand elle dépassera $\num{25000}$ utilisateurs.
-\begin{center}\begin{tikzpicture}\begin{axis}[width=.68\textwidth,height=5cm,axis lines=middle,xmin=-3,xmax=4,ymin=0,ymax=5,grid=major]\addplot[mxteacher,very thick,samples=100,domain=-3:4]{1.4^x};\addplot[mxwarn,very thick,samples=100,domain=-3:4]{.7^x};\end{axis}\end{tikzpicture}\end{center}
+\begin{center}\begin{tikzpicture}\begin{axis}[width=.72\textwidth,height=5.5cm,axis lines=middle,xmin=0,xmax=12,ymin=0,ymax=36000,grid=major,xtick distance=2,ytick distance=5000,scaled y ticks=false,xlabel={$t$ (mois)},ylabel={utilisateurs},ylabel style={at={(axis description cs:.02,.98)},anchor=south west}]\addplot[mxteacher,very thick,samples=100,domain=0:12]{12000*1.09^x};\addplot[mxwarn,dashed,thick,domain=0:12]{25000};\node[mxteacher,anchor=south] at (axis cs:9.2,31500) {$f$};\node[mxwarn,anchor=south west] at (axis cs:0.3,25500) {seuil $\num{25000}$};\end{axis}\end{tikzpicture}\end{center}
 \end{activity}
-\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20126}$. Le seuil est dépassé à partir du neuvième mois. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20125}$. Le seuil est dépassé dès $t=9$, c'est-à-dire $9$ mois après le lancement, car $f(8)\approx\num{23911}<\num{25000}<f(9)\approx\num{26063}$. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Une évolution relative constante de coefficient $q$ se modélise par $f(t)=V_0q^t$. $V_0$ est la valeur initiale et $q$ le coefficient par unité de temps.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20126}$. Le seuil est dépassé à partir du neuvième mois.\end{solution}
+\begin{solution}$f(t)=\num{12000}\times\num{1,09}^t$, $f(6)\approx\num{20125}$. Le seuil est dépassé dès $t=9$, c'est-à-dire $9$ mois après le lancement, car $f(8)\approx\num{23911}<\num{25000}<f(9)\approx\num{26063}$.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+5}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=5\times\num{1,05}^x$ et $g(x)=-5\times\num{0,8}^x$.\item Une valeur initiale de $1650$ augmente de $\pc{5}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^5$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1650\times\left(1+\dfrac{5}{100}\right)^t$.\end{solution}
+\begin{solution}$3^5$ et $2^{3x}$. $f$ est croissante car $\num{1,05}>1$ et $5>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-5$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1650\times\left(1+\dfrac{5}{100}\right)^t$. Après $6$ ans, $V(6)=1650\times\num{1,05}^6\approx\num{2211,16}$.\end{solution}
 
 \mxexuse{13}
 
@@ -291,7 +291,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
@@ -303,21 +303,27 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \begin{activity}
 À partir de quatre productions d'élèves, repérer et corriger : confusion taux/coefficient, propriété de puissances fausse, erreur de sens de variation et conclusion sans unité.
+\begin{enumerate}[label=\textbf{Production \arabic*.},leftmargin=*]
+\item Une population de $\num{2000}$ habitants augmente de $\pc{3}$ par an. Léa écrit : « $P(n)=\num{2000}\times3^n$. »
+\item Karim écrit : « $2^x+2^3=2^{x+3}$. »
+\item Awa écrit : « $f(x)=-3\times\num{0,5}^x$ est décroissante, car $\num{0,5}<1$. »
+\item Une machine achetée $\num{12000}$ euros perd $\pc{8}$ de sa valeur par an. Tojo écrit : « $V(n)=\num{12000}\times\num{0,92}^n$, donc $V(5)\approx\num{7909}$. Réponse : $\num{7909}$. »
+\end{enumerate}
 
 \end{activity}
-\begin{solution}La correction doit nommer l'erreur, écrire la règle correcte, reprendre le calcul et conclure dans le contexte. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
+\begin{solution}La correction doit nommer l'erreur, écrire la règle correcte, reprendre le calcul et conclure dans le contexte. Production 1 : confusion entre taux et coefficient ; une hausse de $\pc{3}$ correspond à $q=\num{1,03}$, donc $P(n)=\num{2000}\times\num{1,03}^n$. Production 2 : propriété de puissances fausse ; la règle porte sur les produits, $2^x\times2^3=2^{x+3}$, mais la somme $2^x+2^3$ ne se simplifie pas (avec $x=1$ : $2+8=10\neq16=2^4$). Production 3 : erreur de sens de variation ; $\num{0,5}^x$ est décroissante, mais le coefficient $-3$ est négatif et inverse le sens de variation, donc $f$ est croissante (par exemple $f(0)=-3<f(1)=-\num{1,5}$). Production 4 : conclusion sans unité ; le modèle et le calcul sont corrects, mais il faut conclure dans le contexte : après $5$ ans, la machine vaut environ $\num{7909}$ euros. Faire verbaliser la donnée qui déclenche le choix de méthode.\end{solution}
 
 \begin{summary}Pour valider un modèle exponentiel : identifier $V_0$ et $q$, calculer avec les unités, vérifier l'ordre de grandeur et interpréter le résultat.\end{summary}
 
 \begin{example}
 Reprendre les données de l'activité et rédiger la solution dans l'ordre : définition des objets, propriété utilisée, calcul exact ou approché, puis phrase de réponse. La réponse modèle figure dans l'édition enseignant.
 \end{example}
-\begin{solution}La correction doit nommer l'erreur, écrire la règle correcte, reprendre le calcul et conclure dans le contexte.\end{solution}
+\begin{solution}La correction doit nommer l'erreur, écrire la règle correcte, reprendre le calcul et conclure dans le contexte. Production 1 : confusion entre taux et coefficient ; une hausse de $\pc{3}$ correspond à $q=\num{1,03}$, donc $P(n)=\num{2000}\times\num{1,03}^n$. Production 2 : propriété de puissances fausse ; la règle porte sur les produits, $2^x\times2^3=2^{x+3}$, mais la somme $2^x+2^3$ ne se simplifie pas (avec $x=1$ : $2+8=10\neq16=2^4$). Production 3 : erreur de sens de variation ; $\num{0,5}^x$ est décroissante, mais le coefficient $-3$ est négatif et inverse le sens de variation, donc $f$ est croissante (par exemple $f(0)=-3<f(1)=-\num{1,5}$). Production 4 : conclusion sans unité ; le modèle et le calcul sont corrects, mais il faut conclure dans le contexte : après $5$ ans, la machine vaut environ $\num{7909}$ euros.\end{solution}
 
 \begin{exercise}[essentiel]
 \begin{enumerate}\item Simplifier $3^{x+6}\div3^x$ et $(2^x)^3$.\item Étudier le sens de variation de $f(x)=6\times\num{1,06}^x$ et $g(x)=-6\times\num{0,8}^x$.\item Une valeur initiale de $1700$ augmente de $\pc{6}$ par an. Donner le modèle et calculer la valeur après $6$ ans.\end{enumerate}
 \end{exercise}
-\begin{solution}$3^6$ et $2^{3x}$. $f$ est croissante ; $\num{0,8}^x$ est décroissante et le coefficient négatif rend $g$ croissante. Le modèle est $V(t)=1700\times\left(1+\dfrac{6}{100}\right)^t$.\end{solution}
+\begin{solution}$3^6$ et $2^{3x}$. $f$ est croissante car $\num{1,06}>1$ et $6>0$ ; $\num{0,8}^x$ est décroissante et le coefficient $-6$ est négatif, donc $g$ est croissante. Le modèle est $V(t)=1700\times\left(1+\dfrac{6}{100}\right)^t$. Après $6$ ans, $V(6)=1700\times\num{1,06}^6\approx\num{2411,48}$.\end{solution}
 
 \mxexuse{14}
 
@@ -328,7 +334,7 @@ Reprendre les données de l'activité et rédiger la solution dans l'ordre : dé
 
 \ifmxteacher
 \begin{method}
-\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 28 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
+\textbf{Conduite en 1 h :} 7 min d'automatismes ; 10 min de mise en commun et trace ; 35 min d'exercices essentiels ; 5 min de correction ; 3 min de billet de sortie.\\
 \textbf{Conduite en 2 h :} ajouter 20 min de recherche de l'activité, 20 min d'institutionnalisation, un second exercice autonome et 10 min de correction comparée.\\
 \textbf{Différenciation :} fournir aux élèves fragiles une fiche à quatre cases (données, modèle, calcul, conclusion). Demander aux élèves rapides de produire un contre-exemple, une justification ou une seconde méthode.
 \end{method}
