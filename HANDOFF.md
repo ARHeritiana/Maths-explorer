@@ -121,6 +121,19 @@ Contract: `docs/LAB_DESIGN.md`. One engine, seven templates, missions, lab refer
 
 - [x] Second batch (owner request, 19 October 2026): challenges `nails` (picture hanging; shortest windings found by exhaustive search, repeated in the tests), `fly` (two trains, animated statement and solution), `cheryl` (Cheryl's birthday, four date lists), `sumproduct` (Freudenthal; (4, 13) for x + y ≤ 65 to 300, none for 62). The tiles experiment now opens on the usual cheated drawing (corners moved onto the diagonal so the pieces seem to fit) and shows the true pieces only with "Drawing: True pieces".
 
+### 3c. Second review of the owner's classes (UNFINISHED, owner priority, 25 October 2026)
+The first review happened when the courses were written; each French unit needs one second independent review plus
+code verification of computed results. Order: Première, Terminale, then Seconde, STMG, Maths expertes. Scope now: the
+content planned for the first trimester only (up to the December holidays, 18 December 2026).
+- [ ] Première: C01 to C06 with corrections, EV1 (DS commun) papers and corrections, automatismes items available by
+  18 December, diagnostic unit. In progress.
+- [ ] Terminale: C01 to C07, E1 to E4 (DS1, DS2, devoir commun, DS3). In progress.
+- [ ] Seconde: sequences 1 to 7 (s01 to s07) and automatismes sheets ch01 to ch04.
+- [ ] STMG and Maths expertes: no dated plan in the sources; trimester scope to be confirmed by the owner.
+- [ ] Re-check of the 157 slide and lecture records whose files changed since their audits (110 lecture PDFs, 47 HTML
+  exports). In progress.
+- [ ] Later trimesters: the remaining units of every course.
+
 ### 4. Scale in priority order
 Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympiad, rest of Malagasy, IB, university basics last. Each chapter goes through the same pipeline.
 
