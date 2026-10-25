@@ -73,7 +73,7 @@ If all the entries of $A^n$ tend to $0$, then $U_n$ converges to $C$ (entry by e
 
 \subsection{Markov chains}
 \begin{definition}[Markov chain with two or three states]
-A system is observed at times $0,1,2,\dots$; at each time, it is in one of the states $1,\dots,k$ ($k=2$ or $3$). Let $X_n$ be the state at time $n$. We say that $(X_n)$ is a (homogeneous) \emph{Markov chain} if the probability of moving from state $i$ to state $j$ depends neither on $n$ nor on the earlier states: for all $i$, $j$ and $n$ such that $P(X_n=i)\neq0$,
+A system is observed at times $0,1,2,\dots$; at each time, it is in one of the states $1,\dots,k$ ($k=2$ or $3$). Let $X_n$ be the state at time $n$. We say that $(X_n)$ is a (homogeneous) \emph{Markov chain} if, given the present state $X_n$, the distribution of $X_{n+1}$ does not depend on the earlier states $X_0,\dots,X_{n-1}$ (Markov property), and if the probability of moving from state $i$ to state $j$ does not depend on $n$ (homogeneity). We then write, for all $i$, $j$ and $n$ such that $P(X_n=i)\neq0$,
 \[P_{(X_n=i)}(X_{n+1}=j)=t_{ij}.\]
 The numbers $t_{ij}$ are the \emph{transition probabilities}.
 \end{definition}

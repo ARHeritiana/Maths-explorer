@@ -247,9 +247,9 @@
    "status": "aligned",
    "order": 40
   },
-  "fe7ebd09e557": {
-   "fr": "On observe un système à des instants [[m1]] ; à chaque instant, il se trouve dans un des états [[m2]] ([[m3]] ou [[m4]]). On note [[m5]] l'état à l'instant [[m6]]. On dit que [[m7]] est une \\emph{chaîne de Markov} (homogène) si la probabilité de passer de l'état [[m8]] à l'état [[m9]] ne dépend ni de [[m10]] ni des états antérieurs : pour tous [[m11]], [[m12]] et [[m13]] tels que [[m14]],",
-   "en": "A system is observed at times [[m1]]; at each time, it is in one of the states [[m2]] ([[m3]] or [[m4]]). Let [[m5]] be the state at time [[m6]]. We say that [[m7]] is a (homogeneous) \\emph{Markov chain} if the probability of moving from state [[m8]] to state [[m9]] depends neither on [[m10]] nor on the earlier states: for all [[m11]], [[m12]] and [[m13]] such that [[m14]],",
+  "4b33e2a8baa5": {
+   "fr": "On observe un système à des instants [[m1]] ; à chaque instant, il se trouve dans un des états [[m2]] ([[m3]] ou [[m4]]). On note [[m5]] l'état à l'instant [[m6]]. On dit que [[m7]] est une \\emph{chaîne de Markov} (homogène) si, sachant l'état présent [[m8]], la loi de [[m9]] ne dépend pas des états antérieurs [[m10]] (propriété de Markov), et si la probabilité de passer de l'état [[m11]] à l'état [[m12]] ne dépend pas de [[m13]] (homogénéité). On note alors, pour tous [[m14]], [[m15]] et [[m16]] tels que [[m17]],",
+   "en": "A system is observed at times [[m1]]; at each time, it is in one of the states [[m2]] ([[m3]] or [[m4]]). Let [[m5]] be the state at time [[m6]]. We say that [[m7]] is a (homogeneous) \\emph{Markov chain} if, given the present state [[m8]], the distribution of [[m9]] does not depend on the earlier states [[m10]] (Markov property), and if the probability of moving from state [[m11]] to state [[m12]] does not depend on [[m13]] (homogeneity). We then write, for all [[m14]], [[m15]] and [[m16]] such that [[m17]],",
    "status": "aligned",
    "order": 41
   },

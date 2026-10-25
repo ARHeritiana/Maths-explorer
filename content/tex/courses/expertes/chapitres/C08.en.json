@@ -691,9 +691,9 @@
    "status": "aligned",
    "order": 114
   },
-  "9a1ad69d613d": {
-   "fr": "Calculer [[m1]] demande [[m2]], donc [[m3]] et [[m4]]. Connaissant seulement [[m5]] et [[m6]], il faudrait factoriser [[m7]] ; pour des nombres premiers de plusieurs centaines de chiffres, aucune méthode connue ne le fait en un temps raisonnable.",
-   "en": "Computing [[m1]] requires [[m2]], hence [[m3]] and [[m4]]. Knowing only [[m5]] and [[m6]], one would have to factorise [[m7]]; for primes with several hundred digits, no known method does it in a reasonable time.",
+  "a1599a0df264": {
+   "fr": "Calculer [[m1]] par cette méthode demande [[m2]], donc [[m3]] et [[m4]]. Connaissant seulement [[m5]] et [[m6]], factoriser [[m7]] suffirait pour trouver [[m8]]. Pour des nombres premiers bien choisis de plusieurs centaines de chiffres, aucune méthode connue ne factorise [[m9]] en un temps raisonnable sur les ordinateurs actuels. La sécurité de RSA repose sur cette difficulté supposée : on ne sait pas démontrer que tout moyen de déchiffrer passe par la factorisation de [[m10]].",
+   "en": "Computing [[m1]] by this method requires [[m2]], hence [[m3]] and [[m4]]. Knowing only [[m5]] and [[m6]], factorising [[m7]] would be enough to find [[m8]]. For well-chosen primes with several hundred digits, no known method factorises [[m9]] in a reasonable time on current computers. The security of RSA rests on this assumed difficulty: it has not been proved that every way of decrypting goes through factorising [[m10]].",
    "status": "aligned",
    "order": 115
   },

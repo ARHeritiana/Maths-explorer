@@ -4,7 +4,7 @@
 \mxfq{Échauffement · Flash}{PRB}{On lance une pièce équilibrée trois fois. Combien d'issues\,?}{$2^3=8$ issues équiprobables.}{}
 \mxfq{Cœur · Méthode}{PRB}{Dé truqué~: $P(6)=\num{0,25}$ et les cinq autres faces sont équiprobables. Calculer $P(1)$.}{$\dfrac{1-\num{0,25}}{5}=\num{0,15}$.}{}
 \mxfq{Cœur + · Esprit critique}{PRB}{«~Il pleuvra ou il ne pleuvra pas demain~: il y a donc une chance sur deux.~» Ce modèle équiprobable est-il justifié\,?}{Non~: avoir deux issues ne rend pas celles-ci équiprobables. L'équiprobabilité est une hypothèse du modèle qu'il faut justifier.}{}
-\mxfq{Retour · Flash}{PER}{De quelles figures est composé un patron de pyramide à base carrée\,?}{$1$ carré et $4$ triangles (isocèles).}{}
+\mxfq{Retour · Flash}{PER}{De quelles figures est composé un patron de pyramide à base carrée\,?}{$1$ carré et $4$ triangles (isocèles si la pyramide est régulière).}{}
 \mxfq{Fil rouge · Traduire}{LIT}{Un carré de côté $x$ voit chacun de ses côtés augmenter de $3$. Exprimer l'augmentation d'aire en fonction de $x$.}{$(x+3)^2-x^2=6x+9$.}{}
 \end{fluencysheet}
 
@@ -72,7 +72,7 @@ Total & 30 & 30 & 60 \\ \hline
 \begin{fluencysheet}{jeu.~27~mai~2027}{Inversion des conditionnements~: $P_A(B)$ et $P_B(A)$}
 \mxfq{Échauffement · Flash}{PRB}{Quelle différence entre $P_M(T)$ et $P_T(M)$\,?}{$P_M(T)$~: probabilité d'être positif sachant qu'on est malade\,; $P_T(M)$~: d'être malade sachant qu'on est positif.}{}
 \mxfq{Cœur · Méthode}{PRB}{Avec les données de la fiche 70 ($P(M\cap T)=\num{0,27}$ et $P(T)=\num{0,305}$), calculer $P_T(M)$.}{$P_T(M)=\dfrac{P(M\cap T)}{P(T)}=\dfrac{\num{0,27}}{\num{0,305}}\approx\num{0,885}$.}{}
-\mxfq{Cœur + · Méthode}{PRB}{Maladie rare ($\pc{1}$ de malades)\,; test positif pour $\pc{99}$ des malades et $\pc{5}$ des non-malades. Calculer $P_T(M)$.}{$P(M\cap T)=\num{0,0099}$\,; $P(\overline M\cap T)=\num{0,99}\times\num{0,05}=\num{0,0495}$\,; $P(T)=\num{0,0594}$\,; $P_T(M)=\dfrac{\num{0,0099}}{\num{0,0594}}=\dfrac16\approx\num{0,17}$.}{Résultat contre-intuitif~: un test «~fiable à $\pc{99}$~» ne suffit pas.}
+\mxfq{Cœur + · Méthode}{PRB}{Maladie rare ($\pc{1}$ de malades)\,; test positif pour $\pc{99}$ des malades et $\pc{5}$ des non-malades. Calculer $P_T(M)$.}{$P(M\cap T)=\num{0,0099}$\,; $P(\overline M\cap T)=\num{0,99}\times\num{0,05}=\num{0,0495}$\,; $P(T)=\num{0,0594}$\,; $P_T(M)=\dfrac{\num{0,0099}}{\num{0,0594}}=\dfrac16\approx\num{0,17}$.}{Résultat contre-intuitif~: un test qui détecte $\pc{99}$ des malades (sa sensibilité) ne suffit pas quand la maladie est rare.}
 \mxfq{Retour · Graphique}{IMG}{Courbe de $f$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-3,-3) grid (3,3);
 \draw[->] (-3,0)--(3.3,0); \draw[->] (0,-3)--(0,3.3);

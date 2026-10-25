@@ -5,7 +5,7 @@
 \mxfq{Warm-up · Quick}{PRB}{A fair coin is tossed three times. How many outcomes are there?}{$2^3=8$ equally likely outcomes.}{}
 \mxfq{Core · Method}{PRB}{Biased die: $P(6)=\num{0,25}$ and the other five faces are equally likely. Calculate $P(1)$.}{$\dfrac{1-\num{0,25}}{5}=\num{0,15}$.}{}
 \mxfq{Core + · Critical thinking}{PRB}{``It will rain or it will not rain tomorrow: so there is a one in two chance.'' Is this equally-likely model justified?}{No: having two outcomes does not make them equally likely. Equal likelihood is an assumption of the model that must be justified.}{}
-\mxfq{Review · Quick}{PER}{Which shapes make up the net of a square-based pyramid?}{$1$ square and $4$ (isosceles) triangles.}{}
+\mxfq{Review · Quick}{PER}{Which shapes make up the net of a square-based pyramid?}{$1$ square and $4$ triangles (isosceles if the pyramid is regular).}{}
 \mxfq{Thread · Translate}{LIT}{Each side of a square of side $x$ is increased by $3$. Express the increase in area in terms of $x$.}{$(x+3)^2-x^2=6x+9$.}{}
 \end{fluencysheet}
 
@@ -73,7 +73,7 @@ Total & 30 & 30 & 60 \\ \hline
 \begin{fluencysheet}{Thu~27~May~2027}{Reversing conditioning: $P_A(B)$ and $P_B(A)$}
 \mxfq{Warm-up · Quick}{PRB}{What is the difference between $P_M(T)$ and $P_T(M)$?}{$P_M(T)$: probability of testing positive given that one has the disease; $P_T(M)$: of having the disease given that one tests positive.}{}
 \mxfq{Core · Method}{PRB}{Using the data from sheet 70 ($P(M\cap T)=\num{0,27}$ and $P(T)=\num{0,305}$), calculate $P_T(M)$.}{$P_T(M)=\dfrac{P(M\cap T)}{P(T)}=\dfrac{\num{0,27}}{\num{0,305}}\approx\num{0,885}$.}{}
-\mxfq{Core + · Method}{PRB}{Rare disease ($\pc{1}$ of the population); the test is positive for $\pc{99}$ of those with the disease and $\pc{5}$ of those without. Calculate $P_T(M)$.}{$P(M\cap T)=\num{0,0099}$; $P(\overline M\cap T)=\num{0,99}\times\num{0,05}=\num{0,0495}$; $P(T)=\num{0,0594}$; $P_T(M)=\dfrac{\num{0,0099}}{\num{0,0594}}=\dfrac16\approx\num{0,17}$.}{Counter-intuitive result: a test that is ``$\pc{99}$ reliable'' is not enough.}
+\mxfq{Core + · Method}{PRB}{Rare disease ($\pc{1}$ of the population); the test is positive for $\pc{99}$ of those with the disease and $\pc{5}$ of those without. Calculate $P_T(M)$.}{$P(M\cap T)=\num{0,0099}$; $P(\overline M\cap T)=\num{0,99}\times\num{0,05}=\num{0,0495}$; $P(T)=\num{0,0594}$; $P_T(M)=\dfrac{\num{0,0099}}{\num{0,0594}}=\dfrac16\approx\num{0,17}$.}{Counter-intuitive result: a test that detects $\pc{99}$ of the sick (its sensitivity) is not enough when the disease is rare.}
 \mxfq{Review · Graph}{IMG}{Curve of $f$:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-3,-3) grid (3,3);
 \draw[->] (-3,0)--(3.3,0); \draw[->] (0,-3)--(0,3.3);

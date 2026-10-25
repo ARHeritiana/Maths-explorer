@@ -251,7 +251,7 @@ Choose two primes $p=5$ and $q=11$, and let $n=pq=55$ and $\varphi=(p-1)(q-1)=40
 \item By Fermat, $m^4\equiv1\pmod5$, so $m^{40k}=\left(m^4\right)^{10k}\equiv1$ and $m^{ed}=m\times m^{40k}\equiv m\pmod5$. If $5\mid m$, both sides are congruent to $0$.
 \item Modulo $11$: if $11\nmid m$, $m^{10}\equiv1$, so $m^{40k}=\left(m^{10}\right)^{4k}\equiv1$; if $11\mid m$, both sides are zero modulo $11$. Thus $5$ and $11$ divide $m^{ed}-m$ and are coprime: $55\mid m^{ed}-m$.
 \end{enumerate}
-\item Computing $d$ requires $\varphi=(p-1)(q-1)$, hence $p$ and $q$. Knowing only $n$ and $e$, one would have to factorise $n$; for primes with several hundred digits, no known method does it in a reasonable time.
+\item Computing $d$ by this method requires $\varphi=(p-1)(q-1)$, hence $p$ and $q$. Knowing only $n$ and $e$, factorising $n$ would be enough to find $d$. For well-chosen primes with several hundred digits, no known method factorises $n$ in a reasonable time on current computers. The security of RSA rests on this assumed difficulty: it has not been proved that every way of decrypting goes through factorising $n$.
 \end{enumerate}
 \end{solution}
 \begin{teachernote}[Status of the problem]

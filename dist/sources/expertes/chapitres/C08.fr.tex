@@ -250,7 +250,7 @@ On choisit deux nombres premiers $p=5$ et $q=11$, on pose $n=pq=55$ et $\varphi=
 \item Par Fermat, $m^4\equiv1\pmod5$, donc $m^{40k}=\left(m^4\right)^{10k}\equiv1$ et $m^{ed}=m\times m^{40k}\equiv m\pmod5$. Si $5\mid m$, les deux membres sont congrus à $0$.
 \item Modulo $11$ : si $11\nmid m$, $m^{10}\equiv1$, donc $m^{40k}=\left(m^{10}\right)^{4k}\equiv1$ ; si $11\mid m$, les deux membres sont nuls modulo $11$. Ainsi $5$ et $11$ divisent $m^{ed}-m$ et sont premiers entre eux : $55\mid m^{ed}-m$.
 \end{enumerate}
-\item Calculer $d$ demande $\varphi=(p-1)(q-1)$, donc $p$ et $q$. Connaissant seulement $n$ et $e$, il faudrait factoriser $n$ ; pour des nombres premiers de plusieurs centaines de chiffres, aucune méthode connue ne le fait en un temps raisonnable.
+\item Calculer $d$ par cette méthode demande $\varphi=(p-1)(q-1)$, donc $p$ et $q$. Connaissant seulement $n$ et $e$, factoriser $n$ suffirait pour trouver $d$. Pour des nombres premiers bien choisis de plusieurs centaines de chiffres, aucune méthode connue ne factorise $n$ en un temps raisonnable sur les ordinateurs actuels. La sécurité de RSA repose sur cette difficulté supposée : on ne sait pas démontrer que tout moyen de déchiffrer passe par la factorisation de $n$.
 \end{enumerate}
 \end{solution}
 \begin{teachernote}[Statut du problème]

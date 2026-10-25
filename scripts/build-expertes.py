@@ -126,13 +126,17 @@ def register(manifest, chapters, placed):
     catalog, comp = manifest['catalog'], manifest['companion']
     now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.000Z')
     records = []
+    res = catalog['resources']
+    # The catalogue requires explicit language editions: keep the declared ones, else declare both built PDFs.
+    declared = {r['id']: r['editions'] for r in res if r['course'] == COURSE and 'editions' in r}
     for n, ch in sorted(chapters.items()):
         for kind, (rtype, audience, titles) in KINDS.items():
             book, a, b = placed[n][kind]
-            records.append({'id': f"{ch['id']}-{kind}", 'chapter': ch['id'], 'course': COURSE, 'type': rtype, 'title': titles,
-                            'audience': audience, 'format': 'PDF', 'url': f"./resources/{ch['id']}/{kind}.pdf",
+            rid, url = f"{ch['id']}-{kind}", f"./resources/{ch['id']}/{kind}.pdf"
+            records.append({'id': rid, 'chapter': ch['id'], 'course': COURSE, 'type': rtype, 'title': titles,
+                            'audience': audience, 'format': 'PDF', 'url': url,
+                            'editions': declared.get(rid, {'fr': {'path': url}, 'en': {'path': url[:-4] + '-en.pdf'}}),
                             'source': f'{COURSE}-{book}', 'sourcePages': [a, max(a, b)], 'review': 'source-unverified'})
-    res = catalog['resources']
     at = next((i for i, r in enumerate(res) if r['course'] == COURSE), None)
     if at is None: at = max(i for i, r in enumerate(res) if r['course'] == 'terminale') + 1
     catalog['resources'] = [r for r in res[:at] if r['course'] != COURSE] + records + [r for r in res[at:] if r['course'] != COURSE]
@@ -145,6 +149,10 @@ def register(manifest, chapters, placed):
     old = {c['id']: c for c in comp['chapters'] if c['course'] == COURSE}
     for c in layout:   # the companion topic picks the chapter page's guide; keep an authored choice
         if c['id'] in old: c['topic'] = old[c['id']].get('topic', c['topic'])
+        # Keep the declared language editions of each file (the catalogue would otherwise derive French only).
+        kept = {f['kind']: f['editions'] for f in old.get(c['id'], {}).get('files', []) if 'editions' in f}
+        for f in c['files']:
+            if f['kind'] in kept: f['editions'] = kept[f['kind']]
     at = next((i for i, c in enumerate(comp['chapters']) if c['course'] == COURSE), None)
     if at is None: at = max(i for i, c in enumerate(comp['chapters']) if c['course'] == 'terminale') + 1
     comp['chapters'] = [c for c in comp['chapters'][:at] if c['course'] != COURSE] + layout + [c for c in comp['chapters'][at:] if c['course'] != COURSE]

@@ -72,7 +72,7 @@ Si tous les coefficients de $A^n$ tendent vers $0$, alors $U_n$ converge vers $C
 
 \subsection{Chaînes de Markov}
 \begin{definition}[Chaîne de Markov à deux ou trois états]
-On observe un système à des instants $0,1,2,\dots$ ; à chaque instant, il se trouve dans un des états $1,\dots,k$ ($k=2$ ou $3$). On note $X_n$ l'état à l'instant $n$. On dit que $(X_n)$ est une \emph{chaîne de Markov} (homogène) si la probabilité de passer de l'état $i$ à l'état $j$ ne dépend ni de $n$ ni des états antérieurs : pour tous $i$, $j$ et $n$ tels que $P(X_n=i)\neq0$,
+On observe un système à des instants $0,1,2,\dots$ ; à chaque instant, il se trouve dans un des états $1,\dots,k$ ($k=2$ ou $3$). On note $X_n$ l'état à l'instant $n$. On dit que $(X_n)$ est une \emph{chaîne de Markov} (homogène) si, sachant l'état présent $X_n$, la loi de $X_{n+1}$ ne dépend pas des états antérieurs $X_0,\dots,X_{n-1}$ (propriété de Markov), et si la probabilité de passer de l'état $i$ à l'état $j$ ne dépend pas de $n$ (homogénéité). On note alors, pour tous $i$, $j$ et $n$ tels que $P(X_n=i)\neq0$,
 \[P_{(X_n=i)}(X_{n+1}=j)=t_{ij}.\]
 Les nombres $t_{ij}$ sont les \emph{probabilités de transition}.
 \end{definition}
