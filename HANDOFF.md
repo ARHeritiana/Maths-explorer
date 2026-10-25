@@ -140,8 +140,8 @@ content planned for the first trimester only (up to the December holidays, 18 De
 - [ ] Programme checks [VERIFY] not settled: Newton's method and the Cartesian product in Première 2026, variance and
   écart type in Seconde 2026, decimal logarithm and geometric mean in STMG, "développement local" in Terminale C04. The
   official sites (education.gouv.fr, eduscol, académie sites) are blocked by this environment's network policy.
-- [ ] Owner to confirm: the Première common DS (EV1) is dated Saturday 14 November 2026, while the course gives Tuesday
-  and Thursday slots.
+- [x] EV1 dated Saturday 14 November 2026: correct (owner, 25 October 2026: common DS are held on Saturdays or Wednesday
+  afternoons).
 
 ### 4. Scale in priority order
 Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympiad, rest of Malagasy, IB, university basics last. Each chapter goes through the same pipeline.
