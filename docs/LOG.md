@@ -175,3 +175,7 @@ Append one dated line per finished task at the end of the first list (before "Da
 24 October 2026: Guard the asynchronous statistics readout in the browser suite; verify the exact mean after a temporarily empty result container so slower runners wait for the same result.
 
 25 October 2026: Browser assertions wait for asynchronous readout rows before checking exact values, including guarded change comparisons. This resolves the missing-node races seen on the CI browser while preserving the numerical assertions.
+
+25 October 2026: Corrected 49 English passages in Première C02/C05-C10 and coordinated two French/English instruction repairs: change all four interior cells to preserve a 2x2 table's marginals; compare endpoint and stationary-point values under the stated continuity/differentiability hypotheses for interval extrema. Regenerated affected PDFs, slide exports and lecture sources. Independent delta review, symbolic checks, unchanged page counts and text bounds across 47 changed PDFs (396 pages), required pipeline and privacy checks passed. These corrections do not establish a full legacy curriculum audit.
+
+25 October 2026: Updated the operational handoffs, separated completed automation from pending owner/device acceptance, and indexed all remaining proposal/review work in the private execution checkpoint. All 22 feature issues remain open for acceptance reconciliation.

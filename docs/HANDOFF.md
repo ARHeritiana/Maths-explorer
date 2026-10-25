@@ -1,4 +1,14 @@
-# Hand-off: Maths Explorer (start here)
+# Historical build and migration handoff: Maths Explorer
+
+## Current operational checkpoint, 25 October 2026
+
+Start with the root `HANDOFF.md`, `PROJECT_BRIEF.md` and `MAP.md`. The material below records the migration and earlier sessions; old branch, hosting, browser, credential and task-status statements are historical. Current work uses `main` in the public repository and the private backup repository, with GitHub Pages serving committed `dist/` through Actions.
+
+The exploration release is published. The correction block `089a844` includes the bounded Première chapter wording and instruction corrections with regenerated resources; other course proofreading proposals and partial read logs are preserved privately. Consult the latest private course-quality handoff and baseline hashes before applying any proposal. Keep mathematical source corrections coordinated in French and the translation tables; generate English TeX through the twin tool.
+
+Current pre-push checks are `npm test`, `npm run check` and `make check FAST=1`, with appropriate browser/PDF checks. Browser readout readiness fixes are committed at `e813148`; current CI/deployment results are recorded in the private execution handoff and GitHub Actions. Toolchain locations vary by execution environment; inspect the current runtime rather than copying the historical paths below. Real-device screen-reader use, owner design/classroom acceptance and remaining official curriculum questions are still open.
+
+## Historical migration record
 
 This work was merged into `main` on 13 October 2026 (the branch `redesign/2026-10-11` no longer exists). The native PDF migration (B4/B5)
 is complete and verified; see "12 October 2026 (continuation)" at the end, which supersedes the earlier checkpoints.

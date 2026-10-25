@@ -1,12 +1,23 @@
 # Handoff
 
-Last updated: 24 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
+Last updated: 25 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
+
+## Current checkpoint, 25 October 2026
+
+- The integrated exploration release is published on GitHub Pages. It contains 37 guided laboratories, 38 challenges, 85 people and 56 advances in the history timelines, overlapping topic discovery, independent language editions and the quadratic pilot. See the 24 October section below for source boundaries.
+- Continue on `main` in both repositories. The owner requests a progress report at each milestone and commits for each finished or independently resumable block. Keep unapplied course proposals and review evidence in the private repository, not in the public site.
+- The correction block `089a844` includes 49 English wording corrections in Première chapters C02 and C05 through C10, coordinated French/English repairs to the fixed-margin table and closed-interval extrema instructions, and regenerated course/slide/lecture downloads. These are bounded corrections, not completion of the remaining legacy curriculum review. Other English proofreading streams have completed proposals or partial read logs, preserved in the private repository's latest course-quality handoff. A prepared translation table is not evidence that it was read.
+- Browser readout assertions now wait safely for animation-frame updates (`e813148`), preserving exact numerical assertions and requiring an actual string before accepting a changed value. Required pipeline checks, local bilingual browser integration, the updated slide decks and the full publication privacy scan passed. Consult the latest Actions run and private execution handoff for authoritative deployment and CI status.
+- GitHub issues #1 through #22 remain open. Their feature implementations are shipped; acceptance and closure must be reconciled against the issue requirements. In particular, the Gömböc exhibit explicitly uses a certified polyhedral analogue with numerical dynamics.
+- Next: resume the private proofreading/correction queue from its recorded hashes and unread IDs, then reconcile issue acceptance. Real-device screen-reader testing, owner design/classroom acceptance and unresolved official curriculum sources remain separate pending work.
+
+Read `PROJECT_BRIEF.md` and `MAP.md` next, then `course-quality/EXECUTION_HANDOFF_20261025.md` and `course-quality/phase2-english-20261025-HANDOFF.md` in the private repository before applying a proposal. `docs/HANDOFF.md` contains historical build/migration notes; its old branch, hosting, toolchain and task-status statements do not supersede this checkpoint. Exact test/deployment results and commit references are recorded with each release in `docs/LOG.md` and the private evidence.
 
 ## What this project is
 
 Static maths resource site, experiment-first (manipulate, conjecture, prove), for lycée and basic early-university. Per chapter: automatismes, activité d'introduction, notes de cours, exercices et problèmes, interactive slide. The owner is a maths teacher; he reviews slowly and always before class use. AI agents write and audit.
 
-## State of the repository (verified 17 October 2026)
+## Repository reference (17 October baseline, updated by the current checkpoint)
 
 | Area | State |
 |---|---|
@@ -87,14 +98,16 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 - [x] Allow French-only, English-only and bilingual resources through explicit edition declarations, independent metadata, download filtering and unavailable-edition errors. Existing English resources remain available.
 
 ### 2. Shared slide engine and pilot chapter
-- [ ] Build the shared engine from `.claude/skills/slides-interactive-math/references/engine-patterns.md` and the reference slide `assets/example_trinome.html` (the owner also supplied a determinant slide; ask for it if needed). Put it where `dist/` can load it; keep each slide a single self-contained HTML file at publish time if the skill requires it; keep the skills in step with the engine.
-- [ ] Pilot chapter: quadratic trinôme, Première spécialité (brief section 11). Sequence: automatismes, activité, notes de cours, exercices et problèmes with corrections, slide. Programme reference: BO n. 14 du 2 avril 2026, NOR MENE2602917A [VERIFY details against the text before citing].
-- [ ] Run the pipeline in brief section 8: LaTeX compile, SymPy verification script in `verification/` of `ARHeritiana/Maths-explorer-backup`, browser test of the slide (drag, sliders, steps, fullscreen, themes, 390 px), audit 1, audit 2 by a different agent, ledger record.
-- [ ] Use the result to correct the chapter template (brief section 4) and ask the owner to review.
+- [x] Build the shared engine from `.claude/skills/slides-interactive-math/references/engine-patterns.md` and the reference slide `assets/example_trinome.html` (the owner also supplied a determinant slide; ask for it if needed). Put it where `dist/` can load it; keep each slide a single self-contained HTML file at publish time if the skill requires it; keep the skills in step with the engine.
+- [x] Pilot chapter: quadratic trinôme, Première spécialité (brief section 11). Sequence: automatismes, activité, notes de cours, exercices et problèmes with corrections, slide. Programme reference: BO n. 14 du 2 avril 2026, NOR MENE2602917A (verified against the official text for the pilot).
+- [x] Run the pilot pipeline in brief section 8: LaTeX compile, SymPy verification script in `verification/` of `ARHeritiana/Maths-explorer-backup`, browser test of the slide (drag, sliders, steps, fullscreen, themes, 390 px), audit 1, audit 2 by a different agent, ledger record.
+- [x] Use the result to correct the chapter template (brief section 4): `docs/CHAPTER_TEMPLATE.md`.
+- [ ] Owner review of the pilot and chapter template before classroom acceptance.
 
 ### 3. Apply the v2 design to the site
 - [x] Applied (13 October 2026) as design v3 "Cahier": chapter chooser with live preview, resume, two themes, full-screen figures, tab bar on phones. Hash routes kept.
-- [ ] Still to do: screen-reader pass with a real device, 200% zoom check on the home page and chapter pages (`tests/browser.py` covers labs, challenges and pathways only), and owner review.
+- [x] Automated home and pilot chapter checks at 320, 390, 768 and 1440 px with normal and doubled text, contrast, keyboard navigation and semantic MathML (`tests/accessibility_browser.py`, also called by `tests/browser.py`).
+- [ ] Still to do: screen-reader pass with a real device and owner design review.
 
 ### 3b. Laboratory v2 (owner request, 18 October 2026)
 Contract: `docs/LAB_DESIGN.md`. One engine, seven templates, missions, lab references shared by lessons and slides.
