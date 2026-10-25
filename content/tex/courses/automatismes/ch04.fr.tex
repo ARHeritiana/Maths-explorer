@@ -49,7 +49,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 \draw[->] (-3,0)--(3.3,0); \draw[->] (0,-1)--(0,6.3);
 \foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
 \foreach \j in {-1,1,2,3,4,5,6}\draw (.1,\j)--(-.1,\j) node[left,font=\tiny]{\j};
-\draw[thick,mxink,domain=-3:3,samples=60,smooth] plot (\x,{\x*\x});
+\draw[thick,mxink,domain=-2.45:2.45,samples=60,smooth] plot (\x,{\x*\x});
 
 \end{tikzpicture}\par Résoudre graphiquement $f(x)=4$ puis $f(x)<4$.}{$f(x)=4$~: $x=-2$ ou $x=2$\,; $f(x)<4$~: $x\in\intoo{-2}{2}$.}{Chercher les abscisses des points de la courbe situés sous la droite $y=4$.}
 \mxfq{Cœur + · Méthode}{EQ}{Résoudre $|x|<3$ puis $|x|=5$.}{$\intoo{-3}{3}$\,; $x=-5$ ou $x=5$.}{}
