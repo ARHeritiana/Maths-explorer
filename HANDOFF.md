@@ -9,6 +9,7 @@ Last updated: 25 October 2026. Everything an agent needs to start is in this fil
 - The correction block `089a844` includes 49 English wording corrections in Première chapters C02 and C05 through C10, coordinated French/English repairs to the fixed-margin table and closed-interval extrema instructions, and regenerated course/slide/lecture downloads. These are bounded corrections, not completion of the remaining legacy curriculum review. Other English proofreading streams have completed proposals or partial read logs, preserved in the private repository's latest course-quality handoff. A prepared translation table is not evidence that it was read.
 - Browser readout assertions now wait safely for animation-frame updates (`e813148`), preserving exact numerical assertions and requiring an actual string before accepting a changed value. Required pipeline checks, local bilingual browser integration, the updated slide decks and the full publication privacy scan passed. Consult the latest Actions run and private execution handoff for authoritative deployment and CI status.
 - GitHub issues #1 through #22 remain open. Their feature implementations are shipped; acceptance and closure must be reconciled against the issue requirements. In particular, the Gömböc exhibit explicitly uses a certified polyhedral analogue with numerical dynamics.
+- Owner decisions, 25 October 2026 (later): language policy and bilingual standby recorded in `PROJECT_BRIEF.md` section 3 (remind the owner of the standby in every site map or report); the 17 French source findings repaired or triaged (private `verification/source-repairs-20261025/`); Gömböc exhibit physics and drawing fixed (issue #18 stays open until the owner reconciles issues); the Seconde/STMG cross-review is deferred to a lighter agent and issue reconciliation waits for the owner's go. The owner supplied the Malagasy programme documents (Seconde, Première, Terminale) in a personal folder reachable through the Google Drive connector; never write its link or identifiers anywhere.
 - Next: resume the private proofreading/correction queue from its recorded hashes and unread IDs, then reconcile issue acceptance. Real-device screen-reader testing, owner design/classroom acceptance and unresolved official curriculum sources remain separate pending work.
 
 Read `PROJECT_BRIEF.md` and `MAP.md` next, then `course-quality/EXECUTION_HANDOFF_20261025.md` and `course-quality/phase2-english-20261025-HANDOFF.md` in the private repository before applying a proposal. `docs/HANDOFF.md` contains historical build/migration notes; its old branch, hosting, toolchain and task-status statements do not supersede this checkpoint. Exact test/deployment results and commit references are recorded with each release in `docs/LOG.md` and the private evidence.
@@ -86,7 +87,7 @@ Static maths resource site, experiment-first (manipulate, conjecture, prove), fo
 5. No accounts, no analytics.
 6. Publish only after two independent AI audits (different agents) with no open finding, plus code verification of every computed result. Record `human_reviewed` in the ledger.
 7. Never invent a source, bulletin number or programme requirement. Tag [VERIFY] or say you do not know.
-8. Language: French for French and Malagasy curricula, English for IB, bilingual for Olympiad.
+8. Language (owner, 25 October 2026; brief section 3): French for French and Malagasy curricula, English for the international curriculum, the original language for university, Olympiad unchanged (bilingual) until decided. The bilingual goal for lessons is on standby; remind the owner of it in every site map or report.
 9. Slides: read both skills first; every canvas draggable; true 3D where the object is 3D; lint before committing.
 10. Copy: no em or en dashes in site copy.
 
@@ -131,7 +132,7 @@ Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympi
 4. Owner review of the Cahier design.
 5. (Settled 15 October 2026: content CC BY-NC-SA 4.0 in `LICENSE.md`, program code MIT in `LICENSE-CODE`.)
 6. Language policy is implemented: curriculum language follows the brief, neutral content follows the selected language, and resources declare available editions independently. Paired TeX translation remains a workflow, not a mandatory publication pair.
-7. Continue English proofreading; exact segment coverage and remaining scope are recorded privately. Alignment is not proofreading.
+7. English proofreading of curriculum lessons is on standby (owner, 25 October 2026). Exact segment coverage and remaining scope stay recorded privately for when it resumes. Alignment is not proofreading.
 8. Owner, school and place names remain in the git history of the TeX branch; removing them needs a history rewrite and force-push.
 9. Later: access control (codes or paywall) needs a server or paid platform.
 

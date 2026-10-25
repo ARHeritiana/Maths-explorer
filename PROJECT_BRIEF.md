@@ -61,6 +61,15 @@ Programme references (French), checked on 12 October 2026 on the Eduscol page "P
 
 Language at launch (decided): French for the French and Malagasy curricula; English for IB; bilingual (French and English) for Olympiad. Full bilingual parity can wait. This overrides the old rule that every resource exists in both languages.
 
+Language policy, owner decision of 25 October 2026 (binding on all future work until the owner says otherwise):
+- The bilingual goal for lessons is on standby. Do not translate, proofread or integrate English editions of curriculum lessons.
+- French and Malagasy curricula: French only.
+- International curriculum (IB, SAT): English only.
+- University: the language the resource was started in.
+- Olympiad: not named in this decision; the earlier rule (bilingual) stands until the owner decides [OPEN].
+- Existing English editions stay published as they are; they are neither removed nor extended.
+- Standby is unfinished work, not a closed decision: every site map or progress report for the owner must remind them that the bilingual goal is on standby.
+
 ## 4. The chapter unit (PROPOSED template, owner to correct)
 
 No gold-standard chapter exists yet, so this is a proposal. Each chapter delivers, in this order:
