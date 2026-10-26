@@ -2,6 +2,10 @@
 
 Last updated: 25 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
+## History atlas, 26 October 2026
+
+The history routes now offer a visual time axis with lifetime bars, period navigation, scale choices and a reading view for phones, with the existing sourced people and advances. Forty locally hosted Wikimedia images retain their individual licences and attribution on the detail pages. The bilingual goal for curriculum lessons remains on standby.
+
 ## Current checkpoint, 25 October 2026
 
 - The integrated exploration release is published on GitHub Pages. It contains 37 guided laboratories, 38 challenges, 85 people and 56 advances in the history timelines, overlapping topic discovery, independent language editions and the quadratic pilot. See the 24 October section below for source boundaries.

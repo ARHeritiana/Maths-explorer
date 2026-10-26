@@ -13,3 +13,5 @@
 
 Visual check: `npm start`, screenshot at 1440 and 390 px, light and dark themes, keyboard use, no horizontal scroll.
 Then follow `release.md`.
+
+- History atlas: `site/js/history.js`, `site/js/history-layout.js`, `site/js/history-images.js`, `site/styles/history.css`; image files in `site/data/history/`. Preserve source/creator/licence metadata and distinguish documentary dates from lifetimes.

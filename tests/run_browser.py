@@ -33,6 +33,8 @@ try:
         result = subprocess.run([sys.executable, 'tests/lab_browser.py'], cwd=root)
     if result.returncode == 0:   # the laboratory in slides and on chapter pages
         result = subprocess.run([sys.executable, 'tests/slides_lab_browser.py'], cwd=root)
+    if result.returncode == 0:
+        result = subprocess.run([sys.executable, 'tests/history_browser.py'], cwd=root)
 finally:
     if server:
         server.terminate()

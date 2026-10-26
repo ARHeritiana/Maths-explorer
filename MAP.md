@@ -82,6 +82,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 | `#slides` | Apprendre > Diaporamas | `slides-page.js`; decks open in `slides/player.html` with `deck=<id>` |
 | `#lab` | Explorer > Laboratoire | `site/js/lab/page.js` `indexPage` (experiments grouped by type of activity) |
 | `#lab/<experiment>[/<mission>]` | Laboratoire | `site/js/lab/page.js` `experimentPage` + `site/js/lab/mount.js` `mountExperiment`; the mission is kept in the address |
+| `#history[/<kind>[/<id>]]` (`people` or `advances`) | Lire > Chronologies | `history.js`, `history-layout.js`, `history-images.js`; sourced records in `history-data.js` |
 | `#biographies[/<id>]` | Lire > Biographies | `reading.js` `readingPage`; texts `reading-content.js` |
 | `#stories[/<id>]` | Lire > Histoires | `reading.js` `readingPage`; texts `reading-content.js` |
 | `#gallery[/<id>]` | Lire > Curiosités | `welcome.js` `galleryPage` (index), `app.js` `galleryDetail` / `bindGallery` (one exhibit); objects `lab-objects.js`, `gallery-objects.js`; data `labs` with `custom: true` (`#lab/<exhibit>` redirects here) |

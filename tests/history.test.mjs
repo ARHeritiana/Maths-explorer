@@ -63,3 +63,71 @@ test('timeline DOM supports search, date errors, reset, detail routes and cleanu
  assert.match(historyPage('advances','galois-publication',p=>p[1]),/Edition of Galois/);
  assert.ok(isHistoryRoute()&&!isHistoryRoute('missing'));
 });
+
+test('atlas time is continuous and strictly increasing across period boundaries',async()=>{
+ const {HISTORY_ERAS,timePosition}=await import('../site/js/history-layout.js');
+ assert.equal(timePosition(-1800),0);
+ let previous=-1;
+ for(let y=-1800;y<=2026;y++) {const x=timePosition(y);assert.ok(x>previous,`year ${y}`);previous=x;}
+ let sum=0;
+ for(const era of HISTORY_ERAS){assert.equal(timePosition(era.from),sum);sum+=era.width;assert.equal(timePosition(era.to),sum);}
+ assert.equal(timePosition(2026,1.6),sum*1.6);
+});
+test('atlas lanes keep both cards and complete lifetime bars disjoint at every scale',async()=>{
+ const {timelineLayout,timePosition}=await import('../site/js/history-layout.js');
+ for(const zoom of [.7,1,1.6,3.2])for(const list of [PEOPLE,ADVANCES]){
+  const {placed,width}=timelineLayout(list,zoom);
+  assert.equal(placed.length,list.length);
+  const lanes=new Map();
+  for(const p of placed){
+   assert.equal(p.end,timePosition(p.item.end??2026,zoom));
+   const right=Math.max(p.x+184,p.item.dateType==='lifetime'?p.end:p.x);
+   assert.ok(p.x>=(lanes.get(p.lane)??-16)+16,`${p.item.id}: lane collision`);
+   assert.ok(right<=width,`${p.item.id}: clipped endpoint`);
+   lanes.set(p.lane,right);
+  }
+ }
+ // Documentary spans must not be visually treated as lifetimes.
+ const a=PEOPLE.find(p=>p.id==='wolecki');
+ assert.equal(a.dateType,'documentary');
+});
+test('image register uses local, bounded assets with explicit reusable licences and full attribution',async()=>{
+ const {HISTORY_IMAGES}=await import('../site/js/history-images.js');
+ const {statSync}=await import('node:fs');
+ assert.ok(Object.keys(HISTORY_IMAGES).length>=35);
+ let bytes=0;
+ for(const [id,img]of Object.entries(HISTORY_IMAGES)){
+  assert.ok(historyRecord('people',id)||historyRecord('advances',id),id);
+  assert.match(img.src,/^\.\/data\/history\/[a-z-]+\.webp$/);
+  assert.ok(img.width<=480&&img.height<=600);
+  assert.match(img.license,/^(?:Public domain|CC0|CC BY(?:-SA)? [1-4]\.0(?: de)?)$/);
+  assert.equal(new URL(img.source).hostname,'commons.wikimedia.org');
+  assert.equal(new URL(img.licenseUrl).hostname,'creativecommons.org');
+  assert.ok(img.creator&&img.title&&img.original&&img.retrieved);
+  bytes+=statSync(new URL('../site/'+img.src.slice(2),import.meta.url)).size;
+  const kind=historyRecord('people',id)?'people':'advances';
+  const markup=historyPage(kind,id,p=>p[1]);
+  const doc=new JSDOM(markup).window.document,credit=doc.querySelector('.history-credit');
+  assert.ok(credit&&credit.textContent.includes(img.license),id);
+  const clean=x=>x.replace(/[–—]/g,'-').replace(/Unknown authorUnknown author/g,'Unknown author');
+  if(img.credit)assert.ok(credit.textContent.includes(clean(img.credit)),id+': institutional credit');
+  assert.ok(!/[–—]/.test(doc.body.textContent),id+': visible punctuation');
+ }
+ assert.ok(bytes<2_000_000,'complete image collection stays below 2 MB');
+});
+test('atlas view, era jumps, scale, empty recovery and documentary markers work through DOM events',()=>{
+ const dom=new JSDOM(historyPage('people',undefined,t)),root=dom.window.document.querySelector('main'),stop=bindHistory(root,'people',t);
+ const event=name=>new dom.window.Event(name,{bubbles:true});
+ const viewport=root.querySelector('#history-viewport');
+ assert.equal(root.querySelectorAll('.history-node').length,PEOPLE.length);
+ assert.equal(root.querySelector('[data-history-id="wolecki"] .history-lifetime'),null);
+ assert.ok(root.querySelector('[data-history-id="wolecki"] .history-document-marker'));
+ root.querySelector('button[data-history-view="list"]').click();assert.equal(root.dataset.historyView,'list');
+ root.querySelector('button[data-history-view="atlas"]').click();assert.equal(root.dataset.historyView,'atlas');
+ root.querySelector('[data-history-era="today"]').click();assert.ok(viewport.scrollLeft>4000);
+ const before=viewport.scrollLeft,scale=root.querySelector('#history-zoom');scale.value='1.6';scale.dispatchEvent(event('change'));assert.equal(viewport.scrollLeft,before*1.6);
+ const form=root.querySelector('form');form.elements.query.value='no-such-mathematician';form.dispatchEvent(event('input'));
+ assert.ok(root.classList.contains('history-no-results'));assert.ok(root.querySelector('[data-history-reset]'));
+ root.querySelector('[data-history-reset]').click();assert.equal(root.querySelectorAll('.history-list>li').length,PEOPLE.length);
+ stop();const left=viewport.scrollLeft;root.querySelector('[data-history-era="today"]').click();assert.equal(viewport.scrollLeft,left,'listeners cleaned up');
+});

@@ -113,7 +113,7 @@ Fourier: `js/fourier-model.js` (pure signals and error), `js/fourier-links.js` (
 
 Discovery: `js/topic-registry.js` is the shared overlapping topic/subtopic registry; `js/discovery-index.js` assembles canonical records, counts, filtering and reciprocal recommendations; `js/discovery.js` renders the topic browser; `js/discovery-previews.js` supplies bounded, static illustrations of the actual named models, shared coordinates and exact topic metadata.
 
-History: `js/history-data.js` holds sourced people and advances; `js/history.js` renders the timeline and detail routes, with `styles/history.css`; `js/reading-history-content.js` supplies the linked Galois biography.
+History: `js/history-data.js` holds sourced people and advances; `js/history.js` renders the timeline and detail routes, with `styles/history.css`; `js/history-layout.js` owns period scales and collision-free lanes; `js/history-images.js` holds image sources and licence metadata for the local WebP copies in `data/history/`; `js/reading-history-content.js` supplies the linked Galois biography.
 
 Inference: `js/inference-content.js` shares assumptions, formal arguments and citations among six laboratories, `js/gallery-inference.js` mounts those same experiments from gallery cards; styles in `styles/inference.css`.
 
