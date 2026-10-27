@@ -21,6 +21,11 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run test:dom
+      - name: Check publication anonymity and PDF metadata
+        run: |
+          python tests/banned.py
+          python tests/test_privacy_scan.py
+          python tests/privacy_scan.py
   browser:
     runs-on: ubuntu-latest
     steps:
