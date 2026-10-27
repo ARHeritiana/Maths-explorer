@@ -77,11 +77,11 @@ def check_home_chapter(page, base, screenshot_dir=None):
     page.keyboard.press('Enter')
     assert page.evaluate('document.activeElement.id') == 'main'
     assert page.evaluate('location.hash') == '#home'
-    action = page.locator('.stage-cta')
+    action = page.locator('.entrance-actions a[href="#resources"]')
     action.focus()
     assert action.evaluate("el => getComputedStyle(el).outlineStyle !== 'none'"), 'keyboard focus is visible'
     page.keyboard.press('Enter')
-    page.wait_for_url('**/#gallery')
+    page.wait_for_url('**/#resources')
     page.wait_for_function("document.activeElement.id === 'main'")
 
     _open(page, base, 'chapter/premiere-02/prepare')

@@ -8,6 +8,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 
 | Test | Covers |
 |---|---|
+| `home.test.mjs` | Neutral homepage, valid tool destinations, accent and synonym searches, empty results, escaping and language variants |
 | `challenge-backlog.test.mjs` | Knight graph/tour validation and bounded search; exhaustive Eulerian multigraph trails; BigInt factorial valuations and arbitrary-base zeros independently checked against direct factorials |
 | `math.test.mjs` | `math.js`, lab definitions in `content.js` |
 | `lab-engine.test.mjs` | laboratory v2: registry (fourteen experiments, seven templates), mission rules (control count, `set` keys, predict first, explain last), strings (pairs, no dashes, decimal comma), finite scenes, every `check` answer recomputed independently (fourteen), the shared 3D camera (`camera3d.js`: round trips, view ray, constraints, pitch clamp), constrained 3D handles, the pure models of `line`, `exponential`, `cobweb`, `matrix` and `space-lines` (plane polygon, clipping, intersection, projection), goals reachable, handles, pure models including the seeded simulation statistics, every `#lab/` link in the site, pathways and manifest resolves, honest labelling (≈ for a rounded value, = for an exact one: `format.js`) |

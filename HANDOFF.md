@@ -1,5 +1,11 @@
 # Handoff
 
+## Homepage and catalogue redesign, 27 October 2026
+
+Milestone 1 of `docs/REDESIGN_PROPOSAL_2026-10-27.md` is implemented: useful homepage search, six existing tools with task-oriented entrances, reading links, illustrated chapter cards, sans-serif headings and a compact phone menu. Search reuses the discovery index; illustrations reuse existing mathematical models. Existing routes and chapter documents are retained. Decorative interface animation has been removed; mathematical interactions remain. The six-stage chapter presentation is still present and is milestone 2.
+
+Desktop/phone layouts, both themes, 200% text, keyboard menu operation, search, course counts and representative downloads have automated checks. Real-device screen-reader testing and learner/teacher acceptance remain pending. The bilingual curriculum goal remains on standby and unfinished.
+
 ## French course quality, 27 October 2026
 
 Première C07 and Terminale STMG C04 have completed two independent source and rendered-PDF reviews with exact computation checks. C07 corrections now explain the diameter interpretation and identify the singleton explicitly. STMG C04 has eight session-specific homework tasks with answers, completed proof and variation explanations, and the correct positive-domain graph for session 29. This is a bounded two-chapter review, not annual-course acceptance; human review remains pending. Private evidence is in `course-quality/batches/20261027-c07-stmg-c04/` in the existing private repository.

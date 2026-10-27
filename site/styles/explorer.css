@@ -36,7 +36,7 @@
   --c1: #7aa2ff; --c2: #ffa94d; --c3: #5fd0a0; --c4: #ff7eb6; --c5: #c9a6ff; --c6: #4dd0e1; --c7: #ffd54f; --c8: #ff8a65;
 }
 :root {
-  --display: "STIX Two Text", "Times New Roman", serif;
+  --display: "Atkinson Hyperlegible", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --math: "STIX Two Text", "Times New Roman", serif;
   --r: 12px; --r-sm: 8px; --header: 56px; --chrome: var(--header); --t: 120ms ease;
@@ -260,41 +260,80 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
   body { background: #fff; color: #000; padding: 0; }
 }
 
-/* ------------------------------------------------------------------ v4 "Vivid" layer (see docs/DESIGN_V4.md)
-   Colour as identity, motion as welcome and reward. Everything that moves sits inside no-preference. */
-.challenge-card { position: relative; overflow: hidden; border-top: 4px solid var(--cc, var(--accent)); }
-.challenge-card .challenge-motif { color: var(--cc, var(--accent)); }
-.challenge-card:hover { border-color: var(--cc, var(--accent)); background: color-mix(in srgb, var(--cc, var(--accent)) 9%, var(--surface)); }
-.challenge-card:nth-child(8n+1), .lab-links a:nth-of-type(8n+1) { --cc: var(--c1); }
-.challenge-card:nth-child(8n+2), .lab-links a:nth-of-type(8n+2) { --cc: var(--c2); }
-.challenge-card:nth-child(8n+3), .lab-links a:nth-of-type(8n+3) { --cc: var(--c3); }
-.challenge-card:nth-child(8n+4), .lab-links a:nth-of-type(8n+4) { --cc: var(--c4); }
-.challenge-card:nth-child(8n+5), .lab-links a:nth-of-type(8n+5) { --cc: var(--c5); }
-.challenge-card:nth-child(8n+6), .lab-links a:nth-of-type(8n+6) { --cc: var(--c6); }
-.challenge-card:nth-child(8n+7), .lab-links a:nth-of-type(8n+7) { --cc: var(--c7); }
-.challenge-card:nth-child(8n+8), .lab-links a:nth-of-type(8n+8) { --cc: var(--c8); }
-/* Laboratory rail: each experiment gets its own colour chip; text stays in the ink colours for contrast. */
-.lab-link .lab-symbol { height: 30px; border-radius: 50%; background: color-mix(in srgb, var(--cc, var(--accent)) 20%, var(--surface)); color: var(--ink); border: 1.5px solid var(--cc, var(--accent)); }
-.lab-link.selected { box-shadow: inset 4px 0 0 var(--cc, var(--accent)); background: color-mix(in srgb, var(--cc, var(--accent)) 12%, var(--surface)); color: var(--ink); }
-.lab-main .lab-heading { padding-top: 10px; border-top: 5px solid; border-image: linear-gradient(90deg, var(--c1), var(--c3), var(--c2), var(--c4), var(--c5)) 1; }
-.page-heading h1, .lab-heading h1, .library-heading h1 { background: linear-gradient(100deg, var(--ink) 55%, var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-@media (forced-colors: active) { .page-heading h1, .lab-heading h1, .library-heading h1 { -webkit-text-fill-color: currentColor; background: none; } }
-.btn-primary, .primary { box-shadow: 0 2px 0 color-mix(in srgb, var(--accent) 55%, #000); }
 
-@media (prefers-reduced-motion: no-preference) {
-  main > *, .challenge-card { animation: v4-rise 460ms cubic-bezier(.16,1,.3,1) both; }
-  main > *:nth-child(2) { animation-delay: 50ms; } main > *:nth-child(3) { animation-delay: 100ms; } main > *:nth-child(n+4) { animation-delay: 150ms; }
-  .challenge-card:nth-child(1) { animation-delay: 40ms; } .challenge-card:nth-child(2) { animation-delay: 80ms; } .challenge-card:nth-child(3) { animation-delay: 120ms; }
-  .challenge-card:nth-child(4) { animation-delay: 160ms; } .challenge-card:nth-child(n+5) { animation-delay: 200ms; }
-  .challenge-card, .lab-link, .btn, .primary, .secondary { transition: transform 160ms cubic-bezier(.2,.7,.3,1), box-shadow 160ms, border-color var(--t), background-color var(--t), color var(--t); }
-  .challenge-card:hover { transform: translateY(-4px) rotate(-.4deg); box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--cc, var(--accent)) 70%, transparent); }
-  .challenge-card:hover .challenge-motif { animation: v4-wiggle 600ms ease both; transform-origin: 20% 70%; }
-  .lab-link:hover .lab-symbol { animation: v4-pop 420ms cubic-bezier(.3,1.6,.5,1) both; }
-  .btn:active, .primary:active, .secondary:active { transform: translateY(1px) scale(.98); }
-  .btn-primary:hover, .primary:hover { transform: translateY(-1px); }
-  .lab-link.selected .lab-symbol { animation: v4-pulse 2.8s ease-in-out infinite; }
+/* Useful entrance and illustrated catalogue, 27 October 2026. */
+.entrance { max-width: 1200px; }
+.entrance-intro { display:grid; grid-template-columns:minmax(0, 3fr) minmax(0,2fr); gap:48px; align-items:center; padding:16px 0 32px; }
+.home-greeting { color:var(--muted); margin-bottom:8px; }
+.entrance-intro h1 { font-size:clamp(1.8rem,3.2vw,2.5rem); max-width:22ch; line-height:1.15; }
+.entrance-intro p { color:var(--ink-2); max-width:54ch; }
+#home-search label { display:block; font-weight:700; margin-bottom:8px; }
+.home-search-row { display:flex; gap:8px; }
+.home-search-row input { width:100%; min-width:0; }
+.entrance-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+.home-resume { display:inline-block; margin-top:16px; color:var(--accent); text-decoration:underline; }
+.entrance-art .discovery-preview { margin:0; border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:24px; }
+.entrance-art svg { width:100%; height:auto; }
+.entrance-section { padding:32px 0; border-top:1px solid var(--line); scroll-margin-top:calc(var(--chrome) + 16px); }
+.entrance-section > h2, .home-reading h2 { margin-bottom:8px; }
+.entrance-section > p { color:var(--ink-2); }
+.tool-grid,.idea-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:24px 0; }
+.tool-card,.idea-card,.chapter-tile { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--surface); min-width:0; }
+.tool-card:hover,.idea-card:hover,.chapter-tile:hover { border-color:var(--accent); }
+.tool-card > div { padding:20px; }
+.tool-card h3,.idea-card h3 { font-size:1.2rem; margin-bottom:8px; }
+.tool-card p { color:var(--ink-2); font-size:1rem; line-height:1.5; }
+.tool-card .discovery-preview,.idea-card .discovery-preview,.chapter-tile .discovery-preview { margin:0; border:0; border-radius:0; background:var(--accent-soft); }
+.tool-card .discovery-preview svg,.idea-card .discovery-preview svg,.chapter-tile .discovery-preview svg { width:100%; height:160px; }
+.idea-card h3,.idea-card > .task-link { display:block; margin:16px 20px; }
+.task-link,.text-link { font-weight:700; color:var(--accent); }
+.text-link { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; text-underline-offset:4px; }
+.home-reading { border-top:1px solid var(--line); padding:32px 0 0; }
+.home-reading .text-link { margin-right:24px; }
+.home-results { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-bottom:32px; }
+.home-result { display:block; padding:16px; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+.home-result:hover { border-color:var(--accent); }
+.home-result strong,.home-result span { display:block; }
+.home-result span { color:var(--muted); font-size:1rem; }
+.resource-page .finder { grid-template-columns:minmax(0,1fr); }
+.resource-page .preview { display:none; }
+.chapter-grid { list-style:none; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.chapter-tile { display:block; height:100%; }
+.chapter-tile-body { padding:16px 20px; display:block; }
+.chapter-tile-body strong { display:block; font-size:1.2rem; line-height:1.3; }
+.chapter-tile-body > span { display:block; margin-top:8px; color:var(--ink-2); font-size:1rem; }
+.chapter-tile-body small { display:block; color:var(--muted); margin-top:12px; }
+.nav-toggle { display:none; }
+.tool-card .discovery-preview[data-preview="derivative"], .chapter-tile .discovery-preview[data-preview="derivative"] { color:var(--pos); background:var(--pos-soft); }
+.tool-card .discovery-preview[data-preview="integral"], .chapter-tile .discovery-preview[data-preview="integral"] { color:var(--obj2); background:color-mix(in srgb, var(--obj2) 10%, var(--surface)); }
+.tool-card .discovery-preview[data-preview="probability"], .chapter-tile .discovery-preview[data-preview="probability"] { color:var(--obj3); background:color-mix(in srgb, var(--obj3) 10%, var(--surface)); }
+@media(min-width:601px) and (max-width:900px) {
+ .tool-grid,.idea-grid,.chapter-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .entrance-intro { gap:24px; }
 }
-@keyframes v4-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-@keyframes v4-wiggle { 0% { transform: rotate(0); } 30% { transform: rotate(-9deg) scale(1.08); } 60% { transform: rotate(6deg) scale(1.08); } 100% { transform: rotate(0) scale(1); } }
-@keyframes v4-pop { 0% { transform: scale(1); } 50% { transform: scale(1.22) rotate(-8deg); } 100% { transform: scale(1); } }
-@keyframes v4-pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--cc, var(--accent)) 45%, transparent); } 50% { box-shadow: 0 0 0 6px transparent; } }
+@media(max-width:600px) {
+ :root { --header:64px; }
+ .entrance-intro { display:block; padding-top:0; }
+ .entrance-art { display:none; }
+ .entrance-intro h1 { font-size:1.8rem; }
+ .entrance-intro > div > p:not(.home-greeting) { font-size:1rem; }
+ .home-search-row { flex-wrap:wrap; }
+ .home-search-row input { flex:1 1 150px; }
+ .home-search-row button { flex:1; }
+ .tool-grid,.idea-grid,.chapter-grid,.home-results { grid-template-columns:minmax(0,1fr); }
+ .topbar { flex-wrap:wrap; height:auto; min-height:64px; gap:8px; padding:8px 16px; }
+ .brand { margin-right:auto; }
+ .brand-name { display:inline; font-size:1rem; }
+ .brandmark { width:32px; height:32px; }
+ .tools { margin-left:0; gap:4px; }
+ .topbar .tools .language { display:none; }
+ .topbar:has(.mainnav.is-open) .tools .language:not([hidden]) { display:flex; }
+ .nav-toggle { display:inline-flex; align-items:center; min-height:44px; padding:0 10px; font-weight:700; border:1px solid var(--line-strong); border-radius:8px; }
+ .mainnav { display:none; position:static; width:100%; padding:0; border:0; margin:0; }
+ .mainnav.is-open { display:flex; flex-wrap:wrap; }
+ .mainnav a { min-height:48px; flex-direction:row; font-size:1rem; gap:6px; }
+ .mainnav.is-open a { flex:1 1 auto; min-width:0; max-width:100%; }
+ .mainnav a .icon { width:18px; height:18px; }
+ body { padding-bottom:0; }
+ .subnav { position:static; }
+}

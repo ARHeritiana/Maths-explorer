@@ -1,5 +1,9 @@
 # Redesign handoff prompt
 
+## Implementation checkpoint, 27 October 2026
+
+The useful homepage, shared typography/phone navigation and illustrated chapter catalogue are implemented. Continue with milestone 2, the quadratic chapter's four direct destinations, rather than replacing the homepage again. Consult root `HANDOFF.md` for current verification and remaining acceptance work. The bilingual curriculum goal remains on standby and unfinished.
+
 Paste the following into a new implementation chat opened on this repository.
 
 ---

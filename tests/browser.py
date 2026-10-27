@@ -77,12 +77,16 @@ with sync_playwright() as p:
     assert page.goto(BASE).status == 200
     check_home_chapter(page, BASE, 'test-results')
     page.goto(BASE)
-    # The welcome page is neutral (no school level in its text), draws live art, and the gallery holds the curiosities.
-    page.wait_for_selector('.stage-fg'); page.wait_for_timeout(1200)
-    home = page.locator('.welcome').inner_text()
-    assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac']), 'the home page does not assume a curriculum'
-    assert page.evaluate("() => { const c = document.querySelector('.stage-fg'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n > 500; }"), 'the hero drawing is not blank'
-    assert page.locator('.wonder').count() == 0 and page.locator('.stage-cta').count() == 1, 'the home page is one animation and one door'
+    # The home is neutral and offers useful direct course and experiment entrances.
+    page.wait_for_selector('#home-query')
+    home = page.locator('.entrance').inner_text()
+    assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac'])
+    assert page.locator('.entrance-actions a[href="#resources"]').count() == 1
+    assert page.locator('.tool-card').count() == 6
+    page.locator('#home-query').fill('derivee')
+    assert page.locator('.home-result').count() > 0
+    page.locator('#home-query').fill('zzzz-no-result')
+    assert page.locator('.home-result').count() == 0
     page.goto(BASE+'/#gallery'); page.wait_for_selector('.wonder')
     gallery_ids = page.evaluate("async () => { const {labs} = await import('./js/content.js'); return labs.filter(l => l.custom).map(l => l.id); }")
     assert page.locator('.wonder').count() == len(gallery_ids), 'gallery cards follow the shared catalogue'

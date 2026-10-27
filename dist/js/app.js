@@ -9,7 +9,7 @@ import { universityPage, bindUniversity } from "./university.js";
 import { observeSvgNavigation } from "./canvas-navigation.js";
 import { labs, challenges, pathways } from "./content.js";
 import { mountObject } from "./lab-objects.js";
-import { homePage, galleryPage as galleryIndex } from "./welcome.js";
+import { homePage, bindHome, galleryPage as galleryIndex } from "./welcome.js";
 import { isReading, readingPage, readAlso } from "./reading.js";
 import { mountArt } from "./home-art.js";
 import { mountLibrary } from "./library.js";
@@ -17,7 +17,7 @@ import { icon } from "./icons.js";
 import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
 import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
-import { installInterfaceMotion, illuminateFeedback } from "./motion.js";
+import { illuminateFeedback } from "./motion.js";
 import { mountExperiment } from "./lab/mount.js";
 import { resolveRef, labRef } from "./lab/registry.js";
 import { indexPage as labIndexPage, experimentPage } from "./lab/page.js";
@@ -124,7 +124,7 @@ function header(page) {
     `<a href="#${tabs[0][0]}" data-section="${id}" ${section?.[0] === id ? 'aria-current="true"' : ""}>${icon(ic, 20)}<span>${pair(fr, en)}</span></a>`).join("");
   const subnav = section ? `<nav class="subnav" aria-label="${pair(section[1], section[2])}"><div class="subnav-inner">${section[4].map(([id, fr, en, ic]) =>
     `<a href="#${id}" ${tab === id ? 'aria-current="page"' : ""}>${icon(ic, 18)}<span>${pair(fr, en)}</span></a>`).join("")}</div></nav>` : "";
-  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><nav class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
+  return `<header class="topbar"><a class="brand" href="#home" aria-label="Maths Explorer">${brandMark}<span class="brand-name">Maths Explorer</span></a><button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">${pair("Menu","Menu")}</button><nav id="primary-nav" class="mainnav" aria-label="${pair("Navigation principale", "Main navigation")}">${sectionLinks}</nav><div class="tools"><button class="icon-btn" data-theme-toggle aria-label="${themeLabel}" title="${themeLabel}">${icon(dark ? "sun" : "moon", 22)}</button><div class="language" ${(["chapter","university","workshop"].includes(route().page)||(route().page==="library"&&route().id))?"hidden":""} role="group" aria-label="${pair("Langue", "Language")}"><button data-lang="fr" aria-pressed="${lang === "fr"}" lang="fr">FR</button><button data-lang="en" aria-pressed="${lang === "en"}" lang="en">EN</button></div></div></header>${subnav}`;
 }
 function footer() {
   return `<footer><span class="foot-brand">Maths Explorer</span><span>${storageWorks ? pair("Progression enregistrée sur cet appareil.", "Progress saved on this device.") : pair("Stockage indisponible : progression conservée pour cette session.", "Storage unavailable: progress kept for this session.")}</span><nav class="foot-links" aria-label="${pair("Autres pages", "More pages")}"><a href="#pack">${pair("Dossier sur mesure", "Custom pack")}</a><a href="#sources">${pair("Sources LaTeX", "LaTeX sources")}</a><a href="#pathways">${pair("Programmes & sources", "Curricula & sources")}</a><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.${lang}" rel="license noopener" target="_blank">${pair("Licence CC BY-NC-SA 4.0", "CC BY-NC-SA 4.0 licence")}</a></nav></footer>`;
@@ -160,7 +160,7 @@ function render() {
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "home" ? homePage({ pair, t, link, labs }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -197,6 +197,7 @@ function render() {
   bindCommon();
   if (page === "gallery" && r.id) bindGallery();
   if (page === "challenges") stopChapter = bindChallenges();
+  if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
@@ -215,10 +216,14 @@ function render() {
   if (page === 'history') stopChapter = bindHistory($('#main'),r.id,t,discovery);
   stopViews.push(observeSvgNavigation($("#main"), "svg.act-svg, #quadratic-graph svg",lang));
   if (page === "library") mountLibrary($("#main"), {lang,id:r.id});
-  installInterfaceMotion($("#app"), reducedMotion);
   installPresenting();
 }
 function bindCommon() {
+ const navButton=$(".nav-toggle"), nav=$("#primary-nav");
+ const closeMenu=()=>{navButton.setAttribute("aria-expanded","false");nav.classList.remove("is-open");};
+ navButton.addEventListener("click",()=>{const open=navButton.getAttribute("aria-expanded")!=="true";navButton.setAttribute("aria-expanded",String(open));nav.classList.toggle("is-open",open);});
+ $(".topbar").addEventListener("keydown",e=>{if(e.key==="Escape"&&navButton.getAttribute("aria-expanded")==="true"){closeMenu();navButton.focus();}});
+
   $("[data-theme-toggle]")?.addEventListener("click", () => {
     toggleTheme();
     const dark = currentTheme() === "nuit";
@@ -234,7 +239,8 @@ function bindCommon() {
       lang = preferredLang;
       save();
       render();
-      $(`[data-lang="${lang}"]`)?.focus();
+      const selected = $(`[data-lang="${lang}"]`);
+      (selected?.offsetParent ? selected : $(".nav-toggle"))?.focus();
     }),
   );
 }
