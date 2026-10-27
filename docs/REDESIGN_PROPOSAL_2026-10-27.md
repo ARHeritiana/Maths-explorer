@@ -1,13 +1,17 @@
 # Maths Explorer: redesign proposal
 Date: 27 October 2026
-Status: proposal for implementation, not an implemented redesign.
+Status: revised implementation proposal informed by supplied reference screenshots. No UI implementation is claimed.
 
 ## Decision
 Replace the welcome splash and the six-step chapter interface with a useful mathematics workspace. Make it easy to find a topic, understand it, manipulate an object, practise, and obtain classroom materials. Completeness and mathematical quality take priority over adding more features.
 
-Design read: an accessible, phone-first educational site for lycée learners and teachers, with a calm, precise visual language and mathematical figures as its distinctive imagery. Proposed design variance 3/10, motion 2/10, density 4/10. Keep the static architecture and existing accessible primitives.
+Design read: an accessible, phone-first educational site for lycée learners and teachers, with a colourful, illustrated catalogue and precise, readable learning pages. Mathematical figures supply its distinctive imagery. Proposed design variance 5/10, motion 2/10, density 4/10. Keep the static architecture and existing accessible primitives.
 
-This proposal is based on source inspection, not a completed visual browser audit. It does not claim exhaustive curriculum coverage counts. Before implementation, capture the current home, catalogue, chapter and laboratory at phone and desktop sizes. Mission Maths could not be inspected reliably; none of these decisions is attributed to it.
+This proposal combines Maths Explorer source inspection with readable Mission Maths screenshots supplied by the owner. The reference homepage shows illustrated chapter cards, a named tool collection, explicit action links and a dedicated Grand Oral promotion. The tools section advertises exports for a table generator. These are visible presentation observations, not verified claims about tool behaviour, lesson quality or curriculum completeness. Live Mission Maths browsing remained unavailable.
+
+Adopt its concrete resource entrances and visual identity. Improve on the small text, persistent sidebar and desktop-like density visible in the phone captures. Do not copy its artwork or reproduce a full-screen promotional banner. Before implementation, inspect the current Maths Explorer homepage, catalogue, chapter and laboratory at phone and desktop sizes.
+
+This revision supersedes the earlier preference for chapter rows as the default presentation. Illustrated chapter cards are now the primary browsing mode; a compact list can be an optional alternative.
 
 ## 1. What to discard
 
@@ -30,16 +34,26 @@ Source anchors: `site/js/welcome.js`, `site/js/chapter-sequence.js`, `site/js/se
 
 Keep the recognised primary sections Apprendre, Explorer and Lire. Keep the home neutral about school level, with curriculum selection inside Cours.
 
-Proposed first screen:
-- Maths Explorer wordmark and the existing three navigation sections.
-- Heading: “Comprendre les maths en les explorant.”
-- One short sentence explaining courses, experiments and exercises.
-- Search field: “Une notion, un chapitre, une activité…”
-- Primary link “Trouver un cours”; secondary link “Explorer une notion”.
-- One compact, useful interactive example with a clear question and a pause/reset facility.
-- “Reprendre” only when a local last-visited item exists.
+Proposed homepage, in order:
+1. Compact header with the existing wordmark, Apprendre / Explorer / Lire, and an accessible phone menu.
+2. Short introduction: “Comprendre les maths en les explorant.” One sentence explaining the offer, a prominent search field, and direct links “Trouver un cours” and “Explorer les outils”.
+3. A compact mathematical illustration or small interactive example. Search and a useful entrance must be visible before scrolling on a typical phone; artwork must not postpone them.
+4. “Les outils pour comprendre”: six curated existing tools with one-sentence purposes and specific action links; “Tous les outils” opens the full collection.
+5. “Explorer une idée”: a small illustrated selection of existing experiments and curiosities.
+6. Reading links and a restrained footer. “Reprendre” appears only when a local last-visited resource exists.
 
-Below: a small curated selection of useful activities, followed by access to reading. Avoid a giant inventory, inflated resource counts or an animation covering the whole first viewport.
+Keep curriculum and class selection inside Cours. After choosing them, show an illustrated chapter grid: title, accurate mathematical image, one-sentence learning goal, and available resource types. Whole cards open the canonical chapter page. Do not display all curricula on the neutral homepage.
+
+Tool labels describe an action, not an internal module name. Examples to map to existing capabilities:
+- “Explorer une fonction”: move parameters and observe the graph.
+- “Comprendre une intégrale”: compare area approximations.
+- “Simuler le hasard”: compare frequencies and probabilities.
+- “Étudier une suite”: explore explicit or recurrent behaviour.
+- “Manipuler la géométrie dans l’espace”: rotate and inspect objects.
+
+Verify actual capabilities before publishing descriptions. A table builder or binomial calculator is a candidate only if the implementation exists or is explicitly scheduled. Never populate the catalogue with nonfunctional buttons.
+
+Each tool page contains a concise question, the working figure, nearby controls, an explanation and reciprocal links to relevant chapters. Use actions such as “Explorer les limites” or “Ouvrir les exercices”, not generic “Entrer”.
 
 Search should return topic names with resource type, curriculum/level when applicable, and language. Handle accents, common synonyms and empty results. A search for a concept should not require knowing whether it lives in a laboratory, chapter or curiosity.
 
@@ -81,11 +95,31 @@ Proposed tokens:
 - Use colour for mathematical objects and meaningful states. Avoid cycling colours purely by card position.
 - Keep the existing dark theme, with equivalent contrast and focus treatment.
 
-Prefer chapter rows with useful metadata over walls of decorative cards. Use cards for visually meaningful experiments, with an actual mathematical preview. No new imagery or animation library is necessary.
+Use illustrated chapter cards as the default catalogue view:
+- Desktop: three columns in a centred container of about 1200 px.
+- Tablet: two columns when cards remain readable.
+- Phone below 600 px: one column; never shrink a desktop sidebar and grid to fit.
+- Illustration ratio about 16:9. Titles are real HTML below the image, never baked into it.
+- One mathematical idea per preview: parabola and roots, a probability tree, sequence terms, or a plane intersecting a solid. Derive accurate previews from existing mathematics where possible.
+- Use stable topic colours with a restrained palette inside artwork. Keep navigation, typography and actions consistent across the site.
+- Avoid photomontages, miniature textbook pages, decorative equations and repeated text within thumbnails.
+- Show only supported formats, and keep technical metadata secondary.
+
+A compact list view is optional for returning users. Tools use lighter cards with an icon or small diagram, a verb-led title, a one-sentence purpose and an explicit action. Reading pages retain a comfortable text layout.
+
+Colourful does not mean every panel has a gradient. Use blue for site identity and varied colours for useful mathematical illustration. Keep learning surfaces neutral enough for figures, formulas and feedback to remain legible. A modest illustration-led banner is acceptable; a large rotating hero is not a priority.
 
 Figures need enough height to manipulate comfortably; controls must remain near the figure. Put rare options behind a compact disclosure. Preserve direct pointer/touch manipulation, arrow-key equivalents, numeric or slider alternatives, and independent camera state.
 
 Respect reduced motion; pause offscreen animation. Support 320 px widths, 200% text, visible focus and 44 px targets. Reading content must not depend on canvas alone. Use text, formulas and descriptions to communicate the mathematical state.
+
+## 4a. Useful additions and explicit deferrals
+
+Provide export only where it serves an existing task. Start with an accessible image export for supported graphs or figures, with readable labels and the chosen mathematical state. Add SVG or LaTeX output where technically faithful. Do not claim exports until tested; do not turn every resource into a format picker.
+
+Grand Oral is a worthwhile future collection inspired by the visible reference promotion. Schedule it after priority chapters: mathematically grounded questions, prerequisites, outline, a useful visual and possible follow-up questions. Verify current examination requirements before authoring. Do not create empty navigation or imitate advertised content counts.
+
+Keep already useful games and challenges accessible, but do not add timers as the default learning experience. Speed challenges are optional activities, not evidence of understanding.
 
 ## 5. Content completion programme
 
@@ -137,9 +171,9 @@ Visual choices and navigation labels are design hypotheses, not experimentally e
 ## 7. Implementation order and acceptance
 
 ### Milestone 1: useful entrance and coherent visual system
-Change `site/js/welcome.js`, shared navigation presentation and the styles in `site/styles/explorer.css` / `pages.css`. Remove decorative v4 effects and establish the new typography and spacing. Preserve the current route scheme, wordmark and existing content.
+Change `site/js/welcome.js`, shared navigation presentation and the styles in `site/styles/explorer.css` / `pages.css`. Remove decorative v4 effects and establish the new typography, spacing, illustrated chapter grid and task-oriented tool cards. Reuse working tools before creating new ones. Preserve the current route scheme, wordmark and existing content.
 
-Acceptance: a first-time learner can find a chapter and open an experiment without explanation; a teacher can reach a chapter's documents. Test with representative students and teachers, including a phone. Set a provisional usability target of four out of five successful participants for each core task; this is a product target, not a research statistic.
+Acceptance: chapter illustrations are mathematically meaningful; phone cards and titles remain readable; tool descriptions match working capabilities; a first-time learner can find a chapter and open an experiment without explanation; a teacher can reach a chapter's documents. Test with representative students and teachers, including a phone. Set a provisional usability target of four out of five successful participants for each core task; this is a product target, not a research statistic.
 
 ### Milestone 2: replace the six-step chapter presentation
 Rework `site/js/chapter-sequence.js` and the corresponding resource-library entry points. Keep legacy stage links as aliases. Pilot the four direct destinations on quadratics. Preserve mathematics and working interactions.
