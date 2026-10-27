@@ -2,7 +2,7 @@
 
 \begin{fluencysheet}{jeu.~3~déc.~2026}{Fonction à valeurs réelles\,; ensemble de définition}
 \mxfq{Échauffement · Flash}{EQ}{Résoudre $x-4=0$ puis $2x+6=0$.}{$x=4$\,; $x=-3$.}{}
-\mxfq{Cœur · Méthode}{MOD}{Ensemble de définition de $f(x)=\dfrac{1}{x-4}$\,?}{On exclut la valeur qui annule le dénominateur~: $\R\setminus\{4\}=\intoo{-\infty}{4}\,\cup\,\intoo{4}{+\infty}$.}{}
+\mxfq{Cœur · Méthode}{MOD}{Quel est l'ensemble de définition de $f(x)=\dfrac{1}{x-4}$\,?}{On exclut la valeur qui annule le dénominateur~: $\R\setminus\{4\}=\intoo{-\infty}{4}\,\cup\,\intoo{4}{+\infty}$.}{}
 \mxfq{Cœur + · QCM}{MOD}{L'ensemble de définition de $h(x)=\dfrac{1}{x^2+1}$ est~:\mxchoices{$\R\setminus\{1\}$}{$\R\setminus\ens{-1;1}$}{$\R$}{$\R^*$}}{C.\ $\R$}{$x^2+1\geqslant1>0$~: le dénominateur ne s'annule jamais.}
 \mxfq{Retour · Tableau}{PNP}{Ce tableau est-il de proportionnalité\,?\par\smallskip\mxarraystretch{1.15}\begin{tabular}{|c|c|c|c|}\hline
 $x$ & 2 & 5 & 8 \\ \hline
@@ -13,7 +13,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 
 \begin{fluencysheet}{lun.~7~déc.~2026}{Courbe d'équation $y=f(x)$\,; images et antécédents}
 \mxfq{Échauffement · Flash}{IMG}{$f(x)=-x^2+4$. Calculer $f(0)$, $f(-2)$ et $f(3)$.}{$4$\,; $0$\,; $-5$.}{}
-\mxfq{Cœur · Graphique}{IMG}{Courbe de $f$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\mxfq{Cœur · Graphique}{IMG}{La courbe de $f$ est tracée ci-dessous.\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-3,-5) grid (3,4);
 \draw[->] (-3,0)--(3.3,0); \draw[->] (0,-5)--(0,4.3);
 \foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
@@ -22,14 +22,14 @@ $y$ & 6 & 15 & 24 \\ \hline
 
 \end{tikzpicture}\par Lire $f(1)$ et les antécédents de $0$.}{$f(1)=3$\,; antécédents de $0$~: $-2$ et $2$.}{Expression utilisée pour le tracé~: $f(x)=-x^2+4$.}
 \mxfq{Cœur + · Réflexion}{IMG}{Pour cette fonction, l'équation $f(x)=5$ a-t-elle des solutions\,?}{Non~: $f(x)=4-x^2\leqslant4<5$ pour tout $x$\,; la courbe ne monte pas jusqu'à $y=5$.}{}
-\mxfq{Retour · Flash}{PRB}{Urne~: $5$ boules rouges, $3$ bleues, $2$ vertes. Probabilité de tirer une bleue\,? Une non rouge\,?}{$\dfrac{3}{10}$\,; $\dfrac{5}{10}=\dfrac12$.}{}
+\mxfq{Retour · Flash}{PRB}{Une urne contient $5$ boules rouges, $3$ bleues et $2$ vertes. Quelle est la probabilité de tirer une boule bleue\,? Quelle est la probabilité de tirer une boule non rouge\,?}{$\dfrac{3}{10}$\,; $\dfrac{5}{10}=\dfrac12$.}{}
 \mxfq{Fil rouge · Méthode}{EQ}{Résoudre dans $\R$~: $4-3x=10$.}{$x=-2$}{Piège~: de $-3x=6$, écrire $x=2$ au lieu de $x=\dfrac{6}{-3}=-2$.}
 \end{fluencysheet}
 
 \begin{fluencysheet}{mar.~8~déc.~2026}{Fonctions de référence~: valeur absolue, carré, inverse}
 \mxfq{Échauffement · Flash}{CAL}{Calculer $|{-}\num{2,5}|$, $(-3)^2$ et $\dfrac{1}{-4}$.}{$\num{2,5}$\,; $9$\,; $-\num{0,25}$.}{}
 \mxfq{Cœur · Tableau}{REG}{Compléter pour $x=-2\,;\,-1\,;\,0\,;\,1\,;\,2$ les valeurs de $x\mapsto|x|$, $x\mapsto x^2$ et $x\mapsto\dfrac1x$.}{$|x|$~: $2\,;\,1\,;\,0\,;\,1\,;\,2$\,; $x^2$~: $4\,;\,1\,;\,0\,;\,1\,;\,4$\,; $\dfrac1x$~: $-\dfrac12\ ;\ -1\ ;\ \text{non défini}\ ;\ 1\ ;\ \dfrac12$.}{}
-\mxfq{Cœur + · QCM}{REG}{Quelle courbe de référence passe par $\pt{-1;1}$, $\pt{0;0}$, $\pt{1;1}$ et $\pt{2;4}$\,?\mxchoices{la droite $y=x$}{celle de l'inverse}{celle de la valeur absolue}{celle du carré}}{D.\ celle du carré}{La valeur absolue passerait par $\pt{2;2}$\,; l'inverse n'est pas définie en $0$\,; la droite $y=x$ passe par $\pt{-1;-1}$.}
+\mxfq{Cœur + · QCM}{REG}{Quelle courbe de référence passe par $\pt{-1;1}$, $\pt{0;0}$, $\pt{1;1}$ et $\pt{2;4}$\,?\par\smallskip\noindent A.~la droite $y=x$\quad B.~celle de l'inverse\par\noindent C.~celle de la valeur absolue\quad D.~celle du carré}{D.\ celle du carré}{La valeur absolue passerait par $\pt{2;2}$\,; l'inverse n'est pas définie en $0$\,; la droite $y=x$ passe par $\pt{-1;-1}$.}
 \mxfq{Retour · Flash}{PRO}{Un objet est agrandi avec le rapport $\num{1,5}$. Que devient une longueur de $8$ cm\,? Par quel nombre l'aire est-elle multipliée\,?}{$12$ cm\,; l'aire est multipliée par $\num{1,5}^2=\num{2,25}$.}{}
 \mxfq{Fil rouge · Prouver}{LIT}{Conjecture~: «~la somme de deux entiers consécutifs est impaire~». La démontrer.}{$n+(n+1)=2n+1$, de la forme $2k+1$ avec $k=n$~: impair.}{}
 \end{fluencysheet}
@@ -44,7 +44,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 
 \begin{fluencysheet}{lun.~14~déc.~2026}{Résolution graphique et numérique~: $f(x)=k$, $f(x)<k$}
 \mxfq{Échauffement · Flash}{EQ}{Résoudre $x^2=16$ puis $x^2=-4$.}{$x=\pm4$\,; aucune solution réelle ($x^2\geqslant0$).}{}
-\mxfq{Cœur · Graphique}{REG}{Courbe de $f(x)=x^2$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\mxfq{Cœur · Graphique}{REG}{La courbe de $f(x)=x^2$ est tracée ci-dessous.\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-3,-1) grid (3,6);
 \draw[->] (-3,0)--(3.3,0); \draw[->] (0,-1)--(0,6.3);
 \foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
@@ -59,7 +59,7 @@ $y$ & 6 & 15 & 24 \\ \hline
 
 \begin{fluencysheet}{mar.~15~déc.~2026}{Résolution de $f(x)=g(x)$ et $f(x)<g(x)$}
 \mxfq{Échauffement · Flash}{EQ}{Résoudre $2x-1=x+3$.}{$x=4$.}{}
-\mxfq{Cœur · Graphique}{REG}{Courbes de $f(x)=x$ et $g(x)=x^2$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\mxfq{Cœur · Graphique}{REG}{Les courbes de $f(x)=x$ et $g(x)=x^2$ sont tracées ci-dessous.\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-1,-1) grid (2,4);
 \draw[->] (-1,0)--(2.3,0); \draw[->] (0,-1)--(0,4.3);
 \foreach \i in {-1,1,2}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
