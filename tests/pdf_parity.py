@@ -16,6 +16,10 @@ source_layout = set()
 if 'university' in manifest:
     index = json.loads((ROOT / 'dist/resources/university/index.json').read_text())
     source_layout = {ROOT / 'dist' / f['path'] for f in index['files'].values() if f['path'].endswith('.pdf')}
+# Hand-supplied standalone editions explicitly retain their source layout, like university imports.
+source_layout |= {ROOT / 'dist' / edition['path'].removeprefix('./')
+                  for resource in manifest['catalog']['resources']
+                  for edition in resource.get('editions', {}).values() if edition.get('layout') == 'source'}
 for path in sorted((ROOT / 'dist/resources').rglob('*.pdf')):
     n += 1
     with pymupdf.open(path) as document:

@@ -16,7 +16,7 @@ Sources of everything the build publishes. Generated files sit beside some sourc
 | `tex/lectures/` | Beamer lecture editions (`scripts/build-lecture-slides.py`) | yes |
 | `tex/university/foundations/` | university foundations sources (`scripts/build-university.py`) | yes |
 | `university/module-maths/` | applied mathematics module (`scripts/build-module-maths.py`) | yes |
-| `tex/unsorted/<set>/` | hand-supplied standalone sources of unclassified resources (XeLaTeX, not built by `make tex`); their PDFs sit in `dist/resources/premiere-unsorted/` and are listed under the chapter `premiere-unsorted` ("Non classé") in `data/manifest.json` | yes |
+| `tex/unsorted/<set>/` | hand-supplied standalone sources of unclassified resources (XeLaTeX, not built by `make tex`); their PDFs sit in `dist/resources/premiere-unsorted/` and are listed under the chapter `premiere-unsorted` ("Non classé") in `data/manifest.json`; edition metadata `layout: "source"` explicitly preserves their supplied page layout while privacy and link checks still apply | yes |
 | `slides/<deck>.json` | authored decks (English Terminale, Seconde, Première) | yes, then `make slides` |
 | `slides/draft/terminale-<NN>.fr.json` | French Terminale drafts with figure code | yes |
 | `slides/university/` | university slide decks | yes |
