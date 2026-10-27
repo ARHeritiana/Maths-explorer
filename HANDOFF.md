@@ -6,6 +6,10 @@ Milestone 1 of `docs/REDESIGN_PROPOSAL_2026-10-27.md` is implemented: useful hom
 
 The subsequent visual checkpoint follows the request for a more vibrant, lively and classy style: stable topic colours in artwork, a larger opening mathematical figure, blue headline emphasis, restrained card elevation and short curve tracing on hover/focus. Reduced-motion previews stay static; there are no looping decorative effects.
 
+Challenge cards now keep a readable minimum width on phones and with enlarged text. Replacing challenge variation data also replaces its playback handlers, preventing discarded solution diagrams from responding to new controls; a regression test covers repeated remounts.
+
+Release verification passes: `npm test`, `npm run check` and full `make check`, including the complete browser integration suite and slide smoke replay. Published source copies and generated site files match.
+
 Desktop/phone layouts, both themes, 200% text, keyboard menu operation, search, course counts and representative downloads have automated checks. Real-device screen-reader testing and learner/teacher acceptance remain pending. The bilingual curriculum goal remains on standby and unfinished.
 
 ## French course quality, 27 October 2026

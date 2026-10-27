@@ -50,6 +50,6 @@ French and Malagasy curricula use French; International uses English; university
 
 ## Starting state
 
-The earlier work inspected source and wrote documentation only. It did not implement the redesign or complete the curriculum. GitHub connector access worked; local cloning failed because the workspace could not reach GitHub. Retry in the new environment and report actual checks, not assumed results.
+Milestone 1 is now implemented in source and generated site files, including the brighter visual follow-up. The repository is available locally; network operations work through the approved execution environment. Continue from the current main checkpoint rather than reconstructing the checkout. Curriculum completion and learner/teacher acceptance remain pending. Consult root HANDOFF.md and docs/LOG.md for verification.
 
 Proceed autonomously within this scope. Give concise milestone updates and report changes, test results and remaining gaps. The authoritative design details and acceptance criteria are in the revised proposal.
