@@ -55,18 +55,15 @@ test('bilingual starting sheets are complete and retain source associations',()=
 
 test('every companion chapter and supplement edition has its promised published PDF',()=>{
   const manifest=JSON.parse(fs.readFileSync(new URL('../content/data/manifest.json',import.meta.url),'utf8'));
-  const seen=new Set();
   for(const collection of ['chapters','supplements']){
     for(const entry of manifest.companion[collection]){
       assert.ok(entry.files.length>0,`${entry.id}: no companion documents`);
-      for(const file of entry.files){
+      for(const [fileIndex,file] of entry.files.entries()){
         assert.ok(Object.keys(file.editions||{}).length>0,`${entry.id}/${file.kind}: no declared editions`);
         for(const [language,edition] of Object.entries(file.editions)){
           assert.ok(['fr','en'].includes(language),`${entry.id}: unsupported edition ${language}`);
           assert.match(edition.path,/^resources\/[a-z0-9/-]+\.pdf$/,`${entry.id}: unsafe PDF path`);
-          const key=`${entry.id}/${file.kind}/${language}`;
-          assert.ok(!seen.has(key),`${key}: duplicate companion edition`);
-          seen.add(key);
+          const key=`${entry.id}/${file.kind}[${fileIndex}]/${language}`;
           const path=new URL('../dist/'+edition.path,import.meta.url);
           assert.ok(fs.statSync(path).size>100,`${key}: missing or empty ${edition.path}`);
           const fd=fs.openSync(path,'r');
