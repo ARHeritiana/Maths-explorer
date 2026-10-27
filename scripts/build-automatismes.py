@@ -29,8 +29,8 @@ def compile_pdf(entry):
     job = entry[:-4]
     if job not in _DONE:
         base = job.removesuffix('-en')
-        pair = tex.compile_pair(SRC, {'fr': str(MAINS[base]), 'en': str(MAINS[base + '-en'])}, {'fr': base, 'en': base + '-en'}, BUILD)
-        for r in (pair['fr'], pair['en']): _DONE[r.pdf.stem] = r.report(r.pdf.stem)
+        pair = tex.compile_editions(SRC, {'fr': str(MAINS[base]), 'en': str(MAINS[base + '-en'])}, {'fr': base, 'en': base + '-en'}, BUILD, languages=books.build_languages('automatismes'))
+        for r in pair.values(): _DONE[r.pdf.stem] = r.report(r.pdf.stem)
     return fitz.open(_DONE[job].pdf)
 
 
@@ -38,10 +38,10 @@ def main():
     catalog = manifest_io.load()['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == 'seconde'}
     counts = {}; book = {}
-    for lang, suf in (('fr', ''), ('en', '-en')):
+    for lang in books.build_languages('automatismes'):
+        suf = '' if lang == 'fr' else '-en'
         for kind, entry in (('student', 'eleve'), ('teacher', 'professeur')):
             d = compile_pdf(entry + suf + '.tex'); book[(lang, kind)] = len(d)
-            if lang == 'en' and book[('fr', kind)] != len(d): sys.exit(f'{entry}: {book[("fr", kind)]} French pages, {len(d)} English')
             toc = [(t, p - 1) for l, t, p in d.get_toc() if l == 1]
             guide = [i for i, (t, _) in enumerate(toc) if re.match(r'^(Guide d|Teacher guide|User guide)', t.strip())]
             n = (guide[0] if guide else len(toc))
@@ -57,10 +57,13 @@ def main():
                 target = OUT / ch['id'] / f'fluency-{kind}{suf}.pdf'
                 out.save(target, garbage=4, deflate=True)
                 counts[(lang, kind, k)] = len(out)
-    # Books and excerpts have equal page counts in both languages (every sequence is a balanced block).
-    drift = [(k + 2, kind) for k in range(14) for kind in ('student', 'teacher') if counts[('fr', kind, k)] != counts[('en', kind, k)]]
+    for kind in ('student', 'teacher'):
+        if ('fr',kind) in book and ('en',kind) in book and book[('fr',kind)] != book[('en',kind)]:
+            sys.exit(f'{kind}: {book[("fr",kind)]} French pages, {book[("en",kind)]} English')
+    # Paired excerpts have equal page counts (every sequence is a balanced block).
+    drift = [(k + 2, kind) for k in range(14) for kind in ('student', 'teacher') if ('fr',kind,k) in counts and ('en',kind,k) in counts and counts[('fr', kind, k)] != counts[('en', kind, k)]]
     if drift: sys.exit('French and English excerpts differ for ' + ', '.join(f'chapter {n} ({k})' for n, k in drift))
-    print('FR/EN books and excerpts have equal page counts')
+    print('Built editions: ' + ', '.join(books.build_languages('automatismes')))
 
 
 main()

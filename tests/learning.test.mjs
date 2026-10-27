@@ -11,13 +11,13 @@ const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
 const fmt=(n,d=4)=>n.toFixed(d),t=p=>p[0];
 test('all chapter extracts match the provenance manifest and have valid page pointers',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../content/data/RESOURCE_PROVENANCE.json',import.meta.url)));
- assert.equal(resourceCatalog.chapters.length,58);assert.equal(manifest.length,164);
+ assert.equal(resourceCatalog.chapters.length,58);assert.equal(manifest.length,[...resourceCatalog.chapters,...resourceCatalog.supplements].reduce((n,c)=>n+c.files.length,0));
  assert.equal(new Set(resourceCatalog.chapters.map(c=>c.id)).size,58);
  for(const c of [...resourceCatalog.chapters,...resourceCatalog.supplements]){if(c.topic)assert.ok(guides[c.topic]);for(const f of c.files){
  const p=manifest.find(p=>p.path===f.path);assert.ok(p);assert.deepEqual(p.pages,[f.start,f.end]);assert.equal(f.pages,f.end-f.start+1);
  for(const page of Object.values(f.sections||{}))assert.ok(Number.isInteger(page)&&page>=1&&page<=f.pages);
  const data=await readFile(new URL('../dist/'+f.path,import.meta.url));assert.equal(data.subarray(0,4).toString(),'%PDF');assert.equal(data.length,f.bytes);assert.equal(createHash('sha256').update(data).digest('hex'),p.sha256);
- const english=await readFile(new URL('../dist/'+f.englishPath,import.meta.url));assert.equal(english.subarray(0,4).toString(),'%PDF');assert.equal(english.length,f.englishBytes);assert.equal(createHash('sha256').update(english).digest('hex'),p.englishSha256);
+ if(f.editions.en){assert.ok(f.englishPath);const english=await readFile(new URL('../dist/'+f.englishPath,import.meta.url));assert.equal(english.subarray(0,4).toString(),'%PDF');assert.equal(english.length,f.englishBytes);assert.equal(createHash('sha256').update(english).digest('hex'),p.englishSha256);}else{assert.equal(f.englishPath,undefined);assert.equal(p.editions.en,undefined);}
  assert.ok(resourceCatalog.sources.some(s=>s.name===f.source));
  }}
 });
