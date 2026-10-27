@@ -20,13 +20,15 @@ with sync_playwright() as p:
         executable = '/opt/pw-browsers/chromium'
     b = p.chromium.launch(**({'executable_path': executable} if executable else {}))
     pg = b.new_page(viewport={'width': 1280, 'height': 720})
+    pg.set_default_navigation_timeout(120000)
     logs = []
     pg.on('console', lambda m: logs.append(m.text) if m.type in ('error',) else None)
     pg.on('pageerror', lambda e: logs.append('PAGEERROR ' + str(e)))
     for d in index:
         if only and d['id'] not in only: continue
         for lang, edition in d['editions'].items():
-            pg.goto(f'http://127.0.0.1:{port}/slides/player.html?deck={d["id"]}&lang={lang}#0'); pg.wait_for_selector('#r1')
+            print(f'Checking {d["id"]} {lang} ({edition["slides"]} slides)', flush=True)
+            pg.goto(f'http://127.0.0.1:{port}/slides/player.html?deck={d["id"]}&lang={lang}#0'); pg.wait_for_function("document.querySelector('.count')?.textContent.startsWith('1 /')")
             for i in range(edition['slides']):
                 pg.evaluate(f'location.hash="#{i}"'); pg.wait_for_function(f'document.querySelector(".count")?.textContent.startsWith("{i+1} /")')
                 pg.wait_for_timeout(60)

@@ -139,7 +139,7 @@ caption { text-align: left; color: var(--muted); padding: 8px 0; font-size: 0.95
 .filter { min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: var(--surface); color: var(--ink-2); font-weight: 700; transition: background-color var(--t), color var(--t); }
 .filter:hover { background: var(--sunken); }
 .filter[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.challenge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.challenge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: 12px; }
 .challenge-card { display: flex; flex-direction: column; gap: 6px; padding: 18px; transition: border-color var(--t), background-color var(--t); }
 .challenge-card:hover { border-color: var(--accent); background: var(--accent-soft); }
 .card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
@@ -342,7 +342,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .sheet-heading { flex-direction: column; align-items: flex-start; }
   .chapter-next { flex-direction: column; gap: 4px; } .chapter-next a { max-width: none; }
   .answer-row { flex-wrap: wrap; } .answer-row .primary { flex: 1 1 100%; }
-  .challenge-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .challenge-grid { gap: 10px; }
   .challenge-card { padding: 14px; } .challenge-card p { display: none; } .challenge-motif { min-height: 64px; }
   .document-link { flex-wrap: wrap; }
   .resource-filters { grid-template-columns: 1fr; }
@@ -351,7 +351,7 @@ p > .lab-jump { display: inline-flex; margin-top: 0; }
   .chapter-tabs a { flex: none; padding: 0 14px; }
 }
 @media (max-width: 560px) { .btn-quiet .fs-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
-/* Phones: two compact cards per row (a single column made the challenge and gallery indexes several screens long). */
+/* Compact cards; the challenge grid keeps its readable minimum at enlarged text sizes. */
 @media (max-width: 560px) {
   .challenge-grid { gap: 8px; }
   .challenge-card { padding: 10px 12px; gap: 2px; }
