@@ -4,6 +4,8 @@
 
 Milestone 1 of `docs/REDESIGN_PROPOSAL_2026-10-27.md` is implemented: useful homepage search, six existing tools with task-oriented entrances, reading links, illustrated chapter cards, sans-serif headings and a compact phone menu. Search reuses the discovery index; illustrations reuse existing mathematical models. Existing routes and chapter documents are retained. Decorative interface animation has been removed; mathematical interactions remain. The six-stage chapter presentation is still present and is milestone 2.
 
+The subsequent visual checkpoint follows the request for a more vibrant, lively and classy style: stable topic colours in artwork, a larger opening mathematical figure, blue headline emphasis, restrained card elevation and short curve tracing on hover/focus. Reduced-motion previews stay static; there are no looping decorative effects.
+
 Desktop/phone layouts, both themes, 200% text, keyboard menu operation, search, course counts and representative downloads have automated checks. Real-device screen-reader testing and learner/teacher acceptance remain pending. The bilingual curriculum goal remains on standby and unfinished.
 
 ## French course quality, 27 October 2026

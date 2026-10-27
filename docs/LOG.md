@@ -39,6 +39,8 @@ Append one dated line per finished task at the end of the first list (before "Da
 
 ### Dated session notes
 
+- 2026-10-27: replaced the welcome splash with discovery search, direct course/tool entrances, illustrated chapter cards and a compact phone menu; followed with stable artwork colours, blue headline emphasis and restrained curve-tracing feedback. Source copies and focused search, layout, 200% text, theme, keyboard and download checks pass. Full publication verification is recorded at the release checkpoint. The bilingual curriculum goal remains on standby.
+
 - 2026-10-27: French course quality batch for Première C07 and STMG C04: two independent chapter audits and exact computations, completed corrections, eight original reciprocal-function homework tasks and corrected session 29 graph; independent French builds preserve English editions on standby. Lecture figure caches now follow changed SVGs, and checks compare archived figures with current inputs. Review evidence stays private; human classroom acceptance remains pending.
 
 ### 15 October 2026: canvas interaction and two slide editions

@@ -263,6 +263,7 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
 
 /* Useful entrance and illustrated catalogue, 27 October 2026. */
 .entrance { max-width: 1200px; }
+.home-highlight { color:var(--accent); }
 .entrance-intro { display:grid; grid-template-columns:minmax(0, 3fr) minmax(0,2fr); gap:48px; align-items:center; padding:16px 0 32px; }
 .home-greeting { color:var(--muted); margin-bottom:8px; }
 .entrance-intro h1 { font-size:clamp(1.8rem,3.2vw,2.5rem); max-width:22ch; line-height:1.15; }
@@ -274,6 +275,8 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
 .home-resume { display:inline-block; margin-top:16px; color:var(--accent); text-decoration:underline; }
 .entrance-art .discovery-preview { margin:0; border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:24px; }
 .entrance-art svg { width:100%; height:auto; }
+.entrance .entrance-art .discovery-preview { background:var(--accent-soft); border-color:color-mix(in srgb,var(--accent) 25%,var(--line)); border-radius:24px 24px 56px 24px; padding:32px 24px; }
+.entrance .entrance-art .discovery-preview svg { height:220px; }
 .entrance-section { padding:32px 0; border-top:1px solid var(--line); scroll-margin-top:calc(var(--chrome) + 16px); }
 .entrance-section > h2, .home-reading h2 { margin-bottom:8px; }
 .entrance-section > p { color:var(--ink-2); }
@@ -304,9 +307,22 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1.5px va
 .chapter-tile-body > span { display:block; margin-top:8px; color:var(--ink-2); font-size:1rem; }
 .chapter-tile-body small { display:block; color:var(--muted); margin-top:12px; }
 .nav-toggle { display:none; }
-.tool-card .discovery-preview[data-preview="derivative"], .chapter-tile .discovery-preview[data-preview="derivative"] { color:var(--pos); background:var(--pos-soft); }
-.tool-card .discovery-preview[data-preview="integral"], .chapter-tile .discovery-preview[data-preview="integral"] { color:var(--obj2); background:color-mix(in srgb, var(--obj2) 10%, var(--surface)); }
-.tool-card .discovery-preview[data-preview="probability"], .chapter-tile .discovery-preview[data-preview="probability"] { color:var(--obj3); background:color-mix(in srgb, var(--obj3) 10%, var(--surface)); }
+.tool-card, .idea-card, .chapter-tile { box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 4%,transparent); transition:border-color 160ms ease,box-shadow 160ms ease,transform 160ms ease; }
+.tool-card:hover, .idea-card:hover, .chapter-tile:hover { box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 12%,transparent); }
+.tool-card .discovery-preview, .idea-card .discovery-preview, .chapter-tile .discovery-preview { border-bottom:3px solid color-mix(in srgb,currentColor 45%,transparent); }
+.discovery-preview[data-preview="sequences"] { --topic-ink:var(--obj2); }
+.discovery-preview[data-preview="space-lines"], .discovery-preview[data-preview="platonic"] { --topic-ink:var(--obj3); }
+.discovery-preview[data-preview="fourier"] { --topic-ink:var(--pos); }
+.discovery-preview[data-preview="trig"], .discovery-preview[data-preview="vectors"], .discovery-preview[data-preview="conditioning"] { --topic-ink:var(--c6); }
+.entrance .discovery-preview[data-preview], .chapter-tile .discovery-preview[data-preview] { color:var(--topic-ink,var(--accent)); background:color-mix(in srgb,var(--topic-ink,var(--accent)) 13%,var(--surface)); }
+.entrance .discovery-preview[data-preview="derivative"], .chapter-tile .discovery-preview[data-preview="derivative"] { --topic-ink:var(--pos); }
+.entrance .discovery-preview[data-preview="integral"], .chapter-tile .discovery-preview[data-preview="integral"] { --topic-ink:var(--obj2); }
+.entrance .discovery-preview[data-preview="probability"], .chapter-tile .discovery-preview[data-preview="probability"] { --topic-ink:var(--obj3); }
+@media(prefers-reduced-motion:no-preference) {
+ .tool-card:hover,.idea-card:hover,.chapter-tile:hover { transform:translateY(-3px); }
+ .tool-card:is(:hover,:focus-visible) svg path:not(.preview-axis), .idea-card:is(:hover,:focus-visible) svg path:not(.preview-axis) { animation:trace-preview 600ms ease-out both; }
+}
+@keyframes trace-preview { from { stroke-dasharray:1; stroke-dashoffset:1; } to { stroke-dasharray:1; stroke-dashoffset:0; } }
 @media(min-width:601px) and (max-width:900px) {
  .tool-grid,.idea-grid,.chapter-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
  .entrance-intro { gap:24px; }

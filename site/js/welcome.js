@@ -22,7 +22,7 @@ export function homePage({pair,t,link,index=[],last=''}) {
  const resume=index.find(x=>x.route==='#chapter/'+last);
  return `<main id="main" class="page entrance" tabindex="-1">
  <section class="entrance-intro"><div><p class="home-greeting" lang="mg">Tonga soa</p>
- <h1>${pair('Comprendre les maths en les explorant.','Understand maths through exploration.')}</h1>
+ <h1>${pair('Comprendre les maths','Understand maths')} <span class="home-highlight">${pair('en les explorant.','through exploration.')}</span></h1>
  <p>${pair('Des cours, des figures à manipuler et des exercices pour passer de l’intuition au raisonnement.','Lessons, hands-on figures and exercises to move from intuition to reasoning.')}</p>
  <form id="home-search" role="search"><label for="home-query">${pair('Que veux-tu comprendre ?','What would you like to understand?')}</label><div class="home-search-row"><input id="home-query" type="search" autocomplete="off" placeholder="${pair('Une idée : dérivée, hasard, géométrie…','An idea: derivative, chance, geometry…')}"><button class="btn btn-primary" type="submit">${pair('Rechercher','Search')}</button></div></form>
  <div class="entrance-actions"><a class="btn btn-primary" href="${link('resources')}">${pair('Trouver un cours','Find a lesson')}</a><a class="btn btn-secondary" href="#home-tools">${pair('Explorer les outils','Explore the tools')}</a></div>
@@ -35,6 +35,7 @@ export function homePage({pair,t,link,index=[],last=''}) {
  </main>`;
 }
 export function bindHome(root,index,t) {
+ root.querySelectorAll('.tool-card svg path:not(.preview-axis), .idea-card svg path:not(.preview-axis)').forEach(path=>path.setAttribute('pathLength','1'));
  const form=root.querySelector('#home-search'),input=form.querySelector('input'),panel=root.querySelector('#home-search-panel'),results=root.querySelector('#home-results'),count=root.querySelector('#home-search-count');
  const update=()=>{
  const query=input.value.trim();panel.hidden=!query;
