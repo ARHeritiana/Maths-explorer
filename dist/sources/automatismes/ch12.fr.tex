@@ -19,13 +19,13 @@
 \begin{fluencysheet}{mar.~11~mai~2027}{Simulation Python d'une expérience aléatoire répétée}
 \mxfq{Échauffement · Flash}{PRB}{$P(A)=\num{0,35}$. Calculer $P(\overline A)$.}{$1-\num{0,35}=\num{0,65}$.}{}
 \mxfq{Cœur · Lecture de code}{ALG}{Que calcule ce programme\,? Quelle valeur affichera-t-il environ\,?\mxpseudo{from random import randint\\ compte = 0\\ for i in range(1000):\\ \mxtab if randint(1, 6) == 6:\\ \mxtab\mxtab compte = compte + 1\\ print(compte / 1000)}}{La fréquence d'apparition du $6$ sur $\num{1000}$ lancers d'un dé\,; environ $\dfrac16\approx\num{0,167}$.}{}
-\mxfq{Cœur + · Méthode}{PRB}{Dé équilibré à $12$ faces numérotées de $1$ à $12$. Probabilité d'obtenir un nombre premier\,?}{Premiers~: $2\,;\,3\,;\,5\,;\,7\,;\,11$~: $\dfrac{5}{12}$ ($1$ n'est pas premier).}{}
+\mxfq{Cœur + · Méthode}{PRB}{Dé équilibré à $12$ faces numérotées de $1$ à $12$. Quelle est la probabilité d'obtenir un nombre premier\,?}{Premiers~: $2\,;\,3\,;\,5\,;\,7\,;\,11$~: $\dfrac{5}{12}$ ($1$ n'est pas premier).}{}
 \mxfq{Retour · Programme de construction}{CON}{$M$ appartient à la médiatrice de $[AB]$. Que peut-on dire de $MA$ et $MB$\,? Comment la construire au compas\,?}{$MA=MB$. Construction~: deux arcs de même rayon (supérieur à $\frac12AB$) centrés en $A$ et $B$\,; leurs intersections définissent la médiatrice.}{}
 \mxfq{Fil rouge · Reconnaître}{SOL}{Quelle est la nature de la section d'un cube par un plan parallèle à l'une de ses faces\,?}{Un carré de même côté que la face.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{jeu.~13~mai~2027}{Probabilité conditionnelle $P_A(B)$}
-\mxfq{Échauffement · Flash}{PRB}{Parmi $25$ demi-pensionnaires, $15$ sont des filles. On tire un DP au hasard~: probabilité que ce soit une fille\,?}{$\dfrac{15}{25}=\num{0,6}$.}{}
+\mxfq{Échauffement · Flash}{PRB}{Parmi $25$ demi-pensionnaires, $15$ sont des filles. On tire un DP au hasard~: quelle est la probabilité que ce soit une fille\,?}{$\dfrac{15}{25}=\num{0,6}$.}{}
 \mxfq{Cœur · Méthode}{PRB}{Dans une classe de $30$ élèves, $12$ jouent au football dont $5$ jouent aussi au hand. On choisit un élève au hasard~: calculer $P_F(H)$, $F$~: «~joue au foot~», $H$~: «~joue au hand~».}{$P_F(H)=\dfrac{\Card(F\cap H)}{\Card(F)}=\dfrac5{12}$.}{}
 \mxfq{Cœur + · Méthode}{PRB}{Dans un modèle équiprobable, $\Card(A)=50$ et $\Card(A\cap B)=20$. Calculer $P_A(B)$.}{$\dfrac{20}{50}=\num{0,4}$.}{}
 \mxfq{Retour · Flash}{NUM}{Ranger dans l'ordre croissant~: $\dfrac74$, $-\dfrac32$, $\num{0,5}$.}{$-\dfrac32<\num{0,5}<\dfrac74$ ($-\num{1,5}<\num{0,5}<\num{1,75}$).}{}
@@ -50,7 +50,7 @@ Total & 30 & 30 & 60 \\ \hline
 \mxfq{Cœur · Méthode}{PRB}{Dans une population, $\pc{30}$ sont atteints d'une maladie $M$. Un test est positif ($T$) pour $\pc{90}$ des malades et pour $\pc{5}$ des non-malades. Compléter les probabilités des branches de l'arbre.}{$P(M)=\num{0,3}$, $P(\overline M)=\num{0,7}$\,; $P_M(T)=\num{0,9}$, $P_M(\overline T)=\num{0,1}$\,; $P_{\overline M}(T)=\num{0,05}$, $P_{\overline M}(\overline T)=\num{0,95}$.}{}
 \mxfq{Cœur + · Traduire}{PRB}{Traduire en symboles~: «~parmi les malades, $\pc{90}$ ont un test positif~».}{$P_M(T)=\num{0,9}$~: branche $M\to T$\,; ne pas écrire $P(T)=\num{0,9}$.}{}
 \mxfq{Retour · Flash}{CAL}{Calculer $\dfrac23\div\dfrac49$.}{$\dfrac23\times\dfrac94=\dfrac{18}{12}=\dfrac32$.}{}
-\mxfq{Fil rouge · Problème}{DIV}{Trois phares clignotent toutes les $6$, $8$ et $9$ secondes. Ils s'allument ensemble à $t=0$. Quand le prochain clignotement simultané\,?}{$\ppcm\pt{6;8;9}=72$~: au bout de $72$ s.}{}
+\mxfq{Fil rouge · Problème}{DIV}{Trois phares clignotent toutes les $6$, $8$ et $9$ secondes. Ils s'allument ensemble à $t=0$. Quand aura lieu le prochain clignotement simultané\,?}{$\ppcm\pt{6;8;9}=72$~: au bout de $72$ s.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{lun.~24~mai~2027}{Arbres pondérés~: multiplication le long d'un chemin}
@@ -70,10 +70,10 @@ Total & 30 & 30 & 60 \\ \hline
 \end{fluencysheet}
 
 \begin{fluencysheet}{jeu.~27~mai~2027}{Inversion des conditionnements~: $P_A(B)$ et $P_B(A)$}
-\mxfq{Échauffement · Flash}{PRB}{Quelle différence entre $P_M(T)$ et $P_T(M)$\,?}{$P_M(T)$~: probabilité d'être positif sachant qu'on est malade\,; $P_T(M)$~: d'être malade sachant qu'on est positif.}{}
+\mxfq{Échauffement · Flash}{PRB}{Quelle est la différence entre $P_M(T)$ et $P_T(M)$\,?}{$P_M(T)$~: probabilité d'être positif sachant qu'on est malade\,; $P_T(M)$~: d'être malade sachant qu'on est positif.}{}
 \mxfq{Cœur · Méthode}{PRB}{Avec les données de la fiche 70 ($P(M\cap T)=\num{0,27}$ et $P(T)=\num{0,305}$), calculer $P_T(M)$.}{$P_T(M)=\dfrac{P(M\cap T)}{P(T)}=\dfrac{\num{0,27}}{\num{0,305}}\approx\num{0,885}$.}{}
-\mxfq{Cœur + · Méthode}{PRB}{Maladie rare ($\pc{1}$ de malades)\,; test positif pour $\pc{99}$ des malades et $\pc{5}$ des non-malades. Calculer $P_T(M)$.}{$P(M\cap T)=\num{0,0099}$\,; $P(\overline M\cap T)=\num{0,99}\times\num{0,05}=\num{0,0495}$\,; $P(T)=\num{0,0594}$\,; $P_T(M)=\dfrac{\num{0,0099}}{\num{0,0594}}=\dfrac16\approx\num{0,17}$.}{Résultat contre-intuitif~: un test qui détecte $\pc{99}$ des malades (sa sensibilité) ne suffit pas quand la maladie est rare.}
-\mxfq{Retour · Graphique}{IMG}{Courbe de $f$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
+\mxfq{Cœur + · Méthode}{PRB}{Une maladie est rare~: $\pc{1}$ de la population est malade\,; un test est positif pour $\pc{99}$ des malades et $\pc{5}$ des non-malades. Calculer $P_T(M)$.}{$P(M\cap T)=\num{0,0099}$\,; $P(\overline M\cap T)=\num{0,99}\times\num{0,05}=\num{0,0495}$\,; $P(T)=\num{0,0594}$\,; $P_T(M)=\dfrac{\num{0,0099}}{\num{0,0594}}=\dfrac16\approx\num{0,17}$.}{Résultat contre-intuitif~: un test qui détecte $\pc{99}$ des malades (sa sensibilité) ne suffit pas quand la maladie est rare.}
+\mxfq{Retour · Graphique}{IMG}{La courbe ci-dessous représente $f$~:\par\smallskip\begin{tikzpicture}[scale=0.45,>=stealth]
 \draw[very thin,gray!45] (-3,-3) grid (3,3);
 \draw[->] (-3,0)--(3.3,0); \draw[->] (0,-3)--(0,3.3);
 \foreach \i in {-3,-2,-1,1,2,3}\draw (\i,.1)--(\i,-.1) node[below,font=\tiny]{\i};
@@ -85,7 +85,7 @@ Total & 30 & 30 & 60 \\ \hline
 \fill[mxteacher] (3,2.5) circle (3pt);
 
 \end{tikzpicture}\par Lire $f(2)$ et les antécédents de $\num{2,5}$.}{$f(2)=0$\,; antécédents de $\num{2,5}$~: $-3$ et $3$.}{Expression utilisée pour le tracé~: $f(x)=\num{0,5}x^2-2$.}
-\mxfq{Fil rouge · Méthode}{ALG}{Programme~: choisir un nombre\,; le multiplier par $-2$\,; ajouter $10$\,; diviser par $2$. Résultat pour $7$\,? Expression en $x$\,?}{$\dfrac{-14+10}{2}=-2$\,; en général $\dfrac{-2x+10}{2}=-x+5$.}{}
+\mxfq{Fil rouge · Méthode}{ALG}{Programme~: choisir un nombre\,; le multiplier par $-2$\,; ajouter $10$\,; diviser par $2$. Quel résultat obtient-on pour $7$\,? Quelle expression en fonction de $x$ obtient-on\,?}{$\dfrac{-14+10}{2}=-2$\,; en général $\dfrac{-2x+10}{2}=-x+5$.}{}
 \end{fluencysheet}
 
 \begin{fluencysheet}{lun.~31~mai~2027}{Faux positifs et faux négatifs}

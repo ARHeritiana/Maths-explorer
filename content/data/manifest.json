@@ -23023,6 +23023,39 @@
             }
           }
         ]
+      },
+      {
+        "id": "premiere-unsorted",
+        "course": "premiere",
+        "kind": "unsorted",
+        "title": [
+          "Non classé · Automatismes séries 1 à 3",
+          "Unclassified · Fluency series 1 to 3"
+        ],
+        "files": [
+          {
+            "kind": "chapter",
+            "source": "premiere-unsorted-automatismes",
+            "start": 1,
+            "path": "resources/premiere-unsorted/automatismes-series-eleve.pdf",
+            "editions": {
+              "fr": {
+                "path": "resources/premiere-unsorted/automatismes-series-eleve.pdf"
+              }
+            }
+          },
+          {
+            "kind": "teacher",
+            "source": "premiere-unsorted-automatismes",
+            "start": 1,
+            "path": "resources/premiere-unsorted/automatismes-series-corrige.pdf",
+            "editions": {
+              "fr": {
+                "path": "resources/premiere-unsorted/automatismes-series-corrige.pdf"
+              }
+            }
+          }
+        ]
       }
     ]
   },
