@@ -25,3 +25,5 @@ Rules (`HANDOFF.md` conventions of 15 October): the page shows the statement onl
 hint action; hint 1 brings closer, hint 2 nearly gives it away; every computed answer verified by an independent method.
 
 Then follow `release.md`.
+
+Shared solution playback and remount lifecycle: `site/js/challenges/common/player.js`, with `tests/solution-player.test.mjs`. Bind controls to the generated player so replacing variation data cannot leave handlers on the persistent host.

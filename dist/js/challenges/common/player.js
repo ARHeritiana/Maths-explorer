@@ -58,7 +58,8 @@ export function playSolution(def, root, { lang, reduced: reducedPref, params = {
     raf = requestAnimationFrame(tick);
   }
   const show = (k, animated) => { halt(); step = clamp(k, 0, nSteps - 1); p = animated && !reduced() ? 0 : 1; paint(); if (p < 1) run(); };
-  root.addEventListener("click", (e) => {
+  // These controls are replaced when variation data changes; discarded players must not receive new clicks.
+  root.querySelector(".sol-controls").addEventListener("click", (e) => {
     const b = e.target.closest("[data-a]");
     if (!b) return;
     const a = b.dataset.a;

@@ -5,6 +5,8 @@
   challenge cards with `site/js/challenges/common/kit.js` `colour(i)` (`--c1..--c8`). The PDF palette is separate
   (`content/tex/core/mx-layout.sty`).
 - One page's styling: `site/styles/pages.css`, search the page's root class.
+- Homepage discovery, selected tools and conditional resume: `site/js/welcome.js`; search contract in `tests/home.test.mjs`.
+- Illustrated course catalogue: `site/js/resource-library.js`; reuse the existing discovery previews and lesson diagrams.
 - Navigation and footer: `site/js/app.js` `header()` (array `nav`), `footer()`.
 - New route: `site/js/app.js` `render()` (add to `valid` and to the dispatch chain) and a page module exporting
   `<name>Page(...)` and `bind<Name>(...)`; add a row to the site map in `MAP.md` section 3.

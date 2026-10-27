@@ -90,3 +90,5 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 `history.test.mjs`: sourced chronological records, documentary dates, filtering, detail links and reciprocal timeline navigation.
 
 `history_browser.py`: FR/EN atlas and reading geometry, both themes, normal/doubled text, hidden-to-visible relayout, background pan, keyboard, first-click search navigation and local image attribution; included in `run_browser.py`.
+
+`solution-player.test.mjs`: repeated parameter remounts keep playback events on the current solution and never repaint discarded diagrams.

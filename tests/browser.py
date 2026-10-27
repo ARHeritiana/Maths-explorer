@@ -394,7 +394,10 @@ with sync_playwright() as p:
             body = page.locator('main').inner_text()
             assert not any(w in body for w in ('NaN', 'undefined', 'Infinity', 'null')), (challenge, body[:200])
             page.locator('.solution summary').click() if page.locator('.solution[open]').count() == 0 else None
-            page.locator('[data-a="restart"]').click()
+            try:
+                page.locator('[data-a="restart"]').click()
+            except Exception as error:
+                raise AssertionError(f'{challenge}: restart failed after random variation: {body[:200]}') from error
             for _ in range(12):
                 if page.locator('[data-a="next"]').is_disabled(): break
                 page.locator('[data-a="next"]').click()
