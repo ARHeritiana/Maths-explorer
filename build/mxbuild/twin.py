@@ -264,6 +264,40 @@ def save_table(fr, table):
     table_path(fr).write_text(json.dumps(table, ensure_ascii=False, indent=1) + '\n')
 
 
+def generation_source(fr_text, table):
+    """An explicitly frozen English edition keeps its original French source, not later French revisions."""
+    standby = table.get('standby')
+    if standby is None:
+        return fr_text
+    if not isinstance(standby, dict) or not standby.get('reason') or not isinstance(standby.get('source'), str):
+        raise TwinError('Invalid English standby record: source and reason are required')
+    source = standby['source']
+    if hashlib.sha256(source.encode()).hexdigest() != standby.get('source_sha256'):
+        raise TwinError('English standby source hash does not match its retained source')
+    if not re.fullmatch(r'[0-9a-f]{64}', str(standby.get('english_sha256', ''))):
+        raise TwinError('English standby record requires the retained English hash')
+    return source
+
+
+def freeze_english(fr, reason):
+    """Retain an already-current edition before a French-only correction; no translation is written."""
+    table = load_table(fr)
+    if table.get('standby') is not None:
+        generate(fr.read_text(), table)
+        return
+    if not reason.strip():
+        raise TwinError('English standby needs an explicit reason')
+    source = fr.read_text()
+    target = en_path(fr)
+    text = generate(source, table)
+    if not target.exists() or target.read_text() != text:
+        raise TwinError('Freeze only an existing, current English edition before editing French')
+    table['standby'] = {'reason': reason, 'source': source,
+                        'source_sha256': hashlib.sha256(source.encode()).hexdigest(),
+                        'english_sha256': hashlib.sha256(text.encode()).hexdigest()}
+    save_table(fr, table)
+
+
 def translatable(fr_text):
     """Every text to translate in a French unit, in order: prose segments, then words inside their maths and inside
     maths in locked text."""
@@ -320,6 +354,7 @@ def _translate_math(m, tr):
 
 def generate(fr_text, table, statuses=('aligned', 'reviewed')):
     """Return the English unit text. Raises TwinError listing every missing or invalid translation."""
+    fr_text = generation_source(fr_text, table)
     seg = table['segments']; problems = []
 
     def tr(text):
@@ -352,6 +387,8 @@ def generate(fr_text, table, statuses=('aligned', 'reviewed')):
     for a, b in zip(segs, se):
         if sorted(norm_math(x) for x in a['maths']) != sorted(norm_math(x) for x in b['maths']):
             raise TwinError(f'maths changed in [{seg_id(a["text"])}]')
+    if table.get('standby') and hashlib.sha256(en_text.encode()).hexdigest() != table['standby']['english_sha256']:
+        raise TwinError('English standby edition changed: restore its retained translations')
     return en_text
 
 
@@ -361,8 +398,10 @@ def align_files(fr, en_old):
 
 def align_into(fr, en_text):
     """Align the French unit file fr with an English text and record the pairs in its table (reviewed entries are kept)."""
-    pairs = align(fr.read_text(), en_text)
     table = load_table(fr); table['unit'] = fr.name
+    if table.get('standby') is not None:
+        raise TwinError('English edition is on standby; alignment is paused')
+    pairs = align(fr.read_text(), en_text)
     for order, (f, e) in enumerate(pairs):
         sid = seg_id(f)
         old = table['segments'].get(sid)
@@ -383,7 +422,10 @@ def main(argv):
         n = align_files(args[0], args[1]); print(f'{args[0].name}: {n} segments aligned'); return 0
     if cmd == 'stub':
         for fr in args:
-            table = load_table(fr); table['unit'] = fr.name; seen = 0; texts = translatable(fr.read_text())
+            table = load_table(fr)
+            if table.get('standby') is not None:
+                raise TwinError('English edition is on standby; new translations are paused')
+            table['unit'] = fr.name; seen = 0; texts = translatable(fr.read_text())
             for order, text in enumerate(texts):
                 sid = seg_id(text)
                 if sid not in table['segments']:
@@ -397,11 +439,13 @@ def main(argv):
         units = args or all_units(); bad = 0
         for fr in units:
             try:
-                text = generate(fr.read_text(), load_table(fr))
+                table = load_table(fr)
+                source = generation_source(fr.read_text(), table)
+                text = generate(source, table)
             except TwinError as e:
                 bad += 1; print(f'{fr.relative_to(ROOT)}:\n  ' + str(e).replace('\n', '\n  ')); continue
             target = en_path(fr)
-            unused = set(load_table(fr)['segments']) - {seg_id(t) for t in translatable(fr.read_text())}
+            unused = set(table['segments']) - {seg_id(t) for t in translatable(source)}
             if cmd == 'gen': target.write_text(text); continue
             problems = ([f'{table_path(fr).relative_to(ROOT)}: {len(unused)} unused segment(s) (run `python -m mxbuild twin stub`)']
                         if unused else []) + ([f'{target.relative_to(ROOT)}: stale (run `python -m mxbuild twin gen`)']

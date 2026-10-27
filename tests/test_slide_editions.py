@@ -21,6 +21,23 @@ def script(name):
 
 
 class SlideEditions(unittest.TestCase):
+    def test_lecture_figure_cache_follows_svg_changes(self):
+        lecture=script('build-lecture-slides')
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);svg=root/'dist/slides/fig/fixture-1.svg'
+            svg.parent.mkdir(parents=True)
+            def drawing(colour): return f'<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><rect width="30" height="30" fill="{colour}"/></svg>'
+            svg.write_text(drawing('red'));work=root/'work'
+            with patch.object(lecture,'ROOT',root):
+                target=lecture.figure({'id':'fixture'},{'f':[[1,1]]},'fr',work)[0]
+                first=target.read_bytes();stamp=target.stat().st_mtime_ns
+                lecture.figure({'id':'fixture'},{'f':[[1,1]]},'fr',work)
+                self.assertEqual(target.read_bytes(),first)
+                self.assertEqual(target.stat().st_mtime_ns,stamp)
+                svg.write_text(drawing('blue'))
+                lecture.figure({'id':'fixture'},{'f':[[1,1]]},'fr',work)
+                self.assertNotEqual(target.read_bytes(),first)
+
     def test_independent_sequences_do_not_require_identical_counts_or_kinds(self):
         fr = [{'k': 'concept', 't': 'Une idée', 'b': 'Texte français.'}]
         en = [{'k': 'concept', 't': 'An idea', 'b': 'English prose.'}, {'k': 'proof', 't': 'Proof', 'b': 'A proof.'}]

@@ -12,11 +12,11 @@ The pipeline package. Run with `PYTHONPATH=build python3 -m mxbuild <command>` o
 | `catalog.py` | `catalog.json`, `resources-data.js`, `RESOURCE_PROVENANCE.json` from the manifest; `load()`/`save()` | `make catalog` |
 | `content_index.py` | `site/js/catalogue-data.js` and the measured content model | part of `make site` |
 | `slide_editions.py` | explicit available slide languages, independent per-language sequences and paired-text compatibility | slides, exports, lecture PDFs |
-| `books.py` | course main files generated from manifest key `books` | |
+| `books.py` | course main files generated from manifest key `books`; `buildLanguages` selects editions rebuilt while retaining other published editions | |
 | `pipeline.py` | `COURSES` (course to builder script), `CHECKS` (pre-push suite), course builds | `make tex`, `make check` |
-| `tex.py` | TeX compilation driver and per-course cache | `make tex` |
+| `tex.py` | TeX compilation driver and per-course cache; `compile_editions` supports one language without paired padding | `make tex` |
 | `pdf.py` | PDF excerpt assembly with the native frame | |
-| `twin.py` | French-to-English twin generation (`docs/ADR-0001-tex-i18n.md`) | |
+| `twin.py` | French-to-English twin generation and checked standby snapshots (`docs/ADR-0001-tex-i18n.md`) | |
 | `notation.py` | web side of `mx-notation.sty`, slide MathJax table | |
 | `enrichment.py` | enrichment TeX units from `content/data/enrichment.json` | |
 | `migrate.py` | one-off migration of a course to the TeX system (historical) | |

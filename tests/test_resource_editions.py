@@ -1,16 +1,80 @@
 """Independent language editions use measured assets, without filename or page parity assumptions."""
+import argparse
+import ast
+import contextlib
 import copy
 import hashlib
+import io
 import json
 from pathlib import Path
 import tempfile
 import unittest
+import re
+import sys
+from types import SimpleNamespace
 from unittest.mock import patch
 import pymupdf
-from mxbuild import catalog
+from mxbuild import books, catalog, tex
 
 
 class ResourceEditions(unittest.TestCase):
+    def test_stmg_builder_accepts_either_language_order_and_rejects_page_drift(self):
+        source = Path(__file__).resolve().parents[1] / 'scripts/build-stmg.py'
+        main = next(n for n in ast.parse(source.read_text()).body if isinstance(n, ast.FunctionDef) and n.name == 'main')
+        unit = ast.Module(body=[main], type_ignores=[])
+        chapters = [{'number':k, 'id':f'stmg-{k:02}', 'course':'stmg', 'title':['FR','EN']} for k in range(1,9)]
+        resources = [{'id':f'stmg-{k:02}-{kind}', 'course':'stmg', 'title':['FR','EN']}
+                     for k in range(1,9) for kind in ('activities','chapter','teacher')]
+        resources += [{'id':identifier, 'course':'stmg', 'title':['FR','EN']}
+                      for identifier in ('stmg-revision-bank-0','stmg-revision-bank-1')]
+        class Document:
+            def __init__(self, pages): self.pages = pages
+            def __len__(self): return self.pages
+            def get_toc(self):
+                return [[1,f'Chapter {k}',k*7+1] for k in range(13)] + [[2,f'Session {k}',k*7+2] for k in range(1,9)]
+        for mismatch in (False, True):
+            for langs in (['fr'], ['en'], ['fr','en'], ['en','fr']):
+                with self.subTest(languages=langs, mismatch=mismatch):
+                    manifest = {'catalog':{'chapters':chapters, 'resources':resources}, 'texConverted':[]}
+                    namespace = {'argparse':argparse, 'books':books, 'sys':sys, 're':re, 'OUT':Path('/unused'),
+                                 'manifest_io':SimpleNamespace(load=lambda:manifest, save=lambda m:None),
+                                 'compile_pdf':lambda entry, languages:Document(101 if mismatch and '-en' in entry else 100),
+                                 'save':lambda doc,a,b,*args:b-a}
+                    exec(compile(unit,str(source),'exec'),namespace)
+                    with patch.object(sys,'argv',['build-stmg.py','--lang',*langs]), contextlib.redirect_stdout(io.StringIO()):
+                        if mismatch and len(langs)==2:
+                            with self.assertRaises(SystemExit): namespace['main']()
+                        else: namespace['main']()
+
+    def test_build_languages_are_independent_of_published_editions(self):
+        with patch.object(books, 'spec', return_value={'buildLanguages': ['fr']}):
+            self.assertEqual(books.build_languages('fixture'), ['fr'])
+            self.assertEqual(books.build_languages('fixture', ['en']), ['en'])
+        with patch.object(books, 'spec', return_value={}):
+            self.assertEqual(books.build_languages('fixture'), ['fr', 'en'])
+        for invalid in [[], ['fr', 'fr'], ['de'], 'fr']:
+            with patch.object(books, 'spec', return_value={'buildLanguages': invalid}):
+                with self.assertRaises(ValueError): books.build_languages('fixture')
+
+    def test_french_only_build_does_not_compile_or_pad_retained_english(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp); (out/'fr.mxpad').write_text('old French padding')
+            (out/'en.mxpad').write_text('retained English padding')
+            (out/'en.pdf').write_bytes(b'retained English PDF')
+            with patch.object(tex, 'compile', return_value='compiled-fr') as compile_one, patch.object(tex, 'compile_pair') as compile_pair:
+                result = tex.compile_editions(out, {'fr': 'f.tex', 'en': 'e.tex'}, {'fr': 'fr', 'en': 'en'}, out, ['fr'])
+            self.assertEqual(result, {'fr': 'compiled-fr'})
+            compile_one.assert_called_once_with(out, 'f.tex', 'fr', out)
+            compile_pair.assert_not_called()
+            self.assertFalse((out/'fr.mxpad').exists())
+            self.assertEqual((out/'en.mxpad').read_text(), 'retained English padding')
+            self.assertEqual((out/'en.pdf').read_bytes(), b'retained English PDF')
+
+    def test_two_selected_languages_keep_the_paired_build(self):
+        with patch.object(tex, 'compile_pair', return_value='pair') as pair:
+            self.assertEqual(tex.compile_editions('src', 'inputs', 'jobs', 'out'), 'pair')
+            pair.assert_called_once_with('src', 'inputs', 'jobs', 'out')
+
     def fixture(self, dist, languages):
         editions = {}
         for index, language in enumerate(languages, 1):

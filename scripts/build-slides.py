@@ -312,6 +312,8 @@ def compile_figs(course, lang, jobs):
             page = (one[0] if one is not None and len(one) else None) if not ok else d[k]
             if page is None: raise RuntimeError(f'Figure compilation failed: {deck} {n}')
             svg = page.get_svg_image(text_as_path=True)
+            # Some PyMuPDF versions emit empty paths; omit them to keep identical figures stable.
+            svg = re.sub(r'<path\b[^>]*\bd=""[^>]*/>\n?', '', svg)
             (figdir / f'{deck}-{n}{"-en" if lang == "en" else ""}.svg').write_text(svg, encoding='utf8'); done.add((deck, n))
         except Exception as e: raise RuntimeError(f'Figure export failed: {deck} {n}') from e
     return done

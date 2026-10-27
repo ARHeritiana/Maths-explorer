@@ -105,8 +105,15 @@ def figure(deck,slide,lang,work):
         idx=0 if lang=='fr' else 1;name=f'{deck["id"]}-{pair[idx]}'+('' if idx==0 else '-en')+'.svg';svg=ROOT/'dist/slides/fig'/name
         if not svg.exists():raise RuntimeError('Missing lecture figure '+str(svg))
         dest=work/'figures'/(svg.stem+'.pdf');dest.parent.mkdir(parents=True,exist_ok=True)
-        if not dest.exists():
-            with pymupdf.open(svg) as doc:dest.write_bytes(doc.convert_to_pdf())
+        stamp=dest.with_suffix('.svg.sha256');digest=hashlib.sha256(svg.read_bytes()).hexdigest()
+        if not dest.exists() or not stamp.exists() or stamp.read_text()!=digest:
+            with pymupdf.open(svg) as doc:data=doc.convert_to_pdf()
+            same=False
+            if dest.exists():
+                with pymupdf.open(dest) as old, pymupdf.open(stream=data,filetype='pdf') as new:
+                    same=len(old)==len(new) and all(a.rect==b.rect and a.get_pixmap(matrix=pymupdf.Matrix(2,2)).samples==b.get_pixmap(matrix=pymupdf.Matrix(2,2)).samples for a,b in zip(old,new))
+            if not same:dest.write_bytes(data)
+            stamp.write_text(digest)
         figures.append(dest)
     return figures
 
@@ -194,7 +201,9 @@ def main():
                 assert all(abs(p.rect.width/p.rect.height-16/9)<.005 for p in doc),key
             with zipfile.ZipFile(OUT/edition['source'])as archive:
                 assert archive.read('main.tex').decode()==expected,key
-                for f in re.findall(r'\\includegraphics\[[^]]*\]\{([^}]+)\}',expected):assert f in archive.namelist(),(key,f)
+                for f in re.findall(r'\\includegraphics\[[^]]*\]\{([^}]+)\}',expected):
+                    assert f in archive.namelist(),(key,f)
+                    assert archive.read(f)==(BUILD/key/f).read_bytes(), 'stale lecture figure: '+key+'/'+f
         print(f'Lecture check: {len(jobs)} matching sources, PDFs, aspect ratios and source archives.');return
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs)as pool:
         for result in pool.map(build_one,jobs):results.append(result);print(result['pdf'],result['pages'],'pages',len(result['warnings']),'layout warnings',flush=True)

@@ -5,7 +5,7 @@ bookmarks give the eight chapters, the tests and the formula sheet; the first 'S
 bookmark of a chapter starts its activities excerpt. The shared TeX class supplies the native frame;
 run scripts/finalize-resources.py afterwards.
 """
-import re, sys
+import argparse, re, sys
 from pathlib import Path
 import fitz
 
@@ -24,14 +24,14 @@ ENTRY = {'livret-eleve': 'eleve', 'livret-prof': 'professeur', 'livret-eleve-en'
 _DONE = {}
 
 
-def compile_pdf(entry):
+def compile_pdf(entry, languages):
     """French and English of an edition are compiled together and balanced block by block (mxbuild.tex.compile_pair)."""
     job = entry[:-4]
     if job not in _DONE:
         base = job.removesuffix('-en')
-        pair = tex.compile_pair(SRC, {'fr': str(MAINS[ENTRY[base]]), 'en': str(MAINS[ENTRY[base + '-en']])},
-                                {'fr': base, 'en': base + '-en'}, BUILD, max_runs=4)
-        for r in (pair['fr'], pair['en']): _DONE[r.pdf.stem] = r.report(r.pdf.stem)
+        pair = tex.compile_editions(SRC, {'fr': str(MAINS[ENTRY[base]]), 'en': str(MAINS[ENTRY[base + '-en']])},
+                                    {'fr': base, 'en': base + '-en'}, BUILD, languages=languages, max_runs=4)
+        for r in pair.values(): _DONE[r.pdf.stem] = r.report(r.pdf.stem)
     return fitz.open(_DONE[job].pdf)
 
 
@@ -43,15 +43,18 @@ def save(d, a, b, target, title):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--lang', nargs='+', choices=['fr', 'en'], default=None)
+    languages = books.build_languages('stmg', parser.parse_args().lang)
     manifest = manifest_io.load(); catalog = manifest['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == 'stmg'}
     res = {r['id']: r for r in catalog['resources'] if r['course'] == 'stmg'}
     counts = {}; book = {}
-    for lang, suf in (('fr', ''), ('en', '-en')):
+    for lang in languages:
+        suf = '' if lang == 'fr' else '-en'
         L = 0 if lang == 'fr' else 1
         for kind, entry, role in (('student', 'livret-eleve', 'eleve'), ('teacher', 'livret-prof', 'prof')):
-            d = compile_pdf(entry + suf + '.tex'); book[(lang, kind)] = len(d)
-            if lang == 'en' and book[('fr', kind)] != len(d): sys.exit(f'{entry}: {book[("fr", kind)]} French pages, {len(d)} English')
+            d = compile_pdf(entry + suf + '.tex', languages); book[(lang, kind)] = len(d)
             toc = d.get_toc()
             top = [(t, p - 1) for l, t, p in toc if l == 1]
             if len(top) != 13: sys.exit(f'{entry}{suf}: expected 13 level-1 bookmarks, found {len(top)}')
@@ -70,12 +73,17 @@ def main():
                 counts[(lang, 'bank-1')] = save(d, fa, fb, OUT / 'stmg-revision' / f'bank-1{suf}.pdf', res['stmg-revision-bank-1']['title'][L])
             counts[(lang, 'assess', role)] = save(d, ta, tb, OUT / f'stmg-assessments-{role}{suf}.pdf', 'Maths Explorer — ' + ('Devoirs surveillés' if lang == 'fr' else 'Supervised tests'))
             counts[(lang, 'formulas', role)] = save(d, fa, fb, OUT / f'stmg-formulas-{role}{suf}.pdf', 'Maths Explorer — ' + ('Formulaire raisonné' if lang == 'fr' else 'Annotated formula sheet'))
-    # Books and excerpts have equal page counts in both languages (every session is a balanced block).
-    drift = sorted(k[1:] for k in counts if k[0] == 'fr' and counts[k] != counts[('en',) + k[1:]])
+    # Compare only after both editions exist; command-line language order is arbitrary.
+    if set(languages) == {'fr', 'en'}:
+        for kind in ('student', 'teacher'):
+            if book[('fr', kind)] != book[('en', kind)]:
+                sys.exit(f'{kind}: {book[("fr", kind)]} French pages, {book[("en", kind)]} English')
+    # Paired excerpts have equal page counts (every session is a balanced block).
+    drift = sorted(k[1:] for k in counts if k[0] == 'fr' and ('en',) + k[1:] in counts and counts[k] != counts[('en',) + k[1:]])
     if drift: sys.exit('French and English excerpts differ: ' + ', '.join(map(str, drift)))
     manifest['texConverted'] = sorted(set(manifest['texConverted']) | {c['id'] for c in chapters.values()} | {'stmg-revision'})
     manifest_io.save(manifest)
-    print('FR/EN books and excerpts have equal page counts')
+    print('Built editions: ' + ', '.join(languages) + '; other published editions retained')
 
 
 main()

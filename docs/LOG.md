@@ -39,6 +39,8 @@ Append one dated line per finished task at the end of the first list (before "Da
 
 ### Dated session notes
 
+- 2026-10-27: French course quality batch for Première C07 and STMG C04: two independent chapter audits and exact computations, completed corrections, eight original reciprocal-function homework tasks and corrected session 29 graph; independent French builds preserve English editions on standby. Lecture figure caches now follow changed SVGs, and checks compare archived figures with current inputs. Review evidence stays private; human classroom acceptance remains pending.
+
 ### 15 October 2026: canvas interaction and two slide editions
 
 - Home and gallery Fourier traces break when the circle count changes or a frame gap exceeds 0.15 s. Old traces still fade; no segment bridges the changed endpoint.

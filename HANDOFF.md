@@ -1,5 +1,11 @@
 # Handoff
 
+## French course quality, 27 October 2026
+
+Première C07 and Terminale STMG C04 have completed two independent source and rendered-PDF reviews with exact computation checks. C07 corrections now explain the diameter interpretation and identify the singleton explicitly. STMG C04 has eight session-specific homework tasks with answers, completed proof and variation explanations, and the correct positive-domain graph for session 29. This is a bounded two-chapter review, not annual-course acceptance; human review remains pending. Private evidence is in `course-quality/batches/20261027-c07-stmg-c04/` in the existing private repository.
+
+French builds can retain frozen English source baselines and rebuild one language independently. Existing English editions remain available; the bilingual lesson goal remains on standby.
+
 Last updated: 25 October 2026. Everything an agent needs to start is in this file plus `PROJECT_BRIEF.md` (governing, wins on any conflict); `MAP.md` says which files a task needs. If you only have time for one thing, read brief section 2 (rules) and the task queue below.
 
 ## History atlas, 26 October 2026

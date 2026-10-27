@@ -74,7 +74,7 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 
 `challenge-backlog-dom.test.mjs`: actual knight pointer/keyboard/touch events with drag-click suppression and undo; room traversal/editing with fixed-size hit strokes; factorial hint gating and large exact integer form validation.
 
-`test_slide_editions.py`: actual slide source extraction, measured available editions, independent sequence lengths and figure selection for French-only, English-only and bilingual fixtures, plus lecture source selection. `slide-editions.test.mjs`: actual player rendering and unavailable-language behavior with independent edition counts.
+`test_slide_editions.py`: actual slide source extraction, measured available editions, independent sequence lengths and figure selection for French-only, English-only and bilingual fixtures, plus lecture source selection and SVG-driven lecture figure cache invalidation. `slide-editions.test.mjs`: actual player rendering and unavailable-language behavior with independent edition counts.
 
 `gomboc.test.mjs`: full graph/hash/volume invariants, support against independent all-vertex searches, local equilibrium potential, analytic freeflight and time-step convergence, collision nonpenetration/dissipation and honest linked explanations.
 

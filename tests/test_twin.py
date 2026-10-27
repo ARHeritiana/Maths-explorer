@@ -1,5 +1,5 @@
 """Unit tests for the French-to-English twin generator (build/mxbuild/twin.py). Run: python3 tests/test_twin.py"""
-import sys, unittest
+import copy, hashlib, sys, tempfile, unittest
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'build'))
 from mxbuild import twin
@@ -15,6 +15,47 @@ def body(text):
 
 
 class Twin(unittest.TestCase):
+    def frozen(self):
+        source = 'On calcule $1+2$.\n'
+        data = table([('On calcule [[m1]].', 'Compute [[m1]].')])
+        english = twin.generate(source, data)
+        data['standby'] = {'reason': 'Curriculum English remains on standby', 'source': source,
+                           'source_sha256': hashlib.sha256(source.encode()).hexdigest(),
+                           'english_sha256': hashlib.sha256(english.encode()).hexdigest()}
+        return source, data, english
+
+    def test_standby_preserves_original_english_after_french_maths_and_prose_change(self):
+        source, data, english = self.frozen()
+        revised = 'Calculer et justifier $8+9=17$.\n'
+        self.assertEqual(twin.generate(revised, data), english)
+        self.assertEqual(twin.generation_source(revised, data), source)
+        self.assertNotIn('17', english)
+
+    def test_standby_detects_corrupted_source_and_changed_translation(self):
+        source, data, _ = self.frozen()
+        corrupt = copy.deepcopy(data); corrupt['standby']['source'] += 'Nouveau.'
+        with self.assertRaisesRegex(twin.TwinError, 'source hash'):
+            twin.generate(source, corrupt)
+        corrupt = copy.deepcopy(data); next(iter(corrupt['segments'].values()))['en'] = 'Calculate [[m1]].'
+        with self.assertRaisesRegex(twin.TwinError, 'edition changed'):
+            twin.generate(source, corrupt)
+
+    def test_freezing_requires_current_english_and_does_not_rewrite_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            fr = Path(tmp) / 'unit.fr.tex'; fr.write_text('On calcule $1+2$.\n')
+            data = table([('On calcule [[m1]].', 'Compute [[m1]].')])
+            twin.save_table(fr, data)
+            en = twin.en_path(fr); en.write_text(twin.generate(fr.read_text(), data))
+            original = en.read_bytes(); stamp = en.stat().st_mtime_ns
+            twin.freeze_english(fr, 'English curriculum standby')
+            self.assertEqual(en.read_bytes(), original); self.assertEqual(en.stat().st_mtime_ns, stamp)
+            fr.write_text('Calculer $4+5$.\n')
+            self.assertEqual(twin.generate(fr.read_text(), twin.load_table(fr)).encode(), original)
+            with self.assertRaisesRegex(twin.TwinError, 'standby'):
+                twin.align_into(fr, en.read_text())
+            data.pop('standby', None); twin.save_table(fr, data)
+            with self.assertRaises(twin.TwinError): twin.freeze_english(fr, 'English curriculum standby')
+
     def test_prose_with_placeholders_may_reorder(self):
         fr = r'Si $x>0$, alors $f(x)\geq0$.' + '\n'
         _, segs = twin.split(fr)

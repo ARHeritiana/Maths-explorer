@@ -111,6 +111,19 @@ def compile_pair(src_dir, inputs, jobs, outdir, max_rounds=3, **kw):
     raise CompileError(f'{jobs["fr"]}/{jobs["en"]}: page balance did not settle after {max_rounds} rounds')
 
 
+# ---- independent edition builds ----------------------------------------------------------------------------------
+def compile_editions(src_dir, inputs, jobs, outdir, languages=('fr', 'en'), **kw):
+    """Build selected editions; a retained English edition is neither compiled nor republished."""
+    if not isinstance(languages, (list, tuple)) or not languages or any(l not in ('fr', 'en') for l in languages) or len(set(languages)) != len(languages):
+        raise ValueError('Choose one or both distinct fr/en editions')
+    if set(languages) == {'fr', 'en'}:
+        return compile_pair(src_dir, inputs, jobs, outdir, **kw)
+    lang = languages[0]
+    # A previous paired build may have left notes-page padding. Independent editions do not inherit it.
+    (Path(outdir) / (jobs[lang] + '.mxpad')).unlink(missing_ok=True)
+    return {lang: compile(src_dir, inputs[lang], jobs[lang], outdir, **kw)}
+
+
 # ---- cache -------------------------------------------------------------------------------------------------------
 CACHE = OUT / 'tex-cache.json'
 

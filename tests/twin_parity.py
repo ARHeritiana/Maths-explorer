@@ -9,6 +9,8 @@ import re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'build'))
+from mxbuild import twin
 TEX = ROOT / 'content/tex'
 
 
@@ -59,6 +61,11 @@ def main():
     bad = n = 0
     for fr, en in pairs():
         n += 1; a, b = fr.read_text(), en.read_text(); rel = fr.relative_to(ROOT)
+        if fr.name.endswith('.fr.tex'):
+            try:
+                a = twin.generation_source(a, twin.load_table(fr))
+            except twin.TwinError as exc:
+                bad += 1; print(f'{rel}: {exc}'); continue
         if maths(a) != maths(b):
             bad += 1; x = sorted(set(maths(a)) ^ set(maths(b)))
             print(f'{rel}: numbers in maths differ ({x[:6]})')

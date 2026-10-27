@@ -2,6 +2,14 @@
 
 Status: **accepted** (decided by the owner, recorded 11 October 2026).
 
+Language standby implementation, 27 October 2026: a French correction may retain an existing English edition
+without translating the correction. Before editing French, `twin.freeze_english` validates that the English twin
+is current and records its original French source and both SHA-256 hashes in the existing translation table's
+`standby` record. Generation and parity checks use that retained source; changing its source or English translation
+fails validation. Alignment and translation stubbing refuse frozen units. This does not mark translations reviewed.
+The book's `buildLanguages` selects which PDF editions are rebuilt; other declared, published editions retain their
+files and independently measured metadata. Remove a standby record only when work on that English edition resumes.
+
 Current publication policy, 24 October 2026: the governing brief permits independent resource editions. The paired TeX translation workflow below remains available, but it does not require publishing both languages or equal page counts. Catalogues declare each available edition and measure its own path, pages, size and hash. The PDF check validates each declared edition independently; twin checks still protect shared mathematical expressions and illustrations when translation tables are used.
 
 ## Context

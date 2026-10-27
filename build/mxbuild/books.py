@@ -15,6 +15,14 @@ def spec(course):
     return catalog.load()['books'][course]
 
 
+def build_languages(course, requested=None):
+    """Languages rebuilt now, independently of already-published editions retained in the catalogue."""
+    langs = requested if requested is not None else spec(course).get('buildLanguages', ['fr', 'en'])
+    if not isinstance(langs, (list, tuple)) or not langs or len(set(langs)) != len(langs) or any(l not in ('fr', 'en') for l in langs):
+        raise ValueError('buildLanguages must be a nonempty list of distinct fr/en editions')
+    return list(langs)
+
+
 def main_text(course, lang, edition, core_path):
     b = spec(course)
     lines = ['% GENERATED from content/data/manifest.json (books) by mxbuild.books; do not edit.',

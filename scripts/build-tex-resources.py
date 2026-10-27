@@ -83,16 +83,17 @@ def teacher_entry(sd, td, index, course=None):
 _PAIRS = {}
 
 
-def compile_pdf(course, entry, jobname, prof, defs=''):
+def compile_pdf(course, entry, jobname, prof, defs='', languages=None):
     """Compile in the source directory until stable (mxbuild.tex); returns the PDF path. Courses on the shared class
     (books in the manifest) compile from generated mains, French and English together and balanced block by block."""
     if course in MANIFEST.get('books', {}):
         if jobname not in _PAIRS:
             mains = books.write_mains(course, BUILD / course / 'mains', str(ROOT / 'content/tex/core'))
             ed = 'professeur' if prof else 'eleve'; base = jobname.removesuffix('-en')
-            pair = tex.compile_pair(SRC / course, {'fr': str(mains[ed]), 'en': str(mains[ed + '-en'])},
-                                    {'fr': base, 'en': base + '-en'}, BUILD / course)
-            for r in (pair['fr'], pair['en']): _PAIRS[r.pdf.stem] = r.report(r.pdf.stem).pdf
+            pair = tex.compile_editions(SRC / course, {'fr': str(mains[ed]), 'en': str(mains[ed + '-en'])},
+                                        {'fr': base, 'en': base + '-en'}, BUILD / course,
+                                        languages=books.build_languages(course, languages))
+            for r in pair.values(): _PAIRS[r.pdf.stem] = r.report(r.pdf.stem).pdf
         return _PAIRS[jobname]
     res = tex.compile(SRC / course, ((r'\def\versionprof{1}' if prof else '') + defs + r'\input{%s}' % entry) if (prof or defs) else entry,
                       jobname, BUILD / course)
@@ -261,11 +262,12 @@ def standalone_teacher(catalog, lang):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('course'); ap.add_argument('--chapters', type=int, nargs='+', required=True)
-    ap.add_argument('--lang', nargs='+', default=['fr', 'en'])
+    ap.add_argument('--lang', nargs='+', choices=['fr', 'en'], default=None)
     ap.add_argument('--appendices', action='store_true', help='also rebuild the appendix booklets (full books only)')
     ap.add_argument('--pilot-entry', default=None, help='reduced entry stem for the English twin, e.g. pilot')
     a = ap.parse_args()
     course = a.course
+    a.lang = books.build_languages(course, a.lang)
     catalog = MANIFEST['catalog']
     chapters = {c['number']: c for c in catalog['chapters'] if c['course'] == course}
     if course == 'terminale': prepare_terminale(catalog, [chapters[n] for n in a.chapters])
@@ -278,8 +280,8 @@ def main():
         if not reduced: stem_s, stem_t = 'eleve' + suffix, 'professeur' + suffix
         defs = (r'\def\pilotlist{%s}' % ','.join('%02d' % n for n in wanted)) if reduced else ''
         print(f'[{course} {lang}]')
-        sd = fitz.open(compile_pdf(course, stem_s + '.tex', f'{course}-student{suffix}', False, defs))
-        td = fitz.open(compile_pdf(course, stem_t + '.tex', f'{course}-teacher{suffix}', True, defs))
+        sd = fitz.open(compile_pdf(course, stem_s + '.tex', f'{course}-student{suffix}', False, defs, a.lang))
+        td = fitz.open(compile_pdf(course, stem_t + '.tex', f'{course}-teacher{suffix}', True, defs, a.lang))
         st = [p - 1 for l, t, p in sd.get_toc() if l == 1] + [len(sd)]; tt = [p - 1 for l, t, p in td.get_toc() if l == 1] + [len(td)]
         rng = None if reduced else chapter_ranges(course, sd, td, lang, max(wanted))
         for number in wanted:
