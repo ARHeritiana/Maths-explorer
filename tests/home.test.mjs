@@ -15,6 +15,7 @@ for(const language of [0,1])test(`home search and entrances, language ${language
  const query=value=>{input.value=value;input.dispatchEvent(new dom.window.Event('input'));return [...root.querySelectorAll('.home-result')];};
  assert.equal(root.querySelector('.home-resume'),null);
  assert.equal(root.querySelectorAll('.tool-card').length,6);
+ assert.equal(root.querySelector('.entrance-actions a:last-child').getAttribute('href'),'#lab');
  for(const a of root.querySelectorAll('.tool-card'))assert.ok(index.some(x=>x.route===a.getAttribute('href')));
  for(const term of ['dérivée','derivee','hasard','trinôme','parabole'])assert.ok(query(term).length,term);
  assert.equal(query('zzzz-no-matches').length,0);

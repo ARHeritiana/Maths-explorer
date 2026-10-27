@@ -83,6 +83,11 @@ with sync_playwright() as p:
     assert 'Tonga soa' in home and not any(w in home for w in ['Seconde', 'Première', 'Terminale', 'lycée', 'Bac'])
     assert page.locator('.entrance-actions a[href="#resources"]').count() == 1
     assert page.locator('.tool-card').count() == 6
+    page.locator('.entrance-actions a[href="#lab"]').click()
+    page.wait_for_url('**/#lab')
+    assert page.locator('.lab2-card-link').count() == 37
+    page.goto(BASE)
+    page.locator('#home-query').wait_for()
     page.locator('#home-query').fill('derivee')
     assert page.locator('.home-result').count() > 0
     page.locator('#home-query').fill('zzzz-no-result')
