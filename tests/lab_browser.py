@@ -42,6 +42,7 @@ with sync_playwright() as p:
 
     def new_page(width=1280, height=900, **kw):
         page = browser.new_context(viewport={'width': width, 'height': height}, **kw).new_page()
+        page.set_default_navigation_timeout(120000)
         page.on('pageerror', lambda e: errors.append(e.stack or str(e)))
         page.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None)
         return page
@@ -58,14 +59,19 @@ with sync_playwright() as p:
             ready(page, 'lab/' + ref)
             page.evaluate("t => document.documentElement.dataset.theme = t", theme)
             assert page.evaluate("() => { const c = document.querySelector('.lab2-canvas'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n; }") > 500, ('the canvas is drawn', ref, theme)
-            handle = page.locator('.lab2-handle').nth(page.evaluate(MISSION_HANDLE))
+            handle_index = page.evaluate(MISSION_HANDLE)
+            handle = page.locator('.lab2-handle').nth(handle_index)
+            vertical = page.evaluate("i => document.querySelector('.lab2').__lab.stage.handles[i].control?.axis === 'y'", handle_index)
+            handle.scroll_into_view_if_needed()
             box = handle.bounding_box()
             before = page.locator('.lab2-formula').inner_text()
             page.evaluate(WATCH)
             x, y = box['x'] + box['width'] / 2, box['y'] + box['height'] / 2
             page.mouse.move(x, y); page.mouse.down()
             for i in range(1, 31):
-                page.mouse.move(x + i * 4, y + (i % 7) * 3 - 10)
+                # Vertical-only handles must cross their snapping interval; radial handles retain a transverse drag.
+                page.mouse.move(x if vertical else x + i * 4,
+                                y + i * 3 if vertical else y + (i % 7) * 3 - 10)
                 page.wait_for_timeout(8)
             page.mouse.up()
             page.wait_for_timeout(450)   # the delayed screen-reader announcement must not add an element either

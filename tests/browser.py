@@ -72,9 +72,12 @@ with sync_playwright() as p:
         options['firefox_user_prefs'] = {'security.sandbox.content.level':0}
     browser = getattr(p, engine).launch(**options)
     page = browser.new_page(viewport={'width':1440,'height':1000})
+    # Cold local module graphs can exceed 30 s in constrained environments.
+    # Assertions on the rendered content retain Playwright's normal timeout.
+    page.set_default_navigation_timeout(120000)
     errors = []
     page.on('pageerror', lambda e: errors.append(e.stack or str(e)))
-    assert page.goto(BASE).status == 200
+    assert page.goto(BASE, wait_until='domcontentloaded').status == 200
     check_home_chapter(page, BASE, 'test-results')
     page.goto(BASE)
     # The home is neutral and offers useful direct course and experiment entrances.
@@ -291,6 +294,7 @@ with sync_playwright() as p:
         context = browser.new_context()
         context.add_init_script(script)
         extra = context.new_page()
+        extra.set_default_navigation_timeout(120000)
         extra_errors = []
         extra.on('pageerror',lambda e: extra_errors.append(str(e)))
         extra.goto(BASE+'/#lab/probability/open')

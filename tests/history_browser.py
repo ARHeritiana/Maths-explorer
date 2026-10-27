@@ -8,6 +8,7 @@ with sync_playwright() as p:
  if os.environ.get('PLAYWRIGHT_CHROMIUM_PATH'): options['executable_path']=os.environ['PLAYWRIGHT_CHROMIUM_PATH']
  b=p.chromium.launch(**options)
  page=b.new_page(viewport={'width':1440,'height':1000},reduced_motion='reduce')
+ page.set_default_navigation_timeout(120000)
  errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  for lang in ['fr','en']:
   page.goto(BASE+'/#history',wait_until='networkidle')

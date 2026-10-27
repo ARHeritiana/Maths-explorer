@@ -24,6 +24,7 @@ with sync_playwright() as p:
 
     def new_page(width=1280, height=720):
         page = browser.new_context(viewport={'width': width, 'height': height}).new_page()
+        page.set_default_navigation_timeout(120000)
         page.on('pageerror', lambda e: errors.append('pageerror: ' + (e.stack or str(e))))
         page.on('console', lambda m: errors.append('console: ' + m.text) if m.type == 'error' else None)
         return page
