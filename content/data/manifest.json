@@ -944,6 +944,18 @@
         "guide": "shared-review"
       },
       {
+        "id": "premiere-unsorted",
+        "course": "premiere",
+        "number": 0,
+        "title": [
+          "Non classé",
+          "Unclassified"
+        ],
+        "topic": "review",
+        "labs": [],
+        "guide": "shared-review"
+      },
+      {
         "id": "terminale-revision",
         "course": "terminale",
         "number": 0,
@@ -19293,6 +19305,44 @@
           },
           "en": {
             "path": "./resources/premiere-revision/schedule-en.pdf"
+          }
+        }
+      },
+      {
+        "id": "premiere-unsorted-automatismes-eleve",
+        "chapter": "premiere-unsorted",
+        "course": "premiere",
+        "type": "fluency",
+        "title": [
+          "Automatismes · séries 1 à 3 · élève",
+          "Fluency · series 1 to 3 · student"
+        ],
+        "audience": "student",
+        "format": "PDF",
+        "url": "./resources/premiere-unsorted/automatismes-series-eleve.pdf",
+        "review": "source-unverified",
+        "editions": {
+          "fr": {
+            "path": "./resources/premiere-unsorted/automatismes-series-eleve.pdf"
+          }
+        }
+      },
+      {
+        "id": "premiere-unsorted-automatismes-corrige",
+        "chapter": "premiere-unsorted",
+        "course": "premiere",
+        "type": "solutions",
+        "title": [
+          "Automatismes · séries 1 à 3 · corrigé",
+          "Fluency · series 1 to 3 · answer key"
+        ],
+        "audience": "teacher",
+        "format": "PDF",
+        "url": "./resources/premiere-unsorted/automatismes-series-corrige.pdf",
+        "review": "source-unverified",
+        "editions": {
+          "fr": {
+            "path": "./resources/premiere-unsorted/automatismes-series-corrige.pdf"
           }
         }
       }

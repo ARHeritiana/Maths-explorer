@@ -915,6 +915,18 @@
       "guide": "shared-review"
     },
     {
+      "id": "premiere-unsorted",
+      "course": "premiere",
+      "number": 0,
+      "title": [
+        "Non classé",
+        "Unclassified"
+      ],
+      "topic": "review",
+      "labs": [],
+      "guide": "shared-review"
+    },
+    {
       "id": "terminale-revision",
       "course": "terminale",
       "number": 0,
@@ -28827,6 +28839,70 @@
       "englishPages": 17,
       "englishBytes": 141425,
       "translation": "tex-source"
+    },
+    {
+      "id": "premiere-unsorted-automatismes-eleve",
+      "chapter": "premiere-unsorted",
+      "course": "premiere",
+      "type": "fluency",
+      "title": [
+        "Automatismes · séries 1 à 3 · élève",
+        "Fluency · series 1 to 3 · student"
+      ],
+      "audience": "student",
+      "format": "PDF",
+      "url": [
+        "./resources/premiere-unsorted/automatismes-series-eleve.pdf",
+        null
+      ],
+      "review": "source-unverified",
+      "editions": {
+        "fr": {
+          "path": "./resources/premiere-unsorted/automatismes-series-eleve.pdf",
+          "bytes": 38277,
+          "sha256": "07a64f9abb3a741eefb5592701e214b080bc7c742db04a11385344e4e45be772",
+          "pages": 3
+        }
+      },
+      "languages": [
+        "fr"
+      ],
+      "language": "fr",
+      "pages": 3,
+      "bytes": 38277,
+      "translation": "authored-bilingual"
+    },
+    {
+      "id": "premiere-unsorted-automatismes-corrige",
+      "chapter": "premiere-unsorted",
+      "course": "premiere",
+      "type": "solutions",
+      "title": [
+        "Automatismes · séries 1 à 3 · corrigé",
+        "Fluency · series 1 to 3 · answer key"
+      ],
+      "audience": "teacher",
+      "format": "PDF",
+      "url": [
+        "./resources/premiere-unsorted/automatismes-series-corrige.pdf",
+        null
+      ],
+      "review": "source-unverified",
+      "editions": {
+        "fr": {
+          "path": "./resources/premiere-unsorted/automatismes-series-corrige.pdf",
+          "bytes": 48956,
+          "sha256": "ca1b4a43736d08a3ce79af10f47ea6fe2c63712f6243ef54cfd4dcce062da073",
+          "pages": 4
+        }
+      },
+      "languages": [
+        "fr"
+      ],
+      "language": "fr",
+      "pages": 4,
+      "bytes": 48956,
+      "translation": "authored-bilingual"
     }
   ],
   "sources": [
