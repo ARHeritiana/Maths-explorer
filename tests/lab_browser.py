@@ -71,7 +71,7 @@ with sync_playwright() as p:
             for i in range(1, 31):
                 # Vertical-only handles must cross their snapping interval; radial handles retain a transverse drag.
                 page.mouse.move(x if vertical else x + i * 4,
-                                y + i * 3 if vertical else y + (i % 7) * 3 - 10)
+                                y - i * 3 if vertical else y + (i % 7) * 3 - 10)
                 page.wait_for_timeout(8)
             page.mouse.up()
             page.wait_for_timeout(450)   # the delayed screen-reader announcement must not add an element either
