@@ -29,6 +29,7 @@ really need them.
 | a colour, font, spacing, radius or theme | `site/styles/explorer.css` (tokens at the top, both themes) | `docs/DESIGN_V3.md` only for a design decision |
 | the look of one page or component | `site/styles/pages.css` (search the page class, see section 3) | |
 | the top navigation (three sections, "Apprendre", "Explorer" and "Lire", each with a row of page tabs), footer, theme or language buttons | `site/js/app.js` `SECTIONS`, `TAB_OF`, `header()` / `footer()` | |
+| a foundations lesson (`#basics`) | `site/js/app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html` | first lesson: place value and regrouping |
 | a route (add or rename a page) | `site/js/app.js` `route()`, `render()` (validity list and dispatch) | section 3 |
 | any text of a laboratory experiment (missions, prompts, arguments) | `site/js/lab/experiments/<id>.js` (index in `site/js/lab/CLAUDE.md`) | gallery entries only: `site/js/content.js` `labs` (`custom: true`) |
 | any text of a pathway | `site/js/content.js` (`pathways`) | challenge text: `site/js/challenges/<id>/index.js` |
@@ -74,6 +75,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 |---|---|---|
 | `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` |
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
+| `#basics[/place-value]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html` |
 | `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (curriculum menu first, then the course list) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |

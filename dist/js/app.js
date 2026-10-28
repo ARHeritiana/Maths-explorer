@@ -97,6 +97,7 @@ const brandMark = `<svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true"
 // The main bar names the sections; a row of tabs under it names the pages of the current section.
 const SECTIONS = [
   ["learn", "Apprendre", "Learn", "books", [
+    ["basics", "Bases", "Foundations", "books"],
     ["resources", "Cours", "Lessons", "books"],
     ["slides", "Diaporamas", "Slides", "presentation-chart"],
     ["pathways", "Parcours", "Pathways", "path"],
@@ -154,13 +155,13 @@ function render() {
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
   $("#app").innerHTML =
     header(page) +
-    (page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
+    (page === "basics" ? basicsPage(r.id) : page === "home" ? homePage({ pair, t, link, index:discovery, last }) : page === "workshop" ? workshopMarkup(t) : page === "pack" ? packPage(t, r.id) : page === "sources" ? sourcesPage(t) : page === "slides" ? slidesPage(t) : page === "resources" ? libraryPage(t, { challenges, completed, seen, last, labs })
       : page === "university" ? universityPage(lang)
       : page === "topics" ? discoveryPage(discovery,r.id,r.tab,t)
       : page === "history" ? historyPage(r.id,r.tab,t,discovery)
@@ -198,6 +199,7 @@ function render() {
   if (page === "gallery" && r.id) bindGallery();
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
+  if (page === "basics" && r.id === "place-value") stopChapter = bindBasics();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
@@ -420,6 +422,21 @@ function bindChallenges() {
   });
   return stop;
 }
+// Foundation lessons are deliberately distinct from official curriculum chapters.
+function basicsPage(id) {
+  if (!id) return `<main id="main" class="page" tabindex="-1"><div class="section-kicker">${pair("Apprendre", "Learn")}</div><h1>${pair("Les bases des mathématiques", "Mathematical foundations")}</h1><p class="page-intro">${pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")}</p><div class="pathway-grid" style="margin-top:24px"><article class="pathway-card"><div class="section-kicker">01 · ${pair("Nombres", "Numbers")}</div><h2><a href="#basics/place-value">${pair("Numération et regroupements", "Place value and grouping")}</a></h2><p>${pair("Regrouper les unités, échanger dix contre une dizaine et explorer les autres bases.", "Bundle ones into tens, unbundle them, and explore other bases.")}</p><a class="btn btn-primary" href="#basics/place-value">${pair("Explorer la leçon", "Open the lesson")}</a></article></div></main>`;
+  return `<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">${pair("Toutes les bases", "All foundations")}</a><iframe id="basics-frame" title="${pair("Activité interactive sur la numération", "Interactive place-value activity")}" src="./resources/basics/place-value.html" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>`;
+}
+function bindBasics(){
+  const frame=$("#basics-frame"); if(!frame)return ()=>{};
+  let alive=true;
+  const sync=()=>{try{const d=frame.contentDocument;if(!d)return;d.documentElement.dataset.theme=currentTheme()==="nuit"?"dark":"light";const h=d.documentElement.scrollHeight;if(h>0&&Math.abs(h-frame.getBoundingClientRect().height)>3)frame.style.height=h+"px";}catch{}};
+  const message=e=>{if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=="mx-basics-size")return;if(alive&&Number.isFinite(e.data.height)&&e.data.height>0&&e.data.height<20000)frame.style.height=e.data.height+"px";};
+  const load=()=>sync();frame.addEventListener("load",load);window.addEventListener("message",message);
+  const obs=typeof MutationObserver==="undefined"?null:new MutationObserver(sync);obs?.observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  return ()=>{alive=false;window.removeEventListener("message",message);frame.removeEventListener("load",load);obs?.disconnect();};
+}
+
 // Stages (with their explorations) and the source link of a pathway or of one of its programmes.
 function pathwayBlock(x, heading) {
   const stages = x.stages

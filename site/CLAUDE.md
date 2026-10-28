@@ -94,6 +94,7 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/university.js`, `js/university-model.js` | `#university` pages and pathway summaries |
 | `js/quadratic-workshop.js` | `#workshop/quadratic` five-stage workshop |
 | `resources/document-theme.css` | style of generated HTML resource pages |
+| `resources/basics/place-value.html` | Self-contained first foundation: regrouping and place-value activity; embedded by `js/app.js` |
 
 ## Slide player (`slides/`; any change here rebuilds every deck export)
 
