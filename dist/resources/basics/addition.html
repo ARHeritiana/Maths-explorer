@@ -62,6 +62,14 @@ main{max-width:980px}
 .cell{min-width:0}
 @media(max-width:600px){main{padding:12px 8px 24px}.stage{padding:8px}.nums input{width:5.5em}.ch{font-size:15px}.ch small{font-size:11px}.cell{padding:4px 2px}.rl{font-size:11px}}
 @media(max-width:360px){.nums{gap:8px}.nums label{gap:4px}.nums input{width:4.8em}.row button{padding:8px 10px;font-size:15px}}
+h2{font:600 22px/1.2 "STIX Two Text",Georgia,serif;margin:30px 0 4px}
+.sec{color:var(--mute);margin:0 0 6px;font-size:15px;max-width:62ch}
+.dc{display:flex;align-items:center;justify-content:center;text-align:center;font:600 30px/1.15 "STIX Two Text",Georgia,serif;min-height:48px;padding:6px 2px;border-radius:10px;background:color-mix(in srgb,var(--cc) 10%,var(--surf));border:2px solid color-mix(in srgb,var(--cc) 40%,var(--line))}
+.dc sup{font-size:15px;margin-right:1px;color:var(--b)}
+.dc.sm{font-size:22px;min-height:36px;border-style:dashed}.dc.sm:empty,.dc.pn:empty{border-color:transparent;background:none}
+.dc.pn{border-style:dashed}
+.dc.act{box-shadow:0 0 0 3px var(--b)}
+@media(max-width:600px){.dc{font-size:24px}.dc.sm{font-size:19px}}
 </style>
 </head>
 <body>
@@ -70,9 +78,13 @@ main{max-width:980px}
 <div id="menu" hidden><div class="ctl"><label for="Bs">Base</label><input id="Bs" type="range" min="2" max="16"><output id="Bo"></output></div><div class="chips" id="chips"></div></div>
 <p class="lead">Additionne deux nombres en faisant descendre les jetons, colonne par colonne, de droite à gauche. Lorsque la colonne contient autant de jetons que la base, regroupe-les en un seul jeton de la colonne suivante : c’est la retenue.</p>
 <div class="nums"><label for="iA">Premier nombre<input id="iA" type="number" min="0" max="9999" step="1" inputmode="numeric"></label><label for="iZ">Deuxième nombre<input id="iZ" type="number" min="0" max="9999" step="1" inputmode="numeric"></label></div>
+<h2>1 · Les jetons, colonne par colonne</h2>
 <div class="row"><button id="step">Ajouter la colonne</button><button id="bun">Regrouper</button><button id="play" class="alt">Tout animer</button><button id="rst" class="alt">Recommencer</button></div>
 <div class="stage"><div id="o0"></div><div id="info"></div></div>
 <p class="note" id="note"></p>
+<h2>2 · Les mêmes échanges, en chiffres</h2>
+<p class="sec">Retrouve ci-dessous l’addition posée, synchronisée avec les jetons. Lorsqu’une colonne contient assez de jetons pour former un groupe, le total affiche un petit 1 devant son chiffre. Le bouton « Regrouper » envoie ce 1 dans la ligne des retenues de la colonne suivante ; seul le chiffre des unités reste dans la somme.</p>
+<div class="stage" role="region" aria-label="Addition posée synchronisée"><div id="o1"></div></div>
 </main>
 <script>
 const $=i=>document.getElementById(i),CH='0123456789ABCDEF',DC=['#F5B93A','#7DB4F0','#52CDBB','#F08CB0'];
@@ -111,12 +123,23 @@ function info(){const B=S.B,done=S.k>=S.n;
  if(done){const rd=S.st.map(s=>[s.r,s.p]).reverse();let f=rd.findIndex(o=>o[0]>0);if(f<0)f=rd.length-1;
   h+=`<div class="num">${rd.slice(f).map(o=>`<span style="color:${DC[o[1]%4]}">${CH[o[0]]}</span>`).join('')}${B===10?'':`<sub>${B}</sub>`}</div>`}
  $('info').innerHTML=h+`<p class="msg" aria-live="polite">${S.msg}</p>`}
+const dg=v=>v>=S.B?`<sup>1</sup>${CH[v-S.B]}`:CH[v];
+const gc=n=>`grid-template-columns:3.2em repeat(${n},minmax(${n>8?44:56}px,1fr))`;
+const cs=(p,c,t)=>`<div class="dc ${c||''}" style="--cc:var(--c${p%4})">${t}</div>`;
+function digits(){
+ const n=S.n,st=S.st,k=S.k,P=[...Array(n).keys()].reverse(),act=p=>p===k&&k<n?' act':'';
+ const row=(l,f)=>`<span class="rl">${l}</span>`+P.map(f).join('');
+ $('o1').innerHTML=`<div class="sc"><div class="grid" style="${gc(n)}"><span></span>${P.map(p=>`<div class="ch">${S.B**p}</div>`).join('')}`+
+ row('retenue',p=>cs(p,'sm',p>=1&&p-1<k&&st[p-1].q>0?'1':''))+
+ row('1er',p=>cs(p,act(p),CH[S.a[p]]))+
+ row('2e',p=>cs(p,'',CH[S.b[p]]))+
+ `<div class="rule"></div>`+row('somme',p=>p<k?cs(p,'',CH[st[p].r]):p===k&&S.pend?cs(p,'pn act',dg(st[p].s)):cs(p,'pn',''))+`</div></div>`}
 function ctl(){$('step').disabled=S.busy||S.auto||S.pend||S.k>=S.n;$('bun').disabled=S.busy||S.auto||!S.pend;$('play').disabled=S.busy||S.auto||S.k>=S.n}
 function paint(){$('Bs').value=S.B;$('Bo').textContent=S.B;
  if(document.activeElement!==$('iA'))$('iA').value=S.A;if(document.activeElement!==$('iZ'))$('iZ').value=S.Z;
  $('chips').innerHTML=[2,3,5,8,10,12,16].map(b=>`<button type="button" class="${b===S.B?'on':''}" data-b="${b}">${b}</button>`).join('');
  $('note').textContent=S.B===10?'':'Les nombres sont saisis en base dix, puis affichés en base '+S.B+'.'+(S.B>10?' Au-delà de 9, les chiffres utilisent des lettres : A = 10, jusqu’à '+CH[S.B-1]+' = '+(S.B-1)+'.':'');
- render(S.k,S.pend?{p:S.k,go:1}:null);info();ctl()}
+ render(S.k,S.pend?{p:S.k,go:1}:null);info();ctl();digits()}
 
 // Animation helpers: a flying counter is a fixed-position clone moved between two measured rectangles.
 function mv(f,t,c1,c2,d,dl){const e=document.createElement('div');e.className='fly';document.body.appendChild(e);S.fl.push(e);

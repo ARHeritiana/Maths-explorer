@@ -39,3 +39,23 @@ test('the carry model reconstructs each sum in bases 2 to 16', () => {
       assert.equal(sum,a+z);
     }
 });
+
+test('written addition stays synchronized with the carried column in every base', () => {
+  assert.match(html, /Les mêmes échanges, en chiffres/);
+  assert.match(html, /id="o1"/);
+  assert.match(html, /function digits\(\)/);
+  const script=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  const setup=script.slice(0,script.indexOf("$('step').onclick"));
+  for(const [base,a,b,unit] of [[2,1,1,'0'],[10,478,256,'4'],[16,15,1,'0']]){
+    const output=JSON.parse(runInNewContext(setup+`
+S.B=${base};S.A=${a};S.Z=${b};reset();
+S.k=0;S.pend=1;digits();const pending=$('o1').innerHTML;
+S.k=1;S.pend=0;digits();JSON.stringify({pending,after:$('o1').innerHTML,step:S.st[0]});
+`,{document:{getElementById(){return cell}},cell:{innerHTML:''}}}));
+    assert.equal(output.step.q,1);
+    assert.equal(output.step.r,parseInt(unit,16));
+    assert.ok(output.pending.includes('<sup>1</sup>'+unit),'pending bundle must be visible in written sum');
+    assert.match(output.after,/class="dc sm"[^>]*>1<\/div>/,'carry must appear in the next written column');
+    assert.ok(!output.after.includes('NaN'));
+  }
+});
