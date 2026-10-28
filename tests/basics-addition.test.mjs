@@ -51,7 +51,7 @@ test('written addition stays synchronized with the carried column in every base'
 S.B=${base};S.A=${a};S.Z=${b};reset();
 S.k=0;S.pend=1;digits();const pending=$('o1').innerHTML;
 S.k=1;S.pend=0;digits();JSON.stringify({pending,after:$('o1').innerHTML,step:S.st[0]});
-`,{document:{cell:{innerHTML:''},getElementById(){return this.cell}}}}));
+`,{document:{cell:{innerHTML:''},getElementById(){return this.cell}}}));
     assert.equal(output.step.q,1);
     assert.equal(output.step.r,parseInt(unit,16));
     assert.ok(output.pending.includes('<sup>1</sup>'+unit),'pending bundle must be visible in written sum');
