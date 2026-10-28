@@ -26,6 +26,11 @@ jobs:
           python tests/banned.py
           python tests/test_privacy_scan.py
           python tests/privacy_scan.py
+      - name: Independently verify mathematical claims
+        run: |
+          python tests/count_claims.py
+          python tests/verify-arithmetic.py
+          python tests/verify-quadratic.py
   browser:
     runs-on: ubuntu-latest
     steps:

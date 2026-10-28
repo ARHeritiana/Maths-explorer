@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {guides} from '../dist/js/study-guides.js';
 import {selectChapters,resourceTypes} from '../dist/js/library.js';
 import {labs} from '../dist/js/content.js';
@@ -76,4 +77,26 @@ test('every companion chapter and supplement edition has its promised published 
       }
     }
   }
+});
+
+test('published resource hashes match their catalogue metadata',()=>{
+  // Files are hashed independently of the catalogue generator so a stale or replaced
+  // file cannot pass on filename, size and a syntactically valid SHA-256 alone.
+  const measured=new Map();
+  for(const resource of c.resources){
+    for(const [language,edition] of Object.entries(resource.editions)){
+      assert.match(edition.path,/^\.\/resources\/[a-z0-9/-]+\.(?:pdf|html)$/,resource.id);
+      const relative=edition.path.slice(2);
+      if(!measured.has(relative)){
+        const file=new URL('../dist/'+relative,import.meta.url);
+        const content=fs.readFileSync(file);
+        measured.set(relative,{bytes:content.length,sha256:createHash('sha256').update(content).digest('hex')});
+      }
+      const actual=measured.get(relative);
+      const label=`${resource.id}/${language} (${relative})`;
+      assert.equal(actual.bytes,edition.bytes,`${label}: stale byte size`);
+      assert.equal(actual.sha256,edition.sha256,`${label}: stale or incorrect content hash`);
+    }
+  }
+  assert.ok(measured.size>=500,'unexpectedly small published resource inventory');
 });
