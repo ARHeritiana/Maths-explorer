@@ -95,8 +95,11 @@ Pick the row of your feature and open only its files. One-line descriptions are 
 | `js/quadratic-workshop.js` | `#workshop/quadratic` five-stage workshop |
 | `resources/document-theme.css` | style of generated HTML resource pages |
 | `resources/basics/place-value.html` | Self-contained first foundation: regrouping and place-value activity; embedded by `js/app.js` |
+| `resources/basics/place-value.en.html` | English interactive foundation edition, with local typography and iframe resizing |
 | `resources/basics/addition.html` | Second foundation: place-value addition and animated carries in bases 2 to 16; embedded by `js/app.js` |
+| `resources/basics/addition.en.html` | English interactive foundation edition, with local typography and iframe resizing |
 | `resources/basics/subtraction.html` | Third foundation: subtraction with borrowing across empty columns, written subtraction, bases 2 to 16; embedded by `js/app.js` |
+| `resources/basics/subtraction.en.html` | English interactive foundation edition, with local typography and iframe resizing |
 
 ## Slide player (`slides/`; any change here rebuilds every deck export)
 

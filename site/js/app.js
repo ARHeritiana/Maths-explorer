@@ -444,7 +444,7 @@ function basicsPage(id) {
     : id === "addition"
       ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a> · <a href="#basics/subtraction">'+pair("Leçon suivante : soustraction et emprunts", "Next lesson: subtraction and borrowing")+'</a></p>'
       : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';
-  return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+lesson.id+".html")+'" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>';
+  return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" lang="'+lang+'" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+lesson.id+(lang==="en"?".en":"")+".html")+'" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>';
 }
 function bindBasics(){
   const frame=$("#basics-frame"); if(!frame)return ()=>{};

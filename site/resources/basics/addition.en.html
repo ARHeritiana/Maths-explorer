@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Addition as grouping</title>
+<style>
+:root{--paper:#F4F7FA;--ink:#13303B;--mute:#566B75;--line:#CDD8DF;--surf:#FFFFFF;--a:#E9A416;--b:#2D6CB5;--c0:#E9A416;--c1:#2D6CB5;--c2:#2A9D8F;--c3:#C0507A;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--a:#F2B73D;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--a:#F2B73D;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:28px 14px 48px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+h1{font:600 clamp(28px,7vw,40px)/1.1 "STIX Two Text",Georgia,serif;margin:0 0 10px}
+.lead{color:var(--mute);margin:0 0 16px;max-width:60ch}
+.motif{display:flex;align-items:flex-end;gap:6px;margin-bottom:12px}.motif i{display:block;border-radius:50%}
+.motif i:nth-child(1){width:12px;height:12px;background:var(--c0)}.motif i:nth-child(2){width:17px;height:17px;background:var(--c1)}.motif i:nth-child(3){width:22px;height:22px;background:var(--c2)}.motif i:nth-child(4){width:28px;height:28px;background:var(--c3)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+#gear{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--line);background:var(--surf);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+#gear[aria-expanded=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#menu{background:var(--surf);border:2px solid var(--line);border-radius:14px;padding:10px 14px;margin:0 0 12px}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:4px 0}
+.ctl output{font-weight:700;min-width:3ch;text-align:right}
+input[type=range]{width:100%;accent-color:var(--b)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}
+.chips button{font:inherit;font-weight:700;min-width:44px;padding:6px 10px;border-radius:999px;border:2px solid var(--line);background:var(--surf);color:var(--ink);cursor:pointer}
+.chips button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.nums{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0}
+.nums label{display:flex;align-items:center;gap:8px}
+.nums input{font:inherit;font-weight:700;width:6.5em;padding:8px 10px;border:2px solid var(--line);border-radius:8px;background:var(--surf);color:var(--ink)}
+.row{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.row button{font:inherit;font-weight:700;padding:8px 14px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.row button.alt{background:var(--surf);color:var(--ink)}
+.row button:disabled{opacity:.35;cursor:default}
+.stage{background:var(--surf);border:2px solid var(--line);border-radius:18px;padding:14px;margin-top:10px;box-shadow:0 6px 18px -10px rgba(19,48,59,.35)}
+.sc{overflow-x:auto;padding-bottom:4px}
+.grid{display:grid;gap:6px;align-items:stretch}
+.rl{font-size:13px;color:var(--mute);align-self:center}
+.ch{text-align:center;font-weight:700;font-size:18px;line-height:1.2}.ch small{display:block;font-weight:400;font-size:12px;color:var(--mute)}
+.cell{background:color-mix(in srgb,var(--cc) 10%,var(--surf));border:2px solid color-mix(in srgb,var(--cc) 40%,var(--line));border-radius:10px;padding:5px 3px;min-height:46px;display:flex;flex-wrap:wrap;gap:3px;align-content:flex-start;justify-content:center}
+.cell.C{min-height:36px;border-style:dashed}
+.cell i,.fly{width:var(--sz);height:var(--sz);border-radius:50%;background-color:var(--cc);background-image:radial-gradient(circle at 35% 30%,rgba(255,255,255,.6),rgba(255,255,255,0) 62%);box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.cell i.u{opacity:.2}.cell i.hid{visibility:hidden}
+.fly{position:fixed;z-index:50;pointer-events:none;width:auto;height:auto}
+.rule{grid-column:1/-1;height:3px;border-radius:2px;background:var(--ink)}
+.big{font:600 24px/1.4 "STIX Two Text",Georgia,serif;margin:12px 0 4px}
+.num{background:#0F2229;color:#fff;border-radius:14px;padding:10px 18px;font:600 42px/1.2 "STIX Two Text",Georgia,serif;letter-spacing:.08em;margin:8px 0 2px}.num sub{font-size:18px;color:#9DB0B8;letter-spacing:0}
+.msg{min-height:3em;color:var(--b);font-weight:700;margin:8px 0 0}
+.note{font-size:15px;color:var(--mute);margin-top:12px}
+
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;src:url("../../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;src:url("../../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"STIX Two Text";font-weight:600;src:url("../../fonts/stix-two-text-latin-600-normal.woff2") format("woff2");font-display:swap}
+:root{--paper:#FFFFFF;--ink:#141C2B;--mute:#55637A;--line:#D5DBE5;--surf:#FFFFFF;--b:#1D4ED8}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#131A28;--ink:#E8EDF6;--mute:#97A5BE;--line:#26324A;--surf:#131A28;--b:#7AA2FF}}
+:root[data-theme="dark"]{--paper:#131A28;--ink:#E8EDF6;--mute:#97A5BE;--line:#26324A;--surf:#131A28;--b:#7AA2FF}
+main{max-width:980px}
+.row button,.chips button{min-height:44px}
+.sc{max-width:100%;overscroll-behavior-x:contain}
+.cell{min-width:0}
+@media(max-width:600px){main{padding:12px 8px 24px}.stage{padding:8px}.nums input{width:5.5em}.ch{font-size:15px}.ch small{font-size:11px}.cell{padding:4px 2px}.rl{font-size:11px}}
+@media(max-width:360px){.nums{gap:8px}.nums label{gap:4px}.nums input{width:4.8em}.row button{padding:8px 10px;font-size:15px}}
+h2{font:600 22px/1.2 "STIX Two Text",Georgia,serif;margin:30px 0 4px}
+.sec{color:var(--mute);margin:0 0 6px;font-size:15px;max-width:62ch}
+.dc{display:flex;align-items:center;justify-content:center;text-align:center;font:600 30px/1.15 "STIX Two Text",Georgia,serif;min-height:48px;padding:6px 2px;border-radius:10px;background:color-mix(in srgb,var(--cc) 10%,var(--surf));border:2px solid color-mix(in srgb,var(--cc) 40%,var(--line))}
+.dc sup{font-size:15px;margin-right:1px;color:var(--b)}
+.dc.sm{font-size:22px;min-height:36px;border-style:dashed}.dc.sm:empty,.dc.pn:empty{border-color:transparent;background:none}
+.dc.pn{border-style:dashed}
+.dc.act{box-shadow:0 0 0 3px var(--b)}
+@media(max-width:600px){.dc{font-size:24px}.dc.sm{font-size:19px}}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><div><div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h1>Addition as grouping</h1></div><button id="gear" type="button" aria-expanded="false" aria-controls="menu" aria-label="Base settings">⚙</button></div>
+<div id="menu" hidden><div class="ctl"><label for="Bs">Base</label><input id="Bs" type="range" min="2" max="16"><output id="Bo"></output></div><div class="chips" id="chips"></div></div>
+<p class="lead">Two numbers, one above the other. Adding drops the counters from each column into the sum row, starting at the right. When a column holds a full bundle, press Bundle to trade it for one counter in the next column: the carry.</p>
+<div class="nums"><label for="iA">First<input id="iA" type="number" min="0" max="9999" step="1" inputmode="numeric"></label><label for="iZ">Second<input id="iZ" type="number" min="0" max="9999" step="1" inputmode="numeric"></label></div>
+<h2>1 · Counters, one column at a time</h2>
+<div class="row"><button id="step">Add next column</button><button id="bun">Bundle</button><button id="play" class="alt">Play all</button><button id="rst" class="alt">Reset</button></div>
+<div class="stage"><div id="o0"></div><div id="info"></div></div>
+<p class="note" id="note"></p>
+<h2>2 · The same trades, in digits</h2>
+<p class="sec">This is the written method, following the buttons above. When a column holds a full bundle, its total shows a small 1 in front (the bundle). Pressing Bundle sends that 1 up as the carry into the next column, and the sum keeps only the digit.</p>
+<div class="stage"><div id="o1"></div></div>
+</main>
+<script>
+const $=i=>document.getElementById(i),CH='0123456789ABCDEF',DC=['#F5B93A','#7DB4F0','#52CDBB','#F08CB0'];
+const S={B:10,A:478,Z:256,k:0,pend:0,busy:0,auto:0,tok:0,msg:'',fl:[]};
+const digs=(v,b)=>{const d=[];do{d.push(v%b);v=Math.floor(v/b)}while(v>0);return d};
+const num=(v,b)=>digs(v,b).reverse().map(x=>CH[x]).join('')+(b===10?'':`<sub>${b}</sub>`);
+const pad=(d,n)=>{while(d.length<n)d.push(0);return d};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const R=e=>e.getBoundingClientRect(),cv=p=>getComputedStyle(document.documentElement).getPropertyValue('--c'+(p%4)).trim();
+const dotsIn=(r,p)=>[...document.querySelectorAll(`#o0 .cell[data-r="${r}"][data-p="${p}"] i`)];
+const g=r=>({left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});
+
+// Model: for each column p (right to left), s = digit1 + digit2 + carry-in; q bundles carry out, r counters stay.
+function reset(){S.tok++;clean();S.busy=0;S.auto=0;const B=S.B,n=Math.max(digs(S.A,B).length,digs(S.Z,B).length,digs(S.A+S.Z,B).length);
+ S.n=n;S.a=pad(digs(S.A,B),n);S.b=pad(digs(S.Z,B),n);let ca=0;
+ S.st=S.a.map((x,p)=>{const y=S.b[p],s=x+y+ca,q=Math.floor(s/B),o={p,x,y,ca,s,q,r:s%B};ca=q;return o});
+ S.k=0;S.pend=0;S.msg='Press Add next column. The rightmost column goes first. Bundling is a separate step.'}
+
+// Draw the grid for state k (columns below k are finished). ex describes the column being animated:
+// ex.go fades its sources, ex.one hides its sum counters, ex.two hides the counters about to be bundled.
+function render(k,ex){
+ const B=S.B,n=S.n,st=S.st,mw=n>8?52:68,sc=B>10?.8:1,sz=p=>Math.round((10+Math.min(p,3)*4)*sc);
+ const used=p=>p<k||(ex&&ex.p===p&&ex.go);
+ const dts=(m,cls,hid)=>Array.from({length:m},(_,i)=>`<i class="${cls}${hid&&hid(i)?' hid':''}"></i>`).join('');
+ const cell=(r,p,inner)=>`<div class="cell ${r}" data-r="${r}" data-p="${p}" style="--cc:var(--c${p%4});--sz:${sz(p)}px">${inner}</div>`;
+ const P=[...Array(n).keys()].reverse();
+ let h=`<div class="grid" style="grid-template-columns:3.2em repeat(${n},minmax(${mw}px,1fr))"><span></span>`+P.map(p=>`<div class="ch">${B**p}<small>${B}<sup>${p}</sup></small></div>`).join('');
+ h+='<span class="rl">carry</span>'+P.map(p=>{let c='';if(p>=1&&st[p-1].q>0){if(p-1<k)c=dts(st[p-1].q,used(p)?'u':'');else if(ex&&ex.p===p-1&&ex.two)c=dts(1,'',()=>1)}return cell('C',p,c)}).join('');
+ h+='<span class="rl">1st</span>'+P.map(p=>cell('A',p,dts(S.a[p],used(p)?'u':''))).join('');
+ h+='<span class="rl">2nd</span>'+P.map(p=>cell('B',p,dts(S.b[p],used(p)?'u':''))).join('');
+ h+='<div class="rule"></div><span class="rl">sum</span>'+P.map(p=>{let c='';const s=st[p];if(p<k)c=dts(s.r,'');else if(ex&&ex.p===p)c=dts(s.s,'',i=>ex.one||(ex.two&&i>=s.r));return cell('S',p,c)}).join('');
+ $('o0').innerHTML=`<div class="sc">${h}</div></div>`;
+}
+function info(){const B=S.B,done=S.k>=S.n;
+ let h=`<p class="big">${num(S.A,B)} + ${num(S.Z,B)} = ${done?num(S.A+S.Z,B):'?'}</p>`;
+ if(done){const rd=S.st.map(s=>[s.r,s.p]).reverse();let f=rd.findIndex(o=>o[0]>0);if(f<0)f=rd.length-1;
+  h+=`<div class="num">${rd.slice(f).map(o=>`<span style="color:${DC[o[1]%4]}">${CH[o[0]]}</span>`).join('')}${B===10?'':`<sub>${B}</sub>`}</div>`}
+ $('info').innerHTML=h+`<p class="msg" aria-live="polite">${S.msg}</p>`}
+const dg=v=>v>=S.B?`<sup>1</sup>${CH[v-S.B]}`:CH[v];
+const gc=n=>`grid-template-columns:3.2em repeat(${n},minmax(${n>8?44:56}px,1fr))`;
+const cs=(p,c,t)=>`<div class="dc ${c||''}" style="--cc:var(--c${p%4})">${t}</div>`;
+function digits(){
+ const n=S.n,st=S.st,k=S.k,P=[...Array(n).keys()].reverse(),act=p=>p===k&&k<n?' act':'';
+ const row=(l,f)=>`<span class="rl">${l}</span>`+P.map(f).join('');
+ $('o1').innerHTML=`<div class="sc"><div class="grid" style="${gc(n)}"><span></span>${P.map(p=>`<div class="ch">${S.B**p}</div>`).join('')}`+
+ row('carry',p=>cs(p,'sm',p>=1&&p-1<k&&st[p-1].q>0?'1':''))+
+ row('1st',p=>cs(p,act(p),CH[S.a[p]]))+
+ row('2nd',p=>cs(p,'',CH[S.b[p]]))+
+ `<div class="rule"></div>`+row('sum',p=>p<k?cs(p,'',CH[st[p].r]):p===k&&S.pend?cs(p,'pn act',dg(st[p].s)):cs(p,'pn',''))+`</div></div>`}
+function ctl(){$('step').disabled=S.busy||S.auto||S.pend||S.k>=S.n;$('bun').disabled=S.busy||S.auto||!S.pend;$('play').disabled=S.busy||S.auto||S.k>=S.n}
+function paint(){$('Bs').value=S.B;$('Bo').textContent=S.B;
+ if(document.activeElement!==$('iA'))$('iA').value=S.A;if(document.activeElement!==$('iZ'))$('iZ').value=S.Z;
+ $('chips').innerHTML=[2,3,5,8,10,12,16].map(b=>`<button type="button" class="${b===S.B?'on':''}" data-b="${b}">${b}</button>`).join('');
+ $('note').textContent=S.B===10?'':'Numbers are typed in base ten and shown in base '+S.B+'.'+(S.B>10?' Digits above 9 use letters: A = 10, up to '+CH[S.B-1]+' = '+(S.B-1)+'.':'');
+ render(S.k,S.pend?{p:S.k,go:1}:null);info();ctl();digits()}
+
+// Animation helpers: a flying counter is a fixed-position clone moved between two measured rectangles.
+function mv(f,t,c1,c2,d,dl){const e=document.createElement('div');e.className='fly';document.body.appendChild(e);S.fl.push(e);
+ return e.animate([{...g(f),backgroundColor:c1},{...g(t),backgroundColor:c2}],{duration:d,delay:dl,easing:'ease-in-out',fill:'both'}).finished.catch(()=>{})}
+function clean(){S.fl.forEach(e=>{e.getAnimations().forEach(a=>a.cancel());e.remove()});S.fl=[]}
+
+const msgAdd=s=>`${S.B**s.p}s column: ${s.x} + ${s.y} + ${s.ca} carried = ${s.s} counters. `+(s.q>0?`That fills a bundle of ${S.B}. Press Bundle to carry it.`:`That is fewer than ${S.B}, so nothing carries. The digit is ${CH[s.r]}.`);
+const msgBun=s=>`${S.B} counters worth ${S.B**s.p} bundle into 1 counter worth ${S.B**(s.p+1)}: the carry. ${s.r} stay as the digit.`;
+const RM=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+// Add: counters from both numbers and the incoming carry drop into the sum cell. Nothing is bundled yet.
+async function addCol(){
+ if(S.busy||S.pend||S.k>=S.n)return;
+ const p=S.k,s=S.st[p],tok=S.tok,ok=()=>tok===S.tok;
+ if(RM()){S.msg=msgAdd(s);if(s.q>0)S.pend=1;else S.k++;paint();return}
+ S.busy=1;ctl();S.msg='';info();
+ const from=['A','B','C'].flatMap(r=>dotsIn(r,p)).map(R);
+ render(p,{p,go:1,one:1});
+ const dst=dotsIn('S',p),gap=Math.min(80,1200/from.length);
+ await Promise.all(from.map((f,i)=>mv(f,R(dst[i]),cv(p),cv(p),900,i*gap)));
+ if(!ok())return;
+ dst.forEach(e=>e.classList.remove('hid'));clean();
+ if(s.q===0)await sleep(350);
+ if(!ok())return;
+ S.msg=msgAdd(s);if(s.q>0)S.pend=1;else S.k++;S.busy=0;paint();
+}
+// Bundle: a full bundle gathers, merges into one counter of the next place, and rises into the carry row.
+async function bundleCol(){
+ if(S.busy||!S.pend)return;
+ const p=S.k,s=S.st[p],B=S.B,tok=S.tok,ok=()=>tok===S.tok;
+ if(RM()){S.msg=msgBun(s);S.pend=0;S.k++;paint();return}
+ S.busy=1;ctl();S.msg='';info();
+ const fr=dotsIn('S',p).slice(s.r).map(R);
+ render(p,{p,go:1,two:1});
+ const t=R(dotsIn('C',p+1)[0]),cx=fr.reduce((a,r)=>a+r.left+r.width/2,0)/B,cy=fr.reduce((a,r)=>a+r.top+r.height/2,0)/B,w=fr[0].width,gt={left:cx-w/2,top:cy-w/2,width:w,height:w};
+ await Promise.all(fr.map(f=>mv(f,gt,cv(p),cv(p),700,0)));
+ if(!ok())return;
+ clean();
+ await mv(gt,t,cv(p),cv(p+1),1100,0);
+ if(!ok())return;
+ clean();
+ S.pend=0;S.k++;S.msg=msgBun(s);S.busy=0;paint();
+}
+async function play(){if(S.busy||S.auto)return;S.auto=1;ctl();const tok=S.tok;try{while(S.k<S.n&&tok===S.tok){if(S.pend)await bundleCol();else await addCol();if(tok===S.tok)await sleep(350)}}finally{if(tok===S.tok){S.auto=0;ctl()}}}
+
+$('step').onclick=addCol;$('bun').onclick=bundleCol;$('play').onclick=play;$('rst').onclick=()=>{reset();paint()};
+$('gear').onclick=()=>{const h=$('menu').hidden=!$('menu').hidden;$('gear').setAttribute('aria-expanded',String(!h))};
+$('Bs').oninput=e=>{S.B=+e.target.value;reset();paint()};
+$('chips').onclick=e=>{const b=e.target.closest('button');if(b){S.B=+b.dataset.b;reset();paint()}};
+function numIn(id,key){$(id).oninput=e=>{const t=e.target.value,v=Math.floor(+t);if(t!==''&&v>=0&&v<=9999){S[key]=v;reset();paint()}};
+ $(id).onchange=e=>{const v=Math.floor(+e.target.value);S[key]=Math.min(9999,Math.max(0,v>0?v:0));e.target.value=S[key];reset();paint()}}
+numIn('iA','A');numIn('iZ','Z');
+reset();paint();
+function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);
+window.addEventListener('load',notifySize);
+document.fonts?.ready.then(notifySize);
+notifySize();
+</script>
+</body>
+</html>

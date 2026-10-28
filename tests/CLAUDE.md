@@ -27,6 +27,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `university.test.mjs`, `university-slides.test.mjs` | `university.js`, `university-model.js`, university decks |
 | `learning.test.mjs` | `learning-content.js`, `visual-lessons.js`, chapter pages |
 | `basics-addition.test.mjs` | the published addition and carrying Basics lesson, linked route, display hooks and exact regrouped sums in bases 2 to 16 |
+| `basics-language.test.mjs` | Both Foundation languages, iframe locale, independent English arithmetic and source-publication parity |
 | `basics-subtraction.test.mjs` | the published borrowing Basics lesson, its route and display hooks, and exact subtraction with chained borrows in bases 2 to 16 |
 | `course-content.test.mjs`, `sequence.test.mjs` | revised course decks (tasks, hints, corrections) and `sequence-model.js` |
 | `resources.test.mjs`, `enrichment.test.mjs`, `sources.test.mjs` | library, study guides, enrichment data, published sources |
