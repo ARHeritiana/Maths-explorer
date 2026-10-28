@@ -70,6 +70,13 @@ h2{font:600 22px/1.2 "STIX Two Text",Georgia,serif;margin:30px 0 4px}
 .dc.pn{border-style:dashed}
 .dc.act{box-shadow:0 0 0 3px var(--b)}
 @media(max-width:600px){.dc{font-size:24px}.dc.sm{font-size:19px}}
+
+/* Keep enlarged text and its controls within narrow screens. */
+main{overflow-wrap:anywhere}
+.top>div{min-width:0}
+.nums label,.numrow,.vw{flex-wrap:wrap;min-width:0;max-width:100%}
+.nums input,.numrow input{min-width:0;max-width:100%}
+.ctl{grid-template-columns:auto minmax(0,1fr) auto}
 </style>
 </head>
 <body>

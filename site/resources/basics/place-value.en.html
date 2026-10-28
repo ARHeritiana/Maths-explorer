@@ -21,7 +21,7 @@ h1{font:600 clamp(28px,7vw,40px)/1.1 "STIX Two Text",Georgia,serif;margin:0 0 10
 .tabs{display:flex;gap:4px;overflow-x:auto;padding:4px;background:var(--surf);border:2px solid var(--line);border-radius:999px;margin-bottom:18px}
 .tabs button{flex:1 0 auto;font:inherit;font-weight:700;color:var(--mute);background:none;border:0;border-radius:999px;padding:9px 14px;cursor:pointer}
 .tabs button[aria-selected=true]{color:var(--paper);background:var(--ink)}
-button:focus-visible,input:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+button:focus-visible,input:focus-visible,canvas:focus-visible{outline:3px solid var(--b);outline-offset:2px}
 .why{margin:0 0 16px;color:var(--mute)}
 .ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:8px 0}
 .ctl output{font-weight:700;min-width:3ch;text-align:right}
@@ -61,6 +61,13 @@ td.w{font:600 20px "STIX Two Text",Georgia,serif;white-space:nowrap}
 .btns button{font-size:14px;padding:8px 3px}
 @media(max-width:600px){main{padding:12px 8px 24px}.cols{grid-template-columns:repeat(2,minmax(0,1fr))}.col{padding:8px 4px}.num{font-size:36px}}
 @media(max-width:360px){.ch{font-size:17px}.btns button{font-size:12px}.tabs button{padding:8px 10px}}
+
+/* Keep enlarged text and its controls within narrow screens. */
+main{overflow-wrap:anywhere}
+.top>div{min-width:0}
+.nums label,.numrow,.vw{flex-wrap:wrap;min-width:0;max-width:100%}
+.nums input,.numrow input{min-width:0;max-width:100%}
+.ctl{grid-template-columns:auto minmax(0,1fr) auto}
 </style>
 </head>
 <body>
@@ -144,7 +151,7 @@ function pv(){
  let h='<div class="cols">';
  for(let p=3;p>=0;p--){
   h+=`<div class="col" data-p="${p}" style="--cc:var(--c${p});--sz:${SZ[p]}px"><div class="ch">${B**p}<small>${B}<sup>${p}</sup></small></div><div class="dots" role="img" aria-label="${c[p]} counters">${blocks(p,c[p],B)}</div><div class="meter" aria-hidden="true">${Array.from({length:B},(_,i)=>`<b class="${i<c[p]?'f':''}"></b>`).join('')}</div><div class="btns">
-  <button data-a="add" data-p="${p}">+1</button><button data-a="rem" data-p="${p}" ${c[p]<1?'disabled':''}>−1</button>
+  <button data-a="add" data-p="${p}" ${v+B**p<B**4?'':'disabled'}>+1</button><button data-a="rem" data-p="${p}" ${c[p]<1?'disabled':''}>−1</button>
   <button class="w" data-a="bun" data-p="${p}" ${c[p]>=B&&p<3?'':'disabled'}>Bundle ${B}</button><button class="w" data-a="unb" data-p="${p}" ${c[p]>0&&p>0?'':'disabled'}>Unbundle</button></div></div>`}
  h+='</div>';
  const DC=['#F5B93A','#7DB4F0','#52CDBB','#F08CB0'];const ds=c.map((x,p)=>[x,p]).reverse();let f=ds.findIndex(o=>o[0]>0);if(f<0)f=3;
@@ -204,6 +211,15 @@ function init3(){if(R3||!window.THREE)return;
  sc.add(grp,fx,dl,new THREE.AmbientLight(0xffffff,.75));
  R3={r,sc,cam,grp,fx,az:.35,el:.95,dist:30,tx:0,ty:0,tz:0,zoom:1,blocks:[[],[],[],[]],on:0};
  const d=r.domElement,pts=new Map(),zm=z=>Math.max(.3,Math.min(8,z));
+ d.tabIndex=0;d.setAttribute('role','img');d.setAttribute('aria-label','3D place-value blocks. Arrow keys rotate, + and − zoom, 0 resets the camera.');
+ d.addEventListener('keydown',e=>{
+  if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','0'].includes(e.key))return;
+  e.preventDefault();
+  if(e.key==='ArrowLeft')R3.az+=.1;if(e.key==='ArrowRight')R3.az-=.1;
+  if(e.key==='ArrowUp')R3.el=Math.min(1.5,R3.el+.1);if(e.key==='ArrowDown')R3.el=Math.max(.08,R3.el-.1);
+  if(e.key==='+'||e.key==='=')R3.zoom=zm(R3.zoom*1.4);if(e.key==='-')R3.zoom=zm(R3.zoom/1.4);
+  if(e.key==='0'){R3.az=.35;R3.el=.95;R3.zoom=1}
+ });
  d.addEventListener('pointerdown',e=>{d.setPointerCapture(e.pointerId);pts.set(e.pointerId,[e.clientX,e.clientY])});
  d.addEventListener('pointermove',e=>{const o=pts.get(e.pointerId);if(!o)return;
   if(pts.size===1){R3.az-=(e.clientX-o[0])*.01;R3.el=Math.max(.08,Math.min(1.5,R3.el+(e.clientY-o[1])*.01))}
@@ -255,6 +271,7 @@ $('o0').addEventListener('pointermove',e=>{if(!drag)return;
 ['pointerup','pointercancel'].forEach(t=>$('o0').addEventListener(t,()=>{drag=null}));
 $('gear').onclick=()=>{const h=$('main').classList.toggle('nos');$('gear').setAttribute('aria-expanded',String(!h))};
 document.addEventListener('click',e=>{const b=e.target.closest('.chips button');if(b){setB(+b.dataset.b);paint()}});
+new MutationObserver(()=>{cancelAnim();build()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 paint();
 function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);

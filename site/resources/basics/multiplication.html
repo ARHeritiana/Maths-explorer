@@ -66,6 +66,13 @@ canvas{display:block;width:100%;min-width:560px}
 .wl.ul .dg{border-bottom:2px solid var(--ink)}.wl.tl .dg{border-top:2px solid var(--ink)}@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;src:url("../../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"Atkinson Hyperlegible";font-weight:700;src:url("../../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"STIX Two Text";font-weight:600;src:url("../../fonts/stix-two-text-latin-600-normal.woff2") format("woff2");font-display:swap}
+
+/* Keep enlarged text and its controls within narrow screens. */
+main{overflow-wrap:anywhere}
+.top>div{min-width:0}
+.nums label,.numrow,.vw{flex-wrap:wrap;min-width:0;max-width:100%}
+.nums input,.numrow input{min-width:0;max-width:100%}
+.ctl{grid-template-columns:auto minmax(0,1fr) auto}
 </style></head>
 <body>
 <main>
@@ -127,8 +134,8 @@ function carry(Ls,yt,z,hh){const cnt=Ls.map(l=>l.length),cur=[...cnt],fin=[],ite
   for(let k=o;k<f;k++){const sl=slot(pl,k,yt),sr=ctr(pl-1),b={x:sl.x,y:sl.y,r:RAD[pl],a:1,f:pl,s:-1,z,pl,k};items.push({a:{...b,x:sr.x,y:sr.y,r:2,a:0},b,t0:.45,t1:1})}}
  return{items,dying}}
 
-async function carrySteps(zs){const nm=['unités','dizaines','centaines','milliers'];
- for(let pl=0;pl<3;pl++){const items=[],dy=new Set();
+async function carrySteps(zs){const tok=S.tok,nm=['unités','dizaines','centaines','milliers'];
+ for(let pl=0;pl<3;pl++){if(tok!==S.tok)return false;const items=[],dy=new Set();
   zs.forEach(({z,yt,hh})=>{const l=S.balls.filter(q=>q.z===z&&q.pl===pl).sort((u,v)=>u.k-v.k),g=Math.floor(l.length/10);if(!g)return;
    const nx=S.balls.filter(q=>q.z===z&&q.pl===pl+1).length,c0={x:CL(pl)+75,y:yt+hh/2};
    l.slice(l.length-10*g).forEach(q=>{dy.add(q);items.push({a:mk(q),b:{...mk(q),x:c0.x,y:c0.y,a:0},t0:0,t1:.5})});
@@ -136,8 +143,8 @@ async function carrySteps(zs){const nm=['unités','dizaines','centaines','millie
   if(!items.length)continue;
   S.msg=`Dix ${nm[pl]} sont échangées contre une unité du rang suivant : ${nm[pl+1]}.`;info();
   if(!await play(items,S.balls.filter(q=>!dy.has(q)),1500))return false;
-  await new Promise(r=>setTimeout(r,300))}
- return true}
+  await new Promise(r=>setTimeout(r,300));if(tok!==S.tok)return false}
+ return tok===S.tok}
 const STEP=[null,
 async()=>{const{a,c,r,by,lx}=S,items=[],ns=[];
  const un=(n,t,pk,pos)=>rg(0,n).forEach(i=>{const pi=i<10*t?1:0,src=pk[pi?Math.floor(i/10):t+i-10*t],b=B0(...pos(i),r,pi),t0=.25*(i%10)/10;ns.push(b);items.push({a:{...mk(src),f:pi},b,t0,t1:t0+.6})});
@@ -197,6 +204,7 @@ $('modes').onclick=e=>{const b=e.target.closest('button');if(b){S.mode=+b.datase
 function numIn(id,key){$(id).oninput=e=>{const t=e.target.value,v=Math.floor(+t);if(t!==''&&v>=0&&v<=99){S[key]=v;reset();paint()}};
  $(id).onchange=e=>{const v=Math.floor(+e.target.value);S[key]=Math.min(99,Math.max(0,v>0?v:0));e.target.value=S[key];reset();paint()}}
 numIn('iA','n');numIn('iZ','m');
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 reset();paint();
 function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);

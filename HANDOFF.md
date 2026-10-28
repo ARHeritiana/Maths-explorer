@@ -1,5 +1,9 @@
 # Handoff
 
+## Foundations and practice corrections, 28 October 2026
+
+Reviewed the 20 commits dated 28 October (UTC), covering foundations, standalone practice and publication checks. Foundations now prevent counters exceeding four-column capacity, support keyboard rotation/zoom/reset of the 3D camera, redraw when the site theme changes and cancel multiplication carries after a reset. Interval practice approvals are bound to the nine reviewed source statements; the Python precondition is retained, with regression checks against the French source table and program. Enlarged text and input labels now wrap within narrow screens. New interaction regressions cover both existing language editions. Private audit and computation evidence lives in `audits/basics-20261028/` and `verification/` of the private repository. Human/classroom acceptance remains pending. The bilingual curriculum goal remains on standby and unfinished.
+
 ## Homepage and catalogue redesign, 27 October 2026
 
 Milestone 1 of `docs/REDESIGN_PROPOSAL_2026-10-27.md` is implemented: useful homepage search, six existing tools with task-oriented entrances, reading links, illustrated chapter cards, sans-serif headings and a compact phone menu. Search reuses the discovery index; illustrations reuse existing mathematical models. Existing routes and chapter documents are retained. Decorative interface animation has been removed; mathematical interactions remain. The six-stage chapter presentation is still present and is milestone 2.

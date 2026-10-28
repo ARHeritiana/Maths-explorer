@@ -69,6 +69,13 @@ main{max-width:980px}
 .cell{min-width:0}
 @media(max-width:600px){main{padding:12px 8px 24px}.stage{padding:8px}.nums input{width:5.5em}.ch{font-size:15px}.ch small{font-size:11px}.cell{padding:4px 2px}.rl{font-size:11px}}
 @media(max-width:360px){.nums{gap:8px}.nums label{gap:4px}.nums input{width:4.8em}.row button{padding:8px 10px;font-size:15px}}
+
+/* Keep enlarged text and its controls within narrow screens. */
+main{overflow-wrap:anywhere}
+.top>div{min-width:0}
+.nums label,.numrow,.vw{flex-wrap:wrap;min-width:0;max-width:100%}
+.nums input,.numrow input{min-width:0;max-width:100%}
+.ctl{grid-template-columns:auto minmax(0,1fr) auto}
 </style>
 </head>
 <body>

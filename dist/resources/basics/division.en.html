@@ -40,6 +40,13 @@ canvas{display:block;width:100%;min-width:560px}
 @font-face{font-family:"Atkinson Hyperlegible";font-weight:400;src:url("../../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"Atkinson Hyperlegible";font-weight:700;src:url("../../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"STIX Two Text";font-weight:600;src:url("../../fonts/stix-two-text-latin-600-normal.woff2") format("woff2");font-display:swap}
+
+/* Keep enlarged text and its controls within narrow screens. */
+main{overflow-wrap:anywhere}
+.top>div{min-width:0}
+.nums label,.numrow,.vw{flex-wrap:wrap;min-width:0;max-width:100%}
+.nums input,.numrow input{min-width:0;max-width:100%}
+.ctl{grid-template-columns:auto minmax(0,1fr) auto}
 </style></head>
 <body>
 <main>
@@ -112,6 +119,7 @@ $('step').onclick=next;$('play').onclick=auto;$('rst').onclick=()=>{reset();pain
 function numIn(id,key,lo,hi){$(id).oninput=e=>{const t=e.target.value,v=Math.floor(+t);if(t!==''&&v>=lo&&v<=hi){S[key]=v;reset();paint()}};
  $(id).onchange=e=>{const v=Math.floor(+e.target.value);S[key]=Math.min(hi,Math.max(lo,v>0?v:lo));e.target.value=S[key];reset();paint()}}
 numIn('iA','n',0,999);numIn('iZ','m',2,9);
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 reset();paint();
 function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);

@@ -2,6 +2,19 @@
 // Only checked, self-contained worked examples may be offered as independent practice.
 // In this chapter the TeX has a table after one example and Python code before another;
 // both are absent from the extracted slide. Restore their original data on the web.
+// Approval is bound to these reviewed source statements, never to a whole chapter.
+// A new or changed statement must be checked before becoming independent practice.
+const approvedIntervalExamples = new Set([
+  String.raw`Donner le plus petit des cinq ensembles contenant chacun des nombres : \(-95\) ; \(7{,}29\) ; \(5/3\) ; \(\sqrt{25}\) ; \(\sqrt2\) ; \(\pi\) ; \(0{,}0002\).`,
+  String.raw`Écrire sous forme d'intervalle puis représenter : \(2\leq x\leq5\) ; \(x&gt;4\) ; \(-6&lt;x\leq2\) ; \(x&lt;0\).`,
+  String.raw`Avec \(I=[0;12]\) et \(J=[3;20]\), déterminer \(I\cap J\) et \(I\cup J\).`,
+  'Compléter, en justifiant par des représentations sur une droite graduée.',
+  String.raw`Calculer \(|3{,}2|\), \(|-1{,}6|\), \(|\sqrt3-2|\), puis les distances entre \(2\) et \(5\), \(2\) et \(-5\), \(-2\) et \(-5\).`,
+  String.raw`Résoudre : \(|x-7/3|=14\) ; \(|x-2|\leq3\) ; \(|x+3|&lt;5\).`,
+  String.raw`Écrire \(x\in[4;10]\) sous forme d'une inégalité avec valeur absolue.`,
+  String.raw`Encadrer \(\sqrt2\) par deux centièmes consécutifs. Donner son arrondi au centième. Arrondir \(0{,}004567\) à trois chiffres significatifs, puis \(12345\) à trois chiffres significatifs en écriture scientifique.`,
+  String.raw`Expliquer pourquoi cette fonction encadre \(\sqrt2\). Que renvoie-t-elle pour \(p=2\) ? Pourquoi termine-t-elle ?`,
+]);
 const intervalCases = [
   [String.raw`\(I=]-4;3],\quad J=[1;5]\)`, String.raw`\(I\cap J=[1;3],\quad I\cup J=]-4;5]\)`],
   [String.raw`\(I=]-\infty;2],\quad J=[-4;+\infty[\)`, String.raw`\(I\cap J=[-4;2],\quad I\cup J=\mathbb{R}\)`],
@@ -10,11 +23,13 @@ const intervalCases = [
   [String.raw`\(I=]-2;0[,\quad J=]0;3]\)`, String.raw`\(I\cap J=\varnothing,\quad I\cup J=]-2;0[\cup]0;3]\)`],
 ];
 const boundingProgram = '<pre class="sequence-code"><code>def encadre_racine2(p):\n' +
+  '    # p entier naturel ; calculs entiers exacts\n' +
   '    q = 10**p\n    k = 0\n    while (k+1)**2 &lt;= 2*q*q:\n' +
   '        k = k+1\n    return k/q, (k+1)/q</code></pre>';
 function restoreExerciseContext(deckId, slide) {
   if (deckId !== 'seconde-04' || slide.k !== 'example') return slide;
   const body = slide.b || [];
+  if (!approvedIntervalExamples.has(body[0])) return slide;
   if (body.some(s => /^(?:Compléter, en justifiant|Complete, justifying)/i.test(s || ''))) {
     const intro = [
       'Pour chaque paire d’intervalles ci-dessous, déterminer l’intersection et la réunion.',
@@ -30,7 +45,7 @@ function restoreExerciseContext(deckId, slide) {
   if (body.some(s => /^(?:Expliquer pourquoi cette fonction|Explain why this function)/i.test(s || ''))) {
     return {...slide, b: body.map(s => s ? boundingProgram + '<p>' + s + '</p>' : s), practiceReady: true, original: slide};
   }
-  return slide;
+  return {...slide, practiceReady: true, original: slide};
 }
 export function sequenceModel(deck) {
   const lessons = [], tasks = [], activities = [], goals = [], diagnostics = [], checks = [];
@@ -58,7 +73,7 @@ export function sequenceModel(deck) {
       current.statements.push(slide);
     }
   }
-  if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a && (slide.practiceReady || deck.id === 'seconde-04')) tasks.push({ ...slide, lesson:lesson.title, reused:true });
+  if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a && slide.practiceReady) tasks.push({ ...slide, lesson:lesson.title, reused:true });
   return { goals, lessons, tasks, activities, diagnostics, checks };
 }
 
