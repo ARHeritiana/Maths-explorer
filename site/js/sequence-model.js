@@ -25,10 +25,10 @@ function restoreExerciseContext(deckId, slide) {
     const answers = (slide.a || ['', '']).map((s, L) => s ? '<ol>' +
       intervalCases.map(([, result]) => '<li>' + result + '</li>').join('') +
       '</ol><p>' + s + '</p>' : s);
-    return {...slide, b: statements, a: answers, practiceReady: true};
+    return {...slide, b: statements, a: answers, practiceReady: true, original: slide};
   }
   if (body.some(s => /^(?:Expliquer pourquoi cette fonction|Explain why this function)/i.test(s || ''))) {
-    return {...slide, b: body.map(s => s ? boundingProgram + '<p>' + s + '</p>' : s), practiceReady: true};
+    return {...slide, b: body.map(s => s ? boundingProgram + '<p>' + s + '</p>' : s), practiceReady: true, original: slide};
   }
   return slide;
 }
@@ -58,7 +58,7 @@ export function sequenceModel(deck) {
       current.statements.push(slide);
     }
   }
-  if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a && slide.practiceReady) tasks.push({ ...slide, lesson:lesson.title, reused:true });
+  if (!tasks.length) for (const lesson of lessons) for (const slide of lesson.examples) if (slide.a && (slide.practiceReady || deck.id === 'seconde-04')) tasks.push({ ...slide, lesson:lesson.title, reused:true });
   return { goals, lessons, tasks, activities, diagnostics, checks };
 }
 
