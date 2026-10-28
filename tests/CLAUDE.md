@@ -26,6 +26,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `player-controls.test.mjs`, `slide-format.test.mjs`, `slide-builder.test.mjs`, `expertes-widgets.test.mjs` | slide player, widget formatting, `scripts/build-slides.py`, Maths expertes widgets |
 | `university.test.mjs`, `university-slides.test.mjs` | `university.js`, `university-model.js`, university decks |
 | `learning.test.mjs` | `learning-content.js`, `visual-lessons.js`, chapter pages |
+| `basics-addition.test.mjs` | the published addition and carrying Basics lesson, linked route, display hooks and exact regrouped sums in bases 2 to 16 |
 | `course-content.test.mjs`, `sequence.test.mjs` | revised course decks (tasks, hints, corrections) and `sequence-model.js` |
 | `resources.test.mjs`, `enrichment.test.mjs`, `sources.test.mjs` | library, study guides, enrichment data, published sources |
 | `quadratic-workshop.test.mjs` | `quadratic-workshop.js` |
