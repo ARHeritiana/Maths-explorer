@@ -123,8 +123,19 @@ def prepare(check=False, adopt=False):
     if check:
         if dirty:
             raise ValueError('Content dependencies changed; run make site: ' + ', '.join(dirty))
-        if content_index.write(check=True):
-            raise ValueError('Linked catalogue metadata is stale; run make site')
+        stale = content_index.write(check=True)
+        if stale:
+            generated = content_index.generate()
+            detail = []
+            for path in stale:
+                expected = generated[ROOT / path]
+                actual = (ROOT / path).read_text() if (ROOT / path).exists() else ''
+                at = next((i for i, (a, b) in enumerate(zip(actual, expected)) if a != b),
+                          min(len(actual), len(expected)))
+                detail.append(str(path) + ' at character ' + str(at) +
+                              ': actual=' + repr(actual[at:at + 110]) +
+                              ', expected=' + repr(expected[at:at + 110]))
+            raise ValueError('Linked catalogue metadata is stale; run make site. ' + '; '.join(detail))
         if saved.get('outputs') != output_hashes():
             raise ValueError('Generated products changed or are missing; run make site and review the rebuilt outputs')
         print('Content dependencies, catalogue views and published products match.')
