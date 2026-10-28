@@ -17,6 +17,7 @@ import { icon } from "./icons.js";
 import { VARIANTS, HINT_ACTIONS, hasVariants, defaults as variantDefaults, randomParams, normalise as normaliseVariant, mountActivity, hasActivity, challengeIcon, originalOf, mountSolution, hasSolution } from "./challenges/registry.js";
 import { fullscreenButton } from "./visual-lessons.js";
 import { currentTheme, toggleTheme, installPresenting } from "./ui.js";
+import { assetHref } from "./data-loader.js";
 import { illuminateFeedback } from "./motion.js";
 import { mountExperiment } from "./lab/mount.js";
 import { resolveRef, labRef } from "./lab/registry.js";
@@ -155,7 +156,7 @@ function render() {
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -199,7 +200,7 @@ function render() {
   if (page === "gallery" && r.id) bindGallery();
   if (page === "challenges") stopChapter = bindChallenges();
   if (page === "home") stopChapter = bindHome($("#main"),discovery,t);
-  if (page === "basics" && r.id === "place-value") stopChapter = bindBasics();
+  if (page === "basics" && r.id) stopChapter = bindBasics();
   if (page === "resources") stopChapter = bindLibrary(t, { fmt });
   if (page === "pack") bindPack(t);
   if (page === "sources") bindSources(t);
@@ -423,9 +424,22 @@ function bindChallenges() {
   return stop;
 }
 // Foundation lessons are deliberately distinct from official curriculum chapters.
+const basicsLessons = [
+  {id: "place-value", number: "01", title: ["Numération et regroupements", "Place value and grouping"],
+   description: ["Construire les nombres avec des jetons, échanger les unités contre des dizaines et découvrir les bases.", "Build numbers with counters, group place values, and explore different bases."],
+   frameTitle: ["Activité interactive sur la numération", "Interactive place-value activity"]},
+  {id: "addition", number: "02", title: ["Addition et retenues", "Addition and carrying"],
+   description: ["Additionner colonne par colonne, puis comprendre la retenue comme un regroupement, même dans d’autres bases.", "Add column by column and see how regrouping creates a carry in different bases."],
+   frameTitle: ["Activité interactive sur l’addition et les retenues", "Interactive addition and carrying activity"]},
+];
 function basicsPage(id) {
-  if (!id) return `<main id="main" class="page" tabindex="-1"><div class="section-kicker">${pair("Apprendre", "Learn")}</div><h1>${pair("Les bases des mathématiques", "Mathematical foundations")}</h1><p class="page-intro">${pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")}</p><div class="pathway-grid" style="margin-top:24px"><article class="pathway-card"><div class="section-kicker">01 · ${pair("Nombres", "Numbers")}</div><h2><a href="#basics/place-value">${pair("Numération et regroupements", "Place value and grouping")}</a></h2><p>${pair("Regrouper les unités, échanger dix contre une dizaine et explorer les autres bases.", "Bundle ones into tens, unbundle them, and explore other bases.")}</p><a class="btn btn-primary" href="#basics/place-value">${pair("Explorer la leçon", "Open the lesson")}</a></article></div></main>`;
-  return `<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">${pair("Toutes les bases", "All foundations")}</a><iframe id="basics-frame" title="${pair("Activité interactive sur la numération", "Interactive place-value activity")}" src="./resources/basics/place-value.html" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>`;
+  if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+pair("Nombres", "Numbers")+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
+  const lesson = basicsLessons.find(l=>l.id===id);
+  if (!lesson) return "";
+  const related = id === "addition"
+    ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a></p>'
+    : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';
+  return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+lesson.id+".html")+'" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>';
 }
 function bindBasics(){
   const frame=$("#basics-frame"); if(!frame)return ()=>{};

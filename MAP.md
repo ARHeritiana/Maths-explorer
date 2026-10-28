@@ -75,7 +75,7 @@ All pages are rendered by `site/js/app.js` `render()`; the module named builds t
 |---|---|---|
 | `#topics[/<topic>[/<subtopic>]]` | Explorer > Domaines | `discovery.js`, `discovery-index.js`, `topic-registry.js` |
 | `#home` (default) | logo | `welcome.js` `homePage`, drawings `home-art.js` |
-| `#basics[/place-value]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html` |
+| `#basics[/place-value|addition]` | Apprendre > Bases | `app.js` `basicsPage` / `bindBasics`, `site/resources/basics/place-value.html` and `site/resources/basics/addition.html` |
 | `#resources` | Apprendre > Cours | `resource-library.js` `libraryPage` / `bindLibrary` (curriculum menu first, then the course list) |
 | `#chapter/<id>[/<tab>]` | (Cours) | `resource-library.js` `chapterPage` → `chapter-sequence.js` |
 | `#library[/<id>]` | (Cours) | `library.js` `mountLibrary` |
