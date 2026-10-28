@@ -6,7 +6,9 @@ const read = p => readFile(new URL(p,import.meta.url),'utf8');
 const lessons={
  'place-value':['Place value as grouping','La numération par regroupements'],
  addition:['Addition as grouping','Addition et retenues'],
- subtraction:['Subtraction as ungrouping','Soustraction et emprunts']
+ subtraction:['Subtraction as ungrouping','Soustraction et emprunts'],
+ multiplication:['Multiplication as grouping','Multiplication par regroupements'],
+ division:['Division as sharing','Division par partage']
 };
 test('Foundations iframe follows website language',async()=>{
  const app=await read('../dist/js/app.js');
@@ -46,3 +48,23 @@ for(const id of ['addition','subtraction']){
    }
  });
 }
+
+test('multiplication and division are reachable in the foundations progression',async()=>{
+ const app=await read('../dist/js/app.js');
+ for(const [id,num] of [['multiplication','04'],['division','05']]){
+  assert.ok(app.includes('r.id === "'+id+'"'));
+  assert.ok(app.includes('id: "'+id+'", number: "'+num+'"'));
+  assert.ok(app.includes('#basics/'+id));
+ }
+});
+test('new lesson sources retain the arithmetic models and animations',async()=>{
+ for(const id of ['multiplication','division']){
+  const html=await read('../dist/resources/basics/'+id+'.en.html');
+  assert.ok(html.includes('function reset()'));
+  assert.ok(html.includes('requestAnimationFrame'));
+  assert.ok(html.includes('function notifySize()'));
+  assert.ok(html.includes("document.fonts?.ready.then(notifySize)"));
+  assert.ok(html.includes('const S='));
+  assert.ok(!html.includes('fonts.googleapis.com'));
+ }
+});

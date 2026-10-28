@@ -156,7 +156,7 @@ function render() {
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction" || r.id === "multiplication" || r.id === "division")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -434,13 +434,23 @@ const basicsLessons = [
   {id: "subtraction", number: "03", title: ["Soustraction et emprunts", "Subtraction and borrowing"],
    description: ["Retirer des jetons colonne par colonne et comprendre les emprunts comme des dégroupements, même dans d’autres bases.", "Subtract counters column by column and understand borrowing as ungrouping in different bases."],
    frameTitle: ["Activité interactive sur la soustraction et les emprunts", "Interactive subtraction and borrowing activity"]},
+  {id: "multiplication", number: "04", title: ["Multiplication par regroupements", "Multiplication as grouping"],
+   description: ["Construire les produits avec des jetons, puis comprendre les produits partiels et les retenues.", "Use counters to understand partial products, place value, and carrying."],
+   frameTitle: ["Activité interactive sur la multiplication", "Interactive multiplication activity"]},
+  {id: "division", number: "05", title: ["Division par partage", "Division as sharing"],
+   description: ["Partager les jetons équitablement, échanger les restes et découvrir le quotient et le reste.", "Share counters equally, trade leftovers, and discover the quotient and remainder."],
+   frameTitle: ["Activité interactive sur le partage et la division", "Interactive division and sharing activity"]},
 ];
 function basicsPage(id) {
   if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+pair("Nombres", "Numbers")+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
   const lesson = basicsLessons.find(l=>l.id===id);
   if (!lesson) return "";
-  const related = id === "subtraction"
-    ? '<p class="muted"><a href="#basics/addition">'+pair("Revoir l’addition et les retenues", "Review addition and carrying")+'</a></p>'
+  const related = id === "division"
+    ? '<p class="muted"><a href="#basics/multiplication">'+pair("Leçon précédente : multiplication", "Previous lesson: multiplication")+'</a></p>'
+    : id === "multiplication"
+    ? '<p class="muted"><a href="#basics/subtraction">'+pair("Leçon précédente : soustraction", "Previous lesson: subtraction")+'</a> · <a href="#basics/division">'+pair("Leçon suivante : division", "Next lesson: division")+'</a></p>'
+    : id === "subtraction"
+    ? '<p class="muted"><a href="#basics/addition">'+pair("Revoir l’addition et les retenues", "Review addition and carrying")+'</a> · <a href="#basics/multiplication">'+pair("Leçon suivante : multiplication", "Next lesson: multiplication")+'</a></p>'
     : id === "addition"
       ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a> · <a href="#basics/subtraction">'+pair("Leçon suivante : soustraction et emprunts", "Next lesson: subtraction and borrowing")+'</a></p>'
       : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';

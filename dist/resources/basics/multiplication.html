@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multiplication par regroupements</title>
+
+<style>
+:root{--paper:#F4F7FA;--ink:#13303B;--mute:#566B75;--line:#CDD8DF;--surf:#FFFFFF;--a:#E9A416;--b:#2D6CB5;--c0:#E9A416;--c1:#2D6CB5;--c2:#2A9D8F;--c3:#C0507A;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--a:#F2B73D;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--a:#F2B73D;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:28px 14px 48px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+h1{font:600 clamp(28px,7vw,40px)/1.1 STIX Two Text,Georgia,serif;margin:0 0 10px}
+.lead{color:var(--mute);margin:0 0 16px;max-width:60ch}
+.motif{display:flex;align-items:flex-end;gap:6px;margin-bottom:12px}.motif i{display:block;border-radius:50%}
+.motif i:nth-child(1){width:12px;height:12px;background:var(--c0)}.motif i:nth-child(2){width:17px;height:17px;background:var(--c1)}.motif i:nth-child(3){width:22px;height:22px;background:var(--c2)}.motif i:nth-child(4){width:28px;height:28px;background:var(--c3)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+#gear{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--line);background:var(--surf);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+#gear[aria-expanded=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#menu{background:var(--surf);border:2px solid var(--line);border-radius:14px;padding:10px 14px;margin:0 0 12px}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:4px 0}
+.ctl output{font-weight:700;min-width:3ch;text-align:right}
+input[type=range]{width:100%;accent-color:var(--b)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}
+.chips button{font:inherit;font-weight:700;min-width:44px;padding:6px 10px;border-radius:999px;border:2px solid var(--line);background:var(--surf);color:var(--ink);cursor:pointer}
+.chips button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.nums{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0}
+.nums label{display:flex;align-items:center;gap:8px}
+.nums input{font:inherit;font-weight:700;width:6.5em;padding:8px 10px;border:2px solid var(--line);border-radius:8px;background:var(--surf);color:var(--ink)}
+.row{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.row button{font:inherit;font-weight:700;padding:8px 14px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.row button.alt{background:var(--surf);color:var(--ink)}
+.row button:disabled{opacity:.35;cursor:default}
+.stage{background:var(--surf);border:2px solid var(--line);border-radius:18px;padding:14px;margin-top:10px;box-shadow:0 6px 18px -10px rgba(19,48,59,.35)}
+.sc{overflow-x:auto;padding-bottom:4px}
+.grid{display:grid;gap:6px;align-items:stretch}
+.rl{font-size:13px;color:var(--mute);align-self:center}
+.ch{text-align:center;font-weight:700;font-size:18px;line-height:1.2}.ch small{display:block;font-weight:400;font-size:12px;color:var(--mute)}
+.cell{background:color-mix(in srgb,var(--cc) 10%,var(--surf));border:2px solid color-mix(in srgb,var(--cc) 40%,var(--line));border-radius:10px;padding:5px 3px;min-height:46px;display:flex;flex-wrap:wrap;gap:3px;align-content:flex-start;justify-content:center}
+.cell.C{min-height:36px;border-style:dashed}
+.cell i,.fly{width:var(--sz);height:var(--sz);border-radius:50%;background-color:var(--cc);background-image:radial-gradient(circle at 35% 30%,rgba(255,255,255,.6),rgba(255,255,255,0) 62%);box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.cell i.u{opacity:.2}.cell i.hid{visibility:hidden}
+.fly{position:fixed;z-index:50;pointer-events:none;width:auto;height:auto}
+.rule{grid-column:1/-1;height:3px;border-radius:2px;background:var(--ink)}
+.big{font:600 24px/1.4 STIX Two Text,Georgia,serif;margin:12px 0 4px}
+.num{max-width:100%;background:#0F2229;color:#fff;border-radius:14px;padding:10px 18px;font:600 42px/1.2 STIX Two Text,Georgia,serif;letter-spacing:.08em;margin:8px 0 2px;overflow-x:auto}.num sub{font-size:18px;color:#9DB0B8;letter-spacing:0}
+.msg{min-height:3em;color:var(--b);font-weight:700;margin:8px 0 0}
+.note{font-size:15px;color:var(--mute);margin-top:12px}
+h2{font:600 22px/1.2 STIX Two Text,Georgia,serif;margin:30px 0 4px}
+.sec{color:var(--mute);margin:0 0 6px;font-size:15px;max-width:62ch}
+.dc{display:flex;align-items:center;justify-content:center;text-align:center;font:600 30px/1.15 STIX Two Text,Georgia,serif;min-height:48px;padding:6px 2px;border-radius:10px;background:color-mix(in srgb,var(--cc) 10%,var(--surf));border:2px solid color-mix(in srgb,var(--cc) 40%,var(--line))}
+.dc sup{font-size:15px;margin-right:1px;color:var(--b)}
+.dc.sm{font-size:22px;min-height:36px;border-style:dashed}.dc.sm:empty,.dc.pn:empty,.dc.bl{border-color:transparent;background:none}
+.dc.pn{border-style:dashed}
+.dc.act{box-shadow:0 0 0 3px var(--b)}
+canvas{display:block;width:100%;min-width:560px}
+.wr{margin-top:12px;border-top:2px solid var(--line);padding-top:8px;max-width:420px}
+.wl{display:grid;grid-template-columns:minmax(64px,auto) repeat(4,1fr);align-items:center;border-radius:8px}
+.wl.hl{background:color-mix(in srgb,var(--b) 14%,transparent)}
+.lb{font-size:13px;color:var(--mute);padding-left:4px}
+.dg{text-align:center;font:600 26px/1.3 STIX Two Text,Georgia,serif;min-height:34px}.dg.sm{font:700 13px/2 "Atkinson Hyperlegible",sans-serif;min-height:0}
+.wl.ul .dg{border-bottom:2px solid var(--ink)}.wl.tl .dg{border-top:2px solid var(--ink)}@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;src:url("../../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;src:url("../../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"STIX Two Text";font-weight:600;src:url("../../fonts/stix-two-text-latin-600-normal.woff2") format("woff2");font-display:swap}
+</style></head>
+<body>
+<main>
+<div class="top"><div><div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h1>Multiplication par regroupements</h1></div></div>
+<p class="lead">Le produit n × m se représente par n lignes de m jetons. On défait d’abord les paquets de dix, on forme les lignes, puis on regroupe par unités, dizaines et centaines. On additionne enfin les deux produits partiels. Une autre méthode multiplie directement les chiffres selon leur position.</p>
+<div class="chips" id="modes"><button type="button" data-m="0">Dégrouper d’abord</button><button type="button" data-m="1">Multiplier directement</button></div>
+<div class="nums"><label for="iA">Premier facteur (n)<input id="iA" type="number" min="0" max="99" step="1" inputmode="numeric"></label><label for="iZ">Second facteur (m)<input id="iZ" type="number" min="0" max="99" step="1" inputmode="numeric"></label></div>
+<div class="row"><button id="step"></button><button id="play" class="alt">Tout animer</button><button id="rst" class="alt">Recommencer</button></div>
+<div class="stage"><div class="sc"><canvas id="cv" aria-label="Jetons représentant la multiplication"></canvas></div><div id="wr" class="wr"></div><div id="info"></div></div>
+</main>
+<script>
+const $=i=>document.getElementById(i),DC=['#F5B93A','#7DB4F0','#52CDBB','#F08CB0'];
+const S={n:47,m:36,s:0,busy:0,tok:0,msg:'',balls:[],strips:[],run:null,mode:1},cvs=$('cv'),ctx=cvs.getContext('2d'),W=720;let H=600,raf=0;
+const PIT=[10,15,22,30],RAD=[4,6.5,10,13],PER=pl=>Math.floor(140/PIT[pl]),CL=pl=>110+(3-pl)*150;
+const X=j=>S.ox+j*S.p+(j<10*S.c?Math.floor(j/10):S.c)*S.g,Y=i=>S.oy+(i>=10*S.a?(i-10*S.a)*S.p:S.b*S.p+(S.b?S.g:0)+i*S.p+Math.floor(i/10)*S.g);
+const slot=(pl,k,yt)=>({x:CL(pl)+8+(k%PER(pl))*PIT[pl]+PIT[pl]/2,y:yt+Math.floor(k/PER(pl))*PIT[pl]+PIT[pl]/2});
+const mk=q=>({x:q.x,y:q.y,r:q.r,a:q.a,f:q.f,s:q.s,z:q.z,pl:q.pl,k:q.k}),rg=(s,e)=>Array.from({length:Math.max(0,e-s)},(_,i)=>s+i);
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,lp=(u,v,t)=>u+(v-u)*t,RM=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+const X2=j=>S.ox+16+(j<S.c?j*34:S.c*34+(j-S.c)*18),Y2=i=>S.oy+16+(i<S.a?S.b*18+(S.b?8:0)+i*34:(i-S.a)*18);
+const B0=(x,y,r,f)=>({x,y,r,a:1,f,s:-1,z:-1});
+
+function reset(){cancelAnimationFrame(raf);S.tok++;S.run=null;S.busy=0;S.s=0;
+ const n=S.n,m=S.m,a=Math.floor(n/10),b=n%10,c=Math.floor(m/10),d=m%10,p=Math.min(16,600/(Math.max(n+1.6*a,m+1.6*c,1)+2)),ox=70,oy=62;
+ Object.assign(S,{a,b,c,d,p,g:1.6*p,ox,oy,r:p*.42,lx:ox-38});S.by=(S.mode?(n?Y2(a?a-1:b-1):oy)+14:(n?Y(a?10*a-1:n-1):oy)+p/2)+30;
+ const h=(k,pl)=>Math.ceil(k/PER(pl))*PIT[pl];
+ S.ZH=Math.max(60,h(b*d,0),h(b*c,1)+PIT[1],h(a*d,1)+PIT[1],h(a*c,2)+PIT[2])+10;
+ S.Z0=104;S.Z1=S.Z0+S.ZH+56;S.Z2=S.Z1+S.ZH+56;H=Math.max(S.by+44,S.Z2+110);S.tot=S.mode?5:7;S.sp=S.mode?2:4;
+ cvs.width=W*2;cvs.height=H*2;ctx.setTransform(2,0,0,2,0,0);
+ S.packT=[...rg(0,a).map(k=>B0(S.lx,Y2(k),13,1)),...rg(0,b).map(k=>B0(S.lx,Y2(a+k),6.5,0))];
+ S.packL=[...rg(0,c).map(k=>B0(ox+16+k*34,S.by,13,1)),...rg(0,d).map(k=>B0(ox+16+c*34+k*18,S.by,6.5,0))];
+ S.balls=S.packT.concat(S.packL);S.strips=S.mode?S.balls.slice():[];
+ S.msg=`n = ${a} dizaines et ${b} unités à gauche, les unités au-dessus des dizaines. m = ${c} dizaines et ${d} unités en bas. ${S.mode?'Cliquez sur Multiplier pour calculer par position.':'Cliquez sur Dégrouper pour commencer.'}.`}
+
+function draw(){const x=ctx,cs=getComputedStyle(document.documentElement),C=[0,1,2,3].map(i=>cs.getPropertyValue('--c'+i).trim()),ink=cs.getPropertyValue('--ink').trim(),mute=cs.getPropertyValue('--mute').trim(),s=S.s,{ox,oy,a,b,c,d}=S;
+ x.clearRect(0,0,W,H);x.lineCap='round';x.textAlign='left';
+ const ln=(x1,y1,x2,y2,col,w,dash)=>{x.beginPath();x.setLineDash(dash||[]);x.strokeStyle=col;x.lineWidth=w;x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke();x.setLineDash([])};
+ x.font='700 13px sans-serif';x.fillStyle=mute;
+ if(s<S.sp){ln(ox-30,S.by-18,W-8,S.by-18,mute,2);ln(ox-18,oy-30,ox-18,S.by-18,mute,2);x.fillText('n = '+S.n+' ↓',6,16);x.fillText('m = '+S.m+' →',ox+10,S.by+34)}
+ if(s>=(S.mode?1:2)&&s<S.sp&&c>0&&d>0){const xx=S.mode?(X2(c-1)+X2(c))/2:(X(10*c-1)+X(10*c))/2;ln(xx,oy-14,xx,S.by-18,mute,1.5,[5,5])}
+ if(s>=S.sp-1&&s<S.sp&&a>0&&b>0){const y=S.mode?(Y2(a+b-1)+Y2(0))/2:(Y(S.n-1)+Y(0))/2;ln(ox-30,y,W-8,y,ink,3,[8,5])}
+ if(s>=S.sp){x.textAlign='center';[0,1,2].forEach(z=>{const yt=[S.Z0,S.Z1,S.Z2][z],hh=z<2?S.ZH:70;[0,1,2,3].forEach(pl=>{x.globalAlpha=.1;x.fillStyle=C[pl];x.fillRect(CL(pl),yt,148,hh);x.globalAlpha=1})});
+  x.fillStyle=ink;[0,1,2,3].forEach(pl=>x.fillText(10**pl,CL(pl)+75,S.Z0-14));
+  x.textAlign='left';x.fillText(b+' × '+S.m,8,S.Z0+16);x.fillText(a+'0 × '+S.m,8,S.Z1+16);x.fillText('somme',8,S.Z2+16);
+  ln(100,S.Z1-26,W-8,S.Z1-26,mute,2);ln(100,S.Z2-26,W-8,S.Z2-26,ink,3)}
+ const dr=q=>{if(q.a<.02||q.r<.3)return;x.globalAlpha=q.a;x.beginPath();
+  if(q.s>=0){x.fillStyle=C[q.s];x.arc(q.x,q.y,q.r,0,6.3);x.fill();x.fillStyle=C[q.f];x.beginPath();x.arc(q.x,q.y,q.r*.62,0,6.3);x.fill()}
+  else{x.fillStyle=C[q.f];x.arc(q.x,q.y,q.r,0,6.3);x.fill();x.lineWidth=1;x.strokeStyle='rgba(0,0,0,.35)';x.stroke()}};
+ if(S.run){S.run.keep.forEach(dr);const t=S.run.t;S.run.items.forEach(it=>{const u=ease(Math.max(0,Math.min(1,(t-it.t0)/(it.t1-it.t0)))),A=it.a,Bb=it.b;dr({x:lp(A.x,Bb.x,u),y:lp(A.y,Bb.y,u),r:lp(A.r,Bb.r,u),a:lp(A.a,Bb.a,u),f:u<.5?A.f:Bb.f,s:u<.5?A.s:Bb.s})})}else S.balls.forEach(dr);
+ x.globalAlpha=1}
+
+function play(items,keep,dur){dur=RM()?1:dur;return new Promise(res=>{const tok=S.tok,t0=performance.now();S.run={items,keep,t:0};
+ const f=now=>{if(tok!==S.tok)return res(false);const t=Math.min(1,(now-t0)/dur);S.run.t=t;draw();if(t<1)raf=requestAnimationFrame(f);else{S.balls=keep.concat(items.map(i=>i.b).filter(q=>q.a>0));S.run=null;draw();res(true)}};raf=requestAnimationFrame(f)})}
+
+// Ten counters of a place trade for one of the next place; Ls = ball lists per place.
+function carry(Ls,yt,z,hh){const cnt=Ls.map(l=>l.length),cur=[...cnt],fin=[],items=[],dying=[],ctr=pl=>({x:CL(pl)+75,y:yt+hh/2});
+ for(let pl=0;pl<4;pl++){fin[pl]=pl<3?cur[pl]%10:cur[pl];if(pl<3)cur[pl+1]+=Math.floor(cur[pl]/10)}
+ for(let pl=0;pl<4;pl++){const o=cnt[pl],f=fin[pl];
+  for(let k=f;k<o;k++){const q=Ls[pl][k],t=ctr(pl+1);dying.push(q);items.push({a:mk(q),b:{...mk(q),x:t.x,y:t.y,a:0},t0:0,t1:.55})}
+  for(let k=o;k<f;k++){const sl=slot(pl,k,yt),sr=ctr(pl-1),b={x:sl.x,y:sl.y,r:RAD[pl],a:1,f:pl,s:-1,z,pl,k};items.push({a:{...b,x:sr.x,y:sr.y,r:2,a:0},b,t0:.45,t1:1})}}
+ return{items,dying}}
+
+async function carrySteps(zs){const nm=['unités','dizaines','centaines'];
+ for(let pl=0;pl<3;pl++){const items=[],dy=new Set();
+  zs.forEach(({z,yt,hh})=>{const l=S.balls.filter(q=>q.z===z&&q.pl===pl).sort((u,v)=>u.k-v.k),g=Math.floor(l.length/10);if(!g)return;
+   const nx=S.balls.filter(q=>q.z===z&&q.pl===pl+1).length,c0={x:CL(pl)+75,y:yt+hh/2};
+   l.slice(l.length-10*g).forEach(q=>{dy.add(q);items.push({a:mk(q),b:{...mk(q),x:c0.x,y:c0.y,a:0},t0:0,t1:.5})});
+   for(let e=0;e<g;e++){const k=nx+e,sl=slot(pl+1,k,yt),b={x:sl.x,y:sl.y,r:RAD[pl+1],a:1,f:pl+1,s:-1,z,pl:pl+1,k},t0=.4+.4*e/g;items.push({a:{...b,x:c0.x,y:c0.y,r:2,a:0},b,t0,t1:t0+.2})}});
+  if(!items.length)continue;
+  S.msg=`Dix ${nm[pl]} sont échangées contre une unité du rang suivant : ${nm[pl+1]}.`;info();
+  if(!await play(items,S.balls.filter(q=>!dy.has(q)),1500))return false;
+  await new Promise(r=>setTimeout(r,300))}
+ return true}
+const STEP=[null,
+async()=>{const{a,c,r,by,lx}=S,items=[],ns=[];
+ const un=(n,t,pk,pos)=>rg(0,n).forEach(i=>{const pi=i<10*t?1:0,src=pk[pi?Math.floor(i/10):t+i-10*t],b=B0(...pos(i),r,pi),t0=.25*(i%10)/10;ns.push(b);items.push({a:{...mk(src),f:pi},b,t0,t1:t0+.6})});
+ un(S.n,a,S.packT,i=>[lx,Y(i)]);un(S.m,c,S.packL,j=>[X(j),by]);
+ S.packT.concat(S.packL).forEach(q=>items.push({a:mk(q),b:{...mk(q),a:0},t0:0,t1:.4}));S.strips=ns;return play(items,[],1300)},
+async()=>{const{n,m,a,c,r,by}=S,items=[],ye=n?Y(a?10*a-1:n-1):S.oy;S.G=[];
+ for(let i=0;i<n;i++){S.G[i]=[];for(let j=0;j<m;j++){const cp=i<10*a?1:0,rp=j<10*c?1:0,b={x:X(j),y:Y(i),r,a:1,f:cp,s:rp,z:cp,pl:cp+rp};S.G[i][j]=b;const t0=.55*(ye-Y(i))/Math.max(1,ye-S.oy);items.push({a:{...b,y:by,a:0},b,t0,t1:t0+.45})}}
+ return play(items,S.strips.slice(),2400)},
+async()=>{const{n,m,a,c,p}=S,items=[],keep=S.strips.slice();
+ const bun=(cols,rows,pl,z,R)=>{const bs=[];cols.forEach(i=>rows.forEach(j=>bs.push(S.G[i][j])));if(!bs.length)return;
+  const cx=bs.reduce((u,q)=>u+q.x,0)/bs.length,cy=bs.reduce((u,q)=>u+q.y,0)/bs.length;
+  bs.forEach(q=>items.push({a:mk(q),b:{...mk(q),x:cx,y:cy,a:0},t0:0,t1:.6}));const nb={x:cx,y:cy,r:R,a:1,f:pl,s:-1,z,pl};items.push({a:{...nb,r:0,a:0},b:nb,t0:.5,t1:1})};
+ rg(10*a,n).forEach(i=>{rg(10*c,m).forEach(j=>keep.push(S.G[i][j]));rg(0,c).forEach(g=>bun([i],rg(10*g,10*g+10),1,0,p*.8))});
+ rg(0,a).forEach(g=>{rg(10*c,m).forEach(j=>bun(rg(10*g,10*g+10),[j],1,1,p*.8));rg(0,c).forEach(h=>bun(rg(10*g,10*g+10),rg(10*h,10*h+10),2,1,p*4))});
+ return play(items,keep,1800)},
+async()=>{const items=[],L=[[[],[],[],[]],[[],[],[],[]]];S.balls.filter(q=>q.z>=0).forEach(q=>L[q.z][q.pl].push(q));
+ L.forEach((zl,z)=>zl.forEach((l,pl)=>l.forEach((q,k)=>{const sl=slot(pl,k,z?S.Z1:S.Z0),t0=z*.3+.3*k/Math.max(1,l.length);items.push({a:mk(q),b:{x:sl.x,y:sl.y,r:RAD[pl],a:1,f:pl,s:-1,z,pl,k},t0,t1:t0+.4})})));
+ S.strips.forEach(q=>items.push({a:mk(q),b:{...mk(q),a:0},t0:0,t1:.3}));return play(items,[],2400)},
+async()=>carrySteps([{z:0,yt:S.Z0,hh:S.ZH},{z:1,yt:S.Z1,hh:S.ZH}]),
+async()=>{const items=[];
+ [0,1,2,3].forEach(pl=>{const src=S.balls.filter(q=>q.z>=0&&q.z<2&&q.pl===pl);src.forEach((q,k)=>{const sl=slot(pl,k,S.Z2),t0=.5*k/Math.max(1,src.length);items.push({a:mk(q),b:{x:sl.x,y:sl.y,r:RAD[pl],a:1,f:pl,s:-1,z:2,pl,k},t0,t1:t0+.5})})});
+ return play(items,S.balls.slice(),1500)},
+async()=>carrySteps([{z:2,yt:S.Z2,hh:70}])];
+const DIRECT=async()=>{const{a,b,c,d,by}=S,items=[],n2=a+b,m2=c+d,ye=n2?Y2(a?a-1:b-1):S.oy;
+ for(let i=0;i<n2;i++)for(let j=0;j<m2;j++){const cp=i<a?1:0,pl=cp+(j<c?1:0),q={x:X2(j),y:Y2(i),r:[6,8,12][pl],a:1,f:pl,s:-1,z:cp,pl},t0=.55*(ye-Y2(i))/Math.max(1,ye-S.oy-16);items.push({a:{...q,y:by,a:0},b:q,t0,t1:t0+.45})}
+ return play(items,S.packT.concat(S.packL),2000)};
+const STEPS=[STEP,[null,DIRECT,STEP[4],STEP[5],STEP[6],STEP[7]]];
+const LABS=[['Dégrouper','Multiplier','Regrouper','Séparer les produits','Effectuer les retenues','Additionner','Regrouper la somme','Terminé'],['Multiplier','Séparer les produits','Effectuer les retenues','Additionner','Regrouper la somme','Terminé']];
+const LAB=LABS[0];
+const MSG1=[()=>'',()=>`Chaque jeton de n est multiplié par chaque jeton de m : unité × unité donne des unités, dizaine × unité donne des dizaines, et dizaine × dizaine donne des centaines. On obtient ${S.b*S.d} unités, ${S.b*S.c+S.a*S.d} dizaines et ${S.a*S.c} centaines. Le trait pointillé distingue les deux produits partiels.`];
+const LAB0=['Dégrouper','Multiplier','Regrouper','Séparer les produits','Effectuer les retenues','Additionner','Regrouper la somme','Terminé'];
+const MSG=[()=>'',
+()=>`Chaque paquet de dix devient dix jetons de même couleur. Les ${S.n} jetons de n sont à gauche, les ${S.m} jetons de m sont en bas. Un espace plus grand sépare les dizaines.`,
+()=>`Chaque ligne contient une copie de m : ${S.n} lignes de ${S.m} jetons. La couleur intérieure indique le rang du premier facteur et le contour celui du second.`,
+()=>`Unités × unités donnent ${S.b*S.d} unités. Les autres produits donnent ${S.b*S.c+S.a*S.d} dizaines et ${S.a*S.c} centaines. Le trait pointillé distingue les produits partiels.`,
+()=>`Le produit des unités de n (${S.b} × ${S.m}) se place sur la première ligne. Celui des dizaines de n (${S.a}0 × ${S.m}) se place sur la seconde.`,
+()=>`On regroupe les jetons : dix unités de même rang valent une unité du rang supérieur. Chaque ligne comporte alors au plus neuf jetons par rang.`,
+()=>`On additionne les jetons de chaque rang dans la ligne de somme.`,
+()=>`Dernier regroupement : dix jetons d’un rang deviennent une retenue au rang supérieur. ${S.n} × ${S.m} = ${S.n*S.m}.`];
+function info(){let h=`<p class="big">${S.n} × ${S.m} = ${S.s>=S.tot?S.n*S.m:'?'}</p>`;
+ if(S.s>=S.tot)h+=`<div class="num">${String(S.n*S.m).split('').map((ch,i,A)=>`<span style="color:${DC[(A.length-1-i)%4]}">${ch}</span>`).join('')}</div>`;
+ $('info').innerHTML=h+`<p class="msg" aria-live="polite">${S.msg}</p>`}
+const wdig=x=>[x%10,Math.floor(x/10)%10,Math.floor(x/100)%10,Math.floor(x/1000)];
+function wrow(l,v,hl,cls){let t=3;while(t>0&&!v[t])t--;return`<div class="wl ${hl?'hl':''} ${cls||''}"><span class="lb">${l}</span>${[3,2,1,0].map(k=>`<span class="dg" style="color:var(--c${k})">${k<=t?v[k]:''}</span>`).join('')}</div>`}
+// Written column method in step with the counters. E: 0-2 setup, 3 counts by place, 4 rows (uncarried), 5 rows carried, 6 column sums, 7 sum carried.
+function wr(){const{a,b,c,d,n,m}=S,E=S.mode?(S.s?S.s+2:0):S.s,d1=wdig(b*m),d2=wdig(a*10*m);
+ let h=`<div class="wl"><span class="lb">calcul posé</span>${['M','C','D','U'].map((t,i)=>`<span class="dg sm" style="color:var(--c${3-i})">${t}</span>`).join('')}</div>`+wrow('m',wdig(m),0)+wrow('× n',wdig(n),0,'ul');
+ 
+ if(E>=3){const hl=E<6,raw=E<5;h+=wrow(`${b} × ${m}`,raw?[b*d,b*c,0,0]:d1,hl)+wrow(`${a}0 × ${m}`,raw?[0,a*d,a*c,0]:d2,hl);if(E===3)h+=wrow('par rang',[b*d,b*c+a*d,a*c,0],1,'tl')}
+ if(E>=6)h+=wrow('somme',E===6?d1.map((x,i)=>x+d2[i]):wdig(n*m),1,'tl');
+ $('wr').innerHTML=h}
+function paint(){wr();[...$('modes').children].forEach(b=>b.className=+b.dataset.m===S.mode?'on':'');if(document.activeElement!==$('iA'))$('iA').value=S.n;if(document.activeElement!==$('iZ'))$('iZ').value=S.m;
+ info();$('step').disabled=S.busy||S.s>=S.tot;$('play').disabled=S.busy||S.s>=S.tot;$('step').textContent=LABS[S.mode][S.s];draw()}
+async function next(){if(S.busy||S.s>=S.tot)return;const tok=S.tok;S.busy=1;paint();const ok=await STEPS[S.mode][S.s+1]();if(!ok||tok!==S.tok)return;S.s++;S.msg=S.mode?(S.s===1?MSG1[1]():MSG[S.s+2]()):MSG[S.s]();S.busy=0;paint()}
+async function auto(){const tok=S.tok;while(S.s<S.tot&&tok===S.tok){await next();await new Promise(r=>setTimeout(r,500))}}
+$('modes').onclick=e=>{const b=e.target.closest('button');if(b){S.mode=+b.dataset.m;reset();paint()}};$('step').onclick=next;$('play').onclick=auto;$('rst').onclick=()=>{reset();paint()};
+function numIn(id,key){$(id).oninput=e=>{const t=e.target.value,v=Math.floor(+t);if(t!==''&&v>=0&&v<=99){S[key]=v;reset();paint()}};
+ $(id).onchange=e=>{const v=Math.floor(+e.target.value);S[key]=Math.min(99,Math.max(0,v>0?v:0));e.target.value=S[key];reset();paint()}}
+numIn('iA','n');numIn('iZ','m');
+reset();paint();
+function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);
+window.addEventListener('load',notifySize);
+document.fonts?.ready.then(notifySize);
+notifySize();
+</script>
+</body>
+</html>

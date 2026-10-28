@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Division par partage</title>
+
+<style>
+:root{--paper:#F4F7FA;--ink:#13303B;--mute:#566B75;--line:#CDD8DF;--surf:#FFFFFF;--b:#2D6CB5;--c0:#E9A416;--c1:#2D6CB5;--c2:#2A9D8F;--c3:#C0507A;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0F1B21;--ink:#E6EEF1;--mute:#9DB0B8;--line:#2B4049;--surf:#162830;--b:#5B9BE0;--c0:#F2B73D;--c1:#5B9BE0;--c2:#4CC2B3;--c3:#E07AA0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:28px 14px 48px}
+h1{font:600 clamp(28px,7vw,40px)/1.1 STIX Two Text,Georgia,serif;margin:0 0 10px}
+.lead{color:var(--mute);margin:0 0 16px;max-width:60ch}
+.motif{display:flex;align-items:flex-end;gap:6px;margin-bottom:12px}.motif i{display:block;border-radius:50%}
+.motif i:nth-child(1){width:12px;height:12px;background:var(--c0)}.motif i:nth-child(2){width:17px;height:17px;background:var(--c1)}.motif i:nth-child(3){width:22px;height:22px;background:var(--c2)}.motif i:nth-child(4){width:28px;height:28px;background:var(--c3)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.nums{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0}
+.nums label{display:flex;align-items:center;gap:8px}
+.nums input{font:inherit;font-weight:700;width:6.5em;padding:8px 10px;border:2px solid var(--line);border-radius:8px;background:var(--surf);color:var(--ink)}
+.row{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.row button{font:inherit;font-weight:700;padding:8px 14px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.row button.alt{background:var(--surf);color:var(--ink)}
+.row button:disabled{opacity:.35;cursor:default}
+.stage{background:var(--surf);border:2px solid var(--line);border-radius:18px;padding:14px;margin-top:10px;box-shadow:0 6px 18px -10px rgba(19,48,59,.35)}
+.sc{overflow-x:auto;padding-bottom:4px}
+.big{font:600 24px/1.4 STIX Two Text,Georgia,serif;margin:12px 0 4px}
+.num{max-width:100%;background:#0F2229;color:#fff;border-radius:14px;padding:10px 18px;font:600 42px/1.2 STIX Two Text,Georgia,serif;letter-spacing:.08em;margin:8px 0 2px;overflow-x:auto}.num sub{font-size:18px;color:#9DB0B8;letter-spacing:0}
+.msg{min-height:3em;color:var(--b);font-weight:700;margin:8px 0 0}
+canvas{display:block;width:100%;min-width:560px}
+.wr{margin-top:12px;border-top:2px solid var(--line);padding-top:8px;max-width:360px}
+.wl{display:grid;grid-template-columns:minmax(64px,auto) repeat(3,1fr);align-items:center;border-radius:8px}
+.wl.hl{background:color-mix(in srgb,var(--b) 14%,transparent)}
+.lb{font-size:13px;color:var(--mute);padding-left:4px}
+.dg{text-align:center;font:600 26px/1.3 STIX Two Text,Georgia,serif;min-height:34px}.dg.sm{font:700 13px/2 "Atkinson Hyperlegible",sans-serif;min-height:0}
+.wl.ul .dg{border-bottom:2px solid var(--ink)}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;src:url("../../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;src:url("../../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"STIX Two Text";font-weight:600;src:url("../../fonts/stix-two-text-latin-600-normal.woff2") format("woff2");font-display:swap}
+</style></head>
+<body>
+<main>
+<div class="motif" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<h1>Division par partage</h1>
+<p class="lead">Pour calculer n ÷ m, on partage n jetons équitablement entre m groupes. On distribue d’abord les centaines, puis les dizaines et enfin les unités. Chaque jeton restant est échangé contre dix jetons du rang inférieur. À la fin, chaque groupe représente le quotient et les jetons non distribués forment le reste.</p>
+<div class="nums"><label for="iA">Nombre à partager (n)<input id="iA" type="number" min="0" max="999" step="1" inputmode="numeric"></label><label for="iZ">Nombre de groupes (m)<input id="iZ" type="number" min="2" max="9" step="1" inputmode="numeric"></label></div>
+<div class="row"><button id="step"></button><button id="play" class="alt">Tout animer</button><button id="rst" class="alt">Recommencer</button></div>
+<div class="stage"><div class="sc"><canvas id="cv" aria-label="Jetons partagés entre plusieurs groupes"></canvas></div><div id="wr" class="wr"></div><div id="info"></div></div>
+</main>
+<script>
+const $=i=>document.getElementById(i),DC=['#F5B93A','#7DB4F0','#52CDBB'];
+const cvs=$('cv'),ctx=cvs.getContext('2d'),W=720,PT=28,PH=185,BT=PT+PH+24,BH=140,H=BT+BH+30;
+const R=[4.5,6.5,9],PX=[12,17,22],GP=[11,14,20],NM=['unités','dizaines','centaines'],PL=[2,2,1,1,0],LAB=['Partager les centaines','Dégrouper le reste','Partager les dizaines','Dégrouper le reste','Partager les unités','Terminé'];
+const S={n:534,m:4,s:0,busy:0,tok:0,msg:'',pool:[],G:[],dying:[]};let raf=0;
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,lp=(u,v,t)=>u+(v-u)*t,RM=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+const LL=pl=>12+(2-pl)*236,mkb=(pl,x,y,r,a)=>({pl,x,y,r,a,tx:x,ty:y,tr:r,ta:a,d:0});
+const bx=()=>{const m=S.m,bw=Math.min(150,(W-24-(m-1)*8)/m);return{bw,x0:(W-(m*bw+(m-1)*8))/2}};
+const all=()=>S.pool.flat().concat(S.G.flat(2));
+function layout(){const{bw,x0}=bx();
+ S.pool.forEach((l,pl)=>l.forEach((b,k)=>{const per=Math.floor(212/PX[pl]);b.tx=LL(pl)+12+(k%per)*PX[pl]+PX[pl]/2;b.ty=PT+26+Math.floor(k/per)*PX[pl]+PX[pl]/2;b.tr=R[pl];b.ta=1}));
+ S.G.forEach((g,i)=>g.forEach((l,pl)=>l.forEach((b,k)=>{b.tx=x0+i*(bw+8)+bw/3*(2-pl+.5);b.ty=BT+8+k*GP[pl]+GP[pl]/2;b.tr=R[pl];b.ta=1})))}
+function reset(){cancelAnimationFrame(raf);S.tok++;S.busy=0;S.s=0;S.dying=[];const n=S.n,m=S.m,dg=[n%10,Math.floor(n/10)%10,Math.floor(n/100)];
+ S.pool=dg.map((c,pl)=>Array.from({length:c},()=>mkb(pl,0,0,R[pl],1)));S.G=Array.from({length:m},()=>[[],[],[]]);layout();
+ all().forEach(b=>{b.x=b.tx;b.y=b.ty;b.r=b.tr;b.a=1});cvs.width=W*2;cvs.height=H*2;ctx.setTransform(2,0,0,2,0,0);
+ S.msg=`n = ${dg[2]} centaines, ${dg[1]} dizaines et ${dg[0]} unités à partager entre ${m} groupes. Cliquez sur « Partager les centaines ».`}
+function go(fn,dur){dur=RM()?1:dur;return new Promise(res=>{const tok=S.tok;all().forEach(b=>b.d=0);S.dying=fn()||[];layout();const A=all().concat(S.dying);
+ A.forEach(b=>{b.sx=b.x;b.sy=b.y;b.sr=b.r;b.sa=b.a});const t0=performance.now();
+ const f=now=>{if(tok!==S.tok)return res(false);const t=Math.min(1,(now-t0)/dur);
+  A.forEach(b=>{const u=ease(Math.max(0,Math.min(1,(t-b.d)/.5)));b.x=lp(b.sx,b.tx,u);b.y=lp(b.sy,b.ty,u);b.r=lp(b.sr,b.tr,u);b.a=lp(b.sa,b.ta,u)});
+  draw();if(t<1)raf=requestAnimationFrame(f);else{S.dying=[];draw();res(true)}};raf=requestAnimationFrame(f)})}
+const share=(pl,q)=>go(()=>{const N=q*S.m;let c=0;for(let r=0;r<q;r++)for(let g=0;g<S.m;g++){const b=S.pool[pl].shift();b.d=.5*c++/Math.max(1,N);S.G[g][pl].push(b)}},q?1600:400);
+const unb=pl=>{const n=S.pool[pl].length;return go(()=>{const src=S.pool[pl];S.pool[pl]=[];src.forEach((b,i)=>{b.tx=b.x;b.ty=b.y;b.tr=1;b.ta=0;b.d=.25*i/Math.max(1,src.length);
+ for(let j=0;j<10;j++){const c=mkb(pl-1,b.x,b.y,2,0);c.d=b.d+.2*j/10;S.pool[pl-1].push(c)}});return src},n?1800:400)};
+function draw(){const x=ctx,cs=getComputedStyle(document.documentElement),C=[0,1,2].map(i=>cs.getPropertyValue('--c'+i).trim()),ink=cs.getPropertyValue('--ink').trim(),mute=cs.getPropertyValue('--mute').trim(),line=cs.getPropertyValue('--line').trim(),{bw,x0}=bx();
+ x.clearRect(0,0,W,H);x.textAlign='center';x.font='700 13px sans-serif';
+ [2,1,0].forEach(pl=>{x.globalAlpha=.1;x.fillStyle=C[pl];x.fillRect(LL(pl),PT,224,PH);x.globalAlpha=1;x.fillStyle=mute;x.fillText(NM[pl]+' · '+10**pl,LL(pl)+112,PT+16)});
+ const done=S.s>=5,q=Math.floor(S.n/S.m);
+ for(let g=0;g<S.m;g++){const L=x0+g*(bw+8);[2,1,0].forEach(pl=>{x.globalAlpha=.1;x.fillStyle=C[pl];x.fillRect(L+(2-pl)*bw/3,BT,bw/3,BH);x.globalAlpha=1});
+  x.strokeStyle=line;x.lineWidth=2;x.strokeRect(L,BT,bw,BH);x.fillStyle=done?ink:mute;x.fillText(done?String(q):'groupe '+(g+1),L+bw/2,BT+BH+16)}
+ const A=all().concat(S.dying);A.forEach(b=>{if(b.a<.02||b.r<.3)return;x.globalAlpha=b.a;x.beginPath();x.fillStyle=C[b.pl];x.arc(b.x,b.y,b.r,0,6.3);x.fill();x.lineWidth=1;x.strokeStyle='rgba(0,0,0,.35)';x.stroke()});x.globalAlpha=1}
+function info(){const q=Math.floor(S.n/S.m),r=S.n%S.m,d=S.s>=5;let h=`<p class="big">${S.n} ÷ ${S.m} = ${d?q+(r?' reste '+r:''):'?'}</p>`;
+ if(d)h+=`<div class="num">${String(q).split('').map((ch,i,a)=>`<span style="color:${DC[a.length-1-i]}">${ch}</span>`).join('')}${r?`<sub> reste ${r}</sub>`:''}</div>`;
+ $('info').innerHTML=h+`<p class="msg" aria-live="polite">${S.msg}</p>`}
+// Written long division in step with the counters: share = quotient digit and subtraction, unbundle = bring down.
+function wr(){const m=S.m,n=S.n,s=S.s,D=[n%10,Math.floor(n/10)%10,Math.floor(n/100)],Q=[],Rm=[],Wv=[];let v=D[2];
+ for(let p=2;p>=0;p--){if(p<2)v=Rm[p+1]*10+D[p];Wv[p]=v;Q[p]=Math.floor(v/m);Rm[p]=v%m}
+ const row=(l,a,hl,cls)=>`<div class="wl ${hl?'hl':''} ${cls||''}"><span class="lb">${l}</span>${[2,1,0].map(k=>`<span class="dg" style="color:var(--c${k})">${a[k]}</span>`).join('')}</div>`,
+  put=(v,rc)=>{const a=['','',''];String(v).split('').reverse().forEach((c,i)=>{if(rc+i<3)a[rc+i]=c});return a};
+ let lead=true;const qa=['','',''],da=[0,1,2].map(p=>p===0||n>=10**p?D[p]:'');
+ for(let p=2;p>=0;p--){if(s>=5-2*p&&(Q[p]>0||!lead||p===0))qa[p]=Q[p];if(Q[p]>0)lead=false}
+ let h=`<div class="wl"><span class="lb">calcul posé</span>${['C','D','U'].map((t,i)=>`<span class="dg sm" style="color:var(--c${2-i})">${t}</span>`).join('')}</div>`+row('',qa,s>0&&s%2===1,'ul')+row(`${m} )`,da,false);
+ for(let p=2;p>=0;p--){const e=5-2*p;
+  if(s>=e&&Wv[p]>0&&Q[p]>0)h+=row('−',put(Q[p]*m,p),s===e,'ul')+row('',put(Rm[p],p),s===e);
+  if(p>0&&s>=e+1&&Rm[p]>0)h+=row('↓',put(Rm[p]*10+D[p-1],p-1),s===e+1)}
+ $('wr').innerHTML=h}
+function paint(){wr();if(document.activeElement!==$('iA'))$('iA').value=S.n;if(document.activeElement!==$('iZ'))$('iZ').value=S.m;
+ info();$('step').disabled=$('play').disabled=S.busy||S.s>=5;$('step').textContent=LAB[S.s];draw()}
+async function next(){if(S.busy||S.s>=5)return;const tok=S.tok,s=S.s,pl=PL[s],m=S.m,cnt=S.pool[pl].length;S.busy=1;paint();let ok,msg;
+ if(s%2===0){const q=Math.floor(cnt/m),r=cnt-q*m;ok=await share(pl,q);
+  msg=!cnt?`Aucune unité du rang « ${NM[pl]} » à partager.`:q?`${cnt} ${NM[pl]} réparties entre ${m} groupes : ${q} par groupe et ${r} restantes.`:`Il reste ${cnt} ${NM[pl]}, moins que les ${m} groupes : on ne peut pas les distribuer à ce rang.`;
+  if(pl===0)msg+=` Les ${r} unités restantes constituent le reste de la division.`}
+ else{const t=S.pool[pl-1].length+10*cnt;ok=await unb(pl);
+  msg=cnt?`Les ${cnt} ${NM[pl]} restantes sont chacune échangées contre dix ${NM[pl-1]}. Il y a maintenant ${t} ${NM[pl-1]} à partager.`:`Il ne reste rien à dégrouper.`}
+ if(!ok||tok!==S.tok)return;S.s++;S.msg=msg;
+ if(S.s===5){const q=Math.floor(S.n/m);S.msg+=` Chaque groupe contient ${q}. Vérification : ${m} × ${q} + ${S.n%m} = ${S.n}.`}
+ S.busy=0;paint()}
+async function auto(){const tok=S.tok;while(S.s<5&&tok===S.tok){await next();await new Promise(r=>setTimeout(r,500))}}
+$('step').onclick=next;$('play').onclick=auto;$('rst').onclick=()=>{reset();paint()};
+function numIn(id,key,lo,hi){$(id).oninput=e=>{const t=e.target.value,v=Math.floor(+t);if(t!==''&&v>=lo&&v<=hi){S[key]=v;reset();paint()}};
+ $(id).onchange=e=>{const v=Math.floor(+e.target.value);S[key]=Math.min(hi,Math.max(lo,v>0?v:lo));e.target.value=S[key];reset();paint()}}
+numIn('iA','n',0,999);numIn('iZ','m',2,9);
+reset();paint();
+function notifySize(){try{parent.postMessage({type:'mx-basics-size',height:document.documentElement.scrollHeight},location.origin)}catch{}}
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(notifySize).observe(document.body);
+window.addEventListener('load',notifySize);
+document.fonts?.ready.then(notifySize);
+notifySize();
+</script>
+</body>
+</html>
