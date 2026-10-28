@@ -156,7 +156,7 @@ function render() {
     (r.page === 'history' && isHistoryRoute(r.id,r.tab)) ||
     (r.page === 'topics' && isTopicRoute(r.id,r.tab)) ||
     (r.page === "challenges" && (!r.id || challenges.some(c => c.id === r.id))) ||
-    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
+    (r.page === "home" && !r.id) || (r.page === "basics" && (!r.id || r.id === "place-value" || r.id === "addition" || r.id === "subtraction")) || isReading(r.page, r.id) || (r.page === "pathways" && !r.id) || r.page === "library" || r.page === "pack" || r.page === "sources" || r.page === "slides" ||
     r.page === "university" || (r.page === "resources" && !r.id) || (r.page === "workshop" && r.id === "quadratic") ||
     (r.page === "chapter" && resourceCatalog.chapters.some(c => c.id === r.id));
   const page = valid ? r.page : "missing";
@@ -431,14 +431,19 @@ const basicsLessons = [
   {id: "addition", number: "02", title: ["Addition et retenues", "Addition and carrying"],
    description: ["Additionner colonne par colonne, puis comprendre la retenue comme un regroupement, même dans d’autres bases.", "Add column by column and see how regrouping creates a carry in different bases."],
    frameTitle: ["Activité interactive sur l’addition et les retenues", "Interactive addition and carrying activity"]},
+  {id: "subtraction", number: "03", title: ["Soustraction et emprunts", "Subtraction and borrowing"],
+   description: ["Retirer des jetons colonne par colonne et comprendre les emprunts comme des dégroupements, même dans d’autres bases.", "Subtract counters column by column and understand borrowing as ungrouping in different bases."],
+   frameTitle: ["Activité interactive sur la soustraction et les emprunts", "Interactive subtraction and borrowing activity"]},
 ];
 function basicsPage(id) {
   if (!id) return '<main id="main" class="page" tabindex="-1"><div class="section-kicker">'+pair("Apprendre", "Learn")+'</div><h1>'+pair("Les bases des mathématiques", "Mathematical foundations")+'</h1><p class="page-intro">'+pair("Pour comprendre les idées de départ en manipulant, avant de mémoriser les règles.", "Explore starting ideas with your hands before memorising rules.")+'</p><div class="pathway-grid" style="margin-top:24px">'+basicsLessons.map(l=>'<article class="pathway-card"><div class="section-kicker">'+l.number+' · '+pair("Nombres", "Numbers")+'</div><h2><a href="#basics/'+l.id+'">'+t(l.title)+'</a></h2><p>'+t(l.description)+'</p><a class="btn btn-primary" href="#basics/'+l.id+'">'+pair("Explorer la leçon", "Open the lesson")+'</a></article>').join("")+'</div></main>';
   const lesson = basicsLessons.find(l=>l.id===id);
   if (!lesson) return "";
-  const related = id === "addition"
-    ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a></p>'
-    : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';
+  const related = id === "subtraction"
+    ? '<p class="muted"><a href="#basics/addition">'+pair("Revoir l’addition et les retenues", "Review addition and carrying")+'</a></p>'
+    : id === "addition"
+      ? '<p class="muted"><a href="#basics/place-value">'+pair("Revoir d’abord les regroupements et la numération", "Review place value and grouping first")+'</a> · <a href="#basics/subtraction">'+pair("Leçon suivante : soustraction et emprunts", "Next lesson: subtraction and borrowing")+'</a></p>'
+      : '<p class="muted"><a href="#basics/addition">'+pair("Leçon suivante : addition et retenues", "Next lesson: addition and carrying")+'</a></p>';
   return '<main id="main" class="page" tabindex="-1"><a class="backlink" href="#basics">'+pair("Toutes les bases", "All foundations")+'</a>'+related+'<iframe id="basics-frame" title="'+t(lesson.frameTitle)+'" src="'+assetHref("./resources/basics/"+lesson.id+".html")+'" style="width:100%;display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);min-height:560px" scrolling="no"></iframe></main>';
 }
 function bindBasics(){
