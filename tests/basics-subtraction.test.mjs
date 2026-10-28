@@ -43,7 +43,7 @@ test('unbundling preserves differences in bases 2 to 16, including zero chains',
           assert.equal(st.x1,st.x+B);
           assert.ok(st.q>st.p && st.q<data.n);
           assert.equal(st.mid.t[st.q],st.pre.t[st.q]-1);
-          for(let j=st.q-1;j>st.p;j++) assert.equal(st.mid.t[j],B-1);
+          for(let j=st.q-1;j>st.p;j--) assert.equal(st.mid.t[j],B-1);
         } else assert.equal(st.x1,st.x);
         sum+=st.r*B**st.p;
       }
