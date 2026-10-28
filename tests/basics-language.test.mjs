@@ -68,3 +68,10 @@ test('new lesson sources retain the arithmetic models and animations',async()=>{
   assert.ok(!html.includes('fonts.googleapis.com'));
  }
 });
+
+test('multiplication explains regrouping hundreds into thousands',async()=>{
+ const en=await read('../dist/resources/basics/multiplication.en.html');
+ const fr=await read('../dist/resources/basics/multiplication.html');
+ assert.ok(en.includes("['units','tens','hundreds','thousands']"));
+ assert.ok(fr.includes("['unités','dizaines','centaines','milliers']"));
+});

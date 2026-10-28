@@ -127,7 +127,7 @@ function carry(Ls,yt,z,hh){const cnt=Ls.map(l=>l.length),cur=[...cnt],fin=[],ite
   for(let k=o;k<f;k++){const sl=slot(pl,k,yt),sr=ctr(pl-1),b={x:sl.x,y:sl.y,r:RAD[pl],a:1,f:pl,s:-1,z,pl,k};items.push({a:{...b,x:sr.x,y:sr.y,r:2,a:0},b,t0:.45,t1:1})}}
  return{items,dying}}
 
-async function carrySteps(zs){const nm=['units','tens','hundreds'];
+async function carrySteps(zs){const nm=['units','tens','hundreds','thousands'];
  for(let pl=0;pl<3;pl++){const items=[],dy=new Set();
   zs.forEach(({z,yt,hh})=>{const l=S.balls.filter(q=>q.z===z&&q.pl===pl).sort((u,v)=>u.k-v.k),g=Math.floor(l.length/10);if(!g)return;
    const nx=S.balls.filter(q=>q.z===z&&q.pl===pl+1).length,c0={x:CL(pl)+75,y:yt+hh/2};
