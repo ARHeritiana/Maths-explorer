@@ -12,6 +12,7 @@ Read one only when the task router in `MAP.md` sends you here.
 | `SLIDES.md` | where each deck comes from, slide checks |
 | `DESIGN_V3.md`, `DESIGN_V4.md` | design reasoning (v4 amends v3) |
 | `REDESIGN_PROPOSAL_2026-10-27.md` | proposed illustrated catalogue, practical tools, chapter redesign and content completion |
+| `IMPROVEMENT_GOALS.md` | owner-approved learning, visualization, interactive slides, error-investigation, and Grand Oral goals with acceptance criteria |
 | `REDESIGN_HANDOFF.md` | prompt to begin implementation of the revised redesign proposal |
 | `LAB_DESIGN.md` | laboratory v2: research basis, templates, mission model, lab references for lessons and slides |
 | `CURRICULUM.md` | programme references (verify before citing) |
