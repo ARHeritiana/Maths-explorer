@@ -18,7 +18,7 @@ function fourierLab(root, { t, reduced, lang }) {
   const N = 256, fmt = (v, d = 1) => (lang === "fr" ? String(Math.round(v * 10 ** d) / 10 ** d).replace(".", ",") : String(Math.round(v * 10 ** d) / 10 ** d));
   let shape = "madagascar", pts = [], co = [], count = 1, auto = true, showCircles = true, showFull = false, clock = 0, trail = [], drawing = null, userCurve = null, scale = 1, centre = [0, 0], lastCount = 0;
   root.innerHTML = `
-    <p class="act-help">${t("Chaque cercle tourne à vitesse constante, centré sur le bout du précédent. Ensemble, ils redessinent une forme fermée. Ajoute des cercles : la forme se précise. Tu peux aussi dessiner la tienne.", "Each circle turns at a constant speed, centred on the tip of the previous one. Together they redraw a closed shape. Add circles: the shape sharpens. You can also draw your own.")}</p>
+    <p class="act-help">${t("Chaque cercle tourne à vitesse constante, centré sur le bout du précédent. Ensemble, ils redessinent une forme fermée. Ajoute des cercles : la forme se précise. Choisis « Ma forme » pour dessiner la tienne.", "Each circle turns at a constant speed, centred on the tip of the previous one. Together they redraw a closed shape. Add circles: the shape sharpens. Choose “My shape” to draw your own.")}</p>
     <div class="obj-stage" id="fr-stage"></div>
     <div class="act-controls">
       <fieldset class="act-choice"><legend>${t("Forme", "Shape")}</legend>
@@ -32,7 +32,7 @@ function fourierLab(root, { t, reduced, lang }) {
     </div>
     <p class="act-readout" id="fr-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#fr-stage"), 640 / 420), g = o.g, read = root.querySelector("#fr-read"), slider = root.querySelector("#fr-n"), out = root.querySelector("#fr-n-out");
-  o.cv.style.touchAction = "none"; o.cv.style.cursor = "crosshair";
+  o.cv.style.cursor = "crosshair";
   const setShape = (name, raw) => {
     const r0 = resample(raw ?? SHAPES[name](), N), mx = r0.reduce((q, p) => q + p[0] / N, 0), my = r0.reduce((q, p) => q + p[1] / N, 0);
     pts = r0.map((p) => [p[0] - mx, p[1] - my]); co = fourier(pts);   // centred: the constant term vanishes and every circle turns
@@ -103,8 +103,9 @@ function fourierLab(root, { t, reduced, lang }) {
   }));
   root.querySelector("#fr-circles").addEventListener("change", (e) => (showCircles = e.target.checked));
   root.querySelector("#fr-full").addEventListener("change", (e) => (showFull = e.target.checked));
-  // freehand drawing, in any mode: a stroke becomes the new shape
-  o.cv.addEventListener("pointerdown", (e) => { drawing = [o.point(e)]; o.cv.setPointerCapture(e.pointerId); e.preventDefault(); });
+  // Drawing is an explicit mode, leaving the example backgrounds available for scrolling.
+  o.touchHit(()=>shape === "mine");
+  o.cv.addEventListener("pointerdown", (e) => { if(shape !== "mine" || e.button > 0)return; auto=false; drawing = [o.point(e)]; o.cv.setPointerCapture(e.pointerId); e.preventDefault(); });
   o.cv.addEventListener("pointermove", (e) => { if (drawing) drawing.push(o.point(e)); });
   const finish = () => {
     if (!drawing) return;
@@ -114,10 +115,10 @@ function fourierLab(root, { t, reduced, lang }) {
     setShape("mine", userCurve);
   };
   o.cv.addEventListener("pointerup", finish); o.cv.addEventListener("pointercancel", () => (drawing = null));
-  o.cv.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+
   setShape("madagascar");
   if (reduced()) { count = 80; auto = false; update(); }
-  return stop;
+  return () => { stop(); o.navigation?.destroy(); o.stopTouch?.(); };
 }
 
 /* =========================================================== Mandelbrot */
@@ -126,14 +127,14 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   let jx=0,jy=0,jw=3.2;
   let cx = -0.5, cy = 0, w = W0, cSel = [-0.4, 0.6], drag = null, flying = null, dirty = true, hq = true, last = "";
   root.innerHTML = `
-    <p class="act-help">${t("Chaque point c du plan est testé : on répète z → z² + c depuis 0. S’il ne s’échappe jamais, c est noir. Déplace le pointeur : l’ensemble de Julia de c change à droite. Glisse pour te déplacer, utilise la pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer. Double-clique pour réinitialiser la vue.", "Every point c of the plane is tested: repeat z → z² + c from 0. If it never escapes, c is black. Move the pointer: the Julia set of c changes on the right. Drag to pan, use the pinch or Ctrl + wheel to zoom. Double-click to reset the view.")}</p>
+    <p class="act-help">${t("Chaque point c du plan est testé : on répète z → z² + c depuis 0. S’il ne s’échappe jamais, c est noir. Déplace le pointeur : l’ensemble de Julia de c change à droite. Glisse pour te déplacer, utilise Ctrl + molette ou le pincement pour zoomer. Double-clique pour réinitialiser la vue.", "Every point c of the plane is tested: repeat z → z² + c from 0. If it never escapes, c is black. Move the pointer: the Julia set of c changes on the right. Drag to pan, use the pinch or Ctrl + wheel to zoom. Double-click to reset the view.")}</p>
     <div class="mb-grid"><div class="obj-stage" id="mb-stage"></div><div class="obj-stage mb-julia" id="mb-julia"></div></div>
     <div class="act-controls">
       <button class="btn btn-primary" id="mb-fly" type="button">${t("Voyage vers la vallée des hippocampes", "Fly to the seahorse valley")}</button>
     </div>
     <p class="act-readout" id="mb-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#mb-stage"), 640 / 400, {navigation:false}), j = canvasIn(root.querySelector("#mb-julia"), 640 / 400, {navigation:false}), read = root.querySelector("#mb-read");
-  o.cv.style.touchAction = "none"; o.cv.style.cursor = "crosshair";
+  o.cv.style.cursor = "crosshair";
   const maxIt = () => clamp(Math.round(90 + 38 * Math.log2(W0 / w)), 90, 1500);
   // cosine palette on the smooth escape time; the inside of the set is dark
   const colour = (v, max) => {
@@ -187,14 +188,14 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   o.cv.setAttribute("role", "application");
   const fractalView=(panel,get,set,initial)=>{
     const action=id=>{let [x,y,width]=get();if(id==='reset')[x,y,width]=initial;else if(id==='in'||id==='out')width=clamp(width*(id==='in'?.7:1/.7),2e-13,6);else{const d={left:[-1,0],right:[1,0],up:[0,1],down:[0,-1]}[id];x+=d[0]*width*.12;y+=d[1]*width*.12;}set([x,y,width]);bar.update(initial[2]/width);};
-    const bar=navigationButtons(panel.cv.parentElement,action,lang);panel.cv.style.touchAction='none';panel.cv.tabIndex=0;
+    const bar=navigationButtons(panel.cv.parentElement,action,lang);panel.cv.style.touchAction='pan-y pinch-zoom';panel.cv.tabIndex=0;
     const pointers=new Map();let pinch=null;
     panel.cv.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===2){const a=[...pointers.values()];pinch=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);drag=null;panel.cv.dispatchEvent(new CustomEvent('view-gesture'));e.preventDefault();e.stopImmediatePropagation();}},true);
     panel.cv.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pinch&&pointers.size===2){const a=[...pointers.values()],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),[x,y,width]=get();const next=clamp(width*pinch/Math.max(1,d),2e-13,6);set([x,y,next]);bar.update(initial[2]/next);pinch=d;e.preventDefault();e.stopImmediatePropagation();}},true);
     for(const ev of ['pointerup','pointercancel'])panel.cv.addEventListener(ev,e=>{pointers.delete(e.pointerId);if(pointers.size<2)pinch=null;},true);
     panel.cv.addEventListener('keydown',e=>{const arrow={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'}[e.key];if(arrow||['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(arrow||(e.key==='0'?'reset':e.key==='-'?'out':'in'));}},true);
     panel.cv.addEventListener('dblclick',()=>action('reset'));
-    panel.cv.setAttribute('aria-label',t('Figure fractale : glisser pour déplacer, pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer, double-clic ou 0 pour réinitialiser, flèches pour déplacer la vue.', 'Fractal figure: drag to pan, pinch or Ctrl + wheel to zoom, double-click or 0 to reset, arrow keys to pan.'));
+    panel.cv.setAttribute('aria-label',t('Figure fractale : glisser pour déplacer, Ctrl + molette ou pincement pour zoomer, double-clic ou 0 pour réinitialiser, flèches pour déplacer la vue.', 'Fractal figure: drag to pan, pinch or Ctrl + wheel to zoom, double-click or 0 to reset, arrow keys to pan.'));
     return bar;
   };
   fractalView(o,()=>[cx,cy,w],v=>{[cx,cy,w]=v;flying=null;dirty=true;},[-.5,0,W0]);
@@ -204,7 +205,7 @@ function mandelbrotLab(root, { t, reduced, lang }) {
   j.cv.addEventListener('pointermove',e=>{if(!jdrag)return;const r=j.cv.getBoundingClientRect();jx=jdrag.jx-(e.clientX-jdrag.x)/r.width*jw;jy=jdrag.jy+(e.clientY-jdrag.y)/r.height*jw*j.H/j.W;dirty=true;});
   for(const ev of ['pointerup','pointercancel','view-gesture'])j.cv.addEventListener(ev,()=>jdrag=null);
   j.cv.addEventListener('wheel',e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const [px,py]=j.point(e),at=[jx+(px/j.W-.5)*jw,jy-(py/j.H-.5)*jw*j.H/j.W],old=jw;jw=clamp(jw*Math.exp(e.deltaY*.005),2e-13,6);const k=jw/old;jx=at[0]+(jx-at[0])*k;jy=at[1]+(jy-at[1])*k;dirty=true;},{passive:false});
-  return stop;
+  return () => { stop(); o.stopTouch?.(); j.stopTouch?.(); };
 }
 
 export const GALLERY_OBJECTS = { fourier: fourierLab, mandelbrot: mandelbrotLab };

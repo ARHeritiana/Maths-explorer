@@ -1,6 +1,7 @@
 // Useful home entrances reuse the shared discovery catalogue and mathematical previews.
 import {filterDiscovery, FORMAT_LABELS} from './discovery-index.js';
 import {previewSVG} from './discovery.js';
+import {icon} from './icons.js';
 import {discoveryChapters, courses, university} from './catalogue-data.js';
 const languageLabel = item => {
  const chapter=discoveryChapters.find(c=>item.route==='#chapter/'+c.id||item.route==='#library/'+c.id);
@@ -20,14 +21,18 @@ const TOOLS=[
 export function homePage({pair,t,link,index=[],last=''}) {
  const featured=['fourier','mandelbrot','platonic'].map(id=>index.find(x=>x.route==='#gallery/'+id)).filter(Boolean);
  const resume=index.find(x=>x.route==='#chapter/'+last);
- return `<main id="main" class="page entrance" tabindex="-1">
- <section class="entrance-intro"><div><p class="home-greeting" lang="mg">Tonga soa</p>
+ return `<main id="main" class="page entrance home-discovery" tabindex="-1">
+ <section class="entrance-intro"><div><p class="home-greeting"><span lang="mg">Tonga soa</span><span>${pair("Bienvenue", "Welcome")}</span></p>
  <h1>${pair('Comprendre les maths','Understand maths')} <span class="home-highlight">${pair('en les explorant.','through exploration.')}</span></h1>
  <p>${pair('Des cours, des figures à manipuler et des exercices pour passer de l’intuition au raisonnement.','Lessons, hands-on figures and exercises to move from intuition to reasoning.')}</p>
  <form id="home-search" role="search"><label for="home-query">${pair('Que veux-tu comprendre ?','What would you like to understand?')}</label><div class="home-search-row"><input id="home-query" type="search" autocomplete="off" placeholder="${pair('Une idée : dérivée, hasard, géométrie…','An idea: derivative, chance, geometry…')}"><button class="btn btn-primary" type="submit">${pair('Rechercher','Search')}</button></div></form>
  <div class="entrance-actions"><a class="btn btn-primary" href="${link('resources')}">${pair('Trouver un cours','Find a lesson')}</a><a class="btn btn-secondary" href="${link('lab')}">${pair('Explorer les outils','Explore the tools')}</a></div>
  ${resume?`<a class="home-resume" href="${E(resume.route)}">${pair('Reprendre :','Continue:')} ${E(t(resume.title))}</a>`:''}
- </div><div class="entrance-art">${previewSVG(index.find(x=>x.route==='#lab/quadratic'),t)}</div></section>
+ </div><figure class="home-figure">
+ <div class="home-figure-top"><span>${pair('40 cercles, un contour','40 circles, one outline')}</span><button class="home-motion" type="button" data-art-pause aria-pressed="true" data-pause="${pair('Pause','Pause')}" data-play="${pair('Animer','Animate')}" data-still="${pair('Image fixe','Still image')}">${pair('Animer','Animate')}</button></div>
+ <canvas data-art="fourier-home" role="img" aria-label="${pair('Quarante vecteurs tournants approchent le contour de Madagascar. La pointe rouge suit la courbe bleue.','Forty rotating vectors approximate the outline of Madagascar. The red tip follows the blue curve.')}"></canvas>
+ <figcaption><strong>${pair('Et si des cercles dessinaient une île ?','What if circles could draw an island?')}</strong><span>${pair('Chaque rotation contribue au dessin de Madagascar.','Each rotation contributes to the drawing of Madagascar.')}</span><a class="home-figure-link" href="${link('gallery','fourier')}">${pair('Essayer les cercles de Fourier','Try the Fourier circles')} ${icon('arrow-right',20)}</a></figcaption>
+ </figure></section>
  <section id="home-search-panel" hidden aria-label="${pair('Résultats de recherche','Search results')}"><p id="home-search-count" role="status" aria-live="polite"></p><div id="home-results" class="home-results"></div></section>
  <section id="home-tools" class="entrance-section"><h2>${pair('Les outils pour comprendre','Tools for understanding')}</h2><p>${pair('Une question, une figure, à toi d’essayer.','A question, a figure, your turn to try.')}</p><div class="tool-grid">${TOOLS.filter(([id])=>index.some(x=>x.route==='#lab/'+id)).map(([id,title,description,action])=>`<a class="tool-card" href="#lab/${id}">${previewSVG(index.find(x=>x.route==='#lab/'+id),t)}<div><h3>${E(t(title))}</h3><p>${E(t(description))}</p><span class="task-link">${E(t(action))} →</span></div></a>`).join('')}</div><a class="text-link" href="#lab">${pair('Tous les outils','All tools')} →</a></section>
  <section class="entrance-section"><h2>${pair('Explorer une idée','Explore an idea')}</h2><div class="idea-grid">${featured.map(x=>`<a class="idea-card" href="${E(x.route)}">${previewSVG(x,t)}<h3>${E(t(x.title))}</h3><span class="task-link">${pair('Voir et manipuler','View and explore')} →</span></a>`).join('')}</div></section>

@@ -27,6 +27,7 @@ export function inscribedSquare(root,opts){
   o.on(sidesBtn,'click',()=>{corners=!corners;rebuild();});
   bind(root,'is-ratio',v=>{ratio=v;rebuild();},v=>v.toFixed(1));
   let sel=0;bind(root,'is-point',v=>{sel=v-1;dirty=true;});
+  o.touchHit(at=>{const p=W(at);return !!stroke||ctrl.some(q=>Math.hypot(q[0]-p[0],q[1]-p[1])<.3)||insertionIndex(ctrl,p,{corners}).distance<=.25;});
   o.on(o.cv,'pointerdown',e=>{const p=W(o.point(e));
     if(stroke){stroke=[p];drag={stroke:true};}
     else{let best=-1,bd=.3;ctrl.forEach((q,i)=>{const d=Math.hypot(q[0]-p[0],q[1]-p[1]);if(d<bd){bd=d;best=i;}});if(best<0){const ins=insertionIndex(ctrl,p,{corners});if(ins.distance>.25)return;best=ins.after+1;ctrl.splice(best,0,p);}sel=best;pointSel.value=best+1;root.querySelector('#is-point-out').textContent=best+1;drag={i:best};}

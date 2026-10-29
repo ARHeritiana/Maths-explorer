@@ -97,7 +97,8 @@ with sync_playwright() as p:
                     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), ('overflow', e, k, width, theme)
                     wide = page.evaluate("() => [...document.querySelectorAll('.lab2 *')].filter(el => el.getBoundingClientRect().right > innerWidth + 1).map(el => el.className).slice(0, 3)")
                     assert not wide, ('an element crosses the right edge', e, k, width, wide)
-                    if e not in ['fermat','euler-primes']: assert page.locator('.lab2-canvas').bounding_box()['height'] >= 0.5 * min(720, 900) - 10 or width > 720, ('the canvas keeps its height', e, width)
+                    if e not in ['fermat','euler-primes'] and width <= 720:
+                        assert 239 <= page.locator('.lab2-canvas').bounding_box()['height'] <= 361, ('the inline canvas is usable and bounded', e, width)
         page.context.close()
 
     # ---- keyboard: Tab reaches the handle, arrows move one grid step, N and P change missions, the address follows
@@ -304,7 +305,7 @@ with sync_playwright() as p:
             assert not overlap(canvas, sheet), ('the mission sheet covers the canvas', ref, width, height, canvas, sheet)
             assert sheet['y'] >= canvas['y'] + canvas['height'] - 1, ('the sheet is below the canvas', ref, width)
         ready(page, 'lab/quadratic/vertex')
-        assert page.locator('.lab2-stage').bounding_box()['height'] >= 0.55 * height - 2, 'the canvas keeps at least 55 vh on a phone'
+        assert 239 <= page.locator('.lab2-stage').bounding_box()['height'] <= 361, 'the phone canvas stays between 240 and 360 px'
         page.locator('.lab2-fold').click()
         assert not page.locator('.lab2-controls').is_visible(), 'the folded card shows the prompt only'
         page.context.close()

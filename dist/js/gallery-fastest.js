@@ -12,7 +12,8 @@ export function fastestSlide(root,opts){
   visible.forEach((_,i)=>o.on(root.querySelector(`#bs-show-${i}`),'change',e=>{visible[i]=e.target.checked;playing=false;root.querySelector('#bs-race').disabled=!visible.some(Boolean);o.redraw();}));
   bind(root,'bs-time',v=>{time=v;playing=false;o.redraw();},v=>v.toFixed(3));
   o.on(root.querySelector('#bs-race'),'click',()=>{if(dirty)rebuild();time=0;playing=!opts.reduced();if(opts.reduced())time=Math.max(0,...tracks.filter((_,i)=>visible[i]).map(x=>x.total));o.redraw();});
-  o.on(o.cv,'pointerdown',e=>{const p=o.point(e);drag=visible[0]?handles.findIndex(h=>Math.hypot(X(h)[0]-p[0],X(h)[1]-p[1])<26):-1;if(drag<0){drag=null;return;}selected=drag;o.cv.setPointerCapture?.(e.pointerId);changed();});
+  o.touchHit(p=>visible[0]&&handles.some(h=>Math.hypot(X(h)[0]-p[0],X(h)[1]-p[1])<40));
+  o.on(o.cv,'pointerdown',e=>{const p=o.point(e);drag=visible[0]?handles.findIndex(h=>Math.hypot(X(h)[0]-p[0],X(h)[1]-p[1])<(e.pointerType==='touch'?40:26)):-1;if(drag<0){drag=null;return;}selected=drag;o.cv.setPointerCapture?.(e.pointerId);changed();});
   o.on(o.cv,'pointermove',e=>{if(drag===null)return;const p=inv(o.point(e));handles[drag]=[clamp(p[0],drag===0?.03:handles[0][0]+.05,drag===0?handles[1][0]-.05:3.97),clamp(p[1],.05,3.6)];dirty=true;o.redraw();});
   o.on(o.cv,'pointerup',()=>drag=null);o.cancelDrag=()=>drag=null;
   o.on(o.cv,'keydown',e=>{if(e.shiftKey)return;if(e.key==='['||e.key===']'){selected=1-selected;return;}const d={ArrowLeft:[-.04,0],ArrowRight:[.04,0],ArrowUp:[0,-.04],ArrowDown:[0,.04]}[e.key];if(d){e.preventDefault();handles[selected]=[clamp(handles[selected][0]+d[0],selected===0?.03:handles[0][0]+.05,selected===0?handles[1][0]-.05:3.97),clamp(handles[selected][1]+d[1],.05,3.6)];changed();}});

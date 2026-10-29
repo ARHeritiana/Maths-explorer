@@ -2,18 +2,19 @@
 import {voronoiCells,polygonArea,polygonCentroid,clamp} from './gallery-models.js';
 import {exhibit,background,path,dot,button,field,bind} from './gallery-kit.js';
 export function voronoiWorld(root,opts){
-  const {t}=opts;let seeds=[[100,100],[285,80],[500,115],[150,315],[365,285],[540,350]],selected=0,drag=false,growth=1,playing=false,relax=false;
+  const {t}=opts;let seeds=[[100,100],[285,80],[500,115],[150,315],[365,285],[540,350]],selected=0,plant=null,drag=false,growth=1,playing=false,relax=false;
   const o=exhibit(root,opts,t('Déplace les graines. Touche un espace vide pour en planter une autre. Tab puis les flèches déplacent la graine choisie ; Entrée en plante une autre et Suppr la retire. Les territoires appartiennent à la graine la plus proche.','Drag the seeds. Tap empty space to plant another. Tab then arrow keys move the selected seed; Enter plants another and Delete removes it. Each territory belongs to its nearest seed.'),
     button('vo-grow',t('Faire grandir les territoires','Grow the territories'),true)+button('vo-relax',t('Répartir les graines','Spread the seeds'))+button('vo-delete',t('Retirer la graine choisie','Remove selected seed'))+field('vo-seed',t('Graine choisie','Selected seed'),1,seeds.length,1,1),
     `<p>${t('Deux graines à égale distance ? Leur frontière est une médiatrice. Trois territoires se rencontrent généralement en un point équidistant de trois graines.','Two equally distant seeds? Their boundary is a perpendicular bisector. Three territories generally meet at a point equidistant from three seeds.')}</p><p>${t('La répartition déplace chaque graine vers le centre de son territoire : c’est une itération de Lloyd. Elle tend à répartir les graines, sans garantir le meilleur arrangement global.','Spreading moves each seed towards its cell centroid: this is Lloyd’s iteration. It tends to spread the seeds, without guaranteeing a globally optimal arrangement.')}</p>`);
   const g=o.g,sel=root.querySelector('#vo-seed'),num=root.querySelector('#vo-seed-out');let cells=[];
   function update(){sel.max=seeds.length;sel.value=selected+1;num.textContent=selected+1;root.querySelector('#vo-relax').textContent=relax?t('Arrêter la répartition','Stop spreading'):t('Répartir les graines','Spread the seeds');}
   bind(root,'vo-seed',v=>{selected=v-1;o.redraw();});
-  o.on(o.cv,'pointerdown',e=>{const p=o.point(e),dist=seeds.map(s=>Math.hypot(s[0]-p[0],s[1]-p[1])),near=dist.indexOf(Math.min(...dist));playing=relax=false;growth=1;
-    if(dist[near]<24)selected=near;else if(seeds.length<24){seeds.push([clamp(p[0],12,628),clamp(p[1],12,428)]);selected=seeds.length-1;}
+  o.touchHit(p=>seeds.some(s=>Math.hypot(s[0]-p[0],s[1]-p[1])<40));
+  o.on(o.cv,'pointerdown',e=>{const p=o.point(e),dist=seeds.map(s=>Math.hypot(s[0]-p[0],s[1]-p[1])),near=dist.indexOf(Math.min(...dist));if(e.pointerType==='touch'&&dist[near]>=40){plant={p,id:e.pointerId};return;}playing=relax=false;growth=1;
+    if(dist[near]<(e.pointerType==='touch'?40:24))selected=near;else if(seeds.length<24){seeds.push([clamp(p[0],12,628),clamp(p[1],12,428)]);selected=seeds.length-1;}
     drag=true;o.cv.setPointerCapture?.(e.pointerId);update();o.redraw();});
   o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e);seeds[selected]=[clamp(p[0],12,628),clamp(p[1],12,428)];o.redraw();});
-  o.on(o.cv,'pointerup',()=>drag=false);o.cancelDrag=()=>drag=false;
+  o.on(o.cv,'pointerup',e=>{if(plant?.id===e.pointerId&&Math.hypot(...o.point(e).map((v,i)=>v-plant.p[i]))<8&&seeds.length<24){seeds.push([clamp(plant.p[0],12,628),clamp(plant.p[1],12,428)]);selected=seeds.length-1;playing=relax=false;growth=1;update();o.redraw();}plant=null;drag=false;});o.cancelDrag=()=>{plant=null;drag=false;};
   const remove=()=>{if(seeds.length>1){seeds.splice(selected,1);selected=Math.min(selected,seeds.length-1);update();o.redraw();}};
   o.on(root.querySelector('#vo-delete'),'click',remove);
   o.on(root.querySelector('#vo-grow'),'click',()=>{growth=0;playing=true;relax=false;update();o.redraw();});

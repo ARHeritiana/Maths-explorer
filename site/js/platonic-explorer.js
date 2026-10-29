@@ -29,6 +29,16 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
       const x=pts.reduce((s,p)=>s+p[0]/pts.length,0),y=pts.reduce((s,p)=>s+p[1]/pts.length,0);g.fillStyle=C.ink;g.font='600 13px system-ui';g.textAlign='center';g.fillText(String(i+1),x,y+4);
     }
   }
+  const fanPos=id=>[100+(id==='p'?(p-3)*80:(q-3)*100),id==='p'?560:610];
+  let fanDrag=null;
+  const fanHit=pt=>['p','q'].find(id=>Math.hypot(...fanPos(id).map((v,i)=>v-pt[i]))<40);
+  fo.touchHit(pt=>!!fanHit(pt));
+  const setFan=(id,value)=>{value=Math.round(Math.max(3,Math.min(id==='p'?8:7,value)));if(id==='p')p=value;else q=value;root.querySelector('#pl-'+id).value=value;root.querySelector('#pl-'+id+'-out').textContent=value;fan();};
+  fo.cv.addEventListener('pointerdown',e=>{const id=fanHit(fo.point(e));if(!id||e.button>0)return;fanDrag=id;fo.cv.setPointerCapture?.(e.pointerId);e.preventDefault();});
+  fo.cv.addEventListener('pointermove',e=>{if(fanDrag)setFan(fanDrag,3+(fo.point(e)[0]-100)/(fanDrag==='p'?80:100));});
+  for(const ev of ['pointerup','pointercancel','lostpointercapture','view-gesture'])fo.cv.addEventListener(ev,()=>fanDrag=null);
+  fo.cv.addEventListener('keydown',e=>{if(e.shiftKey)return;const d={ArrowLeft:['p',-1],ArrowRight:['p',1],ArrowUp:['q',1],ArrowDown:['q',-1]}[e.key];if(d){e.preventDefault();setFan(d[0],(d[0]==='p'?p:q)+d[1]);}});
+  fo.cv.setAttribute('aria-label',t('Glisse les points p et q. Flèches gauche et droite : côtés p ; haut et bas : faces q.','Drag the p and q points. Left and right arrows: sides p; up and down: faces q.'));
   const fmt=x=>String(Math.round(x*100)/100);
   function fan() {
     const C=palette(),alpha=angle(p)*Math.PI/180,total=q*alpha,R=65,center=[fo.W/2,fo.H/2+40];
@@ -37,6 +47,7 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
     if(total<TAU){fg.beginPath();fg.moveTo(...center);fg.arc(...center,35,-Math.PI/2+total,TAU-Math.PI/2);fg.closePath();fg.fillStyle=C.pos;fg.globalAlpha=.5;fg.fill();fg.globalAlpha=1;}
     fg.fillStyle=C.ink;fg.textAlign='left';fg.font='600 21px system-ui';fg.fillText(`${q} × ${fmt(angle(p))}° = ${fmt(q*angle(p))}°`,18,32);
     const valid=verdict(p,q)==='solid';fanRead.textContent=valid?t(`Il reste ${fmt(360-q*angle(p))}° de vide. Clique sur « Former ce solide », puis replie le patron.`,`An angle gap of ${fmt(360-q*angle(p))}° remains. Choose “Build this solid”, then fold the net.`):verdict(p,q)==='flat'?t('360° : aucun relief. Ces faces restent dans le plan.','360°: no corner. These faces stay in the plane.'):t('Plus de 360° : les angles se chevauchent. Impossible pour un sommet convexe.','More than 360°: the angles overlap. A convex vertex is impossible.');
+    for(const id of ['p','q']){const [x,y]=fanPos(id);fg.strokeStyle=C.line;fg.lineWidth=2;fg.beginPath();fg.moveTo(100,y);fg.lineTo(500,y);fg.stroke();fg.fillStyle=C.accent;fg.beginPath();fg.arc(x,y,10,0,TAU);fg.fill();fg.fillStyle=C.ink;fg.font='600 18px system-ui';fg.fillText(`${id} = ${id==='p'?p:q}`,20,y+5);}
     root.querySelector('#pl-build-case').disabled=!valid;
     root.querySelector('#pl-table').innerHTML=`<table class="act-table pl-table"><caption>${t('Les cinq couples possibles','The five possible pairs')}</caption><thead><tr><th>p</th><th>q</th><th>${t('Solide','Solid')}</th></tr></thead><tbody>${Object.keys(solids).map(id=>`<tr><td>${schlafli[id][0]}</td><td>${schlafli[id][1]}</td><td><button type="button" class="pl-cell${schlafli[id][0]===p&&schlafli[id][1]===q?' sel':''}" data-case="${id}">${t(...names[id])}</button></td></tr>`).join('')}</tbody></table>`;
   }
@@ -49,6 +60,7 @@ export function mountPlatonic(root,{t,reduced},solids,names,schlafli,angle,verdi
   root.querySelector('#pl-play').onclick=()=>{pitch=.65;if(reduced()){fold=1;playing=false;}else{if(fold===1)fold=0;playing=true;}sync();draw();};
   root.querySelector('#pl-build-case').onclick=()=>{const id=Object.keys(solids).find(id=>schlafli[id][0]===p&&schlafli[id][1]===q);if(id){choose(id);fold=0;playing=!reduced();if(reduced())fold=1;pitch=.65;sync();draw();o.cv.focus();}};
   const inside=(pt,poly)=>{let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>pt[1])!==(b[1]>pt[1])&&pt[0]<(b[0]-a[0])*(pt[1]-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
+  o.touchHit(pt=>projected.some(face=>inside(pt,face.pts)));
   o.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;playing=false;drag={x:e.clientX,y:e.clientY,start:[e.clientX,e.clientY]};o.cv.setPointerCapture(e.pointerId);});
   o.cv.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag.x)*.01;pitch=Math.max(.12,Math.min(1.45,pitch+(e.clientY-drag.y)*.008));drag={...drag,x:e.clientX,y:e.clientY};draw();});
   o.cv.addEventListener('pointerup',e=>{if(drag&&Math.hypot(e.clientX-drag.start[0],e.clientY-drag.start[1])<5){const at=o.point(e);selected=[...projected].reverse().find(f=>inside(at,f.pts))?.i??-1;sync();draw();}drag=null;});

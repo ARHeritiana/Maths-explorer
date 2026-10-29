@@ -116,7 +116,7 @@ def bundle(lab=False):
                 if m.group(1) in seen: raise SystemExit(f'export-slides: top-level name {m.group(1)!r} is declared in {seen[m.group(1)]} and {name}')
                 seen[m.group(1)] = name
         parts.append(f'/* ---- {name} ---- */\n{text}')
-        if name == '../js/canvas-navigation.js': parts.append('__d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; });\n')
+        if name == '../js/canvas-navigation.js': parts.append('__d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; __e.canvasTouch = canvasTouch; });\n')
         if name == '../js/camera3d.js': parts.append('__d("camera3d.js", function (__e) { ' + ' '.join(f'__e.{n} = {n};' for n in CAMERA3D_EXPORTS) + ' });\n')
     if lab: parts.append('/* ---- laboratory ---- */\n' + ''.join(lab_module(k, t) for k, t in lab_modules()))
     return '(function(){\n"use strict";\n' + '\n'.join(parts) + '\n})();\n'

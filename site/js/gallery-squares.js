@@ -21,6 +21,7 @@ export function squarePacking(root,opts){
   o.on(bestBtn,'click',()=>{const p=bestPacking(n);if(p)load(p);});
   o.on(root.querySelector('#sq-grid'),'click',()=>load(grid(n)));
   bind(root,'sq-pick',v=>{selected=v-1;o.redraw();});
+  o.touchHit(at=>{const p=toUnit(at),h=handle(squares[selected]);return squares.some(sq=>inside(sq,p))||Math.hypot(p[0]-h[0],p[1]-h[1])<.3;});
   o.on(o.cv,'pointerdown',e=>{const p=toUnit(o.point(e)),sel=squares[selected],h=handle(sel);
     if(Math.hypot(p[0]-h[0],p[1]-h[1])<.22)drag={rotate:true,start:Math.atan2(p[1]-sel.y,p[0]-sel.x)-sel.a};
     else{let i=-1;for(let k=squares.length-1;k>=0;k--)if(inside(squares[k],p)){i=k;break;}

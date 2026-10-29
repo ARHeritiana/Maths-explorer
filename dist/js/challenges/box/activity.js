@@ -259,7 +259,7 @@ export function activity(root, { t, q, reduced }) {
   svg.addEventListener("pointerup", release);
   svg.addEventListener("pointercancel", () => { drag = null; rot = null; down = null; });
   lockTouch(svg, ".toy-handle");
-  svg.style.touchAction = "none";
+  svg.style.touchAction = "pan-y pinch-zoom";
   svg.addEventListener("keydown", (e) => {
     const d = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[e.key], h = e.target.closest?.(".toy-handle");
     if (!d) return;

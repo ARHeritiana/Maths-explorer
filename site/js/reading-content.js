@@ -208,3 +208,91 @@ STORIES.push(GOMBOC_STORY);
 
 import { ILLUMINATION_STORY } from "./illumination-content.js";
 STORIES.push(ILLUMINATION_STORY);
+
+// Further portraits and stories link the existing atlas to its reading pages.
+BIOGRAPHIES.push(
+  {
+    id: 'liu-hui', name: 'Liu Hui', dates: 'IIIe siècle / 3rd century',
+    places: P('Chine, tradition des Neuf Chapitres', 'China, Nine Chapters tradition'),
+    dek: P('Un commentateur qui explique des méthodes de calcul et cherche à justifier leurs résultats.', 'A commentator who explains methods of calculation and seeks to justify their results.'),
+    facts: [['263', P('Commentaire des Neuf Chapitres sur l’art mathématique.', 'Commentary on the Nine Chapters on the Mathematical Art.')]],
+    sections: [
+      [P('Expliquer un texte plus ancien', 'Explaining an older text'), [
+        P('On connaît peu de détails sûrs sur sa vie. En 263, Liu Hui commente les Neuf Chapitres sur l’art mathématique, un recueil de problèmes et de procédures composé avant lui. Son commentaire ne se contente pas de donner des règles : il cherche aussi à expliquer pourquoi elles fonctionnent.', 'Few details of his life are securely known. In 263 Liu Hui commented on the Nine Chapters on the Mathematical Art, a collection of problems and procedures composed before him. His commentary does more than state rules: it also seeks to explain why they work.'),
+        P('Pour étudier le cercle, il considère des polygones inscrits dont le nombre de côtés augmente. Leurs aires permettent d’approcher celle du cercle et conduisent à des approximations de π. Cette démarche relie le calcul numérique à un argument géométrique.', 'To study the circle, he considers inscribed polygons with increasing numbers of sides. Their areas approximate the area of the circle and lead to approximations of π. This connects numerical calculation with a geometric argument.')
+      ]]
+    ], links: ['#history/people/liu-hui', '#history/advances/nine-chapters'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Liu_Hui/', P('Liu Hui · MacTutor (anglais)', 'Liu Hui · MacTutor')]]
+  },
+  {
+    id: 'hypatia', name: 'Hypatie', dates: 'IVe et Ve siècles / 4th and 5th centuries',
+    places: P('Alexandrie', 'Alexandria'),
+    dek: P('Une enseignante de mathématiques et de philosophie dans l’Alexandrie de l’Antiquité tardive.', 'A teacher of mathematics and philosophy in late antique Alexandria.'),
+    facts: [['Vers 400 / Around 400', P('Enseigne à Alexandrie.', 'Teaches in Alexandria.')], ['415', P('Mort à Alexandrie.', 'Dies in Alexandria.')]],
+    sections: [[P('Enseignement et transmission', 'Teaching and transmission'), [
+      P('Hypatie enseigne les mathématiques et la philosophie à Alexandrie. Elle travaille dans une tradition de commentaires savants, notamment avec son père Théon, lui-même mathématicien et astronome. Ses élèves lui écrivent et gardent trace de son enseignement.', 'Hypatia teaches mathematics and philosophy in Alexandria. She works in a tradition of scholarly commentary, including work with her father Theon, himself a mathematician and astronomer. Her students write to her and preserve traces of her teaching.'),
+      P('Les sources anciennes sont fragmentaires et les œuvres conservées ne permettent pas toujours de distinguer précisément les contributions de chacun. Certaines attributions restent discutées. Cette incertitude invite à lire sa vie sans transformer les lacunes en anecdotes assurées.', 'Ancient sources are fragmentary, and surviving works do not always allow each person’s contribution to be distinguished precisely. Some attributions remain disputed. This uncertainty invites us to read her life without turning gaps into certain anecdotes.')
+    ]]], links: ['#history/people/hypatia'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Hypatia/', P('Hypatie · MacTutor (anglais)', 'Hypatia · MacTutor')]]
+  },
+  {
+    id: 'germain', name: 'Sophie Germain', dates: '1776-1831',
+    places: P('France', 'France'),
+    dek: P('Une chercheuse en théorie des nombres et en élasticité, malgré les obstacles à la formation des femmes.', 'A researcher in number theory and elasticity despite barriers to women’s education.'),
+    facts: [['1804', P('Début de sa correspondance avec Gauss sous le nom de Monsieur Le Blanc.', 'Begins corresponding with Gauss under the name Monsieur Le Blanc.')], ['1816', P('Prix de l’Académie des sciences pour un mémoire sur les vibrations.', 'Academy of Sciences prize for a paper on vibrations.')]],
+    sections: [[P('Correspondre et chercher', 'Correspondence and research'), [
+      P('Sophie Germain étudie les mathématiques largement par elle-même, à une époque où les institutions savantes offrent peu de possibilités aux femmes. Elle correspond avec des chercheurs sous le nom de Monsieur Le Blanc, notamment avec Gauss au sujet de la théorie des nombres.', 'Sophie Germain studies mathematics largely on her own, at a time when scholarly institutions offer women few opportunities. She corresponds with researchers under the name Monsieur Le Blanc, including Gauss on number theory.'),
+      P('Elle travaille aussi sur la vibration des plaques élastiques. Après plusieurs soumissions, elle reçoit en 1816 un prix de l’Académie des sciences. Ses recherches montrent des échanges entre problèmes physiques, calcul et démonstration.', 'She also works on the vibration of elastic plates. After several submissions, she receives an Academy of Sciences prize in 1816. Her research connects physical problems, calculation and proof.')
+    ]]], links: ['#history/people/germain'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Germain/', P('Sophie Germain · MacTutor (anglais)', 'Sophie Germain · MacTutor')]]
+  },
+  {
+    id: 'mirzakhani', name: 'Maryam Mirzakhani', dates: '1977-2017',
+    places: P('Iran et États-Unis', 'Iran and United States'),
+    dek: P('Explorer la géométrie et la dynamique des surfaces.', 'Exploring the geometry and dynamics of surfaces.'),
+    facts: [['2014', P('Médaille Fields pour ses travaux sur les surfaces de Riemann et leurs espaces de modules.', 'Fields Medal for work on Riemann surfaces and their moduli spaces.')]],
+    sections: [[P('Des chemins sur les surfaces', 'Paths on surfaces'), [
+      P('Née en Iran, Maryam Mirzakhani étudie les surfaces de Riemann et les espaces qui permettent de comparer leurs géométries. Ses travaux relient géométrie, dynamique et dénombrement.', 'Born in Iran, Maryam Mirzakhani studies Riemann surfaces and spaces that allow their geometries to be compared. Her work connects geometry, dynamics and counting.'),
+      P('Elle étudie notamment des géodésiques fermées, des chemins localement les plus courts qui se referment sur une surface. En 2014, elle devient la première femme à recevoir la médaille Fields. Ses travaux avec d’autres chercheurs ont ouvert de nouvelles questions sur la dynamique des surfaces.', 'She studies closed geodesics, locally shortest paths that close up on a surface. In 2014 she becomes the first woman to receive the Fields Medal. Her work with other researchers opened new questions about the dynamics of surfaces.')
+    ]]], links: ['#history/people/mirzakhani'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Mirzakhani/', P('Maryam Mirzakhani · MacTutor (anglais)', 'Maryam Mirzakhani · MacTutor')]]
+  }
+);
+STORIES.push(
+  {
+    id: 'zero-history', figure: 'Brahmagupta', title: P('Le long voyage du zéro', 'The long journey of zero'),
+    dek: P('Une place vide et un nombre sur lequel on calcule : deux idées liées, aux histoires multiples.', 'An empty place and a number used in arithmetic: related ideas with multiple histories.'),
+    sections: [[P('Des usages différents', 'Different uses'), [
+      P('Dans une écriture positionnelle, un signe peut distinguer une place vide. Mais traiter zéro comme un nombre et lui appliquer des règles de calcul est une autre étape. Ces usages apparaissent dans plusieurs traditions et ne se résument pas à une invention unique.', 'In place-value notation, a sign can distinguish an empty place. But treating zero as a number and applying arithmetic rules to it is another step. These uses occur in several traditions and cannot be reduced to a single invention.'),
+      P('En Inde, Brahmagupta formule au VIIe siècle des règles pour zéro et les nombres signés. Certaines diffèrent de nos conventions : sa règle concernant la division par zéro ne correspond pas à l’arithmétique actuelle. Comparer les textes aide à comprendre ce qui a changé.', 'In India, Brahmagupta formulated rules for zero and signed numbers in the seventh century. Some differ from our conventions: his rule concerning division by zero does not match present-day arithmetic. Comparing texts helps us see what changed.')
+    ]]], links: ['#history/people/brahmagupta', '#history/advances/brahmagupta-zero'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/HistTopics/Zero/', P('Histoire du zéro · MacTutor (anglais)', 'A history of zero · MacTutor')], ['https://mathshistory.st-andrews.ac.uk/Biographies/Brahmagupta/', P('Brahmagupta · MacTutor (anglais)', 'Brahmagupta · MacTutor')]]
+  },
+  {
+    id: 'bridges-history', title: P('Les ponts et les connexions', 'Bridges and connections'), figure: 'Leonhard Euler',
+    dek: P('Une promenade impossible devient une question sur les connexions.', 'An impossible walk becomes a question about connections.'),
+    sections: [[P('Changer de regard', 'A change of viewpoint'), [
+      P('Peut-on traverser chacun des ponts de Königsberg une seule fois au cours d’une promenade ? Euler étudie les connexions entre les terres et le nombre de ponts qui touchent chacune d’elles. Les distances et la forme exacte des rives ne sont pas nécessaires à son raisonnement.', 'Can a walk cross each bridge of Königsberg exactly once? Euler studies the connections between land masses and the number of bridges meeting each one. Distances and the exact shape of the banks are unnecessary to his reasoning.'),
+      P('Aujourd’hui, on représente les terres par des sommets et les ponts par des arêtes. Les quatre terres ont chacune un nombre impair de ponts : une telle promenade ne peut avoir que deux extrémités au plus. Le défi permet de chercher ce raisonnement avant de consulter la solution.', 'Today we represent land masses by vertices and bridges by edges. All four land masses meet an odd number of bridges, while such a walk can have at most two endpoints. The challenge invites you to work out the reasoning before consulting the solution.')
+    ]]], links: ['#history/advances/bridges', '#challenges/konigsberg'],
+    sources: [['https://scholarlycommons.pacific.edu/euler-works/53/', P('Mémoire d’Euler · Euler Archive', 'Euler’s paper · Euler Archive')], ['https://mathshistory.st-andrews.ac.uk/HistTopics/Topology_in_mathematics/', P('Histoire de la topologie · MacTutor (anglais)', 'History of topology · MacTutor')]]
+  },
+  {
+    id: 'germain-letter', title: P('Une correspondance sous un autre nom', 'Correspondence under another name'), who: 'germain',
+    dek: P('Sophie Germain écrit à Gauss sous le nom de Monsieur Le Blanc.', 'Sophie Germain writes to Gauss under the name Monsieur Le Blanc.'),
+    sections: [[P('Des nombres et des lettres', 'Numbers and letters'), [
+      P('Au début du XIXe siècle, Sophie Germain étudie les Disquisitiones arithmeticae de Gauss et lui écrit sous le nom de Monsieur Le Blanc. Leur correspondance porte notamment sur la théorie des nombres. Son parcours rappelle les obstacles rencontrés par les femmes pour accéder aux études et aux institutions savantes.', 'In the early nineteenth century Sophie Germain studies Gauss’s Disquisitiones arithmeticae and writes to him as Monsieur Le Blanc. Their correspondence includes number theory. Her path recalls the barriers women encountered in access to education and scholarly institutions.'),
+      P('Le pseudonyme ne résume pas son travail : elle mène aussi des recherches sur l’élasticité et les vibrations. Les lettres permettent de replacer les résultats dans une histoire d’échanges et d’accès au savoir.', 'The pseudonym does not encompass her work: she also researches elasticity and vibrations. The letters place mathematical results within a history of exchange and access to knowledge.')
+    ]]], links: ['#biographies/germain', '#history/people/gauss'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/Biographies/Germain/', P('Sophie Germain · MacTutor (anglais)', 'Sophie Germain · MacTutor')]]
+  },
+  {
+    id: 'four-colours-history', figure: 'Appel et Haken', title: P('Quatre couleurs et une machine', 'Four colours and a machine'),
+    dek: P('Une conjecture sur les cartes conduit à une preuve assistée par ordinateur.', 'A conjecture about maps leads to a computer-assisted proof.'),
+    sections: [[P('Le problème et sa preuve', 'The problem and its proof'), [
+      P('Pour une carte planaire finie dont chaque pays est connexe, quatre couleurs suffisent-elles toujours ? Deux pays voisins, qui partagent un segment de frontière, doivent recevoir des couleurs différentes. Un simple contact en un point ne compte pas comme voisinage.', 'Are four colours always enough for a finite planar map whose countries are connected? Neighbouring countries, which share a boundary segment, must receive different colours. Contact at a single point does not count as adjacency.'),
+      P('En 1976, Kenneth Appel et Wolfgang Haken annoncent une démonstration qui réduit le problème à un grand nombre de configurations vérifiées par ordinateur. Cette preuve a aussi suscité des discussions sur la manière de vérifier une démonstration dont une partie du travail est effectuée par une machine.', 'In 1976 Kenneth Appel and Wolfgang Haken announced a proof reducing the problem to many configurations checked by computer. The proof also prompted discussion about how to verify an argument when a machine performs part of the work.')
+    ]]], links: ['#history/people/appel', '#history/people/haken', '#gallery/four-colours'],
+    sources: [['https://mathshistory.st-andrews.ac.uk/HistTopics/The_four_colour_theorem/', P('Théorème des quatre couleurs · MacTutor (anglais)', 'Four colour theorem · MacTutor')]]
+  }
+);

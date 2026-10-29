@@ -1,6 +1,7 @@
 // Laboratory stage: one canvas, one requestAnimationFrame scheduler that draws only when something changed, handle
 // grabbing (the nearest handle within a forgiving radius) with pointer capture, keyboard handles, the view camera, theme colours and
 // text writes that touch a node only when the string changed. No element is created or replaced during a drag.
+import { canvasTouch } from "../canvas-navigation.js";
 import { palette as themePalette } from "../object-kit.js";
 import { makeFormat } from "./format.js";
 import { clamp } from "./models/num.js";
@@ -107,7 +108,7 @@ export function createStage(host, options = {}) {
   canvas.className = "lab2-canvas";
   canvas.setAttribute("role", "group");
   canvas.tabIndex = 0;
-  canvas.style.touchAction = "none";
+
   if (label) canvas.setAttribute("aria-label", label);
   wrap.append(canvas);
   host.append(wrap);
@@ -275,6 +276,8 @@ export function createStage(host, options = {}) {
   const restCursor = () => { canvas.style.cursor = canvas._cursor || ""; };
 
   function stopAll() { drag = null; pending = null; spin = null; pan = null; stage.dragId = null; }
+
+  const stopTouch = canvasTouch(canvas, e => !!grab(local(e), "touch") || !!options.reservePointer?.());
 
   canvas.addEventListener("pointerdown", (e) => {
     const p = local(e);
@@ -448,6 +451,7 @@ export function createStage(host, options = {}) {
     get dragging() { return !!drag; },
     resize,
     destroy() {
+      stopTouch();
       alive = false;
       cancelAnimationFrame(raf);
       observer?.disconnect();

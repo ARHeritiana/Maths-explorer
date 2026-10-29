@@ -20,24 +20,43 @@ const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n
 const cols = () => ({ ink: css("--ink"), muted: css("--muted"), accent: css("--accent"), line: css("--line-strong"), surface: css("--surface"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)), neg: css("--neg") });
 
 // Shared frame loop: sizes the canvas to its box, runs draw(g, W, H, time, C) only while visible.
-function runner(cv, draw, { reduced = () => false, still = 6, trailing = false } = {}) {
+function runner(cv, draw, { reduced = () => false, still = 6, trailing = false, pauseButton = null } = {}) {
+  let paused = !!pauseButton, pausedAt = performance.now(), lastTime = 0;
+  const pause = () => {
+    paused = !paused; pauseButton.setAttribute("aria-pressed", String(paused));
+    pauseButton.textContent = paused ? pauseButton.dataset.play : pauseButton.dataset.pause;
+    if (paused) { pausedAt = performance.now(); cancelAnimationFrame(raf); raf = 0; }
+    else { t0 += performance.now() - pausedAt; if (!raf) raf = requestAnimationFrame(frame); }
+  };
+  if (pauseButton) pauseButton.addEventListener("click", pause);
   const g = cv.getContext("2d"); let W = 0, H = 0, raf = 0, visible = true, alive = true, C = cols(), frames = 0, t0 = performance.now(), cleared = false;
   const size = () => { const r = cv.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1); W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height)); cv.width = Math.round(W * d); cv.height = Math.round(H * d); g.setTransform(d, 0, 0, d, 0, 0); cleared = false; };
   size();
-  const ro = new ResizeObserver(() => { size(); if (reduced() || !visible) frame(performance.now()); }); ro.observe(cv);
-  const io = new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible && alive && !raf && !reduced()) raf = requestAnimationFrame(frame); }); io.observe(cv);
+  const ro = new ResizeObserver(() => { size(); if (reduced() || paused || !visible) { cancelAnimationFrame(raf); frame(performance.now()); } }); ro.observe(cv);
+  const io = new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible && alive && !raf && !reduced() && !paused) raf = requestAnimationFrame(frame); }); io.observe(cv);
   function frame(now) {
     raf = 0; if (!alive) return;
     if (frames++ % 90 === 0) C = cols();
-    const t = reduced() ? still : (now - t0) / 1000;
+    const t = reduced() ? still : paused ? lastTime : (now - t0) / 1000; lastTime = t;
     if (!trailing || !cleared) { g.clearRect(0, 0, W, H); cleared = true; }
     draw(g, W, H, t, C, frames);
-    if (!reduced() && visible && !document.hidden) raf = requestAnimationFrame(frame);
+    if (!reduced() && !paused && visible && !document.hidden) raf = requestAnimationFrame(frame);
   }
-  const onVis = () => { if (!document.hidden && visible && alive && !raf && !reduced()) raf = requestAnimationFrame(frame); };
+  const onVis = () => { if (!document.hidden && visible && alive && !raf && !reduced() && !paused) raf = requestAnimationFrame(frame); };
   document.addEventListener("visibilitychange", onVis);
-  raf = requestAnimationFrame(frame);
-  return () => { alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", onVis); };
+  const preference = pauseButton ? matchMedia("(prefers-reduced-motion: reduce)") : null;
+  const refresh = () => { C = cols(); cancelAnimationFrame(raf); frame(performance.now()); };
+  const syncMotion = () => {
+    pauseButton.setAttribute("aria-pressed", String(paused));
+    pauseButton.disabled = reduced();
+    pauseButton.textContent = reduced() ? pauseButton.dataset.still : paused ? pauseButton.dataset.play : pauseButton.dataset.pause;
+    refresh();
+  };
+  const themeObserver = pauseButton ? new MutationObserver(refresh) : null;
+  themeObserver?.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  preference?.addEventListener("change", syncMotion);
+  if (pauseButton) syncMotion(); else raf = requestAnimationFrame(frame);
+  return () => { alive = false; cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", onVis); pauseButton?.removeEventListener("click", pause); preference?.removeEventListener("change", syncMotion); themeObserver?.disconnect(); };
 }
 
 /* ------------------------------------------------------------ Madagascar by circles */
@@ -46,16 +65,21 @@ const OUTLINE = (() => { const raw = resample(MADAGASCAR, 256), mx = raw.reduce(
 function fourierArt(cv, opts) {
   const dark = !!opts.dark, { pts, co } = OUTLINE, xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]), cxy = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2], span = [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
   const FADE = 1.7 * REVOLUTION; let trail = [], prevRev = -1;
+  const preview = opts.home ? Array.from({ length: 321 }, (_, i) => arms(co, i / 320, 40).at(-1)) : null;
   return runner(cv, (g, W, H, t, C0) => {
     const C = dark ? { ...C0, ink: "#ffffff", muted: "#cfd8ff", accent: "#ffd54a", line: "#9fb0ff", neg: "#ff6b9a" } : C0;
     const s = Math.min((W * 0.78) / span[0], (H * 0.9) / span[1]), P = (x, y) => [W / 2 + (x - cxy[0]) * s, H / 2 - (y - cxy[1]) * s], still = opts.reduced?.();
     // The tip traces the curve of the first `count` circles as it goes and the old trace fades slowly; a circle is added only
     // after a full turn. The shape is never drawn in advance: it appears, sharpens turn after turn, and the loop starts over.
     const loop = (COUNT_SCHEDULE.length + 2) * REVOLUTION, tt = still ? 0 : t % loop, rev = Math.floor(tt / REVOLUTION);
-    const count = still ? 110 : COUNT_SCHEDULE[Math.min(rev, COUNT_SCHEDULE.length - 1)], phase = still ? 0 : (tt / REVOLUTION) % 1;
+    const count = opts.home ? 40 : still ? 110 : COUNT_SCHEDULE[Math.min(rev, COUNT_SCHEDULE.length - 1)], phase = still ? 0 : (tt / REVOLUTION) % 1;
     if (rev < prevRev) trail = []; prevRev = rev;
     const chain = arms(co, phase, count), tip = chain[chain.length - 1];
     g.lineCap = "round"; g.lineJoin = "round";
+    if (preview) {
+      g.strokeStyle = C.accent; g.lineWidth = 2.4; g.globalAlpha = .45; g.beginPath();
+      preview.forEach((q, i) => { const p = P(q[0], q[1]); i ? g.lineTo(...p) : g.moveTo(...p); }); g.stroke(); g.globalAlpha = 1;
+    }
     if (still) { g.strokeStyle = C.accent; g.lineWidth = 3.2; g.beginPath(); for (let i = 0; i <= 260; i++) { const q = arms(co, i / 260, count).at(-1), [x, y] = P(q[0], q[1]); i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); }
     else {
       trail.push({ x: tip[0], y: tip[1], ts: t, count }); while (trail.length && t - trail[0].ts > FADE) trail.shift();
@@ -66,7 +90,7 @@ function fourierArt(cv, opts) {
     g.lineWidth = 1;
     for (let i = 1; i < chain.length; i++) { const a = P(chain[i - 1][0], chain[i - 1][1]), b = P(chain[i][0], chain[i][1]), r = chain[i][2] * s; g.strokeStyle = C.muted; g.globalAlpha = 0.4; if (r > 1) { g.beginPath(); g.arc(a[0], a[1], r, 0, TAU); g.stroke(); } g.globalAlpha = 0.8; g.strokeStyle = C.ink; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); }
     g.globalAlpha = 1; const [tx, ty] = P(tip[0], tip[1]); g.fillStyle = C.neg; g.beginPath(); g.arc(tx, ty, 4.5, 0, TAU); g.fill();
-  }, { reduced: opts.reduced });
+  }, { reduced: opts.reduced, pauseButton: opts.home ? cv.closest("figure")?.querySelector("[data-art-pause]") : null });
 }
 
 /* ------------------------------------------------------------ fractals */
@@ -228,7 +252,7 @@ function opaqueArt(cv, opts) {
   }, { reduced: opts.reduced, still: 1 });
 }
 function gombocArt(cv,opts){return runner(cv,(g,W,H,time,C)=>{const points=GOMBOC_PREVIEW.vertices.map(p=>{const q=cam3Project(-.7+time*.15,.55,...p);return [W/2+q.u*Math.min(W,H)*.36,H/2-q.v*Math.min(W,H)*.36,q.d];});const faces=GOMBOC_PREVIEW.triangles.map(ids=>ids.map(i=>points[i])).sort((a,b)=>b.reduce((s,p)=>s+p[2],0)-a.reduce((s,p)=>s+p[2],0));for(const p of faces){g.beginPath();p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.closePath();g.globalAlpha=.65;g.fillStyle=C.accent;g.fill();g.strokeStyle=C.line;g.lineWidth=.6;g.stroke();}g.globalAlpha=1;},{reduced:opts.reduced,still:0});}
-export const ART = { gomboc:gombocArt, fourier: fourierArt, "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
+export const ART = { gomboc:gombocArt, fourier: fourierArt, "fourier-home": (cv, o) => fourierArt(cv, { ...o, home: true }), "fourier-dark": (cv, o) => fourierArt(cv, { ...o, dark: true }), julia: juliaArt, "julia-dark": (cv, o) => juliaArt(cv, { ...o, dark: true }), mandelbrot: mandelArt, chaos: chaosArt, galton: galtonArt, reuleaux: reuleauxArt, platonic: platonicArt,
   life: lifeArt, 'square-packing': squaresArt, 'moving-sofa': sofaArt, 'inscribed-square': inscribedArt, 'opaque-square': opaqueArt,
   ...Object.fromEntries(['voronoi','four-colours','fastest-slide','soap-films','knots','einstein'].map(id=>[id,(cv,o)=>newGalleryArt(id,cv,o)])) };
 export function mountArt(cv, kind, opts = {}) { const f = ART[kind]; return f ? f(cv, opts) : () => {}; }

@@ -24,6 +24,8 @@ export function opaqueSquare(root,opts){
   const remove=()=>{if(segs.length){segs.splice(sel,1);sel=Math.max(0,Math.min(sel,segs.length-1));preset='';changed();}};
   o.on(root.querySelector('#op-delete'),'click',remove);
   o.on(snapBtn,'click',()=>{snap=!snap;snapBtn.setAttribute('aria-pressed',String(snap));});snapBtn.setAttribute('aria-pressed','true');
+  // Empty space is the segment-construction tool on this bounded drawing board.
+  o.touchHit(()=>true);
   o.on(o.cv,'pointerdown',e=>{const p=W(o.point(e)),near=.05;let hit=null;
     segs.forEach((s,i)=>s.forEach((q,k)=>{const d=Math.hypot(q[0]-p[0],q[1]-p[1]);if(d<near&&(!hit||d<hit.d))hit={d,i,k};}));
     if(hit){sel=hit.i;drag={end:hit.k};}

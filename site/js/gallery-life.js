@@ -24,6 +24,8 @@ export function gameOfLife(root,opts){
   o.on(root.querySelector('#lf-back'),'click',()=>{setPlaying(false);cells=new Set(start);gen=0;dirty=true;});
   o.on(root.querySelector('#lf-clear'),'click',()=>{setPlaying(false);cells=new Set();start=new Set();gen=0;dirty=true;});
   bind(root,'lf-speed',v=>{speed=v;});
+  // Every grid cell is editable; this bounded board is a drawing surface.
+  o.touchHit(()=>true);
   o.on(o.cv,'pointerdown',e=>{const c=cellAt(o.point(e));cursor=c;paint=toggle(c);o.cv.setPointerCapture?.(e.pointerId);e.preventDefault();});
   o.on(o.cv,'pointermove',e=>{if(paint===null)return;const c=cellAt(o.point(e));if(c[0]!==cursor[0]||c[1]!==cursor[1]){cursor=c;toggle(c,paint);}});
   o.on(o.cv,'pointerup',()=>{paint=null;});o.cancelDrag=()=>{paint=null;};

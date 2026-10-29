@@ -180,6 +180,19 @@ function __r(key) {
 }
 
 /* ---- ../js/canvas-navigation.js ---- */
+// Keep native vertical scrolling on the background. Only a mathematical handle (or an
+// explicit two-finger camera gesture) owns a touch. touch-action on canvas subregions
+// cannot express this, so cancel touchstart selectively, as for the SVG editors.
+function canvasTouch(surface, hit = () => false) {
+  const previous = surface.style.touchAction;
+  surface.style.touchAction = 'pan-y pinch-zoom';
+  const start = e => {
+    const touches = e.touches || [];
+    if (touches.length > 1 || (touches.length === 1 && hit(touches[0], e))) e.preventDefault();
+  };
+  surface.addEventListener('touchstart', start, { passive: false });
+  return () => { surface.removeEventListener('touchstart', start); surface.style.touchAction = previous; };
+}
 // A camera is independent of the mathematical parameters. Moving an object never changes it.
 function camera2D() {
   const c = { scale: 1, x: 0, y: 0 };
@@ -200,16 +213,15 @@ function canvasNavigation(c,g,size,redraw,{host=c.parentElement,lang=document.do
   g.clearRect=()=>{g.save();g.setTransform(1,0,0,1,0,0);rawClear(0,0,c.width,c.height);g.restore();apply();};
   const refresh=()=>{apply();bar.update(camera.scale);redraw();};
   const action=id=>{const [w,h]=size();if(id==='reset')camera.reset();else if(id==='in'||id==='out')camera.zoomAt(id==='in'?1.25:.8,[w/2,h/2]);else{const d={left:[40,0],right:[-40,0],up:[0,40],down:[0,-40]}[id];camera.x+=d[0];camera.y+=d[1];}refresh();};
-  const bar=navigationButtons(host,action,lang);c.style.touchAction='none';if(c.tabIndex<0)c.tabIndex=0;
+  const bar=navigationButtons(host,action,lang);const stopTouch=canvasTouch(c, e=>c.touchHit?.(e));if(c.tabIndex<0)c.tabIndex=0;
   const down=e=>{if(e.pointerType==='touch')pointers.set(e.pointerId,point(e));if(pointers.size===2){const a=[...pointers.values()];gesture={distance:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]),mid:[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]};c.dispatchEvent(new CustomEvent('view-gesture'));}if(gesture||e.button===1||e.altKey||e.shiftKey||canPan(camera.unproject(point(e)))){if(!gesture)last=point(e);c.setPointerCapture?.(e.pointerId);e.preventDefault();e.stopImmediatePropagation();}};
   const move=e=>{if(pointers.has(e.pointerId))pointers.set(e.pointerId,point(e));if(gesture&&pointers.size===2){const a=[...pointers.values()],mid=[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);camera.zoomAt(d/Math.max(1,gesture.distance),gesture.mid);camera.x+=mid[0]-gesture.mid[0];camera.y+=mid[1]-gesture.mid[1];gesture={distance:d,mid};refresh();e.preventDefault();e.stopImmediatePropagation();}else if(last){const q=point(e);camera.x+=q[0]-last[0];camera.y+=q[1]-last[1];last=q;refresh();e.preventDefault();e.stopImmediatePropagation();}};
   const end=e=>{const handled=!!last||!!gesture;pointers.delete(e.pointerId);last=null;if(pointers.size<2)gesture=null;if(handled){e.preventDefault();e.stopImmediatePropagation();}};
-  // zoom only on purpose: a pinch (the browser sends it as Ctrl + wheel) or Ctrl/Cmd + wheel; a plain wheel scrolls the page
   const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();e.stopImmediatePropagation();camera.zoomAt(Math.exp(-e.deltaY*.005),point(e));refresh();};
   const key=e=>{const arrows={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};if(e.shiftKey&&arrows[e.key]){e.preventDefault();e.stopImmediatePropagation();action(arrows[e.key]);return;}if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopImmediatePropagation();action(e.key==='0'?'reset':e.key==='-'?'out':'in');}};
   const events=[['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['wheel',wheel],['dblclick',()=>action('reset')],['keydown',key]];
   for(const [name,fn] of events)c.addEventListener(name,fn,{capture:true,passive:false});
-  return {camera,point:e=>camera.unproject(point(e)),apply,destroy(){bar.remove();g.clearRect=rawClear;for(const[n,f]of events)c.removeEventListener(n,f,true);}};
+  return {camera,point:e=>camera.unproject(point(e)),apply,destroy(){stopTouch();bar.remove();g.clearRect=rawClear;for(const[n,f]of events)c.removeEventListener(n,f,true);}};
 }
 // Changing viewBox preserves the inverse screen transform used by the SVG editors for picking.
 function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentElement,state={},canPan=()=>false}={}) {
@@ -217,8 +229,8 @@ function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentEl
   const paint=()=>{state.box=[...box];svg.setAttribute('viewBox',box.join(' '));bar.update(original[2]/box[2]);};
   const zoom=(k,fx=.5,fy=.5)=>{const w=Math.max(original[2]/12,Math.min(original[2]*5,box[2]*k)),h=w*original[3]/original[2];box=[box[0]+(box[2]-w)*fx,box[1]+(box[3]-h)*fy,w,h];paint();};
   const action=id=>{if(id==='reset'){box=[...original];paint();}else if(id==='in'||id==='out')zoom(id==='in'?.8:1.25);else{const d={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[id];box[0]+=d[0]*box[2]*.12;box[1]+=d[1]*box[3]*.12;paint();}};
-  const bar=navigationButtons(host,action,lang);svg.style.touchAction='none';if(svg.tabIndex<0)svg.tabIndex=0;
-  svg.setAttribute('aria-label',lang==='en'?'Interactive figure: pinch or Ctrl + wheel to zoom, Shift-drag to pan, + or - to zoom, 0 to reset':'Figure interactive : pincement ou Ctrl + pincement ou Ctrl + molette pour zoomer, Maj-glisser pour déplacer la vue, + ou - pour zoomer, 0 pour réinitialiser');
+  const bar=navigationButtons(host,action,lang);const stopTouch=canvasTouch(svg,e=>{const target=svg.ownerDocument.elementFromPoint?.(e.clientX,e.clientY);return !!target?.closest?.('[data-handle],[data-drag],[draggable=true],.ag-vertex,.ag-guard,.hs-person');});if(svg.tabIndex<0)svg.tabIndex=0;
+  svg.setAttribute('aria-label',lang==='en'?'Interactive figure: Ctrl + wheel or pinch to zoom, Shift-drag to pan, + or - to zoom, 0 to reset':'Figure interactive : Ctrl + molette ou pincement pour zoomer, Maj-glisser pour déplacer la vue, + ou - pour zoomer, 0 pour réinitialiser');
   const observer=new MutationObserver(()=>{if(svg.getAttribute('viewBox')!==box.join(' '))paint();});observer.observe(svg,{attributes:true,attributeFilter:['viewBox']});
   const wheel=e=>{if(!(e.ctrlKey||e.metaKey))return;e.preventDefault();const r=svg.getBoundingClientRect();zoom(Math.exp(e.deltaY*.005),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);};
   const down=e=>{
@@ -240,7 +252,7 @@ function svgNavigation(svg,{lang=document.documentElement.lang,host=svg.parentEl
   const events=[['wheel',wheel],['pointerdown',down],['pointermove',move],['pointerup',end],['pointercancel',end],['lostpointercapture',end],['keydown',key],['dblclick',reset]];
   for(const [name,fn]of events)svg.addEventListener(name,fn,{capture:true,passive:false});
   paint();
-  const stop=()=>{observer.disconnect();bar.remove();for(const [name,fn]of events)svg.removeEventListener(name,fn,true);};stop.bar=bar;return stop;
+  const stop=()=>{stopTouch();observer.disconnect();bar.remove();for(const [name,fn]of events)svg.removeEventListener(name,fn,true);};stop.bar=bar;return stop;
 }
 
 function observeSvgNavigation(root,selector,lang) {
@@ -252,7 +264,7 @@ function observeSvgNavigation(root,selector,lang) {
   return()=>{alive=false;observer.disconnect();for(const stop of mounted.values())stop();mounted.clear();};
 }
 
-__d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; });
+__d("canvas-navigation.js", function (__e) { __e.canvasNavigation = canvasNavigation; __e.canvasTouch = canvasTouch; });
 
 /* ---- ../js/camera3d.js ---- */
 // The one orthographic 3D camera of the site: z up, a yaw (turn about the vertical) and a pitch (tilt, clamped), pure functions.
@@ -503,12 +515,13 @@ function canvas(host,ctx) {
   const pt=navigation.point;
   c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
   const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };
+  c.touchHit = e => { const [x, y] = pt(e); return !!hit(x, y); };
   let t0 = 0, raf = 0;
   const pulse = () => { o.t = performance.now() / 1000; if (!matchMedia("(prefers-reduced-motion: reduce)").matches) o.redraw(); raf = requestAnimationFrame(pulse); };
   c.addEventListener("pointerdown", e => { const [x, y] = pt(e), h = hit(x, y); if (!h) { if(o.rotate){c.setPointerCapture(e.pointerId);o.rotate.start(e, pt);} return; } o.drag = h; c.setPointerCapture(e.pointerId); c.style.cursor = "grabbing"; e.preventDefault(); h.move(x, y); o.redraw(); });
   c.addEventListener("pointermove", e => { const [x, y] = pt(e); if (o.drag) { o.drag.move(x, y); o.redraw(); } else if (o.rotate?.active) o.rotate.move(e, pt); else c.style.cursor = hit(x, y)?.cur || "default"; });
   const end = () => { o.drag = null; o.rotate?.end(); c.style.cursor = "default"; o.redraw(); };
-  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
+  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end); c.addEventListener("lostpointercapture", end);
   const ro = new ResizeObserver(resize);
   o.start = inst => { Object.assign(o, inst); ro.observe(host); resize(); if (matchMedia("(prefers-reduced-motion: no-preference)").matches) raf = requestAnimationFrame(pulse); };
   o.stop = () => { navigation.destroy();ro.disconnect(); cancelAnimationFrame(raf); };
@@ -1460,6 +1473,7 @@ function orbitProject([x,y,z],yaw=-.5,pitch=.65,scale=125){const a=x*Math.cos(ya
 const button=(id,label,primary=false)=>`<button type="button" id="${id}" class="btn ${primary?'btn-primary':'btn-secondary'}">${label}</button>`;
 function dragOrbit(o,state,hit=()=>null,moveHandle=()=>{}){
   let drag=null;
+  o.touchHit(p=>hit(p)!==null);
   o.on(o.cv,'pointerdown',e=>{const p=o.point(e);drag={p,handle:hit(p)};o.cv.setPointerCapture?.(e.pointerId);e.preventDefault();});
   o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e),d=[p[0]-drag.p[0],p[1]-drag.p[1]];if(drag.handle!==null)moveHandle(drag.handle,d,p);else{state.yaw+=d[0]*.008;state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+d[1]*.008));}drag.p=p;o.redraw();});
   o.on(o.cv,'pointerup',()=>drag=null);o.cancelDrag=()=>drag=null;
@@ -1839,6 +1853,7 @@ __d("lab/engine.js", function (__e, __r) {
 // Laboratory stage: one canvas, one requestAnimationFrame scheduler that draws only when something changed, handle
 // grabbing (the nearest handle within a forgiving radius) with pointer capture, keyboard handles, the view camera, theme colours and
 // text writes that touch a node only when the string changed. No element is created or replaced during a drag.
+const { canvasTouch } = __r("canvas-navigation.js");
 const { palette: themePalette } = __r("object-kit.js");
 const { makeFormat } = __r("lab/format.js");
 const { clamp } = __r("lab/models/num.js");
@@ -1945,7 +1960,7 @@ function createStage(host, options = {}) {
   canvas.className = "lab2-canvas";
   canvas.setAttribute("role", "group");
   canvas.tabIndex = 0;
-  canvas.style.touchAction = "none";
+
   if (label) canvas.setAttribute("aria-label", label);
   wrap.append(canvas);
   host.append(wrap);
@@ -2113,6 +2128,8 @@ function createStage(host, options = {}) {
   const restCursor = () => { canvas.style.cursor = canvas._cursor || ""; };
 
   function stopAll() { drag = null; pending = null; spin = null; pan = null; stage.dragId = null; }
+
+  const stopTouch = canvasTouch(canvas, e => !!grab(local(e), "touch") || !!options.reservePointer?.());
 
   canvas.addEventListener("pointerdown", (e) => {
     const p = local(e);
@@ -2286,6 +2303,7 @@ function createStage(host, options = {}) {
     get dragging() { return !!drag; },
     resize,
     destroy() {
+      stopTouch();
       alive = false;
       cancelAnimationFrame(raf);
       observer?.disconnect();
@@ -10169,14 +10187,18 @@ __d("object-kit.js", function (__e, __r) {
 const NS = "http://www.w3.org/2000/svg";
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888";
 const palette = () => ({ ink: css("--ink"), muted: css("--muted"), line: css("--line-strong"), surface: css("--surface"), sunken: css("--sunken"), accent: css("--accent"), obj2: css("--obj2"), obj3: css("--obj3"), pos: css("--pos"), neg: css("--neg"), grid: css("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)) });
-const { canvasNavigation } = __r("canvas-navigation.js");
+const { canvasNavigation, canvasTouch } = __r("canvas-navigation.js");
 function canvasIn(host, aspect, options = {}) {
+  host.classList.add("obj-viewport");
+  host.style.setProperty("--canvas-aspect", String(aspect));
   const cv = document.createElement("canvas"); cv.className = "obj-canvas"; host.append(cv);
   const g = cv.getContext("2d"), o = { cv, g, W: 640, H: Math.round(640 / aspect) };
   const resize = () => { const d = devicePixelRatio || 1; cv.width = Math.round(o.W * d); cv.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw?.(); };
   cv.style.aspectRatio = `${o.W} / ${o.H}`; resize();
   o.point = (e) => { const r = cv.getBoundingClientRect(); return [((e.clientX - r.left) / r.width) * o.W, ((e.clientY - r.top) / r.height) * o.H]; };
   if (options.navigation !== false) { o.navigation = canvasNavigation(cv,g,()=>[o.W,o.H],()=>o.redraw?.()); o.point = o.navigation.point; }
+  else { o.stopTouch = canvasTouch(cv, e => cv.touchHit?.(e)); }
+  o.touchHit = test => { cv.touchHit = e => test(o.point(e)); };
   return o;
 }
 const field = (id, label, min, max, step, value) => `<label class="act-field" for="${id}"><span class="act-label">${label} <output id="${id}-out"></output></span><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}"></label>`;

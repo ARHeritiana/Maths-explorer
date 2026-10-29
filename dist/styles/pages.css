@@ -673,6 +673,8 @@ details.source-course[open] { padding-bottom: 16px; }
 /* Laboratory objects (Galton board, Reuleaux, Platonic solids, chaos game) */
 .object-stage { display: grid; gap: 12px; margin-top: 8px; }
 .obj-stage { display: grid; gap: 10px; }
+.obj-viewport { width: 100%; max-width: min(100%, 880px, calc(64svh * var(--canvas-aspect, 1.5))); margin-inline: auto; }
+.presenting .obj-viewport, [data-fs-target]:fullscreen .obj-viewport { max-width: min(100%, calc(78svh * var(--canvas-aspect, 1.5))); }
 .obj-canvas { display: block; width: 100%; height: auto; max-width: 100%; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); touch-action: manipulation; }
 .obj-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 4px; }
 .obj-tabs button { min-height: 40px; padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
@@ -819,12 +821,12 @@ details.source-course[open] { padding-bottom: 16px; }
 .hint-action { margin: 4px 0 10px; }
 
 /* cake sandbox */
-.ck-stage { touch-action: none; cursor: grab; max-height: 560px; }
+.ck-stage { touch-action: pan-y pinch-zoom; cursor: grab; max-height: 560px; }
 .ck-stage:active { cursor: grabbing; }
 #ck-kit[hidden], .ck-row [hidden], #ck-disk[hidden], #ck-size-wrap[hidden] { display: none !important; }
 .ck-tools { margin-top: 12px; }
 #bx-barflat[hidden], #bx-bar3d[hidden] { display: none !important; }
-.bx-stage { touch-action: none; cursor: grab; max-height: 560px; }
+.bx-stage { touch-action: pan-y pinch-zoom; cursor: grab; max-height: 560px; }
 .bx-bar { margin-top: 12px; }
 /* the worked solution gets the full width under the exploration */
 .solution-wide { margin-top: 36px; max-width: 980px; }
@@ -897,7 +899,7 @@ details.source-course[open] { padding-bottom: 16px; }
 .canvas-navigation{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:8px;background:var(--surface);border-top:1px solid var(--line);font:500 13px system-ui,sans-serif}
 .canvas-navigation button{min-width:44px;min-height:44px;padding:6px 10px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--ink);cursor:pointer;font-size:20px}
 .canvas-navigation button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.canvas-navigation output{padding:0 8px;color:var(--muted)}
-.obj-canvas{background:var(--sunken);touch-action:none}.platonic-proof{margin-top:20px}.fold-reason{padding-left:24px}.fold-reason li{margin:12px 0}.platonic-proof summary{font-size:18px;font-weight:600;cursor:pointer}.pl-table caption{font-weight:600;text-align:left;padding-bottom:8px}
+.obj-canvas{background:var(--sunken);touch-action:pan-y pinch-zoom}.platonic-proof{margin-top:20px}.fold-reason{padding-left:24px}.fold-reason li{margin:12px 0}.platonic-proof summary{font-size:18px;font-weight:600;cursor:pointer}.pl-table caption{font-weight:600;text-align:left;padding-bottom:8px}
 .slide-type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 16px;max-width:780px}.slide-type-toggle button{text-align:left;padding:16px 20px;min-height:80px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit}.slide-type-toggle strong,.slide-type-toggle span{display:block}.slide-type-toggle span{margin-top:6px;font-size:14px;color:var(--muted)}.slide-type-toggle [aria-pressed=true]{border:2px solid var(--accent);padding:15px 19px;background:var(--sunken)} @media(max-width:480px){.slide-type-toggle{gap:8px;margin:16px 0 12px}.slide-type-toggle button{min-height:0;padding:10px 12px}.slide-type-toggle [aria-pressed=true]{padding:9px 11px}.slide-type-toggle span{display:none}.slide-type-toggle strong{font-size:.95rem}}
 .university-page{max-width:1120px;margin-inline:auto}.university-page .breadcrumb{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem}.university-sequences{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.university-sequence{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:inherit;height:100%;box-sizing:border-box}.university-sequence h3{margin-top:0}.university-sequence p{margin:.6rem 0}.university-sequence>div{min-width:0}.university-sequence .sequence-number{flex:none}.university-sequence:hover{border-color:var(--accent)}.university-files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:1rem 0}.university-file{display:flex;flex-direction:column;gap:.5rem;justify-content:center;min-height:64px;padding:1rem;border:1px solid var(--line);border-radius:10px;overflow-wrap:anywhere;text-decoration:none}.university-file span{font-size:.85em;color:var(--muted)}.university-documents{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.5rem}.university-page section{margin-bottom:2rem}@media(max-width:650px){.university-sequences,.university-files{grid-template-columns:1fr}.university-page{padding-inline:1rem}.university-sequence{padding:1rem}}
 
@@ -987,8 +989,8 @@ details.source-course[open] { padding-bottom: 16px; }
 .lab2-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; align-items: start; }
 .lab2-figure, .lab2-card, .lab2-argument { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); min-width: 0; }
 .lab2-figure { padding: 12px; }
-.lab2-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 260px; max-height: 62vh; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); touch-action: none; }
-.lab2-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: none; cursor: default; }
+.lab2-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 260px; max-height: 62vh; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); touch-action: pan-y pinch-zoom; }
+.lab2-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: pan-y pinch-zoom; cursor: default; }
 .lab2-canvas:focus-visible { outline-offset: -3px; }
 .lab2-handle { position: absolute; left: 0; top: 0; width: 44px; height: 44px; padding: 0; border-radius: 50%; background: transparent; pointer-events: none; }
 .lab2-handle:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
@@ -1063,7 +1065,7 @@ details.source-course[open] { padding-bottom: 16px; }
 }
 @media (max-width: 720px) {
   .lab2-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .lab2-stage { aspect-ratio: auto; height: 55vh; max-height: none; }
+  .lab2-stage { aspect-ratio: auto; height: clamp(240px, 42svh, 360px); min-height: 0; max-height: 360px; }
   .lab2-readout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   /* The mission card follows the figure in normal flow: it never covers a part of the canvas. */
   .lab2-page .breadcrumb, .lab2-page .lab-heading p, .lab2-page .lab2-meta, .lab2-page .level { display: none; }

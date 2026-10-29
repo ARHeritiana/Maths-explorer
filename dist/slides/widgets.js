@@ -177,12 +177,13 @@ function canvas(host,ctx) {
   const pt=navigation.point;
   c.addEventListener('view-gesture',()=>{o.drag=null;o.rotate?.end();});
   const hit = (x, y) => { let best = null, bd = 1e9; for (const h of o.handles()) { const d = Math.hypot(h.x - x, h.y - y); if (d < (h.r || 22) && d < bd) { best = h; bd = d; } } return best; };
+  c.touchHit = e => { const [x, y] = pt(e); return !!hit(x, y); };
   let t0 = 0, raf = 0;
   const pulse = () => { o.t = performance.now() / 1000; if (!matchMedia("(prefers-reduced-motion: reduce)").matches) o.redraw(); raf = requestAnimationFrame(pulse); };
   c.addEventListener("pointerdown", e => { const [x, y] = pt(e), h = hit(x, y); if (!h) { if(o.rotate){c.setPointerCapture(e.pointerId);o.rotate.start(e, pt);} return; } o.drag = h; c.setPointerCapture(e.pointerId); c.style.cursor = "grabbing"; e.preventDefault(); h.move(x, y); o.redraw(); });
   c.addEventListener("pointermove", e => { const [x, y] = pt(e); if (o.drag) { o.drag.move(x, y); o.redraw(); } else if (o.rotate?.active) o.rotate.move(e, pt); else c.style.cursor = hit(x, y)?.cur || "default"; });
   const end = () => { o.drag = null; o.rotate?.end(); c.style.cursor = "default"; o.redraw(); };
-  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
+  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end); c.addEventListener("lostpointercapture", end);
   const ro = new ResizeObserver(resize);
   o.start = inst => { Object.assign(o, inst); ro.observe(host); resize(); if (matchMedia("(prefers-reduced-motion: no-preference)").matches) raf = requestAnimationFrame(pulse); };
   o.stop = () => { navigation.destroy();ro.disconnect(); cancelAnimationFrame(raf); };

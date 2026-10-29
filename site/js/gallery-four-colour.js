@@ -76,6 +76,7 @@ export function fourColours(root, opts) {
     o.redraw();
   }
   o.on(root.querySelector('#fc-auto'), 'click', () => auto(4)); o.on(root.querySelector('#fc-five'), 'click', () => auto(5));
+  o.touchHit(p=>mode==='draw'&&map.some(poly=>pointIn(p,poly)));
   o.on(o.cv, 'pointerdown', (e) => {
     if (e.button !== 0) return;
     const p = o.point(e), i = map.findIndex((poly) => pointIn(p, poly)); if (i < 0) return;

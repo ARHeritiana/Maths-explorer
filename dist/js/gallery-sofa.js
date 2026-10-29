@@ -32,6 +32,7 @@ export function movingSofa(root,opts){
   o.on(drawBtn,'click',()=>{drawing=[];drawBtn.textContent=t('Dessine dans le couloir…','Draw in the hallway…');dirty=true;});
   o.on(playBtn,'click',()=>{play=play===null?0:null;auto=true;dirty=true;});
   o.on(root.querySelector('#so-reset'),'click',()=>{pose=start();play=null;dirty=true;});
+  o.touchHit(at=>{if(drawing)return true;const p=W(at),h=handle(),poly=place(hit,pose);if(Math.hypot(p[0]-h[0],p[1]-h[1])<.3)return true;let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;});
   o.on(o.cv,'pointerdown',e=>{const p=W(o.point(e));play=null;
     if(drawing){drawing=[p];drag={draw:true};}
     else{const h=handle(),[cx,cy]=centre();if(Math.hypot(p[0]-h[0],p[1]-h[1])<.3)drag={rotate:true,offset:Math.atan2(p[1]-cy,p[0]-cx)-pose.a};else drag={dx:p[0]-pose.x,dy:p[1]-pose.y};}

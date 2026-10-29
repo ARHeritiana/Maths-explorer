@@ -202,7 +202,7 @@ function galton(root, { t, reduced, lang }) {
   o.cv.setAttribute('aria-label',t('Planche de Galton : toucher ou Entrée pour lâcher une bille.','Galton board: tap or press Enter to drop a ball.'));
   reset(); o.redraw = () => draw(0);
   const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
-  return stop;
+  return () => { stop(); o.navigation?.destroy(); };
 }
 
 /* -------------------------------------------------------------- Reuleaux */
@@ -222,10 +222,13 @@ function reuleauxLab(root, { t, reduced, lang }) {
       <button class="btn btn-secondary" id="rl-play" type="button" aria-pressed="${playing}">${playing ? t("Pause", "Pause") : t("Lecture", "Play")}</button></div>
     <p class="act-readout" id="rl-read" role="status" aria-live="polite"></p>`;
   const o = canvasIn(root.querySelector("#rl-stage"), 640 / 420), g = o.g, read = root.querySelector("#rl-read");
-  let shape = reuleaux(n, 1), roll = rolling(shape);
+  let shape = reuleaux(n, 1), roll = rolling(shape), paintedShape = [];
+  const hitShape = ([x,y]) => { let yes=false;for(let i=0,j=paintedShape.length-1;i<paintedShape.length;j=i++){const a=paintedShape[i],b=paintedShape[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;};
+  o.touchHit(hitShape);
   const f = (x, d = 2) => { const s = (Math.round(x * 10 ** d) / 10 ** d).toFixed(d); return lang === "fr" ? s.replace(".", ",") : s; };
   const fill = (C) => { g.fillStyle = C.accent; g.globalAlpha = 0.28; g.fill(); g.globalAlpha = 1; g.strokeStyle = C.accent; g.lineWidth = 3; g.stroke(); };
   function drawShape(C, cx, cy, S, rot) {   // S pixels per unit of width
+    paintedShape = shape.pts.map(([x,y])=>[cx+S*(x*Math.cos(rot)-y*Math.sin(rot)),cy-S*(x*Math.sin(rot)+y*Math.cos(rot))]);
     g.beginPath(); shape.pts.forEach(([x, y], i) => { const X = cx + S * (x * Math.cos(rot) - y * Math.sin(rot)), Y = cy - S * (x * Math.sin(rot) + y * Math.cos(rot)); i ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.closePath(); fill(C);
     g.fillStyle = C.ink; shape.verts.forEach(([x, y]) => { g.beginPath(); g.arc(cx + S * (x * Math.cos(rot) - y * Math.sin(rot)), cy - S * (x * Math.sin(rot) + y * Math.cos(rot)), 4, 0, TAU); g.fill(); });
   }
@@ -268,11 +271,13 @@ function reuleauxLab(root, { t, reduced, lang }) {
   void psiEl;
   root.querySelector("#rl-play").addEventListener("click", (e) => { playing = !playing; e.currentTarget.textContent = playing ? t("Pause", "Pause") : t("Lecture", "Play"); e.currentTarget.setAttribute("aria-pressed", String(playing)); });
   let dragging=false;
-  o.cv.addEventListener('pointerdown',e=>{if(e.button!==0)return;dragging=true;playing=false;o.cv.setPointerCapture(e.pointerId);});
+  o.cv.addEventListener('pointerdown',e=>{if(e.button!==0||(e.pointerType==='touch'&&!hitShape(o.point(e))))return;dragging=true;playing=false;o.cv.setPointerCapture(e.pointerId);});
   o.cv.addEventListener('pointermove',e=>{if(!dragging)return;const [x,y]=o.point(e);psi=Math.atan2(o.H/2-y,x-o.W/2);root.querySelector('#rl-psi').value=((psi*180/Math.PI)%360+360)%360;root.querySelector('#rl-psi-out').textContent=Math.round(((psi*180/Math.PI)%360+360)%360);root.querySelector('#rl-play').setAttribute('aria-pressed','false');root.querySelector('#rl-play').textContent=t('Lecture','Play');draw(0);});
-  for(const ev of ['pointerup','pointercancel','view-gesture'])o.cv.addEventListener(ev,()=>dragging=false);
+  for(const ev of ['pointerup','pointercancel','lostpointercapture','view-gesture'])o.cv.addEventListener(ev,()=>dragging=false);
   o.cv.style.cursor='grab';o.redraw=()=>draw(0);
-  return loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
+  draw(0);
+  const stop = loopFor((dt) => draw(reduced() ? 0 : dt), reduced);
+  return () => { stop(); o.navigation?.destroy(); };
 }
 
 /* -------------------------------------------------------------- Platonic */
@@ -326,12 +331,17 @@ function chaos(root, { t, reduced, lang }) {
   root.querySelector("#ch-best").addEventListener("click", () => { ratio = Math.round((1 - gonContraction(k)) * 100) / 100; root.querySelector("#ch-r").value = ratio; root.querySelector("#ch-r-out").textContent = ratio; restart(); });
   root.querySelector("#ch-play").addEventListener("click", (e) => { playing = !playing; e.currentTarget.textContent = playing ? t("Pause", "Pause") : t("Lecture", "Play"); e.currentTarget.setAttribute("aria-pressed", String(playing)); if (reduced()) { restart(); } });
   root.querySelector("#ch-clear").addEventListener("click", restart);
-  let grab = -1;
-  o.cv.addEventListener("pointerdown", (e) => { if (mode !== "game") return; const [x, y] = o.point(e); grab = verts.findIndex((v) => Math.hypot(v[0] - x, v[1] - y) < 24); if (grab >= 0) o.cv.setPointerCapture(e.pointerId); });
+  let grab = -1, selectedVertex = 0;
+  const vertexAt = (p,r) => verts.findIndex(v=>Math.hypot(v[0]-p[0],v[1]-p[1])<r);
+  o.touchHit(p=>mode==="game"&&vertexAt(p,40)>=0);
+  o.cv.addEventListener("pointerdown", (e) => { if (mode !== "game") return; const [x, y] = o.point(e); grab = vertexAt([x,y],e.pointerType==="touch"?40:24); if (grab >= 0) { selectedVertex=grab;playing=false;root.querySelector("#ch-play").setAttribute("aria-pressed","false");root.querySelector("#ch-play").textContent=t("Lecture","Play");o.cv.setPointerCapture(e.pointerId); } });
   o.cv.addEventListener("pointermove", (e) => { if (grab < 0) return; const [x, y] = o.point(e); verts[grab] = [clampN(x, 10, o.W - 10), clampN(y, 10, o.H - 10)]; layer = null; pts = []; cur = [o.W / 2, o.H / 2]; });
-  const up = () => { grab = -1; }; o.cv.addEventListener("pointerup", up); o.cv.addEventListener("pointercancel", up);
+  const up = () => { grab = -1; }; o.cv.addEventListener("pointerup", up); o.cv.addEventListener("pointercancel", up); o.cv.addEventListener("lostpointercapture", up); o.cv.addEventListener("view-gesture", up);
+  o.cv.addEventListener("keydown",e=>{if(e.shiftKey||mode!=="game")return;if(e.key==='['||e.key===']'){selectedVertex=(selectedVertex+(e.key===']'?1:k-1))%k;e.preventDefault();return;}const d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];if(!d)return;e.preventDefault();selectedVertex%=k;verts[selectedVertex]=[clampN(verts[selectedVertex][0]+d[0],10,o.W-10),clampN(verts[selectedVertex][1]+d[1],10,o.H-10)];layer=null;pts=[];cur=[o.W/2,o.H/2];draw();});
+  o.cv.setAttribute('aria-label',t('Sommets : [ et ] pour choisir, flèches pour déplacer.','Vertices: [ and ] select, arrow keys move.'));
   layout(); o.redraw = () => draw();
-  return loopFor(() => draw(), reduced);
+  const stop = loopFor(() => draw(), reduced);
+  return () => { stop(); o.navigation?.destroy(); };
 }
 
 export const OBJECTS = { ...Object.fromEntries(["double-pendulum", "three-body", "logistic"].map(id => [id + "-gallery", dynamicsGallery(id)])), "mirrored-rooms":illuminationGallery, gomboc, ...Object.fromEntries(["secretary", "tank", "benford", "baker", "birthdays", "monty"].map(id => [id + "-gallery", inferenceGallery(id)])), galton, reuleaux: reuleauxLab, platonic: platonicLab, chaos, ...GALLERY_OBJECTS, voronoi:voronoiWorld, 'fastest-slide':fastestSlide, 'soap-films':soapFilm, knots:knotsInSpace, einstein:einsteinTiles, 'four-colours':fourColours, life:gameOfLife, 'square-packing':squarePacking, 'moving-sofa':movingSofa, 'inscribed-square':inscribedSquare, 'opaque-square':opaqueSquare };

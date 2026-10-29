@@ -2,14 +2,18 @@
 export const NS = "http://www.w3.org/2000/svg";
 export const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#888";
 export const palette = () => ({ ink: css("--ink"), muted: css("--muted"), line: css("--line-strong"), surface: css("--surface"), sunken: css("--sunken"), accent: css("--accent"), obj2: css("--obj2"), obj3: css("--obj3"), pos: css("--pos"), neg: css("--neg"), grid: css("--grid"), c: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => css(`--c${i}`)) });
-import { canvasNavigation } from './canvas-navigation.js';
+import { canvasNavigation, canvasTouch } from './canvas-navigation.js';
 export function canvasIn(host, aspect, options = {}) {
+  host.classList.add("obj-viewport");
+  host.style.setProperty("--canvas-aspect", String(aspect));
   const cv = document.createElement("canvas"); cv.className = "obj-canvas"; host.append(cv);
   const g = cv.getContext("2d"), o = { cv, g, W: 640, H: Math.round(640 / aspect) };
   const resize = () => { const d = devicePixelRatio || 1; cv.width = Math.round(o.W * d); cv.height = Math.round(o.H * d); g.setTransform(d, 0, 0, d, 0, 0); o.redraw?.(); };
   cv.style.aspectRatio = `${o.W} / ${o.H}`; resize();
   o.point = (e) => { const r = cv.getBoundingClientRect(); return [((e.clientX - r.left) / r.width) * o.W, ((e.clientY - r.top) / r.height) * o.H]; };
   if (options.navigation !== false) { o.navigation = canvasNavigation(cv,g,()=>[o.W,o.H],()=>o.redraw?.()); o.point = o.navigation.point; }
+  else { o.stopTouch = canvasTouch(cv, e => cv.touchHit?.(e)); }
+  o.touchHit = test => { cv.touchHit = e => test(o.point(e)); };
   return o;
 }
 export const field = (id, label, min, max, step, value) => `<label class="act-field" for="${id}"><span class="act-label">${label} <output id="${id}-out"></output></span><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}"></label>`;

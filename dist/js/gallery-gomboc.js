@@ -42,6 +42,7 @@ export function gomboc(root,opts){
   const follow=root.querySelector('#go-follow');o.on(follow,'change',()=>{dirty=true;});
   function displayOffset(){if(!follow.checked)return [0,0];const p=project([s.p[0],s.p[1],0]),base=project([0,0,0]);return [base[0]-p[0],base[1]-p[1]];}
   function nearest(p){const R=G.rotation(s.q),offset=displayOffset();let best=null;for(const index of body.drawingIds){const r=G.matvec(R,G.vertex(body,index)),q=project(G.add(r,s.p)),d=Math.hypot(q[0]+offset[0]-p[0],q[1]+offset[1]-p[1]);if(!best||d<best.d)best={d,r};}return best;}
+  o.touchHit(p=>!!body&&nearest(p).d<75);
   o.on(o.cv,'pointerdown',e=>{if(!body)return;const p=o.point(e),hit=nearest(p),mode=inputs.mode.value;drag={p,last:p,mode:hit.d<75&&mode!=='inspect'?mode:'camera',r:hit.r,time:performance.now()};playing=false;updatePlay();o.cv.setPointerCapture?.(e.pointerId);e.preventDefault();});
   o.on(o.cv,'pointermove',e=>{if(!drag)return;const p=o.point(e),dx=p[0]-drag.last[0],dy=p[1]-drag.last[1];
     if(drag.mode==='camera')cam3Turn(cam,dx*.008,-dy*.008);
