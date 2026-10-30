@@ -68,6 +68,7 @@ really need them.
 | review status, audits, verification scripts | not in this repository: the private repository ARHeritiana/Maths-explorer-backup (ledger, audits, verification, course quality; the local folder private stays git-ignored here) | commit new audit notes and verification scripts there, on `main` |
 | an unpublished future-exploration reference | `HANDOFF.md` task queue, then `docs/future-work/equidecomposability-of-polygons.html` | Stored under `docs/` for collaborators only; never add to `site/` or `dist/` without the publication gate. |
 | the unpublished Monte Carlo exploration lab | `HANDOFF.md` task queue, then `docs/future-work/monte-carlo-lab.html` | Reference-only bilingual HTML: π by sampling, freehand area, integration and random-walk probabilities. Not published; independently review numerical, statistical and UI behaviour before integration. |
+| the unpublished set theory interactive atlas | `HANDOFF.md` task queue, then `docs/future-work/set-theory-interactive-atlas.html` | Reference-only standalone HTML: 18 concepts, 2- and 3-set Venn diagrams, worked examples, randomized quizzes, shading practice and set identities. Not published; review thoroughly before integration. |
 | the unpublished London Eye trigonometry exercise | `HANDOFF.md` task queue, then `docs/future-work/london-eye-interactive-exercise.html` | Reference-only standalone HTML: interactive wheel and height graph, six solutions, modelling caveats; not part of the live site. |
 
 
