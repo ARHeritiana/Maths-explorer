@@ -171,6 +171,9 @@ content planned for the first trimester only (up to the December holidays, 18 De
 
 ### 4. Scale in priority order
 Brief section 3: classes taught this year, then Malagasy T12 (S, OSE, L), Olympiad, rest of Malagasy, IB, university basics last. Each chapter goes through the same pipeline.
+### 5. Candidate explorations (future work only; not published)
+- [ ] **Equidecomposability of polygons (Wallace-Bolyai-Gerwien theorem):** A standalone, English-language interactive reference is stored at [`docs/future-work/equidecomposability-of-polygons.html`](docs/future-work/equidecomposability-of-polygons.html). It offers preset and user-drawn polygons, gallery examples, and an eight-step animated polygon dissection through a common equal-area rectangle, with explanatory mathematical notes. **This is reference material, not an approved or published Maths-explorer resource.** Before integration, independently check the proof and construction, numerical geometry and custom-polygon edge cases, and any historical assertions or citations; adapt to the site's mathematical, interaction, language and accessibility conventions; test keyboard, touch and mobile use; satisfy all independent verification and publication requirements. Do not move or link this HTML into `site/`, `content/` or `dist/` until it is approved for publication.
+
 
 ## Open for the owner (do not guess)
 
