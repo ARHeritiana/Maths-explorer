@@ -67,6 +67,8 @@ really need them.
 | programme references, curriculum scope | `PROJECT_BRIEF.md` section 3, `docs/CURRICULUM.md` | |
 | review status, audits, verification scripts | not in this repository: the private repository ARHeritiana/Maths-explorer-backup (ledger, audits, verification, course quality; the local folder private stays git-ignored here) | commit new audit notes and verification scripts there, on `main` |
 | an unpublished future-exploration reference | `HANDOFF.md` task queue, then `docs/future-work/equidecomposability-of-polygons.html` | Stored under `docs/` for collaborators only; never add to `site/` or `dist/` without the publication gate. |
+| the unpublished London Eye trigonometry exercise | `HANDOFF.md` task queue, then `docs/future-work/london-eye-interactive-exercise.html` | Reference-only standalone HTML: interactive wheel and height graph, six solutions, modelling caveats; not part of the live site. |
+
 
 ## 3. Site map (hash routes)
 

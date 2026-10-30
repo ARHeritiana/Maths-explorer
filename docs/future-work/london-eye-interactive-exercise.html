@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>The London Eye | An Interactive Trigonometry Lesson</title>
+<style>
+  :root{--ink:#18243b;--muted:#586a80;--blue:#2b679e;--navy:#162942;--orange:#c86732;--orange-soft:#fff1e7;--green:#277665;--bg:#f5f7f8;--line:#dce5eb;--paper:#fff;--soft:#eaf2f7;--shadow:0 14px 40px rgba(32,54,76,.07)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.58 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  button,input{font:inherit}
+  button{cursor:pointer}
+  button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #eba44c;outline-offset:3px}
+  .shell{width:min(1180px,calc(100% - 34px));margin:0 auto 70px}
+  .hero{background:var(--navy);color:#fff;padding:43px 0 41px;position:relative;overflow:hidden}
+  .hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid #ffffff18;border-radius:50%;right:-110px;top:-340px;box-shadow:0 0 0 55px #ffffff08,0 0 0 110px #ffffff07;pointer-events:none}
+  .hero .shell{margin-bottom:0;position:relative;z-index:1}
+  .eyebrow{font-size:.72rem;font-weight:750;text-transform:uppercase;letter-spacing:.18em;color:#a5cbdf}
+  h1{font:normal clamp(2.1rem,5vw,3.65rem)/1.11 Georgia,"Times New Roman",serif;letter-spacing:-.032em;margin:12px 0 12px}
+  .hero p{max-width:720px;color:#d6e4ef;margin:0;font-size:1.05rem}
+  .hero .tag{display:inline-flex;margin-top:22px;border:1px solid #ffffff40;padding:6px 11px;border-radius:999px;font-size:.75rem;font-weight:700;color:#f4f9fc;letter-spacing:.035em}
+  .section{margin-top:26px}
+  .paper{border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
+  .problem{padding:0 24px}
+  .problem summary{padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:760}
+  .problem summary::-webkit-details-marker{display:none}
+  .problem summary:after{content:"+";font-size:1.35rem;color:var(--blue);font-weight:400;line-height:1}
+  .problem[open] summary:after{content:"−"}
+  .problem-body{border-top:1px solid var(--line);padding:16px 0 21px;color:#304158}
+  .problem-body p{margin:.3rem 0 .9rem}
+  .problem-body ol{padding-left:1.5rem;margin:.6rem 0 .2rem}
+  .problem-body li{padding:.18rem 0}
+  .small-kicker{font-size:.73rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--blue)}
+  h2{font:normal 1.65rem/1.2 Georgia,"Times New Roman",serif;letter-spacing:-.015em;margin:.5rem 0 .65rem}
+  .intro{font-size:.95rem;color:var(--muted);margin:0 0 18px;max-width:800px}
+  .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:22px 0 15px}
+  .fact{padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:12px}
+  .fact .name{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+  .fact .value{font-size:1.5rem;font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.5;font-variant-numeric:tabular-nums}
+  .fact small{display:block;color:var(--muted);font-size:.72rem}
+  .explorer{padding:19px}
+  .figure-grid{display:grid;grid-template-columns:minmax(270px, .88fr) minmax(380px,1.12fr);gap:16px;align-items:stretch;position:relative}
+  /* Only a spatial guide: it is omitted when the two graphics stack. */
+  .altitude-guide{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible}
+  .altitude-guide[hidden]{display:none}
+  .altitude-guide line{stroke:#c94e3e;stroke-width:2;stroke-dasharray:6 7;stroke-linecap:round;opacity:.7}
+  .altitude-guide circle{fill:#c94e3e;opacity:.85}
+  .figure-panel{background:#fbfdfe;border:1px solid var(--line);border-radius:13px;padding:13px;min-width:0}
+  .panel-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin:1px 4px 9px}
+  .panel-top strong{font-size:.93rem}
+  .panel-top span{color:var(--muted);font-size:.72rem}
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  #wheelSVG{border-radius:9px;background:#e6f2fa;user-select:none}
+  #graphSVG{background:white;border-radius:9px;user-select:none}
+  .wheel-seat-handle{cursor:grab;touch-action:none}
+  .wheel-seat-handle:active{cursor:grabbing}
+  .plot-scrub{cursor:crosshair}
+  .readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:17px 0 15px}
+  .readout{border:1px solid var(--line);border-radius:11px;padding:10px 13px;background:#fff;min-width:0}
+  .readout .label{font-size:.68rem;color:var(--muted);font-weight:750;letter-spacing:.06em;text-transform:uppercase}
+  .readout .num{font-variant-numeric:tabular-nums;font-weight:750;font-size:clamp(.92rem,1.7vw,1.2rem);white-space:nowrap;margin-top:3px}
+  .readout.accent .num{color:var(--orange)}
+  .readout.rate .num{color:var(--green)}
+  .readout.rate.falling .num{color:#b94f43}
+  .transport{padding:14px 15px;background:#eef4f7;border-radius:13px}
+  .transport-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .play-btn{border:0;background:var(--navy);color:#fff;padding:10px 19px;border-radius:9px;font-size:.9rem;font-weight:740;min-width:115px}
+  .play-btn:hover{background:#2b4e73}
+  .transport-note{color:var(--muted);font-size:.8rem}
+  .speed-buttons{display:flex;gap:5px;align-items:center}
+  .speed-buttons span{font-size:.72rem;color:var(--muted);margin-right:3px}
+  .speed-buttons button{padding:6px 10px;border:1px solid #c9d7df;border-radius:7px;background:#fff;font-size:.78rem}
+  .speed-buttons button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+  .slider-row{margin-top:14px}
+  #timeSlider{width:100%;height:8px;accent-color:var(--blue);cursor:pointer}
+  .slider-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.72rem;color:var(--muted);padding:12px 2px 0}
+  .legend > span{display:flex;align-items:center;gap:7px}
+  .legend i{display:inline-block;width:15px;height:4px;border-radius:4px}
+  .live-note{min-height:24px;margin-top:6px;color:var(--orange);font-size:.86rem;font-weight:670}
+  .solution-wrap{margin-top:32px}
+  .section-heading{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:14px}
+  .section-heading h2{margin-bottom:0}
+  .section-heading p{margin:0;color:var(--muted);font-size:.83rem}
+  .lesson-grid{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px;align-items:start}
+  .parts{display:grid;gap:9px}
+  .part-btn{text-align:left;border:1px solid var(--line);background:#fff;border-radius:11px;padding:12px 13px;display:flex;gap:13px;align-items:center;box-shadow:0 2px 8px #20365205}
+  .part-btn .letter{width:34px;height:34px;border:1px solid #c9d9e4;border-radius:9px;display:grid;place-items:center;color:var(--blue);font-weight:800;flex:none}
+  .part-btn .part-label{font-weight:710;font-size:.84rem;display:block;line-height:1.3}
+  .part-btn small{font-size:.72rem;color:var(--muted)}
+  .part-btn[aria-pressed="true"]{border-color:var(--blue);background:#ecf5fb;box-shadow:inset 3px 0 0 var(--blue)}
+  .part-btn[aria-pressed="true"] .letter{background:var(--blue);color:white;border-color:var(--blue)}
+  .work{padding:25px 29px 28px;min-height:420px}
+  .work-article{display:none}
+  .work-article.active{display:block}
+  .work-top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}
+  .part-meta{text-transform:uppercase;font-size:.72rem;font-weight:780;letter-spacing:.13em;color:var(--blue)}
+  .work h3{font:normal 1.72rem/1.2 Georgia,"Times New Roman",serif;margin:0 0 9px}
+  .summary{color:var(--muted);margin:0 0 19px;font-size:.93rem}
+  .steps{counter-reset:step;display:grid;gap:15px}
+  .step{border-top:1px solid #e8eef2;padding-top:15px;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px}
+  .step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#eaf3f8;color:var(--blue);font-size:.76rem;font-weight:800}
+  .step strong{font-size:.91rem;display:block;margin:1px 0 4px}
+  .step p{margin:.25rem 0 .6rem;color:#42536a;font-size:.91rem}
+  .equation{background:#f4f8fa;border:1px solid #e4edf1;border-radius:8px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1rem,2.4vw,1.2rem);line-height:1.65;padding:8px 13px;margin:7px 0 4px;overflow-wrap:anywhere;}
+  .equation .sub{font-size:.8em}
+  .answer{margin-top:19px;border-left:4px solid var(--green);background:#ebf7f2;padding:12px 15px;border-radius:0 9px 9px 0;font-weight:720;font-size:1.08rem;font-family:Georgia,"Times New Roman",serif}
+  .interpret{border-radius:10px;background:var(--orange-soft);border:1px solid #f2d6c5;margin-top:18px;padding:12px 14px;color:#6b452e;font-size:.87rem}
+  .interpret strong{color:#995122}
+  .work-controls{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:23px}
+  .outline-btn{border:1px solid #c7d7e2;border-radius:9px;padding:8px 14px;background:#fff;color:var(--navy);font-weight:680;font-size:.81rem}
+  .outline-btn:hover{background:#eff5f9}
+  .outline-btn:disabled{opacity:.35;cursor:default}
+  .takeaway{padding:19px 22px;display:flex;gap:15px;align-items:start;margin-top:22px;background:#fff}
+  .takeaway .glyph{width:36px;height:36px;display:grid;place-items:center;flex:none;background:#eaf5f1;color:var(--green);border-radius:10px;font-size:1.3rem}
+  .takeaway strong{font-size:.95rem}
+  .takeaway p{font-size:.88rem;color:var(--muted);margin:.25rem 0 0}
+  .footer{padding-top:26px;font-size:.75rem;color:var(--muted);text-align:center}
+  .formula-inline{font-family:Georgia,"Times New Roman",serif;white-space:normal;color:var(--ink);font-size:1.06em}
+  .source-hint,.model-caveat{font-size:.84rem;line-height:1.55;color:#43576d;background:#f1f6f9;padding:12px 14px;border-radius:10px;border-left:3px solid #668fb2;margin:12px 0 19px}
+  .source-hint a,.sources a{color:#1c659c;text-decoration:underline;text-underline-offset:2px}
+  .sources{padding:24px 28px;margin-top:28px}
+  .sources p{font-size:.9rem;color:#40536c}
+  .sources ul{padding-left:1.4rem;font-size:.86rem;line-height:1.75}
+  .sources li{margin-bottom:6px}
+  .sources .source-footnote{color:#63758a;font-size:.78rem}
+  @media(min-width:970px){.parts{position:sticky;top:15px}}
+  @media(max-width:850px){.figure-grid{grid-template-columns:1fr}.figure-panel:first-child{max-width:520px;width:100%;margin:auto}.figure-panel svg{max-height:390px}.lesson-grid{grid-template-columns:1fr}.parts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
+  @media(max-width:540px){.shell{width:min(100% - 22px,1180px)}.hero{padding:33px 0 35px}.hero p{font-size:.95rem}.facts{grid-template-columns:repeat(2,1fr)}.figure-grid{display:block}.figure-panel+.figure-panel{margin-top:12px}.explorer{padding:10px}.figure-panel{padding:8px}.readouts{gap:6px}.readout{padding:9px 7px}.readout .label{font-size:.62rem}.readout .num{font-size:.83rem}.parts{grid-template-columns:repeat(2,minmax(0,1fr))}.part-btn{padding:10px 9px;gap:8px}.part-btn .letter{width:26px;height:26px;font-size:.78rem}.part-btn .part-label{font-size:.73rem}.part-btn small{font-size:.65rem}.work{padding:20px 17px}.work h3{font-size:1.45rem}.steps{gap:9px}.step{gap:8px}.equation{padding:9px;font-size:1rem}.transport{padding:12px}.transport-note{order:4;width:100%}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+  @media print{body{background:white;font-size:12px}.hero{background:white;color:#111;padding:8px 0 15px}.hero .eyebrow,.hero p,.hero .tag{color:#333}.hero:after{display:none}.shell{width:100%;margin:0 auto}.paper,.fact{box-shadow:none}.problem{display:block}.problem summary{display:none}.problem-body{display:block!important}.explorer{break-inside:avoid}.figure-grid{grid-template-columns:45% 55%;gap:6px}.figure-panel{padding:5px}.transport,.legend,.parts,.work-controls,.live-note{display:none!important}.readouts{margin:5px 0}.solution-wrap{margin-top:15px}.lesson-grid{display:block}.work{padding:0;border:0;box-shadow:none}.work-article,.work-article.active{display:block;break-inside:avoid;margin:17px 0 24px;border-top:2px solid #ccc;padding-top:12px}.step{break-inside:avoid}.takeaway{margin-top:0}.footer{padding-top:10px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="shell">
+    <div class="eyebrow">Interactive mathematics · Trigonometric models</div>
+    <h1>The London Eye,<br>explained.</h1>
+    <p>Use real specifications of London’s observation wheel to explore circular motion, cosine graphs, inequalities and derivatives, with six fully worked solutions.</p>
+    <span class="tag">London Eye adaptation · Interactive exercise · Works offline</span>
+  </div>
+</header>
+<main class="shell">
+  <details class="problem paper section">
+    <summary>Read the adapted exercise <span style="color:var(--muted);font-size:.78rem;font-weight:400;margin-left:auto">Based on published London Eye dimensions</span></summary>
+    <div class="problem-body">
+      <p>The London Eye is an observation wheel on the South Bank of the River Thames. Its published overall height is <strong>135 metres</strong>, its wheel diameter is <strong>120 metres</strong>, and one full revolution takes <strong>approximately 30 minutes</strong>.</p>
+      <p><strong>Idealized mathematical assumptions:</strong> Model a marked point travelling around the rim of a perfectly circular wheel, with a highest point 135 m above a reference ground level. Assume the wheel turns uniformly and takes <em>exactly</em> 30 minutes per revolution. The point begins at the lowest position when <i>t</i> = 0. Ignore the size and external mounting of the real capsules.</p>
+      <p>The height <i>h</i> metres of this model point above the reference level after <i>t</i> minutes is <span class="formula-inline">h(t) = a cos(bt) + d</span>, for <i>t</i> ≥ 0. Angles are in radians.</p>
+      <ol type="a">
+        <li>Determine the values of <i>a</i>, <i>b</i> and <i>d</i>.</li>
+        <li>Find the height after <strong>5 minutes</strong>.</li>
+        <li>Find the first time when the height is <strong>120 metres</strong>. Give your answer to two decimal places.</li>
+        <li>For how long in the first <strong>30 minutes</strong> is the height at least <strong>120 metres</strong>? Give your answer to two decimal places.</li>
+        <li>Find <span class="formula-inline">h′(t)</span>.</li>
+        <li>Hence find the maximum rate of increase of height, in metres per minute.</li>
+      </ol>
+      <p class="source-hint"><strong>Provenance:</strong> Dimensions come from the official <a href="https://www.londoneye.com/about-us/history/" rel="noopener noreferrer" target="_blank">London Eye history and facts</a>; the approximate 30-minute rotation comes from its <a href="https://support.londoneye.com/hc/en-us/articles/213233005-What-is-the-London-Eye" rel="noopener noreferrer" target="_blank">official support page</a>. The starting position, exact period and circle-height interpretation are <strong>exercise assumptions</strong>, not independently measured capsule motion.</p>
+    </div>
+  </details>
+  <section class="section" aria-labelledby="explore-title">
+    <div class="small-kicker">01 · Explore the model</div>
+    <h2 id="explore-title">A rotating circle becomes a wave.</h2>
+    <p class="intro">Move the red seat or scrub the time slider. Watch how height and slope change together. On wide screens, a dashed horizontal guide links the seat to its point on the graph; the orange dashed line marks 120 metres.</p>
+    <div class="facts" aria-label="Real-world specifications and calculated model quantities">
+      <div class="fact"><div class="name">Wheel diameter</div><div class="value">120 m</div><small>Published · radius 60 m</small></div>
+      <div class="fact"><div class="name">Overall height</div><div class="value">135 m</div><small>Published · used as model maximum</small></div>
+      <div class="fact"><div class="name">One revolution</div><div class="value">≈ 30 min</div><small>Published · 30 min assumed exactly</small></div>
+      <div class="fact"><div class="name">Model centre</div><div class="value">75 m</div><small>Calculated · lowest model point 15 m</small></div>
+    </div>
+    <p class="model-caveat"><strong>About realism:</strong> the radius, period and upper height are grounded in published specifications. The <strong>15 m minimum and 75 m midline</strong> follow from the simplified circle assumed in this question, not from measurements of the real capsule centres. The London Eye has <strong>32 outward-mounted capsules</strong>; the drawing is schematic.</p>
+    <div class="explorer paper">
+      <div class="figure-grid">
+        <div class="figure-panel">
+          <div class="panel-top"><strong>The wheel</strong><span>Drag the red seat</span></div>
+          <svg id="wheelSVG" viewBox="0 0 420 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simplified London Eye diagram with 32 capsule positions. Drag the highlighted red point to change time.">
+            <defs>
+              <linearGradient id="sky" x2="0" y2="1"><stop offset="0%" stop-color="#e8f5fe"/><stop offset="100%" stop-color="#cfe6f4"/></linearGradient>
+              <linearGradient id="grass" x2="0" y2="1"><stop offset="0%" stop-color="#91b992"/><stop offset="100%" stop-color="#66956c"/></linearGradient>
+            </defs>
+            <rect width="420" height="353" fill="url(#sky)"/>
+            <path d="M19 64 Q30 44 48 54 Q63 32 80 48 Q110 48 112 70 Z" fill="#fff" opacity=".85"/>
+            <path d="M278 53 Q289 30 315 37 Q333 19 351 38 Q375 38 384 57 Z" fill="#fff" opacity=".76"/>
+            <rect y="353" width="420" height="37" fill="#8fb3c9"/>
+            <path d="M0 354H420" stroke="#4d7188" stroke-width="3"/>
+            <path d="M2 370 q16 -4 32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0 t32 0" fill="none" stroke="#d9eff8" stroke-width="1.5"/>
+            <g fill="#b3bdc2" opacity=".65"><rect x="4" y="284" width="30" height="69"/><rect x="39" y="302" width="18" height="51"/><rect x="59" y="268" width="29" height="85"/><rect x="335" y="285" width="23" height="68"/><rect x="362" y="297" width="31" height="56"/><rect x="398" y="278" width="20" height="75"/></g>
+            <path d="M0 353H420" stroke="#648c68" stroke-width="1"/>
+            
+            <path d="M291 351 L210 186 L355 351" fill="none" stroke="#d7e4e9" stroke-width="10" stroke-linecap="round"/>
+            <path d="M286 350H355" stroke="#688394" stroke-width="5" stroke-linecap="round"/>
+            <line x1="15" y1="88.2" x2="407" y2="88.2" stroke="#c86732" stroke-width="2.5" stroke-dasharray="9 7"/>
+            <rect x="17" y="65.2" width="77" height="20" rx="6" fill="#fff8f2"/><text x="25" y="79.7" fill="#a45422" font-weight="750" font-size="13">120 m</text>
+            <circle cx="210" cy="186" r="130.4" fill="none" stroke="#f6fcff" stroke-width="7"/>
+            <circle cx="210" cy="186" r="121.4" fill="none" stroke="#6b9eba" stroke-width="2" opacity=".55"/>
+            <g id="spokes"></g>
+            <circle cx="210" cy="186" r="11" fill="#244b73" stroke="#fff" stroke-width="3"/>
+            <line x1="210" y1="186" x2="210" y2="55.6" stroke="#6a97b7" stroke-dasharray="4 5" stroke-width="1.5" opacity=".75"/>
+            <rect x="238" y="172" width="105" height="26" rx="7" fill="#fff" stroke="#dae5eb"/><text x="249" y="190" fill="#4f6377" font-size="14" font-weight="650">Centre: 75 m</text>
+            <g id="otherSeats"></g>
+            <line id="heightLine" x1="210" y1="316.4" x2="210" y2="353" stroke="#c64d3e" stroke-width="2" stroke-dasharray="4 4"/>
+            <g id="trackedSeat"><circle id="seatHalo" cx="210" cy="316.4" r="19" fill="#e8664e" opacity=".16"/><circle id="seatCore" cx="210" cy="316.4" r="9" fill="#c94e3e" stroke="#fff" stroke-width="3"/><circle id="seatHandle" class="wheel-seat-handle" cx="210" cy="316.4" r="23" fill="transparent"><title>Drag this seat around the wheel</title></circle></g>
+            <rect id="seatLabelBg" x="230" y="313.4" width="86" height="27" rx="7" fill="#fff" stroke="#eadbd7"/><text id="seatLabel" x="240" y="331.4" font-size="14" font-weight="760" fill="#b74838">15.0 m</text>
+            <text x="16" y="376" fill="#fff" font-size="12" font-weight="720">Model reference: 0 m</text>
+          </svg>
+        </div>
+        <div class="figure-panel">
+          <div class="panel-top"><strong>Height over one revolution</strong><span>Tap or click the graph to change time</span></div>
+          <svg id="graphSVG" viewBox="0 0 620 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The graph of h(t) equals 75 minus 60 cosine pi t over 15, from time zero to 30 minutes, with the threshold at 120 metres.">
+            <rect width="620" height="390" fill="#fff" rx="8"/>
+            <g id="graphGrid"></g>
+            <path id="thresholdArea" fill="#e9b38c" opacity=".27"/>
+            <line id="thresholdLine" x1="65" x2="575" stroke="#c86732" stroke-dasharray="8 7" stroke-width="2"/>
+            <path id="curveGhost" fill="none" stroke="#a2bcd0" stroke-width="2.5" stroke-dasharray="5 5"/>
+            <path id="curveTraced" fill="none" stroke="#2b679e" stroke-width="4" stroke-linecap="round"/>
+            <line id="tangentLine" stroke="#277665" stroke-width="3" stroke-linecap="round"/>
+            <line id="traceLine" stroke="#cb5c4e" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <g id="thresholdDots"></g>
+            <circle id="graphHalo" cx="65" cy="316.4" r="11" fill="#c94e3e" opacity=".14"/>
+            <circle id="graphDot" cx="65" cy="316.4" r="6" fill="#c94e3e" stroke="#fff" stroke-width="2"/>
+            <g id="graphAnnotation"><rect id="annotationBg" rx="6" fill="#162942" height="27"/><text id="annotationText" fill="#fff" font-size="13" font-weight="700"></text></g>
+            <rect class="plot-scrub" id="graphCapture" x="65" y="23" width="510" height="326" fill="transparent"/>
+          </svg>
+        </div>
+        <svg id="altitudeGuide" class="altitude-guide" aria-hidden="true" focusable="false" hidden>
+          <line id="altitudeDash" x1="0" y1="0" x2="0" y2="0"/>
+          <circle id="guideEndpoint" cx="0" cy="0" r="2.5"/>
+        </svg>
+      </div>
+      <div class="readouts" aria-live="off">
+        <div class="readout"><div class="label">Elapsed time</div><div class="num" id="timeOutput">0.00 min</div></div>
+        <div class="readout accent"><div class="label">Seat height h(t)</div><div class="num" id="heightOutput">15.00 m</div></div>
+        <div class="readout rate" id="rateBox"><div class="label">Rate h′(t)</div><div class="num" id="rateOutput">0.00 m/min</div></div>
+      </div>
+      <div class="transport">
+        <div class="transport-top">
+          <button id="playBtn" class="play-btn" type="button" aria-label="Play animation">▶ Play</button>
+          <span class="transport-note" id="motionDesc">Start: the model point is 15 m above the reference level.</span>
+          <div class="speed-buttons" role="group" aria-label="Playback speed"><span>Speed</span><button type="button" data-speed="1" aria-pressed="false">1×</button><button type="button" data-speed="2" aria-pressed="true">2×</button><button type="button" data-speed="4" aria-pressed="false">4×</button></div>
+        </div>
+        <div class="slider-row"><input id="timeSlider" type="range" min="0" max="30" value="0" step="0.05" aria-label="Elapsed time in minutes"><div class="slider-labels"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30 min</span></div></div>
+      </div>
+      <div class="legend"><span><i style="background:#c94e3e"></i> Tracked seat and graph point</span><span><i style="background:#c86732"></i> 120 m threshold</span><span><i style="background:#277665"></i> Tangent: instantaneous rate (parts e–f)</span></div>
+      <div id="thresholdNotice" class="live-note" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+  <section class="solution-wrap" aria-labelledby="answers-heading">
+    <div class="section-heading"><div><div class="small-kicker">02 · Understand the solutions</div><h2 id="answers-heading">Six questions, step by step.</h2></div><p>Select a part to focus the graph and read its worked solution.</p></div>
+    <div class="lesson-grid">
+      <nav class="parts" aria-label="Question parts">
+        <button class="part-btn" data-part="a" type="button" aria-pressed="true"><span class="letter">a</span><span><span class="part-label">Build the model</span></span></button>
+        <button class="part-btn" data-part="b" type="button" aria-pressed="false"><span class="letter">b</span><span><span class="part-label">After 5 minutes</span></span></button>
+        <button class="part-btn" data-part="c" type="button" aria-pressed="false"><span class="letter">c</span><span><span class="part-label">First reaches 120 m</span></span></button>
+        <button class="part-btn" data-part="d" type="button" aria-pressed="false"><span class="letter">d</span><span><span class="part-label">Time above 120 m</span></span></button>
+        <button class="part-btn" data-part="e" type="button" aria-pressed="false"><span class="letter">e</span><span><span class="part-label">Differentiate</span></span></button>
+        <button class="part-btn" data-part="f" type="button" aria-pressed="false"><span class="letter">f</span><span><span class="part-label">Fastest change</span></span></button>
+      </nav>
+      <div class="paper work">
+        <article class="work-article active" id="part-a" data-part="a">
+          <div class="work-top"><span class="part-meta">Part (a) · Build the cosine model</span></div>
+          <h3>Determine a, b and d.</h3><p class="summary">Distinguish what is given about the real wheel from what follows in our idealized circle model.</p>
+          <div class="steps">
+            <div class="step"><div><strong>Amplitude: half the diameter.</strong><p>The circle's radius is 120 ÷ 2 = 60 metres. Thus |a| = 60.</p><div class="equation">|a| = 60</div></div></div>
+            <div class="step"><div><strong>Midline: midway between the modeled top and bottom.</strong><p>If the model circle reaches 135 m at the top, its bottom is 135 − 120 = 15 m. The centre is 15 + 60 = 75 m.</p><div class="equation">d = 75</div></div></div>
+            <div class="step"><div><strong>Period: 30 minutes.</strong><p>Cosine completes one cycle when its angle increases by 2π radians.</p><div class="equation">b = 2π/30 = π/15</div></div></div>
+            <div class="step"><div><strong>Starting from the bottom determines the sign.</strong><p>At t = 0, cos(0) = 1; h(0) = 15. Hence a + 75 = 15, so a = −60.</p><div class="equation">h(t) = 75 − 60 cos(πt/15)</div></div></div>
+          </div>
+          <div class="answer">a = −60, &nbsp; b = π/15, &nbsp; d = 75.</div>
+          <div class="interpret"><strong>Visual check:</strong> h(0) = 15 m, h(15) = 135 m, h(30) = 15 m. These are values of the <em>idealized model</em>.</div>
+        </article>
+        <article class="work-article" id="part-b" data-part="b">
+          <div class="work-top"><span class="part-meta">Part (b) · Substitute a time</span></div>
+          <h3>How high after 5 minutes?</h3><p class="summary">Replace t with 5 in the model; the angle becomes π/3 radians.</p>
+          <div class="steps">
+            <div class="step"><div><strong>Substitute.</strong><div class="equation">h(5) = 75 − 60 cos(5π/15)<br>= 75 − 60 cos(π/3)</div></div></div>
+            <div class="step"><div><strong>Evaluate the cosine.</strong><p>Because cos(π/3) = 1/2:</p><div class="equation">h(5) = 75 − 60 × 1/2 = 45</div></div></div>
+          </div>
+          <div class="answer">At 5 minutes, the modeled height is 45 m.</div>
+          <div class="interpret"><strong>Notice:</strong> 5 minutes is one sixth of the 30-minute period; the point has risen 30 m from its model minimum.</div>
+        </article>
+        <article class="work-article" id="part-c" data-part="c">
+          <div class="work-top"><span class="part-meta">Part (c) · Solve a trigonometric equation</span></div>
+          <h3>When does it first reach 120 m?</h3><p class="summary">Equate h(t) to the threshold, solve for cosine, and use inverse cosine in radians.</p>
+          <div class="steps">
+            <div class="step"><div><strong>Write the equation.</strong><div class="equation">75 − 60 cos(πt/15) = 120<br>cos(πt/15) = −45/60 = −3/4</div></div></div>
+            <div class="step"><div><strong>Choose the first angle.</strong><p>The first solution from angle 0 is θ = arccos(−3/4), approximately 2.418858 radians.</p><div class="equation">πt/15 = arccos(−3/4)</div></div></div>
+            <div class="step"><div><strong>Convert the angle to minutes.</strong><div class="equation">t₁ = (15/π) arccos(−3/4)<br>≈ 11.55 minutes</div></div></div>
+          </div>
+          <div class="answer">First reaches 120 m at about 11.55 min.</div>
+          <div class="interpret"><strong>Symmetry:</strong> the second crossing is at t₂ = 30 − t₁ ≈ 18.45 minutes, on the descending side of the wheel.</div>
+        </article>
+        <article class="work-article" id="part-d" data-part="d">
+          <div class="work-top"><span class="part-meta">Part (d) · Solve a trigonometric inequality</span></div>
+          <h3>How long at or above 120 m?</h3><p class="summary">The graph's orange area highlights the part of the revolution above the threshold.</p>
+          <div class="steps">
+            <div class="step"><div><strong>Translate “at least” into an inequality.</strong><div class="equation">75 − 60 cos(πt/15) ≥ 120<br>cos(πt/15) ≤ −3/4</div><p>Remember to reverse the inequality when dividing by −60.</p></div></div>
+            <div class="step"><div><strong>Find the two crossings.</strong><p>The first crossing is t₁ ≈ 11.5492 min, and the return crossing is t₂ = 30 − t₁ ≈ 18.4508 min.</p><div class="equation">11.5492… ≤ t ≤ 18.4508…</div></div></div>
+            <div class="step"><div><strong>Subtract the endpoints.</strong><div class="equation">Duration = t₂ − t₁<br>≈ 18.4508 − 11.5492 = 6.90 min</div></div></div>
+          </div>
+          <div class="answer">The modeled height is ≥ 120 m for ≈ 6.90 min.</div>
+          <div class="interpret"><strong>Why no extra time at the endpoints?</strong> Including exactly the two crossing instants does not alter an interval's duration.</div>
+        </article>
+        <article class="work-article" id="part-e" data-part="e">
+          <div class="work-top"><span class="part-meta">Part (e) · Apply the chain rule</span></div>
+          <h3>Find the instantaneous vertical rate h′(t).</h3><p class="summary">This is the slope of the height graph, measured in metres per minute.</p>
+          <div class="steps">
+            <div class="step"><div><strong>Differentiate cos(bt).</strong><p>The derivative is −b sin(bt). The negative coefficient in the height function cancels this negative sign.</p><div class="equation">h′(t) = −60[−(π/15) sin(πt/15)]</div></div></div>
+            <div class="step"><div><strong>Simplify.</strong><div class="equation">60 × π/15 = 4π</div></div></div>
+          </div>
+          <div class="answer">h′(t) = 4π sin(πt/15) m/min.</div>
+          <div class="interpret"><strong>Compare the graph and wheel:</strong> positive means rising; negative means descending. At the modeled lowest and highest points, the <em>vertical</em> rate is momentarily zero.</div>
+        </article>
+        <article class="work-article" id="part-f" data-part="f">
+          <div class="work-top"><span class="part-meta">Part (f) · Maximize the derivative</span></div>
+          <h3>What is the maximum rate of increase?</h3><p class="summary">Sine cannot exceed 1. The steepest positive slope appears when the point is midway up the ascending side.</p>
+          <div class="steps">
+            <div class="step"><div><strong>Use the derivative.</strong><div class="equation">h′(t) = 4π sin(πt/15)</div></div></div>
+            <div class="step"><div><strong>Maximum possible sine value is 1.</strong><div class="equation">max h′(t) = 4π × 1 = 4π<br>≈ 12.57 m/min</div></div></div>
+            <div class="step"><div><strong>Find when it happens.</strong><p>At πt/15 = π/2, so t = 7.5 minutes.</p><div class="equation">t = 7.5 min; h(t) = 75 m</div></div></div>
+          </div>
+          <div class="answer">Maximum upward rate = 4π ≈ 12.57 m/min.</div>
+          <div class="interpret"><strong>Signed rate versus speed:</strong> at t = 7.5 min the vertical rate is +12.57 m/min; at t = 22.5 min it is −12.57 m/min. Both have the same magnitude, but only the former is the maximum <em>signed</em> rate. This is an idealized model result, not a measured operating speed.</div>
+        </article>
+        <div class="work-controls"><button id="prevBtn" class="outline-btn" type="button" disabled>← Previous part</button><button id="nextBtn" class="outline-btn" type="button">Next part →</button></div>
+      </div>
+    </div>
+  </section>
+  <aside class="takeaway paper"><div class="glyph" aria-hidden="true">✓</div><div><strong>The key idea</strong><p>Radius gives amplitude; centre height gives vertical shift; revolution time gives period; the starting position determines the sign. To answer the later parts, evaluate, solve, differentiate, and interpret the same model rather than memorizing separate rules.</p></div></aside>
+  <section class="sources paper" aria-labelledby="sourceTitle">
+    <div class="small-kicker">03 · Real data versus model</div>
+    <h2 id="sourceTitle">Where the numbers come from</h2>
+    <p><strong>Reported data:</strong> 135 m overall height, 120 m wheel diameter, 32 passenger capsules and a roughly 30-minute revolution. These are factual specifications, not measurements taken by this lesson.</p>
+    <p><strong>Modelling choices:</strong> approximate the vertical motion by a point on a 120 m circular path, use the published 135 m as the model’s maximum, choose a common reference level, treat the 30-minute rotation as exact, and start at its lowest point. Consequently the 15 m minimum and all calculated heights and speeds belong to the model; they should not be interpreted as measured positions or clearances of the real capsules. The real capsules are mounted outside the rim and remain upright.</p>
+    <ul>
+      <li><a href="https://www.londoneye.com/about-us/history/" rel="noopener noreferrer" target="_blank">The London Eye, History and Facts</a> (official website): 135 m height, 120 m wheel diameter.</li>
+      <li><a href="https://support.londoneye.com/hc/en-us/articles/213233005-What-is-the-London-Eye" rel="noopener noreferrer" target="_blank">The London Eye, What is the London Eye?</a> (official support): approximately 30-minute rotation.</li>
+      <li><a href="https://www.londoneye.com/plan-your-visit/information-and-support/faqs/" rel="noopener noreferrer" target="_blank">The London Eye, FAQs</a> (official website): 32 pods.</li>
+      <li><a href="https://www.sca.design/projects/the-london-eye" rel="noopener noreferrer" target="_blank">Steven Chilton Architects, The London Eye</a>: capsules on external bearings and the wheel’s A-frame structure.</li>
+    </ul>
+    <p class="source-footnote">The educational diagram and worked mathematics are original schematic material, not an official London Eye illustration. Source pages are links only; the lesson itself works entirely offline.</p>
+  </section>
+  <div class="footer">Standalone adapted educational artifact · Diagrams and calculations run locally · No external scripts, libraries, fonts or image downloads</div>
+</main>
+<script>
+(() => {
+  'use strict';
+  const PI = Math.PI, PERIOD = 30, OMEGA = PI/15, THRESHOLD = 120;
+  const h = t => 75-60*Math.cos(OMEGA*t);
+  const dh = t => 60*OMEGA*Math.sin(OMEGA*t);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const $=id=>document.getElementById(id);
+  const NS='http://www.w3.org/2000/svg';
+  const make=(tag,attrs={},parent)=>{const el=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));if(parent)parent.appendChild(el);return el};
+  // Both diagrams use the identical vertical height scale when shown side by side:
+  // graph y = 349 - height / 150 * (349 - 23).
+  const W={cx:210,cy:186,r:130.4,gnd:353};
+  let t=0, playing=false, speed=2, lastTs=null, frame=null, dragging=false, plotDragging=false,active='a';
+  const CROSSING=15/PI*Math.acos(-.75);
+  const partTimes={a:0,b:5,c:CROSSING,d:15,e:5,f:7.5};
+  const parts=['a','b','c','d','e','f'];
+  const spokes=[], seats=[];
+  for(let i=0;i<32;i++){
+    spokes.push(make('line',{x1:W.cx,y1:W.cy,x2:W.cx,y2:W.cy,stroke:i===0?'#326e9f':'#f0f7fd','stroke-width':i===0?2.7:1,opacity:i===0?1:.56},$('spokes')));
+    if(i>0)seats.push(make('ellipse',{cx:W.cx,cy:W.cy,rx:5,ry:6.6,fill:'#7997aa',stroke:'#eef8ff','stroke-width':1.5},$('otherSeats')));
+  }
+  const X={x0:65,x1:575,y0:23,y1:349};
+  const gx=t=>X.x0+(t/PERIOD)*(X.x1-X.x0);
+  const gy=y=>X.y1-(y/150)*(X.y1-X.y0);
+  const plot=$('graphGrid');
+  for(let yy=0;yy<=150;yy+=25){
+    let py=gy(yy);make('line',{x1:X.x0,x2:X.x1,y1:py,y2:py,stroke:'#e4edf3','stroke-width':1},plot);
+    let label=make('text',{x:X.x0-12,y:py+4,'text-anchor':'end',fill:'#708195','font-size':12},plot);label.textContent=yy;
+  }
+  for(let xx=0;xx<=30;xx+=5){
+    let px=gx(xx);make('line',{x1:px,x2:px,y1:X.y0,y2:X.y1,stroke:'#e4edf3','stroke-width':1},plot);
+    let label=make('text',{x:px,y:X.y1+18,'text-anchor':'middle',fill:'#708195','font-size':12},plot);label.textContent=xx;
+  }
+  make('line',{x1:X.x0,x2:X.x1,y1:X.y1,y2:X.y1,stroke:'#718699','stroke-width':1.5},plot);
+  make('line',{x1:X.x0,x2:X.x0,y1:X.y0,y2:X.y1,stroke:'#718699','stroke-width':1.5},plot);
+  let xlab=make('text',{x:(X.x0+X.x1)/2,y:389,'text-anchor':'middle',fill:'#455a70','font-size':14,'font-weight':650},plot);xlab.textContent='Time (minutes)';
+  let ylab=make('text',{x:18,y:186,transform:'rotate(-90 18 186)','text-anchor':'middle',fill:'#455a70','font-size':14,'font-weight':650},plot);ylab.textContent='Height (m)';
+  let eq=make('text',{x:76,y:42,fill:'#2b679e','font-size':13,'font-weight':700},plot);eq.textContent='h(t) = 75 − 60 cos(πt/15)';
+  const curvePath=(min,max,step=.12)=>{
+    let segments=[],n=Math.max(2,Math.ceil((max-min)/step));
+    for(let k=0;k<=n;k++){const tt=min+(max-min)*k/n;segments.push((k?'L':'M')+gx(tt).toFixed(2)+' '+gy(h(tt)).toFixed(2));}
+    return segments.join(' ');
+  };
+  $('curveGhost').setAttribute('d',curvePath(0,PERIOD));
+  $('thresholdLine').setAttribute('y1',gy(THRESHOLD));$('thresholdLine').setAttribute('y2',gy(THRESHOLD));
+  const areaPath=`M ${gx(CROSSING)} ${gy(THRESHOLD)} `+curvePath(CROSSING,PERIOD-CROSSING).replace(/^M/, 'L')+` L ${gx(PERIOD-CROSSING)} ${gy(THRESHOLD)} Z`;
+  $('thresholdArea').setAttribute('d',areaPath);
+  const thresholds=$('thresholdDots');
+  [CROSSING,PERIOD-CROSSING].forEach((q,i)=>{
+    make('circle',{cx:gx(q),cy:gy(THRESHOLD),r:5.5,fill:'#c86732',stroke:'#fff','stroke-width':2},thresholds);
+    let lab=make('text',{x:gx(q)+(i===0?-9:9),y:gy(THRESHOLD)-12,'text-anchor':i===0?'end':'start',fill:'#a45422','font-size':13,'font-weight':750},thresholds);lab.textContent=q.toFixed(2)+' min';
+  });
+  let thLabel=make('text',{x:571,y:gy(THRESHOLD)-7,'text-anchor':'end',fill:'#a45422','font-size':13,'font-weight':750},plot);thLabel.textContent='120 m';
+  const wheelSVG=$('wheelSVG'), seatHandle=$('seatHandle');
+  const graphSVG=$('graphSVG'),capture=$('graphCapture');
+  const displayTime=tt=>tt.toFixed(2)+' min';
+  function pause(){playing=false;lastTs=null;if(frame!==null){cancelAnimationFrame(frame);frame=null;}$('playBtn').textContent=t>=PERIOD?'↻ Replay':'▶ Play';$('playBtn').setAttribute('aria-label',t>=PERIOD?'Replay animation':'Play animation');}
+  function setTime(v,doPause=false){
+    if(doPause)pause();
+    t=clamp(Number(v)||0,0,PERIOD);
+    render();
+  }
+  const guideSVG=$('altitudeGuide');
+  const guideLine=$('altitudeDash');
+  const guideEndpoint=$('guideEndpoint');
+  const figureGrid=document.querySelector('.figure-grid');
+  // The circular wheel must keep its aspect ratio. Match its SVG rendered height
+  // to the graph's on roomy two-column layouts instead of stretching the circle.
+  function alignDiagrams(){
+    const left=wheelSVG.closest('.figure-panel').getBoundingClientRect();
+    const right=graphSVG.closest('.figure-panel').getBoundingClientRect();
+    // Follow the actual layout, not the browser viewport: some landscape
+    // phones display two columns below the old 990px cutoff.
+    const sideBySide=right.left>left.right-4 && Math.abs(right.top-left.top)<28;
+    if(!sideBySide){
+      wheelSVG.style.height='';
+      wheelSVG.style.transform='';
+      guideSVG.setAttribute('hidden','');
+      return false;
+    }
+    const gh=graphSVG.getBoundingClientRect().height;
+    wheelSVG.style.transform='';
+    wheelSVG.style.height=gh.toFixed(2)+'px';
+    // Labels in the right panel can wrap onto an extra line on small
+    // landscape screens. Align the SVG origins before drawing the connector.
+    const topOffset=graphSVG.getBoundingClientRect().top-wheelSVG.getBoundingClientRect().top;
+    if(Math.abs(topOffset)>.25) wheelSVG.style.transform=`translateY(${topOffset.toFixed(2)}px)`;
+    return true;
+  }
+  function screenPos(svg,x,y){
+    const point=svg.createSVGPoint();point.x=x;point.y=y;
+    const matrix=svg.getScreenCTM();
+    return matrix?point.matrixTransform(matrix):null;
+  }
+  function drawAltitudeGuide(){
+    // Never draw an oblique connector on a stacked or insufficiently wide layout.
+    const sideBySide=alignDiagrams();
+    if(!sideBySide){guideSVG.setAttribute('hidden','');return;}
+    const wheelPoint=screenPos(wheelSVG,Number($('seatCore').getAttribute('cx')),Number($('seatCore').getAttribute('cy')));
+    const graphPoint=screenPos(graphSVG,Number($('graphDot').getAttribute('cx')),Number($('graphDot').getAttribute('cy')));
+    const r=figureGrid.getBoundingClientRect();
+    if(!wheelPoint||!graphPoint||r.width<=0||r.height<=0||graphPoint.x<=wheelPoint.x+25||Math.abs(graphPoint.y-wheelPoint.y)>3.5){
+      guideSVG.setAttribute('hidden','');return;
+    }
+    guideSVG.removeAttribute('hidden');
+    guideSVG.setAttribute('viewBox',`0 0 ${r.width.toFixed(2)} ${r.height.toFixed(2)}`);
+    const x1=wheelPoint.x-r.left+12,x2=graphPoint.x-r.left-8;
+    const y=(wheelPoint.y+graphPoint.y)/2-r.top;
+    guideLine.setAttribute('x1',x1.toFixed(2));guideLine.setAttribute('x2',x2.toFixed(2));
+    guideLine.setAttribute('y1',y.toFixed(2));guideLine.setAttribute('y2',y.toFixed(2));
+    guideEndpoint.setAttribute('cx',x2.toFixed(2));guideEndpoint.setAttribute('cy',y.toFixed(2));
+  }
+  function render(){
+    const theta=PI-OMEGA*t;
+    for(let i=0;i<32;i++){
+      const angle=theta+i*2*PI/32;
+      const px=W.cx+W.r*Math.sin(angle),py=W.cy-W.r*Math.cos(angle);
+      const line=spokes[i];line.setAttribute('x2',px);line.setAttribute('y2',py);
+      if(i>0){seats[i-1].setAttribute('cx',px);seats[i-1].setAttribute('cy',py);}
+    }
+    const sx=W.cx+W.r*Math.sin(theta),sy=W.cy-W.r*Math.cos(theta);
+    ['seatHalo','seatCore','seatHandle'].forEach(id=>{$(id).setAttribute('cx',sx);$(id).setAttribute('cy',sy)});
+    $('heightLine').setAttribute('x1',sx);$('heightLine').setAttribute('x2',sx);$('heightLine').setAttribute('y1',sy);
+    const labelW=86, labelX=sx<250?sx+15:sx-labelW-15, labelY=clamp(sy-16,8,352);
+    $('seatLabelBg').setAttribute('x',labelX);$('seatLabelBg').setAttribute('y',labelY);
+    $('seatLabel').setAttribute('x',labelX+11);$('seatLabel').setAttribute('y',labelY+18);$('seatLabel').textContent=h(t).toFixed(1)+' m';
+    $('curveTraced').setAttribute('d',t>0.01?curvePath(0,t):'');
+    const x=gx(t),y=gy(h(t));
+    $('graphDot').setAttribute('cx',x);$('graphDot').setAttribute('cy',y);
+    $('graphHalo').setAttribute('cx',x);$('graphHalo').setAttribute('cy',y);
+    $('traceLine').setAttribute('x1',x);$('traceLine').setAttribute('x2',x);
+    $('traceLine').setAttribute('y1',y);$('traceLine').setAttribute('y2',X.y1);
+    const tangent=$('tangentLine');
+    if(active==='e'||active==='f'){
+      const span=2.8, xA=clamp(t-span,0,PERIOD),xB=clamp(t+span,0,PERIOD);
+      const yA=h(t)+dh(t)*(xA-t),yB=h(t)+dh(t)*(xB-t);
+      tangent.setAttribute('x1',gx(xA));tangent.setAttribute('x2',gx(xB));
+      tangent.setAttribute('y1',gy(yA));tangent.setAttribute('y2',gy(yB));tangent.style.display='';
+    }else{tangent.style.display='none';}
+    $('thresholdArea').style.display=(active==='c'||active==='d')?'':'none';
+    thresholds.style.display=(active==='c'||active==='d')?'':'none';
+    const text=`t = ${t.toFixed(1)}   h = ${h(t).toFixed(1)} m`;
+    const at=$('annotationText');at.textContent=text;
+    const width=205, ax=clamp(x-width/2,X.x0,X.x1-width), ay=clamp(y-38,X.y0+3,X.y1-32);
+    $('annotationBg').setAttribute('x',ax);$('annotationBg').setAttribute('y',ay);$('annotationBg').setAttribute('width',width);
+    at.setAttribute('x',ax+10);at.setAttribute('y',ay+18);
+    $('timeSlider').value=t;
+    $('timeOutput').textContent=displayTime(t);$('heightOutput').textContent=h(t).toFixed(2)+' m';
+    const rate=dh(t);$('rateOutput').textContent=(Math.abs(rate)<1e-9?0:rate).toFixed(2)+' m/min';
+    $('rateBox').classList.toggle('falling',rate<-.001);
+    let note='';
+    if(h(t)>THRESHOLD+.07)note='The model point is above 120 m.';
+    else if(Math.abs(h(t)-THRESHOLD)<=.07)note='The model point is at the 120 m threshold.';
+    else note='The model point is below 120 m.';
+    if($('thresholdNotice').textContent!==note)$('thresholdNotice').textContent=note;
+    $('motionDesc').textContent=Math.abs(rate)<.001?(t>13&&t<17?'At the top: the instantaneous vertical rate is zero.':'At a turning point the instantaneous vertical rate is zero.'):(rate>0?'The seat is rising.':'The seat is descending.');
+    drawAltitudeGuide();
+    if(!playing){$('playBtn').textContent=t>=PERIOD?'↻ Replay':'▶ Play';}
+  }
+  function tick(ts){
+    if(!playing)return;
+    if(lastTs===null)lastTs=ts;
+    const dt=clamp((ts-lastTs)/1000,0,.08);lastTs=ts;
+    t=clamp(t+dt*speed,0,PERIOD);render();
+    if(t>=PERIOD){pause();return;}
+    frame=requestAnimationFrame(tick);
+  }
+  $('playBtn').addEventListener('click',()=>{
+    if(playing){pause();return;}
+    if(t>=PERIOD)setTime(0);
+    playing=true;lastTs=null;$('playBtn').textContent='Ⅱ Pause';$('playBtn').setAttribute('aria-label','Pause animation');
+    frame=requestAnimationFrame(tick);
+  });
+  $('timeSlider').addEventListener('input',e=>setTime(e.target.value,true));
+  document.querySelectorAll('[data-speed]').forEach(b=>b.addEventListener('click',()=>{
+    speed=Number(b.dataset.speed);
+    document.querySelectorAll('[data-speed]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  }));
+  function pointerToSvg(el,e){const p=el.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const mat=el.getScreenCTM();return mat?p.matrixTransform(mat.inverse()):{x:NaN,y:NaN};}
+  function spinFromPointer(e){const p=pointerToSvg(wheelSVG,e);const theta=Math.atan2(p.x-W.cx,W.cy-p.y);setTime((PI-theta)/OMEGA,true);}
+  seatHandle.addEventListener('pointerdown',e=>{dragging=true;seatHandle.setPointerCapture(e.pointerId);spinFromPointer(e);e.preventDefault()});
+  seatHandle.addEventListener('pointermove',e=>{if(dragging)spinFromPointer(e)});
+  function endWheelDrag(){dragging=false;}
+  seatHandle.addEventListener('pointerup',endWheelDrag);seatHandle.addEventListener('pointercancel',endWheelDrag);
+  function graphTime(e){const p=pointerToSvg(graphSVG,e);setTime((p.x-X.x0)/(X.x1-X.x0)*PERIOD,true);}
+  capture.addEventListener('click',graphTime);
+  // Pointer and touch-friendly slider offers continuous control without hijacking page scrolling.
+  function choosePart(p){
+    if(!parts.includes(p))return;
+    active=p;pause();
+    document.querySelectorAll('.part-btn').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.part===p)));
+    document.querySelectorAll('.work-article').forEach(el=>el.classList.toggle('active',el.dataset.part===p));
+    $('prevBtn').disabled=(p==='a');$('nextBtn').disabled=(p==='f');
+    setTime(partTimes[p]);
+  }
+  document.querySelectorAll('.part-btn').forEach(btn=>btn.addEventListener('click',()=>choosePart(btn.dataset.part)));
+  $('prevBtn').addEventListener('click',()=>choosePart(parts[Math.max(0,parts.indexOf(active)-1)]));
+  $('nextBtn').addEventListener('click',()=>choosePart(parts[Math.min(5,parts.indexOf(active)+1)]));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)pause()});
+  window.addEventListener('resize',render);
+  render();
+})();
+</script>
+</body>
+</html>
