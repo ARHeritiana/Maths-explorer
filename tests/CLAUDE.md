@@ -50,7 +50,7 @@ Run only the test of the module you changed: `node --test tests/<name>.test.mjs`
 | `count_claims.py` | counts written in prose match the content |
 | `verify-arithmetic.py`, `verify-quadratic.py` | independent maths checks of two courses |
 
-| `gallery-render.test.mjs` | GPU Mandelbrot reference orbit, Gömböc display mesh (56,946 faces recovered from adjacency, closed, outward), soap frame handles, sofa contact test with cached samples |
+| `gallery-render.test.mjs` | GPU Mandelbrot reference orbit, soap frame handles, sofa contact test with cached samples |
 | `gallery-discovery.test.mjs` | independent Voronoi, cycloid, film-area, hat and knot-invariant checks |
 | `gallery-discovery-dom.test.mjs` | five exhibits, live inputs, bilingual readouts and lifecycle cleanup |
 
@@ -85,7 +85,7 @@ honest rounding, shared-slide control visibility, root-mode fallback, slider ran
 
 `test_slide_editions.py`: actual slide source extraction, measured available editions, independent sequence lengths and figure selection for French-only, English-only and bilingual fixtures, plus lecture source selection and SVG-driven lecture figure cache invalidation. `slide-editions.test.mjs`: actual player rendering and unavailable-language behavior with independent edition counts.
 
-`gomboc.test.mjs`: full graph/hash/volume invariants, support against independent all-vertex searches, local equilibrium potential, analytic freeflight and time-step convergence, collision nonpenetration/dissipation and honest linked explanations.
+`gomboc.test.mjs`: the smooth Gömböc of Várkonyi and Domokos: radial law (finite-difference derivatives, limits of the paper), centre of gravity at the origin and converged quadrature, only the two poles are critical, convexity margin (and failure for a ten times larger d), exact contact and support function, display mesh, rolling dynamics (Newton from kinematics, conserved energy, step convergence, equilibria, damping) and honest linked text.
 
 `dynamics.test.mjs`: independently differentiated pendulum energy, viscous dissipation, harmonic-solver benchmark, tolerance convergence, force balance, conserved gravitational moments, figure-eight return, explicit near-collision halt, logistic cycles/windows and invariant domain.
 

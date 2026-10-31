@@ -1,12 +1,9 @@
-// Pure parts of the smooth renderers and the editable soap frame: reference orbit of the GPU Mandelbrot, the display mesh of the
-// Gömböc rebuilt from the certified adjacency, frame handles of the soap films, and the sofa contact test with cached samples.
+// Pure parts of the smooth renderers and the editable soap frame: reference orbit of the GPU Mandelbrot, frame handles of the soap films, and the sofa contact test with cached samples.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {referenceOrbit, ORBIT_CAPACITY} from '../site/js/fractal-gl.js';
 import {escape} from '../site/js/gallery-math.js';
-import * as G from '../site/js/gallery-gomboc-model.js';
-import {buildSmoothMesh} from '../site/js/gomboc-mesh.js';
 import * as Soap from '../site/js/gallery-soap-model.js';
 import * as Sofa from '../site/js/gallery-sofa-model.js';
 
@@ -19,25 +16,6 @@ test('reference orbit is the double-precision orbit, and stops when it leaves a 
   assert.ok(e.length < 12 && e.length >= 3);
   assert.equal(referenceOrbit(0, 0, 0, 0, 100000).length, ORBIT_CAPACITY);   // capacity bound
   assert.equal(escape(0, 0, 1, 1, 50) < 5, true);
-});
-
-test('Gömböc display mesh: all 56,946 faces recovered, closed, outward, with outward smooth normals', () => {
-  const bin = fs.readFileSync(new URL('../site/data/gomboc/body.bin', import.meta.url)), meta = JSON.parse(fs.readFileSync(new URL('../site/data/gomboc/body.json', import.meta.url)));
-  const body = G.decodeGeometry(bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength), meta), m = buildSmoothMesh(body);
-  assert.equal(m.faces, meta.faces);
-  assert.equal(m.vertices, body.count);
-  assert.equal(m.vertices - meta.edges + m.faces, 2);            // Euler: the recovered faces close the surface
-  assert.equal(m.indices.length, m.triangles * 3);
-  const P = (i) => [m.positions[3 * i], m.positions[3 * i + 1], m.positions[3 * i + 2]];
-  let inward = 0, area = 0;
-  for (let i = 0; i < m.indices.length; i += 3) {
-    const [a, b, c] = [0, 1, 2].map((k) => P(m.indices[i + k])), n = G.cross(b.map((x, k) => x - a[k]), c.map((x, k) => x - a[k])), size = G.norm(n);
-    if (size < 1e-9) continue;   // float32 slivers of the display copy
-    area += size / 2; if (G.dot(n, a.map((x, k) => (x + b[k] + c[k]) / 3)) < 0) inward++;
-  }
-  assert.equal(inward, 0);
-  assert.ok(area > 10 && area < 30);
-  for (let v = 0; v < m.vertices; v += 97) { const p = P(v), n = [m.normals[3 * v], m.normals[3 * v + 1], m.normals[3 * v + 2]]; assert.ok(Math.abs(G.norm(n) - 1) < 1e-5); assert.ok(G.dot(p, n) > 0); }
 });
 
 test('soap frame handles: the handle ends where it was put, the wire stays continuous, the film keeps relaxing', () => {

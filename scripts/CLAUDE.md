@@ -23,4 +23,3 @@ Builders called by `build/mxbuild` (see `pipeline.py` `COURSES`) or by `make`. E
 
 `build-fourier.py`: six web lessons, four XeLaTeX PDF editions, source bundle and checked build receipt.
 
-`build-gomboc.py`: package the MIT certified Gömböc analogue from a source checkout and completed exact-certificate reproduction; integrate full-volume inertia and retain all contact vertices, with explicitly separate display and preview hulls.

@@ -9,6 +9,8 @@
 //   cam3HitPlane(ray, o, n)                -> point | null where the ray meets the plane through o with normal n
 //   cam3HitLine(ray, o, e)                 -> { s, point } | null the point o + s e of a line nearest to the ray
 //   cam3Turn(cam, dYaw, dPitch)            turns a { yaw, pitch } camera in place; the pitch stays in [PITCH_MIN, PITCH_MAX]
+//   cam3TurnFree(cam, dYaw, dPitch)        the same without a floor: the yaw is free and the pitch runs from straight below to
+//                                          straight above (±FREE_PITCH), so an object can be seen from every direction
 export const PITCH_MIN = 0.12, PITCH_MAX = 1.45;
 export const CAM3_DEFAULT = { yaw: -0.7, pitch: 0.55 };
 
@@ -45,5 +47,11 @@ export function cam3HitLine(ray, o, e) {
 export function cam3Turn(cam, dYaw, dPitch) {
   cam.yaw += dYaw;
   cam.pitch = Math.min(PITCH_MAX, Math.max(PITCH_MIN, cam.pitch + dPitch));
+  return cam;
+}
+export const FREE_PITCH = Math.PI / 2 - 0.02;
+export function cam3TurnFree(cam, dYaw, dPitch) {
+  cam.yaw += dYaw;
+  cam.pitch = Math.min(FREE_PITCH, Math.max(-FREE_PITCH, cam.pitch + dPitch));
   return cam;
 }

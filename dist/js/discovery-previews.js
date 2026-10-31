@@ -6,7 +6,7 @@ import {model as cobwebModel} from './lab/models/cobweb.js';
 import {surfacePoint,spherePoint,tangentField} from './lab/models/topology.js';
 import {TOKARSKY,PRESETS} from './illumination-presets.js';
 import {trace} from './illumination-model.js';
-import {GOMBOC_PREVIEW} from './gomboc-preview.js';
+import {previewMesh as gombocMesh} from './gomboc-body.js';
 import {CURRY} from './lab/models/tiles.js';
 import {voronoiCells,cycloid} from './gallery-models.js';
 import {tileOutline} from './gallery-hat-model.js';
@@ -122,9 +122,9 @@ export function modelPreview(kind) {
   drawing=pts.slice(1).map(p=>path([pts[0],p])).join('')+pts.map((p,i)=>`${dot(...p,8)}<text x="${p[0]}" y="${p[1]+4}" text-anchor="middle">${['e','a','A','b','B'][i]}</text>`).join('');
   caption=P('Modèle fini : cinq mots distincts','Finite model: five distinct words');
  } else if(kind==='gomboc') {
-  const pts=GOMBOC_PREVIEW.vertices.map(project);
-  drawing=GOMBOC_PREVIEW.triangles.map(ids=>path(ids.map(i=>pts[i]),true)).join('');
-  caption=P('Vue du maillage, sans certificat visuel','Mesh view, not a visual certificate');
+  const mesh=gombocMesh(1500),pts=mesh.vertices.map(project);
+  drawing=mesh.quads.map(ids=>path(ids.map(i=>pts[i]),true)).join('');
+  caption=P('Gömböc, relief exagéré ×1500 (le corps réel est une sphère à 0,002 % près)','Gömböc, relief exaggerated ×1500 (the real body is a sphere to within 0.002 %)');
  } else if(kind==='derivative') {
   drawing=axis+plot(x=>82-16*x*x,-2,2)+path([[94,84],[145,33]])+dot(112,66);
   caption=P('Exemple : tangente à y = x² en x = 1','Example: tangent to y = x² at x = 1');
