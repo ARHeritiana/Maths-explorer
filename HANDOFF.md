@@ -1,5 +1,9 @@
 # Handoff
 
+## Workstreams G and H (31 October 2026)
+
+G: the four unpublished references were audited and fixed twice (`docs/future-work/g-audit-20261031.md`); the second round added typed vertices and a thin-polygon check (equidecomposability), lake presets, arrow-key tabs and an interval caveat (Monte Carlo), and a worded shading report (set atlas). `tests/future_work_browser.py` keeps these. None is in `site/`; integration still needs a second independent audit by a different agent, a language and category decision per page, translation, and the site's tokens and router. H: no public credit remains; `tests/attribution.test.mjs` guards it; the two sites could not be reached, so no comparison was possible and originality is not claimed by comparison. Other workstreams unchanged.
+
 ## Workstream E: error correction collection started (31 October 2026)
 
 New page `#errors[/<id>]` (Explorer > Erreurs), goals 4 and 5 of `docs/IMPROVEMENT_GOALS.md`. Seven claim activities (square of a sum, root of a sum, reciprocal of a sum, cancelling a term, partial distribution, lost bracket in a subtraction, square of a negative) and one flawed derivation (1 = 2 by dividing by zero). Each: a false claim, sliders that give a computed counterexample, a diagnosis, and a repair choice that is accepted only if it holds on the whole domain grid. Data and checks in `site/js/errors-model.js` (add an error there, nothing else is needed for the page; tests check domains and links). Written from first principles; a supplied algebra-errors PDF only suggested common topics, none of its text or examples is reproduced.
