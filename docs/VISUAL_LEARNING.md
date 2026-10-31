@@ -1,6 +1,6 @@
 # Visual chapter workspace
 
-The requested direction combines manipulable simulations, a clear lesson–exercise path and staged mathematical animation. Reference sites were reviewed at https://javalab.org/en/ and https://www.mathoutils.fr/ . Their code and visual assets were not imported. The diagrams are browser-native SVG constructions inspired by the explanatory pacing of Manim; they are not rendered Manim videos.
+The requested direction combines manipulable simulations, a clear lesson–exercise path and staged mathematical animation. The diagrams are browser-native SVG constructions inspired by the explanatory pacing of Manim; they are not rendered Manim videos.
 
 The default route `#resources` organises the 47 French course chapters by course with accent-insensitive bilingual search. `#chapter/<id>/understand`, `/experiment`, `/practice` and `/documents` offer a companion lesson, worked example, visual experiment, reasoning exercise with deliberate hint/solution reveals and original French extracts. Shared central ideas reuse 30 concise companion guides, with 26 parameterised visual models. Guides explicitly point to the original chapter for the full set of topics.
 
